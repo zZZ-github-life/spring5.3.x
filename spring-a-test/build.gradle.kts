@@ -14,6 +14,7 @@ dependencies {
 	api(project(":spring-beans"))
 	api(project(":spring-core"))
 	api(project(":spring-aop"))
+	api(project(":spring-aspects"))
 	api(project(":spring-jdbc"))
 
 	optional("javax.annotation:javax.annotation-api:1.3.2")

@@ -237,7 +237,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	protected <T> T doGetBean(
 			String name, @Nullable Class<T> requiredType, @Nullable Object[] args, boolean typeCheckOnly)
 			throws BeansException {
-
+		//确保Bean名称按照规范的方式进行转换。确保在容器中查找、注册和管理Bean时的一致性
 		String beanName = transformedBeanName(name);
 		Object beanInstance;
 
@@ -327,7 +327,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Guarantee initialization of beans that the current bean depends on.
 				/*
-				* 初始化之前 需要先加载依赖
+				* 依赖检查，初始化之前 需要先加载依赖.即处理XML配置文件中使用 <depends-on> 元素或在Java配置中使用 @DependsOn 注解
 				* */
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
@@ -338,7 +338,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 						}
 						registerDependentBean(dep, beanName);
 						try {
-							System.out.println("循环依赖");
 							getBean(dep);
 						}
 						catch (NoSuchBeanDefinitionException ex) {
@@ -350,7 +349,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
-					//new一个单例工厂，自己编写获取单例逻辑（创建一个单例）
+					//new一个单例工厂，自己编写获取单例逻辑（创建一个单例,放入单例池）
 					sharedInstance = getSingleton(beanName, new ObjectFactory<Object>() {
 						@Override
 						public Object getObject() throws BeansException {
@@ -1299,6 +1298,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * and resolving aliases to canonical names.
 	 * @param name the user-specified name
 	 * @return the transformed bean name
+	 *
+	 * 剔除Bean名称中的不合法字符。
+	 * 将Bean名称转换为小写形式。
+	 * 解析Bean名称中的别名。
+	 * 处理Bean名称中的占位符。
+	 *
+	 * 用于处理Bean名称，以确保在容器中查找、注册和管理Bean时的一致性
 	 */
 	protected String transformedBeanName(String name) {
 		return canonicalName(BeanFactoryUtils.transformedBeanName(name));

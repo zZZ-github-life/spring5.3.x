@@ -954,6 +954,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				* 	 因为bean可能会存在父类的定义，父类定义里的属性子类会自动继承，合并的目的是为了将父子类的属性合并到一个bean定义中（属性可能会不一致），得到一个顶级的bean定义。
 				* */
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);
+
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				if (isFactoryBean(beanName)) {
 					Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);
@@ -975,6 +976,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					}
 				}
 				else {
+                    // 单例bean的实例化
 					getBean(beanName);
 				}
 			}
@@ -1354,7 +1356,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 		return new NamedBeanHolder<T>(beanName, adaptBeanInstance(beanName, bean, requiredType.toClass()));
 	}
-
+	// Spring 进行依赖查找的核心 ，处理bean所需的依赖，包括属性注入的字段
 	@Override
 	@Nullable
 	public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,

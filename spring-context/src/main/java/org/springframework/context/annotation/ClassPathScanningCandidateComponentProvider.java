@@ -202,6 +202,13 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 	 * JSR-330's {@link javax.inject.Named} annotations, if available.
 	 *
 	 */
+	/**
+	 * 添加了一个AnnotationTypeFilter,包含所有标注@Component的类。
+	 * 尝试添加AnnotationTypeFilter包含@ManagedBean,用于兼容JSR-250。
+	 * 尝试添加AnnotationTypeFilter包含@Named,用于兼容JSR-330
+	 *
+	 * 注册了一些默认的过滤器,可以自动扫描和处理标注了Spring原生注解@Component以及Java EE注解@ManagedBean、@Named的类。
+	 */
 	@SuppressWarnings("unchecked")
 	protected void registerDefaultFilters() {
 		this.includeFilters.add(new AnnotationTypeFilter(Component.class));
@@ -274,6 +281,9 @@ public class ClassPathScanningCandidateComponentProvider implements EnvironmentC
 		* 	2.记录MetadataReader并创建。，在defaultResourceLoader的resourceCaches中添加了一个MetadataReader为key，value为ConcurrentHashMap。将value作为MetadataReader
 		* */
 		this.metadataReaderFactory = new CachingMetadataReaderFactory(resourceLoader);
+		/*
+		* 用于加载候选组件索引文件。这个类的主要目的是在 Spring 的组件扫描过程中提高性能，通过索引文件来快速定位候选组件
+		* */
 		this.componentsIndex = CandidateComponentsIndexLoader.loadIndex(this.resourcePatternResolver.getClassLoader());
 	}
 

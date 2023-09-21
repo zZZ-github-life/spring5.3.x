@@ -123,5 +123,4 @@ public final class CandidateComponentsIndexLoader {
 					COMPONENTS_RESOURCE_LOCATION + "]", ex);
 		}
 	}
-
 }

@@ -703,7 +703,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 				field.set(bean, value);
 			}
 		}
-
+		// 处理需要注入的字段
 		@Nullable
 		private Object resolveFieldValue(Field field, Object bean, @Nullable String beanName) {
 			DependencyDescriptor desc = new DependencyDescriptor(field, this.required);
@@ -723,7 +723,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 					Object cachedFieldValue = null;
 					if (value != null || this.required) {
 						cachedFieldValue = desc;
-						registerDependentBeans(beanName, autowiredBeanNames);
+						registerDependentBeans(beanName, autowiredBeanNames); //注册两个bean之间的依赖
 						if (autowiredBeanNames.size() == 1) {
 							String autowiredBeanName = autowiredBeanNames.iterator().next();
 							if (beanFactory.containsBean(autowiredBeanName) &&

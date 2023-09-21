@@ -230,6 +230,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 				if (logger.isDebugEnabled()) {
 					logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
 				}
+
 				//尝试将bean加入到正在创建的集合，或在是否在排除项之中，不行则抛出异常
 				beforeSingletonCreation(beanName);
 				boolean newSingleton = false;

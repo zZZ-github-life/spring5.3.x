@@ -682,6 +682,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
+	 *
+	 * 设置容器的启动日期startDateTime
+	 * 设置active标志,用于标识容器的激活状态
+	 * 初始化property source abstraction,用于配置属性处理
+	 * 校验必要的属性设置,如环境environment和配置文件路径
+	 * 对系统属性和环境变量进行准备处理
+	 * 对容器内部属性配置的子类做一些准备工作
+	 * 初始化容器内部一些属性,如容器类加载器、事件处理器等
+	 * 校验容器内部属性配置的子类的必要设置
+	 * 存储容器启动阶段的快照,用于容器关闭时显示位标
+	 * 初始化资源路径,如类路径或证书路径等
 	 */
 	protected void prepareRefresh() {
 		//记录当前时间，并且设置AnnotationConfigApplicationContext为活动状态
@@ -751,6 +762,17 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Configure the factory's standard context characteristics,
 	 * such as the context's ClassLoader and post-processors.
 	 * @param beanFactory the BeanFactory to configure
+	 *
+	 * 设置BeanFactory的class loader为当前context的class loader,方便加载bean类。
+	 * 设置BeanExpressionResolver,用于解析Bean中的表达式语言如#{...}。
+	 * 添加PropertyEditorRegistrar实现,用于属性编辑转换。
+	 * 设置BeanFactory的ResourceLoader,用于加载外部资源文件。
+	 * 设置BeanFactory的ApplicationEventPublisher,用于事件发布。
+	 * 注册一些内建的aware接口,如EnvironmentAware、ResourceLoaderAware等。
+	 * 添加一些BeanPostProcessor实现,如ApplicationContextAwareProcessor等。
+	 * 注册一些内建的scope,如"prototype"和"singleton" 作用域。
+	 * 自定义一些内建bean的名称,如environment、systemProperties等。
+	 * 许多子类会覆盖这个方法定制初始化逻辑。
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 
@@ -848,6 +870,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Initialize the MessageSource.
 	 * Use parent's if none defined in this context.
+	 *
+	 * 检查容器中是否已经存在名为 "messageSource" 的Bean。如果已经存在，将其作为消息源。这意味着您可以在Spring配置中自定义消息源，而不是使用默认配置。
+	 *
+	 * 如果容器中没有找到 "messageSource" 的Bean，那么默认情况下，Spring会创建一个 DelegatingMessageSource 类型的Bean作为消息源，并将其注册到容器中。DelegatingMessageSource 是一个复合消息源，它可以包含多个消息源，并按照优先级顺序查找消息。
+	 *
+	 * 设置消息源的父级消息源（Parent Message Source）。这是为了支持消息源的层次结构，允许消息的继承和覆盖。
+	 *
+	 * 初始化消息源的各种属性，如消息源的编码、默认语言等。
 	 */
 	protected void initMessageSource() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
@@ -882,6 +912,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Initialize the ApplicationEventMulticaster.
 	 * Uses SimpleApplicationEventMulticaster if none defined in the context.
 	 * @see org.springframework.context.event.SimpleApplicationEventMulticaster
+	 *
+	 *
+	 * 检查容器中是否已经存在名为 "applicationEventMulticaster" 的Bean。如果已经存在，将其作为应用程序事件多播器。这意味着您可以在Spring配置中自定义应用程序事件多播器，而不是使用默认配置。
+	 *
+	 * 如果容器中没有找到 "applicationEventMulticaster" 的Bean，那么默认情况下，Spring会创建一个 SimpleApplicationEventMulticaster 类型的Bean作为应用程序事件多播器，并将其注册到容器中。SimpleApplicationEventMulticaster 是一个简单的多播器，它可以广播事件给所有注册的监听器。
+	 *
+	 * 初始化应用程序事件多播器的各种属性，如执行事件监听器的线程池配置、异常处理策略等。
 	 */
 	protected void initApplicationEventMulticaster() {
 		ConfigurableListableBeanFactory beanFactory = getBeanFactory();
@@ -942,6 +979,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Add beans that implement ApplicationListener as listeners.
 	 * Doesn't affect other listeners, which can be added without being beans.
+	 *
+	 * 从容器中查找所有标注有@EventListener的Bean,注册为应用事件监听器。
+	 * 如果配置了applicationListenerDetector属性,会使用该检测器进一步查找监听器。
+	 * 将查找到的监听器注册到容器的事件广播器中。
+	 * 如果有ApplicationEventMulticaster的bean,则将其设置为事件广播器。
+	 * 最后将已注册的监听器初始化并调用contextRefreshedEvent回调通知
 	 */
 	protected void registerListeners() {
 		// Register statically specified listeners first.

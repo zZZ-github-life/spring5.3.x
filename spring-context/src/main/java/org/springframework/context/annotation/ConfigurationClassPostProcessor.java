@@ -373,7 +373,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 						this.importBeanNameGenerator, parser.getImportRegistry());
 			}
 			/*
-			* 将解析的配置类中 配置的bean注入到bean工厂 （并不完全）
+			* 将解析的配置类中 配置的bean注入到bean工厂 （并不完全这是里bd）
 			* */
 			this.reader.loadBeanDefinitions(configClasses);
 

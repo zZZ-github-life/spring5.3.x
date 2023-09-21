@@ -9,10 +9,10 @@ import javax.annotation.Resource;
 public class A2 {
 
 	@Autowired
-	private A1 a1;
+	private A3 a3;
 
 	public void ga(){
-		System.out.println("正在打印a1："+a1);
+		System.out.println("正在打印a1："+a3);
 	}
 
 }

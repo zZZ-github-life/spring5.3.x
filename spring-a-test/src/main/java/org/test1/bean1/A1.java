@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.beans.ConstructorProperties;
 import java.lang.reflect.Constructor;
 
-@Component("a1")
+//@Component("a1")
 public class A1 {
 
 	@Autowired
