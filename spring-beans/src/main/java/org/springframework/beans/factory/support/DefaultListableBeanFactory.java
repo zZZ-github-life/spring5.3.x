@@ -1356,32 +1356,50 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 		return new NamedBeanHolder<T>(beanName, adaptBeanInstance(beanName, bean, requiredType.toClass()));
 	}
+
 	// Spring 进行依赖查找的核心 ，处理bean所需的依赖，包括属性注入的字段
+	/**
+	 * @param descriptor 表示依赖的描述符，包括依赖的类型、是否需要按名称解析依赖、是否需要进行嵌套查找等信息。
+	 * @param requestingBeanName 表示请求解析依赖的 bean 的名称。通常在自动装配时使用，用于确定依赖的上下文。
+	 * @param autowiredBeanNames 表示自动装配的 bean 的名称集合。通常在自动装配时使用，用于解决循环依赖等问题。
+	 * @param typeConverter 用于执行类型转换的转换器。通常用于将依赖的值从一种类型转换为另一种类型。
+	 * @return
+	 * @throws BeansException
+	 */
 	@Override
 	@Nullable
 	public Object resolveDependency(DependencyDescriptor descriptor, @Nullable String requestingBeanName,
-			@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
-
+									@Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
+		// 初始化参数名称发现器，用于后续参数名称的解析
 		descriptor.initParameterNameDiscovery(getParameterNameDiscoverer());
+
+		// 检查依赖类型是否为 Optional，如果是，创建 Optional 依赖
 		if (Optional.class == descriptor.getDependencyType()) {
 			return createOptionalDependency(descriptor, requestingBeanName);
 		}
+		// 检查依赖类型是否为 ObjectFactory 或 ObjectProvider，如果是，创建 DependencyObjectProvider
 		else if (ObjectFactory.class == descriptor.getDependencyType() ||
 				ObjectProvider.class == descriptor.getDependencyType()) {
 			return new DependencyObjectProvider(descriptor, requestingBeanName);
 		}
+		// 检查依赖类型是否为 javaxInjectProviderClass（JSR-330 Provider 类型），如果是，使用 Jsr330Factory 创建依赖 Provider
 		else if (javaxInjectProviderClass == descriptor.getDependencyType()) {
 			return new Jsr330Factory().createDependencyProvider(descriptor, requestingBeanName);
 		}
 		else {
+			// 使用 AutowireCandidateResolver 获取懒加载代理（如果有的话）
 			Object result = getAutowireCandidateResolver().getLazyResolutionProxyIfNecessary(
 					descriptor, requestingBeanName);
+
+			// 如果没有懒加载代理，尝试解析依赖
 			if (result == null) {
 				result = doResolveDependency(descriptor, requestingBeanName, autowiredBeanNames, typeConverter);
 			}
+
 			return result;
 		}
 	}
+
 
 	@Nullable
 	public Object doResolveDependency(DependencyDescriptor descriptor, @Nullable String beanName,

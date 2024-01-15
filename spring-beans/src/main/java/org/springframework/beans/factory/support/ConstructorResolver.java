@@ -231,6 +231,7 @@ class ConstructorResolver {
 			for (Constructor<?> candidate : candidates) {
 				int parameterCount = candidate.getParameterCount();
 
+				//进入循环就开始尝试跳出循环，原因如下：
 				//经过多次遍历可能已经找到了需要的构造函数和参数，并且再比较找到的参数数量是否大于本次的，是的话那么后面的不需要再找了
 				// ，因为是排过序的，后面的参数数量只会小于本次的
 				if (constructorToUse != null && argsToUse != null && argsToUse.length > parameterCount) {
@@ -264,6 +265,7 @@ class ConstructorResolver {
 								getUserDeclaredConstructor(candidate), autowiring, candidates.length == 1);
 					}
 					catch (UnsatisfiedDependencyException ex) {
+						//有些参数的值可能并不在spring当中这是创建参数就会异常，那么就放弃这个构造
 						if (logger.isTraceEnabled()) {
 							logger.trace("Ignoring constructor [" + candidate + "] of bean '" + beanName + "': " + ex);
 						}
@@ -289,6 +291,8 @@ class ConstructorResolver {
 				/*
 				* 下面这段代码是计算构造函数与参数的差异化的值：
 				* 	根据不同的模式（宽松/严格）计算最小差异值
+				*
+				* 	宽松模式下：Java的基础类型int，long，double等等以及string的类型权重都是为0，即最小，引用类型一般为2
 				* */
 				int typeDiffWeight = (mbd.isLenientConstructorResolution() ?
 						argsHolder.getTypeDifferenceWeight(paramTypes) : argsHolder.getAssignabilityWeight(paramTypes));
@@ -335,7 +339,7 @@ class ConstructorResolver {
 				argsHolderToUse.storeCache(mbd, constructorToUse);
 			}
 		}
-		//实例化
+		//实例化.走到这里说明已经找到了构造方法
 		Assert.state(argsToUse != null, "Unresolved constructor arguments");
 		bw.setBeanInstance(instantiate(beanName, mbd, constructorToUse, argsToUse));
 		return bw;

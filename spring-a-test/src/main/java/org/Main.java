@@ -12,6 +12,6 @@ public class Main {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ZTest1Config.class);
 		A2 a2 =(A2) context.getBean("a2");
 		A3 a3 =(A3) context.getBean("a3");
-		a2.ga();
+
 	}
 }

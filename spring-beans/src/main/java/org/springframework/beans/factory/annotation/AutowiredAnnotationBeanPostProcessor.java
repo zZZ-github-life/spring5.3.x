@@ -391,6 +391,7 @@ public class AutowiredAnnotationBeanPostProcessor implements SmartInstantiationA
 								}
 								requiredConstructor = candidate;
 							}
+							//符合候选的构造函数，加入集合
 							candidates.add(candidate);
 						}
 						//记录默认的无参构造
