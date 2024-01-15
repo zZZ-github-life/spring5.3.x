@@ -1,5 +1,10 @@
 # Spring 源码解析
     解读spring源码时，添加的一些中文注释
+# 涉及的包
+spring源码过于庞大，目前解析的源码暂时涉及了以下几个包：
+- spring-context，
+- spring-core,
+- spring-beans
 
 # <img src="src/docs/spring-framework.png" width="80" height="80"> Spring Framework [![Build Status](https://ci.spring.io/api/v1/teams/spring-framework/pipelines/spring-framework-5.3.x/jobs/build/badge)](https://ci.spring.io/teams/spring-framework/pipelines/spring-framework-5.3.x?groups=Build") [![Revved up by Gradle Enterprise](https://img.shields.io/badge/Revved%20up%20by-Gradle%20Enterprise-06A0CE?logo=Gradle&labelColor=02303A)](https://ge.spring.io/scans?search.rootProjectNames=spring)
 
