@@ -1,16 +1,13 @@
-package org.test1.bean1;
+package online.zzzzzzz.test1.bean1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Indexed;
 
 import javax.annotation.Resource;
 import java.beans.ConstructorProperties;
-import java.lang.reflect.Constructor;
 
 @Component("a1")
 public class A1 {

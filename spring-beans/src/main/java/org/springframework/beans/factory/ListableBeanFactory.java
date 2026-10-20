@@ -65,6 +65,11 @@ public interface ListableBeanFactory extends BeanFactory {
 	 * @param beanName the name of the bean to look for
 	 * @return if this bean factory contains a bean definition with the given name
 	 * @see #containsBean
+	 *
+	 * 仅检查当前 BeanFactory 中是否存在显式声明的、名为 beanName 的 Bean 定义，
+	 *
+	 * 不查父容器，也不认手动注册的单例对象
+	 * 有些 bean 是直接以实例形式注册到容器中的，比如：applicationContext.getBeanFactory().registerSingleton("myBean", new MyBean());
 	 */
 	boolean containsBeanDefinition(String beanName);
 

@@ -85,6 +85,7 @@ public class AnnotatedBeanDefinitionReader {
 		this.registry = registry;
 
 		/*创建ConditionEvaluator，同时创建静态内部类对象ConditionContextImpl给context赋值
+			这个类的作用用于根据条件判断某个bean是否应该被注入到spring容器当中
 		*
 		* 主要作用记录了spring容器的重要信息为了后面使用：
 		* 	记录bean定义的注册器
@@ -346,7 +347,7 @@ public class AnnotatedBeanDefinitionReader {
 	 */
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
-		if (registry instanceof EnvironmentCapable) {
+		if (registry instanceof EnvironmentCapable) { //如果是EnvironmentCapable类型，那么可直接获取环境。因为该接口表示能够有访问spring环境的能力
 			return ((EnvironmentCapable) registry).getEnvironment();
 		}
 		return new StandardEnvironment();

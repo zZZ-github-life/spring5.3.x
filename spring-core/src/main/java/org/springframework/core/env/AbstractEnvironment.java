@@ -53,7 +53,7 @@ import org.springframework.util.StringUtils;
  * @see ConfigurableEnvironment
  * @see StandardEnvironment
  */
-public abstract class AbstractEnvironment implements ConfigurableEnvironment {
+public abstract class 	AbstractEnvironment implements ConfigurableEnvironment {
 
 	/**
 	 * System property that instructs Spring to ignore system environment variables,

@@ -1,10 +1,9 @@
-package org;
+package online.zzzzzzz;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.test1.ZTest1Config;
-import org.test1.bean1.A1;
-import org.test1.bean1.A2;
-import org.test1.bean1.A3;
+import online.zzzzzzz.test1.ZTest1Config;
+import online.zzzzzzz.test1.bean1.A2;
+import online.zzzzzzz.test1.bean1.A3;
 
 public class Main {
 	public static void main(String[] args) {

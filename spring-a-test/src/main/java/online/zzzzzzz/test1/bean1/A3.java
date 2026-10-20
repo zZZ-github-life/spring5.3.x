@@ -1,6 +1,5 @@
-package org.test1.bean1;
+package online.zzzzzzz.test1.bean1;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("a3")

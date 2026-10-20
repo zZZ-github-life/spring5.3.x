@@ -1,4 +1,4 @@
-package org.test1.bean1;
+package online.zzzzzzz.test1.bean1;
 
 import org.springframework.stereotype.Component;
 

@@ -16,8 +16,9 @@ dependencies {
 	api(project(":spring-aop"))
 	api(project(":spring-aspects"))
 	api(project(":spring-jdbc"))
+    implementation("junit:junit:4.13.1")
 
-	optional("javax.annotation:javax.annotation-api:1.3.2")
+    optional("javax.annotation:javax.annotation-api:1.3.2")
 	testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
