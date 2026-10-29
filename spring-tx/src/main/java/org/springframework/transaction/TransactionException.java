@@ -19,7 +19,7 @@ package org.springframework.transaction;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Superclass for all transaction exceptions.
+ * 所有事务异常的超类。
  *
  * @author Rod Johnson
  * @since 17.03.2003
@@ -28,7 +28,7 @@ import org.springframework.core.NestedRuntimeException;
 public abstract class TransactionException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for TransactionException.
+	 * TransactionException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public TransactionException(String msg) {
@@ -36,7 +36,7 @@ public abstract class TransactionException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for TransactionException.
+	 * TransactionException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */

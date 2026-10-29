@@ -1,0 +1,96 @@
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/assembler/SimpleReflectiveMBeanInfoAssembler.java::21::0", "zh": ["{@code AbstractReflectiveMBeanInfoAssembler} 的简单子类，对方法和属性的包含始终投赞成票，从而将所有公共方法和属性都作为操作和特性暴露出来。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/assembler/SimpleReflectiveMBeanInfoAssembler.java::32::0", "zh": ["始终返回 {@code true}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/assembler/SimpleReflectiveMBeanInfoAssembler.java::40::0", "zh": ["始终返回 {@code true}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/assembler/SimpleReflectiveMBeanInfoAssembler.java::48::0", "zh": ["始终返回 {@code true}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/assembler/package-info.java::1::0", "zh": ["提供用于装配 MBeanInfo 的策略。由 MBeanExporter 用来确定为 Spring 管理的 Bean 暴露哪些属性和操作。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/AbstractJmxAttribute.java::19::0", "zh": ["所有 JMX 元数据类的基类。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/AbstractJmxAttribute.java::32::0", "zh": ["设置此属性的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/AbstractJmxAttribute.java::39::0", "zh": ["返回此属性的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/AbstractJmxAttribute.java::46::0", "zh": ["设置此属性的缓存时间限制。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/AbstractJmxAttribute.java::53::0", "zh": ["返回此属性的缓存时间限制。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/InvalidMetadataException.java::21::0", "zh": ["当 {@code JmxAttributeSource} 在受管资源或其某个方法上遇到不正确的元数据时抛出。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/InvalidMetadataException.java::33::0", "zh": ["使用提供的错误消息创建一个新的 {@code InvalidMetadataException}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::23::0", "zh": ["由 {@code MetadataMBeanInfoAssembler} 使用的接口，用于从受管资源的类中读取源码级元数据。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::35::0", "zh": ["如果提供的 {@code Class} 具有相应的元数据，实现类应返回一个 {@code ManagedResource} 实例。否则应返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::46::0", "zh": ["如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedAttribute} 实例。否则应返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::57::0", "zh": ["如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedMetric} 实例。否则应返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::68::0", "zh": ["如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedOperation} 实例。否则应返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::79::0", "zh": ["如果提供的 {@code Method} 具有相应的元数据，实现类应返回 {@code ManagedOperationParameter} 数组。否则，如果未找到元数据，应返回空数组。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxAttributeSource.java::89::0", "zh": ["如果提供的 {@code Class} 具有相应的元数据，实现类应返回 {@link ManagedNotification ManagedNotifications} 数组。否则应返回空数组。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxMetadataUtils.java::24::0", "zh": ["用于将 Spring JMX 元数据转换为对应的普通 JMX 等价形式的工具方法。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/JmxMetadataUtils.java::33::0", "zh": ["将提供的 {@link ManagedNotification} 转换为对应的 {@link javax.management.modelmbean.ModelMBeanNotificationInfo}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedAttribute.java::21::0", "zh": ["指示将给定 Bean 属性作为 JMX 属性暴露的元数据。仅在对 JavaBean 的 getter 或 setter 使用时有效。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedAttribute.java::32::0", "zh": ["空的属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedAttribute.java::47::0", "zh": ["设置此属性的默认值。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedAttribute.java::54::0", "zh": ["返回此属性的默认值。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::23::0", "zh": ["指示将给定 Bean 属性作为 JMX 属性暴露的元数据，其中还包含表明该属性是一个度量指标的额外描述符属性。仅在用于 JavaBean getter 时有效。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::51::0", "zh": ["此度量指标的类别（例如吞吐量、性能、利用率）。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::58::0", "zh": ["此度量指标的类别（例如吞吐量、性能、利用率）。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::66::0", "zh": ["此度量指标的显示名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::73::0", "zh": ["此度量指标的显示名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::81::0", "zh": ["关于此度量指标的值如何随时间变化的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::89::0", "zh": ["关于此度量指标的值如何随时间变化的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::96::0", "zh": ["此度量指标的持久化周期。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::103::0", "zh": ["此度量指标的持久化周期。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::110::0", "zh": ["此度量指标的持久化策略。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::117::0", "zh": ["此度量指标的持久化策略。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::125::0", "zh": ["测量值预期的单位。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedMetric.java::132::0", "zh": ["测量值预期的单位。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::22::0", "zh": ["指示由 Bean 发出的 JMX 通知的元数据。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::40::0", "zh": ["设置单个通知类型，或以逗号分隔的字符串形式设置通知类型列表。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::48::0", "zh": ["设置通知类型列表。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::55::0", "zh": ["返回通知类型列表。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::63::0", "zh": ["设置此通知的名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::70::0", "zh": ["返回此通知的名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::78::0", "zh": ["设置此通知的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedNotification.java::85::0", "zh": ["返回此通知的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperation.java::19::0", "zh": ["指示将给定方法作为 JMX 操作暴露的元数据。仅在用于不是 JavaBean getter 或 setter 的方法时有效。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::19::0", "zh": ["关于 JMX 操作参数的元数据。与 {@link ManagedOperation} 属性配合使用。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::35::0", "zh": ["设置此参数在操作签名中的索引。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::42::0", "zh": ["返回此参数在操作签名中的索引。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::49::0", "zh": ["设置此参数在操作签名中的名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::56::0", "zh": ["返回此参数在操作签名中的名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::63::0", "zh": ["设置此参数的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedOperationParameter.java::70::0", "zh": ["返回此参数的描述。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedResource.java::21::0", "zh": ["表示被注解类的实例要注册到 JMX 服务器的元数据。仅在用于 {@code Class} 时有效。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedResource.java::54::0", "zh": ["设置此受管资源的 JMX ObjectName。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/ManagedResource.java::61::0", "zh": ["返回此受管资源的 JMX ObjectName。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/metadata/package-info.java::1::0", "zh": ["提供通用的 JMX 元数据类，以及对以不依赖具体提供者的方式读取 JMX 元数据的基本支持。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/IdentityNamingStrategy.java::29::0", "zh": ["{@code ObjectNamingStrategy} 接口的实现，它基于给定实例的标识创建名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/IdentityNamingStrategy.java::29::1", "zh": ["<p>生成的 {@code ObjectName} 形式为 <i>package</i>:class=<i>class name</i>,hashCode=<i>identity hash (in hex)</i>"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/IdentityNamingStrategy.java::42::0", "zh": ["类型键。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/IdentityNamingStrategy.java::47::0", "zh": ["哈希码键。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/IdentityNamingStrategy.java::53::0", "zh": ["基于受管资源的标识返回一个 {@code ObjectName} 实例。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::36::0", "zh": ["{@code ObjectNamingStrategy} 实现，它根据传给 {@code MBeanExporter} 的 \"beans\" 映射中使用的键来构建 {@code ObjectName} 实例。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::36::1", "zh": ["<p>还可以检查以 {@code Properties} 形式或以属性文件的 {@code mappingLocations} 形式给出的对象名称映射。用于查找的键就是 {@code MBeanExporter} 的 \"beans\" 映射中使用的键。如果给定键找不到映射，则使用该键本身来构建 {@code ObjectName}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::57::0", "zh": ["此类的 {@code Log} 实例。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::62::0", "zh": ["存储 Bean 键到 {@code ObjectName} 的映射。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::68::0", "zh": ["存储包含属性的 {@code Resource}，这些属性应加载到用于解析 {@code ObjectName} 的最终合并 {@code Properties} 集合中。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::76::0", "zh": ["存储将 {@code mappings} 中的 {@code Properties} 与 {@code mappingLocations} 所定义资源中存储的属性合并后的结果。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::84::0", "zh": ["设置包含对象名称映射的本地属性，例如通过 XML Bean 定义中的 \"props\" 标签设置。这些属性可视为默认值，会被从文件加载的属性覆盖。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::93::0", "zh": ["设置要加载的属性文件位置，该文件包含对象名称映射。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::101::0", "zh": ["设置要加载的属性文件的位置，这些文件包含对象名称映射。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::110::0", "zh": ["将 {@code mappings} 和 {@code mappingLocations} 中配置的 {@code Properties} 合并到用于解析 {@code ObjectName} 的最终 {@code Properties} 实例中。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/KeyNamingStrategy.java::131::0", "zh": ["尝试通过给定键获取 {@code ObjectName}，首先尝试在映射中查找映射值。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::34::0", "zh": ["{@link ObjectNamingStrategy} 接口的实现，它从源码级元数据中读取 {@code ObjectName}。如果在源码级元数据中找不到 {@code ObjectName}，则回退到 Bean 键（Bean 名称）。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::34::1", "zh": ["<p>使用 {@link JmxAttributeSource} 策略接口，因此可以使用任何受支持的实现来读取元数据。开箱即用的情况下，{@link org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource} 会内省 Spring 自带的一组定义良好的注解。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::53::0", "zh": ["用于读取元数据的 {@code JmxAttributeSource} 实现。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::63::0", "zh": ["创建一个新的 {@code MetadataNamingStrategy}，需要通过 {@link #setAttributeSource} 方法进行配置。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::70::0", "zh": ["为给定的 {@code JmxAttributeSource} 创建一个新的 {@code MetadataNamingStrategy}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::81::0", "zh": ["设置读取源码级元数据时要使用的 {@code JmxAttributeSource} 接口实现。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::90::0", "zh": ["指定在未指定源码级元数据时用于生成 ObjectNames 的默认域。<p>默认情况下，使用 Bean 名称中指定的域（如果 Bean 名称遵循 JMX ObjectName 语法）；否则使用受管 Bean 类的包名。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/MetadataNamingStrategy.java::109::0", "zh": ["从与受管资源的 {@code Class} 关联的源码级元数据中读取 {@code ObjectName}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/ObjectNamingStrategy.java::24::0", "zh": ["封装 {@code ObjectName} 实例创建过程的策略接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/ObjectNamingStrategy.java::24::1", "zh": ["<p>由 {@code MBeanExporter} 在注册 Bean 时用来获取 {@code ObjectName}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/ObjectNamingStrategy.java::38::0", "zh": ["为提供的 Bean 获取一个 {@code ObjectName}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/SelfNaming.java::22::0", "zh": ["允许基础设施组件向 {@code MBeanExporter} 提供自身 {@code ObjectName} 的接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/SelfNaming.java::22::1", "zh": ["<p><b>Note:</b> 此接口主要供内部使用。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/SelfNaming.java::34::0", "zh": ["返回实现对象的 {@code ObjectName}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/naming/package-info.java::1::0", "zh": ["提供用于创建 ObjectName 的策略。由 MBeanExporter 用来确定为导出的 Spring 管理的 Bean 使用哪些 JMX 名称。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::28::0", "zh": ["{@link NotificationPublisher} 实现，它使用 {@link ModelMBean} 接口提供的基础设施来跟踪 {@link javax.management.NotificationListener javax.management.NotificationListeners}，并将 {@link Notification Notifications} 发送给这些监听器。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::43::0", "zh": ["包装受管资源的 {@link ModelMBean} 实例，此 {@code NotificationPublisher} 将被注入其中。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::49::0", "zh": ["与 {@link ModelMBean modelMBean} 关联的 {@link ObjectName}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::54::0", "zh": ["与 {@link ModelMBean modelMBean} 关联的受管资源。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::60::0", "zh": ["创建 {@link ModelMBeanNotificationPublisher} 类的新实例，它会将所有 {@link javax.management.Notification Notifications} 发布到提供的 {@link ModelMBean}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::81::0", "zh": ["使用包装的 {@link ModelMBean} 实例发送提供的 {@link Notification}。"]}
+{"id": "spring-context/src/main/java/org/springframework/jmx/export/notification/ModelMBeanNotificationPublisher.java::105::0", "zh": ["必要时替换通知源。摘自 {@link Notification javadoc}：<i>“强烈建议通知发送者使用对象名称而不是 MBean 对象的引用作为源。”</i>"]}

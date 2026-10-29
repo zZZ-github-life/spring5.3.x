@@ -1,5 +1,5 @@
 /**
- * Spring's support for listening to transaction events.
+ * Spring对监听事务事件的支持。
  */
 @NonNullApi
 @NonNullFields

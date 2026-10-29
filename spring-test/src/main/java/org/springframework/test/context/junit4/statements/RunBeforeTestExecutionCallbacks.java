@@ -23,10 +23,7 @@ import org.junit.runners.model.Statement;
 import org.springframework.test.context.TestContextManager;
 
 /**
- * {@code RunBeforeTestExecutionCallbacks} is a custom JUnit {@link Statement}
- * which allows the <em>Spring TestContext Framework</em> to be plugged into the
- * JUnit 4 execution chain by calling {@link TestContextManager#beforeTestExecution
- * beforeTestExecution()} on the supplied {@link TestContextManager}.
+ * {@code RunBeforeTestExecutionCallbacks} 是一个自定义 JUnit {@link Statement}，它通过在所提供的 {@link TestContextManager} 上调用 {@link TestContextManager#beforeTestExecution beforeTestExecution()}，使 <em>Spring TestContext Framework</em> 能够插入 JUnit 4 执行链。
  *
  * @author Sam Brannen
  * @since 5.0
@@ -45,7 +42,7 @@ public class RunBeforeTestExecutionCallbacks extends Statement {
 
 
 	/**
-	 * Construct a new {@code RunBeforeTestExecutionCallbacks} statement.
+	 * 构造一个新的 {@code RunBeforeTestExecutionCallbacks} 语句。
 	 * @param next the next {@code Statement} in the execution chain
 	 * @param testInstance the current test instance (never {@code null})
 	 * @param testMethod the test method which is about to be executed on the
@@ -63,10 +60,7 @@ public class RunBeforeTestExecutionCallbacks extends Statement {
 	}
 
 	/**
-	 * Invoke {@link TestContextManager#beforeTestExecution(Object, Method)}
-	 * and then evaluate the next {@link Statement} in the execution chain
-	 * (typically an instance of
-	 * {@link org.junit.internal.runners.statements.InvokeMethod InvokeMethod}).
+	 * 调用 {@link TestContextManager#beforeTestExecution(Object, Method)}，然后评估执行链中的下一个 {@link Statement}（通常是 {@link org.junit.internal.runners.statements.InvokeMethod InvokeMethod} 的实例）。
 	 */
 	@Override
 	public void evaluate() throws Throwable {

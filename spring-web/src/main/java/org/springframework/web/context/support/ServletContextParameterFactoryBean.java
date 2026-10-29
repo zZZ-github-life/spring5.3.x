@@ -23,14 +23,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * {@link FactoryBean} that retrieves a specific ServletContext init parameter
- * (that is, a "context-param" defined in {@code web.xml}).
- * Exposes that ServletContext init parameter when used as bean reference,
- * effectively making it available as named Spring bean instance.
+ * {@link FactoryBean}，获取特定的 ServletContext 初始化参数（即在 {@code web.xml} 中定义的
+ * "context-param"）。当作为 bean 引用使用时暴露该 ServletContext 初始化参数，从而使其作为命名的
+ * Spring bean 实例可用。
  *
- * <p><b>NOTE:</b> As of Spring 3.0, you may also use the "contextParameters" default
- * bean which is of type Map, and dereference it using an "#{contextParameters.myKey}"
- * expression to access a specific parameter by name.
+ * <p><b>注意：</b>自 Spring 3.0 起，你也可以使用类型为 Map 的 "contextParameters" 默认 bean，并
+ * 通过 "#{contextParameters.myKey}" 表达式引用它来按名称访问特定参数。
  *
  * @author Juergen Hoeller
  * @since 1.2.4
@@ -47,7 +45,7 @@ public class ServletContextParameterFactoryBean implements FactoryBean<String>, 
 
 
 	/**
-	 * Set the name of the ServletContext init parameter to expose.
+	 * 设置要暴露的 ServletContext 初始化参数的名称。
 	 */
 	public void setInitParamName(String initParamName) {
 		this.initParamName = initParamName;

@@ -29,8 +29,8 @@ import org.springframework.expression.spel.SpelEvaluationException;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a variable reference &mdash; for example, {@code #someVar}. Note
- * that this is different than a <em>local</em> variable like {@code $someVar}.
+ * 表示变量引用 &mdash; 例如 {@code #someVar}。注意，这与 {@code $someVar} 这样的<em>局部</em>变量
+ * 不同。
  *
  * @author Andy Clement
  * @author Sam Brannen

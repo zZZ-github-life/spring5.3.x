@@ -52,7 +52,7 @@ import org.springframework.web.socket.adapter.standard.WebSocketToStandardExtens
 import org.springframework.web.socket.client.AbstractWebSocketClient;
 
 /**
- * A WebSocketClient based on standard Java WebSocket API.
+ * 基于标准 Java WebSocket API 的 WebSocketClient。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -68,19 +68,19 @@ public class StandardWebSocketClient extends AbstractWebSocketClient {
 
 
 	/**
-	 * Default constructor that calls {@code ContainerProvider.getWebSocketContainer()}
-	 * to obtain a (new) {@link WebSocketContainer} instance. Also see constructor
-	 * accepting existing {@code WebSocketContainer} instance.
+	 * 默认构造函数，调用 {@code ContainerProvider.getWebSocketContainer()}
+	 * 以获取（新的）{@link WebSocketContainer} 实例。另请参见接受现有
+	 * {@code WebSocketContainer} 实例的构造函数。
 	 */
 	public StandardWebSocketClient() {
 		this.webSocketContainer = ContainerProvider.getWebSocketContainer();
 	}
 
 	/**
-	 * Constructor accepting an existing {@link WebSocketContainer} instance.
-	 * <p>For XML configuration, see {@link WebSocketContainerFactoryBean}. For Java
-	 * configuration, use {@code ContainerProvider.getWebSocketContainer()} to obtain
-	 * the {@code WebSocketContainer} instance.
+	 * 接受现有 {@link WebSocketContainer} 实例的构造函数。
+	 * <p>对于 XML 配置，请参见 {@link WebSocketContainerFactoryBean}。
+	 * 对于 Java 配置，请使用 {@code ContainerProvider.getWebSocketContainer()}
+	 * 获取 {@code WebSocketContainer} 实例。
 	 */
 	public StandardWebSocketClient(WebSocketContainer webSocketContainer) {
 		Assert.notNull(webSocketContainer, "WebSocketContainer must not be null");
@@ -89,10 +89,9 @@ public class StandardWebSocketClient extends AbstractWebSocketClient {
 
 
 	/**
-	 * The standard Java WebSocket API allows passing "user properties" to the
-	 * server via {@link ClientEndpointConfig#getUserProperties() userProperties}.
-	 * Use this property to configure one or more properties to be passed on
-	 * every handshake.
+	 * 标准 Java WebSocket API 允许通过
+	 * {@link ClientEndpointConfig#getUserProperties() userProperties} 向服务器传递“用户属性”。
+	 * 使用此属性可配置每次握手时要传递的一个或多个属性。
 	 */
 	public void setUserProperties(@Nullable Map<String, Object> userProperties) {
 		if (userProperties != null) {
@@ -101,24 +100,24 @@ public class StandardWebSocketClient extends AbstractWebSocketClient {
 	}
 
 	/**
-	 * The configured user properties.
+	 * 配置的用户属性。
 	 */
 	public Map<String, Object> getUserProperties() {
 		return this.userProperties;
 	}
 
 	/**
-	 * Set an {@link AsyncListenableTaskExecutor} to use when opening connections.
-	 * If this property is set to {@code null}, calls to any of the
-	 * {@code doHandshake} methods will block until the connection is established.
-	 * <p>By default, an instance of {@code SimpleAsyncTaskExecutor} is used.
+	 * 设置用于打开连接的 {@link AsyncListenableTaskExecutor}。
+	 * 如果此属性设置为 {@code null}，则对任何
+	 * {@code doHandshake} 方法的调用都会阻塞，直到连接建立。
+	 * <p>默认情况下使用 {@code SimpleAsyncTaskExecutor} 的实例。
 	 */
 	public void setTaskExecutor(@Nullable AsyncListenableTaskExecutor taskExecutor) {
 		this.taskExecutor = taskExecutor;
 	}
 
 	/**
-	 * Return the configured {@link TaskExecutor}.
+	 * 返回配置的 {@link TaskExecutor}。
 	 */
 	@Nullable
 	public AsyncListenableTaskExecutor getTaskExecutor() {

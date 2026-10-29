@@ -1,0 +1,138 @@
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::33::0", "zh": ["Java 字段或方法类型。借助此类可以更轻松地操作类型描述符和方法描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::117::0", "zh": ["此类型的种类。取值为 {@link #VOID}、{@link #BOOLEAN}、{@link #CHAR}、{@link #BYTE}、{@link #SHORT}、{@link #INT}、{@link #FLOAT}、{@link #LONG}、{@link #DOUBLE}、{@link #ARRAY}、{@link #OBJECT}、{@link #METHOD} 或 {@link #INTERNAL}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::124::0", "zh": ["包含此字段或方法类型值的缓冲区。对于 {@link #OBJECT} 和 {@link #INTERNAL} 类型，该值是内部名称；其他情况下则是字段描述符或方法描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::124::1", "zh": ["<p>对于 {@link #OBJECT} 类型，此字段还包含描述符：区间 [{@link #valueBegin},{@link #valueEnd}) 中的字符是内部名称，区间 [{@link #valueBegin} - 1, {@link #valueEnd} + 1) 中的字符则是描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::135::0", "zh": ["此 Java 字段或方法类型的值在 {@link #valueBuffer} 中的起始索引（含）。对于 {@link #OBJECT} 和 {@link #INTERNAL} 类型，该值是内部名称；其他情况下则是字段描述符或方法描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::142::0", "zh": ["此 Java 字段或方法类型的值在 {@link #valueBuffer} 中的结束索引（不含）。对于 {@link #OBJECT} 和 {@link #INTERNAL} 类型，该值是内部名称；其他情况下则是字段描述符或方法描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::149::0", "zh": ["构造一个引用类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::170::0", "zh": ["返回给定类型描述符对应的 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::180::0", "zh": ["返回给定类对应的 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::214::0", "zh": ["返回给定构造方法对应的方法 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::224::0", "zh": ["返回给定方法对应的方法 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::234::0", "zh": ["返回此数组类型各元素的类型。此方法只能用于数组类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::245::0", "zh": ["返回给定内部名称对应的 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::256::0", "zh": ["返回给定方法描述符对应的 {@link Type}。等价于 <code>Type.getType(methodDescriptor)</code>。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::267::0", "zh": ["返回给定参数类型和返回类型对应的方法 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::278::0", "zh": ["返回此类型各方法的参数类型。此方法只能用于方法类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::288::0", "zh": ["返回给定方法描述符的各参数类型对应的 {@link Type} 值。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::336::0", "zh": ["返回给定方法的各参数类型对应的 {@link Type} 值。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::351::0", "zh": ["返回此类型各方法的返回类型。此方法只能用于方法类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::361::0", "zh": ["返回给定方法描述符的返回类型对应的 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::372::0", "zh": ["返回给定方法的返回类型对应的 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::382::0", "zh": ["返回给定方法描述符中返回类型的起始索引。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::405::0", "zh": ["返回给定字段描述符或方法描述符对应的 {@link Type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::451::0", "zh": ["返回此类型对应类的二进制名称。此方法不得用于方法类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::491::0", "zh": ["返回此对象类型或数组类型对应类的内部名称。类的内部名称是其完全限定名（即 Class.getName() 返回的名称，其中的 '.' 被替换为 '/'）。此方法只能用于对象类型或数组类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::502::0", "zh": ["返回给定类的内部名称。类的内部名称是其完全限定名（即 Class.getName() 返回的名称），其中的 '.' 被替换为 '/'。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::513::0", "zh": ["返回此类型对应的描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::528::0", "zh": ["返回给定类对应的描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::540::0", "zh": ["返回给定构造方法对应的描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::556::0", "zh": ["返回给定参数类型和返回类型对应的描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::574::0", "zh": ["返回给定方法对应的描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::592::0", "zh": ["将此类型对应的描述符追加到给定的字符串缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::607::0", "zh": ["将给定类的描述符追加到给定的字符串构建器。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::652::0", "zh": ["返回此类型的种类。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::663::0", "zh": ["返回此数组类型的维度数。此方法只能用于数组类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::677::0", "zh": ["返回此类型值的大小。此方法不得用于方法类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::705::0", "zh": ["返回此类型各方法的参数和返回值的大小。此方法只能用于方法类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::718::0", "zh": ["计算方法的参数和返回值的大小。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::759::0", "zh": ["返回适用于此 {@link Type} 的 JVM 指令操作码。此方法不得用于方法类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::836::0", "zh": ["测试给定对象是否与此类型相等。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::870::0", "zh": ["返回此类型的哈希码值。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Type.java::886::0", "zh": ["返回此类型的字符串表示形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::31::0", "zh": ["指向外层类型中的类型参数、通配符边界、数组元素类型或静态内部类型的路径。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::51::0", "zh": ["存储此 TypePath 对应的 'type_path' 结构（定义见 Java 虚拟机规范，JVMS）的字节数组。该结构在此数组中的第一个字节由 {@link #typePathOffset} 给出。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::65::0", "zh": ["构造一个新的 TypePath。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::77::0", "zh": ["返回此路径的长度，即其步数。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::87::0", "zh": ["返回此路径中给定步骤的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::99::0", "zh": ["返回给定步骤所进入的类型参数的索引。此方法只能用于值为 {@link #TYPE_ARGUMENT} 的步骤。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::111::0", "zh": ["将字符串形式的类型路径（格式与 {@link #toString()} 所用格式相同）转换为 TypePath 对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::156::0", "zh": ["返回此类型路径的字符串表示形式。{@link #ARRAY_ELEMENT} 步骤用 '[' 表示，{@link #INNER_TYPE} 步骤用 '.' 表示，{@link #WILDCARD_BOUND} 步骤用 '*' 表示，{@link #TYPE_ARGUMENT} 步骤用其类型参数索引的十进制形式后跟 ';' 表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypePath.java::186::0", "zh": ["将给定 TypePath 对应的 type_path JVMS 结构放入给定的 ByteVector。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::31::0", "zh": ["对出现在类、字段或方法声明中或指令上的类型的引用。此类引用指明被引用类型在类中出现的位置，例如 'extends'、'implements' 或 'throws' 子句，'new' 指令，'catch' 子句，类型转换，局部变量声明等。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::41::0", "zh": ["指向泛型类类型参数的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::47::0", "zh": ["指向泛型方法类型参数的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::53::0", "zh": ["指向类的超类或该类所实现的某个接口的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::59::0", "zh": ["指向泛型类类型参数边界的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::65::0", "zh": ["指向泛型方法类型参数边界的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::77::0", "zh": ["指向方法接收者类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::82::0", "zh": ["指向方法形参类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::88::0", "zh": ["指向方法 throws 子句中声明的异常类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::94::0", "zh": ["指向方法中局部变量类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::100::0", "zh": ["指向方法中资源变量类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::106::0", "zh": ["指向方法中 'catch' 子句异常类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::112::0", "zh": ["指向 'instanceof' 指令中声明类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::118::0", "zh": ["指向 'new' 指令所创建对象类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::124::0", "zh": ["指向构造方法引用接收者类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::130::0", "zh": ["指向方法引用接收者类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::136::0", "zh": ["指向显式或隐式类型转换指令中声明类型的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::142::0", "zh": ["指向构造方法调用中泛型构造方法类型参数的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::148::0", "zh": ["指向方法调用中泛型方法类型参数的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::154::0", "zh": ["指向构造方法引用中泛型构造方法类型参数的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::160::0", "zh": ["指向方法引用中泛型方法类型参数的类型引用的种类。参见 {@link #getSort}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::166::0", "zh": ["此类型引用对应的 target_type 和 target_info 结构（定义见 Java 虚拟机规范，JVMS）。target_type 占一个字节，target_info 联合体的所有字段最多占 3 个字节（localvar_target 除外，它由专门的方法 {@link MethodVisitor#visitLocalVariableAnnotation} 处理）。因此，这两个结构都能存入一个 int。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::166::1", "zh": ["<p>此 int 字段的最高有效字节存储 target_type（在本类公共 API 中称为 TypeReference 的 'sort'），接下来的字节是 target_info 字段。取决于 target_type，此字段的 1 个、2 个甚至 3 个最低有效字节可能未被使用。引用字节码偏移量的 target_info 字段被置为 0（这些偏移量在 ClassReader 中被忽略，并在 MethodWriter 中重新计算）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::187::0", "zh": ["构造一个新的 TypeReference。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::197::0", "zh": ["返回给定种类的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::209::0", "zh": ["返回对泛型类或泛型方法类型参数的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::220::0", "zh": ["返回对泛型类或泛型方法类型参数边界的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::233::0", "zh": ["返回对类的超类或该类 'implements' 子句中某个接口的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::245::0", "zh": ["返回对方法形参类型的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::255::0", "zh": ["返回对方法 'throws' 子句中异常类型的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::265::0", "zh": ["返回对方法 'catch' 子句中声明异常类型的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::276::0", "zh": ["返回对构造方法调用、方法调用或引用中类型参数类型的引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::290::0", "zh": ["返回此类型引用的种类。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::306::0", "zh": ["返回此类型引用所引用类型参数的索引。此方法只能用于种类为 {@link #CLASS_TYPE_PARAMETER}、{@link #METHOD_TYPE_PARAMETER}、{@link #CLASS_TYPE_PARAMETER_BOUND} 或 {@link #METHOD_TYPE_PARAMETER_BOUND} 的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::318::0", "zh": ["返回此类型引用所引用的类型参数边界在类型参数 {@link #getTypeParameterIndex} 中的索引。仅限于种类为 {@link #CLASS_TYPE_PARAMETER_BOUND} 或 {@link #METHOD_TYPE_PARAMETER_BOUND} 的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::330::0", "zh": ["返回此类型引用所引用的类“超类型”的索引。此方法只能用于种类为 {@link #CLASS_EXTENDS} 的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::341::0", "zh": ["返回此类型引用所引用其类型的形参的索引。此方法只能用于种类为 {@link #METHOD_FORMAL_PARAMETER} 的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::351::0", "zh": ["返回方法 'throws' 子句中其类型被此类型引用所引用的异常的索引。此方法只能用于种类为 {@link #THROWS} 的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::362::0", "zh": ["返回其 'catch' 类型被此类型引用所引用的 try-catch 块的索引（采用 visitTryCatchBlock 访问它们的顺序）。此方法只能用于种类为 {@link #EXCEPTION_PARAMETER} 的类型引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::373::0", "zh": ["返回此类型引用所引用类型参数的索引。此方法仅适用于如下种类的类型引用：{@link #CAST}、{@link #CONSTRUCTOR_INVOCATION_TYPE_ARGUMENT}、{@link #METHOD_INVOCATION_TYPE_ARGUMENT}、{@link #CONSTRUCTOR_REFERENCE_TYPE_ARGUMENT}、{@link #METHOD_REFERENCE_TYPE_ARGUMENT}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::385::0", "zh": ["返回此类型引用的 int 编码值，适用于与类型注解相关的 visit 方法，例如 visitTypeAnnotation。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/TypeReference.java::395::0", "zh": ["将给定的 target_type 和 target_info JVMS 结构放入给定的 ByteVector。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/package-info.java::1::0", "zh": ["Spring 对 <a href=\"https://gitlab.ow2.org/asm/asm\">ASM 9.x</a> 的重新打包（带 Spring 特定补丁，仅供内部使用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/package-info.java::1::1", "zh": ["<p>这种重新打包方式可避免与应用层面或来自第三方库和框架对 ASM 的依赖产生任何潜在冲突。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/package-info.java::1::2", "zh": ["<p>由于这种重新打包发生在类文件层面，此处不提供源码和 javadoc。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/SpringCglibInfo.java::19::0", "zh": ["空类，用于确保在生成 javadoc 期间处理 {@code org.springframework.cglib} 包。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/SpringCglibInfo.java::19::1", "zh": ["<p>有关 {@code org.springframework.cglib} 的更多信息，请参见<a href=\"package-summary.html\">包级 javadoc</a>。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/package-info.java::1::0", "zh": ["Spring 对 <a href=\"https://github.com/cglib/cglib\">CGLIB 3.3</a> 的重新打包（带 Spring 特定补丁，仅供内部使用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/package-info.java::1::1", "zh": ["<p>这种重新打包方式可避免与应用层面或来自第三方库和框架对 CGLIB 的依赖产生任何潜在冲突。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/package-info.java::1::2", "zh": ["<p>由于这种重新打包发生在类文件层面，此处不提供源码和 javadoc。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanGenerator.java::47::0", "zh": ["设置生成的类所要继承的类。该类不能声明为 final，并且必须具有非私有的无参构造方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::34::0", "zh": ["基于 <code>Map</code> 的 JavaBean 视图。默认的键集合是所有属性名（getter 或 setter）的并集。尝试设置只读属性将被忽略，只写属性将返回 <code>null</code>。不支持移除对象（键集合是固定的）。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::44::0", "zh": ["将映射键集合中反映的属性限制为可读属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::51::0", "zh": ["将映射键集合中反映的属性限制为可写属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::58::0", "zh": ["用于创建新 <code>BeanMap</code> 的辅助方法。若要更精细地控制生成的实例，请使用新的 <code>BeanMap.Generator</code> 实例而不是此静态方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::89::0", "zh": ["设置生成的映射应反映的 Bean。可以使用 {@link #setBean} 将其替换为同一类型的另一个 Bean。调用此方法会覆盖之前通过 {@link #setBeanClass} 设置的值。必须在调用 {@link #create} 之前调用此方法或 {@link #setBeanClass}。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::106::0", "zh": ["设置生成的映射应支持的 Bean 类。必须在调用 {@link #create} 之前调用此方法或 {@link #setBeanClass}。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::115::0", "zh": ["限制生成的映射所反映的属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::132::0", "zh": ["创建 <code>BeanMap</code> 的新实例。如果可能，将复用已生成的类。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::156::0", "zh": ["使用指定的 Bean 创建新的 <code>BeanMap</code> 实例。这比使用 {@link #create} 静态方法更快。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::164::0", "zh": ["获取属性的类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::188::0", "zh": ["获取 Bean 的属性。这使得 <code>BeanMap</code> 可以静态地用于多个 Bean——与映射绑定的 Bean 实例会被忽略，转而使用传给此方法的 Bean。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::199::0", "zh": ["设置 Bean 的属性。这使得 <code>BeanMap</code> 可以静态地用于多个 Bean——与映射绑定的 Bean 实例会被忽略，转而使用传给此方法的 Bean。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::208::0", "zh": ["更改此映射应使用的底层 Bean。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/BeanMap.java::217::0", "zh": ["返回此映射当前使用的 Bean。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/package-info.java::1::0", "zh": ["Spring 对 <a href=\"https://github.com/cglib/cglib\">CGLIB</a> beans 包重新打包（仅供内部使用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/beans/package-info.java::1::1", "zh": ["<p>由于这种重新打包发生在类文件层面，此处不提供源码和 javadoc……只有少数为 Spring 目的在 JDK 9-17 上打过补丁的文件除外。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::30::0", "zh": ["所有生成代码的 CGLIB 工具的抽象类。除了为提升性能而缓存生成的类之外，它还提供了用于定制 <code>ClassLoader</code>、生成类的名称以及在生成之前应用的转换的钩子。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::72::0", "zh": ["此处的 {@link AbstractClassGenerator} 持有“缓存键”（例如 {@link org.springframework.cglib.proxy.Enhancer} 配置），而值则是生成的类加上一些附加值（参见 {@link #unwrapCachedValue(Object)}）。<p>只要生成的类加载器可达，生成的类就可以被复用。</p> <p>注意：访问类的唯一方式是通过 generatedClasses 缓存找到它，因此只要类本身存活（其类加载器存活），键就不应过期。</p>"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::82::0", "zh": ["注意：ClassLoaderData 对象作为 {@code WeakHashMap<ClassLoader, ...>} 的值存储，因此此 classLoader 引用应当是弱引用，否则会使 classLoader 强可达并永远存活。无需引用队列，因为清理工作由 {@link WeakHashMap} 处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::180::0", "zh": ["设置生成类所在的 <code>ClassLoader</code>。如果未设置，<code>AbstractClassGenerator</code> 的具体子类（如 <code>Enhancer</code>）会尝试选择合适的默认值。<p>类按 <code>ClassLoader</code> 使用 <code>WeakHashMap</code> 进行缓存，以便在关联的加载器被垃圾回收时移除生成的类。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::199::0", "zh": ["覆盖默认命名策略。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::217::0", "zh": ["是否对具有相同属性的类使用并更新生成类的静态缓存。默认为 <code>true</code>。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::232::0", "zh": ["如果设置，CGLIB 会在生成类之前尝试从指定的 <code>ClassLoader</code> 加载类。由于生成的类名不保证唯一，默认值为 <code>false</code>。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::245::0", "zh": ["设置用于从此生成器创建字节码的策略。默认使用 {@link DefaultGeneratorStrategy} 的实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::262::0", "zh": ["供 CGLIB 内部使用。返回当前线程中用于生成类的 <code>AbstractClassGenerator</code>。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java::289::0", "zh": ["返回定义类时要使用的保护域。<p>默认实现返回 <code>null</code>，以使用默认保护域。子类可以覆盖此方法以使用更具体的保护域。</p>"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/AsmApi.java::23::0", "zh": ["SPRING 补丁：始终返回 ASM9。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/ClassLoaderAwareGeneratorStrategy.java::19::0", "zh": ["CGLIB GeneratorStrategy 的变体，在生成类期间将应用程序 ClassLoader 暴露为当前线程上下文 ClassLoader。Spring 的 ASM 变体中的 ASM ClassWriter 在进行公共超类解析时会使用它。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/KeyFactory.java::29::0", "zh": ["生成用于处理多值键的类，供 Maps 和 Sets 等场景使用。<code>equals</code> 和 <code>hashCode</code> 方法的代码遵循 Joshua Bloch 在<i>Effective Java</i>中提出的规则。<p>要生成 <code>KeyFactory</code>，需要提供一个描述键结构的接口。该接口应有一个名为 <code>newInstance</code> 的单一方法，该方法返回 <code>Object</code>。参数数组可以是<i>任意内容</i>——对象、基本类型值，或其中任一类型的单维或多维数组。例如："]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/KeyFactory.java::29::1", "zh": ["创建 <code>KeyFactory</code> 之后，通过调用接口定义的 <code>newInstance</code> 方法生成新的键。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/KeyFactory.java::29::2", "zh": ["<b>注意：</b><code>key1</code> 和 <code>key2</code> 两个键之间 <code>hashCode</code> 的相等性只有在 <code>key1.equals(key2)</code> <i>并且</i>这两个键由同一工厂生成时才能保证。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/KeyFactory.java::123::0", "zh": ["{@link Type#hashCode()} 的开销很大，因为它会遍历完整描述符来计算哈希码。此定制器使用 {@link Type#getSort()} 作为哈希码。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/SpringNamingPolicy.java::19::0", "zh": ["CGLIB 的 {@link DefaultNamingPolicy} 的自定义扩展，将生成类名中的标记从“ByCGLIB”改为“BySpringCGLIB”。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/SpringNamingPolicy.java::19::1", "zh": ["<p>这主要用于避免常规 CGLIB 版本（被某些其他库使用）与 Spring 内嵌变体之间的冲突，以防同一个类恰好因不同目的而被代理。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/package-info.java::1::0", "zh": ["Spring 对 <a href=\"https://github.com/cglib/cglib\">CGLIB</a> core 包的重新打包（仅供内部使用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/cglib/core/package-info.java::1::1", "zh": ["<p>由于这种重新打包发生在类文件层面，此处不提供源码和 javadoc……只有少数为 Spring 目的在 JDK 9-17 上打过补丁的文件除外。"]}

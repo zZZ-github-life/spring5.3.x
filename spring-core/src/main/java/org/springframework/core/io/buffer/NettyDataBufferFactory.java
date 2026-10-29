@@ -27,8 +27,7 @@ import io.netty.buffer.Unpooled;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of the {@code DataBufferFactory} interface based on a
- * Netty {@link ByteBufAllocator}.
+ * 基于 Netty {@link ByteBufAllocator} 的 {@code DataBufferFactory} 接口实现。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -42,7 +41,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 
 	/**
-	 * Create a new {@code NettyDataBufferFactory} based on the given factory.
+	 * 基于给定工厂创建一个新的 {@code NettyDataBufferFactory}。
 	 * @param byteBufAllocator the factory to use
 	 * @see io.netty.buffer.PooledByteBufAllocator
 	 * @see io.netty.buffer.UnpooledByteBufAllocator
@@ -54,7 +53,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 
 	/**
-	 * Return the {@code ByteBufAllocator} used by this factory.
+	 * 返回此工厂使用的 {@code ByteBufAllocator}。
 	 */
 	public ByteBufAllocator getByteBufAllocator() {
 		return this.byteBufAllocator;
@@ -85,7 +84,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 	}
 
 	/**
-	 * Wrap the given Netty {@link ByteBuf} in a {@code NettyDataBuffer}.
+	 * 将给定的 Netty {@link ByteBuf} 包装在 {@code NettyDataBuffer} 中。
 	 * @param byteBuf the Netty byte buffer to wrap
 	 * @return the wrapped buffer
 	 */
@@ -96,7 +95,7 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation uses Netty's {@link CompositeByteBuf}.
+	 * <p>此实现使用 Netty 的 {@link CompositeByteBuf}。
 	 */
 	@Override
 	public DataBuffer join(List<? extends DataBuffer> dataBuffers) {
@@ -114,10 +113,10 @@ public class NettyDataBufferFactory implements DataBufferFactory {
 	}
 
 	/**
-	 * Return the given Netty {@link DataBuffer} as a {@link ByteBuf}.
-	 * <p>Returns the {@linkplain NettyDataBuffer#getNativeBuffer() native buffer}
-	 * if {@code buffer} is a {@link NettyDataBuffer}; returns
-	 * {@link Unpooled#wrappedBuffer(ByteBuffer)} otherwise.
+	 * 将给定的 Netty {@link DataBuffer} 返回为 {@link ByteBuf}。
+	 * <p>如果 {@code buffer} 是 {@link NettyDataBuffer}，则返回
+	 * {@linkplain NettyDataBuffer#getNativeBuffer() native buffer}；否则返回
+	 * {@link Unpooled#wrappedBuffer(ByteBuffer)}。
 	 * @param buffer the {@code DataBuffer} to return a {@code ByteBuf} for
 	 * @return the netty {@code ByteBuf}
 	 */

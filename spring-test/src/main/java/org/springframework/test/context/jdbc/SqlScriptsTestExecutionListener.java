@@ -56,34 +56,13 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code TestExecutionListener} that provides support for executing SQL
- * {@link Sql#scripts scripts} and inlined {@link Sql#statements statements}
- * configured via the {@link Sql @Sql} annotation.
- *
- * <p>Scripts and inlined statements will be executed {@linkplain #beforeTestMethod(TestContext) before}
- * or {@linkplain #afterTestMethod(TestContext) after} execution of the corresponding
- * {@linkplain java.lang.reflect.Method test method}, depending on the configured
- * value of the {@link Sql#executionPhase executionPhase} flag.
- *
- * <p>Scripts and inlined statements will be executed without a transaction,
- * within an existing Spring-managed transaction, or within an isolated transaction,
- * depending on the configured value of {@link SqlConfig#transactionMode} and the
- * presence of a transaction manager.
- *
- * <h3>Script Resources</h3>
- * <p>For details on default script detection and how script resource locations
- * are interpreted, see {@link Sql#scripts}.
- *
- * <h3>Required Spring Beans</h3>
- * <p>A {@link PlatformTransactionManager} <em>and</em> a {@link DataSource},
- * just a {@link PlatformTransactionManager}, or just a {@link DataSource}
- * must be defined as beans in the Spring {@link ApplicationContext} for the
- * corresponding test. Consult the javadocs for {@link SqlConfig#transactionMode},
- * {@link SqlConfig#transactionManager}, {@link SqlConfig#dataSource},
- * {@link TestContextTransactionUtils#retrieveDataSource}, and
- * {@link TestContextTransactionUtils#retrieveTransactionManager} for details
- * on permissible configuration constellations and on the algorithms used to
- * locate these beans.
+ * {@code TestExecutionListener}，为执行通过 {@link Sql @Sql} 注解配置的 SQL {@link Sql#scripts 脚本}和内联 {@link Sql#statements 语句}提供支持。
+ * <p>根据 {@link Sql#executionPhase executionPhase} 标志的配置值，脚本和内联语句将在相应{@linkplain java.lang.reflect.Method 测试方法}执行{@linkplain #beforeTestMethod(TestContext) 之前}或{@linkplain #afterTestMethod(TestContext) 之后}执行。
+ * <p>根据 {@link SqlConfig#transactionMode} 的配置值以及是否存在事务管理器，脚本和内联语句将在无事务、现有 Spring 管理的事务内或隔离事务中执行。
+ * <h3>脚本资源</h3>
+ * <p>有关默认脚本检测以及如何解释脚本资源位置的详情，请参见 {@link Sql#scripts}。
+ * <h3>必需的 Spring Bean</h3>
+ * <p>必须为相应测试在 Spring {@link ApplicationContext} 中将 {@link PlatformTransactionManager} <em>和</em> {@link DataSource}、仅 {@link PlatformTransactionManager} 或仅 {@link DataSource} 定义为 bean。有关允许的配置组合以及用于定位这些 bean 的算法详情，请查阅 {@link SqlConfig#transactionMode}、{@link SqlConfig#transactionManager}、{@link SqlConfig#dataSource}、{@link TestContextTransactionUtils#retrieveDataSource} 和 {@link TestContextTransactionUtils#retrieveTransactionManager} 的 javadoc。
  *
  * @author Sam Brannen
  * @author Dmitry Semukhin
@@ -102,7 +81,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 
 
 	/**
-	 * Returns {@code 5000}.
+	 * 返回 {@code 5000}。
 	 */
 	@Override
 	public final int getOrder() {
@@ -110,8 +89,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Execute SQL scripts configured via {@link Sql @Sql} for the supplied
-	 * {@link TestContext} <em>before</em> the current test method.
+	 * 在当前测试方法<em>之前</em>为所提供的 {@link TestContext} 执行通过 {@link Sql @Sql} 配置的 SQL 脚本。
 	 */
 	@Override
 	public void beforeTestMethod(TestContext testContext) {
@@ -119,8 +97,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Execute SQL scripts configured via {@link Sql @Sql} for the supplied
-	 * {@link TestContext} <em>after</em> the current test method.
+	 * 在当前测试方法<em>之后</em>为所提供的 {@link TestContext} 执行通过 {@link Sql @Sql} 配置的 SQL 脚本。
 	 */
 	@Override
 	public void afterTestMethod(TestContext testContext) {
@@ -128,8 +105,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Execute SQL scripts configured via {@link Sql @Sql} for the supplied
-	 * {@link TestContext} and {@link ExecutionPhase}.
+	 * 为所提供的 {@link TestContext} 和 {@link ExecutionPhase} 执行通过 {@link Sql @Sql} 配置的 SQL 脚本。
 	 */
 	private void executeSqlScripts(TestContext testContext, ExecutionPhase executionPhase) {
 		Method testMethod = testContext.getTestMethod();
@@ -151,8 +127,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Determine if method-level {@code @Sql} annotations should be merged with
-	 * class-level {@code @Sql} annotations.
+	 * 确定方法级 {@code @Sql} 注解是否应与类级 {@code @Sql} 注解合并。
 	 */
 	private boolean mergeSqlAnnotations(TestContext testContext) {
 		SqlMergeMode sqlMergeMode = getSqlMergeModeFor(testContext.getTestMethod());
@@ -163,7 +138,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Get the {@code @SqlMergeMode} annotation declared on the supplied class.
+	 * 获取在所提供的类上声明的 {@code @SqlMergeMode} 注解。
 	 */
 	@Nullable
 	private SqlMergeMode getSqlMergeModeFor(Class<?> clazz) {
@@ -171,7 +146,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Get the {@code @SqlMergeMode} annotation declared on the supplied method.
+	 * 获取在所提供的方法上声明的 {@code @SqlMergeMode} 注解。
 	 */
 	@Nullable
 	private SqlMergeMode getSqlMergeModeFor(Method method) {
@@ -179,21 +154,21 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Get the {@code @Sql} annotations declared on the supplied class.
+	 * 获取在所提供的类上声明的 {@code @Sql} 注解。
 	 */
 	private Set<Sql> getSqlAnnotationsFor(Class<?> clazz) {
 		return TestContextAnnotationUtils.getMergedRepeatableAnnotations(clazz, Sql.class);
 	}
 
 	/**
-	 * Get the {@code @Sql} annotations declared on the supplied method.
+	 * 获取在所提供的方法上声明的 {@code @Sql} 注解。
 	 */
 	private Set<Sql> getSqlAnnotationsFor(Method method) {
 		return AnnotatedElementUtils.getMergedRepeatableAnnotations(method, Sql.class, SqlGroup.class);
 	}
 
 	/**
-	 * Execute SQL scripts for the supplied {@link Sql @Sql} annotations.
+	 * 为所提供的 {@link Sql @Sql} 注解执行 SQL 脚本。
 	 */
 	private void executeSqlScripts(
 			Set<Sql> sqlAnnotations, TestContext testContext, ExecutionPhase executionPhase, boolean classLevel) {
@@ -202,10 +177,8 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Execute the SQL scripts configured via the supplied {@link Sql @Sql}
-	 * annotation for the given {@link ExecutionPhase} and {@link TestContext}.
-	 * <p>Special care must be taken in order to properly support the configured
-	 * {@link SqlConfig#transactionMode}.
+	 * 为给定的 {@link ExecutionPhase} 和 {@link TestContext} 执行通过所提供的 {@link Sql @Sql} 注解配置的 SQL 脚本。
+	 * <p>必须特别小心，以正确支持配置的 {@link SqlConfig#transactionMode}。
 	 * @param sql the {@code @Sql} annotation to parse
 	 * @param executionPhase the current execution phase
 	 * @param testContext the current {@code TestContext}
@@ -294,8 +267,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Determine if the two data sources are effectively the same, unwrapping
-	 * proxies as necessary to compare the target instances.
+	 * 确定两个数据源是否实际上相同，必要时解包代理以比较目标实例。
 	 * @since 5.3.4
 	 * @see TransactionSynchronizationUtils#unwrapResourceIfNecessary(Object)
 	 */
@@ -328,8 +300,7 @@ public class SqlScriptsTestExecutionListener extends AbstractTestExecutionListen
 	}
 
 	/**
-	 * Detect a default SQL script by implementing the algorithm defined in
-	 * {@link Sql#scripts}.
+	 * 通过实现 {@link Sql#scripts} 中定义的算法检测默认 SQL 脚本。
 	 */
 	private String detectDefaultScript(TestContext testContext, boolean classLevel) {
 		Class<?> clazz = testContext.getTestClass();

@@ -38,7 +38,7 @@ import org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler;
 import org.springframework.web.socket.sockjs.transport.handler.WebSocketTransportHandler;
 
 /**
- * An abstract base class for configuring STOMP over WebSocket/SockJS endpoints.
+ * 用于配置基于 WebSocket/SockJS 的 STOMP 端点的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

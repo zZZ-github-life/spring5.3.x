@@ -24,8 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapter that exposes a {@link java.beans.PropertyEditor} for any given
- * {@link org.springframework.core.convert.ConversionService} and specific target type.
+ * 适配器，为任意给定的 {@link org.springframework.core.convert.ConversionService}
+ * 和特定目标类型暴露一个 {@link java.beans.PropertyEditor}。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -40,9 +40,8 @@ public class ConvertingPropertyEditorAdapter extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new ConvertingPropertyEditorAdapter for a given
-	 * {@link org.springframework.core.convert.ConversionService}
-	 * and the given target type.
+	 * 为给定的 {@link org.springframework.core.convert.ConversionService}
+	 * 和给定的目标类型创建一个新的 ConvertingPropertyEditorAdapter。
 	 * @param conversionService the ConversionService to delegate to
 	 * @param targetDescriptor the target type to convert to
 	 */

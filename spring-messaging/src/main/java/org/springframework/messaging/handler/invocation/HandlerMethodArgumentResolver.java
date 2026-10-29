@@ -21,8 +21,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Strategy interface for resolving method parameters into argument values
- * in the context of a given {@link Message}.
+ * 在给定 {@link Message} 的上下文中将方法参数解析为参数值的策略接口。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -30,8 +29,7 @@ import org.springframework.messaging.Message;
 public interface HandlerMethodArgumentResolver {
 
 	/**
-	 * Whether the given {@linkplain MethodParameter method parameter} is
-	 * supported by this resolver.
+	 * 给定{@linkplain MethodParameter 方法参数}是否受此解析器支持。
 	 * @param parameter the method parameter to check
 	 * @return {@code true} if this resolver supports the supplied parameter;
 	 * {@code false} otherwise
@@ -39,7 +37,7 @@ public interface HandlerMethodArgumentResolver {
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
-	 * Resolves a method parameter into an argument value from a given message.
+	 * 从给定消息中将方法参数解析为参数值。
 	 * @param parameter the method parameter to resolve.
 	 * This parameter must have previously been passed to
 	 * {@link #supportsParameter(org.springframework.core.MethodParameter)}

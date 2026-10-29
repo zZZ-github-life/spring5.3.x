@@ -23,11 +23,12 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * The default implementation of Spring's {@link SqlRowSetMetaData} interface, wrapping a
- * {@link java.sql.ResultSetMetaData} instance, catching any {@link SQLException SQLExceptions}
- * and translating them to a corresponding Spring {@link InvalidResultSetAccessException}.
+ * Spring {@link SqlRowSetMetaData} 接口的默认实现，
+ * 它包装一个 {@link java.sql.ResultSetMetaData} 实例，
+ * 捕获所有 {@link SQLException SQLExceptions}，
+ * 并将其转换为相应的 Spring {@link InvalidResultSetAccessException}。
  *
- * <p>Used by {@link ResultSetWrappingSqlRowSet}.
+ * <p>由 {@link ResultSetWrappingSqlRowSet} 使用。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -43,8 +44,8 @@ public class ResultSetWrappingSqlRowSetMetaData implements SqlRowSetMetaData {
 
 
 	/**
-	 * Create a new ResultSetWrappingSqlRowSetMetaData object
-	 * for the given ResultSetMetaData instance.
+	 * 为给定 ResultSetMetaData 实例创建一个新的
+	 * ResultSetWrappingSqlRowSetMetaData 对象。
 	 * @param resultSetMetaData a disconnected ResultSetMetaData instance
 	 * to wrap (usually a {@code javax.sql.RowSetMetaData} instance)
 	 * @see java.sql.ResultSet#getMetaData

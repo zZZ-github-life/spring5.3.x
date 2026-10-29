@@ -27,12 +27,11 @@ import org.springframework.expression.MethodExecutor;
 import org.springframework.lang.Nullable;
 
 /**
- * A {@link org.springframework.expression.MethodResolver} variant for data binding
- * purposes, using reflection to access instance methods on a given target object.
+ * 用于数据绑定目的的 {@link org.springframework.expression.MethodResolver} 变体，通过反射访问给定
+ * 目标对象上的实例方法。
  *
- * <p>This accessor does not resolve static methods and also no technical methods
- * on {@code java.lang.Object} or {@code java.lang.Class}.
- * For unrestricted resolution, choose {@link ReflectiveMethodResolver} instead.
+ * <p>该访问器不解析静态方法，也不解析 {@code java.lang.Object} 或 {@code java.lang.Class} 上的技术
+ * 性方法。如需不受限制的解析，请改用 {@link ReflectiveMethodResolver}。
  *
  * @author Juergen Hoeller
  * @since 4.3.15
@@ -67,7 +66,7 @@ public final class DataBindingMethodResolver extends ReflectiveMethodResolver {
 
 
 	/**
-	 * Create a new data-binding method resolver for instance method resolution.
+	 * 创建一个新的数据绑定方法解析器，用于实例方法解析。
 	 */
 	public static DataBindingMethodResolver forInstanceMethodInvocation() {
 		return new DataBindingMethodResolver();

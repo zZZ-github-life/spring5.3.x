@@ -36,8 +36,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@code View} that writes model attribute(s) with an {@link HttpMessageWriter}.
- *
+ * {@code View}，使用 {@link HttpMessageWriter} 写入模型属性。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -51,14 +50,14 @@ public class HttpMessageWriterView implements View {
 
 
 	/**
-	 * Constructor with an {@code Encoder}.
+	 * 使用 {@code Encoder} 的构造函数。
 	 */
 	public HttpMessageWriterView(Encoder<?> encoder) {
 		this(new EncoderHttpMessageWriter<>(encoder));
 	}
 
 	/**
-	 * Constructor with a fully initialized {@link HttpMessageWriter}.
+	 * 使用完全初始化的 {@link HttpMessageWriter} 的构造函数。
 	 */
 	public HttpMessageWriterView(HttpMessageWriter<?> writer) {
 		Assert.notNull(writer, "HttpMessageWriter is required");
@@ -68,7 +67,7 @@ public class HttpMessageWriterView implements View {
 
 
 	/**
-	 * Return the configured message writer.
+	 * 返回配置的消息写入器。
 	 */
 	public HttpMessageWriter<?> getMessageWriter() {
 		return this.writer;
@@ -76,8 +75,7 @@ public class HttpMessageWriterView implements View {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>The implementation of this method for {@link HttpMessageWriterView}
-	 * delegates to {@link HttpMessageWriter#getWritableMediaTypes()}.
+	 * <p>此方法针对 {@link HttpMessageWriterView} 的实现委托给 {@link HttpMessageWriter#getWritableMediaTypes()}。
 	 */
 	@Override
 	public List<MediaType> getSupportedMediaTypes() {
@@ -85,15 +83,11 @@ public class HttpMessageWriterView implements View {
 	}
 
 	/**
-	 * Set the attributes in the model that should be rendered by this view.
-	 * When set, all other model attributes will be ignored. The matching
-	 * attributes are further narrowed with {@link HttpMessageWriter#canWrite}.
-	 * The matching attributes are processed as follows:
+	 * 设置应由此视图渲染的模型属性。设置后，所有其他模型属性将被忽略。匹配的属性会通过 {@link HttpMessageWriter#canWrite} 进一步缩小范围。匹配属性的处理方式如下：
 	 * <ul>
-	 * <li>0: nothing is written to the response body.
-	 * <li>1: the matching attribute is passed to the writer.
-	 * <li>2..N: if the writer supports {@link Map}, write all matches;
-	 * otherwise raise an {@link IllegalStateException}.
+	 * <li>0：不向响应正文写入任何内容。
+	 * <li>1：将匹配的属性传递给写入器。
+	 * <li>2..N：如果写入器支持 {@link Map}，则写入所有匹配项；否则抛出 {@link IllegalStateException}。
 	 * </ul>
 	 */
 	public void setModelKeys(@Nullable Set<String> modelKeys) {
@@ -104,7 +98,7 @@ public class HttpMessageWriterView implements View {
 	}
 
 	/**
-	 * Return the configured model keys.
+	 * 返回配置的模型键。
 	 */
 	public final Set<String> getModelKeys() {
 		return this.modelKeys;

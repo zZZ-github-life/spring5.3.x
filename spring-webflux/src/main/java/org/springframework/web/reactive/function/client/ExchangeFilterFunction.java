@@ -23,10 +23,8 @@ import reactor.core.publisher.Mono;
 import org.springframework.util.Assert;
 
 /**
- * Represents a function that filters an {@linkplain ExchangeFunction exchange function}.
- * <p>The filter is executed when a {@code Subscriber} subscribes to the
- * {@code Publisher} returned by the {@code WebClient}.
- *
+ * 表示过滤{@linkplain ExchangeFunction 交换函数}的函数。
+ * <p>当 {@code Subscriber} 订阅由 {@code WebClient} 返回的 {@code Publisher} 时，将执行该过滤器。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -34,17 +32,10 @@ import org.springframework.util.Assert;
 public interface ExchangeFilterFunction {
 
 	/**
-	 * Apply this filter to the given request and exchange function.
-	 * <p>The given {@linkplain ExchangeFunction} represents the next entity
-	 * in the chain, to be invoked via
-	 * {@linkplain ExchangeFunction#exchange(ClientRequest) invoked} in order to
-	 * proceed with the exchange, or not invoked to shortcut the chain.
+	 * 将此过滤器应用于给定请求和交换函数。
+	 * <p>给定的 {@linkplain ExchangeFunction} 表示链中的下一个实体，可通过 {@linkplain ExchangeFunction#exchange(ClientRequest) 调用}它来继续交换，或不调用它以短路该链。
 	 *
-	 * <p><strong>Note:</strong> When a filter handles the response after the
-	 * call to {@link ExchangeFunction#exchange}, extra care must be taken to
-	 * always consume its content or otherwise propagate it downstream for
-	 * further handling, for example by the {@link WebClient}. Please, see the
-	 * reference documentation for more details on this.
+	 * <p><strong>注意：</strong>当过滤器在调用 {@link ExchangeFunction#exchange} 之后处理响应时，必须格外小心，始终消费其内容，或以其他方式将其向下游传播以供进一步处理（例如由 {@link WebClient} 处理）。详情请参阅参考文档。
 	 * @param request the current request
 	 * @param next the next exchange function in the chain
 	 * @return the filtered response
@@ -52,8 +43,7 @@ public interface ExchangeFilterFunction {
 	Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next);
 
 	/**
-	 * Return a composed filter function that first applies this filter, and
-	 * then applies the given {@code "after"} filter.
+	 * 返回组合过滤器函数，先应用此过滤器，然后应用给定的 {@code "after"} 过滤器。
 	 * @param afterFilter the filter to apply after this filter
 	 * @return the composed filter
 	 */
@@ -64,8 +54,7 @@ public interface ExchangeFilterFunction {
 	}
 
 	/**
-	 * Apply this filter to the given {@linkplain ExchangeFunction}, resulting
-	 * in a filtered exchange function.
+	 * 将此过滤器应用于给定的 {@linkplain ExchangeFunction}，生成过滤后的交换函数。
 	 * @param exchange the exchange function to filter
 	 * @return the filtered exchange function
 	 */
@@ -75,8 +64,7 @@ public interface ExchangeFilterFunction {
 	}
 
 	/**
-	 * Adapt the given request processor function to a filter function that only
-	 * operates on the {@code ClientRequest}.
+	 * 将给定的请求处理器函数适配为仅对 {@code ClientRequest} 操作的过滤器函数。
 	 * @param processor the request processor
 	 * @return the resulting filter adapter
 	 */
@@ -86,8 +74,7 @@ public interface ExchangeFilterFunction {
 	}
 
 	/**
-	 * Adapt the given response processor function to a filter function that
-	 * only operates on the {@code ClientResponse}.
+	 * 将给定的响应处理器函数适配为仅对 {@code ClientResponse} 操作的过滤器函数。
 	 * @param processor the response processor
 	 * @return the resulting filter adapter
 	 */

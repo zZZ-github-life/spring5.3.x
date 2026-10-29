@@ -1,8 +1,8 @@
 /**
- * Contains built-in {@link org.springframework.test.web.client.RequestMatcher}
- * implementations. Use
+ * 包含内置的 {@link org.springframework.test.web.client.RequestMatcher}
+ * 实现。使用
  * {@link org.springframework.test.web.client.match.MockRestRequestMatchers}
- * to gain access to instances of those implementations.
+ * 获取这些实现的实例。
  */
 @NonNullApi
 @NonNullFields

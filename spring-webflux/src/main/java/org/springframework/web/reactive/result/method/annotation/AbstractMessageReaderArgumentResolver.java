@@ -57,14 +57,11 @@ import org.springframework.web.server.ServerWebInputException;
 import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 
 /**
- * Abstract base class for argument resolvers that resolve method arguments
- * by reading the request body with an {@link HttpMessageReader}.
+ * 参数解析器的抽象基类，通过 {@link HttpMessageReader} 读取请求正文来解析方法参数。
  *
- * <p>Applies validation if the method argument is annotated with any
+ * <p>如果方法参数带有任何
  * {@linkplain org.springframework.validation.annotation.ValidationAnnotationUtils#determineValidationHints
- * annotations that trigger validation}. Validation failure results in a
- * {@link ServerWebInputException}.
- *
+ * 触发校验的注解}，则应用校验。校验失败会导致 {@link ServerWebInputException}。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0
@@ -79,7 +76,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 
 	/**
-	 * Constructor with {@link HttpMessageReader}'s and a {@link Validator}.
+	 * 使用 {@link HttpMessageReader} 和 {@link Validator} 的构造函数。
 	 * @param readers the readers to convert from the request body
 	 */
 	protected AbstractMessageReaderArgumentResolver(List<HttpMessageReader<?>> readers) {
@@ -87,7 +84,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 	}
 
 	/**
-	 * Constructor that also accepts a {@link ReactiveAdapterRegistry}.
+	 * 还接受 {@link ReactiveAdapterRegistry} 的构造函数。
 	 * @param messageReaders readers to convert from the request body
 	 * @param adapterRegistry for adapting to other reactive types from Flux and Mono
 	 */
@@ -102,7 +99,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 
 	/**
-	 * Return the configured message converters.
+	 * 返回配置的消息转换器。
 	 */
 	public List<HttpMessageReader<?>> getMessageReaders() {
 		return this.messageReaders;
@@ -110,7 +107,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 
 
 	/**
-	 * Read the body from a method argument with {@link HttpMessageReader}.
+	 * 使用 {@link HttpMessageReader} 从方法参数读取正文。
 	 * @param bodyParameter the {@link MethodParameter} to read
 	 * @param isBodyRequired true if the body is required
 	 * @param bindingContext the binding context to use
@@ -125,7 +122,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 	}
 
 	/**
-	 * Read the body from a method argument with {@link HttpMessageReader}.
+	 * 使用 {@link HttpMessageReader} 从方法参数读取正文。
 	 * @param bodyParam represents the element type for the body
 	 * @param actualParam the actual method argument type; possibly different
 	 * from {@code bodyParam}, e.g. for an {@code HttpEntity} argument
@@ -242,9 +239,7 @@ public abstract class AbstractMessageReaderArgumentResolver extends HandlerMetho
 	}
 
 	/**
-	 * Check if the given MethodParameter requires validation and if so return
-	 * a (possibly empty) Object[] with validation hints. A return value of
-	 * {@code null} indicates that validation is not required.
+	 * 检查给定 MethodParameter 是否需要校验；如果需要，则返回包含校验提示的（可能为空的）Object[]。返回值为 {@code null} 表示不需要校验。
 	 */
 	@Nullable
 	private Object[] extractValidationHints(MethodParameter parameter) {

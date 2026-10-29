@@ -1,5 +1,5 @@
 /**
- * Configuration support for WebSocket request handling.
+ * WebSocket 请求处理的配置支持。
  */
 @NonNullApi
 @NonNullFields

@@ -28,11 +28,10 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves an argument of type {@link Principal}, similar to
- * {@link ServletRequestMethodArgumentResolver} but irrespective of whether the
- * argument is annotated or not. This is done to enable custom argument
- * resolution of a {@link Principal} argument (with a custom annotation).
- *
+ * 解析 {@link Principal} 类型的参数，类似于
+ * {@link ServletRequestMethodArgumentResolver}，但无论
+ * 参数是否带有注解都会处理。这样做是为了支持对
+ * {@link Principal} 参数进行自定义参数解析（配合自定义注解）。
  * @author Rossen Stoyanchev
  * @since 5.3.1
  */

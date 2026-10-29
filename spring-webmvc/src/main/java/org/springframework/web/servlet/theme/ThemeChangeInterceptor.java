@@ -25,8 +25,8 @@ import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Interceptor that allows for changing the current theme on every request,
- * via a configurable request parameter (default parameter name: "theme").
+ * 拦截器，允许在每次请求时通过可配置的请求参数
+ * 更改当前主题（默认参数名称："theme"）。
  *
  * @author Juergen Hoeller
  * @since 20.06.2003
@@ -35,7 +35,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 public class ThemeChangeInterceptor implements HandlerInterceptor {
 
 	/**
-	 * Default name of the theme specification parameter: "theme".
+	 * 主题指定参数的默认名称："theme"。
 	 */
 	public static final String DEFAULT_PARAM_NAME = "theme";
 
@@ -43,16 +43,15 @@ public class ThemeChangeInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Set the name of the parameter that contains a theme specification
-	 * in a theme change request. Default is "theme".
+	 * 设置主题变更请求中包含主题指定信息的参数名称。
+	 * 默认为 "theme"。
 	 */
 	public void setParamName(String paramName) {
 		this.paramName = paramName;
 	}
 
 	/**
-	 * Return the name of the parameter that contains a theme specification
-	 * in a theme change request.
+	 * 返回主题变更请求中包含主题指定信息的参数名称。
 	 */
 	public String getParamName() {
 		return this.paramName;

@@ -28,8 +28,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Converts a comma-delimited String to an Array.
- * Only matches if String.class can be converted to the target array element type.
+ * 将逗号分隔的 String 转换为数组。
+ * 仅当 String.class 可以转换为目标数组元素类型时才匹配。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

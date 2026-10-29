@@ -22,11 +22,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.interceptor.TransactionAttribute;
 
 /**
- * Strategy interface for parsing known transaction annotation types.
- * {@link AnnotationTransactionAttributeSource} delegates to such
- * parsers for supporting specific annotation types such as Spring's own
- * {@link Transactional}, JTA 1.2's {@link javax.transaction.Transactional}
- * or EJB3's {@link javax.ejb.TransactionAttribute}.
+ * 用于解析已知事务注解类型的策略接口。
+ * {@link AnnotationTransactionAttributeSource}将此类解析器委托用于支持特定的注解类型,
+ * 如Spring自己的{@link Transactional}、JTA 1.2的{@link javax.transaction.Transactional}
+ * 或EJB3的{@link javax.ejb.TransactionAttribute}。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -38,13 +37,10 @@ import org.springframework.transaction.interceptor.TransactionAttribute;
 public interface TransactionAnnotationParser {
 
 	/**
-	 * Determine whether the given class is a candidate for transaction attributes
-	 * in the annotation format of this {@code TransactionAnnotationParser}.
-	 * <p>If this method returns {@code false}, the methods on the given class
-	 * will not get traversed for {@code #parseTransactionAnnotation} introspection.
-	 * Returning {@code false} is therefore an optimization for non-affected
-	 * classes, whereas {@code true} simply means that the class needs to get
-	 * fully introspected for each method on the given class individually.
+	 * 确定给定类是否是该{@code TransactionAnnotationParser}注解格式的事务属性候选类。
+	 * <p>如果此方法返回{@code false}, 则不会遍历给定类上的方法以进行
+	 * {@code #parseTransactionAnnotation}的内省。因此, 返回{@code false}是对不受影响类的优化,
+	 * 而{@code true}仅意味着需要对该给定类上的每个方法进行完整的内省。
 	 * @param targetClass the class to introspect
 	 * @return {@code false} if the class is known to have no transaction
 	 * annotations at class or method level; {@code true} otherwise. The default
@@ -56,10 +52,9 @@ public interface TransactionAnnotationParser {
 	}
 
 	/**
-	 * Parse the transaction attribute for the given method or class,
-	 * based on an annotation type understood by this parser.
-	 * <p>This essentially parses a known transaction annotation into Spring's metadata
-	 * attribute class. Returns {@code null} if the method/class is not transactional.
+	 * 基于此解析器理解的注解类型, 解析给定方法或类的事务属性。
+	 * <p>这本质上是将已知的事务注解解析为Spring的元数据属性类。
+	 * 如果方法/类不是事务性的, 则返回{@code null}。
 	 * @param element the annotated method or class
 	 * @return the configured transaction attribute, or {@code null} if none found
 	 * @see AnnotationTransactionAttributeSource#determineTransactionAttribute

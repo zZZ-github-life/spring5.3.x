@@ -30,15 +30,11 @@ import org.springframework.web.server.ServerErrorException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Context to assist with binding request data onto Objects and provide access
- * to a shared {@link Model} with controller-specific attributes.
+ * 用于协助将请求数据绑定到对象上，并提供对带有控制器专属属性的共享 {@link Model} 的访问的上下文。
  *
- * <p>Provides  methods to create a {@link WebExchangeDataBinder} for a specific
- * target, command Object to apply data binding and validation to, or without a
- * target Object for simple type conversion from request values.
+ * <p>提供用于为特定目标对象（命令对象）创建 {@link WebExchangeDataBinder} 的方法，以便对其应用数据绑定和校验；也可以在没有目标对象的情况下创建，用于对请求值进行简单类型转换。
  *
- * <p>Container for the default model for the request.
- *
+ * <p>请求默认模型的容器。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 5.0
@@ -52,14 +48,14 @@ public class BindingContext {
 
 
 	/**
-	 * Create a new {@code BindingContext}.
+	 * 创建一个新的 {@code BindingContext}。
 	 */
 	public BindingContext() {
 		this(null);
 	}
 
 	/**
-	 * Create a new {@code BindingContext} with the given initializer.
+	 * 使用给定的初始化器创建一个新的 {@code BindingContext}。
 	 * @param initializer the binding initializer to apply (may be {@code null})
 	 */
 	public BindingContext(@Nullable WebBindingInitializer initializer) {
@@ -68,7 +64,7 @@ public class BindingContext {
 
 
 	/**
-	 * Return the default model.
+	 * 返回默认模型。
 	 */
 	public Model getModel() {
 		return this.model;
@@ -76,8 +72,7 @@ public class BindingContext {
 
 
 	/**
-	 * Create a {@link WebExchangeDataBinder} to apply data binding and
-	 * validation with on the target, command object.
+	 * 创建 {@link WebExchangeDataBinder}，用于对目标命令对象应用数据绑定和校验。
 	 * @param exchange the current exchange
 	 * @param target the object to create a data binder for
 	 * @param name the name of the target object
@@ -93,7 +88,7 @@ public class BindingContext {
 	}
 
 	/**
-	 * Initialize the data binder instance for the given exchange.
+	 * 为给定的 exchange 初始化数据绑定器实例。
 	 * @throws ServerErrorException if {@code @InitBinder} method invocation fails
 	 */
 	protected WebExchangeDataBinder initDataBinder(WebExchangeDataBinder binder, ServerWebExchange exchange) {
@@ -101,8 +96,7 @@ public class BindingContext {
 	}
 
 	/**
-	 * Create a {@link WebExchangeDataBinder} without a target object for type
-	 * conversion of request values to simple types.
+	 * 创建一个不带目标对象的 {@link WebExchangeDataBinder}，用于将请求值转换为简单类型。
 	 * @param exchange the current exchange
 	 * @param name the name of the target object
 	 * @return the created data binder
@@ -114,7 +108,7 @@ public class BindingContext {
 
 
 	/**
-	 * Extended variant of {@link WebExchangeDataBinder}, adding path variables.
+	 * {@link WebExchangeDataBinder} 的扩展变体，增加了路径变量支持。
 	 */
 	private static class ExtendedWebExchangeDataBinder extends WebExchangeDataBinder {
 

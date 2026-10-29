@@ -19,19 +19,19 @@ package org.springframework.web.util;
 import org.springframework.util.Assert;
 
 /**
- * Utility class for HTML escaping.
+ * 用于 HTML 转义的实用工具类。
  *
- * <p>Escapes and unescapes based on the W3C HTML 4.01 recommendation, handling
- * character entity references.
+ * <p>基于 W3C HTML 4.01 建议执行转义和反转义，并处理
+ * 字符实体引用。
  *
- * <p>Reference:
+ * <p>参考：
  * <a href="https://www.w3.org/TR/html4/charset.html">https://www.w3.org/TR/html4/charset.html</a>
  *
- * <p>For a comprehensive set of String escaping utilities, consider
+ * <p>如需全面的字符串转义工具集，可考虑
  * <a href="https://commons.apache.org/proper/commons-text/">Apache Commons Text</a>
- * and its {@code StringEscapeUtils} class. We do not use that class here in order
- * to avoid a runtime dependency on Commons Text just for HTML escaping. Furthermore,
- * Spring's HTML escaping is more flexible and 100% HTML 4.0 compliant.
+ * 及其 {@code StringEscapeUtils} 类。我们在此处不使用该类，以避免仅为 HTML 转义
+ * 而引入对 Commons Text 的运行时依赖。此外，Spring 的 HTML 转义更灵活，
+ * 并且 100% 符合 HTML 4.0。
  *
  * @author Juergen Hoeller
  * @author Martin Kersten
@@ -41,18 +41,18 @@ import org.springframework.util.Assert;
 public abstract class HtmlUtils {
 
 	/**
-	 * Shared instance of pre-parsed HTML character entity references.
+	 * 预解析的 HTML 字符实体引用的共享实例。
 	 */
 	private static final HtmlCharacterEntityReferences characterEntityReferences =
 			new HtmlCharacterEntityReferences();
 
 
 	/**
-	 * Turn special characters into HTML character references.
-	 * <p>Handles the complete character set defined in the HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding
-	 * entity reference (e.g. {@code &lt;}).
-	 * <p>Reference:
+	 * 将特殊字符转换为 HTML 字符引用。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集。
+	 * <p>将所有特殊字符转义为其对应的实体引用
+	 * （例如 {@code &lt;}）。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -64,13 +64,12 @@ public abstract class HtmlUtils {
 	}
 
 	/**
-	 * Turn special characters into HTML character references.
-	 * <p>Handles the complete character set defined in the HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding
-	 * entity reference (e.g. {@code &lt;}) at least as required by the
-	 * specified encoding. In other words, if a special character does
-	 * not have to be escaped for the given encoding, it may not be.
-	 * <p>Reference:
+	 * 将特殊字符转换为 HTML 字符引用。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集。
+	 * <p>将所有特殊字符至少按指定编码的要求转义为其对应的
+	 * 实体引用（例如 {@code &lt;}）。换言之，如果某个特殊字符
+	 * 在给定编码下不必转义，则可能不会被转义。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -97,11 +96,11 @@ public abstract class HtmlUtils {
 	}
 
 	/**
-	 * Turn special characters into HTML character references.
-	 * <p>Handles the complete character set defined in the HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
-	 * reference in decimal format (&amp;#<i>Decimal</i>;).
-	 * <p>Reference:
+	 * 将特殊字符转换为 HTML 字符引用。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集。
+	 * <p>将所有特殊字符转义为其对应的十进制格式
+	 * 数字引用（&amp;#<i>Decimal</i>;）。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -113,13 +112,12 @@ public abstract class HtmlUtils {
 	}
 
 	/**
-	 * Turn special characters into HTML character references.
-	 * <p>Handles the complete character set defined in the HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
-	 * reference in decimal format (&amp;#<i>Decimal</i>;) at least as required by the
-	 * specified encoding. In other words, if a special character does
-	 * not have to be escaped for the given encoding, it may not be.
-	 * <p>Reference:
+	 * 将特殊字符转换为 HTML 字符引用。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集。
+	 * <p>将所有特殊字符至少按指定编码的要求转义为其对应的十进制格式
+	 * 数字引用（&amp;#<i>Decimal</i>;）。换言之，如果某个特殊字符
+	 * 在给定编码下不必转义，则可能不会被转义。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -147,11 +145,11 @@ public abstract class HtmlUtils {
 	}
 
 	/**
-	 * Turn special characters into HTML character references.
-	 * <p>Handles the complete character set defined in the HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
-	 * reference in hex format (&amp;#x<i>Hex</i>;).
-	 * <p>Reference:
+	 * 将特殊字符转换为 HTML 字符引用。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集。
+	 * <p>将所有特殊字符转义为其对应的十六进制格式
+	 * 数字引用（&amp;#x<i>Hex</i>;）。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -163,13 +161,12 @@ public abstract class HtmlUtils {
 	}
 
 	/**
-	 * Turn special characters into HTML character references.
-	 * <p>Handles the complete character set defined in the HTML 4.01 recommendation.
-	 * <p>Escapes all special characters to their corresponding numeric
-	 * reference in hex format (&amp;#x<i>Hex</i>;) at least as required by the
-	 * specified encoding. In other words, if a special character does
-	 * not have to be escaped for the given encoding, it may not be.
-	 * <p>Reference:
+	 * 将特殊字符转换为 HTML 字符引用。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集。
+	 * <p>将所有特殊字符至少按指定编码的要求转义为其对应的十六进制格式
+	 * 数字引用（&amp;#x<i>Hex</i>;）。换言之，如果某个特殊字符
+	 * 在给定编码下不必转义，则可能不会被转义。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>
@@ -197,18 +194,18 @@ public abstract class HtmlUtils {
 	}
 
 	/**
-	 * Turn HTML character references into their plain text UNICODE equivalent.
-	 * <p>Handles complete character set defined in HTML 4.01 recommendation
-	 * and all reference types (decimal, hex, and entity).
-	 * <p>Correctly converts the following formats:
+	 * 将 HTML 字符引用转换为其等效的纯文本 UNICODE。
+	 * <p>处理 HTML 4.01 建议中定义的完整字符集
+	 * 以及所有引用类型（十进制、十六进制和实体）。
+	 * <p>正确转换以下格式：
 	 * <blockquote>
-	 * &amp;#<i>Entity</i>; - <i>(Example: &amp;amp;) case sensitive</i>
-	 * &amp;#<i>Decimal</i>; - <i>(Example: &amp;#68;)</i><br>
-	 * &amp;#x<i>Hex</i>; - <i>(Example: &amp;#xE5;) case insensitive</i><br>
+	 * &amp;#<i>Entity</i>; - <i>（示例：&amp;amp;）区分大小写</i>
+	 * &amp;#<i>Decimal</i>; - <i>（示例：&amp;#68;）</i><br>
+	 * &amp;#x<i>Hex</i>; - <i>（示例：&amp;#xE5;）不区分大小写</i><br>
 	 * </blockquote>
-	 * <p>Gracefully handles malformed character references by copying original
-	 * characters as is when encountered.
-	 * <p>Reference:
+	 * <p>遇到格式错误的字符引用时，会按原样复制原始字符，
+	 * 从而优雅地处理这种情况。
+	 * <p>参考：
 	 * <a href="https://www.w3.org/TR/html4/sgml/entities.html">
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * </a>

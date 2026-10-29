@@ -27,10 +27,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A simple descriptor for an injection point, pointing to a method/constructor
- * parameter or a field. Exposed by {@link UnsatisfiedDependencyException}.
- * Also available as an argument for factory methods, reacting to the
- * requesting injection point for building a customized bean instance.
+ * 注入点的简单描述符，指向方法/构造器参数或字段。由 {@link UnsatisfiedDependencyException} 公开。
+ * 也可作为工厂方法的参数使用，以便针对请求的注入点构建自定义的 Bean 实例。
  *
  * @author Juergen Hoeller
  * @since 4.3
@@ -50,7 +48,7 @@ public class InjectionPoint {
 
 
 	/**
-	 * Create an injection point descriptor for a method or constructor parameter.
+	 * 为方法或构造器参数创建注入点描述符。
 	 * @param methodParameter the MethodParameter to wrap
 	 */
 	public InjectionPoint(MethodParameter methodParameter) {
@@ -59,7 +57,7 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Create an injection point descriptor for a field.
+	 * 为字段创建注入点描述符。
 	 * @param field the field to wrap
 	 */
 	public InjectionPoint(Field field) {
@@ -68,7 +66,7 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Copy constructor.
+	 * 复制构造器。
 	 * @param original the original descriptor to create a copy from
 	 */
 	protected InjectionPoint(InjectionPoint original) {
@@ -79,15 +77,14 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Just available for serialization purposes in subclasses.
+	 * 仅供子类中的序列化使用。
 	 */
 	protected InjectionPoint() {
 	}
 
 
 	/**
-	 * Return the wrapped MethodParameter, if any.
-	 * <p>Note: Either MethodParameter or Field is available.
+	 * 返回所包装的 MethodParameter（如果有）。<p>注意：MethodParameter 或 Field 中只有一个是可用的。
 	 * @return the MethodParameter, or {@code null} if none
 	 */
 	@Nullable
@@ -96,8 +93,7 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Return the wrapped Field, if any.
-	 * <p>Note: Either MethodParameter or Field is available.
+	 * 返回所包装的 Field（如果有）。<p>注意：MethodParameter 或 Field 中只有一个是可用的。
 	 * @return the Field, or {@code null} if none
 	 */
 	@Nullable
@@ -106,7 +102,7 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Return the wrapped MethodParameter, assuming it is present.
+	 * 返回所包装的 MethodParameter，假定其存在。
 	 * @return the MethodParameter (never {@code null})
 	 * @throws IllegalStateException if no MethodParameter is available
 	 * @since 5.0
@@ -117,7 +113,7 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Obtain the annotations associated with the wrapped field or method/constructor parameter.
+	 * 获取与所包装的字段或方法/构造器参数关联的注解。
 	 */
 	public Annotation[] getAnnotations() {
 		if (this.field != null) {
@@ -134,7 +130,7 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Retrieve a field/parameter annotation of the given type, if any.
+	 * 检索给定类型的字段/参数注解（如果有）。
 	 * @param annotationType the annotation type to retrieve
 	 * @return the annotation instance, or {@code null} if none found
 	 * @since 4.3.9
@@ -146,15 +142,14 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Return the type declared by the underlying field or method/constructor parameter,
-	 * indicating the injection type.
+	 * 返回底层字段或方法/构造器参数所声明的类型，表示注入类型。
 	 */
 	public Class<?> getDeclaredType() {
 		return (this.field != null ? this.field.getType() : obtainMethodParameter().getParameterType());
 	}
 
 	/**
-	 * Returns the wrapped member, containing the injection point.
+	 * 返回所包装的成员，其中包含注入点。
 	 * @return the Field / Method / Constructor as Member
 	 */
 	public Member getMember() {
@@ -162,12 +157,9 @@ public class InjectionPoint {
 	}
 
 	/**
-	 * Return the wrapped annotated element.
-	 * <p>Note: In case of a method/constructor parameter, this exposes
-	 * the annotations declared on the method or constructor itself
-	 * (i.e. at the method/constructor level, not at the parameter level).
-	 * Use {@link #getAnnotations()} to obtain parameter-level annotations in
-	 * such a scenario, transparently with corresponding field annotations.
+	 * 返回所包装的注解元素。<p>注意：对于方法/构造器参数，这会公开声明在方法或构造器本身上的注解（即在
+	 * 方法/构造器级别，而非参数级别）。在这种情况下，请使用 {@link #getAnnotations()} 获取参数级别的注
+	 * 解，其与相应的字段注解一样是透明的。
 	 * @return the Field / Method / Constructor as AnnotatedElement
 	 */
 	public AnnotatedElement getAnnotatedElement() {

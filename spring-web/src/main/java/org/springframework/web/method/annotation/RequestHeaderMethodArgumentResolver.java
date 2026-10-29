@@ -29,16 +29,15 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Resolves method arguments annotated with {@code @RequestHeader} except for
- * {@link Map} arguments. See {@link RequestHeaderMapMethodArgumentResolver} for
- * details on {@link Map} arguments annotated with {@code @RequestHeader}.
+ * 解析标注了 {@code @RequestHeader} 的方法参数，{@link Map} 参数除外。
+ * 关于标注了 {@code @RequestHeader} 的 {@link Map} 参数，请参阅
+ * {@link RequestHeaderMapMethodArgumentResolver}。
  *
- * <p>An {@code @RequestHeader} is a named value resolved from a request header.
- * It has a required flag and a default value to fall back on when the request
- * header does not exist.
+ * <p>{@code @RequestHeader} 是一种命名值，从请求头中解析得到。
+ * 它具有 required 标志，以及当请求头不存在时可回退使用的默认值。
  *
- * <p>A {@link WebDataBinder} is invoked to apply type conversion to resolved
- * request header values that don't yet match the method parameter type.
+ * <p>会调用 {@link WebDataBinder} 对解析出的、尚不匹配方法参数类型的
+ * 请求头值应用类型转换。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -47,7 +46,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 public class RequestHeaderMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver {
 
 	/**
-	 * Create a new {@link RequestHeaderMethodArgumentResolver} instance.
+	 * 创建一个新的 {@link RequestHeaderMethodArgumentResolver} 实例。
 	 * @param beanFactory a bean factory to use for resolving  ${...}
 	 * placeholder and #{...} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to have expressions

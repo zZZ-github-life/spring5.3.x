@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 /**
- * Default {@link FetchSpec} implementation.
+ * 默认的 {@link FetchSpec} 实现。
  *
  * @author Mark Paluch
  * @author Simon Baslé

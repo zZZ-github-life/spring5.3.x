@@ -19,14 +19,13 @@ package org.springframework.jms.annotation;
 import org.springframework.jms.config.JmsListenerEndpointRegistrar;
 
 /**
- * Optional interface to be implemented by a Spring managed bean willing
- * to customize how JMS listener endpoints are configured. Typically
- * used to define the default {@link org.springframework.jms.config.JmsListenerContainerFactory
- * JmsListenerContainerFactory} to use or for registering JMS endpoints
- * in a <em>programmatic</em> fashion as opposed to the <em>declarative</em>
- * approach of using the @{@link JmsListener} annotation.
+ * 可选接口，由希望自定义 JMS 监听器端点配置方式的 Spring 管理 bean 实现。
+ * 通常用于定义要使用的默认
+ * {@link org.springframework.jms.config.JmsListenerContainerFactory
+ * JmsListenerContainerFactory}，或用于以<em>编程</em>方式注册 JMS 端点，
+ * 而不是采用使用 {@link JmsListener @JmsListener} 注解的<em>声明</em>方式。
  *
- * <p>See @{@link EnableJms} for detailed usage examples.
+ * <p>详细用法示例请参见 {@link EnableJms @EnableJms}。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -37,12 +36,14 @@ import org.springframework.jms.config.JmsListenerEndpointRegistrar;
 public interface JmsListenerConfigurer {
 
 	/**
-	 * Callback allowing a {@link org.springframework.jms.config.JmsListenerEndpointRegistry
-	 * JmsListenerEndpointRegistry} and specific {@link org.springframework.jms.config.JmsListenerEndpoint
-	 * JmsListenerEndpoint} instances to be registered against the given
-	 * {@link JmsListenerEndpointRegistrar}. The default
+	 * 回调方法，允许将
+	 * {@link org.springframework.jms.config.JmsListenerEndpointRegistry
+	 * JmsListenerEndpointRegistry} 和特定的
+	 * {@link org.springframework.jms.config.JmsListenerEndpoint
+	 * JmsListenerEndpoint} 实例注册到给定的
+	 * {@link JmsListenerEndpointRegistrar}。默认的
 	 * {@link org.springframework.jms.config.JmsListenerContainerFactory JmsListenerContainerFactory}
-	 * can also be customized.
+	 * 也可以在此自定义。
 	 * @param registrar the registrar to be configured
 	 */
 	void configureJmsListeners(JmsListenerEndpointRegistrar registrar);

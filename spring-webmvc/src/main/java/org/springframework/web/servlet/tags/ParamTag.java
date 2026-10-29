@@ -22,19 +22,19 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * The {@code <param>} tag collects name-value parameters and passes them to a
- * {@link ParamAware} ancestor in the tag hierarchy.
+ * {@code <param>} 标签收集名称-值参数，并将它们传递给标签层次结构中
+ * 的 {@link ParamAware} 祖先标签。
  *
- * <p>This tag must be nested under a param aware tag.
+ * <p>此标签必须嵌套在支持参数的标签内部。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -42,13 +42,13 @@ import org.springframework.lang.Nullable;
  * <td>name</td>
  * <td>true</td>
  * <td>true</td>
- * <td>The name of the parameter.</td>
+ * <td>参数的名称。</td>
  * </tr>
  * <tr>
  * <td>value</td>
  * <td>false</td>
  * <td>true</td>
- * <td>The value of the parameter.</td>
+ * <td>参数的值。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -71,14 +71,14 @@ public class ParamTag extends BodyTagSupport {
 
 
 	/**
-	 * Set the name of the parameter (required).
+	 * 设置参数的名称（必需）。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Set the value of the parameter (optional).
+	 * 设置参数的值（可选）。
 	 */
 	public void setValue(String value) {
 		this.value = value;

@@ -43,7 +43,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Adapt {@link ServerHttpRequest} to the Undertow {@link HttpServerExchange}.
+ * 将 {@link ServerHttpRequest} 适配到 Undertow 的 {@link HttpServerExchange}。
  *
  * @author Marek Hawrylczak
  * @author Rossen Stoyanchev

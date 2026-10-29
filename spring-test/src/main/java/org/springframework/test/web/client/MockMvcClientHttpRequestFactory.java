@@ -37,14 +37,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 
 /**
- * A {@link ClientHttpRequestFactory} for requests executed via {@link MockMvc}.
+ * 用于通过 {@link MockMvc} 执行请求的 {@link ClientHttpRequestFactory}。
  *
- * <p>As of 5.0 this class also implements
+ * <p>从 5.0 开始，此类还实现了
  * {@link org.springframework.http.client.AsyncClientHttpRequestFactory
- * AsyncClientHttpRequestFactory}. However note that
- * {@link org.springframework.web.client.AsyncRestTemplate} and related classes
- * have been deprecated at the same time.
- *
+ * AsyncClientHttpRequestFactory}。但请注意，
+ * {@link org.springframework.web.client.AsyncRestTemplate} 及相关类
+ * 同时已被废弃。
  * @author Rossen Stoyanchev
  * @since 3.2
  */

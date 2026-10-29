@@ -1,5 +1,5 @@
 /**
- * Custom JUnit 4 {@code Rules} used in the <em>Spring TestContext Framework</em>.
+ * 在 <em>Spring TestContext Framework</em> 中使用的自定义 JUnit 4 {@code Rules}。
  */
 @NonNullApi
 @NonNullFields

@@ -1,5 +1,5 @@
 /**
- * Infrastructure for annotation-based handler method processing.
+ * 基于注解的处理器方法处理的基础设施。
  */
 @NonNullApi
 @NonNullFields

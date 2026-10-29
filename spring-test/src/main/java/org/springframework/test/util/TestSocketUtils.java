@@ -25,21 +25,11 @@ import javax.net.ServerSocketFactory;
 import org.springframework.util.Assert;
 
 /**
- * Simple utility for finding available TCP ports on {@code localhost} for use in
- * integration testing scenarios.
+ * 用于在 {@code localhost} 上查找可用 TCP 端口以用于集成测试场景的简单实用工具。
  *
- * <p>This is a limited form of {@link org.springframework.util.SocketUtils} which
- * has been deprecated since Spring Framework 5.3.16 and removed in Spring
- * Framework 6.0.
+ * <p>这是 {@link org.springframework.util.SocketUtils} 的受限形式，后者自 Spring Framework 5.3.16 起已废弃，并在 Spring Framework 6.0 中移除。
  *
- * <p>{@code TestSocketUtils} can be used in integration tests which start an
- * external server on an available random port. However, these utilities make no
- * guarantee about the subsequent availability of a given port and are therefore
- * unreliable. Instead of using {@code TestSocketUtils} to find an available local
- * port for a server, it is recommended that you rely on a server's ability to
- * start on a random <em>ephemeral</em> port that it selects or is assigned by the
- * operating system. To interact with that server, you should query the server
- * for the port it is currently using.
+ * <p>{@code TestSocketUtils} 可用于在可用随机端口上启动外部服务器的集成测试。然而，这些实用工具不保证给定端口的后续可用性，因此不可靠。建议不要使用 {@code TestSocketUtils} 为服务器查找可用的本地端口，而应依赖服务器在随机<em>临时</em>端口（由服务器选择或由操作系统分配）上启动的能力。要与该服务器交互，应向服务器查询其当前使用的端口。
  *
  * @author Sam Brannen
  * @author Ben Hale
@@ -52,12 +42,12 @@ import org.springframework.util.Assert;
 public class TestSocketUtils {
 
 	/**
-	 * The minimum value for port ranges used when finding an available TCP port.
+	 * 查找可用 TCP 端口时使用的端口范围的最小值。
 	 */
 	static final int PORT_RANGE_MIN = 1024;
 
 	/**
-	 * The maximum value for port ranges used when finding an available TCP port.
+	 * 查找可用 TCP 端口时使用的端口范围的最大值。
 	 */
 	static final int PORT_RANGE_MAX = 65535;
 
@@ -71,19 +61,13 @@ public class TestSocketUtils {
 
 
 	/**
-	 * Although {@code TestSocketUtils} consists solely of static utility methods,
-	 * this constructor is intentionally {@code public}.
-	 * <h5>Rationale</h5>
-	 * <p>Static methods from this class may be invoked from within XML
-	 * configuration files using the Spring Expression Language (SpEL) and the
-	 * following syntax.
+	 * 尽管 {@code TestSocketUtils} 仅由静态实用方法组成，但此构造器被有意设计为 {@code public}。
+	 * <h5>理由</h5>
+	 * <p>此类中的静态方法可以在 XML 配置文件中使用 Spring 表达式语言（SpEL）通过以下语法调用。
 	 * <pre><code>
 	 * &lt;bean id="myBean" ... p:port="#{T(org.springframework.test.util.TestSocketUtils).findAvailableTcpPort()}" /&gt;</code>
 	 * </pre>
-	 * <p>If this constructor were {@code private}, you would be required to supply
-	 * the fully qualified class name to SpEL's {@code T()} function for each usage.
-	 * Thus, the fact that this constructor is {@code public} allows you to reduce
-	 * boilerplate configuration with SpEL as can be seen in the following example.
+	 * <p>如果此构造器是 {@code private}，则每次使用时都需要向 SpEL 的 {@code T()} 函数提供完全限定的类名。因此，此构造器为 {@code public} 这一事实允许您减少 SpEL 相关的样板配置，如以下示例所示。
 	 * <pre><code>
 	 * &lt;bean id="socketUtils" class="org.springframework.test.util.TestSocketUtils" /&gt;
 	 * &lt;bean id="myBean" ... p:port="#{socketUtils.findAvailableTcpPort()}" /&gt;</code>
@@ -93,7 +77,7 @@ public class TestSocketUtils {
 	}
 
 	/**
-	 * Find an available TCP port randomly selected from the range [1024, 65535].
+	 * 从范围 [1024, 65535] 中随机选择一个可用 TCP 端口。
 	 * @return an available TCP port number
 	 * @throws IllegalStateException if no available port could be found
 	 */
@@ -103,8 +87,8 @@ public class TestSocketUtils {
 
 
 	/**
-	 * Internal implementation of {@link #findAvailableTcpPort()}.
-	 * <p>Package-private solely for testing purposes.
+	 * {@link #findAvailableTcpPort()} 的内部实现。
+	 * <p>仅为测试目的而使用包级私有可见性。
 	 */
 	int findAvailableTcpPortInternal() {
 		int candidatePort;
@@ -121,8 +105,8 @@ public class TestSocketUtils {
 	}
 
 	/**
-	 * Determine if the specified TCP port is currently available on {@code localhost}.
-	 * <p>Package-private solely for testing purposes.
+	 * 确定指定的 TCP 端口当前在 {@code localhost} 上是否可用。
+	 * <p>仅为测试目的而使用包级私有可见性。
 	 */
 	boolean isPortAvailable(int port) {
 		try {

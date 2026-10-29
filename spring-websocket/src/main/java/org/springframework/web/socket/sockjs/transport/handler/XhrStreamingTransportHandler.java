@@ -32,7 +32,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 import org.springframework.web.socket.sockjs.transport.session.StreamingSockJsSession;
 
 /**
- * A {@link TransportHandler} that sends messages over an HTTP streaming request.
+ * 通过 HTTP 流式请求发送消息的 {@link TransportHandler}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

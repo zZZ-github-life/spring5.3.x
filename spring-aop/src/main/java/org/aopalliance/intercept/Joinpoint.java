@@ -22,20 +22,14 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * This interface represents a generic runtime joinpoint (in the AOP
- * terminology).
+ * 此接口表示一个通用的运行时连接点（在 AOP 术语中）。
  *
- * <p>A runtime joinpoint is an <i>event</i> that occurs on a static
- * joinpoint (i.e. a location in a program). For instance, an
- * invocation is the runtime joinpoint on a method (static joinpoint).
- * The static part of a given joinpoint can be generically retrieved
- * using the {@link #getStaticPart()} method.
+ * <p>运行时连接点是在静态连接点（即程序中的一个位置）上发生的<i>事件</i>。
+ * 例如，调用是方法（静态连接点）上的运行时连接点。
+ * 可以使用 {@link #getStaticPart()} 方法以通用方式获取给定连接点的静态部分。
  *
- * <p>In the context of an interception framework, a runtime joinpoint
- * is then the reification of an access to an accessible object (a
- * method, a constructor, a field), i.e. the static part of the
- * joinpoint. It is passed to the interceptors that are installed on
- * the static joinpoint.
+ * <p>在拦截框架的上下文中，运行时连接点是对可访问对象（方法、构造器、字段）的访问的具体化，即连接
+ * 点的静态部分。它被传递给安装在静态连接点上的拦截器。
  *
  * @author Rod Johnson
  * @see Interceptor
@@ -43,9 +37,8 @@ import javax.annotation.Nullable;
 public interface Joinpoint {
 
 	/**
-	 * Proceed to the next interceptor in the chain.
-	 * <p>The implementation and the semantics of this method depends
-	 * on the actual joinpoint type (see the children interfaces).
+	 * 继续执行链中的下一个拦截器。
+	 * <p>此方法的实现和语义取决于实际的连接点类型（参见子接口）。
 	 * @return see the children interfaces' proceed definition
 	 * @throws Throwable if the joinpoint throws an exception
 	 */
@@ -53,17 +46,16 @@ public interface Joinpoint {
 	Object proceed() throws Throwable;
 
 	/**
-	 * Return the object that holds the current joinpoint's static part.
-	 * <p>For instance, the target object for an invocation.
+	 * 返回持有当前连接点静态部分的对象。
+	 * <p>例如，对于调用而言，就是目标对象。
 	 * @return the object (can be null if the accessible object is static)
 	 */
 	@Nullable
 	Object getThis();
 
 	/**
-	 * Return the static part of this joinpoint.
-	 * <p>The static part is an accessible object on which a chain of
-	 * interceptors is installed.
+	 * 返回此连接点的静态部分。
+	 * <p>静态部分是安装了拦截器链的可访问对象。
 	 */
 	@Nonnull
 	AccessibleObject getStaticPart();

@@ -1,0 +1,101 @@
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::44::0","zh":["{@link ApplicationEventMulticaster} 接口的抽象实现，提供基本的监听器注册功能。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::44::1","zh":["<p>默认不允许同一监听器的多个实例，因为它将监听器保存在链式 Set 中。用于保存 ApplicationListener 对象的集合类可以通过 \"collectionClass\" Bean 属性覆盖。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::44::2","zh":["<p>ApplicationEventMulticaster 实际的 {@link #multicastEvent} 方法实现留给子类完成。{@link SimpleApplicationEventMulticaster} 只是将所有事件多播给所有已注册的监听器，并在调用线程中调用它们。其他实现可以在这些方面做得更精细。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::167::0","zh":["返回包含所有 ApplicationListener 的 Collection。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::178::0","zh":["返回与给定事件类型匹配的 ApplicationListener 集合。不匹配的监听器会被尽早排除。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::224::0","zh":["实际检索给定事件和源类型的应用监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::309::0","zh":["在尝试实例化之前，通过检查其泛型声明的事件类型，尽早过滤由 Bean 定义的监听器。<p>如果此方法对给定监听器首次检查返回 {@code true}，则随后会检索该监听器实例，并通过 {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} 调用对其进行完整评估。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::345::0","zh":["在尝试实例化之前，通过检查监听器泛型声明的事件类型，尽早过滤该监听器。<p>如果此方法对给定监听器首次检查返回 {@code true}，则随后会检索该监听器实例，并通过 {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} 调用对其进行完整评估。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::361::0","zh":["判断给定监听器是否支持给定事件。<p>默认实现会检测 {@link SmartApplicationListener} 和 {@link GenericApplicationListener} 接口。对于标准 {@link ApplicationListener}，将使用 {@link GenericApplicationListenerAdapter} 内省目标监听器泛型声明的类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::382::0","zh":["ListenerRetriever 的缓存键，基于事件类型和源类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::438::0","zh":["封装特定一组目标监听器的辅助类，允许高效检索预过滤的监听器。<p>此辅助类的实例会按事件类型和源类型缓存。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/AbstractApplicationEventMulticaster.java::483::0","zh":["封装一组通用目标监听器的辅助类。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationContextEvent.java::22::0","zh":["为 {@code ApplicationContext} 引发的事件的基类。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationContextEvent.java::31::0","zh":["创建一个新的 ContextStartedEvent。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationContextEvent.java::40::0","zh":["获取引发该事件的 {@code ApplicationContext}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::26::0","zh":["由能够管理若干 {@link ApplicationListener} 对象并向其发布事件的对象实现的接口。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::26::1","zh":["<p>一个 {@link org.springframework.context.ApplicationEventPublisher}（通常是 Spring 的 {@link org.springframework.context.ApplicationContext}）可以将 {@code ApplicationEventMulticaster} 用作实际发布事件的委托。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::41::0","zh":["添加一个监听器，以便在所有事件发生时收到通知。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::49::0","zh":["添加一个监听器 Bean，以便在所有事件发生时收到通知。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::57::0","zh":["从通知列表中移除一个监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::65::0","zh":["从通知列表中移除一个监听器 Bean。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::73::0","zh":["从已注册的 {@code ApplicationListener} 实例集合中移除所有匹配的监听器（其中包括适配器类，如 {@link ApplicationListenerMethodAdapter}，例如用于带注解的 {@link EventListener} 方法）。<p>注意：这只适用于实例注册，不适用于按 Bean 名称注册的监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::88::0","zh":["从已注册的监听器 Bean 名称集合中移除所有匹配的监听器 Bean（这些名称指向的 Bean 类直接实现了 {@link ApplicationListener} 接口）。<p>注意：这只适用于 Bean 名称注册，不适用于以编程方式注册的 {@code ApplicationListener} 实例。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::101::0","zh":["移除此多播器中注册的所有监听器。<p>调用移除方法后，多播器在事件通知时将不执行任何操作，直到注册新的监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::109::0","zh":["将给定的应用事件多播给适当的监听器。<p>如有可能，请考虑使用 {@link #multicastEvent(ApplicationEvent, ResolvableType)}，因为它对基于泛型的事件提供更好的支持。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationEventMulticaster.java::117::0","zh":["将给定的应用事件多播给适当的监听器。<p>如果 {@code eventType} 为 {@code null}，则会基于 {@code event} 实例构建默认类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::55::0","zh":["将事件处理委托给 {@link EventListener} 注解方法的 {@link GenericApplicationListener} 适配器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::55::1","zh":["<p>委托给 {@link #processEvent(ApplicationEvent)}，使子类有机会偏离默认行为。必要时会解包 {@link PayloadApplicationEvent} 的内容，以便方法声明可以定义任意事件类型。如果定义了条件，则会在调用底层方法之前对其求值。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::103::0","zh":["构造一个新的 ApplicationListenerMethodAdapter。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::155::0","zh":["初始化此实例。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::205::0","zh":["确定目标监听器的默认 id，在没有 {@link EventListener#id() annotation-specified id value} 时应用。<p>默认实现会构建带参数类型的方法名。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::222::0","zh":["处理指定的 {@link ApplicationEvent}，检查条件是否匹配，并处理非空结果（如果有）。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::239::0","zh":["解析用于指定 {@link ApplicationEvent} 的方法参数。<p>这些参数将用于调用由此实例处理的方法。可以返回 {@code null} 表示无法解析出合适的参数，因此对于指定的事件根本不应调用该方法。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::331::0","zh":["使用给定的参数值调用事件监听器方法。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::366::0","zh":["返回要使用的目标 Bean 实例。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::374::0","zh":["返回目标监听器方法。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::382::0","zh":["返回要使用的条件。<p>匹配 {@link EventListener} 注解的 {@code condition} 属性，或匹配以 {@code @EventListener} 进行元注解的组合注解上的任何对应属性。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::393::0","zh":["向给定错误消息添加额外细节，如 Bean 类型和方法签名。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ApplicationListenerMethodAdapter.java::406::0","zh":["断言目标 Bean 类是声明给定方法的类的实例。在某些情况下，事件处理时的实际 Bean 实例可能是 JDK 动态代理（延迟初始化、原型 Bean 等）。需要代理的事件监听器 Bean 应优先使用基于类的代理机制。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextClosedEvent.java::21::0","zh":["当 {@code ApplicationContext} 关闭时引发的事件。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextClosedEvent.java::31::0","zh":["创建一个新的 ContextClosedEvent。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextRefreshedEvent.java::21::0","zh":["当 {@code ApplicationContext} 初始化或刷新时引发的事件。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextRefreshedEvent.java::31::0","zh":["创建一个新的 ContextRefreshedEvent。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextStartedEvent.java::21::0","zh":["当 {@code ApplicationContext} 启动时引发的事件。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextStartedEvent.java::32::0","zh":["创建一个新的 ContextStartedEvent。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextStoppedEvent.java::21::0","zh":["当 {@code ApplicationContext} 停止时引发的事件。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/ContextStoppedEvent.java::32::0","zh":["创建一个新的 ContextStoppedEvent。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/DefaultEventListenerFactory.java::24::0","zh":["支持常规 {@link EventListener} 注解的默认 {@link EventListenerFactory} 实现。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/DefaultEventListenerFactory.java::24::1","zh":["<p>默认用作“兜底”实现。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventExpressionEvaluator.java::32::0","zh":["用于处理应用事件 SpEL 表达式解析的工具类。<p>旨在作为可复用、线程安全的组件使用。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventExpressionEvaluator.java::45::0","zh":["判断由指定表达式定义的条件是否求值为 {@code true}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventExpressionRootObject.java::21::0","zh":["事件监听器表达式求值期间使用的根对象。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::0","zh":["用于将方法标记为应用事件监听器的注解。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::1","zh":["<p>如果带注解的方法支持单一事件类型，该方法可以声明一个反映要监听的事件类型的参数。如果带注解的方法支持多个事件类型，此注解可以使用 {@code classes} 属性引用一个或多个受支持的事件类型。更多细节请参见 {@link #classes} 的 javadoc。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::2","zh":["<p>事件可以是 {@link ApplicationEvent} 实例，也可以是任意对象。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::3","zh":["<p>{@code @EventListener} 注解的处理通过内部的 {@link EventListenerMethodProcessor} Bean 完成，在使用 Java 配置时会自动注册该 Bean，或者在使用 XML 配置时通过 {@code <context:annotation-config/>} 或 {@code <context:component-scan/>} 元素手动注册。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::4","zh":["<p>带注解的方法可以具有非 {@code void} 的返回类型。在这种情况下，方法调用的结果会作为新事件发送。如果返回类型是数组或集合，则每个元素都作为单独的新事件发送。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::5","zh":["<p>此注解可以用作<em>元注解</em>，以创建自定义的<em>组合注解</em>。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::6","zh":["<h3>异常处理</h3><p>虽然事件监听器可以声明抛出任意异常类型，但从事件监听器抛出的任何受检异常都会被包装在 {@link java.lang.reflect.UndeclaredThrowableException UndeclaredThrowableException} 中，因为事件发布器只能处理运行时异常。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::7","zh":["<h3>异步监听器</h3><p>如果你希望某个监听器异步处理事件，可以使用 Spring 的 {@link org.springframework.scheduling.annotation.Async @Async} 支持，但在使用异步事件时应注意以下限制。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::29::8","zh":["<h3>监听器排序</h3><p>还可以定义某个事件的监听器的调用顺序。为此，请在此事件监听器注解旁添加 Spring 通用的 {@link org.springframework.core.annotation.Order @Order} 注解。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::94::0","zh":["{@link #classes} 的别名。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::100::0","zh":["此监听器处理的事件类。<p>如果此属性指定了单个值，则带注解的方法可以选择性地接受一个参数。但是，如果此属性指定了多个值，则带注解的方法<em>不得</em>声明任何参数。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::110::0","zh":["用于使事件处理带条件的 Spring 表达式语言（SpEL）表达式。<p>如果表达式求值为布尔值 {@code true} 或以下字符串之一，则会处理该事件：{@code \"true\"}、{@code \"on\"}、{@code \"yes\"} 或 {@code \"1\"}。<p>默认表达式为 {@code \"\"}，表示始终处理该事件。<p>SpEL 表达式将针对一个专用上下文求值，该上下文提供以下元数据："]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListener.java::133::0","zh":["监听器的可选标识符，默认值为声明方法的完全限定签名（例如 \"mypackage.MyClass.myMethod()\"）。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListenerFactory.java::23::0","zh":["用于为带 {@link EventListener} 注解的方法创建 {@link ApplicationListener} 的策略接口。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListenerFactory.java::32::0","zh":["指定此工厂是否支持指定的 {@link Method}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListenerFactory.java::39::0","zh":["为指定方法创建一个 {@link ApplicationListener}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListenerMethodProcessor.java::53::0","zh":["将 {@link EventListener} 方法注册为单独的 {@link ApplicationListener} 实例。实现 {@link BeanFactoryPostProcessor}（自 5.1 起）主要是为了尽早获取，避免对此处理器 Bean 及其 {@link EventListenerFactory} 委托进行 AOP 检查。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListenerMethodProcessor.java::68::0","zh":["由 {@code spring.spel.ignore} 系统属性控制的布尔标志，指示 Spring 忽略 SpEL，即不初始化 SpEL 基础设施。<p>默认值为 \"false\"。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventListenerMethodProcessor.java::221::0","zh":["判断给定类是否是一个未注解为用户或测试 {@link Component} 的 {@code org.springframework} Bean 类……这表明其中不存在 {@link EventListener}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventPublicationInterceptor.java::31::0","zh":["在每次<i>成功</i>的方法调用之后，向注册到 {@code ApplicationEventPublisher} 的所有 {@code ApplicationListeners} 发布 {@code ApplicationEvent} 的 {@link MethodInterceptor Interceptor}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventPublicationInterceptor.java::31::1","zh":["<p>请注意，此拦截器只能发布通过 {@link #setApplicationEventClass \"applicationEventClass\"} 属性配置的<i>无状态</i>事件。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/EventPublicationInterceptor.java::60::0","zh":["设置要发布的应用事件类。<p>事件类<b>必须</b>具有一个接受单个 {@code Object} 参数（用于事件源）的构造函数。拦截器会传入被调用的对象。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/GenericApplicationListener.java::23::0","zh":["标准 {@link ApplicationListener} 接口的扩展变体，公开更多元数据，如支持的事件类型和源类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/GenericApplicationListener.java::23::1","zh":["<p>自 Spring Framework 4.2 起，此接口取代基于 Class 的 {@link SmartApplicationListener}，可完整处理泛型事件类型。自 5.3.5 起，它正式扩展 {@link SmartApplicationListener}，并通过默认方法将 {@link #supportsEventType(Class)} 适配为 {@link #supportsEventType(ResolvableType)}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/GenericApplicationListener.java::41::0","zh":["重写 {@link SmartApplicationListener#supportsEventType(Class)}，委托给 {@link #supportsEventType(ResolvableType)}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/GenericApplicationListener.java::50::0","zh":["判断此监听器是否实际支持给定的事件类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/GenericApplicationListenerAdapter.java::30::0","zh":["通过内省目标监听器泛型声明的类型来确定支持的事件类型的 {@link GenericApplicationListener} 适配器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/GenericApplicationListenerAdapter.java::50::0","zh":["为给定的委托创建一个新的 GenericApplicationListener。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::32::0","zh":["{@link ApplicationEventMulticaster} 接口的简单实现。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::32::1","zh":["<p>将所有事件多播给所有已注册的监听器，由监听器自行忽略其不感兴趣的事件。监听器通常会对传入的事件对象执行相应的 {@code instanceof} 检查。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::32::2","zh":["<p>默认情况下，所有监听器都在调用线程中调用。这会带来一个风险：某个不守规矩的监听器可能阻塞整个应用，但额外开销最小。可以指定其他任务执行器，让监听器在不同线程中执行，例如从线程池中执行。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::63::0","zh":["创建一个新的 SimpleApplicationEventMulticaster。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::69::0","zh":["为给定的 BeanFactory 创建一个新的 SimpleApplicationEventMulticaster。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::77::0","zh":["设置用于调用每个监听器的自定义执行器（通常是 {@link org.springframework.core.task.TaskExecutor}）。<p>默认值等同于 {@link org.springframework.core.task.SyncTaskExecutor}，会在调用线程中同步执行所有监听器。<p>可以考虑在此指定异步任务执行器，以免在所有监听器执行完毕前阻塞调用方。但请注意，除非 TaskExecutor 显式支持，否则异步执行不会参与调用方的线程上下文（类加载器、事务关联）。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::93::0","zh":["返回此多播器当前的任务执行器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::101::0","zh":["设置当监听器抛出异常时要调用的 {@link ErrorHandler}。<p>默认没有，监听器异常会停止当前多播并传播到当前事件的发布器。如果指定了 {@linkplain #setTaskExecutor task executor}，每个监听器异常都会传播到该执行器，但不一定会停止其他监听器的执行。<p>考虑设置一个捕获并记录异常的 {@link ErrorHandler} 实现（类似 {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_SUPPRESS_ERROR_HANDLER}），或者一个记录异常但仍将其传播的实现（例如 {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_PROPAGATE_ERROR_HANDLER}）。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::120::0","zh":["返回此多播器当前的错误处理器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SimpleApplicationEventMulticaster.java::152::0","zh":["使用给定事件调用给定监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SmartApplicationListener.java::24::0","zh":["标准 {@link ApplicationListener} 接口的扩展变体，公开更多元数据，如支持的事件类型和源类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SmartApplicationListener.java::24::1","zh":["<p>如果需要对泛型事件类型进行完整内省，请考虑改为实现 {@link GenericApplicationListener} 接口。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SmartApplicationListener.java::38::0","zh":["判断此监听器是否实际支持给定的事件类型。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SmartApplicationListener.java::44::0","zh":["判断此监听器是否实际支持给定的源类型。<p>默认实现始终返回 {@code true}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SmartApplicationListener.java::53::0","zh":["确定此监听器在同一事件的监听器集合中的顺序。<p>默认实现返回 {@link #LOWEST_PRECEDENCE}。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SmartApplicationListener.java::62::0","zh":["返回监听器的可选标识符。<p>默认值为空字符串。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SourceFilteringListener.java::25::0","zh":["一个 {@link org.springframework.context.ApplicationListener} 装饰器，用于过滤来自指定事件源的事件，仅对匹配的 {@link org.springframework.context.ApplicationEvent} 对象调用其委托监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SourceFilteringListener.java::25::1","zh":["<p>也可以用作基类，此时重写 {@link #onApplicationEventInternal} 方法，而不是指定委托监听器。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SourceFilteringListener.java::45::0","zh":["为给定事件源创建一个 SourceFilteringListener。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SourceFilteringListener.java::58::0","zh":["为给定事件源创建一个 SourceFilteringListener，并期望子类重写 {@link #onApplicationEventInternal} 方法（而不是指定委托监听器）。"]}
+{"id":"spring-context/src/main/java/org/springframework/context/event/SourceFilteringListener.java::98::0","zh":["在已按所需事件源进行过滤之后，实际处理该事件。<p>默认实现会调用指定的委托（如果有）。"]}

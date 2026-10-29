@@ -28,7 +28,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 
 /**
- * A SockJS session for use with streaming HTTP transports.
+ * 用于流式 HTTP 传输的 SockJS 会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -46,7 +46,7 @@ public abstract class StreamingSockJsSession extends AbstractHttpSockJsSession {
 
 
 	/**
-	 * Get the prelude to write to the response before any other data.
+	 * 获取在任何其他数据之前写入响应的前导内容。
 	 * @since 4.2
 	 */
 	protected abstract byte[] getPrelude(ServerHttpRequest request);

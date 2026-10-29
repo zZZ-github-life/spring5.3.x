@@ -33,13 +33,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserter;
 
 /**
- * Represents a typed, immutable, client-side HTTP request, as executed by the
- * {@link ExchangeFunction}. Instances of this interface can be created via static
- * builder methods.
+ * 表示由 {@link ExchangeFunction} 执行的类型化、不可变的客户端 HTTP 请求。可以通过静态构建器方法创建此接口的实例。
  *
- * <p>Note that applications are more likely to perform requests through
- * {@link WebClient} rather than using this directly.
- *
+ * <p>请注意，应用通常通过 {@link WebClient} 执行请求，而不是直接使用此类。
  * @author Brian Clozel
  * @author Arjen Poutsma
  * @since 5.0
@@ -47,9 +43,7 @@ import org.springframework.web.reactive.function.BodyInserter;
 public interface ClientRequest {
 
 	/**
-	 * Name of {@link #attributes() attribute} whose value can be used to
-	 * correlate log messages for this request. Use {@link #logPrefix()} to
-	 * obtain a consistently formatted prefix based on this attribute.
+	 * 某个 {@link #attributes() 属性}的名称，其值可用于关联此请求的日志消息。使用 {@link #logPrefix()} 获取基于该属性的格式一致的前缀。
 	 * @since 5.1
 	 * @see #logPrefix()
 	 */
@@ -57,32 +51,32 @@ public interface ClientRequest {
 
 
 	/**
-	 * Return the HTTP method.
+	 * 返回 HTTP 方法。
 	 */
 	HttpMethod method();
 
 	/**
-	 * Return the request URI.
+	 * 返回请求 URI。
 	 */
 	URI url();
 
 	/**
-	 * Return the headers of this request.
+	 * 返回此请求的头。
 	 */
 	HttpHeaders headers();
 
 	/**
-	 * Return the cookies of this request.
+	 * 返回此请求的 cookie。
 	 */
 	MultiValueMap<String, String> cookies();
 
 	/**
-	 * Return the body inserter of this request.
+	 * 返回此请求的正文插入器。
 	 */
 	BodyInserter<?, ? super ClientHttpRequest> body();
 
 	/**
-	 * Return the request attribute value if present.
+	 * 如果存在，返回请求属性值。
 	 * @param name the attribute name
 	 * @return the attribute value
 	 */
@@ -91,12 +85,12 @@ public interface ClientRequest {
 	}
 
 	/**
-	 * Return the attributes of this request.
+	 * 返回此请求的属性。
 	 */
 	Map<String, Object> attributes();
 
 	/**
-	 * Return consumer(s) configured to access to the {@link ClientHttpRequest}.
+	 * 返回配置用于访问 {@link ClientHttpRequest} 的消费者。
 	 * @since 5.3
 	 */
 	@Nullable
@@ -104,9 +98,7 @@ public interface ClientRequest {
 
 
 	/**
-	 * Return a log message prefix to use to correlate messages for this request.
-	 * The prefix is based on the value of the attribute {@link #LOG_ID_ATTRIBUTE
-	 * LOG_ID_ATTRIBUTE} surrounded with "[" and "]".
+	 * 返回用于关联此请求消息的日志消息前缀。该前缀基于 {@link #LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} 属性的值，并用 "[" 和 "]" 包围。
 	 * @return the log message prefix or an empty String if the
 	 * {@link #LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} is not set.
 	 * @since 5.1
@@ -114,7 +106,7 @@ public interface ClientRequest {
 	String logPrefix();
 
 	/**
-	 * Write this request to the given {@link ClientHttpRequest}.
+	 * 将此请求写入给定的 {@link ClientHttpRequest}。
 	 * @param request the client http request to write to
 	 * @param strategies the strategies to use when writing
 	 * @return {@code Mono<Void>} to indicate when writing is complete
@@ -125,8 +117,7 @@ public interface ClientRequest {
 	// Static builder methods
 
 	/**
-	 * Create a builder initialized with the HTTP method, url, headers, cookies,
-	 * attributes, and body of the given request.
+	 * 创建使用给定请求的 HTTP 方法、url、头、cookie、属性和正文初始化的构建器。
 	 * @param other the request to copy from
 	 * @return the builder instance
 	 */
@@ -135,7 +126,7 @@ public interface ClientRequest {
 	}
 
 	/**
-	 * Create a builder with the given HTTP method and url.
+	 * 使用给定的 HTTP 方法和 url 创建构建器。
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param url the url (as a URI instance)
 	 * @return the created builder
@@ -147,7 +138,7 @@ public interface ClientRequest {
 	}
 
 	/**
-	 * Create a request builder with the given HTTP method and url.
+	 * 使用给定的 HTTP 方法和 url 创建请求构建器。
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param url the url (as a URI instance)
 	 * @return the created builder
@@ -158,12 +149,12 @@ public interface ClientRequest {
 
 
 	/**
-	 * Defines a builder for a request.
+	 * 定义请求的构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Set the method of the request.
+		 * 设置请求的方法。
 		 * @param method the new method
 		 * @return this builder
 		 * @since 5.0.1
@@ -171,7 +162,7 @@ public interface ClientRequest {
 		Builder method(HttpMethod method);
 
 		/**
-		 * Set the url of the request.
+		 * 设置请求的 url。
 		 * @param url the new url
 		 * @return this builder
 		 * @since 5.0.1
@@ -179,7 +170,7 @@ public interface ClientRequest {
 		Builder url(URI url);
 
 		/**
-		 * Add the given header value(s) under the given name.
+		 * 在给定名称下添加给定的头值。
 		 * @param headerName  the header name
 		 * @param headerValues the header value(s)
 		 * @return this builder
@@ -188,18 +179,14 @@ public interface ClientRequest {
 		Builder header(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate this request's headers with the given consumer. The
-		 * headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定的消费者操作此请求的头。提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Add a cookie with the given name and value(s).
+		 * 添加具有给定名称和值的 cookie。
 		 * @param name the cookie name
 		 * @param values the cookie value(s)
 		 * @return this builder
@@ -207,25 +194,21 @@ public interface ClientRequest {
 		Builder cookie(String name, String... values);
 
 		/**
-		 * Manipulate this request's cookies with the given consumer. The
-		 * map provided to the consumer is "live", so that the consumer can be used to
-		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookie values,
-		 * {@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
-		 * {@link MultiValueMap} methods.
+		 * 使用给定的消费者操作此请求的 cookie。提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie 值、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 * @return this builder
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, String>> cookiesConsumer);
 
 		/**
-		 * Set the body of the request to the given {@code BodyInserter}.
+		 * 将请求正文设置为给定的 {@code BodyInserter}。
 		 * @param inserter the {@code BodyInserter} that writes to the request
 		 * @return this builder
 		 */
 		Builder body(BodyInserter<?, ? super ClientHttpRequest> inserter);
 
 		/**
-		 * Set the body of the request to the given {@code Publisher} and return it.
+		 * 将请求正文设置为给定的 {@code Publisher} 并返回该构建器。
 		 * @param publisher the {@code Publisher} to write to the request
 		 * @param elementClass the class of elements contained in the publisher
 		 * @param <S> the type of the elements contained in the publisher
@@ -235,7 +218,7 @@ public interface ClientRequest {
 		<S, P extends Publisher<S>> Builder body(P publisher, Class<S> elementClass);
 
 		/**
-		 * Set the body of the request to the given {@code Publisher} and return it.
+		 * 将请求正文设置为给定的 {@code Publisher} 并返回该构建器。
 		 * @param publisher the {@code Publisher} to write to the request
 		 * @param typeReference a type reference describing the elements contained in the publisher
 		 * @param <S> the type of the elements contained in the publisher
@@ -245,7 +228,7 @@ public interface ClientRequest {
 		<S, P extends Publisher<S>> Builder body(P publisher, ParameterizedTypeReference<S> typeReference);
 
 		/**
-		 * Set the attribute with the given name to the given value.
+		 * 将具有给定名称的属性设置为给定值。
 		 * @param name the name of the attribute to add
 		 * @param value the value of the attribute to add
 		 * @return this builder
@@ -253,19 +236,14 @@ public interface ClientRequest {
 		Builder attribute(String name, Object value);
 
 		/**
-		 * Manipulate the request attributes with the given consumer. The attributes provided to
-		 * the consumer are "live", so that the consumer can be used to inspect attributes,
-		 * remove attributes, or use any of the other map-provided methods.
+		 * 使用给定的消费者操作请求属性。提供给消费者的属性是“实时”的，因此消费者可用于检查属性、删除属性或使用映射提供的任何其他方法。
 		 * @param attributesConsumer a function that consumes the attributes
 		 * @return this builder
 		 */
 		Builder attributes(Consumer<Map<String, Object>> attributesConsumer);
 
 		/**
-		 * Callback for access to the {@link ClientHttpRequest} that in turn
-		 * provides access to the native request of the underlying HTTP library.
-		 * This could be useful for setting advanced, per-request options that
-		 * exposed by the underlying library.
+		 * 用于访问 {@link ClientHttpRequest} 的回调，后者进而提供对底层 HTTP 库原生请求的访问。这对于设置底层库所暴露的高级按请求选项可能很有用。
 		 * @param requestConsumer a consumer to access the
 		 * {@code ClientHttpRequest} with
 		 * @return this builder
@@ -274,7 +252,7 @@ public interface ClientRequest {
 		Builder httpRequest(Consumer<ClientHttpRequest> requestConsumer);
 
 		/**
-		 * Build the request.
+		 * 构建请求。
 		 */
 		ClientRequest build();
 	}

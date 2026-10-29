@@ -25,11 +25,9 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 
 /**
- * Adding this annotation to an {@code @Configuration} class imports the Spring
- * WebFlux configuration from {@link WebFluxConfigurationSupport} that enables
- * use of annotated controllers and functional endpoints.
+ * 将此注解添加到 {@code @Configuration} 类会从 {@link WebFluxConfigurationSupport} 导入 Spring WebFlux 配置，从而启用注解式控制器和函数式端点。
  *
- * <p>For example:
+ * <p>例如：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -39,8 +37,7 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  *
- * <p>To customize the imported configuration, implement
- * {@link WebFluxConfigurer} and one or more of its methods:
+ * <p>要自定义导入的配置，请实现 {@link WebFluxConfigurer} 及其一个或多个方法：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -65,18 +62,9 @@ import org.springframework.context.annotation.Import;
  * }
  * </pre>
  *
- * <p>Only one {@code @Configuration} class should have the {@code @EnableWebFlux}
- * annotation in order to import the Spring WebFlux configuration. There can
- * however be multiple {@code @Configuration} classes that implement
- * {@code WebFluxConfigurer} that customize the provided configuration.
+ * <p>只应有一个 {@code @Configuration} 类带有 {@code @EnableWebFlux} 注解，以导入 Spring WebFlux 配置。不过，可以有多个实现 {@code WebFluxConfigurer} 的 {@code @Configuration} 类来自定义所提供的配置。
  *
- * <p>If {@code WebFluxConfigurer} does not expose some setting that needs to be
- * configured, consider switching to an advanced mode by removing the
- * {@code @EnableWebFlux} annotation and extending directly from
- * {@link WebFluxConfigurationSupport} or {@link DelegatingWebFluxConfiguration} --
- * the latter allows detecting and delegating to one or more
- * {@code WebFluxConfigurer} configuration classes.
- *
+ * <p>如果 {@code WebFluxConfigurer} 未暴露某些需要配置的设置，可考虑切换到高级模式：移除 {@code @EnableWebFlux} 注解，直接继承 {@link WebFluxConfigurationSupport} 或 {@link DelegatingWebFluxConfiguration}，后者允许检测并委托给一个或多个 {@code WebFluxConfigurer} 配置类。
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @since 5.0

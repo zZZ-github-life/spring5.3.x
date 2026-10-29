@@ -29,8 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * PropertyComparator performs a comparison of two beans,
- * evaluating the specified bean property via a BeanWrapper.
+ * PropertyComparator 对两个 Bean 进行比较，通过 BeanWrapper 评估指定的 Bean 属性。
  *
  * @author Juergen Hoeller
  * @author Jean-Pierre Pawlak
@@ -46,7 +45,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 
 	/**
-	 * Create a new PropertyComparator for the given SortDefinition.
+	 * 为给定的 SortDefinition 创建一个新的 PropertyComparator。
 	 * @see MutableSortDefinition
 	 */
 	public PropertyComparator(SortDefinition sortDefinition) {
@@ -54,7 +53,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 	}
 
 	/**
-	 * Create a PropertyComparator for the given settings.
+	 * 为给定设置创建一个 PropertyComparator。
 	 * @param property the property to compare
 	 * @param ignoreCase whether upper and lower case in String values should be ignored
 	 * @param ascending whether to sort ascending (true) or descending (false)
@@ -64,7 +63,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 	}
 
 	/**
-	 * Return the SortDefinition that this comparator uses.
+	 * 返回此比较器使用的 SortDefinition。
 	 */
 	public final SortDefinition getSortDefinition() {
 		return this.sortDefinition;
@@ -103,7 +102,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 	}
 
 	/**
-	 * Get the SortDefinition's property value for the given object.
+	 * 获取给定对象对应的 SortDefinition 属性值。
 	 * @param obj the object to get the property value for
 	 * @return the property value
 	 */
@@ -125,9 +124,8 @@ public class PropertyComparator<T> implements Comparator<T> {
 
 
 	/**
-	 * Sort the given List according to the given sort definition.
-	 * <p>Note: Contained objects have to provide the given property
-	 * in the form of a bean property, i.e. a getXXX method.
+	 * 根据给定的排序定义对给定的 List 进行排序。
+	 * <p>注意：包含的对象必须以 Bean 属性的形式（即 getXXX 方法）提供给定的属性。
 	 * @param source the input List
 	 * @param sortDefinition the parameters to sort by
 	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName
@@ -139,9 +137,8 @@ public class PropertyComparator<T> implements Comparator<T> {
 	}
 
 	/**
-	 * Sort the given source according to the given sort definition.
-	 * <p>Note: Contained objects have to provide the given property
-	 * in the form of a bean property, i.e. a getXXX method.
+	 * 根据给定的排序定义对给定的源进行排序。
+	 * <p>注意：包含的对象必须以 Bean 属性的形式（即 getXXX 方法）提供给定的属性。
 	 * @param source input source
 	 * @param sortDefinition the parameters to sort by
 	 * @throws java.lang.IllegalArgumentException in case of a missing propertyName

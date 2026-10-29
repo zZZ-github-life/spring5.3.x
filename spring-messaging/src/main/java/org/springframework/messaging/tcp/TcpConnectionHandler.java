@@ -19,8 +19,7 @@ package org.springframework.messaging.tcp;
 import org.springframework.messaging.Message;
 
 /**
- * A contract for managing lifecycle events for a TCP connection including
- * the handling of incoming messages.
+ * 用于管理 TCP 连接生命周期事件（包括处理传入消息）的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -29,31 +28,31 @@ import org.springframework.messaging.Message;
 public interface TcpConnectionHandler<P> {
 
 	/**
-	 * Invoked after a connection is successfully established.
+	 * 在连接成功建立后调用。
 	 * @param connection the connection
 	 */
 	void afterConnected(TcpConnection<P> connection);
 
 	/**
-	 * Invoked on failure to connect.
+	 * 在连接失败时调用。
 	 * @param ex the exception
 	 */
 	void afterConnectFailure(Throwable ex);
 
 	/**
-	 * Handle a message received from the remote host.
+	 * 处理从远程主机接收到的消息。
 	 * @param message the message
 	 */
 	void handleMessage(Message<P> message);
 
 	/**
-	 * Handle a failure on the connection.
+	 * 处理连接上的故障。
 	 * @param ex the exception
 	 */
 	void handleFailure(Throwable ex);
 
 	/**
-	 * Invoked after the connection is closed.
+	 * 在连接关闭后调用。
 	 */
 	void afterConnectionClosed();
 

@@ -28,12 +28,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility class for working with Strings that have placeholder values in them.
- * A placeholder takes the form {@code ${name}}. Using {@code PropertyPlaceholderHelper}
- * these placeholders can be substituted for user-supplied values.
+ * 用于处理包含占位符值的字符串的工具类。占位符形式为 {@code ${name}}。使用
+ * {@code PropertyPlaceholderHelper}，这些占位符可被替换为用户提供的值。
  *
- * <p>Values for substitution can be supplied using a {@link Properties} instance or
- * using a {@link PlaceholderResolver}.
+ * <p>用于替换的值可以通过 {@link Properties} 实例或 {@link PlaceholderResolver} 提供。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -65,8 +63,7 @@ public class PropertyPlaceholderHelper {
 
 
 	/**
-	 * Creates a new {@code PropertyPlaceholderHelper} that uses the supplied prefix and suffix.
-	 * Unresolvable placeholders are ignored.
+	 * 创建一个使用所提供前缀和后缀的新 {@code PropertyPlaceholderHelper}。无法解析的占位符将被忽略。
 	 * @param placeholderPrefix the prefix that denotes the start of a placeholder
 	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
 	 */
@@ -75,7 +72,7 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
-	 * Creates a new {@code PropertyPlaceholderHelper} that uses the supplied prefix and suffix.
+	 * 创建一个使用所提供前缀和后缀的新 {@code PropertyPlaceholderHelper}。
 	 * @param placeholderPrefix the prefix that denotes the start of a placeholder
 	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
 	 * @param valueSeparator the separating character between the placeholder variable
@@ -103,8 +100,7 @@ public class PropertyPlaceholderHelper {
 
 
 	/**
-	 * Replaces all placeholders of format {@code ${name}} with the corresponding
-	 * property from the supplied {@link Properties}.
+	 * 将格式为 {@code ${name}} 的所有占位符替换为所提供的 {@link Properties} 中对应的属性值。
 	 * @param value the value containing the placeholders to be replaced
 	 * @param properties the {@code Properties} to use for replacement
 	 * @return the supplied value with placeholders replaced inline
@@ -115,8 +111,7 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
-	 * Replaces all placeholders of format {@code ${name}} with the value returned
-	 * from the supplied {@link PlaceholderResolver}.
+	 * 将格式为 {@code ${name}} 的所有占位符替换为所提供的 {@link PlaceholderResolver} 返回的值。
 	 * @param value the value containing the placeholders to be replaced
 	 * @param placeholderResolver the {@code PlaceholderResolver} to use for replacement
 	 * @return the supplied value with placeholders replaced inline
@@ -215,13 +210,13 @@ public class PropertyPlaceholderHelper {
 
 
 	/**
-	 * Strategy interface used to resolve replacement values for placeholders contained in Strings.
+	 * 用于解析字符串中所含占位符替换值的策略接口。
 	 */
 	@FunctionalInterface
 	public interface PlaceholderResolver {
 
 		/**
-		 * Resolve the supplied placeholder name to the replacement value.
+		 * 将所提供的占位符名称解析为替换值。
 		 * @param placeholderName the name of the placeholder to resolve
 		 * @return the replacement value, or {@code null} if no replacement is to be made
 		 */

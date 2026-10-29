@@ -25,19 +25,18 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter
- * HttpMessageConverter} that can read and write the <a href="https://cbor.io/">CBOR</a>
- * data format using <a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/cbor">
- * the dedicated Jackson 2.x extension</a>.
+ * {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter} 的实现，
+ * 可使用 <a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/cbor">
+ * 专用的 Jackson 2.x 扩展</a>读写 <a href="https://cbor.io/">CBOR</a> 数据格式。
  *
- * <p>By default, this converter supports the {@link MediaType#APPLICATION_CBOR_VALUE}
- * media type. This can be overridden by setting the {@link #setSupportedMediaTypes
- * supportedMediaTypes} property.
+ * <p>默认情况下，此转换器支持 {@link MediaType#APPLICATION_CBOR_VALUE}
+ * 媒体类型。可以通过设置 {@link #setSupportedMediaTypes supportedMediaTypes}
+ * 属性来覆盖。
  *
- * <p>The default constructor uses the default configuration provided by
- * {@link Jackson2ObjectMapperBuilder}.
+ * <p>默认构造函数使用 {@link Jackson2ObjectMapperBuilder}
+ * 提供的默认配置。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -45,18 +44,17 @@ import org.springframework.util.Assert;
 public class MappingJackson2CborHttpMessageConverter extends AbstractJackson2HttpMessageConverter {
 
 	/**
-	 * Construct a new {@code MappingJackson2CborHttpMessageConverter} using the
-	 * default configuration provided by {@code Jackson2ObjectMapperBuilder}.
+	 * 使用 {@code Jackson2ObjectMapperBuilder} 提供的默认配置
+	 * 构造一个新的 {@code MappingJackson2CborHttpMessageConverter}。
 	 */
 	public MappingJackson2CborHttpMessageConverter() {
 		this(Jackson2ObjectMapperBuilder.cbor().build());
 	}
 
 	/**
-	 * Construct a new {@code MappingJackson2CborHttpMessageConverter} with a
-	 * custom {@link ObjectMapper} (must be configured with a {@code CBORFactory}
-	 * instance).
-	 * <p>You can use {@link Jackson2ObjectMapperBuilder} to build it easily.
+	 * 使用自定义的 {@link ObjectMapper}（必须配置 {@code CBORFactory}
+	 * 实例）构造一个新的 {@code MappingJackson2CborHttpMessageConverter}。
+	 * <p>可以使用 {@link Jackson2ObjectMapperBuilder} 轻松构建它。
 	 * @see Jackson2ObjectMapperBuilder#cbor()
 	 */
 	public MappingJackson2CborHttpMessageConverter(ObjectMapper objectMapper) {
@@ -67,7 +65,7 @@ public class MappingJackson2CborHttpMessageConverter extends AbstractJackson2Htt
 
 	/**
 	 * {@inheritDoc}
-	 * The {@code ObjectMapper} must be configured with a {@code CBORFactory} instance.
+	 * {@code ObjectMapper} 必须配置 {@code CBORFactory} 实例。
 	 */
 	@Override
 	public void setObjectMapper(ObjectMapper objectMapper) {

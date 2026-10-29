@@ -21,11 +21,10 @@ import java.util.function.Supplier;
 import org.springframework.r2dbc.core.binding.BindTarget;
 
 /**
- * Extension to {@link QueryOperation} for a prepared SQL query
- * {@link Supplier} with bound parameters. Contains parameter
- * bindings that can be {@link #bindTo bound} bound to a {@link BindTarget}.
+ * {@link QueryOperation} 的扩展，用于带绑定参数的预编译 SQL 查询 {@link Supplier}。
+ * 包含可{@link #bindTo 绑定}到 {@link BindTarget} 的参数绑定。
  *
- * <p>Can be executed with {@link org.springframework.r2dbc.core.DatabaseClient}.
+ * <p>可通过 {@link org.springframework.r2dbc.core.DatabaseClient} 执行。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -35,13 +34,13 @@ import org.springframework.r2dbc.core.binding.BindTarget;
 public interface PreparedOperation<T> extends QueryOperation {
 
 	/**
-	 * Return the underlying query source.
+	 * 返回底层的查询源。
 	 * @return the query source, such as a statement/criteria object
 	 */
 	T getSource();
 
 	/**
-	 * Apply bindings to {@link BindTarget}.
+	 * 将绑定应用到 {@link BindTarget}。
 	 * @param target the target to apply bindings to
 	 */
 	void bindTo(BindTarget target);

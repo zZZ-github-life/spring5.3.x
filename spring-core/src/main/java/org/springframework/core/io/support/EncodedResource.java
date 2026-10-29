@@ -29,11 +29,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Holder that combines a {@link Resource} descriptor with a specific encoding
- * or {@code Charset} to be used for reading from the resource.
+ * 将 {@link Resource} 描述符与用于从资源读取的特定编码或 {@code Charset} 组合在一起的持有者。
  *
- * <p>Used as an argument for operations that support reading content with
- * a specific encoding, typically via a {@code java.io.Reader}.
+ * <p>用作支持以特定编码读取内容的操作的参数，通常通过 {@code java.io.Reader}。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -54,8 +52,8 @@ public class EncodedResource implements InputStreamSource {
 
 
 	/**
-	 * Create a new {@code EncodedResource} for the given {@code Resource},
-	 * not specifying an explicit encoding or {@code Charset}.
+	 * 为给定的 {@code Resource} 创建一个新的 {@code EncodedResource}，不指定显式编码或 {@code Charset}。
+	 *
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 */
 	public EncodedResource(Resource resource) {
@@ -63,8 +61,7 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Create a new {@code EncodedResource} for the given {@code Resource},
-	 * using the specified {@code encoding}.
+	 * 为给定的 {@code Resource} 创建一个新的 {@code EncodedResource}，使用指定的 {@code encoding}。
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 * @param encoding the encoding to use for reading from the resource
 	 */
@@ -73,8 +70,7 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Create a new {@code EncodedResource} for the given {@code Resource},
-	 * using the specified {@code Charset}.
+	 * 为给定的 {@code Resource} 创建一个新的 {@code EncodedResource}，使用指定的 {@code Charset}。
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 * @param charset the {@code Charset} to use for reading from the resource
 	 */
@@ -92,15 +88,14 @@ public class EncodedResource implements InputStreamSource {
 
 
 	/**
-	 * Return the {@code Resource} held by this {@code EncodedResource}.
+	 * 返回此 {@code EncodedResource} 持有的 {@code Resource}。
 	 */
 	public final Resource getResource() {
 		return this.resource;
 	}
 
 	/**
-	 * Return the encoding to use for reading from the {@linkplain #getResource() resource},
-	 * or {@code null} if none specified.
+	 * 返回用于从 {@linkplain #getResource() resource} 读取的编码，如果未指定则返回 {@code null}。
 	 */
 	@Nullable
 	public final String getEncoding() {
@@ -108,8 +103,8 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Return the {@code Charset} to use for reading from the {@linkplain #getResource() resource},
-	 * or {@code null} if none specified.
+	 * 返回用于从 {@linkplain #getResource() resource} 读取的 {@code Charset}，如果未指定则返回
+	 * {@code null}。
 	 */
 	@Nullable
 	public final Charset getCharset() {
@@ -117,9 +112,8 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Determine whether a {@link Reader} is required as opposed to an {@link InputStream},
-	 * i.e. whether an {@linkplain #getEncoding() encoding} or a {@link #getCharset() Charset}
-	 * has been specified.
+	 * 确定是否需要 {@link Reader} 而不是 {@link InputStream}，即是否已指定
+	 * {@linkplain #getEncoding() encoding} 或 {@link #getCharset() Charset}。
 	 * @see #getReader()
 	 * @see #getInputStream()
 	 */
@@ -128,9 +122,8 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Open a {@code java.io.Reader} for the specified resource, using the specified
-	 * {@link #getCharset() Charset} or {@linkplain #getEncoding() encoding}
-	 * (if any).
+	 * 为指定的资源打开一个 {@code java.io.Reader}，使用指定的 {@link #getCharset() Charset} 或
+	 * {@linkplain #getEncoding() encoding}（如果有）。
 	 * @throws IOException if opening the Reader failed
 	 * @see #requiresReader()
 	 * @see #getInputStream()
@@ -148,8 +141,8 @@ public class EncodedResource implements InputStreamSource {
 	}
 
 	/**
-	 * Open an {@code InputStream} for the specified resource, ignoring any specified
-	 * {@link #getCharset() Charset} or {@linkplain #getEncoding() encoding}.
+	 * 为指定的资源打开一个 {@code InputStream}，忽略任何指定的 {@link #getCharset() Charset} 或
+	 * {@linkplain #getEncoding() encoding}。
 	 * @throws IOException if opening the InputStream failed
 	 * @see #requiresReader()
 	 * @see #getReader()

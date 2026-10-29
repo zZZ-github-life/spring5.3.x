@@ -26,7 +26,7 @@ import org.springframework.expression.spel.ExpressionState;
 import org.springframework.util.NumberUtils;
 
 /**
- * The power operator.
+ * 幂运算符。
  *
  * @author Andy Clement
  * @author Giovanni Dall'Oglio Risso

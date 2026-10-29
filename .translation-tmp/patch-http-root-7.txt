@@ -1,0 +1,4 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/ReadOnlyHttpHeaders.java
+@@BODY 32 32
+只能读取、不能写入的 {@code HttpHeaders} 对象。
+@@END

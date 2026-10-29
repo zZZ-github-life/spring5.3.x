@@ -39,13 +39,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
- * Mock implementation of the
- * {@link org.springframework.web.multipart.MultipartHttpServletRequest} interface.
+ * {@link org.springframework.web.multipart.MultipartHttpServletRequest} 接口的
+ * mock 实现。
  *
- * <p>As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
+ * <p>从 Spring 5.0 开始，这组 mock 基于 Servlet 4.0 基线设计。
  *
- * <p>Useful for testing application controllers that access multipart uploads.
- * {@link MockMultipartFile} can be used to populate these mock requests with files.
+ * <p>适用于测试访问 multipart 上传的应用程序控制器。
+ * 可以使用 {@link MockMultipartFile} 为这些 mock 请求填充文件。
  *
  * @author Juergen Hoeller
  * @author Eric Crampton
@@ -59,8 +59,8 @@ public class MockMultipartHttpServletRequest extends MockHttpServletRequest impl
 
 
 	/**
-	 * Create a new {@code MockMultipartHttpServletRequest} with a default
-	 * {@link MockServletContext}.
+	 * 使用默认的
+	 * {@link MockServletContext} 创建一个新的 {@code MockMultipartHttpServletRequest}。
 	 * @see #MockMultipartHttpServletRequest(ServletContext)
 	 */
 	public MockMultipartHttpServletRequest() {
@@ -68,7 +68,7 @@ public class MockMultipartHttpServletRequest extends MockHttpServletRequest impl
 	}
 
 	/**
-	 * Create a new {@code MockMultipartHttpServletRequest} with the supplied {@link ServletContext}.
+	 * 使用提供的 {@link ServletContext} 创建一个新的 {@code MockMultipartHttpServletRequest}。
 	 * @param servletContext the ServletContext that the request runs in
 	 * (may be {@code null} to use a default {@link MockServletContext})
 	 */
@@ -80,8 +80,8 @@ public class MockMultipartHttpServletRequest extends MockHttpServletRequest impl
 
 
 	/**
-	 * Add a file to this request. The parameter name from the multipart
-	 * form is taken from the {@link MultipartFile#getName()}.
+	 * 向此请求添加文件。来自 multipart
+	 * 表单的参数名取自 {@link MultipartFile#getName()}。
 	 * @param file multipart file to be added
 	 */
 	public void addFile(MultipartFile file) {

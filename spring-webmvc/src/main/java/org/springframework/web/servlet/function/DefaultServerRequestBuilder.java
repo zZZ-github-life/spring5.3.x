@@ -57,7 +57,7 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Default {@link ServerRequest.Builder} implementation.
+ * 默认的 {@link ServerRequest.Builder} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.2

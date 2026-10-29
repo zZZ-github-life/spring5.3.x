@@ -30,9 +30,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * Interface specifying a basic set of asynchronous RESTful operations.
- * Implemented by {@link AsyncRestTemplate}. Not often used directly, but a useful
- * option to enhance testability, as it can easily be mocked or stubbed.
+ * 指定一组基本异步 RESTful 操作的接口。
+ * 由 {@link AsyncRestTemplate} 实现。通常不直接使用，但它是增强可测试性的有用选项，
+ * 因为可以很容易地被模拟或打桩。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -44,7 +44,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface AsyncRestOperations {
 
 	/**
-	 * Expose the synchronous Spring RestTemplate to allow synchronous invocation.
+	 * 公开同步的 Spring RestTemplate，以允许同步调用。
 	 */
 	RestOperations getRestOperations();
 
@@ -52,9 +52,9 @@ public interface AsyncRestOperations {
 	// GET
 
 	/**
-	 * Asynchronously retrieve an entity by doing a GET on the specified URL.
-	 * The response is converted and stored in an {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 异步地通过对指定 URL 执行 GET 来检索实体。
+	 * 响应会被转换并存储在 {@link ResponseEntity} 中。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the variables to expand the template
@@ -64,9 +64,9 @@ public interface AsyncRestOperations {
 			Object... uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously retrieve a representation by doing a GET on the URI template.
-	 * The response is converted and stored in an {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given map.
+	 * 异步地通过对 URI 模板执行 GET 来检索表示。
+	 * 响应会被转换并存储在 {@link ResponseEntity} 中。
+	 * <p>URI 模板变量会使用给定的映射进行展开。
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @param uriVariables the map containing variables for the URI template
@@ -76,8 +76,8 @@ public interface AsyncRestOperations {
 			Map<String, ?> uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously retrieve a representation by doing a GET on the URL.
-	 * The response is converted and stored in an {@link ResponseEntity}.
+	 * 异步地通过对 URL 执行 GET 来检索表示。
+	 * 响应会被转换并存储在 {@link ResponseEntity} 中。
 	 * @param url the URL
 	 * @param responseType the type of the return value
 	 * @return the entity wrapped in a {@link Future}
@@ -89,8 +89,8 @@ public interface AsyncRestOperations {
 	// HEAD
 
 	/**
-	 * Asynchronously retrieve all headers of the resource specified by the URI template.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 异步地检索由 URI 模板指定的资源的所有头。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param uriVariables the variables to expand the template
 	 * @return all HTTP headers of that resource wrapped in a {@link Future}
@@ -99,8 +99,8 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Asynchronously retrieve all headers of the resource specified by the URI template.
-	 * <p>URI Template variables are expanded using the given map.
+	 * 异步地检索由 URI 模板指定的资源的所有头。
+	 * <p>URI 模板变量会使用给定的映射进行展开。
 	 * @param url the URL
 	 * @param uriVariables the map containing variables for the URI template
 	 * @return all HTTP headers of that resource wrapped in a {@link Future}
@@ -109,7 +109,7 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Asynchronously retrieve all headers of the resource specified by the URL.
+	 * 异步地检索由 URL 指定的资源的所有头。
 	 * @param url the URL
 	 * @return all HTTP headers of that resource wrapped in a {@link Future}
 	 */
@@ -119,10 +119,9 @@ public interface AsyncRestOperations {
 	// POST
 
 	/**
-	 * Create a new resource by POSTing the given object to the URI template, and
-	 * asynchronously returns the value of the {@code Location} header. This header
-	 * typically indicates where the new resource is stored.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 通过将给定对象 POST 到 URI 模板来创建新资源，并异步地返回
+	 * {@code Location} 头的值。该头通常指示新资源的存储位置。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -133,10 +132,9 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Create a new resource by POSTing the given object to the URI template, and
-	 * asynchronously returns the value of the {@code Location} header. This header
-	 * typically indicates where the new resource is stored.
-	 * <p>URI Template variables are expanded using the given map.
+	 * 通过将给定对象 POST 到 URI 模板来创建新资源，并异步地返回
+	 * {@code Location} 头的值。该头通常指示新资源的存储位置。
+	 * <p>URI 模板变量会使用给定的映射进行展开。
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -147,9 +145,8 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Create a new resource by POSTing the given object to the URL, and asynchronously
-	 * returns the value of the {@code Location} header. This header typically indicates
-	 * where the new resource is stored.
+	 * 通过将给定对象 POST 到 URL 来创建新资源，并异步地返回
+	 * {@code Location} 头的值。该头通常指示新资源的存储位置。
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @return the value for the {@code Location} header wrapped in a {@link Future}
@@ -158,9 +155,9 @@ public interface AsyncRestOperations {
 	ListenableFuture<URI> postForLocation(URI url, @Nullable HttpEntity<?> request) throws RestClientException;
 
 	/**
-	 * Create a new resource by POSTing the given object to the URI template,
-	 * and asynchronously returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 通过将给定对象 POST 到 URI 模板来创建新资源，
+	 * 并异步地返回响应作为 {@link ResponseEntity}。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -171,9 +168,9 @@ public interface AsyncRestOperations {
 			Class<T> responseType, Object... uriVariables) throws RestClientException;
 
 	/**
-	 * Create a new resource by POSTing the given object to the URI template,
-	 * and asynchronously returns the response as {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given map.
+	 * 通过将给定对象 POST 到 URI 模板来创建新资源，
+	 * 并异步地返回响应作为 {@link ResponseEntity}。
+	 * <p>URI 模板变量会使用给定的映射进行展开。
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -184,8 +181,8 @@ public interface AsyncRestOperations {
 			Class<T> responseType, Map<String, ?> uriVariables) throws RestClientException;
 
 	/**
-	 * Create a new resource by POSTing the given object to the URL,
-	 * and asynchronously returns the response as {@link ResponseEntity}.
+	 * 通过将给定对象 POST 到 URL 来创建新资源，
+	 * 并异步地返回响应作为 {@link ResponseEntity}。
 	 * @param url the URL
 	 * @param request the Object to be POSTed (may be {@code null})
 	 * @return the entity wrapped in a {@link Future}
@@ -198,9 +195,9 @@ public interface AsyncRestOperations {
 	// PUT
 
 	/**
-	 * Create or update a resource by PUTting the given object to the URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * 通过将给定对象 PUT 到 URI 来创建或更新资源。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
+	 * <p>Future 在完成时将返回 {@code null} 结果。
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -210,9 +207,9 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Creates a new resource by PUTting the given object to URI template.
-	 * <p>URI Template variables are expanded using the given map.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * 通过将给定对象 PUT 到 URI 模板来创建新资源。
+	 * <p>URI 模板变量会使用给定的映射进行展开。
+	 * <p>Future 在完成时将返回 {@code null} 结果。
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
 	 * @param uriVariables the variables to expand the template
@@ -222,8 +219,8 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Creates a new resource by PUTting the given object to URL.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * 通过将给定对象 PUT 到 URL 来创建新资源。
+	 * <p>Future 在完成时将返回 {@code null} 结果。
 	 * @param url the URL
 	 * @param request the Object to be PUT (may be {@code null})
 	 * @see HttpEntity
@@ -234,27 +231,27 @@ public interface AsyncRestOperations {
 	// DELETE
 
 	/**
-	 * Asynchronously delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * 异步地删除指定 URI 处的资源。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
+	 * <p>Future 在完成时将返回 {@code null} 结果。
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 */
 	ListenableFuture<?> delete(String url, Object... uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * 异步地删除指定 URI 处的资源。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
+	 * <p>Future 在完成时将返回 {@code null} 结果。
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 */
 	ListenableFuture<?> delete(String url, Map<String, ?> uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously delete the resources at the specified URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
-	 * <p>The Future will return a {@code null} result upon completion.
+	 * 异步地删除指定 URI 处的资源。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
+	 * <p>Future 在完成时将返回 {@code null} 结果。
 	 * @param url the URL
 	 */
 	ListenableFuture<?> delete(URI url) throws RestClientException;
@@ -263,8 +260,8 @@ public interface AsyncRestOperations {
 	// OPTIONS
 
 	/**
-	 * Asynchronously return the value of the Allow header for the given URI.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 异步地返回给定 URI 的 Allow 头的值。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 * @return the value of the allow header wrapped in a {@link Future}
@@ -273,8 +270,8 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Asynchronously return the value of the Allow header for the given URI.
-	 * <p>URI Template variables are expanded using the given map.
+	 * 异步地返回给定 URI 的 Allow 头的值。
+	 * <p>URI 模板变量会使用给定的映射进行展开。
 	 * @param url the URL
 	 * @param uriVariables the variables to expand in the template
 	 * @return the value of the allow header wrapped in a {@link Future}
@@ -283,7 +280,7 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Asynchronously return the value of the Allow header for the given URL.
+	 * 异步地返回给定 URL 的 Allow 头的值。
 	 * @param url the URL
 	 * @return the value of the allow header wrapped in a {@link Future}
 	 */
@@ -293,10 +290,9 @@ public interface AsyncRestOperations {
 	// exchange
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, writing the
-	 * given request entity to the request, and returns the response as
-	 * {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 异步地对给定 URI 模板执行 HTTP 方法，将给定请求实体写入请求，
+	 * 并返回响应作为 {@link ResponseEntity}。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -310,10 +306,9 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, writing the
-	 * given request entity to the request, and returns the response as
-	 * {@link ResponseEntity}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 异步地对给定 URI 模板执行 HTTP 方法，将给定请求实体写入请求，
+	 * 并返回响应作为 {@link ResponseEntity}。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -327,9 +322,8 @@ public interface AsyncRestOperations {
 			Map<String, ?> uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, writing the
-	 * given request entity to the request, and returns the response as
-	 * {@link ResponseEntity}.
+	 * 异步地对给定 URI 模板执行 HTTP 方法，将给定请求实体写入请求，
+	 * 并返回响应作为 {@link ResponseEntity}。
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestEntity the entity (headers and/or body) to write to the request
@@ -342,10 +336,9 @@ public interface AsyncRestOperations {
 			throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, writing the given
-	 * request entity to the request, and returns the response as {@link ResponseEntity}.
-	 * The given {@link ParameterizedTypeReference} is used to pass generic type
-	 * information:
+	 * 异步地对给定 URI 模板执行 HTTP 方法，将给定请求实体写入请求，
+	 * 并返回响应作为 {@link ResponseEntity}。
+	 * 给定的 {@link ParameterizedTypeReference} 用于传递泛型类型信息：
 	 * <pre class="code">
 	 * ParameterizedTypeReference&lt;List&lt;MyBean&gt;&gt; myBean =
 	 *     new ParameterizedTypeReference&lt;List&lt;MyBean&gt;&gt;() {};
@@ -366,10 +359,9 @@ public interface AsyncRestOperations {
 			Object... uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, writing the given
-	 * request entity to the request, and returns the response as {@link ResponseEntity}.
-	 * The given {@link ParameterizedTypeReference} is used to pass generic type
-	 * information:
+	 * 异步地对给定 URI 模板执行 HTTP 方法，将给定请求实体写入请求，
+	 * 并返回响应作为 {@link ResponseEntity}。
+	 * 给定的 {@link ParameterizedTypeReference} 用于传递泛型类型信息：
 	 * <pre class="code">
 	 * ParameterizedTypeReference&lt;List&lt;MyBean&gt;&gt; myBean =
 	 *     new ParameterizedTypeReference&lt;List&lt;MyBean&gt;&gt;() {};
@@ -390,10 +382,9 @@ public interface AsyncRestOperations {
 			Map<String, ?> uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, writing the given
-	 * request entity to the request, and returns the response as {@link ResponseEntity}.
-	 * The given {@link ParameterizedTypeReference} is used to pass generic type
-	 * information:
+	 * 异步地对给定 URI 模板执行 HTTP 方法，将给定请求实体写入请求，
+	 * 并返回响应作为 {@link ResponseEntity}。
+	 * 给定的 {@link ParameterizedTypeReference} 用于传递泛型类型信息：
 	 * <pre class="code">
 	 * ParameterizedTypeReference&lt;List&lt;MyBean&gt;&gt; myBean =
 	 *     new ParameterizedTypeReference&lt;List&lt;MyBean&gt;&gt;() {};
@@ -416,10 +407,9 @@ public interface AsyncRestOperations {
 	// general execution
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, preparing the
-	 * request with the {@link AsyncRequestCallback}, and reading the response with a
-	 * {@link ResponseExtractor}.
-	 * <p>URI Template variables are expanded using the given URI variables, if any.
+	 * 异步地对给定 URI 模板执行 HTTP 方法，使用 {@link AsyncRequestCallback}
+	 * 准备请求，并使用 {@link ResponseExtractor} 读取响应。
+	 * <p>URI 模板变量会使用给定的 URI 变量（如果有）进行展开。
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request
@@ -432,10 +422,9 @@ public interface AsyncRestOperations {
 			Object... uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URI template, preparing the
-	 * request with the {@link AsyncRequestCallback}, and reading the response with a
-	 * {@link ResponseExtractor}.
-	 * <p>URI Template variables are expanded using the given URI variables map.
+	 * 异步地对给定 URI 模板执行 HTTP 方法，使用 {@link AsyncRequestCallback}
+	 * 准备请求，并使用 {@link ResponseExtractor} 读取响应。
+	 * <p>URI 模板变量使用给定的 URI 变量映射进行展开。
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request
@@ -448,9 +437,8 @@ public interface AsyncRestOperations {
 			Map<String, ?> uriVariables) throws RestClientException;
 
 	/**
-	 * Asynchronously execute the HTTP method to the given URL, preparing the request
-	 * with the {@link AsyncRequestCallback}, and reading the response with a
-	 * {@link ResponseExtractor}.
+	 * 异步地对给定 URL 执行 HTTP 方法，使用 {@link AsyncRequestCallback}
+	 * 准备请求，并使用 {@link ResponseExtractor} 读取响应。
 	 * @param url the URL
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param requestCallback object that prepares the request

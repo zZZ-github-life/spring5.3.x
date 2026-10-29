@@ -23,7 +23,7 @@ import org.springframework.http.codec.ClientCodecConfigurer;
 import org.springframework.http.codec.HttpMessageWriter;
 
 /**
- * Default implementation of {@link ClientCodecConfigurer}.
+ * {@link ClientCodecConfigurer} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

@@ -1,5 +1,6 @@
 /**
- * Support classes for the <em>Spring TestContext Framework</em>.
+ * 用于 <em>Spring TestContext Framework</em> 的支持类。
+ *
  */
 @NonNullApi
 @NonNullFields

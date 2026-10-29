@@ -1,0 +1,54 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/MediaTypeFactory.java
+@@BODY 37 38
+用于从 {@link Resource} 句柄或文件名解析 {@link MediaType} 对象的工厂委托。
+@@BODY 56 64
+解析资源中的 {@code mime.types} 文件。格式为：
+<code>
+# comments begin with a '#'<br>
+# the format is &lt;mime type> &lt;space separated file extensions><br>
+# for example:<br>
+text/plain    txt text<br>
+# this would map file.txt and file.text to<br>
+# the mime type "text/plain"<br>
+</code>
+@@BODY 92 92
+如果可能，确定为给定资源确定的媒体类型。
+@@BODY 103 103
+如果可能，确定为给定文件名确定的媒体类型。
+@@BODY 112 112
+如果可能，确定为给定文件名确定的媒体类型列表。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/MediaTypeEditor.java
+@@BODY 24 26
+用于 {@link MediaType} 描述符的 {@link java.beans.PropertyEditor Editor}，可自动将 {@code String} 规范（例如 {@code "text/html"}）转换为 {@code MediaType} 属性。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/package-info.java
+@@BODY 2 3
+包含客户端/服务器端 HTTP 的基本抽象。此包包含 {@code HttpInputMessage} 和 {@code HttpOutputMessage} 接口。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/ReactiveHttpInputMessage.java
+@@BODY 25 28
+以 {@link Publisher} 形式公开输入的 "响应式" HTTP 输入消息。
+<p>通常由服务器端的 HTTP 请求或客户端的响应实现。
+@@BODY 36 36
+以 {@link Publisher} 形式返回消息正文。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/ReactiveHttpOutputMessage.java
+@@BODY 28 31
+以 {@link Publisher} 形式接受输出的 "响应式" HTTP 输出消息。
+<p>通常由客户端的 HTTP 请求或服务器端的 HTTP 响应实现。
+@@BODY 40 40
+返回可用于创建正文的 {@link DataBufferFactory}。
+@@BODY 47 50
+注册一个在 HttpOutputMessage 提交之前执行的操作。
+<p><strong>注意：</strong>提供的操作必须正确延迟执行，例如通过 {@link Mono#defer} 或 {@link Mono#fromRunnable}，以确保它相对于其他操作按正确顺序执行。
+@@BODY 56 56
+判断 HttpOutputMessage 是否已提交。
+@@BODY 61 62
+使用给定的 {@link Publisher} 将消息正文写入底层 HTTP 层。
+@@BODY 70 72
+使用给定的 {@code Publishers} 的 {@link Publisher} 将 HttpOutputMessage 的正文写入底层 HTTP 层，并在每个 {@code Publisher<DataBuffer>} 之后刷新。
+@@BODY 79 85
+指示消息处理已完成，从而可以执行任何清理或处理结束任务，例如将通过 {@link #getHeaders()} 所做的头更改应用到基础 HTTP 消息（如果尚未应用）。
+<p>此方法应在消息处理结束时自动调用，因此应用程序通常无需调用它。如果多次调用，应没有副作用。
+@@END

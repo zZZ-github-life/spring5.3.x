@@ -1,5 +1,5 @@
 /**
- * Web support classes for the <em>Spring TestContext Framework</em>.
+ * Spring TestContext Framework 的 Web 支持类。
  */
 @NonNullApi
 @NonNullFields

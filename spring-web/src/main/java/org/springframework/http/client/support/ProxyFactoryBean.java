@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link FactoryBean} that creates a {@link Proxy java.net.Proxy}.
+ * 创建 {@link Proxy java.net.Proxy} 的 {@link FactoryBean}。
  *
  * @author Arjen Poutsma
  * @since 3.0.4
@@ -47,22 +47,22 @@ public class ProxyFactoryBean implements FactoryBean<Proxy>, InitializingBean {
 
 
 	/**
-	 * Set the proxy type.
-	 * <p>Defaults to {@link java.net.Proxy.Type#HTTP}.
+	 * 设置代理类型。
+	 * <p>默认为 {@link java.net.Proxy.Type#HTTP}。
 	 */
 	public void setType(Proxy.Type type) {
 		this.type = type;
 	}
 
 	/**
-	 * Set the proxy host name.
+	 * 设置代理主机名。
 	 */
 	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 
 	/**
-	 * Set the proxy port.
+	 * 设置代理端口。
 	 */
 	public void setPort(int port) {
 		this.port = port;

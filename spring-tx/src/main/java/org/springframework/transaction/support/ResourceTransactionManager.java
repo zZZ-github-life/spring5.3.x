@@ -19,15 +19,12 @@ package org.springframework.transaction.support;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
- * Extension of the {@link org.springframework.transaction.PlatformTransactionManager}
- * interface, indicating a native resource transaction manager, operating on a single
- * target resource. Such transaction managers differ from JTA transaction managers in
- * that they do not use XA transaction enlistment for an open number of resources but
- * rather focus on leveraging the native power and simplicity of a single target resource.
+ * {@link org.springframework.transaction.PlatformTransactionManager} 接口的扩展，
+ * 表示在单个目标资源上运行的本地资源事务管理器。此类事务管理器与 JTA 事务管理器的区别在于，
+ * 它们不对开放数量的资源使用 XA 事务列举，而是专注于利用单个目标资源的原生能力和简洁性。
  *
- * <p>This interface is mainly used for abstract introspection of a transaction manager,
- * giving clients a hint on what kind of transaction manager they have been given
- * and on what concrete resource the transaction manager is operating on.
+ * <p>此接口主要用于事务管理器的抽象内省，为客户端提供关于他们获得的是哪种事务管理器
+ * 以及事务管理器在哪个具体资源上操作的提示。
  *
  * @author Juergen Hoeller
  * @since 2.0.4
@@ -36,11 +33,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 public interface ResourceTransactionManager extends PlatformTransactionManager {
 
 	/**
-	 * Return the resource factory that this transaction manager operates on,
-	 * e.g. a JDBC DataSource or a JMS ConnectionFactory.
-	 * <p>This target resource factory is usually used as resource key for
-	 * {@link TransactionSynchronizationManager}'s resource bindings per thread.
-	 * @return the target resource factory (never {@code null})
+	 * 返回此事务管理器操作的资源工厂，例如 JDBC DataSource 或 JMS ConnectionFactory。
+	 * <p>此目标资源工厂通常用作 {@link TransactionSynchronizationManager}
+	 * 每线程资源绑定的资源键。
+	 * @return 目标资源工厂（不为 {@code null}）
 	 * @see TransactionSynchronizationManager#bindResource
 	 * @see TransactionSynchronizationManager#getResource
 	 */

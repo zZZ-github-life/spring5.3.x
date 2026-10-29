@@ -38,11 +38,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract exporter for JAX-WS services, autodetecting annotated service beans
- * (through the JAX-WS {@link javax.jws.WebService} annotation).
+ * JAX-WS 服务的抽象导出器，自动检测带注解的服务 bean
+ * （通过 JAX-WS 的 {@link javax.jws.WebService} 注解）。
  *
- * <p>Subclasses need to implement the {@link #publishEndpoint} template methods
- * for actual endpoint exposure.
+ * <p>子类需要实现 {@link #publishEndpoint} 模板方法
+ * 以实际公开端点。
  *
  * @author Juergen Hoeller
  * @since 2.5.5
@@ -71,8 +71,8 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 
 
 	/**
-	 * Set the property bag for the endpoint, including properties such as
-	 * "javax.xml.ws.wsdl.service" or "javax.xml.ws.wsdl.port".
+	 * 设置端点的属性包，包括 "javax.xml.ws.wsdl.service"
+	 * 或 "javax.xml.ws.wsdl.port" 等属性。
 	 * @see javax.xml.ws.Endpoint#setProperties
 	 * @see javax.xml.ws.Endpoint#WSDL_SERVICE
 	 * @see javax.xml.ws.Endpoint#WSDL_PORT
@@ -82,8 +82,8 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 	}
 
 	/**
-	 * Set the JDK concurrent executor to use for dispatching incoming requests
-	 * to exported service instances.
+	 * 设置用于将传入请求分派到已导出服务实例的
+	 * JDK 并发执行器。
 	 * @see javax.xml.ws.Endpoint#setExecutor
 	 */
 	public void setExecutor(Executor executor) {
@@ -91,16 +91,16 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 	}
 
 	/**
-	 * Specify the binding type to use, overriding the value of
-	 * the JAX-WS {@link javax.xml.ws.BindingType} annotation.
+	 * 指定要使用的绑定类型，覆盖
+	 * JAX-WS {@link javax.xml.ws.BindingType} 注解的值。
 	 */
 	public void setBindingType(String bindingType) {
 		this.bindingType = bindingType;
 	}
 
 	/**
-	 * Specify WebServiceFeature objects (e.g. as inner bean definitions)
-	 * to apply to JAX-WS endpoint creation.
+	 * 指定要应用于 JAX-WS 端点创建的 WebServiceFeature 对象
+	 * （例如作为内部 bean 定义）。
 	 * @since 4.0
 	 */
 	public void setEndpointFeatures(WebServiceFeature... endpointFeatures) {
@@ -108,7 +108,7 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 	}
 
 	/**
-	 * Obtains all web service beans and publishes them as JAX-WS endpoints.
+	 * 获取所有 Web 服务 bean 并将它们发布为 JAX-WS 端点。
 	 */
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {
@@ -120,7 +120,7 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 
 
 	/**
-	 * Immediately publish all endpoints when fully configured.
+	 * 在完全配置后立即发布所有端点。
 	 * @see #publishEndpoints()
 	 */
 	@Override
@@ -129,8 +129,8 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 	}
 
 	/**
-	 * Publish all {@link javax.jws.WebService} annotated beans in the
-	 * containing BeanFactory.
+	 * 发布所在 BeanFactory 中所有
+	 * 标注 {@link javax.jws.WebService} 的 bean。
 	 * @see #publishEndpoint
 	 */
 	public void publishEndpoints() {
@@ -173,7 +173,7 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 	}
 
 	/**
-	 * Create the actual Endpoint instance.
+	 * 创建实际的 Endpoint 实例。
 	 * @param bean the service object to wrap
 	 * @return the Endpoint instance
 	 * @see Endpoint#create(Object)
@@ -187,14 +187,14 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 
 
 	/**
-	 * Actually publish the given endpoint. To be implemented by subclasses.
+	 * 实际发布给定的端点。由子类实现。
 	 * @param endpoint the JAX-WS Endpoint object
 	 * @param annotation the service bean's WebService annotation
 	 */
 	protected abstract void publishEndpoint(Endpoint endpoint, WebService annotation);
 
 	/**
-	 * Actually publish the given provider endpoint. To be implemented by subclasses.
+	 * 实际发布给定的提供者端点。由子类实现。
 	 * @param endpoint the JAX-WS Provider Endpoint object
 	 * @param annotation the service bean's WebServiceProvider annotation
 	 */
@@ -202,7 +202,7 @@ public abstract class AbstractJaxWsServiceExporter implements BeanFactoryAware, 
 
 
 	/**
-	 * Stops all published endpoints, taking the web services offline.
+	 * 停止所有已发布的端点，使这些 Web 服务离线。
 	 */
 	@Override
 	public void destroy() {

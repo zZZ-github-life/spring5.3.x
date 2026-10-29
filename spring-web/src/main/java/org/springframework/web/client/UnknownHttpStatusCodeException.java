@@ -23,7 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when an unknown (or custom) HTTP status code is received.
+ * 收到未知（或自定义）HTTP 状态码时抛出的异常。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -34,8 +34,8 @@ public class UnknownHttpStatusCodeException extends RestClientResponseException 
 
 
 	/**
-	 * Construct a new instance of {@code HttpStatusCodeException} based on an
-	 * {@link HttpStatus}, status text, and response body content.
+	 * 基于 {@link HttpStatus}、状态文本和响应体内容构造一个
+	 * {@code HttpStatusCodeException} 新实例。
 	 * @param rawStatusCode the raw status code value
 	 * @param statusText the status text
 	 * @param responseHeaders the response headers (may be {@code null})
@@ -50,8 +50,8 @@ public class UnknownHttpStatusCodeException extends RestClientResponseException 
 	}
 
 	/**
-	 * Construct a new instance of {@code HttpStatusCodeException} based on an
-	 * {@link HttpStatus}, status text, and response body content.
+	 * 基于 {@link HttpStatus}、状态文本和响应体内容构造一个
+	 * {@code HttpStatusCodeException} 新实例。
 	 * @param rawStatusCode the raw status code value
 	 * @param statusText the status text
 	 * @param responseHeaders the response headers (may be {@code null})

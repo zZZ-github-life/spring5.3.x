@@ -29,9 +29,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * A {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor}
- * implementation that allows for convenient registration of custom autowire
- * qualifier types.
+ * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor} 实现，支持便捷地注册自
+ * 定义自动装配限定符类型。
  *
  * <pre class="code">
  * &lt;bean id="customAutowireConfigurer" class="org.springframework.beans.factory.annotation.CustomAutowireConfigurer"&gt;
@@ -73,13 +72,10 @@ public class CustomAutowireConfigurer implements BeanFactoryPostProcessor, BeanC
 	}
 
 	/**
-	 * Register custom qualifier annotation types to be considered
-	 * when autowiring beans. Each element of the provided set may
-	 * be either a Class instance or a String representation of the
-	 * fully-qualified class name of the custom annotation.
-	 * <p>Note that any annotation that is itself annotated with Spring's
-	 * {@link org.springframework.beans.factory.annotation.Qualifier}
-	 * does not require explicit registration.
+	 * 注册在自动装配 Bean 时要考虑的自定义限定符注解类型。所提供集合的每个元素既可以是 Class 实例，也
+	 * 可以是自定义注解全限定类名的 String 表示。
+	 * <p>请注意，任何自身被 Spring 的 {@link org.springframework.beans.factory.annotation.Qualifier}
+	 * 标注的注解都不需要显式注册。
 	 * @param customQualifierTypes the custom types to register
 	 */
 	public void setCustomQualifierTypes(Set<?> customQualifierTypes) {

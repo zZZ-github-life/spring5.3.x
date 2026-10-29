@@ -25,8 +25,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Exception thrown when a mail sending error is encountered.
- * Can register failed messages with their exceptions.
+ * 遇到邮件发送错误时抛出的异常。
+ * 可以注册失败的消息及其对应的异常。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -41,7 +41,7 @@ public class MailSendException extends MailException {
 
 
 	/**
-	 * Constructor for MailSendException.
+	 * MailSendException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public MailSendException(String msg) {
@@ -49,7 +49,7 @@ public class MailSendException extends MailException {
 	}
 
 	/**
-	 * Constructor for MailSendException.
+	 * MailSendException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the mail API in use
 	 */
@@ -60,10 +60,9 @@ public class MailSendException extends MailException {
 	}
 
 	/**
-	 * Constructor for registration of failed messages, with the
-	 * messages that failed as keys, and the thrown exceptions as values.
-	 * <p>The messages should be the same that were originally passed
-	 * to the invoked send method.
+	 * 用于注册失败消息的构造方法，
+	 * 以失败的消息作为键，抛出的异常作为值。
+	 * <p>这些消息应与最初传递给所调用的 send 方法的消息相同。
 	 * @param msg the detail message
 	 * @param cause the root cause from the mail API in use
 	 * @param failedMessages a Map of failed messages as keys and thrown
@@ -76,10 +75,9 @@ public class MailSendException extends MailException {
 	}
 
 	/**
-	 * Constructor for registration of failed messages, with the
-	 * messages that failed as keys, and the thrown exceptions as values.
-	 * <p>The messages should be the same that were originally passed
-	 * to the invoked send method.
+	 * 用于注册失败消息的构造方法，
+	 * 以失败的消息作为键，抛出的异常作为值。
+	 * <p>这些消息应与最初传递给所调用的 send 方法的消息相同。
 	 * @param failedMessages a Map of failed messages as keys and thrown
 	 * exceptions as values
 	 */
@@ -89,19 +87,15 @@ public class MailSendException extends MailException {
 
 
 	/**
-	 * Return a Map with the failed messages as keys, and the thrown exceptions
-	 * as values.
-	 * <p>Note that a general mail server connection failure will not result
-	 * in failed messages being returned here: A message will only be
-	 * contained here if actually sending it was attempted but failed.
-	 * <p>The messages will be the same that were originally passed to the
-	 * invoked send method, that is, SimpleMailMessages in case of using
-	 * the generic MailSender interface.
-	 * <p>In case of sending MimeMessage instances via JavaMailSender,
-	 * the messages will be of type MimeMessage.
-	 * <p><b>NOTE:</b> This Map will not be available after serialization.
-	 * Use {@link #getMessageExceptions()} in such a scenario, which will
-	 * be available after serialization as well.
+	 * 返回一个 Map，以失败的消息作为键，抛出的异常作为值。
+	 * <p>请注意，常规的邮件服务器连接失败不会导致此处返回失败的消息：
+	 * 只有在实际尝试发送但失败的消息才会包含在此处。
+	 * <p>这些消息与最初传递给所调用的 send 方法的消息相同，
+	 * 即在使用通用 {@code MailSender} 接口时为 {@code SimpleMailMessage}。
+	 * <p>在通过 {@code JavaMailSender} 发送 {@code MimeMessage} 实例时，
+	 * 消息的类型将为 {@code MimeMessage}。
+	 * <p><b>注意：</b>此 Map 在序列化后将不可用。
+	 * 在这种场景下请使用 {@link #getMessageExceptions()}，它在序列化后同样可用。
 	 * @return the Map of failed messages as keys and thrown exceptions as values
 	 * @see SimpleMailMessage
 	 * @see javax.mail.internet.MimeMessage
@@ -111,10 +105,9 @@ public class MailSendException extends MailException {
 	}
 
 	/**
-	 * Return an array with thrown message exceptions.
-	 * <p>Note that a general mail server connection failure will not result
-	 * in failed messages being returned here: A message will only be
-	 * contained here if actually sending it was attempted but failed.
+	 * 返回抛出的消息异常数组。
+	 * <p>请注意，常规的邮件服务器连接失败不会导致此处返回失败的消息：
+	 * 只有在实际尝试发送但失败的消息才会包含在此处。
 	 * @return the array of thrown message exceptions,
 	 * or an empty array if no failed messages
 	 */

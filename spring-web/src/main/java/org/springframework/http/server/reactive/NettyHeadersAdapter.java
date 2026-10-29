@@ -31,9 +31,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code MultiValueMap} implementation for wrapping Netty HTTP headers.
+ * 用于包装 Netty HTTP 头的 {@code MultiValueMap} 实现。
  *
- * <p>There is a duplicate of this class in the client package!
+ * <p>客户端包中有一个此类的副本！
  *
  * @author Brian Clozel
  * @since 5.1.1

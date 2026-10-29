@@ -21,9 +21,9 @@ import java.util.List;
 import javax.persistence.spi.PersistenceUnitInfo;
 
 /**
- * Extension of the standard JPA PersistenceUnitInfo interface, for advanced collaboration
- * between Spring's {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
- * and {@link PersistenceUnitManager} implementations.
+ * 标准 JPA PersistenceUnitInfo 接口的扩展，
+ * 用于 Spring 的 {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
+ * 与 {@link PersistenceUnitManager} 实现之间进行高级协作。
  *
  * @author Juergen Hoeller
  * @since 3.0.1
@@ -33,15 +33,15 @@ import javax.persistence.spi.PersistenceUnitInfo;
 public interface SmartPersistenceUnitInfo extends PersistenceUnitInfo {
 
 	/**
-	 * Return a list of managed Java packages, to be introspected by the persistence provider.
-	 * Typically found through scanning but not exposable through {@link #getManagedClassNames()}.
+	 * 返回托管 Java 包的列表，供持久化提供者进行内省。
+	 * 通常通过扫描找到，但无法通过 {@link #getManagedClassNames()} 暴露。
 	 * @return a list of names of managed Java packages (potentially empty)
 	 * @since 4.1
 	 */
 	List<String> getManagedPackages();
 
 	/**
-	 * Set the persistence provider's own package name, for exclusion from class transformation.
+	 * 设置持久化提供者自身的包名，以便将其从类转换中排除。
 	 * @see #addTransformer(javax.persistence.spi.ClassTransformer)
 	 * @see #getNewTempClassLoader()
 	 */

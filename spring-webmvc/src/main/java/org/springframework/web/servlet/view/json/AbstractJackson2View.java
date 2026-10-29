@@ -38,10 +38,9 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.view.AbstractView;
 
 /**
- * Abstract base class for Jackson based and content type independent
- * {@link AbstractView} implementations.
+ * 基于 Jackson 且与内容类型无关的 {@link AbstractView} 实现的抽象基类。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Jeremy Grelle
  * @author Arjen Poutsma
@@ -72,11 +71,11 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Set the {@code ObjectMapper} for this view.
-	 * If not set, a default {@link ObjectMapper#ObjectMapper() ObjectMapper} will be used.
-	 * <p>Setting a custom-configured {@code ObjectMapper} is one way to take further control of
-	 * the JSON serialization process. The other option is to use Jackson's provided annotations
-	 * on the types to be serialized, in which case a custom-configured ObjectMapper is unnecessary.
+	 * 设置此视图的 {@code ObjectMapper}。
+	 * 如果未设置，将使用默认的 {@link ObjectMapper#ObjectMapper() ObjectMapper}。
+	 * <p>设置自定义配置的 {@code ObjectMapper} 是进一步控制 JSON 序列化过程的一种方式。
+	 * 另一种方式是使用 Jackson 提供的注解标注要序列化的类型，
+	 * 在这种情况下无需自定义配置的 ObjectMapper。
 	 */
 	public void setObjectMapper(ObjectMapper objectMapper) {
 		this.objectMapper = objectMapper;
@@ -84,15 +83,15 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Return the {@code ObjectMapper} for this view.
+	 * 返回此视图的 {@code ObjectMapper}。
 	 */
 	public final ObjectMapper getObjectMapper() {
 		return this.objectMapper;
 	}
 
 	/**
-	 * Set the {@code JsonEncoding} for this view.
-	 * By default, {@linkplain JsonEncoding#UTF8 UTF-8} is used.
+	 * 设置此视图的 {@code JsonEncoding}。
+	 * 默认使用 {@linkplain JsonEncoding#UTF8 UTF-8}。
 	 */
 	public void setEncoding(JsonEncoding encoding) {
 		Assert.notNull(encoding, "'encoding' must not be null");
@@ -100,20 +99,20 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Return the {@code JsonEncoding} for this view.
+	 * 返回此视图的 {@code JsonEncoding}。
 	 */
 	public final JsonEncoding getEncoding() {
 		return this.encoding;
 	}
 
 	/**
-	 * Whether to use the default pretty printer when writing the output.
-	 * This is a shortcut for setting up an {@code ObjectMapper} as follows:
+	 * 写出输出时是否使用默认的格式化输出（pretty printer）。
+	 * 这是按如下方式配置 {@code ObjectMapper} 的快捷方式：
 	 * <pre class="code">
 	 * ObjectMapper mapper = new ObjectMapper();
 	 * mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 	 * </pre>
-	 * <p>The default value is {@code false}.
+	 * <p>默认值为 {@code false}。
 	 */
 	public void setPrettyPrint(boolean prettyPrint) {
 		this.prettyPrint = prettyPrint;
@@ -127,18 +126,18 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Disables caching of the generated JSON.
-	 * <p>Default is {@code true}, which will prevent the client from caching the generated JSON.
+	 * 禁用对生成的 JSON 的缓存。
+	 * <p>默认值为 {@code true}，这将阻止客户端缓存生成的 JSON。
 	 */
 	public void setDisableCaching(boolean disableCaching) {
 		this.disableCaching = disableCaching;
 	}
 
 	/**
-	 * Whether to update the 'Content-Length' header of the response. When set to
-	 * {@code true}, the response is buffered in order to determine the content
-	 * length and set the 'Content-Length' header of the response.
-	 * <p>The default setting is {@code false}.
+	 * 是否更新响应的 'Content-Length' 头。当设为
+	 * {@code true} 时，将缓冲响应以确定内容长度
+	 * 并设置响应的 'Content-Length' 头。
+	 * <p>默认设置为 {@code false}。
 	 */
 	public void setUpdateContentLength(boolean updateContentLength) {
 		this.updateContentLength = updateContentLength;
@@ -177,7 +176,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Filter and optionally wrap the model in {@link MappingJacksonValue} container.
+	 * 过滤 model，并可选地将其包装到 {@link MappingJacksonValue} 容器中。
 	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
 	 * @param request current HTTP request
 	 * @return the wrapped or unwrapped value to be rendered
@@ -200,7 +199,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Write the actual JSON content to the stream.
+	 * 将实际的 JSON 内容写入输出流。
 	 * @param stream the output stream to use
 	 * @param object the value to be rendered, as returned from {@link #filterModel}
 	 * @throws IOException if writing failed
@@ -234,21 +233,21 @@ public abstract class AbstractJackson2View extends AbstractView {
 
 
 	/**
-	 * Set the attribute in the model that should be rendered by this view.
-	 * When set, all other model attributes will be ignored.
+	 * 设置 model 中应由此视图渲染的属性。
+	 * 设置后，所有其他 model 属性都将被忽略。
 	 */
 	public abstract void setModelKey(String modelKey);
 
 	/**
-	 * Filter out undesired attributes from the given model.
-	 * The return value can be either another {@link Map} or a single value object.
+	 * 从给定 model 中过滤掉不需要的属性。
+	 * 返回值可以是另一个 {@link Map}，也可以是单个值对象。
 	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
 	 * @return the value to be rendered
 	 */
 	protected abstract Object filterModel(Map<String, Object> model);
 
 	/**
-	 * Write a prefix before the main content.
+	 * 在主要内容之前写入前缀。
 	 * @param generator the generator to use for writing content.
 	 * @param object the object to write to the output message.
 	 */
@@ -256,7 +255,7 @@ public abstract class AbstractJackson2View extends AbstractView {
 	}
 
 	/**
-	 * Write a suffix after the main content.
+	 * 在主要内容之后写入后缀。
 	 * @param generator the generator to use for writing content.
 	 * @param object the object to write to the output message.
 	 */

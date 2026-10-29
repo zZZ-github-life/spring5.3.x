@@ -41,19 +41,14 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for implementations of {@link ExecutionCondition} that
- * evaluate expressions configured via annotations to determine if a container
- * or test is enabled.
- *
- * <p>Expressions can be any of the following.
- *
+ * {@link ExecutionCondition} 实现的抽象基类，用于评估通过注解配置的表达式，以确定容器或测试是否启用。
+ * <p>表达式可以是以下任意一种。
  * <ul>
- * <li>Spring Expression Language (SpEL) expression &mdash; for example:
+ * <li>Spring 表达式语言（SpEL）表达式——例如：
  * <pre style="code">#{systemProperties['os.name'].toLowerCase().contains('mac')}</pre>
- * <li>Placeholder for a property available in the Spring
- * {@link org.springframework.core.env.Environment Environment} &mdash; for example:
+ * <li>Spring {@link org.springframework.core.env.Environment Environment} 中可用属性的占位符——例如：
  * <pre style="code">${smoke.tests.enabled}</pre>
- * <li>Text literal &mdash; for example:
+ * <li>文本字面量——例如：
  * <pre style="code">true</pre>
  * </ul>
  *
@@ -69,8 +64,7 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 
 
 	/**
-	 * Evaluate the expression configured via the supplied annotation type on
-	 * the {@link AnnotatedElement} for the supplied {@link ExtensionContext}.
+	 * 在所提供的 {@link ExtensionContext} 的 {@link AnnotatedElement} 上，评估通过所提供的注解类型配置的表达式。
 	 * @param annotationType the type of annotation to process
 	 * @param expressionExtractor a function that extracts the expression from
 	 * the annotation

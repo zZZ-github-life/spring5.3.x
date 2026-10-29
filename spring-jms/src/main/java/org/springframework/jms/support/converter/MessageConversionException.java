@@ -20,8 +20,8 @@ import org.springframework.jms.JmsException;
 import org.springframework.lang.Nullable;
 
 /**
- * Thrown by {@link MessageConverter} implementations when the conversion
- * of an object to/from a {@link javax.jms.Message} fails.
+ * 当对象与 {@link javax.jms.Message} 之间的转换失败时，
+ * 由 {@link MessageConverter} 实现抛出。
  *
  * @author Mark Pollack
  * @since 1.1
@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 public class MessageConversionException extends JmsException {
 
 	/**
-	 * Create a new MessageConversionException.
+	 * 创建一个新的 MessageConversionException。
 	 * @param msg the detail message
 	 */
 	public MessageConversionException(String msg) {
@@ -39,7 +39,7 @@ public class MessageConversionException extends JmsException {
 	}
 
 	/**
-	 * Create a new MessageConversionException.
+	 * 创建一个新的 MessageConversionException。
 	 * @param msg the detail message
 	 * @param cause the root cause (if any)
 	 */

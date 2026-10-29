@@ -27,11 +27,11 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
 
 /**
- * Represents a WebSocket session.
+ * 表示一个 WebSocket 会话。
  *
- * <p>Use {@link WebSocketSession#receive() session.receive()} to compose on
- * the inbound message stream, and {@link WebSocketSession#send(Publisher)
- * session.send(publisher)} to provide the outbound message stream.
+ * <p>使用 {@link WebSocketSession#receive() session.receive()} 组合入站消息流，
+ * 使用 {@link WebSocketSession#send(Publisher) session.send(publisher)}
+ * 提供出站消息流。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -39,71 +39,67 @@ import org.springframework.core.io.buffer.DataBufferFactory;
 public interface WebSocketSession {
 
 	/**
-	 * Return the id for the session.
+	 * 返回会话的 id。
 	 */
 	String getId();
 
 	/**
-	 * Return information from the handshake request.
+	 * 返回握手请求中的信息。
 	 */
 	HandshakeInfo getHandshakeInfo();
 
 	/**
-	 * Return a {@code DataBuffer} Factory to create message payloads.
+	 * 返回用于创建消息负载的 {@code DataBuffer} 工厂。
 	 * @return the buffer factory for the session
 	 */
 	DataBufferFactory bufferFactory();
 
 	/**
-	 * Return the map with attributes associated with the WebSocket session.
+	 * 返回与 WebSocket 会话关联的属性 Map。
 	 * @return a Map with the session attributes (never {@code null})
 	 * @since 5.1
 	 */
 	Map<String, Object> getAttributes();
 
 	/**
-	 * Provides access to the stream of inbound messages.
-	 * <p>This stream receives a completion or error signal when the connection
-	 * is closed. In a typical {@link WebSocketHandler} implementation this
-	 * stream is composed into the overall processing flow, so that when the
-	 * connection is closed, handling will end.
-	 * <p>See the class-level doc of {@link WebSocketHandler} and the reference
-	 * for more details and examples of how to handle the session.
+	 * 提供对入站消息流的访问。
+	 * <p>当连接关闭时，此流会收到完成或错误信号。在典型的 {@link WebSocketHandler}
+	 * 实现中，此流会组合到整体处理流程中，以便在连接关闭时结束处理。
+	 * <p>有关如何处理会话的更多详细信息和示例，请参见 {@link WebSocketHandler}
+	 * 的类级文档和参考手册。
 	 */
 	Flux<WebSocketMessage> receive();
 
 	/**
-	 * Give a source of outgoing messages, write the messages and return a
-	 * {@code Mono<Void>} that completes when the source completes and writing
-	 * is done.
-	 * <p>See the class-level doc of {@link WebSocketHandler} and the reference
-	 * for more details and examples of how to handle the session.
+	 * 提供一个出站消息源，写入这些消息，并返回一个 {@code Mono<Void>}，
+	 * 当源完成且写入结束时该 Mono 完成。
+	 * <p>有关如何处理会话的更多详细信息和示例，请参见 {@link WebSocketHandler}
+	 * 的类级文档和参考手册。
 	 */
 	Mono<Void> send(Publisher<WebSocketMessage> messages);
 
 	/**
-	 * Whether the underlying connection is open.
+	 * 底层连接是否已打开。
 	 * @since 5.3.1
 	 */
 	boolean isOpen();
 
 	/**
-	 * Close the WebSocket session with {@link CloseStatus#NORMAL}.
+	 * 使用 {@link CloseStatus#NORMAL} 关闭 WebSocket 会话。
 	 */
 	default Mono<Void> close() {
 		return close(CloseStatus.NORMAL);
 	}
 
 	/**
-	 * Close the WebSocket session with the given status.
+	 * 使用给定状态关闭 WebSocket 会话。
 	 * @param status the close status
 	 */
 	Mono<Void> close(CloseStatus status);
 
 	/**
-	 * Provides access to the {@code CloseStatus} with which the session is
-	 * closed either locally or remotely, or completes empty if the session ended
-	 * without a status.
+	 * 提供对 {@code CloseStatus} 的访问，该状态表示会话是在本地还是远程关闭的；
+	 * 如果会话在没有状态的情况下结束，则完成时不发出值。
 	 * @since 5.3
 	 */
 	Mono<CloseStatus> closeStatus();
@@ -111,26 +107,26 @@ public interface WebSocketSession {
 	// WebSocketMessage factory methods
 
 	/**
-	 * Factory method to create a text {@link WebSocketMessage} using the
-	 * {@link #bufferFactory()} for the session.
+	 * 使用会话的 {@link #bufferFactory()} 创建文本 {@link WebSocketMessage}
+	 * 的工厂方法。
 	 */
 	WebSocketMessage textMessage(String payload);
 
 	/**
-	 * Factory method to create a binary WebSocketMessage using the
-	 * {@link #bufferFactory()} for the session.
+	 * 使用会话的 {@link #bufferFactory()} 创建二进制 WebSocketMessage
+	 * 的工厂方法。
 	 */
 	WebSocketMessage binaryMessage(Function<DataBufferFactory, DataBuffer> payloadFactory);
 
 	/**
-	 * Factory method to create a ping WebSocketMessage using the
-	 * {@link #bufferFactory()} for the session.
+	 * 使用会话的 {@link #bufferFactory()} 创建 ping WebSocketMessage
+	 * 的工厂方法。
 	 */
 	WebSocketMessage pingMessage(Function<DataBufferFactory, DataBuffer> payloadFactory);
 
 	/**
-	 * Factory method to create a pong WebSocketMessage using the
-	 * {@link #bufferFactory()} for the session.
+	 * 使用会话的 {@link #bufferFactory()} 创建 pong WebSocketMessage
+	 * 的工厂方法。
 	 */
 	WebSocketMessage pongMessage(Function<DataBufferFactory, DataBuffer> payloadFactory);
 

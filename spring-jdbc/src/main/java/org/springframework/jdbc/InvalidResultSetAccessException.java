@@ -22,11 +22,11 @@ import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when a ResultSet has been accessed in an invalid fashion.
- * Such exceptions always have a {@code java.sql.SQLException} root cause.
+ * 当以无效方式访问ResultSet时抛出的异常。
+ * 此类异常总是以{@code java.sql.SQLException}作为根本原因。
  *
- * <p>This typically happens when an invalid ResultSet column index or name
- * has been specified. Also thrown by disconnected SqlRowSets.
+ * <p>这通常发生在指定了无效的ResultSet列索引或列名时。
+ * 断开连接的SqlRowSet也会抛出此异常。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -41,7 +41,7 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 
 	/**
-	 * Constructor for InvalidResultSetAccessException.
+	 * 创建InvalidResultSetAccessException实例。
 	 * @param task name of current task
 	 * @param sql the offending SQL statement
 	 * @param ex the root cause
@@ -52,7 +52,7 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 	}
 
 	/**
-	 * Constructor for InvalidResultSetAccessException.
+	 * 创建InvalidResultSetAccessException实例。
 	 * @param ex the root cause
 	 */
 	public InvalidResultSetAccessException(SQLException ex) {
@@ -62,14 +62,14 @@ public class InvalidResultSetAccessException extends InvalidDataAccessResourceUs
 
 
 	/**
-	 * Return the wrapped SQLException.
+	 * 返回包装的SQLException。
 	 */
 	public SQLException getSQLException() {
 		return (SQLException) getCause();
 	}
 
 	/**
-	 * Return the SQL that caused the problem.
+	 * 返回导致问题的SQL语句。
 	 * @return the offending SQL, if known
 	 */
 	@Nullable

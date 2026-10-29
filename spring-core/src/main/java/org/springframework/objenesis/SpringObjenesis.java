@@ -23,9 +23,8 @@ import org.springframework.objenesis.strategy.StdInstantiatorStrategy;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * Spring-specific variant of {@link ObjenesisStd} / {@link ObjenesisBase},
- * providing a cache based on {@code Class} keys instead of class names,
- * and allowing for selective use of the cache.
+ * {@link ObjenesisStd} / {@link ObjenesisBase} 的 Spring 特有变体，提供基于 {@code Class} 键而非类
+ * 名的缓存，并允许有选择地使用该缓存。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -35,11 +34,9 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 public class SpringObjenesis implements Objenesis {
 
 	/**
-	 * System property that instructs Spring to ignore Objenesis, not even attempting
-	 * to use it. Setting this flag to "true" is equivalent to letting Spring find
-	 * out that Objenesis isn't working at runtime, triggering the fallback code path
-	 * immediately: Most importantly, this means that all CGLIB AOP proxies will be
-	 * created through regular instantiation via a default constructor.
+	 * 系统属性，指示 Spring 忽略 Objenesis，甚至不尝试使用它。将此标志设置为 "true" 相当于让 Spring 发
+	 * 现 Objenesis 在运行时无法工作，并立即触发回退代码路径：最重要的是，这意味着所有 CGLIB AOP 代理都
+	 * 将通过默认构造函数以常规实例化方式创建。
 	 */
 	public static final String IGNORE_OBJENESIS_PROPERTY_NAME = "spring.objenesis.ignore";
 
@@ -53,16 +50,14 @@ public class SpringObjenesis implements Objenesis {
 
 
 	/**
-	 * Create a new {@code SpringObjenesis} instance with the
-	 * standard instantiator strategy.
+	 * 使用标准实例化器策略创建一个新的 {@code SpringObjenesis} 实例。
 	 */
 	public SpringObjenesis() {
 		this(null);
 	}
 
 	/**
-	 * Create a new {@code SpringObjenesis} instance with the
-	 * given standard instantiator strategy.
+	 * 使用给定的标准实例化器策略创建一个新的 {@code SpringObjenesis} 实例。
 	 * @param strategy the instantiator strategy to use
 	 */
 	public SpringObjenesis(InstantiatorStrategy strategy) {
@@ -76,18 +71,16 @@ public class SpringObjenesis implements Objenesis {
 
 
 	/**
-	 * Return whether this Objenesis instance is worth trying for instance creation,
-	 * i.e. whether it hasn't been used yet or is known to work.
-	 * <p>If the configured Objenesis instantiator strategy has been identified to not
-	 * work on the current JVM at all or if the "spring.objenesis.ignore" property has
-	 * been set to "true", this method returns {@code false}.
+	 * 返回此 Objenesis 实例是否值得尝试用于实例创建，即它是否尚未被使用或已知可用。
+	 * <p>如果已确定所配置的 Objenesis 实例化器策略在当前 JVM 上完全无法工作，或者
+	 * "spring.objenesis.ignore" 属性已被设置为 "true"，则此方法返回 {@code false}。
 	 */
 	public boolean isWorthTrying() {
 		return (this.worthTrying != Boolean.FALSE);
 	}
 
 	/**
-	 * Create a new instance of the given class via Objenesis.
+	 * 通过 Objenesis 创建给定类的新实例。
 	 * @param clazz the class to create an instance of
 	 * @param useCache whether to use the instantiator cache
 	 * (typically {@code true} but can be set to {@code false}

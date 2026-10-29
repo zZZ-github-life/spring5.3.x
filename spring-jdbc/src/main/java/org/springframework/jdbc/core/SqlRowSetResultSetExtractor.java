@@ -27,10 +27,9 @@ import org.springframework.jdbc.support.rowset.ResultSetWrappingSqlRowSet;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /**
- * {@link ResultSetExtractor} implementation that returns a Spring {@link SqlRowSet}
- * representation for each given {@link ResultSet}.
+ * {@link ResultSetExtractor}实现，为每个给定的{@link ResultSet}返回Spring {@link SqlRowSet}表示。
  *
- * <p>The default implementation uses a standard JDBC CachedRowSet underneath.
+ * <p>默认实现在底层使用标准JDBC CachedRowSet。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -59,11 +58,10 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	}
 
 	/**
-	 * Create a {@link SqlRowSet} that wraps the given {@link ResultSet},
-	 * representing its data in a disconnected fashion.
-	 * <p>This implementation creates a Spring {@link ResultSetWrappingSqlRowSet}
-	 * instance that wraps a standard JDBC {@link CachedRowSet} instance.
-	 * Can be overridden to use a different implementation.
+	 * 创建一个{@link SqlRowSet}，包装给定的{@link ResultSet}，
+	 * 以断开连接的方式表示其数据。
+	 * <p>此实现创建一个Spring {@link ResultSetWrappingSqlRowSet}实例，
+	 * 包装标准JDBC {@link CachedRowSet}实例。可以重写以使用不同的实现。
 	 * @param rs the original ResultSet (connected)
 	 * @return the disconnected SqlRowSet
 	 * @throws SQLException if thrown by JDBC methods
@@ -77,9 +75,8 @@ public class SqlRowSetResultSetExtractor implements ResultSetExtractor<SqlRowSet
 	}
 
 	/**
-	 * Create a new {@link CachedRowSet} instance, to be populated by
-	 * the {@code createSqlRowSet} implementation.
-	 * <p>The default implementation uses JDBC 4.1's {@link RowSetFactory}.
+	 * 创建新的{@link CachedRowSet}实例，由{@code createSqlRowSet}实现填充。
+	 * <p>默认实现使用JDBC 4.1的{@link RowSetFactory}。
 	 * @return a new CachedRowSet instance
 	 * @throws SQLException if thrown by JDBC methods
 	 * @see #createSqlRowSet

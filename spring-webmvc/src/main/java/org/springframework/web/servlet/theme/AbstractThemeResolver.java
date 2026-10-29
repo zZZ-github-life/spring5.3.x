@@ -19,8 +19,8 @@ package org.springframework.web.servlet.theme;
 import org.springframework.web.servlet.ThemeResolver;
 
 /**
- * Abstract base class for {@link ThemeResolver} implementations.
- * Provides support for a default theme name.
+ * {@link ThemeResolver} 实现的抽象基类。
+ * 提供对默认主题名称的支持。
  *
  * @author Juergen Hoeller
  * @author Jean-Pierre Pawlak
@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ThemeResolver;
 public abstract class AbstractThemeResolver implements ThemeResolver {
 
 	/**
-	 * Out-of-the-box value for the default theme name: "theme".
+	 * 默认主题名称的默认取值："theme"。
 	 */
 	public static final String ORIGINAL_DEFAULT_THEME_NAME = "theme";
 
@@ -37,15 +37,15 @@ public abstract class AbstractThemeResolver implements ThemeResolver {
 
 
 	/**
-	 * Set the name of the default theme.
-	 * Out-of-the-box value is "theme".
+	 * 设置默认主题的名称。
+	 * 默认取值为 "theme"。
 	 */
 	public void setDefaultThemeName(String defaultThemeName) {
 		this.defaultThemeName = defaultThemeName;
 	}
 
 	/**
-	 * Return the name of the default theme.
+	 * 返回默认主题的名称。
 	 */
 	public String getDefaultThemeName() {
 		return this.defaultThemeName;

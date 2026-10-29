@@ -30,11 +30,7 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
 import org.springframework.web.reactive.socket.server.WebSocketService;
 
 /**
- * A subclass of {@code WebFluxConfigurationSupport} that detects and delegates
- * to all beans of type {@link WebFluxConfigurer} allowing them to customize the
- * configuration provided by {@code WebFluxConfigurationSupport}. This is the
- * class actually imported by {@link EnableWebFlux @EnableWebFlux}.
- *
+ * {@code WebFluxConfigurationSupport} 的子类，用于检测并委托给所有 {@link WebFluxConfigurer} 类型的 bean，使它们能够自定义 {@code WebFluxConfigurationSupport} 提供的配置。{@link EnableWebFlux @EnableWebFlux} 实际导入的正是此类。
  * @author Brian Clozel
  * @since 5.0
  */

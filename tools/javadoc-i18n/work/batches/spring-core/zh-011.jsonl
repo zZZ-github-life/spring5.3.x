@@ -1,0 +1,68 @@
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::29::0", "zh": ["用于确定哪些注解作为其他注解容器的策略。{@link #standardRepeatables()} 方法提供了默认策略，它遵循 Java 的 {@link Repeatable @Repeatable} 支持，应适用于大多数场景。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::29::1", "zh": ["<p>可以使用 {@link #of} 方法为不希望使用 {@link Repeatable @Repeatable} 的注解注册关系。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::29::2", "zh": ["<p>要完全禁用可重复支持，请使用 {@link #none()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::55::0", "zh": ["在被包含注解与可重复注解之间添加一个额外的显式关系。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::94::0", "zh": ["创建一个使用 Java 的 {@link Repeatable @Repeatable} 注解进行搜索的 {@link RepeatableContainers} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::103::0", "zh": ["创建一个使用预定义的可重复类型和容器类型的 {@link RepeatableContainers} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::124::0", "zh": ["创建一个不展开任何可重复注解的 {@link RepeatableContainers} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::134::0", "zh": ["标准的 {@link RepeatableContainers} 实现，使用 Java 的 {@link Repeatable @Repeatable} 注解进行搜索。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::185::0", "zh": ["单个显式映射。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/RepeatableContainers.java::266::0", "zh": ["没有可重复容器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedAnnotation.java::19::0", "zh": ["由合成注解代理实现的标记接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedAnnotation.java::19::1", "zh": ["<p>用于检测注解是否已经被合成。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedMergedAnnotationInvocationHandler.java::36::0", "zh": ["用于 Spring 已<em>合成</em>（即包装在动态代理中）的 {@link Annotation} 的 {@link InvocationHandler}，这类注解具有属性别名处理等附加功能。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedMergedAnnotationInvocationHandler.java::100::0", "zh": ["有关所需算法的定义，请参见 {@link Annotation#equals(Object)}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedMergedAnnotationInvocationHandler.java::122::0", "zh": ["有关所需算法的定义，请参见 {@link Annotation#hashCode()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedMergedAnnotationInvocationHandler.java::197::0", "zh": ["此方法目前未处理以下问题，我们可能会在后续阶段选择处理它们。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizedMergedAnnotationInvocationHandler.java::265::0", "zh": ["克隆所提供的数组，确保保留原始的组件类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::27::0", "zh": ["一种 {@link MethodParameter} 变体，用于合成通过 {@link AliasFor @AliasFor} 声明属性别名的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::39::0", "zh": ["为给定的方法创建一个新的 {@code SynthesizingMethodParameter}，嵌套层级为 1。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::51::0", "zh": ["为给定的方法创建一个新的 {@code SynthesizingMethodParameter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::65::0", "zh": ["为给定的构造函数创建一个新的 {@code SynthesizingMethodParameter}，嵌套层级为 1。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::75::0", "zh": ["为给定的构造函数创建一个新的 {@code SynthesizingMethodParameter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::87::0", "zh": ["复制构造函数，基于原始对象所处的相同元数据和缓存状态，生成一个独立的 {@code SynthesizingMethodParameter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::113::0", "zh": ["为给定的方法或构造函数创建一个新的 SynthesizingMethodParameter。", "<p>这是一个便捷工厂方法，适用于以通用方式处理 Method 或 Constructor 引用的场景。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/SynthesizingMethodParameter.java::134::0", "zh": ["为给定的参数描述符创建一个新的 SynthesizingMethodParameter。", "<p>这是一个便捷工厂方法，适用于已经获得 Java 8 {@link Parameter} 描述符的场景。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotation.java::37::0", "zh": ["一种 {@link MergedAnnotation}，通过应用 {@link AnnotationTypeMapping} 的映射和镜像规则，从根注解适配属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotation.java::37::1", "zh": ["<p>根属性值使用提供的 {@code BiFunction} 从源对象中提取。这样同一个类便能够支持各种不同的注解模型。例如，属性来源可以是实际的 {@link Annotation} 实例，此时会{@linkplain AnnotationUtils#invokeAnnotationMethod(Method, Object) invoked} 该注解实例上的方法来提取值。类似地，来源也可以是一个简单的 {@link Map}，其中的值通过 {@link Map#get(Object)} 提取。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotation.java::37::2", "zh": ["<p>提取出的根属性值必须与属性返回类型兼容，即："]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotation.java::342::0", "zh": ["判断所提供的对象是否为所需{@linkplain #getType() type}的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotation.java::352::0", "zh": ["判断所提供的注解是否尚未被合成，<strong>并且</strong>判断映射的注解是否为需要合并其属性的组合注解，或者映射的注解是否通常{@linkplain AnnotationTypeMapping#isSynthesizable() synthesizable}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::34::0", "zh": ["{@link MergedAnnotations} 实现，使用 {@link AnnotationTypeMappings} 搜索并适配注解和元注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::43::0", "zh": ["在没有注解时可使用的共享实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::275::0", "zh": ["用于检测注解是直接存在还是元存在的 {@link AnnotationsProcessor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::281::0", "zh": ["共享实例，使我们无需为常见组合创建新的处理器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::361::0", "zh": ["查找单个 {@link MergedAnnotation} 的 {@link AnnotationsProcessor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::446::0", "zh": ["收集 {@link Aggregate} 实例的 {@link AnnotationsProcessor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/TypeMappedAnnotations.java::540::0", "zh": ["用于按距离优先顺序消费聚合中的合并注解的 {@link Spliterator}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/ValueExtractor.java::25::0", "zh": ["用于从给定源对象中提取注解属性值的策略 API，该源对象通常是 {@link Annotation}、{@link Map} 或 {@link TypeMappedAnnotation}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/ValueExtractor.java::36::0", "zh": ["从所提供的源 {@link Object} 中提取由所提供的 {@link Method} 表示的注解属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/package-info.java::1::0", "zh": ["注解、元注解以及带属性覆盖的合并注解的核心支持包。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDataBufferDecoder.java::31::0", "zh": ["抽象基类，适用于可以直接将 {@code DataBuffer} 解码为目标元素类型的 {@code Decoder} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDataBufferDecoder.java::31::1", "zh": ["<p>子类必须实现 {@link #decodeDataBuffer}，以提供将 {@code DataBuffer} 转换为目标数据类型的方法。默认的 {@link #decode} 实现会逐个转换各个数据缓冲区，而 {@link #decodeToMono} 会应用“reduce”并转换聚合后的缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDataBufferDecoder.java::31::2", "zh": ["<p>子类可以重写 {@link #decode}，以便沿不同的边界拆分输入流（例如对 {@code String} 按换行符拆分），或者始终归约为单个数据缓冲区（例如 {@code Resource}）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDataBufferDecoder.java::59::0", "zh": ["配置输入流需要聚合时可缓冲的最大字节数限制。这可能是由于解码为单个 {@code DataBuffer}、{@link java.nio.ByteBuffer ByteBuffer}、{@code byte[]}、{@link org.springframework.core.io.Resource Resource}、{@code String} 等而产生的。在拆分输入流时（例如分隔文本）也可能出现这种情况，此时该限制适用于分隔符之间缓冲的数据。", "<p>默认设置为 256K。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDataBufferDecoder.java::75::0", "zh": ["返回 {@link #setMaxInMemorySize configured} 的字节数限制。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDataBufferDecoder.java::99::0", "zh": ["如何将 {@code DataBuffer} 解码为目标元素类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDecoder.java::33::0", "zh": ["用于 {@link Decoder} 实现的抽象基类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDecoder.java::53::0", "zh": ["设置一个替代日志记录器，用以替代基于类名的日志记录器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractDecoder.java::62::0", "zh": ["返回当前配置的 Logger。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractEncoder.java::29::0", "zh": ["用于 {@link Encoder} 实现的抽象基类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractEncoder.java::49::0", "zh": ["设置一个替代日志记录器，用以替代基于类名的日志记录器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractEncoder.java::58::0", "zh": ["返回当前配置的 Logger。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractSingleValueEncoder.java::32::0", "zh": ["抽象基类，适用于只能处理单个值的 {@link org.springframework.core.codec.Encoder} 类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/AbstractSingleValueEncoder.java::58::0", "zh": ["将 {@code T} 编码为输出 {@link DataBuffer} 流。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/ByteArrayDecoder.java::28::0", "zh": ["用于 {@code byte} 数组的解码器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/ByteArrayEncoder.java::31::0", "zh": ["用于 {@code byte} 数组的编码器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/ByteBufferDecoder.java::29::0", "zh": ["用于 {@link ByteBuffer ByteBuffers} 的解码器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/ByteBufferEncoder.java::32::0", "zh": ["用于 {@link ByteBuffer ByteBuffers} 的编码器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CharSequenceEncoder.java::38::0", "zh": ["将 {@code CharSequence} 流编码为字节流。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CharSequenceEncoder.java::49::0", "zh": ["编码器使用的默认字符集。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CharSequenceEncoder.java::124::0", "zh": ["创建一个仅支持 \"text/plain\" 的 {@code CharSequenceEncoder}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CharSequenceEncoder.java::131::0", "zh": ["创建一个支持所有 MIME 类型的 {@code CharSequenceEncoder}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CodecException.java::22::0", "zh": ["通用错误，表示在向对象流编码以及从对象流解码时出现问题。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CodecException.java::33::0", "zh": ["创建一个新的 CodecException。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/CodecException.java::41::0", "zh": ["创建一个新的 CodecException。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/DataBufferDecoder.java::30::0", "zh": ["用于 {@link DataBuffer DataBuffers} 的简单直通解码器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/DataBufferDecoder.java::30::1", "zh": ["<p><strong>注意：</strong>数据缓冲区在消费后应通过 {@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer)} 释放。此外，如果使用 {@code Flux} 或 {@code Mono} 的 flatMap、reduce，以及内部会预取、缓存并跳过或过滤数据项的其他操作符，请在组合链中添加 {@code doOnDiscard(PooledDataBuffer.class, DataBufferUtils::release)}，以确保在出现错误或取消信号之前释放被缓存的数据缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/codec/DataBufferEncoder.java::31::0", "zh": ["用于 {@link DataBuffer DataBuffers} 的简单直通编码器。"]}

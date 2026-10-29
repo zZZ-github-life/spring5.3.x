@@ -1,6 +1,5 @@
 /**
- * Support classes for handling messages from simple messaging protocols
- * (like STOMP).
+ * 用于处理来自简单消息传递协议（如 STOMP）消息的支持类。
  */
 @NonNullApi
 @NonNullFields

@@ -32,44 +32,43 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Representation of a parsed path pattern. Includes a chain of path elements
- * for fast matching and accumulates computed state for quick comparison of
- * patterns.
+ * 解析后的路径模式的表示。包含用于快速匹配的路径元素链，
+ * 并累积计算得到的状态以便快速比较模式。
  *
- * <p>{@code PathPattern} matches URL paths using the following rules:<br>
+ * <p>{@code PathPattern} 使用以下规则匹配 URL 路径：<br>
  * <ul>
- * <li>{@code ?} matches one character</li>
- * <li>{@code *} matches zero or more characters within a path segment</li>
- * <li>{@code **} matches zero or more <em>path segments</em> until the end of the path</li>
- * <li><code>{spring}</code> matches a <em>path segment</em> and captures it as a variable named "spring"</li>
- * <li><code>{spring:[a-z]+}</code> matches the regexp {@code [a-z]+} as a path variable named "spring"</li>
- * <li><code>{*spring}</code> matches zero or more <em>path segments</em> until the end of the path
- * and captures it as a variable named "spring"</li>
+ * <li>{@code ?} 匹配一个字符</li>
+ * <li>{@code *} 匹配路径段内零个或多个字符</li>
+ * <li>{@code **} 匹配零个或多个<em>路径段</em>，直到路径末尾</li>
+ * <li><code>{spring}</code> 匹配一个<em>路径段</em>，并将其捕获为名为 "spring" 的变量</li>
+ * <li><code>{spring:[a-z]+}</code> 将正则表达式 {@code [a-z]+} 匹配为名为 "spring" 的路径变量</li>
+ * <li><code>{*spring}</code> 匹配零个或多个<em>路径段</em>，直到路径末尾，
+ * 并将其捕获为名为 "spring" 的变量</li>
  * </ul>
  *
- * <p><strong>Note:</strong> In contrast to
- * {@link org.springframework.util.AntPathMatcher}, {@code **} is supported only
- * at the end of a pattern. For example {@code /pages/{**}} is valid but
- * {@code /pages/{**}/details} is not. The same applies also to the capturing
- * variant <code>{*spring}</code>. The aim is to eliminate ambiguity when
- * comparing patterns for specificity.
+ * <p><strong>注意：</strong>与
+ * {@link org.springframework.util.AntPathMatcher} 不同，{@code **} 仅支持
+ * 出现在模式末尾。例如 {@code /pages/{**}} 是合法的，但
+ * {@code /pages/{**}/details} 不合法。捕获变体
+ * <code>{*spring}</code> 也是如此。这样做的目的是在比较模式的
+ * 具体性时消除歧义。
  *
- * <h3>Examples</h3>
+ * <h3>示例</h3>
  * <ul>
- * <li>{@code /pages/t?st.html} &mdash; matches {@code /pages/test.html} as well as
- * {@code /pages/tXst.html} but not {@code /pages/toast.html}</li>
- * <li>{@code /resources/*.png} &mdash; matches all {@code .png} files in the
- * {@code resources} directory</li>
- * <li><code>/resources/&#42;&#42;</code> &mdash; matches all files
- * underneath the {@code /resources/} path, including {@code /resources/image.png}
- * and {@code /resources/css/spring.css}</li>
- * <li><code>/resources/{&#42;path}</code> &mdash; matches all files
- * underneath the {@code /resources/}, as well as {@code /resources}, and captures
- * their relative path in a variable named "path"; {@code /resources/image.png}
- * will match with "path" &rarr; "/image.png", and {@code /resources/css/spring.css}
- * will match with "path" &rarr; "/css/spring.css"</li>
- * <li><code>/resources/{filename:\\w+}.dat</code> will match {@code /resources/spring.dat}
- * and assign the value {@code "spring"} to the {@code filename} variable</li>
+ * <li>{@code /pages/t?st.html} &mdash; 匹配 {@code /pages/test.html} 以及
+ * {@code /pages/tXst.html}，但不匹配 {@code /pages/toast.html}</li>
+ * <li>{@code /resources/*.png} &mdash; 匹配 {@code resources} 目录下的
+ * 所有 {@code .png} 文件</li>
+ * <li><code>/resources/&#42;&#42;</code> &mdash; 匹配
+ * {@code /resources/} 路径下的所有文件，包括 {@code /resources/image.png}
+ * 和 {@code /resources/css/spring.css}</li>
+ * <li><code>/resources/{&#42;path}</code> &mdash; 匹配
+ * {@code /resources/} 下的所有文件以及 {@code /resources}，并将
+ * 其相对路径捕获到名为 "path" 的变量中；{@code /resources/image.png}
+ * 将以 "path" &rarr; "/image.png" 匹配，而 {@code /resources/css/spring.css}
+ * 将以 "path" &rarr; "/css/spring.css" 匹配</li>
+ * <li><code>/resources/{filename:\\w+}.dat</code> 将匹配 {@code /resources/spring.dat}，
+ * 并将值 {@code "spring"} 赋给 {@code filename} 变量</li>
  * </ul>
  *
  * @author Andy Clement
@@ -82,13 +81,13 @@ public class PathPattern implements Comparable<PathPattern> {
 	private static final PathContainer EMPTY_PATH = PathContainer.parsePath("");
 
 	/**
-	 * Comparator that sorts patterns by specificity as follows:
+	 * 按如下具体性规则对模式进行排序的比较器：
 	 * <ol>
-	 * <li>Null instances are last.
-	 * <li>Catch-all patterns are last.
-	 * <li>If both patterns are catch-all, consider the length (longer wins).
-	 * <li>Compare wildcard and captured variable count (lower wins).
-	 * <li>Consider length (longer wins)
+	 * <li>null 实例排最后。
+	 * <li>捕获所有内容的模式排最后。
+	 * <li>如果两个模式都捕获所有内容，则考虑长度（更长者优先）。
+	 * <li>比较通配符和捕获变量数量（更少者优先）。
+	 * <li>考虑长度（更长者优先）
 	 * </ol>
 	 */
 	public static final Comparator<PathPattern> SPECIFICITY_COMPARATOR =
@@ -101,52 +100,51 @@ public class PathPattern implements Comparable<PathPattern> {
 			);
 
 
-	/** The text of the parsed pattern. */
+	/** 解析后的模式文本。 */
 	private final String patternString;
 
-	/** The parser used to construct this pattern. */
+	/** 用于构造此模式的解析器。 */
 	private final PathPatternParser parser;
 
-	/** The options to use to parse a pattern. */
+	/** 解析模式时使用的选项。 */
 	private final PathContainer.Options pathOptions;
 
-	/** If this pattern has no trailing slash, allow candidates to include one and still match successfully. */
+	/** 如果此模式没有末尾斜杠，则允许候选路径包含末尾斜杠并仍成功匹配。 */
 	private final boolean matchOptionalTrailingSeparator;
 
-	/** Will this match candidates in a case-sensitive way? (case sensitivity  at parse time). */
+	/** 是否以区分大小写的方式匹配候选路径？（区分大小写设置于解析时）。 */
 	private final boolean caseSensitive;
 
-	/** First path element in the parsed chain of path elements for this pattern. */
+	/** 此模式解析后的路径元素链中的第一个路径元素。 */
 	@Nullable
 	private final PathElement head;
 
-	/** How many variables are captured in this pattern. */
+	/** 此模式中捕获的变量数量。 */
 	private int capturedVariableCount;
 
 	/**
-	 * The normalized length is trying to measure the 'active' part of the pattern. It is computed
-	 * by assuming all captured variables have a normalized length of 1. Effectively this means changing
-	 * your variable name lengths isn't going to change the length of the active part of the pattern.
-	 * Useful when comparing two patterns.
+	 * 规范化长度试图度量模式的“活动”部分。它假定所有捕获变量的
+	 * 规范化长度均为 1 来计算。实际上，这意味着更改变量名的长度
+	 * 不会改变模式活动部分的长度。在比较两个模式时很有用。
 	 */
 	private int normalizedLength;
 
 	/**
-	 * Does the pattern end with '&lt;separator&gt;'.
+	 * 模式是否以 '&lt;separator&gt;' 结尾。
 	 */
 	private boolean endsWithSeparatorWildcard = false;
 
 	/**
-	 * Score is used to quickly compare patterns. Different pattern components are given different
-	 * weights. A 'lower score' is more specific. Current weights:
+	 * 分数用于快速比较模式。不同的模式组成部分被赋予不同的
+	 * 权重。“分数越低”越具体。当前权重：
 	 * <ul>
-	 * <li>Captured variables are worth 1
-	 * <li>Wildcard is worth 100
+	 * <li>捕获变量权重为 1
+	 * <li>通配符权重为 100
 	 * </ul>
 	 */
 	private int score;
 
-	/** Does the pattern end with {*...}. */
+	/** 模式是否以 {*...} 结尾。 */
 	private boolean catchAll = false;
 
 
@@ -176,16 +174,15 @@ public class PathPattern implements Comparable<PathPattern> {
 
 
 	/**
-	 * Return the original String that was parsed to create this PathPattern.
+	 * 返回解析以创建此 PathPattern 的原始字符串。
 	 */
 	public String getPatternString() {
 		return this.patternString;
 	}
 
 	/**
-	 * Whether the pattern string contains pattern syntax that would require
-	 * use of {@link #matches(PathContainer)}, or if it is a regular String that
-	 * could be compared directly to others.
+	 * 模式字符串是否包含需要使用 {@link #matches(PathContainer)} 的模式语法，
+	 * 或者它是否是可以直接与其他字符串比较的普通字符串。
 	 * @since 5.2
 	 */
 	public boolean hasPatternSyntax() {
@@ -193,7 +190,7 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Whether this pattern matches the given path.
+	 * 此模式是否匹配给定路径。
 	 * @param pathContainer the candidate path to attempt to match against
 	 * @return {@code true} if the path matches this pattern
 	 */
@@ -215,8 +212,8 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Match this pattern to the given URI path and return extracted URI template
-	 * variables as well as path parameters (matrix variables).
+	 * 将此模式与给定的 URI 路径匹配，并返回提取的 URI 模板变量
+	 * 以及路径参数（矩阵变量）。
 	 * @param pathContainer the candidate path to attempt to match against
 	 * @return info object with the extracted variables, or {@code null} for no match
 	 */
@@ -240,9 +237,8 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Match the beginning of the given path and return the remaining portion
-	 * not covered by this pattern. This is useful for matching nested routes
-	 * where the path is matched incrementally at each level.
+	 * 匹配给定路径的开头，并返回此模式未覆盖的剩余部分。
+	 * 这对于匹配嵌套路由很有用，因为路径会在每一层级逐步匹配。
 	 * @param pathContainer the candidate path to attempt to match against
 	 * @return info object with the match result or {@code null} for no match
 	 */
@@ -277,19 +273,19 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Determine the pattern-mapped part for the given path.
-	 * <p>For example: <ul>
-	 * <li>'{@code /docs/cvs/commit.html}' and '{@code /docs/cvs/commit.html} &rarr; ''</li>
-	 * <li>'{@code /docs/*}' and '{@code /docs/cvs/commit}' &rarr; '{@code cvs/commit}'</li>
-	 * <li>'{@code /docs/cvs/*.html}' and '{@code /docs/cvs/commit.html} &rarr; '{@code commit.html}'</li>
-	 * <li>'{@code /docs/**}' and '{@code /docs/cvs/commit} &rarr; '{@code cvs/commit}'</li>
+	 * 确定给定路径中由模式映射的部分。
+	 * <p>例如：<ul>
+	 * <li>'{@code /docs/cvs/commit.html}' 和 '{@code /docs/cvs/commit.html} &rarr; ''</li>
+	 * <li>'{@code /docs/*}' 和 '{@code /docs/cvs/commit}' &rarr; '{@code cvs/commit}'</li>
+	 * <li>'{@code /docs/cvs/*.html}' 和 '{@code /docs/cvs/commit.html} &rarr; '{@code commit.html}'</li>
+	 * <li>'{@code /docs/**}' 和 '{@code /docs/cvs/commit} &rarr; '{@code cvs/commit}'</li>
 	 * </ul>
-	 * <p><b>Notes:</b>
+	 * <p><b>说明：</b>
 	 * <ul>
-	 * <li>Assumes that {@link #matches} returns {@code true} for
-	 * the same path but does <strong>not</strong> enforce this.
-	 * <li>Duplicate occurrences of separators within the returned result are removed
-	 * <li>Leading and trailing separators are removed from the returned result
+	 * <li>假定 {@link #matches} 对同一路径返回 {@code true}，但
+	 * <strong>不会</strong>强制校验这一点。
+	 * <li>返回结果中重复出现的分隔符会被移除
+	 * <li>返回结果中开头和末尾的分隔符会被移除
 	 * </ul>
 	 * @param path a path that matches this pattern
 	 * @return the subset of the path that is matched by pattern or "" if none
@@ -359,9 +355,8 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Compare this pattern with a supplied pattern: return -1,0,+1 if this pattern
-	 * is more specific, the same or less specific than the supplied pattern.
-	 * The aim is to sort more specific patterns first.
+	 * 将此模式与提供的模式进行比较：如果此模式比提供的模式更具体、
+	 * 相同或更不具体，则分别返回 -1、0、+1。目标是让更具体的模式排在最前面。
 	 */
 	@Override
 	public int compareTo(@Nullable PathPattern otherPattern) {
@@ -371,7 +366,7 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Combine this pattern with another.
+	 * 将此模式与另一个模式组合。
 	 */
 	public PathPattern combine(PathPattern pattern2string) {
 		// If one of them is empty the result is the other. If both empty the result is ""
@@ -459,10 +454,9 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * The normalized length is trying to measure the 'active' part of the pattern. It is computed
-	 * by assuming all capture variables have a normalized length of 1. Effectively this means changing
-	 * your variable name lengths isn't going to change the length of the active part of the pattern.
-	 * Useful when comparing two patterns.
+	 * 规范化长度试图度量模式的“活动”部分。它假定所有捕获变量
+	 * 的规范化长度均为 1 来计算。实际上，这意味着更改变量名的长度
+	 * 不会改变模式活动部分的长度。在比较两个模式时很有用。
 	 */
 	int getNormalizedLength() {
 		return this.normalizedLength;
@@ -487,7 +481,7 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Return the string form of the pattern built from walking the path element chain.
+	 * 返回通过遍历路径元素链构建的模式字符串形式。
 	 * @return the string form of the pattern
 	 */
 	String computePatternString() {
@@ -506,9 +500,9 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Join two paths together including a separator if necessary.
-	 * Extraneous separators are removed (if the first path
-	 * ends with one and the second path starts with one).
+	 * 将两个路径连接在一起，必要时包含分隔符。
+	 * 多余的分隔符会被移除（如果第一个路径以分隔符结尾
+	 * 且第二个路径以分隔符开头）。
 	 * @param path1 first path
 	 * @param path2 second path
 	 * @return joined path that may include separator if necessary
@@ -528,7 +522,7 @@ public class PathPattern implements Comparable<PathPattern> {
 	}
 
 	/**
-	 * Return if the container is not null and has more than zero elements.
+	 * 返回容器是否非 null 且元素数大于零。
 	 * @param container a path container
 	 * @return {@code true} has more than zero elements
 	 */
@@ -547,8 +541,8 @@ public class PathPattern implements Comparable<PathPattern> {
 
 
 	/**
-	 * Holder for URI variables and path parameters (matrix variables) extracted
-	 * based on the pattern for a given matched path.
+	 * 用于保存基于模式为给定匹配路径提取的 URI 变量和
+	 * 路径参数（矩阵变量）的持有者。
 	 */
 	public static class PathMatchInfo {
 
@@ -565,15 +559,15 @@ public class PathPattern implements Comparable<PathPattern> {
 		}
 
 		/**
-		 * Return the extracted URI variables.
+		 * 返回提取的 URI 变量。
 		 */
 		public Map<String, String> getUriVariables() {
 			return this.uriVariables;
 		}
 
 		/**
-		 * Return maps of matrix variables per path segment, keyed off by URI
-		 * variable name.
+		 * 返回按路径段划分的矩阵变量映射，以 URI
+		 * 变量名作为键。
 		 */
 		public Map<String, MultiValueMap<String, String>> getMatrixVariables() {
 			return this.matrixVariables;
@@ -588,9 +582,9 @@ public class PathPattern implements Comparable<PathPattern> {
 
 
 	/**
-	 * Holder for the result of a match on the start of a pattern.
-	 * Provides access to the remaining path not matched to the pattern as well
-	 * as any variables bound in that first part that was matched.
+	 * 保存模式开头匹配结果的持有者。
+	 * 提供对未与该模式匹配的剩余路径的访问，以及在已匹配的
+	 * 第一部分中绑定的任何变量。
 	 */
 	public static class PathRemainingMatchInfo {
 
@@ -613,7 +607,7 @@ public class PathPattern implements Comparable<PathPattern> {
 		}
 
 		/**
-		 * Return the part of a path that was matched by a pattern.
+		 * 返回路径中由模式匹配的部分。
 		 * @since 5.3
 		 */
 		public PathContainer getPathMatched() {
@@ -621,22 +615,21 @@ public class PathPattern implements Comparable<PathPattern> {
 		}
 
 		/**
-		 * Return the part of a path that was not matched by a pattern.
+		 * 返回路径中未由模式匹配的部分。
 		 */
 		public PathContainer getPathRemaining() {
 			return this.pathRemaining;
 		}
 
 		/**
-		 * Return variables that were bound in the part of the path that was
-		 * successfully matched or an empty map.
+		 * 返回在成功匹配的路径部分中绑定的变量，或空映射。
 		 */
 		public Map<String, String> getUriVariables() {
 			return this.pathMatchInfo.getUriVariables();
 		}
 
 		/**
-		 * Return the path parameters for each bound variable.
+		 * 返回每个已绑定变量的路径参数。
 		 */
 		public Map<String, MultiValueMap<String, String>> getMatrixVariables() {
 			return this.pathMatchInfo.getMatrixVariables();
@@ -645,9 +638,8 @@ public class PathPattern implements Comparable<PathPattern> {
 
 
 	/**
-	 * Encapsulates context when attempting a match. Includes some fixed state like the
-	 * candidate currently being considered for a match but also some accumulators for
-	 * extracted variables.
+	 * 封装尝试匹配时的上下文。包含一些固定状态（例如当前正在
+	 * 考虑匹配的候选路径），还包含一些用于提取变量的累加器。
 	 */
 	class MatchingContext {
 
@@ -711,7 +703,7 @@ public class PathPattern implements Comparable<PathPattern> {
 		}
 
 		/**
-		 * Return if element at specified index is a separator.
+		 * 返回指定索引处的元素是否为分隔符。
 		 * @param pathIndex possible index of a separator
 		 * @return {@code true} if element is a separator
 		 */
@@ -720,7 +712,7 @@ public class PathPattern implements Comparable<PathPattern> {
 		}
 
 		/**
-		 * Return the decoded value of the specified element.
+		 * 返回指定元素的解码值。
 		 * @param pathIndex path element index
 		 * @return the decoded value
 		 */

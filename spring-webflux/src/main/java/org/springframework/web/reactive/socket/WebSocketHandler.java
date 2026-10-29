@@ -23,20 +23,19 @@ import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
 
 /**
- * Handler for a WebSocket session.
+ * WebSocket 会话的处理器。
  *
- * <p>A server {@code WebSocketHandler} is mapped to requests with
+ * <p>服务器端的 {@code WebSocketHandler} 通过
  * {@link org.springframework.web.reactive.handler.SimpleUrlHandlerMapping
- * SimpleUrlHandlerMapping} and
+ * SimpleUrlHandlerMapping} 和
  * {@link org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter
- * WebSocketHandlerAdapter}. A client {@code WebSocketHandler} is passed to the
+ * WebSocketHandlerAdapter} 映射到请求。客户端的 {@code WebSocketHandler} 则传递给
  * {@link org.springframework.web.reactive.socket.client.WebSocketClient
- * WebSocketClient} execute method.
+ * WebSocketClient} 的 execute 方法。
  *
- * <p>Use {@link WebSocketSession#receive() session.receive()} to compose on
- * the inbound message stream, and {@link WebSocketSession#send(Publisher)
- * session.send(publisher)} for the outbound message stream. Below is an
- * example, combined flow to process inbound and to send outbound messages:
+ * <p>使用 {@link WebSocketSession#receive() session.receive()} 组合入站消息流，
+ * 使用 {@link WebSocketSession#send(Publisher) session.send(publisher)}
+ * 处理出站消息流。下面是一个组合流程的示例，用于处理入站消息并发送出站消息：
  *
  * <pre class="code">
  * class ExampleHandler implements WebSocketHandler {
@@ -58,8 +57,8 @@ import reactor.core.publisher.Mono;
  * }
  * </pre>
  *
- * <p>If processing inbound and sending outbound messages are independent
- * streams, they can be joined together with the "zip" operator:
+ * <p>如果处理入站消息与发送出站消息是相互独立的流，可以使用 "zip" 操作符
+ * 将它们组合起来：
  *
  * <pre class="code">
  * class ExampleHandler implements WebSocketHandler {
@@ -84,12 +83,10 @@ import reactor.core.publisher.Mono;
  * }
  * </pre>
  *
- * <p>A {@code WebSocketHandler} must compose the inbound and outbound streams
- * into a unified flow and return a {@code Mono<Void>} that reflects the
- * completion of that flow. That means there is no need to check if the
- * connection is open, since Reactive Streams signals will terminate activity.
- * The inbound stream receives a completion/error signal, and the outbound
- * stream receives a cancellation signal.
+ * <p>{@code WebSocketHandler} 必须将入站流和出站流组合成一个统一的流，并返回一个
+ * 反映该流完成情况的 {@code Mono<Void>}。这意味着无需检查连接是否打开，因为
+ * Reactive Streams 信号会终止活动：入站流会收到完成/错误信号，出站流会收到
+ * 取消信号。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -97,19 +94,17 @@ import reactor.core.publisher.Mono;
 public interface WebSocketHandler {
 
 	/**
-	 * Return the list of sub-protocols supported by this handler.
-	 * <p>By default an empty list is returned.
+	 * 返回此处理器支持的子协议列表。
+	 * <p>默认返回空列表。
 	 */
 	default List<String> getSubProtocols() {
 		return Collections.emptyList();
 	}
 
 	/**
-	 * Invoked when a new WebSocket connection is established, and allows
-	 * handling of the session.
+	 * 在建立新的 WebSocket 连接时调用，允许处理该会话。
 	 *
-	 * <p>See the class-level doc and the reference manual for more details and
-	 * examples of how to handle the session.
+	 * <p>有关如何处理会话的更多详细信息和示例，请参见类级文档和参考手册。
 	 * @param session the session to handle
 	 * @return indicates when application handling of the session is complete,
 	 * which should reflect the completion of the inbound message stream

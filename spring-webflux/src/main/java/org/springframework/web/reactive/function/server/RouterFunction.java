@@ -25,8 +25,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.util.Assert;
 
 /**
- * Represents a function that routes to a {@linkplain HandlerFunction handler function}.
- *
+ * 表示路由到{@linkplain HandlerFunction 处理函数}的函数。
  * @author Arjen Poutsma
  * @since 5.0
  * @param <T> the type of the {@linkplain HandlerFunction handler function} to route to
@@ -36,7 +35,7 @@ import org.springframework.util.Assert;
 public interface RouterFunction<T extends ServerResponse> {
 
 	/**
-	 * Return the {@linkplain HandlerFunction handler function} that matches the given request.
+	 * 返回与给定请求匹配的{@linkplain HandlerFunction 处理函数}。
 	 * @param request the request to route
 	 * @return an {@code Mono} describing the {@code HandlerFunction} that matches this request,
 	 * or an empty {@code Mono} if there is no match
@@ -44,9 +43,7 @@ public interface RouterFunction<T extends ServerResponse> {
 	Mono<HandlerFunction<T>> route(ServerRequest request);
 
 	/**
-	 * Return a composed routing function that first invokes this function,
-	 * and then invokes the {@code other} function (of the same response type {@code T})
-	 * if this route had {@linkplain Mono#empty() no result}.
+	 * 返回组合路由函数，先调用此函数，如果此路由{@linkplain Mono#empty() 没有结果}，则调用 {@code other} 函数（相同响应类型 {@code T}）。
 	 * @param other the function of type {@code T} to apply when this function has no result
 	 * @return a composed function that first routes with this function and then the
 	 * {@code other} function if this function has no result
@@ -57,9 +54,7 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Return a composed routing function that first invokes this function,
-	 * and then invokes the {@code other} function (of a different response type) if this route had
-	 * {@linkplain Mono#empty() no result}.
+	 * 返回组合路由函数，先调用此函数，如果此路由{@linkplain Mono#empty() 没有结果}，则调用 {@code other} 函数（不同响应类型）。
 	 * @param other the function to apply when this function has no result
 	 * @return a composed function that first routes with this function and then the
 	 * {@code other} function if this function has no result
@@ -70,10 +65,7 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Return a composed routing function that routes to the given handler function if this
-	 * route does not match and the given request predicate applies. This method is a convenient
-	 * combination of {@link #and(RouterFunction)} and
-	 * {@link RouterFunctions#route(RequestPredicate, HandlerFunction)}.
+	 * 返回组合路由函数：如果此路由不匹配且给定请求谓词适用，则路由到给定处理函数。此方法是 {@link #and(RouterFunction)} 和 {@link RouterFunctions#route(RequestPredicate, HandlerFunction)} 的便捷组合。
 	 * @param predicate the predicate to test if this route does not match
 	 * @param handlerFunction the handler function to route to if this route does not match and
 	 * the predicate applies
@@ -85,10 +77,7 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Return a composed routing function that routes to the given router function if this
-	 * route does not match and the given request predicate applies. This method is a convenient
-	 * combination of {@link #and(RouterFunction)} and
-	 * {@link RouterFunctions#nest(RequestPredicate, RouterFunction)}.
+	 * 返回组合路由函数：如果此路由不匹配且给定请求谓词适用，则路由到给定路由函数。此方法是 {@link #and(RouterFunction)} 和 {@link RouterFunctions#nest(RequestPredicate, RouterFunction)} 的便捷组合。
 	 * @param predicate the predicate to test if this route does not match
 	 * @param routerFunction the router function to route to if this route does not match and
 	 * the predicate applies
@@ -100,8 +89,7 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Filter all {@linkplain HandlerFunction handler functions} routed by this function with the given
-	 * {@linkplain HandlerFilterFunction filter function}.
+	 * 使用给定的{@linkplain HandlerFilterFunction 过滤器函数}过滤此函数路由的所有{@linkplain HandlerFunction 处理函数}。
 	 * @param <S> the filter return type
 	 * @param filterFunction the filter to apply
 	 * @return the filtered routing function
@@ -111,10 +99,7 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Accept the given visitor. Default implementation calls
-	 * {@link RouterFunctions.Visitor#unknown(RouterFunction)}; composed {@code RouterFunction}
-	 * implementations are expected to call {@code accept} for all components that make up this
-	 * router function.
+	 * 接受给定的访问者。默认实现调用 {@link RouterFunctions.Visitor#unknown(RouterFunction)}；组合式 {@code RouterFunction} 实现应为构成此路由函数的所有组件调用 {@code accept}。
 	 * @param visitor the visitor to accept
 	 */
 	default void accept(RouterFunctions.Visitor visitor) {
@@ -122,11 +107,11 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Return a new routing function with the given attribute.
+	 * 返回带有给定属性的新路由函数。
 	 * @param name the attribute name
 	 * @param value the attribute value
-     * @return a function that has the specified attributes
-     * @since 5.3
+	 * @return a function that has the specified attributes
+	 * @since 5.3
 	 */
 	default RouterFunction<T> withAttribute(String name, Object value) {
 		Assert.hasLength(name, "Name must not be empty");
@@ -138,11 +123,8 @@ public interface RouterFunction<T extends ServerResponse> {
 	}
 
 	/**
-	 * Return a new routing function with attributes manipulated with the given consumer.
-	 * <p>The map provided to the consumer is "live", so that the consumer can be used
-	 * to {@linkplain Map#put(Object, Object) overwrite} existing attributes,
-	 * {@linkplain Map#remove(Object) remove} attributes, or use any of the other
-	 * {@link Map} methods.
+	 * 返回使用给定消费者操作属性的新路由函数。
+	 * <p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain Map#put(Object, Object) 覆盖}现有属性、{@linkplain Map#remove(Object) 删除}属性，或使用任何其他 {@link Map} 方法。
 	 * @param attributesConsumer a function that consumes the attributes map
 	 * @return this builder
 	 * @since 5.3

@@ -44,29 +44,28 @@ import org.springframework.web.multipart.support.MultipartResolutionDelegate;
 import org.springframework.web.multipart.support.RequestPartServletServerHttpRequest;
 
 /**
- * Resolves the following method arguments:
+ * 解析以下方法参数：
  * <ul>
- * <li>Annotated with @{@link RequestPart}
- * <li>Of type {@link MultipartFile} in conjunction with Spring's {@link MultipartResolver} abstraction
- * <li>Of type {@code javax.servlet.http.Part} in conjunction with Servlet 3.0 multipart requests
+ * <li>带有 @{@link RequestPart} 注解
+ * <li>{@link MultipartFile} 类型，结合 Spring 的 {@link MultipartResolver} 抽象
+ * <li>{@code javax.servlet.http.Part} 类型，结合 Servlet 3.0 多部分请求
  * </ul>
  *
- * <p>When a parameter is annotated with {@code @RequestPart}, the content of the part is
- * passed through an {@link HttpMessageConverter} to resolve the method argument with the
- * 'Content-Type' of the request part in mind. This is analogous to what @{@link RequestBody}
- * does to resolve an argument based on the content of a regular request.
+ * <p>当参数带有 {@code @RequestPart} 注解时，部分的内容会经过
+ * {@link HttpMessageConverter}，以根据请求部分的 'Content-Type'
+ * 解析方法参数。这类似于 @{@link RequestBody}
+ * 根据常规请求的内容解析参数的方式。
  *
- * <p>When a parameter is not annotated with {@code @RequestPart} or the name of
- * the part is not specified, the request part's name is derived from the name of
- * the method argument.
+ * <p>当参数未带有 {@code @RequestPart} 注解或未指定
+ * 部分名称时，请求部分的名称将从方法参数名称
+ * 派生。
  *
- * <p>Automatic validation may be applied if the argument is annotated with any
+ * <p>如果参数带有任何
  * {@linkplain org.springframework.validation.annotation.ValidationAnnotationUtils#determineValidationHints
- * annotations that trigger validation}. In case of validation failure, a
- * {@link MethodArgumentNotValidException} is raised and a 400 response status code returned if the
- * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver}
- * is configured.
- *
+ * annotations that trigger validation}，则可能应用自动校验。如果校验失败，
+ * 将抛出 {@link MethodArgumentNotValidException}；如果配置了
+ * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver}，
+ * 则返回 400 响应状态码。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @author Juergen Hoeller
@@ -75,15 +74,15 @@ import org.springframework.web.multipart.support.RequestPartServletServerHttpReq
 public class RequestPartMethodArgumentResolver extends AbstractMessageConverterMethodArgumentResolver {
 
 	/**
-	 * Basic constructor with converters only.
+	 * 仅包含转换器的基本构造函数。
 	 */
 	public RequestPartMethodArgumentResolver(List<HttpMessageConverter<?>> messageConverters) {
 		super(messageConverters);
 	}
 
 	/**
-	 * Constructor with converters and {@code RequestBodyAdvice} and
-	 * {@code ResponseBodyAdvice}.
+	 * 包含转换器以及 {@code RequestBodyAdvice} 和
+	 * {@code ResponseBodyAdvice} 的构造函数。
 	 */
 	public RequestPartMethodArgumentResolver(List<HttpMessageConverter<?>> messageConverters,
 			List<Object> requestResponseBodyAdvice) {
@@ -93,13 +92,13 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 
 
 	/**
-	 * Whether the given {@linkplain MethodParameter method parameter} is
-	 * supported as multipart. Supports the following method parameters:
+	 * 给定的 {@linkplain MethodParameter method parameter} 是否
+	 * 作为多部分参数受支持。支持以下方法参数：
 	 * <ul>
-	 * <li>annotated with {@code @RequestPart}
-	 * <li>of type {@link MultipartFile} unless annotated with {@code @RequestParam}
-	 * <li>of type {@code javax.servlet.http.Part} unless annotated with
-	 * {@code @RequestParam}
+	 * <li>带有 {@code @RequestPart} 注解
+	 * <li>{@link MultipartFile} 类型，且未带有 {@code @RequestParam} 注解
+	 * <li>{@code javax.servlet.http.Part} 类型，且未带有
+	 * {@code @RequestParam} 注解
 	 * </ul>
 	 */
 	@Override

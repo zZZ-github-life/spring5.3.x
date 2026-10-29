@@ -1,5 +1,5 @@
 /**
- * Support for the RSocket protocol.
+ * 对 RSocket 协议的支持。
  */
 @NonNullApi
 @NonNullFields

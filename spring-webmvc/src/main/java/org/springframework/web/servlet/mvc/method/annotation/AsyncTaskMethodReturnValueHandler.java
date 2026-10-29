@@ -26,8 +26,7 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Handles return values of type {@link WebAsyncTask}.
- *
+ * 处理类型为 {@link WebAsyncTask} 的返回值。
  * @author Rossen Stoyanchev
  * @since 3.2
  */

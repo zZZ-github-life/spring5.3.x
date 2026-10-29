@@ -25,8 +25,8 @@ import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.lang.Nullable;
 
 /**
- * Class that provides helper methods for the use of {@link SqlParameterSource},
- * in particular with {@link NamedParameterJdbcTemplate}.
+ * 提供使用 {@link SqlParameterSource} 的辅助方法的类，
+ * 尤其是与 {@link NamedParameterJdbcTemplate} 配合使用时。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -35,9 +35,9 @@ import org.springframework.lang.Nullable;
 public abstract class SqlParameterSourceUtils {
 
 	/**
-	 * Create an array of {@link SqlParameterSource} objects populated with data
-	 * from the values passed in (either a {@link Map} or a bean object).
-	 * This will define what is included in a batch operation.
+	 * 创建一组用传入值（{@link Map} 或 bean 对象）填充的
+	 * {@link SqlParameterSource} 对象数组。
+	 * 这将确定批量操作中包含的内容。
 	 * @param candidates object array of objects containing the values to be used
 	 * @return an array of {@link SqlParameterSource}
 	 * @see MapSqlParameterSource
@@ -49,9 +49,9 @@ public abstract class SqlParameterSourceUtils {
 	}
 
 	/**
-	 * Create an array of {@link SqlParameterSource} objects populated with data
-	 * from the values passed in (either a {@link Map} or a bean object).
-	 * This will define what is included in a batch operation.
+	 * 创建一组用传入值（{@link Map} 或 bean 对象）填充的
+	 * {@link SqlParameterSource} 对象数组。
+	 * 这将确定批量操作中包含的内容。
 	 * @param candidates collection of objects containing the values to be used
 	 * @return an array of {@link SqlParameterSource}
 	 * @since 5.0.2
@@ -72,8 +72,8 @@ public abstract class SqlParameterSourceUtils {
 	}
 
 	/**
-	 * Create an array of {@link MapSqlParameterSource} objects populated with data from
-	 * the values passed in. This will define what is included in a batch operation.
+	 * 创建一组用传入值填充的 {@link MapSqlParameterSource} 对象数组。
+	 * 这将确定批量操作中包含的内容。
 	 * @param valueMaps array of {@link Map} instances containing the values to be used
 	 * @return an array of {@link SqlParameterSource}
 	 * @see MapSqlParameterSource
@@ -88,7 +88,7 @@ public abstract class SqlParameterSourceUtils {
 	}
 
 	/**
-	 * Create a wrapped value if parameter has type information, plain object if not.
+	 * 如果参数包含类型信息则创建包装后的值，否则创建普通对象。
 	 * @param source the source of parameter values and type information
 	 * @param parameterName the name of the parameter
 	 * @return the value object
@@ -106,7 +106,7 @@ public abstract class SqlParameterSourceUtils {
 	}
 
 	/**
-	 * Create a Map of case-insensitive parameter names together with the original name.
+	 * 创建包含大小写不敏感的（小写）参数名及原始名称的 Map。
 	 * @param parameterSource the source of parameter names
 	 * @return the Map that can be used for case-insensitive matching of parameter names
 	 */

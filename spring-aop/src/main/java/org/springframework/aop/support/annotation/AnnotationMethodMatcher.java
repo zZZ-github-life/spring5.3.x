@@ -27,10 +27,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@link org.springframework.aop.MethodMatcher MethodMatcher} that looks
- * for a specific annotation being present on a method (checking both the method
- * on the invoked interface, if any, and the corresponding method on the target
- * class).
+ * 简单的 {@link org.springframework.aop.MethodMatcher MethodMatcher}，用于查找方法上是否存在指定的
+ * 注解（同时检查被调用接口上的方法（如果有）以及目标类上对应的方法）。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -45,7 +43,7 @@ public class AnnotationMethodMatcher extends StaticMethodMatcher {
 
 
 	/**
-	 * Create a new AnnotationClassFilter for the given annotation type.
+	 * 为给定的注解类型创建一个新的 AnnotationClassFilter。
 	 * @param annotationType the annotation type to look for
 	 */
 	public AnnotationMethodMatcher(Class<? extends Annotation> annotationType) {
@@ -53,7 +51,7 @@ public class AnnotationMethodMatcher extends StaticMethodMatcher {
 	}
 
 	/**
-	 * Create a new AnnotationClassFilter for the given annotation type.
+	 * 为给定的注解类型创建一个新的 AnnotationClassFilter。
 	 * @param annotationType the annotation type to look for
 	 * @param checkInherited whether to also check the superclasses and
 	 * interfaces as well as meta-annotations for the annotation type

@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Base class for {@link ServerResponse} implementations with error handling.
+ * 具有错误处理的 {@link ServerResponse} 实现的基类。
  * @author Arjen Poutsma
  * @since 5.3
  */

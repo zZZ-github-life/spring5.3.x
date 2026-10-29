@@ -34,8 +34,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * A factory delegate for resolving {@link MediaType} objects
- * from {@link Resource} handles or filenames.
+ * 用于从 {@link Resource} 句柄或文件名解析 {@link MediaType} 对象的工厂委托。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -53,14 +52,14 @@ public final class MediaTypeFactory {
 
 
 	/**
-	 * Parse the {@code mime.types} file found in the resources. Format is:
+	 * 解析资源中的 {@code mime.types} 文件。格式为：
 	 * <code>
-	 * # comments begin with a '#'<br>
-	 * # the format is &lt;mime type> &lt;space separated file extensions><br>
-	 * # for example:<br>
+	 * # 注释以 '#' 开头<br>
+	 * # 格式为 &lt;mime type> &lt;space separated file extensions><br>
+	 * # 例如：<br>
 	 * text/plain    txt text<br>
-	 * # this would map file.txt and file.text to<br>
-	 * # the mime type "text/plain"<br>
+	 * # 这会将 file.txt 和 file.text 映射到<br>
+	 * # MIME 类型 "text/plain"<br>
 	 * </code>
 	 * @return a multi-value map, mapping media types to file extensions.
 	 */
@@ -89,7 +88,7 @@ public final class MediaTypeFactory {
 	}
 
 	/**
-	 * Determine a media type for the given resource, if possible.
+	 * 如果可能，确定为给定资源确定的媒体类型。
 	 * @param resource the resource to introspect
 	 * @return the corresponding media type, or {@code null} if none found
 	 */
@@ -100,7 +99,7 @@ public final class MediaTypeFactory {
 	}
 
 	/**
-	 * Determine a media type for the given file name, if possible.
+	 * 如果可能，确定为给定文件名确定的媒体类型。
 	 * @param filename the file name plus extension
 	 * @return the corresponding media type, or {@code null} if none found
 	 */
@@ -109,7 +108,7 @@ public final class MediaTypeFactory {
 	}
 
 	/**
-	 * Determine the media types for the given file name, if possible.
+	 * 如果可能，确定为给定文件名确定的媒体类型列表。
 	 * @param filename the file name plus extension
 	 * @return the corresponding media types, or an empty list if none found
 	 */

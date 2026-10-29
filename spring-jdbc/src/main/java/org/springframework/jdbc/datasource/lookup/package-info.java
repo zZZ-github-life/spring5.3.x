@@ -1,5 +1,5 @@
 /**
- * Provides a strategy for looking up JDBC DataSources by name.
+ * 提供按名称查找 JDBC DataSource 的策略。
  */
 @NonNullApi
 @NonNullFields

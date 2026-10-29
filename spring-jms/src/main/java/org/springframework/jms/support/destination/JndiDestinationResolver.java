@@ -31,20 +31,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link DestinationResolver} implementation which interprets destination names
- * as JNDI locations (with a configurable fallback strategy).
+ * {@link DestinationResolver} 实现，将目的地名称解释为 JNDI 位置
+ * （并带有可配置的后备策略）。
  *
- * <p>Allows for customizing the JNDI environment if necessary, for example
- * specifying appropriate JNDI environment properties.
+ * <p>如有必要，允许自定义 JNDI 环境，例如指定适当的 JNDI 环境属性。
  *
- * <p>Dynamic queues and topics get cached by destination name. As a consequence,
- * you need to use unique destination names across both queues and topics.
- * Caching can be turned off through the {@link #setCache "cache"} flag.
+ * <p>动态队列和主题会按目的地名称进行缓存。因此，你需要确保队列和主题中的
+ * 目的地名称都是唯一的。可以通过 {@link #setCache "cache"} 标志关闭缓存。
  *
- * <p>Note that the fallback to resolution of dynamic destinations
- * is turned <i>off</i> by default. Switch the
- * {@link #setFallbackToDynamicDestination "fallbackToDynamicDestination"}
- * flag on to enable this functionality.
+ * <p>请注意，回退到动态目的地解析默认是<i>关闭</i>的。
+ * 打开 {@link #setFallbackToDynamicDestination "fallbackToDynamicDestination"}
+ * 标志即可启用此功能。
  *
  * @author Mark Pollack
  * @author Juergen Hoeller
@@ -66,22 +63,20 @@ public class JndiDestinationResolver extends JndiLocatorSupport implements Cachi
 
 
 	/**
-	 * Set whether to cache resolved destinations. Default is "true".
-	 * <p>This flag can be turned off to re-lookup a destination for each operation,
-	 * which allows for hot restarting of destinations. This is mainly useful
-	 * during development.
-	 * <p>Note that dynamic queues and topics get cached by destination name.
-	 * As a consequence, you need to use unique destination names across both
-	 * queues and topics.
+	 * 设置是否缓存已解析的目的地。默认值为 "true"。
+	 * <p>可以关闭此标志，使每次操作都重新查找目的地，
+	 * 从而支持目的地的热重启。这主要用于开发期间。
+	 * <p>请注意，动态队列和主题会按目的地名称进行缓存。
+	 * 因此，你需要确保队列和主题中的目的地名称都是唯一的。
 	 */
 	public void setCache(boolean cache) {
 		this.cache = cache;
 	}
 
 	/**
-	 * Set whether this resolver is supposed to create dynamic destinations
-	 * if the destination name is not found in JNDI. Default is "false".
-	 * <p>Turn this flag on to enable transparent fallback to dynamic destinations.
+	 * 设置此解析器在 JNDI 中找不到目的地名称时是否应创建动态目的地。
+	 * 默认值为 "false"。
+	 * <p>打开此标志可启用对动态目的地的透明回退。
 	 * @see #setDynamicDestinationResolver
 	 */
 	public void setFallbackToDynamicDestination(boolean fallbackToDynamicDestination) {
@@ -89,9 +84,8 @@ public class JndiDestinationResolver extends JndiLocatorSupport implements Cachi
 	}
 
 	/**
-	 * Set the {@link DestinationResolver} to use when falling back to dynamic
-	 * destinations.
-	 * <p>The default is Spring's standard {@link DynamicDestinationResolver}.
+	 * 设置回退到动态目的地时要使用的 {@link DestinationResolver}。
+	 * <p>默认是 Spring 标准的 {@link DynamicDestinationResolver}。
 	 * @see #setFallbackToDynamicDestination
 	 * @see DynamicDestinationResolver
 	 */
@@ -134,8 +128,7 @@ public class JndiDestinationResolver extends JndiLocatorSupport implements Cachi
 	}
 
 	/**
-	 * Validate the given Destination object, checking whether it matches
-	 * the expected type.
+	 * 校验给定的 Destination 对象，检查其是否与预期的类型匹配。
 	 * @param destination the Destination object to validate
 	 * @param destinationName the name of the destination
 	 * @param pubSubDomain {@code true} if a Topic is expected,

@@ -19,7 +19,7 @@ package org.springframework.oxm;
 import java.lang.reflect.Type;
 
 /**
- * Subinterface of {@link Marshaller} that has support for generics.
+ * {@link Marshaller} 的子接口，提供对泛型的支持。
  *
  * @author Arjen Poutsma
  * @since 3.0.1
@@ -27,7 +27,7 @@ import java.lang.reflect.Type;
 public interface GenericMarshaller extends Marshaller {
 
 	/**
-	 * Indicates whether this marshaller can marshal instances of the supplied generic type.
+	 * 指示此 marshaller 是否能够 marshal 所提供泛型类型的实例。
 	 * @param genericType the type that this marshaller is being asked if it can marshal
 	 * @return {@code true} if this marshaller can indeed marshal instances of the supplied type;
 	 * {@code false} otherwise

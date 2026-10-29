@@ -23,7 +23,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.invocation.reactive.HandlerMethodArgumentResolver;
 
 /**
- * No-op resolver for method arguments of type {@link kotlin.coroutines.Continuation}.
+ * 用于 {@link kotlin.coroutines.Continuation} 类型方法参数的空操作解析器。
  *
  * @author Sebastien Deleuze
  * @since 5.2

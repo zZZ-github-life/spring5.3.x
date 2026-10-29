@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Rendering-specific subtype of {@link ServerResponse} that exposes model and template data.
+ * {@link ServerResponse} 的渲染特定子类型，暴露模型和模板数据。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -36,12 +36,12 @@ import org.springframework.util.MultiValueMap;
 public interface RenderingResponse extends ServerResponse {
 
 	/**
-	 * Return the name of the template to be rendered.
+	 * 返回要渲染的模板名称。
 	 */
 	String name();
 
 	/**
-	 * Return the unmodifiable model map.
+	 * 返回不可修改的模型映射。
 	 */
 	Map<String, Object> model();
 
@@ -49,7 +49,7 @@ public interface RenderingResponse extends ServerResponse {
 	// Builder
 
 	/**
-	 * Create a builder with the template name, status code, headers and model of the given response.
+	 * 使用给定响应的模板名称、状态码、标头和模型创建构建器。
 	 * @param other the response to copy the values from
 	 * @return the created builder
 	 */
@@ -58,7 +58,7 @@ public interface RenderingResponse extends ServerResponse {
 	}
 
 	/**
-	 * Create a builder with the given template name.
+	 * 使用给定模板名称创建构建器。
 	 * @param name the name of the template to render
 	 * @return the created builder
 	 */
@@ -68,50 +68,48 @@ public interface RenderingResponse extends ServerResponse {
 
 
 	/**
-	 * Defines a builder for {@code RenderingResponse}.
+	 * 定义 {@code RenderingResponse} 的构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Add the supplied attribute to the model using a
-		 * {@linkplain org.springframework.core.Conventions#getVariableName generated name}.
-		 * <p><em>Note: Empty {@link Collection Collections} are not added to
-		 * the model when using this method because we cannot correctly determine
-		 * the true convention name. View code should check for {@code null} rather
-		 * than for empty collections.</em>
+		 * 使用
+		 * {@linkplain org.springframework.core.Conventions#getVariableName 生成的名称}
+		 * 将提供的属性添加到模型中。
+		 * <p><em>注意：使用此方法时，空的 {@link Collection Collections}
+		 * 不会被添加到模型中，因为无法正确确定真正的约定名称。
+		 * 视图代码应检查 {@code null}，而不是空集合。</em>
 		 * @param attribute the model attribute value (never {@code null})
 		 */
 		Builder modelAttribute(Object attribute);
 
 		/**
-		 * Add the supplied attribute value under the supplied name.
+		 * 在提供的名称下添加提供的属性值。
 		 * @param name the name of the model attribute (never {@code null})
 		 * @param value the model attribute value (can be {@code null})
 		 */
 		Builder modelAttribute(String name, @Nullable Object value);
 
 		/**
-		 * Copy all attributes in the supplied array into the model,
-		 * using attribute name generation for each element.
+		 * 将提供的数组中的所有属性复制到模型中，并为每个元素生成属性名称。
 		 * @see #modelAttribute(Object)
 		 */
 		Builder modelAttributes(Object... attributes);
 
 		/**
-		 * Copy all attributes in the supplied {@code Collection} into the model,
-		 * using attribute name generation for each element.
+		 * 将提供的 {@code Collection} 中的所有属性复制到模型中，并为每个元素生成属性名称。
 		 * @see #modelAttribute(Object)
 		 */
 		Builder modelAttributes(Collection<?> attributes);
 
 		/**
-		 * Copy all attributes in the supplied {@code Map} into the model.
+		 * 将提供的 {@code Map} 中的所有属性复制到模型中。
 		 * @see #modelAttribute(String, Object)
 		 */
 		Builder modelAttributes(Map<String, ?> attributes);
 
 		/**
-		 * Add the given header value(s) under the given name.
+		 * 在给定名称下添加给定的标头值。
 		 * @param headerName the header name
 		 * @param headerValues the header value(s)
 		 * @return this builder
@@ -120,50 +118,48 @@ public interface RenderingResponse extends ServerResponse {
 		Builder header(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate this response's headers with the given consumer. The
-		 * headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定消费者操作此响应的标头。提供给消费者的标头是"实时"的，
+		 * 因此消费者可以用它来{@linkplain HttpHeaders#set(String, String) 覆盖}现有标头值、
+		 * {@linkplain HttpHeaders#remove(Object) 移除}值，或使用任何其他
+		 * {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Set the HTTP status.
+		 * 设置 HTTP 状态。
 		 * @param status the response status
 		 * @return this builder
 		 */
 		Builder status(HttpStatus status);
 
 		/**
-		 * Set the HTTP status.
+		 * 设置 HTTP 状态。
 		 * @param status the response status
 		 * @return this builder
 		 */
 		Builder status(int status);
 
 		/**
-		 * Add the given cookie to the response.
+		 * 将给定 cookie 添加到响应中。
 		 * @param cookie the cookie to add
 		 * @return this builder
 		 */
 		Builder cookie(Cookie cookie);
 
 		/**
-		 * Manipulate this response's cookies with the given consumer. The
-		 * cookies provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
-		 * {@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
-		 * {@link MultiValueMap} methods.
+		 * 使用给定消费者操作此响应的 cookie。提供给消费者的 cookie 是"实时"的，
+		 * 因此消费者可以用它来{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、
+		 * {@linkplain MultiValueMap#remove(Object) 移除}cookie，或使用任何其他
+		 * {@link MultiValueMap} 方法。
 		 * @param cookiesConsumer a function that consumes the cookies
 		 * @return this builder
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, Cookie>> cookiesConsumer);
 
 		/**
-		 * Build the response.
+		 * 构建响应。
 		 * @return the built response
 		 */
 		RenderingResponse build();

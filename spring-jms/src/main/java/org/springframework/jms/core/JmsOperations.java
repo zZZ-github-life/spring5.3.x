@@ -24,17 +24,15 @@ import org.springframework.jms.JmsException;
 import org.springframework.lang.Nullable;
 
 /**
- * Specifies a basic set of JMS operations.
+ * 指定一组基本的 JMS 操作。
  *
- * <p>Implemented by {@link JmsTemplate}. Not often used but a useful option
- * to enhance testability, as it can easily be mocked or stubbed.
+ * <p>由 {@link JmsTemplate} 实现。不常使用，但作为增强可测试性的选项很有用，
+ * 因为它很容易被 mock 或 stub。
  *
- * <p>Provides {@code JmsTemplate's} {@code send(..)} and
- * {@code receive(..)} methods that mirror various JMS API methods.
- * See the JMS specification and javadocs for details on those methods.
+ * <p>提供 {@code JmsTemplate} 的 {@code send(..)} 和 {@code receive(..)} 方法，
+ * 对应各种 JMS API 方法。有关这些方法的详细信息，请参阅 JMS 规范和 javadoc。
  *
- * <p>Provides also basic request reply operation using a temporary
- * queue to collect the reply.
+ * <p>还提供使用临时队列收集回复的基本请求-回复操作。
  *
  * @author Mark Pollack
  * @author Juergen Hoeller
@@ -49,7 +47,7 @@ import org.springframework.lang.Nullable;
 public interface JmsOperations {
 
 	/**
-	 * Execute the action specified by the given action object within a JMS Session.
+	 * 在 JMS Session 中执行由给定操作对象指定的操作。
 	 * @param action callback object that exposes the session
 	 * @return the result object from working with the session
 	 * @throws JmsException if there is any problem
@@ -58,9 +56,8 @@ public interface JmsOperations {
 	<T> T execute(SessionCallback<T> action) throws JmsException;
 
 	/**
-	 * Send messages to the default JMS destination (or one specified
-	 * for each send operation). The callback gives access to the JMS Session
-	 * and MessageProducer in order to perform complex send operations.
+	 * 向默认 JMS 目标（或为每次发送操作指定的目标）发送消息。回调提供对
+	 * JMS Session 和 MessageProducer 的访问，以执行复杂的发送操作。
 	 * @param action callback object that exposes the session/producer pair
 	 * @return the result object from working with the session
 	 * @throws JmsException checked JMSException converted to unchecked
@@ -69,8 +66,8 @@ public interface JmsOperations {
 	<T> T execute(ProducerCallback<T> action) throws JmsException;
 
 	/**
-	 * Send messages to a JMS destination. The callback gives access to the JMS Session
-	 * and MessageProducer in order to perform complex send operations.
+	 * 向 JMS 目标发送消息。回调提供对 JMS Session 和 MessageProducer 的访问，
+	 * 以执行复杂的发送操作。
 	 * @param destination the destination to send messages to
 	 * @param action callback object that exposes the session/producer pair
 	 * @return the result object from working with the session
@@ -80,8 +77,8 @@ public interface JmsOperations {
 	<T> T execute(Destination destination, ProducerCallback<T> action) throws JmsException;
 
 	/**
-	 * Send messages to a JMS destination. The callback gives access to the JMS Session
-	 * and MessageProducer in order to perform complex send operations.
+	 * 向 JMS 目标发送消息。回调提供对 JMS Session 和 MessageProducer 的访问，
+	 * 以执行复杂的发送操作。
 	 * @param destinationName the name of the destination to send messages to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param action callback object that exposes the session/producer pair
@@ -97,16 +94,16 @@ public interface JmsOperations {
 	//---------------------------------------------------------------------------------------
 
 	/**
-	 * Send a message to the default destination.
-	 * <p>This will only work with a default destination specified!
+	 * 向默认目标发送消息。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @param messageCreator callback to create a message
 	 * @throws JmsException checked JMSException converted to unchecked
 	 */
 	void send(MessageCreator messageCreator) throws JmsException;
 
 	/**
-	 * Send a message to the specified destination.
-	 * The MessageCreator callback creates the message given a Session.
+	 * 向指定的目标发送消息。
+	 * MessageCreator 回调根据 Session 创建消息。
 	 * @param destination the destination to send this message to
 	 * @param messageCreator callback to create a message
 	 * @throws JmsException checked JMSException converted to unchecked
@@ -114,8 +111,8 @@ public interface JmsOperations {
 	void send(Destination destination, MessageCreator messageCreator) throws JmsException;
 
 	/**
-	 * Send a message to the specified destination.
-	 * The MessageCreator callback creates the message given a Session.
+	 * 向指定的目标发送消息。
+	 * MessageCreator 回调根据 Session 创建消息。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param messageCreator callback to create a message
@@ -129,17 +126,17 @@ public interface JmsOperations {
 	//---------------------------------------------------------------------------------------
 
 	/**
-	 * Send the given object to the default destination, converting the object
-	 * to a JMS message with a configured MessageConverter.
-	 * <p>This will only work with a default destination specified!
+	 * 将给定对象发送到默认目标，并使用配置的 MessageConverter 将对象转换为
+	 * JMS 消息。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @param message the object to convert to a message
 	 * @throws JmsException converted checked JMSException to unchecked
 	 */
 	void convertAndSend(Object message) throws JmsException;
 
 	/**
-	 * Send the given object to the specified destination, converting the object
-	 * to a JMS message with a configured MessageConverter.
+	 * 将给定对象发送到指定的目标，并使用配置的 MessageConverter 将对象转换为
+	 * JMS 消息。
 	 * @param destination the destination to send this message to
 	 * @param message the object to convert to a message
 	 * @throws JmsException converted checked JMSException to unchecked
@@ -147,8 +144,8 @@ public interface JmsOperations {
 	void convertAndSend(Destination destination, Object message) throws JmsException;
 
 	/**
-	 * Send the given object to the specified destination, converting the object
-	 * to a JMS message with a configured MessageConverter.
+	 * 将给定对象发送到指定的目标，并使用配置的 MessageConverter 将对象转换为
+	 * JMS 消息。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param message the object to convert to a message
@@ -157,10 +154,9 @@ public interface JmsOperations {
 	void convertAndSend(String destinationName, Object message) throws JmsException;
 
 	/**
-	 * Send the given object to the default destination, converting the object
-	 * to a JMS message with a configured MessageConverter. The MessagePostProcessor
-	 * callback allows for modification of the message after conversion.
-	 * <p>This will only work with a default destination specified!
+	 * 将给定对象发送到默认目标，并使用配置的 MessageConverter 将对象转换为
+	 * JMS 消息。MessagePostProcessor 回调允许在转换后修改消息。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @param message the object to convert to a message
 	 * @param postProcessor the callback to modify the message
 	 * @throws JmsException checked JMSException converted to unchecked
@@ -169,9 +165,8 @@ public interface JmsOperations {
 		throws JmsException;
 
 	/**
-	 * Send the given object to the specified destination, converting the object
-	 * to a JMS message with a configured MessageConverter. The MessagePostProcessor
-	 * callback allows for modification of the message after conversion.
+	 * 将给定对象发送到指定的目标，并使用配置的 MessageConverter 将对象转换为
+	 * JMS 消息。MessagePostProcessor 回调允许在转换后修改消息。
 	 * @param destination the destination to send this message to
 	 * @param message the object to convert to a message
 	 * @param postProcessor the callback to modify the message
@@ -181,9 +176,8 @@ public interface JmsOperations {
 		throws JmsException;
 
 	/**
-	 * Send the given object to the specified destination, converting the object
-	 * to a JMS message with a configured MessageConverter. The MessagePostProcessor
-	 * callback allows for modification of the message after conversion.
+	 * 将给定对象发送到指定的目标，并使用配置的 MessageConverter 将对象转换为
+	 * JMS 消息。MessagePostProcessor 回调允许在转换后修改消息。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param message the object to convert to a message.
@@ -199,11 +193,9 @@ public interface JmsOperations {
 	//---------------------------------------------------------------------------------------
 
 	/**
-	 * Receive a message synchronously from the default destination, but only
-	 * wait up to a specified time for delivery.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
-	 * <p>This will only work with a default destination specified!
+	 * 从默认目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @return the message received by the consumer, or {@code null} if the timeout expires
 	 * @throws JmsException checked JMSException converted to unchecked
 	 */
@@ -211,10 +203,8 @@ public interface JmsOperations {
 	Message receive() throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destination the destination to receive a message from
 	 * @return the message received by the consumer, or {@code null} if the timeout expires
 	 * @throws JmsException checked JMSException converted to unchecked
@@ -223,10 +213,8 @@ public interface JmsOperations {
 	Message receive(Destination destination) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @return the message received by the consumer, or {@code null} if the timeout expires
@@ -236,11 +224,9 @@ public interface JmsOperations {
 	Message receive(String destinationName) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the default destination, but only
-	 * wait up to a specified time for delivery.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
-	 * <p>This will only work with a default destination specified!
+	 * 从默认目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
 	 * See the JMS specification for a detailed definition of selector expressions.
 	 * @return the message received by the consumer, or {@code null} if the timeout expires
@@ -250,10 +236,8 @@ public interface JmsOperations {
 	Message receiveSelected(String messageSelector) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destination the destination to receive a message from
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
 	 * See the JMS specification for a detailed definition of selector expressions.
@@ -264,10 +248,8 @@ public interface JmsOperations {
 	Message receiveSelected(Destination destination, String messageSelector) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
@@ -284,12 +266,9 @@ public interface JmsOperations {
 	//---------------------------------------------------------------------------------------
 
 	/**
-	 * Receive a message synchronously from the default destination, but only
-	 * wait up to a specified time for delivery. Convert the message into an
-	 * object with a configured MessageConverter.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
-	 * <p>This will only work with a default destination specified!
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @return the message produced for the consumer or {@code null} if the timeout expires.
 	 * @throws JmsException checked JMSException converted to unchecked
 	 */
@@ -297,11 +276,9 @@ public interface JmsOperations {
 	Object receiveAndConvert() throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery. Convert the message into an
-	 * object with a configured MessageConverter.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。使用配置的
+	 * MessageConverter 将消息转换为对象。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destination the destination to receive a message from
 	 * @return the message produced for the consumer or {@code null} if the timeout expires.
 	 * @throws JmsException checked JMSException converted to unchecked
@@ -310,11 +287,9 @@ public interface JmsOperations {
 	Object receiveAndConvert(Destination destination) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery. Convert the message into an
-	 * object with a configured MessageConverter.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。使用配置的
+	 * MessageConverter 将消息转换为对象。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @return the message produced for the consumer or {@code null} if the timeout expires.
@@ -324,12 +299,9 @@ public interface JmsOperations {
 	Object receiveAndConvert(String destinationName) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the default destination, but only
-	 * wait up to a specified time for delivery. Convert the message into an
-	 * object with a configured MessageConverter.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
-	 * <p>This will only work with a default destination specified!
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
 	 * See the JMS specification for a detailed definition of selector expressions.
 	 * @return the message produced for the consumer or {@code null} if the timeout expires.
@@ -339,11 +311,9 @@ public interface JmsOperations {
 	Object receiveSelectedAndConvert(String messageSelector) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery. Convert the message into an
-	 * object with a configured MessageConverter.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。使用配置的
+	 * MessageConverter 将消息转换为对象。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destination the destination to receive a message from
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
 	 * See the JMS specification for a detailed definition of selector expressions.
@@ -354,11 +324,9 @@ public interface JmsOperations {
 	Object receiveSelectedAndConvert(Destination destination, String messageSelector) throws JmsException;
 
 	/**
-	 * Receive a message synchronously from the specified destination, but only
-	 * wait up to a specified time for delivery. Convert the message into an
-	 * object with a configured MessageConverter.
-	 * <p>This method should be used carefully, since it will block the thread
-	 * until the message becomes available or until the timeout value is exceeded.
+	 * 从指定的目标同步接收消息，但最多只等待指定的时间。使用配置的
+	 * MessageConverter 将消息转换为对象。
+	 * <p>应谨慎使用此方法，因为它将阻塞线程，直到消息可用或超过超时值。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
@@ -375,11 +343,10 @@ public interface JmsOperations {
 	//---------------------------------------------------------------------------------------
 
 	/**
-	 * Send a request message and receive the reply from a default destination. The
-	 * {@link MessageCreator} callback creates the message given a Session. A temporary
-	 * queue is created as part of this operation and is set in the {@code JMSReplyTO}
-	 * header of the message.
-	 * <p>This will only work with a default destination specified!
+	 * 发送请求消息并从默认目标接收回复。{@link MessageCreator} 回调根据
+	 * Session 创建消息。此操作会创建临时队列，并将其设置到消息的
+	 * {@code JMSReplyTO} 头中。
+	 * <p>这仅在指定了默认目标时有效！
 	 * @param messageCreator callback to create a request message
 	 * @return the reply, possibly {@code null} if the message could not be received,
 	 * for example due to a timeout
@@ -390,10 +357,9 @@ public interface JmsOperations {
 	Message sendAndReceive(MessageCreator messageCreator) throws JmsException;
 
 	/**
-	 * Send a message and receive the reply from the specified destination. The
-	 * {@link MessageCreator} callback creates the message given a Session. A temporary
-	 * queue is created as part of this operation and is set in the {@code JMSReplyTO}
-	 * header of the message.
+	 * 发送消息并从指定的目标接收回复。{@link MessageCreator} 回调根据
+	 * Session 创建消息。此操作会创建临时队列，并将其设置到消息的
+	 * {@code JMSReplyTO} 头中。
 	 * @param destination the destination to send this message to
 	 * @param messageCreator callback to create a message
 	 * @return the reply, possibly {@code null} if the message could not be received,
@@ -405,10 +371,9 @@ public interface JmsOperations {
 	Message sendAndReceive(Destination destination, MessageCreator messageCreator) throws JmsException;
 
 	/**
-	 * Send a message and receive the reply from the specified destination. The
-	 * {@link MessageCreator} callback creates the message given a Session. A temporary
-	 * queue is created as part of this operation and is set in the {@code JMSReplyTO}
-	 * header of the message.
+	 * 发送消息并从指定的目标接收回复。{@link MessageCreator} 回调根据
+	 * Session 创建消息。此操作会创建临时队列，并将其设置到消息的
+	 * {@code JMSReplyTO} 头中。
 	 * @param destinationName the name of the destination to send this message to
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param messageCreator callback to create a message
@@ -426,8 +391,8 @@ public interface JmsOperations {
 	//---------------------------------------------------------------------------------------
 
 	/**
-	 * Browse messages in the default JMS queue. The callback gives access to the JMS
-	 * Session and QueueBrowser in order to browse the queue and react to the contents.
+	 * 浏览默认 JMS 队列中的消息。回调提供对 JMS Session 和 QueueBrowser 的访问，
+	 * 以浏览队列并对内容做出响应。
 	 * @param action callback object that exposes the session/browser pair
 	 * @return the result object from working with the session
 	 * @throws JmsException checked JMSException converted to unchecked
@@ -436,8 +401,8 @@ public interface JmsOperations {
 	<T> T browse(BrowserCallback<T> action) throws JmsException;
 
 	/**
-	 * Browse messages in a JMS queue. The callback gives access to the JMS Session
-	 * and QueueBrowser in order to browse the queue and react to the contents.
+	 * 浏览 JMS 队列中的消息。回调提供对 JMS Session 和 QueueBrowser 的访问，
+	 * 以浏览队列并对内容做出响应。
 	 * @param queue the queue to browse
 	 * @param action callback object that exposes the session/browser pair
 	 * @return the result object from working with the session
@@ -447,8 +412,8 @@ public interface JmsOperations {
 	<T> T browse(Queue queue, BrowserCallback<T> action) throws JmsException;
 
 	/**
-	 * Browse messages in a JMS queue. The callback gives access to the JMS Session
-	 * and QueueBrowser in order to browse the queue and react to the contents.
+	 * 浏览 JMS 队列中的消息。回调提供对 JMS Session 和 QueueBrowser 的访问，
+	 * 以浏览队列并对内容做出响应。
 	 * @param queueName the name of the queue to browse
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param action callback object that exposes the session/browser pair
@@ -459,8 +424,8 @@ public interface JmsOperations {
 	<T> T browse(String queueName, BrowserCallback<T> action) throws JmsException;
 
 	/**
-	 * Browse selected messages in a JMS queue. The callback gives access to the JMS
-	 * Session and QueueBrowser in order to browse the queue and react to the contents.
+	 * 浏览 JMS 队列中选定的消息。回调提供对 JMS Session 和 QueueBrowser 的访问，
+	 * 以浏览队列并对内容做出响应。
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
 	 * See the JMS specification for a detailed definition of selector expressions.
 	 * @param action callback object that exposes the session/browser pair
@@ -471,8 +436,8 @@ public interface JmsOperations {
 	<T> T browseSelected(String messageSelector, BrowserCallback<T> action) throws JmsException;
 
 	/**
-	 * Browse selected messages in a JMS queue. The callback gives access to the JMS
-	 * Session and QueueBrowser in order to browse the queue and react to the contents.
+	 * 浏览 JMS 队列中选定的消息。回调提供对 JMS Session 和 QueueBrowser 的访问，
+	 * 以浏览队列并对内容做出响应。
 	 * @param queue the queue to browse
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).
 	 * See the JMS specification for a detailed definition of selector expressions.
@@ -484,8 +449,8 @@ public interface JmsOperations {
 	<T> T browseSelected(Queue queue, String messageSelector, BrowserCallback<T> action) throws JmsException;
 
 	/**
-	 * Browse selected messages in a JMS queue. The callback gives access to the JMS
-	 * Session and QueueBrowser in order to browse the queue and react to the contents.
+	 * 浏览 JMS 队列中选定的消息。回调提供对 JMS Session 和 QueueBrowser 的访问，
+	 * 以浏览队列并对内容做出响应。
 	 * @param queueName the name of the queue to browse
 	 * (to be resolved to an actual destination by a DestinationResolver)
 	 * @param messageSelector the JMS message selector expression (or {@code null} if none).

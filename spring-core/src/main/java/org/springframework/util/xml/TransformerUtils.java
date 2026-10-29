@@ -22,8 +22,8 @@ import javax.xml.transform.Transformer;
 import org.springframework.util.Assert;
 
 /**
- * Contains common behavior relating to {@link javax.xml.transform.Transformer Transformers}
- * and the {@code javax.xml.transform} package in general.
+ * 包含与 {@link javax.xml.transform.Transformer Transformers}
+ * 以及 {@code javax.xml.transform} 包相关的通用行为。
  *
  * @author Rick Evans
  * @author Juergen Hoeller
@@ -32,16 +32,16 @@ import org.springframework.util.Assert;
 public abstract class TransformerUtils {
 
 	/**
-	 * The indent amount of characters if {@link #enableIndenting indenting is enabled}.
-	 * <p>Defaults to "2".
+	 * 启用缩进时缩进字符的数量。
+	 * <p>默认为 "2"。
 	 */
 	public static final int DEFAULT_INDENT_AMOUNT = 2;
 
 
 	/**
-	 * Enable indenting for the supplied {@link javax.xml.transform.Transformer}.
-	 * <p>If the underlying XSLT engine is Xalan, then the special output key {@code indent-amount}
-	 * will be also be set to a value of {@link #DEFAULT_INDENT_AMOUNT} characters.
+	 * 为提供的 {@link javax.xml.transform.Transformer} 启用缩进。
+	 * <p>如果底层 XSLT 引擎是 Xalan，则特殊输出键 {@code indent-amount}
+	 * 也将设置为 {@link #DEFAULT_INDENT_AMOUNT} 个字符的值。
 	 * @param transformer the target transformer
 	 * @see javax.xml.transform.Transformer#setOutputProperty(String, String)
 	 * @see javax.xml.transform.OutputKeys#INDENT
@@ -51,9 +51,9 @@ public abstract class TransformerUtils {
 	}
 
 	/**
-	 * Enable indenting for the supplied {@link javax.xml.transform.Transformer}.
-	 * <p>If the underlying XSLT engine is Xalan, then the special output key {@code indent-amount}
-	 * will be also be set to a value of {@link #DEFAULT_INDENT_AMOUNT} characters.
+	 * 为提供的 {@link javax.xml.transform.Transformer} 启用缩进。
+	 * <p>如果底层 XSLT 引擎是 Xalan，则特殊输出键 {@code indent-amount}
+	 * 也将设置为 {@link #DEFAULT_INDENT_AMOUNT} 个字符的值。
 	 * @param transformer the target transformer
 	 * @param indentAmount the size of the indent (2 characters, 3 characters, etc)
 	 * @see javax.xml.transform.Transformer#setOutputProperty(String, String)
@@ -74,7 +74,7 @@ public abstract class TransformerUtils {
 	}
 
 	/**
-	 * Disable indenting for the supplied {@link javax.xml.transform.Transformer}.
+	 * 为提供的 {@link javax.xml.transform.Transformer} 禁用缩进。
 	 * @param transformer the target transformer
 	 * @see javax.xml.transform.OutputKeys#INDENT
 	 */

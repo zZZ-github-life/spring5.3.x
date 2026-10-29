@@ -35,8 +35,8 @@ import org.springframework.util.SimpleRouteMatcher;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link MessageCondition} to match the destination header of a Message
- * against one or more patterns through a {@link RouteMatcher}.
+ * {@link MessageCondition}，用于通过 {@link RouteMatcher} 将 Message 的目标头
+ * 与一个或多个模式进行匹配。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -45,7 +45,7 @@ public class DestinationPatternsMessageCondition
 		extends AbstractMessageCondition<DestinationPatternsMessageCondition> {
 
 	/**
-	 * The name of the "lookup destination" header.
+	 * “查找目标”头的名称。
 	 */
 	public static final String LOOKUP_DESTINATION_HEADER = "lookupDestination";
 
@@ -56,9 +56,8 @@ public class DestinationPatternsMessageCondition
 
 
 	/**
-	 * Constructor with patterns only. Creates and uses an instance of
-	 * {@link AntPathMatcher} with default settings.
-	 * <p>Non-empty patterns that don't start with "/" are prepended with "/".
+	 * 仅使用模式的构造函数。创建并使用默认设置的 {@link AntPathMatcher} 实例。
+	 * <p>不以 "/" 开头的非空模式会前置 "/"。
 	 * @param patterns the URL patterns to match to, or if 0 then always match
 	 */
 	public DestinationPatternsMessageCondition(String... patterns) {
@@ -66,7 +65,7 @@ public class DestinationPatternsMessageCondition
 	}
 
 	/**
-	 * Constructor with patterns and a {@code PathMatcher} instance.
+	 * 使用模式和 {@code PathMatcher} 实例的构造函数。
 	 * @param patterns the URL patterns to match to, or if 0 then always match
 	 * @param matcher the {@code PathMatcher} to use
 	 */
@@ -75,7 +74,7 @@ public class DestinationPatternsMessageCondition
 	}
 
 	/**
-	 * Constructor with patterns and a {@code RouteMatcher} instance.
+	 * 使用模式和 {@code RouteMatcher} 实例的构造函数。
 	 * @param patterns the URL patterns to match to, or if 0 then always match
 	 * @param routeMatcher the {@code RouteMatcher} to use
 	 * @since 5.2
@@ -119,13 +118,14 @@ public class DestinationPatternsMessageCondition
 
 
 	/**
-	 * Returns a new instance with URL patterns from the current instance ("this") and
-	 * the "other" instance as follows:
+	 * 返回一个新实例，其中的 URL 模式由当前实例（“this”）和“other”实例
+	 * 按如下方式合并：
 	 * <ul>
-	 * <li>If there are patterns in both instances, combine the patterns in "this" with
-	 * the patterns in "other" using {@link org.springframework.util.PathMatcher#combine(String, String)}.
-	 * <li>If only one instance has patterns, use them.
-	 * <li>If neither instance has patterns, use an empty String (i.e. "").
+	 * <li>如果两个实例都有模式，使用
+	 * {@link org.springframework.util.PathMatcher#combine(String, String)}
+	 * 将“this”中的模式与“other”中的模式合并。
+	 * <li>如果只有一个实例有模式，则使用它们。
+	 * <li>如果两个实例都没有模式，则使用空字符串（即 ""）。
 	 * </ul>
 	 */
 	@Override
@@ -151,9 +151,9 @@ public class DestinationPatternsMessageCondition
 	}
 
 	/**
-	 * Check if any of the patterns match the given Message destination and return an instance
-	 * that is guaranteed to contain matching patterns, sorted via
-	 * {@link org.springframework.util.PathMatcher#getPatternComparator(String)}.
+	 * 检查是否有任何模式与给定 Message 的目标匹配，并返回一个保证包含匹配模式的实例，
+	 * 这些模式通过 {@link org.springframework.util.PathMatcher#getPatternComparator(String)}
+	 * 排序。
 	 * @param message the message to match to
 	 * @return the same instance if the condition contains no patterns;
 	 * or a new condition with sorted matching patterns;
@@ -200,14 +200,12 @@ public class DestinationPatternsMessageCondition
 	}
 
 	/**
-	 * Compare the two conditions based on the destination patterns they contain.
-	 * Patterns are compared one at a time, from top to bottom via
-	 * {@link org.springframework.util.PathMatcher#getPatternComparator(String)}.
-	 * If all compared patterns match equally, but one instance has more patterns,
-	 * it is considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(Message)} to ensure they contain only patterns
-	 * that match the request and are sorted with the best matches on top.
+	 * 根据两个条件包含的目标模式进行比较。
+	 * 模式通过 {@link org.springframework.util.PathMatcher#getPatternComparator(String)}
+	 * 从上到下逐个比较。如果所有比较的模式都同样匹配，但其中一个实例拥有更多模式，
+	 * 则认为它更接近匹配。
+	 * <p>假定两个实例都是通过 {@link #getMatchingCondition(Message)} 获取的，
+	 * 以确保它们只包含与请求匹配的模式，并按最佳匹配在前的顺序排序。
 	 */
 	@Override
 	public int compareTo(DestinationPatternsMessageCondition other, Message<?> message) {

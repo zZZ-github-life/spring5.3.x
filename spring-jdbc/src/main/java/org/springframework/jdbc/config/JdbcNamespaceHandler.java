@@ -20,7 +20,7 @@ import org.springframework.beans.factory.xml.NamespaceHandler;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
- * {@link NamespaceHandler} for JDBC configuration namespace.
+ * JDBC配置命名空间的{@link NamespaceHandler}。
  * @author Oliver Gierke
  * @author Dave Syer
  */

@@ -27,13 +27,11 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * Errors wrapper that adds automatic HTML escaping to the wrapped instance,
- * for convenient usage in HTML views. Can be retrieved easily via
- * RequestContext's {@code getErrors} method.
+ * Errors 包装器，为被包装的实例添加自动 HTML 转义，便于在 HTML 视图中使用。
+ * 可通过 RequestContext 的 {@code getErrors} 方法轻松获取。
  *
- * <p>Note that BindTag does <i>not</i> use this class to avoid unnecessary
- * creation of ObjectError instances. It just escapes the messages and values
- * that get copied into the respective BindStatus instance.
+ * <p>请注意，BindTag <i>不</i>使用此类，以避免不必要地创建 ObjectError 实例。
+ * 它只是对复制到相应 BindStatus 实例中的消息和值进行转义。
  *
  * @author Juergen Hoeller
  * @since 01.03.2003
@@ -46,7 +44,7 @@ public class EscapedErrors implements Errors {
 
 
 	/**
-	 * Create a new EscapedErrors instance for the given source instance.
+	 * 为给定的源实例创建一个新的 EscapedErrors 实例。
 	 */
 	public EscapedErrors(Errors source) {
 		Assert.notNull(source, "Errors source must not be null");

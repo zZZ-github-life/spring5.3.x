@@ -24,16 +24,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @TestPropertySources} is a container for one or more
- * {@link TestPropertySource @TestPropertySource} declarations.
- *
- * <p>Note, however, that use of the {@code @TestPropertySources} container is
- * completely optional since {@code @TestPropertySource} is a
- * {@linkplain java.lang.annotation.Repeatable repeatable} annotation.
- *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link NestedTestConfiguration @NestedTestConfiguration} for details.
+ * {@code @TestPropertySources} 是一个或多个 {@link TestPropertySource @TestPropertySource} 声明的容器。
+ * <p>但请注意，由于 {@code @TestPropertySource} 是{@linkplain java.lang.annotation.Repeatable 可重复}注解，因此 {@code @TestPropertySources} 容器的使用完全是可选的。
+ * <p>从 Spring Framework 5.3 开始，此注解默认会从封闭测试类继承。有关详情，请参见 {@link NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Anatoliy Korovin
  * @author Sam Brannen
@@ -46,8 +39,8 @@ import java.lang.annotation.Target;
 public @interface TestPropertySources {
 
 	/**
-	 * An array of one or more {@link TestPropertySource @TestPropertySource}
-	 * declarations.
+	 * 一个或多个 {@link TestPropertySource @TestPropertySource} 声明的数组。
+	 *
 	 */
 	TestPropertySource[] value();
 

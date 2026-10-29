@@ -29,11 +29,9 @@ import static org.springframework.test.util.AssertionErrors.assertNotNull;
 import static org.springframework.test.util.AssertionErrors.assertNull;
 
 /**
- * Factory for response cookie assertions.
+ * 响应 cookie 断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockMvcResultMatchers#cookie}.
- *
+ * <p>此类的实例通常通过 {@link MockMvcResultMatchers#cookie} 访问。
  * @author Rossen Stoyanchev
  * @author Thomas Bruyelle
  * @since 3.2
@@ -41,15 +39,15 @@ import static org.springframework.test.util.AssertionErrors.assertNull;
 public class CookieResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * Use {@link MockMvcResultMatchers#cookie()}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockMvcResultMatchers#cookie()}。
 	 */
 	protected CookieResultMatchers() {
 	}
 
 
 	/**
-	 * Assert a cookie value with the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 cookie 值。
 	 */
 	public ResultMatcher value(String name, Matcher<? super String> matcher) {
 		return result -> {
@@ -59,7 +57,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie value.
+	 * 断言 cookie 值。
 	 */
 	public ResultMatcher value(String name, String expectedValue) {
 		return result -> {
@@ -69,16 +67,16 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie exists. The existence check is irrespective of whether
-	 * max age is 0 (i.e. expired).
+	 * 断言某个 cookie 存在。存在性检查与 max age 是否为 0
+	 * （即是否已过期）无关。
 	 */
 	public ResultMatcher exists(String name) {
 		return result -> getCookie(result, name);
 	}
 
 	/**
-	 * Assert a cookie does not exist. Note that the existence check is
-	 * irrespective of whether max age is 0, i.e. expired.
+	 * 断言某个 cookie 不存在。请注意，存在性检查与 max age 是否为 0
+	 * （即已过期）无关。
 	 */
 	public ResultMatcher doesNotExist(String name) {
 		return result -> {
@@ -88,7 +86,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's maxAge with a Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 cookie 的 maxAge。
 	 */
 	public ResultMatcher maxAge(String name, Matcher<? super Integer> matcher) {
 		return result -> {
@@ -98,7 +96,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's maxAge.
+	 * 断言 cookie 的 maxAge。
 	 */
 	public ResultMatcher maxAge(String name, int maxAge) {
 		return result -> {
@@ -108,7 +106,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's path with a Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 cookie 的路径。
 	 */
 	public ResultMatcher path(String name, Matcher<? super String> matcher) {
 		return result -> {
@@ -118,7 +116,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's path.
+	 * 断言 cookie 的路径。
 	 */
 	public ResultMatcher path(String name, String path) {
 		return result -> {
@@ -128,7 +126,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's domain with a Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 cookie 的域。
 	 */
 	public ResultMatcher domain(String name, Matcher<? super String> matcher) {
 		return result -> {
@@ -138,7 +136,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's domain.
+	 * 断言 cookie 的域。
 	 */
 	public ResultMatcher domain(String name, String domain) {
 		return result -> {
@@ -148,7 +146,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's comment with a Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 cookie 的注释。
 	 */
 	public ResultMatcher comment(String name, Matcher<? super String> matcher) {
 		return result -> {
@@ -158,7 +156,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's comment.
+	 * 断言 cookie 的注释。
 	 */
 	public ResultMatcher comment(String name, String comment) {
 		return result -> {
@@ -168,7 +166,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's version with a Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 cookie 的版本。
 	 */
 	public ResultMatcher version(String name, Matcher<? super Integer> matcher) {
 		return result -> {
@@ -178,7 +176,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert a cookie's version.
+	 * 断言 cookie 的版本。
 	 */
 	public ResultMatcher version(String name, int version) {
 		return result -> {
@@ -188,7 +186,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert whether the cookie must be sent over a secure protocol or not.
+	 * 断言 cookie 是否必须通过安全协议发送。
 	 */
 	public ResultMatcher secure(String name, boolean secure) {
 		return result -> {
@@ -198,7 +196,7 @@ public class CookieResultMatchers {
 	}
 
 	/**
-	 * Assert whether the cookie must be HTTP only.
+	 * 断言 cookie 是否必须仅限 HTTP。
 	 * @since 4.3.9
 	 */
 	public ResultMatcher httpOnly(String name, boolean httpOnly) {

@@ -19,9 +19,8 @@ package org.springframework.web.bind;
 import org.springframework.core.MethodParameter;
 
 /**
- * {@link ServletRequestBindingException} subclass that indicates
- * that a request cookie expected in the method parameters of an
- * {@code @RequestMapping} method is not present.
+ * {@link ServletRequestBindingException} 的子类，表示
+ * {@code @RequestMapping} 方法参数中所期望的请求 Cookie 不存在。
  *
  * @author Juergen Hoeller
  * @since 5.1
@@ -36,7 +35,7 @@ public class MissingRequestCookieException extends MissingRequestValueException 
 
 
 	/**
-	 * Constructor for MissingRequestCookieException.
+	 * MissingRequestCookieException 的构造函数。
 	 * @param cookieName the name of the missing request cookie
 	 * @param parameter the method parameter
 	 */
@@ -45,7 +44,7 @@ public class MissingRequestCookieException extends MissingRequestValueException 
 	}
 
 	/**
-	 * Constructor for use when a value was present but converted to {@code null}.
+	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
 	 * @param cookieName the name of the missing request cookie
 	 * @param parameter the method parameter
 	 * @param missingAfterConversion whether the value became null after conversion
@@ -68,14 +67,14 @@ public class MissingRequestCookieException extends MissingRequestValueException 
 	}
 
 	/**
-	 * Return the expected name of the request cookie.
+	 * 返回请求 Cookie 的预期名称。
 	 */
 	public final String getCookieName() {
 		return this.cookieName;
 	}
 
 	/**
-	 * Return the method parameter bound to the request cookie.
+	 * 返回绑定到该请求 Cookie 的方法参数。
 	 */
 	public final MethodParameter getParameter() {
 		return this.parameter;

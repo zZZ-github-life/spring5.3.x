@@ -17,13 +17,11 @@
 package org.springframework.aop;
 
 /**
- * Superinterface for advisors that perform one or more AOP <b>introductions</b>.
+ * 执行一个或多个 AOP <b>引入</b>的 Advisor 的父接口。
  *
- * <p>This interface cannot be implemented directly; subinterfaces must
- * provide the advice type implementing the introduction.
+ * <p>此接口不能直接实现；子接口必须提供实现引入的通知类型。
  *
- * <p>Introduction is the implementation of additional interfaces
- * (not implemented by a target) via AOP advice.
+ * <p>引入是通过 AOP 通知实现额外的接口（目标未实现的接口）。
  *
  * @author Rod Johnson
  * @since 04.04.2003
@@ -32,17 +30,15 @@ package org.springframework.aop;
 public interface IntroductionAdvisor extends Advisor, IntroductionInfo {
 
 	/**
-	 * Return the filter determining which target classes this introduction
-	 * should apply to.
-	 * <p>This represents the class part of a pointcut. Note that method
-	 * matching doesn't make sense to introductions.
+	 * 返回确定此引入应应用于哪些目标类的过滤器。
+	 * <p>这表示切点的类部分。请注意，方法匹配对引入没有意义。
 	 * @return the class filter
 	 */
 	ClassFilter getClassFilter();
 
 	/**
-	 * Can the advised interfaces be implemented by the introduction advice?
-	 * Invoked before adding an IntroductionAdvisor.
+	 * 被通知的接口能否由引入通知实现？
+	 * 在添加 IntroductionAdvisor 之前调用。
 	 * @throws IllegalArgumentException if the advised interfaces can't be
 	 * implemented by the introduction advice
 	 */

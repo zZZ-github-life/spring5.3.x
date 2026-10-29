@@ -28,28 +28,26 @@
 package org.springframework.asm;
 
 /**
- * A visitor to visit a Java class. The methods of this class must be called in the following order:
- * {@code visit} [ {@code visitSource} ] [ {@code visitModule} ][ {@code visitNestHost} ][ {@code
- * visitOuterClass} ] ( {@code visitAnnotation} | {@code visitTypeAnnotation} | {@code
- * visitAttribute} )* ( {@code visitNestMember} | [ {@code * visitPermittedSubclass} ] | {@code
- * visitInnerClass} | {@code visitRecordComponent} | {@code visitField} | {@code visitMethod} )*
- * {@code visitEnd}.
+ * 用于访问 Java 类的访问器。此类的方法必须按以下顺序调用：{@code visit} [ {@code visitSource} ] [
+ * {@code visitModule} ][ {@code visitNestHost} ][ {@code visitOuterClass} ] (
+ * {@code visitAnnotation} | {@code visitTypeAnnotation} | {@code visitAttribute} )* (
+ * {@code visitNestMember} | [ {@code * visitPermittedSubclass} ] | {@code visitInnerClass} |
+ * {@code visitRecordComponent} | {@code visitField} | {@code visitMethod} )* {@code visitEnd}。
  *
  * @author Eric Bruneton
  */
 public abstract class ClassVisitor {
 
   /**
-   * The ASM API version implemented by this visitor. The value of this field must be one of the
-   * {@code ASM}<i>x</i> values in {@link Opcodes}.
+   * 此访问器实现的 ASM API 版本。此字段的值必须是 {@link Opcodes} 中的某个 {@code ASM}<i>x</i> 值。
    */
   protected final int api;
 
-  /** The class visitor to which this visitor must delegate method calls. May be {@literal null}. */
+  /** 此访问器必须将方法调用委托给的类访问器。可能为 {@literal null}。 */
   protected ClassVisitor cv;
 
   /**
-   * Constructs a new {@link ClassVisitor}.
+   * 构造一个新的 {@link ClassVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of the {@code
    *     ASM}<i>x</i> values in {@link Opcodes}.
@@ -59,7 +57,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Constructs a new {@link ClassVisitor}.
+   * 构造一个新的 {@link ClassVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of the {@code
    *     ASM}<i>x</i> values in {@link Opcodes}.
@@ -82,7 +80,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * The class visitor to which this visitor must delegate method calls. May be {@literal null}.
+   * 此访问器必须将方法调用委托给它的类访问器。可以为 {@literal null}。
    *
    * @return the class visitor to which this visitor must delegate method calls, or {@literal null}.
    */
@@ -91,7 +89,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits the header of the class.
+   * 访问类的头部。
    *
    * @param version the class version. The minor version is stored in the 16 most significant bits,
    *     and the major version in the 16 least significant bits.
@@ -123,7 +121,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits the source of the class.
+   * 访问类的源信息。
    *
    * @param source the name of the source file from which the class was compiled. May be {@literal
    *     null}.
@@ -137,7 +135,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visit the module corresponding to the class.
+   * 访问与此类对应的模块。
    *
    * @param name the fully qualified name (using dots) of the module.
    * @param access the module access flags, among {@code ACC_OPEN}, {@code ACC_SYNTHETIC} and {@code
@@ -157,12 +155,10 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits the nest host class of the class. A nest is a set of classes of the same package that
-   * share access to their private members. One of these classes, called the host, lists the other
-   * members of the nest, which in turn should link to the host of their nest. This method must be
-   * called only once and only if the visited class is a non-host member of a nest. A class is
-   * implicitly its own nest, so it's invalid to call this method with the visited class name as
-   * argument.
+   * 访问类的嵌套宿主类。嵌套（nest）是一组同包的类，它们相互共享对私有成员的访问权限。其中一个类称为
+   * 宿主，它列出嵌套的其他成员，而这些成员又应链接到它们所属嵌套的宿主。此方法只能调用一次，且仅当被
+   * 访问的类是某个嵌套的非宿主成员时才调用。类隐式地就是自身的嵌套，因此以被访问类的名称作为参数调用
+   * 此方法是无效的。
    *
    * @param nestHost the internal name of the host class of the nest (see {@link
    *     Type#getInternalName()}).
@@ -177,8 +173,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits the enclosing class of the class. This method must be called only if this class is a
-   * local or anonymous class. See the JVMS 4.7.7 section for more details.
+   * 访问此类的封闭类。仅当此类是局部类或匿名类时才必须调用此方法。更多细节请参见 JVMS 4.7.7 节。
    *
    * @param owner internal name of the enclosing class of the class (see {@link
    *     Type#getInternalName()}).
@@ -198,7 +193,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits an annotation of the class.
+   * 访问类的一个注解。
    *
    * @param descriptor the class descriptor of the annotation class.
    * @param visible {@literal true} if the annotation is visible at runtime.
@@ -213,7 +208,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits an annotation on a type in the class signature.
+   * 访问类签名中某个类型上的注解。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#CLASS_TYPE_PARAMETER}, {@link
@@ -239,7 +234,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits a non standard attribute of the class.
+   * 访问类的一个非标准属性。
    *
    * @param attribute an attribute.
    */
@@ -250,11 +245,10 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits a member of the nest. A nest is a set of classes of the same package that share access
-   * to their private members. One of these classes, called the host, lists the other members of the
-   * nest, which in turn should link to the host of their nest. This method must be called only if
-   * the visited class is the host of a nest. A nest host is implicitly a member of its own nest, so
-   * it's invalid to call this method with the visited class name as argument.
+   * 访问嵌套的一个成员。嵌套（nest）是一组同包的类，它们相互共享对私有成员的访问权限。其中一个类称为
+   * 宿主，它列出嵌套的其他成员，而这些成员又应链接到它们所属嵌套的宿主。仅当被访问的类是某个嵌套的宿
+   * 主时才必须调用此方法。嵌套宿主隐式地就是其自身嵌套的成员，因此以被访问类的名称作为参数调用此方法
+   * 是无效的。
    *
    * @param nestMember the internal name of a nest member (see {@link Type#getInternalName()}).
    */
@@ -268,8 +262,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits a permitted subclasses. A permitted subclass is one of the allowed subclasses of the
-   * current class.
+   * 访问允许的子类。允许的子类是当前类所允许的子类之一。
    *
    * @param permittedSubclass the internal name of a permitted subclass (see {@link
    *     Type#getInternalName()}).
@@ -284,11 +277,9 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits information about an inner class. This inner class is not necessarily a member of the
-   * class being visited. More precisely, every class or interface C which is referenced by this
-   * class and which is not a package member must be visited with this method. This class must
-   * reference its nested class or interface members, and its enclosing class, if any. See the JVMS
-   * 4.7.6 section for more details.
+   * 访问关于内部类的信息。此内部类不一定是被访问类的成员。更确切地说，被此类引用且不是包成员的每个类
+   * 或接口 C 都必须用此方法访问。此类必须引用其嵌套类或接口成员，以及其封闭类（如果有）。更多细节请
+   * 参见 JVMS 4.7.6 节。
    *
    * @param name the internal name of C (see {@link Type#getInternalName()}).
    * @param outerName the internal name of the class or interface C is a member of (see {@link
@@ -306,7 +297,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits a record component of the class.
+   * 访问类的一个记录组件。
    *
    * @param name the record component name.
    * @param descriptor the record component descriptor (see {@link Type}).
@@ -327,7 +318,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits a field of the class.
+   * 访问类的一个字段。
    *
    * @param access the field's access flags (see {@link Opcodes}). This parameter also indicates if
    *     the field is synthetic and/or deprecated.
@@ -357,9 +348,8 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits a method of the class. This method <i>must</i> return a new {@link MethodVisitor}
-   * instance (or {@literal null}) each time it is called, i.e., it should not return a previously
-   * returned visitor.
+   * 访问类的一个方法。此方法在每次被调用时<i>必须</i>返回一个新的 {@link MethodVisitor} 实例（或
+   * {@literal null}），即它不应返回之前返回过的访问器。
    *
    * @param access the method's access flags (see {@link Opcodes}). This parameter also indicates if
    *     the method is synthetic and/or deprecated.
@@ -385,8 +375,7 @@ public abstract class ClassVisitor {
   }
 
   /**
-   * Visits the end of the class. This method, which is the last one to be called, is used to inform
-   * the visitor that all the fields and methods of the class have been visited.
+   * 访问类的结尾。此方法是最后被调用的方法，用于通知访问器类的所有字段和方法都已访问完毕。
    */
   public void visitEnd() {
     if (cv != null) {

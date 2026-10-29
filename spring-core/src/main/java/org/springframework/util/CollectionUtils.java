@@ -33,8 +33,7 @@ import java.util.SortedSet;
 import org.springframework.lang.Nullable;
 
 /**
- * Miscellaneous collection utility methods.
- * Mainly for internal use within the framework.
+ * 杂项集合工具方法。主要供框架内部使用。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -44,7 +43,7 @@ import org.springframework.lang.Nullable;
 public abstract class CollectionUtils {
 
 	/**
-	 * Default load factor for {@link HashMap}/{@link LinkedHashMap} variants.
+	 * 用于 {@link HashMap}/{@link LinkedHashMap} 变体的默认负载因子。
 	 * @see #newHashMap(int)
 	 * @see #newLinkedHashMap(int)
 	 */
@@ -52,8 +51,7 @@ public abstract class CollectionUtils {
 
 
 	/**
-	 * Return {@code true} if the supplied Collection is {@code null} or empty.
-	 * Otherwise, return {@code false}.
+	 * 如果所提供的 Collection 为 {@code null} 或为空，则返回 {@code true}。否则返回 {@code false}。
 	 * @param collection the Collection to check
 	 * @return whether the given Collection is empty
 	 */
@@ -62,8 +60,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Return {@code true} if the supplied Map is {@code null} or empty.
-	 * Otherwise, return {@code false}.
+	 * 如果所提供的 Map 为 {@code null} 或为空，则返回 {@code true}。否则返回 {@code false}。
 	 * @param map the Map to check
 	 * @return whether the given Map is empty
 	 */
@@ -72,13 +69,10 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Instantiate a new {@link HashMap} with an initial capacity
-	 * that can accommodate the specified number of elements without
-	 * any immediate resize/rehash operations to be expected.
-	 * <p>This differs from the regular {@link HashMap} constructor
-	 * which takes an initial capacity relative to a load factor
-	 * but is effectively aligned with the JDK's
-	 * {@link java.util.concurrent.ConcurrentHashMap#ConcurrentHashMap(int)}.
+	 * 创建一个具有初始容量的新 {@link HashMap}，该容量可容纳指定数量的元素，而不会立即触发扩容/重新哈
+	 * 希操作。
+	 * <p>这与常规的 {@link HashMap} 构造方法不同，后者接受的是相对于负载因子的初始容量，但在效果上与
+	 * JDK 的 {@link java.util.concurrent.ConcurrentHashMap#ConcurrentHashMap(int)} 保持一致。
 	 * @param expectedSize the expected number of elements (with a corresponding
 	 * capacity to be derived so that no resize/rehash operations are needed)
 	 * @since 5.3
@@ -89,13 +83,11 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Instantiate a new {@link LinkedHashMap} with an initial capacity
-	 * that can accommodate the specified number of elements without
-	 * any immediate resize/rehash operations to be expected.
-	 * <p>This differs from the regular {@link LinkedHashMap} constructor
-	 * which takes an initial capacity relative to a load factor but is
-	 * aligned with Spring's own {@link LinkedCaseInsensitiveMap} and
-	 * {@link LinkedMultiValueMap} constructor semantics as of 5.3.
+	 * 创建一个具有初始容量的新 {@link LinkedHashMap}，该容量可容纳指定数量的元素，而不会立即触发扩容/
+	 * 重新哈希操作。
+	 * <p>这与常规的 {@link LinkedHashMap} 构造方法不同，后者接受相对于负载因子的初始容量，但从 5.3 起
+	 * 与 Spring 自身的 {@link LinkedCaseInsensitiveMap} 和 {@link LinkedMultiValueMap} 构造方法语义保
+	 * 持一致。
 	 * @param expectedSize the expected number of elements (with a corresponding
 	 * capacity to be derived so that no resize/rehash operations are needed)
 	 * @since 5.3
@@ -110,12 +102,10 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Convert the supplied array into a List. A primitive array gets converted
-	 * into a List of the appropriate wrapper type.
-	 * <p><b>NOTE:</b> Generally prefer the standard {@link Arrays#asList} method.
-	 * This {@code arrayToList} method is just meant to deal with an incoming Object
-	 * value that might be an {@code Object[]} or a primitive array at runtime.
-	 * <p>A {@code null} source value will be converted to an empty List.
+	 * 将所提供的数组转换为 List。基本类型数组会被转换为相应包装器类型的 List。
+	 * <p><b>NOTE:</b> 通常应优先使用标准的 {@link Arrays#asList} 方法。这里的 {@code arrayToList} 方法
+	 * 只是用于处理运行时可能是 {@code Object[]} 或基本类型数组的传入 Object 值。
+	 * <p>{@code null} 源值将被转换为空 List。
 	 * @param source the (potentially primitive) array
 	 * @return the converted List result
 	 * @see ObjectUtils#toObjectArray(Object)
@@ -126,7 +116,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Merge the given array into the given Collection.
+	 * 将给定数组合并到给定 Collection 中。
 	 * @param array the array to merge (may be {@code null})
 	 * @param collection the target Collection to merge the array into
 	 */
@@ -139,10 +129,8 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Merge the given Properties instance into the given Map,
-	 * copying all properties (key-value pairs) over.
-	 * <p>Uses {@code Properties.propertyNames()} to even catch
-	 * default properties linked into the original Properties instance.
+	 * 将给定的 Properties 实例合并到给定 Map 中，复制所有属性（键值对）。
+	 * <p>使用 {@code Properties.propertyNames()}，以便也能捕获链接到原始 Properties 实例中的默认属性。
 	 * @param props the Properties instance to merge (may be {@code null})
 	 * @param map the target Map to merge the properties into
 	 */
@@ -163,7 +151,7 @@ public abstract class CollectionUtils {
 
 
 	/**
-	 * Check whether the given Iterator contains the given element.
+	 * 检查给定 Iterator 是否包含给定元素。
 	 * @param iterator the Iterator to check
 	 * @param element the element to look for
 	 * @return {@code true} if found, {@code false} otherwise
@@ -181,7 +169,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Check whether the given Enumeration contains the given element.
+	 * 检查给定 Enumeration 是否包含给定元素。
 	 * @param enumeration the Enumeration to check
 	 * @param element the element to look for
 	 * @return {@code true} if found, {@code false} otherwise
@@ -199,9 +187,8 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Check whether the given Collection contains the given element instance.
-	 * <p>Enforces the given instance to be present, rather than returning
-	 * {@code true} for an equal element as well.
+	 * 检查给定 Collection 是否包含给定的元素实例。
+	 * <p>强制要求存在的是给定实例，而不是对相等的元素也返回 {@code true}。
 	 * @param collection the Collection to check
 	 * @param element the element to look for
 	 * @return {@code true} if found, {@code false} otherwise
@@ -218,8 +205,8 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Return {@code true} if any element in '{@code candidates}' is
-	 * contained in '{@code source}'; otherwise returns {@code false}.
+	 * 如果 '{@code candidates}' 中的任一元素包含在 '{@code source}' 中，则返回 {@code true}；否则返回
+	 * {@code false}。
 	 * @param source the source Collection
 	 * @param candidates the candidates to search for
 	 * @return whether any of the candidates has been found
@@ -229,10 +216,9 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Return the first element in '{@code candidates}' that is contained in
-	 * '{@code source}'. If no element in '{@code candidates}' is present in
-	 * '{@code source}' returns {@code null}. Iteration order is
-	 * {@link Collection} implementation specific.
+	 * 返回 '{@code candidates}' 中第一个包含在 '{@code source}' 中的元素。如果 '{@code candidates}' 中
+	 * 没有元素存在于 '{@code source}' 中，则返回 {@code null}。迭代顺序取决于 {@link Collection} 的具
+	 * 体实现。
 	 * @param source the source Collection
 	 * @param candidates the candidates to search for
 	 * @return the first present object, or {@code null} if not found
@@ -252,7 +238,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Find a single value of the given type in the given Collection.
+	 * 在给定 Collection 中查找给定类型的单个值。
 	 * @param collection the Collection to search
 	 * @param type the type to look for
 	 * @return a value of the given type found if there is a clear match,
@@ -278,9 +264,8 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Find a single value of one of the given types in the given Collection:
-	 * searching the Collection for a value of the first type, then
-	 * searching for a value of the second type, etc.
+	 * 在给定 Collection 中查找给定类型之一的单个值：先在 Collection 中搜索第一个类型的值，再搜索第二个
+	 * 类型的值，依此类推。
 	 * @param collection the collection to search
 	 * @param types the types to look for, in prioritized order
 	 * @return a value of one of the given types found if there is a clear match,
@@ -301,7 +286,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Determine whether the given Collection only contains a single unique object.
+	 * 判断给定 Collection 是否只包含一个唯一的对象。
 	 * @param collection the Collection to check
 	 * @return {@code true} if the collection contains a single reference or
 	 * multiple references to the same instance, {@code false} otherwise
@@ -325,7 +310,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Find the common element type of the given Collection, if any.
+	 * 查找给定 Collection 的公共元素类型（如果有）。
 	 * @param collection the Collection to check
 	 * @return the common element type, or {@code null} if no clear
 	 * common type has been found (or the collection was empty)
@@ -350,8 +335,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Retrieve the first element of the given Set, using {@link SortedSet#first()}
-	 * or otherwise using the iterator.
+	 * 检索给定 Set 的第一个元素，使用 {@link SortedSet#first()}，否则使用迭代器。
 	 * @param set the Set to check (may be {@code null} or empty)
 	 * @return the first element, or {@code null} if none
 	 * @since 5.2.3
@@ -377,7 +361,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Retrieve the first element of the given List, accessing the zero index.
+	 * 检索给定 List 的第一个元素，即访问索引 0 处的元素。
 	 * @param list the List to check (may be {@code null} or empty)
 	 * @return the first element, or {@code null} if none
 	 * @since 5.2.3
@@ -391,8 +375,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Retrieve the last element of the given Set, using {@link SortedSet#last()}
-	 * or otherwise iterating over all elements (assuming a linked set).
+	 * 检索给定 Set 的最后一个元素，使用 {@link SortedSet#last()}，否则遍历所有元素（假定是链式 Set）。
 	 * @param set the Set to check (may be {@code null} or empty)
 	 * @return the last element, or {@code null} if none
 	 * @since 5.0.3
@@ -419,7 +402,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Retrieve the last element of the given List, accessing the highest index.
+	 * 检索给定 List 的最后一个元素，即访问最大索引处的元素。
 	 * @param list the List to check (may be {@code null} or empty)
 	 * @return the last element, or {@code null} if none
 	 * @since 5.0.3
@@ -433,9 +416,8 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Marshal the elements from the given enumeration into an array of the given type.
-	 * Enumeration elements must be assignable to the type of the given array. The array
-	 * returned will be a different instance than the array given.
+	 * 将给定枚举中的元素编组为给定类型的数组。枚举元素必须可赋值给给定数组的类型。返回的数组将是与给定
+	 * 数组不同的实例。
 	 */
 	public static <A, E extends A> A[] toArray(Enumeration<E> enumeration, A[] array) {
 		ArrayList<A> elements = new ArrayList<>();
@@ -446,7 +428,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Adapt an {@link Enumeration} to an {@link Iterator}.
+	 * 将 {@link Enumeration} 适配为 {@link Iterator}。
 	 * @param enumeration the original {@code Enumeration}
 	 * @return the adapted {@code Iterator}
 	 */
@@ -455,7 +437,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Adapt a {@code Map<K, List<V>>} to an {@code MultiValueMap<K, V>}.
+	 * 将 {@code Map<K, List<V>>} 适配为 {@code MultiValueMap<K, V>}。
 	 * @param targetMap the original map
 	 * @return the adapted multi-value map (wrapping the original map)
 	 * @since 3.1
@@ -465,7 +447,7 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Return an unmodifiable view of the specified multi-value map.
+	 * 返回指定多值映射的不可修改视图。
 	 * @param targetMap the map for which an unmodifiable view is to be returned.
 	 * @return an unmodifiable view of the specified multi-value map
 	 * @since 3.1
@@ -486,7 +468,7 @@ public abstract class CollectionUtils {
 
 
 	/**
-	 * Iterator wrapping an Enumeration.
+	 * 包装 Enumeration 的 Iterator。
 	 */
 	private static class EnumerationIterator<E> implements Iterator<E> {
 

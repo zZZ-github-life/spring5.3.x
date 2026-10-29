@@ -25,12 +25,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
- * A variant of {@link ObjectFactory} designed specifically for injection points,
- * allowing for programmatic optionality and lenient not-unique handling.
+ * 专为注入点设计的 {@link ObjectFactory} 变体，支持以编程方式表达可选性以及对非唯一情况的宽松处理。
  *
- * <p>As of 5.1, this interface extends {@link Iterable} and provides {@link Stream}
- * support. It can be therefore be used in {@code for} loops, provides {@link #forEach}
- * iteration and allows for collection-style {@link #stream} access.
+ *
+ * <p>从 5.1 开始，该接口继承 {@link Iterable} 并提供 {@link Stream} 支持。因此它可用于 {@code for}
+ * 循环，提供 {@link #forEach} 迭代，并允许以集合风格通过 {@link #stream} 访问。
  *
  * @author Juergen Hoeller
  * @since 4.3
@@ -41,10 +40,8 @@ import org.springframework.lang.Nullable;
 public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 
 	/**
-	 * Return an instance (possibly shared or independent) of the object
-	 * managed by this factory.
-	 * <p>Allows for specifying explicit construction arguments, along the
-	 * lines of {@link BeanFactory#getBean(String, Object...)}.
+	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
+	 * <p>允许像 {@link BeanFactory#getBean(String, Object...)} 那样指定显式的构造参数。
 	 * @param args arguments to use when creating a corresponding instance
 	 * @return an instance of the bean
 	 * @throws BeansException in case of creation errors
@@ -53,8 +50,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	T getObject(Object... args) throws BeansException;
 
 	/**
-	 * Return an instance (possibly shared or independent) of the object
-	 * managed by this factory.
+	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * @return an instance of the bean, or {@code null} if not available
 	 * @throws BeansException in case of creation errors
 	 * @see #getObject()
@@ -63,8 +59,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	T getIfAvailable() throws BeansException;
 
 	/**
-	 * Return an instance (possibly shared or independent) of the object
-	 * managed by this factory.
+	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * @param defaultSupplier a callback for supplying a default object
 	 * if none is present in the factory
 	 * @return an instance of the bean, or the supplied default object
@@ -79,8 +74,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
-	 * Consume an instance (possibly shared or independent) of the object
-	 * managed by this factory, if available.
+	 * 如果可用，消费此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * @param dependencyConsumer a callback for processing the target object
 	 * if available (not called otherwise)
 	 * @throws BeansException in case of creation errors
@@ -95,8 +89,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
-	 * Return an instance (possibly shared or independent) of the object
-	 * managed by this factory.
+	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * @return an instance of the bean, or {@code null} if not available or
 	 * not unique (i.e. multiple candidates found with none marked as primary)
 	 * @throws BeansException in case of creation errors
@@ -106,8 +99,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	T getIfUnique() throws BeansException;
 
 	/**
-	 * Return an instance (possibly shared or independent) of the object
-	 * managed by this factory.
+	 * 返回此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * @param defaultSupplier a callback for supplying a default object
 	 * if no unique candidate is present in the factory
 	 * @return an instance of the bean, or the supplied default object
@@ -123,8 +115,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
-	 * Consume an instance (possibly shared or independent) of the object
-	 * managed by this factory, if unique.
+	 * 如果唯一，消费此工厂所管理对象的一个实例（可能是共享的，也可能是独立的）。
 	 * @param dependencyConsumer a callback for processing the target object
 	 * if unique (not called otherwise)
 	 * @throws BeansException in case of creation errors
@@ -139,8 +130,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
-	 * Return an {@link Iterator} over all matching object instances,
-	 * without specific ordering guarantees (but typically in registration order).
+	 * 返回遍历所有匹配对象实例的 {@link Iterator}，不保证特定顺序（但通常按注册顺序）。
 	 * @since 5.1
 	 * @see #stream()
 	 */
@@ -150,8 +140,7 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
-	 * Return a sequential {@link Stream} over all matching object instances,
-	 * without specific ordering guarantees (but typically in registration order).
+	 * 返回遍历所有匹配对象实例的顺序 {@link Stream}，不保证特定顺序（但通常按注册顺序）。
 	 * @since 5.1
 	 * @see #iterator()
 	 * @see #orderedStream()
@@ -161,13 +150,10 @@ public interface ObjectProvider<T> extends ObjectFactory<T>, Iterable<T> {
 	}
 
 	/**
-	 * Return a sequential {@link Stream} over all matching object instances,
-	 * pre-ordered according to the factory's common order comparator.
-	 * <p>In a standard Spring application context, this will be ordered
-	 * according to {@link org.springframework.core.Ordered} conventions,
-	 * and in case of annotation-based configuration also considering the
-	 * {@link org.springframework.core.annotation.Order} annotation,
-	 * analogous to multi-element injection points of list/array type.
+	 * 返回遍历所有匹配对象实例的顺序 {@link Stream}，并按工厂的通用顺序比较器预先排序。
+	 * <p>在标准的 Spring 应用上下文中，将按照 {@link org.springframework.core.Ordered} 约定排序；对于
+	 * 基于注解的配置，还会考虑 {@link org.springframework.core.annotation.Order} 注解，这与 list/array
+	 * 类型的多元素注入点类似。
 	 * @since 5.1
 	 * @see #stream()
 	 * @see org.springframework.core.OrderComparator

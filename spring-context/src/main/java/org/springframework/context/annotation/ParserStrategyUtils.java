@@ -34,8 +34,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Common delegate code for the handling of parser strategies, e.g.
- * {@code TypeFilter}, {@code ImportSelector}, {@code ImportBeanDefinitionRegistrar}
+ * 用于处理解析器策略的公共委托代码，例如 {@code TypeFilter}、{@code ImportSelector}、
+ * {@code ImportBeanDefinitionRegistrar}
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
@@ -44,11 +44,9 @@ import org.springframework.util.Assert;
 abstract class ParserStrategyUtils {
 
 	/**
-	 * Instantiate a class using an appropriate constructor and return the new
-	 * instance as the specified assignable type. The returned instance will
-	 * have {@link BeanClassLoaderAware}, {@link BeanFactoryAware},
-	 * {@link EnvironmentAware}, and {@link ResourceLoaderAware} contracts
-	 * invoked if they are implemented by the given object.
+	 * 使用合适的构造器实例化类，并以指定的可赋值类型返回新实例。如果给定对象实现了
+	 * {@link BeanClassLoaderAware}、{@link BeanFactoryAware}、{@link EnvironmentAware} 和
+	 * {@link ResourceLoaderAware} 契约，则会在返回的实例上调用这些契约。
 	 * @since 5.2
 	 */
 	@SuppressWarnings("unchecked")

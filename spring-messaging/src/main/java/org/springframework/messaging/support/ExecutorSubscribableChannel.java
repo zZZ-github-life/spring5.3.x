@@ -28,7 +28,7 @@ import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.SubscribableChannel;
 
 /**
- * A {@link SubscribableChannel} that sends messages to each of its subscribers.
+ * 将消息发送给其每个订阅者的 {@link SubscribableChannel}。
  *
  * @author Phillip Webb
  * @author Rossen Stoyanchev
@@ -43,16 +43,16 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 
 
 	/**
-	 * Create a new {@link ExecutorSubscribableChannel} instance
-	 * where messages will be sent in the callers thread.
+	 * 创建一个新的 {@link ExecutorSubscribableChannel} 实例，
+	 * 消息将在调用方线程中发送。
 	 */
 	public ExecutorSubscribableChannel() {
 		this(null);
 	}
 
 	/**
-	 * Create a new {@link ExecutorSubscribableChannel} instance
-	 * where messages will be sent via the specified executor.
+	 * 创建一个新的 {@link ExecutorSubscribableChannel} 实例，
+	 * 消息将通过指定的执行器发送。
 	 * @param executor the executor used to send the message,
 	 * or {@code null} to execute in the callers thread.
 	 */
@@ -108,7 +108,7 @@ public class ExecutorSubscribableChannel extends AbstractSubscribableChannel {
 
 
 	/**
-	 * Invoke a MessageHandler with ExecutorChannelInterceptors.
+	 * 使用 ExecutorChannelInterceptors 调用 MessageHandler。
 	 */
 	private class SendTask implements MessageHandlingRunnable {
 

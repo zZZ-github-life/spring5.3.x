@@ -29,26 +29,25 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Implementation of {@link ResponseErrorHandler} that uses {@link HttpMessageConverter
- * HttpMessageConverters} to convert HTTP error responses to {@link RestClientException
- * RestClientExceptions}.
+ * {@link ResponseErrorHandler} 的实现，使用 {@link HttpMessageConverter
+ * HttpMessageConverters} 将 HTTP 错误响应转换为 {@link RestClientException
+ * RestClientExceptions}。
  *
- * <p>To use this error handler, you must specify a
- * {@linkplain #setStatusMapping(Map) status mapping} and/or a
- * {@linkplain #setSeriesMapping(Map) series mapping}. If either of these mappings has a match
- * for the {@linkplain ClientHttpResponse#getStatusCode() status code} of a given
- * {@code ClientHttpResponse}, {@link #hasError(ClientHttpResponse)} will return
- * {@code true}, and {@link #handleError(ClientHttpResponse)} will attempt to use the
- * {@linkplain #setMessageConverters(List) configured message converters} to convert the response
- * into the mapped subclass of {@link RestClientException}. Note that the
- * {@linkplain #setStatusMapping(Map) status mapping} takes precedence over
- * {@linkplain #setSeriesMapping(Map) series mapping}.
+ * <p>要使用此错误处理器，必须指定 {@linkplain #setStatusMapping(Map) 状态映射}
+ * 和/或 {@linkplain #setSeriesMapping(Map) 系列映射}。如果其中任一映射与给定
+ * {@code ClientHttpResponse} 的 {@linkplain ClientHttpResponse#getStatusCode() 状态码}
+ * 匹配，{@link #hasError(ClientHttpResponse)} 将返回 {@code true}，
+ * {@link #handleError(ClientHttpResponse)} 将尝试使用
+ * {@linkplain #setMessageConverters(List) 配置的消息转换器} 将响应转换为
+ * 映射的 {@link RestClientException} 子类。请注意，
+ * {@linkplain #setStatusMapping(Map) 状态映射} 优先于
+ * {@linkplain #setSeriesMapping(Map) 系列映射}。
  *
- * <p>If there is no match, this error handler will default to the behavior of
- * {@link DefaultResponseErrorHandler}. Note that you can override this default behavior
- * by specifying a {@linkplain #setSeriesMapping(Map) series mapping} from
- * {@code HttpStatus.Series#CLIENT_ERROR} and/or {@code HttpStatus.Series#SERVER_ERROR}
- * to {@code null}.
+ * <p>如果没有匹配项，此错误处理器将默认采用
+ * {@link DefaultResponseErrorHandler} 的行为。请注意，可以通过指定从
+ * {@code HttpStatus.Series#CLIENT_ERROR} 和/或 {@code HttpStatus.Series#SERVER_ERROR}
+ * 到 {@code null} 的 {@linkplain #setSeriesMapping(Map) 系列映射}
+ * 来覆盖此默认行为。
  *
  * @author Simon Galperin
  * @author Arjen Poutsma
@@ -65,15 +64,15 @@ public class ExtractingResponseErrorHandler extends DefaultResponseErrorHandler 
 
 
 	/**
-	 * Create a new, empty {@code ExtractingResponseErrorHandler}.
-	 * <p>Note that {@link #setMessageConverters(List)} must be called when using this constructor.
+	 * 创建一个新的空 {@code ExtractingResponseErrorHandler}。
+	 * <p>请注意，使用此构造函数时必须调用 {@link #setMessageConverters(List)}。
 	 */
 	public ExtractingResponseErrorHandler() {
 	}
 
 	/**
-	 * Create a new {@code ExtractingResponseErrorHandler} with the given
-	 * {@link HttpMessageConverter} instances.
+	 * 使用给定的 {@link HttpMessageConverter} 实例创建一个新的
+	 * {@code ExtractingResponseErrorHandler}。
 	 * @param messageConverters the message converters to use
 	 */
 	public ExtractingResponseErrorHandler(List<HttpMessageConverter<?>> messageConverters) {
@@ -82,20 +81,20 @@ public class ExtractingResponseErrorHandler extends DefaultResponseErrorHandler 
 
 
 	/**
-	 * Set the message converters to use by this extractor.
+	 * 设置此提取器要使用的消息转换器。
 	 */
 	public void setMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		this.messageConverters = messageConverters;
 	}
 
 	/**
-	 * Set the mapping from HTTP status code to {@code RestClientException} subclass.
-	 * If this mapping has a match
-	 * for the {@linkplain ClientHttpResponse#getStatusCode() status code} of a given
-	 * {@code ClientHttpResponse}, {@link #hasError(ClientHttpResponse)} will return
-	 * {@code true} and {@link #handleError(ClientHttpResponse)} will attempt to use the
-	 * {@linkplain #setMessageConverters(List) configured message converters} to convert the
-	 * response into the mapped subclass of {@link RestClientException}.
+	 * 设置从 HTTP 状态码到 {@code RestClientException} 子类的映射。
+	 * 如果此映射与给定 {@code ClientHttpResponse} 的
+	 * {@linkplain ClientHttpResponse#getStatusCode() 状态码} 匹配，
+	 * {@link #hasError(ClientHttpResponse)} 将返回 {@code true}，
+	 * {@link #handleError(ClientHttpResponse)} 将尝试使用
+	 * {@linkplain #setMessageConverters(List) 配置的消息转换器}
+	 * 将响应转换为映射的 {@link RestClientException} 子类。
 	 */
 	public void setStatusMapping(Map<HttpStatus, Class<? extends RestClientException>> statusMapping) {
 		if (!CollectionUtils.isEmpty(statusMapping)) {
@@ -104,13 +103,13 @@ public class ExtractingResponseErrorHandler extends DefaultResponseErrorHandler 
 	}
 
 	/**
-	 * Set the mapping from HTTP status series to {@code RestClientException} subclass.
-	 * If this mapping has a match
-	 * for the {@linkplain ClientHttpResponse#getStatusCode() status code} of a given
-	 * {@code ClientHttpResponse}, {@link #hasError(ClientHttpResponse)} will return
-	 * {@code true} and {@link #handleError(ClientHttpResponse)} will attempt to use the
-	 * {@linkplain #setMessageConverters(List) configured message converters} to convert the
-	 * response into the mapped subclass of {@link RestClientException}.
+	 * 设置从 HTTP 状态系列到 {@code RestClientException} 子类的映射。
+	 * 如果此映射与给定 {@code ClientHttpResponse} 的
+	 * {@linkplain ClientHttpResponse#getStatusCode() 状态码} 匹配，
+	 * {@link #hasError(ClientHttpResponse)} 将返回 {@code true}，
+	 * {@link #handleError(ClientHttpResponse)} 将尝试使用
+	 * {@linkplain #setMessageConverters(List) 配置的消息转换器}
+	 * 将响应转换为映射的 {@link RestClientException} 子类。
 	 */
 	public void setSeriesMapping(Map<HttpStatus.Series, Class<? extends RestClientException>> seriesMapping) {
 		if (!CollectionUtils.isEmpty(seriesMapping)) {

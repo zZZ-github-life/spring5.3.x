@@ -30,10 +30,8 @@ import org.springframework.test.context.jdbc.SqlConfig.TransactionMode;
 import org.springframework.util.Assert;
 
 /**
- * {@code MergedSqlConfig} encapsulates the <em>merged</em> {@link SqlConfig @SqlConfig}
- * attributes declared locally via {@link Sql#config} and globally as a class-level annotation.
- *
- * <p>Explicit local configuration attributes override global configuration attributes.
+ * {@code MergedSqlConfig} 封装了通过 {@link Sql#config} 本地声明以及作为类级注解全局声明的<em>合并后的</em> {@link SqlConfig @SqlConfig} 属性。
+ * <p>显式的本地配置属性会覆盖全局配置属性。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -66,12 +64,9 @@ class MergedSqlConfig {
 
 
 	/**
-	 * Construct a {@code MergedSqlConfig} instance by merging the configuration
-	 * from the supplied local (potentially method-level) {@code @SqlConfig} annotation
-	 * with class-level configuration discovered on the supplied {@code testClass}.
-	 * <p>Local configuration overrides class-level configuration.
-	 * <p>If the test class is not annotated with {@code @SqlConfig}, no merging
-	 * takes place and the local configuration is used "as is".
+	 * 通过将提供的本地（可能是方法级）{@code @SqlConfig} 注解中的配置与在所提供的 {@code testClass} 上发现的类级配置合并，构造一个 {@code MergedSqlConfig} 实例。
+	 * <p>本地配置覆盖类级配置。
+	 * <p>如果测试类未标注 {@code @SqlConfig}，则不进行任何合并，本地配置“按原样”使用。
 	 */
 	MergedSqlConfig(SqlConfig localSqlConfig, Class<?> testClass) {
 		Assert.notNull(localSqlConfig, "Local @SqlConfig must not be null");
@@ -131,7 +126,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the bean name of the {@link javax.sql.DataSource}.
+	 * 获取 {@link javax.sql.DataSource} 的 bean 名称。
 	 * @see SqlConfig#dataSource()
 	 */
 	String getDataSource() {
@@ -139,7 +134,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the bean name of the {@link org.springframework.transaction.PlatformTransactionManager}.
+	 * 获取 {@link org.springframework.transaction.PlatformTransactionManager} 的 bean 名称。
 	 * @see SqlConfig#transactionManager()
 	 */
 	String getTransactionManager() {
@@ -147,7 +142,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the {@link TransactionMode}.
+	 * 获取 {@link TransactionMode}。
 	 * @see SqlConfig#transactionMode()
 	 */
 	TransactionMode getTransactionMode() {
@@ -155,8 +150,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the encoding for the SQL scripts, if different from the platform
-	 * encoding.
+	 * 获取 SQL 脚本的编码（如果与平台编码不同）。
 	 * @see SqlConfig#encoding()
 	 */
 	String getEncoding() {
@@ -164,8 +158,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the character string used to separate individual statements within the
-	 * SQL scripts.
+	 * 获取用于分隔 SQL 脚本中各个语句的字符串。
 	 * @see SqlConfig#separator()
 	 */
 	String getSeparator() {
@@ -173,7 +166,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the prefixes that identify single-line comments within the SQL scripts.
+	 * 获取用于标识 SQL 脚本中单行注释的前缀。
 	 * @since 5.2
 	 * @see SqlConfig#commentPrefixes()
 	 */
@@ -182,7 +175,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the start delimiter that identifies block comments within the SQL scripts.
+	 * 获取用于标识 SQL 脚本中块注释的起始分隔符。
 	 * @see SqlConfig#blockCommentStartDelimiter()
 	 */
 	String getBlockCommentStartDelimiter() {
@@ -190,7 +183,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the end delimiter that identifies block comments within the SQL scripts.
+	 * 获取用于标识 SQL 脚本中块注释的结束分隔符。
 	 * @see SqlConfig#blockCommentEndDelimiter()
 	 */
 	String getBlockCommentEndDelimiter() {
@@ -198,7 +191,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Get the {@link ErrorMode}.
+	 * 获取 {@link ErrorMode}。
 	 * @see SqlConfig#errorMode()
 	 */
 	ErrorMode getErrorMode() {
@@ -206,7 +199,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Provide a String representation of the merged SQL script configuration.
+	 * 提供合并后的 SQL 脚本配置的字符串表示形式。
 	 */
 	@Override
 	public String toString() {
@@ -279,7 +272,7 @@ class MergedSqlConfig {
 	}
 
 	/**
-	 * Determine if the supplied value is an explicit value (i.e., not a default).
+	 * 确定所提供的值是否为显式值（即不是默认值）。
 	 */
 	private static boolean isExplicitValue(@Nullable Object value) {
 		return !(isEmptyString(value) ||

@@ -1,5 +1,5 @@
 /**
- * Useful generic {@code java.util.function} helper classes.
+ * 有用的通用 {@code java.util.function} 辅助类。
  */
 @NonNullApi
 @NonNullFields

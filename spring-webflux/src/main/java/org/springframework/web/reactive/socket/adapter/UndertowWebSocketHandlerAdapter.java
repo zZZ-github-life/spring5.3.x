@@ -34,9 +34,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketMessage.Type;
 
 /**
- * Undertow {@link WebSocketConnectionCallback} implementation that adapts and
- * delegates to a Spring {@link WebSocketHandler}.
- *
+ * Undertow {@link WebSocketConnectionCallback} 实现，适配并委托给 Spring {@link WebSocketHandler}。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0

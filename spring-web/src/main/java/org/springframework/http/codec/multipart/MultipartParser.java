@@ -43,7 +43,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.lang.Nullable;
 
 /**
- * Subscribes to a buffer stream and produces a flux of {@link Token} instances.
+ * 订阅缓冲区流并生成 {@link Token} 实例的 Flux。
  *
  * @author Arjen Poutsma
  * @since 5.3
@@ -86,7 +86,7 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 	}
 
 	/**
-	 * Parses the given stream of {@link DataBuffer} objects into a stream of {@link Token} objects.
+	 * 将给定的 {@link DataBuffer} 对象流解析为 {@link Token} 对象流。
 	 * @param buffers the input buffers
 	 * @param boundary the multipart boundary, as found in the {@code Content-Type} header
 	 * @param maxHeadersSize the maximum buffered header size
@@ -195,7 +195,7 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * Represents the output of {@link #parse(Flux, byte[], int, Charset)}.
+	 * 表示 {@link #parse(Flux, byte[], int, Charset)} 的输出。
 	 */
 	public abstract static class Token {
 
@@ -206,7 +206,7 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * Represents a token that contains {@link HttpHeaders}.
+	 * 表示包含 {@link HttpHeaders} 的 token。
 	 */
 	public final static class HeadersToken extends Token {
 
@@ -229,7 +229,7 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * Represents a token that contains {@link DataBuffer}.
+	 * 表示包含 {@link DataBuffer} 的 token。
 	 */
 	public final static class BodyToken extends Token {
 
@@ -252,8 +252,8 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * Represents the internal state of the {@link MultipartParser}.
-	 * The flow for well-formed multipart messages is shown below:
+	 * 表示 {@link MultipartParser} 的内部状态。
+	 * 格式良好的 multipart 消息的流转过程如下：
 	 * <p><pre>
 	 *     PREAMBLE
 	 *         |
@@ -263,8 +263,8 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 	 *  |      v
 	 *  +----BODY
 	 *  </pre>
-	 * For malformed messages the flow ends in DISPOSED, and also when the
-	 * sink is {@linkplain #onSinkCancel() cancelled}.
+	 * 对于格式错误的消息，流转过程结束于 DISPOSED，当 sink 被
+	 * {@linkplain #onSinkCancel() 取消}时也是如此。
 	 */
 	private interface State {
 
@@ -278,9 +278,9 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * The initial state of the parser. Looks for the first boundary of the
-	 * multipart message. Note that the first boundary is not necessarily
-	 * prefixed with {@code CR LF}; only the prefix {@code --} is required.
+	 * 解析器的初始状态。查找 multipart 消息的第一个边界。
+	 * 请注意，第一个边界不一定以 {@code CR LF} 为前缀；只要求
+	 * 前缀 {@code --}。
 	 */
 	private final class PreambleState implements State {
 
@@ -293,9 +293,8 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 		}
 
 		/**
-		 * Looks for the first boundary in the given buffer. If found, changes
-		 * state to {@link HeadersState}, and passes on the remainder of the
-		 * buffer.
+		 * 在给定缓冲区中查找第一个边界。如果找到，则将状态切换为
+		 * {@link HeadersState}，并传递缓冲区的剩余部分。
 		 */
 		@Override
 		public void onNext(DataBuffer buf) {
@@ -331,9 +330,9 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * The state of the parser dealing with part headers. Parses header
-	 * buffers into a {@link HttpHeaders} instance, making sure that
-	 * the amount does not exceed {@link #maxHeadersSize}.
+	 * 解析器处理部件头的状态。将头缓冲区解析为
+	 * {@link HttpHeaders} 实例，并确保数量不超过
+	 * {@link #maxHeadersSize}。
 	 */
 	private final class HeadersState implements State {
 
@@ -345,14 +344,13 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 		/**
-		 * First checks whether the multipart boundary leading to this state
-		 * was the final boundary. Then looks for the header-body boundary
-		 * ({@code CR LF CR LF}) in the given buffer. If found, checks whether
-		 * the size of all header buffers does not exceed {@link #maxHeadersSize},
-		 * converts all buffers collected so far into a {@link HttpHeaders} object
-		 * and changes to {@link BodyState}, passing the remainder of the
-		 * buffer. If the boundary is not found, the buffer is collected if
-		 * its size does not exceed {@link #maxHeadersSize}.
+		 * 首先检查导致进入此状态的 multipart 边界是否为最终边界。
+		 * 然后在给定缓冲区中查找头与正文之间的边界
+		 * （{@code CR LF CR LF}）。如果找到，则检查所有头缓冲区的
+		 * 大小是否不超过 {@link #maxHeadersSize}，将目前收集的所有缓冲区
+		 * 转换为 {@link HttpHeaders} 对象，并切换到 {@link BodyState}，
+		 * 同时传递缓冲区的剩余部分。如果未找到边界，则在大小不超过
+		 * {@link #maxHeadersSize} 时收集该缓冲区。
 		 */
 		@Override
 		public void onNext(DataBuffer buf) {
@@ -392,8 +390,8 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 		}
 
 		/**
-		 * If the given buffer is the first buffer, check whether it starts with {@code --}.
-		 * If it is the second buffer, check whether it makes up {@code --} together with the first buffer.
+		 * 如果给定缓冲区是第一个缓冲区，则检查它是否以 {@code --} 开头。
+		 * 如果是第二个缓冲区，则检查它与第一个缓冲区是否共同构成 {@code --}。
 		 */
 		private boolean isLastBoundary(DataBuffer buf) {
 			return (this.buffers.isEmpty() &&
@@ -408,8 +406,8 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 		}
 
 		/**
-		 * Checks whether the given {@code count} is below or equal to {@link #maxHeadersSize}
-		 * and emits a {@link DataBufferLimitException} if not.
+		 * 检查给定的 {@code count} 是否小于或等于 {@link #maxHeadersSize}，
+		 * 如果否则发出 {@link DataBufferLimitException}。
 		 */
 		private boolean belowMaxHeaderSize(long count) {
 			if (count <= MultipartParser.this.maxHeadersSize) {
@@ -423,9 +421,9 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 		}
 
 		/**
-		 * Parses the list of buffers into a {@link HttpHeaders} instance.
-		 * Converts the joined buffers into a string using ISO=8859-1, and parses
-		 * that string into key and values.
+		 * 将缓冲区列表解析为 {@link HttpHeaders} 实例。
+		 * 使用 ISO-8859-1 将合并后的缓冲区转换为字符串，并
+		 * 将该字符串解析为键和值。
 		 */
 		private HttpHeaders parseHeaders() {
 			if (this.buffers.isEmpty()) {
@@ -473,9 +471,9 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * The state of the parser dealing with multipart bodies. Relays
-	 * data buffers as {@link BodyToken} until the boundary is found (or
-	 * rather: {@code CR LF - - boundary}).
+	 * 解析器处理 multipart 正文的状态。转发数据缓冲区为
+	 * {@link BodyToken}，直到找到边界（更准确地说：
+	 * {@code CR LF - - boundary}）。
 	 */
 	private final class BodyState implements State {
 
@@ -492,12 +490,12 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 		}
 
 		/**
-		 * Checks whether the (end of the) needle {@code CR LF - - boundary}
-		 * can be found in {@code buffer}. If found, the needle can overflow into the
-		 * previous buffer, so we calculate the length and slice the current
-		 * and previous buffers accordingly. We then change to {@link HeadersState}
-		 * and pass on the remainder of {@code buffer}. If the needle is not found, we
-		 * make {@code buffer} the previous buffer.
+		 * 检查是否能在 {@code buffer} 中找到针（needle）
+		 * {@code CR LF - - boundary} 的（结尾）部分。如果找到，该针可能
+		 * 跨越到上一个缓冲区，因此我们计算长度并相应地切分当前缓冲区和
+		 * 上一个缓冲区。然后切换到 {@link HeadersState} 并传递
+		 * {@code buffer} 的剩余部分。如果未找到针，则将 {@code buffer}
+		 * 设为上一个缓冲区。
 		 */
 		@Override
 		public void onNext(DataBuffer buffer) {
@@ -552,10 +550,10 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 		}
 
 		/**
-		 * Store the given buffer. Emit buffers that cannot contain boundary bytes,
-		 * by iterating over the queue in reverse order, and summing buffer sizes.
-		 * The first buffer that passes the boundary length and subsequent buffers
-		 * are emitted (in the correct, non-reverse order).
+		 * 存储给定的缓冲区。通过按相反顺序遍历队列并累加缓冲区大小，
+		 * 发出不可能包含边界字节的缓冲区。
+		 * 第一个超过边界长度的缓冲区及其后续缓冲区将被发出
+		 * （按正确的非相反顺序）。
 		 */
 		private void enqueue(DataBuffer buf) {
 			this.queue.add(buf);
@@ -601,8 +599,8 @@ final class MultipartParser extends BaseSubscriber<DataBuffer> {
 
 
 	/**
-	 * The state of the parser when finished, either due to seeing the final
-	 * boundary or to a malformed message. Releases all incoming buffers.
+	 * 解析器完成时的状态，可能是由于看到了最终边界，
+	 * 也可能是由于消息格式错误。释放所有传入的缓冲区。
 	 */
 	private static final class DisposedState implements State {
 

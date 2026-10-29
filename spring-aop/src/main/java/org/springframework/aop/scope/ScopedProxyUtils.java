@@ -26,9 +26,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Utility class for creating a scoped proxy.
+ * 用于创建作用域代理的工具类。
  *
- * <p>Used by ScopedProxyBeanDefinitionDecorator and ClassPathBeanDefinitionScanner.
+ * <p>由 ScopedProxyBeanDefinitionDecorator 和 ClassPathBeanDefinitionScanner 使用。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -44,8 +44,8 @@ public abstract class ScopedProxyUtils {
 
 
 	/**
-	 * Generate a scoped proxy for the supplied target bean, registering the target
-	 * bean with an internal name and setting 'targetBeanName' on the scoped proxy.
+	 * 为提供的目标 Bean 生成作用域代理，以内部名称注册该目标 Bean，并在作用域代理上设置
+	 * 'targetBeanName'。
 	 * @param definition the original bean definition
 	 * @param registry the bean definition registry
 	 * @param proxyTargetClass whether to create a target class proxy
@@ -97,7 +97,7 @@ public abstract class ScopedProxyUtils {
 	}
 
 	/**
-	 * Generate the bean name that is used within the scoped proxy to reference the target bean.
+	 * 生成在作用域代理内部用于引用目标 Bean 的 Bean 名称。
 	 * @param originalBeanName the original name of bean
 	 * @return the generated bean to be used to reference the target bean
 	 * @see #getOriginalBeanName(String)
@@ -107,8 +107,7 @@ public abstract class ScopedProxyUtils {
 	}
 
 	/**
-	 * Get the original bean name for the provided {@linkplain #getTargetBeanName
-	 * target bean name}.
+	 * 获取所提供 {@linkplain #getTargetBeanName target bean name} 对应的原始 Bean 名称。
 	 * @param targetBeanName the target bean name for the scoped proxy
 	 * @return the original bean name
 	 * @throws IllegalArgumentException if the supplied bean name does not refer
@@ -124,8 +123,7 @@ public abstract class ScopedProxyUtils {
 	}
 
 	/**
-	 * Determine if the {@code beanName} is the name of a bean that references
-	 * the target bean within a scoped proxy.
+	 * 判断 {@code beanName} 是否为在作用域代理中引用目标 Bean 的 Bean 的名称。
 	 * @since 4.1.4
 	 */
 	public static boolean isScopedTarget(@Nullable String beanName) {

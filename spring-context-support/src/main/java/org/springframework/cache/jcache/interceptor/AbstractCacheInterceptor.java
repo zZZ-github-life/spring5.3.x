@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * A base interceptor for JSR-107 cache annotations.
+ * JSR-107 缓存注解的基础拦截器。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -57,7 +57,7 @@ abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A 
 
 
 	/**
-	 * Resolve the cache to use.
+	 * 解析要使用的缓存。
 	 * @param context the invocation context
 	 * @return the cache to use (never {@code null})
 	 */
@@ -71,8 +71,8 @@ abstract class AbstractCacheInterceptor<O extends AbstractJCacheOperation<A>, A 
 	}
 
 	/**
-	 * Convert the collection of caches in a single expected element.
-	 * <p>Throw an {@link IllegalStateException} if the collection holds more than one element
+	 * 将缓存集合转换为单个预期元素。
+	 * <p>如果集合包含多个元素，抛出 {@link IllegalStateException}
 	 * @return the single element, or {@code null} if the collection is empty
 	 */
 	@Nullable

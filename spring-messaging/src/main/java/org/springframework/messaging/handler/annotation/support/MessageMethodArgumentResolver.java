@@ -31,10 +31,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code HandlerMethodArgumentResolver} for {@link Message} method arguments.
- * Validates that the generic type of the payload matches to the message value
- * or otherwise applies {@link MessageConverter} to convert to the expected
- * payload type.
+ * 用于 {@link Message} 方法参数的 {@code HandlerMethodArgumentResolver}。
+ * 校验载荷的泛型类型是否与消息值匹配，否则应用 {@link MessageConverter}
+ * 转换为预期的载荷类型。
  *
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
@@ -48,14 +47,14 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 
 
 	/**
-	 * Create a default resolver instance without message conversion.
+	 * 创建不带消息转换的默认解析器实例。
 	 */
 	public MessageMethodArgumentResolver() {
 		this(null);
 	}
 
 	/**
-	 * Create a resolver instance with the given {@link MessageConverter}.
+	 * 使用给定 {@link MessageConverter} 创建解析器实例。
 	 * @param converter the MessageConverter to use (may be {@code null})
 	 * @since 4.3
 	 */
@@ -96,12 +95,10 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Resolve the target class to convert the payload to.
-	 * <p>By default this is the generic type declared in the {@code Message}
-	 * method parameter but that can be overridden to select a more specific
-	 * target type after also taking into account the "Content-Type", e.g.
-	 * return {@code String} if target type is {@code Object} and
-	 * {@code "Content-Type:text/**"}.
+	 * 解析要将载荷转换为的目标类。
+	 * <p>默认情况下，这是 {@code Message} 方法参数中声明的泛型类型，
+	 * 但可以重写此方法，以便在同时考虑 "Content-Type" 后选择更具体的目标类型，
+	 * 例如当目标类型为 {@code Object} 且 {@code "Content-Type:text/**"} 时返回 {@code String}。
 	 * @param parameter the target method parameter
 	 * @param message the message being processed
 	 * @return the target type to use
@@ -114,7 +111,7 @@ public class MessageMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Check if the given {@code payload} is empty.
+	 * 检查给定 {@code payload} 是否为空。
 	 * @param payload the payload to check (can be {@code null})
 	 */
 	protected boolean isEmptyPayload(@Nullable Object payload) {

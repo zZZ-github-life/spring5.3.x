@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Default implementation of the {@link TestContext} interface.
+ * {@link TestContext} 接口的默认实现。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -63,11 +63,8 @@ public class DefaultTestContext implements TestContext {
 
 
 	/**
-	 * <em>Copy constructor</em> for creating a new {@code DefaultTestContext}
-	 * based on the <em>attributes</em> and immutable state of the supplied context.
-	 * <p><em>Immutable state</em> includes all arguments supplied to the
-	 * {@linkplain #DefaultTestContext(Class, MergedContextConfiguration,
-	 * CacheAwareContextLoaderDelegate) standard constructor}.
+	 * <em>复制构造器</em>，用于根据所提供的上下文的<em>属性</em>和不可变状态创建新的 {@code DefaultTestContext}。
+	 * <p><em>不可变状态</em>包括传递给{@linkplain #DefaultTestContext(Class, MergedContextConfiguration, CacheAwareContextLoaderDelegate) 标准构造器}的所有参数。
 	 * @throws NullPointerException if the supplied {@code DefaultTestContext}
 	 * is {@code null}
 	 */
@@ -78,7 +75,7 @@ public class DefaultTestContext implements TestContext {
 	}
 
 	/**
-	 * Construct a new {@code DefaultTestContext} from the supplied arguments.
+	 * 根据所提供的参数构造新的 {@code DefaultTestContext}。
 	 * @param testClass the test class for this test context
 	 * @param mergedContextConfiguration the merged application context
 	 * configuration for this test context
@@ -97,8 +94,7 @@ public class DefaultTestContext implements TestContext {
 	}
 
 	/**
-	 * Determine if the {@linkplain ApplicationContext application context} for
-	 * this test context is present in the context cache.
+	 * 确定此测试上下文的{@linkplain ApplicationContext 应用上下文}是否存在于上下文缓存中。
 	 * @return {@code true} if the application context has already been loaded
 	 * and stored in the context cache
 	 * @since 5.2
@@ -111,10 +107,8 @@ public class DefaultTestContext implements TestContext {
 	}
 
 	/**
-	 * Get the {@linkplain ApplicationContext application context} for this
-	 * test context.
-	 * <p>The default implementation delegates to the {@link CacheAwareContextLoaderDelegate}
-	 * that was supplied when this {@code TestContext} was constructed.
+	 * 获取此测试上下文的{@linkplain ApplicationContext 应用上下文}。
+	 * <p>默认实现委托给构造此 {@code TestContext} 时提供的 {@link CacheAwareContextLoaderDelegate}。
 	 * @throws IllegalStateException if the context returned by the context
 	 * loader delegate is not <em>active</em> (i.e., has been closed)
 	 * @see CacheAwareContextLoaderDelegate#loadContext
@@ -137,11 +131,8 @@ public class DefaultTestContext implements TestContext {
 	}
 
 	/**
-	 * Mark the {@linkplain ApplicationContext application context} associated
-	 * with this test context as <em>dirty</em> (i.e., by removing it from the
-	 * context cache and closing it).
-	 * <p>The default implementation delegates to the {@link CacheAwareContextLoaderDelegate}
-	 * that was supplied when this {@code TestContext} was constructed.
+	 * 将与此测试上下文关联的{@linkplain ApplicationContext 应用上下文}标记为<em>脏</em>（即，通过将其从上下文缓存中移除并关闭它）。
+	 * <p>默认实现委托给构造此 {@code TestContext} 时提供的 {@link CacheAwareContextLoaderDelegate}。
 	 * @see CacheAwareContextLoaderDelegate#closeContext
 	 */
 	@Override
@@ -234,7 +225,7 @@ public class DefaultTestContext implements TestContext {
 
 
 	/**
-	 * Provide a String representation of this test context's state.
+	 * 提供此测试上下文状态的字符串表示。
 	 */
 	@Override
 	public String toString() {

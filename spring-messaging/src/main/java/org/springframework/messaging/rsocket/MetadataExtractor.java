@@ -24,11 +24,10 @@ import org.springframework.core.codec.DecodingException;
 import org.springframework.util.MimeType;
 
 /**
- * Strategy to extract a map of value(s) from {@link Payload} metadata, which
- * could be composite metadata with multiple entries. Each metadata entry
- * is decoded based on its {@code MimeType} and a name is assigned to the decoded
- * value. The resulting name-value pairs can be added to the headers of a
- * {@link org.springframework.messaging.Message Message}.
+ * 从 {@link Payload} 元数据（可能是包含多个条目的复合元数据）中提取值映射的策略。
+ * 每个元数据条目根据其 {@code MimeType} 进行解码，并为解码后的值分配一个名称。
+ * 生成的名称-值对可以添加到
+ * {@link org.springframework.messaging.Message Message} 的头部中。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -37,14 +36,14 @@ import org.springframework.util.MimeType;
 public interface MetadataExtractor {
 
 	/**
-	 * The key to assign to the extracted "route" of the payload.
+	 * 分配给负载中提取出的 "route" 的键。
 	 */
 	String ROUTE_KEY = "route";
 
 
 	/**
-	 * Extract a map of values from the given {@link Payload} metadata.
-	 * The Payload "route", if present, should be saved under {@link #ROUTE_KEY}.
+	 * 从给定的 {@link Payload} 元数据中提取值映射。
+	 * 如果存在负载 "route"，应将其保存在 {@link #ROUTE_KEY} 下。
 	 * @param payload the payload whose metadata should be read
 	 * @param metadataMimeType the metadata MimeType for the connection.
 	 * @return name values pairs extracted from the metadata

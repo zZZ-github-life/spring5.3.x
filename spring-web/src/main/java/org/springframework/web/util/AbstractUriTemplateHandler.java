@@ -26,11 +26,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for {@link UriTemplateHandler} implementations.
+ * {@link UriTemplateHandler} 实现的抽象基类。
  *
- * <p>Support {@link #setBaseUrl} and {@link #setDefaultUriVariables} properties
- * that should be relevant regardless of the URI template expand and encode
- * mechanism used in sub-classes.
+ * <p>支持 {@link #setBaseUrl} 和 {@link #setDefaultUriVariables} 属性，
+ * 无论子类使用何种 URI 模板展开和编码机制，这些属性都应适用。
  *
  * @author Rossen Stoyanchev
  * @since 4.3
@@ -46,10 +45,10 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 
 
 	/**
-	 * Configure a base URL to prepend URI templates with. The base URL must
-	 * have a scheme and host but may optionally contain a port and a path.
-	 * The base URL must be fully expanded and encoded which can be done via
-	 * {@link UriComponentsBuilder}.
+	 * 配置要添加到 URI 模板前面的基础 URL。基础 URL 必须包含
+	 * scheme 和 host，但可选地包含端口和路径。
+	 * 基础 URL 必须完全展开并编码，这可以通过
+	 * {@link UriComponentsBuilder} 完成。
 	 * @param baseUrl the base URL.
 	 */
 	public void setBaseUrl(@Nullable String baseUrl) {
@@ -64,7 +63,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	}
 
 	/**
-	 * Return the configured base URL.
+	 * 返回已配置的基础 URL。
 	 */
 	@Nullable
 	public String getBaseUrl() {
@@ -72,10 +71,9 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	}
 
 	/**
-	 * Configure default URI variable values to use with every expanded URI
-	 * template. These default values apply only when expanding with a Map, and
-	 * not with an array, where the Map supplied to {@link #expand(String, Map)}
-	 * can override the default values.
+	 * 配置用于每个展开 URI 模板的默认 URI 变量值。这些默认值
+	 * 仅在通过 Map 展开时适用，而不适用于数组；使用 Map 时，
+	 * 提供给 {@link #expand(String, Map)} 的 Map 可以覆盖默认值。
 	 * @param defaultUriVariables the default URI variable values
 	 * @since 4.3
 	 */
@@ -87,7 +85,7 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 	}
 
 	/**
-	 * Return a read-only copy of the configured default URI variables.
+	 * 返回已配置默认 URI 变量的只读副本。
 	 */
 	public Map<String, ?> getDefaultUriVariables() {
 		return Collections.unmodifiableMap(this.defaultUriVariables);
@@ -114,18 +112,18 @@ public abstract class AbstractUriTemplateHandler implements UriTemplateHandler {
 
 
 	/**
-	 * Actually expand and encode the URI template.
+	 * 实际展开并编码 URI 模板。
 	 */
 	protected abstract URI expandInternal(String uriTemplate, Map<String, ?> uriVariables);
 
 	/**
-	 * Actually expand and encode the URI template.
+	 * 实际展开并编码 URI 模板。
 	 */
 	protected abstract URI expandInternal(String uriTemplate, Object... uriVariables);
 
 
 	/**
-	 * Insert a base URL (if configured) unless the given URL has a host already.
+	 * 插入基础 URL（如果已配置），除非给定 URL 已包含 host。
 	 */
 	private URI insertBaseUrl(URI url) {
 		try {

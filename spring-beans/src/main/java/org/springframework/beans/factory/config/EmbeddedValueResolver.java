@@ -20,13 +20,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
- * {@link StringValueResolver} adapter for resolving placeholders and
- * expressions against a {@link ConfigurableBeanFactory}.
+ * 针对 {@link ConfigurableBeanFactory} 解析占位符和表达式的 {@link StringValueResolver} 适配器。
  *
- * <p>Note that this adapter resolves expressions as well, in contrast
- * to the {@link ConfigurableBeanFactory#resolveEmbeddedValue} method.
- * The {@link BeanExpressionContext} used is for the plain bean factory,
- * with no scope specified for any contextual objects to access.
+ * <p>请注意，与 {@link ConfigurableBeanFactory#resolveEmbeddedValue} 方法不同，此适配器还会解析表
+ * 达式。所使用的 {@link BeanExpressionContext} 针对普通 Bean 工厂，未为任何上下文对象指定可访问的
+ * 作用域。
  *
  * @author Juergen Hoeller
  * @since 4.3

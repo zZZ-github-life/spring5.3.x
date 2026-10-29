@@ -21,9 +21,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 
 /**
- * Interface for interceptors that are able to view and/or modify the
- * {@link Message Messages} being sent-to and/or received-from a
- * {@link MessageChannel}.
+ * 拦截器接口，能够查看和/或修改发往和/或接收自
+ * {@link MessageChannel} 的 {@link Message Messages}。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -34,10 +33,9 @@ import org.springframework.messaging.MessageChannel;
 public interface ChannelInterceptor {
 
 	/**
-	 * Invoked before the Message is actually sent to the channel.
-	 * This allows for modification of the Message if necessary.
-	 * If this method returns {@code null} then the actual
-	 * send invocation will not occur.
+	 * 在 Message 实际发送到通道之前调用。
+	 * 如有必要，可以对 Message 进行修改。
+	 * 如果此方法返回 {@code null}，则不会执行实际的发送调用。
 	 */
 	@Nullable
 	default Message<?> preSend(Message<?> message, MessageChannel channel) {
@@ -45,17 +43,15 @@ public interface ChannelInterceptor {
 	}
 
 	/**
-	 * Invoked immediately after the send invocation. The boolean
-	 * value argument represents the return value of that invocation.
+	 * 在发送调用之后立即调用。布尔值参数表示该调用的返回值。
 	 */
 	default void postSend(Message<?> message, MessageChannel channel, boolean sent) {
 	}
 
 	/**
-	 * Invoked after the completion of a send regardless of any exception that
-	 * have been raised thus allowing for proper resource cleanup.
-	 * <p>Note that this will be invoked only if {@link #preSend} successfully
-	 * completed and returned a Message, i.e. it did not return {@code null}.
+	 * 在发送完成后调用，无论是否抛出任何异常，从而允许进行适当的资源清理。
+	 * <p>请注意，仅当 {@link #preSend} 成功完成并返回 Message（即未返回
+	 * {@code null}）时才会调用此方法。
 	 * @since 4.1
 	 */
 	default void afterSendCompletion(
@@ -63,19 +59,17 @@ public interface ChannelInterceptor {
 	}
 
 	/**
-	 * Invoked as soon as receive is called and before a Message is
-	 * actually retrieved. If the return value is 'false', then no
-	 * Message will be retrieved. This only applies to PollableChannels.
+	 * 在调用 receive 后立即、实际检索 Message 之前调用。如果返回值为 'false'，
+	 * 则不会检索 Message。这仅适用于 PollableChannels。
 	 */
 	default boolean preReceive(MessageChannel channel) {
 		return true;
 	}
 
 	/**
-	 * Invoked immediately after a Message has been retrieved but before
-	 * it is returned to the caller. The Message may be modified if
-	 * necessary; {@code null} aborts further interceptor invocations.
-	 * This only applies to PollableChannels.
+	 * 在检索到 Message 之后、返回给调用方之前立即调用。如有必要，可以修改
+	 * Message；返回 {@code null} 会中止后续拦截器的调用。这仅适用于
+	 * PollableChannels。
 	 */
 	@Nullable
 	default Message<?> postReceive(Message<?> message, MessageChannel channel) {
@@ -83,10 +77,9 @@ public interface ChannelInterceptor {
 	}
 
 	/**
-	 * Invoked after the completion of a receive regardless of any exception that
-	 * have been raised thus allowing for proper resource cleanup.
-	 * <p>Note that this will be invoked only if {@link #preReceive} successfully
-	 * completed and returned {@code true}.
+	 * 在接收完成后调用，无论是否抛出任何异常，从而允许进行适当的资源清理。
+	 * <p>请注意，仅当 {@link #preReceive} 成功完成并返回 {@code true} 时
+	 * 才会调用此方法。
 	 * @since 4.1
 	 */
 	default void afterReceiveCompletion(@Nullable Message<?> message, MessageChannel channel,

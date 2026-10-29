@@ -54,19 +54,19 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 
 /**
- * The default implementation of the {@link org.springframework.web.servlet.HandlerExceptionResolver}
- * interface, resolving standard Spring MVC exceptions and translating them to corresponding
- * HTTP status codes.
+ * {@link org.springframework.web.servlet.HandlerExceptionResolver}
+ * 接口的默认实现，用于解析标准 Spring MVC 异常并将其转换为相应的
+ * HTTP 状态码。
  *
- * <p>This exception resolver is enabled by default in the common Spring
- * {@link org.springframework.web.servlet.DispatcherServlet}.
+ * <p>此异常解析器在常用的 Spring
+ * {@link org.springframework.web.servlet.DispatcherServlet} 中默认启用。
  *
  * <table>
- * <caption>Supported Exceptions</caption>
+ * <caption>支持的异常</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Exception</th>
- * <th class="colLast">HTTP Status Code</th>
+ * <th class="colFirst">异常</th>
+ * <th class="colLast">HTTP 状态码</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -132,7 +132,6 @@ import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
  * </tr>
  * </tbody>
  * </table>
- *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -142,20 +141,20 @@ import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionResolver {
 
 	/**
-	 * Log category to use when no mapped handler is found for a request.
+	 * 当请求未找到映射的处理器时使用的日志类别。
 	 * @see #pageNotFoundLogger
 	 */
 	public static final String PAGE_NOT_FOUND_LOG_CATEGORY = "org.springframework.web.servlet.PageNotFound";
 
 	/**
-	 * Additional logger to use when no mapped handler is found for a request.
+	 * 当请求未找到映射的处理器时使用的附加 logger。
 	 * @see #PAGE_NOT_FOUND_LOG_CATEGORY
 	 */
 	protected static final Log pageNotFoundLogger = LogFactory.getLog(PAGE_NOT_FOUND_LOG_CATEGORY);
 
 
 	/**
-	 * Sets the {@linkplain #setOrder(int) order} to {@link #LOWEST_PRECEDENCE}.
+	 * 将 {@linkplain #setOrder(int) order} 设置为 {@link #LOWEST_PRECEDENCE}。
 	 */
 	public DefaultHandlerExceptionResolver() {
 		setOrder(Ordered.LOWEST_PRECEDENCE);
@@ -238,10 +237,10 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where no request handler method was found for the particular HTTP request method.
-	 * <p>The default implementation logs a warning, sends an HTTP 405 error, sets the "Allow" header,
-	 * and returns an empty {@code ModelAndView}. Alternatively, a fallback view could be chosen,
-	 * or the HttpRequestMethodNotSupportedException could be rethrown as-is.
+	 * 处理针对特定 HTTP 请求方法未找到请求处理器方法的情况。
+	 * <p>默认实现会记录一条警告、发送 HTTP 405 错误、设置 "Allow" 头，
+	 * 并返回空的 {@code ModelAndView}。或者，可以选择一个回退视图，
+	 * 或者将 HttpRequestMethodNotSupportedException 原样重新抛出。
 	 * @param ex the HttpRequestMethodNotSupportedException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -262,11 +261,11 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where no {@linkplain org.springframework.http.converter.HttpMessageConverter message converters}
-	 * were found for the PUT or POSTed content.
-	 * <p>The default implementation sends an HTTP 415 error, sets the "Accept" header,
-	 * and returns an empty {@code ModelAndView}. Alternatively, a fallback view could
-	 * be chosen, or the HttpMediaTypeNotSupportedException could be rethrown as-is.
+	 * 处理未找到可用于 PUT 或 POST 内容的
+	 * {@linkplain org.springframework.http.converter.HttpMessageConverter message converters} 的情况。
+	 * <p>默认实现会发送 HTTP 415 错误、设置 "Accept" 头，
+	 * 并返回空的 {@code ModelAndView}。或者，可以选择一个回退视图，
+	 * 或者将 HttpMediaTypeNotSupportedException 原样重新抛出。
 	 * @param ex the HttpMediaTypeNotSupportedException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -289,11 +288,11 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where no {@linkplain org.springframework.http.converter.HttpMessageConverter message converters}
-	 * were found that were acceptable for the client (expressed via the {@code Accept} header).
-	 * <p>The default implementation sends an HTTP 406 error and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the HttpMediaTypeNotAcceptableException
-	 * could be rethrown as-is.
+	 * 处理未找到客户端可接受（通过 {@code Accept} 头表示）的
+	 * {@linkplain org.springframework.http.converter.HttpMessageConverter message converters} 的情况。
+	 * <p>默认实现会发送 HTTP 406 错误并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 HttpMediaTypeNotAcceptableException
+	 * 原样重新抛出。
 	 * @param ex the HttpMediaTypeNotAcceptableException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -309,10 +308,10 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case when a declared path variable does not match any extracted URI variable.
-	 * <p>The default implementation sends an HTTP 500 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the MissingPathVariableException
-	 * could be rethrown as-is.
+	 * 处理声明的路径变量与任何提取出的 URI 变量都不匹配的情况。
+	 * <p>默认实现会发送 HTTP 500 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 MissingPathVariableException
+	 * 原样重新抛出。
 	 * @param ex the MissingPathVariableException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -329,10 +328,10 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case when a required parameter is missing.
-	 * <p>The default implementation sends an HTTP 400 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the MissingServletRequestParameterException
-	 * could be rethrown as-is.
+	 * 处理缺少必需参数的情况。
+	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 MissingServletRequestParameterException
+	 * 原样重新抛出。
 	 * @param ex the MissingServletRequestParameterException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -348,9 +347,9 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case when an unrecoverable binding exception occurs - e.g. required header, required cookie.
-	 * <p>The default implementation sends an HTTP 400 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the exception could be rethrown as-is.
+	 * 处理发生不可恢复的绑定异常的情况——例如缺少必需的请求头、必需的 cookie。
+	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将异常原样重新抛出。
 	 * @param ex the exception to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -366,10 +365,10 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case when a {@link org.springframework.web.bind.WebDataBinder} conversion cannot occur.
-	 * <p>The default implementation sends an HTTP 500 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the ConversionNotSupportedException could be
-	 * rethrown as-is.
+	 * 处理无法执行 {@link org.springframework.web.bind.WebDataBinder} 转换的情况。
+	 * <p>默认实现会发送 HTTP 500 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 ConversionNotSupportedException
+	 * 原样重新抛出。
 	 * @param ex the ConversionNotSupportedException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -385,9 +384,9 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case when a {@link org.springframework.web.bind.WebDataBinder} conversion error occurs.
-	 * <p>The default implementation sends an HTTP 400 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the TypeMismatchException could be rethrown as-is.
+	 * 处理发生 {@link org.springframework.web.bind.WebDataBinder} 转换错误的情况。
+	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 TypeMismatchException 原样重新抛出。
 	 * @param ex the TypeMismatchException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -403,11 +402,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where a {@linkplain org.springframework.http.converter.HttpMessageConverter message converter}
-	 * cannot read from an HTTP request.
-	 * <p>The default implementation sends an HTTP 400 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the HttpMessageNotReadableException could be
-	 * rethrown as-is.
+	 * 处理
+	 * {@linkplain org.springframework.http.converter.HttpMessageConverter message converter}
+	 * 无法从 HTTP 请求读取的情况。
+	 * <p>默认实现会发送 HTTP 400 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 HttpMessageNotReadableException
+	 * 原样重新抛出。
 	 * @param ex the HttpMessageNotReadableException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -423,12 +423,12 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where a
+	 * 处理
 	 * {@linkplain org.springframework.http.converter.HttpMessageConverter message converter}
-	 * cannot write to an HTTP request.
-	 * <p>The default implementation sends an HTTP 500 error, and returns an empty {@code ModelAndView}.
-	 * Alternatively, a fallback view could be chosen, or the HttpMessageNotWritableException could
-	 * be rethrown as-is.
+	 * 无法向 HTTP 请求写入的情况。
+	 * <p>默认实现会发送 HTTP 500 错误，并返回空的 {@code ModelAndView}。
+	 * 或者，可以选择一个回退视图，或者将 HttpMessageNotWritableException
+	 * 原样重新抛出。
 	 * @param ex the HttpMessageNotWritableException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -444,9 +444,9 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where an argument annotated with {@code @Valid} such as
-	 * an {@link RequestBody} or {@link RequestPart} argument fails validation.
-	 * <p>By default, an HTTP 400 error is sent back to the client.
+	 * 处理带有 {@code @Valid} 注解的参数（例如
+	 * {@link RequestBody} 或 {@link RequestPart} 参数）校验失败的情况。
+	 * <p>默认情况下，向客户端返回 HTTP 400 错误。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param handler the executed handler
@@ -461,9 +461,9 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where an {@linkplain RequestPart @RequestPart}, a {@link MultipartFile},
-	 * or a {@code javax.servlet.http.Part} argument is required but is missing.
-	 * <p>By default, an HTTP 400 error is sent back to the client.
+	 * 处理需要 {@linkplain RequestPart @RequestPart}、{@link MultipartFile}
+	 * 或 {@code javax.servlet.http.Part} 参数但该参数缺失的情况。
+	 * <p>默认情况下，向客户端返回 HTTP 400 错误。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param handler the executed handler
@@ -478,10 +478,10 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where an {@linkplain ModelAttribute @ModelAttribute} method
-	 * argument has binding or validation errors and is not followed by another
-	 * method argument of type {@link BindingResult}.
-	 * <p>By default, an HTTP 400 error is sent back to the client.
+	 * 处理 {@linkplain ModelAttribute @ModelAttribute} 方法参数
+	 * 存在绑定或校验错误，且其后没有另一个
+	 * {@link BindingResult} 类型的方法参数的情况。
+	 * <p>默认情况下，向客户端返回 HTTP 400 错误。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param handler the executed handler
@@ -496,10 +496,10 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where no handler was found during the dispatch.
-	 * <p>The default implementation sends an HTTP 404 error and returns an empty
-	 * {@code ModelAndView}. Alternatively, a fallback view could be chosen,
-	 * or the NoHandlerFoundException could be rethrown as-is.
+	 * 处理分派期间未找到处理器的情况。
+	 * <p>默认实现会发送 HTTP 404 错误并返回空的
+	 * {@code ModelAndView}。或者，可以选择一个回退视图，
+	 * 或者将 NoHandlerFoundException 原样重新抛出。
 	 * @param ex the NoHandlerFoundException to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -518,8 +518,8 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Handle the case where an async request timed out.
-	 * <p>The default implementation sends an HTTP 503 error.
+	 * 处理异步请求超时的情况。
+	 * <p>默认实现会发送 HTTP 503 错误。
 	 * @param ex the {@link AsyncRequestTimeoutException} to be handled
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -542,8 +542,8 @@ public class DefaultHandlerExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Invoked to send a server error. Sets the status to 500 and also sets the
-	 * request attribute "javax.servlet.error.exception" to the Exception.
+	 * 调用以发送服务器错误。将状态设为 500，并将
+	 * 请求属性 "javax.servlet.error.exception" 设置为该 Exception。
 	 */
 	protected void sendServerError(Exception ex, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {

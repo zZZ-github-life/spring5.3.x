@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Default implementation of {@link RSocketRequester}.
+ * {@link RSocketRequester} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -247,7 +247,7 @@ final class DefaultRSocketRequester implements RSocketRequester {
 		}
 
 		/**
-		 * Create the 1st request payload with encoded data and metadata.
+		 * 使用编码后的数据和元数据创建第一个请求负载。
 		 * @param encodedData the encoded payload data; expected to not be empty!
 		 */
 		private Mono<Payload> firstPayload(Mono<DataBuffer> encodedData) {

@@ -30,18 +30,17 @@ import org.springframework.jndi.JndiTemplate;
 import org.springframework.lang.Nullable;
 
 /**
- * JNDI-based variant of {@link CustomizableThreadFactory}, performing a default lookup
- * for JSR-236's "java:comp/DefaultManagedThreadFactory" in a Java EE 7 environment,
- * falling back to the local {@link CustomizableThreadFactory} setup if not found.
+ * {@link CustomizableThreadFactory} 的基于 JNDI 的变体，在 Java EE 7 环境中对 JSR-236 的
+ * "java:comp/DefaultManagedThreadFactory" 执行默认查找，如果未找到则回退到本地
+ * {@link CustomizableThreadFactory} 配置。
  *
- * <p>This is a convenient way to use managed threads when running in a Java EE 7
- * environment, simply using regular local threads otherwise - without conditional
- * setup (i.e. without profiles).
+ * <p>这是一种便捷方式：在 Java EE 7 环境中运行时使用托管线程，否则直接使用常规的本地线程——无需条件
+ * 化配置（即无需 profile）。
  *
- * <p>Note: This class is not strictly JSR-236 based; it can work with any regular
- * {@link java.util.concurrent.ThreadFactory} that can be found in JNDI. Therefore,
- * the default JNDI name "java:comp/DefaultManagedThreadFactory" can be customized
- * through the {@link #setJndiName "jndiName"} bean property.
+ * <p>注意：此类并非严格基于 JSR-236；它可以与 JNDI 中能找到的任何常规
+ * {@link java.util.concurrent.ThreadFactory} 配合使用。因此，可以通过
+ * {@link #setJndiName "jndiName"} Bean 属性自定义默认 JNDI 名称
+ * "java:comp/DefaultManagedThreadFactory"。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -61,7 +60,7 @@ public class DefaultManagedAwareThreadFactory extends CustomizableThreadFactory 
 
 
 	/**
-	 * Set the JNDI template to use for JNDI lookups.
+	 * 设置用于 JNDI 查找的 JNDI 模板。
 	 * @see org.springframework.jndi.JndiAccessor#setJndiTemplate
 	 */
 	public void setJndiTemplate(JndiTemplate jndiTemplate) {
@@ -69,7 +68,7 @@ public class DefaultManagedAwareThreadFactory extends CustomizableThreadFactory 
 	}
 
 	/**
-	 * Set the JNDI environment to use for JNDI lookups.
+	 * 设置用于 JNDI 查找的 JNDI 环境。
 	 * @see org.springframework.jndi.JndiAccessor#setJndiEnvironment
 	 */
 	public void setJndiEnvironment(Properties jndiEnvironment) {
@@ -77,9 +76,8 @@ public class DefaultManagedAwareThreadFactory extends CustomizableThreadFactory 
 	}
 
 	/**
-	 * Set whether the lookup occurs in a Java EE container, i.e. if the prefix
-	 * "java:comp/env/" needs to be added if the JNDI name doesn't already
-	 * contain it. PersistenceAnnotationBeanPostProcessor's default is "true".
+	 * 设置查找是否在 Java EE 容器中进行，即如果 JNDI 名称尚未包含前缀 "java:comp/env/"，是否需要添加该
+	 * 前缀。PersistenceAnnotationBeanPostProcessor 的默认值为 "true"。
 	 * @see org.springframework.jndi.JndiLocatorSupport#setResourceRef
 	 */
 	public void setResourceRef(boolean resourceRef) {
@@ -87,10 +85,10 @@ public class DefaultManagedAwareThreadFactory extends CustomizableThreadFactory 
 	}
 
 	/**
-	 * Specify a JNDI name of the {@link java.util.concurrent.ThreadFactory} to delegate to,
-	 * replacing the default JNDI name "java:comp/DefaultManagedThreadFactory".
-	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
-	 * to the current environment naming context if "resourceRef" is set to "true".
+	 * 指定要委托给的 {@link java.util.concurrent.ThreadFactory} 的 JNDI 名称，以替换默认 JNDI 名称
+	 * "java:comp/DefaultManagedThreadFactory"。
+	 * <p>这可以是完全限定的 JNDI 名称，或者在 "resourceRef" 设置为 "true" 时，可以是相对于当前环境命名
+	 * 上下文的 JNDI 名称。
 	 * @see #setResourceRef
 	 */
 	public void setJndiName(String jndiName) {

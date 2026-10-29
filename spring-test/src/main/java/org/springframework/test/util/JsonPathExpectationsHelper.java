@@ -31,10 +31,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A helper class for applying assertions via JSON path expressions.
+ * 用于通过 JSON 路径表达式应用断言的辅助类。
  *
- * <p>Based on the <a href="https://github.com/jayway/JsonPath">JsonPath</a>
- * project: requiring version 0.9+, with 1.1+ strongly recommended.
+ * <p>基于 <a href="https://github.com/jayway/JsonPath">JsonPath</a> 项目：要求版本 0.9+，强烈推荐 1.1+。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -50,7 +49,7 @@ public class JsonPathExpectationsHelper {
 
 
 	/**
-	 * Construct a new {@code JsonPathExpectationsHelper}.
+	 * 构造一个新的 {@code JsonPathExpectationsHelper}。
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
 	 * @param args arguments to parameterize the {@code JsonPath} expression with,
 	 * using formatting specifiers defined in {@link String#format(String, Object...)}
@@ -63,8 +62,7 @@ public class JsonPathExpectationsHelper {
 
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert the resulting value with the given {@code Matcher}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并使用给定的 {@code Matcher} 断言结果值。
 	 * @param content the JSON content
 	 * @param matcher the matcher with which to assert the result
 	 */
@@ -75,9 +73,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * An overloaded variant of {@link #assertValue(String, Matcher)} that also
-	 * accepts a target type for the resulting value. This can be useful for
-	 * matching numbers reliably for example coercing an integer into a double.
+	 * {@link #assertValue(String, Matcher)} 的重载变体，它还接受结果值的目标类型。例如，这可用于可靠地匹配数字，如将整数强制转换为双精度浮点数。
 	 * @param content the JSON content
 	 * @param matcher the matcher with which to assert the result
 	 * @param targetType the expected type of the resulting value
@@ -90,8 +86,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that the result is equal to the expected value.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果等于期望值。
 	 * @param content the JSON content
 	 * @param expectedValue the expected value
 	 */
@@ -126,8 +121,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that the resulting value is a {@link String}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link String}。
 	 * @param content the JSON content
 	 * @since 4.2.1
 	 */
@@ -137,8 +131,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that the resulting value is a {@link Boolean}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link Boolean}。
 	 * @param content the JSON content
 	 * @since 4.2.1
 	 */
@@ -148,8 +141,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that the resulting value is a {@link Number}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link Number}。
 	 * @param content the JSON content
 	 * @since 4.2.1
 	 */
@@ -159,8 +151,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that the resulting value is an array.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是一个数组。
 	 * @param content the JSON content
 	 */
 	public void assertValueIsArray(String content) {
@@ -169,8 +160,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that the resulting value is a {@link Map}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言结果值是 {@link Map}。
 	 * @param content the JSON content
 	 * @since 4.2.1
 	 */
@@ -180,12 +170,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that a non-null value, possibly an empty array or map, exists
-	 * at the given path.
-	 * <p>Note that if the JSON path expression is not
-	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
-	 * that the list of values at the given path is not <em>empty</em>.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处存在非空值（可能是空数组或映射）。
+	 * <p>请注意，如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表不为<em>空</em>。
 	 * @param content the JSON content
 	 */
 	public void exists(String content) {
@@ -193,11 +179,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that a non-null value does not exist at the given path.
-	 * <p>Note that if the JSON path expression is not
-	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
-	 * that the list of values at the given path is <em>empty</em>.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言给定路径处不存在非空值。
+	 * <p>请注意，如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表为<em>空</em>。
 	 * @param content the JSON content
 	 */
 	public void doesNotExist(String content) {
@@ -218,10 +201,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that an empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
-	 * {@link ObjectUtils#isEmpty(Object)}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处存在空值。
+	 * <p>有关<em>空</em>的语义，请查阅 {@link ObjectUtils#isEmpty(Object)} 的 Javadoc。
 	 * @param content the JSON content
 	 */
 	public void assertValueIsEmpty(String content) {
@@ -230,10 +211,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that a non-empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
-	 * {@link ObjectUtils#isEmpty(Object)}.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处存在非空值。
+	 * <p>有关<em>空</em>的语义，请查阅 {@link ObjectUtils#isEmpty(Object)} 的 Javadoc。
 	 * @param content the JSON content
 	 */
 	public void assertValueIsNotEmpty(String content) {
@@ -242,11 +221,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that a value, possibly {@code null}, exists.
-	 * <p>If the JSON path expression is not
-	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
-	 * that the list of values at the given path is not <em>empty</em>.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言存在某个值（可能为 {@code null}）。
+	 * <p>如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表不为<em>空</em>。
 	 * @param content the JSON content
 	 * @since 5.0.3
 	 */
@@ -259,12 +235,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that a value, including {@code null} values, does not exist
-	 * at the given path.
-	 * <p>If the JSON path expression is not
-	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
-	 * that the list of values at the given path is <em>empty</em>.
+	 * 针对所提供的 {@code content} 求值 JSON 路径表达式，并断言在给定路径处不存在值（包括 {@code null} 值）。
+	 * <p>如果 JSON 路径表达式不是{@linkplain JsonPath#isDefinite() 确定性的}，则此方法断言给定路径处的值列表为<em>空</em>。
 	 * @param content the JSON content
 	 * @since 5.0.3
 	 */
@@ -290,7 +262,7 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the JSON path and return the resulting value.
+	 * 求值 JSON 路径并返回结果值。
 	 * @param content the content to evaluate against
 	 * @return the result of the evaluation
 	 * @throws AssertionError if the evaluation fails
@@ -306,9 +278,8 @@ public class JsonPathExpectationsHelper {
 	}
 
 	/**
-	 * Variant of {@link #evaluateJsonPath(String)} with a target type.
-	 * <p>This can be useful for matching numbers reliably for example coercing an
-	 * integer into a double.
+	 * {@link #evaluateJsonPath(String)} 的变体，带有目标类型。
+	 * <p>例如，这可用于可靠地匹配数字，如将整数强制转换为双精度浮点数。
 	 * @param content the content to evaluate against
 	 * @return the result of the evaluation
 	 * @throws AssertionError if the evaluation fails

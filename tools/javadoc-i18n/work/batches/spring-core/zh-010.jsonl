@@ -1,0 +1,143 @@
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::34::0", "zh": ["从 {@link MergedAnnotations} 集合中返回的单个合并注解。它呈现了注解的一个视图，其中的属性值可能已经由不同的源值“合并”而来。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::34::1", "zh": ["<p>可以使用各种 {@code get} 方法来访问属性值。例如，要访问 {@code int} 属性，将使用 {@link #getInt(String)} 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::34::2", "zh": ["<p>请注意，访问属性值时<b>不会</b>进行转换。例如，如果底层属性是 {@code int}，则无法调用 {@link #getString(String)}。此规则唯一的例外是 {@code Class} 和 {@code Class[]} 值，它们可以分别作为 {@code String} 和 {@code String[]} 访问，以避免可能的类过早初始化。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::34::3", "zh": ["<p>如有必要，{@code MergedAnnotation} 可以被 {@linkplain #synthesize() 合成}回实际的 {@link java.lang.annotation.Annotation}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::63::0", "zh": ["单元素注解的属性名。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::69::0", "zh": ["获取实际注解类型的 {@code Class} 引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::75::0", "zh": ["判断注解是否存在于源上。会在所使用的 {@link SearchStrategy} 上下文中考虑 {@linkplain #isDirectlyPresent() 直接存在}和 {@linkplain #isMetaPresent() 元存在}的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::84::0", "zh": ["判断注解是否直接存在于源上。<p>直接存在的注解是用户显式声明的注解，而不是 {@linkplain #isMetaPresent() 元存在}或 {@link Inherited @Inherited} 的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::93::0", "zh": ["判断注解是否元存在于源上。<p>元存在的注解是指用户未显式声明、但在注解层次结构中的某处被用作元注解的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::102::0", "zh": ["获取此注解作为元注解使用时的距离。<p>直接声明的注解距离为 {@code 0}，元注解距离为 {@code 1}，元注解上的元注解距离为 {@code 2}，依此类推。{@linkplain #missing() 缺失}的注解将始终返回距离 {@code -1}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::113::0", "zh": ["获取包含此注解的聚合集合的索引。<p>可用于重新排列注解流，例如为超类或接口上声明的注解赋予更高的优先级。{@linkplain #missing() 缺失}的注解将始终返回聚合索引 {@code -1}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::124::0", "zh": ["获取最终声明根注解的源，如果源未知则返回 {@code null}。<p>如果此合并注解是通过 {@link MergedAnnotations#from(AnnotatedElement) from} 一个 {@link AnnotatedElement} 创建的，则此源将是同一类型的元素。如果注解是在未使用反射的情况下加载的，则源可以是任何类型，但应具有合理的 {@code toString()}。元注解将始终返回与 {@link #getRoot() 根}相同的源。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::139::0", "zh": ["获取元注解的源，如果该注解不是 {@linkplain #isMetaPresent() 元存在}的，则返回 {@code null}。<p>元源是用此注解进行元注解的那个注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::150::0", "zh": ["获取根注解，即直接在源上声明的、{@link #getDistance() 距离}为 {@code 0} 的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::158::0", "zh": ["获取注解层次结构中从此注解到 {@link #getRoot() 根}的完整注解类型列表。<p>这提供了一种唯一标识合并注解实例的有用方式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::170::0", "zh": ["判断指定属性名的值相较于注解声明是否为非默认值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::179::0", "zh": ["判断指定属性名的值相较于注解声明是否为默认值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::188::0", "zh": ["从注解中获取必需的 byte 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::196::0", "zh": ["从注解中获取必需的 byte 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::204::0", "zh": ["从注解中获取必需的 boolean 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::212::0", "zh": ["从注解中获取必需的 boolean 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::220::0", "zh": ["从注解中获取必需的 char 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::228::0", "zh": ["从注解中获取必需的 char 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::236::0", "zh": ["从注解中获取必需的 short 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::244::0", "zh": ["从注解中获取必需的 short 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::252::0", "zh": ["从注解中获取必需的 int 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::260::0", "zh": ["从注解中获取必需的 int 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::268::0", "zh": ["从注解中获取必需的 long 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::276::0", "zh": ["从注解中获取必需的 long 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::284::0", "zh": ["从注解中获取必需的 double 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::292::0", "zh": ["从注解中获取必需的 double 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::300::0", "zh": ["从注解中获取必需的 float 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::308::0", "zh": ["从注解中获取必需的 float 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::316::0", "zh": ["从注解中获取必需的字符串属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::324::0", "zh": ["从注解中获取必需的字符串数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::332::0", "zh": ["从注解中获取必需的 class 属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::340::0", "zh": ["从注解中获取必需的 class 数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::348::0", "zh": ["从注解中获取必需的枚举属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::357::0", "zh": ["从注解中获取必需的枚举数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::366::0", "zh": ["从注解中获取必需的注解属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::376::0", "zh": ["从注解中获取必需的注解数组属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::386::0", "zh": ["从注解中获取可选的属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::394::0", "zh": ["从注解中获取可选的属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::404::0", "zh": ["获取注解中按注解声明所指定的默认属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::413::0", "zh": ["获取注解中按注解声明所指定的默认属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::424::0", "zh": ["创建注解的新视图，其中已移除所有具有默认值的属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::433::0", "zh": ["创建注解的新视图，其中仅包含与给定谓词匹配的属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::443::0", "zh": ["创建注解的新视图，以公开未合并的属性值。<p>此视图中的方法返回的属性值仅应用了别名镜像规则。指向 {@link #getMetaSource() 元源}属性的别名将不会应用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::452::0", "zh": ["从此合并注解创建一个新的可变 {@link AnnotationAttributes} 实例。<p>可以使用 {@link Adapt 适配}来改变值的添加方式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::462::0", "zh": ["获取一个包含所有注解属性的不可变 {@link Map}。<p>可以使用 {@link Adapt 适配}来改变值的添加方式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::470::0", "zh": ["创建给定类型的新 {@link Map} 实例，其中包含所有注解属性。<p>可以使用 {@link Adapt 适配}来改变值的添加方式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::480::0", "zh": ["创建此合并注解的类型安全合成版本，可直接在代码中使用。<p>结果是使用 JDK {@link java.lang.reflect.Proxy Proxy} 合成的，因此在首次调用时可能产生计算开销。<p>如果此合并注解是从注解属性映射或默认属性值创建的（{@linkplain #of(AnnotatedElement, Class, Map) from}），则这些属性将始终被合成为注解实例。<p>如果此合并注解是从注解实例创建的（{@linkplain #from(Annotation) from}），那么当该注解不可<em>合成</em>时，将原样返回该注解。如果注解尚未被合成且满足以下条件之一，则认为该注解是可合成的。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::505::0", "zh": ["可选地基于条件谓词创建此注解的类型安全合成版本。<p>结果是使用 JDK {@link java.lang.reflect.Proxy Proxy} 合成的，因此在首次调用时可能产生计算开销。<p>有关何谓可合成的说明，请参阅 {@link #synthesize()} 的文档。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::521::0", "zh": ["创建表示缺失注解（即不存在的注解）的 {@link MergedAnnotation}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::530::0", "zh": ["从指定的注解创建新的 {@link MergedAnnotation} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::540::0", "zh": ["从指定的注解创建新的 {@link MergedAnnotation} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::553::0", "zh": ["创建指定注解类型的新 {@link MergedAnnotation} 实例。结果注解将不具有任何属性值，但仍可用于查询默认值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::564::0", "zh": ["创建指定注解类型的新 {@link MergedAnnotation} 实例，其属性值由映射提供。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::579::0", "zh": ["创建指定注解类型的新 {@link MergedAnnotation} 实例，其属性值由映射提供。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::596::0", "zh": ["创建指定注解类型的新 {@link MergedAnnotation} 实例，其属性值由映射提供。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::616::0", "zh": ["在创建 {@linkplain MergedAnnotation#asMap(Adapt...) Maps} 或 {@link MergedAnnotation#asAnnotationAttributes(Adapt...) AnnotationAttributes} 时可以应用于属性值的适配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::623::0", "zh": ["将 class 或 class 数组属性适配为字符串。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::628::0", "zh": ["将嵌套注解或注解数组适配为映射，而不是合成这些值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotation.java::643::0", "zh": ["工厂方法，用于根据一组布尔标志创建 {@link Adapt} 数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::33::0", "zh": ["为 {@link MergedAnnotation} 实例提供各种归约操作的 {@link Collector} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::52::0", "zh": ["创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}版本的 {@link LinkedHashSet} 中。<p>此方法返回的收集器实际上等同于 {@code Collectors.mapping(MergedAnnotation::synthesize, Collectors.toCollection(LinkedHashSet::new))}，但避免了创建复合收集器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::68::0", "zh": ["创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}版本的 {@link Annotation} 数组中。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::81::0", "zh": ["创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}版本的 {@link Annotation} 数组中。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::100::0", "zh": ["创建新的 {@link Collector}，将合并注解累积到 {@link MultiValueMap} 中，其条目由每个合并注解{@linkplain MergedAnnotation#asMap(Adapt...) 作为映射}{@linkplain MultiValueMap#add(Object, Object) 添加}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::117::0", "zh": ["创建新的 {@link Collector}，将合并注解累积到 {@link MultiValueMap} 中，其条目由每个合并注解{@linkplain MergedAnnotation#asMap(Adapt...) 作为映射}{@linkplain MultiValueMap#add(Object, Object) 添加}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::145::0", "zh": ["用于集合的 {@link Collector#combiner() Combiner}。<p>仅当 {@link java.util.stream.Stream} 以{@linkplain java.util.stream.Stream#parallel() 并行}方式处理时才会调用此方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationCollectors.java::155::0", "zh": ["用于多值映射的 {@link Collector#combiner() Combiner}。<p>仅当 {@link java.util.stream.Stream} 以{@linkplain java.util.stream.Stream#parallel() 并行}方式处理时才会调用此方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::30::0", "zh": ["为 {@link MergedAnnotation MergedAnnotations} 提供各种测试操作的 Predicate 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::43::0", "zh": ["创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}的名称包含在指定数组中，则其结果为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::55::0", "zh": ["创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}包含在指定数组中，则其结果为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::67::0", "zh": ["创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}包含在指定集合中，则其结果为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::81::0", "zh": ["创建新的有状态、一次性使用的 {@link Predicate}，它仅匹配提取值的第一个连续段。例如，{@code MergedAnnotationPredicates.firstRunOf(MergedAnnotation::distance)} 将匹配第一个注解，以及具有相同距离的任何后续连续段。<p>注意：此谓词仅匹配第一个连续段。一旦提取的值发生变化，该谓词将始终返回 {@code false}。例如，如果您有一组距离为 {@code [1, 1, 2, 1]} 的注解，则只有前两个会匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::101::0", "zh": ["创建新的有状态、一次性使用的 {@link Predicate}，它匹配基于提取键唯一的注解。例如，{@code MergedAnnotationPredicates.unique(MergedAnnotation::getType)} 将在首次遇到唯一类型时匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::118::0", "zh": ["用于 {@link MergedAnnotationPredicates#firstRunOf(Function)} 的 {@link Predicate} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationPredicates.java::149::0", "zh": ["用于 {@link MergedAnnotationPredicates#unique(Function)} 的 {@link Predicate} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelector.java::21::0", "zh": ["用于在两个 {@link MergedAnnotation} 实例之间进行选择的策略接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelector.java::33::0", "zh": ["判断现有注解是否已知为最佳候选，从而可以跳过任何后续选择。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelector.java::43::0", "zh": ["选择应使用的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelectors.java::22::0", "zh": ["为 {@link MergedAnnotation} 实例提供各种选项的 {@link MergedAnnotationSelector} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelectors.java::42::0", "zh": ["选择最近的注解，即距离最小的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelectors.java::51::0", "zh": ["尽可能选择第一个直接声明的注解。如果未声明任何直接注解，则选择最近的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelectors.java::62::0", "zh": ["用于选择最近注解的 {@link MergedAnnotationSelector}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationSelectors.java::85::0", "zh": ["用于选择第一个直接声明注解的 {@link MergedAnnotationSelector}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::0", "zh": ["提供对合并注解集合的访问，这些注解通常从诸如 {@link Class} 或 {@link Method} 之类的源获取。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::1", "zh": ["<p>每个合并注解表示一个视图，其中的属性值可能由不同的源值“合并”而来，通常是："]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::2", "zh": ["<p>例如，{@code @PostMapping} 注解可以定义如下："]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::3", "zh": ["<p>如果某个方法标注了 {@code @PostMapping(\"/home\")}，则它将同时包含 {@code @PostMapping} 和元注解 {@code @RequestMapping} 的合并注解。{@code @RequestMapping} 注解的合并视图将包含以下属性："]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::4", "zh": ["<p>{@code MergedAnnotations} 可以从任何 Java {@link AnnotatedElement} 通过 {@linkplain #from(AnnotatedElement) from} 获取。它们也可用于不使用反射的源（例如直接解析字节码的源）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::5", "zh": ["<p>可以使用不同的 {@linkplain SearchStrategy 搜索策略}来定位包含待聚合注解的相关源元素。例如，{@link SearchStrategy#TYPE_HIERARCHY} 将同时搜索超类和已实现的接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::6", "zh": ["<p>从 {@code MergedAnnotations} 实例中，您可以{@linkplain #get(String) 获取}单个注解，也可以{@linkplain #stream() 流式获取所有注解}，或仅获取与{@linkplain #stream(String) 特定类型}匹配的注解。您还可以快速判断某个注解是否{@linkplain #isPresent(String) 存在}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::7", "zh": ["<p>以下是一些典型示例："]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::30::8", "zh": ["<p><b>注意：{@code MergedAnnotations} API 及其底层模型是为 Spring 通用组件模型中的可组合注解而设计的，重点在于属性别名和元注解关系。</b>此 API 不支持检索普通的 Java 注解；对于简单的注解检索用途，请使用标准 Java 反射或 Spring 的 {@link AnnotationUtils}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::140::0", "zh": ["判断指定的注解类型是直接存在还是元存在。<p>等同于调用 {@code get(annotationType).isPresent()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::149::0", "zh": ["判断指定的注解类型是直接存在还是元存在。<p>等同于调用 {@code get(annotationType).isPresent()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::159::0", "zh": ["判断指定的注解类型是否直接存在。<p>等同于调用 {@code get(annotationType).isDirectlyPresent()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::167::0", "zh": ["判断指定的注解类型是否直接存在。<p>等同于调用 {@code get(annotationType).isDirectlyPresent()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::176::0", "zh": ["获取指定类型的{@linkplain MergedAnnotationSelectors#nearest() 最近}匹配注解或元注解，如果不存在则返回 {@link MergedAnnotation#missing()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::185::0", "zh": ["获取指定类型的{@linkplain MergedAnnotationSelectors#nearest() 最近}匹配注解或元注解，如果不存在则返回 {@link MergedAnnotation#missing()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::198::0", "zh": ["获取指定类型的匹配注解或元注解，如果不存在则返回 {@link MergedAnnotation#missing()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::215::0", "zh": ["获取指定类型的{@linkplain MergedAnnotationSelectors#nearest() 最近}匹配注解或元注解，如果不存在则返回 {@link MergedAnnotation#missing()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::225::0", "zh": ["获取指定类型的{@linkplain MergedAnnotationSelectors#nearest() 最近}匹配注解或元注解，如果不存在则返回 {@link MergedAnnotation#missing()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::239::0", "zh": ["获取指定类型的匹配注解或元注解，如果不存在则返回 {@link MergedAnnotation#missing()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::257::0", "zh": ["流式获取所有与指定类型匹配的注解和元注解。<p>结果流遵循与 {@link #stream()} 相同的排序规则。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::266::0", "zh": ["流式获取所有与指定类型匹配的注解和元注解。<p>结果流遵循与 {@link #stream()} 相同的排序规则。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::276::0", "zh": ["流式获取此集合中包含的所有注解和元注解。<p>结果流首先按 {@linkplain MergedAnnotation#getAggregateIndex() 聚合索引}排序，然后按注解距离排序（最接近的注解在前）。这种排序意味着，在大多数用例中，最合适的注解会最先出现在流中。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::288::0", "zh": ["创建新的 {@link MergedAnnotations} 实例，包含来自指定元素的所有注解和元注解。<p>结果实例将不包含任何继承的注解。如果还想包含这些注解，应使用带有适当 {@link SearchStrategy} 的 {@link #from(AnnotatedElement, SearchStrategy)}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::303::0", "zh": ["创建新的 {@link MergedAnnotations} 实例，包含来自指定元素的所有注解和元注解，以及（取决于 {@link SearchStrategy}）相关的继承元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::316::0", "zh": ["创建新的 {@link MergedAnnotations} 实例，包含来自指定元素的所有注解和元注解，以及（取决于 {@link SearchStrategy}）相关的继承元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::333::0", "zh": ["创建新的 {@link MergedAnnotations} 实例，包含来自指定元素的所有注解和元注解，以及（取决于 {@link SearchStrategy}）相关的继承元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::354::0", "zh": ["从指定的注解创建新的 {@link MergedAnnotations} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::365::0", "zh": ["从指定的注解创建新的 {@link MergedAnnotations} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::380::0", "zh": ["从指定的注解创建新的 {@link MergedAnnotations} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::395::0", "zh": ["从指定的注解创建新的 {@link MergedAnnotations} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::416::0", "zh": ["从指定的直接存在注解集合创建新的 {@link MergedAnnotations} 实例。此方法允许从未必使用反射加载的注解创建 {@code MergedAnnotations} 实例。所提供的注解必须都是{@link MergedAnnotation#isDirectlyPresent() 直接存在}的，并且其{@link MergedAnnotation#getAggregateIndex() 聚合索引}必须为 {@code 0}。<p>结果 {@code MergedAnnotations} 实例将同时包含指定的注解以及任何可通过反射读取的元注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::436::0", "zh": ["由 {@link MergedAnnotations#from(AnnotatedElement, SearchStrategy)} 及其变体方法支持的搜索策略。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::436::1", "zh": ["<p>每种策略都会创建一组不同的聚合，这些聚合将被组合以创建最终的 {@link MergedAnnotations}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::446::0", "zh": ["仅查找直接声明的注解，不考虑 {@link Inherited @Inherited} 注解，也不搜索超类或已实现的接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::453::0", "zh": ["查找所有直接声明的注解以及任何 {@link Inherited @Inherited} 超类注解。<p>此策略仅在用于 {@link Class} 类型时才真正有用，因为对于所有其他 {@linkplain AnnotatedElement 被注解元素}，{@link Inherited @Inherited} 注解会被忽略。<p>此策略不搜索已实现的接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::463::0", "zh": ["查找所有直接声明的注解和超类注解。<p>此策略与 {@link #INHERITED_ANNOTATIONS} 类似，只是注解不需要用 {@link Inherited @Inherited} 进行元注解。<p>此策略不搜索已实现的接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::472::0", "zh": ["对整个类型层次结构执行完整搜索，包括超类和已实现的接口。<p>超类注解不需要用 {@link Inherited @Inherited} 进行元注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotations.java::480::0", "zh": ["对源<em>以及</em>任何外围类执行整个类型层次结构的完整搜索。<p>此策略与 {@link #TYPE_HIERARCHY} 类似，只是还会搜索 {@linkplain Class#getEnclosingClass() 外围类}。<p>超类和外围类的注解不需要用 {@link Inherited @Inherited} 进行元注解。<p>当搜索 {@link Method} 源时，此策略与 {@link #TYPE_HIERARCHY} 相同。<p><strong>警告：</strong>此策略会递归搜索任何源类型的外围类上的注解，无论该源类型是<em>内部类</em>、{@code static} 嵌套类还是嵌套接口。因此，它可能找到比您预期更多的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MergedAnnotationsCollection.java::32::0", "zh": ["由表示直接注解的 {@link MergedAnnotation} 实例的 {@link Collection} 支持的 {@link MergedAnnotations} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/MissingMergedAnnotation.java::30::0", "zh": ["用作 {@link MergedAnnotation#missing()} 实现的 {@link AbstractMergedAnnotation}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::27::0", "zh": ["{@code @Order} 定义了被注解组件的排序顺序。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::27::1", "zh": ["<p>{@link #value} 是可选的，表示 {@link Ordered} 接口中定义的顺序值。值越低优先级越高。默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示最低优先级（会输给任何其他指定的顺序值）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::27::2", "zh": ["<p><b>注意：</b>自 Spring 4.0 起，Spring 中的许多类型组件都支持基于注解的排序，甚至对于集合注入也是如此，此时会考虑目标组件的顺序值（来自其目标类或其 {@code @Bean} 方法）。虽然这些顺序值可能影响注入点的优先级，但请注意它们不影响单例启动顺序，后者是一个正交的关注点，由依赖关系和 {@code @DependsOn} 声明决定（影响运行时确定的依赖图）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::27::3", "zh": ["<p>自 Spring 4.1 起，在排序场景中，标准 {@link javax.annotation.Priority} 注解可用作此注解的直接替代。请注意，当需要挑选单个元素时，{@code @Priority} 可能具有额外的语义（请参见 {@link AnnotationAwareOrderComparator#getPriority}）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::27::4", "zh": ["<p>或者，也可以通过 {@link Ordered} 接口按实例确定顺序值，从而使用由配置确定的实例值，而不是附加到特定类的硬编码值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::27::5", "zh": ["<p>有关非有序对象的排序语义的详细信息，请参阅 {@link org.springframework.core.OrderComparator OrderComparator} 的 Javadoc。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/Order.java::68::0", "zh": ["顺序值。<p>默认为 {@link Ordered#LOWEST_PRECEDENCE}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::26::0", "zh": ["用于根据类型声明确定对象顺序的通用工具。同时处理 Spring 的 {@link Order} 注解以及 {@link javax.annotation.Priority}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::47::0", "zh": ["返回指定 {@code type} 上的顺序值，如果找不到，则返回指定的默认值。<p>会处理 {@link Order @Order} 和 {@code @javax.annotation.Priority}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::61::0", "zh": ["返回指定 {@code type} 上的顺序值，如果找不到，则返回指定的默认值。<p>会处理 {@link Order @Order} 和 {@code @javax.annotation.Priority}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::75::0", "zh": ["返回指定 {@code type} 上的顺序值。<p>会处理 {@link Order @Order} 和 {@code @javax.annotation.Priority}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::87::0", "zh": ["返回指定 {@code element} 上声明的顺序值。<p>会处理 {@link Order @Order} 和 {@code @javax.annotation.Priority}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::99::0", "zh": ["从指定的注解集合中返回顺序值。<p>会处理 {@link Order @Order} 和 {@code @javax.annotation.Priority}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/OrderUtils.java::134::0", "zh": ["返回指定类型上声明的 {@code javax.annotation.Priority} 注解的值，如果不存在则返回 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/annotation/PackagesAnnotationFilter.java::25::0", "zh": ["用于 {@link AnnotationFilter#packages(String...)} 的 {@link AnnotationFilter} 实现。"]}

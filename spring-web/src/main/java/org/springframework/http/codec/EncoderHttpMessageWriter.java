@@ -41,11 +41,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code HttpMessageWriter} that wraps and delegates to an {@link Encoder}.
+ * {@code HttpMessageWriter}，包装并委托给 {@link Encoder}。
  *
- * <p>Also a {@code HttpMessageWriter} that pre-resolves encoding hints
- * from the extra information available on the server side such as the request
- * or controller method annotations.
+ * <p>同时也是一个 {@code HttpMessageWriter}，可依据服务器端提供的
+ * 额外信息（如请求或控制器方法上的注解）预先解析编码提示。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -69,7 +68,7 @@ public class EncoderHttpMessageWriter<T> implements HttpMessageWriter<T> {
 
 
 	/**
-	 * Create an instance wrapping the given {@link Encoder}.
+	 * 创建包装给定 {@link Encoder} 的实例。
 	 */
 	public EncoderHttpMessageWriter(Encoder<T> encoder) {
 		Assert.notNull(encoder, "Encoder is required");
@@ -94,7 +93,7 @@ public class EncoderHttpMessageWriter<T> implements HttpMessageWriter<T> {
 
 
 	/**
-	 * Return the {@code Encoder} of this writer.
+	 * 返回此写入器的 {@code Encoder}。
 	 */
 	public Encoder<T> getEncoder() {
 		return this.encoder;
@@ -218,9 +217,9 @@ public class EncoderHttpMessageWriter<T> implements HttpMessageWriter<T> {
 	}
 
 	/**
-	 * Get additional hints for encoding for example based on the server request
-	 * or annotations from controller method parameters. By default, delegate to
-	 * the encoder if it is an instance of {@link HttpMessageEncoder}.
+	 * 获取用于编码的额外提示，例如基于服务器请求
+	 * 或控制器方法参数上的注解。默认情况下，如果编码器是
+	 * {@link HttpMessageEncoder} 的实例，则委托给该编码器。
 	 */
 	protected Map<String, Object> getWriteHints(ResolvableType streamType, ResolvableType elementType,
 			@Nullable MediaType mediaType, ServerHttpRequest request, ServerHttpResponse response) {

@@ -21,12 +21,11 @@ import java.io.Serializable;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple marker class for an individually autowired property value, to be added
- * to {@link BeanDefinition#getPropertyValues()} for a specific bean property.
+ * 用于单个自动装配属性值的简单标记类，将添加到特定 Bean 属性的
+ * {@link BeanDefinition#getPropertyValues()} 中。
  *
- * <p>At runtime, this will be replaced with a {@link DependencyDescriptor}
- * for the corresponding bean property's write method, eventually to be resolved
- * through a {@link AutowireCapableBeanFactory#resolveDependency} step.
+ * <p>在运行时，这将被替换为对应 Bean 属性写方法的 {@link DependencyDescriptor}，最终通过
+ * {@link AutowireCapableBeanFactory#resolveDependency} 步骤解析。
  *
  * @author Juergen Hoeller
  * @since 5.2
@@ -38,7 +37,7 @@ import org.springframework.lang.Nullable;
 public final class AutowiredPropertyMarker implements Serializable {
 
 	/**
-	 * The canonical instance for the autowired marker value.
+	 * 自动装配标记值的规范实例。
 	 */
 	public static final Object INSTANCE = new AutowiredPropertyMarker();
 

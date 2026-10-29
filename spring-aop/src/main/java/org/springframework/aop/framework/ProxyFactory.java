@@ -23,9 +23,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Factory for AOP proxies for programmatic use, rather than via declarative
- * setup in a bean factory. This class provides a simple way of obtaining
- * and configuring AOP proxy instances in custom user code.
+ * 用于以编程方式（而不是通过 Bean 工厂中的声明式配置）使用 AOP 代理的工厂。此类提供了一种在自定义
+ * 用户代码中获取和配置 AOP 代理实例的简单方式。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,14 +35,14 @@ import org.springframework.util.ClassUtils;
 public class ProxyFactory extends ProxyCreatorSupport {
 
 	/**
-	 * Create a new ProxyFactory.
+	 * 创建一个新的 ProxyFactory。
 	 */
 	public ProxyFactory() {
 	}
 
 	/**
-	 * Create a new ProxyFactory.
-	 * <p>Will proxy all interfaces that the given target implements.
+	 * 创建一个新的 ProxyFactory。
+	 * <p>将代理给定目标所实现的所有接口。
 	 * @param target the target object to be proxied
 	 */
 	public ProxyFactory(Object target) {
@@ -52,8 +51,8 @@ public class ProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
-	 * Create a new ProxyFactory.
-	 * <p>No target, only interfaces. Must add interceptors.
+	 * 创建一个新的 ProxyFactory。
+	 * <p>没有目标，只有接口。必须添加拦截器。
 	 * @param proxyInterfaces the interfaces that the proxy should implement
 	 */
 	public ProxyFactory(Class<?>... proxyInterfaces) {
@@ -61,10 +60,9 @@ public class ProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
-	 * Create a new ProxyFactory for the given interface and interceptor.
-	 * <p>Convenience method for creating a proxy for a single interceptor,
-	 * assuming that the interceptor handles all calls itself rather than
-	 * delegating to a target, like in the case of remoting proxies.
+	 * 为给定的接口和拦截器创建新的 ProxyFactory。
+	 * <p>用于为单个拦截器创建代理的便捷方法，假定该拦截器自己处理所有调用而不委托给目标，就像远程代理
+	 * 的情况那样。
 	 * @param proxyInterface the interface that the proxy should implement
 	 * @param interceptor the interceptor that the proxy should invoke
 	 */
@@ -74,8 +72,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
-	 * Create a ProxyFactory for the specified {@code TargetSource},
-	 * making the proxy implement the specified interface.
+	 * 为指定的 {@code TargetSource} 创建 ProxyFactory，使代理实现指定的接口。
 	 * @param proxyInterface the interface that the proxy should implement
 	 * @param targetSource the TargetSource that the proxy should invoke
 	 */
@@ -86,11 +83,9 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 
 	/**
-	 * Create a new proxy according to the settings in this factory.
-	 * <p>Can be called repeatedly. Effect will vary if we've added
-	 * or removed interfaces. Can add and remove interceptors.
-	 * <p>Uses a default class loader: Usually, the thread context class loader
-	 * (if necessary for proxy creation).
+	 * 根据此工厂中的设置创建新的代理。
+	 * <p>可以重复调用。如果添加或移除了接口，效果会有所不同。可以添加和移除拦截器。
+	 * <p>使用默认类加载器：通常为线程上下文类加载器（如果代理创建需要）。
 	 * @return the proxy object
 	 */
 	public Object getProxy() {
@@ -98,10 +93,9 @@ public class ProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
-	 * Create a new proxy according to the settings in this factory.
-	 * <p>Can be called repeatedly. Effect will vary if we've added
-	 * or removed interfaces. Can add and remove interceptors.
-	 * <p>Uses the given class loader (if necessary for proxy creation).
+	 * 根据此工厂中的设置创建新的代理。
+	 * <p>可以重复调用。如果添加或移除了接口，效果会有所不同。可以添加和移除拦截器。
+	 * <p>使用给定的类加载器（如果代理创建需要）。
 	 * @param classLoader the class loader to create the proxy with
 	 * (or {@code null} for the low-level proxy facility's default)
 	 * @return the proxy object
@@ -112,10 +106,9 @@ public class ProxyFactory extends ProxyCreatorSupport {
 
 
 	/**
-	 * Create a new proxy for the given interface and interceptor.
-	 * <p>Convenience method for creating a proxy for a single interceptor,
-	 * assuming that the interceptor handles all calls itself rather than
-	 * delegating to a target, like in the case of remoting proxies.
+	 * 为给定的接口和拦截器创建新的代理。
+	 * <p>用于为单个拦截器创建代理的便捷方法，假定该拦截器自己处理所有调用而不委托给目标，就像远程代理
+	 * 的情况那样。
 	 * @param proxyInterface the interface that the proxy should implement
 	 * @param interceptor the interceptor that the proxy should invoke
 	 * @return the proxy object
@@ -127,8 +120,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
-	 * Create a proxy for the specified {@code TargetSource},
-	 * implementing the specified interface.
+	 * 为指定的 {@code TargetSource} 创建代理，实现指定的接口。
 	 * @param proxyInterface the interface that the proxy should implement
 	 * @param targetSource the TargetSource that the proxy should invoke
 	 * @return the proxy object
@@ -140,8 +132,7 @@ public class ProxyFactory extends ProxyCreatorSupport {
 	}
 
 	/**
-	 * Create a proxy for the specified {@code TargetSource} that extends
-	 * the target class of the {@code TargetSource}.
+	 * 为指定的 {@code TargetSource} 创建代理，该代理扩展 {@code TargetSource} 的目标类。
 	 * @param targetSource the TargetSource that the proxy should invoke
 	 * @return the proxy object
 	 */

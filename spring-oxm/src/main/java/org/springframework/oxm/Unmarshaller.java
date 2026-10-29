@@ -21,8 +21,8 @@ import java.io.IOException;
 import javax.xml.transform.Source;
 
 /**
- * Defines the contract for Object XML Mapping unmarshallers. Implementations of this
- * interface can deserialize a given XML Stream to an Object graph.
+ * 定义对象 XML 映射（Object XML Mapping）unmarshaller 的契约。此接口的实现类
+ * 可以将给定 XML 流反序列化为对象图。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -31,7 +31,7 @@ import javax.xml.transform.Source;
 public interface Unmarshaller {
 
 	/**
-	 * Indicate whether this unmarshaller can unmarshal instances of the supplied type.
+	 * 指示此 unmarshaller 是否能够 unmarshal 所提供类型的实例。
 	 * @param clazz the class that this unmarshaller is being asked if it can marshal
 	 * @return {@code true} if this unmarshaller can indeed unmarshal to the supplied class;
 	 * {@code false} otherwise
@@ -39,7 +39,7 @@ public interface Unmarshaller {
 	boolean supports(Class<?> clazz);
 
 	/**
-	 * Unmarshal the given {@link Source} into an object graph.
+	 * 将给定的 {@link Source} unmarshal 为对象图。
 	 * @param source the source to marshal from
 	 * @return the object graph
 	 * @throws IOException if an I/O error occurs

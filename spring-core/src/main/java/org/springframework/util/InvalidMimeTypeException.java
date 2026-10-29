@@ -17,8 +17,7 @@
 package org.springframework.util;
 
 /**
- * Exception thrown from {@link MimeTypeUtils#parseMimeType(String)} in case of
- * encountering an invalid content type specification String.
+ * 当遇到无效的内容类型规范字符串时，由 {@link MimeTypeUtils#parseMimeType(String)} 抛出的异常。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -31,7 +30,7 @@ public class InvalidMimeTypeException extends IllegalArgumentException {
 
 
 	/**
-	 * Create a new InvalidContentTypeException for the given content type.
+	 * 为给定内容类型创建一个新的 InvalidContentTypeException。
 	 * @param mimeType the offending media type
 	 * @param message a detail message indicating the invalid part
 	 */
@@ -42,7 +41,7 @@ public class InvalidMimeTypeException extends IllegalArgumentException {
 
 
 	/**
-	 * Return the offending content type.
+	 * 返回有问题的内容类型。
 	 */
 	public String getMimeType() {
 		return this.mimeType;

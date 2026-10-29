@@ -48,11 +48,10 @@ import org.springframework.util.MimeType;
 import org.springframework.util.RouteMatcher;
 
 /**
- * Responder {@link RSocket} that wraps the payload and metadata of incoming
- * requests as a {@link Message} and then delegates to the configured
- * {@link RSocketMessageHandler} to handle it. The response, if applicable, is
- * obtained from the {@link RSocketPayloadReturnValueHandler#RESPONSE_HEADER
- * "rsocketResponse"} header.
+ * 响应方 {@link RSocket}，它将传入请求的负载和元数据包装为 {@link Message}，
+ * 然后委托给配置的 {@link RSocketMessageHandler} 进行处理。如果适用，
+ * 响应从 {@link RSocketPayloadReturnValueHandler#RESPONSE_HEADER
+ * "rsocketResponse"} 头部获取。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -97,8 +96,8 @@ class MessagingRSocket implements RSocket {
 
 
 	/**
-	 * Wrap the {@link ConnectionSetupPayload} with a {@link Message} and
-	 * delegate to {@link #handle(Payload, FrameType)} for handling.
+	 * 使用 {@link Message} 包装 {@link ConnectionSetupPayload}，
+	 * 并委托给 {@link #handle(Payload, FrameType)} 进行处理。
 	 * @param payload the connection payload
 	 * @return completion handle for success or error
 	 */

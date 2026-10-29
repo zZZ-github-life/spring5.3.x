@@ -26,8 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@link DestinationResolver} implementation resolving destination names
- * as dynamic destinations.
+ * 简单的 {@link DestinationResolver} 实现，将目的地名称解析为动态目的地。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -37,7 +36,7 @@ import org.springframework.util.Assert;
 public class DynamicDestinationResolver implements DestinationResolver {
 
 	/**
-	 * Resolve the specified destination name as a dynamic destination.
+	 * 将指定的目的地名称解析为动态目的地。
 	 * @param session the current JMS Session
 	 * @param destinationName the name of the destination
 	 * @param pubSubDomain {@code true} if the domain is pub-sub, {@code false} if P2P
@@ -62,7 +61,7 @@ public class DynamicDestinationResolver implements DestinationResolver {
 
 
 	/**
-	 * Resolve the given destination name to a {@link Topic}.
+	 * 将给定的目的地名称解析为 {@link Topic}。
 	 * @param session the current JMS Session
 	 * @param topicName the name of the desired {@link Topic}
 	 * @return the JMS {@link Topic}
@@ -74,7 +73,7 @@ public class DynamicDestinationResolver implements DestinationResolver {
 	}
 
 	/**
-	 * Resolve the given destination name to a {@link Queue}.
+	 * 将给定的目的地名称解析为 {@link Queue}。
 	 * @param session the current JMS Session
 	 * @param queueName the name of the desired {@link Queue}
 	 * @return the JMS {@link Queue}

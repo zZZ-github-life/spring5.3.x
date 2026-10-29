@@ -59,8 +59,7 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * {@code ServerRequest} implementation based on a {@link ServerWebExchange}.
- *
+ * 基于 {@link ServerWebExchange} 的 {@code ServerRequest} 实现。
  * @author Arjen Poutsma
  * @since 5.0
  */

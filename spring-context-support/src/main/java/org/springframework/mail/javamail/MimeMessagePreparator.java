@@ -19,16 +19,14 @@ package org.springframework.mail.javamail;
 import javax.mail.internet.MimeMessage;
 
 /**
- * Callback interface for the preparation of JavaMail MIME messages.
+ * 用于准备 JavaMail MIME 消息的回调接口。
  *
- * <p>The corresponding {@code send} methods of {@link JavaMailSender}
- * will take care of the actual creation of a {@link MimeMessage} instance,
- * and of proper exception conversion.
+ * <p>{@link JavaMailSender} 对应的 {@code send} 方法将负责
+ * 实际创建 {@link MimeMessage} 实例以及正确的异常转换。
  *
- * <p>It is often convenient to use a {@link MimeMessageHelper} for populating
- * the passed-in MimeMessage, in particular when working with attachments or
- * special character encodings.
- * See {@link MimeMessageHelper MimeMessageHelper's javadoc} for an example.
+ * <p>使用 {@link MimeMessageHelper} 来填充传入的 MimeMessage
+ * 通常很方便，特别是在处理附件或特殊字符编码时。
+ * 请参阅 {@link MimeMessageHelper MimeMessageHelper 的 javadoc} 中的示例。
  *
  * @author Juergen Hoeller
  * @since 07.10.2003
@@ -40,7 +38,7 @@ import javax.mail.internet.MimeMessage;
 public interface MimeMessagePreparator {
 
 	/**
-	 * Prepare the given new MimeMessage instance.
+	 * 准备给定的新 MimeMessage 实例。
 	 * @param mimeMessage the message to prepare
 	 * @throws javax.mail.MessagingException passing any exceptions thrown by MimeMessage
 	 * methods through for automatic conversion to the MailException hierarchy

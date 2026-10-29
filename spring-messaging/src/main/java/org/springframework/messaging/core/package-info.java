@@ -1,5 +1,5 @@
 /**
- * Defines interfaces and implementation classes for messaging templates.
+ * 定义消息模板的接口和实现类。
  */
 @NonNullApi
 @NonNullFields

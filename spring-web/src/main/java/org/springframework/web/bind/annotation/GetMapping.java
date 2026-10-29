@@ -25,11 +25,10 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation for mapping HTTP {@code GET} requests onto specific handler
- * methods.
+ * 用于将 HTTP {@code GET} 请求映射到特定处理方法的注解。
  *
- * <p>Specifically, {@code @GetMapping} is a <em>composed annotation</em> that
- * acts as a shortcut for {@code @RequestMapping(method = RequestMethod.GET)}.
+ * <p>具体而言，{@code @GetMapping} 是一个<em>组合注解</em>，
+ * 相当于 {@code @RequestMapping(method = RequestMethod.GET)} 的快捷方式。
  *
  * @author Sam Brannen
  * @since 4.3
@@ -46,44 +45,44 @@ import org.springframework.core.annotation.AliasFor;
 public @interface GetMapping {
 
 	/**
-	 * Alias for {@link RequestMapping#name}.
+	 * {@link RequestMapping#name} 的别名。
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String name() default "";
 
 	/**
-	 * Alias for {@link RequestMapping#value}.
+	 * {@link RequestMapping#value} 的别名。
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String[] value() default {};
 
 	/**
-	 * Alias for {@link RequestMapping#path}.
+	 * {@link RequestMapping#path} 的别名。
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String[] path() default {};
 
 	/**
-	 * Alias for {@link RequestMapping#params}.
+	 * {@link RequestMapping#params} 的别名。
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String[] params() default {};
 
 	/**
-	 * Alias for {@link RequestMapping#headers}.
+	 * {@link RequestMapping#headers} 的别名。
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String[] headers() default {};
 
 	/**
-	 * Alias for {@link RequestMapping#consumes}.
+	 * {@link RequestMapping#consumes} 的别名。
 	 * @since 4.3.5
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String[] consumes() default {};
 
 	/**
-	 * Alias for {@link RequestMapping#produces}.
+	 * {@link RequestMapping#produces} 的别名。
 	 */
 	@AliasFor(annotation = RequestMapping.class)
 	String[] produces() default {};

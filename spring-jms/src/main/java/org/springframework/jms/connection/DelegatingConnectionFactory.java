@@ -30,26 +30,23 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link javax.jms.ConnectionFactory} implementation that delegates all calls
- * to a given target {@link javax.jms.ConnectionFactory}, adapting specific
- * {@code create(Queue/Topic)Connection} calls to the target ConnectionFactory
- * if necessary (e.g. when running JMS 1.0.2 API based code against a generic
- * JMS 1.1 ConnectionFactory, such as ActiveMQ's PooledConnectionFactory).
+ * {@link javax.jms.ConnectionFactory} 实现，将所有调用委托给给定的目标
+ * {@link javax.jms.ConnectionFactory}，并在必要时将特定的
+ * {@code create(Queue/Topic)Connection} 调用适配到目标 ConnectionFactory
+ * （例如，基于 JMS 1.0.2 API 的代码运行在通用 JMS 1.1 ConnectionFactory
+ * 之上时，如 ActiveMQ 的 PooledConnectionFactory）。
  *
- * <p>As of Spring Framework 5, this class supports JMS 2.0 {@code JMSContext}
- * calls and therefore requires the JMS 2.0 API to be present at runtime.
- * It may nevertheless run against a JMS 1.1 driver (bound to the JMS 2.0 API)
- * as long as no actual JMS 2.0 calls are triggered by the application's setup.
+ * <p>从 Spring Framework 5 开始，此类支持 JMS 2.0 {@code JMSContext} 调用，
+ * 因此要求运行时存在 JMS 2.0 API。不过，只要应用设置不触发实际的 JMS 2.0 调用，
+ * 它仍然可以运行在 JMS 1.1 驱动之上（绑定到 JMS 2.0 API）。
  *
- * <p>This class allows for being subclassed, with subclasses overriding only
- * those methods (such as {@link #createConnection()}) that should not simply
- * delegate to the target ConnectionFactory.
+ * <p>此类允许被继承，子类只需重写那些不应简单委托给目标 ConnectionFactory
+ * 的方法（如 {@link #createConnection()}）。
  *
- * <p>Can also be defined as-is, wrapping a specific target ConnectionFactory,
- * using the "shouldStopConnections" flag to indicate whether Connections
- * obtained from the target factory are supposed to be stopped before closed.
- * The latter may be necessary for some connection pools that simply return
- * released connections to the pool, not stopping them while they sit in the pool.
+ * <p>也可以按原样定义，用于包装特定的目标 ConnectionFactory，
+ * 并通过 "shouldStopConnections" 标志指示从目标工厂获取的 Connection
+ * 是否应在关闭前停止。对于某些连接池来说，后者可能是必要的，
+ * 因为它们只是将释放的连接归还到池中，而不会在连接驻留池中时停止它们。
  *
  * @author Juergen Hoeller
  * @since 2.0.2
@@ -67,14 +64,14 @@ public class DelegatingConnectionFactory
 
 
 	/**
-	 * Set the target ConnectionFactory that this ConnectionFactory should delegate to.
+	 * 设置此 ConnectionFactory 应委托的目标 ConnectionFactory。
 	 */
 	public void setTargetConnectionFactory(@Nullable ConnectionFactory targetConnectionFactory) {
 		this.targetConnectionFactory = targetConnectionFactory;
 	}
 
 	/**
-	 * Return the target ConnectionFactory that this ConnectionFactory delegates to.
+	 * 返回此 ConnectionFactory 委托的目标 ConnectionFactory。
 	 */
 	@Nullable
 	public ConnectionFactory getTargetConnectionFactory() {
@@ -88,11 +85,10 @@ public class DelegatingConnectionFactory
 	}
 
 	/**
-	 * Indicate whether Connections obtained from the target factory are supposed
-	 * to be stopped before closed ("true") or simply closed ("false").
-	 * An extra stop call may be necessary for some connection pools that simply return
-	 * released connections to the pool, not stopping them while they sit in the pool.
-	 * <p>Default is "false", simply closing Connections.
+	 * 指示从目标工厂获取的 Connection 是否应在关闭前停止（"true"），还是仅关闭（"false"）。
+	 * 对于某些连接池来说，额外调用 stop 可能是必要的，因为它们只是将释放的连接
+	 * 归还到池中，而不会在连接驻留池中时停止它们。
+	 * <p>默认值为 "false"，即仅关闭 Connection。
 	 * @see ConnectionFactoryUtils#releaseConnection
 	 */
 	public void setShouldStopConnections(boolean shouldStopConnections) {

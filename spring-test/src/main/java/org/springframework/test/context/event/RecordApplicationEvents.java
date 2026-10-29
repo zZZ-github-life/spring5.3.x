@@ -24,21 +24,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @RecordApplicationEvents} is a class-level annotation that is used to
- * instruct the <em>Spring TestContext Framework</em> to record all
- * {@linkplain org.springframework.context.ApplicationEvent application events}
- * that are published in the {@link org.springframework.context.ApplicationContext
- * ApplicationContext} during the execution of a single test.
- *
- * <p>The recorded events can be accessed via the {@link ApplicationEvents} API
- * within your tests.
- *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
- *
- * <p>This annotation will be inherited from an enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * {@code @RecordApplicationEvents} 是一个类级注解，用于指示 <em>Spring TestContext Framework</em> 记录在单个测试执行期间发布到 {@link org.springframework.context.ApplicationContext ApplicationContext} 中的所有{@linkplain org.springframework.context.ApplicationEvent 应用程序事件}。
+ * <p>可以在测试中通过 {@link ApplicationEvents} API 访问记录的事件。
+ * <p>此注解可用作<em>元注解</em>以创建自定义<em>组合注解</em>。
+ * <p>此注解默认会从封闭测试类继承。有关详情，请参见 {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 5.3.3

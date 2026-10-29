@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerMapping;
 
 /**
- * Configuration support for WebSocket request handling.
+ * WebSocket 请求处理的配置支持。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -64,8 +64,8 @@ public class WebSocketConfigurationSupport {
 	}
 
 	/**
-	 * The default TaskScheduler to use if none is registered explicitly via
-	 * {@link SockJsServiceRegistration#setTaskScheduler}:
+	 * 如果未通过 {@link SockJsServiceRegistration#setTaskScheduler}
+	 * 显式注册，则使用此默认 TaskScheduler：
 	 * <pre class="code">
 	 * &#064;Configuration
 	 * &#064;EnableWebSocket

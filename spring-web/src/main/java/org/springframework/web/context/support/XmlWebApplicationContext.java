@@ -24,32 +24,29 @@ import org.springframework.beans.factory.xml.ResourceEntityResolver;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 /**
- * {@link org.springframework.web.context.WebApplicationContext} implementation
- * which takes its configuration from XML documents, understood by an
- * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
- * This is essentially the equivalent of
- * {@link org.springframework.context.support.GenericXmlApplicationContext}
- * for a web environment.
+ * {@link org.springframework.web.context.WebApplicationContext} 实现，
+ * 其配置取自 XML 文档，由
+ * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader} 解析。
+ * 它本质上相当于 Web 环境中的
+ * {@link org.springframework.context.support.GenericXmlApplicationContext}。
  *
- * <p>By default, the configuration will be taken from "/WEB-INF/applicationContext.xml"
- * for the root context, and "/WEB-INF/test-servlet.xml" for a context with the namespace
- * "test-servlet" (like for a DispatcherServlet instance with the servlet-name "test").
+ * <p>默认情况下，根上下文的配置取自 "/WEB-INF/applicationContext.xml"，命名空间为 "test-servlet"
+ * 的上下文（例如 servlet-name 为 "test" 的 DispatcherServlet 实例）则取自
+ * "/WEB-INF/test-servlet.xml"。
  *
- * <p>The config location defaults can be overridden via the "contextConfigLocation"
- * context-param of {@link org.springframework.web.context.ContextLoader} and servlet
- * init-param of {@link org.springframework.web.servlet.FrameworkServlet}. Config locations
- * can either denote concrete files like "/WEB-INF/context.xml" or Ant-style patterns
- * like "/WEB-INF/*-context.xml" (see {@link org.springframework.util.PathMatcher}
- * javadoc for pattern details).
+ * <p>可以通过 {@link org.springframework.web.context.ContextLoader} 的 "contextConfigLocation"
+ * context-param 以及 {@link org.springframework.web.servlet.FrameworkServlet} 的 servlet
+ * init-param 覆盖默认的配置位置。配置位置既可以表示具体文件（如 "/WEB-INF/context.xml"），也可以
+ * 表示 Ant 风格的模式（如 "/WEB-INF/*-context.xml"，模式细节请参见
+ * {@link org.springframework.util.PathMatcher} 的 javadoc）。
  *
- * <p>Note: In case of multiple config locations, later bean definitions will
- * override ones defined in earlier loaded files. This can be leveraged to
- * deliberately override certain bean definitions via an extra XML file.
+ * <p>注意：在有多个配置位置的情况下，后加载的 bean 定义将覆盖先前加载文件中定义的内容。可以利用
+ * 这一点，通过一个额外的 XML 文件有意覆盖某些 bean 定义。
  *
- * <p><b>For a WebApplicationContext that reads in a different bean definition format,
- * create an analogous subclass of {@link AbstractRefreshableWebApplicationContext}.</b>
- * Such a context implementation can be specified as "contextClass" context-param
- * for ContextLoader or "contextClass" init-param for FrameworkServlet.
+ * <p><b>对于读取其他 bean 定义格式的 WebApplicationContext，
+ * 应创建 {@link AbstractRefreshableWebApplicationContext} 的类似子类。</b>
+ * 这种上下文实现可以指定为 ContextLoader 的 "contextClass" context-param，
+ * 或 FrameworkServlet 的 "contextClass" init-param。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -61,18 +58,18 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  */
 public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationContext {
 
-	/** Default config location for the root context. */
+	/** 根上下文的默认配置位置。 */
 	public static final String DEFAULT_CONFIG_LOCATION = "/WEB-INF/applicationContext.xml";
 
-	/** Default prefix for building a config location for a namespace. */
+	/** 为命名空间构建配置位置时使用的默认前缀。 */
 	public static final String DEFAULT_CONFIG_LOCATION_PREFIX = "/WEB-INF/";
 
-	/** Default suffix for building a config location for a namespace. */
+	/** 为命名空间构建配置位置时使用的默认后缀。 */
 	public static final String DEFAULT_CONFIG_LOCATION_SUFFIX = ".xml";
 
 
 	/**
-	 * Loads the bean definitions via an XmlBeanDefinitionReader.
+	 * 通过 XmlBeanDefinitionReader 加载 bean 定义。
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 * @see #initBeanDefinitionReader
 	 * @see #loadBeanDefinitions
@@ -95,10 +92,10 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	}
 
 	/**
-	 * Initialize the bean definition reader used for loading the bean
-	 * definitions of this context. Default implementation is empty.
-	 * <p>Can be overridden in subclasses, e.g. for turning off XML validation
-	 * or using a different XmlBeanDefinitionParser implementation.
+	 * 初始化用于加载此上下文 bean 定义的 bean 定义读取器。
+	 * 默认实现为空。
+	 * <p>可以在子类中重写，例如用于关闭 XML 校验
+	 * 或使用不同的 XmlBeanDefinitionParser 实现。
 	 * @param beanDefinitionReader the bean definition reader used by this context
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setValidationMode
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setDocumentReaderClass
@@ -107,11 +104,11 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	}
 
 	/**
-	 * Load the bean definitions with the given XmlBeanDefinitionReader.
-	 * <p>The lifecycle of the bean factory is handled by the refreshBeanFactory method;
-	 * therefore this method is just supposed to load and/or register bean definitions.
-	 * <p>Delegates to a ResourcePatternResolver for resolving location patterns
-	 * into Resource instances.
+	 * 使用给定的 XmlBeanDefinitionReader 加载 bean 定义。
+	 * <p>bean 工厂的生命周期由 refreshBeanFactory 方法负责管理；
+	 * 因此此方法只负责加载和/或注册 bean 定义。
+	 * <p>委托给 ResourcePatternResolver 将位置模式解析为
+	 * Resource 实例。
 	 * @throws IOException if the required XML document isn't found
 	 * @see #refreshBeanFactory
 	 * @see #getConfigLocations
@@ -128,9 +125,9 @@ public class XmlWebApplicationContext extends AbstractRefreshableWebApplicationC
 	}
 
 	/**
-	 * The default location for the root context is "/WEB-INF/applicationContext.xml",
-	 * and "/WEB-INF/test-servlet.xml" for a context with the namespace "test-servlet"
-	 * (like for a DispatcherServlet instance with the servlet-name "test").
+	 * 根上下文的默认位置为 "/WEB-INF/applicationContext.xml"；
+	 * 对于命名空间为 "test-servlet" 的上下文（例如 servlet-name 为 "test" 的
+	 * DispatcherServlet 实例），则为 "/WEB-INF/test-servlet.xml"。
 	 */
 	@Override
 	protected String[] getDefaultConfigLocations() {

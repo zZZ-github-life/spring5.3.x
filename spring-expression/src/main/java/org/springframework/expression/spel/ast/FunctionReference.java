@@ -37,12 +37,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * A function reference is of the form "#someFunction(a,b,c)". Functions may be defined
- * in the context prior to the expression being evaluated. Functions may also be static
- * Java methods, registered in the context prior to invocation of the expression.
+ * 函数引用的形式为 "#someFunction(a,b,c)"。函数可以在表达式求值之前就在上下文中定义。函数也可以是
+ * 静态 Java 方法，在表达式调用之前注册到上下文中。
  *
- * <p>Functions are very simplistic. The arguments are not part of the definition
- * (right now), so the names must be unique.
+ * <p>函数非常简单。（目前）参数并不属于定义的一部分，因此名称必须唯一。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -86,7 +84,7 @@ public class FunctionReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Execute a function represented as a {@code java.lang.reflect.Method}.
+	 * 执行以 {@code java.lang.reflect.Method} 表示的函数。
 	 * @param state the expression evaluation state
 	 * @param method the method to invoke
 	 * @return the return value of the invoked Java method
@@ -148,7 +146,7 @@ public class FunctionReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Compute the arguments to the function, they are the children of this expression node.
+	 * 计算函数的参数，它们是此表达式节点的子节点。
 	 * @return an array of argument values for the function call
 	 */
 	private Object[] getArguments(ExpressionState state) throws EvaluationException {

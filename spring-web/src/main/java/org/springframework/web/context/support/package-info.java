@@ -1,6 +1,6 @@
 /**
- * Classes supporting the {@code org.springframework.web.context} package,
- * such as WebApplicationContext implementations and various utility classes.
+ * 支持 {@code org.springframework.web.context} 包的类，
+ * 例如 WebApplicationContext 实现以及各种工具类。
  */
 @NonNullApi
 @NonNullFields

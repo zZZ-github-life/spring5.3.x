@@ -22,7 +22,7 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
 /**
- * Helper class for the creation of {@link javax.management.ObjectName} instances.
+ * 用于创建 {@link javax.management.ObjectName} 实例的辅助类。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -36,7 +36,7 @@ public final class ObjectNameManager {
 
 
 	/**
-	 * Retrieve the {@code ObjectName} instance corresponding to the supplied name.
+	 * 检索与所提供名称对应的 {@code ObjectName} 实例。
 	 * @param objectName the {@code ObjectName} in {@code ObjectName} or
 	 * {@code String} format
 	 * @return the {@code ObjectName} instance
@@ -56,7 +56,7 @@ public final class ObjectNameManager {
 	}
 
 	/**
-	 * Retrieve the {@code ObjectName} instance corresponding to the supplied name.
+	 * 检索与所提供名称对应的 {@code ObjectName} 实例。
 	 * @param objectName the {@code ObjectName} in {@code String} format
 	 * @return the {@code ObjectName} instance
 	 * @throws MalformedObjectNameException in case of an invalid object name specification
@@ -68,8 +68,7 @@ public final class ObjectNameManager {
 	}
 
 	/**
-	 * Retrieve an {@code ObjectName} instance for the specified domain and a
-	 * single property with the supplied key and value.
+	 * 为指定的域以及一个具有所提供键和值的属性检索 {@code ObjectName} 实例。
 	 * @param domainName the domain name for the {@code ObjectName}
 	 * @param key the key for the single property in the {@code ObjectName}
 	 * @param value the value for the single property in the {@code ObjectName}
@@ -85,8 +84,7 @@ public final class ObjectNameManager {
 	}
 
 	/**
-	 * Retrieve an {@code ObjectName} instance with the specified domain name
-	 * and the supplied key/name properties.
+	 * 检索具有指定域名和所提供键/名称属性的 {@code ObjectName} 实例。
 	 * @param domainName the domain name for the {@code ObjectName}
 	 * @param properties the properties for the {@code ObjectName}
 	 * @return the {@code ObjectName} instance

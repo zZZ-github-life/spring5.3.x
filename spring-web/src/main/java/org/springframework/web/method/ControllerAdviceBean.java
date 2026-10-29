@@ -41,12 +41,12 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 /**
- * Encapsulates information about an {@link ControllerAdvice @ControllerAdvice}
- * Spring-managed bean without necessarily requiring it to be instantiated.
+ * 封装 {@link ControllerAdvice @ControllerAdvice} 所标注的 Spring 托管 Bean
+ * 的相关信息，而不必要求该 Bean 已被实例化。
  *
- * <p>The {@link #findAnnotatedBeans(ApplicationContext)} method can be used to
- * discover such beans. However, a {@code ControllerAdviceBean} may be created
- * from any object, including ones without an {@code @ControllerAdvice} annotation.
+ * <p>可以使用 {@link #findAnnotatedBeans(ApplicationContext)} 方法发现此类 Bean。
+ * 不过，{@code ControllerAdviceBean} 也可以由任意对象创建，
+ * 包括未标注 {@code @ControllerAdvice} 的对象。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -57,16 +57,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 public class ControllerAdviceBean implements Ordered {
 
 	/**
-	 * Reference to the actual bean instance or a {@code String} representing
-	 * the bean name.
+	 * 对实际 Bean 实例的引用，或表示 Bean 名称的 {@code String}。
 	 */
 	private final Object beanOrName;
 
 	private final boolean isSingleton;
 
 	/**
-	 * Reference to the resolved bean instance, potentially lazily retrieved
-	 * via the {@code BeanFactory}.
+	 * 对已解析 Bean 实例的引用，可通过 {@code BeanFactory} 延迟获取。
 	 */
 	@Nullable
 	private Object resolvedBean;
@@ -84,7 +82,7 @@ public class ControllerAdviceBean implements Ordered {
 
 
 	/**
-	 * Create a {@code ControllerAdviceBean} using the given bean instance.
+	 * 使用给定的 Bean 实例创建 {@code ControllerAdviceBean}。
 	 * @param bean the bean instance
 	 */
 	public ControllerAdviceBean(Object bean) {
@@ -98,8 +96,7 @@ public class ControllerAdviceBean implements Ordered {
 	}
 
 	/**
-	 * Create a {@code ControllerAdviceBean} using the given bean name and
-	 * {@code BeanFactory}.
+	 * 使用给定的 Bean 名称和 {@code BeanFactory} 创建 {@code ControllerAdviceBean}。
 	 * @param beanName the name of the bean
 	 * @param beanFactory a {@code BeanFactory} to retrieve the bean type initially
 	 * and later to resolve the actual bean
@@ -109,9 +106,8 @@ public class ControllerAdviceBean implements Ordered {
 	}
 
 	/**
-	 * Create a {@code ControllerAdviceBean} using the given bean name,
-	 * {@code BeanFactory}, and {@link ControllerAdvice @ControllerAdvice}
-	 * annotation.
+	 * 使用给定的 Bean 名称、{@code BeanFactory} 以及
+	 * {@link ControllerAdvice @ControllerAdvice} 注解创建 {@code ControllerAdviceBean}。
 	 * @param beanName the name of the bean
 	 * @param beanFactory a {@code BeanFactory} to retrieve the bean type initially
 	 * and later to resolve the actual bean
@@ -135,23 +131,20 @@ public class ControllerAdviceBean implements Ordered {
 
 
 	/**
-	 * Get the order value for the contained bean.
-	 * <p>As of Spring Framework 5.3, the order value is lazily retrieved using
-	 * the following algorithm and cached. Note, however, that a
-	 * {@link ControllerAdvice @ControllerAdvice} bean that is configured as a
-	 * scoped bean &mdash; for example, as a request-scoped or session-scoped
-	 * bean &mdash; will not be eagerly resolved. Consequently, {@link Ordered} is
-	 * not honored for scoped {@code @ControllerAdvice} beans.
+	 * 获取所包含 Bean 的排序值。
+	 * <p>自 Spring Framework 5.3 起，排序值按以下算法延迟获取并缓存。但请注意，
+	 * 配置为作用域 Bean（例如请求作用域或会话作用域 Bean）的
+	 * {@link ControllerAdvice @ControllerAdvice} Bean 不会被提前解析。
+	 * 因此，对于作用域 {@code @ControllerAdvice} Bean，不会遵循 {@link Ordered} 的排序。
 	 * <ul>
-	 * <li>If the {@linkplain #resolveBean resolved bean} implements {@link Ordered},
-	 * use the value returned by {@link Ordered#getOrder()}.</li>
-	 * <li>If the {@linkplain org.springframework.context.annotation.Bean factory method}
-	 * is known, use the value returned by {@link OrderUtils#getOrder(AnnotatedElement)}.
-	 * <li>If the {@linkplain #getBeanType() bean type} is known, use the value returned
-	 * by {@link OrderUtils#getOrder(Class, int)} with {@link Ordered#LOWEST_PRECEDENCE}
-	 * used as the default order value.</li>
-	 * <li>Otherwise use {@link Ordered#LOWEST_PRECEDENCE} as the default, fallback
-	 * order value.</li>
+	 * <li>如果{@linkplain #resolveBean 已解析的 Bean}实现了 {@link Ordered}，
+	 * 则使用 {@link Ordered#getOrder()} 返回的值。</li>
+	 * <li>如果已知{@linkplain org.springframework.context.annotation.Bean 工厂方法}，
+	 * 则使用 {@link OrderUtils#getOrder(AnnotatedElement)} 返回的值。
+	 * <li>如果已知{@linkplain #getBeanType() Bean 类型}，则使用
+	 * {@link OrderUtils#getOrder(Class, int)} 返回的值，并以
+	 * {@link Ordered#LOWEST_PRECEDENCE} 作为默认排序值。</li>
+	 * <li>否则使用 {@link Ordered#LOWEST_PRECEDENCE} 作为默认的后备排序值。</li>
 	 * </ul>
 	 * @see #resolveBean()
 	 */
@@ -209,9 +202,8 @@ public class ControllerAdviceBean implements Ordered {
 	}
 
 	/**
-	 * Return the type of the contained bean.
-	 * <p>If the bean type is a CGLIB-generated class, the original user-defined
-	 * class is returned.
+	 * 返回所包含 Bean 的类型。
+	 * <p>如果 Bean 类型是 CGLIB 生成的类，则返回原始的用户定义类。
 	 */
 	@Nullable
 	public Class<?> getBeanType() {
@@ -219,11 +211,10 @@ public class ControllerAdviceBean implements Ordered {
 	}
 
 	/**
-	 * Get the bean instance for this {@code ControllerAdviceBean}, if necessary
-	 * resolving the bean name through the {@link BeanFactory}.
-	 * <p>As of Spring Framework 5.2, once the bean instance has been resolved it
-	 * will be cached if it is a singleton, thereby avoiding repeated lookups in
-	 * the {@code BeanFactory}.
+	 * 获取此 {@code ControllerAdviceBean} 的 Bean 实例，必要时通过
+	 * {@link BeanFactory} 解析 Bean 名称。
+	 * <p>自 Spring Framework 5.2 起，Bean 实例一旦解析完成，若是单例则会被缓存，
+	 * 从而避免在 {@code BeanFactory} 中重复查找。
 	 */
 	public Object resolveBean() {
 		if (this.resolvedBean == null) {
@@ -245,8 +236,7 @@ public class ControllerAdviceBean implements Ordered {
 	}
 
 	/**
-	 * Check whether the given bean type should be advised by this
-	 * {@code ControllerAdviceBean}.
+	 * 检查给定的 Bean 类型是否应由此 {@code ControllerAdviceBean} 提供通知。
 	 * @param beanType the type of the bean to check
 	 * @since 4.0
 	 * @see ControllerAdvice
@@ -280,11 +270,11 @@ public class ControllerAdviceBean implements Ordered {
 
 
 	/**
-	 * Find beans annotated with {@link ControllerAdvice @ControllerAdvice} in the
-	 * given {@link ApplicationContext} and wrap them as {@code ControllerAdviceBean}
-	 * instances.
-	 * <p>As of Spring Framework 5.2, the {@code ControllerAdviceBean} instances
-	 * in the returned list are sorted using {@link OrderComparator#sort(List)}.
+	 * 在给定的 {@link ApplicationContext} 中查找标注了
+	 * {@link ControllerAdvice @ControllerAdvice} 的 Bean，并将它们包装为
+	 * {@code ControllerAdviceBean} 实例。
+	 * <p>自 Spring Framework 5.2 起，返回列表中的 {@code ControllerAdviceBean}
+	 * 实例会使用 {@link OrderComparator#sort(List)} 进行排序。
 	 * @see #getOrder()
 	 * @see OrderComparator
 	 * @see Ordered

@@ -34,20 +34,17 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.View;
 
 /**
- * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses
- * bean definitions in a dedicated XML file for view definitions, specified by
- * resource location. The file will typically be located in the WEB-INF directory;
- * the default is "/WEB-INF/views.xml".
+ * {@link org.springframework.web.servlet.ViewResolver} 的一种实现，
+ * 使用由资源位置指定的专用 XML 文件中的 bean 定义作为视图定义。
+ * 该文件通常位于 WEB-INF 目录下；默认为 "/WEB-INF/views.xml"。
  *
- * <p>This {@code ViewResolver} does not support internationalization at the level
- * of its definition resources. Consider {@link ResourceBundleViewResolver} if you
- * need to apply different view resources per locale.
+ * <p>此 {@code ViewResolver} 不支持在其定义资源层面进行国际化。
+ * 如果需要按 locale 应用不同的视图资源，请考虑使用 {@link ResourceBundleViewResolver}。
  *
- * <p>Note: This {@code ViewResolver} implements the {@link Ordered} interface
- * in order to allow for flexible participation in {@code ViewResolver} chaining.
- * For example, some special views could be defined via this {@code ViewResolver}
- * (giving it 0 as "order" value), while all remaining views could be resolved by
- * a {@link UrlBasedViewResolver}.
+ * <p>注意：此 {@code ViewResolver} 实现了 {@link Ordered} 接口，
+ * 以便灵活参与 {@code ViewResolver} 链。例如，可以通过此 {@code ViewResolver}
+ * 定义一些特殊视图（将其 "order" 值设为 0），而所有其余视图则可以由
+ * {@link UrlBasedViewResolver} 解析。
  *
  * @author Juergen Hoeller
  * @since 18.06.2003
@@ -61,7 +58,7 @@ import org.springframework.web.servlet.View;
 public class XmlViewResolver extends AbstractCachingViewResolver
 		implements Ordered, InitializingBean, DisposableBean {
 
-	/** Default if no other location is supplied. */
+	/** 如果未提供其他位置，则使用的默认位置。 */
 	public static final String DEFAULT_LOCATION = "/WEB-INF/views.xml";
 
 
@@ -75,8 +72,8 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 
 	/**
-	 * Set the location of the XML file that defines the view beans.
-	 * <p>The default is "/WEB-INF/views.xml".
+	 * 设置定义视图 bean 的 XML 文件的位置。
+	 * <p>默认为 "/WEB-INF/views.xml"。
 	 * @param location the location of the XML file.
 	 */
 	public void setLocation(Resource location) {
@@ -84,8 +81,8 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Specify the order value for this ViewResolver bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * 指定此 ViewResolver bean 的 order 值。
+	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示不排序。
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -98,8 +95,8 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Pre-initialize the factory from the XML file.
-	 * Only effective if caching is enabled.
+	 * 从 XML 文件预初始化工厂。
+	 * 仅在启用缓存时有效。
 	 */
 	@Override
 	public void afterPropertiesSet() throws BeansException {
@@ -110,8 +107,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 
 	/**
-	 * This implementation returns just the view name,
-	 * as XmlViewResolver doesn't support localized resolution.
+	 * 此实现仅返回视图名称，因为 XmlViewResolver 不支持本地化解析。
 	 */
 	@Override
 	protected Object getCacheKey(String viewName, Locale locale) {
@@ -131,8 +127,8 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Initialize the view bean factory from the XML file.
-	 * Synchronized because of access by parallel threads.
+	 * 从 XML 文件初始化视图 bean 工厂。
+	 * 由于会被并行线程访问，因此使用同步。
 	 * @throws BeansException in case of initialization errors
 	 */
 	protected synchronized BeanFactory initFactory() throws BeansException {
@@ -168,7 +164,7 @@ public class XmlViewResolver extends AbstractCachingViewResolver
 
 
 	/**
-	 * Close the view bean factory on context shutdown.
+	 * 在上下文关闭时关闭视图 bean 工厂。
 	 */
 	@Override
 	public void destroy() throws BeansException {

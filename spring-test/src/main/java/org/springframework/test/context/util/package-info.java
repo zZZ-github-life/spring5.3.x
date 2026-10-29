@@ -1,5 +1,5 @@
 /**
- * Common utilities used within the <em>Spring TestContext Framework</em>.
+ * 在 <em>Spring TestContext Framework</em> 中使用的通用工具。
  */
 @NonNullApi
 @NonNullFields

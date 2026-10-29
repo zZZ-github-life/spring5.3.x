@@ -20,7 +20,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * {@link MessagingException} thrown when a session is missing.
+ * 会话缺失时抛出的 {@link MessagingException}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

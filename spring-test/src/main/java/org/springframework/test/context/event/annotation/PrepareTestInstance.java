@@ -29,28 +29,10 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * {@link EventListener @EventListener} annotation used to consume a
- * {@link PrepareTestInstanceEvent} published by the
- * {@link org.springframework.test.context.event.EventPublishingTestExecutionListener
- * EventPublishingTestExecutionListener}.
- *
- * <p>This annotation may be used on {@code @EventListener}-compliant methods within
- * a Spring test {@link org.springframework.context.ApplicationContext ApplicationContext}
- * &mdash; for example, on methods in a
- * {@link org.springframework.context.annotation.Configuration @Configuration}
- * class. A method annotated with this annotation will be invoked as part of the
- * {@link org.springframework.test.context.TestExecutionListener#prepareTestInstance}
- * lifecycle.
- *
- * <p>Event processing can optionally be made {@linkplain #value conditional} via
- * a SpEL expression &mdash; for example,
- * {@code @PrepareTestInstance("event.testContext.testClass.name matches '.+IntegrationTests'")}.
- *
- * <p>The {@code EventPublishingTestExecutionListener} must be registered in order
- * for this annotation to have an effect &mdash; for example, via
- * {@link org.springframework.test.context.TestExecutionListeners @TestExecutionListeners}.
- * Note, however, that the {@code EventPublishingTestExecutionListener} is registered
- * by default.
+ * {@link EventListener @EventListener} 注解，用于消费由 {@link org.springframework.test.context.event.EventPublishingTestExecutionListener EventPublishingTestExecutionListener} 发布的 {@link PrepareTestInstanceEvent}。
+ * <p>此注解可用于 Spring 测试 {@link org.springframework.context.ApplicationContext ApplicationContext} 中符合 {@code @EventListener} 的方法——例如，{@link org.springframework.context.annotation.Configuration @Configuration} 类中的方法。标注此注解的方法将作为 {@link org.springframework.test.context.TestExecutionListener#prepareTestInstance} 生命周期的一部分被调用。
+ * <p>可以选择通过 SpEL 表达式使事件处理{@linkplain #value 带条件}——例如 {@code @PrepareTestInstance("event.testContext.testClass.name matches '.+IntegrationTests'")}。
+ * <p>必须注册 {@code EventPublishingTestExecutionListener} 才能使此注解生效——例如，通过 {@link org.springframework.test.context.TestExecutionListeners @TestExecutionListeners}。但请注意，{@code EventPublishingTestExecutionListener} 默认已注册。
  *
  * @author Frank Scheffler
  * @author Sam Brannen
@@ -64,7 +46,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface PrepareTestInstance {
 
 	/**
-	 * Alias for {@link EventListener#condition}.
+	 * {@link EventListener#condition} 的别名。
 	 */
 	@AliasFor(annotation = EventListener.class, attribute = "condition")
 	String value() default "";

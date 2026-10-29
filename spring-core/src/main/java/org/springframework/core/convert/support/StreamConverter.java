@@ -30,8 +30,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts a {@link Stream} to and from a collection or array, converting the
- * element type if necessary.
+ * 在 {@link Stream} 与集合或数组之间进行双向转换，必要时转换元素类型。
  *
  * @author Stephane Nicoll
  * @since 4.2
@@ -67,8 +66,7 @@ class StreamConverter implements ConditionalGenericConverter {
 	}
 
 	/**
-	 * Validate that a {@link Collection} of the elements held within the stream can be
-	 * converted to the specified {@code targetType}.
+	 * 验证流中持有的元素的 {@link Collection} 是否可以转换为指定的 {@code targetType}。
 	 * @param elementType the type of the stream elements
 	 * @param targetType the type to convert to
 	 */
@@ -78,8 +76,7 @@ class StreamConverter implements ConditionalGenericConverter {
 	}
 
 	/**
-	 * Validate that the specified {@code sourceType} can be converted to a {@link Collection} of
-	 * the type of the stream elements.
+	 * 验证指定的 {@code sourceType} 是否可以转换为流元素类型的 {@link Collection}。
 	 * @param elementType the type of the stream elements
 	 * @param sourceType the type to convert from
 	 */

@@ -54,21 +54,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@code SpringJUnit4ClassRunner} is a custom extension of JUnit's
- * {@link BlockJUnit4ClassRunner} which provides functionality of the
- * <em>Spring TestContext Framework</em> to standard JUnit tests by means of the
- * {@link TestContextManager} and associated support classes and annotations.
- *
- * <p>To use this class, simply annotate a JUnit 4 based test class with
- * {@code @RunWith(SpringJUnit4ClassRunner.class)} or {@code @RunWith(SpringRunner.class)}.
- *
- * <p>The following list constitutes all annotations currently supported directly
- * or indirectly by {@code SpringJUnit4ClassRunner}. <em>(Note that additional
- * annotations may be supported by various
- * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener}
- * or {@link org.springframework.test.context.TestContextBootstrapper TestContextBootstrapper}
- * implementations.)</em>
- *
+ * {@code SpringJUnit4ClassRunner} 是 JUnit {@link BlockJUnit4ClassRunner} 的自定义扩展，它通过 {@link TestContextManager} 及相关支持类和注解，将 <em>Spring TestContext Framework</em> 的功能提供给标准 JUnit 测试。
+ * <p>要使用此类，只需使用 {@code @RunWith(SpringJUnit4ClassRunner.class)} 或 {@code @RunWith(SpringRunner.class)} 标注基于 JUnit 4 的测试类。
+ * <p>以下列表列出了 {@code SpringJUnit4ClassRunner} 当前直接或间接支持的所有注解。<em>（请注意，各种 {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} 或 {@link org.springframework.test.context.TestContextBootstrapper TestContextBootstrapper} 实现可能支持其他注解。）</em>
  * <ul>
  * <li>{@link Test#expected() @Test(expected=...)}</li>
  * <li>{@link Test#timeout() @Test(timeout=...)}</li>
@@ -78,11 +66,8 @@ import org.springframework.util.ReflectionUtils;
  * <li>{@link org.springframework.test.annotation.ProfileValueSourceConfiguration @ProfileValueSourceConfiguration}</li>
  * <li>{@link org.springframework.test.annotation.IfProfileValue @IfProfileValue}</li>
  * </ul>
- *
- * <p>If you would like to use the Spring TestContext Framework with a runner
- * other than this one, use {@link SpringClassRule} and {@link SpringMethodRule}.
- *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <p>如果希望将 Spring TestContext Framework 与此运行器以外的运行器一起使用，请使用 {@link SpringClassRule} 和 {@link SpringMethodRule}。
+ * <p><strong>注意：</strong>从 Spring Framework 4.3 开始，此类要求 JUnit 4.12 或更高版本。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -127,9 +112,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Construct a new {@code SpringJUnit4ClassRunner} and initialize a
-	 * {@link TestContextManager} to provide Spring testing functionality to
-	 * standard JUnit tests.
+	 * 构造一个新的 {@code SpringJUnit4ClassRunner}，并初始化一个 {@link TestContextManager}，以为标准 JUnit 测试提供 Spring 测试功能。
 	 * @param clazz the test class to be run
 	 * @see #createTestContextManager(Class)
 	 */
@@ -143,8 +126,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Create a new {@link TestContextManager} for the supplied test class.
-	 * <p>Can be overridden by subclasses.
+	 * 为所提供的测试类创建一个新的 {@link TestContextManager}。
+	 * <p>可由子类重写。
 	 * @param clazz the test class to be managed
 	 */
 	protected TestContextManager createTestContextManager(Class<?> clazz) {
@@ -152,16 +135,14 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Get the {@link TestContextManager} associated with this runner.
+	 * 获取与此运行器关联的 {@link TestContextManager}。
 	 */
 	protected final TestContextManager getTestContextManager() {
 		return this.testContextManager;
 	}
 
 	/**
-	 * Return a description suitable for an ignored test class if the test is
-	 * disabled via {@code @IfProfileValue} at the class-level, and
-	 * otherwise delegate to the parent implementation.
+	 * 如果测试在类级别通过 {@code @IfProfileValue} 被禁用，则返回适用于被忽略测试类的描述；否则委托给父实现。
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)
 	 */
 	@Override
@@ -173,10 +154,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Check whether the test is enabled in the current execution environment.
-	 * <p>This prevents classes with a non-matching {@code @IfProfileValue}
-	 * annotation from running altogether, even skipping the execution of
-	 * {@code prepareTestInstance()} methods in {@code TestExecutionListeners}.
+	 * 检查测试在当前执行环境中是否启用。
+	 * <p>这可防止带有不匹配的 {@code @IfProfileValue} 注解的类完全运行，甚至跳过 {@code TestExecutionListeners} 中 {@code prepareTestInstance()} 方法的执行。
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)
 	 * @see org.springframework.test.annotation.IfProfileValue
 	 * @see org.springframework.test.context.TestExecutionListener
@@ -191,10 +170,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the {@link Statement} returned by the parent implementation with a
-	 * {@code RunBeforeTestClassCallbacks} statement, thus preserving the
-	 * default JUnit functionality while adding support for the Spring TestContext
-	 * Framework.
+	 * 用 {@code RunBeforeTestClassCallbacks} 语句包装父实现返回的 {@link Statement}，从而在保留默认 JUnit 功能的同时增加对 Spring TestContext Framework 的支持。
 	 * @see RunBeforeTestClassCallbacks
 	 */
 	@Override
@@ -204,9 +180,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the {@link Statement} returned by the parent implementation with a
-	 * {@code RunAfterTestClassCallbacks} statement, thus preserving the default
-	 * JUnit functionality while adding support for the Spring TestContext Framework.
+	 * 用 {@code RunAfterTestClassCallbacks} 语句包装父实现返回的 {@link Statement}，从而在保留默认 JUnit 功能的同时增加对 Spring TestContext Framework 的支持。
 	 * @see RunAfterTestClassCallbacks
 	 */
 	@Override
@@ -216,9 +190,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Delegate to the parent implementation for creating the test instance and
-	 * then allow the {@link #getTestContextManager() TestContextManager} to
-	 * prepare the test instance before returning it.
+	 * 委托父实现创建测试实例，然后允许 {@link #getTestContextManager() TestContextManager} 在返回之前准备测试实例。
 	 * @see TestContextManager#prepareTestInstance
 	 */
 	@Override
@@ -229,10 +201,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Perform the same logic as
-	 * {@link BlockJUnit4ClassRunner#runChild(FrameworkMethod, RunNotifier)},
-	 * except that tests are determined to be <em>ignored</em> by
-	 * {@link #isTestMethodIgnored(FrameworkMethod)}.
+	 * 执行与 {@link BlockJUnit4ClassRunner#runChild(FrameworkMethod, RunNotifier)} 相同的逻辑，不同之处在于通过 {@link #isTestMethodIgnored(FrameworkMethod)} 确定测试是否被<em>忽略</em>。
 	 */
 	@Override
 	protected void runChild(FrameworkMethod frameworkMethod, RunNotifier notifier) {
@@ -253,22 +222,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Augment the default JUnit behavior
-	 * {@linkplain #withPotentialRepeat with potential repeats} of the entire
-	 * execution chain.
-	 * <p>Furthermore, support for timeouts has been moved down the execution
-	 * chain in order to include execution of {@link org.junit.Before @Before}
-	 * and {@link org.junit.After @After} methods within the timed execution.
-	 * Note that this differs from the default JUnit behavior of executing
-	 * {@code @Before} and {@code @After} methods in the main thread while
-	 * executing the actual test method in a separate thread. Thus, the net
-	 * effect is that {@code @Before} and {@code @After} methods will be
-	 * executed in the same thread as the test method. As a consequence,
-	 * JUnit-specified timeouts will work fine in combination with Spring
-	 * transactions. However, JUnit-specific timeouts still differ from
-	 * Spring-specific timeouts in that the former execute in a separate
-	 * thread while the latter simply execute in the main thread (like regular
-	 * tests).
+	 * 增强默认 JUnit 行为，使整个执行链{@linkplain #withPotentialRepeat 可能重复执行}。
+	 * <p>此外，超时支持已下移到执行链中，以便在计时执行中包含 {@link org.junit.Before @Before} 和 {@link org.junit.After @After} 方法的执行。请注意，这与默认 JUnit 行为不同：默认 JUnit 在主线程中执行 {@code @Before} 和 {@code @After} 方法，而在单独线程中执行实际测试方法。因此，最终效果是 {@code @Before} 和 {@code @After} 方法将与测试方法在同一线程中执行。因此，JUnit 指定的超时与 Spring 事务结合使用时可以正常工作。不过，JUnit 特有的超时与 Spring 特有的超时仍有所不同：前者在单独线程中执行，而后者只是像普通测试一样在主线程中执行。
 	 * @see #methodInvoker(FrameworkMethod, Object)
 	 * @see #withBeforeTestExecutionCallbacks(FrameworkMethod, Object, Statement)
 	 * @see #withAfterTestExecutionCallbacks(FrameworkMethod, Object, Statement)
@@ -307,7 +262,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Invoke JUnit's private {@code withRules()} method using reflection.
+	 * 使用反射调用 JUnit 私有的 {@code withRules()} 方法。
 	 */
 	private Statement withRulesReflectively(FrameworkMethod frameworkMethod, Object testInstance, Statement statement) {
 		Object result = ReflectionUtils.invokeMethod(withRulesMethod, this, frameworkMethod, testInstance, statement);
@@ -316,9 +271,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Return {@code true} if {@link Ignore @Ignore} is present for the supplied
-	 * {@linkplain FrameworkMethod test method} or if the test method is disabled
-	 * via {@code @IfProfileValue}.
+	 * 如果所提供的{@linkplain FrameworkMethod 测试方法}存在 {@link Ignore @Ignore}，或者该测试方法通过 {@code @IfProfileValue} 被禁用，则返回 {@code true}。
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Method, Class)
 	 */
 	protected boolean isTestMethodIgnored(FrameworkMethod frameworkMethod) {
@@ -328,10 +281,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Perform the same logic as
-	 * {@link BlockJUnit4ClassRunner#possiblyExpectingExceptions(FrameworkMethod, Object, Statement)}
-	 * except that the <em>expected exception</em> is retrieved using
-	 * {@link #getExpectedException(FrameworkMethod)}.
+	 * 执行与 {@link BlockJUnit4ClassRunner#possiblyExpectingExceptions(FrameworkMethod, Object, Statement)} 相同的逻辑，不同之处在于使用 {@link #getExpectedException(FrameworkMethod)} 获取<em>预期异常</em>。
 	 */
 	@Override
 	protected Statement possiblyExpectingExceptions(FrameworkMethod frameworkMethod, Object testInstance, Statement next) {
@@ -340,10 +290,9 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Get the {@code exception} that the supplied {@linkplain FrameworkMethod
-	 * test method} is expected to throw.
-	 * <p>Supports JUnit's {@link Test#expected() @Test(expected=...)} annotation.
-	 * <p>Can be overridden by subclasses.
+	 * 获取所提供的{@linkplain FrameworkMethod 测试方法}预期抛出的 {@code exception}。
+	 * <p>支持 JUnit 的 {@link Test#expected() @Test(expected=...)} 注解。
+	 * <p>可由子类重写。
 	 * @return the expected exception, or {@code null} if none was specified
 	 */
 	@Nullable
@@ -353,12 +302,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Perform the same logic as
-	 * {@link BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)}
-	 * but with additional support for Spring's {@code @Timed} annotation.
-	 * <p>Supports both Spring's {@link org.springframework.test.annotation.Timed @Timed}
-	 * and JUnit's {@link Test#timeout() @Test(timeout=...)} annotations, but not both
-	 * simultaneously.
+	 * 执行与 {@link BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)} 相同的逻辑，但额外支持 Spring 的 {@code @Timed} 注解。
+	 * <p>同时支持 Spring 的 {@link org.springframework.test.annotation.Timed @Timed} 和 JUnit 的 {@link Test#timeout() @Test(timeout=...)} 注解，但不能同时使用两者。
 	 * @return either a {@link SpringFailOnTimeout}, a {@link FailOnTimeout},
 	 * or the supplied {@link Statement} as appropriate
 	 * @see #getSpringTimeout(FrameworkMethod)
@@ -394,8 +339,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Retrieve the configured JUnit {@code timeout} from the {@link Test @Test}
-	 * annotation on the supplied {@linkplain FrameworkMethod test method}.
+	 * 从所提供的{@linkplain FrameworkMethod 测试方法}上的 {@link Test @Test} 注解中获取配置的 JUnit {@code timeout}。
 	 * @return the timeout, or {@code 0} if none was specified
 	 */
 	protected long getJUnitTimeout(FrameworkMethod frameworkMethod) {
@@ -404,9 +348,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Retrieve the configured Spring-specific {@code timeout} from the
-	 * {@link org.springframework.test.annotation.Timed @Timed} annotation
-	 * on the supplied {@linkplain FrameworkMethod test method}.
+	 * 从所提供的{@linkplain FrameworkMethod 测试方法}上的 {@link org.springframework.test.annotation.Timed @Timed} 注解中获取配置的 Spring 特有 {@code timeout}。
 	 * @return the timeout, or {@code 0} if none was specified
 	 * @see TestAnnotationUtils#getTimeout(Method)
 	 */
@@ -415,9 +357,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunBeforeTestExecutionCallbacks}
-	 * statement, thus preserving the default functionality while adding support for the
-	 * Spring TestContext Framework.
+	 * 用 {@code RunBeforeTestExecutionCallbacks} 语句包装所提供的 {@link Statement}，从而在保留默认功能的同时增加对 Spring TestContext Framework 的支持。
 	 * @see RunBeforeTestExecutionCallbacks
 	 */
 	protected Statement withBeforeTestExecutionCallbacks(FrameworkMethod frameworkMethod, Object testInstance, Statement statement) {
@@ -425,9 +365,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunAfterTestExecutionCallbacks}
-	 * statement, thus preserving the default functionality while adding support for the
-	 * Spring TestContext Framework.
+	 * 用 {@code RunAfterTestExecutionCallbacks} 语句包装所提供的 {@link Statement}，从而在保留默认功能的同时增加对 Spring TestContext Framework 的支持。
 	 * @see RunAfterTestExecutionCallbacks
 	 */
 	protected Statement withAfterTestExecutionCallbacks(FrameworkMethod frameworkMethod, Object testInstance, Statement statement) {
@@ -435,10 +373,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the {@link Statement} returned by the parent implementation with a
-	 * {@code RunBeforeTestMethodCallbacks} statement, thus preserving the
-	 * default functionality while adding support for the Spring TestContext
-	 * Framework.
+	 * 用 {@code RunBeforeTestMethodCallbacks} 语句包装父实现返回的 {@link Statement}，从而在保留默认功能的同时增加对 Spring TestContext Framework 的支持。
 	 * @see RunBeforeTestMethodCallbacks
 	 */
 	@Override
@@ -448,10 +383,7 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the {@link Statement} returned by the parent implementation with a
-	 * {@code RunAfterTestMethodCallbacks} statement, thus preserving the
-	 * default functionality while adding support for the Spring TestContext
-	 * Framework.
+	 * 用 {@code RunAfterTestMethodCallbacks} 语句包装父实现返回的 {@link Statement}，从而在保留默认功能的同时增加对 Spring TestContext Framework 的支持。
 	 * @see RunAfterTestMethodCallbacks
 	 */
 	@Override
@@ -461,9 +393,8 @@ public class SpringJUnit4ClassRunner extends BlockJUnit4ClassRunner {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code SpringRepeat} statement.
-	 * <p>Supports Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
-	 * annotation.
+	 * 用 {@code SpringRepeat} 语句包装所提供的 {@link Statement}。
+	 * <p>支持 Spring 的 {@link org.springframework.test.annotation.Repeat @Repeat} 注解。
 	 * @see TestAnnotationUtils#getRepeatCount(Method)
 	 * @see SpringRepeat
 	 */

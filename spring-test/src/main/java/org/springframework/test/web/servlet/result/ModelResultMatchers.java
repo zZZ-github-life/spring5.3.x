@@ -35,11 +35,9 @@ import static org.springframework.test.util.AssertionErrors.assertNull;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 /**
- * Factory for assertions on the model.
+ * 模型断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockMvcResultMatchers#model}.
- *
+ * <p>此类的实例通常通过 {@link MockMvcResultMatchers#model} 访问。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 3.2
@@ -47,15 +45,15 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 public class ModelResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * Use {@link MockMvcResultMatchers#model()}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockMvcResultMatchers#model()}。
 	 */
 	protected ModelResultMatchers() {
 	}
 
 
 	/**
-	 * Assert a model attribute value with the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言模型属性值。
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> ResultMatcher attribute(String name, Matcher<? super T> matcher) {
@@ -66,7 +64,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert a model attribute value.
+	 * 断言模型属性值。
 	 */
 	public ResultMatcher attribute(String name, @Nullable Object value) {
 		return result -> {
@@ -76,7 +74,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the given model attributes exist.
+	 * 断言给定模型属性存在。
 	 */
 	public ResultMatcher attributeExists(String... names) {
 		return result -> {
@@ -88,7 +86,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the given model attributes do not exist.
+	 * 断言给定模型属性不存在。
 	 */
 	public ResultMatcher attributeDoesNotExist(String... names) {
 		return result -> {
@@ -100,7 +98,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the given model attribute(s) have errors.
+	 * 断言给定模型属性有错误。
 	 */
 	public ResultMatcher attributeErrorCount(String name, int expectedCount) {
 		return result -> {
@@ -112,7 +110,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the given model attribute(s) have errors.
+	 * 断言给定模型属性有错误。
 	 */
 	public ResultMatcher attributeHasErrors(String... names) {
 		return mvcResult -> {
@@ -125,7 +123,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the given model attribute(s) do not have errors.
+	 * 断言给定模型属性没有错误。
 	 */
 	public ResultMatcher attributeHasNoErrors(String... names) {
 		return mvcResult -> {
@@ -139,7 +137,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the given model attribute field(s) have errors.
+	 * 断言给定模型属性字段有错误。
 	 */
 	public ResultMatcher attributeHasFieldErrors(String name, String... fieldNames) {
 		return mvcResult -> {
@@ -154,7 +152,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert a field error code for a model attribute using exact String match.
+	 * 使用精确字符串匹配断言模型属性的字段错误码。
 	 * @since 4.1
 	 */
 	public ResultMatcher attributeHasFieldErrorCode(String name, String fieldName, String error) {
@@ -170,7 +168,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert a field error code for a model attribute using a {@link org.hamcrest.Matcher}.
+	 * 使用 {@link org.hamcrest.Matcher} 断言模型属性的字段错误码。
 	 * @since 4.1
 	 */
 	public ResultMatcher attributeHasFieldErrorCode(String name, String fieldName,
@@ -188,7 +186,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the total number of errors in the model.
+	 * 断言模型中错误的总数。
 	 */
 	public ResultMatcher errorCount(int expectedCount) {
 		return result -> {
@@ -198,7 +196,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the model has errors.
+	 * 断言模型有错误。
 	 */
 	public ResultMatcher hasErrors() {
 		return result -> {
@@ -208,7 +206,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the model has no errors.
+	 * 断言模型没有错误。
 	 */
 	public ResultMatcher hasNoErrors() {
 		return result -> {
@@ -222,7 +220,7 @@ public class ModelResultMatchers {
 	}
 
 	/**
-	 * Assert the number of model attributes.
+	 * 断言模型属性的数量。
 	 */
 	public ResultMatcher size(int size) {
 		return result -> {

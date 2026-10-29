@@ -36,8 +36,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.util.Assert;
 
 /**
- * A messaging template that resolves destinations names to {@link MessageChannel}'s
- * to send and receive messages from.
+ * 一个消息模板，它将目标名称解析为 {@link MessageChannel}，以便发送和接收消息。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -48,12 +47,12 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 		implements BeanFactoryAware {
 
 	/**
-	 * The default header key used for a send timeout.
+	 * 用于发送超时的默认头键。
 	 */
 	public static final String DEFAULT_SEND_TIMEOUT_HEADER = "sendTimeout";
 
 	/**
-	 * The default header key used for a receive timeout.
+	 * 用于接收超时的默认头键。
 	 */
 	public static final String DEFAULT_RECEIVE_TIMEOUT_HEADER = "receiveTimeout";
 
@@ -69,8 +68,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 
 
 	/**
-	 * Configure the default timeout value to use for send operations.
-	 * May be overridden for individual messages.
+	 * 配置发送操作使用的默认超时值。可以针对单个消息覆盖。
 	 * @param sendTimeout the send timeout in milliseconds
 	 * @see #setSendTimeoutHeader(String)
 	 */
@@ -79,16 +77,15 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	}
 
 	/**
-	 * Return the configured default send operation timeout value.
+	 * 返回已配置的默认发送操作超时值。
 	 */
 	public long getSendTimeout() {
 		return this.sendTimeout;
 	}
 
 	/**
-	 * Configure the default timeout value to use for receive operations.
-	 * May be overridden for individual messages when using sendAndReceive
-	 * operations.
+	 * 配置接收操作使用的默认超时值。在使用 sendAndReceive 操作时，
+	 * 可以针对单个消息覆盖。
 	 * @param receiveTimeout the receive timeout in milliseconds
 	 * @see #setReceiveTimeoutHeader(String)
 	 */
@@ -97,16 +94,16 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	}
 
 	/**
-	 * Return the configured receive operation timeout value.
+	 * 返回已配置的接收操作超时值。
 	 */
 	public long getReceiveTimeout() {
 		return this.receiveTimeout;
 	}
 
 	/**
-	 * Set the name of the header used to determine the send timeout (if present).
-	 * Default {@value #DEFAULT_SEND_TIMEOUT_HEADER}.
-	 * <p>The header is removed before sending the message to avoid propagation.
+	 * 设置用于确定发送超时的头名称（如果存在）。
+	 * 默认 {@value #DEFAULT_SEND_TIMEOUT_HEADER}。
+	 * <p>发送消息前会移除此头以避免传播。
 	 * @since 5.0
 	 */
 	public void setSendTimeoutHeader(String sendTimeoutHeader) {
@@ -115,7 +112,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	}
 
 	/**
-	 * Return the configured send-timeout header.
+	 * 返回已配置的发送超时头。
 	 * @since 5.0
 	 */
 	public String getSendTimeoutHeader() {
@@ -123,9 +120,9 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	}
 
 	/**
-	 * Set the name of the header used to determine the send timeout (if present).
-	 * Default {@value #DEFAULT_RECEIVE_TIMEOUT_HEADER}.
-	 * The header is removed before sending the message to avoid propagation.
+	 * 设置用于确定接收超时的头名称（如果存在）。
+	 * 默认 {@value #DEFAULT_RECEIVE_TIMEOUT_HEADER}。
+	 * 发送消息前会移除此头以避免传播。
 	 * @since 5.0
 	 */
 	public void setReceiveTimeoutHeader(String receiveTimeoutHeader) {
@@ -134,7 +131,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	}
 
 	/**
-	 * Return the configured receive-timeout header.
+	 * 返回已配置的接收超时头。
 	 * @since 5.0
 	 */
 	public String getReceiveTimeoutHeader() {
@@ -142,13 +139,10 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 	}
 
 	/**
-	 * Whether the thread sending a reply should have an exception raised if the
-	 * receiving thread isn't going to receive the reply either because it timed out,
-	 * or because it already received a reply, or because it got an exception while
-	 * sending the request message.
-	 * <p>The default value is {@code false} in which case only a WARN message is logged.
-	 * If set to {@code true} a {@link MessageDeliveryException} is raised in addition
-	 * to the log message.
+	 * 如果接收线程由于超时、已经收到应答或者在发送请求消息时遇到异常而不再接收应答，
+	 * 发送应答的线程是否应抛出异常。
+	 * <p>默认值为 {@code false}，此时仅记录一条 WARN 消息。
+	 * 如果设置为 {@code true}，则除了记录日志外还会抛出 {@link MessageDeliveryException}。
 	 * @param throwExceptionOnLateReply whether to throw an exception or not
 	 */
 	public void setThrowExceptionOnLateReply(boolean throwExceptionOnLateReply) {
@@ -273,7 +267,7 @@ public class GenericMessagingTemplate extends AbstractDestinationResolvingMessag
 
 
 	/**
-	 * A temporary channel for receiving a single reply message.
+	 * 用于接收单个应答消息的临时通道。
 	 */
 	private static final class TemporaryReplyChannel implements PollableChannel {
 

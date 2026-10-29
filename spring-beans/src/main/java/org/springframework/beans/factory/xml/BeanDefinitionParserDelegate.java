@@ -68,10 +68,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Stateful delegate class used to parse XML bean definitions.
- * Intended for use by both the main parser and any extension
- * {@link BeanDefinitionParser BeanDefinitionParsers} or
- * {@link BeanDefinitionDecorator BeanDefinitionDecorators}.
+ * 用于解析 XML Bean 定义的有状态委托类。既供主解析器使用，也供任意扩展
+ * {@link BeanDefinitionParser BeanDefinitionParsers} 或
+ * {@link BeanDefinitionDecorator BeanDefinitionDecorators} 使用。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -89,8 +88,7 @@ public class BeanDefinitionParserDelegate {
 	public static final String MULTI_VALUE_ATTRIBUTE_DELIMITERS = ",; ";
 
 	/**
-	 * Value of a T/F attribute that represents true.
-	 * Anything else represents false.
+	 * 表示 true 的 T/F 属性值。其他任何值都表示 false。
 	 */
 	public static final String TRUE_VALUE = "true";
 
@@ -234,16 +232,14 @@ public class BeanDefinitionParserDelegate {
 	private final ParseState parseState = new ParseState();
 
 	/**
-	 * Stores all used bean names so we can enforce uniqueness on a per
-	 * beans-element basis. Duplicate bean ids/names may not exist within the
-	 * same level of beans element nesting, but may be duplicated across levels.
+	 * 存储所有已使用的 bean 名称，以便按每个 beans 元素强制保证唯一性。相同的 bean id/name 不能在同一
+	 * 层级的 beans 元素嵌套中出现重复，但可以跨层级重复。
 	 */
 	private final Set<String> usedNames = new HashSet<>();
 
 
 	/**
-	 * Create a new BeanDefinitionParserDelegate associated with the supplied
-	 * {@link XmlReaderContext}.
+	 * 创建一个与所提供的 {@link XmlReaderContext} 关联的新 BeanDefinitionParserDelegate。
 	 */
 	public BeanDefinitionParserDelegate(XmlReaderContext readerContext) {
 		Assert.notNull(readerContext, "XmlReaderContext must not be null");
@@ -252,15 +248,15 @@ public class BeanDefinitionParserDelegate {
 
 
 	/**
-	 * Get the {@link XmlReaderContext} associated with this helper instance.
+	 * 获取与此辅助实例关联的 {@link XmlReaderContext}。
 	 */
 	public final XmlReaderContext getReaderContext() {
 		return this.readerContext;
 	}
 
 	/**
-	 * Invoke the {@link org.springframework.beans.factory.parsing.SourceExtractor}
-	 * to pull the source metadata from the supplied {@link Element}.
+	 * 调用 {@link org.springframework.beans.factory.parsing.SourceExtractor}，从所提供的
+	 * {@link Element} 中提取源元数据。
 	 */
 	@Nullable
 	protected Object extractSource(Element ele) {
@@ -268,21 +264,21 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Report an error with the given message for the given source element.
+	 * 针对给定的源元素报告带有给定消息的错误。
 	 */
 	protected void error(String message, Node source) {
 		this.readerContext.error(message, source, this.parseState.snapshot());
 	}
 
 	/**
-	 * Report an error with the given message for the given source element.
+	 * 针对给定的源元素报告带有给定消息的错误。
 	 */
 	protected void error(String message, Element source) {
 		this.readerContext.error(message, source, this.parseState.snapshot());
 	}
 
 	/**
-	 * Report an error with the given message for the given source element.
+	 * 针对给定的源元素报告带有给定消息的错误。
 	 */
 	protected void error(String message, Element source, Throwable cause) {
 		this.readerContext.error(message, source, this.parseState.snapshot(), cause);
@@ -290,17 +286,15 @@ public class BeanDefinitionParserDelegate {
 
 
 	/**
-	 * Initialize the default settings assuming a {@code null} parent delegate.
+	 * 在假定父委托为 {@code null} 的情况下初始化默认设置。
 	 */
 	public void initDefaults(Element root) {
 		initDefaults(root, null);
 	}
 
 	/**
-	 * Initialize the default lazy-init, autowire, dependency check settings,
-	 * init-method, destroy-method and merge settings. Support nested 'beans'
-	 * element use cases by falling back to the given parent in case the
-	 * defaults are not explicitly set locally.
+	 * 初始化默认的 lazy-init、autowire、dependency check 设置，以及 init-method、destroy-method 和
+	 * merge 设置。通过回退到给定的父级来支持嵌套的 'beans' 元素用例，以防本地没有显式设置这些默认值。
 	 * @see #populateDefaults(DocumentDefaultsDefinition, DocumentDefaultsDefinition, org.w3c.dom.Element)
 	 * @see #getDefaults()
 	 */
@@ -310,10 +304,9 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Populate the given DocumentDefaultsDefinition instance with the default lazy-init,
-	 * autowire, dependency check settings, init-method, destroy-method and merge settings.
-	 * Support nested 'beans' element use cases by falling back to {@code parentDefaults}
-	 * in case the defaults are not explicitly set locally.
+	 * 用默认的 lazy-init、autowire、dependency check 设置以及 init-method、destroy-method 和 merge 设
+	 * 置填充给定的 DocumentDefaultsDefinition 实例。通过回退到 {@code parentDefaults} 来支持嵌套的
+	 * 'beans' 元素用例，以防本地没有显式设置这些默认值。
 	 * @param defaults the defaults to populate
 	 * @param parentDefaults the parent BeanDefinitionParserDelegate (if any) defaults to fall back to
 	 * @param root the root element of the current bean definition document (or nested beans element)
@@ -365,15 +358,14 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Return the defaults definition object.
+	 * 返回默认值定义对象。
 	 */
 	public DocumentDefaultsDefinition getDefaults() {
 		return this.defaults;
 	}
 
 	/**
-	 * Return the default settings for bean definitions as indicated within
-	 * the attributes of the top-level {@code <beans/>} element.
+	 * 返回 Bean 定义的默认设置，这些设置由顶层 {@code <beans/>} 元素的属性指定。
 	 */
 	public BeanDefinitionDefaults getBeanDefinitionDefaults() {
 		BeanDefinitionDefaults bdd = new BeanDefinitionDefaults();
@@ -385,8 +377,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Return any patterns provided in the 'default-autowire-candidates'
-	 * attribute of the top-level {@code <beans/>} element.
+	 * 返回顶层 {@code <beans/>} 元素的 'default-autowire-candidates' 属性中提供的任何模式。
 	 */
 	@Nullable
 	public String[] getAutowireCandidatePatterns() {
@@ -396,9 +387,8 @@ public class BeanDefinitionParserDelegate {
 
 
 	/**
-	 * Parses the supplied {@code <bean>} element. May return {@code null}
-	 * if there were errors during parse. Errors are reported to the
-	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
+	 * 解析所提供的 {@code <bean>} 元素。如果解析过程中出现错误，可能返回 {@code null}。错误会报告给
+	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}。
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele) {
@@ -406,9 +396,8 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parses the supplied {@code <bean>} element. May return {@code null}
-	 * if there were errors during parse. Errors are reported to the
-	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
+	 * 解析所提供的 {@code <bean>} 元素。如果解析过程中出现错误，可能返回 {@code null}。错误会报告给
+	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}。
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, @Nullable BeanDefinition containingBean) {
@@ -472,8 +461,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Validate that the specified bean name and aliases have not been used already
-	 * within the current level of beans element nesting.
+	 * 校验指定的 bean 名称和别名在当前层级的 beans 元素嵌套中尚未被使用。
 	 */
 	protected void checkNameUniqueness(String beanName, List<String> aliases, Element beanElement) {
 		String foundName = null;
@@ -493,8 +481,8 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse the bean definition itself, without regard to name or aliases. May return
-	 * {@code null} if problems occurred during the parsing of the bean definition.
+	 * 解析 Bean 定义本身，而不考虑名称或别名。如果在解析 Bean 定义期间出现问题，可能返回 {@code null}。
+	 *
 	 */
 	@Nullable
 	public AbstractBeanDefinition parseBeanDefinitionElement(
@@ -547,7 +535,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Apply the attributes of the given bean element to the given bean * definition.
+	 * 将给定 bean 元素的属性应用到给定的 Bean 定义。
 	 * @param ele bean declaration element
 	 * @param beanName bean name
 	 * @param containingBean containing bean definition
@@ -630,7 +618,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Create a bean definition for the given class name and parent name.
+	 * 为给定的类名和父名称创建 Bean 定义。
 	 * @param className the name of the bean class
 	 * @param parentName the name of the bean's parent bean
 	 * @return the newly created bean definition
@@ -644,7 +632,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse the meta elements underneath the given element, if any.
+	 * 解析给定元素下方的 meta 元素（如果有）。
 	 */
 	public void parseMetaElements(Element ele, BeanMetadataAttributeAccessor attributeAccessor) {
 		NodeList nl = ele.getChildNodes();
@@ -662,8 +650,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse the given autowire attribute value into
-	 * {@link AbstractBeanDefinition} autowire constants.
+	 * 将给定的 autowire 属性值解析为 {@link AbstractBeanDefinition} 的 autowire 常量。
 	 */
 	@SuppressWarnings("deprecation")
 	public int getAutowireMode(String attrValue) {
@@ -689,7 +676,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse constructor-arg sub-elements of the given bean element.
+	 * 解析给定 bean 元素的 constructor-arg 子元素。
 	 */
 	public void parseConstructorArgElements(Element beanEle, BeanDefinition bd) {
 		NodeList nl = beanEle.getChildNodes();
@@ -702,7 +689,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse property sub-elements of the given bean element.
+	 * 解析给定 bean 元素的 property 子元素。
 	 */
 	public void parsePropertyElements(Element beanEle, BeanDefinition bd) {
 		NodeList nl = beanEle.getChildNodes();
@@ -715,7 +702,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse qualifier sub-elements of the given bean element.
+	 * 解析给定 bean 元素的 qualifier 子元素。
 	 */
 	public void parseQualifierElements(Element beanEle, AbstractBeanDefinition bd) {
 		NodeList nl = beanEle.getChildNodes();
@@ -728,7 +715,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse lookup-override sub-elements of the given bean element.
+	 * 解析给定 bean 元素的 lookup-override 子元素。
 	 */
 	public void parseLookupOverrideSubElements(Element beanEle, MethodOverrides overrides) {
 		NodeList nl = beanEle.getChildNodes();
@@ -746,7 +733,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse replaced-method sub-elements of the given bean element.
+	 * 解析给定 bean 元素的 replaced-method 子元素。
 	 */
 	public void parseReplacedMethodSubElements(Element beanEle, MethodOverrides overrides) {
 		NodeList nl = beanEle.getChildNodes();
@@ -773,7 +760,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a constructor-arg element.
+	 * 解析 constructor-arg 元素。
 	 */
 	public void parseConstructorArgElement(Element ele, BeanDefinition bd) {
 		String indexAttr = ele.getAttribute(INDEX_ATTRIBUTE);
@@ -834,7 +821,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a property element.
+	 * 解析 property 元素。
 	 */
 	public void parsePropertyElement(Element ele, BeanDefinition bd) {
 		String propertyName = ele.getAttribute(NAME_ATTRIBUTE);
@@ -860,7 +847,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a qualifier element.
+	 * 解析 qualifier 元素。
 	 */
 	public void parseQualifierElement(Element ele, AbstractBeanDefinition bd) {
 		String typeName = ele.getAttribute(TYPE_ATTRIBUTE);
@@ -902,8 +889,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Get the value of a property element. May be a list etc.
-	 * Also used for constructor arguments, "propertyName" being null in this case.
+	 * 获取 property 元素的值。可以是 list 等。也用于构造函数参数，此时 “propertyName” 为 null。
 	 */
 	@Nullable
 	public Object parsePropertyValue(Element ele, BeanDefinition bd, @Nullable String propertyName) {
@@ -961,8 +947,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a value, ref or collection sub-element of a property or
-	 * constructor-arg element.
+	 * 解析 property 或 constructor-arg 元素的 value、ref 或 collection 子元素。
 	 * @param ele subelement of property element; we don't know which yet
 	 * @param bd the current bean definition (if any)
 	 */
@@ -972,8 +957,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a value, ref or collection sub-element of a property or
-	 * constructor-arg element.
+	 * 解析 property 或 constructor-arg 元素的 value、ref 或 collection 子元素。
 	 * @param ele subelement of property element; we don't know which yet
 	 * @param bd the current bean definition (if any)
 	 * @param defaultValueType the default type (class name) for any
@@ -1047,7 +1031,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Return a typed String value Object for the given 'idref' element.
+	 * 为给定的 'idref' 元素返回一个带类型的 String 值对象。
 	 */
 	@Nullable
 	public Object parseIdRefElement(Element ele) {
@@ -1067,7 +1051,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Return a typed String value Object for the given value element.
+	 * 为给定的 value 元素返回一个带类型的 String 值对象。
 	 */
 	public Object parseValueElement(Element ele, @Nullable String defaultTypeName) {
 		// It's a literal value.
@@ -1090,7 +1074,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Build a typed String value Object for the given raw value.
+	 * 为给定的原始值构建一个带类型的 String 值对象。
 	 * @see org.springframework.beans.factory.config.TypedStringValue
 	 */
 	protected TypedStringValue buildTypedStringValue(String value, @Nullable String targetTypeName)
@@ -1112,7 +1096,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse an array element.
+	 * 解析 array 元素。
 	 */
 	public Object parseArrayElement(Element arrayEle, @Nullable BeanDefinition bd) {
 		String elementType = arrayEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
@@ -1126,7 +1110,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a list element.
+	 * 解析 list 元素。
 	 */
 	public List<Object> parseListElement(Element collectionEle, @Nullable BeanDefinition bd) {
 		String defaultElementType = collectionEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
@@ -1140,7 +1124,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a set element.
+	 * 解析 set 元素。
 	 */
 	public Set<Object> parseSetElement(Element collectionEle, @Nullable BeanDefinition bd) {
 		String defaultElementType = collectionEle.getAttribute(VALUE_TYPE_ATTRIBUTE);
@@ -1165,7 +1149,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a map element.
+	 * 解析 map 元素。
 	 */
 	public Map<Object, Object> parseMapElement(Element mapEle, @Nullable BeanDefinition bd) {
 		String defaultKeyType = mapEle.getAttribute(KEY_TYPE_ATTRIBUTE);
@@ -1286,7 +1270,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Build a typed String value Object for the given raw value.
+	 * 为给定的原始值构建一个带类型的 String 值对象。
 	 * @see org.springframework.beans.factory.config.TypedStringValue
 	 */
 	protected final Object buildTypedStringValueForMap(String value, String defaultTypeName, Element entryEle) {
@@ -1302,7 +1286,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a key sub-element of a map element.
+	 * 解析 map 元素的 key 子元素。
 	 */
 	@Nullable
 	protected Object parseKeyElement(Element keyEle, @Nullable BeanDefinition bd, String defaultKeyTypeName) {
@@ -1327,7 +1311,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a props element.
+	 * 解析 props 元素。
 	 */
 	public Properties parsePropsElement(Element propsEle) {
 		ManagedProperties props = new ManagedProperties();
@@ -1351,7 +1335,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse the merge attribute of a collection element, if any.
+	 * 解析集合元素的 merge 属性（如果有）。
 	 */
 	public boolean parseMergeAttribute(Element collectionElement) {
 		String value = collectionElement.getAttribute(MERGE_ATTRIBUTE);
@@ -1362,7 +1346,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a custom element (outside the default namespace).
+	 * 解析自定义元素（位于默认命名空间之外）。
 	 * @param ele the element to parse
 	 * @return the resulting bean definition
 	 */
@@ -1372,7 +1356,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Parse a custom element (outside the default namespace).
+	 * 解析自定义元素（位于默认命名空间之外）。
 	 * @param ele the element to parse
 	 * @param containingBd the containing bean definition (if any)
 	 * @return the resulting bean definition
@@ -1392,7 +1376,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Decorate the given bean definition through a namespace handler, if applicable.
+	 * 如果适用，通过命名空间处理器装饰给定的 Bean 定义。
 	 * @param ele the current element
 	 * @param originalDef the current bean definition
 	 * @return the decorated bean definition
@@ -1402,7 +1386,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Decorate the given bean definition through a namespace handler, if applicable.
+	 * 如果适用，通过命名空间处理器装饰给定的 Bean 定义。
 	 * @param ele the current element
 	 * @param originalDef the current bean definition
 	 * @param containingBd the containing bean definition (if any)
@@ -1432,8 +1416,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Decorate the given bean definition through a namespace handler,
-	 * if applicable.
+	 * 如果适用，通过命名空间处理器装饰给定的 Bean 定义。
 	 * @param node the current child node
 	 * @param originalDef the current bean definition
 	 * @param containingBd the containing bean definition (if any)
@@ -1484,10 +1467,8 @@ public class BeanDefinitionParserDelegate {
 
 
 	/**
-	 * Get the namespace URI for the supplied node.
-	 * <p>The default implementation uses {@link Node#getNamespaceURI}.
-	 * Subclasses may override the default implementation to provide a
-	 * different namespace identification mechanism.
+	 * 获取所提供节点的命名空间 URI。<p>默认实现使用 {@link Node#getNamespaceURI}。子类可以覆盖默认实现，
+	 * 以提供不同的命名空间识别机制。
 	 * @param node the node
 	 */
 	@Nullable
@@ -1496,10 +1477,8 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Get the local name for the supplied {@link Node}.
-	 * <p>The default implementation calls {@link Node#getLocalName}.
-	 * Subclasses may override the default implementation to provide a
-	 * different mechanism for getting the local name.
+	 * 获取所提供 {@link Node} 的本地名称。<p>默认实现调用 {@link Node#getLocalName}。子类可以覆盖默认
+	 * 实现，以提供获取本地名称的不同机制。
 	 * @param node the {@code Node}
 	 */
 	public String getLocalName(Node node) {
@@ -1507,11 +1486,9 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Determine whether the name of the supplied node is equal to the supplied name.
-	 * <p>The default implementation checks the supplied desired name against both
-	 * {@link Node#getNodeName()} and {@link Node#getLocalName()}.
-	 * <p>Subclasses may override the default implementation to provide a different
-	 * mechanism for comparing node names.
+	 * 确定所提供节点的名称是否等于所提供的名称。<p>默认实现会将所提供的期望名称同时与
+	 * {@link Node#getNodeName()} 和 {@link Node#getLocalName()} 进行比对。<p>子类可以覆盖默认实现，以
+	 * 提供比较节点名称的不同机制。
 	 * @param node the node to compare
 	 * @param desiredName the name to check for
 	 */
@@ -1520,14 +1497,14 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
-	 * Determine whether the given URI indicates the default namespace.
+	 * 确定给定 URI 是否表示默认命名空间。
 	 */
 	public boolean isDefaultNamespace(@Nullable String namespaceUri) {
 		return !StringUtils.hasLength(namespaceUri) || BEANS_NAMESPACE_URI.equals(namespaceUri);
 	}
 
 	/**
-	 * Determine whether the given node indicates the default namespace.
+	 * 确定给定节点是否表示默认命名空间。
 	 */
 	public boolean isDefaultNamespace(Node node) {
 		return isDefaultNamespace(getNamespaceURI(node));

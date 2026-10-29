@@ -31,11 +31,11 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * An implementation of {@code MediaTypeFileExtensionResolver} that maintains
- * lookups between file extensions and MediaTypes in both directions.
+ * {@code MediaTypeFileExtensionResolver} 的实现，双向维护文件扩展名与
+ * MediaType 之间的查找关系。
  *
- * <p>Initially created with a map of file extensions and media types.
- * Subsequently subclasses can use {@link #addMapping} to add more mappings.
+ * <p>最初使用文件扩展名与媒体类型的映射创建。
+ * 之后子类可以使用 {@link #addMapping} 添加更多映射。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -51,7 +51,7 @@ public class MappingMediaTypeFileExtensionResolver implements MediaTypeFileExten
 
 
 	/**
-	 * Create an instance with the given map of file extensions and media types.
+	 * 使用给定的文件扩展名与媒体类型映射创建实例。
 	 */
 	public MappingMediaTypeFileExtensionResolver(@Nullable Map<String, MediaType> mediaTypes) {
 		if (mediaTypes != null) {
@@ -76,7 +76,7 @@ public class MappingMediaTypeFileExtensionResolver implements MediaTypeFileExten
 	}
 
 	/**
-	 * Map an extension to a MediaType. Ignore if extension already mapped.
+	 * 将扩展名映射到 MediaType。如果扩展名已有映射则忽略。
 	 */
 	protected void addMapping(String extension, MediaType mediaType) {
 		MediaType previous = this.mediaTypes.putIfAbsent(extension, mediaType);
@@ -104,7 +104,7 @@ public class MappingMediaTypeFileExtensionResolver implements MediaTypeFileExten
 	}
 
 	/**
-	 * Use this method for a reverse lookup from extension to MediaType.
+	 * 使用此方法进行从扩展名到 MediaType 的反向查找。
 	 * @return a MediaType for the extension, or {@code null} if none found
 	 */
 	@Nullable

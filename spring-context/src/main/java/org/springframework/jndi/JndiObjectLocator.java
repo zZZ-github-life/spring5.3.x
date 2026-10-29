@@ -24,20 +24,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Convenient superclass for JNDI-based service locators,
- * providing configurable lookup of a specific JNDI resource.
+ * 用于基于 JNDI 的服务定位器的便捷父类，提供对特定 JNDI 资源的可配置查找。
  *
- * <p>Exposes a {@link #setJndiName "jndiName"} property. This may or may not
- * include the "java:comp/env/" prefix expected by Java EE applications when
- * accessing a locally mapped (Environmental Naming Context) resource. If it
- * doesn't, the "java:comp/env/" prefix will be prepended if the "resourceRef"
- * property is true (the default is <strong>false</strong>) and no other scheme
- * (e.g. "java:") is given.
+ * <p>暴露一个 {@link #setJndiName "jndiName"} 属性。它可能包含也可能不包含 Java EE 应用在访问本地
+ * 映射（Environmental Naming Context）资源时所期望的 "java:comp/env/" 前缀。如果不包含，那么在
+ * "resourceRef" 属性为 true（默认为 <strong>false</strong>）且未给出其他 scheme（例如 "java:"）时，
+ * 会自动加上 "java:comp/env/" 前缀。
  *
- * <p>Subclasses may invoke the {@link #lookup()} method whenever it is appropriate.
- * Some classes might do this on initialization, while others might do it
- * on demand. The latter strategy is more flexible in that it allows for
- * initialization of the locator before the JNDI object is available.
+ * <p>子类可以在适当的时机调用 {@link #lookup()} 方法。有些类可能在初始化时调用，而另一些类可能按需
+ * 调用。后一种策略更灵活，因为它允许在 JNDI 对象可用之前就初始化定位器。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -57,8 +52,8 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 
 
 	/**
-	 * Specify the JNDI name to look up. If it doesn't begin with "java:comp/env/"
-	 * this prefix is added automatically if "resourceRef" is set to "true".
+	 * 指定要查找的 JNDI 名称。如果它不以 "java:comp/env/" 开头，则在 "resourceRef" 设置为 "true" 时会
+	 * 自动添加该前缀。
 	 * @param jndiName the JNDI name to look up
 	 * @see #setResourceRef
 	 */
@@ -67,7 +62,7 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 	}
 
 	/**
-	 * Return the JNDI name to look up.
+	 * 返回要查找的 JNDI 名称。
 	 */
 	@Nullable
 	public String getJndiName() {
@@ -75,16 +70,14 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 	}
 
 	/**
-	 * Specify the type that the located JNDI object is supposed
-	 * to be assignable to, if any.
+	 * 指定所定位的 JNDI 对象应可赋值给的类型（如果有）。
 	 */
 	public void setExpectedType(@Nullable Class<?> expectedType) {
 		this.expectedType = expectedType;
 	}
 
 	/**
-	 * Return the type that the located JNDI object is supposed
-	 * to be assignable to, if any.
+	 * 返回所定位的 JNDI 对象应可赋值给的类型（如果有）。
 	 */
 	@Nullable
 	public Class<?> getExpectedType() {
@@ -100,7 +93,7 @@ public abstract class JndiObjectLocator extends JndiLocatorSupport implements In
 
 
 	/**
-	 * Perform the actual JNDI lookup for this locator's target resource.
+	 * 执行此定位器目标资源的实际 JNDI 查找。
 	 * @return the located target object
 	 * @throws NamingException if the JNDI lookup failed or if the
 	 * located JNDI object is not assignable to the expected type

@@ -43,18 +43,16 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.util.Assert;
 
 /**
- * Production implementation of the {@link JavaMailSender} interface,
- * supporting both JavaMail {@link MimeMessage MimeMessages} and Spring
- * {@link SimpleMailMessage SimpleMailMessages}. Can also be used as a
- * plain {@link org.springframework.mail.MailSender} implementation.
+ * {@link JavaMailSender} 接口的生产实现，
+ * 同时支持 JavaMail {@link MimeMessage MimeMessages} 和 Spring
+ * {@link SimpleMailMessage SimpleMailMessages}。也可以作为普通的
+ * {@link org.springframework.mail.MailSender} 实现使用。
  *
- * <p>Allows for defining all settings locally as bean properties.
- * Alternatively, a pre-configured JavaMail {@link javax.mail.Session} can be
- * specified, possibly pulled from an application server's JNDI environment.
+ * <p>允许将所有设置定义为 bean 属性。或者，可以指定一个预配置的
+ * JavaMail {@link javax.mail.Session}，可能从应用服务器的 JNDI 环境中获取。
  *
- * <p>Non-default properties in this object will always override the settings
- * in the JavaMail {@code Session}. Note that if overriding all values locally,
- * there is no added value in setting a pre-configured {@code Session}.
+ * <p>此对象中的非默认属性将始终覆盖 JavaMail {@code Session} 中的设置。
+ * 请注意，如果在本地覆盖所有值，则设置预配置的 {@code Session} 没有额外意义。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -70,10 +68,10 @@ import org.springframework.util.Assert;
  */
 public class JavaMailSenderImpl implements JavaMailSender {
 
-	/** The default protocol: 'smtp'. */
+	/** 默认协议：'smtp'。 */
 	public static final String DEFAULT_PROTOCOL = "smtp";
 
-	/** The default port: -1. */
+	/** 默认端口：-1。 */
 	public static final int DEFAULT_PORT = -1;
 
 	private static final String HEADER_MESSAGE_ID = "Message-ID";
@@ -106,9 +104,9 @@ public class JavaMailSenderImpl implements JavaMailSender {
 
 
 	/**
-	 * Create a new instance of the {@code JavaMailSenderImpl} class.
-	 * <p>Initializes the {@link #setDefaultFileTypeMap "defaultFileTypeMap"}
-	 * property with a default {@link ConfigurableMimeFileTypeMap}.
+	 * 创建 {@code JavaMailSenderImpl} 类的新实例。
+	 * <p>使用默认的 {@link ConfigurableMimeFileTypeMap} 初始化
+	 * {@link #setDefaultFileTypeMap "defaultFileTypeMap"} 属性。
 	 */
 	public JavaMailSenderImpl() {
 		ConfigurableMimeFileTypeMap fileTypeMap = new ConfigurableMimeFileTypeMap();
@@ -118,11 +116,10 @@ public class JavaMailSenderImpl implements JavaMailSender {
 
 
 	/**
-	 * Set JavaMail properties for the {@code Session}.
-	 * <p>A new {@code Session} will be created with those properties.
-	 * Use either this method or {@link #setSession}, but not both.
-	 * <p>Non-default properties in this instance will override given
-	 * JavaMail properties.
+	 * 为 {@code Session} 设置 JavaMail 属性。
+	 * <p>将使用这些属性创建一个新的 {@code Session}。
+	 * 使用此方法或 {@link #setSession}，但不要同时使用。
+	 * <p>此实例中的非默认属性将覆盖给定的 JavaMail 属性。
 	 */
 	public void setJavaMailProperties(Properties javaMailProperties) {
 		this.javaMailProperties = javaMailProperties;
@@ -132,21 +129,21 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Allow {@code Map} access to the JavaMail properties of this sender,
-	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
-	 * {@code javaMailProperties[mail.smtp.auth]}.
+	 * 允许以 {@code Map} 方式访问此发送器的 JavaMail 属性，
+	 * 可以添加或覆盖特定条目。
+	 * <p>适用于直接指定条目，例如通过
+	 * {@code javaMailProperties[mail.smtp.auth]}。
 	 */
 	public Properties getJavaMailProperties() {
 		return this.javaMailProperties;
 	}
 
 	/**
-	 * Set the JavaMail {@code Session}, possibly pulled from JNDI.
-	 * <p>Default is a new {@code Session} without defaults, that is
-	 * completely configured via this instance's properties.
-	 * <p>If using a pre-configured {@code Session}, non-default properties
-	 * in this instance will override the settings in the {@code Session}.
+	 * 设置 JavaMail {@code Session}，可能从 JNDI 中获取。
+	 * <p>默认创建一个新的不带默认值的 {@code Session}，
+	 * 完全通过此实例的属性进行配置。
+	 * <p>如果使用预配置的 {@code Session}，此实例中的非默认属性
+	 * 将覆盖 {@code Session} 中的设置。
 	 * @see #setJavaMailProperties
 	 */
 	public synchronized void setSession(Session session) {
@@ -155,8 +152,8 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Return the JavaMail {@code Session},
-	 * lazily initializing it if it hasn't been specified explicitly.
+	 * 返回 JavaMail {@code Session}，
+	 * 如果尚未显式指定则进行延迟初始化。
 	 */
 	public synchronized Session getSession() {
 		if (this.session == null) {
@@ -166,14 +163,14 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Set the mail protocol. Default is "smtp".
+	 * 设置邮件协议。默认为 "smtp"。
 	 */
 	public void setProtocol(@Nullable String protocol) {
 		this.protocol = protocol;
 	}
 
 	/**
-	 * Return the mail protocol.
+	 * 返回邮件协议。
 	 */
 	@Nullable
 	public String getProtocol() {
@@ -181,15 +178,15 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Set the mail server host, typically an SMTP host.
-	 * <p>Default is the default host of the underlying JavaMail Session.
+	 * 设置邮件服务器主机，通常为 SMTP 主机。
+	 * <p>默认为底层 JavaMail Session 的默认主机。
 	 */
 	public void setHost(@Nullable String host) {
 		this.host = host;
 	}
 
 	/**
-	 * Return the mail server host.
+	 * 返回邮件服务器主机。
 	 */
 	@Nullable
 	public String getHost() {
@@ -197,29 +194,28 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Set the mail server port.
-	 * <p>Default is {@link #DEFAULT_PORT}, letting JavaMail use the default
-	 * SMTP port (25).
+	 * 设置邮件服务器端口。
+	 * <p>默认为 {@link #DEFAULT_PORT}，让 JavaMail 使用默认的
+	 * SMTP 端口（25）。
 	*/
 	public void setPort(int port) {
 		this.port = port;
 	}
 
 	/**
-	 * Return the mail server port.
+	 * 返回邮件服务器端口。
 	 */
 	public int getPort() {
 		return this.port;
 	}
 
 	/**
-	 * Set the username for the account at the mail host, if any.
-	 * <p>Note that the underlying JavaMail {@code Session} has to be
-	 * configured with the property {@code "mail.smtp.auth"} set to
-	 * {@code true}, else the specified username will not be sent to the
-	 * mail server by the JavaMail runtime. If you are not explicitly passing
-	 * in a {@code Session} to use, simply specify this setting via
-	 * {@link #setJavaMailProperties}.
+	 * 设置邮件主机上账户的用户名（如果有）。
+	 * <p>请注意，底层的 JavaMail {@code Session} 需要配置属性
+	 * {@code "mail.smtp.auth"} 设置为 {@code true}，否则指定的用户名
+	 * 不会被 JavaMail 运行时发送到邮件服务器。如果没有显式传入
+	 * 要使用的 {@code Session}，只需通过
+	 * {@link #setJavaMailProperties} 指定此设置。
 	 * @see #setSession
 	 * @see #setPassword
 	 */
@@ -228,7 +224,7 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Return the username for the account at the mail host.
+	 * 返回邮件主机上账户的用户名。
 	 */
 	@Nullable
 	public String getUsername() {
@@ -236,13 +232,12 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Set the password for the account at the mail host, if any.
-	 * <p>Note that the underlying JavaMail {@code Session} has to be
-	 * configured with the property {@code "mail.smtp.auth"} set to
-	 * {@code true}, else the specified password will not be sent to the
-	 * mail server by the JavaMail runtime. If you are not explicitly passing
-	 * in a {@code Session} to use, simply specify this setting via
-	 * {@link #setJavaMailProperties}.
+	 * 设置邮件主机上账户的密码（如果有）。
+	 * <p>请注意，底层的 JavaMail {@code Session} 需要配置属性
+	 * {@code "mail.smtp.auth"} 设置为 {@code true}，否则指定的密码
+	 * 不会被 JavaMail 运行时发送到邮件服务器。如果没有显式传入
+	 * 要使用的 {@code Session}，只需通过
+	 * {@link #setJavaMailProperties} 指定此设置。
 	 * @see #setSession
 	 * @see #setUsername
 	 */
@@ -251,7 +246,7 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Return the password for the account at the mail host.
+	 * 返回邮件主机上账户的密码。
 	 */
 	@Nullable
 	public String getPassword() {
@@ -259,17 +254,16 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Set the default encoding to use for {@link MimeMessage MimeMessages}
-	 * created by this instance.
-	 * <p>Such an encoding will be auto-detected by {@link MimeMessageHelper}.
+	 * 设置由此实例创建的 {@link MimeMessage MimeMessages} 使用的默认编码。
+	 * <p>此类编码将被 {@link MimeMessageHelper} 自动检测。
 	 */
 	public void setDefaultEncoding(@Nullable String defaultEncoding) {
 		this.defaultEncoding = defaultEncoding;
 	}
 
 	/**
-	 * Return the default encoding for {@link MimeMessage MimeMessages},
-	 * or {@code null} if none.
+	 * 返回 {@link MimeMessage MimeMessages} 的默认编码，
+	 * 如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public String getDefaultEncoding() {
@@ -277,16 +271,15 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Set the default Java Activation {@link FileTypeMap} to use for
-	 * {@link MimeMessage MimeMessages} created by this instance.
-	 * <p>A {@code FileTypeMap} specified here will be autodetected by
-	 * {@link MimeMessageHelper}, avoiding the need to specify the
-	 * {@code FileTypeMap} for each {@code MimeMessageHelper} instance.
-	 * <p>For example, you can specify a custom instance of Spring's
-	 * {@link ConfigurableMimeFileTypeMap} here. If not explicitly specified,
-	 * a default {@code ConfigurableMimeFileTypeMap} will be used, containing
-	 * an extended set of MIME type mappings (as defined by the
-	 * {@code mime.types} file contained in the Spring jar).
+	 * 设置由此实例创建的 {@link MimeMessage MimeMessages} 使用的
+	 * 默认 Java Activation {@link FileTypeMap}。
+	 * <p>此处指定的 {@code FileTypeMap} 将被 {@link MimeMessageHelper}
+	 * 自动检测，避免需要为每个 {@code MimeMessageHelper} 实例指定
+	 * {@code FileTypeMap}。
+	 * <p>例如，可以在此指定 Spring 的 {@link ConfigurableMimeFileTypeMap}
+	 * 的自定义实例。如果未显式指定，将使用默认的
+	 * {@code ConfigurableMimeFileTypeMap}，其中包含扩展的 MIME 类型映射集合
+	 *（由 Spring jar 中包含的 {@code mime.types} 文件定义）。
 	 * @see MimeMessageHelper#setFileTypeMap
 	 */
 	public void setDefaultFileTypeMap(@Nullable FileTypeMap defaultFileTypeMap) {
@@ -294,8 +287,8 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Return the default Java Activation {@link FileTypeMap} for
-	 * {@link MimeMessage MimeMessages}, or {@code null} if none.
+	 * 返回 {@link MimeMessage MimeMessages} 的默认 Java Activation
+	 * {@link FileTypeMap}，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public FileTypeMap getDefaultFileTypeMap() {
@@ -329,10 +322,9 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	//---------------------------------------------------------------------
 
 	/**
-	 * This implementation creates a SmartMimeMessage, holding the specified
-	 * default encoding and default FileTypeMap. This special defaults-carrying
-	 * message will be autodetected by {@link MimeMessageHelper}, which will use
-	 * the carried encoding and FileTypeMap unless explicitly overridden.
+	 * 此实现创建一个 SmartMimeMessage，持有指定的默认编码和默认 FileTypeMap。
+	 * 这个特殊的携带默认值的消息将被 {@link MimeMessageHelper} 自动检测，
+	 * 后者将使用所携带的编码和 FileTypeMap，除非被显式覆盖。
 	 * @see #setDefaultEncoding
 	 * @see #setDefaultFileTypeMap
 	 */
@@ -389,8 +381,8 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Validate that this instance can connect to the server that it is configured
-	 * for. Throws a {@link MessagingException} if the connection attempt failed.
+	 * 验证实例可以连接到为其配置的服务器。
+	 * 如果连接尝试失败则抛出 {@link MessagingException}。
 	 */
 	public void testConnection() throws MessagingException {
 		Transport transport = null;
@@ -405,7 +397,7 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Actually send the given array of MimeMessages via JavaMail.
+	 * 通过 JavaMail 实际发送给定的 MimeMessage 数组。
 	 * @param mimeMessages the MimeMessage objects to send
 	 * @param originalMessages corresponding original message objects
 	 * that the MimeMessages have been created from (with same array
@@ -493,8 +485,8 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Obtain and connect a Transport from the underlying JavaMail Session,
-	 * passing in the specified host, port, username, and password.
+	 * 从底层 JavaMail Session 获取并连接 Transport，
+	 * 传入指定的主机、端口、用户名和密码。
 	 * @return the connected Transport object
 	 * @throws MessagingException if the connect attempt failed
 	 * @since 4.1.2
@@ -520,9 +512,9 @@ public class JavaMailSenderImpl implements JavaMailSender {
 	}
 
 	/**
-	 * Obtain a Transport object from the given JavaMail Session,
-	 * using the configured protocol.
-	 * <p>Can be overridden in subclasses, e.g. to return a mock Transport object.
+	 * 从给定的 JavaMail Session 获取 Transport 对象，
+	 * 使用配置的协议。
+	 * <p>可以在子类中覆盖，例如返回模拟的 Transport 对象。
 	 * @see javax.mail.Session#getTransport(String)
 	 * @see #getSession()
 	 * @see #getProtocol()

@@ -31,14 +31,12 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface specifying a basic set of JDBC operations allowing the use
- * of named parameters rather than the traditional '?' placeholders.
+ * 指定一组基本的 JDBC 操作接口，允许使用命名参数
+ * 而不是传统的 '?' 占位符。
  *
- * <p>This is an alternative to the classic
- * {@link org.springframework.jdbc.core.JdbcOperations} interface,
- * implemented by {@link NamedParameterJdbcTemplate}. This interface is not
- * often used directly, but provides a useful option to enhance testability,
- * as it can easily be mocked or stubbed.
+ * <p>这是经典的 {@link org.springframework.jdbc.core.JdbcOperations} 接口的替代方案，
+ * 由 {@link NamedParameterJdbcTemplate} 实现。此接口通常不直接使用，
+ * 但提供了增强可测试性的有用选项，因为它可以轻松地被模拟或存根。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -49,20 +47,16 @@ import org.springframework.lang.Nullable;
 public interface NamedParameterJdbcOperations {
 
 	/**
-	 * Expose the classic Spring JdbcTemplate to allow invocation of
-	 * classic JDBC operations.
+	 * 暴露经典的 Spring JdbcTemplate，以允许调用经典的 JDBC 操作。
 	 */
 	JdbcOperations getJdbcOperations();
 
 
 	/**
-	 * Execute a JDBC data access operation, implemented as callback action
-	 * working on a JDBC PreparedStatement. This allows for implementing arbitrary
-	 * data access operations on a single Statement, within Spring's managed
-	 * JDBC environment: that is, participating in Spring-managed transactions
-	 * and converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
-	 * domain object or a collection of domain objects.
+	 * 执行 JDBC 数据访问操作，实现为在 JDBC PreparedStatement 上工作的回调操作。
+	 * 这允许在 Spring 管理的 JDBC 环境中，在单个 Statement 上实现任意的数据访问操作：
+	 * 即参与 Spring 管理的事务，并将 JDBC SQLException 转换为 Spring 的 DataAccessException 层次结构。
+	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象集合。
 	 * @param sql the SQL to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param action callback object that specifies the action
@@ -74,13 +68,10 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Execute a JDBC data access operation, implemented as callback action
-	 * working on a JDBC PreparedStatement. This allows for implementing arbitrary
-	 * data access operations on a single Statement, within Spring's managed
-	 * JDBC environment: that is, participating in Spring-managed transactions
-	 * and converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
-	 * domain object or a collection of domain objects.
+	 * 执行 JDBC 数据访问操作，实现为在 JDBC PreparedStatement 上工作的回调操作。
+	 * 这允许在 Spring 管理的 JDBC 环境中，在单个 Statement 上实现任意的数据访问操作：
+	 * 即参与 Spring 管理的事务，并将 JDBC SQLException 转换为 Spring 的 DataAccessException 层次结构。
+	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象集合。
 	 * @param sql the SQL to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -93,13 +84,10 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Execute a JDBC data access operation, implemented as callback action
-	 * working on a JDBC PreparedStatement. This allows for implementing arbitrary
-	 * data access operations on a single Statement, within Spring's managed
-	 * JDBC environment: that is, participating in Spring-managed transactions
-	 * and converting JDBC SQLExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
-	 * domain object or a collection of domain objects.
+	 * 执行 JDBC 数据访问操作，实现为在 JDBC PreparedStatement 上工作的回调操作。
+	 * 这允许在 Spring 管理的 JDBC 环境中，在单个 Statement 上实现任意的数据访问操作：
+	 * 即参与 Spring 管理的事务，并将 JDBC SQLException 转换为 Spring 的 DataAccessException 层次结构。
+	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象集合。
 	 * @param sql the SQL to execute
 	 * @param action callback object that specifies the action
 	 * @return a result object returned by the action, or {@code null}
@@ -109,9 +97,8 @@ public interface NamedParameterJdbcOperations {
 	<T> T execute(String sql, PreparedStatementCallback<T> action) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, reading the ResultSet with a
-	 * ResultSetExtractor.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，
+	 * 使用 ResultSetExtractor 读取 ResultSet。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param rse object that will extract results
@@ -123,9 +110,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, reading the ResultSet with a
-	 * ResultSetExtractor.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，
+	 * 使用 ResultSetExtractor 读取 ResultSet。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -138,11 +124,10 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL,
-	 * reading the ResultSet with a ResultSetExtractor.
-	 * <p>Note: In contrast to the JdbcOperations method with the same signature,
-	 * this query variant always uses a PreparedStatement. It is effectively
-	 * equivalent to a query call with an empty parameter Map.
+	 * 根据给定的 SQL 创建预编译语句，
+	 * 使用 ResultSetExtractor 读取 ResultSet。
+	 * <p>注意：与具有相同签名的 JdbcOperations 方法不同，
+	 * 此查询变体始终使用 PreparedStatement。它实际上等同于使用空参数 Map 的查询调用。
 	 * @param sql the SQL query to execute
 	 * @param rse object that will extract results
 	 * @return an arbitrary result object, as returned by the ResultSetExtractor
@@ -152,9 +137,8 @@ public interface NamedParameterJdbcOperations {
 	<T> T query(String sql, ResultSetExtractor<T> rse) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list of
-	 * arguments to bind to the query, reading the ResultSet on a per-row basis
-	 * with a RowCallbackHandler.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，
+	 * 使用 RowCallbackHandler 逐行读取 ResultSet。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param rch object that will extract results, one row at a time
@@ -164,9 +148,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list of
-	 * arguments to bind to the query, reading the ResultSet on a per-row basis
-	 * with a RowCallbackHandler.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，
+	 * 使用 RowCallbackHandler 逐行读取 ResultSet。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -176,11 +159,10 @@ public interface NamedParameterJdbcOperations {
 	void query(String sql, Map<String, ?> paramMap, RowCallbackHandler rch) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL,
-	 * reading the ResultSet on a per-row basis with a RowCallbackHandler.
-	 * <p>Note: In contrast to the JdbcOperations method with the same signature,
-	 * this query variant always uses a PreparedStatement. It is effectively
-	 * equivalent to a query call with an empty parameter Map.
+	 * 根据给定的 SQL 创建预编译语句，
+	 * 使用 RowCallbackHandler 逐行读取 ResultSet。
+	 * <p>注意：与具有相同签名的 JdbcOperations 方法不同，
+	 * 此查询变体始终使用 PreparedStatement。它实际上等同于使用空参数 Map 的查询调用。
 	 * @param sql the SQL query to execute
 	 * @param rch object that will extract results, one row at a time
 	 * @throws DataAccessException if the query fails
@@ -188,9 +170,8 @@ public interface NamedParameterJdbcOperations {
 	void query(String sql, RowCallbackHandler rch) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, mapping each row to a Java object
-	 * via a RowMapper.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，
+	 * 通过 RowMapper 将每一行映射为 Java 对象。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param rowMapper object that will map one object per row
@@ -201,9 +182,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, mapping each row to a Java object
-	 * via a RowMapper.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，
+	 * 通过 RowMapper 将每一行映射为 Java 对象。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -215,11 +195,10 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL,
-	 * mapping each row to a Java object via a RowMapper.
-	 * <p>Note: In contrast to the JdbcOperations method with the same signature,
-	 * this query variant always uses a PreparedStatement. It is effectively
-	 * equivalent to a query call with an empty parameter Map.
+	 * 根据给定的 SQL 创建预编译语句，
+	 * 通过 RowMapper 将每一行映射为 Java 对象。
+	 * <p>注意：与具有相同签名的 JdbcOperations 方法不同，
+	 * 此查询变体始终使用 PreparedStatement。它实际上等同于使用空参数 Map 的查询调用。
 	 * @param sql the SQL query to execute
 	 * @param rowMapper object that will map one object per row
 	 * @return the result List, containing mapped objects
@@ -228,9 +207,8 @@ public interface NamedParameterJdbcOperations {
 	<T> List<T> query(String sql, RowMapper<T> rowMapper) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, mapping each row to a Java object
-	 * via a RowMapper, and turning it into an iterable and closeable Stream.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，
+	 * 通过 RowMapper 将每一行映射为 Java 对象，并将其转换为可迭代且可关闭的 Stream。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param rowMapper object that will map one object per row
@@ -243,9 +221,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, mapping each row to a Java object
-	 * via a RowMapper, and turning it into an iterable and closeable Stream.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，
+	 * 通过 RowMapper 将每一行映射为 Java 对象，并将其转换为可迭代且可关闭的 Stream。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -259,9 +236,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, mapping a single result row to a
-	 * Java object via a RowMapper.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，
+	 * 通过 RowMapper 将单行结果映射为 Java 对象。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param rowMapper object that will map one object per row
@@ -276,9 +252,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a list
-	 * of arguments to bind to the query, mapping a single result row to a
-	 * Java object via a RowMapper.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，
+	 * 通过 RowMapper 将单行结果映射为 Java 对象。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -294,10 +269,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
-	 * result will be directly mapped to the corresponding object type.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，期望返回一个结果对象。
+	 * <p>查询应为单行/单列查询；返回的结果将直接映射到相应的对象类型。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param requiredType the type that the result object is expected to match
@@ -315,10 +288,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result object.
-	 * <p>The query is expected to be a single row/single column query; the returned
-	 * result will be directly mapped to the corresponding object type.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，期望返回一个结果对象。
+	 * <p>查询应为单行/单列查询；返回的结果将直接映射到相应的对象类型。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -336,10 +307,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result Map.
-	 * <p>The query is expected to be a single row query; the result row will be
-	 * mapped to a Map (one entry for each column, using the column name as the key).
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，期望返回一个结果 Map。
+	 * <p>查询应为单行查询；结果行将映射为一个 Map（每列一个条目，以列名作为键）。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @return the result Map (one entry for each column, using the column name as the key)
@@ -352,13 +321,10 @@ public interface NamedParameterJdbcOperations {
 	Map<String, Object> queryForMap(String sql, SqlParameterSource paramSource) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result Map.
-	 * The queryForMap() methods defined by this interface are appropriate
-	 * when you don't have a domain model. Otherwise, consider using
-	 * one of the queryForObject() methods.
-	 * <p>The query is expected to be a single row query; the result row will be
-	 * mapped to a Map (one entry for each column, using the column name as the key).
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，期望返回一个结果 Map。
+	 * 当你没有领域模型时，适合使用此接口定义的 queryForMap() 方法；
+	 * 否则，请考虑使用 queryForObject() 方法之一。
+	 * <p>查询应为单行查询；结果行将映射为一个 Map（每列一个条目，以列名作为键）。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -372,10 +338,8 @@ public interface NamedParameterJdbcOperations {
 	Map<String, Object> queryForMap(String sql, Map<String, ?> paramMap) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
-	 * result objects, each of them matching the specified element type.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，期望返回一个结果列表。
+	 * <p>结果将映射为一个 List（每行一个条目），每个结果对象匹配指定的元素类型。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @param elementType the required type of element in the result list
@@ -389,10 +353,8 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
-	 * result objects, each of them matching the specified element type.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，期望返回一个结果列表。
+	 * <p>结果将映射为一个 List（每行一个条目），每个结果对象匹配指定的元素类型。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -407,12 +369,9 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
-	 * Maps (one entry for each column, using the column name as the key).
-	 * Each element in the list will be of the form returned by this interface's
-	 * {@code queryForMap} methods.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，期望返回一个结果列表。
+	 * <p>结果将映射为一个 List（每行一个条目），每行为一个 Map（每列一个条目，以列名作为键）。
+	 * 列表中的每个元素都将采用此接口 {@code queryForMap} 方法返回的形式。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @return a List that contains a Map per row
@@ -422,12 +381,9 @@ public interface NamedParameterJdbcOperations {
 	List<Map<String, Object>> queryForList(String sql, SqlParameterSource paramSource) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting a result list.
-	 * <p>The results will be mapped to a List (one entry for each row) of
-	 * Maps (one entry for each column, using the column name as the key).
-	 * Each element in the list will be of the form returned by this interface's
-	 * {@code queryForMap} methods.
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，期望返回一个结果列表。
+	 * <p>结果将映射为一个 List（每行一个条目），每行为一个 Map（每列一个条目，以列名作为键）。
+	 * 列表中的每个元素都将采用此接口 {@code queryForMap} 方法返回的形式。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -438,14 +394,11 @@ public interface NamedParameterJdbcOperations {
 	List<Map<String, Object>> queryForList(String sql, Map<String, ?> paramMap) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting an SqlRowSet.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
-	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
-	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
-	 * class is used, which is part of JDK 1.5+ and also available separately as part of
-	 * Sun's JDBC RowSet Implementations download (rowset.jar).
+	 * 根据给定的 SQL 创建预编译语句，绑定参数列表中的参数值，期望返回一个 SqlRowSet。
+	 * <p>结果将映射为一个 SqlRowSet，以断开连接的方式保存数据。此包装器将转换抛出的任何 SQLException。
+	 * <p>请注意，对于默认实现，需要在运行时提供 JDBC RowSet 支持：默认情况下使用 Sun 的
+	 * {@code com.sun.rowset.CachedRowSetImpl} 类，该类是 JDK 1.5+ 的一部分，
+	 * 也可作为 Sun JDBC RowSet 实现下载（rowset.jar）的独立组件使用。
 	 * @param sql the SQL query to execute
 	 * @param paramSource container of arguments to bind to the query
 	 * @return an SqlRowSet representation (possibly a wrapper around a
@@ -458,14 +411,11 @@ public interface NamedParameterJdbcOperations {
 	SqlRowSet queryForRowSet(String sql, SqlParameterSource paramSource) throws DataAccessException;
 
 	/**
-	 * Query given SQL to create a prepared statement from SQL and a
-	 * list of arguments to bind to the query, expecting an SqlRowSet.
-	 * <p>The results will be mapped to an SqlRowSet which holds the data in a
-	 * disconnected fashion. This wrapper will translate any SQLExceptions thrown.
-	 * <p>Note that, for the default implementation, JDBC RowSet support needs to
-	 * be available at runtime: by default, Sun's {@code com.sun.rowset.CachedRowSetImpl}
-	 * class is used, which is part of JDK 1.5+ and also available separately as part of
-	 * Sun's JDBC RowSet Implementations download (rowset.jar).
+	 * 根据给定的 SQL 创建预编译语句，绑定参数 Map 中的参数值，期望返回一个 SqlRowSet。
+	 * <p>结果将映射为一个 SqlRowSet，以断开连接的方式保存数据。此包装器将转换抛出的任何 SQLException。
+	 * <p>请注意，对于默认实现，需要在运行时提供 JDBC RowSet 支持：默认情况下使用 Sun 的
+	 * {@code com.sun.rowset.CachedRowSetImpl} 类，该类是 JDK 1.5+ 的一部分，
+	 * 也可作为 Sun JDBC RowSet 实现下载（rowset.jar）的独立组件使用。
 	 * @param sql the SQL query to execute
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -479,7 +429,7 @@ public interface NamedParameterJdbcOperations {
 	SqlRowSet queryForRowSet(String sql, Map<String, ?> paramMap) throws DataAccessException;
 
 	/**
-	 * Issue an update via a prepared statement, binding the given arguments.
+	 * 通过预编译语句执行更新操作，绑定给定的参数。
 	 * @param sql the SQL containing named parameters
 	 * @param paramSource container of arguments and SQL types to bind to the query
 	 * @return the number of rows affected
@@ -488,7 +438,7 @@ public interface NamedParameterJdbcOperations {
 	int update(String sql, SqlParameterSource paramSource) throws DataAccessException;
 
 	/**
-	 * Issue an update via a prepared statement, binding the given arguments.
+	 * 通过预编译语句执行更新操作，绑定给定的参数。
 	 * @param sql the SQL containing named parameters
 	 * @param paramMap map of parameters to bind to the query
 	 * (leaving it to the PreparedStatement to guess the corresponding SQL type)
@@ -498,8 +448,7 @@ public interface NamedParameterJdbcOperations {
 	int update(String sql, Map<String, ?> paramMap) throws DataAccessException;
 
 	/**
-	 * Issue an update via a prepared statement, binding the given arguments,
-	 * returning generated keys.
+	 * 通过预编译语句执行更新操作，绑定给定的参数，返回生成的键。
 	 * @param sql the SQL containing named parameters
 	 * @param paramSource container of arguments and SQL types to bind to the query
 	 * @param generatedKeyHolder a {@link KeyHolder} that will hold the generated keys
@@ -512,8 +461,7 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Issue an update via a prepared statement, binding the given arguments,
-	 * returning generated keys.
+	 * 通过预编译语句执行更新操作，绑定给定的参数，返回生成的键。
 	 * @param sql the SQL containing named parameters
 	 * @param paramSource container of arguments and SQL types to bind to the query
 	 * @param generatedKeyHolder a {@link KeyHolder} that will hold the generated keys
@@ -527,7 +475,7 @@ public interface NamedParameterJdbcOperations {
 			throws DataAccessException;
 
 	/**
-	 * Executes a batch using the supplied SQL statement with the batch of supplied arguments.
+	 * 使用提供的 SQL 语句和批量参数执行批量更新操作。
 	 * @param sql the SQL statement to execute
 	 * @param batchValues the array of Maps containing the batch of arguments for the query
 	 * @return an array containing the numbers of rows affected by each update in the batch
@@ -538,7 +486,7 @@ public interface NamedParameterJdbcOperations {
 	int[] batchUpdate(String sql, Map<String, ?>[] batchValues);
 
 	/**
-	 * Execute a batch using the supplied SQL statement with the batch of supplied arguments.
+	 * 使用提供的 SQL 语句和批量参数执行批量更新操作。
 	 * @param sql the SQL statement to execute
 	 * @param batchArgs the array of {@link SqlParameterSource} containing the batch of
 	 * arguments for the query

@@ -22,12 +22,9 @@ import org.springframework.expression.spel.SpelMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a reference to a value.  With a reference it is possible to get or set the
- * value. Passing around value references rather than the values themselves can avoid
- * incorrect duplication of operand evaluation. For example in 'list[index++]++' without
- * a value reference for 'list[index++]' it would be necessary to evaluate list[index++]
- * twice (once to get the value, once to determine where the value goes) and that would
- * double increment index.
+ * 表示对某个值的引用。借助引用可以获取或设置该值。传递值引用而非值本身，可以避免操作数求值的错误重
+ * 复。例如在 'list[index++]++' 中，如果没有针对 'list[index++]' 的值引用，就不得不对 list[index++]
+ * 求值两次（一次用于获取值，一次用于确定值的写入位置），这会使 index 递增两次。
  *
  * @author Andy Clement
  * @since 3.2
@@ -35,28 +32,26 @@ import org.springframework.lang.Nullable;
 public interface ValueRef {
 
 	/**
-	 * Returns the value this ValueRef points to, it should not require expression
-	 * component re-evaluation.
+	 * 返回此 ValueRef 指向的值，不应需要重新求值表达式组件。
 	 * @return the value
 	 */
 	TypedValue getValue();
 
 	/**
-	 * Sets the value this ValueRef points to, it should not require expression component
-	 * re-evaluation.
+	 * 设置此 ValueRef 指向的值，不应需要重新求值表达式组件。
 	 * @param newValue the new value
 	 */
 	void setValue(@Nullable Object newValue);
 
 	/**
-	 * Indicates whether calling setValue(Object) is supported.
+	 * 指示是否支持调用 setValue(Object)。
 	 * @return true if setValue() is supported for this value reference.
 	 */
 	boolean isWritable();
 
 
 	/**
-	 * A ValueRef for the null value.
+	 * 用于 null 值的 ValueRef。
 	 */
 	class NullValueRef implements ValueRef {
 
@@ -83,7 +78,7 @@ public interface ValueRef {
 
 
 	/**
-	 * A ValueRef holder for a single value, which cannot be set.
+	 * 用于单个值的 ValueRef 持有者，该值不能被设置。
 	 */
 	class TypedValueHolderValueRef implements ValueRef {
 

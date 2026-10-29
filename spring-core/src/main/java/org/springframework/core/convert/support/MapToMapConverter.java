@@ -29,13 +29,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts a Map to another Map.
- *
- * <p>First, creates a new Map of the requested targetType with a size equal to the
- * size of the source Map. Then copies each element in the source map to the target map.
- * Will perform a conversion from the source maps's parameterized K,V types to the target
- * map's parameterized types K,V if necessary.
- *
+ * 将 Map 转换为另一个 Map。<p>首先，创建一个所请求 targetType 的新 Map，其大小等于源 Map 的大小。然后从源 Map 中复制每个元素到目标 Map。必要时，会执行从源 Map 的参数化 K,V 类型到目标 Map 参数化类型 K,V 的转换。
  * @author Keith Donald
  * @author Juergen Hoeller
  * @since 3.0

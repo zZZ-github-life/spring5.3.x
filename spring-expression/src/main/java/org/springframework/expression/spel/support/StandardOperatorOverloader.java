@@ -22,7 +22,7 @@ import org.springframework.expression.OperatorOverloader;
 import org.springframework.lang.Nullable;
 
 /**
- * Standard implementation of {@link OperatorOverloader}.
+ * {@link OperatorOverloader} 的标准实现。
  *
  * @author Juergen Hoeller
  * @since 3.0

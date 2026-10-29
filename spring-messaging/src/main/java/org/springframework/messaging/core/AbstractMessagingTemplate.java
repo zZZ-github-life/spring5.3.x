@@ -22,8 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * An extension of {@link AbstractMessageReceivingTemplate} that adds support for
- * request-reply style operations as defined by {@link MessageRequestReplyOperations}.
+ * 对 {@link AbstractMessageReceivingTemplate} 的扩展，增加了对
+ * {@link MessageRequestReplyOperations} 定义的请求-应答式操作的支持。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev

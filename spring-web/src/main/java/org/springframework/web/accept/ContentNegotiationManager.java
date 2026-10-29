@@ -35,13 +35,11 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Central class to determine requested {@linkplain MediaType media types}
- * for a request. This is done by delegating to a list of configured
- * {@code ContentNegotiationStrategy} instances.
+ * 用于确定请求所请求的{@linkplain MediaType 媒体类型}的核心类。
+ * 它通过委托给一组已配置的 {@code ContentNegotiationStrategy} 实例来完成此工作。
  *
- * <p>Also provides methods to look up file extensions for a media type.
- * This is done by delegating to the list of configured
- * {@code MediaTypeFileExtensionResolver} instances.
+ * <p>还提供了查找媒体类型对应文件扩展名的方法。它通过委托给
+ * 一组已配置的 {@code MediaTypeFileExtensionResolver} 实例来完成此工作。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -55,9 +53,8 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 
 
 	/**
-	 * Create an instance with the given list of
-	 * {@code ContentNegotiationStrategy} strategies each of which may also be
-	 * an instance of {@code MediaTypeFileExtensionResolver}.
+	 * 使用给定的 {@code ContentNegotiationStrategy} 策略列表创建实例，
+	 * 其中每个策略也可以是 {@code MediaTypeFileExtensionResolver} 的实例。
 	 * @param strategies the strategies to use
 	 */
 	public ContentNegotiationManager(ContentNegotiationStrategy... strategies) {
@@ -65,8 +62,8 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	}
 
 	/**
-	 * A collection-based alternative to
-	 * {@link #ContentNegotiationManager(ContentNegotiationStrategy...)}.
+	 * 基于集合的替代方式，用于替代
+	 * {@link #ContentNegotiationManager(ContentNegotiationStrategy...)}。
 	 * @param strategies the strategies to use
 	 * @since 3.2.2
 	 */
@@ -81,7 +78,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	}
 
 	/**
-	 * Create a default instance with a {@link HeaderContentNegotiationStrategy}.
+	 * 使用 {@link HeaderContentNegotiationStrategy} 创建一个默认实例。
 	 */
 	public ContentNegotiationManager() {
 		this(new HeaderContentNegotiationStrategy());
@@ -89,7 +86,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 
 
 	/**
-	 * Return the configured content negotiation strategies.
+	 * 返回已配置的内容协商策略。
 	 * @since 3.2.16
 	 */
 	public List<ContentNegotiationStrategy> getStrategies() {
@@ -97,7 +94,7 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	}
 
 	/**
-	 * Find a {@code ContentNegotiationStrategy} of the given type.
+	 * 查找给定类型的 {@code ContentNegotiationStrategy}。
 	 * @param strategyType the strategy type
 	 * @return the first matching strategy, or {@code null} if none
 	 * @since 4.3
@@ -114,8 +111,8 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	}
 
 	/**
-	 * Register more {@code MediaTypeFileExtensionResolver} instances in addition
-	 * to those detected at construction.
+	 * 在构造时检测到的解析器之外，再注册更多
+	 * {@code MediaTypeFileExtensionResolver} 实例。
 	 * @param resolvers the resolvers to add
 	 */
 	public void addFileExtensionResolvers(MediaTypeFileExtensionResolver... resolvers) {
@@ -141,14 +138,14 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 
 	/**
 	 * {@inheritDoc}
-	 * <p>At startup this method returns extensions explicitly registered with
-	 * either {@link PathExtensionContentNegotiationStrategy} or
-	 * {@link ParameterContentNegotiationStrategy}. At runtime if there is a
-	 * "path extension" strategy and its
+	 * <p>在启动时，此方法返回显式注册到
+	 * {@link PathExtensionContentNegotiationStrategy} 或
+	 * {@link ParameterContentNegotiationStrategy} 的扩展名。在运行时，如果存在
+	 * “路径扩展名”策略且其
 	 * {@link PathExtensionContentNegotiationStrategy#setUseRegisteredExtensionsOnly(boolean)
-	 * useRegisteredExtensionsOnly} property is set to "false", the list of extensions may
-	 * increase as file extensions are resolved via
-	 * {@link org.springframework.http.MediaTypeFactory} and cached.
+	 * useRegisteredExtensionsOnly} 属性设置为 "false"，那么随着通过
+	 * {@link org.springframework.http.MediaTypeFactory} 解析并缓存文件扩展名，
+	 * 扩展名列表可能会增加。
 	 */
 	@Override
 	public List<String> getAllFileExtensions() {
@@ -173,8 +170,8 @@ public class ContentNegotiationManager implements ContentNegotiationStrategy, Me
 	}
 
 	/**
-	 * Return all registered lookup key to media type mappings by iterating
-	 * {@link MediaTypeFileExtensionResolver}s.
+	 * 通过遍历 {@link MediaTypeFileExtensionResolver}，返回所有已注册的
+	 * 查找键到媒体类型的映射。
 	 * @since 5.2.4
 	 */
 	public Map<String, MediaType> getMediaTypeMappings() {

@@ -21,8 +21,7 @@ import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link AutowireCandidateResolver} implementation to use when no annotation
- * support is available. This implementation checks the bean definition only.
+ * 在没有可用注解支持时使用的 {@link AutowireCandidateResolver} 实现。此实现仅检查 Bean 定义。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -31,7 +30,7 @@ import org.springframework.lang.Nullable;
 public class SimpleAutowireCandidateResolver implements AutowireCandidateResolver {
 
 	/**
-	 * Shared instance of {@code SimpleAutowireCandidateResolver}.
+	 * {@code SimpleAutowireCandidateResolver} 的共享实例。
 	 * @since 5.2.7
 	 */
 	public static final SimpleAutowireCandidateResolver INSTANCE = new SimpleAutowireCandidateResolver();
@@ -65,7 +64,7 @@ public class SimpleAutowireCandidateResolver implements AutowireCandidateResolve
 	}
 
 	/**
-	 * This implementation returns {@code this} as-is.
+	 * 此实现按原样返回 {@code this}。
 	 * @see #INSTANCE
 	 */
 	@Override

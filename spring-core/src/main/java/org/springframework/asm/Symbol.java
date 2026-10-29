@@ -28,8 +28,7 @@
 package org.springframework.asm;
 
 /**
- * An entry of the constant pool, of the BootstrapMethods attribute, or of the (ASM specific) type
- * table of a class.
+ * 常量池、BootstrapMethods 属性或类的（ASM 专用）类型表中的一个条目。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.4">JVMS
  *     4.4</a>
@@ -41,166 +40,146 @@ abstract class Symbol {
 
   // Tag values for the constant pool entries (using the same order as in the JVMS).
 
-  /** The tag value of CONSTANT_Class_info JVMS structures. */
+  /** CONSTANT_Class_info JVMS 结构的标签值。 */
   static final int CONSTANT_CLASS_TAG = 7;
 
-  /** The tag value of CONSTANT_Fieldref_info JVMS structures. */
+  /** CONSTANT_Fieldref_info JVMS 结构的标签值。 */
   static final int CONSTANT_FIELDREF_TAG = 9;
 
-  /** The tag value of CONSTANT_Methodref_info JVMS structures. */
+  /** CONSTANT_Methodref_info JVMS 结构的标签值。 */
   static final int CONSTANT_METHODREF_TAG = 10;
 
-  /** The tag value of CONSTANT_InterfaceMethodref_info JVMS structures. */
+  /** CONSTANT_InterfaceMethodref_info JVMS 结构的标签值。 */
   static final int CONSTANT_INTERFACE_METHODREF_TAG = 11;
 
-  /** The tag value of CONSTANT_String_info JVMS structures. */
+  /** CONSTANT_String_info JVMS 结构的标签值。 */
   static final int CONSTANT_STRING_TAG = 8;
 
-  /** The tag value of CONSTANT_Integer_info JVMS structures. */
+  /** CONSTANT_Integer_info JVMS 结构的标签值。 */
   static final int CONSTANT_INTEGER_TAG = 3;
 
-  /** The tag value of CONSTANT_Float_info JVMS structures. */
+  /** CONSTANT_Float_info JVMS 结构的标签值。 */
   static final int CONSTANT_FLOAT_TAG = 4;
 
-  /** The tag value of CONSTANT_Long_info JVMS structures. */
+  /** CONSTANT_Long_info JVMS 结构的标签值。 */
   static final int CONSTANT_LONG_TAG = 5;
 
-  /** The tag value of CONSTANT_Double_info JVMS structures. */
+  /** CONSTANT_Double_info JVMS 结构的标签值。 */
   static final int CONSTANT_DOUBLE_TAG = 6;
 
-  /** The tag value of CONSTANT_NameAndType_info JVMS structures. */
+  /** CONSTANT_NameAndType_info JVMS 结构的标签值。 */
   static final int CONSTANT_NAME_AND_TYPE_TAG = 12;
 
-  /** The tag value of CONSTANT_Utf8_info JVMS structures. */
+  /** CONSTANT_Utf8_info JVMS 结构的标签值。 */
   static final int CONSTANT_UTF8_TAG = 1;
 
-  /** The tag value of CONSTANT_MethodHandle_info JVMS structures. */
+  /** CONSTANT_MethodHandle_info JVMS 结构的标签值。 */
   static final int CONSTANT_METHOD_HANDLE_TAG = 15;
 
-  /** The tag value of CONSTANT_MethodType_info JVMS structures. */
+  /** CONSTANT_MethodType_info JVMS 结构的标签值。 */
   static final int CONSTANT_METHOD_TYPE_TAG = 16;
 
-  /** The tag value of CONSTANT_Dynamic_info JVMS structures. */
+  /** CONSTANT_Dynamic_info JVMS 结构的标签值。 */
   static final int CONSTANT_DYNAMIC_TAG = 17;
 
-  /** The tag value of CONSTANT_InvokeDynamic_info JVMS structures. */
+  /** CONSTANT_InvokeDynamic_info JVMS 结构的标签值。 */
   static final int CONSTANT_INVOKE_DYNAMIC_TAG = 18;
 
-  /** The tag value of CONSTANT_Module_info JVMS structures. */
+  /** CONSTANT_Module_info JVMS 结构的标签值。 */
   static final int CONSTANT_MODULE_TAG = 19;
 
-  /** The tag value of CONSTANT_Package_info JVMS structures. */
+  /** CONSTANT_Package_info JVMS 结构的标签值。 */
   static final int CONSTANT_PACKAGE_TAG = 20;
 
   // Tag values for the BootstrapMethods attribute entries (ASM specific tag).
 
-  /** The tag value of the BootstrapMethods attribute entries. */
+  /** BootstrapMethods 属性条目的标签值。 */
   static final int BOOTSTRAP_METHOD_TAG = 64;
 
   // Tag values for the type table entries (ASM specific tags).
 
-  /** The tag value of a normal type entry in the (ASM specific) type table of a class. */
+  /** （ASM 特有）类的类型表中普通类型条目的标签值。 */
   static final int TYPE_TAG = 128;
 
   /**
-   * The tag value of an {@link Frame#ITEM_UNINITIALIZED} type entry in the type table of a class.
+   * 类的类型表中 {@link Frame#ITEM_UNINITIALIZED} 类型条目的标签值。
    */
   static final int UNINITIALIZED_TYPE_TAG = 129;
 
-  /** The tag value of a merged type entry in the (ASM specific) type table of a class. */
+  /** （ASM 特有）类的类型表中合并类型条目的标签值。 */
   static final int MERGED_TYPE_TAG = 130;
 
   // Instance fields.
 
   /**
-   * The index of this symbol in the constant pool, in the BootstrapMethods attribute, or in the
-   * (ASM specific) type table of a class (depending on the {@link #tag} value).
+   * 此符号在常量池、BootstrapMethods 属性或类的（ASM 专用）类型表中的索引
+   * （取决于 {@link #tag} 的值）。
    */
   final int index;
 
   /**
-   * A tag indicating the type of this symbol. Must be one of the static tag values defined in this
-   * class.
+   * 指示此符号类型的标签。必须是此类中定义的静态标签值之一。
    */
   final int tag;
 
   /**
-   * The internal name of the owner class of this symbol. Only used for {@link
-   * #CONSTANT_FIELDREF_TAG}, {@link #CONSTANT_METHODREF_TAG}, {@link
-   * #CONSTANT_INTERFACE_METHODREF_TAG}, and {@link #CONSTANT_METHOD_HANDLE_TAG} symbols.
+   * 此符号所属类的内部名称。仅用于 {@link #CONSTANT_FIELDREF_TAG}、{@link #CONSTANT_METHODREF_TAG}、
+   * {@link #CONSTANT_INTERFACE_METHODREF_TAG} 和 {@link #CONSTANT_METHOD_HANDLE_TAG} 符号。
    */
   final String owner;
 
   /**
-   * The name of the class field or method corresponding to this symbol. Only used for {@link
-   * #CONSTANT_FIELDREF_TAG}, {@link #CONSTANT_METHODREF_TAG}, {@link
-   * #CONSTANT_INTERFACE_METHODREF_TAG}, {@link #CONSTANT_NAME_AND_TYPE_TAG}, {@link
-   * #CONSTANT_METHOD_HANDLE_TAG}, {@link #CONSTANT_DYNAMIC_TAG} and {@link
-   * #CONSTANT_INVOKE_DYNAMIC_TAG} symbols.
+   * 此符号对应的类字段或方法的名称。仅用于 {@link #CONSTANT_FIELDREF_TAG}、
+   * {@link #CONSTANT_METHODREF_TAG}、{@link #CONSTANT_INTERFACE_METHODREF_TAG}、
+   * {@link #CONSTANT_NAME_AND_TYPE_TAG}、{@link #CONSTANT_METHOD_HANDLE_TAG}、
+   * {@link #CONSTANT_DYNAMIC_TAG} 和 {@link #CONSTANT_INVOKE_DYNAMIC_TAG} 符号。
    */
   final String name;
 
   /**
-   * The string value of this symbol. This is:
+   * 此符号的字符串值。具体为：
    *
    * <ul>
-   *   <li>a field or method descriptor for {@link #CONSTANT_FIELDREF_TAG}, {@link
-   *       #CONSTANT_METHODREF_TAG}, {@link #CONSTANT_INTERFACE_METHODREF_TAG}, {@link
-   *       #CONSTANT_NAME_AND_TYPE_TAG}, {@link #CONSTANT_METHOD_HANDLE_TAG}, {@link
-   *       #CONSTANT_METHOD_TYPE_TAG}, {@link #CONSTANT_DYNAMIC_TAG} and {@link
-   *       #CONSTANT_INVOKE_DYNAMIC_TAG} symbols,
-   *   <li>an arbitrary string for {@link #CONSTANT_UTF8_TAG} and {@link #CONSTANT_STRING_TAG}
-   *       symbols,
-   *   <li>an internal class name for {@link #CONSTANT_CLASS_TAG}, {@link #TYPE_TAG} and {@link
-   *       #UNINITIALIZED_TYPE_TAG} symbols,
-   *   <li>{@literal null} for the other types of symbol.
+   * <li>对于 {@link #CONSTANT_FIELDREF_TAG}、{@link #CONSTANT_METHODREF_TAG}、{@link #CONSTANT_INTERFACE_METHODREF_TAG}、{@link #CONSTANT_NAME_AND_TYPE_TAG}、{@link #CONSTANT_METHOD_HANDLE_TAG}、{@link #CONSTANT_METHOD_TYPE_TAG}、{@link #CONSTANT_DYNAMIC_TAG} 和 {@link #CONSTANT_INVOKE_DYNAMIC_TAG} 符号，为字段或方法描述符，
+   * <li>对于 {@link #CONSTANT_UTF8_TAG} 和 {@link #CONSTANT_STRING_TAG} 符号，为任意字符串，
+   * <li>对于 {@link #CONSTANT_CLASS_TAG}、{@link #TYPE_TAG} 和 {@link #UNINITIALIZED_TYPE_TAG} 符号，为内部类名，
+   * <li>对于其他类型的符号，为 {@literal null}。
    * </ul>
    */
   final String value;
 
   /**
-   * The numeric value of this symbol. This is:
+   * 此符号的数值。具体为：
    *
    * <ul>
-   *   <li>the symbol's value for {@link #CONSTANT_INTEGER_TAG},{@link #CONSTANT_FLOAT_TAG}, {@link
-   *       #CONSTANT_LONG_TAG}, {@link #CONSTANT_DOUBLE_TAG},
-   *   <li>the CONSTANT_MethodHandle_info reference_kind field value for {@link
-   *       #CONSTANT_METHOD_HANDLE_TAG} symbols,
-   *   <li>the CONSTANT_InvokeDynamic_info bootstrap_method_attr_index field value for {@link
-   *       #CONSTANT_INVOKE_DYNAMIC_TAG} symbols,
-   *   <li>the offset of a bootstrap method in the BootstrapMethods boostrap_methods array, for
-   *       {@link #CONSTANT_DYNAMIC_TAG} or {@link #BOOTSTRAP_METHOD_TAG} symbols,
-   *   <li>the bytecode offset of the NEW instruction that created an {@link
-   *       Frame#ITEM_UNINITIALIZED} type for {@link #UNINITIALIZED_TYPE_TAG} symbols,
-   *   <li>the indices (in the class' type table) of two {@link #TYPE_TAG} source types for {@link
-   *       #MERGED_TYPE_TAG} symbols,
-   *   <li>0 for the other types of symbol.
+   * <li>对于 {@link #CONSTANT_INTEGER_TAG}、{@link #CONSTANT_FLOAT_TAG}、{@link #CONSTANT_LONG_TAG}、{@link #CONSTANT_DOUBLE_TAG} 符号，为符号的值，
+   * <li>对于 {@link #CONSTANT_METHOD_HANDLE_TAG} 符号，为 CONSTANT_MethodHandle_info 的 reference_kind 字段值，
+   * <li>对于 {@link #CONSTANT_INVOKE_DYNAMIC_TAG} 符号，为 CONSTANT_InvokeDynamic_info 的 bootstrap_method_attr_index 字段值，
+   * <li>对于 {@link #CONSTANT_DYNAMIC_TAG} 或 {@link #BOOTSTRAP_METHOD_TAG} 符号，为引导方法在 BootstrapMethods 的 boostrap_methods 数组中的偏移量，
+   * <li>对于 {@link #UNINITIALIZED_TYPE_TAG} 符号，为创建 {@link Frame#ITEM_UNINITIALIZED} 类型的 NEW 指令的字节码偏移量，
+   * <li>对于 {@link #MERGED_TYPE_TAG} 符号，为两个 {@link #TYPE_TAG} 源类型（在类的类型表中）的索引，
+   * <li>对于其他类型的符号，为 0。
    * </ul>
    */
   final long data;
 
   /**
-   * Additional information about this symbol, generally computed lazily. <i>Warning: the value of
-   * this field is ignored when comparing Symbol instances</i> (to avoid duplicate entries in a
-   * SymbolTable). Therefore, this field should only contain data that can be computed from the
-   * other fields of this class. It contains:
+   * 关于此符号的附加信息，通常以延迟方式计算。<i>警告：比较 Symbol 实例时此字段的值会被
+   * 忽略</i>（以避免 SymbolTable 中出现重复条目）。因此，此字段只应包含可根据此类其他
+   * 字段计算得出的数据。它包含：
    *
    * <ul>
-   *   <li>the {@link Type#getArgumentsAndReturnSizes} of the symbol's method descriptor for {@link
-   *       #CONSTANT_METHODREF_TAG}, {@link #CONSTANT_INTERFACE_METHODREF_TAG} and {@link
-   *       #CONSTANT_INVOKE_DYNAMIC_TAG} symbols,
-   *   <li>the index in the InnerClasses_attribute 'classes' array (plus one) corresponding to this
-   *       class, for {@link #CONSTANT_CLASS_TAG} symbols,
-   *   <li>the index (in the class' type table) of the merged type of the two source types for
-   *       {@link #MERGED_TYPE_TAG} symbols,
-   *   <li>0 for the other types of symbol, or if this field has not been computed yet.
+   * <li>对于 {@link #CONSTANT_METHODREF_TAG}、{@link #CONSTANT_INTERFACE_METHODREF_TAG} 和 {@link #CONSTANT_INVOKE_DYNAMIC_TAG} 符号，为符号方法描述符的 {@link Type#getArgumentsAndReturnSizes}，
+   * <li>对于 {@link #CONSTANT_CLASS_TAG} 符号，为此类对应的 InnerClasses_attribute 'classes' 数组中的索引（从 1 开始），
+   * <li>对于 {@link #MERGED_TYPE_TAG} 符号，为两个源类型的合并类型（在类的类型表中）的索引，
+   * <li>对于其他类型的符号，或者此字段尚未计算时，为 0。
    * </ul>
    */
   int info;
 
   /**
-   * Constructs a new Symbol. This constructor can't be used directly because the Symbol class is
-   * abstract. Instead, use the factory methods of the {@link SymbolTable} class.
+   * 构造一个新的 Symbol。由于 Symbol 类是抽象类，不能直接使用此构造方法。请改用 {@link SymbolTable}
+   * 类的工厂方法。
    *
    * @param index the symbol index in the constant pool, in the BootstrapMethods attribute, or in
    *     the (ASM specific) type table of a class (depending on 'tag').
@@ -227,7 +206,7 @@ abstract class Symbol {
   }
 
   /**
-   * Returns the result {@link Type#getArgumentsAndReturnSizes} on {@link #value}.
+   * 返回对 {@link #value} 调用 {@link Type#getArgumentsAndReturnSizes} 的结果。
    *
    * @return the result {@link Type#getArgumentsAndReturnSizes} on {@link #value} (memoized in
    *     {@link #info} for efficiency). This should only be used for {@link

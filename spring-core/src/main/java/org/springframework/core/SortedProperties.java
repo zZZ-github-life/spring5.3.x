@@ -33,14 +33,12 @@ import java.util.TreeSet;
 import org.springframework.lang.Nullable;
 
 /**
- * Specialization of {@link Properties} that sorts properties alphanumerically
- * based on their keys.
+ * {@link Properties} 的特化版本，根据键按字母数字顺序对属性排序。
  *
- * <p>This can be useful when storing the {@link Properties} instance in a
- * properties file, since it allows such files to be generated in a repeatable
- * manner with consistent ordering of properties.
+ * <p>当把 {@link Properties} 实例存储到属性文件中时，这很有用，因为它允许以可重复的方式生成此类文
+ * 件，并保持属性顺序一致。
  *
- * <p>Comments in generated properties files can also be optionally omitted.
+ * <p>生成的属性文件中的注释也可以选择省略。
  *
  * @author Sam Brannen
  * @since 5.2
@@ -60,8 +58,7 @@ class SortedProperties extends Properties {
 
 
 	/**
-	 * Construct a new {@code SortedProperties} instance that honors the supplied
-	 * {@code omitComments} flag.
+	 * 构造一个新的 {@code SortedProperties} 实例，并遵循所提供的 {@code omitComments} 标志。
 	 * @param omitComments {@code true} if comments should be omitted when
 	 * storing properties in a file
 	 */
@@ -70,11 +67,9 @@ class SortedProperties extends Properties {
 	}
 
 	/**
-	 * Construct a new {@code SortedProperties} instance with properties populated
-	 * from the supplied {@link Properties} object and honoring the supplied
-	 * {@code omitComments} flag.
-	 * <p>Default properties from the supplied {@code Properties} object will
-	 * not be copied.
+	 * 构造一个新的 {@code SortedProperties} 实例，其属性从所提供的 {@link Properties} 对象填充，并遵循
+	 * 所提供的 {@code omitComments} 标志。
+	 * <p>来自所提供的 {@code Properties} 对象的默认属性不会被复制。
 	 * @param properties the {@code Properties} object from which to copy the
 	 * initial properties
 	 * @param omitComments {@code true} if comments should be omitted when
@@ -121,7 +116,7 @@ class SortedProperties extends Properties {
 	}
 
 	/**
-	 * Return a sorted enumeration of the keys in this {@link Properties} object.
+	 * 返回此 {@link Properties} 对象中键的排序枚举。
 	 * @see #keySet()
 	 */
 	@Override
@@ -130,10 +125,9 @@ class SortedProperties extends Properties {
 	}
 
 	/**
-	 * Return a sorted set of the keys in this {@link Properties} object.
-	 * <p>The keys will be converted to strings if necessary using
-	 * {@link String#valueOf(Object)} and sorted alphanumerically according to
-	 * the natural order of strings.
+	 * 返回此 {@link Properties} 对象中键的排序集合。
+	 * <p>如有必要，将使用 {@link String#valueOf(Object)} 把键转换为字符串，并按照字符串的自然顺序按字
+	 * 母数字排序。
 	 */
 	@Override
 	public Set<Object> keySet() {
@@ -143,10 +137,9 @@ class SortedProperties extends Properties {
 	}
 
 	/**
-	 * Return a sorted set of the entries in this {@link Properties} object.
-	 * <p>The entries will be sorted based on their keys, and the keys will be
-	 * converted to strings if necessary using {@link String#valueOf(Object)}
-	 * and compared alphanumerically according to the natural order of strings.
+	 * 返回此 {@link Properties} 对象中条目的排序集合。
+	 * <p>条目将根据其键排序，如有必要，将使用 {@link String#valueOf(Object)} 把键转换为字符串，并按照
+	 * 字符串的自然顺序按字母数字进行比较。
 	 */
 	@Override
 	public Set<Entry<Object, Object>> entrySet() {

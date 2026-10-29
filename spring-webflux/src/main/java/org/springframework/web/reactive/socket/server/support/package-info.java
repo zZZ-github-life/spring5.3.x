@@ -1,5 +1,5 @@
 /**
- * Server-side support classes for WebSocket requests.
+ * WebSocket 请求的服务端支持类。
  */
 @NonNullApi
 @NonNullFields

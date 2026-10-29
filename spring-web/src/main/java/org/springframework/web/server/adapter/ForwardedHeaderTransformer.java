@@ -32,23 +32,20 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Extract values from "Forwarded" and "X-Forwarded-*" headers to override
- * the request URI (i.e. {@link ServerHttpRequest#getURI()}) so it reflects
- * the client-originated protocol and address.
+ * 从 "Forwarded" 和 "X-Forwarded-*" 头部中提取值，以覆盖请求 URI
+ * （即 {@link ServerHttpRequest#getURI()}），使其反映客户端发起的协议和地址。
  *
- * <p>An instance of this class is typically declared as a bean with the name
- * "forwardedHeaderTransformer" and detected by
- * {@link WebHttpHandlerBuilder#applicationContext(ApplicationContext)}, or it
- * can also be registered directly via
- * {@link WebHttpHandlerBuilder#forwardedHeaderTransformer(ForwardedHeaderTransformer)}.
+ * <p>此类的实例通常被声明为名为 "forwardedHeaderTransformer" 的 Bean，
+ * 并由 {@link WebHttpHandlerBuilder#applicationContext(ApplicationContext)} 检测到，
+ * 也可以通过 {@link WebHttpHandlerBuilder#forwardedHeaderTransformer(ForwardedHeaderTransformer)}
+ * 直接注册。
  *
- * <p>There are security considerations for forwarded headers since an application
- * cannot know if the headers were added by a proxy, as intended, or by a malicious
- * client. This is why a proxy at the boundary of trust should be configured to
- * remove untrusted Forwarded headers that come from the outside.
+ * <p>转发头部存在安全性方面的考量，因为应用无法知道这些头部是按预期由代理添加的，
+ * 还是由恶意客户端添加的。因此，位于信任边界的代理应配置为移除来自外部的
+ * 不可信 Forwarded 头部。
  *
- * <p>You can also configure the ForwardedHeaderFilter with {@link #setRemoveOnly removeOnly},
- * in which case it removes but does not use the headers.
+ * <p>你也可以通过 {@link #setRemoveOnly removeOnly} 配置 ForwardedHeaderFilter，
+ * 在这种情况下它只会移除头部，而不会使用这些头部。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -74,8 +71,8 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 
 
 	/**
-	 * Enable mode in which any "Forwarded" or "X-Forwarded-*" headers are
-	 * removed only and the information in them ignored.
+	 * 启用一种模式：仅移除任何 "Forwarded" 或 "X-Forwarded-*" 头部，
+	 * 并忽略其中的信息。
 	 * @param removeOnly whether to discard and ignore forwarded headers
 	 */
 	public void setRemoveOnly(boolean removeOnly) {
@@ -83,7 +80,7 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 	}
 
 	/**
-	 * Whether the "remove only" mode is on.
+	 * "仅移除"模式是否已启用。
 	 * @see #setRemoveOnly
 	 */
 	public boolean isRemoveOnly() {
@@ -92,7 +89,7 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 
 
 	/**
-	 * Apply and remove, or remove Forwarded type headers.
+	 * 应用并移除 Forwarded 类型的头部，或仅移除它们。
 	 * @param request the request
 	 */
 	@Override
@@ -120,7 +117,7 @@ public class ForwardedHeaderTransformer implements Function<ServerHttpRequest, S
 	}
 
 	/**
-	 * Whether the request has any Forwarded headers.
+	 * 请求是否包含任何 Forwarded 头部。
 	 * @param request the request
 	 */
 	protected boolean hasForwardedHeaders(ServerHttpRequest request) {

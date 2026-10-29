@@ -27,11 +27,10 @@ import org.springframework.web.context.ServletContextAware;
 
 /**
  * {@link org.springframework.beans.factory.config.BeanPostProcessor}
- * implementation that passes the ServletContext to beans that implement
- * the {@link ServletContextAware} interface.
+ * 实现，将 ServletContext 传递给实现了
+ * {@link ServletContextAware} 接口的 bean。
  *
- * <p>Web application contexts will automatically register this with their
- * underlying bean factory. Applications do not use this directly.
+ * <p>Web 应用上下文会自动将其注册到底层的 bean 工厂。应用程序不会直接使用它。
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
@@ -49,29 +48,28 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 
 
 	/**
-	 * Create a new ServletContextAwareProcessor without an initial context or config.
-	 * When this constructor is used the {@link #getServletContext()} and/or
-	 * {@link #getServletConfig()} methods should be overridden.
+	 * 创建一个不带初始上下文或配置的 ServletContextAwareProcessor。使用此构造函数时，应覆盖
+	 * {@link #getServletContext()} 和/或 {@link #getServletConfig()} 方法。
 	 */
 	protected ServletContextAwareProcessor() {
 	}
 
 	/**
-	 * Create a new ServletContextAwareProcessor for the given context.
+	 * 为给定的上下文创建一个新的 ServletContextAwareProcessor。
 	 */
 	public ServletContextAwareProcessor(ServletContext servletContext) {
 		this(servletContext, null);
 	}
 
 	/**
-	 * Create a new ServletContextAwareProcessor for the given config.
+	 * 为给定的配置创建一个新的 ServletContextAwareProcessor。
 	 */
 	public ServletContextAwareProcessor(ServletConfig servletConfig) {
 		this(null, servletConfig);
 	}
 
 	/**
-	 * Create a new ServletContextAwareProcessor for the given context and config.
+	 * 为给定的上下文和配置创建一个新的 ServletContextAwareProcessor。
 	 */
 	public ServletContextAwareProcessor(@Nullable ServletContext servletContext, @Nullable ServletConfig servletConfig) {
 		this.servletContext = servletContext;
@@ -80,9 +78,8 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 
 
 	/**
-	 * Returns the {@link ServletContext} to be injected or {@code null}. This method
-	 * can be overridden by subclasses when a context is obtained after the post-processor
-	 * has been registered.
+	 * 返回要注入的 {@link ServletContext} 或 {@code null}。当上下文是在后处理器注册之后才获得时，子
+	 * 类可以覆盖此方法。
 	 */
 	@Nullable
 	protected ServletContext getServletContext() {
@@ -93,9 +90,8 @@ public class ServletContextAwareProcessor implements BeanPostProcessor {
 	}
 
 	/**
-	 * Returns the {@link ServletConfig} to be injected or {@code null}. This method
-	 * can be overridden by subclasses when a context is obtained after the post-processor
-	 * has been registered.
+	 * 返回要注入的 {@link ServletConfig} 或 {@code null}。当上下文是在后处理器注册之后才获得时，子类
+	 * 可以覆盖此方法。
 	 */
 	@Nullable
 	protected ServletConfig getServletConfig() {

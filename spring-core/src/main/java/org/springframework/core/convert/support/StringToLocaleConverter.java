@@ -23,10 +23,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Converts from a String to a {@link java.util.Locale}.
+ * 将 String 转换为 {@link java.util.Locale}。
  *
- * <p>Accepts the classic {@link Locale} String format ({@link Locale#toString()})
- * as well as BCP 47 language tags ({@link Locale#forLanguageTag}.
+ * <p>既接受经典的 {@link Locale} String 格式（{@link Locale#toString()}），也接受 BCP 47 语言标记
+ * （{@link Locale#forLanguageTag}。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

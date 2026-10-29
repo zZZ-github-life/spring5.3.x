@@ -26,12 +26,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Abstract base class for Spring's {@link javax.sql.DataSource}
- * implementations, taking care of the padding.
+ * Spring 的 {@link javax.sql.DataSource} 实现类的抽象基类，
+ * 负责处理填充（padding）功能。
  *
- * <p>'Padding' in the context of this class means default implementations
- * for certain methods from the {@code DataSource} interface, such as
- * {@link #getLoginTimeout()}, {@link #setLoginTimeout(int)}, and so forth.
+ * <p>在本类的上下文中，“填充”指的是为 {@code DataSource} 接口中的某些方法
+ * 提供默认实现，例如 {@link #getLoginTimeout()}、{@link #setLoginTimeout(int)} 等。
  *
  * @author Juergen Hoeller
  * @since 07.05.2003
@@ -39,12 +38,12 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class AbstractDataSource implements DataSource {
 
-	/** Logger available to subclasses. */
+	/** 供子类使用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
 	/**
-	 * Returns 0, indicating the default system timeout is to be used.
+	 * 返回 0，表示将使用系统默认超时时间。
 	 */
 	@Override
 	public int getLoginTimeout() throws SQLException {
@@ -52,7 +51,7 @@ public abstract class AbstractDataSource implements DataSource {
 	}
 
 	/**
-	 * Setting a login timeout is not supported.
+	 * 不支持设置登录超时时间。
 	 */
 	@Override
 	public void setLoginTimeout(int timeout) throws SQLException {
@@ -60,7 +59,7 @@ public abstract class AbstractDataSource implements DataSource {
 	}
 
 	/**
-	 * LogWriter methods are not supported.
+	 * 不支持 LogWriter 相关方法。
 	 */
 	@Override
 	public PrintWriter getLogWriter() {
@@ -68,7 +67,7 @@ public abstract class AbstractDataSource implements DataSource {
 	}
 
 	/**
-	 * LogWriter methods are not supported.
+	 * 不支持 LogWriter 相关方法。
 	 */
 	@Override
 	public void setLogWriter(PrintWriter pw) throws SQLException {

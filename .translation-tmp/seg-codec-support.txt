@@ -1,0 +1,94 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/BaseCodecConfigurer.java
+@@BODY 36 37
+Default implementation of {@link CodecConfigurer} that serves as a base for
+client and server specific variants.
+@@BODY 51 52
+Constructor with the base {@link BaseDefaultCodecs} to use, which can be
+a client or server specific variant.
+@@BODY 61 61
+Create a deep copy of the given {@link BaseCodecConfigurer}.
+@@BODY 70 71
+Subclasses should override this to create a deep copy of
+{@link BaseDefaultCodecs} which can be client or server specific.
+@@BODY 123 123
+Default implementation of {@code CustomCodecs}.
+@@BODY 141 141
+Create a deep copy of the given {@link DefaultCustomCodecs}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/BaseDefaultCodecs.java
+@@BODY 72 73
+Default implementation of {@link CodecConfigurer.DefaultCodecs} that serves
+as a base for client and server specific variants.
+@@BODY 81 83
+Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
+ignore XML, i.e. to not initialize the XML-related infrastructure.
+<p>The default is "false".
+@@BODY 173 173
+Reset and initialize typed readers and object readers.
+@@BODY 182 182
+Reset and initialize typed writers and object writers.
+@@BODY 191 191
+Create a deep copy of the given {@link BaseDefaultCodecs}.
+@@BODY 314 314
+Delegate method used from {@link BaseCodecConfigurer#registerDefaults}.
+@@BODY 326 326
+Return readers that support specific types.
+@@BODY 333 333
+Reset and initialize typed readers.
+@@BODY 360 360
+Initialize a codec and add it to the List.
+@@BODY 369 371
+Apply {@link #maxInMemorySize()} and {@link #enableLoggingRequestDetails},
+if configured by the application, to the given codec , including any
+codec it contains.
+@@BODY 471 471
+Hook for client or server specific typed readers.
+@@BODY 477 477
+Return Object readers (JSON, XML, SSE).
+@@BODY 484 484
+Reset and initialize object readers.
+@@BODY 512 512
+Hook for client or server specific Object readers.
+@@BODY 518 518
+Return readers that need to be at the end, after all others.
+@@BODY 530 530
+Return all writers that support specific types.
+@@BODY 538 538
+Reset and initialize typed writers.
+@@BODY 551 551
+Return "base" typed writers only, i.e. common to client and server.
+@@BODY 574 574
+Hook for client or server specific typed writers.
+@@BODY 580 580
+Return Object writers (JSON, XML, SSE).
+@@BODY 587 587
+Reset and initialize object writers.
+@@BODY 600 600
+Return "base" object writers only, i.e. common to client and server.
+@@BODY 622 622
+Hook for client or server specific Object writers.
+@@BODY 628 628
+Return writers that need to be at the end, after all others.
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/ClientDefaultCodecsImpl.java
+@@BODY 36 36
+Default implementation of {@link ClientCodecConfigurer.ClientDefaultCodecs}.
+@@BODY 64 67
+Set a supplier for part writers to use when
+{@link #multipartCodecs()} are not explicitly configured.
+That's the same set of writers as for general except for the multipart
+writer itself.
+@@BODY 119 119
+Default implementation of {@link ClientCodecConfigurer.MultipartCodecs}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/DefaultClientCodecConfigurer.java
+@@BODY 26 26
+Default implementation of {@link ClientCodecConfigurer}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/DefaultServerCodecConfigurer.java
+@@BODY 22 22
+Default implementation of {@link ServerCodecConfigurer}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/ServerDefaultCodecsImpl.java
+@@BODY 32 32
+Default implementation of {@link ServerCodecConfigurer.ServerDefaultCodecs}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/support/package-info.java
+@@BODY 2 4
+Provides implementations of {@link org.springframework.http.codec.ClientCodecConfigurer}
+and {@link org.springframework.http.codec.ServerCodecConfigurer} based on the converter
+implementations from {@code org.springframework.http.codec.json} and co.

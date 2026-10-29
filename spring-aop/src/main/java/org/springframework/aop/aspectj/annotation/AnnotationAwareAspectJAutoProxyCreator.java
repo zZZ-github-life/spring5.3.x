@@ -28,18 +28,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link AspectJAwareAdvisorAutoProxyCreator} subclass that processes all AspectJ
- * annotation aspects in the current application context, as well as Spring Advisors.
+ * {@link AspectJAwareAdvisorAutoProxyCreator} 的子类，用于处理当前应用上下文中的所有 AspectJ 注解
+ * 切面以及 Spring Advisor。
  *
- * <p>Any AspectJ annotated classes will automatically be recognized, and their
- * advice applied if Spring AOP's proxy-based model is capable of applying it.
- * This covers method execution joinpoints.
+ * <p>任何带 AspectJ 注解的类都会被自动识别，并且如果 Spring AOP 基于代理的模型能够应用其通知，就会
+ * 应用这些通知。这涵盖方法执行连接点。
  *
- * <p>If the &lt;aop:include&gt; element is used, only @AspectJ beans with names matched by
- * an include pattern will be considered as defining aspects to use for Spring auto-proxying.
+ * <p>如果使用了 &lt;aop:include&gt; 元素，则只有名称与某个 include 模式匹配的 @AspectJ Bean 才会被
+ * 视为定义了供 Spring 自动代理使用的切面。
  *
- * <p>Processing of Spring Advisors follows the rules established in
- * {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}.
+ * <p>Spring Advisor 的处理遵循
+ * {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator} 中确立的规则。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -60,8 +59,8 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 
 
 	/**
-	 * Set a list of regex patterns, matching eligible @AspectJ bean names.
-	 * <p>Default is to consider all @AspectJ beans as eligible.
+	 * 设置一组正则表达式模式，用于匹配符合条件的 @AspectJ Bean 名称。<p>默认情况下，所有 @AspectJ Bean
+	 * 都被视为符合条件。
 	 */
 	public void setIncludePatterns(List<String> patterns) {
 		this.includePatterns = new ArrayList<>(patterns.size());
@@ -112,10 +111,9 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 	}
 
 	/**
-	 * Check whether the given aspect bean is eligible for auto-proxying.
-	 * <p>If no &lt;aop:include&gt; elements were used then "includePatterns" will be
-	 * {@code null} and all beans are included. If "includePatterns" is non-null,
-	 * then one of the patterns must match.
+	 * 检查给定的切面 Bean 是否符合自动代理的条件。<p>如果未使用 &lt;aop:include&gt; 元素，则
+	 * "includePatterns" 为 {@code null}，所有 Bean 都会被包含。如果 "includePatterns" 非空，则必须匹配
+	 * 其中某个模式。
 	 */
 	protected boolean isEligibleAspectBean(String beanName) {
 		if (this.includePatterns == null) {
@@ -133,8 +131,8 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 
 
 	/**
-	 * Subclass of BeanFactoryAspectJAdvisorsBuilderAdapter that delegates to
-	 * surrounding AnnotationAwareAspectJAutoProxyCreator facilities.
+	 * BeanFactoryAspectJAdvisorsBuilderAdapter 的子类，委托给外层的
+	 * AnnotationAwareAspectJAutoProxyCreator 设施。
 	 */
 	private class BeanFactoryAspectJAdvisorsBuilderAdapter extends BeanFactoryAspectJAdvisorsBuilder {
 

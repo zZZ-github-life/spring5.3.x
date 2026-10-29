@@ -35,13 +35,11 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link org.springframework.scripting.ScriptFactory} implementation based
- * on the JSR-223 script engine abstraction (as included in Java).
- * Supports JavaScript, Groovy, JRuby, and other JSR-223 compliant engines.
+ * {@link org.springframework.scripting.ScriptFactory} 实现，基于（Java 中内置的）JSR-223 脚本引擎
+ * 抽象。支持 JavaScript、Groovy、JRuby 以及其他符合 JSR-223 的引擎。
  *
- * <p>Typically used in combination with a
- * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
- * see the latter's javadoc for a configuration example.
+ * <p>通常与 {@link org.springframework.scripting.support.ScriptFactoryPostProcessor} 结合使用；有
+ * 关配置示例，请参阅后者的 Javadoc。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -65,7 +63,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 
 	/**
-	 * Create a new StandardScriptFactory for the given script source.
+	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 */
@@ -74,7 +72,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 	}
 
 	/**
-	 * Create a new StandardScriptFactory for the given script source.
+	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 * @param scriptInterfaces the Java interfaces that the scripted object
@@ -85,7 +83,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 	}
 
 	/**
-	 * Create a new StandardScriptFactory for the given script source.
+	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
 	 * @param scriptEngineName the name of the JSR-223 ScriptEngine to use
 	 * (explicitly given instead of inferred from the script source)
 	 * @param scriptSourceLocator a locator that points to the source of the script.
@@ -96,7 +94,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 	}
 
 	/**
-	 * Create a new StandardScriptFactory for the given script source.
+	 * 为给定的脚本源创建一个新的 StandardScriptFactory。
 	 * @param scriptEngineName the name of the JSR-223 ScriptEngine to use
 	 * (explicitly given instead of inferred from the script source)
 	 * @param scriptSourceLocator a locator that points to the source of the script.
@@ -137,7 +135,7 @@ public class StandardScriptFactory implements ScriptFactory, BeanClassLoaderAwar
 
 
 	/**
-	 * Load and parse the script via JSR-223's ScriptEngine.
+	 * 通过 JSR-223 的 ScriptEngine 加载并解析脚本。
 	 */
 	@Override
 	@Nullable

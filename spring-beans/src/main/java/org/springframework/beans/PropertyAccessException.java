@@ -21,8 +21,7 @@ import java.beans.PropertyChangeEvent;
 import org.springframework.lang.Nullable;
 
 /**
- * Superclass for exceptions related to a property access,
- * such as type mismatch or invocation target exception.
+ * 与属性访问相关的异常的超类，例如类型不匹配或调用目标异常。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -35,7 +34,7 @@ public abstract class PropertyAccessException extends BeansException {
 
 
 	/**
-	 * Create a new PropertyAccessException.
+	 * 创建一个新的 PropertyAccessException。
 	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in the problem
 	 * @param msg the detail message
 	 * @param cause the root cause
@@ -46,7 +45,7 @@ public abstract class PropertyAccessException extends BeansException {
 	}
 
 	/**
-	 * Create a new PropertyAccessException without PropertyChangeEvent.
+	 * 创建一个不带 PropertyChangeEvent 的新 PropertyAccessException。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */
@@ -57,9 +56,8 @@ public abstract class PropertyAccessException extends BeansException {
 
 
 	/**
-	 * Return the PropertyChangeEvent that resulted in the problem.
-	 * <p>May be {@code null}; only available if an actual bean property
-	 * was affected.
+	 * 返回导致问题的 PropertyChangeEvent。
+	 * <p>可能为 {@code null}；仅当实际影响了某个 Bean 属性时才可用。
 	 */
 	@Nullable
 	public PropertyChangeEvent getPropertyChangeEvent() {
@@ -67,7 +65,7 @@ public abstract class PropertyAccessException extends BeansException {
 	}
 
 	/**
-	 * Return the name of the affected property, if available.
+	 * 返回受影响属性的名称（如果有）。
 	 */
 	@Nullable
 	public String getPropertyName() {
@@ -75,7 +73,7 @@ public abstract class PropertyAccessException extends BeansException {
 	}
 
 	/**
-	 * Return the affected value that was about to be set, if any.
+	 * 返回即将设置的受影响值（如果有）。
 	 */
 	@Nullable
 	public Object getValue() {
@@ -83,7 +81,7 @@ public abstract class PropertyAccessException extends BeansException {
 	}
 
 	/**
-	 * Return a corresponding error code for this type of exception.
+	 * 返回此类异常对应的错误码。
 	 */
 	public abstract String getErrorCode();
 

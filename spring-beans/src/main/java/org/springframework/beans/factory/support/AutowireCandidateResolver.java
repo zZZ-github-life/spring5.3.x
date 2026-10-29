@@ -22,8 +22,7 @@ import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface for determining whether a specific bean definition
- * qualifies as an autowire candidate for a specific dependency.
+ * 用于确定特定 Bean 定义是否符合特定依赖的自动装配候选条件的策略接口。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -32,10 +31,8 @@ import org.springframework.lang.Nullable;
 public interface AutowireCandidateResolver {
 
 	/**
-	 * Determine whether the given bean definition qualifies as an
-	 * autowire candidate for the given dependency.
-	 * <p>The default implementation checks
-	 * {@link org.springframework.beans.factory.config.BeanDefinition#isAutowireCandidate()}.
+	 * 确定给定 Bean 定义是否符合给定依赖的自动装配候选条件。<p>默认实现检查
+	 * {@link org.springframework.beans.factory.config.BeanDefinition#isAutowireCandidate()}。
 	 * @param bdHolder the bean definition including bean name and aliases
 	 * @param descriptor the descriptor for the target method parameter or field
 	 * @return whether the bean definition qualifies as autowire candidate
@@ -46,8 +43,7 @@ public interface AutowireCandidateResolver {
 	}
 
 	/**
-	 * Determine whether the given descriptor is effectively required.
-	 * <p>The default implementation checks {@link DependencyDescriptor#isRequired()}.
+	 * 确定给定描述符是否实际上是必需的。<p>默认实现检查 {@link DependencyDescriptor#isRequired()}。
 	 * @param descriptor the descriptor for the target method parameter or field
 	 * @return whether the descriptor is marked as required or possibly indicating
 	 * non-required status some other way (e.g. through a parameter annotation)
@@ -59,9 +55,8 @@ public interface AutowireCandidateResolver {
 	}
 
 	/**
-	 * Determine whether the given descriptor declares a qualifier beyond the type
-	 * (typically - but not necessarily - a specific kind of annotation).
-	 * <p>The default implementation returns {@code false}.
+	 * 确定给定描述符是否声明了类型之外的限定符（通常——但不一定——是特定类型的注解）。<p>默认实现返回
+	 * {@code false}。
 	 * @param descriptor the descriptor for the target method parameter or field
 	 * @return whether the descriptor declares a qualifier, narrowing the candidate
 	 * status beyond the type match
@@ -73,8 +68,7 @@ public interface AutowireCandidateResolver {
 	}
 
 	/**
-	 * Determine whether a default value is suggested for the given dependency.
-	 * <p>The default implementation simply returns {@code null}.
+	 * 确定是否为给定依赖建议了默认值。<p>默认实现直接返回 {@code null}。
 	 * @param descriptor the descriptor for the target method parameter or field
 	 * @return the value suggested (typically an expression String),
 	 * or {@code null} if none found
@@ -86,9 +80,7 @@ public interface AutowireCandidateResolver {
 	}
 
 	/**
-	 * Build a proxy for lazy resolution of the actual dependency target,
-	 * if demanded by the injection point.
-	 * <p>The default implementation simply returns {@code null}.
+	 * 如果注入点要求，构建用于延迟解析实际依赖目标的代理。<p>默认实现直接返回 {@code null}。
 	 * @param descriptor the descriptor for the target method parameter or field
 	 * @param beanName the name of the bean that contains the injection point
 	 * @return the lazy resolution proxy for the actual dependency target,
@@ -101,15 +93,11 @@ public interface AutowireCandidateResolver {
 	}
 
 	/**
-	 * Return a clone of this resolver instance if necessary, retaining its local
-	 * configuration and allowing for the cloned instance to get associated with
-	 * a new bean factory, or this original instance if there is no such state.
-	 * <p>The default implementation creates a separate instance via the default
-	 * class constructor, assuming no specific configuration state to copy.
-	 * Subclasses may override this with custom configuration state handling
-	 * or with standard {@link Cloneable} support (as implemented by Spring's
-	 * own configurable {@code AutowireCandidateResolver} variants), or simply
-	 * return {@code this} (as in {@link SimpleAutowireCandidateResolver}).
+	 * 如有必要，返回此解析器实例的克隆，保留其本地配置并允许克隆实例关联到新的 Bean 工厂；如果没有此类
+	 * 状态，则返回此原始实例。<p>默认实现通过默认类构造函数创建一个单独的实例，假定没有需要复制的特定
+	 * 配置状态。子类可以覆盖此方法，使用自定义配置状态处理或标准的 {@link Cloneable} 支持（如 Spring
+	 * 自身的可配置 {@code AutowireCandidateResolver} 变体所实现的那样），或者直接返回 {@code this}（如
+	 * {@link SimpleAutowireCandidateResolver} 中那样）。
 	 * @since 5.2.7
 	 * @see GenericTypeAwareAutowireCandidateResolver#cloneIfNecessary()
 	 * @see DefaultListableBeanFactory#copyConfigurationFrom

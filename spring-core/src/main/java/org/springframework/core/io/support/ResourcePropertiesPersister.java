@@ -25,11 +25,11 @@ import org.springframework.core.SpringProperties;
 import org.springframework.util.DefaultPropertiesPersister;
 
 /**
- * Spring-aware subclass of the plain {@link DefaultPropertiesPersister},
- * adding a conditional check for disabled XML support through the shared
- * "spring.xml.ignore" property.
+ * 普通 {@link DefaultPropertiesPersister} 的 Spring 感知子类，
+ * 通过共享的 "spring.xml.ignore" 属性
+ * 增加了对禁用 XML 支持的条件检查。
  *
- * <p>This is the standard implementation used in Spring's resource support.
+ * <p>这是 Spring 资源支持中使用的标准实现。
  *
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -38,16 +38,16 @@ import org.springframework.util.DefaultPropertiesPersister;
 public class ResourcePropertiesPersister extends DefaultPropertiesPersister {
 
 	/**
-	 * A convenient constant for a default {@code ResourcePropertiesPersister} instance,
-	 * as used in Spring's common resource support.
+	 * 默认 {@code ResourcePropertiesPersister} 实例的便捷常量，
+	 * 与 Spring 通用资源支持中使用的实例相同。
 	 * @since 5.3
 	 */
 	public static final ResourcePropertiesPersister INSTANCE = new ResourcePropertiesPersister();
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，该属性指示 Spring
+	 * 忽略 XML，即不初始化与 XML 相关的基础设施。
+	 * <p>默认值为 "false"。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 

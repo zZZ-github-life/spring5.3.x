@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods for working with AspectJ proxies.
+ * 用于处理 AspectJ 代理的工具方法。
  *
  * @author Rod Johnson
  * @author Ramnivas Laddad
@@ -35,11 +35,10 @@ import org.springframework.util.StringUtils;
 public abstract class AspectJProxyUtils {
 
 	/**
-	 * Add special advisors if necessary to work with a proxy chain that contains AspectJ advisors:
-	 * concretely, {@link ExposeInvocationInterceptor} at the beginning of the list.
-	 * <p>This will expose the current Spring AOP invocation (necessary for some AspectJ pointcut
-	 * matching) and make available the current AspectJ JoinPoint. The call will have no effect
-	 * if there are no AspectJ advisors in the advisor chain.
+	 * 如有必要，添加特殊的 Advisor 以便与包含 AspectJ Advisor 的代理链配合工作：具体而言，在列表开头添
+	 * 加 {@link ExposeInvocationInterceptor}。
+	 * <p>这将暴露当前的 Spring AOP 调用（某些 AspectJ 切点匹配需要），并提供当前的 AspectJ JoinPoint。
+	 * 如果 Advisor 链中没有 AspectJ Advisor，则此调用不会产生任何效果。
 	 * @param advisors the advisors available
 	 * @return {@code true} if an {@link ExposeInvocationInterceptor} was added to the list,
 	 * otherwise {@code false}
@@ -65,7 +64,7 @@ public abstract class AspectJProxyUtils {
 	}
 
 	/**
-	 * Determine whether the given Advisor contains an AspectJ advice.
+	 * 确定给定的 Advisor 是否包含 AspectJ 通知。
 	 * @param advisor the Advisor to check
 	 */
 	private static boolean isAspectJAdvice(Advisor advisor) {

@@ -1,6 +1,6 @@
 /**
- * Support classes for document generation,
- * providing View implementations for PDF and Excel.
+ * 文档生成的支持类，
+ * 提供适用于 PDF 和 Excel 的 View 实现。
  */
 @NonNullApi
 @NonNullFields

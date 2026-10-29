@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.scheduling.TriggerContext;
 
 /**
- * Simple data holder implementation of the {@link TriggerContext} interface.
+ * 实现 {@link TriggerContext} 接口的简单数据持有者。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -43,16 +43,14 @@ public class SimpleTriggerContext implements TriggerContext {
 
 
 	/**
-	 * Create a SimpleTriggerContext with all time values set to {@code null},
-	 * exposing the system clock for the default time zone.
+	 * 创建一个将全部时间值设为 {@code null} 的 SimpleTriggerContext，并暴露默认时区的系统时钟。
 	 */
 	public SimpleTriggerContext() {
 		this.clock = Clock.systemDefaultZone();
 	}
 
 	/**
-	 * Create a SimpleTriggerContext with the given time values,
-	 * exposing the system clock for the default time zone.
+	 * 使用给定的时间值创建一个 SimpleTriggerContext，并暴露默认时区的系统时钟。
 	 * @param lastScheduledExecutionTime last <i>scheduled</i> execution time
 	 * @param lastActualExecutionTime last <i>actual</i> execution time
 	 * @param lastCompletionTime last completion time
@@ -65,8 +63,7 @@ public class SimpleTriggerContext implements TriggerContext {
 	}
 
 	/**
-	 * Create a SimpleTriggerContext with all time values set to {@code null},
-	 * exposing the given clock.
+	 * 创建一个将全部时间值设为 {@code null} 的 SimpleTriggerContext，并暴露给定的时钟。
 	 * @param clock the clock to use for trigger calculation
 	 * @since 5.3
 	 * @see #update(Date, Date, Date)
@@ -77,7 +74,7 @@ public class SimpleTriggerContext implements TriggerContext {
 
 
 	/**
-	 * Update this holder's state with the latest time values.
+	 * 用最新的时间值更新此持有者的状态。
  	 * @param lastScheduledExecutionTime last <i>scheduled</i> execution time
 	 * @param lastActualExecutionTime last <i>actual</i> execution time
 	 * @param lastCompletionTime last completion time

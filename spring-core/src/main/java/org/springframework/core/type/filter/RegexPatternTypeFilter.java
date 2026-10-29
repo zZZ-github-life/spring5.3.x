@@ -22,7 +22,7 @@ import org.springframework.core.type.ClassMetadata;
 import org.springframework.util.Assert;
 
 /**
- * A simple filter for matching a fully-qualified class name with a regex {@link Pattern}.
+ * 一个简单的过滤器，用于使用正则 {@link Pattern} 匹配全限定类名。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller

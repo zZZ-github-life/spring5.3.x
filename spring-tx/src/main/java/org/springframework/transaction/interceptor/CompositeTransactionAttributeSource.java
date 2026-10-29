@@ -23,8 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Composite {@link TransactionAttributeSource} implementation that iterates
- * over a given array of {@link TransactionAttributeSource} instances.
+ * 组合式{@link TransactionAttributeSource}实现, 遍历给定的{@link TransactionAttributeSource}实例数组。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -36,7 +35,7 @@ public class CompositeTransactionAttributeSource implements TransactionAttribute
 
 
 	/**
-	 * Create a new CompositeTransactionAttributeSource for the given sources.
+	 * 为给定的源创建一个新的CompositeTransactionAttributeSource。
 	 * @param transactionAttributeSources the TransactionAttributeSource instances to combine
 	 */
 	public CompositeTransactionAttributeSource(TransactionAttributeSource... transactionAttributeSources) {
@@ -45,8 +44,7 @@ public class CompositeTransactionAttributeSource implements TransactionAttribute
 	}
 
 	/**
-	 * Return the TransactionAttributeSource instances that this
-	 * CompositeTransactionAttributeSource combines.
+	 * 返回此CompositeTransactionAttributeSource组合的TransactionAttributeSource实例。
 	 */
 	public final TransactionAttributeSource[] getTransactionAttributeSources() {
 		return this.transactionAttributeSources;

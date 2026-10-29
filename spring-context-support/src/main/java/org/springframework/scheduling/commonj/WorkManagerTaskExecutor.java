@@ -43,24 +43,24 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
- * TaskExecutor implementation that delegates to a CommonJ WorkManager,
- * implementing the {@link commonj.work.WorkManager} interface,
- * which either needs to be specified as reference or through the JNDI name.
+ * TaskExecutor 实现，委托给 CommonJ WorkManager，
+ * 实现 {@link commonj.work.WorkManager} 接口，
+ * 需要指定为引用或通过 JNDI 名称指定。
  *
- * <p><b>This is the central convenience class for setting up a
- * CommonJ WorkManager in a Spring context.</b>
+ * <p><b>这是在 Spring 上下文中设置
+ * CommonJ WorkManager 的核心便利类。</b>
  *
- * <p>Also implements the CommonJ WorkManager interface itself, delegating all
- * calls to the target WorkManager. Hence, a caller can choose whether it wants
- * to talk to this executor through the Spring TaskExecutor interface or the
- * CommonJ WorkManager interface.
+ * <p>同时实现 CommonJ WorkManager 接口本身，将所有
+ * 调用委托给目标 WorkManager。因此，调用者可以选择是通过
+ * Spring TaskExecutor 接口还是 CommonJ WorkManager 接口
+ * 与此执行器交互。
  *
- * <p>The CommonJ WorkManager will usually be retrieved from the application
- * server's JNDI environment, as defined in the server's management console.
+ * <p>CommonJ WorkManager 通常从应用服务器的
+ * JNDI 环境中获取，如服务器的管理控制台中所定义。
  *
- * <p>Note: On EE 7/8 compliant versions of WebLogic and WebSphere, a
- * {@link org.springframework.scheduling.concurrent.DefaultManagedTaskExecutor}
- * should be preferred, following JSR-236 support in Java EE 7/8.
+ * <p>注意：在符合 EE 7/8 的 WebLogic 和 WebSphere 版本上，
+ * 应优先使用 {@link org.springframework.scheduling.concurrent.DefaultManagedTaskExecutor}，
+ * 遵循 Java EE 7/8 中的 JSR-236 支持。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -85,8 +85,8 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 
 
 	/**
-	 * Specify the CommonJ WorkManager to delegate to.
-	 * <p>Alternatively, you can also specify the JNDI name of the target WorkManager.
+	 * 指定要委托的 CommonJ WorkManager。
+	 * <p>另外，您也可以指定目标 WorkManager 的 JNDI 名称。
 	 * @see #setWorkManagerName
 	 */
 	public void setWorkManager(WorkManager workManager) {
@@ -94,9 +94,9 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Set the JNDI name of the CommonJ WorkManager.
-	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
-	 * to the current environment naming context if "resourceRef" is set to "true".
+	 * 设置 CommonJ WorkManager 的 JNDI 名称。
+	 * <p>这可以是完全限定的 JNDI 名称，也可以是相对于
+	 * 当前环境命名上下文的 JNDI 名称（如果 "resourceRef" 设置为 "true"）。
 	 * @see #setWorkManager
 	 * @see #setResourceRef
 	 */
@@ -105,27 +105,27 @@ public class WorkManagerTaskExecutor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Specify a CommonJ WorkListener to apply, if any.
-	 * <p>This shared WorkListener instance will be passed on to the
-	 * WorkManager by all {@link #execute} calls on this TaskExecutor.
+	 * 指定要应用的 CommonJ WorkListener（如果有）。
+	 * <p>此共享的 WorkListener 实例将被传递给
+	 * 此 TaskExecutor 的所有 {@link #execute} 调用中的 WorkManager。
 	 */
 	public void setWorkListener(WorkListener workListener) {
 		this.workListener = workListener;
 	}
 
 	/**
-	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable}
-	 * about to be executed.
-	 * <p>Note that such a decorator is not necessarily being applied to the
-	 * user-supplied {@code Runnable}/{@code Callable} but rather to the actual
-	 * execution callback (which may be a wrapper around the user-supplied task).
-	 * <p>The primary use case is to set some execution context around the task's
-	 * invocation, or to provide some monitoring/statistics for task execution.
-	 * <p><b>NOTE:</b> Exception handling in {@code TaskDecorator} implementations
-	 * is limited to plain {@code Runnable} execution via {@code execute} calls.
-	 * In case of {@code #submit} calls, the exposed {@code Runnable} will be a
-	 * {@code FutureTask} which does not propagate any exceptions; you might
-	 * have to cast it and call {@code Future#get} to evaluate exceptions.
+	 * 指定要应用于即将执行的 {@link Runnable} 的
+	 * 自定义 {@link TaskDecorator}。
+	 * <p>请注意，此类装饰器不一定应用于用户提供的
+	 * {@code Runnable}/{@code Callable}，而是应用于实际的
+	 * 执行回调（可能是用户提供的任务的包装器）。
+	 * <p>主要用例是在任务的调用周围设置一些执行上下文，
+	 * 或者为任务执行提供监控/统计信息。
+	 * <p><b>注意：</b>{@code TaskDecorator} 实现中的异常处理
+	 * 仅限于通过 {@code execute} 调用执行的普通 {@code Runnable}。
+	 * 在 {@code #submit} 调用的情况下，暴露的 {@code Runnable} 将是一个
+	 * {@code FutureTask}，它不会传播任何异常；您可能
+	 * 需要对其进行强制转换并调用 {@code Future#get} 来评估异常。
 	 * @since 4.3
 	 */
 	public void setTaskDecorator(TaskDecorator taskDecorator) {

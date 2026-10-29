@@ -24,7 +24,7 @@ import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.util.ExceptionTypeFilter;
 
 /**
- * The {@link JCacheOperation} implementation for a {@link CacheRemove} operation.
+ * {@link CacheRemove} 操作的 {@link JCacheOperation} 实现。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -50,8 +50,8 @@ class CacheRemoveOperation extends AbstractJCacheKeyOperation<CacheRemove> {
 	}
 
 	/**
-	 * Specify if the cache entry should be removed before invoking the method.
-	 * <p>By default, the cache entry is removed after the method invocation.
+	 * 指定是否应在调用方法之前移除缓存条目。
+	 * <p>默认情况下，缓存条目会在方法调用之后移除。
 	 * @see javax.cache.annotation.CacheRemove#afterInvocation()
 	 */
 	public boolean isEarlyRemove() {

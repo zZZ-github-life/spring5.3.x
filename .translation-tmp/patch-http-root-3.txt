@@ -1,0 +1,17 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpInputMessage.java
+@@BODY 23 27
+表示 HTTP 输入消息，由 {@linkplain #getHeaders() headers} 和可读的 {@linkplain #getBody() body} 组成。
+<p>通常由服务器端的 HTTP 请求处理器或客户端的 HTTP 响应处理器实现。
+@@BODY 35 35
+以输入流的形式返回消息正文。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpLogging.java
+@@BODY 25 36
+持有名为 "org.springframework.web.HttpLogging" 的共享日志记录器，用于在未启用 "org.springframework.http" 但启用了 "org.springframework.web" 时进行 HTTP 相关日志记录。
+<p>这意味着 "org.springframework.web" 会启用所有 Web 日志记录，包括来自 "org.springframework.http" 等较低层包以及来自 {@literal "spring-core"} 等模块的编解码器日志，只要这些编解码器被 {@link org.springframework.http.codec.EncoderHttpMessageWriter EncoderHttpMessageWriter} 或 {@link org.springframework.http.codec.DecoderHttpMessageReader DecoderHttpMessageReader} 包装。
+<p>若要查看主类日志记录器的日志，只需为 "org.springframework.http" 和 "org.springframework.codec" 启用日志记录。
+@@BODY 49 51
+为给定类创建主日志记录器，并用组合日志记录器包装它；如果主日志记录器未启用，则委托给该日志记录器或后备日志记录器 "org.springframework.web.HttpLogging"。
+@@BODY 61 63
+用组合日志记录器包装给定的主日志记录器；如果主日志记录器未启用，则委托给该日志记录器或后备日志记录器 "org.springframework.web.HttpLogging"。
+@@END

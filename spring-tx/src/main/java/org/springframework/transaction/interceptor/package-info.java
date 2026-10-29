@@ -1,15 +1,12 @@
 /**
- * AOP-based solution for declarative transaction demarcation.
- * Builds on the AOP infrastructure in org.springframework.aop.framework.
- * Any POJO can be transactionally advised with Spring.
+ * 基于AOP的声明式事务界定解决方案。
+ * 构建在org.springframework.aop.framework的AOP基础设施之上。
+ * 任何POJO都可以通过Spring进行事务通知。
  *
- * <p>The TransactionFactoryProxyBean can be used to create transactional
- * AOP proxies transparently to code that uses them.
+ * <p>TransactionFactoryProxyBean可用于透明地为使用它的代码创建事务性AOP代理。
  *
- * <p>The TransactionInterceptor is the AOP Alliance MethodInterceptor that
- * delivers transactional advice, based on the Spring transaction abstraction.
- * This allows declarative transaction management in any environment,
- * even without JTA if an application uses only a single database.
+ * <p>TransactionInterceptor是基于Spring事务抽象提供事务通知的AOP Alliance MethodInterceptor。
+ * 这允许在任何环境中进行声明式事务管理, 即使在没有JTA的情况下(如果应用只使用单个数据库)。
  */
 @NonNullApi
 @NonNullFields

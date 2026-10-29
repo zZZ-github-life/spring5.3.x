@@ -21,12 +21,11 @@ import java.sql.SQLWarning;
 import org.springframework.dao.UncategorizedDataAccessException;
 
 /**
- * Exception thrown when we're not ignoring {@link java.sql.SQLWarning SQLWarnings}.
+ * 当未忽略{@link java.sql.SQLWarning SQLWarnings}时抛出的异常。
  *
- * <p>If an SQLWarning is reported, the operation completed, so we will need
- * to explicitly roll it back if we're not happy when looking at the warning.
- * We might choose to ignore (and log) the warning, or to wrap and throw it
- * in the shape of this SQLWarningException instead.
+ * <p>如果报告了SQLWarning，则操作已完成，因此如果查看警告后不满意，
+ * 我们需要显式地回滚。我们可以选择忽略（并记录）该警告，
+ * 或者将其包装为此SQLWarningException的形式抛出。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,7 +35,7 @@ import org.springframework.dao.UncategorizedDataAccessException;
 public class SQLWarningException extends UncategorizedDataAccessException {
 
 	/**
-	 * Constructor for SQLWarningException.
+	 * 创建SQLWarningException实例。
 	 * @param msg the detail message
 	 * @param ex the JDBC warning
 	 */
@@ -45,7 +44,7 @@ public class SQLWarningException extends UncategorizedDataAccessException {
 	}
 
 	/**
-	 * Return the underlying SQLWarning.
+	 * 返回底层的SQLWarning。
 	 */
 	public SQLWarning SQLWarning() {
 		return (SQLWarning) getCause();

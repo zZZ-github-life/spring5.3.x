@@ -20,12 +20,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface implemented by Spring integrations with data access technologies
- * that throw runtime exceptions, such as JPA and Hibernate.
+ * 由 Spring 与抛出运行时异常的数据访问技术（如 JPA 和 Hibernate）集成时实现的接口。
  *
- * <p>This allows consistent usage of combined exception translation functionality,
- * without forcing a single translator to understand every single possible type
- * of exception.
+ * <p>这允许一致地使用组合的异常翻译功能，
+ * 而无需强制单个翻译器理解每一种可能的异常类型。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -35,16 +33,14 @@ import org.springframework.lang.Nullable;
 public interface PersistenceExceptionTranslator {
 
 	/**
-	 * Translate the given runtime exception thrown by a persistence framework to a
-	 * corresponding exception from Spring's generic
-	 * {@link org.springframework.dao.DataAccessException} hierarchy, if possible.
-	 * <p>Do not translate exceptions that are not understood by this translator:
-	 * for example, if coming from another persistence framework, or resulting
-	 * from user code or otherwise unrelated to persistence.
-	 * <p>Of particular importance is the correct translation to
-	 * DataIntegrityViolationException, for example on constraint violation.
-	 * Implementations may use Spring JDBC's sophisticated exception translation
-	 * to provide further information in the event of SQLException as a root cause.
+	 * 如果可能，将持久化框架抛出的给定运行时异常翻译为
+	 * Spring 通用的 {@link org.springframework.dao.DataAccessException}
+	 * 层次结构中对应的异常。
+	 * <p>不要翻译此翻译器不理解的异常：例如，如果异常来自另一个持久化框架，
+	 * 或者源于用户代码或与持久化无关。
+	 * <p>其中特别重要的是正确翻译为 DataIntegrityViolationException，
+	 * 例如在约束违反时。实现可以使用 Spring JDBC 的高级异常翻译功能，
+	 * 在 SQLException 作为根原因时提供更多信息。
 	 * @param ex a RuntimeException to translate
 	 * @return the corresponding DataAccessException (or {@code null} if the
 	 * exception could not be translated, as in this case it may result from

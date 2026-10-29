@@ -22,8 +22,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Representation of WebSocket "close" status codes and reasons. Status codes
- * in the 1xxx range are pre-defined by the protocol.
+ * WebSocket "close" 状态码及原因的描述。1xxx 范围内的状态码由协议预定义。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -33,27 +32,23 @@ import org.springframework.util.StringUtils;
 public final class CloseStatus {
 
 	/**
-	 * "1000 indicates a normal closure, meaning that the purpose for which the connection
-	 * was established has been fulfilled."
+	 * "1000 表示正常关闭，即建立连接的目的已经达成。"
 	 */
 	public static final CloseStatus NORMAL = new CloseStatus(1000);
 
 	/**
-	 * "1001 indicates that an endpoint is "going away", such as a server going down or a
-	 * browser having navigated away from a page."
+	 * "1001 表示端点“正在离开”，例如服务器关闭或浏览器已导航离开某个页面。"
 	 */
 	public static final CloseStatus GOING_AWAY = new CloseStatus(1001);
 
 	/**
-	 * "1002 indicates that an endpoint is terminating the connection due to a protocol
-	 * error."
+	 * "1002 表示端点因协议错误而终止连接。"
 	 */
 	public static final CloseStatus PROTOCOL_ERROR  = new CloseStatus(1002);
 
 	/**
-	 * "1003 indicates that an endpoint is terminating the connection because it has
-	 * received a type of data it cannot accept (e.g., an endpoint that understands only
-	 * text data MAY send this if it receives a binary message)."
+	 * "1003 表示端点因接收到其无法接受的数据类型而终止连接（例如，仅理解文本数据的端点
+	 * 在收到二进制消息时可能发送此状态码）。"
 	 */
 	public static final CloseStatus NOT_ACCEPTABLE = new CloseStatus(1003);
 
@@ -61,75 +56,65 @@ public final class CloseStatus {
 	// The specific meaning might be defined in the future.
 
 	/**
-	 * "1005 is a reserved value and MUST NOT be set as a status code in a Close control
-	 * frame by an endpoint. It is designated for use in applications expecting a status
-	 * code to indicate that no status code was actually present."
+	 * "1005 是保留值，端点绝不能将其作为状态码设置在 Close 控制帧中。它指定用于
+	 * 那些期望通过状态码表示实际上不存在状态码的应用程序。"
 	 */
 	public static final CloseStatus NO_STATUS_CODE = new CloseStatus(1005);
 
 	/**
-	 * "1006 is a reserved value and MUST NOT be set as a status code in a Close control
-	 * frame by an endpoint. It is designated for use in applications expecting a status
-	 * code to indicate that the connection was closed abnormally, e.g., without sending
-	 * or receiving a Close control frame."
+	 * "1006 是保留值，端点绝不能将其作为状态码设置在 Close 控制帧中。它指定用于
+	 * 那些期望通过状态码表示连接异常关闭（例如未发送或接收 Close 控制帧）的
+	 * 应用程序。"
 	 */
 	public static final CloseStatus NO_CLOSE_FRAME = new CloseStatus(1006);
 
 	/**
-	 * "1007 indicates that an endpoint is terminating the connection because it has
-	 * received data within a message that was not consistent with the type of the message
-	 * (e.g., non-UTF-8 [RFC3629] data within a text message)."
+	 * "1007 表示端点因收到的消息中的数据与消息类型不一致而终止连接（例如，文本消息中
+	 * 出现非 UTF-8 [RFC3629] 数据）。"
 	 */
 	public static final CloseStatus BAD_DATA = new CloseStatus(1007);
 
 	/**
-	 * "1008 indicates that an endpoint is terminating the connection because it has
-	 * received a message that violates its policy. This is a generic status code that can
-	 * be returned when there is no other more suitable status code (e.g., 1003 or 1009)
-	 * or if there is a need to hide specific details about the policy."
+	 * "1008 表示端点因收到的消息违反其策略而终止连接。这是一个通用状态码，在没有其他
+	 * 更合适的状态码（例如 1003 或 1009）时，或者需要隐藏策略的具体细节时，可以返回
+	 * 此状态码。"
 	 */
 	public static final CloseStatus POLICY_VIOLATION = new CloseStatus(1008);
 
 	/**
-	 * "1009 indicates that an endpoint is terminating the connection because it has
-	 * received a message that is too big for it to process."
+	 * "1009 表示端点因收到的消息过大而无法处理，从而终止连接。"
 	 */
 	public static final CloseStatus TOO_BIG_TO_PROCESS = new CloseStatus(1009);
 
 	/**
-	 * "1010 indicates that an endpoint (client) is terminating the connection because it
-	 * has expected the server to negotiate one or more extension, but the server didn't
-	 * return them in the response message of the WebSocket handshake. The list of
-	 * extensions that are needed SHOULD appear in the /reason/ part of the Close frame.
-	 * Note that this status code is not used by the server, because it can fail the
-	 * WebSocket handshake instead."
+	 * "1010 表示端点（客户端）因期望服务器协商一个或多个扩展，但服务器未在 WebSocket
+	 * 握手的响应消息中返回这些扩展而终止连接。所需扩展的列表应出现在 Close 帧的
+	 * /reason/ 部分。请注意，此状态码不由服务器使用，因为服务器可以改为让 WebSocket
+	 * 握手失败。"
 	 */
 	public static final CloseStatus REQUIRED_EXTENSION = new CloseStatus(1010);
 
 	/**
-	 * "1011 indicates that a server is terminating the connection because it encountered
-	 * an unexpected condition that prevented it from fulfilling the request."
+	 * "1011 表示服务器因遇到阻止其完成请求的意外情况而终止连接。"
 	 */
 	public static final CloseStatus SERVER_ERROR = new CloseStatus(1011);
 
 	/**
-	 * "1012 indicates that the service is restarted. A client may reconnect, and if it
-	 * chooses to do, should reconnect using a randomized delay of 5 - 30s."
+	 * "1012 表示服务正在重启。客户端可以重新连接，如果选择重新连接，应使用
+	 * 5 - 30 秒之间的随机延迟。"
 	 */
 	public static final CloseStatus SERVICE_RESTARTED = new CloseStatus(1012);
 
 	/**
-	 * "1013 indicates that the service is experiencing overload. A client should only
-	 * connect to a different IP (when there are multiple for the target) or reconnect to
-	 * the same IP upon user action."
+	 * "1013 表示服务正在经历超载。客户端只应在用户操作时连接到不同的 IP（当目标有多个
+	 * IP 时）或重新连接到同一 IP。"
 	 */
 	public static final CloseStatus SERVICE_OVERLOAD = new CloseStatus(1013);
 
 	/**
-	 * "1015 is a reserved value and MUST NOT be set as a status code in a Close control
-	 * frame by an endpoint. It is designated for use in applications expecting a status
-	 * code to indicate that the connection was closed due to a failure to perform a TLS
-	 * handshake (e.g., the server certificate can't be verified)."
+	 * "1015 是保留值，端点绝不能将其作为状态码设置在 Close 控制帧中。它指定用于
+	 * 那些期望通过状态码表示连接因未能执行 TLS 握手（例如无法验证服务器证书）
+	 * 而关闭的应用程序。"
 	 */
 	public static final CloseStatus TLS_HANDSHAKE_FAILURE = new CloseStatus(1015);
 
@@ -141,7 +126,7 @@ public final class CloseStatus {
 
 
 	/**
-	 * Create a new {@link CloseStatus} instance.
+	 * 创建一个新的 {@link CloseStatus} 实例。
 	 * @param code the status code
 	 */
 	public CloseStatus(int code) {
@@ -149,7 +134,7 @@ public final class CloseStatus {
 	}
 
 	/**
-	 * Create a new {@link CloseStatus} instance.
+	 * 创建一个新的 {@link CloseStatus} 实例。
 	 * @param code the status code
 	 * @param reason the reason
 	 */
@@ -161,14 +146,14 @@ public final class CloseStatus {
 
 
 	/**
-	 * Return the status code.
+	 * 返回状态码。
 	 */
 	public int getCode() {
 		return this.code;
 	}
 
 	/**
-	 * Return the reason, or {@code null} if none.
+	 * 返回原因，如果没有则为 {@code null}。
 	 */
 	@Nullable
 	public String getReason() {
@@ -176,7 +161,7 @@ public final class CloseStatus {
 	}
 
 	/**
-	 * Create a new {@link CloseStatus} from this one with the specified reason.
+	 * 从此实例创建一个具有指定原因的新 {@link CloseStatus}。
 	 * @param reason the reason
 	 * @return a new {@link CloseStatus} instance
 	 */
@@ -195,8 +180,7 @@ public final class CloseStatus {
 
 
 	/**
-	 * Return a constant for the given code, or create a new instance if the
-	 * code does not match or there is a reason.
+	 * 返回给定状态码对应的常量；如果状态码不匹配或存在原因，则创建一个新实例。
 	 * @since 5.3
 	 */
 	public static CloseStatus create(int code, @Nullable String reason) {

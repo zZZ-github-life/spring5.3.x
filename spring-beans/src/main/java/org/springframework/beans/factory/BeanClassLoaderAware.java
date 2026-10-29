@@ -17,16 +17,12 @@
 package org.springframework.beans.factory;
 
 /**
- * Callback that allows a bean to be aware of the bean
- * {@link ClassLoader class loader}; that is, the class loader used by the
- * present bean factory to load bean classes.
+ * 允许 Bean 感知 Bean {@link ClassLoader class loader} 的回调；即当前 Bean 工厂用于加载 Bean 类的
+ * 类加载器。
  *
- * <p>This is mainly intended to be implemented by framework classes which
- * have to pick up application classes by name despite themselves potentially
- * being loaded from a shared class loader.
+ * <p>这主要适用于那些必须按名称获取应用类、而自身可能从共享类加载器加载的框架类来实现。
  *
- * <p>For a list of all bean lifecycle methods, see the
- * {@link BeanFactory BeanFactory javadocs}.
+ * <p>有关所有 Bean 生命周期方法的列表，请参阅 {@link BeanFactory BeanFactory javadocs}。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -38,13 +34,10 @@ package org.springframework.beans.factory;
 public interface BeanClassLoaderAware extends Aware {
 
 	/**
-	 * Callback that supplies the bean {@link ClassLoader class loader} to
-	 * a bean instance.
-	 * <p>Invoked <i>after</i> the population of normal bean properties but
-	 * <i>before</i> an initialization callback such as
-	 * {@link InitializingBean InitializingBean's}
-	 * {@link InitializingBean#afterPropertiesSet()}
-	 * method or a custom init-method.
+	 * 向 Bean 实例提供 Bean {@link ClassLoader class loader} 的回调。
+	 * <p>在填充普通 Bean 属性<i>之后</i>、但在初始化回调（如
+	 * {@link InitializingBean InitializingBean's} 的 {@link InitializingBean#afterPropertiesSet()} 方
+	 * 法或自定义 init-method）<i>之前</i>调用。
 	 * @param classLoader the owning class loader
 	 */
 	void setBeanClassLoader(ClassLoader classLoader);

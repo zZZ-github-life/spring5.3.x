@@ -25,14 +25,14 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation which indicates that a method parameter should be bound to a web request header.
+ * 指示方法参数应绑定到 Web 请求头的注解。
  *
- * <p>Supported for annotated handler methods in Spring MVC and Spring WebFlux.
+ * <p>支持用于 Spring MVC 和 Spring WebFlux 中的注解处理方法。
  *
- * <p>If the method parameter is {@link java.util.Map Map&lt;String, String&gt;},
- * {@link org.springframework.util.MultiValueMap MultiValueMap&lt;String, String&gt;},
- * or {@link org.springframework.http.HttpHeaders HttpHeaders} then the map is
- * populated with all header names and values.
+ * <p>如果方法参数为 {@link java.util.Map Map&lt;String, String&gt;}、
+ * {@link org.springframework.util.MultiValueMap MultiValueMap&lt;String, String&gt;}
+ * 或 {@link org.springframework.http.HttpHeaders HttpHeaders}，
+ * 则该 Map 将填充所有请求头名称和值。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -47,33 +47,30 @@ import org.springframework.core.annotation.AliasFor;
 public @interface RequestHeader {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the request header to bind to.
+	 * 要绑定到的请求头名称。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Whether the header is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown
-	 * if the header is missing in the request. Switch this to
-	 * {@code false} if you prefer a {@code null} value if the header is
-	 * not present in the request.
-	 * <p>Alternatively, provide a {@link #defaultValue}, which implicitly
-	 * sets this flag to {@code false}.
+	 * 请求头是否为必需。
+	 * <p>默认为 {@code true}，如果请求中缺少该请求头将抛出异常。
+	 * 如果希望在请求中不存在该请求头时得到 {@code null} 值，
+	 * 请将其改为 {@code false}。
+	 * <p>另外，提供 {@link #defaultValue} 会隐式地将此标志设置为 {@code false}。
 	 */
 	boolean required() default true;
 
 	/**
-	 * The default value to use as a fallback.
-	 * <p>Supplying a default value implicitly sets {@link #required} to
-	 * {@code false}.
+	 * 用作回退的默认值。
+	 * <p>提供默认值会隐式地将 {@link #required} 设置为 {@code false}。
 	 */
 	String defaultValue() default ValueConstants.DEFAULT_NONE;
 

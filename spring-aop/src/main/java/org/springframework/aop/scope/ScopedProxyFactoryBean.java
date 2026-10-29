@@ -33,18 +33,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Convenient proxy factory bean for scoped objects.
+ * 用于作用域对象的便捷代理工厂 Bean。
  *
- * <p>Proxies created using this factory bean are thread-safe singletons
- * and may be injected into shared objects, with transparent scoping behavior.
+ * <p>使用此工厂 Bean 创建的代理是线程安全的单例，可以注入到共享对象中，并具有透明的作用域行为。
  *
- * <p>Proxies returned by this class implement the {@link ScopedObject} interface.
- * This presently allows for removing the corresponding object from the scope,
- * seamlessly creating a new instance in the scope on next access.
+ * <p>此类返回的代理实现了 {@link ScopedObject} 接口。目前这允许从作用域中移除相应的对象，并在下次
+ * 访问时无缝地在作用域中创建新实例。
  *
- * <p>Please note that the proxies created by this factory are
- * <i>class-based</i> proxies by default. This can be customized
- * through switching the "proxyTargetClass" property to "false".
+ * <p>请注意，此工厂创建的代理默认是<i>基于类的</i>代理。可以通过将 “proxyTargetClass” 属性切换为
+ * “false” 来自定义。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -55,20 +52,20 @@ import org.springframework.util.ClassUtils;
 public class ScopedProxyFactoryBean extends ProxyConfig
 		implements FactoryBean<Object>, BeanFactoryAware, AopInfrastructureBean {
 
-	/** The TargetSource that manages scoping. */
+	/** 管理作用域的 TargetSource。 */
 	private final SimpleBeanTargetSource scopedTargetSource = new SimpleBeanTargetSource();
 
-	/** The name of the target bean. */
+	/** 目标 bean 的名称。 */
 	@Nullable
 	private String targetBeanName;
 
-	/** The cached singleton proxy. */
+	/** 缓存的单例代理。 */
 	@Nullable
 	private Object proxy;
 
 
 	/**
-	 * Create a new ScopedProxyFactoryBean instance.
+	 * 创建一个新的 ScopedProxyFactoryBean 实例。
 	 */
 	public ScopedProxyFactoryBean() {
 		setProxyTargetClass(true);
@@ -76,7 +73,7 @@ public class ScopedProxyFactoryBean extends ProxyConfig
 
 
 	/**
-	 * Set the name of the bean that is to be scoped.
+	 * 设置要应用作用域的 Bean 的名称。
 	 */
 	public void setTargetBeanName(String targetBeanName) {
 		this.targetBeanName = targetBeanName;

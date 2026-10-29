@@ -34,12 +34,11 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 /**
- * Defines callback methods to customize the Java-based configuration for
- * Spring MVC enabled via {@code @EnableWebMvc}.
+ * 定义用于自定义通过 {@code @EnableWebMvc} 启用的 Spring MVC
+ * 基于 Java 的配置的回调方法。
  *
- * <p>{@code @EnableWebMvc}-annotated configuration classes may implement
- * this interface to be called back and given a chance to customize the
- * default configuration.
+ * <p>带有 {@code @EnableWebMvc} 注解的配置类可以实现此接口以获得回调，
+ * 并有机会自定义默认配置。
  *
  * @author Rossen Stoyanchev
  * @author Keith Donald
@@ -49,9 +48,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 public interface WebMvcConfigurer {
 
 	/**
-	 * Help with configuring {@link HandlerMapping} path matching options such as
-	 * whether to use parsed {@code PathPatterns} or String pattern matching
-	 * with {@code PathMatcher}, whether to match trailing slashes, and more.
+	 * 辅助配置 {@link HandlerMapping} 的路径匹配选项，例如是使用解析后的
+	 * {@code PathPatterns} 还是使用 {@code PathMatcher} 进行字符串模式匹配、
+	 * 是否匹配尾部斜杠等。
 	 * @since 4.0.3
 	 * @see PathMatchConfigurer
 	 */
@@ -59,60 +58,53 @@ public interface WebMvcConfigurer {
 	}
 
 	/**
-	 * Configure content negotiation options.
+	 * 配置内容协商选项。
 	 */
 	default void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 	}
 
 	/**
-	 * Configure asynchronous request handling options.
+	 * 配置异步请求处理选项。
 	 */
 	default void configureAsyncSupport(AsyncSupportConfigurer configurer) {
 	}
 
 	/**
-	 * Configure a handler to delegate unhandled requests by forwarding to the
-	 * Servlet container's "default" servlet. A common use case for this is when
-	 * the {@link DispatcherServlet} is mapped to "/" thus overriding the
-	 * Servlet container's default handling of static resources.
+	 * 配置一个处理器，通过转发到 Servlet 容器的"default" servlet 来处理未处理的请求。
+	 * 一个常见用例是当 {@link DispatcherServlet} 映射到 "/"，
+	 * 从而覆盖了 Servlet 容器对静态资源的默认处理时。
 	 */
 	default void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 	}
 
 	/**
-	 * Add {@link Converter Converters} and {@link Formatter Formatters} in addition to the ones
-	 * registered by default.
+	 * 除默认注册的转换器外，再添加 {@link Converter Converters} 和 {@link Formatter Formatters}。
 	 */
 	default void addFormatters(FormatterRegistry registry) {
 	}
 
 	/**
-	 * Add Spring MVC lifecycle interceptors for pre- and post-processing of
-	 * controller method invocations and resource handler requests.
-	 * Interceptors can be registered to apply to all requests or be limited
-	 * to a subset of URL patterns.
+	 * 添加 Spring MVC 生命周期拦截器，用于对控制器方法调用和资源处理器请求进行前后处理。
+	 * 拦截器可以注册为应用于所有请求，或限制在部分 URL 模式内。
 	 */
 	default void addInterceptors(InterceptorRegistry registry) {
 	}
 
 	/**
-	 * Add handlers to serve static resources such as images, js, and, css
-	 * files from specific locations under web application root, the classpath,
-	 * and others.
+	 * 添加处理器，以便从 Web 应用根目录、类路径及其他位置的特定位置
+	 * 提供静态资源（如图片、js 和 css 文件）。
 	 * @see ResourceHandlerRegistry
 	 */
 	default void addResourceHandlers(ResourceHandlerRegistry registry) {
 	}
 
 	/**
-	 * Configure "global" cross-origin request processing. The configured CORS
-	 * mappings apply to annotated controllers, functional endpoints, and static
-	 * resources.
-	 * <p>Annotated controllers can further declare more fine-grained config via
-	 * {@link org.springframework.web.bind.annotation.CrossOrigin @CrossOrigin}.
-	 * In such cases "global" CORS configuration declared here is
-	 * {@link org.springframework.web.cors.CorsConfiguration#combine(CorsConfiguration) combined}
-	 * with local CORS configuration defined on a controller method.
+	 * 配置"全局"跨域请求处理。配置的 CORS 映射适用于注解控制器、函数式端点和静态资源。
+	 * <p>注解控制器可以通过
+	 * {@link org.springframework.web.bind.annotation.CrossOrigin @CrossOrigin}
+	 * 进一步声明更细粒度的配置。在这种情况下，此处声明的"全局"CORS 配置会与
+	 * 控制器方法上定义的本地 CORS 配置
+	 * {@link org.springframework.web.cors.CorsConfiguration#combine(CorsConfiguration) 合并}。
 	 * @since 4.2
 	 * @see CorsRegistry
 	 * @see CorsConfiguration#combine(CorsConfiguration)
@@ -121,67 +113,56 @@ public interface WebMvcConfigurer {
 	}
 
 	/**
-	 * Configure simple automated controllers pre-configured with the response
-	 * status code and/or a view to render the response body. This is useful in
-	 * cases where there is no need for custom controller logic -- e.g. render a
-	 * home page, perform simple site URL redirects, return a 404 status with
-	 * HTML content, a 204 with no content, and more.
+	 * 配置预先配置了响应状态码和/或用于渲染响应体的视图的简单自动化控制器。
+	 * 在不需要自定义控制器逻辑的场景中很有用——例如渲染主页、执行简单的站点 URL 重定向、
+	 * 返回带 HTML 内容的 404 状态、返回无内容的 204 等。
 	 * @see ViewControllerRegistry
 	 */
 	default void addViewControllers(ViewControllerRegistry registry) {
 	}
 
 	/**
-	 * Configure view resolvers to translate String-based view names returned from
-	 * controllers into concrete {@link org.springframework.web.servlet.View}
-	 * implementations to perform rendering with.
+	 * 配置视图解析器，将控制器返回的基于字符串的视图名称转换为具体的
+	 * {@link org.springframework.web.servlet.View} 实现以执行渲染。
 	 * @since 4.1
 	 */
 	default void configureViewResolvers(ViewResolverRegistry registry) {
 	}
 
 	/**
-	 * Add resolvers to support custom controller method argument types.
-	 * <p>This does not override the built-in support for resolving handler
-	 * method arguments. To customize the built-in support for argument
-	 * resolution, configure {@link RequestMappingHandlerAdapter} directly.
+	 * 添加解析器以支持自定义控制器方法参数类型。
+	 * <p>这不会覆盖解析处理器方法参数的内置支持。要自定义内置的参数解析支持，
+	 * 请直接配置 {@link RequestMappingHandlerAdapter}。
 	 * @param resolvers initially an empty list
 	 */
 	default void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 	}
 
 	/**
-	 * Add handlers to support custom controller method return value types.
-	 * <p>Using this option does not override the built-in support for handling
-	 * return values. To customize the built-in support for handling return
-	 * values, configure RequestMappingHandlerAdapter directly.
+	 * 添加处理器以支持自定义控制器方法返回值类型。
+	 * <p>使用此选项不会覆盖处理返回值的的内置支持。要自定义内置的返回值处理支持，
+	 * 请直接配置 RequestMappingHandlerAdapter。
 	 * @param handlers initially an empty list
 	 */
 	default void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
 	}
 
 	/**
-	 * Configure the {@link HttpMessageConverter HttpMessageConverter}s for
-	 * reading from the request body and for writing to the response body.
-	 * <p>By default, all built-in converters are configured as long as the
-	 * corresponding 3rd party libraries such Jackson JSON, JAXB2, and others
-	 * are present on the classpath.
-	 * <p><strong>Note</strong> use of this method turns off default converter
-	 * registration. Alternatively, use
-	 * {@link #extendMessageConverters(java.util.List)} to modify that default
-	 * list of converters.
+	 * 配置用于从请求体读取和向响应体写入的 {@link HttpMessageConverter HttpMessageConverter}。
+	 * <p>默认情况下，只要类路径上存在相应的第三方库（如 Jackson JSON、JAXB2 等），
+	 * 就会配置所有内置转换器。
+	 * <p><strong>注意</strong> 使用此方法会关闭默认转换器注册。或者，
+	 * 使用 {@link #extendMessageConverters(java.util.List)} 修改默认的转换器列表。
 	 * @param converters initially an empty list of converters
 	 */
 	default void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 	}
 
 	/**
-	 * Extend or modify the list of converters after it has been, either
-	 * {@link #configureMessageConverters(List) configured} or initialized with
-	 * a default list.
-	 * <p>Note that the order of converter registration is important. Especially
-	 * in cases where clients accept {@link org.springframework.http.MediaType#ALL}
-	 * the converters configured earlier will be preferred.
+	 * 在转换器列表被 {@link #configureMessageConverters(List) 配置}或使用默认列表
+	 * 初始化之后，扩展或修改该列表。
+	 * <p>注意转换器注册的顺序很重要。特别是在客户端接受
+	 * {@link org.springframework.http.MediaType#ALL} 的情况下，较早配置的转换器将被优先使用。
 	 * @param converters the list of configured converters to be extended
 	 * @since 4.1.3
 	 */
@@ -189,16 +170,15 @@ public interface WebMvcConfigurer {
 	}
 
 	/**
-	 * Configure exception resolvers.
-	 * <p>The given list starts out empty. If it is left empty, the framework
-	 * configures a default set of resolvers, see
-	 * {@link WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List, org.springframework.web.accept.ContentNegotiationManager)}.
-	 * Or if any exception resolvers are added to the list, then the application
-	 * effectively takes over and must provide, fully initialized, exception
-	 * resolvers.
-	 * <p>Alternatively you can use
-	 * {@link #extendHandlerExceptionResolvers(List)} which allows you to extend
-	 * or modify the list of exception resolvers configured by default.
+	 * 配置异常解析器。
+	 * <p>给定列表初始为空。如果保持为空，框架将配置一组默认解析器，
+	 * 请参见
+	 * {@link WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List, org.springframework.web.accept.ContentNegotiationManager)}。
+	 * 或者，如果向列表中添加了任何异常解析器，则应用实际上接管了控制权，
+	 * 必须提供完全初始化的异常解析器。
+	 * <p>或者，您可以使用
+	 * {@link #extendHandlerExceptionResolvers(List)}，它允许扩展或修改
+	 * 默认配置的异常解析器列表。
 	 * @param resolvers initially an empty list
 	 * @see #extendHandlerExceptionResolvers(List)
 	 * @see WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List, org.springframework.web.accept.ContentNegotiationManager)
@@ -207,9 +187,8 @@ public interface WebMvcConfigurer {
 	}
 
 	/**
-	 * Extending or modify the list of exception resolvers configured by default.
-	 * This can be useful for inserting a custom exception resolver without
-	 * interfering with default ones.
+	 * 扩展或修改默认配置的异常解析器列表。
+	 * 这对于在不干扰默认解析器的情况下插入自定义异常解析器很有用。
 	 * @param resolvers the list of configured resolvers to extend
 	 * @since 4.3
 	 * @see WebMvcConfigurationSupport#addDefaultHandlerExceptionResolvers(List, org.springframework.web.accept.ContentNegotiationManager)
@@ -218,10 +197,10 @@ public interface WebMvcConfigurer {
 	}
 
 	/**
-	 * Provide a custom {@link Validator} instead of the one created by default.
-	 * The default implementation, assuming JSR-303 is on the classpath, is:
-	 * {@link org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean}.
-	 * Leave the return value as {@code null} to keep the default.
+	 * 提供自定义的 {@link Validator} 以替代默认创建的校验器。
+	 * 默认实现（假设类路径上有 JSR-303）为：
+	 * {@link org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean}。
+	 * 将返回值保留为 {@code null} 以保持默认。
 	 */
 	@Nullable
 	default Validator getValidator() {
@@ -229,9 +208,8 @@ public interface WebMvcConfigurer {
 	}
 
 	/**
-	 * Provide a custom {@link MessageCodesResolver} for building message codes
-	 * from data binding and validation error codes. Leave the return value as
-	 * {@code null} to keep the default.
+	 * 提供自定义的 {@link MessageCodesResolver}，用于根据数据绑定和校验错误码
+	 * 构建消息码。将返回值保留为 {@code null} 以保持默认。
 	 */
 	@Nullable
 	default MessageCodesResolver getMessageCodesResolver() {

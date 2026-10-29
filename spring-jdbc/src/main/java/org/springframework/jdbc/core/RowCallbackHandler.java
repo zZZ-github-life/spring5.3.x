@@ -20,20 +20,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * An interface used by {@link JdbcTemplate} for processing rows of a
- * {@link java.sql.ResultSet} on a per-row basis. Implementations of
- * this interface perform the actual work of processing each row
- * but don't need to worry about exception handling.
- * {@link java.sql.SQLException SQLExceptions} will be caught and handled
- * by the calling JdbcTemplate.
+ * {@link JdbcTemplate}使用的接口，用于逐行处理{@link java.sql.ResultSet}。
+ * 此接口的实现负责处理每行的实际工作，
+ * 但不需要担心异常处理。{@link java.sql.SQLException SQLException}
+ * 将被调用的JdbcTemplate捕获并处理。
  *
- * <p>In contrast to a {@link ResultSetExtractor}, a RowCallbackHandler
- * object is typically stateful: It keeps the result state within the
- * object, to be available for later inspection. See
- * {@link RowCountCallbackHandler} for a usage example.
+ * <p>与{@link ResultSetExtractor}不同，RowCallbackHandler对象通常是有状态的：
+ * 它在对象内部保持结果状态，以便后续查看。使用示例请参见{@link RowCountCallbackHandler}。
  *
- * <p>Consider using a {@link RowMapper} instead if you need to map
- * exactly one result object per row, assembling them into a List.
+ * <p>如果需要为每行精确映射一个结果对象并组装成List，请考虑使用{@link RowMapper}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -46,12 +41,10 @@ import java.sql.SQLException;
 public interface RowCallbackHandler {
 
 	/**
-	 * Implementations must implement this method to process each row of data
-	 * in the ResultSet. This method should not call {@code next()} on
-	 * the ResultSet; it is only supposed to extract values of the current row.
-	 * <p>Exactly what the implementation chooses to do is up to it:
-	 * A trivial implementation might simply count rows, while another
-	 * implementation might build an XML document.
+	 * 实现必须实现此方法来处理ResultSet中的每一行数据。
+	 * 此方法不应调用ResultSet上的{@code next()}；它只应该提取当前行的值。
+	 * <p>实现选择做什么完全由它决定：
+	 * 一个简单的实现可能只是计算行数，而另一个实现可能构建一个XML文档。
 	 * @param rs the ResultSet to process (pre-initialized for the current row)
 	 * @throws SQLException if an SQLException is encountered getting
 	 * column values (that is, there's no need to catch SQLException)

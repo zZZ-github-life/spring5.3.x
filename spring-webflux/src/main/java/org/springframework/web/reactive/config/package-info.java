@@ -1,5 +1,5 @@
 /**
- * Spring WebFlux configuration infrastructure.
+ * Spring WebFlux 配置基础设施。
  */
 @NonNullApi
 @NonNullFields

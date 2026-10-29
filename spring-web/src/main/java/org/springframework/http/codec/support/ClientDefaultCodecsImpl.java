@@ -33,7 +33,7 @@ import org.springframework.http.codec.multipart.MultipartHttpMessageWriter;
 import org.springframework.lang.Nullable;
 
 /**
- * Default implementation of {@link ClientCodecConfigurer.ClientDefaultCodecs}.
+ * {@link ClientCodecConfigurer.ClientDefaultCodecs} 的默认实现。
  *
  * @author Rossen Stoyanchev
  */
@@ -61,10 +61,8 @@ class ClientDefaultCodecsImpl extends BaseDefaultCodecs implements ClientCodecCo
 
 
 	/**
-	 * Set a supplier for part writers to use when
-	 * {@link #multipartCodecs()} are not explicitly configured.
-	 * That's the same set of writers as for general except for the multipart
-	 * writer itself.
+	 * 设置当未显式配置 {@link #multipartCodecs()} 时供部件写入器使用的提供者。
+	 * 除 multipart 写入器本身外，这组写入器与通用写入器相同。
 	 */
 	void setPartWritersSupplier(Supplier<List<HttpMessageWriter<?>>> supplier) {
 		this.partWritersSupplier = supplier;
@@ -116,7 +114,7 @@ class ClientDefaultCodecsImpl extends BaseDefaultCodecs implements ClientCodecCo
 
 
 	/**
-	 * Default implementation of {@link ClientCodecConfigurer.MultipartCodecs}.
+	 * {@link ClientCodecConfigurer.MultipartCodecs} 的默认实现。
 	 */
 	private class DefaultMultipartCodecs implements ClientCodecConfigurer.MultipartCodecs {
 

@@ -30,9 +30,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Abstract {@link javax.sql.DataSource} implementation that routes {@link #getConnection()}
- * calls to one of various target DataSources based on a lookup key. The latter is usually
- * (but not necessarily) determined through some thread-bound transaction context.
+ * 抽象的 {@link javax.sql.DataSource} 实现，它根据查找键将 {@link #getConnection()}
+ * 调用路由到各个目标 DataSource 之一。查找键通常（但并非必然）
+ * 是通过某个绑定到线程的事务上下文确定的。
  *
  * @author Juergen Hoeller
  * @since 2.0.1
@@ -60,41 +60,36 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 
 	/**
-	 * Specify the map of target DataSources, with the lookup key as key.
-	 * The mapped value can either be a corresponding {@link javax.sql.DataSource}
-	 * instance or a data source name String (to be resolved via a
-	 * {@link #setDataSourceLookup DataSourceLookup}).
-	 * <p>The key can be of arbitrary type; this class implements the
-	 * generic lookup process only. The concrete key representation will
-	 * be handled by {@link #resolveSpecifiedLookupKey(Object)} and
-	 * {@link #determineCurrentLookupKey()}.
+	 * 指定目标 DataSource 的映射，以查找键作为键。
+	 * 映射的值可以是相应的 {@link javax.sql.DataSource} 实例，
+	 * 也可以是数据源名称字符串（通过 {@link #setDataSourceLookup DataSourceLookup} 解析）。
+	 * <p>键可以是任意类型；本类只实现通用的查找过程。
+	 * 具体的键表示形式将由 {@link #resolveSpecifiedLookupKey(Object)}
+	 * 和 {@link #determineCurrentLookupKey()} 处理。
 	 */
 	public void setTargetDataSources(Map<Object, Object> targetDataSources) {
 		this.targetDataSources = targetDataSources;
 	}
 
 	/**
-	 * Specify the default target DataSource, if any.
-	 * <p>The mapped value can either be a corresponding {@link javax.sql.DataSource}
-	 * instance or a data source name String (to be resolved via a
-	 * {@link #setDataSourceLookup DataSourceLookup}).
-	 * <p>This DataSource will be used as target if none of the keyed
-	 * {@link #setTargetDataSources targetDataSources} match the
-	 * {@link #determineCurrentLookupKey()} current lookup key.
+	 * 指定默认的目标 DataSource（如果有）。
+	 * <p>映射的值可以是相应的 {@link javax.sql.DataSource} 实例，
+	 * 也可以是数据源名称字符串（通过 {@link #setDataSourceLookup DataSourceLookup} 解析）。
+	 * <p>如果带键的 {@link #setTargetDataSources targetDataSources} 中没有任何项
+	 * 与 {@link #determineCurrentLookupKey()} 的当前查找键匹配，
+	 * 则将使用此 DataSource 作为目标。
 	 */
 	public void setDefaultTargetDataSource(Object defaultTargetDataSource) {
 		this.defaultTargetDataSource = defaultTargetDataSource;
 	}
 
 	/**
-	 * Specify whether to apply a lenient fallback to the default DataSource
-	 * if no specific DataSource could be found for the current lookup key.
-	 * <p>Default is "true", accepting lookup keys without a corresponding entry
-	 * in the target DataSource map - simply falling back to the default DataSource
-	 * in that case.
-	 * <p>Switch this flag to "false" if you would prefer the fallback to only apply
-	 * if the lookup key was {@code null}. Lookup keys without a DataSource
-	 * entry will then lead to an IllegalStateException.
+	 * 指定在无法为当前查找键找到特定 DataSource 时，
+	 * 是否对默认 DataSource 应用宽松回退。
+	 * <p>默认值为 "true"，即接受在目标 DataSource 映射中没有对应条目的查找键 ——
+	 * 在这种情况下只需回退到默认 DataSource。
+	 * <p>如果希望仅在查找键为 {@code null} 时才应用回退，请将此标志切换为 "false"。
+	 * 此时没有对应 DataSource 条目的查找键将导致 IllegalStateException。
 	 * @see #setTargetDataSources
 	 * @see #setDefaultTargetDataSource
 	 * @see #determineCurrentLookupKey()
@@ -104,10 +99,10 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Set the DataSourceLookup implementation to use for resolving data source
-	 * name Strings in the {@link #setTargetDataSources targetDataSources} map.
-	 * <p>Default is a {@link JndiDataSourceLookup}, allowing the JNDI names
-	 * of application server DataSources to be specified directly.
+	 * 设置用于解析 {@link #setTargetDataSources targetDataSources} 映射中
+	 * 数据源名称字符串的 DataSourceLookup 实现。
+	 * <p>默认是一个 {@link JndiDataSourceLookup}，允许直接指定应用服务器
+	 * DataSource 的 JNDI 名称。
 	 */
 	public void setDataSourceLookup(@Nullable DataSourceLookup dataSourceLookup) {
 		this.dataSourceLookup = (dataSourceLookup != null ? dataSourceLookup : new JndiDataSourceLookup());
@@ -131,11 +126,10 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Resolve the given lookup key object, as specified in the
-	 * {@link #setTargetDataSources targetDataSources} map, into
-	 * the actual lookup key to be used for matching with the
-	 * {@link #determineCurrentLookupKey() current lookup key}.
-	 * <p>The default implementation simply returns the given key as-is.
+	 * 将 {@link #setTargetDataSources targetDataSources} 映射中指定的
+	 * 给定查找键对象解析为实际用于与
+	 * {@link #determineCurrentLookupKey() 当前查找键} 匹配的查找键。
+	 * <p>默认实现只是按原样返回给定的键。
 	 * @param lookupKey the lookup key object as specified by the user
 	 * @return the lookup key as needed for matching
 	 */
@@ -144,9 +138,9 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Resolve the specified data source object into a DataSource instance.
-	 * <p>The default implementation handles DataSource instances and data source
-	 * names (to be resolved via a {@link #setDataSourceLookup DataSourceLookup}).
+	 * 将指定的数据源对象解析为 DataSource 实例。
+	 * <p>默认实现处理 DataSource 实例和数据源名称
+	 * （通过 {@link #setDataSourceLookup DataSourceLookup} 解析）。
 	 * @param dataSource the data source value object as specified in the
 	 * {@link #setTargetDataSources targetDataSources} map
 	 * @return the resolved DataSource (never {@code null})
@@ -166,7 +160,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Return the resolved target DataSources that this router manages.
+	 * 返回此路由器管理的已解析目标 DataSource。
 	 * @return an unmodifiable map of resolved lookup keys and DataSources
 	 * @throws IllegalStateException if the target DataSources are not resolved yet
 	 * @since 5.2.9
@@ -178,7 +172,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Return the resolved default target DataSource, if any.
+	 * 返回已解析的默认目标 DataSource（如果有）。
 	 * @return the default DataSource, or {@code null} if none or not resolved yet
 	 * @since 5.2.9
 	 * @see #setDefaultTargetDataSource
@@ -214,11 +208,11 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Retrieve the current target DataSource. Determines the
-	 * {@link #determineCurrentLookupKey() current lookup key}, performs
-	 * a lookup in the {@link #setTargetDataSources targetDataSources} map,
-	 * falls back to the specified
-	 * {@link #setDefaultTargetDataSource default target DataSource} if necessary.
+	 * 获取当前的目标 DataSource。确定
+	 * {@link #determineCurrentLookupKey() 当前查找键}，
+	 * 在 {@link #setTargetDataSources targetDataSources} 映射中执行查找，
+	 * 必要时回退到指定的
+	 * {@link #setDefaultTargetDataSource 默认目标 DataSource}。
 	 * @see #determineCurrentLookupKey()
 	 */
 	protected DataSource determineTargetDataSource() {
@@ -235,11 +229,9 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 	}
 
 	/**
-	 * Determine the current lookup key. This will typically be
-	 * implemented to check a thread-bound transaction context.
-	 * <p>Allows for arbitrary keys. The returned key needs
-	 * to match the stored lookup key type, as resolved by the
-	 * {@link #resolveSpecifiedLookupKey} method.
+	 * 确定当前的查找键。通常将其实现为检查绑定到线程的事务上下文。
+	 * <p>允许使用任意键。返回的键需要与存储的查找键类型匹配，
+	 * 该类型由 {@link #resolveSpecifiedLookupKey} 方法解析。
 	 */
 	@Nullable
 	protected abstract Object determineCurrentLookupKey();

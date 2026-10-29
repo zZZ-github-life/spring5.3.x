@@ -22,9 +22,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for URL-based views. Provides a consistent way of
- * holding the URL that a View wraps, in the form of a "url" bean property.
- *
+ * 基于 URL 的视图的抽象基类。以 "url" Bean 属性的形式提供一种保存视图所包装 URL 的一致方式。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -35,13 +33,13 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 用作 Bean 的构造函数。
 	 */
 	protected AbstractUrlBasedView() {
 	}
 
 	/**
-	 * Create a new AbstractUrlBasedView with the given URL.
+	 * 使用给定 URL 创建新的 AbstractUrlBasedView。
 	 */
 	protected AbstractUrlBasedView(String url) {
 		this.url = url;
@@ -49,15 +47,14 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 
 	/**
-	 * Set the URL of the resource that this view wraps.
-	 * The URL must be appropriate for the concrete View implementation.
+	 * 设置此视图所包装资源的 URL。该 URL 必须适合具体的 View 实现。
 	 */
 	public void setUrl(@Nullable String url) {
 		this.url = url;
 	}
 
 	/**
-	 * Return the URL of the resource that this view wraps.
+	 * 返回此视图所包装资源的 URL。
 	 */
 	@Nullable
 	public String getUrl() {
@@ -73,7 +70,7 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 	}
 
 	/**
-	 * Check whether the resource for the configured URL actually exists.
+	 * 检查配置的 URL 对应资源是否实际存在。
 	 * @param locale the desired Locale that we're looking for
 	 * @return {@code false} if the resource exists
 	 * {@code false} if we know that it does not exist

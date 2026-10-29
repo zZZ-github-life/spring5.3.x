@@ -24,8 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A concrete variant of {@link SqlQuery} which can be configured
- * with a {@link RowMapper}.
+ * {@link SqlQuery} 的具体变体，可以通过 {@link RowMapper} 进行配置。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -45,7 +44,7 @@ public class GenericSqlQuery<T> extends SqlQuery<T> {
 
 
 	/**
-	 * Set a specific {@link RowMapper} instance to use for this query.
+	 * 设置用于此查询的特定 {@link RowMapper} 实例。
 	 * @since 4.3.2
 	 */
 	public void setRowMapper(RowMapper<T> rowMapper) {
@@ -53,8 +52,8 @@ public class GenericSqlQuery<T> extends SqlQuery<T> {
 	}
 
 	/**
-	 * Set a {@link RowMapper} class for this query, creating a fresh
-	 * {@link RowMapper} instance per execution.
+	 * 为此查询设置 {@link RowMapper} 类，每次执行时都会创建新的
+	 * {@link RowMapper} 实例。
 	 */
 	@SuppressWarnings("rawtypes")
 	public void setRowMapperClass(Class<? extends RowMapper> rowMapperClass) {

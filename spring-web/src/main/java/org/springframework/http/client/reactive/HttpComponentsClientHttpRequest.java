@@ -45,7 +45,7 @@ import org.springframework.util.Assert;
 import static org.springframework.http.MediaType.ALL_VALUE;
 
 /**
- * {@link ClientHttpRequest} implementation for the Apache HttpComponents HttpClient 5.x.
+ * 用于 Apache HttpComponents HttpClient 5.x 的 {@link ClientHttpRequest} 实现。
  * @author Martin Tarjányi
  * @author Arjen Poutsma
  * @since 5.3

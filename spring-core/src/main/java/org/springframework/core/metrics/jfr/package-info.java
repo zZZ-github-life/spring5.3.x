@@ -1,5 +1,5 @@
 /**
- * Support package for recording startup metrics using Java Flight Recorder.
+ * 用于使用 Java Flight Recorder 记录启动指标的支撑包。
  */
 @NonNullApi
 @NonNullFields

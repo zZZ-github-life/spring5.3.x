@@ -30,11 +30,10 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebExceptionHandler;
 
 /**
- * Handle {@link ResponseStatusException} by setting the response status.
+ * 通过设置响应状态来处理 {@link ResponseStatusException}。
  *
- * <p>By default exception stack traces are not shown for successfully resolved
- * exceptions. Use {@link #setWarnLogCategory(String)} to enable logging with
- * stack traces.
+ * <p>默认情况下，对于成功处理的异常不会显示异常堆栈跟踪。
+ * 使用 {@link #setWarnLogCategory(String)} 可启用带堆栈跟踪的日志记录。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -50,9 +49,8 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 
 
 	/**
-	 * Set the log category for warn logging.
-	 * <p>Default is no warn logging. Specify this setting to activate warn
-	 * logging into a specific category.
+	 * 设置用于警告日志记录的日志类别。
+	 * <p>默认不记录警告日志。指定此设置可将警告日志激活到特定类别。
 	 * @since 5.1
 	 * @see org.apache.commons.logging.LogFactory#getLog(String)
 	 * @see java.util.logging.Logger#getLogger(String)
@@ -112,9 +110,9 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 	}
 
 	/**
-	 * Determine the HTTP status for the given exception.
-	 * <p>As of 5.3 this method always returns {@code null} in which case
-	 * {@link #determineRawStatusCode(Throwable)} is used instead.
+	 * 确定给定异常的 HTTP 状态。
+	 * <p>自 5.3 起，此方法始终返回 {@code null}，此时会改用
+	 * {@link #determineRawStatusCode(Throwable)}。
 	 * @param ex the exception to check
 	 * @return the associated HTTP status, if any
 	 * @deprecated as of 5.3 in favor of {@link #determineRawStatusCode(Throwable)}.
@@ -126,7 +124,7 @@ public class ResponseStatusExceptionHandler implements WebExceptionHandler {
 	}
 
 	/**
-	 * Determine the raw status code for the given exception.
+	 * 确定给定异常的原始状态码。
 	 * @param ex the exception to check
 	 * @return the associated HTTP status code, or -1 if it can't be derived.
 	 * @since 5.3

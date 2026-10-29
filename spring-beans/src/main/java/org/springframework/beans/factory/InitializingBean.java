@@ -17,13 +17,11 @@
 package org.springframework.beans.factory;
 
 /**
- * Interface to be implemented by beans that need to react once all their properties
- * have been set by a {@link BeanFactory}: e.g. to perform custom initialization,
- * or merely to check that all mandatory properties have been set.
+ * 由需要在其所有属性都已由 {@link BeanFactory} 设置后做出反应的 Bean 实现的接口：例如，执行自定义
+ * 初始化，或仅检查所有必需属性是否都已设置。
  *
- * <p>An alternative to implementing {@code InitializingBean} is specifying a custom
- * init method, for example in an XML bean definition. For a list of all bean
- * lifecycle methods, see the {@link BeanFactory BeanFactory javadocs}.
+ * <p>实现 {@code InitializingBean} 的替代方案是指定自定义 init 方法，例如在 XML Bean 定义中。有关
+ * 所有 Bean 生命周期方法的列表，请参见 {@link BeanFactory BeanFactory javadocs}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -34,10 +32,9 @@ package org.springframework.beans.factory;
 public interface InitializingBean {
 
 	/**
-	 * Invoked by the containing {@code BeanFactory} after it has set all bean properties
-	 * and satisfied {@link BeanFactoryAware}, {@code ApplicationContextAware} etc.
-	 * <p>This method allows the bean instance to perform validation of its overall
-	 * configuration and final initialization when all bean properties have been set.
+	 * 在设置完所有 Bean 属性并满足 {@link BeanFactoryAware}、{@code ApplicationContextAware} 等之后，
+	 * 由包含它的 {@code BeanFactory} 调用。<p>此方法允许 Bean 实例在所有 Bean 属性都已设置时对其整体配
+	 * 置进行校验并进行最终初始化。
 	 * @throws Exception in the event of misconfiguration (such as failure to set an
 	 * essential property) or if initialization fails for any other reason
 	 */

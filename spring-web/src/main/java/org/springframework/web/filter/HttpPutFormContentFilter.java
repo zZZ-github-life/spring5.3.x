@@ -46,16 +46,14 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link javax.servlet.Filter} that makes form encoded data available through
- * the {@code ServletRequest.getParameter*()} family of methods during HTTP PUT
- * or PATCH requests.
+ * {@link javax.servlet.Filter}，使表单编码数据在 HTTP PUT 或 PATCH 请求期间
+ * 可以通过 {@code ServletRequest.getParameter*()} 系列方法获取。
  *
- * <p>The Servlet spec requires form data to be available for HTTP POST but
- * not for HTTP PUT or PATCH requests. This filter intercepts HTTP PUT and PATCH
- * requests where content type is {@code 'application/x-www-form-urlencoded'},
- * reads form encoded content from the body of the request, and wraps the ServletRequest
- * in order to make the form data available as request parameters just like
- * it is for HTTP POST requests.
+ * <p>Servlet 规范要求表单数据在 HTTP POST 请求中可用，但在 HTTP PUT 或 PATCH
+ * 请求中不要求。此过滤器拦截内容类型为
+ * {@code 'application/x-www-form-urlencoded'} 的 HTTP PUT 和 PATCH 请求，
+ * 从请求体中读取表单编码内容，并包装 ServletRequest，
+ * 使表单数据可以像 HTTP POST 请求中那样作为请求参数获取。
  *
  * @author Rossen Stoyanchev
  * @since 3.1
@@ -69,8 +67,8 @@ public class HttpPutFormContentFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Set the converter to use for parsing form content.
-	 * <p>By default this is an instance of {@link AllEncompassingFormHttpMessageConverter}.
+	 * 设置用于解析表单内容的转换器。
+	 * <p>默认情况下这是一个 {@link AllEncompassingFormHttpMessageConverter} 实例。
 	 */
 	public void setFormConverter(FormHttpMessageConverter converter) {
 		Assert.notNull(converter, "FormHttpMessageConverter is required.");
@@ -82,9 +80,9 @@ public class HttpPutFormContentFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * The default character set to use for reading form data.
-	 * This is a shortcut for:<br>
-	 * {@code getFormConverter.setCharset(charset)}.
+	 * 用于读取表单数据的默认字符集。
+	 * 这是以下调用的快捷方式：<br>
+	 * {@code getFormConverter.setCharset(charset)}。
 	 */
 	public void setCharset(Charset charset) {
 		this.formConverter.setCharset(charset);

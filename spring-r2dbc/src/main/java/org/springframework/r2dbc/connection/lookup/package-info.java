@@ -1,5 +1,5 @@
 /**
- * Provides a strategy for looking up R2DBC ConnectionFactories by name.
+ * 提供按名称查找 R2DBC ConnectionFactory 的策略。
  */
 @NonNullApi
 @NonNullFields

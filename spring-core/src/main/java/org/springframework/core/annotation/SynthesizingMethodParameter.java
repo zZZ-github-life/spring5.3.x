@@ -25,8 +25,7 @@ import java.lang.reflect.Parameter;
 import org.springframework.core.MethodParameter;
 
 /**
- * A {@link MethodParameter} variant which synthesizes annotations that
- * declare attribute aliases via {@link AliasFor @AliasFor}.
+ * 一种 {@link MethodParameter} 变体，用于合成通过 {@link AliasFor @AliasFor} 声明属性别名的注解。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -37,8 +36,7 @@ import org.springframework.core.MethodParameter;
 public class SynthesizingMethodParameter extends MethodParameter {
 
 	/**
-	 * Create a new {@code SynthesizingMethodParameter} for the given method,
-	 * with nesting level 1.
+	 * 为给定的方法创建一个新的 {@code SynthesizingMethodParameter}，嵌套层级为 1。
 	 * @param method the Method to specify a parameter for
 	 * @param parameterIndex the index of the parameter: -1 for the method
 	 * return type; 0 for the first method parameter; 1 for the second method
@@ -49,7 +47,7 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	}
 
 	/**
-	 * Create a new {@code SynthesizingMethodParameter} for the given method.
+	 * 为给定的方法创建一个新的 {@code SynthesizingMethodParameter}。
 	 * @param method the Method to specify a parameter for
 	 * @param parameterIndex the index of the parameter: -1 for the method
 	 * return type; 0 for the first method parameter; 1 for the second method
@@ -63,8 +61,7 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	}
 
 	/**
-	 * Create a new {@code SynthesizingMethodParameter} for the given constructor,
-	 * with nesting level 1.
+	 * 为给定的构造函数创建一个新的 {@code SynthesizingMethodParameter}，嵌套层级为 1。
 	 * @param constructor the Constructor to specify a parameter for
 	 * @param parameterIndex the index of the parameter
 	 */
@@ -73,7 +70,7 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	}
 
 	/**
-	 * Create a new {@code SynthesizingMethodParameter} for the given constructor.
+	 * 为给定的构造函数创建一个新的 {@code SynthesizingMethodParameter}。
 	 * @param constructor the Constructor to specify a parameter for
 	 * @param parameterIndex the index of the parameter
 	 * @param nestingLevel the nesting level of the target type
@@ -85,8 +82,8 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	}
 
 	/**
-	 * Copy constructor, resulting in an independent {@code SynthesizingMethodParameter}
-	 * based on the same metadata and cache state that the original object was in.
+	 * 复制构造函数，基于原始对象所处的相同元数据和缓存状态，生成一个独立的
+	 * {@code SynthesizingMethodParameter}。
 	 * @param original the original SynthesizingMethodParameter object to copy from
 	 */
 	protected SynthesizingMethodParameter(SynthesizingMethodParameter original) {
@@ -111,9 +108,8 @@ public class SynthesizingMethodParameter extends MethodParameter {
 
 
 	/**
-	 * Create a new SynthesizingMethodParameter for the given method or constructor.
-	 * <p>This is a convenience factory method for scenarios where a
-	 * Method or Constructor reference is treated in a generic fashion.
+	 * 为给定的方法或构造函数创建一个新的 SynthesizingMethodParameter。
+	 * <p>这是一个便捷工厂方法，适用于以通用方式处理 Method 或 Constructor 引用的场景。
 	 * @param executable the Method or Constructor to specify a parameter for
 	 * @param parameterIndex the index of the parameter
 	 * @return the corresponding SynthesizingMethodParameter instance
@@ -132,9 +128,8 @@ public class SynthesizingMethodParameter extends MethodParameter {
 	}
 
 	/**
-	 * Create a new SynthesizingMethodParameter for the given parameter descriptor.
-	 * <p>This is a convenience factory method for scenarios where a
-	 * Java 8 {@link Parameter} descriptor is already available.
+	 * 为给定的参数描述符创建一个新的 SynthesizingMethodParameter。
+	 * <p>这是一个便捷工厂方法，适用于已经获得 Java 8 {@link Parameter} 描述符的场景。
 	 * @param parameter the parameter descriptor
 	 * @return the corresponding SynthesizingMethodParameter instance
 	 * @since 5.0

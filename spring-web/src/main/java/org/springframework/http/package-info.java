@@ -1,6 +1,5 @@
 /**
- * Contains a basic abstraction over client/server-side HTTP. This package contains
- * the {@code HttpInputMessage} and {@code HttpOutputMessage} interfaces.
+ * 包含客户端/服务器端 HTTP 的基本抽象。此包包含 {@code HttpInputMessage} 和 {@code HttpOutputMessage} 接口。
  */
 @NonNullApi
 @NonNullFields

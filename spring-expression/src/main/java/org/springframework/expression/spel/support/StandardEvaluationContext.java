@@ -38,13 +38,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A powerful and highly configurable {@link EvaluationContext} implementation.
- * This context uses standard implementations of all applicable strategies,
- * based on reflection to resolve properties, methods and fields.
+ * 一个功能强大且高度可配置的 {@link EvaluationContext} 实现。此上下文对所有适用的策略使用标准实现，
+ * 这些实现基于反射来解析属性、方法和字段。
  *
- * <p>For a simpler builder-style context variant for data-binding purposes,
- * consider using {@link SimpleEvaluationContext} instead which allows for
- * opting into several SpEL features as needed by specific evaluation cases.
+ * <p>如需用于数据绑定的更简单的构建器风格上下文变体，请考虑改用 {@link SimpleEvaluationContext}，
+ * 它允许根据具体求值场景的需要选择启用若干 SpEL 特性。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -92,14 +90,14 @@ public class StandardEvaluationContext implements EvaluationContext {
 
 
 	/**
-	 * Create a {@code StandardEvaluationContext} with a null root object.
+	 * 创建一个根对象为 null 的 {@code StandardEvaluationContext}。
 	 */
 	public StandardEvaluationContext() {
 		this.rootObject = TypedValue.NULL;
 	}
 
 	/**
-	 * Create a {@code StandardEvaluationContext} with the given root object.
+	 * 创建一个使用给定根对象的 {@code StandardEvaluationContext}。
 	 * @param rootObject the root object to use
 	 * @see #setRootObject
 	 */
@@ -258,10 +256,8 @@ public class StandardEvaluationContext implements EvaluationContext {
 	}
 
 	/**
-	 * Register a {@code MethodFilter} which will be called during method resolution
-	 * for the specified type.
-	 * <p>The {@code MethodFilter} may remove methods and/or sort the methods which
-	 * will then be used by SpEL as the candidates to look through for a match.
+	 * 注册一个 {@code MethodFilter}，它将在指定类型的方法解析过程中被调用。<p>{@code MethodFilter} 可
+	 * 以移除方法和/或对方法排序，随后 SpEL 会将这些方法用作查找匹配的候选方法。
 	 * @param type the type for which the filter should be called
 	 * @param filter a {@code MethodFilter}, or {@code null} to unregister a filter for the type
 	 * @throws IllegalStateException if the {@link ReflectiveMethodResolver} is not in use

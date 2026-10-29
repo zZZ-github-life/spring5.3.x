@@ -37,10 +37,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Abstract base class for {@link SmartMessageConverter} implementations including
- * support for common properties and a partial implementation of the conversion methods,
- * mainly to check if the converter supports the conversion based on the payload class
- * and MIME type.
+ * {@link SmartMessageConverter} 实现的抽象基类，包含对通用属性的支持以及
+ * 转换方法的部分实现，主要用于根据载荷类和 MIME 类型检查转换器是否支持该转换。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -62,7 +60,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 
 	/**
-	 * Constructor with a single MIME type.
+	 * 使用单个 MIME 类型的构造函数。
 	 * @param supportedMimeType the supported MIME type
 	 */
 	protected AbstractMessageConverter(MimeType supportedMimeType) {
@@ -70,7 +68,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Constructor with one or more MIME types via vararg.
+	 * 通过可变参数传入一个或多个 MIME 类型的构造函数。
 	 * @param supportedMimeTypes the supported MIME types
 	 * @since 5.2.2
 	 */
@@ -79,7 +77,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Constructor with a Collection of MIME types.
+	 * 使用 MIME 类型集合的构造函数。
 	 * @param supportedMimeTypes the supported MIME types
 	 */
 	protected AbstractMessageConverter(Collection<MimeType> supportedMimeTypes) {
@@ -88,14 +86,14 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 
 	/**
-	 * Return the supported MIME types.
+	 * 返回支持的 MIME 类型。
 	 */
 	public List<MimeType> getSupportedMimeTypes() {
 		return Collections.unmodifiableList(this.supportedMimeTypes);
 	}
 
 	/**
-	 * Allows subclasses to add more supported mime types.
+	 * 允许子类添加更多支持的 MIME 类型。
 	 * @since 5.2.2
 	 */
 	protected void addSupportedMimeTypes(MimeType... supportedMimeTypes) {
@@ -103,20 +101,18 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Configure the {@link ContentTypeResolver} to use to resolve the content
-	 * type of an input message.
-	 * <p>Note that if no resolver is configured, then
-	 * {@link #setStrictContentTypeMatch(boolean) strictContentTypeMatch} should
-	 * be left as {@code false} (the default) or otherwise this converter will
-	 * ignore all messages.
-	 * <p>By default, a {@code DefaultContentTypeResolver} instance is used.
+	 * 配置用于解析输入消息内容类型的 {@link ContentTypeResolver}。
+	 * <p>注意，如果未配置解析器，则应将
+	 * {@link #setStrictContentTypeMatch(boolean) strictContentTypeMatch} 保持为
+	 * {@code false}（默认值），否则此转换器将忽略所有消息。
+	 * <p>默认情况下，使用 {@code DefaultContentTypeResolver} 实例。
 	 */
 	public void setContentTypeResolver(@Nullable ContentTypeResolver resolver) {
 		this.contentTypeResolver = resolver;
 	}
 
 	/**
-	 * Return the configured {@link ContentTypeResolver}.
+	 * 返回已配置的 {@link ContentTypeResolver}。
 	 */
 	@Nullable
 	public ContentTypeResolver getContentTypeResolver() {
@@ -124,15 +120,14 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Whether this converter should convert messages for which no content type
-	 * could be resolved through the configured
-	 * {@link org.springframework.messaging.converter.ContentTypeResolver}.
-	 * <p>A converter can be configured to be strict only when a
-	 * {@link #setContentTypeResolver contentTypeResolver} is configured and the
-	 * list of {@link #getSupportedMimeTypes() supportedMimeTypes} is not be empty.
-	 * <p>When this flag is set to {@code true}, {@link #supportsMimeType(MessageHeaders)}
-	 * will return {@code false} if the {@link #setContentTypeResolver contentTypeResolver}
-	 * is not defined or if no content-type header is present.
+	 * 是否应转换那些无法通过已配置的
+	 * {@link org.springframework.messaging.converter.ContentTypeResolver} 解析内容类型的消息。
+	 * <p>只有当配置了 {@link #setContentTypeResolver contentTypeResolver}
+	 * 且 {@link #getSupportedMimeTypes() supportedMimeTypes} 列表不为空时，
+	 * 才能将转换器配置为严格模式。
+	 * <p>当此标志设置为 {@code true} 时，如果未定义
+	 * {@link #setContentTypeResolver contentTypeResolver} 或不存在 content-type 头，
+	 * {@link #supportsMimeType(MessageHeaders)} 将返回 {@code false}。
 	 */
 	public void setStrictContentTypeMatch(boolean strictContentTypeMatch) {
 		if (strictContentTypeMatch) {
@@ -143,17 +138,15 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Whether content type resolution must produce a value that matches one of
-	 * the supported MIME types.
+	 * 内容类型解析是否必须产生与某个受支持 MIME 类型匹配的值。
 	 */
 	public boolean isStrictContentTypeMatch() {
 		return this.strictContentTypeMatch;
 	}
 
 	/**
-	 * Configure the preferred serialization class to use (byte[] or String) when
-	 * converting an Object payload to a {@link Message}.
-	 * <p>The default value is byte[].
+	 * 配置将 Object 载荷转换为 {@link Message} 时使用的首选序列化类（byte[] 或 String）。
+	 * <p>默认值为 byte[]。
 	 * @param payloadClass either byte[] or String
 	 */
 	public void setSerializedPayloadClass(Class<?> payloadClass) {
@@ -163,7 +156,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Return the configured preferred serialization payload class.
+	 * 返回已配置的首选序列化载荷类。
 	 */
 	public Class<?> getSerializedPayloadClass() {
 		return this.serializedPayloadClass;
@@ -255,12 +248,10 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Return the default content type for the payload. Called when
-	 * {@link #toMessage(Object, MessageHeaders)} is invoked without
-	 * message headers or without a content type header.
-	 * <p>By default, this returns the first element of the
-	 * {@link #getSupportedMimeTypes() supportedMimeTypes}, if any.
-	 * Can be overridden in subclasses.
+	 * 返回载荷的默认内容类型。在未提供消息头或未提供 content-type 头的情况下
+	 * 调用 {@link #toMessage(Object, MessageHeaders)} 时会调用此方法。
+	 * <p>默认情况下，如果存在，则返回 {@link #getSupportedMimeTypes() supportedMimeTypes}
+	 * 的第一个元素。可在子类中重写。
 	 * @param payload the payload being converted to a message
 	 * @return the content type, or {@code null} if not known
 	 */
@@ -272,14 +263,14 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 
 
 	/**
-	 * Whether the given class is supported by this converter.
+	 * 给定类是否受此转换器支持。
 	 * @param clazz the class to test for support
 	 * @return {@code true} if supported; {@code false} otherwise
 	 */
 	protected abstract boolean supports(Class<?> clazz);
 
 	/**
-	 * Convert the message payload from serialized form to an Object.
+	 * 将消息载荷从序列化形式转换为 Object。
 	 * @param message the input message
 	 * @param targetClass the target class for the conversion
 	 * @param conversionHint an extra object passed to the {@link MessageConverter},
@@ -296,7 +287,7 @@ public abstract class AbstractMessageConverter implements SmartMessageConverter 
 	}
 
 	/**
-	 * Convert the payload object to serialized form.
+	 * 将载荷对象转换为序列化形式。
 	 * @param payload the Object to convert
 	 * @param headers optional headers for the message (may be {@code null})
 	 * @param conversionHint an extra object passed to the {@link MessageConverter},

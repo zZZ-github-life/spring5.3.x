@@ -1,6 +1,6 @@
 /**
- * {@link org.springframework.web.server.WebFilter} implementations for use in
- * reactive web applications.
+ * 用于响应式 Web 应用程序的
+ * {@link org.springframework.web.server.WebFilter} 实现。
  */
 @NonNullApi
 @NonNullFields

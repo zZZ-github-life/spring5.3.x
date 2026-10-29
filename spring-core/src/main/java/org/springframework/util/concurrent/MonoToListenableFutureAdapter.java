@@ -19,9 +19,9 @@ package org.springframework.util.concurrent;
 import reactor.core.publisher.Mono;
 
 /**
- * Adapts a {@link Mono} into a {@link ListenableFuture} by obtaining a
- * {@code CompletableFuture} from the {@code Mono} via {@link Mono#toFuture()}
- * and then adapting it with {@link CompletableToListenableFutureAdapter}.
+ * 通过 {@link Mono#toFuture()} 从 {@code Mono} 获取 {@code CompletableFuture}，再用
+ * {@link CompletableToListenableFutureAdapter} 对其进行适配，从而将 {@link Mono} 适配为
+ * {@link ListenableFuture}。
  *
  * @author Rossen Stoyanchev
  * @author Stephane Maldini

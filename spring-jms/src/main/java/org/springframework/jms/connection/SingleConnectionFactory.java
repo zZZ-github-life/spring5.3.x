@@ -47,36 +47,32 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A JMS ConnectionFactory adapter that returns the same Connection
- * from all {@link #createConnection()} calls, and ignores calls to
- * {@link javax.jms.Connection#close()}. According to the JMS Connection
- * model, this is perfectly thread-safe (in contrast to e.g. JDBC). The
- * shared Connection can be automatically recovered in case of an Exception.
+ * JMS ConnectionFactory 适配器，对所有 {@link #createConnection()} 调用
+ * 返回同一个 Connection，并忽略对 {@link javax.jms.Connection#close()} 的调用。
+ * 根据 JMS Connection 模型，这完全是线程安全的（与 JDBC 等不同）。
+ * 共享的 Connection 在发生异常时可以自动恢复。
  *
- * <p>You can either pass in a specific JMS Connection directly or let this
- * factory lazily create a Connection via a given target ConnectionFactory.
- * This factory generally works with JMS 1.1 as well as the JMS 1.0.2 API.
+ * <p>你可以直接传入一个特定的 JMS Connection，也可以让此工厂通过给定的
+ * 目标 ConnectionFactory 延迟创建 Connection。此工厂通常既适用于
+ * JMS 1.1，也适用于 JMS 1.0.2 API。
  *
- * <p>Note that when using the JMS 1.0.2 API, this ConnectionFactory will switch
- * into queue/topic mode according to the JMS API methods used at runtime:
- * {@code createQueueConnection} and {@code createTopicConnection} will
- * lead to queue/topic mode, respectively; generic {@code createConnection}
- * calls will lead to a JMS 1.1 connection which is able to serve both modes.
+ * <p>注意，使用 JMS 1.0.2 API 时，此 ConnectionFactory 会根据运行时使用的
+ * JMS API 方法切换到队列/主题模式：{@code createQueueConnection} 和
+ * {@code createTopicConnection} 分别对应队列模式和主题模式；通用的
+ * {@code createConnection} 调用会得到一个能够同时服务两种模式的 JMS 1.1 连接。
  *
- * <p>As of Spring Framework 5, this class supports JMS 2.0 {@code JMSContext}
- * calls and therefore requires the JMS 2.0 API to be present at runtime.
- * It may nevertheless run against a JMS 1.1 driver (bound to the JMS 2.0 API)
- * as long as no actual JMS 2.0 calls are triggered by the application's setup.
+ * <p>从 Spring Framework 5 开始，此类支持 JMS 2.0 {@code JMSContext} 调用，
+ * 因此要求运行时存在 JMS 2.0 API。不过，只要应用设置不触发实际的 JMS 2.0 调用，
+ * 它仍然可以运行在 JMS 1.1 驱动之上（绑定到 JMS 2.0 API）。
  *
- * <p>Useful for testing and standalone environments in order to keep using the
- * same Connection for multiple {@link org.springframework.jms.core.JmsTemplate}
- * calls, without having a pooling ConnectionFactory underneath. This may span
- * any number of transactions, even concurrently executing transactions.
+ * <p>适用于测试和独立环境，以便在多次
+ * {@link org.springframework.jms.core.JmsTemplate} 调用中持续使用同一个
+ * Connection，而无需在底层使用池化的 ConnectionFactory。
+ * 这可以跨越任意数量的事务，甚至是并发执行的事务。
  *
- * <p>Note that Spring's message listener containers support the use of
- * a shared Connection within each listener container instance. Using
- * SingleConnectionFactory in combination only really makes sense for
- * sharing a single JMS Connection <i>across multiple listener containers</i>.
+ * <p>注意，Spring 的消息监听器容器支持在每个监听器容器实例内使用共享的
+ * Connection。只有<i>跨多个监听器容器</i>共享单个 JMS Connection 时，
+ * 结合使用 SingleConnectionFactory 才真正有意义。
  *
  * @author Juergen Hoeller
  * @author Mark Pollack
@@ -101,34 +97,34 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 	private boolean reconnectOnException = false;
 
-	/** The target Connection. */
+	/** 目标 Connection。 */
 	@Nullable
 	private Connection connection;
 
-	/** A hint whether to create a queue or topic connection. */
+	/** 提示应创建队列连接还是主题连接。 */
 	@Nullable
 	private Boolean pubSubMode;
 
-	/** An internal aggregator allowing for per-connection ExceptionListeners. */
+	/** 内部聚合器，允许为每个连接提供 ExceptionListener。 */
 	@Nullable
 	private AggregatedExceptionListener aggregatedExceptionListener;
 
-	/** Whether the shared Connection has been started. */
+	/** 共享 Connection 是否已启动。 */
 	private int startedCount = 0;
 
-	/** Synchronization monitor for the shared Connection. */
+	/** 共享 Connection 的同步监视器。 */
 	private final Object connectionMonitor = new Object();
 
 
 	/**
-	 * Create a new SingleConnectionFactory for bean-style usage.
+	 * 创建一个用于 bean 风格用法的新 SingleConnectionFactory。
 	 * @see #setTargetConnectionFactory
 	 */
 	public SingleConnectionFactory() {
 	}
 
 	/**
-	 * Create a new SingleConnectionFactory that always returns the given Connection.
+	 * 创建一个始终返回给定 Connection 的新 SingleConnectionFactory。
 	 * @param targetConnection the single Connection
 	 */
 	public SingleConnectionFactory(Connection targetConnection) {
@@ -137,8 +133,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Create a new SingleConnectionFactory that always returns a single Connection
-	 * that it will lazily create via the given target ConnectionFactory.
+	 * 创建一个新的 SingleConnectionFactory，它始终返回同一个 Connection，
+	 * 并会通过给定的目标 ConnectionFactory 延迟创建该 Connection。
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public SingleConnectionFactory(ConnectionFactory targetConnectionFactory) {
@@ -148,16 +144,14 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 
 	/**
-	 * Set the target ConnectionFactory which will be used to lazily
-	 * create a single Connection.
+	 * 设置目标 ConnectionFactory，将用于延迟创建单个 Connection。
 	 */
 	public void setTargetConnectionFactory(@Nullable ConnectionFactory targetConnectionFactory) {
 		this.targetConnectionFactory = targetConnectionFactory;
 	}
 
 	/**
-	 * Return the target ConnectionFactory which will be used to lazily
-	 * create a single Connection, if any.
+	 * 返回目标 ConnectionFactory（如果有），将用于延迟创建单个 Connection。
 	 */
 	@Nullable
 	public ConnectionFactory getTargetConnectionFactory() {
@@ -165,11 +159,9 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Specify a JMS client ID for the single Connection created and exposed
-	 * by this ConnectionFactory.
-	 * <p>Note that client IDs need to be unique among all active Connections
-	 * of the underlying JMS provider. Furthermore, a client ID can only be
-	 * assigned if the original ConnectionFactory hasn't already assigned one.
+	 * 为由此 ConnectionFactory 创建并公开的单个 Connection 指定 JMS 客户端 ID。
+	 * <p>请注意，客户端 ID 在底层 JMS 提供者的所有活动 Connection 中必须唯一。
+	 * 此外，只有在原始 ConnectionFactory 尚未分配客户端 ID 时才能分配。
 	 * @see javax.jms.Connection#setClientID
 	 * @see #setTargetConnectionFactory
 	 */
@@ -178,8 +170,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Return a JMS client ID for the single Connection created and exposed
-	 * by this ConnectionFactory, if any.
+	 * 返回由此 ConnectionFactory 创建并公开的单个 Connection 的 JMS 客户端 ID
+	 * （如果有）。
 	 */
 	@Nullable
 	protected String getClientId() {
@@ -187,8 +179,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Specify an JMS ExceptionListener implementation that should be
-	 * registered with the single Connection created by this factory.
+	 * 指定一个 JMS ExceptionListener 实现，应将其注册到此工厂创建的单个 Connection。
 	 * @see #setReconnectOnException
 	 */
 	public void setExceptionListener(@Nullable ExceptionListener exceptionListener) {
@@ -196,8 +187,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Return the JMS ExceptionListener implementation that should be registered
-	 * with the single Connection created by this factory, if any.
+	 * 返回应注册到此工厂创建的单个 Connection 的 JMS ExceptionListener 实现
+	 * （如果有）。
 	 */
 	@Nullable
 	protected ExceptionListener getExceptionListener() {
@@ -205,14 +196,13 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Specify whether the single Connection should be reset (to be subsequently renewed)
-	 * when a JMSException is reported by the underlying Connection.
-	 * <p>Default is "false". Switch this to "true" to automatically trigger
-	 * recovery based on your JMS provider's exception notifications.
-	 * <p>Internally, this will lead to a special JMS ExceptionListener
-	 * (this SingleConnectionFactory itself) being registered with the
-	 * underlying Connection. This can also be combined with a
-	 * user-specified ExceptionListener, if desired.
+	 * 指定当底层 Connection 报告 JMSException 时，是否应重置单个 Connection
+	 * （以便随后重新获取）。
+	 * <p>默认值为 "false"。将其切换为 "true" 可根据 JMS 提供者的异常通知
+	 * 自动触发恢复。
+	 * <p>在内部，这会导致向底层 Connection 注册一个特殊的 JMS ExceptionListener
+	 * （即此 SingleConnectionFactory 本身）。如有需要，这也可以与用户指定的
+	 * ExceptionListener 组合使用。
 	 * @see #setExceptionListener
 	 */
 	public void setReconnectOnException(boolean reconnectOnException) {
@@ -220,15 +210,14 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Return whether the single Connection should be renewed when
-	 * a JMSException is reported by the underlying Connection.
+	 * 返回当底层 Connection 报告 JMSException 时是否应更新单个 Connection。
 	 */
 	protected boolean isReconnectOnException() {
 		return this.reconnectOnException;
 	}
 
 	/**
-	 * Make sure a Connection or ConnectionFactory has been set.
+	 * 确保已设置 Connection 或 ConnectionFactory。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -317,7 +306,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 
 	/**
-	 * Obtain an initialized shared Connection.
+	 * 获取一个已初始化的共享 Connection。
 	 * @return the Connection (never {@code null})
 	 * @throws javax.jms.JMSException if thrown by JMS API methods
 	 * @see #initConnection()
@@ -332,9 +321,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Initialize the underlying shared Connection.
-	 * <p>Closes and reinitializes the Connection if an underlying
-	 * Connection is present already.
+	 * 初始化底层的共享 Connection。
+	 * <p>如果底层 Connection 已存在，则关闭并重新初始化它。
 	 * @throws javax.jms.JMSException if thrown by JMS API methods
 	 * @see #prepareConnection
 	 */
@@ -377,7 +365,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Exception listener callback that renews the underlying single Connection.
+	 * 异常监听器回调，用于更新底层的单个 Connection。
 	 * @see #resetConnection()
 	 */
 	@Override
@@ -387,10 +375,10 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Close the underlying shared connection.
-	 * The provider of this ConnectionFactory needs to care for proper shutdown.
-	 * <p>As this bean implements DisposableBean, a bean factory will
-	 * automatically invoke this on destruction of its cached singletons.
+	 * 关闭底层的共享连接。
+	 * 此 ConnectionFactory 的提供者需要负责正确关闭。
+	 * <p>由于此 bean 实现了 DisposableBean，bean 工厂将在销毁其缓存的单例时
+	 * 自动调用此方法。
 	 * @see #resetConnection()
 	 */
 	@Override
@@ -399,7 +387,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Reset the underlying shared Connection, to be reinitialized on next access.
+	 * 重置底层的共享 Connection，以便在下次访问时重新初始化。
 	 * @see #closeConnection
 	 */
 	public void resetConnection() {
@@ -412,7 +400,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Create a JMS Connection via this template's ConnectionFactory.
+	 * 通过此模板的 ConnectionFactory 创建 JMS Connection。
 	 * @return the new JMS Connection
 	 * @throws javax.jms.JMSException if thrown by JMS API methods
 	 */
@@ -430,9 +418,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Prepare the given Connection before it is exposed.
-	 * <p>The default implementation applies ExceptionListener and client id.
-	 * Can be overridden in subclasses.
+	 * 在公开之前准备给定的 Connection。
+	 * <p>默认实现会应用 ExceptionListener 和客户端 ID。可在子类中重写。
 	 * @param con the Connection to prepare
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see #setExceptionListener
@@ -460,11 +447,10 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Template method for obtaining a (potentially cached) Session.
-	 * <p>The default implementation always returns {@code null}.
-	 * Subclasses may override this for exposing specific Session handles,
-	 * possibly delegating to {@link #createSession} for the creation of raw
-	 * Session objects that will then get wrapped and returned from here.
+	 * 用于获取（可能已缓存的）Session 的模板方法。
+	 * <p>默认实现始终返回 {@code null}。子类可以重写此方法以公开特定的
+	 * Session 句柄，也可以委托给 {@link #createSession} 创建原始 Session 对象，
+	 * 然后在此处包装并返回。
 	 * @param con the JMS Connection to operate on
 	 * @param mode the Session acknowledgement mode
 	 * ({@code Session.TRANSACTED} or one of the common modes)
@@ -478,8 +464,8 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Create a default Session for this ConnectionFactory,
-	 * adapting to JMS 1.0.2 style queue/topic mode if necessary.
+	 * 为此 ConnectionFactory 创建默认 Session，
+	 * 必要时适配 JMS 1.0.2 风格的队列/主题模式。
 	 * @param con the JMS Connection to operate on
 	 * @param mode the Session acknowledgement mode
 	 * ({@code Session.TRANSACTED} or one of the common modes)
@@ -503,7 +489,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Close the given Connection.
+	 * 关闭给定的 Connection。
 	 * @param con the Connection to close
 	 */
 	protected void closeConnection(Connection con) {
@@ -529,10 +515,9 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 	}
 
 	/**
-	 * Wrap the given Connection with a proxy that delegates every method call to it
-	 * but suppresses close calls. This is useful for allowing application code to
-	 * handle a special framework Connection just like an ordinary Connection from a
-	 * JMS ConnectionFactory.
+	 * 用代理包装给定的 Connection，该代理将每个方法调用都委托给它，
+	 * 但会抑制 close 调用。这对于允许应用代码像处理来自 JMS ConnectionFactory
+	 * 的普通 Connection 一样处理特殊的框架 Connection 很有用。
 	 * @param target the original Connection to wrap
 	 * @return the wrapped Connection
 	 */
@@ -551,7 +536,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 
 	/**
-	 * Invocation handler for a cached JMS Connection proxy.
+	 * 缓存的 JMS Connection 代理的调用处理器。
 	 */
 	private class SharedConnectionInvocationHandler implements InvocationHandler {
 
@@ -715,8 +700,7 @@ public class SingleConnectionFactory implements ConnectionFactory, QueueConnecti
 
 
 	/**
-	 * Internal aggregated ExceptionListener for handling the internal
-	 * recovery listener in combination with user-specified listeners.
+	 * 内部聚合的 ExceptionListener，用于将内部恢复监听器与用户指定的监听器组合起来。
 	 */
 	private class AggregatedExceptionListener implements ExceptionListener {
 

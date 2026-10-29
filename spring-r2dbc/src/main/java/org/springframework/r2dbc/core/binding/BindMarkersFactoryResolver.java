@@ -29,9 +29,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 /**
- * Resolves a {@link BindMarkersFactory} from a {@link ConnectionFactory} using
- * {@link BindMarkerFactoryProvider}. Dialect resolution uses Spring's
- * {@link SpringFactoriesLoader spring.factories} to determine available extensions.
+ * 使用 {@link BindMarkerFactoryProvider} 从 {@link ConnectionFactory} 解析
+ * {@link BindMarkersFactory}。方言解析使用 Spring 的
+ * {@link SpringFactoriesLoader spring.factories} 来确定可用的扩展。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -45,8 +45,7 @@ public final class BindMarkersFactoryResolver {
 
 
 	/**
-	 * Retrieve a {@link BindMarkersFactory} by inspecting {@link ConnectionFactory}
-	 * and its metadata.
+	 * 通过检查 {@link ConnectionFactory} 及其元数据来获取 {@link BindMarkersFactory}。
 	 * @param connectionFactory the connection factory to inspect
 	 * @return the resolved {@link BindMarkersFactory}
 	 * @throws NoBindMarkersFactoryException if no {@link BindMarkersFactory} can be resolved
@@ -69,16 +68,15 @@ public final class BindMarkersFactoryResolver {
 
 
 	/**
-	 * SPI to extend Spring's default R2DBC BindMarkersFactory discovery mechanism.
-	 * Implementations of this interface are discovered through Spring's
-	 * {@link SpringFactoriesLoader} mechanism.
+	 * SPI，用于扩展 Spring 默认的 R2DBC BindMarkersFactory 发现机制。
+	 * 此接口的实现通过 Spring 的 {@link SpringFactoriesLoader} 机制发现。
 	 * @see SpringFactoriesLoader
 	 */
 	@FunctionalInterface
 	public interface BindMarkerFactoryProvider {
 
 		/**
-		 * Return a {@link BindMarkersFactory} for a {@link ConnectionFactory}.
+		 * 返回用于 {@link ConnectionFactory} 的 {@link BindMarkersFactory}。
 		 * @param connectionFactory the connection factory to be used with the {@link BindMarkersFactory}
 		 * @return the {@link BindMarkersFactory} if the {@link BindMarkerFactoryProvider}
 		 * can provide a bind marker factory object, otherwise {@code null}
@@ -89,14 +87,14 @@ public final class BindMarkersFactoryResolver {
 
 
 	/**
-	 * Exception thrown when {@link BindMarkersFactoryResolver} cannot resolve a
-	 * {@link BindMarkersFactory}.
+	 * 当 {@link BindMarkersFactoryResolver} 无法解析
+	 * {@link BindMarkersFactory} 时抛出的异常。
 	 */
 	@SuppressWarnings("serial")
 	public static class NoBindMarkersFactoryException extends NonTransientDataAccessException {
 
 		/**
-		 * Constructor for NoBindMarkersFactoryException.
+		 * NoBindMarkersFactoryException 的构造函数。
 		 * @param msg the detail message
 		 */
 		public NoBindMarkersFactoryException(String msg) {
@@ -106,8 +104,8 @@ public final class BindMarkersFactoryResolver {
 
 
 	/**
-	 * Built-in bind maker factories. Used typically as last {@link BindMarkerFactoryProvider}
-	 * when other providers register with a higher precedence.
+	 * 内置的绑定标记工厂。当其他提供者以更高优先级注册时，
+	 * 通常作为最后一个 {@link BindMarkerFactoryProvider} 使用。
 	 * @see org.springframework.core.Ordered
 	 * @see org.springframework.core.annotation.AnnotationAwareOrderComparator
 	 */

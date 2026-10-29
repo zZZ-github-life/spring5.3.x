@@ -19,12 +19,12 @@ package org.springframework.jdbc.datasource;
 import java.sql.Connection;
 
 /**
- * Subinterface of {@link java.sql.Connection} to be implemented by
- * Connection proxies. Allows access to the underlying target Connection.
+ * {@link java.sql.Connection} 的子接口，由 Connection 代理实现。
+ * 允许访问底层的目标 Connection。
  *
- * <p>This interface can be checked when there is a need to cast to a
- * native JDBC Connection such as Oracle's OracleConnection. Alternatively,
- * all such connections also support JDBC 4.0's {@link Connection#unwrap}.
+ * <p>当需要强制转换为原生 JDBC Connection（如 Oracle 的
+ * OracleConnection）时，可以检查此接口。另外，所有这些连接也都
+ * 支持 JDBC 4.0 的 {@link Connection#unwrap}。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -35,9 +35,9 @@ import java.sql.Connection;
 public interface ConnectionProxy extends Connection {
 
 	/**
-	 * Return the target Connection of this proxy.
-	 * <p>This will typically be the native driver Connection
-	 * or a wrapper from a connection pool.
+	 * 返回此代理的目标 Connection。
+	 * <p>这通常是原生驱动程序的 Connection，
+	 * 或连接池中的包装器。
 	 * @return the underlying Connection (never {@code null})
 	 */
 	Connection getTargetConnection();

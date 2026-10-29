@@ -36,12 +36,9 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.util.UriUtils;
 
 /**
- * A simple {@code ResourceResolver} that tries to find a resource under the given
- * locations matching to the request path.
+ * 简单的 {@code ResourceResolver}，尝试在给定位置下查找与请求路径匹配的资源。
  *
- * <p>This resolver does not delegate to the {@code ResourceResolverChain} and is
- * expected to be configured at the end in a chain of resolvers.
- *
+ * <p>此解析器不委托给 {@code ResourceResolverChain}，应配置在解析器链的末尾。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -52,18 +49,9 @@ public class PathResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * By default, when a Resource is found, the path of the resolved resource is
-	 * compared to ensure it's under the input location where it was found.
-	 * However sometimes that may not be the case, e.g. when
-	 * {@link CssLinkResourceTransformer}
-	 * resolves public URLs of links it contains, the CSS file is the location
-	 * and the resources being resolved are css files, images, fonts and others
-	 * located in adjacent or parent directories.
-	 * <p>This property allows configuring a complete list of locations under
-	 * which resources must be so that if a resource is not under the location
-	 * relative to which it was found, this list may be checked as well.
-	 * <p>By default {@link ResourceWebHandler} initializes this property
-	 * to match its list of locations.
+	 * 默认情况下，当找到 Resource 时，会比较所解析资源的路径，以确保它位于发现它的输入位置之下。但有时可能并非如此，例如当 {@link CssLinkResourceTransformer} 解析其包含链接的公共 URL 时，CSS 文件是位置，而所解析的资源是位于相邻或父目录中的 css 文件、图像、字体等。
+	 * <p>此属性允许配置完整的资源必须位于其下的位置列表，这样如果资源不在发现它的相对位置之下，也可以检查此列表。
+	 * <p>默认情况下，{@link ResourceWebHandler} 会将此属性初始化为与其位置列表匹配。
 	 * @param locations the list of allowed locations
 	 */
 	public void setAllowedLocations(@Nullable Resource... locations) {
@@ -102,9 +90,8 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Find the resource under the given location.
-	 * <p>The default implementation checks if there is a readable
-	 * {@code Resource} for the given path relative to the location.
+	 * 在给定位置下查找资源。
+	 * <p>默认实现检查相对于该位置的给定路径是否存在可读的 {@code Resource}。
 	 * @param resourcePath the path to the resource
 	 * @param location the location to check
 	 * @return the resource, or empty {@link Mono} if none found
@@ -145,10 +132,7 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Perform additional checks on a resolved resource beyond checking whether the
-	 * resource exists and is readable. The default implementation also verifies
-	 * the resource is either under the location relative to which it was found or
-	 * is under one of the {@link #setAllowedLocations allowed locations}.
+	 * 对已解析资源执行除检查资源是否存在且可读之外的其他检查。默认实现还会验证资源要么位于发现它的相对位置之下，要么位于{@link #setAllowedLocations 允许的位置}之一。
 	 * @param resource the resource to check
 	 * @param location the location relative to which the resource was found
 	 * @return "true" if resource is in a valid location, "false" otherwise.

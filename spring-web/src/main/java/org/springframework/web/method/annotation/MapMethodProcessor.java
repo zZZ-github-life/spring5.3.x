@@ -28,12 +28,11 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves {@link Map} method arguments and handles {@link Map} return values.
+ * 解析 {@link Map} 方法参数并处理 {@link Map} 返回值。
  *
- * <p>A Map return value can be interpreted in more than one way depending
- * on the presence of annotations like {@code @ModelAttribute} or
- * {@code @ResponseBody}. As of 5.2 this resolver returns false if the
- * parameter is annotated.
+ * <p>根据 {@code @ModelAttribute} 或 {@code @ResponseBody} 等注解是否存在，
+ * Map 返回值可以有多种解释。自 5.2 起，如果参数带有注解，
+ * 此解析器将返回 false。
  *
  * @author Rossen Stoyanchev
  * @since 3.1

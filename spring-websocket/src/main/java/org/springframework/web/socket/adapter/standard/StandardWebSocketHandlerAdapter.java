@@ -35,7 +35,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator;
 
 /**
- * Adapts a {@link WebSocketHandler} to the standard WebSocket for Java API.
+ * 将 {@link WebSocketHandler} 适配到标准 Java WebSocket API。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

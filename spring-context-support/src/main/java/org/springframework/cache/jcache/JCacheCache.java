@@ -28,11 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.cache.Cache} implementation on top of a
- * {@link Cache javax.cache.Cache} instance.
- *
- * <p>Note: This class has been updated for JCache 1.0, as of Spring 4.0.
- *
+ * 基于 {@link Cache javax.cache.Cache} 实例的 {@link org.springframework.cache.Cache} 实现。<p>注意：自 Spring 4.0 起，此类已针对 JCache 1.0 更新。
  * @author Juergen Hoeller
  * @author Stephane Nicoll
  * @since 3.2
@@ -44,7 +40,7 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 
 
 	/**
-	 * Create a {@code JCacheCache} instance.
+	 * 创建一个 {@code JCacheCache} 实例。
 	 * @param jcache backing JCache Cache instance
 	 */
 	public JCacheCache(Cache<Object, Object> jcache) {
@@ -52,7 +48,7 @@ public class JCacheCache extends AbstractValueAdaptingCache {
 	}
 
 	/**
-	 * Create a {@code JCacheCache} instance.
+	 * 创建一个 {@code JCacheCache} 实例。
 	 * @param jcache backing JCache Cache instance
 	 * @param allowNullValues whether to accept and convert null values for this cache
 	 */

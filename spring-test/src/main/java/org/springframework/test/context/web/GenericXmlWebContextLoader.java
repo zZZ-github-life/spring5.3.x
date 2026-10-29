@@ -22,11 +22,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
 /**
- * Concrete implementation of {@link AbstractGenericWebContextLoader} that loads
- * bean definitions from XML resources.
- *
- * <p>Default resource locations are detected using the suffix
- * {@code "-context.xml"}.
+ * {@link AbstractGenericWebContextLoader} 的具体实现，从 XML 资源加载 bean 定义。
+ * <p>默认资源位置使用后缀 {@code "-context.xml"} 检测。
  *
  * @author Sam Brannen
  * @since 3.2
@@ -36,9 +33,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 public class GenericXmlWebContextLoader extends AbstractGenericWebContextLoader {
 
 	/**
-	 * Load bean definitions into the supplied {@link GenericWebApplicationContext context}
-	 * from the locations in the supplied {@code WebMergedContextConfiguration}, using an
-	 * {@link XmlBeanDefinitionReader}.
+	 * 使用 {@link XmlBeanDefinitionReader}，从所提供的 {@code WebMergedContextConfiguration} 中的位置加载 bean 定义到所提供的 {@link GenericWebApplicationContext context} 中。
 	 * @see AbstractGenericWebContextLoader#loadBeanDefinitions
 	 */
 	@Override
@@ -48,8 +43,7 @@ public class GenericXmlWebContextLoader extends AbstractGenericWebContextLoader 
 	}
 
 	/**
-	 * Returns {@code "-context.xml"} in order to support detection of a
-	 * default XML config file.
+	 * 返回 {@code "-context.xml"}，以支持检测默认 XML 配置文件。
 	 */
 	@Override
 	protected String getResourceSuffix() {
@@ -57,8 +51,7 @@ public class GenericXmlWebContextLoader extends AbstractGenericWebContextLoader 
 	}
 
 	/**
-	 * Ensure that the supplied {@link WebMergedContextConfiguration} does not
-	 * contain {@link MergedContextConfiguration#getClasses() classes}.
+	 * 确保所提供的 {@link WebMergedContextConfiguration} 不包含{@link MergedContextConfiguration#getClasses() 类}。
 	 * @since 4.0.4
 	 * @see AbstractGenericWebContextLoader#validateMergedContextConfiguration
 	 */

@@ -25,7 +25,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract parser for &lt;context:property-.../&gt; elements.
+ * 用于 &lt;context:property-.../&gt; 元素的抽象解析器。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma

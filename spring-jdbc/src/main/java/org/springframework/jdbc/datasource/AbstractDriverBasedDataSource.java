@@ -23,8 +23,8 @@ import java.util.Properties;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for JDBC {@link javax.sql.DataSource} implementations
- * that operate on a JDBC {@link java.sql.Driver}.
+ * JDBC {@link javax.sql.DataSource} 实现类的抽象基类，
+ * 这些实现类基于 JDBC {@link java.sql.Driver} 进行操作。
  *
  * @author Juergen Hoeller
  * @since 2.5.5
@@ -53,7 +53,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 
 
 	/**
-	 * Set the JDBC URL to use for connecting through the Driver.
+	 * 设置通过 Driver 建立连接时使用的 JDBC URL。
 	 * @see java.sql.Driver#connect(String, java.util.Properties)
 	 */
 	public void setUrl(@Nullable String url) {
@@ -61,7 +61,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Return the JDBC URL to use for connecting through the Driver.
+	 * 返回通过 Driver 建立连接时使用的 JDBC URL。
 	 */
 	@Nullable
 	public String getUrl() {
@@ -69,7 +69,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Set the JDBC username to use for connecting through the Driver.
+	 * 设置通过 Driver 建立连接时使用的 JDBC 用户名。
 	 * @see java.sql.Driver#connect(String, java.util.Properties)
 	 */
 	public void setUsername(@Nullable String username) {
@@ -77,7 +77,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Return the JDBC username to use for connecting through the Driver.
+	 * 返回通过 Driver 建立连接时使用的 JDBC 用户名。
 	 */
 	@Nullable
 	public String getUsername() {
@@ -85,7 +85,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Set the JDBC password to use for connecting through the Driver.
+	 * 设置通过 Driver 建立连接时使用的 JDBC 密码。
 	 * @see java.sql.Driver#connect(String, java.util.Properties)
 	 */
 	public void setPassword(@Nullable String password) {
@@ -93,7 +93,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Return the JDBC password to use for connecting through the Driver.
+	 * 返回通过 Driver 建立连接时使用的 JDBC 密码。
 	 */
 	@Nullable
 	public String getPassword() {
@@ -101,7 +101,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Specify a database catalog to be applied to each Connection.
+	 * 指定要应用到每个 Connection 的数据库 catalog。
 	 * @since 4.3.2
 	 * @see Connection#setCatalog
 	 */
@@ -110,7 +110,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Return the database catalog to be applied to each Connection, if any.
+	 * 返回要应用到每个 Connection 的数据库 catalog（如果有）。
 	 * @since 4.3.2
 	 */
 	@Nullable
@@ -119,7 +119,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Specify a database schema to be applied to each Connection.
+	 * 指定要应用到每个 Connection 的数据库 schema。
 	 * @since 4.3.2
 	 * @see Connection#setSchema
 	 */
@@ -128,7 +128,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Return the database schema to be applied to each Connection, if any.
+	 * 返回要应用到每个 Connection 的数据库 schema（如果有）。
 	 * @since 4.3.2
 	 */
 	@Nullable
@@ -137,11 +137,10 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Specify arbitrary connection properties as key/value pairs,
-	 * to be passed to the Driver.
-	 * <p>Can also contain "user" and "password" properties. However,
-	 * any "username" and "password" bean properties specified on this
-	 * DataSource will override the corresponding connection properties.
+	 * 以键值对形式指定任意连接属性，这些属性将传递给 Driver。
+	 * <p>还可以包含 "user" 和 "password" 属性。不过，在此
+	 * DataSource 上指定的任何 "username" 和 "password" Bean 属性
+	 * 都将覆盖对应的连接属性。
 	 * @see java.sql.Driver#connect(String, java.util.Properties)
 	 */
 	public void setConnectionProperties(@Nullable Properties connectionProperties) {
@@ -149,7 +148,7 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Return the connection properties to be passed to the Driver, if any.
+	 * 返回要传递给 Driver 的连接属性（如果有）。
 	 */
 	@Nullable
 	public Properties getConnectionProperties() {
@@ -158,8 +157,8 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 
 
 	/**
-	 * This implementation delegates to {@code getConnectionFromDriver},
-	 * using the default username and password of this DataSource.
+	 * 此实现委托给 {@code getConnectionFromDriver}，
+	 * 并使用此 DataSource 的默认用户名和密码。
 	 * @see #getConnectionFromDriver(String, String)
 	 * @see #setUsername
 	 * @see #setPassword
@@ -170,8 +169,8 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * This implementation delegates to {@code getConnectionFromDriver},
-	 * using the given username and password.
+	 * 此实现委托给 {@code getConnectionFromDriver}，
+	 * 并使用给定的用户名和密码。
 	 * @see #getConnectionFromDriver(String, String)
 	 */
 	@Override
@@ -181,8 +180,8 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 
 
 	/**
-	 * Build properties for the Driver, including the given username and password (if any),
-	 * and obtain a corresponding Connection.
+	 * 为 Driver 构建属性（包括给定的用户名和密码，如果有），
+	 * 并获取相应的 Connection。
 	 * @param username the name of the user
 	 * @param password the password to use
 	 * @return the obtained Connection
@@ -213,8 +212,8 @@ public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
 	}
 
 	/**
-	 * Obtain a Connection using the given properties.
-	 * <p>Template method to be implemented by subclasses.
+	 * 使用给定属性获取一个 Connection。
+	 * <p>这是一个模板方法，由子类实现。
 	 * @param props the merged connection properties
 	 * @return the obtained Connection
 	 * @throws SQLException in case of failure

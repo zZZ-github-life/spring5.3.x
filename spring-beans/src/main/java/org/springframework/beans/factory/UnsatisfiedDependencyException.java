@@ -21,9 +21,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Exception thrown when a bean depends on other beans or simple properties
- * that were not specified in the bean factory definition, although
- * dependency checking was enabled.
+ * 当 Bean 依赖于其他 Bean 或简单属性，而这些在 Bean 工厂定义中并未指定（尽管已启用依赖检查）时，抛
+ * 出该异常。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -37,7 +36,7 @@ public class UnsatisfiedDependencyException extends BeanCreationException {
 
 
 	/**
-	 * Create a new UnsatisfiedDependencyException.
+	 * 创建一个新的 UnsatisfiedDependencyException。
 	 * @param resourceDescription description of the resource that the bean definition came from
 	 * @param beanName the name of the bean requested
 	 * @param propertyName the name of the bean property that couldn't be satisfied
@@ -53,7 +52,7 @@ public class UnsatisfiedDependencyException extends BeanCreationException {
 	}
 
 	/**
-	 * Create a new UnsatisfiedDependencyException.
+	 * 创建一个新的 UnsatisfiedDependencyException。
 	 * @param resourceDescription description of the resource that the bean definition came from
 	 * @param beanName the name of the bean requested
 	 * @param propertyName the name of the bean property that couldn't be satisfied
@@ -67,7 +66,7 @@ public class UnsatisfiedDependencyException extends BeanCreationException {
 	}
 
 	/**
-	 * Create a new UnsatisfiedDependencyException.
+	 * 创建一个新的 UnsatisfiedDependencyException。
 	 * @param resourceDescription description of the resource that the bean definition came from
 	 * @param beanName the name of the bean requested
 	 * @param injectionPoint the injection point (field or method/constructor parameter)
@@ -84,7 +83,7 @@ public class UnsatisfiedDependencyException extends BeanCreationException {
 	}
 
 	/**
-	 * Create a new UnsatisfiedDependencyException.
+	 * 创建一个新的 UnsatisfiedDependencyException。
 	 * @param resourceDescription description of the resource that the bean definition came from
 	 * @param beanName the name of the bean requested
 	 * @param injectionPoint the injection point (field or method/constructor parameter)
@@ -100,7 +99,7 @@ public class UnsatisfiedDependencyException extends BeanCreationException {
 
 
 	/**
-	 * Return the injection point (field or method/constructor parameter), if known.
+	 * 返回注入点（字段或方法/构造器参数），如果已知的话。
 	 * @since 4.3
 	 */
 	@Nullable

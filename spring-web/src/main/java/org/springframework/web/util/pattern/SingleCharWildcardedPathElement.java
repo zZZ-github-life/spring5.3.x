@@ -21,8 +21,8 @@ import org.springframework.http.server.PathContainer.PathSegment;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * A literal path element that includes the single character wildcard '?' one
- * or more times (to basically many any character at that position).
+ * 包含一个或多个单字符通配符 '?' 的字面量路径元素
+ * （用于在该位置基本上匹配任意字符）。
  *
  * @author Andy Clement
  * @since 5.0

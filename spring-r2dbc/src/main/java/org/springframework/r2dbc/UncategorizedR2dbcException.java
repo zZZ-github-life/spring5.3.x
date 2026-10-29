@@ -22,8 +22,7 @@ import org.springframework.dao.UncategorizedDataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when we can't classify a {@link R2dbcException} into
- * one of our generic data access exceptions.
+ * 当我们无法将 {@link R2dbcException} 归类为通用数据访问异常之一时抛出的异常。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -31,13 +30,13 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class UncategorizedR2dbcException extends UncategorizedDataAccessException {
 
-	/** SQL that led to the problem. */
+	/** 导致问题的 SQL。 */
 	@Nullable
 	private final String sql;
 
 
 	/**
-	 * Constructor for {@code UncategorizedSQLException}.
+	 * {@code UncategorizedSQLException} 的构造函数。
 	 * @param msg the detail message
 	 * @param sql the offending SQL statement
 	 * @param ex the exception thrown by underlying data access API
@@ -49,14 +48,14 @@ public class UncategorizedR2dbcException extends UncategorizedDataAccessExceptio
 
 
 	/**
-	 * Return the wrapped {@link R2dbcException}.
+	 * 返回被包装的 {@link R2dbcException}。
 	 */
 	public R2dbcException getR2dbcException() {
 		return (R2dbcException) getCause();
 	}
 
 	/**
-	 * Return the SQL that led to the problem (if known).
+	 * 返回导致问题的 SQL（如果已知）。
 	 */
 	@Nullable
 	public String getSql() {

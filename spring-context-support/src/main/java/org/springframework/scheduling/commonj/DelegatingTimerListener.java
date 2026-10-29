@@ -22,7 +22,7 @@ import commonj.timers.TimerListener;
 import org.springframework.util.Assert;
 
 /**
- * Simple TimerListener adapter that delegates to a given Runnable.
+ * 简单的 TimerListener 适配器，委托给指定的 Runnable。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -38,7 +38,7 @@ public class DelegatingTimerListener implements TimerListener {
 
 
 	/**
-	 * Create a new DelegatingTimerListener.
+	 * 创建一个新的 DelegatingTimerListener。
 	 * @param runnable the Runnable implementation to delegate to
 	 */
 	public DelegatingTimerListener(Runnable runnable) {
@@ -48,7 +48,7 @@ public class DelegatingTimerListener implements TimerListener {
 
 
 	/**
-	 * Delegates execution to the underlying Runnable.
+	 * 将执行委托给底层的 Runnable。
 	 */
 	@Override
 	public void timerExpired(Timer timer) {

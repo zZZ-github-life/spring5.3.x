@@ -45,8 +45,7 @@ import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 
 /**
- * Default implementation of {@link ClientRequest.Builder}.
- *
+ * {@link ClientRequest.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @since 5.0
  */

@@ -27,9 +27,9 @@ import org.springframework.context.i18n.TimeZoneAwareLocaleContext;
 import org.springframework.lang.Nullable;
 
 /**
- * A context that holds user-specific <code>java.time</code> (JSR-310) settings
- * such as the user's Chronology (calendar system) and time zone.
- * <p>A {@code null} property value indicates the user has not specified a setting.
+ * 用于保存用户特定的 <code>java.time</code>（JSR-310）设置的上下文，例如用户的 Chronology（日历系
+ * 统）和时区。
+ * <p>{@code null} 属性值表示用户未指定该设置。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -45,14 +45,14 @@ public class DateTimeContext {
 
 
 	/**
-	 * Set the user's chronology (calendar system).
+	 * 设置用户的 Chronology（日历系统）。
 	 */
 	public void setChronology(@Nullable Chronology chronology) {
 		this.chronology = chronology;
 	}
 
 	/**
-	 * Return the user's chronology (calendar system), if any.
+	 * 返回用户的 Chronology（日历系统）（如果有）。
 	 */
 	@Nullable
 	public Chronology getChronology() {
@@ -60,10 +60,9 @@ public class DateTimeContext {
 	}
 
 	/**
-	 * Set the user's time zone.
-	 * <p>Alternatively, set a {@link TimeZoneAwareLocaleContext} on
-	 * {@link LocaleContextHolder}. This context class will fall back to
-	 * checking the locale context if no setting has been provided here.
+	 * 设置用户的时区。
+	 * <p>或者，在 {@link LocaleContextHolder} 上设置 {@link TimeZoneAwareLocaleContext}。如果此处未提
+	 * 供设置，此上下文类将回退为检查 locale 上下文。
 	 * @see org.springframework.context.i18n.LocaleContextHolder#getTimeZone()
 	 * @see org.springframework.context.i18n.LocaleContextHolder#setLocaleContext
 	 */
@@ -72,7 +71,7 @@ public class DateTimeContext {
 	}
 
 	/**
-	 * Return the user's time zone, if any.
+	 * 返回用户的时区（如果有）。
 	 */
 	@Nullable
 	public ZoneId getTimeZone() {
@@ -81,8 +80,7 @@ public class DateTimeContext {
 
 
 	/**
-	 * Get the DateTimeFormatter with this context's settings applied to the
-	 * base {@code formatter}.
+	 * 获取将本上下文的设置应用到基础 {@code formatter} 后的 DateTimeFormatter。
 	 * @param formatter the base formatter that establishes default
 	 * formatting rules, generally context-independent
 	 * @return the contextual DateTimeFormatter

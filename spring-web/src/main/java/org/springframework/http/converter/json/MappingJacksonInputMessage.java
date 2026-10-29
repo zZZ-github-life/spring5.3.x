@@ -24,8 +24,8 @@ import org.springframework.http.HttpInputMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link HttpInputMessage} that can eventually stores a Jackson view that will be used
- * to deserialize the message.
+ * {@link HttpInputMessage}，最终可以存储一个 Jackson 视图，
+ * 用于反序列化该消息。
  *
  * @author Sebastien Deleuze
  * @since 4.2

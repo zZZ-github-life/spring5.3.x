@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Base model for a JMS listener endpoint.
+ * JMS 监听器端点的基类模型。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -52,14 +52,14 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 
 
 	/**
-	 * Set a custom id for this endpoint.
+	 * 为此端点设置自定义 id。
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
-	 * Return the id of this endpoint (possibly generated).
+	 * 返回此端点的 id（可能是自动生成的）。
 	 */
 	@Override
 	public String getId() {
@@ -67,14 +67,14 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	}
 
 	/**
-	 * Set the name of the destination for this endpoint.
+	 * 设置此端点的目标名称。
 	 */
 	public void setDestination(@Nullable String destination) {
 		this.destination = destination;
 	}
 
 	/**
-	 * Return the name of the destination for this endpoint.
+	 * 返回此端点的目标名称。
 	 */
 	@Nullable
 	public String getDestination() {
@@ -82,14 +82,14 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	}
 
 	/**
-	 * Set the name for the durable subscription.
+	 * 设置持久订阅的名称。
 	 */
 	public void setSubscription(@Nullable String subscription) {
 		this.subscription = subscription;
 	}
 
 	/**
-	 * Return the name for the durable subscription, if any.
+	 * 返回持久订阅的名称（如果有）。
 	 */
 	@Nullable
 	public String getSubscription() {
@@ -97,15 +97,15 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	}
 
 	/**
-	 * Set the JMS message selector expression.
-	 * <p>See the JMS specification for a detailed definition of selector expressions.
+	 * 设置 JMS 消息选择器表达式。
+	 * <p>有关选择器表达式的详细定义，请参见 JMS 规范。
 	 */
 	public void setSelector(@Nullable String selector) {
 		this.selector = selector;
 	}
 
 	/**
-	 * Return the JMS message selector expression, if any.
+	 * 返回 JMS 消息选择器表达式（如果有）。
 	 */
 	@Nullable
 	public String getSelector() {
@@ -113,18 +113,18 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	}
 
 	/**
-	 * Set a concurrency for the listener, if any.
-	 * <p>The concurrency limits can be a "lower-upper" String, e.g. "5-10", or a simple
-	 * upper limit String, e.g. "10" (the lower limit will be 1 in this case).
-	 * <p>The underlying container may or may not support all features. For instance, it
-	 * may not be able to scale: in that case only the upper value is used.
+	 * 设置监听器的并发（如果有）。
+	 * <p>并发上限可以是 "lower-upper"（下限-上限）形式的字符串，例如 "5-10"，
+	 * 也可以只是上限字符串，例如 "10"（此时下限为 1）。
+	 * <p>底层容器可能支持也可能不支持所有特性。例如，它可能无法伸缩：
+	 * 此时只使用上限值。
 	 */
 	public void setConcurrency(@Nullable String concurrency) {
 		this.concurrency = concurrency;
 	}
 
 	/**
-	 * Return the concurrency for the listener, if any.
+	 * 返回监听器的并发（如果有）。
 	 */
 	@Nullable
 	public String getConcurrency() {
@@ -162,8 +162,7 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	}
 
 	/**
-	 * Create a {@link MessageListener} that is able to serve this endpoint for the
-	 * specified container.
+	 * 创建一个 {@link MessageListener}，使其能够为指定容器服务此端点。
 	 */
 	protected abstract MessageListener createMessageListener(MessageListenerContainer container);
 
@@ -172,8 +171,8 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 	}
 
 	/**
-	 * Return a description for this endpoint.
-	 * <p>Available to subclasses, for inclusion in their {@code toString()} result.
+	 * 返回此端点的描述。
+	 * <p>可供子类使用，以便包含在其 {@code toString()} 结果中。
 	 */
 	protected StringBuilder getEndpointDescription() {
 		StringBuilder result = new StringBuilder();
@@ -189,7 +188,7 @@ public abstract class AbstractJmsListenerEndpoint implements JmsListenerEndpoint
 
 
 	/**
-	 * Inner class to avoid a hard dependency on the JCA API.
+	 * 内部类，用于避免对 JCA API 的硬依赖。
 	 */
 	private class JcaEndpointConfigurer {
 

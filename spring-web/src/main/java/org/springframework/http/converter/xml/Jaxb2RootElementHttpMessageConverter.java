@@ -45,15 +45,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter
- * HttpMessageConverter} that can read and write XML using JAXB2.
+ * {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter}
+ * 的实现，可使用 JAXB2 读写 XML。
  *
- * <p>This converter can read classes annotated with {@link XmlRootElement} and
- * {@link XmlType}, and write classes annotated with {@link XmlRootElement},
- * or subclasses thereof.
+ * <p>此转换器可以读取标注 {@link XmlRootElement} 和
+ * {@link XmlType} 的类，并写入标注 {@link XmlRootElement}
+ * 的类或其子类。
  *
- * <p>Note: When using Spring's Marshaller/Unmarshaller abstractions from {@code spring-oxm},
- * you should use the {@link MarshallingHttpMessageConverter} instead.
+ * <p>注意：使用 {@code spring-oxm} 中 Spring 的 Marshaller/Unmarshaller 抽象时，
+ * 应改用 {@link MarshallingHttpMessageConverter}。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -69,25 +69,25 @@ public class Jaxb2RootElementHttpMessageConverter extends AbstractJaxb2HttpMessa
 
 
 	/**
-	 * Indicate whether DTD parsing should be supported.
-	 * <p>Default is {@code false} meaning that DTD is disabled.
+	 * 指示是否应支持 DTD 解析。
+	 * <p>默认为 {@code false}，表示禁用 DTD。
 	 */
 	public void setSupportDtd(boolean supportDtd) {
 		this.supportDtd = supportDtd;
 	}
 
 	/**
-	 * Return whether DTD parsing is supported.
+	 * 返回是否支持 DTD 解析。
 	 */
 	public boolean isSupportDtd() {
 		return this.supportDtd;
 	}
 
 	/**
-	 * Indicate whether external XML entities are processed when converting to a Source.
-	 * <p>Default is {@code false}, meaning that external entities are not resolved.
-	 * <p><strong>Note:</strong> setting this option to {@code true} also
-	 * automatically sets {@link #setSupportDtd} to {@code true}.
+	 * 指示转换为 Source 时是否处理外部 XML 实体。
+	 * <p>默认为 {@code false}，表示不解析外部实体。
+	 * <p><strong>注意：</strong>将此选项设置为 {@code true} 还会
+	 * 自动将 {@link #setSupportDtd} 设置为 {@code true}。
 	 */
 	public void setProcessExternalEntities(boolean processExternalEntities) {
 		this.processExternalEntities = processExternalEntities;
@@ -97,7 +97,7 @@ public class Jaxb2RootElementHttpMessageConverter extends AbstractJaxb2HttpMessa
 	}
 
 	/**
-	 * Return whether XML external entities are allowed.
+	 * 返回是否允许 XML 外部实体。
 	 */
 	public boolean isProcessExternalEntities() {
 		return this.processExternalEntities;

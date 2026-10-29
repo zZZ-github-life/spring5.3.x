@@ -30,26 +30,21 @@ import org.springframework.web.multipart.support.StandardServletPartUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Special {@link org.springframework.validation.DataBinder} to perform data binding
- * from servlet request parameters to JavaBeans, including support for multipart files.
+ * 专用的 {@link org.springframework.validation.DataBinder}，用于从 Servlet 请求参数
+ * 向 JavaBean 进行数据绑定，包括对 multipart 文件的支持。
  *
- * <p><strong>WARNING</strong>: Data binding can lead to security issues by exposing
- * parts of the object graph that are not meant to be accessed or modified by
- * external clients. Therefore the design and use of data binding should be considered
- * carefully with regard to security. For more details, please refer to the dedicated
- * sections on data binding for
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> and
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>
- * in the reference manual.
+ * <p><strong>警告</strong>：数据绑定可能会暴露不应被外部客户端访问或修改的
+ * 对象图部分，从而带来安全问题。因此，应仔细考虑数据绑定的设计与使用对安全性的影响。
+ * 更多详情请参阅参考手册中关于数据绑定的专门章节：
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a>
+ * 和 <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>。
  *
- * <p>See the DataBinder/WebDataBinder superclasses for customization options,
- * which include specifying allowed/required fields, and registering custom
- * property editors.
+ * <p>有关定制选项（包括指定允许/必需的字段以及注册自定义属性编辑器），
+ * 请参阅 DataBinder/WebDataBinder 父类。
  *
- * <p>Can also be used for manual data binding in custom web controllers:
- * for example, in a plain Controller implementation or in a MultiActionController
- * handler method. Simply instantiate a ServletRequestDataBinder for each binding
- * process, and invoke {@code bind} with the current ServletRequest as argument:
+ * <p>也可用于自定义 Web 控制器中的手动数据绑定：例如，在普通的 Controller 实现中
+ * 或 MultiActionController 处理器方法中。只需为每次绑定过程实例化一个
+ * ServletRequestDataBinder，并以当前 ServletRequest 作为参数调用 {@code bind}：
  *
  * <pre class="code">
  * MyBean myBean = new MyBean();
@@ -74,7 +69,7 @@ import org.springframework.web.util.WebUtils;
 public class ServletRequestDataBinder extends WebDataBinder {
 
 	/**
-	 * Create a new ServletRequestDataBinder instance, with default object name.
+	 * 创建一个新的 ServletRequestDataBinder 实例，使用默认对象名称。
 	 * @param target the target object to bind onto (or {@code null}
 	 * if the binder is just used to convert a plain parameter value)
 	 * @see #DEFAULT_OBJECT_NAME
@@ -84,7 +79,7 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	}
 
 	/**
-	 * Create a new ServletRequestDataBinder instance.
+	 * 创建一个新的 ServletRequestDataBinder 实例。
 	 * @param target the target object to bind onto (or {@code null}
 	 * if the binder is just used to convert a plain parameter value)
 	 * @param objectName the name of the target object
@@ -95,17 +90,16 @@ public class ServletRequestDataBinder extends WebDataBinder {
 
 
 	/**
-	 * Bind the parameters of the given request to this binder's target,
-	 * also binding multipart files in case of a multipart request.
-	 * <p>This call can create field errors, representing basic binding
-	 * errors like a required field (code "required"), or type mismatch
-	 * between value and bean property (code "typeMismatch").
-	 * <p>Multipart files are bound via their parameter name, just like normal
-	 * HTTP parameters: i.e. "uploadedFile" to an "uploadedFile" bean property,
-	 * invoking a "setUploadedFile" setter method.
-	 * <p>The type of the target property for a multipart file can be MultipartFile,
-	 * byte[], or String. Servlet Part binding is also supported when the
-	 * request has not been parsed to MultipartRequest via MultipartResolver.
+	 * 将给定请求的参数绑定到此绑定器的目标对象，对于 multipart 请求
+	 * 还会绑定 multipart 文件。
+	 * <p>此调用可能创建字段错误，表示基本的绑定错误，例如必需字段缺失
+	 * （代码为 "required"），或值与 Bean 属性类型不匹配（代码为 "typeMismatch"）。
+	 * <p>multipart 文件通过其参数名进行绑定，就像普通的 HTTP 参数一样：
+	 * 即 "uploadedFile" 绑定到 "uploadedFile" Bean 属性，调用 "setUploadedFile"
+	 * setter 方法。
+	 * <p>multipart 文件目标属性的类型可以是 MultipartFile、byte[] 或 String。
+	 * 当请求尚未通过 MultipartResolver 解析为 MultipartRequest 时，
+	 * 也支持 Servlet Part 绑定。
 	 * @param request the request with parameters to bind (can be multipart)
 	 * @see org.springframework.web.multipart.MultipartHttpServletRequest
 	 * @see org.springframework.web.multipart.MultipartRequest
@@ -130,9 +124,8 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	}
 
 	/**
-	 * Extension point that subclasses can use to add extra bind values for a
-	 * request. Invoked before {@link #doBind(MutablePropertyValues)}.
-	 * The default implementation is empty.
+	 * 扩展点，子类可用它为请求添加额外的绑定值。在
+	 * {@link #doBind(MutablePropertyValues)} 之前调用。默认实现为空。
 	 * @param mpvs the property values that will be used for data binding
 	 * @param request the current request
 	 */
@@ -140,9 +133,9 @@ public class ServletRequestDataBinder extends WebDataBinder {
 	}
 
 	/**
-	 * Treats errors as fatal.
-	 * <p>Use this method only if it's an error if the input isn't valid.
-	 * This might be appropriate if all input is from dropdowns, for example.
+	 * 将错误视为致命错误。
+	 * <p>仅在输入无效属于错误的情况下使用此方法。例如，如果所有输入都来自下拉列表，
+	 * 这可能适用。
 	 * @throws ServletRequestBindingException subclass of ServletException on any binding problem
 	 */
 	public void closeNoCatch() throws ServletRequestBindingException {

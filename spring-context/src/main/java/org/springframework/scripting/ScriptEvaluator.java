@@ -21,11 +21,10 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
- * Spring's strategy interface for evaluating a script.
+ * Spring 用于评估脚本的策略接口。
  *
- * <p>Aside from language-specific implementations, Spring also ships
- * a version based on the standard {@code javax.script} package (JSR-223):
- * {@link org.springframework.scripting.support.StandardScriptEvaluator}.
+ * <p>除了特定语言的实现之外，Spring 还附带了一个基于标准 {@code javax.script} 包（JSR-223）的版本：
+ * {@link org.springframework.scripting.support.StandardScriptEvaluator}。
  *
  * @author Juergen Hoeller
  * @author Costin Leau
@@ -34,7 +33,7 @@ import org.springframework.lang.Nullable;
 public interface ScriptEvaluator {
 
 	/**
-	 * Evaluate the given script.
+	 * 评估给定的脚本。
 	 * @param script the ScriptSource for the script to evaluate
 	 * @return the return value of the script, if any
 	 * @throws ScriptCompilationException if the evaluator failed to read,
@@ -44,7 +43,7 @@ public interface ScriptEvaluator {
 	Object evaluate(ScriptSource script) throws ScriptCompilationException;
 
 	/**
-	 * Evaluate the given script with the given arguments.
+	 * 使用给定的参数评估给定的脚本。
 	 * @param script the ScriptSource for the script to evaluate
 	 * @param arguments the key-value pairs to expose to the script,
 	 * typically as script variables (may be {@code null} or empty)

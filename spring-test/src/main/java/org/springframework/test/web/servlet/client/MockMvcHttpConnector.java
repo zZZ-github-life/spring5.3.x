@@ -68,9 +68,7 @@ import org.springframework.web.servlet.ModelAndView;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 
 /**
- * Connector that handles requests by invoking a {@link MockMvc} rather than
- * making actual requests over HTTP.
- *
+ * 通过调用 {@link MockMvc} 而不是通过 HTTP 发出实际请求来处理请求的连接器。
  * @author Rossen Stoyanchev
  * @since 5.3
  */

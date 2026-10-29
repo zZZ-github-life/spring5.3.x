@@ -25,9 +25,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Handles method return values by delegating to a list of registered
- * {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
- * Previously resolved return types are cached for faster lookups.
+ * 通过委托给一组已注册的
+ * {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}
+ * 来处理方法返回值。之前已解析的返回类型会被缓存，以便更快查找。
  *
  * @author Rossen Stoyanchev
  * @since 3.1
@@ -38,15 +38,15 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 
 
 	/**
-	 * Return a read-only list with the registered handlers, or an empty list.
+	 * 返回包含已注册处理器的只读列表，或空列表。
 	 */
 	public List<HandlerMethodReturnValueHandler> getHandlers() {
 		return Collections.unmodifiableList(this.returnValueHandlers);
 	}
 
 	/**
-	 * Whether the given {@linkplain MethodParameter method return type} is supported by any registered
-	 * {@link HandlerMethodReturnValueHandler}.
+	 * 给定的{@linkplain MethodParameter 方法返回类型}是否受任何已注册的
+	 * {@link HandlerMethodReturnValueHandler} 支持。
 	 */
 	@Override
 	public boolean supportsReturnType(MethodParameter returnType) {
@@ -64,7 +64,8 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 	}
 
 	/**
-	 * Iterate over registered {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers} and invoke the one that supports it.
+	 * 遍历已注册的 {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}，
+	 * 并调用支持该返回值的那个处理器。
 	 * @throws IllegalStateException if no suitable {@link HandlerMethodReturnValueHandler} is found.
 	 */
 	@Override
@@ -103,7 +104,7 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodReturnValueHandler}.
+	 * 添加给定的 {@link HandlerMethodReturnValueHandler}。
 	 */
 	public HandlerMethodReturnValueHandlerComposite addHandler(HandlerMethodReturnValueHandler handler) {
 		this.returnValueHandlers.add(handler);
@@ -111,7 +112,7 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
+	 * 添加给定的 {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}。
 	 */
 	public HandlerMethodReturnValueHandlerComposite addHandlers(
 			@Nullable List<? extends HandlerMethodReturnValueHandler> handlers) {

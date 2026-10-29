@@ -28,8 +28,7 @@ import org.springframework.web.server.session.DefaultWebSessionManager;
 import org.springframework.web.server.session.WebSessionManager;
 
 /**
- * Base class for implementations of {@link WebTestClient.MockServerSpec}.
- *
+ * {@link WebTestClient.MockServerSpec} 实现的基类。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @param <B> a self reference to the builder type
@@ -97,8 +96,8 @@ abstract class AbstractMockServerSpec<B extends WebTestClient.MockServerSpec<B>>
 	}
 
 	/**
-	 * Subclasses must create an {@code WebHttpHandlerBuilder} that will then
-	 * be used to create the HttpHandler for the mock server.
+	 * 子类必须创建一个 {@code WebHttpHandlerBuilder}，
+	 * 随后将用于为模拟服务器创建 HttpHandler。
 	 */
 	protected abstract WebHttpHandlerBuilder initHttpHandlerBuilder();
 

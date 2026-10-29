@@ -30,7 +30,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * General utility methods for working with <em>profile values</em>.
+ * 用于处理<em>配置值</em>的通用工具方法。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -45,15 +45,13 @@ public abstract class ProfileValueUtils {
 
 
 	/**
-	 * Retrieves the {@link ProfileValueSource} type for the specified
-	 * {@link Class test class} as configured via the
+	 * 检索指定 {@link Class 测试类}通过
 	 * {@link ProfileValueSourceConfiguration
-	 * &#064;ProfileValueSourceConfiguration} annotation and instantiates a new
-	 * instance of that type.
-	 * <p>If {@link ProfileValueSourceConfiguration
-	 * &#064;ProfileValueSourceConfiguration} is not present on the specified
-	 * class or if a custom {@link ProfileValueSource} is not declared, the
-	 * default {@link SystemProfileValueSource} will be returned instead.
+	 * &#064;ProfileValueSourceConfiguration} 注解配置的 {@link ProfileValueSource} 类型，并实例化该类型的
+	 * 新实例。
+	 * <p>如果指定类上不存在 {@link ProfileValueSourceConfiguration
+	 * &#064;ProfileValueSourceConfiguration}，或者未声明自定义 {@link ProfileValueSource}，
+	 * 则改为返回默认的 {@link SystemProfileValueSource}。
 	 * @param testClass the test class for which the ProfileValueSource should
 	 * be retrieved
 	 * @return the configured (or default) ProfileValueSource for the specified
@@ -105,11 +103,11 @@ public abstract class ProfileValueUtils {
 	}
 
 	/**
-	 * Determine if the supplied {@code testClass} is <em>enabled</em> in
-	 * the current environment, as specified by the {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation at the class level.
-	 * <p>Defaults to {@code true} if no {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation is declared.
+	 * 确定提供的 {@code testClass} 在当前环境中是否<em>启用</em>，
+	 * 依据类级别的 {@link IfProfileValue
+	 * &#064;IfProfileValue} 注解指定。
+	 * <p>如果未声明 {@link IfProfileValue
+	 * &#064;IfProfileValue} 注解，默认为 {@code true}。
 	 * @param testClass the test class
 	 * @return {@code true} if the test is <em>enabled</em> in the current
 	 * environment
@@ -120,13 +118,13 @@ public abstract class ProfileValueUtils {
 	}
 
 	/**
-	 * Determine if the supplied {@code testMethod} is <em>enabled</em> in
-	 * the current environment, as specified by the {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation, which may be declared on the test
-	 * method itself or at the class level. Class-level usage overrides
-	 * method-level usage.
-	 * <p>Defaults to {@code true} if no {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation is declared.
+	 * 确定提供的 {@code testMethod} 在当前环境中是否<em>启用</em>，
+	 * 依据 {@link IfProfileValue
+	 * &#064;IfProfileValue} 注解指定，该注解可声明在测试
+	 * 方法本身或类级别。类级用法优先于
+	 * 方法级用法。
+	 * <p>如果未声明 {@link IfProfileValue
+	 * &#064;IfProfileValue} 注解，默认为 {@code true}。
 	 * @param testMethod the test method
 	 * @param testClass the test class
 	 * @return {@code true} if the test is <em>enabled</em> in the current
@@ -137,13 +135,13 @@ public abstract class ProfileValueUtils {
 	}
 
 	/**
-	 * Determine if the supplied {@code testMethod} is <em>enabled</em> in
-	 * the current environment, as specified by the {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation, which may be declared on the test
-	 * method itself or at the class level. Class-level usage overrides
-	 * method-level usage.
-	 * <p>Defaults to {@code true} if no {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation is declared.
+	 * 确定提供的 {@code testMethod} 在当前环境中是否<em>启用</em>，
+	 * 依据 {@link IfProfileValue
+	 * &#064;IfProfileValue} 注解指定，该注解可声明在测试
+	 * 方法本身或类级别。类级用法优先于
+	 * 方法级用法。
+	 * <p>如果未声明 {@link IfProfileValue
+	 * &#064;IfProfileValue} 注解，默认为 {@code true}。
 	 * @param profileValueSource the ProfileValueSource to use to determine if
 	 * the test is enabled
 	 * @param testMethod the test method
@@ -166,9 +164,9 @@ public abstract class ProfileValueUtils {
 	}
 
 	/**
-	 * Determine if the {@code value} (or one of the {@code values})
-	 * in the supplied {@link IfProfileValue &#064;IfProfileValue} annotation is
-	 * <em>enabled</em> in the current environment.
+	 * 确定提供的 {@link IfProfileValue &#064;IfProfileValue} 注解中的
+	 * {@code value}（或其中一个 {@code values}）在当前环境中是否
+	 * <em>启用</em>。
 	 * @param profileValueSource the ProfileValueSource to use to determine if
 	 * the test is enabled
 	 * @param ifProfileValue the annotation to introspect; may be

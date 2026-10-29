@@ -23,10 +23,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * An extension of {@link ByteArrayResource} that a {@link ResourceTransformer}
- * can use to represent an original resource preserving all other information
- * except the content.
- *
+ * {@link ByteArrayResource} 的扩展，{@link ResourceTransformer}
+ * 可以用它来表示原始资源，保留除内容之外的所有其他信息。
  * @author Jeremy Grelle
  * @author Rossen Stoyanchev
  * @since 4.1

@@ -19,8 +19,7 @@ package org.springframework.jdbc.datasource.init;
 import org.springframework.core.io.support.EncodedResource;
 
 /**
- * Thrown by {@link ScriptUtils} if a statement in an SQL script failed when
- * executing it against the target database.
+ * 当 SQL 脚本中的某条语句针对目标数据库执行失败时，由 {@link ScriptUtils} 抛出。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -30,7 +29,7 @@ import org.springframework.core.io.support.EncodedResource;
 public class ScriptStatementFailedException extends ScriptException {
 
 	/**
-	 * Construct a new {@code ScriptStatementFailedException}.
+	 * 构造一个新的 {@code ScriptStatementFailedException}。
 	 * @param stmt the actual SQL statement that failed
 	 * @param stmtNumber the statement number in the SQL script (i.e.,
 	 * the n<sup>th</sup> statement present in the resource)
@@ -43,8 +42,7 @@ public class ScriptStatementFailedException extends ScriptException {
 
 
 	/**
-	 * Build an error message for an SQL script execution failure,
-	 * based on the supplied arguments.
+	 * 根据提供的参数为 SQL 脚本执行失败构建错误消息。
 	 * @param stmt the actual SQL statement that failed
 	 * @param stmtNumber the statement number in the SQL script (i.e.,
 	 * the n<sup>th</sup> statement present in the resource)

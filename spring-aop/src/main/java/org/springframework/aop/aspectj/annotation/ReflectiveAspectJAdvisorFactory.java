@@ -56,9 +56,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.comparator.InstanceComparator;
 
 /**
- * Factory that can create Spring AOP Advisors given AspectJ classes from
- * classes honoring AspectJ's annotation syntax, using reflection to invoke the
- * corresponding advice methods.
+ * 工厂，能够根据遵循 AspectJ 注解语法的类中的 AspectJ 类创建 Spring AOP Advisor，并使用反射来调用
+ * 相应的通知方法。
  *
  * @author Rod Johnson
  * @author Adrian Colyer
@@ -100,16 +99,16 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 
 	/**
-	 * Create a new {@code ReflectiveAspectJAdvisorFactory}.
+	 * 创建一个新的 {@code ReflectiveAspectJAdvisorFactory}。
 	 */
 	public ReflectiveAspectJAdvisorFactory() {
 		this(null);
 	}
 
 	/**
-	 * Create a new {@code ReflectiveAspectJAdvisorFactory}, propagating the given
-	 * {@link BeanFactory} to the created {@link AspectJExpressionPointcut} instances,
-	 * for bean pointcut handling as well as consistent {@link ClassLoader} resolution.
+	 * 创建一个新的 {@code ReflectiveAspectJAdvisorFactory}，将给定的 {@link BeanFactory} 传播到所创建
+	 * 的 {@link AspectJExpressionPointcut} 实例，用于处理 Bean 切点以及进行一致的 {@link ClassLoader}
+	 * 解析。
 	 * @param beanFactory the BeanFactory to propagate (may be {@code null}}
 	 * @since 4.3.6
 	 * @see AspectJExpressionPointcut#setBeanFactory
@@ -174,9 +173,8 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 	}
 
 	/**
-	 * Build a {@link org.springframework.aop.aspectj.DeclareParentsAdvisor}
-	 * for the given introduction field.
-	 * <p>Resulting Advisors will need to be evaluated for targets.
+	 * 为给定的引介字段构建一个 {@link org.springframework.aop.aspectj.DeclareParentsAdvisor}。<p>生成
+	 * 的 Advisor 需要针对目标进行评估。
 	 * @param introductionField the field to introspect
 	 * @return the Advisor instance, or {@code null} if not an Advisor
 	 */
@@ -313,9 +311,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 
 	/**
-	 * Synthetic advisor that instantiates the aspect.
-	 * Triggered by per-clause pointcut on non-singleton aspect.
-	 * The advice has no effect.
+	 * 用于实例化切面的合成 Advisor。由非单例切面上的 per 子句切点触发。该通知没有实际效果。
 	 */
 	@SuppressWarnings("serial")
 	protected static class SyntheticInstantiationAdvisor extends DefaultPointcutAdvisor {

@@ -21,8 +21,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Holder for a key-value style attribute that is part of a bean definition.
- * Keeps track of the definition source in addition to the key-value pair.
+ * Bean 定义中键值风格属性的持有者。除键值对外，还跟踪定义来源。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -39,7 +38,7 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 
 
 	/**
-	 * Create a new AttributeValue instance.
+	 * 创建一个新的 AttributeValue 实例。
 	 * @param name the name of the attribute (never {@code null})
 	 * @param value the value of the attribute (possibly before type conversion)
 	 */
@@ -51,14 +50,14 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 
 
 	/**
-	 * Return the name of the attribute.
+	 * 返回属性的名称。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * Return the value of the attribute.
+	 * 返回属性的值。
 	 */
 	@Nullable
 	public Object getValue() {
@@ -66,8 +65,7 @@ public class BeanMetadataAttribute implements BeanMetadataElement {
 	}
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置源 {@code Object}。<p>对象的确切类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;

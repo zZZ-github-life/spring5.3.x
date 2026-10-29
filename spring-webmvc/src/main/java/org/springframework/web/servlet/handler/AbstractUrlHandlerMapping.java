@@ -43,18 +43,17 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Abstract base class for URL-mapped {@link HandlerMapping} implementations.
+ * URL 映射的 {@link HandlerMapping} 实现的抽象基类。
  *
- * <p>Supports literal matches and pattern matches such as "/test/*", "/test/**",
- * and others. For details on pattern syntax refer to {@link PathPattern} when
- * parsed patterns are {@link #usesPathPatterns() enabled} or see
- * {@link AntPathMatcher} otherwise. The syntax is largely the same but the
- * {@code PathPattern} syntax is more tailored for web applications, and its
- * implementation is more efficient.
+ * <p>支持字面匹配和模式匹配，例如 "/test/*"、"/test/**"
+ * 等。有关模式语法的详情，当解析模式
+ * {@link #usesPathPatterns() 启用}时请参阅 {@link PathPattern}，
+ * 否则请参阅 {@link AntPathMatcher}。两者语法大致相同，但
+ * {@code PathPattern} 语法更针对 Web 应用程序定制，其
+ * 实现也更高效。
  *
- * <p>All path patterns are checked in order to find the most exact match for the
- * current request path where the "most exact" is the longest path pattern that
- * matches the current request path.
+ * <p>会检查所有路径模式，以找到与当前请求路径最精确的匹配，
+ * 其中“最精确”是指与当前请求路径匹配的最长路径模式。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -83,17 +82,17 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Set the root handler for this handler mapping, that is,
-	 * the handler to be registered for the root path ("/").
-	 * <p>Default is {@code null}, indicating no root handler.
+	 * 为此处理器映射设置根处理器，即为根路径（"/"）
+	 * 注册的处理器。
+	 * <p>默认值为 {@code null}，表示没有根处理器。
 	 */
 	public void setRootHandler(@Nullable Object rootHandler) {
 		this.rootHandler = rootHandler;
 	}
 
 	/**
-	 * Return the root handler for this handler mapping (registered for "/"),
-	 * or {@code null} if none.
+	 * 返回此处理器映射的根处理器（为 "/" 注册的处理器），
+	 * 如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public Object getRootHandler() {
@@ -101,9 +100,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Whether to match to URLs irrespective of the presence of a trailing slash.
-	 * If enabled a URL pattern such as "/users" also matches to "/users/".
-	 * <p>The default value is {@code false}.
+	 * 是否匹配 URL 时忽略是否存在尾部斜杠。
+	 * 如果启用，则诸如 "/users" 的 URL 模式也会匹配 "/users/"。
+	 * <p>默认值为 {@code false}。
 	 */
 	public void setUseTrailingSlashMatch(boolean useTrailingSlashMatch) {
 		this.useTrailingSlashMatch = useTrailingSlashMatch;
@@ -113,28 +112,28 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Whether to match to URLs irrespective of the presence of a trailing slash.
+	 * 是否匹配 URL 时忽略是否存在尾部斜杠。
 	 */
 	public boolean useTrailingSlashMatch() {
 		return this.useTrailingSlashMatch;
 	}
 
 	/**
-	 * Set whether to lazily initialize handlers. Only applicable to
-	 * singleton handlers, as prototypes are always lazily initialized.
-	 * Default is "false", as eager initialization allows for more efficiency
-	 * through referencing the controller objects directly.
-	 * <p>If you want to allow your controllers to be lazily initialized,
-	 * make them "lazy-init" and set this flag to true. Just making them
-	 * "lazy-init" will not work, as they are initialized through the
-	 * references from the handler mapping in this case.
+	 * 设置是否延迟初始化处理器。仅适用于
+	 * 单例处理器，因为原型始终是延迟初始化的。
+	 * 默认值为 "false"，因为通过直接引用控制器对象，
+	 * 立即初始化可以提高效率。
+	 * <p>如果希望允许控制器延迟初始化，
+	 * 请将它们设为 "lazy-init" 并将此标志设置为 true。仅将它们设为
+	 * "lazy-init" 不会生效，因为在这种情况下它们是通过
+	 * 处理器映射中的引用进行初始化的。
 	 */
 	public void setLazyInitHandlers(boolean lazyInitHandlers) {
 		this.lazyInitHandlers = lazyInitHandlers;
 	}
 
 	/**
-	 * Look up a handler for the URL path of the given request.
+	 * 查找给定请求的 URL 路径对应的处理器。
 	 * @param request current HTTP request
 	 * @return the handler instance, or {@code null} if none found
 	 */
@@ -174,8 +173,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Look up a handler instance for the given URL path. This method is used
-	 * when parsed {@code PathPattern}s are {@link #usesPathPatterns() enabled}.
+	 * 查找给定 URL 路径对应的处理器实例。当解析后的
+	 * {@code PathPattern} {@link #usesPathPatterns() 启用}时使用此方法。
 	 * @param path the parsed RequestPath
 	 * @param lookupPath the String lookupPath for checking direct hits
 	 * @param request current HTTP request
@@ -221,8 +220,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Look up a handler instance for the given URL path. This method is used
-	 * when String pattern matching with {@code PathMatcher} is in use.
+	 * 查找给定 URL 路径对应的处理器实例。当使用
+	 * {@code PathMatcher} 进行字符串模式匹配时使用此方法。
 	 * @param lookupPath the path to match patterns against
 	 * @param request current HTTP request
 	 * @return a matching handler, or {@code null} if not found
@@ -313,9 +312,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Validate the given handler against the current request.
-	 * <p>The default implementation is empty. Can be overridden in subclasses,
-	 * for example to enforce specific preconditions expressed in URL mappings.
+	 * 针对当前请求验证给定处理器。
+	 * <p>默认实现为空。可以在子类中重写，
+	 * 例如强制执行 URL 映射中表达的特定前提条件。
 	 * @param handler the handler object to validate
 	 * @param request current HTTP request
 	 * @throws Exception if validation failed
@@ -324,12 +323,12 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Build a handler object for the given raw handler, exposing the actual
-	 * handler, the {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}, as well as
-	 * the {@link #URI_TEMPLATE_VARIABLES_ATTRIBUTE} before executing the handler.
-	 * <p>The default implementation builds a {@link HandlerExecutionChain}
-	 * with a special interceptor that exposes the path attribute and URI
-	 * template variables
+	 * 为给定原始处理器构建处理器对象，在执行处理器之前
+	 * 暴露实际处理器、{@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}
+	 * 以及 {@link #URI_TEMPLATE_VARIABLES_ATTRIBUTE}。
+	 * <p>默认实现使用一个特殊的拦截器构建 {@link HandlerExecutionChain}，
+	 * 该拦截器负责暴露路径属性和 URI
+	 * 模板变量
 	 * @param rawHandler the raw handler to expose
 	 * @param pathWithinMapping the path to expose before executing the handler
 	 * @param uriTemplateVariables the URI template variables, can be {@code null} if no variables found
@@ -347,7 +346,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Expose the path within the current mapping as request attribute.
+	 * 将当前映射内的路径作为请求属性暴露。
 	 * @param pathWithinMapping the path within the current mapping
 	 * @param request the request to expose the path to
 	 * @see #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE
@@ -360,7 +359,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Expose the URI templates variables as request attribute.
+	 * 将 URI 模板变量作为请求属性暴露。
 	 * @param uriTemplateVariables the URI template variables
 	 * @param request the request to expose the path to
 	 * @see #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE
@@ -386,7 +385,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Register the specified handler for the given URL paths.
+	 * 为给定 URL 路径注册指定处理器。
 	 * @param urlPaths the URLs that the bean should be mapped to
 	 * @param beanName the name of the handler bean
 	 * @throws BeansException if the handler couldn't be registered
@@ -400,7 +399,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Register the specified handler for the given URL path.
+	 * 为给定 URL 路径注册指定处理器。
 	 * @param urlPath the URL the bean should be mapped to
 	 * @param handler the handler instance or handler bean name String
 	 * (a bean name will automatically be resolved into the corresponding handler bean)
@@ -460,9 +459,9 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 
 	/**
-	 * Return the handler mappings as a read-only Map, with the registered path
-	 * or pattern as key and the handler object (or handler bean name in case of
-	 * a lazy-init handler), as value.
+	 * 以只读 Map 形式返回处理器映射，以已注册的路径
+	 * 或模式为键，以处理器对象（如果是延迟初始化的处理器，
+	 * 则为处理器 bean 名称）为值。
 	 * @see #getDefaultHandler()
 	 */
 	public final Map<String, Object> getHandlerMap() {
@@ -470,8 +469,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Identical to {@link #getHandlerMap()} but populated when parsed patterns
-	 * are {@link #usesPathPatterns() enabled}; otherwise empty.
+	 * 与 {@link #getHandlerMap()} 相同，但在解析模式
+	 * {@link #usesPathPatterns() 启用}时才会填充；否则为空。
 	 * @since 5.3
 	 */
 	public final Map<PathPattern, Object> getPathPatternHandlerMap() {
@@ -480,7 +479,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Indicates whether this handler mapping support type-level mappings. Default to {@code false}.
+	 * 指示此处理器映射是否支持类型级映射。默认为 {@code false}。
 	 */
 	protected boolean supportsTypeLevelMappings() {
 		return false;
@@ -488,8 +487,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 
 
 	/**
-	 * Special interceptor for exposing the
-	 * {@link AbstractUrlHandlerMapping#PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE} attribute.
+	 * 用于暴露
+	 * {@link AbstractUrlHandlerMapping#PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE} 属性的特殊拦截器。
 	 * @see AbstractUrlHandlerMapping#exposePathWithinMapping
 	 */
 	private class PathExposingHandlerInterceptor implements HandlerInterceptor {
@@ -514,8 +513,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	}
 
 	/**
-	 * Special interceptor for exposing the
-	 * {@link AbstractUrlHandlerMapping#URI_TEMPLATE_VARIABLES_ATTRIBUTE} attribute.
+	 * 用于暴露
+	 * {@link AbstractUrlHandlerMapping#URI_TEMPLATE_VARIABLES_ATTRIBUTE} 属性的特殊拦截器。
 	 * @see AbstractUrlHandlerMapping#exposePathWithinMapping
 	 */
 	private class UriTemplateVariablesHandlerInterceptor implements HandlerInterceptor {

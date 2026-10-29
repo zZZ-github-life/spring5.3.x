@@ -34,20 +34,16 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link BeanNameGenerator} implementation for bean classes annotated with the
- * {@link org.springframework.stereotype.Component @Component} annotation or
- * with another annotation that is itself annotated with {@code @Component} as a
- * meta-annotation. For example, Spring's stereotype annotations (such as
- * {@link org.springframework.stereotype.Repository @Repository}) are
- * themselves annotated with {@code @Component}.
+ * 用于以 {@link org.springframework.stereotype.Component @Component} 注解标注的 Bean 类，或以本身
+ * 带有 {@code @Component} 元注解的其他注解标注的 Bean 类的 {@link BeanNameGenerator} 实现。例如，
+ * Spring 的构造型注解（如 {@link org.springframework.stereotype.Repository @Repository}）本身就带
+ * 有 {@code @Component} 注解。
  *
- * <p>Also supports Java EE 6's {@link javax.annotation.ManagedBean} and
- * JSR-330's {@link javax.inject.Named} annotations, if available. Note that
- * Spring component annotations always override such standard annotations.
+ * <p>还支持 Java EE 6 的 {@link javax.annotation.ManagedBean} 和 JSR-330 的
+ * {@link javax.inject.Named} 注解（如果可用）。请注意，Spring 组件注解始终会覆盖此类标准注解。
  *
- * <p>If the annotation's value doesn't indicate a bean name, an appropriate
- * name will be built based on the short name of the class (with the first
- * letter lower-cased), unless the two first letters are uppercase. For example:
+ * <p>如果注解的值未指示 Bean 名称，则将基于类的短名称（首字母小写）构建合适的名称，除非前两个字母
+ * 均为大写。例如：
  *
  * <pre class="code">com.xyz.FooServiceImpl -&gt; fooServiceImpl</pre>
  * <pre class="code">com.xyz.URLFooServiceImpl -&gt; URLFooServiceImpl</pre>
@@ -65,8 +61,7 @@ import org.springframework.util.StringUtils;
 public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 
 	/**
-	 * A convenient constant for a default {@code AnnotationBeanNameGenerator} instance,
-	 * as used for component scanning purposes.
+	 * 默认 {@code AnnotationBeanNameGenerator} 实例的便捷常量，用于组件扫描目的。
 	 * @since 5.2
 	 */
 	public static final AnnotationBeanNameGenerator INSTANCE = new AnnotationBeanNameGenerator();
@@ -90,7 +85,7 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 
 	/**
-	 * Derive a bean name from one of the annotations on the class.
+	 * 从类上的某个注解派生 Bean 名称。
 	 * @param annotatedDef the annotation-aware bean definition
 	 * @return the bean name, or {@code null} if none is found
 	 */
@@ -125,8 +120,7 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 
 	/**
-	 * Check whether the given annotation is a stereotype that is allowed
-	 * to suggest a component name through its annotation {@code value()}.
+	 * 检查给定注解是否是一种构造型注解，允许其通过注解的 {@code value()} 建议组件名称。
 	 * @param annotationType the name of the annotation class to check
 	 * @param metaAnnotationTypes the names of meta-annotations on the given annotation
 	 * @param attributes the map of attributes for the given annotation
@@ -144,8 +138,9 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 
 	/**
-	 * Derive a default bean name from the given bean definition.
-	 * <p>The default implementation delegates to {@link #buildDefaultBeanName(BeanDefinition)}.
+	 * 从给定的 Bean 定义派生默认 Bean 名称。
+	 *
+	 * <p>默认实现委托给 {@link #buildDefaultBeanName(BeanDefinition)}。
 	 * @param definition the bean definition to build a bean name for
 	 * @param registry the registry that the given bean definition is being registered with
 	 * @return the default bean name (never {@code null})
@@ -155,12 +150,12 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	}
 
 	/**
-	 * Derive a default bean name from the given bean definition.
-	 * <p>The default implementation simply builds a decapitalized version
-	 * of the short class name: e.g. "mypackage.MyJdbcDao" &rarr; "myJdbcDao".
-	 * <p>Note that inner classes will thus have names of the form
-	 * "outerClassName.InnerClassName", which because of the period in the
-	 * name may be an issue if you are autowiring by name.
+	 * 从给定的 Bean 定义派生默认 Bean 名称。
+	 *
+	 * <p>默认实现仅构建短类名的首字母小写版本：例如 "mypackage.MyJdbcDao" &rarr; "myJdbcDao"。
+	 *
+	 * <p>请注意，因此内部类将具有 "outerClassName.InnerClassName" 形式的名称，由于名称中含有句点，在按
+	 * 名称自动注入时可能会成为问题。
 	 * @param definition the bean definition to build a bean name for
 	 * @return the default bean name (never {@code null})
 	 */

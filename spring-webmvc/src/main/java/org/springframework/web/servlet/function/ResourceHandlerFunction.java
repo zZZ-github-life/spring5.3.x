@@ -31,7 +31,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * Resource-based implementation of {@link HandlerFunction}.
+ * 基于资源的 {@link HandlerFunction} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.2

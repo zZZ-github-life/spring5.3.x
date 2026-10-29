@@ -29,9 +29,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Defines access to the annotations of a specific type ({@link AnnotationMetadata class}
- * or {@link MethodMetadata method}), in a form that does not necessarily require the
- * class-loading.
+ * 定义对特定类型（{@link AnnotationMetadata class} 或 {@link MethodMetadata method}）注解的访问，
+ * 其形式不一定需要类加载。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -46,18 +45,15 @@ import org.springframework.util.MultiValueMap;
 public interface AnnotatedTypeMetadata {
 
 	/**
-	 * Return annotation details based on the direct annotations of the
-	 * underlying element.
+	 * 基于底层元素的直接注解返回注解详细信息。
 	 * @return merged annotations based on the direct annotations
 	 * @since 5.2
 	 */
 	MergedAnnotations getAnnotations();
 
 	/**
-	 * Determine whether the underlying element has an annotation or meta-annotation
-	 * of the given type defined.
-	 * <p>If this method returns {@code true}, then
-	 * {@link #getAnnotationAttributes} will return a non-null Map.
+	 * 确定底层元素是否定义了给定类型的注解或元注解。
+	 * <p>如果此方法返回 {@code true}，则 {@link #getAnnotationAttributes} 将返回非 null 的 Map。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 * @return whether a matching annotation is defined
@@ -67,9 +63,8 @@ public interface AnnotatedTypeMetadata {
 	}
 
 	/**
-	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation),
-	 * also taking attribute overrides on composed annotations into account.
+	 * 检索给定类型的注解的属性（如果有，即在底层元素上定义为直接注解或元注解），同时考虑组合注解上的属
+	 * 性覆盖。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 * @return a Map of attributes, with the attribute name as key (e.g. "value")
@@ -82,9 +77,8 @@ public interface AnnotatedTypeMetadata {
 	}
 
 	/**
-	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation),
-	 * also taking attribute overrides on composed annotations into account.
+	 * 检索给定类型的注解的属性（如果有，即在底层元素上定义为直接注解或元注解），同时考虑组合注解上的属
+	 * 性覆盖。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 *
@@ -108,9 +102,8 @@ public interface AnnotatedTypeMetadata {
 	}
 
 	/**
-	 * Retrieve all attributes of all annotations of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation).
-	 * Note that this variant does <i>not</i> take attribute overrides into account.
+	 * 检索给定类型所有注解的所有属性（如果有，即在底层元素上定义为直接注解或元注解）。请注意，此变体
+	 * <i>不</i>考虑属性覆盖。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 * @return a MultiMap of attributes, with the attribute name as key (e.g. "value")
@@ -124,9 +117,8 @@ public interface AnnotatedTypeMetadata {
 	}
 
 	/**
-	 * Retrieve all attributes of all annotations of the given type, if any (i.e. if
-	 * defined on the underlying element, as direct annotation or meta-annotation).
-	 * Note that this variant does <i>not</i> take attribute overrides into account.
+	 * 检索给定类型所有注解的所有属性（如果有，即在底层元素上定义为直接注解或元注解）。请注意，此变体
+	 * <i>不</i>考虑属性覆盖。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 * @param classValuesAsString  whether to convert class references to String

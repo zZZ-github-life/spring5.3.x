@@ -28,14 +28,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Generic bean that manages JCA 1.7 message endpoints within a Spring
- * application context, activating and deactivating the endpoint as part
- * of the application context's lifecycle.
+ * 在 Spring 应用程序上下文中管理 JCA 1.7 消息端点的通用 bean，
+ * 作为应用程序上下文生命周期的一部分激活和停用端点。
  *
- * <p>This class is completely generic in that it may work with any
- * ResourceAdapter, any MessageEndpointFactory, and any ActivationSpec.
- * It can be configured in standard bean style, for example through
- * Spring's XML bean definition format, as follows:
+ * <p>此类完全是通用的，可以与任何 ResourceAdapter、任何 MessageEndpointFactory
+ * 和任何 ActivationSpec 一起使用。可以通过标准 bean 风格进行配置，
+ * 例如通过 Spring 的 XML bean 定义格式，如下所示：
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.jca.endpoint.GenericMessageEndpointManager"&gt;
@@ -53,21 +51,18 @@ import org.springframework.util.Assert;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * In this example, Spring's own {@link GenericMessageEndpointFactory} is used
- * to point to a standard message listener object that happens to be supported
- * by the specified target ResourceAdapter: in this case, a JMS
- * {@link javax.jms.MessageListener} object as supported by the ActiveMQ
- * message broker, defined as a Spring bean:
+ * 在此示例中，使用 Spring 自己的 {@link GenericMessageEndpointFactory} 指向
+ * 标准消息监听器对象，该对象恰好被指定的目标 ResourceAdapter 支持：
+ * 在这种情况下，JMS {@link javax.jms.MessageListener} 对象由 ActiveMQ 消息代理支持，
+ * 定义为 Spring bean：
  *
  * <pre class="code">
  * &lt;bean id="messageListener" class="com.myorg.messaging.myMessageListener"&gt;
  *   ...
  * &lt;/bean&gt;</pre>
  *
- * The target ResourceAdapter may be configured as a local Spring bean as well
- * (the typical case) or obtained from JNDI (e.g. on WebLogic). For the
- * example above, a local ResourceAdapter bean could be defined as follows
- * (matching the "resourceAdapter" bean reference above):
+ * 目标 ResourceAdapter 可以配置为本地 Spring bean（典型情况）或从 JNDI 获取（例如在 WebLogic 上）。
+ * 对于上面的示例，可以如下定义本地 ResourceAdapter bean（匹配上面的 "resourceAdapter" bean 引用）：
  *
  * <pre class="code">
  * &lt;bean id="resourceAdapter" class="org.springframework.jca.support.ResourceAdapterFactoryBean"&gt;
@@ -81,23 +76,18 @@ import org.springframework.util.Assert;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * For a different target resource, the configuration would simply point to a
- * different ResourceAdapter and a different ActivationSpec object (which are
- * both specific to the resource provider), and possibly a different message
- * listener (e.g. a CCI {@link javax.resource.cci.MessageListener} for a
- * resource adapter which is based on the JCA Common Client Interface).
+ * 对于不同的目标资源，配置只需指向不同的 ResourceAdapter 和不同的 ActivationSpec 对象
+ * （两者都特定于资源提供者），以及可能不同的消息监听器
+ * （例如，基于 JCA 公共客户端接口的资源适配器的 CCI {@link javax.resource.cci.MessageListener}）。
  *
- * <p>The asynchronous execution strategy can be customized through the
- * "workManager" property on the ResourceAdapterFactoryBean (as shown above).
- * Check out {@link org.springframework.jca.work.SimpleTaskWorkManager}'s
- * javadoc for its configuration options; alternatively, any other
- * JCA-compliant WorkManager can be used (e.g. Geronimo's).
+ * <p>异步执行策略可以通过 ResourceAdapterFactoryBean 的 "workManager" 属性进行自定义
+ * （如上所示）。查看 {@link org.springframework.jca.work.SimpleTaskWorkManager} 的 javadoc
+ * 了解其配置选项；或者，可以使用任何其他符合 JCA 的 WorkManager（例如 Geronimo 的）。
  *
- * <p>Transactional execution is a responsibility of the concrete message endpoint,
- * as built by the specified MessageEndpointFactory. {@link GenericMessageEndpointFactory}
- * supports XA transaction participation through its "transactionManager" property,
- * typically with a Spring {@link org.springframework.transaction.jta.JtaTransactionManager}
- * or a plain {@link javax.transaction.TransactionManager} implementation specified there.
+ * <p>事务执行是由具体消息端点负责的职责，由指定的 MessageEndpointFactory 构建。
+ * {@link GenericMessageEndpointFactory} 通过其 "transactionManager" 属性支持 XA 事务参与，
+ * 通常指定 Spring {@link org.springframework.transaction.jta.JtaTransactionManager}
+ * 或普通的 {@link javax.transaction.TransactionManager} 实现。
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.jca.endpoint.GenericMessageEndpointManager"&gt;
@@ -118,9 +108,8 @@ import org.springframework.util.Assert;
  *
  * &lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"/&gt;</pre>
  *
- * Alternatively, check out your resource provider's ActivationSpec object,
- * which should support local transactions through a provider-specific config flag,
- * e.g. ActiveMQActivationSpec's "useRAManagedTransaction" bean property.
+ * 或者，查看你的资源提供者的 ActivationSpec 对象，它应该通过提供者特定的配置标志支持本地事务，
+ * 例如 ActiveMQActivationSpec 的 "useRAManagedTransaction" bean 属性。
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.jca.endpoint.GenericMessageEndpointManager"&gt;
@@ -167,14 +156,14 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 
 
 	/**
-	 * Set the JCA ResourceAdapter to manage endpoints for.
+	 * 设置要管理端点的 JCA ResourceAdapter。
 	 */
 	public void setResourceAdapter(@Nullable ResourceAdapter resourceAdapter) {
 		this.resourceAdapter = resourceAdapter;
 	}
 
 	/**
-	 * Return the JCA ResourceAdapter to manage endpoints for.
+	 * 返回要管理端点的 JCA ResourceAdapter。
 	 */
 	@Nullable
 	public ResourceAdapter getResourceAdapter() {
@@ -182,11 +171,9 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Set the JCA MessageEndpointFactory to activate, pointing to a
-	 * MessageListener object that the endpoints will delegate to.
-	 * <p>A MessageEndpointFactory instance may be shared across multiple
-	 * endpoints (i.e. multiple GenericMessageEndpointManager instances),
-	 * with different {@link #setActivationSpec ActivationSpec} objects applied.
+	 * 设置要激活的 JCA MessageEndpointFactory，指向端点将委托给的 MessageListener 对象。
+	 * <p>MessageEndpointFactory 实例可以在多个端点（即多个 GenericMessageEndpointManager 实例）之间共享，
+	 * 应用不同的 {@link #setActivationSpec ActivationSpec} 对象。
 	 * @see GenericMessageEndpointFactory#setMessageListener
 	 */
 	public void setMessageEndpointFactory(@Nullable MessageEndpointFactory messageEndpointFactory) {
@@ -194,7 +181,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Return the JCA MessageEndpointFactory to activate.
+	 * 返回要激活的 JCA MessageEndpointFactory。
 	 */
 	@Nullable
 	public MessageEndpointFactory getMessageEndpointFactory() {
@@ -202,16 +189,15 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Set the JCA ActivationSpec to use for activating the endpoint.
-	 * <p>Note that this ActivationSpec instance should not be shared
-	 * across multiple ResourceAdapter instances.
+	 * 设置用于激活端点的 JCA ActivationSpec。
+	 * <p>注意，此 ActivationSpec 实例不应在多个 ResourceAdapter 实例之间共享。
 	 */
 	public void setActivationSpec(@Nullable ActivationSpec activationSpec) {
 		this.activationSpec = activationSpec;
 	}
 
 	/**
-	 * Return the JCA ActivationSpec to use for activating the endpoint.
+	 * 返回用于激活端点的 JCA ActivationSpec。
 	 */
 	@Nullable
 	public ActivationSpec getActivationSpec() {
@@ -219,18 +205,15 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Set whether to auto-start the endpoint activation after this endpoint
-	 * manager has been initialized and the context has been refreshed.
-	 * <p>Default is "true". Turn this flag off to defer the endpoint
-	 * activation until an explicit {@link #start()} call.
+	 * 设置此端点管理器初始化并刷新上下文后是否自动启动端点激活。
+	 * <p>默认为 "true"。关闭此标志以将端点激活延迟到显式调用 {@link #start()}。
 	 */
 	public void setAutoStartup(boolean autoStartup) {
 		this.autoStartup = autoStartup;
 	}
 
 	/**
-	 * Return the value for the 'autoStartup' property.	If "true", this
-	 * endpoint manager will start upon a ContextRefreshedEvent.
+	 * 返回 'autoStartup' 属性的值。如果为 "true"，此端点管理器将在 ContextRefreshedEvent 时启动。
 	 */
 	@Override
 	public boolean isAutoStartup() {
@@ -238,18 +221,16 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Specify the phase in which this endpoint manager should be started
-	 * and stopped. The startup order proceeds from lowest to highest, and
-	 * the shutdown order is the reverse of that. By default, this value is
-	 * {@code Integer.MAX_VALUE} meaning that this endpoint manager starts
-	 * as late as possible and stops as soon as possible.
+	 * 指定此端点管理器应启动和停止的阶段。启动顺序从最低到最高，
+	 * 关闭顺序则相反。默认值为 {@code Integer.MAX_VALUE}，
+	 * 表示此端点管理器尽可能晚地启动并尽可能早地停止。
 	 */
 	public void setPhase(int phase) {
 		this.phase = phase;
 	}
 
 	/**
-	 * Return the phase in which this endpoint manager will be started and stopped.
+	 * 返回此端点管理器将启动和停止的阶段。
 	 */
 	@Override
 	public int getPhase() {
@@ -257,8 +238,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Prepares the message endpoint, and automatically activates it
-	 * if the "autoStartup" flag is set to "true".
+	 * 准备消息端点，如果 "autoStartup" 标志设置为 "true" 则自动激活。
 	 */
 	@Override
 	public void afterPropertiesSet() throws ResourceException {
@@ -283,7 +263,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Activates the configured message endpoint.
+	 * 激活配置的消息端点。
 	 */
 	@Override
 	public void start() {
@@ -303,7 +283,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Deactivates the configured message endpoint.
+	 * 停用配置的消息端点。
 	 */
 	@Override
 	public void stop() {
@@ -326,7 +306,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Return whether the configured message endpoint is currently active.
+	 * 返回配置的消息端点当前是否处于活动状态。
 	 */
 	@Override
 	public boolean isRunning() {
@@ -334,7 +314,7 @@ public class GenericMessageEndpointManager implements SmartLifecycle, Initializi
 	}
 
 	/**
-	 * Deactivates the message endpoint, preparing it for shutdown.
+	 * 停用消息端点，为关闭做准备。
 	 */
 	@Override
 	public void destroy() {

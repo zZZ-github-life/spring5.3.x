@@ -46,10 +46,10 @@ import org.springframework.web.server.session.DefaultWebSessionManager;
 import org.springframework.web.server.session.WebSessionManager;
 
 /**
- * Default adapter of {@link WebHandler} to the {@link HttpHandler} contract.
+ * {@link WebHandler} 到 {@link HttpHandler} 契约的默认适配器。
  *
- * <p>By default creates and configures a {@link DefaultServerWebExchange} and
- * then invokes the target {@code WebHandler}.
+ * <p>默认情况下会创建并配置一个 {@link DefaultServerWebExchange}，
+ * 然后调用目标 {@code WebHandler}。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -58,13 +58,12 @@ import org.springframework.web.server.session.WebSessionManager;
 public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHandler {
 
 	/**
-	 * Dedicated log category for disconnected client exceptions.
-	 * <p>Servlet containers don't expose a client disconnected callback; see
-	 * <a href="https://github.com/eclipse-ee4j/servlet-api/issues/44">eclipse-ee4j/servlet-api#44</a>.
-	 * <p>To avoid filling logs with unnecessary stack traces, we make an
-	 * effort to identify such network failures on a per-server basis, and then
-	 * log under a separate log category a simple one-line message at DEBUG level
-	 * or a full stack trace only at TRACE level.
+	 * 用于客户端断开连接异常的专用日志类别。
+	 * <p>Servlet 容器并未暴露客户端断开连接的回调；请参阅
+	 * <a href="https://github.com/eclipse-ee4j/servlet-api/issues/44">eclipse-ee4j/servlet-api#44</a>。
+	 * <p>为避免日志中充满不必要的堆栈跟踪，我们针对每个服务器尽力识别此类网络故障，
+	 * 然后在单独的日志类别下记录一条简单的单行信息（DEBUG 级别），
+	 * 或仅在 TRACE 级别记录完整堆栈跟踪。
 	 */
 	private static final String DISCONNECTED_CLIENT_LOG_CATEGORY =
 			"org.springframework.web.server.DisconnectedClient";
@@ -92,7 +91,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	@Nullable
 	private ApplicationContext applicationContext;
 
-	/** Whether to log potentially sensitive info (form data at DEBUG, headers at TRACE). */
+	/** 是否记录潜在的敏感信息（DEBUG 级别记录表单数据，TRACE 级别记录头部）。 */
 	private boolean enableLoggingRequestDetails = false;
 
 
@@ -102,10 +101,9 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 
 
 	/**
-	 * Configure a custom {@link WebSessionManager} to use for managing web
-	 * sessions. The provided instance is set on each created
-	 * {@link DefaultServerWebExchange}.
-	 * <p>By default this is set to {@link DefaultWebSessionManager}.
+	 * 配置一个自定义的 {@link WebSessionManager}，用于管理 Web 会话。
+	 * 所提供的实例会被设置到每个创建的 {@link DefaultServerWebExchange} 上。
+	 * <p>默认设置为 {@link DefaultWebSessionManager}。
 	 * @param sessionManager the session manager to use
 	 */
 	public void setSessionManager(WebSessionManager sessionManager) {
@@ -114,16 +112,16 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Return the configured {@link WebSessionManager}.
+	 * 返回已配置的 {@link WebSessionManager}。
 	 */
 	public WebSessionManager getSessionManager() {
 		return this.sessionManager;
 	}
 
 	/**
-	 * Configure a custom {@link ServerCodecConfigurer}. The provided instance is set on
-	 * each created {@link DefaultServerWebExchange}.
-	 * <p>By default this is set to {@link ServerCodecConfigurer#create()}.
+	 * 配置一个自定义的 {@link ServerCodecConfigurer}。所提供的实例会被设置到
+	 * 每个创建的 {@link DefaultServerWebExchange} 上。
+	 * <p>默认设置为 {@link ServerCodecConfigurer#create()}。
 	 * @param codecConfigurer the codec configurer to use
 	 */
 	public void setCodecConfigurer(ServerCodecConfigurer codecConfigurer) {
@@ -141,7 +139,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Return the configured {@link ServerCodecConfigurer}.
+	 * 返回已配置的 {@link ServerCodecConfigurer}。
 	 */
 	public ServerCodecConfigurer getCodecConfigurer() {
 		if (this.codecConfigurer == null) {
@@ -151,10 +149,10 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Configure a custom {@link LocaleContextResolver}. The provided instance is set on
-	 * each created {@link DefaultServerWebExchange}.
-	 * <p>By default this is set to
-	 * {@link org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver}.
+	 * 配置一个自定义的 {@link LocaleContextResolver}。所提供的实例会被设置到
+	 * 每个创建的 {@link DefaultServerWebExchange} 上。
+	 * <p>默认设置为
+	 * {@link org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver}。
 	 * @param resolver the locale context resolver to use
 	 */
 	public void setLocaleContextResolver(LocaleContextResolver resolver) {
@@ -163,16 +161,15 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Return the configured {@link LocaleContextResolver}.
+	 * 返回已配置的 {@link LocaleContextResolver}。
 	 */
 	public LocaleContextResolver getLocaleContextResolver() {
 		return this.localeContextResolver;
 	}
 
 	/**
-	 * Enable processing of forwarded headers, either extracting and removing,
-	 * or remove only.
-	 * <p>By default this is not set.
+	 * 启用转发头部的处理：要么提取并移除，要么仅移除。
+	 * <p>默认情况下不设置。
 	 * @param transformer the transformer to use
 	 * @since 5.1
 	 */
@@ -182,7 +179,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Return the configured {@link ForwardedHeaderTransformer}.
+	 * 返回已配置的 {@link ForwardedHeaderTransformer}。
 	 * @since 5.1
 	 */
 	@Nullable
@@ -191,9 +188,9 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Configure the {@code ApplicationContext} associated with the web application,
-	 * if it was initialized with one via
-	 * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext(ApplicationContext)}.
+	 * 配置与 Web 应用关联的 {@code ApplicationContext}（如果已通过
+	 * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext(ApplicationContext)}
+	 * 使用某个应用上下文进行了初始化）。
 	 * @param applicationContext the context
 	 * @since 5.0.3
 	 */
@@ -202,7 +199,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Return the configured {@code ApplicationContext}, if any.
+	 * 返回已配置的 {@code ApplicationContext}（如果有）。
 	 * @since 5.0.3
 	 */
 	@Nullable
@@ -211,8 +208,7 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * This method must be invoked after all properties have been set to
-	 * complete initialization.
+	 * 必须在设置完所有属性之后调用此方法，以完成初始化。
 	 */
 	public void afterPropertiesSet() {
 		if (logger.isDebugEnabled()) {
@@ -257,8 +253,8 @@ public class HttpWebHandlerAdapter extends WebHandlerDecorator implements HttpHa
 	}
 
 	/**
-	 * Format the request for logging purposes including HTTP method and URL.
-	 * <p>By default this prints the HTTP method, the URL path, and the query.
+	 * 为日志记录目的格式化请求，包括 HTTP 方法和 URL。
+	 * <p>默认情况下会输出 HTTP 方法、URL 路径以及查询字符串。
 	 * @param request the request to format
 	 * @return the String to display, never empty or {@code null}
 	 */

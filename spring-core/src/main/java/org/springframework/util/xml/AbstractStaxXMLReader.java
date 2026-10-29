@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for SAX {@code XMLReader} implementations that use StAX as a basis.
+ * 用于以 StAX 为基础的 SAX {@code XMLReader} 实现的抽象基类。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -100,23 +100,22 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	}
 
 	/**
-	 * Indicates whether the SAX feature {@code http://xml.org/sax/features/namespaces} is turned on.
+	 * 指示 SAX 特性 {@code http://xml.org/sax/features/namespaces} 是否已开启。
 	 */
 	protected boolean hasNamespacesFeature() {
 		return this.namespacesFeature;
 	}
 
 	/**
-	 * Indicates whether the SAX feature {@code http://xml.org/sax/features/namespaces-prefixes} is turned on.
+	 * 指示 SAX 特性 {@code http://xml.org/sax/features/namespaces-prefixes} 是否已开启。
 	 */
 	protected boolean hasNamespacePrefixesFeature() {
 		return this.namespacePrefixesFeature;
 	}
 
 	/**
-	 * Convert a {@code QName} to a qualified name, as used by DOM and SAX.
-	 * The returned string has a format of {@code prefix:localName} if the
-	 * prefix is set, or just {@code localName} if not.
+	 * 将 {@code QName} 转换为 DOM 和 SAX 所使用的限定名。如果设置了前缀，返回的字符串格式为
+	 * {@code prefix:localName}；否则仅为 {@code localName}。
 	 * @param qName the {@code QName}
 	 * @return the qualified name
 	 */
@@ -132,8 +131,8 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 
 
 	/**
-	 * Parse the StAX XML reader passed at construction-time.
-	 * <p><b>NOTE:</b>: The given {@code InputSource} is not read, but ignored.
+	 * 解析构造时传入的 StAX XML 读取器。
+	 * <p><b>NOTE:</b> 给定的 {@code InputSource} 不会被读取，而是被忽略。
 	 * @param ignored is ignored
 	 * @throws SAXException a SAX exception, possibly wrapping a {@code XMLStreamException}
 	 */
@@ -143,8 +142,8 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	}
 
 	/**
-	 * Parse the StAX XML reader passed at construction-time.
-	 * <p><b>NOTE:</b>: The given system identifier is not read, but ignored.
+	 * 解析构造时传入的 StAX XML 读取器。
+	 * <p><b>NOTE:</b> 给定的系统标识符不会被读取，而是被忽略。
 	 * @param ignored is ignored
 	 * @throws SAXException a SAX exception, possibly wrapping a {@code XMLStreamException}
 	 */
@@ -173,13 +172,13 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	}
 
 	/**
-	 * Template method that parses the StAX reader passed at construction-time.
+	 * 解析构造时传入的 StAX 读取器的模板方法。
 	 */
 	protected abstract void parseInternal() throws SAXException, XMLStreamException;
 
 
 	/**
-	 * Start the prefix mapping for the given prefix.
+	 * 开始给定前缀的前缀映射。
 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(String, String)
 	 */
 	protected void startPrefixMapping(@Nullable String prefix, String namespace) throws SAXException {
@@ -195,7 +194,7 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 	}
 
 	/**
-	 * End the prefix mapping for the given prefix.
+	 * 结束给定前缀的前缀映射。
 	 * @see org.xml.sax.ContentHandler#endPrefixMapping(String)
 	 */
 	protected void endPrefixMapping(String prefix) throws SAXException {
@@ -207,7 +206,7 @@ abstract class AbstractStaxXMLReader extends AbstractXMLReader {
 
 
 	/**
-	 * Implementation of the {@code Locator} interface based on a given StAX {@code Location}.
+	 * 基于给定 StAX {@code Location} 的 {@code Locator} 接口实现。
 	 * @see Locator
 	 * @see Location
 	 */

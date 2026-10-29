@@ -32,8 +32,8 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy for reading from a {@link ReactiveHttpInputMessage} and decoding
- * the stream of bytes to Objects of type {@code <T>}.
+ * 用于从 {@link ReactiveHttpInputMessage} 读取并将字节流解码为
+ * 类型为 {@code <T>} 的对象的策略。
  *
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
@@ -44,21 +44,19 @@ import org.springframework.lang.Nullable;
 public interface HttpMessageReader<T> {
 
 	/**
-	 * Return the list of media types supported by this reader. The list may not
-	 * apply to every possible target element type and calls to this method
-	 * should typically be guarded via {@link #canRead(ResolvableType, MediaType)
-	 * canWrite(elementType, null)}. The list may also exclude media types
-	 * supported only for a specific element type. Alternatively, use
-	 * {@link #getReadableMediaTypes(ResolvableType)} for a more precise list.
+	 * 返回此读取器支持的媒体类型列表。该列表未必适用于所有可能的
+	 * 目标元素类型，对此方法的调用通常应通过
+	 * {@link #canRead(ResolvableType, MediaType) canWrite(elementType, null)}
+	 * 进行保护。该列表还可能不包含仅针对特定元素类型支持的媒体类型。
+	 * 或者，使用 {@link #getReadableMediaTypes(ResolvableType)} 获取更精确的列表。
 	 * @return the general list of supported media types
 	 */
 	List<MediaType> getReadableMediaTypes();
 
 	/**
-	 * Return the list of media types supported by this Reader for the given type
-	 * of element. This list may differ from {@link #getReadableMediaTypes()}
-	 * if the Reader doesn't support the element type, or if it supports it
-	 * only for a subset of media types.
+	 * 返回此读取器针对给定元素类型所支持的媒体类型列表。如果读取器
+	 * 不支持该元素类型，或仅支持其中的一部分媒体类型，此列表可能与
+	 * {@link #getReadableMediaTypes()} 不同。
 	 * @param elementType the type of element to read
 	 * @return the list of media types supported for the given class
 	 * @since 5.3.4
@@ -68,7 +66,7 @@ public interface HttpMessageReader<T> {
 	}
 
 	/**
-	 * Whether the given object type is supported by this reader.
+	 * 此读取器是否支持给定的对象类型。
 	 * @param elementType the type of object to check
 	 * @param mediaType the media type for the read (possibly {@code null})
 	 * @return {@code true} if readable, {@code false} otherwise
@@ -76,7 +74,7 @@ public interface HttpMessageReader<T> {
 	boolean canRead(ResolvableType elementType, @Nullable MediaType mediaType);
 
 	/**
-	 * Read from the input message and decode to a stream of objects.
+	 * 从输入消息读取并解码为对象流。
 	 * @param elementType the type of objects in the stream which must have been
 	 * previously checked via {@link #canRead(ResolvableType, MediaType)}
 	 * @param message the message to read from
@@ -86,7 +84,7 @@ public interface HttpMessageReader<T> {
 	Flux<T> read(ResolvableType elementType, ReactiveHttpInputMessage message, Map<String, Object> hints);
 
 	/**
-	 * Read from the input message and decode to a single object.
+	 * 从输入消息读取并解码为单个对象。
 	 * @param elementType the type of objects in the stream which must have been
 	 * previously checked via {@link #canRead(ResolvableType, MediaType)}
 	 * @param message the message to read from
@@ -96,9 +94,9 @@ public interface HttpMessageReader<T> {
 	Mono<T> readMono(ResolvableType elementType, ReactiveHttpInputMessage message, Map<String, Object> hints);
 
 	/**
-	 * Server-side only alternative to
-	 * {@link #read(ResolvableType, ReactiveHttpInputMessage, Map)}
-	 * with additional context available.
+	 * 仅限服务器端的替代方法，用于
+	 * {@link #read(ResolvableType, ReactiveHttpInputMessage, Map)}，
+	 * 可提供额外的上下文。
 	 * @param actualType the actual type of the target method parameter;
 	 * for annotated controllers, the {@link MethodParameter} can be accessed
 	 * via {@link ResolvableType#getSource()}.
@@ -115,9 +113,9 @@ public interface HttpMessageReader<T> {
 	}
 
 	/**
-	 * Server-side only alternative to
-	 * {@link #readMono(ResolvableType, ReactiveHttpInputMessage, Map)}
-	 * with additional, context available.
+	 * 仅限服务器端的替代方法，用于
+	 * {@link #readMono(ResolvableType, ReactiveHttpInputMessage, Map)}，
+	 * 可提供额外的上下文。
 	 * @param actualType the actual type of the target method parameter;
 	 * for annotated controllers, the {@link MethodParameter} can be accessed
 	 * via {@link ResolvableType#getSource()}.

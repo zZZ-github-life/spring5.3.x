@@ -21,8 +21,8 @@ import org.eclipse.jetty.websocket.api.extensions.ExtensionConfig;
 import org.springframework.web.socket.WebSocketExtension;
 
 /**
- * Adapter class to convert a {@link WebSocketExtension} to a Jetty
- * {@link ExtensionConfig}.
+ * 适配器类，用于将 {@link WebSocketExtension} 转换为 Jetty 的
+ * {@link ExtensionConfig}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

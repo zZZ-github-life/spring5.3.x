@@ -33,8 +33,7 @@ import org.springframework.http.codec.LoggingCodecSupport;
 import org.springframework.util.Assert;
 
 /**
- * Static factory methods to create an {@link ExchangeFunction}.
- *
+ * 用于创建 {@link ExchangeFunction} 的静态工厂方法。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -45,10 +44,7 @@ public abstract class ExchangeFunctions {
 
 
 	/**
-	 * Create an {@code ExchangeFunction} with the given {@code ClientHttpConnector}.
-	 * This is the same as calling
-	 * {@link #create(ClientHttpConnector, ExchangeStrategies)} and passing
-	 * {@link ExchangeStrategies#withDefaults()}.
+	 * 使用给定的 {@code ClientHttpConnector} 创建 {@code ExchangeFunction}。这与调用 {@link #create(ClientHttpConnector, ExchangeStrategies)} 并传入 {@link ExchangeStrategies#withDefaults()} 相同。
 	 * @param connector the connector to use for connecting to servers
 	 * @return the created {@code ExchangeFunction}
 	 */
@@ -57,8 +53,7 @@ public abstract class ExchangeFunctions {
 	}
 
 	/**
-	 * Create an {@code ExchangeFunction} with the given
-	 * {@code ClientHttpConnector} and {@code ExchangeStrategies}.
+	 * 使用给定的 {@code ClientHttpConnector} 和 {@code ExchangeStrategies} 创建 {@code ExchangeFunction}。
 	 * @param connector the connector to use for connecting to servers
 	 * @param strategies the {@code ExchangeStrategies} to use
 	 * @return the created {@code ExchangeFunction}

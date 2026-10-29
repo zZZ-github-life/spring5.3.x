@@ -1,8 +1,7 @@
 /**
- * Support classes for the integration of
- * <a href="https://groovy-lang.org/templating.html#_the_markuptemplateengine">
- * Groovy Templates</a> as Spring web view technology.
- * Contains a View implementation for Groovy templates.
+ * 用于将 <a href="https://groovy-lang.org/templating.html#_the_markuptemplateengine">
+ * Groovy Templates</a> 集成为 Spring Web 视图技术的支持类。
+ * 包含 Groovy 模板的 View 实现。
  */
 @NonNullApi
 @NonNullFields

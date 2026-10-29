@@ -1,5 +1,5 @@
 /**
- * SpEL's abstract syntax tree.
+ * SpEL 的抽象语法树。
  */
 @NonNullApi
 @NonNullFields

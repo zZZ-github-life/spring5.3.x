@@ -29,8 +29,8 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
 
 /**
- * Abstract base class for {@link DataFieldMaxValueIncrementer} implementations that use
- * a database sequence. Subclasses need to provide the database-specific SQL to use.
+ * 用于使用数据库序列的 {@link DataFieldMaxValueIncrementer} 实现的抽象基类。
+ * 子类需要提供要使用的数据库特定 SQL。
  *
  * @author Juergen Hoeller
  * @since 26.02.2004
@@ -39,7 +39,7 @@ import org.springframework.jdbc.support.JdbcUtils;
 public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFieldMaxValueIncrementer {
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -47,7 +47,7 @@ public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFi
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
@@ -57,7 +57,7 @@ public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFi
 
 
 	/**
-	 * Executes the SQL as specified by {@link #getSequenceQuery()}.
+	 * 执行由 {@link #getSequenceQuery()} 指定的 SQL。
 	 */
 	@Override
 	protected long getNextKey() throws DataAccessException {
@@ -86,9 +86,9 @@ public abstract class AbstractSequenceMaxValueIncrementer extends AbstractDataFi
 	}
 
 	/**
-	 * Return the database-specific query to use for retrieving a sequence value.
-	 * <p>The provided SQL is supposed to result in a single row with a single
-	 * column that allows for extracting a {@code long} value.
+	 * 返回用于检索序列值的数据库特定查询。
+	 * <p>所提供的 SQL 应返回一行一列的结果，
+	 * 以便从中提取 {@code long} 值。
 	 */
 	protected abstract String getSequenceQuery();
 

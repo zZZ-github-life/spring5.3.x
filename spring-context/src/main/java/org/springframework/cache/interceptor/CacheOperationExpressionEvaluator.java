@@ -31,11 +31,9 @@ import org.springframework.expression.Expression;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility class handling the SpEL expression parsing.
- * Meant to be used as a reusable, thread-safe component.
+ * 处理 SpEL 表达式解析的工具类。旨在用作可重用、线程安全的组件。
  *
- * <p>Performs internal caching for performance reasons
- * using {@link AnnotatedElementKey}.
+ * <p>出于性能原因，使用 {@link AnnotatedElementKey} 执行内部缓存。
  *
  * @author Costin Leau
  * @author Phillip Webb
@@ -46,17 +44,17 @@ import org.springframework.lang.Nullable;
 class CacheOperationExpressionEvaluator extends CachedExpressionEvaluator {
 
 	/**
-	 * Indicate that there is no result variable.
+	 * 指示没有结果变量。
 	 */
 	public static final Object NO_RESULT = new Object();
 
 	/**
-	 * Indicate that the result variable cannot be used at all.
+	 * 指示结果变量完全不可使用。
 	 */
 	public static final Object RESULT_UNAVAILABLE = new Object();
 
 	/**
-	 * The name of the variable holding the result object.
+	 * 保存结果对象的变量名称。
 	 */
 	public static final String RESULT_VARIABLE = "result";
 
@@ -69,7 +67,7 @@ class CacheOperationExpressionEvaluator extends CachedExpressionEvaluator {
 
 
 	/**
-	 * Create an {@link EvaluationContext}.
+	 * 创建一个 {@link EvaluationContext}。
 	 * @param caches the current caches
 	 * @param method the method
 	 * @param args the method arguments
@@ -115,7 +113,7 @@ class CacheOperationExpressionEvaluator extends CachedExpressionEvaluator {
 	}
 
 	/**
-	 * Clear all caches.
+	 * 清除所有缓存。
 	 */
 	void clear() {
 		this.keyCache.clear();

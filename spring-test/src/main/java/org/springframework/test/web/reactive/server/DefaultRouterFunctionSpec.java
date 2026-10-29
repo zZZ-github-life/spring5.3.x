@@ -23,8 +23,7 @@ import org.springframework.web.server.WebHandler;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Spec for setting up server-less testing against a RouterFunction.
- *
+ * 用于针对 RouterFunction 设置无服务器测试的规范。
  * @author Arjen Poutsma
  * @since 5.0
  */

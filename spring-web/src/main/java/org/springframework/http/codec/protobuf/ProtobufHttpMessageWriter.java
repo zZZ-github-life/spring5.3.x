@@ -38,12 +38,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * {@code HttpMessageWriter} that can write a protobuf {@link Message} and adds
- * {@code X-Protobuf-Schema}, {@code X-Protobuf-Message} headers and a
- * {@code delimited=true} parameter is added to the content type if a flux is serialized.
+ * {@code HttpMessageWriter}，可以写入 protobuf {@link Message}，并添加
+ * {@code X-Protobuf-Schema}、{@code X-Protobuf-Message} 头；如果序列化的是 Flux，
+ * 还会在内容类型中添加 {@code delimited=true} 参数。
  *
- * <p>For {@code HttpMessageReader}, just use
- * {@code new DecoderHttpMessageReader(new ProtobufDecoder())}.
+ * <p>对于 {@code HttpMessageReader}，只需使用
+ * {@code new DecoderHttpMessageReader(new ProtobufDecoder())}。
  *
  * @author Sebastien Deleuze
  * @since 5.1
@@ -59,14 +59,14 @@ public class ProtobufHttpMessageWriter extends EncoderHttpMessageWriter<Message>
 
 
 	/**
-	 * Create a new {@code ProtobufHttpMessageWriter} with a default {@link ProtobufEncoder}.
+	 * 使用默认的 {@link ProtobufEncoder} 创建一个新的 {@code ProtobufHttpMessageWriter}。
 	 */
 	public ProtobufHttpMessageWriter() {
 		super(new ProtobufEncoder());
 	}
 
 	/**
-	 * Create a new {@code ProtobufHttpMessageWriter} with the given encoder.
+	 * 使用给定的编码器创建一个新的 {@code ProtobufHttpMessageWriter}。
 	 * @param encoder the Protobuf message encoder to use
 	 */
 	public ProtobufHttpMessageWriter(Encoder<Message> encoder) {
@@ -102,8 +102,8 @@ public class ProtobufHttpMessageWriter extends EncoderHttpMessageWriter<Message>
 	}
 
 	/**
-	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentHashMap for caching method lookups.
+	 * 为给定的类创建新的 {@code Message.Builder} 实例。
+	 * <p>此方法使用 ConcurrentHashMap 缓存方法查找。
 	 */
 	private static Message.Builder getMessageBuilder(Class<?> clazz) throws Exception {
 		Method method = methodCache.get(clazz);

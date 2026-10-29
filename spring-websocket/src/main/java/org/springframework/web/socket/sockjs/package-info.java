@@ -1,5 +1,5 @@
 /**
- * Top-level SockJS types.
+ * SockJS 顶层类型。
  */
 @NonNullApi
 @NonNullFields

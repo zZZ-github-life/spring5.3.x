@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 /**
- * Creates a {@link SimpleDriverDataSource}.
+ * 创建 {@link SimpleDriverDataSource}。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

@@ -32,7 +32,7 @@ import org.springframework.web.socket.sockjs.transport.SockJsSession;
 import org.springframework.web.socket.sockjs.transport.session.AbstractHttpSockJsSession;
 
 /**
- * Base class for HTTP transport handlers that receive messages via HTTP POST.
+ * 用于通过 HTTP POST 接收消息的 HTTP 传输处理器的基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

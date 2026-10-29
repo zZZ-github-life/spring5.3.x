@@ -19,12 +19,11 @@ package org.springframework.web.bind;
 import org.springframework.web.util.NestedServletException;
 
 /**
- * Fatal binding exception, thrown when we want to
- * treat binding exceptions as unrecoverable.
+ * 致命的绑定异常，当我们希望将绑定异常视为不可恢复时抛出。
  *
- * <p>Extends ServletException for convenient throwing in any Servlet resource
- * (such as a Filter), and NestedServletException for proper root cause handling
- * (as the plain ServletException doesn't expose its root cause at all).
+ * <p>继承 ServletException 以便在任何 Servlet 资源（如 Filter）中方便地抛出，
+ * 并继承 NestedServletException 以正确处理根因
+ * （因为普通的 ServletException 根本不会暴露其根因）。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -33,7 +32,7 @@ import org.springframework.web.util.NestedServletException;
 public class ServletRequestBindingException extends NestedServletException {
 
 	/**
-	 * Constructor for ServletRequestBindingException.
+	 * ServletRequestBindingException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public ServletRequestBindingException(String msg) {
@@ -41,7 +40,7 @@ public class ServletRequestBindingException extends NestedServletException {
 	}
 
 	/**
-	 * Constructor for ServletRequestBindingException.
+	 * ServletRequestBindingException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * A HandlerMethodReturnValueHandler that wraps and delegates to others.
+ * 一个包装并委托给其他处理器的 HandlerMethodReturnValueHandler。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -42,21 +42,21 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 
 
 	/**
-	 * Return a read-only list with the configured handlers.
+	 * 返回包含已配置处理器的只读列表。
 	 */
 	public List<HandlerMethodReturnValueHandler> getReturnValueHandlers() {
 		return Collections.unmodifiableList(this.returnValueHandlers);
 	}
 
 	/**
-	 * Clear the list of configured handlers.
+	 * 清除已配置处理器的列表。
 	 */
 	public void clear() {
 		this.returnValueHandlers.clear();
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodReturnValueHandler}.
+	 * 添加给定的 {@link HandlerMethodReturnValueHandler}。
 	 */
 	public HandlerMethodReturnValueHandlerComposite addHandler(HandlerMethodReturnValueHandler returnValueHandler) {
 		this.returnValueHandlers.add(returnValueHandler);
@@ -64,7 +64,7 @@ public class HandlerMethodReturnValueHandlerComposite implements HandlerMethodRe
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
+	 * 添加给定的 {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}。
 	 */
 	public HandlerMethodReturnValueHandlerComposite addHandlers(
 			@Nullable List<? extends HandlerMethodReturnValueHandler> handlers) {

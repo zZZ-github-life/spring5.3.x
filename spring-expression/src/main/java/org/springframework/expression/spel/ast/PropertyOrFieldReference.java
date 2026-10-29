@@ -42,7 +42,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Represents a simple property or field reference.
+ * 表示简单的属性或字段引用。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -168,7 +168,7 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Attempt to read the named property from the current context object.
+	 * 尝试从当前上下文对象中读取指定名称的属性。
 	 * @return the value of the property
 	 * @throws EvaluationException if any problem accessing the property, or if it cannot be found
 	 */
@@ -292,14 +292,11 @@ public class PropertyOrFieldReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Determines the set of property resolvers that should be used to try and access a property
-	 * on the specified target type. The resolvers are considered to be in an ordered list,
-	 * however in the returned list any that are exact matches for the input target type (as
-	 * opposed to 'general' resolvers that could work for any type) are placed at the start of the
-	 * list. In addition, there are specific resolvers that exactly name the class in question
-	 * and resolvers that name a specific class but it is a supertype of the class we have.
-	 * These are put at the end of the specific resolvers set and will be tried after exactly
-	 * matching accessors but before generic accessors.
+	 * 确定应当使用哪些属性解析器来尝试访问指定目标类型上的属性。这些解析器被视为位于一个有序列表中，但
+	 * 在返回的列表中，任何与输入目标类型完全匹配的解析器（相对于可适用于任意类型的“通用”解析器）都会放
+	 * 在列表开头。此外，还有一些专门精确指定相关类的解析器，以及指定某个特定类、但该类是我们所用类的超
+	 * 类型的解析器。这些解析器会被放在特定解析器集合的末尾，并会在完全匹配的访问器之后、通用访问器之前
+	 * 被尝试。
 	 * @param contextObject the object upon which property access is being attempted
 	 * @return a list of resolvers that should be tried in order to access the property
 	 */

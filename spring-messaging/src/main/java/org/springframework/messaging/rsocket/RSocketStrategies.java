@@ -35,7 +35,7 @@ import org.springframework.util.RouteMatcher;
 import org.springframework.util.SimpleRouteMatcher;
 
 /**
- * Access to strategies for use by RSocket requester and responder components.
+ * 提供供 RSocket 请求者和响应者组件使用的策略的访问入口。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -43,13 +43,13 @@ import org.springframework.util.SimpleRouteMatcher;
 public interface RSocketStrategies {
 
 	/**
-	 * Return the configured {@link Builder#encoder(Encoder[]) encoders}.
+	 * 返回配置的 {@link Builder#encoder(Encoder[]) encoders}。
 	 * @see #encoder(ResolvableType, MimeType)
 	 */
 	List<Encoder<?>> encoders();
 
 	/**
-	 * Find a compatible Encoder for the given element type.
+	 * 查找与给定元素类型兼容的 Encoder。
 	 * @param elementType the element type to match
 	 * @param mimeType the MimeType to match
 	 * @param <T> for casting the Encoder to the expected element type
@@ -67,13 +67,13 @@ public interface RSocketStrategies {
 	}
 
 	/**
-	 * Return the configured {@link Builder#decoder(Decoder[]) decoders}.
+	 * 返回配置的 {@link Builder#decoder(Decoder[]) decoders}。
 	 * @see #decoder(ResolvableType, MimeType)
 	 */
 	List<Decoder<?>> decoders();
 
 	/**
-	 * Find a compatible Decoder for the given element type.
+	 * 查找与给定元素类型兼容的 Decoder。
 	 * @param elementType the element type to match
 	 * @param mimeType the MimeType to match
 	 * @param <T> for casting the Decoder to the expected element type
@@ -91,30 +91,29 @@ public interface RSocketStrategies {
 	}
 
 	/**
-	 * Return the configured {@link Builder#routeMatcher(RouteMatcher)}.
+	 * 返回配置的 {@link Builder#routeMatcher(RouteMatcher)}。
 	 */
 	RouteMatcher routeMatcher();
 
 	/**
-	 * Return the configured
-	 * {@link Builder#reactiveAdapterStrategy(ReactiveAdapterRegistry) reactiveAdapterRegistry}.
+	 * 返回配置的
+	 * {@link Builder#reactiveAdapterStrategy(ReactiveAdapterRegistry) reactiveAdapterRegistry}。
 	 */
 	ReactiveAdapterRegistry reactiveAdapterRegistry();
 
 	/**
-	 * Return the configured
-	 * {@link Builder#dataBufferFactory(DataBufferFactory) dataBufferFactory}.
+	 * 返回配置的
+	 * {@link Builder#dataBufferFactory(DataBufferFactory) dataBufferFactory}。
 	 */
 	DataBufferFactory dataBufferFactory();
 
 	/**
-	 * Return the configured {@link Builder#metadataExtractor(MetadataExtractor)}.
+	 * 返回配置的 {@link Builder#metadataExtractor(MetadataExtractor)}。
 	 */
 	MetadataExtractor metadataExtractor();
 
 	/**
-	 * Return a builder to create a new {@link RSocketStrategies} instance
-	 * replicated from the current instance.
+	 * 返回一个构建器，用于基于当前实例复制创建新的 {@link RSocketStrategies} 实例。
 	 */
 	default Builder mutate() {
 		return new DefaultRSocketStrategies.DefaultRSocketStrategiesBuilder(this);
@@ -122,18 +121,17 @@ public interface RSocketStrategies {
 
 
 	/**
-	 * Create an {@code RSocketStrategies} instance with default settings.
-	 * Equivalent to {@code RSocketStrategies.builder().build()}. See individual
-	 * builder methods for details on default settings.
+	 * 使用默认设置创建 {@code RSocketStrategies} 实例。
+	 * 等价于 {@code RSocketStrategies.builder().build()}。有关默认设置的详细信息，
+	 * 请参阅各个构建器方法。
 	 */
 	static RSocketStrategies create() {
 		return new DefaultRSocketStrategies.DefaultRSocketStrategiesBuilder().build();
 	}
 
 	/**
-	 * Return a builder to prepare a new {@code RSocketStrategies} instance.
-	 * The builder applies default settings, see individual builder methods for
-	 * details.
+	 * 返回用于准备新的 {@code RSocketStrategies} 实例的构建器。
+	 * 该构建器会应用默认设置，详情请参阅各个构建器方法。
 	 */
 	static Builder builder() {
 		return new DefaultRSocketStrategies.DefaultRSocketStrategiesBuilder();
@@ -141,91 +139,82 @@ public interface RSocketStrategies {
 
 
 	/**
-	 * The builder options for creating {@code RSocketStrategies}.
+	 * 用于创建 {@code RSocketStrategies} 的构建器选项。
 	 */
 	interface Builder {
 
 		/**
-		 * Append to the list of encoders to use for serializing Objects to the
-		 * data or metadata of a {@link Payload}.
-		 * <p>By default this is initialized with encoders for {@code String},
-		 * {@code byte[]}, {@code ByteBuffer}, and {@code DataBuffer}.
+		 * 追加用于将对象序列化为 {@link Payload} 的数据或元数据的编码器列表。
+		 * <p>默认情况下，它使用针对 {@code String}、{@code byte[]}、
+		 * {@code ByteBuffer} 和 {@code DataBuffer} 的编码器进行初始化。
 		 */
 		Builder encoder(Encoder<?>... encoder);
 
 		/**
-		 * Apply the consumer to the list of configured encoders, immediately.
+		 * 立即将 consumer 应用于已配置的编码器列表。
 		 */
 		Builder encoders(Consumer<List<Encoder<?>>> consumer);
 
 		/**
-		 * Append to the list of decoders to use for de-serializing Objects from
-		 * the data or metadata of a {@link Payload}.
-		 * <p>By default this is initialized with decoders for {@code String},
-		 * {@code byte[]}, {@code ByteBuffer}, and {@code DataBuffer}.
+		 * 追加用于从 {@link Payload} 的数据或元数据反序列化对象的解码器列表。
+		 * <p>默认情况下，它使用针对 {@code String}、{@code byte[]}、
+		 * {@code ByteBuffer} 和 {@code DataBuffer} 的解码器进行初始化。
 		 */
 		Builder decoder(Decoder<?>... decoder);
 
 		/**
-		 * Apply the consumer to the list of configured decoders, immediately.
+		 * 立即将 consumer 应用于已配置的解码器列表。
 		 */
 		Builder decoders(Consumer<List<Decoder<?>>> consumer);
 
 		/**
-		 * Configure a {@code RouteMatcher} for matching routes to message
-		 * handlers based on route patterns. This option is applicable to
-		 * client or server responders.
-		 * <p>By default, {@link SimpleRouteMatcher} is used, backed by
-		 * {@link AntPathMatcher} with "." as separator. For better
-		 * efficiency consider switching to {@code PathPatternRouteMatcher} from
-		 * {@code spring-web} instead.
+		 * 配置 {@code RouteMatcher}，用于根据路由模式将路由匹配到消息处理器。
+		 * 此选项适用于客户端或服务器响应方。
+		 * <p>默认使用 {@link SimpleRouteMatcher}，其底层是使用 "." 作为分隔符的
+		 * {@link AntPathMatcher}。为了获得更好的效率，可以考虑改用
+		 * {@code spring-web} 中的 {@code PathPatternRouteMatcher}。
 		 */
 		Builder routeMatcher(@Nullable RouteMatcher routeMatcher);
 
 		/**
-		 * Configure the registry for reactive type support. This can be used
-		 * to adapt to, and/or determine the semantics of a given
-		 * {@link org.reactivestreams.Publisher Publisher}.
-		 * <p>By default this {@link ReactiveAdapterRegistry#getSharedInstance()}.
+		 * 配置响应式类型支持的注册表。可用于适配和/或确定给定
+		 * {@link org.reactivestreams.Publisher Publisher} 的语义。
+		 * <p>默认使用 {@link ReactiveAdapterRegistry#getSharedInstance()}。
 		 */
 		Builder reactiveAdapterStrategy(@Nullable ReactiveAdapterRegistry registry);
 
 		/**
-		 * Configure the DataBufferFactory to use for allocating buffers when
-		 * preparing requests or creating responses.
-		 * <p>By default this is set to {@link NettyDataBufferFactory} with
-		 * pooled, allocated buffers for zero copy. RSocket must also be
-		 * <a href="https://github.com/rsocket/rsocket-java#zero-copy">configured</a>
-		 * for zero copy. For client setup, {@link RSocketRequester.Builder}
-		 * adapts automatically to the {@code DataBufferFactory} configured
-		 * here, and sets the frame decoder in
-		 * {@link io.rsocket.core.RSocketConnector RSocketConnector}
-		 * accordingly. For server setup, the
-		 * {@link io.rsocket.core.RSocketServer RSocketServer} must be configured
-		 * accordingly for zero copy too.
-		 * <p>If using {@link DefaultDataBufferFactory} instead, there is no
-		 * need for related config changes in RSocket.
+		 * 配置用于在准备请求或创建响应时分配缓冲区的 DataBufferFactory。
+		 * <p>默认设置为使用池化分配缓冲区以支持零拷贝的
+		 * {@link NettyDataBufferFactory}。RSocket 也必须
+		 * <a href="https://github.com/rsocket/rsocket-java#zero-copy">进行相应配置</a>
+		 * 才能实现零拷贝。对于客户端设置，{@link RSocketRequester.Builder}
+		 * 会自动适配此处配置的 {@code DataBufferFactory}，并相应地设置
+		 * {@link io.rsocket.core.RSocketConnector RSocketConnector} 中的帧解码器。
+		 * 对于服务器设置，{@link io.rsocket.core.RSocketServer RSocketServer}
+		 * 也必须进行相应配置以支持零拷贝。
+		 * <p>如果改用 {@link DefaultDataBufferFactory}，则无需在 RSocket 中
+		 * 进行相关配置更改。
 		 */
 		Builder dataBufferFactory(@Nullable DataBufferFactory bufferFactory);
 
 		/**
-		 * Configure a {@link MetadataExtractor} to extract the route along with
-		 * other metadata. This option is applicable to client or server
-		 * responders.
-		 * <p>By default this is {@link DefaultMetadataExtractor} created with
-		 * the {@link #decoder(Decoder[]) configured} decoders and extracting a
-		 * route from {@code "message/x.rsocket.routing.v0"} metadata.
+		 * 配置 {@link MetadataExtractor}，以提取路由以及其他元数据。
+		 * 此选项适用于客户端或服务器响应方。
+		 * <p>默认使用 {@link DefaultMetadataExtractor}，它使用
+		 * {@link #decoder(Decoder[]) configured} 的解码器，并从
+		 * {@code "message/x.rsocket.routing.v0"} 元数据中提取路由。
 		 */
 		Builder metadataExtractor(@Nullable MetadataExtractor metadataExtractor);
 
 		/**
-		 * Apply the consumer to the {@link MetadataExtractorRegistry} in order
-		 * to register extra metadata entry extractors.
+		 * 将 consumer 应用于 {@link MetadataExtractorRegistry}，
+		 * 以便注册额外的元数据条目提取器。
 		 */
 		Builder metadataExtractorRegistry(Consumer<MetadataExtractorRegistry> consumer);
 
 		/**
-		 * Build the {@code RSocketStrategies} instance.
+		 * 构建 {@code RSocketStrategies} 实例。
 		 */
 		RSocketStrategies build();
 	}

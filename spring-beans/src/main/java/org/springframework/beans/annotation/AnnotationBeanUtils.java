@@ -30,7 +30,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * General utility methods for working with annotations in JavaBeans style.
+ * 以 JavaBeans 风格处理注解的通用工具方法。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -41,8 +41,8 @@ import org.springframework.util.StringValueResolver;
 public abstract class AnnotationBeanUtils {
 
 	/**
-	 * Copy the properties of the supplied {@link Annotation} to the supplied target bean.
-	 * Any properties defined in {@code excludedProperties} will not be copied.
+	 * 将所提供 {@link Annotation} 的属性复制到所提供目标 Bean。在 {@code excludedProperties} 中定义的
+	 * 任何属性都不会被复制。
 	 * @param ann the annotation to copy from
 	 * @param bean the bean instance to copy to
 	 * @param excludedProperties the names of excluded properties, if any
@@ -53,9 +53,9 @@ public abstract class AnnotationBeanUtils {
 	}
 
 	/**
-	 * Copy the properties of the supplied {@link Annotation} to the supplied target bean.
-	 * Any properties defined in {@code excludedProperties} will not be copied.
-	 * <p>A specified value resolver may resolve placeholders in property values, for example.
+	 * 将所提供 {@link Annotation} 的属性复制到所提供目标 Bean。在 {@code excludedProperties} 中定义的
+	 * 任何属性都不会被复制。
+	 * <p>例如，指定的值解析器可以解析属性值中的占位符。
 	 * @param ann the annotation to copy from
 	 * @param bean the bean instance to copy to
 	 * @param valueResolver a resolve to post-process String property values (may be {@code null})

@@ -23,16 +23,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * Package-visible helper class for formatting values for rendering via a form tag.
- * Supports two styles of formatting: plain and {@link PropertyEditor}-aware.
- *
- * <p>Plain formatting simply prevents the string '{@code null}' from appearing,
- * replacing it with an empty String, and adds HTML escaping as required.
- *
- * <p>{@link PropertyEditor}-aware formatting will attempt to use the supplied
- * {@link PropertyEditor} to render any non-String value before applying the
- * default rules of plain formatting.
- *
+ * 包级可见的辅助类，用于格式化通过表单标签渲染的值。支持两种格式化风格：普通格式化和 {@link PropertyEditor} 感知格式化。<p>普通格式化仅防止字符串 '{@code null}' 出现，将其替换为空 String，并根据需要添加 HTML 转义。<p>{@link PropertyEditor} 感知格式化会先尝试使用给定的 {@link PropertyEditor} 渲染任何非 String 值，然后再应用普通格式化的默认规则。
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @since 2.0
@@ -40,8 +31,7 @@ import org.springframework.web.util.HtmlUtils;
 abstract class ValueFormatter {
 
 	/**
-	 * Build the display value of the supplied {@code Object}, HTML escaped
-	 * as required. This version is <strong>not</strong> {@link PropertyEditor}-aware.
+	 * 构建给定 {@code Object} 的显示值，并按需进行 HTML 转义。此版本<strong>不</strong>感知 {@link PropertyEditor}。
 	 * @see #getDisplayString(Object, java.beans.PropertyEditor, boolean)
 	 */
 	public static String getDisplayString(@Nullable Object value, boolean htmlEscape) {
@@ -50,10 +40,7 @@ abstract class ValueFormatter {
 	}
 
 	/**
-	 * Build the display value of the supplied {@code Object}, HTML escaped
-	 * as required. If the supplied value is not a {@link String} and the supplied
-	 * {@link PropertyEditor} is not null then the {@link PropertyEditor} is used
-	 * to obtain the display value.
+	 * 构建给定 {@code Object} 的显示值，并按需进行 HTML 转义。如果给定值不是 {@link String} 且给定的 {@link PropertyEditor} 不为 null，则使用 {@link PropertyEditor} 获取显示值。
 	 * @see #getDisplayString(Object, boolean)
 	 */
 	public static String getDisplayString(

@@ -36,24 +36,21 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Base class for {@code Filter}s that perform logging operations before and after a request
- * is processed.
+ * 在请求处理前后执行日志记录操作的 {@code Filter} 的基类。
  *
- * <p>Subclasses should override the {@code beforeRequest(HttpServletRequest, String)} and
- * {@code afterRequest(HttpServletRequest, String)} methods to perform the actual logging
- * around the request.
+ * <p>子类应重写 {@code beforeRequest(HttpServletRequest, String)} 和
+ * {@code afterRequest(HttpServletRequest, String)} 方法，以在请求前后执行实际的日志记录。
  *
- * <p>Subclasses are passed the message to write to the log in the {@code beforeRequest} and
- * {@code afterRequest} methods. By default, only the URI of the request is logged. However,
- * setting the {@code includeQueryString} property to {@code true} will cause the query string of
- * the request to be included also; this can be further extended through {@code includeClientInfo}
- * and {@code includeHeaders}. The payload (body content) of the request can be logged via the
- * {@code includePayload} flag: Note that this will only log the part of the payload which has
- * actually been read, not necessarily the entire body of the request.
+ * <p>子类会在 {@code beforeRequest} 和 {@code afterRequest} 方法中接收到要写入日志的消息。
+ * 默认情况下只记录请求的 URI。不过，将 {@code includeQueryString} 属性设置为
+ * {@code true} 还会包含请求的查询字符串；这可以通过 {@code includeClientInfo}
+ * 和 {@code includeHeaders} 进一步扩展。请求的载荷（正文内容）可以通过
+ * {@code includePayload} 标志记录：请注意，这只会记录实际已读取的那部分载荷，
+ * 而不一定是请求的整个正文。
  *
- * <p>Prefixes and suffixes for the before and after messages can be configured using the
- * {@code beforeMessagePrefix}, {@code afterMessagePrefix}, {@code beforeMessageSuffix} and
- * {@code afterMessageSuffix} properties.
+ * <p>前置和后置消息的前缀与后缀可以通过 {@code beforeMessagePrefix}、
+ * {@code afterMessagePrefix}、{@code beforeMessageSuffix} 和
+ * {@code afterMessageSuffix} 属性进行配置。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -65,26 +62,22 @@ import org.springframework.web.util.WebUtils;
 public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter {
 
 	/**
-	 * The default value prepended to the log message written <i>before</i> a request is
-	 * processed.
+	 * 在请求处理<i>之前</i>写入的日志消息所追加的默认前缀值。
 	 */
 	public static final String DEFAULT_BEFORE_MESSAGE_PREFIX = "Before request [";
 
 	/**
-	 * The default value appended to the log message written <i>before</i> a request is
-	 * processed.
+	 * 在请求处理<i>之前</i>写入的日志消息所追加的默认后缀值。
 	 */
 	public static final String DEFAULT_BEFORE_MESSAGE_SUFFIX = "]";
 
 	/**
-	 * The default value prepended to the log message written <i>after</i> a request is
-	 * processed.
+	 * 在请求处理<i>之后</i>写入的日志消息所追加的默认前缀值。
 	 */
 	public static final String DEFAULT_AFTER_MESSAGE_PREFIX = "After request [";
 
 	/**
-	 * The default value appended to the log message written <i>after</i> a request is
-	 * processed.
+	 * 在请求处理<i>之后</i>写入的日志消息所追加的默认后缀值。
 	 */
 	public static final String DEFAULT_AFTER_MESSAGE_SUFFIX = "]";
 
@@ -114,43 +107,41 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 
 	/**
-	 * Set whether the query string should be included in the log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
-	 * "includeQueryString" in the filter definition in {@code web.xml}.
+	 * 设置日志消息中是否应包含查询字符串。
+	 * <p>应在 {@code web.xml} 的过滤器定义中，通过名为
+	 * "includeQueryString" 的 {@code <init-param>} 进行配置。
 	 */
 	public void setIncludeQueryString(boolean includeQueryString) {
 		this.includeQueryString = includeQueryString;
 	}
 
 	/**
-	 * Return whether the query string should be included in the log message.
+	 * 返回日志消息中是否应包含查询字符串。
 	 */
 	protected boolean isIncludeQueryString() {
 		return this.includeQueryString;
 	}
 
 	/**
-	 * Set whether the client address and session id should be included in the
-	 * log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
-	 * "includeClientInfo" in the filter definition in {@code web.xml}.
+	 * 设置日志消息中是否应包含客户端地址和会话 id。
+	 * <p>应在 {@code web.xml} 的过滤器定义中，通过名为
+	 * "includeClientInfo" 的 {@code <init-param>} 进行配置。
 	 */
 	public void setIncludeClientInfo(boolean includeClientInfo) {
 		this.includeClientInfo = includeClientInfo;
 	}
 
 	/**
-	 * Return whether the client address and session id should be included in the
-	 * log message.
+	 * 返回日志消息中是否应包含客户端地址和会话 id。
 	 */
 	protected boolean isIncludeClientInfo() {
 		return this.includeClientInfo;
 	}
 
 	/**
-	 * Set whether the request headers should be included in the log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
-	 * "includeHeaders" in the filter definition in {@code web.xml}.
+	 * 设置日志消息中是否应包含请求头。
+	 * <p>应在 {@code web.xml} 的过滤器定义中，通过名为
+	 * "includeHeaders" 的 {@code <init-param>} 进行配置。
 	 * @since 4.3
 	 */
 	public void setIncludeHeaders(boolean includeHeaders) {
@@ -158,7 +149,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Return whether the request headers should be included in the log message.
+	 * 返回日志消息中是否应包含请求头。
 	 * @since 4.3
 	 */
 	protected boolean isIncludeHeaders() {
@@ -166,9 +157,9 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Set whether the request payload (body) should be included in the log message.
-	 * <p>Should be configured using an {@code <init-param>} for parameter name
-	 * "includePayload" in the filter definition in {@code web.xml}.
+	 * 设置日志消息中是否应包含请求载荷（正文）。
+	 * <p>应在 {@code web.xml} 的过滤器定义中，通过名为
+	 * "includePayload" 的 {@code <init-param>} 进行配置。
 	 * @since 3.0
 	 */
 	public void setIncludePayload(boolean includePayload) {
@@ -176,7 +167,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Return whether the request payload (body) should be included in the log message.
+	 * 返回日志消息中是否应包含请求载荷（正文）。
 	 * @since 3.0
 	 */
 	protected boolean isIncludePayload() {
@@ -184,9 +175,9 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Configure a predicate for selecting which headers should be logged if
-	 * {@link #setIncludeHeaders(boolean)} is set to {@code true}.
-	 * <p>By default this is not set in which case all headers are logged.
+	 * 配置一个谓词，用于在 {@link #setIncludeHeaders(boolean)} 设置为
+	 * {@code true} 时选择应记录哪些请求头。
+	 * <p>默认情况下不设置此属性，此时会记录所有请求头。
 	 * @param headerPredicate the predicate to use
 	 * @since 5.2
 	 */
@@ -195,7 +186,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * The configured {@link #setHeaderPredicate(Predicate) headerPredicate}.
+	 * 已配置的 {@link #setHeaderPredicate(Predicate) headerPredicate}。
 	 * @since 5.2
 	 */
 	@Nullable
@@ -204,8 +195,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Set the maximum length of the payload body to be included in the log message.
-	 * Default is 50 characters.
+	 * 设置日志消息中包含的载荷正文的最大长度。默认为 50 个字符。
 	 * @since 3.0
 	 */
 	public void setMaxPayloadLength(int maxPayloadLength) {
@@ -214,7 +204,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Return the maximum length of the payload body to be included in the log message.
+	 * 返回日志消息中包含的载荷正文的最大长度。
 	 * @since 3.0
 	 */
 	protected int getMaxPayloadLength() {
@@ -222,32 +212,28 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Set the value that should be prepended to the log message written
-	 * <i>before</i> a request is processed.
+	 * 设置应追加到请求处理<i>之前</i>写入的日志消息前面的值。
 	 */
 	public void setBeforeMessagePrefix(String beforeMessagePrefix) {
 		this.beforeMessagePrefix = beforeMessagePrefix;
 	}
 
 	/**
-	 * Set the value that should be appended to the log message written
-	 * <i>before</i> a request is processed.
+	 * 设置应追加到请求处理<i>之前</i>写入的日志消息后面的值。
 	 */
 	public void setBeforeMessageSuffix(String beforeMessageSuffix) {
 		this.beforeMessageSuffix = beforeMessageSuffix;
 	}
 
 	/**
-	 * Set the value that should be prepended to the log message written
-	 * <i>after</i> a request is processed.
+	 * 设置应追加到请求处理<i>之后</i>写入的日志消息前面的值。
 	 */
 	public void setAfterMessagePrefix(String afterMessagePrefix) {
 		this.afterMessagePrefix = afterMessagePrefix;
 	}
 
 	/**
-	 * Set the value that should be appended to the log message written
-	 * <i>after</i> a request is processed.
+	 * 设置应追加到请求处理<i>之后</i>写入的日志消息后面的值。
 	 */
 	public void setAfterMessageSuffix(String afterMessageSuffix) {
 		this.afterMessageSuffix = afterMessageSuffix;
@@ -255,9 +241,8 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 
 	/**
-	 * The default value is "false" so that the filter may log a "before" message
-	 * at the start of request processing and an "after" message at the end from
-	 * when the last asynchronously dispatched thread is exiting.
+	 * 默认值为 "false"，以便过滤器可以在请求处理开始时记录一条“前置”消息，
+	 * 并在最后一个异步派发线程退出时记录一条“后置”消息。
 	 */
 	@Override
 	protected boolean shouldNotFilterAsyncDispatch() {
@@ -265,8 +250,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Forwards the request to the next filter in the chain and delegates down to the subclasses
-	 * to perform the actual request logging both before and after the request is processed.
+	 * 将请求转发给链中的下一个过滤器，并委托给子类在请求处理前后执行实际的请求日志记录。
 	 * @see #beforeRequest
 	 * @see #afterRequest
 	 */
@@ -296,7 +280,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Get the message to write to the log before the request.
+	 * 获取在请求之前写入日志的消息。
 	 * @see #createMessage
 	 */
 	private String getBeforeMessage(HttpServletRequest request) {
@@ -304,7 +288,7 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Get the message to write to the log after the request.
+	 * 获取在请求之后写入日志的消息。
 	 * @see #createMessage
 	 */
 	private String getAfterMessage(HttpServletRequest request) {
@@ -312,12 +296,11 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Create a log message for the given request, prefix and suffix.
-	 * <p>If {@code includeQueryString} is {@code true}, then the inner part
-	 * of the log message will take the form {@code request_uri?query_string};
-	 * otherwise the message will simply be of the form {@code request_uri}.
-	 * <p>The final message is composed of the inner part as described and
-	 * the supplied prefix and suffix.
+	 * 为给定的请求、前缀和后缀创建日志消息。
+	 * <p>如果 {@code includeQueryString} 为 {@code true}，则日志消息的内部部分
+	 * 将采用 {@code request_uri?query_string} 的形式；否则消息将简单地采用
+	 * {@code request_uri} 的形式。
+	 * <p>最终消息由上述内部部分以及所提供的前缀和后缀组成。
 	 */
 	protected String createMessage(HttpServletRequest request, String prefix, String suffix) {
 		StringBuilder msg = new StringBuilder();
@@ -373,9 +356,9 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Extracts the message payload portion of the message created by
-	 * {@link #createMessage(HttpServletRequest, String, String)} when
-	 * {@link #isIncludePayload()} returns true.
+	 * 当 {@link #isIncludePayload()} 返回 true 时，提取由
+	 * {@link #createMessage(HttpServletRequest, String, String)} 创建的消息中的
+	 * 载荷部分。
 	 * @since 5.0.3
 	 */
 	@Nullable
@@ -399,11 +382,9 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 
 
 	/**
-	 * Determine whether to call the {@link #beforeRequest}/{@link #afterRequest}
-	 * methods for the current request, i.e. whether logging is currently active
-	 * (and the log message is worth building).
-	 * <p>The default implementation always returns {@code true}. Subclasses may
-	 * override this with a log level check.
+	 * 确定是否要为当前请求调用 {@link #beforeRequest}/{@link #afterRequest}
+	 * 方法，即当前是否启用了日志记录（以及是否值得构建日志消息）。
+	 * <p>默认实现始终返回 {@code true}。子类可以通过日志级别检查来重写此方法。
 	 * @param request current HTTP request
 	 * @return {@code true} if the before/after method should get called;
 	 * {@code false} otherwise
@@ -414,16 +395,14 @@ public abstract class AbstractRequestLoggingFilter extends OncePerRequestFilter 
 	}
 
 	/**
-	 * Concrete subclasses should implement this method to write a log message
-	 * <i>before</i> the request is processed.
+	 * 具体子类应实现此方法，以在请求处理<i>之前</i>写入日志消息。
 	 * @param request current HTTP request
 	 * @param message the message to log
 	 */
 	protected abstract void beforeRequest(HttpServletRequest request, String message);
 
 	/**
-	 * Concrete subclasses should implement this method to write a log message
-	 * <i>after</i> the request is processed.
+	 * 具体子类应实现此方法，以在请求处理<i>之后</i>写入日志消息。
 	 * @param request current HTTP request
 	 * @param message the message to log
 	 */

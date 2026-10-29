@@ -25,12 +25,11 @@ import org.springframework.core.Ordered;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link BeanInfoFactory} implementation that evaluates whether bean classes have
- * "non-standard" JavaBeans setter methods and are thus candidates for introspection
- * by Spring's (package-visible) {@code ExtendedBeanInfo} implementation.
+ * {@link BeanInfoFactory} 实现，用于判断 Bean 类是否具有“非标准”的 JavaBeans setter 方法，从而是否
+ * 适合由 Spring 的（包可见）{@code ExtendedBeanInfo} 实现进行内省。
  *
- * <p>Ordered at {@link Ordered#LOWEST_PRECEDENCE} to allow other user-defined
- * {@link BeanInfoFactory} types to take precedence.
+ * <p>排序值为 {@link Ordered#LOWEST_PRECEDENCE}，以便其他用户定义的 {@link BeanInfoFactory} 类型优
+ * 先。
  *
  * @author Chris Beams
  * @since 3.2
@@ -40,7 +39,7 @@ import org.springframework.lang.Nullable;
 public class ExtendedBeanInfoFactory implements BeanInfoFactory, Ordered {
 
 	/**
-	 * Return an {@link ExtendedBeanInfo} for the given bean class, if applicable.
+	 * 如果适用，返回给定 Bean 类的 {@link ExtendedBeanInfo}。
 	 */
 	@Override
 	@Nullable
@@ -49,8 +48,7 @@ public class ExtendedBeanInfoFactory implements BeanInfoFactory, Ordered {
 	}
 
 	/**
-	 * Return whether the given bean class declares or inherits any non-void
-	 * returning bean property or indexed property setter methods.
+	 * 返回给定 Bean 类是否声明或继承了任何返回非 void 的 Bean 属性或索引属性 setter 方法。
 	 */
 	private boolean supports(Class<?> beanClass) {
 		for (Method method : beanClass.getMethods()) {

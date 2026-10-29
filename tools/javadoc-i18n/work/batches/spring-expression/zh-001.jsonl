@@ -1,0 +1,131 @@
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypeLocator.java::19::0", "zh": ["此接口的实现者应能够定位类型。它们可以按自己的方式使用自定义的 {@link ClassLoader} 和/或处理常见的包前缀（例如 {@code java.lang}）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypeLocator.java::19::1", "zh": ["有关示例实现，请参见 {@link org.springframework.expression.spel.support.StandardTypeLocator}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypeLocator.java::33::0", "zh": ["按名称查找类型。名称可以带完整限定，也可以不带（例如 {@code String} 或 {@code java.lang.String}）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypedValue.java::23::0", "zh": ["封装一个对象以及描述它的 {@link TypeDescriptor}。类型描述符可以包含无法通过对象上的简单 {@code getClass()} 调用访问的泛型声明。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypedValue.java::34::0", "zh": ["{@code null} 对应的 {@link TypedValue}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypedValue.java::47::0", "zh": ["为简单对象创建 {@link TypedValue}。{@link TypeDescriptor} 从该对象推断而来，因此不会保留泛型声明。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/TypedValue.java::57::0", "zh": ["为特定值创建带有特定 {@link TypeDescriptor} 的 {@link TypedValue}，该描述符可以包含额外的泛型声明。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/package-info.java::1::0", "zh": ["用于 <em>Spring Expression Language</em> 的核心抽象。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/CompositeStringExpression.java::26::0", "zh": ["表示被拆分为若干部分的模板表达式。每个部分都是一个 Expression，但模板中的纯文本部分会表示为 LiteralExpression 对象。模板表达式的一个示例可能是："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/CompositeStringExpression.java::26::1", "zh": ["它会被表示为由两部分组成的 CompositeStringExpression。第一部分是表示 'Hello ' 的 LiteralExpression，第二部分是在调用时执行 {@code getName()} 的真实表达式。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::27::0", "zh": ["任何表达式语言提供者都可以使用的通用工具方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::36::0", "zh": ["判断指定上下文中是否存在可用的类型转换器，并尝试用它把提供的值转换为指定类型。如果无法转换，则抛出异常。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::66::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 int。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::73::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 boolean。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::80::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 double。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::87::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 long。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::94::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 char。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::101::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 short。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::108::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 float。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/ExpressionUtils.java::115::0", "zh": ["尝试使用提供的类型转换器把带类型的值转换为 byte。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/LiteralExpression.java::26::0", "zh": ["Expression 接口的一个非常简单的硬编码实现，表示一个字符串字面量。它与 CompositeStringExpression 配合使用，用于表示由若干部分组成的模板表达式——其中一些是由 SpEL 等 EL 实现处理的真实表达式，另一些只是文本元素。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateAwareExpressionParser.java::30::0", "zh": ["能够理解模板的表达式解析器。不提供一流模板支持的表达式解析器可以通过继承它来获得该能力。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateAwareExpressionParser.java::71::0", "zh": ["使用所配置的解析器解析给定表达式字符串的辅助方法。表达式字符串可以包含任意数量的表达式，它们都放在 \"${...}\" 标记中。例如：\"foo${expr0}bar${expr1}\"。静态文本部分也会作为仅返回该静态文本的 Expression 返回。因此，对返回的所有表达式求值并拼接结果，就能得到完整的求值后字符串。只对找到的最外层分隔符进行解包，所以字符串 'hello ${foo${abc}}' 会被拆分为 'hello ' 和 'foo${abc}'。这意味着将 ${..} 作为其功能一部分的表达式语言也能毫无问题地得到支持。解析过程会考虑内嵌表达式的结构。它假定表达式中的圆括号 '('、方括号 '[' 和花括号 '}' 必须成对出现，除非它们位于字符串字面量中，而字符串字面量以单引号 ' 开始和结束。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateAwareExpressionParser.java::134::0", "zh": ["如果能在提供的表达式字符串中的指定位置找到指定后缀，则返回 true。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateAwareExpressionParser.java::155::0", "zh": ["处理嵌套，例如 '${...${...}}'，其中第一个 ${ 的正确结束位置是最后的 }。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateAwareExpressionParser.java::228::0", "zh": ["实际解析表达式字符串并返回 Expression 对象。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateAwareExpressionParser.java::239::0", "zh": ["用于捕获一种括号类型及其在表达式中出现的位置。当因为找不到相关的结束括号而需要报告错误时，会使用该位置信息。Bracket 用于描述：方括号 []、圆括号 () 和花括号 {}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateParserContext.java::21::0", "zh": ["用于模板解析的可配置 {@link ParserContext} 实现。需要将表达式前缀和后缀作为构造参数传入。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateParserContext.java::35::0", "zh": ["使用默认的 \"#{\" 前缀和 \"}\" 后缀创建新的 TemplateParserContext。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/TemplateParserContext.java::42::0", "zh": ["为给定前缀和后缀创建新的 TemplateParserContext。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/common/package-info.java::1::0", "zh": ["用于 <em>Spring Expression Language</em> 的通用工具类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::32::0", "zh": ["管理编译过程所生成的类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::32::1", "zh": ["<p>在生成字节码的过程中记录中间编译状态。还包括各种字节码生成辅助函数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::44::0", "zh": ["所生成类的名称。通常用于生成访问所生成类型上新生成字段的代码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::50::0", "zh": ["当前正在生成的类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::55::0", "zh": ["记录字节码栈顶内容的类型（即前一个表达式组件的输出类型）。新作用域用于求值子表达式，例如方法调用表达式中参数值对应的表达式。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::63::0", "zh": ["当 SpEL ast 节点被调用来为主求值方法生成代码时，可以注册以向该类添加字段。任何已注册的 FieldAdder 都会在生成完主求值函数后调用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::71::0", "zh": ["当 SpEL ast 节点被调用来为主求值方法生成代码时，可以注册以向类中的静态初始化器添加代码。任何已注册的 ClinitAdder 都会在生成完主求值函数后调用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::80::0", "zh": ["当代码生成需要在类级字段中保存值时，用它来跟踪下一个可用的字段 id（用作名称后缀）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::86::0", "zh": ["当代码生成需要方法内的中间变量时，此方法记录下一个可用变量（变量 0 是 'this'）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::93::0", "zh": ["为给定类构造新的 {@code CodeFlow}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::106::0", "zh": ["压入用于加载目标对象的字节码（即作为第一个参数传递给 CompiledExpression.getValue(target, context) 的内容）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::115::0", "zh": ["压入用于加载 EvaluationContext 的字节码（传递给编译表达式方法的第二个参数）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::125::0", "zh": ["记录最近求值的表达式元素的描述符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::135::0", "zh": ["进入新的编译作用域，通常是因为有嵌套的表达式求值。例如在求值方法调用表达式的参数时，每个参数都会在新的作用域中求值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::144::0", "zh": ["退出编译作用域，通常是在嵌套表达式求值完成后。例如在求值完方法调用的某个参数后，此方法会将我们返回到之前的（外层）作用域。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::153::0", "zh": ["返回当前位于栈顶（在当前作用域中）的项的说明符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::161::0", "zh": ["如果 codeflow 显示最后一个表达式的求值结果为 java.lang.Boolean，则插入必要的指令将其拆箱为 boolean 基本类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::172::0", "zh": ["在生成完主表达式求值方法后调用，此方法会回调任何已注册的 FieldAdder 或 ClinitAdder，以便向表示已编译表达式的类添加额外信息。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::196::0", "zh": ["注册一个 FieldAdder，它会在所生成的类中添加新字段，以支持 ast 节点主 generateCode() 方法生成的代码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::208::0", "zh": ["注册一个 ClinitAdder，它会在所生成类的静态初始化器中添加代码，以支持 ast 节点主 generateCode() 方法生成的代码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::233::0", "zh": ["插入任何必要的强制转换和取值调用，以便从装箱类型转换为基本类型值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::298::0", "zh": ["对于数字，使用数字上的相应方法将其转换为所请求的基本类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::342::0", "zh": ["根据栈上的内容和所需的目标类型，插入任何必要的数值转换字节码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::423::0", "zh": ["创建方法的 JVM 签名描述符。它由用括号括起来的方法参数描述符，加上返回类型的描述符组成。请注意，这里的描述符是 JVM 描述符，不同于编译器使用的其他描述符形式，后者不包含末尾的分号。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::444::0", "zh": ["创建构造函数的 JVM 签名描述符。它由用括号括起来的构造函数参数描述符，加上返回类型的描述符（始终为 \"V\"）组成。请注意，这里的描述符是 JVM 描述符，不同于编译器使用的其他描述符形式，后者不包含末尾的分号。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::464::0", "zh": ["确定指定类的 JVM 描述符。不同于编译过程中使用的其他描述符，这是 JVM 所需的描述符，因此它包含任何必要的末尾分号（例如 Ljava/lang/String; 而不是 Ljava/lang/String）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::517::0", "zh": ["确定对象实例（或 {@code null}）的描述符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::532::0", "zh": ["判断描述符对应的是 boolean 基本类型还是 boolean 引用类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::541::0", "zh": ["判断描述符是否对应基本类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::550::0", "zh": ["判断描述符是否对应基本类型数组（例如 \"[[I\"）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::571::0", "zh": ["判断装箱/拆箱能否从一种类型转换到另一种类型。假定至少有一种类型是装箱形式（即单字符描述符）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::617::0", "zh": ["判断提供的描述符是否对应受支持的数字类型或 boolean。编译过程（目前）只支持某些数字类型，包括 double、float、long 和 int。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::634::0", "zh": ["判断提供的描述符是否对应受支持的数字。编译过程（目前）只支持某些数字类型，包括 double、float、long 和 int。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::657::0", "zh": ["判断给定数字在字节码级别的数值运算中是否应被视为整数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::667::0", "zh": ["将类型描述符转换为单字符基本类型描述符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::705::0", "zh": ["为提供的描述符插入适当的 CHECKCAST 指令。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::729::0", "zh": ["确定特定类型对应的适当装箱指令（如果需要装箱），并将该指令插入提供的 visitor。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::741::0", "zh": ["确定特定类型对应的适当装箱指令（如果需要装箱），并将该指令插入提供的 visitor。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::783::0", "zh": ["推断类型的描述符。描述符类似于 JVM 类型名称，但缺少末尾的 ';'，因此 Object 的描述符是 \"Ljava/lang/Object\"，int 的描述符是 \"I\"。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::845::0", "zh": ["创建描述符数组，表示所提供方法的参数类型。如果没有参数，则返回零长度数组。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::855::0", "zh": ["创建描述符数组，表示所提供构造函数的参数类型。如果没有参数，则返回零长度数组。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::865::0", "zh": ["从类数组创建描述符数组。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::879::0", "zh": ["创建用于在栈上加载数字的最优指令。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::899::0", "zh": ["生成适当的字节码以将栈项存入数组。使用的指令取决于该类型是基本类型还是引用类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::943::0", "zh": ["确定用于 NEWARRAY 字节码的适当 T 标记。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::963::0", "zh": ["返回所提供的数组类型是否具有核心组件引用类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::978::0", "zh": ["生成用于构建数组的正确字节码。使用的操作码以及随操作码传递的签名可能因数组类型的签名而异。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::1008::0", "zh": ["用于数学运算符，处理将栈上（可能已装箱的）数字转换为基本数值类型。<p>例如，从 Integer 到 double 只需调用 'Number.doubleValue()'，但从 int 到 double 需要使用字节码 'i2d'。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::1044::0", "zh": ["用于生成字段的接口。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CodeFlow.java::1054::0", "zh": ["用于生成 {@code clinit} 静态初始化块的接口。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CompilablePropertyAccessor.java::23::0", "zh": ["可编译的属性访问器能够生成表示访问操作的字节码，从而便于将使用该访问器的表达式编译为字节码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CompilablePropertyAccessor.java::33::0", "zh": ["如果此属性访问器当前适合编译，则返回 {@code true}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CompilablePropertyAccessor.java::38::0", "zh": ["返回被访问属性的类型——可能只有在发生访问后才能确定。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CompilablePropertyAccessor.java::43::0", "zh": ["在必要时使用 codeflow 中的上下文信息，将执行访问操作的字节码生成到指定的 MethodVisitor 中。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CompiledExpression.java::23::0", "zh": ["已编译表达式的基超类。每个生成的已编译表达式类都会继承此类并实现 {@link #getValue} 方法。它不打算由用户代码继承。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/CompiledExpression.java::33::0", "zh": ["由 SpelCompiler 生成的 CompiledExpression 子类将提供此方法的实现。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ExpressionState.java::41::0", "zh": ["ExpressionState 用于维护每次表达式求值过程中的状态：对它的任何更改都不会被其他表达式看到，但它提供了一个位置来保存局部变量，并让复合表达式中的组件表达式能够传递状态。这与 EvaluationContext 形成对比，后者在多次表达式求值之间共享，对它的任何更改都会被其他表达式或任何选择查询该上下文的代码看到。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ExpressionState.java::41::1", "zh": ["<p>它还充当定义各种 AST 节点可能需要的通用工具例程的位置。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ExpressionState.java::103::0", "zh": ["活动上下文对象是解析属性等非限定引用时所依据的对象。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ExpressionState.java::143::0", "zh": ["将指定 {@link Supplier} 创建的值赋给求值上下文中的命名变量。<p>与 {@link #setVariable(String, Object)} 不同，此方法只应在支持表达式内赋值时调用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ExpressionState.java::158::0", "zh": ["将求值上下文中的命名变量设置为指定值。<p>与 {@link #assignVariable(String, Supplier)} 不同，此方法只应以编程方式调用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ExpressionState.java::282::0", "zh": ["调用函数时会进入新的作用域，用于保存函数调用的参数。如果参数名称与更高层作用域中的名称冲突，则在函数执行期间将无法访问更高层作用域中的那些名称。函数返回时，退出该作用域。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/InternalParseException.java::19::0", "zh": ["包装真实的解析异常。该异常会流向顶层解析方法，然后抛出被包装的异常作为真正的问题。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelCompilerMode.java::19::0", "zh": ["捕获可用于表达式求值的编译器的可能配置设置。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelCompilerMode.java::28::0", "zh": ["编译器已关闭；这是默认设置。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelCompilerMode.java::33::0", "zh": ["在即时模式下，表达式会尽快编译（通常在 1 次解释执行之后）。如果已编译的表达式失败，它会向调用方抛出异常。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelCompilerMode.java::39::0", "zh": ["在混合模式下，表达式求值会随时间在解释执行与编译执行之间静默切换。经过若干次运行后，表达式会被编译。如果之后它失败了（可能是由于推断出的类型信息发生变化），这将在内部被捕获，系统会切换回解释模式。之后它可能再次进行编译。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelEvaluationException.java::21::0", "zh": ["Spring EL 相关异常的根异常。它不持有表示问题的硬编码字符串，而是记录消息键以及消息的插入内容。有关可能出现的所有消息列表，请参见 {@link SpelMessage}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelEvaluationException.java::63::0", "zh": ["设置相关表达式中引发此异常的位置。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelEvaluationException.java::70::0", "zh": ["返回消息代码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelEvaluationException.java::77::0", "zh": ["返回消息插入内容。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelMessage.java::21::0", "zh": ["包含 Spring Expression Language 可以产生的所有消息。每条消息都有一个种类（info、warn、error）和一个代码编号。可以编写测试来期望特定的代码编号而非特定文本，从而使消息文本更易于修改，并让测试能在不同的区域设置下成功运行。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelMessage.java::21::1", "zh": ["<p>格式化消息时，它将采用这种形式，捕获前缀和错误种类："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelMessage.java::304::0", "zh": ["生成完整消息，包含前缀，并将插入内容应用到消息中。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelMessage.java::325::0", "zh": ["消息种类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::23::0", "zh": ["表示已解析表达式 AST 中的节点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::31::0", "zh": ["在提供的表达式状态的上下文中求值该表达式节点，并返回值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::40::0", "zh": ["在提供的表达式状态的上下文中求值该表达式节点，并返回带类型的值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::48::0", "zh": ["判断此表达式节点是否支持 setValue() 调用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::57::0", "zh": ["将表达式求值为一个节点，然后在该节点上设置新值。例如，如果表达式求值结果为属性引用，则会将该属性设置为新值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::68::0", "zh": ["返回此 AST 节点的字符串形式。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::74::0", "zh": ["返回此节点下的子节点数量。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::80::0", "zh": ["返回 SpelNode 而非 Antlr Tree 节点的辅助方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::86::0", "zh": ["确定传入对象的类，除非它本身已经是 Class 对象。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::95::0", "zh": ["返回此 AST 节点在表达式字符串中的起始位置。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelNode.java::101::0", "zh": ["返回此 AST 节点在表达式字符串中的结束位置。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParseException.java::22::0", "zh": ["Spring EL 相关异常的根异常。它不持有表示问题的硬编码字符串，而是记录消息键以及消息的插入内容。有关可能出现的所有消息列表，请参见 {@link SpelMessage}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParseException.java::58::0", "zh": ["返回消息代码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParseException.java::65::0", "zh": ["返回消息插入内容。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::22::0", "zh": ["SpEL 表达式解析器的配置对象。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::58::0", "zh": ["使用默认设置创建新的 {@code SpelParserConfiguration} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::65::0", "zh": ["创建新的 {@code SpelParserConfiguration} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::74::0", "zh": ["创建新的 {@code SpelParserConfiguration} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::84::0", "zh": ["创建新的 {@code SpelParserConfiguration} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::94::0", "zh": ["创建新的 {@code SpelParserConfiguration} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::113::0", "zh": ["返回使用此配置对象的解析器的编译器模式。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::120::0", "zh": ["返回用作表达式编译基础的 ClassLoader。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::128::0", "zh": ["如果应自动增长 {@code null} 引用，则返回 {@code true}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::135::0", "zh": ["如果应自动增长集合，则返回 {@code true}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/SpelParserConfiguration.java::142::0", "zh": ["返回集合可自动增长的最大大小。"]}

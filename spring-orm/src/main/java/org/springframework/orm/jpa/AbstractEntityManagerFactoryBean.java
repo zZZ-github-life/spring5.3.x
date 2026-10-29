@@ -63,24 +63,22 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Abstract {@link org.springframework.beans.factory.FactoryBean} that creates
- * a local JPA {@link javax.persistence.EntityManagerFactory} instance within
- * a Spring application context.
+ * 抽象的 {@link org.springframework.beans.factory.FactoryBean}，
+ * 在 Spring 应用上下文中创建本地 JPA
+ * {@link javax.persistence.EntityManagerFactory} 实例。
  *
- * <p>Encapsulates the common functionality between the different JPA bootstrap
- * contracts (standalone as well as container).
+ * <p>封装了不同 JPA 引导契约（独立以及容器）之间的公共功能。
  *
- * <p>Implements support for standard JPA configuration conventions as well as
- * Spring's customizable {@link JpaVendorAdapter} mechanism, and controls the
- * EntityManagerFactory's lifecycle.
+ * <p>支持标准 JPA 配置约定以及 Spring 可定制的
+ * {@link JpaVendorAdapter} 机制，并控制 EntityManagerFactory 的生命周期。
  *
- * <p>This class also implements the
- * {@link org.springframework.dao.support.PersistenceExceptionTranslator}
- * interface, as autodetected by Spring's
- * {@link org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor},
- * for AOP-based translation of native exceptions to Spring DataAccessExceptions.
- * Hence, the presence of e.g. LocalEntityManagerFactoryBean automatically enables
- * a PersistenceExceptionTranslationPostProcessor to translate JPA exceptions.
+ * <p>此类还实现了
+ * {@link org.springframework.dao.support.PersistenceExceptionTranslator} 接口，
+ * 会被 Spring 的
+ * {@link org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor}
+ * 自动检测，用于基于 AOP 将原生异常转换为 Spring 的 DataAccessException。
+ * 因此，例如 LocalEntityManagerFactoryBean 的存在会自动启用
+ * PersistenceExceptionTranslationPostProcessor 来转换 JPA 异常。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -93,7 +91,7 @@ public abstract class AbstractEntityManagerFactoryBean implements
 		FactoryBean<EntityManagerFactory>, BeanClassLoaderAware, BeanFactoryAware, BeanNameAware,
 		InitializingBean, DisposableBean, EntityManagerFactoryInfo, PersistenceExceptionTranslator, Serializable {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -130,24 +128,23 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	@Nullable
 	private String beanName;
 
-	/** Raw EntityManagerFactory as returned by the PersistenceProvider. */
+	/** PersistenceProvider 返回的原始 EntityManagerFactory。 */
 	@Nullable
 	private EntityManagerFactory nativeEntityManagerFactory;
 
-	/** Future for lazily initializing raw target EntityManagerFactory. */
+	/** 用于延迟初始化原始目标 EntityManagerFactory 的 Future。 */
 	@Nullable
 	private Future<EntityManagerFactory> nativeEntityManagerFactoryFuture;
 
-	/** Exposed client-level EntityManagerFactory proxy. */
+	/** 暴露给客户端的 EntityManagerFactory 代理。 */
 	@Nullable
 	private EntityManagerFactory entityManagerFactory;
 
 
 	/**
-	 * Set the PersistenceProvider implementation class to use for creating the
-	 * EntityManagerFactory. If not specified, the persistence provider will be
-	 * taken from the JpaVendorAdapter (if any) or retrieved through scanning
-	 * (as far as possible).
+	 * 设置用于创建 EntityManagerFactory 的 PersistenceProvider 实现类。
+	 * 如果未指定，则将从 JpaVendorAdapter（如果有）中获取持久化提供者，
+	 * 或通过扫描获取（尽最大可能）。
 	 * @see JpaVendorAdapter#getPersistenceProvider()
 	 * @see javax.persistence.spi.PersistenceProvider
 	 * @see javax.persistence.Persistence
@@ -157,10 +154,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Set the PersistenceProvider instance to use for creating the
-	 * EntityManagerFactory. If not specified, the persistence provider
-	 * will be taken from the JpaVendorAdapter (if any) or determined
-	 * by the persistence unit deployment descriptor (as far as possible).
+	 * 设置用于创建 EntityManagerFactory 的 PersistenceProvider 实例。
+	 * 如果未指定，则将从 JpaVendorAdapter（如果有）中获取持久化提供者，
+	 * 或由持久化单元部署描述符确定（尽最大可能）。
 	 * @see JpaVendorAdapter#getPersistenceProvider()
 	 * @see javax.persistence.spi.PersistenceProvider
 	 * @see javax.persistence.Persistence
@@ -176,10 +172,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify the name of the EntityManagerFactory configuration.
-	 * <p>Default is none, indicating the default EntityManagerFactory
-	 * configuration. The persistence provider will throw an exception if
-	 * ambiguous EntityManager configurations are found.
+	 * 指定 EntityManagerFactory 配置的名称。
+	 * <p>默认不指定，表示使用默认的 EntityManagerFactory 配置。
+	 * 如果发现存在歧义的 EntityManager 配置，持久化提供者将抛出异常。
 	 * @see javax.persistence.Persistence#createEntityManagerFactory(String)
 	 */
 	public void setPersistenceUnitName(@Nullable String persistenceUnitName) {
@@ -193,10 +188,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify JPA properties, to be passed into
-	 * {@code Persistence.createEntityManagerFactory} (if any).
-	 * <p>Can be populated with a String "value" (parsed via PropertiesEditor) or a
-	 * "props" element in XML bean definitions.
+	 * 指定要传入 {@code Persistence.createEntityManagerFactory} 的 JPA 属性（如果有）。
+	 * <p>可以通过 String 类型的 "value"（由 PropertiesEditor 解析）
+	 * 或 XML bean 定义中的 "props" 元素来填充。
 	 * @see javax.persistence.Persistence#createEntityManagerFactory(String, Map)
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory(PersistenceUnitInfo, Map)
 	 */
@@ -205,9 +199,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify JPA properties as a Map, to be passed into
-	 * {@code Persistence.createEntityManagerFactory} (if any).
-	 * <p>Can be populated with a "map" or "props" element in XML bean definitions.
+	 * 以 Map 形式指定要传入 {@code Persistence.createEntityManagerFactory} 的
+	 * JPA 属性（如果有）。
+	 * <p>可以通过 XML bean 定义中的 "map" 或 "props" 元素来填充。
 	 * @see javax.persistence.Persistence#createEntityManagerFactory(String, Map)
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory(PersistenceUnitInfo, Map)
 	 */
@@ -218,21 +212,20 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Allow {@code Map} access to the JPA properties to be passed to the persistence
-	 * provider, with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
-	 * {@code jpaPropertyMap[myKey]}.
+	 * 允许以 {@code Map} 方式访问要传递给持久化提供者的 JPA 属性，
+	 * 并可以选择添加或覆盖特定条目。
+	 * <p>适用于直接指定条目，例如通过
+	 * {@code jpaPropertyMap[myKey]}。
 	 */
 	public Map<String, Object> getJpaPropertyMap() {
 		return this.jpaPropertyMap;
 	}
 
 	/**
-	 * Specify the (potentially vendor-specific) EntityManagerFactory interface
-	 * that this EntityManagerFactory proxy is supposed to implement.
-	 * <p>The default will be taken from the specific JpaVendorAdapter, if any,
-	 * or set to the standard {@code javax.persistence.EntityManagerFactory}
-	 * interface else.
+	 * 指定此 EntityManagerFactory 代理应实现的（可能为供应商特定的）
+	 * EntityManagerFactory 接口。
+	 * <p>默认值将取自特定的 JpaVendorAdapter（如果有），
+	 * 否则设置为标准的 {@code javax.persistence.EntityManagerFactory} 接口。
 	 * @see JpaVendorAdapter#getEntityManagerFactoryInterface()
 	 */
 	public void setEntityManagerFactoryInterface(Class<? extends EntityManagerFactory> emfInterface) {
@@ -240,11 +233,10 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify the (potentially vendor-specific) EntityManager interface
-	 * that this factory's EntityManagers are supposed to implement.
-	 * <p>The default will be taken from the specific JpaVendorAdapter, if any,
-	 * or set to the standard {@code javax.persistence.EntityManager}
-	 * interface else.
+	 * 指定此工厂的 EntityManager 应实现的（可能为供应商特定的）
+	 * EntityManager 接口。
+	 * <p>默认值将取自特定的 JpaVendorAdapter（如果有），
+	 * 否则设置为标准的 {@code javax.persistence.EntityManager} 接口。
 	 * @see JpaVendorAdapter#getEntityManagerInterface()
 	 * @see EntityManagerFactoryInfo#getEntityManagerInterface()
 	 */
@@ -259,10 +251,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify the vendor-specific JpaDialect implementation to associate with
-	 * this EntityManagerFactory. This will be exposed through the
-	 * EntityManagerFactoryInfo interface, to be picked up as default dialect by
-	 * accessors that intend to use JpaDialect functionality.
+	 * 指定要与此 EntityManagerFactory 关联的供应商特定 JpaDialect 实现。
+	 * 它将通过 EntityManagerFactoryInfo 接口暴露，
+	 * 以便打算使用 JpaDialect 功能的访问器将其作为默认方言获取。
 	 * @see EntityManagerFactoryInfo#getJpaDialect()
 	 */
 	public void setJpaDialect(@Nullable JpaDialect jpaDialect) {
@@ -276,18 +267,17 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify the JpaVendorAdapter implementation for the desired JPA provider,
-	 * if any. This will initialize appropriate defaults for the given provider,
-	 * such as persistence provider class and JpaDialect, unless locally
-	 * overridden in this FactoryBean.
+	 * 为所需的 JPA 提供者指定 JpaVendorAdapter 实现（如果有）。
+	 * 这将为给定的提供者初始化适当的默认值，
+	 * 例如持久化提供者类和 JpaDialect，除非在此 FactoryBean 中被局部覆盖。
 	 */
 	public void setJpaVendorAdapter(@Nullable JpaVendorAdapter jpaVendorAdapter) {
 		this.jpaVendorAdapter = jpaVendorAdapter;
 	}
 
 	/**
-	 * Return the JpaVendorAdapter implementation for this EntityManagerFactory,
-	 * or {@code null} if not known.
+	 * 返回此 EntityManagerFactory 的 JpaVendorAdapter 实现，
+	 * 如果未知则返回 {@code null}。
 	 */
 	@Nullable
 	public JpaVendorAdapter getJpaVendorAdapter() {
@@ -295,11 +285,11 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify a callback for customizing every {@code EntityManager} created
-	 * by the exposed {@code EntityManagerFactory}.
-	 * <p>This is an alternative to a {@code JpaVendorAdapter}-level
-	 * {@code postProcessEntityManager} implementation, enabling convenient
-	 * customizations for application purposes, e.g. setting Hibernate filters.
+	 * 指定一个回调，用于自定义所暴露的 {@code EntityManagerFactory}
+	 * 创建的每个 {@code EntityManager}。
+	 * <p>这是 {@code JpaVendorAdapter} 级 {@code postProcessEntityManager}
+	 * 实现的替代方式，可针对应用程序用途进行便捷定制，
+	 * 例如设置 Hibernate 过滤器。
 	 * @since 5.3
 	 * @see JpaVendorAdapter#postProcessEntityManager
 	 * @see JpaTransactionManager#setEntityManagerInitializer
@@ -309,15 +299,15 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Specify an asynchronous executor for background bootstrapping,
-	 * e.g. a {@link org.springframework.core.task.SimpleAsyncTaskExecutor}.
-	 * <p>{@code EntityManagerFactory} initialization will then switch into background
-	 * bootstrap mode, with a {@code EntityManagerFactory} proxy immediately returned for
-	 * injection purposes instead of waiting for the JPA provider's bootstrapping to complete.
-	 * However, note that the first actual call to a {@code EntityManagerFactory} method will
-	 * then block until the JPA provider's bootstrapping completed, if not ready by then.
-	 * For maximum benefit, make sure to avoid early {@code EntityManagerFactory} calls
-	 * in init methods of related beans, even for metadata introspection purposes.
+	 * 指定用于后台引导的异步执行器，
+	 * 例如 {@link org.springframework.core.task.SimpleAsyncTaskExecutor}。
+	 * <p>随后 {@code EntityManagerFactory} 的初始化将切换到后台引导模式，
+	 * 立即返回一个 {@code EntityManagerFactory} 代理用于注入，
+	 * 而无需等待 JPA 提供者的引导完成。
+	 * 但请注意，对 {@code EntityManagerFactory} 方法的第一次实际调用
+	 * 将阻塞，直到 JPA 提供者的引导完成（如果届时尚未就绪）。
+	 * 为获得最大收益，请确保避免在相关 bean 的初始化方法中
+	 * 过早调用 {@code EntityManagerFactory}，即使只是为了元数据内省。
 	 * @since 4.3
 	 */
 	public void setBootstrapExecutor(@Nullable AsyncTaskExecutor bootstrapExecutor) {
@@ -325,7 +315,7 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Return the asynchronous executor for background bootstrapping, if any.
+	 * 返回用于后台引导的异步执行器（如果有）。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -440,8 +430,8 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Create a proxy for the given {@link EntityManagerFactory}. We do this to be able to
-	 * return a transaction-aware proxy for an application-managed {@link EntityManager}.
+	 * 为给定的 {@link EntityManagerFactory} 创建代理。这样做是为了能够
+	 * 为应用程序管理的 {@link EntityManager} 返回一个事务感知的代理。
 	 * @param emf the EntityManagerFactory as returned by the persistence provider,
 	 * if initialized already
 	 * @return the EntityManagerFactory proxy
@@ -479,8 +469,8 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Delegate an incoming invocation from the proxy, dispatching to EntityManagerFactoryInfo
-	 * or the native EntityManagerFactory accordingly.
+	 * 委托来自代理的传入调用，
+	 * 相应分派给 EntityManagerFactoryInfo 或原生 EntityManagerFactory。
 	 */
 	Object invokeProxyMethod(Method method, @Nullable Object[] args) throws Throwable {
 		if (method.getDeclaringClass().isAssignableFrom(EntityManagerFactoryInfo.class)) {
@@ -527,8 +517,8 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Subclasses must implement this method to create the EntityManagerFactory
-	 * that will be returned by the {@code getObject()} method.
+	 * 子类必须实现此方法，以创建将由 {@code getObject()} 方法返回的
+	 * EntityManagerFactory。
 	 * @return the EntityManagerFactory instance returned by this FactoryBean
 	 * @throws PersistenceException if the EntityManager cannot be created
 	 */
@@ -536,10 +526,10 @@ public abstract class AbstractEntityManagerFactoryBean implements
 
 
 	/**
-	 * Implementation of the PersistenceExceptionTranslator interface, as
-	 * autodetected by Spring's PersistenceExceptionTranslationPostProcessor.
-	 * <p>Uses the dialect's conversion if possible; otherwise falls back to
-	 * standard JPA exception conversion.
+	 * PersistenceExceptionTranslator 接口的实现，
+	 * 由 Spring 的 PersistenceExceptionTranslationPostProcessor 自动检测。
+	 * <p>如果可能，使用方言的转换；否则回退到
+	 * 标准的 JPA 异常转换。
 	 * @see org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor
 	 * @see JpaDialect#translateExceptionIfPossible
 	 * @see EntityManagerFactoryUtils#convertJpaAccessExceptionIfPossible
@@ -588,10 +578,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 	}
 
 	/**
-	 * Optional callback for post-processing the native EntityManager
-	 * before active use.
-	 * <p>The default implementation delegates to
-	 * {@link JpaVendorAdapter#postProcessEntityManager}, if available.
+	 * 可选回调，用于在激活使用之前对原生 EntityManager 进行后处理。
+	 * <p>默认实现委托给
+	 * {@link JpaVendorAdapter#postProcessEntityManager}（如果可用）。
 	 * @param rawEntityManager the EntityManager to post-process
 	 * @since 5.3
 	 * @see #createNativeEntityManager
@@ -622,7 +611,7 @@ public abstract class AbstractEntityManagerFactoryBean implements
 
 
 	/**
-	 * Return the singleton EntityManagerFactory.
+	 * 返回单例 EntityManagerFactory。
 	 */
 	@Override
 	@Nullable
@@ -642,7 +631,7 @@ public abstract class AbstractEntityManagerFactoryBean implements
 
 
 	/**
-	 * Close the EntityManagerFactory on bean factory shutdown.
+	 * 在 bean 工厂关闭时关闭 EntityManagerFactory。
 	 */
 	@Override
 	public void destroy() {
@@ -675,8 +664,8 @@ public abstract class AbstractEntityManagerFactoryBean implements
 
 
 	/**
-	 * Minimal bean reference to the surrounding AbstractEntityManagerFactoryBean.
-	 * Resolved to the actual AbstractEntityManagerFactoryBean instance on deserialization.
+	 * 对周围 AbstractEntityManagerFactoryBean 的最小 bean 引用。
+	 * 在反序列化时解析为实际的 AbstractEntityManagerFactoryBean 实例。
 	 */
 	@SuppressWarnings("serial")
 	private static class SerializedEntityManagerFactoryBeanReference implements Serializable {
@@ -697,8 +686,9 @@ public abstract class AbstractEntityManagerFactoryBean implements
 
 
 	/**
-	 * Dynamic proxy invocation handler for an {@link EntityManagerFactory}, returning a
-	 * proxy {@link EntityManager} (if necessary) from {@code createEntityManager} methods.
+	 * {@link EntityManagerFactory} 的动态代理调用处理器，
+	 * 从 {@code createEntityManager} 方法返回一个代理
+	 * {@link EntityManager}（如有必要）。
 	 */
 	@SuppressWarnings("serial")
 	private static class ManagedEntityManagerFactoryInvocationHandler implements InvocationHandler, Serializable {

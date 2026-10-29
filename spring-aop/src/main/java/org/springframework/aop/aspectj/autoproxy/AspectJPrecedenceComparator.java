@@ -25,24 +25,17 @@ import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.util.Assert;
 
 /**
- * Orders AspectJ advice/advisors by precedence (<i>not</i> invocation order).
+ * 按优先级（<i>而非</i>调用顺序）对 AspectJ 通知/Advisor 排序。
  *
- * <p>Given two pieces of advice, {@code A} and {@code B}:
+ * <p>给定两条通知 {@code A} 和 {@code B}：
  * <ul>
- * <li>If {@code A} and {@code B} are defined in different aspects, then the advice
- * in the aspect with the lowest order value has the highest precedence.</li>
- * <li>If {@code A} and {@code B} are defined in the same aspect, if one of
- * {@code A} or {@code B} is a form of <em>after</em> advice, then the advice declared
- * last in the aspect has the highest precedence. If neither {@code A} nor {@code B}
- * is a form of <em>after</em> advice, then the advice declared first in the aspect
- * has the highest precedence.</li>
+ * <li>如果 {@code A} 和 {@code B} 定义在不同的切面中，则 order 值最小的切面中的通知具有最高优先级。</li>
+ * <li>如果 {@code A} 和 {@code B} 定义在同一个切面中，并且 {@code A} 或 {@code B} 中有一个是 <em>after</em> 形式的通知，则该切面中最后声明的通知具有最高优先级。如果 {@code A} 和 {@code B} 都不是 <em>after</em> 形式的通知，则该切面中最先声明的通知具有最高优先级。</li>
  * </ul>
  *
- * <p>Important: This comparator is used with AspectJ's
- * {@link org.aspectj.util.PartialOrder PartialOrder} sorting utility. Thus, unlike
- * a normal {@link Comparator}, a return value of {@code 0} from this comparator
- * means we don't care about the ordering, not that the two elements must be sorted
- * identically.
+ * <p>重要：此比较器与 AspectJ 的 {@link org.aspectj.util.PartialOrder PartialOrder} 排序工具一起使
+ * 用。因此，与普通的 {@link Comparator} 不同，此比较器返回 {@code 0} 意味着我们不关心顺序，而不是
+ * 两个元素必须按相同方式排序。
  *
  * @author Adrian Colyer
  * @author Juergen Hoeller
@@ -61,15 +54,15 @@ class AspectJPrecedenceComparator implements Comparator<Advisor> {
 
 
 	/**
-	 * Create a default {@code AspectJPrecedenceComparator}.
+	 * 创建一个默认的 {@code AspectJPrecedenceComparator}。
 	 */
 	public AspectJPrecedenceComparator() {
 		this.advisorComparator = AnnotationAwareOrderComparator.INSTANCE;
 	}
 
 	/**
-	 * Create an {@code AspectJPrecedenceComparator}, using the given {@link Comparator}
-	 * for comparing {@link org.springframework.aop.Advisor} instances.
+	 * 创建一个 {@code AspectJPrecedenceComparator}，使用给定的 {@link Comparator} 比较
+	 * {@link org.springframework.aop.Advisor} 实例。
 	 * @param advisorComparator the {@code Comparator} to use for advisors
 	 */
 	public AspectJPrecedenceComparator(Comparator<? super Advisor> advisorComparator) {

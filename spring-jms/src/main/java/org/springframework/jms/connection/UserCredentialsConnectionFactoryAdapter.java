@@ -32,19 +32,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * An adapter for a target JMS {@link javax.jms.ConnectionFactory}, applying the
- * given user credentials to every standard {@code createConnection()} call,
- * that is, implicitly invoking {@code createConnection(username, password)}
- * on the target. All other methods simply delegate to the corresponding methods
- * of the target ConnectionFactory.
+ * 目标 JMS {@link javax.jms.ConnectionFactory} 的适配器，为每次标准的
+ * {@code createConnection()} 调用应用给定的用户凭据，即在目标上隐式调用
+ * {@code createConnection(username, password)}。所有其他方法只是委托给目标
+ * ConnectionFactory 的相应方法。
  *
- * <p>Can be used to proxy a target JNDI ConnectionFactory that does not have user
- * credentials configured. Client code can work with the ConnectionFactory without
- * passing in username and password on every {@code createConnection()} call.
+ * <p>可用于代理未配置用户凭据的目标 JNDI ConnectionFactory。
+ * 客户端代码可以使用该 ConnectionFactory，而无需在每次
+ * {@code createConnection()} 调用时传入用户名和密码。
  *
- * <p>In the following example, client code can simply transparently work
- * with the preconfigured "myConnectionFactory", implicitly accessing
- * "myTargetConnectionFactory" with the specified user credentials.
+ * <p>在下面的示例中，客户端代码可以直接透明地使用预配置的
+ * "myConnectionFactory"，并以指定的用户凭据隐式访问
+ * "myTargetConnectionFactory"。
  *
  * <pre class="code">
  * &lt;bean id="myTargetConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean"&gt;
@@ -57,16 +56,14 @@ import org.springframework.util.StringUtils;
  *   &lt;property name="password" value="mypassword"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>If the "username" is empty, this proxy will simply delegate to the standard
- * {@code createConnection()} method of the target ConnectionFactory.
- * This can be used to keep a UserCredentialsConnectionFactoryAdapter bean
- * definition just for the <i>option</i> of implicitly passing in user credentials
- * if the particular target ConnectionFactory requires it.
+ * <p>如果 "username" 为空，此代理将仅委托给目标 ConnectionFactory 的标准
+ * {@code createConnection()} 方法。这样可以将 UserCredentialsConnectionFactoryAdapter
+ * bean 定义仅保留为<i>可选</i>地隐式传递用户凭据，以备特定目标
+ * ConnectionFactory 需要时使用。
  *
- * <p>As of Spring Framework 5, this class delegates JMS 2.0 {@code JMSContext}
- * calls and therefore requires the JMS 2.0 API to be present at runtime.
- * It may nevertheless run against a JMS 1.1 driver (bound to the JMS 2.0 API)
- * as long as no actual JMS 2.0 calls are triggered by the application's setup.
+ * <p>从 Spring Framework 5 开始，此类委托 JMS 2.0 {@code JMSContext} 调用，
+ * 因此要求运行时存在 JMS 2.0 API。不过，只要应用设置不触发实际的 JMS 2.0 调用，
+ * 它仍然可以运行在 JMS 1.1 驱动之上（绑定到 JMS 2.0 API）。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -91,7 +88,7 @@ public class UserCredentialsConnectionFactoryAdapter
 
 
 	/**
-	 * Set the target ConnectionFactory that this ConnectionFactory should delegate to.
+	 * 设置此 ConnectionFactory 应委托的目标 ConnectionFactory。
 	 */
 	public void setTargetConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		Assert.notNull(targetConnectionFactory, "'targetConnectionFactory' must not be null");
@@ -99,16 +96,16 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Set the username that this adapter should use for retrieving Connections.
-	 * Default is no specific user.
+	 * 设置此适配器用于获取 Connection 的用户名。
+	 * 默认不指定特定用户。
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
 	/**
-	 * Set the password that this adapter should use for retrieving Connections.
-	 * Default is no specific password.
+	 * 设置此适配器用于获取 Connection 的密码。
+	 * 默认不指定特定密码。
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -123,11 +120,11 @@ public class UserCredentialsConnectionFactoryAdapter
 
 
 	/**
-	 * Set user credentials for this proxy and the current thread.
-	 * The given username and password will be applied to all subsequent
-	 * {@code createConnection()} calls on this ConnectionFactory proxy.
-	 * <p>This will override any statically specified user credentials,
-	 * that is, values of the "username" and "password" bean properties.
+	 * 为此代理和当前线程设置用户凭据。
+	 * 给定的用户名和密码将应用于此后在此 ConnectionFactory 代理上的
+	 * 所有 {@code createConnection()} 调用。
+	 * <p>这将覆盖任何静态指定的用户凭据，即 "username" 和 "password"
+	 * bean 属性的值。
 	 * @param username the username to apply
 	 * @param password the password to apply
 	 * @see #removeCredentialsFromCurrentThread
@@ -137,8 +134,8 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Remove any user credentials for this proxy from the current thread.
-	 * Statically specified user credentials apply again afterwards.
+	 * 从当前线程移除此代理的任何用户凭据。
+	 * 此后将重新应用静态指定的用户凭据。
 	 * @see #setCredentialsForCurrentThread
 	 */
 	public void removeCredentialsFromCurrentThread() {
@@ -147,9 +144,8 @@ public class UserCredentialsConnectionFactoryAdapter
 
 
 	/**
-	 * Determine whether there are currently thread-bound credentials,
-	 * using them if available, falling back to the statically specified
-	 * username and password (i.e. values of the bean properties) otherwise.
+	 * 判断当前是否存在线程绑定的凭据，如果存在则使用它们，
+	 * 否则回退到静态指定的用户名和密码（即 bean 属性的值）。
 	 * @see #doCreateConnection
 	 */
 	@Override
@@ -164,7 +160,7 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Delegate the call straight to the target ConnectionFactory.
+	 * 将调用直接委托给目标 ConnectionFactory。
 	 */
 	@Override
 	public Connection createConnection(String username, String password) throws JMSException {
@@ -172,10 +168,10 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * This implementation delegates to the {@code createConnection(username, password)}
-	 * method of the target ConnectionFactory, passing in the specified user credentials.
-	 * If the specified username is empty, it will simply delegate to the standard
-	 * {@code createConnection()} method of the target ConnectionFactory.
+	 * 此实现委托给目标 ConnectionFactory 的
+	 * {@code createConnection(username, password)} 方法，并传入指定的用户凭据。
+	 * 如果指定的用户名为空，则仅委托给目标 ConnectionFactory 的标准
+	 * {@code createConnection()} 方法。
 	 * @param username the username to use
 	 * @param password the password to use
 	 * @return the Connection
@@ -193,9 +189,8 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Determine whether there are currently thread-bound credentials,
-	 * using them if available, falling back to the statically specified
-	 * username and password (i.e. values of the bean properties) else.
+	 * 判断当前是否存在线程绑定的凭据，如果存在则使用它们，
+	 * 否则回退到静态指定的用户名和密码（即 bean 属性的值）。
 	 * @see #doCreateQueueConnection
 	 */
 	@Override
@@ -210,7 +205,7 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Delegate the call straight to the target QueueConnectionFactory.
+	 * 将调用直接委托给目标 QueueConnectionFactory。
 	 */
 	@Override
 	public QueueConnection createQueueConnection(String username, String password) throws JMSException {
@@ -218,10 +213,10 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * This implementation delegates to the {@code createQueueConnection(username, password)}
-	 * method of the target QueueConnectionFactory, passing in the specified user credentials.
-	 * If the specified username is empty, it will simply delegate to the standard
-	 * {@code createQueueConnection()} method of the target ConnectionFactory.
+	 * 此实现委托给目标 QueueConnectionFactory 的
+	 * {@code createQueueConnection(username, password)} 方法，并传入指定的用户凭据。
+	 * 如果指定的用户名为空，则仅委托给目标 ConnectionFactory 的标准
+	 * {@code createQueueConnection()} 方法。
 	 * @param username the username to use
 	 * @param password the password to use
 	 * @return the Connection
@@ -245,9 +240,8 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Determine whether there are currently thread-bound credentials,
-	 * using them if available, falling back to the statically specified
-	 * username and password (i.e. values of the bean properties) else.
+	 * 判断当前是否存在线程绑定的凭据，如果存在则使用它们，
+	 * 否则回退到静态指定的用户名和密码（即 bean 属性的值）。
 	 * @see #doCreateTopicConnection
 	 */
 	@Override
@@ -262,7 +256,7 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * Delegate the call straight to the target TopicConnectionFactory.
+	 * 将调用直接委托给目标 TopicConnectionFactory。
 	 */
 	@Override
 	public TopicConnection createTopicConnection(String username, String password) throws JMSException {
@@ -270,10 +264,10 @@ public class UserCredentialsConnectionFactoryAdapter
 	}
 
 	/**
-	 * This implementation delegates to the {@code createTopicConnection(username, password)}
-	 * method of the target TopicConnectionFactory, passing in the specified user credentials.
-	 * If the specified username is empty, it will simply delegate to the standard
-	 * {@code createTopicConnection()} method of the target ConnectionFactory.
+	 * 此实现委托给目标 TopicConnectionFactory 的
+	 * {@code createTopicConnection(username, password)} 方法，并传入指定的用户凭据。
+	 * 如果指定的用户名为空，则仅委托给目标 ConnectionFactory 的标准
+	 * {@code createTopicConnection()} 方法。
 	 * @param username the username to use
 	 * @param password the password to use
 	 * @return the Connection
@@ -323,7 +317,7 @@ public class UserCredentialsConnectionFactoryAdapter
 
 
 	/**
-	 * Inner class used as ThreadLocal value.
+	 * 用作 ThreadLocal 值的内部类。
 	 */
 	private static final class JmsUserCredentials {
 

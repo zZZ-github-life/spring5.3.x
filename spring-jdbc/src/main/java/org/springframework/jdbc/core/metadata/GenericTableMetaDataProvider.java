@@ -34,8 +34,8 @@ import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * A generic implementation of the {@link TableMetaDataProvider} interface
- * which should provide enough features for all supported databases.
+ * {@link TableMetaDataProvider} 接口的通用实现，
+ * 应为所有支持的数据库提供足够的功能。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -44,43 +44,43 @@ import org.springframework.lang.Nullable;
  */
 public class GenericTableMetaDataProvider implements TableMetaDataProvider {
 
-	/** Logger available to subclasses. */
+	/** 子类可用的日志记录器。 */
 	protected static final Log logger = LogFactory.getLog(TableMetaDataProvider.class);
 
-	/** indicator whether column meta-data should be used. */
+	/** 指示是否应使用列元数据。 */
 	private boolean tableColumnMetaDataUsed = false;
 
-	/** the version of the database. */
+	/** 数据库的版本。 */
 	@Nullable
 	private String databaseVersion;
 
-	/** the name of the user currently connected. */
+	/** 当前连接用户的名称。 */
 	@Nullable
 	private String userName;
 
-	/** indicates whether the identifiers are uppercased. */
+	/** 指示标识符是否使用大写。 */
 	private boolean storesUpperCaseIdentifiers = true;
 
-	/** indicates whether the identifiers are lowercased. */
+	/** 指示标识符是否使用小写。 */
 	private boolean storesLowerCaseIdentifiers = false;
 
-	/** indicates whether generated keys retrieval is supported. */
+	/** 指示是否支持检索生成键。 */
 	private boolean getGeneratedKeysSupported = true;
 
-	/** indicates whether the use of a String[] for generated keys is supported. */
+	/** 指示是否支持使用 String[] 指定生成键。 */
 	private boolean generatedKeysColumnNameArraySupported = true;
 
-	/** database products we know not supporting the use of a String[] for generated keys. */
+	/** 我们知道不支持使用 String[] 指定生成键的数据库产品。 */
 	private List<String> productsNotSupportingGeneratedKeysColumnNameArray =
 			Arrays.asList("Apache Derby", "HSQL Database Engine");
 
-	/** Collection of TableParameterMetaData objects. */
+	/** TableParameterMetaData 对象的集合。 */
 	private List<TableParameterMetaData> tableParameterMetaData = new ArrayList<>();
 
 
 	/**
-	 * Constructor used to initialize with provided database meta-data.
-	 * @param databaseMetaData meta-data to be used
+	 * 用于使用提供的数据库元数据进行初始化的构造函数。
+	 * @param databaseMetaData 要使用的元数据
 	 */
 	protected GenericTableMetaDataProvider(DatabaseMetaData databaseMetaData) throws SQLException {
 		this.userName = databaseMetaData.getUserName();
@@ -290,7 +290,7 @@ public class GenericTableMetaDataProvider implements TableMetaDataProvider {
 	}
 
 	/**
-	 * Provide access to default schema for subclasses.
+	 * 为子类提供对默认模式的访问。
 	 */
 	@Nullable
 	protected String getDefaultSchema() {
@@ -298,7 +298,7 @@ public class GenericTableMetaDataProvider implements TableMetaDataProvider {
 	}
 
 	/**
-	 * Provide access to version info for subclasses.
+	 * 为子类提供对版本信息的访问。
 	 */
 	@Nullable
 	protected String getDatabaseVersion() {
@@ -306,7 +306,7 @@ public class GenericTableMetaDataProvider implements TableMetaDataProvider {
 	}
 
 	/**
-	 * Method supporting the meta-data processing for a table.
+	 * 支持表的元数据处理的方法。
 	 */
 	private void locateTableAndProcessMetaData(DatabaseMetaData databaseMetaData,
 			@Nullable String catalogName, @Nullable String schemaName, @Nullable String tableName) {
@@ -382,7 +382,7 @@ public class GenericTableMetaDataProvider implements TableMetaDataProvider {
 	}
 
 	/**
-	 * Method supporting the meta-data processing for a table's columns.
+	 * 支持表列的元数据处理的方法。
 	 */
 	private void processTableColumns(DatabaseMetaData databaseMetaData, TableMetaData tmd) {
 		ResultSet tableColumns = null;
@@ -437,7 +437,7 @@ public class GenericTableMetaDataProvider implements TableMetaDataProvider {
 
 
 	/**
-	 * Class representing table meta-data.
+	 * 表示表元数据的类。
 	 */
 	private static class TableMetaData {
 

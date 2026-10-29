@@ -19,7 +19,7 @@ package org.springframework.web.socket.config.annotation;
 import org.springframework.web.socket.WebSocketHandler;
 
 /**
- * Provides methods for configuring {@link WebSocketHandler} request mappings.
+ * 提供用于配置 {@link WebSocketHandler} 请求映射的方法。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -27,7 +27,7 @@ import org.springframework.web.socket.WebSocketHandler;
 public interface WebSocketHandlerRegistry {
 
 	/**
-	 * Configure a WebSocketHandler at the specified URL paths.
+	 * 在指定的 URL 路径上配置 WebSocketHandler。
 	 */
 	WebSocketHandlerRegistration addHandler(WebSocketHandler webSocketHandler, String... paths);
 

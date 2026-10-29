@@ -21,10 +21,9 @@ import java.util.Set;
 import javax.lang.model.element.Element;
 
 /**
- * Provide the list of stereotypes that match an {@link Element}.
+ * 提供与某个 {@link Element} 匹配的构造型列表。
  *
- * <p>If an element has one or more stereotypes, it is referenced in the index
- * of candidate components and each stereotype can be queried individually.
+ * <p>如果一个元素有一个或多个构造型，则它会被引用到候选组件索引中，并且每个构造型都可以单独查询。
  *
  * @author Stephane Nicoll
  * @since 5.0
@@ -32,7 +31,7 @@ import javax.lang.model.element.Element;
 interface StereotypesProvider {
 
 	/**
-	 * Return the stereotypes that are present on the given {@link Element}.
+	 * 返回给定 {@link Element} 上存在的构造型。
 	 * @param element the element to handle
 	 * @return the stereotypes or an empty set if none were found
 	 */

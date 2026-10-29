@@ -21,9 +21,7 @@ import java.io.IOException;
 import org.springframework.lang.Nullable;
 
 /**
- * Script definition interface, encapsulating the configuration
- * of a specific script as well as a factory method for
- * creating the actual scripted Java {@code Object}.
+ * 脚本定义接口，封装特定脚本的配置，以及用于创建实际脚本化 Java {@code Object} 的工厂方法。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -34,11 +32,9 @@ import org.springframework.lang.Nullable;
 public interface ScriptFactory {
 
 	/**
-	 * Return a locator that points to the source of the script.
-	 * Interpreted by the post-processor that actually creates the script.
-	 * <p>Typical supported locators are Spring resource locations
-	 * (such as "file:C:/myScript.bsh" or "classpath:myPackage/myScript.bsh")
-	 * and inline scripts ("inline:myScriptText...").
+	 * 返回指向脚本源的定位器。由实际创建脚本的后处理器解释。
+	 * <p>通常支持的定位器包括 Spring 资源位置（例如 "file:C:/myScript.bsh" 或
+	 * "classpath:myPackage/myScript.bsh"）以及内联脚本（"inline:myScriptText..."）。
 	 * @return the script source locator
 	 * @see org.springframework.scripting.support.ScriptFactoryPostProcessor#convertToScriptSource
 	 * @see org.springframework.core.io.ResourceLoader
@@ -46,29 +42,25 @@ public interface ScriptFactory {
 	String getScriptSourceLocator();
 
 	/**
-	 * Return the business interfaces that the script is supposed to implement.
-	 * <p>Can return {@code null} if the script itself determines
-	 * its Java interfaces (such as in the case of Groovy).
+	 * 返回脚本应当实现的业务接口。
+	 * <p>如果脚本本身确定了其 Java 接口（例如 Groovy 的情况），则可以返回 {@code null}。
 	 * @return the interfaces for the script
 	 */
 	@Nullable
 	Class<?>[] getScriptInterfaces();
 
 	/**
-	 * Return whether the script requires a config interface to be
-	 * generated for it. This is typically the case for scripts that
-	 * do not determine Java signatures themselves, with no appropriate
-	 * config interface specified in {@code getScriptInterfaces()}.
+	 * 返回脚本是否需要为其生成配置接口。通常，对于自身不确定 Java 签名、且未在
+	 * {@code getScriptInterfaces()} 中指定合适配置接口的脚本，情况便是如此。
 	 * @return whether the script requires a generated config interface
 	 * @see #getScriptInterfaces()
 	 */
 	boolean requiresConfigInterface();
 
 	/**
-	 * Factory method for creating the scripted Java object.
-	 * <p>Implementations are encouraged to cache script metadata such as
-	 * a generated script class. Note that this method may be invoked
-	 * concurrently and must be implemented in a thread-safe fashion.
+	 * 用于创建脚本化 Java 对象的工厂方法。
+	 * <p>鼓励实现缓存脚本元数据，例如生成的脚本类。请注意，此方法可能会被并发调用，必须以线程安全的方
+	 * 式实现。
 	 * @param scriptSource the actual ScriptSource to retrieve
 	 * the script source text from (never {@code null})
 	 * @param actualInterfaces the actual interfaces to expose,
@@ -83,10 +75,9 @@ public interface ScriptFactory {
 			throws IOException, ScriptCompilationException;
 
 	/**
-	 * Determine the type of the scripted Java object.
-	 * <p>Implementations are encouraged to cache script metadata such as
-	 * a generated script class. Note that this method may be invoked
-	 * concurrently and must be implemented in a thread-safe fashion.
+	 * 确定脚本化 Java 对象的类型。
+	 * <p>鼓励实现缓存脚本元数据，例如生成的脚本类。请注意，此方法可能会被并发调用，必须以线程安全的方
+	 * 式实现。
 	 * @param scriptSource the actual ScriptSource to retrieve
 	 * the script source text from (never {@code null})
 	 * @return the type of the scripted Java object, or {@code null}
@@ -100,8 +91,7 @@ public interface ScriptFactory {
 			throws IOException, ScriptCompilationException;
 
 	/**
-	 * Determine whether a refresh is required (e.g. through
-	 * ScriptSource's {@code isModified()} method).
+	 * 确定是否需要刷新（例如通过 ScriptSource 的 {@code isModified()} 方法）。
 	 * @param scriptSource the actual ScriptSource to retrieve
 	 * the script source text from (never {@code null})
 	 * @return whether a fresh {@link #getScriptedObject} call is required

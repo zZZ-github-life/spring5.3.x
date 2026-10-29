@@ -1,5 +1,5 @@
 /**
- * Provides a foundation for both the reactive client and server subpackages.
+ * 为响应式客户端和服务端子包提供基础。
  */
 @NonNullApi
 @NonNullFields

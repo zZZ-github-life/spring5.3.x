@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Helper class for {@link Jaxb2Marshaller} that scans given packages for classes marked with JAXB2 annotations.
+ * {@link Jaxb2Marshaller} 的辅助类，用于扫描给定包中标记了 JAXB2 注解的类。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -74,7 +74,7 @@ class ClassPathJaxb2TypeScanner {
 
 
 	/**
-	 * Scan the packages for classes marked with JAXB2 annotations.
+	 * 扫描各包中标记了 JAXB2 注解的类。
 	 * @throws UncategorizedMappingException in case of errors
 	 */
 	public Class<?>[] scanPackages() throws UncategorizedMappingException {

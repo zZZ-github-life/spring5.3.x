@@ -17,8 +17,7 @@
 package org.springframework.remoting;
 
 /**
- * RemoteAccessException subclass to be thrown when no connection
- * could be established with a remote service.
+ * RemoteAccessException 的子类，在无法与远程服务建立连接时抛出。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -27,7 +26,7 @@ package org.springframework.remoting;
 public class RemoteConnectFailureException extends RemoteAccessException {
 
 	/**
-	 * Constructor for RemoteConnectFailureException.
+	 * RemoteConnectFailureException 的构造器。
 	 * @param msg the detail message
 	 * @param cause the root cause from the remoting API in use
 	 */

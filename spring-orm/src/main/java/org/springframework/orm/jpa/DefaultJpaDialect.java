@@ -30,13 +30,13 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
 
 /**
- * Default implementation of the {@link JpaDialect} interface.
- * Used as default dialect by {@link JpaTransactionManager}.
+ * {@link JpaDialect} 接口的默认实现。
+ * 用作 {@link JpaTransactionManager} 的默认方言。
  *
- * <p>Simply begins a standard JPA transaction in {@link #beginTransaction} and
- * performs standard exception translation through {@link EntityManagerFactoryUtils}.
+ * <p>它在 {@link #beginTransaction} 中简单地开启一个标准 JPA 事务，
+ * 并通过 {@link EntityManagerFactoryUtils} 执行标准的异常转换。
  *
- * <p><b>NOTE: Spring's JPA support requires JPA 2.1 or higher, as of Spring 5.0.</b>
+ * <p><b>注意：自 Spring 5.0 起，Spring 的 JPA 支持要求 JPA 2.1 或更高版本。</b>
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -46,13 +46,11 @@ import org.springframework.transaction.TransactionException;
 public class DefaultJpaDialect implements JpaDialect, Serializable {
 
 	/**
-	 * This implementation invokes the standard JPA {@code Transaction.begin}
-	 * method. Throws an InvalidIsolationLevelException if a non-default isolation
-	 * level is set.
-	 * <p>This implementation does not return any transaction data Object, since there
-	 * is no state to be kept for a standard JPA transaction. Hence, subclasses do not
-	 * have to care about the return value ({@code null}) of this implementation
-	 * and are free to return their own transaction data Object.
+	 * 此实现调用标准的 JPA {@code Transaction.begin} 方法。
+	 * 如果设置了非默认的隔离级别，则抛出 InvalidIsolationLevelException。
+	 * <p>此实现不返回任何事务数据对象，因为标准 JPA 事务无需保留任何状态。
+	 * 因此，子类不必关心此实现的返回值（{@code null}），
+	 * 可以自由返回自己的事务数据对象。
 	 * @see javax.persistence.EntityTransaction#begin
 	 * @see org.springframework.transaction.InvalidIsolationLevelException
 	 * @see #cleanupTransaction
@@ -80,8 +78,8 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	}
 
 	/**
-	 * This implementation does nothing, since the default {@code beginTransaction}
-	 * implementation does not require any cleanup.
+	 * 此实现不执行任何操作，因为默认的 {@code beginTransaction}
+	 * 实现不需要任何清理。
 	 * @see #beginTransaction
 	 */
 	@Override
@@ -89,8 +87,8 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	}
 
 	/**
-	 * This implementation always returns {@code null},
-	 * indicating that no JDBC Connection can be provided.
+	 * 此实现始终返回 {@code null}，
+	 * 表示无法提供 JDBC Connection。
 	 */
 	@Override
 	@Nullable
@@ -101,11 +99,10 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	}
 
 	/**
-	 * This implementation does nothing, assuming that the Connection
-	 * will implicitly be closed with the EntityManager.
-	 * <p>If the JPA implementation returns a Connection handle that it expects
-	 * the application to close after use, the dialect implementation needs to invoke
-	 * {@code Connection.close()} (or some other method with similar effect) here.
+	 * 此实现不执行任何操作，假定 Connection 将随 EntityManager 一起隐式关闭。
+	 * <p>如果 JPA 实现返回了一个期望应用程序在使用后关闭的 Connection 句柄，
+	 * 则方言实现需要在此处调用 {@code Connection.close()}
+	 * （或其他具有类似效果的方法）。
 	 * @see java.sql.Connection#close()
 	 */
 	@Override
@@ -119,7 +116,7 @@ public class DefaultJpaDialect implements JpaDialect, Serializable {
 	//-----------------------------------------------------------------------------------
 
 	/**
-	 * This implementation delegates to EntityManagerFactoryUtils.
+	 * 此实现委托给 EntityManagerFactoryUtils。
 	 * @see EntityManagerFactoryUtils#convertJpaAccessExceptionIfPossible
 	 */
 	@Override

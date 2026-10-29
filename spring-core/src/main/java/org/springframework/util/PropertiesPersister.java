@@ -24,13 +24,10 @@ import java.io.Writer;
 import java.util.Properties;
 
 /**
- * Strategy interface for persisting {@code java.util.Properties},
- * allowing for pluggable parsing strategies.
+ * 用于持久化 {@code java.util.Properties} 的策略接口，允许使用可插拔的解析策略。
  *
- * <p>The default implementation is DefaultPropertiesPersister,
- * providing the native parsing of {@code java.util.Properties},
- * but allowing for reading from any Reader and writing to any Writer
- * (which allows to specify an encoding for a properties file).
+ * <p>默认实现是 DefaultPropertiesPersister，提供对 {@code java.util.Properties} 的原生解析，同时允
+ * 许从任意 Reader 读取并写入任意 Writer（从而可以为 properties 文件指定编码）。
  *
  * @author Juergen Hoeller
  * @since 10.03.2004
@@ -41,8 +38,7 @@ import java.util.Properties;
 public interface PropertiesPersister {
 
 	/**
-	 * Load properties from the given InputStream into the given
-	 * Properties object.
+	 * 从给定的 InputStream 将属性加载到给定的 Properties 对象中。
 	 * @param props the Properties object to load into
 	 * @param is the InputStream to load from
 	 * @throws IOException in case of I/O errors
@@ -51,8 +47,7 @@ public interface PropertiesPersister {
 	void load(Properties props, InputStream is) throws IOException;
 
 	/**
-	 * Load properties from the given Reader into the given
-	 * Properties object.
+	 * 从给定的 Reader 将属性加载到给定的 Properties 对象中。
 	 * @param props the Properties object to load into
 	 * @param reader the Reader to load from
 	 * @throws IOException in case of I/O errors
@@ -60,8 +55,7 @@ public interface PropertiesPersister {
 	void load(Properties props, Reader reader) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given OutputStream.
+	 * 将给定 Properties 对象的内容写入给定的 OutputStream。
 	 * @param props the Properties object to store
 	 * @param os the OutputStream to write to
 	 * @param header the description of the property list
@@ -71,8 +65,7 @@ public interface PropertiesPersister {
 	void store(Properties props, OutputStream os, String header) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given Writer.
+	 * 将给定 Properties 对象的内容写入给定的 Writer。
 	 * @param props the Properties object to store
 	 * @param writer the Writer to write to
 	 * @param header the description of the property list
@@ -81,8 +74,7 @@ public interface PropertiesPersister {
 	void store(Properties props, Writer writer, String header) throws IOException;
 
 	/**
-	 * Load properties from the given XML InputStream into the
-	 * given Properties object.
+	 * 从给定的 XML InputStream 将属性加载到给定的 Properties 对象中。
 	 * @param props the Properties object to load into
 	 * @param is the InputStream to load from
 	 * @throws IOException in case of I/O errors
@@ -91,8 +83,7 @@ public interface PropertiesPersister {
 	void loadFromXml(Properties props, InputStream is) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given XML OutputStream.
+	 * 将给定 Properties 对象的内容写入给定的 XML OutputStream。
 	 * @param props the Properties object to store
 	 * @param os the OutputStream to write to
 	 * @param header the description of the property list
@@ -102,8 +93,7 @@ public interface PropertiesPersister {
 	void storeToXml(Properties props, OutputStream os, String header) throws IOException;
 
 	/**
-	 * Write the contents of the given Properties object to the
-	 * given XML OutputStream.
+	 * 将给定 Properties 对象的内容写入给定的 XML OutputStream。
 	 * @param props the Properties object to store
 	 * @param os the OutputStream to write to
 	 * @param encoding the encoding to use

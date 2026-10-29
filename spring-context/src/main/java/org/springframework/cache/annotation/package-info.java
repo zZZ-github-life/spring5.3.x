@@ -1,7 +1,7 @@
 /**
- * Annotations and supporting classes for declarative cache management.
- * Hooked into Spring's cache interception infrastructure via
- * {@link org.springframework.cache.interceptor.CacheOperationSource}.
+ * 用于声明式缓存管理的注解和支持类。通过
+ * {@link org.springframework.cache.interceptor.CacheOperationSource} 挂接到 Spring 的缓存拦截基础
+ * 设施中。
  */
 @NonNullApi
 @NonNullFields

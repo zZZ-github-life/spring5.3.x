@@ -47,8 +47,7 @@ import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Default {@link EntityResponse.Builder} implementation.
- *
+ * {@link EntityResponse.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 5.0

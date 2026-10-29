@@ -17,8 +17,8 @@
 package org.springframework.web.util.pattern;
 
 /**
- * A path element representing wildcarding the rest of a path. In the pattern
- * '/foo/**' the /** is represented as a {@link WildcardTheRestPathElement}.
+ * 表示通配路径剩余部分的路径元素。在模式
+ * '/foo/**' 中，/** 表示为 {@link WildcardTheRestPathElement}。
  *
  * @author Andy Clement
  * @since 5.0

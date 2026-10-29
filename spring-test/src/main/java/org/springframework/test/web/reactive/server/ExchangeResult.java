@@ -40,15 +40,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Container for request and response details for exchanges performed through
- * {@link WebTestClient}.
+ * 用于保存通过 {@link WebTestClient} 执行的交换的请求和响应详细信息的容器。
  *
- * <p>Note that a decoded response body is not exposed at this level since the
- * body may not have been decoded and consumed yet. Subtypes
- * {@link EntityExchangeResult} and {@link FluxExchangeResult} provide access
- * to a decoded response entity and a decoded (but not consumed) response body
- * respectively.
- *
+ * <p>请注意，此级别不暴露解码后的响应体，因为响应体可能尚未被解码和消费。子类型
+ * {@link EntityExchangeResult} 和 {@link FluxExchangeResult} 分别提供对解码后的响应实体
+ * 和解码后（但未消费）响应体的访问。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 5.0
@@ -80,14 +76,12 @@ public class ExchangeResult {
 	@Nullable
 	private final Object mockServerResult;
 
-	/** Ensure single logging, e.g. for expectAll. */
+	/** 确保只记录一次日志，例如对于 expectAll。 */
 	private boolean diagnosticsLogged;
 
 
 	/**
-	 * Create an instance with an HTTP request and response along with promises
-	 * for the serialized request and response body content.
-	 *
+	 * 使用 HTTP 请求和响应以及序列化请求体和响应体内容的 Promise 创建实例。
 	 * @param request the HTTP request
 	 * @param response the HTTP response
 	 * @param requestBody capture of serialized request body content
@@ -115,7 +109,7 @@ public class ExchangeResult {
 	}
 
 	/**
-	 * Copy constructor to use after body is decoded and/or consumed.
+	 * 在响应体被解码和/或消费后使用的复制构造函数。
 	 */
 	ExchangeResult(ExchangeResult other) {
 		this.request = other.request;
@@ -130,21 +124,21 @@ public class ExchangeResult {
 
 
 	/**
-	 * Return the method of the request.
+	 * 返回请求的方法。
 	 */
 	public HttpMethod getMethod() {
 		return this.request.getMethod();
 	}
 
 	/**
-	 * Return the URI of the request.
+	 * 返回请求的 URI。
 	 */
 	public URI getUrl() {
 		return this.request.getURI();
 	}
 
 	/**
-	 * Return the original URI template used to prepare the request, if any.
+	 * 返回用于准备请求的原始 URI 模板（如果有）。
 	 */
 	@Nullable
 	public String getUriTemplate() {
@@ -152,16 +146,15 @@ public class ExchangeResult {
 	}
 
 	/**
-	 * Return the request headers sent to the server.
+	 * 返回发送到服务器的请求头。
 	 */
 	public HttpHeaders getRequestHeaders() {
 		return this.request.getHeaders();
 	}
 
 	/**
-	 * Return the raw request body content written through the request.
-	 * <p><strong>Note:</strong> If the request content has not been consumed
-	 * for any reason yet, use of this method will trigger consumption.
+	 * 返回通过请求写入的原始请求体内容。
+	 * <p><strong>注意：</strong>如果请求内容由于任何原因尚未被消费，使用此方法将触发消费。
 	 * @throws IllegalStateException if the request body has not been fully written.
 	 */
 	@Nullable
@@ -171,7 +164,7 @@ public class ExchangeResult {
 
 
 	/**
-	 * Return the HTTP status code as an {@link HttpStatus} enum value.
+	 * 以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
 	 * @throws IllegalArgumentException in case of an unknown HTTP status code
 	 * @see #getRawStatusCode()
 	 */
@@ -180,8 +173,8 @@ public class ExchangeResult {
 	}
 
 	/**
-	 * Return the HTTP status code (potentially non-standard and not resolvable
-	 * through the {@link HttpStatus} enum) as an integer.
+	 * 以整数形式返回 HTTP 状态码（可能是非标准且无法通过
+	 * {@link HttpStatus} 枚举解析的）。
 	 * @since 5.1.10
 	 */
 	public int getRawStatusCode() {
@@ -189,23 +182,23 @@ public class ExchangeResult {
 	}
 
 	/**
-	 * Return the response headers received from the server.
+	 * 返回从服务器接收的响应头。
 	 */
 	public HttpHeaders getResponseHeaders() {
 		return this.response.getHeaders();
 	}
 
 	/**
-	 * Return response cookies received from the server.
+	 * 返回从服务器接收的响应 Cookie。
 	 */
 	public MultiValueMap<String, ResponseCookie> getResponseCookies() {
 		return this.response.getCookies();
 	}
 
 	/**
-	 * Return the raw request body content written to the response.
-	 * <p><strong>Note:</strong> If the response content has not been consumed
-	 * yet, use of this method will trigger consumption.
+	 * 返回写入响应的原始响应体内容。
+	 * <p><strong>注意：</strong>如果响应内容尚未被消费，
+	 * 使用此方法将触发消费。
 	 * @throws IllegalStateException if the response has not been fully read.
 	 */
 	@Nullable
@@ -214,8 +207,8 @@ public class ExchangeResult {
 	}
 
 	/**
-	 * Return the result from the mock server exchange, if applicable, for
-	 * further assertions on the state of the server response.
+	 * 返回模拟服务器交换的结果（如果适用），以便
+	 * 对服务器响应的状态进行进一步断言。
 	 * @since 5.3
 	 * @see org.springframework.test.web.servlet.client.MockMvcWebTestClient#resultActionsFor(ExchangeResult)
 	 */
@@ -225,9 +218,9 @@ public class ExchangeResult {
 	}
 
 	/**
-	 * Execute the given Runnable, catch any {@link AssertionError}, log details
-	 * about the request and response at ERROR level under the class log
-	 * category, and after that re-throw the error.
+	 * 执行给定的 Runnable，捕获任何 {@link AssertionError}，在类日志
+	 * 类别下以 ERROR 级别记录有关请求和响应的详细信息，
+	 * 然后重新抛出该错误。
 	 */
 	public void assertWithDiagnostics(Runnable assertion) {
 		try {

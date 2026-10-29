@@ -29,11 +29,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple implementation of the JCA 1.7 {@link javax.resource.spi.BootstrapContext}
- * interface, used for bootstrapping a JCA ResourceAdapter in a local environment.
+ * JCA 1.7 {@link javax.resource.spi.BootstrapContext} 接口的简单实现，
+ * 用于在本地环境中引导 JCA ResourceAdapter。
  *
- * <p>Delegates to the given WorkManager and XATerminator, if any. Creates simple
- * local instances of {@code java.util.Timer}.
+ * <p>委托给给定的 WorkManager 和 XATerminator（如果有）。
+ * 创建 {@code java.util.Timer} 的简单本地实例。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -53,8 +53,7 @@ public class SimpleBootstrapContext implements BootstrapContext {
 
 
 	/**
-	 * Create a new SimpleBootstrapContext for the given WorkManager,
-	 * with no XATerminator available.
+	 * 为给定的 WorkManager 创建新的 SimpleBootstrapContext，不提供 XATerminator。
 	 * @param workManager the JCA WorkManager to use (may be {@code null})
 	 */
 	public SimpleBootstrapContext(@Nullable WorkManager workManager) {
@@ -62,7 +61,7 @@ public class SimpleBootstrapContext implements BootstrapContext {
 	}
 
 	/**
-	 * Create a new SimpleBootstrapContext for the given WorkManager and XATerminator.
+	 * 为给定的 WorkManager 和 XATerminator 创建新的 SimpleBootstrapContext。
 	 * @param workManager the JCA WorkManager to use (may be {@code null})
 	 * @param xaTerminator the JCA XATerminator to use (may be {@code null})
 	 */
@@ -72,8 +71,8 @@ public class SimpleBootstrapContext implements BootstrapContext {
 	}
 
 	/**
-	 * Create a new SimpleBootstrapContext for the given WorkManager, XATerminator
-	 * and TransactionSynchronizationRegistry.
+	 * 为给定的 WorkManager、XATerminator 和 TransactionSynchronizationRegistry
+	 * 创建新的 SimpleBootstrapContext。
 	 * @param workManager the JCA WorkManager to use (may be {@code null})
 	 * @param xaTerminator the JCA XATerminator to use (may be {@code null})
 	 * @param transactionSynchronizationRegistry the TransactionSynchronizationRegistry

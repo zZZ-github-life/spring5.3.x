@@ -1,5 +1,5 @@
 /**
- * Adapter classes for the standard Java WebSocket API.
+ * 用于标准 Java WebSocket API 的适配器类。
  */
 @NonNullApi
 @NonNullFields

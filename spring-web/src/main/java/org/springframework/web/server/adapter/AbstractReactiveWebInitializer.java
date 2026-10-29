@@ -31,14 +31,14 @@ import org.springframework.util.Assert;
 import org.springframework.web.WebApplicationInitializer;
 
 /**
- * Base class for a {@link org.springframework.web.WebApplicationInitializer}
- * that installs a Spring Reactive Web Application on a Servlet container.
+ * {@link org.springframework.web.WebApplicationInitializer} 的基类，
+ * 用于在 Servlet 容器上安装 Spring 响应式 Web 应用。
  *
- * <p>Spring configuration is loaded and given to
- * {@link WebHttpHandlerBuilder#applicationContext WebHttpHandlerBuilder}
- * which scans the context looking for specific beans and creates a reactive
- * {@link HttpHandler}. The resulting handler is installed as a Servlet through
- * the {@link ServletHttpHandlerAdapter}.
+ * <p>Spring 配置会被加载并传递给
+ * {@link WebHttpHandlerBuilder#applicationContext WebHttpHandlerBuilder}，
+ * 后者会扫描上下文以查找特定的 Bean，并创建一个响应式
+ * {@link HttpHandler}。生成的处理器通过 {@link ServletHttpHandlerAdapter}
+ * 作为 Servlet 进行安装。
  *
  * @author Rossen Stoyanchev
  * @since 5.0.2
@@ -46,7 +46,7 @@ import org.springframework.web.WebApplicationInitializer;
 public abstract class AbstractReactiveWebInitializer implements WebApplicationInitializer {
 
 	/**
-	 * The default servlet name to use. See {@link #getServletName}.
+	 * 要使用的默认 Servlet 名称。请参阅 {@link #getServletName}。
 	 */
 	public static final String DEFAULT_SERVLET_NAME = "http-handler-adapter";
 
@@ -77,16 +77,16 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Return the name to use to register the {@link ServletHttpHandlerAdapter}.
-	 * <p>By default this is {@link #DEFAULT_SERVLET_NAME}.
+	 * 返回用于注册 {@link ServletHttpHandlerAdapter} 的名称。
+	 * <p>默认值为 {@link #DEFAULT_SERVLET_NAME}。
 	 */
 	protected String getServletName() {
 		return DEFAULT_SERVLET_NAME;
 	}
 
 	/**
-	 * Return the Spring configuration that contains application beans including
-	 * the ones detected by {@link WebHttpHandlerBuilder#applicationContext}.
+	 * 返回包含应用 Bean 的 Spring 配置，
+	 * 其中包括由 {@link WebHttpHandlerBuilder#applicationContext} 检测到的 Bean。
 	 */
 	protected ApplicationContext createApplicationContext() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
@@ -97,15 +97,15 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Specify {@link org.springframework.context.annotation.Configuration @Configuration}
-	 * and/or {@link org.springframework.stereotype.Component @Component}
-	 * classes that make up the application configuration. The config classes
-	 * are given to {@linkplain #createApplicationContext()}.
+	 * 指定构成应用配置的
+	 * {@link org.springframework.context.annotation.Configuration @Configuration}
+	 * 和/或 {@link org.springframework.stereotype.Component @Component} 类。
+	 * 这些配置类会被传递给 {@linkplain #createApplicationContext()}。
 	 */
 	protected abstract Class<?>[] getConfigClasses();
 
 	/**
-	 * Refresh the given application context, if necessary.
+	 * 如有必要，刷新给定的应用上下文。
 	 */
 	protected void refreshApplicationContext(ApplicationContext context) {
 		if (context instanceof ConfigurableApplicationContext) {
@@ -117,8 +117,8 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Register a {@link ServletContextListener} that closes the given
-	 * application context when the servlet context is destroyed.
+	 * 注册一个 {@link ServletContextListener}，在 Servlet 上下文被销毁时
+	 * 关闭给定的应用上下文。
 	 * @param servletContext the servlet context to listen to
 	 * @param applicationContext the application context that is to be
 	 * closed when {@code servletContext} is destroyed
@@ -132,9 +132,9 @@ public abstract class AbstractReactiveWebInitializer implements WebApplicationIn
 	}
 
 	/**
-	 * Return the Servlet mapping to use. Only the default Servlet mapping '/'
-	 * and path-based Servlet mappings such as '/api/*' are supported.
-	 * <p>By default this is set to '/'.
+	 * 返回要使用的 Servlet 映射。仅支持默认 Servlet 映射 '/' 以及
+	 * 基于路径的 Servlet 映射，例如 '/api/*'。
+	 * <p>默认值为 '/'。
 	 */
 	protected String getServletMapping() {
 		return "/";

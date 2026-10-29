@@ -35,8 +35,8 @@ import org.xml.sax.ext.LexicalHandler;
 import org.springframework.lang.Nullable;
 
 /**
- * SAX {@link org.xml.sax.ContentHandler} and {@link LexicalHandler}
- * that writes to a {@link javax.xml.stream.util.XMLEventConsumer}.
+ * 写入到 {@link javax.xml.stream.util.XMLEventConsumer} 的
+ * SAX {@link org.xml.sax.ContentHandler} 和 {@link LexicalHandler}。
  *
  * @author Arjen Poutsma
  * @since 4.0.3
@@ -49,8 +49,8 @@ class StaxEventHandler extends AbstractStaxHandler {
 
 
 	/**
-	 * Construct a new instance of the {@code StaxEventContentHandler} that writes to the
-	 * given {@code XMLEventWriter}. A default {@code XMLEventFactory} will be created.
+	 * 构造一个写入给定 {@code XMLEventWriter} 的 {@code StaxEventContentHandler} 新实例。
+	 * 将创建默认的 {@code XMLEventFactory}。
 	 * @param eventWriter the writer to write events to
 	 */
 	public StaxEventHandler(XMLEventWriter eventWriter) {
@@ -59,8 +59,8 @@ class StaxEventHandler extends AbstractStaxHandler {
 	}
 
 	/**
-	 * Construct a new instance of the {@code StaxEventContentHandler} that uses the given
-	 * event factory to create events and writes to the given {@code XMLEventConsumer}.
+	 * 构造一个 {@code StaxEventContentHandler} 新实例，它使用给定的事件工厂创建事件，
+	 * 并写入到给定的 {@code XMLEventConsumer}。
 	 * @param eventWriter the writer to write events to
 	 * @param factory the factory used to create events
 	 */

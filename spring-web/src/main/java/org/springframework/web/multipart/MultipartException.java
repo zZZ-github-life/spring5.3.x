@@ -20,7 +20,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when multipart resolution fails.
+ * multipart 解析失败时抛出的异常。
  *
  * @author Trevor D. Cook
  * @author Juergen Hoeller
@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
 public class MultipartException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for MultipartException.
+	 * MultipartException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public MultipartException(String msg) {
@@ -40,7 +40,7 @@ public class MultipartException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for MultipartException.
+	 * MultipartException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the multipart parsing API in use
 	 */

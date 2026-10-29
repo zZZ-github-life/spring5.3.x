@@ -29,14 +29,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link MethodInterceptor Interceptor} that publishes an
- * {@code ApplicationEvent} to all {@code ApplicationListeners}
- * registered with an {@code ApplicationEventPublisher} after each
- * <i>successful</i> method invocation.
+ * 在每次<i>成功</i>的方法调用之后，向注册到 {@code ApplicationEventPublisher} 的所有
+ * {@code ApplicationListeners} 发布 {@code ApplicationEvent} 的
+ * {@link MethodInterceptor Interceptor}。
  *
- * <p>Note that this interceptor is only capable of publishing <i>stateless</i>
- * events configured via the
- * {@link #setApplicationEventClass "applicationEventClass"} property.
+ * <p>请注意，此拦截器只能发布通过 {@link #setApplicationEventClass "applicationEventClass"} 属性配
+ * 置的<i>无状态</i>事件。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -58,10 +56,8 @@ public class EventPublicationInterceptor
 
 
 	/**
-	 * Set the application event class to publish.
-	 * <p>The event class <b>must</b> have a constructor with a single
-	 * {@code Object} argument for the event source. The interceptor
-	 * will pass in the invoked object.
+	 * 设置要发布的应用事件类。<p>事件类<b>必须</b>具有一个接受单个 {@code Object} 参数（用于事件源）的
+	 * 构造函数。拦截器会传入被调用的对象。
 	 * @throws IllegalArgumentException if the supplied {@code Class} is
 	 * {@code null} or if it is not an {@code ApplicationEvent} subclass or
 	 * if it does not expose a constructor that takes a single {@code Object} argument

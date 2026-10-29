@@ -42,25 +42,23 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Resolves servlet backed request-related method arguments. Supports values of the
- * following types:
+ * 解析 Servlet 支持的与请求相关的方法参数。支持以下类型的值：
  * <ul>
  * <li>{@link WebRequest}
  * <li>{@link ServletRequest}
  * <li>{@link MultipartRequest}
  * <li>{@link HttpSession}
- * <li>{@link PushBuilder} (as of Spring 5.0 on Servlet 4.0)
- * <li>{@link Principal} but only if not annotated in order to allow custom
- * resolvers to resolve it, and the falling back on
- * {@link PrincipalMethodArgumentResolver}.
+ * <li>{@link PushBuilder}（从 Spring 5.0 起，基于 Servlet 4.0）
+ * <li>{@link Principal}，但仅在未带有注解时处理，以便允许自定义
+ * 解析器解析它，否则回退到
+ * {@link PrincipalMethodArgumentResolver}。
  * <li>{@link InputStream}
  * <li>{@link Reader}
- * <li>{@link HttpMethod} (as of Spring 4.0)
+ * <li>{@link HttpMethod}（从 Spring 4.0 起）
  * <li>{@link Locale}
- * <li>{@link TimeZone} (as of Spring 4.0)
- * <li>{@link java.time.ZoneId} (as of Spring 4.0 and Java 8)
+ * <li>{@link TimeZone}（从 Spring 4.0 起）
+ * <li>{@link java.time.ZoneId}（从 Spring 4.0 和 Java 8 起）
  * </ul>
- *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -191,7 +189,7 @@ public class ServletRequestMethodArgumentResolver implements HandlerMethodArgume
 
 
 	/**
-	 * Inner class to avoid a hard dependency on Servlet API 4.0 at runtime.
+	 * 内部类，用于避免在运行时对 Servlet API 4.0 产生硬依赖。
 	 */
 	private static class PushBuilderDelegate {
 

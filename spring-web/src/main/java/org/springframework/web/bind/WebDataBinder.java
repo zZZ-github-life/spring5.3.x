@@ -29,26 +29,20 @@ import org.springframework.validation.DataBinder;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Special {@link DataBinder} for data binding from web request parameters
- * to JavaBean objects. Designed for web environments, but not dependent on
- * the Servlet API; serves as base class for more specific DataBinder variants,
- * such as {@link org.springframework.web.bind.ServletRequestDataBinder}.
+ * 用于从 Web 请求参数向 JavaBean 对象进行数据绑定的专用 {@link DataBinder}。
+ * 为 Web 环境而设计，但不依赖于 Servlet API；作为更具体的 DataBinder 变体
+ * （例如 {@link org.springframework.web.bind.ServletRequestDataBinder}）的基类。
  *
- * <p><strong>WARNING</strong>: Data binding can lead to security issues by exposing
- * parts of the object graph that are not meant to be accessed or modified by
- * external clients. Therefore, the design and use of data binding should be considered
- * carefully with regard to security. For more details, please refer to the dedicated
- * sections on data binding for
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> and
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>
- * in the reference manual.
+ * <p><strong>警告</strong>：数据绑定可能会暴露不应被外部客户端访问或修改的
+ * 对象图部分，从而带来安全问题。因此，应仔细考虑数据绑定的设计与使用对安全性的影响。
+ * 更多详情请参阅参考手册中关于数据绑定的专门章节：
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a>
+ * 和 <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>。
  *
- * <p>Includes support for field markers which address a common problem with
- * HTML checkboxes and select options: detecting that a field was part of
- * the form, but did not generate a request parameter because it was empty.
- * A field marker allows to detect that state and reset the corresponding
- * bean property accordingly. Default values, for parameters that are otherwise
- * not present, can specify a value for the field other than empty.
+ * <p>包含对字段标记（field marker）的支持，用于解决 HTML 复选框和选择项的一个常见问题：
+ * 检测某个字段属于表单的一部分，但由于为空而未生成请求参数。
+ * 字段标记允许检测该状态并相应地重置对应的 Bean 属性。
+ * 对于其他情况下不存在的参数，默认值可以为字段指定一个非空的值。
  *
  * @author Juergen Hoeller
  * @author Scott Andrews
@@ -64,22 +58,19 @@ import org.springframework.web.multipart.MultipartFile;
 public class WebDataBinder extends DataBinder {
 
 	/**
-	 * Default prefix that field marker parameters start with, followed by the field
-	 * name: e.g. "_subscribeToNewsletter" for a field "subscribeToNewsletter".
-	 * <p>Such a marker parameter indicates that the field was visible, that is,
-	 * existed in the form that caused the submission. If no corresponding field
-	 * value parameter was found, the field will be reset. The value of the field
-	 * marker parameter does not matter in this case; an arbitrary value can be used.
-	 * This is particularly useful for HTML checkboxes and select options.
+	 * 字段标记参数默认使用的前缀，其后跟字段名：例如字段
+	 * "subscribeToNewsletter" 对应 "_subscribeToNewsletter"。
+	 * <p>此类标记参数表示该字段是可见的，即存在于导致提交的表单中。
+	 * 如果未找到对应的字段值参数，该字段将被重置。此时字段标记参数的值
+	 * 无关紧要；可以使用任意值。这对 HTML 复选框和选择项特别有用。
 	 * @see #setFieldMarkerPrefix
 	 */
 	public static final String DEFAULT_FIELD_MARKER_PREFIX = "_";
 
 	/**
-	 * Default prefix that field default parameters start with, followed by the field
-	 * name: e.g. "!subscribeToNewsletter" for a field "subscribeToNewsletter".
-	 * <p>Default parameters differ from field markers in that they provide a default
-	 * value instead of an empty value.
+	 * 字段默认值参数默认使用的前缀，其后跟字段名：例如字段
+	 * "subscribeToNewsletter" 对应 "!subscribeToNewsletter"。
+	 * <p>默认参数与字段标记的区别在于，它们提供的是默认值而不是空值。
 	 * @see #setFieldDefaultPrefix
 	 */
 	public static final String DEFAULT_FIELD_DEFAULT_PREFIX = "!";
@@ -94,7 +85,7 @@ public class WebDataBinder extends DataBinder {
 
 
 	/**
-	 * Create a new WebDataBinder instance, with default object name.
+	 * 创建一个新的 WebDataBinder 实例，使用默认对象名称。
 	 * @param target the target object to bind onto (or {@code null}
 	 * if the binder is just used to convert a plain parameter value)
 	 * @see #DEFAULT_OBJECT_NAME
@@ -104,7 +95,7 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Create a new WebDataBinder instance.
+	 * 创建一个新的 WebDataBinder 实例。
 	 * @param target the target object to bind onto (or {@code null}
 	 * if the binder is just used to convert a plain parameter value)
 	 * @param objectName the name of the target object
@@ -115,24 +106,20 @@ public class WebDataBinder extends DataBinder {
 
 
 	/**
-	 * Specify a prefix that can be used for parameters that mark potentially
-	 * empty fields, having "prefix + field" as name. Such a marker parameter is
-	 * checked by existence: You can send any value for it, for example "visible".
-	 * This is particularly useful for HTML checkboxes and select options.
-	 * <p>Default is "_", for "_FIELD" parameters (e.g. "_subscribeToNewsletter").
-	 * Set this to null if you want to turn off the empty field check completely.
-	 * <p>HTML checkboxes only send a value when they're checked, so it is not
-	 * possible to detect that a formerly checked box has just been unchecked,
-	 * at least not with standard HTML means.
-	 * <p>One way to address this is to look for a checkbox parameter value if
-	 * you know that the checkbox has been visible in the form, resetting the
-	 * checkbox if no value found. In Spring web MVC, this typically happens
-	 * in a custom {@code onBind} implementation.
-	 * <p>This auto-reset mechanism addresses this deficiency, provided
-	 * that a marker parameter is sent for each checkbox field, like
-	 * "_subscribeToNewsletter" for a "subscribeToNewsletter" field.
-	 * As the marker parameter is sent in any case, the data binder can
-	 * detect an empty field and automatically reset its value.
+	 * 指定可用于标记潜在空字段的参数前缀，名称为 "prefix + field"。
+	 * 此类标记参数按存在性进行检查：可以为其发送任意值，例如 "visible"。
+	 * 这对 HTML 复选框和选择项特别有用。
+	 * <p>默认值为 "_"，用于 "_FIELD" 参数（例如 "_subscribeToNewsletter"）。
+	 * 如果希望完全关闭空字段检查，请将其设置为 null。
+	 * <p>HTML 复选框只在被选中时发送值，因此无法检测以前选中的复选框是否刚刚
+	 * 被取消选中，至少用标准 HTML 手段无法做到。
+	 * <p>解决此问题的一种方式是：如果知道复选框在表单中可见，则查找复选框参数值，
+	 * 若未找到值则重置该复选框。在 Spring Web MVC 中，这通常发生在自定义的
+	 * {@code onBind} 实现中。
+	 * <p>此自动重置机制解决了该缺陷，前提是为每个复选框字段发送一个标记参数，
+	 * 例如为 "subscribeToNewsletter" 字段发送 "_subscribeToNewsletter"。
+	 * 由于标记参数在任何情况下都会发送，数据绑定器可以检测到空字段
+	 * 并自动重置其值。
 	 * @see #DEFAULT_FIELD_MARKER_PREFIX
 	 */
 	public void setFieldMarkerPrefix(@Nullable String fieldMarkerPrefix) {
@@ -140,7 +127,7 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Return the prefix for parameters that mark potentially empty fields.
+	 * 返回用于标记潜在空字段的参数前缀。
 	 */
 	@Nullable
 	public String getFieldMarkerPrefix() {
@@ -148,17 +135,14 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Specify a prefix that can be used for parameters that indicate default
-	 * value fields, having "prefix + field" as name. The value of the default
-	 * field is used when the field is not provided.
-	 * <p>Default is "!", for "!FIELD" parameters (e.g. "!subscribeToNewsletter").
-	 * Set this to null if you want to turn off the field defaults completely.
-	 * <p>HTML checkboxes only send a value when they're checked, so it is not
-	 * possible to detect that a formerly checked box has just been unchecked,
-	 * at least not with standard HTML means.  A default field is especially
-	 * useful when a checkbox represents a non-boolean value.
-	 * <p>The presence of a default parameter preempts the behavior of a field
-	 * marker for the given field.
+	 * 指定可用于指示默认值字段的参数前缀，名称为 "prefix + field"。
+	 * 当未提供该字段时，将使用默认字段的值。
+	 * <p>默认值为 "!"，用于 "!FIELD" 参数（例如 "!subscribeToNewsletter"）。
+	 * 如果希望完全关闭字段默认值，请将其设置为 null。
+	 * <p>HTML 复选框只在被选中时发送值，因此无法检测以前选中的复选框是否刚刚
+	 * 被取消选中，至少用标准 HTML 手段无法做到。当复选框表示非布尔值时，
+	 * 默认字段特别有用。
+	 * <p>默认参数的存在会优先于给定字段的字段标记行为。
 	 * @see #DEFAULT_FIELD_DEFAULT_PREFIX
 	 */
 	public void setFieldDefaultPrefix(@Nullable String fieldDefaultPrefix) {
@@ -166,7 +150,7 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Return the prefix for parameters that mark default fields.
+	 * 返回用于标记默认字段的参数前缀。
 	 */
 	@Nullable
 	public String getFieldDefaultPrefix() {
@@ -174,11 +158,10 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Set whether to bind empty MultipartFile parameters. Default is "true".
-	 * <p>Turn this off if you want to keep an already bound MultipartFile
-	 * when the user resubmits the form without choosing a different file.
-	 * Else, the already bound MultipartFile will be replaced by an empty
-	 * MultipartFile holder.
+	 * 设置是否绑定空的 MultipartFile 参数。默认为 "true"。
+	 * <p>如果希望在用户重新提交表单而未选择不同文件时保留已绑定的
+	 * MultipartFile，请关闭此选项。否则，已绑定的 MultipartFile 将被
+	 * 空的 MultipartFile 持有者替换。
 	 * @see org.springframework.web.multipart.MultipartFile
 	 */
 	public void setBindEmptyMultipartFiles(boolean bindEmptyMultipartFiles) {
@@ -186,7 +169,7 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Return whether to bind empty MultipartFile parameters.
+	 * 返回是否绑定空的 MultipartFile 参数。
 	 */
 	public boolean isBindEmptyMultipartFiles() {
 		return this.bindEmptyMultipartFiles;
@@ -194,8 +177,7 @@ public class WebDataBinder extends DataBinder {
 
 
 	/**
-	 * This implementation performs a field default and marker check
-	 * before delegating to the superclass binding process.
+	 * 此实现在委托给父类绑定过程之前，执行字段默认值和字段标记检查。
 	 * @see #checkFieldDefaults
 	 * @see #checkFieldMarkers
 	 */
@@ -208,10 +190,9 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Check the given property values for field defaults,
-	 * i.e. for fields that start with the field default prefix.
-	 * <p>The existence of a field defaults indicates that the specified
-	 * value should be used if the field is otherwise not present.
+	 * 检查给定的属性值中的字段默认值，即以字段默认值前缀开头的字段。
+	 * <p>字段默认值的存在表明，如果该字段在其他情况下不存在，
+	 * 则应使用指定的值。
 	 * @param mpvs the property values to be bound (can be modified)
 	 * @see #getFieldDefaultPrefix
 	 */
@@ -232,12 +213,9 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Check the given property values for field markers,
-	 * i.e. for fields that start with the field marker prefix.
-	 * <p>The existence of a field marker indicates that the specified
-	 * field existed in the form. If the property values do not contain
-	 * a corresponding field value, the field will be considered as empty
-	 * and will be reset appropriately.
+	 * 检查给定的属性值中的字段标记，即以字段标记前缀开头的字段。
+	 * <p>字段标记的存在表明该字段存在于表单中。如果属性值中不包含
+	 * 对应的字段值，则该字段将被视为空，并会被相应地重置。
 	 * @param mpvs the property values to be bound (can be modified)
 	 * @see #getFieldMarkerPrefix
 	 * @see #getEmptyValue(String, Class)
@@ -260,10 +238,9 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Check for property values with names that end on {@code "[]"}. This is
-	 * used by some clients for array syntax without an explicit index value.
-	 * If such values are found, drop the brackets to adapt to the expected way
-	 * of expressing the same for data binding purposes.
+	 * 检查名称以 {@code "[]"} 结尾的属性值。某些客户端使用这种数组语法而
+	 * 不带显式索引值。如果发现此类值，则去掉方括号，以符合数据绑定所期望的
+	 * 表达方式。
 	 * @param mpvs the property values to be bound (can be modified)
 	 * @since 5.3
 	 */
@@ -281,9 +258,9 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Determine an empty value for the specified field.
-	 * <p>The default implementation delegates to {@link #getEmptyValue(Class)}
-	 * if the field type is known, otherwise falls back to {@code null}.
+	 * 确定指定字段的空值。
+	 * <p>如果已知字段类型，默认实现委托给 {@link #getEmptyValue(Class)}，
+	 * 否则回退为 {@code null}。
 	 * @param field the name of the field
 	 * @param fieldType the type of the field
 	 * @return the empty value (for most fields: {@code null})
@@ -294,14 +271,14 @@ public class WebDataBinder extends DataBinder {
 	}
 
 	/**
-	 * Determine an empty value for the specified field.
-	 * <p>The default implementation returns:
+	 * 确定指定字段的空值。
+	 * <p>默认实现返回：
 	 * <ul>
-	 * <li>{@code Boolean.FALSE} for boolean fields
-	 * <li>an empty array for array types
-	 * <li>Collection implementations for Collection types
-	 * <li>Map implementations for Map types
-	 * <li>else, {@code null} is used as default
+	 * <li>对于布尔字段，返回 {@code Boolean.FALSE}
+	 * <li>对于数组类型，返回空数组
+	 * <li>对于 Collection 类型，返回 Collection 实现
+	 * <li>对于 Map 类型，返回 Map 实现
+	 * <li>否则，使用 {@code null} 作为默认值
 	 * </ul>
 	 * @param fieldType the type of the field
 	 * @return the empty value (for most fields: {@code null})
@@ -336,10 +313,10 @@ public class WebDataBinder extends DataBinder {
 
 
 	/**
-	 * Bind all multipart files contained in the given request, if any
-	 * (in case of a multipart request). To be called by subclasses.
-	 * <p>Multipart files will only be added to the property values if they
-	 * are not empty or if we're configured to bind empty multipart files too.
+	 * 绑定给定请求中包含的所有 multipart 文件（如果是 multipart 请求）。
+	 * 由子类调用。
+	 * <p>仅当 multipart 文件不为空，或者配置为也绑定空的 multipart 文件时，
+	 * 才会将其添加到属性值中。
 	 * @param multipartFiles a Map of field name String to MultipartFile object
 	 * @param mpvs the property values to be bound (can be modified)
 	 * @see org.springframework.web.multipart.MultipartFile

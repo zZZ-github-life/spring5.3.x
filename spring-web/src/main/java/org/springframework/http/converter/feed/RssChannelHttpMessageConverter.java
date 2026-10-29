@@ -21,15 +21,15 @@ import com.rometools.rome.feed.rss.Channel;
 import org.springframework.http.MediaType;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter}
- * that can read and write RSS feeds. Specifically, this converter can handle {@link Channel}
- * objects from the <a href="https://github.com/rometools/rome">ROME</a> project.
+ * {@link org.springframework.http.converter.HttpMessageConverter} 的实现，
+ * 可读写 RSS feed。具体而言，此转换器可以处理
+ * <a href="https://github.com/rometools/rome">ROME</a> 项目中的 {@link Channel} 对象。
  *
- * <p><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
- * variant of ROME, version 1.5. Please upgrade your build dependency.</b>
+ * <p><b>注意：从 Spring 4.1 起，这基于 ROME 的 {@code com.rometools}
+ * 变体，版本 1.5。请升级您的构建依赖。</b>
  *
- * <p>By default, this converter reads and writes the media type ({@code application/rss+xml}).
- * This can be overridden through the {@link #setSupportedMediaTypes supportedMediaTypes} property.
+ * <p>默认情况下，此转换器读写媒体类型（{@code application/rss+xml}）。
+ * 可以通过 {@link #setSupportedMediaTypes supportedMediaTypes} 属性覆盖。
  *
  * @author Arjen Poutsma
  * @since 3.0.2

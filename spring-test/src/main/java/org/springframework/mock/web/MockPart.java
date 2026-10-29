@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Mock implementation of {@code javax.servlet.http.Part}.
+ * {@code javax.servlet.http.Part} 的模拟实现。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -51,7 +51,7 @@ public class MockPart implements Part {
 
 
 	/**
-	 * Constructor for a part with byte[] content only.
+	 * 仅包含 byte[] 内容的 part 构造函数。
 	 * @see #getHeaders()
 	 */
 	public MockPart(String name, @Nullable byte[] content) {
@@ -59,7 +59,7 @@ public class MockPart implements Part {
 	}
 
 	/**
-	 * Constructor for a part with a filename and byte[] content.
+	 * 包含文件名和 byte[] 内容的 part 构造函数。
 	 * @see #getHeaders()
 	 */
 	public MockPart(String name, @Nullable String filename, @Nullable byte[] content) {
@@ -127,8 +127,8 @@ public class MockPart implements Part {
 	}
 
 	/**
-	 * Return the {@link HttpHeaders} backing header related accessor methods,
-	 * allowing for populating selected header entries.
+	 * 返回支持头相关访问器方法的 {@link HttpHeaders}，
+	 * 可用于填充选定的头条目。
 	 */
 	public final HttpHeaders getHeaders() {
 		return this.headers;

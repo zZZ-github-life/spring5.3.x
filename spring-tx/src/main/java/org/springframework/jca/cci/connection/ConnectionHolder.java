@@ -21,11 +21,11 @@ import javax.resource.cci.Connection;
 import org.springframework.transaction.support.ResourceHolderSupport;
 
 /**
- * Resource holder wrapping a CCI {@link Connection}.
- * {@link CciLocalTransactionManager} binds instances of this class to the thread,
- * for a given {@link javax.resource.cci.ConnectionFactory}.
+ * 包装 CCI {@link Connection} 的资源持有者。
+ * {@link CciLocalTransactionManager} 将此类的实例绑定到线程，
+ * 对应给定的 {@link javax.resource.cci.ConnectionFactory}。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不打算被应用程序使用。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller

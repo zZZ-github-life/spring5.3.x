@@ -19,7 +19,7 @@ package org.springframework.aop.framework;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Exception that gets thrown on illegal AOP configuration arguments.
+ * 在 AOP 配置参数非法时抛出的异常。
  *
  * @author Rod Johnson
  * @since 13.03.2003
@@ -28,7 +28,7 @@ import org.springframework.core.NestedRuntimeException;
 public class AopConfigException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for AopConfigException.
+	 * AopConfigException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public AopConfigException(String msg) {
@@ -36,7 +36,7 @@ public class AopConfigException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for AopConfigException.
+	 * AopConfigException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

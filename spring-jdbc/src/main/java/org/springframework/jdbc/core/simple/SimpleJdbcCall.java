@@ -28,30 +28,24 @@ import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 /**
- * A SimpleJdbcCall is a multithreaded, reusable object representing a call
- * to a stored procedure or a stored function. It provides meta-data processing
- * to simplify the code needed to access basic stored procedures/functions.
- * All you need to provide is the name of the procedure/function and a Map
- * containing the parameters when you execute the call. The names of the
- * supplied parameters will be matched up with in and out parameters declared
- * when the stored procedure was created.
+ * SimpleJdbcCall 是一个多线程安全、可重复使用的对象，表示对存储过程
+ * 或存储函数的调用。它提供元数据处理，以简化访问基本存储过程/函数
+ * 所需的代码。执行调用时，你只需提供过程/函数的名称以及包含参数的
+ * Map。所提供的参数名称将与创建存储过程时声明的 in 参数和 out 参数
+ * 进行匹配。
  *
- * <p>The meta-data processing is based on the DatabaseMetaData provided by
- * the JDBC driver. Since we rely on the JDBC driver, this "auto-detection"
- * can only be used for databases that are known to provide accurate meta-data.
- * These currently include Derby, MySQL, Microsoft SQL Server, Oracle, DB2,
- * Sybase and PostgreSQL. For any other databases you are required to declare
- * all parameters explicitly. You can of course declare all parameters
- * explicitly even if the database provides the necessary meta-data. In that
- * case your declared parameters will take precedence. You can also turn off
- * any meta-data processing if you want to use parameter names that do not
- * match what is declared during the stored procedure compilation.
+ * <p>元数据处理基于 JDBC 驱动提供的 DatabaseMetaData。由于我们依赖
+ * JDBC 驱动，这种“自动检测”只能用于已知能够提供准确元数据的数据库。
+ * 目前包括 Derby、MySQL、Microsoft SQL Server、Oracle、DB2、Sybase
+ * 和 PostgreSQL。对于任何其他数据库，需要显式声明所有参数。当然，
+ * 即使数据库提供了必要的元数据，你也可以显式声明所有参数。在这种情况下，
+ * 你声明的参数将优先。如果你希望使用与存储过程编译时声明的名称不匹配的
+ * 参数名，也可以关闭所有元数据处理。
  *
- * <p>The actual insert is being handled using Spring's {@link JdbcTemplate}.
+ * <p>实际的插入操作使用 Spring 的 {@link JdbcTemplate} 处理。
  *
- * <p>Many of the configuration methods return the current instance of the
- * SimpleJdbcCall in order to provide the ability to chain multiple ones
- * together in a "fluent" interface style.
+ * <p>许多配置方法会返回当前的 SimpleJdbcCall 实例，以便能够以“流式”
+ * 接口风格将多个方法链式调用组合在一起。
  *
  * @author Thomas Risberg
  * @author Stephane Nicoll
@@ -62,8 +56,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 public class SimpleJdbcCall extends AbstractJdbcCall implements SimpleJdbcCallOperations {
 
 	/**
-	 * Constructor that takes one parameter with the JDBC DataSource to use when
-	 * creating the underlying JdbcTemplate.
+	 * 接受一个参数的构造器，参数为创建底层 JdbcTemplate 时使用的
+	 * JDBC DataSource。
 	 * @param dataSource the {@code DataSource} to use
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */
@@ -72,7 +66,7 @@ public class SimpleJdbcCall extends AbstractJdbcCall implements SimpleJdbcCallOp
 	}
 
 	/**
-	 * Alternative Constructor that takes one parameter with the JdbcTemplate to be used.
+	 * 备选构造器，接受一个参数，即要使用的 JdbcTemplate。
 	 * @param jdbcTemplate the {@code JdbcTemplate} to use
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */

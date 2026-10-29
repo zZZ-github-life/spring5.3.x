@@ -22,7 +22,7 @@ import org.springframework.test.context.CacheAwareContextLoaderDelegate;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of the {@link BootstrapContext} interface.
+ * {@link BootstrapContext} 接口的默认实现。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -34,7 +34,7 @@ public class DefaultBootstrapContext implements BootstrapContext {
 
 
 	/**
-	 * Construct a new {@code DefaultBootstrapContext} from the supplied arguments.
+	 * 根据所提供的参数构造新的 {@code DefaultBootstrapContext}。
 	 * @param testClass the test class for this bootstrap context; never {@code null}
 	 * @param cacheAwareContextLoaderDelegate the context loader delegate to use for
 	 * transparent interaction with the {@code ContextCache}; never {@code null}
@@ -63,7 +63,7 @@ public class DefaultBootstrapContext implements BootstrapContext {
 	}
 
 	/**
-	 * Provide a String representation of this bootstrap context's state.
+	 * 提供此引导上下文状态的字符串表示。
 	 */
 	@Override
 	public String toString() {

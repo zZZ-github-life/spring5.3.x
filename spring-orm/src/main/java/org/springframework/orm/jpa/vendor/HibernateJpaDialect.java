@@ -73,8 +73,9 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.support.ResourceTransactionDefinition;
 
 /**
- * {@link org.springframework.orm.jpa.JpaDialect} implementation for
- * Hibernate EntityManager. Developed against Hibernate 5.2/5.3/5.4.
+ * 适用于 Hibernate EntityManager 的
+ * {@link org.springframework.orm.jpa.JpaDialect} 实现。基于
+ * Hibernate 5.2/5.3/5.4 开发。
  *
  * @author Juergen Hoeller
  * @author Costin Leau
@@ -93,21 +94,19 @@ public class HibernateJpaDialect extends DefaultJpaDialect {
 
 
 	/**
-	 * Set whether to prepare the underlying JDBC Connection of a transactional
-	 * Hibernate Session, that is, whether to apply a transaction-specific
-	 * isolation level and/or the transaction's read-only flag to the underlying
-	 * JDBC Connection.
-	 * <p>Default is "true". If you turn this flag off, JPA transaction management
-	 * will not support per-transaction isolation levels anymore. It will not call
-	 * {@code Connection.setReadOnly(true)} for read-only transactions anymore either.
-	 * If this flag is turned off, no cleanup of a JDBC Connection is required after
-	 * a transaction, since no Connection settings will get modified.
-	 * <p><b>NOTE:</b> The default behavior in terms of read-only handling changed
-	 * in Spring 4.1, propagating the read-only status to the JDBC Connection now,
-	 * analogous to other Spring transaction managers. This may have the effect
-	 * that you're running into read-only enforcement now where previously write
-	 * access has accidentally been tolerated: Please revise your transaction
-	 * declarations accordingly, removing invalid read-only markers if necessary.
+	 * 设置是否准备事务性 Hibernate Session 底层的 JDBC Connection，
+	 * 即是否将事务特定的隔离级别和/或事务的只读标志
+	 * 应用到该底层 JDBC Connection。
+	 * <p>默认值为 "true"。如果关闭此标志，JPA 事务管理
+	 * 将不再支持按事务设置隔离级别。它也不会再为只读事务
+	 * 调用 {@code Connection.setReadOnly(true)}。
+	 * 如果关闭此标志，则事务之后无需清理 JDBC Connection，
+	 * 因为不会修改任何 Connection 设置。
+	 * <p><b>注意：</b>只读处理的默认行为在 Spring 4.1 中发生了变化，
+	 * 现在会将只读状态传播到 JDBC Connection，
+	 * 与其他 Spring 事务管理器类似。这可能导致现在遇到只读强制约束，
+	 * 而以前写访问曾被意外容忍：请相应地修改事务声明，
+	 * 必要时移除无效的只读标记。
 	 * @since 4.1
 	 * @see java.sql.Connection#setTransactionIsolation
 	 * @see java.sql.Connection#setReadOnly
@@ -117,10 +116,10 @@ public class HibernateJpaDialect extends DefaultJpaDialect {
 	}
 
 	/**
-	 * Set the JDBC exception translator for Hibernate exception translation purposes.
-	 * <p>Applied to any detected {@link java.sql.SQLException} root cause of a Hibernate
-	 * {@link JDBCException}, overriding Hibernate's own {@code SQLException} translation
-	 * (which is based on a Hibernate Dialect for a specific target database).
+	 * 设置用于 Hibernate 异常转换的 JDBC 异常转换器。
+	 * <p>应用于检测到的 Hibernate {@link JDBCException} 的任何
+	 * {@link java.sql.SQLException} 根本原因，覆盖 Hibernate 自身的
+	 * {@code SQLException} 转换（后者基于针对特定目标数据库的 Hibernate 方言）。
 	 * @since 5.1
 	 * @see java.sql.SQLException
 	 * @see org.hibernate.JDBCException
@@ -236,8 +235,8 @@ public class HibernateJpaDialect extends DefaultJpaDialect {
 	}
 
 	/**
-	 * Convert the given HibernateException to an appropriate exception
-	 * from the {@code org.springframework.dao} hierarchy.
+	 * 将给定的 HibernateException 转换为
+	 * {@code org.springframework.dao} 层次结构中相应的异常。
 	 * @param ex the HibernateException that occurred
 	 * @return the corresponding DataAccessException instance
 	 */

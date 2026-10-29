@@ -28,10 +28,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Tiles {@link org.apache.tiles.preparer.factory.PreparerFactory} implementation
- * that expects preparer class names and builds preparer instances for those,
- * creating them through the Spring ApplicationContext in order to apply
- * Spring container callbacks and configured Spring BeanPostProcessors.
+ * Tiles {@link org.apache.tiles.preparer.factory.PreparerFactory} 实现，
+ * 它期望使用 preparer 类名，并为这些类构建 preparer 实例，
+ * 通过 Spring ApplicationContext 创建它们，以应用
+ * Spring 容器回调以及已配置的 Spring BeanPostProcessor。
  *
  * @author Juergen Hoeller
  * @since 3.2
@@ -39,7 +39,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 public class SimpleSpringPreparerFactory extends AbstractSpringPreparerFactory {
 
-	/** Cache of shared ViewPreparer instances: bean name -> bean instance. */
+	/** 共享 ViewPreparer 实例的缓存：bean 名称 -> bean 实例。 */
 	private final Map<String, ViewPreparer> sharedPreparers = new ConcurrentHashMap<>(16);
 
 

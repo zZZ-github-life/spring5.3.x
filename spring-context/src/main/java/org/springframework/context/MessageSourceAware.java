@@ -19,12 +19,10 @@ package org.springframework.context;
 import org.springframework.beans.factory.Aware;
 
 /**
- * Interface to be implemented by any object that wishes to be notified
- * of the MessageSource (typically the ApplicationContext) that it runs in.
+ * 任何希望获知其运行所在的 MessageSource（通常是 ApplicationContext）的对象都可以实现此接口。
  *
- * <p>Note that the MessageSource can usually also be passed on as bean
- * reference (to arbitrary bean properties or constructor arguments), because
- * it is defined as bean with name "messageSource" in the application context.
+ * <p>请注意，MessageSource 通常也可以作为 Bean 引用传入（传给任意 Bean 属性或构造器参数），因为它
+ * 在应用上下文中是以名称为 "messageSource" 的 Bean 定义的。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -34,10 +32,10 @@ import org.springframework.beans.factory.Aware;
 public interface MessageSourceAware extends Aware {
 
 	/**
-	 * Set the MessageSource that this object runs in.
-	 * <p>Invoked after population of normal bean properties but before an init
-	 * callback like InitializingBean's afterPropertiesSet or a custom init-method.
-	 * Invoked before ApplicationContextAware's setApplicationContext.
+	 * 设置此对象运行所在的 MessageSource。
+	 *
+	 * <p>在填充普通 Bean 属性之后、在诸如 InitializingBean 的 afterPropertiesSet 或自定义 init-method
+	 * 之类的初始化回调之前调用。在 ApplicationContextAware 的 setApplicationContext 之前调用。
 	 * @param messageSource message source to be used by this object
 	 */
 	void setMessageSource(MessageSource messageSource);

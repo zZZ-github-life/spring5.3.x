@@ -24,10 +24,9 @@ import org.springframework.expression.TypedValue;
 import org.springframework.lang.Nullable;
 
 /**
- * A very simple hardcoded implementation of the Expression interface that represents a
- * string literal. It is used with CompositeStringExpression when representing a template
- * expression which is made up of pieces - some being real expressions to be handled by
- * an EL implementation like SpEL, and some being just textual elements.
+ * Expression 接口的一个非常简单的硬编码实现，表示一个字符串字面量。它与 CompositeStringExpression
+ * 配合使用，用于表示由若干部分组成的模板表达式——其中一些是由 SpEL 等 EL 实现处理的真实表达式，另一
+ * 些只是文本元素。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -35,7 +34,7 @@ import org.springframework.lang.Nullable;
  */
 public class LiteralExpression implements Expression {
 
-	/** Fixed literal value of this expression. */
+	/** 此表达式的固定字面值。 */
 	private final String literalValue;
 
 

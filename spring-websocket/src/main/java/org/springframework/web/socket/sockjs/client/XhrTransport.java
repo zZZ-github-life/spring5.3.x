@@ -22,10 +22,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.socket.TextMessage;
 
 /**
- * A SockJS {@link Transport} that uses HTTP requests to simulate a WebSocket
- * interaction. The {@code connect} method of the base {@code Transport} interface
- * is used to receive messages from the server while the
- * {@link #executeSendRequest} method here is used to send messages.
+ * 使用 HTTP 请求模拟 WebSocket 交互的 SockJS {@link Transport}。
+ * 基础 {@code Transport} 接口的 {@code connect} 方法用于从服务器
+ * 接收消息，而这里的 {@link #executeSendRequest} 方法用于发送消息。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -33,18 +32,18 @@ import org.springframework.web.socket.TextMessage;
 public interface XhrTransport extends Transport, InfoReceiver {
 
 	/**
-	 * An {@code XhrTransport} supports both the "xhr_streaming" and "xhr" SockJS
-	 * server transports. From a client perspective there is no implementation
-	 * difference.
-	 * <p>By default an {@code XhrTransport} will be used with "xhr_streaming"
-	 * first and then with "xhr", if the streaming fails to connect. In some
-	 * cases it may be useful to suppress streaming so that only "xhr" is used.
+	 * {@code XhrTransport} 同时支持 "xhr_streaming" 和 "xhr" SockJS
+	 * 服务器传输。从客户端的角度来看，实现上没有
+	 * 区别。
+	 * <p>默认情况下，{@code XhrTransport} 将首先用于 "xhr_streaming"，
+	 * 如果流式传输连接失败，则再用于 "xhr"。在某些
+	 * 情况下，抑制流式传输以便仅使用 "xhr" 可能会有用。
 	 */
 	boolean isXhrStreamingDisabled();
 
 	/**
-	 * Execute a request to send the message to the server.
-	 * <p>Note that as of 4.2 this method accepts a {@code headers} parameter.
+	 * 执行将消息发送到服务器的请求。
+	 * <p>请注意，自 4.2 起，此方法接受 {@code headers} 参数。
 	 * @param transportUrl the URL for sending messages.
 	 * @param message the message to send
 	 */

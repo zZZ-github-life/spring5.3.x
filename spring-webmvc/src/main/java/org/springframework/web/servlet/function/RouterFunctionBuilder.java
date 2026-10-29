@@ -32,7 +32,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@link RouterFunctions.Builder}.
+ * {@link RouterFunctions.Builder} 的默认实现。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -375,7 +375,7 @@ class RouterFunctionBuilder implements RouterFunctions.Builder {
 
 
 	/**
-	 * Router function returned by {@link #build()} that simply iterates over the registered routes.
+	 * 由 {@link #build()} 返回的路由函数，仅遍历已注册的路由。
 	 */
 	private static class BuiltRouterFunction extends RouterFunctions.AbstractRouterFunction<ServerResponse> {
 

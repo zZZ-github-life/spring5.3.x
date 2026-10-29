@@ -32,8 +32,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Simple container of information related to the handshake request that started
- * the {@link WebSocketSession} session.
+ * 与启动 {@link WebSocketSession} 会话的握手请求相关信息的简单容器。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -66,7 +65,7 @@ public class HandshakeInfo {
 
 
 	/**
-	 * Constructor with basic information about the handshake.
+	 * 使用有关握手的基本信息构造。
 	 * @param uri the endpoint URL
 	 * @param headers request headers for server or response headers or client
 	 * @param principal the principal for the session
@@ -77,8 +76,7 @@ public class HandshakeInfo {
 	}
 
 	/**
-	 * Constructor targeting server-side use with extra information such as
-	 * the remote address, attributes, and a log prefix.
+	 * 针对服务器端使用的构造函数，包含远程地址、属性和日志前缀等额外信息。
 	 * @param uri the endpoint URL
 	 * @param headers server request headers
 	 * @param principal the principal for the session
@@ -99,8 +97,8 @@ public class HandshakeInfo {
 	}
 
 	/**
-	 * Constructor targeting server-side use with extra information such as the
-	 * cookies, remote address, attributes, and a log prefix.
+	 * 针对服务器端使用的构造函数，包含 Cookie、远程地址、属性和日志前缀等
+	 * 额外信息。
 	 * @param uri the endpoint URL
 	 * @param headers server request headers
 	 * @param cookies server request cookies
@@ -133,24 +131,23 @@ public class HandshakeInfo {
 
 
 	/**
-	 * Return the URL for the WebSocket endpoint.
+	 * 返回 WebSocket 端点的 URL。
 	 */
 	public URI getUri() {
 		return this.uri;
 	}
 
 	/**
-	 * Return the HTTP headers from the handshake request, either server request
-	 * headers for a server session or the client response headers for a client
-	 * session.
+	 * 返回握手请求中的 HTTP 头：对于服务器会话是服务器请求头，对于客户端会话是
+	 * 客户端响应头。
 	 */
 	public HttpHeaders getHeaders() {
 		return this.headers;
 	}
 
 	/**
-	 * For a server session this returns the server request cookies from the
-	 * handshake request. For a client session, it is an empty map.
+	 * 对于服务器会话，返回握手请求中的服务器请求 Cookie。对于客户端会话，
+	 * 返回空 Map。
 	 * @since 5.3.5
 	 */
 	public MultiValueMap<String, HttpCookie> getCookies() {
@@ -158,14 +155,14 @@ public class HandshakeInfo {
 	}
 
 	/**
-	 * Return the principal associated with the handshake request, if any.
+	 * 返回与握手请求关联的主体（如果有）。
 	 */
 	public Mono<Principal> getPrincipal() {
 		return this.principalMono;
 	}
 
 	/**
-	 * The sub-protocol negotiated at handshake time, or {@code null} if none.
+	 * 握手时协商的子协议，如果没有则为 {@code null}。
 	 * @see <a href="https://tools.ietf.org/html/rfc6455#section-1.9">
 	 * https://tools.ietf.org/html/rfc6455#section-1.9</a>
 	 */
@@ -175,8 +172,7 @@ public class HandshakeInfo {
 	}
 
 	/**
-	 * For a server session this is the remote address where the handshake
-	 * request came from. For a client session, it is {@code null}.
+	 * 对于服务器会话，这是握手请求的来源远程地址。对于客户端会话，为 {@code null}。
 	 * @since 5.1
 	 */
 	@Nullable
@@ -185,7 +181,7 @@ public class HandshakeInfo {
 	}
 
 	/**
-	 * Attributes extracted from the handshake request to add to the session.
+	 * 从握手请求中提取并添加到会话的属性。
 	 * @since 5.1
 	 */
 	public Map<String, Object> getAttributes() {
@@ -193,7 +189,7 @@ public class HandshakeInfo {
 	}
 
 	/**
-	 * A log prefix used in the handshake to correlate log messages, if any.
+	 * 在握手中用于关联日志消息的日志前缀（如果有）。
 	 * @return a log prefix, or {@code null} if not specified
 	 * @since 5.1
 	 */

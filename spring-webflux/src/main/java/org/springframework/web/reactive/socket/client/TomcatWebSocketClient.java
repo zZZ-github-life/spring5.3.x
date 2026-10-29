@@ -27,9 +27,7 @@ import org.springframework.web.reactive.socket.adapter.StandardWebSocketSession;
 import org.springframework.web.reactive.socket.adapter.TomcatWebSocketSession;
 
 /**
- * {@link WebSocketClient} implementation for use with Tomcat,
- * based on the Java WebSocket API.
- *
+ * 基于 Java WebSocket API、用于 Tomcat 的 {@link WebSocketClient} 实现。
  * @author Violeta Georgieva
  * @since 5.0
  * @see StandardWebSocketClient

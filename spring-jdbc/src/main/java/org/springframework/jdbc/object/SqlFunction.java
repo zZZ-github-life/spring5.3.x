@@ -26,23 +26,20 @@ import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.lang.Nullable;
 
 /**
- * SQL "function" wrapper for a query that returns a single row of results.
- * The default behavior is to return an int, but that can be overridden by
- * using the constructor with an extra return type parameter.
+ * 用于返回单行结果的查询的 SQL“函数”包装器。
+ * 默认行为是返回 int，但可以通过带有额外返回类型参数的构造函数
+ * 覆盖此行为。
  *
- * <p>Intended to use to call SQL functions that return a single result using a
- * query like "select user()" or "select sysdate from dual". It is not intended
- * for calling more complex stored functions or for using a CallableStatement to
- * invoke a stored procedure or stored function. Use StoredProcedure or SqlCall
- * for this type of processing.
+ * <p>适用于使用诸如 "select user()" 或 "select sysdate from dual" 之类的
+ * 查询调用返回单个结果的 SQL 函数。它不适用于调用更复杂的存储函数，
+ * 也不适用于使用 CallableStatement 调用存储过程或存储函数。此类处理
+ * 请使用 StoredProcedure 或 SqlCall。
  *
- * <p>This is a concrete class, which there is often no need to subclass.
- * Code using this package can create an object of this type, declaring SQL
- * and parameters, and then invoke the appropriate {@code run} method
- * repeatedly to execute the function. Subclasses are only supposed to add
- * specialized {@code run} methods for specific parameter and return types.
+ * <p>这是一个具体类，通常无需子类化。使用本包的代码可以创建此类型的对象，
+ * 声明 SQL 和参数，然后反复调用相应的 {@code run} 方法来执行该函数。
+ * 子类只应为特定的参数和返回类型添加专门的 {@code run} 方法。
  *
- * <p>Like all RdbmsOperation objects, SqlFunction objects are thread-safe.
+ * <p>与所有 RdbmsOperation 对象一样，SqlFunction 对象是线程安全的。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -56,9 +53,9 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 
 	/**
-	 * Constructor to allow use as a JavaBean.
-	 * A DataSource, SQL and any parameters must be supplied before
-	 * invoking the {@code compile} method and using this object.
+	 * 允许作为 JavaBean 使用的构造函数。
+	 * 在调用 {@code compile} 方法并使用此对象之前，必须提供
+	 * DataSource、SQL 和任何参数。
 	 * @see #setDataSource
 	 * @see #setSql
 	 * @see #compile
@@ -68,8 +65,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Create a new SqlFunction object with SQL, but without parameters.
-	 * Must add parameters or settle with none.
+	 * 使用 SQL 创建新的 SqlFunction 对象，但不含参数。
+	 * 必须添加参数，或者接受没有参数的情况。
 	 * @param ds the DataSource to obtain connections from
 	 * @param sql the SQL to execute
 	 */
@@ -80,7 +77,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Create a new SqlFunction object with SQL and parameters.
+	 * 使用 SQL 和参数创建新的 SqlFunction 对象。
 	 * @param ds the DataSource to obtain connections from
 	 * @param sql the SQL to execute
 	 * @param types the SQL types of the parameters, as defined in the
@@ -95,7 +92,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Create a new SqlFunction object with SQL, parameters and a result type.
+	 * 使用 SQL、参数和结果类型创建新的 SqlFunction 对象。
 	 * @param ds the DataSource to obtain connections from
 	 * @param sql the SQL to execute
 	 * @param types the SQL types of the parameters, as defined in the
@@ -114,9 +111,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 
 	/**
-	 * Specify the type that the result object is required to match.
-	 * <p>If not specified, the result value will be exposed as
-	 * returned by the JDBC driver.
+	 * 指定结果对象需要匹配的类型。
+	 * <p>如果未指定，结果值将按 JDBC 驱动返回的原样暴露。
 	 */
 	public void setResultType(Class<T> resultType) {
 		this.rowMapper.setRequiredType(resultType);
@@ -124,9 +120,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 
 	/**
-	 * This implementation of this method extracts a single value from the
-	 * single row returned by the function. If there are a different number
-	 * of rows returned, this is treated as an error.
+	 * 该方法的此实现从函数返回的单行中提取单个值。
+	 * 如果返回的行数不同，则视为错误。
 	 */
 	@Override
 	@Nullable
@@ -136,7 +131,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 
 
 	/**
-	 * Convenient method to run the function without arguments.
+	 * 无参数运行该函数的便捷方法。
 	 * @return the value of the function
 	 */
 	public int run() {
@@ -144,7 +139,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Convenient method to run the function with a single int argument.
+	 * 使用单个 int 参数运行该函数的便捷方法。
 	 * @param parameter single int parameter
 	 * @return the value of the function
 	 */
@@ -153,8 +148,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Analogous to the SqlQuery.execute([]) method. This is a
-	 * generic method to execute a query, taken a number of arguments.
+	 * 类似于 SqlQuery.execute([]) 方法。这是一个执行查询的通用方法，
+	 * 接收若干参数。
 	 * @param parameters array of parameters. These will be objects or
 	 * object wrapper types for primitives.
 	 * @return the value of the function
@@ -168,8 +163,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Convenient method to run the function without arguments,
-	 * returning the value as an object.
+	 * 无参数运行该函数的便捷方法，将值作为对象返回。
 	 * @return the value of the function
 	 */
 	@Nullable
@@ -178,7 +172,7 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Convenient method to run the function with a single int argument.
+	 * 使用单个 int 参数运行该函数的便捷方法。
 	 * @param parameter single int parameter
 	 * @return the value of the function as an Object
 	 */
@@ -188,8 +182,8 @@ public class SqlFunction<T> extends MappingSqlQuery<T> {
 	}
 
 	/**
-	 * Analogous to the {@code SqlQuery.findObject(Object[])} method.
-	 * This is a generic method to execute a query, taken a number of arguments.
+	 * 类似于 {@code SqlQuery.findObject(Object[])} 方法。
+	 * 这是一个执行查询的通用方法，接收若干参数。
 	 * @param parameters array of parameters. These will be objects or
 	 * object wrapper types for primitives.
 	 * @return the value of the function, as an Object

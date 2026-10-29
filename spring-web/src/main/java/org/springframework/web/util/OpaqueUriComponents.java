@@ -28,7 +28,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Extension of {@link UriComponents} for opaque URIs.
+ * 针对不透明 URI 的 {@link UriComponents} 扩展。
  *
  * @author Arjen Poutsma
  * @author Phillip Webb

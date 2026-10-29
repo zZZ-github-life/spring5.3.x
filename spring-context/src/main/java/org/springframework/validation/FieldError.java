@@ -21,11 +21,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Encapsulates a field error, that is, a reason for rejecting a specific
- * field value.
+ * 封装字段错误，即拒绝某个特定字段值的理由。
  *
- * <p>See the {@link DefaultMessageCodesResolver} javadoc for details on
- * how a message code list is built for a {@code FieldError}.
+ * <p>有关如何为 {@code FieldError} 构建消息代码列表的详情，请参见
+ * {@link DefaultMessageCodesResolver} 的 javadoc。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -44,7 +43,7 @@ public class FieldError extends ObjectError {
 
 
 	/**
-	 * Create a new FieldError instance.
+	 * 创建一个新的 FieldError 实例。
 	 * @param objectName the name of the affected object
 	 * @param field the affected field of the object
 	 * @param defaultMessage the default message to be used to resolve this message
@@ -54,7 +53,7 @@ public class FieldError extends ObjectError {
 	}
 
 	/**
-	 * Create a new FieldError instance.
+	 * 创建一个新的 FieldError 实例。
 	 * @param objectName the name of the affected object
 	 * @param field the affected field of the object
 	 * @param rejectedValue the rejected field value
@@ -76,14 +75,14 @@ public class FieldError extends ObjectError {
 
 
 	/**
-	 * Return the affected field of the object.
+	 * 返回对象中受影响的字段。
 	 */
 	public String getField() {
 		return this.field;
 	}
 
 	/**
-	 * Return the rejected field value.
+	 * 返回被拒绝的字段值。
 	 */
 	@Nullable
 	public Object getRejectedValue() {
@@ -91,8 +90,7 @@ public class FieldError extends ObjectError {
 	}
 
 	/**
-	 * Return whether this error represents a binding failure
-	 * (like a type mismatch); otherwise it is a validation failure.
+	 * 返回此错误是否表示绑定失败（例如类型不匹配）；否则表示校验失败。
 	 */
 	public boolean isBindingFailure() {
 		return this.bindingFailure;

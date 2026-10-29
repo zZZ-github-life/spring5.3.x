@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.CloseStatus;
 
 /**
- * Raised when a WebSocket session has exceeded limits it has been configured
- * for, e.g. timeout, buffer size, etc.
+ * 当 WebSocket 会话超出其配置的限制（例如超时、缓冲区大小等）时抛出。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.3

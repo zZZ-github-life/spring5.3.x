@@ -31,11 +31,10 @@ import java.nio.file.Files;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple utility methods for file and stream copying. All copy methods use a block size
- * of 4096 bytes, and close all affected streams when done. A variation of the copy
- * methods from this class that leave streams open can be found in {@link StreamUtils}.
+ * 用于文件和流复制的简单工具方法。所有复制方法都使用 4096 字节的块大小，并在完成后关闭所有受影响的
+ * 流。此类中保持流打开的复制方法变体可在 {@link StreamUtils} 中找到。
  *
- * <p>Mainly for use within the framework, but also useful for application code.
+ * <p>主要用于框架内部，但对应用代码也很有用。
  *
  * @author Juergen Hoeller
  * @author Hyunjin Choi
@@ -46,7 +45,7 @@ import org.springframework.lang.Nullable;
 public abstract class FileCopyUtils {
 
 	/**
-	 * The default buffer size used when copying bytes.
+	 * 复制字节时使用的默认缓冲区大小。
 	 */
 	public static final int BUFFER_SIZE = StreamUtils.BUFFER_SIZE;
 
@@ -56,7 +55,7 @@ public abstract class FileCopyUtils {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Copy the contents of the given input File to the given output File.
+	 * 将给定输入 File 的内容复制到给定输出 File。
 	 * @param in the file to copy from
 	 * @param out the file to copy to
 	 * @return the number of bytes copied
@@ -69,7 +68,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given byte array to the given output File.
+	 * 将给定字节数组的内容复制到给定输出 File。
 	 * @param in the byte array to copy from
 	 * @param out the file to copy to
 	 * @throws IOException in case of I/O errors
@@ -81,7 +80,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given input File into a new byte array.
+	 * 将给定输入 File 的内容复制到新的字节数组中。
 	 * @param in the file to copy from
 	 * @return the new byte array that has been copied to
 	 * @throws IOException in case of I/O errors
@@ -97,8 +96,7 @@ public abstract class FileCopyUtils {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Copy the contents of the given InputStream to the given OutputStream.
-	 * Closes both streams when done.
+	 * 将给定 InputStream 的内容复制到给定 OutputStream。完成后关闭两个流。
 	 * @param in the stream to copy from
 	 * @param out the stream to copy to
 	 * @return the number of bytes copied
@@ -118,8 +116,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given byte array to the given OutputStream.
-	 * Closes the stream when done.
+	 * 将给定字节数组的内容复制到给定 OutputStream。完成后关闭该流。
 	 * @param in the byte array to copy from
 	 * @param out the OutputStream to copy to
 	 * @throws IOException in case of I/O errors
@@ -137,8 +134,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given InputStream into a new byte array.
-	 * Closes the stream when done.
+	 * 将给定 InputStream 的内容复制到新的字节数组中。完成后关闭该流。
 	 * @param in the stream to copy from (may be {@code null} or empty)
 	 * @return the new byte array that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
@@ -159,8 +155,7 @@ public abstract class FileCopyUtils {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Copy the contents of the given Reader to the given Writer.
-	 * Closes both when done.
+	 * 将给定 Reader 的内容复制到给定 Writer。完成后关闭两者。
 	 * @param in the Reader to copy from
 	 * @param out the Writer to copy to
 	 * @return the number of characters copied
@@ -188,8 +183,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given String to the given Writer.
-	 * Closes the writer when done.
+	 * 将给定 String 的内容复制到给定 Writer。完成后关闭该 writer。
 	 * @param in the String to copy from
 	 * @param out the Writer to copy to
 	 * @throws IOException in case of I/O errors
@@ -207,8 +201,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Copy the contents of the given Reader into a String.
-	 * Closes the reader when done.
+	 * 将给定 Reader 的内容复制到 String 中。完成后关闭该 reader。
 	 * @param in the reader to copy from (may be {@code null} or empty)
 	 * @return the String that has been copied to (possibly empty)
 	 * @throws IOException in case of I/O errors
@@ -224,8 +217,7 @@ public abstract class FileCopyUtils {
 	}
 
 	/**
-	 * Attempt to close the supplied {@link Closeable}, silently swallowing any
-	 * exceptions.
+	 * 尝试关闭给定的 {@link Closeable}，并静默忽略任何异常。
 	 * @param closeable the {@code Closeable} to close
 	 */
 	private static void close(Closeable closeable) {

@@ -42,9 +42,8 @@ import org.springframework.messaging.rsocket.annotation.support.RSocketMessageHa
 import org.springframework.util.MimeType;
 
 /**
- * A thin wrapper around a sending {@link RSocket} with a fluent API accepting
- * and returning higher level Objects for input and for output, along with
- * methods to prepare routing and other metadata.
+ * 对发送方 {@link RSocket} 的轻量封装，提供流畅的 API，接受并返回更高层次的
+ * 输入输出对象，同时提供用于准备路由和其他元数据的方法。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -53,46 +52,42 @@ import org.springframework.util.MimeType;
 public interface RSocketRequester extends Disposable {
 
 	/**
-	 * Return the underlying {@link RSocketClient} used to make requests with.
+	 * 返回用于发出请求的底层 {@link RSocketClient}。
 	 * @since 5.3
 	 */
 	RSocketClient rsocketClient();
 
 	/**
-	 * Return the underlying {@link RSocket} if the requester was created with a
-	 * "live" RSocket via {@link #wrap(RSocket, MimeType, MimeType, RSocketStrategies)}
-	 * or via one of the (deprecated) connect methods on the
-	 * {@code RSocketRequester} builder, or otherwise return {@code null}.
+	 * 如果请求者是通过 {@link #wrap(RSocket, MimeType, MimeType, RSocketStrategies)}
+	 * 或通过 {@code RSocketRequester} 构建器上的（已弃用的）连接方法之一使用
+	 * "live" RSocket 创建的，则返回底层 {@link RSocket}，否则返回 {@code null}。
 	 */
 	@Nullable
 	RSocket rsocket();
 
 	/**
-	 * Return the data {@code MimeType} selected for the underlying RSocket
-	 * at connection time. On the client side this is configured via
-	 * {@link RSocketRequester.Builder#dataMimeType(MimeType)} while on the
-	 * server side it's obtained from the {@link ConnectionSetupPayload}.
+	 * 返回连接时为底层 RSocket 选择的数据 {@code MimeType}。在客户端，这通过
+	 * {@link RSocketRequester.Builder#dataMimeType(MimeType)} 配置；在服务器端，
+	 * 则从 {@link ConnectionSetupPayload} 获取。
 	 */
 	MimeType dataMimeType();
 
 	/**
-	 * Return the metadata {@code MimeType} selected for the underlying RSocket
-	 * at connection time. On the client side this is configured via
-	 * {@link RSocketRequester.Builder#metadataMimeType(MimeType)} while on the
-	 * server side it's obtained from the {@link ConnectionSetupPayload}.
+	 * 返回连接时为底层 RSocket 选择的元数据 {@code MimeType}。在客户端，这通过
+	 * {@link RSocketRequester.Builder#metadataMimeType(MimeType)} 配置；在服务器端，
+	 * 则从 {@link ConnectionSetupPayload} 获取。
 	 */
 	MimeType metadataMimeType();
 
 	/**
-	 * Begin to specify a new request with the given route to a remote handler.
-	 * <p>The route can be a template with placeholders, e.g.
-	 * {@code "flight.{code}"} in which case the supplied route variables are
-	 * formatted via {@code toString()} and expanded into the template.
-	 * If a formatted variable contains a "." it is replaced with the escape
-	 * sequence "%2E" to avoid treating it as separator by the responder .
-	 * <p>If the connection is set to use composite metadata, the route is
-	 * encoded as {@code "message/x.rsocket.routing.v0"}. Otherwise, the route
-	 * is encoded according to the mime type for the connection.
+	 * 开始指定一个带有给定路由的新请求，指向远程处理器。
+	 * <p>路由可以是带占位符的模板，例如 {@code "flight.{code}"}，此时提供的
+	 * 路由变量会通过 {@code toString()} 格式化并展开到模板中。
+	 * 如果格式化后的变量包含 "."，会被替换为转义序列 "%2E"，以免被响应方
+	 * 当作分隔符处理。
+	 * <p>如果连接设置为使用复合元数据，则路由编码为
+	 * {@code "message/x.rsocket.routing.v0"}。否则，路由按照连接的
+	 * mime 类型进行编码。
 	 * @param route the route expressing a remote handler mapping
 	 * @param routeVars variables to be expanded into the route template
 	 * @return a spec for further defining and executing the request
@@ -100,9 +95,8 @@ public interface RSocketRequester extends Disposable {
 	RequestSpec route(String route, Object... routeVars);
 
 	/**
-	 * Begin to specify a new request with the given metadata value, which can
-	 * be a concrete value or any producer of a single value that can be adapted
-	 * to a {@link Publisher} via {@link ReactiveAdapterRegistry}.
+	 * 开始指定一个带有给定元数据值的新请求，该值可以是具体值，也可以是任何
+	 * 可通过 {@link ReactiveAdapterRegistry} 适配为 {@link Publisher} 的单值生产者。
 	 * @param metadata the metadata value to encode
 	 * @param mimeType the mime type that describes the metadata;
 	 * This is required for connection using composite metadata. Otherwise, the
@@ -112,9 +106,8 @@ public interface RSocketRequester extends Disposable {
 	RequestSpec metadata(Object metadata, @Nullable MimeType mimeType);
 
 	/**
-	 * Shortcut method that delegates to the same on the underlying
-	 * {@link #rsocketClient()} in order to close the connection from the
-	 * underlying transport and notify subscribers.
+	 * 快捷方法，委托给底层 {@link #rsocketClient()} 上的同名方法，
+	 * 以便关闭底层传输的连接并通知订阅者。
 	 * @since 5.3.7
 	 */
 	@Override
@@ -123,8 +116,7 @@ public interface RSocketRequester extends Disposable {
 	}
 
 	/**
-	 * Shortcut method that delegates to the same on the underlying
-	 * {@link #rsocketClient()}.
+	 * 快捷方法，委托给底层 {@link #rsocketClient()} 上的同名方法。
 	 * @since 5.3.7
 	 */
 	@Override
@@ -133,17 +125,15 @@ public interface RSocketRequester extends Disposable {
 	}
 
 	/**
-	 * Obtain a builder to create a client {@link RSocketRequester} by connecting
-	 * to an RSocket server.
+	 * 获取一个构建器，通过连接到 RSocket 服务器来创建客户端 {@link RSocketRequester}。
 	 */
 	static RSocketRequester.Builder builder() {
 		return new DefaultRSocketRequesterBuilder();
 	}
 
 	/**
-	 * Wrap an existing {@link RSocket}. Typically for internal framework use,
-	 * to wrap the remote {@code RSocket} in a client or server responder, but
-	 * it can also be used to wrap any {@link RSocket}.
+	 * 包装现有的 {@link RSocket}。通常供框架内部使用，用于在客户端或服务器
+	 * 响应方中包装远程 {@code RSocket}，但也可以用于包装任何 {@link RSocket}。
 	 */
 	static RSocketRequester wrap(
 			RSocket rsocket, MimeType dataMimeType, MimeType metadataMimeType,
@@ -154,107 +144,100 @@ public interface RSocketRequester extends Disposable {
 
 
 	/**
-	 * Builder to create a requester by connecting to a server.
+	 * 用于通过连接到服务器来创建请求者的构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Configure the payload data MimeType to specify on the {@code SETUP}
-		 * frame that applies to the whole connection.
-		 * <p>If not set, this will be initialized to the MimeType of the first
-		 * {@link RSocketStrategies.Builder#decoder(Decoder[])  non-default}
-		 * {@code Decoder}, or otherwise the MimeType of the first decoder.
+		 * 配置要在应用于整个连接的 {@code SETUP} 帧中指定的负载数据 MimeType。
+		 * <p>如果未设置，将初始化为第一个
+		 * {@link RSocketStrategies.Builder#decoder(Decoder[]) 非默认}
+		 * {@code Decoder} 的 MimeType，否则为第一个解码器的 MimeType。
 		 */
 		RSocketRequester.Builder dataMimeType(@Nullable MimeType mimeType);
 
 		/**
-		 * Configure the payload metadata MimeType to specify on the {@code SETUP}
-		 * frame that applies to the whole connection.
-		 * <p>By default this is set to
-		 * {@code "message/x.rsocket.composite-metadata.v0"} in which case the
-		 * route, if provided, is encoded as a {@code "message/x.rsocket.routing.v0"}
-		 * composite metadata entry. If this is set to any other MimeType, it is
-		 * assumed that's the MimeType for the route, if provided.
+		 * 配置要在应用于整个连接的 {@code SETUP} 帧中指定的负载元数据 MimeType。
+		 * <p>默认设置为 {@code "message/x.rsocket.composite-metadata.v0"}，
+		 * 此时如果提供了路由，则将其编码为
+		 * {@code "message/x.rsocket.routing.v0"} 复合元数据条目。
+		 * 如果将其设置为任何其他 MimeType，则假定该 MimeType 适用于路由
+		 * （如果提供了路由）。
 		 */
 		RSocketRequester.Builder metadataMimeType(MimeType mimeType);
 
 		/**
-		 * Set the data for the setup payload. The data will be encoded
-		 * according to the configured {@link #dataMimeType(MimeType)}.
-		 * The data be a concrete value or any producer of a single value that
-		 * can be adapted to a {@link Publisher} via {@link ReactiveAdapterRegistry}.
-		 * <p>By default this is not set.
+		 * 设置设置负载的数据。数据将根据配置的 {@link #dataMimeType(MimeType)}
+		 * 进行编码。数据可以是具体值，也可以是任何可通过
+		 * {@link ReactiveAdapterRegistry} 适配为 {@link Publisher} 的单值生产者。
+		 * <p>默认情况下不设置此项。
 		 */
 		RSocketRequester.Builder setupData(Object data);
 
 		/**
-		 * Set the route for the setup payload. The rules for formatting and
-		 * encoding the route are the same as those for a request route as
-		 * described in {@link #route(String, Object...)}.
-		 * <p>By default this is not set.
+		 * 设置设置负载的路由。路由的格式化和编码规则与请求路由相同，
+		 * 如 {@link #route(String, Object...)} 中所述。
+		 * <p>默认情况下不设置此项。
 		 */
 		RSocketRequester.Builder setupRoute(String route, Object... routeVars);
 
 		/**
-		 * Add metadata entry to the setup payload. Composite metadata must be
-		 * in use if this is called more than once or in addition to
-		 * {@link #setupRoute(String, Object...)}. The metadata value be a
-		 * concrete value or any producer of a single value that can be adapted
-		 * to a {@link Publisher} via {@link ReactiveAdapterRegistry}.
+		 * 向设置负载添加元数据条目。如果多次调用，或者在
+		 * {@link #setupRoute(String, Object...)} 之外额外调用，则必须使用复合元数据。
+		 * 元数据值可以是具体值，也可以是任何可通过
+		 * {@link ReactiveAdapterRegistry} 适配为 {@link Publisher} 的单值生产者。
 		 */
 		RSocketRequester.Builder setupMetadata(Object value, @Nullable MimeType mimeType);
 
 		/**
-		 * Provide the {@link RSocketStrategies} to use.
-		 * <p>This is useful for changing the default settings, yet still allowing
-		 * further customizations via {@link #rsocketStrategies(Consumer)}.
-		 * If not set, defaults are obtained from {@link RSocketStrategies#builder()}.
+		 * 提供要使用的 {@link RSocketStrategies}。
+		 * <p>这有助于更改默认设置，同时仍允许通过
+		 * {@link #rsocketStrategies(Consumer)} 进行进一步自定义。
+		 * 如果未设置，则从 {@link RSocketStrategies#builder()} 获取默认值。
 		 * @param strategies the strategies to use
 		 */
 		RSocketRequester.Builder rsocketStrategies(@Nullable RSocketStrategies strategies);
 
 		/**
-		 * Customize the {@link RSocketStrategies}.
-		 * <p>Allows further customization on {@link RSocketStrategies},
-		 * mutating them if they were {@link #rsocketStrategies(RSocketStrategies) set},
-		 * or starting from {@link RSocketStrategies#builder()} defaults}.
+		 * 自定义 {@link RSocketStrategies}。
+		 * <p>允许对 {@link RSocketStrategies} 进行进一步自定义：如果它们已通过
+		 * {@link #rsocketStrategies(RSocketStrategies) set} 设置，则就地修改；
+		 * 否则从 {@link RSocketStrategies#builder()} 默认值开始。
 		 */
 		RSocketRequester.Builder rsocketStrategies(Consumer<RSocketStrategies.Builder> configurer);
 
 		/**
-		 * Callback to configure the {@code RSocketConnector} directly.
+		 * 直接配置 {@code RSocketConnector} 的回调。
 		 * <ul>
-		 * <li>The data and metadata mime types cannot be set directly
-		 * on the {@code RSocketConnector} and will be overridden. Use the
-		 * shortcuts {@link #dataMimeType(MimeType)} and
-		 * {@link #metadataMimeType(MimeType)} on this builder instead.
-		 * <li>The frame decoder also cannot be set directly and instead is set
-		 * to match the configured {@code DataBufferFactory}.
-		 * <li>For the
+		 * <li>数据 MimeType 和元数据 MimeType 无法直接在
+		 * {@code RSocketConnector} 上设置，并且会被覆盖。请改为使用本构建器上的
+		 * 快捷方法 {@link #dataMimeType(MimeType)} 和
+		 * {@link #metadataMimeType(MimeType)}。
+		 * <li>帧解码器也无法直接设置，而是会设置为与配置的
+		 * {@code DataBufferFactory} 匹配。
+		 * <li>对于
 		 * {@link io.rsocket.core.RSocketConnector#setupPayload(Payload)
-		 * setupPayload}, consider using methods on this builder to specify the
-		 * route, other metadata, and data as Object values to be encoded.
-		 * <li>To configure client side responding, see
-		 * {@link RSocketMessageHandler#responder(RSocketStrategies, Object...)}.
+		 * setupPayload}，请考虑使用本构建器上的方法来以 Object 值形式指定
+		 * 路由、其他元数据和数据，由框架进行编码。
+		 * <li>要配置客户端响应，请参阅
+		 * {@link RSocketMessageHandler#responder(RSocketStrategies, Object...)}。
 		 * </ul>
 		 * @since 5.2.6
 		 */
 		RSocketRequester.Builder rsocketConnector(RSocketConnectorConfigurer configurer);
 
 		/**
-		 * Configure this builder through a {@code Consumer}. This enables
-		 * libraries such as Spring Security to provide shortcuts for applying
-		 * a set of related customizations.
+		 * 通过 {@code Consumer} 配置此构建器。这使 Spring Security 等库能够
+		 * 提供应用一组相关自定义配置的快捷方式。
 		 * @param configurer the configurer to apply
 		 */
 		RSocketRequester.Builder apply(Consumer<RSocketRequester.Builder> configurer);
 
 		/**
-		 * Build an {@link RSocketRequester} with an
-		 * {@link io.rsocket.core.RSocketClient} that connects over TCP to the
-		 * given host and port. The requester can be used to make requests
-		 * concurrently. Requests are made over a shared connection that is also
-		 * re-established as needed when further requests are made.
+		 * 使用通过 TCP 连接到给定主机和端口的
+		 * {@link io.rsocket.core.RSocketClient} 构建一个 {@link RSocketRequester}。
+		 * 该请求者可用于并发发出请求。请求通过共享连接发出，并且在后续请求时
+		 * 会按需重新建立该连接。
 		 * @param host the host to connect to
 		 * @param port the port to connect to
 		 * @return the created {@code RSocketRequester}
@@ -263,11 +246,10 @@ public interface RSocketRequester extends Disposable {
 		RSocketRequester tcp(String host, int port);
 
 		/**
-		 * Build an {@link RSocketRequester} with an
-		 * {@link io.rsocket.core.RSocketClient} that connects over WebSocket to
-		 * the given URL. The requester can be used to make requests
-		 * concurrently. Requests are made over a shared connection that is also
-		 * re-established as needed when further requests are made.
+		 * 使用通过 WebSocket 连接到给定 URL 的
+		 * {@link io.rsocket.core.RSocketClient} 构建一个 {@link RSocketRequester}。
+		 * 该请求者可用于并发发出请求。请求通过共享连接发出，并且在后续请求时
+		 * 会按需重新建立该连接。
 		 * @param uri the URL to connect to
 		 * @return the created {@code RSocketRequester}
 		 * @since 5.3
@@ -275,8 +257,8 @@ public interface RSocketRequester extends Disposable {
 		RSocketRequester websocket(URI uri);
 
 		/**
-		 * Variant of {@link #tcp(String, int)} and {@link #websocket(URI)}
-		 * with an already initialized {@link ClientTransport}.
+		 * {@link #tcp(String, int)} 和 {@link #websocket(URI)} 的变体，
+		 * 使用已初始化的 {@link ClientTransport}。
 		 * @param transport the transport to connect with
 		 * @return the created {@code RSocketRequester}
 		 * @since 5.3
@@ -284,10 +266,9 @@ public interface RSocketRequester extends Disposable {
 		RSocketRequester transport(ClientTransport transport);
 
 		/**
-		 * Build an {@link RSocketRequester} with an
-		 * {@link io.rsocket.loadbalance.LoadbalanceRSocketClient} that will
-		 * connect to one of the given targets selected through the given
-		 * {@link io.rsocket.loadbalance.LoadbalanceRSocketClient}.
+		 * 使用 {@link io.rsocket.loadbalance.LoadbalanceRSocketClient} 构建一个
+		 * {@link RSocketRequester}，该客户端会连接到通过给定
+		 * {@link io.rsocket.loadbalance.LoadbalanceRSocketClient} 选出的多个目标之一。
 		 * @param targetPublisher a {@code Publisher} that supplies a list of
 		 * target transports to loadbalance against; the given list may be
 		 * periodically updated by the {@code Publisher}.
@@ -301,7 +282,7 @@ public interface RSocketRequester extends Disposable {
 				LoadbalanceStrategy loadbalanceStrategy);
 
 		/**
-		 * Connect to the server over TCP.
+		 * 通过 TCP 连接到服务器。
 		 * @param host the server host
 		 * @param port the server port
 		 * @return an {@code RSocketRequester} for the connection
@@ -312,7 +293,7 @@ public interface RSocketRequester extends Disposable {
 		Mono<RSocketRequester> connectTcp(String host, int port);
 
 		/**
-		 * Connect to the server over WebSocket.
+		 * 通过 WebSocket 连接到服务器。
 		 * @param uri the RSocket server endpoint URI
 		 * @return an {@code RSocketRequester} for the connection
 		 * @see WebsocketClientTransport
@@ -322,7 +303,7 @@ public interface RSocketRequester extends Disposable {
 		Mono<RSocketRequester> connectWebSocket(URI uri);
 
 		/**
-		 * Connect to the server with the given {@code ClientTransport}.
+		 * 使用给定的 {@code ClientTransport} 连接到服务器。
 		 * @param transport the client transport to use
 		 * @return an {@code RSocketRequester} for the connection
 		 * @deprecated as of 5.3 in favor of {@link #transport(ClientTransport)}
@@ -333,32 +314,31 @@ public interface RSocketRequester extends Disposable {
 	}
 
 	/**
-	 * Spec to declare the input for an RSocket request.
+	 * 用于声明 RSocket 请求输入的规范。
 	 */
 	interface RequestSpec extends MetadataSpec<RequestSpec>, RetrieveSpec {
 
 		/**
-		 * Append additional metadata entries through a {@code Consumer}.
-		 * This enables libraries such as Spring Security to provide shortcuts
-		 * for applying a set of customizations.
+		 * 通过 {@code Consumer} 追加额外的元数据条目。
+		 * 这使 Spring Security 等库能够提供应用一组自定义配置的快捷方式。
 		 * @param configurer the configurer to apply
 		 * @throws IllegalArgumentException if not using composite metadata.
 		 */
 		RequestSpec metadata(Consumer<MetadataSpec<?>> configurer);
 
 		/**
-		 * Perform a {@link RSocket#metadataPush(Payload) metadataPush}.
+		 * 执行 {@link RSocket#metadataPush(Payload) metadataPush}。
 		 * @since 5.3
 		 */
 		Mono<Void> sendMetadata();
 
 		/**
-		 * Provide payload data for the request. This can be one of:
+		 * 为请求提供负载数据。可以是以下之一：
 		 * <ul>
-		 * <li>Concrete value
-		 * <li>{@link Publisher} of value(s)
-		 * <li>Any other producer of value(s) that can be adapted to a
-		 * {@link Publisher} via {@link ReactiveAdapterRegistry}
+		 * <li>具体值
+		 * <li>值的 {@link Publisher}
+		 * <li>任何其他可通过 {@link ReactiveAdapterRegistry} 适配为
+		 * {@link Publisher} 的值生产者
 		 * </ul>
 		 * @param data the Object value for the payload data
 		 * @return spec to declare the expected response
@@ -366,9 +346,8 @@ public interface RSocketRequester extends Disposable {
 		RetrieveSpec data(Object data);
 
 		/**
-		 * Variant of {@link #data(Object)} that also accepts a hint for the
-		 * types of values that will be produced. The class hint is used to
-		 * find a compatible {@code Encoder} once, up front vs per value.
+		 * {@link #data(Object)} 的变体，还接受关于将要产生的值类型的提示。
+		 * 该类型提示用于一次性预先查找兼容的 {@code Encoder}，而不是为每个值查找。
 		 * @param producer the source of payload data value(s). This must be a
 		 * {@link Publisher} or another producer adaptable to a
 		 * {@code Publisher} via {@link ReactiveAdapterRegistry}
@@ -378,8 +357,8 @@ public interface RSocketRequester extends Disposable {
 		RetrieveSpec data(Object producer, Class<?> elementClass);
 
 		/**
-		 * Variant of {@link #data(Object, Class)} for when the type hint has
-		 * to have a generic type. See {@link ParameterizedTypeReference}.
+		 * {@link #data(Object, Class)} 的变体，适用于类型提示必须包含泛型的情况。
+		 * 请参阅 {@link ParameterizedTypeReference}。
 		 * @param producer the source of payload data value(s). This must be a
 		 * {@link Publisher} or another producer adaptable to a
 		 * {@code Publisher} via {@link ReactiveAdapterRegistry}
@@ -391,19 +370,18 @@ public interface RSocketRequester extends Disposable {
 
 
 	/**
-	 * Spec for providing additional composite metadata entries.
+	 * 用于提供额外复合元数据条目的规范。
 	 *
 	 * @param <S> a self reference to the spec type
 	 */
 	interface MetadataSpec<S extends MetadataSpec<S>> {
 
 		/**
-		 * Use this to append additional metadata entries when using composite
-		 * metadata. An {@link IllegalArgumentException} is raised if this
-		 * method is used when not using composite metadata.
-		 * The metadata value be a concrete value or any producer of a single
-		 * value that can be adapted to a {@link Publisher} via
-		 * {@link ReactiveAdapterRegistry}.
+		 * 使用复合元数据时，用于追加额外的元数据条目。
+		 * 如果在未使用复合元数据时使用此方法，将抛出
+		 * {@link IllegalArgumentException}。
+		 * 元数据值可以是具体值，也可以是任何可通过
+		 * {@link ReactiveAdapterRegistry} 适配为 {@link Publisher} 的单值生产者。
 		 * @param metadata an Object to be encoded with a suitable
 		 * {@link org.springframework.core.codec.Encoder Encoder}, or a
 		 * {@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
@@ -414,14 +392,13 @@ public interface RSocketRequester extends Disposable {
 
 
 	/**
-	 * Spec to declare the expected output for an RSocket request.
+	 * 用于声明 RSocket 请求预期输出的规范。
 	 * @since 5.2.2
 	 */
 	interface RetrieveSpec {
 
 		/**
-		 * Perform a {@link RSocket#fireAndForget fireAndForget} sending the
-		 * provided data and metadata.
+		 * 执行 {@link RSocket#fireAndForget fireAndForget}，发送提供的数据和元数据。
 		 * @return a completion that indicates if the payload was sent
 		 * successfully or not. Note, however that is a one-way send and there
 		 * is no indication of whether or how the even was handled on the
@@ -430,12 +407,11 @@ public interface RSocketRequester extends Disposable {
 		Mono<Void> send();
 
 		/**
-		 * Perform a {@link RSocket#requestResponse requestResponse} exchange.
-		 * <p>If the return type is {@code Mono<Void>}, the {@code Mono} will
-		 * complete after all data is consumed.
-		 * <p><strong>Note:</strong> This method will raise an error if
-		 * the request payload is a multivalued {@link Publisher} as there is
-		 * no many-to-one RSocket interaction.
+		 * 执行 {@link RSocket#requestResponse requestResponse} 交换。
+		 * <p>如果返回类型是 {@code Mono<Void>}，则 {@code Mono} 将在所有数据
+		 * 被消费后完成。
+		 * <p><strong>注意：</strong>如果请求负载是多值 {@link Publisher}，
+		 * 此方法会抛出错误，因为 RSocket 没有多对一的交互方式。
 		 * @param dataType the expected data type for the response
 		 * @param <T> parameter for the expected data type
 		 * @return the decoded response
@@ -443,17 +419,17 @@ public interface RSocketRequester extends Disposable {
 		<T> Mono<T> retrieveMono(Class<T> dataType);
 
 		/**
-		 * Variant of {@link #retrieveMono(Class)} for when the dataType has
-		 * to have a generic type. See {@link ParameterizedTypeReference}.
+		 * {@link #retrieveMono(Class)} 的变体，适用于 dataType 必须包含泛型的情况。
+		 * 请参阅 {@link ParameterizedTypeReference}。
 		 */
 		<T> Mono<T> retrieveMono(ParameterizedTypeReference<T> dataTypeRef);
 
 		/**
-		 * Perform an {@link RSocket#requestStream requestStream} or a
-		 * {@link RSocket#requestChannel requestChannel} exchange depending on
-		 * whether the request input is single or multi-payload.
-		 * <p>If the return type is {@code Flux<Void>}, the {@code Flux} will
-		 * complete after all data is consumed.
+		 * 根据请求输入是单负载还是多负载，执行
+		 * {@link RSocket#requestStream requestStream} 或
+		 * {@link RSocket#requestChannel requestChannel} 交换。
+		 * <p>如果返回类型是 {@code Flux<Void>}，则 {@code Flux} 将在所有数据
+		 * 被消费后完成。
 		 * @param dataType the expected type for values in the response
 		 * @param <T> parameterize the expected type of values
 		 * @return the decoded response
@@ -461,8 +437,8 @@ public interface RSocketRequester extends Disposable {
 		<T> Flux<T> retrieveFlux(Class<T> dataType);
 
 		/**
-		 * Variant of {@link #retrieveFlux(Class)} for when the dataType has
-		 * to have a generic type. See {@link ParameterizedTypeReference}.
+		 * {@link #retrieveFlux(Class)} 的变体，适用于 dataType 必须包含泛型的情况。
+		 * 请参阅 {@link ParameterizedTypeReference}。
 		 */
 		<T> Flux<T> retrieveFlux(ParameterizedTypeReference<T> dataTypeRef);
 	}

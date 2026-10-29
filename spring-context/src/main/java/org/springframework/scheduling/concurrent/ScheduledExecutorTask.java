@@ -22,17 +22,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * JavaBean that describes a scheduled executor task, consisting of the
- * {@link Runnable} and a delay plus period. The period needs to be specified;
- * there is no point in a default for it.
+ * 描述已调度执行器任务的 JavaBean，由 {@link Runnable} 以及延迟和周期组成。周期需要明确指定；为它
+ * 提供默认值没有意义。
  *
- * <p>The {@link java.util.concurrent.ScheduledExecutorService} does not offer
- * more sophisticated scheduling options such as cron expressions.
- * Consider using {@link ThreadPoolTaskScheduler} for such needs.
+ * <p>{@link java.util.concurrent.ScheduledExecutorService} 不提供更复杂的调度选项，例如 cron 表达
+ * 式。如有此类需求，可考虑使用 {@link ThreadPoolTaskScheduler}。
  *
- * <p>Note that the {@link java.util.concurrent.ScheduledExecutorService} mechanism
- * uses a {@link Runnable} instance that is shared between repeated executions,
- * in contrast to Quartz which creates a new Job instance for each execution.
+ * <p>请注意，{@link java.util.concurrent.ScheduledExecutorService} 机制使用在重复执行之间共享的
+ * {@link Runnable} 实例，这与 Quartz 不同，后者在每次执行时都会创建一个新的 Job 实例。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -54,8 +51,7 @@ public class ScheduledExecutorTask {
 
 
 	/**
-	 * Create a new ScheduledExecutorTask,
-	 * to be populated via bean properties.
+	 * 创建一个新的 ScheduledExecutorTask，通过 Bean 属性填充。
 	 * @see #setDelay
 	 * @see #setPeriod
 	 * @see #setFixedRate
@@ -64,8 +60,7 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Create a new ScheduledExecutorTask, with default
-	 * one-time execution without delay.
+	 * 创建一个新的 ScheduledExecutorTask，默认为无延迟的一次性执行。
 	 * @param executorTask the Runnable to schedule
 	 */
 	public ScheduledExecutorTask(Runnable executorTask) {
@@ -73,8 +68,7 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Create a new ScheduledExecutorTask, with default
-	 * one-time execution with the given delay.
+	 * 创建一个新的 ScheduledExecutorTask，默认为带给定延迟的一次性执行。
 	 * @param executorTask the Runnable to schedule
 	 * @param delay the delay before starting the task for the first time (ms)
 	 */
@@ -84,7 +78,7 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Create a new ScheduledExecutorTask.
+	 * 创建一个新的 ScheduledExecutorTask。
 	 * @param executorTask the Runnable to schedule
 	 * @param delay the delay before starting the task for the first time (ms)
 	 * @param period the period between repeated task executions (ms)
@@ -99,14 +93,14 @@ public class ScheduledExecutorTask {
 
 
 	/**
-	 * Set the Runnable to schedule as executor task.
+	 * 设置要作为执行器任务调度的 Runnable。
 	 */
 	public void setRunnable(Runnable executorTask) {
 		this.runnable = executorTask;
 	}
 
 	/**
-	 * Return the Runnable to schedule as executor task.
+	 * 返回要作为执行器任务调度的 Runnable。
 	 */
 	public Runnable getRunnable() {
 		Assert.state(this.runnable != null, "No Runnable set");
@@ -114,31 +108,26 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Set the delay before starting the task for the first time,
-	 * in milliseconds. Default is 0, immediately starting the
-	 * task after successful scheduling.
+	 * 设置任务首次启动前的延迟，单位为毫秒。默认值为 0，即在调度成功后立即启动任务。
 	 */
 	public void setDelay(long delay) {
 		this.delay = delay;
 	}
 
 	/**
-	 * Return the delay before starting the job for the first time.
+	 * 返回作业首次启动前的延迟。
 	 */
 	public long getDelay() {
 		return this.delay;
 	}
 
 	/**
-	 * Set the period between repeated task executions, in milliseconds.
-	 * <p>Default is -1, leading to one-time execution. In case of a positive value,
-	 * the task will be executed repeatedly, with the given interval in-between executions.
-	 * <p>Note that the semantics of the period value vary between fixed-rate and
-	 * fixed-delay execution.
-	 * <p><b>Note:</b> A period of 0 (for example as fixed delay) is <i>not</i> supported,
-	 * simply because {@code java.util.concurrent.ScheduledExecutorService} itself
-	 * does not support it. Hence a value of 0 will be treated as one-time execution;
-	 * however, that value should never be specified explicitly in the first place!
+	 * 设置重复任务执行之间的周期，单位为毫秒。
+	 * <p>默认值为 -1，表示一次性执行。如果为正值，任务将被重复执行，两次执行之间间隔给定的时间。
+	 * <p>请注意，周期值的语义在固定速率执行和固定延迟执行之间有所不同。
+	 * <p><b>Note:</b> <i>不</i>支持周期为 0（例如作为固定延迟），原因很简单：
+	 * {@code java.util.concurrent.ScheduledExecutorService} 本身就不支持。因此，值 0 会被视为一次性执
+	 * 行；不过，本来就不应显式指定该值！
 	 * @see #setFixedRate
 	 * @see #isOneTimeTask()
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(Runnable, long, long, java.util.concurrent.TimeUnit)
@@ -148,14 +137,14 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Return the period between repeated task executions.
+	 * 返回重复任务执行之间的周期。
 	 */
 	public long getPeriod() {
 		return this.period;
 	}
 
 	/**
-	 * Is this task only ever going to execute once?
+	 * 此任务是否只会执行一次？
 	 * @return {@code true} if this task is only ever going to execute once
 	 * @see #getPeriod()
 	 */
@@ -164,8 +153,7 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Specify the time unit for the delay and period values.
-	 * Default is milliseconds ({@code TimeUnit.MILLISECONDS}).
+	 * 指定延迟和周期值的时间单位。默认值为毫秒（{@code TimeUnit.MILLISECONDS}）。
 	 * @see java.util.concurrent.TimeUnit#MILLISECONDS
 	 * @see java.util.concurrent.TimeUnit#SECONDS
 	 */
@@ -174,16 +162,15 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Return the time unit for the delay and period values.
+	 * 返回延迟和周期值的时间单位。
 	 */
 	public TimeUnit getTimeUnit() {
 		return this.timeUnit;
 	}
 
 	/**
-	 * Set whether to schedule as fixed-rate execution, rather than
-	 * fixed-delay execution. Default is "false", that is, fixed delay.
-	 * <p>See ScheduledExecutorService javadoc for details on those execution modes.
+	 * 设置是否按固定速率执行调度，而不是固定延迟执行。默认值为 "false"，即固定延迟。
+	 * <p>有关这些执行模式的详细信息，请参阅 ScheduledExecutorService 的 javadoc。
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
 	 */
@@ -192,7 +179,7 @@ public class ScheduledExecutorTask {
 	}
 
 	/**
-	 * Return whether to schedule as fixed-rate execution.
+	 * 返回是否按固定速率执行调度。
 	 */
 	public boolean isFixedRate() {
 		return this.fixedRate;

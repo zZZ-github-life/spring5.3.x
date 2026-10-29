@@ -19,13 +19,11 @@ package org.springframework.expression.spel;
 import java.text.MessageFormat;
 
 /**
- * Contains all the messages that can be produced by the Spring Expression Language.
- * Each message has a kind (info, warn, error) and a code number. Tests can be written to
- * expect particular code numbers rather than particular text, enabling the message text
- * to more easily be modified and the tests to run successfully in different locales.
+ * 包含 Spring Expression Language 可以产生的所有消息。每条消息都有一个种类（info、warn、error）和
+ * 一个代码编号。可以编写测试来期望特定的代码编号而非特定文本，从而使消息文本更易于修改，并让测试能
+ * 在不同的区域设置下成功运行。
  *
- * <p>When a message is formatted, it will have this kind of form, capturing the prefix
- * and the error kind:
+ * <p>格式化消息时，它将采用这种形式，捕获前缀和错误种类：
  *
  * <pre class="code">EL1005E: Type cannot be found 'String'</pre>
  *
@@ -302,8 +300,7 @@ public enum SpelMessage {
 
 
 	/**
-	 * Produce a complete message including the prefix and with the inserts
-	 * applied to the message.
+	 * 生成完整消息，包含前缀，并将插入内容应用到消息中。
 	 * @param inserts the inserts to put into the formatted message
 	 * @return a formatted message
 	 * @since 4.3.5
@@ -323,7 +320,7 @@ public enum SpelMessage {
 
 
 	/**
-	 * Message kinds.
+	 * 消息种类。
 	 */
 	public enum Kind { INFO, WARNING, ERROR }
 

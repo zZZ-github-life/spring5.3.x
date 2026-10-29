@@ -40,9 +40,7 @@ import org.springframework.web.server.WebHandler;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Abstract base class for {@link org.springframework.web.reactive.HandlerMapping}
- * implementations.
- *
+ * {@link org.springframework.web.reactive.HandlerMapping} 实现的抽象基类。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @author Brian Clozel
@@ -53,7 +51,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 
 	private static final WebHandler NO_OP_HANDLER = exchange -> Mono.empty();
 
-	/** Dedicated "hidden" logger for request mappings. */
+	/** 用于请求映射的专用“隐藏”日志记录器。 */
 	protected final Log mappingsLogger =
 			LogDelegateFactory.getHiddenLog(HandlerMapping.class.getName() + ".Mappings");
 
@@ -77,26 +75,22 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 
 
 	/**
-	 * Shortcut method for setting the same property on the underlying pattern
-	 * parser in use. For more details see:
+	 * 在所使用底层模式解析器上设置相同属性的快捷方法。更多详情请参见：
 	 * <ul>
-	 * <li>{@link #getPathPatternParser()} -- the underlying pattern parser
-	 * <li>{@link PathPatternParser#setCaseSensitive(boolean)} -- the case
-	 * sensitive slash option, including its default value.
+	 * <li>{@link #getPathPatternParser()} -- 底层模式解析器
+	 * <li>{@link PathPatternParser#setCaseSensitive(boolean)} -- 大小写敏感斜杠选项及其默认值。
 	 * </ul>
-	 * <p><strong>Note:</strong> aside from
+	 * <p><strong>注意：</strong>除上述内容外
 	 */
 	public void setUseCaseSensitiveMatch(boolean caseSensitiveMatch) {
 		this.patternParser.setCaseSensitive(caseSensitiveMatch);
 	}
 
 	/**
-	 * Shortcut method for setting the same property on the underlying pattern
-	 * parser in use. For more details see:
+	 * 在所使用底层模式解析器上设置相同属性的快捷方法。更多详情请参见：
 	 * <ul>
-	 * <li>{@link #getPathPatternParser()} -- the underlying pattern parser
-	 * <li>{@link PathPatternParser#setMatchOptionalTrailingSeparator(boolean)} --
-	 * the trailing slash option, including its default value.
+	 * <li>{@link #getPathPatternParser()} -- 底层模式解析器
+	 * <li>{@link PathPatternParser#setMatchOptionalTrailingSeparator(boolean)} -- 末尾斜杠选项及其默认值。
 	 * </ul>
 	 */
 	public void setUseTrailingSlashMatch(boolean trailingSlashMatch) {
@@ -104,18 +98,14 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	}
 
 	/**
-	 * Return the {@link PathPatternParser} instance that is used for
-	 * {@link #setCorsConfigurations(Map) CORS configuration checks}.
-	 * Subclasses can also use this pattern parser for their own request
-	 * mapping purposes.
+	 * 返回用于{@link #setCorsConfigurations(Map) CORS 配置检查}的 {@link PathPatternParser} 实例。子类也可以将此模式解析器用于自己的请求映射目的。
 	 */
 	public PathPatternParser getPathPatternParser() {
 		return this.patternParser;
 	}
 
 	/**
-	 * Set the "global" CORS configurations based on URL patterns. By default, the
-	 * first matching URL pattern is combined with handler-level CORS configuration if any.
+	 * 基于 URL 模式设置“全局” CORS 配置。默认情况下，第一个匹配的 URL 模式会与处理器级 CORS 配置（如果有）合并。
 	 * @see #setCorsConfigurationSource(CorsConfigurationSource)
 	 */
 	public void setCorsConfigurations(Map<String, CorsConfiguration> corsConfigurations) {
@@ -131,8 +121,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	}
 
 	/**
-	 * Set the "global" CORS configuration source. By default, the first matching URL
-	 * pattern is combined with the CORS configuration for the handler, if any.
+	 * 设置“全局” CORS 配置源。默认情况下，第一个匹配的 URL 模式会与处理器的 CORS 配置（如果有）合并。
 	 * @since 5.1
 	 * @see #setCorsConfigurations(Map)
 	 */
@@ -142,9 +131,8 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	}
 
 	/**
-	 * Configure a custom {@link CorsProcessor} to use to apply the matched
-	 * {@link CorsConfiguration} for a request.
-	 * <p>By default an instance of {@link DefaultCorsProcessor} is used.
+	 * 配置自定义 {@link CorsProcessor}，用于为请求应用匹配的 {@link CorsConfiguration}。
+	 * <p>默认使用 {@link DefaultCorsProcessor} 实例。
 	 */
 	public void setCorsProcessor(CorsProcessor corsProcessor) {
 		Assert.notNull(corsProcessor, "CorsProcessor must not be null");
@@ -152,15 +140,15 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	}
 
 	/**
-	 * Return the configured {@link CorsProcessor}.
+	 * 返回配置的 {@link CorsProcessor}。
 	 */
 	public CorsProcessor getCorsProcessor() {
 		return this.corsProcessor;
 	}
 
 	/**
-	 * Specify the order value for this HandlerMapping bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * 指定此 HandlerMapping bean 的顺序值。
+	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示无序。
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -206,19 +194,15 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	}
 
 	/**
-	 * Look up a handler for the given request, returning an empty {@code Mono}
-	 * if no specific one is found. This method is called by {@link #getHandler}.
-	 * <p>On CORS pre-flight requests this method should return a match not for
-	 * the pre-flight request but for the expected actual request based on the URL
-	 * path, the HTTP methods from the "Access-Control-Request-Method" header, and
-	 * the headers from the "Access-Control-Request-Headers" header.
+	 * 查找给定请求的处理器，如果未找到特定处理器，则返回空 {@code Mono}。此方法由 {@link #getHandler} 调用。
+	 * <p>对于 CORS 预检请求，此方法不应返回预检请求的匹配，而应基于 URL 路径、"Access-Control-Request-Method" 头中的 HTTP 方法以及 "Access-Control-Request-Headers" 头中的头，返回预期实际请求的匹配。
 	 * @param exchange current exchange
 	 * @return {@code Mono} for the matching handler, if any
 	 */
 	protected abstract Mono<?> getHandlerInternal(ServerWebExchange exchange);
 
 	/**
-	 * Return {@code true} if there is a {@link CorsConfigurationSource} for this handler.
+	 * 如果此处理器存在 {@link CorsConfigurationSource}，则返回 {@code true}。
 	 * @since 5.2
 	 */
 	protected boolean hasCorsConfigurationSource(Object handler) {
@@ -226,7 +210,7 @@ public abstract class AbstractHandlerMapping extends ApplicationObjectSupport
 	}
 
 	/**
-	 * Retrieve the CORS configuration for the given handler.
+	 * 获取给定处理器的 CORS 配置。
 	 * @param handler the handler to check (never {@code null})
 	 * @param exchange the current exchange
 	 * @return the CORS configuration for the handler, or {@code null} if none

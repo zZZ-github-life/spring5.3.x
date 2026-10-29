@@ -39,9 +39,9 @@ import org.springframework.web.socket.client.ConnectionManagerSupport;
 import org.springframework.web.socket.handler.BeanCreatingHandlerProvider;
 
 /**
- * WebSocket {@link ConnectionManagerSupport connection manager} that connects
- * to the server via {@link WebSocketContainer} and handles the session with an
- * {@link Endpoint}.
+ * WebSocket {@link ConnectionManagerSupport 连接管理器}，通过
+ * {@link WebSocketContainer} 连接到服务器，并使用
+ * {@link Endpoint} 处理会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -116,8 +116,8 @@ public class EndpointConnectionManager extends ConnectionManagerSupport implemen
 	}
 
 	/**
-	 * Set a {@link TaskExecutor} to use to open connections.
-	 * By default {@link SimpleAsyncTaskExecutor} is used.
+	 * 设置用于打开连接的 {@link TaskExecutor}。
+	 * 默认使用 {@link SimpleAsyncTaskExecutor}。
 	 */
 	public void setTaskExecutor(TaskExecutor taskExecutor) {
 		Assert.notNull(taskExecutor, "TaskExecutor must not be null");
@@ -125,7 +125,7 @@ public class EndpointConnectionManager extends ConnectionManagerSupport implemen
 	}
 
 	/**
-	 * Return the configured {@link TaskExecutor}.
+	 * 返回配置的 {@link TaskExecutor}。
 	 */
 	public TaskExecutor getTaskExecutor() {
 		return this.taskExecutor;

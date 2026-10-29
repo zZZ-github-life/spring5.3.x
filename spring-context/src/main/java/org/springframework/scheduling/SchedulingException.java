@@ -19,9 +19,7 @@ package org.springframework.scheduling;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * General exception to be thrown on scheduling failures,
- * such as the scheduler already having shut down.
- * Unchecked since scheduling failures are usually fatal.
+ * 在调度失败时抛出的通用异常，例如调度器已经关闭。由于调度失败通常是致命的，因此该异常为非受检异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -30,7 +28,7 @@ import org.springframework.core.NestedRuntimeException;
 public class SchedulingException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for SchedulingException.
+	 * SchedulingException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public SchedulingException(String msg) {
@@ -38,7 +36,7 @@ public class SchedulingException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for SchedulingException.
+	 * SchedulingException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause (usually from using an underlying
 	 * scheduling API such as Quartz)

@@ -36,10 +36,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.server.HandshakeFailureException;
 
 /**
- * A WebSocket {@code RequestUpgradeStrategy} for WildFly and its underlying
- * Undertow web server. Also compatible with embedded Undertow usage.
+ * 用于 WildFly 及其底层 Undertow Web 服务器的 WebSocket
+ * {@code RequestUpgradeStrategy}。也兼容嵌入式 Undertow 的用法。
  *
- * <p>Requires Undertow 1.3.5+ as of Spring Framework 5.0.
+ * <p>自 Spring Framework 5.0 起需要 Undertow 1.3.5+。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.1

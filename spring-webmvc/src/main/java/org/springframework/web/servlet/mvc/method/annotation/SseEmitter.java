@@ -30,9 +30,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A specialization of {@link ResponseBodyEmitter} for sending
- * <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>.
- *
+ * {@link ResponseBodyEmitter} 的专门化实现，用于发送
+ * <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -43,17 +42,17 @@ public class SseEmitter extends ResponseBodyEmitter {
 	private static final MediaType TEXT_PLAIN = new MediaType("text", "plain", StandardCharsets.UTF_8);
 
 	/**
-	 * Create a new SseEmitter instance.
+	 * 创建一个新的 SseEmitter 实例。
 	 */
 	public SseEmitter() {
 		super();
 	}
 
 	/**
-	 * Create a SseEmitter with a custom timeout value.
-	 * <p>By default not set in which case the default configured in the MVC
-	 * Java Config or the MVC namespace is used, or if that's not set, then the
-	 * timeout depends on the default of the underlying server.
+	 * 创建一个带有自定义超时值的 SseEmitter。
+	 * <p>默认不设置，此时将使用 MVC Java 配置或 MVC 命名空间
+	 * 中配置的默认值；如果也未设置，则超时取决于
+	 * 底层服务器的默认值。
 	 * @param timeout the timeout value in milliseconds
 	 * @since 4.2.2
 	 */
@@ -73,15 +72,15 @@ public class SseEmitter extends ResponseBodyEmitter {
 	}
 
 	/**
-	 * Send the object formatted as a single SSE "data" line. It's equivalent to:
+	 * 将对象格式化为单行 SSE "data" 发送。等价于：
 	 * <pre>
 	 * // static import of SseEmitter.*
 	 *
 	 * SseEmitter emitter = new SseEmitter();
 	 * emitter.send(event().data(myObject));
 	 * </pre>
-	 * <p>Please, see {@link ResponseBodyEmitter#send(Object) parent Javadoc}
-	 * for important notes on exception handling.
+	 * <p>有关异常处理的重要说明，请参见
+	 * {@link ResponseBodyEmitter#send(Object) parent Javadoc}。
 	 * @param object the object to write
 	 * @throws IOException raised when an I/O error occurs
 	 * @throws java.lang.IllegalStateException wraps any other errors
@@ -92,15 +91,15 @@ public class SseEmitter extends ResponseBodyEmitter {
 	}
 
 	/**
-	 * Send the object formatted as a single SSE "data" line. It's equivalent to:
+	 * 将对象格式化为单行 SSE "data" 发送。等价于：
 	 * <pre>
 	 * // static import of SseEmitter.*
 	 *
 	 * SseEmitter emitter = new SseEmitter();
 	 * emitter.send(event().data(myObject, MediaType.APPLICATION_JSON));
 	 * </pre>
-	 * <p>Please, see {@link ResponseBodyEmitter#send(Object) parent Javadoc}
-	 * for important notes on exception handling.
+	 * <p>有关异常处理的重要说明，请参见
+	 * {@link ResponseBodyEmitter#send(Object) parent Javadoc}。
 	 * @param object the object to write
 	 * @param mediaType a MediaType hint for selecting an HttpMessageConverter
 	 * @throws IOException raised when an I/O error occurs
@@ -111,7 +110,7 @@ public class SseEmitter extends ResponseBodyEmitter {
 	}
 
 	/**
-	 * Send an SSE event prepared with the given builder. For example:
+	 * 发送使用给定构建器准备的 SSE 事件。例如：
 	 * <pre>
 	 * // static import of SseEmitter
 	 * SseEmitter emitter = new SseEmitter();
@@ -141,43 +140,43 @@ public class SseEmitter extends ResponseBodyEmitter {
 
 
 	/**
-	 * A builder for an SSE event.
+	 * SSE 事件的构建器。
 	 */
 	public interface SseEventBuilder {
 
 		/**
-		 * Add an SSE "id" line.
+		 * 添加 SSE "id" 行。
 		 */
 		SseEventBuilder id(String id);
 
 		/**
-		 * Add an SSE "event" line.
+		 * 添加 SSE "event" 行。
 		 */
 		SseEventBuilder name(String eventName);
 
 		/**
-		 * Add an SSE "retry" line.
+		 * 添加 SSE "retry" 行。
 		 */
 		SseEventBuilder reconnectTime(long reconnectTimeMillis);
 
 		/**
-		 * Add an SSE "comment" line.
+		 * 添加 SSE "comment" 行。
 		 */
 		SseEventBuilder comment(String comment);
 
 		/**
-		 * Add an SSE "data" line.
+		 * 添加 SSE "data" 行。
 		 */
 		SseEventBuilder data(Object object);
 
 		/**
-		 * Add an SSE "data" line.
+		 * 添加 SSE "data" 行。
 		 */
 		SseEventBuilder data(Object object, @Nullable MediaType mediaType);
 
 		/**
-		 * Return one or more Object-MediaType pairs to write via
-		 * {@link #send(Object, MediaType)}.
+		 * 返回一个或多个 Object-MediaType 对，以便通过
+		 * {@link #send(Object, MediaType)} 写出。
 		 * @since 4.2.3
 		 */
 		Set<DataWithMediaType> build();
@@ -185,7 +184,7 @@ public class SseEmitter extends ResponseBodyEmitter {
 
 
 	/**
-	 * Default implementation of SseEventBuilder.
+	 * SseEventBuilder 的默认实现。
 	 */
 	private static class SseEventBuilderImpl implements SseEventBuilder {
 

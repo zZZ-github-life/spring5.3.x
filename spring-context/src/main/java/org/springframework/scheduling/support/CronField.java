@@ -28,8 +28,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Single field in a cron pattern. Created using the {@code parse*} methods,
- * main and only entry point is {@link #nextOrSame(Temporal)}.
+ * cron 模式中的单个字段。使用 {@code parse*} 方法创建，主要且唯一的入口点是
+ * {@link #nextOrSame(Temporal)}。
  *
  * @author Arjen Poutsma
  * @since 5.3
@@ -49,35 +49,35 @@ abstract class CronField {
 	}
 
 	/**
-	 * Return a {@code CronField} enabled for 0 nanoseconds.
+	 * 返回一个对 0 纳秒启用的 {@code CronField}。
 	 */
 	public static CronField zeroNanos() {
 		return BitsCronField.zeroNanos();
 	}
 
 	/**
-	 * Parse the given value into a seconds {@code CronField}, the first entry of a cron expression.
+	 * 将给定值解析为秒的 {@code CronField}，即 cron 表达式的第一个字段。
 	 */
 	public static CronField parseSeconds(String value) {
 		return BitsCronField.parseSeconds(value);
 	}
 
 	/**
-	 * Parse the given value into a minutes {@code CronField}, the second entry of a cron expression.
+	 * 将给定值解析为分钟的 {@code CronField}，即 cron 表达式的第二个字段。
 	 */
 	public static CronField parseMinutes(String value) {
 		return BitsCronField.parseMinutes(value);
 	}
 
 	/**
-	 * Parse the given value into an hours {@code CronField}, the third entry of a cron expression.
+	 * 将给定值解析为小时的 {@code CronField}，即 cron 表达式的第三个字段。
 	 */
 	public static CronField parseHours(String value) {
 		return BitsCronField.parseHours(value);
 	}
 
 	/**
-	 * Parse the given value into a days of months {@code CronField}, the fourth entry of a cron expression.
+	 * 将给定值解析为月份的日的 {@code CronField}，即 cron 表达式的第四个字段。
 	 */
 	public static CronField parseDaysOfMonth(String value) {
 		if (!QuartzCronField.isQuartzDaysOfMonthField(value)) {
@@ -96,7 +96,7 @@ abstract class CronField {
 	}
 
 	/**
-	 * Parse the given value into a month {@code CronField}, the fifth entry of a cron expression.
+	 * 将给定值解析为月的 {@code CronField}，即 cron 表达式的第五个字段。
 	 */
 	public static CronField parseMonth(String value) {
 		value = replaceOrdinals(value, MONTHS);
@@ -104,7 +104,7 @@ abstract class CronField {
 	}
 
 	/**
-	 * Parse the given value into a days of week {@code CronField}, the sixth entry of a cron expression.
+	 * 将给定值解析为星期的日的 {@code CronField}，即 cron 表达式的第六个字段。
 	 */
 	public static CronField parseDaysOfWeek(String value) {
 		value = replaceOrdinals(value, DAYS);
@@ -145,8 +145,7 @@ abstract class CronField {
 
 
 	/**
-	 * Get the next or same {@link Temporal} in the sequence matching this
-	 * cron field.
+	 * 获取此 cron 字段匹配序列中下一个或相同的 {@link Temporal}。
 	 * @param temporal the seed value
 	 * @return the next or same temporal matching the pattern
 	 */
@@ -165,8 +164,7 @@ abstract class CronField {
 
 
 	/**
-	 * Represents the type of cron field, i.e. seconds, minutes, hours,
-	 * day-of-month, month, day-of-week.
+	 * 表示 cron 字段的类型，即秒、分钟、小时、月中的日、月、星期几。
 	 */
 	protected enum Type {
 		NANO(ChronoField.NANO_OF_SECOND, ChronoUnit.SECONDS),
@@ -193,7 +191,7 @@ abstract class CronField {
 
 
 		/**
-		 * Return the value of this type for the given temporal.
+		 * 返回此类型在给定 temporal 中的值。
 		 * @return the value of this type
 		 */
 		public int get(Temporal date) {
@@ -201,8 +199,7 @@ abstract class CronField {
 		}
 
 		/**
-		 * Return the general range of this type. For instance, this method
-		 * will return 0-31 for {@link #MONTH}.
+		 * 返回此类型的一般范围。例如，对于 {@link #MONTH}，此方法将返回 0-31。
 		 * @return the range of this field
 		 */
 		public ValueRange range() {
@@ -210,8 +207,7 @@ abstract class CronField {
 		}
 
 		/**
-		 * Check whether the given value is valid, i.e. whether it falls in
-		 * {@linkplain #range() range}.
+		 * 检查给定值是否有效，即是否落在 {@linkplain #range() range} 中。
 		 * @param value the value to check
 		 * @return the value that was passed in
 		 * @throws IllegalArgumentException if the given value is invalid
@@ -231,10 +227,8 @@ abstract class CronField {
 		}
 
 		/**
-		 * Elapse the given temporal for the difference between the current
-		 * value of this field and the goal value. Typically, the returned
-		 * temporal will have the given goal as the current value for this type,
-		 * but this is not the case for {@link #DAY_OF_MONTH}.
+		 * 使给定的 temporal 按照此字段当前值与目标值之间的差值向前推进。通常，返回的 temporal 会以给定目标
+		 * 作为此类型的当前值，但对于 {@link #DAY_OF_MONTH} 并非如此。
 		 * @param temporal the temporal to elapse
 		 * @param goal the goal value
 		 * @param <T> the type of temporal
@@ -261,10 +255,8 @@ abstract class CronField {
 		}
 
 		/**
-		 * Roll forward the give temporal until it reaches the next higher
-		 * order field. Calling this method is equivalent to calling
-		 * {@link #elapseUntil(Temporal, int)} with goal set to the
-		 * minimum value of this field's range.
+		 * 将给定的 temporal 向前滚动，直到到达下一个更高阶的字段。调用此方法等价于调用
+		 * {@link #elapseUntil(Temporal, int)}，并将目标设为该字段范围的最小值。
 		 * @param temporal the temporal to roll forward
 		 * @param <T> the type of temporal
 		 * @return the rolled forward temporal
@@ -276,9 +268,8 @@ abstract class CronField {
 		}
 
 		/**
-		 * Reset this and all lower order fields of the given temporal to their
-		 * minimum value. For instance for {@link #MINUTE}, this method
-		 * resets nanos, seconds, <strong>and</strong> minutes to 0.
+		 * 将给定 temporal 的此字段及所有更低阶字段重置为其最小值。例如对于 {@link #MINUTE}，此方法会将纳秒、
+		 * 秒<strong>和</strong>分钟重置为 0。
 		 * @param temporal the temporal to reset
 		 * @param <T> the type of temporal
 		 * @return the reset temporal

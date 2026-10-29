@@ -20,7 +20,7 @@ import org.springframework.core.io.support.EncodedResource;
 import org.springframework.lang.Nullable;
 
 /**
- * Thrown by {@link ScriptUtils} if an SQL script cannot be properly parsed.
+ * 当无法正确解析 SQL 脚本时，由 {@link ScriptUtils} 抛出。
  *
  * @author Sam Brannen
  * @since 4.0.3
@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 public class ScriptParseException extends ScriptException {
 
 	/**
-	 * Create a new {@code ScriptParseException}.
+	 * 创建一个新的 {@code ScriptParseException}。
 	 * @param message detailed message
 	 * @param resource the resource from which the SQL script was read
 	 */
@@ -38,7 +38,7 @@ public class ScriptParseException extends ScriptException {
 	}
 
 	/**
-	 * Create a new {@code ScriptParseException}.
+	 * 创建一个新的 {@code ScriptParseException}。
 	 * @param message detailed message
 	 * @param resource the resource from which the SQL script was read
 	 * @param cause the underlying cause of the failure

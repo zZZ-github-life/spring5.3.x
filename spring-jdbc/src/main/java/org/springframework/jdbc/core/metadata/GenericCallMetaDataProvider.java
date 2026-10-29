@@ -34,8 +34,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * A generic implementation of the {@link CallMetaDataProvider} interface.
- * This class can be extended to provide database specific behavior.
+ * {@link CallMetaDataProvider} 接口的通用实现。
+ * 可以扩展此类以提供数据库特定的行为。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -44,7 +44,7 @@ import org.springframework.util.StringUtils;
  */
 public class GenericCallMetaDataProvider implements CallMetaDataProvider {
 
-	/** Logger available to subclasses. */
+	/** 子类可用的日志记录器。 */
 	protected static final Log logger = LogFactory.getLog(CallMetaDataProvider.class);
 
 
@@ -64,8 +64,8 @@ public class GenericCallMetaDataProvider implements CallMetaDataProvider {
 
 
 	/**
-	 * Constructor used to initialize with provided database meta-data.
-	 * @param databaseMetaData meta-data to be used
+	 * 用于使用提供的数据库元数据进行初始化的构造函数。
+	 * @param databaseMetaData 要使用的元数据
 	 */
 	protected GenericCallMetaDataProvider(DatabaseMetaData databaseMetaData) throws SQLException {
 		this.userName = databaseMetaData.getUserName();
@@ -258,14 +258,14 @@ public class GenericCallMetaDataProvider implements CallMetaDataProvider {
 
 
 	/**
-	 * Specify whether the database supports the use of catalog name in procedure calls.
+	 * 指定数据库是否支持在存储过程调用中使用目录名称。
 	 */
 	protected void setSupportsCatalogsInProcedureCalls(boolean supportsCatalogsInProcedureCalls) {
 		this.supportsCatalogsInProcedureCalls = supportsCatalogsInProcedureCalls;
 	}
 
 	/**
-	 * Does the database support the use of catalog name in procedure calls?
+	 * 数据库是否支持在存储过程调用中使用目录名称？
 	 */
 	@Override
 	public boolean isSupportsCatalogsInProcedureCalls() {
@@ -273,14 +273,14 @@ public class GenericCallMetaDataProvider implements CallMetaDataProvider {
 	}
 
 	/**
-	 * Specify whether the database supports the use of schema name in procedure calls.
+	 * 指定数据库是否支持在存储过程调用中使用模式名称。
 	 */
 	protected void setSupportsSchemasInProcedureCalls(boolean supportsSchemasInProcedureCalls) {
 		this.supportsSchemasInProcedureCalls = supportsSchemasInProcedureCalls;
 	}
 
 	/**
-	 * Does the database support the use of schema name in procedure calls?
+	 * 数据库是否支持在存储过程调用中使用模式名称？
 	 */
 	@Override
 	public boolean isSupportsSchemasInProcedureCalls() {
@@ -288,28 +288,28 @@ public class GenericCallMetaDataProvider implements CallMetaDataProvider {
 	}
 
 	/**
-	 * Specify whether the database uses upper case for identifiers.
+	 * 指定数据库是否对标识符使用大写。
 	 */
 	protected void setStoresUpperCaseIdentifiers(boolean storesUpperCaseIdentifiers) {
 		this.storesUpperCaseIdentifiers = storesUpperCaseIdentifiers;
 	}
 
 	/**
-	 * Does the database use upper case for identifiers?
+	 * 数据库是否对标识符使用大写？
 	 */
 	protected boolean isStoresUpperCaseIdentifiers() {
 		return this.storesUpperCaseIdentifiers;
 	}
 
 	/**
-	 * Specify whether the database uses lower case for identifiers.
+	 * 指定数据库是否对标识符使用小写。
 	 */
 	protected void setStoresLowerCaseIdentifiers(boolean storesLowerCaseIdentifiers) {
 		this.storesLowerCaseIdentifiers = storesLowerCaseIdentifiers;
 	}
 
 	/**
-	 * Does the database use lower case for identifiers?
+	 * 数据库是否对标识符使用小写？
 	 */
 	protected boolean isStoresLowerCaseIdentifiers() {
 		return this.storesLowerCaseIdentifiers;
@@ -317,7 +317,7 @@ public class GenericCallMetaDataProvider implements CallMetaDataProvider {
 
 
 	/**
-	 * Process the procedure column meta-data.
+	 * 处理过程列的元数据。
 	 */
 	private void processProcedureColumns(DatabaseMetaData databaseMetaData,
 			@Nullable String catalogName, @Nullable String schemaName, @Nullable String procedureName) {

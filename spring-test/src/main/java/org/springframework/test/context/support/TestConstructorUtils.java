@@ -28,9 +28,9 @@ import org.springframework.test.context.TestConstructor.AutowireMode;
 import org.springframework.test.context.TestContextAnnotationUtils;
 
 /**
- * Utility methods for working with {@link TestConstructor @TestConstructor}.
+ * 用于处理 {@link TestConstructor @TestConstructor} 的工具方法。
  *
- * <p>Primarily intended for use within the framework.
+ * <p>主要供框架内部使用。
  *
  * @author Sam Brannen
  * @since 5.2
@@ -42,10 +42,8 @@ public abstract class TestConstructorUtils {
 	}
 
 	/**
-	 * Determine if the supplied executable for the given test class is an
-	 * autowirable constructor.
-	 * <p>This method delegates to {@link #isAutowirableConstructor(Executable, Class, PropertyProvider)}
-	 * will a value of {@code null} for the fallback {@link PropertyProvider}.
+	 * 确定给定测试类的所提供可执行对象是否是可自动装配的构造器。
+	 * <p>此方法以 {@code null} 作为回退 {@link PropertyProvider} 的值委托给 {@link #isAutowirableConstructor(Executable, Class, PropertyProvider)}。
 	 * @param executable an executable for the test class
 	 * @param testClass the test class
 	 * @return {@code true} if the executable is an autowirable constructor
@@ -56,10 +54,8 @@ public abstract class TestConstructorUtils {
 	}
 
 	/**
-	 * Determine if the supplied constructor for the given test class is
-	 * autowirable.
-	 * <p>This method delegates to {@link #isAutowirableConstructor(Constructor, Class, PropertyProvider)}
-	 * will a value of {@code null} for the fallback {@link PropertyProvider}.
+	 * 确定给定测试类的所提供构造器是否可自动装配。
+	 * <p>此方法以 {@code null} 作为回退 {@link PropertyProvider} 的值委托给 {@link #isAutowirableConstructor(Constructor, Class, PropertyProvider)}。
 	 * @param constructor a constructor for the test class
 	 * @param testClass the test class
 	 * @return {@code true} if the constructor is autowirable
@@ -70,10 +66,8 @@ public abstract class TestConstructorUtils {
 	}
 
 	/**
-	 * Determine if the supplied executable for the given test class is an
-	 * autowirable constructor.
-	 * <p>This method delegates to {@link #isAutowirableConstructor(Constructor, Class, PropertyProvider)}
-	 * if the supplied executable is a constructor and otherwise returns {@code false}.
+	 * 确定给定测试类的所提供可执行对象是否是可自动装配的构造器。
+	 * <p>如果所提供的可执行对象是构造器，则此方法委托给 {@link #isAutowirableConstructor(Constructor, Class, PropertyProvider)}，否则返回 {@code false}。
 	 * @param executable an executable for the test class
 	 * @param testClass the test class
 	 * @param fallbackPropertyProvider fallback property provider used to look up
@@ -91,22 +85,14 @@ public abstract class TestConstructorUtils {
 	}
 
 	/**
-	 * Determine if the supplied constructor for the given test class is
-	 * autowirable.
+	 * 确定给定测试类的所提供构造器是否可自动装配。
 	 *
-	 * <p>A constructor is considered to be autowirable if one of the following
-	 * conditions is {@code true}.
+	 * <p>如果满足以下条件之一，则构造器被视为可自动装配。
 	 *
 	 * <ol>
-	 * <li>The constructor is annotated with {@link Autowired @Autowired}.</li>
-	 * <li>{@link TestConstructor @TestConstructor} is <em>present</em> or
-	 * <em>meta-present</em> on the test class with
-	 * {@link TestConstructor#autowireMode() autowireMode} set to
-	 * {@link AutowireMode#ALL ALL}.</li>
-	 * <li>The default <em>test constructor autowire mode</em> has been set to
-	 * {@code ALL} in {@link SpringProperties} or in the supplied fallback
-	 * {@link PropertyProvider} (see
-	 * {@link TestConstructor#TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}).</li>
+	 * <li>构造器带有 {@link Autowired @Autowired} 注解。</li>
+	 * <li>测试类上<em>存在</em>或<em>元存在</em> {@link TestConstructor @TestConstructor}，且 {@link TestConstructor#autowireMode() autowireMode} 设置为 {@link AutowireMode#ALL ALL}。</li>
+	 * <li>在 {@link SpringProperties} 或所提供的回退 {@link PropertyProvider} 中，默认的<em>测试构造器自动装配模式</em>已设置为 {@code ALL}（参见 {@link TestConstructor#TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}）。</li>
 	 * </ol>
 	 * @param constructor a constructor for the test class
 	 * @param testClass the test class

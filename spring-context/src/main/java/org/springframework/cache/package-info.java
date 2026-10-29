@@ -1,6 +1,5 @@
 /**
- * Spring's generic cache abstraction.
- * Concrete implementations are provided in the subpackages.
+ * Spring 的通用缓存抽象。具体实现在各子包中提供。
  */
 @NonNullApi
 @NonNullFields

@@ -17,22 +17,21 @@
 package org.springframework.test.web.client;
 
 /**
- * A contract for setting up request expectations and defining a response.
- * Implementations can be obtained through {@link MockRestServiceServer#expect(RequestMatcher)}.
- *
+ * 用于设置请求预期并定义响应的约定。
+ * 实现可通过 {@link MockRestServiceServer#expect(RequestMatcher)} 获取。
  * @author Craig Walls
  * @since 3.2
  */
 public interface ResponseActions {
 
 	/**
-	 * Add a request expectation.
+	 * 添加请求预期。
 	 * @return the expectation
 	 */
 	ResponseActions andExpect(RequestMatcher requestMatcher);
 
 	/**
-	 * Define the response.
+	 * 定义响应。
 	 * @param responseCreator the creator of the response
 	 */
 	void andRespond(ResponseCreator responseCreator);

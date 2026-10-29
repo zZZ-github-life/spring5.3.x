@@ -1,9 +1,7 @@
 /**
- * Support classes for annotation-based constraint evaluation,
- * e.g. using a JSR-303 Bean Validation provider.
+ * 支持基于注解的约束评估的支持类，例如使用 JSR-303 Bean Validation 提供程序。
  *
- * <p>Provides an extended variant of JSR-303's {@code @Valid},
- * supporting the specification of validation groups.
+ * <p>提供 JSR-303 的 {@code @Valid} 的扩展变体，支持指定校验组。
  */
 @NonNullApi
 @NonNullFields

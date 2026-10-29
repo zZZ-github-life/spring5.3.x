@@ -23,12 +23,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.FileCopyUtils;
 
 /**
- * {@code ClassLoader} that does <i>not</i> always delegate to the parent loader
- * as normal class loaders do. This enables, for example, instrumentation to be
- * forced in the overriding ClassLoader, or a "throwaway" class loading behavior
- * where selected application classes are temporarily loaded in the overriding
- * {@code ClassLoader} for introspection purposes before eventually loading an
- * instrumented version of the class in the given parent {@code ClassLoader}.
+ * {@code ClassLoader}，它<em>不</em>像普通类加载器那样总是委托给父加载器。例如，这使得可以在覆盖
+ * ClassLoader 中强制进行插桩，或者实现“一次性”类加载行为：为内省目的，在覆盖的 {@code ClassLoader}
+ * 中临时加载选定的应用类，最终再在给定的父 {@code ClassLoader} 中加载该类的插桩版本。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,7 +33,7 @@ import org.springframework.util.FileCopyUtils;
  */
 public class OverridingClassLoader extends DecoratingClassLoader {
 
-	/** Packages that are excluded by default. */
+	/** 默认排除的包。 */
 	public static final String[] DEFAULT_EXCLUDED_PACKAGES = new String[]
 			{"java.", "javax.", "sun.", "oracle.", "javassist.", "org.aspectj.", "net.sf.cglib."};
 
@@ -52,7 +49,7 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 
 
 	/**
-	 * Create a new OverridingClassLoader for the given ClassLoader.
+	 * 为给定的 ClassLoader 创建一个新的 OverridingClassLoader。
 	 * @param parent the ClassLoader to build an overriding ClassLoader for
 	 */
 	public OverridingClassLoader(@Nullable ClassLoader parent) {
@@ -60,7 +57,7 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Create a new OverridingClassLoader for the given ClassLoader.
+	 * 为给定的 ClassLoader 创建一个新的 OverridingClassLoader。
 	 * @param parent the ClassLoader to build an overriding ClassLoader for
 	 * @param overrideDelegate the ClassLoader to delegate to for overriding
 	 * @since 4.3
@@ -97,8 +94,7 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Determine whether the specified class is eligible for overriding
-	 * by this class loader.
+	 * 判断指定的类是否允许由该类加载器覆盖。
 	 * @param className the class name to check
 	 * @return whether the specified class is eligible
 	 * @see #isExcluded
@@ -108,9 +104,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Load the specified class for overriding purposes in this ClassLoader.
-	 * <p>The default implementation delegates to {@link #findLoadedClass},
-	 * {@link #loadBytesForClass} and {@link #defineClass}.
+	 * 为此 ClassLoader 中的覆盖目的加载指定的类。
+	 *
+	 * <p>默认实现委托给 {@link #findLoadedClass}、{@link #loadBytesForClass} 和 {@link #defineClass}。
 	 * @param name the name of the class
 	 * @return the Class object, or {@code null} if no class defined for that name
 	 * @throws ClassNotFoundException if the class for the given name couldn't be loaded
@@ -128,10 +124,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Load the defining bytes for the given class,
-	 * to be turned into a Class object through a {@link #defineClass} call.
-	 * <p>The default implementation delegates to {@link #openStreamForClass}
-	 * and {@link #transformIfNecessary}.
+	 * 加载给定类的定义字节，以便通过 {@link #defineClass} 调用转换为 Class 对象。
+	 *
+	 * <p>默认实现委托给 {@link #openStreamForClass} 和 {@link #transformIfNecessary}。
 	 * @param name the name of the class
 	 * @return the byte content (with transformers already applied),
 	 * or {@code null} if no class defined for that name
@@ -155,9 +150,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Open an InputStream for the specified class.
-	 * <p>The default implementation loads a standard class file through
-	 * the parent ClassLoader's {@code getResourceAsStream} method.
+	 * 为指定的类打开一个 InputStream。
+	 *
+	 * <p>默认实现通过父 ClassLoader 的 {@code getResourceAsStream} 方法加载标准类文件。
 	 * @param name the name of the class
 	 * @return the InputStream containing the byte code for the specified class
 	 */
@@ -169,8 +164,9 @@ public class OverridingClassLoader extends DecoratingClassLoader {
 
 
 	/**
-	 * Transformation hook to be implemented by subclasses.
-	 * <p>The default implementation simply returns the given bytes as-is.
+	 * 由子类实现的转换钩子。
+	 *
+	 * <p>默认实现只是原样返回给定的字节。
 	 * @param name the fully-qualified name of the class being transformed
 	 * @param bytes the raw bytes of the class
 	 * @return the transformed bytes (never {@code null};

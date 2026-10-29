@@ -24,22 +24,19 @@ import org.springframework.beans.propertyeditors.PropertiesEditor;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor that converts a String into a {@link TransactionAttributeSource}.
- * The transaction attribute string must be parseable by the
- * {@link TransactionAttributeEditor} in this package.
+ * 属性编辑器, 将字符串转换为{@link TransactionAttributeSource}。
+ * 事务属性字符串必须可由此包中的{@link TransactionAttributeEditor}解析。
  *
- * <p>Strings are in property syntax, with the form:<br>
- * {@code FQCN.methodName=<transaction attribute string>}
+ * <p>字符串采用属性语法, 格式为:<br>
+ * {@code FQCN.methodName=<事务属性字符串>}
  *
- * <p>For example:<br>
+ * <p>例如:<br>
  * {@code com.mycompany.mycode.MyClass.myMethod=PROPAGATION_MANDATORY,ISOLATION_DEFAULT}
  *
- * <p><b>NOTE:</b> The specified class must be the one where the methods are
- * defined; in case of implementing an interface, the interface class name.
+ * <p><b>注意:</b> 指定的类必须是方法定义所在的类; 在实现接口的情况下, 为接口类名。
  *
- * <p>Note: Will register all overloaded methods for a given name.
- * Does not support explicit registration of certain overloaded methods.
- * Supports "xxx*" mappings, e.g. "notify*" for "notify" and "notifyAll".
+ * <p>注意: 将为给定名称注册所有重载方法。不支持显式注册特定的重载方法。
+ * 支持"xxx*"映射, 例如"notify*"对应"notify"和"notifyAll"。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller

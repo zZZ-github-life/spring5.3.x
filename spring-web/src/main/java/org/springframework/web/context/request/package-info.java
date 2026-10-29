@@ -1,6 +1,5 @@
 /**
- * Support for generic request context holding, in particular for
- * scoping of application objects per HTTP request or HTTP session.
+ * 支持通用的请求上下文持有机制，特别是支持按 HTTP 请求或 HTTP 会话为应用对象划分作用域。
  */
 @NonNullApi
 @NonNullFields

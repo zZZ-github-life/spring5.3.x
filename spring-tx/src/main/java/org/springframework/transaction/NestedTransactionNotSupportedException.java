@@ -17,8 +17,7 @@
 package org.springframework.transaction;
 
 /**
- * Exception thrown when attempting to work with a nested transaction
- * but nested transactions are not supported by the underlying backend.
+ * 当尝试使用嵌套事务但底层后端不支持嵌套事务时抛出此异常。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -27,7 +26,7 @@ package org.springframework.transaction;
 public class NestedTransactionNotSupportedException extends CannotCreateTransactionException {
 
 	/**
-	 * Constructor for NestedTransactionNotSupportedException.
+	 * NestedTransactionNotSupportedException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public NestedTransactionNotSupportedException(String msg) {
@@ -35,7 +34,7 @@ public class NestedTransactionNotSupportedException extends CannotCreateTransact
 	}
 
 	/**
-	 * Constructor for NestedTransactionNotSupportedException.
+	 * NestedTransactionNotSupportedException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */

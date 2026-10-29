@@ -23,11 +23,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Function;
 
 /**
- * Simple LRU (Least Recently Used) cache, bounded by a specified cache limit.
+ * 简单的 LRU（最近最少使用）缓存，受指定的缓存上限约束。
  *
- * <p>This implementation is backed by a {@code ConcurrentHashMap} for storing
- * the cached values and a {@code ConcurrentLinkedDeque} for ordering the keys
- * and choosing the least recently used key when the cache is at full capacity.
+ * <p>此实现使用 {@code ConcurrentHashMap} 存储缓存值，并使用 {@code ConcurrentLinkedDeque} 对键进
+ * 行排序，在缓存达到容量上限时选择最近最少使用的键。
  *
  * @author Brian Clozel
  * @author Juergen Hoeller
@@ -52,7 +51,7 @@ public class ConcurrentLruCache<K, V> {
 
 
 	/**
-	 * Create a new cache instance with the given limit and generator function.
+	 * 使用给定的上限和生成函数创建一个新的缓存实例。
 	 * @param sizeLimit the maximum number of entries in the cache
 	 * (0 indicates no caching, always generating a new value)
 	 * @param generator a function to generate a new value for a given key
@@ -66,8 +65,7 @@ public class ConcurrentLruCache<K, V> {
 
 
 	/**
-	 * Retrieve an entry from the cache, potentially triggering generation
-	 * of the value.
+	 * 从缓存中检索条目，可能会触发值的生成。
 	 * @param key the key to retrieve the entry for
 	 * @return the cached or newly generated value
 	 */
@@ -122,7 +120,7 @@ public class ConcurrentLruCache<K, V> {
 	}
 
 	/**
-	 * Determine whether the given key is present in this cache.
+	 * 判断给定键是否存在于该缓存中。
 	 * @param key the key to check for
 	 * @return {@code true} if the key is present,
 	 * {@code false} if there was no matching key
@@ -132,7 +130,7 @@ public class ConcurrentLruCache<K, V> {
 	}
 
 	/**
-	 * Immediately remove the given key and any associated value.
+	 * 立即移除给定键及其关联的任何值。
 	 * @param key the key to evict the entry for
 	 * @return {@code true} if the key was present before,
 	 * {@code false} if there was no matching key
@@ -151,7 +149,7 @@ public class ConcurrentLruCache<K, V> {
 	}
 
 	/**
-	 * Immediately remove all entries from this cache.
+	 * 立即移除该缓存中的所有条目。
 	 */
 	public void clear() {
 		this.lock.writeLock().lock();
@@ -166,7 +164,7 @@ public class ConcurrentLruCache<K, V> {
 	}
 
 	/**
-	 * Return the current size of the cache.
+	 * 返回缓存的当前大小。
 	 * @see #sizeLimit()
 	 */
 	public int size() {
@@ -174,8 +172,7 @@ public class ConcurrentLruCache<K, V> {
 	}
 
 	/**
-	 * Return the maximum number of entries in the cache
-	 * (0 indicates no caching, always generating a new value).
+	 * 返回缓存中条目的最大数量（0 表示不缓存，始终生成新值）。
 	 * @see #size()
 	 */
 	public int sizeLimit() {

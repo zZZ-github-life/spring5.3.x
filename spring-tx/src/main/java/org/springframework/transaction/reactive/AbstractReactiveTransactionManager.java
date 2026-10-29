@@ -40,36 +40,35 @@ import org.springframework.transaction.TransactionSuspensionNotSupportedExceptio
 import org.springframework.transaction.UnexpectedRollbackException;
 
 /**
- * Abstract base class that implements Spring's standard reactive transaction workflow,
- * serving as basis for concrete platform transaction managers.
+ * 实现Spring标准响应式事务工作流的抽象基类，
+ * 作为具体平台事务管理器的基础。
  *
- * <p>This base class provides the following workflow handling:
+ * <p>此基类提供以下工作流处理：
  * <ul>
- * <li>determines if there is an existing transaction;
- * <li>applies the appropriate propagation behavior;
- * <li>suspends and resumes transactions if necessary;
- * <li>checks the rollback-only flag on commit;
- * <li>applies the appropriate modification on rollback
- * (actual rollback or setting rollback-only);
- * <li>triggers registered synchronization callbacks.
+ * <li>判断是否存在现有事务；
+ * <li>应用适当的传播行为；
+ * <li>必要时挂起和恢复事务；
+ * <li>在提交时检查rollback-only标志；
+ * <li>在回滚时应用适当的修改
+ * （实际回滚或设置rollback-only）；
+ * <li>触发已注册的同步回调。
  * </ul>
  *
- * <p>Subclasses have to implement specific template methods for specific
- * states of a transaction, e.g.: begin, suspend, resume, commit, rollback.
- * The most important of them are abstract and must be provided by a concrete
- * implementation; for the rest, defaults are provided, so overriding is optional.
+ * <p>子类需要为事务的特定状态实现特定的模板方法，
+ * 例如：begin、suspend、resume、commit、rollback。
+ * 其中最重要的方法是抽象的，必须由具体实现提供；
+ * 其余方法提供了默认实现，因此重写是可选的。
  *
- * <p>Transaction synchronization is a generic mechanism for registering callbacks
- * that get invoked at transaction completion time. This is mainly used internally
- * by the data access support classes for R2DBC, MongoDB, etc. The same mechanism can
- * also be leveraged for custom synchronization needs in an application.
+ * <p>事务同步是一种通用机制，用于注册在事务完成时
+ * 被调用的回调。这主要由R2DBC、MongoDB等的数据访问支持类
+ * 在内部使用。同样的机制也可以用于应用程序中自定义的同步需求。
  *
- * <p>The state of this class is serializable, to allow for serializing the
- * transaction strategy along with proxies that carry a transaction interceptor.
- * It is up to subclasses if they wish to make their state to be serializable too.
- * They should implement the {@code java.io.Serializable} marker interface in
- * that case, and potentially a private {@code readObject()} method (according
- * to Java serialization rules) if they need to restore any transient state.
+ * <p>此类的状态是可序列化的，以允许将事务策略与
+ * 携带事务拦截器的代理一起序列化。子类是否希望
+ * 使其状态也可序列化由子类自行决定。在这种情况下，
+ * 它们应实现{@code java.io.Serializable}标记接口，
+ * 并且如果需要恢复任何瞬态状态，可能需要一个私有的
+ * {@code readObject()}方法（根据Java序列化规则）。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -87,9 +86,9 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	//---------------------------------------------------------------------
 
 	/**
-	 * This implementation handles propagation behavior. Delegates to
-	 * {@code doGetTransaction}, {@code isExistingTransaction}
-	 * and {@code doBegin}.
+	 * 此实现处理传播行为。委托给
+	 * {@code doGetTransaction}、{@code isExistingTransaction}
+	 * 和 {@code doBegin}。
 	 * @see #doGetTransaction
 	 * @see #isExistingTransaction
 	 * @see #doBegin
@@ -162,7 +161,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Create a ReactiveTransaction for an existing transaction.
+	 * 为现有事务创建一个ReactiveTransaction。
 	 */
 	private Mono<ReactiveTransaction> handleExistingTransaction(TransactionSynchronizationManager synchronizationManager,
 			TransactionDefinition definition, Object transaction, boolean debugEnabled) throws TransactionException {
@@ -220,8 +219,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Create a new ReactiveTransaction for the given arguments,
-	 * also initializing transaction synchronization as appropriate.
+	 * 为给定的参数创建一个新的ReactiveTransaction，
+	 * 同时根据需要初始化事务同步。
 	 * @see #newReactiveTransaction
 	 * @see #prepareReactiveTransaction
 	 */
@@ -236,7 +235,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Create a ReactiveTransaction instance for the given arguments.
+	 * 为给定的参数创建一个ReactiveTransaction实例。
 	 */
 	private GenericReactiveTransaction newReactiveTransaction(
 			TransactionSynchronizationManager synchronizationManager, TransactionDefinition definition,
@@ -248,7 +247,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Initialize transaction synchronization as appropriate.
+	 * 根据需要初始化事务同步。
 	 */
 	private void prepareSynchronization(TransactionSynchronizationManager synchronizationManager,
 			GenericReactiveTransaction status, TransactionDefinition definition) {
@@ -266,8 +265,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 
 
 	/**
-	 * Suspend the given transaction. Suspends transaction synchronization first,
-	 * then delegates to the {@code doSuspend} template method.
+	 * 挂起给定的事务。首先挂起事务同步，
+	 * 然后委托给{@code doSuspend}模板方法。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param transaction the current transaction object
 	 * (or {@code null} to just suspend active synchronizations, if any)
@@ -314,8 +313,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Resume the given transaction. Delegates to the {@code doResume}
-	 * template method first, then resuming transaction synchronization.
+	 * 恢复给定的事务。首先委托给{@code doResume}
+	 * 模板方法，然后恢复事务同步。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param transaction the current transaction object
 	 * @param resourcesHolder the object that holds suspended resources,
@@ -349,7 +348,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Resume outer transaction after inner transaction begin failed.
+	 * 在内部事务开始失败后恢复外部事务。
 	 */
 	private Mono<Void> resumeAfterBeginException(TransactionSynchronizationManager synchronizationManager,
 			Object transaction, @Nullable SuspendedResourcesHolder suspendedResources, Throwable beginEx) {
@@ -360,8 +359,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Suspend all current synchronizations and deactivate transaction
-	 * synchronization for the current transaction context.
+	 * 挂起当前所有的同步，并为当前事务上下文
+	 * 停用事务同步。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @return the List of suspended TransactionSynchronization objects
 	 */
@@ -378,8 +377,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Reactivate transaction synchronization for the current transaction context
-	 * and resume all given synchronizations.
+	 * 为当前事务上下文重新激活事务同步，
+	 * 并恢复所有给定的同步。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param suspendedSynchronizations a List of TransactionSynchronization objects
 	 */
@@ -394,10 +393,9 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 
 
 	/**
-	 * This implementation of commit handles participating in existing
-	 * transactions and programmatic rollback requests.
-	 * Delegates to {@code isRollbackOnly}, {@code doCommit}
-	 * and {@code rollback}.
+	 * 此提交的实现处理参与现有事务和编程式回滚请求。
+	 * 委托给{@code isRollbackOnly}、{@code doCommit}
+	 * 和{@code rollback}。
 	 * @see ReactiveTransaction#isRollbackOnly()
 	 * @see #doCommit
 	 * @see #rollback
@@ -422,8 +420,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Process an actual commit.
-	 * Rollback-only flags have already been checked and applied.
+	 * 处理实际的提交。
+	 * 回滚标志已经被检查并应用。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 * @throws TransactionException in case of commit failure
@@ -481,8 +479,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * This implementation of rollback handles participating in existing transactions.
-	 * Delegates to {@code doRollback} and {@code doSetRollbackOnly}.
+	 * 此回滚的实现处理参与现有事务。
+	 * 委托给{@code doRollback}和{@code doSetRollbackOnly}。
 	 * @see #doRollback
 	 * @see #doSetRollbackOnly
 	 */
@@ -499,8 +497,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Process an actual rollback.
-	 * The completed flag has already been checked.
+	 * 处理实际的回滚。
+	 * 完成标志已经被检查。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 * @throws TransactionException in case of rollback failure
@@ -538,7 +536,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Invoke {@code doRollback}, handling rollback exceptions properly.
+	 * 调用{@code doRollback}，正确处理回滚异常。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 * @param ex the thrown application exception or error
@@ -571,7 +569,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 
 
 	/**
-	 * Trigger {@code beforeCommit} callbacks.
+	 * 触发{@code beforeCommit}回调。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 */
@@ -586,7 +584,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Trigger {@code beforeCompletion} callbacks.
+	 * 触发{@code beforeCompletion}回调。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 */
@@ -600,7 +598,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Trigger {@code afterCommit} callbacks.
+	 * 触发{@code afterCommit}回调。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 */
@@ -614,7 +612,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Trigger {@code afterCompletion} callbacks.
+	 * 触发{@code afterCompletion}回调。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 * @param completionStatus completion status according to TransactionSynchronization constants
@@ -642,10 +640,10 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Actually invoke the {@code afterCompletion} methods of the
-	 * given TransactionSynchronization objects.
-	 * <p>To be called by this abstract manager itself, or by special implementations
-	 * of the {@code registerAfterCompletionWithExistingTransaction} callback.
+	 * 实际调用给定TransactionSynchronization对象的
+	 * {@code afterCompletion}方法。
+	 * <p>由此抽象管理器自身调用，或由
+	 * {@code registerAfterCompletionWithExistingTransaction}回调的特殊实现调用。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @param completionStatus the completion status according to the
@@ -662,8 +660,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Clean up after completion, clearing synchronization if necessary,
-	 * and invoking doCleanupAfterCompletion.
+	 * 完成后清理，必要时清除同步，
+	 * 并调用doCleanupAfterCompletion。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status object representing the transaction
 	 * @see #doCleanupAfterCompletion
@@ -698,18 +696,15 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	//---------------------------------------------------------------------
 
 	/**
-	 * Return a transaction object for the current transaction state.
-	 * <p>The returned object will usually be specific to the concrete transaction
-	 * manager implementation, carrying corresponding transaction state in a
-	 * modifiable fashion. This object will be passed into the other template
-	 * methods (e.g. doBegin and doCommit), either directly or as part of a
-	 * DefaultReactiveTransactionStatus instance.
-	 * <p>The returned object should contain information about any existing
-	 * transaction, that is, a transaction that has already started before the
-	 * current {@code getTransaction} call on the transaction manager.
-	 * Consequently, a {@code doGetTransaction} implementation will usually
-	 * look for an existing transaction and store corresponding state in the
-	 * returned transaction object.
+	 * 返回当前事务状态的事务对象。
+	 * <p>返回的对象通常是特定于具体事务管理器实现的，
+	 * 以可修改的方式携带相应的事务状态。此对象将被传入
+	 * 其他模板方法（例如doBegin和doCommit），可以直接传入，
+	 * 也可以作为DefaultReactiveTransactionStatus实例的一部分传入。
+	 * <p>返回的对象应包含有关任何现有事务的信息，
+	 * 即在事务管理器上调用当前{@code getTransaction}之前
+	 * 已经启动的事务。因此，{@code doGetTransaction}实现通常会
+	 * 查找现有事务并将相应的状态存储在返回的事务对象中。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @return the current transaction object
 	 * @throws org.springframework.transaction.CannotCreateTransactionException
@@ -724,15 +719,13 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 			throws TransactionException;
 
 	/**
-	 * Check if the given transaction object indicates an existing transaction
-	 * (that is, a transaction which has already started).
-	 * <p>The result will be evaluated according to the specified propagation
-	 * behavior for the new transaction. An existing transaction might get
-	 * suspended (in case of PROPAGATION_REQUIRES_NEW), or the new transaction
-	 * might participate in the existing one (in case of PROPAGATION_REQUIRED).
-	 * <p>The default implementation returns {@code false}, assuming that
-	 * participating in existing transactions is generally not supported.
-	 * Subclasses are of course encouraged to provide such support.
+	 * 检查给定的事务对象是否指示存在一个事务
+	 * （即已经启动的事务）。
+	 * <p>结果将根据为新事务指定的传播行为进行评估。
+	 * 现有事务可能会被挂起（在PROPAGATION_REQUIRES_NEW的情况下），
+	 * 或者新事务可能会参与现有事务（在PROPAGATION_REQUIRED的情况下）。
+	 * <p>默认实现返回{@code false}，假定通常不支持
+	 * 参与现有事务。当然鼓励子类提供此类支持。
 	 * @param transaction the transaction object returned by doGetTransaction
 	 * @return if there is an existing transaction
 	 * @throws TransactionException in case of system errors
@@ -743,16 +736,13 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Begin a new transaction with semantics according to the given transaction
-	 * definition. Does not have to care about applying the propagation behavior,
-	 * as this has already been handled by this abstract manager.
-	 * <p>This method gets called when the transaction manager has decided to actually
-	 * start a new transaction. Either there wasn't any transaction before, or the
-	 * previous transaction has been suspended.
-	 * <p>A special scenario is a nested transaction: This method will be called to
-	 * start a nested transaction when necessary. In such a context, there will be an
-	 * active transaction: The implementation of this method has to detect this and
-	 * start an appropriate nested transaction.
+	 * 根据给定的事务定义语义开始一个新事务。
+	 * 不需要关心应用传播行为，因为这已经由此抽象管理器处理。
+	 * <p>当事务管理器决定实际启动一个新事务时，会调用此方法。
+	 * 要么之前没有任何事务，要么之前的事务已被挂起。
+	 * <p>一个特殊的场景是嵌套事务：此方法将在必要时被调用以
+	 * 启动嵌套事务。在这种情况下，将存在一个活跃的事务：
+	 * 此方法的实现必须检测到这一点并启动一个适当的嵌套事务。
 	 * @param synchronizationManager the synchronization manager bound to the new transaction
 	 * @param transaction the transaction object returned by {@code doGetTransaction}
 	 * @param definition a TransactionDefinition instance, describing propagation
@@ -765,10 +755,10 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 			Object transaction, TransactionDefinition definition) throws TransactionException;
 
 	/**
-	 * Suspend the resources of the current transaction.
-	 * Transaction synchronization will already have been suspended.
-	 * <p>The default implementation throws a TransactionSuspensionNotSupportedException,
-	 * assuming that transaction suspension is generally not supported.
+	 * 挂起当前事务的资源。
+	 * 事务同步将已经被挂起。
+	 * <p>默认实现抛出TransactionSuspensionNotSupportedException，
+	 * 假定通常不支持事务挂起。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param transaction the transaction object returned by {@code doGetTransaction}
 	 * @return an object that holds suspended resources
@@ -786,10 +776,10 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Resume the resources of the current transaction.
-	 * Transaction synchronization will be resumed afterwards.
-	 * <p>The default implementation throws a TransactionSuspensionNotSupportedException,
-	 * assuming that transaction suspension is generally not supported.
+	 * 恢复当前事务的资源。
+	 * 事务同步将在此之后恢复。
+	 * <p>默认实现抛出TransactionSuspensionNotSupportedException，
+	 * 假定通常不支持事务挂起。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param transaction the transaction object returned by {@code doGetTransaction}
 	 * @param suspendedResources the object that holds suspended resources,
@@ -807,10 +797,9 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Make preparations for commit, to be performed before the
-	 * {@code beforeCommit} synchronization callbacks occur.
-	 * <p>Note that exceptions will get propagated to the commit caller
-	 * and cause a rollback of the transaction.
+	 * 为提交做准备，在{@code beforeCommit}同步回调发生之前执行。
+	 * <p>请注意，异常将传播到提交调用者，
+	 * 并导致事务回滚。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status the status representation of the transaction
 	 * @throws RuntimeException in case of errors; will be <b>propagated to the caller</b>
@@ -823,11 +812,10 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Perform an actual commit of the given transaction.
-	 * <p>An implementation does not need to check the "new transaction" flag
-	 * or the rollback-only flag; this will already have been handled before.
-	 * Usually, a straight commit will be performed on the transaction object
-	 * contained in the passed-in status.
+	 * 执行给定事务的实际提交。
+	 * <p>实现不需要检查"新事务"标志或rollback-only标志；
+	 * 这些在此之前已经被处理。通常，将对传入状态中包含的
+	 * 事务对象执行直接提交。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status the status representation of the transaction
 	 * @throws TransactionException in case of commit or system errors
@@ -837,10 +825,10 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 			GenericReactiveTransaction status) throws TransactionException;
 
 	/**
-	 * Perform an actual rollback of the given transaction.
-	 * <p>An implementation does not need to check the "new transaction" flag;
-	 * this will already have been handled before. Usually, a straight rollback
-	 * will be performed on the transaction object contained in the passed-in status.
+	 * 执行给定事务的实际回滚。
+	 * <p>实现不需要检查"新事务"标志；
+	 * 这在此之前已经被处理。通常，将对传入状态中包含的
+	 * 事务对象执行直接回滚。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status the status representation of the transaction
 	 * @throws TransactionException in case of system errors
@@ -850,11 +838,11 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 			GenericReactiveTransaction status) throws TransactionException;
 
 	/**
-	 * Set the given transaction rollback-only. Only called on rollback
-	 * if the current transaction participates in an existing one.
-	 * <p>The default implementation throws an IllegalTransactionStateException,
-	 * assuming that participating in existing transactions is generally not
-	 * supported. Subclasses are of course encouraged to provide such support.
+	 * 将给定事务设置为rollback-only。仅在回滚时调用，
+	 * 当前事务参与一个现有事务的情况下。
+	 * <p>默认实现抛出IllegalTransactionStateException，
+	 * 假定通常不支持参与现有事务。
+	 * 当然鼓励子类提供此类支持。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param status the status representation of the transaction
 	 * @throws TransactionException in case of system errors
@@ -868,13 +856,13 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Register the given list of transaction synchronizations with the existing transaction.
-	 * <p>Invoked when the control of the Spring transaction manager and thus all Spring
-	 * transaction synchronizations end, without the transaction being completed yet. This
-	 * is for example the case when participating in an existing JTA or EJB CMT transaction.
-	 * <p>The default implementation simply invokes the {@code afterCompletion} methods
-	 * immediately, passing in "STATUS_UNKNOWN". This is the best we can do if there's no
-	 * chance to determine the actual outcome of the outer transaction.
+	 * 将给定的事务同步列表注册到现有事务中。
+	 * <p>当Spring事务管理器的控制以及所有Spring事务同步结束时，
+	 * 而事务尚未完成时调用。例如，参与现有JTA或EJB CMT事务时
+	 * 就是这种情况。
+	 * <p>默认实现直接调用{@code afterCompletion}方法，
+	 * 传入"STATUS_UNKNOWN"。如果无法确定外部事务的实际结果，
+	 * 这是我们能做的最好的处理。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param transaction the transaction object returned by {@code doGetTransaction}
 	 * @param synchronizations a List of TransactionSynchronization objects
@@ -892,10 +880,10 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 	}
 
 	/**
-	 * Cleanup resources after transaction completion.
-	 * <p>Called after {@code doCommit} and {@code doRollback} execution,
-	 * on any outcome. The default implementation does nothing.
-	 * <p>Should not throw any exceptions but just issue warnings on errors.
+	 * 事务完成后清理资源。
+	 * <p>在{@code doCommit}和{@code doRollback}执行之后调用，
+	 * 无论结果如何。默认实现不执行任何操作。
+	 * <p>不应抛出任何异常，只在出错时发出警告。
 	 * @param synchronizationManager the synchronization manager bound to the current transaction
 	 * @param transaction the transaction object returned by {@code doGetTransaction}
 	 */
@@ -920,8 +908,8 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 
 
 	/**
-	 * Holder for suspended resources.
-	 * Used internally by {@code suspend} and {@code resume}.
+	 * 挂起资源的持有者。
+	 * 由{@code suspend}和{@code resume}内部使用。
 	 */
 	protected static final class SuspendedResourcesHolder {
 
@@ -960,12 +948,12 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 
 
 	/**
-	 * Predicates for exception types that transactional error handling applies to.
+	 * 事务性错误处理适用的异常类型谓词。
 	 */
 	private enum ErrorPredicates implements Predicate<Throwable> {
 
 		/**
-		 * Predicate matching {@link RuntimeException} or {@link Error}.
+		 * 匹配{@link RuntimeException}或{@link Error}的谓词。
 		 */
 		RUNTIME_OR_ERROR {
 			@Override
@@ -975,7 +963,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 		},
 
 		/**
-		 * Predicate matching {@link TransactionException}.
+		 * 匹配{@link TransactionException}的谓词。
 		 */
 		TRANSACTION_EXCEPTION {
 			@Override
@@ -985,7 +973,7 @@ public abstract class AbstractReactiveTransactionManager implements ReactiveTran
 		},
 
 		/**
-		 * Predicate matching {@link UnexpectedRollbackException}.
+		 * 匹配{@link UnexpectedRollbackException}的谓词。
 		 */
 		UNEXPECTED_ROLLBACK {
 			@Override

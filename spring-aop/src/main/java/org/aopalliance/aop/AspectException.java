@@ -17,9 +17,8 @@
 package org.aopalliance.aop;
 
 /**
- * Superclass for all AOP infrastructure exceptions.
- * Unchecked, as such exceptions are fatal and end user
- * code shouldn't be forced to catch them.
+ * 所有 AOP 基础设施异常的父类。
+ * 属于非受检异常，因为此类异常是致命的，不应强迫最终用户代码捕获它们。
  *
  * @author Rod Johnson
  * @author Bob Lee
@@ -29,7 +28,7 @@ package org.aopalliance.aop;
 public class AspectException extends RuntimeException {
 
 	/**
-	 * Constructor for AspectException.
+	 * AspectException 的构造器。
 	 * @param message the exception message
 	 */
 	public AspectException(String message) {
@@ -37,7 +36,7 @@ public class AspectException extends RuntimeException {
 	}
 
 	/**
-	 * Constructor for AspectException.
+	 * AspectException 的构造器。
 	 * @param message the exception message
 	 * @param cause the root cause, if any
 	 */

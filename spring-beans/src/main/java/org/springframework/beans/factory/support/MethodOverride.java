@@ -24,11 +24,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Object representing the override of a method on a managed object by the IoC
- * container.
+ * 表示 IoC 容器对受管对象上某个方法的覆盖的对象。
  *
- * <p>Note that the override mechanism is <em>not</em> intended as a generic
- * means of inserting crosscutting code: use AOP for that.
+ * <p>请注意，覆盖机制<em>并非</em>用于插入横切代码的通用手段：请为此使用 AOP。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -46,7 +44,7 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 
 	/**
-	 * Construct a new override for the given method.
+	 * 为给定方法构造一个新的覆盖。
 	 * @param methodName the name of the method to override
 	 */
 	protected MethodOverride(String methodName) {
@@ -56,33 +54,30 @@ public abstract class MethodOverride implements BeanMetadataElement {
 
 
 	/**
-	 * Return the name of the method to be overridden.
+	 * 返回要覆盖的方法的名称。
 	 */
 	public String getMethodName() {
 		return this.methodName;
 	}
 
 	/**
-	 * Set whether the overridden method is <em>overloaded</em> (i.e., whether argument
-	 * type matching needs to occur to disambiguate methods of the same name).
-	 * <p>Default is {@code true}; can be switched to {@code false} to optimize
-	 * runtime performance.
+	 * 设置被覆盖的方法是否<em>重载</em>（即是否需要执行参数类型匹配以区分同名方法）。
+	 * <p>默认值为 {@code true}；可以切换为 {@code false} 以优化运行时性能。
 	 */
 	protected void setOverloaded(boolean overloaded) {
 		this.overloaded = overloaded;
 	}
 
 	/**
-	 * Return whether the overridden method is <em>overloaded</em> (i.e., whether argument
-	 * type matching needs to occur to disambiguate methods of the same name).
+	 * 返回被覆盖的方法是否<em>重载</em>（即是否需要执行参数类型匹配以区分同名方法）。
 	 */
 	protected boolean isOverloaded() {
 		return this.overloaded;
 	}
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置源 {@code Object}。
+	 * <p>对象的具体类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
@@ -95,9 +90,7 @@ public abstract class MethodOverride implements BeanMetadataElement {
 	}
 
 	/**
-	 * Subclasses must override this to indicate whether they <em>match</em> the
-	 * given method. This allows for argument list checking as well as method
-	 * name checking.
+	 * 子类必须重写此方法，以指示它们是否<em>匹配</em>给定方法。这允许检查参数列表以及方法名。
 	 * @param method the method to check
 	 * @return whether this override matches the given method
 	 */

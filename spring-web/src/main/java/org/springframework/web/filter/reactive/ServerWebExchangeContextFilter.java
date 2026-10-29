@@ -26,20 +26,19 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 
 /**
- * Inserts an attribute in the Reactor {@link Context} that makes the current
- * {@link ServerWebExchange} available under the attribute name
- * {@link #EXCHANGE_CONTEXT_ATTRIBUTE}. This is useful for access to the
- * exchange without explicitly passing it to components that participate in
- * request processing.
+ * 在 Reactor {@link Context} 中插入一个属性，使当前
+ * {@link ServerWebExchange} 可以在属性名
+ * {@link #EXCHANGE_CONTEXT_ATTRIBUTE} 下获取。这对于无需将 exchange 显式传递给
+ * 参与请求处理的组件即可访问它非常有用。
  *
- * <p>The convenience method {@link #get(Context)} looks up the exchange.
+ * <p>便捷方法 {@link #get(Context)} 用于查找该 exchange。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
  */
 public class ServerWebExchangeContextFilter implements WebFilter {
 
-	/** Attribute name under which the exchange is saved in the context. */
+	/** 在上下文中保存 exchange 的属性名。 */
 	public static final String EXCHANGE_CONTEXT_ATTRIBUTE =
 			ServerWebExchangeContextFilter.class.getName() + ".EXCHANGE_CONTEXT";
 
@@ -52,9 +51,8 @@ public class ServerWebExchangeContextFilter implements WebFilter {
 
 
 	/**
-	 * Access the {@link ServerWebExchange} from the Reactor Context, if available,
-	 * which is if {@link ServerWebExchangeContextFilter} is configured for use
-	 * and the give context was obtained from a request processing chain.
+	 * 从 Reactor Context 中访问 {@link ServerWebExchange}（如果可用），
+	 * 即配置了 {@link ServerWebExchangeContextFilter} 且给定上下文来自请求处理链时。
 	 * @param context the context in which to access the exchange
 	 * @return the exchange
 	 */

@@ -24,9 +24,8 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 
 /**
- * Supports media type expressions as described in:
- * {@link RequestMapping#consumes()} and {@link RequestMapping#produces()}.
- *
+ * 支持媒体类型表达式，具体语法参见：
+ * {@link RequestMapping#consumes()} 和 {@link RequestMapping#produces()}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

@@ -40,8 +40,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility class that contains various methods useful for the implementation of
- * autowire-capable bean factories.
+ * 包含各种有助于实现支持自动装配的 Bean 工厂的方法的工具类。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -58,10 +57,8 @@ abstract class AutowireUtils {
 
 
 	/**
-	 * Sort the given constructors, preferring public constructors and "greedy" ones with
-	 * a maximum number of arguments. The result will contain public constructors first,
-	 * with decreasing number of arguments, then non-public constructors, again with
-	 * decreasing number of arguments.
+	 * 对给定的构造函数排序，优先选择公共构造函数以及参数数量最多的“贪婪”构造函数。结果将包含公共构造函
+	 * 数在前（参数数量递减），然后是非公共构造函数（同样参数数量递减）。
 	 * @param constructors the constructor array to sort
 	 */
 	public static void sortConstructors(Constructor<?>[] constructors) {
@@ -69,10 +66,8 @@ abstract class AutowireUtils {
 	}
 
 	/**
-	 * Sort the given factory methods, preferring public methods and "greedy" ones
-	 * with a maximum of arguments. The result will contain public methods first,
-	 * with decreasing number of arguments, then non-public methods, again with
-	 * decreasing number of arguments.
+	 * 对给定的工厂方法排序，优先选择公共方法以及参数数量最多的“贪婪”方法。结果将包含公共方法在前（参数
+	 * 数量递减），然后是非公共方法（同样参数数量递减）。
 	 * @param factoryMethods the factory method array to sort
 	 */
 	public static void sortFactoryMethods(Method[] factoryMethods) {
@@ -80,8 +75,7 @@ abstract class AutowireUtils {
 	}
 
 	/**
-	 * Determine whether the given bean property is excluded from dependency checks.
-	 * <p>This implementation excludes properties defined by CGLIB.
+	 * 确定给定的 Bean 属性是否被排除在依赖检查之外。<p>此实现排除由 CGLIB 定义的属性。
 	 * @param pd the PropertyDescriptor of the bean property
 	 * @return whether the bean property is excluded
 	 */
@@ -101,8 +95,7 @@ abstract class AutowireUtils {
 	}
 
 	/**
-	 * Return whether the setter method of the given bean property is defined
-	 * in any of the given interfaces.
+	 * 返回给定 Bean 属性的 setter 方法是否定义在任何给定接口中。
 	 * @param pd the PropertyDescriptor of the bean property
 	 * @param interfaces the Set of interfaces (Class objects)
 	 * @return whether the setter method is defined by an interface
@@ -121,8 +114,7 @@ abstract class AutowireUtils {
 	}
 
 	/**
-	 * Resolve the given autowiring value against the given required type,
-	 * e.g. an {@link ObjectFactory} value to its actual object result.
+	 * 根据给定的必需类型解析给定的自动装配值，例如将 {@link ObjectFactory} 值解析为其实际对象结果。
 	 * @param autowiringValue the value to resolve
 	 * @param requiredType the type to assign the result to
 	 * @return the resolved value
@@ -142,27 +134,17 @@ abstract class AutowireUtils {
 	}
 
 	/**
-	 * Determine the target type for the generic return type of the given
-	 * <em>generic factory method</em>, where formal type variables are declared
-	 * on the given method itself.
-	 * <p>For example, given a factory method with the following signature, if
-	 * {@code resolveReturnTypeForFactoryMethod()} is invoked with the reflected
-	 * method for {@code createProxy()} and an {@code Object[]} array containing
-	 * {@code MyService.class}, {@code resolveReturnTypeForFactoryMethod()} will
-	 * infer that the target return type is {@code MyService}.
+	 * 确定给定<em>泛型工厂方法</em>的泛型返回类型的目标类型，其中形式类型变量声明在该方法自身上。<p>例
+	 * 如，给定具有如下签名的工厂方法，如果对 {@code createProxy()} 的反射方法以及包含
+	 * {@code MyService.class} 的 {@code Object[]} 数组调用 {@code resolveReturnTypeForFactoryMethod()}，
+	 * 则 {@code resolveReturnTypeForFactoryMethod()} 将推断目标返回类型为 {@code MyService}。
 	 * <pre class="code">{@code public static <T> T createProxy(Class<T> clazz)}</pre>
-	 * <h4>Possible Return Values</h4>
+	 * <h4>可能的返回值</h4>
 	 * <ul>
-	 * <li>the target return type, if it can be inferred</li>
-	 * <li>the {@linkplain Method#getReturnType() standard return type}, if
-	 * the given {@code method} does not declare any {@linkplain
-	 * Method#getTypeParameters() formal type variables}</li>
-	 * <li>the {@linkplain Method#getReturnType() standard return type}, if the
-	 * target return type cannot be inferred (e.g., due to type erasure)</li>
-	 * <li>{@code null}, if the length of the given arguments array is shorter
-	 * than the length of the {@linkplain
-	 * Method#getGenericParameterTypes() formal argument list} for the given
-	 * method</li>
+	 * <li>目标返回类型（如果可以推断）</li>
+	 * <li>{@linkplain Method#getReturnType() 标准返回类型}（如果给定的 {@code method} 未声明任何 {@linkplain Method#getTypeParameters() 形式类型变量}）</li>
+	 * <li>{@linkplain Method#getReturnType() 标准返回类型}（如果无法推断目标返回类型，例如由于类型擦除）</li>
+	 * <li>{@code null}（如果给定参数数组的长度小于给定方法的 {@linkplain Method#getGenericParameterTypes() 形式参数列表}长度）</li>
 	 * </ul>
 	 * @param method the method to introspect (never {@code null})
 	 * @param args the arguments that will be supplied to the method when it is
@@ -265,7 +247,7 @@ abstract class AutowireUtils {
 
 
 	/**
-	 * Reflective {@link InvocationHandler} for lazy access to the current target object.
+	 * 用于延迟访问当前目标对象的反射 {@link InvocationHandler}。
 	 */
 	@SuppressWarnings("serial")
 	private static class ObjectFactoryDelegatingInvocationHandler implements InvocationHandler, Serializable {

@@ -23,7 +23,7 @@ import org.springframework.web.socket.server.HandshakeHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 /**
- * A contract for configuring a STOMP over WebSocket endpoint.
+ * 用于配置基于 WebSocket 的 STOMP 端点的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -31,36 +31,33 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 public interface StompWebSocketEndpointRegistration {
 
 	/**
-	 * Enable SockJS fallback options.
+	 * 启用 SockJS 回退选项。
 	 */
 	SockJsServiceRegistration withSockJS();
 
 	/**
-	 * Configure the HandshakeHandler to use.
+	 * 配置要使用的 HandshakeHandler。
 	 */
 	StompWebSocketEndpointRegistration setHandshakeHandler(HandshakeHandler handshakeHandler);
 
 	/**
-	 * Configure the HandshakeInterceptor's to use.
+	 * 配置要使用的 HandshakeInterceptor。
 	 */
 	StompWebSocketEndpointRegistration addInterceptors(HandshakeInterceptor... interceptors);
 
 	/**
-	 * Set the origins for which cross-origin requests are allowed from a browser.
-	 * Please, refer to {@link CorsConfiguration#setAllowedOrigins(List)} for
-	 * format details and considerations, and keep in mind that the CORS spec
-	 * does not allow use of {@code "*"} with {@code allowCredentials=true}.
-	 * For more flexible origin patterns use {@link #setAllowedOriginPatterns}
-	 * instead.
+	 * 设置允许浏览器发起跨域请求的源。
+	 * 请参阅 {@link CorsConfiguration#setAllowedOrigins(List)} 了解
+	 * 格式细节和注意事项，并记住 CORS 规范不允许在
+	 * {@code allowCredentials=true} 时使用 {@code "*"}。
+	 * 如需更灵活的源模式，请改用 {@link #setAllowedOriginPatterns}。
 	 *
-	 * <p>By default, no origins are allowed. When
-	 * {@link #setAllowedOriginPatterns(String...) allowedOriginPatterns} is also
-	 * set, then that takes precedence over this property.
+	 * <p>默认情况下，不允许任何源。当同时设置了
+	 * {@link #setAllowedOriginPatterns(String...) allowedOriginPatterns} 时，
+	 * 该设置优先于此属性。
 	 *
-	 * <p>Note when SockJS is enabled and origins are restricted, transport types
-	 * that do not allow to check request origin (Iframe based transports) are
-	 * disabled. As a consequence, IE 6 to 9 are not supported when origins are
-	 * restricted.
+	 * <p>请注意，当启用 SockJS 并限制源时，不允许检查请求源的传输类型
+	 * （基于 Iframe 的传输）将被禁用。因此，限制源时不支持 IE 6 到 9。
 	 * @since 4.1.2
 	 * @see #setAllowedOriginPatterns(String...)
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
@@ -69,12 +66,11 @@ public interface StompWebSocketEndpointRegistration {
 	StompWebSocketEndpointRegistration setAllowedOrigins(String... origins);
 
 	/**
-	 * Alternative to {@link #setAllowedOrigins(String...)} that supports more
-	 * flexible patterns for specifying the origins for which cross-origin
-	 * requests are allowed from a browser. Please, refer to
-	 * {@link CorsConfiguration#setAllowedOriginPatterns(List)} for format
-	 * details and other considerations.
-	 * <p>By default this is not set.
+	 * {@link #setAllowedOrigins(String...)} 的替代方法，支持更灵活的模式来
+	 * 指定允许浏览器发起跨域请求的源。请参阅
+	 * {@link CorsConfiguration#setAllowedOriginPatterns(List)}
+	 * 了解格式细节和其他注意事项。
+	 * <p>默认情况下不设置此项。
 	 * @since 5.3.2
 	 */
 	StompWebSocketEndpointRegistration setAllowedOriginPatterns(String... originPatterns);

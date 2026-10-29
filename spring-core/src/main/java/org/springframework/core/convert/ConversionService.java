@@ -19,8 +19,8 @@ package org.springframework.core.convert;
 import org.springframework.lang.Nullable;
 
 /**
- * A service interface for type conversion. This is the entry point into the convert system.
- * Call {@link #convert(Object, Class)} to perform a thread-safe type conversion using this system.
+ * 用于类型转换的服务接口。这是进入转换系统的入口。调用 {@link #convert(Object, Class)} 可使用此系
+ * 统执行线程安全的类型转换。
  *
  * @author Keith Donald
  * @author Phillip Webb
@@ -29,14 +29,12 @@ import org.springframework.lang.Nullable;
 public interface ConversionService {
 
 	/**
-	 * Return {@code true} if objects of {@code sourceType} can be converted to the {@code targetType}.
-	 * <p>If this method returns {@code true}, it means {@link #convert(Object, Class)} is capable
-	 * of converting an instance of {@code sourceType} to {@code targetType}.
-	 * <p>Special note on collections, arrays, and maps types:
-	 * For conversion between collection, array, and map types, this method will return {@code true}
-	 * even though a convert invocation may still generate a {@link ConversionException} if the
-	 * underlying elements are not convertible. Callers are expected to handle this exceptional case
-	 * when working with collections and maps.
+	 * 如果 {@code sourceType} 的对象可以转换为 {@code targetType}，则返回 {@code true}。
+	 * <p>如果此方法返回 {@code true}，则意味着 {@link #convert(Object, Class)} 能够将
+	 * {@code sourceType} 的实例转换为 {@code targetType}。
+	 * <p>关于集合、数组和映射类型的特别说明：对于集合、数组和映射类型之间的转换，即使底层元素不可转换
+	 * 时调用转换仍可能产生 {@link ConversionException}，此方法也会返回 {@code true}。在处理集合和映射
+	 * 时，调用方应自行处理这种异常情况。
 	 * @param sourceType the source type to convert from (may be {@code null} if source is {@code null})
 	 * @param targetType the target type to convert to (required)
 	 * @return {@code true} if a conversion can be performed, {@code false} if not
@@ -45,16 +43,14 @@ public interface ConversionService {
 	boolean canConvert(@Nullable Class<?> sourceType, Class<?> targetType);
 
 	/**
-	 * Return {@code true} if objects of {@code sourceType} can be converted to the {@code targetType}.
-	 * The TypeDescriptors provide additional context about the source and target locations
-	 * where conversion would occur, often object fields or property locations.
-	 * <p>If this method returns {@code true}, it means {@link #convert(Object, TypeDescriptor, TypeDescriptor)}
-	 * is capable of converting an instance of {@code sourceType} to {@code targetType}.
-	 * <p>Special note on collections, arrays, and maps types:
-	 * For conversion between collection, array, and map types, this method will return {@code true}
-	 * even though a convert invocation may still generate a {@link ConversionException} if the
-	 * underlying elements are not convertible. Callers are expected to handle this exceptional case
-	 * when working with collections and maps.
+	 * 如果 {@code sourceType} 的对象可以转换为 {@code targetType}，则返回 {@code true}。TypeDescriptor
+	 * 提供了有关将发生转换的源位置和目标位置的额外上下文，通常是对象字段或属性位置。
+	 * <p>如果此方法返回 {@code true}，则意味着
+	 * {@link #convert(Object, TypeDescriptor, TypeDescriptor)} 能够将 {@code sourceType} 的实例转换为
+	 * {@code targetType}。
+	 * <p>关于集合、数组和映射类型的特别说明：对于集合、数组和映射类型之间的转换，即使底层元素不可转换
+	 * 时调用转换仍可能产生 {@link ConversionException}，此方法也会返回 {@code true}。在处理集合和映射
+	 * 时，调用方应自行处理这种异常情况。
 	 * @param sourceType context about the source type to convert from
 	 * (may be {@code null} if source is {@code null})
 	 * @param targetType context about the target type to convert to (required)
@@ -65,7 +61,7 @@ public interface ConversionService {
 	boolean canConvert(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType);
 
 	/**
-	 * Convert the given {@code source} to the specified {@code targetType}.
+	 * 将给定的 {@code source} 转换为指定的 {@code targetType}。
 	 * @param source the source object to convert (may be {@code null})
 	 * @param targetType the target type to convert to (required)
 	 * @return the converted object, an instance of targetType
@@ -76,9 +72,8 @@ public interface ConversionService {
 	<T> T convert(@Nullable Object source, Class<T> targetType);
 
 	/**
-	 * Convert the given {@code source} to the specified {@code targetType}.
-	 * The TypeDescriptors provide additional context about the source and target locations
-	 * where conversion will occur, often object fields or property locations.
+	 * 将给定的 {@code source} 转换为指定的 {@code targetType}。TypeDescriptor 提供了有关将发生转换的源
+	 * 位置和目标位置的额外上下文，通常是对象字段或属性位置。
 	 * @param source the source object to convert (may be {@code null})
 	 * @param sourceType context about the source type to convert from
 	 * (may be {@code null} if source is {@code null})

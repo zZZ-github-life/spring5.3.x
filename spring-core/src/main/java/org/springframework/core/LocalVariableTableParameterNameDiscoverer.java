@@ -39,17 +39,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Implementation of {@link ParameterNameDiscoverer} that uses the LocalVariableTable
- * information in the method attributes to discover parameter names. Returns
- * {@code null} if the class file was compiled without debug information.
+ * {@link ParameterNameDiscoverer} 的实现，使用方法属性中的 LocalVariableTable 信息来发现参数名。如
+ * 果类文件在没有调试信息的情况下编译，则返回 {@code null}。
  *
- * <p>Uses ObjectWeb's ASM library for analyzing class files. Each discoverer instance
- * caches the ASM discovered information for each introspected Class, in a thread-safe
- * manner. It is recommended to reuse ParameterNameDiscoverer instances as far as possible.
+ * <p>使用 ObjectWeb 的 ASM 库分析类文件。每个 discoverer 实例以线程安全的方式缓存每个被内省 Class
+ * 的 ASM 发现信息。建议尽可能重用 ParameterNameDiscoverer 实例。
  *
- * <p>This discoverer variant is effectively superseded by the Java 8 based
- * {@link StandardReflectionParameterNameDiscoverer} but included as a fallback still
- * (for code not compiled with the standard "-parameters" compiler flag).
+ * <p>此 discoverer 变体实际上已被基于 Java 8 的 {@link StandardReflectionParameterNameDiscoverer}
+ * 取代，但仍作为回退保留（用于未使用标准 "-parameters" 编译器标志编译的代码）。
  *
  * @author Adrian Colyer
  * @author Costin Leau
@@ -92,9 +89,9 @@ public class LocalVariableTableParameterNameDiscoverer implements ParameterNameD
 	}
 
 	/**
-	 * Inspects the target class.
-	 * <p>Exceptions will be logged, and a marker map returned to indicate the
-	 * lack of debug information.
+	 * 检查目标类。
+	 *
+	 * <p>异常将被记录，并返回一个标记映射以指示缺少调试信息。
 	 */
 	private Map<Executable, String[]> inspectClass(Class<?> clazz) {
 		InputStream is = clazz.getResourceAsStream(ClassUtils.getClassFileName(clazz));
@@ -141,8 +138,7 @@ public class LocalVariableTableParameterNameDiscoverer implements ParameterNameD
 
 
 	/**
-	 * Helper class that inspects all methods and constructors and then
-	 * attempts to find the parameter names for the given {@link Executable}.
+	 * 辅助类，用于检查所有方法和构造函数，然后尝试为给定的 {@link Executable} 查找参数名。
 	 */
 	private static class ParameterNameDiscoveringVisitor extends ClassVisitor {
 

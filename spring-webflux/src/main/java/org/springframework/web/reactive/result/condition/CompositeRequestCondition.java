@@ -26,15 +26,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Implements the {@link RequestCondition} contract by delegating to multiple
- * {@code RequestCondition} types and using a logical conjunction ({@code ' && '}) to
- * ensure all conditions match a given request.
+ * 通过委托给多个 {@code RequestCondition} 类型并使用逻辑合取（{@code ' && '}）来确保所有条件都匹配给定请求，从而实现 {@link RequestCondition} 契约。
  *
- * <p>When {@code CompositeRequestCondition} instances are combined or compared
- * is expected that (a) they contain the same number of conditions and (b)
- * conditions at the same index are of the same type. It is acceptable to
- * provide {@code null} conditions or no conditions at all to the constructor.
- *
+ * <p>当组合或比较 {@code CompositeRequestCondition} 实例时，要求 (a) 它们包含相同数量的条件，且 (b) 相同索引处的条件类型相同。构造函数可以接受 {@code null} 条件或完全不提供条件。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -44,10 +38,7 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 
 
 	/**
-	 * Create an instance with 0 or more {@code RequestCondition} types. It is
-	 * important to create {@code CompositeRequestCondition} instances with the
-	 * same number of conditions so they may be compared and combined.
-	 * It is acceptable to provide {@code null} conditions.
+	 * 创建包含 0 个或多个 {@code RequestCondition} 类型的实例。请务必使用相同数量的条件创建 {@code CompositeRequestCondition} 实例，以便它们可以比较和组合。可以提供 {@code null} 条件。
 	 */
 	public CompositeRequestCondition(RequestCondition<?>... requestConditions) {
 		this.requestConditions = wrap(requestConditions);
@@ -67,7 +58,7 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	}
 
 	/**
-	 * Whether this instance contains 0 conditions or not.
+	 * 此实例是否包含 0 个条件。
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -75,7 +66,7 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	}
 
 	/**
-	 * Return the underlying conditions, possibly empty but never {@code null}.
+	 * 返回底层条件，可能为空，但绝不会是 {@code null}。
 	 */
 	public List<RequestCondition<?>> getConditions() {
 		return unwrap();
@@ -104,9 +95,8 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	}
 
 	/**
-	 * If one instance is empty, return the other.
-	 * <p>If both instances have conditions, combine the individual conditions
-	 * after ensuring they are of the same type and number.
+	 * 如果其中一个实例为空，则返回另一个。
+	 * <p>如果两个实例都包含条件，则在确保类型和数量相同后合并各个条件。
 	 */
 	@Override
 	public CompositeRequestCondition combine(CompositeRequestCondition other) {
@@ -137,9 +127,8 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	}
 
 	/**
-	 * Delegate to <em>all</em> contained conditions to match the request and return the
-	 * resulting "matching" condition instances.
-	 * <p>An empty {@code CompositeRequestCondition} matches to all requests.
+	 * 委托给<em>所有</em>包含的条件来匹配请求，并返回得到的“匹配”条件实例。
+	 * <p>空的 {@code CompositeRequestCondition} 匹配所有请求。
 	 */
 	@Override
 	public CompositeRequestCondition getMatchingCondition(ServerWebExchange exchange) {
@@ -157,8 +146,7 @@ public class CompositeRequestCondition extends AbstractRequestCondition<Composit
 	}
 
 	/**
-	 * If one instance is empty, the other "wins". If both instances have
-	 * conditions, compare them in the order in which they were provided.
+	 * 如果其中一个实例为空，则另一个“获胜”。如果两个实例都包含条件，则按提供顺序进行比较。
 	 */
 	@Override
 	public int compareTo(CompositeRequestCondition other, ServerWebExchange exchange) {

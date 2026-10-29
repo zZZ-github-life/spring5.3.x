@@ -19,16 +19,15 @@ package org.springframework.web.servlet.resource;
 import org.springframework.lang.Nullable;
 
 /**
- * A strategy for extracting and embedding a resource version in its URL path.
- *
+ * 用于在资源 URL 路径中提取和嵌入版本的策略。
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @since 4.1
-*/
+ */
 public interface VersionPathStrategy {
 
 	/**
-	 * Extract the resource version from the request path.
+	 * 从请求路径中提取资源版本。
 	 * @param requestPath the request path to check
 	 * @return the version string or {@code null} if none was found
 	 */
@@ -36,8 +35,8 @@ public interface VersionPathStrategy {
 	String extractVersion(String requestPath);
 
 	/**
-	 * Remove the version from the request path. It is assumed that the given
-	 * version was extracted via {@link #extractVersion(String)}.
+	 * 从请求路径中移除版本。假定给定
+	 * 版本是通过 {@link #extractVersion(String)} 提取的。
 	 * @param requestPath the request path of the resource being resolved
 	 * @param version the version obtained from {@link #extractVersion(String)}
 	 * @return the request path with the version removed
@@ -45,7 +44,7 @@ public interface VersionPathStrategy {
 	String removeVersion(String requestPath, String version);
 
 	/**
-	 * Add a version to the given request path.
+	 * 向给定请求路径添加版本。
 	 * @param requestPath the requestPath
 	 * @param version the version
 	 * @return the requestPath updated with a version string

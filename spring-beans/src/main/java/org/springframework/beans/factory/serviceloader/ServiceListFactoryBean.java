@@ -23,9 +23,9 @@ import java.util.ServiceLoader;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that exposes <i>all</i>
- * services for the configured service class, represented as a List of service objects,
- * obtained through the JDK 1.6 {@link java.util.ServiceLoader} facility.
+ * 一个 {@link org.springframework.beans.factory.FactoryBean}，它通过 JDK 1.6
+ * {@link java.util.ServiceLoader} 设施，为配置的服务类暴露<i>所有</i>服务，并以服务对象列表的形式
+ * 表示。
  *
  * @author Juergen Hoeller
  * @since 2.5

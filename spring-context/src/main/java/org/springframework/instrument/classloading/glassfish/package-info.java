@@ -1,5 +1,5 @@
 /**
- * Support for class instrumentation on GlassFish.
+ * 在 GlassFish 上支持类插桩。
  */
 @NonNullApi
 @NonNullFields

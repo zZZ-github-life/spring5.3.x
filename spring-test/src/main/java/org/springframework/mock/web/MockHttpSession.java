@@ -35,9 +35,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Mock implementation of the {@link javax.servlet.http.HttpSession} interface.
+ * {@link javax.servlet.http.HttpSession} 接口的 mock 实现。
  *
- * <p>As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
+ * <p>从 Spring 5.0 开始，这组 mock 基于 Servlet 4.0 基线设计。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -50,7 +50,7 @@ import org.springframework.util.StringUtils;
 public class MockHttpSession implements HttpSession {
 
 	/**
-	 * The session cookie name.
+	 * 会话 Cookie 名称。
 	 */
 	public static final String SESSION_COOKIE_NAME = "JSESSION";
 
@@ -75,7 +75,7 @@ public class MockHttpSession implements HttpSession {
 
 
 	/**
-	 * Create a new MockHttpSession with a default {@link MockServletContext}.
+	 * 使用默认的 {@link MockServletContext} 创建一个新的 MockHttpSession。
 	 * @see MockServletContext
 	 */
 	public MockHttpSession() {
@@ -83,7 +83,7 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Create a new MockHttpSession.
+	 * 创建一个新的 MockHttpSession。
 	 * @param servletContext the ServletContext that the session runs in
 	 */
 	public MockHttpSession(@Nullable ServletContext servletContext) {
@@ -91,7 +91,7 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Create a new MockHttpSession.
+	 * 创建一个新的 MockHttpSession。
 	 * @param servletContext the ServletContext that the session runs in
 	 * @param id a unique identifier for this session
 	 */
@@ -113,7 +113,7 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * As of Servlet 3.1, the id of a session can be changed.
+	 * 从 Servlet 3.1 开始，可以更改会话的 id。
 	 * @return the new session id
 	 * @since 4.0.3
 	 */
@@ -218,7 +218,7 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Clear all of this session's attributes.
+	 * 清除此会话的所有属性。
 	 */
 	public void clearAttributes() {
 		for (Iterator<Map.Entry<String, Object>> it = this.attributes.entrySet().iterator(); it.hasNext();) {
@@ -233,7 +233,7 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Invalidates this session then unbinds any objects bound to it.
+	 * 使此会话失效，然后解绑绑定到它的所有对象。
 	 * @throws IllegalStateException if this method is called on an already invalidated session
 	 */
 	@Override
@@ -248,8 +248,8 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Convenience method for asserting that this session has not been
-	 * {@linkplain #invalidate() invalidated}.
+	 * 用于断言此会话尚未被
+	 * {@linkplain #invalidate() 无效化}的便捷方法。
 	 * @throws IllegalStateException if this session has been invalidated
 	 */
 	private void assertIsValid() {
@@ -267,8 +267,8 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Serialize the attributes of this session into an object that can be
-	 * turned into a byte array with standard Java serialization.
+	 * 将此会话的属性序列化为一个对象，该对象可以
+	 * 通过标准 Java 序列化转换为字节数组。
 	 * @return a representation of this session's serialized state
 	 */
 	public Serializable serializeState() {
@@ -293,8 +293,8 @@ public class MockHttpSession implements HttpSession {
 	}
 
 	/**
-	 * Deserialize the attributes of this session from a state object created by
-	 * {@link #serializeState()}.
+	 * 从由 {@link #serializeState()} 创建的状态对象中
+	 * 反序列化此会话的属性。
 	 * @param state a representation of this session's serialized state
 	 */
 	@SuppressWarnings("unchecked")

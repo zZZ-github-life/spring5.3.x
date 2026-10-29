@@ -19,9 +19,8 @@ package org.springframework.expression.spel;
 import org.springframework.expression.EvaluationException;
 
 /**
- * Root exception for Spring EL related exceptions. Rather than holding a hard coded
- * string indicating the problem, it records a message key and the inserts for the
- * message. See {@link SpelMessage} for the list of all possible messages that can occur.
+ * Spring EL 相关异常的根异常。它不持有表示问题的硬编码字符串，而是记录消息键以及消息的插入内容。有
+ * 关可能出现的所有消息列表，请参见 {@link SpelMessage}。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -61,21 +60,21 @@ public class SpelEvaluationException extends EvaluationException {
 
 
 	/**
-	 * Set the position in the related expression which gave rise to this exception.
+	 * 设置相关表达式中引发此异常的位置。
 	 */
 	public void setPosition(int position) {
 		this.position = position;
 	}
 
 	/**
-	 * Return the message code.
+	 * 返回消息代码。
 	 */
 	public SpelMessage getMessageCode() {
 		return this.message;
 	}
 
 	/**
-	 * Return the message inserts.
+	 * 返回消息插入内容。
 	 */
 	public Object[] getInserts() {
 		return this.inserts;

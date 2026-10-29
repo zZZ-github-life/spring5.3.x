@@ -21,11 +21,10 @@ import java.lang.reflect.Method;
 import org.springframework.messaging.handler.invocation.InvocableHandlerMethod;
 
 /**
- * A factory for {@link InvocableHandlerMethod} that is suitable to process
- * an incoming {@link org.springframework.messaging.Message}
+ * 用于创建适合处理传入 {@link org.springframework.messaging.Message} 的
+ * {@link InvocableHandlerMethod} 的工厂。
  *
- * <p>Typically used by listener endpoints that require a flexible method
- * signature.
+ * <p>通常由需要灵活方法签名的监听器端点使用。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -33,8 +32,7 @@ import org.springframework.messaging.handler.invocation.InvocableHandlerMethod;
 public interface MessageHandlerMethodFactory {
 
 	/**
-	 * Create the {@link InvocableHandlerMethod} that is able to process the specified
-	 * method endpoint.
+	 * 创建能够处理指定方法端点的 {@link InvocableHandlerMethod}。
 	 * @param bean the bean instance
 	 * @param method the method to invoke
 	 * @return an {@link InvocableHandlerMethod} suitable for that method

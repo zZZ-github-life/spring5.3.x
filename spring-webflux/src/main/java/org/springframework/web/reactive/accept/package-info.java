@@ -1,7 +1,5 @@
 /**
- * {@link org.springframework.web.reactive.accept.RequestedContentTypeResolver}
- * strategy and implementations to resolve the requested content type for a
- * given request.
+ * {@link org.springframework.web.reactive.accept.RequestedContentTypeResolver} 策略及实现，用于为给定请求解析所请求的内容类型。
  */
 @NonNullApi
 @NonNullFields

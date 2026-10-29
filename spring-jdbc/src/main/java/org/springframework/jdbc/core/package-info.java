@@ -1,6 +1,5 @@
 /**
- * Provides the core JDBC framework, based on JdbcTemplate
- * and its associated callback interfaces and helper objects.
+ * 提供核心JDBC框架，基于JdbcTemplate及其关联的回调接口和辅助对象。
  */
 @NonNullApi
 @NonNullFields

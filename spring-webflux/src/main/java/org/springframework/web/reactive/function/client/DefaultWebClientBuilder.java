@@ -39,8 +39,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriBuilderFactory;
 
 /**
- * Default implementation of {@link WebClient.Builder}.
- *
+ * {@link WebClient.Builder} 的默认实现。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0

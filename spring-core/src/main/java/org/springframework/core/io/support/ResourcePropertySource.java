@@ -27,14 +27,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Subclass of {@link PropertiesPropertySource} that loads a {@link Properties} object
- * from a given {@link org.springframework.core.io.Resource} or resource location such as
- * {@code "classpath:/com/myco/foo.properties"} or {@code "file:/path/to/file.xml"}.
+ * {@link PropertiesPropertySource} 的子类，从给定的 {@link org.springframework.core.io.Resource}
+ * 或资源位置（例如 {@code "classpath:/com/myco/foo.properties"}
+ * 或 {@code "file:/path/to/file.xml"}）加载 {@link Properties} 对象。
  *
- * <p>Both traditional and XML-based properties file formats are supported; however, in
- * order for XML processing to take effect, the underlying {@code Resource}'s
- * {@link org.springframework.core.io.Resource#getFilename() getFilename()} method must
- * return a non-{@code null} value that ends in {@code ".xml"}.
+ * <p>同时支持传统的和基于 XML 的属性文件格式；不过，
+ * 要使 XML 处理生效，底层 {@code Resource} 的
+ * {@link org.springframework.core.io.Resource#getFilename() getFilename()} 方法必须
+ * 返回一个以 {@code ".xml"} 结尾的非 {@code null} 值。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -44,14 +44,14 @@ import org.springframework.util.StringUtils;
  */
 public class ResourcePropertySource extends PropertiesPropertySource {
 
-	/** The original resource name, if different from the given name. */
+	/** 原始资源名称（如果与给定名称不同）。 */
 	@Nullable
 	private final String resourceName;
 
 
 	/**
-	 * Create a PropertySource having the given name based on Properties
-	 * loaded from the given encoded resource.
+	 * 根据从给定编码资源加载的 Properties，
+	 * 创建一个具有给定名称的 PropertySource。
 	 */
 	public ResourcePropertySource(String name, EncodedResource resource) throws IOException {
 		super(name, PropertiesLoaderUtils.loadProperties(resource));
@@ -59,9 +59,9 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Create a PropertySource based on Properties loaded from the given resource.
-	 * The name of the PropertySource will be generated based on the
-	 * {@link Resource#getDescription() description} of the given resource.
+	 * 根据从给定资源加载的 Properties 创建 PropertySource。
+	 * PropertySource 的名称将根据
+	 * 给定资源的 {@link Resource#getDescription() description} 生成。
 	 */
 	public ResourcePropertySource(EncodedResource resource) throws IOException {
 		super(getNameForResource(resource.getResource()), PropertiesLoaderUtils.loadProperties(resource));
@@ -69,8 +69,8 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Create a PropertySource having the given name based on Properties
-	 * loaded from the given encoded resource.
+	 * 根据从给定编码资源加载的 Properties，
+	 * 创建一个具有给定名称的 PropertySource。
 	 */
 	public ResourcePropertySource(String name, Resource resource) throws IOException {
 		super(name, PropertiesLoaderUtils.loadProperties(new EncodedResource(resource)));
@@ -78,9 +78,9 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Create a PropertySource based on Properties loaded from the given resource.
-	 * The name of the PropertySource will be generated based on the
-	 * {@link Resource#getDescription() description} of the given resource.
+	 * 根据从给定资源加载的 Properties 创建 PropertySource。
+	 * PropertySource 的名称将根据
+	 * 给定资源的 {@link Resource#getDescription() description} 生成。
 	 */
 	public ResourcePropertySource(Resource resource) throws IOException {
 		super(getNameForResource(resource), PropertiesLoaderUtils.loadProperties(new EncodedResource(resource)));
@@ -88,39 +88,39 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Create a PropertySource having the given name based on Properties loaded from
-	 * the given resource location and using the given class loader to load the
-	 * resource (assuming it is prefixed with {@code classpath:}).
+	 * 根据从给定资源位置加载的 Properties，创建一个具有给定名称的 PropertySource，
+	 * 并使用给定的类加载器加载该
+	 * 资源（假定其带有 {@code classpath:} 前缀）。
 	 */
 	public ResourcePropertySource(String name, String location, ClassLoader classLoader) throws IOException {
 		this(name, new DefaultResourceLoader(classLoader).getResource(location));
 	}
 
 	/**
-	 * Create a PropertySource based on Properties loaded from the given resource
-	 * location and use the given class loader to load the resource, assuming it is
-	 * prefixed with {@code classpath:}. The name of the PropertySource will be
-	 * generated based on the {@link Resource#getDescription() description} of the
-	 * resource.
+	 * 根据从给定资源位置加载的 Properties 创建 PropertySource，
+	 * 并使用给定的类加载器加载该资源，假定其带有
+	 * {@code classpath:} 前缀。PropertySource 的名称将
+	 * 根据资源的 {@link Resource#getDescription() description}
+	 * 生成。
 	 */
 	public ResourcePropertySource(String location, ClassLoader classLoader) throws IOException {
 		this(new DefaultResourceLoader(classLoader).getResource(location));
 	}
 
 	/**
-	 * Create a PropertySource having the given name based on Properties loaded from
-	 * the given resource location. The default thread context class loader will be
-	 * used to load the resource (assuming the location string is prefixed with
-	 * {@code classpath:}).
+	 * 根据从给定资源位置加载的 Properties，创建一个具有给定名称的 PropertySource。
+	 * 将使用默认的线程上下文类加载器
+	 * 加载该资源（假定位置字符串带有
+	 * {@code classpath:} 前缀）。
 	 */
 	public ResourcePropertySource(String name, String location) throws IOException {
 		this(name, new DefaultResourceLoader().getResource(location));
 	}
 
 	/**
-	 * Create a PropertySource based on Properties loaded from the given resource
-	 * location. The name of the PropertySource will be generated based on the
-	 * {@link Resource#getDescription() description} of the resource.
+	 * 根据从给定资源位置加载的 Properties 创建 PropertySource。
+	 * PropertySource 的名称将根据资源的
+	 * {@link Resource#getDescription() description} 生成。
 	 */
 	public ResourcePropertySource(String location) throws IOException {
 		this(new DefaultResourceLoader().getResource(location));
@@ -133,8 +133,8 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 
 
 	/**
-	 * Return a potentially adapted variant of this {@link ResourcePropertySource},
-	 * overriding the previously given (or derived) name with the specified name.
+	 * 返回此 {@link ResourcePropertySource} 的一个可能经过适配的变体，
+	 * 用指定名称覆盖先前给定（或派生）的名称。
 	 * @since 4.0.4
 	 */
 	public ResourcePropertySource withName(String name) {
@@ -157,9 +157,9 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Return a potentially adapted variant of this {@link ResourcePropertySource},
-	 * overriding the previously given name (if any) with the original resource name
-	 * (equivalent to the name generated by the name-less constructor variants).
+	 * 返回此 {@link ResourcePropertySource} 的一个可能经过适配的变体，
+	 * 用原始资源名称覆盖先前给定的名称（如果有）
+	 * （等价于无名称构造器变体所生成的名称）。
 	 * @since 4.1
 	 */
 	public ResourcePropertySource withResourceName() {
@@ -171,8 +171,8 @@ public class ResourcePropertySource extends PropertiesPropertySource {
 
 
 	/**
-	 * Return the description for the given Resource; if the description is
-	 * empty, return the class name of the resource plus its identity hash code.
+	 * 返回给定 Resource 的描述；如果描述为空，
+	 * 则返回该资源的类名加上其标识哈希码。
 	 * @see org.springframework.core.io.Resource#getDescription()
 	 */
 	private static String getNameForResource(Resource resource) {

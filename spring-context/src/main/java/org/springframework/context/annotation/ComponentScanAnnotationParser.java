@@ -35,7 +35,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the @{@link ComponentScan} annotation.
+ * 用于 @{@link ComponentScan} 注解的解析器。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

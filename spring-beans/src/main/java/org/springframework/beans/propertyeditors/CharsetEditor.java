@@ -22,11 +22,11 @@ import java.nio.charset.Charset;
 import org.springframework.util.StringUtils;
 
 /**
- * Editor for {@code java.nio.charset.Charset}, translating charset
- * String representations into Charset objects and back.
+ * 用于 {@code java.nio.charset.Charset} 的编辑器，可在字符集 String 表示与 Charset 对象之间相互转
+ * 换。
  *
- * <p>Expects the same syntax as Charset's {@link java.nio.charset.Charset#name()},
- * e.g. {@code UTF-8}, {@code ISO-8859-16}, etc.
+ * <p>期望使用与 Charset 的 {@link java.nio.charset.Charset#name()} 相同的语法，例如 {@code UTF-8}、
+ * {@code ISO-8859-16} 等。
  *
  * @author Arjen Poutsma
  * @author Sam Brannen

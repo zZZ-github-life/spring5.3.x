@@ -28,13 +28,10 @@ import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Auto proxy creator that identifies beans to proxy via a list of names.
- * Checks for direct, "xxx*", and "*xxx" matches.
+ * 通过名称列表识别需要代理的 Bean 的自动代理创建器。支持直接匹配、"xxx*" 匹配和 "*xxx" 匹配。
  *
- * <p>For configuration details, see the javadoc of the parent class
- * AbstractAutoProxyCreator. Typically, you will specify a list of
- * interceptor names to apply to all identified beans, via the
- * "interceptorNames" property.
+ * <p>有关配置细节，请参见父类 AbstractAutoProxyCreator 的 javadoc。通常，你会通过
+ * "interceptorNames" 属性指定一组拦截器名称，以应用于所有被识别出的 Bean。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -54,14 +51,11 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 
 
 	/**
-	 * Set the names of the beans that should automatically get wrapped with proxies.
-	 * A name can specify a prefix to match by ending with "*", e.g. "myBean,tx*"
-	 * will match the bean named "myBean" and all beans whose name start with "tx".
-	 * <p><b>NOTE:</b> In case of a FactoryBean, only the objects created by the
-	 * FactoryBean will get proxied. This default behavior applies as of Spring 2.0.
-	 * If you intend to proxy a FactoryBean instance itself (a rare use case, but
-	 * Spring 1.2's default behavior), specify the bean name of the FactoryBean
-	 * including the factory-bean prefix "&amp;": e.g. "&amp;myFactoryBean".
+	 * 设置应自动包装为代理的 Bean 的名称。名称可以以 "*" 结尾来指定前缀匹配，例如 "myBean,tx*" 将匹配
+	 * 名为 "myBean" 的 Bean 以及所有名称以 "tx" 开头的 Bean。
+	 * <p><b>NOTE:</b> 对于 FactoryBean，只会代理由该 FactoryBean 创建的对象。此默认行为自 Spring 2.0
+	 * 起生效。如果你打算代理 FactoryBean 实例本身（罕见的用例，但这是 Spring 1.2 的默认行为），请指定
+	 * 该 FactoryBean 的 Bean 名称并包含工厂 Bean 前缀 "&amp;"：例如 "&amp;myFactoryBean"。
 	 * @see org.springframework.beans.factory.FactoryBean
 	 * @see org.springframework.beans.factory.BeanFactory#FACTORY_BEAN_PREFIX
 	 */
@@ -75,9 +69,8 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 
 
 	/**
-	 * Delegate to {@link AbstractAutoProxyCreator#getCustomTargetSource(Class, String)}
-	 * if the bean name matches one of the names in the configured list of supported
-	 * names, returning {@code null} otherwise.
+	 * 如果 Bean 名称与配置的受支持名称列表中的某一项匹配，则委托给
+	 * {@link AbstractAutoProxyCreator#getCustomTargetSource(Class, String)}，否则返回 {@code null}。
 	 * @since 5.3
 	 * @see #setBeanNames(String...)
 	 */
@@ -88,8 +81,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	}
 
 	/**
-	 * Identify as a bean to proxy if the bean name matches one of the names in
-	 * the configured list of supported names.
+	 * 如果 Bean 名称与配置的受支持名称列表中的某一项匹配，则将其识别为需要代理的 Bean。
 	 * @see #setBeanNames(String...)
 	 */
 	@Override
@@ -102,8 +94,7 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	}
 
 	/**
-	 * Determine if the bean name for the given bean class matches one of the names
-	 * in the configured list of supported names.
+	 * 判断给定 Bean 类的 Bean 名称是否与配置的受支持名称列表中的某一项匹配。
 	 * @param beanClass the class of the bean to advise
 	 * @param beanName the name of the bean
 	 * @return {@code true} if the given bean name is supported
@@ -138,9 +129,8 @@ public class BeanNameAutoProxyCreator extends AbstractAutoProxyCreator {
 	}
 
 	/**
-	 * Determine if the given bean name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
-	 * as well as direct equality. Can be overridden in subclasses.
+	 * 判断给定 Bean 名称是否与映射名称匹配。
+	 * <p>默认实现会检查 "xxx*"、"*xxx" 和 "*xxx*" 匹配以及直接相等。可在子类中覆盖。
 	 * @param beanName the bean name to check
 	 * @param mappedName the name in the configured list of names
 	 * @return if the names match

@@ -27,13 +27,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Composite {@link PropertySource} implementation that iterates over a set of
- * {@link PropertySource} instances. Necessary in cases where multiple property sources
- * share the same name, e.g. when multiple values are supplied to {@code @PropertySource}.
+ * 复合的 {@link PropertySource} 实现，会遍历一组 {@link PropertySource} 实例。在多个属性源共享同一
+ * 名称的情况下（例如向 {@code @PropertySource} 提供多个值时）非常必要。
  *
- * <p>As of Spring 4.1.2, this class extends {@link EnumerablePropertySource} instead
- * of plain {@link PropertySource}, exposing {@link #getPropertyNames()} based on the
- * accumulated property names from all contained sources (as far as possible).
+ * <p>从 Spring 4.1.2 开始，此类扩展自 {@link EnumerablePropertySource} 而非普通的
+ * {@link PropertySource}，并基于所有包含的源所累积的属性名（尽可能）暴露
+ * {@link #getPropertyNames()}。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -46,7 +45,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 
 
 	/**
-	 * Create a new {@code CompositePropertySource}.
+	 * 创建一个新的 {@code CompositePropertySource}。
 	 * @param name the name of the property source
 	 */
 	public CompositePropertySource(String name) {
@@ -91,7 +90,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 
 
 	/**
-	 * Add the given {@link PropertySource} to the end of the chain.
+	 * 将给定的 {@link PropertySource} 添加到链的末尾。
 	 * @param propertySource the PropertySource to add
 	 */
 	public void addPropertySource(PropertySource<?> propertySource) {
@@ -99,7 +98,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 	}
 
 	/**
-	 * Add the given {@link PropertySource} to the start of the chain.
+	 * 将给定的 {@link PropertySource} 添加到链的开头。
 	 * @param propertySource the PropertySource to add
 	 * @since 4.1
 	 */
@@ -111,7 +110,7 @@ public class CompositePropertySource extends EnumerablePropertySource<Object> {
 	}
 
 	/**
-	 * Return all property sources that this composite source holds.
+	 * 返回此复合源持有的所有属性源。
 	 * @since 4.1.1
 	 */
 	public Collection<PropertySource<?>> getPropertySources() {

@@ -19,7 +19,7 @@ package org.springframework.oxm;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Root of the hierarchy of Object XML Mapping exceptions.
+ * 对象 XML 映射异常层次结构的根。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -28,7 +28,7 @@ import org.springframework.core.NestedRuntimeException;
 public abstract class XmlMappingException extends NestedRuntimeException {
 
 	/**
-	 * Construct an {@code XmlMappingException} with the specified detail message.
+	 * 使用指定的详细消息构造一个 {@code XmlMappingException}。
 	 * @param msg the detail message
 	 */
 	public XmlMappingException(String msg) {
@@ -36,8 +36,7 @@ public abstract class XmlMappingException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Construct an {@code XmlMappingException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code XmlMappingException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */

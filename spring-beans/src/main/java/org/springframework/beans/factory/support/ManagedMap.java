@@ -25,8 +25,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
- * Tag collection class used to hold managed Map values, which may
- * include runtime bean references (to be resolved into bean objects).
+ * 用于保存受管 Map 值的标记集合类，其中可能包含运行时 Bean 引用（将被解析为 Bean 对象）。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -58,8 +57,7 @@ public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, 
 
 
 	/**
-	 * Return a new instance containing keys and values extracted from the
-	 * given entries. The entries themselves are not stored in the map.
+	 * 返回一个新实例，其中包含从给定条目中提取的键和值。这些条目本身不会存储在 map 中。
 	 * @param entries {@code Map.Entry}s containing the keys and values
 	 * from which the map is populated
 	 * @param <K> the {@code Map}'s key type
@@ -78,8 +76,8 @@ public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, 
 	}
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置源 {@code Object}。
+	 * <p>对象的具体类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
@@ -92,14 +90,14 @@ public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, 
 	}
 
 	/**
-	 * Set the default key type name (class name) to be used for this map.
+	 * 设置此 map 要使用的默认键类型名（类名）。
 	 */
 	public void setKeyTypeName(@Nullable String keyTypeName) {
 		this.keyTypeName = keyTypeName;
 	}
 
 	/**
-	 * Return the default key type name (class name) to be used for this map.
+	 * 返回此 map 要使用的默认键类型名（类名）。
 	 */
 	@Nullable
 	public String getKeyTypeName() {
@@ -107,14 +105,14 @@ public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, 
 	}
 
 	/**
-	 * Set the default value type name (class name) to be used for this map.
+	 * 设置此 map 要使用的默认值类型名（类名）。
 	 */
 	public void setValueTypeName(@Nullable String valueTypeName) {
 		this.valueTypeName = valueTypeName;
 	}
 
 	/**
-	 * Return the default value type name (class name) to be used for this map.
+	 * 返回此 map 要使用的默认值类型名（类名）。
 	 */
 	@Nullable
 	public String getValueTypeName() {
@@ -122,8 +120,7 @@ public class ManagedMap<K, V> extends LinkedHashMap<K, V> implements Mergeable, 
 	}
 
 	/**
-	 * Set whether merging should be enabled for this collection,
-	 * in case of a 'parent' collection value being present.
+	 * 设置当存在 'parent' 集合值时，是否为此集合启用合并。
 	 */
 	public void setMergeEnabled(boolean mergeEnabled) {
 		this.mergeEnabled = mergeEnabled;

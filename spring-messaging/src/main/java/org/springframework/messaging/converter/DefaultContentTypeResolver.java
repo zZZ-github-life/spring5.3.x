@@ -21,11 +21,11 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.util.MimeType;
 
 /**
- * A default {@link ContentTypeResolver} that checks the
- * {@link MessageHeaders#CONTENT_TYPE} header or falls back to a default value.
+ * 一个默认的 {@link ContentTypeResolver}，它检查 {@link MessageHeaders#CONTENT_TYPE}
+ * 头，如果不存在则回退到默认值。
  *
- * <p>The header value is expected to be a {@link org.springframework.util.MimeType}
- * or a {@code String} that can be parsed into a {@code MimeType}.
+ * <p>头值应为 {@link org.springframework.util.MimeType}
+ * 或可解析为 {@code MimeType} 的 {@code String}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -37,17 +37,15 @@ public class DefaultContentTypeResolver implements ContentTypeResolver {
 
 
 	/**
-	 * Set the default MIME type to use when there is no
-	 * {@link MessageHeaders#CONTENT_TYPE} header present.
-	 * <p>This property does not have a default value.
+	 * 设置当不存在 {@link MessageHeaders#CONTENT_TYPE} 头时使用的默认 MIME 类型。
+	 * <p>此属性没有默认值。
 	 */
 	public void setDefaultMimeType(@Nullable MimeType defaultMimeType) {
 		this.defaultMimeType = defaultMimeType;
 	}
 
 	/**
-	 * Return the default MIME type to use if no
-	 * {@link MessageHeaders#CONTENT_TYPE} header is present.
+	 * 返回当不存在 {@link MessageHeaders#CONTENT_TYPE} 头时使用的默认 MIME 类型。
 	 */
 	@Nullable
 	public MimeType getDefaultMimeType() {

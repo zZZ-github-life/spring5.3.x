@@ -17,10 +17,10 @@
 package org.springframework.web.servlet.view;
 
 /**
- * Abstract base class for template view resolvers, in particular for FreeMarker views.
+ * 模板视图解析器的抽象基类，特别针对 FreeMarker 视图。
  *
- * <p>Provides a convenient way to specify {@link AbstractTemplateView}'s exposure
- * flags for request attributes, session attributes, and Spring's macro helpers.
+ * <p>提供了一种便捷方式来指定 {@link AbstractTemplateView} 对请求属性、
+ * 会话属性以及 Spring 宏辅助对象的公开标志。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -46,8 +46,8 @@ public abstract class AbstractTemplateViewResolver extends UrlBasedViewResolver 
 	}
 
 	/**
-	 * Set whether all request attributes should be added to the
-	 * model prior to merging with the template. Default is "false".
+	 * 设置是否在与模板合并之前将所有请求属性添加到
+	 * 模型中。默认为 "false"。
 	 * @see AbstractTemplateView#setExposeRequestAttributes
 	 */
 	public void setExposeRequestAttributes(boolean exposeRequestAttributes) {
@@ -55,10 +55,9 @@ public abstract class AbstractTemplateViewResolver extends UrlBasedViewResolver 
 	}
 
 	/**
-	 * Set whether HttpServletRequest attributes are allowed to override (hide)
-	 * controller generated model attributes of the same name. Default is "false",
-	 * which causes an exception to be thrown if request attributes of the same
-	 * name as model attributes are found.
+	 * 设置是否允许 HttpServletRequest 属性覆盖（隐藏）
+	 * 控制器生成的同名模型属性。默认为 "false"，
+	 * 这会在发现与模型属性同名的请求属性时抛出异常。
 	 * @see AbstractTemplateView#setAllowRequestOverride
 	 */
 	public void setAllowRequestOverride(boolean allowRequestOverride) {
@@ -66,8 +65,8 @@ public abstract class AbstractTemplateViewResolver extends UrlBasedViewResolver 
 	}
 
 	/**
-	 * Set whether all HttpSession attributes should be added to the
-	 * model prior to merging with the template. Default is "false".
+	 * 设置是否在与模板合并之前将所有 HttpSession 属性添加到
+	 * 模型中。默认为 "false"。
 	 * @see AbstractTemplateView#setExposeSessionAttributes
 	 */
 	public void setExposeSessionAttributes(boolean exposeSessionAttributes) {
@@ -75,10 +74,9 @@ public abstract class AbstractTemplateViewResolver extends UrlBasedViewResolver 
 	}
 
 	/**
-	 * Set whether HttpSession attributes are allowed to override (hide)
-	 * controller generated model attributes of the same name. Default is "false",
-	 * which causes an exception to be thrown if session attributes of the same
-	 * name as model attributes are found.
+	 * 设置是否允许 HttpSession 属性覆盖（隐藏）
+	 * 控制器生成的同名模型属性。默认为 "false"，
+	 * 这会在发现与模型属性同名的会话属性时抛出异常。
 	 * @see AbstractTemplateView#setAllowSessionOverride
 	 */
 	public void setAllowSessionOverride(boolean allowSessionOverride) {
@@ -86,8 +84,8 @@ public abstract class AbstractTemplateViewResolver extends UrlBasedViewResolver 
 	}
 
 	/**
-	 * Set whether to expose a RequestContext for use by Spring's macro library,
-	 * under the name "springMacroRequestContext". Default is "true".
+	 * 设置是否以 "springMacroRequestContext" 为名称公开一个 RequestContext 供
+	 * Spring 的宏库使用。默认为 "true"。
 	 * @see AbstractTemplateView#setExposeSpringMacroHelpers
 	 */
 	public void setExposeSpringMacroHelpers(boolean exposeSpringMacroHelpers) {

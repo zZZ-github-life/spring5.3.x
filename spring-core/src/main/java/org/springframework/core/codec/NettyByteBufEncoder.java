@@ -31,7 +31,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Encoder for {@link ByteBuf ByteBufs}.
+ * {@link ByteBuf ByteBuf} 的编码器。
  *
  * @author Vladislav Kisel
  * @since 5.3

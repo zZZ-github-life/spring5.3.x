@@ -30,8 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * A simple implementation of {@link MvcResult} with setters.
- *
+ * 带有 setter 的 {@link MvcResult} 简单实现。
  * @author Rossen Stoyanchev
  * @author Rob Winch
  * @since 3.2
@@ -64,7 +63,7 @@ class DefaultMvcResult implements MvcResult {
 
 
 	/**
-	 * Create a new instance with the given request and response.
+	 * 使用给定请求和响应创建新实例。
 	 */
 	public DefaultMvcResult(MockHttpServletRequest request, MockHttpServletResponse response) {
 		this.mockRequest = request;
@@ -152,7 +151,7 @@ class DefaultMvcResult implements MvcResult {
 	}
 
 	/**
-	 * True if the latch count reached 0 within the specified timeout.
+	 * 如果在指定超时时间内闩锁计数达到 0，则为 true。
 	 */
 	private boolean awaitAsyncDispatch(long timeout) {
 		Assert.state(this.asyncDispatchLatch != null,

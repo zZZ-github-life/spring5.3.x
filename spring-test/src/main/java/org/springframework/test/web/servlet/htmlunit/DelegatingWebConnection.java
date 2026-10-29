@@ -27,11 +27,11 @@ import com.gargoylesoftware.htmlunit.WebResponse;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link WebConnection} that allows delegating to various
- * {@code WebConnection} implementations.
+ * 允许委托给各种 {@code WebConnection} 实现的
+ * {@link WebConnection} 实现。
  *
- * <p>For example, if you host your JavaScript on the domain {@code code.jquery.com},
- * you might want to use the following.
+ * <p>例如，如果您的 JavaScript 托管在域 {@code code.jquery.com} 上，
+ * 您可能希望使用以下配置。
  *
  * <pre class="code">
  * WebClient webClient = new WebClient();
@@ -48,7 +48,6 @@ import org.springframework.util.Assert;
  * WebClient webClient = new WebClient();
  * webClient.setWebConnection(webConnection);
  * </pre>
- *
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
@@ -88,7 +87,7 @@ public final class DelegatingWebConnection implements WebConnection {
 
 
 	/**
-	 * The delegate web connection.
+	 * 委托的 Web 连接。
 	 */
 	public static final class DelegateWebConnection {
 

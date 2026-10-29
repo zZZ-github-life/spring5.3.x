@@ -26,16 +26,15 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * A subclass of {@link EmbeddedDatabaseFactory} that implements {@link FactoryBean}
- * for registration as a Spring bean. Returns the actual {@link DataSource} that
- * provides connectivity to the embedded database to Spring.
+ * {@link EmbeddedDatabaseFactory} 的子类，实现了 {@link FactoryBean}，
+ * 以便注册为 Spring Bean。将向 Spring 返回提供嵌入式数据库连接的
+ * 实际 {@link DataSource}。
  *
- * <p>The target {@link DataSource} is returned instead of an {@link EmbeddedDatabase}
- * proxy since the {@link FactoryBean} will manage the initialization and destruction
- * lifecycle of the embedded database instance.
+ * <p>返回的是目标 {@link DataSource}，而不是 {@link EmbeddedDatabase}
+ * 代理，因为 {@link FactoryBean} 将管理嵌入式数据库实例的初始化和销毁生命周期。
  *
- * <p>Implements {@link DisposableBean} to shut down the embedded database when the
- * managing Spring container is being closed.
+ * <p>实现了 {@link DisposableBean}，以便在管理它的 Spring 容器关闭时
+ * 关闭嵌入式数据库。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -49,8 +48,8 @@ public class EmbeddedDatabaseFactoryBean extends EmbeddedDatabaseFactory
 
 
 	/**
-	 * Set a script execution to be run in the bean destruction callback,
-	 * cleaning up the database and leaving it in a known state for others.
+	 * 设置要在 Bean 销毁回调中运行的脚本执行器，
+	 * 用于清理数据库并为其他使用者留下已知状态。
 	 * @param databaseCleaner the database script executor to run on destroy
 	 * @see #setDatabasePopulator
 	 * @see org.springframework.jdbc.datasource.init.DataSourceInitializer#setDatabaseCleaner

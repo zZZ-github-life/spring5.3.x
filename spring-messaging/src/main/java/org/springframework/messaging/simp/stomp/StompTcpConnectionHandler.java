@@ -20,8 +20,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.tcp.TcpConnectionHandler;
 
 /**
- * A {@link TcpConnectionHandler} for use with STOMP connections, exposing
- * further information about the connection.
+ * 与 STOMP 连接配合使用的 {@link TcpConnectionHandler}，公开有关连接的更多信息。
  *
  * @author Rossen Stoyanchev
  * @since 5.3
@@ -30,13 +29,13 @@ import org.springframework.messaging.tcp.TcpConnectionHandler;
 public interface StompTcpConnectionHandler<P> extends TcpConnectionHandler<P> {
 
 	/**
-	 * Return the {@link SimpMessageHeaderAccessor#getSessionId() sessionId}
-	 * associated with the STOMP connection.
+	 * 返回与 STOMP 连接关联的
+	 * {@link SimpMessageHeaderAccessor#getSessionId() sessionId}。
 	 */
 	String getSessionId();
 
 	/**
-	 * Return the headers that will be sent in the STOMP CONNECT frame.
+	 * 返回将在 STOMP CONNECT 帧中发送的头。
 	 */
 	StompHeaderAccessor getConnectHeaders();
 

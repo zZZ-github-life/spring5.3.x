@@ -23,9 +23,9 @@ import org.springframework.http.server.PathContainer.PathSegment;
 import org.springframework.lang.Nullable;
 
 /**
- * A path element representing capturing a piece of the path as a variable. In the pattern
- * '/foo/{bar}/goo' the {bar} is represented as a {@link CaptureVariablePathElement}. There
- * must be at least one character to bind to the variable.
+ * 表示将路径中的一段捕获为变量的路径元素。在模式
+ * '/foo/{bar}/goo' 中，{bar} 表示为 {@link CaptureVariablePathElement}。
+ * 至少要有一个字符才能绑定到该变量。
  *
  * @author Andy Clement
  * @since 5.0
@@ -39,7 +39,7 @@ class CaptureVariablePathElement extends PathElement {
 
 
 	/**
-	 * Create a new {@link CaptureVariablePathElement} instance.
+	 * 创建一个新的 {@link CaptureVariablePathElement} 实例。
 	 * @param pos the position in the pattern of this capture element
 	 * @param captureDescriptor is of the form {AAAAA[:pattern]}
 	 */

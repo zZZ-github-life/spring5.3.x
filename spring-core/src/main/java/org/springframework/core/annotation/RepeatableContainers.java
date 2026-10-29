@@ -27,15 +27,12 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Strategy used to determine annotations that act as containers for other
- * annotations. The {@link #standardRepeatables()} method provides a default
- * strategy that respects Java's {@link Repeatable @Repeatable} support and
- * should be suitable for most situations.
+ * 用于确定哪些注解作为其他注解容器的策略。{@link #standardRepeatables()} 方法提供了默认策略，它遵
+ * 循 Java 的 {@link Repeatable @Repeatable} 支持，应适用于大多数场景。
  *
- * <p>The {@link #of} method can be used to register relationships for
- * annotations that do not wish to use {@link Repeatable @Repeatable}.
+ * <p>可以使用 {@link #of} 方法为不希望使用 {@link Repeatable @Repeatable} 的注解注册关系。
  *
- * <p>To completely disable repeatable support use {@link #none()}.
+ * <p>要完全禁用可重复支持，请使用 {@link #none()}。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -53,8 +50,7 @@ public abstract class RepeatableContainers {
 
 
 	/**
-	 * Add an additional explicit relationship between a contained and
-	 * repeatable annotation.
+	 * 在被包含注解与可重复注解之间添加一个额外的显式关系。
 	 * @param container the container type
 	 * @param repeatable the contained repeatable type
 	 * @return a new {@link RepeatableContainers} instance
@@ -92,8 +88,8 @@ public abstract class RepeatableContainers {
 
 
 	/**
-	 * Create a {@link RepeatableContainers} instance that searches using Java's
-	 * {@link Repeatable @Repeatable} annotation.
+	 * 创建一个使用 Java 的 {@link Repeatable @Repeatable} 注解进行搜索的 {@link RepeatableContainers}
+	 * 实例。
 	 * @return a {@link RepeatableContainers} instance
 	 */
 	public static RepeatableContainers standardRepeatables() {
@@ -101,8 +97,7 @@ public abstract class RepeatableContainers {
 	}
 
 	/**
-	 * Create a {@link RepeatableContainers} instance that uses predefined
-	 * repeatable and container types.
+	 * 创建一个使用预定义的可重复类型和容器类型的 {@link RepeatableContainers} 实例。
 	 * @param repeatable the contained repeatable annotation type
 	 * @param container the container annotation type or {@code null}. If specified,
 	 * this annotation must declare a {@code value} attribute returning an array
@@ -122,8 +117,7 @@ public abstract class RepeatableContainers {
 	}
 
 	/**
-	 * Create a {@link RepeatableContainers} instance that does not expand any
-	 * repeatable annotations.
+	 * 创建一个不展开任何可重复注解的 {@link RepeatableContainers} 实例。
 	 * @return a {@link RepeatableContainers} instance
 	 */
 	public static RepeatableContainers none() {
@@ -132,8 +126,8 @@ public abstract class RepeatableContainers {
 
 
 	/**
-	 * Standard {@link RepeatableContainers} implementation that searches using
-	 * Java's {@link Repeatable @Repeatable} annotation.
+	 * 标准的 {@link RepeatableContainers} 实现，使用 Java 的 {@link Repeatable @Repeatable} 注解进行搜
+	 * 索。
 	 */
 	private static class StandardRepeatableContainers extends RepeatableContainers {
 
@@ -183,7 +177,7 @@ public abstract class RepeatableContainers {
 
 
 	/**
-	 * A single explicit mapping.
+	 * 单个显式映射。
 	 */
 	private static class ExplicitRepeatableContainer extends RepeatableContainers {
 
@@ -264,7 +258,7 @@ public abstract class RepeatableContainers {
 
 
 	/**
-	 * No repeatable containers.
+	 * 没有可重复容器。
 	 */
 	private static class NoRepeatableContainers extends RepeatableContainers {
 

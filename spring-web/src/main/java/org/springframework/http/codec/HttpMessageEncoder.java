@@ -28,8 +28,8 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of {@code Encoder} exposing extra methods relevant in the context
- * of HTTP request or response body encoding.
+ * {@code Encoder} 的扩展，公开了 HTTP 请求或响应体编码场景中
+ * 相关的额外方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -38,14 +38,13 @@ import org.springframework.lang.Nullable;
 public interface HttpMessageEncoder<T> extends Encoder<T> {
 
 	/**
-	 * Return "streaming" media types for which flushing should be performed
-	 * automatically vs at the end of the input stream.
+	 * 返回"流式"媒体类型，对于这些类型应自动执行刷新，
+	 * 而不是在输入流结束时刷新。
 	 */
 	List<MediaType> getStreamingMediaTypes();
 
 	/**
-	 * Get decoding hints based on the server request or annotations on the
-	 * target controller method parameter.
+	 * 根据服务器请求或目标控制器方法参数上的注解获取解码提示。
 	 * @param actualType the actual source type to encode, possibly a reactive
 	 * wrapper and sourced from {@link org.springframework.core.MethodParameter},
 	 * i.e. providing access to method annotations.

@@ -1,5 +1,5 @@
 /**
- * Core support package for type filtering (e.g. for classpath scanning).
+ * 类型过滤（例如用于类路径扫描）的核心支持包。
  */
 @NonNullApi
 @NonNullFields

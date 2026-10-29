@@ -30,17 +30,17 @@ import org.springframework.web.servlet.support.JspAwareRequestContext;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
- * Superclass for all tags that require a {@link RequestContext}.
+ * 所有需要 {@link RequestContext} 的标签的超类。
  *
- * <p>The {@code RequestContext} instance provides easy access
- * to current state like the
- * {@link org.springframework.web.context.WebApplicationContext},
- * the {@link java.util.Locale}, the
- * {@link org.springframework.ui.context.Theme}, etc.
+ * <p>{@code RequestContext} 实例提供了对当前状态的便捷访问，
+ * 例如
+ * {@link org.springframework.web.context.WebApplicationContext}、
+ * {@link java.util.Locale}、
+ * {@link org.springframework.ui.context.Theme} 等。
  *
- * <p>Mainly intended for
- * {@link org.springframework.web.servlet.DispatcherServlet} requests;
- * will use fallbacks when used outside {@code DispatcherServlet}.
+ * <p>主要面向
+ * {@link org.springframework.web.servlet.DispatcherServlet} 请求；
+ * 在 {@code DispatcherServlet} 之外使用时将采用回退方案。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -51,14 +51,14 @@ import org.springframework.web.servlet.support.RequestContext;
 public abstract class RequestContextAwareTag extends TagSupport implements TryCatchFinally {
 
 	/**
-	 * {@link javax.servlet.jsp.PageContext} attribute for the
-	 * page-level {@link RequestContext} instance.
+	 * 页面级 {@link RequestContext} 实例所对应的
+	 * {@link javax.servlet.jsp.PageContext} 属性。
 	 */
 	public static final String REQUEST_CONTEXT_PAGE_ATTRIBUTE =
 			"org.springframework.web.servlet.tags.REQUEST_CONTEXT";
 
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
@@ -67,8 +67,8 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 
 
 	/**
-	 * Create and expose the current RequestContext.
-	 * Delegates to {@link #doStartTagInternal()} for actual work.
+	 * 创建并公开当前的 RequestContext。
+	 * 实际工作委托给 {@link #doStartTagInternal()}。
 	 * @see #REQUEST_CONTEXT_PAGE_ATTRIBUTE
 	 * @see org.springframework.web.servlet.support.JspAwareRequestContext
 	 */
@@ -93,7 +93,7 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 	}
 
 	/**
-	 * Return the current RequestContext.
+	 * 返回当前的 RequestContext。
 	 */
 	protected final RequestContext getRequestContext() {
 		Assert.state(this.requestContext != null, "No current RequestContext");
@@ -101,7 +101,7 @@ public abstract class RequestContextAwareTag extends TagSupport implements TryCa
 	}
 
 	/**
-	 * Called by doStartTag to perform the actual work.
+	 * 由 doStartTag 调用以执行实际工作。
 	 * @return same as TagSupport.doStartTag
 	 * @throws Exception any exception, any checked one other than
 	 * a JspException gets wrapped in a JspException by doStartTag

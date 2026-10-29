@@ -23,11 +23,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.util.Assert;
 
 /**
- * {@link TransactionDefinition} implementation that delegates all calls to a given target
- * {@link TransactionDefinition} instance. Abstract because it is meant to be subclassed,
- * with subclasses overriding specific methods that are not supposed to simply delegate
- * to the target instance.
- *
+ * 将所有调用委托给给定目标 {@link TransactionDefinition} 实例的 {@link TransactionDefinition} 实现。由于设计为供子类扩展，因此是抽象类；子类可覆盖不应简单委托给目标实例的特定方法。
  * @author Juergen Hoeller
  * @since 3.0
  */
@@ -38,7 +34,7 @@ public abstract class DelegatingTransactionDefinition implements TransactionDefi
 
 
 	/**
-	 * Create a DelegatingTransactionAttribute for the given target attribute.
+	 * 为给定目标属性创建一个 DelegatingTransactionAttribute。
 	 * @param targetDefinition the target TransactionAttribute to delegate to
 	 */
 	public DelegatingTransactionDefinition(TransactionDefinition targetDefinition) {

@@ -25,11 +25,11 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Convenience methods to retrieve Spring's root {@link WebApplicationContext}
- * for a given JSF {@link FacesContext}. This is useful for accessing a
- * Spring application context from custom JSF-based code.
+ * 便捷方法，用于为给定的 JSF {@link FacesContext} 获取 Spring 的根
+ * {@link WebApplicationContext}。这对于从基于 JSF 的自定义代码访问 Spring
+ * 应用上下文非常有用。
  *
- * <p>Analogous to Spring's WebApplicationContextUtils for the ServletContext.
+ * <p>类似于 Spring 针对 ServletContext 的 WebApplicationContextUtils。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -39,10 +39,10 @@ import org.springframework.web.util.WebUtils;
 public abstract class FacesContextUtils {
 
 	/**
-	 * Find the root {@link WebApplicationContext} for this web app, typically
-	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
-	 * <p>Will rethrow an exception that happened on root context startup,
-	 * to differentiate between a failed context startup and no context at all.
+	 * 查找此 Web 应用的根 {@link WebApplicationContext}，通常通过
+	 * {@link org.springframework.web.context.ContextLoaderListener} 加载。
+	 * <p>将重新抛出根上下文启动时发生的异常，
+	 * 以区分上下文启动失败和完全没有上下文两种情况。
 	 * @param fc the FacesContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app, or {@code null} if none
 	 * @see org.springframework.web.context.WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
@@ -68,10 +68,10 @@ public abstract class FacesContextUtils {
 	}
 
 	/**
-	 * Find the root {@link WebApplicationContext} for this web app, typically
-	 * loaded via {@link org.springframework.web.context.ContextLoaderListener}.
-	 * <p>Will rethrow an exception that happened on root context startup,
-	 * to differentiate between a failed context startup and no context at all.
+	 * 查找此 Web 应用的根 {@link WebApplicationContext}，通常通过
+	 * {@link org.springframework.web.context.ContextLoaderListener} 加载。
+	 * <p>将重新抛出根上下文启动时发生的异常，
+	 * 以区分上下文启动失败和完全没有上下文两种情况。
 	 * @param fc the FacesContext to find the web application context for
 	 * @return the root WebApplicationContext for this web app
 	 * @throws IllegalStateException if the root WebApplicationContext could not be found
@@ -86,20 +86,15 @@ public abstract class FacesContextUtils {
 	}
 
 	/**
-	 * Return the best available mutex for the given session:
-	 * that is, an object to synchronize on for the given session.
-	 * <p>Returns the session mutex attribute if available; usually,
-	 * this means that the HttpSessionMutexListener needs to be defined
-	 * in {@code web.xml}. Falls back to the Session reference itself
-	 * if no mutex attribute found.
-	 * <p>The session mutex is guaranteed to be the same object during
-	 * the entire lifetime of the session, available under the key defined
-	 * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
-	 * safe reference to synchronize on for locking on the current session.
-	 * <p>In many cases, the Session reference itself is a safe mutex
-	 * as well, since it will always be the same object reference for the
-	 * same active logical session. However, this is not guaranteed across
-	 * different servlet containers; the only 100% safe way is a session mutex.
+	 * 返回给定会话的最佳可用互斥锁：即用于对给定会话进行同步的对象。
+	 * <p>如果会话互斥属性可用则返回它；通常这意味着需要在 {@code web.xml} 中定义
+	 * HttpSessionMutexListener。如果未找到互斥属性，则回退到 Session 引用本身。
+	 * <p>会话互斥锁保证在整个会话生命周期内都是同一个对象，可通过
+	 * {@code SESSION_MUTEX_ATTRIBUTE} 常量定义的键获取。它可作为对当前会话加锁时
+	 * 用于同步的安全引用。
+	 * <p>在许多情况下，Session 引用本身也是安全的互斥锁，
+	 * 因为对于同一个活动逻辑会话，它始终是同一个对象引用。不过，这在不同 Servlet
+	 * 容器之间并无保证；唯一 100% 安全的方式是使用会话互斥锁。
 	 * @param fc the FacesContext to find the session mutex for
 	 * @return the mutex object (never {@code null})
 	 * @see org.springframework.web.util.WebUtils#SESSION_MUTEX_ATTRIBUTE

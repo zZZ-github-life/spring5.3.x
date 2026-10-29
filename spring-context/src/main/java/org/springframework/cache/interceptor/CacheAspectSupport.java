@@ -57,20 +57,16 @@ import org.springframework.util.function.SingletonSupplier;
 import org.springframework.util.function.SupplierUtils;
 
 /**
- * Base class for caching aspects, such as the {@link CacheInterceptor} or an
- * AspectJ aspect.
+ * 缓存切面的基类，例如 {@link CacheInterceptor} 或 AspectJ 切面。
  *
- * <p>This enables the underlying Spring caching infrastructure to be used easily
- * to implement an aspect for any aspect system.
+ * <p>这使得底层 Spring 缓存基础设施可以轻松用于为任何切面系统实现切面。
  *
- * <p>Subclasses are responsible for calling relevant methods in the correct order.
+ * <p>子类负责按正确顺序调用相关方法。
  *
- * <p>Uses the <b>Strategy</b> design pattern. A {@link CacheOperationSource} is
- * used for determining caching operations, a {@link KeyGenerator} will build the
- * cache keys, and a {@link CacheResolver} will resolve the actual cache(s) to use.
+ * <p>使用 <b>Strategy</b> 设计模式。{@link CacheOperationSource} 用于确定缓存操作，
+ * {@link KeyGenerator} 将构建缓存键，{@link CacheResolver} 将解析要使用的实际缓存。
  *
- * <p>Note: A cache aspect is serializable but does not perform any actual caching
- * after deserialization.
+ * <p>注意：缓存切面是可序列化的，但反序列化后不会执行任何实际的缓存。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -104,8 +100,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 
 	/**
-	 * Configure this aspect with the given error handler, key generator and cache resolver/manager
-	 * suppliers, applying the corresponding default if a supplier is not resolvable.
+	 * 使用给定的错误处理器、键生成器和缓存解析器/管理器供应器配置此切面，如果供应器无法解析，则应用相
+	 * 应的默认值。
 	 * @since 5.1
 	 */
 	public void configure(
@@ -120,9 +116,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 
 	/**
-	 * Set one or more cache operation sources which are used to find the cache
-	 * attributes. If more than one source is provided, they will be aggregated
-	 * using a {@link CompositeCacheOperationSource}.
+	 * 设置一个或多个用于查找缓存属性的缓存操作源。如果提供了多个源，它们将使用
+	 * {@link CompositeCacheOperationSource} 聚合。
 	 * @see #setCacheOperationSource
 	 */
 	public void setCacheOperationSources(CacheOperationSource... cacheOperationSources) {
@@ -132,7 +127,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Set the CacheOperationSource for this cache aspect.
+	 * 设置此缓存切面的 CacheOperationSource。
 	 * @since 5.1
 	 * @see #setCacheOperationSources
 	 */
@@ -141,7 +136,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Return the CacheOperationSource for this cache aspect.
+	 * 返回此缓存切面的 CacheOperationSource。
 	 */
 	@Nullable
 	public CacheOperationSource getCacheOperationSource() {
@@ -149,26 +144,23 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Set the default {@link KeyGenerator} that this cache aspect should delegate to
-	 * if no specific key generator has been set for the operation.
-	 * <p>The default is a {@link SimpleKeyGenerator}.
+	 * 设置此缓存切面在未为操作设置特定键生成器时应委托给的默认 {@link KeyGenerator}。
+	 * <p>默认是 {@link SimpleKeyGenerator}。
 	 */
 	public void setKeyGenerator(KeyGenerator keyGenerator) {
 		this.keyGenerator = SingletonSupplier.of(keyGenerator);
 	}
 
 	/**
-	 * Return the default {@link KeyGenerator} that this cache aspect delegates to.
+	 * 返回此缓存切面委托给的默认 {@link KeyGenerator}。
 	 */
 	public KeyGenerator getKeyGenerator() {
 		return this.keyGenerator.obtain();
 	}
 
 	/**
-	 * Set the default {@link CacheResolver} that this cache aspect should delegate
-	 * to if no specific cache resolver has been set for the operation.
-	 * <p>The default resolver resolves the caches against their names and the
-	 * default cache manager.
+	 * 设置此缓存切面在未为操作设置特定缓存解析器时应委托给的默认 {@link CacheResolver}。
+	 * <p>默认解析器根据缓存名称和默认缓存管理器解析缓存。
 	 * @see #setCacheManager
 	 * @see SimpleCacheResolver
 	 */
@@ -177,7 +169,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Return the default {@link CacheResolver} that this cache aspect delegates to.
+	 * 返回此缓存切面委托给的默认 {@link CacheResolver}。
 	 */
 	@Nullable
 	public CacheResolver getCacheResolver() {
@@ -185,8 +177,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Set the {@link CacheManager} to use to create a default {@link CacheResolver}.
-	 * Replace the current {@link CacheResolver}, if any.
+	 * 设置用于创建默认 {@link CacheResolver} 的 {@link CacheManager}。如果存在当前
+	 * {@link CacheResolver}，则替换它。
 	 * @see #setCacheResolver
 	 * @see SimpleCacheResolver
 	 */
@@ -195,8 +187,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Set the containing {@link BeanFactory} for {@link CacheManager} and other
-	 * service lookups.
+	 * 设置用于 {@link CacheManager} 及其他服务查找的所属 {@link BeanFactory}。
 	 * @since 4.3
 	 */
 	@Override
@@ -233,9 +224,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 
 	/**
-	 * Convenience method to return a String representation of this Method
-	 * for use in logging. Can be overridden in subclasses to provide a
-	 * different identifier for the given method.
+	 * 便捷方法，返回此 Method 的 String 表示形式，用于日志记录。可以在子类中覆盖，以为给定方法提供不同
+	 * 的标识符。
 	 * @param method the method we're interested in
 	 * @param targetClass class the method is on
 	 * @return log message identifying this method
@@ -266,9 +256,8 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Return the {@link CacheOperationMetadata} for the specified operation.
-	 * <p>Resolve the {@link CacheResolver} and the {@link KeyGenerator} to be
-	 * used for the operation.
+	 * 返回指定操作的 {@link CacheOperationMetadata}。
+	 * <p>解析要用于该操作的 {@link CacheResolver} 和 {@link KeyGenerator}。
 	 * @param operation the operation
 	 * @param method the method on which the operation is invoked
 	 * @param targetClass the target type
@@ -307,8 +296,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Return a bean with the specified name and type. Used to resolve services that
-	 * are referenced by name in a {@link CacheOperation}.
+	 * 返回具有指定名称和类型的 Bean。用于解析在 {@link CacheOperation} 中按名称引用的服务。
 	 * @param beanName the name of the bean, as defined by the operation
 	 * @param expectedType type for the bean
 	 * @return the bean matching that name
@@ -326,7 +314,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Clear the cached metadata.
+	 * 清除缓存的元数据。
 	 */
 	protected void clearMetadataCache() {
 		this.metadataCache.clear();
@@ -352,11 +340,9 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Execute the underlying operation (typically in case of cache miss) and return
-	 * the result of the invocation. If an exception occurs it will be wrapped in a
-	 * {@link CacheOperationInvoker.ThrowableWrapper}: the exception can be handled
-	 * or modified but it <em>must</em> be wrapped in a
-	 * {@link CacheOperationInvoker.ThrowableWrapper} as well.
+	 * 执行底层操作（通常在缓存未命中的情况下）并返回调用的结果。如果发生异常，它将被包装在
+	 * {@link CacheOperationInvoker.ThrowableWrapper} 中：异常可以被处理或修改，但也<em>必须</em>包装在
+	 * {@link CacheOperationInvoker.ThrowableWrapper} 中。
 	 * @param invoker the invoker handling the operation being cached
 	 * @return the result of the invocation
 	 * @see CacheOperationInvoker#invoke()
@@ -522,7 +508,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Find a cached item only for {@link CacheableOperation} that passes the condition.
+	 * 仅针对通过条件的 {@link CacheableOperation} 查找缓存项。
 	 * @param contexts the cacheable operations
 	 * @return a {@link Cache.ValueWrapper} holding the cached item,
 	 * or {@code null} if none is found
@@ -548,8 +534,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Collect the {@link CachePutRequest} for all {@link CacheOperation} using
-	 * the specified result item.
+	 * 使用指定的结果项为所有 {@link CacheOperation} 收集 {@link CachePutRequest}。
 	 * @param contexts the contexts to handle
 	 * @param result the result item (never {@code null})
 	 * @param putRequests the collection to update
@@ -665,8 +650,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 
 	/**
-	 * Metadata of a cache operation that does not depend on a particular invocation
-	 * which makes it a good candidate for caching.
+	 * 缓存操作的元数据，它不依赖于特定的调用，因此非常适合缓存。
 	 */
 	protected static class CacheOperationMetadata {
 
@@ -700,7 +684,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 
 
 	/**
-	 * A {@link CacheOperationInvocationContext} context for a {@link CacheOperation}.
+	 * {@link CacheOperation} 的 {@link CacheOperationInvocationContext} 上下文。
 	 */
 	protected class CacheOperationContext implements CacheOperationInvocationContext<CacheOperation> {
 
@@ -786,7 +770,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 		}
 
 		/**
-		 * Compute the key for the given caching operation.
+		 * 计算给定缓存操作的键。
 		 */
 		@Nullable
 		protected Object generateKey(@Nullable Object result) {
@@ -886,7 +870,7 @@ public abstract class CacheAspectSupport extends AbstractCacheInvoker
 	}
 
 	/**
-	 * Internal holder class for recording that a cache method was invoked.
+	 * 用于记录已调用缓存方法的内部持有类。
 	 */
 	private static class InvocationAwareResult {
 

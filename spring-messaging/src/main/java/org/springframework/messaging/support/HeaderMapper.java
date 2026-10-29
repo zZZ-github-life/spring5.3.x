@@ -19,9 +19,8 @@ package org.springframework.messaging.support;
 import org.springframework.messaging.MessageHeaders;
 
 /**
- * Generic strategy interface for mapping {@link MessageHeaders} to and from other
- * types of objects. This would typically be used by adapters where the "other type"
- * has a concept of headers or properties (HTTP, JMS, AMQP, etc).
+ * 用于在 {@link MessageHeaders} 与其他类型对象之间进行映射的通用策略接口。
+ * 通常由适配器使用，其中“其他类型”具有头部或属性的概念（HTTP、JMS、AMQP 等）。
  *
  * @author Mark Fisher
  * @since 4.1
@@ -30,14 +29,14 @@ import org.springframework.messaging.MessageHeaders;
 public interface HeaderMapper<T> {
 
 	/**
-	 * Map from the given {@link MessageHeaders} to the specified target message.
+	 * 将给定的 {@link MessageHeaders} 映射到指定的目标消息。
 	 * @param headers the abstracted MessageHeaders
 	 * @param target the native target message
 	 */
 	void fromHeaders(MessageHeaders headers, T target);
 
 	/**
-	 * Map from the given target message to abstracted {@link MessageHeaders}.
+	 * 将给定的目标消息映射为抽象的 {@link MessageHeaders}。
 	 * @param source the native target message
 	 * @return the abstracted MessageHeaders
 	 */

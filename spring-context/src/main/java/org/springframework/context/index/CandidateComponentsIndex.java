@@ -28,20 +28,17 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Provide access to the candidates that are defined in {@code META-INF/spring.components}.
+ * 提供对 {@code META-INF/spring.components} 中定义的候选组件的访问。
  *
- * <p>An arbitrary number of stereotypes can be registered (and queried) on the index: a
- * typical example is the fully qualified name of an annotation that flags the class for
- * a certain use case. The following call returns all the {@code @Component}
- * <b>candidate</b> types for the {@code com.example} package (and its sub-packages):
+ * <p>可以在索引上注册（并查询）任意数量的 stereotype，例如用注解的完全限定名来标记某个类以用于特定
+ * 用例。以下调用返回 {@code com.example} 包（及其子包）中的所有 <b>候选</b>类型：
  * <pre class="code">
  * Set&lt;String&gt; candidates = index.getCandidateTypes(
  *         "com.example", "org.springframework.stereotype.Component");
  * </pre>
  *
- * <p>The {@code type} is usually the fully qualified name of a class, though this is
- * not a rule. Similarly, the {@code stereotype} is usually the fully qualified name of
- * a target type but it can be any marker really.
+ * <p>{@code type} 通常是类的完全限定名，但这并非硬性规则。类似地，{@code stereotype} 通常是目标类
+ * 型的完全限定名，但实际上可以是任何标记。
  *
  * @author Stephane Nicoll
  * @since 5.0
@@ -72,7 +69,7 @@ public class CandidateComponentsIndex {
 
 
 	/**
-	 * Return the candidate types that are associated with the specified stereotype.
+	 * 返回与指定 stereotype 关联的候选类型。
 	 * @param basePackage the package to check for candidates
 	 * @param stereotype the stereotype to use
 	 * @return the candidate types associated with the specified {@code stereotype}

@@ -21,8 +21,8 @@ import java.util.Deque;
 import org.springframework.transaction.NoTransactionException;
 
 /**
- * Mutable holder for reactive transaction {@link TransactionContext contexts}.
- * This holder keeps references to individual {@link TransactionContext}s.
+ * 响应式事务{@link TransactionContext 上下文}的可变持有者。
+ * 此持有者维护对各个{@link TransactionContext}的引用。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -40,8 +40,8 @@ final class TransactionContextHolder {
 
 
 	/**
-	 * Return the current {@link TransactionContext}.
-	 * @throws NoTransactionException if no transaction is ongoing
+	 * 返回当前的{@link TransactionContext}。
+	 * @throws NoTransactionException 如果没有正在进行的事务
 	 */
 	TransactionContext currentContext() {
 		TransactionContext context = this.transactionStack.peek();
@@ -52,7 +52,7 @@ final class TransactionContextHolder {
 	}
 
 	/**
-	 * Create a new {@link TransactionContext}.
+	 * 创建一个新的{@link TransactionContext}。
 	 */
 	TransactionContext createContext() {
 		TransactionContext context = this.transactionStack.peek();
@@ -67,8 +67,8 @@ final class TransactionContextHolder {
 	}
 
 	/**
-	 * Check whether the holder has a {@link TransactionContext}.
-	 * @return {@literal true} if a {@link TransactionContext} is associated
+	 * 检查持有者是否包含一个{@link TransactionContext}。
+	 * @return 如果关联了{@link TransactionContext}则返回{@literal true}
 	 */
 	boolean hasContext() {
 		return !this.transactionStack.isEmpty();

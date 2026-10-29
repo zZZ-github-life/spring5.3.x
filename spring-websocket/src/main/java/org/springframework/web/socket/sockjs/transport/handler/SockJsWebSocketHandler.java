@@ -33,16 +33,16 @@ import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 import org.springframework.web.socket.sockjs.transport.session.WebSocketServerSockJsSession;
 
 /**
- * An implementation of {@link WebSocketHandler} that adds SockJS messages frames, sends
- * SockJS heartbeat messages, and delegates lifecycle events and messages to a target
- * {@link WebSocketHandler}.
+ * {@link WebSocketHandler} 的实现，添加 SockJS 消息帧、发送
+ * SockJS 心跳消息，并将生命周期事件和消息委托给目标
+ * {@link WebSocketHandler}。
  *
- * <p>Methods in this class allow exceptions from the wrapped {@link WebSocketHandler} to
- * propagate. However, any exceptions resulting from SockJS message handling (e.g. while
- * sending SockJS frames or heartbeat messages) are caught and treated as transport
- * errors, i.e. routed to the
+ * <p>此类中的方法允许来自包装的 {@link WebSocketHandler} 的异常
+ * 向外传播。但是，SockJS 消息处理产生的任何异常（例如
+ * 发送 SockJS 帧或心跳消息时）都会被捕获并视为传输
+ * 错误，即路由到包装处理器的
  * {@link WebSocketHandler#handleTransportError(WebSocketSession, Throwable)
- * handleTransportError} method of the wrapped handler and the session closed.
+ * handleTransportError} 方法并关闭会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

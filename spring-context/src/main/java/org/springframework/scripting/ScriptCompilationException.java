@@ -20,7 +20,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception to be thrown on script compilation failure.
+ * 脚本编译失败时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -33,7 +33,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 
 	/**
-	 * Constructor for ScriptCompilationException.
+	 * ScriptCompilationException 的构造器。
 	 * @param msg the detail message
 	 */
 	public ScriptCompilationException(String msg) {
@@ -42,7 +42,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for ScriptCompilationException.
+	 * ScriptCompilationException 的构造器。
 	 * @param msg the detail message
 	 * @param cause the root cause (usually from using an underlying script compiler API)
 	 */
@@ -52,7 +52,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for ScriptCompilationException.
+	 * ScriptCompilationException 的构造器。
 	 * @param scriptSource the source for the offending script
 	 * @param msg the detail message
 	 * @since 4.2
@@ -63,7 +63,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for ScriptCompilationException.
+	 * ScriptCompilationException 的构造器。
 	 * @param scriptSource the source for the offending script
 	 * @param cause the root cause (usually from using an underlying script compiler API)
 	 */
@@ -73,7 +73,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for ScriptCompilationException.
+	 * ScriptCompilationException 的构造器。
 	 * @param scriptSource the source for the offending script
 	 * @param msg the detail message
 	 * @param cause the root cause (usually from using an underlying script compiler API)
@@ -85,7 +85,7 @@ public class ScriptCompilationException extends NestedRuntimeException {
 
 
 	/**
-	 * Return the source for the offending script.
+	 * 返回出错脚本的源。
 	 * @return the source, or {@code null} if not available
 	 */
 	@Nullable

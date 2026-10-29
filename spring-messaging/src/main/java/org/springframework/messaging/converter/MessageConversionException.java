@@ -21,7 +21,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * An exception raised by {@link MessageConverter} implementations.
+ * 由 {@link MessageConverter} 实现抛出的异常。
  *
  * @author Mark Fisher
  * @since 4.0

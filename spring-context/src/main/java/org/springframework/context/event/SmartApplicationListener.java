@@ -22,11 +22,9 @@ import org.springframework.core.Ordered;
 import org.springframework.lang.Nullable;
 
 /**
- * Extended variant of the standard {@link ApplicationListener} interface,
- * exposing further metadata such as the supported event and source type.
+ * 标准 {@link ApplicationListener} 接口的扩展变体，公开更多元数据，如支持的事件类型和源类型。
  *
- * <p>For full introspection of generic event types, consider implementing
- * the {@link GenericApplicationListener} interface instead.
+ * <p>如果需要对泛型事件类型进行完整内省，请考虑改为实现 {@link GenericApplicationListener} 接口。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -36,14 +34,13 @@ import org.springframework.lang.Nullable;
 public interface SmartApplicationListener extends ApplicationListener<ApplicationEvent>, Ordered {
 
 	/**
-	 * Determine whether this listener actually supports the given event type.
+	 * 判断此监听器是否实际支持给定的事件类型。
 	 * @param eventType the event type (never {@code null})
 	 */
 	boolean supportsEventType(Class<? extends ApplicationEvent> eventType);
 
 	/**
-	 * Determine whether this listener actually supports the given source type.
-	 * <p>The default implementation always returns {@code true}.
+	 * 判断此监听器是否实际支持给定的源类型。<p>默认实现始终返回 {@code true}。
 	 * @param sourceType the source type, or {@code null} if no source
 	 */
 	default boolean supportsSourceType(@Nullable Class<?> sourceType) {
@@ -51,8 +48,7 @@ public interface SmartApplicationListener extends ApplicationListener<Applicatio
 	}
 
 	/**
-	 * Determine this listener's order in a set of listeners for the same event.
-	 * <p>The default implementation returns {@link #LOWEST_PRECEDENCE}.
+	 * 确定此监听器在同一事件的监听器集合中的顺序。<p>默认实现返回 {@link #LOWEST_PRECEDENCE}。
 	 */
 	@Override
 	default int getOrder() {
@@ -60,8 +56,7 @@ public interface SmartApplicationListener extends ApplicationListener<Applicatio
 	}
 
 	/**
-	 * Return an optional identifier for the listener.
-	 * <p>The default value is an empty String.
+	 * 返回监听器的可选标识符。<p>默认值为空字符串。
 	 * @since 5.3.5
 	 * @see EventListener#id
 	 * @see ApplicationEventMulticaster#removeApplicationListeners

@@ -19,8 +19,7 @@ package org.springframework.web.multipart;
 import org.springframework.lang.Nullable;
 
 /**
- * MultipartException subclass thrown when an upload exceeds the
- * maximum upload size allowed.
+ * MultipartException 的子类，在上传内容超过允许的最大上传大小时抛出。
  *
  * @author Juergen Hoeller
  * @since 1.0.1
@@ -32,7 +31,7 @@ public class MaxUploadSizeExceededException extends MultipartException {
 
 
 	/**
-	 * Constructor for MaxUploadSizeExceededException.
+	 * MaxUploadSizeExceededException 的构造函数。
 	 * @param maxUploadSize the maximum upload size allowed,
 	 * or -1 if the size limit isn't known
 	 */
@@ -41,7 +40,7 @@ public class MaxUploadSizeExceededException extends MultipartException {
 	}
 
 	/**
-	 * Constructor for MaxUploadSizeExceededException.
+	 * MaxUploadSizeExceededException 的构造函数。
 	 * @param maxUploadSize the maximum upload size allowed,
 	 * or -1 if the size limit isn't known
 	 * @param ex root cause from multipart parsing API in use
@@ -53,8 +52,7 @@ public class MaxUploadSizeExceededException extends MultipartException {
 
 
 	/**
-	 * Return the maximum upload size allowed,
-	 * or -1 if the size limit isn't known.
+	 * 返回允许的最大上传大小；如果大小限制未知，则返回 -1。
 	 */
 	public long getMaxUploadSize() {
 		return this.maxUploadSize;

@@ -33,13 +33,13 @@ import org.springframework.orm.jpa.EntityManagerHolder;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
- * Implementation of Hibernate 3.1's {@link CurrentSessionContext} interface
- * that delegates to Spring's {@link SessionFactoryUtils} for providing a
- * Spring-managed current {@link Session}.
+ * Hibernate 3.1 的 {@link CurrentSessionContext} 接口实现，
+ * 委托给 Spring 的 {@link SessionFactoryUtils} 以提供
+ * Spring 管理的当前 {@link Session}。
  *
- * <p>This CurrentSessionContext implementation can also be specified in custom
- * SessionFactory setup through the "hibernate.current_session_context_class"
- * property, with the fully qualified name of this class as value.
+ * <p>此 CurrentSessionContext 实现也可以在自定义
+ * SessionFactory 配置中通过 "hibernate.current_session_context_class"
+ * 属性指定，值为该类的全限定名。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -57,7 +57,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 
 
 	/**
-	 * Create a new SpringSessionContext for the given Hibernate SessionFactory.
+	 * 为给定的 Hibernate SessionFactory 创建一个新的 SpringSessionContext。
 	 * @param sessionFactory the SessionFactory to provide current Sessions for
 	 */
 	public SpringSessionContext(SessionFactoryImplementor sessionFactory) {
@@ -77,7 +77,7 @@ public class SpringSessionContext implements CurrentSessionContext {
 
 
 	/**
-	 * Retrieve the Spring-managed Session for the current thread, if any.
+	 * 获取当前线程的 Spring 管理的 Session（如果有）。
 	 */
 	@Override
 	public Session currentSession() throws HibernateException {

@@ -31,15 +31,9 @@ import org.springframework.web.reactive.accept.RequestedContentTypeResolver;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@code HandlerResultHandler} that handles return values from methods annotated
- * with {@code @ResponseBody} writing to the body of the request or response with
- * an {@link HttpMessageWriter}.
+ * {@code HandlerResultHandler}，处理来自带有 {@code @ResponseBody} 注解的方法的返回值，并使用 {@link HttpMessageWriter} 将其写入请求或响应正文。
  *
- * <p>By default the order for this result handler is set to 100. As it detects
- * the presence of {@code @ResponseBody} it should be ordered after result
- * handlers that look for a specific return type. Note however that this handler
- * does recognize and explicitly ignores the {@code ResponseEntity} return type.
- *
+ * <p>默认情况下，此结果处理器的顺序设置为 100。由于它会检测 {@code @ResponseBody} 是否存在，因此应排在查找特定返回类型的结果处理器之后。但请注意，此处理器确实会识别并显式忽略 {@code ResponseEntity} 返回类型。
  * @author Rossen Stoyanchev
  * @author Stephane Maldini
  * @author Sebastien Deleuze
@@ -49,7 +43,7 @@ import org.springframework.web.server.ServerWebExchange;
 public class ResponseBodyResultHandler extends AbstractMessageWriterResultHandler implements HandlerResultHandler {
 
 	/**
-	 * Basic constructor with a default {@link ReactiveAdapterRegistry}.
+	 * 使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
 	 * @param writers the writers for serializing to the response body
 	 * @param resolver to determine the requested content type
 	 */
@@ -58,7 +52,7 @@ public class ResponseBodyResultHandler extends AbstractMessageWriterResultHandle
 	}
 
 	/**
-	 * Constructor with an {@link ReactiveAdapterRegistry} instance.
+	 * 使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
 	 * @param writers the writers for serializing to the response body
 	 * @param resolver to determine the requested content type
 	 * @param registry for adaptation to reactive types

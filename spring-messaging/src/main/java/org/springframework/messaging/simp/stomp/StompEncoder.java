@@ -36,7 +36,7 @@ import org.springframework.messaging.support.NativeMessageHeaderAccessor;
 import org.springframework.util.Assert;
 
 /**
- * An encoder for STOMP frames.
+ * STOMP 帧的编码器。
  *
  * @author Andy Wilkinson
  * @author Rossen Stoyanchev
@@ -73,7 +73,7 @@ public class StompEncoder  {
 
 
 	/**
-	 * Encodes the given STOMP {@code message} into a {@code byte[]}.
+	 * 将给定 STOMP {@code message} 编码为 {@code byte[]}。
 	 * @param message the message to encode
 	 * @return the encoded message
 	 */
@@ -82,7 +82,7 @@ public class StompEncoder  {
 	}
 
 	/**
-	 * Encodes the given payload and headers into a {@code byte[]}.
+	 * 将给定载荷和头编码为 {@code byte[]}。
 	 * @param headers the headers
 	 * @param payload the payload
 	 * @return the encoded message
@@ -179,8 +179,8 @@ public class StompEncoder  {
 	}
 
 	/**
-	 * See STOMP Spec 1.2:
-	 * <a href="https://stomp.github.io/stomp-specification-1.2.html#Value_Encoding">"Value Encoding"</a>.
+	 * 参见 STOMP 规范 1.2：
+	 * <a href="https://stomp.github.io/stomp-specification-1.2.html#Value_Encoding">"值编码"</a>。
 	 */
 	private String escape(String inString) {
 		StringBuilder sb = null;
@@ -219,7 +219,7 @@ public class StompEncoder  {
 
 
 	/**
-	 * Accumulates byte content and returns an aggregated byte[] at the end.
+	 * 累积字节内容，并在最后返回聚合的 byte[]。
 	 */
 	private interface Result {
 

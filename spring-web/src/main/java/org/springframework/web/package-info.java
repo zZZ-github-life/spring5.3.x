@@ -1,6 +1,5 @@
 /**
- * Common, generic interfaces that define minimal boundary points
- * between Spring's web infrastructure and other framework modules.
+ * 通用的、泛型的接口，定义了 Spring Web 基础设施与其他框架模块之间的最小边界点。
  */
 @NonNullApi
 @NonNullFields

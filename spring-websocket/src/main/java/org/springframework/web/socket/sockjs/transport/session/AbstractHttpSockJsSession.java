@@ -46,7 +46,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrameFormat;
 import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 
 /**
- * An abstract base class for use with HTTP transport SockJS sessions.
+ * 用于 HTTP 传输 SockJS 会话的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -126,9 +126,8 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	}
 
 	/**
-	 * Unlike WebSocket where sub-protocol negotiation is part of the initial
-	 * handshake, in HTTP transports the same negotiation must be emulated and
-	 * the selected protocol set through this setter.
+	 * 与 WebSocket 中子协议协商是初始握手的一部分不同，在 HTTP 传输中
+	 * 必须模拟相同的协商，并通过此 setter 设置选定的协议。
 	 * @param protocol the sub-protocol to set
 	 */
 	public void setAcceptedProtocol(@Nullable String protocol) {
@@ -136,7 +135,7 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	}
 
 	/**
-	 * Return the selected sub-protocol to use.
+	 * 返回要使用的已选子协议。
 	 */
 	@Override
 	@Nullable
@@ -145,9 +144,8 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	}
 
 	/**
-	 * Return the SockJS buffer for messages stored transparently between polling
-	 * requests. If the polling request takes longer than 5 seconds, the session
-	 * is closed.
+	 * 返回在轮询请求之间透明存储的消息的 SockJS 缓冲区。如果轮询请求
+	 * 超过 5 秒，则会话将被关闭。
 	 * @see org.springframework.web.socket.sockjs.transport.TransportHandlingSockJsService
 	 */
 	protected Queue<String> getMessageCache() {
@@ -188,13 +186,12 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 
 
 	/**
-	 * Handle the first request for receiving messages on a SockJS HTTP transport
-	 * based session.
-	 * <p>Long polling-based transports (e.g. "xhr", "jsonp") complete the request
-	 * after writing the open frame. Streaming-based transports ("xhr_streaming",
-	 * "eventsource", and "htmlfile") leave the response open longer for further
-	 * streaming of message frames but will also close it eventually after some
-	 * amount of data has been sent.
+	 * 处理基于 SockJS HTTP 传输的会话中用于接收消息的第一个请求。
+	 * <p>基于长轮询的传输（例如 "xhr"、"jsonp"）在写入 open 帧之后
+	 * 完成请求。基于流式传输的传输（"xhr_streaming"、
+	 * "eventsource" 和 "htmlfile"）会让响应保持打开更长时间以进一步
+	 * 流式传输消息帧，但最终也会在发送一定量的数据后
+	 * 关闭它。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param frameFormat the transport-specific SocksJS frame format to use
@@ -240,13 +237,13 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	}
 
 	/**
-	 * Handle all requests, except the first one, to receive messages on a SockJS
-	 * HTTP transport based session.
-	 * <p>Long polling-based transports (e.g. "xhr", "jsonp") complete the request
-	 * after writing any buffered message frames (or the next one). Streaming-based
-	 * transports ("xhr_streaming", "eventsource", and "htmlfile") leave the
-	 * response open longer for further streaming of message frames but will also
-	 * close it eventually after some amount of data has been sent.
+	 * 处理除第一个请求之外的所有请求，以在基于 SockJS HTTP 传输的会话中
+	 * 接收消息。
+	 * <p>基于长轮询的传输（例如 "xhr"、"jsonp"）在写入任何缓冲的消息帧
+	 * （或下一个消息帧）之后完成请求。基于流式传输的传输（"xhr_streaming"、
+	 * "eventsource" 和 "htmlfile"）会让响应保持打开更长时间以进一步
+	 * 流式传输消息帧，但最终也会在发送一定量的数据后
+	 * 关闭它。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param frameFormat the transport-specific SocksJS frame format to use
@@ -285,7 +282,7 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	}
 
 	/**
-	 * Invoked when a SockJS transport request is received.
+	 * 收到 SockJS 传输请求时调用。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param initialRequest whether it is the first request for the session
@@ -316,9 +313,8 @@ public abstract class AbstractHttpSockJsSession extends AbstractSockJsSession {
 	}
 
 	/**
-	 * Called when the connection is active and ready to write to the response.
-	 * Subclasses should only call this method from a method where the
-	 * "responseLock" is acquired.
+	 * 当连接处于活动状态并准备好写入响应时调用。
+	 * 子类只应在已获取 "responseLock" 的方法中调用此方法。
 	 */
 	protected abstract void flushCache() throws SockJsTransportFailureException;
 

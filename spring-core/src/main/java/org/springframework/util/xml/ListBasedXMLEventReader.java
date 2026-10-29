@@ -29,8 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@code XMLEventReader} based on a {@link List}
- * of {@link XMLEvent} elements.
+ * 基于 {@link XMLEvent} 元素的 {@link List} 的 {@code XMLEventReader} 实现。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller

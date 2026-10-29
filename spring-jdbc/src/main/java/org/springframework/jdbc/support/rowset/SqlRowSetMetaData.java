@@ -19,14 +19,13 @@ package org.springframework.jdbc.support.rowset;
 import org.springframework.jdbc.InvalidResultSetAccessException;
 
 /**
- * Metadata interface for Spring's {@link SqlRowSet}, analogous to JDBC's
- * {@link java.sql.ResultSetMetaData}.
+ * Spring {@link SqlRowSet} 的元数据接口，类似于 JDBC 的
+ * {@link java.sql.ResultSetMetaData}。
  *
- * <p>The main difference to the standard JDBC ResultSetMetaData is that a
- * {@link java.sql.SQLException} is never thrown here. This allows
- * SqlRowSetMetaData to be used without having to deal with checked exceptions.
- * SqlRowSetMetaData will throw Spring's {@link InvalidResultSetAccessException}
- * instead (when appropriate).
+ * <p>它与标准 JDBC ResultSetMetaData 的主要区别在于这里从不抛出
+ * {@link java.sql.SQLException}。这样使用 SqlRowSetMetaData 时
+ * 就无需处理受检异常。SqlRowSetMetaData 会改为（在适当的时候）
+ * 抛出 Spring 的 {@link InvalidResultSetAccessException}。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -38,8 +37,7 @@ import org.springframework.jdbc.InvalidResultSetAccessException;
 public interface SqlRowSetMetaData {
 
 	/**
-	 * Retrieve the catalog name of the table that served as the source for the
-	 * specified column.
+	 * 检索作为指定列来源的表的目录名称。
 	 * @param columnIndex the index of the column
 	 * @return the catalog name
 	 * @see java.sql.ResultSetMetaData#getCatalogName(int)
@@ -47,7 +45,7 @@ public interface SqlRowSetMetaData {
 	String getCatalogName(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the fully qualified class that the specified column will be mapped to.
+	 * 检索指定列将映射到的完全限定类。
 	 * @param columnIndex the index of the column
 	 * @return the class name as a String
 	 * @see java.sql.ResultSetMetaData#getColumnClassName(int)
@@ -55,20 +53,20 @@ public interface SqlRowSetMetaData {
 	String getColumnClassName(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the number of columns in the RowSet.
+	 * 检索 RowSet 中的列数。
 	 * @return the number of columns
 	 * @see java.sql.ResultSetMetaData#getColumnCount()
 	 */
 	int getColumnCount() throws InvalidResultSetAccessException;
 
 	/**
-	 * Return the column names of the table that the result set represents.
+	 * 返回结果集所代表的表的列名。
 	 * @return the column names
 	 */
 	String[] getColumnNames() throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the maximum width of the designated column.
+	 * 检索指定列的最大宽度。
 	 * @param columnIndex the index of the column
 	 * @return the width of the column
 	 * @see java.sql.ResultSetMetaData#getColumnDisplaySize(int)
@@ -76,7 +74,7 @@ public interface SqlRowSetMetaData {
 	int getColumnDisplaySize(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the suggested column title for the column specified.
+	 * 检索指定列的推荐列标题。
 	 * @param columnIndex the index of the column
 	 * @return the column title
 	 * @see java.sql.ResultSetMetaData#getColumnLabel(int)
@@ -84,7 +82,7 @@ public interface SqlRowSetMetaData {
 	String getColumnLabel(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the column name for the indicated column.
+	 * 检索指定列的列名。
 	 * @param columnIndex the index of the column
 	 * @return the column name
 	 * @see java.sql.ResultSetMetaData#getColumnName(int)
@@ -92,7 +90,7 @@ public interface SqlRowSetMetaData {
 	String getColumnName(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the SQL type code for the indicated column.
+	 * 检索指定列的 SQL 类型代码。
 	 * @param columnIndex the index of the column
 	 * @return the SQL type code
 	 * @see java.sql.ResultSetMetaData#getColumnType(int)
@@ -101,7 +99,7 @@ public interface SqlRowSetMetaData {
 	int getColumnType(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the DBMS-specific type name for the indicated column.
+	 * 检索指定列的 DBMS 特定类型名称。
 	 * @param columnIndex the index of the column
 	 * @return the type name
 	 * @see java.sql.ResultSetMetaData#getColumnTypeName(int)
@@ -109,7 +107,7 @@ public interface SqlRowSetMetaData {
 	String getColumnTypeName(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the precision for the indicated column.
+	 * 检索指定列的精度。
 	 * @param columnIndex the index of the column
 	 * @return the precision
 	 * @see java.sql.ResultSetMetaData#getPrecision(int)
@@ -117,7 +115,7 @@ public interface SqlRowSetMetaData {
 	int getPrecision(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the scale of the indicated column.
+	 * 检索指定列的小数位数。
 	 * @param columnIndex the index of the column
 	 * @return the scale
 	 * @see java.sql.ResultSetMetaData#getScale(int)
@@ -125,8 +123,7 @@ public interface SqlRowSetMetaData {
 	int getScale(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the schema name of the table that served as the source for the
-	 * specified column.
+	 * 检索作为指定列来源的表的模式名称。
 	 * @param columnIndex the index of the column
 	 * @return the schema name
 	 * @see java.sql.ResultSetMetaData#getSchemaName(int)
@@ -134,8 +131,7 @@ public interface SqlRowSetMetaData {
 	String getSchemaName(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Retrieve the name of the table that served as the source for the
-	 * specified column.
+	 * 检索作为指定列来源的表的名称。
 	 * @param columnIndex the index of the column
 	 * @return the name of the table
 	 * @see java.sql.ResultSetMetaData#getTableName(int)
@@ -143,7 +139,7 @@ public interface SqlRowSetMetaData {
 	String getTableName(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Indicate whether the case of the designated column is significant.
+	 * 指示指定列的大小写是否重要。
 	 * @param columnIndex the index of the column
 	 * @return true if the column is case-sensitive, false otherwise
 	 * @see java.sql.ResultSetMetaData#isCaseSensitive(int)
@@ -151,7 +147,7 @@ public interface SqlRowSetMetaData {
 	boolean isCaseSensitive(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Indicate whether the designated column contains a currency value.
+	 * 指示指定列是否包含货币值。
 	 * @param columnIndex the index of the column
 	 * @return true if the value is a currency value, false otherwise
 	 * @see java.sql.ResultSetMetaData#isCurrency(int)
@@ -159,7 +155,7 @@ public interface SqlRowSetMetaData {
 	boolean isCurrency(int columnIndex) throws InvalidResultSetAccessException;
 
 	/**
-	 * Indicate whether the designated column contains a signed number.
+	 * 指示指定列是否包含带符号的数值。
 	 * @param columnIndex the index of the column
 	 * @return true if the column contains a signed number, false otherwise
 	 * @see java.sql.ResultSetMetaData#isSigned(int)

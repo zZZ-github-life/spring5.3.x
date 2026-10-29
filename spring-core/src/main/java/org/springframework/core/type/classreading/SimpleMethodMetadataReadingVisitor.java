@@ -29,7 +29,7 @@ import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.lang.Nullable;
 
 /**
- * ASM method visitor that creates {@link SimpleMethodMetadata}.
+ * 创建 {@link SimpleMethodMetadata} 的 ASM 方法访问器。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -98,7 +98,7 @@ final class SimpleMethodMetadataReadingVisitor extends MethodVisitor {
 
 
 	/**
-	 * {@link MergedAnnotation} source.
+	 * {@link MergedAnnotation} 来源。
 	 */
 	static final class Source {
 

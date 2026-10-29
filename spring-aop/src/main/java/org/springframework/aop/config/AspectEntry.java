@@ -20,7 +20,7 @@ import org.springframework.beans.factory.parsing.ParseState;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ParseState} entry representing an aspect.
+ * 表示切面的 {@link ParseState} 条目。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -34,7 +34,7 @@ public class AspectEntry implements ParseState.Entry {
 
 
 	/**
-	 * Create a new {@code AspectEntry} instance.
+	 * 创建一个新的 {@code AspectEntry} 实例。
 	 * @param id the id of the aspect element
 	 * @param ref the bean name referenced by this aspect element
 	 */

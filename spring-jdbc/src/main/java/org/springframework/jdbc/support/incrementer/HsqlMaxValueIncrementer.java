@@ -19,25 +19,22 @@ package org.springframework.jdbc.support.incrementer;
 import javax.sql.DataSource;
 
 /**
- * {@link DataFieldMaxValueIncrementer} that increments the maximum value of a given HSQL table
- * with the equivalent of an auto-increment column. Note: If you use this class, your HSQL
- * key column should <i>NOT</i> be auto-increment, as the sequence table does the job.
+ * {@link DataFieldMaxValueIncrementer}，通过相当于自增列的方式递增给定 HSQL 表的最大值。
+ * 注意：如果使用此类，你的 HSQL 键列应 <i>不</i> 为自增列，因为序列表会完成这项工作。
  *
- * <p>The sequence is kept in a table. There should be one sequence table per
- * table that needs an auto-generated key.
+ * <p>序列保存在一张表中。每个需要自动生成键的表都应有一张对应的序列表。
  *
- * <p>Example:
+ * <p>示例：
  *
  * <pre class="code">create table tab (id int not null primary key, text varchar(100));
  * create table tab_sequence (value identity);
  * insert into tab_sequence values(0);</pre>
  *
- * If "cacheSize" is set, the intermediate values are served without querying the
- * database. If the server or your application is stopped or crashes or a transaction
- * is rolled back, the unused values will never be served. The maximum hole size in
- * numbering is consequently the value of cacheSize.
+ * 如果设置了 "cacheSize"，中间值将直接从缓存提供，而无需查询数据库。
+ * 如果服务器或应用停止、崩溃，或者事务回滚，未使用的值将永远不会被提供。
+ * 因此编号中的最大空洞大小即为 cacheSize 的值。
  *
- * <p><b>NOTE:</b> HSQL now supports sequences and you should consider using them instead:
+ * <p><b>注意：</b> HSQL 现在支持序列，建议考虑改用序列：
  * {@link HsqlSequenceMaxValueIncrementer}
  *
  * @author Jean-Pierre Pawlak
@@ -48,7 +45,7 @@ import javax.sql.DataSource;
 public class HsqlMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncrementer {
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 * @see #setColumnName
@@ -57,7 +54,7 @@ public class HsqlMaxValueIncrementer extends AbstractIdentityColumnMaxValueIncre
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 * @param columnName the name of the column in the sequence table to use

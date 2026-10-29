@@ -1,5 +1,5 @@
 /**
- * This package provides a facility for generic JCA message endpoint management.
+ * 此包提供通用 JCA 消息端点管理的设施。
  */
 @NonNullApi
 @NonNullFields

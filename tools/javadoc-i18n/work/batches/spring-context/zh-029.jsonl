@@ -1,0 +1,92 @@
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/SimpleTriggerContext.java::25::0", "zh": "实现 {@link TriggerContext} 接口的简单数据持有者。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/SimpleTriggerContext.java::45::0", "zh": "创建一个将全部时间值设为 {@code null} 的 SimpleTriggerContext，并暴露默认时区的系统时钟。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/SimpleTriggerContext.java::53::0", "zh": "使用给定的时间值创建一个 SimpleTriggerContext，并暴露默认时区的系统时钟。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/SimpleTriggerContext.java::67::0", "zh": "创建一个将全部时间值设为 {@code null} 的 SimpleTriggerContext，并暴露给定的时钟。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/SimpleTriggerContext.java::79::0", "zh": "用最新的时间值更新此持有者的状态。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::28::0", "zh": "用于为任务添加错误处理装饰的工具方法。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::28::1", "zh": "<p><b>NOTE:</b> 此类仅供 Spring 的调度器实现内部使用。它之所以是 public，只是为了让其他包中的实现类能够访问它。它<i>并非</i>面向一般用途。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::41::0", "zh": "一种 ErrorHandler 策略：记录异常，但不执行任何进一步处理。这会抑制错误，从而不会阻止任务的后续执行。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::48::0", "zh": "一种 ErrorHandler 策略：以 error 级别记录日志，然后重新抛出异常。注意：这通常会阻止计划任务的后续执行。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::56::0", "zh": "为任务添加错误处理装饰。如果提供的 {@link ErrorHandler} 不为 {@code null}，则使用它。否则，重复任务默认会抑制错误，而一次性任务默认会传播错误，因为这些错误可能通过返回的 {@link Future} 预期到。两种情况下都会记录错误。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::73::0", "zh": "根据表示任务是否会重复执行的布尔值，返回默认的 {@link ErrorHandler} 实现。对于重复任务，它会抑制错误；对于一次性任务，它会传播错误。两种情况下都会记录错误。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::84::0", "zh": "一种 {@link ErrorHandler} 实现：以 error 级别记录 Throwable。它不执行任何额外的错误处理。当有意抑制错误时，这会很有用。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/TaskUtils.java::100::0", "zh": "一种 {@link ErrorHandler} 实现：以 error 级别记录 Throwable，然后将其传播。"}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/support/package-info.java::1::0", "zh": "用于调度的通用支持类。为 Spring 的 MethodInvoker 提供 Runnable 适配器。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::22::0", "zh": "脚本编译失败时抛出的异常。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::35::0", "zh": "ScriptCompilationException 的构造器。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::44::0", "zh": "ScriptCompilationException 的构造器。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::54::0", "zh": "ScriptCompilationException 的构造器。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::65::0", "zh": "ScriptCompilationException 的构造器。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::75::0", "zh": "ScriptCompilationException 的构造器。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptCompilationException.java::87::0", "zh": "返回出错脚本的源。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptEvaluator.java::23::0", "zh": "Spring 用于评估脚本的策略接口。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptEvaluator.java::23::1", "zh": "<p>除了特定语言的实现之外，Spring 还附带了一个基于标准 {@code javax.script} 包（JSR-223）的版本：{@link org.springframework.scripting.support.StandardScriptEvaluator}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptEvaluator.java::36::0", "zh": "评估给定的脚本。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptEvaluator.java::46::0", "zh": "使用给定的参数评估给定的脚本。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::23::0", "zh": "脚本定义接口，封装特定脚本的配置，以及用于创建实际脚本化 Java {@code Object} 的工厂方法。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::36::0", "zh": ["返回指向脚本源的定位器。由实际创建脚本的后处理器解释。", "<p>通常支持的定位器包括 Spring 资源位置（例如 \"file:C:/myScript.bsh\" 或 \"classpath:myPackage/myScript.bsh\"）以及内联脚本（\"inline:myScriptText...\"）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::48::0", "zh": ["返回脚本应当实现的业务接口。", "<p>如果脚本本身确定了其 Java 接口（例如 Groovy 的情况），则可以返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::57::0", "zh": "返回脚本是否需要为其生成配置接口。通常，对于自身不确定 Java 签名、且未在 {@code getScriptInterfaces()} 中指定合适配置接口的脚本，情况便是如此。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::67::0", "zh": ["用于创建脚本化 Java 对象的工厂方法。", "<p>鼓励实现缓存脚本元数据，例如生成的脚本类。请注意，此方法可能会被并发调用，必须以线程安全的方式实现。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::85::0", "zh": ["确定脚本化 Java 对象的类型。", "<p>鼓励实现缓存脚本元数据，例如生成的脚本类。请注意，此方法可能会被并发调用，必须以线程安全的方式实现。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptFactory.java::102::0", "zh": "确定是否需要刷新（例如通过 ScriptSource 的 {@code isModified()} 方法）。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptSource.java::23::0", "zh": "定义脚本源的接口。跟踪底层脚本是否已被修改。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptSource.java::33::0", "zh": "检索当前的脚本源文本，以 String 形式返回。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptSource.java::40::0", "zh": "指示自上次调用 {@link #getScriptAsString()} 以来底层脚本数据是否已被修改。如果尚未读取脚本，则返回 {@code true}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/ScriptSource.java::48::0", "zh": "确定底层脚本的类名。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/package-info.java::1::0", "zh": "Spring 脚本支持的核心接口。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptEvaluator.java::32::0", "zh": "Spring 的 {@link ScriptEvaluator} 策略接口的 BeanShell 实现。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptEvaluator.java::45::0", "zh": "构造一个新的 BshScriptEvaluator。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptEvaluator.java::51::0", "zh": "构造一个新的 BshScriptEvaluator。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptFactory.java::32::0", "zh": "{@link org.springframework.scripting.ScriptFactory} 的 BeanShell 脚本实现。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptFactory.java::32::1", "zh": ["<p>通常与 {@link org.springframework.scripting.support.ScriptFactoryPostProcessor} 结合使用；有关配置示例，请参见后者的 javadoc。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptFactory.java::64::0", "zh": ["为给定的脚本源创建一个新的 BshScriptFactory。", "<p>使用此 {@code BshScriptFactory} 变体时，脚本需要声明完整的类，或返回脚本化对象的实际实例。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptFactory.java::77::0", "zh": ["为给定的脚本源创建一个新的 BshScriptFactory。", "<p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptFactory.java::112::0", "zh": "BeanShell 脚本确实需要配置接口。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptFactory.java::120::0", "zh": "通过 {@link BshScriptUtils} 加载并解析 BeanShell 脚本。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::35::0", "zh": "用于处理 BeanShell 脚本化对象的工具方法。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::44::0", "zh": ["使用给定的脚本源创建一个新的 BeanShell 脚本化对象。", "<p>使用此 {@code createBshObject} 变体时，脚本需要声明完整的类，或返回脚本化对象的实际实例。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::56::0", "zh": ["使用默认的 ClassLoader，从给定的脚本源创建一个新的 BeanShell 脚本化对象。", "<p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::75::0", "zh": ["从给定的脚本源创建一个新的 BeanShell 脚本化对象。", "<p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::107::0", "zh": ["根据给定的脚本源评估指定的 BeanShell 脚本，返回该脚本定义的 Class。", "<p>脚本既可以声明完整的类，也可以返回脚本化对象的实际实例（此时将返回该对象的 Class）。在其他任何情况下，返回的 Class 都将为 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::137::0", "zh": ["根据给定的脚本源评估指定的 BeanShell 脚本，将返回的脚本 Class 或脚本 Object 原样保留。", "<p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::175::0", "zh": "调用 BeanShell 脚本方法的 InvocationHandler。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/BshScriptUtils.java::224::0", "zh": "脚本执行失败时抛出的异常。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/bsh/package-info.java::1::0", "zh": "本包提供 <a href=\"https://beanshell.github.io/\">BeanShell</a>（以及 <a href=\"https://code.google.com/p/beanshell2/\">BeanShell2</a>）与 Spring 脚本基础设施的集成。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/LangNamespaceHandler.java::21::0", "zh": "{@code NamespaceHandler}，支持装配由 Groovy、JRuby 和 BeanShell 等动态语言支持的对象。以下是（来自参考文档的）一个示例，详细说明了 Groovy 支持 Bean 的装配："}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/LangNamespaceUtils.java::24::0", "zh": "与 {@link LangNamespaceHandler} 配合使用的工具类。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/LangNamespaceUtils.java::33::0", "zh": "内部管理的 {@link ScriptFactoryPostProcessor} 在 {@link BeanDefinitionRegistry} 中注册时使用的唯一名称。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/LangNamespaceUtils.java::41::0", "zh": "如果尚未注册 {@link ScriptFactoryPostProcessor}，则在提供的 {@link BeanDefinitionRegistry} 中注册其 Bean 定义。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::37::0", "zh": "'{@code <lang:groovy/>}'、'{@code <lang:std/>}' 和 '{@code <lang:bsh/>}' 标签的 BeanDefinitionParser 实现。允许使用动态语言编写的对象通过 {@link org.springframework.beans.factory.BeanFactory} 轻松暴露。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::37::1", "zh": "<p>每个对象的脚本既可以指定为对包含它的资源的引用（使用 '{@code script-source}' 属性），也可以内联在 XML 配置本身中（使用 '{@code inline-script}' 属性。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::37::2", "zh": "<p>使用这些标签创建的动态对象默认<strong>不可</strong>刷新。要启用刷新，请使用 '{@code refresh-check-delay}' 属性为每个对象指定刷新检查延迟（以毫秒为单位）。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::84::0", "zh": "此解析器实例将为其创建 Bean 定义的 {@link org.springframework.scripting.ScriptFactory} 类。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::91::0", "zh": "创建此解析器的新实例，为提供的 {@link org.springframework.scripting.ScriptFactory} 类创建 Bean 定义。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::101::0", "zh": "解析动态对象元素并返回生成的 Bean 定义。如有需要，注册 {@link ScriptFactoryPostProcessor}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::213::0", "zh": "从 '{@code script-source}' 属性或 '{@code inline-script}' 元素解析脚本源。如果这两个值都未指定或都指定了，则记录日志并调用 {@link XmlReaderContext#error}，返回 {@code null}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptBeanDefinitionParser.java::239::0", "zh": "脚本化 Bean 也可以是匿名的。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/ScriptingDefaultsParser.java::27::0", "zh": "加载脚本 XML 时使用的 {@link BeanDefinitionParser}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/config/package-info.java::1::0", "zh": "Spring 动态语言机制的支持包，以 XML schema 作为主要配置格式。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyObjectCustomizer.java::21::0", "zh": "由 {@link GroovyScriptFactory} 使用的策略，用于允许自定义创建的 {@link GroovyObject}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyObjectCustomizer.java::21::1", "zh": ["<p>这对于编写 DSL、替换缺失的方法等很有用。例如，可以指定自定义的 {@link groovy.lang.MetaClass}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyObjectCustomizer.java::36::0", "zh": ["自定义提供的 {@link GroovyObject}。", "<p>例如，可以用它设置自定义元类来处理缺失的方法。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptEvaluator.java::35::0", "zh": "Spring 的 {@link ScriptEvaluator} 策略接口的 Groovy 实现。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptEvaluator.java::50::0", "zh": "构造一个新的 GroovyScriptEvaluator。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptEvaluator.java::56::0", "zh": "构造一个新的 GroovyScriptEvaluator。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptEvaluator.java::65::0", "zh": "为此评估器设置自定义的编译器配置。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptEvaluator.java::75::0", "zh": "返回此评估器的编译器配置（永不为 {@code null}）。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptEvaluator.java::84::0", "zh": ["设置要应用于此评估器编译器配置的一个或多个自定义器。", "<p>请注意，这会修改此评估器持有的共享编译器配置。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::43::0", "zh": "{@link org.springframework.scripting.ScriptFactory} 的 Groovy 脚本实现。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::43::1", "zh": ["<p>通常与 {@link org.springframework.scripting.support.ScriptFactoryPostProcessor} 结合使用；有关配置示例，请参见后者的 javadoc。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::43::2", "zh": ["<p>注意：Spring 4.0 支持 Groovy 1.8 及更高版本。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::87::0", "zh": ["为给定的脚本源创建一个新的 GroovyScriptFactory。", "<p>此处无需指定脚本接口，因为 Groovy 脚本会自行定义其 Java 接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::99::0", "zh": "为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，该接口可创建自定义 MetaClass 以提供缺失的方法，并在其他方面改变对象的行为。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::115::0", "zh": "为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，该接口可创建自定义 MetaClass 以提供缺失的方法，并在其他方面改变对象的行为。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::131::0", "zh": "为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，用于在底层 GroovyClassLoader 中自定义 Groovy 的编译过程。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::171::0", "zh": "返回此脚本工厂使用的 GroovyClassLoader。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::183::0", "zh": "为给定的 {@code ClassLoader} 构建一个 {@link GroovyClassLoader}。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::199::0", "zh": "Groovy 脚本会自行确定其接口，因此我们无需在此显式暴露接口。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::210::0", "zh": "Groovy 脚本不需要配置接口，因为它们会将其 setter 作为 public 方法暴露。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::220::0", "zh": "通过 GroovyClassLoader 加载并解析 Groovy 脚本。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::310::0", "zh": "实例化给定的 Groovy 脚本类，并在必要时运行它。"}
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/GroovyScriptFactory.java::362::0", "zh": "持有临时缓存结果对象的包装器。"}

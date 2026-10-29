@@ -1,5 +1,5 @@
 /**
- * Support for class instrumentation on Tomcat.
+ * 在 Tomcat 上支持类插桩。
  */
 @NonNullApi
 @NonNullFields

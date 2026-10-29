@@ -21,8 +21,8 @@ import org.springframework.web.socket.sockjs.SockJsService;
 import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 
 /**
- * Provides transport handling code with access to the {@link SockJsService} configuration
- * options they need to have access to. Mainly for internal use.
+ * 为传输处理代码提供对其所需 {@link SockJsService} 配置选项的访问。
+ * 主要用于内部使用。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -30,44 +30,42 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 public interface SockJsServiceConfig {
 
 	/**
-	 * A scheduler instance to use for scheduling heart-beat messages.
+	 * 用于调度心跳消息的调度器实例。
 	 */
 	TaskScheduler getTaskScheduler();
 
 	/**
-	 * Streaming transports save responses on the client side and don't free
-	 * memory used by delivered messages. Such transports need to recycle the
-	 * connection once in a while. This property sets a minimum number of bytes
-	 * that can be send over a single HTTP streaming request before it will be
-	 * closed. After that client will open a new request. Setting this value to
-	 * one effectively disables streaming and will make streaming transports to
-	 * behave like polling transports.
-	 * <p>The default value is 128K (i.e. 128 * 1024).
+	 * 流式传输会在客户端保留响应，并且不会释放
+	 * 已传递消息占用的内存。此类传输需要不时地回收
+	 * 连接。此属性设置单个 HTTP 流式请求在被关闭之前
+	 * 可以发送的最小字节数。之后客户端将打开
+	 * 新的请求。将此值设置为 1 会实际禁用流式传输，
+	 * 并使流式传输的行为类似于轮询传输。
+	 * <p>默认值为 128K（即 128 * 1024）。
 	 */
 	int getStreamBytesLimit();
 
 	/**
-	 * The amount of time in milliseconds when the server has not sent any
-	 * messages and after which the server should send a heartbeat frame to the
-	 * client in order to keep the connection from breaking.
-	 * <p>The default value is 25,000 (25 seconds).
+	 * 服务器未发送任何消息时的毫秒数，超过该时间后，
+	 * 服务器应向客户端发送心跳帧，
+	 * 以防止连接中断。
+	 * <p>默认值为 25,000（25 秒）。
 	 */
 	long getHeartbeatTime();
 
 	/**
-	 * The number of server-to-client messages that a session can cache while waiting for
-	 * the next HTTP polling request from the client. All HTTP transports use this
-	 * property since even streaming transports recycle HTTP requests periodically.
-	 * <p>The amount of time between HTTP requests should be relatively brief and will not
-	 * exceed the allows disconnect delay (see
-	 * {@link org.springframework.web.socket.sockjs.support.AbstractSockJsService#setDisconnectDelay(long)}),
-	 * 5 seconds by default.
-	 * <p>The default size is 100.
+	 * 会话在等待客户端下一次 HTTP 轮询请求时可以缓存的服务端到客户端消息数。
+	 * 所有 HTTP 传输都使用此属性，因为即使是流式传输也会定期回收 HTTP 请求。
+	 * <p>HTTP 请求之间的时间应相对较短，
+	 * 并且不会超过允许的断开连接延迟（参见
+	 * {@link org.springframework.web.socket.sockjs.support.AbstractSockJsService#setDisconnectDelay(long)}），
+	 * 默认情况下为 5 秒。
+	 * <p>默认大小为 100。
 	 */
 	int getHttpMessageCacheSize();
 
 	/**
-	 * The codec to use for encoding and decoding SockJS messages.
+	 * 用于编码和解码 SockJS 消息的编解码器。
 	 * @throws IllegalStateException if no {@link SockJsMessageCodec} is available
 	 */
 	SockJsMessageCodec getMessageCodec();

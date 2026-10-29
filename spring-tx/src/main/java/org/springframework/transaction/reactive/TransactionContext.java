@@ -26,10 +26,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.function.SingletonSupplier;
 
 /**
- * Mutable transaction context that encapsulates transactional synchronizations and
- * resources in the scope of a single transaction. Transaction context is typically
- * held by an outer {@link TransactionContextHolder} or referenced directly within
- * from the subscriber context.
+ * 可变事务上下文，在单个事务范围内封装事务性
+ * 同步和资源。事务上下文通常由外层的
+ * {@link TransactionContextHolder}持有，或直接从
+ * 订阅者上下文中引用。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller

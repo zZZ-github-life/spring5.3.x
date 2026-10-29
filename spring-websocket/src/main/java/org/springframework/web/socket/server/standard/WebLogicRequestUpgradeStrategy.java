@@ -41,8 +41,8 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.web.socket.server.HandshakeFailureException;
 
 /**
- * A WebSocket {@code RequestUpgradeStrategy} for Oracle's WebLogic.
- * Supports 12.1.3 as well as 12.2.1, as of Spring Framework 4.2.3.
+ * 用于 Oracle WebLogic 的 WebSocket {@code RequestUpgradeStrategy}。
+ * 自 Spring Framework 4.2.3 起支持 12.1.3 以及 12.2.1。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -103,7 +103,7 @@ public class WebLogicRequestUpgradeStrategy extends AbstractTyrusRequestUpgradeS
 
 
 	/**
-	 * Helps to create and invoke {@code weblogic.servlet.internal.MuxableSocketHTTP}.
+	 * 帮助创建和调用 {@code weblogic.servlet.internal.MuxableSocketHTTP}。
 	 */
 	private static class TyrusMuxableWebSocketHelper {
 
@@ -213,7 +213,7 @@ public class WebLogicRequestUpgradeStrategy extends AbstractTyrusRequestUpgradeS
 
 
 	/**
-	 * Helps to create and invoke {@code weblogic.websocket.tyrus.TyrusServletWriter}.
+	 * 帮助创建和调用 {@code weblogic.websocket.tyrus.TyrusServletWriter}。
 	 */
 	private static class WebLogicServletWriterHelper {
 

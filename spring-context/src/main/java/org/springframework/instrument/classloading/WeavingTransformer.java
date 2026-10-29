@@ -27,11 +27,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * ClassFileTransformer-based weaver, allowing for a list of transformers to be
- * applied on a class byte array. Normally used inside class loaders.
+ * 基于 ClassFileTransformer 的织入器，允许将一组转换器应用于类的字节数组。通常在类加载器内部使用。
  *
- * <p>Note: This class is deliberately implemented for minimal external dependencies,
- * since it is included in weaver jars (to be deployed into application servers).
+ * <p>注意：本类有意实现为对外部依赖的最小化，因为它会被包含在织入器 jar 中（以便部署到应用服务器中）。
  *
  * @author Rod Johnson
  * @author Costin Leau
@@ -47,7 +45,7 @@ public class WeavingTransformer {
 
 
 	/**
-	 * Create a new WeavingTransformer for the given class loader.
+	 * 为给定的类加载器创建一个新的 WeavingTransformer。
 	 * @param classLoader the ClassLoader to build a transformer for
 	 */
 	public WeavingTransformer(@Nullable ClassLoader classLoader) {
@@ -56,7 +54,7 @@ public class WeavingTransformer {
 
 
 	/**
-	 * Add a class file transformer to be applied by this weaver.
+	 * 添加一个由该织入器应用的类文件转换器。
 	 * @param transformer the class file transformer to register
 	 */
 	public void addTransformer(ClassFileTransformer transformer) {
@@ -66,9 +64,8 @@ public class WeavingTransformer {
 
 
 	/**
-	 * Apply transformation on a given class byte definition.
-	 * The method will always return a non-null byte array (if no transformation has taken place
-	 * the array content will be identical to the original one).
+	 * 对给定的类字节定义应用转换。该方法始终返回非 null 的字节数组（如果未发生任何转换，数组内容将与原
+	 * 始内容相同）。
 	 * @param className the full qualified name of the class in dot format (i.e. some.package.SomeClass)
 	 * @param bytes class byte definition
 	 * @return (possibly transformed) class byte definition
@@ -79,9 +76,8 @@ public class WeavingTransformer {
 	}
 
 	/**
-	 * Apply transformation on a given class byte definition.
-	 * The method will always return a non-null byte array (if no transformation has taken place
-	 * the array content will be identical to the original one).
+	 * 对给定的类字节定义应用转换。该方法始终返回非 null 的字节数组（如果未发生任何转换，数组内容将与原
+	 * 始内容相同）。
 	 * @param className the full qualified name of the class in dot format (i.e. some.package.SomeClass)
 	 * @param internalName class name internal name in / format (i.e. some/package/SomeClass)
 	 * @param bytes class byte definition

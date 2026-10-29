@@ -47,15 +47,14 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Encapsulates information about a handler method consisting of a
- * {@linkplain #getMethod() method} and a {@linkplain #getBean() bean}.
- * Provides convenient access to method parameters, the method return value,
- * method annotations, etc.
+ * 封装处理器方法的相关信息，该处理器方法由一个
+ * {@linkplain #getMethod() 方法} 和一个 {@linkplain #getBean() Bean} 组成。
+ * 提供对方法参数、方法返回值、方法注解等的便捷访问。
  *
- * <p>The class may be created with a bean instance or with a bean name
- * (e.g. lazy-init bean, prototype bean). Use {@link #createWithResolvedBean()}
- * to obtain a {@code HandlerMethod} instance with a bean instance resolved
- * through the associated {@link BeanFactory}.
+ * <p>该类既可以使用 Bean 实例创建，也可以使用 Bean 名称创建
+ * （例如延迟初始化的 Bean、原型 Bean）。使用 {@link #createWithResolvedBean()}
+ * 可以获得一个 {@code HandlerMethod} 实例，其中的 Bean 实例已通过关联的
+ * {@link BeanFactory} 解析完成。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -65,7 +64,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 public class HandlerMethod {
 
-	/** Logger that is available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected static final Log logger = LogFactory.getLog(HandlerMethod.class);
 
 	private final Object bean;
@@ -100,15 +99,15 @@ public class HandlerMethod {
 
 
 	/**
-	 * Create an instance from a bean instance and a method.
+	 * 根据 Bean 实例和方法创建实例。
 	 */
 	public HandlerMethod(Object bean, Method method) {
 		this(bean, method, null);
 	}
 
 	/**
-	 * Variant of {@link #HandlerMethod(Object, Method)} that
-	 * also accepts a {@link MessageSource} for use from subclasses.
+	 * 是 {@link #HandlerMethod(Object, Method)} 的变体，
+	 * 还接受一个供子类使用的 {@link MessageSource}。
 	 * @since 5.3.10
 	 */
 	protected HandlerMethod(Object bean, Method method, @Nullable MessageSource messageSource) {
@@ -127,7 +126,7 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Create an instance from a bean instance, method name, and parameter types.
+	 * 根据 Bean 实例、方法名和参数类型创建实例。
 	 * @throws NoSuchMethodException when the method cannot be found
 	 */
 	public HandlerMethod(Object bean, String methodName, Class<?>... parameterTypes) throws NoSuchMethodException {
@@ -146,17 +145,17 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Create an instance from a bean name, a method, and a {@code BeanFactory}.
-	 * The method {@link #createWithResolvedBean()} may be used later to
-	 * re-create the {@code HandlerMethod} with an initialized bean.
+	 * 根据 Bean 名称、方法和 {@code BeanFactory} 创建实例。
+	 * 之后可以使用 {@link #createWithResolvedBean()} 方法，
+	 * 以已初始化的 Bean 重新创建 {@code HandlerMethod}。
 	 */
 	public HandlerMethod(String beanName, BeanFactory beanFactory, Method method) {
 		this(beanName, beanFactory, null, method);
 	}
 
 	/**
-	 * Variant of {@link #HandlerMethod(String, BeanFactory, Method)} that
-	 * also accepts a {@link MessageSource}.
+	 * 是 {@link #HandlerMethod(String, BeanFactory, Method)} 的变体，
+	 * 还接受一个 {@link MessageSource}。
 	 */
 	public HandlerMethod(
 			String beanName, BeanFactory beanFactory,
@@ -182,7 +181,7 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Copy constructor for use in subclasses.
+	 * 供子类使用的拷贝构造函数。
 	 */
 	protected HandlerMethod(HandlerMethod handlerMethod) {
 		Assert.notNull(handlerMethod, "HandlerMethod is required");
@@ -200,7 +199,7 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Re-create HandlerMethod with the resolved handler.
+	 * 使用解析后的处理器重新创建 HandlerMethod。
 	 */
 	private HandlerMethod(HandlerMethod handlerMethod, Object handler) {
 		Assert.notNull(handlerMethod, "HandlerMethod is required");
@@ -253,45 +252,44 @@ public class HandlerMethod {
 
 
 	/**
-	 * Return the bean for this handler method.
+	 * 返回此处理器方法的 Bean。
 	 */
 	public Object getBean() {
 		return this.bean;
 	}
 
 	/**
-	 * Return the method for this handler method.
+	 * 返回此处理器方法的方法。
 	 */
 	public Method getMethod() {
 		return this.method;
 	}
 
 	/**
-	 * This method returns the type of the handler for this handler method.
-	 * <p>Note that if the bean type is a CGLIB-generated class, the original
-	 * user-defined class is returned.
+	 * 此方法返回此处理器方法的处理器类型。
+	 * <p>请注意，如果 Bean 类型是 CGLIB 生成的类，则返回原始的用户定义类。
 	 */
 	public Class<?> getBeanType() {
 		return this.beanType;
 	}
 
 	/**
-	 * If the bean method is a bridge method, this method returns the bridged
-	 * (user-defined) method. Otherwise, it returns the same method as {@link #getMethod()}.
+	 * 如果 Bean 方法是桥接方法，则此方法返回被桥接的（用户定义的）方法。
+	 * 否则，返回与 {@link #getMethod()} 相同的方法。
 	 */
 	protected Method getBridgedMethod() {
 		return this.bridgedMethod;
 	}
 
 	/**
-	 * Return the method parameters for this handler method.
+	 * 返回此处理器方法的方法参数。
 	 */
 	public MethodParameter[] getMethodParameters() {
 		return this.parameters;
 	}
 
 	/**
-	 * Return the specified response status, if any.
+	 * 返回指定的响应状态（如果有）。
 	 * @since 4.3.8
 	 * @see ResponseStatus#code()
 	 */
@@ -301,7 +299,7 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Return the associated response status reason, if any.
+	 * 返回关联的响应状态原因（如果有）。
 	 * @since 4.3.8
 	 * @see ResponseStatus#reason()
 	 */
@@ -311,31 +309,30 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Return the HandlerMethod return type.
+	 * 返回 HandlerMethod 的返回类型。
 	 */
 	public MethodParameter getReturnType() {
 		return new HandlerMethodParameter(-1);
 	}
 
 	/**
-	 * Return the actual return value type.
+	 * 返回实际的返回值类型。
 	 */
 	public MethodParameter getReturnValueType(@Nullable Object returnValue) {
 		return new ReturnValueMethodParameter(returnValue);
 	}
 
 	/**
-	 * Return {@code true} if the method return type is void, {@code false} otherwise.
+	 * 如果方法返回类型为 void，则返回 {@code true}，否则返回 {@code false}。
 	 */
 	public boolean isVoid() {
 		return Void.TYPE.equals(getReturnType().getParameterType());
 	}
 
 	/**
-	 * Return a single annotation on the underlying method traversing its super methods
-	 * if no annotation can be found on the given method itself.
-	 * <p>Also supports <em>merged</em> composed annotations with attribute
-	 * overrides as of Spring Framework 4.2.2.
+	 * 返回底层方法上的单个注解；如果在给定方法本身上找不到注解，
+	 * 则会遍历其父类方法进行查找。
+	 * <p>自 Spring Framework 4.2.2 起，还支持带属性覆盖的<em>合并</em>组合注解。
 	 * @param annotationType the type of annotation to introspect the method for
 	 * @return the annotation, or {@code null} if none found
 	 * @see AnnotatedElementUtils#findMergedAnnotation
@@ -346,7 +343,7 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Return whether the parameter is declared with the given annotation type.
+	 * 返回该参数是否声明了给定的注解类型。
 	 * @param annotationType the annotation type to look for
 	 * @since 4.3
 	 * @see AnnotatedElementUtils#hasAnnotation
@@ -356,8 +353,8 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Return the HandlerMethod from which this HandlerMethod instance was
-	 * resolved via {@link #createWithResolvedBean()}.
+	 * 返回此 HandlerMethod 实例经 {@link #createWithResolvedBean()}
+	 * 解析之前的原 HandlerMethod。
 	 */
 	@Nullable
 	public HandlerMethod getResolvedFromHandlerMethod() {
@@ -365,8 +362,8 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * If the provided instance contains a bean name rather than an object instance,
-	 * the bean name is resolved before a {@link HandlerMethod} is created and returned.
+	 * 如果提供的实例包含的是 Bean 名称而不是对象实例，
+	 * 则在创建并返回 {@link HandlerMethod} 之前会先解析该 Bean 名称。
 	 */
 	public HandlerMethod createWithResolvedBean() {
 		Object handler = this.bean;
@@ -379,7 +376,7 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Return a short representation of this handler method for log message purposes.
+	 * 返回此处理器方法的简短表示形式，用于日志消息。
 	 * @since 4.3
 	 */
 	public String getShortLogMessage() {
@@ -466,11 +463,10 @@ public class HandlerMethod {
 	}
 
 	/**
-	 * Assert that the target bean class is an instance of the class where the given
-	 * method is declared. In some cases the actual controller instance at request-
-	 * processing time may be a JDK dynamic proxy (lazy initialization, prototype
-	 * beans, and others). {@code @Controller}'s that require proxying should prefer
-	 * class-based proxy mechanisms.
+	 * 断言目标 Bean 类是给定方法声明所在类的实例。在某些情况下，
+	 * 请求处理时的实际控制器实例可能是 JDK 动态代理（延迟初始化、
+	 * 原型 Bean 等）。需要代理的 {@code @Controller} 应优先使用
+	 * 基于类的代理机制。
 	 */
 	protected void assertTargetBean(Method method, Object targetBean, Object[] args) {
 		Class<?> methodDeclaringClass = method.getDeclaringClass();
@@ -498,7 +494,7 @@ public class HandlerMethod {
 
 
 	/**
-	 * A MethodParameter with HandlerMethod-specific behavior.
+	 * 具有 HandlerMethod 特定行为的 MethodParameter。
 	 */
 	protected class HandlerMethodParameter extends SynthesizingMethodParameter {
 
@@ -577,7 +573,7 @@ public class HandlerMethod {
 
 
 	/**
-	 * A MethodParameter for a HandlerMethod return type based on an actual return value.
+	 * 基于实际返回值表示 HandlerMethod 返回类型的 MethodParameter。
 	 */
 	private class ReturnValueMethodParameter extends HandlerMethodParameter {
 

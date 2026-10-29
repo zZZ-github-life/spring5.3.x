@@ -19,9 +19,9 @@ package org.springframework.dao;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown if certain expected data could not be retrieved, e.g.
- * when looking up specific data via a known identifier. This exception
- * will be thrown either by O/R mapping tools or by DAO implementations.
+ * 当无法检索到某些预期数据时抛出的异常，例如
+ * 通过已知标识符查找特定数据时。此异常
+ * 将由 O/R 映射工具或 DAO 实现抛出。
  *
  * @author Juergen Hoeller
  * @since 13.10.2003
@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 public class DataRetrievalFailureException extends NonTransientDataAccessException {
 
 	/**
-	 * Constructor for DataRetrievalFailureException.
+	 * DataRetrievalFailureException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public DataRetrievalFailureException(String msg) {
@@ -38,7 +38,7 @@ public class DataRetrievalFailureException extends NonTransientDataAccessExcepti
 	}
 
 	/**
-	 * Constructor for DataRetrievalFailureException.
+	 * DataRetrievalFailureException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

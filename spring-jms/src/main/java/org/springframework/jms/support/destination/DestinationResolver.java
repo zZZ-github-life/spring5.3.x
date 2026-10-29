@@ -23,16 +23,15 @@ import javax.jms.Session;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface for resolving JMS destinations.
+ * 用于解析 JMS 目的地的策略接口。
  *
- * <p>Used by {@link org.springframework.jms.core.JmsTemplate} for resolving
- * destination names from simple {@link String Strings} to actual
- * {@link Destination} implementation instances.
+ * <p>{@link org.springframework.jms.core.JmsTemplate} 使用它将简单的
+ * {@link String String} 形式的目的地名称解析为实际的 {@link Destination}
+ * 实现实例。
  *
- * <p>The default {@link DestinationResolver} implementation used by
- * {@link org.springframework.jms.core.JmsTemplate} instances is the
- * {@link DynamicDestinationResolver} class. Consider using the
- * {@link JndiDestinationResolver} for more advanced scenarios.
+ * <p>{@link org.springframework.jms.core.JmsTemplate} 实例使用的默认
+ * {@link DestinationResolver} 实现是 {@link DynamicDestinationResolver} 类。
+ * 对于更高级的场景，可以考虑使用 {@link JndiDestinationResolver}。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -44,8 +43,7 @@ import org.springframework.lang.Nullable;
 public interface DestinationResolver {
 
 	/**
-	 * Resolve the given destination name, either as located resource
-	 * or as dynamic destination.
+	 * 解析给定的目的地名称，可以作为已定位的资源，也可以作为动态目的地。
 	 * @param session the current JMS Session
 	 * (may be {@code null} if the resolver implementation is able to work without it)
 	 * @param destinationName the name of the destination

@@ -1,8 +1,5 @@
 /**
- * Support for various programming model styles including the invocation of
- * different types of handlers, e.g. annotated controller vs simple WebHandler,
- * including the handling of handler result values, e.g. @ResponseBody, view
- * resolution, and so on.
+ * 支持各种编程模型风格，包括调用不同类型的处理器（例如注解式控制器与简单的 WebHandler），以及处理处理器结果值（例如 @ResponseBody、视图解析等）。
  */
 @NonNullApi
 @NonNullFields

@@ -34,10 +34,9 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Type filter that uses AspectJ type pattern for matching.
+ * 使用 AspectJ 类型模式进行匹配的类型过滤器。
  *
- * <p>A critical implementation details of this type filter is that it does not
- * load the class being examined to match with a type pattern.
+ * <p>此类型过滤器的一个关键实现细节是：它不会加载所检查的类来与类型模式进行匹配。
  *
  * @author Ramnivas Laddad
  * @author Juergen Hoeller

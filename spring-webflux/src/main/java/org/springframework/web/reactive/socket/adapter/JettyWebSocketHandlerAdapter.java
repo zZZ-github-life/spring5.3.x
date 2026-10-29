@@ -40,9 +40,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage.Type;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Jetty {@link WebSocket @WebSocket} handler that delegates events to a
- * reactive {@link WebSocketHandler} and its session.
- *
+ * Jetty {@link WebSocket @WebSocket} 处理器，将事件委托给响应式 {@link WebSocketHandler} 及其会话。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0

@@ -34,8 +34,7 @@ import org.springframework.web.reactive.result.view.ViewResolver;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@code HandlerResultHandler} implementation that supports {@link ServerResponse ServerResponses}.
- *
+ * 支持 {@link ServerResponse ServerResponses} 的 {@code HandlerResultHandler} 实现。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -49,8 +48,8 @@ public class ServerResponseResultHandler implements HandlerResultHandler, Initia
 
 
 	/**
-	 * Configure HTTP message writers to serialize the request body with.
-	 * <p>By default this is set to {@link ServerCodecConfigurer}'s default writers.
+	 * 配置用于序列化请求正文的 HTTP 消息写出器。
+	 * <p>默认设置为 {@link ServerCodecConfigurer} 的默认写出器。
 	 */
 	public void setMessageWriters(List<HttpMessageWriter<?>> configurer) {
 		this.messageWriters = configurer;
@@ -61,9 +60,8 @@ public class ServerResponseResultHandler implements HandlerResultHandler, Initia
 	}
 
 	/**
-	 * Set the order for this result handler relative to others.
-	 * <p>By default set to 0. It is generally safe to place it early in the
-	 * order as it looks for a concrete return type.
+	 * 设置此结果处理器相对于其他处理器的顺序。
+	 * <p>默认设置为 0。由于它会查找具体返回类型，通常可以安全地将其放在较靠前的位置。
 	 */
 	public void setOrder(int order) {
 		this.order = order;

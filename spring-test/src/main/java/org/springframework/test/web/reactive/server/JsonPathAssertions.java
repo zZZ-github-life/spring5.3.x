@@ -24,8 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.test.util.JsonPathExpectationsHelper;
 
 /**
- * <a href="https://github.com/jayway/JsonPath">JsonPath</a> assertions.
- *
+ * <a href="https://github.com/jayway/JsonPath">JsonPath</a> 断言。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see <a href="https://github.com/jayway/JsonPath">https://github.com/jayway/JsonPath</a>
@@ -48,7 +47,7 @@ public class JsonPathAssertions {
 
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValue(String, Object)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValue(String, Object)}。
 	 */
 	public WebTestClient.BodyContentSpec isEqualTo(Object expectedValue) {
 		this.pathHelper.assertValue(this.content, expectedValue);
@@ -56,7 +55,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#exists(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#exists(String)}。
 	 */
 	public WebTestClient.BodyContentSpec exists() {
 		this.pathHelper.exists(this.content);
@@ -64,7 +63,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#doesNotExist(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#doesNotExist(String)}。
 	 */
 	public WebTestClient.BodyContentSpec doesNotExist() {
 		this.pathHelper.doesNotExist(this.content);
@@ -72,7 +71,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValueIsEmpty(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValueIsEmpty(String)}。
 	 */
 	public WebTestClient.BodyContentSpec isEmpty() {
 		this.pathHelper.assertValueIsEmpty(this.content);
@@ -80,7 +79,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValueIsNotEmpty(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValueIsNotEmpty(String)}。
 	 */
 	public WebTestClient.BodyContentSpec isNotEmpty() {
 		this.pathHelper.assertValueIsNotEmpty(this.content);
@@ -88,7 +87,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#hasJsonPath}.
+	 * 应用 {@link JsonPathExpectationsHelper#hasJsonPath}。
 	 * @since 5.0.3
 	 */
 	public WebTestClient.BodyContentSpec hasJsonPath() {
@@ -97,7 +96,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#doesNotHaveJsonPath}.
+	 * 应用 {@link JsonPathExpectationsHelper#doesNotHaveJsonPath}。
 	 * @since 5.0.3
 	 */
 	public WebTestClient.BodyContentSpec doesNotHaveJsonPath() {
@@ -106,7 +105,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValueIsBoolean(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValueIsBoolean(String)}。
 	 */
 	public WebTestClient.BodyContentSpec isBoolean() {
 		this.pathHelper.assertValueIsBoolean(this.content);
@@ -114,7 +113,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValueIsNumber(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValueIsNumber(String)}。
 	 */
 	public WebTestClient.BodyContentSpec isNumber() {
 		this.pathHelper.assertValueIsNumber(this.content);
@@ -122,7 +121,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValueIsArray(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValueIsArray(String)}。
 	 */
 	public WebTestClient.BodyContentSpec isArray() {
 		this.pathHelper.assertValueIsArray(this.content);
@@ -130,7 +129,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Applies {@link JsonPathExpectationsHelper#assertValueIsMap(String)}.
+	 * 应用 {@link JsonPathExpectationsHelper#assertValueIsMap(String)}。
 	 */
 	public WebTestClient.BodyContentSpec isMap() {
 		this.pathHelper.assertValueIsMap(this.content);
@@ -138,7 +137,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Delegates to {@link JsonPathExpectationsHelper#assertValue(String, Matcher)}.
+	 * 委托给 {@link JsonPathExpectationsHelper#assertValue(String, Matcher)}。
 	 * @since 5.1
 	 */
 	public <T> WebTestClient.BodyContentSpec value(Matcher<? super T> matcher) {
@@ -147,7 +146,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Delegates to {@link JsonPathExpectationsHelper#assertValue(String, Matcher, Class)}.
+	 * 委托给 {@link JsonPathExpectationsHelper#assertValue(String, Matcher, Class)}。
 	 * @since 5.1
 	 */
 	public <T> WebTestClient.BodyContentSpec value(Matcher<? super T> matcher, Class<T> targetType) {
@@ -156,7 +155,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Consume the result of the JSONPath evaluation.
+	 * 消费 JSONPath 求值的结果。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("unchecked")
@@ -167,7 +166,7 @@ public class JsonPathAssertions {
 	}
 
 	/**
-	 * Consume the result of the JSONPath evaluation and provide a target class.
+	 * 消费 JSONPath 求值的结果并提供目标类。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("unchecked")

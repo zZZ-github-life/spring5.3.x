@@ -25,9 +25,7 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolver for a {@link SessionStatus} argument obtaining it from the
- * {@link BindingContext}.
- *
+ * 用于 {@link SessionStatus} 参数的解析器，从 {@link BindingContext} 中获取它。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

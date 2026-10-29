@@ -20,19 +20,16 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Root of the hierarchy of data access exceptions discussed in
- * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE Design and Development</a>.
- * Please see Chapter 9 of this book for detailed discussion of the
- * motivation for this package.
+ * 数据访问异常层次结构的根类，在
+ * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE Design and Development</a>
+ * 中有详细讨论。请参阅该书第 9 章以了解本包的设计动机。
  *
- * <p>This exception hierarchy aims to let user code find and handle the
- * kind of error encountered without knowing the details of the particular
- * data access API in use (e.g. JDBC). Thus, it is possible to react to an
- * optimistic locking failure without knowing that JDBC is being used.
+ * <p>此异常层次结构旨在让用户代码能够查找和处理所遇到的错误，
+ * 而无需了解所使用的特定数据访问 API 的细节（例如 JDBC）。
+ * 因此，可以在不知道使用 JDBC 的情况下对乐观锁失败做出响应。
  *
- * <p>As this class is a runtime exception, there is no need for user code
- * to catch it or subclasses if any error is to be considered fatal
- * (the usual case).
+ * <p>由于此类是运行时异常，如果任何错误都被视为致命错误（通常情况），
+ * 则用户代码无需捕获它或其子类。
  *
  * @author Rod Johnson
  */
@@ -40,7 +37,7 @@ import org.springframework.lang.Nullable;
 public abstract class DataAccessException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for DataAccessException.
+	 * DataAccessException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public DataAccessException(String msg) {
@@ -48,7 +45,7 @@ public abstract class DataAccessException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for DataAccessException.
+	 * DataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause (usually from using an underlying
 	 * data access API such as JDBC)

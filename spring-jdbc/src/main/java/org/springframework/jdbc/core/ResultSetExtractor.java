@@ -23,21 +23,18 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback interface used by {@link JdbcTemplate}'s query methods.
- * Implementations of this interface perform the actual work of extracting
- * results from a {@link java.sql.ResultSet}, but don't need to worry
- * about exception handling. {@link java.sql.SQLException SQLExceptions}
- * will be caught and handled by the calling JdbcTemplate.
+ * {@link JdbcTemplate}的查询方法使用的回调接口。
+ * 此接口的实现负责从{@link java.sql.ResultSet}中提取结果的实际工作，
+ * 但不需要担心异常处理。{@link java.sql.SQLException SQLException}
+ * 将被调用的JdbcTemplate捕获并处理。
  *
- * <p>This interface is mainly used within the JDBC framework itself.
- * A {@link RowMapper} is usually a simpler choice for ResultSet processing,
- * mapping one result object per row instead of one result object for
- * the entire ResultSet.
+ * <p>此接口主要在JDBC框架内部使用。
+ * 对于ResultSet处理，{@link RowMapper}通常是更简单的选择，
+ * 它为每行映射一个结果对象，而不是为整个ResultSet映射一个结果对象。
  *
- * <p>Note: In contrast to a {@link RowCallbackHandler}, a ResultSetExtractor
- * object is typically stateless and thus reusable, as long as it doesn't
- * access stateful resources (such as output streams when streaming LOB
- * contents) or keep result state within the object.
+ * <p>注意：与{@link RowCallbackHandler}不同，ResultSetExtractor对象通常是无状态的，
+ * 因此可以重复使用，只要它不访问有状态的资源（例如在流式传输LOB内容时的输出流）
+ * 或在对象内部保持结果状态。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -52,7 +49,7 @@ import org.springframework.lang.Nullable;
 public interface ResultSetExtractor<T> {
 
 	/**
-	 * Implementations must implement this method to process the entire ResultSet.
+	 * 实现必须实现此方法来处理整个ResultSet。
 	 * @param rs the ResultSet to extract data from. Implementations should
 	 * not close this: it will be closed by the calling JdbcTemplate.
 	 * @return an arbitrary result object, or {@code null} if none

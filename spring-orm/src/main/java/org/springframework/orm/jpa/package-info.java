@@ -1,7 +1,7 @@
 /**
- * Package providing integration of JPA (Java Persistence API) with Spring concepts.
- * Contains EntityManagerFactory helper classes, a template plus callback for JPA access,
- * and an implementation of Spring's transaction SPI for local JPA transactions.
+ * 提供 JPA（Java Persistence API）与 Spring 概念集成的包。
+ * 包含 EntityManagerFactory 辅助类、用于 JPA 访问的模板加回调，
+ * 以及 Spring 事务 SPI 针对本地 JPA 事务的实现。
  */
 @NonNullApi
 @NonNullFields

@@ -19,15 +19,15 @@ package org.springframework.http.client;
 import org.springframework.http.client.support.HttpAccessor;
 
 /**
- * Callback interface for initializing a {@link ClientHttpRequest} prior to it
- * being used.
+ * 在 {@link ClientHttpRequest} 被使用之前对其进行初始化的
+ * 回调接口。
  *
- * <p>Typically used with {@link HttpAccessor} and subclasses such as
- * {@link org.springframework.web.client.RestTemplate RestTemplate} to apply
- * consistent settings or headers to each request.
+ * <p>通常与 {@link HttpAccessor} 及其子类（例如
+ * {@link org.springframework.web.client.RestTemplate RestTemplate}）一起使用，以便为每个请求应用
+ * 一致的设置或头部。
  *
- * <p>Unlike {@link ClientHttpRequestInterceptor}, this interface can apply
- * customizations without needing to read the entire request body into memory.
+ * <p>与 {@link ClientHttpRequestInterceptor} 不同，此接口可以应用
+ * 自定义设置，而无需将整个请求正文读入内存。
  *
  * @author Phillip Webb
  * @since 5.2
@@ -37,7 +37,7 @@ import org.springframework.http.client.support.HttpAccessor;
 public interface ClientHttpRequestInitializer {
 
 	/**
-	 * Initialize the given client HTTP request.
+	 * 初始化给定的客户端 HTTP 请求。
 	 * @param request the request to configure
 	 */
 	void initialize(ClientHttpRequest request);

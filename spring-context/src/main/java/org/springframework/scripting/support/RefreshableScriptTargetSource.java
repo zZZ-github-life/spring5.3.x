@@ -23,8 +23,8 @@ import org.springframework.scripting.ScriptSource;
 import org.springframework.util.Assert;
 
 /**
- * Subclass of {@link BeanFactoryRefreshableTargetSource} that determines whether
- * a refresh is required through the given {@link ScriptFactory}.
+ * {@link BeanFactoryRefreshableTargetSource} 的子类，通过给定的 {@link ScriptFactory} 判断是否需要
+ * 进行刷新。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -41,7 +41,7 @@ public class RefreshableScriptTargetSource extends BeanFactoryRefreshableTargetS
 
 
 	/**
-	 * Create a new RefreshableScriptTargetSource.
+	 * 创建一个新的 RefreshableScriptTargetSource。
 	 * @param beanFactory the BeanFactory to fetch the scripted bean from
 	 * @param beanName the name of the target bean
 	 * @param scriptFactory the ScriptFactory to delegate to for determining
@@ -62,8 +62,7 @@ public class RefreshableScriptTargetSource extends BeanFactoryRefreshableTargetS
 
 
 	/**
-	 * Determine whether a refresh is required through calling
-	 * ScriptFactory's {@code requiresScriptedObjectRefresh} method.
+	 * 通过调用 ScriptFactory 的 {@code requiresScriptedObjectRefresh} 方法判断是否需要进行刷新。
 	 * @see ScriptFactory#requiresScriptedObjectRefresh(ScriptSource)
 	 */
 	@Override
@@ -72,7 +71,7 @@ public class RefreshableScriptTargetSource extends BeanFactoryRefreshableTargetS
 	}
 
 	/**
-	 * Obtain a fresh target object, retrieving a FactoryBean if necessary.
+	 * 获取一个新的目标对象，必要时从 FactoryBean 中获取。
 	 */
 	@Override
 	protected Object obtainFreshBean(BeanFactory beanFactory, String beanName) {

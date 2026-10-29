@@ -29,8 +29,7 @@ import org.springframework.test.util.AssertionErrors;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * Assertions on cookies of the response.
- *
+ * 对响应 Cookie 的断言。
  * @author Rossen Stoyanchev
  * @since 5.3
  */
@@ -48,7 +47,7 @@ public class CookieAssertions {
 
 
 	/**
-	 * Expect a header with the given name to match the specified values.
+	 * 预期具有给定名称的 Cookie 与指定值匹配。
 	 */
 	public WebTestClient.ResponseSpec valueEquals(String name, String value) {
 		this.exchangeResult.assertWithDiagnostics(() -> {
@@ -59,7 +58,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert the first value of the response cookie with a Hamcrest {@link Matcher}.
+	 * 使用 Hamcrest {@link Matcher} 断言响应 Cookie 的第一个值。
 	 */
 	public WebTestClient.ResponseSpec value(String name, Matcher<? super String> matcher) {
 		String value = getCookie(name).getValue();
@@ -71,7 +70,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Consume the value of the response cookie.
+	 * 消费响应 Cookie 的值。
 	 */
 	public WebTestClient.ResponseSpec value(String name, Consumer<String> consumer) {
 		String value = getCookie(name).getValue();
@@ -80,7 +79,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Expect that the cookie with the given name is present.
+	 * 预期具有给定名称的 Cookie 存在。
 	 */
 	public WebTestClient.ResponseSpec exists(String name) {
 		getCookie(name);
@@ -88,7 +87,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Expect that the cookie with the given name is not present.
+	 * 预期具有给定名称的 Cookie 不存在。
 	 */
 	public WebTestClient.ResponseSpec doesNotExist(String name) {
 		ResponseCookie cookie = this.exchangeResult.getResponseCookies().getFirst(name);
@@ -100,7 +99,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's maxAge attribute.
+	 * 断言 Cookie 的 maxAge 属性。
 	 */
 	public WebTestClient.ResponseSpec maxAge(String name, Duration expected) {
 		Duration maxAge = getCookie(name).getMaxAge();
@@ -112,7 +111,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's maxAge attribute with a Hamcrest {@link Matcher}.
+	 * 使用 Hamcrest {@link Matcher} 断言 Cookie 的 maxAge 属性。
 	 */
 	public WebTestClient.ResponseSpec maxAge(String name, Matcher<? super Long> matcher) {
 		long maxAge = getCookie(name).getMaxAge().getSeconds();
@@ -124,7 +123,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's path attribute.
+	 * 断言 Cookie 的 path 属性。
 	 */
 	public WebTestClient.ResponseSpec path(String name, String expected) {
 		String path = getCookie(name).getPath();
@@ -136,7 +135,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's path attribute with a Hamcrest {@link Matcher}.
+	 * 使用 Hamcrest {@link Matcher} 断言 Cookie 的 path 属性。
 	 */
 	public WebTestClient.ResponseSpec path(String name, Matcher<? super String> matcher) {
 		String path = getCookie(name).getPath();
@@ -148,7 +147,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's domain attribute.
+	 * 断言 Cookie 的 domain 属性。
 	 */
 	public WebTestClient.ResponseSpec domain(String name, String expected) {
 		String path = getCookie(name).getDomain();
@@ -160,7 +159,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's domain attribute with a Hamcrest {@link Matcher}.
+	 * 使用 Hamcrest {@link Matcher} 断言 Cookie 的 domain 属性。
 	 */
 	public WebTestClient.ResponseSpec domain(String name, Matcher<? super String> matcher) {
 		String domain = getCookie(name).getDomain();
@@ -172,7 +171,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's secure attribute.
+	 * 断言 Cookie 的 secure 属性。
 	 */
 	public WebTestClient.ResponseSpec secure(String name, boolean expected) {
 		boolean isSecure = getCookie(name).isSecure();
@@ -184,7 +183,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's httpOnly attribute.
+	 * 断言 Cookie 的 httpOnly 属性。
 	 */
 	public WebTestClient.ResponseSpec httpOnly(String name, boolean expected) {
 		boolean isHttpOnly = getCookie(name).isHttpOnly();
@@ -196,7 +195,7 @@ public class CookieAssertions {
 	}
 
 	/**
-	 * Assert a cookie's sameSite attribute.
+	 * 断言 Cookie 的 sameSite 属性。
 	 */
 	public WebTestClient.ResponseSpec sameSite(String name, String expected) {
 		String sameSite = getCookie(name).getSameSite();

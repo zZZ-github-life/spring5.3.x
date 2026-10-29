@@ -19,8 +19,7 @@ package org.springframework.util.comparator;
 import java.util.Comparator;
 
 /**
- * Convenient entry point with generically typed factory methods
- * for common Spring {@link Comparator} variants.
+ * 便捷的入口点，提供用于常见 Spring {@link Comparator} 变体的泛型工厂方法。
  *
  * @author Juergen Hoeller
  * @since 5.0
@@ -28,7 +27,7 @@ import java.util.Comparator;
 public abstract class Comparators {
 
 	/**
-	 * Return a {@link Comparable} adapter.
+	 * 返回一个 {@link Comparable} 适配器。
 	 * @see ComparableComparator#INSTANCE
 	 */
 	@SuppressWarnings("unchecked")
@@ -37,8 +36,7 @@ public abstract class Comparators {
 	}
 
 	/**
-	 * Return a {@link Comparable} adapter which accepts
-	 * null values and sorts them lower than non-null values.
+	 * 返回一个 {@link Comparable} 适配器，它接受 null 值并将其排在非 null 值之前。
 	 * @see NullSafeComparator#NULLS_LOW
 	 */
 	@SuppressWarnings("unchecked")
@@ -47,8 +45,7 @@ public abstract class Comparators {
 	}
 
 	/**
-	 * Return a decorator for the given comparator which accepts
-	 * null values and sorts them lower than non-null values.
+	 * 返回给定比较器的装饰器，它接受 null 值并将其排在非 null 值之前。
 	 * @see NullSafeComparator#NullSafeComparator(boolean)
 	 */
 	public static <T> Comparator<T> nullsLow(Comparator<T> comparator) {
@@ -56,8 +53,7 @@ public abstract class Comparators {
 	}
 
 	/**
-	 * Return a {@link Comparable} adapter which accepts
-	 * null values and sorts them higher than non-null values.
+	 * 返回一个 {@link Comparable} 适配器，它接受 null 值并将其排在非 null 值之后。
 	 * @see NullSafeComparator#NULLS_HIGH
 	 */
 	@SuppressWarnings("unchecked")
@@ -66,8 +62,7 @@ public abstract class Comparators {
 	}
 
 	/**
-	 * Return a decorator for the given comparator which accepts
-	 * null values and sorts them higher than non-null values.
+	 * 返回给定比较器的装饰器，它接受 null 值并将其排在非 null 值之后。
 	 * @see NullSafeComparator#NullSafeComparator(boolean)
 	 */
 	public static <T> Comparator<T> nullsHigh(Comparator<T> comparator) {

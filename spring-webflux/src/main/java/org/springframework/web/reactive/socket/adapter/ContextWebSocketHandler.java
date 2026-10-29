@@ -25,7 +25,7 @@ import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * {@link WebSocketHandler} decorator that enriches the context of the target handler.
+ * 用于丰富目标处理器上下文的 {@link WebSocketHandler} 装饰器。
  *
  * @author Rossen Stoyanchev
  * @since 5.3.3
@@ -55,8 +55,7 @@ public final class ContextWebSocketHandler implements WebSocketHandler {
 
 
 	/**
-	 * Return the given handler, decorated to insert the given context, or the
-	 * same handler instance when the context is empty.
+	 * 返回给定处理器的装饰版本，以插入给定上下文；当上下文为空时返回同一处理器实例。
 	 */
 	public static WebSocketHandler decorate(WebSocketHandler handler, ContextView contextView) {
 		return (!contextView.isEmpty() ? new ContextWebSocketHandler(handler, contextView) : handler);

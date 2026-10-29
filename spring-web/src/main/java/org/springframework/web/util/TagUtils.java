@@ -22,18 +22,18 @@ import javax.servlet.jsp.tagext.Tag;
 import org.springframework.util.Assert;
 
 /**
- * Utility class for tag library related code, exposing functionality
- * such as translating {@link String Strings} to web scopes.
+ * 用于标签库相关代码的实用工具类，提供将 {@link String 字符串}
+ * 转换为 Web 作用域等功能。
  *
  * <p>
  * <ul>
- * <li>{@code page} will be transformed to
+ * <li>{@code page} 将转换为
  * {@link javax.servlet.jsp.PageContext#PAGE_SCOPE PageContext.PAGE_SCOPE}
- * <li>{@code request} will be transformed to
+ * <li>{@code request} 将转换为
  * {@link javax.servlet.jsp.PageContext#REQUEST_SCOPE PageContext.REQUEST_SCOPE}
- * <li>{@code session} will be transformed to
+ * <li>{@code session} 将转换为
  * {@link javax.servlet.jsp.PageContext#SESSION_SCOPE PageContext.SESSION_SCOPE}
- * <li>{@code application} will be transformed to
+ * <li>{@code application} 将转换为
  * {@link javax.servlet.jsp.PageContext#APPLICATION_SCOPE PageContext.APPLICATION_SCOPE}
  * </ul>
  *
@@ -44,23 +44,23 @@ import org.springframework.util.Assert;
  */
 public abstract class TagUtils {
 
-	/** Constant identifying the page scope. */
+	/** 标识页面作用域的常量。 */
 	public static final String SCOPE_PAGE = "page";
 
-	/** Constant identifying the request scope. */
+	/** 标识请求作用域的常量。 */
 	public static final String SCOPE_REQUEST = "request";
 
-	/** Constant identifying the session scope. */
+	/** 标识会话作用域的常量。 */
 	public static final String SCOPE_SESSION = "session";
 
-	/** Constant identifying the application scope. */
+	/** 标识应用作用域的常量。 */
 	public static final String SCOPE_APPLICATION = "application";
 
 
 	/**
-	 * Determines the scope for a given input {@code String}.
-	 * <p>If the {@code String} does not match 'request', 'session',
-	 * 'page' or 'application', the method will return {@link PageContext#PAGE_SCOPE}.
+	 * 确定给定输入 {@code String} 的作用域。
+	 * <p>如果该 {@code String} 不匹配 'request'、'session'、
+	 * 'page' 或 'application'，此方法将返回 {@link PageContext#PAGE_SCOPE}。
 	 * @param scope the {@code String} to inspect
 	 * @return the scope found, or {@link PageContext#PAGE_SCOPE} if no scope matched
 	 * @throws IllegalArgumentException if the supplied {@code scope} is {@code null}
@@ -82,8 +82,7 @@ public abstract class TagUtils {
 	}
 
 	/**
-	 * Determine whether the supplied {@link Tag} has any ancestor tag
-	 * of the supplied type.
+	 * 确定提供的 {@link Tag} 是否具有提供类型的任何祖先标签。
 	 * @param tag the tag whose ancestors are to be checked
 	 * @param ancestorTagClass the ancestor {@link Class} being searched for
 	 * @return {@code true} if the supplied {@link Tag} has any ancestor tag
@@ -110,9 +109,8 @@ public abstract class TagUtils {
 	}
 
 	/**
-	 * Determine whether the supplied {@link Tag} has any ancestor tag
-	 * of the supplied type, throwing an {@link IllegalStateException}
-	 * if not.
+	 * 确定提供的 {@link Tag} 是否具有提供类型的任何祖先标签，
+	 * 如果没有，则抛出 {@link IllegalStateException}。
 	 * @param tag the tag whose ancestors are to be checked
 	 * @param ancestorTagClass the ancestor {@link Class} being searched for
 	 * @param tagName the name of the {@code tag}; for example '{@code option}'

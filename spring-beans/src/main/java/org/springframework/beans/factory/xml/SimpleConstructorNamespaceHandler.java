@@ -32,26 +32,21 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Simple {@code NamespaceHandler} implementation that maps custom
- * attributes directly through to bean properties. An important point to note is
- * that this {@code NamespaceHandler} does not have a corresponding schema
- * since there is no way to know in advance all possible attribute names.
+ * 简单的 {@code NamespaceHandler} 实现，将自定义属性直接映射到 Bean 属性。需要注意的重要一点是，此
+ * {@code NamespaceHandler} 没有对应的 schema，因为无法预先知道所有可能的属性名称。
  *
- * <p>An example of the usage of this {@code NamespaceHandler} is shown below:
+ * <p>下面展示了此 {@code NamespaceHandler} 的用法示例：
  *
  * <pre class="code">
  * &lt;bean id=&quot;author&quot; class=&quot;..TestBean&quot; c:name=&quot;Enescu&quot; c:work-ref=&quot;compositions&quot;/&gt;
  * </pre>
  *
- * Here the '{@code c:name}' corresponds directly to the '{@code name}
- * ' argument declared on the constructor of class '{@code TestBean}'. The
- * '{@code c:work-ref}' attributes corresponds to the '{@code work}'
- * argument and, rather than being the concrete value, it contains the name of
- * the bean that will be considered as a parameter.
+ * 这里的 '{@code c:name}' 直接对应于类 '{@code TestBean}' 的构造函数上声明的 '{@code name}' 参数。
+ * '{@code c:work-ref}' 属性对应于 '{@code work}' 参数，并且它不是具体值，而是包含将被视为参数的
+ * bean 的名称。
  *
- * <b>Note</b>: This implementation supports only named parameters - there is no
- * support for indexes or types. Furthermore, the names are used as hints by
- * the container which, by default, does type introspection.
+ * <b>Note</b>：此实现只支持命名参数，不支持索引或类型。此外，这些名称被容器用作提示，容器默认会执
+ * 行类型内省。
  *
  * @author Costin Leau
  * @since 3.1

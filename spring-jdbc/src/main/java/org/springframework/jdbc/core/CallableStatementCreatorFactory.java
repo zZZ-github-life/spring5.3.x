@@ -29,9 +29,8 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.lang.Nullable;
 
 /**
- * Helper class that efficiently creates multiple {@link CallableStatementCreator}
- * objects with different parameters based on an SQL statement and a single
- * set of parameter declarations.
+ * 辅助类，基于SQL语句和一组参数声明，
+ * 高效地创建具有不同参数的多个{@link CallableStatementCreator}对象。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -39,10 +38,10 @@ import org.springframework.lang.Nullable;
  */
 public class CallableStatementCreatorFactory {
 
-	/** The SQL call string, which won't change when the parameters change. */
+	/** SQL调用字符串，参数变化时不会改变。 */
 	private final String callString;
 
-	/** List of SqlParameter objects. May not be {@code null}. */
+	/** SqlParameter对象列表。不能为{@code null}。 */
 	private final List<SqlParameter> declaredParameters;
 
 	private int resultSetType = ResultSet.TYPE_FORWARD_ONLY;
@@ -51,8 +50,7 @@ public class CallableStatementCreatorFactory {
 
 
 	/**
-	 * Create a new factory. Will need to add parameters via the
-	 * {@link #addParameter} method or have no parameters.
+	 * 创建新工厂。需要通过{@link #addParameter}方法添加参数，或者没有参数。
 	 * @param callString the SQL call string
 	 */
 	public CallableStatementCreatorFactory(String callString) {
@@ -61,7 +59,7 @@ public class CallableStatementCreatorFactory {
 	}
 
 	/**
-	 * Create a new factory with the given SQL and the given parameters.
+	 * 使用给定的SQL和给定的参数创建新工厂。
 	 * @param callString the SQL call string
 	 * @param declaredParameters list of {@link SqlParameter} objects
 	 */
@@ -72,7 +70,7 @@ public class CallableStatementCreatorFactory {
 
 
 	/**
-	 * Return the SQL call string.
+	 * 返回SQL调用字符串。
 	 * @since 5.1.3
 	 */
 	public final String getCallString() {
@@ -80,8 +78,8 @@ public class CallableStatementCreatorFactory {
 	}
 
 	/**
-	 * Add a new declared parameter.
-	 * <p>Order of parameter addition is significant.
+	 * 添加新的声明参数。
+	 * <p>参数添加的顺序很重要。
 	 * @param param the parameter to add to the list of declared parameters
 	 */
 	public void addParameter(SqlParameter param) {
@@ -89,8 +87,7 @@ public class CallableStatementCreatorFactory {
 	}
 
 	/**
-	 * Set whether to use prepared statements that return a specific type of ResultSet.
-	 * specific type of ResultSet.
+	 * 设置是否使用返回特定类型ResultSet的预编译语句。
 	 * @param resultSetType the ResultSet type
 	 * @see java.sql.ResultSet#TYPE_FORWARD_ONLY
 	 * @see java.sql.ResultSet#TYPE_SCROLL_INSENSITIVE
@@ -101,7 +98,7 @@ public class CallableStatementCreatorFactory {
 	}
 
 	/**
-	 * Set whether to use prepared statements capable of returning updatable ResultSets.
+	 * 设置是否使用能够返回可更新ResultSet的预编译语句。
 	 */
 	public void setUpdatableResults(boolean updatableResults) {
 		this.updatableResults = updatableResults;
@@ -109,7 +106,7 @@ public class CallableStatementCreatorFactory {
 
 
 	/**
-	 * Return a new CallableStatementCreator instance given these parameters.
+	 * 根据给定参数返回新的CallableStatementCreator实例。
 	 * @param params list of parameters (may be {@code null})
 	 */
 	public CallableStatementCreator newCallableStatementCreator(@Nullable Map<String, ?> params) {
@@ -117,7 +114,7 @@ public class CallableStatementCreatorFactory {
 	}
 
 	/**
-	 * Return a new CallableStatementCreator instance given this parameter mapper.
+	 * 根据给定的参数映射器返回新的CallableStatementCreator实例。
 	 * @param inParamMapper the ParameterMapper implementation that will return a Map of parameters
 	 */
 	public CallableStatementCreator newCallableStatementCreator(ParameterMapper inParamMapper) {
@@ -126,7 +123,7 @@ public class CallableStatementCreatorFactory {
 
 
 	/**
-	 * CallableStatementCreator implementation returned by this class.
+	 * 此类返回的CallableStatementCreator实现。
 	 */
 	private class CallableStatementCreatorImpl implements CallableStatementCreator, SqlProvider, ParameterDisposer {
 
@@ -137,7 +134,7 @@ public class CallableStatementCreatorFactory {
 		private Map<String, ?> inParameters;
 
 		/**
-		 * Create a new CallableStatementCreatorImpl.
+		 * 创建新的CallableStatementCreatorImpl。
 		 * @param inParamMapper the ParameterMapper implementation for mapping input parameters
 		 */
 		public CallableStatementCreatorImpl(ParameterMapper inParamMapper) {
@@ -145,7 +142,7 @@ public class CallableStatementCreatorFactory {
 		}
 
 		/**
-		 * Create a new CallableStatementCreatorImpl.
+		 * 创建新的CallableStatementCreatorImpl。
 		 * @param inParams list of SqlParameter objects
 		 */
 		public CallableStatementCreatorImpl(Map<String, ?> inParams) {

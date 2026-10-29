@@ -31,9 +31,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Helper class that simplifies JNDI operations. It provides methods to lookup and
- * bind objects, and allows implementations of the {@link JndiCallback} interface
- * to perform any operation they like with a JNDI naming context provided.
+ * 简化 JNDI 操作的辅助类。它提供了查找和绑定对象的方法，并允许 {@link JndiCallback} 接口的实现利用
+ * 所提供的 JNDI 命名上下文执行任意操作。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -49,13 +48,13 @@ public class JndiTemplate {
 
 
 	/**
-	 * Create a new JndiTemplate instance.
+	 * 创建一个新的 JndiTemplate 实例。
 	 */
 	public JndiTemplate() {
 	}
 
 	/**
-	 * Create a new JndiTemplate instance, using the given environment.
+	 * 使用给定的环境创建一个新的 JndiTemplate 实例。
 	 */
 	public JndiTemplate(@Nullable Properties environment) {
 		this.environment = environment;
@@ -63,14 +62,14 @@ public class JndiTemplate {
 
 
 	/**
-	 * Set the environment for the JNDI InitialContext.
+	 * 设置 JNDI InitialContext 的环境。
 	 */
 	public void setEnvironment(@Nullable Properties environment) {
 		this.environment = environment;
 	}
 
 	/**
-	 * Return the environment for the JNDI InitialContext, if any.
+	 * 返回 JNDI InitialContext 的环境（如果有）。
 	 */
 	@Nullable
 	public Properties getEnvironment() {
@@ -79,7 +78,7 @@ public class JndiTemplate {
 
 
 	/**
-	 * Execute the given JNDI context callback implementation.
+	 * 执行给定的 JNDI 上下文回调实现。
 	 * @param contextCallback the JndiCallback implementation to use
 	 * @return a result object returned by the callback, or {@code null}
 	 * @throws NamingException thrown by the callback implementation
@@ -97,9 +96,8 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Obtain a JNDI context corresponding to this template's configuration.
-	 * Called by {@link #execute}; may also be called directly.
-	 * <p>The default implementation delegates to {@link #createInitialContext()}.
+	 * 获取与此模板配置对应的 JNDI 上下文。由 {@link #execute} 调用；也可以直接调用。
+	 * <p>默认实现委托给 {@link #createInitialContext()}。
 	 * @return the JNDI context (never {@code null})
 	 * @throws NamingException if context retrieval failed
 	 * @see #releaseContext
@@ -109,7 +107,7 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Release a JNDI context as obtained from {@link #getContext()}.
+	 * 释放从 {@link #getContext()} 获取的 JNDI 上下文。
 	 * @param ctx the JNDI context to release (may be {@code null})
 	 * @see #getContext
 	 */
@@ -125,9 +123,8 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Create a new JNDI initial context. Invoked by {@link #getContext}.
-	 * <p>The default implementation use this template's environment settings.
-	 * Can be subclassed for custom contexts, e.g. for testing.
+	 * 创建一个新的 JNDI 初始上下文。由 {@link #getContext} 调用。
+	 * <p>默认实现使用此模板的环境设置。可以为自定义上下文（例如用于测试）而子类化。
 	 * @return the initial Context instance
 	 * @throws NamingException in case of initialization errors
 	 */
@@ -143,7 +140,7 @@ public class JndiTemplate {
 
 
 	/**
-	 * Look up the object with the given name in the current JNDI context.
+	 * 在当前 JNDI 上下文中查找具有给定名称的对象。
 	 * @param name the JNDI name of the object
 	 * @return object found (cannot be {@code null}; if a not so well-behaved
 	 * JNDI implementations returns null, a NamingException gets thrown)
@@ -163,7 +160,7 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Look up the object with the given name in the current JNDI context.
+	 * 在当前 JNDI 上下文中查找具有给定名称的对象。
 	 * @param name the JNDI name of the object
 	 * @param requiredType type the JNDI object must match. Can be an interface or
 	 * superclass of the actual class, or {@code null} for any match. For example,
@@ -184,7 +181,7 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Bind the given object to the current JNDI context, using the given name.
+	 * 使用给定名称将给定对象绑定到当前 JNDI 上下文。
 	 * @param name the JNDI name of the object
 	 * @param object the object to bind
 	 * @throws NamingException thrown by JNDI, mostly name already bound
@@ -200,8 +197,7 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Rebind the given object to the current JNDI context, using the given name.
-	 * Overwrites any existing binding.
+	 * 使用给定名称将给定对象重新绑定到当前 JNDI 上下文。会覆盖任何现有的绑定。
 	 * @param name the JNDI name of the object
 	 * @param object the object to rebind
 	 * @throws NamingException thrown by JNDI
@@ -217,7 +213,7 @@ public class JndiTemplate {
 	}
 
 	/**
-	 * Remove the binding for the given name from the current JNDI context.
+	 * 从当前 JNDI 上下文中移除给定名称的绑定。
 	 * @param name the JNDI name of the object
 	 * @throws NamingException thrown by JNDI, mostly name not found
 	 */

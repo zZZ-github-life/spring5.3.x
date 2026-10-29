@@ -64,16 +64,12 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Default builder for {@link MockHttpServletRequest} required as input to
- * perform requests in {@link MockMvc}.
+ * 在 {@link MockMvc} 中执行请求时作为输入所需的 {@link MockHttpServletRequest} 的默认构建器。
  *
- * <p>Application tests will typically access this builder through the static
- * factory methods in {@link MockMvcRequestBuilders}.
+ * <p>应用测试通常通过 {@link MockMvcRequestBuilders} 中的静态工厂方法访问此构建器。
  *
- * <p>This class is not open for extension. To apply custom initialization to
- * the created {@code MockHttpServletRequest}, please use the
- * {@link #with(RequestPostProcessor)} extension point.
- *
+ * <p>此类不开放扩展。要对创建的 {@code MockHttpServletRequest} 应用自定义初始化，
+ * 请使用 {@link #with(RequestPostProcessor)} 扩展点。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -133,11 +129,9 @@ public class MockHttpServletRequestBuilder
 
 
 	/**
-	 * Package private constructor. To get an instance, use static factory
-	 * methods in {@link MockMvcRequestBuilders}.
-	 * <p>Although this class cannot be extended, additional ways to initialize
-	 * the {@code MockHttpServletRequest} can be plugged in via
-	 * {@link #with(RequestPostProcessor)}.
+	 * 包级私有构造函数。要获取实例，请使用 {@link MockMvcRequestBuilders} 中的静态工厂方法。
+	 * <p>尽管此类无法被继承，但可以通过 {@link #with(RequestPostProcessor)}
+	 * 插入其他初始化 {@code MockHttpServletRequest} 的方式。
 	 * @param httpMethod the HTTP method (GET, POST, etc)
 	 * @param url a URL template; the resulting URL will be encoded
 	 * @param vars zero or more URI variables
@@ -154,8 +148,8 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Alternative to {@link #MockHttpServletRequestBuilder(HttpMethod, String, Object...)}
-	 * with a pre-built URI.
+	 * {@link #MockHttpServletRequestBuilder(HttpMethod, String, Object...)} 的替代方案，
+	 * 使用预先构建的 URI。
 	 * @param httpMethod the HTTP method (GET, POST, etc)
 	 * @param url the URL
 	 * @since 4.0.3
@@ -165,7 +159,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Alternative constructor for custom HTTP methods.
+	 * 用于自定义 HTTP 方法的替代构造函数。
 	 * @param httpMethod the HTTP method (GET, POST, etc)
 	 * @param url the URL
 	 * @since 4.3
@@ -179,12 +173,10 @@ public class MockHttpServletRequestBuilder
 
 
 	/**
-	 * Specify the portion of the requestURI that represents the context path.
-	 * The context path, if specified, must match to the start of the request URI.
-	 * <p>In most cases, tests can be written by omitting the context path from
-	 * the requestURI. This is because most applications don't actually depend
-	 * on the name under which they're deployed. If specified here, the context
-	 * path must start with a "/" and must not end with a "/".
+	 * 指定 requestURI 中表示上下文路径的部分。如果指定了上下文路径，它必须与请求 URI 的开头匹配。
+	 * <p>在大多数情况下，编写测试时可以省略 requestURI 中的上下文路径。
+	 * 这是因为大多数应用实际上并不依赖其部署时使用的名称。如果在此处指定，
+	 * 上下文路径必须以 “/” 开头，并且不能以 “/” 结尾。
 	 * @see javax.servlet.http.HttpServletRequest#getContextPath()
 	 */
 	public MockHttpServletRequestBuilder contextPath(String contextPath) {
@@ -197,16 +189,12 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Specify the portion of the requestURI that represents the path to which
-	 * the Servlet is mapped. This is typically a portion of the requestURI
-	 * after the context path.
-	 * <p>In most cases, tests can be written by omitting the servlet path from
-	 * the requestURI. This is because most applications don't actually depend
-	 * on the prefix to which a servlet is mapped. For example if a Servlet is
-	 * mapped to {@code "/main/*"}, tests can be written with the requestURI
-	 * {@code "/accounts/1"} as opposed to {@code "/main/accounts/1"}.
-	 * If specified here, the servletPath must start with a "/" and must not
-	 * end with a "/".
+	 * 指定 requestURI 中表示 Servlet 映射路径的部分。这通常是 requestURI 中上下文路径之后的部分。
+	 * <p>在大多数情况下，编写测试时可以省略 requestURI 中的 servlet 路径。
+	 * 这是因为大多数应用实际上并不依赖 Servlet 映射的前缀。例如，如果 Servlet 映射到
+	 * {@code "/main/*"}，测试可以使用 requestURI {@code "/accounts/1"} 而非
+	 * {@code "/main/accounts/1"} 来编写。如果在此处指定，servletPath 必须以 “/” 开头，
+	 * 并且不能以 “/” 结尾。
 	 * @see javax.servlet.http.HttpServletRequest#getServletPath()
 	 */
 	public MockHttpServletRequestBuilder servletPath(String servletPath) {
@@ -219,11 +207,10 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Specify the portion of the requestURI that represents the pathInfo.
-	 * <p>If left unspecified (recommended), the pathInfo will be automatically derived
-	 * by removing the contextPath and the servletPath from the requestURI and using any
-	 * remaining part. If specified here, the pathInfo must start with a "/".
-	 * <p>If specified, the pathInfo will be used as-is.
+	 * 指定 requestURI 中表示 pathInfo 的部分。
+	 * <p>如果未指定（推荐），pathInfo 将通过从 requestURI 中移除 contextPath 和 servletPath
+	 * 并使用剩余部分来自动推导。如果在此处指定，pathInfo 必须以 “/” 开头。
+	 * <p>如果指定了，pathInfo 将按原样使用。
 	 * @see javax.servlet.http.HttpServletRequest#getPathInfo()
 	 */
 	public MockHttpServletRequestBuilder pathInfo(@Nullable String pathInfo) {
@@ -235,8 +222,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the secure property of the {@link ServletRequest} indicating use of a
-	 * secure channel, such as HTTPS.
+	 * 设置 {@link ServletRequest} 的 secure 属性，以指示使用安全通道（如 HTTPS）。
 	 * @param secure whether the request is using a secure channel
 	 */
 	public MockHttpServletRequestBuilder secure(boolean secure){
@@ -245,7 +231,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the character encoding of the request.
+	 * 设置请求的字符编码。
 	 * @param encoding the character encoding
 	 * @since 5.3.10
 	 * @see StandardCharsets
@@ -256,7 +242,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the character encoding of the request.
+	 * 设置请求的字符编码。
 	 * @param encoding the character encoding
 	 */
 	public MockHttpServletRequestBuilder characterEncoding(String encoding) {
@@ -265,11 +251,10 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the request body.
-	 * <p>If content is provided and {@link #contentType(MediaType)} is set to
-	 * {@code application/x-www-form-urlencoded}, the content will be parsed
-	 * and used to populate the {@link #param(String, String...) request
-	 * parameters} map.
+	 * 设置请求体。
+	 * <p>如果提供了内容，且 {@link #contentType(MediaType)} 设置为
+	 * {@code application/x-www-form-urlencoded}，则会解析该内容并用其填充
+	 * {@link #param(String, String...) request parameters} 映射。
 	 * @param content the body content
 	 */
 	public MockHttpServletRequestBuilder content(byte[] content) {
@@ -278,11 +263,10 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the request body as a UTF-8 String.
-	 * <p>If content is provided and {@link #contentType(MediaType)} is set to
-	 * {@code application/x-www-form-urlencoded}, the content will be parsed
-	 * and used to populate the {@link #param(String, String...) request
-	 * parameters} map.
+	 * 将请求体设置为 UTF-8 字符串。
+	 * <p>如果提供了内容，且 {@link #contentType(MediaType)} 设置为
+	 * {@code application/x-www-form-urlencoded}，则会解析该内容并用其填充
+	 * {@link #param(String, String...) request parameters} 映射。
 	 * @param content the body content
 	 */
 	public MockHttpServletRequestBuilder content(String content) {
@@ -291,11 +275,10 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the 'Content-Type' header of the request.
-	 * <p>If content is provided and {@code contentType} is set to
-	 * {@code application/x-www-form-urlencoded}, the content will be parsed
-	 * and used to populate the {@link #param(String, String...) request
-	 * parameters} map.
+	 * 设置请求的 'Content-Type' 头。
+	 * <p>如果提供了内容，且 {@code contentType} 设置为
+	 * {@code application/x-www-form-urlencoded}，则会解析该内容并用其填充
+	 * {@link #param(String, String...) request parameters} 映射。
 	 * @param contentType the content type
 	 */
 	public MockHttpServletRequestBuilder contentType(MediaType contentType) {
@@ -305,8 +288,8 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the 'Content-Type' header of the request as a raw String value,
-	 * possibly not even well-formed (for testing purposes).
+	 * 以原始字符串值设置请求的 'Content-Type' 头，
+	 * 该值甚至可能不符合规范（用于测试目的）。
 	 * @param contentType the content type
 	 * @since 4.1.2
 	 */
@@ -317,7 +300,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the 'Accept' header to the given media type(s).
+	 * 将 'Accept' 头设置为给定的媒体类型。
 	 * @param mediaTypes one or more media types
 	 */
 	public MockHttpServletRequestBuilder accept(MediaType... mediaTypes) {
@@ -327,8 +310,8 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the {@code Accept} header using raw String values, possibly not even
-	 * well-formed (for testing purposes).
+	 * 使用原始字符串值设置 {@code Accept} 头，
+	 * 这些值甚至可能不符合规范（用于测试目的）。
 	 * @param mediaTypes one or more media types; internally joined as
 	 * comma-separated String
 	 */
@@ -339,7 +322,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Add a header to the request. Values are always added.
+	 * 向请求中添加一个头。值总是被追加。
 	 * @param name the header name
 	 * @param values one or more header values
 	 */
@@ -349,7 +332,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Add all headers to the request. Values are always added.
+	 * 向请求中添加所有头。值总是被追加。
 	 * @param httpHeaders the headers and values to add
 	 */
 	public MockHttpServletRequestBuilder headers(HttpHeaders httpHeaders) {
@@ -358,17 +341,15 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Add a request parameter to {@link MockHttpServletRequest#getParameterMap()}.
-	 * <p>In the Servlet API, a request parameter may be parsed from the query
-	 * string and/or from the body of an {@code application/x-www-form-urlencoded}
-	 * request. This method simply adds to the request parameter map. You may
-	 * also use add Servlet request parameters by specifying the query or form
-	 * data through one of the following:
+	 * 向 {@link MockHttpServletRequest#getParameterMap()} 中添加一个请求参数。
+	 * <p>在 Servlet API 中，请求参数可以从查询字符串和/或
+	 * {@code application/x-www-form-urlencoded} 请求体中解析得到。此方法只是添加到请求参数映射中。
+	 * 你还可以通过以下方式之一指定查询或表单数据来添加 Servlet 请求参数：
 	 * <ul>
-	 * <li>Supply a URL with a query to {@link MockMvcRequestBuilders}.
-	 * <li>Add query params via {@link #queryParam} or {@link #queryParams}.
-	 * <li>Provide {@link #content} with {@link #contentType}
-	 * {@code application/x-www-form-urlencoded}.
+	 * <li>向 {@link MockMvcRequestBuilders} 提供带查询字符串的 URL。
+	 * <li>通过 {@link #queryParam} 或 {@link #queryParams} 添加查询参数。
+	 * <li>提供 {@link #content}，并将 {@link #contentType} 设为
+	 * {@code application/x-www-form-urlencoded}。
 	 * </ul>
 	 * @param name the parameter name
 	 * @param values one or more values
@@ -379,7 +360,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Variant of {@link #param(String, String...)} with a {@link MultiValueMap}.
+	 * {@link #param(String, String...)} 的变体，使用 {@link MultiValueMap}。
 	 * @param params the parameters to add
 	 * @since 4.2.4
 	 */
@@ -393,9 +374,9 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Append to the query string and also add to the
-	 * {@link #param(String, String...) request parameters} map. The parameter
-	 * name and value are encoded when they are added to the query string.
+	 * 追加到查询字符串，同时也添加到
+	 * {@link #param(String, String...) request parameters} 映射。参数名称和值
+	 * 在添加到查询字符串时会被编码。
 	 * @param name the parameter name
 	 * @param values one or more values
 	 * @since 5.2.2
@@ -407,9 +388,9 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Append to the query string and also add to the
-	 * {@link #params(MultiValueMap) request parameters} map. The parameter
-	 * name and value are encoded when they are added to the query string.
+	 * 追加到查询字符串，同时也添加到
+	 * {@link #params(MultiValueMap) request parameters} 映射。参数名称和值
+	 * 在添加到查询字符串时会被编码。
 	 * @param params the parameters to add
 	 * @since 5.2.2
 	 */
@@ -420,7 +401,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Add the given cookies to the request. Cookies are always added.
+	 * 向请求中添加给定的 cookie。Cookie 总是被追加。
 	 * @param cookies the cookies to add
 	 */
 	public MockHttpServletRequestBuilder cookie(Cookie... cookies) {
@@ -430,7 +411,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Add the specified locales as preferred request locales.
+	 * 将指定的区域设置添加为首选请求区域设置。
 	 * @param locales the locales to add
 	 * @since 4.3.6
 	 * @see #locale(Locale)
@@ -442,7 +423,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the locale of the request, overriding any previous locales.
+	 * 设置请求的区域设置，覆盖之前的任何区域设置。
 	 * @param locale the locale, or {@code null} to reset it
 	 * @see #locale(Locale...)
 	 */
@@ -455,7 +436,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set a request attribute.
+	 * 设置请求属性。
 	 * @param name the attribute name
 	 * @param value the attribute value
 	 */
@@ -465,7 +446,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set a session attribute.
+	 * 设置会话属性。
 	 * @param name the session attribute name
 	 * @param value the session attribute value
 	 */
@@ -475,7 +456,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set session attributes.
+	 * 设置会话属性。
 	 * @param sessionAttributes the session attributes
 	 */
 	public MockHttpServletRequestBuilder sessionAttrs(Map<String, Object> sessionAttributes) {
@@ -485,7 +466,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set an "input" flash attribute.
+	 * 设置一个 “input” flash 属性。
 	 * @param name the flash attribute name
 	 * @param value the flash attribute value
 	 */
@@ -495,7 +476,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set flash attributes.
+	 * 设置 flash 属性。
 	 * @param flashAttributes the flash attributes
 	 */
 	public MockHttpServletRequestBuilder flashAttrs(Map<String, Object> flashAttributes) {
@@ -505,9 +486,9 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the HTTP session to use, possibly re-used across requests.
-	 * <p>Individual attributes provided via {@link #sessionAttr(String, Object)}
-	 * override the content of the session provided here.
+	 * 设置要使用的 HTTP 会话，该会话可以跨请求重用。
+	 * <p>通过 {@link #sessionAttr(String, Object)} 提供的单个属性
+	 * 会覆盖此处提供的会话内容。
 	 * @param session the HTTP session
 	 */
 	public MockHttpServletRequestBuilder session(MockHttpSession session) {
@@ -517,7 +498,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Set the principal of the request.
+	 * 设置请求的 principal。
 	 * @param principal the principal
 	 */
 	public MockHttpServletRequestBuilder principal(Principal principal) {
@@ -527,10 +508,9 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * An extension point for further initialization of {@link MockHttpServletRequest}
-	 * in ways not built directly into the {@code MockHttpServletRequestBuilder}.
-	 * Implementation of this interface can have builder-style methods themselves
-	 * and be made accessible through static factory methods.
+	 * 一个扩展点，用于以未直接内置于 {@code MockHttpServletRequestBuilder} 的方式
+	 * 进一步初始化 {@link MockHttpServletRequest}。此接口的实现自身可以拥有
+	 * 构建器风格的方法，并通过静态工厂方法提供访问。
 	 * @param postProcessor a post-processor to add
 	 */
 	@Override
@@ -551,8 +531,8 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Merges the properties of the "parent" RequestBuilder accepting values
-	 * only if not already set in "this" instance.
+	 * 合并 “parent” RequestBuilder 的属性，
+	 * 仅当 “this” 实例中尚未设置相应值时才接受这些值。
 	 * @param parent the parent {@code RequestBuilder} to inherit properties from
 	 * @return the result of the merge
 	 */
@@ -659,7 +639,7 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Build a {@link MockHttpServletRequest}.
+	 * 构建 {@link MockHttpServletRequest}。
 	 */
 	@Override
 	public final MockHttpServletRequest buildRequest(ServletContext servletContext) {
@@ -764,16 +744,15 @@ public class MockHttpServletRequestBuilder
 	}
 
 	/**
-	 * Create a new {@link MockHttpServletRequest} based on the supplied
-	 * {@code ServletContext}.
-	 * <p>Can be overridden in subclasses.
+	 * 基于提供的 {@code ServletContext} 创建新的 {@link MockHttpServletRequest}。
+	 * <p>可以在子类中重写。
 	 */
 	protected MockHttpServletRequest createServletRequest(ServletContext servletContext) {
 		return new MockHttpServletRequest(servletContext);
 	}
 
 	/**
-	 * Update the contextPath, servletPath, and pathInfo of the request.
+	 * 更新请求的 contextPath、servletPath 和 pathInfo。
 	 */
 	private void updatePathRequestProperties(MockHttpServletRequest request, String requestUri) {
 		if (!requestUri.startsWith(this.contextPath)) {

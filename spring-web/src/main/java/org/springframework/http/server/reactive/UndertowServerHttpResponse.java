@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link ServerHttpResponse} to the Undertow {@link HttpServerExchange}.
+ * 将 {@link ServerHttpResponse} 适配到 Undertow 的 {@link HttpServerExchange}。
  *
  * @author Marek Hawrylczak
  * @author Rossen Stoyanchev
@@ -170,7 +170,7 @@ class UndertowServerHttpResponse extends AbstractListenerServerHttpResponse impl
 		@Nullable
 		private volatile ByteBuffer byteBuffer;
 
-		/** Keep track of write listener calls, for {@link #writePossible}. */
+		/** 跟踪写入监听器调用，用于 {@link #writePossible}。 */
 		private volatile boolean writePossible;
 
 

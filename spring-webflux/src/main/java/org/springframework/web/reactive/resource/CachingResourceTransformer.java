@@ -27,10 +27,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link ResourceTransformer} that checks a {@link Cache} to see if a
- * previously transformed resource exists in the cache and returns it if found,
- * or otherwise delegates to the resolver chain and caches the result.
- *
+ * 检查 {@link Cache} 中是否存在先前转换过的资源，如果找到则返回，否则委托给解析器链并缓存结果的 {@link ResourceTransformer}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -56,7 +53,7 @@ public class CachingResourceTransformer implements ResourceTransformer {
 
 
 	/**
-	 * Return the configured {@code Cache}.
+	 * 返回配置的 {@code Cache}。
 	 */
 	public Cache getCache() {
 		return this.cache;

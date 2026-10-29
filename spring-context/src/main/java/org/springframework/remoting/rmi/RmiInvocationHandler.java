@@ -24,11 +24,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.remoting.support.RemoteInvocation;
 
 /**
- * Interface for RMI invocation handlers instances on the server,
- * wrapping exported services. A client uses a stub implementing
- * this interface to access such a service.
+ * 服务器上 RMI 调用处理器实例的接口，用于包装所导出的服务。客户端使用实现此接口的存根来访问这样的
+ * 服务。
  *
- * <p>This is an SPI interface, not to be used directly by applications.
+ * <p>这是一个 SPI 接口，不应由应用程序直接使用。
  *
  * @author Juergen Hoeller
  * @since 14.05.2003
@@ -38,7 +37,7 @@ import org.springframework.remoting.support.RemoteInvocation;
 public interface RmiInvocationHandler extends Remote {
 
 	/**
-	 * Return the name of the target interface that this invoker operates on.
+	 * 返回此调用器所操作的目标接口的名称。
 	 * @return the name of the target interface, or {@code null} if none
 	 * @throws RemoteException in case of communication errors
 	 * @see RmiServiceExporter#getServiceInterface()
@@ -47,9 +46,10 @@ public interface RmiInvocationHandler extends Remote {
 	public String getTargetInterfaceName() throws RemoteException;
 
 	/**
-	 * Apply the given invocation to the target object.
-	 * <p>Called by
-	 * {@link RmiClientInterceptor#doInvoke(org.aopalliance.intercept.MethodInvocation, RmiInvocationHandler)}.
+	 * 将给定的调用应用到目标对象。
+	 * <p>由
+	 * {@link RmiClientInterceptor#doInvoke(org.aopalliance.intercept.MethodInvocation, RmiInvocationHandler)}
+	 * 调用。
 	 * @param invocation object that encapsulates invocation parameters
 	 * @return the object returned from the invoked method, if any
 	 * @throws RemoteException in case of communication errors

@@ -22,19 +22,16 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- * Servlet HttpSessionListener that automatically exposes the session mutex
- * when an HttpSession gets created. To be registered as a listener in
- * {@code web.xml}.
+ * 一个 Servlet HttpSessionListener，在创建 HttpSession 时自动公开
+ * 会话互斥锁。可在 {@code web.xml} 中注册为监听器。
  *
- * <p>The session mutex is guaranteed to be the same object during
- * the entire lifetime of the session, available under the key defined
- * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
- * safe reference to synchronize on for locking on the current session.
+ * <p>会话互斥锁保证在整个会话生命周期内都是同一个对象，可通过
+ * {@code SESSION_MUTEX_ATTRIBUTE} 常量定义的键获取。它可作为当前
+ * 会话加锁时进行同步的安全引用。
  *
- * <p>In many cases, the HttpSession reference itself is a safe mutex
- * as well, since it will always be the same object reference for the
- * same active logical session. However, this is not guaranteed across
- * different servlet containers; the only 100% safe way is a session mutex.
+ * <p>在许多情况下，HttpSession 引用本身也是安全的互斥锁，因为对于
+ * 同一个活动逻辑会话，它始终是相同的对象引用。但是，不同 Servlet
+ * 容器并不保证这一点；唯一 100% 安全的方式是使用会话互斥锁。
  *
  * @author Juergen Hoeller
  * @since 1.2.7
@@ -56,9 +53,9 @@ public class HttpSessionMutexListener implements HttpSessionListener {
 
 
 	/**
-	 * The mutex to be registered.
-	 * Doesn't need to be anything but a plain Object to synchronize on.
-	 * Should be serializable to allow for HttpSession persistence.
+	 * 要注册的互斥锁。
+	 * 除了作为用于同步的普通 Object 外无需其他内容。
+	 * 应可序列化，以支持 HttpSession 持久化。
 	 */
 	@SuppressWarnings("serial")
 	private static class Mutex implements Serializable {

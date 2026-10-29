@@ -31,11 +31,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.util.UriTemplateHandler;
 
 /**
- * Extension of {@link HttpEntity} that also exposes the HTTP method and the
- * target URL. For use in the {@code RestTemplate} to prepare requests with
- * and in {@code @Controller} methods to represent request input.
- *
- * <p>Example use with the {@code RestTemplate}:
+ * 扩展 {@link HttpEntity}，还公开了 HTTP 方法和目标 URL。用于在 {@code RestTemplate} 中准备请求，以及在 {@code @Controller} 方法中表示请求输入。
+ * <p>在 {@code RestTemplate} 中的使用示例：
  * <pre class="code">
  * MyRequest body = ...
  * RequestEntity&lt;MyRequest&gt; request = RequestEntity
@@ -44,8 +41,7 @@ import org.springframework.web.util.UriTemplateHandler;
  *     .body(body);
  * ResponseEntity&lt;MyResponse&gt; response = template.exchange(request, MyResponse.class);
  * </pre>
- *
- * <p>Example use in an {@code @Controller}:
+ * <p>在 {@code @Controller} 中的使用示例：
  * <pre class="code">
  * &#64;RequestMapping("/handle")
  * public void handle(RequestEntity&lt;String&gt; request) {
@@ -77,7 +73,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	private final Type type;
 
 	/**
-	 * Constructor with method and URL but without body nor headers.
+	 * 使用方法和 URL 构造，不包含正文和头。
 	 * @param method the method
 	 * @param url the URL
 	 */
@@ -86,7 +82,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Constructor with method, URL and body but without headers.
+	 * 使用方法、URL 和正文构造，不包含头。
 	 * @param body the body
 	 * @param method the method
 	 * @param url the URL
@@ -96,7 +92,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Constructor with method, URL, body and type but without headers.
+	 * 使用方法、URL、正文和类型构造，不包含头。
 	 * @param body the body
 	 * @param method the method
 	 * @param url the URL
@@ -108,7 +104,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Constructor with method, URL and headers but without body.
+	 * 使用方法、URL 和头构造，不包含正文。
 	 * @param headers the headers
 	 * @param method the method
 	 * @param url the URL
@@ -118,7 +114,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Constructor with method, URL, headers and body.
+	 * 使用方法、URL、头和正文构造。
 	 * @param body the body
 	 * @param headers the headers
 	 * @param method the method
@@ -131,7 +127,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Constructor with method, URL, headers, body and type.
+	 * 使用方法、URL、头、正文和类型构造。
 	 * @param body the body
 	 * @param headers the headers
 	 * @param method the method
@@ -150,7 +146,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Return the HTTP method of the request.
+	 * 返回请求的 HTTP 方法。
 	 * @return the HTTP method as an {@code HttpMethod} enum value
 	 */
 	@Nullable
@@ -159,15 +155,8 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Return the {@link URI} for the target HTTP endpoint.
-	 * <p><strong>Note:</strong> This method raises
-	 * {@link UnsupportedOperationException} if the {@code RequestEntity} was
-	 * created with a URI template and variables rather than with a {@link URI}
-	 * instance. This is because a URI cannot be created without further input
-	 * on how to expand template and encode the URI. In such cases, the
-	 * {@code URI} is prepared by the
-	 * {@link org.springframework.web.client.RestTemplate} with the help of the
-	 * {@link UriTemplateHandler} it is configured with.
+	 * 返回目标 HTTP 端点的 {@link URI}。
+	 * <p><strong>注意：</strong>如果 {@code RequestEntity} 是使用 URI 模板和变量而不是 {@link URI} 实例创建的，则此方法会抛出 {@link UnsupportedOperationException}。这是因为如果没有关于如何展开模板和编码 URI 的更多信息，就无法创建 URI。在这种情况下，{@code URI} 由 {@link org.springframework.web.client.RestTemplate} 借助其配置的 {@link UriTemplateHandler} 来准备。
 	 */
 	public URI getUrl() {
 		if (this.url == null) {
@@ -182,7 +171,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Return the type of the request's body.
+	 * 返回请求正文的类型。
 	 * @return the request's body type, or {@code null} if not known
 	 * @since 4.3
 	 */
@@ -243,7 +232,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	// Static builder methods
 
 	/**
-	 * Create a builder with the given method and url.
+	 * 使用给定的方法和 url 创建构建器。
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param url the URL
 	 * @return the created builder
@@ -253,7 +242,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with the given HTTP method, URI template, and variables.
+	 * 使用给定的 HTTP 方法、URI 模板和变量创建构建器。
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
@@ -265,7 +254,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with the given HTTP method, URI template, and variables.
+	 * 使用给定的 HTTP 方法、URI 模板和变量创建构建器。
 	 * @param method the HTTP method (GET, POST, etc)
 	 * @param uriTemplate the uri template to use
 	 * @return the created builder
@@ -277,7 +266,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Create an HTTP GET builder with the given url.
+	 * 使用给定 url 创建 HTTP GET 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -286,7 +275,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP GET builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP GET 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -297,7 +286,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP HEAD builder with the given url.
+	 * 使用给定 url 创建 HTTP HEAD 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -306,7 +295,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP HEAD builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP HEAD 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -317,7 +306,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP POST builder with the given url.
+	 * 使用给定 url 创建 HTTP POST 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -326,7 +315,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP POST builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP POST 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -337,7 +326,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP PUT builder with the given url.
+	 * 使用给定 url 创建 HTTP PUT 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -346,7 +335,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP PUT builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP PUT 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -357,7 +346,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP PATCH builder with the given url.
+	 * 使用给定 url 创建 HTTP PATCH 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -366,7 +355,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP PATCH builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP PATCH 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -377,7 +366,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP DELETE builder with the given url.
+	 * 使用给定 url 创建 HTTP DELETE 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -386,7 +375,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create an HTTP DELETE builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP DELETE 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -397,7 +386,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Creates an HTTP OPTIONS builder with the given url.
+	 * 使用给定 url 创建 HTTP OPTIONS 构建器。
 	 * @param url the URL
 	 * @return the created builder
 	 */
@@ -406,7 +395,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Creates an HTTP OPTIONS builder with the given string base uri template.
+	 * 使用给定的字符串基础 URI 模板创建 HTTP OPTIONS 构建器。
 	 * @param uriTemplate the uri template to use
 	 * @param uriVariables variables to expand the URI template with
 	 * @return the created builder
@@ -418,13 +407,13 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Defines a builder that adds headers to the request entity.
+	 * 定义向请求实体添加头的构建器。
 	 * @param <B> the builder subclass
 	 */
 	public interface HeadersBuilder<B extends HeadersBuilder<B>> {
 
 		/**
-		 * Add the given, single header value under the given name.
+		 * 在给定名称下添加给定的单个头值。
 		 * @param headerName  the header name
 		 * @param headerValues the header value(s)
 		 * @return this builder
@@ -433,7 +422,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		B header(String headerName, String... headerValues);
 
 		/**
-		 * Copy the given headers into the entity's headers map.
+		 * 将给定的头复制到实体的头映射中。
 		 * @param headers the existing HttpHeaders to copy from
 		 * @return this builder
 		 * @since 5.2
@@ -442,11 +431,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		B headers(@Nullable HttpHeaders headers);
 
 		/**
-		 * Manipulate this entity's headers with the given consumer. The
-		 * headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定的消费者操作此实体的头。提供给消费者的头是“实时”的，因此消费者可以使用它{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 移除}值，或使用任何其他 {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 * @since 5.2
@@ -454,49 +439,46 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		B headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Set the list of acceptable {@linkplain MediaType media types}, as
-		 * specified by the {@code Accept} header.
+		 * 设置可接受的 {@linkplain MediaType media types} 列表，由 {@code Accept} 头指定。
 		 * @param acceptableMediaTypes the acceptable media types
 		 */
 		B accept(MediaType... acceptableMediaTypes);
 
 		/**
-		 * Set the list of acceptable {@linkplain Charset charsets}, as specified
-		 * by the {@code Accept-Charset} header.
+		 * 设置可接受的 {@linkplain Charset charsets} 列表，由 {@code Accept-Charset} 头指定。
 		 * @param acceptableCharsets the acceptable charsets
 		 */
 		B acceptCharset(Charset... acceptableCharsets);
 
 		/**
-		 * Set the value of the {@code If-Modified-Since} header.
+		 * 设置 {@code If-Modified-Since} 头的值。
 		 * @param ifModifiedSince the new value of the header
 		 * @since 5.1.4
 		 */
 		B ifModifiedSince(ZonedDateTime ifModifiedSince);
 
 		/**
-		 * Set the value of the {@code If-Modified-Since} header.
+		 * 设置 {@code If-Modified-Since} 头的值。
 		 * @param ifModifiedSince the new value of the header
 		 * @since 5.1.4
 		 */
 		B ifModifiedSince(Instant ifModifiedSince);
 
 		/**
-		 * Set the value of the {@code If-Modified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
-		 * January 1, 1970 GMT.
+		 * 设置 {@code If-Modified-Since} 头的值。
+		 * <p>日期应指定为自格林尼治标准时间 1970 年 1 月 1 日以来的毫秒数。
 		 * @param ifModifiedSince the new value of the header
 		 */
 		B ifModifiedSince(long ifModifiedSince);
 
 		/**
-		 * Set the values of the {@code If-None-Match} header.
+		 * 设置 {@code If-None-Match} 头的值。
 		 * @param ifNoneMatches the new value of the header
 		 */
 		B ifNoneMatch(String... ifNoneMatches);
 
 		/**
-		 * Builds the request entity with no body.
+		 * 构建不带正文的请求实体。
 		 * @return the request entity
 		 * @see BodyBuilder#body(Object)
 		 */
@@ -505,13 +487,12 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Defines a builder that adds a body to the response entity.
+	 * 定义向响应实体添加正文的构建器。
 	 */
 	public interface BodyBuilder extends HeadersBuilder<BodyBuilder> {
 
 		/**
-		 * Set the length of the body in bytes, as specified by the
-		 * {@code Content-Length} header.
+		 * 设置正文的字节长度，由 {@code Content-Length} 头指定。
 		 * @param contentLength the content length
 		 * @return this builder
 		 * @see HttpHeaders#setContentLength(long)
@@ -519,8 +500,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		BodyBuilder contentLength(long contentLength);
 
 		/**
-		 * Set the {@linkplain MediaType media type} of the body, as specified
-		 * by the {@code Content-Type} header.
+		 * 设置正文的 {@linkplain MediaType media type}，由 {@code Content-Type} 头指定。
 		 * @param contentType the content type
 		 * @return this builder
 		 * @see HttpHeaders#setContentType(MediaType)
@@ -528,7 +508,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		BodyBuilder contentType(MediaType contentType);
 
 		/**
-		 * Set the body of the request entity and build the RequestEntity.
+		 * 设置请求实体的正文并构建 RequestEntity。
 		 * @param <T> the type of the body
 		 * @param body the body of the request entity
 		 * @return the built request entity
@@ -536,7 +516,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		<T> RequestEntity<T> body(T body);
 
 		/**
-		 * Set the body and type of the request entity and build the RequestEntity.
+		 * 设置请求实体的正文和类型并构建 RequestEntity。
 		 * @param <T> the type of the body
 		 * @param body the body of the request entity
 		 * @param type the type of the body, useful for generic type resolution
@@ -690,7 +670,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * RequestEntity initialized with a URI template and variables instead of a {@link URI}.
+	 * 使用 URI 模板和变量而不是 {@link URI} 初始化的 RequestEntity。
 	 * @since 5.3
 	 * @param <T> the body type
 	 */

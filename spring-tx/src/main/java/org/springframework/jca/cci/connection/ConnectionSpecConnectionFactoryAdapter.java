@@ -26,19 +26,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * An adapter for a target CCI {@link javax.resource.cci.ConnectionFactory},
- * applying the given ConnectionSpec to every standard {@code getConnection()}
- * call, that is, implicitly invoking {@code getConnection(ConnectionSpec)}
- * on the target. All other methods simply delegate to the corresponding methods
- * of the target ConnectionFactory.
+ * 目标 CCI {@link javax.resource.cci.ConnectionFactory} 的适配器，
+ * 将给定的 ConnectionSpec 应用于每次标准 {@code getConnection()} 调用，
+ * 即隐式调用目标上的 {@code getConnection(ConnectionSpec)}。
+ * 所有其他方法简单地委托给目标 ConnectionFactory 的对应方法。
  *
- * <p>Can be used to proxy a target JNDI ConnectionFactory that does not have a
- * ConnectionSpec configured. Client code can work with the ConnectionFactory
- * without passing in a ConnectionSpec on every {@code getConnection()} call.
+ * <p>可用于代理未配置 ConnectionSpec 的目标 JNDI ConnectionFactory。
+ * 客户端代码可以操作 ConnectionFactory，而无需在每次
+ * {@code getConnection()} 调用时传入 ConnectionSpec。
  *
- * <p>In the following example, client code can simply transparently work with
- * the preconfigured "myConnectionFactory", implicitly accessing
- * "myTargetConnectionFactory" with the specified user credentials.
+ * <p>在以下示例中，客户端代码可以简单地透明地使用预配置的 "myConnectionFactory"，
+ * 隐式使用指定的用户凭据访问 "myTargetConnectionFactory"。
  *
  * <pre class="code">
  * &lt;bean id="myTargetConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean"&gt;
@@ -55,11 +53,9 @@ import org.springframework.util.Assert;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>If the "connectionSpec" is empty, this proxy will simply delegate to the
- * standard {@code getConnection()} method of the target ConnectionFactory.
- * This can be used to keep a UserCredentialsConnectionFactoryAdapter bean definition
- * just for the <i>option</i> of implicitly passing in a ConnectionSpec if the
- * particular target ConnectionFactory requires it.
+ * <p>如果 "connectionSpec" 为空，此代理将简单地委托给目标 ConnectionFactory 的标准
+ * {@code getConnection()} 方法。这可以用于保留 UserCredentialsConnectionFactoryAdapter bean 定义，
+ * 仅作为在特定目标 ConnectionFactory 需要时隐式传入 ConnectionSpec 的<i>选项</i>。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -79,18 +75,18 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 
 
 	/**
-	 * Set the ConnectionSpec that this adapter should use for retrieving Connections.
-	 * Default is none.
+	 * 设置此适配器用于获取连接的 ConnectionSpec。
+	 * 默认为无。
 	 */
 	public void setConnectionSpec(ConnectionSpec connectionSpec) {
 		this.connectionSpec = connectionSpec;
 	}
 
 	/**
-	 * Set a ConnectionSpec for this proxy and the current thread.
-	 * The given ConnectionSpec will be applied to all subsequent
-	 * {@code getConnection()} calls on this ConnectionFactory proxy.
-	 * <p>This will override any statically specified "connectionSpec" property.
+	 * 为此代理和当前线程设置 ConnectionSpec。
+	 * 给定的 ConnectionSpec 将应用于此 ConnectionFactory 代理后续的
+	 * 所有 {@code getConnection()} 调用。
+	 * <p>这将覆盖任何静态指定的 "connectionSpec" 属性。
 	 * @param spec the ConnectionSpec to apply
 	 * @see #removeConnectionSpecFromCurrentThread
 	 */
@@ -99,8 +95,8 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	}
 
 	/**
-	 * Remove any ConnectionSpec for this proxy from the current thread.
-	 * A statically specified ConnectionSpec applies again afterwards.
+	 * 从当前线程移除此代理的任何 ConnectionSpec。
+	 * 之后将重新应用静态指定的 ConnectionSpec。
 	 * @see #setConnectionSpecForCurrentThread
 	 */
 	public void removeConnectionSpecFromCurrentThread() {
@@ -109,9 +105,8 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 
 
 	/**
-	 * Determine whether there is currently a thread-bound ConnectionSpec,
-	 * using it if available, falling back to the statically specified
-	 * "connectionSpec" property else.
+	 * 确定当前是否存在线程绑定的 ConnectionSpec，
+	 * 如果存在则使用它，否则回退到静态指定的 "connectionSpec" 属性。
 	 * @see #doGetConnection
 	 */
 	@Override
@@ -126,10 +121,10 @@ public class ConnectionSpecConnectionFactoryAdapter extends DelegatingConnection
 	}
 
 	/**
-	 * This implementation delegates to the {@code getConnection(ConnectionSpec)}
-	 * method of the target ConnectionFactory, passing in the specified user credentials.
-	 * If the specified username is empty, it will simply delegate to the standard
-	 * {@code getConnection()} method of the target ConnectionFactory.
+	 * 此实现委托给目标 ConnectionFactory 的
+	 * {@code getConnection(ConnectionSpec)} 方法，传入指定的用户凭据。
+	 * 如果指定的 ConnectionSpec 为空，将简单地委托给目标 ConnectionFactory 的
+	 * 标准 {@code getConnection()} 方法。
 	 * @param spec the ConnectionSpec to apply
 	 * @return the Connection
 	 * @see javax.resource.cci.ConnectionFactory#getConnection(javax.resource.cci.ConnectionSpec)

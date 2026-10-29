@@ -19,23 +19,23 @@ package org.springframework.test.context;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Strategy interface for loading an {@link ApplicationContext application context}
- * for an integration test managed by the Spring TestContext Framework.
+ * 用于为 Spring TestContext Framework 管理的集成测试加载
+ * {@link ApplicationContext 应用程序上下文}的策略接口。
  *
- * <p><b>Note</b>: as of Spring 3.1, implement {@link SmartContextLoader} instead
- * of this interface in order to provide support for annotated classes, active
- * bean definition profiles, and application context initializers.
+ * <p><b>注意</b>：从 Spring 3.1 开始，请实现 {@link SmartContextLoader} 而不是
+ * 此接口，以便支持注解类、活动
+ * Bean 定义配置和应用程序上下文初始化器。
  *
- * <p>Clients of a ContextLoader should call
- * {@link #processLocations(Class, String...) processLocations()} prior to
- * calling {@link #loadContext(String...) loadContext()} in case the
- * ContextLoader provides custom support for modifying or generating locations.
- * The results of {@link #processLocations(Class, String...) processLocations()}
- * should then be supplied to {@link #loadContext(String...) loadContext()}.
+ * <p>ContextLoader 的客户端应在
+ * 调用 {@link #loadContext(String...) loadContext()} 之前调用
+ * {@link #processLocations(Class, String...) processLocations()}，
+ * 以防 ContextLoader 提供对修改或生成位置的自定义支持。
+ * 然后应将 {@link #processLocations(Class, String...) processLocations()}
+ * 的结果提供给 {@link #loadContext(String...) loadContext()}。
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor.
+ * <p>具体实现必须提供 {@code public} 无参构造函数。
  *
- * <p>Spring provides the following out-of-the-box implementations:
+ * <p>Spring 提供以下开箱即用的实现：
  * <ul>
  * <li>{@link org.springframework.test.context.support.GenericXmlContextLoader GenericXmlContextLoader}</li>
  * <li>{@link org.springframework.test.context.support.GenericPropertiesContextLoader GenericPropertiesContextLoader}</li>
@@ -50,9 +50,9 @@ import org.springframework.context.ApplicationContext;
 public interface ContextLoader {
 
 	/**
-	 * Processes application context resource locations for a specified class.
-	 * <p>Concrete implementations may choose to modify the supplied locations,
-	 * generate new locations, or simply return the supplied locations unchanged.
+	 * 处理指定类的应用程序上下文资源位置。
+	 * <p>具体实现可以选择修改提供的位置、
+	 * 生成新位置，或仅原样返回提供的位置。
 	 * @param clazz the class with which the locations are associated: used to
 	 * determine how to process the supplied locations
 	 * @param locations the unmodified locations to use for loading the
@@ -62,23 +62,23 @@ public interface ContextLoader {
 	String[] processLocations(Class<?> clazz, String... locations);
 
 	/**
-	 * Loads a new {@link ApplicationContext context} based on the supplied
-	 * {@code locations}, configures the context, and finally returns
-	 * the context in fully <em>refreshed</em> state.
-	 * <p>Configuration locations are generally considered to be classpath
-	 * resources by default.
-	 * <p>Concrete implementations should register annotation configuration
-	 * processors with bean factories of {@link ApplicationContext application
-	 * contexts} loaded by this ContextLoader. Beans will therefore automatically
-	 * be candidates for annotation-based dependency injection using
-	 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired},
-	 * {@link javax.annotation.Resource @Resource}, and
-	 * {@link javax.inject.Inject @Inject}.
-	 * <p>Any ApplicationContext loaded by a ContextLoader <strong>must</strong>
-	 * register a JVM shutdown hook for itself. Unless the context gets closed
-	 * early, all context instances will be automatically closed on JVM
-	 * shutdown. This allows for freeing external resources held by beans within
-	 * the context, e.g. temporary files.
+	 * 根据提供的
+	 * {@code locations} 加载新的 {@link ApplicationContext 上下文}，配置该上下文，最后
+	 * 以完全<em>刷新</em>的状态返回该上下文。
+	 * <p>默认情况下，配置位置通常被视为类路径
+	 * 资源。
+	 * <p>具体实现应为此 ContextLoader 加载的 {@link ApplicationContext 应用程序
+	 * 上下文}的 Bean 工厂注册注解配置
+	 * 处理器。因此，Bean 将自动
+	 * 成为使用
+	 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired}、
+	 * {@link javax.annotation.Resource @Resource} 和
+	 * {@link javax.inject.Inject @Inject} 进行基于注解的依赖注入的候选者。
+	 * <p>ContextLoader 加载的任何 ApplicationContext <strong>必须</strong>
+	 * 为其自身注册 JVM 关闭钩子。除非上下文提前关闭，
+	 * 否则所有上下文实例将在 JVM 关闭时
+	 * 自动关闭。这样可以释放上下文中 Bean 持有的外部资源，
+	 * 例如临时文件。
 	 * @param locations the resource locations to use to load the application context
 	 * @return a new application context
 	 * @throws Exception if context loading failed

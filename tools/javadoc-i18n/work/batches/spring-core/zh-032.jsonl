@@ -1,0 +1,102 @@
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/MonoToListenableFutureAdapter.java::21::0", "zh": ["通过 {@link Mono#toFuture()} 从 {@code Mono} 获取 {@code CompletableFuture}，再用 {@link CompletableToListenableFutureAdapter} 对其进行适配，从而将 {@link Mono} 适配为 {@link ListenableFuture}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::28::0", "zh": ["一个 {@link ListenableFuture}，其值可通过 {@link #set(Object)} 或 {@link #setException(Throwable)} 设置。它也可能被取消。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::28::1", "zh": ["<p>灵感来自 {@code com.google.common.util.concurrent.SettableFuture}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::50::0", "zh": ["设置此 future 的值。如果值设置成功，此方法返回 {@code true}；如果该 future 已被设置或已取消，则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::61::0", "zh": ["设置此 future 的异常。如果异常设置成功，此方法返回 {@code true}；如果该 future 已被设置或已取消，则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::109::0", "zh": ["获取值。", "<p>如果已通过 {@link #set(Object)} 设置值，此方法返回该值；如果已通过 {@link #setException(Throwable)} 设置异常，则抛出 {@link java.util.concurrent.ExecutionException}；如果该 future 已被取消，则抛出 {@link java.util.concurrent.CancellationException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::123::0", "zh": ["获取值。", "<p>如果已通过 {@link #set(Object)} 设置值，此方法返回该值；如果已通过 {@link #setException(Throwable)} 设置异常，则抛出 {@link java.util.concurrent.ExecutionException}；如果该 future 已被取消，则抛出 {@link java.util.concurrent.CancellationException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SettableListenableFuture.java::139::0", "zh": ["子类可以重写此方法以实现对 future 计算的打断。成功调用 {@link #cancel(boolean) cancel(true)} 时会自动调用此方法。", "<p>默认实现为空。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SuccessCallback.java::21::0", "zh": ["{@link ListenableFuture} 的成功回调。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/SuccessCallback.java::31::0", "zh": ["当 {@link ListenableFuture} 成功完成时调用。", "<p>注意，此方法抛出的 Exception 会被忽略。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/concurrent/package-info.java::1::0", "zh": ["有用的通用 {@code java.util.concurrent.Future} 扩展。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::24::0", "zh": ["一个 {@link java.util.function.Supplier} 装饰器，用于缓存单例结果，并可通过 {@link #get()}（可为 null）和 {@link #obtain()}（null 安全）获取该结果。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::24::1", "zh": ["<p>{@code SingletonSupplier} 既可以通过 {@code of} 工厂方法构造，也可以通过提供默认 supplier 作为回退的构造函数构造。这对于方法引用形式的 supplier 特别有用：当方法返回 {@code null} 时回退到默认 supplier，并缓存结果。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::49::0", "zh": ["使用给定的单例实例以及当该实例为 {@code null} 时使用的默认 supplier 构建一个 {@code SingletonSupplier}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::61::0", "zh": ["使用给定的实例 supplier 以及当该实例为 {@code null} 时使用的默认 supplier 构建一个 {@code SingletonSupplier}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::84::0", "zh": ["获取此 supplier 的共享单例实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::109::0", "zh": ["获取此 supplier 的共享单例实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::121::0", "zh": ["使用给定的单例实例构建一个 {@code SingletonSupplier}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::130::0", "zh": ["使用给定的单例实例构建一个 {@code SingletonSupplier}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::140::0", "zh": ["使用给定的 supplier 构建一个 {@code SingletonSupplier}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SingletonSupplier.java::149::0", "zh": ["使用给定的 supplier 构建一个 {@code SingletonSupplier}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SupplierUtils.java::23::0", "zh": ["用于处理 {@link java.util.function.Supplier} 的便捷工具。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/SupplierUtils.java::32::0", "zh": ["解析给定的 {@code Supplier}，获取其结果；如果该 supplier 本身为 {@code null}，则立即返回 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/function/package-info.java::1::0", "zh": ["有用的通用 {@code java.util.function} 辅助类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::27::0", "zh": ["数据大小，例如 '12MB'。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::27::1", "zh": ["<p>此类以字节为单位对数据大小建模，并且是不可变且线程安全的。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::27::2", "zh": ["<p>此类中使用的术语和单位基于<a href=\"https://en.wikipedia.org/wiki/Binary_prefix\">二进制前缀</a>，表示按 2 的幂进行乘法运算。详情请参阅下表以及 {@link DataUnit} 的 Javadoc。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::27::3", "zh": ["<p>"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::55::0", "zh": ["每千字节的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::60::0", "zh": ["每兆字节的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::65::0", "zh": ["每吉字节的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::70::0", "zh": ["每太字节的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::84::0", "zh": ["获取一个表示指定字节数的 {@link DataSize}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::93::0", "zh": ["获取一个表示指定千字节数的 {@link DataSize}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::102::0", "zh": ["获取一个表示指定兆字节数的 {@link DataSize}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::111::0", "zh": ["获取一个表示指定吉字节数的 {@link DataSize}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::120::0", "zh": ["获取一个表示指定太字节数的 {@link DataSize}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::129::0", "zh": ["获取一个表示指定 {@link DataUnit} 中数量的 {@link DataSize}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::140::0", "zh": ["从诸如 {@code 12MB} 这样的文本字符串获取 {@link DataSize}，如果未指定单位，则使用 {@link DataUnit#BYTES}。", "<p>", "示例："]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::158::0", "zh": ["从诸如 {@code 12MB} 这样的文本字符串获取 {@link DataSize}，如果未指定单位，则使用指定的默认 {@link DataUnit}。", "<p>", "该字符串以数字开头，后面可选地跟一个与受支持的 {@linkplain DataUnit 后缀}之一匹配的单位。", "<p>", "示例："]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::188::0", "zh": ["检查此大小是否为负数，不包括零。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::196::0", "zh": ["返回此实例中的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::204::0", "zh": ["返回此实例中的千字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::212::0", "zh": ["返回此实例中的兆字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::220::0", "zh": ["返回此实例中的吉字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::228::0", "zh": ["返回此实例中的太字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::265::0", "zh": ["用于支持 {@link #PATTERN} 延迟加载的静态嵌套类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataSize.java::271::0", "zh": ["用于解析的模式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::19::0", "zh": ["一组标准的 {@link DataSize} 单位。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::19::1", "zh": ["<p>此类中使用的单位前缀是<a href=\"https://en.wikipedia.org/wiki/Binary_prefix\">二进制前缀</a>，表示按 2 的幂进行乘法运算。下表列出了此类中定义的枚举常量及其对应的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::19::2", "zh": ["<p>"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::44::0", "zh": ["字节，由后缀 {@code B} 表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::49::0", "zh": ["千字节，由后缀 {@code KB} 表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::54::0", "zh": ["兆字节，由后缀 {@code MB} 表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::59::0", "zh": ["吉字节，由后缀 {@code GB} 表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::64::0", "zh": ["太字节，由后缀 {@code TB} 表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/DataUnit.java::84::0", "zh": ["返回与指定 {@code suffix} 匹配的 {@link DataUnit}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/unit/package-info.java::1::0", "zh": ["有用的单位数据类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxHandler.java::35::0", "zh": ["用于以 StAX 为基础的 SAX {@code ContentHandler} 和 {@code LexicalHandler} 实现的抽象基类。所有方法都委托给内部的模板方法，这些方法能够抛出 {@code XMLStreamException}。此外，还使用命名空间上下文栈来跟踪已声明的命名空间。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxHandler.java::207::0", "zh": ["将命名空间 URI 以及 DOM 或 SAX 限定名转换为 {@code QName}。限定名的形式可以是 {@code prefix:localname} 或 {@code localName}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::36::0", "zh": ["用于以 StAX 为基础的 SAX {@code XMLReader} 实现的抽象基类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::102::0", "zh": ["指示 SAX 特性 {@code http://xml.org/sax/features/namespaces} 是否已开启。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::109::0", "zh": ["指示 SAX 特性 {@code http://xml.org/sax/features/namespaces-prefixes} 是否已开启。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::116::0", "zh": ["将 {@code QName} 转换为 DOM 和 SAX 所使用的限定名。如果设置了前缀，返回的字符串格式为 {@code prefix:localName}；否则仅为 {@code localName}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::134::0", "zh": ["解析构造时传入的 StAX XML 读取器。", "<p><b>NOTE:</b> 给定的 {@code InputSource} 不会被读取，而是被忽略。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::145::0", "zh": ["解析构造时传入的 StAX XML 读取器。", "<p><b>NOTE:</b> 给定的系统标识符不会被读取，而是被忽略。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::175::0", "zh": ["解析构造时传入的 StAX 读取器的模板方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::181::0", "zh": ["开始给定前缀的前缀映射。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::197::0", "zh": ["结束给定前缀的前缀映射。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractStaxXMLReader.java::209::0", "zh": ["基于给定 StAX {@code Location} 的 {@code Locator} 接口实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLEventReader.java::26::0", "zh": ["用于 {@code XMLEventReader} 的抽象基类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLEventReader.java::54::0", "zh": ["此实现对任何属性都会抛出 {@code IllegalArgumentException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLEventReader.java::68::0", "zh": ["检查读取器是否已关闭，若已关闭则抛出 {@code XMLStreamException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLReader.java::30::0", "zh": ["用于 SAX {@code XMLReader} 实现的抽象基类。包含 {@link XMLReader} 中定义的属性，并且不识别任何特性。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLReader.java::110::0", "zh": ["对于 \"http://xml.org/sax/features/\" 命名空间之外的任何特性，此实现抛出 {@code SAXNotRecognizedException} 异常；对于该命名空间内的任何特性，则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLReader.java::125::0", "zh": ["对于 \"http://xml.org/sax/features/\" 命名空间之外的任何特性，此实现抛出 {@code SAXNotRecognizedException} 异常；对于该命名空间内的任何特性，则接受 {@code false} 值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLReader.java::142::0", "zh": ["当给定属性不表示词法处理器时，抛出 {@code SAXNotRecognizedException} 异常。词法处理器的属性名为 {@code http://xml.org/sax/properties/lexical-handler}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLReader.java::157::0", "zh": ["当给定属性不表示词法处理器时，抛出 {@code SAXNotRecognizedException} 异常。词法处理器的属性名为 {@code http://xml.org/sax/properties/lexical-handler}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/AbstractXMLStreamReader.java::26::0", "zh": ["用于 {@code XMLStreamReader} 的抽象基类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomContentHandler.java::31::0", "zh": ["将回调调用转换为 DOM {@code Node} 的 SAX {@code ContentHandler}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomContentHandler.java::47::0", "zh": ["使用给定节点创建 {@code DomContentHandler} 的新实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::35::0", "zh": ["用于操作 DOM API 的便捷方法，特别是用于操作 DOM Node 和 DOM Element。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::50::0", "zh": ["检索给定 DOM 元素中与任一给定元素名匹配的所有子元素。只查看给定元素的直接子级，不会进一步深入（与 DOM API 的 {@code getElementsByTagName} 方法相反）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::75::0", "zh": ["检索给定 DOM 元素中与给定元素名匹配的所有子元素。只查看给定元素的直接子级，不会进一步深入（与 DOM API 的 {@code getElementsByTagName} 方法相反）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::89::0", "zh": ["返回按名称标识的第一个子元素的工具方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::109::0", "zh": ["返回按名称标识的第一个子元素值的工具方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::121::0", "zh": ["检索给定 DOM 元素的所有子元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::139::0", "zh": ["从给定 DOM 元素中提取文本值，忽略 XML 注释。", "<p>将所有 CharacterData 节点和 EntityReference 节点追加到单个 String 值中，不包括 Comment 节点。只暴露用户实际指定的文本，不包含任何类型的默认值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::161::0", "zh": ["命名空间感知的相等比较。如果 {@link Node#getLocalName} 或 {@link Node#getNodeName} 等于 {@code desiredName}，则返回 {@code true}，否则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::172::0", "zh": ["返回一个将回调调用转换为 DOM {@code Node} 的 SAX {@code ContentHandler}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::181::0", "zh": ["将给定节点的名称和本地名称与给定的目标名称进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/DomUtils.java::188::0", "zh": ["将给定节点的名称和本地名称与给定的多个目标名称进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/ListBasedXMLEventReader.java::31::0", "zh": ["基于 {@link XMLEvent} 元素的 {@link List} 的 {@code XMLEventReader} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::32::0", "zh": ["简单的 {@code javax.xml.namespace.NamespaceContext} 实现。遵循标准的 {@code NamespaceContext} 约定，并可通过 {@code java.util.Map} 或 {@code java.util.Properties} 对象加载。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::98::0", "zh": ["设置此命名空间上下文的绑定。提供的映射必须由字符串键值对组成。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::106::0", "zh": ["将给定命名空间绑定为默认命名空间。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::114::0", "zh": ["将给定前缀绑定到给定命名空间。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::133::0", "zh": ["从此上下文中移除给定前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::155::0", "zh": ["移除所有已声明的前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleNamespaceContext.java::163::0", "zh": ["返回所有已声明的前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleSaxErrorHandler.java::24::0", "zh": ["简单的 {@code org.xml.sax.ErrorHandler} 实现：使用给定的 Commons Logging logger 实例记录警告，并重新抛出错误以中止 XML 转换。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/xml/SimpleSaxErrorHandler.java::37::0", "zh": ["为给定的 Commons Logging logger 实例创建一个新的 SimpleSaxErrorHandler。"]}

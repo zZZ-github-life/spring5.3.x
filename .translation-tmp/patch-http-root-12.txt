@@ -1,0 +1,46 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpStatus.java
+@@BODY 22 24
+HTTP 状态码的枚举。
+<p>可以通过 {@link #series()} 获取 HTTP 状态码系列。
+@@BODY 440 440
+返回此状态码的整数值。
+@@BODY 447 447
+返回此状态码的 HTTP 状态系列。
+@@BODY 455 455
+返回此状态码的原因短语。
+@@BODY 462 464
+此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#INFORMATIONAL}。
+<p>这是检查 {@link #series()} 值的快捷方式。
+@@BODY 473 475
+此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#SUCCESSFUL}。
+<p>这是检查 {@link #series()} 值的快捷方式。
+@@BODY 484 486
+此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#REDIRECTION}。
+<p>这是检查 {@link #series()} 值的快捷方式。
+@@BODY 495 497
+此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR}。
+<p>这是检查 {@link #series()} 值的快捷方式。
+@@BODY 506 508
+此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR}。
+<p>这是检查 {@link #series()} 值的快捷方式。
+@@BODY 517 520
+此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR} 或 {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR}。
+<p>这是检查 {@link #series()} 值的快捷方式。
+@@BODY 530 530
+返回此状态码的字符串表示形式。
+@@BODY 539 539
+返回具有指定数值的 {@code HttpStatus} 枚举常量。
+@@BODY 553 553
+如果可能，将给定的状态码解析为 {@code HttpStatus}。
+@@BODY 571 572
+HTTP 状态系列的枚举。
+<p>可通过 {@link HttpStatus#series()} 获取。
+@@BODY 589 589
+返回此状态系列的整数值。范围为 1 到 5。
+@@BODY 596 596
+返回所提供 {@code HttpStatus} 对应的 {@code Series} 枚举常量。
+@@BODY 607 607
+返回所提供状态码对应的 {@code Series} 枚举常量。
+@@BODY 621 621
+如果可能，将给定的状态码解析为 {@code HttpStatus.Series}。
+@@END

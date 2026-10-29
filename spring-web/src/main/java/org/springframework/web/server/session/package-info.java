@@ -1,6 +1,5 @@
 /**
- * Auxiliary interfaces and implementation classes for
- * {@link org.springframework.web.server.WebSession} support.
+ * {@link org.springframework.web.server.WebSession} 支持的辅助接口及实现类。
  */
 @NonNullApi
 @NonNullFields

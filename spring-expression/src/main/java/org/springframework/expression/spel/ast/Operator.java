@@ -29,9 +29,8 @@ import org.springframework.util.NumberUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Common supertype for operators that operate on either one or two operands.
- * In the case of multiply or divide there would be two operands, but for
- * unary plus or minus, there is only one.
+ * 可对一个或两个操作数进行运算的运算符的通用超类型。对于乘法或除法，会有两个操作数；但对于一元加号
+ * 或减号，只有一个操作数。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -73,8 +72,7 @@ public abstract class Operator extends SpelNodeImpl {
 	}
 
 	/**
-	 * String format for all operators is the same
-	 * {@code '(' [operand] [operator] [operand] ')'}.
+	 * 所有运算符的字符串格式都相同：{@code '(' [operand] [operator] [operand] ')'}。
 	 */
 	@Override
 	public String toStringAST() {
@@ -105,8 +103,7 @@ public abstract class Operator extends SpelNodeImpl {
 	}
 
 	/**
-	 * Numeric comparison operators share very similar generated code, only differing in
-	 * two comparison instructions.
+	 * 数值比较运算符生成的代码非常相似，仅两条比较指令不同。
 	 */
 	protected void generateComparisonCode(MethodVisitor mv, CodeFlow cf, int compInstruction1, int compInstruction2) {
 		SpelNodeImpl left = getLeftOperand();
@@ -252,10 +249,9 @@ public abstract class Operator extends SpelNodeImpl {
 
 
 	/**
-	 * Perform an equality check for the given operand values.
-	 * <p>This method is not just used for reflective comparisons in subclasses
-	 * but also from compiled expression code, which is why it needs to be
-	 * declared as {@code public static} here.
+	 * 对给定的操作数值执行相等性检查。
+	 * <p>此方法不仅用于子类中的反射比较，也用于编译后的表达式代码，因此需要在此处声明为
+	 * {@code public static}。
 	 * @param context the current evaluation context
 	 * @param left the left-hand operand value
 	 * @param right the right-hand operand value
@@ -323,8 +319,7 @@ public abstract class Operator extends SpelNodeImpl {
 
 
 	/**
-	 * A descriptor comparison encapsulates the result of comparing descriptor
-	 * for two operands and describes at what level they are compatible.
+	 * 描述符比较封装了比较两个操作数描述符的结果，并描述了它们在何种级别上兼容。
 	 */
 	protected static final class DescriptorComparison {
 
@@ -345,13 +340,11 @@ public abstract class Operator extends SpelNodeImpl {
 		}
 
 		/**
-		 * Return an object that indicates whether the input descriptors are compatible.
-		 * <p>A declared descriptor is what could statically be determined (e.g. from looking
-		 * at the return value of a property accessor method) whilst an actual descriptor
-		 * is the type of an actual object that was returned, which may differ.
-		 * <p>For generic types with unbound type variables, the declared descriptor
-		 * discovered may be 'Object' but from the actual descriptor it is possible to
-		 * observe that the objects are really numeric values (e.g. ints).
+		 * 返回一个对象，指示输入描述符是否兼容。
+		 * <p>声明的描述符是可以在静态上确定的内容（例如通过查看属性访问器方法的返回值），而实际描述符是所
+		 * 返回实际对象的类型，两者可能不同。
+		 * <p>对于带有未绑定类型变量的泛型类型，发现的声明描述符可能是 'Object'，但从实际描述符可以观察到这
+		 * 些对象实际上是数值（例如 int）。
 		 * @param leftDeclaredDescriptor the statically determinable left descriptor
 		 * @param rightDeclaredDescriptor the statically determinable right descriptor
 		 * @param leftActualDescriptor the dynamic/runtime left object descriptor

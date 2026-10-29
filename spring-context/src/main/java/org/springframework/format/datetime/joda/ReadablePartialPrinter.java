@@ -24,7 +24,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.springframework.format.Printer;
 
 /**
- * Prints Joda-Time {@link ReadablePartial} instances using a {@link DateTimeFormatter}.
+ * 使用 {@link DateTimeFormatter} 打印 Joda-Time {@link ReadablePartial} 实例。
  *
  * @author Keith Donald
  * @since 3.0
@@ -37,7 +37,7 @@ public final class ReadablePartialPrinter implements Printer<ReadablePartial> {
 
 
 	/**
-	 * Create a new ReadableInstantPrinter.
+	 * 创建一个新的 ReadableInstantPrinter。
 	 * @param formatter the Joda DateTimeFormatter instance
 	 */
 	public ReadablePartialPrinter(DateTimeFormatter formatter) {

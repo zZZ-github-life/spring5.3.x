@@ -19,8 +19,8 @@ package org.springframework.jms.config;
 import org.springframework.jms.listener.SimpleMessageListenerContainer;
 
 /**
- * A {@link JmsListenerContainerFactory} implementation to build a
- * standard {@link SimpleMessageListenerContainer}.
+ * {@link JmsListenerContainerFactory} 实现，用于构建标准的
+ * {@link SimpleMessageListenerContainer}。
  *
  * @author Stephane Nicoll
  * @since 4.1

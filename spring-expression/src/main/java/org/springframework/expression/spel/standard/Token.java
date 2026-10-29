@@ -19,8 +19,7 @@ package org.springframework.expression.spel.standard;
 import org.springframework.lang.Nullable;
 
 /**
- * Holder for a kind of token, the associated data and its position in the input data
- * stream (start/end).
+ * 用于保存某种 token、其关联数据及其在输入数据流中的位置（起始/结束）。
  *
  * @author Andy Clement
  * @since 3.0
@@ -38,8 +37,7 @@ class Token {
 
 
 	/**
-	 * Constructor for use when there is no particular data for the token
-	 * (e.g. TRUE or '+')
+	 * 当 token 没有特定数据（例如 TRUE 或 '+'）时使用的构造器。
 	 * @param startPos the exact start
 	 * @param endPos the index to the last character
 	 */

@@ -23,12 +23,12 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} for locally
- * defined JAX-WS Service references.
- * Uses {@link LocalJaxWsServiceFactory}'s facilities underneath.
+ * 用于本地定义的 JAX-WS Service 引用的
+ * {@link org.springframework.beans.factory.FactoryBean}。
+ * 底层使用 {@link LocalJaxWsServiceFactory} 的设施。
  *
- * <p>Alternatively, JAX-WS Service references can be looked up
- * in the JNDI environment of the Java EE container.
+ * <p>或者，可以在 Java EE 容器的 JNDI 环境中
+ * 查找 JAX-WS Service 引用。
  *
  * @author Juergen Hoeller
  * @since 2.5

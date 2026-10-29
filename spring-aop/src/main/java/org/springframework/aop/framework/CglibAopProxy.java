@@ -58,18 +58,15 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * CGLIB-based {@link AopProxy} implementation for the Spring AOP framework.
+ * Spring AOP 框架的基于 CGLIB 的 {@link AopProxy} 实现。
  *
- * <p>Objects of this type should be obtained through proxy factories,
- * configured by an {@link AdvisedSupport} object. This class is internal
- * to Spring's AOP framework and need not be used directly by client code.
+ * <p>此类型的对象应通过代理工厂获取，并由 {@link AdvisedSupport} 对象进行配置。此类是 Spring 的
+ * AOP 框架内部使用的，客户端代码无需直接使用。
  *
- * <p>{@link DefaultAopProxyFactory} will automatically create CGLIB-based
- * proxies if necessary, for example in case of proxying a target class
- * (see the {@link DefaultAopProxyFactory attendant javadoc} for details).
+ * <p>{@link DefaultAopProxyFactory} 会在必要时自动创建基于 CGLIB 的代理，例如代理目标类的情况（详
+ * 情请参见 {@link DefaultAopProxyFactory attendant javadoc}）。
  *
- * <p>Proxies created using this class are thread-safe if the underlying
- * (target) class is thread-safe.
+ * <p>如果底层（目标）类是线程安全的，那么使用此类创建的代理也是线程安全的。
  *
  * @author Rod Johnson
  * @author Rob Harrop
@@ -94,14 +91,14 @@ class CglibAopProxy implements AopProxy, Serializable {
 	private static final int INVOKE_HASHCODE = 6;
 
 
-	/** Logger available to subclasses; static to optimize serialization. */
+	/** 可供子类使用的日志记录器；声明为 static 以优化序列化。 */
 	protected static final Log logger = LogFactory.getLog(CglibAopProxy.class);
 
-	/** Keeps track of the Classes that we have validated for final methods. */
+	/** 跟踪我们已针对 final 方法进行验证的 Class。 */
 	private static final Map<Class<?>, Boolean> validatedClasses = new WeakHashMap<>();
 
 
-	/** The configuration used to configure this proxy. */
+	/** 用于配置此代理的配置。 */
 	protected final AdvisedSupport advised;
 
 	@Nullable
@@ -110,7 +107,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 	@Nullable
 	protected Class<?>[] constructorArgTypes;
 
-	/** Dispatcher used for methods on Advised. */
+	/** 用于 Advised 上方法的调度器。 */
 	private final transient AdvisedDispatcher advisedDispatcher;
 
 	private transient Map<Method, Integer> fixedInterceptorMap = Collections.emptyMap();
@@ -119,7 +116,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Create a new CglibAopProxy for the given AOP configuration.
+	 * 为给定的 AOP 配置创建新的 CglibAopProxy。
 	 * @param config the AOP configuration as AdvisedSupport object
 	 * @throws AopConfigException if the config is invalid. We try to throw an informative
 	 * exception in this case, rather than let a mysterious failure happen later.
@@ -134,7 +131,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 	}
 
 	/**
-	 * Set constructor arguments to use for creating the proxy.
+	 * 设置创建代理时使用的构造方法参数。
 	 * @param constructorArgs the constructor argument values
 	 * @param constructorArgTypes the constructor argument types
 	 */
@@ -225,16 +222,14 @@ class CglibAopProxy implements AopProxy, Serializable {
 	}
 
 	/**
-	 * Creates the CGLIB {@link Enhancer}. Subclasses may wish to override this to return a custom
-	 * {@link Enhancer} implementation.
+	 * 创建 CGLIB {@link Enhancer}。子类可能希望重写此方法以返回自定义的 {@link Enhancer} 实现。
 	 */
 	protected Enhancer createEnhancer() {
 		return new Enhancer();
 	}
 
 	/**
-	 * Checks to see whether the supplied {@code Class} has already been validated and
-	 * validates it if not.
+	 * 检查所提供的 {@code Class} 是否已经过校验，若尚未校验则对其进行校验。
 	 */
 	private void validateClassIfNecessary(Class<?> proxySuperClass, @Nullable ClassLoader proxyClassLoader) {
 		if (!this.advised.isOptimize() && logger.isInfoEnabled()) {
@@ -249,8 +244,8 @@ class CglibAopProxy implements AopProxy, Serializable {
 	}
 
 	/**
-	 * Checks for final methods on the given {@code Class}, as well as package-visible
-	 * methods across ClassLoaders, and writes warnings to the log for each one found.
+	 * 检查给定的 {@code Class} 中的 final 方法，以及跨 ClassLoader 可见的包级方法，并为发现的每一个方
+	 * 法向日志写入警告。
 	 */
 	private void doValidateClass(Class<?> proxySuperClass, @Nullable ClassLoader proxyClassLoader, Set<Class<?>> ifcs) {
 		if (proxySuperClass != Object.class) {
@@ -364,7 +359,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Check whether the given method is declared on any of the given interfaces.
+	 * 检查给定的方法是否在给定的任一接口中声明。
 	 */
 	private static boolean implementsInterface(Method method, Set<Class<?>> ifcs) {
 		for (Class<?> ifc : ifcs) {
@@ -376,8 +371,8 @@ class CglibAopProxy implements AopProxy, Serializable {
 	}
 
 	/**
-	 * Invoke the given method with a CGLIB MethodProxy if possible, falling back
-	 * to a plain reflection invocation in case of a fast-class generation failure.
+	 * 如果可能，使用 CGLIB MethodProxy 调用给定的方法；在快速类生成失败的情况下，则回退为普通的反射调
+	 * 用。
 	 */
 	@Nullable
 	private static Object invokeMethod(@Nullable Object target, Method method, Object[] args, MethodProxy methodProxy)
@@ -392,8 +387,8 @@ class CglibAopProxy implements AopProxy, Serializable {
 	}
 
 	/**
-	 * Process a return value. Wraps a return of {@code this} if necessary to be the
-	 * {@code proxy} and also verifies that {@code null} is not returned as a primitive.
+	 * 处理返回值。如有必要，将返回的 {@code this} 包装为 {@code proxy}，同时校验不会以基本类型的形式返
+	 * 回 {@code null}。
 	 */
 	@Nullable
 	private static Object processReturnType(
@@ -416,18 +411,15 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Serializable replacement for CGLIB's NoOp interface.
-	 * Public to allow use elsewhere in the framework.
+	 * CGLIB NoOp 接口的可序列化替代实现。声明为 public 以便在框架的其他地方使用。
 	 */
 	public static class SerializableNoOp implements NoOp, Serializable {
 	}
 
 
 	/**
-	 * Method interceptor used for static targets with no advice chain. The call
-	 * is passed directly back to the target. Used when the proxy needs to be
-	 * exposed and it can't be determined that the method won't return
-	 * {@code this}.
+	 * 用于没有通知链的静态目标的方法拦截器。调用会直接回传给目标。当需要暴露代理，且无法确定该方法不会
+	 * 返回 {@code this} 时使用。
 	 */
 	private static class StaticUnadvisedInterceptor implements MethodInterceptor, Serializable {
 
@@ -448,8 +440,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Method interceptor used for static targets with no advice chain, when the
-	 * proxy is to be exposed.
+	 * 用于没有通知链的静态目标的方法拦截器，适用于需要暴露代理的场景。
 	 */
 	private static class StaticUnadvisedExposedInterceptor implements MethodInterceptor, Serializable {
 
@@ -477,9 +468,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Interceptor used to invoke a dynamic target without creating a method
-	 * invocation or evaluating an advice chain. (We know there was no advice
-	 * for this method.)
+	 * 用于调用动态目标的拦截器，无需创建方法调用或计算通知链。（我们知道此方法没有通知。）
 	 */
 	private static class DynamicUnadvisedInterceptor implements MethodInterceptor, Serializable {
 
@@ -507,7 +496,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Interceptor for unadvised dynamic targets when the proxy needs exposing.
+	 * 用于未被通知的动态目标的拦截器，适用于需要暴露代理的场景。
 	 */
 	private static class DynamicUnadvisedExposedInterceptor implements MethodInterceptor, Serializable {
 
@@ -538,9 +527,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Dispatcher for a static target. Dispatcher is much faster than
-	 * interceptor. This will be used whenever it can be determined that a
-	 * method definitely does not return "this"
+	 * 静态目标的分发器。分发器比拦截器快得多。只要能够确定某个方法肯定不会返回 "this"，就会使用它。
 	 */
 	private static class StaticDispatcher implements Dispatcher, Serializable {
 
@@ -560,7 +547,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Dispatcher for any methods declared on the Advised class.
+	 * 用于 Advised 类中声明的任何方法的分发器。
 	 */
 	private static class AdvisedDispatcher implements Dispatcher, Serializable {
 
@@ -578,8 +565,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Dispatcher for the {@code equals} method.
-	 * Ensures that the method call is always handled by this class.
+	 * {@code equals} 方法的分发器。确保该方法调用始终由此类处理。
 	 */
 	private static class EqualsInterceptor implements MethodInterceptor, Serializable {
 
@@ -611,8 +597,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Dispatcher for the {@code hashCode} method.
-	 * Ensures that the method call is always handled by this class.
+	 * {@code hashCode} 方法的分发器。确保该方法调用始终由此类处理。
 	 */
 	private static class HashCodeInterceptor implements MethodInterceptor, Serializable {
 
@@ -630,7 +615,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Interceptor used specifically for advised methods on a frozen, static proxy.
+	 * 专门用于已冻结的静态代理上被通知方法的拦截器。
 	 */
 	private static class FixedChainStaticTargetInterceptor implements MethodInterceptor, Serializable {
 
@@ -664,8 +649,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * General purpose AOP callback. Used when the target is dynamic or when the
-	 * proxy is not frozen.
+	 * 通用的 AOP 回调。在目标是动态的或代理未被冻结时使用。
 	 */
 	private static class DynamicAdvisedInterceptor implements MethodInterceptor, Serializable {
 
@@ -729,7 +713,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 		}
 
 		/**
-		 * CGLIB uses this to drive proxy creation.
+		 * CGLIB 用它来驱动代理创建。
 		 */
 		@Override
 		public int hashCode() {
@@ -739,7 +723,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * Implementation of AOP Alliance MethodInvocation used by this AOP proxy.
+	 * 此 AOP 代理所使用的 AOP Alliance MethodInvocation 实现。
 	 */
 	private static class CglibMethodInvocation extends ReflectiveMethodInvocation {
 
@@ -783,8 +767,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 		}
 
 		/**
-		 * Gives a marginal performance improvement versus using reflection to
-		 * invoke the target when invoking public methods.
+		 * 在调用 public 方法时，与使用反射调用目标相比可带来少量的性能提升。
 		 */
 		@Override
 		protected Object invokeJoinpoint() throws Throwable {
@@ -814,7 +797,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 
 
 	/**
-	 * CallbackFilter to assign Callbacks to methods.
+	 * 用于为方法分配 Callback 的 CallbackFilter。
 	 */
 	private static class ProxyCallbackFilter implements CallbackFilter {
 
@@ -833,40 +816,23 @@ class CglibAopProxy implements AopProxy, Serializable {
 		}
 
 		/**
-		 * Implementation of CallbackFilter.accept() to return the index of the
-		 * callback we need.
-		 * <p>The callbacks for each proxy are built up of a set of fixed callbacks
-		 * for general use and then a set of callbacks that are specific to a method
-		 * for use on static targets with a fixed advice chain.
-		 * <p>The callback used is determined thus:
+		 * 实现 CallbackFilter.accept()，返回所需回调的索引。
+		 * <p>每个代理的回调由两部分组成：一组用于通用目的的固定回调，以及一组针对特定方法、用于具有固定通
+		 * 知链的静态目标的回调。
+		 * <p>所使用的回调按如下方式确定：
 		 * <dl>
-		 * <dt>For exposed proxies</dt>
-		 * <dd>Exposing the proxy requires code to execute before and after the
-		 * method/chain invocation. This means we must use
-		 * DynamicAdvisedInterceptor, since all other interceptors can avoid the
-		 * need for a try/catch block</dd>
-		 * <dt>For Object.finalize():</dt>
-		 * <dd>No override for this method is used.</dd>
-		 * <dt>For equals():</dt>
-		 * <dd>The EqualsInterceptor is used to redirect equals() calls to a
-		 * special handler to this proxy.</dd>
-		 * <dt>For methods on the Advised class:</dt>
-		 * <dd>the AdvisedDispatcher is used to dispatch the call directly to
-		 * the target</dd>
-		 * <dt>For advised methods:</dt>
-		 * <dd>If the target is static and the advice chain is frozen then a
-		 * FixedChainStaticTargetInterceptor specific to the method is used to
-		 * invoke the advice chain. Otherwise a DynamicAdvisedInterceptor is
-		 * used.</dd>
-		 * <dt>For non-advised methods:</dt>
-		 * <dd>Where it can be determined that the method will not return {@code this}
-		 * or when {@code ProxyFactory.getExposeProxy()} returns {@code false},
-		 * then a Dispatcher is used. For static targets, the StaticDispatcher is used;
-		 * and for dynamic targets, a DynamicUnadvisedInterceptor is used.
-		 * If it possible for the method to return {@code this} then a
-		 * StaticUnadvisedInterceptor is used for static targets - the
-		 * DynamicUnadvisedInterceptor already considers this.</dd>
-		 * </dl>
+		 * <dt>对于已暴露的代理</dt>
+		 * <dd>暴露代理需要在方法/调用链调用前后执行代码。这意味着必须使用 DynamicAdvisedInterceptor，因为其他所有拦截器都可以避免 try/catch 块。</dd>
+		 * <dt>对于 Object.finalize()：</dt>
+		 * <dd>不对此方法使用覆盖。</dd>
+		 * <dt>对于 equals()：</dt>
+		 * <dd>使用 EqualsInterceptor 将 equals() 调用重定向到该代理的特殊处理器。</dd>
+		 * <dt>对于 Advised 类上的方法：</dt>
+		 * <dd>使用 AdvisedDispatcher 将调用直接分派给目标。</dd>
+		 * <dt>对于被通知的方法：</dt>
+		 * <dd>如果目标是静态的且通知链已冻结，则使用该方法专属的 FixedChainStaticTargetInterceptor 来调用通知链。否则使用 DynamicAdvisedInterceptor。</dd>
+		 * <dt>对于未被通知的方法：</dt>
+		 * <dd>如果可以确定该方法不会返回 {@code this}，或者 {@code ProxyFactory.getExposeProxy()} 返回 {@code false}，则使用 Dispatcher。对于静态目标使用 StaticDispatcher；对于动态目标使用 DynamicUnadvisedInterceptor。如果该方法可能返回 {@code this}，则对静态目标使用 StaticUnadvisedInterceptor —— DynamicUnadvisedInterceptor 已经考虑了这种情况。</dd>
 		 */
 		@Override
 		public int accept(Method method) {

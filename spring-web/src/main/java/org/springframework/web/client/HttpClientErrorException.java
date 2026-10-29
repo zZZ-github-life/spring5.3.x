@@ -23,7 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when an HTTP 4xx is received.
+ * 收到 HTTP 4xx 时抛出的异常。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -35,21 +35,21 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 
 	/**
-	 * Constructor with a status code only.
+	 * 仅包含状态码的构造函数。
 	 */
 	public HttpClientErrorException(HttpStatus statusCode) {
 		super(statusCode);
 	}
 
 	/**
-	 * Constructor with a status code and status text.
+	 * 包含状态码和状态文本的构造函数。
 	 */
 	public HttpClientErrorException(HttpStatus statusCode, String statusText) {
 		super(statusCode, statusText);
 	}
 
 	/**
-	 * Constructor with a status code and status text, and content.
+	 * 包含状态码、状态文本和内容的构造函数。
 	 */
 	public HttpClientErrorException(
 			HttpStatus statusCode, String statusText, @Nullable byte[] body, @Nullable Charset responseCharset) {
@@ -58,7 +58,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Constructor with a status code and status text, headers, and content.
+	 * 包含状态码、状态文本、头和内容的构造函数。
 	 */
 	public HttpClientErrorException(HttpStatus statusCode, String statusText,
 			@Nullable HttpHeaders headers, @Nullable byte[] body, @Nullable Charset responseCharset) {
@@ -67,8 +67,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Constructor with a status code and status text, headers, and content,
-	 * and a prepared message.
+	 * 包含状态码、状态文本、头、内容以及预先准备的消息的构造函数。
 	 * @since 5.2.2
 	 */
 	public HttpClientErrorException(String message, HttpStatus statusCode, String statusText,
@@ -79,7 +78,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 
 
 	/**
-	 * Create {@code HttpClientErrorException} or an HTTP status specific subclass.
+	 * 创建 {@code HttpClientErrorException} 或特定于 HTTP 状态的子类。
 	 * @since 5.1
 	 */
 	public static HttpClientErrorException create(
@@ -89,8 +88,8 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Variant of {@link #create(HttpStatus, String, HttpHeaders, byte[], Charset)}
-	 * with an optional prepared message.
+	 * {@link #create(HttpStatus, String, HttpHeaders, byte[], Charset)} 的变体，
+	 * 带有可选的预先准备的消息。
 	 * @since 5.2.2
 	 */
 	public static HttpClientErrorException create(@Nullable String message, HttpStatus statusCode,
@@ -152,7 +151,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	// Subclasses for specific HTTP status codes
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 400 Bad Request.
+	 * 用于状态 HTTP 400 Bad Request 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -170,7 +169,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 401 Unauthorized.
+	 * 用于状态 HTTP 401 Unauthorized 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -188,7 +187,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 403 Forbidden.
+	 * 用于状态 HTTP 403 Forbidden 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -206,7 +205,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 404 Not Found.
+	 * 用于状态 HTTP 404 Not Found 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -224,7 +223,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 405 Method Not Allowed.
+	 * 用于状态 HTTP 405 Method Not Allowed 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -242,7 +241,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 406 Not Acceptable.
+	 * 用于状态 HTTP 406 Not Acceptable 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -260,7 +259,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 409 Conflict.
+	 * 用于状态 HTTP 409 Conflict 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -276,7 +275,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 410 Gone.
+	 * 用于状态 HTTP 410 Gone 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -292,7 +291,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 415 Unsupported Media Type.
+	 * 用于状态 HTTP 415 Unsupported Media Type 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -310,7 +309,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 422 Unprocessable Entity.
+	 * 用于状态 HTTP 422 Unprocessable Entity 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -328,7 +327,7 @@ public class HttpClientErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpClientErrorException} for status HTTP 429 Too Many Requests.
+	 * 用于状态 HTTP 429 Too Many Requests 的 {@link HttpClientErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")

@@ -31,9 +31,9 @@ import org.hibernate.jpa.boot.internal.PersistenceUnitInfoDescriptor;
 import org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo;
 
 /**
- * Spring-specific subclass of the standard {@link HibernatePersistenceProvider}
- * from the {@code org.hibernate.jpa} package, adding support for
- * {@link SmartPersistenceUnitInfo#getManagedPackages()}.
+ * {@code org.hibernate.jpa} 包中标准 {@link HibernatePersistenceProvider}
+ * 的 Spring 专用子类，增加了对
+ * {@link SmartPersistenceUnitInfo#getManagedPackages()} 的支持。
  *
  * @author Juergen Hoeller
  * @author Joris Kuipers

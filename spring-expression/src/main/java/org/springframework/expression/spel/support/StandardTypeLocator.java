@@ -28,9 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * A simple implementation of {@link TypeLocator} that uses the context ClassLoader
- * (or any ClassLoader set upon it). It supports 'well-known' packages: So if a
- * type cannot be found, it will try the registered imports to locate it.
+ * {@link TypeLocator} 的简单实现，使用上下文 ClassLoader（或在其上设置的任意 ClassLoader）。它支持
+ * “众所周知”的包：因此，如果无法找到某个类型，它会尝试通过已注册的导入来定位它。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -45,15 +44,14 @@ public class StandardTypeLocator implements TypeLocator {
 
 
 	/**
-	 * Create a StandardTypeLocator for the default ClassLoader
-	 * (typically, the thread context ClassLoader).
+	 * 为默认 ClassLoader（通常是线程上下文 ClassLoader）创建一个 StandardTypeLocator。
 	 */
 	public StandardTypeLocator() {
 		this(ClassUtils.getDefaultClassLoader());
 	}
 
 	/**
-	 * Create a StandardTypeLocator for the given ClassLoader.
+	 * 为给定的 ClassLoader 创建一个 StandardTypeLocator。
 	 * @param classLoader the ClassLoader to delegate to
 	 */
 	public StandardTypeLocator(@Nullable ClassLoader classLoader) {
@@ -64,8 +62,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 
 	/**
-	 * Register a new import prefix that will be used when searching for unqualified types.
-	 * Expected format is something like "java.lang".
+	 * 注册一个新的导入前缀，用于搜索未限定类型。预期格式类似于“java.lang”。
 	 * @param prefix the prefix to register
 	 */
 	public void registerImport(String prefix) {
@@ -73,7 +70,7 @@ public class StandardTypeLocator implements TypeLocator {
 	}
 
 	/**
-	 * Remove that specified prefix from this locator's list of imports.
+	 * 从该定位器的导入列表中移除指定的前缀。
 	 * @param prefix the prefix to remove
 	 */
 	public void removeImport(String prefix) {
@@ -81,7 +78,7 @@ public class StandardTypeLocator implements TypeLocator {
 	}
 
 	/**
-	 * Return a list of all the import prefixes registered with this StandardTypeLocator.
+	 * 返回在此 StandardTypeLocator 中注册的所有导入前缀的列表。
 	 * @return a list of registered import prefixes
 	 */
 	public List<String> getImportPrefixes() {
@@ -90,8 +87,7 @@ public class StandardTypeLocator implements TypeLocator {
 
 
 	/**
-	 * Find a (possibly unqualified) type reference - first using the type name as-is,
-	 * then trying any registered prefixes if the type name cannot be found.
+	 * 查找（可能未限定的）类型引用——先按原样使用类型名，如果找不到该类型名，再尝试任何已注册的前缀。
 	 * @param typeName the type to locate
 	 * @return the class object for the type
 	 * @throws EvaluationException if the type cannot be found

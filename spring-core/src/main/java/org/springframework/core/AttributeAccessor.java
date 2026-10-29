@@ -22,8 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Interface defining a generic contract for attaching and accessing metadata
- * to/from arbitrary objects.
+ * 该接口定义了向任意对象附加元数据以及从中访问元数据的通用契约。
  *
  * @author Rob Harrop
  * @author Sam Brannen
@@ -32,19 +31,18 @@ import org.springframework.util.Assert;
 public interface AttributeAccessor {
 
 	/**
-	 * Set the attribute defined by {@code name} to the supplied {@code value}.
-	 * <p>If {@code value} is {@code null}, the attribute is {@link #removeAttribute removed}.
-	 * <p>In general, users should take care to prevent overlaps with other
-	 * metadata attributes by using fully-qualified names, perhaps using
-	 * class or package names as prefix.
+	 * 将 {@code name} 定义的属性设置为提供的 {@code value}。
+	 * <p>如果 {@code value} 为 {@code null}，则该属性会被 {@link #removeAttribute removed}。
+	 * <p>通常，用户应注意通过使用完全限定名称来避免与其他元数据属性重叠，
+	 * 例如可以使用类名或包名作为前缀。
 	 * @param name the unique attribute key
 	 * @param value the attribute value to be attached
 	 */
 	void setAttribute(String name, @Nullable Object value);
 
 	/**
-	 * Get the value of the attribute identified by {@code name}.
-	 * <p>Return {@code null} if the attribute doesn't exist.
+	 * 获取由 {@code name} 标识的属性的值。
+	 * <p>如果该属性不存在，则返回 {@code null}。
 	 * @param name the unique attribute key
 	 * @return the current value of the attribute, if any
 	 */
@@ -52,14 +50,11 @@ public interface AttributeAccessor {
 	Object getAttribute(String name);
 
 	/**
-	 * Compute a new value for the attribute identified by {@code name} if
-	 * necessary and {@linkplain #setAttribute set} the new value in this
-	 * {@code AttributeAccessor}.
-	 * <p>If a value for the attribute identified by {@code name} already exists
-	 * in this {@code AttributeAccessor}, the existing value will be returned
-	 * without applying the supplied compute function.
-	 * <p>The default implementation of this method is not thread safe but can
-	 * be overridden by concrete implementations of this interface.
+	 * 如有必要，为 {@code name} 标识的属性计算新值，
+	 * 并将新值 {@linkplain #setAttribute set} 到此 {@code AttributeAccessor} 中。
+	 * <p>如果此 {@code AttributeAccessor} 中已存在由 {@code name} 标识的属性的值，
+	 * 则直接返回该现有值，而不应用提供的计算函数。
+	 * <p>此方法的默认实现不是线程安全的，但可以由该接口的具体实现覆盖。
 	 * @param <T> the type of the attribute value
 	 * @param name the unique attribute key
 	 * @param computeFunction a function that computes a new value for the attribute
@@ -84,8 +79,8 @@ public interface AttributeAccessor {
 	}
 
 	/**
-	 * Remove the attribute identified by {@code name} and return its value.
-	 * <p>Return {@code null} if no attribute under {@code name} is found.
+	 * 移除由 {@code name} 标识的属性并返回其值。
+	 * <p>如果未找到 {@code name} 对应的属性，则返回 {@code null}。
 	 * @param name the unique attribute key
 	 * @return the last value of the attribute, if any
 	 */
@@ -93,14 +88,14 @@ public interface AttributeAccessor {
 	Object removeAttribute(String name);
 
 	/**
-	 * Return {@code true} if the attribute identified by {@code name} exists.
-	 * <p>Otherwise return {@code false}.
+	 * 如果由 {@code name} 标识的属性存在，则返回 {@code true}。
+	 * <p>否则返回 {@code false}。
 	 * @param name the unique attribute key
 	 */
 	boolean hasAttribute(String name);
 
 	/**
-	 * Return the names of all attributes.
+	 * 返回所有属性的名称。
 	 */
 	String[] attributeNames();
 

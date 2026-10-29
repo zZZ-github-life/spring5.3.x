@@ -25,15 +25,15 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.tags.HtmlEscapingAwareTag;
 
 /**
- * Base class for all JSP form tags. Provides utility methods for
- * null-safe EL evaluation and for accessing and working with a {@link TagWriter}.
+ * 所有 JSP 表单标签的基类。提供用于空值安全的 EL 求值
+ * 以及访问和操作 {@link TagWriter} 的工具方法。
  *
- * <p>Subclasses should implement the {@link #writeTagContent(TagWriter)} to perform
- * actual tag rendering.
+ * <p>子类应实现 {@link #writeTagContent(TagWriter)} 来执行
+ * 实际的标签渲染。
  *
- * <p>Subclasses (or test classes) can override the {@link #createTagWriter()} method to
- * redirect output to a {@link java.io.Writer} other than the {@link javax.servlet.jsp.JspWriter}
- * associated with the current {@link javax.servlet.jsp.PageContext}.
+ * <p>子类（或测试类）可以覆盖 {@link #createTagWriter()} 方法，
+ * 将输出重定向到与当前 {@link javax.servlet.jsp.PageContext} 关联的
+ * {@link javax.servlet.jsp.JspWriter} 之外的 {@link java.io.Writer}。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -43,8 +43,8 @@ import org.springframework.web.servlet.tags.HtmlEscapingAwareTag;
 public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 
 	/**
-	 * Evaluate the supplied value for the supplied attribute name.
-	 * <p>The default implementation simply returns the given value as-is.
+	 * 对给定属性名称的提供值进行求值。
+	 * <p>默认实现仅按原样返回给定值。
 	 */
 	@Nullable
 	protected Object evaluate(String attributeName, @Nullable Object value) throws JspException {
@@ -52,11 +52,11 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 	}
 
 	/**
-	 * Optionally writes the supplied value under the supplied attribute name into the supplied
-	 * {@link TagWriter}. In this case, the supplied value is {@link #evaluate evaluated} first
-	 * and then the {@link ObjectUtils#getDisplayString String representation} is written as the
-	 * attribute value. If the resultant {@code String} representation is {@code null}
-	 * or empty, no attribute is written.
+	 * 可选地将提供值以给定属性名称写入提供的
+	 * {@link TagWriter}。在这种情况下，先对提供值进行 {@link #evaluate 求值}，
+	 * 然后将 {@link ObjectUtils#getDisplayString 字符串表示}写入
+	 * 属性值。如果得到的 {@code String} 表示为 {@code null}
+	 * 或为空，则不写入任何属性。
 	 * @see TagWriter#writeOptionalAttributeValue(String, String)
 	 */
 	protected final void writeOptionalAttribute(TagWriter tagWriter, String attributeName, @Nullable String value)
@@ -68,18 +68,18 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 	}
 
 	/**
-	 * Create the {@link TagWriter} which all output will be written to. By default,
-	 * the {@link TagWriter} writes its output to the {@link javax.servlet.jsp.JspWriter}
-	 * for the current {@link javax.servlet.jsp.PageContext}. Subclasses may choose to
-	 * change the {@link java.io.Writer} to which output is actually written.
+	 * 创建用于写入所有输出的 {@link TagWriter}。默认情况下，
+	 * {@link TagWriter} 将输出写入当前 {@link javax.servlet.jsp.PageContext}
+	 * 的 {@link javax.servlet.jsp.JspWriter}。子类可以选择
+	 * 更改实际写入输出的 {@link java.io.Writer}。
 	 */
 	protected TagWriter createTagWriter() {
 		return new TagWriter(this.pageContext);
 	}
 
 	/**
-	 * Provide a simple template method that calls {@link #createTagWriter()} and passes
-	 * the created {@link TagWriter} to the {@link #writeTagContent(TagWriter)} method.
+	 * 提供一个简单的模板方法，它调用 {@link #createTagWriter()}，
+	 * 并将创建的 {@link TagWriter} 传递给 {@link #writeTagContent(TagWriter)} 方法。
 	 * @return the value returned by {@link #writeTagContent(TagWriter)}
 	 */
 	@Override
@@ -88,25 +88,25 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 	}
 
 	/**
-	 * Get the display value of the supplied {@code Object}, HTML escaped
-	 * as required. This version is <strong>not</strong> {@link PropertyEditor}-aware.
+	 * 获取提供 {@code Object} 的显示值，并按需进行 HTML 转义。
+	 * 此版本<strong>不</strong>感知 {@link PropertyEditor}。
 	 */
 	protected String getDisplayString(@Nullable Object value) {
 		return ValueFormatter.getDisplayString(value, isHtmlEscape());
 	}
 
 	/**
-	 * Get the display value of the supplied {@code Object}, HTML escaped
-	 * as required. If the supplied value is not a {@link String} and the supplied
-	 * {@link PropertyEditor} is not null then the {@link PropertyEditor} is used
-	 * to obtain the display value.
+	 * 获取提供 {@code Object} 的显示值，并按需进行 HTML 转义。
+	 * 如果提供的值不是 {@link String} 且提供的
+	 * {@link PropertyEditor} 不为 null，则使用 {@link PropertyEditor}
+	 * 获取显示值。
 	 */
 	protected String getDisplayString(@Nullable Object value, @Nullable PropertyEditor propertyEditor) {
 		return ValueFormatter.getDisplayString(value, propertyEditor, isHtmlEscape());
 	}
 
 	/**
-	 * Overridden to default to {@code true} in case of no explicit default given.
+	 * 重写为在没有给出显式默认值时默认为 {@code true}。
 	 */
 	@Override
 	protected boolean isDefaultHtmlEscape() {
@@ -116,7 +116,7 @@ public abstract class AbstractFormTag extends HtmlEscapingAwareTag {
 
 
 	/**
-	 * Subclasses should implement this method to perform tag content rendering.
+	 * 子类应实现此方法以执行标签内容渲染。
 	 * @return valid tag render instruction as per {@link javax.servlet.jsp.tagext.Tag#doStartTag()}.
 	 */
 	protected abstract int writeTagContent(TagWriter tagWriter) throws JspException;

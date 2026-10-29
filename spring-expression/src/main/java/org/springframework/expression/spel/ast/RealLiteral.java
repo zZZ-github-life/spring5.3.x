@@ -21,7 +21,7 @@ import org.springframework.expression.TypedValue;
 import org.springframework.expression.spel.CodeFlow;
 
 /**
- * Expression language AST node that represents a real literal.
+ * 表示实数字面量的表达式语言 AST 节点。
  *
  * @author Andy Clement
  * @since 3.0

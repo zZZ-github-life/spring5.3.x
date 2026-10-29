@@ -33,10 +33,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.method.ControllerAdviceBean;
 
 /**
- * Invokes {@link RequestBodyAdvice} and {@link ResponseBodyAdvice} where each
- * instance may be (and is most likely) wrapped with
- * {@link org.springframework.web.method.ControllerAdviceBean ControllerAdviceBean}.
- *
+ * 调用 {@link RequestBodyAdvice} 和 {@link ResponseBodyAdvice}，其中每个
+ * 实例可能（且很可能）被
+ * {@link org.springframework.web.method.ControllerAdviceBean ControllerAdviceBean} 包装。
  * @author Rossen Stoyanchev
  * @since 4.2
  */
@@ -48,8 +47,8 @@ class RequestResponseBodyAdviceChain implements RequestBodyAdvice, ResponseBodyA
 
 
 	/**
-	 * Create an instance from a list of objects that are either of type
-	 * {@code ControllerAdviceBean} or {@code RequestBodyAdvice}.
+	 * 从 {@code ControllerAdviceBean} 或 {@code RequestBodyAdvice} 类型的
+	 * 对象列表创建实例。
 	 */
 	public RequestResponseBodyAdviceChain(@Nullable List<Object> requestResponseBodyAdvice) {
 		this.requestBodyAdvice.addAll(getAdviceByType(requestResponseBodyAdvice, RequestBodyAdvice.class));

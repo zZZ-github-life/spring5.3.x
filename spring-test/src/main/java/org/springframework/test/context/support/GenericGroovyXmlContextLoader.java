@@ -21,11 +21,9 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.test.context.MergedContextConfiguration;
 
 /**
- * Concrete implementation of {@link AbstractGenericContextLoader} that reads
- * bean definitions from Groovy scripts <em>and</em> XML configuration files.
+ * 从 Groovy 脚本<em>和</em> XML 配置文件读取 Bean 定义的 {@link AbstractGenericContextLoader} 的具体实现。
  *
- * <p>Default resource locations are detected using the suffixes
- * {@code "-context.xml"} and {@code "Context.groovy"}.
+ * <p>默认资源位置使用后缀 {@code "-context.xml"} 和 {@code "Context.groovy"} 进行检测。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -36,9 +34,7 @@ import org.springframework.test.context.MergedContextConfiguration;
 public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 
 	/**
-	 * Load bean definitions into the supplied {@link GenericApplicationContext context}
-	 * from the locations in the supplied {@code MergedContextConfiguration} using a
-	 * {@link GroovyBeanDefinitionReader}.
+	 * 使用 {@link GroovyBeanDefinitionReader}，从所提供的 {@code MergedContextConfiguration} 中的位置将 Bean 定义加载到所提供的 {@link GenericApplicationContext context} 中。
 	 * @param context the context into which the bean definitions should be loaded
 	 * @param mergedConfig the merged context configuration
 	 * @see org.springframework.test.context.support.AbstractGenericContextLoader#loadBeanDefinitions
@@ -49,8 +45,7 @@ public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 	}
 
 	/**
-	 * Returns {@code "-context.xml"} and {@code "Context.groovy"} in order to
-	 * support detection of a default XML config file or Groovy script.
+	 * 返回 {@code "-context.xml"} 和 {@code "Context.groovy"}，以支持检测默认的 XML 配置文件或 Groovy 脚本。
 	 */
 	@Override
 	protected String[] getResourceSuffixes() {
@@ -58,9 +53,7 @@ public class GenericGroovyXmlContextLoader extends GenericXmlContextLoader {
 	}
 
 	/**
-	 * {@code GenericGroovyXmlContextLoader} supports both Groovy and XML
-	 * resource types for detection of defaults. Consequently, this method
-	 * is not supported.
+	 * {@code GenericGroovyXmlContextLoader} 同时支持 Groovy 和 XML 资源类型来检测默认值。因此，不支持此方法。
 	 * @throws UnsupportedOperationException in this implementation
 	 * @see #getResourceSuffixes()
 	 */

@@ -24,11 +24,11 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.util.ClassUtils;
 
 /**
- * A simple converter that simply unwraps the message payload as long as it matches the
- * expected target class. Or reversely, simply wraps the payload in a message.
+ * 一个简单的转换器，只要消息载荷与预期的目标类匹配就直接解包该载荷；
+ * 反之，也将载荷直接包装为消息。
  *
- * <p>Note that this converter ignores any content type information that may be present in
- * message headers and should not be used if payload conversion is actually required.
+ * <p>注意，此转换器忽略消息头中可能存在的任何内容类型信息，
+ * 如果确实需要载荷转换，则不应使用它。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

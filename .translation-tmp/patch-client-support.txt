@@ -1,0 +1,131 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/support/AsyncHttpAccessor.java
+@@BODY 30 33
+{@link org.springframework.web.client.AsyncRestTemplate}
+和其他 HTTP 访问网关辅助类的基类，定义要操作的
+{@link org.springframework.http.client.AsyncClientHttpRequestFactory}
+等公共属性。
+@@BODY 35 36
+<p>不打算直接使用。请参阅
+{@link org.springframework.web.client.AsyncRestTemplate}。
+@@BODY 54 55
+设置此访问器用于获取
+{@link org.springframework.http.client.ClientHttpRequest HttpRequests} 的请求工厂。
+@@BODY 65 66
+返回此访问器用于获取
+{@link org.springframework.http.client.ClientHttpRequest HttpRequests} 的请求工厂。
+@@BODY 74 75
+通过此模板的
+{@link org.springframework.http.client.AsyncClientHttpRequestFactory} 创建新的
+{@link org.springframework.http.client.AsyncClientHttpRequest}。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/BasicAuthenticationInterceptor.java
+@@BODY 30 32
+{@link ClientHttpRequestInterceptor}，用于应用给定的 HTTP 基本身份验证
+用户名/密码对，除非已设置自定义 {@code Authorization} 头部。
+@@BODY 46 47
+创建一个新的拦截器，为给定的用户名和密码
+添加基本身份验证。
+@@BODY 58 59
+创建一个新的拦截器，为给定的用户名和密码添加基本身份验证，
+并使用指定的字符集进行编码。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/BasicAuthorizationInterceptor.java
+@@BODY 31 31
+用于应用 BASIC 授权头部的 {@link ClientHttpRequestInterceptor}。
+@@BODY 48 49
+创建一个新的拦截器，为给定的用户名和密码
+添加 BASIC 授权头部。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/HttpAccessor.java
+@@BODY 36 38
+{@link org.springframework.web.client.RestTemplate}
+和其他 HTTP 访问网关辅助类的基类，定义要操作的
+{@link ClientHttpRequestFactory} 等公共属性。
+@@BODY 40 40
+<p>不打算直接使用。
+@@BODY 42 42
+<p>有关入口点，请参阅 {@link org.springframework.web.client.RestTemplate}。
+@@BODY 62 66
+设置此访问器用于获取客户端请求句柄的请求工厂。
+<p>默认是基于 JDK 自带 HTTP 库（{@link java.net.HttpURLConnection}）的
+{@link SimpleClientHttpRequestFactory}。
+<p><b>请注意，标准 JDK HTTP 库不支持 HTTP PATCH 方法。
+请配置 Apache HttpComponents 或 OkHttp 请求工厂以启用 PATCH。</b>
+@@BODY 78 78
+返回此访问器用于获取客户端请求句柄的请求工厂。
+@@BODY 86 88
+设置此访问器应使用的请求初始化器。
+<p>初始化器将立即根据其
+{@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}进行排序。
+@@BODY 102 106
+获取此访问器使用的请求初始化器。
+<p>返回的 {@link List} 是活动的，可以修改。但请注意，
+在初始化 {@link ClientHttpRequest} 之前，初始化器
+不会根据其
+{@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}重新排序。
+@@BODY 115 115
+通过此模板的 {@link ClientHttpRequestFactory} 创建新的 {@link ClientHttpRequest}。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/HttpRequestWrapper.java
+@@BODY 28 29
+提供 {@link HttpRequest} 接口的便捷实现，
+可以覆盖该实现以适应请求。
+@@BODY 31 31
+<p>这些方法默认调用被包装的请求对象。
+@@BODY 42 42
+创建一个包装给定请求对象的 {@code HttpRequest}。
+@@BODY 52 52
+返回被包装的请求。
+@@BODY 59 59
+返回被包装请求的方法。
+@@BODY 68 68
+返回被包装请求的方法值。
+@@BODY 76 76
+返回被包装请求的 URI。
+@@BODY 84 84
+返回被包装请求的头部。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/InterceptingAsyncHttpAccessor.java
+@@BODY 25 26
+基于 {@link AsyncHttpAccessor} 并添加请求拦截功能的
+HTTP 访问器。
+@@BODY 41 41
+设置此访问器应使用的请求拦截器。
+@@BODY 49 49
+返回此访问器使用的请求拦截器。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/InterceptingHttpAccessor.java
+@@BODY 31 33
+{@link org.springframework.web.client.RestTemplate}
+和其他 HTTP 访问网关辅助类的基类，在 {@link HttpAccessor}
+的公共属性基础上添加与拦截器相关的属性。
+@@BODY 35 36
+<p>不打算直接使用。
+有关入口点，请参阅 {@link org.springframework.web.client.RestTemplate}。
+@@BODY 54 60
+设置此访问器应使用的请求拦截器。
+<p>拦截器将立即根据其
+{@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}进行排序。
+<p><strong>注意：</strong>此方法不支持并发更改，
+在大多数情况下不应在启动初始化之后调用。
+另请参阅 {@link org.springframework.web.client.RestTemplate}
+中关于并发配置更改的相关说明。
+@@BODY 75 79
+获取此访问器使用的请求拦截器。
+<p>返回的 {@link List} 是活动的，可以修改。但请注意，
+在构建 {@link ClientHttpRequestFactory} 之前，拦截器
+不会根据其
+{@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}重新排序。
+@@BODY 86 86
+{@inheritDoc}
+@@BODY 95 96
+重写此方法以便在必要时公开
+{@link InterceptingClientHttpRequestFactory}。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/ProxyFactoryBean.java
+@@BODY 29 29
+创建 {@link Proxy java.net.Proxy} 的 {@link FactoryBean}。
+@@BODY 50 51
+设置代理类型。
+<p>默认为 {@link java.net.Proxy.Type#HTTP}。
+@@BODY 58 58
+设置代理主机名。
+@@BODY 65 65
+设置代理端口。
+===FILE spring-web/src/main/java/org/springframework/http/client/support/package-info.java
+@@BODY 2 3
+此包提供通用 HTTP 支持类，
+供 RestTemplate 等更高级别的类使用。

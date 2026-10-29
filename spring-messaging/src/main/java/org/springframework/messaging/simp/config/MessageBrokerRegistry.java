@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.PathMatcher;
 
 /**
- * A registry for configuring message broker options.
+ * 用于配置消息代理选项的注册表。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -76,8 +76,8 @@ public class MessageBrokerRegistry {
 
 
 	/**
-	 * Enable a simple message broker and configure one or more prefixes to filter
-	 * destinations targeting the broker (e.g. destinations prefixed with "/topic").
+	 * 启用简单消息代理，并配置一个或多个前缀以过滤以该代理为目标的目标地址
+	 * （例如以 "/topic" 为前缀的目标地址）。
 	 */
 	public SimpleBrokerRegistration enableSimpleBroker(String... destinationPrefixes) {
 		this.simpleBrokerRegistration = new SimpleBrokerRegistration(
@@ -86,9 +86,8 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Enable a STOMP broker relay and configure the destination prefixes supported by the
-	 * message broker. Check the STOMP documentation of the message broker for supported
-	 * destinations.
+	 * 启用 STOMP 消息代理中继，并配置消息代理支持的目标地址前缀。
+	 * 有关支持的目标地址，请查阅消息代理的 STOMP 文档。
 	 */
 	public StompBrokerRelayRegistration enableStompBrokerRelay(String... destinationPrefixes) {
 		this.brokerRelayRegistration = new StompBrokerRelayRegistration(
@@ -97,11 +96,10 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Customize the channel used to send messages from the application to the message
-	 * broker. By default, messages from the application to the message broker are sent
-	 * synchronously, which means application code sending a message will find out
-	 * if the message cannot be sent through an exception. However, this can be changed
-	 * if the broker channel is configured here with task executor properties.
+	 * 自定义用于从应用程序向消息代理发送消息的通道。默认情况下，从应用程序
+	 * 发往消息代理的消息是同步发送的，这意味着发送消息的应用程序代码可以
+	 * 通过异常得知消息是否无法发送。不过，如果在此处使用任务执行器属性配置
+	 * 代理通道，则可以改变这一行为。
 	 */
 	public ChannelRegistration configureBrokerChannel() {
 		return this.brokerChannelRegistration;
@@ -124,14 +122,12 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Configure one or more prefixes to filter destinations targeting application
-	 * annotated methods. For example destinations prefixed with "/app" may be
-	 * processed by annotated methods while other destinations may target the
-	 * message broker (e.g. "/topic", "/queue").
-	 * <p>When messages are processed, the matching prefix is removed from the destination
-	 * in order to form the lookup path. This means annotations should not contain the
-	 * destination prefix.
-	 * <p>Prefixes that do not have a trailing slash will have one automatically appended.
+	 * 配置一个或多个前缀，用于过滤以应用程序注解方法为目标的目标地址。
+	 * 例如，以 "/app" 为前缀的目标地址可由注解方法处理，而其他目标地址
+	 * 则可以以消息代理为目标（例如 "/topic"、"/queue"）。
+	 * <p>处理消息时，会从目标地址中移除匹配的前缀以构成查找路径。这意味着
+	 * 注解中不应包含目标地址前缀。
+	 * <p>没有尾部斜杠的前缀会自动追加一个斜杠。
 	 */
 	public MessageBrokerRegistry setApplicationDestinationPrefixes(String... prefixes) {
 		this.applicationDestinationPrefixes = prefixes;
@@ -145,16 +141,15 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Configure the prefix used to identify user destinations. User destinations
-	 * provide the ability for a user to subscribe to queue names unique to their
-	 * session as well as for others to send messages to those unique,
-	 * user-specific queues.
-	 * <p>For example when a user attempts to subscribe to "/user/queue/position-updates",
-	 * the destination may be translated to "/queue/position-updatesi9oqdfzo" yielding a
-	 * unique queue name that does not collide with any other user attempting to do the same.
-	 * Subsequently when messages are sent to "/user/{username}/queue/position-updates",
-	 * the destination is translated to "/queue/position-updatesi9oqdfzo".
-	 * <p>The default prefix used to identify such destinations is "/user/".
+	 * 配置用于标识用户目标地址的前缀。用户目标地址使一个用户能够订阅
+	 * 其会话唯一的队列名称，也使他人的消息能够发送到这些唯一的、
+	 * 用户专属的队列。
+	 * <p>例如，当用户尝试订阅 "/user/queue/position-updates" 时，
+	 * 目标地址可能会被转换为 "/queue/position-updatesi9oqdfzo"，从而得到一个
+	 * 不会与其他尝试相同操作的用户发生冲突的唯一队列名称。
+	 * 随后，当消息发送到 "/user/{username}/queue/position-updates" 时，
+	 * 目标地址会被转换为 "/queue/position-updatesi9oqdfzo"。
+	 * <p>用于标识此类目标地址的默认前缀是 "/user/"。
 	 */
 	public MessageBrokerRegistry setUserDestinationPrefix(String destinationPrefix) {
 		this.userDestinationPrefix = destinationPrefix;
@@ -167,9 +162,8 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Set the order for the
-	 * {@link org.springframework.messaging.simp.user.SimpUserRegistry
-	 * SimpUserRegistry} to use as a {@link SmartApplicationListener}.
+	 * 设置 {@link org.springframework.messaging.simp.user.SimpUserRegistry
+	 * SimpUserRegistry} 作为 {@link SmartApplicationListener} 使用的顺序。
 	 * @param order the order value
 	 * @since 5.0.8
 	 */
@@ -183,19 +177,17 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Configure the PathMatcher to use to match the destinations of incoming
-	 * messages to {@code @MessageMapping} and {@code @SubscribeMapping} methods.
-	 * <p>By default {@link org.springframework.util.AntPathMatcher} is configured.
-	 * However applications may provide an {@code AntPathMatcher} instance
-	 * customized to use "." (commonly used in messaging) instead of "/" as path
-	 * separator or provide a completely different PathMatcher implementation.
-	 * <p>Note that the configured PathMatcher is only used for matching the
-	 * portion of the destination after the configured prefix. For example given
-	 * application destination prefix "/app" and destination "/app/price.stock.**",
-	 * the message might be mapped to a controller with "price" and "stock.**"
-	 * as its type and method-level mappings respectively.
-	 * <p>When the simple broker is enabled, the PathMatcher configured here is
-	 * also used to match message destinations when brokering messages.
+	 * 配置用于将传入消息的目标地址与 {@code @MessageMapping} 和
+	 * {@code @SubscribeMapping} 方法进行匹配的 PathMatcher。
+	 * <p>默认配置的是 {@link org.springframework.util.AntPathMatcher}。
+	 * 不过，应用程序可以提供经过定制的 {@code AntPathMatcher} 实例，使用 "."
+	 * （消息传递中常用）而不是 "/" 作为路径分隔符，或者提供完全不同的
+	 * PathMatcher 实现。
+	 * <p>请注意，所配置的 PathMatcher 仅用于匹配目标地址中已配置前缀之后的部分。
+	 * 例如，给定应用程序目标前缀 "/app" 和目标地址 "/app/price.stock.**"，
+	 * 消息可能被映射到类型级映射为 "price"、方法级映射为 "stock.**" 的控制器。
+	 * <p>启用简单代理时，此处配置的 PathMatcher 也用于在代理消息时
+	 * 匹配消息目标地址。
 	 * @since 4.1
 	 * @see org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry#setPathMatcher
 	 */
@@ -210,9 +202,8 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Configure the cache limit to apply for registrations with the broker.
-	 * <p>This is currently only applied for the destination cache in the
-	 * subscription registry. The default cache limit there is 1024.
+	 * 配置应用于代理注册的缓存限制。
+	 * <p>目前这仅应用于订阅注册表中的目标地址缓存。该处的默认缓存限制为 1024。
 	 * @since 4.3.2
 	 * @see org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry#setCacheLimit
 	 */
@@ -222,14 +213,13 @@ public class MessageBrokerRegistry {
 	}
 
 	/**
-	 * Whether the client must receive messages in the order of publication.
-	 * <p>By default messages sent to the {@code "clientOutboundChannel"} may
-	 * not be processed in the same order because the channel is backed by a
-	 * ThreadPoolExecutor that in turn does not guarantee processing in order.
-	 * <p>When this flag is set to {@code true} messages within the same session
-	 * will be sent to the {@code "clientOutboundChannel"} one at a time in
-	 * order to preserve the order of publication. Enable this only if needed
-	 * since there is some performance overhead to keep messages in order.
+	 * 客户端是否必须按发布顺序接收消息。
+	 * <p>默认情况下，发送到 {@code "clientOutboundChannel"} 的消息可能不会按相同顺序
+	 * 处理，因为该通道由 ThreadPoolExecutor 支持，而 ThreadPoolExecutor 不保证
+	 * 按序处理。
+	 * <p>当此标志设置为 {@code true} 时，同一会话内的消息将逐个按序发送到
+	 * {@code "clientOutboundChannel"}，以保持发布顺序。仅在需要时启用此选项，
+	 * 因为保持消息顺序会带来一定的性能开销。
 	 * @since 5.1
 	 */
 	public MessageBrokerRegistry setPreservePublishOrder(boolean preservePublishOrder) {

@@ -39,7 +39,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 import org.springframework.web.socket.sockjs.transport.TransportType;
 
 /**
- * A default implementation of {@link TransportRequest}.
+ * {@link TransportRequest} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -176,10 +176,9 @@ class DefaultTransportRequest implements TransportRequest {
 
 
 	/**
-	 * Updates the given (global) future based success or failure to connect for
-	 * the entire SockJS request regardless of which transport actually managed
-	 * to connect. Also implements {@code Runnable} to handle a scheduled timeout
-	 * callback.
+	 * 基于整个 SockJS 请求（无论实际由哪种传输成功连接）的连接成功或失败
+	 * 来更新给定的（全局）future。还实现 {@code Runnable} 以处理
+	 * 计划超时回调。
 	 */
 	private class ConnectCallback implements ListenableFutureCallback<WebSocketSession>, Runnable {
 

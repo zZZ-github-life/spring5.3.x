@@ -37,10 +37,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * An extension of Groovy's {@link groovy.text.markup.TemplateConfiguration} and
- * an implementation of Spring MVC's {@link GroovyMarkupConfig} for creating
- * a {@code MarkupTemplateEngine} for use in a web application. The most basic
- * way to configure this class is to set the "resourceLoaderPath". For example:
+ * Groovy {@link groovy.text.markup.TemplateConfiguration} 的扩展，
+ * 同时也是 Spring MVC {@link GroovyMarkupConfig} 的实现，
+ * 用于创建供 Web 应用使用的 {@code MarkupTemplateEngine}。
+ * 配置此类最基本的方式是设置 "resourceLoaderPath"。例如：
  *
  * <pre class="code">
  *
@@ -54,27 +54,26 @@ import org.springframework.util.StringUtils;
  * }
  * </pre>
  *
- * By default this bean will create a {@link MarkupTemplateEngine} with:
+ * 默认情况下，此 bean 将创建一个 {@link MarkupTemplateEngine}，其中包含：
  * <ul>
- * <li>a parent ClassLoader for loading Groovy templates with their references
- * <li>the default configuration in the base class {@link TemplateConfiguration}
- * <li>a {@link groovy.text.markup.TemplateResolver} for resolving template files
+ * <li>用于加载 Groovy 模板及其引用的父 ClassLoader
+ * <li>基类 {@link TemplateConfiguration} 中的默认配置
+ * <li>用于解析模板文件的 {@link groovy.text.markup.TemplateResolver}
  * </ul>
  *
- * You can provide the {@link MarkupTemplateEngine} instance directly to this bean
- * in which case all other properties will not be effectively ignored.
+ * 你可以直接向此 bean 提供 {@link MarkupTemplateEngine} 实例，
+ * 在这种情况下，所有其他属性都将被忽略。
  *
- * <p>This bean must be included in the application context of any application
- * using the Spring MVC {@link GroovyMarkupView} for rendering. It exists purely
- * for the purpose of configuring Groovy's Markup templates. It is not meant to be
- * referenced by application components directly. It implements GroovyMarkupConfig
- * to be found by GroovyMarkupView without depending on a bean name. Each
- * DispatcherServlet can define its own GroovyMarkupConfigurer if desired.
+ * <p>使用 Spring MVC {@link GroovyMarkupView} 进行渲染的任何应用，
+ * 都必须在其应用上下文中包含此 bean。它存在的唯一目的就是配置 Groovy 的 Markup 模板。
+ * 它并不是供应用组件直接引用的。它实现了 GroovyMarkupConfig，
+ * 以便 GroovyMarkupView 无需依赖 bean 名称即可找到它。
+ * 每个 DispatcherServlet 都可以根据需要定义自己的 GroovyMarkupConfigurer。
  *
- * <p>Note that resource caching is enabled by default in {@link MarkupTemplateEngine}.
- * Use the {@link #setCacheTemplates(boolean)} to configure that as necessary.
+ * <p>注意，{@link MarkupTemplateEngine} 默认启用资源缓存。
+ * 可按需使用 {@link #setCacheTemplates(boolean)} 进行配置。
 
- * <p>Spring's Groovy Markup template support requires Groovy 2.3.1 or higher.
+ * <p>Spring 的 Groovy Markup 模板支持要求 Groovy 2.3.1 或更高版本。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -96,11 +95,11 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 
 
 	/**
-	 * Set the Groovy Markup Template resource loader path(s) via a Spring resource
-	 * location. Accepts multiple locations as a comma-separated list of paths.
-	 * Standard URLs like "file:" and "classpath:" and pseudo URLs are supported
-	 * as understood by Spring's {@link org.springframework.core.io.ResourceLoader}.
-	 * Relative paths are allowed when running in an ApplicationContext.
+	 * 通过 Spring 资源位置设置 Groovy Markup 模板的资源加载路径。
+	 * 可以以逗号分隔的路径列表形式接受多个位置。
+	 * 支持 Spring 的 {@link org.springframework.core.io.ResourceLoader} 所理解的
+	 * 诸如 "file:" 和 "classpath:" 等标准 URL 以及伪 URL。
+	 * 在 ApplicationContext 中运行时允许使用相对路径。
 	 *
 	 */
 	public void setResourceLoaderPath(String resourceLoaderPath) {
@@ -112,10 +111,9 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 	}
 
 	/**
-	 * Set a pre-configured MarkupTemplateEngine to use for the Groovy Markup
-	 * Template web configuration.
-	 * <p>Note that this engine instance has to be manually configured, since all
-	 * other bean properties of this configurer will be ignored.
+	 * 为 Groovy Markup 模板的 Web 配置设置预先配置好的 MarkupTemplateEngine。
+	 * <p>注意，此引擎实例必须手动配置，
+	 * 因为此配置器的所有其他 bean 属性都将被忽略。
 	 */
 	public void setTemplateEngine(MarkupTemplateEngine templateEngine) {
 		this.templateEngine = templateEngine;
@@ -138,8 +136,7 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 	}
 
 	/**
-	 * This method should not be used, since the considered Locale for resolving
-	 * templates is the Locale for the current HTTP request.
+	 * 不应使用此方法，因为解析模板时考虑的 Locale 是当前 HTTP 请求的 Locale。
 	 */
 	@Override
 	public void setLocale(Locale locale) {
@@ -163,8 +160,7 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 	}
 
 	/**
-	 * Create a parent ClassLoader for Groovy to use as parent ClassLoader
-	 * when loading and compiling templates.
+	 * 创建一个父 ClassLoader，供 Groovy 在加载和编译模板时用作父 ClassLoader。
 	 */
 	protected ClassLoader createTemplateClassLoader() throws IOException {
 		String[] paths = StringUtils.commaDelimitedListToStringArray(getResourceLoaderPath());
@@ -185,10 +181,10 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 	}
 
 	/**
-	 * Resolve a template from the given template path.
-	 * <p>The default implementation uses the Locale associated with the current request,
-	 * as obtained through {@link org.springframework.context.i18n.LocaleContextHolder LocaleContextHolder},
-	 * to find the template file. Effectively the locale configured at the engine level is ignored.
+	 * 从给定的模板路径解析模板。
+	 * <p>默认实现使用当前请求关联的 Locale
+	 * （通过 {@link org.springframework.context.i18n.LocaleContextHolder LocaleContextHolder} 获取）
+	 * 来查找模板文件。实际上，引擎级别配置的 locale 会被忽略。
 	 * @see LocaleContextHolder
 	 * @see #setLocale
 	 */
@@ -210,8 +206,8 @@ public class GroovyMarkupConfigurer extends TemplateConfiguration
 
 
 	/**
-	 * Custom {@link TemplateResolver template resolver} that simply delegates to
-	 * {@link #resolveTemplate(ClassLoader, String)}..
+	 * 自定义的 {@link TemplateResolver 模板解析器}，仅委托给
+	 * {@link #resolveTemplate(ClassLoader, String)}。
 	 */
 	private class LocaleTemplateResolver implements TemplateResolver {
 

@@ -17,11 +17,9 @@
 package org.springframework.beans;
 
 /**
- * Exception thrown when navigation of a valid nested property
- * path encounters a NullPointerException.
+ * 当导航有效的嵌套属性路径时遇到 NullPointerException 而抛出的异常。
  *
- * <p>For example, navigating "spouse.age" could fail because the
- * spouse property of the target object has a null value.
+ * <p>例如，导航“spouse.age”可能会失败，因为目标对象的 spouse 属性值为 null。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -30,7 +28,7 @@ package org.springframework.beans;
 public class NullValueInNestedPathException extends InvalidPropertyException {
 
 	/**
-	 * Create a new NullValueInNestedPathException.
+	 * 创建一个新的 NullValueInNestedPathException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property
 	 */
@@ -39,7 +37,7 @@ public class NullValueInNestedPathException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NullValueInNestedPathException.
+	 * 创建一个新的 NullValueInNestedPathException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property
 	 * @param msg the detail message
@@ -49,7 +47,7 @@ public class NullValueInNestedPathException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NullValueInNestedPathException.
+	 * 创建一个新的 NullValueInNestedPathException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property
 	 * @param msg the detail message

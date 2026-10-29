@@ -19,17 +19,13 @@ package org.springframework.aop;
 import org.aopalliance.aop.Advice;
 
 /**
- * Subinterface of AOP Alliance Advice that allows additional interfaces
- * to be implemented by an Advice, and available via a proxy using that
- * interceptor. This is a fundamental AOP concept called <b>introduction</b>.
+ * AOP Alliance Advice 的子接口，允许通知实现额外的接口，并通过使用该拦截器的代理提供这些接口。这是
+ * 一个称为<b>引入</b>的基本 AOP 概念。
  *
- * <p>Introductions are often <b>mixins</b>, enabling the building of composite
- * objects that can achieve many of the goals of multiple inheritance in Java.
+ * <p>引入通常是<b>mixin</b>，能够构建复合对象，从而实现 Java 中多重继承的许多目标。
  *
- * <p>Compared to {@link IntroductionInfo}, this interface allows an advice to
- * implement a range of interfaces that is not necessarily known in advance.
- * Thus an {@link IntroductionAdvisor} can be used to specify which interfaces
- * will be exposed in an advised object.
+ * <p>与 {@link IntroductionInfo} 相比，此接口允许通知实现一组不必事先已知的接口。因此，可以使用
+ * {@link IntroductionAdvisor} 来指定将在被通知对象中暴露哪些接口。
  *
  * @author Rod Johnson
  * @since 1.1.1
@@ -39,7 +35,7 @@ import org.aopalliance.aop.Advice;
 public interface DynamicIntroductionAdvice extends Advice {
 
 	/**
-	 * Does this introduction advice implement the given interface?
+	 * 此引入通知是否实现了给定接口？
 	 * @param intf the interface to check
 	 * @return whether the advice implements the specified interface
 	 */

@@ -21,11 +21,11 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract class that adapts a {@link ListenableFuture} parameterized over S into a
- * {@code ListenableFuture} parameterized over T. All methods are delegated to the
- * adaptee, where {@link #get()}, {@link #get(long, java.util.concurrent.TimeUnit)},
- * and {@link ListenableFutureCallback#onSuccess(Object)} call {@link #adapt(Object)}
- * on the adaptee's result.
+ * 抽象类，将参数类型为 S 的 {@link ListenableFuture} 适配为参数类型为 T 的
+ * {@code ListenableFuture}。所有方法都委托给被适配对象，其中 {@link #get()}、
+ * {@link #get(long, java.util.concurrent.TimeUnit)} 和
+ * {@link ListenableFutureCallback#onSuccess(Object)} 会对被适配对象的结果调用
+ * {@link #adapt(Object)}。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -35,7 +35,7 @@ import org.springframework.lang.Nullable;
 public abstract class ListenableFutureAdapter<T, S> extends FutureAdapter<T, S> implements ListenableFuture<T> {
 
 	/**
-	 * Construct a new {@code ListenableFutureAdapter} with the given adaptee.
+	 * 使用给定的被适配对象构造一个新的 {@code ListenableFutureAdapter}。
 	 * @param adaptee the future to adapt to
 	 */
 	protected ListenableFutureAdapter(ListenableFuture<S> adaptee) {

@@ -28,10 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Special variant of an overriding ClassLoader, used for temporary type
- * matching in {@link AbstractApplicationContext}. Redefines classes from
- * a cached byte array for every {@code loadClass} call in order to
- * pick up recently loaded types in the parent ClassLoader.
+ * 覆盖式 ClassLoader 的特殊变体，用于 {@link AbstractApplicationContext} 中的临时类型匹配。针对每
+ * 次 {@code loadClass} 调用，都从缓存的字节数组重新定义类，以便获取父 ClassLoader 中最近加载的类型。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -57,7 +55,7 @@ class ContextTypeMatchClassLoader extends DecoratingClassLoader implements Smart
 	}
 
 
-	/** Cache for byte array per class name. */
+	/** 按类名缓存的字节数组。 */
 	private final Map<String, byte[]> bytesCache = new ConcurrentHashMap<>(256);
 
 
@@ -82,8 +80,7 @@ class ContextTypeMatchClassLoader extends DecoratingClassLoader implements Smart
 
 
 	/**
-	 * ClassLoader to be created for each loaded class.
-	 * Caches class file content but redefines class for each call.
+	 * 为每个已加载的类创建 ClassLoader。缓存类文件内容，但每次调用都重新定义类。
 	 */
 	private class ContextOverridingClassLoader extends OverridingClassLoader {
 

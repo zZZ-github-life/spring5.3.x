@@ -33,10 +33,9 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.util.Assert;
 
 /**
- * Decorator for an {@link ExecutorSubscribableChannel} that ensures messages
- * are processed in the order they were published to the channel. Messages are
- * sent one at a time with the next one released when the previous has been
- * processed. This decorator is intended to be applied per session.
+ * {@link ExecutorSubscribableChannel} 的装饰器，确保消息按照发布到通道的顺序进行处理。
+ * 消息逐个发送，当前一个消息处理完成后才释放下一个消息。
+ * 此装饰器旨在按会话使用。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -131,7 +130,7 @@ public class OrderedMessageChannelDecorator implements MessageChannel {
 	}
 
 	/**
-	 * Obtain the task to release the next message, if found.
+	 * 获取用于释放下一个消息的任务（如果找到）。
 	 */
 	@Nullable
 	public static Runnable getNextMessageTask(Message<?> message) {
@@ -139,8 +138,8 @@ public class OrderedMessageChannelDecorator implements MessageChannel {
 	}
 
 	/**
-	 * Install or remove an {@link ExecutorChannelInterceptor} that invokes a
-	 * completion task, if found in the headers of the message.
+	 * 安装或移除 {@link ExecutorChannelInterceptor}，该拦截器会调用完成的任务
+	 * （如果在消息头中找到）。
 	 * @param channel the channel to configure
 	 * @param preserveOrder whether preserve the order or publication; when
 	 * "true" an interceptor is inserted, when "false" it removed.

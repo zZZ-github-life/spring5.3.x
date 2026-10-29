@@ -20,9 +20,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
 /**
- * The PostgreSQL specific implementation of {@link TableMetaDataProvider}.
- * Supports a feature for retrieving generated keys without the JDBC 3.0
- * {@code getGeneratedKeys} support.
+ * {@link TableMetaDataProvider} 的 PostgreSQL 特定实现。
+ * 支持在不使用 JDBC 3.0 {@code getGeneratedKeys} 支持的情况下检索生成键的功能。
  *
  * @author Thomas Risberg
  * @since 2.5

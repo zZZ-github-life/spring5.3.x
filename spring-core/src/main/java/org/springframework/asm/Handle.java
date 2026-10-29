@@ -29,7 +29,7 @@
 package org.springframework.asm;
 
 /**
- * A reference to a field or a method.
+ * 对字段或方法的引用。
  *
  * @author Remi Forax
  * @author Eric Bruneton
@@ -37,27 +37,27 @@ package org.springframework.asm;
 public final class Handle {
 
   /**
-   * The kind of field or method designated by this Handle. Should be {@link Opcodes#H_GETFIELD},
-   * {@link Opcodes#H_GETSTATIC}, {@link Opcodes#H_PUTFIELD}, {@link Opcodes#H_PUTSTATIC}, {@link
-   * Opcodes#H_INVOKEVIRTUAL}, {@link Opcodes#H_INVOKESTATIC}, {@link Opcodes#H_INVOKESPECIAL},
-   * {@link Opcodes#H_NEWINVOKESPECIAL} or {@link Opcodes#H_INVOKEINTERFACE}.
+   * 此 Handle 所指定的字段或方法的种类。应为 {@link Opcodes#H_GETFIELD}、{@link Opcodes#H_GETSTATIC}
+   * 、{@link Opcodes#H_PUTFIELD}、{@link Opcodes#H_PUTSTATIC}、{@link Opcodes#H_INVOKEVIRTUAL}、
+   * {@link Opcodes#H_INVOKESTATIC}、{@link Opcodes#H_INVOKESPECIAL}、
+   * {@link Opcodes#H_NEWINVOKESPECIAL} 或 {@link Opcodes#H_INVOKEINTERFACE}。
    */
   private final int tag;
 
-  /** The internal name of the class that owns the field or method designated by this handle. */
+  /** 拥有此句柄所指定字段或方法的类的内部名称。 */
   private final String owner;
 
-  /** The name of the field or method designated by this handle. */
+  /** 此句柄所指定字段或方法的名称。 */
   private final String name;
 
-  /** The descriptor of the field or method designated by this handle. */
+  /** 此句柄所指定字段或方法的描述符。 */
   private final String descriptor;
 
-  /** Whether the owner is an interface or not. */
+  /** 拥有者是否为接口。 */
   private final boolean isInterface;
 
   /**
-   * Constructs a new field or method handle.
+   * 构造一个新的字段或方法句柄。
    *
    * @param tag the kind of field or method designated by this Handle. Must be {@link
    *     Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link Opcodes#H_PUTFIELD}, {@link
@@ -77,7 +77,7 @@ public final class Handle {
   }
 
   /**
-   * Constructs a new field or method handle.
+   * 构造一个新的字段或方法句柄。
    *
    * @param tag the kind of field or method designated by this Handle. Must be {@link
    *     Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link Opcodes#H_PUTFIELD}, {@link
@@ -104,7 +104,7 @@ public final class Handle {
   }
 
   /**
-   * Returns the kind of field or method designated by this handle.
+   * 返回此句柄所指定的字段或方法的种类。
    *
    * @return {@link Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link Opcodes#H_PUTFIELD},
    *     {@link Opcodes#H_PUTSTATIC}, {@link Opcodes#H_INVOKEVIRTUAL}, {@link
@@ -116,7 +116,7 @@ public final class Handle {
   }
 
   /**
-   * Returns the internal name of the class that owns the field or method designated by this handle.
+   * 返回拥有此句柄所指定的字段或方法的类的内部名称。
    *
    * @return the internal name of the class that owns the field or method designated by this handle
    *     (see {@link Type#getInternalName()}).
@@ -126,7 +126,7 @@ public final class Handle {
   }
 
   /**
-   * Returns the name of the field or method designated by this handle.
+   * 返回此句柄所指定的字段或方法的名称。
    *
    * @return the name of the field or method designated by this handle.
    */
@@ -135,7 +135,7 @@ public final class Handle {
   }
 
   /**
-   * Returns the descriptor of the field or method designated by this handle.
+   * 返回此句柄所指定的字段或方法的描述符。
    *
    * @return the descriptor of the field or method designated by this handle.
    */
@@ -144,7 +144,7 @@ public final class Handle {
   }
 
   /**
-   * Returns true if the owner of the field or method designated by this handle is an interface.
+   * 如果此句柄所指定的字段或方法的所有者是接口，则返回 true。
    *
    * @return true if the owner of the field or method designated by this handle is an interface.
    */
@@ -176,11 +176,11 @@ public final class Handle {
   }
 
   /**
-   * Returns the textual representation of this handle. The textual representation is:
+   * 返回此句柄的文本表示形式。文本表示形式为：
    *
    * <ul>
-   *   <li>for a reference to a class: owner "." name descriptor " (" tag ")",
-   *   <li>for a reference to an interface: owner "." name descriptor " (" tag " itf)".
+   * <li>对于类引用：owner "." name descriptor " (" tag ")",
+   * <li>对于接口引用：owner "." name descriptor " (" tag " itf)".
    * </ul>
    */
   @Override

@@ -40,7 +40,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrame;
 import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 
 /**
- * A SockJS session for use with the WebSocket transport.
+ * 用于 WebSocket 传输的 SockJS 会话。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

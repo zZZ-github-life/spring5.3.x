@@ -28,8 +28,7 @@
 package org.springframework.asm;
 
 /**
- * A non standard class, field, method or Code attribute, as defined in the Java Virtual Machine
- * Specification (JVMS).
+ * Java 虚拟机规范（JVMS）中定义的非标准类、字段、方法或 Code 属性。
  *
  * @see <a href= "https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7">JVMS
  *     4.7</a>
@@ -40,24 +39,23 @@ package org.springframework.asm;
  */
 public class Attribute {
 
-  /** The type of this attribute, also called its name in the JVMS. */
+  /** 此属性的类型，在 JVMS 中也称为其名称。 */
   public final String type;
 
   /**
-   * The raw content of this attribute, only used for unknown attributes (see {@link #isUnknown()}).
-   * The 6 header bytes of the attribute (attribute_name_index and attribute_length) are <i>not</i>
-   * included.
+   * 此属性的原始内容，仅用于未知属性（参见 {@link #isUnknown()}）。<i>不</i>包含该属性的 6 个头部字
+   * 节（attribute_name_index 和 attribute_length）。
    */
   private byte[] content;
 
   /**
-   * The next attribute in this attribute list (Attribute instances can be linked via this field to
-   * store a list of class, field, method or Code attributes). May be {@literal null}.
+   * 此属性列表中的下一个属性（Attribute 实例可以通过此字段链接起来，以存储类、字段、方法或 Code 属性
+   * 的列表）。可以为 {@literal null}。
    */
   Attribute nextAttribute;
 
   /**
-   * Constructs a new empty attribute.
+   * 构造一个新的空属性。
    *
    * @param type the type of the attribute.
    */
@@ -66,12 +64,10 @@ public class Attribute {
   }
 
   /**
-   * Returns {@literal true} if this type of attribute is unknown. This means that the attribute
-   * content can't be parsed to extract constant pool references, labels, etc. Instead, the
-   * attribute content is read as an opaque byte array, and written back as is. This can lead to
-   * invalid attributes, if the content actually contains constant pool references, labels, or other
-   * symbolic references that need to be updated when there are changes to the constant pool, the
-   * method bytecode, etc. The default implementation of this method always returns {@literal true}.
+   * 如果此类型的属性是未知的，则返回 {@literal true}。这意味着无法解析该属性内容来提取常量池引用、标
+   * 签等。此时属性内容被当作不透明的字节数组读取，并按原样写回。如果内容实际上包含常量池引用、标签或
+   * 其他符号引用，而这些引用在常量池、方法字节码等发生变化时需要更新，那么这可能会导致属性无效。此方
+   * 法的默认实现始终返回 {@literal true}。
    *
    * @return {@literal true} if this type of attribute is unknown.
    */
@@ -80,7 +76,7 @@ public class Attribute {
   }
 
   /**
-   * Returns {@literal true} if this type of attribute is a Code attribute.
+   * 如果此类型的属性是 Code 属性，则返回 {@literal true}。
    *
    * @return {@literal true} if this type of attribute is a Code attribute.
    */
@@ -89,7 +85,7 @@ public class Attribute {
   }
 
   /**
-   * Returns the labels corresponding to this attribute.
+   * 返回此属性对应的标签。
    *
    * @return the labels corresponding to this attribute, or {@literal null} if this attribute is not
    *     a Code attribute that contains labels.
@@ -99,9 +95,8 @@ public class Attribute {
   }
 
   /**
-   * Reads a {@link #type} attribute. This method must return a <i>new</i> {@link Attribute} object,
-   * of type {@link #type}, corresponding to the 'length' bytes starting at 'offset', in the given
-   * ClassReader.
+   * 读取 {@link #type} 属性。此方法必须返回一个<i>新的</i> {@link Attribute} 对象，其类型为
+   * {@link #type}，对应于给定 ClassReader 中从 'offset' 开始的 'length' 个字节。
    *
    * @param classReader the class that contains the attribute to be read.
    * @param offset index of the first byte of the attribute's content in {@link ClassReader}. The 6
@@ -132,9 +127,8 @@ public class Attribute {
   }
 
   /**
-   * Returns the byte array form of the content of this attribute. The 6 header bytes
-   * (attribute_name_index and attribute_length) must <i>not</i> be added in the returned
-   * ByteVector.
+   * 返回此属性内容的字节数组形式。在返回的 ByteVector 中<i>不得</i>添加 6 个头部字节（
+   * attribute_name_index 和 attribute_length）。
    *
    * @param classWriter the class to which this attribute must be added. This parameter can be used
    *     to add the items that corresponds to this attribute to the constant pool of this class.
@@ -160,7 +154,7 @@ public class Attribute {
   }
 
   /**
-   * Returns the number of attributes of the attribute list that begins with this attribute.
+   * 返回以此属性开头的属性列表中属性的数量。
    *
    * @return the number of attributes of the attribute list that begins with this attribute.
    */
@@ -175,9 +169,8 @@ public class Attribute {
   }
 
   /**
-   * Returns the total size in bytes of all the attributes in the attribute list that begins with
-   * this attribute. This size includes the 6 header bytes (attribute_name_index and
-   * attribute_length) per attribute. Also adds the attribute type names to the constant pool.
+   * 返回以此属性开头的属性列表中所有属性的总字节大小。该大小包括每个属性的 6 个头部字节（
+   * attribute_name_index 和 attribute_length）。还会将属性类型名添加到常量池中。
    *
    * @param symbolTable where the constants used in the attributes must be stored.
    * @return the size of all the attributes in this attribute list. This size includes the size of
@@ -192,9 +185,8 @@ public class Attribute {
   }
 
   /**
-   * Returns the total size in bytes of all the attributes in the attribute list that begins with
-   * this attribute. This size includes the 6 header bytes (attribute_name_index and
-   * attribute_length) per attribute. Also adds the attribute type names to the constant pool.
+   * 返回以此属性开头的属性列表中所有属性的总字节大小。该大小包括每个属性的 6 个头部字节（
+   * attribute_name_index 和 attribute_length）。还会将属性类型名添加到常量池中。
    *
    * @param symbolTable where the constants used in the attributes must be stored.
    * @param code the bytecode of the method corresponding to these Code attributes, or {@literal
@@ -228,10 +220,8 @@ public class Attribute {
   }
 
   /**
-   * Returns the total size in bytes of all the attributes that correspond to the given field,
-   * method or class access flags and signature. This size includes the 6 header bytes
-   * (attribute_name_index and attribute_length) per attribute. Also adds the attribute type names
-   * to the constant pool.
+   * 返回与给定字段、方法或类的访问标志和签名相对应的所有属性的总字节大小。该大小包括每个属性的 6 个
+   * 头部字节（attribute_name_index 和 attribute_length）。还会将属性类型名添加到常量池中。
    *
    * @param symbolTable where the constants used in the attributes must be stored.
    * @param accessFlags some field, method or class access flags.
@@ -264,9 +254,8 @@ public class Attribute {
   }
 
   /**
-   * Puts all the attributes of the attribute list that begins with this attribute, in the given
-   * byte vector. This includes the 6 header bytes (attribute_name_index and attribute_length) per
-   * attribute.
+   * 将以此属性开头的属性列表中的所有属性放入给定的字节向量。这包括每个属性的 6 个头部字节（
+   * attribute_name_index 和 attribute_length）。
    *
    * @param symbolTable where the constants used in the attributes must be stored.
    * @param output where the attributes must be written.
@@ -280,9 +269,8 @@ public class Attribute {
   }
 
   /**
-   * Puts all the attributes of the attribute list that begins with this attribute, in the given
-   * byte vector. This includes the 6 header bytes (attribute_name_index and attribute_length) per
-   * attribute.
+   * 将以此属性开头的属性列表中的所有属性放入给定的字节向量。这包括每个属性的 6 个头部字节（
+   * attribute_name_index 和 attribute_length）。
    *
    * @param symbolTable where the constants used in the attributes must be stored.
    * @param code the bytecode of the method corresponding to these Code attributes, or {@literal
@@ -317,9 +305,8 @@ public class Attribute {
   }
 
   /**
-   * Puts all the attributes that correspond to the given field, method or class access flags and
-   * signature, in the given byte vector. This includes the 6 header bytes (attribute_name_index and
-   * attribute_length) per attribute.
+   * 将与给定字段、方法或类的访问标志和签名相对应的所有属性放入给定的字节向量。这包括每个属性的 6 个
+   * 头部字节（attribute_name_index 和 attribute_length）。
    *
    * @param symbolTable where the constants used in the attributes must be stored.
    * @param accessFlags some field, method or class access flags.
@@ -347,7 +334,7 @@ public class Attribute {
     }
   }
 
-  /** A set of attribute prototypes (attributes with the same type are considered equal). */
+  /** 一组属性原型（类型相同的属性被视为相等）。 */
   static final class Set {
 
     private static final int SIZE_INCREMENT = 6;

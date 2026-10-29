@@ -56,8 +56,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Default {@link ServerResponse.BodyBuilder} implementation.
- *
+ * {@link ServerResponse.BodyBuilder} 的默认实现。
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -294,7 +293,7 @@ class DefaultServerResponseBuilder implements ServerResponse.BodyBuilder {
 
 
 	/**
-	 * Abstract base class for {@link ServerResponse} implementations.
+	 * {@link ServerResponse} 实现的抽象基类。
 	 */
 	abstract static class AbstractServerResponse implements ServerResponse {
 

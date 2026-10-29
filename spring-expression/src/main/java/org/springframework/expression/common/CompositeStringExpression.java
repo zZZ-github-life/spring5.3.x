@@ -24,17 +24,15 @@ import org.springframework.expression.TypedValue;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a template expression broken into pieces. Each piece will be an Expression
- * but pure text parts to the template will be represented as LiteralExpression objects.
- * An example of a template expression might be:
+ * 表示被拆分为若干部分的模板表达式。每个部分都是一个 Expression，但模板中的纯文本部分会表示为
+ * LiteralExpression 对象。模板表达式的一个示例可能是：
  *
  * <pre class="code">
  * &quot;Hello ${getName()}&quot;
  * </pre>
  *
- * which will be represented as a CompositeStringExpression of two parts. The first part
- * being a LiteralExpression representing 'Hello ' and the second part being a real
- * expression that will call {@code getName()} when invoked.
+ * 它会被表示为由两部分组成的 CompositeStringExpression。第一部分是表示 'Hello ' 的
+ * LiteralExpression，第二部分是在调用时执行 {@code getName()} 的真实表达式。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -44,7 +42,7 @@ public class CompositeStringExpression implements Expression {
 
 	private final String expressionString;
 
-	/** The array of expressions that make up the composite expression. */
+	/** 组成复合表达式的表达式数组。 */
 	private final Expression[] expressions;
 
 

@@ -21,14 +21,9 @@ import java.util.Locale;
 import reactor.core.publisher.Mono;
 
 /**
- * Contract to resolve a view name to a {@link View} instance. The view name may
- * correspond to an HTML template or be generated dynamically.
+ * 将视图名称解析为 {@link View} 实例的契约。视图名称可以对应 HTML 模板，也可以是动态生成的。
  *
- * <p>The process of view resolution is driven through a ViewResolver-based
- * {@code HandlerResultHandler} implementation called
- * {@link ViewResolutionResultHandler
- * ViewResolutionResultHandler}.
- *
+ * <p>视图解析过程由名为 {@link ViewResolutionResultHandler ViewResolutionResultHandler} 的基于 ViewResolver 的 {@code HandlerResultHandler} 实现驱动。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see ViewResolutionResultHandler
@@ -36,7 +31,7 @@ import reactor.core.publisher.Mono;
 public interface ViewResolver {
 
 	/**
-	 * Resolve the view name to a View instance.
+	 * 将视图名称解析为 View 实例。
 	 * @param viewName the name of the view to resolve
 	 * @param locale the locale for the request
 	 * @return the resolved view or an empty stream

@@ -22,7 +22,7 @@ import org.springframework.util.InvalidMimeTypeException;
 import org.springframework.util.MimeType;
 
 /**
- * Resolve the content type for a message.
+ * 解析消息的内容类型。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -31,7 +31,7 @@ import org.springframework.util.MimeType;
 public interface ContentTypeResolver {
 
 	/**
-	 * Determine the {@link MimeType} of a message from the given MessageHeaders.
+	 * 根据给定的 MessageHeaders 确定消息的 {@link MimeType}。
 	 * @param headers the headers to use for the resolution
 	 * @return the resolved {@code MimeType}, or {@code null} if none found
 	 * @throws InvalidMimeTypeException if the content type is a String that cannot be parsed

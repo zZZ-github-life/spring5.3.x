@@ -23,15 +23,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.util.WebUtils;
 
 /**
- * PropertyValues implementation created from parameters in a ServletRequest.
- * Can look for all property values beginning with a certain prefix and
- * prefix separator (default is "_").
+ * 由 ServletRequest 中的参数创建的 PropertyValues 实现。
+ * 可以查找以某个前缀和前缀分隔符（默认为 "_"）开头的所有属性值。
  *
- * <p>For example, with a prefix of "spring", "spring_param1" and
- * "spring_param2" result in a Map with "param1" and "param2" as keys.
+ * <p>例如，前缀为 "spring" 时，"spring_param1" 和 "spring_param2"
+ * 将生成以 "param1" 和 "param2" 为键的 Map。
  *
- * <p>This class is not immutable to be able to efficiently remove property
- * values that should be ignored for binding.
+ * <p>此类不是不可变的，以便能够高效地移除在绑定时应被忽略的属性值。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -40,13 +38,12 @@ import org.springframework.web.util.WebUtils;
 @SuppressWarnings("serial")
 public class ServletRequestParameterPropertyValues extends MutablePropertyValues {
 
-	/** Default prefix separator. */
+	/** 默认前缀分隔符。 */
 	public static final String DEFAULT_PREFIX_SEPARATOR = "_";
 
 
 	/**
-	 * Create new ServletRequestPropertyValues using no prefix
-	 * (and hence, no prefix separator).
+	 * 使用无前缀（因此也没有前缀分隔符）创建新的 ServletRequestPropertyValues。
 	 * @param request the HTTP request
 	 */
 	public ServletRequestParameterPropertyValues(ServletRequest request) {
@@ -54,8 +51,8 @@ public class ServletRequestParameterPropertyValues extends MutablePropertyValues
 	}
 
 	/**
-	 * Create new ServletRequestPropertyValues using the given prefix and
-	 * the default prefix separator (the underscore character "_").
+	 * 使用给定前缀和默认前缀分隔符（下划线 "_"）创建新的
+	 * ServletRequestPropertyValues。
 	 * @param request the HTTP request
 	 * @param prefix the prefix for parameters (the full prefix will
 	 * consist of this plus the separator)
@@ -66,8 +63,7 @@ public class ServletRequestParameterPropertyValues extends MutablePropertyValues
 	}
 
 	/**
-	 * Create new ServletRequestPropertyValues supplying both prefix and
-	 * prefix separator.
+	 * 同时提供前缀和前缀分隔符创建新的 ServletRequestPropertyValues。
 	 * @param request the HTTP request
 	 * @param prefix the prefix for parameters (the full prefix will
 	 * consist of this plus the separator)

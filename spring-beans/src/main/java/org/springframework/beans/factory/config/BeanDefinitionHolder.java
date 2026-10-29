@@ -24,12 +24,10 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Holder for a BeanDefinition with name and aliases.
- * Can be registered as a placeholder for an inner bean.
+ * 带名称和别名的 BeanDefinition 持有者。可注册为内部 Bean 的占位符。
  *
- * <p>Can also be used for programmatic registration of inner bean
- * definitions. If you don't care about BeanNameAware and the like,
- * registering RootBeanDefinition or ChildBeanDefinition is good enough.
+ * <p>也可用于以编程方式注册内部 Bean 定义。如果你不关心 BeanNameAware 之类的东西，注册
+ * RootBeanDefinition 或 ChildBeanDefinition 就足够了。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -48,7 +46,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 
 	/**
-	 * Create a new BeanDefinitionHolder.
+	 * 创建一个新的 BeanDefinitionHolder。
 	 * @param beanDefinition the BeanDefinition to wrap
 	 * @param beanName the name of the bean, as specified for the bean definition
 	 */
@@ -57,7 +55,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	}
 
 	/**
-	 * Create a new BeanDefinitionHolder.
+	 * 创建一个新的 BeanDefinitionHolder。
 	 * @param beanDefinition the BeanDefinition to wrap
 	 * @param beanName the name of the bean, as specified for the bean definition
 	 * @param aliases alias names for the bean, or {@code null} if none
@@ -71,10 +69,8 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	}
 
 	/**
-	 * Copy constructor: Create a new BeanDefinitionHolder with the
-	 * same contents as the given BeanDefinitionHolder instance.
-	 * <p>Note: The wrapped BeanDefinition reference is taken as-is;
-	 * it is {@code not} deeply copied.
+	 * 复制构造方法：创建一个新的 BeanDefinitionHolder，其内容与给定的 BeanDefinitionHolder 实例相同。
+	 * <p>注意：所包装的 BeanDefinition 引用按原样获取；它 {@code not} 会被深拷贝。
 	 * @param beanDefinitionHolder the BeanDefinitionHolder to copy
 	 */
 	public BeanDefinitionHolder(BeanDefinitionHolder beanDefinitionHolder) {
@@ -86,21 +82,21 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 
 	/**
-	 * Return the wrapped BeanDefinition.
+	 * 返回所包装的 BeanDefinition。
 	 */
 	public BeanDefinition getBeanDefinition() {
 		return this.beanDefinition;
 	}
 
 	/**
-	 * Return the primary name of the bean, as specified for the bean definition.
+	 * 返回 Bean 的主名称，即 Bean 定义中指定的名称。
 	 */
 	public String getBeanName() {
 		return this.beanName;
 	}
 
 	/**
-	 * Return the alias names for the bean, as specified directly for the bean definition.
+	 * 返回 Bean 的别名，即直接为 Bean 定义指定的别名。
 	 * @return the array of alias names, or {@code null} if none
 	 */
 	@Nullable
@@ -109,7 +105,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	}
 
 	/**
-	 * Expose the bean definition's source object.
+	 * 暴露 Bean 定义的源对象。
 	 * @see BeanDefinition#getSource()
 	 */
 	@Override
@@ -119,8 +115,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	}
 
 	/**
-	 * Determine whether the given candidate name matches the bean name
-	 * or the aliases stored in this bean definition.
+	 * 确定给定的候选名称是否与此 Bean 定义中存储的 Bean 名称或别名匹配。
 	 */
 	public boolean matchesName(@Nullable String candidateName) {
 		return (candidateName != null && (candidateName.equals(this.beanName) ||
@@ -130,7 +125,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 
 
 	/**
-	 * Return a friendly, short description for the bean, stating name and aliases.
+	 * 返回 Bean 的友好简短描述，说明名称和别名。
 	 * @see #getBeanName()
 	 * @see #getAliases()
 	 */
@@ -142,8 +137,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	}
 
 	/**
-	 * Return a long description for the bean, including name and aliases
-	 * as well as a description of the contained {@link BeanDefinition}.
+	 * 返回 Bean 的详细描述，包括名称和别名，以及所包含 {@link BeanDefinition} 的描述。
 	 * @see #getShortDescription()
 	 * @see #getBeanDefinition()
 	 */
@@ -152,8 +146,7 @@ public class BeanDefinitionHolder implements BeanMetadataElement {
 	}
 
 	/**
-	 * This implementation returns the long description. Can be overridden
-	 * to return the short description or any kind of custom description instead.
+	 * 此实现返回详细描述。可以重写为返回简短描述或任何种类的自定义描述。
 	 * @see #getLongDescription()
 	 * @see #getShortDescription()
 	 */

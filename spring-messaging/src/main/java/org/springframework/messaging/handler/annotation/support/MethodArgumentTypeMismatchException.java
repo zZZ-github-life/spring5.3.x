@@ -21,7 +21,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.invocation.MethodArgumentResolutionException;
 
 /**
- * Exception that indicates that a method argument has not the expected type.
+ * 表示方法参数类型不符合预期的异常。
  *
  * @author Stephane Nicoll
  * @since 4.0.3

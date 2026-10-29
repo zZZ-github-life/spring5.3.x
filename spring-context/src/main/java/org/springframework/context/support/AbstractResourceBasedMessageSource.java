@@ -25,10 +25,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Abstract base class for {@code MessageSource} implementations based on
- * resource bundle conventions, such as {@link ResourceBundleMessageSource}
- * and {@link ReloadableResourceBundleMessageSource}. Provides common
- * configuration methods and corresponding semantic definitions.
+ * 基于资源包约定的 {@code MessageSource} 实现的抽象基类，例如 {@link ResourceBundleMessageSource}
+ * 和 {@link ReloadableResourceBundleMessageSource}。提供通用的配置方法及相应的语义定义。
  *
  * @author Juergen Hoeller
  * @since 4.3
@@ -51,12 +49,11 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 
 
 	/**
-	 * Set a single basename, following the basic ResourceBundle convention
-	 * of not specifying file extension or language codes. The resource location
-	 * format is up to the specific {@code MessageSource} implementation.
-	 * <p>Regular and XMl properties files are supported: e.g. "messages" will find
-	 * a "messages.properties", "messages_en.properties" etc arrangement as well
-	 * as "messages.xml", "messages_en.xml" etc.
+	 * 设置单个基名，遵循不指定文件扩展名或语言代码的基本 ResourceBundle 约定。资源位置格式取决于具体的
+	 * {@code MessageSource} 实现。
+	 *
+	 * <p>支持常规 properties 文件和 XML properties 文件：例如 "messages" 会找到 "messages.properties"、
+	 * "messages_en.properties" 等组合，以及 "messages.xml"、"messages_en.xml" 等。
 	 * @param basename the single basename
 	 * @see #setBasenames
 	 * @see org.springframework.core.io.ResourceEditor
@@ -67,17 +64,16 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Set an array of basenames, each following the basic ResourceBundle convention
-	 * of not specifying file extension or language codes. The resource location
-	 * format is up to the specific {@code MessageSource} implementation.
-	 * <p>Regular and XMl properties files are supported: e.g. "messages" will find
-	 * a "messages.properties", "messages_en.properties" etc arrangement as well
-	 * as "messages.xml", "messages_en.xml" etc.
-	 * <p>The associated resource bundles will be checked sequentially when resolving
-	 * a message code. Note that message definitions in a <i>previous</i> resource
-	 * bundle will override ones in a later bundle, due to the sequential lookup.
-	 * <p>Note: In contrast to {@link #addBasenames}, this replaces existing entries
-	 * with the given names and can therefore also be used to reset the configuration.
+	 * 设置基名数组，每个基名都遵循不指定文件扩展名或语言代码的基本 ResourceBundle 约定。资源位置格式取
+	 * 决于具体的 {@code MessageSource} 实现。
+	 *
+	 * <p>支持常规 properties 文件和 XML properties 文件：例如 "messages" 会找到 "messages.properties"、
+	 * "messages_en.properties" 等组合，以及 "messages.xml"、"messages_en.xml" 等。
+	 *
+	 * <p>解析消息代码时，将按顺序检查关联的资源包。请注意，由于采用顺序查找，<i>前一个</i>资源包中的消
+	 * 息定义将覆盖后一个资源包中的定义。
+	 *
+	 * <p>注意：与 {@link #addBasenames} 不同，此方法会使用给定名称替换现有条目，因此也可用于重置配置。
 	 * @param basenames an array of basenames
 	 * @see #setBasename
 	 * @see java.util.ResourceBundle
@@ -88,10 +84,10 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Add the specified basenames to the existing basename configuration.
-	 * <p>Note: If a given basename already exists, the position of its entry
-	 * will remain as in the original set. New entries will be added at the
-	 * end of the list, to be searched after existing basenames.
+	 * 将指定的基名添加到现有基名配置中。
+	 *
+	 * <p>注意：如果给定基名已存在，其条目的位置将保持在原始集合中的位置。新条目将添加到列表末尾，在现
+	 * 有基名之后进行搜索。
 	 * @since 4.3
 	 * @see #setBasenames
 	 * @see java.util.ResourceBundle
@@ -106,9 +102,9 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Return this {@code MessageSource}'s basename set, containing entries
-	 * in the order of registration.
-	 * <p>Calling code may introspect this set as well as add or remove entries.
+	 * 返回此 {@code MessageSource} 的基名集合，其中条目按注册顺序排列。
+	 *
+	 * <p>调用代码可以内省此集合，也可以添加或删除条目。
 	 * @since 4.3
 	 * @see #addBasenames
 	 */
@@ -117,12 +113,12 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Set the default charset to use for parsing properties files.
-	 * Used if no file-specific charset is specified for a file.
-	 * <p>The effective default is the {@code java.util.Properties}
-	 * default encoding: ISO-8859-1. A {@code null} value indicates
-	 * the platform default encoding.
-	 * <p>Only applies to classic properties files, not to XML files.
+	 * 设置用于解析 properties 文件的默认字符集。当文件未指定特定字符集时使用。
+	 *
+	 * <p>有效的默认值是 {@code java.util.Properties} 的默认编码：ISO-8859-1。{@code null} 值表示使用平
+	 * 台默认编码。
+	 *
+	 * <p>仅适用于经典 properties 文件，不适用于 XML 文件。
 	 * @param defaultEncoding the default charset
 	 */
 	public void setDefaultEncoding(@Nullable String defaultEncoding) {
@@ -130,7 +126,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Return the default charset to use for parsing properties files, if any.
+	 * 返回用于解析 properties 文件的默认字符集（如果有）。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -139,14 +135,11 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Set whether to fall back to the system Locale if no files for a specific
-	 * Locale have been found. Default is "true"; if this is turned off, the only
-	 * fallback will be the default file (e.g. "messages.properties" for
-	 * basename "messages").
-	 * <p>Falling back to the system Locale is the default behavior of
-	 * {@code java.util.ResourceBundle}. However, this is often not desirable
-	 * in an application server environment, where the system Locale is not relevant
-	 * to the application at all: set this flag to "false" in such a scenario.
+	 * 设置如果在未找到特定 Locale 的文件时是否回退到系统 Locale。默认值为 "true"；如果关闭此选项，唯一
+	 * 的回退将是默认文件（例如基名 "messages" 对应的 "messages.properties"）。
+	 *
+	 * <p>回退到系统 Locale 是 {@code java.util.ResourceBundle} 的默认行为。然而，在应用服务器环境中，
+	 * 系统 Locale 可能与应用程序完全无关，因此这通常并不可取：在这种情况下，请将此标志设置为 "false"。
 	 * @see #setDefaultLocale
 	 */
 	public void setFallbackToSystemLocale(boolean fallbackToSystemLocale) {
@@ -154,8 +147,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Return whether to fall back to the system Locale if no files for a specific
-	 * Locale have been found.
+	 * 返回在未找到特定 Locale 的文件时是否回退到系统 Locale。
 	 * @since 4.3
 	 * @deprecated as of 5.2.2, in favor of {@link #getDefaultLocale()}
 	 */
@@ -165,11 +157,10 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Specify a default Locale to fall back to, as an alternative to falling back
-	 * to the system Locale.
-	 * <p>Default is to fall back to the system Locale. You may override this with
-	 * a locally specified default Locale here, or enforce no fallback locale at all
-	 * through disabling {@link #setFallbackToSystemLocale "fallbackToSystemLocale"}.
+	 * 指定要回退到的默认 Locale，作为回退到系统 Locale 的替代方案。
+	 *
+	 * <p>默认回退到系统 Locale。你可以在此处用本地指定的默认 Locale 覆盖此项，或者通过禁用
+	 * {@link #setFallbackToSystemLocale "fallbackToSystemLocale"} 来强制完全不使用回退区域设置。
 	 * @since 5.2.2
 	 * @see #setFallbackToSystemLocale
 	 * @see #getDefaultLocale()
@@ -179,8 +170,8 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Determine a default Locale to fall back to: either a locally specified default
-	 * Locale or the system Locale, or {@code null} for no fallback locale at all.
+	 * 确定要回退到的默认 Locale：本地指定的默认 Locale 或系统 Locale，或者 {@code null} 表示完全不使用
+	 * 回退区域设置。
 	 * @since 5.2.2
 	 * @see #setDefaultLocale
 	 * @see #setFallbackToSystemLocale
@@ -198,43 +189,26 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Set the number of seconds to cache loaded properties files.
+	 * 设置缓存已加载 properties 文件的秒数。
 	 * <ul>
-	 * <li>Default is "-1", indicating to cache forever (matching the default behavior
-	 * of {@code java.util.ResourceBundle}). Note that this constant follows Spring
-	 * conventions, not {@link java.util.ResourceBundle.Control#getTimeToLive}.
-	 * <li>A positive number will cache loaded properties files for the given
-	 * number of seconds. This is essentially the interval between refresh checks.
-	 * Note that a refresh attempt will first check the last-modified timestamp
-	 * of the file before actually reloading it; so if files don't change, this
-	 * interval can be set rather low, as refresh attempts will not actually reload.
-	 * <li>A value of "0" will check the last-modified timestamp of the file on
-	 * every message access. <b>Do not use this in a production environment!</b>
+	 * <li>默认值为 "-1"，表示永久缓存（与 {@code java.util.ResourceBundle} 的默认行为一致）。请注意，此常量遵循 Spring 的约定，而不是 {@link java.util.ResourceBundle.Control#getTimeToLive}。
+	 * <li>正数会将已加载的 properties 文件缓存指定的秒数。这本质上就是两次刷新检查之间的间隔。请注意，刷新尝试会先检查文件的最后修改时间戳，然后才实际重新加载；因此如果文件未发生变化，此间隔可以设置得相当低，因为刷新尝试不会真正重新加载。
+	 * <li>值为 "0" 时，每次访问消息都会检查文件的最后修改时间戳。<b>请勿在生产环境中使用！</b>
 	 * </ul>
-	 * <p><b>Note that depending on your ClassLoader, expiration might not work reliably
-	 * since the ClassLoader may hold on to a cached version of the bundle file.</b>
-	 * Prefer {@link ReloadableResourceBundleMessageSource} over
-	 * {@link ResourceBundleMessageSource} in such a scenario, in combination with
-	 * a non-classpath location.
+	 * <p><b>请注意，根据所使用的 ClassLoader，过期可能无法可靠生效，因为 ClassLoader 可能会保留资源包
+	 * 文件的缓存版本。</b>在这种情况下，请优先使用 {@link ReloadableResourceBundleMessageSource} 而不
+	 * 是 {@link ResourceBundleMessageSource}，并结合非类路径位置使用。
 	 */
 	public void setCacheSeconds(int cacheSeconds) {
 		this.cacheMillis = cacheSeconds * 1000L;
 	}
 
 	/**
-	 * Set the number of milliseconds to cache loaded properties files.
-	 * Note that it is common to set seconds instead: {@link #setCacheSeconds}.
+	 * 设置缓存已加载 properties 文件的毫秒数。请注意，通常设置秒数即可：{@link #setCacheSeconds}。
 	 * <ul>
-	 * <li>Default is "-1", indicating to cache forever (matching the default behavior
-	 * of {@code java.util.ResourceBundle}). Note that this constant follows Spring
-	 * conventions, not {@link java.util.ResourceBundle.Control#getTimeToLive}.
-	 * <li>A positive number will cache loaded properties files for the given
-	 * number of milliseconds. This is essentially the interval between refresh checks.
-	 * Note that a refresh attempt will first check the last-modified timestamp
-	 * of the file before actually reloading it; so if files don't change, this
-	 * interval can be set rather low, as refresh attempts will not actually reload.
-	 * <li>A value of "0" will check the last-modified timestamp of the file on
-	 * every message access. <b>Do not use this in a production environment!</b>
+	 * <li>默认值为 "-1"，表示永久缓存（与 {@code java.util.ResourceBundle} 的默认行为一致）。请注意，此常量遵循 Spring 的约定，而不是 {@link java.util.ResourceBundle.Control#getTimeToLive}。
+	 * <li>正数会将已加载的 properties 文件缓存指定的毫秒数。这本质上就是两次刷新检查之间的间隔。请注意，刷新尝试会先检查文件的最后修改时间戳，然后才实际重新加载；因此如果文件未发生变化，此间隔可以设置得相当低，因为刷新尝试不会真正重新加载。
+	 * <li>值为 "0" 时，每次访问消息都会检查文件的最后修改时间戳。<b>请勿在生产环境中使用！</b>
 	 * </ul>
 	 * @since 4.3
 	 * @see #setCacheSeconds
@@ -244,7 +218,7 @@ public abstract class AbstractResourceBasedMessageSource extends AbstractMessage
 	}
 
 	/**
-	 * Return the number of milliseconds to cache loaded properties files.
+	 * 返回缓存已加载 properties 文件的毫秒数。
 	 * @since 4.3
 	 */
 	protected long getCacheMillis() {

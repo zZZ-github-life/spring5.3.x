@@ -30,9 +30,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * A {@link UriComponentsContributor} containing a list of other contributors
- * to delegate to and also encapsulating a specific {@link ConversionService} to
- * use for formatting method argument values as Strings.
+ * 一个 {@link UriComponentsContributor}，包含一个其他贡献器列表以便委托调用，
+ * 同时封装一个特定的 {@link ConversionService}，
+ * 用于将方法参数值格式化为 String。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -46,11 +46,11 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 
 
 	/**
-	 * Create an instance from a collection of {@link UriComponentsContributor UriComponentsContributors} or
-	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}. Since both of these tend to be implemented
-	 * by the same class, the most convenient option is to obtain the configured
-	 * {@code HandlerMethodArgumentResolvers} in {@code RequestMappingHandlerAdapter}
-	 * and provide that to this constructor.
+	 * 从一组 {@link UriComponentsContributor UriComponentsContributors} 或
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 创建实例。
+	 * 由于两者通常由同一个类实现，最便捷的做法是获取
+	 * {@code RequestMappingHandlerAdapter} 中配置的
+	 * {@code HandlerMethodArgumentResolvers}，并将其提供给此构造函数。
 	 * @param contributors a collection of {@link UriComponentsContributor}
 	 * or {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
 	 */
@@ -60,11 +60,11 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	}
 
 	/**
-	 * Create an instance from a collection of {@link UriComponentsContributor UriComponentsContributors} or
-	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}. Since both of these tend to be implemented
-	 * by the same class, the most convenient option is to obtain the configured
-	 * {@code HandlerMethodArgumentResolvers} in {@code RequestMappingHandlerAdapter}
-	 * and provide that to this constructor.
+	 * 从一组 {@link UriComponentsContributor UriComponentsContributors} 或
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 创建实例。
+	 * 由于两者通常由同一个类实现，最便捷的做法是获取
+	 * {@code RequestMappingHandlerAdapter} 中配置的
+	 * {@code HandlerMethodArgumentResolvers}，并将其提供给此构造函数。
 	 * @param contributors a collection of {@link UriComponentsContributor}
 	 * or {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
 	 */
@@ -73,14 +73,13 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	}
 
 	/**
-	 * Create an instance from a collection of {@link UriComponentsContributor UriComponentsContributors} or
-	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}. Since both of these tend to be implemented
-	 * by the same class, the most convenient option is to obtain the configured
-	 * {@code HandlerMethodArgumentResolvers} in the {@code RequestMappingHandlerAdapter}
-	 * and provide that to this constructor.
-	 * <p>If the {@link ConversionService} argument is {@code null},
-	 * {@link org.springframework.format.support.DefaultFormattingConversionService}
-	 * will be used by default.
+	 * 从一组 {@link UriComponentsContributor UriComponentsContributors} 或
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 创建实例。
+	 * 由于两者通常由同一个类实现，最便捷的做法是获取
+	 * {@code RequestMappingHandlerAdapter} 中配置的
+	 * {@code HandlerMethodArgumentResolvers}，并将其提供给此构造函数。
+	 * <p>如果 {@link ConversionService} 参数为 {@code null}，
+	 * 则默认使用 {@link org.springframework.format.support.DefaultFormattingConversionService}。
 	 * @param contributors a collection of {@link UriComponentsContributor}
 	 * or {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}
 	 * @param cs a ConversionService to use when method argument values
@@ -92,8 +91,7 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	}
 
 	/**
-	 * Determine if this {@code CompositeUriComponentsContributor} has any
-	 * contributors.
+	 * 判断此 {@code CompositeUriComponentsContributor} 是否有任何贡献器。
 	 * @return {@code true} if this {@code CompositeUriComponentsContributor}
 	 * was created with contributors to delegate to
 	 */
@@ -139,7 +137,7 @@ public class CompositeUriComponentsContributor implements UriComponentsContribut
 	}
 
 	/**
-	 * An overloaded method that uses the ConversionService created at construction.
+	 * 重载方法，使用构造时创建的 ConversionService。
 	 */
 	public void contributeMethodArgument(MethodParameter parameter, Object value, UriComponentsBuilder builder,
 			Map<String, Object> uriVariables) {

@@ -24,14 +24,13 @@ import org.springframework.transaction.support.ResourceHolderSupport;
 import org.springframework.util.Assert;
 
 /**
- * Resource holder wrapping a JPA {@link EntityManager}.
- * {@link JpaTransactionManager} binds instances of this class to the thread,
- * for a given {@link javax.persistence.EntityManagerFactory}.
+ * 包装 JPA {@link EntityManager} 的资源持有器。
+ * {@link JpaTransactionManager} 会将此类的实例绑定到线程上，
+ * 按给定的 {@link javax.persistence.EntityManagerFactory} 区分。
  *
- * <p>Also serves as a base class for {@link org.springframework.orm.hibernate5.SessionHolder},
- * as of 5.1.
+ * <p>自 5.1 起，此类还作为 {@link org.springframework.orm.hibernate5.SessionHolder} 的基类。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不打算供应用程序直接使用。
  *
  * @author Juergen Hoeller
  * @since 2.0

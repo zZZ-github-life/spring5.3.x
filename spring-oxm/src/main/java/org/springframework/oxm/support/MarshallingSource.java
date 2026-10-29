@@ -38,14 +38,14 @@ import org.springframework.oxm.Marshaller;
 import org.springframework.util.Assert;
 
 /**
- * {@link Source} implementation that uses a {@link Marshaller}.Can be constructed with a
- * {@code Marshaller} and an object to be marshalled.
+ * 使用 {@link Marshaller} 的 {@link Source} 实现。可以使用 {@code Marshaller}
+ * 以及待 marshal 的对象来构造。
  *
- * <p>Even though {@code MarshallingSource} extends from {@code SAXSource}, calling the methods of
- * {@code SAXSource} is <strong>not supported</strong>. In general, the only supported operation on this class is
- * to use the {@code XMLReader} obtained via {@link #getXMLReader()} to parse the input source obtained via {@link
- * #getInputSource()}. Calling {@link #setXMLReader(XMLReader)} or {@link #setInputSource(InputSource)} will result in
- * {@code UnsupportedOperationException}s.
+ * <p>尽管 {@code MarshallingSource} 继承自 {@code SAXSource}，但<strong>不支持</strong>调用
+ * {@code SAXSource} 的方法。通常，此类唯一支持的操作是使用通过 {@link #getXMLReader()}
+ * 获取的 {@code XMLReader} 来解析通过 {@link #getInputSource()} 获取的输入源。
+ * 调用 {@link #setXMLReader(XMLReader)} 或 {@link #setInputSource(InputSource)}
+ * 将导致抛出 {@code UnsupportedOperationException}。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -59,7 +59,7 @@ public class MarshallingSource extends SAXSource {
 
 
 	/**
-	 * Create a new {@code MarshallingSource} with the given marshaller and content.
+	 * 使用给定的 marshaller 和内容创建一个新的 {@code MarshallingSource}。
 	 * @param marshaller the marshaller to use
 	 * @param content the object to be marshalled
 	 */
@@ -73,21 +73,21 @@ public class MarshallingSource extends SAXSource {
 
 
 	/**
-	 * Return the {@code Marshaller} used by this {@code MarshallingSource}.
+	 * 返回此 {@code MarshallingSource} 所使用的 {@code Marshaller}。
 	 */
 	public Marshaller getMarshaller() {
 		return this.marshaller;
 	}
 
 	/**
-	 * Return the object to be marshalled.
+	 * 返回待 marshal 的对象。
 	 */
 	public Object getContent() {
 		return this.content;
 	}
 
 	/**
-	 * Throws a {@code UnsupportedOperationException}.
+	 * 抛出 {@code UnsupportedOperationException}。
 	 */
 	@Override
 	public void setInputSource(InputSource inputSource) {
@@ -95,7 +95,7 @@ public class MarshallingSource extends SAXSource {
 	}
 
 	/**
-	 * Throws a {@code UnsupportedOperationException}.
+	 * 抛出 {@code UnsupportedOperationException}。
 	 */
 	@Override
 	public void setXMLReader(XMLReader reader) {

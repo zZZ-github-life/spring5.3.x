@@ -44,14 +44,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.http.client.ClientHttpRequestFactory} implementation
- * that uses <a href="https://netty.io/">Netty 4</a> to create requests.
+ * 使用 <a href="https://netty.io/">Netty 4</a> 创建请求的
+ * {@link org.springframework.http.client.ClientHttpRequestFactory} 实现。
  *
- * <p>Allows to use a pre-configured {@link EventLoopGroup} instance: useful for
- * sharing across multiple clients.
+ * <p>允许使用预配置的 {@link EventLoopGroup} 实例：便于
+ * 跨多个客户端共享。
  *
- * <p>Note that this implementation consistently closes the HTTP connection on each
- * request.
+ * <p>请注意，此实现会在每次请求时始终关闭
+ * HTTP 连接。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -66,7 +66,7 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 		AsyncClientHttpRequestFactory, InitializingBean, DisposableBean {
 
 	/**
-	 * The default maximum response size.
+	 * 默认的最大响应大小。
 	 * @see #setMaxResponseSize(int)
 	 */
 	public static final int DEFAULT_MAX_RESPONSE_SIZE = 1024 * 1024 * 10;
@@ -90,8 +90,8 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 
 	/**
-	 * Create a new {@code Netty4ClientHttpRequestFactory} with a default
-	 * {@link NioEventLoopGroup}.
+	 * 使用默认的 {@link NioEventLoopGroup}
+	 * 创建新的 {@code Netty4ClientHttpRequestFactory}。
 	 */
 	public Netty4ClientHttpRequestFactory() {
 		int ioWorkerCount = Runtime.getRuntime().availableProcessors() * 2;
@@ -100,11 +100,10 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Create a new {@code Netty4ClientHttpRequestFactory} with the given
-	 * {@link EventLoopGroup}.
-	 * <p><b>NOTE:</b> the given group will <strong>not</strong> be
-	 * {@linkplain EventLoopGroup#shutdownGracefully() shutdown} by this factory;
-	 * doing so becomes the responsibility of the caller.
+	 * 使用给定的 {@link EventLoopGroup}
+	 * 创建新的 {@code Netty4ClientHttpRequestFactory}。
+	 * <p><b>注意：</b>此工厂<strong>不会</strong> {@linkplain EventLoopGroup#shutdownGracefully() 关闭}
+	 * 给定的 group；关闭操作由调用者负责。
 	 */
 	public Netty4ClientHttpRequestFactory(EventLoopGroup eventLoopGroup) {
 		Assert.notNull(eventLoopGroup, "EventLoopGroup must not be null");
@@ -114,8 +113,8 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 
 	/**
-	 * Set the default maximum response size.
-	 * <p>By default this is set to {@link #DEFAULT_MAX_RESPONSE_SIZE}.
+	 * 设置默认的最大响应大小。
+	 * <p>默认设置为 {@link #DEFAULT_MAX_RESPONSE_SIZE}。
 	 * @since 4.1.5
 	 * @see HttpObjectAggregator#HttpObjectAggregator(int)
 	 */
@@ -124,17 +123,17 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set the SSL context. When configured it is used to create and insert an
-	 * {@link io.netty.handler.ssl.SslHandler} in the channel pipeline.
-	 * <p>A default client SslContext is configured if none has been provided.
+	 * 设置 SSL 上下文。配置后，将使用它在通道管道中
+	 * 创建并插入 {@link io.netty.handler.ssl.SslHandler}。
+	 * <p>如果未提供，则配置默认的客户端 SslContext。
 	 */
 	public void setSslContext(SslContext sslContext) {
 		this.sslContext = sslContext;
 	}
 
 	/**
-	 * Set the underlying connect timeout (in milliseconds).
-	 * A timeout value of 0 specifies an infinite timeout.
+	 * 设置底层连接超时（以毫秒为单位）。
+	 * 超时值 0 表示无限超时。
 	 * @see ChannelConfig#setConnectTimeoutMillis(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -142,8 +141,8 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set the underlying URLConnection's read timeout (in milliseconds).
-	 * A timeout value of 0 specifies an infinite timeout.
+	 * 设置底层 URLConnection 的读取超时（以毫秒为单位）。
+	 * 超时值 0 表示无限超时。
 	 * @see ReadTimeoutHandler
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -221,8 +220,8 @@ public class Netty4ClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Template method for changing properties on the given {@link SocketChannelConfig}.
-	 * <p>The default implementation sets the connect timeout based on the set property.
+	 * 用于更改给定 {@link SocketChannelConfig} 属性的模板方法。
+	 * <p>默认实现根据所设置的属性设置连接超时。
 	 * @param config the channel configuration
 	 */
 	protected void configureChannel(SocketChannelConfig config) {

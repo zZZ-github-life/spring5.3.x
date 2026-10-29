@@ -22,27 +22,26 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link FactoryBean} for HTTP invoker proxies. Exposes the proxied service
- * for use as a bean reference, using the specified service interface.
+ * 用于 HTTP invoker 代理的 {@link FactoryBean}。使用指定的服务接口，
+ * 将所代理的服务公开为 bean 引用。
  *
- * <p>The service URL must be an HTTP URL exposing an HTTP invoker service.
- * Optionally, a codebase URL can be specified for on-demand dynamic code download
- * from a remote location. For details, see HttpInvokerClientInterceptor docs.
+ * <p>服务 URL 必须是指向 HTTP invoker 服务的 HTTP URL。
+ * 此外，还可以指定 codebase URL，以便从远程位置按需动态下载类。
+ * 有关详细信息，请参阅 HttpInvokerClientInterceptor 的文档。
  *
- * <p>Serializes remote invocation objects and deserializes remote invocation
- * result objects. Uses Java serialization just like RMI, but provides the
- * same ease of setup as Caucho's HTTP-based Hessian protocol.
+ * <p>序列化远程调用对象，并反序列化远程调用结果对象。
+ * 与 RMI 一样使用 Java 序列化，但提供了与 Caucho 基于 HTTP 的
+ * Hessian 协议同样简单的配置方式。
  *
- * <p><b>HTTP invoker is the recommended protocol for Java-to-Java remoting.</b>
- * It is more powerful and more extensible than Hessian, at the expense of
- * being tied to Java. Nevertheless, it is as easy to set up as Hessian,
- * which is its main advantage compared to RMI.
+ * <p><b>HTTP invoker 是 Java 到 Java 远程调用的推荐协议。</b>
+ * 它比 Hessian 更强大、更具扩展性，代价是与 Java 绑定。
+ * 不过，它的配置与 Hessian 一样简单，这是它相对于 RMI 的主要优势。
  *
- * <p><b>WARNING: Be aware of vulnerabilities due to unsafe Java deserialization:
- * Manipulated input streams could lead to unwanted code execution on the server
- * during the deserialization step. As a consequence, do not expose HTTP invoker
- * endpoints to untrusted clients but rather just between your own services.</b>
- * In general, we strongly recommend any other message format (e.g. JSON) instead.
+ * <p><b>警告：请注意不安全的 Java 反序列化所带来的漏洞：
+ * 被篡改的输入流可能导致在反序列化步骤中于服务器上执行非预期代码。
+ * 因此，不要将 HTTP invoker 端点暴露给不受信任的客户端，
+ * 而应仅在自己内部的服务之间使用。</b>
+ * 一般而言，我们强烈建议改用其他任何消息格式（例如 JSON）。
  *
  * @author Juergen Hoeller
  * @since 1.1

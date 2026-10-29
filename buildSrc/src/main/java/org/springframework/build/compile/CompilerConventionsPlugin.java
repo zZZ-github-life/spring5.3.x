@@ -28,7 +28,7 @@ import org.gradle.api.plugins.JavaPluginConvention;
 import org.gradle.api.tasks.compile.JavaCompile;
 
 /**
- * {@link Plugin} that applies conventions for compiling Java sources in Spring Framework.
+ * {@link Plugin}，用于应用在 Spring Framework 中编译 Java 源代码的约定。
  *
  * @author Brian Clozel
  * @author Sam Brannen
@@ -65,8 +65,7 @@ public class CompilerConventionsPlugin implements Plugin<Project> {
 	}
 
 	/**
-	 * Applies the common Java compiler options for main sources, test fixture sources, and
-	 * test sources.
+	 * 为主源代码、测试夹具源代码和测试源代码应用通用的 Java 编译器选项。
 	 * @param project the current project
 	 */
 	private void applyJavaCompileConventions(Project project) {

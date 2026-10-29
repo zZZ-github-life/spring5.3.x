@@ -35,7 +35,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Base class for {@link ClientHttpRequest} implementations.
+ * 用于 {@link ClientHttpRequest} 实现的基类。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -44,10 +44,9 @@ import org.springframework.util.MultiValueMap;
 public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 
 	/**
-	 * COMMITTING -> COMMITTED is the period after doCommit is called but before
-	 * the response status and headers have been applied to the underlying
-	 * response during which time pre-commit actions can still make changes to
-	 * the response status and headers.
+	 * COMMITTING -> COMMITTED 是调用 doCommit 之后、但在响应状态和头部
+	 * 被应用到基础响应之前的时期，在此期间提交前操作仍可以
+	 * 更改响应状态和头部。
 	 */
 	private enum State {NEW, COMMITTING, COMMITTED}
 
@@ -90,9 +89,9 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 	}
 
 	/**
-	 * Initialize the read-only headers after the request is committed.
-	 * <p>By default, this method simply applies a read-only wrapper.
-	 * Subclasses can do the same for headers from the native request.
+	 * 在请求提交后初始化只读头部。
+	 * <p>默认情况下，此方法仅应用只读包装器。
+	 * 子类可以对来自原生请求的头部执行相同操作。
 	 * @since 5.3.15
 	 */
 	protected HttpHeaders initReadOnlyHeaders() {
@@ -119,7 +118,7 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 	}
 
 	/**
-	 * A variant of {@link #doCommit(Supplier)} for a request without body.
+	 * 不带正文的请求的 {@link #doCommit(Supplier)} 变体。
 	 * @return a completion publisher
 	 */
 	protected Mono<Void> doCommit() {
@@ -127,8 +126,8 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 	}
 
 	/**
-	 * Apply {@link #beforeCommit(Supplier) beforeCommit} actions, apply the
-	 * request headers/cookies, and write the request body.
+	 * 应用 {@link #beforeCommit(Supplier) beforeCommit} 操作，应用
+	 * 请求头部/Cookie，并写入请求正文。
 	 * @param writeAction the action to write the request body (may be {@code null})
 	 * @return a completion publisher
 	 */
@@ -156,14 +155,14 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 
 
 	/**
-	 * Apply header changes from {@link #getHeaders()} to the underlying request.
-	 * This method is called once only.
+	 * 将 {@link #getHeaders()} 中的头部更改应用到基础请求。
+	 * 此方法仅调用一次。
 	 */
 	protected abstract void applyHeaders();
 
 	/**
-	 * Add cookies from {@link #getHeaders()} to the underlying request.
-	 * This method is called once only.
+	 * 将 {@link #getHeaders()} 中的 Cookie 添加到基础请求。
+	 * 此方法仅调用一次。
 	 */
 	protected abstract void applyCookies();
 

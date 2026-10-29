@@ -1,5 +1,5 @@
 /**
- * Provides an namespace handler for the Spring Object/XML namespace.
+ * 为 Spring Object/XML 命名空间提供命名空间处理器。
  */
 @NonNullApi
 @NonNullFields

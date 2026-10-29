@@ -23,10 +23,10 @@ import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.util.NumberUtils;
 
 /**
- * Converts from any JDK-standard Number implementation to any other JDK-standard Number implementation.
+ * 将任何 JDK 标准的 Number 实现转换为任何其他 JDK 标准的 Number 实现。
  *
- * <p>Support Number classes including Byte, Short, Integer, Float, Double, Long, BigInteger, BigDecimal. This class
- * delegates to {@link NumberUtils#convertNumberToTargetClass(Number, Class)} to perform the conversion.
+ * <p>支持的 Number 类包括 Byte、Short、Integer、Float、Double、Long、BigInteger、BigDecimal。
+ * 此类委托 {@link NumberUtils#convertNumberToTargetClass(Number, Class)} 来执行转换。
  *
  * @author Keith Donald
  * @since 3.0

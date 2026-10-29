@@ -39,20 +39,18 @@ import org.springframework.util.ClassUtils;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * An AOP Alliance {@link MethodInterceptor} implementation that delegates to a
- * JSR-303 provider for performing method-level validation on annotated methods.
+ * 一个 AOP Alliance {@link MethodInterceptor} 实现，委托给 JSR-303 提供者对带注解的方法执行方法级
+ * 校验。
  *
- * <p>Applicable methods have JSR-303 constraint annotations on their parameters
- * and/or on their return value (in the latter case specified at the method level,
- * typically as inline annotation).
+ * <p>适用的方法在其参数和/或返回值上带有 JSR-303 约束注解（后者在方法级别指定，通常以内联注解形式
+ * 给出）。
  *
- * <p>E.g.: {@code public @NotNull Object myValidMethod(@NotNull String arg1, @Max(10) int arg2)}
+ * <p>例如：{@code public @NotNull Object myValidMethod(@NotNull String arg1, @Max(10) int arg2)}
  *
- * <p>Validation groups can be specified through Spring's {@link Validated} annotation
- * at the type level of the containing target class, applying to all public service methods
- * of that class. By default, JSR-303 will validate against its default group only.
+ * <p>可以通过 Spring 的 {@link Validated} 注解在所属目标类的类型级别指定校验分组，作用于该类的所有
+ * public 服务方法。默认情况下，JSR-303 仅针对其默认分组进行校验。
  *
- * <p>As of Spring 5.0, this functionality requires a Bean Validation 1.1+ provider.
+ * <p>从 Spring 5.0 起，此功能需要 Bean Validation 1.1+ 提供者。
  *
  * @author Juergen Hoeller
  * @since 3.1
@@ -65,14 +63,14 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 
 
 	/**
-	 * Create a new MethodValidationInterceptor using a default JSR-303 validator underneath.
+	 * 使用底层默认的 JSR-303 校验器创建一个新的 MethodValidationInterceptor。
 	 */
 	public MethodValidationInterceptor() {
 		this(Validation.buildDefaultValidatorFactory());
 	}
 
 	/**
-	 * Create a new MethodValidationInterceptor using the given JSR-303 ValidatorFactory.
+	 * 使用给定的 JSR-303 ValidatorFactory 创建一个新的 MethodValidationInterceptor。
 	 * @param validatorFactory the JSR-303 ValidatorFactory to use
 	 */
 	public MethodValidationInterceptor(ValidatorFactory validatorFactory) {
@@ -80,7 +78,7 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 	}
 
 	/**
-	 * Create a new MethodValidationInterceptor using the given JSR-303 Validator.
+	 * 使用给定的 JSR-303 Validator 创建一个新的 MethodValidationInterceptor。
 	 * @param validator the JSR-303 Validator to use
 	 */
 	public MethodValidationInterceptor(Validator validator) {
@@ -152,9 +150,8 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 	}
 
 	/**
-	 * Determine the validation groups to validate against for the given method invocation.
-	 * <p>Default are the validation groups as specified in the {@link Validated} annotation
-	 * on the containing target class of the method.
+	 * 确定针对给定方法调用要依据的校验分组。
+	 * <p>默认为该方法所属目标类上 {@link Validated} 注解中指定的校验分组。
 	 * @param invocation the current MethodInvocation
 	 * @return the applicable validation groups as a Class array
 	 */

@@ -22,14 +22,12 @@ import java.lang.reflect.InvocationTargetException;
 import org.springframework.lang.Nullable;
 
 /**
- * Encapsulates a remote invocation result, holding a result value or an exception.
- * Used for HTTP-based serialization invokers.
+ * 封装远程调用结果，其中保存结果值或异常。用于基于 HTTP 的序列化调用器。
  *
- * <p>This is an SPI class, typically not used directly by applications.
- * Can be subclassed for additional invocation parameters.
+ * <p>这是一个 SPI 类，通常不由应用程序直接使用。可以对其子类化以添加额外的调用参数。
  *
- * <p>Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
- * for use with standard Java serialization as well as JavaBean-style serialization.
+ * <p>{@link RemoteInvocation} 和 {@link RemoteInvocationResult} 均可与标准 Java 序列化以及
+ * JavaBean 风格序列化配合使用。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -37,7 +35,7 @@ import org.springframework.lang.Nullable;
  */
 public class RemoteInvocationResult implements Serializable {
 
-	/** Use serialVersionUID from Spring 1.1 for interoperability. */
+	/** 使用 Spring 1.1 中的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = 2138555143707773549L;
 
 
@@ -49,7 +47,7 @@ public class RemoteInvocationResult implements Serializable {
 
 
 	/**
-	 * Create a new RemoteInvocationResult for the given result value.
+	 * 为给定的结果值创建一个新的 RemoteInvocationResult。
 	 * @param value the result value returned by a successful invocation
 	 * of the target method
 	 */
@@ -58,7 +56,7 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Create a new RemoteInvocationResult for the given exception.
+	 * 为给定的异常创建一个新的 RemoteInvocationResult。
 	 * @param exception the exception thrown by an unsuccessful invocation
 	 * of the target method
 	 */
@@ -67,8 +65,7 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Create a new RemoteInvocationResult for JavaBean-style deserialization
-	 * (e.g. with Jackson).
+	 * 为 JavaBean 风格反序列化（例如使用 Jackson）创建一个新的 RemoteInvocationResult。
 	 * @see #setValue
 	 * @see #setException
 	 */
@@ -77,10 +74,8 @@ public class RemoteInvocationResult implements Serializable {
 
 
 	/**
-	 * Set the result value returned by a successful invocation of the
-	 * target method, if any.
-	 * <p>This setter is intended for JavaBean-style deserialization.
-	 * Use {@link #RemoteInvocationResult(Object)} otherwise.
+	 * 设置目标方法成功调用后返回的结果值（如果有）。
+	 * <p>此设置方法用于 JavaBean 风格反序列化。否则请使用 {@link #RemoteInvocationResult(Object)}。
 	 * @see #RemoteInvocationResult()
 	 */
 	public void setValue(@Nullable Object value) {
@@ -88,8 +83,7 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Return the result value returned by a successful invocation
-	 * of the target method, if any.
+	 * 返回目标方法成功调用后返回的结果值（如果有）。
 	 * @see #hasException
 	 */
 	@Nullable
@@ -98,10 +92,8 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Set the exception thrown by an unsuccessful invocation of the
-	 * target method, if any.
-	 * <p>This setter is intended for JavaBean-style deserialization.
-	 * Use {@link #RemoteInvocationResult(Throwable)} otherwise.
+	 * 设置目标方法调用失败时抛出的异常（如果有）。
+	 * <p>此设置方法用于 JavaBean 风格反序列化。否则请使用 {@link #RemoteInvocationResult(Throwable)}。
 	 * @see #RemoteInvocationResult()
 	 */
 	public void setException(@Nullable Throwable exception) {
@@ -109,8 +101,7 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Return the exception thrown by an unsuccessful invocation
-	 * of the target method, if any.
+	 * 返回目标方法调用失败时抛出的异常（如果有）。
 	 * @see #hasException
 	 */
 	@Nullable
@@ -119,9 +110,7 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Return whether this invocation result holds an exception.
-	 * If this returns {@code false}, the result value applies
-	 * (even if it is {@code null}).
+	 * 返回此调用结果是否包含异常。如果返回 {@code false}，则以结果值为准（即使它为 {@code null}）。
 	 * @see #getValue
 	 * @see #getException
 	 */
@@ -130,8 +119,7 @@ public class RemoteInvocationResult implements Serializable {
 	}
 
 	/**
-	 * Return whether this invocation result holds an InvocationTargetException,
-	 * thrown by an invocation of the target method itself.
+	 * 返回此调用结果是否包含由目标方法自身调用所抛出的 InvocationTargetException。
 	 * @see #hasException()
 	 */
 	public boolean hasInvocationTargetException() {
@@ -140,9 +128,7 @@ public class RemoteInvocationResult implements Serializable {
 
 
 	/**
-	 * Recreate the invocation result, either returning the result value
-	 * in case of a successful invocation of the target method, or
-	 * rethrowing the exception thrown by the target method.
+	 * 重建调用结果：如果目标方法调用成功，则返回结果值；否则重新抛出目标方法抛出的异常。
 	 * @return the result value, if any
 	 * @throws Throwable the exception, if any
 	 */

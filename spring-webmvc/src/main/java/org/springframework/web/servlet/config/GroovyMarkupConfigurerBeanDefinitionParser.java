@@ -23,8 +23,8 @@ import org.springframework.beans.factory.xml.AbstractSimpleBeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
 
 /**
- * Parse the <code>&lt;mvc:groovy-configurer&gt;</code> MVC namespace element and register a
- * {@code GroovyConfigurer} bean.
+ * 解析 <code>&lt;mvc:groovy-configurer&gt;</code> MVC 命名空间元素，
+ * 并注册一个 {@code GroovyConfigurer} bean。
  *
  * @author Sebastien Deleuze
  * @since 4.1
@@ -32,7 +32,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 public class GroovyMarkupConfigurerBeanDefinitionParser extends AbstractSimpleBeanDefinitionParser {
 
 	/**
-	 * The bean name used for the {@code GroovyMarkupConfigurer}.
+	 * 用于 {@code GroovyMarkupConfigurer} 的 bean 名称。
 	 */
 	public static final String BEAN_NAME = "mvcGroovyMarkupConfigurer";
 

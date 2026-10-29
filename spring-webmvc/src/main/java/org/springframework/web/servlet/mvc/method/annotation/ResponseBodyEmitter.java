@@ -28,16 +28,16 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A controller method return value type for asynchronous request processing
- * where one or more objects are written to the response.
+ * 用于异步请求处理的控制器方法返回类型，
+ * 可向响应写入一个或多个对象。
  *
- * <p>While {@link org.springframework.web.context.request.async.DeferredResult}
- * is used to produce a single result, a {@code ResponseBodyEmitter} can be used
- * to send multiple objects where each object is written with a compatible
- * {@link org.springframework.http.converter.HttpMessageConverter}.
+ * <p>虽然 {@link org.springframework.web.context.request.async.DeferredResult}
+ * 用于产生单个结果，但 {@code ResponseBodyEmitter} 可用于
+ * 发送多个对象，其中每个对象都使用兼容的
+ * {@link org.springframework.http.converter.HttpMessageConverter} 写出。
  *
- * <p>Supported as a return type on its own as well as within a
- * {@link org.springframework.http.ResponseEntity}.
+ * <p>既可作为独立的返回类型，也可在
+ * {@link org.springframework.http.ResponseEntity} 中使用。
  *
  * <pre>
  * &#064;RequestMapping(value="/stream", method=RequestMethod.GET)
@@ -56,7 +56,6 @@ import org.springframework.util.ObjectUtils;
  * // and done
  * emitter.complete();
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 4.2
@@ -69,23 +68,22 @@ public class ResponseBodyEmitter {
 	@Nullable
 	private Handler handler;
 
-	/** Store send data before handler is initialized. */
+	/** 在处理器初始化之前保存要发送的数据。 */
 	private final Set<DataWithMediaType> earlySendAttempts = new LinkedHashSet<>(8);
 
-	/** Store successful completion before the handler is initialized. */
+	/** 在处理器初始化之前保存成功完成状态。 */
 	private boolean complete;
 
-	/** Store an error before the handler is initialized. */
+	/** 在处理器初始化之前保存错误。 */
 	@Nullable
 	private Throwable failure;
 
 	/**
-	 * After an I/O error, we don't call {@link #completeWithError} directly but
-	 * wait for the Servlet container to call us via {@code AsyncListener#onError}
-	 * on a container thread at which point we call completeWithError.
-	 * This flag is used to ignore further calls to complete or completeWithError
-	 * that may come for example from an application try-catch block on the
-	 * thread of the I/O error.
+	 * 发生 I/O 错误后，我们不会直接调用 {@link #completeWithError}，
+	 * 而是等待 Servlet 容器在容器线程上通过 {@code AsyncListener#onError}
+	 * 回调我们，此时再调用 completeWithError。
+	 * 此标志用于忽略可能来自 I/O 错误线程上应用程序 try-catch 块的、
+	 * 对 complete 或 completeWithError 的进一步调用。
 	 */
 	private boolean sendFailed;
 
@@ -97,17 +95,17 @@ public class ResponseBodyEmitter {
 
 
 	/**
-	 * Create a new ResponseBodyEmitter instance.
+	 * 创建一个新的 ResponseBodyEmitter 实例。
 	 */
 	public ResponseBodyEmitter() {
 		this.timeout = null;
 	}
 
 	/**
-	 * Create a ResponseBodyEmitter with a custom timeout value.
-	 * <p>By default not set in which case the default configured in the MVC
-	 * Java Config or the MVC namespace is used, or if that's not set, then the
-	 * timeout depends on the default of the underlying server.
+	 * 创建一个带有自定义超时值的 ResponseBodyEmitter。
+	 * <p>默认不设置，此时将使用 MVC Java 配置或 MVC 命名空间
+	 * 中配置的默认值；如果也未设置，则超时取决于
+	 * 底层服务器的默认值。
 	 * @param timeout the timeout value in milliseconds
 	 */
 	public ResponseBodyEmitter(Long timeout) {
@@ -116,7 +114,7 @@ public class ResponseBodyEmitter {
 
 
 	/**
-	 * Return the configured timeout value, if any.
+	 * 返回已配置的超时值（如果有）。
 	 */
 	@Nullable
 	public Long getTimeout() {
@@ -159,23 +157,22 @@ public class ResponseBodyEmitter {
 	}
 
 	/**
-	 * Invoked after the response is updated with the status code and headers,
-	 * if the ResponseBodyEmitter is wrapped in a ResponseEntity, but before the
-	 * response is committed, i.e. before the response body has been written to.
-	 * <p>The default implementation is empty.
+	 * 如果 ResponseBodyEmitter 被包装在 ResponseEntity 中，
+	 * 则在用状态码和响应头更新响应之后、但在响应提交之前，
+	 * 即向响应体写入之前调用。
+	 * <p>默认实现为空。
 	 */
 	protected void extendResponse(ServerHttpResponse outputMessage) {
 	}
 
 	/**
-	 * Write the given object to the response.
-	 * <p>If any exception occurs a dispatch is made back to the app server where
-	 * Spring MVC will pass the exception through its exception handling mechanism.
-	 * <p><strong>Note:</strong> if the send fails with an IOException, you do
-	 * not need to call {@link #completeWithError(Throwable)} in order to clean
-	 * up. Instead the Servlet container creates a notification that results in a
-	 * dispatch where Spring MVC invokes exception resolvers and completes
-	 * processing.
+	 * 将给定对象写入响应。
+	 * <p>如果发生任何异常，会向应用服务器发起一次分派，
+	 * Spring MVC 将在那里通过其异常处理机制传递该异常。
+	 * <p><strong>注意：</strong>如果发送因 IOException 失败，
+	 * 你无需调用 {@link #completeWithError(Throwable)} 进行清理。
+	 * 相反，Servlet 容器会创建一个通知，触发一次分派，
+	 * Spring MVC 会在其中调用异常解析器并完成处理。
 	 * @param object the object to write
 	 * @throws IOException raised when an I/O error occurs
 	 * @throws java.lang.IllegalStateException wraps any other errors
@@ -185,8 +182,8 @@ public class ResponseBodyEmitter {
 	}
 
 	/**
-	 * Overloaded variant of {@link #send(Object)} that also accepts a MediaType
-	 * hint for how to serialize the given Object.
+	 * {@link #send(Object)} 的重载变体，还接受一个 MediaType
+	 * 提示，用于说明如何序列化给定对象。
 	 * @param object the object to write
 	 * @param mediaType a MediaType hint for selecting an HttpMessageConverter
 	 * @throws IOException raised when an I/O error occurs
@@ -218,12 +215,12 @@ public class ResponseBodyEmitter {
 	}
 
 	/**
-	 * Complete request processing by performing a dispatch into the servlet
-	 * container, where Spring MVC is invoked once more, and completes the
-	 * request processing lifecycle.
-	 * <p><strong>Note:</strong> this method should be called by the application
-	 * to complete request processing. It should not be used after container
-	 * related events such as an error while {@link #send(Object) sending}.
+	 * 通过向 Servlet 容器执行一次分派来完成请求处理，
+	 * Spring MVC 会在那里再次被调用，并完成
+	 * 请求处理生命周期。
+	 * <p><strong>注意：</strong>应用程序应调用此方法来
+	 * 结束请求处理。在诸如 {@link #send(Object) sending}
+	 * 期间发生错误之类的容器相关事件之后，不应再使用此方法。
 	 */
 	public synchronized void complete() {
 		// Ignore, after send failure
@@ -237,15 +234,15 @@ public class ResponseBodyEmitter {
 	}
 
 	/**
-	 * Complete request processing with an error.
-	 * <p>A dispatch is made into the app server where Spring MVC will pass the
-	 * exception through its exception handling mechanism. Note however that
-	 * at this stage of request processing, the response is committed and the
-	 * response status can no longer be changed.
-	 * <p><strong>Note:</strong> this method should be called by the application
-	 * to complete request processing with an error. It should not be used after
-	 * container related events such as an error while
-	 * {@link #send(Object) sending}.
+	 * 以错误结束请求处理。
+	 * <p>会向应用服务器发起一次分派，Spring MVC 将在那里通过其
+	 * 异常处理机制传递该异常。但请注意，
+	 * 在请求处理的这个阶段，响应已提交，
+	 * 响应状态码无法再更改。
+	 * <p><strong>注意：</strong>应用程序应调用此方法
+	 * 以错误结束请求处理。在诸如
+	 * {@link #send(Object) sending} 期间发生错误之类的
+	 * 容器相关事件之后，不应再使用此方法。
 	 */
 	public synchronized void completeWithError(Throwable ex) {
 		// Ignore, after send failure
@@ -260,17 +257,16 @@ public class ResponseBodyEmitter {
 	}
 
 	/**
-	 * Register code to invoke when the async request times out. This method is
-	 * called from a container thread when an async request times out.
+	 * 注册当异步请求超时时要调用的代码。此方法
+	 * 会在异步请求超时时从容器线程中被调用。
 	 */
 	public synchronized void onTimeout(Runnable callback) {
 		this.timeoutCallback.setDelegate(callback);
 	}
 
 	/**
-	 * Register code to invoke for an error during async request processing.
-	 * This method is called from a container thread when an error occurred
-	 * while processing an async request.
+	 * 注册异步请求处理期间发生错误时要调用的代码。
+	 * 当处理异步请求期间发生错误时，此方法会从容器线程中被调用。
 	 * @since 5.0
 	 */
 	public synchronized void onError(Consumer<Throwable> callback) {
@@ -278,10 +274,9 @@ public class ResponseBodyEmitter {
 	}
 
 	/**
-	 * Register code to invoke when the async request completes. This method is
-	 * called from a container thread when an async request completed for any
-	 * reason including timeout and network error. This method is useful for
-	 * detecting that a {@code ResponseBodyEmitter} instance is no longer usable.
+	 * 注册异步请求完成时要调用的代码。此方法
+	 * 会在异步请求因任何原因（包括超时和网络错误）完成时从容器线程中被调用。
+	 * 此方法可用于检测 {@code ResponseBodyEmitter} 实例是否已不再可用。
 	 */
 	public synchronized void onCompletion(Runnable callback) {
 		this.completionCallback.setDelegate(callback);
@@ -295,10 +290,9 @@ public class ResponseBodyEmitter {
 
 
 	/**
-	 * Contract to handle the sending of event data, the completion of event
-	 * sending, and the registration of callbacks to be invoked in case of
-	 * timeout, error, and completion for any reason (including from the
-	 * container side).
+	 * 用于处理事件数据发送、事件发送完成，
+	 * 以及注册在超时、错误和因任何原因（包括来自
+	 * 容器侧）完成时要调用的回调的约定。
 	 */
 	interface Handler {
 
@@ -317,8 +311,8 @@ public class ResponseBodyEmitter {
 
 
 	/**
-	 * A simple holder of data to be written along with a MediaType hint for
-	 * selecting a message converter to write with.
+	 * 待写入数据的简单持有者，同时带有用于
+	 * 选择消息转换器的 MediaType 提示。
 	 */
 	public static class DataWithMediaType {
 

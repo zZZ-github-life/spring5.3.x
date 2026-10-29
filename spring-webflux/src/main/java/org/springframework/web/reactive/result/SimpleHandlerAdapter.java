@@ -25,9 +25,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebHandler;
 
 /**
- * {@link HandlerAdapter} that allows using the plain {@link WebHandler} contract
- * with the generic {@link DispatcherHandler}.
- *
+ * {@link HandlerAdapter}，允许将普通的 {@link WebHandler} 契约与通用的 {@link DispatcherHandler} 一起使用。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0

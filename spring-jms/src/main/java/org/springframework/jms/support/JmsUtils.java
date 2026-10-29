@@ -44,8 +44,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Generic utility methods for working with JMS. Mainly for internal use
- * within the framework, but also useful for custom JMS access code.
+ * 用于处理 JMS 的通用工具方法。主要供框架内部使用，
+ * 但对自定义 JMS 访问代码同样有用。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -56,8 +56,8 @@ public abstract class JmsUtils {
 
 
 	/**
-	 * Close the given JMS Connection and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS Connection 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param con the JMS Connection to close (may be {@code null})
 	 */
 	public static void closeConnection(@Nullable Connection con) {
@@ -65,8 +65,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Close the given JMS Connection and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS Connection 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param con the JMS Connection to close (may be {@code null})
 	 * @param stop whether to call {@code stop()} before closing
 	 */
@@ -99,8 +99,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Close the given JMS Session and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS Session 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param session the JMS Session to close (may be {@code null})
 	 */
 	public static void closeSession(@Nullable Session session) {
@@ -119,8 +119,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Close the given JMS MessageProducer and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS MessageProducer 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param producer the JMS MessageProducer to close (may be {@code null})
 	 */
 	public static void closeMessageProducer(@Nullable MessageProducer producer) {
@@ -139,8 +139,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Close the given JMS MessageConsumer and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS MessageConsumer 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param consumer the JMS MessageConsumer to close (may be {@code null})
 	 */
 	public static void closeMessageConsumer(@Nullable MessageConsumer consumer) {
@@ -168,8 +168,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Close the given JMS QueueBrowser and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS QueueBrowser 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param browser the JMS QueueBrowser to close (may be {@code null})
 	 */
 	public static void closeQueueBrowser(@Nullable QueueBrowser browser) {
@@ -188,8 +188,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Close the given JMS QueueRequestor and ignore any thrown exception.
-	 * This is useful for typical {@code finally} blocks in manual JMS code.
+	 * 关闭给定的 JMS QueueRequestor 并忽略任何抛出的异常。
+	 * 这对于手写 JMS 代码中的典型 {@code finally} 块很有用。
 	 * @param requestor the JMS QueueRequestor to close (may be {@code null})
 	 */
 	public static void closeQueueRequestor(@Nullable QueueRequestor requestor) {
@@ -208,7 +208,7 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Commit the Session if not within a JTA transaction.
+	 * 如果不在 JTA 事务中，则提交该 Session。
 	 * @param session the JMS Session to commit
 	 * @throws JMSException if committing failed
 	 */
@@ -223,7 +223,7 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Rollback the Session if not within a JTA transaction.
+	 * 如果不在 JTA 事务中，则回滚该 Session。
 	 * @param session the JMS Session to rollback
 	 * @throws JMSException if committing failed
 	 */
@@ -238,8 +238,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Build a descriptive exception message for the given JMSException,
-	 * incorporating a linked exception's message if appropriate.
+	 * 为给定的 JMSException 构建描述性的异常消息，
+	 * 并在适当时纳入链接异常（linked exception）的消息。
 	 * @param ex the JMSException to build a message for
 	 * @return the descriptive message String
 	 * @see javax.jms.JMSException#getLinkedException()
@@ -262,8 +262,8 @@ public abstract class JmsUtils {
 	}
 
 	/**
-	 * Convert the specified checked {@link javax.jms.JMSException JMSException} to a
-	 * Spring runtime {@link org.springframework.jms.JmsException JmsException} equivalent.
+	 * 将指定的受检 {@link javax.jms.JMSException JMSException} 转换为
+	 * 等价的 Spring 运行时 {@link org.springframework.jms.JmsException JmsException}。
 	 * @param ex the original checked JMSException to convert
 	 * @return the Spring runtime JmsException wrapping the given exception
 	 */

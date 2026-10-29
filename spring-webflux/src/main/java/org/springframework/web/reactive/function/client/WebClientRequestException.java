@@ -24,8 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
 /**
- * Exceptions that contain actual HTTP request data.
- *
+ * 包含实际 HTTP 请求数据的异常。
  * @author Arjen Poutsma
  * @since 5.3
  */
@@ -42,7 +41,7 @@ public class WebClientRequestException extends WebClientException {
 
 
 	/**
-	 * Constructor for throwable.
+	 * 用于 throwable 的构造函数。
 	 */
 	public WebClientRequestException(Throwable ex, HttpMethod method, URI uri, HttpHeaders headers) {
 		super(ex.getMessage(), ex);
@@ -53,8 +52,7 @@ public class WebClientRequestException extends WebClientException {
 	}
 
 	/**
-	 * Not all {@code HttpHeaders} implementations are serializable, so we
-	 * make a copy to ensure that {@code WebClientResponseException} is.
+	 * 并非所有 {@code HttpHeaders} 实现都可序列化，因此我们进行复制以确保 {@code WebClientResponseException} 可序列化。
 	 */
 	private static HttpHeaders copy(HttpHeaders headers) {
 		HttpHeaders result = new HttpHeaders();
@@ -68,21 +66,21 @@ public class WebClientRequestException extends WebClientException {
 
 
 	/**
-	 * Return the HTTP request method.
+	 * 返回 HTTP 请求方法。
 	 */
 	public HttpMethod getMethod() {
 		return this.method;
 	}
 
 	/**
-	 * Return the request URI.
+	 * 返回请求 URI。
 	 */
 	public URI getUri() {
 		return this.uri;
 	}
 
 	/**
-	 * Return the HTTP request headers.
+	 * 返回 HTTP 请求头。
 	 */
 	public HttpHeaders getHeaders() {
 		return this.headers;

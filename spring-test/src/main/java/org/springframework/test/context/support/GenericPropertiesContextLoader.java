@@ -24,8 +24,7 @@ import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Concrete implementation of {@link AbstractGenericContextLoader} that reads
- * bean definitions from Java {@link Properties} resources.
+ * 从 Java {@link Properties} 资源读取 Bean 定义的 {@link AbstractGenericContextLoader} 的具体实现。
  *
  * @author Sam Brannen
  * @since 2.5
@@ -36,7 +35,7 @@ import org.springframework.util.ObjectUtils;
 public class GenericPropertiesContextLoader extends AbstractGenericContextLoader {
 
 	/**
-	 * Creates a new {@link org.springframework.beans.factory.support.PropertiesBeanDefinitionReader}.
+	 * 创建一个新的 {@link org.springframework.beans.factory.support.PropertiesBeanDefinitionReader}。
 	 * @return a new PropertiesBeanDefinitionReader
 	 * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
 	 */
@@ -46,7 +45,7 @@ public class GenericPropertiesContextLoader extends AbstractGenericContextLoader
 	}
 
 	/**
-	 * Returns &quot;{@code -context.properties}&quot;.
+	 * 返回 &quot;{@code -context.properties}&quot;。
 	 */
 	@Override
 	protected String getResourceSuffix() {
@@ -54,8 +53,7 @@ public class GenericPropertiesContextLoader extends AbstractGenericContextLoader
 	}
 
 	/**
-	 * Ensure that the supplied {@link MergedContextConfiguration} does not
-	 * contain {@link MergedContextConfiguration#getClasses() classes}.
+	 * 确保所提供的 {@link MergedContextConfiguration} 不包含 {@link MergedContextConfiguration#getClasses() 类}。
 	 * @since 4.0.4
 	 * @see AbstractGenericContextLoader#validateMergedContextConfiguration
 	 */

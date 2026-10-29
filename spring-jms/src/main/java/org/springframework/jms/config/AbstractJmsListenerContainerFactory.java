@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ErrorHandler;
 
 /**
- * Base {@link JmsListenerContainerFactory} for Spring's base container implementation.
+ * Spring 基础容器实现的 {@link JmsListenerContainerFactory} 基类。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -252,14 +252,13 @@ public abstract class AbstractJmsListenerContainerFactory<C extends AbstractMess
 	}
 
 	/**
-	 * Create an empty container instance.
+	 * 创建一个空的容器实例。
 	 */
 	protected abstract C createContainerInstance();
 
 	/**
-	 * Further initialize the specified container.
-	 * <p>Subclasses can inherit from this method to apply extra
-	 * configuration if necessary.
+	 * 进一步初始化指定的容器。
+	 * <p>子类可以重写此方法，以便在必要时应用额外配置。
 	 */
 	protected void initializeContainer(C instance) {
 	}

@@ -28,8 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link Cache} implementation on top of an {@link Ehcache} instance.
- *
+ * 基于 {@link Ehcache} 实例的 {@link Cache} 实现。
  * @author Costin Leau
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -42,7 +41,7 @@ public class EhCacheCache implements Cache {
 
 
 	/**
-	 * Create an {@link EhCacheCache} instance.
+	 * 创建一个 {@link EhCacheCache} 实例。
 	 * @param ehcache the backing Ehcache instance
 	 */
 	public EhCacheCache(Ehcache ehcache) {

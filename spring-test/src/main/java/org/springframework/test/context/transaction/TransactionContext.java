@@ -30,7 +30,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.util.Assert;
 
 /**
- * Transaction context for a specific {@link TestContext}.
+ * 特定 {@link TestContext} 的事务上下文。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -75,9 +75,8 @@ class TransactionContext {
 	}
 
 	/**
-	 * Has the current transaction been flagged for rollback?
-	 * <p>In other words, should we roll back or commit the current transaction
-	 * upon completion of the current test?
+	 * 当前事务是否已标记为回滚？
+	 * <p>换言之，当前测试完成时，我们应回滚还是提交当前事务？
 	 */
 	boolean isFlaggedForRollback() {
 		return this.flaggedForRollback;
@@ -90,9 +89,8 @@ class TransactionContext {
 	}
 
 	/**
-	 * Start a new transaction for the configured test context.
-	 * <p>Only call this method if {@link #endTransaction} has been called or if no
-	 * transaction has been previously started.
+	 * 为配置的测试上下文启动一个新事务。
+	 * <p>仅在已调用 {@link #endTransaction} 或之前未启动任何事务时调用此方法。
 	 * @throws TransactionException if starting the transaction fails
 	 */
 	void startTransaction() {
@@ -111,8 +109,7 @@ class TransactionContext {
 	}
 
 	/**
-	 * Immediately force a <em>commit</em> or <em>rollback</em> of the transaction for the
-	 * configured test context, according to the {@linkplain #isFlaggedForRollback rollback flag}.
+	 * 根据{@linkplain #isFlaggedForRollback 回滚标志}，立即为配置的测试上下文强制<em>提交</em>或<em>回滚</em>事务。
 	 */
 	void endTransaction() {
 		if (logger.isTraceEnabled()) {

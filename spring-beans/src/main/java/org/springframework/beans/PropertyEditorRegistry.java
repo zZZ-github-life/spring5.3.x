@@ -21,11 +21,11 @@ import java.beans.PropertyEditor;
 import org.springframework.lang.Nullable;
 
 /**
- * Encapsulates methods for registering JavaBeans {@link PropertyEditor PropertyEditors}.
- * This is the central interface that a {@link PropertyEditorRegistrar} operates on.
+ * 封装用于注册 JavaBeans {@link PropertyEditor PropertyEditors} 的方法。这是
+ * {@link PropertyEditorRegistrar} 所操作的核心接口。
  *
- * <p>Extended by {@link BeanWrapper}; implemented by {@link BeanWrapperImpl}
- * and {@link org.springframework.validation.DataBinder}.
+ * <p>由 {@link BeanWrapper} 扩展；由 {@link BeanWrapperImpl} 和
+ * {@link org.springframework.validation.DataBinder} 实现。
  *
  * @author Juergen Hoeller
  * @since 1.2.6
@@ -37,26 +37,21 @@ import org.springframework.lang.Nullable;
 public interface PropertyEditorRegistry {
 
 	/**
-	 * Register the given custom property editor for all properties of the given type.
+	 * 为给定类型的所有属性注册给定的自定义属性编辑器。
 	 * @param requiredType the type of the property
 	 * @param propertyEditor the editor to register
 	 */
 	void registerCustomEditor(Class<?> requiredType, PropertyEditor propertyEditor);
 
 	/**
-	 * Register the given custom property editor for the given type and
-	 * property, or for all properties of the given type.
-	 * <p>If the property path denotes an array or Collection property,
-	 * the editor will get applied either to the array/Collection itself
-	 * (the {@link PropertyEditor} has to create an array or Collection value) or
-	 * to each element (the {@code PropertyEditor} has to create the element type),
-	 * depending on the specified required type.
-	 * <p>Note: Only one single registered custom editor per property path
-	 * is supported. In the case of a Collection/array, do not register an editor
-	 * for both the Collection/array and each element on the same property.
-	 * <p>For example, if you wanted to register an editor for "items[n].quantity"
-	 * (for all values n), you would use "items.quantity" as the value of the
-	 * 'propertyPath' argument to this method.
+	 * 为给定的类型和属性注册给定的自定义属性编辑器，或为给定类型的所有属性注册该编辑器。
+	 * <p>如果属性路径表示数组或 Collection 属性，则编辑器将应用于数组/Collection 本身
+	 * （{@link PropertyEditor} 必须创建数组或 Collection 值）或应用于每个元素（{@code PropertyEditor} 必
+	 * 须创建元素类型），具体取决于指定的必需类型。
+	 * <p>注意：每个属性路径仅支持一个已注册的自定义编辑器。对于 Collection/数组，不要为同一属性既注册
+	 * 集合/数组的编辑器又注册每个元素的编辑器。
+	 * <p>例如，如果你想为“items[n].quantity”（针对所有 n 值）注册编辑器，则应将“items.quantity”作为此
+	 * 方法 'propertyPath' 参数的值。
 	 * @param requiredType the type of the property. This may be {@code null}
 	 * if a property is given but should be specified in any case, in particular in
 	 * case of a Collection - making clear whether the editor is supposed to apply
@@ -69,7 +64,7 @@ public interface PropertyEditorRegistry {
 	void registerCustomEditor(@Nullable Class<?> requiredType, @Nullable String propertyPath, PropertyEditor propertyEditor);
 
 	/**
-	 * Find a custom property editor for the given type and property.
+	 * 为给定的类型和属性查找自定义属性编辑器。
 	 * @param requiredType the type of the property (can be {@code null} if a property
 	 * is given but should be specified in any case for consistency checking)
 	 * @param propertyPath the path of the property (name or nested path), or

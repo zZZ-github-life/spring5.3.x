@@ -1,0 +1,199 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/MediaType.java
+@@BODY 39 40
+{@link MimeType} 的子类，增加了对 HTTP 规范中定义的质量参数的支持。
+@@BODY 57 57
+包含所有媒体范围（即 "&#42;/&#42;"）的公共常量媒体类型。
+@@BODY 62 62
+{@link MediaType#ALL} 的字符串等价形式。
+@@BODY 67 67
+用于 {@code application/atom+xml} 的公共常量媒体类型。
+@@BODY 72 72
+{@link MediaType#APPLICATION_ATOM_XML} 的字符串等价形式。
+@@BODY 77 77
+用于 {@code application/cbor} 的公共常量媒体类型。
+@@BODY 83 83
+{@link MediaType#APPLICATION_CBOR} 的字符串等价形式。
+@@BODY 89 89
+用于 {@code application/x-www-form-urlencoded} 的公共常量媒体类型。
+@@BODY 94 94
+{@link MediaType#APPLICATION_FORM_URLENCODED} 的字符串等价形式。
+@@BODY 99 99
+用于 {@code application/graphql+json} 的公共常量媒体类型。
+@@BODY 106 106
+{@link MediaType#APPLICATION_GRAPHQL} 的字符串等价形式。
+@@BODY 112 112
+用于 {@code application/json} 的公共常量媒体类型。
+@@BODY 117 117
+{@link MediaType#APPLICATION_JSON} 的字符串等价形式。
+@@BODY 123 123
+用于 {@code application/json;charset=UTF-8} 的公共常量媒体类型。
+@@BODY 134 134
+{@link MediaType#APPLICATION_JSON_UTF8} 的字符串等价形式。
+@@BODY 145 145
+用于 {@code application/octet-stream} 的公共常量媒体类型。
+@@BODY 150 150
+{@link MediaType#APPLICATION_OCTET_STREAM} 的字符串等价形式。
+@@BODY 155 155
+用于 {@code application/pdf} 的公共常量媒体类型。
+@@BODY 161 161
+{@link MediaType#APPLICATION_PDF} 的字符串等价形式。
+@@BODY 167 167
+用于 {@code application/problem+json} 的公共常量媒体类型。
+@@BODY 175 175
+{@link MediaType#APPLICATION_PROBLEM_JSON} 的字符串等价形式。
+@@BODY 181 181
+用于 {@code application/problem+json} 的公共常量媒体类型。
+@@BODY 195 195
+{@link MediaType#APPLICATION_PROBLEM_JSON_UTF8} 的字符串等价形式。
+@@BODY 207 207
+用于 {@code application/problem+xml} 的公共常量媒体类型。
+@@BODY 215 215
+{@link MediaType#APPLICATION_PROBLEM_XML} 的字符串等价形式。
+@@BODY 221 221
+用于 {@code application/rss+xml} 的公共常量媒体类型。
+@@BODY 227 227
+{@link MediaType#APPLICATION_RSS_XML} 的字符串等价形式。
+@@BODY 233 233
+用于 {@code application/x-ndjson} 的公共常量媒体类型。
+@@BODY 239 239
+{@link MediaType#APPLICATION_NDJSON} 的字符串等价形式。
+@@BODY 245 245
+用于 {@code application/stream+json} 的公共常量媒体类型。
+@@BODY 253 253
+{@link MediaType#APPLICATION_STREAM_JSON} 的字符串等价形式。
+@@BODY 265 265
+用于 {@code application/xhtml+xml} 的公共常量媒体类型。
+@@BODY 270 270
+{@link MediaType#APPLICATION_XHTML_XML} 的字符串等价形式。
+@@BODY 275 275
+用于 {@code application/xml} 的公共常量媒体类型。
+@@BODY 280 280
+{@link MediaType#APPLICATION_XML} 的字符串等价形式。
+@@BODY 285 285
+用于 {@code image/gif} 的公共常量媒体类型。
+@@BODY 290 290
+{@link MediaType#IMAGE_GIF} 的字符串等价形式。
+@@BODY 295 295
+用于 {@code image/jpeg} 的公共常量媒体类型。
+@@BODY 300 300
+{@link MediaType#IMAGE_JPEG} 的字符串等价形式。
+@@BODY 305 305
+用于 {@code image/png} 的公共常量媒体类型。
+@@BODY 310 310
+{@link MediaType#IMAGE_PNG} 的字符串等价形式。
+@@BODY 315 315
+用于 {@code multipart/form-data} 的公共常量媒体类型。
+@@BODY 320 320
+{@link MediaType#MULTIPART_FORM_DATA} 的字符串等价形式。
+@@BODY 325 325
+用于 {@code multipart/mixed} 的公共常量媒体类型。
+@@BODY 331 331
+{@link MediaType#MULTIPART_MIXED} 的字符串等价形式。
+@@BODY 337 337
+用于 {@code multipart/related} 的公共常量媒体类型。
+@@BODY 343 343
+{@link MediaType#MULTIPART_RELATED} 的字符串等价形式。
+@@BODY 349 349
+用于 {@code text/event-stream} 的公共常量媒体类型。
+@@BODY 356 356
+{@link MediaType#TEXT_EVENT_STREAM} 的字符串等价形式。
+@@BODY 362 362
+用于 {@code text/html} 的公共常量媒体类型。
+@@BODY 367 367
+{@link MediaType#TEXT_HTML} 的字符串等价形式。
+@@BODY 373 373
+用于 {@code text/markdown} 的公共常量媒体类型。
+@@BODY 378 378
+{@link MediaType#TEXT_MARKDOWN} 的字符串等价形式。
+@@BODY 384 384
+用于 {@code text/plain} 的公共常量媒体类型。
+@@BODY 389 389
+{@link MediaType#TEXT_PLAIN} 的字符串等价形式。
+@@BODY 394 394
+用于 {@code text/xml} 的公共常量媒体类型。
+@@BODY 399 399
+{@link MediaType#TEXT_XML} 的字符串等价形式。
+@@BODY 440 441
+为给定的主类型创建一个新的 {@code MediaType}。
+<p>{@linkplain #getSubtype() subtype} 设置为 "&#42;"，参数为空。
+@@BODY 450 451
+为给定的主类型和子类型创建一个新的 {@code MediaType}。
+<p>参数为空。
+@@BODY 461 461
+为给定的类型、子类型和字符集创建一个新的 {@code MediaType}。
+@@BODY 472 472
+为给定的类型、子类型和质量值创建一个新的 {@code MediaType}。
+@@BODY 483 484
+复制构造函数，复制给定 {@code MediaType} 的类型、子类型和参数，并允许设置指定的字符集。
+@@BODY 495 496
+复制构造函数，复制给定 {@code MediaType} 的类型和子类型，并允许使用不同的参数。
+@@BODY 506 506
+为给定的类型、子类型和参数创建一个新的 {@code MediaType}。
+@@BODY 517 519
+为给定的 {@link MimeType} 创建一个新的 {@code MediaType}。类型、子类型和参数信息会被复制，并执行 {@code MediaType} 特有的参数检查。
+@@BODY 542 543
+返回质量因子（由 {@code q} 参数表示，如果有）。默认为 {@code 1.0}。
+@@BODY 552 557
+指示此 {@code MediaType} 是否包含给定的媒体类型。
+<p>例如，{@code text/*} 包含 {@code text/plain} 和 {@code text/html}，{@code application/*+xml} 包含 {@code application/soap+xml} 等。此方法<b>不</b>对称。
+<p>此方法仅调用 {@link MimeType#includes(MimeType)}，但为了二进制向后兼容而声明为 {@code MediaType} 参数。
+@@BODY 567 572
+指示此 {@code MediaType} 是否与给定的媒体类型兼容。
+<p>例如，{@code text/*} 与 {@code text/plain}、{@code text/html} 兼容，反之亦然。实际上，此方法类似于 {@link #includes}，区别在于它<b>是</b>对称的。
+<p>此方法仅调用 {@link MimeType#isCompatibleWith(MimeType)}，但为了二进制向后兼容而声明为 {@code MediaType} 参数。
+@@BODY 582 582
+返回此实例的副本，其中质量值取自给定的 {@code MediaType}。
+@@BODY 596 596
+返回移除了质量值的此实例副本。
+@@BODY 611 613
+将给定的字符串值解析为 {@code MediaType} 对象，方法名遵循 'valueOf' 命名约定（受 {@link org.springframework.core.convert.ConversionService} 支持）。
+@@BODY 623 623
+将给定字符串解析为单个 {@code MediaType}。
+@@BODY 645 646
+将逗号分隔的字符串解析为 {@code MediaType} 对象列表。
+<p>此方法可用于解析 Accept 或 Content-Type 头。
+@@BODY 667 669
+将给定的（可能以逗号分隔的）字符串列表解析为 {@code MediaType} 对象列表。
+<p>此方法可用于解析 Accept 或 Content-Type 头。
+@@BODY 692 692
+将给定的 MIME 类型重新创建为媒体类型。
+@@BODY 704 704
+将给定的 MIME 类型重新创建为媒体类型。
+@@BODY 715 716
+返回给定 {@code MediaType} 对象列表的字符串表示形式。
+<p>此方法可用于生成 {@code Accept} 或 {@code Content-Type} 头。
+@@BODY 725 746
+按特定性对给定的 {@code MediaType} 对象列表进行排序。
+<p>给定两个媒体类型：
+<ol>
+<li>如果任一媒体类型具有 {@linkplain #isWildcardType() wildcard type}，则不带通配符的媒体类型排在另一个之前。</li>
+<li>如果两个媒体类型具有不同的 {@linkplain #getType() types}，则认为它们相等，并保持当前顺序。</li>
+<li>如果任一媒体类型具有 {@linkplain #isWildcardSubtype() wildcard subtype}，则不带通配符的媒体类型排在另一个之前。</li>
+<li>如果两个媒体类型具有不同的 {@linkplain #getSubtype() subtypes}，则认为它们相等，并保持当前顺序。</li>
+<li>如果两个媒体类型具有不同的 {@linkplain #getQualityValue() quality value}，则质量值最高的媒体类型排在另一个之前。</li>
+<li>如果两个媒体类型具有不同数量的 {@linkplain #getParameter(String) parameters}，则参数最多的媒体类型排在另一个之前。</li>
+</ol>
+<p>例如：
+<blockquote>audio/basic &lt; audio/* &lt; *&#047;*</blockquote>
+<blockquote>audio/* &lt; audio/*;q=0.7; audio/*;q=0.3</blockquote>
+<blockquote>audio/basic;level=1 &lt; audio/basic</blockquote>
+<blockquote>audio/basic == text/html</blockquote>
+<blockquote>audio/basic == audio/wave</blockquote>
+@@BODY 759 774
+按质量值对给定的 {@code MediaType} 对象列表进行排序。
+<p>给定两个媒体类型：
+<ol>
+<li>如果两个媒体类型具有不同的 {@linkplain #getQualityValue() quality value}，则质量值最高的媒体类型排在另一个之前。</li>
+<li>如果任一媒体类型具有 {@linkplain #isWildcardType() wildcard type}，则不带通配符的媒体类型排在另一个之前。</li>
+<li>如果两个媒体类型具有不同的 {@linkplain #getType() types}，则认为它们相等，并保持当前顺序。</li>
+<li>如果任一媒体类型具有 {@linkplain #isWildcardSubtype() wildcard subtype}，则不带通配符的媒体类型排在另一个之前。</li>
+<li>如果两个媒体类型具有不同的 {@linkplain #getSubtype() subtypes}，则认为它们相等，并保持当前顺序。</li>
+<li>如果两个媒体类型具有不同数量的 {@linkplain #getParameter(String) parameters}，则参数最多的媒体类型排在另一个之前。</li>
+</ol>
+@@BODY 786 787
+按特定性作为主要标准、质量值作为次要标准对给定的 {@code MediaType} 对象列表进行排序。
+@@BODY 800 800
+由 {@link #sortByQualityValue(List)} 使用的比较器。
+@@BODY 838 838
+由 {@link #sortBySpecificity(List)} 使用的比较器。
+@@END

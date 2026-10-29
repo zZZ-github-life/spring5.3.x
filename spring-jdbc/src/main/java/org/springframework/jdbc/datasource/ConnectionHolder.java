@@ -25,14 +25,14 @@ import org.springframework.transaction.support.ResourceHolderSupport;
 import org.springframework.util.Assert;
 
 /**
- * Resource holder wrapping a JDBC {@link Connection}.
- * {@link DataSourceTransactionManager} binds instances of this class
- * to the thread, for a specific {@link javax.sql.DataSource}.
+ * 包装 JDBC {@link Connection} 的资源持有器。
+ * {@link DataSourceTransactionManager} 会将此类的实例
+ * 针对特定的 {@link javax.sql.DataSource} 绑定到当前线程。
  *
- * <p>Inherits rollback-only support for nested JDBC transactions
- * and reference count functionality from the base class.
+ * <p>从基类继承了嵌套 JDBC 事务的仅回滚（rollback-only）支持
+ * 以及引用计数功能。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不打算供应用程序使用。
  *
  * @author Juergen Hoeller
  * @since 06.05.2003
@@ -42,7 +42,7 @@ import org.springframework.util.Assert;
 public class ConnectionHolder extends ResourceHolderSupport {
 
 	/**
-	 * Prefix for savepoint names.
+	 * 保存点名称的前缀。
 	 */
 	public static final String SAVEPOINT_NAME_PREFIX = "SAVEPOINT_";
 
@@ -62,7 +62,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Create a new ConnectionHolder for the given ConnectionHandle.
+	 * 为给定的 ConnectionHandle 创建一个新的 ConnectionHolder。
 	 * @param connectionHandle the ConnectionHandle to hold
 	 */
 	public ConnectionHolder(ConnectionHandle connectionHandle) {
@@ -71,9 +71,9 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new ConnectionHolder for the given JDBC Connection,
-	 * wrapping it with a {@link SimpleConnectionHandle},
-	 * assuming that there is no ongoing transaction.
+	 * 为给定的 JDBC Connection 创建一个新的 ConnectionHolder，
+	 * 并将其包装为 {@link SimpleConnectionHandle}，
+	 * 假定当前没有正在进行的事务。
 	 * @param connection the JDBC Connection to hold
 	 * @see SimpleConnectionHandle
 	 * @see #ConnectionHolder(java.sql.Connection, boolean)
@@ -83,8 +83,8 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new ConnectionHolder for the given JDBC Connection,
-	 * wrapping it with a {@link SimpleConnectionHandle}.
+	 * 为给定的 JDBC Connection 创建一个新的 ConnectionHolder，
+	 * 并将其包装为 {@link SimpleConnectionHandle}。
 	 * @param connection the JDBC Connection to hold
 	 * @param transactionActive whether the given Connection is involved
 	 * in an ongoing transaction
@@ -97,7 +97,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Return the ConnectionHandle held by this ConnectionHolder.
+	 * 返回此 ConnectionHolder 持有的 ConnectionHandle。
 	 */
 	@Nullable
 	public ConnectionHandle getConnectionHandle() {
@@ -105,14 +105,14 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return whether this holder currently has a Connection.
+	 * 返回此持有器当前是否持有一个 Connection。
 	 */
 	protected boolean hasConnection() {
 		return (this.connectionHandle != null);
 	}
 
 	/**
-	 * Set whether this holder represents an active, JDBC-managed transaction.
+	 * 设置此持有器是否代表一个活动的、由 JDBC 管理的事务。
 	 * @see DataSourceTransactionManager
 	 */
 	protected void setTransactionActive(boolean transactionActive) {
@@ -120,7 +120,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return whether this holder represents an active, JDBC-managed transaction.
+	 * 返回此持有器是否代表一个活动的、由 JDBC 管理的事务。
 	 */
 	protected boolean isTransactionActive() {
 		return this.transactionActive;
@@ -128,10 +128,10 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Override the existing Connection handle with the given Connection.
-	 * Reset the handle if given {@code null}.
-	 * <p>Used for releasing the Connection on suspend (with a {@code null}
-	 * argument) and setting a fresh Connection on resume.
+	 * 用给定的 Connection 覆盖现有的 Connection 句柄。
+	 * 如果给定 {@code null}，则重置句柄。
+	 * <p>用于在挂起时释放 Connection（传入 {@code null}
+	 * 参数），并在恢复时设置新的 Connection。
 	 */
 	protected void setConnection(@Nullable Connection connection) {
 		if (this.currentConnection != null) {
@@ -149,10 +149,10 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return the current Connection held by this ConnectionHolder.
-	 * <p>This will be the same Connection until {@code released}
-	 * gets called on the ConnectionHolder, which will reset the
-	 * held Connection, fetching a new Connection on demand.
+	 * 返回此 ConnectionHolder 当前持有的 Connection。
+	 * <p>在 ConnectionHolder 上调用 {@code released} 之前，返回的将是同一个
+	 * Connection；调用之后将重置所持有的 Connection，并在需要时获取新的
+	 * Connection。
 	 * @see ConnectionHandle#getConnection()
 	 * @see #released()
 	 */
@@ -165,8 +165,8 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return whether JDBC 3.0 Savepoints are supported.
-	 * Caches the flag for the lifetime of this ConnectionHolder.
+	 * 返回是否支持 JDBC 3.0 保存点（Savepoint）。
+	 * 该标志会在 ConnectionHolder 的整个生命周期内缓存。
 	 * @throws SQLException if thrown by the JDBC driver
 	 */
 	public boolean supportsSavepoints() throws SQLException {
@@ -177,8 +177,8 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new JDBC 3.0 Savepoint for the current Connection,
-	 * using generated savepoint names that are unique for the Connection.
+	 * 为当前 Connection 创建一个新的 JDBC 3.0 保存点（Savepoint），
+	 * 使用对该 Connection 唯一的自动生成保存点名称。
 	 * @return the new Savepoint
 	 * @throws SQLException if thrown by the JDBC driver
 	 */
@@ -188,11 +188,10 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Releases the current Connection held by this ConnectionHolder.
-	 * <p>This is necessary for ConnectionHandles that expect "Connection borrowing",
-	 * where each returned Connection is only temporarily leased and needs to be
-	 * returned once the data operation is done, to make the Connection available
-	 * for other operations within the same transaction.
+	 * 释放此 ConnectionHolder 当前持有的 Connection。
+	 * <p>对于期望“Connection 借用”的 ConnectionHandle 而言，这是必要的：
+	 * 每个返回的 Connection 只是临时租用，在数据操作完成后需要归还，
+	 * 以便该 Connection 可用于同一事务内的其他操作。
 	 */
 	@Override
 	public void released() {

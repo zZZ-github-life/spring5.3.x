@@ -26,8 +26,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Wraps another {@link ClientHttpResponse} and delegates all methods to it.
- * Subclasses can override specific methods selectively.
+ * 包装另一个 {@link ClientHttpResponse} 并将所有方法委托给它。
+ * 子类可以选择性地覆盖特定方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

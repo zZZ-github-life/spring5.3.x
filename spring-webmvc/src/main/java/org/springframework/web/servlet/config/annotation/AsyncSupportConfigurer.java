@@ -30,7 +30,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.DeferredResultProcessingInterceptor;
 
 /**
- * Helps with configuring options for asynchronous request processing.
+ * 帮助配置异步请求处理的相关选项。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -49,15 +49,14 @@ public class AsyncSupportConfigurer {
 
 
 	/**
-	 * The provided task executor is used to:
+	 * 所提供的任务执行器用于：
 	 * <ol>
-	 * <li>Handle {@link Callable} controller method return values.
-	 * <li>Perform blocking writes when streaming to the response
-	 * through a reactive (e.g. Reactor, RxJava) controller method return value.
+	 * <li>处理 {@link Callable} 控制器方法的返回值。
+	 * <li>在通过响应式（例如 Reactor、RxJava）控制器方法返回值向响应进行流式传输时
+	 * 执行阻塞式写入。
 	 * </ol>
-	 * <p>By default only a {@link SimpleAsyncTaskExecutor} is used. However when
-	 * using the above two use cases, it's recommended to configure an executor
-	 * backed by a thread pool such as {@link ThreadPoolTaskExecutor}.
+	 * <p>默认仅使用 {@link SimpleAsyncTaskExecutor}。不过在使用上述两种场景时，
+	 * 建议配置一个基于线程池的执行器，例如 {@link ThreadPoolTaskExecutor}。
 	 * @param taskExecutor the task executor instance to use by default
 	 */
 	public AsyncSupportConfigurer setTaskExecutor(AsyncTaskExecutor taskExecutor) {
@@ -66,12 +65,10 @@ public class AsyncSupportConfigurer {
 	}
 
 	/**
-	 * Specify the amount of time, in milliseconds, before asynchronous request
-	 * handling times out. In Servlet 3, the timeout begins after the main request
-	 * processing thread has exited and ends when the request is dispatched again
-	 * for further processing of the concurrently produced result.
-	 * <p>If this value is not set, the default timeout of the underlying
-	 * implementation is used.
+	 * 指定异步请求处理超时之前的毫秒数。
+	 * 在 Servlet 3 中，超时从主请求处理线程退出后开始，
+	 * 到请求被重新分派以进一步处理并发产生的结果时结束。
+	 * <p>如果未设置此值，则使用底层实现的默认超时时间。
 	 * @param timeout the timeout value in milliseconds
 	 */
 	public AsyncSupportConfigurer setDefaultTimeout(long timeout) {
@@ -80,9 +77,8 @@ public class AsyncSupportConfigurer {
 	}
 
 	/**
-	 * Configure lifecycle interceptors with callbacks around concurrent request
-	 * execution that starts when a controller returns a
-	 * {@link java.util.concurrent.Callable}.
+	 * 配置生命周期拦截器，在控制器返回
+	 * {@link java.util.concurrent.Callable} 时启动的并发请求执行前后提供回调。
 	 * @param interceptors the interceptors to register
 	 */
 	public AsyncSupportConfigurer registerCallableInterceptors(CallableProcessingInterceptor... interceptors) {
@@ -91,8 +87,8 @@ public class AsyncSupportConfigurer {
 	}
 
 	/**
-	 * Configure lifecycle interceptors with callbacks around concurrent request
-	 * execution that starts when a controller returns a {@link DeferredResult}.
+	 * 配置生命周期拦截器，在控制器返回 {@link DeferredResult} 时
+	 * 启动的并发请求执行前后提供回调。
 	 * @param interceptors the interceptors to register
 	 */
 	public AsyncSupportConfigurer registerDeferredResultInterceptors(

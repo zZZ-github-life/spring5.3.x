@@ -1,0 +1,96 @@
+@@ handler/AbstractHandlerMapping.java :: 1
+{@link org.springframework.web.reactive.HandlerMapping} 实现的抽象基类。
+@@ handler/AbstractHandlerMapping.java :: 3
+在所使用底层模式解析器上设置相同属性的快捷方法。更多详情请参见：
+<ul>
+<li>{@link #getPathPatternParser()} -- 底层模式解析器
+<li>{@link PathPatternParser#setCaseSensitive(boolean)} -- 大小写敏感斜杠选项及其默认值。
+</ul>
+<p><strong>注意：</strong>除上述内容外
+@@ handler/AbstractHandlerMapping.java :: 4
+在所使用底层模式解析器上设置相同属性的快捷方法。更多详情请参见：
+<ul>
+<li>{@link #getPathPatternParser()} -- 底层模式解析器
+<li>{@link PathPatternParser#setMatchOptionalTrailingSeparator(boolean)} -- 末尾斜杠选项及其默认值。
+</ul>
+@@ handler/AbstractHandlerMapping.java :: 5
+返回用于{@link #setCorsConfigurations(Map) CORS 配置检查}的 {@link PathPatternParser} 实例。子类也可以将此模式解析器用于自己的请求映射目的。
+@@ handler/AbstractHandlerMapping.java :: 6
+基于 URL 模式设置“全局” CORS 配置。默认情况下，第一个匹配的 URL 模式会与处理器级 CORS 配置（如果有）合并。
+@@ handler/AbstractHandlerMapping.java :: 7
+设置“全局” CORS 配置源。默认情况下，第一个匹配的 URL 模式会与处理器的 CORS 配置（如果有）合并。
+@@ handler/AbstractHandlerMapping.java :: 8
+配置自定义 {@link CorsProcessor}，用于为请求应用匹配的 {@link CorsConfiguration}。
+<p>默认使用 {@link DefaultCorsProcessor} 实例。
+@@ handler/AbstractHandlerMapping.java :: 9
+返回配置的 {@link CorsProcessor}。
+@@ handler/AbstractHandlerMapping.java :: 10
+指定此 HandlerMapping bean 的顺序值。
+<p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示无序。
+@@ handler/AbstractHandlerMapping.java :: 11
+查找给定请求的处理器，如果未找到特定处理器，则返回空 {@code Mono}。此方法由 {@link #getHandler} 调用。
+<p>对于 CORS 预检请求，此方法不应返回预检请求的匹配，而应基于 URL 路径、"Access-Control-Request-Method" 头中的 HTTP 方法以及 "Access-Control-Request-Headers" 头中的头，返回预期实际请求的匹配。
+@@ handler/AbstractHandlerMapping.java :: 12
+如果此处理器存在 {@link CorsConfigurationSource}，则返回 {@code true}。
+@@ handler/AbstractHandlerMapping.java :: 13
+获取给定处理器的 CORS 配置。
+@@ handler/AbstractUrlHandlerMapping.java :: 1
+URL 映射的 {@link org.springframework.web.reactive.HandlerMapping} 实现的抽象基类。
+
+<p>支持直接匹配（例如注册的 "/test" 匹配 "/test"）以及各种路径模式匹配（例如注册的 "/t*" 模式同时匹配 "/test" 和 "/team"，"/test/*" 匹配 "/test" 下的所有路径，"/test/**" 匹配 "/test" 下的所有路径）。详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
+
+<p>将搜索所有路径模式，以找到当前请求路径的最具体匹配。最具体的模式定义为捕获变量和通配符最少的最长路径模式。
+@@ handler/AbstractUrlHandlerMapping.java :: 2
+设置是否延迟初始化处理器。仅适用于单例处理器，因为原型始终是延迟初始化的。默认值为 "false"，因为及早初始化可以通过直接引用控制器对象来提高效率。
+<p>如果希望允许控制器延迟初始化，请将它们设置为 "lazy-init" 并将此标志设置为 true。仅将它们设置为 "lazy-init" 不会生效，因为在这种情况下它们会通过处理器映射中的引用被初始化。
+@@ handler/AbstractUrlHandlerMapping.java :: 3
+返回已注册路径模式和处理器（可能是实际处理器实例，也可能是延迟初始化处理器的 bean 名称）的只读视图。
+@@ handler/AbstractUrlHandlerMapping.java :: 4
+配置谓词，用于对通过 URL 路径匹配的处理器进行扩展匹配。这允许通过检查请求的其他属性来进一步缩小映射范围。如果谓词返回 "false"，则结果为不匹配，从而允许另一个 {@link org.springframework.web.reactive.HandlerMapping} 进行匹配，或导致 404 (NOT_FOUND) 响应。
+@@ handler/AbstractUrlHandlerMapping.java :: 5
+查找给定 URL 查找路径的处理器实例。
+<p>支持直接匹配（例如注册的 "/test" 匹配 "/test"）以及各种路径模式匹配（例如注册的 "/t*" 同时匹配 "/test" 和 "/team"）。详情请参见 PathPattern 类。
+@@ handler/AbstractUrlHandlerMapping.java :: 6
+根据当前请求校验给定处理器。
+<p>默认实现为空。可以在子类中重写，例如强制执行 URL 映射中表达的特定前置条件。
+@@ handler/AbstractUrlHandlerMapping.java :: 7
+为给定 URL 路径注册指定的处理器。
+@@ handler/AbstractUrlHandlerMapping.java :: 8
+为给定 URL 路径注册指定的处理器。
+@@ handler/SimpleUrlHandlerMapping.java :: 1
+用于将 URL 映射到请求处理器 bean 的 {@link org.springframework.web.reactive.HandlerMapping} 接口实现。支持映射到 bean 实例和映射到 bean 名称；对于非单例处理器，需要使用后者。
+
+<p>"urlMap" 属性适合用 bean 实例填充处理器映射。可以通过 "mappings" 属性设置到 bean 名称的映射，形式为 {@code java.util.Properties} 类所接受的形式，如下所示：
+
+<pre class="code">
+/welcome.html=ticketController
+/show.html=ticketController</pre>
+
+<p>语法为 {@code PATH=HANDLER_BEAN_NAME}。如果路径不以斜杠开头，则会添加一个斜杠。
+
+<p>支持直接匹配（例如注册的 "/test" 匹配 "/test"）以及各种 Ant 风格模式匹配（例如注册的 "/t*" 模式同时匹配 "/test" 和 "/team"，"/test/*" 匹配 "/test" 下的所有路径，"/test/**" 匹配 "/test" 下的所有路径）。详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
+@@ handler/SimpleUrlHandlerMapping.java :: 2
+使用默认设置创建 {@code SimpleUrlHandlerMapping}。
+@@ handler/SimpleUrlHandlerMapping.java :: 3
+使用提供的 URL 映射创建 {@code SimpleUrlHandlerMapping}。
+@@ handler/SimpleUrlHandlerMapping.java :: 4
+使用提供的 URL 映射和顺序创建 {@code SimpleUrlHandlerMapping}。
+@@ handler/SimpleUrlHandlerMapping.java :: 5
+将 URL 路径映射到处理器 bean 名称。这是配置此 HandlerMapping 的典型方式。
+<p>支持直接 URL 匹配和 Ant 风格模式匹配。语法详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
+@@ handler/SimpleUrlHandlerMapping.java :: 6
+设置以 URL 路径为键、以处理器 bean（或处理器 bean 名称）为值的 Map。便于使用 bean 引用填充。
+<p>支持直接 URL 匹配和 Ant 风格模式匹配。语法详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
+@@ handler/SimpleUrlHandlerMapping.java :: 7
+允许以 {@code Map} 方式访问 URL 路径映射，并可以选择添加或覆盖特定条目。
+<p>这对于直接指定条目很有用，例如通过 "urlMap[myKey]"。在子 bean 定义中添加或覆盖条目时尤其有用。
+@@ handler/SimpleUrlHandlerMapping.java :: 8
+除父类的初始化外，还调用 {@link #registerHandlers} 方法。
+@@ handler/SimpleUrlHandlerMapping.java :: 9
+为相应路径注册 URL 映射中指定的所有处理器。
+@@ handler/WebFluxResponseStatusExceptionHandler.java :: 1
+通用的 WebFlux 异常处理器，检测 {@link org.springframework.web.server.ResponseStatusException} 的实例（继承自基类）以及带有 {@link ResponseStatus @ResponseStatus} 注解的异常，为它们确定 HTTP 状态并相应地更新响应状态。
+
+<p>如果响应已提交，则该错误保持未解决状态并被传播。
+@@ handler/package-info.java :: 1
+提供 HandlerMapping 实现，包括抽象基类。

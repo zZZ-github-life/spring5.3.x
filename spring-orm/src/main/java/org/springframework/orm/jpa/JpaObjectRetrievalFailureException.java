@@ -21,8 +21,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.orm.ObjectRetrievalFailureException;
 
 /**
- * JPA-specific subclass of ObjectRetrievalFailureException.
- * Converts JPA's EntityNotFoundException.
+ * {@link org.springframework.orm.ObjectRetrievalFailureException} 的 JPA 专用子类。
+ * 转换 JPA 的 {@link EntityNotFoundException}。
  *
  * @author Juergen Hoeller
  * @since 2.0

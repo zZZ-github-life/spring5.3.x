@@ -30,8 +30,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code ContextConfigurationAttributes} encapsulates the context configuration
- * attributes declared via {@link ContextConfiguration @ContextConfiguration}.
+ * {@code ContextConfigurationAttributes} 封装通过
+ * {@link ContextConfiguration @ContextConfiguration} 声明的上下文配置属性。
  *
  * @author Sam Brannen
  * @author Phillip Webb
@@ -68,7 +68,7 @@ public class ContextConfigurationAttributes {
 
 
 	/**
-	 * Construct a new {@link ContextConfigurationAttributes} instance with default values.
+	 * 使用默认值构造一个新的 {@link ContextConfigurationAttributes} 实例。
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration},
 	 * either explicitly or implicitly
 	 * @since 4.3
@@ -79,9 +79,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Construct a new {@link ContextConfigurationAttributes} instance for the
-	 * supplied {@link ContextConfiguration @ContextConfiguration} annotation and
-	 * the {@linkplain Class test class} that declared it.
+	 * 为提供的 {@link ContextConfiguration @ContextConfiguration} 注解及其
+	 * 声明它的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes} 实例。
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @param contextConfiguration the annotation from which to retrieve the attributes
 	 */
@@ -92,10 +91,9 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Construct a new {@link ContextConfigurationAttributes} instance for the
-	 * supplied {@link AnnotationAttributes} (parsed from a
-	 * {@link ContextConfiguration @ContextConfiguration} annotation) and
-	 * the {@linkplain Class test class} that declared them.
+	 * 为提供的 {@link AnnotationAttributes}（从
+	 * {@link ContextConfiguration @ContextConfiguration} 注解解析而来）及其
+	 * 声明它们的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes} 实例。
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @param annAttrs the annotation attributes from which to retrieve the attributes
 	 */
@@ -108,10 +106,9 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Construct a new {@link ContextConfigurationAttributes} instance for the
-	 * {@linkplain Class test class} that declared the
-	 * {@link ContextConfiguration @ContextConfiguration} annotation and its
-	 * corresponding attributes.
+	 * 为声明 {@link ContextConfiguration @ContextConfiguration} 注解及其
+	 * 对应属性的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes}
+	 * 实例。
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @param locations the resource locations declared via {@code @ContextConfiguration}
 	 * @param classes the annotated classes declared via {@code @ContextConfiguration}
@@ -132,10 +129,9 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Construct a new {@link ContextConfigurationAttributes} instance for the
-	 * {@linkplain Class test class} that declared the
-	 * {@link ContextConfiguration @ContextConfiguration} annotation and its
-	 * corresponding attributes.
+	 * 为声明 {@link ContextConfiguration @ContextConfiguration} 注解及其
+	 * 对应属性的 {@linkplain Class 测试类}构造一个新的 {@link ContextConfigurationAttributes}
+	 * 实例。
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @param locations the resource locations declared via {@code @ContextConfiguration}
 	 * @param classes the annotated classes declared via {@code @ContextConfiguration}
@@ -176,9 +172,8 @@ public class ContextConfigurationAttributes {
 
 
 	/**
-	 * Get the {@linkplain Class class} that declared the
-	 * {@link ContextConfiguration @ContextConfiguration} annotation, either explicitly
-	 * or implicitly.
+	 * 获取显式或隐式声明
+	 * {@link ContextConfiguration @ContextConfiguration} 注解的 {@linkplain Class 类}。
 	 * @return the declaring class (never {@code null})
 	 */
 	public Class<?> getDeclaringClass() {
@@ -186,8 +181,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Set the <em>processed</em> annotated classes, effectively overriding the
-	 * original value declared via {@link ContextConfiguration @ContextConfiguration}.
+	 * 设置<em>处理后的</em>注解类，实际上覆盖
+	 * 通过 {@link ContextConfiguration @ContextConfiguration} 声明的原始值。
 	 * @see #getClasses()
 	 */
 	public void setClasses(Class<?>... classes) {
@@ -195,11 +190,11 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the annotated classes that were declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
-	 * <p>Note: this is a mutable property. The returned value may therefore
-	 * represent a <em>processed</em> value that does not match the original value
-	 * declared via {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的注解类。
+	 * <p>注意：这是一个可变属性。因此，返回的值可能
+	 * 表示<em>处理后的</em>值，与通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的原始值不匹配。
 	 * @return the annotated classes (potentially {<em>empty</em>)
 	 * @see ContextConfiguration#classes
 	 * @see #setClasses(Class[])
@@ -209,8 +204,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Determine if this {@code ContextConfigurationAttributes} instance has
-	 * class-based resources.
+	 * 确定此 {@code ContextConfigurationAttributes} 实例是否具有
+	 * 基于类的资源。
 	 * @return {@code true} if the {@link #getClasses() classes} array is not empty
 	 * @see #hasResources()
 	 * @see #hasLocations()
@@ -220,8 +215,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Set the <em>processed</em> resource locations, effectively overriding the
-	 * original value declared via {@link ContextConfiguration @ContextConfiguration}.
+	 * 设置<em>处理后的</em>资源位置，实际上覆盖
+	 * 通过 {@link ContextConfiguration @ContextConfiguration} 声明的原始值。
 	 * @see #getLocations()
 	 */
 	public void setLocations(String... locations) {
@@ -229,11 +224,11 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the resource locations that were declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
-	 * <p>Note: this is a mutable property. The returned value may therefore
-	 * represent a <em>processed</em> value that does not match the original value
-	 * declared via {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的资源位置。
+	 * <p>注意：这是一个可变属性。因此，返回的值可能
+	 * 表示<em>处理后的</em>值，与通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的原始值不匹配。
 	 * @return the resource locations (potentially <em>empty</em>)
 	 * @see ContextConfiguration#value
 	 * @see ContextConfiguration#locations
@@ -244,8 +239,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Determine if this {@code ContextConfigurationAttributes} instance has
-	 * path-based resource locations.
+	 * 确定此 {@code ContextConfigurationAttributes} 实例是否具有
+	 * 基于路径的资源位置。
 	 * @return {@code true} if the {@link #getLocations() locations} array is not empty
 	 * @see #hasResources()
 	 * @see #hasClasses()
@@ -255,8 +250,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Determine if this {@code ContextConfigurationAttributes} instance has
-	 * either path-based resource locations or class-based resources.
+	 * 确定此 {@code ContextConfigurationAttributes} 实例是否具有
+	 * 基于路径的资源位置或基于类的资源。
 	 * @return {@code true} if either the {@link #getLocations() locations}
 	 * or the {@link #getClasses() classes} array is not empty
 	 * @see #hasLocations()
@@ -267,8 +262,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the {@code inheritLocations} flag that was declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code inheritLocations} 标志。
 	 * @return the {@code inheritLocations} flag
 	 * @see ContextConfiguration#inheritLocations
 	 */
@@ -277,8 +272,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the {@code ApplicationContextInitializer} classes that were declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code ApplicationContextInitializer} 类。
 	 * @return the {@code ApplicationContextInitializer} classes
 	 * @since 3.2
 	 */
@@ -287,8 +282,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the {@code inheritInitializers} flag that was declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code inheritInitializers} 标志。
 	 * @return the {@code inheritInitializers} flag
 	 * @since 3.2
 	 */
@@ -297,8 +292,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the name of the context hierarchy level that was declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的上下文层次结构级别的名称。
 	 * @return the name of the context hierarchy level or {@code null} if not applicable
 	 * @since 3.2.2
 	 * @see ContextConfiguration#name()
@@ -309,8 +304,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Get the {@code ContextLoader} class that was declared via
-	 * {@link ContextConfiguration @ContextConfiguration}.
+	 * 获取通过
+	 * {@link ContextConfiguration @ContextConfiguration} 声明的 {@code ContextLoader} 类。
 	 * @return the {@code ContextLoader} class
 	 * @see ContextConfiguration#loader
 	 */
@@ -320,15 +315,15 @@ public class ContextConfigurationAttributes {
 
 
 	/**
-	 * Determine if the supplied object is equal to this
-	 * {@code ContextConfigurationAttributes} instance by comparing both object's
-	 * {@linkplain #getDeclaringClass() declaring class},
-	 * {@linkplain #getLocations() locations},
-	 * {@linkplain #getClasses() annotated classes},
-	 * {@linkplain #isInheritLocations() inheritLocations flag},
-	 * {@linkplain #getInitializers() context initializer classes},
-	 * {@linkplain #isInheritInitializers() inheritInitializers flag}, and the
-	 * {@link #getContextLoaderClass() ContextLoader class}.
+	 * 通过比较两个对象的
+	 * {@linkplain #getDeclaringClass() 声明类}、
+	 * {@linkplain #getLocations() 位置}、
+	 * {@linkplain #getClasses() 注解类}、
+	 * {@linkplain #isInheritLocations() inheritLocations 标志}、
+	 * {@linkplain #getInitializers() 上下文初始化器类}、
+	 * {@linkplain #isInheritInitializers() inheritInitializers 标志}以及
+	 * {@link #getContextLoaderClass() ContextLoader 类}，
+	 * 确定提供的对象是否等于此 {@code ContextConfigurationAttributes} 实例。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {
@@ -350,9 +345,8 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Generate a unique hash code for all properties of this
-	 * {@code ContextConfigurationAttributes} instance excluding the
-	 * {@linkplain #getName() name}.
+	 * 为此 {@code ContextConfigurationAttributes} 实例的所有属性（不包括
+	 * {@linkplain #getName() 名称}）生成唯一的哈希码。
 	 */
 	@Override
 	public int hashCode() {
@@ -364,8 +358,7 @@ public class ContextConfigurationAttributes {
 	}
 
 	/**
-	 * Provide a String representation of the context configuration attributes
-	 * and declaring class.
+	 * 提供上下文配置属性和声明类的 String 表示形式。
 	 */
 	@Override
 	public String toString() {

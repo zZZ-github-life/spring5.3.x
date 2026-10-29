@@ -33,8 +33,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Encode from an {@code Object} to bytes of CBOR objects using Jackson.
- * Stream encoding is not supported yet.
+ * 使用 Jackson 将 {@code Object} 编码为 CBOR 对象的字节。
+ * 尚不支持流式编码。
  *
  * @author Sebastien Deleuze
  * @since 5.2

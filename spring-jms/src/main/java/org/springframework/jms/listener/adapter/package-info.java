@@ -1,7 +1,7 @@
 /**
- * Message listener adapter mechanism that delegates to target listener
- * methods, converting messages to appropriate message content types
- * (such as String or byte array) that get passed into listener methods.
+ * 消息监听器适配器机制，将消息委托给目标监听器方法，
+ * 并将消息转换为适当类型的消息内容（例如 String 或字节数组）
+ * 后传入监听器方法。
  */
 @NonNullApi
 @NonNullFields

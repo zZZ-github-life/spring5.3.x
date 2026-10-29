@@ -32,12 +32,11 @@ import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.DeferredResultProcessingInterceptor;
 
 /**
- * An interceptor with asynchronous web requests used in OpenSessionInViewFilter and
- * OpenSessionInViewInterceptor.
+ * 用于 OpenSessionInViewFilter 和 OpenSessionInViewInterceptor 的异步 Web 请求拦截器。
  *
- * Ensures the following:
- * 1) The session is bound/unbound when "callable processing" is started
- * 2) The session is closed if an async request times out or an error occurred
+ * 确保以下事项：
+ * 1) 启动"可调用处理"（callable processing）时绑定/解绑会话
+ * 2) 异步请求超时或发生错误时关闭会话
  *
  * @author Rossen Stoyanchev
  * @since 3.2.5

@@ -29,17 +29,11 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * Builder for a composite {@link RequestedContentTypeResolver} that delegates
- * to other resolvers each implementing a different strategy to determine the
- * requested content type -- e.g. Accept header, query parameter, or other.
+ * 用于组合式 {@link RequestedContentTypeResolver} 的构建器，它将请求委托给其他解析器，每个解析器实现不同的策略来确定所请求的内容类型，例如 Accept 头、查询参数或其他。
  *
- * <p>Use builder methods to add resolvers in the desired order. For a given
- * request he first resolver to return a list that is not empty and does not
- * consist of just {@link MediaType#ALL}, will be used.
+ * <p>使用构建器方法按所需顺序添加解析器。对于给定请求，将使用第一个返回非空且不仅包含 {@link MediaType#ALL} 的列表的解析器。
  *
- * <p>By default, if no resolvers are explicitly configured, the builder will
- * add {@link HeaderContentTypeResolver}.
- *
+ * <p>默认情况下，如果未显式配置任何解析器，构建器将添加 {@link HeaderContentTypeResolver}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -49,8 +43,7 @@ public class RequestedContentTypeResolverBuilder {
 
 
 	/**
-	 * Add a resolver to get the requested content type from a query parameter.
-	 * By default the query parameter name is {@code "format"}.
+	 * 添加从查询参数获取所请求内容类型的解析器。默认情况下查询参数名为 {@code "format"}。
 	 */
 	public ParameterResolverConfigurer parameterResolver() {
 		ParameterResolverConfigurer parameterBuilder = new ParameterResolverConfigurer();
@@ -59,15 +52,14 @@ public class RequestedContentTypeResolverBuilder {
 	}
 
 	/**
-	 * Add resolver to get the requested content type from the
-	 * {@literal "Accept"} header.
+	 * 添加从 {@literal "Accept"} 头获取所请求内容类型的解析器。
 	 */
 	public void headerResolver() {
 		this.candidates.add(HeaderContentTypeResolver::new);
 	}
 
 	/**
-	 * Add resolver that returns a fixed set of media types.
+	 * 添加返回固定媒体类型集合的解析器。
 	 * @param mediaTypes the media types to use
 	 */
 	public void fixedResolver(MediaType... mediaTypes) {
@@ -75,7 +67,7 @@ public class RequestedContentTypeResolverBuilder {
 	}
 
 	/**
-	 * Add a custom resolver.
+	 * 添加自定义解析器。
 	 * @param resolver the resolver to add
 	 */
 	public void resolver(RequestedContentTypeResolver resolver) {
@@ -83,8 +75,7 @@ public class RequestedContentTypeResolverBuilder {
 	}
 
 	/**
-	 * Build a {@link RequestedContentTypeResolver} that delegates to the list
-	 * of resolvers configured through this builder.
+	 * 构建一个 {@link RequestedContentTypeResolver}，将请求委托给通过此构建器配置的解析器列表。
 	 */
 	public RequestedContentTypeResolver build() {
 		List<RequestedContentTypeResolver> resolvers = (!this.candidates.isEmpty() ?
@@ -110,7 +101,7 @@ public class RequestedContentTypeResolverBuilder {
 
 
 	/**
-	 * Helper to create and configure {@link ParameterContentTypeResolver}.
+	 * 用于创建和配置 {@link ParameterContentTypeResolver} 的辅助方法。
 	 */
 	public static class ParameterResolverConfigurer {
 
@@ -120,8 +111,7 @@ public class RequestedContentTypeResolverBuilder {
 		private String parameterName;
 
 		/**
-		 * Configure a mapping between a lookup key (extracted from a query
-		 * parameter value) and a corresponding {@code MediaType}.
+		 * 配置查找键（从查询参数值中提取）与对应 {@code MediaType} 之间的映射。
 		 * @param key the lookup key
 		 * @param mediaType the MediaType for that key
 		 */
@@ -131,7 +121,7 @@ public class RequestedContentTypeResolverBuilder {
 		}
 
 		/**
-		 * Map-based variant of {@link #mediaType(String, MediaType)}.
+		 * {@link #mediaType(String, MediaType)} 的基于 Map 的变体。
 		 * @param mediaTypes the mappings to copy
 		 */
 		public ParameterResolverConfigurer mediaType(Map<String, MediaType> mediaTypes) {
@@ -140,8 +130,8 @@ public class RequestedContentTypeResolverBuilder {
 		}
 
 		/**
-		 * Set the name of the parameter to use to determine requested media types.
-		 * <p>By default this is set to {@literal "format"}.
+		 * 设置用于确定所请求媒体类型的参数名称。
+		 * <p>默认设置为 {@literal "format"}。
 		 */
 		public ParameterResolverConfigurer parameterName(String parameterName) {
 			this.parameterName = parameterName;
@@ -149,7 +139,7 @@ public class RequestedContentTypeResolverBuilder {
 		}
 
 		/**
-		 * Private factory method to create the resolver.
+		 * 用于创建解析器的私有工厂方法。
 		 */
 		private RequestedContentTypeResolver createResolver() {
 			ParameterContentTypeResolver resolver = new ParameterContentTypeResolver(this.mediaTypes);

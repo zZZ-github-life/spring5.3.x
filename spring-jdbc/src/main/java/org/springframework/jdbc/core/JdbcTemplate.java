@@ -60,35 +60,32 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
 import org.springframework.util.StringUtils;
 
 /**
- * <b>This is the central class in the JDBC core package.</b>
- * It simplifies the use of JDBC and helps to avoid common errors.
- * It executes core JDBC workflow, leaving application code to provide SQL
- * and extract results. This class executes SQL queries or updates, initiating
- * iteration over ResultSets and catching JDBC exceptions and translating
- * them to the generic, more informative exception hierarchy defined in the
- * {@code org.springframework.dao} package.
+ * <b>这是 JDBC 核心包中的核心类。</b>
+ * 它简化了 JDBC 的使用，并帮助避免常见错误。
+ * 它执行核心 JDBC 工作流，让应用程序代码负责提供 SQL 和提取结果。
+ * 该类执行 SQL 查询或更新，启动对 ResultSet 的迭代，捕获 JDBC 异常，
+ * 并将其转换为 {@code org.springframework.dao} 包中定义的通用且信息更丰富的
+ * 异常层次结构。
  *
- * <p>Code using this class need only implement callback interfaces, giving
- * them a clearly defined contract. The {@link PreparedStatementCreator} callback
- * interface creates a prepared statement given a Connection, providing SQL and
- * any necessary parameters. The {@link ResultSetExtractor} interface extracts
- * values from a ResultSet. See also {@link PreparedStatementSetter} and
- * {@link RowMapper} for two popular alternative callback interfaces.
+ * <p>使用此类的代码只需实现回调接口，从而获得清晰定义的契约。
+ * {@link PreparedStatementCreator} 回调接口根据 Connection 创建预编译语句，
+ * 提供 SQL 和任何必需的参数。{@link ResultSetExtractor} 接口从 ResultSet
+ * 中提取值。另请参见 {@link PreparedStatementSetter} 和 {@link RowMapper}
+ * 这两个常用的备选回调接口。
  *
- * <p>Can be used within a service implementation via direct instantiation
- * with a DataSource reference, or get prepared in an application context
- * and given to services as bean reference. Note: The DataSource should
- * always be configured as a bean in the application context, in the first case
- * given to the service directly, in the second case to the prepared template.
+ * <p>既可以在服务实现中通过 DataSource 引用直接实例化使用，也可以在应用程序
+ * 上下文中准备好并以 bean 引用的形式注入服务。注意：DataSource 应始终作为
+ * 应用程序上下文中的 bean 进行配置，在第一种情况下直接提供给服务，
+ * 在第二种情况下提供给准备好的模板。
  *
- * <p>Because this class is parameterizable by the callback interfaces and
- * the {@link org.springframework.jdbc.support.SQLExceptionTranslator}
- * interface, there should be no need to subclass it.
+ * <p>由于此类可以通过回调接口和
+ * {@link org.springframework.jdbc.support.SQLExceptionTranslator} 接口进行参数化，
+ * 因此应该不需要继承它。
  *
- * <p>All SQL operations performed by this class are logged at debug level,
- * using "org.springframework.jdbc.core.JdbcTemplate" as log category.
+ * <p>此类执行的所有 SQL 操作都以 debug 级别记录日志，
+ * 使用“org.springframework.jdbc.core.JdbcTemplate”作为日志类别。
  *
- * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
+ * <p><b>注意：此类一旦配置完成，其实例是线程安全的。</b>
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -111,60 +108,58 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	private static final String RETURN_UPDATE_COUNT_PREFIX = "#update-count-";
 
 
-	/** If this variable is {@code false}, we will throw exceptions on SQL warnings. */
+	/** 如果此变量为 {@code false}，遇到 SQL 警告时我们将抛出异常。 */
 	private boolean ignoreWarnings = true;
 
 	/**
-	 * If this variable is set to a non-negative value, it will be used for setting the
-	 * fetchSize property on statements used for query processing.
+	 * 如果此变量被设置为非负值，它将用于设置查询处理所用语句的
+	 * fetchSize 属性。
 	 */
 	private int fetchSize = -1;
 
 	/**
-	 * If this variable is set to a non-negative value, it will be used for setting the
-	 * maxRows property on statements used for query processing.
+	 * 如果此变量被设置为非负值，它将用于设置查询处理所用语句的
+	 * maxRows 属性。
 	 */
 	private int maxRows = -1;
 
 	/**
-	 * If this variable is set to a non-negative value, it will be used for setting the
-	 * queryTimeout property on statements used for query processing.
+	 * 如果此变量被设置为非负值，它将用于设置查询处理所用语句的
+	 * queryTimeout 属性。
 	 */
 	private int queryTimeout = -1;
 
 	/**
-	 * If this variable is set to true, then all results checking will be bypassed for any
-	 * callable statement processing. This can be used to avoid a bug in some older Oracle
-	 * JDBC drivers like 10.1.0.2.
+	 * 如果此变量被设置为 true，则对于任何可调用语句处理都会跳过所有结果检查。
+	 * 这可用于规避某些较旧的 Oracle JDBC 驱动（如 10.1.0.2）中的缺陷。
 	 */
 	private boolean skipResultsProcessing = false;
 
 	/**
-	 * If this variable is set to true then all results from a stored procedure call
-	 * that don't have a corresponding SqlOutParameter declaration will be bypassed.
-	 * All other results processing will be take place unless the variable
-	 * {@code skipResultsProcessing} is set to {@code true}.
+	 * 如果此变量被设置为 true，则存储过程调用中所有没有对应 SqlOutParameter
+	 * 声明的结果都将被跳过。除非变量 {@code skipResultsProcessing} 被设置为
+	 * {@code true}，否则所有其他结果处理都将照常进行。
 	 */
 	private boolean skipUndeclaredResults = false;
 
 	/**
-	 * If this variable is set to true then execution of a CallableStatement will return
-	 * the results in a Map that uses case-insensitive names for the parameters.
+	 * 如果此变量被设置为 true，则执行 CallableStatement 将以使用
+	 * 大小写不敏感参数名的 Map 形式返回结果。
 	 */
 	private boolean resultsMapCaseInsensitive = false;
 
 
 	/**
-	 * Construct a new JdbcTemplate for bean usage.
-	 * <p>Note: The DataSource has to be set before using the instance.
+	 * 构造一个新的 JdbcTemplate 以供 bean 使用。
+	 * <p>注意：在使用该实例之前必须设置 DataSource。
 	 * @see #setDataSource
 	 */
 	public JdbcTemplate() {
 	}
 
 	/**
-	 * Construct a new JdbcTemplate, given a DataSource to obtain connections from.
-	 * <p>Note: This will not trigger initialization of the exception translator.
+	 * 使用给定的 DataSource 构造一个新的 JdbcTemplate 以获取连接。
+	 * <p>注意：这不会触发异常转换器的初始化。
 	 * @param dataSource the JDBC DataSource to obtain connections from
 	 */
 	public JdbcTemplate(DataSource dataSource) {
@@ -173,9 +168,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Construct a new JdbcTemplate, given a DataSource to obtain connections from.
-	 * <p>Note: Depending on the "lazyInit" flag, initialization of the exception translator
-	 * will be triggered.
+	 * 使用给定的 DataSource 构造一个新的 JdbcTemplate 以获取连接。
+	 * <p>注意：根据“lazyInit”标志，将触发异常转换器的初始化。
 	 * @param dataSource the JDBC DataSource to obtain connections from
 	 * @param lazyInit whether to lazily initialize the SQLExceptionTranslator
 	 */
@@ -187,9 +181,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Set whether we want to ignore SQLWarnings.
-	 * <p>Default is "true", swallowing and logging all warnings. Switch this flag
-	 * to "false" to make the JdbcTemplate throw an SQLWarningException instead.
+	 * 设置是否忽略 SQLWarning。
+	 * <p>默认值为“true”，即吞掉并记录所有警告。将此标志切换为“false”
+	 * 可使 JdbcTemplate 改为抛出 SQLWarningException。
 	 * @see java.sql.SQLWarning
 	 * @see org.springframework.jdbc.SQLWarningException
 	 * @see #handleWarnings
@@ -199,21 +193,20 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Return whether we ignore SQLWarnings.
+	 * 返回我们是否忽略 SQLWarning。
 	 */
 	public boolean isIgnoreWarnings() {
 		return this.ignoreWarnings;
 	}
 
 	/**
-	 * Set the fetch size for this JdbcTemplate. This is important for processing large
-	 * result sets: Setting this higher than the default value will increase processing
-	 * speed at the cost of memory consumption; setting this lower can avoid transferring
-	 * row data that will never be read by the application.
-	 * <p>Default is -1, indicating to use the JDBC driver's default configuration
-	 * (i.e. to not pass a specific fetch size setting on to the driver).
-	 * <p>Note: As of 4.3, negative values other than -1 will get passed on to the
-	 * driver, since e.g. MySQL supports special behavior for {@code Integer.MIN_VALUE}.
+	 * 为此 JdbcTemplate 设置 fetch size。这对于处理大型结果集非常重要：
+	 * 将其设置为高于默认值可提高处理速度，但会增加内存消耗；将其设置得更低
+	 * 则可以避免传输应用程序永远不会读取的行数据。
+	 * <p>默认值为 -1，表示使用 JDBC 驱动的默认配置
+	 * （即不向驱动传递特定的 fetch size 设置）。
+	 * <p>注意：从 4.3 开始，-1 以外的负值将被传递给驱动，
+	 * 因为例如 MySQL 对 {@code Integer.MIN_VALUE} 支持特殊行为。
 	 * @see java.sql.Statement#setFetchSize
 	 */
 	public void setFetchSize(int fetchSize) {
@@ -221,22 +214,20 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Return the fetch size specified for this JdbcTemplate.
+	 * 返回为此 JdbcTemplate 指定的 fetch size。
 	 */
 	public int getFetchSize() {
 		return this.fetchSize;
 	}
 
 	/**
-	 * Set the maximum number of rows for this JdbcTemplate. This is important for
-	 * processing subsets of large result sets, avoiding to read and hold the entire
-	 * result set in the database or in the JDBC driver if we're never interested in
-	 * the entire result in the first place (for example, when performing searches
-	 * that might return a large number of matches).
-	 * <p>Default is -1, indicating to use the JDBC driver's default configuration
-	 * (i.e. to not pass a specific max rows setting on to the driver).
-	 * <p>Note: As of 4.3, negative values other than -1 will get passed on to the
-	 * driver, in sync with {@link #setFetchSize}'s support for special MySQL values.
+	 * 为此 JdbcTemplate 设置最大行数。这对于处理大型结果集的子集非常重要，
+	 * 如果我们从一开始就不关心完整结果（例如在执行可能返回大量匹配项的
+	 * 搜索时），可以避免在数据库或 JDBC 驱动中读取并保留整个结果集。
+	 * <p>默认值为 -1，表示使用 JDBC 驱动的默认配置
+	 * （即不向驱动传递特定的最大行数设置）。
+	 * <p>注意：从 4.3 开始，-1 以外的负值将被传递给驱动，
+	 * 与 {@link #setFetchSize} 对特殊 MySQL 值的支持保持一致。
 	 * @see java.sql.Statement#setMaxRows
 	 */
 	public void setMaxRows(int maxRows) {
@@ -244,19 +235,18 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Return the maximum number of rows specified for this JdbcTemplate.
+	 * 返回为此 JdbcTemplate 指定的最大行数。
 	 */
 	public int getMaxRows() {
 		return this.maxRows;
 	}
 
 	/**
-	 * Set the query timeout for statements that this JdbcTemplate executes.
-	 * <p>Default is -1, indicating to use the JDBC driver's default
-	 * (i.e. to not pass a specific query timeout setting on the driver).
-	 * <p>Note: Any timeout specified here will be overridden by the remaining
-	 * transaction timeout when executing within a transaction that has a
-	 * timeout specified at the transaction level.
+	 * 设置此 JdbcTemplate 所执行语句的查询超时时间。
+	 * <p>默认值为 -1，表示使用 JDBC 驱动的默认配置
+	 * （即不向驱动传递特定的查询超时设置）。
+	 * <p>注意：在具有事务级超时设置的事务中执行时，
+	 * 此处指定的任何超时都会被剩余的事务超时时间覆盖。
 	 * @see java.sql.Statement#setQueryTimeout
 	 */
 	public void setQueryTimeout(int queryTimeout) {
@@ -264,54 +254,53 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Return the query timeout for statements that this JdbcTemplate executes.
+	 * 返回此 JdbcTemplate 所执行语句的查询超时时间。
 	 */
 	public int getQueryTimeout() {
 		return this.queryTimeout;
 	}
 
 	/**
-	 * Set whether results processing should be skipped. Can be used to optimize callable
-	 * statement processing when we know that no results are being passed back - the processing
-	 * of out parameter will still take place. This can be used to avoid a bug in some older
-	 * Oracle JDBC drivers like 10.1.0.2.
+	 * 设置是否应跳过结果处理。当我们知道不会传回任何结果时，
+	 * 可用于优化可调用语句处理——out 参数的处理仍将进行。
+	 * 这可用于规避某些较旧的 Oracle JDBC 驱动（如 10.1.0.2）中的缺陷。
 	 */
 	public void setSkipResultsProcessing(boolean skipResultsProcessing) {
 		this.skipResultsProcessing = skipResultsProcessing;
 	}
 
 	/**
-	 * Return whether results processing should be skipped.
+	 * 返回是否应跳过结果处理。
 	 */
 	public boolean isSkipResultsProcessing() {
 		return this.skipResultsProcessing;
 	}
 
 	/**
-	 * Set whether undeclared results should be skipped.
+	 * 设置是否应跳过未声明的结果。
 	 */
 	public void setSkipUndeclaredResults(boolean skipUndeclaredResults) {
 		this.skipUndeclaredResults = skipUndeclaredResults;
 	}
 
 	/**
-	 * Return whether undeclared results should be skipped.
+	 * 返回是否应跳过未声明的结果。
 	 */
 	public boolean isSkipUndeclaredResults() {
 		return this.skipUndeclaredResults;
 	}
 
 	/**
-	 * Set whether execution of a CallableStatement will return the results in a Map
-	 * that uses case-insensitive names for the parameters.
+	 * 设置执行 CallableStatement 是否将以使用大小写不敏感参数名的 Map
+	 * 形式返回结果。
 	 */
 	public void setResultsMapCaseInsensitive(boolean resultsMapCaseInsensitive) {
 		this.resultsMapCaseInsensitive = resultsMapCaseInsensitive;
 	}
 
 	/**
-	 * Return whether execution of a CallableStatement will return the results in a Map
-	 * that uses case-insensitive names for the parameters.
+	 * 返回执行 CallableStatement 是否将以使用大小写不敏感参数名的 Map
+	 * 形式返回结果。
 	 */
 	public boolean isResultsMapCaseInsensitive() {
 		return this.resultsMapCaseInsensitive;
@@ -347,10 +336,10 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Create a close-suppressing proxy for the given JDBC Connection.
-	 * Called by the {@code execute} method.
-	 * <p>The proxy also prepares returned JDBC Statements, applying
-	 * statement settings such as fetch size, max rows, and query timeout.
+	 * 为给定的 JDBC Connection 创建一个抑制 close 调用的代理。
+	 * 由 {@code execute} 方法调用。
+	 * <p>该代理还会准备返回的 JDBC Statement，应用 fetch size、max rows
+	 * 和 query timeout 等语句设置。
 	 * @param con the JDBC Connection to create a proxy for
 	 * @return the Connection proxy
 	 * @see java.sql.Connection#close()
@@ -413,7 +402,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		}
 
 		/**
-		 * Callback to execute the statement.
+		 * 用于执行语句的回调。
 		 */
 		class ExecuteStatementCallback implements StatementCallback<Object>, SqlProvider {
 			@Override
@@ -441,7 +430,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		}
 
 		/**
-		 * Callback to execute the query.
+		 * 用于执行查询的回调。
 		 */
 		class QueryStatementCallback implements StatementCallback<T>, SqlProvider {
 			@Override
@@ -538,7 +527,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		}
 
 		/**
-		 * Callback to execute the update statement.
+		 * 用于执行更新语句的回调。
 		 */
 		class UpdateStatementCallback implements StatementCallback<Integer>, SqlProvider {
 			@Override
@@ -566,7 +555,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		}
 
 		/**
-		 * Callback to execute the batch update.
+		 * 用于执行批量更新的回调。
 		 */
 		class BatchUpdateStatementCallback implements StatementCallback<int[]>, SqlProvider {
 
@@ -692,9 +681,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Query using a prepared statement, allowing for a PreparedStatementCreator
-	 * and a PreparedStatementSetter. Most other query methods use this method,
-	 * but application code will always work with either a creator or a setter.
+	 * 使用预编译语句执行查询，允许传入 PreparedStatementCreator
+	 * 和 PreparedStatementSetter。大多数其他查询方法都使用此方法，
+	 * 但应用程序代码始终只会使用 creator 或 setter 之一。
 	 * @param psc a callback that creates a PreparedStatement given a Connection
 	 * @param pss a callback that knows how to set values on the prepared statement.
 	 * If this is {@code null}, the SQL will be assumed to contain no bind parameters.
@@ -816,9 +805,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Query using a prepared statement, allowing for a PreparedStatementCreator
-	 * and a PreparedStatementSetter. Most other query methods use this method,
-	 * but application code will always work with either a creator or a setter.
+	 * 使用预编译语句进行查询，允许使用 PreparedStatementCreator
+	 * 和 PreparedStatementSetter。大多数其他查询方法都使用此方法，
+	 * 但应用程序代码通常只使用 creator 或 setter 之一。
 	 * @param psc a callback that creates a PreparedStatement given a Connection
 	 * @param pss a callback that knows how to set values on the prepared statement.
 	 * If this is {@code null}, the SQL will be assumed to contain no bind parameters.
@@ -1262,7 +1251,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Extract returned ResultSets from the completed stored procedure.
+	 * 从已完成的存储过程中提取返回的 ResultSet。
 	 * @param cs a JDBC wrapper for the stored procedure
 	 * @param updateCountParameters the parameter list of declared update count parameters for the stored procedure
 	 * @param resultSetParameters the parameter list of declared resultSet parameters for the stored procedure
@@ -1326,7 +1315,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Extract output parameters from the completed stored procedure.
+	 * 从已完成的存储过程中提取输出参数。
 	 * @param cs the JDBC wrapper for the stored procedure
 	 * @param parameters parameter list for the stored procedure
 	 * @return a Map that contains returned results
@@ -1373,7 +1362,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Process the given ResultSet from a stored procedure.
+	 * 处理存储过程返回的给定 ResultSet。
 	 * @param rs the ResultSet to process
 	 * @param param the corresponding stored procedure parameter
 	 * @return a Map that contains returned results
@@ -1412,7 +1401,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	//-------------------------------------------------------------------------
 
 	/**
-	 * Create a new RowMapper for reading columns as key-value pairs.
+	 * 创建一个新的 RowMapper，用于将列读取为键值对。
 	 * @return the RowMapper to use
 	 * @see ColumnMapRowMapper
 	 */
@@ -1421,7 +1410,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Create a new RowMapper for reading result objects from a single column.
+	 * 创建一个新的 RowMapper，用于从单列中读取结果对象。
 	 * @param requiredType the type that each result object is expected to match
 	 * @return the RowMapper to use
 	 * @see SingleColumnRowMapper
@@ -1431,10 +1420,10 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Create a Map instance to be used as the results map.
-	 * <p>If {@link #resultsMapCaseInsensitive} has been set to true,
-	 * a {@link LinkedCaseInsensitiveMap} will be created; otherwise, a
-	 * {@link LinkedHashMap} will be created.
+	 * 创建一个用作结果 Map 的 Map 实例。
+	 * <p>如果 {@link #resultsMapCaseInsensitive} 已被设置为 true，
+	 * 则创建 {@link LinkedCaseInsensitiveMap}；否则创建
+	 * {@link LinkedHashMap}。
 	 * @return the results Map instance
 	 * @see #setResultsMapCaseInsensitive
 	 * @see #isResultsMapCaseInsensitive
@@ -1449,8 +1438,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Prepare the given JDBC Statement (or PreparedStatement or CallableStatement),
-	 * applying statement settings such as fetch size, max rows, and query timeout.
+	 * 准备给定的 JDBC Statement（或 PreparedStatement、CallableStatement），
+	 * 并应用 fetch size、max rows 和查询超时等语句设置。
 	 * @param stmt the JDBC Statement to prepare
 	 * @throws SQLException if thrown by JDBC API
 	 * @see #setFetchSize
@@ -1471,9 +1460,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Create a new arg-based PreparedStatementSetter using the args passed in.
-	 * <p>By default, we'll create an {@link ArgumentPreparedStatementSetter}.
-	 * This method allows for the creation to be overridden by subclasses.
+	 * 使用传入的参数创建一个基于参数的 PreparedStatementSetter。
+	 * <p>默认情况下，我们会创建 {@link ArgumentPreparedStatementSetter}。
+	 * 此方法允许子类覆盖创建过程。
 	 * @param args object array with arguments
 	 * @return the new PreparedStatementSetter to use
 	 */
@@ -1482,9 +1471,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Create a new arg-type-based PreparedStatementSetter using the args and types passed in.
-	 * <p>By default, we'll create an {@link ArgumentTypePreparedStatementSetter}.
-	 * This method allows for the creation to be overridden by subclasses.
+	 * 使用传入的参数和类型创建一个基于参数类型的 PreparedStatementSetter。
+	 * <p>默认情况下，我们会创建 {@link ArgumentTypePreparedStatementSetter}。
+	 * 此方法允许子类覆盖创建过程。
 	 * @param args object array with arguments
 	 * @param argTypes int array of SQLTypes for the associated arguments
 	 * @return the new PreparedStatementSetter to use
@@ -1494,8 +1483,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Throw an SQLWarningException if we're not ignoring warnings,
-	 * otherwise log the warnings at debug level.
+	 * 如果未忽略警告，则抛出 SQLWarningException，
+	 * 否则以 debug 级别记录这些警告。
 	 * @param stmt the current JDBC statement
 	 * @throws SQLWarningException if not ignoring warnings
 	 * @see org.springframework.jdbc.SQLWarningException
@@ -1517,7 +1506,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Throw an SQLWarningException if encountering an actual warning.
+	 * 如果遇到实际警告，则抛出 SQLWarningException。
 	 * @param warning the warnings object from the current statement.
 	 * May be {@code null}, in which case this method does nothing.
 	 * @throws SQLWarningException in case of an actual warning to be raised
@@ -1529,7 +1518,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 	}
 
 	/**
-	 * Translate the given {@link SQLException} into a generic {@link DataAccessException}.
+	 * 将给定的 {@link SQLException} 转换为通用的 {@link DataAccessException}。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL query or update that caused the problem (may be {@code null})
 	 * @param ex the offending {@code SQLException}
@@ -1544,7 +1533,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Determine SQL from potential provider object.
+	 * 从可能的 provider 对象中确定 SQL。
 	 * @param sqlProvider object which is potentially an SqlProvider
 	 * @return the SQL string, or {@code null} if not known
 	 * @see SqlProvider
@@ -1571,8 +1560,8 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Invocation handler that suppresses close calls on JDBC Connections.
-	 * Also prepares returned Statement (Prepared/CallbackStatement) objects.
+	 * 调用处理器，用于抑制对 JDBC Connection 的 close 调用。
+	 * 同时还会准备返回的 Statement（PreparedStatement/CallableStatement）对象。
 	 * @see java.sql.Connection#close()
 	 */
 	private class CloseSuppressingInvocationHandler implements InvocationHandler {
@@ -1629,7 +1618,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Simple adapter for PreparedStatementCreator, allowing to use a plain SQL statement.
+	 * PreparedStatementCreator 的简单适配器，允许使用普通的 SQL 语句。
 	 */
 	private static class SimplePreparedStatementCreator implements PreparedStatementCreator, SqlProvider {
 
@@ -1653,7 +1642,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Simple adapter for CallableStatementCreator, allowing to use a plain SQL statement.
+	 * CallableStatementCreator 的简单适配器，允许使用普通的 SQL 语句。
 	 */
 	private static class SimpleCallableStatementCreator implements CallableStatementCreator, SqlProvider {
 
@@ -1677,9 +1666,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Adapter to enable use of a RowCallbackHandler inside a ResultSetExtractor.
-	 * <p>Uses a regular ResultSet, so we have to be careful when using it:
-	 * We don't use it for navigating since this could lead to unpredictable consequences.
+	 * 适配器，用于在 ResultSetExtractor 内部使用 RowCallbackHandler。
+	 * <p>它使用常规的 ResultSet，因此使用时必须小心：
+	 * 我们不会用它进行导航，因为这可能导致不可预测的后果。
 	 */
 	private static class RowCallbackHandlerResultSetExtractor implements ResultSetExtractor<Object> {
 
@@ -1701,7 +1690,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
 
 	/**
-	 * Spliterator for queryForStream adaptation of a ResultSet to a Stream.
+	 * 用于 queryForStream 的 Spliterator，将 ResultSet 适配为 Stream。
 	 * @since 5.3
 	 */
 	private static class ResultSetSpliterator<T> implements Spliterator<T> {

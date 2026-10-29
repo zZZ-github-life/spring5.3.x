@@ -32,14 +32,9 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * Simple adapter to expose the bind status of a field or object.
- * Set as a variable by FreeMarker macros and other tag libraries.
+ * 用于公开字段或对象绑定状态的简单适配器。由 FreeMarker 宏和其他标签库设置为变量。
  *
- * <p>Obviously, object status representations (i.e. errors at the object level
- * rather than the field level) do not have an expression and a value but only
- * error codes and messages. For simplicity's sake and to be able to use the same
- * tags and macros, the same status class is used for both scenarios.
- *
+ * <p>显然，对象状态表示（即对象级而非字段级的错误）没有表达式和值，只有错误代码和消息。为简单起见并能够使用相同的标签和宏，两种场景使用相同的状态类。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 5.0
@@ -84,7 +79,7 @@ public class BindStatus {
 
 
 	/**
-	 * Create a new BindStatus instance, representing a field or object status.
+	 * 创建新的 BindStatus 实例，表示字段或对象状态。
 	 * @param requestContext the current RequestContext
 	 * @param path the bean and property path for which values and errors
 	 * will be resolved (e.g. "customer.address.street")
@@ -168,7 +163,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Extract the error codes from the ObjectError list.
+	 * 从 ObjectError 列表中提取错误代码。
 	 */
 	private static String[] initErrorCodes(List<? extends ObjectError> objectErrors) {
 		String[] errorCodes = new String[objectErrors.size()];
@@ -181,19 +176,15 @@ public class BindStatus {
 
 
 	/**
-	 * Return the bean and property path for which values and errors
-	 * will be resolved (e.g. "customer.address.street").
+	 * 返回值及错误将要解析的 Bean 和属性路径（例如 "customer.address.street"）。
 	 */
 	public String getPath() {
 		return this.path;
 	}
 
 	/**
-	 * Return a bind expression that can be used in HTML forms as input name
-	 * for the respective field, or {@code null} if not field-specific.
-	 * <p>Returns a bind path appropriate for resubmission, e.g. "address.street".
-	 * Note that the complete bind path as required by the bind tag is
-	 * "customer.address.street", if bound to a "customer" bean.
+	 * 返回可在 HTML 表单中用作相应字段输入名称的绑定表达式；如果不是字段特定的，则返回 {@code null}。
+	 * <p>返回适合重新提交的绑定路径，例如 "address.street"。请注意，如果绑定到 "customer" Bean，绑定标签所需的完整绑定路径是 "customer.address.street"。
 	 */
 	@Nullable
 	public String getExpression() {
@@ -201,10 +192,8 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return the current value of the field, i.e. either the property value
-	 * or a rejected update, or {@code null} if not field-specific.
-	 * <p>This value will be an HTML-escaped String if the original value
-	 * already was a String.
+	 * 返回字段的当前值，即属性值或被拒绝的更新值；如果不是字段特定的，则返回 {@code null}。
+	 * <p>如果原始值已经是 String，则该值将是 HTML 转义后的 String。
 	 */
 	@Nullable
 	public Object getValue() {
@@ -212,9 +201,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Get the '{@code Class}' type of the field. Favor this instead of
-	 * '{@code getValue().getClass()}' since '{@code getValue()}' may
-	 * return '{@code null}'.
+	 * 获取字段的 '{@code Class}' 类型。优先使用此方法而不是 '{@code getValue().getClass()}'，因为 '{@code getValue()}' 可能返回 '{@code null}'。
 	 */
 	@Nullable
 	public Class<?> getValueType() {
@@ -222,8 +209,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return the actual value of the field, i.e. the raw property value,
-	 * or {@code null} if not available.
+	 * 返回字段的实际值，即原始属性值；如果不可用，则返回 {@code null}。
 	 */
 	@Nullable
 	public Object getActualValue() {
@@ -231,11 +217,8 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return a suitable display value for the field, i.e. the stringified
-	 * value if not null, and an empty string in case of a null value.
-	 * <p>This value will be an HTML-escaped String if the original value
-	 * was non-null: the {@code toString} result of the original value
-	 * will get HTML-escaped.
+	 * 返回适合字段的显示值，即非 null 时的字符串化值，null 时为空字符串。
+	 * <p>如果原始值非 null，则该值将是 HTML 转义后的 String：原始值的 {@code toString} 结果将被 HTML 转义。
 	 */
 	public String getDisplayValue() {
 		if (this.value instanceof String) {
@@ -249,37 +232,35 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return if this status represents a field or object error.
+	 * 返回此状态表示的是字段错误还是对象错误。
 	 */
 	public boolean isError() {
 		return (this.errorCodes.length > 0);
 	}
 
 	/**
-	 * Return the error codes for the field or object, if any.
-	 * Returns an empty array instead of null if none.
+	 * 返回字段或对象的错误代码（如果有）。如果没有，则返回空数组而不是 null。
 	 */
 	public String[] getErrorCodes() {
 		return this.errorCodes;
 	}
 
 	/**
-	 * Return the first error codes for the field or object, if any.
+	 * 返回字段或对象的第一个错误代码（如果有）。
 	 */
 	public String getErrorCode() {
 		return (!ObjectUtils.isEmpty(this.errorCodes) ? this.errorCodes[0] : "");
 	}
 
 	/**
-	 * Return the resolved error messages for the field or object,
-	 * if any. Returns an empty array instead of null if none.
+	 * 返回字段或对象的已解析错误消息（如果有）。如果没有，则返回空数组而不是 null。
 	 */
 	public String[] getErrorMessages() {
 		return initErrorMessages();
 	}
 
 	/**
-	 * Return the first error message for the field or object, if any.
+	 * 返回字段或对象的第一个错误消息（如果有）。
 	 */
 	public String getErrorMessage() {
 		String[] errorMessages = initErrorMessages();
@@ -287,8 +268,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return an error message string, concatenating all messages
-	 * separated by the given delimiter.
+	 * 返回错误消息字符串，将所有消息用给定分隔符连接。
 	 * @param delimiter separator string, e.g. ", " or "<br>"
 	 * @return the error message string
 	 */
@@ -297,7 +277,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Extract the error messages from the ObjectError list.
+	 * 从 ObjectError 列表中提取错误消息。
 	 */
 	private String[] initErrorMessages() throws NoSuchMessageException {
 		if (this.errorMessages == null) {
@@ -316,8 +296,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return the Errors instance (typically a BindingResult) that this
-	 * bind status is currently associated with.
+	 * 返回此绑定状态当前关联的 Errors 实例（通常是 BindingResult）。
 	 * @return the current Errors instance, or {@code null} if none
 	 * @see org.springframework.validation.BindingResult
 	 */
@@ -327,8 +306,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Return the PropertyEditor for the property that this bind status
-	 * is currently bound to.
+	 * 返回此绑定状态当前所绑定属性的 PropertyEditor。
 	 * @return the current PropertyEditor, or {@code null} if none
 	 */
 	@Nullable
@@ -337,8 +315,7 @@ public class BindStatus {
 	}
 
 	/**
-	 * Find a PropertyEditor for the given value class, associated with
-	 * the property that this bound status is currently bound to.
+	 * 为给定值类查找 PropertyEditor，并与此绑定状态当前所绑定的属性关联。
 	 * @param valueClass the value class that an editor is needed for
 	 * @return the associated PropertyEditor, or {@code null} if none
 	 */

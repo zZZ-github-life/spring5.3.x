@@ -17,55 +17,54 @@
 package org.springframework.expression.spel.ast;
 
 /**
- * Captures primitive types and their corresponding class objects, plus one special entry
- * that represents all reference (non-primitive) types.
+ * 捕获基本类型及其对应的类对象，另有一个特殊条目表示所有引用（非基本）类型。
  *
  * @author Andy Clement
  */
 public enum TypeCode {
 
 	/**
-	 * An {@link Object}.
+	 * 一个 {@link Object}。
 	 */
 	OBJECT(Object.class),
 
 	/**
-	 * A {@code boolean}.
+	 * 一个 {@code boolean}。
 	 */
 	BOOLEAN(Boolean.TYPE),
 
 	/**
-	 * A {@code byte}.
+	 * 一个 {@code byte}。
 	 */
 	BYTE(Byte.TYPE),
 
 	/**
-	 * A {@code char}.
+	 * 一个 {@code char}。
 	 */
 	CHAR(Character.TYPE),
 
 	/**
-	 * A {@code double}.
+	 * 一个 {@code double}。
 	 */
 	DOUBLE(Double.TYPE),
 
 	/**
-	 * A {@code float}.
+	 * 一个 {@code float}。
 	 */
 	FLOAT(Float.TYPE),
 
 	/**
-	 * An {@code int}.
+	 * 一个 {@code int}。
 	 */
 	INT(Integer.TYPE),
 
 	/**
-	 * A {@code long}.
+	 * 一个 {@code long}。
 	 */
 	LONG(Long.TYPE),
 
 	/**
-	 * An {@link Object}.
+	 * 一个 {@link Object}。
 	 */
 	SHORT(Short.TYPE);
 

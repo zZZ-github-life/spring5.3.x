@@ -28,7 +28,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 
 /**
- * A SockJS session for use with polling HTTP transports.
+ * 用于轮询 HTTP 传输的 SockJS 会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

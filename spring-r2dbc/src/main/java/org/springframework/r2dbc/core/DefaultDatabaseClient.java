@@ -55,7 +55,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Default implementation of {@link DatabaseClient}.
+ * {@link DatabaseClient} 的默认实现。
  *
  * @author Mark Paluch
  * @author Mingyuan Wu
@@ -149,7 +149,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 	}
 
 	/**
-	 * Obtain a {@link Connection}.
+	 * 获取一个 {@link Connection}。
 	 * @return a {@link Mono} able to emit a {@link Connection}
 	 */
 	private Mono<Connection> getConnection() {
@@ -157,7 +157,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 	}
 
 	/**
-	 * Release the {@link Connection}.
+	 * 释放 {@link Connection}。
 	 * @param connection to close.
 	 * @return a {@link Publisher} that completes successfully when the connection is closed
 	 */
@@ -168,7 +168,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 	}
 
 	/**
-	 * Obtain the {@link ConnectionFactory} for actual use.
+	 * 获取实际使用的 {@link ConnectionFactory}。
 	 * @return the ConnectionFactory (never {@code null})
 	 */
 	private ConnectionFactory obtainConnectionFactory() {
@@ -176,8 +176,8 @@ class DefaultDatabaseClient implements DatabaseClient {
 	}
 
 	/**
-	 * Create a close-suppressing proxy for the given R2DBC
-	 * Connection. Called by the {@code execute} method.
+	 * 为给定的 R2DBC Connection 创建一个抑制关闭操作的代理。
+	 * 由 {@code execute} 方法调用。
 	 * @param con the R2DBC Connection to create a proxy for
 	 * @return the Connection proxy
 	 */
@@ -194,7 +194,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 	}
 
 	/**
-	 * Get SQL from a potential provider object.
+	 * 从可能提供 SQL 的对象中获取 SQL。
 	 * @param object an object that is potentially an SqlProvider
 	 * @return the SQL string, or {@code null}
 	 * @see SqlProvider
@@ -211,7 +211,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 
 	/**
-	 * Default {@link DatabaseClient.GenericExecuteSpec} implementation.
+	 * 默认的 {@link DatabaseClient.GenericExecuteSpec} 实现。
 	 */
 	class DefaultGenericExecuteSpec implements GenericExecuteSpec {
 
@@ -452,8 +452,8 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 
 	/**
-	 * Invocation handler that suppresses close calls on R2DBC Connections. Also prepares
-	 * returned Statement (Prepared/CallbackStatement) objects.
+	 * 调用处理器，抑制对 R2DBC Connection 的 close 调用。
+	 * 同时准备返回的 Statement（Prepared/CallbackStatement）对象。
 	 *
 	 * @see Connection#close()
 	 */
@@ -495,7 +495,7 @@ class DefaultDatabaseClient implements DatabaseClient {
 
 
 	/**
-	 * Holder for a connection that makes sure the close action is invoked atomically only once.
+	 * 连接的持有者，确保关闭操作以原子方式仅被调用一次。
 	 */
 	static class ConnectionCloseHolder extends AtomicBoolean {
 

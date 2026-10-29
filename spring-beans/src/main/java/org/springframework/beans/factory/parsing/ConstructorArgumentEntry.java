@@ -19,8 +19,7 @@ package org.springframework.beans.factory.parsing;
 import org.springframework.util.Assert;
 
 /**
- * {@link ParseState} entry representing a (possibly indexed)
- * constructor argument.
+ * 表示（可能带索引的）构造器参数的 {@link ParseState} 条目。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -32,16 +31,14 @@ public class ConstructorArgumentEntry implements ParseState.Entry {
 
 
 	/**
-	 * Creates a new instance of the {@link ConstructorArgumentEntry} class
-	 * representing a constructor argument with a (currently) unknown index.
+	 * 创建 {@link ConstructorArgumentEntry} 类的新实例，表示索引（当前）未知的构造器参数。
 	 */
 	public ConstructorArgumentEntry() {
 		this.index = -1;
 	}
 
 	/**
-	 * Creates a new instance of the {@link ConstructorArgumentEntry} class
-	 * representing a constructor argument at the supplied {@code index}.
+	 * 创建 {@link ConstructorArgumentEntry} 类的新实例，表示位于给定 {@code index} 处的构造器参数。
 	 * @param index the index of the constructor argument
 	 * @throws IllegalArgumentException if the supplied {@code index}
 	 * is less than zero

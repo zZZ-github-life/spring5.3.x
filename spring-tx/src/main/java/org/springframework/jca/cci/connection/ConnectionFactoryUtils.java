@@ -30,15 +30,14 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * Helper class that provides static methods for obtaining CCI Connections
- * from a {@link javax.resource.cci.ConnectionFactory}. Includes special
- * support for Spring-managed transactional Connections, e.g. managed
- * by {@link CciLocalTransactionManager} or
- * {@link org.springframework.transaction.jta.JtaTransactionManager}.
+ * 辅助类，提供从 {@link javax.resource.cci.ConnectionFactory} 获取 CCI Connection 的静态方法。
+ * 包括对 Spring 管理的事务性 Connection 的特殊支持，
+ * 例如由 {@link CciLocalTransactionManager} 或
+ * {@link org.springframework.transaction.jta.JtaTransactionManager} 管理的 Connection。
  *
- * <p>Used internally by {@link org.springframework.jca.cci.core.CciTemplate},
- * Spring's CCI operation objects and the {@link CciLocalTransactionManager}.
- * Can also be used directly in application code.
+ * <p>由 {@link org.springframework.jca.cci.core.CciTemplate}、
+ * Spring 的 CCI 操作对象和 {@link CciLocalTransactionManager} 内部使用。
+ * 也可以直接在应用程序代码中使用。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -58,12 +57,12 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Obtain a Connection from the given ConnectionFactory. Translates ResourceExceptions
-	 * into the Spring hierarchy of unchecked generic data access exceptions, simplifying
-	 * calling code and making any exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
-	 * when using {@link CciLocalTransactionManager}. Will bind a Connection to the thread
-	 * if transaction synchronization is active (e.g. if in a JTA transaction).
+	 * 从给定的 ConnectionFactory 获取 Connection。将 ResourceException
+	 * 转换为 Spring 未检查的通用数据访问异常层次结构，简化调用代码，
+	 * 并使抛出的任何异常更有意义。
+	 * <p>能感知绑定到当前线程的相应 Connection，例如在使用
+	 * {@link CciLocalTransactionManager} 时。如果事务同步处于活动状态
+	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
 	 * @param cf the ConnectionFactory to obtain Connection from
 	 * @return a CCI Connection from the given ConnectionFactory
 	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException
@@ -77,12 +76,12 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Obtain a Connection from the given ConnectionFactory. Translates ResourceExceptions
-	 * into the Spring hierarchy of unchecked generic data access exceptions, simplifying
-	 * calling code and making any exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
-	 * when using {@link CciLocalTransactionManager}. Will bind a Connection to the thread
-	 * if transaction synchronization is active (e.g. if in a JTA transaction).
+	 * 从给定的 ConnectionFactory 获取 Connection。将 ResourceException
+	 * 转换为 Spring 未检查的通用数据访问异常层次结构，简化调用代码，
+	 * 并使抛出的任何异常更有意义。
+	 * <p>能感知绑定到当前线程的相应 Connection，例如在使用
+	 * {@link CciLocalTransactionManager} 时。如果事务同步处于活动状态
+	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
 	 * @param cf the ConnectionFactory to obtain Connection from
 	 * @param spec the ConnectionSpec for the desired Connection (may be {@code null}).
 	 * Note: If this is specified, a new Connection will be obtained for every call,
@@ -109,12 +108,12 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Actually obtain a CCI Connection from the given ConnectionFactory.
-	 * Same as {@link #getConnection}, but throwing the original ResourceException.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
-	 * when using {@link CciLocalTransactionManager}. Will bind a Connection to the thread
-	 * if transaction synchronization is active (e.g. if in a JTA transaction).
-	 * <p>Directly accessed by {@link TransactionAwareConnectionFactoryProxy}.
+	 * 实际从给定的 ConnectionFactory 获取 CCI Connection。
+	 * 与 {@link #getConnection} 相同，但抛出原始的 ResourceException。
+	 * <p>能感知绑定到当前线程的相应 Connection，例如在使用
+	 * {@link CciLocalTransactionManager} 时。如果事务同步处于活动状态
+	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
+	 * <p>由 {@link TransactionAwareConnectionFactoryProxy} 直接访问。
 	 * @param cf the ConnectionFactory to obtain Connection from
 	 * @return a CCI Connection from the given ConnectionFactory
 	 * @throws ResourceException if thrown by CCI API methods
@@ -142,8 +141,7 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Determine whether the given JCA CCI Connection is transactional, that is,
-	 * bound to the current thread by Spring's transaction facilities.
+	 * 确定给定的 JCA CCI Connection 是否为事务性的，即由 Spring 的事务设施绑定到当前线程。
 	 * @param con the Connection to check
 	 * @param cf the ConnectionFactory that the Connection was obtained from
 	 * (may be {@code null})
@@ -158,8 +156,8 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Close the given Connection, obtained from the given ConnectionFactory,
-	 * if it is not managed externally (that is, not bound to the thread).
+	 * 关闭从给定的 ConnectionFactory 获取的给定 Connection，
+	 * 如果它不是外部管理的（即未绑定到线程）。
 	 * @param con the Connection to close if necessary
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param cf the ConnectionFactory that the Connection was obtained from
@@ -180,9 +178,9 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Actually close the given Connection, obtained from the given ConnectionFactory.
-	 * Same as {@link #releaseConnection}, but throwing the original ResourceException.
-	 * <p>Directly accessed by {@link TransactionAwareConnectionFactoryProxy}.
+	 * 实际关闭从给定的 ConnectionFactory 获取的给定 Connection。
+	 * 与 {@link #releaseConnection} 相同，但抛出原始的 ResourceException。
+	 * <p>由 {@link TransactionAwareConnectionFactoryProxy} 直接访问。
 	 * @param con the Connection to close if necessary
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param cf the ConnectionFactory that the Connection was obtained from
@@ -201,8 +199,8 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Callback for resource cleanup at the end of a non-native CCI transaction
-	 * (e.g. when participating in a JTA transaction).
+	 * 在非原生 CCI 事务结束时进行资源清理的回调
+	 * （例如参与 JTA 事务时）。
 	 */
 	private static class ConnectionSynchronization
 			extends ResourceHolderSynchronization<ConnectionHolder, ConnectionFactory> {

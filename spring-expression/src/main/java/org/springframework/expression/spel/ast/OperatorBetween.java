@@ -26,10 +26,9 @@ import org.springframework.expression.spel.SpelMessage;
 import org.springframework.expression.spel.support.BooleanTypedValue;
 
 /**
- * Represents the between operator. The left operand to between must be a single value and
- * the right operand must be a list - this operator returns true if the left operand is
- * between (using the registered comparator) the two elements in the list. The definition
- * of between being inclusive follows the SQL BETWEEN definition.
+ * 表示 between 运算符。between 的左操作数必须是单个值，右操作数必须是列表 —— 如果左操作数位于（使
+ * 用已注册的比较器）列表中两个元素之间，则该运算符返回 true。between 的包含性定义遵循 SQL BETWEEN
+ * 的定义。
  *
  * @author Andy Clement
  * @since 3.0
@@ -42,9 +41,8 @@ public class OperatorBetween extends Operator {
 
 
 	/**
-	 * Returns a boolean based on whether a value is in the range expressed. The first
-	 * operand is any value whilst the second is a list of two values - those two values
-	 * being the bounds allowed for the first operand (inclusive).
+	 * 根据某个值是否在表达的范围之内返回布尔值。第一个操作数是任意值，而第二个操作数是包含两个值的列表
+	 * —— 这两个值就是第一个操作数所允许的边界（包含边界）。
 	 * @param state the expression state
 	 * @return true if the left operand is in the range specified, false otherwise
 	 * @throws EvaluationException if there is a problem evaluating the expression

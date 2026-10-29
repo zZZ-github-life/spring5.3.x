@@ -19,8 +19,8 @@ package org.springframework.jdbc;
 import org.springframework.dao.DataRetrievalFailureException;
 
 /**
- * Data access exception thrown when a result set did not have the correct column count,
- * for example when expecting a single column but getting 0 or more than 1 columns.
+ * 当结果集的列数不正确时抛出的数据访问异常，
+ * 例如期望单列但得到0列或多于1列。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -35,7 +35,7 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 
 	/**
-	 * Constructor for IncorrectResultSetColumnCountException.
+	 * 创建IncorrectResultSetColumnCountException实例。
 	 * @param expectedCount the expected column count
 	 * @param actualCount the actual column count
 	 */
@@ -46,7 +46,7 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 	}
 
 	/**
-	 * Constructor for IncorrectResultCountDataAccessException.
+	 * 创建IncorrectResultCountDataAccessException实例。
 	 * @param msg the detail message
 	 * @param expectedCount the expected column count
 	 * @param actualCount the actual column count
@@ -59,14 +59,14 @@ public class IncorrectResultSetColumnCountException extends DataRetrievalFailure
 
 
 	/**
-	 * Return the expected column count.
+	 * 返回期望的列数。
 	 */
 	public int getExpectedCount() {
 		return this.expectedCount;
 	}
 
 	/**
-	 * Return the actual column count.
+	 * 返回实际的列数。
 	 */
 	public int getActualCount() {
 		return this.actualCount;

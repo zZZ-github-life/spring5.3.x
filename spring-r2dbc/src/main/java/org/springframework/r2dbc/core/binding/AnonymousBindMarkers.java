@@ -19,15 +19,13 @@ package org.springframework.r2dbc.core.binding;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 /**
- * Anonymous, index-based bind marker using a static placeholder.
- * Instances are bound by the ordinal position ordered by the appearance of
- * the placeholder. This implementation creates indexed bind markers using
- * an anonymous placeholder that correlates with an index.
+ * 使用静态占位符的匿名、基于索引的绑定标记。
+ * 实例按占位符出现的顺序以序号位置进行绑定。
+ * 此实现使用与索引相关联的匿名占位符来创建基于索引的绑定标记。
  *
- * <p>Note: Anonymous bind markers are problematic because they have to appear
- * in generated SQL in the same order they get generated. This might cause
- * challenges in the future with complex generate statements. For example those
- * containing subselects which limit the freedom of arranging bind markers.
+ * <p>注意：匿名绑定标记存在问题，因为它们必须以生成时的相同顺序
+ * 出现在生成的 SQL 中。这在将来可能会对复杂的生成语句带来挑战，
+ * 例如包含子查询的语句，这些语句限制了安排绑定标记的自由度。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -46,7 +44,7 @@ class AnonymousBindMarkers implements BindMarkers {
 
 
 	/**
-	 * Create a new {@link AnonymousBindMarkers} instance given {@code placeholder}.
+	 * 根据 {@code placeholder} 创建一个新的 {@link AnonymousBindMarkers} 实例。
 	 * @param placeholder parameter bind marker
 	 */
 	AnonymousBindMarkers(String placeholder) {

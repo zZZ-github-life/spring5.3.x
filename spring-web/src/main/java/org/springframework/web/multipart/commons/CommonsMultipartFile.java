@@ -35,7 +35,7 @@ import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * {@link MultipartFile} implementation for Apache Commons FileUpload.
+ * Apache Commons FileUpload 的 {@link MultipartFile} 实现。
  *
  * @author Trevor D. Cook
  * @author Juergen Hoeller
@@ -55,7 +55,7 @@ public class CommonsMultipartFile implements MultipartFile, Serializable {
 
 
 	/**
-	 * Create an instance wrapping the given FileItem.
+	 * 创建一个包装给定 FileItem 的实例。
 	 * @param fileItem the FileItem to wrap
 	 */
 	public CommonsMultipartFile(FileItem fileItem) {
@@ -65,19 +65,18 @@ public class CommonsMultipartFile implements MultipartFile, Serializable {
 
 
 	/**
-	 * Return the underlying {@code org.apache.commons.fileupload.FileItem}
-	 * instance. There is hardly any need to access this.
+	 * 返回底层的 {@code org.apache.commons.fileupload.FileItem}
+	 * 实例。几乎不需要访问该方法。
 	 */
 	public final FileItem getFileItem() {
 		return this.fileItem;
 	}
 
 	/**
-	 * Set whether to preserve the filename as sent by the client, not stripping off
-	 * path information in {@link CommonsMultipartFile#getOriginalFilename()}.
-	 * <p>Default is "false", stripping off path information that may prefix the
-	 * actual filename e.g. from Opera. Switch this to "true" for preserving the
-	 * client-specified filename as-is, including potential path separators.
+	 * 设置是否保留客户端发送的文件名，而不在
+	 * {@link CommonsMultipartFile#getOriginalFilename()} 中去掉路径信息。
+	 * <p>默认值为 "false"，即去掉可能作为实际文件名前缀的路径信息（例如来自 Opera）。
+	 * 将其设置为 "true" 可原样保留客户端指定的文件名，包括可能的路径分隔符。
 	 * @since 4.3.5
 	 * @see #getOriginalFilename()
 	 * @see CommonsMultipartResolver#setPreserveFilename(boolean)
@@ -199,8 +198,8 @@ public class CommonsMultipartFile implements MultipartFile, Serializable {
 	}
 
 	/**
-	 * Determine whether the multipart content is still available.
-	 * If a temporary file has been moved, the content is no longer available.
+	 * 确定 multipart 内容是否仍然可用。
+	 * 如果临时文件已被移动，则内容不再可用。
 	 */
 	protected boolean isAvailable() {
 		// If in memory, it's available.
@@ -216,9 +215,8 @@ public class CommonsMultipartFile implements MultipartFile, Serializable {
 	}
 
 	/**
-	 * Return a description for the storage location of the multipart content.
-	 * Tries to be as specific as possible: mentions the file location in case
-	 * of a temporary file.
+	 * 返回 multipart 内容存储位置的描述。
+	 * 尽量具体：如果内容位于临时文件中，则说明文件位置。
 	 */
 	public String getStorageDescription() {
 		if (this.fileItem.isInMemory()) {

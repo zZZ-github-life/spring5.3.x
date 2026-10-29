@@ -23,8 +23,8 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface specifying the API to be implemented by a class providing table meta-data.
- * This is intended for internal use by the Simple JDBC classes.
+ * 指定提供表元数据的类所要实现的 API 的接口。
+ * 此接口供 Simple JDBC 类内部使用。
  *
  * @author Thomas Risberg
  * @since 2.5
@@ -32,94 +32,93 @@ import org.springframework.lang.Nullable;
 public interface TableMetaDataProvider {
 
 	/**
-	 * Initialize using the database meta-data provided.
-	 * @param databaseMetaData used to retrieve database specific information
-	 * @throws SQLException in case of initialization failure
+	 * 使用提供的数据库元数据进行初始化。
+	 * @param databaseMetaData 用于检索数据库特定信息
+	 * @throws SQLException 如果初始化失败
 	 */
 	void initializeWithMetaData(DatabaseMetaData databaseMetaData) throws SQLException;
 
 	/**
-	 * Initialize using provided database meta-data, table and column information.
-	 * This initialization can be turned off by specifying that column meta-data should not be used.
-	 * @param databaseMetaData used to retrieve database specific information
-	 * @param catalogName name of catalog to use (or {@code null} if none)
-	 * @param schemaName name of schema name to use (or {@code null} if none)
-	 * @param tableName name of the table
-	 * @throws SQLException in case of initialization failure
+	 * 使用提供的数据库元数据、表和列信息进行初始化。
+	 * 可以通过指定不使用列元数据来关闭此初始化。
+	 * @param databaseMetaData 用于检索数据库特定信息
+	 * @param catalogName 要使用的目录名称（如果没有则为 {@code null}）
+	 * @param schemaName 要使用的模式名称（如果没有则为 {@code null}）
+	 * @param tableName 表的名称
+	 * @throws SQLException 如果初始化失败
 	 */
 	void initializeWithTableColumnMetaData(DatabaseMetaData databaseMetaData, @Nullable String catalogName,
 			@Nullable String schemaName, @Nullable String tableName) throws SQLException;
 
 	/**
-	 * Get the table name formatted based on meta-data information.
-	 * This could include altering the case.
+	 * 获取基于元数据信息格式化的表名。
+	 * 这可能包括更改大小写。
 	 */
 	@Nullable
 	String tableNameToUse(@Nullable String tableName);
 
 	/**
-	 * Get the catalog name formatted based on meta-data information.
-	 * This could include altering the case.
+	 * 获取基于元数据信息格式化的目录名称。
+	 * 这可能包括更改大小写。
 	 */
 	@Nullable
 	String catalogNameToUse(@Nullable String catalogName);
 
 	/**
-	 * Get the schema name formatted based on meta-data information.
-	 * This could include altering the case.
+	 * 获取基于元数据信息格式化的模式名称。
+	 * 这可能包括更改大小写。
 	 */
 	@Nullable
 	String schemaNameToUse(@Nullable String schemaName);
 
 	/**
-	 * Provide any modification of the catalog name passed in to match the meta-data currently used.
-	 * The returned value will be used for meta-data lookups.
-	 * This could include altering the case used or providing a base catalog if none is provided.
+	 * 对传入的目录名称进行修改，以匹配当前使用的元数据。
+	 * 返回的值将用于元数据查找。
+	 * 这可能包括更改所使用的大小写，或在未提供目录时提供一个基础目录。
 	 */
 	@Nullable
 	String metaDataCatalogNameToUse(@Nullable String catalogName) ;
 
 	/**
-	 * Provide any modification of the schema name passed in to match the meta-data currently used.
-	 * The returned value will be used for meta-data lookups.
-	 * This could include altering the case used or providing a base schema if none is provided.
+	 * 对传入的模式名称进行修改，以匹配当前使用的元数据。
+	 * 返回的值将用于元数据查找。
+	 * 这可能包括更改所使用的大小写，或在未提供模式时提供一个基础模式。
 	 */
 	@Nullable
 	String metaDataSchemaNameToUse(@Nullable String schemaName) ;
 
 	/**
-	 * Are we using the meta-data for the table columns?
+	 * 是否正在使用表列的元数据？
 	 */
 	boolean isTableColumnMetaDataUsed();
 
 	/**
-	 * Does this database support the JDBC 3.0 feature of retrieving generated keys:
-	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}?
+	 * 此数据库是否支持 JDBC 3.0 的检索生成键功能：
+	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}？
 	 */
 	boolean isGetGeneratedKeysSupported();
 
 	/**
-	 * Does this database support a simple query to retrieve the generated key when
-	 * the JDBC 3.0 feature of retrieving generated keys is not supported?
+	 * 当不支持 JDBC 3.0 的检索生成键功能时，此数据库是否支持通过简单查询检索生成键？
 	 * @see #isGetGeneratedKeysSupported()
 	 */
 	boolean isGetGeneratedKeysSimulated();
 
 	/**
-	 * Get the simple query to retrieve a generated key.
+	 * 获取检索生成键的简单查询。
 	 */
 	@Nullable
 	String getSimpleQueryForGetGeneratedKey(String tableName, String keyColumnName);
 
 	/**
-	 * Does this database support a column name String array for retrieving generated keys:
-	 * {@link java.sql.Connection#createStruct(String, Object[])}?
+	 * 此数据库是否支持用于检索生成键的列名 String 数组：
+	 * {@link java.sql.Connection#createStruct(String, Object[])}？
 	 */
 	boolean isGeneratedKeysColumnNameArraySupported();
 
 	/**
-	 * Get the table parameter meta-data that is currently used.
-	 * @return a List of {@link TableParameterMetaData}
+	 * 获取当前使用的表参数元数据。
+	 * @return {@link TableParameterMetaData} 的列表
 	 */
 	List<TableParameterMetaData> getTableParameterMetaData();
 

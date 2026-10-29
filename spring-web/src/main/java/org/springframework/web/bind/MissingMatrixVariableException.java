@@ -19,9 +19,8 @@ package org.springframework.web.bind;
 import org.springframework.core.MethodParameter;
 
 /**
- * {@link ServletRequestBindingException} subclass that indicates that a matrix
- * variable expected in the method parameters of an {@code @RequestMapping}
- * method is not present among the matrix variables extracted from the URL.
+ * {@link ServletRequestBindingException} 的子类，表示 {@code @RequestMapping}
+ * 方法参数中所期望的矩阵变量在从 URL 中提取的矩阵变量中不存在。
  *
  * @author Juergen Hoeller
  * @since 5.1
@@ -36,7 +35,7 @@ public class MissingMatrixVariableException extends MissingRequestValueException
 
 
 	/**
-	 * Constructor for MissingMatrixVariableException.
+	 * MissingMatrixVariableException 的构造函数。
 	 * @param variableName the name of the missing matrix variable
 	 * @param parameter the method parameter
 	 */
@@ -45,7 +44,7 @@ public class MissingMatrixVariableException extends MissingRequestValueException
 	}
 
 	/**
-	 * Constructor for use when a value was present but converted to {@code null}.
+	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
 	 * @param variableName the name of the missing matrix variable
 	 * @param parameter the method parameter
 	 * @param missingAfterConversion whether the value became null after conversion
@@ -68,14 +67,14 @@ public class MissingMatrixVariableException extends MissingRequestValueException
 	}
 
 	/**
-	 * Return the expected name of the matrix variable.
+	 * 返回矩阵变量的预期名称。
 	 */
 	public final String getVariableName() {
 		return this.variableName;
 	}
 
 	/**
-	 * Return the method parameter bound to the matrix variable.
+	 * 返回绑定到该矩阵变量的方法参数。
 	 */
 	public final MethodParameter getParameter() {
 		return this.parameter;

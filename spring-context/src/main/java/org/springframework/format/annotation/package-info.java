@@ -1,5 +1,5 @@
 /**
- * Annotations for declaratively configuring field formatting rules.
+ * 用于以声明方式配置字段格式化规则的注解。
  */
 @NonNullApi
 @NonNullFields

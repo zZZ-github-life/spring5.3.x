@@ -25,7 +25,7 @@ import org.springframework.expression.spel.ExpressionState;
 import org.springframework.expression.spel.support.BooleanTypedValue;
 
 /**
- * Implements the not-equal operator.
+ * 实现不等运算符。
  *
  * @author Andy Clement
  * @since 3.0

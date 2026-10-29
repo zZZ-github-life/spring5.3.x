@@ -30,8 +30,8 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.TestContextAnnotationUtils;
 
 /**
- * {@link ContextCustomizerFactory} to support
- * {@link DynamicPropertySource @DynamicPropertySource} methods.
+ * 用于支持 {@link DynamicPropertySource @DynamicPropertySource} 方法的
+ * {@link ContextCustomizerFactory}。
  *
  * @author Phillip Webb
  * @author Sam Brannen

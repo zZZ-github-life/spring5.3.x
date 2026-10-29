@@ -29,18 +29,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Abstract {@link ConnectionFactory} implementation that routes
- * {@link #create()} calls to one of various target
- * {@link ConnectionFactory factories} based on a lookup key.
- * The latter is typically (but not necessarily) determined from some
- * subscriber context.
+ * 抽象的 {@link ConnectionFactory} 实现，它根据查找键将
+ * {@link #create()} 调用路由到多个目标 {@link ConnectionFactory 工厂}之一。
+ * 查找键通常（但不一定）由某个订阅者上下文确定。
  *
- * <p> Allows to configure a {@link #setDefaultTargetConnectionFactory(Object)
- * default ConnectionFactory} as fallback.
+ * <p> 允许配置一个 {@link #setDefaultTargetConnectionFactory(Object)
+ * 默认 ConnectionFactory} 作为回退。
  *
- * <p> Calls to {@link #getMetadata()} are routed to the
- * {@link #setDefaultTargetConnectionFactory(Object) default ConnectionFactory}
- * if configured.
+ * <p> 如果已配置，对 {@link #getMetadata()} 的调用将被路由到
+ * {@link #setDefaultTargetConnectionFactory(Object) 默认 ConnectionFactory}。
  *
  * @author Mark Paluch
  * @author Jens Schauder
@@ -72,40 +69,40 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 
 
 	/**
-	 * Specify the map of target {@link ConnectionFactory ConnectionFactories},
-	 * with the lookup key as key. The mapped value can either be a corresponding
-	 * {@link ConnectionFactory} instance or a connection factory name String (to be
-	 * resolved via a {@link #setConnectionFactoryLookup ConnectionFactoryLookup}).
-	 * <p>The key can be of arbitrary type; this class implements the generic lookup
-	 * process only. The concrete key representation will be handled by
-	 * {@link #resolveSpecifiedLookupKey(Object)} and {@link #determineCurrentLookupKey()}.
+	 * 指定目标 {@link ConnectionFactory ConnectionFactory} 的映射，
+	 * 以查找键作为键。映射值可以是相应的 {@link ConnectionFactory} 实例，
+	 * 也可以是连接工厂名称字符串（将通过
+	 * {@link #setConnectionFactoryLookup ConnectionFactoryLookup} 解析）。
+	 * <p>键可以是任意类型；此类只实现通用的查找流程。
+	 * 具体的键表示由 {@link #resolveSpecifiedLookupKey(Object)}
+	 * 和 {@link #determineCurrentLookupKey()} 处理。
 	 */
 	public void setTargetConnectionFactories(Map<?, ?> targetConnectionFactories) {
 		this.targetConnectionFactories = targetConnectionFactories;
 	}
 
 	/**
-	 * Specify the default target {@link ConnectionFactory}, if any.
-	 * <p>The mapped value can either be a corresponding {@link ConnectionFactory}
-	 * instance or a connection factory name {@link String} (to be resolved via a
-	 * {@link #setConnectionFactoryLookup ConnectionFactoryLookup}).
-	 * <p>This {@link ConnectionFactory} will be used as target if none of the keyed
-	 * {@link #setTargetConnectionFactories targetConnectionFactories} match the
-	 * {@link #determineCurrentLookupKey() current lookup key}.
+	 * 指定默认的目标 {@link ConnectionFactory}（如果有）。
+	 * <p>映射值可以是相应的 {@link ConnectionFactory} 实例，
+	 * 也可以是连接工厂名称 {@link String}（将通过
+	 * {@link #setConnectionFactoryLookup ConnectionFactoryLookup} 解析）。
+	 * <p>如果键控的 {@link #setTargetConnectionFactories targetConnectionFactories}
+	 * 中没有任何一项与 {@link #determineCurrentLookupKey() 当前查找键}匹配，
+	 * 则将使用此 {@link ConnectionFactory} 作为目标。
 	 */
 	public void setDefaultTargetConnectionFactory(Object defaultTargetConnectionFactory) {
 		this.defaultTargetConnectionFactory = defaultTargetConnectionFactory;
 	}
 
 	/**
-	 * Specify whether to apply a lenient fallback to the default {@link ConnectionFactory}
-	 * if no specific {@link ConnectionFactory} could be found for the current lookup key.
-	 * <p>Default is {@code true}, accepting lookup keys without a corresponding entry
-	 * in the target {@link ConnectionFactory} map - simply falling back to the default
-	 * {@link ConnectionFactory} in that case.
-	 * <p>Switch this flag to {@code false} if you would prefer the fallback to only
-	 * apply when no lookup key was emitted. Lookup keys without a {@link ConnectionFactory}
-	 * entry will then lead to an {@link IllegalStateException}.
+	 * 指定当无法为当前查找键找到特定 {@link ConnectionFactory} 时，
+	 * 是否对默认 {@link ConnectionFactory} 应用宽松回退。
+	 * <p>默认值为 {@code true}，即接受在目标 {@link ConnectionFactory}
+	 * 映射中没有对应条目的查找键 —— 在这种情况下直接回退到默认的
+	 * {@link ConnectionFactory}。
+	 * <p>如果你希望仅在没有发出任何查找键时才应用回退，
+	 * 请将此标志切换为 {@code false}。此时，没有对应 {@link ConnectionFactory}
+	 * 条目的查找键将导致 {@link IllegalStateException}。
 	 * @see #setTargetConnectionFactories
 	 * @see #setDefaultTargetConnectionFactory
 	 * @see #determineCurrentLookupKey()
@@ -115,9 +112,8 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	}
 
 	/**
-	 * Set the {@link ConnectionFactoryLookup} implementation to use for resolving
-	 * connection factory name Strings in the {@link #setTargetConnectionFactories
-	 * targetConnectionFactories} map.
+	 * 设置用于解析 {@link #setTargetConnectionFactories targetConnectionFactories}
+	 * 映射中连接工厂名称字符串的 {@link ConnectionFactoryLookup} 实现。
 	 */
 	public void setConnectionFactoryLookup(ConnectionFactoryLookup connectionFactoryLookup) {
 		Assert.notNull(connectionFactoryLookup, "ConnectionFactoryLookup must not be null");
@@ -142,11 +138,10 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	}
 
 	/**
-	 * Resolve the given lookup key object, as specified in the
-	 * {@link #setTargetConnectionFactories targetConnectionFactories} map,
-	 * into the actual lookup key to be used for matching with the
-	 * {@link #determineCurrentLookupKey() current lookup key}.
-	 * <p>The default implementation simply returns the given key as-is.
+	 * 将给定的查找键对象（如 {@link #setTargetConnectionFactories targetConnectionFactories}
+	 * 映射中所指定）解析为用于与 {@link #determineCurrentLookupKey() 当前查找键}
+	 * 进行匹配的实际查找键。
+	 * <p>默认实现简单地按原样返回给定的键。
 	 * @param lookupKey the lookup key object as specified by the user
 	 * @return the lookup key as needed for matching.
 	 */
@@ -155,11 +150,9 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	}
 
 	/**
-	 * Resolve the specified connection factory object into a
-	 * {@link ConnectionFactory} instance.
-	 * <p>The default implementation handles {@link ConnectionFactory} instances
-	 * and connection factory names (to be resolved via a
-	 * {@link #setConnectionFactoryLookup ConnectionFactoryLookup}).
+	 * 将指定的连接工厂对象解析为 {@link ConnectionFactory} 实例。
+	 * <p>默认实现处理 {@link ConnectionFactory} 实例和连接工厂名称
+	 * （将通过 {@link #setConnectionFactoryLookup ConnectionFactoryLookup} 解析）。
 	 * @param connectionFactory the connection factory value object as specified in the
 	 * {@link #setTargetConnectionFactories targetConnectionFactories} map
 	 * @return the resolved {@link ConnectionFactory} (never {@code null})
@@ -195,11 +188,11 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	}
 
 	/**
-	 * Retrieve the current target {@link ConnectionFactory}. Determines the
-	 * {@link #determineCurrentLookupKey() current lookup key}, performs a lookup
-	 * in the {@link #setTargetConnectionFactories targetConnectionFactories} map,
-	 * falls back to the specified {@link #setDefaultTargetConnectionFactory default
-	 * target ConnectionFactory} if necessary.
+	 * 获取当前的目标 {@link ConnectionFactory}。确定
+	 * {@link #determineCurrentLookupKey() 当前查找键}，在
+	 * {@link #setTargetConnectionFactories targetConnectionFactories} 映射中执行查找，
+	 * 如有必要则回退到指定的
+	 * {@link #setDefaultTargetConnectionFactory 默认目标 ConnectionFactory}。
 	 * @return {@link Mono} emitting the current {@link ConnectionFactory} as
 	 * per {@link #determineCurrentLookupKey()}
 	 * @see #determineCurrentLookupKey()
@@ -224,9 +217,9 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 	}
 
 	/**
-	 * Determine the current lookup key. This will typically be implemented to check a
-	 * subscriber context. Allows for arbitrary keys. The returned key needs to match the
-	 * stored lookup key type, as resolved by the {@link #resolveSpecifiedLookupKey} method.
+	 * 确定当前的查找键。通常实现为检查订阅者上下文。
+	 * 键可以是任意类型。返回的键需要与所存储的查找键类型匹配，
+	 * 该类型由 {@link #resolveSpecifiedLookupKey} 方法解析。
 	 * @return {@link Mono} emitting the lookup key. May complete without emitting a value
 	 * if no lookup key available
 	 */

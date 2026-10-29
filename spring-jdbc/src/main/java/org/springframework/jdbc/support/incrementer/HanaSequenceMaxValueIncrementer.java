@@ -19,8 +19,7 @@ package org.springframework.jdbc.support.incrementer;
 import javax.sql.DataSource;
 
 /**
- * {@link DataFieldMaxValueIncrementer} that retrieves the next value
- * of a given SAP HANA sequence.
+ * {@link DataFieldMaxValueIncrementer}，用于获取给定 SAP HANA 序列的下一个值。
  *
  * @author Jonathan Bregler
  * @author Juergen Hoeller
@@ -29,7 +28,7 @@ import javax.sql.DataSource;
 public class HanaSequenceMaxValueIncrementer extends AbstractSequenceMaxValueIncrementer {
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -37,7 +36,7 @@ public class HanaSequenceMaxValueIncrementer extends AbstractSequenceMaxValueInc
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */

@@ -28,9 +28,8 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
- * Miscellaneous utility methods for number conversion and parsing.
- * <p>Mainly for internal use within the framework; consider Apache's
- * Commons Lang for a more comprehensive suite of number utilities.
+ * 用于数字转换和解析的各种工具方法。
+ * <p>主要用于框架内部；如需更全面的数字工具套件，可考虑 Apache 的 Commons Lang。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -43,8 +42,8 @@ public abstract class NumberUtils {
 	private static final BigInteger LONG_MAX = BigInteger.valueOf(Long.MAX_VALUE);
 
 	/**
-	 * Standard number types (all immutable):
-	 * Byte, Short, Integer, Long, BigInteger, Float, Double, BigDecimal.
+	 * 标准数字类型（均不可变）：
+	 * Byte、Short、Integer、Long、BigInteger、Float、Double、BigDecimal。
 	 */
 	public static final Set<Class<?>> STANDARD_NUMBER_TYPES;
 
@@ -63,7 +62,7 @@ public abstract class NumberUtils {
 
 
 	/**
-	 * Convert the given number into an instance of the given target class.
+	 * 将给定的数字转换为给定目标类的实例。
 	 * @param number the number to convert
 	 * @param targetClass the target class to convert to
 	 * @return the converted number
@@ -141,8 +140,7 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Check for a {@code BigInteger}/{@code BigDecimal} long overflow
-	 * before returning the given number as a long value.
+	 * 在以 long 值返回给定数字之前，检查 {@code BigInteger}/{@code BigDecimal} 的 long 溢出。
 	 * @param number the number to convert
 	 * @param targetClass the target class to convert to
 	 * @return the long value, if convertible without overflow
@@ -165,7 +163,7 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Raise an <em>overflow</em> exception for the given number and target class.
+	 * 针对给定数字和目标类抛出<em>溢出</em>异常。
 	 * @param number the number we tried to convert
 	 * @param targetClass the target class we tried to convert to
 	 * @throws IllegalArgumentException if there is an overflow
@@ -176,11 +174,10 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Parse the given {@code text} into a {@link Number} instance of the given
-	 * target class, using the corresponding {@code decode} / {@code valueOf} method.
-	 * <p>Trims all whitespace (leading, trailing, and in between characters) from
-	 * the input {@code String} before attempting to parse the number.
-	 * <p>Supports numbers in hex format (with leading "0x", "0X", or "#") as well.
+	 * 将给定的 {@code text} 解析为给定目标类的 {@link Number} 实例，使用相应的 {@code decode} /
+	 * {@code valueOf} 方法。
+	 * <p>在尝试解析数字之前，去除输入 {@code String} 中的所有空白（前导、尾随以及字符之间的空白）。
+	 * <p>也支持十六进制格式的数字（带有前导 "0x"、"0X" 或 "#"）。
 	 * @param text the text to convert
 	 * @param targetClass the target class to parse into
 	 * @return the parsed number
@@ -232,9 +229,8 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Parse the given {@code text} into a {@link Number} instance of the
-	 * given target class, using the supplied {@link NumberFormat}.
-	 * <p>Trims the input {@code String} before attempting to parse the number.
+	 * 将给定的 {@code text} 解析为给定目标类的 {@link Number} 实例，使用提供的 {@link NumberFormat}。
+	 * <p>在尝试解析数字之前，去除输入 {@code String} 的空白。
 	 * @param text the text to convert
 	 * @param targetClass the target class to parse into
 	 * @param numberFormat the {@code NumberFormat} to use for parsing (if
@@ -280,9 +276,8 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Determine whether the given {@code value} String indicates a hex number,
-	 * i.e. needs to be passed into {@code Integer.decode} instead of
-	 * {@code Integer.valueOf}, etc.
+	 * 确定给定的 {@code value} String 是否表示十六进制数字，即是否需要传入 {@code Integer.decode} 而不
+	 * 是 {@code Integer.valueOf}，等等。
 	 */
 	private static boolean isHexNumber(String value) {
 		int index = (value.startsWith("-") ? 1 : 0);
@@ -290,8 +285,8 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Decode a {@link java.math.BigInteger} from the supplied {@link String} value.
-	 * <p>Supports decimal, hex, and octal notation.
+	 * 从提供的 {@link String} 值中解码 {@link java.math.BigInteger}。
+	 * <p>支持十进制、十六进制和八进制表示法。
 	 * @see BigInteger#BigInteger(String, int)
 	 */
 	private static BigInteger decodeBigInteger(String value) {

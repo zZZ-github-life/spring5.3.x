@@ -26,17 +26,16 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
 
 /**
- * A convenience annotation that is itself annotated with
- * {@link Controller @Controller} and {@link ResponseBody @ResponseBody}.
+ * 一个便捷注解，其本身标注了 {@link Controller @Controller} 和
+ * {@link ResponseBody @ResponseBody}。
  * <p>
- * Types that carry this annotation are treated as controllers where
- * {@link RequestMapping @RequestMapping} methods assume
- * {@link ResponseBody @ResponseBody} semantics by default.
+ * 标注了此注解的类型会被视为控制器，其中的 {@link RequestMapping @RequestMapping}
+ * 方法默认采用 {@link ResponseBody @ResponseBody} 语义。
  *
- * <p><b>NOTE:</b> {@code @RestController} is processed if an appropriate
- * {@code HandlerMapping}-{@code HandlerAdapter} pair is configured such as the
- * {@code RequestMappingHandlerMapping}-{@code RequestMappingHandlerAdapter}
- * pair which are the default in the MVC Java config and the MVC namespace.
+ * <p><b>注意：</b>只有在配置了合适的 {@code HandlerMapping}-{@code HandlerAdapter}
+ * 组合时才会处理 {@code @RestController}，例如
+ * {@code RequestMappingHandlerMapping}-{@code RequestMappingHandlerAdapter} 组合，
+ * 它们是 MVC Java 配置和 MVC 命名空间中的默认配置。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -50,8 +49,7 @@ import org.springframework.stereotype.Controller;
 public @interface RestController {
 
 	/**
-	 * The value may indicate a suggestion for a logical component name,
-	 * to be turned into a Spring bean in case of an autodetected component.
+	 * 该值可用于建议一个逻辑组件名称，在组件被自动检测到时转换为 Spring bean 名称。
 	 * @return the suggested component name, if any (or empty String otherwise)
 	 * @since 4.0.1
 	 */

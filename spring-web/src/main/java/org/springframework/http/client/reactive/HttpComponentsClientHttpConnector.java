@@ -43,7 +43,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
 
 /**
- * {@link ClientHttpConnector} implementation for the Apache HttpComponents HttpClient 5.x.
+ * 用于 Apache HttpComponents HttpClient 5.x 的 {@link ClientHttpConnector} 实现。
  *
  * @author Martin Tarjányi
  * @author Arjen Poutsma
@@ -60,14 +60,14 @@ public class HttpComponentsClientHttpConnector implements ClientHttpConnector, C
 
 
 	/**
-	 * Default constructor that creates and starts a new instance of {@link CloseableHttpAsyncClient}.
+	 * 默认构造函数，创建并启动新的 {@link CloseableHttpAsyncClient} 实例。
 	 */
 	public HttpComponentsClientHttpConnector() {
 		this(HttpAsyncClients.createDefault());
 	}
 
 	/**
-	 * Constructor with a pre-configured {@link CloseableHttpAsyncClient} instance.
+	 * 使用预配置的 {@link CloseableHttpAsyncClient} 实例的构造函数。
 	 * @param client the client to use
 	 */
 	public HttpComponentsClientHttpConnector(CloseableHttpAsyncClient client) {
@@ -75,9 +75,9 @@ public class HttpComponentsClientHttpConnector implements ClientHttpConnector, C
 	}
 
 	/**
-	 * Constructor with a pre-configured {@link CloseableHttpAsyncClient} instance
-	 * and a {@link HttpClientContext} supplier lambda which is called before each request
-	 * and passed to the client.
+	 * 使用预配置的 {@link CloseableHttpAsyncClient} 实例以及
+	 * {@link HttpClientContext} 供应商 lambda 的构造函数，该 lambda 在每个请求之前
+	 * 调用并传递给客户端。
 	 * @param client the client to use
 	 * @param contextProvider a {@link HttpClientContext} supplier
 	 */
@@ -94,7 +94,7 @@ public class HttpComponentsClientHttpConnector implements ClientHttpConnector, C
 
 
 	/**
-	 * Set the buffer factory to use.
+	 * 设置要使用的缓冲区工厂。
 	 */
 	public void setBufferFactory(DataBufferFactory bufferFactory) {
 		this.dataBufferFactory = bufferFactory;

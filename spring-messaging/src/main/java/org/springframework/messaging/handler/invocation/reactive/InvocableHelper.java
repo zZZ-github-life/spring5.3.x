@@ -37,13 +37,12 @@ import org.springframework.messaging.handler.invocation.AbstractExceptionHandler
 import org.springframework.util.Assert;
 
 /**
- * Help to initialize and invoke an {@link InvocableHandlerMethod}, and to then
- * apply return value handling and exception handling. Holds all necessary
- * configuration necessary to do so.
- *
- * @author Rossen Stoyanchev
- * @since 5.2
- */
+	 * 帮助初始化和调用 {@link InvocableHandlerMethod}，然后应用返回值处理和异常处理。
+	 * 持有执行这些操作所需的所有必要配置。
+	 *
+	 * @author Rossen Stoyanchev
+	 * @since 5.2
+	 */
 class InvocableHelper {
 
 	private static final Log logger = LogFactory.getLog(InvocableHelper.class);
@@ -73,15 +72,14 @@ class InvocableHelper {
 	}
 
 	/**
-	 * Add the arguments resolvers to use for message handling and exception
-	 * handling methods.
+	 * 添加用于消息处理和异常处理方法的参数解析器。
 	 */
 	public void addArgumentResolvers(List<? extends HandlerMethodArgumentResolver> resolvers) {
 		this.argumentResolvers.addResolvers(resolvers);
 	}
 
 	/**
-	 * Return the configured resolvers.
+	 * 返回已配置的解析器。
 	 * @since 5.2.2
 	 */
 	public HandlerMethodArgumentResolverComposite getArgumentResolvers() {
@@ -89,17 +87,15 @@ class InvocableHelper {
 	}
 
 	/**
-	 * Add the return value handlers to use for message handling and exception
-	 * handling methods.
+	 * 添加用于消息处理和异常处理方法的返回值处理器。
 	 */
 	public void addReturnValueHandlers(List<? extends HandlerMethodReturnValueHandler> handlers) {
 		this.returnValueHandlers.addHandlers(handlers);
 	}
 
 	/**
-	 * Configure the registry for adapting various reactive types.
-	 * <p>By default this is an instance of {@link ReactiveAdapterRegistry} with
-	 * default settings.
+	 * 配置用于适配各种响应式类型的注册表。
+	 * <p>默认情况下，这是使用默认设置的 {@link ReactiveAdapterRegistry} 实例。
 	 */
 	public void setReactiveAdapterRegistry(ReactiveAdapterRegistry registry) {
 		Assert.notNull(registry, "ReactiveAdapterRegistry is required");
@@ -107,15 +103,15 @@ class InvocableHelper {
 	}
 
 	/**
-	 * Return the configured registry for adapting reactive types.
+	 * 返回已配置的用于适配响应式类型的注册表。
 	 */
 	public ReactiveAdapterRegistry getReactiveAdapterRegistry() {
 		return this.reactiveAdapterRegistry;
 	}
 
 	/**
-	 * Method to populate the MessagingAdviceBean cache (e.g. to support "global"
-	 * {@code @MessageExceptionHandler}).
+	 * 用于填充 MessagingAdviceBean 缓存的方法（例如以支持“全局”
+	 * {@code @MessageExceptionHandler}）。
 	 */
 	public void registerExceptionHandlerAdvice(
 			MessagingAdviceBean bean, AbstractExceptionHandlerMethodResolver resolver) {
@@ -125,7 +121,7 @@ class InvocableHelper {
 
 
 	/**
-	 * Create {@link InvocableHandlerMethod} with the configured arg resolvers.
+	 * 使用已配置的参数解析器创建 {@link InvocableHandlerMethod}。
 	 * @param handlerMethod the target handler method to invoke
 	 * @return the created instance
 	 */
@@ -137,11 +133,9 @@ class InvocableHelper {
 	}
 
 	/**
-	 * Find an exception handling method for the given exception.
-	 * <p>The default implementation searches methods in the class hierarchy of
-	 * the HandlerMethod first and if not found, it continues searching for
-	 * additional handling methods registered via
-	 * {@link #registerExceptionHandlerAdvice}.
+	 * 为给定异常查找异常处理方法。
+	 * <p>默认实现首先在 HandlerMethod 的类层次结构中搜索方法；如果未找到，
+	 * 则继续搜索通过 {@link #registerExceptionHandlerAdvice} 注册的其他处理方法。
 	 * @param handlerMethod the method where the exception was raised
 	 * @param ex the exception raised or signaled
 	 * @return a method to handle the exception, or {@code null}

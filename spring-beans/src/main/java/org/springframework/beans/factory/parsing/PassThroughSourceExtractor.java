@@ -20,15 +20,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link SourceExtractor} implementation that just passes
- * the candidate source metadata object through for attachment.
+ * 简单的 {@link SourceExtractor} 实现，仅将候选源元数据对象原样传递以进行附加。
  *
- * <p>Using this implementation means that tools will get raw access to the
- * underlying configuration source metadata provided by the tool.
+ * <p>使用此实现意味着工具可以直接访问由该工具提供的底层配置源元数据。
  *
- * <p>This implementation <strong>should not</strong> be used in a production
- * application since it is likely to keep too much metadata in memory
- * (unnecessarily).
+ * <p>此实现<strong>不应</strong>用于生产应用，因为它很可能会（不必要地）在内存中保留过多元数据。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -36,7 +32,7 @@ import org.springframework.lang.Nullable;
 public class PassThroughSourceExtractor implements SourceExtractor {
 
 	/**
-	 * Simply returns the supplied {@code sourceCandidate} as-is.
+	 * 仅按原样返回给定的 {@code sourceCandidate}。
 	 * @param sourceCandidate the source metadata
 	 * @return the supplied {@code sourceCandidate}
 	 */

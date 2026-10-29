@@ -25,11 +25,10 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Specialization of {@link AsyncExecutionInterceptor} that delegates method execution to
- * an {@code Executor} based on the {@link Async} annotation. Specifically designed to
- * support use of {@link Async#value()} executor qualification mechanism introduced in
- * Spring 3.1.2. Supports detecting qualifier metadata via {@code @Async} at the method or
- * declaring class level. See {@link #getExecutorQualifier(Method)} for details.
+ * {@link AsyncExecutionInterceptor} 的特化，根据 {@link Async} 注解将方法执行委托给
+ * {@code Executor}。专门设计用于支持 Spring 3.1.2 引入的 {@link Async#value()} 执行器限定机制。支
+ * 持在方法或声明类级别通过 {@code @Async} 检测限定符元数据。详情请参见
+ * {@link #getExecutorQualifier(Method)}。
  *
  * @author Chris Beams
  * @author Stephane Nicoll
@@ -40,8 +39,8 @@ import org.springframework.lang.Nullable;
 public class AnnotationAsyncExecutionInterceptor extends AsyncExecutionInterceptor {
 
 	/**
-	 * Create a new {@code AnnotationAsyncExecutionInterceptor} with the given executor
-	 * and a simple {@link AsyncUncaughtExceptionHandler}.
+	 * 使用给定的执行器和一个简单的 {@link AsyncUncaughtExceptionHandler} 创建一个新的
+	 * {@code AnnotationAsyncExecutionInterceptor}。
 	 * @param defaultExecutor the executor to be used by default if no more specific
 	 * executor has been qualified at the method level using {@link Async#value()};
 	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
@@ -51,7 +50,7 @@ public class AnnotationAsyncExecutionInterceptor extends AsyncExecutionIntercept
 	}
 
 	/**
-	 * Create a new {@code AnnotationAsyncExecutionInterceptor} with the given executor.
+	 * 使用给定的执行器创建一个新的 {@code AnnotationAsyncExecutionInterceptor}。
 	 * @param defaultExecutor the executor to be used by default if no more specific
 	 * executor has been qualified at the method level using {@link Async#value()};
 	 * as of 4.2.6, a local executor for this interceptor will be built otherwise
@@ -65,11 +64,9 @@ public class AnnotationAsyncExecutionInterceptor extends AsyncExecutionIntercept
 
 
 	/**
-	 * Return the qualifier or bean name of the executor to be used when executing the
-	 * given method, specified via {@link Async#value} at the method or declaring
-	 * class level. If {@code @Async} is specified at both the method and class level, the
-	 * method's {@code #value} takes precedence (even if empty string, indicating that
-	 * the default executor should be used preferentially).
+	 * 返回执行给定方法时要使用的执行器的限定符或 Bean 名称，它通过方法或声明类级别的
+	 * {@link Async#value} 指定。如果在方法级别和类级别都指定了 {@code @Async}，则方法的 {@code #value}
+	 * 优先（即使为空字符串，也表示应优先使用默认执行器）。
 	 * @param method the method to inspect for executor qualifier metadata
 	 * @return the qualifier if specified, otherwise empty string indicating that the
 	 * {@linkplain #setExecutor(Executor) default executor} should be used

@@ -23,9 +23,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.util.Assert;
 
 /**
- * Base implementation of {@link DataFieldMaxValueIncrementer} that delegates
- * to a single {@link #getNextKey} template method that returns a {@code long}.
- * Uses longs for String values, padding with zeroes if required.
+ * {@link DataFieldMaxValueIncrementer} 的基础实现，委托给一个返回 {@code long}
+ * 的 {@link #getNextKey} 模板方法。对 String 值使用 long，
+ * 并在需要时用零进行填充。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -36,15 +36,15 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 	private DataSource dataSource;
 
-	/** The name of the sequence/table containing the sequence. */
+	/** 包含该序列的序列名/表名。 */
 	private String incrementerName;
 
-	/** The length to which a string result should be pre-pended with zeroes. */
+	/** String 类型结果应前置零填充到的长度。 */
 	protected int paddingLength = 0;
 
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -52,7 +52,7 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */
@@ -65,43 +65,42 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 
 	/**
-	 * Set the data source to retrieve the value from.
+	 * 设置用于获取值的数据源。
 	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	/**
-	 * Return the data source to retrieve the value from.
+	 * 返回用于获取值的数据源。
 	 */
 	public DataSource getDataSource() {
 		return this.dataSource;
 	}
 
 	/**
-	 * Set the name of the sequence/table.
+	 * 设置序列名/表名。
 	 */
 	public void setIncrementerName(String incrementerName) {
 		this.incrementerName = incrementerName;
 	}
 
 	/**
-	 * Return the name of the sequence/table.
+	 * 返回序列名/表名。
 	 */
 	public String getIncrementerName() {
 		return this.incrementerName;
 	}
 
 	/**
-	 * Set the padding length, i.e. the length to which a string result
-	 * should be pre-pended with zeroes.
+	 * 设置填充长度，即 String 类型结果应前置零填充到的长度。
 	 */
 	public void setPaddingLength(int paddingLength) {
 		this.paddingLength = paddingLength;
 	}
 
 	/**
-	 * Return the padding length for String values.
+	 * 返回 String 值的填充长度。
 	 */
 	public int getPaddingLength() {
 		return this.paddingLength;
@@ -145,7 +144,7 @@ public abstract class AbstractDataFieldMaxValueIncrementer implements DataFieldM
 
 
 	/**
-	 * Determine the next key to use, as a long.
+	 * 确定下一个要使用的键，以 long 形式表示。
 	 * @return the key to use as a long. It will eventually be converted later
 	 * in another format by the public concrete methods of this class.
 	 */

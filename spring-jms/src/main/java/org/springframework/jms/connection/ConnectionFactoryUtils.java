@@ -36,12 +36,11 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * Helper class for managing a JMS {@link javax.jms.ConnectionFactory}, in particular
- * for obtaining transactional JMS resources for a given ConnectionFactory.
+ * 用于管理 JMS {@link javax.jms.ConnectionFactory} 的辅助类，
+ * 特别是为给定的 ConnectionFactory 获取事务性 JMS 资源。
  *
- * <p>Mainly for internal use within the framework. Used by
- * {@link org.springframework.jms.core.JmsTemplate} as well as
- * {@link org.springframework.jms.listener.DefaultMessageListenerContainer}.
+ * <p>主要供框架内部使用。由 {@link org.springframework.jms.core.JmsTemplate}
+ * 以及 {@link org.springframework.jms.listener.DefaultMessageListenerContainer} 使用。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -53,10 +52,10 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Release the given Connection, stopping it (if necessary) and eventually closing it.
-	 * <p>Checks {@link SmartConnectionFactory#shouldStop}, if available.
-	 * This is essentially a more sophisticated version of
-	 * {@link org.springframework.jms.support.JmsUtils#closeConnection}.
+	 * 释放给定的 Connection，必要时停止它，并最终关闭它。
+	 * <p>如果可用，会检查 {@link SmartConnectionFactory#shouldStop}。
+	 * 这本质上是 {@link org.springframework.jms.support.JmsUtils#closeConnection}
+	 * 的更精细版本。
 	 * @param con the Connection to release
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param cf the ConnectionFactory that the Connection was obtained from
@@ -86,9 +85,8 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Return the innermost target Session of the given Session. If the given
-	 * Session is a proxy, it will be unwrapped until a non-proxy Session is
-	 * found. Otherwise, the passed-in Session will be returned as-is.
+	 * 返回给定 Session 最内层的目标 Session。如果给定的 Session 是代理，
+	 * 将一直解包直到找到非代理 Session 为止。否则，按原样返回传入的 Session。
 	 * @param session the Session proxy to unwrap
 	 * @return the innermost target Session, or the passed-in one if no proxy
 	 * @see SessionProxy#getTargetSession()
@@ -104,8 +102,7 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Determine whether the given JMS Session is transactional, that is,
-	 * bound to the current thread by Spring's transaction facilities.
+	 * 判断给定的 JMS Session 是否为事务性的，即是否由 Spring 的事务设施绑定到当前线程。
 	 * @param session the JMS Session to check
 	 * @param cf the JMS ConnectionFactory that the Session originated from
 	 * @return whether the Session is transactional
@@ -120,7 +117,7 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Obtain a JMS Session that is synchronized with the current transaction, if any.
+	 * 获取与当前事务（如果有）同步的 JMS Session。
 	 * @param cf the ConnectionFactory to obtain a Session for
 	 * @param existingCon the existing JMS Connection to obtain a Session for
 	 * (may be {@code null})
@@ -164,8 +161,8 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JMS QueueSession that is synchronized with the current transaction, if any.
-	 * <p>Mainly intended for use with the JMS 1.0.2 API.
+	 * 获取与当前事务（如果有）同步的 JMS QueueSession。
+	 * <p>主要用于 JMS 1.0.2 API。
 	 * @param cf the ConnectionFactory to obtain a Session for
 	 * @param existingCon the existing JMS Connection to obtain a Session for
 	 * (may be {@code null})
@@ -209,8 +206,8 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JMS TopicSession that is synchronized with the current transaction, if any.
-	 * <p>Mainly intended for use with the JMS 1.0.2 API.
+	 * 获取与当前事务（如果有）同步的 JMS TopicSession。
+	 * <p>主要用于 JMS 1.0.2 API。
 	 * @param cf the ConnectionFactory to obtain a Session for
 	 * @param existingCon the existing JMS Connection to obtain a Session for
 	 * (may be {@code null})
@@ -255,9 +252,9 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JMS Session that is synchronized with the current transaction, if any.
-	 * <p>This {@code doGetTransactionalSession} variant always starts the underlying
-	 * JMS Connection, assuming that the Session will be used for receiving messages.
+	 * 获取与当前事务（如果有）同步的 JMS Session。
+	 * <p>此 {@code doGetTransactionalSession} 变体始终启动底层
+	 * JMS Connection，假定该 Session 将用于接收消息。
 	 * @param connectionFactory the JMS ConnectionFactory to bind for
 	 * (used as TransactionSynchronizationManager key)
 	 * @param resourceFactory the ResourceFactory to use for extracting or creating
@@ -274,7 +271,7 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JMS Session that is synchronized with the current transaction, if any.
+	 * 获取与当前事务（如果有）同步的 JMS Session。
 	 * @param connectionFactory the JMS ConnectionFactory to bind for
 	 * (used as TransactionSynchronizationManager key)
 	 * @param resourceFactory the ResourceFactory to use for extracting or creating
@@ -362,13 +359,13 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Callback interface for resource creation.
-	 * Serving as argument for the {@code doGetTransactionalSession} method.
+	 * 用于创建资源的回调接口。
+	 * 作为 {@code doGetTransactionalSession} 方法的参数。
 	 */
 	public interface ResourceFactory {
 
 		/**
-		 * Fetch an appropriate Session from the given JmsResourceHolder.
+		 * 从给定的 JmsResourceHolder 中获取合适的 Session。
 		 * @param holder the JmsResourceHolder
 		 * @return an appropriate Session fetched from the holder,
 		 * or {@code null} if none found
@@ -377,7 +374,7 @@ public abstract class ConnectionFactoryUtils {
 		Session getSession(JmsResourceHolder holder);
 
 		/**
-		 * Fetch an appropriate Connection from the given JmsResourceHolder.
+		 * 从给定的 JmsResourceHolder 中获取合适的 Connection。
 		 * @param holder the JmsResourceHolder
 		 * @return an appropriate Connection fetched from the holder,
 		 * or {@code null} if none found
@@ -386,14 +383,14 @@ public abstract class ConnectionFactoryUtils {
 		Connection getConnection(JmsResourceHolder holder);
 
 		/**
-		 * Create a new JMS Connection for registration with a JmsResourceHolder.
+		 * 创建一个新的 JMS Connection 并注册到 JmsResourceHolder。
 		 * @return the new JMS Connection
 		 * @throws JMSException if thrown by JMS API methods
 		 */
 		Connection createConnection() throws JMSException;
 
 		/**
-		 * Create a new JMS Session for registration with a JmsResourceHolder.
+		 * 创建一个新的 JMS Session 并注册到 JmsResourceHolder。
 		 * @param con the JMS Connection to create a Session for
 		 * @return the new JMS Session
 		 * @throws JMSException if thrown by JMS API methods
@@ -401,10 +398,9 @@ public abstract class ConnectionFactoryUtils {
 		Session createSession(Connection con) throws JMSException;
 
 		/**
-		 * Return whether to allow for a local JMS transaction that is synchronized with
-		 * a Spring-managed transaction (where the main transaction might be a JDBC-based
-		 * one for a specific DataSource, for example), with the JMS transaction
-		 * committing right after the main transaction.
+		 * 返回是否允许与 Spring 管理的事务同步的本地 JMS 事务
+		 * （其中主事务可能是针对特定 DataSource 的基于 JDBC 的事务等），
+		 * 该 JMS 事务在主事务之后立即提交。
 		 * @return whether to allow for synchronizing a local JMS transaction
 		 */
 		boolean isSynchedLocalTransactionAllowed();
@@ -412,8 +408,8 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Callback for resource cleanup at the end of a non-native JMS transaction
-	 * (e.g. when participating in a JtaTransactionManager transaction).
+	 * 用于在非原生 JMS 事务结束时清理资源的回调
+	 * （例如，参与 JtaTransactionManager 事务时）。
 	 * @see org.springframework.transaction.jta.JtaTransactionManager
 	 */
 	private static class JmsResourceSynchronization extends ResourceHolderSynchronization<JmsResourceHolder, Object> {

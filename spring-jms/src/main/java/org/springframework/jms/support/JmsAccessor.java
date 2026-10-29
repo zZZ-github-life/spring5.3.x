@@ -31,14 +31,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@link org.springframework.jms.core.JmsTemplate} and other
- * JMS-accessing gateway helpers, defining common properties such as the
- * JMS {@link ConnectionFactory} to operate on. The subclass
- * {@link org.springframework.jms.support.destination.JmsDestinationAccessor}
- * adds further, destination-related properties.
+ * {@link org.springframework.jms.core.JmsTemplate} 及其他 JMS 访问网关辅助类的基类，
+ * 定义了诸如要操作的 JMS {@link ConnectionFactory} 等公共属性。
+ * 子类 {@link org.springframework.jms.support.destination.JmsDestinationAccessor}
+ * 还添加了与目的地相关的属性。
  *
- * <p>Not intended to be used directly.
- * See {@link org.springframework.jms.core.JmsTemplate}.
+ * <p>不打算直接使用。
+ * 请参见 {@link org.springframework.jms.core.JmsTemplate}。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -47,11 +46,11 @@ import org.springframework.util.Assert;
  */
 public abstract class JmsAccessor implements InitializingBean {
 
-	/** Constants instance for {@code javax.jms.Session}. */
+	/** {@code javax.jms.Session} 的常量实例。 */
 	private static final Constants sessionConstants = new Constants(Session.class);
 
 
-	/** Logger available to subclasses. */
+	/** 子类可用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -63,15 +62,14 @@ public abstract class JmsAccessor implements InitializingBean {
 
 
 	/**
-	 * Set the ConnectionFactory to use for obtaining JMS {@link Connection Connections}.
+	 * 设置用于获取 JMS {@link Connection Connection} 的 ConnectionFactory。
 	 */
 	public void setConnectionFactory(@Nullable ConnectionFactory connectionFactory) {
 		this.connectionFactory = connectionFactory;
 	}
 
 	/**
-	 * Return the ConnectionFactory that this accessor uses for obtaining
-	 * JMS {@link Connection Connections}.
+	 * 返回此访问器用于获取 JMS {@link Connection Connection} 的 ConnectionFactory。
 	 */
 	@Nullable
 	public ConnectionFactory getConnectionFactory() {
@@ -79,7 +77,7 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Obtain the ConnectionFactory for actual use.
+	 * 获取实际使用的 ConnectionFactory。
 	 * @return the ConnectionFactory (never {@code null})
 	 * @throws IllegalStateException in case of no ConnectionFactory set
 	 * @since 5.0
@@ -91,21 +89,16 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Set the transaction mode that is used when creating a JMS {@link Session}.
-	 * Default is "false".
-	 * <p>Note that within a JTA transaction, the parameters passed to
+	 * 设置创建 JMS {@link Session} 时使用的事务模式。默认值为 "false"。
+	 * <p>请注意，在 JTA 事务中，传递给
 	 * {@code create(Queue/Topic)Session(boolean transacted, int acknowledgeMode)}
-	 * method are not taken into account. Depending on the Java EE transaction context,
-	 * the container makes its own decisions on these values. Analogously, these
-	 * parameters are not taken into account within a locally managed transaction
-	 * either, since the accessor operates on an existing JMS Session in this case.
-	 * <p>Setting this flag to "true" will use a short local JMS transaction
-	 * when running outside a managed transaction, and a synchronized local
-	 * JMS transaction in case of a managed transaction (other than an XA
-	 * transaction) being present. This has the effect of a local JMS
-	 * transaction being managed alongside the main transaction (which might
-	 * be a native JDBC transaction), with the JMS transaction committing
-	 * right after the main transaction.
+	 * 方法的参数不会被考虑。根据 Java EE 事务上下文，容器会自行决定这些值。
+	 * 类似地，在本地管理的事务中也不会考虑这些参数，因为在此情况下访问器
+	 * 操作的是现有的 JMS Session。
+	 * <p>将此标志设置为 "true" 时，在受管事务之外运行会使用一个短的本地 JMS 事务，
+	 * 而在存在受管事务（非 XA 事务）的情况下则使用同步的本地 JMS 事务。
+	 * 这样做的效果是让本地 JMS 事务与主事务（可能是原生 JDBC 事务）一起管理，
+	 * 并在主事务之后立即提交 JMS 事务。
 	 * @see javax.jms.Connection#createSession(boolean, int)
 	 */
 	public void setSessionTransacted(boolean sessionTransacted) {
@@ -113,8 +106,7 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Return whether the JMS {@link Session sessions} used by this
-	 * accessor are supposed to be transacted.
+	 * 返回此访问器使用的 JMS {@link Session session} 是否应处于事务中。
 	 * @see #setSessionTransacted(boolean)
 	 */
 	public boolean isSessionTransacted() {
@@ -122,10 +114,9 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Set the JMS acknowledgement mode by the name of the corresponding constant
-	 * in the JMS {@link Session} interface, e.g. "CLIENT_ACKNOWLEDGE".
-	 * <p>If you want to use vendor-specific extensions to the acknowledgement mode,
-	 * use {@link #setSessionAcknowledgeMode(int)} instead.
+	 * 通过 JMS {@link Session} 接口中对应常量的名称来设置 JMS 确认模式，
+	 * 例如 "CLIENT_ACKNOWLEDGE"。
+	 * <p>如果要使用供应商对确认模式的扩展，请改用 {@link #setSessionAcknowledgeMode(int)}。
 	 * @param constantName the name of the {@link Session} acknowledge mode constant
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
@@ -137,15 +128,12 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Set the JMS acknowledgement mode that is used when creating a JMS
-	 * {@link Session} to send a message.
-	 * <p>Default is {@link Session#AUTO_ACKNOWLEDGE}.
-	 * <p>Vendor-specific extensions to the acknowledgement mode can be set here as well.
-	 * <p>Note that inside an EJB, the parameters to the
-	 * {@code create(Queue/Topic)Session(boolean transacted, int acknowledgeMode)} method
-	 * are not taken into account. Depending on the transaction context in the EJB,
-	 * the container makes its own decisions on these values. See section 17.3.5
-	 * of the EJB spec.
+	 * 设置创建 JMS {@link Session} 以发送消息时使用的 JMS 确认模式。
+	 * <p>默认是 {@link Session#AUTO_ACKNOWLEDGE}。
+	 * <p>也可以在此设置供应商对确认模式的扩展。
+	 * <p>请注意，在 EJB 内部，{@code create(Queue/Topic)Session(boolean transacted, int acknowledgeMode)}
+	 * 方法的参数不会被考虑。根据 EJB 中的事务上下文，容器会自行决定这些值。
+	 * 参见 EJB 规范第 17.3.5 节。
 	 * @param sessionAcknowledgeMode the acknowledgement mode constant
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
@@ -157,7 +145,7 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Return the acknowledgement mode for JMS {@link Session sessions}.
+	 * 返回 JMS {@link Session session} 的确认模式。
 	 */
 	public int getSessionAcknowledgeMode() {
 		return this.sessionAcknowledgeMode;
@@ -172,11 +160,9 @@ public abstract class JmsAccessor implements InitializingBean {
 
 
 	/**
-	 * Convert the specified checked {@link javax.jms.JMSException JMSException} to
-	 * a Spring runtime {@link org.springframework.jms.JmsException JmsException}
-	 * equivalent.
-	 * <p>The default implementation delegates to the
-	 * {@link JmsUtils#convertJmsAccessException} method.
+	 * 将指定的受检 {@link javax.jms.JMSException JMSException} 转换为
+	 * 等价的 Spring 运行时 {@link org.springframework.jms.JmsException JmsException}。
+	 * <p>默认实现委托给 {@link JmsUtils#convertJmsAccessException} 方法。
 	 * @param ex the original checked {@link JMSException} to convert
 	 * @return the Spring runtime {@link JmsException} wrapping {@code ex}
 	 * @see JmsUtils#convertJmsAccessException
@@ -186,8 +172,8 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Create a JMS Connection via this template's ConnectionFactory.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 通过此模板的 ConnectionFactory 创建一个 JMS Connection。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @return the new JMS Connection
 	 * @throws JMSException if thrown by JMS API methods
 	 * @see javax.jms.ConnectionFactory#createConnection()
@@ -203,8 +189,8 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Create a JMS Session for the given Connection.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 为给定的 Connection 创建一个 JMS Session。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @param con the JMS Connection to create a Session for
 	 * @return the new JMS Session
 	 * @throws JMSException if thrown by JMS API methods
@@ -215,8 +201,8 @@ public abstract class JmsAccessor implements InitializingBean {
 	}
 
 	/**
-	 * Determine whether the given Session is in client acknowledge mode.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 判断给定的 Session 是否处于客户端确认模式。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @param session the JMS Session to check
 	 * @return whether the given Session is in client acknowledge mode
 	 * @throws javax.jms.JMSException if thrown by JMS API methods

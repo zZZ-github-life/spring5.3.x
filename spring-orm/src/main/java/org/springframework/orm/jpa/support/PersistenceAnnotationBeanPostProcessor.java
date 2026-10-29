@@ -71,45 +71,42 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * BeanPostProcessor that processes {@link javax.persistence.PersistenceUnit}
- * and {@link javax.persistence.PersistenceContext} annotations, for injection of
- * the corresponding JPA resources {@link javax.persistence.EntityManagerFactory}
- * and {@link javax.persistence.EntityManager}. Any such annotated fields or methods
- * in any Spring-managed object will automatically be injected.
+ * BeanPostProcessor，用于处理 {@link javax.persistence.PersistenceUnit}
+ * 和 {@link javax.persistence.PersistenceContext} 注解，注入相应的
+ * JPA 资源 {@link javax.persistence.EntityManagerFactory}
+ * 和 {@link javax.persistence.EntityManager}。任何 Spring 托管对象中
+ * 此类带注解的字段或方法都会被自动注入。
  *
- * <p>This post-processor will inject sub-interfaces of {@code EntityManagerFactory}
- * and {@code EntityManager} if the annotated fields or methods are declared as such.
- * The actual type will be verified early, with the exception of a shared ("transactional")
- * {@code EntityManager} reference, where type mismatches might be detected as late
- * as on the first actual invocation.
+ * <p>如果带注解的字段或方法声明为 {@code EntityManagerFactory}
+ * 和 {@code EntityManager} 的子接口，此后处理器将注入这些子接口。
+ * 实际类型会尽早验证，但共享（"事务性"）的 {@code EntityManager}
+ * 引用除外，其类型不匹配可能要到第一次实际调用时才会被发现。
  *
- * <p>Note: In the present implementation, PersistenceAnnotationBeanPostProcessor
- * only supports {@code @PersistenceUnit} and {@code @PersistenceContext}
- * with the "unitName" attribute, or no attribute at all (for the default unit).
- * If those annotations are present with the "name" attribute at the class level,
- * they will simply be ignored, since those only serve as deployment hint
- * (as per the Java EE specification).
+ * <p>注意：在当前实现中，PersistenceAnnotationBeanPostProcessor
+ * 仅支持带有 "unitName" 属性的 {@code @PersistenceUnit} 和
+ * {@code @PersistenceContext}，或者完全不指定属性（使用默认单元）。
+ * 如果这些注解在类级别带有 "name" 属性，它们将被直接忽略，
+ * 因为这些注解仅作为部署提示（依据 Java EE 规范）。
  *
- * <p>This post-processor can either obtain EntityManagerFactory beans defined
- * in the Spring application context (the default), or obtain EntityManagerFactory
- * references from JNDI ("persistence unit references"). In the bean case,
- * the persistence unit name will be matched against the actual deployed unit,
- * with the bean name used as fallback unit name if no deployed name found.
- * Typically, Spring's {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
- * will be used for setting up such EntityManagerFactory beans. Alternatively,
- * such beans may also be obtained from JNDI, e.g. using the {@code jee:jndi-lookup}
- * XML configuration element (with the bean name matching the requested unit name).
- * In both cases, the post-processor definition will look as simple as this:
+ * <p>此后期处理器既可以从 Spring 应用上下文中获取已定义的
+ * EntityManagerFactory bean（默认方式），也可以从 JNDI 获取
+ * EntityManagerFactory 引用（"持久化单元引用"）。在 bean 方式下，
+ * 持久化单元名称将与实际部署的单元进行匹配，如果未找到部署的名称，
+ * 则以 bean 名称作为回退单元名称。通常使用 Spring 的
+ * {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
+ * 来设置此类 EntityManagerFactory bean。另一种方式是通过 JNDI
+ * 获取这些 bean，例如使用 {@code jee:jndi-lookup} XML 配置元素
+ * （bean 名称与请求的单元名称相匹配）。在两种情况下，
+ * 后处理器的定义都非常简单：
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/&gt;</pre>
  *
- * In the JNDI case, specify the corresponding JNDI names in this post-processor's
- * {@link #setPersistenceUnits "persistenceUnits" map}, typically with matching
- * {@code persistence-unit-ref} entries in the Java EE deployment descriptor.
- * By default, those names are considered as resource references (according to the
- * Java EE resource-ref convention), located underneath the "java:comp/env/" namespace.
- * For example:
+ * 在 JNDI 方式下，请在此后处理器的
+ * {@link #setPersistenceUnits "persistenceUnits" map} 中指定相应的 JNDI 名称，
+ * 通常与 Java EE 部署描述符中匹配的 {@code persistence-unit-ref} 条目对应。
+ * 默认情况下，这些名称被视为资源引用（依照 Java EE 资源引用约定），
+ * 位于 "java:comp/env/" 命名空间之下。例如：
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"&gt;
@@ -121,20 +118,20 @@ import org.springframework.util.StringUtils;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * In this case, the specified persistence units will always be resolved in JNDI
- * rather than as Spring-defined beans. The entire persistence unit deployment,
- * including the weaving of persistent classes, is then up to the Java EE server.
- * Persistence contexts (i.e. EntityManager references) will be built based on
- * those server-provided EntityManagerFactory references, using Spring's own
- * transaction synchronization facilities for transactional EntityManager handling
- * (typically with Spring's {@code @Transactional} annotation for demarcation
- * and {@link org.springframework.transaction.jta.JtaTransactionManager} as backend).
+ * 在这种情况下，指定的持久化单元将始终从 JNDI 解析，
+ * 而不会作为 Spring 定义的 bean 解析。整个持久化单元部署，
+ * 包括持久化类的织入，都由 Java EE 服务器负责。
+ * 持久化上下文（即 EntityManager 引用）将基于这些由服务器提供的
+ * EntityManagerFactory 引用来构建，并使用 Spring 自身的事务同步设施
+ * 进行事务性 EntityManager 处理（通常使用 Spring 的 {@code @Transactional}
+ * 注解进行事务划分，并以 {@link org.springframework.transaction.jta.JtaTransactionManager}
+ * 作为后端）。
  *
- * <p>If you prefer the Java EE server's own EntityManager handling, specify entries
- * in this post-processor's {@link #setPersistenceContexts "persistenceContexts" map}
- * (or {@link #setExtendedPersistenceContexts "extendedPersistenceContexts" map},
- * typically with matching {@code persistence-context-ref} entries in the
- * Java EE deployment descriptor. For example:
+ * <p>如果希望使用 Java EE 服务器自身的 EntityManager 处理方式，请在此后处理器的
+ * {@link #setPersistenceContexts "persistenceContexts" map}
+ * （或 {@link #setExtendedPersistenceContexts "extendedPersistenceContexts" map}）
+ * 中指定条目，通常与 Java EE 部署描述符中匹配的 {@code persistence-context-ref}
+ * 条目对应。例如：
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"&gt;
@@ -146,21 +143,21 @@ import org.springframework.util.StringUtils;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * If the application only obtains EntityManager references in the first place,
- * this is all you need to specify. If you need EntityManagerFactory references
- * as well, specify entries for both "persistenceUnits" and "persistenceContexts",
- * pointing to matching JNDI locations.
+ * 如果应用程序只需要获取 EntityManager 引用，
+ * 这些就是需要指定的全部内容。如果还需要 EntityManagerFactory 引用，
+ * 请同时为 "persistenceUnits" 和 "persistenceContexts" 指定条目，
+ * 指向匹配的 JNDI 位置。
  *
- * <p><b>NOTE: In general, do not inject EXTENDED EntityManagers into STATELESS beans,
- * i.e. do not use {@code @PersistenceContext} with type {@code EXTENDED} in
- * Spring beans defined with scope 'singleton' (Spring's default scope).</b>
- * Extended EntityManagers are <i>not</i> thread-safe, hence they must not be used
- * in concurrently accessed beans (which Spring-managed singletons usually are).
+ * <p><b>注意：通常不要将 EXTENDED EntityManager 注入到无状态 bean 中，
+ * 即不要在作用域为 'singleton'（Spring 的默认作用域）的 Spring bean 中
+ * 使用类型为 {@code EXTENDED} 的 {@code @PersistenceContext}。</b>
+ * 扩展 EntityManager <i>不是</i>线程安全的，因此不得在并发访问的 bean 中使用
+ * （而 Spring 管理的单例通常就是这种情况）。
  *
- * <p>Note: A default PersistenceAnnotationBeanPostProcessor will be registered
- * by the "context:annotation-config" and "context:component-scan" XML tags.
- * Remove or turn off the default annotation configuration there if you intend
- * to specify a custom PersistenceAnnotationBeanPostProcessor bean definition.
+ * <p>注意："context:annotation-config" 和 "context:component-scan" XML 标签
+ * 会注册一个默认的 PersistenceAnnotationBeanPostProcessor。
+ * 如果要指定自定义的 PersistenceAnnotationBeanPostProcessor bean 定义，
+ * 请移除或关闭其中的默认注解配置。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -200,7 +197,7 @@ public class PersistenceAnnotationBeanPostProcessor
 
 
 	/**
-	 * Set the JNDI template to use for JNDI lookups.
+	 * 设置用于 JNDI 查找的 JNDI 模板。
 	 * @see org.springframework.jndi.JndiAccessor#setJndiTemplate
 	 */
 	public void setJndiTemplate(Object jndiTemplate) {
@@ -208,7 +205,7 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Set the JNDI environment to use for JNDI lookups.
+	 * 设置用于 JNDI 查找的 JNDI 环境。
 	 * @see org.springframework.jndi.JndiAccessor#setJndiEnvironment
 	 */
 	public void setJndiEnvironment(Properties jndiEnvironment) {
@@ -216,9 +213,9 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Set whether the lookup occurs in a Java EE container, i.e. if the prefix
-	 * "java:comp/env/" needs to be added if the JNDI name doesn't already
-	 * contain it. PersistenceAnnotationBeanPostProcessor's default is "true".
+	 * 设置查找是否发生在 Java EE 容器中，即当 JNDI 名称尚未包含前缀
+	 * "java:comp/env/" 时是否需要添加该前缀。
+	 * PersistenceAnnotationBeanPostProcessor 的默认值为 "true"。
 	 * @see org.springframework.jndi.JndiLocatorSupport#setResourceRef
 	 */
 	public void setResourceRef(boolean resourceRef) {
@@ -226,88 +223,81 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Specify the persistence units for EntityManagerFactory lookups,
-	 * as a Map from persistence unit name to persistence unit JNDI name
-	 * (which needs to resolve to an EntityManagerFactory instance).
-	 * <p>JNDI names specified here should refer to {@code persistence-unit-ref}
-	 * entries in the Java EE deployment descriptor, matching the target persistence unit.
-	 * <p>In case of no unit name specified in the annotation, the specified value
-	 * for the {@link #setDefaultPersistenceUnitName default persistence unit}
-	 * will be taken (by default, the value mapped to the empty String),
-	 * or simply the single persistence unit if there is only one.
-	 * <p>This is mainly intended for use in a Java EE environment, with all lookup
-	 * driven by the standard JPA annotations, and all EntityManagerFactory
-	 * references obtained from JNDI. No separate EntityManagerFactory bean
-	 * definitions are necessary in such a scenario.
-	 * <p>If no corresponding "persistenceContexts"/"extendedPersistenceContexts"
-	 * are specified, {@code @PersistenceContext} will be resolved to
-	 * EntityManagers built on top of the EntityManagerFactory defined here.
-	 * Note that those will be Spring-managed EntityManagers, which implement
-	 * transaction synchronization based on Spring's facilities.
-	 * If you prefer the Java EE server's own EntityManager handling,
-	 * specify corresponding "persistenceContexts"/"extendedPersistenceContexts".
+	 * 指定用于 EntityManagerFactory 查找的持久化单元，
+	 * 形式为从持久化单元名称到持久化单元 JNDI 名称的 Map
+	 * （JNDI 名称需要解析为 EntityManagerFactory 实例）。
+	 * <p>此处指定的 JNDI 名称应引用 Java EE 部署描述符中的
+	 * {@code persistence-unit-ref} 条目，并与目标持久化单元相匹配。
+	 * <p>如果注解中未指定单元名称，则采用
+	 * {@link #setDefaultPersistenceUnitName 默认持久化单元} 所指定的值
+	 * （默认为映射到空字符串的值），或者如果只有一个持久化单元，
+	 * 就直接使用该单元。
+	 * <p>这主要面向 Java EE 环境，所有查找都由标准 JPA 注解驱动，
+	 * 所有 EntityManagerFactory 引用都从 JNDI 获取。
+	 * 在这种情况下，无需单独定义 EntityManagerFactory bean。
+	 * <p>如果未指定相应的 "persistenceContexts"/"extendedPersistenceContexts"，
+	 * 则 {@code @PersistenceContext} 将被解析为基于此处定义的
+	 * EntityManagerFactory 构建的 EntityManager。
+	 * 请注意，这些将是 Spring 管理的 EntityManager，它们基于 Spring 的设施
+	 * 实现事务同步。如果希望使用 Java EE 服务器自身的 EntityManager 处理方式，
+	 * 请指定相应的 "persistenceContexts"/"extendedPersistenceContexts"。
 	 */
 	public void setPersistenceUnits(Map<String, String> persistenceUnits) {
 		this.persistenceUnits = persistenceUnits;
 	}
 
 	/**
-	 * Specify the <i>transactional</i> persistence contexts for EntityManager lookups,
-	 * as a Map from persistence unit name to persistence context JNDI name
-	 * (which needs to resolve to an EntityManager instance).
-	 * <p>JNDI names specified here should refer to {@code persistence-context-ref}
-	 * entries in the Java EE deployment descriptors, matching the target persistence unit
-	 * and being set up with persistence context type {@code Transaction}.
-	 * <p>In case of no unit name specified in the annotation, the specified value
-	 * for the {@link #setDefaultPersistenceUnitName default persistence unit}
-	 * will be taken (by default, the value mapped to the empty String),
-	 * or simply the single persistence unit if there is only one.
-	 * <p>This is mainly intended for use in a Java EE environment, with all
-	 * lookup driven by the standard JPA annotations, and all EntityManager
-	 * references obtained from JNDI. No separate EntityManagerFactory bean
-	 * definitions are necessary in such a scenario, and all EntityManager
-	 * handling is done by the Java EE server itself.
+	 * 指定用于 EntityManager 查找的<i>事务性</i>持久化上下文，
+	 * 形式为从持久化单元名称到持久化上下文 JNDI 名称的 Map
+	 * （JNDI 名称需要解析为 EntityManager 实例）。
+	 * <p>此处指定的 JNDI 名称应引用 Java EE 部署描述符中的
+	 * {@code persistence-context-ref} 条目，与目标持久化单元相匹配，
+	 * 并设置为持久化上下文类型 {@code Transaction}。
+	 * <p>如果注解中未指定单元名称，则采用
+	 * {@link #setDefaultPersistenceUnitName 默认持久化单元} 所指定的值
+	 * （默认为映射到空字符串的值），或者如果只有一个持久化单元，
+	 * 就直接使用该单元。
+	 * <p>这主要面向 Java EE 环境，所有查找都由标准 JPA 注解驱动，
+	 * 所有 EntityManager 引用都从 JNDI 获取。在这种情况下，无需单独定义
+	 * EntityManagerFactory bean，所有 EntityManager 处理
+	 * 都由 Java EE 服务器本身完成。
 	 */
 	public void setPersistenceContexts(Map<String, String> persistenceContexts) {
 		this.persistenceContexts = persistenceContexts;
 	}
 
 	/**
-	 * Specify the <i>extended</i> persistence contexts for EntityManager lookups,
-	 * as a Map from persistence unit name to persistence context JNDI name
-	 * (which needs to resolve to an EntityManager instance).
-	 * <p>JNDI names specified here should refer to {@code persistence-context-ref}
-	 * entries in the Java EE deployment descriptors, matching the target persistence unit
-	 * and being set up with persistence context type {@code Extended}.
-	 * <p>In case of no unit name specified in the annotation, the specified value
-	 * for the {@link #setDefaultPersistenceUnitName default persistence unit}
-	 * will be taken (by default, the value mapped to the empty String),
-	 * or simply the single persistence unit if there is only one.
-	 * <p>This is mainly intended for use in a Java EE environment, with all
-	 * lookup driven by the standard JPA annotations, and all EntityManager
-	 * references obtained from JNDI. No separate EntityManagerFactory bean
-	 * definitions are necessary in such a scenario, and all EntityManager
-	 * handling is done by the Java EE server itself.
+	 * 指定用于 EntityManager 查找的<i>扩展</i>持久化上下文，
+	 * 形式为从持久化单元名称到持久化上下文 JNDI 名称的 Map
+	 * （JNDI 名称需要解析为 EntityManager 实例）。
+	 * <p>此处指定的 JNDI 名称应引用 Java EE 部署描述符中的
+	 * {@code persistence-context-ref} 条目，与目标持久化单元相匹配，
+	 * 并设置为持久化上下文类型 {@code Extended}。
+	 * <p>如果注解中未指定单元名称，则采用
+	 * {@link #setDefaultPersistenceUnitName 默认持久化单元} 所指定的值
+	 * （默认为映射到空字符串的值），或者如果只有一个持久化单元，
+	 * 就直接使用该单元。
+	 * <p>这主要面向 Java EE 环境，所有查找都由标准 JPA 注解驱动，
+	 * 所有 EntityManager 引用都从 JNDI 获取。在这种情况下，无需单独定义
+	 * EntityManagerFactory bean，所有 EntityManager 处理
+	 * 都由 Java EE 服务器本身完成。
 	 */
 	public void setExtendedPersistenceContexts(Map<String, String> extendedPersistenceContexts) {
 		this.extendedPersistenceContexts = extendedPersistenceContexts;
 	}
 
 	/**
-	 * Specify the default persistence unit name, to be used in case
-	 * of no unit name specified in an {@code @PersistenceUnit} /
-	 * {@code @PersistenceContext} annotation.
-	 * <p>This is mainly intended for lookups in the application context,
-	 * indicating the target persistence unit name (typically matching
-	 * the bean name), but also applies to lookups in the
+	 * 指定默认持久化单元名称，当 {@code @PersistenceUnit} /
+	 * {@code @PersistenceContext} 注解中未指定单元名称时使用。
+	 * <p>这主要面向应用上下文中的查找，用于指示目标持久化单元名称
+	 * （通常与 bean 名称一致），但也适用于
 	 * {@link #setPersistenceUnits "persistenceUnits"} /
 	 * {@link #setPersistenceContexts "persistenceContexts"} /
-	 * {@link #setExtendedPersistenceContexts "extendedPersistenceContexts"} map,
-	 * avoiding the need for duplicated mappings for the empty String there.
-	 * <p>Default is to check for a single EntityManagerFactory bean
-	 * in the Spring application context, if any. If there are multiple
-	 * such factories, either specify this default persistence unit name
-	 * or explicitly refer to named persistence units in your annotations.
+	 * {@link #setExtendedPersistenceContexts "extendedPersistenceContexts"} map
+	 * 中的查找，从而避免为其中的空字符串重复配置映射。
+	 * <p>默认行为是检查 Spring 应用上下文中是否存在单个 EntityManagerFactory bean
+	 * （如果有）。如果存在多个这样的工厂，请指定此默认持久化单元名称，
+	 * 或在注解中显式引用具名持久化单元。
 	 */
 	public void setDefaultPersistenceUnitName(@Nullable String unitName) {
 		this.defaultPersistenceUnitName = (unitName != null ? unitName : "");
@@ -442,8 +432,7 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Return a specified persistence unit for the given unit name,
-	 * as defined through the "persistenceUnits" map.
+	 * 返回通过 "persistenceUnits" map 为给定单元名称指定的持久化单元。
 	 * @param unitName the name of the persistence unit
 	 * @return the corresponding EntityManagerFactory,
 	 * or {@code null} if none found
@@ -473,8 +462,8 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Return a specified persistence context for the given unit name, as defined
-	 * through the "persistenceContexts" (or "extendedPersistenceContexts") map.
+	 * 返回通过 "persistenceContexts"（或 "extendedPersistenceContexts"）map
+	 * 为给定单元名称指定的持久化上下文。
 	 * @param unitName the name of the persistence unit
 	 * @param extended whether to obtain an extended persistence context
 	 * @return the corresponding EntityManager, or {@code null} if none found
@@ -506,9 +495,8 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Find an EntityManagerFactory with the given name in the current Spring
-	 * application context, falling back to a single default EntityManagerFactory
-	 * (if any) in case of no unit name specified.
+	 * 在当前 Spring 应用上下文中查找具有给定名称的 EntityManagerFactory；
+	 * 如果未指定单元名称，则回退到单个默认的 EntityManagerFactory（如果有）。
 	 * @param unitName the name of the persistence unit (may be {@code null} or empty)
 	 * @param requestingBeanName the name of the requesting bean
 	 * @return the EntityManagerFactory
@@ -530,8 +518,7 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Find an EntityManagerFactory with the given name in the current
-	 * Spring application context.
+	 * 在当前 Spring 应用上下文中查找具有给定名称的 EntityManagerFactory。
 	 * @param unitName the name of the persistence unit (never empty)
 	 * @param requestingBeanName the name of the requesting bean
 	 * @return the EntityManagerFactory
@@ -550,7 +537,7 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Find a single default EntityManagerFactory in the Spring application context.
+	 * 在 Spring 应用上下文中查找单个默认的 EntityManagerFactory。
 	 * @return the default EntityManagerFactory
 	 * @throws NoSuchBeanDefinitionException if there is no single EntityManagerFactory in the context
 	 */
@@ -575,9 +562,9 @@ public class PersistenceAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Perform a JNDI lookup for the given resource by name.
-	 * <p>Called for EntityManagerFactory and EntityManager lookup
-	 * when JNDI names are mapped for specific persistence units.
+	 * 按名称对给定资源执行 JNDI 查找。
+	 * <p>当为特定持久化单元映射了 JNDI 名称时，用于
+	 * EntityManagerFactory 和 EntityManager 的查找。
 	 * @param jndiName the JNDI name to look up
 	 * @param requiredType the required type of the object
 	 * @return the obtained object
@@ -589,8 +576,8 @@ public class PersistenceAnnotationBeanPostProcessor
 
 
 	/**
-	 * Separate inner class to isolate the JNDI API dependency
-	 * (for compatibility with Google App Engine's API white list).
+	 * 单独的内部类，用于隔离 JNDI API 依赖
+	 * （以兼容 Google App Engine 的 API 白名单）。
 	 */
 	private class LocatorDelegate {
 
@@ -612,8 +599,7 @@ public class PersistenceAnnotationBeanPostProcessor
 
 
 	/**
-	 * Class representing injection information about an annotated field
-	 * or setter method.
+	 * 表示带注解字段或 setter 方法注入信息的类。
 	 */
 	private class PersistenceElement extends InjectionMetadata.InjectedElement {
 
@@ -658,7 +644,7 @@ public class PersistenceAnnotationBeanPostProcessor
 		}
 
 		/**
-		 * Resolve the object against the application context.
+		 * 针对应用上下文解析对象。
 		 */
 		@Override
 		protected Object getResourceToInject(Object target, @Nullable String requestingBeanName) {

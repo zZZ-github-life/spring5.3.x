@@ -28,8 +28,8 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
 /**
- * Spring's common JCL adapter behind {@link LogFactory} and {@link LogFactoryService}.
- * Detects the presence of Log4j 2.x / SLF4J, falling back to {@code java.util.logging}.
+ * Spring 通用的 JCL 适配器，为 {@link LogFactory} 和 {@link LogFactoryService} 提供底层支持。它会
+ * 检测 Log4j 2.x / SLF4J 是否存在，若都不存在则回退到 {@code java.util.logging}。
  *
  * @author Juergen Hoeller
  * @since 5.1
@@ -80,7 +80,7 @@ final class LogAdapter {
 
 
 	/**
-	 * Create an actual {@link Log} instance for the selected API.
+	 * 为选定的 API 创建实际的 {@link Log} 实例。
 	 * @param name the logger name
 	 */
 	public static Log createLog(String name) {

@@ -28,7 +28,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartException;
 
 /**
- * Utility methods for standard Servlet {@link Part} handling.
+ * 用于标准 Servlet {@link Part} 处理的工具方法。
  *
  * @author Juergen Hoeller
  * @since 5.3
@@ -38,7 +38,7 @@ import org.springframework.web.multipart.MultipartException;
 public abstract class StandardServletPartUtils {
 
 	/**
-	 * Retrieve all parts from the given servlet request.
+	 * 从给定的 Servlet 请求中检索所有部分。
 	 * @param request the servlet request
 	 * @return the parts in a MultiValueMap
 	 * @throws MultipartException in case of failures
@@ -57,7 +57,7 @@ public abstract class StandardServletPartUtils {
 	}
 
 	/**
-	 * Retrieve all parts with the given name from the given servlet request.
+	 * 从给定的 Servlet 请求中检索所有具有给定名称的部分。
 	 * @param request the servlet request
 	 * @param name the name to look for
 	 * @return the parts in a MultiValueMap
@@ -79,7 +79,7 @@ public abstract class StandardServletPartUtils {
 	}
 
 	/**
-	 * Bind all parts from the given servlet request.
+	 * 绑定给定 Servlet 请求中的所有部分。
 	 * @param request the servlet request
 	 * @param mpvs the property values to bind to
 	 * @param bindEmpty whether to bind empty parts as well

@@ -19,8 +19,8 @@ package org.springframework.http.converter;
 import org.springframework.lang.Nullable;
 
 /**
- * Thrown by {@link HttpMessageConverter} implementations when the
- * {@link HttpMessageConverter#write} method fails.
+ * 当 {@link HttpMessageConverter#write} 方法失败时，由
+ * {@link HttpMessageConverter} 实现抛出。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 public class HttpMessageNotWritableException extends HttpMessageConversionException {
 
 	/**
-	 * Create a new HttpMessageNotWritableException.
+	 * 创建一个新的 HttpMessageNotWritableException。
 	 * @param msg the detail message
 	 */
 	public HttpMessageNotWritableException(String msg) {
@@ -37,7 +37,7 @@ public class HttpMessageNotWritableException extends HttpMessageConversionExcept
 	}
 
 	/**
-	 * Create a new HttpMessageNotWritableException.
+	 * 创建一个新的 HttpMessageNotWritableException。
 	 * @param msg the detail message
 	 * @param cause the root cause (if any)
 	 */

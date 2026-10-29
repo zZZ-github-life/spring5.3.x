@@ -28,9 +28,7 @@ import org.springframework.web.reactive.socket.HandshakeInfo;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Spring {@link WebSocketSession} adapter for Tomcat's
- * {@link javax.websocket.Session}.
- *
+ * 用于 Tomcat {@link javax.websocket.Session} 的 Spring {@link WebSocketSession} 适配器。
  * @author Violeta Georgieva
  * @since 5.0
  */

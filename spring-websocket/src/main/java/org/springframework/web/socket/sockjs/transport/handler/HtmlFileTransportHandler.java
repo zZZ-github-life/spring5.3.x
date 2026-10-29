@@ -40,11 +40,10 @@ import org.springframework.web.socket.sockjs.transport.session.StreamingSockJsSe
 import org.springframework.web.util.JavaScriptUtils;
 
 /**
- * An HTTP {@link TransportHandler} that uses a famous browser
- * {@code document.domain} technique. See <a href=
+ * 使用著名的浏览器 {@code document.domain} 技术的 HTTP {@link TransportHandler}。
+ * 有关详细信息，请参见 <a href=
  * "https://stackoverflow.com/questions/1481251/what-does-document-domain-document-domain-do">
- * stackoverflow.com/questions/1481251/what-does-document-domain-document-domain-do</a>
- * for details.
+ * stackoverflow.com/questions/1481251/what-does-document-domain-document-domain-do</a>。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

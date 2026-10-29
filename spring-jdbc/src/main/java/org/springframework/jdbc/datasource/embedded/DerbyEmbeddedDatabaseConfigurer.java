@@ -27,9 +27,9 @@ import org.apache.derby.jdbc.EmbeddedDriver;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link EmbeddedDatabaseConfigurer} for the Apache Derby database.
+ * Apache Derby 数据库的 {@link EmbeddedDatabaseConfigurer}。
  *
- * <p>Call {@link #getInstance()} to get the singleton instance of this class.
+ * <p>调用 {@link #getInstance()} 获取此类的单例实例。
  *
  * @author Oliver Gierke
  * @author Juergen Hoeller
@@ -44,7 +44,7 @@ final class DerbyEmbeddedDatabaseConfigurer implements EmbeddedDatabaseConfigure
 
 
 	/**
-	 * Get the singleton {@link DerbyEmbeddedDatabaseConfigurer} instance.
+	 * 获取单例 {@link DerbyEmbeddedDatabaseConfigurer} 实例。
 	 * @return the configurer instance
 	 */
 	public static synchronized DerbyEmbeddedDatabaseConfigurer getInstance() {

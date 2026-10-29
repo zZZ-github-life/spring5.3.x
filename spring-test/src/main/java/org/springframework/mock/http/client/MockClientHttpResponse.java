@@ -25,7 +25,7 @@ import org.springframework.mock.http.MockHttpInputMessage;
 import org.springframework.util.Assert;
 
 /**
- * Mock implementation of {@link ClientHttpResponse}.
+ * {@link ClientHttpResponse} 的模拟实现。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -36,7 +36,7 @@ public class MockClientHttpResponse extends MockHttpInputMessage implements Clie
 
 
 	/**
-	 * Constructor with response body as a byte array.
+	 * 使用字节数组作为响应体的构造函数。
 	 */
 	public MockClientHttpResponse(byte[] body, HttpStatus statusCode) {
 		super(body);
@@ -45,8 +45,8 @@ public class MockClientHttpResponse extends MockHttpInputMessage implements Clie
 	}
 
 	/**
-	 * Variant of {@link #MockClientHttpResponse(byte[], HttpStatus)} with a
-	 * custom HTTP status code.
+	 * {@link #MockClientHttpResponse(byte[], HttpStatus)} 的变体，
+	 * 使用自定义 HTTP 状态码。
 	 * @since 5.3.17
 	 */
 	public MockClientHttpResponse(byte[] body, int statusCode) {
@@ -55,7 +55,7 @@ public class MockClientHttpResponse extends MockHttpInputMessage implements Clie
 	}
 
 	/**
-	 * Constructor with response body as InputStream.
+	 * 使用 InputStream 作为响应体的构造函数。
 	 */
 	public MockClientHttpResponse(InputStream body, HttpStatus statusCode) {
 		super(body);
@@ -64,8 +64,8 @@ public class MockClientHttpResponse extends MockHttpInputMessage implements Clie
 	}
 
 	/**
-	 * Variant of {@link #MockClientHttpResponse(InputStream, HttpStatus)} with a
-	 * custom HTTP status code.
+	 * {@link #MockClientHttpResponse(InputStream, HttpStatus)} 的变体，
+	 * 使用自定义 HTTP 状态码。
 	 * @since 5.3.17
 	 */
 	public MockClientHttpResponse(InputStream body, int statusCode) {

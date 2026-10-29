@@ -30,13 +30,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * A base class for working with message headers in simple messaging protocols that
- * support basic messaging patterns. Provides uniform access to specific values common
- * across protocols such as a destination, message type (e.g. publish, subscribe, etc),
- * session ID, and others.
+ * 用于处理简单消息协议中消息头的基类，这些协议支持基本的消息传递模式。
+ * 提供对协议间通用特定值的统一访问，例如目标、消息类型（发布、订阅等）、
+ * 会话 ID 等。
  *
- * <p>Use one of the static factory methods in this class, then call getters and setters,
- * and at the end if necessary call {@link #toMap()} to obtain the updated headers.
+ * <p>使用此类中的某个静态工厂方法，然后调用 getter 和 setter，
+ * 最后如有必要调用 {@link #toMap()} 获取更新后的头。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -73,14 +72,12 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 
 
 	/**
-	 * A header for internal use with "user" destinations where we need to
-	 * restore the destination prior to sending messages to clients.
+	 * 供内部使用的头，用于“用户”目标，在向客户端发送消息之前需要恢复该目标。
 	 */
 	public static final String ORIGINAL_DESTINATION = "simpOrigDestination";
 
 	/**
-	 * A header that indicates to the broker that the sender will ignore errors.
-	 * The header is simply checked for presence or absence.
+	 * 向代理指示发送者将忽略错误的头。只需检查该头是否存在。
 	 */
 	public static final String IGNORE_ERROR = "simpIgnoreError";
 
@@ -90,9 +87,8 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 
 
 	/**
-	 * A constructor for creating new message headers.
-	 * <p>This constructor is protected. See factory methods in this class
-	 * and subclasses.
+	 * 用于创建新消息头的构造函数。
+	 * <p>此构造函数为 protected。请参阅此类及子类中的工厂方法。
 	 */
 	protected SimpMessageHeaderAccessor(SimpMessageType messageType,
 			@Nullable Map<String, List<String>> externalSourceHeaders) {
@@ -104,9 +100,8 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * A constructor for accessing and modifying existing message headers.
-	 * <p>This constructor is protected. See factory methods in this class
-	 * and subclasses.
+	 * 用于访问和修改现有消息头的构造函数。
+	 * <p>此构造函数为 protected。请参阅此类及子类中的工厂方法。
 	 */
 	protected SimpMessageHeaderAccessor(Message<?> message) {
 		super(message);
@@ -153,7 +148,7 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the id of the current session.
+	 * 返回当前会话的 ID。
 	 */
 	@Nullable
 	public String getSessionId() {
@@ -161,14 +156,14 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * A static alternative for access to the session attributes header.
+	 * 用于访问会话属性头的静态替代方法。
 	 */
 	public void setSessionAttributes(@Nullable Map<String, Object> attributes) {
 		setHeader(SESSION_ATTRIBUTES, attributes);
 	}
 
 	/**
-	 * Return the attributes associated with the current session.
+	 * 返回与当前会话关联的属性。
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -184,7 +179,7 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the user associated with the current session.
+	 * 返回与当前会话关联的用户。
 	 */
 	@Nullable
 	public Principal getUser() {
@@ -192,9 +187,8 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Provide a callback to be invoked if and when {@link #setUser(Principal)}
-	 * is called. This is used internally on the inbound channel to detect
-	 * token-based authentications through an interceptor.
+	 * 提供在调用 {@link #setUser(Principal)} 时（如果发生）要调用的回调。
+	 * 这在入站通道内部用于通过拦截器检测基于令牌的认证。
 	 * @param callback the callback to invoke
 	 * @since 5.1.9
 	 */
@@ -257,23 +251,22 @@ public class SimpMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	// Static factory methods and accessors
 
 	/**
-	 * Create an instance with
-	 * {@link org.springframework.messaging.simp.SimpMessageType} {@code MESSAGE}.
+	 * 创建一个 {@link org.springframework.messaging.simp.SimpMessageType} 为
+	 * {@code MESSAGE} 的实例。
 	 */
 	public static SimpMessageHeaderAccessor create() {
 		return new SimpMessageHeaderAccessor(SimpMessageType.MESSAGE, null);
 	}
 
 	/**
-	 * Create an instance with the given
-	 * {@link org.springframework.messaging.simp.SimpMessageType}.
+	 * 创建具有给定 {@link org.springframework.messaging.simp.SimpMessageType} 的实例。
 	 */
 	public static SimpMessageHeaderAccessor create(SimpMessageType messageType) {
 		return new SimpMessageHeaderAccessor(messageType, null);
 	}
 
 	/**
-	 * Create an instance from the payload and headers of the given Message.
+	 * 从给定 Message 的载荷和头创建实例。
 	 */
 	public static SimpMessageHeaderAccessor wrap(Message<?> message) {
 		return new SimpMessageHeaderAccessor(message);

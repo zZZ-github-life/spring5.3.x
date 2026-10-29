@@ -17,12 +17,11 @@
 package org.springframework.dao;
 
 /**
- * Exception to be thrown on a query timeout. This could have different causes depending on
- * the database API in use but most likely thrown after the database interrupts or stops
- * the processing of a query before it has completed.
+ * 查询超时时抛出的异常。这可能因所使用的数据库 API 不同而有不同的原因，
+ * 但最可能是在数据库中断或停止查询处理（查询尚未完成）时抛出。
  *
- * <p>This exception can be thrown by user code trapping the native database exception or
- * by exception translation.
+ * <p>此异常可以由捕获原生数据库异常的用户代码抛出，
+ * 也可以通过异常翻译机制抛出。
  *
  * @author Thomas Risberg
  * @since 3.1
@@ -31,7 +30,7 @@ package org.springframework.dao;
 public class QueryTimeoutException extends TransientDataAccessException {
 
 	/**
-	 * Constructor for QueryTimeoutException.
+	 * QueryTimeoutException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public QueryTimeoutException(String msg) {
@@ -39,7 +38,7 @@ public class QueryTimeoutException extends TransientDataAccessException {
 	}
 
 	/**
-	 * Constructor for QueryTimeoutException.
+	 * QueryTimeoutException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

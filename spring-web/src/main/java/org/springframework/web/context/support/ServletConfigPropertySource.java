@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link PropertySource} that reads init parameters from a {@link ServletConfig} object.
+ * {@link PropertySource}，从 {@link ServletConfig} 对象读取初始化参数。
  *
  * @author Chris Beams
  * @since 3.1

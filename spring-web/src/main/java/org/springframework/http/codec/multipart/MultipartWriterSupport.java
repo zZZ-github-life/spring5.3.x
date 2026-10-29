@@ -36,14 +36,14 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Support class for multipart HTTP message writers.
+ * multipart HTTP 消息写入器的支持类。
  *
  * @author Rossen Stoyanchev
  * @since 5.3
  */
 public class MultipartWriterSupport extends LoggingCodecSupport {
 
-	/** THe default charset used by the writer. */
+	/** 写入器使用的默认字符集。 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
 	private final List<MediaType> supportedMediaTypes;
@@ -52,7 +52,7 @@ public class MultipartWriterSupport extends LoggingCodecSupport {
 
 
 	/**
-	 * Constructor with the list of supported media types.
+	 * 使用受支持的媒体类型列表的构造函数。
 	 */
 	protected MultipartWriterSupport(List<MediaType> supportedMediaTypes) {
 		this.supportedMediaTypes = supportedMediaTypes;
@@ -60,18 +60,18 @@ public class MultipartWriterSupport extends LoggingCodecSupport {
 
 
 	/**
-	 * Return the configured charset for part headers.
+	 * 返回为部件头配置的字符集。
 	 */
 	public Charset getCharset() {
 		return this.charset;
 	}
 
 	/**
-	 * Set the character set to use for part headers such as
-	 * "Content-Disposition" (and its filename parameter).
-	 * <p>By default this is set to "UTF-8". If changed from this default,
-	 * the "Content-Type" header will have a "charset" parameter that specifies
-	 * the character set used.
+	 * 设置用于部件头（如 "Content-Disposition" 及其 filename 参数）的
+	 * 字符集。
+	 * <p>默认设置为 "UTF-8"。如果偏离此默认值，
+	 * "Content-Type" 头将带有一个 "charset" 参数，用于指定
+	 * 所使用的字符集。
 	 */
 	public void setCharset(Charset charset) {
 		Assert.notNull(charset, "Charset must not be null");
@@ -98,17 +98,17 @@ public class MultipartWriterSupport extends LoggingCodecSupport {
 	}
 
 	/**
-	 * Generate a multipart boundary.
-	 * <p>By default delegates to {@link MimeTypeUtils#generateMultipartBoundary()}.
+	 * 生成 multipart 边界。
+	 * <p>默认委托给 {@link MimeTypeUtils#generateMultipartBoundary()}。
 	 */
 	protected byte[] generateMultipartBoundary() {
 		return MimeTypeUtils.generateMultipartBoundary();
 	}
 
 	/**
-	 * Prepare the {@code MediaType} to use by adding "boundary" and "charset"
-	 * parameters to the given {@code mediaType} or "multipart/form-data"
-	 * otherwise by default.
+	 * 准备要使用的 {@code MediaType}，即向给定的 {@code mediaType}
+	 * 添加 "boundary" 和 "charset" 参数，否则默认使用
+	 * "multipart/form-data"。
 	 */
 	protected MediaType getMultipartMediaType(@Nullable MediaType mediaType, byte[] boundary) {
 		Map<String, String> params = new HashMap<>();

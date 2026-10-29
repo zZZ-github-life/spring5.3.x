@@ -29,30 +29,29 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Wrapper for a JSP or other resource within the same web application.
- * Exposes model objects as request attributes and forwards the request to
- * the specified resource URL using a {@link javax.servlet.RequestDispatcher}.
+ * 同一 Web 应用中 JSP 或其他资源的包装器。
+ * 将模型对象作为请求属性公开，并使用 {@link javax.servlet.RequestDispatcher}
+ * 将请求转发到指定的资源 URL。
  *
- * <p>A URL for this view is supposed to specify a resource within the web
- * application, suitable for RequestDispatcher's {@code forward} or
- * {@code include} method.
+ * <p>此视图的 URL 应指定 Web 应用内的资源，
+ * 适合 RequestDispatcher 的 {@code forward} 或
+ * {@code include} 方法。
  *
- * <p>If operating within an already included request or within a response that
- * has already been committed, this view will fall back to an include instead of
- * a forward. This can be enforced by calling {@code response.flushBuffer()}
- * (which will commit the response) before rendering the view.
+ * <p>如果在已包含的请求内或在已提交的响应中运行，
+ * 此视图将回退为 include 而不是 forward。可以通过在渲染视图之前
+ * 调用 {@code response.flushBuffer()}（将提交响应）来强制执行此行为。
  *
- * <p>Typical usage with {@link InternalResourceViewResolver} looks as follows,
- * from the perspective of the DispatcherServlet context definition:
+ * <p>从 DispatcherServlet 上下文定义的角度来看，
+ * 与 {@link InternalResourceViewResolver} 配合使用的典型用法如下：
  *
  * <pre class="code">&lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
  *   &lt;property name="prefix" value="/WEB-INF/jsp/"/&gt;
  *   &lt;property name="suffix" value=".jsp"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * Every view name returned from a handler will be translated to a JSP
- * resource (for example: "myView" &rarr; "/WEB-INF/jsp/myView.jsp"), using
- * this view class by default.
+ * 处理器返回的每个视图名称都将被转换为 JSP 资源
+ * （例如："myView" &rarr; "/WEB-INF/jsp/myView.jsp"），
+ * 默认使用此视图类。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -71,7 +70,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 作为 bean 使用的构造函数。
 	 * @see #setUrl
 	 * @see #setAlwaysInclude
 	 */
@@ -79,7 +78,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Create a new InternalResourceView with the given URL.
+	 * 使用给定 URL 创建一个新的 InternalResourceView。
 	 * @param url the URL to forward to
 	 * @see #setAlwaysInclude
 	 */
@@ -88,7 +87,7 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Create a new InternalResourceView with the given URL.
+	 * 使用给定 URL 创建一个新的 InternalResourceView。
 	 * @param url the URL to forward to
 	 * @param alwaysInclude whether to always include the view rather than forward to it
 	 */
@@ -99,9 +98,9 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Specify whether to always include the view rather than forward to it.
-	 * <p>Default is "false". Switch this flag on to enforce the use of a
-	 * Servlet include, even if a forward would be possible.
+	 * 指定是否始终 include 视图而不是 forward 到它。
+	 * <p>默认为 "false"。开启此标志即可强制使用
+	 * Servlet include，即使 forward 是可行的。
 	 * @see javax.servlet.RequestDispatcher#forward
 	 * @see javax.servlet.RequestDispatcher#include
 	 * @see #useInclude(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
@@ -111,18 +110,18 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Set whether to explicitly prevent dispatching back to the
-	 * current handler path.
-	 * <p>Default is "false". Switch this to "true" for convention-based
-	 * views where a dispatch back to the current handler path is a
-	 * definitive error.
+	 * 设置是否显式阻止回派到
+	 * 当前处理器路径。
+	 * <p>默认为 "false"。对于基于约定的视图，
+	 * 如果回派到当前处理器路径是明确的错误，
+	 * 请将其设为 "true"。
 	 */
 	public void setPreventDispatchLoop(boolean preventDispatchLoop) {
 		this.preventDispatchLoop = preventDispatchLoop;
 	}
 
 	/**
-	 * An ApplicationContext is not strictly required for InternalResourceView.
+	 * InternalResourceView 并不严格要求提供 ApplicationContext。
 	 */
 	@Override
 	protected boolean isContextRequired() {
@@ -131,8 +130,8 @@ public class InternalResourceView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Render the internal resource given the specified model.
-	 * This includes setting the model as request attributes.
+	 * 根据指定的模型渲染内部资源。
+	 * 其中包括将模型设置为请求属性。
 	 */
 	@Override
 	protected void renderMergedOutputModel(
@@ -173,11 +172,11 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Expose helpers unique to each rendering operation. This is necessary so that
-	 * different rendering operations can't overwrite each other's contexts etc.
-	 * <p>Called by {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)}.
-	 * The default implementation is empty. This method can be overridden to add
-	 * custom helpers as request attributes.
+	 * 公开每次渲染操作所特有的辅助对象。这是必要的，以便
+	 * 不同的渲染操作不会相互覆盖各自的上下文等。
+	 * <p>由 {@link #renderMergedOutputModel(Map, HttpServletRequest, HttpServletResponse)} 调用。
+	 * 默认实现为空。可以重写此方法以将
+	 * 自定义辅助对象添加为请求属性。
 	 * @param request current HTTP request
 	 * @throws Exception if there's a fatal error while we're adding attributes
 	 * @see #renderMergedOutputModel
@@ -187,11 +186,11 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Prepare for rendering, and determine the request dispatcher path
-	 * to forward to (or to include).
-	 * <p>This implementation simply returns the configured URL.
-	 * Subclasses can override this to determine a resource to render,
-	 * typically interpreting the URL in a different manner.
+	 * 为渲染做准备，并确定要 forward 到（或 include）的
+	 * 请求调度器路径。
+	 * <p>此实现仅返回所配置的 URL。
+	 * 子类可以重写此方法以确定要渲染的资源，
+	 * 通常以不同方式解释该 URL。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @return the request dispatcher path to use
@@ -216,10 +215,10 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Obtain the RequestDispatcher to use for the forward/include.
-	 * <p>The default implementation simply calls
-	 * {@link HttpServletRequest#getRequestDispatcher(String)}.
-	 * Can be overridden in subclasses.
+	 * 获取用于 forward/include 的 RequestDispatcher。
+	 * <p>默认实现只是调用
+	 * {@link HttpServletRequest#getRequestDispatcher(String)}。
+	 * 可在子类中重写。
 	 * @param request current HTTP request
 	 * @param path the target URL (as returned from {@link #prepareForRendering})
 	 * @return a corresponding RequestDispatcher
@@ -230,11 +229,11 @@ public class InternalResourceView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Determine whether to use RequestDispatcher's {@code include} or
-	 * {@code forward} method.
-	 * <p>Performs a check whether an include URI attribute is found in the request,
-	 * indicating an include request, and whether the response has already been committed.
-	 * In both cases, an include will be performed, as a forward is not possible anymore.
+	 * 确定使用 RequestDispatcher 的 {@code include} 还是
+	 * {@code forward} 方法。
+	 * <p>会检查请求中是否找到 include URI 属性（
+	 * 表示这是一个 include 请求），以及响应是否已提交。
+	 * 在这两种情况下，都将执行 include，因为已无法再执行 forward。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @return {@code true} for include, {@code false} for forward

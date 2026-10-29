@@ -28,15 +28,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.orm.jpa.EntityManagerFactoryUtils;
 
 /**
- * {@link PersistenceExceptionTranslator} capable of translating {@link HibernateException}
- * instances to Spring's {@link DataAccessException} hierarchy. As of Spring 4.3.2 and
- * Hibernate 5.2, it also converts standard JPA {@link PersistenceException} instances.
+ * {@link PersistenceExceptionTranslator}，能够将 {@link HibernateException}
+ * 实例转换为 Spring 的 {@link DataAccessException} 层次结构。从 Spring 4.3.2 和
+ * Hibernate 5.2 开始，它还会转换标准的 JPA {@link PersistenceException} 实例。
  *
- * <p>Extended by {@link LocalSessionFactoryBean}, so there is no need to declare this
- * translator in addition to a {@code LocalSessionFactoryBean}.
+ * <p>已由 {@link LocalSessionFactoryBean} 扩展，因此除了 {@code LocalSessionFactoryBean}
+ * 之外无需再声明此转换器。
  *
- * <p>When configuring the container with {@code @Configuration} classes, a {@code @Bean}
- * of this type must be registered manually.
+ * <p>使用 {@code @Configuration} 类配置容器时，必须手动注册此类型的 {@code @Bean}。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -51,10 +50,10 @@ public class HibernateExceptionTranslator implements PersistenceExceptionTransla
 
 
 	/**
-	 * Set the JDBC exception translator for Hibernate exception translation purposes.
-	 * <p>Applied to any detected {@link java.sql.SQLException} root cause of a Hibernate
-	 * {@link JDBCException}, overriding Hibernate's own {@code SQLException} translation
-	 * (which is based on a Hibernate Dialect for a specific target database).
+	 * 设置用于 Hibernate 异常转换目的的 JDBC 异常转换器。
+	 * <p>应用于检测到的 Hibernate {@link JDBCException} 的任意 {@link java.sql.SQLException} 根因，
+	 * 覆盖 Hibernate 自身的 {@code SQLException} 转换
+	 * （后者基于针对特定目标数据库的 Hibernate Dialect）。
 	 * @since 5.1
 	 * @see java.sql.SQLException
 	 * @see org.hibernate.JDBCException
@@ -82,10 +81,10 @@ public class HibernateExceptionTranslator implements PersistenceExceptionTransla
 	}
 
 	/**
-	 * Convert the given HibernateException to an appropriate exception from the
-	 * {@code org.springframework.dao} hierarchy.
-	 * <p>Will automatically apply a specified SQLExceptionTranslator to a
-	 * Hibernate JDBCException, otherwise rely on Hibernate's default translation.
+	 * 将给定的 HibernateException 转换为 {@code org.springframework.dao} 层次结构中
+	 * 相应的异常。
+	 * <p>会自动将指定的 SQLExceptionTranslator 应用于
+	 * Hibernate JDBCException，否则依赖 Hibernate 的默认转换。
 	 * @param ex the HibernateException that occurred
 	 * @return a corresponding DataAccessException
 	 * @see SessionFactoryUtils#convertHibernateAccessException

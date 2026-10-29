@@ -25,8 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.ui.Model;
 
 /**
- * Default implementation of {@link Rendering}.
- *
+ * {@link Rendering} 的默认实现。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

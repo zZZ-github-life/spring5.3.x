@@ -23,34 +23,28 @@ import java.util.function.Supplier;
 import org.springframework.lang.Nullable;
 
 /**
- * Assertion utility class that assists in validating arguments.
+ * 用于协助校验参数的断言工具类。
  *
- * <p>Useful for identifying programmer errors early and clearly at runtime.
+ * <p>有助于在运行时尽早、清晰地识别程序员错误。
  *
- * <p>For example, if the contract of a public method states it does not
- * allow {@code null} arguments, {@code Assert} can be used to validate that
- * contract. Doing this clearly indicates a contract violation when it
- * occurs and protects the class's invariants.
+ * <p>例如，如果某个公共方法的约定声明其不允许 {@code null} 参数，就可以用 {@code Assert} 来校验该
+ * 约定。这样做在发生约定违反时能清晰地指出问题，并保护类的不变量。
  *
- * <p>Typically used to validate method arguments rather than configuration
- * properties, to check for cases that are usually programmer errors rather
- * than configuration errors. In contrast to configuration initialization
- * code, there is usually no point in falling back to defaults in such methods.
+ * <p>通常用于校验方法参数而非配置属性，以检查那些通常属于程序员错误而非配置错误的情况。与配置初始
+ * 化代码不同，在此类方法中回退到默认值通常没有意义。
  *
- * <p>This class is similar to JUnit's assertion library. If an argument value is
- * deemed invalid, an {@link IllegalArgumentException} is thrown (typically).
- * For example:
+ * <p>此类类似于 JUnit 的断言库。如果某个参数值被认为无效，通常会抛出
+ * {@link IllegalArgumentException}。例如：
  *
  * <pre class="code">
  * Assert.notNull(clazz, "The class must not be null");
  * Assert.isTrue(i &gt; 0, "The value must be greater than zero");</pre>
  *
- * <p>Mainly for internal use within the framework; for a more comprehensive suite
- * of assertion utilities consider {@code org.apache.commons.lang3.Validate} from
- * <a href="https://commons.apache.org/proper/commons-lang/">Apache Commons Lang</a>,
- * Google Guava's
- * <a href="https://github.com/google/guava/wiki/PreconditionsExplained">Preconditions</a>,
- * or similar third-party libraries.
+ * <p>主要用于框架内部；如需更全面的断言工具集，可考虑
+ * <a href="https://commons.apache.org/proper/commons-lang/">Apache Commons Lang</a> 中的
+ * {@code org.apache.commons.lang3.Validate}、Google Guava 的
+ * <a href="https://github.com/google/guava/wiki/PreconditionsExplained">Preconditions</a>，或类似
+ * 的第三方库。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -62,10 +56,8 @@ import org.springframework.lang.Nullable;
 public abstract class Assert {
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalStateException}
-	 * if the expression evaluates to {@code false}.
-	 * <p>Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
-	 * on an assertion failure.
+	 * 断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalStateException}。
+	 * <p>如果希望在断言失败时抛出 {@code IllegalArgumentException}，请调用 {@link #isTrue}。
 	 * <pre class="code">Assert.state(id == null, "The id property must not already be initialized");</pre>
 	 * @param expression a boolean expression
 	 * @param message the exception message to use if the assertion fails
@@ -78,10 +70,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalStateException}
-	 * if the expression evaluates to {@code false}.
-	 * <p>Call {@link #isTrue} if you wish to throw an {@code IllegalArgumentException}
-	 * on an assertion failure.
+	 * 断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalStateException}。
+	 * <p>如果希望在断言失败时抛出 {@code IllegalArgumentException}，请调用 {@link #isTrue}。
 	 * <pre class="code">
 	 * Assert.state(entity.getId() == null,
 	 *     () -&gt; "ID for entity " + entity.getName() + " must not already be initialized");
@@ -99,8 +89,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalStateException}
-	 * if the expression evaluates to {@code false}.
+	 * 断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalStateException}。
 	 * @deprecated as of 4.3.7, in favor of {@link #state(boolean, String)}
 	 */
 	@Deprecated
@@ -109,8 +98,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalArgumentException}
-	 * if the expression evaluates to {@code false}.
+	 * 断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalArgumentException}。
 	 * <pre class="code">Assert.isTrue(i &gt; 0, "The value must be greater than zero");</pre>
 	 * @param expression a boolean expression
 	 * @param message the exception message to use if the assertion fails
@@ -123,8 +111,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalArgumentException}
-	 * if the expression evaluates to {@code false}.
+	 * 断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalArgumentException}。
 	 * <pre class="code">
 	 * Assert.isTrue(i &gt; 0, () -&gt; "The value '" + i + "' must be greater than zero");
 	 * </pre>
@@ -141,8 +128,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalArgumentException}
-	 * if the expression evaluates to {@code false}.
+	 * 断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalArgumentException}。
 	 * @deprecated as of 4.3.7, in favor of {@link #isTrue(boolean, String)}
 	 */
 	@Deprecated
@@ -151,7 +137,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is {@code null}.
+	 * 断言对象为 {@code null}。
 	 * <pre class="code">Assert.isNull(value, "The value must be null");</pre>
 	 * @param object the object to check
 	 * @param message the exception message to use if the assertion fails
@@ -164,7 +150,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is {@code null}.
+	 * 断言对象为 {@code null}。
 	 * <pre class="code">
 	 * Assert.isNull(value, () -&gt; "The value '" + value + "' must be null");
 	 * </pre>
@@ -181,7 +167,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is {@code null}.
+	 * 断言对象为 {@code null}。
 	 * @deprecated as of 4.3.7, in favor of {@link #isNull(Object, String)}
 	 */
 	@Deprecated
@@ -190,7 +176,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is not {@code null}.
+	 * 断言对象不为 {@code null}。
 	 * <pre class="code">Assert.notNull(clazz, "The class must not be null");</pre>
 	 * @param object the object to check
 	 * @param message the exception message to use if the assertion fails
@@ -203,7 +189,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is not {@code null}.
+	 * 断言对象不为 {@code null}。
 	 * <pre class="code">
 	 * Assert.notNull(entity.getId(),
 	 *     () -&gt; "ID for entity " + entity.getName() + " must not be null");
@@ -221,7 +207,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is not {@code null}.
+	 * 断言对象不为 {@code null}。
 	 * @deprecated as of 4.3.7, in favor of {@link #notNull(Object, String)}
 	 */
 	@Deprecated
@@ -230,8 +216,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String is not empty; that is,
-	 * it must not be {@code null} and not the empty String.
+	 * 断言给定 String 不为空；也就是说，它不能为 {@code null}，也不能是空 String。
 	 * <pre class="code">Assert.hasLength(name, "Name must not be empty");</pre>
 	 * @param text the String to check
 	 * @param message the exception message to use if the assertion fails
@@ -245,8 +230,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String is not empty; that is,
-	 * it must not be {@code null} and not the empty String.
+	 * 断言给定 String 不为空；也就是说，它不能为 {@code null}，也不能是空 String。
 	 * <pre class="code">
 	 * Assert.hasLength(account.getName(),
 	 *     () -&gt; "Name for account '" + account.getId() + "' must not be empty");
@@ -265,8 +249,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String is not empty; that is,
-	 * it must not be {@code null} and not the empty String.
+	 * 断言给定 String 不为空；也就是说，它不能为 {@code null}，也不能是空 String。
 	 * @deprecated as of 4.3.7, in favor of {@link #hasLength(String, String)}
 	 */
 	@Deprecated
@@ -276,8 +259,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String contains valid text content; that is, it must not
-	 * be {@code null} and must contain at least one non-whitespace character.
+	 * 断言给定 String 包含有效的文本内容；也就是说，它不能为 {@code null}，并且必须至少包含一个非空白
+	 * 字符。
 	 * <pre class="code">Assert.hasText(name, "'name' must not be empty");</pre>
 	 * @param text the String to check
 	 * @param message the exception message to use if the assertion fails
@@ -291,8 +274,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String contains valid text content; that is, it must not
-	 * be {@code null} and must contain at least one non-whitespace character.
+	 * 断言给定 String 包含有效的文本内容；也就是说，它不能为 {@code null}，并且必须至少包含一个非空白
+	 * 字符。
 	 * <pre class="code">
 	 * Assert.hasText(account.getName(),
 	 *     () -&gt; "Name for account '" + account.getId() + "' must not be empty");
@@ -311,8 +294,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given String contains valid text content; that is, it must not
-	 * be {@code null} and must contain at least one non-whitespace character.
+	 * 断言给定 String 包含有效的文本内容；也就是说，它不能为 {@code null}，并且必须至少包含一个非空白
+	 * 字符。
 	 * @deprecated as of 4.3.7, in favor of {@link #hasText(String, String)}
 	 */
 	@Deprecated
@@ -322,7 +305,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given text does not contain the given substring.
+	 * 断言给定文本不包含给定的子字符串。
 	 * <pre class="code">Assert.doesNotContain(name, "rod", "Name must not contain 'rod'");</pre>
 	 * @param textToSearch the text to search
 	 * @param substring the substring to find within the text
@@ -337,7 +320,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given text does not contain the given substring.
+	 * 断言给定文本不包含给定的子字符串。
 	 * <pre class="code">
 	 * Assert.doesNotContain(name, forbidden, () -&gt; "Name must not contain '" + forbidden + "'");
 	 * </pre>
@@ -356,7 +339,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the given text does not contain the given substring.
+	 * 断言给定文本不包含给定的子字符串。
 	 * @deprecated as of 4.3.7, in favor of {@link #doesNotContain(String, String, String)}
 	 */
 	@Deprecated
@@ -366,8 +349,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 断言数组包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。
 	 * <pre class="code">Assert.notEmpty(array, "The array must contain elements");</pre>
 	 * @param array the array to check
 	 * @param message the exception message to use if the assertion fails
@@ -380,8 +362,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 断言数组包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。
 	 * <pre class="code">
 	 * Assert.notEmpty(array, () -&gt; "The " + arrayType + " array must contain elements");
 	 * </pre>
@@ -398,8 +379,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 断言数组包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。
 	 * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Object[], String)}
 	 */
 	@Deprecated
@@ -408,8 +388,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains no {@code null} elements.
-	 * <p>Note: Does not complain if the array is empty!
+	 * 断言数组不包含 {@code null} 元素。
+	 * <p>注意：如果数组为空，则不会报错！
 	 * <pre class="code">Assert.noNullElements(array, "The array must contain non-null elements");</pre>
 	 * @param array the array to check
 	 * @param message the exception message to use if the assertion fails
@@ -426,8 +406,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains no {@code null} elements.
-	 * <p>Note: Does not complain if the array is empty!
+	 * 断言数组不包含 {@code null} 元素。
+	 * <p>注意：如果数组为空，则不会报错！
 	 * <pre class="code">
 	 * Assert.noNullElements(array, () -&gt; "The " + arrayType + " array must contain non-null elements");
 	 * </pre>
@@ -448,7 +428,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains no {@code null} elements.
+	 * 断言数组不包含 {@code null} 元素。
 	 * @deprecated as of 4.3.7, in favor of {@link #noNullElements(Object[], String)}
 	 */
 	@Deprecated
@@ -457,8 +437,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a collection contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 断言集合包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。
 	 * <pre class="code">Assert.notEmpty(collection, "Collection must contain elements");</pre>
 	 * @param collection the collection to check
 	 * @param message the exception message to use if the assertion fails
@@ -472,8 +451,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a collection contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 断言集合包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。
 	 * <pre class="code">
 	 * Assert.notEmpty(collection, () -&gt; "The " + collectionType + " collection must contain elements");
 	 * </pre>
@@ -491,8 +469,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a collection contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 断言集合包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。
 	 * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Collection, String)}
 	 */
 	@Deprecated
@@ -502,8 +479,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a collection contains no {@code null} elements.
-	 * <p>Note: Does not complain if the collection is empty!
+	 * 断言集合不包含 {@code null} 元素。
+	 * <p>注意：如果集合为空，则不会报错！
 	 * <pre class="code">Assert.noNullElements(collection, "Collection must contain non-null elements");</pre>
 	 * @param collection the collection to check
 	 * @param message the exception message to use if the assertion fails
@@ -521,8 +498,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a collection contains no {@code null} elements.
-	 * <p>Note: Does not complain if the collection is empty!
+	 * 断言集合不包含 {@code null} 元素。
+	 * <p>注意：如果集合为空，则不会报错！
 	 * <pre class="code">
 	 * Assert.noNullElements(collection, () -&gt; "Collection " + collectionName + " must contain non-null elements");
 	 * </pre>
@@ -543,8 +520,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a Map contains entries; that is, it must not be {@code null}
-	 * and must contain at least one entry.
+	 * 断言 Map 包含条目；也就是说，它不能为 {@code null}，并且必须至少包含一个条目。
 	 * <pre class="code">Assert.notEmpty(map, "Map must contain entries");</pre>
 	 * @param map the map to check
 	 * @param message the exception message to use if the assertion fails
@@ -557,8 +533,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a Map contains entries; that is, it must not be {@code null}
-	 * and must contain at least one entry.
+	 * 断言 Map 包含条目；也就是说，它不能为 {@code null}，并且必须至少包含一个条目。
 	 * <pre class="code">
 	 * Assert.notEmpty(map, () -&gt; "The " + mapType + " map must contain entries");
 	 * </pre>
@@ -575,8 +550,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a Map contains entries; that is, it must not be {@code null}
-	 * and must contain at least one entry.
+	 * 断言 Map 包含条目；也就是说，它不能为 {@code null}，并且必须至少包含一个条目。
 	 * @deprecated as of 4.3.7, in favor of {@link #notEmpty(Map, String)}
 	 */
 	@Deprecated
@@ -585,7 +559,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the provided object is an instance of the provided class.
+	 * 断言提供的对象是提供的类的实例。
 	 * <pre class="code">Assert.instanceOf(Foo.class, foo, "Foo expected");</pre>
 	 * @param type the type to check against
 	 * @param obj the object to check
@@ -604,7 +578,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the provided object is an instance of the provided class.
+	 * 断言提供的对象是提供的类的实例。
 	 * <pre class="code">
 	 * Assert.instanceOf(Foo.class, foo, () -&gt; "Processing " + Foo.class.getSimpleName() + ":");
 	 * </pre>
@@ -623,7 +597,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the provided object is an instance of the provided class.
+	 * 断言提供的对象是提供的类的实例。
 	 * <pre class="code">Assert.instanceOf(Foo.class, foo);</pre>
 	 * @param type the type to check against
 	 * @param obj the object to check
@@ -634,7 +608,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that {@code superType.isAssignableFrom(subType)} is {@code true}.
+	 * 断言 {@code superType.isAssignableFrom(subType)} 为 {@code true}。
 	 * <pre class="code">Assert.isAssignable(Number.class, myClass, "Number expected");</pre>
 	 * @param superType the supertype to check against
 	 * @param subType the subtype to check
@@ -653,7 +627,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that {@code superType.isAssignableFrom(subType)} is {@code true}.
+	 * 断言 {@code superType.isAssignableFrom(subType)} 为 {@code true}。
 	 * <pre class="code">
 	 * Assert.isAssignable(Number.class, myClass, () -&gt; "Processing " + myAttributeName + ":");
 	 * </pre>
@@ -672,7 +646,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that {@code superType.isAssignableFrom(subType)} is {@code true}.
+	 * 断言 {@code superType.isAssignableFrom(subType)} 为 {@code true}。
 	 * <pre class="code">Assert.isAssignable(Number.class, myClass);</pre>
 	 * @param superType the supertype to check
 	 * @param subType the subtype to check

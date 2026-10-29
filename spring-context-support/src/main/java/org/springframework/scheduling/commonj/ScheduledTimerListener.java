@@ -21,18 +21,17 @@ import commonj.timers.TimerListener;
 import org.springframework.lang.Nullable;
 
 /**
- * JavaBean that describes a scheduled TimerListener, consisting of
- * the TimerListener itself (or a Runnable to create a TimerListener for)
- * and a delay plus period. Period needs to be specified;
- * there is no point in a default for it.
+ * JavaBean，用于描述一个定时执行的 TimerListener，由
+ * TimerListener 本身（或用于创建 TimerListener 的 Runnable）
+ * 以及延迟和周期组成。需要指定周期；
+ * 为其设置默认值没有意义。
  *
- * <p>The CommonJ TimerManager does not offer more sophisticated scheduling
- * options such as cron expressions. Consider using Quartz for such
- * advanced needs.
+ * <p>CommonJ TimerManager 不提供比 cron 表达式更高级的调度
+ * 选项。如有此类高级需求，请考虑使用 Quartz。
  *
- * <p>Note that the TimerManager uses a TimerListener instance that is
- * shared between repeated executions, in contrast to Quartz which
- * instantiates a new Job for each execution.
+ * <p>请注意，TimerManager 使用的 TimerListener 实例在重复执行之间
+ * 是共享的，这与 Quartz 不同——Quartz 在每次执行时
+ * 都会实例化一个新的 Job。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -53,8 +52,8 @@ public class ScheduledTimerListener {
 
 
 	/**
-	 * Create a new ScheduledTimerListener,
-	 * to be populated via bean properties.
+	 * 创建一个新的 ScheduledTimerListener，
+	 * 通过 bean 属性进行填充。
 	 * @see #setTimerListener
 	 * @see #setDelay
 	 * @see #setPeriod
@@ -64,8 +63,8 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Create a new ScheduledTimerListener, with default
-	 * one-time execution without delay.
+	 * 创建一个新的 ScheduledTimerListener，默认
+	 * 无延迟的一次性执行。
 	 * @param timerListener the TimerListener to schedule
 	 */
 	public ScheduledTimerListener(TimerListener timerListener) {
@@ -73,8 +72,8 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Create a new ScheduledTimerListener, with default
-	 * one-time execution with the given delay.
+	 * 创建一个新的 ScheduledTimerListener，默认
+	 * 带指定延迟的一次性执行。
 	 * @param timerListener the TimerListener to schedule
 	 * @param delay the delay before starting the task for the first time (ms)
 	 */
@@ -84,7 +83,7 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Create a new ScheduledTimerListener.
+	 * 创建一个新的 ScheduledTimerListener。
 	 * @param timerListener the TimerListener to schedule
 	 * @param delay the delay before starting the task for the first time (ms)
 	 * @param period the period between repeated task executions (ms)
@@ -98,8 +97,8 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Create a new ScheduledTimerListener, with default
-	 * one-time execution without delay.
+	 * 创建一个新的 ScheduledTimerListener，默认
+	 * 无延迟的一次性执行。
 	 * @param timerTask the Runnable to schedule as TimerListener
 	 */
 	public ScheduledTimerListener(Runnable timerTask) {
@@ -107,8 +106,8 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Create a new ScheduledTimerListener, with default
-	 * one-time execution with the given delay.
+	 * 创建一个新的 ScheduledTimerListener，默认
+	 * 带指定延迟的一次性执行。
 	 * @param timerTask the Runnable to schedule as TimerListener
 	 * @param delay the delay before starting the task for the first time (ms)
 	 */
@@ -118,7 +117,7 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Create a new ScheduledTimerListener.
+	 * 创建一个新的 ScheduledTimerListener。
 	 * @param timerTask the Runnable to schedule as TimerListener
 	 * @param delay the delay before starting the task for the first time (ms)
 	 * @param period the period between repeated task executions (ms)
@@ -133,7 +132,7 @@ public class ScheduledTimerListener {
 
 
 	/**
-	 * Set the Runnable to schedule as TimerListener.
+	 * 设置要作为 TimerListener 调度的 Runnable。
 	 * @see DelegatingTimerListener
 	 */
 	public void setRunnable(Runnable timerTask) {
@@ -141,14 +140,14 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Set the TimerListener to schedule.
+	 * 设置要调度的 TimerListener。
 	 */
 	public void setTimerListener(@Nullable TimerListener timerListener) {
 		this.timerListener = timerListener;
 	}
 
 	/**
-	 * Return the TimerListener to schedule.
+	 * 返回要调度的 TimerListener。
 	 */
 	@Nullable
 	public TimerListener getTimerListener() {
@@ -156,34 +155,34 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Set the delay before starting the task for the first time,
-	 * in milliseconds. Default is 0, immediately starting the
-	 * task after successful scheduling.
-	 * <p>If the "firstTime" property is specified, this property will be ignored.
-	 * Specify one or the other, not both.
+	 * 设置首次启动任务前的延迟时间，
+	 * 以毫秒为单位。默认为 0，即在成功调度后
+	 * 立即启动任务。
+	 * <p>如果指定了 "firstTime" 属性，则此属性将被忽略。
+	 * 请指定其中一个，不要同时指定两者。
 	 */
 	public void setDelay(long delay) {
 		this.delay = delay;
 	}
 
 	/**
-	 * Return the delay before starting the job for the first time.
+	 * 返回首次启动任务前的延迟时间。
 	 */
 	public long getDelay() {
 		return this.delay;
 	}
 
 	/**
-	 * Set the period between repeated task executions, in milliseconds.
-	 * <p>Default is -1, leading to one-time execution. In case of zero or a
-	 * positive value, the task will be executed repeatedly, with the given
-	 * interval in-between executions.
-	 * <p>Note that the semantics of the period value vary between fixed-rate
-	 * and fixed-delay execution.
-	 * <p><b>Note:</b> A period of 0 (for example as fixed delay) <i>is</i>
-	 * supported, because the CommonJ specification defines this as a legal value.
-	 * Hence a value of 0 will result in immediate re-execution after a job has
-	 * finished (not in one-time execution like with {@code java.util.Timer}).
+	 * 设置重复任务执行之间的间隔，以毫秒为单位。
+	 * <p>默认为 -1，即一次性执行。如果值为零或
+	 * 正值，任务将被重复执行，每次执行之间
+	 * 间隔给定的时间。
+	 * <p>请注意，周期值的语义在固定速率
+	 * 和固定延迟执行之间有所不同。
+	 * <p><b>注意：</b>支持周期值为 0（例如作为固定延迟），
+	 * 因为 CommonJ 规范将此定义为合法值。
+	 * 因此，值为 0 将导致在任务完成后立即重新执行
+	 * （不会像 {@code java.util.Timer} 那样只执行一次）。
 	 * @see #setFixedRate
 	 * @see #isOneTimeTask()
 	 * @see commonj.timers.TimerManager#schedule(commonj.timers.TimerListener, long, long)
@@ -193,14 +192,14 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Return the period between repeated task executions.
+	 * 返回重复任务执行之间的间隔。
 	 */
 	public long getPeriod() {
 		return this.period;
 	}
 
 	/**
-	 * Is this task only ever going to execute once?
+	 * 此任务是否只会执行一次？
 	 * @return {@code true} if this task is only ever going to execute once
 	 * @see #getPeriod()
 	 */
@@ -209,9 +208,9 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Set whether to schedule as fixed-rate execution, rather than
-	 * fixed-delay execution. Default is "false", i.e. fixed delay.
-	 * <p>See TimerManager javadoc for details on those execution modes.
+	 * 设置是否以固定速率执行方式调度，而不是
+	 * 固定延迟执行方式。默认为 "false"，即固定延迟。
+	 * <p>有关这些执行模式的详细信息，请参阅 TimerManager 的 javadoc。
 	 * @see commonj.timers.TimerManager#schedule(commonj.timers.TimerListener, long, long)
 	 * @see commonj.timers.TimerManager#scheduleAtFixedRate(commonj.timers.TimerListener, long, long)
 	 */
@@ -220,7 +219,7 @@ public class ScheduledTimerListener {
 	}
 
 	/**
-	 * Return whether to schedule as fixed-rate execution.
+	 * 返回是否以固定速率执行方式调度。
 	 */
 	public boolean isFixedRate() {
 		return this.fixedRate;

@@ -43,11 +43,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link AutowireCandidateResolver} implementation that matches bean definition qualifiers
- * against {@link Qualifier qualifier annotations} on the field or parameter to be autowired.
- * Also supports suggested expression values through a {@link Value value} annotation.
+ * {@link AutowireCandidateResolver} 的实现，将 Bean 定义限定符与待自动装配字段或参数上的
+ * {@link Qualifier 限定符注解} 进行匹配。还通过 {@link Value value} 注解支持建议的表达式值。
  *
- * <p>Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
+ * <p>如果可用，还支持 JSR-330 的 {@link javax.inject.Qualifier} 注解。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -65,9 +64,8 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 
 	/**
-	 * Create a new QualifierAnnotationAutowireCandidateResolver
-	 * for Spring's standard {@link Qualifier} annotation.
-	 * <p>Also supports JSR-330's {@link javax.inject.Qualifier} annotation, if available.
+	 * 为 Spring 的标准 {@link Qualifier} 注解创建一个新的 QualifierAnnotationAutowireCandidateResolver。
+	 * <p>如果可用，还支持 JSR-330 的 {@link javax.inject.Qualifier} 注解。
 	 */
 	@SuppressWarnings("unchecked")
 	public QualifierAnnotationAutowireCandidateResolver() {
@@ -82,8 +80,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Create a new QualifierAnnotationAutowireCandidateResolver
-	 * for the given qualifier annotation type.
+	 * 为给定的限定符注解类型创建一个新的 QualifierAnnotationAutowireCandidateResolver。
 	 * @param qualifierType the qualifier annotation to look for
 	 */
 	public QualifierAnnotationAutowireCandidateResolver(Class<? extends Annotation> qualifierType) {
@@ -92,8 +89,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Create a new QualifierAnnotationAutowireCandidateResolver
-	 * for the given qualifier annotation types.
+	 * 为给定的限定符注解类型创建一个新的 QualifierAnnotationAutowireCandidateResolver。
 	 * @param qualifierTypes the qualifier annotations to look for
 	 */
 	public QualifierAnnotationAutowireCandidateResolver(Set<Class<? extends Annotation>> qualifierTypes) {
@@ -103,13 +99,10 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 
 	/**
-	 * Register the given type to be used as a qualifier when autowiring.
-	 * <p>This identifies qualifier annotations for direct use (on fields,
-	 * method parameters and constructor parameters) as well as meta
-	 * annotations that in turn identify actual qualifier annotations.
-	 * <p>This implementation only supports annotations as qualifier types.
-	 * The default is Spring's {@link Qualifier} annotation which serves
-	 * as a qualifier for direct use and also as a meta annotation.
+	 * 注册给定类型，使其在自动装配时用作限定符。<p>这会将限定符注解标识为可直接使用（用于字段、方法参
+	 * 数和构造方法参数），也可标识为元注解，这些元注解又进一步标识实际的限定符注解。<p>此实现仅支持将
+	 * 注解作为限定符类型。默认是 Spring 的 {@link Qualifier} 注解，它既可作为直接使用的限定符，也可作
+	 * 为元注解。
 	 * @param qualifierType the annotation type to register
 	 */
 	public void addQualifierType(Class<? extends Annotation> qualifierType) {
@@ -117,13 +110,9 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Set the 'value' annotation type, to be used on fields, method parameters
-	 * and constructor parameters.
-	 * <p>The default value annotation type is the Spring-provided
-	 * {@link Value} annotation.
-	 * <p>This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation type to indicate a default value
-	 * expression for a specific argument.
+	 * 设置 'value' 注解类型，用于字段、方法参数和构造方法参数。<p>默认的值注解类型是 Spring 提供的
+	 * {@link Value} 注解。<p>此 setter 属性的存在是为了让开发者能够提供自己的（非 Spring 特有的）注解
+	 * 类型，以为特定参数指示默认值表达式。
 	 */
 	public void setValueAnnotationType(Class<? extends Annotation> valueAnnotationType) {
 		this.valueAnnotationType = valueAnnotationType;
@@ -131,15 +120,10 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 
 	/**
-	 * Determine whether the provided bean definition is an autowire candidate.
-	 * <p>To be considered a candidate the bean's <em>autowire-candidate</em>
-	 * attribute must not have been set to 'false'. Also, if an annotation on
-	 * the field or parameter to be autowired is recognized by this bean factory
-	 * as a <em>qualifier</em>, the bean must 'match' against the annotation as
-	 * well as any attributes it may contain. The bean definition must contain
-	 * the same qualifier or match by meta attributes. A "value" attribute will
-	 * fall back to match against the bean name or an alias if a qualifier or
-	 * attribute does not match.
+	 * 确定所提供的 Bean 定义是否为自动装配候选者。<p>要被视为候选者，Bean 的 <em>autowire-candidate
+	 * </em> 属性不得被设置为 'false'。此外，如果待自动装配字段或参数上的注解被此 Bean 工厂识别为 <em>
+	 * 限定符</em>，则该 Bean 还必须与该注解及其可能包含的任何属性相匹配。Bean 定义必须包含相同的限定符，
+	 * 或通过元属性匹配。如果限定符或属性不匹配，"value" 属性将回退为与 Bean 名称或别名匹配。
 	 * @see Qualifier
 	 */
 	@Override
@@ -161,7 +145,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Match the given qualifier annotations against the candidate bean definition.
+	 * 将给定的限定符注解与候选 Bean 定义进行匹配。
 	 */
 	protected boolean checkQualifiers(BeanDefinitionHolder bdHolder, Annotation[] annotationsToSearch) {
 		if (ObjectUtils.isEmpty(annotationsToSearch)) {
@@ -203,7 +187,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Checks whether the given annotation type is a recognized qualifier type.
+	 * 检查给定注解类型是否为已识别的限定符类型。
 	 */
 	protected boolean isQualifier(Class<? extends Annotation> annotationType) {
 		for (Class<? extends Annotation> qualifierType : this.qualifierTypes) {
@@ -215,7 +199,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Match the given qualifier annotation against the candidate bean definition.
+	 * 将给定的限定符注解与候选 Bean 定义进行匹配。
 	 */
 	protected boolean checkQualifier(
 			BeanDefinitionHolder bdHolder, Annotation annotation, TypeConverter typeConverter) {
@@ -313,8 +297,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 
 
 	/**
-	 * Determine whether the given dependency declares an autowired annotation,
-	 * checking its required flag.
+	 * 确定给定依赖是否声明了 autowired 注解，并检查其 required 标志。
 	 * @see Autowired#required()
 	 */
 	@Override
@@ -327,7 +310,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Determine whether the given dependency declares a qualifier annotation.
+	 * 确定给定依赖是否声明了限定符注解。
 	 * @see #isQualifier(Class)
 	 * @see Qualifier
 	 */
@@ -342,7 +325,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Determine whether the given dependency declares a value annotation.
+	 * 确定给定依赖是否声明了 value 注解。
 	 * @see Value
 	 */
 	@Override
@@ -359,7 +342,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Determine a suggested value from any of the given candidate annotations.
+	 * 从给定的任一候选注解中确定建议的值。
 	 */
 	@Nullable
 	protected Object findValue(Annotation[] annotationsToSearch) {
@@ -374,7 +357,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Extract the value attribute from the given annotation.
+	 * 从给定注解中提取 value 属性。
 	 * @since 4.3
 	 */
 	protected Object extractValue(AnnotationAttributes attr) {

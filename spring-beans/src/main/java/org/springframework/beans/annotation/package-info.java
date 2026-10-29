@@ -1,5 +1,5 @@
 /**
- * Support package for beans-style handling of annotations.
+ * 用于以 Bean 风格处理注解的支持包。
  */
 @NonNullApi
 @NonNullFields

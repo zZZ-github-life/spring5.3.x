@@ -24,21 +24,19 @@ import org.springframework.messaging.core.MessagePostProcessor;
 import org.springframework.messaging.core.MessageSendingOperations;
 
 /**
- * A specialization of {@link MessageSendingOperations} with methods for use with
- * the Spring Framework support for Simple Messaging Protocols (like STOMP).
+ * {@link MessageSendingOperations} 的特化，提供用于 Spring Framework 对简单消息传递协议
+ * （如 STOMP）支持的方法。
  *
- * <p>For more on user destinations see
+ * <p>有关用户目标的更多信息，请参阅
  * {@link org.springframework.messaging.simp.user.UserDestinationResolver
- * UserDestinationResolver}.
+ * UserDestinationResolver}。
  *
- * <p>Generally it is expected the user is the one authenticated with the
- * WebSocket session (or by extension the user authenticated with the
- * handshake request that started the session). However if the session is
- * not authenticated, it is also possible to pass the session id (if known)
- * in place of the user name. Keep in mind though that in that scenario,
- * you must use one of the overloaded methods that accept headers making sure the
+ * <p>通常期望用户是已通过 WebSocket 会话认证的用户（或者扩展地说，是通过启动该会话的
+ * 握手请求认证的用户）。不过，如果会话未认证，也可以传入会话 ID（如果已知）
+ * 来代替用户名。但请记住，在这种情况下，必须使用接受头的重载方法之一，
+ * 并确保已相应设置
  * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor#setSessionId
- * sessionId} header has been set accordingly.
+ * sessionId} 头。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -46,7 +44,7 @@ import org.springframework.messaging.core.MessageSendingOperations;
 public interface SimpMessageSendingOperations extends MessageSendingOperations<String> {
 
 	/**
-	 * Send a message to the given user.
+	 * 向给定用户发送消息。
 	 * @param user the user that should receive the message.
 	 * @param destination the destination to send the message to.
 	 * @param payload the payload to send
@@ -54,19 +52,17 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	void convertAndSendToUser(String user, String destination, Object payload) throws MessagingException;
 
 	/**
-	 * Send a message to the given user.
-	 * <p>By default headers are interpreted as native headers (e.g. STOMP) and
-	 * are saved under a special key in the resulting Spring
-	 * {@link org.springframework.messaging.Message Message}. In effect when the
-	 * message leaves the application, the provided headers are included with it
-	 * and delivered to the destination (e.g. the STOMP client or broker).
-	 * <p>If the map already contains the key
+	 * 向给定用户发送消息。
+	 * <p>默认情况下，头会被解释为原生头（例如 STOMP），并保存在生成的 Spring
+	 * {@link org.springframework.messaging.Message Message} 中的特殊键下。
+	 * 实际上，当消息离开应用程序时，提供的头会随消息一起包含，
+	 * 并投递到目标（例如 STOMP 客户端或代理）。
+	 * <p>如果映射中已经包含键
 	 * {@link org.springframework.messaging.support.NativeMessageHeaderAccessor#NATIVE_HEADERS "nativeHeaders"}
-	 * or was prepared with
+	 * 或者已使用
 	 * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor SimpMessageHeaderAccessor}
-	 * then the headers are used directly. A common expected case is providing a
-	 * content type (to influence the message conversion) and native headers.
-	 * This may be done as follows:
+	 * 准备，则直接使用这些头。常见的预期情况是提供内容类型（以影响消息转换）
+	 * 和原生头。可以按如下方式完成：
 	 * <pre class="code">
 	 * SimpMessageHeaderAccessor accessor = SimpMessageHeaderAccessor.create();
 	 * accessor.setContentType(MimeTypeUtils.TEXT_PLAIN);
@@ -75,10 +71,9 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 	 * MessageHeaders headers = accessor.getMessageHeaders();
 	 * messagingTemplate.convertAndSendToUser(user, destination, payload, headers);
 	 * </pre>
-	 * <p><strong>Note:</strong> if the {@code MessageHeaders} are mutable as in
-	 * the above example, implementations of this interface should take notice and
-	 * update the headers in the same instance (rather than copy or re-create it)
-	 * and then set it immutable before sending the final message.
+	 * <p><strong>注意：</strong>如果如上例所示 {@code MessageHeaders} 是可变的，
+	 * 此接口的实现应注意在同一实例中更新头（而不是复制或重新创建），
+	 * 然后在发送最终消息之前将其设置为不可变。
 	 * @param user the user that should receive the message (must not be {@code null})
 	 * @param destination the destination to send the message to (must not be {@code null})
 	 * @param payload the payload to send (may be {@code null})
@@ -88,7 +83,7 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 			throws MessagingException;
 
 	/**
-	 * Send a message to the given user.
+	 * 向给定用户发送消息。
 	 * @param user the user that should receive the message (must not be {@code null})
 	 * @param destination the destination to send the message to (must not be {@code null})
 	 * @param payload the payload to send (may be {@code null})
@@ -98,9 +93,9 @@ public interface SimpMessageSendingOperations extends MessageSendingOperations<S
 			throws MessagingException;
 
 	/**
-	 * Send a message to the given user.
-	 * <p>See {@link #convertAndSend(Object, Object, java.util.Map)} for important
-	 * notes regarding the input headers.
+	 * 向给定用户发送消息。
+	 * <p>有关输入头的重要说明，请参阅
+	 * {@link #convertAndSend(Object, Object, java.util.Map)}。
 	 * @param user the user that should receive the message
 	 * @param destination the destination to send the message to
 	 * @param payload the payload to send

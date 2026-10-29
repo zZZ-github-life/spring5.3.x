@@ -22,15 +22,12 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 /**
- * Convenient application context with built-in XML support.
- * This is a flexible alternative to {@link ClassPathXmlApplicationContext}
- * and {@link FileSystemXmlApplicationContext}, to be configured via setters,
- * with an eventual {@link #refresh()} call activating the context.
+ * 内置 XML 支持的便捷应用上下文。它是 {@link ClassPathXmlApplicationContext} 和
+ * {@link FileSystemXmlApplicationContext} 的灵活替代方案，可通过 setter 进行配置，最终调用
+ * {@link #refresh()} 激活上下文。
  *
- * <p>In case of multiple configuration files, bean definitions in later files
- * will override those defined in earlier files. This can be leveraged to
- * intentionally override certain bean definitions via an extra configuration
- * file appended to the list.
+ * <p>存在多个配置文件时，后加载文件中的 Bean 定义将覆盖先加载文件中的定义。可以利用这一点，通过在
+ * 列表末尾追加额外的配置文件来有意覆盖某些 Bean 定义。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -45,15 +42,14 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 
 
 	/**
-	 * Create a new GenericXmlApplicationContext that needs to be
-	 * {@link #load loaded} and then manually {@link #refresh refreshed}.
+	 * 创建一个新的 GenericXmlApplicationContext，需要先{@link #load 加载}，然后手动
+	 * {@link #refresh 刷新}。
 	 */
 	public GenericXmlApplicationContext() {
 	}
 
 	/**
-	 * Create a new GenericXmlApplicationContext, loading bean definitions
-	 * from the given resources and automatically refreshing the context.
+	 * 创建一个新的 GenericXmlApplicationContext，从给定的资源加载 Bean 定义并自动刷新上下文。
 	 * @param resources the resources to load from
 	 */
 	public GenericXmlApplicationContext(Resource... resources) {
@@ -62,8 +58,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	}
 
 	/**
-	 * Create a new GenericXmlApplicationContext, loading bean definitions
-	 * from the given resource locations and automatically refreshing the context.
+	 * 创建一个新的 GenericXmlApplicationContext，从给定的资源位置加载 Bean 定义并自动刷新上下文。
 	 * @param resourceLocations the resources to load from
 	 */
 	public GenericXmlApplicationContext(String... resourceLocations) {
@@ -72,8 +67,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	}
 
 	/**
-	 * Create a new GenericXmlApplicationContext, loading bean definitions
-	 * from the given resource locations and automatically refreshing the context.
+	 * 创建一个新的 GenericXmlApplicationContext，从给定的资源位置加载 Bean 定义并自动刷新上下文。
 	 * @param relativeClass class whose package will be used as a prefix when
 	 * loading each specified resource name
 	 * @param resourceNames relatively-qualified names of resources to load
@@ -85,23 +79,22 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 
 
 	/**
-	 * Exposes the underlying {@link XmlBeanDefinitionReader} for additional
-	 * configuration facilities and {@code loadBeanDefinition} variations.
+	 * 公开底层的 {@link XmlBeanDefinitionReader}，以提供额外的配置功能和 {@code loadBeanDefinition} 的
+	 * 各种变体。
 	 */
 	public final XmlBeanDefinitionReader getReader() {
 		return this.reader;
 	}
 
 	/**
-	 * Set whether to use XML validation. Default is {@code true}.
+	 * 设置是否使用 XML 验证。默认值为 {@code true}。
 	 */
 	public void setValidating(boolean validating) {
 		this.reader.setValidating(validating);
 	}
 
 	/**
-	 * Delegates the given environment to underlying {@link XmlBeanDefinitionReader}.
-	 * Should be called before any call to {@code #load}.
+	 * 将给定的环境委托给底层的 {@link XmlBeanDefinitionReader}。应在调用 {@code #load} 之前调用。
 	 */
 	@Override
 	public void setEnvironment(ConfigurableEnvironment environment) {
@@ -115,7 +108,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Load bean definitions from the given XML resources.
+	 * 从给定的 XML 资源加载 Bean 定义。
 	 * @param resources one or more resources to load from
 	 */
 	public void load(Resource... resources) {
@@ -123,7 +116,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	}
 
 	/**
-	 * Load bean definitions from the given XML resources.
+	 * 从给定的 XML 资源加载 Bean 定义。
 	 * @param resourceLocations one or more resource locations to load from
 	 */
 	public void load(String... resourceLocations) {
@@ -131,7 +124,7 @@ public class GenericXmlApplicationContext extends GenericApplicationContext {
 	}
 
 	/**
-	 * Load bean definitions from the given XML resources.
+	 * 从给定的 XML 资源加载 Bean 定义。
 	 * @param relativeClass class whose package will be used as a prefix when
 	 * loading each specified resource name
 	 * @param resourceNames relatively-qualified names of resources to load

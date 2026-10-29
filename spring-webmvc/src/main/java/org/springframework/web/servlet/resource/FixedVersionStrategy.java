@@ -19,13 +19,12 @@ package org.springframework.web.servlet.resource;
 import org.springframework.core.io.Resource;
 
 /**
- * A {@code VersionStrategy} that relies on a fixed version applied as a request
- * path prefix, e.g. reduced SHA, version name, release date, etc.
+ * {@code VersionStrategy}，它依赖作为请求路径前缀应用的固定版本，
+ * 例如缩短的 SHA、版本名称、发布日期等。
  *
- * <p>This is useful for example when {@link ContentVersionStrategy} cannot be
- * used such as when using JavaScript module loaders which are in charge of
- * loading the JavaScript resources and need to know their relative paths.
- *
+ * <p>例如，当无法使用 {@link ContentVersionStrategy} 时（例如使用
+ * 负责加载 JavaScript 资源并需要知道其相对路径的
+ * JavaScript 模块加载器时），这很有用。
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -37,7 +36,7 @@ public class FixedVersionStrategy extends AbstractVersionStrategy {
 
 
 	/**
-	 * Create a new FixedVersionStrategy with the given version string.
+	 * 使用给定版本字符串创建一个新的 FixedVersionStrategy。
 	 * @param version the fixed version string to use
 	 */
 	public FixedVersionStrategy(String version) {

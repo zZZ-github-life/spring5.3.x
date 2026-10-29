@@ -42,38 +42,30 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * Helper class that simplifies synchronous JMS access code.
+ * 简化同步 JMS 访问代码的辅助类。
  *
- * <p>If you want to use dynamic destination creation, you must specify
- * the type of JMS destination to create, using the "pubSubDomain" property.
- * For other operations, this is not necessary. Point-to-Point (Queues) is the default
- * domain.
+ * <p>如果希望使用动态目标创建，必须通过 "pubSubDomain" 属性指定要创建的
+ * JMS 目标类型。对于其他操作，这并非必需。点对点（队列）是默认域。
  *
- * <p>Default settings for JMS Sessions are "not transacted" and "auto-acknowledge".
- * As defined by the Java EE specification, the transaction and acknowledgement
- * parameters are ignored when a JMS Session is created inside an active
- * transaction, no matter if a JTA transaction or a Spring-managed transaction.
- * To configure them for native JMS usage, specify appropriate values for
- * the "sessionTransacted" and "sessionAcknowledgeMode" bean properties.
+ * <p>JMS Session 的默认设置为 "非事务" 和 "自动确认"。
+ * 按照 Java EE 规范的定义，在活动事务（无论是 JTA 事务还是 Spring 管理的事务）
+ * 内创建 JMS Session 时，事务和确认参数会被忽略。若要为原生 JMS 用法配置它们，
+ * 请为 "sessionTransacted" 和 "sessionAcknowledgeMode" bean 属性指定适当的值。
  *
- * <p>This template uses a
+ * <p>此模板默认使用
  * {@link org.springframework.jms.support.destination.DynamicDestinationResolver}
- * and a {@link org.springframework.jms.support.converter.SimpleMessageConverter}
- * as default strategies for resolving a destination name or converting a message,
- * respectively. These defaults can be overridden through the "destinationResolver"
- * and "messageConverter" bean properties.
+ * 和 {@link org.springframework.jms.support.converter.SimpleMessageConverter}
+ * 分别作为解析目标名称和转换消息的默认策略。这些默认值可以通过
+ * "destinationResolver" 和 "messageConverter" bean 属性覆盖。
  *
- * <p><b>NOTE: The {@code ConnectionFactory} used with this template should
- * return pooled Connections (or a single shared Connection) as well as pooled
- * Sessions and MessageProducers. Otherwise, performance of ad-hoc JMS operations
- * is going to suffer.</b> The simplest option is to use the Spring-provided
- * {@link org.springframework.jms.connection.SingleConnectionFactory} as a
- * decorator for your target {@code ConnectionFactory}, reusing a single
- * JMS Connection in a thread-safe fashion; this is often good enough for the
- * purpose of sending messages via this template. In a Java EE environment,
- * make sure that the {@code ConnectionFactory} is obtained from the
- * application's environment naming context via JNDI; application servers
- * typically expose pooled, transaction-aware factories there.
+ * <p><b>注意：与此模板一起使用的 {@code ConnectionFactory} 应返回池化的
+ * Connection（或单个共享 Connection）以及池化的 Session 和 MessageProducer。
+ * 否则，临时 JMS 操作的性能将受到影响。</b>最简单的选择是使用 Spring 提供的
+ * {@link org.springframework.jms.connection.SingleConnectionFactory} 作为目标
+ * {@code ConnectionFactory} 的装饰器，以线程安全的方式复用单个 JMS Connection；
+ * 对于通过此模板发送消息而言，这通常已经足够。在 Java EE 环境中，
+ * 请确保通过 JNDI 从应用环境的命名上下文获取 {@code ConnectionFactory}；
+ * 应用服务器通常会在那里公开池化的、事务感知的工厂。
  *
  * @author Mark Pollack
  * @author Juergen Hoeller
@@ -88,7 +80,7 @@ import org.springframework.util.Assert;
  */
 public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations {
 
-	/** Internal ResourceFactory adapter for interacting with ConnectionFactoryUtils. */
+	/** 用于与 ConnectionFactoryUtils 交互的内部 ResourceFactory 适配器。 */
 	private final JmsTemplateResourceFactory transactionalResourceFactory = new JmsTemplateResourceFactory();
 
 
@@ -120,10 +112,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 
 	/**
-	 * Create a new JmsTemplate for bean-style usage.
-	 * <p>Note: The ConnectionFactory has to be set before using the instance.
-	 * This constructor can be used to prepare a JmsTemplate via a BeanFactory,
-	 * typically setting the ConnectionFactory via setConnectionFactory.
+	 * 创建一个用于 bean 风格用法的新 JmsTemplate。
+	 * <p>注意：在使用实例之前必须设置 ConnectionFactory。
+	 * 此构造函数可用于通过 BeanFactory 准备 JmsTemplate，
+	 * 通常通过 setConnectionFactory 设置 ConnectionFactory。
 	 * @see #setConnectionFactory
 	 */
 	public JmsTemplate() {
@@ -131,7 +123,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Create a new JmsTemplate, given a ConnectionFactory.
+	 * 根据给定的 ConnectionFactory 创建一个新的 JmsTemplate。
 	 * @param connectionFactory the ConnectionFactory to obtain Connections from
 	 */
 	public JmsTemplate(ConnectionFactory connectionFactory) {
@@ -141,8 +133,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Initialize the default implementations for the template's strategies:
-	 * DynamicDestinationResolver and SimpleMessageConverter.
+	 * 初始化模板策略的默认实现：
+	 * DynamicDestinationResolver 和 SimpleMessageConverter。
 	 * @see #setDestinationResolver
 	 * @see #setMessageConverter
 	 * @see org.springframework.jms.support.destination.DynamicDestinationResolver
@@ -154,10 +146,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 
 	/**
-	 * Set the destination to be used on send/receive operations that do not
-	 * have a destination parameter.
-	 * <p>Alternatively, specify a "defaultDestinationName", to be
-	 * dynamically resolved via the DestinationResolver.
+	 * 设置用于没有目标参数的发送/接收操作的目标。
+	 * <p>或者，指定 "defaultDestinationName"，通过 DestinationResolver 动态解析。
 	 * @see #send(MessageCreator)
 	 * @see #convertAndSend(Object)
 	 * @see #convertAndSend(Object, MessagePostProcessor)
@@ -168,8 +158,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the destination to be used on send/receive operations that do not
-	 * have a destination parameter.
+	 * 返回用于没有目标参数的发送/接收操作的目标。
 	 */
 	@Nullable
 	public Destination getDefaultDestination() {
@@ -187,10 +176,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Set the destination name to be used on send/receive operations that
-	 * do not have a destination parameter. The specified name will be
-	 * dynamically resolved via the DestinationResolver.
-	 * <p>Alternatively, specify a JMS Destination object as "defaultDestination".
+	 * 设置用于没有目标参数的发送/接收操作的目标名称。
+	 * 指定的名称将通过 DestinationResolver 动态解析。
+	 * <p>或者，将 JMS Destination 对象指定为 "defaultDestination"。
 	 * @see #send(MessageCreator)
 	 * @see #convertAndSend(Object)
 	 * @see #convertAndSend(Object, MessagePostProcessor)
@@ -202,8 +190,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the destination name to be used on send/receive operations that
-	 * do not have a destination parameter.
+	 * 返回用于没有目标参数的发送/接收操作的目标名称。
 	 */
 	@Nullable
 	public String getDefaultDestinationName() {
@@ -220,11 +207,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Set the message converter for this template. Used to resolve
-	 * Object parameters to convertAndSend methods and Object results
-	 * from receiveAndConvert methods.
-	 * <p>The default converter is a SimpleMessageConverter, which is able
-	 * to handle BytesMessages, TextMessages and ObjectMessages.
+	 * 设置此模板的消息转换器。用于将 convertAndSend 方法的 Object 参数
+	 * 以及 receiveAndConvert 方法的 Object 结果进行解析转换。
+	 * <p>默认转换器是 SimpleMessageConverter，能够处理 BytesMessage、
+	 * TextMessage 和 ObjectMessage。
 	 * @see #convertAndSend
 	 * @see #receiveAndConvert
 	 * @see org.springframework.jms.support.converter.SimpleMessageConverter
@@ -234,7 +220,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the message converter for this template.
+	 * 返回此模板的消息转换器。
 	 */
 	@Nullable
 	public MessageConverter getMessageConverter() {
@@ -251,9 +237,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 
 	/**
-	 * Set whether message IDs are enabled. Default is "true".
-	 * <p>This is only a hint to the JMS producer.
-	 * See the JMS javadocs for details.
+	 * 设置是否启用消息 ID。默认值为 "true"。
+	 * <p>这只是对 JMS 生产者的一种提示。
+	 * 详情请参阅 JMS javadoc。
 	 * @see javax.jms.MessageProducer#setDisableMessageID
 	 */
 	public void setMessageIdEnabled(boolean messageIdEnabled) {
@@ -261,16 +247,16 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return whether message IDs are enabled.
+	 * 返回是否启用消息 ID。
 	 */
 	public boolean isMessageIdEnabled() {
 		return this.messageIdEnabled;
 	}
 
 	/**
-	 * Set whether message timestamps are enabled. Default is "true".
-	 * <p>This is only a hint to the JMS producer.
-	 * See the JMS javadocs for details.
+	 * 设置是否启用消息时间戳。默认值为 "true"。
+	 * <p>这只是对 JMS 生产者的一种提示。
+	 * 详情请参阅 JMS javadoc。
 	 * @see javax.jms.MessageProducer#setDisableMessageTimestamp
 	 */
 	public void setMessageTimestampEnabled(boolean messageTimestampEnabled) {
@@ -278,15 +264,14 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return whether message timestamps are enabled.
+	 * 返回是否启用消息时间戳。
 	 */
 	public boolean isMessageTimestampEnabled() {
 		return this.messageTimestampEnabled;
 	}
 
 	/**
-	 * Set whether to inhibit the delivery of messages published by its own connection.
-	 * Default is "false".
+	 * 设置是否阻止投递由其自身连接发布的消息。默认值为 "false"。
 	 * @see javax.jms.Session#createConsumer(javax.jms.Destination, String, boolean)
 	 */
 	public void setPubSubNoLocal(boolean pubSubNoLocal) {
@@ -294,19 +279,17 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return whether to inhibit the delivery of messages published by its own connection.
+	 * 返回是否阻止投递由其自身连接发布的消息。
 	 */
 	public boolean isPubSubNoLocal() {
 		return this.pubSubNoLocal;
 	}
 
 	/**
-	 * Set the timeout to use for receive calls (in milliseconds).
-	 * <p>The default is {@link #RECEIVE_TIMEOUT_INDEFINITE_WAIT}, which indicates
-	 * a blocking receive without timeout.
-	 * <p>Specify {@link #RECEIVE_TIMEOUT_NO_WAIT} (or any other negative value)
-	 * to indicate that a receive operation should check if a message is
-	 * immediately available without blocking.
+	 * 设置接收调用使用的超时时间（以毫秒为单位）。
+	 * <p>默认值为 {@link #RECEIVE_TIMEOUT_INDEFINITE_WAIT}，表示无超时的阻塞接收。
+	 * <p>指定 {@link #RECEIVE_TIMEOUT_NO_WAIT}（或任何其他负值）表示接收操作应
+	 * 检查消息是否立即可用而不阻塞。
 	 * @see #receiveFromConsumer(MessageConsumer, long)
 	 * @see javax.jms.MessageConsumer#receive(long)
 	 * @see javax.jms.MessageConsumer#receiveNoWait()
@@ -317,23 +300,23 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the timeout to use for receive calls (in milliseconds).
+	 * 返回接收调用使用的超时时间（以毫秒为单位）。
 	 */
 	public long getReceiveTimeout() {
 		return this.receiveTimeout;
 	}
 
 	/**
-	 * Set the delivery delay to use for send calls (in milliseconds).
-	 * <p>The default is -1 (no delivery delay passed on to the broker).
-	 * Note that this feature requires JMS 2.0.
+	 * 设置发送调用使用的投递延迟（以毫秒为单位）。
+	 * <p>默认值为 -1（不向代理传递投递延迟）。
+	 * 请注意，此功能需要 JMS 2.0。
 	 */
 	public void setDeliveryDelay(long deliveryDelay) {
 		this.deliveryDelay = deliveryDelay;
 	}
 
 	/**
-	 * Return the delivery delay to use for send calls (in milliseconds).
+	 * 返回发送调用使用的投递延迟（以毫秒为单位）。
 	 */
 	public long getDeliveryDelay() {
 		return this.deliveryDelay;
@@ -341,8 +324,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 
 	/**
-	 * Set if the QOS values (deliveryMode, priority, timeToLive)
-	 * should be used for sending a message.
+	 * 设置发送消息时是否应使用 QOS 值（deliveryMode、priority、timeToLive）。
 	 * @see #setDeliveryMode
 	 * @see #setPriority
 	 * @see #setTimeToLive
@@ -352,9 +334,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * If "true", then the values of deliveryMode, priority, and timeToLive
-	 * will be used when sending a message. Otherwise, the default values,
-	 * that may be set administratively, will be used.
+	 * 如果为 "true"，发送消息时将使用 deliveryMode、priority 和 timeToLive 的值。
+	 * 否则，将使用可能通过管理方式设置的默认值。
 	 * @return true if overriding default values of QOS parameters
 	 * (deliveryMode, priority, and timeToLive)
 	 * @see #setDeliveryMode
@@ -366,7 +347,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Set the {@link QosSettings} to use when sending a message.
+	 * 设置发送消息时要使用的 {@link QosSettings}。
 	 * @param settings the deliveryMode, priority, and timeToLive settings to use
 	 * @since 5.0
 	 * @see #setExplicitQosEnabled(boolean)
@@ -383,10 +364,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Set whether message delivery should be persistent or non-persistent,
-	 * specified as boolean value ("true" or "false"). This will set the delivery
-	 * mode accordingly, to either "PERSISTENT" (2) or "NON_PERSISTENT" (1).
-	 * <p>Default is "true" a.k.a. delivery mode "PERSISTENT".
+	 * 设置消息投递应为持久还是非持久，以布尔值（"true" 或 "false"）指定。
+	 * 这将相应地将投递模式设置为 "PERSISTENT"（2）或 "NON_PERSISTENT"（1）。
+	 * <p>默认值为 "true"，即投递模式 "PERSISTENT"。
 	 * @see #setDeliveryMode(int)
 	 * @see javax.jms.DeliveryMode#PERSISTENT
 	 * @see javax.jms.DeliveryMode#NON_PERSISTENT
@@ -396,10 +376,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Set the delivery mode to use when sending a message.
-	 * Default is the JMS Message default: "PERSISTENT".
-	 * <p>Since a default value may be defined administratively,
-	 * this is only used when "isExplicitQosEnabled" equals "true".
+	 * 设置发送消息时使用的投递模式。
+	 * 默认为 JMS Message 的默认值："PERSISTENT"。
+	 * <p>由于默认值可能通过管理方式定义，
+	 * 因此仅当 "isExplicitQosEnabled" 等于 "true" 时才会使用此设置。
 	 * @param deliveryMode the delivery mode to use
 	 * @see #isExplicitQosEnabled
 	 * @see javax.jms.DeliveryMode#PERSISTENT
@@ -412,16 +392,16 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the delivery mode to use when sending a message.
+	 * 返回发送消息时使用的投递模式。
 	 */
 	public int getDeliveryMode() {
 		return this.deliveryMode;
 	}
 
 	/**
-	 * Set the priority of a message when sending.
-	 * <p>Since a default value may be defined administratively,
-	 * this is only used when "isExplicitQosEnabled" equals "true".
+	 * 设置发送时消息的优先级。
+	 * <p>由于默认值可能通过管理方式定义，
+	 * 因此仅当 "isExplicitQosEnabled" 等于 "true" 时才会使用此设置。
 	 * @see #isExplicitQosEnabled
 	 * @see javax.jms.Message#DEFAULT_PRIORITY
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)
@@ -431,16 +411,16 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the priority of a message when sending.
+	 * 返回发送时消息的优先级。
 	 */
 	public int getPriority() {
 		return this.priority;
 	}
 
 	/**
-	 * Set the time-to-live of the message when sending.
-	 * <p>Since a default value may be defined administratively,
-	 * this is only used when "isExplicitQosEnabled" equals "true".
+	 * 设置发送时消息的生存时间。
+	 * <p>由于默认值可能通过管理方式定义，
+	 * 因此仅当 "isExplicitQosEnabled" 等于 "true" 时才会使用此设置。
 	 * @param timeToLive the message's lifetime (in milliseconds)
 	 * @see #isExplicitQosEnabled
 	 * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
@@ -451,7 +431,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Return the time-to-live of the message when sending.
+	 * 返回发送时消息的生存时间。
 	 */
 	public long getTimeToLive() {
 		return this.timeToLive;
@@ -469,12 +449,11 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Execute the action specified by the given action object within a
-	 * JMS Session. Generalized version of {@code execute(SessionCallback)},
-	 * allowing the JMS Connection to be started on the fly.
-	 * <p>Use {@code execute(SessionCallback)} for the general case.
-	 * Starting the JMS Connection is just necessary for receiving messages,
-	 * which is preferably achieved through the {@code receive} methods.
+	 * 在 JMS Session 中执行由给定操作对象指定的操作。
+	 * {@code execute(SessionCallback)} 的通用版本，允许即时启动 JMS Connection。
+	 * <p>对于一般情况，请使用 {@code execute(SessionCallback)}。
+	 * 仅在接收消息时才需要启动 JMS Connection，这最好通过 {@code receive}
+	 * 方法实现。
 	 * @param action callback object that exposes the Session
 	 * @param startConnection whether to start the Connection
 	 * @return the result object from working with the Session
@@ -589,7 +568,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Send the given JMS message.
+	 * 发送给定的 JMS 消息。
 	 * @param session the JMS Session to operate on
 	 * @param destination the JMS Destination to send to
 	 * @param messageCreator callback to create a JMS Message
@@ -618,7 +597,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Actually send the given JMS message.
+	 * 实际发送给定的 JMS 消息。
 	 * @param producer the JMS MessageProducer to send with
 	 * @param message the JMS Message to send
 	 * @throws JMSException if thrown by JMS API methods
@@ -751,7 +730,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Receive a JMS message.
+	 * 接收 JMS 消息。
 	 * @param session the JMS Session to operate on
 	 * @param destination the JMS Destination to receive from
 	 * @param messageSelector the message selector for this consumer (can be {@code null})
@@ -766,7 +745,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Actually receive a JMS message.
+	 * 实际接收 JMS 消息。
 	 * @param session the JMS Session to operate on
 	 * @param consumer the JMS MessageConsumer to receive with
 	 * @return the JMS Message received, or {@code null} if none
@@ -848,7 +827,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Extract the content from the given JMS message.
+	 * 从给定的 JMS 消息中提取内容。
 	 * @param message the JMS Message to convert (can be {@code null})
 	 * @return the content of the message, or {@code null} if none
 	 */
@@ -898,9 +877,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Send a request message to the given {@link Destination} and block until
-	 * a reply has been received on a temporary queue created on-the-fly.
-	 * <p>Return the response message or {@code null} if no message has
+	 * 向给定的 {@link Destination} 发送请求消息，并阻塞等待在即时创建的
+	 * 临时队列上收到回复。
+	 * <p>返回响应消息；如果没有任何消息，则返回 {@code null}。
 	 * @throws JMSException if thrown by JMS API methods
 	 */
 	@Nullable
@@ -933,9 +912,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * A variant of {@link #execute(SessionCallback, boolean)} that explicitly
-	 * creates a non-transactional {@link Session}. The given {@link SessionCallback}
-	 * does not participate in an existing transaction.
+	 * {@link #execute(SessionCallback, boolean)} 的一个变体，显式创建
+	 * 非事务性 {@link Session}。给定的 {@link SessionCallback}
+	 * 不参与现有事务。
 	 */
 	@Nullable
 	private <T> T executeLocal(SessionCallback<T> action, boolean startConnection) throws JmsException {
@@ -1040,8 +1019,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 
 	/**
-	 * Fetch an appropriate Connection from the given JmsResourceHolder.
-	 * <p>This implementation accepts any JMS 1.1 Connection.
+	 * 从给定的 JmsResourceHolder 中获取合适的 Connection。
+	 * <p>此实现接受任何 JMS 1.1 Connection。
 	 * @param holder the JmsResourceHolder
 	 * @return an appropriate Connection fetched from the holder,
 	 * or {@code null} if none found
@@ -1052,8 +1031,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Fetch an appropriate Session from the given JmsResourceHolder.
-	 * <p>This implementation accepts any JMS 1.1 Session.
+	 * 从给定的 JmsResourceHolder 中获取合适的 Session。
+	 * <p>此实现接受任何 JMS 1.1 Session。
 	 * @param holder the JmsResourceHolder
 	 * @return an appropriate Session fetched from the holder,
 	 * or {@code null} if none found
@@ -1064,12 +1043,10 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Check whether the given Session is locally transacted, that is, whether
-	 * its transaction is managed by this listener container's Session handling
-	 * and not by an external transaction coordinator.
-	 * <p>Note: The Session's own transacted flag will already have been checked
-	 * before. This method is about finding out whether the Session's transaction
-	 * is local or externally coordinated.
+	 * 检查给定的 Session 是否为本地事务性的，即其事务是否由此监听器容器的
+	 * Session 处理逻辑管理，而不是由外部事务协调器管理。
+	 * <p>注意：Session 自身的 transacted 标志此前已检查过。
+	 * 此方法用于确定 Session 的事务是本地事务还是外部协调的。
 	 * @param session the Session to check
 	 * @return whether the given Session is locally transacted
 	 * @see #isSessionTransacted()
@@ -1081,10 +1058,9 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Create a JMS MessageProducer for the given Session and Destination,
-	 * configuring it to disable message ids and/or timestamps (if necessary).
-	 * <p>Delegates to {@link #doCreateProducer} for creation of the raw
-	 * JMS MessageProducer.
+	 * 为给定的 Session 和 Destination 创建 JMS MessageProducer，
+	 * 必要时将其配置为禁用消息 ID 和/或时间戳。
+	 * <p>委托给 {@link #doCreateProducer} 创建原始的 JMS MessageProducer。
 	 * @param session the JMS Session to create a MessageProducer for
 	 * @param destination the JMS Destination to create a MessageProducer for
 	 * @return the new JMS MessageProducer
@@ -1104,8 +1080,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Create a raw JMS MessageProducer for the given Session and Destination.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 为给定的 Session 和 Destination 创建原始的 JMS MessageProducer。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @param session the JMS Session to create a MessageProducer for
 	 * @param destination the JMS Destination to create a MessageProducer for
 	 * @return the new JMS MessageProducer
@@ -1116,8 +1092,8 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Create a JMS MessageConsumer for the given Session and Destination.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 为给定的 Session 和 Destination 创建 JMS MessageConsumer。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @param session the JMS Session to create a MessageConsumer for
 	 * @param destination the JMS Destination to create a MessageConsumer for
 	 * @param messageSelector the message selector for this consumer (can be {@code null})
@@ -1139,10 +1115,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 	}
 
 	/**
-	 * Create a JMS MessageProducer for the given Session and Destination,
-	 * configuring it to disable message ids and/or timestamps (if necessary).
-	 * <p>Delegates to {@link #doCreateProducer} for creation of the raw
-	 * JMS MessageProducer.
+	 * 为给定的 Session 和 Queue 创建 JMS QueueBrowser。
 	 * @param session the JMS Session to create a QueueBrowser for
 	 * @param queue the JMS Queue to create a QueueBrowser for
 	 * @param messageSelector the message selector for this consumer (can be {@code null})
@@ -1159,7 +1132,7 @@ public class JmsTemplate extends JmsDestinationAccessor implements JmsOperations
 
 
 	/**
-	 * ResourceFactory implementation that delegates to this template's protected callback methods.
+	 * 委托给此模板受保护回调方法的 ResourceFactory 实现。
 	 */
 	private class JmsTemplateResourceFactory implements ConnectionFactoryUtils.ResourceFactory {
 

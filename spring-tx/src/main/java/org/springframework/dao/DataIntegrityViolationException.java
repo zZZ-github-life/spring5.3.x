@@ -17,15 +17,13 @@
 package org.springframework.dao;
 
 /**
- * Exception thrown when an attempt to insert or update data
- * results in violation of an integrity constraint. Note that this
- * is not purely a relational concept; integrity constraints such
- * as unique primary keys are required by most database types.
+ * 当插入或更新数据的尝试导致违反完整性约束时抛出的异常。
+ * 请注意，这不仅仅是关系型数据库的概念；大多数数据库类型
+ * 都需要唯一主键等完整性约束。
  *
- * <p>Serves as a superclass for more specific exceptions, e.g.
- * {@link DuplicateKeyException}. However, it is generally
- * recommended to handle {@code DataIntegrityViolationException}
- * itself instead of relying on specific exception subclasses.
+ * <p>作为更具体异常的超类，例如 {@link DuplicateKeyException}。
+ * 然而，通常建议直接处理 {@code DataIntegrityViolationException}，
+ * 而不是依赖于特定的异常子类。
  *
  * @author Rod Johnson
  */
@@ -33,7 +31,7 @@ package org.springframework.dao;
 public class DataIntegrityViolationException extends NonTransientDataAccessException {
 
 	/**
-	 * Constructor for DataIntegrityViolationException.
+	 * DataIntegrityViolationException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public DataIntegrityViolationException(String msg) {
@@ -41,7 +39,7 @@ public class DataIntegrityViolationException extends NonTransientDataAccessExcep
 	}
 
 	/**
-	 * Constructor for DataIntegrityViolationException.
+	 * DataIntegrityViolationException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

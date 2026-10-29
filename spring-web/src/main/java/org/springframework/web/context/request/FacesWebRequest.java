@@ -28,9 +28,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link WebRequest} adapter for a JSF {@link javax.faces.context.FacesContext}.
+ * 用于 JSF {@link javax.faces.context.FacesContext} 的 {@link WebRequest} 适配器。
  *
- * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
+ * <p>自 Spring 4.0 起，要求 JSF 2.0 或更高版本。
  *
  * @author Juergen Hoeller
  * @since 2.5.2
@@ -38,7 +38,7 @@ import org.springframework.util.StringUtils;
 public class FacesWebRequest extends FacesRequestAttributes implements NativeWebRequest {
 
 	/**
-	 * Create a new FacesWebRequest adapter for the given FacesContext.
+	 * 为给定的 FacesContext 创建一个新的 FacesWebRequest 适配器。
 	 * @param facesContext the current FacesContext
 	 * @see javax.faces.context.FacesContext#getCurrentInstance()
 	 */

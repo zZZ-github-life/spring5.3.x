@@ -41,14 +41,9 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * Resolver for {@code @RequestPart} arguments where the named part is decoded
- * much like an {@code @RequestBody} argument but based on the content of an
- * individual part instead. The arguments may be wrapped with a reactive type
- * for a single value (e.g. Reactor {@code Mono}, RxJava {@code Single}).
+ * 用于 {@code @RequestPart} 参数的解析器，其中命名部分的解码方式与 {@code @RequestBody} 参数非常相似，但基于单个部分的内容。参数可以包装在用于单个值的响应式类型中（例如 Reactor {@code Mono}、RxJava {@code Single}）。
  *
- * <p>This resolver also supports arguments of type {@link Part} which may be
- * wrapped with a reactive type for a single value or multiple values.
- *
+ * <p>此解析器还支持 {@link Part} 类型的参数，这些参数可以包装在用于单个值或多个值的响应式类型中。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

@@ -34,8 +34,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
- * Abstract base implementation of the MultipartHttpServletRequest interface.
- * Provides management of pre-generated MultipartFile instances.
+ * MultipartHttpServletRequest 接口的抽象基类实现。
+ * 提供对预生成的 MultipartFile 实例的管理。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -49,7 +49,7 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 
 
 	/**
-	 * Wrap the given HttpServletRequest in a MultipartHttpServletRequest.
+	 * 将给定的 HttpServletRequest 包装为 MultipartHttpServletRequest。
 	 * @param request the request to wrap
 	 */
 	protected AbstractMultipartHttpServletRequest(HttpServletRequest request) {
@@ -110,7 +110,7 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	}
 
 	/**
-	 * Determine whether the underlying multipart request has been resolved.
+	 * 确定底层 multipart 请求是否已被解析。
 	 * @return {@code true} when eagerly initialized or lazily triggered,
 	 * {@code false} in case of a lazy-resolution request that got aborted
 	 * before any parameters or multipart files have been accessed
@@ -123,8 +123,8 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 
 
 	/**
-	 * Set a Map with parameter names as keys and list of MultipartFile objects as values.
-	 * To be invoked by subclasses on initialization.
+	 * 设置一个以参数名为键、以 MultipartFile 对象列表为值的 Map。
+	 * 由子类在初始化时调用。
 	 */
 	protected final void setMultipartFiles(MultiValueMap<String, MultipartFile> multipartFiles) {
 		this.multipartFiles =
@@ -132,8 +132,8 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	}
 
 	/**
-	 * Obtain the MultipartFile Map for retrieval,
-	 * lazily initializing it if necessary.
+	 * 获取用于检索的 MultipartFile Map，
+	 * 必要时进行延迟初始化。
 	 * @see #initializeMultipart()
 	 */
 	protected MultiValueMap<String, MultipartFile> getMultipartFiles() {
@@ -144,8 +144,8 @@ public abstract class AbstractMultipartHttpServletRequest extends HttpServletReq
 	}
 
 	/**
-	 * Lazily initialize the multipart request, if possible.
-	 * Only called if not already eagerly initialized.
+	 * 如果可能，延迟初始化 multipart 请求。
+	 * 仅在尚未进行预先初始化时调用。
 	 */
 	protected void initializeMultipart() {
 		throw new IllegalStateException("Multipart request not initialized");

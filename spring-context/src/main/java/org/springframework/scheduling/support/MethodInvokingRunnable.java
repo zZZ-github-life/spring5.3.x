@@ -28,11 +28,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Adapter that implements the {@link Runnable} interface as a configurable
- * method invocation based on Spring's MethodInvoker.
+ * 基于 Spring 的 MethodInvoker 将 {@link Runnable} 接口实现为可配置方法调用的适配器。
  *
- * <p>Inherits common configuration properties from
- * {@link org.springframework.util.MethodInvoker}.
+ * <p>从 {@link org.springframework.util.MethodInvoker} 继承通用配置属性。
  *
  * @author Juergen Hoeller
  * @since 1.2.4
@@ -79,7 +77,7 @@ public class MethodInvokingRunnable extends ArgumentConvertingMethodInvoker
 	}
 
 	/**
-	 * Build a message for an invocation failure exception.
+	 * 为调用失败异常构建消息。
 	 * @return the error message, including the target method name etc
 	 */
 	protected String getInvocationFailureMessage() {

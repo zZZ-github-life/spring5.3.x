@@ -1,5 +1,5 @@
 /**
- * SPI interfaces and configuration-related convenience classes for bean factories.
+ * Bean 工厂的 SPI 接口及与配置相关的便利类。
  */
 @NonNullApi
 @NonNullFields

@@ -19,12 +19,12 @@ package org.springframework.orm.jpa;
 import javax.persistence.EntityManager;
 
 /**
- * Subinterface of {@link javax.persistence.EntityManager} to be implemented by
- * EntityManager proxies. Allows access to the underlying target EntityManager.
+ * {@link javax.persistence.EntityManager} 的子接口，由 EntityManager 代理实现。
+ * 允许访问底层的目标 EntityManager。
  *
- * <p>This interface is mainly intended for framework usage. Application code
- * should prefer the use of the {@link javax.persistence.EntityManager#getDelegate()}
- * method to access native functionality of the underlying resource.
+ * <p>此接口主要供框架使用。应用程序代码应优先使用
+ * {@link javax.persistence.EntityManager#getDelegate()} 方法来访问
+ * 底层资源的原生功能。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -32,12 +32,10 @@ import javax.persistence.EntityManager;
 public interface EntityManagerProxy extends EntityManager {
 
 	/**
-	 * Return the underlying EntityManager that this proxy will delegate to.
-	 * <p>In case of an extended EntityManager, this will be the associated
-	 * raw EntityManager.
-	 * <p>In case of a shared ("transactional") EntityManager, this will be
-	 * the raw EntityManager that is currently associated with the transaction.
-	 * Outside a transaction, an IllegalStateException will be thrown.
+	 * 返回此代理将委托给的底层 EntityManager。
+	 * <p>对于扩展的 EntityManager，这将是关联的原始 EntityManager。
+	 * <p>对于共享的（"事务性"）EntityManager，这将是当前与事务关联的
+	 * 原始 EntityManager。在事务之外调用时，将抛出 IllegalStateException。
 	 * @return the underlying raw EntityManager (never {@code null})
 	 * @throws IllegalStateException if no underlying EntityManager is available
 	 */

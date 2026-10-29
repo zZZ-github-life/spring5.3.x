@@ -21,13 +21,12 @@ import java.util.List;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Structured representation of a URI path parsed via {@link #parsePath(String)}
- * into a sequence of {@link Separator} and {@link PathSegment} elements.
+ * URI 路径的结构化表示，通过 {@link #parsePath(String)} 解析为
+ * 一系列 {@link Separator} 和 {@link PathSegment} 元素。
  *
- * <p>Each {@link PathSegment} exposes its content in decoded form and with path
- * parameters removed. This makes it safe to match one path segment at a time
- * without the risk of decoded reserved characters altering the structure of
- * the path.
+ * <p>每个 {@link PathSegment} 以解码形式公开其内容，并移除路径参数。
+ * 这样可以安全地逐个路径段进行匹配，而不会因为解码后的保留字符
+ * 改变路径结构而产生风险。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -35,17 +34,17 @@ import org.springframework.util.MultiValueMap;
 public interface PathContainer {
 
 	/**
-	 * The original path from which this instance was parsed.
+	 * 此实例所解析的原始路径。
 	 */
 	String value();
 
 	/**
-	 * The contained path elements, either {@link Separator} or {@link PathSegment}.
+	 * 包含的路径元素，为 {@link Separator} 或 {@link PathSegment}。
 	 */
 	List<Element> elements();
 
 	/**
-	 * Extract a sub-path from the given offset into the elements list.
+	 * 从元素列表中的给定偏移量提取子路径。
 	 * @param index the start element index (inclusive)
 	 * @return the sub-path
 	 */
@@ -54,8 +53,8 @@ public interface PathContainer {
 	}
 
 	/**
-	 * Extract a sub-path from the given start offset into the element list
-	 * (inclusive) and to the end offset (exclusive).
+	 * 从元素列表的给定起始偏移量（含）到结束偏移量（不含）
+	 * 提取子路径。
 	 * @param startIndex the start element index (inclusive)
 	 * @param endIndex the end element index (exclusive)
 	 * @return the sub-path
@@ -66,8 +65,8 @@ public interface PathContainer {
 
 
 	/**
-	 * Parse the path value into a sequence of {@code "/"} {@link Separator Separator}
-	 * and {@link PathSegment PathSegment} elements.
+	 * 将路径值解析为一系列 {@code "/"} {@link Separator Separator}
+	 * 和 {@link PathSegment PathSegment} 元素。
 	 * @param path the encoded, raw path value to parse
 	 * @return the parsed path
 	 */
@@ -76,8 +75,8 @@ public interface PathContainer {
 	}
 
 	/**
-	 * Parse the path value into a sequence of {@link Separator Separator} and
-	 * {@link PathSegment PathSegment} elements.
+	 * 将路径值解析为一系列 {@link Separator Separator} 和
+	 * {@link PathSegment PathSegment} 元素。
 	 * @param path the encoded, raw path value to parse
 	 * @param options to customize parsing
 	 * @return the parsed path
@@ -89,41 +88,41 @@ public interface PathContainer {
 
 
 	/**
-	 * A path element, either separator or path segment.
+	 * 路径元素，即分隔符或路径段。
 	 */
 	interface Element {
 
 		/**
-		 * The unmodified, original value of this element.
+		 * 此元素的未经修改的原始值。
 		 */
 		String value();
 	}
 
 
 	/**
-	 * Path separator element.
+	 * 路径分隔符元素。
 	 */
 	interface Separator extends Element {
 	}
 
 
 	/**
-	 * Path segment element.
+	 * 路径段元素。
 	 */
 	interface PathSegment extends Element {
 
 		/**
-		 * Return the path segment value, decoded and sanitized, for path matching.
+		 * 返回用于路径匹配的路径段值（已解码并清理）。
 		 */
 		String valueToMatch();
 
 		/**
-		 * Expose {@link #valueToMatch()} as a character array.
+		 * 将 {@link #valueToMatch()} 公开为字符数组。
 		 */
 		char[] valueToMatchAsChars();
 
 		/**
-		 * Path parameters associated with this path segment.
+		 * 与此路径段关联的路径参数。
 		 * @return an unmodifiable map containing the parameters
 		 */
 		MultiValueMap<String, String> parameters();
@@ -131,22 +130,21 @@ public interface PathContainer {
 
 
 	/**
-	 * Options to customize parsing based on the type of input path.
+	 * 用于根据输入路径类型自定义解析的选项。
 	 * @since 5.2
 	 */
 	class Options {
 
 		/**
-		 * Options for HTTP URL paths.
-		 * <p>Separator '/' with URL decoding and parsing of path parameters.
+		 * HTTP URL 路径的选项。
+		 * <p>使用分隔符 '/'，并进行 URL 解码和路径参数解析。
 		 */
 		public final static Options HTTP_PATH = Options.create('/', true);
 
 		/**
-		 * Options for a message route.
-		 * <p>Separator '.' with neither URL decoding nor parsing of path parameters.
-		 * Escape sequences for the separator character in segment values are still
-		 * decoded.
+		 * 消息路由的选项。
+		 * <p>使用分隔符 '.'，既不进行 URL 解码，也不解析路径参数。
+		 * 段值中分隔符字符的转义序列仍会被解码。
 		 */
 		public final static Options MESSAGE_ROUTE = Options.create('.', false);
 
@@ -168,7 +166,7 @@ public interface PathContainer {
 		}
 
 		/**
-		 * Create an {@link Options} instance with the given settings.
+		 * 使用给定设置创建 {@link Options} 实例。
 		 * @param separator the separator for parsing the path into segments;
 		 * currently this must be slash or dot.
 		 * @param decodeAndParseSegments whether to URL decode path segment

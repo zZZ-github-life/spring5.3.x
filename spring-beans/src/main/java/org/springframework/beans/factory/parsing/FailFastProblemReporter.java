@@ -22,14 +22,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link ProblemReporter} implementation that exhibits fail-fast
- * behavior when errors are encountered.
+ * 简单的 {@link ProblemReporter} 实现，在遇到错误时表现出快速失败行为。
  *
- * <p>The first error encountered results in a {@link BeanDefinitionParsingException}
- * being thrown.
+ * <p>遇到第一个错误时即抛出 {@link BeanDefinitionParsingException}。
  *
- * <p>Warnings are written to
- * {@link #setLogger(org.apache.commons.logging.Log) the log} for this class.
+ * <p>警告会写入此类的{@link #setLogger(org.apache.commons.logging.Log) 日志}。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -42,9 +39,9 @@ public class FailFastProblemReporter implements ProblemReporter {
 
 
 	/**
-	 * Set the {@link Log logger} that is to be used to report warnings.
-	 * <p>If set to {@code null} then a default {@link Log logger} set to
-	 * the name of the instance class will be used.
+	 * 设置用于报告警告的{@link Log 日志记录器}。
+	 *
+	 * <p>如果设置为 {@code null}，则将使用以实例类名命名的默认{@link Log 日志记录器}。
 	 * @param logger the {@link Log logger} that is to be used to report warnings
 	 */
 	public void setLogger(@Nullable Log logger) {
@@ -53,8 +50,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 
 
 	/**
-	 * Throws a {@link BeanDefinitionParsingException} detailing the error
-	 * that has occurred.
+	 * 抛出详细说明所发生错误的 {@link BeanDefinitionParsingException}。
 	 * @param problem the source of the error
 	 */
 	@Override
@@ -63,8 +59,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 	}
 
 	/**
-	 * Throws a {@link BeanDefinitionParsingException} detailing the error
-	 * that has occurred.
+	 * 抛出详细说明所发生错误的 {@link BeanDefinitionParsingException}。
 	 * @param problem the source of the error
 	 */
 	@Override
@@ -73,7 +68,7 @@ public class FailFastProblemReporter implements ProblemReporter {
 	}
 
 	/**
-	 * Writes the supplied {@link Problem} to the {@link Log} at {@code WARN} level.
+	 * 将给定的 {@link Problem} 以 {@code WARN} 级别写入 {@link Log}。
 	 * @param problem the source of the warning
 	 */
 	@Override

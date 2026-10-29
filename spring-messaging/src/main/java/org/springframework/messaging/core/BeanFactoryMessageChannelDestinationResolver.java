@@ -24,9 +24,8 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.util.Assert;
 
 /**
- * An implementation of {@link DestinationResolver} that interprets a destination
- * name as the bean name of a {@link MessageChannel} and looks up the bean in
- * the configured {@link BeanFactory}.
+ * 一个 {@link DestinationResolver} 实现，它将目标名称解释为 {@link MessageChannel}
+ * 的 Bean 名称，并在已配置的 {@link BeanFactory} 中查找该 Bean。
  *
  * @author Mark Fisher
  * @since 4.0
@@ -39,16 +38,15 @@ public class BeanFactoryMessageChannelDestinationResolver
 
 
 	/**
-	 * A default constructor that can be used when the resolver itself is configured
-	 * as a Spring bean and will have the {@code BeanFactory} injected as a result
-	 * of ing having implemented {@link BeanFactoryAware}.
+	 * 默认构造函数，可在解析器本身配置为 Spring Bean 时使用；
+	 * 由于实现了 {@link BeanFactoryAware}，将注入 {@code BeanFactory}。
 	 */
 	public BeanFactoryMessageChannelDestinationResolver() {
 	}
 
 	/**
-	 * A constructor that accepts a {@link BeanFactory} useful if instantiating this
-	 * resolver manually rather than having it defined as a Spring-managed bean.
+	 * 接受 {@link BeanFactory} 的构造函数，适用于手动实例化此解析器
+	 * 而不是将其定义为 Spring 管理的 Bean 的情况。
 	 * @param beanFactory the bean factory to perform lookups against
 	 */
 	public BeanFactoryMessageChannelDestinationResolver(BeanFactory beanFactory) {

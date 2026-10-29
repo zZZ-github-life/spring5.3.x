@@ -35,9 +35,8 @@ import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Convenient base class for {@link WebSocketSession} implementations that
- * holds common fields and exposes accessors. Also implements the
- * {@code WebSocketMessage} factory methods.
+ * {@link WebSocketSession} 实现的便捷基类，持有公共字段并暴露访问器。
+ * 同时实现 {@code WebSocketMessage} 工厂方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -61,7 +60,7 @@ public abstract class AbstractWebSocketSession<T> implements WebSocketSession {
 
 
 	/**
-	 * Create a new WebSocket session.
+	 * 创建一个新的 WebSocket 会话。
 	 */
 	protected AbstractWebSocketSession(T delegate, String id, HandshakeInfo info, DataBufferFactory bufferFactory) {
 		Assert.notNull(delegate, "Native session is required.");

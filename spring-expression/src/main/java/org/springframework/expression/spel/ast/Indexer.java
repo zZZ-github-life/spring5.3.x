@@ -45,8 +45,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * An Indexer can index into some proceeding structure to access a particular piece of it.
- * <p>Supported structures are: strings / collections (lists/sets) / arrays.
+ * Indexer 可以按索引访问前面某个结构中的特定部分。
+ * <p>支持的结构有：字符串 / 集合（列表/集）/ 数组。
  *
  * @author Andy Clement
  * @author Phillip Webb

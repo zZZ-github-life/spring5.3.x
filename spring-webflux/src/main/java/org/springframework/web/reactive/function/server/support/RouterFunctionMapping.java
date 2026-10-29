@@ -37,13 +37,9 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
- * {@code HandlerMapping} implementation that supports {@link RouterFunction RouterFunctions}.
+ * 支持 {@link RouterFunction RouterFunctions} 的 {@code HandlerMapping} 实现。
  *
- * <p>If no {@link RouterFunction} is provided at
- * {@linkplain #RouterFunctionMapping(RouterFunction) construction time}, this mapping
- * will detect all router functions in the application context, and consult them in
- * {@linkplain org.springframework.core.annotation.Order order}.
- *
+ * <p>如果在{@linkplain #RouterFunctionMapping(RouterFunction) 构造时}未提供 {@link RouterFunction}，此映射将检测应用上下文中的所有路由函数，并按{@linkplain org.springframework.core.annotation.Order 顺序}咨询它们。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -56,16 +52,15 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 
 	/**
-	 * Create an empty {@code RouterFunctionMapping}.
-	 * <p>If this constructor is used, this mapping will detect all
-	 * {@link RouterFunction} instances available in the application context.
+	 * 创建空的 {@code RouterFunctionMapping}。
+	 * <p>如果使用此构造函数，此映射将检测应用上下文中可用的所有 {@link RouterFunction} 实例。
 	 */
 	public RouterFunctionMapping() {
 	}
 
 	/**
-	 * Create a {@code RouterFunctionMapping} with the given {@link RouterFunction}.
-	 * <p>If this constructor is used, no application context detection will occur.
+	 * 使用给定的 {@link RouterFunction} 创建 {@code RouterFunctionMapping}。
+	 * <p>如果使用此构造函数，则不会执行应用上下文检测。
 	 * @param routerFunction the router function to use for mapping
 	 */
 	public RouterFunctionMapping(RouterFunction<?> routerFunction) {
@@ -74,10 +69,8 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 
 	/**
-	 * Return the configured {@link RouterFunction}.
-	 * <p><strong>Note:</strong> When router functions are detected from the
-	 * ApplicationContext, this method may return {@code null} if invoked
-	 * prior to {@link #afterPropertiesSet()}.
+	 * 返回配置的 {@link RouterFunction}。
+	 * <p><strong>注意：</strong>当从 ApplicationContext 检测路由函数时，如果在 {@link #afterPropertiesSet()} 之前调用，此方法可能返回 {@code null}。
 	 * @return the router function or {@code null}
 	 */
 	@Nullable
@@ -86,8 +79,8 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	}
 
 	/**
-	 * Configure HTTP message readers to de-serialize the request body with.
-	 * <p>By default this is set to the {@link ServerCodecConfigurer}'s defaults.
+	 * 配置用于反序列化请求正文的 HTTP 消息读取器。
+	 * <p>默认设置为 {@link ServerCodecConfigurer} 的默认值。
 	 */
 	public void setMessageReaders(List<HttpMessageReader<?>> messageReaders) {
 		this.messageReaders = messageReaders;
@@ -110,7 +103,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	}
 
 	/**
-	 * Initialized the router functions by detecting them in the application context.
+	 * 通过在应用上下文中检测路由函数来初始化它们。
 	 */
 	protected void initRouterFunctions() {
 		List<RouterFunction<?>> routerFunctions = routerFunctions();

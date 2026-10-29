@@ -31,16 +31,14 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * {@link RequestAttributes} adapter for a JSF {@link javax.faces.context.FacesContext}.
- * Used as default in a JSF environment, wrapping the current FacesContext.
+ * 用于 JSF {@link javax.faces.context.FacesContext} 的 {@link RequestAttributes} 适配器。
+ * 在 JSF 环境中作为默认实现使用，封装当前的 FacesContext。
  *
- * <p><b>NOTE:</b> In contrast to {@link ServletRequestAttributes}, this variant does
- * <i>not</i> support destruction callbacks for scoped attributes, neither for the
- * request scope nor for the session scope. If you rely on such implicit destruction
- * callbacks, consider defining a Spring {@link RequestContextListener} in your
- * {@code web.xml}.
+ * <p><b>注意：</b>与 {@link ServletRequestAttributes} 不同，此变体<i>不</i>支持作用域属性的销毁回调，
+ * 无论是请求作用域还是会话作用域均不支持。如果依赖此类隐式销毁回调，
+ * 可考虑在 {@code web.xml} 中定义一个 Spring {@link RequestContextListener}。
  *
- * <p>Requires JSF 2.0 or higher, as of Spring 4.0.
+ * <p>自 Spring 4.0 起，要求 JSF 2.0 或更高版本。
  *
  * @author Juergen Hoeller
  * @since 2.5.2
@@ -52,7 +50,7 @@ import org.springframework.web.util.WebUtils;
 public class FacesRequestAttributes implements RequestAttributes {
 
 	/**
-	 * We'll create a lot of these objects, so we don't want a new logger every time.
+	 * 会创建大量此类对象，因此不应每次都新建 Logger。
 	 */
 	private static final Log logger = LogFactory.getLog(FacesRequestAttributes.class);
 
@@ -60,7 +58,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 
 	/**
-	 * Create a new FacesRequestAttributes adapter for the given FacesContext.
+	 * 为给定的 FacesContext 创建一个新的 FacesRequestAttributes 适配器。
 	 * @param facesContext the current FacesContext
 	 * @see javax.faces.context.FacesContext#getCurrentInstance()
 	 */
@@ -71,14 +69,14 @@ public class FacesRequestAttributes implements RequestAttributes {
 
 
 	/**
-	 * Return the JSF FacesContext that this adapter operates on.
+	 * 返回此适配器所操作的 JSF FacesContext。
 	 */
 	protected final FacesContext getFacesContext() {
 		return this.facesContext;
 	}
 
 	/**
-	 * Return the JSF ExternalContext that this adapter operates on.
+	 * 返回此适配器所操作的 JSF ExternalContext。
 	 * @see javax.faces.context.FacesContext#getExternalContext()
 	 */
 	protected final ExternalContext getExternalContext() {
@@ -86,7 +84,7 @@ public class FacesRequestAttributes implements RequestAttributes {
 	}
 
 	/**
-	 * Return the JSF attribute Map for the specified scope.
+	 * 返回指定作用域的 JSF 属性 Map。
 	 * @param scope constant indicating request or session scope
 	 * @return the Map representation of the attributes in the specified scope
 	 * @see #SCOPE_REQUEST

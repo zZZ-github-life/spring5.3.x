@@ -52,31 +52,29 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * Helper class that simplifies Hibernate data access code. Automatically
- * converts HibernateExceptions into DataAccessExceptions, following the
- * {@code org.springframework.dao} exception hierarchy.
+ * 简化 Hibernate 数据访问代码的辅助类。按照
+ * {@code org.springframework.dao} 异常层次结构，
+ * 自动将 HibernateExceptions 转换为 DataAccessExceptions。
  *
- * <p>The central method is {@code execute}, supporting Hibernate access code
- * implementing the {@link HibernateCallback} interface. It provides Hibernate Session
- * handling such that neither the HibernateCallback implementation nor the calling
- * code needs to explicitly care about retrieving/closing Hibernate Sessions,
- * or handling Session lifecycle exceptions. For typical single step actions,
- * there are various convenience methods (find, load, saveOrUpdate, delete).
+ * <p>核心方法是 {@code execute}，支持实现 {@link HibernateCallback} 接口的
+ * Hibernate 访问代码。它提供 Hibernate Session 处理，
+ * 使得 HibernateCallback 实现和调用代码都无需显式关心
+ * Hibernate Session 的获取/关闭，也无需处理 Session 生命周期异常。
+ * 对于典型的单步操作，提供了各种便捷方法（find、load、saveOrUpdate、delete）。
  *
- * <p>Can be used within a service implementation via direct instantiation
- * with a SessionFactory reference, or get prepared in an application context
- * and given to services as bean reference. Note: The SessionFactory should
- * always be configured as bean in the application context, in the first case
- * given to the service directly, in the second case to the prepared template.
+ * <p>可以在服务实现中通过直接实例化并传入 SessionFactory 引用来使用，
+ * 也可以在应用程序上下文中准备好，然后作为 bean 引用注入服务。
+ * 注意：SessionFactory 应始终在应用程序上下文中配置为 bean，
+ * 第一种情况下直接传给服务，第二种情况下传给准备好的模板。
  *
- * <p><b>NOTE: Hibernate access code can also be coded against the native Hibernate
- * {@link Session}. Hence, for newly started projects, consider adopting the standard
- * Hibernate style of coding against {@link SessionFactory#getCurrentSession()}.
- * Alternatively, use {@link #execute(HibernateCallback)} with Java 8 lambda code blocks
- * against the callback-provided {@code Session} which results in elegant code as well,
- * decoupled from the Hibernate Session lifecycle. The remaining operations on this
- * HibernateTemplate are deprecated in the meantime and primarily exist as a migration
- * helper for older Hibernate 3.x/4.x data access code in existing applications.</b>
+ * <p><b>注意：Hibernate 访问代码也可以针对原生 Hibernate
+ * {@link Session} 编写。因此，对于新启动的项目，请考虑采用针对
+ * {@link SessionFactory#getCurrentSession()} 编码的标准 Hibernate 风格。
+ * 或者，使用 {@link #execute(HibernateCallback)} 配合针对回调提供的
+ * {@code Session} 的 Java 8 lambda 代码块，这同样能产生优雅的代码，
+ * 并与 Hibernate Session 生命周期解耦。此 HibernateTemplate 上的其余操作
+ * 目前已被弃用，主要作为现有应用程序中旧版 Hibernate 3.x/4.x 数据访问代码的
+ * 迁移辅助工具存在。</b>
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -113,13 +111,13 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 
 	/**
-	 * Create a new HibernateTemplate instance.
+	 * 创建一个新的 HibernateTemplate 实例。
 	 */
 	public HibernateTemplate() {
 	}
 
 	/**
-	 * Create a new HibernateTemplate instance.
+	 * 创建一个新的 HibernateTemplate 实例。
 	 * @param sessionFactory the SessionFactory to create Sessions with
 	 */
 	public HibernateTemplate(SessionFactory sessionFactory) {
@@ -129,16 +127,14 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 
 	/**
-	 * Set the Hibernate SessionFactory that should be used to create
-	 * Hibernate Sessions.
+	 * 设置用于创建 Hibernate Session 的 Hibernate SessionFactory。
 	 */
 	public void setSessionFactory(@Nullable SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	/**
-	 * Return the Hibernate SessionFactory that should be used to create
-	 * Hibernate Sessions.
+	 * 返回用于创建 Hibernate Session 的 Hibernate SessionFactory。
 	 */
 	@Nullable
 	public SessionFactory getSessionFactory() {
@@ -146,7 +142,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Obtain the SessionFactory for actual use.
+	 * 获取实际使用的 SessionFactory。
 	 * @return the SessionFactory (never {@code null})
 	 * @throws IllegalStateException in case of no SessionFactory set
 	 * @since 5.0
@@ -158,12 +154,11 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Set one or more names of Hibernate filters to be activated for all
-	 * Sessions that this accessor works with.
-	 * <p>Each of those filters will be enabled at the beginning of each
-	 * operation and correspondingly disabled at the end of the operation.
-	 * This will work for newly opened Sessions as well as for existing
-	 * Sessions (for example, within a transaction).
+	 * 设置要为此访问器所使用的所有 Session 激活的一个或多个 Hibernate 过滤器名称。
+	 * <p>每个过滤器都会在每个操作开始时启用，
+	 * 并在操作结束时相应地禁用。
+	 * 这既适用于新打开的 Session，也适用于现有的
+	 * Session（例如，在事务内）。
 	 * @see #enableFilters(Session)
 	 * @see Session#enableFilter(String)
 	 */
@@ -172,7 +167,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Return the names of Hibernate filters to be activated, if any.
+	 * 返回要激活的 Hibernate 过滤器名称（如果有）。
 	 */
 	@Nullable
 	public String[] getFilterNames() {
@@ -180,11 +175,10 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Set whether to expose the native Hibernate Session to
-	 * HibernateCallback code.
-	 * <p>Default is "false": a Session proxy will be returned, suppressing
-	 * {@code close} calls and automatically applying query cache
-	 * settings and transaction timeouts.
+	 * 设置是否向 HibernateCallback 代码暴露原生 Hibernate Session。
+	 * <p>默认值为 "false"：将返回 Session 代理，抑制
+	 * {@code close} 调用，并自动应用查询缓存
+	 * 设置和事务超时。
 	 * @see HibernateCallback
 	 * @see Session
 	 * @see #setCacheQueries
@@ -197,19 +191,19 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Return whether to expose the native Hibernate Session to
-	 * HibernateCallback code, or rather a Session proxy.
+	 * 返回是向 HibernateCallback 代码暴露原生 Hibernate Session，
+	 * 还是暴露 Session 代理。
 	 */
 	public boolean isExposeNativeSession() {
 		return this.exposeNativeSession;
 	}
 
 	/**
-	 * Set whether to check that the Hibernate Session is not in read-only mode
-	 * in case of write operations (save/update/delete).
-	 * <p>Default is "true", for fail-fast behavior when attempting write operations
-	 * within a read-only transaction. Turn this off to allow save/update/delete
-	 * on a Session with flush mode MANUAL.
+	 * 设置在进行写操作（save/update/delete）时是否检查 Hibernate Session
+	 * 不处于只读模式。
+	 * <p>默认值为 "true"，以便在只读事务中尝试写操作时快速失败。
+	 * 关闭此选项可允许在刷新模式为 MANUAL 的 Session 上
+	 * 执行 save/update/delete。
 	 * @see #checkWriteOperationAllowed
 	 * @see org.springframework.transaction.TransactionDefinition#isReadOnly
 	 */
@@ -218,20 +212,20 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Return whether to check that the Hibernate Session is not in read-only
-	 * mode in case of write operations (save/update/delete).
+	 * 返回在进行写操作（save/update/delete）时是否检查 Hibernate Session
+	 * 不处于只读模式。
 	 */
 	public boolean isCheckWriteOperations() {
 		return this.checkWriteOperations;
 	}
 
 	/**
-	 * Set whether to cache all queries executed by this template.
-	 * <p>If this is "true", all Query and Criteria objects created by
-	 * this template will be marked as cacheable (including all
-	 * queries through find methods).
-	 * <p>To specify the query region to be used for queries cached
-	 * by this template, set the "queryCacheRegion" property.
+	 * 设置是否缓存此模板执行的所有查询。
+	 * <p>如果为 "true"，此模板创建的所有 Query 和 Criteria 对象
+	 * 都将标记为可缓存（包括通过 find 方法执行的所有
+	 * 查询）。
+	 * <p>要指定此模板缓存的查询所使用的查询区域，
+	 * 请设置 "queryCacheRegion" 属性。
 	 * @see #setQueryCacheRegion
 	 * @see Query#setCacheable
 	 * @see Criteria#setCacheable
@@ -241,18 +235,18 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Return whether to cache all queries executed by this template.
+	 * 返回是否缓存此模板执行的所有查询。
 	 */
 	public boolean isCacheQueries() {
 		return this.cacheQueries;
 	}
 
 	/**
-	 * Set the name of the cache region for queries executed by this template.
-	 * <p>If this is specified, it will be applied to all Query and Criteria objects
-	 * created by this template (including all queries through find methods).
-	 * <p>The cache region will not take effect unless queries created by this
-	 * template are configured to be cached via the "cacheQueries" property.
+	 * 设置此模板执行的查询的缓存区域名称。
+	 * <p>如果指定，将应用于此模板创建的所有 Query 和 Criteria 对象
+	 * （包括通过 find 方法执行的所有查询）。
+	 * <p>除非通过 "cacheQueries" 属性将由此模板创建的查询
+	 * 配置为缓存，否则缓存区域不会生效。
 	 * @see #setCacheQueries
 	 * @see Query#setCacheRegion
 	 * @see Criteria#setCacheRegion
@@ -262,7 +256,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Return the name of the cache region for queries executed by this template.
+	 * 返回此模板执行的查询的缓存区域名称。
 	 */
 	@Nullable
 	public String getQueryCacheRegion() {
@@ -270,37 +264,37 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Set the fetch size for this HibernateTemplate. This is important for processing
-	 * large result sets: Setting this higher than the default value will increase
-	 * processing speed at the cost of memory consumption; setting this lower can
-	 * avoid transferring row data that will never be read by the application.
-	 * <p>Default is 0, indicating to use the JDBC driver's default.
+	 * 设置此 HibernateTemplate 的抓取大小。这对于处理
+	 * 大型结果集很重要：将此值设置为高于默认值会以内存消耗为代价
+	 * 提高处理速度；将其设置得更低可以
+	 * 避免传输应用程序永远不会读取的行数据。
+	 * <p>默认值为 0，表示使用 JDBC 驱动的默认值。
 	 */
 	public void setFetchSize(int fetchSize) {
 		this.fetchSize = fetchSize;
 	}
 
 	/**
-	 * Return the fetch size specified for this HibernateTemplate.
+	 * 返回为此 HibernateTemplate 指定的抓取大小。
 	 */
 	public int getFetchSize() {
 		return this.fetchSize;
 	}
 
 	/**
-	 * Set the maximum number of rows for this HibernateTemplate. This is important
-	 * for processing subsets of large result sets, avoiding to read and hold
-	 * the entire result set in the database or in the JDBC driver if we're
-	 * never interested in the entire result in the first place (for example,
-	 * when performing searches that might return a large number of matches).
-	 * <p>Default is 0, indicating to use the JDBC driver's default.
+	 * 设置此 HibernateTemplate 的最大行数。这对于
+	 * 处理大型结果集的子集很重要，可以避免在数据库或 JDBC 驱动中
+	 * 读取并持有整个结果集，特别是在我们
+	 * 从一开始就不关心完整结果的情况下（例如，
+	 * 执行可能返回大量匹配项的搜索时）。
+	 * <p>默认值为 0，表示使用 JDBC 驱动的默认值。
 	 */
 	public void setMaxResults(int maxResults) {
 		this.maxResults = maxResults;
 	}
 
 	/**
-	 * Return the maximum number of rows specified for this HibernateTemplate.
+	 * 返回为此 HibernateTemplate 指定的最大行数。
 	 */
 	public int getMaxResults() {
 		return this.maxResults;
@@ -321,10 +315,9 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Execute the action specified by the given action object within a
-	 * native {@link Session}.
-	 * <p>This execute variant overrides the template-wide
-	 * {@link #isExposeNativeSession() "exposeNativeSession"} setting.
+	 * 在原生 {@link Session} 中执行给定操作对象所指定的动作。
+	 * <p>此 execute 变体会覆盖模板范围的
+	 * {@link #isExposeNativeSession() "exposeNativeSession"} 设置。
 	 * @param action callback object that specifies the Hibernate action
 	 * @return a result object returned by the action, or {@code null}
 	 * @throws DataAccessException in case of Hibernate errors
@@ -335,7 +328,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Execute the action specified by the given action object within a Session.
+	 * 在 Session 中执行给定操作对象所指定的动作。
 	 * @param action callback object that specifies the Hibernate action
 	 * @param enforceNativeSession whether to enforce exposure of the native
 	 * Hibernate Session to callback code
@@ -390,8 +383,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Create a close-suppressing proxy for the given Hibernate Session.
-	 * The proxy also prepares returned Query and Criteria objects.
+	 * 为给定的 Hibernate Session 创建一个抑制 close 的代理。
+	 * 该代理还会准备返回的 Query 和 Criteria 对象。
 	 * @param session the Hibernate Session to create a proxy for
 	 * @return the Session proxy
 	 * @see Session#close()
@@ -405,7 +398,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Enable the specified filters on the given Session.
+	 * 在给定 Session 上启用指定的过滤器。
 	 * @param session the current Hibernate Session
 	 * @see #setFilterNames
 	 * @see Session#enableFilter(String)
@@ -420,7 +413,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Disable the specified filters on the given Session.
+	 * 在给定 Session 上禁用指定的过滤器。
 	 * @param session the current Hibernate Session
 	 * @see #setFilterNames
 	 * @see Session#disableFilter(String)
@@ -1033,9 +1026,9 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	//-------------------------------------------------------------------------
 
 	/**
-	 * Check whether write operations are allowed on the given Session.
-	 * <p>Default implementation throws an InvalidDataAccessApiUsageException in
-	 * case of {@code FlushMode.MANUAL}. Can be overridden in subclasses.
+	 * 检查是否允许在给定 Session 上执行写操作。
+	 * <p>默认实现在 {@code FlushMode.MANUAL} 的情况下抛出
+	 * InvalidDataAccessApiUsageException。可在子类中重写。
 	 * @param session current Hibernate Session
 	 * @throws InvalidDataAccessApiUsageException if write operations are not allowed
 	 * @see #setCheckWriteOperations
@@ -1051,8 +1044,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Prepare the given Criteria object, applying cache settings and/or
-	 * a transaction timeout.
+	 * 准备给定的 Criteria 对象，应用缓存设置和/或
+	 * 事务超时。
 	 * @param criteria the Criteria object to prepare
 	 * @see #setCacheQueries
 	 * @see #setQueryCacheRegion
@@ -1079,8 +1072,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Prepare the given Query object, applying cache settings and/or
-	 * a transaction timeout.
+	 * 准备给定的 Query 对象，应用缓存设置和/或
+	 * 事务超时。
 	 * @param queryObject the Query object to prepare
 	 * @see #setCacheQueries
 	 * @see #setQueryCacheRegion
@@ -1107,7 +1100,7 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 	}
 
 	/**
-	 * Apply the given name parameter to the given Query object.
+	 * 将给定名称的参数应用到给定的 Query 对象。
 	 * @param queryObject the Query object
 	 * @param paramName the name of the parameter
 	 * @param value the value of the parameter
@@ -1134,8 +1127,8 @@ public class HibernateTemplate implements HibernateOperations, InitializingBean 
 
 
 	/**
-	 * Invocation handler that suppresses close calls on Hibernate Sessions.
-	 * Also prepares returned Query and Criteria objects.
+	 * 抑制对 Hibernate Session 的 close 调用的调用处理器。
+	 * 还会准备返回的 Query 和 Criteria 对象。
 	 * @see Session#close
 	 */
 	private class CloseSuppressingInvocationHandler implements InvocationHandler {

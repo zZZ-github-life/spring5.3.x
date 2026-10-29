@@ -49,10 +49,9 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * {@code WebSocketService} implementation that handles a WebSocket HTTP
- * handshake request by delegating to a {@link RequestUpgradeStrategy} which
- * is either auto-detected (no-arg constructor) from the classpath but can
- * also be explicitly configured.
+ * {@code WebSocketService} 实现，通过委托给 {@link RequestUpgradeStrategy}
+ * 来处理 WebSocket HTTP 握手请求；该策略可以从类路径自动检测（无参构造函数），
+ * 也可以显式配置。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -98,15 +97,15 @@ public class HandshakeWebSocketService implements WebSocketService, Lifecycle {
 
 
 	/**
-	 * Default constructor automatic, classpath detection based discovery of the
-	 * {@link RequestUpgradeStrategy} to use.
+	 * 默认构造函数，基于类路径检测自动发现要使用的
+	 * {@link RequestUpgradeStrategy}。
 	 */
 	public HandshakeWebSocketService() {
 		this(initUpgradeStrategy());
 	}
 
 	/**
-	 * Alternative constructor with the {@link RequestUpgradeStrategy} to use.
+	 * 指定要使用的 {@link RequestUpgradeStrategy} 的备用构造函数。
 	 * @param upgradeStrategy the strategy to use
 	 */
 	public HandshakeWebSocketService(RequestUpgradeStrategy upgradeStrategy) {
@@ -149,17 +148,17 @@ public class HandshakeWebSocketService implements WebSocketService, Lifecycle {
 
 
 	/**
-	 * Return the {@link RequestUpgradeStrategy} for WebSocket requests.
+	 * 返回用于 WebSocket 请求的 {@link RequestUpgradeStrategy}。
 	 */
 	public RequestUpgradeStrategy getUpgradeStrategy() {
 		return this.upgradeStrategy;
 	}
 
 	/**
-	 * Configure a predicate to use to extract
-	 * {@link org.springframework.web.server.WebSession WebSession} attributes
-	 * and use them to initialize the WebSocket session with.
-	 * <p>By default this is not set in which case no attributes are passed.
+	 * 配置一个谓词，用于提取
+	 * {@link org.springframework.web.server.WebSession WebSession} 属性，并用这些属性
+	 * 初始化 WebSocket 会话。
+	 * <p>默认不设置，此时不传递任何属性。
 	 * @param predicate the predicate
 	 * @since 5.1
 	 */
@@ -168,8 +167,7 @@ public class HandshakeWebSocketService implements WebSocketService, Lifecycle {
 	}
 
 	/**
-	 * Return the configured predicate for initialization WebSocket session
-	 * attributes from {@code WebSession} attributes.
+	 * 返回配置的谓词，用于从 {@code WebSession} 属性初始化 WebSocket 会话属性。
 	 * @since 5.1
 	 */
 	@Nullable

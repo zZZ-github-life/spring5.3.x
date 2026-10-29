@@ -24,11 +24,10 @@ import java.security.CodeSource;
 import org.springframework.util.FileCopyUtils;
 
 /**
- * Adapter that implements WebSphere 7.0 ClassPreProcessPlugin interface,
- * delegating to a standard JDK {@link ClassFileTransformer} underneath.
+ * 实现 WebSphere 7.0 ClassPreProcessPlugin 接口的适配器，其在底层委托给标准的 JDK
+ * {@link ClassFileTransformer}。
  *
- * <p>To avoid compile time checks again the vendor API, a dynamic proxy is
- * being used.
+ * <p>为避免针对供应商 API 的编译期检查，使用了动态代理。
  *
  * @author Costin Leau
  * @since 3.1
@@ -39,7 +38,7 @@ class WebSphereClassPreDefinePlugin implements InvocationHandler {
 
 
 	/**
-	 * Create a new {@link WebSphereClassPreDefinePlugin}.
+	 * 创建一个新的 {@link WebSphereClassPreDefinePlugin}。
 	 * @param transformer the {@link ClassFileTransformer} to be adapted
 	 * (must not be {@code null})
 	 */

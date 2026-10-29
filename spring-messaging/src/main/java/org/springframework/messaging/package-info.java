@@ -1,5 +1,5 @@
 /**
- * Support for working with messaging APIs and protocols.
+ * 提供对消息传递 API 和协议的支持。
  */
 @NonNullApi
 @NonNullFields

@@ -17,13 +17,12 @@
 package org.springframework.jms.listener;
 
 /**
- * Interface to be implemented by message listener objects that suggest a specific
- * name for a durable subscription that they might be registered with. Otherwise,
- * the listener class name will be used as a default subscription name.
+ * 由消息监听器对象实现的接口，用于为其可能注册的持久订阅
+ * 建议一个特定名称。否则，监听器类名将用作默认订阅名称。
  *
- * <p>Applies to {@link javax.jms.MessageListener} objects as well as to
- * {@link SessionAwareMessageListener} objects and plain listener methods
- * (as supported by {@link org.springframework.jms.listener.adapter.MessageListenerAdapter}).
+ * <p>适用于 {@link javax.jms.MessageListener} 对象，
+ * 也适用于 {@link SessionAwareMessageListener} 对象和普通监听器方法
+ * （如 {@link org.springframework.jms.listener.adapter.MessageListenerAdapter} 所支持）。
  *
  * @author Juergen Hoeller
  * @since 2.5.6
@@ -31,7 +30,7 @@ package org.springframework.jms.listener;
 public interface SubscriptionNameProvider {
 
 	/**
-	 * Determine the subscription name for this message listener object.
+	 * 确定此消息监听器对象的订阅名称。
 	 */
 	String getSubscriptionName();
 

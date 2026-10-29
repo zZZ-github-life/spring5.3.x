@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Common delegate methods for Spring's internal {@link PropertyDescriptor} implementations.
+ * Spring 内部 {@link PropertyDescriptor} 实现的通用委托方法。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -42,11 +42,9 @@ abstract class PropertyDescriptorUtils {
 
 
 	/**
-	 * Simple introspection algorithm for basic set/get/is accessor methods,
-	 * building corresponding JavaBeans property descriptors for them.
-	 * <p>This just supports the basic JavaBeans conventions, without indexed
-	 * properties or any customizers, and without other BeanInfo metadata.
-	 * For standard JavaBeans introspection, use the JavaBeans Introspector.
+	 * 针对基本 set/get/is 访问器方法的简单内省算法，为它们构建相应的 JavaBeans 属性描述符。
+	 * <p>它仅支持基本的 JavaBeans 约定，不支持索引属性或任何定制器，也不支持其他 BeanInfo 元数据。对于
+	 * 标准 JavaBeans 内省，请使用 JavaBeans Introspector。
 	 * @param beanClass the target class to introspect
 	 * @return a collection of property descriptors
 	 * @throws IntrospectionException from introspecting the given bean class
@@ -113,7 +111,7 @@ abstract class PropertyDescriptorUtils {
 	}
 
 	/**
-	 * See {@link java.beans.FeatureDescriptor}.
+	 * 参见 {@link java.beans.FeatureDescriptor}。
 	 */
 	public static void copyNonMethodProperties(PropertyDescriptor source, PropertyDescriptor target) {
 		target.setExpert(source.isExpert());
@@ -137,7 +135,7 @@ abstract class PropertyDescriptorUtils {
 	}
 
 	/**
-	 * See {@link java.beans.PropertyDescriptor#findPropertyType}.
+	 * 参见 {@link java.beans.PropertyDescriptor#findPropertyType}。
 	 */
 	@Nullable
 	public static Class<?> findPropertyType(@Nullable Method readMethod, @Nullable Method writeMethod)
@@ -182,7 +180,7 @@ abstract class PropertyDescriptorUtils {
 	}
 
 	/**
-	 * See {@link java.beans.IndexedPropertyDescriptor#findIndexedPropertyType}.
+	 * 参见 {@link java.beans.IndexedPropertyDescriptor#findIndexedPropertyType}。
 	 */
 	@Nullable
 	public static Class<?> findIndexedPropertyType(String name, @Nullable Class<?> propertyType,
@@ -240,9 +238,8 @@ abstract class PropertyDescriptorUtils {
 	}
 
 	/**
-	 * Compare the given {@code PropertyDescriptors} and return {@code true} if
-	 * they are equivalent, i.e. their read method, write method, property type,
-	 * property editor and flags are equivalent.
+	 * 比较给定的 {@code PropertyDescriptors}，如果它们等效（即它们的读取方法、写入方法、属性类型、属性
+	 * 编辑器和标志都等效），则返回 {@code true}。
 	 * @see java.beans.PropertyDescriptor#equals(Object)
 	 */
 	public static boolean equals(PropertyDescriptor pd, PropertyDescriptor otherPd) {
@@ -255,9 +252,8 @@ abstract class PropertyDescriptorUtils {
 
 
 	/**
-	 * PropertyDescriptor for {@link #determineBasicProperties(Class)},
-	 * not performing any early type determination for
-	 * {@link #setReadMethod}/{@link #setWriteMethod}.
+	 * 用于 {@link #determineBasicProperties(Class)} 的 PropertyDescriptor，不会为
+	 * {@link #setReadMethod}/{@link #setWriteMethod} 执行任何早期类型确定。
 	 * @since 5.3.24
 	 */
 	private static class BasicPropertyDescriptor extends PropertyDescriptor {

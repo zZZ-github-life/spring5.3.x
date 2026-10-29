@@ -21,24 +21,23 @@ import javax.sql.DataSource;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for {@link DataFieldMaxValueIncrementer} implementations that use
- * a column in a custom sequence table. Subclasses need to provide the specific handling
- * of that table in their {@link #getNextKey()} implementation.
+ * 用于使用自定义序列表中某一列的 {@link DataFieldMaxValueIncrementer} 实现的抽象基类。
+ * 子类需要在其 {@link #getNextKey()} 实现中提供对该表的具体处理。
  *
  * @author Juergen Hoeller
  * @since 2.5.3
  */
 public abstract class AbstractColumnMaxValueIncrementer extends AbstractDataFieldMaxValueIncrementer {
 
-	/** The name of the column for this sequence. */
+	/** 此序列对应的列名。 */
 	private String columnName;
 
-	/** The number of keys buffered in a cache. */
+	/** 缓存中缓冲的键数量。 */
 	private int cacheSize = 1;
 
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 * @see #setColumnName
@@ -47,7 +46,7 @@ public abstract class AbstractColumnMaxValueIncrementer extends AbstractDataFiel
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 * @param columnName the name of the column in the sequence table to use
@@ -60,28 +59,28 @@ public abstract class AbstractColumnMaxValueIncrementer extends AbstractDataFiel
 
 
 	/**
-	 * Set the name of the column in the sequence table.
+	 * 设置序列表中的列名。
 	 */
 	public void setColumnName(String columnName) {
 		this.columnName = columnName;
 	}
 
 	/**
-	 * Return the name of the column in the sequence table.
+	 * 返回序列表中的列名。
 	 */
 	public String getColumnName() {
 		return this.columnName;
 	}
 
 	/**
-	 * Set the number of buffered keys.
+	 * 设置缓冲的键数量。
 	 */
 	public void setCacheSize(int cacheSize) {
 		this.cacheSize = cacheSize;
 	}
 
 	/**
-	 * Return the number of buffered keys.
+	 * 返回缓冲的键数量。
 	 */
 	public int getCacheSize() {
 		return this.cacheSize;

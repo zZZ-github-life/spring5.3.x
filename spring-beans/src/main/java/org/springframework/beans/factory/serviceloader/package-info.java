@@ -1,5 +1,5 @@
 /**
- * Support package for the Java {@link java.util.ServiceLoader} facility.
+ * Java {@link java.util.ServiceLoader} 设施的支持包。
  */
 @NonNullApi
 @NonNullFields

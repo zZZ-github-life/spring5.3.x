@@ -26,10 +26,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Implementation of {@link RouterFunctions.Visitor} that changes the
- * {@link PathPatternParser} on path-related request predicates
- * (i.e. {@link RequestPredicates.PathPatternPredicate}).
- *
+ * 更改路径相关请求谓词（即 {@link RequestPredicates.PathPatternPredicate}）上 {@link PathPatternParser} 的 {@link RouterFunctions.Visitor} 实现。
  * @author Arjen Poutsma
  * @since 5.3
  */
@@ -78,7 +75,7 @@ class ChangePathPatternParserVisitor implements RouterFunctions.Visitor {
 
 
 	/**
-	 * Interface implemented by predicates that can change the parser.
+	 * 由可以更改解析器的谓词实现的接口。
 	 */
 	public interface Target {
 

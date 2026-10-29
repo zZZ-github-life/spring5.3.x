@@ -24,14 +24,13 @@ import org.springframework.jdbc.core.SqlTypeValue;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract implementation of the SqlTypeValue interface, for convenient
- * creation of type values that are supposed to be passed into the
- * {@code PreparedStatement.setObject} method. The {@code createTypeValue}
- * callback method has access to the underlying Connection, if that should
- * be needed to create any database-specific objects.
+ * SqlTypeValue 接口的抽象实现，用于便捷地创建要传入
+ * {@code PreparedStatement.setObject} 方法的类型值。
+ * 如果需要创建任何数据库特定的对象，{@code createTypeValue}
+ * 回调方法可以访问底层 Connection。
  *
- * <p>A usage example from a StoredProcedure (compare this to the plain
- * SqlTypeValue version in the superclass javadoc):
+ * <p>来自 StoredProcedure 的使用示例（可与父类 javadoc 中的
+ * 普通 SqlTypeValue 版本进行比较）：
  *
  * <pre class="code">proc.declareParameter(new SqlParameter("myarray", Types.ARRAY, "NUMBERS"));
  * ...
@@ -67,7 +66,7 @@ public abstract class AbstractSqlTypeValue implements SqlTypeValue {
 	}
 
 	/**
-	 * Create the type value to be passed into {@code PreparedStatement.setObject}.
+	 * 创建要传入 {@code PreparedStatement.setObject} 的类型值。
 	 * @param con the JDBC Connection, if needed to create any database-specific objects
 	 * @param sqlType the SQL type of the parameter we are setting
 	 * @param typeName the type name of the parameter

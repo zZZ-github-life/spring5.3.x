@@ -31,9 +31,9 @@ import org.springframework.messaging.handler.HandlerMethod;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Extension of {@link HandlerMethod} that invokes the underlying method with
- * argument values resolved from the current HTTP request through a list of
- * {@link HandlerMethodArgumentResolver}.
+ * {@link HandlerMethod} 的扩展，它使用通过一组
+ * {@link HandlerMethodArgumentResolver} 从当前 HTTP 请求解析出的参数值
+ * 来调用底层方法。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -50,21 +50,21 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Create an instance from a {@code HandlerMethod}.
+	 * 从 {@code HandlerMethod} 创建实例。
 	 */
 	public InvocableHandlerMethod(HandlerMethod handlerMethod) {
 		super(handlerMethod);
 	}
 
 	/**
-	 * Create an instance from a bean instance and a method.
+	 * 从 Bean 实例和方法创建实例。
 	 */
 	public InvocableHandlerMethod(Object bean, Method method) {
 		super(bean, method);
 	}
 
 	/**
-	 * Construct a new handler method with the given bean instance, method name and parameters.
+	 * 使用给定 Bean 实例、方法名称和参数构造新的处理器方法。
 	 * @param bean the object bean
 	 * @param methodName the method name
 	 * @param parameterTypes the method parameter types
@@ -78,16 +78,17 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Set {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} to use for resolving method argument values.
+	 * 设置用于解析方法参数值的
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}。
 	 */
 	public void setMessageMethodArgumentResolvers(HandlerMethodArgumentResolverComposite argumentResolvers) {
 		this.resolvers = argumentResolvers;
 	}
 
 	/**
-	 * Set the ParameterNameDiscoverer for resolving parameter names when needed
-	 * (e.g. default request attribute name).
-	 * <p>Default is a {@link org.springframework.core.DefaultParameterNameDiscoverer}.
+	 * 设置 ParameterNameDiscoverer，以便在需要时解析参数名称
+	 * （例如默认请求属性名称）。
+	 * <p>默认为 {@link org.springframework.core.DefaultParameterNameDiscoverer}。
 	 */
 	public void setParameterNameDiscoverer(ParameterNameDiscoverer parameterNameDiscoverer) {
 		this.parameterNameDiscoverer = parameterNameDiscoverer;
@@ -95,13 +96,13 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Invoke the method after resolving its argument values in the context of the given message.
-	 * <p>Argument values are commonly resolved through
-	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
-	 * The {@code providedArgs} parameter however may supply argument values to be used directly,
-	 * i.e. without argument resolution.
-	 * <p>Delegates to {@link #getMethodArgumentValues} and calls {@link #doInvoke} with the
-	 * resolved arguments.
+	 * 在给定消息的上下文中解析方法参数值后调用该方法。
+	 * <p>参数值通常通过
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 解析。
+	 * 不过 {@code providedArgs} 参数可以直接提供要使用的参数值，
+	 * 即无需参数解析。
+	 * <p>委托给 {@link #getMethodArgumentValues}，并使用解析出的参数调用
+	 * {@link #doInvoke}。
 	 * @param message the current message being processed
 	 * @param providedArgs "given" arguments matched by type, not resolved
 	 * @return the raw value returned by the invoked method
@@ -120,9 +121,9 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	}
 
 	/**
-	 * Get the method argument values for the current message, checking the provided
-	 * argument values and falling back to the configured argument resolvers.
-	 * <p>The resulting array will be passed into {@link #doInvoke}.
+	 * 获取当前消息的方法参数值，检查提供的参数值，
+	 * 并回退到已配置的参数解析器。
+	 * <p>结果数组将传入 {@link #doInvoke}。
 	 * @since 5.1.2
 	 */
 	protected Object[] getMethodArgumentValues(Message<?> message, Object... providedArgs) throws Exception {
@@ -161,7 +162,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 	}
 
 	/**
-	 * Invoke the handler method with the given argument values.
+	 * 使用给定参数值调用处理器方法。
 	 */
 	@Nullable
 	protected Object doInvoke(Object... args) throws Exception {

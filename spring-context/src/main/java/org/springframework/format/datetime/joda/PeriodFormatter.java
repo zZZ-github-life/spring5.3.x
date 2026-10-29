@@ -24,8 +24,7 @@ import org.joda.time.Period;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a Joda-Time {@link Period},
- * following Joda-Time's parsing rules for a Period.
+ * 用于 Joda-Time {@link Period} 的 {@link Formatter} 实现，遵循 Joda-Time 对 Period 的解析规则。
  *
  * @author Juergen Hoeller
  * @since 4.2.4

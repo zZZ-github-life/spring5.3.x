@@ -22,16 +22,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Editor for a {@link Character}, to populate a property
- * of type {@code Character} or {@code char} from a String value.
+ * 用于 {@link Character} 的编辑器，可从 String 值填充 {@code Character} 或 {@code char} 类型的属性。
  *
- * <p>Note that the JDK does not contain a default
- * {@link java.beans.PropertyEditor property editor} for {@code char}!
- * {@link org.springframework.beans.BeanWrapperImpl} will register this
- * editor by default.
+ * <p>请注意，JDK 并未为 {@code char} 提供默认的 {@link java.beans.PropertyEditor property editor}！
+ * {@link org.springframework.beans.BeanWrapperImpl} 将默认注册此编辑器。
  *
- * <p>Also supports conversion from a Unicode character sequence; e.g.
- * {@code u0041} ('A').
+ * <p>还支持从 Unicode 字符序列进行转换；例如 {@code u0041} ('A')。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -43,12 +39,12 @@ import org.springframework.util.StringUtils;
 public class CharacterEditor extends PropertyEditorSupport {
 
 	/**
-	 * The prefix that identifies a string as being a Unicode character sequence.
+	 * 用于将字符串标识为 Unicode 字符序列的前缀。
 	 */
 	private static final String UNICODE_PREFIX = "\\u";
 
 	/**
-	 * The length of a Unicode character sequence.
+	 * Unicode 字符序列的长度。
 	 */
 	private static final int UNICODE_LENGTH = 6;
 
@@ -57,11 +53,9 @@ public class CharacterEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new CharacterEditor instance.
-	 * <p>The "allowEmpty" parameter controls whether an empty String is to be
-	 * allowed in parsing, i.e. be interpreted as the {@code null} value when
-	 * {@link #setAsText(String) text is being converted}. If {@code false},
-	 * an {@link IllegalArgumentException} will be thrown at that time.
+	 * 创建一个新的 CharacterEditor 实例。<p>"allowEmpty" 参数控制解析时是否允许空 String，即在
+	 * {@link #setAsText(String) text is being converted}时是否将其解释为 {@code null} 值。如果为
+	 * {@code false}，此时将抛出 {@link IllegalArgumentException}。
 	 * @param allowEmpty if empty strings are to be allowed
 	 */
 	public CharacterEditor(boolean allowEmpty) {

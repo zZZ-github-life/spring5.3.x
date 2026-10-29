@@ -32,14 +32,13 @@ import org.springframework.r2dbc.core.binding.BindMarkersFactory;
 import org.springframework.util.Assert;
 
 /**
- * A non-blocking, reactive client for performing database calls requests with
- * Reactive Streams back pressure. Provides a higher level, common API over
- * R2DBC client libraries.
+ * 非阻塞、响应式的客户端，用于在 Reactive Streams 背压下执行数据库调用请求。
+ * 在 R2DBC 客户端库之上提供了更高层次的通用 API。
  *
- * <p>Use one of the static factory methods {@link #create(ConnectionFactory)}
- * or obtain a {@link DatabaseClient#builder()} to create an instance.
+ * <p>使用静态工厂方法 {@link #create(ConnectionFactory)} 之一，
+ * 或获取 {@link DatabaseClient#builder()} 来创建实例。
  *
- * Usage example:
+ * 使用示例：
  * <pre class="code">
  * ConnectionFactory factory = …
  *
@@ -56,16 +55,16 @@ import org.springframework.util.Assert;
 public interface DatabaseClient extends ConnectionAccessor {
 
 	/**
-	 * Return the {@link ConnectionFactory} that this client uses.
+	 * 返回此客户端使用的 {@link ConnectionFactory}。
 	 * @return the connection factory
 	 */
 	ConnectionFactory getConnectionFactory();
 
 	/**
-	 * Specify a static {@code sql} statement to run. Contract for specifying a
-	 * SQL call along with options leading to the execution. The SQL string can
-	 * contain either native parameter bind markers or named parameters (e.g.
-	 * {@literal :foo, :bar}) when {@link NamedParameterExpander} is enabled.
+	 * 指定要运行的静态 {@code sql} 语句。该约定用于指定一次 SQL 调用
+	 * 以及导致执行的各项选项。当启用 {@link NamedParameterExpander} 时，
+	 * SQL 字符串既可包含原生参数绑定标记，也可包含命名参数
+	 * （例如 {@literal :foo, :bar}）。
 	 * @param sql the SQL statement
 	 * @return a new {@link GenericExecuteSpec}
 	 * @see NamedParameterExpander
@@ -74,15 +73,13 @@ public interface DatabaseClient extends ConnectionAccessor {
 	GenericExecuteSpec sql(String sql);
 
 	/**
-	 * Specify a {@link Supplier SQL supplier} that provides SQL to run.
-	 * Contract for specifying an SQL call along with options leading to
-	 * the execution. The SQL string can contain either native parameter
-	 * bind markers or named parameters (e.g. {@literal :foo, :bar}) when
-	 * {@link NamedParameterExpander} is enabled.
-	 * <p>Accepts {@link PreparedOperation} as SQL and binding {@link Supplier}.
-	 * <p>{@code DatabaseClient} implementations should defer the resolution of
-	 * the SQL string as much as possible, ideally up to the point where a
-	 * {@code Subscription} happens. This is the case for the default implementation.
+	 * 指定一个提供要运行的 SQL 的 {@link Supplier SQL 提供者}。
+	 * 该约定用于指定一次 SQL 调用以及导致执行的各项选项。
+	 * 当启用 {@link NamedParameterExpander} 时，SQL 字符串既可包含
+	 * 原生参数绑定标记，也可包含命名参数（例如 {@literal :foo, :bar}）。
+	 * <p>接受 {@link PreparedOperation} 作为 SQL，以及绑定 {@link Supplier}。
+	 * <p>{@code DatabaseClient} 实现应尽可能延迟 SQL 字符串的解析，
+	 * 理想情况下延迟到 {@code Subscription} 发生之时。默认实现即是如此。
 	 * @param sqlSupplier a supplier for the SQL statement
 	 * @return a new {@link GenericExecuteSpec}
 	 * @see NamedParameterExpander
@@ -95,7 +92,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 	// Static factory methods
 
 	/**
-	 * Create a {@code DatabaseClient} that will use the provided {@link ConnectionFactory}.
+	 * 创建一个将使用所提供 {@link ConnectionFactory} 的 {@code DatabaseClient}。
 	 * @param factory the {@code ConnectionFactory} to use for obtaining connections
 	 * @return a new {@code DatabaseClient}. Guaranteed to be not {@code null}.
 	 */
@@ -104,7 +101,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 	}
 
 	/**
-	 * Obtain a {@code DatabaseClient} builder.
+	 * 获取一个 {@code DatabaseClient} 构建器。
 	 */
 	static DatabaseClient.Builder builder() {
 		return new DefaultDatabaseClientBuilder();
@@ -112,29 +109,29 @@ public interface DatabaseClient extends ConnectionAccessor {
 
 
 	/**
-	 * A mutable builder for creating a {@link DatabaseClient}.
+	 * 用于创建 {@link DatabaseClient} 的可变构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Configure the {@link BindMarkersFactory BindMarkers} to be used.
+		 * 配置要使用的 {@link BindMarkersFactory BindMarkers}。
 		 */
 		Builder bindMarkers(BindMarkersFactory bindMarkers);
 
 		/**
-		 * Configure the {@link ConnectionFactory R2DBC connector}.
+		 * 配置 {@link ConnectionFactory R2DBC 连接器}。
 		 */
 		Builder connectionFactory(ConnectionFactory factory);
 
 		/**
-		 * Configure a {@link ExecuteFunction} to execute {@link Statement} objects.
+		 * 配置一个用于执行 {@link Statement} 对象的 {@link ExecuteFunction}。
 		 * @see Statement#execute()
 		 */
 		Builder executeFunction(ExecuteFunction executeFunction);
 
 		/**
-		 * Configure whether to use named parameter expansion.
-		 * Defaults to {@code true}.
+		 * 配置是否使用命名参数展开。
+		 * 默认值为 {@code true}。
 		 * @param enabled {@code true} to use named parameter expansion;
 		 * {@code false} to disable named parameter expansion
 		 * @see NamedParameterExpander
@@ -142,55 +139,54 @@ public interface DatabaseClient extends ConnectionAccessor {
 		Builder namedParameters(boolean enabled);
 
 		/**
-		 * Configures a {@link Consumer} to configure this builder.
+		 * 配置一个用于配置此构建器的 {@link Consumer}。
 		 */
 		Builder apply(Consumer<Builder> builderConsumer);
 
 		/**
-		 * Build the {@link DatabaseClient} instance.
+		 * 构建 {@link DatabaseClient} 实例。
 		 */
 		DatabaseClient build();
 	}
 
 
 	/**
-	 * Contract for specifying an SQL call along with options leading to the execution.
+	 * 用于指定一次 SQL 调用以及导致执行的各项选项的约定。
 	 */
 	interface GenericExecuteSpec {
 
 		/**
-		 * Bind a non-{@code null} value to a parameter identified by its
-		 * {@code index}. {@code value} can be either a scalar value or {@link Parameter}.
+		 * 将一个非 {@code null} 值绑定到由其 {@code index} 标识的参数。
+		 * {@code value} 可以是标量值，也可以是 {@link Parameter}。
 		 * @param index zero based index to bind the parameter to
 		 * @param value either a scalar value or {@link Parameter}
 		 */
 		GenericExecuteSpec bind(int index, Object value);
 
 		/**
-		 * Bind a {@code null} value to a parameter identified by its {@code index}.
+		 * 将一个 {@code null} 值绑定到由其 {@code index} 标识的参数。
 		 * @param index zero based index to bind the parameter to
 		 * @param type the parameter type
 		 */
 		GenericExecuteSpec bindNull(int index, Class<?> type);
 
 		/**
-		 * Bind a non-{@code null} value to a parameter identified by its {@code name}.
+		 * 将一个非 {@code null} 值绑定到由其 {@code name} 标识的参数。
 		 * @param name the name of the parameter
 		 * @param value the value to bind
 		 */
 		GenericExecuteSpec bind(String name, Object value);
 
 		/**
-		 * Bind a {@code null} value to a parameter identified by its {@code name}.
+		 * 将一个 {@code null} 值绑定到由其 {@code name} 标识的参数。
 		 * @param name the name of the parameter
 		 * @param type the parameter type
 		 */
 		GenericExecuteSpec bindNull(String name, Class<?> type);
 
 		/**
-		 * Add the given filter to the end of the filter chain.
-		 * <p>Filter functions are typically used to invoke methods on the Statement
-		 * before it is executed. For example:
+		 * 将给定的过滤器添加到过滤器链的末尾。
+		 * <p>过滤器函数通常用于在 Statement 执行之前调用其上的方法。例如：
 		 * <pre class="code">
 		 * DatabaseClient client = …;
 		 * client.sql("SELECT book_id FROM book").filter(statement -&gt; statement.fetchSize(100))
@@ -203,9 +199,8 @@ public interface DatabaseClient extends ConnectionAccessor {
 		}
 
 		/**
-		 * Add the given filter to the end of the filter chain.
-		 * <p>Filter functions are typically used to invoke methods on the Statement
-		 * before it is executed. For example:
+		 * 将给定的过滤器添加到过滤器链的末尾。
+		 * <p>过滤器函数通常用于在 Statement 执行之前调用其上的方法。例如：
 		 * <pre class="code">
 		 * DatabaseClient client = …;
 		 * client.sql("SELECT book_id FROM book").filter((statement, next) -&gt; next.execute(statement.fetchSize(100)))
@@ -215,7 +210,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 		GenericExecuteSpec filter(StatementFilterFunction filter);
 
 		/**
-		 * Configure a result mapping {@link Function function} and enter the execution stage.
+		 * 配置结果映射 {@link Function 函数}并进入执行阶段。
 		 * @param mappingFunction a function that maps from {@link Row} to the result type
 		 * @param <R> the result type
 		 * @return a {@link FetchSpec} for configuration what to fetch
@@ -226,7 +221,7 @@ public interface DatabaseClient extends ConnectionAccessor {
 		}
 
 		/**
-		 * Configure a result mapping {@link BiFunction function} and enter the execution stage.
+		 * 配置结果映射 {@link BiFunction 函数}并进入执行阶段。
 		 * @param mappingFunction a function that maps from {@link Row} and {@link RowMetadata}
 		 * to the result type
 		 * @param <R> the result type
@@ -235,13 +230,12 @@ public interface DatabaseClient extends ConnectionAccessor {
 		<R> RowsFetchSpec<R> map(BiFunction<Row, RowMetadata, R> mappingFunction);
 
 		/**
-		 * Perform the SQL call and retrieve the result by entering the execution stage.
+		 * 执行 SQL 调用，并通过进入执行阶段来获取结果。
 		 */
 		FetchSpec<Map<String, Object>> fetch();
 
 		/**
-		 * Perform the SQL call and return a {@link Mono} that completes without result
-		 * on statement completion.
+		 * 执行 SQL 调用，并返回一个在语句完成时不带结果地完成的 {@link Mono}。
 		 * @return a {@link Mono} ignoring its payload (actively dropping)
 		 */
 		Mono<Void> then();

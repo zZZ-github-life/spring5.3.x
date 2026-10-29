@@ -52,58 +52,53 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * The main class for testing Spring MVC applications via {@link WebTestClient}
- * with {@link MockMvc} for server request handling.
+ * 通过 {@link WebTestClient} 并使用 {@link MockMvc} 处理服务器请求来测试 Spring MVC 应用程序的主类。
  *
- * <p>Provides static factory methods and specs to initialize {@code MockMvc}
- * to which the {@code WebTestClient} connects to. For example:
+ * <p>提供静态工厂方法和规范来初始化 {@code MockMvc}，
+ * 以便 {@code WebTestClient} 连接到该实例。例如：
  * <pre class="code">
  * WebTestClient client = MockMvcWebTestClient.bindToController(myController)
- *         .controllerAdvice(myControllerAdvice)
- *         .validator(myValidator)
- *         .build()
+ * .controllerAdvice(myControllerAdvice)
+ * .validator(myValidator)
+ * .build()
  * </pre>
  *
- * <p>The client itself can also be configured. For example:
+ * <p>客户端本身也可以配置。例如：
  * <pre class="code">
  * WebTestClient client = MockMvcWebTestClient.bindToController(myController)
- *         .validator(myValidator)
- *         .configureClient()
- *         .baseUrl("/path")
- *         .build();
+ * .validator(myValidator)
+ * .configureClient()
+ * .baseUrl("/path")
+ * .build();
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @since 5.3
  */
 public interface MockMvcWebTestClient {
 
 	/**
-	 * Begin creating a {@link WebTestClient} by providing the {@code @Controller}
-	 * instance(s) to handle requests with.
-	 * <p>Internally this is delegated to and equivalent to using
-	 * {@link org.springframework.test.web.servlet.setup.MockMvcBuilders#standaloneSetup(Object...)}.
-	 * to initialize {@link MockMvc}.
+	 * 通过提供用于处理请求的 {@code @Controller} 实例开始创建 {@link WebTestClient}。
+	 * <p>在内部，这被委托给并等价于使用
+	 * {@link org.springframework.test.web.servlet.setup.MockMvcBuilders#standaloneSetup(Object...)}
+	 * 初始化 {@link MockMvc}。
 	 */
 	static ControllerSpec bindToController(Object... controllers) {
 		return new StandaloneMockMvcSpec(controllers);
 	}
 
 	/**
-	 * Begin creating a {@link WebTestClient} by providing a
-	 * {@link WebApplicationContext} with Spring MVC infrastructure and
-	 * controllers.
-	 * <p>Internally this is delegated to and equivalent to using
+	 * 通过提供包含 Spring MVC 基础设施和控制器的
+	 * {@link WebApplicationContext} 开始创建 {@link WebTestClient}。
+	 * <p>在内部，这被委托给并等价于使用
 	 * {@link org.springframework.test.web.servlet.setup.MockMvcBuilders#webAppContextSetup(WebApplicationContext)}
-	 * to initialize {@code MockMvc}.
+	 * 初始化 {@code MockMvc}。
 	 */
 	static MockMvcServerSpec<?> bindToApplicationContext(WebApplicationContext context) {
 		return new ApplicationContextMockMvcSpec(context);
 	}
 
 	/**
-	 * Begin creating a {@link WebTestClient} by providing an already
-	 * initialized {@link MockMvc} instance to use as the server.
+	 * 通过提供已初始化的 {@link MockMvc} 实例作为服务器开始创建 {@link WebTestClient}。
 	 */
 	static WebTestClient.Builder bindTo(MockMvc mockMvc) {
 		ClientHttpConnector connector = new MockMvcHttpConnector(mockMvc);
@@ -111,32 +106,27 @@ public interface MockMvcWebTestClient {
 	}
 
 	/**
-	 * This method can be used to apply further assertions on a given
-	 * {@link ExchangeResult} based the state of the server response.
-	 * <p>Normally {@link WebTestClient} is used to assert the client response
-	 * including HTTP status, headers, and body. That is all that is available
-	 * when making a live request over HTTP. However when the server is
-	 * {@link MockMvc}, many more assertions are possible against the server
-	 * response, e.g. model attributes, flash attributes, etc.
+	 * 此方法可用于根据服务器响应的状态对给定 {@link ExchangeResult} 应用进一步断言。
+	 * <p>通常 {@link WebTestClient} 用于断言客户端响应，包括 HTTP 状态、头和正文。通过 HTTP 发出实际请求时，这些就是可用的全部内容。但是当服务器是
+	 * {@link MockMvc} 时，可以针对服务器响应进行更多断言，例如模型属性、Flash 属性等。
 	 *
-	 * <p>Example:
+	 * <p>示例：
 	 * <pre class="code">
 	 * EntityExchangeResult&lt;Void&gt; result =
-	 * 		webTestClient.post().uri("/people/123")
-	 * 				.exchange()
-	 * 				.expectStatus().isFound()
-	 * 				.expectHeader().location("/persons/Joe")
-	 * 				.expectBody().isEmpty();
+	 * webTestClient.post().uri("/people/123")
+	 * .exchange()
+	 * .expectStatus().isFound()
+	 * .expectHeader().location("/persons/Joe")
+	 * .expectBody().isEmpty();
 	 *
 	 * MockMvcWebTestClient.resultActionsFor(result)
-	 * 		.andExpect(model().size(1))
-	 * 		.andExpect(model().attributeExists("name"))
-	 * 		.andExpect(flash().attributeCount(1))
-	 * 		.andExpect(flash().attribute("message", "success!"));
+	 * .andExpect(model().size(1))
+	 * .andExpect(model().attributeExists("name"))
+	 * .andExpect(flash().attributeCount(1))
+	 * .andExpect(flash().attribute("message", "success!"));
 	 * </pre>
-	 * <p>Note: this method works only if the {@link WebTestClient} used to
-	 * perform the request was initialized through one of bind method in this
-	 * class, and therefore requests are handled by {@link MockMvc}.
+	 * <p>注意：仅当用于执行请求的 {@link WebTestClient} 是通过此类中的某个 bind 方法初始化，
+	 * 因而请求由 {@link MockMvc} 处理时，此方法才有效。
 	 */
 	static ResultActions resultActionsFor(ExchangeResult exchangeResult) {
 		Object serverResult = exchangeResult.getMockServerResult();
@@ -162,216 +152,213 @@ public interface MockMvcWebTestClient {
 
 
 	/**
-	 * Base specification for configuring {@link MockMvc}, and a simple facade
-	 * around {@link ConfigurableMockMvcBuilder}.
-	 *
+	 * 用于配置 {@link MockMvc} 的基础规范，以及
+	 * {@link ConfigurableMockMvcBuilder} 的简单外观。
 	 * @param <B> a self reference to the builder type
 	 */
 	interface MockMvcServerSpec<B extends MockMvcServerSpec<B>> {
 
 		/**
-		 * Add a global filter.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#addFilters(Filter...)}.
+		 * 添加全局过滤器。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#addFilters(Filter...)}。
 		 */
 		<T extends B> T filters(Filter... filters);
 
 		/**
-		 * Add a filter for specific URL patterns.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#addFilter(Filter, String...)}.
+		 * 为特定 URL 模式添加过滤器。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#addFilter(Filter, String...)}。
 		 */
 		<T extends B> T filter(Filter filter, String... urlPatterns);
 
 		/**
-		 * Define default request properties that should be merged into all
-		 * performed requests such that input from the client request override
-		 * the default properties defined here.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#defaultRequest(RequestBuilder)}.
+		 * 定义应合并到所有已执行请求中的默认请求属性，
+		 * 以便来自客户端请求的输入覆盖此处定义的默认属性。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#defaultRequest(RequestBuilder)}。
 		 */
 		<T extends B> T defaultRequest(RequestBuilder requestBuilder);
 
 		/**
-		 * Define a global expectation that should <em>always</em> be applied to
-		 * every response.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#alwaysExpect(ResultMatcher)}.
+		 * 定义应<em>始终</em>应用于
+		 * 每个响应的全局预期。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#alwaysExpect(ResultMatcher)}。
 		 */
 		<T extends B> T alwaysExpect(ResultMatcher resultMatcher);
 
 		/**
-		 * Whether to handle HTTP OPTIONS requests.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#dispatchOptions(boolean)}.
+		 * 是否处理 HTTP OPTIONS 请求。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#dispatchOptions(boolean)}。
 		 */
 		<T extends B> T dispatchOptions(boolean dispatchOptions);
 
 		/**
-		 * Allow customization of {@code DispatcherServlet}.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#addDispatcherServletCustomizer(DispatcherServletCustomizer)}.
+		 * 允许自定义 {@code DispatcherServlet}。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#addDispatcherServletCustomizer(DispatcherServletCustomizer)}。
 		 */
 		<T extends B> T dispatcherServletCustomizer(DispatcherServletCustomizer customizer);
 
 		/**
-		 * Add a {@code MockMvcConfigurer} that automates MockMvc setup.
-		 * <p>This is delegated to
-		 * {@link ConfigurableMockMvcBuilder#apply(MockMvcConfigurer)}.
+		 * 添加可自动完成 MockMvc 设置的 {@code MockMvcConfigurer}。
+		 * <p>委托给
+		 * {@link ConfigurableMockMvcBuilder#apply(MockMvcConfigurer)}。
 		 */
 		<T extends B> T apply(MockMvcConfigurer configurer);
 
 		/**
-		 * Proceed to configure and build the test client.
+		 * 继续配置并构建测试客户端。
 		 */
 		WebTestClient.Builder configureClient();
 
 		/**
-		 * Shortcut to build the test client.
+		 * 构建测试客户端的快捷方式。
 		 */
 		WebTestClient build();
 	}
 
 
 	/**
-	 * Specification for configuring {@link MockMvc} to test one or more
-	 * controllers directly, and a simple facade around
-	 * {@link StandaloneMockMvcBuilder}.
+	 * 用于配置 {@link MockMvc} 以直接测试一个或多个
+	 * 控制器的规范，以及 {@link StandaloneMockMvcBuilder} 的简单外观。
 	 */
 	interface ControllerSpec extends MockMvcServerSpec<ControllerSpec> {
 
 		/**
-		 * Register {@link org.springframework.web.bind.annotation.ControllerAdvice}
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setControllerAdvice(Object...)}.
+		 * 注册 {@link org.springframework.web.bind.annotation.ControllerAdvice}
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setControllerAdvice(Object...)}。
 		 */
 		ControllerSpec controllerAdvice(Object... controllerAdvice);
 
 		/**
-		 * Set the message converters to use.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setMessageConverters(HttpMessageConverter[])}.
+		 * 设置要使用的消息转换器。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setMessageConverters(HttpMessageConverter[])}。
 		 */
 		ControllerSpec messageConverters(HttpMessageConverter<?>... messageConverters);
 
 		/**
-		 * Provide a custom {@link Validator}.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setValidator(Validator)}.
+		 * 提供自定义 {@link Validator}。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setValidator(Validator)}。
 		 */
 		ControllerSpec validator(Validator validator);
 
 		/**
-		 * Provide a conversion service.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setConversionService(FormattingConversionService)}.
+		 * 提供转换服务。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setConversionService(FormattingConversionService)}。
 		 */
 		ControllerSpec conversionService(FormattingConversionService conversionService);
 
 		/**
-		 * Add global interceptors.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#addInterceptors(HandlerInterceptor...)}.
+		 * 添加全局拦截器。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#addInterceptors(HandlerInterceptor...)}。
 		 */
 		ControllerSpec interceptors(HandlerInterceptor... interceptors);
 
 		/**
-		 * Add interceptors for specific patterns.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#addMappedInterceptors(String[], HandlerInterceptor...)}.
+		 * 为特定模式添加拦截器。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#addMappedInterceptors(String[], HandlerInterceptor...)}。
 		 */
 		ControllerSpec mappedInterceptors(
 				@Nullable String[] pathPatterns, HandlerInterceptor... interceptors);
 
 		/**
-		 * Set a ContentNegotiationManager.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setContentNegotiationManager(ContentNegotiationManager)}.
+		 * 设置 ContentNegotiationManager。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setContentNegotiationManager(ContentNegotiationManager)}。
 		 */
 		ControllerSpec contentNegotiationManager(ContentNegotiationManager manager);
 
 		/**
-		 * Specify the timeout value for async execution.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setAsyncRequestTimeout(long)}.
+		 * 指定异步执行的超时值。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setAsyncRequestTimeout(long)}。
 		 */
 		ControllerSpec asyncRequestTimeout(long timeout);
 
 		/**
-		 * Provide custom argument resolvers.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setCustomArgumentResolvers(HandlerMethodArgumentResolver...)}.
+		 * 提供自定义参数解析器。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setCustomArgumentResolvers(HandlerMethodArgumentResolver...)}。
 		 */
 		ControllerSpec customArgumentResolvers(HandlerMethodArgumentResolver... argumentResolvers);
 
 		/**
-		 * Provide custom return value handlers.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setCustomReturnValueHandlers(HandlerMethodReturnValueHandler...)}.
+		 * 提供自定义返回值处理器。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setCustomReturnValueHandlers(HandlerMethodReturnValueHandler...)}。
 		 */
 		ControllerSpec customReturnValueHandlers(HandlerMethodReturnValueHandler... handlers);
 
 		/**
-		 * Set the HandlerExceptionResolver types to use.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setHandlerExceptionResolvers(HandlerExceptionResolver...)}.
+		 * 设置要使用的 HandlerExceptionResolver 类型。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setHandlerExceptionResolvers(HandlerExceptionResolver...)}。
 		 */
 		ControllerSpec handlerExceptionResolvers(HandlerExceptionResolver... exceptionResolvers);
 
 		/**
-		 * Set up view resolution.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setViewResolvers(ViewResolver...)}.
+		 * 设置视图解析。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setViewResolvers(ViewResolver...)}。
 		 */
 		ControllerSpec viewResolvers(ViewResolver... resolvers);
 
 		/**
-		 * Set up a single {@link ViewResolver} with a fixed view.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setSingleView(View)}.
+		 * 使用固定视图设置单个 {@link ViewResolver}。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setSingleView(View)}。
 		 */
 		ControllerSpec singleView(View view);
 
 		/**
-		 * Provide the LocaleResolver to use.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setLocaleResolver(LocaleResolver)}.
+		 * 提供要使用的 LocaleResolver。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setLocaleResolver(LocaleResolver)}。
 		 */
 		ControllerSpec localeResolver(LocaleResolver localeResolver);
 
 		/**
-		 * Provide a custom FlashMapManager.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setFlashMapManager(FlashMapManager)}.
+		 * 提供自定义 FlashMapManager。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setFlashMapManager(FlashMapManager)}。
 		 */
 		ControllerSpec flashMapManager(FlashMapManager flashMapManager);
 
 		/**
-		 * Enable URL path matching with parsed
-		 * {@link org.springframework.web.util.pattern.PathPattern PathPatterns}.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setPatternParser(PathPatternParser)}.
+		 * 启用使用解析后的
+		 * {@link org.springframework.web.util.pattern.PathPattern PathPatterns} 进行 URL 路径匹配。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setPatternParser(PathPatternParser)}。
 		 */
 		ControllerSpec patternParser(PathPatternParser parser);
 
 		/**
-		 * Whether to match trailing slashes.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setUseTrailingSlashPatternMatch(boolean)}.
+		 * 是否匹配尾部斜杠。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setUseTrailingSlashPatternMatch(boolean)}。
 		 */
 		ControllerSpec useTrailingSlashPatternMatch(boolean useTrailingSlashPatternMatch);
 
 		/**
-		 * Configure placeholder values to use.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#addPlaceholderValue(String, String)}.
+		 * 配置要使用的占位符值。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#addPlaceholderValue(String, String)}。
 		 */
 		ControllerSpec placeholderValue(String name, String value);
 
 		/**
-		 * Configure factory for a custom {@link RequestMappingHandlerMapping}.
-		 * <p>This is delegated to
-		 * {@link StandaloneMockMvcBuilder#setCustomHandlerMapping(Supplier)}.
+		 * 为自定义 {@link RequestMappingHandlerMapping} 配置工厂。
+		 * <p>委托给
+		 * {@link StandaloneMockMvcBuilder#setCustomHandlerMapping(Supplier)}。
 		 */
 		ControllerSpec customHandlerMapping(Supplier<RequestMappingHandlerMapping> factory);
 	}

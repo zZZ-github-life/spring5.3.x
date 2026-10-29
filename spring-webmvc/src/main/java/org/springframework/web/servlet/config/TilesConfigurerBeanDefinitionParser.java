@@ -29,8 +29,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Parse the <code>&lt;mvc:tiles-configurer&gt;</code> MVC namespace element and register
- * a corresponding {@code TilesConfigurer} bean.
+ * 解析 <code>&lt;mvc:tiles-configurer&gt;</code> MVC 命名空间元素，
+ * 并注册相应的 {@code TilesConfigurer} bean。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -39,7 +39,7 @@ import org.springframework.util.xml.DomUtils;
 public class TilesConfigurerBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 	/**
-	 * The bean name used for the {@code TilesConfigurer}.
+	 * 用于 {@code TilesConfigurer} 的 bean 名称。
 	 */
 	public static final String BEAN_NAME = "mvcTilesConfigurer";
 

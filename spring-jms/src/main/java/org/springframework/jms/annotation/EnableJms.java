@@ -25,11 +25,11 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 
 /**
- * Enable JMS listener annotated endpoints that are created under the cover
- * by a {@link org.springframework.jms.config.JmsListenerContainerFactory
- * JmsListenerContainerFactory}. To be used on
+ * 启用带 JMS 监听器注解的端点，这些端点由
+ * {@link org.springframework.jms.config.JmsListenerContainerFactory
+ * JmsListenerContainerFactory} 在底层创建。像下面这样在
  * {@link org.springframework.context.annotation.Configuration Configuration}
- * classes as follows:
+ * 类上使用：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -49,14 +49,14 @@ import org.springframework.context.annotation.Import;
  *     // other &#064;Bean definitions
  * }</pre>
  *
- * The {@code JmsListenerContainerFactory} is responsible to create the listener container
- * responsible for a particular endpoint. Typical implementations, as the
- * {@link org.springframework.jms.config.DefaultJmsListenerContainerFactory DefaultJmsListenerContainerFactory}
- * used in the sample above, provides the necessary configuration options that are supported by
- * the underlying {@link org.springframework.jms.listener.MessageListenerContainer MessageListenerContainer}.
+ * {@code JmsListenerContainerFactory} 负责创建服务于特定端点的监听器容器。
+ * 典型实现（如上例中使用的
+ * {@link org.springframework.jms.config.DefaultJmsListenerContainerFactory DefaultJmsListenerContainerFactory}）
+ * 提供了底层 {@link org.springframework.jms.listener.MessageListenerContainer MessageListenerContainer}
+ * 所支持的必需配置选项。
  *
- * <p>{@code @EnableJms} enables detection of {@link JmsListener} annotations on any
- * Spring-managed bean in the container. For example, given a class {@code MyService}:
+ * <p>{@code @EnableJms} 可以检测容器中任何 Spring 管理 bean 上的
+ * {@link JmsListener} 注解。例如，给定类 {@code MyService}：
  *
  * <pre class="code">
  * package com.acme.foo;
@@ -69,14 +69,14 @@ import org.springframework.context.annotation.Import;
  *     }
  * }</pre>
  *
- * The container factory to use is identified by the {@link JmsListener#containerFactory() containerFactory}
- * attribute defining the name of the {@code JmsListenerContainerFactory} bean to use.  When none
- * is set a {@code JmsListenerContainerFactory} bean with name {@code jmsListenerContainerFactory} is
- * assumed to be present.
+ * 要使用的容器工厂由 {@link JmsListener#containerFactory() containerFactory}
+ * 属性标识，该属性定义要使用的 {@code JmsListenerContainerFactory} bean 的名称。
+ * 如果未设置，则假定存在名为 {@code jmsListenerContainerFactory} 的
+ * {@code JmsListenerContainerFactory} bean。
  *
- * <p>the following configuration would ensure that every time a {@link javax.jms.Message}
- * is received on the {@link javax.jms.Destination} named "myQueue", {@code MyService.process()}
- * is called with the content of the message:
+ * <p>下面的配置可确保每当在名为 "myQueue" 的 {@link javax.jms.Destination}
+ * 上接收到 {@link javax.jms.Message} 时，都会以消息内容调用
+ * {@code MyService.process()}：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -91,9 +91,8 @@ import org.springframework.context.annotation.Import;
  *     // JMS infrastructure setup
  * }</pre>
  *
- * Alternatively, if {@code MyService} were annotated with {@code @Component}, the
- * following configuration would ensure that its {@code @JmsListener} annotated
- * method is invoked with a matching incoming message:
+ * 或者，如果 {@code MyService} 带有 {@code @Component} 注解，则下面的配置
+ * 可确保其 {@code @JmsListener} 注解的方法会以匹配的传入消息被调用：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -102,14 +101,14 @@ import org.springframework.context.annotation.Import;
  * public class AppConfig {
  * }</pre>
  *
- * Note that the created containers are not registered against the application context
- * but can be easily located for management purposes using the
- * {@link org.springframework.jms.config.JmsListenerEndpointRegistry JmsListenerEndpointRegistry}.
+ * 请注意，创建的容器不会注册到应用上下文，但可以通过
+ * {@link org.springframework.jms.config.JmsListenerEndpointRegistry JmsListenerEndpointRegistry}
+ * 轻松定位以便进行管理。
  *
- * <p>Annotated methods can use flexible signature; in particular, it is possible to use
- * the {@link org.springframework.messaging.Message Message} abstraction and related annotations,
- * see {@link JmsListener} Javadoc for more details. For instance, the following would
- * inject the content of the message and a custom "myCounter" JMS header:
+ * <p>带注解的方法可以使用灵活的方法签名；特别是可以使用
+ * {@link org.springframework.messaging.Message Message} 抽象及相关注解，
+ * 详情请参见 {@link JmsListener} 的 Javadoc。例如，下面的代码会注入消息内容
+ * 以及自定义的 "myCounter" JMS 头：
  *
  * <pre class="code">
  * &#064;JmsListener(containerFactory = "myJmsListenerContainerFactory", destination="myQueue")
@@ -117,15 +116,15 @@ import org.springframework.context.annotation.Import;
  *     // process incoming message
  * }</pre>
  *
- * These features are abstracted by the {@link org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory}
- * that is responsible to build the necessary invoker to process the annotated method. By default,
- * {@link org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory} is used.
+ * 这些功能由 {@link org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory}
+ * 抽象，它负责构建处理带注解方法所需的调用器。默认情况下，使用
+ * {@link org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory}。
  *
- * <p>When more control is desired, a {@code @Configuration} class may implement
- * {@link JmsListenerConfigurer}. This allows access to the underlying
+ * <p>如果需要更多控制，{@code @Configuration} 类可以实现
+ * {@link JmsListenerConfigurer}。这允许访问底层的
  * {@link org.springframework.jms.config.JmsListenerEndpointRegistrar JmsListenerEndpointRegistrar}
- * instance. The following example demonstrates how to specify an explicit default
- * {@code JmsListenerContainerFactory}
+ * 实例。下面的示例演示如何指定显式的默认
+ * {@code JmsListenerContainerFactory}：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -148,8 +147,7 @@ import org.springframework.context.annotation.Import;
  *     }
  * }</pre>
  *
- * For reference, the example above can be compared to the following Spring XML
- * configuration:
+ * 作为参考，可以将上面的示例与以下 Spring XML 配置进行比较：
  *
  * <pre class="code">
  * &lt;beans&gt;
@@ -165,12 +163,14 @@ import org.springframework.context.annotation.Import;
  * &lt;/beans&gt;
  * }</pre>
  *
- * It is also possible to specify a custom {@link org.springframework.jms.config.JmsListenerEndpointRegistry
- * JmsListenerEndpointRegistry} in case you need more control on the way the containers
- * are created and managed. The example below also demonstrates how to customize the
- * {@code JmsHandlerMethodFactory} to use with a custom {@link org.springframework.validation.Validator
- * Validator} so that payloads annotated with {@link org.springframework.validation.annotation.Validated
- * Validated} are first validated against a custom {@code Validator}.
+ * 如果需要对容器的创建和管理方式进行更多控制，也可以指定自定义的
+ * {@link org.springframework.jms.config.JmsListenerEndpointRegistry
+ * JmsListenerEndpointRegistry}。下面的示例还演示了如何自定义
+ * {@code JmsHandlerMethodFactory}，使其与自定义的
+ * {@link org.springframework.validation.Validator
+ * Validator} 配合使用，从而对带有
+ * {@link org.springframework.validation.annotation.Validated
+ * Validated} 注解的负载先按自定义 {@code Validator} 进行校验。
  *
  * <pre class="code">
  * &#064;Configuration
@@ -201,8 +201,7 @@ import org.springframework.context.annotation.Import;
  *     }
  * }</pre>
  *
- * For reference, the example above can be compared to the following Spring XML
- * configuration:
+ * 作为参考，可以将上面的示例与以下 Spring XML 配置进行比较：
  * <pre class="code">
  * &lt;beans&gt;
  *
@@ -224,9 +223,9 @@ import org.springframework.context.annotation.Import;
  * &lt;/beans&gt;
  * </pre>
  *
- * Implementing {@code JmsListenerConfigurer} also allows for fine-grained
- * control over endpoints registration via the {@code JmsListenerEndpointRegistrar}.
- * For example, the following configures an extra endpoint:
+ * 实现 {@code JmsListenerConfigurer} 还可以通过
+ * {@code JmsListenerEndpointRegistrar} 对端点注册进行细粒度控制。
+ * 例如，下面的代码配置了一个额外的端点：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -253,9 +252,9 @@ import org.springframework.context.annotation.Import;
  *     // JMS infrastructure setup
  * }</pre>
  *
- * Note that all beans implementing {@code JmsListenerConfigurer} will be detected and
- * invoked in a similar fashion. The example above can be translated in a regular bean
- * definition registered in the context in case you use the XML configuration.
+ * 请注意，所有实现了 {@code JmsListenerConfigurer} 的 bean 都会被检测到
+ * 并以类似方式调用。如果使用 XML 配置，上面的示例可以转换为在上下文中
+ * 注册的常规 bean 定义。
  *
  * @author Stephane Nicoll
  * @since 4.1

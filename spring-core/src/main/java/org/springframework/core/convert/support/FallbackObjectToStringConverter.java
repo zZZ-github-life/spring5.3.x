@@ -25,16 +25,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Simply calls {@link Object#toString()} to convert any supported object
- * to a {@link String}.
- *
- * <p>Supports {@link CharSequence}, {@link StringWriter}, and any class
- * with a String constructor or one of the following static factory methods:
- * {@code valueOf(String)}, {@code of(String)}, {@code from(String)}.
- *
- * <p>Used by the {@link DefaultConversionService} as a fallback if there
- * are no other explicit to-String converters registered.
- *
+ * 直接调用 {@link Object#toString()} 将任何支持的对象转换为 {@link String}。<p>支持 {@link CharSequence}、{@link StringWriter}，以及任何具有 String 构造函数或以下静态工厂方法之一的类：{@code valueOf(String)}、{@code of(String)}、{@code from(String)}。<p>当没有注册其他显式的 to-String 转换器时，{@link DefaultConversionService} 会将其用作回退。
  * @author Keith Donald
  * @author Juergen Hoeller
  * @author Sam Brannen

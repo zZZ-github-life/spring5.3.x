@@ -28,16 +28,13 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Simple pass-through decoder for {@link DataBuffer DataBuffers}.
+ * 用于 {@link DataBuffer DataBuffers} 的简单直通解码器。
  *
- * <p><strong>Note:</strong> The data buffers should be released via
- * {@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer)}
- * after they have been consumed. In addition, if using {@code Flux} or
- * {@code Mono} operators such as flatMap, reduce, and others that prefetch,
- * cache, and skip or filter out data items internally, please add
- * {@code doOnDiscard(PooledDataBuffer.class, DataBufferUtils::release)} to the
- * composition chain to ensure cached data buffers are released prior to an
- * error or cancellation signal.
+ * <p><strong>注意：</strong>数据缓冲区在消费后应通过
+ * {@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer)} 释放。此外，如果
+ * 使用 {@code Flux} 或 {@code Mono} 的 flatMap、reduce，以及内部会预取、缓存并跳过或过滤数据项的其
+ * 他操作符，请在组合链中添加 {@code doOnDiscard(PooledDataBuffer.class, DataBufferUtils::release)}，
+ * 以确保在出现错误或取消信号之前释放被缓存的数据缓冲区。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

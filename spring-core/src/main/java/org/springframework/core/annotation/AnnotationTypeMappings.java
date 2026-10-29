@@ -29,17 +29,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * Provides {@link AnnotationTypeMapping} information for a single source
- * annotation type. Performs a recursive breadth first crawl of all
- * meta-annotations to ultimately provide a quick way to map the attributes of
- * a root {@link Annotation}.
+ * 为单个源注解类型提供 {@link AnnotationTypeMapping} 信息。对所有元注解执行递归的广度优先遍历，最
+ * 终提供一种快速映射根 {@link Annotation} 属性的方式。
  *
- * <p>Supports convention based merging of meta-annotations as well as implicit
- * and explicit {@link AliasFor @AliasFor} aliases. Also provides information
- * about mirrored attributes.
+ * <p>支持基于约定的元注解合并，以及隐式和显式的 {@link AliasFor @AliasFor} 别名。还提供有关镜像属
+ * 性的信息。
  *
- * <p>This class is designed to be cached so that meta-annotations only need to
- * be searched once, regardless of how many times they are actually used.
+ * <p>此类的设计目标是可被缓存，这样无论元注解实际被使用多少次，都只需搜索一次。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -146,7 +142,7 @@ final class AnnotationTypeMappings {
 	}
 
 	/**
-	 * Get the total number of contained mappings.
+	 * 获取所包含映射的总数。
 	 * @return the total number of mappings
 	 */
 	int size() {
@@ -154,9 +150,8 @@ final class AnnotationTypeMappings {
 	}
 
 	/**
-	 * Get an individual mapping from this instance.
-	 * <p>Index {@code 0} will always return the root mapping; higher indexes
-	 * will return meta-annotation mappings.
+	 * 获取此实例中的单个映射。
+	 * <p>索引 {@code 0} 始终返回根映射；更高的索引将返回元注解映射。
 	 * @param index the index to return
 	 * @return the {@link AnnotationTypeMapping}
 	 * @throws IndexOutOfBoundsException if the index is out of range
@@ -168,7 +163,7 @@ final class AnnotationTypeMappings {
 
 
 	/**
-	 * Create {@link AnnotationTypeMappings} for the specified annotation type.
+	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
 	 * @param annotationType the source annotation type
 	 * @return type mappings for the annotation type
 	 */
@@ -177,7 +172,7 @@ final class AnnotationTypeMappings {
 	}
 
 	/**
-	 * Create {@link AnnotationTypeMappings} for the specified annotation type.
+	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
 	 * @param annotationType the source annotation type
 	 * @param visitedAnnotationTypes the set of annotations that we have already
 	 * visited; used to avoid infinite recursion for recursive annotations which
@@ -192,7 +187,7 @@ final class AnnotationTypeMappings {
 	}
 
 	/**
-	 * Create {@link AnnotationTypeMappings} for the specified annotation type.
+	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
 	 * @param annotationType the source annotation type
 	 * @param repeatableContainers the repeatable containers that may be used by
 	 * the meta-annotations
@@ -207,7 +202,7 @@ final class AnnotationTypeMappings {
 	}
 
 	/**
-	 * Create {@link AnnotationTypeMappings} for the specified annotation type.
+	 * 为指定的注解类型创建 {@link AnnotationTypeMappings}。
 	 * @param annotationType the source annotation type
 	 * @param repeatableContainers the repeatable containers that may be used by
 	 * the meta-annotations
@@ -240,7 +235,7 @@ final class AnnotationTypeMappings {
 
 
 	/**
-	 * Cache created per {@link AnnotationFilter}.
+	 * 针对每个 {@link AnnotationFilter} 创建的缓存。
 	 */
 	private static class Cache {
 
@@ -251,7 +246,7 @@ final class AnnotationTypeMappings {
 		private final Map<Class<? extends Annotation>, AnnotationTypeMappings> mappings;
 
 		/**
-		 * Create a cache instance with the specified filter.
+		 * 使用指定的过滤器创建缓存实例。
 		 * @param filter the annotation filter
 		 */
 		Cache(RepeatableContainers repeatableContainers, AnnotationFilter filter) {
@@ -261,7 +256,7 @@ final class AnnotationTypeMappings {
 		}
 
 		/**
-		 * Get or create {@link AnnotationTypeMappings} for the specified annotation type.
+		 * 获取或创建指定注解类型的 {@link AnnotationTypeMappings}。
 		 * @param annotationType the annotation type
 		 * @param visitedAnnotationTypes the set of annotations that we have already
 		 * visited; used to avoid infinite recursion for recursive annotations which

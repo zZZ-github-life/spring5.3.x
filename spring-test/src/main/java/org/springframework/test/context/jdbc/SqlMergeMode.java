@@ -24,23 +24,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @SqlMergeMode} is used to annotate a test class or test method to
- * configure whether method-level {@code @Sql} declarations are merged with
- * class-level {@code @Sql} declarations.
- *
- * <p>A method-level {@code @SqlMergeMode} declaration overrides a class-level
- * declaration.
- *
- * <p>If {@code @SqlMergeMode} is not declared on a test class or test method,
- * {@link MergeMode#OVERRIDE} will be used by default.
- *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em> with attribute overrides.
- *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * {@code @SqlMergeMode} 用于标注测试类或测试方法，以配置方法级 {@code @Sql} 声明是否与类级 {@code @Sql} 声明合并。
+ * <p>方法级 {@code @SqlMergeMode} 声明会覆盖类级声明。
+ * <p>如果未在测试类或测试方法上声明 {@code @SqlMergeMode}，则默认使用 {@link MergeMode#OVERRIDE}。
+ * <p>此注解可用作<em>元注解</em>以创建带属性覆盖的自定义<em>组合注解</em>。
+ * <p>从 Spring Framework 5.3 开始，此注解默认会从封闭测试类继承。有关详情，请参见 {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @author Dmitry Semukhin
@@ -56,29 +44,23 @@ import java.lang.annotation.Target;
 public @interface SqlMergeMode {
 
 	/**
-	 * Indicates whether method-level {@code @Sql} annotations should be merged
-	 * with class-level {@code @Sql} annotations or override them.
+	 * 指示方法级 {@code @Sql} 注解应与类级 {@code @Sql} 注解合并还是覆盖它们。
 	 */
 	MergeMode value();
 
 
 	/**
-	 * Enumeration of <em>modes</em> that dictate whether method-level {@code @Sql}
-	 * declarations are merged with class-level {@code @Sql} declarations.
+	 * 枚举<em>模式</em>，用于规定方法级 {@code @Sql} 声明是否与类级 {@code @Sql} 声明合并。
 	 */
 	enum MergeMode {
 
 		/**
-		 * Indicates that method-level {@code @Sql} declarations should be merged
-		 * with class-level {@code @Sql} declarations, with class-level SQL
-		 * scripts and statements executed before method-level scripts and
-		 * statements.
+		 * 表示方法级 {@code @Sql} 声明应与类级 {@code @Sql} 声明合并，其中类级 SQL 脚本和语句在方法级脚本和语句之前执行。
 		 */
 		MERGE,
 
 		/**
-		 * Indicates that method-level {@code @Sql} declarations should override
-		 * class-level {@code @Sql} declarations.
+		 * 表示方法级 {@code @Sql} 声明应覆盖类级 {@code @Sql} 声明。
 		 */
 		OVERRIDE
 

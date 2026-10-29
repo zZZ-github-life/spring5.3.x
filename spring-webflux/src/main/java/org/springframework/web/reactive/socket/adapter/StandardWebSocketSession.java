@@ -37,9 +37,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Spring {@link WebSocketSession} adapter for a standard Java (JSR 356)
- * {@link javax.websocket.Session}.
- *
+ * 用于标准 Java（JSR 356）{@link javax.websocket.Session} 的 Spring {@link WebSocketSession} 适配器。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0

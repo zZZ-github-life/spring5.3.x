@@ -19,9 +19,8 @@ package org.springframework.http;
 import org.springframework.lang.Nullable;
 
 /**
- * Enumeration of HTTP status codes.
- *
- * <p>The HTTP status code series can be retrieved via {@link #series()}.
+ * HTTP 状态码的枚举。
+ * <p>可以通过 {@link #series()} 获取 HTTP 状态码系列。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -36,22 +35,22 @@ public enum HttpStatus {
 	// 1xx Informational
 
 	/**
-	 * {@code 100 Continue}.
+	 * {@code 100 Continue}（继续）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.2.1">HTTP/1.1: Semantics and Content, section 6.2.1</a>
 	 */
 	CONTINUE(100, Series.INFORMATIONAL, "Continue"),
 	/**
-	 * {@code 101 Switching Protocols}.
+	 * {@code 101 Switching Protocols}（切换协议）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.2.2">HTTP/1.1: Semantics and Content, section 6.2.2</a>
 	 */
 	SWITCHING_PROTOCOLS(101, Series.INFORMATIONAL, "Switching Protocols"),
 	/**
-	 * {@code 102 Processing}.
+	 * {@code 102 Processing}（处理中）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2518#section-10.1">WebDAV</a>
 	 */
 	PROCESSING(102, Series.INFORMATIONAL, "Processing"),
 	/**
-	 * {@code 103 Checkpoint}.
+	 * {@code 103 Checkpoint}（检查点）。
 	 * @see <a href="https://code.google.com/p/gears/wiki/ResumableHttpRequestsProposal">A proposal for supporting
 	 * resumable POST/PUT HTTP requests in HTTP/1.0</a>
 	 */
@@ -60,52 +59,52 @@ public enum HttpStatus {
 	// 2xx Success
 
 	/**
-	 * {@code 200 OK}.
+	 * {@code 200 OK}（成功）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">HTTP/1.1: Semantics and Content, section 6.3.1</a>
 	 */
 	OK(200, Series.SUCCESSFUL, "OK"),
 	/**
-	 * {@code 201 Created}.
+	 * {@code 201 Created}（已创建）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">HTTP/1.1: Semantics and Content, section 6.3.2</a>
 	 */
 	CREATED(201, Series.SUCCESSFUL, "Created"),
 	/**
-	 * {@code 202 Accepted}.
+	 * {@code 202 Accepted}（已接受）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.3.3">HTTP/1.1: Semantics and Content, section 6.3.3</a>
 	 */
 	ACCEPTED(202, Series.SUCCESSFUL, "Accepted"),
 	/**
-	 * {@code 203 Non-Authoritative Information}.
+	 * {@code 203 Non-Authoritative Information}（非权威信息）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.3.4">HTTP/1.1: Semantics and Content, section 6.3.4</a>
 	 */
 	NON_AUTHORITATIVE_INFORMATION(203, Series.SUCCESSFUL, "Non-Authoritative Information"),
 	/**
-	 * {@code 204 No Content}.
+	 * {@code 204 No Content}（无内容）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">HTTP/1.1: Semantics and Content, section 6.3.5</a>
 	 */
 	NO_CONTENT(204, Series.SUCCESSFUL, "No Content"),
 	/**
-	 * {@code 205 Reset Content}.
+	 * {@code 205 Reset Content}（重置内容）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.3.6">HTTP/1.1: Semantics and Content, section 6.3.6</a>
 	 */
 	RESET_CONTENT(205, Series.SUCCESSFUL, "Reset Content"),
 	/**
-	 * {@code 206 Partial Content}.
+	 * {@code 206 Partial Content}（部分内容）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7233#section-4.1">HTTP/1.1: Range Requests, section 4.1</a>
 	 */
 	PARTIAL_CONTENT(206, Series.SUCCESSFUL, "Partial Content"),
 	/**
-	 * {@code 207 Multi-Status}.
+	 * {@code 207 Multi-Status}（多状态）。
 	 * @see <a href="https://tools.ietf.org/html/rfc4918#section-13">WebDAV</a>
 	 */
 	MULTI_STATUS(207, Series.SUCCESSFUL, "Multi-Status"),
 	/**
-	 * {@code 208 Already Reported}.
+	 * {@code 208 Already Reported}（已报告）。
 	 * @see <a href="https://tools.ietf.org/html/rfc5842#section-7.1">WebDAV Binding Extensions</a>
 	 */
 	ALREADY_REPORTED(208, Series.SUCCESSFUL, "Already Reported"),
 	/**
-	 * {@code 226 IM Used}.
+	 * {@code 226 IM Used}（已使用实例操作）。
 	 * @see <a href="https://tools.ietf.org/html/rfc3229#section-10.4.1">Delta encoding in HTTP</a>
 	 */
 	IM_USED(226, Series.SUCCESSFUL, "IM Used"),
@@ -113,51 +112,51 @@ public enum HttpStatus {
 	// 3xx Redirection
 
 	/**
-	 * {@code 300 Multiple Choices}.
+	 * {@code 300 Multiple Choices}（多种选择）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.4.1">HTTP/1.1: Semantics and Content, section 6.4.1</a>
 	 */
 	MULTIPLE_CHOICES(300, Series.REDIRECTION, "Multiple Choices"),
 	/**
-	 * {@code 301 Moved Permanently}.
+	 * {@code 301 Moved Permanently}（永久移动）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.4.2">HTTP/1.1: Semantics and Content, section 6.4.2</a>
 	 */
 	MOVED_PERMANENTLY(301, Series.REDIRECTION, "Moved Permanently"),
 	/**
-	 * {@code 302 Found}.
+	 * {@code 302 Found}（已找到）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.4.3">HTTP/1.1: Semantics and Content, section 6.4.3</a>
 	 */
 	FOUND(302, Series.REDIRECTION, "Found"),
 	/**
-	 * {@code 302 Moved Temporarily}.
+	 * {@code 302 Moved Temporarily}（临时移动）。
 	 * @see <a href="https://tools.ietf.org/html/rfc1945#section-9.3">HTTP/1.0, section 9.3</a>
 	 * @deprecated in favor of {@link #FOUND} which will be returned from {@code HttpStatus.valueOf(302)}
 	 */
 	@Deprecated
 	MOVED_TEMPORARILY(302, Series.REDIRECTION, "Moved Temporarily"),
 	/**
-	 * {@code 303 See Other}.
+	 * {@code 303 See Other}（参见其他）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.4.4">HTTP/1.1: Semantics and Content, section 6.4.4</a>
 	 */
 	SEE_OTHER(303, Series.REDIRECTION, "See Other"),
 	/**
-	 * {@code 304 Not Modified}.
+	 * {@code 304 Not Modified}（未修改）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7232#section-4.1">HTTP/1.1: Conditional Requests, section 4.1</a>
 	 */
 	NOT_MODIFIED(304, Series.REDIRECTION, "Not Modified"),
 	/**
-	 * {@code 305 Use Proxy}.
+	 * {@code 305 Use Proxy}（使用代理）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.4.5">HTTP/1.1: Semantics and Content, section 6.4.5</a>
 	 * @deprecated due to security concerns regarding in-band configuration of a proxy
 	 */
 	@Deprecated
 	USE_PROXY(305, Series.REDIRECTION, "Use Proxy"),
 	/**
-	 * {@code 307 Temporary Redirect}.
+	 * {@code 307 Temporary Redirect}（临时重定向）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.4.7">HTTP/1.1: Semantics and Content, section 6.4.7</a>
 	 */
 	TEMPORARY_REDIRECT(307, Series.REDIRECTION, "Temporary Redirect"),
 	/**
-	 * {@code 308 Permanent Redirect}.
+	 * {@code 308 Permanent Redirect}（永久重定向）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7238">RFC 7238</a>
 	 */
 	PERMANENT_REDIRECT(308, Series.REDIRECTION, "Permanent Redirect"),
@@ -165,82 +164,82 @@ public enum HttpStatus {
 	// --- 4xx Client Error ---
 
 	/**
-	 * {@code 400 Bad Request}.
+	 * {@code 400 Bad Request}（错误请求）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">HTTP/1.1: Semantics and Content, section 6.5.1</a>
 	 */
 	BAD_REQUEST(400, Series.CLIENT_ERROR, "Bad Request"),
 	/**
-	 * {@code 401 Unauthorized}.
+	 * {@code 401 Unauthorized}（未授权）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7235#section-3.1">HTTP/1.1: Authentication, section 3.1</a>
 	 */
 	UNAUTHORIZED(401, Series.CLIENT_ERROR, "Unauthorized"),
 	/**
-	 * {@code 402 Payment Required}.
+	 * {@code 402 Payment Required}（需要付款）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.2">HTTP/1.1: Semantics and Content, section 6.5.2</a>
 	 */
 	PAYMENT_REQUIRED(402, Series.CLIENT_ERROR, "Payment Required"),
 	/**
-	 * {@code 403 Forbidden}.
+	 * {@code 403 Forbidden}（禁止访问）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">HTTP/1.1: Semantics and Content, section 6.5.3</a>
 	 */
 	FORBIDDEN(403, Series.CLIENT_ERROR, "Forbidden"),
 	/**
-	 * {@code 404 Not Found}.
+	 * {@code 404 Not Found}（未找到）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">HTTP/1.1: Semantics and Content, section 6.5.4</a>
 	 */
 	NOT_FOUND(404, Series.CLIENT_ERROR, "Not Found"),
 	/**
-	 * {@code 405 Method Not Allowed}.
+	 * {@code 405 Method Not Allowed}（方法不允许）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.5">HTTP/1.1: Semantics and Content, section 6.5.5</a>
 	 */
 	METHOD_NOT_ALLOWED(405, Series.CLIENT_ERROR, "Method Not Allowed"),
 	/**
-	 * {@code 406 Not Acceptable}.
+	 * {@code 406 Not Acceptable}（不可接受）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">HTTP/1.1: Semantics and Content, section 6.5.6</a>
 	 */
 	NOT_ACCEPTABLE(406, Series.CLIENT_ERROR, "Not Acceptable"),
 	/**
-	 * {@code 407 Proxy Authentication Required}.
+	 * {@code 407 Proxy Authentication Required}（需要代理身份验证）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7235#section-3.2">HTTP/1.1: Authentication, section 3.2</a>
 	 */
 	PROXY_AUTHENTICATION_REQUIRED(407, Series.CLIENT_ERROR, "Proxy Authentication Required"),
 	/**
-	 * {@code 408 Request Timeout}.
+	 * {@code 408 Request Timeout}（请求超时）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.7">HTTP/1.1: Semantics and Content, section 6.5.7</a>
 	 */
 	REQUEST_TIMEOUT(408, Series.CLIENT_ERROR, "Request Timeout"),
 	/**
-	 * {@code 409 Conflict}.
+	 * {@code 409 Conflict}（冲突）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">HTTP/1.1: Semantics and Content, section 6.5.8</a>
 	 */
 	CONFLICT(409, Series.CLIENT_ERROR, "Conflict"),
 	/**
-	 * {@code 410 Gone}.
+	 * {@code 410 Gone}（已不存在）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.9">
 	 *     HTTP/1.1: Semantics and Content, section 6.5.9</a>
 	 */
 	GONE(410, Series.CLIENT_ERROR, "Gone"),
 	/**
-	 * {@code 411 Length Required}.
+	 * {@code 411 Length Required}（需要长度）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.10">
 	 *     HTTP/1.1: Semantics and Content, section 6.5.10</a>
 	 */
 	LENGTH_REQUIRED(411, Series.CLIENT_ERROR, "Length Required"),
 	/**
-	 * {@code 412 Precondition failed}.
+	 * {@code 412 Precondition failed}（前置条件失败）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7232#section-4.2">
 	 *     HTTP/1.1: Conditional Requests, section 4.2</a>
 	 */
 	PRECONDITION_FAILED(412, Series.CLIENT_ERROR, "Precondition Failed"),
 	/**
-	 * {@code 413 Payload Too Large}.
+	 * {@code 413 Payload Too Large}（负载过大）。
 	 * @since 4.1
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.11">
 	 *     HTTP/1.1: Semantics and Content, section 6.5.11</a>
 	 */
 	PAYLOAD_TOO_LARGE(413, Series.CLIENT_ERROR, "Payload Too Large"),
 	/**
-	 * {@code 413 Request Entity Too Large}.
+	 * {@code 413 Request Entity Too Large}（请求实体过大）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2616#section-10.4.14">HTTP/1.1, section 10.4.14</a>
 	 * @deprecated in favor of {@link #PAYLOAD_TOO_LARGE} which will be
 	 * returned from {@code HttpStatus.valueOf(413)}
@@ -248,38 +247,38 @@ public enum HttpStatus {
 	@Deprecated
 	REQUEST_ENTITY_TOO_LARGE(413, Series.CLIENT_ERROR, "Request Entity Too Large"),
 	/**
-	 * {@code 414 URI Too Long}.
+	 * {@code 414 URI Too Long}（URI 过长）。
 	 * @since 4.1
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.12">
 	 *     HTTP/1.1: Semantics and Content, section 6.5.12</a>
 	 */
 	URI_TOO_LONG(414, Series.CLIENT_ERROR, "URI Too Long"),
 	/**
-	 * {@code 414 Request-URI Too Long}.
+	 * {@code 414 Request-URI Too Long}（请求 URI 过长）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2616#section-10.4.15">HTTP/1.1, section 10.4.15</a>
 	 * @deprecated in favor of {@link #URI_TOO_LONG} which will be returned from {@code HttpStatus.valueOf(414)}
 	 */
 	@Deprecated
 	REQUEST_URI_TOO_LONG(414, Series.CLIENT_ERROR, "Request-URI Too Long"),
 	/**
-	 * {@code 415 Unsupported Media Type}.
+	 * {@code 415 Unsupported Media Type}（不支持的媒体类型）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.13">
 	 *     HTTP/1.1: Semantics and Content, section 6.5.13</a>
 	 */
 	UNSUPPORTED_MEDIA_TYPE(415, Series.CLIENT_ERROR, "Unsupported Media Type"),
 	/**
-	 * {@code 416 Requested Range Not Satisfiable}.
+	 * {@code 416 Requested Range Not Satisfiable}（请求的范围无法满足）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7233#section-4.4">HTTP/1.1: Range Requests, section 4.4</a>
 	 */
 	REQUESTED_RANGE_NOT_SATISFIABLE(416, Series.CLIENT_ERROR, "Requested range not satisfiable"),
 	/**
-	 * {@code 417 Expectation Failed}.
+	 * {@code 417 Expectation Failed}（期望失败）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.5.14">
 	 *     HTTP/1.1: Semantics and Content, section 6.5.14</a>
 	 */
 	EXPECTATION_FAILED(417, Series.CLIENT_ERROR, "Expectation Failed"),
 	/**
-	 * {@code 418 I'm a teapot}.
+	 * {@code 418 I'm a teapot}（我是茶壶）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2324#section-2.3.2">HTCPCP/1.0</a>
 	 */
 	I_AM_A_TEAPOT(418, Series.CLIENT_ERROR, "I'm a teapot"),
@@ -305,48 +304,48 @@ public enum HttpStatus {
 	@Deprecated
 	DESTINATION_LOCKED(421, Series.CLIENT_ERROR, "Destination Locked"),
 	/**
-	 * {@code 422 Unprocessable Entity}.
+	 * {@code 422 Unprocessable Entity}（无法处理的实体）。
 	 * @see <a href="https://tools.ietf.org/html/rfc4918#section-11.2">WebDAV</a>
 	 */
 	UNPROCESSABLE_ENTITY(422, Series.CLIENT_ERROR, "Unprocessable Entity"),
 	/**
-	 * {@code 423 Locked}.
+	 * {@code 423 Locked}（已锁定）。
 	 * @see <a href="https://tools.ietf.org/html/rfc4918#section-11.3">WebDAV</a>
 	 */
 	LOCKED(423, Series.CLIENT_ERROR, "Locked"),
 	/**
-	 * {@code 424 Failed Dependency}.
+	 * {@code 424 Failed Dependency}（依赖失败）。
 	 * @see <a href="https://tools.ietf.org/html/rfc4918#section-11.4">WebDAV</a>
 	 */
 	FAILED_DEPENDENCY(424, Series.CLIENT_ERROR, "Failed Dependency"),
 	/**
-	 * {@code 425 Too Early}.
+	 * {@code 425 Too Early}（过早）。
 	 * @since 5.2
 	 * @see <a href="https://tools.ietf.org/html/rfc8470">RFC 8470</a>
 	 */
 	TOO_EARLY(425, Series.CLIENT_ERROR, "Too Early"),
 	/**
-	 * {@code 426 Upgrade Required}.
+	 * {@code 426 Upgrade Required}（需要升级）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2817#section-6">Upgrading to TLS Within HTTP/1.1</a>
 	 */
 	UPGRADE_REQUIRED(426, Series.CLIENT_ERROR, "Upgrade Required"),
 	/**
-	 * {@code 428 Precondition Required}.
+	 * {@code 428 Precondition Required}（需要前置条件）。
 	 * @see <a href="https://tools.ietf.org/html/rfc6585#section-3">Additional HTTP Status Codes</a>
 	 */
 	PRECONDITION_REQUIRED(428, Series.CLIENT_ERROR, "Precondition Required"),
 	/**
-	 * {@code 429 Too Many Requests}.
+	 * {@code 429 Too Many Requests}（请求过多）。
 	 * @see <a href="https://tools.ietf.org/html/rfc6585#section-4">Additional HTTP Status Codes</a>
 	 */
 	TOO_MANY_REQUESTS(429, Series.CLIENT_ERROR, "Too Many Requests"),
 	/**
-	 * {@code 431 Request Header Fields Too Large}.
+	 * {@code 431 Request Header Fields Too Large}（请求头字段过大）。
 	 * @see <a href="https://tools.ietf.org/html/rfc6585#section-5">Additional HTTP Status Codes</a>
 	 */
 	REQUEST_HEADER_FIELDS_TOO_LARGE(431, Series.CLIENT_ERROR, "Request Header Fields Too Large"),
 	/**
-	 * {@code 451 Unavailable For Legal Reasons}.
+	 * {@code 451 Unavailable For Legal Reasons}（因法律原因不可用）。
 	 * @see <a href="https://tools.ietf.org/html/draft-ietf-httpbis-legally-restricted-status-04">
 	 * An HTTP Status Code to Report Legal Obstacles</a>
 	 * @since 4.3
@@ -356,61 +355,61 @@ public enum HttpStatus {
 	// --- 5xx Server Error ---
 
 	/**
-	 * {@code 500 Internal Server Error}.
+	 * {@code 500 Internal Server Error}（内部服务器错误）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">HTTP/1.1: Semantics and Content, section 6.6.1</a>
 	 */
 	INTERNAL_SERVER_ERROR(500, Series.SERVER_ERROR, "Internal Server Error"),
 	/**
-	 * {@code 501 Not Implemented}.
+	 * {@code 501 Not Implemented}（未实现）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.6.2">HTTP/1.1: Semantics and Content, section 6.6.2</a>
 	 */
 	NOT_IMPLEMENTED(501, Series.SERVER_ERROR, "Not Implemented"),
 	/**
-	 * {@code 502 Bad Gateway}.
+	 * {@code 502 Bad Gateway}（网关错误）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.6.3">HTTP/1.1: Semantics and Content, section 6.6.3</a>
 	 */
 	BAD_GATEWAY(502, Series.SERVER_ERROR, "Bad Gateway"),
 	/**
-	 * {@code 503 Service Unavailable}.
+	 * {@code 503 Service Unavailable}（服务不可用）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">HTTP/1.1: Semantics and Content, section 6.6.4</a>
 	 */
 	SERVICE_UNAVAILABLE(503, Series.SERVER_ERROR, "Service Unavailable"),
 	/**
-	 * {@code 504 Gateway Timeout}.
+	 * {@code 504 Gateway Timeout}（网关超时）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.6.5">HTTP/1.1: Semantics and Content, section 6.6.5</a>
 	 */
 	GATEWAY_TIMEOUT(504, Series.SERVER_ERROR, "Gateway Timeout"),
 	/**
-	 * {@code 505 HTTP Version Not Supported}.
+	 * {@code 505 HTTP Version Not Supported}（不支持 HTTP 版本）。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-6.6.6">HTTP/1.1: Semantics and Content, section 6.6.6</a>
 	 */
 	HTTP_VERSION_NOT_SUPPORTED(505, Series.SERVER_ERROR, "HTTP Version not supported"),
 	/**
-	 * {@code 506 Variant Also Negotiates}
+	 * {@code 506 Variant Also Negotiates}（变体也会协商）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2295#section-8.1">Transparent Content Negotiation</a>
 	 */
 	VARIANT_ALSO_NEGOTIATES(506, Series.SERVER_ERROR, "Variant Also Negotiates"),
 	/**
-	 * {@code 507 Insufficient Storage}
+	 * {@code 507 Insufficient Storage}（存储不足）。
 	 * @see <a href="https://tools.ietf.org/html/rfc4918#section-11.5">WebDAV</a>
 	 */
 	INSUFFICIENT_STORAGE(507, Series.SERVER_ERROR, "Insufficient Storage"),
 	/**
-	 * {@code 508 Loop Detected}
+	 * {@code 508 Loop Detected}（检测到循环）。
 	 * @see <a href="https://tools.ietf.org/html/rfc5842#section-7.2">WebDAV Binding Extensions</a>
  	 */
 	LOOP_DETECTED(508, Series.SERVER_ERROR, "Loop Detected"),
 	/**
-	 * {@code 509 Bandwidth Limit Exceeded}
+	 * {@code 509 Bandwidth Limit Exceeded}（超出带宽限制）。
  	 */
 	BANDWIDTH_LIMIT_EXCEEDED(509, Series.SERVER_ERROR, "Bandwidth Limit Exceeded"),
 	/**
-	 * {@code 510 Not Extended}
+	 * {@code 510 Not Extended}（未扩展）。
 	 * @see <a href="https://tools.ietf.org/html/rfc2774#section-7">HTTP Extension Framework</a>
 	 */
 	NOT_EXTENDED(510, Series.SERVER_ERROR, "Not Extended"),
 	/**
-	 * {@code 511 Network Authentication Required}.
+	 * {@code 511 Network Authentication Required}（需要网络身份验证）。
 	 * @see <a href="https://tools.ietf.org/html/rfc6585#section-6">Additional HTTP Status Codes</a>
 	 */
 	NETWORK_AUTHENTICATION_REQUIRED(511, Series.SERVER_ERROR, "Network Authentication Required");
@@ -437,14 +436,14 @@ public enum HttpStatus {
 
 
 	/**
-	 * Return the integer value of this status code.
+	 * 返回此状态码的整数值。
 	 */
 	public int value() {
 		return this.value;
 	}
 
 	/**
-	 * Return the HTTP status series of this status code.
+	 * 返回此状态码的 HTTP 状态系列。
 	 * @see HttpStatus.Series
 	 */
 	public Series series() {
@@ -452,16 +451,15 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Return the reason phrase of this status code.
+	 * 返回此状态码的原因短语。
 	 */
 	public String getReasonPhrase() {
 		return this.reasonPhrase;
 	}
 
 	/**
-	 * Whether this status code is in the HTTP series
-	 * {@link org.springframework.http.HttpStatus.Series#INFORMATIONAL}.
-	 * <p>This is a shortcut for checking the value of {@link #series()}.
+	 * 此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#INFORMATIONAL}。
+	 * <p>这是检查 {@link #series()} 值的快捷方式。
 	 * @since 4.0
 	 * @see #series()
 	 */
@@ -470,9 +468,8 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Whether this status code is in the HTTP series
-	 * {@link org.springframework.http.HttpStatus.Series#SUCCESSFUL}.
-	 * <p>This is a shortcut for checking the value of {@link #series()}.
+	 * 此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#SUCCESSFUL}。
+	 * <p>这是检查 {@link #series()} 值的快捷方式。
 	 * @since 4.0
 	 * @see #series()
 	 */
@@ -481,9 +478,8 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Whether this status code is in the HTTP series
-	 * {@link org.springframework.http.HttpStatus.Series#REDIRECTION}.
-	 * <p>This is a shortcut for checking the value of {@link #series()}.
+	 * 此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#REDIRECTION}。
+	 * <p>这是检查 {@link #series()} 值的快捷方式。
 	 * @since 4.0
 	 * @see #series()
 	 */
@@ -492,9 +488,8 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Whether this status code is in the HTTP series
-	 * {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR}.
-	 * <p>This is a shortcut for checking the value of {@link #series()}.
+	 * 此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR}。
+	 * <p>这是检查 {@link #series()} 值的快捷方式。
 	 * @since 4.0
 	 * @see #series()
 	 */
@@ -503,9 +498,8 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Whether this status code is in the HTTP series
-	 * {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR}.
-	 * <p>This is a shortcut for checking the value of {@link #series()}.
+	 * 此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR}。
+	 * <p>这是检查 {@link #series()} 值的快捷方式。
 	 * @since 4.0
 	 * @see #series()
 	 */
@@ -514,10 +508,8 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Whether this status code is in the HTTP series
-	 * {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR} or
-	 * {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR}.
-	 * <p>This is a shortcut for checking the value of {@link #series()}.
+	 * 此状态码是否属于 HTTP 系列 {@link org.springframework.http.HttpStatus.Series#CLIENT_ERROR} 或 {@link org.springframework.http.HttpStatus.Series#SERVER_ERROR}。
+	 * <p>这是检查 {@link #series()} 值的快捷方式。
 	 * @since 5.0
 	 * @see #is4xxClientError()
 	 * @see #is5xxServerError()
@@ -527,7 +519,7 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Return a string representation of this status code.
+	 * 返回此状态码的字符串表示形式。
 	 */
 	@Override
 	public String toString() {
@@ -536,7 +528,7 @@ public enum HttpStatus {
 
 
 	/**
-	 * Return the {@code HttpStatus} enum constant with the specified numeric value.
+	 * 返回具有指定数值的 {@code HttpStatus} 枚举常量。
 	 * @param statusCode the numeric value of the enum to be returned
 	 * @return the enum constant with the specified numeric value
 	 * @throws IllegalArgumentException if this enum has no constant for the specified numeric value
@@ -550,7 +542,7 @@ public enum HttpStatus {
 	}
 
 	/**
-	 * Resolve the given status code to an {@code HttpStatus}, if possible.
+	 * 如果可能，将给定的状态码解析为 {@code HttpStatus}。
 	 * @param statusCode the HTTP status code (potentially non-standard)
 	 * @return the corresponding {@code HttpStatus}, or {@code null} if not found
 	 * @since 5.0
@@ -568,8 +560,8 @@ public enum HttpStatus {
 
 
 	/**
-	 * Enumeration of HTTP status series.
-	 * <p>Retrievable via {@link HttpStatus#series()}.
+	 * HTTP 状态系列的枚举。
+	 * <p>可通过 {@link HttpStatus#series()} 获取。
 	 */
 	public enum Series {
 
@@ -586,14 +578,14 @@ public enum HttpStatus {
 		}
 
 		/**
-		 * Return the integer value of this status series. Ranges from 1 to 5.
+		 * 返回此状态系列的整数值。范围为 1 到 5。
 		 */
 		public int value() {
 			return this.value;
 		}
 
 		/**
-		 * Return the {@code Series} enum constant for the supplied {@code HttpStatus}.
+		 * 返回所提供 {@code HttpStatus} 对应的 {@code Series} 枚举常量。
 		 * @param status a standard HTTP status enum constant
 		 * @return the {@code Series} enum constant for the supplied {@code HttpStatus}
 		 * @deprecated as of 5.3, in favor of invoking {@link HttpStatus#series()} directly
@@ -604,7 +596,7 @@ public enum HttpStatus {
 		}
 
 		/**
-		 * Return the {@code Series} enum constant for the supplied status code.
+		 * 返回所提供状态码对应的 {@code Series} 枚举常量。
 		 * @param statusCode the HTTP status code (potentially non-standard)
 		 * @return the {@code Series} enum constant for the supplied status code
 		 * @throws IllegalArgumentException if this enum has no corresponding constant
@@ -618,7 +610,7 @@ public enum HttpStatus {
 		}
 
 		/**
-		 * Resolve the given status code to an {@code HttpStatus.Series}, if possible.
+		 * 如果可能，将给定的状态码解析为 {@code HttpStatus.Series}。
 		 * @param statusCode the HTTP status code (potentially non-standard)
 		 * @return the corresponding {@code Series}, or {@code null} if not found
 		 * @since 5.1.3

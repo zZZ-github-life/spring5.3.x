@@ -34,23 +34,20 @@ import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * A convenient {@link BeanPostProcessor} implementation that delegates to a
- * JSR-303 provider for performing method-level validation on annotated methods.
+ * 一个便捷的 {@link BeanPostProcessor} 实现，委托给 JSR-303 提供者对带注解的方法执行方法级校验。
  *
- * <p>Applicable methods have JSR-303 constraint annotations on their parameters
- * and/or on their return value (in the latter case specified at the method level,
- * typically as inline annotation), e.g.:
+ * <p>适用的方法在其参数和/或返回值上带有 JSR-303 约束注解（后者在方法级别指定，通常以内联注解形式
+ * 给出），例如：
  *
  * <pre class="code">
  * public @NotNull Object myValidMethod(@NotNull String arg1, @Max(10) int arg2)
  * </pre>
  *
- * <p>Target classes with such annotated methods need to be annotated with Spring's
- * {@link Validated} annotation at the type level, for their methods to be searched for
- * inline constraint annotations. Validation groups can be specified through {@code @Validated}
- * as well. By default, JSR-303 will validate against its default group only.
+ * <p>包含此类带注解方法的目标类需要在类型级别使用 Spring 的 {@link Validated} 注解标注，其方法才会
+ * 被搜索内联约束注解。校验分组同样可以通过 {@code @Validated} 指定。默认情况下，JSR-303 仅针对其默
+ * 认分组进行校验。
  *
- * <p>As of Spring 5.0, this functionality requires a Bean Validation 1.1+ provider.
+ * <p>从 Spring 5.0 起，此功能需要 Bean Validation 1.1+ 提供者。
  *
  * @author Juergen Hoeller
  * @since 3.1
@@ -68,11 +65,9 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 
 
 	/**
-	 * Set the 'validated' annotation type.
-	 * The default validated annotation type is the {@link Validated} annotation.
-	 * <p>This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation type to indicate that a class is supposed
-	 * to be validated in the sense of applying method validation.
+	 * 设置 'validated' 注解类型。默认的 validated 注解类型是 {@link Validated} 注解。
+	 * <p>此 setter 属性之所以存在，是为了让开发者可以提供自己的（非 Spring 特有的）注解类型，用以表明
+	 * 某个类应按照应用方法校验的方式接受校验。
 	 * @param validatedAnnotationType the desired annotation type
 	 */
 	public void setValidatedAnnotationType(Class<? extends Annotation> validatedAnnotationType) {
@@ -81,8 +76,8 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	}
 
 	/**
-	 * Set the JSR-303 Validator to delegate to for validating methods.
-	 * <p>Default is the default ValidatorFactory's default Validator.
+	 * 设置用于校验方法的 JSR-303 Validator 委托对象。
+	 * <p>默认是默认 ValidatorFactory 的默认 Validator。
 	 */
 	public void setValidator(Validator validator) {
 		// Unwrap to the native Validator with forExecutables support
@@ -98,9 +93,8 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	}
 
 	/**
-	 * Set the JSR-303 ValidatorFactory to delegate to for validating methods,
-	 * using its default Validator.
-	 * <p>Default is the default ValidatorFactory's default Validator.
+	 * 设置用于校验方法的 JSR-303 ValidatorFactory 委托对象，使用其默认 Validator。
+	 * <p>默认是默认 ValidatorFactory 的默认 Validator。
 	 * @see javax.validation.ValidatorFactory#getValidator()
 	 */
 	public void setValidatorFactory(ValidatorFactory validatorFactory) {
@@ -115,8 +109,7 @@ public class MethodValidationPostProcessor extends AbstractBeanFactoryAwareAdvis
 	}
 
 	/**
-	 * Create AOP advice for method validation purposes, to be applied
-	 * with a pointcut for the specified 'validated' annotation.
+	 * 创建用于方法校验目的的 AOP 通知，以便通过针对指定 'validated' 注解的切点来应用。
 	 * @param validator the JSR-303 Validator to delegate to
 	 * @return the interceptor to use (typically, but not necessarily,
 	 * a {@link MethodValidationInterceptor} or subclass thereof)

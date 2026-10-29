@@ -31,25 +31,20 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Service exporter which binds RMI services to JNDI.
- * Typically used for RMI-IIOP (CORBA).
+ * 用于将 RMI 服务绑定到 JNDI 的服务导出器。通常用于 RMI-IIOP（CORBA）。
  *
- * <p>Exports services via the {@link javax.rmi.PortableRemoteObject} class.
- * You need to run "rmic" with the "-iiop" option to generate corresponding
- * stubs and skeletons for each exported service.
+ * <p>通过 {@link javax.rmi.PortableRemoteObject} 类导出服务。需要使用 "-iiop" 选项运行 "rmic"，为
+ * 每个导出的服务生成相应的存根和骨架。
  *
- * <p>Also supports exposing any non-RMI service via RMI invokers, to be accessed
- * via {@link JndiRmiClientInterceptor} / {@link JndiRmiProxyFactoryBean}'s
- * automatic detection of such invokers.
+ * <p>还支持通过 RMI 调用器暴露任意的非 RMI 服务，由 {@link JndiRmiClientInterceptor} /
+ * {@link JndiRmiProxyFactoryBean} 对此类调用器的自动检测来访问。
  *
- * <p>With an RMI invoker, RMI communication works on the {@link RmiInvocationHandler}
- * level, needing only one stub for any service. Service interfaces do not have to
- * extend {@code java.rmi.Remote} or throw {@code java.rmi.RemoteException}
- * on all methods, but in and out parameters have to be serializable.
+ * <p>使用 RMI 调用器时，RMI 通信工作在 {@link RmiInvocationHandler} 层面，任何服务都只需要一个存根。
+ * 服务接口不必扩展 {@code java.rmi.Remote}，也不必在所有方法上抛出
+ * {@code java.rmi.RemoteException}，但入参和出参必须是可序列化的。
  *
- * <p>The JNDI environment can be specified as "jndiEnvironment" bean property,
- * or be configured in a {@code jndi.properties} file or as system properties.
- * For example:
+ * <p>JNDI 环境可以通过 "jndiEnvironment" Bean 属性指定，也可以在 {@code jndi.properties} 文件中或
+ * 作为系统属性进行配置。例如：
  *
  * <pre class="code">&lt;property name="jndiEnvironment"&gt;
  * 	 &lt;props&gt;
@@ -101,8 +96,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 
 
 	/**
-	 * Set the JNDI template to use for JNDI lookups.
-	 * You can also specify JNDI environment settings via "jndiEnvironment".
+	 * 设置用于 JNDI 查找的 JNDI 模板。也可以通过 "jndiEnvironment" 指定 JNDI 环境设置。
 	 * @see #setJndiEnvironment
 	 */
 	public void setJndiTemplate(JndiTemplate jndiTemplate) {
@@ -110,8 +104,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 	}
 
 	/**
-	 * Set the JNDI environment to use for JNDI lookups.
-	 * Creates a JndiTemplate with the given environment settings.
+	 * 设置用于 JNDI 查找的 JNDI 环境。会用给定的环境设置创建一个 JndiTemplate。
 	 * @see #setJndiTemplate
 	 */
 	public void setJndiEnvironment(Properties jndiEnvironment) {
@@ -119,7 +112,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 	}
 
 	/**
-	 * Set the JNDI name of the exported RMI service.
+	 * 设置所导出 RMI 服务的 JNDI 名称。
 	 */
 	public void setJndiName(String jndiName) {
 		this.jndiName = jndiName;
@@ -132,7 +125,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 	}
 
 	/**
-	 * Initialize this service exporter, binding the specified service to JNDI.
+	 * 初始化此服务导出器，将指定的服务绑定到 JNDI。
 	 * @throws NamingException if service binding failed
 	 * @throws RemoteException if service export failed
 	 */
@@ -149,8 +142,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 	}
 
 	/**
-	 * Rebind the specified service to JNDI, for recovering in case
-	 * of the target registry having been restarted.
+	 * 将指定的服务重新绑定到 JNDI，以便在目标注册表重启后恢复。
 	 * @throws NamingException if service binding failed
 	 */
 	public void rebind() throws NamingException {
@@ -161,7 +153,7 @@ public class JndiRmiServiceExporter extends RmiBasedExporter implements Initiali
 	}
 
 	/**
-	 * Unbind the RMI service from JNDI on bean factory shutdown.
+	 * 在 Bean 工厂关闭时从 JNDI 解绑该 RMI 服务。
 	 */
 	@Override
 	public void destroy() throws NamingException, RemoteException {

@@ -66,19 +66,19 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ResourceUtils;
 
 /**
- * Default implementation of the {@link PersistenceUnitManager} interface.
- * Used as internal default by
- * {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}.
+ * {@link PersistenceUnitManager} 接口的默认实现。
+ * 由 {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
+ * 用作内部默认实现。
  *
- * <p>Supports standard JPA scanning for {@code persistence.xml} files,
- * with configurable file locations, JDBC DataSource lookup and load-time weaving.
+ * <p>支持对 {@code persistence.xml} 文件的标准 JPA 扫描，
+ * 并提供可配置的文件位置、JDBC DataSource 查找和加载时织入。
  *
- * <p>The default XML file location is {@code classpath*:META-INF/persistence.xml},
- * scanning for all matching files in the classpath (as defined in the JPA specification).
- * DataSource names are by default interpreted as JNDI names, and no load time weaving
- * is available (which requires weaving to be turned off in the persistence provider).
+ * <p>默认的 XML 文件位置是 {@code classpath*:META-INF/persistence.xml}，
+ * 会在类路径中扫描所有匹配的文件（依据 JPA 规范的定义）。
+ * DataSource 名称默认被解释为 JNDI 名称，并且不启用加载时织入
+ * （启用加载时织入需要在持久化提供者中关闭织入）。
  *
- * <p><b>NOTE: Spring's JPA support requires JPA 2.1 or higher, as of Spring 5.0.</b>
+ * <p><b>注意：自 Spring 5.0 起，Spring 的 JPA 支持要求 JPA 2.1 或更高版本。</b>
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -100,19 +100,19 @@ public class DefaultPersistenceUnitManager
 	private static final String PERSISTENCE_XML_FILENAME = "persistence.xml";
 
 	/**
-	 * Default location of the {@code persistence.xml} file:
-	 * "classpath*:META-INF/persistence.xml".
+	 * {@code persistence.xml} 文件的默认位置：
+	 * "classpath*:META-INF/persistence.xml"。
 	 */
 	public static final String DEFAULT_PERSISTENCE_XML_LOCATION = "classpath*:META-INF/" + PERSISTENCE_XML_FILENAME;
 
 	/**
-	 * Default location for the persistence unit root URL:
-	 * "classpath:", indicating the root of the classpath.
+	 * 持久化单元根 URL 的默认位置：
+	 * "classpath:"，表示类路径的根。
 	 */
 	public static final String ORIGINAL_DEFAULT_PERSISTENCE_UNIT_ROOT_LOCATION = "classpath:";
 
 	/**
-	 * Default persistence unit name.
+	 * 默认的持久化单元名称。
 	 */
 	public static final String ORIGINAL_DEFAULT_PERSISTENCE_UNIT_NAME = "default";
 
@@ -175,18 +175,18 @@ public class DefaultPersistenceUnitManager
 
 
 	/**
-	 * Specify the location of the {@code persistence.xml} files to load.
-	 * These can be specified as Spring resource locations and/or location patterns.
-	 * <p>Default is "classpath*:META-INF/persistence.xml".
+	 * 指定要加载的 {@code persistence.xml} 文件的位置。
+	 * 这些位置可以指定为 Spring 资源位置和/或位置模式。
+	 * <p>默认是 "classpath*:META-INF/persistence.xml"。
 	 */
 	public void setPersistenceXmlLocation(String persistenceXmlLocation) {
 		this.persistenceXmlLocations = new String[] {persistenceXmlLocation};
 	}
 
 	/**
-	 * Specify multiple locations of {@code persistence.xml} files to load.
-	 * These can be specified as Spring resource locations and/or location patterns.
-	 * <p>Default is "classpath*:META-INF/persistence.xml".
+	 * 指定要加载的 {@code persistence.xml} 文件的多个位置。
+	 * 这些位置可以指定为 Spring 资源位置和/或位置模式。
+	 * <p>默认是 "classpath*:META-INF/persistence.xml"。
 	 * @param persistenceXmlLocations an array of Spring resource Strings
 	 * identifying the location of the {@code persistence.xml} files to read
 	 */
@@ -195,20 +195,18 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Set the default persistence unit root location, to be applied
-	 * if no unit-specific persistence unit root could be determined.
-	 * <p>Default is "classpath:", that is, the root of the current classpath
-	 * (nearest root directory). To be overridden if unit-specific resolution
-	 * does not work and the classpath root is not appropriate either.
+	 * 设置默认的持久化单元根位置，在无法确定单元特定的持久化单元根时使用。
+	 * <p>默认是 "classpath:"，即当前类路径的根（最近的根目录）。
+	 * 如果单元特定的解析不起作用，且类路径根也不合适，则可以覆盖此设置。
 	 */
 	public void setDefaultPersistenceUnitRootLocation(String defaultPersistenceUnitRootLocation) {
 		this.defaultPersistenceUnitRootLocation = defaultPersistenceUnitRootLocation;
 	}
 
 	/**
-	 * Specify the name of the default persistence unit, if any. Default is "default".
-	 * <p>Primarily applied to a scanned persistence unit without {@code persistence.xml}.
-	 * Also applicable to selecting a default unit from several persistence units available.
+	 * 指定默认持久化单元的名称（如果有）。默认是 "default"。
+	 * <p>主要应用于通过扫描获得且没有 {@code persistence.xml} 的持久化单元。
+	 * 也可用于从多个可用持久化单元中选择一个默认单元。
 	 * @see #setPackagesToScan
 	 * @see #obtainDefaultPersistenceUnitInfo
 	 */
@@ -217,28 +215,27 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Set whether to use Spring-based scanning for entity classes in the classpath
-	 * instead of using JPA's standard scanning of jar files with {@code persistence.xml}
-	 * markers in them. In case of Spring-based scanning, no {@code persistence.xml}
-	 * is necessary; all you need to do is to specify base packages to search here.
-	 * <p>Default is none. Specify packages to search for autodetection of your entity
-	 * classes in the classpath. This is analogous to Spring's component-scan feature
-	 * ({@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
-	 * <p>Such package scanning defines a "default persistence unit" in Spring, which
-	 * may live next to regularly defined units originating from {@code persistence.xml}.
-	 * Its name is determined by {@link #setDefaultPersistenceUnitName}: by default,
-	 * it's simply "default".
-	 * <p><b>Note: There may be limitations in comparison to regular JPA scanning.</b>
-	 * In particular, JPA providers may pick up annotated packages for provider-specific
-	 * annotations only when driven by {@code persistence.xml}. As of 4.1, Spring's
-	 * scan can detect annotated packages as well if supported by the given
-	 * {@link org.springframework.orm.jpa.JpaVendorAdapter} (e.g. for Hibernate).
-	 * <p>If no explicit {@link #setMappingResources mapping resources} have been
-	 * specified in addition to these packages, this manager looks for a default
-	 * {@code META-INF/orm.xml} file in the classpath, registering it as a mapping
-	 * resource for the default unit if the mapping file is not co-located with a
-	 * {@code persistence.xml} file (in which case we assume it is only meant to be
-	 * used with the persistence units defined there, like in standard JPA).
+	 * 设置是否使用 Spring 的扫描机制在类路径中扫描实体类，
+	 * 而不使用 JPA 标准的、基于 {@code persistence.xml} 标记文件对 jar 文件的扫描。
+	 * 在使用 Spring 扫描的情况下，不需要 {@code persistence.xml}；
+	 * 只需在此处指定要搜索的基础包即可。
+	 * <p>默认不扫描。请指定要搜索的包，以在类路径中自动检测实体类。
+	 * 这类似于 Spring 的组件扫描特性
+	 * （{@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}）。
+	 * <p>此类包扫描会在 Spring 中定义一个"默认持久化单元"，
+	 * 它可以与源自 {@code persistence.xml} 的常规定义的单元并存。
+	 * 其名称由 {@link #setDefaultPersistenceUnitName} 决定：默认情况下，
+	 * 就是 "default"。
+	 * <p><b>注意：与常规 JPA 扫描相比，这里可能存在一些限制。</b>
+	 * 尤其是，JPA 提供者只有在由 {@code persistence.xml} 驱动时，
+	 * 才会拾取针对提供者特定注解的带注解包。自 4.1 起，如果给定的
+	 * {@link org.springframework.orm.jpa.JpaVendorAdapter} 支持（例如 Hibernate），
+	 * Spring 的扫描也可以检测到带注解的包。
+	 * <p>如果在这些包之外没有显式指定
+	 * {@link #setMappingResources 映射资源}，此管理器会在类路径中查找默认的
+	 * {@code META-INF/orm.xml} 文件；如果该映射文件未与
+	 * {@code persistence.xml} 文件放在一起，则将其注册为默认单元的映射资源
+	 * （如果放在一起，我们假定它只打算与那里定义的持久化单元一起使用，这与标准 JPA 一致）。
 	 * @see #setDefaultPersistenceUnitName
 	 * @see #setMappingResources
 	 */
@@ -247,23 +244,21 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify one or more mapping resources (equivalent to {@code <mapping-file>}
-	 * entries in {@code persistence.xml}) for the default persistence unit.
-	 * Can be used on its own or in combination with entity scanning in the classpath,
-	 * in both cases avoiding {@code persistence.xml}.
-	 * <p>Note that mapping resources must be relative to the classpath root,
-	 * e.g. "META-INF/mappings.xml" or "com/mycompany/repository/mappings.xml",
-	 * so that they can be loaded through {@code ClassLoader.getResource}.
-	 * <p>If no explicit mapping resources have been specified next to
-	 * {@link #setPackagesToScan packages to scan}, this manager looks for a default
-	 * {@code META-INF/orm.xml} file in the classpath, registering it as a mapping
-	 * resource for the default unit if the mapping file is not co-located with a
-	 * {@code persistence.xml} file (in which case we assume it is only meant to be
-	 * used with the persistence units defined there, like in standard JPA).
-	 * <p>Note that specifying an empty array/list here suppresses the default
-	 * {@code META-INF/orm.xml} check. On the other hand, explicitly specifying
-	 * {@code META-INF/orm.xml} here will register that file even if it happens
-	 * to be co-located with a {@code persistence.xml} file.
+	 * 为默认持久化单元指定一个或多个映射资源（相当于 {@code persistence.xml}
+	 * 中的 {@code <mapping-file>} 条目）。
+	 * 可以单独使用，也可以与类路径中的实体扫描配合使用，
+	 * 两种情况下都无需 {@code persistence.xml}。
+	 * <p>注意，映射资源必须相对于类路径的根，例如 "META-INF/mappings.xml"
+	 * 或 "com/mycompany/repository/mappings.xml"，
+	 * 以便能通过 {@code ClassLoader.getResource} 加载它们。
+	 * <p>如果在 {@link #setPackagesToScan 要扫描的包} 之外没有显式指定映射资源，
+	 * 此管理器会在类路径中查找默认的 {@code META-INF/orm.xml} 文件；
+	 * 如果该映射文件未与 {@code persistence.xml} 文件放在一起，
+	 * 则将其注册为默认单元的映射资源（如果放在一起，我们假定它只打算与那里定义的
+	 * 持久化单元一起使用，这与标准 JPA 一致）。
+	 * <p>注意，在此指定空数组/列表会抑制对默认 {@code META-INF/orm.xml} 的检查。
+	 * 另一方面，在此显式指定 {@code META-INF/orm.xml}
+	 * 即使该文件恰好与 {@code persistence.xml} 文件放在一起，也会注册该文件。
 	 * @see #setDefaultPersistenceUnitName
 	 * @see #setPackagesToScan
 	 */
@@ -272,8 +267,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the JPA 2.0 shared cache mode for all of this manager's persistence
-	 * units, overriding any value in {@code persistence.xml} if set.
+	 * 为此管理器所有持久化单元指定 JPA 2.0 共享缓存模式，
+	 * 如果设置，则覆盖 {@code persistence.xml} 中的任何值。
 	 * @since 4.0
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getSharedCacheMode()
 	 */
@@ -282,8 +277,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the JPA 2.0 validation mode for all of this manager's persistence
-	 * units, overriding any value in {@code persistence.xml} if set.
+	 * 为此管理器所有持久化单元指定 JPA 2.0 校验模式，
+	 * 如果设置，则覆盖 {@code persistence.xml} 中的任何值。
 	 * @since 4.0
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getValidationMode()
 	 */
@@ -292,13 +287,12 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the JDBC DataSources that the JPA persistence provider is supposed
-	 * to use for accessing the database, resolving data source names in
-	 * {@code persistence.xml} against Spring-managed DataSources.
-	 * <p>The specified Map needs to define data source names for specific DataSource
-	 * objects, matching the data source names used in {@code persistence.xml}.
-	 * If not specified, data source names will be resolved as JNDI names instead
-	 * (as defined by standard JPA).
+	 * 指定 JPA 持久化提供者应用于访问数据库的 JDBC DataSource，
+	 * 将 {@code persistence.xml} 中的数据源名称与 Spring 管理的 DataSource 进行解析匹配。
+	 * <p>指定的 Map 需要为特定的 DataSource 对象定义数据源名称，
+	 * 与 {@code persistence.xml} 中使用的数据源名称相匹配。
+	 * 如果未指定，数据源名称将改为按 JNDI 名称解析
+	 * （如标准 JPA 所定义）。
 	 * @see org.springframework.jdbc.datasource.lookup.MapDataSourceLookup
 	 */
 	public void setDataSources(Map<String, DataSource> dataSources) {
@@ -306,16 +300,14 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the JDBC DataSourceLookup that provides DataSources for the
-	 * persistence provider, resolving data source names in {@code persistence.xml}
-	 * against Spring-managed DataSource instances.
-	 * <p>Default is JndiDataSourceLookup, which resolves DataSource names as
-	 * JNDI names (as defined by standard JPA). Specify a BeanFactoryDataSourceLookup
-	 * instance if you want DataSource names to be resolved against Spring bean names.
-	 * <p>Alternatively, consider passing in a map from names to DataSource instances
-	 * via the "dataSources" property. If the {@code persistence.xml} file
-	 * does not define DataSource names at all, specify a default DataSource
-	 * via the "defaultDataSource" property.
+	 * 指定为持久化提供者提供 DataSource 的 JDBC DataSourceLookup，
+	 * 将 {@code persistence.xml} 中的数据源名称与 Spring 管理的 DataSource 实例进行解析匹配。
+	 * <p>默认是 JndiDataSourceLookup，它将 DataSource 名称解析为
+	 * JNDI 名称（如标准 JPA 所定义）。如果你希望将 DataSource 名称解析为
+	 * Spring bean 名称，请指定一个 BeanFactoryDataSourceLookup 实例。
+	 * <p>或者，考虑通过 "dataSources" 属性传入从名称到 DataSource 实例的映射。
+	 * 如果 {@code persistence.xml} 文件根本没有定义 DataSource 名称，
+	 * 请通过 "defaultDataSource" 属性指定一个默认 DataSource。
 	 * @see org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup
 	 * @see org.springframework.jdbc.datasource.lookup.BeanFactoryDataSourceLookup
 	 * @see #setDataSources
@@ -326,9 +318,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Return the JDBC DataSourceLookup that provides DataSources for the
-	 * persistence provider, resolving data source names in {@code persistence.xml}
-	 * against Spring-managed DataSource instances.
+	 * 返回为持久化提供者提供 DataSource 的 JDBC DataSourceLookup，
+	 * 它将 {@code persistence.xml} 中的数据源名称与 Spring 管理的 DataSource 实例进行解析匹配。
 	 */
 	@Nullable
 	public DataSourceLookup getDataSourceLookup() {
@@ -336,12 +327,11 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the JDBC DataSource that the JPA persistence provider is supposed to use
-	 * for accessing the database if none has been specified in {@code persistence.xml}.
-	 * This variant indicates no special transaction setup, i.e. typical resource-local.
-	 * <p>In JPA speak, a DataSource passed in here will be uses as "nonJtaDataSource"
-	 * on the PersistenceUnitInfo passed to the PersistenceProvider, provided that
-	 * none has been registered before.
+	 * 指定 JPA 持久化提供者在 {@code persistence.xml} 中未指定时
+	 * 应用于访问数据库的 JDBC DataSource。
+	 * 此变体表示没有特殊的事务设置，即典型的资源本地（resource-local）模式。
+	 * <p>用 JPA 的术语来说，此处传入的 DataSource 将作为传递给 PersistenceProvider
+	 * 的 PersistenceUnitInfo 上的 "nonJtaDataSource" 使用，前提是之前未注册过。
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getNonJtaDataSource()
 	 */
 	public void setDefaultDataSource(@Nullable DataSource defaultDataSource) {
@@ -349,8 +339,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Return the JDBC DataSource that the JPA persistence provider is supposed to use
-	 * for accessing the database if none has been specified in {@code persistence.xml}.
+	 * 返回 JPA 持久化提供者在 {@code persistence.xml} 中未指定时
+	 * 应用于访问数据库的 JDBC DataSource。
 	 */
 	@Nullable
 	public DataSource getDefaultDataSource() {
@@ -358,12 +348,11 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the JDBC DataSource that the JPA persistence provider is supposed to use
-	 * for accessing the database if none has been specified in {@code persistence.xml}.
-	 * This variant indicates that JTA is supposed to be used as transaction type.
-	 * <p>In JPA speak, a DataSource passed in here will be uses as "jtaDataSource"
-	 * on the PersistenceUnitInfo passed to the PersistenceProvider, provided that
-	 * none has been registered before.
+	 * 指定 JPA 持久化提供者在 {@code persistence.xml} 中未指定时
+	 * 应用于访问数据库的 JDBC DataSource。
+	 * 此变体表示应使用 JTA 作为事务类型。
+	 * <p>用 JPA 的术语来说，此处传入的 DataSource 将作为传递给 PersistenceProvider
+	 * 的 PersistenceUnitInfo 上的 "jtaDataSource" 使用，前提是之前未注册过。
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getJtaDataSource()
 	 */
 	public void setDefaultJtaDataSource(@Nullable DataSource defaultJtaDataSource) {
@@ -371,8 +360,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Return the JTA-aware DataSource that the JPA persistence provider is supposed to use
-	 * for accessing the database if none has been specified in {@code persistence.xml}.
+	 * 返回 JPA 持久化提供者在 {@code persistence.xml} 中未指定时
+	 * 应用于访问数据库的、支持 JTA 的 DataSource。
 	 */
 	@Nullable
 	public DataSource getDefaultJtaDataSource() {
@@ -380,18 +369,16 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Set the PersistenceUnitPostProcessors to be applied to each
-	 * PersistenceUnitInfo that has been parsed by this manager.
-	 * <p>Such post-processors can, for example, register further entity classes and
-	 * jar files, in addition to the metadata read from {@code persistence.xml}.
+	 * 设置要应用于此管理器解析的每个 PersistenceUnitInfo 的 PersistenceUnitPostProcessors。
+	 * <p>例如，此类后处理器可以在从 {@code persistence.xml} 读取的元数据之外，
+	 * 注册更多的实体类和 jar 文件。
 	 */
 	public void setPersistenceUnitPostProcessors(@Nullable PersistenceUnitPostProcessor... postProcessors) {
 		this.persistenceUnitPostProcessors = postProcessors;
 	}
 
 	/**
-	 * Return the PersistenceUnitPostProcessors to be applied to each
-	 * PersistenceUnitInfo that has been parsed by this manager.
+	 * 返回要应用于此管理器解析的每个 PersistenceUnitInfo 的 PersistenceUnitPostProcessors。
 	 */
 	@Nullable
 	public PersistenceUnitPostProcessor[] getPersistenceUnitPostProcessors() {
@@ -399,20 +386,17 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Specify the Spring LoadTimeWeaver to use for class instrumentation according
-	 * to the JPA class transformer contract.
-	 * <p>It is not required to specify a LoadTimeWeaver: Most providers will be able
-	 * to provide a subset of their functionality without class instrumentation as well,
-	 * or operate with their own VM agent specified on JVM startup. Furthermore,
-	 * DefaultPersistenceUnitManager falls back to an InstrumentationLoadTimeWeaver
-	 * if Spring's agent-based instrumentation is available at runtime.
-	 * <p>In terms of Spring-provided weaving options, the most important ones are
-	 * InstrumentationLoadTimeWeaver, which requires a Spring-specific (but very general)
-	 * VM agent specified on JVM startup, and ReflectiveLoadTimeWeaver, which interacts
-	 * with an underlying ClassLoader based on specific extended methods being available
-	 * on it (for example, interacting with Spring's TomcatInstrumentableClassLoader).
-	 * Consider using the {@code context:load-time-weaver} XML tag for creating
-	 * such a shared LoadTimeWeaver (autodetecting the environment by default).
+	 * 指定用于按 JPA 类转换器契约进行类插桩的 Spring LoadTimeWeaver。
+	 * <p>并不强制要求指定 LoadTimeWeaver：大多数提供者即使没有类插桩，
+	 * 也能提供其功能的一个子集，或者使用在 JVM 启动时指定的自有 VM 代理运行。
+	 * 此外，如果运行时 Spring 基于代理的插桩可用，
+	 * DefaultPersistenceUnitManager 会回退到 InstrumentationLoadTimeWeaver。
+	 * <p>就 Spring 提供的织入选项而言，最重要的是 InstrumentationLoadTimeWeaver，
+	 * 它需要在 JVM 启动时指定一个 Spring 专用（但非常通用）的 VM 代理；
+	 * 以及 ReflectiveLoadTimeWeaver，它基于底层 ClassLoader 上可用的特定扩展方法与
+	 * 其交互（例如与 Spring 的 TomcatInstrumentableClassLoader 交互）。
+	 * 可以考虑使用 {@code context:load-time-weaver} XML 标签来创建
+	 * 这样一个共享的 LoadTimeWeaver（默认自动检测环境）。
 	 * @see org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
 	 * @see org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver
 	 */
@@ -422,8 +406,7 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Return the Spring LoadTimeWeaver to use for class instrumentation according
-	 * to the JPA class transformer contract.
+	 * 返回用于按 JPA 类转换器契约进行类插桩的 Spring LoadTimeWeaver。
 	 */
 	@Nullable
 	public LoadTimeWeaver getLoadTimeWeaver() {
@@ -446,11 +429,9 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Prepare the PersistenceUnitInfos according to the configuration
-	 * of this manager: scanning for {@code persistence.xml} files,
-	 * parsing all matching files, configuring and post-processing them.
-	 * <p>PersistenceUnitInfos cannot be obtained before this preparation
-	 * method has been invoked.
+	 * 根据此管理器的配置准备 PersistenceUnitInfo：扫描 {@code persistence.xml} 文件，
+	 * 解析所有匹配的文件，并对它们进行配置和后处理。
+	 * <p>在调用此准备方法之前，无法获取 PersistenceUnitInfo。
 	 * @see #obtainDefaultPersistenceUnitInfo()
 	 * @see #obtainPersistenceUnitInfo(String)
 	 */
@@ -495,8 +476,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Read all persistence unit infos from {@code persistence.xml},
-	 * as defined in the JPA specification.
+	 * 从 {@code persistence.xml} 中读取所有持久化单元信息，
+	 * 依据 JPA 规范的定义。
 	 */
 	private List<SpringPersistenceUnitInfo> readPersistenceUnitInfos() {
 		List<SpringPersistenceUnitInfo> infos = new ArrayList<>(1);
@@ -528,7 +509,7 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Perform Spring-based scanning for entity classes.
+	 * 执行基于 Spring 的实体类扫描。
 	 * @see #setPackagesToScan
 	 */
 	private SpringPersistenceUnitInfo buildDefaultPersistenceUnitInfo() {
@@ -614,8 +595,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Check whether any of the configured entity type filters matches
-	 * the current class descriptor contained in the metadata reader.
+	 * 检查配置的任意实体类型过滤器是否与元数据读取器中包含的
+	 * 当前类描述符匹配。
 	 */
 	private boolean matchesFilter(MetadataReader reader, MetadataReaderFactory readerFactory) throws IOException {
 		for (TypeFilter filter : entityTypeFilters) {
@@ -627,8 +608,8 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Try to determine the persistence unit root URL based on the given
-	 * "defaultPersistenceUnitRootLocation".
+	 * 尝试根据给定的 "defaultPersistenceUnitRootLocation"
+	 * 确定持久化单元根 URL。
 	 * @return the persistence unit root URL to pass to the JPA PersistenceProvider
 	 * @see #setDefaultPersistenceUnitRootLocation
 	 */
@@ -647,10 +628,9 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Determine JPA's default "META-INF/orm.xml" resource for use with Spring's default
-	 * persistence unit, if any.
-	 * <p>Checks whether a "META-INF/orm.xml" file exists in the classpath and uses it
-	 * if it is not co-located with a "META-INF/persistence.xml" file.
+	 * 确定 JPA 默认的 "META-INF/orm.xml" 资源（如果有），以供 Spring 的默认持久化单元使用。
+	 * <p>检查类路径中是否存在 "META-INF/orm.xml" 文件，如果它未与
+	 * "META-INF/persistence.xml" 文件放在一起，则使用它。
 	 */
 	@Nullable
 	private Resource getOrmXmlForDefaultPersistenceUnit() {
@@ -673,11 +653,10 @@ public class DefaultPersistenceUnitManager
 
 
 	/**
-	 * Return the specified PersistenceUnitInfo from this manager's cache
-	 * of processed persistence units, keeping it in the cache (i.e. not
-	 * 'obtaining' it for use but rather just accessing it for post-processing).
-	 * <p>This can be used in {@link #postProcessPersistenceUnitInfo} implementations,
-	 * detecting existing persistence units of the same name and potentially merging them.
+	 * 从此管理器已处理的持久化单元缓存中返回指定的 PersistenceUnitInfo，
+	 * 并将其保留在缓存中（即不是为使用而"获取"它，而只是为后处理而访问它）。
+	 * <p>这可用于 {@link #postProcessPersistenceUnitInfo} 实现中，
+	 * 检测已存在的同名持久化单元，并可能将它们合并。
 	 * @param persistenceUnitName the name of the desired persistence unit
 	 * @return the PersistenceUnitInfo in mutable form, or {@code null} if not available
 	 */
@@ -688,10 +667,10 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Hook method allowing subclasses to customize each PersistenceUnitInfo.
-	 * <p>The default implementation delegates to all registered PersistenceUnitPostProcessors.
-	 * It is usually preferable to register further entity classes, jar files etc there
-	 * rather than in a subclass of this manager, to be able to reuse the post-processors.
+	 * 钩子方法，允许子类自定义每个 PersistenceUnitInfo。
+	 * <p>默认实现委托给所有已注册的 PersistenceUnitPostProcessors。
+	 * 通常最好在那里注册更多的实体类、jar 文件等，
+	 * 而不是在此管理器的子类中，以便能够复用这些后处理器。
 	 * @param pui the chosen PersistenceUnitInfo, as read from {@code persistence.xml}.
 	 * Passed in as MutablePersistenceUnitInfo.
 	 * @see #setPersistenceUnitPostProcessors
@@ -706,9 +685,9 @@ public class DefaultPersistenceUnitManager
 	}
 
 	/**
-	 * Return whether an override of a same-named persistence unit is allowed.
-	 * <p>Default is {@code false}. May be overridden to return {@code true},
-	 * for example if {@link #postProcessPersistenceUnitInfo} is able to handle that case.
+	 * 返回是否允许覆盖同名的持久化单元。
+	 * <p>默认是 {@code false}。可以重写为返回 {@code true}，
+	 * 例如当 {@link #postProcessPersistenceUnitInfo} 能够处理这种情况时。
 	 */
 	protected boolean isPersistenceUnitOverrideAllowed() {
 		return false;

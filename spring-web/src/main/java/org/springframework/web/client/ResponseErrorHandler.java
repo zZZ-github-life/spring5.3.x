@@ -23,8 +23,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.client.ClientHttpResponse;
 
 /**
- * Strategy interface used by the {@link RestTemplate} to determine
- * whether a particular response has an error or not.
+ * 由 {@link RestTemplate} 使用的策略接口，用于确定特定响应是否包含错误。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -32,9 +31,9 @@ import org.springframework.http.client.ClientHttpResponse;
 public interface ResponseErrorHandler {
 
 	/**
-	 * Indicate whether the given response has any errors.
-	 * <p>Implementations will typically inspect the
-	 * {@link ClientHttpResponse#getStatusCode() HttpStatus} of the response.
+	 * 指示给定响应是否有任何错误。
+	 * <p>实现通常会检查响应的
+	 * {@link ClientHttpResponse#getStatusCode() HttpStatus}。
 	 * @param response the response to inspect
 	 * @return {@code true} if the response indicates an error; {@code false} otherwise
 	 * @throws IOException in case of I/O errors
@@ -42,17 +41,16 @@ public interface ResponseErrorHandler {
 	boolean hasError(ClientHttpResponse response) throws IOException;
 
 	/**
-	 * Handle the error in the given response.
-	 * <p>This method is only called when {@link #hasError(ClientHttpResponse)}
-	 * has returned {@code true}.
+	 * 处理给定响应中的错误。
+	 * <p>仅当 {@link #hasError(ClientHttpResponse)} 返回 {@code true} 时才会调用此方法。
 	 * @param response the response with the error
 	 * @throws IOException in case of I/O errors
 	 */
 	void handleError(ClientHttpResponse response) throws IOException;
 
 	/**
-	 * Alternative to {@link #handleError(ClientHttpResponse)} with extra
-	 * information providing access to the request URL and HTTP method.
+	 * {@link #handleError(ClientHttpResponse)} 的替代方法，提供额外信息，
+	 * 可访问请求 URL 和 HTTP 方法。
 	 * @param url the request URL
 	 * @param method the HTTP method
 	 * @param response the response with the error

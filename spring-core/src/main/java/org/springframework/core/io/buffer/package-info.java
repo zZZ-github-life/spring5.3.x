@@ -1,5 +1,5 @@
 /**
- * Generic abstraction for working with byte buffer implementations.
+ * 用于处理字节缓冲区实现的通用抽象。
  */
 @NonNullApi
 @NonNullFields

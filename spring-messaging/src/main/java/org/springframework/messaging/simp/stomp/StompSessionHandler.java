@@ -19,15 +19,12 @@ package org.springframework.messaging.simp.stomp;
 import org.springframework.lang.Nullable;
 
 /**
- * A contract for client STOMP session lifecycle events including a callback
- * when the session is established and notifications of transport or message
- * handling failures.
+ * 客户端 STOMP 会话生命周期事件的契约，包括会话建立时的回调，
+ * 以及传输或消息处理失败的通知。
  *
- * <p>This contract also extends {@link StompFrameHandler} in order to handle
- * STOMP ERROR frames received from the broker.
+ * <p>此契约还扩展了 {@link StompFrameHandler}，以便处理从代理收到的 STOMP ERROR 帧。
  *
- * <p>Implementations of this interface should consider extending
- * {@link StompSessionHandlerAdapter}.
+ * <p>此接口的实现应考虑继承 {@link StompSessionHandlerAdapter}。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -36,18 +33,16 @@ import org.springframework.lang.Nullable;
 public interface StompSessionHandler extends StompFrameHandler {
 
 	/**
-	 * Invoked when the session is ready to use, i.e. after the underlying
-	 * transport (TCP, WebSocket) is connected and a STOMP CONNECTED frame is
-	 * received from the broker.
+	 * 会话准备好使用时调用，即底层传输（TCP、WebSocket）已连接，
+	 * 并从代理收到 STOMP CONNECTED 帧之后。
 	 * @param session the client STOMP session
 	 * @param connectedHeaders the STOMP CONNECTED frame headers
 	 */
 	void afterConnected(StompSession session, StompHeaders connectedHeaders);
 
 	/**
-	 * Handle any exception arising while processing a STOMP frame such as a
-	 * failure to convert the payload or an unhandled exception in the
-	 * application {@code StompFrameHandler}.
+	 * 处理处理 STOMP 帧时产生的任何异常，例如载荷转换失败，
+	 * 或应用程序 {@code StompFrameHandler} 中未处理的异常。
 	 * @param session the client STOMP session
 	 * @param command the STOMP command of the frame
 	 * @param headers the headers
@@ -58,13 +53,11 @@ public interface StompSessionHandler extends StompFrameHandler {
 			StompHeaders headers, byte[] payload, Throwable exception);
 
 	/**
-	 * Handle a low level transport error which could be an I/O error or a
-	 * failure to encode or decode a STOMP message.
-	 * <p>Note that
+	 * 处理底层传输错误，可能是 I/O 错误，也可能是编码或解码 STOMP 消息失败。
+	 * <p>请注意，当连接丢失而不是通过
+	 * {@link StompSession#disconnect()} 正常关闭时，
 	 * {@link org.springframework.messaging.simp.stomp.ConnectionLostException
-	 * ConnectionLostException} will be passed into this method when the
-	 * connection is lost rather than closed normally via
-	 * {@link StompSession#disconnect()}.
+	 * ConnectionLostException} 会传入此方法。
 	 * @param session the client STOMP session
 	 * @param exception the exception that occurred
 	 */

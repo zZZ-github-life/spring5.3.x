@@ -17,8 +17,7 @@
 package org.springframework.jms.support;
 
 /**
- * Pre-defined names and prefixes to be used for setting and/or retrieving
- * JMS attributes from/to generic message headers.
+ * 预定义的名称和前缀，用于在通用消息头中设置和/或读取 JMS 属性。
  *
  * @author Mark Fisher
  * @author Stephane Nicoll
@@ -27,23 +26,22 @@ package org.springframework.jms.support;
 public interface JmsHeaders {
 
 	/**
-	 * Prefix used for JMS API related headers in order to distinguish from
-	 * user-defined headers and other internal headers (e.g. correlationId).
+	 * 用于 JMS API 相关头部的名称前缀，以便与用户定义的头部和其他内部头部
+	 * （例如 correlationId）区分开。
 	 * @see SimpleJmsHeaderMapper
 	 */
 	String PREFIX = "jms_";
 
 	/**
-	 * Correlation ID for the message. This may be the {@link #MESSAGE_ID} of
-	 * the message that this message replies to. It may also be an
-	 * application-specific identifier.
+	 * 消息的关联 ID。这可能是此消息所回复消息的 {@link #MESSAGE_ID}。
+	 * 也可以是应用程序特定的标识符。
 	 * @see javax.jms.Message#getJMSCorrelationID()
 	 */
 	String CORRELATION_ID = PREFIX + "correlationId";
 
 	/**
-	 * Name of the destination (topic or queue) of the message.
-	 * <p>Read-only value.
+	 * 消息的目的地（主题或队列）名称。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSDestination()
 	 * @see javax.jms.Destination
 	 * @see javax.jms.Queue
@@ -52,59 +50,56 @@ public interface JmsHeaders {
 	String DESTINATION = PREFIX + "destination";
 
 	/**
-	 * Distribution mode.
-	 * <p>Read-only value.
+	 * 分发模式。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSDeliveryMode()
 	 * @see javax.jms.DeliveryMode
 	 */
 	String DELIVERY_MODE = PREFIX + "deliveryMode";
 
 	/**
-	 * Message expiration date and time.
-	 * <p>Read-only value.
+	 * 消息的过期日期和时间。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSExpiration()
 	 */
 	String EXPIRATION = PREFIX + "expiration";
 
 	/**
-	 * Unique identifier for a message.
-	 * <p>Read-only value.
+	 * 消息的唯一标识符。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSMessageID()
 	 */
 	String MESSAGE_ID = PREFIX + "messageId";
 
 	/**
-	 * The message priority level.
-	 * <p>Read-only value.
+	 * 消息的优先级。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSPriority()
 	 */
 	String PRIORITY = PREFIX + "priority";
 
 	/**
-	 * Name of the destination (topic or queue) the message replies should
-	 * be sent to.
+	 * 消息回复应发送到的目的地（主题或队列）名称。
 	 * @see javax.jms.Message#getJMSReplyTo()
 	 */
 	String REPLY_TO = PREFIX + "replyTo";
 
 	/**
-	 * Specify if the message was resent. This occurs when a message
-	 * consumer fails to acknowledge the message reception.
-	 * <p>Read-only value.
+	 * 指定消息是否被重新发送。当消息消费者未能确认消息接收时会发生这种情况。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSRedelivered()
 	 */
 	String REDELIVERED = PREFIX + "redelivered";
 
 	/**
-	 * Message type label. This type is a string value describing the message
-	 * in a functional manner.
+	 * 消息类型标签。此类型是一个从功能上描述该消息的字符串值。
 	 * @see javax.jms.Message#getJMSType()
 	 */
 	String TYPE = PREFIX + "type";
 
 	/**
-	 * Date and time of the message sending operation.
-	 * <p>Read-only value.
+	 * 消息发送操作的日期和时间。
+	 * <p>只读值。
 	 * @see javax.jms.Message#getJMSTimestamp()
 	 */
 	String TIMESTAMP = PREFIX + "timestamp";

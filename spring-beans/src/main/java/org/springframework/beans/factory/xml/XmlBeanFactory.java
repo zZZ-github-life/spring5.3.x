@@ -22,24 +22,20 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.core.io.Resource;
 
 /**
- * Convenience extension of {@link DefaultListableBeanFactory} that reads bean definitions
- * from an XML document. Delegates to {@link XmlBeanDefinitionReader} underneath; effectively
- * equivalent to using an XmlBeanDefinitionReader with a DefaultListableBeanFactory.
+ * 对 {@link DefaultListableBeanFactory} 的便利扩展，可从 XML 文档读取 Bean 定义。底层委托给
+ * {@link XmlBeanDefinitionReader}；实际上等同于将 XmlBeanDefinitionReader 与
+ * DefaultListableBeanFactory 一起使用。
  *
- * <p>The structure, element and attribute names of the required XML document
- * are hard-coded in this class. (Of course a transform could be run if necessary
- * to produce this format). "beans" doesn't need to be the root element of the XML
- * document: This class will parse all bean definition elements in the XML file.
+ * <p>所需 XML 文档的结构、元素名和属性名都硬编码在此类中。（当然，如有必要可以运行转换以生成这种格
+ * 式）。"beans" 不必是 XML 文档的根元素：此类会解析 XML 文件中的所有 Bean 定义元素。
  *
- * <p>This class registers each bean definition with the {@link DefaultListableBeanFactory}
- * superclass, and relies on the latter's implementation of the {@link BeanFactory} interface.
- * It supports singletons, prototypes, and references to either of these kinds of bean.
- * See {@code "spring-beans-3.x.xsd"} (or historically, {@code "spring-beans-2.0.dtd"}) for
- * details on options and configuration style.
+ * <p>此类将每个 Bean 定义注册到 {@link DefaultListableBeanFactory} 超类，并依赖后者对
+ * {@link BeanFactory} 接口的实现。它支持单例、原型以及对这两种 Bean 的引用。有关选项和配置风格的详
+ * 细信息，请参见 {@code "spring-beans-3.x.xsd"}（或历史上的 {@code "spring-beans-2.0.dtd"}）。
  *
- * <p><b>For advanced needs, consider using a {@link DefaultListableBeanFactory} with
- * an {@link XmlBeanDefinitionReader}.</b> The latter allows for reading from multiple XML
- * resources and is highly configurable in its actual XML parsing behavior.
+ * <p><b>如有高级需求，可考虑将 {@link DefaultListableBeanFactory} 与
+ * {@link XmlBeanDefinitionReader} 一起使用。</b>后者允许从多个 XML 资源读取，并且其实际的 XML 解析
+ * 行为高度可配置。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -58,8 +54,7 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 
 
 	/**
-	 * Create a new XmlBeanFactory with the given resource,
-	 * which must be parsable using DOM.
+	 * 使用给定资源创建新的 XmlBeanFactory，该资源必须可使用 DOM 解析。
 	 * @param resource the XML resource to load bean definitions from
 	 * @throws BeansException in case of loading or parsing errors
 	 */
@@ -68,8 +63,7 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 	}
 
 	/**
-	 * Create a new XmlBeanFactory with the given input stream,
-	 * which must be parsable using DOM.
+	 * 使用给定输入流创建新的 XmlBeanFactory，该输入流必须可使用 DOM 解析。
 	 * @param resource the XML resource to load bean definitions from
 	 * @param parentBeanFactory parent bean factory
 	 * @throws BeansException in case of loading or parsing errors

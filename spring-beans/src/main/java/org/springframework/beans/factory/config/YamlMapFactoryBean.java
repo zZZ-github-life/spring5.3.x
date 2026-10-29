@@ -24,16 +24,13 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * Factory for a {@code Map} that reads from a YAML source, preserving the
- * YAML-declared value types and their structure.
+ * 从 YAML 源读取的 {@code Map} 工厂，保留 YAML 中声明的值类型及其结构。
  *
- * <p>YAML is a nice human-readable format for configuration, and it has some
- * useful hierarchical properties. It's more or less a superset of JSON, so it
- * has a lot of similar features.
+ * <p>YAML 是一种良好的人类可读配置格式，并且具有一些有用的层次化特性。它或多或少是 JSON 的超集，因
+ * 此具有许多相似特性。
  *
- * <p>If multiple resources are provided the later ones will override entries in
- * the earlier ones hierarchically; that is, all entries with the same nested key
- * of type {@code Map} at any depth are merged. For example:
+ * <p>如果提供了多个资源，则后面的资源会按层次覆盖前面资源中的条目；也就是说，任意深度上具有相同嵌
+ * 套键（类型为 {@code Map}）的所有条目都会合并。例如：
  *
  * <pre class="code">
  * foo:
@@ -42,7 +39,7 @@ import org.springframework.lang.Nullable;
  * three: four
  * </pre>
  *
- * plus (later in the list)
+ * 加上（列表中靠后的）
  *
  * <pre class="code">
  * foo:
@@ -51,7 +48,7 @@ import org.springframework.lang.Nullable;
  * five: six
  * </pre>
  *
- * results in an effective input of
+ * 得到的有效输入为
  *
  * <pre class="code">
  * foo:
@@ -61,10 +58,9 @@ import org.springframework.lang.Nullable;
  * five: six
  * </pre>
  *
- * Note that the value of "foo" in the first document is not simply replaced
- * with the value in the second, but its nested values are merged.
+ * 请注意，第一份文档中 "foo" 的值不会被第二份文档中的值简单替换，而是其嵌套值会合并。
  *
- * <p>Requires SnakeYAML 1.18 or higher, as of Spring Framework 5.0.6.
+ * <p>自 Spring Framework 5.0.6 起，需要 SnakeYAML 1.18 或更高版本。
  *
  * @author Dave Syer
  * @author Juergen Hoeller
@@ -79,8 +75,7 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 
 
 	/**
-	 * Set if a singleton should be created, or a new object on each request
-	 * otherwise. Default is {@code true} (a singleton).
+	 * 设置是创建单例，还是在每次请求时创建新对象。默认是 {@code true}（单例）。
 	 */
 	public void setSingleton(boolean singleton) {
 		this.singleton = singleton;
@@ -111,11 +106,10 @@ public class YamlMapFactoryBean extends YamlProcessor implements FactoryBean<Map
 
 
 	/**
-	 * Template method that subclasses may override to construct the object
-	 * returned by this factory.
-	 * <p>Invoked lazily the first time {@link #getObject()} is invoked in
-	 * case of a shared singleton; else, on each {@link #getObject()} call.
-	 * <p>The default implementation returns the merged {@code Map} instance.
+	 * 模板方法，子类可以覆盖以构造此工厂返回的对象。
+	 * <p>在共享单例的情况下，首次调用 {@link #getObject()} 时延迟调用；否则在每次 {@link #getObject()}
+	 * 调用时调用。
+	 * <p>默认实现返回合并后的 {@code Map} 实例。
 	 * @return the object returned by this factory
 	 * @see #process(MatchCallback)
 	 */

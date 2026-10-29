@@ -27,8 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 
 /**
- * Represent the result of the invocation of a handler or a handler method.
- *
+ * 表示处理器或处理器方法调用结果的对象。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -48,7 +47,7 @@ public class HandlerResult {
 
 
 	/**
-	 * Create a new {@code HandlerResult}.
+	 * 创建一个新的 {@code HandlerResult}。
 	 * @param handler the handler that handled the request
 	 * @param returnValue the return value from the handler possibly {@code null}
 	 * @param returnType the return value type
@@ -58,7 +57,7 @@ public class HandlerResult {
 	}
 
 	/**
-	 * Create a new {@code HandlerResult}.
+	 * 创建一个新的 {@code HandlerResult}。
 	 * @param handler the handler that handled the request
 	 * @param returnValue the return value from the handler possibly {@code null}
 	 * @param returnType the return value type
@@ -77,14 +76,14 @@ public class HandlerResult {
 
 
 	/**
-	 * Return the handler that handled the request.
+	 * 返回处理该请求的处理器。
 	 */
 	public Object getHandler() {
 		return this.handler;
 	}
 
 	/**
-	 * Return the value returned from the handler, if any.
+	 * 返回处理器返回的值（如果有）。
 	 */
 	@Nullable
 	public Object getReturnValue() {
@@ -92,42 +91,35 @@ public class HandlerResult {
 	}
 
 	/**
-	 * Return the type of the value returned from the handler -- e.g. the return
-	 * type declared on a controller method's signature. Also see
-	 * {@link #getReturnTypeSource()} to obtain the underlying
-	 * {@link MethodParameter} for the return type.
+	 * 返回处理器返回值类型，例如控制器方法签名中声明的返回类型。另请参见 {@link #getReturnTypeSource()} 以获取该返回类型对应的底层 {@link MethodParameter}。
 	 */
 	public ResolvableType getReturnType() {
 		return this.returnType;
 	}
 
 	/**
-	 * Return the {@link MethodParameter} from which {@link #getReturnType()
-	 * returnType} was created.
+	 * 返回创建 {@link #getReturnType() returnType} 时所使用的 {@link MethodParameter}。
 	 */
 	public MethodParameter getReturnTypeSource() {
 		return (MethodParameter) this.returnType.getSource();
 	}
 
 	/**
-	 * Return the BindingContext used for request handling.
+	 * 返回用于请求处理的 BindingContext。
 	 */
 	public BindingContext getBindingContext() {
 		return this.bindingContext;
 	}
 
 	/**
-	 * Return the model used for request handling. This is a shortcut for
-	 * {@code getBindingContext().getModel()}.
+	 * 返回用于请求处理的模型。这是 {@code getBindingContext().getModel()} 的快捷方式。
 	 */
 	public Model getModel() {
 		return this.bindingContext.getModel();
 	}
 
 	/**
-	 * Configure an exception handler that may be used to produce an alternative
-	 * result when result handling fails. Especially for an async return value
-	 * errors may occur after the invocation of the handler.
+	 * 配置异常处理器，用于在结果处理失败时生成替代结果。特别是对于异步返回值，错误可能在处理器调用之后才发生。
 	 * @param function the error handler
 	 * @return the current instance
 	 */
@@ -137,14 +129,14 @@ public class HandlerResult {
 	}
 
 	/**
-	 * Whether there is an exception handler.
+	 * 是否存在异常处理器。
 	 */
 	public boolean hasExceptionHandler() {
 		return (this.exceptionHandler != null);
 	}
 
 	/**
-	 * Apply the exception handler and return the alternative result.
+	 * 应用异常处理器并返回替代结果。
 	 * @param failure the exception
 	 * @return the new result or the same error if there is no exception handler
 	 */

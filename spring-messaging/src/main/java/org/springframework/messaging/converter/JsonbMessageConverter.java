@@ -28,8 +28,8 @@ import javax.json.bind.JsonbConfig;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link MessageConverter} that can read and write JSON
- * using the <a href="https://javaee.github.io/jsonb-spec/">JSON Binding API</a>.
+ * 使用 <a href="https://javaee.github.io/jsonb-spec/">JSON Binding API</a>
+ * 读写 JSON 的 {@link MessageConverter} 实现。
  *
  * @author Juergen Hoeller
  * @since 5.3
@@ -43,14 +43,14 @@ public class JsonbMessageConverter extends AbstractJsonMessageConverter {
 
 
 	/**
-	 * Construct a new {@code JsonbMessageConverter} with default configuration.
+	 * 使用默认配置构造新的 {@code JsonbMessageConverter}。
 	 */
 	public JsonbMessageConverter() {
 		this.jsonb = JsonbBuilder.create();
 	}
 
 	/**
-	 * Construct a new {@code JsonbMessageConverter} with the given configuration.
+	 * 使用给定的配置构造新的 {@code JsonbMessageConverter}。
 	 * @param config the {@code JsonbConfig} for the underlying delegate
 	 */
 	public JsonbMessageConverter(JsonbConfig config) {
@@ -58,7 +58,7 @@ public class JsonbMessageConverter extends AbstractJsonMessageConverter {
 	}
 
 	/**
-	 * Construct a new {@code JsonbMessageConverter} with the given delegate.
+	 * 使用给定的委托构造新的 {@code JsonbMessageConverter}。
 	 * @param jsonb the Jsonb instance to use
 	 */
 	public JsonbMessageConverter(Jsonb jsonb) {
@@ -68,10 +68,9 @@ public class JsonbMessageConverter extends AbstractJsonMessageConverter {
 
 
 	/**
-	 * Set the {@code Jsonb} instance to use.
-	 * If not set, a default {@code Jsonb} instance will be created.
-	 * <p>Setting a custom-configured {@code Jsonb} is one way to take further
-	 * control of the JSON serialization process.
+	 * 设置要使用的 {@code Jsonb} 实例。
+	 * 如果未设置，将创建默认的 {@code Jsonb} 实例。
+	 * <p>设置自定义配置的 {@code Jsonb} 是进一步控制 JSON 序列化过程的一种方式。
 	 * @see #JsonbMessageConverter(Jsonb)
 	 * @see #JsonbMessageConverter(JsonbConfig)
 	 * @see JsonbBuilder
@@ -82,7 +81,7 @@ public class JsonbMessageConverter extends AbstractJsonMessageConverter {
 	}
 
 	/**
-	 * Return the configured {@code Jsonb} instance for this converter.
+	 * 返回此转换器已配置的 {@code Jsonb} 实例。
 	 */
 	public Jsonb getJsonb() {
 		return this.jsonb;

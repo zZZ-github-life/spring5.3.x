@@ -24,8 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base for {@link ClientHttpRequest} that makes sure that headers
- * and body are not written multiple times.
+ * 用于 {@link ClientHttpRequest} 的抽象基类，确保头部
+ * 和正文不会被多次写入。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -69,7 +69,7 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 	}
 
 	/**
-	 * Assert that this request has not been {@linkplain #execute() executed} yet.
+	 * 断言此请求尚未被 {@linkplain #execute() 执行}。
 	 * @throws IllegalStateException if this request has been executed
 	 */
 	protected void assertNotExecuted() {
@@ -78,14 +78,14 @@ public abstract class AbstractClientHttpRequest implements ClientHttpRequest {
 
 
 	/**
-	 * Abstract template method that returns the body.
+	 * 返回正文的抽象模板方法。
 	 * @param headers the HTTP headers
 	 * @return the body output stream
 	 */
 	protected abstract OutputStream getBodyInternal(HttpHeaders headers) throws IOException;
 
 	/**
-	 * Abstract template method that writes the given headers and content to the HTTP request.
+	 * 将给定头部和内容写入 HTTP 请求的抽象模板方法。
 	 * @param headers the HTTP headers
 	 * @return the response object for the executed request
 	 */

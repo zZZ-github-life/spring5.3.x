@@ -30,15 +30,8 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
- * {@code @SpringJUnitConfig} is a <em>composed annotation</em> that combines
- * {@link ExtendWith @ExtendWith(SpringExtension.class)} from JUnit Jupiter with
- * {@link ContextConfiguration @ContextConfiguration} from the <em>Spring TestContext
- * Framework</em>.
- *
- * <p>As of Spring Framework 5.3, this annotation will effectively be inherited
- * from an enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * {@code @SpringJUnitConfig} 是一个<em>组合注解</em>，将 JUnit Jupiter 的 {@link ExtendWith @ExtendWith(SpringExtension.class)} 与 <em>Spring TestContext Framework</em> 的 {@link ContextConfiguration @ContextConfiguration} 组合在一起。
+ * <p>从 Spring Framework 5.3 开始，此注解实际上默认会从封闭测试类继承。有关详情，请参见 {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 5.0
@@ -56,43 +49,43 @@ import org.springframework.test.context.ContextConfiguration;
 public @interface SpringJUnitConfig {
 
 	/**
-	 * Alias for {@link ContextConfiguration#classes}.
+	 * {@link ContextConfiguration#classes} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class, attribute = "classes")
 	Class<?>[] value() default {};
 
 	/**
-	 * Alias for {@link ContextConfiguration#classes}.
+	 * {@link ContextConfiguration#classes} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class)
 	Class<?>[] classes() default {};
 
 	/**
-	 * Alias for {@link ContextConfiguration#locations}.
+	 * {@link ContextConfiguration#locations} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class)
 	String[] locations() default {};
 
 	/**
-	 * Alias for {@link ContextConfiguration#initializers}.
+	 * {@link ContextConfiguration#initializers} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class)
 	Class<? extends ApplicationContextInitializer<?>>[] initializers() default {};
 
 	/**
-	 * Alias for {@link ContextConfiguration#inheritLocations}.
+	 * {@link ContextConfiguration#inheritLocations} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class)
 	boolean inheritLocations() default true;
 
 	/**
-	 * Alias for {@link ContextConfiguration#inheritInitializers}.
+	 * {@link ContextConfiguration#inheritInitializers} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class)
 	boolean inheritInitializers() default true;
 
 	/**
-	 * Alias for {@link ContextConfiguration#name}.
+	 * {@link ContextConfiguration#name} 的别名。
 	 */
 	@AliasFor(annotation = ContextConfiguration.class)
 	String name() default "";

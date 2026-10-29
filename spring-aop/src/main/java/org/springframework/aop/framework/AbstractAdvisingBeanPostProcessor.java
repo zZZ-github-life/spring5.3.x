@@ -26,8 +26,7 @@ import org.springframework.core.SmartClassLoader;
 import org.springframework.lang.Nullable;
 
 /**
- * Base class for {@link BeanPostProcessor} implementations that apply a
- * Spring AOP {@link Advisor} to specific beans.
+ * 用于将 Spring AOP {@link Advisor} 应用于特定 Bean 的 {@link BeanPostProcessor} 实现的基类。
  *
  * @author Juergen Hoeller
  * @since 3.2
@@ -44,13 +43,10 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 
 
 	/**
-	 * Set whether this post-processor's advisor is supposed to apply before
-	 * existing advisors when encountering a pre-advised object.
-	 * <p>Default is "false", applying the advisor after existing advisors, i.e.
-	 * as close as possible to the target method. Switch this to "true" in order
-	 * for this post-processor's advisor to wrap existing advisors as well.
-	 * <p>Note: Check the concrete post-processor's javadoc whether it possibly
-	 * changes this flag by default, depending on the nature of its advisor.
+	 * 设置当遇到已被通知过的对象时，此后处理器的 advisor 是否应在此之前已有的 advisor 之前应用。
+	 * <p>默认值为 "false"，即在现有 advisor 之后应用该 advisor，也就是尽可能靠近目标方法。将其切换为
+	 * "true"，以便此后处理器的 advisor 也能包裹现有 advisor。
+	 * <p>注意：请查看具体后处理器的 javadoc，了解它是否会根据其 advisor 的性质默认更改此标志。
 	 */
 	public void setBeforeExistingAdvisors(boolean beforeExistingAdvisors) {
 		this.beforeExistingAdvisors = beforeExistingAdvisors;
@@ -104,16 +100,12 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	}
 
 	/**
-	 * Check whether the given bean is eligible for advising with this
-	 * post-processor's {@link Advisor}.
-	 * <p>Delegates to {@link #isEligible(Class)} for target class checking.
-	 * Can be overridden e.g. to specifically exclude certain beans by name.
-	 * <p>Note: Only called for regular bean instances but not for existing
-	 * proxy instances which implement {@link Advised} and allow for adding
-	 * the local {@link Advisor} to the existing proxy's {@link Advisor} chain.
-	 * For the latter, {@link #isEligible(Class)} is being called directly,
-	 * with the actual target class behind the existing proxy (as determined
-	 * by {@link AopUtils#getTargetClass(Object)}).
+	 * 检查给定的 Bean 是否有资格被此后处理器的 {@link Advisor} 通知。
+	 * <p>目标类检查委托给 {@link #isEligible(Class)}。可以重写该方法，例如按名称专门排除某些 Bean。
+	 * <p>注意：仅对普通 Bean 实例调用，不会对现有代理实例调用；后者实现了 {@link Advised}，并允许将本
+	 * 地 {@link Advisor} 添加到现有代理的 {@link Advisor} 链中。对于后者，会直接调用
+	 * {@link #isEligible(Class)}，并传入现有代理背后的实际目标类（由
+	 * {@link AopUtils#getTargetClass(Object)} 确定）。
 	 * @param bean the bean instance
 	 * @param beanName the name of the bean
 	 * @see #isEligible(Class)
@@ -123,9 +115,8 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	}
 
 	/**
-	 * Check whether the given class is eligible for advising with this
-	 * post-processor's {@link Advisor}.
-	 * <p>Implements caching of {@code canApply} results per bean target class.
+	 * 检查给定的类是否有资格被此后处理器的 {@link Advisor} 通知。
+	 * <p>按 Bean 目标类缓存 {@code canApply} 的结果。
 	 * @param targetClass the class to check against
 	 * @see AopUtils#canApply(Advisor, Class)
 	 */
@@ -143,12 +134,10 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	}
 
 	/**
-	 * Prepare a {@link ProxyFactory} for the given bean.
-	 * <p>Subclasses may customize the handling of the target instance and in
-	 * particular the exposure of the target class. The default introspection
-	 * of interfaces for non-target-class proxies and the configured advisor
-	 * will be applied afterwards; {@link #customizeProxyFactory} allows for
-	 * late customizations of those parts right before proxy creation.
+	 * 为给定的 Bean 准备一个 {@link ProxyFactory}。
+	 * <p>子类可以自定义目标实例的处理方式，特别是目标类的暴露方式。随后会应用默认的非目标类代理接口内
+	 * 省以及已配置的 advisor；{@link #customizeProxyFactory} 允许在创建代理之前立即对这些部分进行后期
+	 * 定制。
 	 * @param bean the bean instance to create a proxy for
 	 * @param beanName the corresponding bean name
 	 * @return the ProxyFactory, initialized with this processor's
@@ -164,9 +153,8 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 	}
 
 	/**
-	 * Subclasses may choose to implement this: for example,
-	 * to change the interfaces exposed.
-	 * <p>The default implementation is empty.
+	 * 子类可以选择实现此方法：例如，更改所暴露的接口。
+	 * <p>默认实现为空。
 	 * @param proxyFactory the ProxyFactory that is already configured with
 	 * target, advisor and interfaces and will be used to create the proxy
 	 * immediately after this method returns

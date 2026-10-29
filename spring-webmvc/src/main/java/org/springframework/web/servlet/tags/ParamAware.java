@@ -17,7 +17,7 @@
 package org.springframework.web.servlet.tags;
 
 /**
- * Allows implementing tag to utilize nested {@code spring:param} tags.
+ * 允许实现类使用嵌套的 {@code spring:param} 标签。
  *
  * @author Scott Andrews
  * @since 3.0
@@ -26,8 +26,7 @@ package org.springframework.web.servlet.tags;
 public interface ParamAware {
 
 	/**
-	 * Callback hook for nested spring:param tags to pass their value
-	 * to the parent tag.
+	 * 供嵌套的 spring:param 标签将其值传递给父标签的回调钩子。
 	 * @param param the result of the nested {@code spring:param} tag
 	 */
 	void addParam(Param param);

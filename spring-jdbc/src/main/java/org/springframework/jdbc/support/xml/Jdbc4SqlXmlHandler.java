@@ -35,10 +35,9 @@ import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.lang.Nullable;
 
 /**
- * Default implementation of the {@link SqlXmlHandler} interface.
- * Provides database-specific implementations for storing and
- * retrieving XML documents to and from fields in a database,
- * relying on the JDBC 4.0 {@code java.sql.SQLXML} facility.
+ * {@link SqlXmlHandler} 接口的默认实现。
+ * 提供将 XML 文档存储到数据库字段以及从数据库字段检索 XML 文档的
+ * 数据库特定实现，依赖于 JDBC 4.0 的 {@code java.sql.SQLXML} 功能。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -176,7 +175,7 @@ public class Jdbc4SqlXmlHandler implements SqlXmlHandler {
 
 
 	/**
-	 * Internal base class for {@link SqlXmlValue} implementations.
+	 * {@link SqlXmlValue} 实现的内部基类。
 	 */
 	private abstract static class AbstractJdbc4SqlXmlValue implements SqlXmlValue {
 

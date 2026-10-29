@@ -1,0 +1,1543 @@
+#### FILE function/server/ChangePathPatternParserVisitor.java
+@@ function/server/ChangePathPatternParserVisitor.java :: 1
+Implementation of {@link RouterFunctions.Visitor} that changes the
+{@link PathPatternParser} on path-related request predicates
+(i.e. {@link RequestPredicates.PathPatternPredicate}).
+
+@@ function/server/ChangePathPatternParserVisitor.java :: 2
+Interface implemented by predicates that can change the parser.
+
+#### FILE function/server/DefaultEntityResponseBuilder.java
+@@ function/server/DefaultEntityResponseBuilder.java :: 1
+Default {@link EntityResponse.Builder} implementation.
+
+#### FILE function/server/DefaultHandlerStrategiesBuilder.java
+@@ function/server/DefaultHandlerStrategiesBuilder.java :: 1
+Default implementation of {@link HandlerStrategies.Builder}.
+
+#### FILE function/server/DefaultRenderingResponseBuilder.java
+@@ function/server/DefaultRenderingResponseBuilder.java :: 1
+Default {@link RenderingResponse.Builder} implementation.
+
+#### FILE function/server/DefaultServerRequest.java
+@@ function/server/DefaultServerRequest.java :: 1
+{@code ServerRequest} implementation based on a {@link ServerWebExchange}.
+
+#### FILE function/server/DefaultServerRequestBuilder.java
+@@ function/server/DefaultServerRequestBuilder.java :: 1
+Default {@link ServerRequest.Builder} implementation.
+
+#### FILE function/server/DefaultServerResponseBuilder.java
+@@ function/server/DefaultServerResponseBuilder.java :: 1
+Default {@link ServerResponse.BodyBuilder} implementation.
+
+@@ function/server/DefaultServerResponseBuilder.java :: 2
+Abstract base class for {@link ServerResponse} implementations.
+
+#### FILE function/server/EntityResponse.java
+@@ function/server/EntityResponse.java :: 1
+Entity-specific subtype of {@link ServerResponse} that exposes entity data.
+
+@@ function/server/EntityResponse.java :: 2
+Return the entity that makes up this response.
+
+@@ function/server/EntityResponse.java :: 3
+Return the {@code BodyInserter} that writes the entity to the output stream.
+
+@@ function/server/EntityResponse.java :: 4
+Create a builder with the given object.
+
+@@ function/server/EntityResponse.java :: 5
+Create a builder with the given producer.
+
+@@ function/server/EntityResponse.java :: 6
+Create a builder with the given producer.
+
+@@ function/server/EntityResponse.java :: 7
+Create a builder with the given publisher.
+
+@@ function/server/EntityResponse.java :: 8
+Create a builder with the given publisher.
+
+@@ function/server/EntityResponse.java :: 9
+Defines a builder for {@code EntityResponse}.
+
+@@ function/server/EntityResponse.java :: 10
+Add the given header value(s) under the given name.
+
+@@ function/server/EntityResponse.java :: 11
+Copy the given headers into the entity's headers map.
+
+@@ function/server/EntityResponse.java :: 12
+Set the HTTP status.
+
+@@ function/server/EntityResponse.java :: 13
+Set the HTTP status.
+
+@@ function/server/EntityResponse.java :: 14
+Add the given cookie to the response.
+
+@@ function/server/EntityResponse.java :: 15
+Manipulate this response's cookies with the given consumer. The
+cookies provided to the consumer are "live", so that the consumer can be used to
+{@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
+{@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
+{@link MultiValueMap} methods.
+
+@@ function/server/EntityResponse.java :: 16
+Set the set of allowed {@link HttpMethod HTTP methods}, as specified
+by the {@code Allow} header.
+
+@@ function/server/EntityResponse.java :: 17
+Set the set of allowed {@link HttpMethod HTTP methods}, as specified
+by the {@code Allow} header.
+
+@@ function/server/EntityResponse.java :: 18
+Set the entity tag of the body, as specified by the {@code ETag} header.
+
+@@ function/server/EntityResponse.java :: 19
+Set the time the resource was last changed, as specified by the
+{@code Last-Modified} header.
+<p>The date should be specified as the number of milliseconds since
+January 1, 1970 GMT.
+
+@@ function/server/EntityResponse.java :: 20
+Set the time the resource was last changed, as specified by the
+{@code Last-Modified} header.
+<p>The date should be specified as the number of milliseconds since
+January 1, 1970 GMT.
+
+@@ function/server/EntityResponse.java :: 21
+Set the location of a resource, as specified by the {@code Location} header.
+
+@@ function/server/EntityResponse.java :: 22
+Set the caching directives for the resource, as specified by the HTTP 1.1
+{@code Cache-Control} header.
+<p>A {@code CacheControl} instance can be built like
+{@code CacheControl.maxAge(3600).cachePublic().noTransform()}.
+
+@@ function/server/EntityResponse.java :: 23
+Configure one or more request header names (e.g. "Accept-Language") to
+add to the "Vary" response header to inform clients that the response is
+subject to content negotiation and variances based on the value of the
+given request headers. The configured request header names are added only
+if not already present in the response "Vary" header.
+
+@@ function/server/EntityResponse.java :: 24
+Set the length of the body in bytes, as specified by the
+{@code Content-Length} header.
+
+@@ function/server/EntityResponse.java :: 25
+Set the {@linkplain MediaType media type} of the body, as specified by the
+{@code Content-Type} header.
+
+@@ function/server/EntityResponse.java :: 26
+Add a serialization hint like {@link Jackson2CodecSupport#JSON_VIEW_HINT} to
+customize how the body will be serialized.
+
+@@ function/server/EntityResponse.java :: 27
+Customize the serialization hints with the given consumer.
+
+@@ function/server/EntityResponse.java :: 28
+Build the response.
+
+#### FILE function/server/HandlerFilterFunction.java
+@@ function/server/HandlerFilterFunction.java :: 1
+Represents a function that filters a {@linkplain HandlerFunction handler function}.
+
+@@ function/server/HandlerFilterFunction.java :: 2
+Apply this filter to the given handler function. The given
+{@linkplain HandlerFunction handler function} represents the next entity in the chain,
+and can be {@linkplain HandlerFunction#handle(ServerRequest) invoked} in order to
+proceed to this entity, or not invoked to block the chain.
+
+@@ function/server/HandlerFilterFunction.java :: 3
+Return a composed filter function that first applies this filter, and then applies the
+{@code after} filter.
+
+@@ function/server/HandlerFilterFunction.java :: 4
+Apply this filter to the given handler function, resulting in a filtered handler function.
+
+@@ function/server/HandlerFilterFunction.java :: 5
+Adapt the given request processor function to a filter function that only operates
+on the {@code ServerRequest}.
+
+@@ function/server/HandlerFilterFunction.java :: 6
+Adapt the given response processor function to a filter function that only operates
+on the {@code ServerResponse}.
+
+#### FILE function/server/HandlerFunction.java
+@@ function/server/HandlerFunction.java :: 1
+Represents a function that handles a {@linkplain ServerRequest request}.
+
+@@ function/server/HandlerFunction.java :: 2
+Handle the given request.
+
+#### FILE function/server/HandlerStrategies.java
+@@ function/server/HandlerStrategies.java :: 1
+Defines the strategies to be used for processing {@link HandlerFunction HandlerFunctions}.
+
+<p>An instance of this class is immutable. Instances are typically created through the
+mutable {@link Builder}: either through {@link #builder()} to set up default strategies,
+or {@link #empty()} to start from scratch.
+
+@@ function/server/HandlerStrategies.java :: 2
+Return the {@link HttpMessageReader HttpMessageReaders} to be used for request body conversion.
+
+@@ function/server/HandlerStrategies.java :: 3
+Return the {@link HttpMessageWriter HttpMessageWriters} to be used for response body conversion.
+
+@@ function/server/HandlerStrategies.java :: 4
+Return the {@link ViewResolver ViewResolvers} to be used for view name resolution.
+
+@@ function/server/HandlerStrategies.java :: 5
+Return the {@link WebFilter WebFilters} to be used for filtering the request and response.
+
+@@ function/server/HandlerStrategies.java :: 6
+Return the {@link WebExceptionHandler WebExceptionHandlers} to be used for handling exceptions.
+
+@@ function/server/HandlerStrategies.java :: 7
+Return the {@link LocaleContextResolver} to be used for resolving locale context.
+
+@@ function/server/HandlerStrategies.java :: 8
+Return a new {@code HandlerStrategies} with default initialization.
+
+@@ function/server/HandlerStrategies.java :: 9
+Return a mutable builder for a {@code HandlerStrategies} with default initialization.
+
+@@ function/server/HandlerStrategies.java :: 10
+Return a mutable, empty builder for a {@code HandlerStrategies}.
+
+@@ function/server/HandlerStrategies.java :: 11
+A mutable builder for a {@link HandlerStrategies}.
+
+@@ function/server/HandlerStrategies.java :: 12
+Customize the list of server-side HTTP message readers and writers.
+
+@@ function/server/HandlerStrategies.java :: 13
+Add the given view resolver to this builder.
+
+@@ function/server/HandlerStrategies.java :: 14
+Add the given web filter to this builder.
+
+@@ function/server/HandlerStrategies.java :: 15
+Add the given exception handler to this builder.
+
+@@ function/server/HandlerStrategies.java :: 16
+Add the given locale context resolver to this builder.
+
+@@ function/server/HandlerStrategies.java :: 17
+Builds the {@link HandlerStrategies}.
+
+#### FILE function/server/PathResourceLookupFunction.java
+@@ function/server/PathResourceLookupFunction.java :: 1
+Lookup function used by {@link RouterFunctions#resources(String, Resource)}.
+
+#### FILE function/server/RenderingResponse.java
+@@ function/server/RenderingResponse.java :: 1
+Rendering-specific subtype of {@link ServerResponse} that exposes model and template data.
+
+@@ function/server/RenderingResponse.java :: 2
+Return the name of the template to be rendered.
+
+@@ function/server/RenderingResponse.java :: 3
+Return the unmodifiable model map.
+
+@@ function/server/RenderingResponse.java :: 4
+Create a builder with the template name, status code, headers and model of the given response.
+
+@@ function/server/RenderingResponse.java :: 5
+Create a builder with the given template name.
+
+@@ function/server/RenderingResponse.java :: 6
+Defines a builder for {@code RenderingResponse}.
+
+@@ function/server/RenderingResponse.java :: 7
+Add the supplied attribute to the model using a
+{@linkplain org.springframework.core.Conventions#getVariableName generated name}.
+<p><em>Note: Empty {@link Collection Collections} are not added to
+the model when using this method because we cannot correctly determine
+the true convention name. View code should check for {@code null} rather
+than for empty collections.</em>
+
+@@ function/server/RenderingResponse.java :: 8
+Add the supplied attribute value under the supplied name.
+
+@@ function/server/RenderingResponse.java :: 9
+Copy all attributes in the supplied array into the model,
+using attribute name generation for each element.
+
+@@ function/server/RenderingResponse.java :: 10
+Copy all attributes in the supplied {@code Collection} into the model,
+using attribute name generation for each element.
+
+@@ function/server/RenderingResponse.java :: 11
+Copy all attributes in the supplied {@code Map} into the model.
+
+@@ function/server/RenderingResponse.java :: 12
+Add the given header value(s) under the given name.
+
+@@ function/server/RenderingResponse.java :: 13
+Copy the given headers into the entity's headers map.
+
+@@ function/server/RenderingResponse.java :: 14
+Set the HTTP status.
+
+@@ function/server/RenderingResponse.java :: 15
+Set the HTTP status.
+
+@@ function/server/RenderingResponse.java :: 16
+Add the given cookie to the response.
+
+@@ function/server/RenderingResponse.java :: 17
+Manipulate this response's cookies with the given consumer. The
+cookies provided to the consumer are "live", so that the consumer can be used to
+{@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
+{@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
+{@link MultiValueMap} methods.
+
+@@ function/server/RenderingResponse.java :: 18
+Build the response.
+
+#### FILE function/server/RequestPredicate.java
+@@ function/server/RequestPredicate.java :: 1
+Represents a function that evaluates on a given {@link ServerRequest}.
+Instances of this function that evaluate on common request properties
+can be found in {@link RequestPredicates}.
+
+@@ function/server/RequestPredicate.java :: 2
+Evaluate this predicate on the given request.
+
+@@ function/server/RequestPredicate.java :: 3
+Return a composed request predicate that tests against both this predicate AND
+the {@code other} predicate. When evaluating the composed predicate, if this
+predicate is {@code false}, then the {@code other} predicate is not evaluated.
+
+@@ function/server/RequestPredicate.java :: 4
+Return a predicate that represents the logical negation of this predicate.
+
+@@ function/server/RequestPredicate.java :: 5
+Return a composed request predicate that tests against both this predicate OR
+the {@code other} predicate. When evaluating the composed predicate, if this
+predicate is {@code true}, then the {@code other} predicate is not evaluated.
+
+@@ function/server/RequestPredicate.java :: 6
+Transform the given request into a request used for a nested route. For instance,
+a path-based predicate can return a {@code ServerRequest} with a path remaining
+after a match.
+<p>The default implementation returns an {@code Optional} wrapping the given request if
+{@link #test(ServerRequest)} evaluates to {@code true}; or {@link Optional#empty()}
+if it evaluates to {@code false}.
+
+@@ function/server/RequestPredicate.java :: 7
+Accept the given visitor. Default implementation calls
+{@link RequestPredicates.Visitor#unknown(RequestPredicate)}; composed {@code RequestPredicate}
+implementations are expected to call {@code accept} for all components that make up this
+request predicate.
+
+#### FILE function/server/RequestPredicates.java
+@@ function/server/RequestPredicates.java :: 1
+Implementations of {@link RequestPredicate} that implement various useful
+request matching operations, such as matching based on path, HTTP method, etc.
+
+@@ function/server/RequestPredicates.java :: 2
+Return a {@code RequestPredicate} that always matches.
+
+@@ function/server/RequestPredicates.java :: 3
+Return a {@code RequestPredicate} that matches if the request's
+HTTP method is equal to the given method.
+
+@@ function/server/RequestPredicates.java :: 4
+Return a {@code RequestPredicate} that matches if the request's
+HTTP method is equal to one the of the given methods.
+
+@@ function/server/RequestPredicates.java :: 5
+Return a {@code RequestPredicate} that tests the request path
+against the given path pattern.
+
+@@ function/server/RequestPredicates.java :: 6
+Return a function that creates new path-matching {@code RequestPredicates}
+from pattern Strings using the given {@link PathPatternParser}.
+<p>This method can be used to specify a non-default, customized
+{@code PathPatternParser} when resolving path patterns.
+
+@@ function/server/RequestPredicates.java :: 7
+Return a {@code RequestPredicate} that tests the request's headers
+against the given headers predicate.
+
+@@ function/server/RequestPredicates.java :: 8
+Return a {@code RequestPredicate} that tests if the request's
+{@linkplain ServerRequest.Headers#contentType() content type} is
+{@linkplain MediaType#includes(MediaType) included} by any of the given media types.
+
+@@ function/server/RequestPredicates.java :: 9
+Return a {@code RequestPredicate} that tests if the request's
+{@linkplain ServerRequest.Headers#accept() accept} header is
+{@linkplain MediaType#isCompatibleWith(MediaType) compatible} with any of the given media types.
+
+@@ function/server/RequestPredicates.java :: 10
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code GET}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 11
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code HEAD}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 12
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code POST}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 13
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code PUT}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 14
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code PATCH}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 15
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code DELETE}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 16
+Return a {@code RequestPredicate} that matches if request's HTTP method is {@code OPTIONS}
+and the given {@code pattern} matches against the request path.
+
+@@ function/server/RequestPredicates.java :: 17
+Return a {@code RequestPredicate} that matches if the request's path has the given extension.
+
+@@ function/server/RequestPredicates.java :: 18
+Return a {@code RequestPredicate} that matches if the request's path matches the given
+predicate.
+
+@@ function/server/RequestPredicates.java :: 19
+Return a {@code RequestPredicate} that matches if the request's query parameter of the given name
+has the given value.
+
+@@ function/server/RequestPredicates.java :: 20
+Return a {@code RequestPredicate} that tests the request's query parameter of the given name
+against the given predicate.
+
+@@ function/server/RequestPredicates.java :: 21
+Receives notifications from the logical structure of request predicates.
+
+@@ function/server/RequestPredicates.java :: 22
+Receive notification of an HTTP method predicate.
+
+@@ function/server/RequestPredicates.java :: 23
+Receive notification of a path predicate.
+
+@@ function/server/RequestPredicates.java :: 24
+Receive notification of a path extension predicate.
+
+@@ function/server/RequestPredicates.java :: 25
+Receive notification of an HTTP header predicate.
+
+@@ function/server/RequestPredicates.java :: 26
+Receive notification of a query parameter predicate.
+
+@@ function/server/RequestPredicates.java :: 27
+Receive first notification of a logical AND predicate.
+The first subsequent notification will contain the left-hand side of the AND-predicate;
+followed by {@link #and()}, followed by the right-hand side, followed by {@link #endAnd()}.
+
+@@ function/server/RequestPredicates.java :: 28
+Receive "middle" notification of a logical AND predicate.
+The following notification contains the right-hand side, followed by {@link #endAnd()}.
+
+@@ function/server/RequestPredicates.java :: 29
+Receive last notification of a logical AND predicate.
+
+@@ function/server/RequestPredicates.java :: 30
+Receive first notification of a logical OR predicate.
+The first subsequent notification will contain the left-hand side of the OR-predicate;
+the second notification contains the right-hand side, followed by {@link #endOr()}.
+
+@@ function/server/RequestPredicates.java :: 31
+Receive "middle" notification of a logical OR predicate.
+The following notification contains the right-hand side, followed by {@link #endOr()}.
+
+@@ function/server/RequestPredicates.java :: 32
+Receive last notification of a logical OR predicate.
+
+@@ function/server/RequestPredicates.java :: 33
+Receive first notification of a negated predicate.
+The first subsequent notification will contain the negated predicated, followed
+by {@link #endNegate()}.
+
+@@ function/server/RequestPredicates.java :: 34
+Receive last notification of a negated predicate.
+
+@@ function/server/RequestPredicates.java :: 35
+Receive first notification of an unknown predicate.
+
+@@ function/server/RequestPredicates.java :: 36
+{@link RequestPredicate} for where both {@code left} and {@code right} predicates
+must match.
+
+@@ function/server/RequestPredicates.java :: 37
+{@link RequestPredicate} that negates a delegate predicate.
+
+@@ function/server/RequestPredicates.java :: 38
+{@link RequestPredicate} where either {@code left} or {@code right} predicates
+may match.
+
+#### FILE function/server/ResourceHandlerFunction.java
+@@ function/server/ResourceHandlerFunction.java :: 1
+Resource-based implementation of {@link HandlerFunction}.
+
+#### FILE function/server/RouterFunction.java
+@@ function/server/RouterFunction.java :: 1
+Represents a function that routes to a {@linkplain HandlerFunction handler function}.
+
+@@ function/server/RouterFunction.java :: 2
+Return the {@linkplain HandlerFunction handler function} that matches the given request.
+
+@@ function/server/RouterFunction.java :: 3
+Return a composed routing function that first invokes this function,
+and then invokes the {@code other} function (of the same response type {@code T})
+if this route had {@linkplain Mono#empty() no result}.
+
+@@ function/server/RouterFunction.java :: 4
+Return a composed routing function that first invokes this function,
+and then invokes the {@code other} function (of a different response type) if this route had
+{@linkplain Mono#empty() no result}.
+
+@@ function/server/RouterFunction.java :: 5
+Return a composed routing function that routes to the given handler function if this
+route does not match and the given request predicate applies. This method is a convenient
+combination of {@link #and(RouterFunction)} and
+{@link RouterFunctions#route(RequestPredicate, HandlerFunction)}.
+
+@@ function/server/RouterFunction.java :: 6
+Return a composed routing function that routes to the given router function if this
+route does not match and the given request predicate applies. This method is a convenient
+combination of {@link #and(RouterFunction)} and
+{@link RouterFunctions#nest(RequestPredicate, RouterFunction)}.
+
+@@ function/server/RouterFunction.java :: 7
+Filter all {@linkplain HandlerFunction handler functions} routed by this function with the given
+{@linkplain HandlerFilterFunction filter function}.
+
+@@ function/server/RouterFunction.java :: 8
+Accept the given visitor. Default implementation calls
+{@link RouterFunctions.Visitor#unknown(RouterFunction)}; composed {@code RouterFunction}
+implementations are expected to call {@code accept} for all components that make up this
+router function.
+
+@@ function/server/RouterFunction.java :: 9
+Return a new routing function with the given attribute.
+
+@@ function/server/RouterFunction.java :: 10
+Return a new routing function with attributes manipulated with the given consumer.
+<p>The map provided to the consumer is "live", so that the consumer can be used
+to {@linkplain Map#put(Object, Object) overwrite} existing attributes,
+{@linkplain Map#remove(Object) remove} attributes, or use any of the other
+{@link Map} methods.
+
+#### FILE function/server/RouterFunctionBuilder.java
+@@ function/server/RouterFunctionBuilder.java :: 1
+Default implementation of {@link RouterFunctions.Builder}.
+
+@@ function/server/RouterFunctionBuilder.java :: 2
+Router function returned by {@link #build()} that simply iterates over the registered routes.
+
+#### FILE function/server/RouterFunctions.java
+@@ function/server/RouterFunctions.java :: 1
+<strong>Central entry point to Spring's functional web framework.</strong>
+Exposes routing functionality, such as to {@linkplain #route() create} a
+{@code RouterFunction} using a discoverable builder-style API, to
+{@linkplain #route(RequestPredicate, HandlerFunction) create} a {@code RouterFunction}
+given a {@code RequestPredicate} and {@code HandlerFunction}, and to do further
+{@linkplain #nest(RequestPredicate, RouterFunction) subrouting} on an existing routing
+function.
+
+<p>Additionally, this class can {@linkplain #toHttpHandler(RouterFunction) transform} a
+{@code RouterFunction} into an {@code HttpHandler}, which can be run in Servlet 3.1+,
+Reactor, or Undertow.
+
+@@ function/server/RouterFunctions.java :: 2
+Name of the {@link ServerWebExchange} attribute that contains the {@link ServerRequest}.
+
+@@ function/server/RouterFunctions.java :: 3
+Name of the {@link ServerWebExchange} attribute that contains the URI
+templates map, mapping variable names to values.
+
+@@ function/server/RouterFunctions.java :: 4
+Name of the {@link ServerWebExchange#getAttributes() attribute} that
+contains the matching pattern, as a {@link org.springframework.web.util.pattern.PathPattern}.
+
+@@ function/server/RouterFunctions.java :: 5
+Offers a discoverable way to create router functions through a builder-style interface.
+
+@@ function/server/RouterFunctions.java :: 6
+Route to the given handler function if the given request predicate applies.
+<p>For instance, the following example routes GET requests for "/user" to the
+{@code listUsers} method in {@code userController}:
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+    RouterFunctions.route(RequestPredicates.GET("/user"), userController::listUsers);
+</pre>
+
+@@ function/server/RouterFunctions.java :: 7
+Route to the given router function if the given request predicate applies. This method can be
+used to create <strong>nested routes</strong>, where a group of routes share a common path
+(prefix), header, or other request predicate.
+<p>For instance, the following example first creates a composed route that resolves to
+{@code listUsers} for a GET, and {@code createUser} for a POST. This composed route then gets
+nested with a "/user" path predicate, so that GET requests for "/user" will list users,
+and POST request for "/user" will create a new user.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; userRoutes =
+  RouterFunctions.route(RequestPredicates.method(HttpMethod.GET), this::listUsers)
+    .andRoute(RequestPredicates.method(HttpMethod.POST), this::createUser);
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.nest(RequestPredicates.path("/user"), userRoutes);
+</pre>
+
+@@ function/server/RouterFunctions.java :: 8
+Route requests that match the given pattern to resources relative to the given root location.
+For instance
+<pre class="code">
+Resource location = new FileSystemResource("public-resources/");
+RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources("/resources/**", location);
+</pre>
+
+@@ function/server/RouterFunctions.java :: 9
+Returns the resource lookup function used by {@link #resources(String, Resource)}.
+The returned function can be {@linkplain Function#andThen(Function) composed} on, for
+instance to return a default resource when the lookup function does not match:
+<pre class="code">
+Mono&lt;Resource&gt; defaultResource = Mono.just(new ClassPathResource("index.html"));
+Function&lt;ServerRequest, Mono&lt;Resource&gt;&gt; lookupFunction =
+  RouterFunctions.resourceLookupFunction("/resources/**", new FileSystemResource("public-resources/"))
+    .andThen(resourceMono -&gt; resourceMono.switchIfEmpty(defaultResource));
+RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources(lookupFunction);
+</pre>
+
+@@ function/server/RouterFunctions.java :: 10
+Route to resources using the provided lookup function. If the lookup function provides a
+{@link Resource} for the given request, it will be it will be exposed using a
+{@link HandlerFunction} that handles GET, HEAD, and OPTIONS requests.
+
+@@ function/server/RouterFunctions.java :: 11
+Convert the given {@linkplain RouterFunction router function} into a {@link HttpHandler}.
+This conversion uses {@linkplain HandlerStrategies#builder() default strategies}.
+<p>The returned handler can be adapted to run in
+<ul>
+<li>Servlet 3.1+ using the
+{@link org.springframework.http.server.reactive.ServletHttpHandlerAdapter},</li>
+<li>Reactor using the
+{@link org.springframework.http.server.reactive.ReactorHttpHandlerAdapter},</li>
+<li>Undertow using the
+{@link org.springframework.http.server.reactive.UndertowHttpHandlerAdapter}.</li>
+</ul>
+<p>Note that {@code HttpWebHandlerAdapter} also implements {@link WebHandler}, allowing
+for additional filter and exception handler registration through
+{@link WebHttpHandlerBuilder}.
+
+@@ function/server/RouterFunctions.java :: 12
+Convert the given {@linkplain RouterFunction router function} into a {@link HttpHandler},
+using the given strategies.
+<p>The returned {@code HttpHandler} can be adapted to run in
+<ul>
+<li>Servlet 3.1+ using the
+{@link org.springframework.http.server.reactive.ServletHttpHandlerAdapter},</li>
+<li>Reactor using the
+{@link org.springframework.http.server.reactive.ReactorHttpHandlerAdapter},</li>
+<li>Undertow using the
+{@link org.springframework.http.server.reactive.UndertowHttpHandlerAdapter}.</li>
+</ul>
+
+@@ function/server/RouterFunctions.java :: 13
+Convert the given {@linkplain RouterFunction router function} into a {@link WebHandler}.
+This conversion uses {@linkplain HandlerStrategies#builder() default strategies}.
+
+@@ function/server/RouterFunctions.java :: 14
+Convert the given {@linkplain RouterFunction router function} into a {@link WebHandler},
+using the given strategies.
+
+@@ function/server/RouterFunctions.java :: 15
+Changes the {@link PathPatternParser} on the given {@linkplain RouterFunction router function}. This method
+can be used to change the {@code PathPatternParser} properties from the defaults, for instance to change
+{@linkplain PathPatternParser#setCaseSensitive(boolean) case sensitivity}.
+
+@@ function/server/RouterFunctions.java :: 16
+Represents a discoverable builder for router functions.
+Obtained via {@link RouterFunctions#route()}.
+
+@@ function/server/RouterFunctions.java :: 17
+Adds a route to the given handler function that handles HTTP {@code GET} requests.
+
+@@ function/server/RouterFunctions.java :: 18
+Adds a route to the given handler function that handles all HTTP {@code GET} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 19
+Adds a route to the given handler function that handles all HTTP {@code GET} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 20
+Adds a route to the given handler function that handles all HTTP {@code GET} requests
+that match the given pattern and predicate.
+<p>For instance, the following example routes GET requests for "/user" that accept JSON
+to the {@code listUsers} method in {@code userController}:
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .GET("/user", RequestPredicates.accept(MediaType.APPLICATION_JSON), userController::listUsers)
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 21
+Adds a route to the given handler function that handles HTTP {@code HEAD} requests.
+
+@@ function/server/RouterFunctions.java :: 22
+Adds a route to the given handler function that handles all HTTP {@code HEAD} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 23
+Adds a route to the given handler function that handles all HTTP {@code HEAD} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 24
+Adds a route to the given handler function that handles all HTTP {@code HEAD} requests
+that match the given pattern and predicate.
+
+@@ function/server/RouterFunctions.java :: 25
+Adds a route to the given handler function that handles HTTP {@code POST} requests.
+
+@@ function/server/RouterFunctions.java :: 26
+Adds a route to the given handler function that handles all HTTP {@code POST} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 27
+Adds a route to the given handler function that handles all HTTP {@code POST} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 28
+Adds a route to the given handler function that handles all HTTP {@code POST} requests
+that match the given pattern and predicate.
+<p>For instance, the following example routes POST requests for "/user" that contain JSON
+to the {@code addUser} method in {@code userController}:
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .POST("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::addUser)
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 29
+Adds a route to the given handler function that handles HTTP {@code PUT} requests.
+
+@@ function/server/RouterFunctions.java :: 30
+Adds a route to the given handler function that handles all HTTP {@code PUT} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 31
+Adds a route to the given handler function that handles all HTTP {@code PUT} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 32
+Adds a route to the given handler function that handles all HTTP {@code PUT} requests
+that match the given pattern and predicate.
+<p>For instance, the following example routes PUT requests for "/user" that contain JSON
+to the {@code editUser} method in {@code userController}:
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .PUT("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::editUser)
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 33
+Adds a route to the given handler function that handles HTTP {@code PATCH} requests.
+
+@@ function/server/RouterFunctions.java :: 34
+Adds a route to the given handler function that handles all HTTP {@code PATCH} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 35
+Adds a route to the given handler function that handles all HTTP {@code PATCH} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 36
+Adds a route to the given handler function that handles all HTTP {@code PATCH} requests
+that match the given pattern and predicate.
+<p>For instance, the following example routes PATCH requests for "/user" that contain JSON
+to the {@code editUser} method in {@code userController}:
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .PATCH("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::editUser)
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 37
+Adds a route to the given handler function that handles HTTP {@code DELETE} requests.
+
+@@ function/server/RouterFunctions.java :: 38
+Adds a route to the given handler function that handles all HTTP {@code DELETE} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 39
+Adds a route to the given handler function that handles all HTTP {@code DELETE} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 40
+Adds a route to the given handler function that handles all HTTP {@code DELETE} requests
+that match the given pattern and predicate.
+
+@@ function/server/RouterFunctions.java :: 41
+Adds a route to the given handler function that handles HTTP {@code OPTIONS} requests.
+
+@@ function/server/RouterFunctions.java :: 42
+Adds a route to the given handler function that handles all HTTP {@code OPTIONS} requests
+that match the given pattern.
+
+@@ function/server/RouterFunctions.java :: 43
+Adds a route to the given handler function that handles all HTTP {@code OPTIONS} requests
+that match the given predicate.
+
+@@ function/server/RouterFunctions.java :: 44
+Adds a route to the given handler function that handles all HTTP {@code OPTIONS} requests
+that match the given pattern and predicate.
+
+@@ function/server/RouterFunctions.java :: 45
+Adds a route to the given handler function that handles all requests that match the
+given predicate.
+
+@@ function/server/RouterFunctions.java :: 46
+Adds the given route to this builder. Can be used to merge externally defined router
+functions into this builder, or can be combined with
+{@link RouterFunctions#route(RequestPredicate, HandlerFunction)}
+to allow for more flexible predicate matching.
+<p>For instance, the following example adds the router function returned from
+{@code OrderController.routerFunction()}.
+to the {@code changeUser} method in {@code userController}:
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .GET("/users", userController::listUsers)
+    .add(orderController.routerFunction());
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 47
+Route requests that match the given pattern to resources relative to the given root location.
+For instance
+<pre class="code">
+Resource location = new FileSystemResource("public-resources/");
+RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources("/resources/**", location);
+</pre>
+
+@@ function/server/RouterFunctions.java :: 48
+Route to resources using the provided lookup function. If the lookup function provides a
+{@link Resource} for the given request, it will be it will be exposed using a
+{@link HandlerFunction} that handles GET, HEAD, and OPTIONS requests.
+
+@@ function/server/RouterFunctions.java :: 49
+Route to the supplied router function if the given request predicate applies. This method
+can be used to create <strong>nested routes</strong>, where a group of routes share a
+common path (prefix), header, or other request predicate.
+<p>For instance, the following example creates a nested route with a "/user" path
+predicate, so that GET requests for "/user" will list users,
+and POST request for "/user" will create a new user.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .nest(RequestPredicates.path("/user"), () -&gt;
+      RouterFunctions.route()
+        .GET(this::listUsers)
+        .POST(this::createUser)
+        .build())
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 50
+Route to a built router function if the given request predicate applies.
+This method can be used to create <strong>nested routes</strong>, where a group of routes
+share a common path (prefix), header, or other request predicate.
+<p>For instance, the following example creates a nested route with a "/user" path
+predicate, so that GET requests for "/user" will list users,
+and POST request for "/user" will create a new user.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .nest(RequestPredicates.path("/user"), builder -&gt;
+      builder.GET(this::listUsers)
+             .POST(this::createUser))
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 51
+Route to the supplied router function if the given path prefix pattern applies. This method
+can be used to create <strong>nested routes</strong>, where a group of routes share a
+common path prefix. Specifically, this method can be used to merge externally defined
+router functions under a path prefix.
+<p>For instance, the following example creates a nested route with a "/user" path
+predicate that delegates to the router function defined in {@code userController},
+and with a "/order" path that delegates to {@code orderController}.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .path("/user", userController::routerFunction)
+    .path("/order", orderController::routerFunction)
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 52
+Route to a built router function if the given path prefix pattern applies.
+This method can be used to create <strong>nested routes</strong>, where a group of routes
+share a common path prefix.
+<p>For instance, the following example creates a nested route with a "/user" path
+predicate, so that GET requests for "/user" will list users,
+and POST request for "/user" will create a new user.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .path("/user", builder -&gt;
+      builder.GET(this::listUsers)
+             .POST(this::createUser))
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 53
+Filters all routes created by this builder with the given filter function. Filter
+functions are typically used to address cross-cutting concerns, such as logging,
+security, etc.
+<p>For instance, the following example creates a filter that returns a 401 Unauthorized
+response if the request does not contain the necessary authentication headers.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .filter((request, next) -&gt; {
+      // check for authentication headers
+      if (isAuthenticated(request)) {
+        return next.handle(request);
+      }
+      else {
+        return ServerResponse.status(HttpStatus.UNAUTHORIZED).build();
+      }
+    })
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 54
+Filter the request object for all routes created by this builder with the given request
+processing function. Filters are typically used to address cross-cutting concerns, such
+as logging, security, etc.
+<p>For instance, the following example creates a filter that logs the request before
+the handler function executes.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .before(request -&gt; {
+      log(request);
+      return request;
+    })
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 55
+Filter the response object for all routes created by this builder with the given response
+processing function. Filters are typically used to address cross-cutting concerns, such
+as logging, security, etc.
+<p>For instance, the following example creates a filter that logs the response after
+the handler function executes.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .after((request, response) -&gt; {
+      log(response);
+      return response;
+    })
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 56
+Filters all exceptions that match the predicate by applying the given response provider
+function.
+<p>For instance, the following example creates a filter that returns a 500 response
+status when an {@code IllegalStateException} occurs.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .onError(e -&gt; e instanceof IllegalStateException,
+      (e, request) -&gt; ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build())
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 57
+Filters all exceptions of the given type by applying the given response provider
+function.
+<p>For instance, the following example creates a filter that returns a 500 response
+status when an {@code IllegalStateException} occurs.
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .onError(IllegalStateException.class,
+      (e, request) -&gt; ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build())
+    .build();
+</pre>
+
+@@ function/server/RouterFunctions.java :: 58
+Add an attribute with the given name and value to the last route built with this builder.
+
+@@ function/server/RouterFunctions.java :: 59
+Manipulate the attributes of the last route built with the given consumer.
+<p>The map provided to the consumer is "live", so that the consumer can be used
+to {@linkplain Map#put(Object, Object) overwrite} existing attributes,
+{@linkplain Map#remove(Object) remove} attributes, or use any of the other
+{@link Map} methods.
+
+@@ function/server/RouterFunctions.java :: 60
+Builds the {@code RouterFunction}. All created routes are
+{@linkplain RouterFunction#and(RouterFunction) composed} with one another, and filters
+(if any) are applied to the result.
+
+@@ function/server/RouterFunctions.java :: 61
+Receives notifications from the logical structure of router functions.
+
+@@ function/server/RouterFunctions.java :: 62
+Receive notification of the beginning of a nested router function.
+
+@@ function/server/RouterFunctions.java :: 63
+Receive notification of the end of a nested router function.
+
+@@ function/server/RouterFunctions.java :: 64
+Receive notification of a standard predicated route to a handler function.
+
+@@ function/server/RouterFunctions.java :: 65
+Receive notification of a resource router function.
+
+@@ function/server/RouterFunctions.java :: 66
+Receive notification of a router function with attributes. The
+given attributes apply to the router notification that follows this one.
+
+@@ function/server/RouterFunctions.java :: 67
+Receive notification of an unknown router function. This method is called for router
+functions that were not created via the various {@link RouterFunctions} methods.
+
+@@ function/server/RouterFunctions.java :: 68
+A composed routing function that first invokes one function, and then invokes the
+another function (of the same response type {@code T}) if this route had
+{@linkplain Mono#empty() no result}.
+
+@@ function/server/RouterFunctions.java :: 69
+A composed routing function that first invokes one function, and then invokes
+another function (of a different response type) if this route had
+{@linkplain Mono#empty() no result}.
+
+@@ function/server/RouterFunctions.java :: 70
+Filter the specified {@linkplain HandlerFunction handler functions} with the given
+{@linkplain HandlerFilterFunction filter function}.
+
+#### FILE function/server/ServerRequest.java
+@@ function/server/ServerRequest.java :: 1
+Represents a server-side HTTP request, as handled by a {@code HandlerFunction}.
+
+<p>Access to headers and body is offered by {@link Headers} and
+{@link #body(BodyExtractor)}, respectively.
+
+@@ function/server/ServerRequest.java :: 2
+Get the HTTP method.
+
+@@ function/server/ServerRequest.java :: 3
+Get the name of the HTTP method.
+
+@@ function/server/ServerRequest.java :: 4
+Get the request URI.
+
+@@ function/server/ServerRequest.java :: 5
+Get a {@code UriBuilderComponents} from the URI associated with this
+{@code ServerRequest}.
+<p><strong>Note:</strong> as of 5.1 this method ignores {@code "Forwarded"}
+and {@code "X-Forwarded-*"} headers that specify the
+client-originated address. Consider using the {@code ForwardedHeaderFilter}
+to extract and use, or to discard such headers.
+
+@@ function/server/ServerRequest.java :: 6
+Get the request path.
+
+@@ function/server/ServerRequest.java :: 7
+Get the request path as a {@code PathContainer}.
+
+@@ function/server/ServerRequest.java :: 8
+Get the request path as a {@code PathContainer}.
+
+@@ function/server/ServerRequest.java :: 9
+Get the headers of this request.
+
+@@ function/server/ServerRequest.java :: 10
+Get the cookies of this request.
+
+@@ function/server/ServerRequest.java :: 11
+Get the remote address to which this request is connected, if available.
+
+@@ function/server/ServerRequest.java :: 12
+Get the local address to which this request is connected, if available.
+
+@@ function/server/ServerRequest.java :: 13
+Get the readers used to convert the body of this request.
+
+@@ function/server/ServerRequest.java :: 14
+Extract the body with the given {@code BodyExtractor}.
+
+@@ function/server/ServerRequest.java :: 15
+Extract the body with the given {@code BodyExtractor} and hints.
+
+@@ function/server/ServerRequest.java :: 16
+Extract the body to a {@code Mono}.
+
+@@ function/server/ServerRequest.java :: 17
+Extract the body to a {@code Mono}.
+
+@@ function/server/ServerRequest.java :: 18
+Extract the body to a {@code Flux}.
+
+@@ function/server/ServerRequest.java :: 19
+Extract the body to a {@code Flux}.
+
+@@ function/server/ServerRequest.java :: 20
+Get the request attribute value if present.
+
+@@ function/server/ServerRequest.java :: 21
+Get a mutable map of request attributes.
+
+@@ function/server/ServerRequest.java :: 22
+Get the first query parameter with the given name, if present.
+
+@@ function/server/ServerRequest.java :: 23
+Get all query parameters for this request.
+
+@@ function/server/ServerRequest.java :: 24
+Get the path variable with the given name, if present.
+
+@@ function/server/ServerRequest.java :: 25
+Get all path variables for this request.
+
+@@ function/server/ServerRequest.java :: 26
+Get the web session for this request.
+<p>Always guaranteed to return an instance either matching the session id
+requested by the client, or with a new session id either because the client
+did not specify one or because the underlying session had expired.
+<p>Use of this method does not automatically create a session.
+
+@@ function/server/ServerRequest.java :: 27
+Get the authenticated user for the request, if any.
+
+@@ function/server/ServerRequest.java :: 28
+Get the form data from the body of the request if the Content-Type is
+{@code "application/x-www-form-urlencoded"} or an empty map otherwise.
+<p><strong>Note:</strong> calling this method causes the request body to
+be read and parsed in full, and the resulting {@code MultiValueMap} is
+cached so that this method is safe to call more than once.
+
+@@ function/server/ServerRequest.java :: 29
+Get the parts of a multipart request if the Content-Type is
+{@code "multipart/form-data"} or an empty map otherwise.
+<p><strong>Note:</strong> calling this method causes the request body to
+be read and parsed in full, and the resulting {@code MultiValueMap} is
+cached so that this method is safe to call more than once.
+
+@@ function/server/ServerRequest.java :: 30
+Get the web exchange that this request is based on.
+<p>Note: Manipulating the exchange directly (instead of using the methods provided on
+{@code ServerRequest} and {@code ServerResponse}) can lead to irregular results.
+
+@@ function/server/ServerRequest.java :: 31
+Check whether the requested resource has been modified given the
+supplied last-modified timestamp (as determined by the application).
+<p>If not modified, this method returns a response with corresponding
+status code and headers, otherwise an empty result.
+<p>Typical usage:
+<pre class="code">
+public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
+  Instant lastModified = // application-specific calculation
+	 return request.checkNotModified(lastModified)
+	   .switchIfEmpty(Mono.defer(() -&gt; {
+	     // further request processing, actually building content
+		 return ServerResponse.ok().body(...);
+	   }));
+}</pre>
+<p>This method works with conditional GET/HEAD requests, but
+also with conditional POST/PUT/DELETE requests.
+<p><strong>Note:</strong> you can use either
+this {@code #checkNotModified(Instant)} method; or
+{@link #checkNotModified(String)}. If you want to enforce both
+a strong entity tag and a Last-Modified value,
+as recommended by the HTTP specification,
+then you should use {@link #checkNotModified(Instant, String)}.
+
+@@ function/server/ServerRequest.java :: 32
+Check whether the requested resource has been modified given the
+supplied {@code ETag} (entity tag), as determined by the application.
+<p>If not modified, this method returns a response with corresponding
+status code and headers, otherwise an empty result.
+<p>Typical usage:
+<pre class="code">
+public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
+  String eTag = // application-specific calculation
+	 return request.checkNotModified(eTag)
+	   .switchIfEmpty(Mono.defer(() -&gt; {
+	     // further request processing, actually building content
+		 return ServerResponse.ok().body(...);
+	   }));
+}</pre>
+<p>This method works with conditional GET/HEAD requests, but
+also with conditional POST/PUT/DELETE requests.
+<p><strong>Note:</strong> you can use either
+this {@link #checkNotModified(Instant)} method; or
+{@code #checkNotModified(String)}. If you want enforce both
+a strong entity tag and a Last-Modified value,
+as recommended by the HTTP specification,
+then you should use {@link #checkNotModified(Instant, String)}.
+
+@@ function/server/ServerRequest.java :: 33
+Check whether the requested resource has been modified given the
+supplied {@code ETag} (entity tag) and last-modified timestamp,
+as determined by the application.
+<p>If not modified, this method returns a response with corresponding
+status code and headers, otherwise an empty result.
+<p>Typical usage:
+<pre class="code">
+public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
+  Instant lastModified = // application-specific calculation
+  String eTag = // application-specific calculation
+	 return request.checkNotModified(lastModified, eTag)
+	   .switchIfEmpty(Mono.defer(() -&gt; {
+	     // further request processing, actually building content
+		 return ServerResponse.ok().body(...);
+	   }));
+}</pre>
+<p>This method works with conditional GET/HEAD requests, but
+also with conditional POST/PUT/DELETE requests.
+
+@@ function/server/ServerRequest.java :: 34
+Create a new {@code ServerRequest} based on the given {@code ServerWebExchange} and
+message readers.
+
+@@ function/server/ServerRequest.java :: 35
+Create a builder with the {@linkplain HttpMessageReader message readers},
+method name, URI, headers, cookies, and attributes of the given request.
+
+@@ function/server/ServerRequest.java :: 36
+Represents the headers of the HTTP request.
+
+@@ function/server/ServerRequest.java :: 37
+Get the list of acceptable media types, as specified by the {@code Accept}
+header.
+<p>Returns an empty list if the acceptable media types are unspecified.
+
+@@ function/server/ServerRequest.java :: 38
+Get the list of acceptable charsets, as specified by the
+{@code Accept-Charset} header.
+
+@@ function/server/ServerRequest.java :: 39
+Get the list of acceptable languages, as specified by the
+{@code Accept-Language} header.
+
+@@ function/server/ServerRequest.java :: 40
+Get the length of the body in bytes, as specified by the
+{@code Content-Length} header.
+
+@@ function/server/ServerRequest.java :: 41
+Get the media type of the body, as specified by the
+{@code Content-Type} header.
+
+@@ function/server/ServerRequest.java :: 42
+Get the value of the {@code Host} header, if available.
+<p>If the header value does not contain a port, the
+{@linkplain InetSocketAddress#getPort() port} in the returned address will
+be {@code 0}.
+
+@@ function/server/ServerRequest.java :: 43
+Get the value of the {@code Range} header.
+<p>Returns an empty list when the range is unknown.
+
+@@ function/server/ServerRequest.java :: 44
+Get the header value(s), if any, for the header with the given name.
+<p>Returns an empty list if no header values are found.
+
+@@ function/server/ServerRequest.java :: 45
+Get the first header value, if any, for the header with the given name.
+<p>Returns {@code null} if no header values are found.
+
+@@ function/server/ServerRequest.java :: 46
+Get the headers as an instance of {@link HttpHeaders}.
+
+@@ function/server/ServerRequest.java :: 47
+Defines a builder for a request.
+
+@@ function/server/ServerRequest.java :: 48
+Set the method of the request.
+
+@@ function/server/ServerRequest.java :: 49
+Set the URI of the request.
+
+@@ function/server/ServerRequest.java :: 50
+Set the context path of the request.
+
+@@ function/server/ServerRequest.java :: 51
+Add the given header value(s) under the given name.
+
+@@ function/server/ServerRequest.java :: 52
+Manipulate this request's headers with the given consumer.
+<p>The headers provided to the consumer are "live", so that the consumer can be used to
+{@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
+{@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
+{@link HttpHeaders} methods.
+
+@@ function/server/ServerRequest.java :: 53
+Add a cookie with the given name and value(s).
+
+@@ function/server/ServerRequest.java :: 54
+Manipulate this request's cookies with the given consumer.
+<p>The map provided to the consumer is "live", so that the consumer can be used to
+{@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
+{@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
+{@link MultiValueMap} methods.
+
+@@ function/server/ServerRequest.java :: 55
+Set the body of the request.
+<p>Calling this methods will
+{@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) release}
+the existing body of the builder.
+
+@@ function/server/ServerRequest.java :: 56
+Set the body of the request to the UTF-8 encoded bytes of the given string.
+<p>Calling this methods will
+{@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) release}
+the existing body of the builder.
+
+@@ function/server/ServerRequest.java :: 57
+Add an attribute with the given name and value.
+
+@@ function/server/ServerRequest.java :: 58
+Manipulate this request's attributes with the given consumer.
+<p>The map provided to the consumer is "live", so that the consumer can be used
+to {@linkplain Map#put(Object, Object) overwrite} existing attributes,
+{@linkplain Map#remove(Object) remove} attributes, or use any of the other
+{@link Map} methods.
+
+@@ function/server/ServerRequest.java :: 59
+Build the request.
+
+#### FILE function/server/ServerResponse.java
+@@ function/server/ServerResponse.java :: 1
+Represents a typed server-side HTTP response, as returned
+by a {@linkplain HandlerFunction handler function} or
+{@linkplain HandlerFilterFunction filter function}.
+
+@@ function/server/ServerResponse.java :: 2
+Return the status code of this response.
+
+@@ function/server/ServerResponse.java :: 3
+Return the (potentially non-standard) status code of this response.
+
+@@ function/server/ServerResponse.java :: 4
+Return the headers of this response.
+
+@@ function/server/ServerResponse.java :: 5
+Return the cookies of this response.
+
+@@ function/server/ServerResponse.java :: 6
+Write this response to the given web exchange.
+
+@@ function/server/ServerResponse.java :: 7
+Create a builder with the status code and headers of the given response.
+
+@@ function/server/ServerResponse.java :: 8
+Create a builder with the given HTTP status.
+
+@@ function/server/ServerResponse.java :: 9
+Create a builder with the given HTTP status.
+
+@@ function/server/ServerResponse.java :: 10
+Create a builder with the status set to {@linkplain HttpStatus#OK 200 OK}.
+
+@@ function/server/ServerResponse.java :: 11
+Create a new builder with a {@linkplain HttpStatus#CREATED 201 Created} status
+and a location header set to the given URI.
+
+@@ function/server/ServerResponse.java :: 12
+Create a builder with an {@linkplain HttpStatus#ACCEPTED 202 Accepted} status.
+
+@@ function/server/ServerResponse.java :: 13
+Create a builder with a {@linkplain HttpStatus#NO_CONTENT 204 No Content} status.
+
+@@ function/server/ServerResponse.java :: 14
+Create a builder with a {@linkplain HttpStatus#SEE_OTHER 303 See Other}
+status and a location header set to the given URI.
+
+@@ function/server/ServerResponse.java :: 15
+Create a builder with a {@linkplain HttpStatus#TEMPORARY_REDIRECT 307 Temporary Redirect}
+status and a location header set to the given URI.
+
+@@ function/server/ServerResponse.java :: 16
+Create a builder with a {@linkplain HttpStatus#PERMANENT_REDIRECT 308 Permanent Redirect}
+status and a location header set to the given URI.
+
+@@ function/server/ServerResponse.java :: 17
+Create a builder with a {@linkplain HttpStatus#BAD_REQUEST 400 Bad Request} status.
+
+@@ function/server/ServerResponse.java :: 18
+Create a builder with a {@linkplain HttpStatus#NOT_FOUND 404 Not Found} status.
+
+@@ function/server/ServerResponse.java :: 19
+Create a builder with an
+{@linkplain HttpStatus#UNPROCESSABLE_ENTITY 422 Unprocessable Entity} status.
+
+@@ function/server/ServerResponse.java :: 20
+Defines a builder that adds headers to the response.
+
+@@ function/server/ServerResponse.java :: 21
+Add the given header value(s) under the given name.
+
+@@ function/server/ServerResponse.java :: 22
+Manipulate this response's headers with the given consumer. The
+headers provided to the consumer are "live", so that the consumer can be used to
+{@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
+{@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
+{@link HttpHeaders} methods.
+
+@@ function/server/ServerResponse.java :: 23
+Add the given cookie to the response.
+
+@@ function/server/ServerResponse.java :: 24
+Manipulate this response's cookies with the given consumer. The
+cookies provided to the consumer are "live", so that the consumer can be used to
+{@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
+{@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
+{@link MultiValueMap} methods.
+
+@@ function/server/ServerResponse.java :: 25
+Set the set of allowed {@link HttpMethod HTTP methods}, as specified
+by the {@code Allow} header.
+
+@@ function/server/ServerResponse.java :: 26
+Set the set of allowed {@link HttpMethod HTTP methods}, as specified
+by the {@code Allow} header.
+
+@@ function/server/ServerResponse.java :: 27
+Set the entity tag of the body, as specified by the {@code ETag} header.
+
+@@ function/server/ServerResponse.java :: 28
+Set the time the resource was last changed, as specified by the
+{@code Last-Modified} header.
+
+@@ function/server/ServerResponse.java :: 29
+Set the time the resource was last changed, as specified by the
+{@code Last-Modified} header.
+
+@@ function/server/ServerResponse.java :: 30
+Set the location of a resource, as specified by the {@code Location} header.
+
+@@ function/server/ServerResponse.java :: 31
+Set the caching directives for the resource, as specified by the HTTP 1.1
+{@code Cache-Control} header.
+<p>A {@code CacheControl} instance can be built like
+{@code CacheControl.maxAge(3600).cachePublic().noTransform()}.
+
+@@ function/server/ServerResponse.java :: 32
+Configure one or more request header names (e.g. "Accept-Language") to
+add to the "Vary" response header to inform clients that the response is
+subject to content negotiation and variances based on the value of the
+given request headers. The configured request header names are added only
+if not already present in the response "Vary" header.
+
+@@ function/server/ServerResponse.java :: 33
+Build the response entity with no body.
+
+@@ function/server/ServerResponse.java :: 34
+Build the response entity with no body.
+<p>The response will be committed when the given {@code voidPublisher} completes.
+
+@@ function/server/ServerResponse.java :: 35
+Build the response entity with a custom writer function.
+
+@@ function/server/ServerResponse.java :: 36
+Defines a builder that adds a body to the response.
+
+@@ function/server/ServerResponse.java :: 37
+Set the length of the body in bytes, as specified by the
+{@code Content-Length} header.
+
+@@ function/server/ServerResponse.java :: 38
+Set the {@linkplain MediaType media type} of the body, as specified by the
+{@code Content-Type} header.
+
+@@ function/server/ServerResponse.java :: 39
+Add a serialization hint like {@link Jackson2CodecSupport#JSON_VIEW_HINT}
+to customize how the body will be serialized.
+
+@@ function/server/ServerResponse.java :: 40
+Customize the serialization hints with the given consumer.
+
+@@ function/server/ServerResponse.java :: 41
+Set the body of the response to the given {@code Object} and return it.
+This is a shortcut for using a {@link #body(BodyInserter)} with a
+{@linkplain BodyInserters#fromValue value inserter}.
+
+@@ function/server/ServerResponse.java :: 42
+Set the body from the given {@code Publisher}. Shortcut for
+{@link #body(BodyInserter)} with a
+{@linkplain BodyInserters#fromPublisher Publisher inserter}.
+
+@@ function/server/ServerResponse.java :: 43
+Variant of {@link #body(Publisher, Class)} that allows using any
+producer that can be resolved to {@link Publisher} via
+{@link ReactiveAdapterRegistry}.
+
+@@ function/server/ServerResponse.java :: 44
+Variant of {@link #body(Publisher, Class)} that allows using any
+producer that can be resolved to {@link Publisher} via
+{@link ReactiveAdapterRegistry}.
+
+@@ function/server/ServerResponse.java :: 45
+Variant of {@link #body(Publisher, ParameterizedTypeReference)} that
+allows using any producer that can be resolved to {@link Publisher}
+via {@link ReactiveAdapterRegistry}.
+
+@@ function/server/ServerResponse.java :: 46
+Set the body of the response to the given {@code BodyInserter} and return it.
+
+@@ function/server/ServerResponse.java :: 47
+Set the response body to the given {@code Object} and return it.
+As of 5.2 this method delegates to {@link #bodyValue(Object)}.
+
+@@ function/server/ServerResponse.java :: 48
+Render the template with the given {@code name} using the given {@code modelAttributes}.
+The model attributes are mapped under a
+{@linkplain org.springframework.core.Conventions#getVariableName generated name}.
+<p><em>Note: Empty {@link Collection Collections} are not added to
+the model when using this method because we cannot correctly determine
+the true convention name.</em>
+
+@@ function/server/ServerResponse.java :: 49
+Render the template with the given {@code name} using the given {@code model}.
+
+@@ function/server/ServerResponse.java :: 50
+Defines the context used during the {@link #writeTo(ServerWebExchange, Context)}.
+
+@@ function/server/ServerResponse.java :: 51
+Return the {@link HttpMessageWriter HttpMessageWriters} to be used for response body conversion.
+
+@@ function/server/ServerResponse.java :: 52
+Return the  {@link ViewResolver ViewResolvers} to be used for view name resolution.
+
+#### FILE function/server/ToStringVisitor.java
+@@ function/server/ToStringVisitor.java :: 1
+Implementation of {@link RouterFunctions.Visitor} that creates a formatted
+string representation of router functions.
+
+#### FILE function/server/package-info.java
+@@ function/server/package-info.java :: 1
+Provides the types that make up Spring's functional web framework for Reactive environments.
+

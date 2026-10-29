@@ -19,14 +19,11 @@ package org.springframework.core.codec;
 import org.springframework.lang.Nullable;
 
 /**
- * Indicates an issue with decoding the input stream with a focus on content
- * related issues such as a parse failure. As opposed to more general I/O
- * errors, illegal state, or a {@link CodecException} such as a configuration
- * issue that a {@link Decoder} may choose to raise.
+ * 表示解码输入流时出现的问题，重点关注内容相关问题，例如解析失败。这与更一般的 I/O 错误、非法状态，
+ * 或者 {@link Decoder} 可能选择抛出的、诸如配置问题之类的 {@link CodecException} 不同。
  *
- * <p>For example in server web application, a {@code DecodingException} would
- * translate to a response with a 400 (bad input) status while
- * {@code CodecException} would translate to 500 (server error) status.
+ * <p>例如在服务器端 Web 应用中，{@code DecodingException} 会转换为 400（错误输入）状态的响应，而
+ * {@code CodecException} 会转换为 500（服务器错误）状态。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -36,7 +33,7 @@ import org.springframework.lang.Nullable;
 public class DecodingException extends CodecException {
 
 	/**
-	 * Create a new DecodingException.
+	 * 创建一个新的 DecodingException。
 	 * @param msg the detail message
 	 */
 	public DecodingException(String msg) {
@@ -44,7 +41,7 @@ public class DecodingException extends CodecException {
 	}
 
 	/**
-	 * Create a new DecodingException.
+	 * 创建一个新的 DecodingException。
 	 * @param msg the detail message
 	 * @param cause root cause for the exception, if any
 	 */

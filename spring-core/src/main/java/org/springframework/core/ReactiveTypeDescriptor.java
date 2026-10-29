@@ -22,8 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Describes the semantics of a reactive type including boolean checks for
- * {@link #isMultiValue()}, {@link #isNoValue()}, and {@link #supportsEmpty()}.
+ * 描述响应式类型的语义，包括对 {@link #isMultiValue()}、{@link #isNoValue()} 和
+ * {@link #supportsEmpty()} 的布尔检查。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -61,40 +61,36 @@ public final class ReactiveTypeDescriptor {
 
 
 	/**
-	 * Return the reactive type for this descriptor.
+	 * 返回此描述符对应的响应式类型。
 	 */
 	public Class<?> getReactiveType() {
 		return this.reactiveType;
 	}
 
 	/**
-	 * Return {@code true} if the reactive type can produce more than 1 value
-	 * can be produced and is therefore a good fit to adapt to {@code Flux}.
-	 * A {@code false} return value implies the reactive type can produce 1
-	 * value at most and is therefore a good fit to adapt to {@code Mono}.
+	 * 如果该响应式类型可以产生多于 1 个值，因而非常适合适配为 {@code Flux}，则返回 {@code true}。返回
+	 * {@code false} 意味着该响应式类型最多只能产生 1 个值，因而非常适合适配为 {@code Mono}。
 	 */
 	public boolean isMultiValue() {
 		return this.multiValue;
 	}
 
 	/**
-	 * Return {@code true} if the reactive type does not produce any values and
-	 * only provides completion and error signals.
+	 * 如果该响应式类型不产生任何值，仅提供完成和错误信号，则返回 {@code true}。
 	 */
 	public boolean isNoValue() {
 		return this.noValue;
 	}
 
 	/**
-	 * Return {@code true} if the reactive type can complete with no values.
+	 * 如果该响应式类型可以在没有值的情况下完成，则返回 {@code true}。
 	 */
 	public boolean supportsEmpty() {
 		return (this.emptyValueSupplier != null);
 	}
 
 	/**
-	 * Return an empty-value instance for the underlying reactive or async type.
-	 * Use of this type implies {@link #supportsEmpty()} is {@code true}.
+	 * 返回底层响应式或异步类型的空值实例。使用此类型意味着 {@link #supportsEmpty()} 为 {@code true}。
 	 */
 	public Object getEmptyValue() {
 		Assert.state(this.emptyValueSupplier != null, "Empty values not supported");
@@ -102,9 +98,8 @@ public final class ReactiveTypeDescriptor {
 	}
 
 	/**
-	 * Whether the underlying operation is deferred and needs to be started
-	 * explicitly, e.g. via subscribing (or similar), or whether it is triggered
-	 * without the consumer having any control.
+	 * 底层操作是否是延迟的、需要显式启动（例如通过订阅或类似方式），还是在消费者无法控制的情况下被触发。
+	 *
 	 * @since 5.2.7
 	 */
 	public boolean isDeferred() {
@@ -130,7 +125,7 @@ public final class ReactiveTypeDescriptor {
 
 
 	/**
-	 * Descriptor for a reactive type that can produce 0..N values.
+	 * 可产生 0..N 个值的响应式类型的描述符。
 	 * @param type the reactive type
 	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
 	 */
@@ -139,7 +134,7 @@ public final class ReactiveTypeDescriptor {
 	}
 
 	/**
-	 * Descriptor for a reactive type that can produce 0..1 values.
+	 * 可产生 0..1 个值的响应式类型的描述符。
 	 * @param type the reactive type
 	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
 	 */
@@ -148,7 +143,7 @@ public final class ReactiveTypeDescriptor {
 	}
 
 	/**
-	 * Descriptor for a reactive type that must produce 1 value to complete.
+	 * 必须产生 1 个值才能完成的响应式类型的描述符。
 	 * @param type the reactive type
 	 */
 	public static ReactiveTypeDescriptor singleRequiredValue(Class<?> type) {
@@ -156,7 +151,7 @@ public final class ReactiveTypeDescriptor {
 	}
 
 	/**
-	 * Descriptor for a reactive type that does not produce any values.
+	 * 不产生任何值的响应式类型的描述符。
 	 * @param type the reactive type
 	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
 	 */
@@ -165,8 +160,8 @@ public final class ReactiveTypeDescriptor {
 	}
 
 	/**
-	 * The same as {@link #singleOptionalValue(Class, Supplier)} but for a
-	 * non-deferred, async type such as {@link java.util.concurrent.CompletableFuture}.
+	 * 与 {@link #singleOptionalValue(Class, Supplier)} 相同，但用于非延迟的异步类型，例如
+	 * {@link java.util.concurrent.CompletableFuture}。
 	 * @param type the reactive type
 	 * @param emptySupplier a supplier of an empty-value instance of the reactive type
 	 * @since 5.2.7

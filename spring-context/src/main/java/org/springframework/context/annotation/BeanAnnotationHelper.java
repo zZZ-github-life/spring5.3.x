@@ -24,7 +24,7 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * Utilities for processing {@link Bean}-annotated methods.
+ * 用于处理标注了 {@link Bean} 的方法的工具类。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

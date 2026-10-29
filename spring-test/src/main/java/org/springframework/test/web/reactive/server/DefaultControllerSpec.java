@@ -39,8 +39,7 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Default implementation of {@link WebTestClient.ControllerSpec}.
- *
+ * {@link WebTestClient.ControllerSpec} 的默认实现。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

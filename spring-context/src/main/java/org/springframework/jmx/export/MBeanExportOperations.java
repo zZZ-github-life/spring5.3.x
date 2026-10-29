@@ -19,12 +19,10 @@ package org.springframework.jmx.export;
 import javax.management.ObjectName;
 
 /**
- * Interface that defines the set of MBean export operations that are intended to be
- * accessed by application developers during application runtime.
+ * 定义一组 MBean 导出操作的接口，这些操作旨在供应用开发者在应用运行时访问。
  *
- * <p>This interface should be used to export application resources to JMX using Spring's
- * management interface generation capabilities and, optionally, it's {@link ObjectName}
- * generation capabilities.
+ * <p>此接口应用于使用 Spring 的管理接口生成能力，以及（可选地）其 {@link ObjectName} 生成能力，将
+ * 应用资源导出到 JMX。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -33,10 +31,8 @@ import javax.management.ObjectName;
 public interface MBeanExportOperations {
 
 	/**
-	 * Register the supplied resource with JMX. If the resource is not a valid MBean already,
-	 * Spring will generate a management interface for it. The exact interface generated will
-	 * depend on the implementation and its configuration. This call also generates an
-	 * {@link ObjectName} for the managed resource and returns this to the caller.
+	 * 向 JMX 注册所提供的资源。如果该资源尚不是有效的 MBean，Spring 将为其生成管理接口。生成的确切接口
+	 * 取决于实现及其配置。此调用还会为受管资源生成一个 {@link ObjectName} 并将其返回给调用方。
 	 * @param managedResource the resource to expose via JMX
 	 * @return the {@link ObjectName} under which the resource was exposed
 	 * @throws MBeanExportException if Spring is unable to generate an {@link ObjectName}
@@ -45,9 +41,8 @@ public interface MBeanExportOperations {
 	ObjectName registerManagedResource(Object managedResource) throws MBeanExportException;
 
 	/**
-	 * Register the supplied resource with JMX. If the resource is not a valid MBean already,
-	 * Spring will generate a management interface for it. The exact interface generated will
-	 * depend on the implementation and its configuration.
+	 * 向 JMX 注册所提供的资源。如果该资源尚不是有效的 MBean，Spring 将为其生成管理接口。生成的确切接口
+	 * 取决于实现及其配置。
 	 * @param managedResource the resource to expose via JMX
 	 * @param objectName the {@link ObjectName} under which to expose the resource
 	 * @throws MBeanExportException if Spring is unable to register the MBean
@@ -55,7 +50,7 @@ public interface MBeanExportOperations {
 	void registerManagedResource(Object managedResource, ObjectName objectName) throws MBeanExportException;
 
 	/**
-	 * Remove the specified MBean from the underlying MBeanServer registry.
+	 * 从底层 MBeanServer 注册表中移除指定的 MBean。
 	 * @param objectName the {@link ObjectName} of the resource to remove
 	 */
 	void unregisterManagedResource(ObjectName objectName);

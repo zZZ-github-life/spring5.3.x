@@ -22,7 +22,7 @@ import org.springframework.expression.spel.CodeFlow;
 import org.springframework.util.StringUtils;
 
 /**
- * Expression language AST node that represents a string literal.
+ * 表示字符串字面量的表达式语言 AST 节点。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

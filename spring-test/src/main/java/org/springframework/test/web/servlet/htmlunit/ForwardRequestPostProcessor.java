@@ -21,8 +21,7 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.util.Assert;
 
 /**
- * {@link RequestPostProcessor} for forward requests.
- *
+ * 用于 forward 请求的 {@link RequestPostProcessor}。
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2

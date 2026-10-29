@@ -25,7 +25,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Bean factory post processor that logs a warning for {@link Deprecated @Deprecated} beans.
+ * 为 {@link Deprecated @Deprecated} 的 Bean 记录一条警告的 Bean 工厂后处理器。
  *
  * @author Arjen Poutsma
  * @since 3.0.3
@@ -33,16 +33,14 @@ import org.springframework.util.StringUtils;
 public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 
 	/**
-	 * Logger available to subclasses.
+	 * 可供子类使用的日志记录器。
 	 */
 	protected transient Log logger = LogFactory.getLog(getClass());
 
 	/**
-	 * Set the name of the logger to use.
-	 * The name will be passed to the underlying logger implementation through Commons Logging,
-	 * getting interpreted as log category according to the logger's configuration.
-	 * <p>This can be specified to not log into the category of this warner class but rather
-	 * into a specific named category.
+	 * 设置要使用的日志记录器名称。该名称会通过 Commons Logging 传递给底层日志实现，并根据日志记录器的
+	 * 配置被解释为日志类别。
+	 * <p>可以指定此项，以便不记录到该警告器类的类别中，而是记录到某个特定的命名类别中。
 	 * @see org.apache.commons.logging.LogFactory#getLog(String)
 	 * @see java.util.logging.Logger#getLogger(String)
 	 */
@@ -73,7 +71,7 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 	}
 
 	/**
-	 * Logs a warning for a bean annotated with {@link Deprecated @Deprecated}.
+	 * 为标注了 {@link Deprecated @Deprecated} 的 Bean 记录一条警告。
 	 * @param beanName the name of the deprecated bean
 	 * @param beanType the user-specified type of the deprecated bean
 	 * @param beanDefinition the definition of the deprecated bean
@@ -94,8 +92,8 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 	}
 
 	/**
-	 * Actually write to the underlying log.
-	 * <p>The default implementations logs the message at "warn" level.
+	 * 实际写入底层日志。
+	 * <p>默认实现以 "warn" 级别记录该消息。
 	 * @param message the message to write
 	 */
 	protected void writeToLog(String message) {
@@ -103,9 +101,8 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 	}
 
 	/**
-	 * Determine whether the {@link #logger} field is enabled.
-	 * <p>Default is {@code true} when the "warn" level is enabled.
-	 * Subclasses can override this to change the level under which logging occurs.
+	 * 确定 {@link #logger} 字段是否已启用。
+	 * <p>当 "warn" 级别启用时，默认为 {@code true}。子类可以重写此方法以更改发生日志记录时所处的级别。
 	 */
 	protected boolean isLogEnabled() {
 		return logger.isWarnEnabled();

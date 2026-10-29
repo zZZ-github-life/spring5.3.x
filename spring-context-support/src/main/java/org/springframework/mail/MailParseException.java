@@ -17,7 +17,7 @@
 package org.springframework.mail;
 
 /**
- * Exception thrown if illegal message properties are encountered.
+ * 遇到非法的消息属性时抛出的异常。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -26,7 +26,7 @@ package org.springframework.mail;
 public class MailParseException extends MailException {
 
 	/**
-	 * Constructor for MailParseException.
+	 * MailParseException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public MailParseException(String msg) {
@@ -34,7 +34,7 @@ public class MailParseException extends MailException {
 	}
 
 	/**
-	 * Constructor for MailParseException.
+	 * MailParseException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the mail API in use
 	 */
@@ -43,7 +43,7 @@ public class MailParseException extends MailException {
 	}
 
 	/**
-	 * Constructor for MailParseException.
+	 * MailParseException 的构造函数。
 	 * @param cause the root cause from the mail API in use
 	 */
 	public MailParseException(Throwable cause) {

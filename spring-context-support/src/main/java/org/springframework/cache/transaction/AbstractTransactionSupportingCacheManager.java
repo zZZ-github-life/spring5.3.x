@@ -20,9 +20,8 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.support.AbstractCacheManager;
 
 /**
- * Base class for CacheManager implementations that want to support built-in
- * awareness of Spring-managed transactions. This usually needs to be switched
- * on explicitly through the {@link #setTransactionAware} bean property.
+ * CacheManager 实现的基类，支持感知 Spring 管理的事务。
+ * 通常需要通过 {@link #setTransactionAware} bean 属性显式开启。
  *
  * @author Juergen Hoeller
  * @since 3.2
@@ -36,17 +35,16 @@ public abstract class AbstractTransactionSupportingCacheManager extends Abstract
 
 
 	/**
-	 * Set whether this CacheManager should expose transaction-aware Cache objects.
-	 * <p>Default is "false". Set this to "true" to synchronize cache put/evict
-	 * operations with ongoing Spring-managed transactions, performing the actual cache
-	 * put/evict operation only in the after-commit phase of a successful transaction.
+	 * 设置此 CacheManager 是否应暴露事务感知的 Cache 对象。
+	 * <p>默认为 "false"。设置为 "true" 以将缓存 put/evict 操作与正在进行的
+	 * Spring 管理的事务同步，仅在事务成功提交后的阶段执行实际的缓存 put/evict 操作。
 	 */
 	public void setTransactionAware(boolean transactionAware) {
 		this.transactionAware = transactionAware;
 	}
 
 	/**
-	 * Return whether this CacheManager has been configured to be transaction-aware.
+	 * 返回此 CacheManager 是否已配置为事务感知。
 	 */
 	public boolean isTransactionAware() {
 		return this.transactionAware;

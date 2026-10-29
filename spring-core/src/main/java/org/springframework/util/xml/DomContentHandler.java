@@ -29,7 +29,7 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 
 /**
- * SAX {@code ContentHandler} that transforms callback calls to DOM {@code Node}s.
+ * 将回调调用转换为 DOM {@code Node} 的 SAX {@code ContentHandler}。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -45,7 +45,7 @@ class DomContentHandler implements ContentHandler {
 
 
 	/**
-	 * Create a new instance of the {@code DomContentHandler} with the given node.
+	 * 使用给定节点创建 {@code DomContentHandler} 的新实例。
 	 * @param node the node to publish events to
 	 */
 	DomContentHandler(Node node) {

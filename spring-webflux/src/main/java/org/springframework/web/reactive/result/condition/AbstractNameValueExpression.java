@@ -21,10 +21,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Supports "name=value" style expressions as described in:
- * {@link org.springframework.web.bind.annotation.RequestMapping#params()} and
- * {@link org.springframework.web.bind.annotation.RequestMapping#headers()}.
- *
+ * 支持 "name=value" 形式的表达式，具体语法参见：
+ * {@link org.springframework.web.bind.annotation.RequestMapping#params()} 和
+ * {@link org.springframework.web.bind.annotation.RequestMapping#headers()}。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @param <T> the value type

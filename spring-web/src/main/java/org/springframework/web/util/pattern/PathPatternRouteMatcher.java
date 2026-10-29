@@ -26,9 +26,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.RouteMatcher;
 
 /**
- * {@code RouteMatcher} built on {@link PathPatternParser} that uses
- * {@link PathContainer} and {@link PathPattern} as parsed representations of
- * routes and patterns.
+ * 基于 {@link PathPatternParser} 构建的 {@code RouteMatcher}，使用
+ * {@link PathContainer} 和 {@link PathPattern} 作为路由和模式的解析后表示。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -41,9 +40,9 @@ public class PathPatternRouteMatcher implements RouteMatcher {
 
 
 	/**
-	 * Default constructor with {@link PathPatternParser} customized for
+	 * 默认构造函数，使用针对
 	 * {@link org.springframework.http.server.PathContainer.Options#MESSAGE_ROUTE MESSAGE_ROUTE}
-	 * and without matching of trailing separator.
+	 * 定制的 {@link PathPatternParser}，且不匹配末尾分隔符。
 	 */
 	public PathPatternRouteMatcher() {
 		this.parser = new PathPatternParser();
@@ -52,7 +51,7 @@ public class PathPatternRouteMatcher implements RouteMatcher {
 	}
 
 	/**
-	 * Constructor with given {@link PathPatternParser}.
+	 * 使用给定 {@link PathPatternParser} 的构造函数。
 	 */
 	public PathPatternRouteMatcher(PathPatternParser parser) {
 		Assert.notNull(parser, "PathPatternParser must not be null");

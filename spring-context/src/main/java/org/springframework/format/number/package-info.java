@@ -1,5 +1,5 @@
 /**
- * Formatters for {@code java.lang.Number} properties.
+ * 用于 {@code java.lang.Number} 属性的格式化器。
  */
 @NonNullApi
 @NonNullFields

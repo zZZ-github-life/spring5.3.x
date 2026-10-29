@@ -27,7 +27,7 @@ import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for most {@link GenericHttpMessageConverter} implementations.
+ * 大多数 {@link GenericHttpMessageConverter} 实现的抽象基类。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -38,14 +38,14 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 		implements GenericHttpMessageConverter<T> {
 
 	/**
-	 * Construct an {@code AbstractGenericHttpMessageConverter} with no supported media types.
+	 * 构造一个不支持任何媒体类型的 {@code AbstractGenericHttpMessageConverter}。
 	 * @see #setSupportedMediaTypes
 	 */
 	protected AbstractGenericHttpMessageConverter() {
 	}
 
 	/**
-	 * Construct an {@code AbstractGenericHttpMessageConverter} with one supported media type.
+	 * 构造一个支持一种媒体类型的 {@code AbstractGenericHttpMessageConverter}。
 	 * @param supportedMediaType the supported media type
 	 */
 	protected AbstractGenericHttpMessageConverter(MediaType supportedMediaType) {
@@ -53,7 +53,7 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 	}
 
 	/**
-	 * Construct an {@code AbstractGenericHttpMessageConverter} with multiple supported media type.
+	 * 构造一个支持多种媒体类型的 {@code AbstractGenericHttpMessageConverter}。
 	 * @param supportedMediaTypes the supported media types
 	 */
 	protected AbstractGenericHttpMessageConverter(MediaType... supportedMediaTypes) {
@@ -77,8 +77,8 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 	}
 
 	/**
-	 * This implementation sets the default headers by calling {@link #addDefaultHeaders},
-	 * and then calls {@link #writeInternal}.
+	 * 此实现通过调用 {@link #addDefaultHeaders} 设置默认头，
+	 * 然后调用 {@link #writeInternal}。
 	 */
 	@Override
 	public final void write(final T t, @Nullable final Type type, @Nullable MediaType contentType,
@@ -114,7 +114,7 @@ public abstract class AbstractGenericHttpMessageConverter<T> extends AbstractHtt
 	}
 
 	/**
-	 * Abstract template method that writes the actual body. Invoked from {@link #write}.
+	 * 写入实际正文的抽象模板方法。由 {@link #write} 调用。
 	 * @param t the object to write to the output message
 	 * @param type the type of object to write (may be {@code null})
 	 * @param outputMessage the HTTP output message to write to

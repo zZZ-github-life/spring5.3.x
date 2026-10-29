@@ -19,7 +19,7 @@ package org.springframework.web.socket;
 import java.nio.ByteBuffer;
 
 /**
- * A binary WebSocket message.
+ * 二进制 WebSocket 消息。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -27,7 +27,7 @@ import java.nio.ByteBuffer;
 public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
-	 * Create a new binary WebSocket message with the given ByteBuffer payload.
+	 * 使用给定的 ByteBuffer 负载创建一个新的二进制 WebSocket 消息。
 	 * @param payload the non-null payload
 	 */
 	public BinaryMessage(ByteBuffer payload) {
@@ -35,10 +35,10 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 	}
 
 	/**
-	 * Create a new binary WebSocket message with the given payload representing the
-	 * full or partial message content. When the {@code isLast} boolean flag is set
-	 * to {@code false} the message is sent as partial content and more partial
-	 * messages will be expected until the boolean flag is set to {@code true}.
+	 * 使用表示完整或部分消息内容的给定负载创建一个新的二进制 WebSocket 消息。
+	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
+	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
+	 * 直到该布尔标志设置为 {@code true} 为止。
 	 * @param payload the non-null payload
 	 * @param isLast if the message is the last of a series of partial messages
 	 */
@@ -47,7 +47,7 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 	}
 
 	/**
-	 * Create a new binary WebSocket message with the given byte[] payload.
+	 * 使用给定的 byte[] 负载创建一个新的二进制 WebSocket 消息。
 	 * @param payload a non-null payload; note that this value is not copied so care
 	 * must be taken not to modify the array.
 	 */
@@ -56,10 +56,10 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 	}
 
 	/**
-	 * Create a new binary WebSocket message with the given byte[] payload representing
-	 * the full or partial message content. When the {@code isLast} boolean flag is set
-	 * to {@code false} the message is sent as partial content and more partial
-	 * messages will be expected until the boolean flag is set to {@code true}.
+	 * 使用表示完整或部分消息内容的给定 byte[] 负载创建一个新的二进制 WebSocket 消息。
+	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
+	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
+	 * 直到该布尔标志设置为 {@code true} 为止。
 	 * @param payload a non-null payload; note that this value is not copied so care
 	 * must be taken not to modify the array.
 	 * @param isLast if the message is the last of a series of partial messages
@@ -69,7 +69,7 @@ public final class BinaryMessage extends AbstractWebSocketMessage<ByteBuffer> {
 	}
 
 	/**
-	 * Create a new binary WebSocket message by wrapping an existing byte array.
+	 * 通过包装现有字节数组创建一个新的二进制 WebSocket 消息。
 	 * @param payload a non-null payload; note that this value is not copied so care
 	 * must be taken not to modify the array.
 	 * @param offset the offset into the array where the payload starts

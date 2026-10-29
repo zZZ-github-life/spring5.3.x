@@ -35,7 +35,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * ASM class visitor that creates {@link SimpleAnnotationMetadata}.
+ * 创建 {@link SimpleAnnotationMetadata} 的 ASM 类访问器。
  *
  * @author Phillip Webb
  * @since 5.2
@@ -172,7 +172,7 @@ final class SimpleAnnotationMetadataReadingVisitor extends ClassVisitor {
 	}
 
 	/**
-	 * {@link MergedAnnotation} source.
+	 * {@link MergedAnnotation} 的来源。
 	 */
 	private static final class Source {
 

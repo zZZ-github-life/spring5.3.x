@@ -19,9 +19,8 @@ package org.springframework.test.web.servlet.request;
 import org.springframework.test.web.servlet.SmartRequestBuilder;
 
 /**
- * An extension of {@link org.springframework.test.web.servlet.SmartRequestBuilder
- * SmartRequestBuilder} that can be configured with {@link RequestPostProcessor RequestPostProcessors}.
- *
+ * {@link org.springframework.test.web.servlet.SmartRequestBuilder SmartRequestBuilder}
+ * 的扩展，可通过 {@link RequestPostProcessor RequestPostProcessors} 进行配置。
  * @author Rossen Stoyanchev
  * @since 4.1
  * @param <B> a self reference to the builder type
@@ -30,7 +29,7 @@ public interface ConfigurableSmartRequestBuilder<B extends ConfigurableSmartRequ
 		extends SmartRequestBuilder {
 
 	/**
-	 * Add the given {@code RequestPostProcessor}.
+	 * 添加给定的 {@code RequestPostProcessor}。
 	 */
 	B with(RequestPostProcessor requestPostProcessor);
 

@@ -1,0 +1,14 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpMessage.java
+@@BODY 20 21
+表示 HTTP 请求和响应消息的基础接口。由 {@link HttpHeaders} 组成，可通过 {@link #getHeaders()} 获取。
+@@BODY 29 29
+返回此消息的头。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpMethod.java
+@@BODY 25 27
+HTTP 请求方法的枚举。预期与 {@link org.springframework.http.client.ClientHttpRequest} 和 {@link org.springframework.web.client.RestTemplate} 一起使用。
+@@BODY 48 48
+将给定的方法值解析为 {@code HttpMethod}。
+@@BODY 60 60
+确定此 {@code HttpMethod} 是否与给定的方法值匹配。
+@@END

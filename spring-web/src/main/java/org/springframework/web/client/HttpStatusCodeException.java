@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for exceptions based on an {@link HttpStatus}.
+ * 基于 {@link HttpStatus} 的异常的抽象基类。
  *
  * @author Arjen Poutsma
  * @author Chris Beams
@@ -40,7 +40,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 
 
 	/**
-	 * Construct a new instance with an {@link HttpStatus}.
+	 * 使用 {@link HttpStatus} 构造新实例。
 	 * @param statusCode the status code
 	 */
 	protected HttpStatusCodeException(HttpStatus statusCode) {
@@ -48,7 +48,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 	}
 
 	/**
-	 * Construct a new instance with an {@link HttpStatus} and status text.
+	 * 使用 {@link HttpStatus} 和状态文本构造新实例。
 	 * @param statusCode the status code
 	 * @param statusText the status text
 	 */
@@ -57,7 +57,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 	}
 
 	/**
-	 * Construct instance with an {@link HttpStatus}, status text, and content.
+	 * 使用 {@link HttpStatus}、状态文本和内容构造实例。
 	 * @param statusCode the status code
 	 * @param statusText the status text
 	 * @param responseBody the response body content, may be {@code null}
@@ -71,8 +71,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 	}
 
 	/**
-	 * Construct instance with an {@link HttpStatus}, status text, content, and
-	 * a response charset.
+	 * 使用 {@link HttpStatus}、状态文本、内容和响应字符集构造实例。
 	 * @param statusCode the status code
 	 * @param statusText the status text
 	 * @param responseHeaders the response headers, may be {@code null}
@@ -88,8 +87,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 	}
 
 	/**
-	 * Construct instance with an {@link HttpStatus}, status text, content, and
-	 * a response charset.
+	 * 使用 {@link HttpStatus}、状态文本、内容和响应字符集构造实例。
 	 * @param message the exception message
 	 * @param statusCode the status code
 	 * @param statusText the status text
@@ -113,7 +111,7 @@ public abstract class HttpStatusCodeException extends RestClientResponseExceptio
 	}
 
 	/**
-	 * Return the HTTP status code.
+	 * 返回 HTTP 状态码。
 	 */
 	public HttpStatus getStatusCode() {
 		return this.statusCode;

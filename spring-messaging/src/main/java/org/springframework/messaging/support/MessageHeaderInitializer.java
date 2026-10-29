@@ -17,7 +17,7 @@
 package org.springframework.messaging.support;
 
 /**
- * Callback interface for initializing a {@link MessageHeaderAccessor}.
+ * 用于初始化 {@link MessageHeaderAccessor} 的回调接口。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -25,7 +25,7 @@ package org.springframework.messaging.support;
 public interface MessageHeaderInitializer {
 
 	/**
-	 * Initialize the given {@code MessageHeaderAccessor}.
+	 * 初始化给定的 {@code MessageHeaderAccessor}。
 	 * @param headerAccessor the MessageHeaderAccessor to initialize
 	 */
 	void initHeaders(MessageHeaderAccessor headerAccessor);

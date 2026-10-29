@@ -56,17 +56,15 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.HandlerMapping;
 
 /**
- * Private helper class to assist with handling "reactive" return values types
- * that can be adapted to a Reactive Streams {@link Publisher} through the
- * {@link ReactiveAdapterRegistry}.
+ * 私有辅助类，用于协助处理可通过
+ * {@link ReactiveAdapterRegistry} 适配为 Reactive Streams {@link Publisher} 的
+ * “响应式”返回值类型。
  *
- * <p>Such return values may be bridged to a {@link ResponseBodyEmitter} for
- * streaming purposes at the presence of a streaming media type or based on the
- * generic type.
+ * <p>在存在流式媒体类型或基于泛型类型的情况下，此类返回值
+ * 可以桥接到 {@link ResponseBodyEmitter} 以实现流式传输。
  *
- * <p>For all other cases {@code Publisher} output is collected and bridged to
- * {@link DeferredResult} for standard async request processing.
- *
+ * <p>对于所有其他情况，{@code Publisher} 的输出会被收集并桥接到
+ * {@link DeferredResult}，以便进行标准的异步请求处理。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -108,7 +106,7 @@ class ReactiveTypeHandler {
 
 
 	/**
-	 * Whether the type can be adapted to a Reactive Streams {@link Publisher}.
+	 * 该类型是否可以适配为 Reactive Streams {@link Publisher}。
 	 */
 	public boolean isReactiveType(Class<?> type) {
 		return (this.adapterRegistry.getAdapter(type) != null);
@@ -116,8 +114,8 @@ class ReactiveTypeHandler {
 
 
 	/**
-	 * Process the given reactive return value and decide whether to adapt it
-	 * to a {@link ResponseBodyEmitter} or a {@link DeferredResult}.
+	 * 处理给定的响应式返回值，并决定将其适配为
+	 * {@link ResponseBodyEmitter} 还是 {@link DeferredResult}。
 	 * @return an emitter for streaming, or {@code null} if handled internally
 	 * with a {@link DeferredResult}
 	 */
@@ -483,7 +481,7 @@ class ReactiveTypeHandler {
 
 
 	/**
-	 * List of collect values where all elements are a specified type.
+	 * 收集值的列表，其中所有元素都属于指定类型。
 	 */
 	@SuppressWarnings("serial")
 	static class CollectedValuesList extends ArrayList<Object> {

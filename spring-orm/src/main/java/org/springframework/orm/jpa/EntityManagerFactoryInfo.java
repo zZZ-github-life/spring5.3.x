@@ -27,10 +27,10 @@ import javax.sql.DataSource;
 import org.springframework.lang.Nullable;
 
 /**
- * Metadata interface for a Spring-managed JPA {@link EntityManagerFactory}.
+ * Spring 管理的 JPA {@link EntityManagerFactory} 的元数据接口。
  *
- * <p>This facility can be obtained from Spring-managed EntityManagerFactory
- * proxies through casting the EntityManagerFactory handle to this interface.
+ * <p>可以通过将 EntityManagerFactory 句柄强制转换为该接口，
+ * 从 Spring 管理的 EntityManagerFactory 代理中获取此功能。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -39,8 +39,7 @@ import org.springframework.lang.Nullable;
 public interface EntityManagerFactoryInfo {
 
 	/**
-	 * Return the underlying PersistenceProvider that the underlying
-	 * EntityManagerFactory was created with.
+	 * 返回创建底层 EntityManagerFactory 所使用的底层 PersistenceProvider。
 	 * @return the PersistenceProvider used to create this EntityManagerFactory,
 	 * or {@code null} if the standard JPA provider autodetection process
 	 * was used to configure the EntityManagerFactory
@@ -49,8 +48,8 @@ public interface EntityManagerFactoryInfo {
 	PersistenceProvider getPersistenceProvider();
 
 	/**
-	 * Return the PersistenceUnitInfo used to create this
-	 * EntityManagerFactory, if the in-container API was used.
+	 * 返回创建此 EntityManagerFactory 所使用的 PersistenceUnitInfo
+	 * （如果使用了容器内 API）。
 	 * @return the PersistenceUnitInfo used to create this EntityManagerFactory,
 	 * or {@code null} if the in-container contract was not used to
 	 * configure the EntityManagerFactory
@@ -59,11 +58,11 @@ public interface EntityManagerFactoryInfo {
 	PersistenceUnitInfo getPersistenceUnitInfo();
 
 	/**
-	 * Return the name of the persistence unit used to create this
-	 * EntityManagerFactory, or {@code null} if it is an unnamed default.
-	 * <p>If {@code getPersistenceUnitInfo()} returns non-null, the result of
-	 * {@code getPersistenceUnitName()} must be equal to the value returned by
-	 * {@code PersistenceUnitInfo.getPersistenceUnitName()}.
+	 * 返回创建此 EntityManagerFactory 所使用的持久化单元名称，
+	 * 如果是未命名的默认值则返回 {@code null}。
+	 * <p>如果 {@code getPersistenceUnitInfo()} 返回非 null，
+	 * 则 {@code getPersistenceUnitName()} 的结果必须等于
+	 * {@code PersistenceUnitInfo.getPersistenceUnitName()} 返回的值。
 	 * @see #getPersistenceUnitInfo()
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getPersistenceUnitName()
 	 */
@@ -71,49 +70,47 @@ public interface EntityManagerFactoryInfo {
 	String getPersistenceUnitName();
 
 	/**
-	 * Return the JDBC DataSource that this EntityManagerFactory
-	 * obtains its JDBC Connections from.
+	 * 返回此 EntityManagerFactory 从中获取 JDBC 连接的 JDBC DataSource。
 	 * @return the JDBC DataSource, or {@code null} if not known
 	 */
 	@Nullable
 	DataSource getDataSource();
 
 	/**
-	 * Return the (potentially vendor-specific) EntityManager interface
-	 * that this factory's EntityManagers will implement.
-	 * <p>A {@code null} return value suggests that autodetection is supposed
-	 * to happen: either based on a target {@code EntityManager} instance
-	 * or simply defaulting to {@code javax.persistence.EntityManager}.
+	 * 返回此工厂的 EntityManager 将实现的（可能为供应商特定的）
+	 * EntityManager 接口。
+	 * <p>返回 {@code null} 表示应进行自动检测：
+	 * 或者基于目标 {@code EntityManager} 实例，
+	 * 或者简单地默认为 {@code javax.persistence.EntityManager}。
 	 */
 	@Nullable
 	Class<? extends EntityManager> getEntityManagerInterface();
 
 	/**
-	 * Return the vendor-specific JpaDialect implementation for this
-	 * EntityManagerFactory, or {@code null} if not known.
+	 * 返回此 EntityManagerFactory 的供应商特定的 JpaDialect 实现，
+	 * 如果未知则返回 {@code null}。
 	 */
 	@Nullable
 	JpaDialect getJpaDialect();
 
 	/**
-	 * Return the ClassLoader that the application's beans are loaded with.
-	 * <p>Proxies will be generated in this ClassLoader.
+	 * 返回加载应用程序 bean 所用的 ClassLoader。
+	 * <p>代理将在此 ClassLoader 中生成。
 	 */
 	ClassLoader getBeanClassLoader();
 
 	/**
-	 * Return the raw underlying EntityManagerFactory.
+	 * 返回原始的底层 EntityManagerFactory。
 	 * @return the unadorned EntityManagerFactory (never {@code null})
 	 */
 	EntityManagerFactory getNativeEntityManagerFactory();
 
 	/**
-	 * Create a native JPA EntityManager to be used as the framework-managed
-	 * resource behind an application-level EntityManager handle.
-	 * <p>This exposes a native {@code EntityManager} from the underlying
-	 * {@link #getNativeEntityManagerFactory() native EntityManagerFactory},
-	 * taking {@link JpaVendorAdapter#postProcessEntityManager(EntityManager)}
-	 * into account.
+	 * 创建一个原生 JPA EntityManager，用作应用程序级 EntityManager 句柄
+	 * 背后的框架管理资源。
+	 * <p>这会从底层 {@link #getNativeEntityManagerFactory() 原生 EntityManagerFactory}
+	 * 中暴露一个原生 {@code EntityManager}，并考虑
+	 * {@link JpaVendorAdapter#postProcessEntityManager(EntityManager)}。
 	 * @since 5.3
 	 * @see #getNativeEntityManagerFactory()
 	 * @see EntityManagerFactory#createEntityManager()

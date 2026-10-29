@@ -46,17 +46,15 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 /**
- * Resolves method arguments annotated with {@code @RequestBody} and handles return
- * values from methods annotated with {@code @ResponseBody} by reading and writing
- * to the body of the request or response with an {@link HttpMessageConverter}.
+ * 解析带有 {@code @RequestBody} 注解的方法参数，并通过
+ * {@link HttpMessageConverter} 读写请求或响应体，处理带有 {@code @ResponseBody}
+ * 注解的方法的返回值。
  *
- * <p>An {@code @RequestBody} method argument is also validated if it is annotated
- * with any
+ * <p>如果 {@code @RequestBody} 方法参数带有任何
  * {@linkplain org.springframework.validation.annotation.ValidationAnnotationUtils#determineValidationHints
- * annotations that trigger validation}. In case of validation failure,
- * {@link MethodArgumentNotValidException} is raised and results in an HTTP 400
- * response status code if {@link DefaultHandlerExceptionResolver} is configured.
- *
+ * annotations that trigger validation}，则还会对其进行校验。如果校验失败，
+ * 将抛出 {@link MethodArgumentNotValidException}；如果配置了
+ * {@link DefaultHandlerExceptionResolver}，则导致 HTTP 400 响应状态码。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -65,19 +63,19 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
 public class RequestResponseBodyMethodProcessor extends AbstractMessageConverterMethodProcessor {
 
 	/**
-	 * Basic constructor with converters only. Suitable for resolving
-	 * {@code @RequestBody}. For handling {@code @ResponseBody} consider also
-	 * providing a {@code ContentNegotiationManager}.
+	 * 仅包含转换器的基本构造函数。适用于解析
+	 * {@code @RequestBody}。若要处理 {@code @ResponseBody}，请考虑同时
+	 * 提供 {@code ContentNegotiationManager}。
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters) {
 		super(converters);
 	}
 
 	/**
-	 * Basic constructor with converters and {@code ContentNegotiationManager}.
-	 * Suitable for resolving {@code @RequestBody} and handling
-	 * {@code @ResponseBody} without {@code Request~} or
-	 * {@code ResponseBodyAdvice}.
+	 * 包含转换器和 {@code ContentNegotiationManager} 的基本构造函数。
+	 * 适用于解析 {@code @RequestBody} 以及处理
+	 * {@code @ResponseBody}，但不使用 {@code Request~} 或
+	 * {@code ResponseBodyAdvice}。
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters,
 			@Nullable ContentNegotiationManager manager) {
@@ -86,9 +84,9 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	}
 
 	/**
-	 * Complete constructor for resolving {@code @RequestBody} method arguments.
-	 * For handling {@code @ResponseBody} consider also providing a
-	 * {@code ContentNegotiationManager}.
+	 * 用于解析 {@code @RequestBody} 方法参数的完整构造函数。
+	 * 若要处理 {@code @ResponseBody}，请考虑同时提供
+	 * {@code ContentNegotiationManager}。
 	 * @since 4.2
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters,
@@ -98,8 +96,8 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	}
 
 	/**
-	 * Complete constructor for resolving {@code @RequestBody} and handling
-	 * {@code @ResponseBody}.
+	 * 用于解析 {@code @RequestBody} 和处理
+	 * {@code @ResponseBody} 的完整构造函数。
 	 */
 	public RequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters,
 			@Nullable ContentNegotiationManager manager, @Nullable List<Object> requestResponseBodyAdvice) {
@@ -120,7 +118,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 	}
 
 	/**
-	 * Throws MethodArgumentNotValidException if validation fails.
+	 * 如果校验失败，则抛出 MethodArgumentNotValidException。
 	 * @throws HttpMessageNotReadableException if {@link RequestBody#required()}
 	 * is {@code true} and there is no body content or if there is no suitable
 	 * converter to read the content with.

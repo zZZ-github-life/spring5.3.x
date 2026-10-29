@@ -23,9 +23,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A no operation {@link Cache} implementation suitable for disabling caching.
+ * 一个空操作 {@link Cache} 实现，适用于禁用缓存。
  *
- * <p>Will simply accept any items into the cache not actually storing them.
+ * <p>只会接受放入缓存的任何条目，但并不会真正存储它们。
  *
  * @author Costin Leau
  * @author Stephane Nicoll
@@ -38,7 +38,7 @@ public class NoOpCache implements Cache {
 
 
 	/**
-	 * Create a {@link NoOpCache} instance with the specified name.
+	 * 使用指定名称创建一个 {@link NoOpCache} 实例。
 	 * @param name the name of the cache
 	 */
 	public NoOpCache(String name) {

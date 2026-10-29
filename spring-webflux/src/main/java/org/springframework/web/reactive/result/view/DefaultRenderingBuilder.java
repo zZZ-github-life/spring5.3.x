@@ -27,8 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@link Rendering.RedirectBuilder}.
- *
+ * {@link Rendering.RedirectBuilder} 的默认实现。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

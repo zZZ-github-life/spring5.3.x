@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Exception for errors that fit response status 405 (method not allowed).
+ * 适用于响应状态 405（方法不被允许）的异常。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -59,7 +59,7 @@ public class MethodNotAllowedException extends ResponseStatusException {
 
 
 	/**
-	 * Return a Map with an "Allow" header.
+	 * 返回包含 "Allow" 头部的 Map。
 	 * @since 5.1.11
 	 */
 	@SuppressWarnings("deprecation")
@@ -69,7 +69,7 @@ public class MethodNotAllowedException extends ResponseStatusException {
 	}
 
 	/**
-	 * Return HttpHeaders with an "Allow" header.
+	 * 返回包含 "Allow" 头部的 HttpHeaders。
 	 * @since 5.1.13
 	 */
 	@Override
@@ -83,14 +83,14 @@ public class MethodNotAllowedException extends ResponseStatusException {
 	}
 
 	/**
-	 * Return the HTTP method for the failed request.
+	 * 返回失败请求所使用的 HTTP 方法。
 	 */
 	public String getHttpMethod() {
 		return this.method;
 	}
 
 	/**
-	 * Return the list of supported HTTP methods.
+	 * 返回受支持的 HTTP 方法列表。
 	 */
 	public Set<HttpMethod> getSupportedMethods() {
 		return this.httpMethods;

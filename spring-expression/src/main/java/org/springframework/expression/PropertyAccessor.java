@@ -19,20 +19,17 @@ package org.springframework.expression;
 import org.springframework.lang.Nullable;
 
 /**
- * A property accessor is able to read from (and possibly write to) an object's properties.
+ * 属性访问器能够读取（并可能写入）对象的属性。
  *
- * <p>This interface places no restrictions, and so implementors are free to access properties
- * directly as fields or through getters or in any other way they see as appropriate.
+ * <p>此接口不作任何限制，因此实现者可以自由地以字段形式直接访问属性，或通过 getter 访问，或采用其
+ * 认为合适的任何其他方式。
  *
- * <p>A resolver can optionally specify an array of target classes for which it should be
- * called. However, if it returns {@code null} from {@link #getSpecificTargetClasses()},
- * it will be called for all property references and given a chance to determine if it
- * can read or write them.
+ * <p>解析器可以选择性地指定一个目标类数组，它应针对这些类被调用。但是，如果它从
+ * {@link #getSpecificTargetClasses()} 返回 {@code null}，则会对所有属性引用调用它，并给它机会判断
+ * 能否读取或写入这些属性。
  *
- * <p>Property resolvers are considered to be ordered, and each will be called in turn.
- * The only rule that affects the call order is that any resolver naming the target
- * class directly in {@link #getSpecificTargetClasses()} will be called first, before
- * the general resolvers.
+ * <p>属性解析器被视为有序的，每个都会被依次调用。影响调用顺序的唯一规则是：任何在
+ * {@link #getSpecificTargetClasses()} 中直接指定目标类的解析器都会先于通用解析器被调用。
  *
  * @author Andy Clement
  * @since 3.0
@@ -40,9 +37,8 @@ import org.springframework.lang.Nullable;
 public interface PropertyAccessor {
 
 	/**
-	 * Return an array of classes for which this resolver should be called.
-	 * <p>Returning {@code null} indicates this is a general resolver that
-	 * can be called in an attempt to resolve a property on any type.
+	 * 返回应调用此解析器的类数组。
+	 * <p>返回 {@code null} 表示这是一个通用解析器，可被调用以尝试解析任何类型上的属性。
 	 * @return an array of classes that this resolver is suitable for
 	 * (or {@code null} if a general resolver)
 	 */
@@ -50,8 +46,7 @@ public interface PropertyAccessor {
 	Class<?>[] getSpecificTargetClasses();
 
 	/**
-	 * Called to determine if a resolver instance is able to access a specified property
-	 * on a specified target object.
+	 * 调用以判断解析器实例是否能够访问指定目标对象上的指定属性。
 	 * @param context the evaluation context in which the access is being attempted
 	 * @param target the target object upon which the property is being accessed
 	 * @param name the name of the property being accessed
@@ -61,8 +56,7 @@ public interface PropertyAccessor {
 	boolean canRead(EvaluationContext context, @Nullable Object target, String name) throws AccessException;
 
 	/**
-	 * Called to read a property from a specified target object.
-	 * Should only succeed if {@link #canRead} also returns {@code true}.
+	 * 调用以从指定目标对象读取属性。仅当 {@link #canRead} 也返回 {@code true} 时才应成功。
 	 * @param context the evaluation context in which the access is being attempted
 	 * @param target the target object upon which the property is being accessed
 	 * @param name the name of the property being accessed
@@ -72,8 +66,7 @@ public interface PropertyAccessor {
 	TypedValue read(EvaluationContext context, @Nullable Object target, String name) throws AccessException;
 
 	/**
-	 * Called to determine if a resolver instance is able to write to a specified
-	 * property on a specified target object.
+	 * 调用以判断解析器实例是否能够写入指定目标对象上的指定属性。
 	 * @param context the evaluation context in which the access is being attempted
 	 * @param target the target object upon which the property is being accessed
 	 * @param name the name of the property being accessed
@@ -84,8 +77,7 @@ public interface PropertyAccessor {
 	boolean canWrite(EvaluationContext context, @Nullable Object target, String name) throws AccessException;
 
 	/**
-	 * Called to write to a property on a specified target object.
-	 * Should only succeed if {@link #canWrite} also returns {@code true}.
+	 * 调用以写入指定目标对象上的属性。仅当 {@link #canWrite} 也返回 {@code true} 时才应成功。
 	 * @param context the evaluation context in which the access is being attempted
 	 * @param target the target object upon which the property is being accessed
 	 * @param name the name of the property being accessed

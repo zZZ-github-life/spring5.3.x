@@ -17,10 +17,9 @@
 package org.springframework.expression;
 
 /**
- * This exception wraps (as cause) a checked exception thrown by some method that SpEL
- * invokes. It differs from a SpelEvaluationException because this indicates the
- * occurrence of a checked exception that the invoked method was defined to throw.
- * SpelEvaluationExceptions are for handling (and wrapping) unexpected exceptions.
+ * 此异常包装（作为原因）SpEL 调用的某个方法所抛出的受检异常。它与 SpelEvaluationException 不同，因
+ * 为它表示被调用方法声明要抛出的受检异常发生了。SpelEvaluationExceptions 用于处理（并包装）意外异
+ * 常。
  *
  * @author Andy Clement
  * @since 3.0.3

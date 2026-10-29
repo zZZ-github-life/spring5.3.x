@@ -1,6 +1,5 @@
 /**
- * Support classes for working with annotated message-handling methods with
- * non-blocking, reactive contracts.
+ * 用于配合带注解的消息处理方法以及非阻塞、响应式契约的支持类。
  */
 @NonNullApi
 @NonNullFields

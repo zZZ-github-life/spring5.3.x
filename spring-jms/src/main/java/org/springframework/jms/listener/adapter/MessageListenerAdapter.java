@@ -33,37 +33,28 @@ import org.springframework.util.MethodInvoker;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Message listener adapter that delegates the handling of messages to target
- * listener methods via reflection, with flexible message type conversion.
- * Allows listener methods to operate on message content types, completely
- * independent of the JMS API.
+ * 消息监听器适配器，通过反射将消息处理委托给目标监听器方法，
+ * 并支持灵活的消息类型转换。使监听器方法可以完全独立于 JMS API，
+ * 直接在消息内容类型上操作。
  *
- * <p>By default, the content of incoming JMS messages gets extracted before
- * being passed into the target listener method, to let the target method
- * operate on message content types such as String or byte array instead of
- * the raw {@link Message}. Message type conversion is delegated to a Spring
- * JMS {@link MessageConverter}. By default, a {@link SimpleMessageConverter}
- * will be used. (If you do not want such automatic message conversion taking
- * place, then be sure to set the {@link #setMessageConverter MessageConverter}
- * to {@code null}.)
+ * <p>默认情况下，传入的 JMS 消息内容会先被提取出来，再传给目标监听器方法，
+ * 以便目标方法处理 String 或字节数组等消息内容类型，而不是原始的 {@link Message}。
+ * 消息类型转换委托给 Spring JMS {@link MessageConverter}。默认将使用
+ * {@link SimpleMessageConverter}。（如果不想进行这种自动消息转换，
+ * 请务必将 {@link #setMessageConverter MessageConverter} 设置为 {@code null}。）
  *
- * <p>If a target listener method returns a non-null object (typically of a
- * message content type such as {@code String} or byte array), it will get
- * wrapped in a JMS {@code Message} and sent to the response destination
- * (either the JMS "reply-to" destination or a
- * {@link #setDefaultResponseDestination(javax.jms.Destination) specified default
- * destination}).
+ * <p>如果目标监听器方法返回非 null 对象（通常是 {@code String} 或字节数组
+ * 等消息内容类型），该对象将被包装到 JMS {@code Message} 中，并发送到
+ * 响应目的地（JMS 的 "reply-to" 目的地，或通过
+ * {@link #setDefaultResponseDestination(javax.jms.Destination) 指定的默认目的地}）。
  *
- * <p><b>Note:</b> The sending of response messages is only available when
- * using the {@link SessionAwareMessageListener} entry point (typically through a
- * Spring message listener container). Usage as standard JMS {@link MessageListener}
- * does <i>not</i> support the generation of response messages.
+ * <p><b>注意：</b>只有在使用 {@link SessionAwareMessageListener} 入口点
+ * （通常通过 Spring 消息监听器容器）时，才能发送响应消息。
+ * 作为标准 JMS {@link MessageListener} 使用时<i>不</i>支持生成响应消息。
  *
- * <p>Find below some examples of method signatures compliant with this
- * adapter class. This first example handles all {@code Message} types
- * and gets passed the contents of each {@code Message} type as an
- * argument. No {@code Message} will be sent back as all of these
- * methods return {@code void}.
+ * <p>下面列出一些符合此适配器类的方法签名示例。第一个示例处理所有
+ * {@code Message} 类型，并将每种 {@code Message} 类型的内容作为参数传入。
+ * 由于所有这些方法都返回 {@code void}，因此不会发回任何 {@code Message}。
  *
  * <pre class="code">public interface MessageContentsDelegate {
  *    void handleMessage(String text);
@@ -72,10 +63,9 @@ import org.springframework.util.ObjectUtils;
  *    void handleMessage(Serializable obj);
  * }</pre>
  *
- * This next example handles all {@code Message} types and gets
- * passed the actual (raw) {@code Message} as an argument. Again, no
- * {@code Message} will be sent back as all of these methods return
- * {@code void}.
+ * 下一个示例处理所有 {@code Message} 类型，并将实际的（原始）
+ * {@code Message} 作为参数传入。同样，由于所有这些方法都返回
+ * {@code void}，不会发回任何 {@code Message}。
  *
  * <pre class="code">public interface RawMessageDelegate {
  *    void handleMessage(TextMessage message);
@@ -84,31 +74,28 @@ import org.springframework.util.ObjectUtils;
  *    void handleMessage(ObjectMessage message);
  * }</pre>
  *
- * This next example illustrates a {@code Message} delegate
- * that just consumes the {@code String} contents of
- * {@link javax.jms.TextMessage TextMessages}. Notice also how the
- * name of the {@code Message} handling method is different from the
- * {@link #ORIGINAL_DEFAULT_LISTENER_METHOD original} (this will have to
- * be configured in the attendant bean definition). Again, no {@code Message}
- * will be sent back as the method returns {@code void}.
+ * 下一个示例展示了一个 {@code Message} 委托，它只消费
+ * {@link javax.jms.TextMessage TextMessages} 的 {@code String} 内容。
+ * 同时请注意，{@code Message} 处理方法名与
+ * {@link #ORIGINAL_DEFAULT_LISTENER_METHOD 原始}方法名不同
+ * （这需要在相应的 Bean 定义中配置）。同样，由于方法返回 {@code void}，
+ * 不会发回任何 {@code Message}。
  *
  * <pre class="code">public interface TextMessageContentDelegate {
  *    void onMessage(String text);
  * }</pre>
  *
- * This final example illustrates a {@code Message} delegate
- * that just consumes the {@code String} contents of
- * {@link javax.jms.TextMessage TextMessages}. Notice how the return type
- * of this method is {@code String}: This will result in the configured
- * {@link MessageListenerAdapter} sending a {@link javax.jms.TextMessage} in response.
+ * 最后一个示例展示了一个 {@code Message} 委托，它只消费
+ * {@link javax.jms.TextMessage TextMessages} 的 {@code String} 内容。
+ * 注意此方法的返回类型是 {@code String}：这将使配置的
+ * {@link MessageListenerAdapter} 在响应中发送一条 {@link javax.jms.TextMessage}。
  *
  * <pre class="code">public interface ResponsiveTextMessageContentDelegate {
  *    String handleMessage(String text);
  * }</pre>
  *
- * For further examples and discussion please do refer to the Spring
- * reference documentation which describes this class (and it's attendant
- * XML configuration) in detail.
+ * 如需更多示例和讨论，请参阅 Spring 参考文档，
+ * 其中详细描述了此类（及其相关 XML 配置）。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -123,7 +110,7 @@ import org.springframework.util.ObjectUtils;
 public class MessageListenerAdapter extends AbstractAdaptableMessageListener implements SubscriptionNameProvider {
 
 	/**
-	 * Out-of-the-box value for the default listener method: "handleMessage".
+	 * 默认监听器方法的开箱即用值："handleMessage"。
 	 */
 	public static final String ORIGINAL_DEFAULT_LISTENER_METHOD = "handleMessage";
 
@@ -134,14 +121,14 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 
 	/**
-	 * Create a new {@link MessageListenerAdapter} with default settings.
+	 * 使用默认设置创建一个新的 {@link MessageListenerAdapter}。
 	 */
 	public MessageListenerAdapter() {
 		this.delegate = this;
 	}
 
 	/**
-	 * Create a new {@link MessageListenerAdapter} for the given delegate.
+	 * 为给定的委托对象创建一个新的 {@link MessageListenerAdapter}。
 	 * @param delegate the delegate object
 	 */
 	public MessageListenerAdapter(Object delegate) {
@@ -151,11 +138,10 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 
 	/**
-	 * Set a target object to delegate message listening to.
-	 * Specified listener methods have to be present on this target object.
-	 * <p>If no explicit delegate object has been specified, listener
-	 * methods are expected to present on this adapter instance, that is,
-	 * on a custom subclass of this adapter, defining listener methods.
+	 * 设置要委托消息监听的目标对象。
+	 * 指定的监听器方法必须存在于该目标对象上。
+	 * <p>如果没有指定显式的委托对象，则监听器方法应存在于
+	 * 此适配器实例上，即在定义监听器方法的此适配器自定义子类上。
 	 */
 	public void setDelegate(Object delegate) {
 		Assert.notNull(delegate, "Delegate must not be null");
@@ -163,16 +149,16 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	}
 
 	/**
-	 * Return the target object to delegate message listening to.
+	 * 返回要委托消息监听的目标对象。
 	 */
 	protected Object getDelegate() {
 		return this.delegate;
 	}
 
 	/**
-	 * Specify the name of the default listener method to delegate to,
-	 * for the case where no specific listener method has been determined.
-	 * Out-of-the-box value is {@link #ORIGINAL_DEFAULT_LISTENER_METHOD "handleMessage"}.
+	 * 指定要委托的默认监听器方法的名称，
+	 * 用于未确定具体监听器方法的情况。
+	 * 开箱即用值为 {@link #ORIGINAL_DEFAULT_LISTENER_METHOD "handleMessage"}。
 	 * @see #getListenerMethodName
 	 */
 	public void setDefaultListenerMethod(String defaultListenerMethod) {
@@ -180,7 +166,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	}
 
 	/**
-	 * Return the name of the default listener method to delegate to.
+	 * 返回要委托的默认监听器方法的名称。
 	 */
 	protected String getDefaultListenerMethod() {
 		return this.defaultListenerMethod;
@@ -188,10 +174,9 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 
 
 	/**
-	 * Spring {@link SessionAwareMessageListener} entry point.
-	 * <p>Delegates the message to the target listener method, with appropriate
-	 * conversion of the message argument. If the target method returns a
-	 * non-null object, wrap in a JMS message and send it back.
+	 * Spring {@link SessionAwareMessageListener} 入口点。
+	 * <p>将消息委托给目标监听器方法，并对消息参数进行适当的转换。
+	 * 如果目标方法返回非 null 对象，则将其包装为 JMS 消息并发送回去。
 	 * @param message the incoming JMS message
 	 * @param session the JMS session to operate on
 	 * @throws JMSException if thrown by JMS API methods
@@ -241,10 +226,8 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	}
 
 	/**
-	 * Determine the name of the listener method that is supposed to
-	 * handle the given message.
-	 * <p>The default implementation simply returns the configured
-	 * default listener method, if any.
+	 * 确定应处理给定消息的监听器方法的名称。
+	 * <p>默认实现只是返回已配置的默认监听器方法（如果有）。
 	 * @param originalMessage the JMS request message
 	 * @param extractedMessage the converted JMS request message,
 	 * to be passed into the listener method as argument
@@ -257,15 +240,13 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	}
 
 	/**
-	 * Build an array of arguments to be passed into the target listener method.
-	 * Allows for multiple method arguments to be built from a single message object.
-	 * <p>The default implementation builds an array with the given message object
-	 * as sole element. This means that the extracted message will always be passed
-	 * into a <i>single</i> method argument, even if it is an array, with the target
-	 * method having a corresponding single argument of the array's type declared.
-	 * <p>This can be overridden to treat special message content such as arrays
-	 * differently, for example passing in each element of the message array
-	 * as distinct method argument.
+	 * 构建要传入目标监听器方法的参数数组。
+	 * 允许从单个消息对象构建多个方法参数。
+	 * <p>默认实现构建一个仅包含给定消息对象的数组。
+	 * 这意味着提取出的消息将始终传入<i>单个</i>方法参数，
+	 * 即使它是数组也是如此，目标方法需声明一个与该数组类型对应的单一参数。
+	 * <p>可以覆盖此方法以区别对待数组等特殊消息内容，
+	 * 例如将消息数组的每个元素作为独立的方法参数传入。
 	 * @param extractedMessage the content of the message
 	 * @return the array of arguments to be passed into the
 	 * listener method (each element of the array corresponding
@@ -276,7 +257,7 @@ public class MessageListenerAdapter extends AbstractAdaptableMessageListener imp
 	}
 
 	/**
-	 * Invoke the specified listener method.
+	 * 调用指定的监听器方法。
 	 * @param methodName the name of the listener method
 	 * @param arguments the message arguments to be passed in
 	 * @return the result returned from the listener method

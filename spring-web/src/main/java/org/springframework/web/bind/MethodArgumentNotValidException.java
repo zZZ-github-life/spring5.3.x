@@ -22,8 +22,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 /**
- * Exception to be thrown when validation on an argument annotated with {@code @Valid} fails.
- * Extends {@link BindException} as of 5.3.
+ * 当对标注了 {@code @Valid} 的参数进行校验失败时抛出的异常。
+ * 自 5.3 起继承 {@link BindException}。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -36,7 +36,7 @@ public class MethodArgumentNotValidException extends BindException {
 
 
 	/**
-	 * Constructor for {@link MethodArgumentNotValidException}.
+	 * {@link MethodArgumentNotValidException} 的构造函数。
 	 * @param parameter the parameter that failed validation
 	 * @param bindingResult the results of the validation
 	 */
@@ -47,7 +47,7 @@ public class MethodArgumentNotValidException extends BindException {
 
 
 	/**
-	 * Return the method parameter that failed validation.
+	 * 返回校验失败的方法参数。
 	 */
 	public final MethodParameter getParameter() {
 		return this.parameter;

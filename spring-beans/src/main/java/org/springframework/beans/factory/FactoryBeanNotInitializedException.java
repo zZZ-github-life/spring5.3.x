@@ -19,16 +19,12 @@ package org.springframework.beans.factory;
 import org.springframework.beans.FatalBeanException;
 
 /**
- * Exception to be thrown from a FactoryBean's {@code getObject()} method
- * if the bean is not fully initialized yet, for example because it is involved
- * in a circular reference.
+ * 如果 Bean 尚未完全初始化（例如因为它涉及循环引用），则由 FactoryBean 的 {@code getObject()} 方法
+ * 抛出的异常。
  *
- * <p>Note: A circular reference with a FactoryBean cannot be solved by eagerly
- * caching singleton instances like with normal beans. The reason is that
- * <i>every</i> FactoryBean needs to be fully initialized before it can
- * return the created bean, while only <i>specific</i> normal beans need
- * to be initialized - that is, if a collaborating bean actually invokes
- * them on initialization instead of just storing the reference.
+ * <p>注意：与 FactoryBean 的循环引用无法像普通 Bean 那样通过急切缓存单例实例来解决。原因是<i>每个
+ * </i> FactoryBean 都需要完全初始化后才能返回所创建的 Bean，而只有<i>特定</i>的普通 Bean 需要被初
+ * 始化——也就是说，仅当协作 Bean 在初始化时实际调用它们，而不仅仅是保存引用时。
  *
  * @author Juergen Hoeller
  * @since 30.10.2003
@@ -38,14 +34,14 @@ import org.springframework.beans.FatalBeanException;
 public class FactoryBeanNotInitializedException extends FatalBeanException {
 
 	/**
-	 * Create a new FactoryBeanNotInitializedException with the default message.
+	 * 使用默认消息创建一个新的 FactoryBeanNotInitializedException。
 	 */
 	public FactoryBeanNotInitializedException() {
 		super("FactoryBean is not fully initialized yet");
 	}
 
 	/**
-	 * Create a new FactoryBeanNotInitializedException with the given message.
+	 * 使用给定消息创建一个新的 FactoryBeanNotInitializedException。
 	 * @param msg the detail message
 	 */
 	public FactoryBeanNotInitializedException(String msg) {

@@ -63,12 +63,11 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Internal class used to transform a {@link WebRequest} into a
- * {@link MockHttpServletRequest} using Spring MVC Test's {@link RequestBuilder}.
+ * 内部类，用于使用 Spring MVC Test 的 {@link RequestBuilder} 将 {@link WebRequest} 转换为
+ * {@link MockHttpServletRequest}。
  *
- * <p>By default the first path segment of the URL is used as the context path.
- * To override this default see {@link #setContextPath(String)}.
- *
+ * <p>默认情况下，URL 的第一个路径段用作上下文路径。
+ * 要覆盖此默认行为，请参见 {@link #setContextPath(String)}。
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
@@ -96,7 +95,7 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
 
 	/**
-	 * Construct a new {@code HtmlUnitRequestBuilder}.
+	 * 构造一个新的 {@code HtmlUnitRequestBuilder}。
 	 * @param sessions a {@link Map} from session {@linkplain HttpSession#getId() IDs}
 	 * to currently managed {@link HttpSession} objects; never {@code null}
 	 * @param webClient the WebClient for retrieving cookies
@@ -211,11 +210,11 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 	}
 
 	/**
-	 * Set the contextPath to be used.
-	 * <p>The value may be null in which case the first path segment of the
-	 * URL is turned into the contextPath. Otherwise it must conform to
-	 * {@link HttpServletRequest#getContextPath()} which states it can be
-	 * an empty string, or it must start with a "/" and not end with a "/".
+	 * 设置要使用的 contextPath。
+	 * <p>该值可以为 null，此时 URL 的第一个路径段
+	 * 会转换为 contextPath。否则它必须符合
+	 * {@link HttpServletRequest#getContextPath()} 的要求，即可以是
+	 * 空字符串，或者必须以“/”开头且不以“/”结尾。
 	 * @param contextPath a valid contextPath
 	 * @throws IllegalArgumentException if the contextPath is not a valid
 	 * {@link HttpServletRequest#getContextPath()}
@@ -475,8 +474,8 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
 
 	/**
-	 * An extension to {@link MockHttpServletRequest} that ensures that when a
-	 * new {@link HttpSession} is created, it is added to the managed sessions.
+	 * 对 {@link MockHttpServletRequest} 的扩展，确保在创建
+	 * 新的 {@link HttpSession} 时将其添加到受管理的会话中。
 	 */
 	private final class HtmlUnitMockHttpServletRequest extends MockHttpServletRequest {
 
@@ -504,9 +503,8 @@ final class HtmlUnitRequestBuilder implements RequestBuilder, Mergeable {
 
 
 	/**
-	 * An extension to {@link MockHttpSession} that ensures when
-	 * {@link #invalidate()} is called that the {@link HttpSession}
-	 * is removed from the managed sessions.
+	 * 对 {@link MockHttpSession} 的扩展，确保在调用
+	 * {@link #invalidate()} 时从受管理的会话中移除 {@link HttpSession}。
 	 */
 	private final class HtmlUnitMockHttpSession extends MockHttpSession {
 

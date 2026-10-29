@@ -21,16 +21,16 @@ import javax.xml.ws.Endpoint;
 import javax.xml.ws.WebServiceProvider;
 
 /**
- * Simple exporter for JAX-WS services, autodetecting annotated service beans
- * (through the JAX-WS {@link javax.jws.WebService} annotation) and exporting
- * them with a configured base address (by default "http://localhost:8080/")
- * using the JAX-WS provider's built-in publication support. The full address
- * for each service will consist of the base address with the service name
- * appended (e.g. "http://localhost:8080/OrderService").
+ * JAX-WS 服务的简单导出器，自动检测带注解的服务 bean
+ * （通过 JAX-WS 的 {@link javax.jws.WebService} 注解），并使用
+ * JAX-WS 提供者内置的发布支持，通过配置的基地址（默认为
+ * "http://localhost:8080/"）导出它们。每个服务的完整地址
+ * 由基地址加上服务名称组成
+ * （例如 "http://localhost:8080/OrderService"）。
  *
- * <p>Note that this exporter will only work if the JAX-WS runtime actually
- * supports publishing with an address argument, i.e. if the JAX-WS runtime
- * ships an internal HTTP server.
+ * <p>请注意，此导出器仅在 JAX-WS 运行时确实
+ * 支持带地址参数发布时才能工作，即 JAX-WS 运行时
+ * 内置了 HTTP 服务器。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -40,7 +40,7 @@ import javax.xml.ws.WebServiceProvider;
 public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 
 	/**
-	 * The default base address.
+	 * 默认基地址。
 	 */
 	public static final String DEFAULT_BASE_ADDRESS = "http://localhost:8080/";
 
@@ -48,11 +48,11 @@ public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 
 
 	/**
-	 * Set the base address for exported services.
-	 * Default is "http://localhost:8080/".
-	 * <p>For each actual publication address, the service name will be
-	 * appended to this base address. E.g. service name "OrderService"
-	 * &rarr; "http://localhost:8080/OrderService".
+	 * 设置所导出服务的基地址。
+	 * 默认为 "http://localhost:8080/"。
+	 * <p>对于每个实际发布地址，服务名称将
+	 * 追加到此基地址之后。例如服务名称 "OrderService"
+	 * &rarr; "http://localhost:8080/OrderService"。
 	 * @see javax.xml.ws.Endpoint#publish(String)
 	 * @see javax.jws.WebService#serviceName()
 	 */
@@ -72,7 +72,7 @@ public class SimpleJaxWsServiceExporter extends AbstractJaxWsServiceExporter {
 	}
 
 	/**
-	 * Calculate the full endpoint address for the given endpoint.
+	 * 计算给定端点的完整端点地址。
 	 * @param endpoint the JAX-WS Provider Endpoint object
 	 * @param serviceName the given service name
 	 * @return the full endpoint address

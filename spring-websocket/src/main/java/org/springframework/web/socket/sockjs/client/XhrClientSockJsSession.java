@@ -33,8 +33,8 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.sockjs.transport.TransportType;
 
 /**
- * An extension of {@link AbstractClientSockJsSession} for use with HTTP
- * transports simulating a WebSocket session.
+ * {@link AbstractClientSockJsSession} 的扩展，用于模拟 WebSocket 会话的
+ * HTTP 传输。
  *
  * @author Rossen Stoyanchev
  * @since 4.1

@@ -17,16 +17,15 @@
 package org.springframework.web.socket.sockjs.frame;
 
 /**
- * Applies a transport-specific format to the content of a SockJS frame resulting
- * in a content that can be written out. Primarily for use in HTTP server-side
- * transports that push data.
+ * 对 SockJS 帧内容应用特定于传输的格式，从而生成可以写出的内容。
+ * 主要用于推送数据的 HTTP 服务器端传输。
  *
- * <p>Formatting may vary from simply appending a new line character for XHR
- * polling and streaming transports, to a jsonp-style callback function,
- * surrounding script tags, and more.
+ * <p>格式化方式可能各不相同，从为 XHR 轮询和流式传输简单地追加换行符，
+ * 到 jsonp 风格的回调函数、包裹 script 标签等等。
  *
- * <p>For the various SockJS frame formats in use, see implementations of
+ * <p>有关使用的各种 SockJS 帧格式，请参见
  * {@link  org.springframework.web.socket.sockjs.transport.handler.AbstractHttpSendingTransportHandler#getFrameFormat(org.springframework.http.server.ServerHttpRequest) AbstractHttpSendingTransportHandler.getFrameFormat}
+ * 的实现。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

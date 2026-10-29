@@ -29,8 +29,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * The operator 'instanceof' checks if an object is of the class specified in the
- * right-hand operand, in the same way that {@code instanceof} does in Java.
+ * 'instanceof' 运算符检查对象是否为右操作数中指定的类的实例，其方式与 Java 中的 {@code instanceof}
+ * 相同。
  *
  * @author Andy Clement
  * @since 3.0
@@ -47,8 +47,7 @@ public class OperatorInstanceof extends Operator {
 
 
 	/**
-	 * Compare the left operand to see it is an instance of the type specified as the
-	 * right operand. The right operand must be a class.
+	 * 比较左操作数，以查看它是否为右操作数所指定类型的实例。右操作数必须是一个类。
 	 * @param state the expression state
 	 * @return {@code true} if the left operand is an instanceof of the right operand,
 	 * otherwise {@code false}

@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Representation of an alias that has been registered during the parsing process.
+ * 在解析过程中注册的别名的表示形式。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -38,7 +38,7 @@ public class AliasDefinition implements BeanMetadataElement {
 
 
 	/**
-	 * Create a new AliasDefinition.
+	 * 创建一个新的 AliasDefinition。
 	 * @param beanName the canonical name of the bean
 	 * @param alias the alias registered for the bean
 	 */
@@ -47,7 +47,7 @@ public class AliasDefinition implements BeanMetadataElement {
 	}
 
 	/**
-	 * Create a new AliasDefinition.
+	 * 创建一个新的 AliasDefinition。
 	 * @param beanName the canonical name of the bean
 	 * @param alias the alias registered for the bean
 	 * @param source the source object (may be {@code null})
@@ -62,14 +62,14 @@ public class AliasDefinition implements BeanMetadataElement {
 
 
 	/**
-	 * Return the canonical name of the bean.
+	 * 返回 Bean 的规范名称。
 	 */
 	public final String getBeanName() {
 		return this.beanName;
 	}
 
 	/**
-	 * Return the alias registered for the bean.
+	 * 返回为该 Bean 注册的别名。
 	 */
 	public final String getAlias() {
 		return this.alias;

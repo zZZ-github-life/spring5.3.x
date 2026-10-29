@@ -1,0 +1,640 @@
+@@ function/client/ClientRequest.java :: 1
+表示由 {@link ExchangeFunction} 执行的类型化、不可变的客户端 HTTP 请求。可以通过静态构建器方法创建此接口的实例。
+
+<p>请注意，应用通常通过 {@link WebClient} 执行请求，而不是直接使用此类。
+@@ function/client/ClientRequest.java :: 2
+某个 {@link #attributes() 属性}的名称，其值可用于关联此请求的日志消息。使用 {@link #logPrefix()} 获取基于该属性的格式一致的前缀。
+@@ function/client/ClientRequest.java :: 3
+返回 HTTP 方法。
+@@ function/client/ClientRequest.java :: 4
+返回请求 URI。
+@@ function/client/ClientRequest.java :: 5
+返回此请求的头。
+@@ function/client/ClientRequest.java :: 6
+返回此请求的 cookie。
+@@ function/client/ClientRequest.java :: 7
+返回此请求的正文插入器。
+@@ function/client/ClientRequest.java :: 8
+如果存在，返回请求属性值。
+@@ function/client/ClientRequest.java :: 9
+返回此请求的属性。
+@@ function/client/ClientRequest.java :: 10
+返回配置用于访问 {@link ClientHttpRequest} 的消费者。
+@@ function/client/ClientRequest.java :: 11
+返回用于关联此请求消息的日志消息前缀。该前缀基于 {@link #LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} 属性的值，并用 "[" 和 "]" 包围。
+@@ function/client/ClientRequest.java :: 12
+将此请求写入给定的 {@link ClientHttpRequest}。
+@@ function/client/ClientRequest.java :: 13
+创建使用给定请求的 HTTP 方法、url、头、cookie、属性和正文初始化的构建器。
+@@ function/client/ClientRequest.java :: 14
+使用给定的 HTTP 方法和 url 创建构建器。
+@@ function/client/ClientRequest.java :: 15
+使用给定的 HTTP 方法和 url 创建请求构建器。
+@@ function/client/ClientRequest.java :: 16
+定义请求的构建器。
+@@ function/client/ClientRequest.java :: 17
+设置请求的方法。
+@@ function/client/ClientRequest.java :: 18
+设置请求的 url。
+@@ function/client/ClientRequest.java :: 19
+在给定名称下添加给定的头值。
+@@ function/client/ClientRequest.java :: 20
+使用给定的消费者操作此请求的头。提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
+@@ function/client/ClientRequest.java :: 21
+添加具有给定名称和值的 cookie。
+@@ function/client/ClientRequest.java :: 22
+使用给定的消费者操作此请求的 cookie。提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie 值、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
+@@ function/client/ClientRequest.java :: 23
+将请求正文设置为给定的 {@code BodyInserter}。
+@@ function/client/ClientRequest.java :: 24
+将请求正文设置为给定的 {@code Publisher} 并返回该构建器。
+@@ function/client/ClientRequest.java :: 25
+将请求正文设置为给定的 {@code Publisher} 并返回该构建器。
+@@ function/client/ClientRequest.java :: 26
+将具有给定名称的属性设置为给定值。
+@@ function/client/ClientRequest.java :: 27
+使用给定的消费者操作请求属性。提供给消费者的属性是“实时”的，因此消费者可用于检查属性、删除属性或使用映射提供的任何其他方法。
+@@ function/client/ClientRequest.java :: 28
+用于访问 {@link ClientHttpRequest} 的回调，后者进而提供对底层 HTTP 库原生请求的访问。这对于设置底层库所暴露的高级按请求选项可能很有用。
+@@ function/client/ClientRequest.java :: 29
+构建请求。
+@@ function/client/ClientResponse.java :: 1
+表示由 {@link WebClient} 以及 {@link ExchangeFunction} 返回的 HTTP 响应。提供对响应状态和头的访问，以及消费响应正文的方法。
+@@ function/client/ClientResponse.java :: 2
+以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
+@@ function/client/ClientResponse.java :: 3
+返回此响应的（可能非标准的）状态码。
+@@ function/client/ClientResponse.java :: 4
+返回此响应的头。
+@@ function/client/ClientResponse.java :: 5
+返回此响应的 cookie。
+@@ function/client/ClientResponse.java :: 6
+返回用于转换此响应正文的策略。
+@@ function/client/ClientResponse.java :: 7
+使用给定的 {@code BodyExtractor} 提取正文。
+@@ function/client/ClientResponse.java :: 8
+将正文提取为 {@code Mono}。
+@@ function/client/ClientResponse.java :: 9
+将正文提取为 {@code Mono}。
+@@ function/client/ClientResponse.java :: 10
+将正文提取为 {@code Flux}。
+@@ function/client/ClientResponse.java :: 11
+将正文提取为 {@code Flux}。
+@@ function/client/ClientResponse.java :: 12
+释放此响应的正文。
+@@ function/client/ClientResponse.java :: 13
+将此响应返回为延迟的 {@code ResponseEntity}。
+@@ function/client/ClientResponse.java :: 14
+将此响应返回为延迟的 {@code ResponseEntity}。
+@@ function/client/ClientResponse.java :: 15
+将此响应返回为延迟的 {@code ResponseEntity} 列表。
+@@ function/client/ClientResponse.java :: 16
+将此响应返回为延迟的 {@code ResponseEntity} 列表。
+@@ function/client/ClientResponse.java :: 17
+将此响应返回为包含状态和头但没有正文的延迟 {@code ResponseEntity}。调用此方法将{@linkplain #releaseBody() 释放}响应正文。
+@@ function/client/ClientResponse.java :: 18
+创建包含响应状态、头、正文以及原始请求的 {@link WebClientResponseException}。
+@@ function/client/ClientResponse.java :: 19
+返回用于关联此交换消息的日志消息前缀。
+<p>该前缀基于 {@linkplain ClientRequest#logPrefix()}，而后者又基于 {@link ClientRequest#LOG_ID_ATTRIBUTE LOG_ID_ATTRIBUTE} 请求属性的值，并进一步用 "[" 和 "]" 包围。
+@@ function/client/ClientResponse.java :: 20
+返回用于修改此响应的构建器，例如更改状态、头、cookie，以及替换或转换正文。
+@@ function/client/ClientResponse.java :: 21
+使用给定响应的状态、头和 cookie 创建构建器。
+<p><strong>注意：</strong>返回的构建器中的正文默认为 {@link Flux#empty()}。要沿用原始响应的正文，请使用 {@code otherResponse.bodyToFlux(DataBuffer.class)}，或直接使用基于实例的 {@link #mutate()} 方法。
+@@ function/client/ClientResponse.java :: 22
+使用给定状态码并采用默认正文读取策略创建响应构建器。
+@@ function/client/ClientResponse.java :: 23
+使用给定状态码和正文读取策略创建响应构建器。
+@@ function/client/ClientResponse.java :: 24
+使用给定原始状态码和正文读取策略创建响应构建器。
+@@ function/client/ClientResponse.java :: 25
+使用给定状态码和消息正文读取器创建响应构建器。
+@@ function/client/ClientResponse.java :: 26
+表示 HTTP 响应的头。
+@@ function/client/ClientResponse.java :: 27
+返回正文的字节长度，由 {@code Content-Length} 头指定。
+@@ function/client/ClientResponse.java :: 28
+返回正文的{@linkplain MediaType 媒体类型}，由 {@code Content-Type} 头指定。
+@@ function/client/ClientResponse.java :: 29
+返回给定名称头的头值（如果有）。
+<p>如果未找到头值，则返回空列表。
+@@ function/client/ClientResponse.java :: 30
+将头作为 {@link HttpHeaders} 实例返回。
+@@ function/client/ClientResponse.java :: 31
+定义响应的构建器。
+@@ function/client/ClientResponse.java :: 32
+设置响应的状态码。
+@@ function/client/ClientResponse.java :: 33
+设置响应的原始状态码。
+@@ function/client/ClientResponse.java :: 34
+在给定名称下添加给定的头值。
+@@ function/client/ClientResponse.java :: 35
+使用给定的消费者操作此响应的头。
+<p>提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
+@@ function/client/ClientResponse.java :: 36
+添加具有给定名称和值的 cookie。
+@@ function/client/ClientResponse.java :: 37
+使用给定的消费者操作此响应的 cookie。
+<p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie 值、{@linkplain MultiValueMap#remove(Object) 删除}值，或使用任何其他 {@link MultiValueMap} 方法。
+@@ function/client/ClientResponse.java :: 38
+如果构建器中已设置正文，则转换响应正文。
+@@ function/client/ClientResponse.java :: 39
+设置响应正文。
+<p><strong>注意：</strong>此方法将排空构建器中已设置的现有正文。
+@@ function/client/ClientResponse.java :: 40
+将响应正文设置为给定字符串的 UTF-8 编码字节。
+<p><strong>注意：</strong>此方法将排空构建器中已设置的现有正文。
+@@ function/client/ClientResponse.java :: 41
+设置与响应关联的请求。
+@@ function/client/ClientResponse.java :: 42
+构建响应。
+@@ function/client/DefaultClientRequestBuilder.java :: 1
+{@link ClientRequest.Builder} 的默认实现。
+@@ function/client/DefaultClientResponse.java :: 1
+{@link ClientResponse} 的默认实现。
+@@ function/client/DefaultClientResponseBuilder.java :: 1
+{@link ClientResponse.Builder} 的默认实现。
+@@ function/client/DefaultExchangeStrategiesBuilder.java :: 1
+{@link ExchangeStrategies.Builder} 的默认实现。
+@@ function/client/DefaultWebClient.java :: 1
+{@link WebClient} 的默认实现。
+@@ function/client/DefaultWebClientBuilder.java :: 1
+{@link WebClient.Builder} 的默认实现。
+@@ function/client/ExchangeFilterFunction.java :: 1
+表示过滤{@linkplain ExchangeFunction 交换函数}的函数。
+<p>当 {@code Subscriber} 订阅由 {@code WebClient} 返回的 {@code Publisher} 时，将执行该过滤器。
+@@ function/client/ExchangeFilterFunction.java :: 2
+将此过滤器应用于给定请求和交换函数。
+<p>给定的 {@linkplain ExchangeFunction} 表示链中的下一个实体，可通过 {@linkplain ExchangeFunction#exchange(ClientRequest) 调用}它来继续交换，或不调用它以短路该链。
+
+<p><strong>注意：</strong>当过滤器在调用 {@link ExchangeFunction#exchange} 之后处理响应时，必须格外小心，始终消费其内容，或以其他方式将其向下游传播以供进一步处理（例如由 {@link WebClient} 处理）。详情请参阅参考文档。
+@@ function/client/ExchangeFilterFunction.java :: 3
+返回组合过滤器函数，先应用此过滤器，然后应用给定的 {@code "after"} 过滤器。
+@@ function/client/ExchangeFilterFunction.java :: 4
+将此过滤器应用于给定的 {@linkplain ExchangeFunction}，生成过滤后的交换函数。
+@@ function/client/ExchangeFilterFunction.java :: 5
+将给定的请求处理器函数适配为仅对 {@code ClientRequest} 操作的过滤器函数。
+@@ function/client/ExchangeFilterFunction.java :: 6
+将给定的响应处理器函数适配为仅对 {@code ClientResponse} 操作的过滤器函数。
+@@ function/client/ExchangeFilterFunctions.java :: 1
+提供内置 {@link ExchangeFilterFunction} 实现（用于基本认证、错误处理等）的静态工厂方法。
+@@ function/client/ExchangeFilterFunctions.java :: 2
+带有 {@link Credentials} 的请求属性名称，供 {@link #basicAuthentication()} 使用。
+@@ function/client/ExchangeFilterFunctions.java :: 3
+从响应正文消费最多指定数量的字节，如果还有更多数据到达则取消。
+<p>内部委托给 {@link DataBufferUtils#takeUntilByteCount}。
+@@ function/client/ExchangeFilterFunctions.java :: 4
+返回当给定 {@link HttpStatus} 谓词匹配时生成错误信号的过滤器。
+@@ function/client/ExchangeFilterFunctions.java :: 5
+返回通过 {@link HttpHeaders#setBasicAuth(String)} 和 {@link HttpHeaders#encodeBasicAuth(String, String, Charset)} 将 HTTP 基本认证应用到请求头的过滤器。
+@@ function/client/ExchangeFilterFunctions.java :: 6
+{@link #basicAuthentication(String, String)} 的变体，从{@link #BASIC_AUTHENTICATION_CREDENTIALS_ATTRIBUTE 请求属性}中查找 {@link Credentials Credentials}。
+@@ function/client/ExchangeFilterFunctions.java :: 7
+存储用于 HTTP 基本认证的用户名和密码。
+@@ function/client/ExchangeFilterFunctions.java :: 8
+使用给定的用户名和密码创建新的 {@code Credentials} 实例。
+@@ function/client/ExchangeFilterFunctions.java :: 9
+返回一个 {@literal Consumer}，它将给定用户名和密码存储为 {@code Credentials} 类型的请求属性，随后由 {@link ExchangeFilterFunctions#basicAuthentication()} 使用。
+@@ function/client/ExchangeFunction.java :: 1
+表示将{@linkplain ClientRequest 请求}交换为（延迟的）{@linkplain ClientResponse 响应}的函数。可作为 {@link WebClient} 的替代方案。
+
+<p>例如：
+<pre class="code">
+ExchangeFunction exchangeFunction =
+        ExchangeFunctions.create(new ReactorClientHttpConnector());
+
+URI url = URI.create("https://example.com/resource");
+ClientRequest request = ClientRequest.create(HttpMethod.GET, url).build();
+
+Mono&lt;String&gt; bodyMono = exchangeFunction
+    .exchange(request)
+    .flatMap(response -&gt; response.bodyToMono(String.class));
+</pre>
+@@ function/client/ExchangeFunction.java :: 2
+将给定请求交换为 {@link ClientResponse} 的 promise。
+
+<p><strong>注意：</strong>当从以某种方式处理响应的 {@link ExchangeFilterFunction} 中调用此方法时，必须格外小心，始终消费其内容，或以其他方式将其向下游传播以供进一步处理（例如由 {@link WebClient} 处理）。详情请参阅参考文档。
+@@ function/client/ExchangeFunction.java :: 3
+使用给定的 {@code ExchangeFilterFunction} 过滤交换函数，生成过滤后的 {@code ExchangeFunction}。
+@@ function/client/ExchangeFunctions.java :: 1
+用于创建 {@link ExchangeFunction} 的静态工厂方法。
+@@ function/client/ExchangeFunctions.java :: 2
+使用给定的 {@code ClientHttpConnector} 创建 {@code ExchangeFunction}。这与调用 {@link #create(ClientHttpConnector, ExchangeStrategies)} 并传入 {@link ExchangeStrategies#withDefaults()} 相同。
+@@ function/client/ExchangeFunctions.java :: 3
+使用给定的 {@code ClientHttpConnector} 和 {@code ExchangeStrategies} 创建 {@code ExchangeFunction}。
+@@ function/client/ExchangeStrategies.java :: 1
+提供在 {@link ExchangeFunction} 中使用的策略。
+
+<p>要创建实例，请参见静态方法 {@link #withDefaults()}、{@link #builder()} 和 {@link #empty()}。
+@@ function/client/ExchangeStrategies.java :: 2
+返回用于读取和解码响应正文的 {@link HttpMessageReader HttpMessageReaders}。
+@@ function/client/ExchangeStrategies.java :: 3
+返回用于写入和编码请求正文的 {@link HttpMessageWriter HttpMessageWriters}。
+@@ function/client/ExchangeStrategies.java :: 4
+返回用于创建从当前实例复制的新的 {@link ExchangeStrategies} 实例的构建器。
+@@ function/client/ExchangeStrategies.java :: 5
+返回使用 {@link ClientCodecConfigurer} 提供的默认配置的 {@code ExchangeStrategies} 实例。
+@@ function/client/ExchangeStrategies.java :: 6
+返回预先配置了默认配置的构建器作为起点。这与 {@link #withDefaults()} 相同，但返回可变构建器以便进一步自定义。
+@@ function/client/ExchangeStrategies.java :: 7
+返回以空配置开始的构建器。
+@@ function/client/ExchangeStrategies.java :: 8
+用于 {@link ExchangeStrategies} 的可变构建器。
+@@ function/client/ExchangeStrategies.java :: 9
+自定义客户端 HTTP 消息读写器列表。
+@@ function/client/ExchangeStrategies.java :: 10
+构建 {@link ExchangeStrategies}。
+@@ function/client/UnknownHttpStatusCodeException.java :: 1
+收到未知（或自定义）HTTP 状态码时抛出的异常。
+@@ function/client/UnknownHttpStatusCodeException.java :: 2
+使用给定参数创建 {@code UnknownHttpStatusCodeException} 的新实例。
+@@ function/client/UnknownHttpStatusCodeException.java :: 3
+使用给定参数创建 {@code UnknownHttpStatusCodeException} 的新实例。
+@@ function/client/WebClient.java :: 1
+用于执行 HTTP 请求的非阻塞、响应式客户端，在 Reactor Netty 等底层 HTTP 客户端库之上提供流畅的响应式 API。
+
+<p>使用静态工厂方法 {@link #create()} 或 {@link #create(String)}，或 {@link WebClient#builder()} 来准备实例。
+
+<p>有关带响应正文的示例，请参见：
+<ul>
+<li>{@link RequestHeadersSpec#retrieve() retrieve()}
+<li>{@link RequestHeadersSpec#exchangeToMono(Function) exchangeToMono()}
+<li>{@link RequestHeadersSpec#exchangeToFlux(Function) exchangeToFlux()}
+</ul>
+<p>有关带请求正文的示例，请参见：
+<ul>
+<li>{@link RequestBodySpec#bodyValue(Object) bodyValue(Object)}
+<li>{@link RequestBodySpec#body(Publisher, Class) body(Publisher,Class)}
+</ul>
+@@ function/client/WebClient.java :: 2
+开始构建 HTTP GET 请求。
+@@ function/client/WebClient.java :: 3
+开始构建 HTTP HEAD 请求。
+@@ function/client/WebClient.java :: 4
+开始构建 HTTP POST 请求。
+@@ function/client/WebClient.java :: 5
+开始构建 HTTP PUT 请求。
+@@ function/client/WebClient.java :: 6
+开始构建 HTTP PATCH 请求。
+@@ function/client/WebClient.java :: 7
+开始构建 HTTP DELETE 请求。
+@@ function/client/WebClient.java :: 8
+开始构建 HTTP OPTIONS 请求。
+@@ function/client/WebClient.java :: 9
+开始为给定的 {@code HttpMethod} 构建请求。
+@@ function/client/WebClient.java :: 10
+返回用于创建新的 {@code WebClient} 的构建器，其设置从当前 {@code WebClient} 复制。
+@@ function/client/WebClient.java :: 11
+默认使用 Reactor Netty 创建新的 {@code WebClient}。
+@@ function/client/WebClient.java :: 12
+{@link #create()} 的变体，接受默认基础 URL。更多详情请参见 {@link Builder#baseUrl(String) Builder.baseUrl(String)}。
+@@ function/client/WebClient.java :: 13
+获取 {@code WebClient} 构建器。
+@@ function/client/WebClient.java :: 14
+用于创建 {@link WebClient} 的可变构建器。
+@@ function/client/WebClient.java :: 15
+为请求配置基础 URL。实际上是以下代码的快捷方式：
+<p>
+<pre class="code">
+String baseUrl = "https://abc.go.com/v1";
+DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(baseUrl);
+WebClient client = WebClient.builder().uriBuilderFactory(factory).build();
+</pre>
+<p>{@code DefaultUriBuilderFactory} 用于为每个请求准备带有给定基础 URL 的 URL，除非给定 URL 的请求是绝对 URL，此时将忽略基础 URL。
+<p><strong>注意：</strong>此方法与 {@link #uriBuilderFactory(UriBuilderFactory)} 互斥。如果同时使用，此处提供的 baseUrl 值将被忽略。
+@@ function/client/WebClient.java :: 16
+配置在使用 {@link Map} 展开 URI 模板时使用的默认 URL 变量值。实际上是以下代码的快捷方式：
+<p>
+<pre class="code">
+Map&lt;String, ?&gt; defaultVars = ...;
+DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory();
+factory.setDefaultVariables(defaultVars);
+WebClient client = WebClient.builder().uriBuilderFactory(factory).build();
+</pre>
+<p><strong>注意：</strong>此方法与 {@link #uriBuilderFactory(UriBuilderFactory)} 互斥。如果同时使用，此处提供的 defaultUriVariables 值将被忽略。
+@@ function/client/WebClient.java :: 17
+提供预先配置的 {@link UriBuilderFactory} 实例。这是以下快捷属性的替代方案，并会实际覆盖它们：
+<ul>
+<li>{@link #baseUrl(String)}
+<li>{@link #defaultUriVariables(Map)}.
+</ul>
+@@ function/client/WebClient.java :: 18
+用于指定要添加到每个请求的头的全局选项（如果请求尚不包含此类头）。
+@@ function/client/WebClient.java :: 19
+提供对目前声明的每个 {@link #defaultHeader(String, String...)} 的访问，并可以添加、替换或删除。
+@@ function/client/WebClient.java :: 20
+用于指定要添加到每个请求的 cookie 的全局选项（如果请求尚不包含此类 cookie）。
+@@ function/client/WebClient.java :: 21
+提供对目前声明的每个 {@link #defaultCookie(String, String...)} 的访问，并可以添加、替换或删除。
+@@ function/client/WebClient.java :: 22
+提供用于自定义每个正在构建的请求的消费者。
+@@ function/client/WebClient.java :: 23
+将给定过滤器添加到过滤器链的末尾。
+@@ function/client/WebClient.java :: 24
+使用给定的消费者操作过滤器。提供给消费者的列表是“实时”的，因此消费者可用于删除过滤器、更改顺序等。
+@@ function/client/WebClient.java :: 25
+配置要使用的 {@link ClientHttpConnector}。这对于插入和/或自定义底层 HTTP 客户端库的选项（例如 SSL）很有用。
+<p>默认设置为 {@link org.springframework.http.client.reactive.ReactorClientHttpConnector ReactorClientHttpConnector}。
+@@ function/client/WebClient.java :: 26
+在{@link #exchangeStrategies(ExchangeStrategies) 底层} {@code ExchangeStrategies} 中为 {@code WebClient} 配置编解码器。
+@@ function/client/WebClient.java :: 27
+配置要使用的 {@link ExchangeStrategies}。
+<p>在大多数情况下，优先使用 {@link #codecs(Consumer)}，它允许自定义 {@code ExchangeStrategies} 中的编解码器，而不是替换它们。这可确保多方都能参与编解码器配置。
+<p>默认设置为 {@link ExchangeStrategies#withDefaults()}。
+@@ function/client/WebClient.java :: 28
+自定义通过 {@link #exchangeStrategies(ExchangeStrategies)} 配置的策略。此方法适用于多方希望更新 {@code ExchangeStrategies} 的场景。
+@@ function/client/WebClient.java :: 29
+提供预先配置了 {@link ClientHttpConnector} 和 {@link ExchangeStrategies} 的 {@link ExchangeFunction}。
+<p>这是 {@link #clientConnector} 和 {@link #exchangeStrategies(ExchangeStrategies)} 的替代方案，并会实际覆盖它们。
+@@ function/client/WebClient.java :: 30
+将给定 {@code Consumer} 应用于此构建器实例。
+<p>这对于应用预先打包的自定义配置很有用。
+@@ function/client/WebClient.java :: 31
+克隆此 {@code WebClient.Builder}。
+@@ function/client/WebClient.java :: 32
+构建 {@link WebClient} 实例。
+@@ function/client/WebClient.java :: 33
+用于指定请求 URI 的契约。
+@@ function/client/WebClient.java :: 34
+使用绝对且完整构造的 {@link URI} 指定 URI。
+@@ function/client/WebClient.java :: 35
+使用 URI 模板和 URI 变量指定请求的 URI。如果为客户端配置了 {@link UriBuilderFactory}（例如带有基础 URI），则将使用它来展开 URI 模板。
+@@ function/client/WebClient.java :: 36
+使用 URI 模板和 URI 变量指定请求的 URI。如果为客户端配置了 {@link UriBuilderFactory}（例如带有基础 URI），则将使用它来展开 URI 模板。
+@@ function/client/WebClient.java :: 37
+以 URI 模板开始，并以从该模板创建的 {@link UriBuilder} 结束来指定 URI。
+@@ function/client/WebClient.java :: 38
+通过 {@link UriBuilder} 指定 URI。
+@@ function/client/WebClient.java :: 39
+用于指定交换前请求头的契约。
+@@ function/client/WebClient.java :: 40
+设置可接受的{@linkplain MediaType 媒体类型}列表，由 {@code Accept} 头指定。
+@@ function/client/WebClient.java :: 41
+设置可接受的{@linkplain Charset 字符集}列表，由 {@code Accept-Charset} 头指定。
+@@ function/client/WebClient.java :: 42
+添加具有给定名称和值的 cookie。
+@@ function/client/WebClient.java :: 43
+提供对目前声明的每个 cookie 的访问，并可以添加、替换或删除值。
+@@ function/client/WebClient.java :: 44
+设置 {@code If-Modified-Since} 头的值。
+<p>日期应指定为自格林威治标准时间 1970 年 1 月 1 日以来的毫秒数。
+@@ function/client/WebClient.java :: 45
+设置 {@code If-None-Match} 头的值。
+@@ function/client/WebClient.java :: 46
+在给定名称下添加给定的单个头值。
+@@ function/client/WebClient.java :: 47
+提供对目前声明的每个头的访问，并可以添加、替换或删除值。
+@@ function/client/WebClient.java :: 48
+将具有给定名称的属性设置为给定值。
+@@ function/client/WebClient.java :: 49
+提供对目前声明的每个属性的访问，并可以添加、替换或删除值。
+@@ function/client/WebClient.java :: 50
+提供用于填充 Reactor {@code Context} 的函数。
+@@ function/client/WebClient.java :: 51
+用于访问 {@link ClientHttpRequest} 的回调，后者进而提供对底层 HTTP 库原生请求的访问。这对于设置底层库所暴露的高级按请求选项可能很有用。
+@@ function/client/WebClient.java :: 52
+继续声明如何提取响应。例如，提取包含状态、头和正文的 {@link ResponseEntity}：
+<p><pre>
+Mono&lt;ResponseEntity&lt;Person&gt;&gt; entityMono = client.get()
+    .uri("/persons/1")
+    .accept(MediaType.APPLICATION_JSON)
+    .retrieve()
+    .toEntity(Person.class);
+</pre>
+<p>或者如果只关心正文：
+<p><pre>
+Mono&lt;Person&gt; entityMono = client.get()
+    .uri("/persons/1")
+    .accept(MediaType.APPLICATION_JSON)
+    .retrieve()
+    .bodyToMono(Person.class);
+</pre>
+<p>默认情况下，4xx 和 5xx 响应会产生 {@link WebClientResponseException}。要自定义错误处理，请使用 {@link ResponseSpec#onStatus(Predicate, Function) onStatus} 处理器。
+@@ function/client/WebClient.java :: 53
+{@link #retrieve()} 的替代方案，通过访问 {@link ClientResponse} 提供更多控制。这对于高级场景很有用，例如根据响应状态以不同方式解码响应：
+<p><pre>
+Mono&lt;Person&gt; entityMono = client.get()
+    .uri("/persons/1")
+    .accept(MediaType.APPLICATION_JSON)
+    .exchangeToMono(response -&gt; {
+        if (response.statusCode().equals(HttpStatus.OK)) {
+            return response.bodyToMono(Person.class);
+        }
+        else {
+            return response.createException().flatMap(Mono::error);
+        }
+    });
+</pre>
+<p><strong>注意：</strong>返回的 {@code Mono} 完成后，如果响应正文尚未被消费，它将自动释放。如果需要响应内容，所提供的函数必须声明如何解码它。
+@@ function/client/WebClient.java :: 54
+{@link #retrieve()} 的替代方案，通过访问 {@link ClientResponse} 提供更多控制。这对于高级场景很有用，例如根据响应状态以不同方式解码响应：
+<p><pre>
+Flux&lt;Person&gt; entityMono = client.get()
+    .uri("/persons")
+    .accept(MediaType.APPLICATION_JSON)
+    .exchangeToFlux(response -&gt; {
+        if (response.statusCode().equals(HttpStatus.OK)) {
+            return response.bodyToFlux(Person.class);
+        }
+        else {
+            return response.createException().flatMapMany(Mono::error);
+        }
+    });
+</pre>
+<p><strong>注意：</strong>返回的 {@code Flux} 完成后，如果响应正文尚未被消费，它将自动释放。如果需要响应内容，所提供的函数必须声明如何解码它。
+@@ function/client/WebClient.java :: 55
+执行 HTTP 请求并返回包含响应状态和头的 {@link ClientResponse}。然后可以使用响应的方法来消费正文：
+<p><pre>
+Mono&lt;Person&gt; mono = client.get()
+    .uri("/persons/1")
+    .accept(MediaType.APPLICATION_JSON)
+    .exchange()
+    .flatMap(response -&gt; response.bodyToMono(Person.class));
+
+Flux&lt;Person&gt; flux = client.get()
+    .uri("/persons")
+    .accept(MediaType.APPLICATION_STREAM_JSON)
+    .exchange()
+    .flatMapMany(response -&gt; response.bodyToFlux(Person.class));
+</pre>
+<p><strong>注意：</strong>与 {@link #retrieve()} 不同，使用 {@code exchange()} 时，应用有责任消费任何响应内容，无论场景如何（成功、错误、意外数据等）。否则可能导致内存泄漏。有关消费正文的所有可用选项，请参见 {@link ClientResponse}。通常优先使用 {@link #retrieve()}，除非你有充分理由使用 {@code exchange()}，它确实允许在决定如何消费响应或是否消费响应之前检查响应状态和头。
+@@ function/client/WebClient.java :: 56
+用于指定交换前请求头和正文的契约。
+@@ function/client/WebClient.java :: 57
+设置正文的字节长度，由 {@code Content-Length} 头指定。
+@@ function/client/WebClient.java :: 58
+设置正文的{@linkplain MediaType 媒体类型}，由 {@code Content-Type} 头指定。
+@@ function/client/WebClient.java :: 59
+使用{@linkplain BodyInserters#fromValue 值插入器}的 {@link #body(BodyInserter)} 快捷方法。例如：
+<p><pre class="code">
+Person person = ... ;
+
+Mono&lt;Void&gt; result = client.post()
+    .uri("/persons/{id}", id)
+    .contentType(MediaType.APPLICATION_JSON)
+    .bodyValue(person)
+    .retrieve()
+    .bodyToMono(Void.class);
+</pre>
+<p>对于 multipart 请求，可考虑提供使用 {@link org.springframework.http.client.MultipartBodyBuilder MultipartBodyBuilder} 准备的 {@link org.springframework.util.MultiValueMap MultiValueMap}。
+@@ function/client/WebClient.java :: 60
+使用{@linkplain BodyInserters#fromPublisher Publisher 插入器}的 {@link #body(BodyInserter)} 快捷方法。例如：
+<p><pre>
+Mono&lt;Person&gt; personMono = ... ;
+
+Mono&lt;Void&gt; result = client.post()
+    .uri("/persons/{id}", id)
+    .contentType(MediaType.APPLICATION_JSON)
+    .body(personMono, Person.class)
+    .retrieve()
+    .bodyToMono(Void.class);
+</pre>
+@@ function/client/WebClient.java :: 61
+{@link #body(Publisher, Class)} 的变体，允许提供带泛型的元素类型信息。
+@@ function/client/WebClient.java :: 62
+{@link #body(Publisher, Class)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
+@@ function/client/WebClient.java :: 63
+{@link #body(Publisher, ParameterizedTypeReference)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
+@@ function/client/WebClient.java :: 64
+使用给定的正文插入器设置请求正文。有关内置 {@link BodyInserter} 实现，请参见 {@link BodyInserters}。
+@@ function/client/WebClient.java :: 65
+使用{@linkplain BodyInserters#fromValue 值插入器}的 {@link #body(BodyInserter)} 快捷方法。从 5.2 开始，此方法委托给 {@link #bodyValue(Object)}。
+@@ function/client/WebClient.java :: 66
+用于指定交换后响应操作的契约。
+@@ function/client/WebClient.java :: 67
+提供用于将特定错误状态码映射为错误信号并向下游传播（而不是传播响应）的函数。
+<p>默认情况下，如果没有匹配的状态处理器，状态码大于等于 400 的响应会映射为 {@link WebClientResponseException}，它由 {@link ClientResponse#createException()} 创建。
+<p>要将某个状态码视为正常响应而不作为错误处理，请从函数返回 {@code Mono.empty()}。响应随后将向下游传播以供处理。
+<p>要完全忽略错误响应，既不传播响应也不传播错误，请使用 {@link ExchangeFilterFunction 过滤器}，或在下游添加 {@code onErrorResume}，例如：
+<pre class="code">
+webClient.get()
+    .uri("https://abc.com/account/123")
+    .retrieve()
+    .bodyToMono(Account.class)
+    .onErrorResume(WebClientResponseException.class,
+         ex -&gt; ex.getRawStatusCode() == 404 ? Mono.empty() : Mono.error(ex));
+</pre>
+@@ function/client/WebClient.java :: 68
+{@link #onStatus(Predicate, Function)} 的变体，使用原始状态码值。这对于自定义状态码很有用。
+@@ function/client/WebClient.java :: 69
+将正文解码为给定的目标类型。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+@@ function/client/WebClient.java :: 70
+带 {@link ParameterizedTypeReference} 的 {@link #bodyToMono(Class)} 变体。
+@@ function/client/WebClient.java :: 71
+将正文解码为包含给定类型元素的 {@link Flux}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+@@ function/client/WebClient.java :: 72
+带 {@link ParameterizedTypeReference} 的 {@link #bodyToMono(Class)} 变体。
+@@ function/client/WebClient.java :: 73
+返回 {@code ResponseEntity}，其正文解码为给定类型的对象。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+@@ function/client/WebClient.java :: 74
+带 {@link ParameterizedTypeReference} 的 {@link #bodyToMono(Class)} 变体。
+@@ function/client/WebClient.java :: 75
+返回 {@code ResponseEntity}，其正文解码为给定类型元素的 {@code List}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+@@ function/client/WebClient.java :: 76
+带 {@link ParameterizedTypeReference} 的 {@link #toEntity(Class)} 变体。
+@@ function/client/WebClient.java :: 77
+返回 {@code ResponseEntity}，其正文解码为给定类型元素的 {@code Flux}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+<p><strong>注意：</strong>表示正文的 {@code Flux} 必须被订阅，否则相关资源将不会被释放。
+@@ function/client/WebClient.java :: 78
+带 {@link ParameterizedTypeReference} 的 {@link #toEntityFlux(Class)} 变体。
+@@ function/client/WebClient.java :: 79
+带 {@link BodyExtractor} 的 {@link #toEntityFlux(Class)} 变体。
+@@ function/client/WebClient.java :: 80
+返回不带正文的 {@code ResponseEntity}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+@@ function/client/WebClient.java :: 81
+用于指定请求头和请求 URI 的契约。
+@@ function/client/WebClient.java :: 82
+用于指定请求头、正文和请求 URI 的契约。
+@@ function/client/WebClientException.java :: 1
+在发生错误时由 {@link WebClient} 发布的异常的抽象基类。
+@@ function/client/WebClientException.java :: 2
+使用给定消息构造 {@code WebClientException} 的新实例。
+@@ function/client/WebClientException.java :: 3
+使用给定消息和异常构造 {@code WebClientException} 的新实例。
+@@ function/client/WebClientRequestException.java :: 1
+包含实际 HTTP 请求数据的异常。
+@@ function/client/WebClientRequestException.java :: 2
+用于 throwable 的构造函数。
+@@ function/client/WebClientRequestException.java :: 3
+并非所有 {@code HttpHeaders} 实现都可序列化，因此我们进行复制以确保 {@code WebClientResponseException} 可序列化。
+@@ function/client/WebClientRequestException.java :: 4
+返回 HTTP 请求方法。
+@@ function/client/WebClientRequestException.java :: 5
+返回请求 URI。
+@@ function/client/WebClientRequestException.java :: 6
+返回 HTTP 请求头。
+@@ function/client/WebClientResponseException.java :: 1
+包含实际 HTTP 响应数据的异常。
+@@ function/client/WebClientResponseException.java :: 2
+仅使用响应数据和默认消息的构造函数。
+@@ function/client/WebClientResponseException.java :: 3
+仅使用响应数据和默认消息的构造函数。
+@@ function/client/WebClientResponseException.java :: 4
+使用预先准备的消息的构造函数。
+@@ function/client/WebClientResponseException.java :: 5
+使用预先准备的消息的构造函数。
+@@ function/client/WebClientResponseException.java :: 6
+并非所有 {@code HttpHeaders} 实现都可序列化，因此我们进行复制以确保 {@code WebClientResponseException} 可序列化。
+@@ function/client/WebClientResponseException.java :: 7
+返回 HTTP 状态码值。
+@@ function/client/WebClientResponseException.java :: 8
+返回原始 HTTP 状态码值。
+@@ function/client/WebClientResponseException.java :: 9
+返回 HTTP 状态文本。
+@@ function/client/WebClientResponseException.java :: 10
+返回 HTTP 响应头。
+@@ function/client/WebClientResponseException.java :: 11
+将响应正文作为字节数组返回。
+@@ function/client/WebClientResponseException.java :: 12
+使用响应的媒体类型字符集（如果可用）将响应内容作为 String 返回，否则回退到 {@literal ISO-8859-1}。如果希望回退到其他默认字符集，请使用 {@link #getResponseBodyAsString(Charset)}。
+@@ function/client/WebClientResponseException.java :: 13
+{@link #getResponseBodyAsString()} 的变体，允许指定在无法从响应的媒体类型获取字符集时回退使用的字符集。
+@@ function/client/WebClientResponseException.java :: 14
+返回对应的请求。
+@@ function/client/WebClientResponseException.java :: 15
+创建 {@code WebClientResponseException} 或特定 HTTP 状态的子类。
+@@ function/client/WebClientResponseException.java :: 16
+创建 {@code WebClientResponseException} 或特定 HTTP 状态的子类。
+@@ function/client/WebClientResponseException.java :: 17
+用于 HTTP 状态 400 Bad Request 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 18
+用于 HTTP 状态 401 Unauthorized 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 19
+用于 HTTP 状态 403 Forbidden 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 20
+用于 HTTP 状态 404 Not Found 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 21
+用于 HTTP 状态 405 Method Not Allowed 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 22
+用于 HTTP 状态 406 Not Acceptable 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 23
+用于 HTTP 状态 409 Conflict 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 24
+用于 HTTP 状态 410 Gone 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 25
+用于 HTTP 状态 415 Unsupported Media Type 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 26
+用于 HTTP 状态 422 Unprocessable Entity 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 27
+用于 HTTP 状态 429 Too Many Requests 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 28
+用于 HTTP 状态 500 Internal Server Error 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 29
+用于 HTTP 状态 501 Not Implemented 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 30
+用于 HTTP 状态 502 Bad Gateway 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 31
+用于 HTTP 状态 503 Service Unavailable 的 {@link WebClientResponseException}。
+@@ function/client/WebClientResponseException.java :: 32
+用于 HTTP 状态 504 Gateway Timeout 的 {@link WebClientResponseException}。
+@@ function/client/WebClientUtils.java :: 1
+{@link DefaultWebClient} 和 {@link DefaultClientResponse} 之间共享的内部方法。
+@@ function/client/WebClientUtils.java :: 2
+如果异常应被包装则返回 true 的谓词。
+@@ function/client/WebClientUtils.java :: 3
+将给定响应映射为单个值 {@code ResponseEntity<T>}。
+@@ function/client/WebClientUtils.java :: 4
+将给定响应映射为 {@code ResponseEntity<List<T>>}。
+@@ function/client/package-info.java :: 1
+提供响应式 {@link org.springframework.web.reactive.function.client.WebClient}，它构建在 {@code org.springframework.http.client.reactive} 响应式 HTTP 适配层之上。

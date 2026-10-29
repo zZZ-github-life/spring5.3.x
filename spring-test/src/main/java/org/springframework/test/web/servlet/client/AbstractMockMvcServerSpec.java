@@ -28,10 +28,8 @@ import org.springframework.test.web.servlet.setup.ConfigurableMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcConfigurer;
 
 /**
- * Base class for implementations of {@link MockMvcWebTestClient.MockMvcServerSpec}
- * that simply delegates to a {@link ConfigurableMockMvcBuilder} supplied by
- * the concrete subclasses.
- *
+ * {@link MockMvcWebTestClient.MockMvcServerSpec} 实现的基类，
+ * 简单委托给具体子类提供的 {@link ConfigurableMockMvcBuilder}。
  * @author Rossen Stoyanchev
  * @since 5.3
  * @param <B> the type of the concrete subclass spec
@@ -86,8 +84,8 @@ abstract class AbstractMockMvcServerSpec<B extends MockMvcWebTestClient.MockMvcS
 	}
 
 	/**
-	 * Return the concrete {@link ConfigurableMockMvcBuilder} to delegate
-	 * configuration methods and to use to create the {@link MockMvc}.
+	 * 返回要委托配置方法并用于创建 {@link MockMvc} 的具体
+	 * {@link ConfigurableMockMvcBuilder}。
 	 */
 	protected abstract ConfigurableMockMvcBuilder<?> getMockMvcBuilder();
 

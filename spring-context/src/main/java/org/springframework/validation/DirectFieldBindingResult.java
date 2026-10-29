@@ -21,11 +21,10 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Special implementation of the Errors and BindingResult interfaces,
- * supporting registration and evaluation of binding errors on value objects.
- * Performs direct field access instead of going through JavaBean getters.
+ * Errors 和 BindingResult 接口的特殊实现，支持在值对象上注册和评估绑定错误。直接访问字段，而不经过
+ * JavaBean getter。
  *
- * <p>Since Spring 4.1 this implementation is able to traverse nested fields.
+ * <p>从 Spring 4.1 开始，此实现能够遍历嵌套字段。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -46,7 +45,7 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 
 
 	/**
-	 * Create a new DirectFieldBindingResult instance.
+	 * 创建一个新的 DirectFieldBindingResult 实例。
 	 * @param target the target object to bind onto
 	 * @param objectName the name of the target object
 	 */
@@ -55,7 +54,7 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 	}
 
 	/**
-	 * Create a new DirectFieldBindingResult instance.
+	 * 创建一个新的 DirectFieldBindingResult 实例。
 	 * @param target the target object to bind onto
 	 * @param objectName the name of the target object
 	 * @param autoGrowNestedPaths whether to "auto-grow" a nested path that contains a null value
@@ -74,8 +73,8 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 	}
 
 	/**
-	 * Returns the DirectFieldAccessor that this instance uses.
-	 * Creates a new one if none existed before.
+	 * 返回此实例使用的 DirectFieldAccessor。
+	 * 如果之前不存在，则创建一个新的。
 	 * @see #createDirectFieldAccessor()
 	 */
 	@Override
@@ -89,7 +88,7 @@ public class DirectFieldBindingResult extends AbstractPropertyBindingResult {
 	}
 
 	/**
-	 * Create a new DirectFieldAccessor for the underlying target object.
+	 * 为底层目标对象创建一个新的 DirectFieldAccessor。
 	 * @see #getTarget()
 	 */
 	protected ConfigurablePropertyAccessor createDirectFieldAccessor() {

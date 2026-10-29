@@ -26,8 +26,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Implementation of {@link AspectInstanceFactory} that locates the aspect from the
- * {@link org.springframework.beans.factory.BeanFactory} using a configured bean name.
+ * 使用配置的 Bean 名称从 {@link org.springframework.beans.factory.BeanFactory} 中定位切面的
+ * {@link AspectInstanceFactory} 实现。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -43,8 +43,7 @@ public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstan
 
 
 	/**
-	 * Set the name of the aspect bean. This is the bean that is returned when calling
-	 * {@link #getAspectInstance()}.
+	 * 设置切面 Bean 的名称。调用 {@link #getAspectInstance()} 时返回的就是该 Bean。
 	 */
 	public void setAspectBeanName(String aspectBeanName) {
 		this.aspectBeanName = aspectBeanName;
@@ -58,7 +57,7 @@ public class SimpleBeanFactoryAwareAspectInstanceFactory implements AspectInstan
 
 
 	/**
-	 * Look up the aspect bean from the {@link BeanFactory} and returns it.
+	 * 从 {@link BeanFactory} 中查找切面 Bean 并返回它。
 	 * @see #setAspectBeanName
 	 */
 	@Override

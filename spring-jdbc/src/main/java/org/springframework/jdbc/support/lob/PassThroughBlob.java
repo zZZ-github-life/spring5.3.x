@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * Simple JDBC {@link Blob} adapter that exposes a given byte array or binary stream.
- * Optionally used by {@link DefaultLobHandler}.
+ * 简单的 JDBC {@link Blob} 适配器，对外暴露给定的字节数组或二进制流。
+ * 可选择由 {@link DefaultLobHandler} 使用。
  *
  * @author Juergen Hoeller
  * @since 2.5.3

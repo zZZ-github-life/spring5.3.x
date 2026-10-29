@@ -37,8 +37,8 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.StreamUtils;
 
 /**
- * Implementation of {@link HttpMessageConverter} that can write a single {@link ResourceRegion},
- * or Collections of {@link ResourceRegion ResourceRegions}.
+ * 可写入单个 {@link ResourceRegion} 或
+ * {@link ResourceRegion ResourceRegion} 集合的 {@link HttpMessageConverter} 实现。
  *
  * @author Brian Clozel
  * @author Juergen Hoeller

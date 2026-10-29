@@ -32,13 +32,13 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves {@link Map} method arguments annotated with {@code @RequestHeader}.
- * For individual header values annotated with {@code @RequestHeader} see
- * {@link RequestHeaderMethodArgumentResolver} instead.
+ * 解析标注了 {@code @RequestHeader} 的 {@link Map} 方法参数。
+ * 对于标注了 {@code @RequestHeader} 的单个请求头值，请参阅
+ * {@link RequestHeaderMethodArgumentResolver}。
  *
- * <p>The created {@link Map} contains all request header name/value pairs.
- * The method parameter type may be a {@link MultiValueMap} to receive all
- * values for a header, not only the first one.
+ * <p>创建的 {@link Map} 包含所有请求头名称/值对。
+ * 方法参数类型可以是 {@link MultiValueMap}，以接收某个请求头的所有值，
+ * 而不仅仅是第一个值。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

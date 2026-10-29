@@ -22,10 +22,10 @@ import org.hibernate.Session;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback interface for Hibernate code. To be used with {@link HibernateTemplate}'s
- * execution methods, often as anonymous classes within a method implementation.
- * A typical implementation will call {@code Session.load/find/update} to perform
- * some operations on persistent objects.
+ * Hibernate 代码的回调接口。与 {@link HibernateTemplate} 的执行方法配合使用，
+ * 通常作为方法实现中的匿名类。
+ * 典型的实现会调用 {@code Session.load/find/update} 来对持久化对象执行
+ * 某些操作。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -37,13 +37,12 @@ import org.springframework.lang.Nullable;
 public interface HibernateCallback<T> {
 
 	/**
-	 * Gets called by {@code HibernateTemplate.execute} with an active
-	 * Hibernate {@code Session}. Does not need to care about activating
-	 * or closing the {@code Session}, or handling transactions.
-	 * <p>Allows for returning a result object created within the callback,
-	 * i.e. a domain object or a collection of domain objects.
-	 * A thrown custom RuntimeException is treated as an application exception:
-	 * It gets propagated to the caller of the template.
+	 * 由 {@code HibernateTemplate.execute} 在存在活动 Hibernate {@code Session} 时调用。
+	 * 无需关心 {@code Session} 的激活或关闭，也无需处理事务。
+	 * <p>允许返回在回调中创建的结果对象，
+	 * 即一个领域对象或一组领域对象。
+	 * 抛出的自定义 RuntimeException 会被视为应用异常：
+	 * 它将被传播给模板的调用方。
 	 * @param session active Hibernate session
 	 * @return a result object, or {@code null} if none
 	 * @throws HibernateException if thrown by the Hibernate API

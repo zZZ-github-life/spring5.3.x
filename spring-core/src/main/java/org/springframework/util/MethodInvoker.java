@@ -23,12 +23,10 @@ import java.lang.reflect.Modifier;
 import org.springframework.lang.Nullable;
 
 /**
- * Helper class that allows for specifying a method to invoke in a declarative
- * fashion, be it static or non-static.
+ * 辅助类，允许以声明方式指定要调用的方法，无论是静态方法还是非静态方法。
  *
- * <p>Usage: Specify "targetClass"/"targetMethod" or "targetObject"/"targetMethod",
- * optionally specify arguments, prepare the invoker. Afterwards, you may
- * invoke the method any number of times, obtaining the invocation result.
+ * <p>用法：指定 "targetClass"/"targetMethod" 或 "targetObject"/"targetMethod"，可选地指定参数，然
+ * 后准备调用器。之后，你可以任意多次调用该方法，并获得调用结果。
  *
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
@@ -56,15 +54,13 @@ public class MethodInvoker {
 	@Nullable
 	private Object[] arguments;
 
-	/** The method we will call. */
+	/** 我们将要调用的方法。 */
 	@Nullable
 	private Method methodObject;
 
 
 	/**
-	 * Set the target class on which to call the target method.
-	 * Only necessary when the target method is static; else,
-	 * a target object needs to be specified anyway.
+	 * 设置要在其上调用目标方法的目标类。仅当目标方法是静态方法时才需要；否则无论如何都需要指定目标对象。
 	 * @see #setTargetObject
 	 * @see #setTargetMethod
 	 */
@@ -73,7 +69,7 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Return the target class on which to call the target method.
+	 * 返回要在其上调用目标方法的目标类。
 	 */
 	@Nullable
 	public Class<?> getTargetClass() {
@@ -81,9 +77,7 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Set the target object on which to call the target method.
-	 * Only necessary when the target method is not static;
-	 * else, a target class is sufficient.
+	 * 设置要在其上调用目标方法的目标对象。仅当目标方法不是静态方法时才需要；否则指定目标类就足够了。
 	 * @see #setTargetClass
 	 * @see #setTargetMethod
 	 */
@@ -95,7 +89,7 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Return the target object on which to call the target method.
+	 * 返回要在其上调用目标方法的目标对象。
 	 */
 	@Nullable
 	public Object getTargetObject() {
@@ -103,9 +97,7 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Set the name of the method to be invoked.
-	 * Refers to either a static method or a non-static method,
-	 * depending on a target object being set.
+	 * 设置要调用的方法的名称。取决于是否设置了目标对象，可以指静态方法或非静态方法。
 	 * @see #setTargetClass
 	 * @see #setTargetObject
 	 */
@@ -114,7 +106,7 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Return the name of the method to be invoked.
+	 * 返回要调用的方法的名称。
 	 */
 	@Nullable
 	public String getTargetMethod() {
@@ -122,9 +114,8 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Set a fully qualified static method name to invoke,
-	 * e.g. "example.MyExampleClass.myExampleMethod".
-	 * Convenient alternative to specifying targetClass and targetMethod.
+	 * 设置要调用的完全限定静态方法名，例如 "example.MyExampleClass.myExampleMethod"。这是指定
+	 * targetClass 和 targetMethod 的便捷替代方式。
 	 * @see #setTargetClass
 	 * @see #setTargetMethod
 	 */
@@ -133,15 +124,14 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Set arguments for the method invocation. If this property is not set,
-	 * or the Object array is of length 0, a method with no arguments is assumed.
+	 * 设置方法调用的参数。如果未设置此属性，或 Object 数组长度为 0，则假定方法没有参数。
 	 */
 	public void setArguments(Object... arguments) {
 		this.arguments = arguments;
 	}
 
 	/**
-	 * Return the arguments for the method invocation.
+	 * 返回方法调用的参数。
 	 */
 	public Object[] getArguments() {
 		return (this.arguments != null ? this.arguments : EMPTY_ARGUMENTS);
@@ -149,8 +139,8 @@ public class MethodInvoker {
 
 
 	/**
-	 * Prepare the specified method.
-	 * The method can be invoked any number of times afterwards.
+	 * 准备指定的方法。
+	 * 之后可以任意多次调用该方法。
 	 * @see #getPreparedMethod
 	 * @see #invoke
 	 */
@@ -193,9 +183,8 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Resolve the given class name into a Class.
-	 * <p>The default implementations uses {@code ClassUtils.forName},
-	 * using the thread context class loader.
+	 * 将给定的类名解析为 Class。
+	 * <p>默认实现使用 {@code ClassUtils.forName}，并使用线程上下文类加载器。
 	 * @param className the class name to resolve
 	 * @return the resolved Class
 	 * @throws ClassNotFoundException if the class name was invalid
@@ -205,7 +194,7 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Find a matching method with the specified name for the specified arguments.
+	 * 查找与指定参数匹配的、具有指定名称的方法。
 	 * @return a matching method, or {@code null} if none
 	 * @see #getTargetClass()
 	 * @see #getTargetMethod()
@@ -240,8 +229,8 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Return the prepared Method object that will be invoked.
-	 * <p>Can for example be used to determine the return type.
+	 * 返回将要调用的已准备 Method 对象。
+	 * <p>例如可用于确定返回类型。
 	 * @return the prepared Method object (never {@code null})
 	 * @throws IllegalStateException if the invoker hasn't been prepared yet
 	 * @see #prepare
@@ -255,16 +244,15 @@ public class MethodInvoker {
 	}
 
 	/**
-	 * Return whether this invoker has been prepared already,
-	 * i.e. whether it allows access to {@link #getPreparedMethod()} already.
+	 * 返回此调用器是否已经准备好，即是否已经允许访问 {@link #getPreparedMethod()}。
 	 */
 	public boolean isPrepared() {
 		return (this.methodObject != null);
 	}
 
 	/**
-	 * Invoke the specified method.
-	 * <p>The invoker needs to have been prepared before.
+	 * 调用指定的方法。
+	 * <p>调用器必须事先已经准备好。
 	 * @return the object (possibly null) returned by the method invocation,
 	 * or {@code null} if the method has a void return type
 	 * @throws InvocationTargetException if the target method threw an exception
@@ -285,21 +273,15 @@ public class MethodInvoker {
 
 
 	/**
-	 * Algorithm that judges the match between the declared parameter types of a candidate method
-	 * and a specific list of arguments that this method is supposed to be invoked with.
-	 * <p>Determines a weight that represents the class hierarchy difference between types and
-	 * arguments. A direct match, i.e. type Integer &rarr; arg of class Integer, does not increase
-	 * the result - all direct matches means weight 0. A match between type Object and arg of
-	 * class Integer would increase the weight by 2, due to the superclass 2 steps up in the
-	 * hierarchy (i.e. Object) being the last one that still matches the required type Object.
-	 * Type Number and class Integer would increase the weight by 1 accordingly, due to the
-	 * superclass 1 step up the hierarchy (i.e. Number) still matching the required type Number.
-	 * Therefore, with an arg of type Integer, a constructor (Integer) would be preferred to a
-	 * constructor (Number) which would in turn be preferred to a constructor (Object).
-	 * All argument weights get accumulated.
-	 * <p>Note: This is the algorithm used by MethodInvoker itself and also the algorithm
-	 * used for constructor and factory method selection in Spring's bean container (in case
-	 * of lenient constructor resolution which is the default for regular bean definitions).
+	 * 用于判断候选方法的声明参数类型与该方法预期被调用时所用的具体参数列表之间匹配程度的算法。
+	 * <p>确定一个权重，表示类型与参数之间的类层次结构差异。直接匹配，即类型 Integer &rarr; 类 Integer
+	 * 的参数，不会增加结果——所有直接匹配意味着权重为 0。类型 Object 与类 Integer 的参数匹配会使权重增
+	 * 加 2，因为层次结构中向上 2 步的父类（即 Object）是最后一个仍然匹配所需类型 Object 的类。类型
+	 * Number 与类 Integer 相应会使权重增加 1，因为层次结构中向上 1 步的父类（即 Number）仍然匹配所需类
+	 * 型 Number。因此，对于类型为 Integer 的参数，构造函数 (Integer) 优先于构造函数 (Number)，而后者又
+	 * 优先于构造函数 (Object)。所有参数权重都会被累加。
+	 * <p>注意：这是 MethodInvoker 自身使用的算法，也是 Spring 的 Bean 容器中用于选择构造函数和工厂方法
+	 * 的算法（在宽松构造函数解析的情况下，这也是常规 Bean 定义的默认方式）。
 	 * @param paramTypes the parameter types to match
 	 * @param args the arguments to match
 	 * @return the accumulated weight for all arguments

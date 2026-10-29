@@ -32,11 +32,9 @@ import static org.springframework.test.util.AssertionErrors.assertNotNull;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 /**
- * Factory for response header assertions.
+ * 响应头断言的工厂。
  *
- * <p>An instance of this class is available via
- * {@link MockMvcResultMatchers#header}.
- *
+ * <p>此类的实例可通过 {@link MockMvcResultMatchers#header} 获取。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @author Brian Clozel
@@ -45,24 +43,22 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 public class HeaderResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * See {@link MockMvcResultMatchers#header()}.
+	 * 受保护的构造函数。
+	 * 请参见 {@link MockMvcResultMatchers#header()}。
 	 */
 	protected HeaderResultMatchers() {
 	}
 
 
 	/**
-	 * Assert the primary value of the response header with the given Hamcrest
-	 * String {@code Matcher}.
+	 * 使用给定的 Hamcrest String {@code Matcher} 断言响应头的主值。
 	 */
 	public ResultMatcher string(String name, Matcher<? super String> matcher) {
 		return result -> assertThat("Response header '" + name + "'", result.getResponse().getHeader(name), matcher);
 	}
 
 	/**
-	 * Assert the values of the response header with the given Hamcrest
-	 * Iterable {@link Matcher}.
+	 * 使用给定的 Hamcrest Iterable {@link Matcher} 断言响应头的值。
 	 * @since 4.3
 	 */
 	public ResultMatcher stringValues(String name, Matcher<? super Iterable<String>> matcher) {
@@ -73,14 +69,14 @@ public class HeaderResultMatchers {
 	}
 
 	/**
-	 * Assert the primary value of the response header as a String value.
+	 * 以字符串值形式断言响应头的主值。
 	 */
 	public ResultMatcher string(String name, String value) {
 		return result -> assertEquals("Response header '" + name + "'", value, result.getResponse().getHeader(name));
 	}
 
 	/**
-	 * Assert the values of the response header as String values.
+	 * 以字符串值形式断言响应头的值。
 	 * @since 4.3
 	 */
 	public ResultMatcher stringValues(String name, String... values) {
@@ -91,7 +87,7 @@ public class HeaderResultMatchers {
 	}
 
 	/**
-	 * Assert that the named response header exists.
+	 * 断言指定的响应头存在。
 	 * @since 5.0.3
 	 */
 	public ResultMatcher exists(String name) {
@@ -100,7 +96,7 @@ public class HeaderResultMatchers {
 	}
 
 	/**
-	 * Assert that the named response header does not exist.
+	 * 断言指定的响应头不存在。
 	 * @since 4.0
 	 */
 	public ResultMatcher doesNotExist(String name) {
@@ -109,10 +105,9 @@ public class HeaderResultMatchers {
 	}
 
 	/**
-	 * Assert the primary value of the named response header as a {@code long}.
-	 * <p>The {@link ResultMatcher} returned by this method throws an
-	 * {@link AssertionError} if the response does not contain the specified
-	 * header, or if the supplied {@code value} does not match the primary value.
+	 * 以 {@code long} 形式断言指定响应头的主值。
+	 * <p>如果响应不包含指定的头，或提供的 {@code value} 与主值不匹配，
+	 * 此方法返回的 {@link ResultMatcher} 会抛出 {@link AssertionError}。
 	 */
 	public ResultMatcher longValue(String name, long value) {
 		return result -> {
@@ -126,11 +121,10 @@ public class HeaderResultMatchers {
 	}
 
 	/**
-	 * Assert the primary value of the named response header parsed into a date
-	 * using the preferred date format described in RFC 7231.
-	 * <p>The {@link ResultMatcher} returned by this method throws an
-	 * {@link AssertionError} if the response does not contain the specified
-	 * header, or if the supplied {@code value} does not match the primary value.
+	 * 按照 RFC 7231 中描述的首选日期格式，将指定响应头的主值
+	 * 解析为日期并进行断言。
+	 * <p>如果响应不包含指定的头，或提供的 {@code value} 与主值不匹配，
+	 * 此方法返回的 {@link ResultMatcher} 会抛出 {@link AssertionError}。
 	 * @since 4.2
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-7.1.1.1">Section 7.1.1.1 of RFC 7231</a>
 	 */

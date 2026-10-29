@@ -19,11 +19,10 @@ package org.springframework.core.env;
 import java.util.function.Predicate;
 
 /**
- * Profile predicate that may be {@linkplain Environment#acceptsProfiles(Profiles)
- * accepted} by an {@link Environment}.
+ * 可被 {@link Environment} {@linkplain Environment#acceptsProfiles(Profiles) 接受}的 profile 谓词。
  *
- * <p>May be implemented directly or, more usually, created using the
- * {@link #of(String...) of(...)} factory method.
+ *
+ * <p>可以直接实现，但更常见的是使用 {@link #of(String...) of(...)} 工厂方法创建。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -33,8 +32,7 @@ import java.util.function.Predicate;
 public interface Profiles {
 
 	/**
-	 * Test if this {@code Profiles} instance <em>matches</em> against the given
-	 * active profiles predicate.
+	 * 测试此 {@code Profiles} 实例是否与给定的活动 profile 谓词<em>匹配</em>。
 	 * @param activeProfiles a predicate that tests whether a given profile is
 	 * currently active
 	 */
@@ -42,28 +40,24 @@ public interface Profiles {
 
 
 	/**
-	 * Create a new {@link Profiles} instance that checks for matches against
-	 * the given <em>profile strings</em>.
-	 * <p>The returned instance will {@linkplain Profiles#matches(Predicate) match}
-	 * if any one of the given profile strings matches.
-	 * <p>A profile string may contain a simple profile name (for example
-	 * {@code "production"}) or a profile expression. A profile expression allows
-	 * for more complicated profile logic to be expressed, for example
-	 * {@code "production & cloud"}.
-	 * <p>The following operators are supported in profile expressions.
+	 * 创建一个新的 {@link Profiles} 实例，用于检查是否与给定的 <em>profile 字符串</em>匹配。
+	 * <p>只要给定的任一 profile 字符串匹配，返回的实例就会
+	 * {@linkplain Profiles#matches(Predicate) 匹配}。
+	 * <p>profile 字符串可以包含简单的 profile 名称（例如 {@code "production"}），
+	 * 也可以包含 profile 表达式。profile 表达式允许表达更复杂的 profile 逻辑，
+	 * 例如 {@code "production & cloud"}。
+	 * <p>profile 表达式中支持以下运算符。
 	 * <ul>
-	 * <li>{@code !} - A logical <em>NOT</em> of the profile or profile expression</li>
-	 * <li>{@code &} - A logical <em>AND</em> of the profiles or profile expressions</li>
-	 * <li>{@code |} - A logical <em>OR</em> of the profiles or profile expressions</li>
+	 * <li>{@code !} - profile 或 profile 表达式的逻辑 <em>非</em></li>
+	 * <li>{@code &} - profile 或 profile 表达式的逻辑 <em>与</em></li>
+	 * <li>{@code |} - profile 或 profile 表达式的逻辑 <em>或</em></li>
 	 * </ul>
-	 * <p>Please note that the {@code &} and {@code |} operators may not be mixed
-	 * without using parentheses. For example {@code "a & b | c"} is not a valid
-	 * expression; it must be expressed as {@code "(a & b) | c"} or
-	 * {@code "a & (b | c)"}.
-	 * <p>As of Spring Framework 5.1.17, two {@code Profiles} instances returned
-	 * by this method are considered equivalent to each other (in terms of
-	 * {@code equals()} and {@code hashCode()} semantics) if they are created
-	 * with identical <em>profile strings</em>.
+	 * <p>请注意，{@code &} 和 {@code |} 运算符不能混用而不加括号。
+	 * 例如 {@code "a & b | c"} 不是有效的表达式；
+	 * 必须表示为 {@code "(a & b) | c"} 或 {@code "a & (b | c)"}。
+	 * <p>从 Spring Framework 5.1.17 起，此方法返回的两个 {@code Profiles} 实例
+	 * 如果使用相同的 <em>profile 字符串</em>创建，则被视为彼此等价
+	 * （就 {@code equals()} 和 {@code hashCode()} 的语义而言）。
 	 * @param profiles the <em>profile strings</em> to include
 	 * @return a new {@link Profiles} instance
 	 */

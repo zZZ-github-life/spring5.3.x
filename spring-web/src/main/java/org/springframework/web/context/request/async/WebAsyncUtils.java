@@ -24,7 +24,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 /**
- * Utility methods related to processing asynchronous web requests.
+ * 与处理异步 Web 请求相关的工具方法。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -33,15 +33,14 @@ import org.springframework.web.context.request.WebRequest;
 public abstract class WebAsyncUtils {
 
 	/**
-	 * The name attribute containing the {@link WebAsyncManager}.
+	 * 包含 {@link WebAsyncManager} 的名称属性。
 	 */
 	public static final String WEB_ASYNC_MANAGER_ATTRIBUTE =
 			WebAsyncManager.class.getName() + ".WEB_ASYNC_MANAGER";
 
 
 	/**
-	 * Obtain the {@link WebAsyncManager} for the current request, or if not
-	 * found, create and associate it with the request.
+	 * 获取当前请求的 {@link WebAsyncManager}；如果未找到，则创建并关联到该请求。
 	 */
 	public static WebAsyncManager getAsyncManager(ServletRequest servletRequest) {
 		WebAsyncManager asyncManager = null;
@@ -57,8 +56,7 @@ public abstract class WebAsyncUtils {
 	}
 
 	/**
-	 * Obtain the {@link WebAsyncManager} for the current request, or if not
-	 * found, create and associate it with the request.
+	 * 获取当前请求的 {@link WebAsyncManager}；如果未找到，则创建并关联到该请求。
 	 */
 	public static WebAsyncManager getAsyncManager(WebRequest webRequest) {
 		int scope = RequestAttributes.SCOPE_REQUEST;
@@ -75,8 +73,7 @@ public abstract class WebAsyncUtils {
 	}
 
 	/**
-	 * Create an AsyncWebRequest instance. By default, an instance of
-	 * {@link StandardServletAsyncWebRequest} gets created.
+	 * 创建一个 AsyncWebRequest 实例。默认情况下会创建 {@link StandardServletAsyncWebRequest} 实例。
 	 * @param request the current request
 	 * @param response the current response
 	 * @return an AsyncWebRequest instance (never {@code null})

@@ -35,7 +35,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link ClientHttpResponse} implementation for the Apache HttpComponents HttpClient 5.x.
+ * 用于 Apache HttpComponents HttpClient 5.x 的 {@link ClientHttpResponse} 实现。
  *
  * @author Martin Tarjányi
  * @author Arjen Poutsma

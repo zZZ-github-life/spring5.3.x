@@ -17,14 +17,13 @@
 package org.springframework.test.web.servlet;
 
 /**
- * A {@code ResultHandler} performs a generic action on the result of an
- * executed request &mdash; for example, printing debug information.
+ * {@code ResultHandler} 对已执行请求的结果执行通用操作 &mdash; 例如打印调试信息。
  *
- * <p>See static factory methods in
+ * <p>请参见
  * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers
- * MockMvcResultHandlers}.
+ * MockMvcResultHandlers} 中的静态工厂方法。
  *
- * <h3>Example</h3>
+ * <h3>示例</h3>
  *
  * <pre class="code">
  * import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -39,7 +38,6 @@ package org.springframework.test.web.servlet;
  *
  * mockMvc.perform(get("/form")).andDo(print());
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 3.2
@@ -48,7 +46,7 @@ package org.springframework.test.web.servlet;
 public interface ResultHandler {
 
 	/**
-	 * Perform an action on the given result.
+	 * 对给定结果执行操作。
 	 * @param result the result of the executed request
 	 * @throws Exception if a failure occurs
 	 */

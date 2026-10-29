@@ -25,20 +25,20 @@ import javax.jms.JMSException;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of the JMS ExceptionListener interface that supports chaining,
- * allowing the addition of multiple ExceptionListener instances in order.
+ * JMS ExceptionListener 接口的实现，支持链式调用，
+ * 允许按顺序添加多个 ExceptionListener 实例。
  *
  * @author Juergen Hoeller
  * @since 2.0
  */
 public class ChainedExceptionListener implements ExceptionListener {
 
-	/** List of ExceptionListeners. */
+	/** ExceptionListener 列表。 */
 	private final List<ExceptionListener> delegates = new ArrayList<>(2);
 
 
 	/**
-	 * Add an ExceptionListener to the chained delegate list.
+	 * 向链式委托列表中添加一个 ExceptionListener。
 	 */
 	public final void addDelegate(ExceptionListener listener) {
 		Assert.notNull(listener, "ExceptionListener must not be null");
@@ -46,7 +46,7 @@ public class ChainedExceptionListener implements ExceptionListener {
 	}
 
 	/**
-	 * Return all registered ExceptionListener delegates (as array).
+	 * 返回所有已注册的 ExceptionListener 委托（以数组形式）。
 	 */
 	public final ExceptionListener[] getDelegates() {
 		return this.delegates.toArray(new ExceptionListener[0]);

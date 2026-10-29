@@ -28,11 +28,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Converts objects to String form, generally for debugging purposes,
- * using Spring's {@code toString} styling conventions.
+ * 使用 Spring 的 {@code toString} 样式约定将对象转换为 String 形式，通常用于调试目的。
  *
- * <p>Uses the reflective visitor pattern underneath the hood to nicely
- * encapsulate styling algorithms for each type of styled object.
+ * <p>底层使用反射式访问者模式，优雅地封装针对每种样式化对象的样式算法。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

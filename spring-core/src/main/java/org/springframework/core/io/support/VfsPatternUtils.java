@@ -25,8 +25,8 @@ import org.springframework.core.io.VfsUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Artificial class used for accessing the {@link VfsUtils} methods
- * without exposing them to the entire world.
+ * 人为构造的类，用于访问 {@link VfsUtils} 方法，
+ * 而不将它们暴露给外界。
  *
  * @author Costin Leau
  * @since 3.0.3

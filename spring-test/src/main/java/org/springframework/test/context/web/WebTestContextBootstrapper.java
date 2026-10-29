@@ -24,14 +24,10 @@ import org.springframework.test.context.TestContextBootstrapper;
 import org.springframework.test.context.support.DefaultTestContextBootstrapper;
 
 /**
- * Web-specific implementation of the {@link TestContextBootstrapper} SPI.
- *
+ * {@link TestContextBootstrapper} SPI 的 Web 特定实现。
  * <ul>
- * <li>Uses {@link WebDelegatingSmartContextLoader} as the default {@link ContextLoader}
- * if the test class is annotated with {@link WebAppConfiguration @WebAppConfiguration}
- * and otherwise delegates to the superclass.
- * <li>Builds a {@link WebMergedContextConfiguration} if the test class is annotated
- * with {@link WebAppConfiguration @WebAppConfiguration}.
+ * <li>如果测试类标注了 {@link WebAppConfiguration @WebAppConfiguration}，则使用 {@link WebDelegatingSmartContextLoader} 作为默认 {@link ContextLoader}，否则委托给超类。
+ * <li>如果测试类标注了 {@link WebAppConfiguration @WebAppConfiguration}，则构建 {@link WebMergedContextConfiguration}。
  * </ul>
  *
  * @author Sam Brannen
@@ -40,9 +36,7 @@ import org.springframework.test.context.support.DefaultTestContextBootstrapper;
 public class WebTestContextBootstrapper extends DefaultTestContextBootstrapper {
 
 	/**
-	 * Returns {@link WebDelegatingSmartContextLoader} if the supplied class is
-	 * annotated with {@link WebAppConfiguration @WebAppConfiguration} and
-	 * otherwise delegates to the superclass.
+	 * 如果所提供的类标注了 {@link WebAppConfiguration @WebAppConfiguration}，则返回 {@link WebDelegatingSmartContextLoader}，否则委托给超类。
 	 */
 	@Override
 	protected Class<? extends ContextLoader> getDefaultContextLoaderClass(Class<?> testClass) {
@@ -55,10 +49,7 @@ public class WebTestContextBootstrapper extends DefaultTestContextBootstrapper {
 	}
 
 	/**
-	 * Returns a {@link WebMergedContextConfiguration} if the test class in the
-	 * supplied {@code MergedContextConfiguration} is annotated with
-	 * {@link WebAppConfiguration @WebAppConfiguration} and otherwise returns
-	 * the supplied instance unmodified.
+	 * 如果所提供的 {@code MergedContextConfiguration} 中的测试类标注了 {@link WebAppConfiguration @WebAppConfiguration}，则返回 {@link WebMergedContextConfiguration}，否则原样返回所提供的实例。
 	 */
 	@Override
 	protected MergedContextConfiguration processMergedContextConfiguration(MergedContextConfiguration mergedConfig) {

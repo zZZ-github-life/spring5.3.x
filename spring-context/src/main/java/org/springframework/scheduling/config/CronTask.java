@@ -19,9 +19,9 @@ package org.springframework.scheduling.config;
 import org.springframework.scheduling.support.CronTrigger;
 
 /**
- * {@link TriggerTask} implementation defining a {@code Runnable} to be executed according
- * to a {@linkplain org.springframework.scheduling.support.CronExpression#parse(String)
- * standard cron expression}.
+ * {@link TriggerTask} 实现，定义一个按
+ * {@linkplain org.springframework.scheduling.support.CronExpression#parse(String) standard cron expression}
+ * 执行的 {@code Runnable}。
  *
  * @author Chris Beams
  * @since 3.2
@@ -34,7 +34,7 @@ public class CronTask extends TriggerTask {
 
 
 	/**
-	 * Create a new {@code CronTask}.
+	 * 创建一个新的 {@code CronTask}。
 	 * @param runnable the underlying task to execute
 	 * @param expression the cron expression defining when the task should be executed
 	 */
@@ -43,7 +43,7 @@ public class CronTask extends TriggerTask {
 	}
 
 	/**
-	 * Create a new {@code CronTask}.
+	 * 创建一个新的 {@code CronTask}。
 	 * @param runnable the underlying task to execute
 	 * @param cronTrigger the cron trigger defining when the task should be executed
 	 */
@@ -54,7 +54,7 @@ public class CronTask extends TriggerTask {
 
 
 	/**
-	 * Return the cron expression defining when the task should be executed.
+	 * 返回定义任务应在何时执行的 cron 表达式。
 	 */
 	public String getExpression() {
 		return this.expression;

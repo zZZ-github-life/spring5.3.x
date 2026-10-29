@@ -28,8 +28,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Extension of {@code Cookie} with extra attributes, as defined in
- * <a href="https://tools.ietf.org/html/rfc6265">RFC 6265</a>.
+ * {@code Cookie} 的扩展，包含
+ * <a href="https://tools.ietf.org/html/rfc6265">RFC 6265</a> 中定义的额外属性。
  *
  * @author Vedran Pavic
  * @author Juergen Hoeller
@@ -49,7 +49,7 @@ public class MockCookie extends Cookie {
 
 
 	/**
-	 * Construct a new {@link MockCookie} with the supplied name and value.
+	 * 使用提供的名称和值构造一个新的 {@link MockCookie}。
 	 * @param name the name
 	 * @param value the value
 	 * @see Cookie#Cookie(String, String)
@@ -59,7 +59,7 @@ public class MockCookie extends Cookie {
 	}
 
 	/**
-	 * Set the "Expires" attribute for this cookie.
+	 * 设置此 Cookie 的 "Expires" 属性。
 	 * @since 5.1.11
 	 */
 	public void setExpires(@Nullable ZonedDateTime expires) {
@@ -67,7 +67,7 @@ public class MockCookie extends Cookie {
 	}
 
 	/**
-	 * Get the "Expires" attribute for this cookie.
+	 * 获取此 Cookie 的 "Expires" 属性。
 	 * @return the "Expires" attribute for this cookie, or {@code null} if not set
 	 * @since 5.1.11
 	 */
@@ -77,10 +77,10 @@ public class MockCookie extends Cookie {
 	}
 
 	/**
-	 * Set the "SameSite" attribute for this cookie.
-	 * <p>This limits the scope of the cookie such that it will only be attached
-	 * to same-site requests if the supplied value is {@code "Strict"} or cross-site
-	 * requests if the supplied value is {@code "Lax"}.
+	 * 设置此 Cookie 的 "SameSite" 属性。
+	 * <p>这会限制 Cookie 的作用范围：如果提供的值为 {@code "Strict"}，则仅附加
+	 * 到同站请求；如果提供的值为 {@code "Lax"}，则附加到跨站
+	 * 请求。
 	 * @see <a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis#section-4.1.2.7">RFC6265 bis</a>
 	 */
 	public void setSameSite(@Nullable String sameSite) {
@@ -88,7 +88,7 @@ public class MockCookie extends Cookie {
 	}
 
 	/**
-	 * Get the "SameSite" attribute for this cookie.
+	 * 获取此 Cookie 的 "SameSite" 属性。
 	 * @return the "SameSite" attribute for this cookie, or {@code null} if not set
 	 */
 	@Nullable
@@ -98,7 +98,7 @@ public class MockCookie extends Cookie {
 
 
 	/**
-	 * Factory method that parses the value of the supplied "Set-Cookie" header.
+	 * 解析提供的 "Set-Cookie" 头值的工厂方法。
 	 * @param setCookieHeader the "Set-Cookie" value; never {@code null} or empty
 	 * @return the created cookie
 	 */

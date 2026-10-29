@@ -38,9 +38,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Spring {@link WebSocketSession} implementation that adapts to an Undertow
- * {@link io.undertow.websockets.core.WebSocketChannel}.
- *
+ * 适配 Undertow {@link io.undertow.websockets.core.WebSocketChannel} 的 Spring {@link WebSocketSession} 实现。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0

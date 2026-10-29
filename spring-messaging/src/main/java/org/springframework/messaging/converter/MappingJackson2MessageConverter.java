@@ -44,15 +44,15 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.MimeType;
 
 /**
- * A Jackson 2 based {@link MessageConverter} implementation.
+ * 基于 Jackson 2 的 {@link MessageConverter} 实现。
  *
- * <p>It customizes Jackson's default properties with the following ones:
+ * <p>它使用以下属性定制 Jackson 的默认属性：
  * <ul>
- * <li>{@link MapperFeature#DEFAULT_VIEW_INCLUSION} is disabled</li>
- * <li>{@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES} is disabled</li>
+ * <li>禁用 {@link MapperFeature#DEFAULT_VIEW_INCLUSION}</li>
+ * <li>禁用 {@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES}</li>
  * </ul>
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>截至 Spring 5.3，兼容 Jackson 2.9 至 2.12。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -68,8 +68,8 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 
 
 	/**
-	 * Construct a {@code MappingJackson2MessageConverter} supporting
-	 * the {@code application/json} MIME type with {@code UTF-8} character set.
+	 * 构造一个支持 {@code application/json} MIME 类型并使用
+	 * {@code UTF-8} 字符集的 {@code MappingJackson2MessageConverter}。
 	 */
 	public MappingJackson2MessageConverter() {
 		super(new MimeType("application", "json"));
@@ -77,8 +77,8 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Construct a {@code MappingJackson2MessageConverter} supporting
-	 * one or more custom MIME types.
+	 * 构造一个支持一个或多个自定义 MIME 类型的
+	 * {@code MappingJackson2MessageConverter}。
 	 * @param supportedMimeTypes the supported MIME types
 	 * @since 4.1.5
 	 */
@@ -97,15 +97,12 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Set the {@code ObjectMapper} for this converter.
-	 * If not set, a default {@link ObjectMapper#ObjectMapper() ObjectMapper} is used.
-	 * <p>Setting a custom-configured {@code ObjectMapper} is one way to take further
-	 * control of the JSON serialization process. For example, an extended
-	 * {@link com.fasterxml.jackson.databind.ser.SerializerFactory} can be
-	 * configured that provides custom serializers for specific types. The other
-	 * option for refining the serialization process is to use Jackson's provided
-	 * annotations on the types to be serialized, in which case a custom-configured
-	 * ObjectMapper is unnecessary.
+	 * 为此转换器设置 {@code ObjectMapper}。
+	 * 如果未设置，将使用默认的 {@link ObjectMapper#ObjectMapper() ObjectMapper}。
+	 * <p>设置自定义配置的 {@code ObjectMapper} 是进一步控制 JSON 序列化过程的一种方式。
+	 * 例如，可以配置扩展的 {@link com.fasterxml.jackson.databind.ser.SerializerFactory}，
+	 * 为特定类型提供自定义序列化器。优化序列化过程的另一种选择是在要序列化的类型上
+	 * 使用 Jackson 提供的注解，这种情况下无需自定义配置的 ObjectMapper。
 	 */
 	public void setObjectMapper(ObjectMapper objectMapper) {
 		Assert.notNull(objectMapper, "ObjectMapper must not be null");
@@ -114,15 +111,15 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Return the underlying {@code ObjectMapper} for this converter.
+	 * 返回此转换器底层使用的 {@code ObjectMapper}。
 	 */
 	public ObjectMapper getObjectMapper() {
 		return this.objectMapper;
 	}
 
 	/**
-	 * Whether to use the {@link DefaultPrettyPrinter} when writing JSON.
-	 * This is a shortcut for setting up an {@code ObjectMapper} as follows:
+	 * 写入 JSON 时是否使用 {@link DefaultPrettyPrinter}。
+	 * 这是按如下方式配置 {@code ObjectMapper} 的快捷方式：
 	 * <pre class="code">
 	 * ObjectMapper mapper = new ObjectMapper();
 	 * mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -169,8 +166,8 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Determine whether to log the given exception coming from a
-	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} check.
+	 * 确定是否记录来自 {@link ObjectMapper#canDeserialize} /
+	 * {@link ObjectMapper#canSerialize} 检查的给定异常。
 	 * @param type the class that Jackson tested for (de-)serializability
 	 * @param cause the Jackson-thrown exception to evaluate
 	 * (typically a {@link JsonMappingException})
@@ -277,7 +274,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Determine a Jackson serialization view based on the given conversion hint.
+	 * 根据给定的转换提示确定 Jackson 序列化视图。
 	 * @param conversionHint the conversion hint Object as passed into the
 	 * converter for the current conversion attempt
 	 * @return the serialization view class, or {@code null} if none
@@ -314,7 +311,7 @@ public class MappingJackson2MessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Determine the JSON encoding to use for the given content type.
+	 * 确定用于给定内容类型的 JSON 编码。
 	 * @param contentType the MIME type from the MessageHeaders, if any
 	 * @return the JSON encoding to use (never {@code null})
 	 */

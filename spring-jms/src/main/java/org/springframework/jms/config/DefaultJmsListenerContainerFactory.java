@@ -24,11 +24,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.util.backoff.BackOff;
 
 /**
- * A {@link JmsListenerContainerFactory} implementation to build a regular
- * {@link DefaultMessageListenerContainer}.
+ * {@link JmsListenerContainerFactory} 实现，用于构建常规的
+ * {@link DefaultMessageListenerContainer}。
  *
- * <p>This should be the default for most users and a good transition paths
- * for those that are used to build such container definition manually.
+ * <p>对于大多数用户而言，这应该是默认选择，对于习惯手动构建此类容器定义的用户
+ * 来说，也是一条良好的过渡路径。
  *
  * @author Stephane Nicoll
  * @since 4.1

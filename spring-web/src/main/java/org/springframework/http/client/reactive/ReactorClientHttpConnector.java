@@ -31,7 +31,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
 
 /**
- * Reactor-Netty implementation of {@link ClientHttpConnector}.
+ * Reactor-Netty 的 {@link ClientHttpConnector} 实现。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -47,7 +47,7 @@ public class ReactorClientHttpConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Default constructor. Initializes {@link HttpClient} via:
+	 * 默认构造函数。通过以下方式初始化 {@link HttpClient}：
 	 * <pre class="code">
 	 * HttpClient.create().compress()
 	 * </pre>
@@ -57,17 +57,14 @@ public class ReactorClientHttpConnector implements ClientHttpConnector {
 	}
 
 	/**
-	 * Constructor with externally managed Reactor Netty resources, including
-	 * {@link LoopResources} for event loop threads, and {@link ConnectionProvider}
-	 * for the connection pool.
-	 * <p>This constructor should be used only when you don't want the client
-	 * to participate in the Reactor Netty global resources. By default the
-	 * client participates in the Reactor Netty global resources held in
-	 * {@link reactor.netty.http.HttpResources}, which is recommended since
-	 * fixed, shared resources are favored for event loop concurrency. However,
-	 * consider declaring a {@link ReactorResourceFactory} bean with
-	 * {@code globalResources=true} in order to ensure the Reactor Netty global
-	 * resources are shut down when the Spring ApplicationContext is closed.
+	 * 使用外部管理的 Reactor Netty 资源的构造函数，包括用于事件循环线程的
+	 * {@link LoopResources}，以及用于连接池的 {@link ConnectionProvider}。
+	 * <p>仅当你希望客户端不参与 Reactor Netty 全局资源时，
+	 * 才应使用此构造函数。默认情况下，客户端参与
+	 * {@link reactor.netty.http.HttpResources} 中持有的 Reactor Netty 全局资源，
+	 * 建议这样做，因为固定、共享的资源更适合事件循环并发。不过，
+	 * 可以考虑声明一个 {@code globalResources=true} 的 {@link ReactorResourceFactory} bean，
+	 * 以确保在 Spring ApplicationContext 关闭时关闭 Reactor Netty 全局资源。
 	 * @param factory the resource factory to obtain the resources from
 	 * @param mapper a mapper for further initialization of the created client
 	 * @since 5.1
@@ -89,7 +86,7 @@ public class ReactorClientHttpConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Constructor with a pre-configured {@code HttpClient} instance.
+	 * 使用预配置的 {@code HttpClient} 实例的构造函数。
 	 * @param httpClient the client to use
 	 * @since 5.1
 	 */

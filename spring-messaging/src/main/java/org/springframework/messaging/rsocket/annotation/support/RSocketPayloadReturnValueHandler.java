@@ -34,10 +34,9 @@ import org.springframework.messaging.rsocket.PayloadUtils;
 import org.springframework.util.Assert;
 
 /**
- * Extension of {@link AbstractEncoderMethodReturnValueHandler} that
- * {@link #handleEncodedContent handles} encoded content by wrapping data buffers
- * as RSocket payloads and by passing those through the {@link #RESPONSE_HEADER}
- * header.
+ * {@link AbstractEncoderMethodReturnValueHandler} 的扩展，它通过将数据缓冲区包装为
+ * RSocket 负载并将它们传递到 {@link #RESPONSE_HEADER} 头部来
+ * {@link #handleEncodedContent 处理}编码后的内容。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -45,8 +44,8 @@ import org.springframework.util.Assert;
 public class RSocketPayloadReturnValueHandler extends AbstractEncoderMethodReturnValueHandler {
 
 	/**
-	 * Message header name that is expected to have an {@link java.util.concurrent.atomic.AtomicReference}
-	 * which will receive the {@code Flux<Payload>} that represents the response.
+	 * 期望包含 {@link java.util.concurrent.atomic.AtomicReference} 的消息头部名称，
+	 * 该引用将接收表示响应的 {@code Flux<Payload>}。
 	 */
 	public static final String RESPONSE_HEADER = "rsocketResponse";
 

@@ -37,14 +37,13 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Represents STOMP frame headers.
+ * 表示 STOMP 帧头。
  *
- * <p>In addition to the normal methods defined by {@link Map}, this class offers
- * the following convenience methods:
+ * <p>除了 {@link Map} 定义的常规方法外，此类还提供以下便捷方法：
  * <ul>
- * <li>{@link #getFirst(String)} return the first value for a header name</li>
- * <li>{@link #add(String, String)} add to the list of values for a header name</li>
- * <li>{@link #set(String, String)} set a header name to a single string value</li>
+ * <li>{@link #getFirst(String)} 返回头名称的第一个值</li>
+ * <li>{@link #add(String, String)} 添加到头名称的值列表</li>
+ * <li>{@link #set(String, String)} 将头名称设置为单个字符串值</li>
  * </ul>
  *
  * @author Rossen Stoyanchev
@@ -108,7 +107,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 
 	/**
-	 * Create a new instance to be populated with new header values.
+	 * 创建一个新实例，用于填充新的头值。
 	 */
 	public StompHeaders() {
 		this(new LinkedMultiValueMap<>(3), false);
@@ -128,8 +127,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 
 	/**
-	 * Set the content-type header.
-	 * Applies to the SEND, MESSAGE, and ERROR frames.
+	 * 设置 content-type 头。
+	 * 适用于 SEND、MESSAGE 和 ERROR 帧。
 	 */
 	public void setContentType(@Nullable MimeType mimeType) {
 		if (mimeType != null) {
@@ -143,7 +142,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Return the content-type header value.
+	 * 返回 content-type 头值。
 	 */
 	@Nullable
 	public MimeType getContentType() {
@@ -152,15 +151,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the content-length header.
-	 * Applies to the SEND, MESSAGE, and ERROR frames.
+	 * 设置 content-length 头。
+	 * 适用于 SEND、MESSAGE 和 ERROR 帧。
 	 */
 	public void setContentLength(long contentLength) {
 		set(CONTENT_LENGTH, Long.toString(contentLength));
 	}
 
 	/**
-	 * Return the content-length header or -1 if unknown.
+	 * 返回 content-length 头，如果未知则返回 -1。
 	 */
 	public long getContentLength() {
 		String value = getFirst(CONTENT_LENGTH);
@@ -168,15 +167,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the receipt header.
-	 * Applies to any client frame other than CONNECT.
+	 * 设置 receipt 头。
+	 * 适用于除 CONNECT 之外的任何客户端帧。
 	 */
 	public void setReceipt(@Nullable String receipt) {
 		set(RECEIPT, receipt);
 	}
 
 	/**
-	 * Get the receipt header.
+	 * 获取 receipt 头。
 	 */
 	@Nullable
 	public String getReceipt() {
@@ -184,15 +183,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the host header.
-	 * Applies to the CONNECT frame.
+	 * 设置 host 头。
+	 * 适用于 CONNECT 帧。
 	 */
 	public void setHost(@Nullable String host) {
 		set(HOST, host);
 	}
 
 	/**
-	 * Get the host header.
+	 * 获取 host 头。
 	 */
 	@Nullable
 	public String getHost() {
@@ -200,8 +199,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the accept-version header. Must be one of "1.1", "1.2", or both.
-	 * Applies to the CONNECT frame.
+	 * 设置 accept-version 头。必须为 "1.1"、"1.2" 或两者。
+	 * 适用于 CONNECT 帧。
 	 * @since 5.0.7
 	 */
 	public void setAcceptVersion(@Nullable String... acceptVersions) {
@@ -216,7 +215,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Get the accept-version header.
+	 * 获取 accept-version 头。
 	 * @since 5.0.7
 	 */
 	@Nullable
@@ -226,15 +225,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the login header.
-	 * Applies to the CONNECT frame.
+	 * 设置 login 头。
+	 * 适用于 CONNECT 帧。
 	 */
 	public void setLogin(@Nullable String login) {
 		set(LOGIN, login);
 	}
 
 	/**
-	 * Get the login header.
+	 * 获取 login 头。
 	 */
 	@Nullable
 	public String getLogin() {
@@ -242,15 +241,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the passcode header.
-	 * Applies to the CONNECT frame.
+	 * 设置 passcode 头。
+	 * 适用于 CONNECT 帧。
 	 */
 	public void setPasscode(@Nullable String passcode) {
 		set(PASSCODE, passcode);
 	}
 
 	/**
-	 * Get the passcode header.
+	 * 获取 passcode 头。
 	 */
 	@Nullable
 	public String getPasscode() {
@@ -258,8 +257,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the heartbeat header.
-	 * Applies to the CONNECT and CONNECTED frames.
+	 * 设置 heartbeat 头。
+	 * 适用于 CONNECT 和 CONNECTED 帧。
 	 */
 	public void setHeartbeat(@Nullable long[] heartbeat) {
 		if (heartbeat == null || heartbeat.length != 2) {
@@ -274,7 +273,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Get the heartbeat header.
+	 * 获取 heartbeat 头。
 	 */
 	@Nullable
 	public long[] getHeartbeat() {
@@ -287,8 +286,8 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Whether heartbeats are enabled. Returns {@code false} if
-	 * {@link #setHeartbeat} is set to "0,0", and {@code true} otherwise.
+	 * 是否启用心跳。如果 {@link #setHeartbeat} 设置为 "0,0"，则返回
+	 * {@code false}，否则返回 {@code true}。
 	 */
 	public boolean isHeartbeatEnabled() {
 		long[] heartbeat = getHeartbeat();
@@ -296,15 +295,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the session header.
-	 * Applies to the CONNECTED frame.
+	 * 设置 session 头。
+	 * 适用于 CONNECTED 帧。
 	 */
 	public void setSession(@Nullable String session) {
 		set(SESSION, session);
 	}
 
 	/**
-	 * Get the session header.
+	 * 获取 session 头。
 	 */
 	@Nullable
 	public String getSession() {
@@ -312,16 +311,16 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the server header.
-	 * Applies to the CONNECTED frame.
+	 * 设置 server 头。
+	 * 适用于 CONNECTED 帧。
 	 */
 	public void setServer(@Nullable String server) {
 		set(SERVER, server);
 	}
 
 	/**
-	 * Get the server header.
-	 * Applies to the CONNECTED frame.
+	 * 获取 server 头。
+	 * 适用于 CONNECTED 帧。
 	 */
 	@Nullable
 	public String getServer() {
@@ -329,15 +328,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the destination header.
+	 * 设置 destination 头。
 	 */
 	public void setDestination(@Nullable String destination) {
 		set(DESTINATION, destination);
 	}
 
 	/**
-	 * Get the destination header.
-	 * Applies to the SEND, SUBSCRIBE, and MESSAGE frames.
+	 * 获取 destination 头。
+	 * 适用于 SEND、SUBSCRIBE 和 MESSAGE 帧。
 	 */
 	@Nullable
 	public String getDestination() {
@@ -345,15 +344,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the id header.
-	 * Applies to the SUBSCR0BE, UNSUBSCRIBE, and ACK or NACK frames.
+	 * 设置 id 头。
+	 * 适用于 SUBSCR0BE、UNSUBSCRIBE 以及 ACK 或 NACK 帧。
 	 */
 	public void setId(@Nullable String id) {
 		set(ID, id);
 	}
 
 	/**
-	 * Get the id header.
+	 * 获取 id 头。
 	 */
 	@Nullable
 	public String getId() {
@@ -361,15 +360,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the ack header to one of "auto", "client", or "client-individual".
-	 * Applies to the SUBSCRIBE and MESSAGE frames.
+	 * 将 ack 头设置为 "auto"、"client" 或 "client-individual" 之一。
+	 * 适用于 SUBSCRIBE 和 MESSAGE 帧。
 	 */
 	public void setAck(@Nullable String ack) {
 		set(ACK, ack);
 	}
 
 	/**
-	 * Get the ack header.
+	 * 获取 ack 头。
 	 */
 	@Nullable
 	public String getAck() {
@@ -377,15 +376,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the login header.
-	 * Applies to the MESSAGE frame.
+	 * 设置 login 头。
+	 * 适用于 MESSAGE 帧。
 	 */
 	public void setSubscription(@Nullable String subscription) {
 		set(SUBSCRIPTION, subscription);
 	}
 
 	/**
-	 * Get the subscription header.
+	 * 获取 subscription 头。
 	 */
 	@Nullable
 	public String getSubscription() {
@@ -393,15 +392,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the message-id header.
-	 * Applies to the MESSAGE frame.
+	 * 设置 message-id 头。
+	 * 适用于 MESSAGE 帧。
 	 */
 	public void setMessageId(@Nullable String messageId) {
 		set(MESSAGE_ID, messageId);
 	}
 
 	/**
-	 * Get the message-id header.
+	 * 获取 message-id 头。
 	 */
 	@Nullable
 	public String getMessageId() {
@@ -409,15 +408,15 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the receipt-id header.
-	 * Applies to the RECEIPT frame.
+	 * 设置 receipt-id 头。
+	 * 适用于 RECEIPT 帧。
 	 */
 	public void setReceiptId(@Nullable String receiptId) {
 		set(RECEIPT_ID, receiptId);
 	}
 
 	/**
-	 * Get the receipt header.
+	 * 获取 receipt 头。
 	 */
 	@Nullable
 	public String getReceiptId() {
@@ -425,7 +424,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Return the first header value for the given header name, if any.
+	 * 返回给定头名称的第一个头值（如果有）。
 	 * @param headerName the header name
 	 * @return the first header value, or {@code null} if none
 	 */
@@ -437,7 +436,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Add the given, single header value under the given name.
+	 * 在给定名称下添加给定的单个头值。
 	 * @param headerName the header name
 	 * @param headerValue the header value
 	 * @throws UnsupportedOperationException if adding headers is not supported
@@ -462,7 +461,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 	}
 
 	/**
-	 * Set the given, single header value under the given name.
+	 * 在给定名称下设置给定的单个头值。
 	 * @param headerName the header name
 	 * @param headerValue the header value
 	 * @throws UnsupportedOperationException if adding headers is not supported
@@ -570,7 +569,7 @@ public class StompHeaders implements MultiValueMap<String, String>, Serializable
 
 
 	/**
-	 * Return a {@code StompHeaders} object that can only be read, not written to.
+	 * 返回只能读取、不能写入的 {@code StompHeaders} 对象。
 	 */
 	public static StompHeaders readOnlyStompHeaders(@Nullable Map<String, List<String>> headers) {
 		return new StompHeaders((headers != null ? headers : Collections.emptyMap()), true);

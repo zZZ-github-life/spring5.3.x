@@ -40,9 +40,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Decorator for a standard {@link BeanInfo} object, e.g. as created by
- * {@link Introspector#getBeanInfo(Class)}, designed to discover and register
- * static and/or non-void returning setter methods. For example:
+ * 标准 {@link BeanInfo} 对象的装饰器（例如由 {@link Introspector#getBeanInfo(Class)} 创建的对象），
+ * 旨在发现并注册静态 setter 方法和/或返回非 void 的 setter 方法。例如：
  *
  * <pre class="code">
  * public class Bean {
@@ -59,16 +58,14 @@ import org.springframework.util.ObjectUtils;
  *     }
  * }</pre>
  *
- * The standard JavaBeans {@code Introspector} will discover the {@code getFoo} read
- * method, but will bypass the {@code #setFoo(Foo)} write method, because its non-void
- * returning signature does not comply with the JavaBeans specification.
- * {@code ExtendedBeanInfo}, on the other hand, will recognize and include it. This is
- * designed to allow APIs with "builder" or method-chaining style setter signatures to be
- * used within Spring {@code <beans>} XML. {@link #getPropertyDescriptors()} returns all
- * existing property descriptors from the wrapped {@code BeanInfo} as well any added for
- * non-void returning setters. Both standard ("non-indexed") and
- * <a href="https://docs.oracle.com/javase/tutorial/javabeans/writing/properties.html">
- * indexed properties</a> are fully supported.
+ * 标准 JavaBeans {@code Introspector} 会发现 {@code getFoo} 读取方法，但会绕过
+ * {@code #setFoo(Foo)} 写入方法，因为其返回非 void 的签名不符合 JavaBeans 规范。另一方面，
+ * {@code ExtendedBeanInfo} 会识别并包含它。这样设计是为了让具有“builder”或方法链式风格 setter 签名
+ * 的 API 可以在 Spring {@code <beans>} XML 中使用。{@link #getPropertyDescriptors()} 会返回被包装
+ * 的 {@code BeanInfo} 中所有现有的属性描述符，以及为返回非 void 的 setter 新增的属性描述符。标准
+ * （“非索引”）属性和
+ * <a href="https://docs.oracle.com/javase/tutorial/javabeans/writing/properties.html">索引属性</a>
+ * 都完全支持。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -87,12 +84,10 @@ class ExtendedBeanInfo implements BeanInfo {
 
 
 	/**
-	 * Wrap the given {@link BeanInfo} instance; copy all its existing property descriptors
-	 * locally, wrapping each in a custom {@link SimpleIndexedPropertyDescriptor indexed}
-	 * or {@link SimplePropertyDescriptor non-indexed} {@code PropertyDescriptor}
-	 * variant that bypasses default JDK weak/soft reference management; then search
-	 * through its method descriptors to find any non-void returning write methods and
-	 * update or create the corresponding {@link PropertyDescriptor} for each one found.
+	 * 包装给定的 {@link BeanInfo} 实例；在本地复制其所有现有属性描述符，并将每个描述符包装为自定义的
+	 * {@link SimpleIndexedPropertyDescriptor 索引} 或 {@link SimplePropertyDescriptor 非索引}
+	 * {@code PropertyDescriptor} 变体，从而绕过 JDK 默认的弱引用/软引用管理；然后遍历其方法描述符，查
+	 * 找所有返回非 void 的写入方法，并为找到的每个方法更新或创建对应的 {@link PropertyDescriptor}。
 	 * @param delegate the wrapped {@code BeanInfo}, which is never modified
 	 * @see #getPropertyDescriptors()
 	 */
@@ -213,9 +208,8 @@ class ExtendedBeanInfo implements BeanInfo {
 
 
 	/**
-	 * Return the set of {@link PropertyDescriptor PropertyDescriptors} from the wrapped
-	 * {@link BeanInfo} object as well as {@code PropertyDescriptors} for each non-void
-	 * returning setter method found during construction.
+	 * 返回被包装的 {@link BeanInfo} 对象中的 {@link PropertyDescriptor PropertyDescriptors} 集合，以及
+	 * 构造过程中找到的每个返回非 void 的 setter 方法对应的 {@code PropertyDescriptors}。
 	 * @see #ExtendedBeanInfo(BeanInfo)
 	 */
 	@Override
@@ -260,7 +254,7 @@ class ExtendedBeanInfo implements BeanInfo {
 
 
 	/**
-	 * A simple {@link PropertyDescriptor}.
+	 * 一个简单的 {@link PropertyDescriptor}。
 	 */
 	static class SimplePropertyDescriptor extends PropertyDescriptor {
 
@@ -357,7 +351,7 @@ class ExtendedBeanInfo implements BeanInfo {
 
 
 	/**
-	 * A simple {@link IndexedPropertyDescriptor}.
+	 * 一个简单的 {@link IndexedPropertyDescriptor}。
 	 */
 	static class SimpleIndexedPropertyDescriptor extends IndexedPropertyDescriptor {
 
@@ -524,8 +518,8 @@ class ExtendedBeanInfo implements BeanInfo {
 
 
 	/**
-	 * Sorts PropertyDescriptor instances alpha-numerically to emulate the behavior of
-	 * {@link java.beans.BeanInfo#getPropertyDescriptors()}.
+	 * 按字母数字顺序对 PropertyDescriptor 实例排序，以模拟
+	 * {@link java.beans.BeanInfo#getPropertyDescriptors()} 的行为。
 	 * @see ExtendedBeanInfo#propertyDescriptors
 	 */
 	static class PropertyDescriptorComparator implements Comparator<PropertyDescriptor> {

@@ -30,17 +30,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ErrorHandler;
 
 /**
- * Simple implementation of the {@link ApplicationEventMulticaster} interface.
+ * {@link ApplicationEventMulticaster} 接口的简单实现。
  *
- * <p>Multicasts all events to all registered listeners, leaving it up to
- * the listeners to ignore events that they are not interested in.
- * Listeners will usually perform corresponding {@code instanceof}
- * checks on the passed-in event object.
+ * <p>将所有事件多播给所有已注册的监听器，由监听器自行忽略其不感兴趣的事件。监听器通常会对传入的事
+ * 件对象执行相应的 {@code instanceof} 检查。
  *
- * <p>By default, all listeners are invoked in the calling thread.
- * This allows the danger of a rogue listener blocking the entire application,
- * but adds minimal overhead. Specify an alternative task executor to have
- * listeners executed in different threads, for example from a thread pool.
+ * <p>默认情况下，所有监听器都在调用线程中调用。这会带来一个风险：某个不守规矩的监听器可能阻塞整个
+ * 应用，但额外开销最小。可以指定其他任务执行器，让监听器在不同线程中执行，例如从线程池中执行。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -61,13 +57,13 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 
 	/**
-	 * Create a new SimpleApplicationEventMulticaster.
+	 * 创建一个新的 SimpleApplicationEventMulticaster。
 	 */
 	public SimpleApplicationEventMulticaster() {
 	}
 
 	/**
-	 * Create a new SimpleApplicationEventMulticaster for the given BeanFactory.
+	 * 为给定的 BeanFactory 创建一个新的 SimpleApplicationEventMulticaster。
 	 */
 	public SimpleApplicationEventMulticaster(BeanFactory beanFactory) {
 		setBeanFactory(beanFactory);
@@ -75,14 +71,10 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 
 
 	/**
-	 * Set a custom executor (typically a {@link org.springframework.core.task.TaskExecutor})
-	 * to invoke each listener with.
-	 * <p>Default is equivalent to {@link org.springframework.core.task.SyncTaskExecutor},
-	 * executing all listeners synchronously in the calling thread.
-	 * <p>Consider specifying an asynchronous task executor here to not block the
-	 * caller until all listeners have been executed. However, note that asynchronous
-	 * execution will not participate in the caller's thread context (class loader,
-	 * transaction association) unless the TaskExecutor explicitly supports this.
+	 * 设置用于调用每个监听器的自定义执行器（通常是 {@link org.springframework.core.task.TaskExecutor}）。
+	 * <p>默认值等同于 {@link org.springframework.core.task.SyncTaskExecutor}，会在调用线程中同步执
+	 * 行所有监听器。<p>可以考虑在此指定异步任务执行器，以免在所有监听器执行完毕前阻塞调用方。但请注意，
+	 * 除非 TaskExecutor 显式支持，否则异步执行不会参与调用方的线程上下文（类加载器、事务关联）。
 	 * @see org.springframework.core.task.SyncTaskExecutor
 	 * @see org.springframework.core.task.SimpleAsyncTaskExecutor
 	 */
@@ -91,7 +83,7 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	}
 
 	/**
-	 * Return the current task executor for this multicaster.
+	 * 返回此多播器当前的任务执行器。
 	 */
 	@Nullable
 	protected Executor getTaskExecutor() {
@@ -99,18 +91,13 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	}
 
 	/**
-	 * Set the {@link ErrorHandler} to invoke in case an exception is thrown
-	 * from a listener.
-	 * <p>Default is none, with a listener exception stopping the current
-	 * multicast and getting propagated to the publisher of the current event.
-	 * If a {@linkplain #setTaskExecutor task executor} is specified, each
-	 * individual listener exception will get propagated to the executor but
-	 * won't necessarily stop execution of other listeners.
-	 * <p>Consider setting an {@link ErrorHandler} implementation that catches
-	 * and logs exceptions (a la
-	 * {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_SUPPRESS_ERROR_HANDLER})
-	 * or an implementation that logs exceptions while nevertheless propagating them
-	 * (e.g. {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_PROPAGATE_ERROR_HANDLER}).
+	 * 设置当监听器抛出异常时要调用的 {@link ErrorHandler}。<p>默认没有，监听器异常会停止当前多播并传播
+	 * 到当前事件的发布器。如果指定了 {@linkplain #setTaskExecutor task executor}，每个监听器异常都会传
+	 * 播到该执行器，但不一定会停止其他监听器的执行。<p>考虑设置一个捕获并记录异常的
+	 * {@link ErrorHandler} 实现（类似
+	 * {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_SUPPRESS_ERROR_HANDLER}），或者
+	 * 一个记录异常但仍将其传播的实现（例如
+	 * {@link org.springframework.scheduling.support.TaskUtils#LOG_AND_PROPAGATE_ERROR_HANDLER}）。
 	 * @since 4.1
 	 */
 	public void setErrorHandler(@Nullable ErrorHandler errorHandler) {
@@ -118,7 +105,7 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	}
 
 	/**
-	 * Return the current error handler for this multicaster.
+	 * 返回此多播器当前的错误处理器。
 	 * @since 4.1
 	 */
 	@Nullable
@@ -150,7 +137,7 @@ public class SimpleApplicationEventMulticaster extends AbstractApplicationEventM
 	}
 
 	/**
-	 * Invoke the given listener with the given event.
+	 * 使用给定事件调用给定监听器。
 	 * @param listener the ApplicationListener to invoke
 	 * @param event the current event to propagate
 	 * @since 4.1

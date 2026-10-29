@@ -26,11 +26,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * JBoss VFS based {@link Resource} implementation.
+ * 基于 JBoss VFS 的 {@link Resource} 实现。
  *
- * <p>As of Spring 4.0, this class supports VFS 3.x on JBoss AS 6+
- * (package {@code org.jboss.vfs}) and is in particular compatible with
- * JBoss AS 7 and WildFly 8+.
+ * <p>从 Spring 4.0 开始，此类支持 JBoss AS 6+ 上的 VFS 3.x（包 {@code org.jboss.vfs}），尤其兼容
+ * JBoss AS 7 和 WildFly 8+。
  *
  * @author Ales Justin
  * @author Juergen Hoeller
@@ -45,7 +44,7 @@ public class VfsResource extends AbstractResource {
 
 
 	/**
-	 * Create a new {@code VfsResource} wrapping the given resource handle.
+	 * 创建一个包装给定资源句柄的新 {@code VfsResource}。
 	 * @param resource a {@code org.jboss.vfs.VirtualFile} instance
 	 * (untyped in order to avoid a static dependency on the VFS API)
 	 */

@@ -44,14 +44,14 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Base class for a return value handler that encodes return values to
- * {@code Flux<DataBuffer>} through the configured {@link Encoder}s.
+ * 返回值处理器的基类，通过配置的 {@link Encoder} 将返回值编码为
+ * {@code Flux<DataBuffer>}。
  *
- * <p>Subclasses must implement the abstract method
- * {@link #handleEncodedContent} to handle the resulting encoded content.
+ * <p>子类必须实现抽象方法 {@link #handleEncodedContent}，
+ * 以处理生成的编码内容。
  *
- * <p>This handler should be ordered last since its {@link #supportsReturnType}
- * returns {@code true} for any method parameter type.
+ * <p>此处理器应排在最后，因为对于任何方法参数类型，
+ * 它的 {@link #supportsReturnType} 都返回 {@code true}。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -81,14 +81,14 @@ public abstract class AbstractEncoderMethodReturnValueHandler implements Handler
 
 
 	/**
-	 * The configured encoders.
+	 * 已配置的编码器。
 	 */
 	public List<Encoder<?>> getEncoders() {
 		return this.encoders;
 	}
 
 	/**
-	 * The configured adapter registry.
+	 * 已配置的适配器注册表。
 	 */
 	public ReactiveAdapterRegistry getAdapterRegistry() {
 		return this.adapterRegistry;
@@ -193,8 +193,7 @@ public abstract class AbstractEncoderMethodReturnValueHandler implements Handler
 	}
 
 	/**
-	 * Subclasses implement this method to handle encoded values in some way
-	 * such as creating and sending messages.
+	 * 子类实现此方法以某种方式处理编码值，例如创建并发送消息。
 	 * @param encodedContent the encoded content; each {@code DataBuffer}
 	 * represents the fully-aggregated, encoded content for one value
 	 * (i.e. payload) returned from the HandlerMethod.
@@ -206,8 +205,8 @@ public abstract class AbstractEncoderMethodReturnValueHandler implements Handler
 			Flux<DataBuffer> encodedContent, MethodParameter returnType, Message<?> message);
 
 	/**
-	 * Invoked for a {@code null} return value, which could mean a void method
-	 * or method returning an async type parameterized by void.
+	 * 当返回值为 {@code null} 时调用，这可能表示 void 方法，
+	 * 或返回以 void 参数化的异步类型的方法。
 	 * @param returnType return type of the handler method that produced the data
 	 * @param message the input message handled by the handler method
 	 * @return completion {@code Mono<Void>} for the handling

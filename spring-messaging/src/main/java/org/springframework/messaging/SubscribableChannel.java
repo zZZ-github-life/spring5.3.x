@@ -17,8 +17,8 @@
 package org.springframework.messaging;
 
 /**
- * A {@link MessageChannel} that maintains a registry of subscribers and invokes
- * them to handle messages sent through this channel.
+ * 一个 {@link MessageChannel}，它维护订阅者注册表，并调用订阅者
+ * 来处理通过此通道发送的消息。
  *
  * @author Mark Fisher
  * @since 4.0
@@ -26,14 +26,14 @@ package org.springframework.messaging;
 public interface SubscribableChannel extends MessageChannel {
 
 	/**
-	 * Register a message handler.
+	 * 注册消息处理器。
 	 * @return {@code true} if the handler was subscribed or {@code false} if it
 	 * was already subscribed.
 	 */
 	boolean subscribe(MessageHandler handler);
 
 	/**
-	 * Un-register a message handler.
+	 * 取消注册消息处理器。
 	 * @return {@code true} if the handler was un-registered, or {@code false}
 	 * if was not registered.
 	 */

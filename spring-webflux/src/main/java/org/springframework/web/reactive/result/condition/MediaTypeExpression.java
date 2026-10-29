@@ -19,10 +19,7 @@ package org.springframework.web.reactive.result.condition;
 import org.springframework.http.MediaType;
 
 /**
- * A contract for media type expressions (e.g. "text/plain", "!text/plain") as
- * defined in the {@code @RequestMapping} annotation for "consumes" and
- * "produces" conditions.
- *
+ * 媒体类型表达式（例如 "text/plain"、"!text/plain"）的契约，如 {@code @RequestMapping} 注解中 "consumes" 和 "produces" 条件所定义。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

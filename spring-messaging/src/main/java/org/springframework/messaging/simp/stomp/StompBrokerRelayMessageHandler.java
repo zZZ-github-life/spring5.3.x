@@ -51,23 +51,17 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
- * A {@link org.springframework.messaging.MessageHandler} that handles messages by
- * forwarding them to a STOMP broker.
+ * 一个 {@link org.springframework.messaging.MessageHandler}，通过将消息转发到 STOMP 代理来处理消息。
  *
- * <p>For each new {@link SimpMessageType#CONNECT CONNECT} message, an independent TCP
- * connection to the broker is opened and used exclusively for all messages from the
- * client that originated the CONNECT message. Messages from the same client are
- * identified through the session id message header. Reversely, when the STOMP broker
- * sends messages back on the TCP connection, those messages are enriched with the
- * session id of the client and sent back downstream through the {@link MessageChannel}
- * provided to the constructor.
+ * <p>对于每个新的 {@link SimpMessageType#CONNECT CONNECT} 消息，
+ * 都会打开一条独立的、到代理的 TCP 连接，并专门用于发起该 CONNECT 消息的客户端的所有消息。
+ * 同一客户端的消息通过会话 ID 消息头来标识。反过来，当 STOMP 代理通过 TCP 连接
+ * 发回消息时，这些消息会使用客户端的会话 ID 进行丰富，
+ * 并通过提供给构造函数的 {@link MessageChannel} 发送回下游。
  *
- * <p>This class also automatically opens a default "system" TCP connection to the
- * message broker that is used for sending messages that originate from the server
- * application (as opposed to from a client). Such messages are not associated with
- * any client and therefore do not have a session id header. The "system" connection
- * is effectively shared and cannot be used to receive messages. Several properties
- * are provided to configure the "system" connection including:
+ * <p>此类还会自动打开一条默认的“系统”TCP 连接，用于发送源自服务器应用程序的消息
+ * （而不是来自客户端的消息）。此类消息不与任何客户端关联，因此没有会话 ID 头。
+ * “系统”连接实际上是共享的，不能用于接收消息。提供了几个属性来配置“系统”连接，包括：
  * <ul>
  * <li>{@link #setSystemLogin}</li>
  * <li>{@link #setSystemPasscode}</li>
@@ -82,16 +76,16 @@ import org.springframework.util.concurrent.ListenableFutureTask;
 public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler {
 
 	/**
-	 * The system session ID.
+	 * 系统会话 ID。
 	 */
 	public static final String SYSTEM_SESSION_ID = "_system_";
 
-	/** STOMP recommended error of margin for receiving heartbeats. */
+	/** STOMP 建议的接收心跳错误容限。 */
 	private static final long HEARTBEAT_MULTIPLIER = 3;
 
 	/**
-	 * Heartbeat starts once CONNECTED frame with heartbeat settings is received.
-	 * If CONNECTED doesn't arrive within a minute, we'll close the connection.
+	 * 收到带有心跳设置的 CONNECTED 帧后开始心跳。
+	 * 如果 CONNECTED 在一分钟内未到达，我们将关闭连接。
 	 */
 	private static final int MAX_TIME_TO_CONNECTED_FRAME = 60 * 1000;
 
@@ -147,8 +141,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 
 
 	/**
-	 * Create a StompBrokerRelayMessageHandler instance with the given message channels
-	 * and destination prefixes.
+	 * 使用给定消息通道和目标前缀创建 StompBrokerRelayMessageHandler 实例。
 	 * @param inboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
 	 * @param outboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
 	 * @param brokerChannel the channel for the application to send messages to the broker
@@ -163,7 +156,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 
 
 	/**
-	 * Set the STOMP message broker host.
+	 * 设置 STOMP 消息代理主机。
 	 */
 	public void setRelayHost(String relayHost) {
 		Assert.hasText(relayHost, "relayHost must not be empty");
@@ -171,29 +164,28 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return the STOMP message broker host.
+	 * 返回 STOMP 消息代理主机。
 	 */
 	public String getRelayHost() {
 		return this.relayHost;
 	}
 
 	/**
-	 * Set the STOMP message broker port.
+	 * 设置 STOMP 消息代理端口。
 	 */
 	public void setRelayPort(int relayPort) {
 		this.relayPort = relayPort;
 	}
 
 	/**
-	 * Return the STOMP message broker port.
+	 * 返回 STOMP 消息代理端口。
 	 */
 	public int getRelayPort() {
 		return this.relayPort;
 	}
 	/**
-	 * Set the login to use when creating connections to the STOMP broker on
-	 * behalf of connected clients.
-	 * <p>By default this is set to "guest".
+	 * 设置代表已连接客户端创建到 STOMP 代理连接时使用的登录名。
+	 * <p>默认设置为 "guest"。
 	 * @see #setSystemLogin(String)
 	 */
 	public void setClientLogin(String clientLogin) {
@@ -202,8 +194,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return the configured login to use for connections to the STOMP broker
-	 * on behalf of connected clients.
+	 * 返回代表已连接客户端连接到 STOMP 代理时使用的已配置登录名。
 	 * @see #getSystemLogin()
 	 */
 	public String getClientLogin() {
@@ -211,9 +202,8 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Set the client passcode to use to create connections to the STOMP broker on
-	 * behalf of connected clients.
-	 * <p>By default this is set to "guest".
+	 * 设置代表已连接客户端创建到 STOMP 代理连接时使用的客户端密码。
+	 * <p>默认设置为 "guest"。
 	 * @see #setSystemPasscode
 	 */
 	public void setClientPasscode(String clientPasscode) {
@@ -222,8 +212,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return the configured passcode to use for connections to the STOMP broker on
-	 * behalf of connected clients.
+	 * 返回代表已连接客户端连接到 STOMP 代理时使用的已配置密码。
 	 * @see #getSystemPasscode()
 	 */
 	public String getClientPasscode() {
@@ -231,10 +220,9 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Set the login for the shared "system" connection used to send messages to
-	 * the STOMP broker from within the application, i.e. messages not associated
-	 * with a specific client session (e.g. REST/HTTP request handling method).
-	 * <p>By default this is set to "guest".
+	 * 设置用于从应用程序内部向 STOMP 代理发送消息的共享“系统”连接的登录名，
+	 * 即不与特定客户端会话关联的消息（例如 REST/HTTP 请求处理方法）。
+	 * <p>默认设置为 "guest"。
 	 */
 	public void setSystemLogin(String systemLogin) {
 		Assert.hasText(systemLogin, "systemLogin must not be empty");
@@ -242,24 +230,23 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return the login used for the shared "system" connection to the STOMP broker.
+	 * 返回用于到 STOMP 代理的共享“系统”连接的登录名。
 	 */
 	public String getSystemLogin() {
 		return this.systemLogin;
 	}
 
 	/**
-	 * Set the passcode for the shared "system" connection used to send messages to
-	 * the STOMP broker from within the application, i.e. messages not associated
-	 * with a specific client session (e.g. REST/HTTP request handling method).
-	 * <p>By default this is set to "guest".
+	 * 设置用于从应用程序内部向 STOMP 代理发送消息的共享“系统”连接的密码，
+	 * 即不与特定客户端会话关联的消息（例如 REST/HTTP 请求处理方法）。
+	 * <p>默认设置为 "guest"。
 	 */
 	public void setSystemPasscode(String systemPasscode) {
 		this.systemPasscode = systemPasscode;
 	}
 
 	/**
-	 * Return the passcode used for the shared "system" connection to the STOMP broker.
+	 * 返回用于到 STOMP 代理的共享“系统”连接的密码。
 	 */
 	public String getSystemPasscode() {
 		return this.systemPasscode;
@@ -267,49 +254,43 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 
 
 	/**
-	 * Set the interval, in milliseconds, at which the "system" connection will, in the
-	 * absence of any other data being sent, send a heartbeat to the STOMP broker. A value
-	 * of zero will prevent heartbeats from being sent to the broker.
-	 * <p>The default value is 10000.
-	 * <p>See class-level documentation for more information on the "system" connection.
+	 * 设置“系统”连接在没有任何其他数据发送时向 STOMP 代理发送心跳的间隔（以毫秒为单位）。
+	 * 值为零将阻止向代理发送心跳。
+	 * <p>默认值为 10000。
+	 * <p>有关“系统”连接的更多信息，请参阅类级文档。
 	 */
 	public void setSystemHeartbeatSendInterval(long systemHeartbeatSendInterval) {
 		this.systemHeartbeatSendInterval = systemHeartbeatSendInterval;
 	}
 
 	/**
-	 * Return the interval, in milliseconds, at which the "system" connection will
-	 * send heartbeats to the STOMP broker.
+	 * 返回“系统”连接向 STOMP 代理发送心跳的间隔（以毫秒为单位）。
 	 */
 	public long getSystemHeartbeatSendInterval() {
 		return this.systemHeartbeatSendInterval;
 	}
 
 	/**
-	 * Set the maximum interval, in milliseconds, at which the "system" connection
-	 * expects, in the absence of any other data, to receive a heartbeat from the STOMP
-	 * broker. A value of zero will configure the connection to expect not to receive
-	 * heartbeats from the broker.
-	 * <p>The default value is 10000.
-	 * <p>See class-level documentation for more information on the "system" connection.
+	 * 设置“系统”连接在没有任何其他数据时预期从 STOMP 代理接收心跳的最大间隔（以毫秒为单位）。
+	 * 值为零将配置该连接不期望从代理接收心跳。
+	 * <p>默认值为 10000。
+	 * <p>有关“系统”连接的更多信息，请参阅类级文档。
 	 */
 	public void setSystemHeartbeatReceiveInterval(long heartbeatReceiveInterval) {
 		this.systemHeartbeatReceiveInterval = heartbeatReceiveInterval;
 	}
 
 	/**
-	 * Return the interval, in milliseconds, at which the "system" connection expects
-	 * to receive heartbeats from the STOMP broker.
+	 * 返回“系统”连接预期从 STOMP 代理接收心跳的间隔（以毫秒为单位）。
 	 */
 	public long getSystemHeartbeatReceiveInterval() {
 		return this.systemHeartbeatReceiveInterval;
 	}
 
 	/**
-	 * Configure one more destinations to subscribe to on the shared "system"
-	 * connection along with MessageHandler's to handle received messages.
-	 * <p>This is for internal use in a multi-application server scenario where
-	 * servers forward messages to each other (e.g. unresolved user destinations).
+	 * 配置共享“系统”连接上要订阅的一个或多个目标，以及用于处理接收消息的 MessageHandler。
+	 * <p>这供多应用服务器场景内部使用，其中服务器之间会相互转发消息
+	 * （例如未解析的用户目标）。
 	 * @param subscriptions the destinations to subscribe to.
 	 */
 	public void setSystemSubscriptions(@Nullable Map<String, MessageHandler> subscriptions) {
@@ -320,26 +301,25 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return the configured map with subscriptions on the "system" connection.
+	 * 返回已配置的“系统”连接订阅映射。
 	 */
 	public Map<String, MessageHandler> getSystemSubscriptions() {
 		return this.systemSubscriptions;
 	}
 
 	/**
-	 * Set the value of the "host" header to use in STOMP CONNECT frames. When this
-	 * property is configured, a "host" header will be added to every STOMP frame sent to
-	 * the STOMP broker. This may be useful for example in a cloud environment where the
-	 * actual host to which the TCP connection is established is different from the host
-	 * providing the cloud-based STOMP service.
-	 * <p>By default this property is not set.
+	 * 设置 STOMP CONNECT 帧中 "host" 头的值。配置此属性后，
+	 * 每个发送到 STOMP 代理的 STOMP 帧都会添加一个 "host" 头。
+	 * 例如，在云环境中，建立 TCP 连接的实际主机与提供基于云的 STOMP 服务的主机不同时，
+	 * 这可能很有用。
+	 * <p>默认不设置此属性。
 	 */
 	public void setVirtualHost(@Nullable String virtualHost) {
 		this.virtualHost = virtualHost;
 	}
 
 	/**
-	 * Return the configured virtual host value.
+	 * 返回已配置的虚拟主机值。
 	 */
 	@Nullable
 	public String getVirtualHost() {
@@ -347,20 +327,18 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Configure a TCP client for managing TCP connections to the STOMP broker.
-	 * <p>By default {@link ReactorNettyTcpClient} is used.
-	 * <p><strong>Note:</strong> when this property is used, any
-	 * {@link #setRelayHost(String) host} or {@link #setRelayPort(int) port}
-	 * specified are effectively ignored.
+	 * 配置用于管理到 STOMP 代理的 TCP 连接的 TCP 客户端。
+	 * <p>默认使用 {@link ReactorNettyTcpClient}。
+	 * <p><strong>注意：</strong>使用此属性时，指定的任何
+	 * {@link #setRelayHost(String) host} 或 {@link #setRelayPort(int) port} 都会被忽略。
 	 */
 	public void setTcpClient(@Nullable TcpOperations<byte[]> tcpClient) {
 		this.tcpClient = tcpClient;
 	}
 
 	/**
-	 * Get the configured TCP client (never {@code null} unless not configured
-	 * invoked and this method is invoked before the handler is started and
-	 * hence a default implementation initialized).
+	 * 获取已配置的 TCP 客户端（除非未配置且在处理器启动前调用了此方法，
+	 * 因而初始化了默认实现，否则永不为 {@code null}）。
 	 */
 	@Nullable
 	public TcpOperations<byte[]> getTcpClient() {
@@ -368,17 +346,16 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
-	 * messages created through the {@code StompBrokerRelayMessageHandler} that
-	 * are sent to the client outbound message channel.
-	 * <p>By default this property is not set.
+	 * 配置要应用于通过 {@code StompBrokerRelayMessageHandler} 创建的、
+	 * 发送到客户端出站消息通道的所有消息头的 {@link MessageHeaderInitializer}。
+	 * <p>默认不设置此属性。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {
@@ -386,15 +363,15 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return a String describing internal state and counters.
-	 * Effectively {@code toString()} on {@link #getStats() getStats()}.
+	 * 返回描述内部状态和计数器的 String。
+	 * 实际上是对 {@link #getStats() getStats()} 调用 {@code toString()}。
 	 */
 	public String getStatsInfo() {
 		return this.stats.toString();
 	}
 
 	/**
-	 * Return a structured object with internal state and counters.
+	 * 返回包含内部状态和计数器的结构化对象。
 	 * @since 5.2
 	 */
 	public Stats getStats() {
@@ -403,16 +380,16 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 
 
 	/**
-	 * Return the current count of TCP connection to the broker.
+	 * 返回当前到代理的 TCP 连接数。
 	 */
 	public int getConnectionCount() {
 		return this.connectionHandlers.size();
 	}
 
 	/**
-	 * Configure the {@link TaskScheduler} to use to reset client-to-broker
-	 * message count in the current heartbeat period. For more details, see
-	 * {@link org.springframework.messaging.simp.config.StompBrokerRelayRegistration#setTaskScheduler(TaskScheduler)}.
+	 * 配置用于在当前心跳周期内重置客户端到代理消息计数的
+	 * {@link TaskScheduler}。有关更多详细信息，请参阅
+	 * {@link org.springframework.messaging.simp.config.StompBrokerRelayRegistration#setTaskScheduler(TaskScheduler)}。
 	 * @param taskScheduler the scheduler to use
 	 * @since 5.3
 	 */
@@ -698,8 +675,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * Invoked when any TCP connectivity issue is detected, i.e. failure to establish
-		 * the TCP connection, failure to send a message, missed heartbeat, etc.
+		 * 检测到任何 TCP 连接问题时调用，即无法建立 TCP 连接、无法发送消息、错过心跳等。
 		 */
 		protected void handleTcpConnectionFailure(String error, @Nullable Throwable ex) {
 			if (logger.isInfoEnabled()) {
@@ -772,8 +748,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * Invoked after the STOMP CONNECTED frame is received. At this point the
-		 * connection is ready for sending STOMP messages to the broker.
+		 * 收到 STOMP CONNECTED 帧后调用。此时连接已准备好向代理发送 STOMP 消息。
 		 */
 		protected void afterStompConnected(StompHeaderAccessor connectedHeaders) {
 			this.isStompConnected = true;
@@ -789,9 +764,8 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * Whether to forward a heartbeat message in lieu of a message with a non-broker
-		 * destination. This is done if client-side heartbeats are expected and if there
-		 * haven't been any other messages in the current heartbeat period.
+		 * 是否转发心跳消息以代替具有非代理目标的消息。如果预期客户端心跳，
+		 * 且当前心跳周期内没有其他消息，则执行此操作。
 		 * @since 5.3
 		 */
 		protected boolean shouldSendHeartbeatForIgnoredMessage() {
@@ -799,7 +773,7 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * Reset the clientSendMessageCount if the current heartbeat period has expired.
+		 * 如果当前心跳周期已过期，则重置 clientSendMessageCount。
 		 * @since 5.3
 		 */
 		void updateClientSendMessageCount(long now) {
@@ -843,22 +817,17 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * Forward the given message to the STOMP broker.
-		 * <p>The method checks whether we have an active TCP connection and have
-		 * received the STOMP CONNECTED frame. For client messages this should be
-		 * false only if we lose the TCP connection around the same time when a
-		 * client message is being forwarded, so we simply log the ignored message
-		 * at debug level. For messages from within the application being sent on
-		 * the "system" connection an exception is raised so that components sending
-		 * the message have a chance to handle it -- by default the broker message
-		 * channel is synchronous.
-		 * <p>Note that if messages arrive concurrently around the same time a TCP
-		 * connection is lost, there is a brief period of time before the connection
-		 * is reset when one or more messages may sneak through and an attempt made
-		 * to forward them. Rather than synchronizing to guard against that, this
-		 * method simply lets them try and fail. For client sessions that may
-		 * result in an additional STOMP ERROR frame(s) being sent downstream but
-		 * code handling that downstream should be idempotent in such cases.
+		 * 将给定消息转发到 STOMP 代理。
+		 * <p>该方法检查我们是否有活跃的 TCP 连接，以及是否已收到 STOMP CONNECTED 帧。
+		 * 对于客户端消息，只有在客户端消息被转发的同时丢失 TCP 连接时才会出现 false，
+		 * 因此我们只需在 debug 级别记录被忽略的消息。对于从应用程序内部通过
+		 * “系统”连接发送的消息，会抛出异常，以便发送消息的组件有机会处理它
+		 * —— 默认情况下代理消息通道是同步的。
+		 * <p>注意，如果消息在 TCP 连接丢失的同一时间并发到达，
+		 * 则在连接重置之前会有一小段时间，可能有一或多条消息溜过去并尝试转发。
+		 * 与其同步以防这种情况，此方法只是让它们尝试并失败。对于客户端会话，
+		 * 这可能会导致向下游发送额外的 STOMP ERROR 帧，但处理下游的代码
+		 * 在这种情况下应是幂等的。
 		 * @param message the message to send (never {@code null})
 		 * @return a future to wait for the result
 		 */
@@ -922,10 +891,9 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * After a DISCONNECT there should be no more client frames so we can
-		 * close the connection proactively. However, if the DISCONNECT has a
-		 * receipt header we leave the connection open and expect the server will
-		 * respond with a RECEIPT and then close the connection.
+		 * DISCONNECT 之后不应再有客户端帧，因此我们可以主动关闭连接。
+		 * 不过，如果 DISCONNECT 带有 receipt 头，则保持连接打开，
+		 * 并期望服务器以 RECEIPT 响应，然后关闭连接。
 		 * @see <a href="https://stomp.github.io/stomp-specification-1.2.html#DISCONNECT">
 		 *     STOMP Specification 1.2 DISCONNECT</a>
 		 */
@@ -943,8 +911,8 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 		}
 
 		/**
-		 * Clean up state associated with the connection and close it.
-		 * Any exception arising from closing the connection are propagated.
+		 * 清理与连接关联的状态并关闭连接。
+		 * 关闭连接时产生的任何异常都会被传播。
 		 */
 		public void clearConnection() {
 			if (logger.isDebugEnabled()) {
@@ -1123,29 +1091,29 @@ public class StompBrokerRelayMessageHandler extends AbstractBrokerMessageHandler
 
 
 	/**
-	 * Contract for access to session counters.
+	 * 用于访问会话计数器的契约。
 	 * @since 5.2
 	 */
 	public interface Stats {
 
 		/**
-		 * The number of connection handlers.
-		 */
+	 * 连接处理器的数量。
+	 */
 		int getTotalHandlers();
 
 		/**
-		 * The number of CONNECT frames processed.
-		 */
+	 * 已处理的 CONNECT 帧数量。
+	 */
 		int getTotalConnect();
 
 		/**
-		 * The number of CONNECTED frames processed.
-		 */
+	 * 已处理的 CONNECTED 帧数量。
+	 */
 		int getTotalConnected();
 
 		/**
-		 * The number of DISCONNECT frames processed.
-		 */
+	 * 已处理的 DISCONNECT 帧数量。
+	 */
 		int getTotalDisconnect();
 	}
 

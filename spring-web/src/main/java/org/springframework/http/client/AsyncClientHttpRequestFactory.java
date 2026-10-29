@@ -22,8 +22,8 @@ import java.net.URI;
 import org.springframework.http.HttpMethod;
 
 /**
- * Factory for {@link AsyncClientHttpRequest} objects.
- * Requests are created by the {@link #createAsyncRequest(URI, HttpMethod)} method.
+ * 用于创建 {@link AsyncClientHttpRequest} 对象的工厂。
+ * 请求通过 {@link #createAsyncRequest(URI, HttpMethod)} 方法创建。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -33,10 +33,9 @@ import org.springframework.http.HttpMethod;
 public interface AsyncClientHttpRequestFactory {
 
 	/**
-	 * Create a new asynchronous {@link AsyncClientHttpRequest} for the specified URI
-	 * and HTTP method.
-	 * <p>The returned request can be written to, and then executed by calling
-	 * {@link AsyncClientHttpRequest#executeAsync()}.
+	 * 为指定的 URI 和 HTTP 方法创建新的异步 {@link AsyncClientHttpRequest}。
+	 * <p>返回的请求可以写入，然后通过调用
+	 * {@link AsyncClientHttpRequest#executeAsync()} 执行。
 	 * @param uri the URI to create a request for
 	 * @param httpMethod the HTTP method to execute
 	 * @return the created request

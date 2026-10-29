@@ -33,17 +33,15 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Specialized {@link org.springframework.validation.DataBinder} to perform data
- * binding from URL query parameters or form data in the request data to Java objects.
+ * 特化的 {@link org.springframework.validation.DataBinder}，用于将 URL 查询参数
+ * 或请求数据中的表单数据绑定到 Java 对象。
  *
- * <p><strong>WARNING</strong>: Data binding can lead to security issues by exposing
- * parts of the object graph that are not meant to be accessed or modified by
- * external clients. Therefore the design and use of data binding should be considered
- * carefully with regard to security. For more details, please refer to the dedicated
- * sections on data binding for
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> and
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>
- * in the reference manual.
+ * <p><strong>警告</strong>：数据绑定可能会暴露不应被外部客户端访问或修改的
+ * 对象图部分，从而带来安全问题。因此，数据绑定的设计和使用应仔细考虑安全性。
+ * 更多详情请参阅参考手册中关于数据绑定的专门章节：
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a>
+ * 和
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -52,7 +50,7 @@ import org.springframework.web.server.ServerWebExchange;
 public class WebExchangeDataBinder extends WebDataBinder {
 
 	/**
-	 * Create a new instance, with default object name.
+	 * 创建一个新实例，使用默认对象名称。
 	 * @param target the target object to bind onto (or {@code null} if the
 	 * binder is just used to convert a plain parameter value)
 	 * @see #DEFAULT_OBJECT_NAME
@@ -62,7 +60,7 @@ public class WebExchangeDataBinder extends WebDataBinder {
 	}
 
 	/**
-	 * Create a new instance.
+	 * 创建一个新实例。
 	 * @param target the target object to bind onto (or {@code null} if the
 	 * binder is just used to convert a plain parameter value)
 	 * @param objectName the name of the target object
@@ -73,7 +71,7 @@ public class WebExchangeDataBinder extends WebDataBinder {
 
 
 	/**
-	 * Bind query parameters, form data, or multipart form data to the binder target.
+	 * 将查询参数、表单数据或多部分表单数据绑定到绑定器目标。
 	 * @param exchange the current exchange
 	 * @return a {@code Mono<Void>} when binding is complete
 	 */
@@ -84,8 +82,8 @@ public class WebExchangeDataBinder extends WebDataBinder {
 	}
 
 	/**
-	 * Obtain the values for data binding. By default, this delegates to
-	 * {@link #extractValuesToBind(ServerWebExchange)}.
+	 * 获取用于数据绑定的值。默认情况下，这委托给
+	 * {@link #extractValuesToBind(ServerWebExchange)}。
 	 * @param exchange the current exchange
 	 * @return a map of bind values
 	 * @since 5.3
@@ -96,9 +94,8 @@ public class WebExchangeDataBinder extends WebDataBinder {
 
 
 	/**
-	 * Combine query params and form data for multipart form data from the body
-	 * of the request into a {@code Map<String, Object>} of values to use for
-	 * data binding purposes.
+	 * 将请求体中的多部分表单数据的查询参数和表单数据合并为一个
+	 * {@code Map<String, Object>}，其中包含用于数据绑定的值。
 	 * @param exchange the current exchange
 	 * @return a {@code Mono} with the values to bind
 	 * @see org.springframework.http.server.reactive.ServerHttpRequest#getQueryParams()

@@ -1,6 +1,6 @@
 /**
- * This package contains integration classes for JMS,
- * allowing for Spring-style JMS access.
+ * 此包包含 JMS 的集成类，
+ * 支持 Spring 风格的 JMS 访问。
  */
 @NonNullApi
 @NonNullFields

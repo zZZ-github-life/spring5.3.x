@@ -17,8 +17,7 @@
 package org.springframework.messaging.simp;
 
 /**
- * A generic representation of different kinds of messages found in simple messaging
- * protocols like STOMP.
+ * 简单消息传递协议（如 STOMP）中各种消息类型的通用表示。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

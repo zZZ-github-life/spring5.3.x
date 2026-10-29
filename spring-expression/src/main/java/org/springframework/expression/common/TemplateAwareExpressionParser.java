@@ -28,8 +28,7 @@ import org.springframework.expression.ParserContext;
 import org.springframework.lang.Nullable;
 
 /**
- * An expression parser that understands templates. It can be subclassed by expression
- * parsers that do not offer first class support for templating.
+ * 能够理解模板的表达式解析器。不提供一流模板支持的表达式解析器可以通过继承它来获得该能力。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -69,19 +68,13 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	}
 
 	/**
-	 * Helper that parses given expression string using the configured parser. The
-	 * expression string can contain any number of expressions all contained in "${...}"
-	 * markers. For instance: "foo${expr0}bar${expr1}". The static pieces of text will
-	 * also be returned as Expressions that just return that static piece of text. As a
-	 * result, evaluating all returned expressions and concatenating the results produces
-	 * the complete evaluated string. Unwrapping is only done of the outermost delimiters
-	 * found, so the string 'hello ${foo${abc}}' would break into the pieces 'hello ' and
-	 * 'foo${abc}'. This means that expression languages that used ${..} as part of their
-	 * functionality are supported without any problem. The parsing is aware of the
-	 * structure of an embedded expression. It assumes that parentheses '(', square
-	 * brackets '[' and curly brackets '}' must be in pairs within the expression unless
-	 * they are within a string literal and a string literal starts and terminates with a
-	 * single quote '.
+	 * 使用所配置的解析器解析给定表达式字符串的辅助方法。表达式字符串可以包含任意数量的表达式，它们都放
+	 * 在 "${...}" 标记中。例如："foo${expr0}bar${expr1}"。静态文本部分也会作为仅返回该静态文本的
+	 * Expression 返回。因此，对返回的所有表达式求值并拼接结果，就能得到完整的求值后字符串。只对找到的
+	 * 最外层分隔符进行解包，所以字符串 'hello ${foo${abc}}' 会被拆分为 'hello ' 和 'foo${abc}'。这意味
+	 * 着将 ${..} 作为其功能一部分的表达式语言也能毫无问题地得到支持。解析过程会考虑内嵌表达式的结构。
+	 * 它假定表达式中的圆括号 '('、方括号 '[' 和花括号 '}' 必须成对出现，除非它们位于字符串字面量中，而
+	 * 字符串字面量以单引号 ' 开始和结束。
 	 * @param expressionString the expression string
 	 * @return the parsed expressions
 	 * @throws ParseException when the expressions cannot be parsed
@@ -132,8 +125,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	}
 
 	/**
-	 * Return true if the specified suffix can be found at the supplied position in the
-	 * supplied expression string.
+	 * 如果能在提供的表达式字符串中的指定位置找到指定后缀，则返回 true。
 	 * @param expressionString the expression string which may contain the suffix
 	 * @param pos the start position at which to check for the suffix
 	 * @param suffix the suffix string
@@ -153,8 +145,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 	}
 
 	/**
-	 * Copes with nesting, for example '${...${...}}' where the correct end for the first
-	 * ${ is the final }.
+	 * 处理嵌套，例如 '${...${...}}'，其中第一个 ${ 的正确结束位置是最后的 }。
 	 * @param suffix the suffix
 	 * @param expressionString the expression string
 	 * @param afterPrefixIndex the most recently found prefix location for which the
@@ -226,7 +217,7 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 
 
 	/**
-	 * Actually parse the expression string and return an Expression object.
+	 * 实际解析表达式字符串并返回 Expression 对象。
 	 * @param expressionString the raw expression string to parse
 	 * @param context a context for influencing this expression parsing routine (optional)
 	 * @return an evaluator for the parsed expression
@@ -237,10 +228,8 @@ public abstract class TemplateAwareExpressionParser implements ExpressionParser 
 
 
 	/**
-	 * This captures a type of bracket and the position in which it occurs in the
-	 * expression. The positional information is used if an error has to be reported
-	 * because the related end bracket cannot be found. Bracket is used to describe:
-	 * square brackets [] round brackets () and curly brackets {}
+	 * 用于捕获一种括号类型及其在表达式中出现的位置。当因为找不到相关的结束括号而需要报告错误时，会使用
+	 * 该位置信息。Bracket 用于描述：方括号 []、圆括号 () 和花括号 {}。
 	 */
 	private static class Bracket {
 

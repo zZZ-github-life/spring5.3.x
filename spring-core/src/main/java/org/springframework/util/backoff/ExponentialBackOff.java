@@ -19,15 +19,13 @@ package org.springframework.util.backoff;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link BackOff} that increases the back off period for each
- * retry attempt. When the interval has reached the {@link #setMaxInterval(long)
- * max interval}, it is no longer increased. Stops retrying once the
- * {@link #setMaxElapsedTime(long) max elapsed time} has been reached.
+ * {@link BackOff} 的实现：每次重试都会增加退避时间。当间隔达到
+ * {@link #setMaxInterval(long) 最大间隔} 后，便不再增加。一旦达到
+ * {@link #setMaxElapsedTime(long) 最长已用时间}，即停止重试。
  *
- * <p>Example: The default interval is {@value #DEFAULT_INITIAL_INTERVAL} ms,
- * the default multiplier is {@value #DEFAULT_MULTIPLIER}, and the default max
- * interval is {@value #DEFAULT_MAX_INTERVAL}. For 10 attempts the sequence will be
- * as follows:
+ * <p>示例：默认间隔为 {@value #DEFAULT_INITIAL_INTERVAL} ms，默认乘数为
+ * {@value #DEFAULT_MULTIPLIER}，默认最大间隔为 {@value #DEFAULT_MAX_INTERVAL}。对于 10 次尝试，序
+ * 列如下：
  *
  * <pre>
  * request#     back off
@@ -44,10 +42,8 @@ import org.springframework.util.Assert;
  * 10             30000
  * </pre>
  *
- * <p>Note that the default max elapsed time is {@link Long#MAX_VALUE}. Use
- * {@link #setMaxElapsedTime(long)} to limit the maximum length of time
- * that an instance should accumulate before returning
- * {@link BackOffExecution#STOP}.
+ * <p>请注意，默认的最长已用时间为 {@link Long#MAX_VALUE}。可使用 {@link #setMaxElapsedTime(long)}
+ * 限制实例在返回 {@link BackOffExecution#STOP} 之前累计的最长时间。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -55,22 +51,22 @@ import org.springframework.util.Assert;
 public class ExponentialBackOff implements BackOff {
 
 	/**
-	 * The default initial interval.
+	 * 默认初始间隔。
 	 */
 	public static final long DEFAULT_INITIAL_INTERVAL = 2000L;
 
 	/**
-	 * The default multiplier (increases the interval by 50%).
+	 * 默认乘数（使间隔增加 50%）。
 	 */
 	public static final double DEFAULT_MULTIPLIER = 1.5;
 
 	/**
-	 * The default maximum back off time.
+	 * 默认最大退避时间。
 	 */
 	public static final long DEFAULT_MAX_INTERVAL = 30000L;
 
 	/**
-	 * The default maximum elapsed time.
+	 * 默认最长已用时间。
 	 */
 	public static final long DEFAULT_MAX_ELAPSED_TIME = Long.MAX_VALUE;
 
@@ -85,7 +81,7 @@ public class ExponentialBackOff implements BackOff {
 
 
 	/**
-	 * Create an instance with the default settings.
+	 * 使用默认设置创建一个实例。
 	 * @see #DEFAULT_INITIAL_INTERVAL
 	 * @see #DEFAULT_MULTIPLIER
 	 * @see #DEFAULT_MAX_INTERVAL
@@ -95,7 +91,7 @@ public class ExponentialBackOff implements BackOff {
 	}
 
 	/**
-	 * Create an instance with the supplied settings.
+	 * 使用提供的设置创建一个实例。
 	 * @param initialInterval the initial interval in milliseconds
 	 * @param multiplier the multiplier (should be greater than or equal to 1)
 	 */
@@ -107,21 +103,21 @@ public class ExponentialBackOff implements BackOff {
 
 
 	/**
-	 * The initial interval in milliseconds.
+	 * 初始间隔，单位为毫秒。
 	 */
 	public void setInitialInterval(long initialInterval) {
 		this.initialInterval = initialInterval;
 	}
 
 	/**
-	 * Return the initial interval in milliseconds.
+	 * 返回初始间隔，单位为毫秒。
 	 */
 	public long getInitialInterval() {
 		return this.initialInterval;
 	}
 
 	/**
-	 * The value to multiply the current interval by for each retry attempt.
+	 * 每次重试时用于乘以当前间隔的值。
 	 */
 	public void setMultiplier(double multiplier) {
 		checkMultiplier(multiplier);
@@ -129,37 +125,37 @@ public class ExponentialBackOff implements BackOff {
 	}
 
 	/**
-	 * Return the value to multiply the current interval by for each retry attempt.
+	 * 返回每次重试时用于乘以当前间隔的值。
 	 */
 	public double getMultiplier() {
 		return this.multiplier;
 	}
 
 	/**
-	 * The maximum back off time.
+	 * 最大退避时间。
 	 */
 	public void setMaxInterval(long maxInterval) {
 		this.maxInterval = maxInterval;
 	}
 
 	/**
-	 * Return the maximum back off time.
+	 * 返回最大退避时间。
 	 */
 	public long getMaxInterval() {
 		return this.maxInterval;
 	}
 
 	/**
-	 * The maximum elapsed time in milliseconds after which a call to
-	 * {@link BackOffExecution#nextBackOff()} returns {@link BackOffExecution#STOP}.
+	 * 最长已用时间，单位为毫秒；超过该时间后，调用 {@link BackOffExecution#nextBackOff()} 将返回
+	 * {@link BackOffExecution#STOP}。
 	 */
 	public void setMaxElapsedTime(long maxElapsedTime) {
 		this.maxElapsedTime = maxElapsedTime;
 	}
 
 	/**
-	 * Return the maximum elapsed time in milliseconds after which a call to
-	 * {@link BackOffExecution#nextBackOff()} returns {@link BackOffExecution#STOP}.
+	 * 返回最长已用时间，单位为毫秒；超过该时间后，调用 {@link BackOffExecution#nextBackOff()} 将返回
+	 * {@link BackOffExecution#STOP}。
 	 */
 	public long getMaxElapsedTime() {
 		return this.maxElapsedTime;

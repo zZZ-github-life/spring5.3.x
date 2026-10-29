@@ -19,9 +19,8 @@ package org.springframework.web.socket.sockjs;
 import org.springframework.lang.Nullable;
 
 /**
- * Indicates a serious failure that occurred in the SockJS implementation as opposed to
- * in user code (e.g. IOException while writing to the response). When this exception
- * is raised, the SockJS session is typically closed.
+ * 表示 SockJS 实现中（而非用户代码中）发生的严重故障（例如写入响应时发生 IOException）。
+ * 引发此异常时，SockJS 会话通常会被关闭。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -30,7 +29,7 @@ import org.springframework.lang.Nullable;
 public class SockJsTransportFailureException extends SockJsException {
 
 	/**
-	 * Constructor for SockJsTransportFailureException.
+	 * SockJsTransportFailureException 的构造函数。
 	 * @param message the exception message
 	 * @param cause the root cause
 	 * @since 4.1.7
@@ -40,7 +39,7 @@ public class SockJsTransportFailureException extends SockJsException {
 	}
 
 	/**
-	 * Constructor for SockJsTransportFailureException.
+	 * SockJsTransportFailureException 的构造函数。
 	 * @param message the exception message
 	 * @param sessionId the SockJS session id
 	 * @param cause the root cause

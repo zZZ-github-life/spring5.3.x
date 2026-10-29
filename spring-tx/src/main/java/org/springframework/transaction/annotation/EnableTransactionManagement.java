@@ -27,17 +27,14 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 
 /**
- * Enables Spring's annotation-driven transaction management capability, similar to
- * the support found in Spring's {@code <tx:*>} XML namespace. To be used on
- * {@link org.springframework.context.annotation.Configuration @Configuration}
- * classes to configure traditional, imperative transaction management or
- * reactive transaction management.
+ * 启用Spring的注解驱动事务管理能力, 类似于Spring的{@code <tx:*>} XML命名空间中的支持。
+ * 用于{@link org.springframework.context.annotation.Configuration @Configuration}类上,
+ * 以配置传统的命令式事务管理或响应式事务管理。
  *
- * <p>The following example demonstrates imperative transaction management
- * using a {@link org.springframework.transaction.PlatformTransactionManager
- * PlatformTransactionManager}. For reactive transaction management, configure a
+ * <p>以下示例演示了使用{@link org.springframework.transaction.PlatformTransactionManager
+ * PlatformTransactionManager}的命令式事务管理。对于响应式事务管理, 需要配置
  * {@link org.springframework.transaction.ReactiveTransactionManager
- * ReactiveTransactionManager} instead.
+ * ReactiveTransactionManager}。
  *
  * <pre class="code">
  * &#064;Configuration
@@ -61,8 +58,7 @@ import org.springframework.core.Ordered;
  *     }
  * }</pre>
  *
- * <p>For reference, the example above can be compared to the following Spring XML
- * configuration:
+ * <p>作为参考, 上述示例可以与以下Spring XML配置进行比较:
  *
  * <pre class="code">
  * &lt;beans&gt;
@@ -82,26 +78,21 @@ import org.springframework.core.Ordered;
  * &lt;/beans&gt;
  * </pre>
  *
- * In both of the scenarios above, {@code @EnableTransactionManagement} and {@code
- * <tx:annotation-driven/>} are responsible for registering the necessary Spring
- * components that power annotation-driven transaction management, such as the
- * TransactionInterceptor and the proxy- or AspectJ-based advice that weaves the
- * interceptor into the call stack when {@code JdbcFooRepository}'s {@code @Transactional}
- * methods are invoked.
+ * 在上述两个场景中, {@code @EnableTransactionManagement}和{@code
+ * <tx:annotation-driven/>}负责注册驱动注解事务管理所需的Spring基础组件,
+ * 例如TransactionInterceptor以及基于代理或AspectJ的通知, 该通知在调用
+ * {@code JdbcFooRepository}的{@code @Transactional}方法时将拦截器织入调用链。
  *
- * <p>A minor difference between the two examples lies in the naming of the {@code
- * TransactionManager} bean: In the {@code @Bean} case, the name is
- * <em>"txManager"</em> (per the name of the method); in the XML case, the name is
- * <em>"transactionManager"</em>. {@code <tx:annotation-driven/>} is hard-wired to
- * look for a bean named "transactionManager" by default, however
- * {@code @EnableTransactionManagement} is more flexible; it will fall back to a by-type
- * lookup for any {@code TransactionManager} bean in the container. Thus the name
- * can be "txManager", "transactionManager", or "tm": it simply does not matter.
+ * <p>两个示例之间的一个细微差别在于{@code TransactionManager} bean的命名:
+ * 在{@code @Bean}方式中, 名称为<em>"txManager"</em>(根据方法名); 在XML方式中,
+ * 名称为<em>"transactionManager"</em>。{@code <tx:annotation-driven/>}默认硬编码
+ * 查找名为"transactionManager"的bean, 而{@code @EnableTransactionManagement}更加灵活;
+ * 它将回退为按类型查找容器中的任何{@code TransactionManager} bean。因此名称可以是
+ * "txManager"、"transactionManager"或"tm": 这无关紧要。
  *
- * <p>For those that wish to establish a more direct relationship between
- * {@code @EnableTransactionManagement} and the exact transaction manager bean to be used,
- * the {@link TransactionManagementConfigurer} callback interface may be implemented -
- * notice the {@code implements} clause and the {@code @Override}-annotated method below:
+ * <p>对于那些希望在{@code @EnableTransactionManagement}和要使用的确切事务管理器bean之间
+ * 建立更直接关系的人, 可以实现{@link TransactionManagementConfigurer}回调接口 -
+ * 请注意下面的{@code implements}子句和{@code @Override}标注的方法:
  *
  * <pre class="code">
  * &#064;Configuration
@@ -130,23 +121,18 @@ import org.springframework.core.Ordered;
  *     }
  * }</pre>
  *
- * <p>This approach may be desirable simply because it is more explicit, or it may be
- * necessary in order to distinguish between two {@code TransactionManager} beans
- * present in the same container.  As the name suggests, the
- * {@code annotationDrivenTransactionManager()} will be the one used for processing
- * {@code @Transactional} methods. See {@link TransactionManagementConfigurer} Javadoc
- * for further details.
+ * <p>这种方式可能是可取的, 因为它更加明确, 或者在容器中存在两个{@code TransactionManager}
+ * bean时需要区分它们。顾名思义, {@code annotationDrivenTransactionManager()}将用于
+ * 处理{@code @Transactional}方法。详见{@link TransactionManagementConfigurer}的Javadoc。
  *
- * <p>The {@link #mode} attribute controls how advice is applied: If the mode is
- * {@link AdviceMode#PROXY} (the default), then the other attributes control the behavior
- * of the proxying. Please note that proxy mode allows for interception of calls through
- * the proxy only; local calls within the same class cannot get intercepted that way.
+ * <p>{@link #mode}属性控制通知的应用方式: 如果模式为{@link AdviceMode#PROXY}(默认值),
+ * 则其他属性控制代理的行为。请注意, 代理模式仅允许拦截通过代理的调用; 同一类内的本地调用
+ * 无法以这种方式被拦截。
  *
- * <p>Note that if the {@linkplain #mode} is set to {@link AdviceMode#ASPECTJ}, then the
- * value of the {@link #proxyTargetClass} attribute will be ignored. Note also that in
- * this case the {@code spring-aspects} module JAR must be present on the classpath, with
- * compile-time weaving or load-time weaving applying the aspect to the affected classes.
- * There is no proxy involved in such a scenario; local calls will be intercepted as well.
+ * <p>请注意, 如果{@linkplain #mode}设置为{@link AdviceMode#ASPECTJ}, 则
+ * {@link #proxyTargetClass}属性的值将被忽略。同时请注意, 在这种情况下,
+ * {@code spring-aspects}模块JAR必须存在于类路径上, 通过编译时织入或加载时织入
+ * 将切面应用到受影响的类。这种场景不涉及代理; 本地调用也将被拦截。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -163,35 +149,27 @@ import org.springframework.core.Ordered;
 public @interface EnableTransactionManagement {
 
 	/**
-	 * Indicate whether subclass-based (CGLIB) proxies are to be created ({@code true}) as
-	 * opposed to standard Java interface-based proxies ({@code false}). The default is
-	 * {@code false}. <strong>Applicable only if {@link #mode()} is set to
-	 * {@link AdviceMode#PROXY}</strong>.
-	 * <p>Note that setting this attribute to {@code true} will affect <em>all</em>
-	 * Spring-managed beans requiring proxying, not just those marked with
-	 * {@code @Transactional}. For example, other beans marked with Spring's
-	 * {@code @Async} annotation will be upgraded to subclass proxying at the same
-	 * time. This approach has no negative impact in practice unless one is explicitly
-	 * expecting one type of proxy vs another, e.g. in tests.
+	 * 指示是否创建基于子类的(CGLIB)代理({@code true}), 而不是标准的基于Java接口的代理({@code false})。
+	 * 默认值为{@code false}。<strong>仅在{@link #mode()}设置为{@link AdviceMode#PROXY}时适用</strong>。
+	 * <p>请注意, 将此属性设置为{@code true}将影响<em>所有</em>需要代理的Spring托管bean,
+	 * 而不仅仅是标记了{@code @Transactional}的bean。例如, 其他标记了Spring的{@code @Async}注解
+	 * 的bean也将同时升级为子类代理。这种方式在实践中不会产生负面影响, 除非明确期望某种类型的代理
+	 * 而非另一种, 例如在测试中。
 	 */
 	boolean proxyTargetClass() default false;
 
 	/**
-	 * Indicate how transactional advice should be applied.
-	 * <p><b>The default is {@link AdviceMode#PROXY}.</b>
-	 * Please note that proxy mode allows for interception of calls through the proxy
-	 * only. Local calls within the same class cannot get intercepted that way; an
-	 * {@link Transactional} annotation on such a method within a local call will be
-	 * ignored since Spring's interceptor does not even kick in for such a runtime
-	 * scenario. For a more advanced mode of interception, consider switching this to
-	 * {@link AdviceMode#ASPECTJ}.
+	 * 指示事务通知的应用方式。
+	 * <p><b>默认值为{@link AdviceMode#PROXY}。</b>
+	 * 请注意, 代理模式仅允许拦截通过代理的调用。同一类内的本地调用无法以这种方式被拦截;
+	 * 在本地调用中, 此类方法上的{@link Transactional}注解将被忽略, 因为Spring的拦截器
+	 * 甚至不会为这种运行时场景启动。对于更高级的拦截模式, 请考虑切换为{@link AdviceMode#ASPECTJ}。
 	 */
 	AdviceMode mode() default AdviceMode.PROXY;
 
 	/**
-	 * Indicate the ordering of the execution of the transaction advisor
-	 * when multiple advices are applied at a specific joinpoint.
-	 * <p>The default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 * 指示在特定连接点应用多个通知时事务通知器的执行顺序。
+	 * <p>默认值为{@link Ordered#LOWEST_PRECEDENCE}。
 	 */
 	int order() default Ordered.LOWEST_PRECEDENCE;
 

@@ -29,12 +29,8 @@ import org.springframework.test.context.SmartContextLoader;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of the {@link CacheAwareContextLoaderDelegate} interface.
- *
- * <p>To use a static {@link DefaultContextCache}, invoke the
- * {@link #DefaultCacheAwareContextLoaderDelegate()} constructor; otherwise,
- * invoke the {@link #DefaultCacheAwareContextLoaderDelegate(ContextCache)}
- * and provide a custom {@link ContextCache} implementation.
+ * {@link CacheAwareContextLoaderDelegate} 接口的默认实现。
+ * <p>要使用静态 {@link DefaultContextCache}，请调用 {@link #DefaultCacheAwareContextLoaderDelegate()} 构造函数；否则，请调用 {@link #DefaultCacheAwareContextLoaderDelegate(ContextCache)} 并提供自定义 {@link ContextCache} 实现。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -44,7 +40,7 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 	private static final Log logger = LogFactory.getLog(DefaultCacheAwareContextLoaderDelegate.class);
 
 	/**
-	 * Default static cache of Spring application contexts.
+	 * Spring 应用程序上下文的默认静态缓存。
 	 */
 	static final ContextCache defaultContextCache = new DefaultContextCache();
 
@@ -52,11 +48,8 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 
 
 	/**
-	 * Construct a new {@code DefaultCacheAwareContextLoaderDelegate} using
-	 * a static {@link DefaultContextCache}.
-	 * <p>This default cache is static so that each context can be cached
-	 * and reused for all subsequent tests that declare the same unique
-	 * context configuration within the same JVM process.
+	 * 使用静态 {@link DefaultContextCache} 构造一个新的 {@code DefaultCacheAwareContextLoaderDelegate}。
+	 * <p>此默认缓存是静态的，以便每个上下文都能被缓存，并可在同一 JVM 进程中为所有声明相同唯一上下文配置的后续测试复用。
 	 * @see #DefaultCacheAwareContextLoaderDelegate(ContextCache)
 	 */
 	public DefaultCacheAwareContextLoaderDelegate() {
@@ -64,8 +57,7 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 	}
 
 	/**
-	 * Construct a new {@code DefaultCacheAwareContextLoaderDelegate} using
-	 * the supplied {@link ContextCache}.
+	 * 使用提供的 {@link ContextCache} 构造一个新的 {@code DefaultCacheAwareContextLoaderDelegate}。
 	 * @see #DefaultCacheAwareContextLoaderDelegate()
 	 */
 	public DefaultCacheAwareContextLoaderDelegate(ContextCache contextCache) {
@@ -119,15 +111,15 @@ public class DefaultCacheAwareContextLoaderDelegate implements CacheAwareContext
 	}
 
 	/**
-	 * Get the {@link ContextCache} used by this context loader delegate.
+	 * 获取此上下文加载器委托使用的 {@link ContextCache}。
 	 */
 	protected ContextCache getContextCache() {
 		return this.contextCache;
 	}
 
 	/**
-	 * Load the {@code ApplicationContext} for the supplied merged context configuration.
-	 * <p>Supports both the {@link SmartContextLoader} and {@link ContextLoader} SPIs.
+	 * 为提供的合并上下文配置加载 {@code ApplicationContext}。
+	 * <p>同时支持 {@link SmartContextLoader} 和 {@link ContextLoader} SPI。
 	 * @throws Exception if an error occurs while loading the application context
 	 */
 	protected ApplicationContext loadContextInternal(MergedContextConfiguration mergedContextConfiguration)

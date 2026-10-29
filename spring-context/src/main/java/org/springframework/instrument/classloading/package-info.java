@@ -1,6 +1,5 @@
 /**
- * Support package for load time weaving based on class loaders,
- * as required by JPA providers (but not JPA-specific).
+ * 基于类加载器的加载时织入的支持包，满足 JPA 提供者的要求（但不特定于 JPA）。
  */
 @NonNullApi
 @NonNullFields

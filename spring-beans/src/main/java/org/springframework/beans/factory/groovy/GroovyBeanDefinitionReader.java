@@ -57,18 +57,15 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A Groovy-based reader for Spring bean definitions: like a Groovy builder,
- * but more of a DSL for Spring configuration.
+ * 基于 Groovy 的 Spring Bean 定义读取器：类似 Groovy builder，但更像是用于 Spring 配置的 DSL。
  *
- * <p>This bean definition reader also understands XML bean definition files,
- * allowing for seamless mixing and matching with Groovy bean definition files.
+ * <p>该 Bean 定义读取器也支持 XML Bean 定义文件，从而可以与 Groovy Bean 定义文件无缝混合搭配使用。
  *
- * <p>Typically applied to a
- * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory}
- * or a {@link org.springframework.context.support.GenericApplicationContext},
- * but can be used against any {@link BeanDefinitionRegistry} implementation.
+ * <p>通常应用于 {@link org.springframework.beans.factory.support.DefaultListableBeanFactory} 或
+ * {@link org.springframework.context.support.GenericApplicationContext}，但也可以用于任何
+ * {@link BeanDefinitionRegistry} 实现。
  *
- * <h3>Example Syntax</h3>
+ * <h3>示例语法</h3>
  * <pre class="code">
  * import org.hibernate.SessionFactory
  * import org.apache.commons.dbcp.BasicDataSource
@@ -92,10 +89,9 @@ import org.springframework.util.StringUtils;
  *     }
  * }</pre>
  *
- * <p>You can also load resources containing beans defined in a Groovy script using
- * either the {@link #loadBeanDefinitions(Resource...)} or
- * {@link #loadBeanDefinitions(String...)} method, with a script looking similar to
- * the following.
+ * <p>还可以使用 {@link #loadBeanDefinitions(Resource...)} 或
+ * {@link #loadBeanDefinitions(String...)} 方法加载包含 Groovy 脚本中所定义 Bean 的资源，脚本与下面
+ * 的示例类似。
  *
  * <pre class="code">
  * import org.hibernate.SessionFactory
@@ -132,14 +128,13 @@ import org.springframework.util.StringUtils;
 public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader implements GroovyObject {
 
 	/**
-	 * Standard {@code XmlBeanDefinitionReader} created with default
-	 * settings for loading bean definitions from XML files.
+	 * 使用默认设置创建的标准 {@code XmlBeanDefinitionReader}，用于从 XML 文件加载 Bean 定义。
 	 */
 	private final XmlBeanDefinitionReader standardXmlBeanDefinitionReader;
 
 	/**
-	 * Groovy DSL {@code XmlBeanDefinitionReader} for loading bean definitions
-	 * via the Groovy DSL, typically configured with XML validation disabled.
+	 * 用于通过 Groovy DSL 加载 Bean 定义的 Groovy DSL {@code XmlBeanDefinitionReader}，通常配置为禁用
+	 * XML 校验。
 	 */
 	private final XmlBeanDefinitionReader groovyDslXmlBeanDefinitionReader;
 
@@ -155,8 +150,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 
 
 	/**
-	 * Create a new {@code GroovyBeanDefinitionReader} for the given
-	 * {@link BeanDefinitionRegistry}.
+	 * 为给定的 {@link BeanDefinitionRegistry} 创建一个新的 {@code GroovyBeanDefinitionReader}。
 	 * @param registry the {@code BeanDefinitionRegistry} to load bean definitions into
 	 */
 	public GroovyBeanDefinitionReader(BeanDefinitionRegistry registry) {
@@ -167,11 +161,10 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Create a new {@code GroovyBeanDefinitionReader} based on the given
-	 * {@link XmlBeanDefinitionReader}, loading bean definitions into its
-	 * {@code BeanDefinitionRegistry} and delegating Groovy DSL loading to it.
-	 * <p>The supplied {@code XmlBeanDefinitionReader} should typically
-	 * be pre-configured with XML validation disabled.
+	 * 基于给定的 {@link XmlBeanDefinitionReader} 创建一个新的 {@code GroovyBeanDefinitionReader}，将
+	 * Bean 定义加载到其 {@code BeanDefinitionRegistry} 中，并将 Groovy DSL 加载委托给它。
+	 *
+	 * <p>所提供的 {@code XmlBeanDefinitionReader} 通常应预先配置为禁用 XML 校验。
 	 * @param xmlBeanDefinitionReader the {@code XmlBeanDefinitionReader} to
 	 * derive the registry from and to delegate Groovy DSL loading to
 	 */
@@ -193,15 +186,14 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Set the binding, i.e. the Groovy variables available in the scope
-	 * of a {@code GroovyBeanDefinitionReader} closure.
+	 * 设置绑定，即在 {@code GroovyBeanDefinitionReader} 闭包作用域内可用的 Groovy 变量。
 	 */
 	public void setBinding(Binding binding) {
 		this.binding = binding;
 	}
 
 	/**
-	 * Return a specified binding for Groovy variables, if any.
+	 * 返回指定的 Groovy 变量绑定（如果有）。
 	 */
 	public Binding getBinding() {
 		return this.binding;
@@ -211,9 +203,9 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	// TRADITIONAL BEAN DEFINITION READER METHODS
 
 	/**
-	 * Load bean definitions from the specified Groovy script or XML file.
-	 * <p>Note that {@code ".xml"} files will be parsed as XML content; all other kinds
-	 * of resources will be parsed as Groovy scripts.
+	 * 从指定的 Groovy 脚本或 XML 文件加载 Bean 定义。
+	 *
+	 * <p>请注意，{@code ".xml"} 文件将按 XML 内容解析；所有其他类型的资源将按 Groovy 脚本解析。
 	 * @param resource the resource descriptor for the Groovy script or XML file
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
@@ -224,9 +216,9 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Load bean definitions from the specified Groovy script or XML file.
-	 * <p>Note that {@code ".xml"} files will be parsed as XML content; all other kinds
-	 * of resources will be parsed as Groovy scripts.
+	 * 从指定的 Groovy 脚本或 XML 文件加载 Bean 定义。
+	 *
+	 * <p>请注意，{@code ".xml"} 文件将按 XML 内容解析；所有其他类型的资源将按 Groovy 脚本解析。
 	 * @param encodedResource the resource descriptor for the Groovy script or XML file,
 	 * allowing specification of an encoding to use for parsing the file
 	 * @return the number of bean definitions found
@@ -285,7 +277,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	// METHODS FOR CONSUMPTION IN A GROOVY CLOSURE
 
 	/**
-	 * Defines a set of beans for the given block or closure.
+	 * 为给定的 block 或闭包定义一组 Bean。
 	 * @param closure the block or closure
 	 * @return this {@code GroovyBeanDefinitionReader} instance
 	 */
@@ -294,7 +286,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Define an inner bean definition.
+	 * 定义一个内部 Bean 定义。
 	 * @param type the bean type
 	 * @return the bean definition
 	 */
@@ -305,7 +297,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Define an inner bean definition.
+	 * 定义一个内部 Bean 定义。
 	 * @param type the bean type
 	 * @param args the constructors arguments and closure configurer
 	 * @return the bean definition
@@ -336,7 +328,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Define a Spring XML namespace definition to use.
+	 * 定义要使用的 Spring XML 命名空间定义。
 	 * @param definition the namespace definition
 	 */
 	public void xmlns(Map<String, String> definition) {
@@ -359,8 +351,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Import Spring bean definitions from either XML or Groovy sources into the
-	 * current bean builder instance.
+	 * 从 XML 或 Groovy 源中将 Spring Bean 定义导入当前 Bean 构建器实例。
 	 * @param resourcePattern the resource pattern
 	 */
 	public void importBeans(String resourcePattern) throws IOException {
@@ -371,8 +362,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	// INTERNAL HANDLING OF GROOVY CLOSURES AND PROPERTIES
 
 	/**
-	 * This method overrides method invocation to create beans for each method name that
-	 * takes a class argument.
+	 * 此方法重写方法调用，以便为每个接受 class 参数的方法名创建 Bean。
 	 */
 	@Override
 	public Object invokeMethod(String name, Object arg) {
@@ -442,7 +432,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * When a method argument is only a closure it is a set of bean definitions.
+	 * 当方法参数仅为闭包时，它是一组 Bean 定义。
 	 * @param callable the closure argument
 	 * @return this {@code GroovyBeanDefinitionReader} instance
 	 */
@@ -454,7 +444,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * This method is called when a bean definition node is called.
+	 * 当调用 Bean 定义节点时会调用此方法。
 	 * @param beanName the name of the bean to define
 	 * @param args the arguments to the bean. The first argument is the class name, the last
 	 * argument is sometimes a closure. All the arguments in between are constructor arguments.
@@ -558,8 +548,8 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Checks whether there are any {@link RuntimeBeanReference RuntimeBeanReferences}
-	 * inside the {@link Map} and converts it to a {@link ManagedMap} if necessary.
+	 * 检查 {@link Map} 中是否存在 {@link RuntimeBeanReference RuntimeBeanReferences}，如有必要将其转换
+	 * 为 {@link ManagedMap}。
 	 * @param map the original Map
 	 * @return either the original map or a managed copy of it
 	 */
@@ -580,8 +570,8 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * Checks whether there are any {@link RuntimeBeanReference RuntimeBeanReferences}
-	 * inside the {@link List} and converts it to a {@link ManagedList} if necessary.
+	 * 检查 {@link List} 中是否存在 {@link RuntimeBeanReference RuntimeBeanReferences}，如有必要将其转
+	 * 换为 {@link ManagedList}。
 	 * @param list the original List
 	 * @return either the original list or a managed copy of it
 	 */
@@ -602,8 +592,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * This method overrides property setting in the scope of the {@code GroovyBeanDefinitionReader}
-	 * to set properties on the current bean definition.
+	 * 此方法重写 {@code GroovyBeanDefinitionReader} 作用域内的属性设置，以在当前 Bean 定义上设置属性。
 	 */
 	@Override
 	public void setProperty(String name, Object value) {
@@ -643,13 +632,11 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 	}
 
 	/**
-	 * This method overrides property retrieval in the scope of the
-	 * {@code GroovyBeanDefinitionReader}. A property retrieval will either:
+	 * 此方法重写 {@code GroovyBeanDefinitionReader} 作用域内的属性获取。属性获取将执行以下操作之一：
 	 * <ul>
-	 * <li>Retrieve a variable from the bean builder's binding if it exists
-	 * <li>Retrieve a RuntimeBeanReference for a specific bean if it exists
-	 * <li>Otherwise just delegate to MetaClass.getProperty which will resolve
-	 * properties from the {@code GroovyBeanDefinitionReader} itself
+	 * <li>如果 bean builder 的绑定中存在变量，则从该绑定中获取变量
+	 * <li>如果存在特定 Bean，则获取其对应的 RuntimeBeanReference
+	 * <li>否则直接委托给 MetaClass.getProperty，由它从 {@code GroovyBeanDefinitionReader} 本身解析属性
 	 * </ul>
 	 */
 	@Override
@@ -715,10 +702,8 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 
 
 	/**
-	 * This class is used to defer the adding of a property to a bean definition
-	 * until later. This is for a case where you assign a property to a list that
-	 * may not contain bean references at that point of assignment, but may later;
-	 * hence, it would need to be managed.
+	 * 此类用于将对 Bean 定义的属性添加推迟到稍后进行。这适用于以下情况：将属性赋给一个列表时，该列表在
+	 * 赋值时可能不包含 Bean 引用，但之后可能包含；因此需要对其进行管理。
 	 */
 	private static class DeferredProperty {
 
@@ -741,7 +726,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 
 
 	/**
-	 * A RuntimeBeanReference that takes care of adding new properties to runtime references.
+	 * 一个 RuntimeBeanReference，负责向运行时引用添加新属性。
 	 */
 	private class GroovyRuntimeBeanReference extends RuntimeBeanReference implements GroovyObject {
 
@@ -796,8 +781,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 
 
 		/**
-		 * Wraps a bean definition property and ensures that any RuntimeBeanReference
-		 * additions to it are deferred for resolution later.
+		 * 包装 Bean 定义属性，并确保对其所做的任何 RuntimeBeanReference 添加都会推迟到稍后解析。
 		 */
 		private class GroovyPropertyValue extends GroovyObjectSupport {
 

@@ -33,17 +33,16 @@ import org.springframework.jms.support.destination.DestinationResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * Standard implementation of the {@link JmsActivationSpecFactory} interface.
- * Supports the standard JMS properties as defined by the JMS 1.5 specification
- * (Appendix B); ignores Spring's "maxConcurrency" and "prefetchSize" settings.
+ * {@link JmsActivationSpecFactory} 接口的标准实现。
+ * 支持 JMS 1.5 规范（附录 B）定义的标准 JMS 属性；
+ * 忽略 Spring 的 "maxConcurrency" 和 "prefetchSize" 设置。
  *
- * <p>The 'activationSpecClass' property is required, explicitly defining
- * the fully-qualified class name of the provider's ActivationSpec class
- * (e.g. "org.apache.activemq.ra.ActiveMQActivationSpec").
+ * <p>'activationSpecClass' 属性是必需的，显式定义提供者
+ * ActivationSpec 类的完全限定类名
+ * （例如 "org.apache.activemq.ra.ActiveMQActivationSpec"）。
  *
- * <p>Check out {@link DefaultJmsActivationSpecFactory} for an extended variant
- * of this class, supporting some further default conventions beyond the plain
- * JMS 1.5 specification.
+ * <p>请查看 {@link DefaultJmsActivationSpecFactory}，了解此类的扩展变体，
+ * 它支持普通 JMS 1.5 规范之外的一些额外默认约定。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -63,40 +62,40 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 
 
 	/**
-	 * Specify the fully-qualified ActivationSpec class name for the target
-	 * provider (e.g. "org.apache.activemq.ra.ActiveMQActivationSpec").
+	 * 为目标提供者指定完全限定的 ActivationSpec 类名
+	 * （例如 "org.apache.activemq.ra.ActiveMQActivationSpec"）。
 	 */
 	public void setActivationSpecClass(Class<?> activationSpecClass) {
 		this.activationSpecClass = activationSpecClass;
 	}
 
 	/**
-	 * Specify custom default properties, with String keys and String values.
-	 * <p>Applied to each ActivationSpec object before it gets populated with
-	 * listener-specific settings. Allows for configuring vendor-specific properties
-	 * beyond the Spring-defined settings in {@link JmsActivationSpecConfig}.
+	 * 指定自定义的默认属性，键和值均为 String。
+	 * <p>在填充监听器特定设置之前，应用于每个 ActivationSpec 对象。
+	 * 允许配置 {@link JmsActivationSpecConfig} 中 Spring 定义设置之外的
+	 * 特定于厂商的属性。
 	 */
 	public void setDefaultProperties(Map<String, String> defaultProperties) {
 		this.defaultProperties = defaultProperties;
 	}
 
 	/**
-	 * Set the DestinationResolver to use for resolving destination names
-	 * into the JCA 1.5 ActivationSpec "destination" property.
-	 * <p>If not specified, destination names will simply be passed in as Strings.
-	 * If specified, destination names will be resolved into Destination objects first.
-	 * <p>Note that a DestinationResolver for use with this factory must be
-	 * able to work <i>without</i> an active JMS Session: e.g.
+	 * 设置用于将目的地名称解析到 JCA 1.5 ActivationSpec
+	 * "destination" 属性的 DestinationResolver。
+	 * <p>如果未指定，目的地名称将直接作为字符串传入。
+	 * 如果指定，目的地名称会先被解析为 Destination 对象。
+	 * <p>请注意，与此工厂一起使用的 DestinationResolver 必须能够在<i>没有</i>
+	 * 活动 JMS Session 的情况下工作：例如
 	 * {@link org.springframework.jms.support.destination.JndiDestinationResolver}
-	 * or {@link org.springframework.jms.support.destination.BeanFactoryDestinationResolver}
-	 * but not {@link org.springframework.jms.support.destination.DynamicDestinationResolver}.
+	 * 或 {@link org.springframework.jms.support.destination.BeanFactoryDestinationResolver}，
+	 * 但不能是 {@link org.springframework.jms.support.destination.DynamicDestinationResolver}。
 	 */
 	public void setDestinationResolver(@Nullable DestinationResolver destinationResolver) {
 		this.destinationResolver = destinationResolver;
 	}
 
 	/**
-	 * Return the {@link DestinationResolver} to use for resolving destinations names.
+	 * 返回用于解析目的地名称的 {@link DestinationResolver}。
 	 */
 	@Nullable
 	public DestinationResolver getDestinationResolver() {
@@ -124,8 +123,8 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 	}
 
 	/**
-	 * Determine the ActivationSpec class for the given ResourceAdapter,
-	 * if possible. Called if no 'activationSpecClass' has been set explicitly
+	 * 如果可能，为给定的 ResourceAdapter 确定 ActivationSpec 类。
+	 * 在未显式设置 'activationSpecClass' 时调用。
 	 * @param adapter the ResourceAdapter to check
 	 * @return the corresponding ActivationSpec class, or {@code null}
 	 * if not determinable
@@ -137,10 +136,9 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 	}
 
 	/**
-	 * Populate the given ApplicationSpec object with the settings
-	 * defined in the given configuration object.
-	 * <p>This implementation applies all standard JMS settings, but ignores
-	 * "maxConcurrency" and "prefetchSize" - not supported in standard JCA 1.5.
+	 * 使用给定配置对象中定义的设置填充给定的 ApplicationSpec 对象。
+	 * <p>此实现应用所有标准 JMS 设置，但忽略
+	 * "maxConcurrency" 和 "prefetchSize"——标准 JCA 1.5 不支持它们。
 	 * @param bw the BeanWrapper wrapping the ActivationSpec object
 	 * @param config the configured object holding common JMS settings
 	 */
@@ -186,11 +184,11 @@ public class StandardJmsActivationSpecFactory implements JmsActivationSpecFactor
 	}
 
 	/**
-	 * Apply the specified acknowledge mode to the ActivationSpec object.
-	 * <p>This implementation applies the standard JCA 1.5 acknowledge modes
-	 * "Auto-acknowledge" and "Dups-ok-acknowledge". It throws an exception in
-	 * case of {@code CLIENT_ACKNOWLEDGE} or {@code SESSION_TRANSACTED}
-	 * having been requested.
+	 * 将指定的确认模式应用到 ActivationSpec 对象。
+	 * <p>此实现应用标准 JCA 1.5 确认模式
+	 * "Auto-acknowledge" 和 "Dups-ok-acknowledge"。
+	 * 如果请求了 {@code CLIENT_ACKNOWLEDGE} 或 {@code SESSION_TRANSACTED}，
+	 * 则抛出异常。
 	 * @param bw the BeanWrapper wrapping the ActivationSpec object
 	 * @param ackMode the configured acknowledgment mode
 	 * (according to the constants in {@link javax.jms.Session})

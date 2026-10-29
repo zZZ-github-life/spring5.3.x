@@ -22,9 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.TransactionDefinition;
 
 /**
- * This interface adds a {@code rollbackOn} specification to {@link TransactionDefinition}.
- * As custom {@code rollbackOn} is only possible with AOP, it resides in the AOP-related
- * transaction subpackage.
+ * 此接口向{@link TransactionDefinition}添加{@code rollbackOn}规范。
+ * 由于自定义{@code rollbackOn}仅在AOP中可行, 因此它位于AOP相关的事务子包中。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,24 +35,22 @@ import org.springframework.transaction.TransactionDefinition;
 public interface TransactionAttribute extends TransactionDefinition {
 
 	/**
-	 * Return a qualifier value associated with this transaction attribute.
-	 * <p>This may be used for choosing a corresponding transaction manager
-	 * to process this specific transaction.
+	 * 返回与此事务属性关联的限定符值。
+	 * <p>这可用于选择相应的事务管理器来处理此特定事务。
 	 * @since 3.0
 	 */
 	@Nullable
 	String getQualifier();
 
 	/**
-	 * Return labels associated with this transaction attribute.
-	 * <p>This may be used for applying specific transactional behavior
-	 * or follow a purely descriptive nature.
+	 * 返回与此事务属性关联的标签。
+	 * <p>这可用于应用特定的事务行为或纯粹用于描述目的。
 	 * @since 5.3
 	 */
 	Collection<String> getLabels();
 
 	/**
-	 * Should we roll back on the given exception?
+	 * 是否应在给定异常时回滚?
 	 * @param ex the exception to evaluate
 	 * @return whether to perform a rollback or not
 	 */

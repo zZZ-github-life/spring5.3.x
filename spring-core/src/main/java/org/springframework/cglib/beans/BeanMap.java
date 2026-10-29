@@ -32,33 +32,27 @@ import org.springframework.cglib.core.KeyFactory;
 import org.springframework.cglib.core.ReflectUtils;
 
 /**
- * A <code>Map</code>-based view of a JavaBean.  The default set of keys is the
- * union of all property names (getters or setters). An attempt to set
- * a read-only property will be ignored, and write-only properties will
- * be returned as <code>null</code>. Removal of objects is not a
- * supported (the key set is fixed).
+ * 基于 <code>Map</code> 的 JavaBean 视图。默认的键集合是所有属性名（getter 或 setter）的并集。尝试
+ * 设置只读属性将被忽略，只写属性将返回 <code>null</code>。不支持移除对象（键集合是固定的）。
  * @author Chris Nokleberg
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 abstract public class BeanMap implements Map {
     /**
-     * Limit the properties reflected in the key set of the map
-     * to readable properties.
+     * 将映射键集合中反映的属性限制为可读属性。
      * @see BeanMap.Generator#setRequire
      */
     public static final int REQUIRE_GETTER = 1;
 
     /**
-     * Limit the properties reflected in the key set of the map
-     * to writable properties.
+     * 将映射键集合中反映的属性限制为可写属性。
      * @see BeanMap.Generator#setRequire
      */
     public static final int REQUIRE_SETTER = 2;
     
     /**
-     * Helper method to create a new <code>BeanMap</code>.  For finer
-     * control over the generated instance, use a new instance of
-     * <code>BeanMap.Generator</code> instead of this static method.
+     * 用于创建新 <code>BeanMap</code> 的辅助方法。若要更精细地控制生成的实例，请使用新的 <code>
+     * BeanMap.Generator</code> 实例而不是此静态方法。
      * @param bean the JavaBean underlying the map
      * @return a new <code>BeanMap</code> instance
      */
@@ -87,10 +81,9 @@ abstract public class BeanMap implements Map {
         }
 
         /**
-         * Set the bean that the generated map should reflect. The bean may be swapped
-         * out for another bean of the same type using {@link #setBean}.
-         * Calling this method overrides any value previously set using {@link #setBeanClass}.
-         * You must call either this method or {@link #setBeanClass} before {@link #create}.
+         * 设置生成的映射应反映的 Bean。可以使用 {@link #setBean} 将其替换为同一类型的另一个 Bean。调用此方
+         * 法会覆盖之前通过 {@link #setBeanClass} 设置的值。必须在调用 {@link #create} 之前调用此方法或
+         * {@link #setBeanClass}。
          * @param bean the initial bean
          */
         public void setBean(Object bean) {
@@ -104,8 +97,8 @@ abstract public class BeanMap implements Map {
         }
 
         /**
-         * Set the class of the bean that the generated map should support.
-         * You must call either this method or {@link #setBeanClass} before {@link #create}.
+         * 设置生成的映射应支持的 Bean 类。必须在调用 {@link #create} 之前调用此方法或
+         * {@link #setBeanClass}。
          * @param beanClass the class of the bean
          */
         public void setBeanClass(Class beanClass) {
@@ -113,7 +106,7 @@ abstract public class BeanMap implements Map {
         }
 
         /**
-         * Limit the properties reflected by the generated map.
+         * 限制生成的映射所反映的属性。
          * @param require any combination of {@link #REQUIRE_GETTER} and
          * {@link #REQUIRE_SETTER}; default is zero (any property allowed)
          */
@@ -130,8 +123,7 @@ abstract public class BeanMap implements Map {
         }
 
         /**
-         * Create a new instance of the <code>BeanMap</code>. An existing
-         * generated class will be reused if possible.
+         * 创建 <code>BeanMap</code> 的新实例。如果可能，将复用已生成的类。
          */
         public BeanMap create() {
             if (beanClass == null)
@@ -154,15 +146,14 @@ abstract public class BeanMap implements Map {
     }
 
     /**
-     * Create a new <code>BeanMap</code> instance using the specified bean.
-     * This is faster than using the {@link #create} static method.
+     * 使用指定的 Bean 创建新的 <code>BeanMap</code> 实例。这比使用 {@link #create} 静态方法更快。
      * @param bean the JavaBean underlying the map
      * @return a new <code>BeanMap</code> instance
      */
     abstract public BeanMap newInstance(Object bean);
 
     /**
-     * Get the type of a property.
+     * 获取属性的类型。
      * @param name the name of the JavaBean property
      * @return the type of the property, or null if the property does not exist
      */
@@ -186,9 +177,8 @@ abstract public class BeanMap implements Map {
     }
 
     /**
-     * Get the property of a bean. This allows a <code>BeanMap</code>
-     * to be used statically for multiple beans--the bean instance tied to the
-     * map is ignored and the bean passed to this method is used instead.
+     * 获取 Bean 的属性。这使得 <code>BeanMap</code> 可以静态地用于多个 Bean——与映射绑定的 Bean 实例会
+     * 被忽略，转而使用传给此方法的 Bean。
      * @param bean the bean to query; must be compatible with the type of
      * this <code>BeanMap</code>
      * @param key must be a String
@@ -197,16 +187,15 @@ abstract public class BeanMap implements Map {
     abstract public Object get(Object bean, Object key);
 
     /**
-     * Set the property of a bean. This allows a <code>BeanMap</code>
-     * to be used statically for multiple beans--the bean instance tied to the
-     * map is ignored and the bean passed to this method is used instead.
+     * 设置 Bean 的属性。这使得 <code>BeanMap</code> 可以静态地用于多个 Bean——与映射绑定的 Bean 实例会
+     * 被忽略，转而使用传给此方法的 Bean。
      * @param key must be a String
      * @return the old value, if there was one, or null
      */
     abstract public Object put(Object bean, Object key, Object value);
 
     /**
-     * Change the underlying bean this map should use.
+     * 更改此映射应使用的底层 Bean。
      * @param bean the new JavaBean
      * @see #getBean
      */
@@ -215,7 +204,7 @@ abstract public class BeanMap implements Map {
     }
 
     /**
-     * Return the bean currently in use by this map.
+     * 返回此映射当前使用的 Bean。
      * @return the current JavaBean
      * @see #setBean
      */

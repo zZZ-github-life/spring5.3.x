@@ -46,7 +46,7 @@ import org.springframework.web.socket.sockjs.transport.SockJsServiceConfig;
 import org.springframework.web.socket.sockjs.transport.SockJsSession;
 
 /**
- * An abstract base class for SockJS sessions implementing {@link SockJsSession}.
+ * 实现 {@link SockJsSession} 的 SockJS 会话的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -58,26 +58,26 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 
 
 	/**
-	 * Log category to use on network IO exceptions after a client has gone away.
-	 * <p>Servlet containers don't expose a client disconnected callback; see
-	 * <a href="https://github.com/eclipse-ee4j/servlet-api/issues/44">eclipse-ee4j/servlet-api#44</a>.
-	 * Therefore, network IO failures may occur simply because a client has gone away,
-	 * and that can fill the logs with unnecessary stack traces.
-	 * <p>We make a best effort to identify such network failures, on a per-server
-	 * basis, and log them under a separate log category. A simple one-line message
-	 * is logged at DEBUG level, while a full stack trace is shown at TRACE level.
+	 * 在客户端离开后发生网络 IO 异常时使用的日志类别。
+	 * <p>Servlet 容器不暴露客户端断开连接的回调；参见
+	 * <a href="https://github.com/eclipse-ee4j/servlet-api/issues/44">eclipse-ee4j/servlet-api#44</a>。
+	 * 因此，网络 IO 失败可能仅仅因为客户端已经离开而发生，
+	 * 这会导致日志中充满不必要的堆栈跟踪。
+	 * <p>我们会尽力在每台服务器的基础上识别此类网络故障，
+	 * 并将其记录在单独的日志类别下。一条简单的一行消息
+	 * 以 DEBUG 级别记录，而完整堆栈跟踪以 TRACE 级别显示。
 	 * @see #disconnectedClientLogger
 	 */
 	public static final String DISCONNECTED_CLIENT_LOG_CATEGORY =
 			"org.springframework.web.socket.sockjs.DisconnectedClient";
 
 	/**
-	 * Tomcat: ClientAbortException or EOFException
+	 * Tomcat: ClientAbortException 或 EOFException
 	 * Jetty: EofException
-	 * WildFly, GlassFish: java.io.IOException "Broken pipe" (already covered)
+	 * WildFly、GlassFish: java.io.IOException "Broken pipe"（已涵盖）
 	 * <p>TODO:
-	 * This definition is currently duplicated between HttpWebHandlerAdapter
-	 * and AbstractSockJsSession. It is a candidate for a common utility class.
+	 * 此定义目前在 HttpWebHandlerAdapter
+	 * 和 AbstractSockJsSession 之间重复。它是公共工具类的候选。
 	 * @see #indicatesDisconnectedClient(Throwable)
 	 */
 	private static final Set<String> DISCONNECTED_CLIENT_EXCEPTIONS =
@@ -85,7 +85,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 
 
 	/**
-	 * Separate logger to use on network IO failure after a client has gone away.
+	 * 在客户端离开后发生网络 IO 失败时使用的独立 logger。
 	 * @see #DISCONNECTED_CLIENT_LOG_CATEGORY
 	 */
 	protected static final Log disconnectedClientLogger = LogFactory.getLog(DISCONNECTED_CLIENT_LOG_CATEGORY);
@@ -118,7 +118,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 
 
 	/**
-	 * Create a new instance.
+	 * 创建一个新实例。
 	 * @param id the session ID
 	 * @param config the SockJS service configuration options
 	 * @param handler the recipient of SockJS messages
@@ -189,7 +189,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	}
 
 	/**
-	 * Performs cleanup and notify the {@link WebSocketHandler}.
+	 * 执行清理并通知 {@link WebSocketHandler}。
 	 */
 	@Override
 	public final void close() throws IOException {
@@ -197,7 +197,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	}
 
 	/**
-	 * Performs cleanup and notify the {@link WebSocketHandler}.
+	 * 执行清理并通知 {@link WebSocketHandler}。
 	 */
 	@Override
 	public final void close(CloseStatus status) throws IOException {
@@ -241,7 +241,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	}
 
 	/**
-	 * Should be invoked whenever the session becomes inactive.
+	 * 应在会话变为非活动状态时调用。
 	 */
 	protected void updateLastActiveTime() {
 		this.timeLastActive = System.currentTimeMillis();
@@ -297,17 +297,16 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	}
 
 	/**
-	 * Polling and Streaming sessions periodically close the current HTTP request and
-	 * wait for the next request to come through. During this "downtime" the session is
-	 * still open but inactive and unable to send messages and therefore has to buffer
-	 * them temporarily. A WebSocket session by contrast is stateful and remain active
-	 * until closed.
+	 * 轮询和流式会话会定期关闭当前 HTTP 请求并等待下一个请求
+	 * 到来。在此"停机"期间，会话仍处于打开状态但处于非活动状态，
+	 * 无法发送消息，因此必须暂时缓冲消息。
+	 * 相比之下，WebSocket 会话是有状态的，在关闭之前保持活动状态。
 	 */
 	public abstract boolean isActive();
 
 	/**
-	 * Actually close the underlying WebSocket session or in the case of HTTP
-	 * transports complete the underlying request.
+	 * 实际关闭底层 WebSocket 会话，或者在 HTTP 传输的情况下
+	 * 完成底层请求。
 	 */
 	protected abstract void disconnect(CloseStatus status) throws IOException;
 
@@ -315,8 +314,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	// Frame writing
 
 	/**
-	 * For internal use within a TransportHandler and the (TransportHandler-specific)
-	 * session class.
+	 * 供 TransportHandler 和（特定于 TransportHandler 的）会话类内部使用。
 	 */
 	protected void writeFrame(SockJsFrame frame) throws SockJsTransportFailureException {
 		if (logger.isTraceEnabled()) {
@@ -421,7 +419,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	}
 
 	/**
-	 * Invoked when the underlying connection is closed.
+	 * 在底层连接关闭时调用。
 	 */
 	public final void delegateConnectionClosed(CloseStatus status) throws Exception {
 		if (!isClosed()) {
@@ -442,7 +440,7 @@ public abstract class AbstractSockJsSession implements SockJsSession {
 	}
 
 	/**
-	 * Close due to error arising from SockJS transport handling.
+	 * 由于 SockJS 传输处理产生的错误而关闭。
 	 */
 	public void tryCloseWithSockJsTransportError(Throwable error, CloseStatus closeStatus) {
 		if (logger.isDebugEnabled()) {

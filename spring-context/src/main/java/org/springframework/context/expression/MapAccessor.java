@@ -28,8 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * EL property accessor that knows how to traverse the keys
- * of a standard {@link java.util.Map}.
+ * EL 属性访问器，能遍历标准 {@link java.util.Map} 的键。
  *
  * @author Juergen Hoeller
  * @author Andy Clement
@@ -98,8 +97,7 @@ public class MapAccessor implements CompilablePropertyAccessor {
 
 
 	/**
-	 * Exception thrown from {@code read} in order to reset a cached
-	 * PropertyAccessor, allowing other accessors to have a try.
+	 * 从 {@code read} 抛出的异常，用于重置缓存的 PropertyAccessor，以便其他访问器可以尝试。
 	 */
 	@SuppressWarnings("serial")
 	private static class MapAccessException extends AccessException {

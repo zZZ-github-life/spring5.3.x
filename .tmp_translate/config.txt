@@ -1,0 +1,268 @@
+@@ config/CorsRegistration.java :: 1
+用于为给定 URL 路径模式创建 {@link CorsConfiguration} 实例的辅助类。
+@@ config/CorsRegistration.java :: 2
+设置允许浏览器发起跨源请求的来源。格式细节和其他注意事项请参见 {@link CorsConfiguration#setAllowedOrigins(List)}。
+
+<p>默认允许所有来源，但如果同时设置了 {@link #allowedOriginPatterns(String...) allowedOriginPatterns}，则以该设置为准。
+@@ config/CorsRegistration.java :: 3
+{@link #allowedOrigins(String...)} 的替代方法，支持更灵活的模式来指定允许浏览器发起跨源请求的来源。格式细节和其他注意事项请参见 {@link CorsConfiguration#setAllowedOriginPatterns(List)}。
+<p>默认不设置此项。
+@@ config/CorsRegistration.java :: 4
+设置允许的 HTTP 方法，例如 {@code "GET"}、{@code "POST"} 等。
+<p>特殊值 {@code "*"} 允许所有方法。
+<p>默认允许“简单”方法 {@code GET}、{@code HEAD} 和 {@code POST}。
+@@ config/CorsRegistration.java :: 5
+设置预检请求可以列为在实际请求期间允许使用的头列表。
+<p>特殊值 {@code "*"} 可用于允许所有头。
+<p>根据 CORS 规范，如果头名称属于以下之一，则无需列出：{@code Cache-Control}、{@code Content-Language}、{@code Expires}、{@code Last-Modified} 或 {@code Pragma}。
+<p>默认允许所有头。
+@@ config/CorsRegistration.java :: 6
+设置除“简单”头（即 {@code Cache-Control}、{@code Content-Language}、{@code Content-Type}、{@code Expires}、{@code Last-Modified} 或 {@code Pragma}）之外，实际响应可能具有并可以暴露的响应头列表。
+<p>特殊值 {@code "*"} 允许为非凭证请求暴露所有头。
+<p>默认不设置此项。
+@@ config/CorsRegistration.java :: 7
+浏览器是否应随跨域请求向带注解的端点发送凭据（例如 cookie）。配置的值会设置到预检请求的 {@code Access-Control-Allow-Credentials} 响应头上。
+<p><strong>注意：</strong>请注意，此选项会与所配置的域建立高度信任，并且会通过暴露 cookie 和 CSRF 令牌等用户专属敏感信息而扩大 Web 应用的可攻击面。
+<p>默认不设置此项，此时也不会设置 {@code Access-Control-Allow-Credentials} 头，因此不允许凭据。
+@@ config/CorsRegistration.java :: 8
+配置客户端可以缓存预检请求响应的时长（秒）。
+<p>默认设置为 1800 秒（30 分钟）。
+@@ config/CorsRegistration.java :: 9
+将给定的 {@code CorsConfiguration} 应用到正在通过 {@link CorsConfiguration#combine(CorsConfiguration)} 配置的实例上，而后者已使用 {@link CorsConfiguration#applyPermitDefaultValues()} 初始化。
+@@ config/CorsRegistry.java :: 1
+用于注册基于 URL 模式的全局 {@link CorsConfiguration} 映射的辅助类。
+@@ config/CorsRegistry.java :: 2
+为指定的路径模式启用跨源请求处理。
+<p>支持精确路径映射 URI（例如 {@code "/admin"}）以及 Ant 风格路径模式（例如 {@code "/admin/**"}）。
+<p>默认情况下，此映射的 {@code CorsConfiguration} 会使用 {@link CorsConfiguration#applyPermitDefaultValues()} 中描述的默认值初始化。
+@@ config/CorsRegistry.java :: 3
+返回已注册的 {@link CorsConfiguration} 对象，以路径模式为键。
+@@ config/DelegatingWebFluxConfiguration.java :: 1
+{@code WebFluxConfigurationSupport} 的子类，用于检测并委托给所有 {@link WebFluxConfigurer} 类型的 bean，使它们能够自定义 {@code WebFluxConfigurationSupport} 提供的配置。{@link EnableWebFlux @EnableWebFlux} 实际导入的正是此类。
+@@ config/EnableWebFlux.java :: 1
+将此注解添加到 {@code @Configuration} 类会从 {@link WebFluxConfigurationSupport} 导入 Spring WebFlux 配置，从而启用注解式控制器和函数式端点。
+
+<p>例如：
+
+<pre class="code">
+&#064;Configuration
+&#064;EnableWebFlux
+&#064;ComponentScan
+public class MyConfiguration {
+}
+</pre>
+
+<p>要自定义导入的配置，请实现 {@link WebFluxConfigurer} 及其一个或多个方法：
+
+<pre class="code">
+&#064;Configuration
+&#064;EnableWebFlux
+&#064;ComponentScan
+public class MyConfiguration implements WebFluxConfigurer {
+
+    &#064;Autowired
+    private ObjectMapper objectMapper;
+
+    &#064;Override
+    public void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
+        configurer.defaultCodecs().jackson2JsonEncoder(
+            new Jackson2JsonEncoder(objectMapper)
+        );
+        configurer.defaultCodecs().jackson2JsonDecoder(
+            new Jackson2JsonDecoder(objectMapper)
+        );
+    }
+
+    // ...
+}
+</pre>
+
+<p>只应有一个 {@code @Configuration} 类带有 {@code @EnableWebFlux} 注解，以导入 Spring WebFlux 配置。不过，可以有多个实现 {@code WebFluxConfigurer} 的 {@code @Configuration} 类来自定义所提供的配置。
+
+<p>如果 {@code WebFluxConfigurer} 未暴露某些需要配置的设置，可考虑切换到高级模式：移除 {@code @EnableWebFlux} 注解，直接继承 {@link WebFluxConfigurationSupport} 或 {@link DelegatingWebFluxConfiguration}，后者允许检测并委托给一个或多个 {@code WebFluxConfigurer} 配置类。
+@@ config/PathMatchConfigurer.java :: 1
+用于协助为 {@code HandlerMapping} 配置路径匹配选项。
+@@ config/PathMatchConfigurer.java :: 2
+是否在匹配 URL 时忽略大小写。如果启用，映射到 "/users" 的方法将不会匹配 "/Users/"。
+<p>默认值为 {@code false}。
+@@ config/PathMatchConfigurer.java :: 3
+是否在匹配 URL 时忽略末尾斜杠。如果启用，映射到 "/users" 的方法也会匹配 "/users/"。
+<p>默认值为 {@code true}。
+@@ config/PathMatchConfigurer.java :: 4
+配置要应用到匹配的控制器方法上的路径前缀。
+<p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，这些方法的控制器类型需与相应的 {@code Predicate} 匹配。将使用第一个匹配的谓词对应的前缀。
+<p>可考虑使用 {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} 对控制器进行分组。
+@@ config/ResourceChainRegistration.java :: 1
+用于协助注册资源解析器和转换器。
+@@ config/ResourceChainRegistration.java :: 2
+向链中添加资源解析器。
+@@ config/ResourceChainRegistration.java :: 3
+向链中添加资源转换器。
+@@ config/ResourceHandlerRegistration.java :: 1
+用于协助创建和配置静态资源处理器。
+@@ config/ResourceHandlerRegistration.java :: 2
+创建 {@link ResourceHandlerRegistration} 实例。
+@@ config/ResourceHandlerRegistration.java :: 3
+添加一个或多个用于提供静态内容的资源位置。
+<p>每个位置都必须指向有效目录。可以逗号分隔列表的形式指定多个位置，将按指定顺序在这些位置中查找给定资源。
+<p>例如，{@code "/", "classpath:/META-INF/public-web-resources/"} 允许同时从 Web 应用根目录和类路径上任何包含 {@code /META-INF/public-web-resources/} 目录的 JAR 中提供资源，其中 Web 应用根目录中的资源优先。
+@@ config/ResourceHandlerRegistration.java :: 4
+指定资源处理器应使用的 {@link CacheControl}。
+@@ config/ResourceHandlerRegistration.java :: 5
+设置是否应使用 {@link Resource#lastModified()} 信息来驱动 HTTP 响应。
+<p>此配置默认设置为 {@code true}。
+@@ config/ResourceHandlerRegistration.java :: 6
+设置是否在启动时通过存在性检查来优化指定的位置，预先过滤不存在的目录，从而无需在每次访问资源时都进行检查。
+<p>默认值为 {@code false}，以便防御没有目录条目的 zip 文件，此类文件无法预先暴露目录的存在性。如果 JAR 布局一致且包含目录条目，可将此标志切换为 {@code true} 以优化访问。
+@@ config/ResourceHandlerRegistration.java :: 7
+配置要使用的资源解析器和转换器链。例如，这对于为资源 URL 应用版本策略很有用。
+<p>如果未调用此方法，默认仅使用简单的 {@code PathResourceResolver} 将 URL 路径匹配到配置位置下的资源。
+@@ config/ResourceHandlerRegistration.java :: 8
+配置要使用的资源解析器和转换器链。例如，这对于为资源 URL 应用版本策略很有用。
+<p>如果未调用此方法，默认仅使用简单的 {@code PathResourceResolver} 将 URL 路径匹配到配置位置下的资源。
+@@ config/ResourceHandlerRegistration.java :: 9
+添加从静态 {@link Resource} 的文件名中提取的文件扩展名与响应用媒体类型之间的映射。
+<p>通常不需要使用此方法，因为也可以通过 {@link MediaTypeFactory#getMediaType(Resource)} 确定映射。
+@@ config/ResourceHandlerRegistration.java :: 10
+返回资源处理器的 URL 路径模式。
+@@ config/ResourceHandlerRegistration.java :: 11
+返回 {@link ResourceWebHandler} 实例。
+@@ config/ResourceHandlerRegistry.java :: 1
+存储用于通过 Spring WebFlux 提供静态资源（如图像、css 文件等）的资源处理器注册信息，包括设置针对 Web 浏览器高效加载而优化的缓存头。资源可以从 Web 应用根目录、类路径等位置提供。
+
+<p>要创建资源处理器，请使用 {@link #addResourceHandler(String...)} 提供应调用该处理器以提供静态资源的 URL 路径模式（例如 {@code "/resources/**"}）。
+
+<p>然后使用返回的 {@link ResourceHandlerRegistration} 上的其他方法添加一个或多个提供静态内容的位置（例如 {@code "/"}、{@code "classpath:/META-INF/public-web-resources/"}），或为所提供的资源指定缓存时长。
+@@ config/ResourceHandlerRegistry.java :: 2
+为给定的资源加载器（通常是应用上下文）创建新的资源处理器注册表。
+@@ config/ResourceHandlerRegistry.java :: 3
+配置可供 {@link org.springframework.web.reactive.resource.ResourceTransformer} 实例使用的 {@link ResourceUrlProvider}。
+@@ config/ResourceHandlerRegistry.java :: 4
+添加基于指定 URL 路径模式提供静态资源的资源处理器。对于每个匹配指定路径模式之一的传入请求，都会调用该处理器。
+<p>允许使用 {@code "/static/**"} 或 {@code "/css/{filename:\\w+\\.css}"} 等模式。有关语法的更多详情，请参见 {@link org.springframework.web.util.pattern.PathPattern}。
+@@ config/ResourceHandlerRegistry.java :: 5
+是否已为给定的路径模式注册了资源处理器。
+@@ config/ResourceHandlerRegistry.java :: 6
+指定资源处理相对于 Spring 配置中其他 {@code HandlerMapping} 的顺序。
+<p>使用的默认值为 {@code Integer.MAX_VALUE-1}。
+@@ config/ResourceHandlerRegistry.java :: 7
+返回包含所映射资源处理器的处理器映射；如果没有任何注册，则返回 {@code null}。
+@@ config/UrlBasedViewResolverRegistration.java :: 1
+用于协助配置 {@link UrlBasedViewResolver} 的属性。
+@@ config/UrlBasedViewResolverRegistration.java :: 2
+设置构建 URL 时添加到视图名称前面的前缀。
+@@ config/UrlBasedViewResolverRegistration.java :: 3
+设置构建 URL 时追加到视图名称后面的后缀。
+@@ config/UrlBasedViewResolverRegistration.java :: 4
+设置应用于创建视图的视图类。
+@@ config/UrlBasedViewResolverRegistration.java :: 5
+设置此视图解析器可以处理的视图名称（或名称模式）。视图名称可以包含简单的通配符，例如 'my*'、'*Report' 和 '*Repo*' 都将匹配视图名称 'myReport'。
+@@ config/ViewResolverRegistry.java :: 1
+用于协助配置支持不同模板机制的 {@link ViewResolver} 链。
+
+<p>此外，还可以配置 {@link #defaultViews(View...) defaultViews}，以便根据所请求的内容类型（例如 JSON、XML 等）进行渲染。
+@@ config/ViewResolverRegistry.java :: 2
+注册一个后缀为 ".ftl" 的 {@code FreeMarkerViewResolver}。
+<p><strong>注意</strong>：还必须通过添加 {@link FreeMarkerConfigurer} bean 来配置 FreeMarker。
+@@ config/ViewResolverRegistry.java :: 3
+注册一个使用空前缀和后缀的脚本模板视图解析器。
+<p><strong>注意</strong>：还必须通过添加 {@link ScriptTemplateConfigurer} bean 来配置脚本模板。
+@@ config/ViewResolverRegistry.java :: 4
+注册 {@link ViewResolver} bean 实例。这对于配置第三方解析器实现很有用，或者当本类中的其他注册方法未暴露某些需要设置的高级属性时，可作为它们的替代方案。
+@@ config/ViewResolverRegistry.java :: 5
+设置与任意视图名称关联的默认视图，并根据所请求内容类型的最佳匹配进行选择。
+<p>使用 {@link HttpMessageWriterView HttpMessageWriterView} 适配并将任何现有的 {@code HttpMessageWriter}（例如 JSON、XML）用作 {@code View}。
+@@ config/ViewResolverRegistry.java :: 6
+是否已注册任何视图解析器。
+@@ config/ViewResolverRegistry.java :: 7
+设置 {@link org.springframework.web.reactive.result.view.ViewResolutionResultHandler ViewResolutionResultHandler} 的顺序。
+<p>默认不设置此属性，这意味着结果处理器的顺序为 {@link Ordered#LOWEST_PRECEDENCE}。
+@@ config/WebFluxConfigurationSupport.java :: 1
+Spring WebFlux 配置的主类。
+
+<p>可直接导入，或继承并重写受保护方法以进行自定义。
+@@ config/WebFluxConfigurationSupport.java :: 2
+重写以插入 {@link RequestMappingHandlerMapping} 的子类。
+@@ config/WebFluxConfigurationSupport.java :: 3
+重写以配置如何解析所请求的内容类型。
+@@ config/WebFluxConfigurationSupport.java :: 4
+用于构建全局 CORS 配置的回调。此方法为 final。请使用 {@link #addCorsMappings(CorsRegistry)} 自定义 CORS 配置。
+@@ config/WebFluxConfigurationSupport.java :: 5
+重写此方法以配置跨源请求处理。
+@@ config/WebFluxConfigurationSupport.java :: 6
+用于构建 {@link PathMatchConfigurer} 的回调。此方法为 final，请使用 {@link #configurePathMatching} 自定义路径匹配。
+@@ config/WebFluxConfigurationSupport.java :: 7
+重写以配置路径匹配选项。
+@@ config/WebFluxConfigurationSupport.java :: 8
+重写以插入 {@link RouterFunctionMapping} 的子类。
+@@ config/WebFluxConfigurationSupport.java :: 9
+返回顺序为 Integer.MAX_VALUE-1 并包含所映射资源处理器的处理器映射。要配置资源处理，请重写 {@link #addResourceHandlers}。
+@@ config/WebFluxConfigurationSupport.java :: 10
+重写此方法以添加用于提供静态资源的资源处理器。
+@@ config/WebFluxConfigurationSupport.java :: 11
+重写以插入 {@link RequestMappingHandlerAdapter} 的子类。
+@@ config/WebFluxConfigurationSupport.java :: 12
+为自定义控制器方法参数配置解析器。
+@@ config/WebFluxConfigurationSupport.java :: 13
+返回 HTTP 消息读写器的配置器。
+<p>使用 {@link #configureHttpMessageCodecs(ServerCodecConfigurer)} 配置读写器。
+@@ config/WebFluxConfigurationSupport.java :: 14
+重写以插入 {@link LocaleContextResolver} 的子类。
+@@ config/WebFluxConfigurationSupport.java :: 15
+重写以配置要使用的 HTTP 消息读写器。
+@@ config/WebFluxConfigurationSupport.java :: 16
+返回用于初始化所有 {@link WebDataBinder} 实例的 {@link ConfigurableWebBindingInitializer}。
+@@ config/WebFluxConfigurationSupport.java :: 17
+返回供注解式控制器使用的 {@link FormattingConversionService}。
+<p>作为重写此方法的替代方案，请参见 {@link #addFormatters}。
+@@ config/WebFluxConfigurationSupport.java :: 18
+重写此方法以向公共的 {@link FormattingConversionService} 添加自定义 {@link Converter} 和/或 {@link Formatter} 委托。
+@@ config/WebFluxConfigurationSupport.java :: 19
+返回用于适配响应式类型的 {@link ReactiveAdapterRegistry}。
+@@ config/WebFluxConfigurationSupport.java :: 20
+返回全局 {@link Validator} 实例，例如用于校验 {@code @RequestBody} 方法参数。
+<p>首先委托给 {@link #getValidator()}。如果该方法返回 {@code null}，则在创建 {@code OptionalValidatorFactoryBean} 之前检查类路径上是否存在 JSR-303 实现。如果 JSR-303 实现不可用，则返回“无操作”的 {@link Validator}。
+@@ config/WebFluxConfigurationSupport.java :: 21
+重写此方法以提供自定义 {@link Validator}。
+@@ config/WebFluxConfigurationSupport.java :: 22
+重写此方法以提供自定义 {@link MessageCodesResolver}。
+@@ config/WebFluxConfigurationSupport.java :: 23
+用于构建 {@link ViewResolverRegistry} 的回调。此方法为 final，请使用 {@link #configureViewResolvers} 自定义视图解析器。
+@@ config/WebFluxConfigurationSupport.java :: 24
+配置视图解析以支持模板引擎。
+@@ config/WebFluxConfigurer.java :: 1
+定义用于自定义通过 {@link EnableWebFlux @EnableWebFlux} 启用的 WebFlux 应用配置的回调方法。
+
+<p>带有 {@code @EnableWebFlux} 注解的配置类可以实现此接口，以便被回调并有机会自定义默认配置。可考虑实现此接口并重写相关方法以满足需求。
+@@ config/WebFluxConfigurer.java :: 2
+配置在使用注解式控制器处理请求时如何解析为响应请求的内容类型。
+@@ config/WebFluxConfigurer.java :: 3
+配置“全局”跨源请求处理。所配置的 CORS 映射适用于注解式控制器、函数式端点和静态资源。
+<p>注解式控制器还可以通过 {@link org.springframework.web.bind.annotation.CrossOrigin @CrossOrigin} 声明更细粒度的配置。在这种情况下，此处声明的“全局” CORS 配置会与控制器方法上定义的局部 CORS 配置{@link org.springframework.web.cors.CorsConfiguration#combine(CorsConfiguration) 合并}。
+@@ config/WebFluxConfigurer.java :: 4
+配置路径匹配选项。
+<p>所配置的路径匹配选项将用于映射到注解式控制器以及{@link #addResourceHandlers(ResourceHandlerRegistry) 静态资源}。
+@@ config/WebFluxConfigurer.java :: 5
+添加用于提供静态资源的资源处理器。
+@@ config/WebFluxConfigurer.java :: 6
+为自定义 {@code @RequestMapping} 方法参数配置解析器。
+@@ config/WebFluxConfigurer.java :: 7
+配置 HTTP 消息读写器，用于在注解式控制器和函数式端点中读取请求体以及写入响应体。
+<p>默认情况下，只要类路径上存在相应的第三方库（如 Jackson JSON、JAXB2 等），就会配置所有内置读写器。
+@@ config/WebFluxConfigurer.java :: 8
+添加自定义 {@link Converter Converter} 和 {@link Formatter Formatter}，用于对注解式控制器方法参数执行类型转换和格式化。
+@@ config/WebFluxConfigurer.java :: 9
+提供自定义 {@link Validator}。
+<p>默认情况下，如果类路径上存在 bean validation API，则会为标准 bean 校验创建校验器。
+<p>所配置的校验器用于校验注解式控制器方法参数。
+@@ config/WebFluxConfigurer.java :: 10
+提供自定义 {@link MessageCodesResolver}，用于注解式控制器方法参数的数据绑定，替代 {@link org.springframework.validation.DataBinder} 中默认创建的实例。
+@@ config/WebFluxConfigurer.java :: 11
+提供用于创建 {@link org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter} 的 {@link WebSocketService}。可通过 {@link org.springframework.web.reactive.socket.server.RequestUpgradeStrategy} 配置服务器特定的属性。
+@@ config/WebFluxConfigurer.java :: 12
+配置视图解析，以便使用视图和模型渲染响应，其中视图通常是 HTML 模板，但也可以基于 HTTP 消息读写器（例如 JSON、XML）。
+<p>所配置的视图解析器将同时用于注解式控制器和函数式端点。
+@@ config/WebFluxConfigurerComposite.java :: 1
+委托给一个或多个其他 {@link WebFluxConfigurer} 的 {@link WebFluxConfigurer}。
+@@ config/package-info.java :: 1
+Spring WebFlux 配置基础设施。

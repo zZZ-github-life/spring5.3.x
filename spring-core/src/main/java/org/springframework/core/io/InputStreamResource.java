@@ -23,16 +23,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link Resource} implementation for a given {@link InputStream}.
- * <p>Should only be used if no other specific {@code Resource} implementation
- * is applicable. In particular, prefer {@link ByteArrayResource} or any of the
- * file-based {@code Resource} implementations where possible.
+ * 针对给定 {@link InputStream} 的 {@link Resource} 实现。
+ * <p>仅当没有其他特定的 {@code Resource} 实现适用时才应使用。特别是，在可能的情况下优先使用
+ * {@link ByteArrayResource} 或任何基于文件的 {@code Resource} 实现。
  *
- * <p>In contrast to other {@code Resource} implementations, this is a descriptor
- * for an <i>already opened</i> resource - therefore returning {@code true} from
- * {@link #isOpen()}. Do not use an {@code InputStreamResource} if you need to
- * keep the resource descriptor somewhere, or if you need to read from a stream
- * multiple times.
+ * <p>与其他 {@code Resource} 实现不同，这是一个针对<i>已经打开</i>的资源的描述符——因此
+ * {@link #isOpen()} 会返回 {@code true}。如果你需要在某处保留资源描述符，或者需要多次从流中读取，
+ * 请不要使用 {@code InputStreamResource}。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -52,7 +49,7 @@ public class InputStreamResource extends AbstractResource {
 
 
 	/**
-	 * Create a new InputStreamResource.
+	 * 创建一个新的 InputStreamResource。
 	 * @param inputStream the InputStream to use
 	 */
 	public InputStreamResource(InputStream inputStream) {
@@ -60,7 +57,7 @@ public class InputStreamResource extends AbstractResource {
 	}
 
 	/**
-	 * Create a new InputStreamResource.
+	 * 创建一个新的 InputStreamResource。
 	 * @param inputStream the InputStream to use
 	 * @param description where the InputStream comes from
 	 */
@@ -72,7 +69,7 @@ public class InputStreamResource extends AbstractResource {
 
 
 	/**
-	 * This implementation always returns {@code true}.
+	 * 此实现始终返回 {@code true}。
 	 */
 	@Override
 	public boolean exists() {
@@ -80,7 +77,7 @@ public class InputStreamResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation always returns {@code true}.
+	 * 此实现始终返回 {@code true}。
 	 */
 	@Override
 	public boolean isOpen() {
@@ -88,8 +85,7 @@ public class InputStreamResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation throws IllegalStateException if attempting to
-	 * read the underlying stream multiple times.
+	 * 如果尝试多次读取底层流，此实现将抛出 IllegalStateException。
 	 */
 	@Override
 	public InputStream getInputStream() throws IOException, IllegalStateException {
@@ -102,8 +98,7 @@ public class InputStreamResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a description that includes the passed-in
-	 * description, if any.
+	 * 此实现返回包含传入描述（如果有）的描述。
 	 */
 	@Override
 	public String getDescription() {
@@ -112,7 +107,7 @@ public class InputStreamResource extends AbstractResource {
 
 
 	/**
-	 * This implementation compares the underlying InputStream.
+	 * 此实现比较底层 InputStream。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {
@@ -121,7 +116,7 @@ public class InputStreamResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns the hash code of the underlying InputStream.
+	 * 此实现返回底层 InputStream 的哈希码。
 	 */
 	@Override
 	public int hashCode() {

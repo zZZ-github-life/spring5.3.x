@@ -19,8 +19,7 @@ package org.springframework.core.annotation;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Thrown by {@link AnnotationUtils} and <em>synthesized annotations</em>
- * if an annotation is improperly configured.
+ * 当注解配置不当时，由 {@link AnnotationUtils} 和<em>合成注解</em>抛出。
  *
  * @author Sam Brannen
  * @since 4.2
@@ -31,8 +30,7 @@ import org.springframework.core.NestedRuntimeException;
 public class AnnotationConfigurationException extends NestedRuntimeException {
 
 	/**
-	 * Construct a new {@code AnnotationConfigurationException} with the
-	 * supplied message.
+	 * 使用所提供的消息构造一个新的 {@code AnnotationConfigurationException}。
 	 * @param message the detail message
 	 */
 	public AnnotationConfigurationException(String message) {
@@ -40,8 +38,7 @@ public class AnnotationConfigurationException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Construct a new {@code AnnotationConfigurationException} with the
-	 * supplied message and cause.
+	 * 使用所提供的消息和原因构造一个新的 {@code AnnotationConfigurationException}。
 	 * @param message the detail message
 	 * @param cause the root cause
 	 */

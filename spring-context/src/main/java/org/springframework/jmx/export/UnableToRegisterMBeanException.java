@@ -17,8 +17,7 @@
 package org.springframework.jmx.export;
 
 /**
- * Exception thrown when we are unable to register an MBean,
- * for example because of a naming conflict.
+ * 当我们无法注册 MBean 时抛出异常，例如由于命名冲突。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -27,8 +26,7 @@ package org.springframework.jmx.export;
 public class UnableToRegisterMBeanException extends MBeanExportException {
 
 	/**
-	 * Create a new {@code UnableToRegisterMBeanException} with the
-	 * specified error message.
+	 * 使用指定的错误消息创建新的 {@code UnableToRegisterMBeanException}。
 	 * @param msg the detail message
 	 */
 	public UnableToRegisterMBeanException(String msg) {
@@ -36,8 +34,7 @@ public class UnableToRegisterMBeanException extends MBeanExportException {
 	}
 
 	/**
-	 * Create a new {@code UnableToRegisterMBeanException} with the
-	 * specified error message and root cause.
+	 * 使用指定的错误消息和根本原因创建新的 {@code UnableToRegisterMBeanException}。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

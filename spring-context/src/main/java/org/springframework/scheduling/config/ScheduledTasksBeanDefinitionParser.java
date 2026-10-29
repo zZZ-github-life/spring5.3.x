@@ -29,7 +29,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the 'scheduled-tasks' element of the scheduling namespace.
+ * 用于调度命名空间中 'scheduled-tasks' 元素的解析器。
  *
  * @author Mark Fisher
  * @author Chris Beams

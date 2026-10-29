@@ -20,8 +20,7 @@ import org.springframework.scheduling.Trigger;
 import org.springframework.util.Assert;
 
 /**
- * {@link Task} implementation defining a {@code Runnable} to be executed
- * according to a given {@link Trigger}.
+ * 定义要根据给定 {@link Trigger} 执行的 {@code Runnable} 的 {@link Task} 实现。
  *
  * @author Chris Beams
  * @since 3.2
@@ -34,7 +33,7 @@ public class TriggerTask extends Task {
 
 
 	/**
-	 * Create a new {@link TriggerTask}.
+	 * 创建一个新的 {@link TriggerTask}。
 	 * @param runnable the underlying task to execute
 	 * @param trigger specifies when the task should be executed
 	 */
@@ -46,7 +45,7 @@ public class TriggerTask extends Task {
 
 
 	/**
-	 * Return the associated trigger.
+	 * 返回关联的触发器。
 	 */
 	public Trigger getTrigger() {
 		return this.trigger;

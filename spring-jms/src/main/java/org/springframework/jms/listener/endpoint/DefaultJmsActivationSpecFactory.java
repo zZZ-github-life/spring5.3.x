@@ -25,27 +25,24 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanWrapper;
 
 /**
- * Default implementation of the {@link JmsActivationSpecFactory} interface.
- * Supports the standard JMS properties as defined by the JCA 1.5 specification,
- * as well as Spring's extended "maxConcurrency" and "prefetchSize" settings
- * through autodetection of well-known vendor-specific provider properties.
+ * {@link JmsActivationSpecFactory} 接口的默认实现。
+ * 支持 JCA 1.5 规范定义的标准 JMS 属性，并通过自动检测
+ * 已知的厂商特定提供者属性，支持 Spring 扩展的
+ * "maxConcurrency" 和 "prefetchSize" 设置。
  *
- * <p>An ActivationSpec factory is effectively dependent on the concrete
- * JMS provider, e.g. on ActiveMQ. This default implementation simply
- * guesses the ActivationSpec class name from the provider's class name
- * ("ActiveMQResourceAdapter" &rarr; "ActiveMQActivationSpec" in the same package,
- * or "ActivationSpecImpl" in the same package as the ResourceAdapter class),
- * and populates the ActivationSpec properties as suggested by the
- * JCA 1.5 specification (Appendix B). Specify the 'activationSpecClass'
- * property explicitly if these default naming rules do not apply.
+ * <p>ActivationSpec 工厂实际上依赖于具体的 JMS 提供者，例如 ActiveMQ。
+ * 此默认实现只是根据提供者的类名猜测 ActivationSpec 类名
+ * （"ActiveMQResourceAdapter" &rarr; 同一包中的 "ActiveMQActivationSpec"，
+ * 或与 ResourceAdapter 类同一包中的 "ActivationSpecImpl"），
+ * 并按照 JCA 1.5 规范（附录 B）的建议填充 ActivationSpec 属性。
+ * 如果这些默认命名规则不适用，请显式指定 'activationSpecClass' 属性。
  *
- * <p>Note: ActiveMQ, JORAM and WebSphere are supported in terms of extended
- * settings (through the detection of their bean property naming conventions).
- * The default ActivationSpec class detection rules may apply to other
- * JMS providers as well.
+ * <p>注意：就扩展设置而言，支持 ActiveMQ、JORAM 和 WebSphere
+ * （通过检测它们的 Bean 属性命名约定）。
+ * 默认的 ActivationSpec 类检测规则也可能适用于其他 JMS 提供者。
  *
- * <p>Thanks to Agim Emruli and Laurie Chan for pointing out WebSphere MQ
- * settings and contributing corresponding tests!
+ * <p>感谢 Agim Emruli 和 Laurie Chan 指出 WebSphere MQ 设置
+ * 并贡献了相应的测试！
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -62,15 +59,15 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 	private static final String ACTIVATION_SPEC_IMPL_SUFFIX = "ActivationSpecImpl";
 
 
-	/** Logger available to subclasses. */
+	/** 子类可用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
 	/**
-	 * This implementation guesses the ActivationSpec class name from the
-	 * provider's class name: e.g. "ActiveMQResourceAdapter" &rarr;
-	 * "ActiveMQActivationSpec" in the same package, or a class named
-	 * "ActivationSpecImpl" in the same package as the ResourceAdapter class.
+	 * 此实现从提供者的类名猜测 ActivationSpec 类名：
+	 * 例如同一包中的 "ActiveMQResourceAdapter" &rarr;
+	 * "ActiveMQActivationSpec"，或与 ResourceAdapter 类同一包中
+	 * 名为 "ActivationSpecImpl" 的类。
 	 */
 	@Override
 	protected Class<?> determineActivationSpecClass(ResourceAdapter adapter) {
@@ -134,11 +131,11 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 	}
 
 	/**
-	 * This implementation supports Spring's extended "maxConcurrency"
-	 * and "prefetchSize" settings through detecting corresponding
-	 * ActivationSpec properties: "maxSessions"/"maxNumberOfWorks" and
-	 * "maxMessagesPerSessions"/"maxMessages", respectively
-	 * (following ActiveMQ's and JORAM's naming conventions).
+	 * 此实现通过检测对应的 ActivationSpec 属性，支持 Spring 扩展的
+	 * "maxConcurrency" 和 "prefetchSize" 设置：
+	 * 分别为 "maxSessions"/"maxNumberOfWorks" 和
+	 * "maxMessagesPerSessions"/"maxMessages"
+	 * （遵循 ActiveMQ 和 JORAM 的命名约定）。
 	 */
 	@Override
 	protected void populateActivationSpecProperties(BeanWrapper bw, JmsActivationSpecConfig config) {
@@ -174,9 +171,9 @@ public class DefaultJmsActivationSpecFactory extends StandardJmsActivationSpecFa
 	}
 
 	/**
-	 * This implementation maps {@code SESSION_TRANSACTED} onto an
-	 * ActivationSpec property named "useRAManagedTransaction", if available
-	 * (following ActiveMQ's naming conventions).
+	 * 如果存在名为 "useRAManagedTransaction" 的 ActivationSpec 属性，
+	 * 此实现会将 {@code SESSION_TRANSACTED} 映射到该属性
+	 * （遵循 ActiveMQ 的命名约定）。
 	 */
 	@Override
 	protected void applyAcknowledgeMode(BeanWrapper bw, int ackMode) {

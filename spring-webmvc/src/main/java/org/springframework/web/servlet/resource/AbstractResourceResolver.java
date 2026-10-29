@@ -27,9 +27,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * Base class for {@link org.springframework.web.servlet.resource.ResourceResolver}
- * implementations. Provides consistent logging.
- *
+ * {@link org.springframework.web.servlet.resource.ResourceResolver}
+ * 实现的基类。提供一致的日志记录。
  * @author Rossen Stoyanchev
  * @since 4.1
  */

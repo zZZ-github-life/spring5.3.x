@@ -28,13 +28,12 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link CommandLinePropertySource} implementation backed by a JOpt {@link OptionSet}.
+ * 由 JOpt {@link OptionSet} 支持的 {@link CommandLinePropertySource} 实现。
  *
- * <h2>Typical usage</h2>
+ * <h2>典型用法</h2>
  *
- * Configure and execute an {@code OptionParser} against the {@code String[]} of arguments
- * supplied to the {@code main} method, and create a {@link JOptCommandLinePropertySource}
- * using the resulting {@code OptionSet} object:
+ * 针对提供给 {@code main} 方法的 {@code String[]} 参数，配置并执行 {@code OptionParser}，
+ * 然后使用得到的 {@code OptionSet} 对象创建一个 {@link JOptCommandLinePropertySource}：
  *
  * <pre class="code">
  * public static void main(String[] args) {
@@ -46,9 +45,9 @@ import org.springframework.util.StringUtils;
  *     // ...
  * }</pre>
  *
- * See {@link CommandLinePropertySource} for complete general usage examples.
+ * 有关完整的一般用法示例，请参见 {@link CommandLinePropertySource}。
  *
- * <p>Requires JOpt Simple version 4.3 or higher. Tested against JOpt up until 5.0.
+ * <p>需要 JOpt Simple 4.3 或更高版本。已针对 JOpt 测试至 5.0。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -61,8 +60,8 @@ import org.springframework.util.StringUtils;
 public class JOptCommandLinePropertySource extends CommandLinePropertySource<OptionSet> {
 
 	/**
-	 * Create a new {@code JOptCommandLinePropertySource} having the default name
-	 * and backed by the given {@code OptionSet}.
+	 * 创建一个具有默认名称、由给定 {@code OptionSet} 支持的新
+	 * {@code JOptCommandLinePropertySource}。
 	 * @see CommandLinePropertySource#COMMAND_LINE_PROPERTY_SOURCE_NAME
 	 * @see CommandLinePropertySource#CommandLinePropertySource(Object)
 	 */
@@ -71,8 +70,8 @@ public class JOptCommandLinePropertySource extends CommandLinePropertySource<Opt
 	}
 
 	/**
-	 * Create a new {@code JOptCommandLinePropertySource} having the given name
-	 * and backed by the given {@code OptionSet}.
+	 * 创建一个具有给定名称、由给定 {@code OptionSet} 支持的新
+	 * {@code JOptCommandLinePropertySource}。
 	 */
 	public JOptCommandLinePropertySource(String name, OptionSet options) {
 		super(name, options);

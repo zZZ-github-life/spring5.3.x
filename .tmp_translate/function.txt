@@ -1,0 +1,119 @@
+@@ function/BodyExtractor.java :: 1
+可从 {@link ReactiveHttpInputMessage} 正文中提取数据的函数。
+@@ function/BodyExtractor.java :: 2
+从给定的输入消息中提取。
+@@ function/BodyExtractor.java :: 3
+定义提取过程中使用的上下文。
+@@ function/BodyExtractor.java :: 4
+返回用于正文提取的 {@link HttpMessageReader HttpMessageReaders}。
+@@ function/BodyExtractor.java :: 5
+可选地返回 {@link ServerHttpResponse}（如果存在）。
+@@ function/BodyExtractor.java :: 6
+返回用于自定义正文提取的提示映射。
+@@ function/BodyExtractors.java :: 1
+用于 {@link BodyExtractor} 实现的静态工厂方法。
+@@ function/BodyExtractors.java :: 2
+用于将输入内容解码为 {@code Mono<T>} 的提取器。
+@@ function/BodyExtractors.java :: 3
+带有泛型类型信息的 {@link #toMono(Class)} 变体。
+@@ function/BodyExtractors.java :: 4
+用于将输入内容解码为 {@code Flux<T>} 的提取器。
+@@ function/BodyExtractors.java :: 5
+带有泛型类型信息的 {@link #toFlux(Class)} 变体。
+@@ function/BodyExtractors.java :: 6
+用于将表单数据读入 {@code MultiValueMap<String, String>} 的提取器。
+<p>从 5.1 开始，此方法也可在客户端用于从服务器响应（例如 OAuth）读取表单数据。
+@@ function/BodyExtractors.java :: 7
+用于将 multipart 数据读入 {@code MultiValueMap<String, Part>} 的提取器。
+@@ function/BodyExtractors.java :: 8
+用于将 multipart 数据读入 {@code Flux<Part>} 的提取器。
+@@ function/BodyExtractors.java :: 9
+返回原始 {@link DataBuffer DataBuffers} 的提取器。
+<p><strong>注意：</strong>使用后应{@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}数据缓冲区。
+@@ function/BodyInserter.java :: 1
+可填充 {@link ReactiveHttpOutputMessage} 正文的函数的组合。
+@@ function/BodyInserter.java :: 2
+插入到给定的输出消息中。
+@@ function/BodyInserter.java :: 3
+定义插入过程中使用的上下文。
+@@ function/BodyInserter.java :: 4
+返回用于响应正文转换的 {@link HttpMessageWriter HttpMessageWriters}。
+@@ function/BodyInserter.java :: 5
+可选地返回 {@link ServerHttpRequest}（如果存在）。
+@@ function/BodyInserter.java :: 6
+返回用于响应正文转换的提示映射。
+@@ function/BodyInserters.java :: 1
+用于 {@link BodyInserter} 实现的静态工厂方法。
+@@ function/BodyInserters.java :: 2
+不写入任何内容的插入器。
+@@ function/BodyInserters.java :: 3
+用于写入给定值的插入器。
+<p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code bodyValue(Object)} 快捷方法。
+@@ function/BodyInserters.java :: 4
+用于写入给定对象的插入器。
+<p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code bodyValue(Object)} 快捷方法。
+@@ function/BodyInserters.java :: 5
+用于写入给定值生产者的插入器，该生产者必须是 {@link Publisher} 或可通过 {@link ReactiveAdapterRegistry} 适配为 {@code Publisher} 的其他生产者。
+<p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
+@@ function/BodyInserters.java :: 6
+用于写入给定值生产者的插入器，该生产者必须是 {@link Publisher} 或可通过 {@link ReactiveAdapterRegistry} 适配为 {@code Publisher} 的其他生产者。
+<p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
+@@ function/BodyInserters.java :: 7
+用于写入给定 {@link Publisher} 的插入器。
+<p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
+@@ function/BodyInserters.java :: 8
+用于写入给定 {@link Publisher} 的插入器。
+<p>或者，可考虑使用 {@link org.springframework.web.reactive.function.client.WebClient WebClient} 和 {@link org.springframework.web.reactive.function.server.ServerResponse ServerResponse} 上的 {@code body} 快捷方法。
+@@ function/BodyInserters.java :: 9
+用于写入给定 {@code Resource} 的插入器。
+<p>如果资源可以解析为{@linkplain Resource#getFile() 文件}，则将使用<a href="https://en.wikipedia.org/wiki/Zero-copy">零拷贝</a>方式进行复制。
+@@ function/BodyInserters.java :: 10
+用于写入给定 {@code ServerSentEvent} 发布者的插入器。
+<p>或者，可以通过 {@link #fromPublisher(Publisher, Class)} 或 {@link #fromProducer(Object, Class)} 提供事件数据对象，并将 "Content-Type" 设置为 {@link MediaType#TEXT_EVENT_STREAM text/event-stream}。
+@@ function/BodyInserters.java :: 11
+返回用于将给定 {@code MultiValueMap} 写入为 URL 编码表单数据的 {@link FormInserter}。返回的插入器允许通过 {@link FormInserter#with(String, Object)} 添加更多条目。
+<p>请注意，也可以使用 {@code WebClient} 和 {@code WebTestClient} 请求构建器中的 {@code bodyValue(Object)} 方法。在这种情况下也无需设置请求内容类型，只需确保映射中仅包含 String 值，否则它将被解释为 multipart 请求。
+@@ function/BodyInserters.java :: 12
+返回用于将给定键值对写入为 URL 编码表单数据的 {@link FormInserter}。返回的插入器允许通过 {@link FormInserter#with(String, Object)} 添加更多条目。
+@@ function/BodyInserters.java :: 13
+返回用于将给定 {@code MultiValueMap} 写入为 multipart 数据的 {@link MultipartInserter}。映射中的值可以是 Object 或 {@link HttpEntity}。
+<p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
+@@ function/BodyInserters.java :: 14
+返回用于将给定分片写入为 multipart 数据的 {@link MultipartInserter}。映射中的值可以是 Object 或 {@link HttpEntity}。
+<p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
+@@ function/BodyInserters.java :: 15
+返回用于将给定异步分片写入为 multipart 数据的 {@link MultipartInserter}。
+<p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
+@@ function/BodyInserters.java :: 16
+{@link #fromMultipartAsyncData(String, Publisher, Class)} 的变体，接受元素类型的 {@link ParameterizedTypeReference}，从而可以指定泛型类型信息。
+<p>请注意，也可以使用 {@link MultipartBodyBuilder} 在外部构建 multipart 数据，并将生成的映射直接传给 {@code WebClient} 中的 {@code bodyValue(Object)} 快捷方法。
+@@ function/BodyInserters.java :: 17
+用于将给定 {@code Publisher<DataBuffer>} 写入正文的插入器。
+@@ function/BodyInserters.java :: 18
+允许添加表单数据或 multipart 表单数据的 {@link BodyInserter} 扩展。
+@@ function/BodyInserters.java :: 19
+将指定的键值对添加到表单中。
+@@ function/BodyInserters.java :: 20
+将指定的值添加到表单中。
+@@ function/BodyInserters.java :: 21
+允许添加异步分片的 {@link FormInserter} 扩展。
+@@ function/BodyInserters.java :: 22
+添加基于 {@link Publisher} 内容的异步分片。
+@@ function/BodyInserters.java :: 23
+{@link #withPublisher(String, Publisher, Class)} 的变体，接受元素类型的 {@link ParameterizedTypeReference}，从而可以指定泛型类型信息。
+@@ function/UnsupportedMediaTypeException.java :: 1
+表示 {@code Content-Type} 不受支持时抛出的异常。
+@@ function/UnsupportedMediaTypeException.java :: 2
+当指定的 Content-Type 无效时使用的构造函数。
+@@ function/UnsupportedMediaTypeException.java :: 3
+当 Content-Type 可以解析但不受支持时使用的构造函数。
+@@ function/UnsupportedMediaTypeException.java :: 4
+当尝试从特定 Java 类型编码或向特定 Java 类型解码时使用的构造函数。
+@@ function/UnsupportedMediaTypeException.java :: 5
+如果请求的 Content-Type 头已成功解析，则返回该头，否则返回 {@code null}。
+@@ function/UnsupportedMediaTypeException.java :: 6
+在 Content-Type 头已解析但不受支持的情况下返回受支持的内容类型列表，否则返回空列表。
+@@ function/UnsupportedMediaTypeException.java :: 7
+返回生成此异常时所处的正文类型。当异常是在尝试从特定 Java 类型编码或向特定 Java 类型解码时引发的，此属性适用。
+@@ function/package-info.java :: 1
+为响应式客户端和服务端子包提供基础。

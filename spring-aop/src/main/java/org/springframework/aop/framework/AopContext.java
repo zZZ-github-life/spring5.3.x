@@ -20,20 +20,16 @@ import org.springframework.core.NamedThreadLocal;
 import org.springframework.lang.Nullable;
 
 /**
- * Class containing static methods used to obtain information about the current AOP invocation.
+ * 包含用于获取当前 AOP 调用相关信息的静态方法的类。
  *
- * <p>The {@code currentProxy()} method is usable if the AOP framework is configured to
- * expose the current proxy (not the default). It returns the AOP proxy in use. Target objects
- * or advice can use this to make advised calls, in the same way as {@code getEJBObject()}
- * can be used in EJBs. They can also use it to find advice configuration.
+ * <p>如果 AOP 框架配置为暴露当前代理（这不是默认设置），则可以使用 {@code currentProxy()} 方法。它
+ * 返回正在使用的 AOP 代理。目标对象或通知可以用它来发起被通知的调用，就像在 EJB 中可以使用
+ * {@code getEJBObject()} 一样。它们也可以用它来查找通知配置。
  *
- * <p>Spring's AOP framework does not expose proxies by default, as there is a performance cost
- * in doing so.
+ * <p>Spring 的 AOP 框架默认不暴露代理，因为这样做会有性能开销。
  *
- * <p>The functionality in this class might be used by a target object that needed access
- * to resources on the invocation. However, this approach should not be used when there is
- * a reasonable alternative, as it makes application code dependent on usage under AOP and
- * the Spring AOP framework in particular.
+ * <p>需要访问调用过程中资源的目标对象可能会使用此类中的功能。然而，在有合理替代方案时不应采用这种
+ * 做法，因为它会使应用代码依赖于在 AOP 下使用，尤其是依赖于 Spring AOP 框架。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -42,9 +38,8 @@ import org.springframework.lang.Nullable;
 public final class AopContext {
 
 	/**
-	 * ThreadLocal holder for AOP proxy associated with this thread.
-	 * Will contain {@code null} unless the "exposeProxy" property on
-	 * the controlling proxy configuration has been set to "true".
+	 * 与此线程关联的 AOP 代理的 ThreadLocal 持有者。除非控制该代理的配置上的 "exposeProxy" 属性已被设
+	 * 置为 "true"，否则其中将包含 {@code null}。
 	 * @see ProxyConfig#setExposeProxy
 	 */
 	private static final ThreadLocal<Object> currentProxy = new NamedThreadLocal<>("Current AOP proxy");
@@ -55,9 +50,8 @@ public final class AopContext {
 
 
 	/**
-	 * Try to return the current AOP proxy. This method is usable only if the
-	 * calling method has been invoked via AOP, and the AOP framework has been set
-	 * to expose proxies. Otherwise, this method will throw an IllegalStateException.
+	 * 尝试返回当前的 AOP 代理。仅当调用方法通过 AOP 调用，并且 AOP 框架已设置为暴露代理时，此方法才可
+	 * 用。否则，此方法将抛出 IllegalStateException。
 	 * @return the current AOP proxy (never returns {@code null})
 	 * @throws IllegalStateException if the proxy cannot be found, because the
 	 * method was invoked outside an AOP invocation context, or because the
@@ -74,8 +68,8 @@ public final class AopContext {
 	}
 
 	/**
-	 * Make the given proxy available via the {@code currentProxy()} method.
-	 * <p>Note that the caller should be careful to keep the old value as appropriate.
+	 * 使给定的代理可通过 {@code currentProxy()} 方法获取。
+	 * <p>请注意，调用方应小心，酌情保留旧值。
 	 * @param proxy the proxy to expose (or {@code null} to reset it)
 	 * @return the old proxy, which may be {@code null} if none was bound
 	 * @see #currentProxy()

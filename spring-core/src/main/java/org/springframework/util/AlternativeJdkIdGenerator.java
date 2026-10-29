@@ -22,10 +22,9 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * An {@link IdGenerator} that uses {@link SecureRandom} for the initial seed and
- * {@link Random} thereafter, instead of calling {@link UUID#randomUUID()} every
- * time as {@link org.springframework.util.JdkIdGenerator JdkIdGenerator} does.
- * This provides a better balance between securely random ids and performance.
+ * 一个 {@link IdGenerator}，其初始种子使用 {@link SecureRandom}，之后使用 {@link Random}，而不是像
+ * {@link org.springframework.util.JdkIdGenerator JdkIdGenerator} 那样每次都调用
+ * {@link UUID#randomUUID()}。这在安全随机 id 与性能之间取得了更好的平衡。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch

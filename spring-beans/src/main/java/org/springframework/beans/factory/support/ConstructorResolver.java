@@ -66,9 +66,9 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Delegate for resolving constructors and factory methods.
+ * 用于解析构造器和工厂方法的委托。
  *
- * <p>Performs constructor resolution through argument matching.
+ * <p>通过参数匹配执行构造器解析。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -86,8 +86,8 @@ class ConstructorResolver {
 	private static final Object[] EMPTY_ARGS = new Object[0];
 
 	/**
-	 * Marker for autowired arguments in a cached argument array, to be replaced
-	 * by a {@linkplain #resolveAutowiredArgument resolved autowired argument}.
+	 * 缓存的参数数组中自动装配参数的标记，将由
+	 * {@linkplain #resolveAutowiredArgument resolved autowired argument} 替换。
 	 */
 	private static final Object autowiredArgumentMarker = new Object();
 
@@ -101,7 +101,7 @@ class ConstructorResolver {
 
 
 	/**
-	 * Create a new ConstructorResolver for the given factory and instantiation strategy.
+	 * 为给定工厂和实例化策略创建一个新的 ConstructorResolver。
 	 * @param beanFactory the BeanFactory to work with
 	 */
 	public ConstructorResolver(AbstractAutowireCapableBeanFactory beanFactory) {
@@ -111,12 +111,9 @@ class ConstructorResolver {
 
 
 	/**
-	 * "autowire constructor" (with constructor arguments by type) behavior.
-	 * Also applied if explicit constructor argument values are specified,
-	 * matching all remaining arguments with beans from the bean factory.
-	 * <p>This corresponds to constructor injection: In this mode, a Spring
-	 * bean factory is able to host components that expect constructor-based
-	 * dependency resolution.
+	 * “autowire constructor”（按类型提供构造参数）行为。如果指定了显式构造参数值也适用，此时用 Bean 工
+	 * 厂中的 bean 匹配所有剩余参数。<p>这对应于构造器注入：在此模式下，Spring Bean 工厂能够托管期望基
+	 * 于构造器进行依赖解析的组件。
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param chosenCtors chosen candidate constructors (or {@code null} if none)
@@ -366,8 +363,8 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Resolve the factory method in the specified bean definition, if possible.
-	 * {@link RootBeanDefinition#getResolvedFactoryMethod()} can be checked for the result.
+	 * 如果可能，解析指定 Bean 定义中的工厂方法。可检查
+	 * {@link RootBeanDefinition#getResolvedFactoryMethod()} 获取结果。
 	 * @param mbd the bean definition to check
 	 */
 	public void resolveFactoryMethodIfPossible(RootBeanDefinition mbd) {
@@ -408,9 +405,8 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Retrieve all candidate methods for the given class, considering
-	 * the {@link RootBeanDefinition#isNonPublicAccessAllowed()} flag.
-	 * Called as the starting point for factory method determination.
+	 * 检索给定类的所有候选方法，并考虑 {@link RootBeanDefinition#isNonPublicAccessAllowed()} 标志。作
+	 * 为确定工厂方法的起点调用。
 	 */
 	private Method[] getCandidateMethods(Class<?> factoryClass, RootBeanDefinition mbd) {
 		if (System.getSecurityManager() != null) {
@@ -425,14 +421,11 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Instantiate the bean using a named factory method. The method may be static, if the
-	 * bean definition parameter specifies a class, rather than a "factory-bean", or
-	 * an instance variable on a factory object itself configured using Dependency Injection.
-	 * <p>Implementation requires iterating over the static or instance methods with the
-	 * name specified in the RootBeanDefinition (the method may be overloaded) and trying
-	 * to match with the parameters. We don't have the types attached to constructor args,
-	 * so trial and error is the only way to go here. The explicitArgs array may contain
-	 * argument values passed in programmatically via the corresponding getBean method.
+	 * 使用命名工厂方法实例化 bean。如果 Bean 定义参数指定的是类而不是“factory-bean”，或者指定的是工厂
+	 * 对象自身通过依赖注入配置的实例变量，则该方法可以是静态的。<p>实现需要遍历 RootBeanDefinition 中
+	 * 指定名称的静态方法或实例方法（该方法可能被重载），并尝试与参数匹配。我们无法获得附加到构造参数上
+	 * 的类型信息，因此这里只能采用试错方式。explicitArgs 数组可能包含通过相应的 getBean 方法以编程方式
+	 * 传入的参数值。
 	 * @param beanName the name of the bean
 	 * @param mbd the merged bean definition for the bean
 	 * @param explicitArgs argument values passed in programmatically via the getBean
@@ -744,9 +737,8 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Resolve the constructor arguments for this bean into the resolvedValues object.
-	 * This may involve looking up other beans.
-	 * <p>This method is also used for handling invocations of static factory methods.
+	 * 将此 bean 的构造参数解析到 resolvedValues 对象中。这可能涉及查找其他 bean。<p>此方法也用于处理静
+	 * 态工厂方法的调用。
 	 */
 	private int resolveConstructorArguments(String beanName, RootBeanDefinition mbd, BeanWrapper bw,
 			ConstructorArgumentValues cargs, ConstructorArgumentValues resolvedValues) {
@@ -799,8 +791,7 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Create an array of arguments to invoke a constructor or factory method,
-	 * given the resolved constructor argument values.
+	 * 给定已解析的构造参数值，创建用于调用构造器或工厂方法的参数数组。
 	 */
 	private ArgumentsHolder createArgumentArray(
 			String beanName, RootBeanDefinition mbd, @Nullable ConstructorArgumentValues resolvedValues,
@@ -908,7 +899,7 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Resolve the prepared arguments stored in the given bean definition.
+	 * 解析存储在给定 Bean 定义中的已准备参数。
 	 */
 	private Object[] resolvePreparedArguments(String beanName, RootBeanDefinition mbd, BeanWrapper bw,
 			Executable executable, Object[] argsToResolve) {
@@ -962,7 +953,7 @@ class ConstructorResolver {
 	}
 
 	/**
-	 * Template method for resolving the specified argument which is supposed to be autowired.
+	 * 用于解析指定参数的模板方法，该参数应当被自动装配。
 	 */
 	@Nullable
 	protected Object resolveAutowiredArgument(MethodParameter param, String beanName,
@@ -1014,7 +1005,7 @@ class ConstructorResolver {
 
 
 	/**
-	 * Private inner class for holding argument combinations.
+	 * 用于持有参数组合的私有内部类。
 	 */
 	private static class ArgumentsHolder {
 
@@ -1078,7 +1069,7 @@ class ConstructorResolver {
 
 
 	/**
-	 * Delegate for checking Java's {@link ConstructorProperties} annotation.
+	 * 用于检查 Java 的 {@link ConstructorProperties} 注解的委托。
 	 */
 	private static class ConstructorPropertiesChecker {
 

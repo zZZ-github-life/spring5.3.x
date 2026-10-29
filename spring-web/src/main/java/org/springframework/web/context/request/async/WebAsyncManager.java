@@ -38,18 +38,15 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.async.DeferredResult.DeferredResultHandler;
 
 /**
- * The central class for managing asynchronous request processing, mainly intended
- * as an SPI and not typically used directly by application classes.
+ * 管理异步请求处理的核心类，主要作为 SPI 使用，通常不由应用类直接使用。
  *
- * <p>An async scenario starts with request processing as usual in a thread (T1).
- * Concurrent request handling can be initiated by calling
- * {@link #startCallableProcessing(Callable, Object...) startCallableProcessing} or
- * {@link #startDeferredResultProcessing(DeferredResult, Object...) startDeferredResultProcessing},
- * both of which produce a result in a separate thread (T2). The result is saved
- * and the request dispatched to the container, to resume processing with the saved
- * result in a third thread (T3). Within the dispatched thread (T3), the saved
- * result can be accessed via {@link #getConcurrentResult()} or its presence
- * detected via {@link #hasConcurrentResult()}.
+ * <p>异步场景以在线程（T1）中照常处理请求开始。并发请求处理可以通过调用
+ * {@link #startCallableProcessing(Callable, Object...) startCallableProcessing} 或
+ * {@link #startDeferredResultProcessing(DeferredResult, Object...) startDeferredResultProcessing} 来启动，
+ * 两者都会在单独的线程（T2）中产生结果。结果会被保存，并将请求分派到容器，
+ * 以便在第三个线程（T3）中使用保存的结果恢复处理。在分派后的线程（T3）中，
+ * 可以通过 {@link #getConcurrentResult()} 访问保存的结果，或通过
+ * {@link #hasConcurrentResult()} 检测其是否存在。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -98,7 +95,7 @@ public final class WebAsyncManager {
 
 
 	/**
-	 * Package-private constructor.
+	 * 包级私有的构造函数。
 	 * @see WebAsyncUtils#getAsyncManager(javax.servlet.ServletRequest)
 	 * @see WebAsyncUtils#getAsyncManager(org.springframework.web.context.request.WebRequest)
 	 */
@@ -107,12 +104,10 @@ public final class WebAsyncManager {
 
 
 	/**
-	 * Configure the {@link AsyncWebRequest} to use. This property may be set
-	 * more than once during a single request to accurately reflect the current
-	 * state of the request (e.g. following a forward, request/response
-	 * wrapping, etc). However, it should not be set while concurrent handling
-	 * is in progress, i.e. while {@link #isConcurrentHandlingStarted()} is
-	 * {@code true}.
+	 * 配置要使用的 {@link AsyncWebRequest}。在单个请求期间可以多次设置此属性，
+	 * 以准确反映请求的当前状态（例如在转发、请求/响应包装之后等）。不过，
+	 * 不应在并发处理进行中（即 {@link #isConcurrentHandlingStarted()} 为
+	 * {@code true} 时）设置此属性。
 	 * @param asyncWebRequest the web request to use
 	 */
 	public void setAsyncWebRequest(AsyncWebRequest asyncWebRequest) {
@@ -123,35 +118,31 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Configure an AsyncTaskExecutor for use with concurrent processing via
-	 * {@link #startCallableProcessing(Callable, Object...)}.
-	 * <p>By default a {@link SimpleAsyncTaskExecutor} instance is used.
+	 * 配置 AsyncTaskExecutor，以便通过
+	 * {@link #startCallableProcessing(Callable, Object...)} 用于并发处理。
+	 * <p>默认情况下使用 {@link SimpleAsyncTaskExecutor} 实例。
 	 */
 	public void setTaskExecutor(AsyncTaskExecutor taskExecutor) {
 		this.taskExecutor = taskExecutor;
 	}
 
 	/**
-	 * Whether the selected handler for the current request chose to handle the
-	 * request asynchronously. A return value of "true" indicates concurrent
-	 * handling is under way and the response will remain open. A return value
-	 * of "false" means concurrent handling was either not started or possibly
-	 * that it has completed and the request was dispatched for further
-	 * processing of the concurrent result.
+	 * 当前请求所选的处理器是否选择异步处理该请求。返回 "true" 表示并发处理正在进行中，响应将保持打开。
+	 * 返回 "false" 表示并发处理尚未开始，或者可能已经完成且请求已被分派以进一步处理并发结果。
 	 */
 	public boolean isConcurrentHandlingStarted() {
 		return (this.asyncWebRequest != null && this.asyncWebRequest.isAsyncStarted());
 	}
 
 	/**
-	 * Whether a result value exists as a result of concurrent handling.
+	 * 并发处理是否产生了结果值。
 	 */
 	public boolean hasConcurrentResult() {
 		return (this.concurrentResult != RESULT_NONE);
 	}
 
 	/**
-	 * Provides access to the result from concurrent handling.
+	 * 提供对并发处理结果的访问。
 	 * @return an Object, possibly an {@code Exception} or {@code Throwable} if
 	 * concurrent handling raised one.
 	 * @see #clearConcurrentResult()
@@ -161,8 +152,7 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Provides access to additional processing context saved at the start of
-	 * concurrent handling.
+	 * 提供对在并发处理开始时保存的额外处理上下文的访问。
 	 * @see #clearConcurrentResult()
 	 */
 	public Object[] getConcurrentResultContext() {
@@ -170,7 +160,7 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Get the {@link CallableProcessingInterceptor} registered under the given key.
+	 * 获取在给定键下注册的 {@link CallableProcessingInterceptor}。
 	 * @param key the key
 	 * @return the interceptor registered under that key, or {@code null} if none
 	 */
@@ -180,7 +170,7 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Get the {@link DeferredResultProcessingInterceptor} registered under the given key.
+	 * 获取在给定键下注册的 {@link DeferredResultProcessingInterceptor}。
 	 * @param key the key
 	 * @return the interceptor registered under that key, or {@code null} if none
 	 */
@@ -190,7 +180,7 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Register a {@link CallableProcessingInterceptor} under the given key.
+	 * 在给定键下注册 {@link CallableProcessingInterceptor}。
 	 * @param key the key
 	 * @param interceptor the interceptor to register
 	 */
@@ -201,8 +191,7 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Register a {@link CallableProcessingInterceptor} without a key.
-	 * The key is derived from the class name and hashcode.
+	 * 注册不带键的 {@link CallableProcessingInterceptor}。键由类名和哈希码派生。
 	 * @param interceptors one or more interceptors to register
 	 */
 	public void registerCallableInterceptors(CallableProcessingInterceptor... interceptors) {
@@ -214,7 +203,7 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Register a {@link DeferredResultProcessingInterceptor} under the given key.
+	 * 在给定键下注册 {@link DeferredResultProcessingInterceptor}。
 	 * @param key the key
 	 * @param interceptor the interceptor to register
 	 */
@@ -225,8 +214,9 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Register one or more {@link DeferredResultProcessingInterceptor DeferredResultProcessingInterceptors} without a specified key.
-	 * The default key is derived from the interceptor class name and hash code.
+	 * 注册一个或多个未指定键的
+	 * {@link DeferredResultProcessingInterceptor DeferredResultProcessingInterceptors}。默认键由拦截
+	 * 器类名和哈希码派生。
 	 * @param interceptors one or more interceptors to register
 	 */
 	public void registerDeferredResultInterceptors(DeferredResultProcessingInterceptor... interceptors) {
@@ -238,8 +228,8 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Clear {@linkplain #getConcurrentResult() concurrentResult} and
-	 * {@linkplain #getConcurrentResultContext() concurrentResultContext}.
+	 * 清除 {@linkplain #getConcurrentResult() concurrentResult} 和
+	 * {@linkplain #getConcurrentResultContext() concurrentResultContext}。
 	 */
 	public void clearConcurrentResult() {
 		synchronized (WebAsyncManager.this) {
@@ -249,11 +239,9 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Start concurrent request processing and execute the given task with an
-	 * {@link #setTaskExecutor(AsyncTaskExecutor) AsyncTaskExecutor}. The result
-	 * from the task execution is saved and the request dispatched in order to
-	 * resume processing of that result. If the task raises an Exception then
-	 * the saved result will be the raised Exception.
+	 * 启动并发请求处理，并使用 {@link #setTaskExecutor(AsyncTaskExecutor) AsyncTaskExecutor} 执行给
+	 * 定任务。任务执行的结果会被保存，并分派请求以恢复对该结果的处理。如果任务抛出 Exception，则保存
+	 * 的结果将是所抛出的 Exception。
 	 * @param callable a unit of work to be executed asynchronously
 	 * @param processingContext additional context to save that can be accessed
 	 * via {@link #getConcurrentResultContext()}
@@ -268,9 +256,9 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Use the given {@link WebAsyncTask} to configure the task executor as well as
-	 * the timeout value of the {@code AsyncWebRequest} before delegating to
-	 * {@link #startCallableProcessing(Callable, Object...)}.
+	 * 在委托给 {@link #startCallableProcessing(Callable, Object...)} 之前，
+	 * 使用给定的 {@link WebAsyncTask} 配置任务执行器以及
+	 * {@code AsyncWebRequest} 的超时值。
 	 * @param webAsyncTask a WebAsyncTask containing the target {@code Callable}
 	 * @param processingContext additional context to save that can be accessed
 	 * via {@link #getConcurrentResultContext()}
@@ -402,12 +390,10 @@ public final class WebAsyncManager {
 	}
 
 	/**
-	 * Start concurrent request processing and initialize the given
-	 * {@link DeferredResult} with a {@link DeferredResultHandler} that saves
-	 * the result and dispatches the request to resume processing of that
-	 * result. The {@code AsyncWebRequest} is also updated with a completion
-	 * handler that expires the {@code DeferredResult} and a timeout handler
-	 * assuming the {@code DeferredResult} has a default timeout result.
+	 * 启动并发请求处理，并使用一个 {@link DeferredResultHandler} 初始化给定的 {@link DeferredResult}，
+	 * 该处理器会保存结果并分派请求以恢复对该结果的处理。{@code AsyncWebRequest} 还会被更新：添加一个
+	 * 使 {@code DeferredResult} 过期的完成处理器，以及一个超时处理器（假定 {@code DeferredResult} 具
+	 * 有默认的超时结果）。
 	 * @param deferredResult the DeferredResult instance to initialize
 	 * @param processingContext additional context to save that can be accessed
 	 * via {@link #getConcurrentResultContext()}

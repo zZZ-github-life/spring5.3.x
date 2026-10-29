@@ -26,25 +26,22 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
- * An adapter for a target {@link javax.sql.DataSource}, applying the current
- * Spring transaction's isolation level (and potentially specified user credentials)
- * to every {@code getConnection} call. Also applies the read-only flag,
- * if specified.
+ * 目标 {@link javax.sql.DataSource} 的适配器，会将当前 Spring 事务的
+ * 隔离级别（以及可能指定的用户凭据）应用到每次 {@code getConnection} 调用。
+ * 如果指定了只读标志，也会一并应用。
  *
- * <p>Can be used to proxy a target JNDI DataSource that does not have the
- * desired isolation level (and user credentials) configured. Client code
- * can work with this DataSource as usual, not worrying about such settings.
+ * <p>可用于代理未配置所需隔离级别（和用户凭据）的目标 JNDI DataSource。
+ * 客户端代码可以像平常一样使用此 DataSource，而无需担心这些设置。
  *
- * <p>Inherits the capability to apply specific user credentials from its superclass
- * {@link UserCredentialsDataSourceAdapter}; see the latter's javadoc for details
- * on that functionality (e.g. {@link #setCredentialsForCurrentThread}).
+ * <p>从父类 {@link UserCredentialsDataSourceAdapter} 继承了应用特定用户凭据
+ * 的能力；有关该功能的详细信息（例如 {@link #setCredentialsForCurrentThread}），
+ * 请参阅后者的 javadoc。
  *
- * <p><b>WARNING:</b> This adapter simply calls
- * {@link java.sql.Connection#setTransactionIsolation} and/or
- * {@link java.sql.Connection#setReadOnly} for every Connection obtained from it.
- * It does, however, <i>not</i> reset those settings; it rather expects the target
- * DataSource to perform such resetting as part of its connection pool handling.
- * <b>Make sure that the target DataSource properly cleans up such transaction state.</b>
+ * <p><b>警告：</b>此适配器只是为其获取的每个 Connection 调用
+ * {@link java.sql.Connection#setTransactionIsolation} 和/或
+ * {@link java.sql.Connection#setReadOnly}。但它<i>不会</i>重置这些设置；
+ * 相反，它期望目标 DataSource 在其连接池处理过程中执行此类重置。
+ * <b>请确保目标 DataSource 能正确清理此类事务状态。</b>
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -55,7 +52,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  */
 public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAdapter {
 
-	/** Constants instance for TransactionDefinition. */
+	/** TransactionDefinition 的 Constants 实例。 */
 	private static final Constants constants = new Constants(TransactionDefinition.class);
 
 	@Nullable
@@ -63,12 +60,10 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 
 
 	/**
-	 * Set the default isolation level by the name of the corresponding constant
-	 * in {@link org.springframework.transaction.TransactionDefinition}, e.g.
-	 * "ISOLATION_SERIALIZABLE".
-	 * <p>If not specified, the target DataSource's default will be used.
-	 * Note that a transaction-specific isolation value will always override
-	 * any isolation setting specified at the DataSource level.
+	 * 通过 {@link org.springframework.transaction.TransactionDefinition} 中
+	 * 相应常量的名称设置默认隔离级别，例如 "ISOLATION_SERIALIZABLE"。
+	 * <p>如果未指定，将使用目标 DataSource 的默认值。
+	 * 请注意，事务特定的隔离值将始终覆盖在 DataSource 级别指定的任何隔离设置。
 	 * @param constantName name of the constant
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_UNCOMMITTED
 	 * @see org.springframework.transaction.TransactionDefinition#ISOLATION_READ_COMMITTED
@@ -84,13 +79,12 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 	}
 
 	/**
-	 * Specify the default isolation level to use for Connection retrieval,
-	 * according to the JDBC {@link java.sql.Connection} constants
-	 * (equivalent to the corresponding Spring
-	 * {@link org.springframework.transaction.TransactionDefinition} constants).
-	 * <p>If not specified, the target DataSource's default will be used.
-	 * Note that a transaction-specific isolation value will always override
-	 * any isolation setting specified at the DataSource level.
+	 * 按 JDBC {@link java.sql.Connection} 常量
+	 * （等同于相应的 Spring
+	 * {@link org.springframework.transaction.TransactionDefinition} 常量）
+	 * 指定获取 Connection 时要使用的默认隔离级别。
+	 * <p>如果未指定，将使用目标 DataSource 的默认值。
+	 * 请注意，事务特定的隔离值将始终覆盖在 DataSource 级别指定的任何隔离设置。
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
 	 * @see java.sql.Connection#TRANSACTION_READ_COMMITTED
 	 * @see java.sql.Connection#TRANSACTION_REPEATABLE_READ
@@ -110,8 +104,8 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 	}
 
 	/**
-	 * Return the statically specified isolation level,
-	 * or {@code null} if none.
+	 * 返回静态指定的隔离级别，
+	 * 如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	protected Integer getIsolationLevel() {
@@ -120,8 +114,7 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 
 
 	/**
-	 * Applies the current isolation level value and read-only flag
-	 * to the returned Connection.
+	 * 将当前的隔离级别值和只读标志应用到返回的 Connection。
 	 * @see #getCurrentIsolationLevel()
 	 * @see #getCurrentReadOnlyFlag()
 	 */
@@ -140,8 +133,8 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 	}
 
 	/**
-	 * Determine the current isolation level: either the transaction's
-	 * isolation level or a statically defined isolation level.
+	 * 确定当前的隔离级别：要么是事务的隔离级别，
+	 * 要么是静态定义的隔离级别。
 	 * @return the current isolation level, or {@code null} if none
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionIsolationLevel()
 	 * @see #setIsolationLevel
@@ -156,8 +149,7 @@ public class IsolationLevelDataSourceAdapter extends UserCredentialsDataSourceAd
 	}
 
 	/**
-	 * Determine the current read-only flag: by default,
-	 * the transaction's read-only hint.
+	 * 确定当前的只读标志：默认为事务的只读提示。
 	 * @return whether there is a read-only hint for the current scope
 	 * @see org.springframework.transaction.support.TransactionSynchronizationManager#isCurrentTransactionReadOnly()
 	 */

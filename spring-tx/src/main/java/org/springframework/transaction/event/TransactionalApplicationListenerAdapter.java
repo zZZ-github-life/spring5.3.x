@@ -26,14 +26,11 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * {@link TransactionalApplicationListener} adapter that delegates the processing of
- * an event to a target {@link ApplicationListener} instance. Supports the exact
- * same features as any regular {@link ApplicationListener} but is aware of the
- * transactional context of the event publisher.
+ * {@link TransactionalApplicationListener}适配器, 将事件的处理委托给目标{@link ApplicationListener}实例。
+ * 支持与任何常规{@link ApplicationListener}完全相同的功能, 但能感知事件发布者的事务上下文。
  *
- * <p>For simple {@link org.springframework.context.PayloadApplicationEvent} handling,
- * consider the {@link TransactionalApplicationListener#forPayload} factory methods
- * as a convenient alternative to custom usage of this adapter class.
+ * <p>对于简单的{@link org.springframework.context.PayloadApplicationEvent}处理,
+ * 请考虑使用{@link TransactionalApplicationListener#forPayload}工厂方法作为自定义使用此适配器类的便捷替代方案。
  *
  * @author Juergen Hoeller
  * @since 5.3
@@ -57,7 +54,7 @@ public class TransactionalApplicationListenerAdapter<E extends ApplicationEvent>
 
 
 	/**
-	 * Construct a new TransactionalApplicationListenerAdapter.
+	 * 构造一个新的TransactionalApplicationListenerAdapter。
 	 * @param targetListener the actual listener to invoke in the specified transaction phase
 	 * @see #setTransactionPhase
 	 * @see TransactionalApplicationListener#forPayload
@@ -68,14 +65,14 @@ public class TransactionalApplicationListenerAdapter<E extends ApplicationEvent>
 
 
 	/**
-	 * Specify the synchronization order for the listener.
+	 * 指定监听器的同步顺序。
 	 */
 	public void setOrder(int order) {
 		this.order = order;
 	}
 
 	/**
-	 * Return the synchronization order for the listener.
+	 * 返回监听器的同步顺序。
 	 */
 	@Override
 	public int getOrder() {
@@ -83,15 +80,15 @@ public class TransactionalApplicationListenerAdapter<E extends ApplicationEvent>
 	}
 
 	/**
-	 * Specify the transaction phase to invoke the listener in.
-	 * <p>The default is {@link TransactionPhase#AFTER_COMMIT}.
+	 * 指定调用监听器的事务阶段。
+	 * <p>默认值为{@link TransactionPhase#AFTER_COMMIT}。
 	 */
 	public void setTransactionPhase(TransactionPhase transactionPhase) {
 		this.transactionPhase = transactionPhase;
 	}
 
 	/**
-	 * Return the transaction phase to invoke the listener in.
+	 * 返回调用监听器的事务阶段。
 	 */
 	@Override
 	public TransactionPhase getTransactionPhase() {
@@ -99,15 +96,15 @@ public class TransactionalApplicationListenerAdapter<E extends ApplicationEvent>
 	}
 
 	/**
-	 * Specify an id to identify the listener with.
-	 * <p>The default is an empty String.
+	 * 指定用于标识监听器的id。
+	 * <p>默认值为空字符串。
 	 */
 	public void setListenerId(String listenerId) {
 		this.listenerId = listenerId;
 	}
 
 	/**
-	 * Return an id to identify the listener with.
+	 * 返回用于标识监听器的id。
 	 */
 	@Override
 	public String getListenerId() {

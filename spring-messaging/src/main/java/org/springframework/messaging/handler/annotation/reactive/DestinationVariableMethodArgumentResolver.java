@@ -29,14 +29,14 @@ import org.springframework.messaging.handler.annotation.ValueConstants;
 import org.springframework.util.Assert;
 
 /**
- * Resolve for {@link DestinationVariable @DestinationVariable} method parameters.
+ * 解析 {@link DestinationVariable @DestinationVariable} 方法参数。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
  */
 public class DestinationVariableMethodArgumentResolver extends AbstractNamedValueMethodArgumentResolver {
 
-	/** The name of the header used to for template variables. */
+	/** 用于模板变量的头名称。 */
 	public static final String DESTINATION_TEMPLATE_VARIABLES_HEADER =
 			DestinationVariableMethodArgumentResolver.class.getSimpleName() + ".templateVariables";
 

@@ -28,11 +28,10 @@
 package org.springframework.asm;
 
 /**
- * An {@link AnnotationVisitor} that generates a corresponding 'annotation' or 'type_annotation'
- * structure, as defined in the Java Virtual Machine Specification (JVMS). AnnotationWriter
- * instances can be chained in a doubly linked list, from which Runtime[In]Visible[Type]Annotations
- * attributes can be generated with the {@link #putAnnotations} method. Similarly, arrays of such
- * lists can be used to generate Runtime[In]VisibleParameterAnnotations attributes.
+ * 一个 {@link AnnotationVisitor}，用于生成 Java 虚拟机规范（JVMS）中定义的相应 'annotation' 或
+ * 'type_annotation' 结构。AnnotationWriter 实例可以链接成双向链表，通过 {@link #putAnnotations} 方
+ * 法可以从该链表生成 Runtime[In]Visible[Type]Annotations 属性。类似地，这类链表的数组可用于生成
+ * Runtime[In]VisibleParameterAnnotations 属性。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.16">JVMS
  *     4.7.16</a>
@@ -43,50 +42,44 @@ package org.springframework.asm;
  */
 final class AnnotationWriter extends AnnotationVisitor {
 
-  /** Where the constants used in this AnnotationWriter must be stored. */
+  /** 存储此 AnnotationWriter 所用常量的位置。 */
   private final SymbolTable symbolTable;
 
   /**
-   * Whether values are named or not. AnnotationWriter instances used for annotation default and
-   * annotation arrays use unnamed values (i.e. they generate an 'element_value' structure for each
-   * value, instead of an element_name_index followed by an element_value).
+   * 值是否带名称。用于注解默认值和注解数组的 AnnotationWriter 实例使用无名值（即为每个值生成一个
+   * 'element_value' 结构，而不是先给出 element_name_index 再跟一个 element_value）。
    */
   private final boolean useNamedValues;
 
   /**
-   * The 'annotation' or 'type_annotation' JVMS structure corresponding to the annotation values
-   * visited so far. All the fields of these structures, except the last one - the
-   * element_value_pairs array, must be set before this ByteVector is passed to the constructor
-   * (num_element_value_pairs can be set to 0, it is reset to the correct value in {@link
-   * #visitEnd()}). The element_value_pairs array is filled incrementally in the various visit()
-   * methods.
+   * 与目前已访问的注解值相对应的 'annotation' 或 'type_annotation' JVMS 结构。这些结构的所有字段（最
+   * 后一个字段 element_value_pairs 数组除外）都必须在此 ByteVector 传递给构造函数之前设置好（
+   * num_element_value_pairs 可以设为 0，它会在 {@link #visitEnd()} 中被重置为正确的值）。
+   * element_value_pairs 数组在各 visit() 方法中逐步填充。
    *
-   * <p>Note: as an exception to the above rules, for AnnotationDefault attributes (which contain a
-   * single element_value by definition), this ByteVector is initially empty when passed to the
-   * constructor, and {@link #numElementValuePairsOffset} is set to -1.
+   * <p>注意：作为上述规则的例外，对于 AnnotationDefault 属性（按定义它只包含一个 element_value），此
+   * ByteVector 在传递给构造函数时初始为空，并且 {@link #numElementValuePairsOffset} 被设置为 -1。
    */
   private final ByteVector annotation;
 
   /**
-   * The offset in {@link #annotation} where {@link #numElementValuePairs} must be stored (or -1 for
-   * the case of AnnotationDefault attributes).
+   * 在 {@link #annotation} 中存储 {@link #numElementValuePairs} 的偏移量（对于 AnnotationDefault 属
+   * 性的情况为 -1）。
    */
   private final int numElementValuePairsOffset;
 
-  /** The number of element value pairs visited so far. */
+  /** 目前已访问的元素值对数量。 */
   private int numElementValuePairs;
 
   /**
-   * The previous AnnotationWriter. This field is used to store the list of annotations of a
-   * Runtime[In]Visible[Type]Annotations attribute. It is unused for nested or array annotations
-   * (annotation values of annotation type), or for AnnotationDefault attributes.
+   * 前一个 AnnotationWriter。此字段用于存储某个 Runtime[In]Visible[Type]Annotations 属性的注解列表。
+   * 对于嵌套注解或数组注解（注解类型的注解值）以及 AnnotationDefault 属性，此字段未被使用。
    */
   private final AnnotationWriter previousAnnotation;
 
   /**
-   * The next AnnotationWriter. This field is used to store the list of annotations of a
-   * Runtime[In]Visible[Type]Annotations attribute. It is unused for nested or array annotations
-   * (annotation values of annotation type), or for AnnotationDefault attributes.
+   * 下一个 AnnotationWriter。此字段用于存储某个 Runtime[In]Visible[Type]Annotations 属性的注解列表。
+   * 对于嵌套注解或数组注解（注解类型的注解值）以及 AnnotationDefault 属性，此字段未被使用。
    */
   private AnnotationWriter nextAnnotation;
 
@@ -95,7 +88,7 @@ final class AnnotationWriter extends AnnotationVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Constructs a new {@link AnnotationWriter}.
+   * 构造一个新的 {@link AnnotationWriter}。
    *
    * @param symbolTable where the constants used in this AnnotationWriter must be stored.
    * @param useNamedValues whether values are named or not. AnnotationDefault and annotation arrays
@@ -125,7 +118,7 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Creates a new {@link AnnotationWriter} using named values.
+   * 使用带名称的值创建一个新的 {@link AnnotationWriter}。
    *
    * @param symbolTable where the constants used in this AnnotationWriter must be stored.
    * @param descriptor the class descriptor of the annotation class.
@@ -148,7 +141,7 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Creates a new {@link AnnotationWriter} using named values.
+   * 使用带名称的值创建一个新的 {@link AnnotationWriter}。
    *
    * @param symbolTable where the constants used in this AnnotationWriter must be stored.
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
@@ -320,9 +313,8 @@ final class AnnotationWriter extends AnnotationVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the size of a Runtime[In]Visible[Type]Annotations attribute containing this annotation
-   * and all its <i>predecessors</i> (see {@link #previousAnnotation}. Also adds the attribute name
-   * to the constant pool of the class (if not null).
+   * 返回包含此注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
+   * Runtime[In]Visible[Type]Annotations 属性的大小。还会将属性名添加到类的常量池中（若不为 null）。
    *
    * @param attributeName one of "Runtime[In]Visible[Type]Annotations", or {@literal null}.
    * @return the size in bytes of a Runtime[In]Visible[Type]Annotations attribute containing this
@@ -344,9 +336,9 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Returns the size of the Runtime[In]Visible[Type]Annotations attributes containing the given
-   * annotations and all their <i>predecessors</i> (see {@link #previousAnnotation}. Also adds the
-   * attribute names to the constant pool of the class (if not null).
+   * 返回包含给定注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
+   * Runtime[In]Visible[Type]Annotations 属性的大小。还会将这些属性名添加到类的常量池中（如果不为
+   * null）。
    *
    * @param lastRuntimeVisibleAnnotation The last runtime visible annotation of a field, method or
    *     class. The previous ones can be accessed with the {@link #previousAnnotation} field. May be
@@ -394,9 +386,8 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Puts a Runtime[In]Visible[Type]Annotations attribute containing this annotations and all its
-   * <i>predecessors</i> (see {@link #previousAnnotation} in the given ByteVector. Annotations are
-   * put in the same order they have been visited.
+   * 将包含此注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
+   * Runtime[In]Visible[Type]Annotations 属性放入给定的 ByteVector。注解按照它们被访问的顺序放入。
    *
    * @param attributeNameIndex the constant pool index of the attribute name (one of
    *     "Runtime[In]Visible[Type]Annotations").
@@ -426,9 +417,8 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Puts the Runtime[In]Visible[Type]Annotations attributes containing the given annotations and
-   * all their <i>predecessors</i> (see {@link #previousAnnotation} in the given ByteVector.
-   * Annotations are put in the same order they have been visited.
+   * 将包含给定注解及其所有<i>前驱</i>（参见 {@link #previousAnnotation}）的
+   * Runtime[In]Visible[Type]Annotations 属性放入给定的 ByteVector。注解按照它们被访问的顺序放入。
    *
    * @param symbolTable where the constants used in the AnnotationWriter instances are stored.
    * @param lastRuntimeVisibleAnnotation The last runtime visible annotation of a field, method or
@@ -471,9 +461,8 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Returns the size of a Runtime[In]VisibleParameterAnnotations attribute containing all the
-   * annotation lists from the given AnnotationWriter sub-array. Also adds the attribute name to the
-   * constant pool of the class.
+   * 返回包含给定 AnnotationWriter 子数组中所有注解列表的 Runtime[In]VisibleParameterAnnotations 属性
+   * 的大小。还会将该属性名添加到类的常量池中。
    *
    * @param attributeName one of "Runtime[In]VisibleParameterAnnotations".
    * @param annotationWriters an array of AnnotationWriter lists (designated by their <i>last</i>
@@ -503,8 +492,8 @@ final class AnnotationWriter extends AnnotationVisitor {
   }
 
   /**
-   * Puts a Runtime[In]VisibleParameterAnnotations attribute containing all the annotation lists
-   * from the given AnnotationWriter sub-array in the given ByteVector.
+   * 将包含给定 AnnotationWriter 子数组中所有注解列表的 Runtime[In]VisibleParameterAnnotations 属性放
+   * 入给定的 ByteVector。
    *
    * @param attributeNameIndex constant pool index of the attribute name (one of
    *     Runtime[In]VisibleParameterAnnotations).

@@ -28,13 +28,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Base class for message source implementations, providing support infrastructure
- * such as {@link java.text.MessageFormat} handling but not implementing concrete
- * methods defined in the {@link org.springframework.context.MessageSource}.
+ * 消息源实现的基类，提供诸如 {@link java.text.MessageFormat} 处理之类的基础设施支持，但不实现
+ * {@link org.springframework.context.MessageSource} 中定义的具体方法。
  *
- * <p>{@link AbstractMessageSource} derives from this class, providing concrete
- * {@code getMessage} implementations that delegate to a central template
- * method for message code resolution.
+ * <p>{@link AbstractMessageSource} 派生自该类，提供具体的 {@code getMessage} 实现，这些实现将消息
+ * 代码的解析委托给一个中心模板方法。
  *
  * @author Juergen Hoeller
  * @since 2.5.5
@@ -43,32 +41,26 @@ public abstract class MessageSourceSupport {
 
 	private static final MessageFormat INVALID_MESSAGE_FORMAT = new MessageFormat("");
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private boolean alwaysUseMessageFormat = false;
 
 	/**
-	 * Cache to hold already generated MessageFormats per message.
-	 * Used for passed-in default messages. MessageFormats for resolved
-	 * codes are cached on a specific basis in subclasses.
+	 * 用于保存每条消息已生成的 MessageFormat 的缓存。用于传入的默认消息。已解析代码对应的
+	 * MessageFormat 由子类以特定方式缓存。
 	 */
 	private final Map<String, Map<Locale, MessageFormat>> messageFormatsPerMessage = new HashMap<>();
 
 
 	/**
-	 * Set whether to always apply the {@code MessageFormat} rules, parsing even
-	 * messages without arguments.
-	 * <p>Default is {@code false}: Messages without arguments are by default
-	 * returned as-is, without parsing them through {@code MessageFormat}.
-	 * Set this to {@code true} to enforce {@code MessageFormat} for all messages,
-	 * expecting all message texts to be written with {@code MessageFormat} escaping.
-	 * <p>For example, {@code MessageFormat} expects a single quote to be escaped
-	 * as two adjacent single quotes ({@code "''"}). If your message texts are all
-	 * written with such escaping, even when not defining argument placeholders,
-	 * you need to set this flag to {@code true}. Otherwise, only message texts
-	 * with actual arguments are supposed to be written with {@code MessageFormat}
-	 * escaping.
+	 * 设置是否始终应用 {@code MessageFormat} 规则，即使消息不带参数也对其进行解析。
+	 * <p>默认值为 {@code false}：不带参数的消息默认按原样返回，不通过 {@code MessageFormat} 解析。将此
+	 * 值设为 {@code true} 可对所有消息强制使用 {@code MessageFormat}，此时要求所有消息文本都按
+	 * {@code MessageFormat} 的转义规则编写。
+	 * <p>例如，{@code MessageFormat} 要求将单引号转义为两个相邻的单引号（{@code "''"}）。如果你的消息
+	 * 文本全部采用这种转义写法，即使没有定义参数占位符，也需要将此标志设为 {@code true}。否则，只有带
+	 * 实际参数的消息文本才应使用 {@code MessageFormat} 转义。
 	 * @see java.text.MessageFormat
 	 */
 	public void setAlwaysUseMessageFormat(boolean alwaysUseMessageFormat) {
@@ -76,8 +68,7 @@ public abstract class MessageSourceSupport {
 	}
 
 	/**
-	 * Return whether to always apply the {@code MessageFormat} rules, parsing even
-	 * messages without arguments.
+	 * 返回是否始终应用 {@code MessageFormat} 规则，即使消息不带参数也对其进行解析。
 	 */
 	protected boolean isAlwaysUseMessageFormat() {
 		return this.alwaysUseMessageFormat;
@@ -85,12 +76,10 @@ public abstract class MessageSourceSupport {
 
 
 	/**
-	 * Render the given default message String. The default message is
-	 * passed in as specified by the caller and can be rendered into
-	 * a fully formatted default message shown to the user.
-	 * <p>The default implementation passes the String to {@code formatMessage},
-	 * resolving any argument placeholders found in them. Subclasses may override
-	 * this method to plug in custom processing of default messages.
+	 * 渲染给定的默认消息字符串。默认消息由调用方按指定方式传入，可被渲染为呈现给用户的完整格式化默认消
+	 * 息。
+	 * <p>默认实现将该字符串传给 {@code formatMessage}，解析其中找到的所有参数占位符。子类可覆盖此方法
+	 * 以插入对默认消息的自定义处理。
 	 * @param defaultMessage the passed-in default message String
 	 * @param args array of arguments that will be filled in for params within
 	 * the message, or {@code null} if none.
@@ -103,9 +92,8 @@ public abstract class MessageSourceSupport {
 	}
 
 	/**
-	 * Format the given message String, using cached MessageFormats.
-	 * By default invoked for passed-in default messages, to resolve
-	 * any argument placeholders found in them.
+	 * 使用缓存的 MessageFormat 格式化给定的消息字符串。默认情况下会针对传入的默认消息调用，以解析其中
+	 * 找到的所有参数占位符。
 	 * @param msg the message to format
 	 * @param args array of arguments that will be filled in for params within
 	 * the message, or {@code null} if none
@@ -151,7 +139,7 @@ public abstract class MessageSourceSupport {
 	}
 
 	/**
-	 * Create a {@code MessageFormat} for the given message and Locale.
+	 * 为给定的消息和 Locale 创建一个 {@code MessageFormat}。
 	 * @param msg the message to create a {@code MessageFormat} for
 	 * @param locale the Locale to create a {@code MessageFormat} for
 	 * @return the {@code MessageFormat} instance
@@ -161,9 +149,8 @@ public abstract class MessageSourceSupport {
 	}
 
 	/**
-	 * Template method for resolving argument objects.
-	 * <p>The default implementation simply returns the given argument array as-is.
-	 * Can be overridden in subclasses in order to resolve special argument types.
+	 * 用于解析参数对象的模板方法。
+	 * <p>默认实现只是原样返回给定的参数数组。可在子类中覆盖，以解析特殊类型的参数。
 	 * @param args the original argument array
 	 * @param locale the Locale to resolve against
 	 * @return the resolved argument array

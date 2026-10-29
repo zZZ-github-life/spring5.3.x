@@ -23,17 +23,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.lang.Nullable;
 
 /**
- * Provides additional methods for dealing with multipart content within a
- * servlet request, allowing to access uploaded files.
- * Implementations also need to override the standard
- * {@link javax.servlet.ServletRequest} methods for parameter access, making
- * multipart parameters available.
+ * 提供额外的方法来处理 Servlet 请求中的 multipart 内容，从而可以访问上传的文件。
+ * 实现类还需要重写用于参数访问的标准
+ * {@link javax.servlet.ServletRequest} 方法，使 multipart 参数可用。
  *
- * <p>A concrete implementation is
- * {@link org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest}.
- * As an intermediate step,
- * {@link org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest}
- * can be subclassed.
+ * <p>具体实现是
+ * {@link org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest}。
+ * 作为中间步骤，可以继承
+ * {@link org.springframework.web.multipart.support.AbstractMultipartHttpServletRequest}。
  *
  * @author Juergen Hoeller
  * @author Trevor D. Cook
@@ -49,21 +46,20 @@ import org.springframework.lang.Nullable;
 public interface MultipartHttpServletRequest extends HttpServletRequest, MultipartRequest {
 
 	/**
-	 * Return this request's method as a convenient HttpMethod instance.
+	 * 以便捷的 HttpMethod 实例形式返回此请求的方法。
 	 */
 	@Nullable
 	HttpMethod getRequestMethod();
 
 	/**
-	 * Return this request's headers as a convenient HttpHeaders instance.
+	 * 以便捷的 HttpHeaders 实例形式返回此请求的请求头。
 	 */
 	HttpHeaders getRequestHeaders();
 
 	/**
-	 * Return the headers for the specified part of the multipart request.
-	 * <p>If the underlying implementation supports access to part headers,
-	 * then all headers are returned. Otherwise, e.g. for a file upload, the
-	 * returned headers may expose a 'Content-Type' if available.
+	 * 返回 multipart 请求中指定部分的请求头。
+	 * <p>如果底层实现支持访问部分（part）的请求头，则返回所有请求头。
+	 * 否则（例如对于文件上传），返回的请求头可能只包含可用的 'Content-Type'。
 	 */
 	@Nullable
 	HttpHeaders getMultipartHeaders(String paramOrFileName);

@@ -25,10 +25,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Subclass of {@link MutablePersistenceUnitInfo} that adds instrumentation hooks based on
- * Spring's {@link org.springframework.instrument.classloading.LoadTimeWeaver} abstraction.
+ * {@link MutablePersistenceUnitInfo} 的子类，
+ * 基于 Spring 的 {@link org.springframework.instrument.classloading.LoadTimeWeaver}
+ * 抽象添加了插桩钩子。
  *
- * <p>This class is restricted to package visibility, in contrast to its superclass.
+ * <p>与其超类不同，此类的可见性限制为包级。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -46,8 +47,8 @@ class SpringPersistenceUnitInfo extends MutablePersistenceUnitInfo {
 
 
 	/**
-	 * Initialize this PersistenceUnitInfo with the LoadTimeWeaver SPI interface
-	 * used by Spring to add instrumentation to the current class loader.
+	 * 使用 Spring 向当前类加载器添加插桩所用的 LoadTimeWeaver SPI 接口
+	 * 初始化此 PersistenceUnitInfo。
 	 */
 	public void init(LoadTimeWeaver loadTimeWeaver) {
 		Assert.notNull(loadTimeWeaver, "LoadTimeWeaver must not be null");
@@ -56,8 +57,8 @@ class SpringPersistenceUnitInfo extends MutablePersistenceUnitInfo {
 	}
 
 	/**
-	 * Initialize this PersistenceUnitInfo with the current class loader
-	 * (instead of with a LoadTimeWeaver).
+	 * 使用当前类加载器初始化此 PersistenceUnitInfo
+	 * （而不是使用 LoadTimeWeaver）。
 	 */
 	public void init(@Nullable ClassLoader classLoader) {
 		this.classLoader = classLoader;
@@ -65,8 +66,7 @@ class SpringPersistenceUnitInfo extends MutablePersistenceUnitInfo {
 
 
 	/**
-	 * This implementation returns the LoadTimeWeaver's instrumentable ClassLoader,
-	 * if specified.
+	 * 此实现返回 LoadTimeWeaver 的可插桩 ClassLoader（如果已指定）。
 	 */
 	@Override
 	@Nullable
@@ -75,7 +75,7 @@ class SpringPersistenceUnitInfo extends MutablePersistenceUnitInfo {
 	}
 
 	/**
-	 * This implementation delegates to the LoadTimeWeaver, if specified.
+	 * 此实现委托给 LoadTimeWeaver（如果已指定）。
 	 */
 	@Override
 	public void addTransformer(ClassTransformer classTransformer) {
@@ -86,7 +86,7 @@ class SpringPersistenceUnitInfo extends MutablePersistenceUnitInfo {
 	}
 
 	/**
-	 * This implementation delegates to the LoadTimeWeaver, if specified.
+	 * 此实现委托给 LoadTimeWeaver（如果已指定）。
 	 */
 	@Override
 	public ClassLoader getNewTempClassLoader() {

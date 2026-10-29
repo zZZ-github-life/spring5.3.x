@@ -21,8 +21,7 @@ import javax.jms.JMSException;
 import org.springframework.jms.JmsException;
 
 /**
- * Exception thrown when a synchronized local transaction failed to complete
- * (after the main transaction has already completed).
+ * 当同步的本地事务未能完成时（在主事务已经完成之后）抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -32,7 +31,7 @@ import org.springframework.jms.JmsException;
 public class SynchedLocalTransactionFailedException extends JmsException {
 
 	/**
-	 * Create a new SynchedLocalTransactionFailedException.
+	 * 创建一个新的 SynchedLocalTransactionFailedException。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

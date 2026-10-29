@@ -20,15 +20,15 @@ import org.springframework.lang.Nullable;
 
 /**
  * <p>
- * Strategy interface for retrieving <em>profile values</em> for a given
- * testing environment.
+ * 用于为给定测试环境检索<em>配置值</em>的
+ * 策略接口。
  * </p>
  * <p>
- * Concrete implementations must provide a {@code public} no-args
- * constructor.
+ * 具体实现必须提供 {@code public} 无参
+ * 构造函数。
  * </p>
  * <p>
- * Spring provides the following out-of-the-box implementations:
+ * Spring 提供以下开箱即用的实现：
  * </p>
  * <ul>
  * <li>{@link SystemProfileValueSource}</li>
@@ -44,7 +44,7 @@ import org.springframework.lang.Nullable;
 public interface ProfileValueSource {
 
 	/**
-	 * Get the <em>profile value</em> indicated by the specified key.
+	 * 获取由指定键指示的<em>配置值</em>。
 	 * @param key the name of the <em>profile value</em>
 	 * @return the String value of the <em>profile value</em>, or {@code null}
 	 * if there is no <em>profile value</em> with that key

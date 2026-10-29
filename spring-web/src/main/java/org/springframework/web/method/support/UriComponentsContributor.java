@@ -24,9 +24,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Strategy for contributing to the building of a {@link UriComponents} by
- * looking at a method parameter and an argument value and deciding what
- * part of the target URL should be updated.
+ * 用于参与构建 {@link UriComponents} 的策略：通过检查方法参数和参数值，
+ * 决定应更新目标 URL 的哪个部分。
  *
  * @author Oliver Gierke
  * @author Rossen Stoyanchev
@@ -35,14 +34,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 public interface UriComponentsContributor {
 
 	/**
-	 * Whether this contributor supports the given method parameter.
+	 * 此贡献器是否支持给定的方法参数。
 	 */
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
-	 * Process the given method argument and either update the
-	 * {@link UriComponentsBuilder} or add to the map with URI variables
-	 * to use to expand the URI after all arguments are processed.
+	 * 处理方法参数，并更新 {@link UriComponentsBuilder}，
+	 * 或向 URI 变量映射中添加内容，以便在所有参数处理完毕后展开 URI。
 	 * @param parameter the controller method parameter (never {@code null})
 	 * @param value the argument value (possibly {@code null})
 	 * @param builder the builder to update (never {@code null})

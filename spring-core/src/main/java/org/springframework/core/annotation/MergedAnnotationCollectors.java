@@ -31,8 +31,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link Collector} implementations that provide various reduction operations for
- * {@link MergedAnnotation} instances.
+ * 为 {@link MergedAnnotation} 实例提供各种归约操作的 {@link Collector} 实现。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -50,12 +49,10 @@ public abstract class MergedAnnotationCollectors {
 
 
 	/**
-	 * Create a new {@link Collector} that accumulates merged annotations to a
-	 * {@link LinkedHashSet} containing {@linkplain MergedAnnotation#synthesize()
-	 * synthesized} versions.
-	 * <p>The collector returned by this method is effectively equivalent to
-	 * {@code Collectors.mapping(MergedAnnotation::synthesize, Collectors.toCollection(LinkedHashSet::new))}
-	 * but avoids the creation of a composite collector.
+	 * 创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}
+	 * 版本的 {@link LinkedHashSet} 中。<p>此方法返回的收集器实际上等同于
+	 * {@code Collectors.mapping(MergedAnnotation::synthesize, Collectors.toCollection(LinkedHashSet::new))}，
+	 * 但避免了创建复合收集器。
 	 * @param <A> the annotation type
 	 * @return a {@link Collector} which collects and synthesizes the
 	 * annotations into a {@link Set}
@@ -66,9 +63,8 @@ public abstract class MergedAnnotationCollectors {
 	}
 
 	/**
-	 * Create a new {@link Collector} that accumulates merged annotations to an
-	 * {@link Annotation} array containing {@linkplain MergedAnnotation#synthesize()
-	 * synthesized} versions.
+	 * 创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}
+	 * 版本的 {@link Annotation} 数组中。
 	 * @param <A> the annotation type
 	 * @return a {@link Collector} which collects and synthesizes the
 	 * annotations into an {@code Annotation[]}
@@ -79,9 +75,8 @@ public abstract class MergedAnnotationCollectors {
 	}
 
 	/**
-	 * Create a new {@link Collector} that accumulates merged annotations to an
-	 * {@link Annotation} array containing {@linkplain MergedAnnotation#synthesize()
-	 * synthesized} versions.
+	 * 创建新的 {@link Collector}，将合并注解累积到包含 {@linkplain MergedAnnotation#synthesize() 合成}
+	 * 版本的 {@link Annotation} 数组中。
 	 * @param <A> the annotation type
 	 * @param <R> the resulting array type
 	 * @param generator a function which produces a new array of the desired
@@ -98,10 +93,9 @@ public abstract class MergedAnnotationCollectors {
 	}
 
 	/**
-	 * Create a new {@link Collector} that accumulates merged annotations to a
-	 * {@link MultiValueMap} with items {@linkplain MultiValueMap#add(Object, Object)
-	 * added} from each merged annotation
-	 * {@linkplain MergedAnnotation#asMap(Adapt...) as a map}.
+	 * 创建新的 {@link Collector}，将合并注解累积到 {@link MultiValueMap} 中，其条目由每个合并注解
+	 * {@linkplain MergedAnnotation#asMap(Adapt...) 作为映射}
+	 * {@linkplain MultiValueMap#add(Object, Object) 添加}。
 	 * @param <A> the annotation type
 	 * @param adaptations the adaptations that should be applied to the annotation values
 	 * @return a {@link Collector} which collects and synthesizes the
@@ -115,10 +109,9 @@ public abstract class MergedAnnotationCollectors {
 	}
 
 	/**
-	 * Create a new {@link Collector} that accumulates merged annotations to a
-	 * {@link MultiValueMap} with items {@linkplain MultiValueMap#add(Object, Object)
-	 * added} from each merged annotation
-	 * {@linkplain MergedAnnotation#asMap(Adapt...) as a map}.
+	 * 创建新的 {@link Collector}，将合并注解累积到 {@link MultiValueMap} 中，其条目由每个合并注解
+	 * {@linkplain MergedAnnotation#asMap(Adapt...) 作为映射}
+	 * {@linkplain MultiValueMap#add(Object, Object) 添加}。
 	 * @param <A> the annotation type
 	 * @param finisher the finisher function for the new {@link MultiValueMap}
 	 * @param adaptations the adaptations that should be applied to the annotation values
@@ -143,9 +136,8 @@ public abstract class MergedAnnotationCollectors {
 	}
 
 	/**
-	 * {@link Collector#combiner() Combiner} for collections.
-	 * <p>This method is only invoked if the {@link java.util.stream.Stream} is
-	 * processed in {@linkplain java.util.stream.Stream#parallel() parallel}.
+	 * 用于集合的 {@link Collector#combiner() Combiner}。<p>仅当 {@link java.util.stream.Stream} 以
+	 * {@linkplain java.util.stream.Stream#parallel() 并行}方式处理时才会调用此方法。
 	 */
 	private static <E, C extends Collection<E>> C combiner(C collection, C additions) {
 		collection.addAll(additions);
@@ -153,9 +145,8 @@ public abstract class MergedAnnotationCollectors {
 	}
 
 	/**
-	 * {@link Collector#combiner() Combiner} for multi-value maps.
-	 * <p>This method is only invoked if the {@link java.util.stream.Stream} is
-	 * processed in {@linkplain java.util.stream.Stream#parallel() parallel}.
+	 * 用于多值映射的 {@link Collector#combiner() Combiner}。<p>仅当 {@link java.util.stream.Stream} 以
+	 * {@linkplain java.util.stream.Stream#parallel() 并行}方式处理时才会调用此方法。
 	 */
 	private static <K, V> MultiValueMap<K, V> combiner(MultiValueMap<K, V> map, MultiValueMap<K, V> additions) {
 		map.addAll(additions);

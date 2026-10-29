@@ -28,8 +28,7 @@ import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionAttribute;
 
 /**
- * Strategy implementation for parsing EJB3's {@link javax.ejb.TransactionAttribute}
- * annotation.
+ * 用于解析EJB3的{@link javax.ejb.TransactionAttribute}注解的策略实现。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -71,8 +70,7 @@ public class Ejb3TransactionAnnotationParser implements TransactionAnnotationPar
 
 
 	/**
-	 * EJB3-specific TransactionAttribute, implementing EJB3's rollback rules
-	 * which are based on annotated exceptions.
+	 * EJB3特定的TransactionAttribute, 实现EJB3基于注解异常的回滚规则。
 	 */
 	private static class Ejb3TransactionAttribute extends DefaultTransactionAttribute {
 

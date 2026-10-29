@@ -26,9 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@code RequestExpectation} that simply delegates
- * to the request matchers and the response creator it contains.
- *
+ * 默认的 {@code RequestExpectation} 实现，仅委托给它所包含的
+ * 请求匹配器和响应创建器。
  * @author Rossen Stoyanchev
  * @since 4.3
  */
@@ -43,8 +42,8 @@ public class DefaultRequestExpectation implements RequestExpectation {
 
 
 	/**
-	 * Create a new request expectation that should be called a number of times
-	 * as indicated by {@code RequestCount}.
+	 * 创建一个新的请求预期，其应被调用一定次数，
+	 * 次数由 {@code RequestCount} 指示。
 	 * @param expectedCount the expected request expectedCount
 	 */
 	public DefaultRequestExpectation(ExpectedCount expectedCount, RequestMatcher requestMatcher) {
@@ -89,10 +88,9 @@ public class DefaultRequestExpectation implements RequestExpectation {
 	}
 
 	/**
-	 * Note that as of 5.0.3, the creation of the response, which may block
-	 * intentionally, is separated from request count tracking, and this
-	 * method no longer increments the count transparently. Instead
-	 * {@link #incrementAndValidate()} must be invoked independently.
+	 * 注意，从 5.0.3 开始，响应的创建（可能会刻意阻塞）已与请求计数跟踪分离，
+	 * 此方法不再透明地递增计数。相反，必须独立调用
+	 * {@link #incrementAndValidate()}。
 	 */
 	@Override
 	public ClientHttpResponse createResponse(@Nullable ClientHttpRequest request) throws IOException {
@@ -118,7 +116,7 @@ public class DefaultRequestExpectation implements RequestExpectation {
 
 
 	/**
-	 * Helper class that keeps track of actual vs expected request count.
+	 * 用于跟踪实际请求数与预期请求数的辅助类。
 	 */
 	protected static class RequestCount {
 

@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.NumberUtils;
 
 /**
- * Implements division operator.
+ * 实现除法运算符。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

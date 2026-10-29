@@ -1,7 +1,7 @@
 /**
- * Support classes for SockJS including an
+ * SockJS 的支持类，包括一个
  * {@link org.springframework.web.socket.sockjs.support.AbstractSockJsService}
- * implementation.
+ * 实现。
  */
 @NonNullApi
 @NonNullFields

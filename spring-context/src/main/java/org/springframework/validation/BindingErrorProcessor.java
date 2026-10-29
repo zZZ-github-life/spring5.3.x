@@ -19,17 +19,14 @@ package org.springframework.validation;
 import org.springframework.beans.PropertyAccessException;
 
 /**
- * Strategy for processing {@code DataBinder}'s missing field errors,
- * and for translating a {@code PropertyAccessException} to a
- * {@code FieldError}.
+ * 用于处理 {@code DataBinder} 的缺失字段错误，以及将 {@code PropertyAccessException} 转换为
+ * {@code FieldError} 的策略。
  *
- * <p>The error processor is pluggable so you can treat errors differently
- * if you want to. A default implementation is provided for typical needs.
+ * <p>错误处理器是可插拔的，因此您可以根据需要以不同方式处理错误。为典型需求提供了默认实现。
  *
- * <p>Note: As of Spring 2.0, this interface operates on a given BindingResult,
- * to be compatible with any binding strategy (bean property, direct field access, etc).
- * It can still receive a BindException as argument (since a BindException implements
- * the BindingResult interface as well) but no longer operates on it directly.
+ * <p>注意：从 Spring 2.0 起，此接口作用于给定的 BindingResult，以兼容任何绑定策略（Bean 属性、直接
+ * 字段访问等）。它仍然可以接收 BindException 作为参数（因为 BindException 也实现了 BindingResult
+ * 接口），但不再直接作用于它。
  *
  * @author Alef Arendsen
  * @author Juergen Hoeller
@@ -42,8 +39,7 @@ import org.springframework.beans.PropertyAccessException;
 public interface BindingErrorProcessor {
 
 	/**
-	 * Apply the missing field error to the given BindException.
-	 * <p>Usually, a field error is created for a missing required field.
+	 * 将缺失字段错误应用到给定的 BindException。<p>通常，会为缺失的必填字段创建字段错误。
 	 * @param missingField the field that was missing during binding
 	 * @param bindingResult the errors object to add the error(s) to.
 	 * You can add more than just one error or maybe even ignore it.
@@ -55,11 +51,9 @@ public interface BindingErrorProcessor {
 	void processMissingFieldError(String missingField, BindingResult bindingResult);
 
 	/**
-	 * Translate the given {@code PropertyAccessException} to an appropriate
-	 * error registered on the given {@code Errors} instance.
-	 * <p>Note that two error types are available: {@code FieldError} and
-	 * {@code ObjectError}. Usually, field errors are created, but in certain
-	 * situations one might want to create a global {@code ObjectError} instead.
+	 * 将给定的 {@code PropertyAccessException} 转换为注册在给定 {@code Errors} 实例上的适当错误。<p>请
+	 * 注意，有两种可用的错误类型：{@code FieldError} 和 {@code ObjectError}。通常会创建字段错误，但在
+	 * 某些情况下可能希望改为创建全局的 {@code ObjectError}。
 	 * @param ex the {@code PropertyAccessException} to translate
 	 * @param bindingResult the errors object to add the error(s) to.
 	 * You can add more than just one error or maybe even ignore it.

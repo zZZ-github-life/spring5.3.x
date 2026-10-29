@@ -27,16 +27,16 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.util.NestedServletException;
 
 /**
- * Servlet-API-based HTTP request handler that exports the specified service bean
- * as Hessian service endpoint, accessible via a Hessian proxy.
+ * 基于 Servlet API 的 HTTP 请求处理器，将指定的服务 bean 导出为
+ * Hessian 服务端点，可通过 Hessian 代理访问。
  *
- * <p>Hessian is a slim, binary RPC protocol.
- * For information on Hessian, see the
- * <a href="http://hessian.caucho.com">Hessian website</a>.
- * <b>Note: As of Spring 4.0, this exporter requires Hessian 4.0 or above.</b>
+ * <p>Hessian 是一种轻量级二进制 RPC 协议。
+ * 有关 Hessian 的信息，请参阅
+ * <a href="http://hessian.caucho.com">Hessian 网站</a>。
+ * <b>注意：从 Spring 4.0 起，此导出器要求 Hessian 4.0 或更高版本。</b>
  *
- * <p>Hessian services exported with this class can be accessed by
- * any Hessian client, as there isn't any special handling involved.
+ * <p>使用此类导出的 Hessian 服务可由任何 Hessian 客户端访问，
+ * 因为其中不涉及任何特殊处理。
  *
  * @author Juergen Hoeller
  * @since 13.05.2003
@@ -50,7 +50,7 @@ import org.springframework.web.util.NestedServletException;
 public class HessianServiceExporter extends HessianExporter implements HttpRequestHandler {
 
 	/**
-	 * Processes the incoming Hessian request and creates a Hessian response.
+	 * 处理传入的 Hessian 请求并创建 Hessian 响应。
 	 */
 	@Override
 	public void handleRequest(HttpServletRequest request, HttpServletResponse response)

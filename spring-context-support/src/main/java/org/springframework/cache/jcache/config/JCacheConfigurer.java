@@ -21,17 +21,7 @@ import org.springframework.cache.interceptor.CacheResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of {@link CachingConfigurer} for the JSR-107 implementation.
- *
- * <p>To be implemented by classes annotated with
- * {@link org.springframework.cache.annotation.EnableCaching} that wish
- * or need to specify explicitly how exception caches are resolved for
- * annotation-driven cache management.
- *
- * <p>See {@link org.springframework.cache.annotation.EnableCaching} for
- * general examples and context; see {@link #exceptionCacheResolver()} for
- * detailed instructions.
- *
+ * JSR-107 实现的 {@link CachingConfigurer} 扩展。<p>由标注了 {@link org.springframework.cache.annotation.EnableCaching} 并希望或需要显式指定如何为注解驱动的缓存管理解析异常缓存的类实现。<p>一般示例和上下文请参见 {@link org.springframework.cache.annotation.EnableCaching}；详细说明请参见 {@link #exceptionCacheResolver()}。
  * @author Stephane Nicoll
  * @since 4.1
  * @see CachingConfigurer
@@ -40,9 +30,8 @@ import org.springframework.lang.Nullable;
 public interface JCacheConfigurer extends CachingConfigurer {
 
 	/**
-	 * Return the {@link CacheResolver} bean to use to resolve exception caches for
-	 * annotation-driven cache management. Implementations must explicitly declare
-	 * {@link org.springframework.context.annotation.Bean @Bean}, e.g.
+	 * 返回用于为注解驱动的缓存管理解析异常缓存的 {@link CacheResolver} bean。
+	 * 实现必须显式声明 {@link org.springframework.context.annotation.Bean @Bean}，例如
 	 * <pre class="code">
 	 * &#064;Configuration
 	 * &#064;EnableCaching
@@ -55,7 +44,7 @@ public interface JCacheConfigurer extends CachingConfigurer {
 	 *     // ...
 	 * }
 	 * </pre>
-	 * See {@link org.springframework.cache.annotation.EnableCaching} for more complete examples.
+	 * 更完整的示例请参见 {@link org.springframework.cache.annotation.EnableCaching}。
 	 */
 	@Nullable
 	default CacheResolver exceptionCacheResolver() {

@@ -40,9 +40,9 @@ import org.springframework.messaging.handler.invocation.MethodArgumentResolution
 import org.springframework.util.ObjectUtils;
 
 /**
- * Extension of {@link HandlerMethod} that invokes the underlying method with
- * argument values resolved from the current HTTP request through a list of
- * {@link HandlerMethodArgumentResolver}.
+ * {@link HandlerMethod} 的扩展，它使用通过一组
+ * {@link HandlerMethodArgumentResolver} 从当前 HTTP 请求解析出的参数值
+ * 来调用底层方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -62,14 +62,14 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Create an instance from a {@code HandlerMethod}.
+	 * 从 {@code HandlerMethod} 创建实例。
 	 */
 	public InvocableHandlerMethod(HandlerMethod handlerMethod) {
 		super(handlerMethod);
 	}
 
 	/**
-	 * Create an instance from a bean instance and a method.
+	 * 从 Bean 实例和方法创建实例。
 	 */
 	public InvocableHandlerMethod(Object bean, Method method) {
 		super(bean, method);
@@ -77,39 +77,38 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Configure the argument resolvers to use for resolving method
-	 * argument values against a {@code ServerWebExchange}.
+	 * 配置用于针对 {@code ServerWebExchange} 解析方法参数值的参数解析器。
 	 */
 	public void setArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 		this.resolvers.addResolvers(resolvers);
 	}
 
 	/**
-	 * Return the configured argument resolvers.
+	 * 返回已配置的参数解析器。
 	 */
 	public List<HandlerMethodArgumentResolver> getResolvers() {
 		return this.resolvers.getResolvers();
 	}
 
 	/**
-	 * Set the ParameterNameDiscoverer for resolving parameter names when needed
-	 * (e.g. default request attribute name).
-	 * <p>Default is a {@link DefaultParameterNameDiscoverer}.
+	 * 设置 ParameterNameDiscoverer，以便在需要时解析参数名称
+	 * （例如默认请求属性名称）。
+	 * <p>默认为 {@link DefaultParameterNameDiscoverer}。
 	 */
 	public void setParameterNameDiscoverer(ParameterNameDiscoverer nameDiscoverer) {
 		this.parameterNameDiscoverer = nameDiscoverer;
 	}
 
 	/**
-	 * Return the configured parameter name discoverer.
+	 * 返回已配置的参数名称发现器。
 	 */
 	public ParameterNameDiscoverer getParameterNameDiscoverer() {
 		return this.parameterNameDiscoverer;
 	}
 
 	/**
-	 * Configure a reactive adapter registry. This is needed for async return values.
-	 * <p>By default this is a {@link ReactiveAdapterRegistry} with default settings.
+	 * 配置响应式适配器注册表。异步返回值需要它。
+	 * <p>默认情况下，这是使用默认设置的 {@link ReactiveAdapterRegistry}。
 	 */
 	public void setReactiveAdapterRegistry(ReactiveAdapterRegistry registry) {
 		this.reactiveAdapterRegistry = registry;
@@ -117,7 +116,7 @@ public class InvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Invoke the method for the given exchange.
+	 * 为给定交换调用该方法。
 	 * @param message the current message
 	 * @param providedArgs optional list of argument values to match by type
 	 * @return a Mono with the result from the invocation

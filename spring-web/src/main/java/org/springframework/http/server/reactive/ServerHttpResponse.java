@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Represents a reactive server-side HTTP response.
+ * 表示响应式服务器端 HTTP 响应。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -33,7 +33,7 @@ import org.springframework.util.MultiValueMap;
 public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 
 	/**
-	 * Set the HTTP status code of the response.
+	 * 设置响应的 HTTP 状态码。
 	 * @param status the HTTP status as an {@link HttpStatus} enum value
 	 * @return {@code false} if the status code change wasn't processed because
 	 * the HTTP response is committed, {@code true} if successfully set.
@@ -41,18 +41,16 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 	boolean setStatusCode(@Nullable HttpStatus status);
 
 	/**
-	 * Return the status code that has been set, or otherwise fall back on the
-	 * status of the response from the underlying server. The return value may
-	 * be {@code null} if the status code value is outside the
-	 * {@link HttpStatus} enum range, or if there is no default value from the
-	 * underlying server.
+	 * 返回已设置的状态码，否则回退到底层服务器的响应状态。
+	 * 如果状态码值超出 {@link HttpStatus} 枚举范围，或者底层服务器
+	 * 没有默认值，则返回值可能为 {@code null}。
 	 */
 	@Nullable
 	HttpStatus getStatusCode();
 
 	/**
-	 * Set the HTTP status code to the given value (potentially non-standard and
-	 * not resolvable through the {@link HttpStatus} enum) as an integer.
+	 * 将 HTTP 状态码设置为给定的整数值（可能为非标准值，
+	 * 无法通过 {@link HttpStatus} 枚举解析）。
 	 * @param value the status code value
 	 * @return {@code false} if the status code change wasn't processed because
 	 * the HTTP response is committed, {@code true} if successfully set.
@@ -73,9 +71,8 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 	}
 
 	/**
-	 * Return the status code that has been set, or otherwise fall back on the
-	 * status of the response from the underlying server. The return value may
-	 * be {@code null} if there is no default value from the underlying server.
+	 * 返回已设置的状态码，否则回退到底层服务器的响应状态。
+	 * 如果底层服务器没有默认值，则返回值可能为 {@code null}。
 	 * @since 5.2.4
 	 */
 	@Nullable
@@ -85,12 +82,12 @@ public interface ServerHttpResponse extends ReactiveHttpOutputMessage {
 	}
 
 	/**
-	 * Return a mutable map with the cookies to send to the server.
+	 * 返回要发送到服务器的 cookie 的可变 Map。
 	 */
 	MultiValueMap<String, ResponseCookie> getCookies();
 
 	/**
-	 * Add the given {@code ResponseCookie}.
+	 * 添加给定的 {@code ResponseCookie}。
 	 * @param cookie the cookie to add
 	 * @throws IllegalStateException if the response has already been committed
 	 */

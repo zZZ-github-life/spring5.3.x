@@ -17,10 +17,8 @@
 package org.springframework.cglib.core;
 
 /**
- * CGLIB GeneratorStrategy variant which exposes the application ClassLoader
- * as current thread context ClassLoader for the time of class generation.
- * The ASM ClassWriter in Spring's ASM variant will pick it up when doing
- * common superclass resolution.
+ * CGLIB GeneratorStrategy 的变体，在生成类期间将应用程序 ClassLoader 暴露为当前线程上下文
+ * ClassLoader。Spring 的 ASM 变体中的 ASM ClassWriter 在进行公共超类解析时会使用它。
  *
  * @author Juergen Hoeller
  * @since 5.2

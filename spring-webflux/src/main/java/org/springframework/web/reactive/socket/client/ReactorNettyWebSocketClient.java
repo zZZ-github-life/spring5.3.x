@@ -37,7 +37,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
 import org.springframework.web.reactive.socket.adapter.ReactorNettyWebSocketSession;
 
 /**
- * {@link WebSocketClient} implementation for use with Reactor Netty.
+ * 与 Reactor Netty 配合使用的 {@link WebSocketClient} 实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -59,15 +59,15 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 
 
 	/**
-	 * Default constructor.
+	 * 默认构造函数。
 	 */
 	public ReactorNettyWebSocketClient() {
 		this(HttpClient.create());
 	}
 
 	/**
-	 * Constructor that accepts an existing {@link HttpClient} builder
-	 * with a default {@link reactor.netty.http.client.WebsocketClientSpec.Builder}.
+	 * 接受现有 {@link HttpClient} 构建器并附带默认的
+	 * {@link reactor.netty.http.client.WebsocketClientSpec.Builder} 的构造函数。
 	 * @since 5.1
 	 */
 	public ReactorNettyWebSocketClient(HttpClient httpClient) {
@@ -75,8 +75,8 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Constructor that accepts an existing {@link HttpClient} builder
-	 * and a pre-configured {@link reactor.netty.http.client.WebsocketClientSpec.Builder}.
+	 * 接受现有 {@link HttpClient} 构建器以及预先配置的
+	 * {@link reactor.netty.http.client.WebsocketClientSpec.Builder} 的构造函数。
 	 * @since 5.3
 	 */
 	public ReactorNettyWebSocketClient(
@@ -90,17 +90,15 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 
 
 	/**
-	 * Return the configured {@link HttpClient}.
+	 * 返回配置的 {@link HttpClient}。
 	 */
 	public HttpClient getHttpClient() {
 		return this.httpClient;
 	}
 
 	/**
-	 * Build an instance of {@code WebsocketClientSpec} that reflects the current
-	 * configuration. This can be used to check the configured parameters except
-	 * for sub-protocols which depend on the {@link WebSocketHandler} that is used
-	 * for a given upgrade.
+	 * 构建一个反映当前配置的 {@code WebsocketClientSpec} 实例。可用于检查已配置的
+	 * 参数，但子协议除外，因为子协议取决于用于给定升级的 {@link WebSocketHandler}。
 	 * @since 5.3
 	 */
 	public WebsocketClientSpec getWebsocketClientSpec() {
@@ -122,13 +120,12 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Configure the maximum allowable frame payload length. Setting this value
-	 * to your application's requirement may reduce denial of service attacks
-	 * using long data frames.
-	 * <p>Corresponds to the argument with the same name in the constructor of
+	 * 配置允许的最大帧负载长度。将此值设置为应用程序所需的值，可以减少利用长数据帧
+	 * 进行的拒绝服务攻击。
+	 * <p>对应于 Netty 中
 	 * {@link io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory
-	 * WebSocketServerHandshakerFactory} in Netty.
-	 * <p>By default set to 65536 (64K).
+	 * WebSocketServerHandshakerFactory} 构造函数中同名参数。
+	 * <p>默认设置为 65536 (64K)。
 	 * @param maxFramePayloadLength the max length for frames.
 	 * @since 5.2
 	 * @deprecated as of 5.3 in favor of providing a supplier of
@@ -141,7 +138,7 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Return the configured {@link #setMaxFramePayloadLength(int) maxFramePayloadLength}.
+	 * 返回配置的 {@link #setMaxFramePayloadLength(int) maxFramePayloadLength}。
 	 * @since 5.2
 	 * @deprecated as of 5.3 in favor of {@link #getWebsocketClientSpec()}
 	 */
@@ -151,13 +148,11 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Configure whether to let ping frames through to be handled by the
-	 * {@link WebSocketHandler} given to the execute method. By default, Reactor
-	 * Netty automatically replies with pong frames in response to pings. This is
-	 * useful in a proxy for allowing ping and pong frames through.
-	 * <p>By default this is set to {@code false} in which case ping frames are
-	 * handled automatically by Reactor Netty. If set to {@code true}, ping
-	 * frames will be passed through to the {@link WebSocketHandler}.
+	 * 配置是否让 ping 帧传递到传递给 execute 方法的 {@link WebSocketHandler}
+	 * 进行处理。默认情况下，Reactor Netty 会自动回复 pong 帧以响应 ping。
+	 * 这在代理中允许 ping 和 pong 帧通过时很有用。
+	 * <p>默认情况下此值为 {@code false}，此时 ping 帧由 Reactor Netty 自动处理。
+	 * 如果设置为 {@code true}，ping 帧将传递给 {@link WebSocketHandler}。
 	 * @param handlePing whether to let Ping frames through for handling
 	 * @since 5.2.4
 	 * @deprecated as of 5.3 in favor of providing a supplier of
@@ -170,7 +165,7 @@ public class ReactorNettyWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Return the configured {@link #setHandlePing(boolean)}.
+	 * 返回配置的 {@link #setHandlePing(boolean)}。
 	 * @since 5.2.4
 	 * @deprecated as of 5.3 in favor of {@link #getWebsocketClientSpec()}
 	 */

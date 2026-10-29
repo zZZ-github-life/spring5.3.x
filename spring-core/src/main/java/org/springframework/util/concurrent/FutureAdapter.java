@@ -25,9 +25,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract class that adapts a {@link Future} parameterized over S into a {@code Future}
- * parameterized over T. All methods are delegated to the adaptee, where {@link #get()}
- * and {@link #get(long, TimeUnit)} call {@link #adapt(Object)} on the adaptee's result.
+ * 抽象类，将参数类型为 S 的 {@link Future} 适配为参数类型为 T 的 {@code Future}。所有方法都委托给
+ * 被适配对象，其中 {@link #get()} 和 {@link #get(long, TimeUnit)} 会对被适配对象的结果调用
+ * {@link #adapt(Object)}。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -47,7 +47,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 
 
 	/**
-	 * Constructs a new {@code FutureAdapter} with the given adaptee.
+	 * 使用给定的被适配对象构造一个新的 {@code FutureAdapter}。
 	 * @param adaptee the future to delegate to
 	 */
 	protected FutureAdapter(Future<S> adaptee) {
@@ -57,7 +57,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 
 
 	/**
-	 * Returns the adaptee.
+	 * 返回被适配对象。
 	 */
 	protected Future<S> getAdaptee() {
 		return this.adaptee;
@@ -125,7 +125,7 @@ public abstract class FutureAdapter<T, S> implements Future<T> {
 	}
 
 	/**
-	 * Adapts the given adaptee's result into T.
+	 * 将给定被适配对象的结果适配为 T。
 	 * @return the adapted result
 	 */
 	@Nullable

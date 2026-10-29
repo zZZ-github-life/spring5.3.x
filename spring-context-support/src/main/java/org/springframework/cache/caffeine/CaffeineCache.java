@@ -26,11 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Spring {@link org.springframework.cache.Cache} adapter implementation
- * on top of a Caffeine {@link com.github.benmanes.caffeine.cache.Cache} instance.
- *
- * <p>Requires Caffeine 2.1 or higher.
- *
+ * 基于 Caffeine {@link com.github.benmanes.caffeine.cache.Cache} 实例的 Spring {@link org.springframework.cache.Cache} 适配器实现。<p>需要 Caffeine 2.1 或更高版本。
  * @author Ben Manes
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -45,8 +41,7 @@ public class CaffeineCache extends AbstractValueAdaptingCache {
 
 
 	/**
-	 * Create a {@link CaffeineCache} instance with the specified name and the
-	 * given internal {@link com.github.benmanes.caffeine.cache.Cache} to use.
+	 * 使用指定名称和给定的内部 {@link com.github.benmanes.caffeine.cache.Cache} 创建 {@link CaffeineCache} 实例。
 	 * @param name the name of the cache
 	 * @param cache the backing Caffeine Cache instance
 	 */
@@ -55,8 +50,7 @@ public class CaffeineCache extends AbstractValueAdaptingCache {
 	}
 
 	/**
-	 * Create a {@link CaffeineCache} instance with the specified name and the
-	 * given internal {@link com.github.benmanes.caffeine.cache.Cache} to use.
+	 * 使用指定名称和给定的内部 {@link com.github.benmanes.caffeine.cache.Cache} 创建 {@link CaffeineCache} 实例。
 	 * @param name the name of the cache
 	 * @param cache the backing Caffeine Cache instance
 	 * @param allowNullValues whether to accept and convert {@code null}

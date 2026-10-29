@@ -1,5 +1,5 @@
 /**
- * Support for styling values as Strings, with ToStringCreator as central class.
+ * 支持将值格式化为 String，核心类是 ToStringCreator。
  */
 @NonNullApi
 @NonNullFields

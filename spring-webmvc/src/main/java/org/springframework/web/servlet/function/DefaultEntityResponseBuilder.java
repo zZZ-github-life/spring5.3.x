@@ -65,7 +65,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Default {@link EntityResponse.Builder} implementation.
+ * 默认的 {@link EntityResponse.Builder} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -220,14 +220,14 @@ final class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T>
 
 
 	/**
-	 * Return a new {@link EntityResponse.Builder} from the given object.
+	 * 根据给定对象返回新的 {@link EntityResponse.Builder}。
 	 */
 	public static <T> EntityResponse.Builder<T> fromObject(T t) {
 		return new DefaultEntityResponseBuilder<>(t, null);
 	}
 
 	/**
-	 * Return a new {@link EntityResponse.Builder} from the given object and type reference.
+	 * 根据给定对象和类型引用返回新的 {@link EntityResponse.Builder}。
 	 */
 	public static <T> EntityResponse.Builder<T> fromObject(T t, ParameterizedTypeReference<?> bodyType) {
 		return new DefaultEntityResponseBuilder<>(t, bodyType.getType());
@@ -235,7 +235,7 @@ final class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T>
 
 
 	/**
-	 * Default {@link EntityResponse} implementation for synchronous bodies.
+	 * 用于同步响应体的默认 {@link EntityResponse} 实现。
 	 */
 	private static class DefaultEntityResponse<T> extends AbstractServerResponse implements EntityResponse<T> {
 
@@ -347,7 +347,7 @@ final class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T>
 
 
 	/**
-	 * {@link EntityResponse} implementation for asynchronous {@link CompletionStage} bodies.
+	 * 用于异步 {@link CompletionStage} 响应体的 {@link EntityResponse} 实现。
 	 */
 	private static class CompletionStageEntityResponse<T> extends DefaultEntityResponse<CompletionStage<T>> {
 
@@ -401,7 +401,7 @@ final class DefaultEntityResponseBuilder<T> implements EntityResponse.Builder<T>
 
 
 	/**
-	 * {@link EntityResponse} implementation for asynchronous {@link Publisher} bodies.
+	 * 用于异步 {@link Publisher} 响应体的 {@link EntityResponse} 实现。
 	 */
 	private static class PublisherEntityResponse<T> extends DefaultEntityResponse<Publisher<T>> {
 

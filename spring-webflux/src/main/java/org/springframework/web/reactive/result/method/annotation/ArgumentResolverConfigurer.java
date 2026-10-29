@@ -24,8 +24,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.reactive.result.method.HandlerMethodArgumentResolver;
 
 /**
- * Helps to configure resolvers for Controller method arguments.
- *
+ * 帮助为 Controller 方法参数配置解析器。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -35,7 +34,7 @@ public class ArgumentResolverConfigurer {
 
 
 	/**
-	 * Configure resolvers for custom controller method arguments.
+	 * 为自定义控制器方法参数配置解析器。
 	 * @param resolver the resolver(s) to add
 	 */
 	public void addCustomResolver(HandlerMethodArgumentResolver... resolver) {

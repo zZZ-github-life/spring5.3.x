@@ -1,5 +1,5 @@
 /**
- * SPI to implement Converters for the type conversion system.
+ * 用于为类型转换系统实现转换器的 SPI。
  */
 @NonNullApi
 @NonNullFields

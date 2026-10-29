@@ -26,12 +26,8 @@ import org.junit.runners.model.Statement;
 import org.springframework.test.context.TestContextManager;
 
 /**
- * {@code RunAfterTestMethodCallbacks} is a custom JUnit {@link Statement} which allows
- * the <em>Spring TestContext Framework</em> to be plugged into the JUnit execution chain
- * by calling {@link TestContextManager#afterTestMethod afterTestMethod()} on the supplied
- * {@link TestContextManager}.
- *
- * <p><strong>NOTE:</strong> This class requires JUnit 4.9 or higher.
+ * {@code RunAfterTestMethodCallbacks} 是一个自定义 JUnit {@link Statement}，它通过在所提供的 {@link TestContextManager} 上调用 {@link TestContextManager#afterTestMethod afterTestMethod()}，使 <em>Spring TestContext Framework</em> 能够插入 JUnit 执行链。
+ * <p><strong>注意：</strong>此类要求 JUnit 4.9 或更高版本。
  *
  * @author Sam Brannen
  * @since 3.0
@@ -50,7 +46,7 @@ public class RunAfterTestMethodCallbacks extends Statement {
 
 
 	/**
-	 * Construct a new {@code RunAfterTestMethodCallbacks} statement.
+	 * 构造一个新的 {@code RunAfterTestMethodCallbacks} 语句。
 	 * @param next the next {@code Statement} in the execution chain
 	 * @param testInstance the current test instance (never {@code null})
 	 * @param testMethod the test method which has just been executed on the
@@ -69,14 +65,8 @@ public class RunAfterTestMethodCallbacks extends Statement {
 
 
 	/**
-	 * Evaluate the next {@link Statement} in the execution chain (typically an instance of
-	 * {@link org.junit.internal.runners.statements.RunAfters RunAfters}), catching any
-	 * exceptions thrown, and then invoke
-	 * {@link TestContextManager#afterTestMethod(Object, Method, Throwable)} supplying the
-	 * first caught exception (if any).
-	 * <p>If the invocation of {@code afterTestMethod()} throws an exception, that
-	 * exception will also be tracked. Multiple exceptions will be combined into a
-	 * {@link MultipleFailureException}.
+	 * 评估执行链中的下一个 {@link Statement}（通常是 {@link org.junit.internal.runners.statements.RunAfters RunAfters} 的实例），捕获抛出的任何异常，然后调用 {@link TestContextManager#afterTestMethod(Object, Method, Throwable)} 并传入第一个捕获的异常（如果有）。
+	 * <p>如果调用 {@code afterTestMethod()} 抛出异常，该异常也会被跟踪。多个异常将合并为 {@link MultipleFailureException}。
 	 */
 	@Override
 	public void evaluate() throws Throwable {

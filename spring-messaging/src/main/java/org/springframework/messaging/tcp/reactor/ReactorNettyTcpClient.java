@@ -58,7 +58,7 @@ import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
 import org.springframework.util.concurrent.SettableListenableFuture;
 
 /**
- * Reactor Netty based implementation of {@link TcpOperations}.
+ * 基于 Reactor Netty 的 {@link TcpOperations} 实现。
  *
  * @author Rossen Stoyanchev
  * @author Stephane Maldini
@@ -91,12 +91,12 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 
 	/**
-	 * Simple constructor with the host and port to use to connect to.
-	 * <p>This constructor manages the lifecycle of the {@link TcpClient} and
-	 * underlying resources such as {@link ConnectionProvider},
-	 * {@link LoopResources}, and {@link ChannelGroup}.
-	 * <p>For full control over the initialization and lifecycle of the
-	 * TcpClient, use {@link #ReactorNettyTcpClient(TcpClient, ReactorNettyCodec)}.
+	 * 使用要连接的主机和端口的简单构造函数。
+	 * <p>此构造函数管理 {@link TcpClient} 及其底层资源（如
+	 * {@link ConnectionProvider}、{@link LoopResources} 和 {@link ChannelGroup}）
+	 * 的生命周期。
+	 * <p>如需完全控制 TcpClient 的初始化和生命周期，请使用
+	 * {@link #ReactorNettyTcpClient(TcpClient, ReactorNettyCodec)}。
 	 * @param host the host to connect to
 	 * @param port the port to connect to
 	 * @param codec for encoding and decoding the input/output byte streams
@@ -118,10 +118,9 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	}
 
 	/**
-	 * A variant of {@link #ReactorNettyTcpClient(String, int, ReactorNettyCodec)}
-	 * that still manages the lifecycle of the {@link TcpClient} and underlying
-	 * resources, but allows for direct configuration of other properties of the
-	 * client through a {@code Function<TcpClient, TcpClient>}.
+	 * {@link #ReactorNettyTcpClient(String, int, ReactorNettyCodec)} 的变体，
+	 * 仍然管理 {@link TcpClient} 及底层资源的生命周期，但允许通过
+	 * {@code Function<TcpClient, TcpClient>} 直接配置客户端的其他属性。
 	 * @param clientConfigurer the configurer function
 	 * @param codec for encoding and decoding the input/output byte streams
 	 * @since 5.1.3
@@ -142,8 +141,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	}
 
 	/**
-	 * Constructor with an externally created {@link TcpClient} instance whose
-	 * lifecycle is expected to be managed externally.
+	 * 使用外部创建的 {@link TcpClient} 实例的构造函数，其生命周期应由外部管理。
 	 * @param tcpClient the TcpClient instance to use
 	 * @param codec for encoding and decoding the input/output byte streams
 	 * @see org.springframework.messaging.simp.stomp.StompReactorNettyCodec
@@ -161,7 +159,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 
 
 	/**
-	 * Set an alternative logger to use than the one based on the class name.
+	 * 设置一个替代日志记录器，而不是基于类名的日志记录器。
 	 * @param logger the logger to use
 	 * @since 5.1
 	 */
@@ -170,7 +168,7 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	}
 
 	/**
-	 * Return the currently configured Logger.
+	 * 返回当前配置的 Logger。
 	 * @since 5.1
 	 */
 	public Log getLogger() {
@@ -196,10 +194,10 @@ public class ReactorNettyTcpClient<P> implements TcpOperations<P> {
 	}
 
 	/**
-	 * Provides an opportunity to initialize the {@link TcpClient} for the given
-	 * {@link TcpConnectionHandler} which may implement sub-interfaces such as
+	 * 为给定的 {@link TcpConnectionHandler} 提供初始化 {@link TcpClient} 的机会，
+	 * 该处理器可能实现
 	 * {@link org.springframework.messaging.simp.stomp.StompTcpConnectionHandler}
-	 * that expose further information.
+	 * 等暴露更多信息的子接口。
 	 * @param tcpClient the candidate TcpClient
 	 * @param handler the handler for the TCP connection
 	 * @return the same handler or an updated instance

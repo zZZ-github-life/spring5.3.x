@@ -1,5 +1,5 @@
 /**
- * Contains client-side REST testing support.
+ * 包含客户端 REST 测试支持。
  * @see org.springframework.test.web.client.MockRestServiceServer
  */
 @NonNullApi

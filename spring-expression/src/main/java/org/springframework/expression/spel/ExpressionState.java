@@ -39,15 +39,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * ExpressionState is for maintaining per-expression-evaluation state: any changes to
- * it are not seen by other expressions, but it gives a place to hold local variables and
- * for component expressions in a compound expression to communicate state. This is in
- * contrast to the EvaluationContext, which is shared amongst expression evaluations, and
- * any changes to it will be seen by other expressions or any code that chooses to ask
- * questions of the context.
+ * ExpressionState 用于维护每次表达式求值过程中的状态：对它的任何更改都不会被其他表达式看到，但它提
+ * 供了一个位置来保存局部变量，并让复合表达式中的组件表达式能够传递状态。这与 EvaluationContext 形
+ * 成对比，后者在多次表达式求值之间共享，对它的任何更改都会被其他表达式或任何选择查询该上下文的代码
+ * 看到。
  *
- * <p>It also acts as a place to define common utility routines that the various AST
- * nodes might need.
+ * <p>它还充当定义各种 AST 节点可能需要的通用工具例程的位置。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -101,7 +98,7 @@ public class ExpressionState {
 
 
 	/**
-	 * The active context object is what unqualified references to properties/etc are resolved against.
+	 * 活动上下文对象是解析属性等非限定引用时所依据的对象。
 	 */
 	public TypedValue getActiveContextObject() {
 		if (CollectionUtils.isEmpty(this.contextObjects)) {
@@ -141,10 +138,8 @@ public class ExpressionState {
 	}
 
 	/**
-	 * Assign the value created by the specified {@link Supplier} to a named variable
-	 * within the evaluation context.
-	 * <p>In contrast to {@link #setVariable(String, Object)}, this method should
-	 * only be invoked to support assignment within an expression.
+	 * 将指定 {@link Supplier} 创建的值赋给求值上下文中的命名变量。<p>与
+	 * {@link #setVariable(String, Object)} 不同，此方法只应在支持表达式内赋值时调用。
 	 * @param name the name of the variable to assign
 	 * @param valueSupplier the supplier of the value to be assigned to the variable
 	 * @return a {@link TypedValue} wrapping the assigned value
@@ -156,9 +151,8 @@ public class ExpressionState {
 	}
 
 	/**
-	 * Set a named variable in the evaluation context to a specified value.
-	 * <p>In contrast to {@link #assignVariable(String, Supplier)}, this method
-	 * should only be invoked programmatically.
+	 * 将求值上下文中的命名变量设置为指定值。<p>与 {@link #assignVariable(String, Supplier)} 不同，此方
+	 * 法只应以编程方式调用。
 	 * @param name the name of the variable to set
 	 * @param value the value to be placed in the variable
 	 * @see EvaluationContext#setVariable(String, Object)
@@ -280,11 +274,8 @@ public class ExpressionState {
 
 
 	/**
-	 * A new scope is entered when a function is called and it is used to hold the
-	 * parameters to the function call. If the names of the parameters clash with
-	 * those in a higher level scope, those in the higher level scope will not be
-	 * accessible whilst the function is executing. When the function returns,
-	 * the scope is exited.
+	 * 调用函数时会进入新的作用域，用于保存函数调用的参数。如果参数名称与更高层作用域中的名称冲突，则在
+	 * 函数执行期间将无法访问更高层作用域中的那些名称。函数返回时，退出该作用域。
 	 */
 	private static class VariableScope {
 

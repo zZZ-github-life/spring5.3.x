@@ -1,5 +1,5 @@
 /**
- * Client-side classes for use with standard Java WebSocket endpoints.
+ * 与标准 Java WebSocket 端点配合使用的客户端类。
  */
 @NonNullApi
 @NonNullFields

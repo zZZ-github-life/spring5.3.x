@@ -1,5 +1,5 @@
 /**
- * XML encoder and decoder support.
+ * XML 编码器和解码器支持。
  */
 @NonNullApi
 @NonNullFields

@@ -38,24 +38,22 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@code MessageHeaderAccessor} to use when creating a {@code Message} from
- * a decoded STOMP frame, or when encoding a {@code Message} to a STOMP frame.
+ * 用于从已解码的 STOMP 帧创建 {@code Message}，或将 {@code Message}
+ * 编码为 STOMP 帧时使用的 {@code MessageHeaderAccessor}。
  *
- * <p>When created from STOMP frame content, the actual STOMP headers are
- * stored in the native header sub-map managed by the parent class
+ * <p>从 STOMP 帧内容创建时，实际的 STOMP 头存储在由父类
  * {@link org.springframework.messaging.support.NativeMessageHeaderAccessor}
- * while the parent class {@link SimpMessageHeaderAccessor} manages common
- * processing headers some of which are based on STOMP headers
- * (e.g. destination, content-type, etc).
+ * 管理的原生头子映射中，而父类
+ * {@link SimpMessageHeaderAccessor} 管理通用处理头，
+ * 其中一些基于 STOMP 头（例如目标、content-type 等）。
  *
- * <p>An instance of this class can also be created by wrapping an existing
- * {@code Message}. That message may have been created with the more generic
- * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor} in
- * which case STOMP headers are created from common processing headers.
- * In this case it is also necessary to invoke either
- * {@link #updateStompCommandAsClientMessage()} or
- * {@link #updateStompCommandAsServerMessage()} if sending a message and
- * depending on whether a message is sent to a client or the message broker.
+ * <p>也可以通过包装现有 {@code Message} 来创建此类的实例。
+ * 该消息可能是使用更通用的
+ * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor} 创建的，
+ * 此时 STOMP 头会根据通用处理头生成。在这种情况下，如果发送消息，
+ * 还需要根据消息是发送给客户端还是消息代理，
+ * 调用 {@link #updateStompCommandAsClientMessage()} 或
+ * {@link #updateStompCommandAsServerMessage()}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -111,7 +109,7 @@ public class StompHeaderAccessor extends SimpMessageHeaderAccessor {
 
 
 	/**
-	 * A constructor for creating message headers from a parsed STOMP frame.
+	 * 用于从已解析的 STOMP 帧创建消息头的构造函数。
 	 */
 	StompHeaderAccessor(StompCommand command, @Nullable Map<String, List<String>> externalSourceHeaders) {
 		super(command.getMessageType(), externalSourceHeaders);
@@ -120,10 +118,10 @@ public class StompHeaderAccessor extends SimpMessageHeaderAccessor {
 	}
 
 	/**
-	 * A constructor for accessing and modifying existing message headers.
-	 * Note that the message headers may not have been created from a STOMP frame
-	 * but may have rather originated from using the more generic
-	 * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor}.
+	 * 用于访问和修改现有消息头的构造函数。
+	 * 注意，消息头可能不是从 STOMP 帧创建的，
+	 * 而是源自使用更通用的
+	 * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor}。
 	 */
 	StompHeaderAccessor(Message<?> message) {
 		super(message);
@@ -226,7 +224,7 @@ public class StompHeaderAccessor extends SimpMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the STOMP command, or {@code null} if not yet set.
+	 * 返回 STOMP 命令，如果尚未设置则返回 {@code null}。
 	 */
 	@Nullable
 	public StompCommand getCommand() {
@@ -353,7 +351,7 @@ public class StompHeaderAccessor extends SimpMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the passcode header value, or {@code null} if not set.
+	 * 返回密码头值，如果未设置则返回 {@code null}。
 	 */
 	@Nullable
 	public String getPasscode() {
@@ -493,36 +491,36 @@ public class StompHeaderAccessor extends SimpMessageHeaderAccessor {
 	// Static factory methods and accessors
 
 	/**
-	 * Create an instance for the given STOMP command.
+	 * 为给定 STOMP 命令创建实例。
 	 */
 	public static StompHeaderAccessor create(StompCommand command) {
 		return new StompHeaderAccessor(command, null);
 	}
 
 	/**
-	 * Create an instance for the given STOMP command and headers.
+	 * 为给定 STOMP 命令和头创建实例。
 	 */
 	public static StompHeaderAccessor create(StompCommand command, Map<String, List<String>> headers) {
 		return new StompHeaderAccessor(command, headers);
 	}
 
 	/**
-	 * Create headers for a heartbeat. While a STOMP heartbeat frame does not
-	 * have headers, a session id is needed for processing purposes at a minimum.
+	 * 创建心跳头。虽然 STOMP 心跳帧没有头，
+	 * 但出于处理目的，至少需要一个会话 ID。
 	 */
 	public static StompHeaderAccessor createForHeartbeat() {
 		return new StompHeaderAccessor();
 	}
 
 	/**
-	 * Create an instance from the payload and headers of the given Message.
+	 * 从给定 Message 的载荷和头创建实例。
 	 */
 	public static StompHeaderAccessor wrap(Message<?> message) {
 		return new StompHeaderAccessor(message);
 	}
 
 	/**
-	 * Return the STOMP command from the given headers, or {@code null} if not set.
+	 * 从给定头中返回 STOMP 命令，如果未设置则返回 {@code null}。
 	 */
 	@Nullable
 	public static StompCommand getCommand(Map<String, Object> headers) {
@@ -530,7 +528,7 @@ public class StompHeaderAccessor extends SimpMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the passcode header value, or {@code null} if not set.
+	 * 返回密码头值，如果未设置则返回 {@code null}。
 	 */
 	@Nullable
 	public static String getPasscode(Map<String, Object> headers) {

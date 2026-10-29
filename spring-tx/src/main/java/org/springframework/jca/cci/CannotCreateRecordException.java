@@ -21,8 +21,7 @@ import javax.resource.ResourceException;
 import org.springframework.dao.DataAccessResourceFailureException;
 
 /**
- * Exception thrown when the creating of a CCI Record failed
- * for connector-internal reasons.
+ * 当由于连接器内部原因导致 CCI Record 创建失败时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -34,7 +33,7 @@ import org.springframework.dao.DataAccessResourceFailureException;
 public class CannotCreateRecordException extends DataAccessResourceFailureException {
 
 	/**
-	 * Constructor for CannotCreateRecordException.
+	 * CannotCreateRecordException 的构造器。
 	 * @param msg message
 	 * @param ex the root ResourceException cause
 	 */

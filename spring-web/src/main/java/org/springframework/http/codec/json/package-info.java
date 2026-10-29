@@ -1,5 +1,5 @@
 /**
- * JSON encoder and decoder support.
+ * JSON 编码器和解码器支持。
  */
 @NonNullApi
 @NonNullFields

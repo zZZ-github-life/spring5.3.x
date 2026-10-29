@@ -17,9 +17,8 @@
 package org.springframework.beans.factory.support;
 
 /**
- * Internal exception to be propagated from {@link ConstructorResolver},
- * passed through to the initiating {@link DefaultSingletonBeanRegistry}
- * (without wrapping in a {@code BeanCreationException}).
+ * 内部异常，从 {@link ConstructorResolver} 传播出来，并传递给发起调用的
+ * {@link DefaultSingletonBeanRegistry}（不使用 {@code BeanCreationException} 包装）。
  *
  * @author Juergen Hoeller
  * @since 5.0

@@ -17,11 +17,10 @@
 package org.springframework.context.annotation;
 
 /**
- * Enumerates the various scoped-proxy options.
+ * 列举各种作用域代理选项。
  *
- * <p>For a more complete discussion of exactly what a scoped proxy is, see the
- * section of the Spring reference documentation entitled '<em>Scoped beans as
- * dependencies</em>'.
+ * <p>有关作用域代理到底是什么的更完整讨论，请参见 Spring 参考文档中题为“<em>将作用域 Bean 作为依赖
+ * 项</em>”的一节。
  *
  * @author Mark Fisher
  * @since 2.5
@@ -30,28 +29,25 @@ package org.springframework.context.annotation;
 public enum ScopedProxyMode {
 
 	/**
-	 * Default typically equals {@link #NO}, unless a different default
-	 * has been configured at the component-scan instruction level.
+	 * 默认通常等于 {@link #NO}，除非在组件扫描指令级别配置了不同的默认值。
 	 */
 	DEFAULT,
 
 	/**
-	 * Do not create a scoped proxy.
-	 * <p>This proxy-mode is not typically useful when used with a
-	 * non-singleton scoped instance, which should favor the use of the
-	 * {@link #INTERFACES} or {@link #TARGET_CLASS} proxy-modes instead if it
-	 * is to be used as a dependency.
+	 * 不创建作用域代理。
+	 *
+	 * <p>当与非单例作用域实例一起使用时，此代理模式通常没有用；如果要将其用作依赖项，则应优先使用
+	 * {@link #INTERFACES} 或 {@link #TARGET_CLASS} 代理模式。
 	 */
 	NO,
 
 	/**
-	 * Create a JDK dynamic proxy implementing <i>all</i> interfaces exposed by
-	 * the class of the target object.
+	 * 创建一个 JDK 动态代理，实现目标对象类所暴露的<i>所有</i>接口。
 	 */
 	INTERFACES,
 
 	/**
-	 * Create a class-based proxy (uses CGLIB).
+	 * 创建一个基于类的代理（使用 CGLIB）。
 	 */
 	TARGET_CLASS
 

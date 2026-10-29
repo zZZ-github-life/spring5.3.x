@@ -27,9 +27,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * HttpServletRequest decorator that makes all Spring beans in a
- * given WebApplicationContext accessible as request attributes,
- * through lazy checking once an attribute gets accessed.
+ * HttpServletRequest 装饰器，通过在一次访问属性时进行延迟检查，使给定 WebApplicationContext 中的
+ * 所有 Spring bean 可作为请求属性访问。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -46,7 +45,7 @@ public class ContextExposingHttpServletRequest extends HttpServletRequestWrapper
 
 
 	/**
-	 * Create a new ContextExposingHttpServletRequest for the given request.
+	 * 为给定的请求创建一个新的 ContextExposingHttpServletRequest。
 	 * @param originalRequest the original HttpServletRequest
 	 * @param context the WebApplicationContext that this request runs in
 	 */
@@ -55,7 +54,7 @@ public class ContextExposingHttpServletRequest extends HttpServletRequestWrapper
 	}
 
 	/**
-	 * Create a new ContextExposingHttpServletRequest for the given request.
+	 * 为给定的请求创建一个新的 ContextExposingHttpServletRequest。
 	 * @param originalRequest the original HttpServletRequest
 	 * @param context the WebApplicationContext that this request runs in
 	 * @param exposedContextBeanNames the names of beans in the context which
@@ -73,7 +72,7 @@ public class ContextExposingHttpServletRequest extends HttpServletRequestWrapper
 
 
 	/**
-	 * Return the WebApplicationContext that this request runs in.
+	 * 返回此请求运行所在的 WebApplicationContext。
 	 */
 	public final WebApplicationContext getWebApplicationContext() {
 		return this.webApplicationContext;

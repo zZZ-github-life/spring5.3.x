@@ -29,12 +29,12 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.util.CollectionUtils;
 
 /**
- * A {@link WebSocketMessageBrokerConfigurationSupport} extension that detects
- * beans of type {@link WebSocketMessageBrokerConfigurer} and delegates to all
- * of them allowing callback style customization of the configuration provided
- * in {@link WebSocketMessageBrokerConfigurationSupport}.
+ * {@link WebSocketMessageBrokerConfigurationSupport} 的扩展，用于检测类型为
+ * {@link WebSocketMessageBrokerConfigurer} 的 Bean，并将配置委托给所有这些 Bean，
+ * 从而允许以回调风格定制
+ * {@link WebSocketMessageBrokerConfigurationSupport} 中提供的配置。
  *
- * <p>This class is typically imported via {@link EnableWebSocketMessageBroker}.
+ * <p>此类通常通过 {@link EnableWebSocketMessageBroker} 导入。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze

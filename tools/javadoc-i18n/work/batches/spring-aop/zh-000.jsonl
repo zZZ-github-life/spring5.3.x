@@ -1,0 +1,58 @@
+{"id": "spring-aop/src/main/java/org/aopalliance/package-info.java::1::0", "zh": ["Spring 对 AOP Alliance 接口的变体。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/aop/Advice.java::19::0", "zh": ["Advice 的标记接口。实现可以是任意类型的通知，例如拦截器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/aop/AspectException.java::19::0", "zh": ["所有 AOP 基础设施异常的父类。", "属于非受检异常，因为此类异常是致命的，不应强迫最终用户代码捕获它们。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/aop/AspectException.java::31::0", "zh": ["AspectException 的构造器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/aop/AspectException.java::39::0", "zh": ["AspectException 的构造器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/aop/package-info.java::1::0", "zh": ["AOP Alliance 核心通知标记。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/ConstructorInterceptor.java::21::0", "zh": ["拦截新对象的构造过程。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/ConstructorInterceptor.java::21::1", "zh": ["<p>用户应实现 {@link #construct(ConstructorInvocation)} 方法来修改原有行为。例如，下面的类实现了一个单例拦截器（被拦截的类只允许有一个唯一实例）："]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/ConstructorInterceptor.java::48::0", "zh": ["实现此方法以在新对象构造前后执行额外的处理。有礼貌的实现通常会调用 {@link Joinpoint#proceed()}。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/ConstructorInvocation.java::23::0", "zh": ["描述对构造器的调用，在构造器调用时传递给拦截器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/ConstructorInvocation.java::23::1", "zh": ["<p>构造器调用是一个连接点，可以被构造器拦截器拦截。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/ConstructorInvocation.java::35::0", "zh": ["获取被调用的构造器。", "<p>此方法是 {@link Joinpoint#getStaticPart()} 方法的友好实现（结果相同）。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Interceptor.java::21::0", "zh": ["此接口表示一个通用拦截器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Interceptor.java::21::1", "zh": ["<p>通用拦截器可以拦截基础程序中发生的运行时事件。这些事件由连接点具体化（reified）。运行时连接点可以是调用、字段访问、异常等……"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Interceptor.java::21::2", "zh": ["<p>此接口不直接使用。请使用子接口来拦截特定事件。例如，下面的类实现了一些特定的拦截器，以实现一个调试器："]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Invocation.java::21::0", "zh": ["此接口表示程序中的一次调用。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Invocation.java::21::1", "zh": ["<p>调用是一个连接点，可以被拦截器拦截。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Invocation.java::31::0", "zh": ["以数组对象的形式获取参数。可以修改此数组中的元素值来更改参数。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Joinpoint.java::24::0", "zh": ["此接口表示一个通用的运行时连接点（在 AOP 术语中）。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Joinpoint.java::24::1", "zh": ["<p>运行时连接点是在静态连接点（即程序中的一个位置）上发生的<i>事件</i>。", "例如，调用是方法（静态连接点）上的运行时连接点。", "可以使用 {@link #getStaticPart()} 方法以通用方式获取给定连接点的静态部分。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Joinpoint.java::24::2", "zh": ["<p>在拦截框架的上下文中，运行时连接点是对可访问对象（方法、构造器、字段）的访问的具体化，即连接点的静态部分。它被传递给安装在静态连接点上的拦截器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Joinpoint.java::45::0", "zh": ["继续执行链中的下一个拦截器。", "<p>此方法的实现和语义取决于实际的连接点类型（参见子接口）。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Joinpoint.java::55::0", "zh": ["返回持有当前连接点静态部分的对象。", "<p>例如，对于调用而言，就是目标对象。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/Joinpoint.java::63::0", "zh": ["返回此连接点的静态部分。", "<p>静态部分是安装了拦截器链的可访问对象。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/MethodInterceptor.java::22::0", "zh": ["拦截对接口的调用，并将其传递到目标。这些调用以嵌套方式置于目标“之上”。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/MethodInterceptor.java::22::1", "zh": ["<p>用户应实现 {@link #invoke(MethodInvocation)} 方法来修改原有行为。例如，下面的类实现了一个跟踪拦截器（跟踪对被拦截方法的所有调用）："]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/MethodInterceptor.java::48::0", "zh": ["实现此方法以在调用前后执行额外的处理。有礼貌的实现通常会调用 {@link Joinpoint#proceed()}。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/MethodInvocation.java::23::0", "zh": ["描述对方法的调用，在方法调用时传递给拦截器。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/MethodInvocation.java::23::1", "zh": ["<p>方法调用是一个连接点，可以被方法拦截器拦截。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/MethodInvocation.java::35::0", "zh": ["获取被调用的方法。", "<p>此方法是 {@link Joinpoint#getStaticPart()} 方法的友好实现（结果相同）。"]}
+{"id": "spring-aop/src/main/java/org/aopalliance/intercept/package-info.java::1::0", "zh": ["AOP Alliance 反射式拦截抽象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/Advisor.java::21::0", "zh": ["持有 AOP <b>通知</b>（在连接点上执行的动作）以及一个用于确定通知适用性（例如切点）的过滤器的基础接口。<i>此接口不是供 Spring 用户使用的，而是为了在支持不同类型的通知时保持一致性。</i>"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/Advisor.java::21::1", "zh": ["<p>Spring AOP 基于通过方法<b>拦截</b>提供的<b>环绕通知</b>，并遵循 AOP Alliance 拦截 API。", "Advisor 接口允许支持不同类型的通知，", "例如<b>前置</b>和<b>后置</b>通知，这些通知不必通过拦截来实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/Advisor.java::38::0", "zh": ["用于空 {@code Advice} 的公共占位符，当尚未配置合适的通知时，由 {@link #getAdvice()} 返回。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/Advisor.java::46::0", "zh": ["返回此切面中的通知部分。通知可以是拦截器、前置通知、抛出通知等。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/Advisor.java::57::0", "zh": ["返回此通知是与特定实例关联（例如创建 mixin），还是与从同一 Spring Bean 工厂获取的被通知类的所有实例共享。", "<p><b>请注意，此方法目前未被框架使用。</b>典型的 Advisor 实现始终返回 {@code true}。请使用单例/原型 Bean 定义或适当的编程式代理创建，以确保 Advisor 具有正确的生命周期模型。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/AfterAdvice.java::21::0", "zh": ["后置通知的公共标记接口，例如 {@link AfterReturningAdvice} 和 {@link ThrowsAdvice}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/AfterReturningAdvice.java::23::0", "zh": ["返回后通知仅在方法正常返回时被调用，抛出异常时不会调用。此类通知可以查看返回值，但不能更改它。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/AfterReturningAdvice.java::33::0", "zh": ["在给定方法成功返回后的回调。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/AopInvocationException.java::21::0", "zh": ["当 AOP 调用因配置错误或意外的运行时问题而失败时抛出的异常。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/AopInvocationException.java::31::0", "zh": ["AopInvocationException 的构造器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/AopInvocationException.java::39::0", "zh": ["AopInvocationException 的构造器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/BeforeAdvice.java::21::0", "zh": ["前置通知的公共标记接口，例如 {@link MethodBeforeAdvice}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/BeforeAdvice.java::21::1", "zh": ["<p>Spring 仅支持方法前置通知。尽管这不太可能改变，但此 API 的设计允许在将来需要时支持字段通知。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/ClassFilter.java::19::0", "zh": ["将切点或引入的匹配限制到给定目标类集合的过滤器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/ClassFilter.java::19::1", "zh": ["<p>可以作为 {@link Pointcut} 的一部分使用，", "也可以用于 {@link IntroductionAdvisor} 的整个目标定位。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/ClassFilter.java::19::2", "zh": ["<p>此接口的具体实现通常应提供适当的 {@link Object#equals(Object)} 和 {@link Object#hashCode()} 实现，以便该过滤器可用于缓存场景 &mdash; 例如，在由 CGLIB 生成的代理中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/ClassFilter.java::38::0", "zh": ["切点是否应应用于给定的接口或目标类？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/ClassFilter.java::46::0", "zh": ["匹配所有类的 ClassFilter 规范实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/DynamicIntroductionAdvice.java::21::0", "zh": ["AOP Alliance Advice 的子接口，允许通知实现额外的接口，并通过使用该拦截器的代理提供这些接口。这是一个称为<b>引入</b>的基本 AOP 概念。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/DynamicIntroductionAdvice.java::21::1", "zh": ["<p>引入通常是<b>mixin</b>，能够构建复合对象，从而实现 Java 中多重继承的许多目标。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/DynamicIntroductionAdvice.java::21::2", "zh": ["<p>与 {@link IntroductionInfo} 相比，此接口允许通知实现一组不必事先已知的接口。因此，可以使用 {@link IntroductionAdvisor} 来指定将在被通知对象中暴露哪些接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/DynamicIntroductionAdvice.java::41::0", "zh": ["此引入通知是否实现了给定接口？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/IntroductionAdvisor.java::19::0", "zh": ["执行一个或多个 AOP <b>引入</b>的 Advisor 的父接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/IntroductionAdvisor.java::19::1", "zh": ["<p>此接口不能直接实现；子接口必须提供实现引入的通知类型。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/IntroductionAdvisor.java::19::2", "zh": ["<p>引入是通过 AOP 通知实现额外的接口（目标未实现的接口）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/IntroductionAdvisor.java::34::0", "zh": ["返回确定此引入应应用于哪些目标类的过滤器。", "<p>这表示切点的类部分。请注意，方法匹配对引入没有意义。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/IntroductionAdvisor.java::43::0", "zh": ["被通知的接口能否由引入通知实现？", "在添加 IntroductionAdvisor 之前调用。"]}

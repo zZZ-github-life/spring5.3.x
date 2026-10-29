@@ -26,20 +26,20 @@ import org.springframework.web.servlet.support.BindStatus;
 import org.springframework.web.util.TagUtils;
 
 /**
- * The {@code <options>} tag renders a list of HTML 'option' tags.
- * Sets 'selected' as appropriate based on bound value.
+ * {@code <options>} 标签渲染一组 HTML 'option' 标签。
+ * 它根据绑定的值适当地设置 'selected'。
  *
- * <p><i>Must</i> be used within a {@link SelectTag 'select' tag}.
+ * <p><i>必须</i> 在 {@link SelectTag 'select' 标签} 内使用。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -47,140 +47,140 @@ import org.springframework.web.util.TagUtils;
  * <td><p>cssClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssErrorClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has errors.</p></td>
+ * <td><p>HTML 可选属性。当绑定的字段存在错误时使用。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>cssStyle</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>dir</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute
- * to 'true' will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性设置为 'true'
+ * 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用对渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>itemLabel</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Name of the property mapped to the inner text of the 'option' tag</p></td>
+ * <td><p>映射到 'option' 标签内部文本的属性名</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>items</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>The Collection, Map or array of objects used to generate the inner 'option' tags</p></td>
+ * <td><p>用于生成内部 'option' 标签的 Collection、Map 或对象数组</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>itemValue</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Name of the property mapped to 'value' attribute of the 'option' tag</p></td>
+ * <td><p>映射到 'option' 标签 'value' 属性的属性名</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>lang</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>ondblclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeydown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onkeypress</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeyup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmousedown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmousemove</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseout</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmouseover</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>tabindex</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>title</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -194,22 +194,20 @@ import org.springframework.web.util.TagUtils;
 public class OptionsTag extends AbstractHtmlElementTag {
 
 	/**
-	 * The {@link java.util.Collection}, {@link java.util.Map} or array of
-	 * objects used to generate the inner '{@code option}' tags.
+	 * 用于生成内部 '{@code option}' 标签的 {@link java.util.Collection}、
+	 * {@link java.util.Map} 或对象数组。
 	 */
 	@Nullable
 	private Object items;
 
 	/**
-	 * The name of the property mapped to the '{@code value}' attribute
-	 * of the '{@code option}' tag.
+	 * 映射到 '{@code option}' 标签的 '{@code value}' 属性的属性名。
 	 */
 	@Nullable
 	private String itemValue;
 
 	/**
-	 * The name of the property mapped to the inner text of the
-	 * '{@code option}' tag.
+	 * 映射到 '{@code option}' 标签内部文本的属性名。
 	 */
 	@Nullable
 	private String itemLabel;
@@ -218,20 +216,14 @@ public class OptionsTag extends AbstractHtmlElementTag {
 
 
 	/**
-	 * Set the {@link java.util.Collection}, {@link java.util.Map} or array
-	 * of objects used to generate the inner '{@code option}' tags.
-	 * <p>Required when wishing to render '{@code option}' tags from an
-	 * array, {@link java.util.Collection} or {@link java.util.Map}.
-	 * <p>Typically a runtime expression.
+	 * 设置用于生成内部 '{@code option}' 标签的 {@link java.util.Collection}、{@link java.util.Map} 或对象数组。<p>当希望从数组、{@link java.util.Collection} 或 {@link java.util.Map} 渲染 '{@code option}' 标签时为必需。<p>通常为运行时表达式。
 	 */
 	public void setItems(Object items) {
 		this.items = items;
 	}
 
 	/**
-	 * Get the {@link java.util.Collection}, {@link java.util.Map} or array
-	 * of objects used to generate the inner '{@code option}' tags.
-	 * <p>Typically a runtime expression.
+	 * 获取用于生成内部 '{@code option}' 标签的 {@link java.util.Collection}、{@link java.util.Map} 或对象数组。<p>通常为运行时表达式。
 	 */
 	@Nullable
 	protected Object getItems() {
@@ -239,10 +231,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Set the name of the property mapped to the '{@code value}'
-	 * attribute of the '{@code option}' tag.
-	 * <p>Required when wishing to render '{@code option}' tags from
-	 * an array or {@link java.util.Collection}.
+	 * 设置映射到 '{@code option}' 标签的 '{@code value}' 属性的属性名。<p>当希望从数组或 {@link java.util.Collection} 渲染 '{@code option}' 标签时为必需。
 	 */
 	public void setItemValue(String itemValue) {
 		Assert.hasText(itemValue, "'itemValue' must not be empty");
@@ -250,8 +239,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Return the name of the property mapped to the '{@code value}'
-	 * attribute of the '{@code option}' tag.
+	 * 返回映射到 '{@code option}' 标签的 '{@code value}' 属性的属性名。
 	 */
 	@Nullable
 	protected String getItemValue() {
@@ -259,8 +247,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Set the name of the property mapped to the label (inner text) of the
-	 * '{@code option}' tag.
+	 * 设置映射到 '{@code option}' 标签的标签（内部文本）的属性名。
 	 */
 	public void setItemLabel(String itemLabel) {
 		Assert.hasText(itemLabel, "'itemLabel' must not be empty");
@@ -268,8 +255,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Get the name of the property mapped to the label (inner text) of the
-	 * '{@code option}' tag.
+	 * 获取映射到 '{@code option}' 标签的标签（内部文本）的属性名。
 	 */
 	@Nullable
 	protected String getItemLabel() {
@@ -277,14 +263,14 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code disabled}' attribute.
+	 * 设置 '{@code disabled}' 属性的值。
 	 */
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
 
 	/**
-	 * Get the value of the '{@code disabled}' attribute.
+	 * 获取 '{@code disabled}' 属性的值。
 	 */
 	protected boolean isDisabled() {
 		return this.disabled;
@@ -320,8 +306,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Appends a counter to a specified id,
-	 * since we're dealing with multiple HTML elements.
+	 * 向指定的 id 追加计数器，因为我们要处理多个 HTML 元素。
 	 */
 	@Override
 	protected String resolveId() throws JspException {
@@ -345,7 +330,7 @@ public class OptionsTag extends AbstractHtmlElementTag {
 
 
 	/**
-	 * Inner class that adapts OptionWriter for multiple options to be rendered.
+	 * 内部类，用于适配 OptionWriter 以渲染多个选项。
 	 */
 	private class OptionsWriter extends OptionWriter {
 

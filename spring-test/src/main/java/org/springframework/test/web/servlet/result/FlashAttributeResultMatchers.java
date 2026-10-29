@@ -26,26 +26,24 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 /**
- * Factory for "output" flash attribute assertions.
+ * “输出”flash 属性断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockMvcResultMatchers#flash}.
- *
+ * <p>此类的实例通常通过 {@link MockMvcResultMatchers#flash} 访问。
  * @author Rossen Stoyanchev
  * @since 3.2
  */
 public class FlashAttributeResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * Use {@link MockMvcResultMatchers#flash()}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockMvcResultMatchers#flash()}。
 	 */
 	protected FlashAttributeResultMatchers() {
 	}
 
 
 	/**
-	 * Assert a flash attribute's value with the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言 flash 属性的值。
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> ResultMatcher attribute(String name, Matcher<? super T> matcher) {
@@ -53,14 +51,14 @@ public class FlashAttributeResultMatchers {
 	}
 
 	/**
-	 * Assert a flash attribute's value.
+	 * 断言 flash 属性的值。
 	 */
 	public ResultMatcher attribute(String name, @Nullable Object value) {
 		return result -> assertEquals("Flash attribute '" + name + "'", value, result.getFlashMap().get(name));
 	}
 
 	/**
-	 * Assert the existence of the given flash attributes.
+	 * 断言给定 flash 属性存在。
 	 */
 	public ResultMatcher attributeExists(String... names) {
 		return result -> {
@@ -71,7 +69,7 @@ public class FlashAttributeResultMatchers {
 	}
 
 	/**
-	 * Assert the number of flash attributes.
+	 * 断言 flash 属性的数量。
 	 */
 	public ResultMatcher attributeCount(int count) {
 		return result -> assertEquals("FlashMap size", count, result.getFlashMap().size());

@@ -32,19 +32,17 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Base class for {@code ContentNegotiationStrategy} implementations with the
- * steps to resolve a request to media types.
+ * {@code ContentNegotiationStrategy} 实现的基类，包含将请求解析为媒体类型的步骤。
  *
- * <p>First a key (e.g. "json", "pdf") must be extracted from the request (e.g.
- * file extension, query param). The key must then be resolved to media type(s)
- * through the base class {@link MappingMediaTypeFileExtensionResolver} which
- * stores such mappings.
+ * <p>首先必须从请求中提取一个键（例如 "json"、"pdf"）（例如文件扩展名、查询参数）。
+ * 然后必须通过基类 {@link MappingMediaTypeFileExtensionResolver} 将该键解析为
+ * 媒体类型，该基类存储此类映射。
  *
- * <p>The method {@link #handleNoMatch} allow subclasses to plug in additional
- * ways of looking up media types (e.g. through the Java Activation framework,
- * or {@link jakarta.servlet.ServletContext#getMimeType}). Media types resolved
- * via base classes are then added to the base class
- * {@link MappingMediaTypeFileExtensionResolver}, i.e. cached for new lookups.
+ * <p>{@link #handleNoMatch} 方法允许子类插入额外的媒体类型查找方式
+ * （例如通过 Java Activation 框架或
+ * {@link jakarta.servlet.ServletContext#getMimeType}）。通过基类解析的媒体类型
+ * 随后会被添加到基类 {@link MappingMediaTypeFileExtensionResolver} 中，
+ * 即为新的查找进行缓存。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -60,7 +58,7 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 
 
 	/**
-	 * Create an instance with the given map of file extensions and media types.
+	 * 使用给定的文件扩展名与媒体类型映射创建实例。
 	 */
 	public AbstractMappingContentNegotiationStrategy(@Nullable Map<String, MediaType> mediaTypes) {
 		super(mediaTypes);
@@ -68,9 +66,9 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 
 
 	/**
-	 * Whether to only use the registered mappings to look up file extensions,
-	 * or also to use dynamic resolution (e.g. via {@link MediaTypeFactory}.
-	 * <p>By default this is set to {@code false}.
+	 * 是仅使用已注册的映射来查找文件扩展名，还是也使用动态解析
+	 * （例如通过 {@link MediaTypeFactory}）。
+	 * <p>默认情况下设置为 {@code false}。
 	 */
 	public void setUseRegisteredExtensionsOnly(boolean useRegisteredExtensionsOnly) {
 		this.useRegisteredExtensionsOnly = useRegisteredExtensionsOnly;
@@ -81,10 +79,10 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 	}
 
 	/**
-	 * Whether to ignore requests with unknown file extension. Setting this to
-	 * {@code false} results in {@code HttpMediaTypeNotAcceptableException}.
-	 * <p>By default this is set to {@literal false} but is overridden in
-	 * {@link PathExtensionContentNegotiationStrategy} to {@literal true}.
+	 * 是否忽略带有未知文件扩展名的请求。将其设置为
+	 * {@code false} 将导致 {@code HttpMediaTypeNotAcceptableException}。
+	 * <p>默认情况下设置为 {@literal false}，但在
+	 * {@link PathExtensionContentNegotiationStrategy} 中被重写为 {@literal true}。
 	 */
 	public void setIgnoreUnknownExtensions(boolean ignoreUnknownExtensions) {
 		this.ignoreUnknownExtensions = ignoreUnknownExtensions;
@@ -103,8 +101,8 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 	}
 
 	/**
-	 * An alternative to {@link #resolveMediaTypes(NativeWebRequest)} that accepts
-	 * an already extracted key.
+	 * {@link #resolveMediaTypes(NativeWebRequest)} 的替代方法，接受
+	 * 已提取的键。
 	 * @since 3.2.16
 	 */
 	public List<MediaType> resolveMediaTypeKey(NativeWebRequest webRequest, @Nullable String key)
@@ -127,24 +125,22 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 
 
 	/**
-	 * Extract a key from the request to use to look up media types.
+	 * 从请求中提取一个键，用于查找媒体类型。
 	 * @return the lookup key, or {@code null} if none
 	 */
 	@Nullable
 	protected abstract String getMediaTypeKey(NativeWebRequest request);
 
 	/**
-	 * Override to provide handling when a key is successfully resolved via
-	 * {@link #lookupMediaType}.
+	 * 重写此方法以在通过 {@link #lookupMediaType} 成功解析键时提供处理逻辑。
 	 */
 	protected void handleMatch(String key, MediaType mediaType) {
 	}
 
 	/**
-	 * Override to provide handling when a key is not resolved via.
-	 * {@link #lookupMediaType}. Subclasses can take further steps to
-	 * determine the media type(s). If a MediaType is returned from
-	 * this method it will be added to the cache in the base class.
+	 * 重写此方法以在通过 {@link #lookupMediaType} 无法解析键时提供处理逻辑。
+	 * 子类可以采取进一步步骤来确定媒体类型。如果此方法返回 MediaType，
+	 * 它将被添加到基类中的缓存。
 	 */
 	@Nullable
 	protected MediaType handleNoMatch(NativeWebRequest request, String key)

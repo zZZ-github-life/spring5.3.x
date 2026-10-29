@@ -32,27 +32,20 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link FactoryBean} that locates a {@link java.rmi.registry.Registry} and
- * exposes it for bean references. Can also create a local RMI registry
- * on the fly if none exists already.
+ * 用于定位 {@link java.rmi.registry.Registry} 并将其暴露出来供 Bean 引用的 {@link FactoryBean}。如
+ * 果尚不存在，也可以即时创建一个本地 RMI 注册表。
  *
- * <p>Can be used to set up and pass around the actual Registry object to
- * applications objects that need to work with RMI. One example for such an
- * object that needs to work with RMI is Spring's {@link RmiServiceExporter},
- * which either works with a passed-in Registry reference or falls back to
- * the registry as specified by its local properties and defaults.
+ * <p>可用于设置实际的 Registry 对象，并将其传递给需要与 RMI 打交道的应用对象。这类对象的一个例子是
+ * Spring 的 {@link RmiServiceExporter}，它要么使用传入的 Registry 引用，要么回退到由其本地属性和默
+ * 认值所指定的注册表。
  *
- * <p>Also useful to enforce creation of a local RMI registry at a given port,
- * for example for a JMX connector. If used in conjunction with
- * {@link org.springframework.jmx.support.ConnectorServerFactoryBean},
- * it is recommended to mark the connector definition (ConnectorServerFactoryBean)
- * as "depends-on" the registry definition (RmiRegistryFactoryBean),
- * to guarantee starting up the registry first.
+ * <p>对于强制在给定端口创建本地 RMI 注册表也很有用，例如用于 JMX 连接器。如果与
+ * {@link org.springframework.jmx.support.ConnectorServerFactoryBean} 一起使用，建议将连接器定义
+ * （ConnectorServerFactoryBean）标记为 "depends-on" 该注册表定义（RmiRegistryFactoryBean），以保证先
+ * 启动注册表。
  *
- * <p>Note: The implementation of this class mirrors the corresponding logic
- * in {@link RmiServiceExporter}, and also offers the same customization hooks.
- * RmiServiceExporter implements its own registry lookup as a convenience:
- * It is very common to simply rely on the registry defaults.
+ * <p>注意：此类的实现与 {@link RmiServiceExporter} 中相应的逻辑一致，并且也提供相同的自定义钩子。
+ * RmiServiceExporter 出于便利实现了自己的注册表查找：直接依赖注册表默认值的情况非常常见。
  *
  * @author Juergen Hoeller
  * @since 1.2.3
@@ -83,41 +76,39 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 
 
 	/**
-	 * Set the host of the registry for the exported RMI service,
-	 * i.e. {@code rmi://HOST:port/name}
-	 * <p>Default is localhost.
+	 * 设置所导出 RMI 服务的注册表主机，即 {@code rmi://HOST:port/name}
+	 * <p>默认为 localhost。
 	 */
 	public void setHost(String host) {
 		this.host = host;
 	}
 
 	/**
-	 * Return the host of the registry for the exported RMI service.
+	 * 返回所导出 RMI 服务的注册表主机。
 	 */
 	public String getHost() {
 		return this.host;
 	}
 
 	/**
-	 * Set the port of the registry for the exported RMI service,
-	 * i.e. {@code rmi://host:PORT/name}
-	 * <p>Default is {@code Registry.REGISTRY_PORT} (1099).
+	 * 设置所导出 RMI 服务的注册表端口，即 {@code rmi://host:PORT/name}
+	 * <p>默认为 {@code Registry.REGISTRY_PORT}（1099）。
 	 */
 	public void setPort(int port) {
 		this.port = port;
 	}
 
 	/**
-	 * Return the port of the registry for the exported RMI service.
+	 * 返回所导出 RMI 服务的注册表端口。
 	 */
 	public int getPort() {
 		return this.port;
 	}
 
 	/**
-	 * Set a custom RMI client socket factory to use for the RMI registry.
-	 * <p>If the given object also implements {@code java.rmi.server.RMIServerSocketFactory},
-	 * it will automatically be registered as server socket factory too.
+	 * 设置用于 RMI 注册表的自定义 RMI 客户端套接字工厂。
+	 * <p>如果给定的对象还实现了 {@code java.rmi.server.RMIServerSocketFactory}，它也会自动注册为服务器
+	 * 套接字工厂。
 	 * @see #setServerSocketFactory
 	 * @see java.rmi.server.RMIClientSocketFactory
 	 * @see java.rmi.server.RMIServerSocketFactory
@@ -128,9 +119,8 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	}
 
 	/**
-	 * Set a custom RMI server socket factory to use for the RMI registry.
-	 * <p>Only needs to be specified when the client socket factory does not
-	 * implement {@code java.rmi.server.RMIServerSocketFactory} already.
+	 * 设置用于 RMI 注册表的自定义 RMI 服务器套接字工厂。
+	 * <p>仅在客户端套接字工厂尚未实现 {@code java.rmi.server.RMIServerSocketFactory} 时才需要指定。
 	 * @see #setClientSocketFactory
 	 * @see java.rmi.server.RMIClientSocketFactory
 	 * @see java.rmi.server.RMIServerSocketFactory
@@ -141,11 +131,9 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	}
 
 	/**
-	 * Set whether to always create the registry in-process,
-	 * not attempting to locate an existing registry at the specified port.
-	 * <p>Default is "false". Switch this flag to "true" in order to avoid
-	 * the overhead of locating an existing registry when you always
-	 * intend to create a new registry in any case.
+	 * 设置是否始终在进程内创建注册表，而不尝试在指定端口定位已存在的注册表。
+	 * <p>默认为 "false"。如果你无论如何都打算创建新的注册表，可将此标志切换为 "true"，以避免定位已存在
+	 * 注册表的开销。
 	 */
 	public void setAlwaysCreate(boolean alwaysCreate) {
 		this.alwaysCreate = alwaysCreate;
@@ -170,7 +158,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 
 
 	/**
-	 * Locate or create the RMI registry.
+	 * 定位或创建 RMI 注册表。
 	 * @param registryHost the registry host to use (if this is specified,
 	 * no implicit creation of a RMI registry will happen)
 	 * @param registryPort the registry port to use
@@ -199,7 +187,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	}
 
 	/**
-	 * Locate or create the RMI registry.
+	 * 定位或创建 RMI 注册表。
 	 * @param registryPort the registry port to use
 	 * @param clientSocketFactory the RMI client socket factory for the registry (if any)
 	 * @param serverSocketFactory the RMI server socket factory for the registry (if any)
@@ -242,7 +230,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	}
 
 	/**
-	 * Locate or create the RMI registry.
+	 * 定位或创建 RMI 注册表。
 	 * @param registryPort the registry port to use
 	 * @return the RMI registry
 	 * @throws RemoteException if the registry couldn't be located or created
@@ -274,9 +262,8 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 	}
 
 	/**
-	 * Test the given RMI registry, calling some operation on it to
-	 * check whether it is still active.
-	 * <p>Default implementation calls {@code Registry.list()}.
+	 * 测试给定的 RMI 注册表，在其上调用某个操作以检查它是否仍然处于活动状态。
+	 * <p>默认实现调用 {@code Registry.list()}。
 	 * @param registry the RMI registry to test
 	 * @throws RemoteException if thrown by registry methods
 	 * @see java.rmi.registry.Registry#list()
@@ -303,8 +290,7 @@ public class RmiRegistryFactoryBean implements FactoryBean<Registry>, Initializi
 
 
 	/**
-	 * Unexport the RMI registry on bean factory shutdown,
-	 * provided that this bean actually created a registry.
+	 * 在 Bean 工厂关闭时取消导出 RMI 注册表，前提是此 Bean 确实创建了注册表。
 	 */
 	@Override
 	public void destroy() throws RemoteException {

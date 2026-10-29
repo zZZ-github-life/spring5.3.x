@@ -22,7 +22,7 @@ import java.util.Map;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * Registry for custom {@link SQLExceptionTranslator} instances for specific databases.
+ * 用于特定数据库的自定义 {@link SQLExceptionTranslator} 实例的注册表。
  *
  * @author Thomas Risberg
  * @since 3.1.1
@@ -30,18 +30,18 @@ import org.springframework.beans.factory.InitializingBean;
 public class CustomSQLExceptionTranslatorRegistrar implements InitializingBean {
 
 	/**
-	 * Map registry to hold custom translators specific databases.
-	 * Key is the database product name as defined in the
-	 * {@link org.springframework.jdbc.support.SQLErrorCodesFactory}.
+	 * 保存特定数据库自定义转换器的 Map 注册表。
+	 * 键是数据库产品名称，定义于
+	 * {@link org.springframework.jdbc.support.SQLErrorCodesFactory}。
 	 */
 	private final Map<String, SQLExceptionTranslator> translators = new HashMap<>();
 
 
 	/**
-	 * Setter for a Map of {@link SQLExceptionTranslator} references where the key must
-	 * be the database name as defined in the {@code sql-error-codes.xml} file.
-	 * <p>Note that any existing translators will remain unless there is a match in the
-	 * database name, at which point the new translator will replace the existing one.
+	 * 设置 {@link SQLExceptionTranslator} 引用的 Map，其中键必须是
+	 * {@code sql-error-codes.xml} 文件中定义的数据库名称。
+	 * <p>请注意，除非数据库名称匹配，否则现有的转换器将保留；一旦匹配，
+	 * 新的转换器将替换现有的转换器。
 	 */
 	public void setTranslators(Map<String, SQLExceptionTranslator> translators) {
 		this.translators.putAll(translators);

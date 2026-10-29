@@ -22,8 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Simple wrapper around a {@link DefaultMockMvcBuilder}.
- *
+ * {@link DefaultMockMvcBuilder} 的简单包装器。
  * @author Rossen Stoyanchev
  * @since 5.3
  */

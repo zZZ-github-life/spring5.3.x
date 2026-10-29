@@ -22,11 +22,9 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
- * Composite iterator that combines multiple other iterators,
- * as registered via {@link #add(Iterator)}.
+ * 组合迭代器，将经由 {@link #add(Iterator)} 注册的多个其他迭代器组合在一起。
  *
- * <p>This implementation maintains a linked set of iterators
- * which are invoked in sequence until all iterators are exhausted.
+ * <p>该实现维护一个迭代器链式集合，这些迭代器按顺序调用，直到所有迭代器都耗尽。
  *
  * @author Erwin Vervaet
  * @author Juergen Hoeller
@@ -41,7 +39,7 @@ public class CompositeIterator<E> implements Iterator<E> {
 
 
 	/**
-	 * Add given iterator to this composite.
+	 * 将给定迭代器添加到此组合中。
 	 */
 	public void add(Iterator<E> iterator) {
 		Assert.state(!this.inUse, "You can no longer add iterators to a composite iterator that's already in use");

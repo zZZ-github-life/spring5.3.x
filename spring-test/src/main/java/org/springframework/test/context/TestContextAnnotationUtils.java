@@ -40,28 +40,26 @@ import org.springframework.util.ConcurrentLruCache;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@code TestContextAnnotationUtils} is a collection of utility methods that
- * complements the standard support already available in {@link AnnotationUtils}
- * and {@link AnnotatedElementUtils}, while transparently honoring
- * {@link NestedTestConfiguration @NestedTestConfiguration} semantics.
+ * {@code TestContextAnnotationUtils} 是一组工具方法，补充
+ * {@link AnnotationUtils} 和 {@link AnnotatedElementUtils} 中已有的标准支持，
+ * 同时透明地遵循
+ * {@link NestedTestConfiguration @NestedTestConfiguration} 语义。
  *
- * <p>Mainly for internal use within the <em>Spring TestContext Framework</em>.
+ * <p>主要用于 <em>Spring TestContext Framework</em> 内部。
  *
- * <p>Whereas {@code AnnotationUtils} and {@code AnnotatedElementUtils} provide
- * utilities for <em>getting</em> or <em>finding</em> annotations,
- * {@code TestContextAnnotationUtils} goes a step further by providing support
- * for determining the <em>root class</em> on which an annotation is declared,
- * either directly or indirectly via a <em>composed annotation</em>. This
- * additional information is encapsulated in an {@link AnnotationDescriptor}.
+ * <p>{@code AnnotationUtils} 和 {@code AnnotatedElementUtils} 提供
+ * <em>获取</em>或<em>查找</em>注解的工具，
+ * 而 {@code TestContextAnnotationUtils} 更进一步，支持
+ * 确定注解直接或通过<em>组合注解</em>间接声明所在的<em>根类</em>。这些
+ * 附加信息封装在 {@link AnnotationDescriptor} 中。
  *
- * <p>The additional information provided by an {@code AnnotationDescriptor} is
- * required by the <em>Spring TestContext Framework</em> in order to be able to
- * support class inheritance and enclosing class hierarchy traversals for
- * annotations such as {@link ContextConfiguration @ContextConfiguration},
- * {@link TestExecutionListeners @TestExecutionListeners}, and
- * {@link ActiveProfiles @ActiveProfiles} which offer support for merging and
- * overriding various <em>inherited</em> annotation attributes &mdash; for
- * example, {@link ContextConfiguration#inheritLocations}.
+ * <p>{@code AnnotationDescriptor} 提供的附加信息是
+ * <em>Spring TestContext Framework</em> 所需的，以便能够
+ * 支持诸如 {@link ContextConfiguration @ContextConfiguration}、
+ * {@link TestExecutionListeners @TestExecutionListeners} 和
+ * {@link ActiveProfiles @ActiveProfiles} 等注解的类继承和封闭类层次结构遍历，
+ * 这些注解支持合并和覆盖各种<em>继承的</em>注解属性 ——
+ * 例如 {@link ContextConfiguration#inheritLocations}。
  *
  * @author Sam Brannen
  * @since 5.3, though originally since 4.0 as {@link org.springframework.test.util.MetaAnnotationUtils}
@@ -79,11 +77,11 @@ public abstract class TestContextAnnotationUtils {
 
 
 	/**
-	 * Determine if an annotation of the specified {@code annotationType} is
-	 * present or meta-present on the supplied {@link Class} according to the
-	 * search algorithm used in {@link #findMergedAnnotation(Class, Class)}.
-	 * <p>If this method returns {@code true}, then {@code findMergedAnnotation(...)}
-	 * will return a non-null value.
+	 * 根据 {@link #findMergedAnnotation(Class, Class)} 中使用的
+	 * 搜索算法，确定指定的 {@code annotationType} 注解是否
+	 * <em>存在</em>或<em>元存在</em>于提供的 {@link Class} 上。
+	 * <p>如果此方法返回 {@code true}，则 {@code findMergedAnnotation(...)}
+	 * 将返回非 null 值。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @return {@code true} if a matching annotation is present
@@ -95,20 +93,16 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Find the first annotation of the specified {@code annotationType} within
-	 * the annotation hierarchy <em>above</em> the supplied class, merge that
-	 * annotation's attributes with <em>matching</em> attributes from annotations
-	 * in lower levels of the annotation hierarchy, and synthesize the result back
-	 * into an annotation of the specified {@code annotationType}.
-	 * <p>In the context of this method, the term "above" means within the
-	 * {@linkplain Class#getSuperclass() superclass} hierarchy or within the
-	 * {@linkplain Class#getEnclosingClass() enclosing class} hierarchy of the
-	 * supplied class. The enclosing class hierarchy will only be searched
-	 * according to {@link NestedTestConfiguration @NestedTestConfiguration}
-	 * semantics.
-	 * <p>{@link org.springframework.core.annotation.AliasFor @AliasFor} semantics
-	 * are fully supported, both within a single annotation and within annotation
-	 * hierarchies.
+	 * 在提供的类<em>之上</em>的注解层次结构中查找指定 {@code annotationType} 的第一个注解，
+	 * 将该注解的属性与注解层次结构较低级别中注解的<em>匹配</em>
+	 * 属性合并，并将结果合成为指定 {@code annotationType} 的注解。
+	 * <p>在此方法的上下文中，术语 "above" 指的是
+	 * 所提供类的 {@linkplain Class#getSuperclass() 超类}层次结构或
+	 * {@linkplain Class#getEnclosingClass() 封闭类}层次结构中的位置。封闭类层次结构
+	 * 将仅根据 {@link NestedTestConfiguration @NestedTestConfiguration}
+	 * 语义进行搜索。
+	 * <p>完全支持 {@link org.springframework.core.annotation.AliasFor @AliasFor} 语义，
+	 * 无论是在单个注解内还是在注解层次结构内。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @return the merged, synthesized {@code Annotation}, or {@code null} if not found
@@ -131,24 +125,19 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Get all <em>repeatable annotations</em> of the specified {@code annotationType}
-	 * within the annotation hierarchy <em>above</em> the supplied class; and for
-	 * each annotation found, merge that annotation's attributes with <em>matching</em>
-	 * attributes from annotations in lower levels of the annotation hierarchy and
-	 * synthesize the results back into an annotation of the specified {@code annotationType}.
-	 * <p>This method will find {@link java.lang.annotation.Inherited @Inherited}
-	 * annotations declared on superclasses if the supplied class does not have
-	 * any local declarations of the repeatable annotation. If no inherited
-	 * annotations are found, this method will search within the
-	 * {@linkplain Class#getEnclosingClass() enclosing class} hierarchy of the
-	 * supplied class. The enclosing class hierarchy will only be searched
-	 * according to {@link NestedTestConfiguration @NestedTestConfiguration}
-	 * semantics.
-	 * <p>The container type that holds the repeatable annotations will be looked up
-	 * via {@link java.lang.annotation.Repeatable}.
-	 * <p>{@link org.springframework.core.annotation.AliasFor @AliasFor} semantics
-	 * are fully supported, both within a single annotation and within annotation
-	 * hierarchies.
+	 * 在提供的类<em>之上</em>的注解层次结构中获取指定 {@code annotationType}
+	 * 的所有<em>可重复注解</em>；对于找到的每个注解，
+	 * 将该注解的属性与注解层次结构较低级别中注解的<em>匹配</em>
+	 * 属性合并，并将结果合成为指定 {@code annotationType} 的注解。
+	 * <p>如果提供的类没有任何可重复注解的本地声明，此方法将查找在超类上声明的
+	 * {@link java.lang.annotation.Inherited @Inherited} 注解。
+	 * 如果未找到继承的注解，此方法将在
+	 * 所提供类的 {@linkplain Class#getEnclosingClass() 封闭类}层次结构中搜索。
+	 * 封闭类层次结构将仅根据 {@link NestedTestConfiguration @NestedTestConfiguration}
+	 * 语义进行搜索。
+	 * <p>存放可重复注解的容器类型将通过 {@link java.lang.annotation.Repeatable} 查找。
+	 * <p>完全支持 {@link org.springframework.core.annotation.AliasFor @AliasFor} 语义，
+	 * 无论是在单个注解内还是在注解层次结构内。
 	 * @param clazz the class on which to search for annotations (never {@code null})
 	 * @param annotationType the annotation type to find (never {@code null})
 	 * @return the set of all merged repeatable annotations found, or an empty set
@@ -178,28 +167,24 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Find the {@link AnnotationDescriptor} for the supplied {@code annotationType}
-	 * on the supplied {@link Class}, traversing its annotations, interfaces,
-	 * superclasses, and enclosing classes if no annotation can be found on the
-	 * given class itself.
-	 * <p>This method explicitly handles class-level annotations which are not
-	 * declared as {@linkplain java.lang.annotation.Inherited inherited} <em>as
-	 * well as meta-annotations</em>.
-	 * <p>The algorithm operates as follows:
+	 * 在提供的 {@link Class} 上查找指定 {@code annotationType} 的
+	 * {@link AnnotationDescriptor}；如果在给定类本身上找不到注解，则遍历其注解、接口、
+	 * 超类和封闭类。
+	 * <p>此方法显式处理未声明为 {@linkplain java.lang.annotation.Inherited 继承}的
+	 * 类级注解<em>以及元注解</em>。
+	 * <p>算法运行如下：
 	 * <ol>
-	 * <li>Search for the annotation on the given class and return a corresponding
-	 * {@code AnnotationDescriptor} if found.
-	 * <li>Recursively search through all annotations that the given class declares.</li>
-	 * <li>Recursively search through all interfaces implemented by the given class.</li>
-	 * <li>Recursively search through the superclass hierarchy of the given class.</li>
-	 * <li>Recursively search through the enclosing class hierarchy of the given class
-	 * if appropriate according to {@link NestedTestConfiguration @NestedTestConfiguration}
-	 * semantics.</li>
+	 * <li>在给定类上搜索该注解，如果找到则返回相应的
+	 * {@code AnnotationDescriptor}。
+	 * <li>递归搜索给定类声明的所有注解。</li>
+	 * <li>递归搜索给定类实现的所有接口。</li>
+	 * <li>递归搜索给定类的超类层次结构。</li>
+	 * <li>如果根据 {@link NestedTestConfiguration @NestedTestConfiguration}
+	 * 语义适当，递归搜索给定类的封闭类层次结构。</li>
 	 * </ol>
-	 * <p>In this context, the term <em>recursively</em> means that the search
-	 * process continues by returning to step #1 with the current annotation,
-	 * interface, superclass, or enclosing class as the class to look for
-	 * annotations on.
+	 * <p>在此上下文中，术语<em>递归</em>意味着搜索
+	 * 过程继续返回到第 1 步，将当前注解、
+	 * 接口、超类或封闭类作为要查找注解的类。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @return the corresponding annotation descriptor if the annotation was found;
@@ -216,9 +201,8 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Perform the search algorithm for {@link #findAnnotationDescriptor(Class, Class)},
-	 * avoiding endless recursion by tracking which annotations have already been
-	 * <em>visited</em>.
+	 * 执行 {@link #findAnnotationDescriptor(Class, Class)} 的搜索算法，
+	 * 通过跟踪已<em>访问</em>的注解来避免无限递归。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @param searchEnclosingClass a predicate which evaluates to {@code true}
@@ -280,32 +264,26 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Find the {@link UntypedAnnotationDescriptor} for the first {@link Class}
-	 * in the inheritance hierarchy of the specified {@code clazz} (including
-	 * the specified {@code clazz} itself) which declares at least one of the
-	 * specified {@code annotationTypes}.
-	 * <p>This method traverses the annotations, interfaces, superclasses, and
-	 * enclosing classes of the specified {@code clazz} if no annotation can be
-	 * found on the given class itself.
-	 * <p>This method explicitly handles class-level annotations which are not
-	 * declared as {@linkplain java.lang.annotation.Inherited inherited} <em>as
-	 * well as meta-annotations</em>.
-	 * <p>The algorithm operates as follows:
+	 * 在指定 {@code clazz} 的继承层次结构中（包括
+	 * 指定 {@code clazz} 本身）查找第一个声明了至少一个指定
+	 * {@code annotationTypes} 的 {@link Class} 的 {@link UntypedAnnotationDescriptor}。
+	 * <p>如果在给定类本身上找不到注解，此方法会遍历指定 {@code clazz}
+	 * 的注解、接口、超类和封闭类。
+	 * <p>此方法显式处理未声明为 {@linkplain java.lang.annotation.Inherited 继承}的
+	 * 类级注解<em>以及元注解</em>。
+	 * <p>算法运行如下：
 	 * <ol>
-	 * <li>Search for a local declaration of one of the annotation types on the
-	 * given class and return a corresponding {@code UntypedAnnotationDescriptor}
-	 * if found.
-	 * <li>Recursively search through all annotations that the given class declares.</li>
-	 * <li>Recursively search through all interfaces implemented by the given class.</li>
-	 * <li>Recursively search through the superclass hierarchy of the given class.</li>
-	 * <li>Recursively search through the enclosing class hierarchy of the given class
-	 * if appropriate according to {@link NestedTestConfiguration @NestedTestConfiguration}
-	 * semantics.</li>
+	 * <li>在给定类上搜索其中一个注解类型的本地声明，
+	 * 如果找到则返回相应的 {@code UntypedAnnotationDescriptor}。
+	 * <li>递归搜索给定类声明的所有注解。</li>
+	 * <li>递归搜索给定类实现的所有接口。</li>
+	 * <li>递归搜索给定类的超类层次结构。</li>
+	 * <li>如果根据 {@link NestedTestConfiguration @NestedTestConfiguration}
+	 * 语义适当，递归搜索给定类的封闭类层次结构。</li>
 	 * </ol>
-	 * <p>In this context, the term <em>recursively</em> means that the search
-	 * process continues by returning to step #1 with the current annotation,
-	 * interface, superclass, or enclosing class as the class to look for
-	 * annotations on.
+	 * <p>在此上下文中，术语<em>递归</em>意味着搜索
+	 * 过程继续返回到第 1 步，将当前注解、
+	 * 接口、超类或封闭类作为要查找注解的类。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationTypes the types of annotations to look for
 	 * @return the corresponding annotation descriptor if one of the annotations
@@ -322,9 +300,8 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Perform the search algorithm for {@link #findAnnotationDescriptorForTypes(Class, Class...)},
-	 * avoiding endless recursion by tracking which annotations have already been
-	 * <em>visited</em>.
+	 * 执行 {@link #findAnnotationDescriptorForTypes(Class, Class...)} 的搜索算法，
+	 * 通过跟踪已<em>访问</em>的注解来避免无限递归。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationTypes the types of annotations to look for
 	 * @param visited the set of annotations that have already been visited
@@ -386,9 +363,8 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Determine if annotations on the enclosing class of the supplied class
-	 * should be searched by annotation search algorithms within the <em>Spring
-	 * TestContext Framework</em>.
+	 * 确定 <em>Spring TestContext Framework</em> 中的注解搜索算法是否应搜索
+	 * 所提供类的封闭类上的注解。
 	 * @param clazz the class whose enclosing class should potentially be searched
 	 * @return {@code true} if the supplied class is an inner class whose enclosing
 	 * class should be searched
@@ -406,7 +382,7 @@ public abstract class TestContextAnnotationUtils {
 	}
 
 	/**
-	 * Get the {@link EnclosingConfiguration} mode for the supplied class.
+	 * 获取所提供类的 {@link EnclosingConfiguration} 模式。
 	 * @param clazz the class for which the enclosing configuration mode should
 	 * be resolved
 	 * @return the resolved enclosing configuration mode
@@ -450,32 +426,32 @@ public abstract class TestContextAnnotationUtils {
 
 
 	/**
-	 * Descriptor for an {@link Annotation}, including the {@linkplain
-	 * #getDeclaringClass() class} on which the annotation is <em>declared</em>
-	 * as well as the {@linkplain #getAnnotation() merged annotation} instance.
-	 * <p>If the annotation is used as a meta-annotation, the <em>root declaring
-	 * class</em> is not directly annotated with the annotation but rather
-	 * indirectly via a composed annotation.
-	 * <p>Given the following example, if we are searching for the {@code @Transactional}
-	 * annotation <em>on</em> the {@code TransactionalTests} class, then the
-	 * properties of the {@code AnnotationDescriptor} would be as follows.
+	 * 注解的描述符，包括注解<em>声明</em>所在的
+	 * {@linkplain #getDeclaringClass() 类}以及 {@linkplain #getAnnotation() 合并后的注解}
+	 * 实例。
+	 * <p>如果注解用作元注解，则<em>根声明
+	 * 类</em>并未直接使用该注解，而是通过组合注解
+	 * 间接使用。
+	 * <p>在以下示例中，如果我们在 {@code TransactionalTests} 类<em>上</em>
+	 * 搜索 {@code @Transactional} 注解，则
+	 * {@code AnnotationDescriptor} 的属性如下。
 	 * <ul>
-	 * <li>rootDeclaringClass: {@code TransactionalTests} class object</li>
-	 * <li>declaringClass: {@code TransactionalTests} class object</li>
-	 * <li>annotation: instance of the {@code Transactional} annotation</li>
+	 * <li>rootDeclaringClass：{@code TransactionalTests} 类对象</li>
+	 * <li>declaringClass：{@code TransactionalTests} 类对象</li>
+	 * <li>annotation：{@code Transactional} 注解的实例</li>
 	 * </ul>
 	 * <p><pre style="code">
 	 * &#064;Transactional
 	 * &#064;ContextConfiguration({"/test-datasource.xml", "/repository-config.xml"})
 	 * public class TransactionalTests { }
 	 * </pre>
-	 * <p>Given the following example, if we are searching for the {@code @Transactional}
-	 * annotation <em>on</em> the {@code UserRepositoryTests} class, then the
-	 * properties of the {@code AnnotationDescriptor} would be as follows.
+	 * <p>在以下示例中，如果我们在 {@code UserRepositoryTests} 类<em>上</em>
+	 * 搜索 {@code @Transactional} 注解，则
+	 * {@code AnnotationDescriptor} 的属性如下。
 	 * <ul>
-	 * <li>rootDeclaringClass: {@code UserRepositoryTests} class object</li>
-	 * <li>declaringClass: {@code RepositoryTests} class object</li>
-	 * <li>annotation: instance of the {@code Transactional} annotation</li>
+	 * <li>rootDeclaringClass：{@code UserRepositoryTests} 类对象</li>
+	 * <li>declaringClass：{@code RepositoryTests} 类对象</li>
+	 * <li>annotation：{@code Transactional} 注解的实例</li>
 	 * </ul>
 	 * <p><pre style="code">
 	 * &#064;Transactional
@@ -524,7 +500,7 @@ public abstract class TestContextAnnotationUtils {
 		}
 
 		/**
-		 * Get the merged annotation for this descriptor.
+		 * 获取此描述符的合并注解。
 		 */
 		public T getAnnotation() {
 			return this.annotation;
@@ -536,14 +512,14 @@ public abstract class TestContextAnnotationUtils {
 		}
 
 		/**
-		 * Find the next {@link AnnotationDescriptor} for the specified annotation
-		 * type in the hierarchy above the {@linkplain #getRootDeclaringClass()
-		 * root declaring class} of this descriptor.
-		 * <p>If a corresponding annotation is found in the superclass hierarchy
-		 * of the root declaring class, that will be returned. Otherwise, an
-		 * attempt will be made to find a corresponding annotation in the
-		 * {@linkplain Class#getEnclosingClass() enclosing class} hierarchy of
-		 * the root declaring class if {@linkplain #searchEnclosingClass appropriate}.
+		 * 在此描述符的 {@linkplain #getRootDeclaringClass()
+		 * 根声明类}<em>之上</em>的层次结构中查找指定注解类型的下一个
+		 * {@link AnnotationDescriptor}。
+		 * <p>如果在根声明类的超类层次结构中找到
+		 * 相应的注解，则返回该注解。否则，如果{@linkplain #searchEnclosingClass 适当}，
+		 * 将尝试在
+		 * 根声明类的 {@linkplain Class#getEnclosingClass() 封闭类}层次结构中
+		 * 查找相应的注解。
 		 * @return the next corresponding annotation descriptor if the annotation
 		 * was found; otherwise {@code null}
 		 */
@@ -560,10 +536,9 @@ public abstract class TestContextAnnotationUtils {
 		}
 
 		/**
-		 * Find <strong>all</strong> annotations of the specified annotation type
-		 * that are present or meta-present on the {@linkplain #getRootDeclaringClass()
-		 * root declaring class} of this descriptor or on any interfaces that the
-		 * root declaring class implements.
+		 * 查找<em>存在</em>或<em>元存在</em>于此描述符的 {@linkplain #getRootDeclaringClass()
+		 * 根声明类}上或根声明类实现的任何接口上的指定注解类型的
+		 * <strong>所有</strong>注解。
 		 * @return the set of all merged, synthesized {@code Annotations} found,
 		 * or an empty set if none were found
 		 */
@@ -576,7 +551,7 @@ public abstract class TestContextAnnotationUtils {
 		}
 
 		/**
-		 * Provide a textual representation of this {@code AnnotationDescriptor}.
+		 * 提供此 {@code AnnotationDescriptor} 的文本表示形式。
 		 */
 		@Override
 		public String toString() {
@@ -590,9 +565,9 @@ public abstract class TestContextAnnotationUtils {
 
 
 	/**
-	 * <em>Untyped</em> extension of {@link AnnotationDescriptor} that is used
-	 * to describe the declaration of one of several candidate annotation types
-	 * where the actual annotation type cannot be predetermined.
+	 * {@link AnnotationDescriptor} 的<em>无类型</em>扩展，用于
+	 * 描述多个候选注解类型之一的声明，
+	 * 其中实际注解类型无法预先确定。
 	 */
 	public static class UntypedAnnotationDescriptor extends AnnotationDescriptor<Annotation> {
 
@@ -612,15 +587,14 @@ public abstract class TestContextAnnotationUtils {
 		}
 
 		/**
-		 * Find the next {@link UntypedAnnotationDescriptor} for the specified
-		 * annotation types in the hierarchy above the
-		 * {@linkplain #getRootDeclaringClass() root declaring class} of this
-		 * descriptor.
-		 * <p>If one of the corresponding annotations is found in the superclass
-		 * hierarchy of the root declaring class, that will be returned. Otherwise,
-		 * an attempt will be made to find a corresponding annotation in the
-		 * {@linkplain Class#getEnclosingClass() enclosing class} hierarchy of
-		 * the root declaring class if {@linkplain #searchEnclosingClass appropriate}.
+		 * 在此描述符的
+		 * {@linkplain #getRootDeclaringClass() 根声明类}<em>之上</em>的层次结构中查找指定
+		 * 注解类型的下一个 {@link UntypedAnnotationDescriptor}。
+		 * <p>如果在根声明类的超类层次结构中找到其中一个相应的注解，
+		 * 则返回该注解。否则，如果{@linkplain #searchEnclosingClass 适当}，
+		 * 将尝试在根声明类的
+		 * {@linkplain Class#getEnclosingClass() 封闭类}层次结构中
+		 * 查找相应的注解。
 		 * @return the next corresponding annotation descriptor if one of the
 		 * annotations was found; otherwise {@code null}
 		 * @see AnnotationDescriptor#next()
@@ -639,8 +613,8 @@ public abstract class TestContextAnnotationUtils {
 		}
 
 		/**
-		 * Throws an {@link UnsupportedOperationException} since the type of annotation
-		 * represented by an {@code UntypedAnnotationDescriptor} is unknown.
+		 * 抛出 {@link UnsupportedOperationException}，因为 {@code UntypedAnnotationDescriptor}
+		 * 所表示的注解类型未知。
 		 */
 		@Override
 		public Set<Annotation> findAllLocalMergedAnnotations() {

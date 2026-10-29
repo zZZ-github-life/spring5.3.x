@@ -22,11 +22,11 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
 /**
- * An extension of {@link ChannelInterceptor} with callbacks to intercept the
- * asynchronous sending of a {@link org.springframework.messaging.Message} to
- * a specific subscriber through an {@link java.util.concurrent.Executor}.
- * Supported on {@link org.springframework.messaging.MessageChannel}
- * implementations that can be configured with an {@code Executor}.
+ * {@link ChannelInterceptor} 的扩展，提供回调以拦截通过
+ * {@link java.util.concurrent.Executor} 向特定订阅者异步发送
+ * {@link org.springframework.messaging.Message} 的过程。
+ * 支持在可配置 {@code Executor} 的
+ * {@link org.springframework.messaging.MessageChannel} 实现上使用。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -37,10 +37,9 @@ import org.springframework.messaging.MessageHandler;
 public interface ExecutorChannelInterceptor extends ChannelInterceptor {
 
 	/**
-	 * Invoked inside the {@link Runnable} submitted to the Executor just before
-	 * calling the target MessageHandler to handle the message. Allows for
-	 * modification of the Message if necessary or when {@code null} is returned
-	 * the MessageHandler is not invoked.
+	 * 在提交给 Executor 的 {@link Runnable} 内部、调用目标 MessageHandler 处理
+	 * 消息之前调用。如有必要可以修改 Message；如果返回 {@code null}，
+	 * 则不会调用 MessageHandler。
 	 * @param message the message to be handled
 	 * @param channel the channel on which the message was sent to
 	 * @param handler the target handler to handle the message
@@ -52,11 +51,10 @@ public interface ExecutorChannelInterceptor extends ChannelInterceptor {
 	}
 
 	/**
-	 * Invoked inside the {@link Runnable} submitted to the Executor after calling
-	 * the target MessageHandler regardless of the outcome (i.e. Exception raised
-	 * or not) thus allowing for proper resource cleanup.
-	 * <p>Note that this will be invoked only if beforeHandle successfully completed
-	 * and returned a Message, i.e. it did not return {@code null}.
+	 * 在提交给 Executor 的 {@link Runnable} 内部、调用目标 MessageHandler 之后调用，
+	 * 无论结果如何（即是否抛出异常），从而允许进行适当的资源清理。
+	 * <p>请注意，仅当 beforeHandle 成功完成并返回 Message（即未返回
+	 * {@code null}）时才会调用此方法。
 	 * @param message the message handled
 	 * @param channel the channel on which the message was sent to
 	 * @param handler the target handler that handled the message

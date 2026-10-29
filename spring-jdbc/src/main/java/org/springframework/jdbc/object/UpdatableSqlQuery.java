@@ -26,12 +26,12 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.Nullable;
 
 /**
- * Reusable RDBMS query in which concrete subclasses must implement
- * the abstract updateRow(ResultSet, int, context) method to update each
- * row of the JDBC ResultSet and optionally map contents into an object.
+ * 可重用的 RDBMS 查询，具体子类必须实现抽象的
+ * updateRow(ResultSet, int, context) 方法，以更新 JDBC ResultSet 的每一行，
+ * 并可选地将内容映射到对象中。
  *
- * <p>Subclasses can be constructed providing SQL, parameter types
- * and a DataSource. SQL will often vary between subclasses.
+ * <p>子类在构造时可以传入 SQL、参数类型和 DataSource。SQL 往往因
+ * 子类而异。
  *
  * @author Thomas Risberg
  * @param <T> the result type
@@ -40,14 +40,14 @@ import org.springframework.lang.Nullable;
 public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 
 	/**
-	 * Constructor to allow use as a JavaBean.
+	 * 允许作为 JavaBean 使用的构造函数。
 	 */
 	public UpdatableSqlQuery() {
 		setUpdatableResults(true);
 	}
 
 	/**
-	 * Convenient constructor with DataSource and SQL string.
+	 * 使用 DataSource 和 SQL 字符串的便捷构造函数。
 	 * @param ds the DataSource to use to get connections
 	 * @param sql the SQL to run
 	 */
@@ -58,8 +58,7 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 
 
 	/**
-	 * Implementation of the superclass template method. This invokes the subclass's
-	 * implementation of the {@code updateRow()} method.
+	 * 父类模板方法的实现。这会调用子类的 {@code updateRow()} 方法实现。
 	 */
 	@Override
 	protected RowMapper<T> newRowMapper(@Nullable Object[] parameters, @Nullable Map<?, ?> context) {
@@ -67,8 +66,7 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 	}
 
 	/**
-	 * Subclasses must implement this method to update each row of the
-	 * ResultSet and optionally create object of the result type.
+	 * 子类必须实现此方法以更新 ResultSet 的每一行，并可选地创建结果类型的对象。
 	 * @param rs the ResultSet we're working through
 	 * @param rowNum row number (from 0) we're up to
 	 * @param context passed to the {@code execute()} method.
@@ -85,8 +83,7 @@ public abstract class UpdatableSqlQuery<T> extends SqlQuery<T> {
 
 
 	/**
-	 * Implementation of RowMapper that calls the enclosing
-	 * class's {@code updateRow()} method for each row.
+	 * RowMapper 的实现，对每一行调用外部类的 {@code updateRow()} 方法。
 	 */
 	protected class RowMapperImpl implements RowMapper<T> {
 

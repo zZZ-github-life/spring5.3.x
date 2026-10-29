@@ -22,10 +22,9 @@ import java.util.StringJoiner;
 import org.springframework.lang.Nullable;
 
 /**
- * Base class for {@code MessageCondition's} that pre-declares abstract methods
- * {@link #getContent()} and {@link #getToStringInfix()} in order to provide
- * implementations of {@link #equals(Object)}, {@link #hashCode()}, and
- * {@link #toString()}.
+ * {@code MessageCondition} 的基类，预先声明抽象方法 {@link #getContent()} 和
+ * {@link #getToStringInfix()}，以便提供 {@link #equals(Object)}、{@link #hashCode()}
+ * 和 {@link #toString()} 的实现。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -60,14 +59,13 @@ public abstract class AbstractMessageCondition<T extends AbstractMessageConditio
 
 
 	/**
-	 * Return the collection of objects the message condition is composed of
-	 * (e.g. destination patterns), never {@code null}.
+	 * 返回组成消息条件的对象集合（例如目标模式），永不返回 {@code null}。
 	 */
 	protected abstract Collection<?> getContent();
 
 	/**
-	 * The notation to use when printing discrete items of content.
-	 * For example " || " for URL patterns or " &amp;&amp; " for param expressions.
+	 * 打印离散内容项时使用的表示法。
+	 * 例如，URL 模式使用 " || "，参数表达式使用 " &amp;&amp; "。
 	 */
 	protected abstract String getToStringInfix();
 

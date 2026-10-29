@@ -24,7 +24,7 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
- * Comparator capable of sorting exceptions based on their depth from the thrown exception type.
+ * 能够根据异常相对于所抛出异常类型的深度对异常进行排序的比较器。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -36,7 +36,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 
 	/**
-	 * Create a new ExceptionDepthComparator for the given exception.
+	 * 为给定的异常创建新的 ExceptionDepthComparator。
 	 * @param exception the target exception to compare to when sorting by depth
 	 */
 	public ExceptionDepthComparator(Throwable exception) {
@@ -45,7 +45,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 	}
 
 	/**
-	 * Create a new ExceptionDepthComparator for the given exception type.
+	 * 为给定的异常类型创建新的 ExceptionDepthComparator。
 	 * @param exceptionType the target exception type to compare to when sorting by depth
 	 */
 	public ExceptionDepthComparator(Class<? extends Throwable> exceptionType) {
@@ -75,7 +75,7 @@ public class ExceptionDepthComparator implements Comparator<Class<? extends Thro
 
 
 	/**
-	 * Obtain the closest match from the given exception types for the given target exception.
+	 * 从给定的异常类型中获取与给定目标异常最接近的匹配项。
 	 * @param exceptionTypes the collection of exception types
 	 * @param targetException the target exception to find a match for
 	 * @return the closest matching exception type from the given collection

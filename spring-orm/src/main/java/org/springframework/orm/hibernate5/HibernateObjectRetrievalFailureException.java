@@ -22,8 +22,8 @@ import org.hibernate.WrongClassException;
 import org.springframework.orm.ObjectRetrievalFailureException;
 
 /**
- * Hibernate-specific subclass of ObjectRetrievalFailureException.
- * Converts Hibernate's UnresolvableObjectException and WrongClassException.
+ * ObjectRetrievalFailureException 的 Hibernate 专用子类。
+ * 转换 Hibernate 的 UnresolvableObjectException 和 WrongClassException。
  *
  * @author Juergen Hoeller
  * @since 4.2

@@ -28,8 +28,8 @@ import javax.servlet.jsp.tagext.BodyContent;
 import org.springframework.lang.Nullable;
 
 /**
- * Mock implementation of the {@link javax.servlet.jsp.tagext.BodyContent} class.
- * Only necessary for testing applications when testing custom JSP tags.
+ * {@link javax.servlet.jsp.tagext.BodyContent} 类的 mock 实现。
+ * 仅在测试自定义 JSP 标签时需要用于测试应用程序。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -40,7 +40,7 @@ public class MockBodyContent extends BodyContent {
 
 
 	/**
-	 * Create a MockBodyContent for the given response.
+	 * 为给定响应创建一个 MockBodyContent。
 	 * @param content the body content to expose
 	 * @param response the servlet response to wrap
 	 */
@@ -49,7 +49,7 @@ public class MockBodyContent extends BodyContent {
 	}
 
 	/**
-	 * Create a MockBodyContent for the given response.
+	 * 为给定响应创建一个 MockBodyContent。
 	 * @param content the body content to expose
 	 * @param targetWriter the target Writer to wrap
 	 */
@@ -58,7 +58,7 @@ public class MockBodyContent extends BodyContent {
 	}
 
 	/**
-	 * Create a MockBodyContent for the given response.
+	 * 为给定响应创建一个 MockBodyContent。
 	 * @param content the body content to expose
 	 * @param response the servlet response to wrap
 	 * @param targetWriter the target Writer to wrap

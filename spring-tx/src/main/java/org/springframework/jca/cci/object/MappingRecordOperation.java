@@ -29,14 +29,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * EIS operation object that expects mapped input and output objects,
- * converting to and from CCI Records.
+ * EIS 操作对象，期望映射的输入和输出对象，
+ * 在 CCI Record 之间进行转换。
  *
- * <p>Concrete subclasses must implement the abstract
- * {@code createInputRecord(RecordFactory, Object)} and
- * {@code extractOutputData(Record)} methods, to create an input
- * Record from an object and to convert an output Record into an object,
- * respectively.
+ * <p>具体子类必须实现抽象方法
+ * {@code createInputRecord(RecordFactory, Object)} 和
+ * {@code extractOutputData(Record)}，分别从对象创建输入 Record
+ * 和将输出 Record 转换为对象。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -50,14 +49,14 @@ import org.springframework.util.Assert;
 public abstract class MappingRecordOperation extends EisOperation {
 
 	/**
-	 * Constructor that allows use as a JavaBean.
+	 * 允许作为 JavaBean 使用的构造器。
 	 */
 	public MappingRecordOperation() {
 	}
 
 	/**
-	 * Convenient constructor with ConnectionFactory and specifications
-	 * (connection and interaction).
+	 * 便捷的构造器，接受 ConnectionFactory 和各规范
+	 * （连接规范和交互规范）。
 	 * @param connectionFactory the ConnectionFactory to use to obtain connections
 	 */
 	public MappingRecordOperation(ConnectionFactory connectionFactory, InteractionSpec interactionSpec) {
@@ -66,12 +65,10 @@ public abstract class MappingRecordOperation extends EisOperation {
 	}
 
 	/**
-	 * Set a RecordCreator that should be used for creating default output Records.
-	 * <p>Default is none: CCI's {@code Interaction.execute} variant
-	 * that returns an output Record will be called.
-	 * <p>Specify a RecordCreator here if you always need to call CCI's
-	 * {@code Interaction.execute} variant with a passed-in output Record.
-	 * This RecordCreator will then be invoked to create a default output Record instance.
+	 * 设置用于创建默认输出 Record 的 RecordCreator。
+	 * <p>默认为无：将调用 CCI 的 {@code Interaction.execute} 返回输出 Record 的变体。
+	 * <p>如果你总是需要调用 CCI 的 {@code Interaction.execute} 并传入输出 Record 的变体，
+	 * 请在此指定 RecordCreator。此 RecordCreator 将被调用以创建默认输出 Record 实例。
 	 * @see javax.resource.cci.Interaction#execute(javax.resource.cci.InteractionSpec, Record)
 	 * @see javax.resource.cci.Interaction#execute(javax.resource.cci.InteractionSpec, Record, Record)
 	 * @see org.springframework.jca.cci.core.CciTemplate#setOutputRecordCreator
@@ -81,7 +78,7 @@ public abstract class MappingRecordOperation extends EisOperation {
 	}
 
 	/**
-	 * Execute the interaction encapsulated by this operation object.
+	 * 执行此操作对象封装的交互。
 	 * @param inputObject the input data, to be converted to a Record
 	 * by the {@code createInputRecord} method
 	 * @return the output data extracted with the {@code extractOutputData} method
@@ -99,8 +96,7 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 
 	/**
-	 * Subclasses must implement this method to generate an input Record
-	 * from an input object passed into the {@code execute} method.
+	 * 子类必须实现此方法，从传入 {@code execute} 方法的输入对象生成输入 Record。
 	 * @param inputObject the passed-in input object
 	 * @return the CCI input Record
 	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
@@ -111,8 +107,7 @@ public abstract class MappingRecordOperation extends EisOperation {
 			throws ResourceException, DataAccessException;
 
 	/**
-	 * Subclasses must implement this method to convert the Record returned
-	 * by CCI execution into a result object for the {@code execute} method.
+	 * 子类必须实现此方法，将 CCI 执行返回的 Record 转换为 {@code execute} 方法的结果对象。
 	 * @param outputRecord the Record returned by CCI execution
 	 * @return the result object
 	 * @throws ResourceException if thrown by a CCI method, to be auto-converted
@@ -124,8 +119,7 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 
 	/**
-	 * Implementation of RecordCreator that calls the enclosing
-	 * class's {@code createInputRecord} method.
+	 * RecordCreator 的实现，调用外部类的 {@code createInputRecord} 方法。
 	 */
 	protected class RecordCreatorImpl implements org.springframework.jca.cci.core.RecordCreator {
 
@@ -143,8 +137,7 @@ public abstract class MappingRecordOperation extends EisOperation {
 
 
 	/**
-	 * Implementation of RecordExtractor that calls the enclosing
-	 * class's {@code extractOutputData} method.
+	 * RecordExtractor 的实现，调用外部类的 {@code extractOutputData} 方法。
 	 */
 	protected class RecordExtractorImpl implements org.springframework.jca.cci.core.RecordExtractor<Object> {
 

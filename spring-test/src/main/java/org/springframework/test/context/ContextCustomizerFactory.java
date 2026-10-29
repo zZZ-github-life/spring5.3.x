@@ -21,16 +21,16 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
- * Factory for creating {@link ContextCustomizer ContextCustomizers}.
+ * 用于创建 {@link ContextCustomizer ContextCustomizer} 的工厂。
  *
- * <p>Factories are invoked after {@link ContextLoader ContextLoaders} have
- * processed context configuration attributes but before the
- * {@link MergedContextConfiguration} is created.
+ * <p>工厂在 {@link ContextLoader ContextLoader} 处理完
+ * 上下文配置属性之后、但在创建
+ * {@link MergedContextConfiguration} 之前被调用。
  *
- * <p>By default, the Spring TestContext Framework will use the
+ * <p>默认情况下，Spring TestContext Framework 将使用
  * {@link org.springframework.core.io.support.SpringFactoriesLoader SpringFactoriesLoader}
- * mechanism for loading factories configured in all {@code META-INF/spring.factories}
- * files on the classpath.
+ * 机制来加载类路径上所有 {@code META-INF/spring.factories}
+ * 文件中配置的工厂。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -40,9 +40,8 @@ import org.springframework.lang.Nullable;
 public interface ContextCustomizerFactory {
 
 	/**
-	 * Create a {@link ContextCustomizer} that should be used to customize a
-	 * {@link org.springframework.context.ConfigurableApplicationContext ConfigurableApplicationContext}
-	 * before it is refreshed.
+	 * 创建应在 {@link org.springframework.context.ConfigurableApplicationContext ConfigurableApplicationContext}
+	 * 刷新之前用于自定义它的 {@link ContextCustomizer}。
 	 * @param testClass the test class
 	 * @param configAttributes the list of context configuration attributes for
 	 * the test class, ordered <em>bottom-up</em> (i.e., as if we were traversing

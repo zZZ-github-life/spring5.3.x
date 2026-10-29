@@ -24,7 +24,7 @@ import org.springframework.web.servlet.RequestToViewNameTranslator;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
- * Assist with the registration of a single view controller.
+ * 辅助注册单个视图控制器。
  *
  * @author Rossen Stoyanchev
  * @author Keith Donald
@@ -44,8 +44,8 @@ public class ViewControllerRegistration {
 
 
 	/**
-	 * Set the status code to set on the response. Optional.
-	 * <p>If not set the response status will be 200 (OK).
+	 * 设置要在响应中使用的状态码。可选。
+	 * <p>如果未设置，响应状态将为 200（OK）。
 	 */
 	public ViewControllerRegistration setStatusCode(HttpStatus statusCode) {
 		this.controller.setStatusCode(statusCode);
@@ -53,11 +53,10 @@ public class ViewControllerRegistration {
 	}
 
 	/**
-	 * Set the view name to return. Optional.
-	 * <p>If not specified, the view controller will return {@code null} as the
-	 * view name in which case the configured {@link RequestToViewNameTranslator}
-	 * will select the view name. The {@code DefaultRequestToViewNameTranslator}
-	 * for example translates "/foo/bar" to "foo/bar".
+	 * 设置要返回的视图名称。可选。
+	 * <p>如果未指定，视图控制器将返回 {@code null} 作为视图名称，此时
+	 * 配置的 {@link RequestToViewNameTranslator} 将选择视图名称。例如，
+	 * {@code DefaultRequestToViewNameTranslator} 会将 "/foo/bar" 转换为 "foo/bar"。
 	 * @see org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator
 	 */
 	public void setViewName(String viewName) {

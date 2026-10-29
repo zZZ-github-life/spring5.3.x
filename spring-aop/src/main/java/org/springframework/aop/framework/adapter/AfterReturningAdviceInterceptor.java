@@ -27,9 +27,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Interceptor to wrap an {@link org.springframework.aop.AfterReturningAdvice}.
- * Used internally by the AOP framework; application developers should not need
- * to use this class directly.
+ * 用于包装 {@link org.springframework.aop.AfterReturningAdvice} 的拦截器。由 AOP 框架内部使用；应
+ * 用开发者无需直接使用此类。
  *
  * @author Rod Johnson
  * @see MethodBeforeAdviceInterceptor
@@ -42,7 +41,7 @@ public class AfterReturningAdviceInterceptor implements MethodInterceptor, After
 
 
 	/**
-	 * Create a new AfterReturningAdviceInterceptor for the given advice.
+	 * 为给定 advice 创建一个新的 AfterReturningAdviceInterceptor。
 	 * @param advice the AfterReturningAdvice to wrap
 	 */
 	public AfterReturningAdviceInterceptor(AfterReturningAdvice advice) {

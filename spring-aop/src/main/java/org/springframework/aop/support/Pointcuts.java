@@ -24,26 +24,24 @@ import org.springframework.aop.Pointcut;
 import org.springframework.util.Assert;
 
 /**
- * Pointcut constants for matching getters and setters,
- * and static methods useful for manipulating and evaluating pointcuts.
+ * 用于匹配 getter 和 setter 的切点常量，以及用于操作和评估切点的静态方法。
  *
- * <p>These methods are particularly useful for composing pointcuts
- * using the union and intersection methods.
+ * <p>这些方法在使用并集和交集方法组合切点时特别有用。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
  */
 public abstract class Pointcuts {
 
-	/** Pointcut matching all bean property setters, in any class. */
+	/** 匹配任何类中所有 bean 属性 setter 的切点。 */
 	public static final Pointcut SETTERS = SetterPointcut.INSTANCE;
 
-	/** Pointcut matching all bean property getters, in any class. */
+	/** 匹配任何类中所有 bean 属性 getter 的切点。 */
 	public static final Pointcut GETTERS = GetterPointcut.INSTANCE;
 
 
 	/**
-	 * Match all methods that <b>either</b> (or both) of the given pointcuts matches.
+	 * 匹配给定的切点中<b>任一</b>（或两者）匹配的所有方法。
 	 * @param pc1 the first Pointcut
 	 * @param pc2 the second Pointcut
 	 * @return a distinct Pointcut that matches all methods that either
@@ -54,7 +52,7 @@ public abstract class Pointcuts {
 	}
 
 	/**
-	 * Match all methods that <b>both</b> the given pointcuts match.
+	 * 匹配给定的两个切点<b>都</b>匹配的所有方法。
 	 * @param pc1 the first Pointcut
 	 * @param pc2 the second Pointcut
 	 * @return a distinct Pointcut that matches all methods that both
@@ -65,7 +63,7 @@ public abstract class Pointcuts {
 	}
 
 	/**
-	 * Perform the least expensive check for a pointcut match.
+	 * 执行开销最小的切点匹配检查。
 	 * @param pointcut the pointcut to match
 	 * @param method the candidate method
 	 * @param targetClass the target class
@@ -90,7 +88,7 @@ public abstract class Pointcuts {
 
 
 	/**
-	 * Pointcut implementation that matches bean property setters.
+	 * 匹配 Bean 属性 setter 的切点实现。
 	 */
 	@SuppressWarnings("serial")
 	private static class SetterPointcut extends StaticMethodMatcherPointcut implements Serializable {
@@ -116,7 +114,7 @@ public abstract class Pointcuts {
 
 
 	/**
-	 * Pointcut implementation that matches bean property getters.
+	 * 匹配 Bean 属性 getter 的切点实现。
 	 */
 	@SuppressWarnings("serial")
 	private static class GetterPointcut extends StaticMethodMatcherPointcut implements Serializable {

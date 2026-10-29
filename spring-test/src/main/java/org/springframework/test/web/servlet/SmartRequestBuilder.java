@@ -19,18 +19,17 @@ package org.springframework.test.web.servlet;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 /**
- * Extended variant of a {@link RequestBuilder} that applies its
+ * 扩展的 {@link RequestBuilder} 变体，它将
  * {@link org.springframework.test.web.servlet.request.RequestPostProcessor org.springframework.test.web.servlet.request.RequestPostProcessors}
- * as a separate step from the {@link #buildRequest} method.
- *
+ * 作为 {@link #buildRequest} 方法的单独步骤应用。
  * @author Rossen Stoyanchev
  * @since 4.1
  */
 public interface SmartRequestBuilder extends RequestBuilder {
 
 	/**
-	 * Apply request post-processing. Typically, that means invoking one or more
-	 * {@link org.springframework.test.web.servlet.request.RequestPostProcessor org.springframework.test.web.servlet.request.RequestPostProcessors}.
+	 * 应用请求后处理。通常意味着调用一个或多个
+	 * {@link org.springframework.test.web.servlet.request.RequestPostProcessor org.springframework.test.web.servlet.request.RequestPostProcessors}。
 	 * @param request the request to initialize
 	 * @return the request to use, either the one passed in or a wrapped one
 	 */

@@ -21,9 +21,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Metadata that indicates to expose a given bean property as a JMX attribute,
- * with additional descriptor properties that indicate that the attribute is a
- * metric. Only valid when used on a JavaBean getter.
+ * 指示将给定 Bean 属性作为 JMX 属性暴露的元数据，其中还包含表明该属性是一个度量指标的额外描述符属
+ * 性。仅在用于 JavaBean getter 时有效。
  *
  * @author Jennifer Hickey
  * @since 3.0
@@ -49,14 +48,14 @@ public class ManagedMetric extends AbstractJmxAttribute {
 
 
 	/**
-	 * The category of this metric (ex. throughput, performance, utilization).
+	 * 此度量指标的类别（例如吞吐量、性能、利用率）。
 	 */
 	public void setCategory(@Nullable String category) {
 		this.category = category;
 	}
 
 	/**
-	 * The category of this metric (ex. throughput, performance, utilization).
+	 * 此度量指标的类别（例如吞吐量、性能、利用率）。
 	 */
 	@Nullable
 	public String getCategory() {
@@ -64,14 +63,14 @@ public class ManagedMetric extends AbstractJmxAttribute {
 	}
 
 	/**
-	 * A display name for this metric.
+	 * 此度量指标的显示名称。
 	 */
 	public void setDisplayName(@Nullable String displayName) {
 		this.displayName = displayName;
 	}
 
 	/**
-	 * A display name for this metric.
+	 * 此度量指标的显示名称。
 	 */
 	@Nullable
 	public String getDisplayName() {
@@ -79,7 +78,7 @@ public class ManagedMetric extends AbstractJmxAttribute {
 	}
 
 	/**
-	 * A description of how this metric's values change over time.
+	 * 关于此度量指标的值如何随时间变化的描述。
 	 */
 	public void setMetricType(MetricType metricType) {
 		Assert.notNull(metricType, "MetricType must not be null");
@@ -87,35 +86,35 @@ public class ManagedMetric extends AbstractJmxAttribute {
 	}
 
 	/**
-	 * A description of how this metric's values change over time.
+	 * 关于此度量指标的值如何随时间变化的描述。
 	 */
 	public MetricType getMetricType() {
 		return this.metricType;
 	}
 
 	/**
-	 * The persist period for this metric.
+	 * 此度量指标的持久化周期。
 	 */
 	public void setPersistPeriod(int persistPeriod) {
 		this.persistPeriod = persistPeriod;
 	}
 
 	/**
-	 * The persist period for this metric.
+	 * 此度量指标的持久化周期。
 	 */
 	public int getPersistPeriod() {
 		return this.persistPeriod;
 	}
 
 	/**
-	 * The persist policy for this metric.
+	 * 此度量指标的持久化策略。
 	 */
 	public void setPersistPolicy(@Nullable String persistPolicy) {
 		this.persistPolicy = persistPolicy;
 	}
 
 	/**
-	 * The persist policy for this metric.
+	 * 此度量指标的持久化策略。
 	 */
 	@Nullable
 	public String getPersistPolicy() {
@@ -123,14 +122,14 @@ public class ManagedMetric extends AbstractJmxAttribute {
 	}
 
 	/**
-	 * The expected unit of measurement values.
+	 * 测量值预期的单位。
 	 */
 	public void setUnit(@Nullable String unit) {
 		this.unit = unit;
 	}
 
 	/**
-	 * The expected unit of measurement values.
+	 * 测量值预期的单位。
 	 */
 	@Nullable
 	public String getUnit() {

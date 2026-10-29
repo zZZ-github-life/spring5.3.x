@@ -21,7 +21,7 @@ import java.security.cert.X509Certificate;
 import org.springframework.lang.Nullable;
 
 /**
- * A holder for SSL session information.
+ * SSL 会话信息的持有器。
  *
  * @author Rossen Stoyanchev
  * @since 5.0.2
@@ -29,13 +29,13 @@ import org.springframework.lang.Nullable;
 public interface SslInfo {
 
 	/**
-	 * Return the SSL session id, if any.
+	 * 返回 SSL 会话 id（如果有）。
 	 */
 	@Nullable
 	String getSessionId();
 
 	/**
-	 * Return SSL certificates associated with the request, if any.
+	 * 返回与请求关联的 SSL 证书（如果有）。
 	 */
 	@Nullable
 	X509Certificate[] getPeerCertificates();

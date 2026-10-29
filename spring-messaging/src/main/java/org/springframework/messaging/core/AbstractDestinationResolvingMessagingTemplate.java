@@ -23,9 +23,8 @@ import org.springframework.messaging.Message;
 import org.springframework.util.Assert;
 
 /**
- * An extension of {@link AbstractMessagingTemplate} that adds operations for sending
- * messages to a resolvable destination name. Supports destination resolving as defined by
- * the following interfaces:
+ * 对 {@link AbstractMessagingTemplate} 的扩展，增加了向可解析的目标名称发送消息的操作。
+ * 支持以下接口定义的目标解析：
  * <ul>
  * <li>{@link DestinationResolvingMessageSendingOperations}</li>
  * <li>{@link DestinationResolvingMessageReceivingOperations}</li>
@@ -47,10 +46,10 @@ public abstract class AbstractDestinationResolvingMessagingTemplate<D> extends A
 
 
 	/**
-	 * Configure the {@link DestinationResolver} to use to resolve String destination
-	 * names into actual destinations of type {@code <D>}.
-	 * <p>This field does not have a default setting. If not configured, methods that
-	 * require resolving a destination name will raise an {@link IllegalArgumentException}.
+	 * 配置用于将 String 目标名称解析为类型为 {@code <D>} 的实际目标的
+	 * {@link DestinationResolver}。
+	 * <p>此字段没有默认设置。如果未配置，需要解析目标名称的方法
+	 * 将抛出 {@link IllegalArgumentException}。
 	 * @param destinationResolver the destination resolver to use
 	 */
 	public void setDestinationResolver(@Nullable DestinationResolver<D> destinationResolver) {
@@ -58,7 +57,7 @@ public abstract class AbstractDestinationResolvingMessagingTemplate<D> extends A
 	}
 
 	/**
-	 * Return the configured destination resolver.
+	 * 返回已配置的目标解析器。
 	 */
 	@Nullable
 	public DestinationResolver<D> getDestinationResolver() {

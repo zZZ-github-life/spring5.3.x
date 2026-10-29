@@ -28,15 +28,13 @@ import java.util.ListIterator;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link List} wrapper class that allows for elements to be
- * automatically populated as they are requested. This is particularly
- * useful for data binding to {@link List Lists}, allowing for elements
- * to be created and added to the {@link List} in a "just in time" fashion.
+ * 简单的 {@link List} 包装类，允许在请求元素时自动填充它们。这对于向 {@link List Lists} 进行数据绑
+ * 定尤为有用，可以“即时”创建元素并将其添加到 {@link List} 中。
  *
- * <p>Note: This class is not thread-safe. To create a thread-safe version,
- * use the {@link java.util.Collections#synchronizedList} utility methods.
+ * <p>注意：此类不是线程安全的。要创建线程安全的版本，请使用
+ * {@link java.util.Collections#synchronizedList} 工具方法。
  *
- * <p>Inspired by {@code LazyList} from Commons Collections.
+ * <p>受 Commons Collections 中的 {@code LazyList} 启发。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -47,46 +45,43 @@ import org.springframework.lang.Nullable;
 public class AutoPopulatingList<E> implements List<E>, Serializable {
 
 	/**
-	 * The {@link List} that all operations are eventually delegated to.
+	 * 所有操作最终都会委托给的 {@link List}。
 	 */
 	private final List<E> backingList;
 
 	/**
-	 * The {@link ElementFactory} to use to create new {@link List} elements
-	 * on demand.
+	 * 用于按需创建新的 {@link List} 元素所使用的 {@link ElementFactory}。
 	 */
 	private final ElementFactory<E> elementFactory;
 
 
 	/**
-	 * Creates a new {@code AutoPopulatingList} that is backed by a standard
-	 * {@link ArrayList} and adds new instances of the supplied {@link Class element Class}
-	 * to the backing {@link List} on demand.
+	 * 创建一个新的 {@code AutoPopulatingList}，它由标准 {@link ArrayList} 支持，并按需将所提供
+	 * {@link Class element Class} 的新实例添加到后备 {@link List} 中。
 	 */
 	public AutoPopulatingList(Class<? extends E> elementClass) {
 		this(new ArrayList<>(), elementClass);
 	}
 
 	/**
-	 * Creates a new {@code AutoPopulatingList} that is backed by the supplied {@link List}
-	 * and adds new instances of the supplied {@link Class element Class} to the backing
-	 * {@link List} on demand.
+	 * 创建一个新的 {@code AutoPopulatingList}，它由所提供的 {@link List} 支持，并按需将所提供
+	 * {@link Class element Class} 的新实例添加到后备 {@link List} 中。
 	 */
 	public AutoPopulatingList(List<E> backingList, Class<? extends E> elementClass) {
 		this(backingList, new ReflectiveElementFactory<>(elementClass));
 	}
 
 	/**
-	 * Creates a new {@code AutoPopulatingList} that is backed by a standard
-	 * {@link ArrayList} and creates new elements on demand using the supplied {@link ElementFactory}.
+	 * 创建一个新的 {@code AutoPopulatingList}，它由标准 {@link ArrayList} 支持，并使用所提供的
+	 * {@link ElementFactory} 按需创建新元素。
 	 */
 	public AutoPopulatingList(ElementFactory<E> elementFactory) {
 		this(new ArrayList<>(), elementFactory);
 	}
 
 	/**
-	 * Creates a new {@code AutoPopulatingList} that is backed by the supplied {@link List}
-	 * and creates new elements on demand using the supplied {@link ElementFactory}.
+	 * 创建一个新的 {@code AutoPopulatingList}，它由所提供的 {@link List} 支持，并使用所提供的
+	 * {@link ElementFactory} 按需创建新元素。
 	 */
 	public AutoPopulatingList(List<E> backingList, ElementFactory<E> elementFactory) {
 		Assert.notNull(backingList, "Backing List must not be null");
@@ -132,8 +127,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 	}
 
 	/**
-	 * Get the element at the supplied index, creating it if there is
-	 * no element at that index.
+	 * 获取所提供索引处的元素，如果该索引处没有元素，则创建它。
 	 */
 	@Override
 	public E get(int index) {
@@ -244,8 +238,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 
 
 	/**
-	 * Factory interface for creating elements for an index-based access
-	 * data structure such as a {@link java.util.List}.
+	 * 用于为基于索引访问的数据结构（例如 {@link java.util.List}）创建元素的工厂接口。
 	 *
 	 * @param <E> the element type
 	 */
@@ -253,7 +246,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 	public interface ElementFactory<E> {
 
 		/**
-		 * Create the element for the supplied index.
+		 * 为所提供的索引创建元素。
 		 * @return the element object
 		 * @throws ElementInstantiationException if the instantiation process failed
 		 * (any exception thrown by a target constructor should be propagated as-is)
@@ -263,7 +256,7 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 
 
 	/**
-	 * Exception to be thrown from ElementFactory.
+	 * 从 ElementFactory 抛出的异常。
 	 */
 	public static class ElementInstantiationException extends RuntimeException {
 
@@ -278,8 +271,8 @@ public class AutoPopulatingList<E> implements List<E>, Serializable {
 
 
 	/**
-	 * Reflective implementation of the ElementFactory interface, using
-	 * {@code Class.getDeclaredConstructor().newInstance()} on a given element class.
+	 * ElementFactory 接口的反射实现，在给定的元素类上使用
+	 * {@code Class.getDeclaredConstructor().newInstance()}。
 	 */
 	private static class ReflectiveElementFactory<E> implements ElementFactory<E>, Serializable {
 

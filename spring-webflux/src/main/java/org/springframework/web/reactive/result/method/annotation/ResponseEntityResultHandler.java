@@ -42,11 +42,9 @@ import org.springframework.web.reactive.accept.RequestedContentTypeResolver;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Handles {@link HttpEntity} and {@link ResponseEntity} return values.
+ * 处理 {@link HttpEntity} 和 {@link ResponseEntity} 返回值。
  *
- * <p>By default the order for this result handler is set to 0. It is generally
- * safe to place it early in the order as it looks for a concrete return type.
- *
+ * <p>默认情况下，此结果处理器的顺序设置为 0。通常可以安全地将其放在靠前的位置，因为它查找具体的返回类型。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -56,7 +54,7 @@ public class ResponseEntityResultHandler extends AbstractMessageWriterResultHand
 
 
 	/**
-	 * Basic constructor with a default {@link ReactiveAdapterRegistry}.
+	 * 使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
 	 * @param writers the writers for serializing to the response body
 	 * @param resolver to determine the requested content type
 	 */
@@ -67,7 +65,7 @@ public class ResponseEntityResultHandler extends AbstractMessageWriterResultHand
 	}
 
 	/**
-	 * Constructor with an {@link ReactiveAdapterRegistry} instance.
+	 * 使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
 	 * @param writers the writers for serializing to the response body
 	 * @param resolver to determine the requested content type
 	 * @param registry for adaptation to reactive types

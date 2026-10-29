@@ -45,13 +45,13 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
 /**
- * Common base class for accessing a Quartz Scheduler, i.e. for registering jobs,
- * triggers and listeners on a {@link org.quartz.Scheduler} instance.
+ * 访问 Quartz Scheduler 的通用基类，即在
+ * {@link org.quartz.Scheduler} 实例上注册 job、trigger 和 listener。
  *
- * <p>For concrete usage, check out the {@link SchedulerFactoryBean} and
- * {@link SchedulerAccessorBean} classes.
+ * <p>有关具体用法，请查看 {@link SchedulerFactoryBean} 和
+ * {@link SchedulerAccessorBean} 类。
  *
- * <p>Compatible with Quartz 2.1.4 and higher, as of Spring 4.1.
+ * <p>从 Spring 4.1 开始，兼容 Quartz 2.1.4 及更高版本。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -92,19 +92,19 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 
 
 	/**
-	 * Set whether any jobs defined on this SchedulerFactoryBean should overwrite
-	 * existing job definitions. Default is "false", to not overwrite already
-	 * registered jobs that have been read in from a persistent job store.
+	 * 设置此 SchedulerFactoryBean 上定义的任何 job 是否应覆盖
+	 * 现有的 job 定义。默认为 "false"，不覆盖已从
+	 * 持久化 job store 读取的已注册 job。
 	 */
 	public void setOverwriteExistingJobs(boolean overwriteExistingJobs) {
 		this.overwriteExistingJobs = overwriteExistingJobs;
 	}
 
 	/**
-	 * Set the location of a Quartz job definition XML file that follows the
-	 * "job_scheduling_data_1_5" XSD or better. Can be specified to automatically
-	 * register jobs that are defined in such a file, possibly in addition
-	 * to jobs defined directly on this SchedulerFactoryBean.
+	 * 设置遵循 "job_scheduling_data_1_5" XSD 或更高版本的
+	 * Quartz job 定义 XML 文件的位置。可以指定用于自动
+	 * 注册在此类文件中定义的 job，可能除了
+	 * 直接在此 SchedulerFactoryBean 上定义的 job 之外。
 	 * @see org.quartz.xml.XMLSchedulingDataProcessor
 	 */
 	public void setJobSchedulingDataLocation(String jobSchedulingDataLocation) {
@@ -112,10 +112,10 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Set the locations of Quartz job definition XML files that follow the
-	 * "job_scheduling_data_1_5" XSD or better. Can be specified to automatically
-	 * register jobs that are defined in such files, possibly in addition
-	 * to jobs defined directly on this SchedulerFactoryBean.
+	 * 设置遵循 "job_scheduling_data_1_5" XSD 或更高版本的
+	 * Quartz job 定义 XML 文件的位置列表。可以指定用于自动
+	 * 注册在此类文件中定义的 job，可能除了
+	 * 直接在此 SchedulerFactoryBean 上定义的 job 之外。
 	 * @see org.quartz.xml.XMLSchedulingDataProcessor
 	 */
 	public void setJobSchedulingDataLocations(String... jobSchedulingDataLocations) {
@@ -123,11 +123,10 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Register a list of JobDetail objects with the Scheduler that
-	 * this FactoryBean creates, to be referenced by Triggers.
-	 * <p>This is not necessary when a Trigger determines the JobDetail
-	 * itself: In this case, the JobDetail will be implicitly registered
-	 * in combination with the Trigger.
+	 * 向此 FactoryBean 创建的 Scheduler 注册
+	 * JobDetail 对象列表，供 Trigger 引用。
+	 * <p>当 Trigger 本身确定 JobDetail 时，不需要此设置：
+	 * 在这种情况下，JobDetail 会与 Trigger 一起隐式注册。
 	 * @see #setTriggers
 	 * @see org.quartz.JobDetail
 	 */
@@ -138,8 +137,8 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Register a list of Quartz Calendar objects with the Scheduler
-	 * that this FactoryBean creates, to be referenced by Triggers.
+	 * 向此 FactoryBean 创建的 Scheduler 注册
+	 * Quartz Calendar 对象列表，供 Trigger 引用。
 	 * @param calendars a Map with calendar names as keys as Calendar
 	 * objects as values
 	 * @see org.quartz.Calendar
@@ -149,12 +148,12 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Register a list of Trigger objects with the Scheduler that
-	 * this FactoryBean creates.
-	 * <p>If the Trigger determines the corresponding JobDetail itself,
-	 * the job will be automatically registered with the Scheduler.
-	 * Else, the respective JobDetail needs to be registered via the
-	 * "jobDetails" property of this FactoryBean.
+	 * 向此 FactoryBean 创建的 Scheduler 注册
+	 * Trigger 对象列表。
+	 * <p>如果 Trigger 本身确定对应的 JobDetail，
+	 * 则该 job 会自动注册到 Scheduler 中。
+	 * 否则，相应的 JobDetail 需要通过此 FactoryBean 的
+	 * "jobDetails" 属性进行注册。
 	 * @see #setJobDetails
 	 * @see org.quartz.JobDetail
 	 */
@@ -163,32 +162,32 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Specify Quartz SchedulerListeners to be registered with the Scheduler.
+	 * 指定要与 Scheduler 注册的 Quartz SchedulerListener。
 	 */
 	public void setSchedulerListeners(SchedulerListener... schedulerListeners) {
 		this.schedulerListeners = schedulerListeners;
 	}
 
 	/**
-	 * Specify global Quartz JobListeners to be registered with the Scheduler.
-	 * Such JobListeners will apply to all Jobs in the Scheduler.
+	 * 指定要与 Scheduler 注册的全局 Quartz JobListener。
+	 * 此类 JobListener 将应用于 Scheduler 中的所有 Job。
 	 */
 	public void setGlobalJobListeners(JobListener... globalJobListeners) {
 		this.globalJobListeners = globalJobListeners;
 	}
 
 	/**
-	 * Specify global Quartz TriggerListeners to be registered with the Scheduler.
-	 * Such TriggerListeners will apply to all Triggers in the Scheduler.
+	 * 指定要与 Scheduler 注册的全局 Quartz TriggerListener。
+	 * 此类 TriggerListener 将应用于 Scheduler 中的所有 Trigger。
 	 */
 	public void setGlobalTriggerListeners(TriggerListener... globalTriggerListeners) {
 		this.globalTriggerListeners = globalTriggerListeners;
 	}
 
 	/**
-	 * Set the transaction manager to be used for registering jobs and triggers
-	 * that are defined by this SchedulerFactoryBean. Default is none; setting
-	 * this only makes sense when specifying a DataSource for the Scheduler.
+	 * 设置用于注册此 SchedulerFactoryBean 定义的
+	 * job 和 trigger 的事务管理器。默认为无；
+	 * 只有在为 Scheduler 指定了 DataSource 时设置此选项才有意义。
 	 */
 	public void setTransactionManager(PlatformTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
@@ -201,7 +200,7 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 
 
 	/**
-	 * Register jobs and triggers (within a transaction, if possible).
+	 * 注册 job 和 trigger（尽可能在事务中）。
 	 */
 	protected void registerJobsAndTriggers() throws SchedulerException {
 		TransactionStatus transactionStatus = null;
@@ -271,8 +270,8 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Add the given job to the Scheduler, if it doesn't already exist.
-	 * Overwrites the job in any case if "overwriteExistingJobs" is set.
+	 * 将给定的 job 添加到 Scheduler（如果尚不存在）。
+	 * 如果设置了 "overwriteExistingJobs"，则在任何情况下都会覆盖。
 	 * @param jobDetail the job to add
 	 * @return {@code true} if the job was actually added,
 	 * {@code false} if it already existed before
@@ -289,8 +288,8 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Add the given trigger to the Scheduler, if it doesn't already exist.
-	 * Overwrites the trigger in any case if "overwriteExistingJobs" is set.
+	 * 将给定的 trigger 添加到 Scheduler（如果尚不存在）。
+	 * 如果设置了 "overwriteExistingJobs"，则在任何情况下都会覆盖。
 	 * @param trigger the trigger to add
 	 * @return {@code true} if the trigger was actually added,
 	 * {@code false} if it already existed before
@@ -344,7 +343,7 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 	}
 
 	/**
-	 * Register all specified listeners with the Scheduler.
+	 * 将所有指定的 listener 注册到 Scheduler。
 	 */
 	protected void registerListeners() throws SchedulerException {
 		ListenerManager listenerManager = getScheduler().getListenerManager();
@@ -367,8 +366,8 @@ public abstract class SchedulerAccessor implements ResourceLoaderAware {
 
 
 	/**
-	 * Template method that determines the Scheduler to operate on.
-	 * To be implemented by subclasses.
+	 * 模板方法，确定要操作的 Scheduler。
+	 * 由子类实现。
 	 */
 	protected abstract Scheduler getScheduler();
 

@@ -21,11 +21,10 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 
 /**
- * An extended {@link MessageConverter} SPI with conversion hint support.
+ * 带转换提示支持的扩展 {@link MessageConverter} SPI。
  *
- * <p>In case of a conversion hint being provided, the framework will call
- * these extended methods if a converter implements this interface, instead
- * of calling the regular {@code fromMessage} / {@code toMessage} variants.
+ * <p>如果提供了转换提示，并且转换器实现了此接口，框架将调用这些扩展方法，
+ * 而不是调用常规的 {@code fromMessage} / {@code toMessage} 变体。
  *
  * @author Juergen Hoeller
  * @since 4.2.1
@@ -33,9 +32,8 @@ import org.springframework.messaging.MessageHeaders;
 public interface SmartMessageConverter extends MessageConverter {
 
 	/**
-	 * A variant of {@link #fromMessage(Message, Class)} which takes an extra
-	 * conversion context as an argument, allowing to take e.g. annotations
-	 * on a payload parameter into account.
+	 * {@link #fromMessage(Message, Class)} 的一个变体，接受额外的转换上下文作为参数，
+	 * 从而可以考虑例如载荷参数上的注解。
 	 * @param message the input message
 	 * @param targetClass the target class for the conversion
 	 * @param conversionHint an extra object passed to the {@link MessageConverter},
@@ -48,9 +46,8 @@ public interface SmartMessageConverter extends MessageConverter {
 	Object fromMessage(Message<?> message, Class<?> targetClass, @Nullable Object conversionHint);
 
 	/**
-	 * A variant of {@link #toMessage(Object, MessageHeaders)} which takes an extra
-	 * conversion context as an argument, allowing to take e.g. annotations
-	 * on a return type into account.
+	 * {@link #toMessage(Object, MessageHeaders)} 的一个变体，接受额外的转换上下文作为参数，
+	 * 从而可以考虑例如返回类型上的注解。
 	 * @param payload the Object to convert
 	 * @param headers optional headers for the message (may be {@code null})
 	 * @param conversionHint an extra object passed to the {@link MessageConverter},

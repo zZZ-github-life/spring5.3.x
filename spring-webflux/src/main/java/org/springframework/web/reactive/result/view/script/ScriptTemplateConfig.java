@@ -25,9 +25,8 @@ import javax.script.ScriptEngine;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to be implemented by objects that configure and manage a
- * JSR-223 {@link ScriptEngine} for automatic lookup in a web environment.
- * Detected and used by {@link ScriptTemplateView}.
+ * 由那些在 Web 环境中配置和管理 JSR-223 {@link ScriptEngine} 以实现自动查找的
+ * 对象所实现的接口。由 {@link ScriptTemplateView} 检测并使用。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -35,58 +34,57 @@ import org.springframework.lang.Nullable;
 public interface ScriptTemplateConfig {
 
 	/**
-	 * Return the {@link ScriptEngine} to use by the views.
+	 * 返回视图要使用的 {@link ScriptEngine}。
 	 */
 	@Nullable
 	ScriptEngine getEngine();
 
 	/**
-	 * Return the engine supplier that will be used to instantiate the {@link ScriptEngine}.
+	 * 返回用于实例化 {@link ScriptEngine} 的引擎提供者。
 	 * @since 5.2
 	 */
 	@Nullable
 	Supplier<ScriptEngine> getEngineSupplier();
 
 	/**
-	 * Return the engine name that will be used to instantiate the {@link ScriptEngine}.
+	 * 返回用于实例化 {@link ScriptEngine} 的引擎名称。
 	 */
 	@Nullable
 	String getEngineName();
 
 	/**
-	 * Return whether to use a shared engine for all threads or whether to create
-	 * thread-local engine instances for each thread.
+	 * 返回是为所有线程使用共享引擎，还是为每个线程创建线程局部的引擎实例。
 	 */
 	@Nullable
 	Boolean isSharedEngine();
 
 	/**
-	 * Return the scripts to be loaded by the script engine (library or user provided).
+	 * 返回要由脚本引擎加载的脚本（库脚本或用户提供的脚本）。
 	 */
 	@Nullable
 	String[] getScripts();
 
 	/**
-	 * Return the object where the render function belongs (optional).
+	 * 返回渲染函数所属的对象（可选）。
 	 */
 	@Nullable
 	String getRenderObject();
 
 	/**
-	 * Return the render function name (optional). If not specified, the script templates
-	 * will be evaluated with {@link ScriptEngine#eval(String, Bindings)}.
+	 * 返回渲染函数名称（可选）。如果未指定，脚本模板将通过
+	 * {@link ScriptEngine#eval(String, Bindings)} 求值。
 	 */
 	@Nullable
 	String getRenderFunction();
 
 	/**
-	 * Return the charset used to read script and template files.
+	 * 返回用于读取脚本和模板文件的字符集。
 	 */
 	@Nullable
 	Charset getCharset();
 
 	/**
-	 * Return the resource loader path(s) via a Spring resource location.
+	 * 返回通过 Spring 资源位置表示的资源加载器路径。
 	 */
 	@Nullable
 	String getResourceLoaderPath();

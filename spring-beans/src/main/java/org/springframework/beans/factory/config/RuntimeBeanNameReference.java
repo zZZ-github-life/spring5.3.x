@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Immutable placeholder class used for a property value object when it's a
- * reference to another bean name in the factory, to be resolved at runtime.
+ * 不可变占位符类，用于属性值对象，此时该值为对工厂中另一个 Bean 名称的引用，将在运行时解析。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -38,7 +37,7 @@ public class RuntimeBeanNameReference implements BeanReference {
 
 
 	/**
-	 * Create a new RuntimeBeanNameReference to the given bean name.
+	 * 为给定 Bean 名称创建一个新的 RuntimeBeanNameReference。
 	 * @param beanName name of the target bean
 	 */
 	public RuntimeBeanNameReference(String beanName) {
@@ -52,8 +51,8 @@ public class RuntimeBeanNameReference implements BeanReference {
 	}
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置来源 {@code Object}。
+	 * <p>对象的确切类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;

@@ -29,11 +29,10 @@ import org.springframework.core.MethodClassKey;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract implementation of {@link JCacheOperationSource} that caches attributes
- * for methods and implements a fallback policy: 1. specific target method;
- * 2. declaring method.
+ * {@link JCacheOperationSource} 的抽象实现，缓存方法的属性，
+ * 并实现回退策略：1. 具体目标方法；2. 声明方法。
  *
- * <p>This implementation caches attributes by method after they are first used.
+ * <p>此实现在属性首次使用后按方法缓存。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -43,8 +42,7 @@ import org.springframework.lang.Nullable;
 public abstract class AbstractFallbackJCacheOperationSource implements JCacheOperationSource {
 
 	/**
-	 * Canonical value held in cache to indicate no caching attribute was
-	 * found for this method and we don't need to look again.
+	 * 缓存中持有的规范值，表示此方法没有找到缓存属性，无需再次查找。
 	 */
 	private static final Object NULL_CACHING_ATTRIBUTE = new Object();
 
@@ -105,8 +103,7 @@ public abstract class AbstractFallbackJCacheOperationSource implements JCacheOpe
 
 
 	/**
-	 * Subclasses need to implement this to return the caching operation
-	 * for the given method, if any.
+	 * 子类需要实现此方法，返回给定方法的缓存操作（如果有）。
 	 * @param method the method to retrieve the operation for
 	 * @param targetType the target class
 	 * @return the cache operation associated with this method
@@ -116,8 +113,8 @@ public abstract class AbstractFallbackJCacheOperationSource implements JCacheOpe
 	protected abstract JCacheOperation<?> findCacheOperation(Method method, @Nullable Class<?> targetType);
 
 	/**
-	 * Should only public methods be allowed to have caching semantics?
-	 * <p>The default implementation returns {@code false}.
+	 * 是否只允许公共方法具有缓存语义？
+	 * <p>默认实现返回 {@code false}。
 	 */
 	protected boolean allowPublicMethodsOnly() {
 		return false;

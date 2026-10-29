@@ -42,18 +42,14 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Abstract implementation of the {@link ApplicationEventMulticaster} interface,
- * providing the basic listener registration facility.
+ * {@link ApplicationEventMulticaster} 接口的抽象实现，提供基本的监听器注册功能。
  *
- * <p>Doesn't permit multiple instances of the same listener by default,
- * as it keeps listeners in a linked Set. The collection class used to hold
- * ApplicationListener objects can be overridden through the "collectionClass"
- * bean property.
+ * <p>默认不允许同一监听器的多个实例，因为它将监听器保存在链式 Set 中。用于保存 ApplicationListener
+ * 对象的集合类可以通过 "collectionClass" Bean 属性覆盖。
  *
- * <p>Implementing ApplicationEventMulticaster's actual {@link #multicastEvent} method
- * is left to subclasses. {@link SimpleApplicationEventMulticaster} simply multicasts
- * all events to all registered listeners, invoking them in the calling thread.
- * Alternative implementations could be more sophisticated in those respects.
+ * <p>ApplicationEventMulticaster 实际的 {@link #multicastEvent} 方法实现留给子类完成。
+ * {@link SimpleApplicationEventMulticaster} 只是将所有事件多播给所有已注册的监听器，并在调用线程中
+ * 调用它们。其他实现可以在这些方面做得更精细。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -165,7 +161,7 @@ public abstract class AbstractApplicationEventMulticaster
 
 
 	/**
-	 * Return a Collection containing all ApplicationListeners.
+	 * 返回包含所有 ApplicationListener 的 Collection。
 	 * @return a Collection of ApplicationListeners
 	 * @see org.springframework.context.ApplicationListener
 	 */
@@ -176,8 +172,7 @@ public abstract class AbstractApplicationEventMulticaster
 	}
 
 	/**
-	 * Return a Collection of ApplicationListeners matching the given
-	 * event type. Non-matching listeners get excluded early.
+	 * 返回与给定事件类型匹配的 ApplicationListener 集合。不匹配的监听器会被尽早排除。
 	 * @param event the event to be propagated. Allows for excluding
 	 * non-matching listeners early, based on cached matching information.
 	 * @param eventType the event type
@@ -222,7 +217,7 @@ public abstract class AbstractApplicationEventMulticaster
 	}
 
 	/**
-	 * Actually retrieve the application listeners for the given event and source type.
+	 * 实际检索给定事件和源类型的应用监听器。
 	 * @param eventType the event type
 	 * @param sourceType the event source type
 	 * @param retriever the ListenerRetriever, if supposed to populate one (for caching purposes)
@@ -307,11 +302,9 @@ public abstract class AbstractApplicationEventMulticaster
 	}
 
 	/**
-	 * Filter a bean-defined listener early through checking its generically declared
-	 * event type before trying to instantiate it.
-	 * <p>If this method returns {@code true} for a given listener as a first pass,
-	 * the listener instance will get retrieved and fully evaluated through a
-	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} call afterwards.
+	 * 在尝试实例化之前，通过检查其泛型声明的事件类型，尽早过滤由 Bean 定义的监听器。<p>如果此方法对给
+	 * 定监听器首次检查返回 {@code true}，则随后会检索该监听器实例，并通过
+	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} 调用对其进行完整评估。
 	 * @param beanFactory the BeanFactory that contains the listener beans
 	 * @param listenerBeanName the name of the bean in the BeanFactory
 	 * @param eventType the event type to check
@@ -343,11 +336,9 @@ public abstract class AbstractApplicationEventMulticaster
 	}
 
 	/**
-	 * Filter a listener early through checking its generically declared event
-	 * type before trying to instantiate it.
-	 * <p>If this method returns {@code true} for a given listener as a first pass,
-	 * the listener instance will get retrieved and fully evaluated through a
-	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} call afterwards.
+	 * 在尝试实例化之前，通过检查监听器泛型声明的事件类型，尽早过滤该监听器。<p>如果此方法对给定监听器
+	 * 首次检查返回 {@code true}，则随后会检索该监听器实例，并通过
+	 * {@link #supportsEvent(ApplicationListener, ResolvableType, Class)} 调用对其进行完整评估。
 	 * @param listenerType the listener's type as determined by the BeanFactory
 	 * @param eventType the event type to check
 	 * @return whether the given listener should be included in the candidates
@@ -359,11 +350,9 @@ public abstract class AbstractApplicationEventMulticaster
 	}
 
 	/**
-	 * Determine whether the given listener supports the given event.
-	 * <p>The default implementation detects the {@link SmartApplicationListener}
-	 * and {@link GenericApplicationListener} interfaces. In case of a standard
-	 * {@link ApplicationListener}, a {@link GenericApplicationListenerAdapter}
-	 * will be used to introspect the generically declared type of the target listener.
+	 * 判断给定监听器是否支持给定事件。<p>默认实现会检测 {@link SmartApplicationListener} 和
+	 * {@link GenericApplicationListener} 接口。对于标准 {@link ApplicationListener}，将使用
+	 * {@link GenericApplicationListenerAdapter} 内省目标监听器泛型声明的类型。
 	 * @param listener the target listener to check
 	 * @param eventType the event type to check against
 	 * @param sourceType the source type to check against
@@ -380,7 +369,7 @@ public abstract class AbstractApplicationEventMulticaster
 
 
 	/**
-	 * Cache key for ListenerRetrievers, based on event type and source type.
+	 * ListenerRetriever 的缓存键，基于事件类型和源类型。
 	 */
 	private static final class ListenerCacheKey implements Comparable<ListenerCacheKey> {
 
@@ -436,9 +425,8 @@ public abstract class AbstractApplicationEventMulticaster
 
 
 	/**
-	 * Helper class that encapsulates a specific set of target listeners,
-	 * allowing for efficient retrieval of pre-filtered listeners.
-	 * <p>An instance of this helper gets cached per event type and source type.
+	 * 封装特定一组目标监听器的辅助类，允许高效检索预过滤的监听器。<p>此辅助类的实例会按事件类型和源类
+	 * 型缓存。
 	 */
 	private class CachedListenerRetriever {
 
@@ -481,7 +469,7 @@ public abstract class AbstractApplicationEventMulticaster
 
 
 	/**
-	 * Helper class that encapsulates a general set of target listeners.
+	 * 封装一组通用目标监听器的辅助类。
 	 */
 	private class DefaultListenerRetriever {
 

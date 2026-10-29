@@ -26,17 +26,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@link org.springframework.cache.Cache} implementation based on the
- * core JDK {@code java.util.concurrent} package.
+ * 基于核心 JDK {@code java.util.concurrent} 包的简单 {@link org.springframework.cache.Cache} 实现。
  *
- * <p>Useful for testing or simple caching scenarios, typically in combination
- * with {@link org.springframework.cache.support.SimpleCacheManager} or
- * dynamically through {@link ConcurrentMapCacheManager}.
  *
- * <p><b>Note:</b> As {@link ConcurrentHashMap} (the default implementation used)
- * does not allow for {@code null} values to be stored, this class will replace
- * them with a predefined internal object. This behavior can be changed through the
- * {@link #ConcurrentMapCache(String, ConcurrentMap, boolean)} constructor.
+ * <p>适用于测试或简单的缓存场景，通常与
+ * {@link org.springframework.cache.support.SimpleCacheManager} 结合使用，或通过
+ * {@link ConcurrentMapCacheManager} 动态使用。
+ *
+ * <p><b>注意：</b>由于{@link ConcurrentHashMap}（所使用的默认实现）不允许存储 {@code null} 值，此
+ * 类会将它们替换为预定义的内部对象。可以通过
+ * {@link #ConcurrentMapCache(String, ConcurrentMap, boolean)} 构造函数更改此行为。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -55,7 +54,7 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 
 
 	/**
-	 * Create a new ConcurrentMapCache with the specified name.
+	 * 使用指定名称创建一个新的 ConcurrentMapCache。
 	 * @param name the name of the cache
 	 */
 	public ConcurrentMapCache(String name) {
@@ -63,7 +62,7 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 	}
 
 	/**
-	 * Create a new ConcurrentMapCache with the specified name.
+	 * 使用指定名称创建一个新的 ConcurrentMapCache。
 	 * @param name the name of the cache
 	 * @param allowNullValues whether to accept and convert {@code null}
 	 * values for this cache
@@ -73,8 +72,7 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 	}
 
 	/**
-	 * Create a new ConcurrentMapCache with the specified name and the
-	 * given internal {@link ConcurrentMap} to use.
+	 * 使用指定名称和给定的内部 {@link ConcurrentMap} 创建一个新的 ConcurrentMapCache。
 	 * @param name the name of the cache
 	 * @param store the ConcurrentMap to use as an internal store
 	 * @param allowNullValues whether to allow {@code null} values
@@ -85,10 +83,8 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 	}
 
 	/**
-	 * Create a new ConcurrentMapCache with the specified name and the
-	 * given internal {@link ConcurrentMap} to use. If the
-	 * {@link SerializationDelegate} is specified,
-	 * {@link #isStoreByValue() store-by-value} is enabled
+	 * 使用指定名称和给定的内部 {@link ConcurrentMap} 创建一个新的 ConcurrentMapCache。如果指定了
+	 * {@link SerializationDelegate}，则启用 {@link #isStoreByValue() 按值存储}
 	 * @param name the name of the cache
 	 * @param store the ConcurrentMap to use as an internal store
 	 * @param allowNullValues whether to allow {@code null} values
@@ -110,9 +106,8 @@ public class ConcurrentMapCache extends AbstractValueAdaptingCache {
 
 
 	/**
-	 * Return whether this cache stores a copy of each entry ({@code true}) or
-	 * a reference ({@code false}, default). If store by value is enabled, each
-	 * entry in the cache must be serializable.
+	 * 返回此缓存存储每个条目的副本（{@code true}）还是引用（{@code false}，默认值）。如果启用了按值存
+	 * 储，则缓存中的每个条目都必须可序列化。
 	 * @since 4.3
 	 */
 	public final boolean isStoreByValue() {

@@ -42,14 +42,14 @@ import org.springframework.util.MimeType;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Helps to collect metadata values and mime types, and encode them.
+ * 帮助收集元数据值和 MimeType，并对它们进行编码。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
  */
 final class MetadataEncoder {
 
-	/** For route variable replacement. */
+	/** 用于路由变量替换。 */
 	private static final Pattern VARS_PATTERN = Pattern.compile("\\{(.+?)}");
 
 	private static final Object NO_VALUE = new Object();
@@ -89,8 +89,8 @@ final class MetadataEncoder {
 
 
 	/**
-	 * Set the route to a remote handler as described in
-	 * {@link RSocketRequester#route(String, Object...)}.
+	 * 按照 {@link RSocketRequester#route(String, Object...)} 中所述，
+	 * 将路由设置为远程处理器。
 	 */
 	public MetadataEncoder route(String route, Object... routeVars) {
 		this.route = expand(route, routeVars);
@@ -124,8 +124,8 @@ final class MetadataEncoder {
 	}
 
 	/**
-	 * Add a metadata entry. If called more than once or in addition to route,
-	 * composite metadata must be in use.
+	 * 添加一个元数据条目。如果多次调用，或者在路由之外额外调用，
+	 * 则必须使用复合元数据。
 	 */
 	public MetadataEncoder metadata(Object metadata, @Nullable MimeType mimeType) {
 		if (this.isComposite) {
@@ -152,7 +152,7 @@ final class MetadataEncoder {
 	}
 
 	/**
-	 * Add route and/or metadata, both optional.
+	 * 添加路由和/或元数据，两者均为可选。
 	 */
 	public MetadataEncoder metadataAndOrRoute(@Nullable Map<Object, MimeType> metadata,
 			@Nullable String route, @Nullable Object[] vars) {
@@ -171,7 +171,7 @@ final class MetadataEncoder {
 
 
 	/**
-	 * Encode the collected metadata entries to a {@code DataBuffer}.
+	 * 将收集到的元数据条目编码为 {@code DataBuffer}。
 	 * @see PayloadUtils#createPayload(DataBuffer, DataBuffer)
 	 */
 	public Mono<DataBuffer> encode() {
@@ -272,7 +272,7 @@ final class MetadataEncoder {
 
 
 	/**
-	 * Holder for the metadata value and mime type.
+	 * 元数据值和 MimeType 的持有者。
 	 * @since 5.2.2
 	 */
 	private static class MetadataEntry {

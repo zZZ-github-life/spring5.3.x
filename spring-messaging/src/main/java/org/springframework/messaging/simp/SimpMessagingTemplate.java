@@ -34,13 +34,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * An implementation of
- * {@link org.springframework.messaging.simp.SimpMessageSendingOperations}.
+ * {@link org.springframework.messaging.simp.SimpMessageSendingOperations} 的实现。
  *
- * <p>Also provides methods for sending messages to a user. See
+ * <p>还提供向用户发送消息的方法。有关用户目标的更多信息，请参阅
  * {@link org.springframework.messaging.simp.user.UserDestinationResolver
- * UserDestinationResolver}
- * for more on user destinations.
+ * UserDestinationResolver}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -59,7 +57,7 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 
 
 	/**
-	 * Create a new {@link SimpMessagingTemplate} instance.
+	 * 创建新的 {@link SimpMessagingTemplate} 实例。
 	 * @param messageChannel the message channel (never {@code null})
 	 */
 	public SimpMessagingTemplate(MessageChannel messageChannel) {
@@ -69,15 +67,15 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 
 
 	/**
-	 * Return the configured message channel.
+	 * 返回已配置的消息通道。
 	 */
 	public MessageChannel getMessageChannel() {
 		return this.messageChannel;
 	}
 
 	/**
-	 * Configure the prefix to use for destinations targeting a specific user.
-	 * <p>The default value is "/user/".
+	 * 配置用于面向特定用户的目标前缀。
+	 * <p>默认值为 "/user/"。
 	 * @see org.springframework.messaging.simp.user.UserDestinationMessageHandler
 	 */
 	public void setUserDestinationPrefix(String prefix) {
@@ -87,37 +85,37 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 	}
 
 	/**
-	 * Return the configured user destination prefix.
+	 * 返回已配置的用户目标前缀。
 	 */
 	public String getUserDestinationPrefix() {
 		return this.destinationPrefix;
 	}
 
 	/**
-	 * Specify the timeout value to use for send operations (in milliseconds).
+	 * 指定发送操作使用的超时值（以毫秒为单位）。
 	 */
 	public void setSendTimeout(long sendTimeout) {
 		this.sendTimeout = sendTimeout;
 	}
 
 	/**
-	 * Return the configured send timeout (in milliseconds).
+	 * 返回已配置的发送超时（以毫秒为单位）。
 	 */
 	public long getSendTimeout() {
 		return this.sendTimeout;
 	}
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
-	 * messages created through the {@code SimpMessagingTemplate}.
-	 * <p>By default, this property is not set.
+	 * 配置要应用于通过 {@code SimpMessagingTemplate} 创建的所有消息头的
+	 * {@link MessageHeaderInitializer}。
+	 * <p>默认情况下，不设置此属性。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {
@@ -126,14 +124,12 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 
 
 	/**
-	 * If the headers of the given message already contain a
+	 * 如果给定消息的头中已经包含
 	 * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor#DESTINATION_HEADER
-	 * SimpMessageHeaderAccessor#DESTINATION_HEADER} then the message is sent without
-	 * further changes.
-	 * <p>If a destination header is not already present ,the message is sent
-	 * to the configured {@link #setDefaultDestination(Object) defaultDestination}
-	 * or an exception an {@code IllegalStateException} is raised if that isn't
-	 * configured.
+	 * SimpMessageHeaderAccessor#DESTINATION_HEADER}，则消息将被直接发送，不再做进一步修改。
+	 * <p>如果目标头尚不存在，则将消息发送到已配置的
+	 * {@link #setDefaultDestination(Object) defaultDestination}；
+	 * 如果未配置该目标，则抛出 {@code IllegalStateException}。
 	 * @param message the message to send (never {@code null})
 	 */
 	@Override
@@ -233,16 +229,14 @@ public class SimpMessagingTemplate extends AbstractMessageSendingTemplate<String
 
 
 	/**
-	 * Creates a new map and puts the given headers under the key
-	 * {@link NativeMessageHeaderAccessor#NATIVE_HEADERS NATIVE_HEADERS NATIVE_HEADERS NATIVE_HEADERS}.
-	 * effectively treats the input header map as headers to be sent out to the
-	 * destination.
-	 * <p>However if the given headers already contain the key
-	 * {@code NATIVE_HEADERS NATIVE_HEADERS} then the same headers instance is
-	 * returned without changes.
-	 * <p>Also if the given headers were prepared and obtained with
-	 * {@link SimpMessageHeaderAccessor#getMessageHeaders()} then the same headers
-	 * instance is also returned without changes.
+	 * 创建一个新映射，并将给定头放在键
+	 * {@link NativeMessageHeaderAccessor#NATIVE_HEADERS NATIVE_HEADERS NATIVE_HEADERS NATIVE_HEADERS}
+	 * 下，从而有效地将输入头映射视为要发送到目标的外部头。
+	 * <p>不过，如果给定头已经包含键
+	 * {@code NATIVE_HEADERS NATIVE_HEADERS}，则返回同一个头实例，不做任何更改。
+	 * <p>此外，如果给定头是使用
+	 * {@link SimpMessageHeaderAccessor#getMessageHeaders()} 准备并获取的，
+	 * 也会返回同一个头实例，不做任何更改。
 	 */
 	@Override
 	protected Map<String, Object> processHeadersToSend(@Nullable Map<String, Object> headers) {

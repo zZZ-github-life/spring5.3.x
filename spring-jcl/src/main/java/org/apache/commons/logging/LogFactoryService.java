@@ -20,11 +20,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A minimal subclass of the standard Apache Commons Logging's {@code LogFactory} class,
- * overriding the abstract {@code getInstance} lookup methods. This is just applied in
- * case of the standard {@code commons-logging} jar accidentally ending up on the classpath,
- * with the standard {@code LogFactory} class performing its META-INF service discovery.
- * This implementation simply delegates to Spring's common {@link Log} factory methods.
+ * 标准 Apache Commons Logging 的 {@code LogFactory} 类的一个最小化子类，重写了抽象的
+ * {@code getInstance} 查找方法。它仅用于标准 {@code commons-logging} jar 意外出现在类路径上、由标
+ * 准 {@code LogFactory} 类执行 META-INF 服务发现的情况。此实现只是委托给 Spring 通用的 {@link Log}
+ * 工厂方法。
  *
  * @author Juergen Hoeller
  * @since 5.1

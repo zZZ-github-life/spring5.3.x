@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Used to support Jetty 10.
+ * 用于支持 Jetty 10。
  *
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma

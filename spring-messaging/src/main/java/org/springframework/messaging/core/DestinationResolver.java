@@ -17,8 +17,7 @@
 package org.springframework.messaging.core;
 
 /**
- * Strategy for resolving a String destination name to an actual destination
- * of type {@code <D>}.
+ * 将 String 目标名称解析为类型为 {@code <D>} 的实际目标的策略。
  *
  * @author Mark Fisher
  * @since 4.0
@@ -28,7 +27,7 @@ package org.springframework.messaging.core;
 public interface DestinationResolver<D> {
 
 	/**
-	 * Resolve the given destination name.
+	 * 解析给定的目标名称。
 	 * @param name the destination name to resolve
 	 * @return the resolved destination (never {@code null})
 	 * @throws DestinationResolutionException if the specified destination

@@ -27,14 +27,9 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolver for a controller method argument of type {@link Model} that can
- * also be resolved as a {@link java.util.Map}.
+ * 用于 {@link Model} 类型控制器方法参数的解析器，也可以解析为 {@link java.util.Map}。
  *
- * <p>A Map return value can be interpreted in more than one way depending
- * on the presence of annotations like {@code @ModelAttribute} or
- * {@code @ResponseBody}. As of 5.2 this resolver returns false if a
- * parameter of type {@code Map} is also annotated.
- *
+ * <p>Map 返回值可以根据 {@code @ModelAttribute} 或 {@code @ResponseBody} 等注解的存在以多种方式解释。从 5.2 开始，如果 {@code Map} 类型的参数还带有注解，此解析器返回 false。
  * @author Rossen Stoyanchev
  * @since 5.2
  */

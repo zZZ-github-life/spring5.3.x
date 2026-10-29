@@ -37,10 +37,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A {@code SpelExpression} represents a parsed (valid) expression that is ready to be
- * evaluated in a specified context. An expression can be evaluated standalone or in a
- * specified context. During expression evaluation the context may be asked to resolve
- * references to types, beans, properties, and methods.
+ * 一个 {@code SpelExpression} 表示已解析（有效）的表达式，可在指定的上下文中求值。表达式可以独立求
+ * 值，也可以在指定的上下文中求值。在表达式求值期间，可能会要求上下文解析对类型、Bean、属性和方法的
+ * 引用。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -80,7 +79,7 @@ public class SpelExpression implements Expression {
 
 
 	/**
-	 * Construct an expression, only used by the parser.
+	 * 构造一个表达式，仅供解析器使用。
 	 */
 	public SpelExpression(String expression, SpelNodeImpl ast, SpelParserConfiguration configuration) {
 		this.expression = expression;
@@ -90,7 +89,7 @@ public class SpelExpression implements Expression {
 
 
 	/**
-	 * Set the evaluation context that will be used if none is specified on an evaluation call.
+	 * 设置求值调用中未指定时使用的求值上下文。
 	 * @param evaluationContext the evaluation context to use
 	 */
 	public void setEvaluationContext(EvaluationContext evaluationContext) {
@@ -98,7 +97,7 @@ public class SpelExpression implements Expression {
 	}
 
 	/**
-	 * Return the default evaluation context that will be used if none is supplied on an evaluation call.
+	 * 返回求值调用中未提供时使用的默认求值上下文。
 	 * @return the default evaluation context
 	 */
 	public EvaluationContext getEvaluationContext() {
@@ -479,8 +478,7 @@ public class SpelExpression implements Expression {
 
 
 	/**
-	 * Compile the expression if it has been evaluated more than the threshold number
-	 * of times to trigger compilation.
+	 * 如果表达式求值次数超过触发编译的阈值，则编译该表达式。
 	 * @param expressionState the expression state used to determine compilation mode
 	 */
 	private void checkCompile(ExpressionState expressionState) {
@@ -502,9 +500,8 @@ public class SpelExpression implements Expression {
 	}
 
 	/**
-	 * Perform expression compilation. This will only succeed once exit descriptors for
-	 * all nodes have been determined. If the compilation fails and has failed more than
-	 * 100 times the expression is no longer considered suitable for compilation.
+	 * 执行表达式编译。仅当所有节点的出口类型描述符都已确定时才会成功。如果编译失败且失败次数超过 100
+	 * 次，则该表达式将不再被视为适合编译。
 	 * @return whether this expression has been successfully compiled
 	 */
 	public boolean compileExpression() {
@@ -556,9 +553,8 @@ public class SpelExpression implements Expression {
 	}
 
 	/**
-	 * Cause an expression to revert to being interpreted if it has been using a compiled
-	 * form. It also resets the compilation attempt failure count (an expression is normally no
-	 * longer considered compilable if it cannot be compiled after 100 attempts).
+	 * 如果表达式此前一直使用编译形式，则使其回退为解释执行。它还会重置编译尝试失败计数（通常如果表达式
+	 * 在 100 次尝试后仍无法编译，就不再被视为可编译）。
 	 */
 	public void revertToInterpreted() {
 		this.compiledAst = null;
@@ -567,16 +563,15 @@ public class SpelExpression implements Expression {
 	}
 
 	/**
-	 * Return the Abstract Syntax Tree for the expression.
+	 * 返回该表达式的抽象语法树。
 	 */
 	public SpelNode getAST() {
 		return this.ast;
 	}
 
 	/**
-	 * Produce a string representation of the Abstract Syntax Tree for the expression.
-	 * This should ideally look like the input expression, but properly formatted since any
-	 * unnecessary whitespace will have been discarded during the parse of the expression.
+	 * 生成该表达式抽象语法树的字符串表示。理想情况下它应看起来像输入的表达式，但要格式良好，因为在解析
+	 * 表达式期间会丢弃任何不必要的空白。
 	 * @return the string representation of the AST
 	 */
 	public String toStringAST() {

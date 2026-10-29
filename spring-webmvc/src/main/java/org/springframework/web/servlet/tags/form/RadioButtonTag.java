@@ -19,23 +19,22 @@ package org.springframework.web.servlet.tags.form;
 import javax.servlet.jsp.JspException;
 
 /**
- * The {@code <radiobutton>} tag renders an HTML 'input' tag with type 'radio'.
+ * {@code <radiobutton>} 标签渲染一个 type 为 'radio' 的 HTML 'input' 标签。
  *
- * <p>Rendered elements are marked as 'checked' if the configured
- * {@link #setValue(Object) value} matches the {@link #getValue bound value}.
+ * <p>如果配置的 {@link #setValue(Object) value} 与 {@link #getValue 绑定值}
+ * 匹配，则渲染的元素会被标记为 'checked'。
  *
- * <p>A typical usage pattern will involve multiple tag instances bound
- * to the same property but with different values.
+ * <p>典型用法是多个标签实例绑定到同一属性但使用不同的值。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -43,164 +42,163 @@ import javax.servlet.jsp.JspException;
  * <td><p>accesskey</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>cssErrorClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has errors.</p></td>
+ * <td><p>HTML 可选属性。当绑定字段存在错误时使用。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssStyle</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>dir</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
- * will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性值设置为 'true' 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>label</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Value to be displayed as part of the tag</p></td>
+ * <td><p>作为标签的一部分显示的值</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>lang</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onblur</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onchange</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>ondblclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onfocus</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeydown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onkeypress</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeyup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmousedown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmousemove</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseout</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmouseover</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>path</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>Path to property for data binding</p></td>
+ * <td><p>用于数据绑定的属性路径</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>tabindex</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>title</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>value</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * </tbody>
  * </table>

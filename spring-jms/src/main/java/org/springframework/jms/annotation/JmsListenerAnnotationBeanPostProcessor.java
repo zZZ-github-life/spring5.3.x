@@ -61,21 +61,20 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Bean post-processor that registers methods annotated with {@link JmsListener}
- * to be invoked by a JMS message listener container created under the cover
- * by a {@link org.springframework.jms.config.JmsListenerContainerFactory}
- * according to the attributes of the annotation.
+ * Bean 后处理器，注册带 {@link JmsListener} 注解的方法，
+ * 使其按照注解的属性，由
+ * {@link org.springframework.jms.config.JmsListenerContainerFactory}
+ * 在底层创建的 JMS 消息监听器容器调用。
  *
- * <p>Annotated methods can use flexible arguments as defined by {@link JmsListener}.
+ * <p>带注解的方法可以使用 {@link JmsListener} 所定义的灵活参数。
  *
- * <p>This post-processor is automatically registered by Spring's
- * {@code <jms:annotation-driven>} XML element, and also by the {@link EnableJms}
- * annotation.
+ * <p>此后期处理器由 Spring 的 {@code <jms:annotation-driven>} XML 元素
+ * 以及 {@link EnableJms} 注解自动注册。
  *
- * <p>Autodetects any {@link JmsListenerConfigurer} instances in the container,
- * allowing for customization of the registry to be used, the default container
- * factory or for fine-grained control over endpoints registration. See the
- * {@link EnableJms} javadocs for complete usage details.
+ * <p>自动检测容器中的任何 {@link JmsListenerConfigurer} 实例，
+ * 从而可以自定义要使用的注册表、默认容器工厂，
+ * 或对端点注册进行细粒度控制。完整的使用细节请参见
+ * {@link EnableJms} 的 javadoc。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -92,7 +91,7 @@ public class JmsListenerAnnotationBeanPostProcessor
 		implements MergedBeanDefinitionPostProcessor, Ordered, BeanFactoryAware, SmartInitializingSingleton {
 
 	/**
-	 * The bean name of the default {@link JmsListenerContainerFactory}.
+	 * 默认 {@link JmsListenerContainerFactory} 的 bean 名称。
 	 */
 	static final String DEFAULT_JMS_LISTENER_CONTAINER_FACTORY_BEAN_NAME = "jmsListenerContainerFactory";
 
@@ -127,37 +126,37 @@ public class JmsListenerAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Set the name of the {@link JmsListenerContainerFactory} to use by default.
-	 * <p>If none is specified, "jmsListenerContainerFactory" is assumed to be defined.
+	 * 设置默认要使用的 {@link JmsListenerContainerFactory} 的名称。
+	 * <p>如果未指定，则假定已定义 "jmsListenerContainerFactory"。
 	 */
 	public void setContainerFactoryBeanName(String containerFactoryBeanName) {
 		this.containerFactoryBeanName = containerFactoryBeanName;
 	}
 
 	/**
-	 * Set the {@link JmsListenerEndpointRegistry} that will hold the created
-	 * endpoint and manage the lifecycle of the related listener container.
+	 * 设置将持有已创建端点并管理相关监听器容器生命周期的
+	 * {@link JmsListenerEndpointRegistry}。
 	 */
 	public void setEndpointRegistry(JmsListenerEndpointRegistry endpointRegistry) {
 		this.endpointRegistry = endpointRegistry;
 	}
 
 	/**
-	 * Set the {@link MessageHandlerMethodFactory} to use to configure the message
-	 * listener responsible to serve an endpoint detected by this processor.
-	 * <p>By default, {@link DefaultMessageHandlerMethodFactory} is used and it
-	 * can be configured further to support additional method arguments
-	 * or to customize conversion and validation support. See
-	 * {@link DefaultMessageHandlerMethodFactory} Javadoc for more details.
+	 * 设置用于配置消息监听器的 {@link MessageHandlerMethodFactory}，
+	 * 该监听器负责服务此处理器检测到的端点。
+	 * <p>默认使用 {@link DefaultMessageHandlerMethodFactory}，
+	 * 可以进一步配置它，以支持额外的方法参数，
+	 * 或自定义转换和校验支持。详情请参见
+	 * {@link DefaultMessageHandlerMethodFactory} 的 Javadoc。
 	 */
 	public void setMessageHandlerMethodFactory(MessageHandlerMethodFactory messageHandlerMethodFactory) {
 		this.messageHandlerMethodFactory.setMessageHandlerMethodFactory(messageHandlerMethodFactory);
 	}
 
 	/**
-	 * Making a {@link BeanFactory} available is optional; if not set,
-	 * {@link JmsListenerConfigurer} beans won't get autodetected and an
-	 * {@link #setEndpointRegistry endpoint registry} has to be explicitly configured.
+	 * 提供 {@link BeanFactory} 是可选的；如果未设置，
+	 * 将不会自动检测 {@link JmsListenerConfigurer} bean，
+	 * 并且必须显式配置 {@link #setEndpointRegistry 端点注册表}。
 	 */
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {
@@ -257,8 +256,8 @@ public class JmsListenerAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Process the given {@link JmsListener} annotation on the given method,
-	 * registering a corresponding endpoint for the given bean instance.
+	 * 处理给定方法上的给定 {@link JmsListener} 注解，
+	 * 为给定 bean 实例注册相应的端点。
 	 * @param jmsListener the annotation to process
 	 * @param mostSpecificMethod the annotated method
 	 * @param bean the instance to invoke the method on
@@ -305,8 +304,8 @@ public class JmsListenerAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Instantiate an empty {@link MethodJmsListenerEndpoint} for further
-	 * configuration with provided parameters in {@link #processJmsListener}.
+	 * 实例化一个空的 {@link MethodJmsListenerEndpoint}，
+	 * 以便在 {@link #processJmsListener} 中使用提供的参数进行进一步配置。
 	 * @return a new {@code MethodJmsListenerEndpoint} or subclass thereof
 	 * @since 4.1.9
 	 * @see MethodJmsListenerEndpoint#createMessageListenerInstance()
@@ -332,9 +331,8 @@ public class JmsListenerAnnotationBeanPostProcessor
 
 
 	/**
-	 * A {@link MessageHandlerMethodFactory} adapter that offers a configurable underlying
-	 * instance to use. Useful if the factory to use is determined once the endpoints
-	 * have been registered but not created yet.
+	 * {@link MessageHandlerMethodFactory} 适配器，提供可配置的底层实例供使用。
+	 * 如果要使用的工厂在端点已注册但尚未创建时才确定，此适配器非常有用。
 	 * @see JmsListenerEndpointRegistrar#setMessageHandlerMethodFactory
 	 */
 	private class MessageHandlerMethodFactoryAdapter implements MessageHandlerMethodFactory {

@@ -35,27 +35,23 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link DelegatingConnectionFactory} that wraps a
- * single R2DBC {@link Connection} which is not closed after use.
- * Obviously, this is not multi-threading capable.
+ * {@link DelegatingConnectionFactory} 的实现，包装单个在使用后不会被关闭的
+ * R2DBC {@link Connection}。显然，它不支持多线程。
  *
- * <p>Note that at shutdown, someone should close the underlying
- * {@code Connection} via the {@code close()} method. Client code will
- * never call close on the {@code Connection} handle if it is
- * SmartConnectionFactory-aware (e.g. uses
- * {@link ConnectionFactoryUtils#releaseConnection(Connection, ConnectionFactory)}).
+ * <p>请注意，在关闭时，应当有人通过 {@code close()} 方法关闭底层的
+ * {@code Connection}。如果客户端代码是 SmartConnectionFactory 感知的
+ * （例如使用 {@link ConnectionFactoryUtils#releaseConnection(Connection, ConnectionFactory)}），
+ * 则它绝不会在 {@code Connection} 句柄上调用 close。
  *
- * <p>If client code will call {@link Connection#close()} in the
- * assumption of a pooled {@code Connection}, like when using persistence tools,
- * set "suppressClose" to {@code true}. This will return a close-suppressing
- * proxy instead of the physical Connection.
+ * <p>如果客户端代码把 {@code Connection} 当作池化连接而调用
+ * {@link Connection#close()}（例如使用持久化工具时），请将 "suppressClose"
+ * 设置为 {@code true}。这样将返回一个抑制关闭操作的代理，而不是物理 Connection。
  *
- * <p>This is primarily intended for testing and pipelining usage of connections.
- * For example, it enables easy testing outside an application server for code
- * that expects to work on a {@link ConnectionFactory}.
- * Note that this implementation does not act as a connection pool-like utility.
- * Connection pooling requires a pooling {@link ConnectionFactory} such as one from
- * {@code r2dbc-pool}.
+ * <p>此实现主要用于测试以及连接管道的使用。例如，它可以让那些期望在
+ * {@link ConnectionFactory} 上工作的代码，无需应用服务器即可轻松测试。
+ * 请注意，此实现并不充当类似连接池的工具。
+ * 连接池需要一个池化的 {@link ConnectionFactory}，例如来自
+ * {@code r2dbc-pool} 的实现。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -66,23 +62,23 @@ import org.springframework.util.Assert;
 public class SingleConnectionFactory extends DelegatingConnectionFactory
 		implements DisposableBean {
 
-	/** Create a close-suppressing proxy?. */
+	/** 是否创建抑制关闭操作的代理？ */
 	private boolean suppressClose;
 
-	/** Override auto-commit state?. */
+	/** 是否覆盖自动提交状态？ */
 	private @Nullable Boolean autoCommit;
 
-	/** Wrapped Connection. */
+	/** 被包装的 Connection。 */
 	private final AtomicReference<Connection> target = new AtomicReference<>();
 
-	/** Proxy Connection. */
+	/** 代理 Connection。 */
 	private @Nullable Connection connection;
 
 	private final Mono<? extends Connection> connectionEmitter;
 
 
 	/**
-	 * Constructor for bean-style configuration.
+	 * 用于 bean 风格配置的构造函数。
 	 */
 	public SingleConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		super(targetConnectionFactory);
@@ -90,7 +86,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	}
 
 	/**
-	 * Create a new {@code SingleConnectionFactory} using an R2DBC connection URL.
+	 * 使用 R2DBC 连接 URL 创建一个新的 {@code SingleConnectionFactory}。
 	 * @param url the R2DBC URL to use for accessing {@link ConnectionFactory} discovery
 	 * @param suppressClose if the returned {@link Connection} should be a
 	 * close-suppressing proxy or the physical {@code Connection}
@@ -103,8 +99,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	}
 
 	/**
-	 * Create a new {@code SingleConnectionFactory} with a given {@link Connection}
-	 * and {@link ConnectionFactoryMetadata}.
+	 * 使用给定的 {@link Connection} 和 {@link ConnectionFactoryMetadata}
+	 * 创建一个新的 {@code SingleConnectionFactory}。
 	 * @param target underlying target {@code Connection}
 	 * @param metadata {@code ConnectionFactory} metadata to be associated with
 	 * this {@code ConnectionFactory}
@@ -134,32 +130,28 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 
 
 	/**
-	 * Set whether the returned {@link Connection} should be a close-suppressing proxy
-	 * or the physical {@code Connection}.
+	 * 设置返回的 {@link Connection} 是抑制关闭的代理，还是物理 {@code Connection}。
 	 */
 	public void setSuppressClose(boolean suppressClose) {
 		this.suppressClose = suppressClose;
 	}
 
 	/**
-	 * Return whether the returned {@link Connection} will be a close-suppressing proxy
-	 * or the physical {@code Connection}.
+	 * 返回返回的 {@link Connection} 是抑制关闭的代理，还是物理 {@code Connection}。
 	 */
 	protected boolean isSuppressClose() {
 		return this.suppressClose;
 	}
 
 	/**
-	 * Set whether the returned {@link Connection}'s "autoCommit" setting should
-	 * be overridden.
+	 * 设置是否应覆盖返回的 {@link Connection} 的 "autoCommit" 设置。
 	 */
 	public void setAutoCommit(boolean autoCommit) {
 		this.autoCommit = autoCommit;
 	}
 
 	/**
-	 * Return whether the returned {@link Connection}'s "autoCommit" setting should
-	 * be overridden.
+	 * 返回是否应覆盖返回的 {@link Connection} 的 "autoCommit" 设置。
 	 * @return the "autoCommit" value, or {@code null} if none to be applied
 	 */
 	@Nullable
@@ -182,10 +174,10 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	}
 
 	/**
-	 * Close the underlying {@link Connection}.
-	 * The provider of this {@link ConnectionFactory} needs to care for proper shutdown.
-	 * <p>As this bean implements {@link DisposableBean}, a bean factory will automatically
-	 * invoke this on destruction of its cached singletons.
+	 * 关闭底层的 {@link Connection}。
+	 * 此 {@link ConnectionFactory} 的提供方需要负责正确关闭。
+	 * <p>由于此 bean 实现了 {@link DisposableBean}，bean 工厂会在销毁其缓存的单例时
+	 * 自动调用此方法。
 	 */
 	@Override
 	public void destroy() {
@@ -193,7 +185,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	}
 
 	/**
-	 * Reset the underlying shared Connection, to be reinitialized on next access.
+	 * 重置底层的共享 Connection，以便在下次访问时重新初始化。
 	 */
 	public Mono<Void> resetConnection() {
 		Connection connection = this.target.get();
@@ -210,8 +202,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	}
 
 	/**
-	 * Prepare the {@link Connection} before using it.
-	 * Applies {@linkplain #getAutoCommitValue() auto-commit} settings if configured.
+	 * 在使用 {@link Connection} 之前对其进行准备。
+	 * 如果配置了 {@linkplain #getAutoCommitValue() 自动提交} 设置，则会应用该设置。
 	 * @param connection the requested {@code Connection}
 	 * @return the prepared {@code Connection}
 	 */
@@ -224,8 +216,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 	}
 
 	/**
-	 * Wrap the given {@link Connection} with a proxy that delegates every method call to it
-	 * but suppresses close calls.
+	 * 用代理包装给定的 {@link Connection}，该代理将所有方法调用委托给目标，
+	 * 但抑制 close 调用。
 	 * @param target the original {@code Connection} to wrap
 	 * @return the wrapped Connection
 	 */
@@ -236,7 +228,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory
 
 
 	/**
-	 * Invocation handler that suppresses close calls on R2DBC Connections.
+	 * 用于抑制 R2DBC Connection 上 close 调用的调用处理器。
 	 *
 	 * @see Connection#close()
 	 */

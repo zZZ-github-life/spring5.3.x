@@ -22,39 +22,35 @@ import javax.persistence.PersistenceException;
 import javax.persistence.spi.PersistenceProvider;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that creates a JPA
- * {@link javax.persistence.EntityManagerFactory} according to JPA's standard
- * <i>standalone</i> bootstrap contract. This is the simplest way to set up a
- * shared JPA EntityManagerFactory in a Spring application context; the
- * EntityManagerFactory can then be passed to JPA-based DAOs via
- * dependency injection. Note that switching to a JNDI lookup or to a
- * {@link LocalContainerEntityManagerFactoryBean}
- * definition is just a matter of configuration!
+ * 按照 JPA 标准<i>独立</i>引导契约创建 JPA
+ * {@link javax.persistence.EntityManagerFactory} 的
+ * {@link org.springframework.beans.factory.FactoryBean}。
+ * 这是在 Spring 应用上下文中设置共享 JPA EntityManagerFactory 的最简单方式；
+ * 然后可以通过依赖注入将 EntityManagerFactory 传递给基于 JPA 的 DAO。
+ * 请注意，切换到 JNDI 查找或 {@link LocalContainerEntityManagerFactoryBean}
+ * 定义只是配置上的变化！
  *
- * <p>Configuration settings are usually read from a {@code META-INF/persistence.xml}
- * config file, residing in the class path, according to the JPA standalone bootstrap
- * contract. Additionally, most JPA providers will require a special VM agent
- * (specified on JVM startup) that allows them to instrument application classes.
- * See the Java Persistence API specification and your provider documentation
- * for setup details.
+ * <p>根据 JPA 独立引导契约，配置设置通常从位于类路径中的
+ * {@code META-INF/persistence.xml} 配置文件读取。此外，
+ * 大多数 JPA 提供者需要一个特殊的 VM agent（在 JVM 启动时指定）
+ * 才能对应用程序类进行插桩。有关设置详情，
+ * 请参阅 Java Persistence API 规范和你的提供者文档。
  *
- * <p>This EntityManagerFactory bootstrap is appropriate for standalone applications
- * which solely use JPA for data access. If you want to set up your persistence
- * provider for an external DataSource and/or for global transactions which span
- * multiple resources, you will need to either deploy it into a full Java EE
- * application server and access the deployed EntityManagerFactory via JNDI,
- * or use Spring's {@link LocalContainerEntityManagerFactoryBean} with appropriate
- * configuration for local setup according to JPA's container contract.
+ * <p>此 EntityManagerFactory 引导方式适用于仅使用 JPA 进行数据访问的独立应用程序。
+ * 如果你希望为外部 DataSource 和/或跨多个资源的全局事务配置持久化提供者，
+ * 则需要将其部署到完整的 Java EE 应用服务器中并通过 JNDI 访问部署的
+ * EntityManagerFactory，或者使用 Spring 的
+ * {@link LocalContainerEntityManagerFactoryBean} 并按照 JPA 容器契约
+ * 进行适当的本地配置。
  *
- * <p><b>Note:</b> This FactoryBean has limited configuration power in terms of
- * what configuration it is able to pass to the JPA provider. If you need more
- * flexible configuration, for example passing a Spring-managed JDBC DataSource
- * to the JPA provider, consider using Spring's more powerful
- * {@link LocalContainerEntityManagerFactoryBean} instead.
+ * <p><b>注意：</b>此 FactoryBean 在能够传递给 JPA 提供者的配置方面
+ * 能力有限。如果你需要更灵活的配置，例如向 JPA 提供者传递
+ * Spring 管理的 JDBC DataSource，请考虑改用 Spring 更强大的
+ * {@link LocalContainerEntityManagerFactoryBean}。
  *
- * <p><b>NOTE: Spring's JPA support requires JPA 2.1 or higher, as of Spring 5.0.</b>
- * JPA 1.0/2.0 based applications are still supported; however, a JPA 2.1 compliant
- * persistence provider is needed at runtime.
+ * <p><b>注意：自 Spring 5.0 起，Spring 的 JPA 支持要求 JPA 2.1 或更高版本。</b>
+ * 基于 JPA 1.0/2.0 的应用程序仍然受支持；不过，运行时需要符合 JPA 2.1 的
+ * 持久化提供者。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -72,7 +68,7 @@ import javax.persistence.spi.PersistenceProvider;
 public class LocalEntityManagerFactoryBean extends AbstractEntityManagerFactoryBean {
 
 	/**
-	 * Initialize the EntityManagerFactory for the given configuration.
+	 * 为给定的配置初始化 EntityManagerFactory。
 	 * @throws javax.persistence.PersistenceException in case of JPA initialization errors
 	 */
 	@Override

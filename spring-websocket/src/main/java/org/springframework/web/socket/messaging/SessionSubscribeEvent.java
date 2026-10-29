@@ -22,8 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Event raised when a new WebSocket client using a Simple Messaging Protocol
- * (e.g. STOMP) sends a subscription request.
+ * 当使用简单消息传递协议（例如 STOMP）的新 WebSocket 客户端发送订阅请求时
+ * 引发的事件。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.3

@@ -37,13 +37,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 
 /**
- * A logical disjunction (' || ') request condition to match a request's
- * 'Content-Type' header to a list of media type expressions. Two kinds of
- * media type expressions are supported, which are described in
- * {@link RequestMapping#consumes()} and {@link RequestMapping#headers()}
- * where the header name is 'Content-Type'. Regardless of which syntax is
- * used, the semantics are the same.
- *
+ * 逻辑析取（' || '）请求条件，用于将请求的 'Content-Type' 头与媒体类型表达式列表进行匹配。支持两种媒体类型表达式，分别在 {@link RequestMapping#consumes()} 和 {@link RequestMapping#headers()} 中描述，其中头名称为 'Content-Type'。无论使用哪种语法，语义都相同。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -58,7 +52,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 
 	/**
-	 * Creates a new instance from 0 or more "consumes" expressions.
+	 * 根据 0 个或多个 "consumes" 表达式创建新实例。
 	 * @param consumes expressions with the syntax described in
 	 * {@link RequestMapping#consumes()}; if 0 expressions are provided,
 	 * the condition will match to every request
@@ -68,10 +62,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Creates a new instance with "consumes" and "header" expressions.
-	 * "Header" expressions where the header name is not 'Content-Type' or have
-	 * no header value defined are ignored. If 0 expressions are provided in
-	 * total, the condition will match to every request
+	 * 使用 "consumes" 和 "header" 表达式创建新实例。头名称不是 'Content-Type' 或未定义头值的 "header" 表达式将被忽略。如果总共提供 0 个表达式，则该条件将匹配所有请求。
 	 * @param consumes as described in {@link RequestMapping#consumes()}
 	 * @param headers as described in {@link RequestMapping#headers()}
 	 */
@@ -105,7 +96,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Private constructor for internal when creating matching conditions.
+	 * 内部私有构造函数，用于创建匹配条件。
 	 */
 	private ConsumesRequestCondition(List<ConsumeMediaTypeExpression> expressions) {
 		this.expressions = expressions;
@@ -113,14 +104,14 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 
 	/**
-	 * Return the contained MediaType expressions.
+	 * 返回包含的 MediaType 表达式。
 	 */
 	public Set<MediaTypeExpression> getExpressions() {
 		return new LinkedHashSet<>(this.expressions);
 	}
 
 	/**
-	 * Returns the media types for this condition excluding negated expressions.
+	 * 返回此条件的媒体类型，不包括否定表达式。
 	 */
 	public Set<MediaType> getConsumableMediaTypes() {
 		Set<MediaType> result = new LinkedHashSet<>();
@@ -133,7 +124,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Whether the condition has any media type expressions.
+	 * 此条件是否包含任何媒体类型表达式。
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -151,12 +142,9 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Whether this condition should expect requests to have a body.
-	 * <p>By default this is set to {@code true} in which case it is assumed a
-	 * request body is required and this condition matches to the "Content-Type"
-	 * header or falls back on "Content-Type: application/octet-stream".
-	 * <p>If set to {@code false}, and the request does not have a body, then this
-	 * condition matches automatically, i.e. without checking expressions.
+	 * 此条件是否应要求请求包含正文。
+	 * <p>默认设置为 {@code true}，此时假定需要请求正文，该条件匹配 "Content-Type" 头，或回退到 "Content-Type: application/octet-stream"。
+	 * <p>如果设置为 {@code false} 且请求没有正文，则该条件自动匹配，即无需检查表达式。
 	 * @param bodyRequired whether requests are expected to have a body
 	 * @since 5.2
 	 */
@@ -165,7 +153,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Return the setting for {@link #setBodyRequired(boolean)}.
+	 * 返回 {@link #setBodyRequired(boolean)} 的设置。
 	 * @since 5.2
 	 */
 	public boolean isBodyRequired() {
@@ -174,9 +162,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 
 	/**
-	 * Returns the "other" instance if it has any expressions; returns "this"
-	 * instance otherwise. Practically that means a method-level "consumes"
-	 * overrides a type-level "consumes" condition.
+	 * 如果 "other" 实例包含任何表达式，则返回它；否则返回 "this" 实例。实际上这意味着方法级 "consumes" 会覆盖类型级 "consumes" 条件。
 	 */
 	@Override
 	public ConsumesRequestCondition combine(ConsumesRequestCondition other) {
@@ -184,10 +170,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Checks if any of the contained media type expressions match the given
-	 * request 'Content-Type' header and returns an instance that is guaranteed
-	 * to contain matching expressions only. The match is performed via
-	 * {@link MediaType#includes(MediaType)}.
+	 * 检查所包含的任何媒体类型表达式是否匹配给定请求的 'Content-Type' 头，并返回一个保证仅包含匹配表达式的实例。匹配通过 {@link MediaType#includes(MediaType)} 执行。
 	 * @param exchange the current exchange
 	 * @return the same instance if the condition contains no expressions;
 	 * or a new condition with matching expressions only;
@@ -229,15 +212,13 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 	}
 
 	/**
-	 * Returns:
+	 * 返回值：
 	 * <ul>
-	 * <li>0 if the two conditions have the same number of expressions
-	 * <li>Less than 0 if "this" has more or more specific media type expressions
-	 * <li>Greater than 0 if "other" has more or more specific media type expressions
+	 * <li>如果两个条件具有相同数量的表达式，则返回 0
+	 * <li>如果 "this" 具有更多或更具体的媒体类型表达式，则小于 0
+	 * <li>如果 "other" 具有更多或更具体的媒体类型表达式，则大于 0
 	 * </ul>
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(ServerWebExchange)} and each instance contains
-	 * the matching consumable media type expression only or is otherwise empty.
+	 * <p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，并且每个实例仅包含匹配的可消费媒体类型表达式，或者为空。
 	 */
 	@Override
 	public int compareTo(ConsumesRequestCondition other, ServerWebExchange exchange) {
@@ -257,7 +238,7 @@ public final class ConsumesRequestCondition extends AbstractRequestCondition<Con
 
 
 	/**
-	 * Parses and matches a single media type expression to a request's 'Content-Type' header.
+	 * 解析单个媒体类型表达式并将其与请求的 'Content-Type' 头匹配。
 	 */
 	static class ConsumeMediaTypeExpression extends AbstractMediaTypeExpression {
 

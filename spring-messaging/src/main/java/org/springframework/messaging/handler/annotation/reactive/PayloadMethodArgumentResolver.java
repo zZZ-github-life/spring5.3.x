@@ -58,18 +58,15 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * A resolver to extract and decode the payload of a message using a
- * {@link Decoder}, where the payload is expected to be a {@link Publisher} of
- * {@link DataBuffer DataBuffer}.
+ * 使用 {@link Decoder} 提取并解码消息载荷的解析器，其中载荷应为
+ * {@link DataBuffer DataBuffer} 的 {@link Publisher}。
  *
- * <p>Validation is applied if the method argument is annotated with
- * {@code @javax.validation.Valid} or
- * {@link org.springframework.validation.annotation.Validated}. Validation
- * failure results in an {@link MethodArgumentNotValidException}.
+ * <p>如果方法参数使用 {@code @javax.validation.Valid} 或
+ * {@link org.springframework.validation.annotation.Validated} 注解，则会应用校验。
+ * 校验失败会导致 {@link MethodArgumentNotValidException}。
  *
- * <p>This resolver should be ordered last if {@link #useDefaultResolution} is
- * set to {@code true} since in that case it supports all types and does not
- * require the presence of {@link Payload}.
+ * <p>如果 {@link #useDefaultResolution} 设置为 {@code true}，
+ * 则应将此解析器排在最后，因为此时它支持所有类型，且不要求存在 {@link Payload}。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -101,14 +98,14 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 
 
 	/**
-	 * Return a read-only list of the configured decoders.
+	 * 返回已配置解码器的只读列表。
 	 */
 	public List<Decoder<?>> getDecoders() {
 		return this.decoders;
 	}
 
 	/**
-	 * Return the configured validator, if any.
+	 * 返回已配置的校验器（如果有）。
 	 */
 	@Nullable
 	public Validator getValidator() {
@@ -116,16 +113,15 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Return the configured {@link ReactiveAdapterRegistry}.
+	 * 返回已配置的 {@link ReactiveAdapterRegistry}。
 	 */
 	public ReactiveAdapterRegistry getAdapterRegistry() {
 		return this.adapterRegistry;
 	}
 
 	/**
-	 * Whether this resolver is configured to use default resolution, i.e.
-	 * works for any argument type regardless of whether {@code @Payload} is
-	 * present or not.
+	 * 此解析器是否配置为使用默认解析，即无论是否存在 {@code @Payload}，
+	 * 都能处理任何参数类型。
 	 */
 	public boolean isUseDefaultResolution() {
 		return this.useDefaultResolution;
@@ -139,13 +135,11 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 
 
 	/**
-	 * Decode the content of the given message payload through a compatible
-	 * {@link Decoder}.
+	 * 通过兼容的 {@link Decoder} 解码给定消息载荷的内容。
 	 *
-	 * <p>Validation is applied if the method argument is annotated with
-	 * {@code @javax.validation.Valid} or
-	 * {@link org.springframework.validation.annotation.Validated}. Validation
-	 * failure results in an {@link MethodArgumentNotValidException}.
+	 * <p>如果方法参数使用 {@code @javax.validation.Valid} 或
+	 * {@link org.springframework.validation.annotation.Validated} 注解，则会应用校验。
+	 * 校验失败会导致 {@link MethodArgumentNotValidException}。
 	 * @param parameter the target method argument that we are decoding to
 	 * @param message the message from which the content was extracted
 	 * @return a Mono with the result of argument resolution
@@ -193,9 +187,9 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Return the mime type for the content. By default this method checks the
-	 * {@link MessageHeaders#CONTENT_TYPE} header expecting to find a
-	 * {@link MimeType} value or a String to parse to a {@link MimeType}.
+	 * 返回内容的 MIME 类型。默认情况下，此方法检查
+	 * {@link MessageHeaders#CONTENT_TYPE} 头，期望找到 {@link MimeType} 值
+	 * 或可解析为 {@link MimeType} 的 String。
 	 * @param message the input message
 	 */
 	@Nullable

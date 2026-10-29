@@ -27,9 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A base {@link CacheResolver} implementation that requires the concrete
- * implementation to provide the collection of cache name(s) based on the
- * invocation context.
+ * 基础的 {@link CacheResolver} 实现，要求具体实现根据调用上下文提供缓存名称集合。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -42,14 +40,14 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 
 
 	/**
-	 * Construct a new {@code AbstractCacheResolver}.
+	 * 构造一个新的 {@code AbstractCacheResolver}。
 	 * @see #setCacheManager
 	 */
 	protected AbstractCacheResolver() {
 	}
 
 	/**
-	 * Construct a new {@code AbstractCacheResolver} for the given {@link CacheManager}.
+	 * 为给定的 {@link CacheManager} 构造一个新的 {@code AbstractCacheResolver}。
 	 * @param cacheManager the CacheManager to use
 	 */
 	protected AbstractCacheResolver(CacheManager cacheManager) {
@@ -58,14 +56,14 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 
 
 	/**
-	 * Set the {@link CacheManager} that this instance should use.
+	 * 设置此实例应使用的 {@link CacheManager}。
 	 */
 	public void setCacheManager(CacheManager cacheManager) {
 		this.cacheManager = cacheManager;
 	}
 
 	/**
-	 * Return the {@link CacheManager} that this instance uses.
+	 * 返回此实例使用的 {@link CacheManager}。
 	 */
 	public CacheManager getCacheManager() {
 		Assert.state(this.cacheManager != null, "No CacheManager set");
@@ -97,9 +95,8 @@ public abstract class AbstractCacheResolver implements CacheResolver, Initializi
 	}
 
 	/**
-	 * Provide the name of the cache(s) to resolve against the current cache manager.
-	 * <p>It is acceptable to return {@code null} to indicate that no cache could
-	 * be resolved for this invocation.
+	 * 提供要针对当前缓存管理器解析的缓存名称。
+	 * <p>可以返回 {@code null}，表示无法为此调用解析任何缓存。
 	 * @param context the context of the particular invocation
 	 * @return the cache name(s) to resolve, or {@code null} if no cache should be resolved
 	 */

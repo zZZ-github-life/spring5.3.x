@@ -27,8 +27,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ClientHttpRequest} implementation that uses standard JDK facilities to
- * execute buffered requests. Created via the {@link SimpleClientHttpRequestFactory}.
+ * 使用标准 JDK 设施执行缓冲请求的
+ * {@link ClientHttpRequest} 实现。通过 {@link SimpleClientHttpRequestFactory} 创建。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -86,7 +86,7 @@ final class SimpleBufferingClientHttpRequest extends AbstractBufferingClientHttp
 
 
 	/**
-	 * Add the given headers to the given HTTP connection.
+	 * 将给定头部添加到给定的 HTTP 连接。
 	 * @param connection the connection to add the headers to
 	 * @param headers the headers to add
 	 */

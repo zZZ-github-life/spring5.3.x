@@ -22,7 +22,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * Holder containing one or more {@link PropertySource} objects.
+ * 包含一个或多个 {@link PropertySource} 对象的持有者。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
 public interface PropertySources extends Iterable<PropertySource<?>> {
 
 	/**
-	 * Return a sequential {@link Stream} containing the property sources.
+	 * 返回包含各属性源的顺序 {@link Stream}。
 	 * @since 5.1
 	 */
 	default Stream<PropertySource<?>> stream() {
@@ -40,13 +40,13 @@ public interface PropertySources extends Iterable<PropertySource<?>> {
 	}
 
 	/**
-	 * Return whether a property source with the given name is contained.
+	 * 返回是否包含具有给定名称的属性源。
 	 * @param name the {@linkplain PropertySource#getName() name of the property source} to find
 	 */
 	boolean contains(String name);
 
 	/**
-	 * Return the property source with the given name, {@code null} if not found.
+	 * 返回具有给定名称的属性源，如果未找到则返回 {@code null}。
 	 * @param name the {@linkplain PropertySource#getName() name of the property source} to find
 	 */
 	@Nullable

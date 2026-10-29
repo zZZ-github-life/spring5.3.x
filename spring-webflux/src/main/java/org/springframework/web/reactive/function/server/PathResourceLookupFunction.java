@@ -34,8 +34,7 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Lookup function used by {@link RouterFunctions#resources(String, Resource)}.
- *
+ * 由 {@link RouterFunctions#resources(String, Resource)} 使用的查找函数。
  * @author Arjen Poutsma
  * @since 5.0
  */

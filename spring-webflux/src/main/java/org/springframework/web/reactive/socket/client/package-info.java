@@ -1,5 +1,5 @@
 /**
- * Client support for WebSocket interactions.
+ * WebSocket 交互的客户端支持。
  */
 @NonNullApi
 @NonNullFields

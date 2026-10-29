@@ -24,8 +24,7 @@ import org.springframework.jdbc.core.SqlParameterValue;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code JdbcTestUtils} is a collection of JDBC related utility functions
- * intended to simplify standard database testing scenarios.
+ * {@code JdbcTestUtils} 是一组与 JDBC 相关的实用函数的集合，旨在简化标准数据库测试场景。
  *
  * @author Thomas Risberg
  * @author Sam Brannen
@@ -44,7 +43,7 @@ public abstract class JdbcTestUtils {
 
 
 	/**
-	 * Count the rows in the given table.
+	 * 统计给定表中的行数。
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
 	 * @param tableName name of the table to count rows in
 	 * @return the number of rows in the table
@@ -55,13 +54,8 @@ public abstract class JdbcTestUtils {
 	}
 
 	/**
-	 * Count the rows in the given table, using the provided {@code WHERE} clause.
-	 * <p>If the provided {@code WHERE} clause contains text, it will be prefixed
-	 * with {@code " WHERE "} and then appended to the generated {@code SELECT}
-	 * statement. For example, if the provided table name is {@code "person"} and
-	 * the provided where clause is {@code "name = 'Bob' and age > 25"}, the
-	 * resulting SQL statement to execute will be
-	 * {@code "SELECT COUNT(0) FROM person WHERE name = 'Bob' and age > 25"}.
+	 * 使用所提供的 {@code WHERE} 子句统计给定表中的行数。
+	 * <p>如果所提供的 {@code WHERE} 子句包含文本，则会在其前面加上 {@code " WHERE "}，然后追加到生成的 {@code SELECT} 语句中。例如，如果所提供的表名为 {@code "person"}，所提供的 where 子句为 {@code "name = 'Bob' and age > 25"}，则要执行的生成 SQL 语句为 {@code "SELECT COUNT(0) FROM person WHERE name = 'Bob' and age > 25"}。
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
 	 * @param tableName the name of the table to count rows in
 	 * @param whereClause the {@code WHERE} clause to append to the query
@@ -78,7 +72,7 @@ public abstract class JdbcTestUtils {
 	}
 
 	/**
-	 * Delete all rows from the specified tables.
+	 * 删除指定表中的所有行。
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
 	 * @param tableNames the names of the tables to delete from
 	 * @return the total number of rows deleted from all specified tables
@@ -96,15 +90,9 @@ public abstract class JdbcTestUtils {
 	}
 
 	/**
-	 * Delete rows from the given table, using the provided {@code WHERE} clause.
-	 * <p>If the provided {@code WHERE} clause contains text, it will be prefixed
-	 * with {@code " WHERE "} and then appended to the generated {@code DELETE}
-	 * statement. For example, if the provided table name is {@code "person"} and
-	 * the provided where clause is {@code "name = 'Bob' and age > 25"}, the
-	 * resulting SQL statement to execute will be
-	 * {@code "DELETE FROM person WHERE name = 'Bob' and age > 25"}.
-	 * <p>As an alternative to hard-coded values, the {@code "?"} placeholder can
-	 * be used within the {@code WHERE} clause, binding to the given arguments.
+	 * 使用所提供的 {@code WHERE} 子句从给定表中删除行。
+	 * <p>如果所提供的 {@code WHERE} 子句包含文本，则会在其前面加上 {@code " WHERE "}，然后追加到生成的 {@code DELETE} 语句中。例如，如果所提供的表名为 {@code "person"}，所提供的 where 子句为 {@code "name = 'Bob' and age > 25"}，则要执行的生成 SQL 语句为 {@code "DELETE FROM person WHERE name = 'Bob' and age > 25"}。
+	 * <p>作为硬编码值的替代，可以在 {@code WHERE} 子句中使用 {@code "?"} 占位符，并绑定到给定的参数。
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
 	 * @param tableName the name of the table to delete rows from
 	 * @param whereClause the {@code WHERE} clause to append to the query
@@ -129,7 +117,7 @@ public abstract class JdbcTestUtils {
 	}
 
 	/**
-	 * Drop the specified tables.
+	 * 删除指定的表。
 	 * @param jdbcTemplate the JdbcTemplate with which to perform JDBC operations
 	 * @param tableNames the names of the tables to drop
 	 */

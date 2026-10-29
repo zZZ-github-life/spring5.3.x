@@ -33,8 +33,7 @@ import org.springframework.http.codec.HttpMessageWriter;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@link CodecConfigurer} that serves as a base for
- * client and server specific variants.
+ * {@link CodecConfigurer} 的默认实现，作为客户端和服务器特定变体的基类。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -48,8 +47,8 @@ abstract class BaseCodecConfigurer implements CodecConfigurer {
 
 
 	/**
-	 * Constructor with the base {@link BaseDefaultCodecs} to use, which can be
-	 * a client or server specific variant.
+	 * 使用要采用的基础 {@link BaseDefaultCodecs} 的构造函数，
+	 * 该对象可以是客户端或服务器特定的变体。
 	 */
 	BaseCodecConfigurer(BaseDefaultCodecs defaultCodecs) {
 		Assert.notNull(defaultCodecs, "'defaultCodecs' is required");
@@ -58,7 +57,7 @@ abstract class BaseCodecConfigurer implements CodecConfigurer {
 	}
 
 	/**
-	 * Create a deep copy of the given {@link BaseCodecConfigurer}.
+	 * 创建给定 {@link BaseCodecConfigurer} 的深拷贝。
 	 * @since 5.1.12
 	 */
 	protected BaseCodecConfigurer(BaseCodecConfigurer other) {
@@ -67,8 +66,8 @@ abstract class BaseCodecConfigurer implements CodecConfigurer {
 	}
 
 	/**
-	 * Subclasses should override this to create a deep copy of
-	 * {@link BaseDefaultCodecs} which can be client or server specific.
+	 * 子类应重写此方法，以创建 {@link BaseDefaultCodecs} 的深拷贝，
+	 * 该对象可以是客户端或服务器特定的。
 	 * @since 5.1.12
 	 */
 	protected abstract BaseDefaultCodecs cloneDefaultCodecs();
@@ -120,7 +119,7 @@ abstract class BaseCodecConfigurer implements CodecConfigurer {
 
 
 	/**
-	 * Default implementation of {@code CustomCodecs}.
+	 * {@code CustomCodecs} 的默认实现。
 	 */
 	protected static final class DefaultCustomCodecs implements CustomCodecs {
 
@@ -138,7 +137,7 @@ abstract class BaseCodecConfigurer implements CodecConfigurer {
 		}
 
 		/**
-		 * Create a deep copy of the given {@link DefaultCustomCodecs}.
+		 * 创建给定 {@link DefaultCustomCodecs} 的深拷贝。
 		 * @since 5.1.12
 		 */
 		DefaultCustomCodecs(DefaultCustomCodecs other) {

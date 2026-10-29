@@ -1,6 +1,5 @@
 /**
- * Support classes for application events, like standard context events.
- * To be supported by all major application context implementations.
+ * 应用事件（如标准上下文事件）的支持类。旨在得到所有主流应用上下文实现的支持。
  */
 @NonNullApi
 @NonNullFields

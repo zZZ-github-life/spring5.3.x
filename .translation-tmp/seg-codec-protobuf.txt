@@ -1,0 +1,78 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/protobuf/ProtobufCodecSupport.java
+@@BODY 27 27
+Base class providing support methods for Protobuf encoding and decoding.
+===FILE spring-web/src/main/java/org/springframework/http/codec/protobuf/ProtobufDecoder.java
+@@BODY 47 48
+A {@code Decoder} that reads {@link com.google.protobuf.Message}s using
+<a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
+@@BODY 50 51
+<p>Flux deserialized via
+{@link #decode(Publisher, ResolvableType, MimeType, Map)} are expected to use
+@@BODY 53 57
+delimited Protobuf messages</a> with the size of each message specified before
+the message itself. Single values deserialized via
+{@link #decodeToMono(Publisher, ResolvableType, MimeType, Map)} are expected
+to use regular Protobuf message format (without the size prepended before
+the message).
+@@BODY 59 61
+<p>Notice that default instance of Protobuf message produces empty byte
+array, so {@code Mono.just(Msg.getDefaultInstance())} sent over the network
+will be deserialized as an empty {@link Mono}.
+@@BODY 63 64
+<p>To generate {@code Message} Java classes, you need to install the
+{@code protoc} binary.
+@@BODY 66 68
+<p>This decoder requires Protobuf 3 or higher, and supports
+{@code "application/x-protobuf"} and {@code "application/octet-stream"} with
+the official {@code "com.google.protobuf:protobuf-java"} library.
+@@BODY 88 88
+Construct a new {@code ProtobufDecoder}.
+@@BODY 95 96
+Construct a new {@code ProtobufDecoder} with an initializer that allows the
+registration of message extensions.
+@@BODY 106 107
+The max size allowed per message.
+<p>By default, this is set to 256K.
+@@BODY 115 115
+Return the {@link #setMaxMessageSize configured} message size limit.
+@@BODY 171 172
+Create a new {@code Message.Builder} instance for the given class.
+<p>This method uses a ConcurrentHashMap for caching method lookups.
+@@BODY 265 267
+Parse message size as a varint from the input stream, updating {@code messageBytesToRead} and
+{@code offset} fields if needed to allow processing of upcoming chunks.
+Inspired from {@link CodedInputStream#readRawVarint32(int, java.io.InputStream)}
+===FILE spring-web/src/main/java/org/springframework/http/codec/protobuf/ProtobufEncoder.java
+@@BODY 40 41
+An {@code Encoder} that writes {@link com.google.protobuf.Message}s
+using <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
+@@BODY 43 46
+<p>Flux are serialized using
+<a href="https://developers.google.com/protocol-buffers/docs/techniques?hl=en#streaming">delimited Protobuf messages</a>
+with the size of each message specified before the message itself. Single values are
+serialized using regular Protobuf message format (without the size prepended before the message).
+@@BODY 48 48
+<p>To generate {@code Message} Java classes, you need to install the {@code protoc} binary.
+@@BODY 50 52
+<p>This encoder requires Protobuf 3 or higher, and supports
+{@code "application/x-protobuf"} and {@code "application/octet-stream"} with the official
+{@code "com.google.protobuf:protobuf-java"} library.
+===FILE spring-web/src/main/java/org/springframework/http/codec/protobuf/ProtobufHttpMessageWriter.java
+@@BODY 41 43
+{@code HttpMessageWriter} that can write a protobuf {@link Message} and adds
+{@code X-Protobuf-Schema}, {@code X-Protobuf-Message} headers and a
+{@code delimited=true} parameter is added to the content type if a flux is serialized.
+@@BODY 45 46
+<p>For {@code HttpMessageReader}, just use
+{@code new DecoderHttpMessageReader(new ProtobufDecoder())}.
+@@BODY 62 62
+Create a new {@code ProtobufHttpMessageWriter} with a default {@link ProtobufEncoder}.
+@@BODY 69 69
+Create a new {@code ProtobufHttpMessageWriter} with the given encoder.
+@@BODY 105 106
+Create a new {@code Message.Builder} instance for the given class.
+<p>This method uses a ConcurrentHashMap for caching method lookups.
+===FILE spring-web/src/main/java/org/springframework/http/codec/protobuf/package-info.java
+@@BODY 2 3
+Provides an encoder and a decoder for
+<a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.

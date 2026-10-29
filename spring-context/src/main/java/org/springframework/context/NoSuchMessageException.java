@@ -19,7 +19,7 @@ package org.springframework.context;
 import java.util.Locale;
 
 /**
- * Exception thrown when a message can't be resolved.
+ * 无法解析消息时抛出的异常。
  *
  * @author Rod Johnson
  */
@@ -27,7 +27,7 @@ import java.util.Locale;
 public class NoSuchMessageException extends RuntimeException {
 
 	/**
-	 * Create a new exception.
+	 * 创建一个新异常。
 	 * @param code the code that could not be resolved for given locale
 	 * @param locale the locale that was used to search for the code within
 	 */
@@ -36,7 +36,7 @@ public class NoSuchMessageException extends RuntimeException {
 	}
 
 	/**
-	 * Create a new exception.
+	 * 创建一个新异常。
 	 * @param code the code that could not be resolved for given locale
 	 */
 	public NoSuchMessageException(String code) {

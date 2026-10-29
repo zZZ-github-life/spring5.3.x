@@ -24,55 +24,54 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Test annotation which indicates that the
+ * 测试注解，指示与测试关联的
  * {@link org.springframework.context.ApplicationContext ApplicationContext}
- * associated with a test is <em>dirty</em> and should therefore be closed
- * and removed from the context cache.
+ * 处于<em>脏</em>状态，因此应关闭
+ * 并从上下文缓存中移除。
  *
- * <p>Use this annotation if a test has modified the context &mdash; for
- * example, by modifying the state of a singleton bean, modifying the state
- * of an embedded database, etc. Subsequent tests that request the same
- * context will be supplied a new context.
+ * <p>如果测试修改了上下文（例如修改单例 Bean 的状态、
+ * 修改嵌入式数据库的状态等），请使用此注解。
+ * 后续请求同一上下文的测试将获得
+ * 一个新的上下文。
  *
- * <p>{@code @DirtiesContext} may be used as a class-level and method-level
- * annotation within the same class or class hierarchy. In such scenarios, the
- * {@code ApplicationContext} will be marked as <em>dirty</em> before or
- * after any such annotated method as well as before or after the current test
- * class, depending on the configured {@link #methodMode} and {@link #classMode}.
+ * <p>{@code @DirtiesContext} 可以在同一个类或类层次结构中
+ * 作为类级和方法级注解使用。在此类场景中，
+ * {@code ApplicationContext} 将在任何此类被注解的方法之前或
+ * 之后，以及当前测试类之前或之后被标记为<em>脏</em>，
+ * 具体取决于配置的 {@link #methodMode} 和 {@link #classMode}。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>来创建自定义的
+ * <em>组合注解</em>。
  *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * <p>从 Spring Framework 5.3 开始，此注解默认将从
+ * 外层测试类继承。详情请参见
+ * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
- * <h3>Supported Test Phases</h3>
+ * <h3>支持的测试阶段</h3>
  * <ul>
- * <li><strong>Before current test class</strong>: when declared at the class
- * level with class mode set to {@link ClassMode#BEFORE_CLASS BEFORE_CLASS}</li>
- * <li><strong>Before each test method in current test class</strong>: when
- * declared at the class level with class mode set to
- * {@link ClassMode#BEFORE_EACH_TEST_METHOD BEFORE_EACH_TEST_METHOD}</li>
- * <li><strong>Before current test method</strong>: when declared at the
- * method level with method mode set to
- * {@link MethodMode#BEFORE_METHOD BEFORE_METHOD}</li>
- * <li><strong>After current test method</strong>: when declared at the
- * method level with method mode set to
- * {@link MethodMode#AFTER_METHOD AFTER_METHOD}</li>
- * <li><strong>After each test method in current test class</strong>: when
- * declared at the class level with class mode set to
- * {@link ClassMode#AFTER_EACH_TEST_METHOD AFTER_EACH_TEST_METHOD}</li>
- * <li><strong>After current test class</strong>: when declared at the
- * class level with class mode set to
- * {@link ClassMode#AFTER_CLASS AFTER_CLASS}</li>
+ * <li><strong>当前测试类之前</strong>：在类级别声明
+ * 且类模式设置为 {@link ClassMode#BEFORE_CLASS BEFORE_CLASS} 时</li>
+ * <li><strong>当前测试类中的每个测试方法之前</strong>：在
+ * 类级别声明且类模式设置为
+ * {@link ClassMode#BEFORE_EACH_TEST_METHOD BEFORE_EACH_TEST_METHOD} 时</li>
+ * <li><strong>当前测试方法之前</strong>：在方法级别声明
+ * 且方法模式设置为
+ * {@link MethodMode#BEFORE_METHOD BEFORE_METHOD} 时</li>
+ * <li><strong>当前测试方法之后</strong>：在方法级别声明
+ * 且方法模式设置为
+ * {@link MethodMode#AFTER_METHOD AFTER_METHOD} 时</li>
+ * <li><strong>当前测试类中的每个测试方法之后</strong>：在
+ * 类级别声明且类模式设置为
+ * {@link ClassMode#AFTER_EACH_TEST_METHOD AFTER_EACH_TEST_METHOD} 时</li>
+ * <li><strong>当前测试类之后</strong>：在
+ * 类级别声明且类模式设置为
+ * {@link ClassMode#AFTER_CLASS AFTER_CLASS} 时</li>
  * </ul>
  *
- * <p>{@code BEFORE_*} modes are supported by the
- * {@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener DirtiesContextBeforeModesTestExecutionListener};
- * {@code AFTER_*} modes are supported by the
- * {@link org.springframework.test.context.support.DirtiesContextTestExecutionListener DirtiesContextTestExecutionListener}.
+ * <p>{@code BEFORE_*} 模式由
+ * {@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener DirtiesContextBeforeModesTestExecutionListener} 支持；
+ * {@code AFTER_*} 模式由
+ * {@link org.springframework.test.context.support.DirtiesContextTestExecutionListener DirtiesContextTestExecutionListener} 支持。
  *
  * @author Sam Brannen
  * @author Rod Johnson
@@ -88,122 +87,119 @@ import java.lang.annotation.Target;
 public @interface DirtiesContext {
 
 	/**
-	 * The <i>mode</i> to use when a test method is annotated with
-	 * {@code @DirtiesContext}.
-	 * <p>Defaults to {@link MethodMode#AFTER_METHOD AFTER_METHOD}.
-	 * <p>Setting the method mode on an annotated test class has no meaning.
-	 * For class-level control, use {@link #classMode} instead.
+	 * 当测试方法使用
+	 * {@code @DirtiesContext} 注解时要使用的<i>模式</i>。
+	 * <p>默认为 {@link MethodMode#AFTER_METHOD AFTER_METHOD}。
+	 * <p>在带注解的测试类上设置方法模式没有意义。
+	 * 若要进行类级控制，请改用 {@link #classMode}。
 	 * @since 4.2
 	 */
 	MethodMode methodMode() default MethodMode.AFTER_METHOD;
 
 	/**
-	 * The <i>mode</i> to use when a test class is annotated with
-	 * {@code @DirtiesContext}.
-	 * <p>Defaults to {@link ClassMode#AFTER_CLASS AFTER_CLASS}.
-	 * <p>Setting the class mode on an annotated test method has no meaning.
-	 * For method-level control, use {@link #methodMode} instead.
+	 * 当测试类使用
+	 * {@code @DirtiesContext} 注解时要使用的<i>模式</i>。
+	 * <p>默认为 {@link ClassMode#AFTER_CLASS AFTER_CLASS}。
+	 * <p>在带注解的测试方法上设置类模式没有意义。
+	 * 若要进行方法级控制，请改用 {@link #methodMode}。
 	 * @since 3.0
 	 */
 	ClassMode classMode() default ClassMode.AFTER_CLASS;
 
 	/**
-	 * The context cache clearing <em>mode</em> to use when a context is
-	 * configured as part of a hierarchy via
-	 * {@link org.springframework.test.context.ContextHierarchy @ContextHierarchy}.
-	 * <p>Defaults to {@link HierarchyMode#EXHAUSTIVE EXHAUSTIVE}.
+	 * 当上下文作为层次结构的一部分通过
+	 * {@link org.springframework.test.context.ContextHierarchy @ContextHierarchy} 配置时，
+	 * 要使用的上下文缓存清除<em>模式</em>。
+	 * <p>默认为 {@link HierarchyMode#EXHAUSTIVE EXHAUSTIVE}。
 	 * @since 3.2.2
 	 */
 	HierarchyMode hierarchyMode() default HierarchyMode.EXHAUSTIVE;
 
 
 	/**
-	 * Defines <i>modes</i> which determine how {@code @DirtiesContext} is
-	 * interpreted when used to annotate a test method.
+	 * 定义<i>模式</i>，用于确定 {@code @DirtiesContext}
+	 * 在注解测试方法时的解释方式。
 	 * @since 4.2
 	 */
 	enum MethodMode {
 
 		/**
-		 * The associated {@code ApplicationContext} will be marked as
-		 * <em>dirty</em> before the corresponding test method.
+		 * 关联的 {@code ApplicationContext} 将在
+		 * 相应测试方法之前被标记为<em>脏</em>。
 		 */
 		BEFORE_METHOD,
 
 		/**
-		 * The associated {@code ApplicationContext} will be marked as
-		 * <em>dirty</em> after the corresponding test method.
+		 * 关联的 {@code ApplicationContext} 将在
+		 * 相应测试方法之后被标记为<em>脏</em>。
 		 */
 		AFTER_METHOD;
 	}
 
 
 	/**
-	 * Defines <i>modes</i> which determine how {@code @DirtiesContext} is
-	 * interpreted when used to annotate a test class.
+	 * 定义<i>模式</i>，用于确定 {@code @DirtiesContext}
+	 * 在注解测试类时的解释方式。
 	 * @since 3.0
 	 */
 	enum ClassMode {
 
 		/**
-		 * The associated {@code ApplicationContext} will be marked as
-		 * <em>dirty</em> before the test class.
+		 * 关联的 {@code ApplicationContext} 将在
+		 * 测试类之前被标记为<em>脏</em>。
 		 *
 		 * @since 4.2
 		 */
 		BEFORE_CLASS,
 
 		/**
-		 * The associated {@code ApplicationContext} will be marked as
-		 * <em>dirty</em> before each test method in the class.
+		 * 关联的 {@code ApplicationContext} 将在
+		 * 类中的每个测试方法之前被标记为<em>脏</em>。
 		 *
 		 * @since 4.2
 		 */
 		BEFORE_EACH_TEST_METHOD,
 
 		/**
-		 * The associated {@code ApplicationContext} will be marked as
-		 * <em>dirty</em> after each test method in the class.
+		 * 关联的 {@code ApplicationContext} 将在
+		 * 类中的每个测试方法之后被标记为<em>脏</em>。
 		 */
 		AFTER_EACH_TEST_METHOD,
 
 		/**
-		 * The associated {@code ApplicationContext} will be marked as
-		 * <em>dirty</em> after the test class.
+		 * 关联的 {@code ApplicationContext} 将在
+		 * 测试类之后被标记为<em>脏</em>。
 		 */
 		AFTER_CLASS;
 	}
 
 
 	/**
-	 * Defines <i>modes</i> which determine how the context cache is cleared
-	 * when {@code @DirtiesContext} is used in a test whose context is
-	 * configured as part of a hierarchy via
-	 * {@link org.springframework.test.context.ContextHierarchy @ContextHierarchy}.
+	 * 定义<i>模式</i>，用于确定当测试的上下文
+	 * 作为层次结构的一部分通过
+	 * {@link org.springframework.test.context.ContextHierarchy @ContextHierarchy} 配置时，
+	 * 使用 {@code @DirtiesContext} 的上下文缓存清除方式。
 	 * @since 3.2.2
 	 */
 	enum HierarchyMode {
 
 		/**
-		 * The context cache will be cleared using an <em>exhaustive</em> algorithm
-		 * that includes not only the {@linkplain HierarchyMode#CURRENT_LEVEL current level}
-		 * but also all other context hierarchies that share an ancestor context
-		 * common to the current test.
+		 * 上下文缓存将使用<em>穷尽性</em>算法清除，
+		 * 该算法不仅包括 {@linkplain HierarchyMode#CURRENT_LEVEL 当前层级}，
+		 * 还包括与当前测试共享共同祖先上下文
+		 * 的所有其他上下文层次结构。
 		 *
-		 * <p>All {@code ApplicationContexts} that reside in a subhierarchy of
-		 * the common ancestor context will be removed from the context cache and
-		 * closed.
+		 * <p>位于共同祖先上下文子层次结构中的所有 {@code ApplicationContext}
+		 * 都将从上下文缓存中移除并关闭。
 		 */
 		EXHAUSTIVE,
 
 		/**
-		 * The {@code ApplicationContext} for the <em>current level</em> in the
-		 * context hierarchy and all contexts in subhierarchies of the current
-		 * level will be removed from the context cache and closed.
+		 * <em>当前层级</em>的 {@code ApplicationContext} 以及当前
+		 * 层级子层次结构中的所有上下文都将从上下文缓存中移除并关闭。
 		 *
-		 * <p>The <em>current level</em> refers to the {@code ApplicationContext}
-		 * at the lowest level in the context hierarchy that is visible from the
-		 * current test.
+		 * <p><em>当前层级</em>指的是从当前测试可见的
+		 * 上下文层次结构中最底层的 {@code ApplicationContext}。
 		 */
 		CURRENT_LEVEL;
 	}

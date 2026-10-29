@@ -24,7 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.reactive.socket.WebSocketHandler;
 
 /**
- * Contract for reactive-style handling of a WebSocket session.
+ * WebSocket 会话的响应式风格处理的契约。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -32,8 +32,7 @@ import org.springframework.web.reactive.socket.WebSocketHandler;
 public interface WebSocketClient {
 
 	/**
-	 * Execute a handshake request to the given url and handle the resulting
-	 * WebSocket session with the given handler.
+	 * 向给定 url 执行握手请求，并使用给定处理器处理由此产生的 WebSocket 会话。
 	 * @param url the handshake url
 	 * @param handler the handler of the WebSocket session
 	 * @return completion {@code Mono<Void>} to indicate the outcome of the
@@ -42,7 +41,7 @@ public interface WebSocketClient {
 	Mono<Void> execute(URI url, WebSocketHandler handler);
 
 	/**
-	 * A variant of {@link #execute(URI, WebSocketHandler)} with custom headers.
+	 * {@link #execute(URI, WebSocketHandler)} 的一个变体，支持自定义头。
 	 * @param url the handshake url
 	 * @param headers custom headers for the handshake request
 	 * @param handler the handler of the WebSocket session

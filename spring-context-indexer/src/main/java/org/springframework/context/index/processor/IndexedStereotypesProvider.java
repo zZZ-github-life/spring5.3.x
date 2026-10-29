@@ -25,9 +25,8 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 
 /**
- * A {@link StereotypesProvider} implementation that extracts the stereotypes
- * flagged by the {@value #INDEXED_ANNOTATION} annotation. This implementation
- * honors stereotypes defined this way on meta-annotations.
+ * {@link StereotypesProvider} 的实现，用于提取由 {@value #INDEXED_ANNOTATION} 注解标记的构造型。此
+ * 实现支持以这种方式在元注解上定义的构造型。
  *
  * @author Stephane Nicoll
  * @since 5.0

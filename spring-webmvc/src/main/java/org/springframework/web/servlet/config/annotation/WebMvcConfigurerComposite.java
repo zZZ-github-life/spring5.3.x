@@ -30,7 +30,7 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 /**
- * A {@link WebMvcConfigurer} that delegates to one or more others.
+ * 一个将调用委托给一个或多个其他 {@link WebMvcConfigurer} 的 {@link WebMvcConfigurer}。
  *
  * @author Rossen Stoyanchev
  * @since 3.1

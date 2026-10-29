@@ -35,12 +35,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Mock implementation of the {@link javax.servlet.FilterChain} interface.
+ * {@link javax.servlet.FilterChain} 接口的 mock 实现。
  *
- * <p>A {@link MockFilterChain} can be configured with one or more filters and a
- * Servlet to invoke. The first time the chain is called, it invokes all filters
- * and the Servlet, and saves the request and response. Subsequent invocations
- * raise an {@link IllegalStateException} unless {@link #reset()} is called.
+ * <p>{@link MockFilterChain} 可以配置一个或多个过滤器和要调用的
+ * Servlet。首次调用该链时，它会调用所有过滤器和
+ * Servlet，并保存请求和响应。后续调用
+ * 将抛出 {@link IllegalStateException}，除非调用了 {@link #reset()}。
  *
  * @author Juergen Hoeller
  * @author Rob Winch
@@ -64,16 +64,16 @@ public class MockFilterChain implements FilterChain {
 
 
 	/**
-	 * Register a single do-nothing {@link Filter} implementation. The first
-	 * invocation saves the request and response. Subsequent invocations raise
-	 * an {@link IllegalStateException} unless {@link #reset()} is called.
+	 * 注册单个不做任何事情的 {@link Filter} 实现。首次
+	 * 调用会保存请求和响应。后续调用将抛出
+	 * {@link IllegalStateException}，除非调用了 {@link #reset()}。
 	 */
 	public MockFilterChain() {
 		this.filters = Collections.emptyList();
 	}
 
 	/**
-	 * Create a FilterChain with a Servlet.
+	 * 使用 Servlet 创建一个 FilterChain。
 	 * @param servlet the Servlet to invoke
 	 * @since 3.2
 	 */
@@ -82,7 +82,7 @@ public class MockFilterChain implements FilterChain {
 	}
 
 	/**
-	 * Create a {@code FilterChain} with Filter's and a Servlet.
+	 * 使用 Filter 和 Servlet 创建一个 {@code FilterChain}。
 	 * @param servlet the {@link Servlet} to invoke in this {@link FilterChain}
 	 * @param filters the {@link Filter}'s to invoke in this {@link FilterChain}
 	 * @since 3.2
@@ -100,7 +100,7 @@ public class MockFilterChain implements FilterChain {
 
 
 	/**
-	 * Return the request that {@link #doFilter} has been called with.
+	 * 返回调用 {@link #doFilter} 时传入的请求。
 	 */
 	@Nullable
 	public ServletRequest getRequest() {
@@ -108,7 +108,7 @@ public class MockFilterChain implements FilterChain {
 	}
 
 	/**
-	 * Return the response that {@link #doFilter} has been called with.
+	 * 返回调用 {@link #doFilter} 时传入的响应。
 	 */
 	@Nullable
 	public ServletResponse getResponse() {
@@ -116,8 +116,8 @@ public class MockFilterChain implements FilterChain {
 	}
 
 	/**
-	 * Invoke registered {@link Filter Filters} and/or {@link Servlet} also saving the
-	 * request and response.
+	 * 调用已注册的 {@link Filter Filter} 和/或 {@link Servlet}，同时保存
+	 * 请求和响应。
 	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException {
@@ -139,7 +139,7 @@ public class MockFilterChain implements FilterChain {
 	}
 
 	/**
-	 * Reset the {@link MockFilterChain} allowing it to be invoked again.
+	 * 重置 {@link MockFilterChain}，使其可以再次被调用。
 	 */
 	public void reset() {
 		this.request = null;
@@ -149,7 +149,7 @@ public class MockFilterChain implements FilterChain {
 
 
 	/**
-	 * A filter that simply delegates to a Servlet.
+	 * 仅委托给 Servlet 的过滤器。
 	 */
 	private static final class ServletFilterProxy implements Filter {
 

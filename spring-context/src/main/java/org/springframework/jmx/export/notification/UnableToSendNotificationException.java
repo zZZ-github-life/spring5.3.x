@@ -19,10 +19,9 @@ package org.springframework.jmx.export.notification;
 import org.springframework.jmx.JmxException;
 
 /**
- * Thrown when a JMX {@link javax.management.Notification} is unable to be sent.
+ * 当 JMX {@link javax.management.Notification} 无法发送时抛出。
  *
- * <p>The root cause of just why a particular notification could not be sent
- * will <i>typically</i> be available via the {@link #getCause()} property.
+ * <p>某个通知为何无法发送的确切根本原因，<i>通常</i>可以通过 {@link #getCause()} 属性获取。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -32,8 +31,7 @@ import org.springframework.jmx.JmxException;
 public class UnableToSendNotificationException extends JmxException {
 
 	/**
-	 * Create a new instance of the {@link UnableToSendNotificationException}
-	 * class with the specified error message.
+	 * 使用指定的错误消息创建 {@link UnableToSendNotificationException} 类的新实例。
 	 * @param msg the detail message
 	 */
 	public UnableToSendNotificationException(String msg) {
@@ -41,8 +39,7 @@ public class UnableToSendNotificationException extends JmxException {
 	}
 
 	/**
-	 * Create a new instance of the {@link UnableToSendNotificationException}
-	 * with the specified error message and root cause.
+	 * 使用指定的错误消息和根本原因创建 {@link UnableToSendNotificationException} 的新实例。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

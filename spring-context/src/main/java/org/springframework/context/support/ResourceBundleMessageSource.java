@@ -40,34 +40,25 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link org.springframework.context.MessageSource} implementation that
- * accesses resource bundles using specified basenames. This class relies
- * on the underlying JDK's {@link java.util.ResourceBundle} implementation,
- * in combination with the JDK's standard message parsing provided by
- * {@link java.text.MessageFormat}.
+ * {@link org.springframework.context.MessageSource} 的实现，使用指定的基名访问资源包。此类依赖底层
+ * JDK 的 {@link java.util.ResourceBundle} 实现，并结合由 {@link java.text.MessageFormat} 提供的
+ * JDK 标准消息解析功能。
  *
- * <p>This MessageSource caches both the accessed ResourceBundle instances and
- * the generated MessageFormats for each message. It also implements rendering of
- * no-arg messages without MessageFormat, as supported by the AbstractMessageSource
- * base class. The caching provided by this MessageSource is significantly faster
- * than the built-in caching of the {@code java.util.ResourceBundle} class.
+ * <p>此 MessageSource 既缓存访问过的 ResourceBundle 实例，也缓存为每条消息生成的 MessageFormat。它
+ * 还实现了如 AbstractMessageSource 基类所支持的那样，在不使用 MessageFormat 的情况下渲染无参消息。
+ * 此 MessageSource 提供的缓存明显快于 {@code java.util.ResourceBundle} 类的内置缓存。
  *
- * <p>The basenames follow {@link java.util.ResourceBundle} conventions: essentially,
- * a fully-qualified classpath location. If it doesn't contain a package qualifier
- * (such as {@code org.mypackage}), it will be resolved from the classpath root.
- * Note that the JDK's standard ResourceBundle treats dots as package separators:
- * This means that "test.theme" is effectively equivalent to "test/theme".
+ * <p>基名遵循 {@link java.util.ResourceBundle} 的约定：基本上就是一个完全限定的类路径位置。如果它
+ * 不包含包限定符（如 {@code org.mypackage}），则会从类路径根目录解析。请注意，JDK 的标准
+ * ResourceBundle 将点号视为包分隔符：这意味着 "test.theme" 实际上等价于 "test/theme"。
  *
- * <p>On the classpath, bundle resources will be read with the locally configured
- * {@link #setDefaultEncoding encoding}: by default, ISO-8859-1; consider switching
- * this to UTF-8, or to {@code null} for the platform default encoding. On the JDK 9+
- * module path where locally provided {@code ResourceBundle.Control} handles are not
- * supported, this MessageSource always falls back to {@link ResourceBundle#getBundle}
- * retrieval with the platform default encoding: UTF-8 with a ISO-8859-1 fallback on
- * JDK 9+ (configurable through the "java.util.PropertyResourceBundle.encoding" system
- * property). Note that {@link #loadBundle(Reader)}/{@link #loadBundle(InputStream)}
- * won't be called in this case either, effectively ignoring overrides in subclasses.
- * Consider implementing a JDK 9 {@code java.util.spi.ResourceBundleProvider} instead.
+ * <p>在类路径上，资源包将使用本地配置的 {@link #setDefaultEncoding encoding} 读取：默认为
+ * ISO-8859-1；可考虑将其改为 UTF-8，或改为 {@code null} 以使用平台默认编码。在 JDK 9+ 模块路径上，
+ * 如果本地提供的 {@code ResourceBundle.Control} 句柄不受支持，此 MessageSource 总是回退到使用平台
+ * 默认编码的 {@link ResourceBundle#getBundle} 检索方式：在 JDK 9+ 上为 UTF-8 并回退到 ISO-8859-1
+ * （可通过 "java.util.PropertyResourceBundle.encoding" 系统属性配置）。请注意，这种情况下也不会调用
+ * {@link #loadBundle(Reader)}/{@link #loadBundle(InputStream)}，实际上会忽略子类中的覆盖。请考虑改
+ * 为实现 JDK 9 的 {@code java.util.spi.ResourceBundleProvider}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -86,21 +77,17 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
 	/**
-	 * Cache to hold loaded ResourceBundles.
-	 * This Map is keyed with the bundle basename, which holds a Map that is
-	 * keyed with the Locale and in turn holds the ResourceBundle instances.
-	 * This allows for very efficient hash lookups, significantly faster
-	 * than the ResourceBundle class's own cache.
+	 * 用于保存已加载 ResourceBundle 的缓存。此 Map 以资源包基名为键，其值是一个以 Locale 为键的 Map，
+	 * 后者又保存 ResourceBundle 实例。这样可以实现非常高效的哈希查找，明显快于 ResourceBundle 类自身的
+	 * 缓存。
 	 */
 	private final Map<String, Map<Locale, ResourceBundle>> cachedResourceBundles =
 			new ConcurrentHashMap<>();
 
 	/**
-	 * Cache to hold already generated MessageFormats.
-	 * This Map is keyed with the ResourceBundle, which holds a Map that is
-	 * keyed with the message code, which in turn holds a Map that is keyed
-	 * with the Locale and holds the MessageFormat values. This allows for
-	 * very efficient hash lookups without concatenated keys.
+	 * 用于保存已生成 MessageFormat 的缓存。此 Map 以 ResourceBundle 为键，其值是一个以消息代码为键的
+	 * Map，后者又保存一个以 Locale 为键、存放 MessageFormat 值的 Map。这样无需拼接键即可实现非常高效的
+	 * 哈希查找。
 	 * @see #getMessageFormat
 	 */
 	private final Map<ResourceBundle, Map<String, Map<Locale, MessageFormat>>> cachedBundleMessageFormats =
@@ -116,20 +103,19 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 
 	/**
-	 * Set the ClassLoader to load resource bundles with.
-	 * <p>Default is the containing BeanFactory's
-	 * {@link org.springframework.beans.factory.BeanClassLoaderAware bean ClassLoader},
-	 * or the default ClassLoader determined by
-	 * {@link org.springframework.util.ClassUtils#getDefaultClassLoader()}
-	 * if not running within a BeanFactory.
+	 * 设置用于加载资源包的 ClassLoader。
+	 * <p>默认是所在 BeanFactory 的
+	 * {@link org.springframework.beans.factory.BeanClassLoaderAware bean ClassLoader}；如果不在
+	 * BeanFactory 中运行，则是由 {@link org.springframework.util.ClassUtils#getDefaultClassLoader()}
+	 * 确定的默认 ClassLoader。
 	 */
 	public void setBundleClassLoader(ClassLoader classLoader) {
 		this.bundleClassLoader = classLoader;
 	}
 
 	/**
-	 * Return the ClassLoader to load resource bundles with.
-	 * <p>Default is the containing BeanFactory's bean ClassLoader.
+	 * 返回用于加载资源包的 ClassLoader。
+	 * <p>默认是所在 BeanFactory 的 Bean ClassLoader。
 	 * @see #setBundleClassLoader
 	 */
 	@Nullable
@@ -144,8 +130,8 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 
 	/**
-	 * Resolves the given message code as key in the registered resource bundles,
-	 * returning the value found in the bundle as-is (without MessageFormat parsing).
+	 * 在已注册的资源包中将给定消息代码作为键进行解析，并原样返回包中找到的值（不进行 MessageFormat 解
+	 * 析）。
 	 */
 	@Override
 	protected String resolveCodeWithoutArguments(String code, Locale locale) {
@@ -163,8 +149,8 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Resolves the given message code as key in the registered resource bundles,
-	 * using a cached MessageFormat instance per message code.
+	 * 在已注册的资源包中将给定消息代码作为键进行解析，并为每个消息代码使用一个缓存的 MessageFormat 实
+	 * 例。
 	 */
 	@Override
 	@Nullable
@@ -184,8 +170,7 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 
 	/**
-	 * Return a ResourceBundle for the given basename and Locale,
-	 * fetching already generated ResourceBundle from the cache.
+	 * 返回给定基名和 Locale 的 ResourceBundle，并从缓存中获取已生成的 ResourceBundle。
 	 * @param basename the basename of the ResourceBundle
 	 * @param locale the Locale to find the ResourceBundle for
 	 * @return the resulting ResourceBundle, or {@code null} if none
@@ -227,7 +212,7 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Obtain the resource bundle for the given basename and Locale.
+	 * 获取给定基名和 Locale 的资源包。
 	 * @param basename the basename to look for
 	 * @param locale the Locale to look for
 	 * @return the corresponding ResourceBundle
@@ -263,13 +248,12 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Load a property-based resource bundle from the given reader.
-	 * <p>This will be called in case of a {@link #setDefaultEncoding "defaultEncoding"},
-	 * including {@link ResourceBundleMessageSource}'s default ISO-8859-1 encoding.
-	 * Note that this method can only be called with a {@code ResourceBundle.Control}:
-	 * When running on the JDK 9+ module path where such control handles are not
-	 * supported, any overrides in custom subclasses will effectively get ignored.
-	 * <p>The default implementation returns a {@link PropertyResourceBundle}.
+	 * 从给定 reader 加载基于属性的资源包。
+	 * <p>在指定了 {@link #setDefaultEncoding "defaultEncoding"} 时会调用此方法，包括
+	 * {@link ResourceBundleMessageSource} 默认的 ISO-8859-1 编码。请注意，此方法只能在使用
+	 * {@code ResourceBundle.Control} 时被调用：在 JDK 9+ 模块路径上运行且不支持此类 control 句柄时，自
+	 * 定义子类中的任何覆盖实际上都会被忽略。
+	 * <p>默认实现返回一个 {@link PropertyResourceBundle}。
 	 * @param reader the reader for the target resource
 	 * @return the fully loaded bundle
 	 * @throws IOException in case of I/O failure
@@ -282,16 +266,13 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Load a property-based resource bundle from the given input stream,
-	 * picking up the default properties encoding on JDK 9+.
-	 * <p>This will only be called with {@link #setDefaultEncoding "defaultEncoding"}
-	 * set to {@code null}, explicitly enforcing the platform default encoding
-	 * (which is UTF-8 with a ISO-8859-1 fallback on JDK 9+ but configurable
-	 * through the "java.util.PropertyResourceBundle.encoding" system property).
-	 * Note that this method can only be called with a {@code ResourceBundle.Control}:
-	 * When running on the JDK 9+ module path where such control handles are not
-	 * supported, any overrides in custom subclasses will effectively get ignored.
-	 * <p>The default implementation returns a {@link PropertyResourceBundle}.
+	 * 从给定输入流加载基于属性的资源包，在 JDK 9+ 上采用默认的属性编码。
+	 * <p>只有在 {@link #setDefaultEncoding "defaultEncoding"} 设为 {@code null} 时才会调用此方法，此时
+	 * 显式采用平台默认编码（在 JDK 9+ 上为 UTF-8 并回退到 ISO-8859-1，但可通过
+	 * "java.util.PropertyResourceBundle.encoding" 系统属性配置）。请注意，此方法只能在使用
+	 * {@code ResourceBundle.Control} 时被调用：在 JDK 9+ 模块路径上运行且不支持此类 control 句柄时，自
+	 * 定义子类中的任何覆盖实际上都会被忽略。
+	 * <p>默认实现返回一个 {@link PropertyResourceBundle}。
 	 * @param inputStream the input stream for the target resource
 	 * @return the fully loaded bundle
 	 * @throws IOException in case of I/O failure
@@ -304,8 +285,7 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Return a MessageFormat for the given bundle and code,
-	 * fetching already generated MessageFormats from the cache.
+	 * 返回给定资源包和代码的 MessageFormat，并从缓存中获取已生成的 MessageFormat。
 	 * @param bundle the ResourceBundle to work on
 	 * @param code the message code to retrieve
 	 * @param locale the Locale to use to build the MessageFormat
@@ -346,12 +326,10 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Efficiently retrieve the String value for the specified key,
-	 * or return {@code null} if not found.
-	 * <p>As of 4.2, the default implementation checks {@code containsKey}
-	 * before it attempts to call {@code getString} (which would require
-	 * catching {@code MissingResourceException} for key not found).
-	 * <p>Can be overridden in subclasses.
+	 * 高效地获取指定键的 String 值，如果未找到则返回 {@code null}。
+	 * <p>从 4.2 起，默认实现会先检查 {@code containsKey}，然后再尝试调用 {@code getString}（否则在键不
+	 * 存在时需要捕获 {@code MissingResourceException}）。
+	 * <p>可在子类中覆盖。
 	 * @param bundle the ResourceBundle to perform the lookup in
 	 * @param key the key to look up
 	 * @return the associated value, or {@code null} if none
@@ -374,7 +352,7 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 	}
 
 	/**
-	 * Show the configuration of this MessageSource.
+	 * 显示此 MessageSource 的配置。
 	 */
 	@Override
 	public String toString() {
@@ -383,9 +361,8 @@ public class ResourceBundleMessageSource extends AbstractResourceBasedMessageSou
 
 
 	/**
-	 * Custom implementation of {@code ResourceBundle.Control}, adding support
-	 * for custom file encodings, deactivating the fallback to the system locale
-	 * and activating ResourceBundle's native cache, if desired.
+	 * {@code ResourceBundle.Control} 的自定义实现，增加了对自定义文件编码的支持，禁用了回退到系统
+	 * Locale 的行为，并可按需启用 ResourceBundle 的原生缓存。
 	 */
 	private class MessageSourceControl extends ResourceBundle.Control {
 

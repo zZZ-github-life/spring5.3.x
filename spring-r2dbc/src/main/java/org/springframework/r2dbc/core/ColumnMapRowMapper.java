@@ -28,27 +28,24 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 /**
- * {@link BiFunction Mapping function} implementation that creates a
- * {@code java.util.Map} for each row, representing all columns as
- * key-value pairs: one entry for each column, with the column name as key.
+ * {@link BiFunction 映射函数}实现，为每一行创建一个 {@code java.util.Map}，
+ * 将所有列表示为键值对：每列一个条目，以列名作为键。
  *
- * <p>The Map implementation to use and the key to use for each column
- * in the column Map can be customized through overriding
- * {@link #createColumnMap} and {@link #getColumnKey}, respectively.
+ * <p>要使用的 Map 实现以及列 Map 中每一列使用的键，
+ * 可以分别通过覆写 {@link #createColumnMap} 和 {@link #getColumnKey} 进行自定义。
  *
- * <p><b>Note:</b> By default, ColumnMapRowMapper will try to build a linked Map
- * with case-insensitive keys, to preserve column order as well as allow any
- * casing to be used for column names. This requires Commons Collections on the
- * classpath (which will be autodetected). Else, the fallback is a standard linked
- * HashMap, which will still preserve column order but requires the application
- * to specify the column names in the same casing as exposed by the driver.
+ * <p><b>注意：</b>默认情况下，ColumnMapRowMapper 会尝试构建一个具有
+ * 不区分大小写键的链式 Map，以便既保留列顺序，又允许列名使用任意大小写。
+ * 这需要在类路径上存在 Commons Collections（将自动检测）。
+ * 否则，回退为标准链式 HashMap，它仍会保留列顺序，
+ * 但要求应用程序以驱动程序所提供的大小写指定列名。
  *
  * @author Mark Paluch
  * @since 5.3
  */
 public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<String, Object>> {
 
-	/** A default {@code ColumnMapRowMapper} instance. */
+	/** 默认的 {@code ColumnMapRowMapper} 实例。 */
 	public final static ColumnMapRowMapper INSTANCE = new ColumnMapRowMapper();
 
 
@@ -67,8 +64,8 @@ public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<Stri
 	}
 
 	/**
-	 * Create a {@link Map} instance to be used as column map.
-	 * <p>By default, a linked case-insensitive Map will be created.
+	 * 创建一个用作列映射的 {@link Map} 实例。
+	 * <p>默认情况下，将创建一个链式的不区分大小写 Map。
 	 * @param columnCount the column count, to be used as initial capacity for the Map
 	 * @return the new {@link Map} instance
 	 * @see LinkedCaseInsensitiveMap
@@ -78,7 +75,7 @@ public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<Stri
 	}
 
 	/**
-	 * Determine the key to use for the given column in the column {@link Map}.
+	 * 确定列 {@link Map} 中给定列要使用的键。
 	 * @param columnName the column name as returned by the {@link Row}
 	 * @return the column key to use
 	 * @see ColumnMetadata#getName()
@@ -88,8 +85,8 @@ public class ColumnMapRowMapper implements BiFunction<Row, RowMetadata, Map<Stri
 	}
 
 	/**
-	 * Retrieve a R2DBC object value for the specified column.
-	 * <p>The default implementation uses the {@link Row#get(int)} method.
+	 * 获取指定列的 R2DBC 对象值。
+	 * <p>默认实现使用 {@link Row#get(int)} 方法。
 	 * @param row is the {@link Row} holding the data
 	 * @param index is the column index
 	 * @return the Object returned

@@ -1,8 +1,8 @@
 /**
- * MVC infrastructure for annotation-based handler method processing, building on the
- * {@code org.springframework.web.method.annotation} package. Entry points are
+ * 用于基于注解的处理器方法处理的 MVC 基础设施，构建于
+ * {@code org.springframework.web.method.annotation} 包之上。入口点是
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}
- * and {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter}.
+ * 和 {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter}。
  */
 @NonNullApi
 @NonNullFields

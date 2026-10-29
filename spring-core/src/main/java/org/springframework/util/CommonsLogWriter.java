@@ -21,7 +21,7 @@ import java.io.Writer;
 import org.apache.commons.logging.Log;
 
 /**
- * {@code java.io.Writer} adapter for a Commons Logging {@code Log}.
+ * 用于 Commons Logging {@code Log} 的 {@code java.io.Writer} 适配器。
  *
  * @author Juergen Hoeller
  * @since 2.5.1
@@ -34,7 +34,7 @@ public class CommonsLogWriter extends Writer {
 
 
 	/**
-	 * Create a new CommonsLogWriter for the given Commons Logging logger.
+	 * 为给定的 Commons Logging 日志器创建一个新的 CommonsLogWriter。
 	 * @param logger the Commons Logging logger to write to
 	 */
 	public CommonsLogWriter(Log logger) {

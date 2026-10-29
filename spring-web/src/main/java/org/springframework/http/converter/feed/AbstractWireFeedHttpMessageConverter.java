@@ -40,11 +40,11 @@ import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for Atom and RSS Feed message converters, using the
- * <a href="https://github.com/rometools/rome">ROME tools</a> project.
+ * Atom 和 RSS Feed 消息转换器的抽象基类，使用
+ * <a href="https://github.com/rometools/rome">ROME tools</a> 项目。
  *
- * <p><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
- * variant of ROME, version 1.5. Please upgrade your build dependency.</b>
+ * <p><b>注意：从 Spring 4.1 起，这基于 ROME 的 {@code com.rometools}
+ * 变体，版本 1.5。请升级您的构建依赖。</b>
  *
  * @author Arjen Poutsma
  * @since 3.0.2
@@ -56,7 +56,7 @@ public abstract class AbstractWireFeedHttpMessageConverter<T extends WireFeed>
 		extends AbstractHttpMessageConverter<T> {
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 

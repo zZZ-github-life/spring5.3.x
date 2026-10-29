@@ -1,6 +1,6 @@
 /**
- * Classes supporting the {@code org.springframework.jdbc.core} package.
- * Contains a DAO base class for JdbcTemplate usage.
+ * 支持 {@code org.springframework.jdbc.core} 包的类。
+ * 包含用于 JdbcTemplate 的 DAO 基类。
  */
 @NonNullApi
 @NonNullFields

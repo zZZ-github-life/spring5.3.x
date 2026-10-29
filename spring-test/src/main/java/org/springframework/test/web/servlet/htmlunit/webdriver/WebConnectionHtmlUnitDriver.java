@@ -25,13 +25,12 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.util.Assert;
 
 /**
- * {@code WebConnectionHtmlUnitDriver} enables configuration of the
- * {@link WebConnection} for an {@link HtmlUnitDriver} instance.
+ * {@code WebConnectionHtmlUnitDriver} 支持为 {@link HtmlUnitDriver} 实例
+ * 配置 {@link WebConnection}。
  *
- * <p>This is useful because it allows a
+ * <p>这很有用，因为它允许注入
  * {@link org.springframework.test.web.servlet.htmlunit.MockMvcWebConnection
- * MockMvcWebConnection} to be injected.
- *
+ * MockMvcWebConnection}。
  * @author Rob Winch
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -57,10 +56,10 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 
 
 	/**
-	 * Modify the supplied {@link WebClient} and retain a reference to it so that its
-	 * {@link WebConnection} is {@linkplain #getWebConnection accessible} for later use.
-	 * <p>Delegates to {@link HtmlUnitDriver#modifyWebClient} for default behavior
-	 * and to {@link #modifyWebClientInternal} for further customization.
+	 * 修改提供的 {@link WebClient} 并保留对其的引用，以便其
+	 * {@link WebConnection} 可以在以后通过 {@linkplain #getWebConnection 访问}。
+	 * <p>默认行为委托给 {@link HtmlUnitDriver#modifyWebClient}，
+	 * 进一步的自定义则委托给 {@link #modifyWebClientInternal}。
 	 * @param webClient the client to modify
 	 * @return the modified client
 	 * @see HtmlUnitDriver#modifyWebClient(WebClient)
@@ -72,10 +71,10 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	}
 
 	/**
-	 * Modify the supplied {@link WebClient}.
-	 * <p>The default implementation simply returns the supplied client unmodified.
-	 * <p>Subclasses can override this method to customize the {@code WebClient}
-	 * that the {@link HtmlUnitDriver} uses.
+	 * 修改提供的 {@link WebClient}。
+	 * <p>默认实现仅原样返回提供的客户端。
+	 * <p>子类可以覆盖此方法以自定义 {@link HtmlUnitDriver}
+	 * 使用的 {@code WebClient}。
 	 * @param webClient the client to modify
 	 * @return the modified client
 	 */
@@ -84,7 +83,7 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	}
 
 	/**
-	 * Return the current {@link WebClient} in a public fashion.
+	 * 以公共方式返回当前的 {@link WebClient}。
 	 * @since 4.3
 	 */
 	@Override
@@ -93,7 +92,7 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	}
 
 	/**
-	 * Set the {@link WebConnection} to be used with the {@link WebClient}.
+	 * 设置要与 {@link WebClient} 一起使用的 {@link WebConnection}。
 	 * @param webConnection the {@code WebConnection} to use
 	 */
 	public void setWebConnection(WebConnection webConnection) {
@@ -102,7 +101,7 @@ public class WebConnectionHtmlUnitDriver extends HtmlUnitDriver {
 	}
 
 	/**
-	 * Access the current {@link WebConnection} for the {@link WebClient}.
+	 * 访问 {@link WebClient} 当前的 {@link WebConnection}。
 	 * @return the current {@code WebConnection}
 	 */
 	public WebConnection getWebConnection() {

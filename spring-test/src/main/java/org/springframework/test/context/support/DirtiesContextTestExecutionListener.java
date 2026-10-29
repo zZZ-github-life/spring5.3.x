@@ -28,24 +28,11 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTER_METHOD;
 
 /**
- * {@code TestExecutionListener} which provides support for marking the
- * {@code ApplicationContext} associated with a test as <em>dirty</em> for
- * both test classes and test methods annotated with the
- * {@link DirtiesContext @DirtiesContext} annotation.
+ * {@code TestExecutionListener}，为带有 {@link DirtiesContext @DirtiesContext} 注解的测试类和测试方法提供将测试关联的 {@code ApplicationContext} 标记为<em>脏</em>的支持。
  *
- * <p>This listener supports test methods with the
- * {@linkplain DirtiesContext#methodMode method mode} set to
- * {@link MethodMode#AFTER_METHOD AFTER_METHOD} and test classes with the
- * {@linkplain DirtiesContext#classMode() class mode} set to
- * {@link ClassMode#AFTER_EACH_TEST_METHOD AFTER_EACH_TEST_METHOD} or
- * {@link ClassMode#AFTER_CLASS AFTER_CLASS}. For support for <em>BEFORE</em>
- * modes, see {@link DirtiesContextBeforeModesTestExecutionListener}.
+ * <p>此监听器支持{@linkplain DirtiesContext#methodMode 方法模式}设置为 {@link MethodMode#AFTER_METHOD AFTER_METHOD} 的测试方法，以及{@linkplain DirtiesContext#classMode() 类模式}设置为 {@link ClassMode#AFTER_EACH_TEST_METHOD AFTER_EACH_TEST_METHOD} 或 {@link ClassMode#AFTER_CLASS AFTER_CLASS} 的测试类。有关对 <em>BEFORE</em> 模式的支持，请参见 {@link DirtiesContextBeforeModesTestExecutionListener}。
  *
- * <p>When {@linkplain TestExecutionListeners#mergeMode merging}
- * {@code TestExecutionListeners} with the defaults, this listener will
- * automatically be ordered after the {@link DependencyInjectionTestExecutionListener};
- * otherwise, this listener must be manually configured to execute after the
- * {@code DependencyInjectionTestExecutionListener}.
+ * <p>在与默认值{@linkplain TestExecutionListeners#mergeMode 合并} {@code TestExecutionListeners} 时，此监听器将自动排在 {@link DependencyInjectionTestExecutionListener} 之后；否则，必须手动将此监听器配置为在 {@code DependencyInjectionTestExecutionListener} 之后执行。
  *
  * @author Sam Brannen
  * @since 2.5
@@ -55,7 +42,7 @@ import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTE
 public class DirtiesContextTestExecutionListener extends AbstractDirtiesContextTestExecutionListener {
 
 	/**
-	 * Returns {@code 3000}.
+	 * 返回 {@code 3000}。
 	 */
 	@Override
 	public final int getOrder() {
@@ -63,17 +50,7 @@ public class DirtiesContextTestExecutionListener extends AbstractDirtiesContextT
 	}
 
 	/**
-	 * If the current test method of the supplied {@linkplain TestContext test
-	 * context} is annotated with {@code @DirtiesContext} and the {@linkplain
-	 * DirtiesContext#methodMode() method mode} is set to {@link
-	 * MethodMode#AFTER_METHOD AFTER_METHOD}, or if the test class is
-	 * annotated with {@code @DirtiesContext} and the {@linkplain
-	 * DirtiesContext#classMode() class mode} is set to {@link
-	 * ClassMode#AFTER_EACH_TEST_METHOD AFTER_EACH_TEST_METHOD}, the
-	 * {@linkplain ApplicationContext application context} of the test context
-	 * will be {@linkplain TestContext#markApplicationContextDirty marked as dirty} and the
-	 * {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE
-	 * REINJECT_DEPENDENCIES_ATTRIBUTE} in the test context will be set to {@code true}.
+	 * 如果所提供的 {@linkplain TestContext 测试上下文}的当前测试方法带有 {@code @DirtiesContext} 注解，且{@linkplain DirtiesContext#methodMode() 方法模式}设置为 {@link MethodMode#AFTER_METHOD AFTER_METHOD}，或者测试类带有 {@code @DirtiesContext} 注解且{@linkplain DirtiesContext#classMode() 类模式}设置为 {@link ClassMode#AFTER_EACH_TEST_METHOD AFTER_EACH_TEST_METHOD}，则测试上下文的{@linkplain ApplicationContext 应用上下文}将被{@linkplain TestContext#markApplicationContextDirty 标记为脏}，并且测试上下文中的 {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE REINJECT_DEPENDENCIES_ATTRIBUTE} 将被设置为 {@code true}。
 	 */
 	@Override
 	public void afterTestMethod(TestContext testContext) throws Exception {
@@ -81,15 +58,7 @@ public class DirtiesContextTestExecutionListener extends AbstractDirtiesContextT
 	}
 
 	/**
-	 * If the test class of the supplied {@linkplain TestContext test context}
-	 * is annotated with {@code @DirtiesContext} and the {@linkplain
-	 * DirtiesContext#classMode() class mode} is set to {@link
-	 * ClassMode#AFTER_CLASS AFTER_CLASS}, the {@linkplain ApplicationContext
-	 * application context} of the test context will be
-	 * {@linkplain TestContext#markApplicationContextDirty marked as dirty}, and the
-	 * {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE
-	 * REINJECT_DEPENDENCIES_ATTRIBUTE} in the test context will be set to
-	 * {@code true}.
+	 * 如果所提供的 {@linkplain TestContext 测试上下文}的测试类带有 {@code @DirtiesContext} 注解，且{@linkplain DirtiesContext#classMode() 类模式}设置为 {@link ClassMode#AFTER_CLASS AFTER_CLASS}，则测试上下文的{@linkplain ApplicationContext 应用上下文}将被{@linkplain TestContext#markApplicationContextDirty 标记为脏}，并且测试上下文中的 {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE REINJECT_DEPENDENCIES_ATTRIBUTE} 将被设置为 {@code true}。
 	 */
 	@Override
 	public void afterTestClass(TestContext testContext) throws Exception {

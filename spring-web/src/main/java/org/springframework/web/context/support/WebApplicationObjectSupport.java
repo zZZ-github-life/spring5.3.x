@@ -29,13 +29,13 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Convenient superclass for application objects running in a {@link WebApplicationContext}.
- * Provides {@code getWebApplicationContext()}, {@code getServletContext()}, and
- * {@code getTempDir()} accessors.
+ * 在 {@link WebApplicationContext} 中运行的应用对象的便捷父类。
+ * 提供 {@code getWebApplicationContext()}、{@code getServletContext()} 和
+ * {@code getTempDir()} 访问器。
  *
- * <p>Note: It is generally recommended to use individual callback interfaces for the actual
- * callbacks needed. This broad base class is primarily intended for use within the framework,
- * in case of {@link ServletContext} access etc typically being needed.
+ * <p>注意：通常建议针对实际需要的回调使用单独的回调接口。
+ * 这个宽泛的基类主要面向框架内部使用，适用于通常需要访问
+ * {@link ServletContext} 等场景。
  *
  * @author Juergen Hoeller
  * @since 28.08.2003
@@ -56,8 +56,8 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	}
 
 	/**
-	 * Overrides the base class behavior to enforce running in an ApplicationContext.
-	 * All accessors will throw IllegalStateException if not running in a context.
+	 * 重写基类行为，强制要求在 ApplicationContext 中运行。
+	 * 若未在上下文中运行，所有访问器都会抛出 IllegalStateException。
 	 * @see #getApplicationContext()
 	 * @see #getMessageSourceAccessor()
 	 * @see #getWebApplicationContext()
@@ -70,8 +70,8 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	}
 
 	/**
-	 * Calls {@link #initServletContext(javax.servlet.ServletContext)} if the
-	 * given ApplicationContext is a {@link WebApplicationContext}.
+	 * 如果给定的 ApplicationContext 是 {@link WebApplicationContext}，
+	 * 则调用 {@link #initServletContext(javax.servlet.ServletContext)}。
 	 */
 	@Override
 	protected void initApplicationContext(ApplicationContext context) {
@@ -85,11 +85,10 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	}
 
 	/**
-	 * Subclasses may override this for custom initialization based
-	 * on the ServletContext that this application object runs in.
-	 * <p>The default implementation is empty. Called by
+	 * 子类可以重写此方法，基于该应用对象所运行的 ServletContext 执行自定义初始化。
+	 * <p>默认实现为空。由
 	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}
-	 * as well as {@link #setServletContext(javax.servlet.ServletContext)}.
+	 * 以及 {@link #setServletContext(javax.servlet.ServletContext)} 调用。
 	 * @param servletContext the ServletContext that this application object runs in
 	 * (never {@code null})
 	 */
@@ -97,11 +96,11 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	}
 
 	/**
-	 * Return the current application context as WebApplicationContext.
-	 * <p><b>NOTE:</b> Only use this if you actually need to access
-	 * WebApplicationContext-specific functionality. Preferably use
-	 * {@code getApplicationContext()} or {@code getServletContext()}
-	 * else, to be able to run in non-WebApplicationContext environments as well.
+	 * 将当前应用上下文作为 WebApplicationContext 返回。
+	 * <p><b>注意：</b>仅当你确实需要访问 WebApplicationContext 特有功能时才使用此方法。
+	 * 其他情况下最好使用 {@code getApplicationContext()} 或
+	 * {@code getServletContext()}，以便同样能够在非 WebApplicationContext
+	 * 环境中运行。
 	 * @throws IllegalStateException if not running in a WebApplicationContext
 	 * @see #getApplicationContext()
 	 */
@@ -121,7 +120,7 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	}
 
 	/**
-	 * Return the current ServletContext.
+	 * 返回当前的 ServletContext。
 	 * @throws IllegalStateException if not running within a required ServletContext
 	 * @see #isContextRequired()
 	 */
@@ -143,8 +142,7 @@ public abstract class WebApplicationObjectSupport extends ApplicationObjectSuppo
 	}
 
 	/**
-	 * Return the temporary directory for the current web application,
-	 * as provided by the servlet container.
+	 * 返回当前 Web 应用的临时目录，由 Servlet 容器提供。
 	 * @return the File representing the temporary directory
 	 * @throws IllegalStateException if not running within a ServletContext
 	 * @see org.springframework.web.util.WebUtils#getTempDir(javax.servlet.ServletContext)

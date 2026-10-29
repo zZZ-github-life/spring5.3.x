@@ -1,6 +1,6 @@
 /**
- * SockJS client implementation of
- * {@link org.springframework.web.socket.client.WebSocketClient}.
+ * SockJS 客户端对
+ * {@link org.springframework.web.socket.client.WebSocketClient} 的实现。
  */
 @NonNullApi
 @NonNullFields

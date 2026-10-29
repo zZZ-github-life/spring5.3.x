@@ -21,14 +21,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Class that models an arbitrary location in a {@link Resource resource}.
+ * 对 {@link Resource 资源}中任意位置进行建模的类。
  *
- * <p>Typically used to track the location of problematic or erroneous
- * metadata in XML configuration files. For example, a
- * {@link #getSource() source} location might be 'The bean defined on
- * line 76 of beans.properties has an invalid Class'; another source might
- * be the actual DOM Element from a parsed XML {@link org.w3c.dom.Document};
- * or the source object might simply be {@code null}.
+ * <p>通常用于跟踪 XML 配置文件中存在问题或错误元数据的位置。例如，{@link #getSource() 源}位置可能
+ * 是“beans.properties 第 76 行定义的 Bean 的 Class 无效”；另一个源可能是来自已解析 XML
+ * {@link org.w3c.dom.Document} 的实际 DOM 元素；或者源对象可能只是 {@code null}。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -42,7 +39,7 @@ public class Location {
 
 
 	/**
-	 * Create a new instance of the {@link Location} class.
+	 * 创建 {@link Location} 类的新实例。
 	 * @param resource the resource with which this location is associated
 	 */
 	public Location(Resource resource) {
@@ -50,7 +47,7 @@ public class Location {
 	}
 
 	/**
-	 * Create a new instance of the {@link Location} class.
+	 * 创建 {@link Location} 类的新实例。
 	 * @param resource the resource with which this location is associated
 	 * @param source the actual location within the associated resource
 	 * (may be {@code null})
@@ -63,17 +60,16 @@ public class Location {
 
 
 	/**
-	 * Get the resource with which this location is associated.
+	 * 获取与此位置关联的资源。
 	 */
 	public Resource getResource() {
 		return this.resource;
 	}
 
 	/**
-	 * Get the actual location within the associated {@link #getResource() resource}
-	 * (may be {@code null}).
-	 * <p>See the {@link Location class level javadoc for this class} for examples
-	 * of what the actual type of the returned object may be.
+	 * 获取关联的{@link #getResource() 资源}内的实际位置（可能为 {@code null}）。
+	 *
+	 * <p>有关返回对象实际类型的示例，请参见{@link Location 此类的类级 javadoc}。
 	 */
 	@Nullable
 	public Object getSource() {

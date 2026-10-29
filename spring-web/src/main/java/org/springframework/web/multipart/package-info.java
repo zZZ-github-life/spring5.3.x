@@ -1,8 +1,7 @@
 /**
- * Multipart resolution framework for handling file uploads.
- * Provides a MultipartResolver strategy interface,
- * and a generic extension of the HttpServletRequest interface
- * for accessing multipart files in web application code.
+ * 用于处理文件上传的 multipart 解析框架。
+ * 提供 MultipartResolver 策略接口，以及 HttpServletRequest 接口的通用扩展，
+ * 以便在 Web 应用代码中访问 multipart 文件。
  */
 @NonNullApi
 @NonNullFields

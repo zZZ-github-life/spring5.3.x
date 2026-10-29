@@ -36,13 +36,12 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StreamUtils;
 
 /**
- * Decodes one or more STOMP frames contained in a {@link ByteBuffer}.
+ * 解码 {@link ByteBuffer} 中包含的一个或多个 STOMP 帧。
  *
- * <p>An attempt is made to read all complete STOMP frames from the buffer, which
- * could be zero, one, or more. If there is any left-over content, i.e. an incomplete
- * STOMP frame, at the end the buffer is reset to point to the beginning of the
- * partial content. The caller is then responsible for dealing with that
- * incomplete content by buffering until there is more input available.
+ * <p>会尝试从缓冲区读取所有完整的 STOMP 帧，可能为零个、一个或多个。
+ * 如果末尾有任何剩余内容（即不完整的 STOMP 帧），
+ * 则将缓冲区重置为指向该部分内容的开头。然后由调用方负责处理该不完整内容，
+ * 即缓冲直到有更多输入可用。
  *
  * @author Andy Wilkinson
  * @author Rossen Stoyanchev
@@ -59,15 +58,15 @@ public class StompDecoder {
 
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of
-	 * {@link Message Messages} from decoded STOMP frames.
+	 * 配置 {@link MessageHeaderInitializer}，应用于来自已解码 STOMP 帧的
+	 * {@link Message Messages} 的头。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured {@code MessageHeaderInitializer}, if any.
+	 * 返回已配置的 {@code MessageHeaderInitializer}（如果有）。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {
@@ -76,10 +75,9 @@ public class StompDecoder {
 
 
 	/**
-	 * Decodes one or more STOMP frames from the given {@code ByteBuffer} into a
-	 * list of {@link Message Messages}. If the input buffer contains partial STOMP frame
-	 * content, or additional content with a partial STOMP frame, the buffer is
-	 * reset and {@code null} is returned.
+	 * 将给定 {@code ByteBuffer} 中的一个或多个 STOMP 帧解码为
+	 * {@link Message Messages} 列表。如果输入缓冲区包含部分 STOMP 帧内容，
+	 * 或包含带有部分 STOMP 帧的额外内容，则重置缓冲区并返回 {@code null}。
 	 * @param byteBuffer the buffer to decode the STOMP frame from
 	 * @return the decoded messages, or an empty list if none
 	 * @throws StompConversionException raised in case of decoding issues
@@ -89,17 +87,15 @@ public class StompDecoder {
 	}
 
 	/**
-	 * Decodes one or more STOMP frames from the given {@code buffer} and returns
-	 * a list of {@link Message Messages}.
-	 * <p>If the given ByteBuffer contains only partial STOMP frame content and no
-	 * complete STOMP frames, an empty list is returned, and the buffer is reset
-	 * to where it was.
-	 * <p>If the buffer contains one or more STOMP frames, those are returned and
-	 * the buffer reset to point to the beginning of the unused partial content.
-	 * <p>The output partialMessageHeaders map is used to store successfully parsed
-	 * headers in case of partial content. The caller can then check if a
-	 * "content-length" header was read, which helps to determine how much more
-	 * content is needed before the next attempt to decode.
+	 * 从给定 {@code buffer} 中解码一个或多个 STOMP 帧，并返回
+	 * {@link Message Messages} 列表。
+	 * <p>如果给定的 ByteBuffer 只包含部分 STOMP 帧内容而没有完整的 STOMP 帧，
+	 * 则返回空列表，并将缓冲区重置到原来的位置。
+	 * <p>如果缓冲区包含一个或多个 STOMP 帧，则返回这些帧，
+	 * 并将缓冲区重置为指向未使用的部分内容的开头。
+	 * <p>输出 partialMessageHeaders 映射用于在内容不完整时存储成功解析的头。
+	 * 然后调用方可以检查是否读取了 "content-length" 头，
+	 * 这有助于确定在下一次尝试解码之前还需要多少内容。
 	 * @param byteBuffer the buffer to decode the STOMP frame from
 	 * @param partialMessageHeaders an empty output map that will store the last
 	 * successfully parsed partialMessageHeaders in case of partial message content
@@ -128,7 +124,7 @@ public class StompDecoder {
 	}
 
 	/**
-	 * Decode a single STOMP frame from the given {@code buffer} into a {@link Message}.
+	 * 从给定 {@code buffer} 中解码单个 STOMP 帧并转换为 {@link Message}。
 	 */
 	@Nullable
 	private Message<byte[]> decodeMessage(ByteBuffer byteBuffer, @Nullable MultiValueMap<String, String> headers) {
@@ -200,9 +196,8 @@ public class StompDecoder {
 	}
 
 	/**
-	 * Skip one ore more EOL characters at the start of the given ByteBuffer.
-	 * STOMP, section 2.1 says: "The NULL octet can be optionally followed by
-	 * multiple EOLs."
+	 * 跳过给定 ByteBuffer 开头的一个或多个 EOL 字符。
+	 * STOMP 第 2.1 节规定：“NULL 八位组后面可以选择性地跟多个 EOL。”
 	 */
 	protected void skipEol(ByteBuffer byteBuffer) {
 		while (true) {
@@ -260,8 +255,8 @@ public class StompDecoder {
 	}
 
 	/**
-	 * See STOMP Spec 1.2:
-	 * <a href="https://stomp.github.io/stomp-specification-1.2.html#Value_Encoding">"Value Encoding"</a>.
+	 * 参见 STOMP 规范 1.2：
+	 * <a href="https://stomp.github.io/stomp-specification-1.2.html#Value_Encoding">"值编码"</a>。
 	 */
 	private String unescape(String inString) {
 		int index = inString.indexOf('\\');
@@ -343,7 +338,7 @@ public class StompDecoder {
 	}
 
 	/**
-	 * Try to read an EOL incrementing the buffer position if successful.
+	 * 尝试读取一个 EOL，如果成功则递增缓冲区位置。
 	 * @return whether an EOL was consumed
 	 */
 	private boolean tryConsumeEndOfLine(ByteBuffer byteBuffer) {

@@ -32,18 +32,16 @@ import org.springframework.web.cors.DefaultCorsProcessor;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
- * {@link javax.servlet.Filter} to handle CORS pre-flight requests and intercept
- * CORS simple and actual requests with a {@link CorsProcessor}, and to update
- * the response, e.g. with CORS response headers, based on the policy matched
- * through the provided {@link CorsConfigurationSource}.
+ * {@link javax.servlet.Filter}，用于处理 CORS 预检请求，并通过
+ * {@link CorsProcessor} 拦截 CORS 简单请求和实际请求，以及基于通过所提供的
+ * {@link CorsConfigurationSource} 匹配到的策略来更新响应，
+ * 例如添加 CORS 响应头。
  *
- * <p>This is an alternative to configuring CORS in the Spring MVC Java config
- * and the Spring MVC XML namespace. It is useful for applications depending
- * only on spring-web (not on spring-webmvc) or for security constraints that
- * require CORS checks to be performed at {@link javax.servlet.Filter} level.
+ * <p>这是在 Spring MVC Java 配置和 Spring MVC XML 命名空间中配置 CORS 的替代方案。
+ * 它适用于仅依赖 spring-web（而不依赖 spring-webmvc）的应用程序，
+ * 或者适用于要求在 {@link javax.servlet.Filter} 级别执行 CORS 检查的安全约束。
  *
- * <p>This filter could be used in conjunction with {@link DelegatingFilterProxy}
- * in order to help with its initialization.
+ * <p>此过滤器可以与 {@link DelegatingFilterProxy} 配合使用，以便于其初始化。
  *
  * @author Sebastien Deleuze
  * @since 4.2
@@ -58,8 +56,8 @@ public class CorsFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Constructor accepting a {@link CorsConfigurationSource} used by the filter
-	 * to find the {@link CorsConfiguration} to use for each incoming request.
+	 * 构造函数，接受过滤器用来为每个传入请求查找要使用的
+	 * {@link CorsConfiguration} 的 {@link CorsConfigurationSource}。
 	 * @see UrlBasedCorsConfigurationSource
 	 */
 	public CorsFilter(CorsConfigurationSource configSource) {
@@ -69,9 +67,9 @@ public class CorsFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Configure a custom {@link CorsProcessor} to use to apply the matched
-	 * {@link CorsConfiguration} for a request.
-	 * <p>By default {@link DefaultCorsProcessor} is used.
+	 * 配置自定义的 {@link CorsProcessor}，用于对请求应用匹配到的
+	 * {@link CorsConfiguration}。
+	 * <p>默认使用 {@link DefaultCorsProcessor}。
 	 */
 	public void setCorsProcessor(CorsProcessor processor) {
 		Assert.notNull(processor, "CorsProcessor must not be null");

@@ -1,5 +1,5 @@
 /**
- * Useful unit data types.
+ * 有用的单位数据类型。
  */
 @NonNullApi
 @NonNullFields

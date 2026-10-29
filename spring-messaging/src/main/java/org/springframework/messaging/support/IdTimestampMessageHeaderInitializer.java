@@ -21,8 +21,8 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.util.IdGenerator;
 
 /**
- * A {@link org.springframework.messaging.support.MessageHeaderInitializer MessageHeaderInitializer}
- * to customize the strategy for ID and TIMESTAMP message header generation.
+ * 用于自定义 ID 和 TIMESTAMP 消息头部生成策略的
+ * {@link org.springframework.messaging.support.MessageHeaderInitializer MessageHeaderInitializer}。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -39,18 +39,17 @@ public class IdTimestampMessageHeaderInitializer implements MessageHeaderInitial
 
 
 	/**
-	 * Configure the IdGenerator strategy to initialize {@code MessageHeaderAccessor}
-	 * instances with.
-	 * <p>By default this property is set to {@code null} in which case the default
-	 * IdGenerator of {@link org.springframework.messaging.MessageHeaders} is used.
-	 * <p>To have no ids generated at all, see {@link #setDisableIdGeneration()}.
+	 * 配置用于初始化 {@code MessageHeaderAccessor} 实例的 IdGenerator 策略。
+	 * <p>默认情况下此属性设置为 {@code null}，此时使用
+	 * {@link org.springframework.messaging.MessageHeaders} 的默认 IdGenerator。
+	 * <p>若要完全不生成 id，请参阅 {@link #setDisableIdGeneration()}。
 	 */
 	public void setIdGenerator(@Nullable IdGenerator idGenerator) {
 		this.idGenerator = idGenerator;
 	}
 
 	/**
-	 * Return the configured {@code IdGenerator}, if any.
+	 * 返回配置的 {@code IdGenerator}（如果有）。
 	 */
 	@Nullable
 	public IdGenerator getIdGenerator() {
@@ -58,25 +57,23 @@ public class IdTimestampMessageHeaderInitializer implements MessageHeaderInitial
 	}
 
 	/**
-	 * A shortcut for calling {@link #setIdGenerator} with an id generation strategy
-	 * to disable id generation completely.
+	 * 使用一种完全禁用 id 生成的 id 生成策略调用 {@link #setIdGenerator} 的快捷方式。
 	 */
 	public void setDisableIdGeneration() {
 		this.idGenerator = ID_VALUE_NONE_GENERATOR;
 	}
 
 	/**
-	 * Whether to enable the automatic addition of the
-	 * {@link org.springframework.messaging.MessageHeaders#TIMESTAMP} header on
-	 * {@code MessageHeaderAccessor} instances being initialized.
-	 * <p>By default this property is set to false.
+	 * 是否在初始化的 {@code MessageHeaderAccessor} 实例上自动添加
+	 * {@link org.springframework.messaging.MessageHeaders#TIMESTAMP} 头部。
+	 * <p>默认情况下此属性设置为 false。
 	 */
 	public void setEnableTimestamp(boolean enableTimestamp) {
 		this.enableTimestamp = enableTimestamp;
 	}
 
 	/**
-	 * Return whether the timestamp header is enabled or not.
+	 * 返回时间戳头部是否已启用。
 	 */
 	public boolean isEnableTimestamp() {
 		return this.enableTimestamp;

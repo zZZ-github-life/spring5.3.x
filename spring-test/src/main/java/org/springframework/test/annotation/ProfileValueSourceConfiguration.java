@@ -24,13 +24,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code ProfileValueSourceConfiguration} is a class-level annotation for use
- * with JUnit 4 which is used to specify what type of {@link ProfileValueSource}
- * to use when retrieving <em>profile values</em> configured via
- * {@link IfProfileValue @IfProfileValue}.
+ * {@code ProfileValueSourceConfiguration} 是用于 JUnit 4 的类级注解，
+ * 用于指定在检索通过
+ * {@link IfProfileValue @IfProfileValue} 配置的<em>配置值</em>时要使用的 {@link ProfileValueSource}
+ * 类型。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
  * @author Sam Brannen
  * @since 2.5
@@ -45,8 +45,8 @@ import java.lang.annotation.Target;
 public @interface ProfileValueSourceConfiguration {
 
 	/**
-	 * The type of {@link ProfileValueSource} to use when retrieving
-	 * <em>profile values</em>.
+	 * 检索<em>配置值</em>时要使用的 {@link ProfileValueSource}
+	 * 类型。
 	 *
 	 * @see SystemProfileValueSource
 	 */

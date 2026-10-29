@@ -34,22 +34,21 @@ import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * Static {@link org.springframework.web.context.WebApplicationContext}
- * implementation for testing. Not intended for use in production applications.
+ * 静态的 {@link org.springframework.web.context.WebApplicationContext}
+ * 实现，用于测试。不适用于生产应用。
  *
- * <p>Implements the {@link org.springframework.web.context.ConfigurableWebApplicationContext}
- * interface to allow for direct replacement of an {@link XmlWebApplicationContext},
- * despite not actually supporting external configuration files.
+ * <p>实现了 {@link org.springframework.web.context.ConfigurableWebApplicationContext}
+ * 接口，以便可以直接替换 {@link XmlWebApplicationContext}，
+ * 尽管它实际上并不支持外部配置文件。
  *
- * <p>Interprets resource paths as servlet context resources, i.e. as paths beneath
- * the web application root. Absolute paths, e.g. for files outside the web app root,
- * can be accessed via "file:" URLs, as implemented by
- * {@link org.springframework.core.io.DefaultResourceLoader}.
+ * <p>将资源路径解释为 Servlet 上下文资源，即 Web 应用根路径下的路径。绝对路径
+ * （例如 Web 应用根路径之外的文件）可以通过 "file:" URL 访问，
+ * 具体由 {@link org.springframework.core.io.DefaultResourceLoader} 实现。
  *
- * <p>In addition to the special beans detected by
- * {@link org.springframework.context.support.AbstractApplicationContext},
- * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource}
- * in the context, under the special bean name "themeSource".
+ * <p>除了
+ * {@link org.springframework.context.support.AbstractApplicationContext} 检测的特殊 bean 之外，
+ * 此类还会在上下文中以特殊 bean 名称 "themeSource" 检测
+ * 类型为 {@link org.springframework.ui.context.ThemeSource} 的 bean。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -77,7 +76,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 
 	/**
-	 * Set the ServletContext that this WebApplicationContext runs in.
+	 * 设置此 WebApplicationContext 运行所在的 ServletContext。
 	 */
 	@Override
 	public void setServletContext(@Nullable ServletContext servletContext) {
@@ -119,7 +118,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 	}
 
 	/**
-	 * The {@link StaticWebApplicationContext} class does not support this method.
+	 * {@link StaticWebApplicationContext} 类不支持此方法。
 	 * @throws UnsupportedOperationException <b>always</b>
 	 */
 	@Override
@@ -128,7 +127,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 	}
 
 	/**
-	 * The {@link StaticWebApplicationContext} class does not support this method.
+	 * {@link StaticWebApplicationContext} 类不支持此方法。
 	 * @throws UnsupportedOperationException <b>always</b>
 	 */
 	@Override
@@ -143,7 +142,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 
 
 	/**
-	 * Register request/session scopes, a {@link ServletContextAwareProcessor}, etc.
+	 * 注册请求/会话作用域、{@link ServletContextAwareProcessor} 等。
 	 */
 	@Override
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
@@ -156,7 +155,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 	}
 
 	/**
-	 * This implementation supports file paths beneath the root of the ServletContext.
+	 * 此实现支持 ServletContext 根路径下的文件路径。
 	 * @see ServletContextResource
 	 */
 	@Override
@@ -166,7 +165,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 	}
 
 	/**
-	 * This implementation supports pattern matching in unexpanded WARs too.
+	 * 此实现也支持未展开 WAR 中的模式匹配。
 	 * @see ServletContextResourcePatternResolver
 	 */
 	@Override
@@ -175,7 +174,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 	}
 
 	/**
-	 * Create and return a new {@link StandardServletEnvironment}.
+	 * 创建并返回一个新的 {@link StandardServletEnvironment}。
 	 */
 	@Override
 	protected ConfigurableEnvironment createEnvironment() {
@@ -183,7 +182,7 @@ public class StaticWebApplicationContext extends StaticApplicationContext
 	}
 
 	/**
-	 * Initialize the theme capability.
+	 * 初始化主题（theme）能力。
 	 */
 	@Override
 	protected void onRefresh() {

@@ -39,14 +39,11 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Abstract implementation of {@link MockMvcBuilder} with common methods for
- * configuring filters, default request properties, global expectations and
- * global result actions.
+ * {@link MockMvcBuilder} 的抽象实现，提供用于配置过滤器、
+ * 默认请求属性、全局预期和全局结果操作的通用方法。
  *
- * <p>Subclasses can use different strategies to prepare the Spring
- * {@code WebApplicationContext} that will be passed to the
- * {@code DispatcherServlet}.
- *
+ * <p>子类可以使用不同的策略来准备将传递给
+ * {@code DispatcherServlet} 的 Spring {@code WebApplicationContext}。
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
  * @author Sam Brannen
@@ -101,7 +98,7 @@ public abstract class AbstractMockMvcBuilder<B extends AbstractMockMvcBuilder<B>
 	}
 
 	/**
-	 * Define the default character encoding to be applied to every response.
+	 * 定义应用于每个响应的默认字符编码。
 	 * @param defaultResponseCharacterEncoding the default response character encoding
 	 * @since 5.3.10
 	 */
@@ -149,7 +146,7 @@ public abstract class AbstractMockMvcBuilder<B extends AbstractMockMvcBuilder<B>
 
 
 	/**
-	 * Build a {@link org.springframework.test.web.servlet.MockMvc} instance.
+	 * 构建 {@link org.springframework.test.web.servlet.MockMvc} 实例。
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
@@ -178,9 +175,9 @@ public abstract class AbstractMockMvcBuilder<B extends AbstractMockMvcBuilder<B>
 	}
 
 	/**
-	 * A method to obtain the {@code WebApplicationContext} to be passed to the
-	 * {@code DispatcherServlet}. Invoked from {@link #build()} before the
-	 * {@link MockMvc} instance is created.
+	 * 用于获取将传递给 {@code DispatcherServlet} 的
+	 * {@code WebApplicationContext} 的方法。在创建 {@link MockMvc}
+	 * 实例之前由 {@link #build()} 调用。
 	 */
 	protected abstract WebApplicationContext initWebAppContext();
 

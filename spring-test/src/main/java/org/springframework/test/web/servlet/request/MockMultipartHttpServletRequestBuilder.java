@@ -41,8 +41,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Default builder for {@link MockMultipartHttpServletRequest}.
- *
+ * {@link MockMultipartHttpServletRequest} 的默认构建器。
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
  * @since 3.2
@@ -55,11 +54,9 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 
 
 	/**
-	 * Package-private constructor. Use static factory methods in
-	 * {@link MockMvcRequestBuilders}.
-	 * <p>For other ways to initialize a {@code MockMultipartHttpServletRequest},
-	 * see {@link #with(RequestPostProcessor)} and the
-	 * {@link RequestPostProcessor} extension point.
+	 * 包级私有构造函数。请使用 {@link MockMvcRequestBuilders} 中的静态工厂方法。
+	 * <p>有关初始化 {@code MockMultipartHttpServletRequest} 的其他方式，
+	 * 请参见 {@link #with(RequestPostProcessor)} 和 {@link RequestPostProcessor} 扩展点。
 	 * @param urlTemplate a URL template; the resulting URL will be encoded
 	 * @param uriVariables zero or more URI variables
 	 */
@@ -68,8 +65,8 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	}
 
 	/**
-	 * Variant of {@link #MockMultipartHttpServletRequestBuilder(String, Object...)}
-	 * that also accepts an {@link HttpMethod}.
+	 * {@link #MockMultipartHttpServletRequestBuilder(String, Object...)} 的变体，
+	 * 还接受 {@link HttpMethod}。
 	 * @since 5.3.22
 	 */
 	MockMultipartHttpServletRequestBuilder(HttpMethod httpMethod, String urlTemplate, Object... uriVariables) {
@@ -78,8 +75,8 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	}
 
 	/**
-	 * Variant of {@link #MockMultipartHttpServletRequestBuilder(String, Object...)}
-	 * with a {@link URI}.
+	 * {@link #MockMultipartHttpServletRequestBuilder(String, Object...)} 的变体，
+	 * 使用 {@link URI}。
 	 * @since 4.0.3
 	 */
 	MockMultipartHttpServletRequestBuilder(URI uri) {
@@ -87,8 +84,8 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	}
 
 	/**
-	 * Variant of {@link #MockMultipartHttpServletRequestBuilder(String, Object...)}
-	 * with a {@link URI} and an {@link HttpMethod}.
+	 * {@link #MockMultipartHttpServletRequestBuilder(String, Object...)} 的变体，
+	 * 使用 {@link URI} 和 {@link HttpMethod}。
 	 * @since 5.3.21
 	 */
 	MockMultipartHttpServletRequestBuilder(HttpMethod httpMethod, URI uri) {
@@ -98,7 +95,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 
 
 	/**
-	 * Create a new MockMultipartFile with the given content.
+	 * 使用给定内容创建新的 MockMultipartFile。
 	 * @param name the name of the file
 	 * @param content the content of the file
 	 */
@@ -108,7 +105,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	}
 
 	/**
-	 * Add the given MockMultipartFile.
+	 * 添加给定的 MockMultipartFile。
 	 * @param file the multipart file
 	 */
 	public MockMultipartHttpServletRequestBuilder file(MockMultipartFile file) {
@@ -117,7 +114,7 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	}
 
 	/**
-	 * Add {@link Part} components to the request.
+	 * 向请求中添加 {@link Part} 组件。
 	 * @param parts one or more parts to add
 	 * @since 5.0
 	 */
@@ -151,9 +148,8 @@ public class MockMultipartHttpServletRequestBuilder extends MockHttpServletReque
 	}
 
 	/**
-	 * Create a new {@link MockMultipartHttpServletRequest} based on the
-	 * supplied {@code ServletContext} and the {@code MockMultipartFiles}
-	 * added to this builder.
+	 * 基于提供的 {@code ServletContext} 和添加到此构建器的
+	 * {@code MockMultipartFiles} 创建新的 {@link MockMultipartHttpServletRequest}。
 	 */
 	@Override
 	protected final MockHttpServletRequest createServletRequest(ServletContext servletContext) {

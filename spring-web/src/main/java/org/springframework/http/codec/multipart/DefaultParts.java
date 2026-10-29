@@ -34,7 +34,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.util.Assert;
 
 /**
- * Default implementations of {@link Part} and subtypes.
+ * {@link Part} 及其子类型的默认实现。
  *
  * @author Arjen Poutsma
  * @since 5.3
@@ -42,7 +42,7 @@ import org.springframework.util.Assert;
 abstract class DefaultParts {
 
 	/**
-	 * Create a new {@link FormFieldPart} with the given parameters.
+	 * 使用给定参数创建新的 {@link FormFieldPart}。
 	 * @param headers the part headers
 	 * @param value the form field value
 	 * @return the created part
@@ -55,10 +55,9 @@ abstract class DefaultParts {
 	}
 
 	/**
-	 * Create a new {@link Part} or {@link FilePart} based on a flux of data
-	 * buffers. Returns {@link FilePart} if the {@code Content-Disposition} of
-	 * the given headers contains a filename, or a "normal" {@link Part}
-	 * otherwise.
+	 * 基于数据缓冲区的 Flux 创建新的 {@link Part} 或 {@link FilePart}。
+	 * 如果给定头的 {@code Content-Disposition} 包含文件名，则返回
+	 * {@link FilePart}，否则返回"普通"的 {@link Part}。
 	 * @param headers the part headers
 	 * @param dataBuffers the content of the part
 	 * @return {@link Part} or {@link FilePart}, depending on {@link HttpHeaders#getContentDisposition()}
@@ -71,9 +70,9 @@ abstract class DefaultParts {
 	}
 
 	/**
-	 * Create a new {@link Part} or {@link FilePart} based on the given file.
-	 * Returns {@link FilePart} if the {@code Content-Disposition} of the given
-	 * headers contains a filename, or a "normal" {@link Part} otherwise
+	 * 基于给定文件创建新的 {@link Part} 或 {@link FilePart}。
+	 * 如果给定头的 {@code Content-Disposition} 包含文件名，则返回
+	 * {@link FilePart}，否则返回"普通"的 {@link Part}
 	 * @param headers the part headers
 	 * @param file  the file
 	 * @param scheduler the scheduler used for reading the file
@@ -100,7 +99,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * Abstract base class for {@link Part} implementations.
+	 * {@link Part} 实现的抽象基类。
 	 */
 	private static abstract class AbstractPart implements Part {
 
@@ -126,7 +125,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * Default implementation of {@link FormFieldPart}.
+	 * {@link FormFieldPart} 的默认实现。
 	 */
 	private static class DefaultFormFieldPart extends AbstractPart implements FormFieldPart {
 
@@ -164,7 +163,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * Default implementation of {@link Part}.
+	 * {@link Part} 的默认实现。
 	 */
 	private static class DefaultPart extends AbstractPart {
 
@@ -199,7 +198,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * Default implementation of {@link FilePart}.
+	 * {@link FilePart} 的默认实现。
 	 */
 	private static final class DefaultFilePart extends DefaultPart implements FilePart {
 
@@ -235,7 +234,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * Part content abstraction.
+	 * 部件内容抽象。
 	 */
 	private interface Content {
 
@@ -248,7 +247,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * {@code Content} implementation based on a flux of data buffers.
+	 * 基于数据缓冲区 Flux 的 {@code Content} 实现。
 	 */
 	private static final class FluxContent implements Content {
 
@@ -276,7 +275,7 @@ abstract class DefaultParts {
 
 
 	/**
-	 * {@code Content} implementation based on a file.
+	 * 基于文件的 {@code Content} 实现。
 	 */
 	private static final class FileContent implements Content {
 

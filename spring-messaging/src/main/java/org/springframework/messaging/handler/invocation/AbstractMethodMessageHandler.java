@@ -58,12 +58,10 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 /**
- * Abstract base class for HandlerMethod-based message handling. Provides most of
- * the logic required to discover handler methods at startup, find a matching handler
- * method at runtime for a given message and invoke it.
+ * 基于 HandlerMethod 的消息处理的抽象基类。提供启动时发现处理器方法、
+ * 运行时为给定消息查找匹配的处理器方法并调用它所需的大部分逻辑。
  *
- * <p>Also supports discovering and invoking exception handling methods to process
- * exceptions raised during message handling.
+ * <p>还支持发现并调用异常处理方法，以处理消息处理期间引发的异常。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -75,14 +73,13 @@ public abstract class AbstractMethodMessageHandler<T>
 		implements MessageHandler, ApplicationContextAware, InitializingBean {
 
 	/**
-	 * Bean name prefix for target beans behind scoped proxies. Used to exclude those
-	 * targets from handler method detection, in favor of the corresponding proxies.
-	 * <p>We're not checking the autowire-candidate status here, which is how the
-	 * proxy target filtering problem is being handled at the autowiring level,
-	 * since autowire-candidate may have been turned to {@code false} for other
-	 * reasons, while still expecting the bean to be eligible for handler methods.
-	 * <p>Originally defined in {@link org.springframework.aop.scope.ScopedProxyUtils}
-	 * but duplicated here to avoid a hard dependency on the spring-aop module.
+	 * 作用域代理背后目标 Bean 的 Bean 名称前缀。用于在处理器方法检测中排除这些目标，
+	 * 转而使用相应的代理。
+	 * <p>此处不检查 autowire-candidate 状态——自动装配层面正是以该状态处理代理目标
+	 * 过滤问题的；因为 autowire-candidate 可能因其他原因被设为 {@code false}，
+	 * 但 Bean 仍应被纳入处理器方法的候选范围。
+	 * <p>最初定义于 {@link org.springframework.aop.scope.ScopedProxyUtils}，
+	 * 但此处重复定义以避免对 spring-aop 模块的硬依赖。
 	 */
 	private static final String SCOPED_TARGET_NAME_PREFIX = "scopedTarget.";
 
@@ -120,12 +117,9 @@ public abstract class AbstractMethodMessageHandler<T>
 
 
 	/**
-	 * When this property is configured only messages to destinations matching
-	 * one of the configured prefixes are eligible for handling. When there is a
-	 * match the prefix is removed and only the remaining part of the destination
-	 * is used for method-mapping purposes.
-	 * <p>By default, no prefixes are configured in which case all messages are
-	 * eligible for handling.
+	 * 配置此属性后，只有发送到与某个已配置前缀匹配的目标的消息才有资格被处理。
+	 * 匹配时会移除该前缀，仅使用目标的剩余部分进行方法映射。
+	 * <p>默认不配置任何前缀，此时所有消息都有资格被处理。
 	 */
 	public void setDestinationPrefixes(@Nullable Collection<String> prefixes) {
 		this.destinationPrefixes.clear();
@@ -138,15 +132,15 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return the configured destination prefixes, if any.
+	 * 返回已配置的目标前缀（如果有）。
 	 */
 	public Collection<String> getDestinationPrefixes() {
 		return this.destinationPrefixes;
 	}
 
 	/**
-	 * Sets the list of custom {@code HandlerMethodArgumentResolver}s that will be used
-	 * after resolvers for supported argument type.
+	 * 设置自定义 {@code HandlerMethodArgumentResolver} 列表，
+	 * 这些解析器将在受支持参数类型的解析器之后使用。
 	 */
 	public void setCustomArgumentResolvers(@Nullable List<HandlerMethodArgumentResolver> customArgumentResolvers) {
 		this.customArgumentResolvers.clear();
@@ -156,15 +150,15 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return the configured custom argument resolvers, if any.
+	 * 返回已配置的自定义参数解析器（如果有）。
 	 */
 	public List<HandlerMethodArgumentResolver> getCustomArgumentResolvers() {
 		return this.customArgumentResolvers;
 	}
 
 	/**
-	 * Set the list of custom {@code HandlerMethodReturnValueHandler}s that will be used
-	 * after return value handlers for known types.
+	 * 设置自定义 {@code HandlerMethodReturnValueHandler} 列表，
+	 * 这些处理器将在已知类型的返回值处理器之后使用。
 	 */
 	public void setCustomReturnValueHandlers(@Nullable List<HandlerMethodReturnValueHandler> customReturnValueHandlers) {
 		this.customReturnValueHandlers.clear();
@@ -174,16 +168,16 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return the configured custom return value handlers, if any.
+	 * 返回已配置的自定义返回值处理器（如果有）。
 	 */
 	public List<HandlerMethodReturnValueHandler> getCustomReturnValueHandlers() {
 		return this.customReturnValueHandlers;
 	}
 
 	/**
-	 * Configure the complete list of supported argument types, effectively overriding
-	 * the ones configured by default. This is an advanced option; for most use cases
-	 * it should be sufficient to use {@link #setCustomArgumentResolvers}.
+	 * 配置受支持参数类型的完整列表，实际上会覆盖默认配置的列表。
+	 * 这是一个高级选项；对于大多数用例，使用
+	 * {@link #setCustomArgumentResolvers} 就足够了。
 	 */
 	public void setArgumentResolvers(@Nullable List<HandlerMethodArgumentResolver> argumentResolvers) {
 		if (argumentResolvers == null) {
@@ -194,16 +188,16 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return the complete list of argument resolvers.
+	 * 返回参数解析器的完整列表。
 	 */
 	public List<HandlerMethodArgumentResolver> getArgumentResolvers() {
 		return this.argumentResolvers.getResolvers();
 	}
 
 	/**
-	 * Configure the complete list of supported return value types, effectively overriding
-	 * the ones configured by default. This is an advanced option; for most use cases
-	 * it should be sufficient to use {@link #setCustomReturnValueHandlers}.
+	 * 配置受支持返回值类型的完整列表，实际上会覆盖默认配置的列表。
+	 * 这是一个高级选项；对于大多数用例，使用
+	 * {@link #setCustomReturnValueHandlers} 就足够了。
 	 */
 	public void setReturnValueHandlers(@Nullable List<HandlerMethodReturnValueHandler> returnValueHandlers) {
 		if (returnValueHandlers == null) {
@@ -214,7 +208,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return the complete list of return value handlers.
+	 * 返回返回值处理器的完整列表。
 	 */
 	public List<HandlerMethodReturnValueHandler> getReturnValueHandlers() {
 		return this.returnValueHandlers.getReturnValueHandlers();
@@ -271,30 +265,30 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return the list of argument resolvers to use. Invoked only if the resolvers
-	 * have not already been set via {@link #setArgumentResolvers}.
-	 * <p>Subclasses should also take into account custom argument types configured via
-	 * {@link #setCustomArgumentResolvers}.
+	 * 返回要使用的参数解析器列表。仅当尚未通过
+	 * {@link #setArgumentResolvers} 设置解析器时才会调用。
+	 * <p>子类还应考虑通过 {@link #setCustomArgumentResolvers}
+	 * 配置的自定义参数类型。
 	 */
 	protected abstract List<? extends HandlerMethodArgumentResolver> initArgumentResolvers();
 
 	/**
-	 * Return the list of return value handlers to use. Invoked only if the return
-	 * value handlers have not already been set via {@link #setReturnValueHandlers}.
-	 * <p>Subclasses should also take into account custom return value types configured
-	 * via {@link #setCustomReturnValueHandlers}.
+	 * 返回要使用的返回值处理器列表。仅当尚未通过
+	 * {@link #setReturnValueHandlers} 设置返回值处理器时才会调用。
+	 * <p>子类还应考虑通过 {@link #setCustomReturnValueHandlers}
+	 * 配置的自定义返回值类型。
 	 */
 	protected abstract List<? extends HandlerMethodReturnValueHandler> initReturnValueHandlers();
 
 
 	/**
-	 * Whether the given bean type should be introspected for messaging handling methods.
+	 * 是否应内省给定 Bean 类型以查找消息处理方法。
 	 */
 	protected abstract boolean isHandler(Class<?> beanType);
 
 	/**
-	 * Detect if the given handler has any methods that can handle messages and if
-	 * so register it with the extracted mapping information.
+	 * 检测给定处理器是否有任何可以处理消息的方法，如果有，
+	 * 则使用提取的映射信息注册它。
 	 * @param handler the handler to check, either an instance of a Spring bean name
 	 */
 	protected final void detectHandlerMethods(final Object handler) {
@@ -338,7 +332,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Provide the mapping for a handler method.
+	 * 提供处理器方法的映射。
 	 * @param method the method to provide a mapping for
 	 * @param handlerType the handler type, possibly a subtype of the method's declaring class
 	 * @return the mapping, or {@code null} if the method is not mapped
@@ -347,7 +341,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	protected abstract T getMappingForMethod(Method method, Class<?> handlerType);
 
 	/**
-	 * Register a handler method and its unique mapping.
+	 * 注册处理器方法及其唯一映射。
 	 * @param handler the bean name of the handler or the handler instance
 	 * @param method the method to register
 	 * @param mapping the mapping conditions associated with the handler method
@@ -373,8 +367,8 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Create a HandlerMethod instance from an Object handler that is either a handler
-	 * instance or a String-based bean name.
+	 * 从 Object 处理器（处理器实例或基于 String 的 Bean 名称）
+	 * 创建 HandlerMethod 实例。
 	 */
 	protected HandlerMethod createHandlerMethod(Object handler, Method method) {
 		HandlerMethod handlerMethod;
@@ -391,13 +385,13 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return destinations contained in the mapping that are not patterns and are
-	 * therefore suitable for direct lookups.
+	 * 返回映射中包含的目标，这些目标不是模式，
+	 * 因此适合直接查找。
 	 */
 	protected abstract Set<String> getDirectLookupDestinations(T mapping);
 
 	/**
-	 * Return a logger to set on {@link HandlerMethodReturnValueHandlerComposite}.
+	 * 返回要设置在 {@link HandlerMethodReturnValueHandlerComposite} 上的日志记录器。
 	 * @since 5.1
 	 */
 	@Nullable
@@ -406,7 +400,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return a logger to set on {@link InvocableHandlerMethod}.
+	 * 返回要设置在 {@link InvocableHandlerMethod} 上的日志记录器。
 	 * @since 5.1
 	 */
 	@Nullable
@@ -415,8 +409,8 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Subclasses can invoke this method to populate the MessagingAdviceBean cache
-	 * (e.g. to support "global" {@code @MessageExceptionHandler}).
+	 * 子类可以调用此方法来填充 MessagingAdviceBean 缓存
+	 * （例如以支持“全局” {@code @MessageExceptionHandler}）。
 	 * @since 4.2
 	 */
 	protected void registerExceptionHandlerAdvice(
@@ -426,7 +420,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return a map with all handler methods and their mappings.
+	 * 返回包含所有处理器方法及其映射的映射表。
 	 */
 	public Map<T, HandlerMethod> getHandlerMethods() {
 		return Collections.unmodifiableMap(this.handlerMethods);
@@ -463,11 +457,10 @@ public abstract class AbstractMethodMessageHandler<T>
 	protected abstract String getDestination(Message<?> message);
 
 	/**
-	 * Check whether the given destination (of an incoming message) matches to
-	 * one of the configured destination prefixes and if so return the remaining
-	 * portion of the destination after the matched prefix.
-	 * <p>If there are no matching prefixes, return {@code null}.
-	 * <p>If there are no destination prefixes, return the destination as is.
+	 * 检查给定目标（传入消息的目标）是否与某个已配置的目标前缀匹配，
+	 * 如果匹配，则返回匹配前缀之后的目标剩余部分。
+	 * <p>如果没有匹配的前缀，则返回 {@code null}。
+	 * <p>如果没有目标前缀，则按原样返回目标。
 	 */
 	@SuppressWarnings("ForLoopReplaceableByForEach")
 	@Nullable
@@ -534,8 +527,7 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Check if a mapping matches the current message and return a possibly
-	 * new mapping with conditions relevant to the current request.
+	 * 检查映射是否匹配当前消息，并返回一个可能包含与当前请求相关条件的新映射。
 	 * @param mapping the mapping to get a match for
 	 * @param message the message being handled
 	 * @return the match or {@code null} if there is no match
@@ -548,8 +540,8 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Return a comparator for sorting matching mappings.
-	 * The returned comparator should sort 'better' matches higher.
+	 * 返回用于对匹配映射排序的比较器。
+	 * 返回的比较器应将“更好”的匹配排在前面。
 	 * @param message the current Message
 	 * @return the comparator, never {@code null}
 	 */
@@ -618,12 +610,11 @@ public abstract class AbstractMethodMessageHandler<T>
 	}
 
 	/**
-	 * Find an {@code @MessageExceptionHandler} method for the given exception.
-	 * The default implementation searches methods in the class hierarchy of the
-	 * HandlerMethod first and if not found, it continues searching for additional
-	 * {@code @MessageExceptionHandler} methods among the configured
+	 * 为给定异常查找 {@code @MessageExceptionHandler} 方法。
+	 * 默认实现首先在 HandlerMethod 的类层次结构中搜索方法；如果未找到，
+	 * 则继续在已配置的
 	 * {@linkplain org.springframework.messaging.handler.MessagingAdviceBean
-	 * MessagingAdviceBean}, if any.
+	 * MessagingAdviceBean}（如果有）中搜索其他 {@code @MessageExceptionHandler} 方法。
 	 * @param handlerMethod the method where the exception was raised
 	 * @param exception the raised exception
 	 * @return a method to handle the exception, or {@code null}
@@ -668,9 +659,8 @@ public abstract class AbstractMethodMessageHandler<T>
 
 
 	/**
-	 * A thin wrapper around a matched HandlerMethod and its matched mapping for
-	 * the purpose of comparing the best match with a comparator in the context
-	 * of a message.
+	 * 对匹配的 HandlerMethod 及其匹配映射的轻量封装，
+	 * 用于在消息上下文中通过比较器比较最佳匹配。
 	 */
 	private class Match {
 

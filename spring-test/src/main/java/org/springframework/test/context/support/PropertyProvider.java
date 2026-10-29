@@ -19,10 +19,9 @@ package org.springframework.test.context.support;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy for providing named properties &mdash; for example, for looking up
- * key-value pairs in a generic fashion.
+ * 提供命名属性的策略 &mdash; 例如，以通用方式查找键值对。
  *
- * <p>Primarily intended for use within the framework.
+ * <p>主要供框架内部使用。
  *
  * @author Sam Brannen
  * @since 5.3
@@ -31,7 +30,7 @@ import org.springframework.lang.Nullable;
 public interface PropertyProvider {
 
 	/**
-	 * Get the value of the named property.
+	 * 获取指定名称属性的值。
 	 * @param name the name of the property to retrieve
 	 * @return the value of the property or {@code null} if not found
 	 */

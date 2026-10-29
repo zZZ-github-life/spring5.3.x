@@ -1,0 +1,12 @@
+@@ function/client/support/ClientResponseWrapper.java :: 1
+{@link ClientResponse} 接口的实现，可子类化以在{@link org.springframework.web.reactive.function.client.ExchangeFilterFunction 交换过滤器函数}中适配响应。所有方法默认调用所包装的响应。
+@@ function/client/support/ClientResponseWrapper.java :: 2
+创建一个包装给定响应的新 {@code ClientResponseWrapper}。
+@@ function/client/support/ClientResponseWrapper.java :: 3
+返回被包装的响应。
+@@ function/client/support/ClientResponseWrapper.java :: 4
+{@code Headers} 接口的实现，可子类化以在{@link org.springframework.web.reactive.function.client.ExchangeFilterFunction 交换过滤器函数}中适配头。所有方法默认调用所包装的响应。
+@@ function/client/support/ClientResponseWrapper.java :: 5
+创建一个包装给定响应的新 {@code HeadersWrapper}。
+@@ function/client/support/package-info.java :: 1
+支持 {@code org.springframework.web.reactive.function.client} 包的类。包含用于适配响应的 {@code ClientResponse} 包装器。

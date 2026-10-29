@@ -39,9 +39,9 @@ import org.springframework.core.io.buffer.DataBufferLimitException;
 import org.springframework.core.io.buffer.DataBufferUtils;
 
 /**
- * {@link Function} to transform a JSON stream of arbitrary size, byte array
- * chunks into a {@code Flux<TokenBuffer>} where each token buffer is a
- * well-formed JSON object.
+ * {@link Function}，用于将任意大小的 JSON 流（字节数组块）转换为
+ * {@code Flux<TokenBuffer>}，其中每个 token 缓冲区都是一个
+ * 格式良好的 JSON 对象。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -225,7 +225,7 @@ final class Jackson2Tokenizer {
 
 
 	/**
-	 * Tokenize the given {@code Flux<DataBuffer>} into {@code Flux<TokenBuffer>}.
+	 * 将给定的 {@code Flux<DataBuffer>} 分词为 {@code Flux<TokenBuffer>}。
 	 * @param dataBuffers the source data buffers
 	 * @param jsonFactory the factory to use
 	 * @param objectMapper the current mapper instance

@@ -24,9 +24,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link MultipartFile} to {@link org.springframework.core.io.Resource},
- * exposing the content as {@code InputStream} and also overriding
- * {@link #contentLength()} as well as {@link #getFilename()}.
+ * 将 {@link MultipartFile} 适配为 {@link org.springframework.core.io.Resource}，
+ * 以 {@code InputStream} 形式暴露内容，并重写
+ * {@link #contentLength()} 以及 {@link #getFilename()}。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -44,7 +44,7 @@ class MultipartFileResource extends AbstractResource {
 
 
 	/**
-	 * This implementation always returns {@code true}.
+	 * 此实现始终返回 {@code true}。
 	 */
 	@Override
 	public boolean exists() {
@@ -52,7 +52,7 @@ class MultipartFileResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation always returns {@code true}.
+	 * 此实现始终返回 {@code true}。
 	 */
 	@Override
 	public boolean isOpen() {
@@ -70,8 +70,7 @@ class MultipartFileResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation throws IllegalStateException if attempting to
-	 * read the underlying stream multiple times.
+	 * 如果尝试多次读取底层流，此实现会抛出 IllegalStateException。
 	 */
 	@Override
 	public InputStream getInputStream() throws IOException, IllegalStateException {
@@ -79,7 +78,7 @@ class MultipartFileResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a description that has the Multipart name.
+	 * 此实现返回包含 Multipart 名称的描述。
 	 */
 	@Override
 	public String getDescription() {

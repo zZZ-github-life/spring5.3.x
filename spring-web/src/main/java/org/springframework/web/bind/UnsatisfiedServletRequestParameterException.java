@@ -26,9 +26,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ServletRequestBindingException} subclass that indicates an unsatisfied
- * parameter condition, as typically expressed using an {@code @RequestMapping}
- * annotation at the {@code @Controller} type level.
+ * {@link ServletRequestBindingException} 的子类，表示参数条件未满足，
+ * 这通常由 {@code @Controller} 类型级别上的 {@code @RequestMapping} 注解表达。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -43,7 +42,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 
 
 	/**
-	 * Create a new UnsatisfiedServletRequestParameterException.
+	 * 创建一个新的 UnsatisfiedServletRequestParameterException。
 	 * @param paramConditions the parameter conditions that have been violated
 	 * @param actualParams the actual parameter Map associated with the ServletRequest
 	 */
@@ -54,7 +53,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 	}
 
 	/**
-	 * Create a new UnsatisfiedServletRequestParameterException.
+	 * 创建一个新的 UnsatisfiedServletRequestParameterException。
 	 * @param paramConditions all sets of parameter conditions that have been violated
 	 * @param actualParams the actual parameter Map associated with the ServletRequest
 	 * @since 4.2
@@ -88,8 +87,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 	}
 
 	/**
-	 * Return the parameter conditions that have been violated or the first group
-	 * in case of multiple groups.
+	 * 返回已被违反的参数条件，或者在存在多组条件时返回第一组。
 	 * @see org.springframework.web.bind.annotation.RequestMapping#params()
 	 */
 	public final String[] getParamConditions() {
@@ -97,7 +95,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 	}
 
 	/**
-	 * Return all parameter condition groups that have been violated.
+	 * 返回所有已被违反的参数条件组。
 	 * @since 4.2
 	 * @see org.springframework.web.bind.annotation.RequestMapping#params()
 	 */
@@ -106,7 +104,7 @@ public class UnsatisfiedServletRequestParameterException extends ServletRequestB
 	}
 
 	/**
-	 * Return the actual parameter Map associated with the ServletRequest.
+	 * 返回与该 ServletRequest 关联的实际参数 Map。
 	 * @see javax.servlet.ServletRequest#getParameterMap()
 	 */
 	public final Map<String, String[]> getActualParams() {

@@ -34,17 +34,17 @@ import org.springframework.util.PathMatcher;
 import org.springframework.util.StringUtils;
 
 /**
- * A default implementation of {@code UserDestinationResolver} that relies
- * on a {@link SimpUserRegistry} to find active sessions for a user.
+ * {@code UserDestinationResolver} 的默认实现，依赖 {@link SimpUserRegistry}
+ * 查找用户的活跃会话。
  *
- * <p>When a user attempts to subscribe, e.g. to "/user/queue/position-updates",
- * the "/user" prefix is removed and a unique suffix added based on the session
- * id, e.g. "/queue/position-updates-useri9oqdfzo" to ensure different users can
- * subscribe to the same logical destination without colliding.
+ * <p>当用户尝试订阅（例如订阅 "/user/queue/position-updates"）时，
+ * 会移除 "/user" 前缀，并根据会话 ID 添加唯一后缀，
+ * 例如 "/queue/position-updates-useri9oqdfzo"，
+ * 以确保不同用户可以订阅相同的逻辑目标而不会冲突。
  *
- * <p>When sending to a user, e.g. "/user/{username}/queue/position-updates", the
- * "/user/{username}" prefix is removed and a suffix based on active session id's
- * is added, e.g. "/queue/position-updates-useri9oqdfzo".
+ * <p>当向用户发送消息（例如 "/user/{username}/queue/position-updates"）时，
+ * 会移除 "/user/{username}" 前缀，并添加基于活跃会话 ID 的后缀，
+ * 例如 "/queue/position-updates-useri9oqdfzo"。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -63,8 +63,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 
 
 	/**
-	 * Create an instance that will access user session id information through
-	 * the provided registry.
+	 * 创建将通过提供的注册表访问用户会话 ID 信息的实例。
 	 * @param userRegistry the registry, never {@code null}
 	 */
 	public DefaultUserDestinationResolver(SimpUserRegistry userRegistry) {
@@ -74,16 +73,15 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 
 
 	/**
-	 * Return the configured {@link SimpUserRegistry}.
+	 * 返回已配置的 {@link SimpUserRegistry}。
 	 */
 	public SimpUserRegistry getSimpUserRegistry() {
 		return this.userRegistry;
 	}
 
 	/**
-	 * The prefix used to identify user destinations. Any destinations that do not
-	 * start with the given prefix are not be resolved.
-	 * <p>The default prefix is "/user/".
+	 * 用于识别用户目标的前缀。不以该前缀开头的目标不会被解析。
+	 * <p>默认前缀为 "/user/"。
 	 * @param prefix the prefix to use
 	 */
 	public void setUserDestinationPrefix(String prefix) {
@@ -92,21 +90,19 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	}
 
 	/**
-	 * Return the configured prefix for user destinations.
+	 * 返回已配置的用户目标前缀。
 	 */
 	public String getDestinationPrefix() {
 		return this.prefix;
 	}
 
 	/**
-	 * Use this property to indicate whether the leading slash from translated
-	 * user destinations should be removed or not. This depends on the
-	 * destination prefixes the message broker is configured with.
-	 * <p>By default this is set to {@code false}, i.e.
-	 * "do not change the target destination", although
+	 * 使用此属性指示是否应移除转换后的用户目标中的前导斜杠。
+	 * 这取决于消息代理配置的目标前缀。
+	 * <p>默认设置为 {@code false}，即“不更改目标目标”，
+	 * 不过如果配置的目标没有前导斜杠，
 	 * {@link org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration
-	 * AbstractMessageBrokerConfiguration} may change that to {@code true}
-	 * if the configured destinations do not have a leading slash.
+	 * AbstractMessageBrokerConfiguration} 可能会将其改为 {@code true}。
 	 * @param remove whether to remove the leading slash
 	 * @since 4.3.14
 	 */
@@ -115,7 +111,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	}
 
 	/**
-	 * Whether to remove the leading slash from target destinations.
+	 * 是否移除目标目标中的前导斜杠。
 	 * @since 4.3.14
 	 */
 	public boolean isRemoveLeadingSlash() {
@@ -123,16 +119,13 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	}
 
 	/**
-	 * Provide the {@code PathMatcher} in use for working with destinations
-	 * which in turn helps to determine whether the leading slash should be
-	 * kept in actual destinations after removing the
-	 * {@link #setUserDestinationPrefix userDestinationPrefix}.
-	 * <p>By default actual destinations have a leading slash, e.g.
-	 * {@code /queue/position-updates} which makes sense with brokers that
-	 * support destinations with slash as separator. When a {@code PathMatcher}
-	 * is provided that supports an alternative separator, then resulting
-	 * destinations won't have a leading slash, e.g. {@code
-	 * jms.queue.position-updates}.
+	 * 提供用于处理目标的 {@code PathMatcher}，这有助于确定在移除
+	 * {@link #setUserDestinationPrefix userDestinationPrefix} 后，
+	 * 实际目标中是否应保留前导斜杠。
+	 * <p>默认情况下，实际目标带有前导斜杠，例如 {@code /queue/position-updates}，
+	 * 这适用于支持以斜杠作为分隔符的目标的代理。如果提供的 {@code PathMatcher}
+	 * 支持其他分隔符，则生成的目标将没有前导斜杠，例如
+	 * {@code jms.queue.position-updates}。
 	 * @param pathMatcher the PathMatcher used to work with destinations
 	 * @since 4.3
 	 * @deprecated as of 4.3.14 this property is no longer used and is replaced
@@ -259,8 +252,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 	}
 
 	/**
-	 * This method determines how to translate the source "user" destination to an
-	 * actual target destination for the given active user session.
+	 * 此方法决定如何将源“用户”目标转换为给定活跃用户会话的实际目标目标。
 	 * @param sourceDestination the source destination from the input message.
 	 * @param actualDestination a subset of the destination without any user prefix.
 	 * @param sessionId the id of an active user session, never {@code null}.
@@ -282,7 +274,7 @@ public class DefaultUserDestinationResolver implements UserDestinationResolver {
 
 
 	/**
-	 * A temporary placeholder for a parsed source "user" destination.
+	 * 已解析源“用户”目标的临时占位符。
 	 */
 	private static class ParseResult {
 

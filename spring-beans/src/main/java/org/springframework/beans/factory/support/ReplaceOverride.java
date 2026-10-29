@@ -25,11 +25,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Extension of {@link MethodOverride} that represents an arbitrary
- * override of a method by the IoC container.
+ * {@link MethodOverride} 的扩展，表示 IoC 容器对方法的任意覆盖。
  *
- * <p>Any non-final method can be overridden, irrespective of its
- * parameters and return types.
+ * <p>任何非 final 方法都可以被覆盖，无论其参数和返回类型如何。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -43,7 +41,7 @@ public class ReplaceOverride extends MethodOverride {
 
 
 	/**
-	 * Construct a new ReplaceOverride.
+	 * 构造一个新的 ReplaceOverride。
 	 * @param methodName the name of the method to override
 	 * @param methodReplacerBeanName the bean name of the {@link MethodReplacer}
 	 */
@@ -55,15 +53,14 @@ public class ReplaceOverride extends MethodOverride {
 
 
 	/**
-	 * Return the name of the bean implementing MethodReplacer.
+	 * 返回实现 MethodReplacer 的 Bean 的名称。
 	 */
 	public String getMethodReplacerBeanName() {
 		return this.methodReplacerBeanName;
 	}
 
 	/**
-	 * Add a fragment of a class string, like "Exception"
-	 * or "java.lang.Exc", to identify a parameter type.
+	 * 添加类字符串的片段（例如 "Exception" 或 "java.lang.Exc"）以标识参数类型。
 	 * @param identifier a substring of the fully qualified class name
 	 */
 	public void addTypeIdentifier(String identifier) {

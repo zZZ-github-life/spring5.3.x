@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Tag collection class used to hold managed array elements, which may
- * include runtime bean references (to be resolved into bean objects).
+ * 用于保存受管数组元素的标记集合类，其中可能包含运行时 Bean 引用（将被解析为 Bean 对象）。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -29,13 +28,13 @@ import org.springframework.util.Assert;
 @SuppressWarnings("serial")
 public class ManagedArray extends ManagedList<Object> {
 
-	/** Resolved element type for runtime creation of the target array. */
+	/** 用于在运行时创建目标数组的已解析元素类型。 */
 	@Nullable
 	volatile Class<?> resolvedElementType;
 
 
 	/**
-	 * Create a new managed array placeholder.
+	 * 创建一个新的受管数组占位符。
 	 * @param elementTypeName the target element type as a class name
 	 * @param size the size of the array
 	 */

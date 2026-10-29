@@ -27,15 +27,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter}
- * that can read and write JSON using the
- * <a href="https://code.google.com/p/google-gson/">Google Gson</a> library.
+ * {@link org.springframework.http.converter.HttpMessageConverter} 的实现，
+ * 可使用 <a href="https://code.google.com/p/google-gson/">Google Gson</a> 库
+ * 读写 JSON。
  *
- * <p>This converter can be used to bind to typed beans or untyped {@code HashMap}s.
- * By default, it supports {@code application/json} and {@code application/*+json} with
- * {@code UTF-8} character set.
+ * <p>此转换器可用于绑定到类型化的 bean 或无类型的 {@code HashMap}。
+ * 默认情况下，它支持字符集为 {@code UTF-8} 的 {@code application/json}
+ * 和 {@code application/*+json}。
  *
- * <p>Tested against Gson 2.8; compatible with Gson 2.0 and higher.
+ * <p>已针对 Gson 2.8 测试；兼容 Gson 2.0 及更高版本。
  *
  * @author Roy Clarkson
  * @author Juergen Hoeller
@@ -50,14 +50,14 @@ public class GsonHttpMessageConverter extends AbstractJsonHttpMessageConverter {
 
 
 	/**
-	 * Construct a new {@code GsonHttpMessageConverter} with default configuration.
+	 * 使用默认配置构造一个新的 {@code GsonHttpMessageConverter}。
 	 */
 	public GsonHttpMessageConverter() {
 		this.gson = new Gson();
 	}
 
 	/**
-	 * Construct a new {@code GsonHttpMessageConverter} with the given delegate.
+	 * 使用给定的委托构造一个新的 {@code GsonHttpMessageConverter}。
 	 * @param gson the Gson instance to use
 	 * @since 5.0
 	 */
@@ -68,10 +68,10 @@ public class GsonHttpMessageConverter extends AbstractJsonHttpMessageConverter {
 
 
 	/**
-	 * Set the {@code Gson} instance to use.
-	 * If not set, a default {@link Gson#Gson() Gson} instance will be used.
-	 * <p>Setting a custom-configured {@code Gson} is one way to take further
-	 * control of the JSON serialization process.
+	 * 设置要使用的 {@code Gson} 实例。
+	 * 如果未设置，将使用默认的 {@link Gson#Gson() Gson} 实例。
+	 * <p>设置自定义配置的 {@code Gson} 是进一步控制
+	 * JSON 序列化过程的一种方式。
 	 * @see #GsonHttpMessageConverter(Gson)
 	 */
 	public void setGson(Gson gson) {
@@ -80,7 +80,7 @@ public class GsonHttpMessageConverter extends AbstractJsonHttpMessageConverter {
 	}
 
 	/**
-	 * Return the configured {@code Gson} instance for this converter.
+	 * 返回此转换器已配置的 {@code Gson} 实例。
 	 */
 	public Gson getGson() {
 		return this.gson;

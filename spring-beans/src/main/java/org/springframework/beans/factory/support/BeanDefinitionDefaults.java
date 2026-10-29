@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * A simple holder for {@code BeanDefinition} property defaults.
+ * 用于保存 {@code BeanDefinition} 属性默认值的简单持有者。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -44,9 +44,8 @@ public class BeanDefinitionDefaults {
 
 
 	/**
-	 * Set whether beans should be lazily initialized by default.
-	 * <p>If {@code false}, the bean will get instantiated on startup by bean
-	 * factories that perform eager initialization of singletons.
+	 * 设置 Bean 是否应默认延迟初始化。<p>如果为 {@code false}，执行单例急切初始化的 Bean 工厂将在启动
+	 * 时实例化该 Bean。
 	 * @see AbstractBeanDefinition#setLazyInit
 	 */
 	public void setLazyInit(boolean lazyInit) {
@@ -54,8 +53,7 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Return whether beans should be lazily initialized by default, i.e. not
-	 * eagerly instantiated on startup. Only applicable to singleton beans.
+	 * 返回 Bean 是否应默认延迟初始化，即不在启动时急切实例化。仅适用于单例 Bean。
 	 * @return whether to apply lazy-init semantics ({@code false} by default)
 	 */
 	public boolean isLazyInit() {
@@ -63,8 +61,7 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Return whether beans should be lazily initialized by default, i.e. not
-	 * eagerly instantiated on startup. Only applicable to singleton beans.
+	 * 返回 Bean 是否应默认延迟初始化，即不在启动时急切实例化。仅适用于单例 Bean。
 	 * @return the lazy-init flag if explicitly set, or {@code null} otherwise
 	 * @since 5.2
 	 */
@@ -74,10 +71,8 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Set the autowire mode. This determines whether any automagical detection
-	 * and setting of bean references will happen. Default is AUTOWIRE_NO
-	 * which means there won't be convention-based autowiring by name or type
-	 * (however, there may still be explicit annotation-driven autowiring).
+	 * 设置自动装配模式。这决定是否发生 Bean 引用的自动检测和设置。默认值为 AUTOWIRE_NO，意味着不会进行
+	 * 基于约定的按名称或按类型自动装配（不过，仍可能存在显式的注解驱动自动装配）。
 	 * @param autowireMode the autowire mode to set.
 	 * Must be one of the constants defined in {@link AbstractBeanDefinition}.
 	 * @see AbstractBeanDefinition#setAutowireMode
@@ -87,14 +82,14 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Return the default autowire mode.
+	 * 返回默认的自动装配模式。
 	 */
 	public int getAutowireMode() {
 		return this.autowireMode;
 	}
 
 	/**
-	 * Set the dependency check code.
+	 * 设置依赖检查代码。
 	 * @param dependencyCheck the code to set.
 	 * Must be one of the constants defined in {@link AbstractBeanDefinition}.
 	 * @see AbstractBeanDefinition#setDependencyCheck
@@ -104,16 +99,15 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Return the default dependency check code.
+	 * 返回默认的依赖检查代码。
 	 */
 	public int getDependencyCheck() {
 		return this.dependencyCheck;
 	}
 
 	/**
-	 * Set the name of the default initializer method.
-	 * <p>Note that this method is not enforced on all affected bean definitions
-	 * but rather taken as an optional callback, to be invoked if actually present.
+	 * 设置默认初始化方法的名称。<p>请注意，此方法并非强制应用于所有受影响的 Bean 定义，而是作为可选回
+	 * 调，仅在确实存在时才调用。
 	 * @see AbstractBeanDefinition#setInitMethodName
 	 * @see AbstractBeanDefinition#setEnforceInitMethod
 	 */
@@ -122,7 +116,7 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Return the name of the default initializer method.
+	 * 返回默认初始化方法的名称。
 	 */
 	@Nullable
 	public String getInitMethodName() {
@@ -130,9 +124,8 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Set the name of the default destroy method.
-	 * <p>Note that this method is not enforced on all affected bean definitions
-	 * but rather taken as an optional callback, to be invoked if actually present.
+	 * 设置默认销毁方法的名称。<p>请注意，此方法并非强制应用于所有受影响的 Bean 定义，而是作为可选回调，
+	 * 仅在确实存在时才调用。
 	 * @see AbstractBeanDefinition#setDestroyMethodName
 	 * @see AbstractBeanDefinition#setEnforceDestroyMethod
 	 */
@@ -141,7 +134,7 @@ public class BeanDefinitionDefaults {
 	}
 
 	/**
-	 * Return the name of the default destroy method.
+	 * 返回默认销毁方法的名称。
 	 */
 	@Nullable
 	public String getDestroyMethodName() {

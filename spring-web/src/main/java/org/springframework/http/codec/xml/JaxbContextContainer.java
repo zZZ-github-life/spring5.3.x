@@ -27,7 +27,7 @@ import javax.xml.bind.Unmarshaller;
 import org.springframework.core.codec.CodecException;
 
 /**
- * Holder for {@link JAXBContext} instances.
+ * {@link JAXBContext} 实例的持有器。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller

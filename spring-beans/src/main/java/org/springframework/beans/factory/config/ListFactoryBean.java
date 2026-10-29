@@ -25,8 +25,7 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple factory for shared List instances. Allows for central setup
- * of Lists via the "list" element in XML bean definitions.
+ * 用于共享 List 实例的简单工厂。可通过 XML Bean 定义中的 "list" 元素集中设置 Lists。
  *
  * @author Juergen Hoeller
  * @since 09.12.2003
@@ -44,16 +43,15 @@ public class ListFactoryBean extends AbstractFactoryBean<List<Object>> {
 
 
 	/**
-	 * Set the source List, typically populated via XML "list" elements.
+	 * 设置源 List，通常通过 XML "list" 元素填充。
 	 */
 	public void setSourceList(List<?> sourceList) {
 		this.sourceList = sourceList;
 	}
 
 	/**
-	 * Set the class to use for the target List. Can be populated with a fully
-	 * qualified class name when defined in a Spring application context.
-	 * <p>Default is a {@code java.util.ArrayList}.
+	 * 设置用于目标 List 的类。在 Spring 应用上下文中定义时，可以使用完全限定的类名来填充。
+	 * <p>默认为 {@code java.util.ArrayList}。
 	 * @see java.util.ArrayList
 	 */
 	@SuppressWarnings("rawtypes")

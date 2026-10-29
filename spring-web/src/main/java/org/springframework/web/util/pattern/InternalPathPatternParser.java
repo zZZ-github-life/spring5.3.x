@@ -25,8 +25,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.util.pattern.PatternParseException.PatternMessage;
 
 /**
- * Parser for URI template patterns. It breaks the path pattern into a number of
- * {@link PathElement PathElements} in a linked list. Instances are reusable but are not thread-safe.
+ * 用于 URI 模板模式的解析器。它将路径模式拆分为链表中的多个
+ * {@link PathElement PathElements}。实例可复用，但不是线程安全的。
  *
  * @author Andy Clement
  * @since 5.0
@@ -80,7 +80,7 @@ class InternalPathPatternParser {
 
 
 	/**
-	 * Package private constructor for use in {@link PathPatternParser#parse}.
+	 * 供 {@link PathPatternParser#parse} 使用的包级私有构造函数。
 	 * @param parentParser reference back to the stateless, public parser
 	 */
 	InternalPathPatternParser(PathPatternParser parentParser) {
@@ -89,7 +89,7 @@ class InternalPathPatternParser {
 
 
 	/**
-	 * Package private delegate for {@link PathPatternParser#parse(String)}.
+	 * 对 {@link PathPatternParser#parse(String)} 的包级私有委托。
 	 */
 	public PathPattern parse(String pathPattern) throws PatternParseException {
 		Assert.notNull(pathPattern, "Path pattern must not be null");
@@ -189,12 +189,12 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * Just hit a ':' and want to jump over the regex specification for this
-	 * variable. pos will be pointing at the ':', we want to skip until the }.
+	 * 刚刚遇到 ':'，希望跳过此变量的正则表达式规范。pos 将指向
+	 * ':'，我们要跳到 } 为止。
 	 * <p>
-	 * Nested {...} pairs don't have to be escaped: <code>/abc/{var:x{1,2}}/def</code>
-	 * <p>An escaped } will not be treated as the end of the regex: <code>/abc/{var:x\\{y:}/def</code>
-	 * <p>A separator that should not indicate the end of the regex can be escaped:
+	 * 嵌套的 {...} 对无需转义：<code>/abc/{var:x{1,2}}/def</code>
+	 * <p>转义的 } 不会被视为正则表达式的结尾：<code>/abc/{var:x\\{y:}/def</code>
+	 * <p>不应表示正则表达式结尾的分隔符可以通过转义处理：
 	 */
 	private void skipCaptureRegex() {
 		this.pos++;
@@ -235,8 +235,8 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * After processing a separator, a quick peek whether it is followed by
-	 * a double wildcard (and only as the last path element).
+	 * 处理完分隔符后，快速检查其后是否跟着双通配符
+	 * （且仅作为最后一个路径元素）。
 	 */
 	private boolean peekDoubleWildcard() {
 		if ((this.pos + 2) >= this.pathPatternLength) {
@@ -254,7 +254,7 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * Push a path element to the chain being build.
+	 * 将路径元素推入正在构建的链中。
 	 * @param newPathElement the new path element to add
 	 */
 	private void pushPathElement(PathElement newPathElement) {
@@ -305,8 +305,8 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * Used the knowledge built up whilst processing since the last path element to determine what kind of path
-	 * element to create.
+	 * 利用自上一个路径元素以来处理过程中积累的信息，确定要创建
+	 * 哪种路径元素。
 	 * @return the new path element
 	 */
 	private PathElement createPathElement() {
@@ -378,8 +378,8 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * For a path element representing a captured variable, locate the constraint pattern.
-	 * Assumes there is a constraint pattern.
+	 * 对于表示捕获变量的路径元素，定位约束模式。
+	 * 假定存在约束模式。
 	 * @param data a complete path expression, e.g. /aaa/bbb/{ccc:...}
 	 * @param offset the start of the capture pattern of interest
 	 * @return the index of the character after the ':' within
@@ -397,7 +397,7 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * Reset all the flags and position markers computed during path element processing.
+	 * 重置路径元素处理期间计算的所有标志和位置标记。
 	 */
 	private void resetPathElementState() {
 		this.pathElementStart = -1;
@@ -410,7 +410,7 @@ class InternalPathPatternParser {
 	}
 
 	/**
-	 * Record a new captured variable. If it clashes with an existing one then report an error.
+	 * 记录一个新的捕获变量。如果它与现有变量冲突，则报告错误。
 	 */
 	private void recordCapturedVariable(int pos, String variableName) {
 		if (this.capturedVariableNames == null) {

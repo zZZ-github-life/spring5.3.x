@@ -25,38 +25,34 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation for mapping web requests onto methods in request-handling classes
- * with flexible method signatures.
+ * 用于将 Web 请求映射到具有灵活方法签名的请求处理类中的方法的注解。
  *
- * <p>Both Spring MVC and Spring WebFlux support this annotation through a
- * {@code RequestMappingHandlerMapping} and {@code RequestMappingHandlerAdapter}
- * in their respective modules and package structure. For the exact list of
- * supported handler method arguments and return types in each, please use the
- * reference documentation links below:
+ * <p>Spring MVC 和 Spring WebFlux 都通过各自模块和包结构中的
+ * {@code RequestMappingHandlerMapping} 和 {@code RequestMappingHandlerAdapter}
+ * 支持此注解。关于各自支持的处理器方法参数和返回类型的完整列表，
+ * 请使用下面的参考文档链接：
  * <ul>
  * <li>Spring MVC
- * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments">Method Arguments</a>
- * and
- * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types">Return Values</a>
+ * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-arguments">方法参数</a>
+ * 和
+ * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-return-types">返回值</a>
  * </li>
  * <li>Spring WebFlux
- * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-ann-arguments">Method Arguments</a>
- * and
- * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-ann-return-types">Return Values</a>
+ * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-ann-arguments">方法参数</a>
+ * 和
+ * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-ann-return-types">返回值</a>
  * </li>
  * </ul>
  *
- * <p><strong>Note:</strong> This annotation can be used both at the class and
- * at the method level. In most cases, at the method level applications will
- * prefer to use one of the HTTP method specific variants
- * {@link GetMapping @GetMapping}, {@link PostMapping @PostMapping},
- * {@link PutMapping @PutMapping}, {@link DeleteMapping @DeleteMapping}, or
- * {@link PatchMapping @PatchMapping}.</p>
+ * <p><strong>注意：</strong>此注解既可以在类级别使用，也可以在方法级别使用。
+ * 在大多数情况下，在方法级别应用程序会更倾向于使用某个特定于 HTTP 方法的变体：
+ * {@link GetMapping @GetMapping}、{@link PostMapping @PostMapping}、
+ * {@link PutMapping @PutMapping}、{@link DeleteMapping @DeleteMapping} 或
+ * {@link PatchMapping @PatchMapping}。</p>
  *
- * <p><b>NOTE:</b> When using controller interfaces (e.g. for AOP proxying),
- * make sure to consistently put <i>all</i> your mapping annotations - such as
- * {@code @RequestMapping} and {@code @SessionAttributes} - on
- * the controller <i>interface</i> rather than on the implementation class.
+ * <p><b>注意：</b>使用控制器接口时（例如用于 AOP 代理），请确保<i>所有</i>
+ * 映射注解（如 {@code @RequestMapping} 和 {@code @SessionAttributes}）
+ * 一致地放在控制器<i>接口</i>上，而不是放在实现类上。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -75,133 +71,119 @@ import org.springframework.core.annotation.AliasFor;
 public @interface RequestMapping {
 
 	/**
-	 * Assign a name to this mapping.
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * When used on both levels, a combined name is derived by concatenation
-	 * with "#" as separator.
+	 * 为此映射分配一个名称。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 当在两个级别上使用时，组合名称会以 "#" 作为分隔符拼接得出。
 	 * @see org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder
 	 * @see org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrategy
 	 */
 	String name() default "";
 
 	/**
-	 * The primary mapping expressed by this annotation.
-	 * <p>This is an alias for {@link #path}. For example,
-	 * {@code @RequestMapping("/foo")} is equivalent to
-	 * {@code @RequestMapping(path="/foo")}.
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * When used at the type level, all method-level mappings inherit
-	 * this primary mapping, narrowing it for a specific handler method.
-	 * <p><strong>NOTE</strong>: A handler method that is not mapped to any path
-	 * explicitly is effectively mapped to an empty path.
+	 * 此注解所表达的主要映射。
+	 * <p>这是 {@link #path} 的别名。例如，
+	 * {@code @RequestMapping("/foo")} 等价于
+	 * {@code @RequestMapping(path="/foo")}。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 在类型级别使用时，所有方法级别的映射都会继承此主要映射，
+	 * 并为特定的处理器方法缩小范围。
+	 * <p><strong>注意</strong>：未显式映射到任何路径的处理器方法实际上被映射到空路径。
 	 */
 	@AliasFor("path")
 	String[] value() default {};
 
 	/**
-	 * The path mapping URIs (e.g. {@code "/profile"}).
-	 * <p>Ant-style path patterns are also supported (e.g. {@code "/profile/**"}).
-	 * At the method level, relative paths (e.g. {@code "edit"}) are supported
-	 * within the primary mapping expressed at the type level.
-	 * Path mapping URIs may contain placeholders (e.g. <code>"/${profile_path}"</code>).
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * When used at the type level, all method-level mappings inherit
-	 * this primary mapping, narrowing it for a specific handler method.
-	 * <p><strong>NOTE</strong>: A handler method that is not mapped to any path
-	 * explicitly is effectively mapped to an empty path.
+	 * 路径映射 URI（例如 {@code "/profile"}）。
+	 * <p>也支持 Ant 风格的路径模式（例如 {@code "/profile/**"}）。
+	 * 在方法级别，支持在类型级别表达的主要映射内使用相对路径（例如 {@code "edit"}）。
+	 * 路径映射 URI 可以包含占位符（例如 <code>"/${profile_path}"</code>）。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 在类型级别使用时，所有方法级别的映射都会继承此主要映射，
+	 * 并为特定的处理器方法缩小范围。
+	 * <p><strong>注意</strong>：未显式映射到任何路径的处理器方法实际上被映射到空路径。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String[] path() default {};
 
 	/**
-	 * The HTTP request methods to map to, narrowing the primary mapping:
-	 * GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE, TRACE.
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * When used at the type level, all method-level mappings inherit this
-	 * HTTP method restriction.
+	 * 要映射到的 HTTP 请求方法，用于缩小主要映射：
+	 * GET、POST、HEAD、OPTIONS、PUT、PATCH、DELETE、TRACE。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 在类型级别使用时，所有方法级别的映射都会继承此 HTTP 方法限制。
 	 */
 	RequestMethod[] method() default {};
 
 	/**
-	 * The parameters of the mapped request, narrowing the primary mapping.
-	 * <p>Same format for any environment: a sequence of "myParam=myValue" style
-	 * expressions, with a request only mapped if each such parameter is found
-	 * to have the given value. Expressions can be negated by using the "!=" operator,
-	 * as in "myParam!=myValue". "myParam" style expressions are also supported,
-	 * with such parameters having to be present in the request (allowed to have
-	 * any value). Finally, "!myParam" style expressions indicate that the
-	 * specified parameter is <i>not</i> supposed to be present in the request.
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * When used at the type level, all method-level mappings inherit this
-	 * parameter restriction.
+	 * 所映射请求的参数，用于缩小主要映射。
+	 * <p>适用于任何环境的相同格式：一系列 "myParam=myValue" 风格的表达式，
+	 * 只有当每个这样的参数都被发现具有给定值时，请求才会被映射。
+	 * 可以使用 "!=" 运算符对表达式取反，如 "myParam!=myValue"。
+	 * 也支持 "myParam" 风格的表达式，此时这些参数必须存在于请求中
+	 * （允许具有任意值）。最后，"!myParam" 风格的表达式表示指定参数
+	 * <i>不应</i>存在于请求中。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 在类型级别使用时，所有方法级别的映射都会继承此参数限制。
 	 */
 	String[] params() default {};
 
 	/**
-	 * The headers of the mapped request, narrowing the primary mapping.
-	 * <p>Same format for any environment: a sequence of "My-Header=myValue" style
-	 * expressions, with a request only mapped if each such header is found
-	 * to have the given value. Expressions can be negated by using the "!=" operator,
-	 * as in "My-Header!=myValue". "My-Header" style expressions are also supported,
-	 * with such headers having to be present in the request (allowed to have
-	 * any value). Finally, "!My-Header" style expressions indicate that the
-	 * specified header is <i>not</i> supposed to be present in the request.
-	 * <p>Also supports media type wildcards (*), for headers such as Accept
-	 * and Content-Type. For instance,
+	 * 所映射请求的头，用于缩小主要映射。
+	 * <p>适用于任何环境的相同格式：一系列 "My-Header=myValue" 风格的表达式，
+	 * 只有当每个这样的头都被发现具有给定值时，请求才会被映射。
+	 * 可以使用 "!=" 运算符对表达式取反，如 "My-Header!=myValue"。
+	 * 也支持 "My-Header" 风格的表达式，此时这些头必须存在于请求中
+	 * （允许具有任意值）。最后，"!My-Header" 风格的表达式表示指定头
+	 * <i>不应</i>存在于请求中。
+	 * <p>对于诸如 Accept 和 Content-Type 之类的头，还支持媒体类型通配符（*）。
+	 * 例如，
 	 * <pre class="code">
 	 * &#064;RequestMapping(value = "/something", headers = "content-type=text/*")
 	 * </pre>
-	 * will match requests with a Content-Type of "text/html", "text/plain", etc.
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * When used at the type level, all method-level mappings inherit this
-	 * header restriction.
+	 * 将匹配 Content-Type 为 "text/html"、"text/plain" 等的请求。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 在类型级别使用时，所有方法级别的映射都会继承此头限制。
 	 * @see org.springframework.http.MediaType
 	 */
 	String[] headers() default {};
 
 	/**
-	 * Narrows the primary mapping by media types that can be consumed by the
-	 * mapped handler. Consists of one or more media types one of which must
-	 * match to the request {@code Content-Type} header. Examples:
+	 * 通过所映射处理器可以消费的媒体类型来缩小主要映射。
+	 * 由一个或多个媒体类型组成，其中必须有一个与请求的 {@code Content-Type}
+	 * 头匹配。示例：
 	 * <pre class="code">
 	 * consumes = "text/plain"
 	 * consumes = {"text/plain", "application/*"}
 	 * consumes = MediaType.TEXT_PLAIN_VALUE
 	 * </pre>
-	 * Expressions can be negated by using the "!" operator, as in
-	 * "!text/plain", which matches all requests with a {@code Content-Type}
-	 * other than "text/plain".
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * If specified at both levels, the method level consumes condition overrides
-	 * the type level condition.
+	 * 可以使用 "!" 运算符对表达式取反，如 "!text/plain"，
+	 * 它匹配 {@code Content-Type} 不是 "text/plain" 的所有请求。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 如果在两个级别都指定，方法级别的 consumes 条件会覆盖类型级别的条件。
 	 * @see org.springframework.http.MediaType
 	 * @see javax.servlet.http.HttpServletRequest#getContentType()
 	 */
 	String[] consumes() default {};
 
 	/**
-	 * Narrows the primary mapping by media types that can be produced by the
-	 * mapped handler. Consists of one or more media types one of which must
-	 * be chosen via content negotiation against the "acceptable" media types
-	 * of the request. Typically those are extracted from the {@code "Accept"}
-	 * header but may be derived from query parameters, or other. Examples:
+	 * 通过所映射处理器可以产生的媒体类型来缩小主要映射。
+	 * 由一个或多个媒体类型组成，其中必须有一个通过内容协商针对请求的
+	 * "可接受" 媒体类型被选中。通常这些媒体类型从 {@code "Accept"} 头中提取，
+	 * 但也可能来自查询参数或其他来源。示例：
 	 * <pre class="code">
 	 * produces = "text/plain"
 	 * produces = {"text/plain", "application/*"}
 	 * produces = MediaType.TEXT_PLAIN_VALUE
 	 * produces = "text/plain;charset=UTF-8"
 	 * </pre>
-	 * <p>If a declared media type contains a parameter (e.g. "charset=UTF-8",
-	 * "type=feed", "type=entry") and if a compatible media type from the request
-	 * has that parameter too, then the parameter values must match. Otherwise
-	 * if the media type from the request does not contain the parameter, it is
-	 * assumed the client accepts any value.
-	 * <p>Expressions can be negated by using the "!" operator, as in "!text/plain",
-	 * which matches all requests with a {@code Accept} other than "text/plain".
-	 * <p><b>Supported at the type level as well as at the method level!</b>
-	 * If specified at both levels, the method level produces condition overrides
-	 * the type level condition.
+	 * <p>如果声明的媒体类型包含参数（例如 "charset=UTF-8"、"type=feed"、
+	 * "type=entry"），并且来自请求的兼容媒体类型也具有该参数，
+	 * 则参数值必须匹配。否则，如果来自请求的媒体类型不包含该参数，
+	 * 则假定客户端接受任何值。
+	 * <p>可以使用 "!" 运算符对表达式取反，如 "!text/plain"，
+	 * 它匹配 {@code Accept} 不是 "text/plain" 的所有请求。
+	 * <p><b>类型级别和方法级别均支持！</b>
+	 * 如果在两个级别都指定，方法级别的 produces 条件会覆盖类型级别的条件。
 	 * @see org.springframework.http.MediaType
 	 */
 	String[] produces() default {};

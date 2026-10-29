@@ -27,13 +27,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Configures basic date formatting for use with Spring, primarily for
- * {@link org.springframework.format.annotation.DateTimeFormat} declarations.
- * Applies to fields of type {@link Date}, {@link Calendar} and {@code long}.
+ * 为 Spring 配置基本的日期格式化，主要用于
+ * {@link org.springframework.format.annotation.DateTimeFormat} 声明。适用于 {@link Date}、
+ * {@link Calendar} 和 {@code long} 类型的字段。
  *
- * <p>Designed for direct instantiation but also exposes the static
- * {@link #addDateConverters(ConverterRegistry)} utility method for
- * ad-hoc use against any {@code ConverterRegistry} instance.
+ * <p>设计为可直接实例化，同时也暴露静态的 {@link #addDateConverters(ConverterRegistry)} 工具方法，
+ * 以便针对任意 {@code ConverterRegistry} 实例临时使用。
  *
  * @author Phillip Webb
  * @since 3.2
@@ -48,9 +47,8 @@ public class DateFormatterRegistrar implements FormatterRegistrar {
 
 
 	/**
-	 * Set a global date formatter to register.
-	 * <p>If not specified, no general formatter for non-annotated
-	 * {@link Date} and {@link Calendar} fields will be registered.
+	 * 设置要注册的全局日期格式化器。<p>如果未指定，则不会为未标注注解的 {@link Date} 和
+	 * {@link Calendar} 字段注册通用格式化器。
 	 */
 	public void setFormatter(DateFormatter dateFormatter) {
 		Assert.notNull(dateFormatter, "DateFormatter must not be null");
@@ -71,7 +69,7 @@ public class DateFormatterRegistrar implements FormatterRegistrar {
 	}
 
 	/**
-	 * Add date converters to the specified registry.
+	 * 将日期转换器添加到指定的注册表。
 	 * @param converterRegistry the registry of converters to add to
 	 */
 	public static void addDateConverters(ConverterRegistry converterRegistry) {

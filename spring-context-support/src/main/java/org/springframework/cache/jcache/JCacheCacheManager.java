@@ -28,10 +28,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.cache.CacheManager} implementation
- * backed by a JCache {@link CacheManager javax.cache.CacheManager}.
+ * 由 JCache {@link CacheManager javax.cache.CacheManager} 提供支持的
+ * {@link org.springframework.cache.CacheManager} 实现。
  *
- * <p>Note: This class has been updated for JCache 1.0, as of Spring 4.0.
+ * <p>注意：此类已针对 JCache 1.0 更新，从 Spring 4.0 开始。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -47,17 +47,17 @@ public class JCacheCacheManager extends AbstractTransactionSupportingCacheManage
 
 
 	/**
-	 * Create a new {@code JCacheCacheManager} without a backing JCache
-	 * {@link CacheManager javax.cache.CacheManager}.
-	 * <p>The backing JCache {@code javax.cache.CacheManager} can be set via the
-	 * {@link #setCacheManager} bean property.
+	 * 创建一个新的 {@code JCacheCacheManager}，不设置底层的 JCache
+	 * {@link CacheManager javax.cache.CacheManager}。
+	 * <p>底层的 JCache {@code javax.cache.CacheManager} 可以通过
+	 * {@link #setCacheManager} bean 属性进行设置。
 	 */
 	public JCacheCacheManager() {
 	}
 
 	/**
-	 * Create a new {@code JCacheCacheManager} for the given backing JCache
-	 * {@link CacheManager javax.cache.CacheManager}.
+	 * 为给定的底层 JCache {@link CacheManager javax.cache.CacheManager}
+	 * 创建一个新的 {@code JCacheCacheManager}。
 	 * @param cacheManager the backing JCache {@code javax.cache.CacheManager}
 	 */
 	public JCacheCacheManager(CacheManager cacheManager) {
@@ -66,14 +66,14 @@ public class JCacheCacheManager extends AbstractTransactionSupportingCacheManage
 
 
 	/**
-	 * Set the backing JCache {@link CacheManager javax.cache.CacheManager}.
+	 * 设置底层的 JCache {@link CacheManager javax.cache.CacheManager}。
 	 */
 	public void setCacheManager(@Nullable CacheManager cacheManager) {
 		this.cacheManager = cacheManager;
 	}
 
 	/**
-	 * Return the backing JCache {@link CacheManager javax.cache.CacheManager}.
+	 * 返回底层的 JCache {@link CacheManager javax.cache.CacheManager}。
 	 */
 	@Nullable
 	public CacheManager getCacheManager() {
@@ -81,18 +81,16 @@ public class JCacheCacheManager extends AbstractTransactionSupportingCacheManage
 	}
 
 	/**
-	 * Specify whether to accept and convert {@code null} values for all caches
-	 * in this cache manager.
-	 * <p>Default is "true", despite JSR-107 itself not supporting {@code null} values.
-	 * An internal holder object will be used to store user-level {@code null}s.
+	 * 指定此缓存管理器中所有缓存是否接受并转换 {@code null} 值。
+	 * <p>默认为 "true"，尽管 JSR-107 本身不支持 {@code null} 值。
+	 * 将使用内部持有器对象来存储用户级别的 {@code null}。
 	 */
 	public void setAllowNullValues(boolean allowNullValues) {
 		this.allowNullValues = allowNullValues;
 	}
 
 	/**
-	 * Return whether this cache manager accepts and converts {@code null} values
-	 * for all of its caches.
+	 * 返回此缓存管理器是否为其所有缓存接受并转换 {@code null} 值。
 	 */
 	public boolean isAllowNullValues() {
 		return this.allowNullValues;

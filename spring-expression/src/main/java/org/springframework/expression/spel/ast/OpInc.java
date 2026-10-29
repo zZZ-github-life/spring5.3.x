@@ -28,8 +28,7 @@ import org.springframework.expression.spel.SpelMessage;
 import org.springframework.util.Assert;
 
 /**
- * Increment operator. Can be used in a prefix or postfix form. This will throw
- * appropriate exceptions if the operand in question does not support increment.
+ * 递增运算符。可用于前缀或后缀形式。如果相关操作数不支持递增，将抛出适当的异常。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

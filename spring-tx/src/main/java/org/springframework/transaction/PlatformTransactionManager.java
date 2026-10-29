@@ -19,22 +19,21 @@ package org.springframework.transaction;
 import org.springframework.lang.Nullable;
 
 /**
- * This is the central interface in Spring's imperative transaction infrastructure.
- * Applications can use this directly, but it is not primarily meant as an API:
- * Typically, applications will work with either TransactionTemplate or
- * declarative transaction demarcation through AOP.
+ * 这是 Spring 命令式事务基础设施中的核心接口。
+ * 应用程序可以直接使用它，但它主要不是作为 API 使用的：
+ * 通常，应用程序会使用 TransactionTemplate 或通过 AOP 进行
+ * 声明式事务界定。
  *
- * <p>For implementors, it is recommended to derive from the provided
+ * <p>对于实现者，建议从提供的
  * {@link org.springframework.transaction.support.AbstractPlatformTransactionManager}
- * class, which pre-implements the defined propagation behavior and takes care
- * of transaction synchronization handling. Subclasses have to implement
- * template methods for specific states of the underlying transaction,
- * for example: begin, suspend, resume, commit.
+ * 类派生，该类预实现了已定义的事务传播行为，并负责事务同步处理。
+ * 子类必须为底层事务的特定状态实现模板方法，
+ * 例如：begin、suspend、resume、commit。
  *
- * <p>The default implementations of this strategy interface are
- * {@link org.springframework.transaction.jta.JtaTransactionManager} and
- * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager},
- * which can serve as an implementation guide for other transaction strategies.
+ * <p>此策略接口的默认实现有
+ * {@link org.springframework.transaction.jta.JtaTransactionManager} 和
+ * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}，
+ * 它们可以作为其他事务策略实现的参考指南。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -46,16 +45,13 @@ import org.springframework.lang.Nullable;
 public interface PlatformTransactionManager extends TransactionManager {
 
 	/**
-	 * Return a currently active transaction or create a new one, according to
-	 * the specified propagation behavior.
-	 * <p>Note that parameters like isolation level or timeout will only be applied
-	 * to new transactions, and thus be ignored when participating in active ones.
-	 * <p>Furthermore, not all transaction definition settings will be supported
-	 * by every transaction manager: A proper transaction manager implementation
-	 * should throw an exception when unsupported settings are encountered.
-	 * <p>An exception to the above rule is the read-only flag, which should be
-	 * ignored if no explicit read-only mode is supported. Essentially, the
-	 * read-only flag is just a hint for potential optimization.
+	 * 根据指定的传播行为返回当前活跃的事务或创建一个新事务。
+	 * <p>请注意，隔离级别或超时等参数仅会应用于新事务，
+	 * 因此在参与现有活跃事务时会被忽略。
+	 * <p>此外，并非所有事务管理器都支持每种事务定义设置：
+	 * 正确的事务管理器实现遇到不支持的设置时应抛出异常。
+	 * <p>上述规则的一个例外是只读标志，如果不支持显式的只读模式，
+	 * 则应忽略该标志。本质上，只读标志只是一个潜在优化的提示。
 	 * @param definition the TransactionDefinition instance (can be {@code null} for defaults),
 	 * describing propagation behavior, isolation level, timeout etc.
 	 * @return transaction status object representing the new or current transaction
@@ -72,21 +68,16 @@ public interface PlatformTransactionManager extends TransactionManager {
 			throws TransactionException;
 
 	/**
-	 * Commit the given transaction, with regard to its status. If the transaction
-	 * has been marked rollback-only programmatically, perform a rollback.
-	 * <p>If the transaction wasn't a new one, omit the commit for proper
-	 * participation in the surrounding transaction. If a previous transaction
-	 * has been suspended to be able to create a new one, resume the previous
-	 * transaction after committing the new one.
-	 * <p>Note that when the commit call completes, no matter if normally or
-	 * throwing an exception, the transaction must be fully completed and
-	 * cleaned up. No rollback call should be expected in such a case.
-	 * <p>If this method throws an exception other than a TransactionException,
-	 * then some before-commit error caused the commit attempt to fail. For
-	 * example, an O/R Mapping tool might have tried to flush changes to the
-	 * database right before commit, with the resulting DataAccessException
-	 * causing the transaction to fail. The original exception will be
-	 * propagated to the caller of this commit method in such a case.
+	 * 根据事务的状态提交给定的事务。如果事务已被程序化地标记为仅回滚，则执行回滚。
+	 * <p>如果事务不是新事务，则省略提交以正确参与周围的事务。
+	 * 如果之前的一个事务被挂起以便创建一个新事务，则在提交新事务后恢复之前的事务。
+	 * <p>请注意，当 commit 调用完成时，无论是正常完成还是抛出异常，
+	 * 事务都必须被完全完成和清理。在这种情况下不应期望再调用 rollback。
+	 * <p>如果此方法抛出了 TransactionException 以外的异常，
+	 * 则表示某些提交前的错误导致提交尝试失败。例如，
+	 * 一个 O/R Mapping 工具可能在提交前尝试将更改刷新到数据库，
+	 * 由此产生的 DataAccessException 导致事务失败。
+	 * 在这种情况下，原始异常将传播到此 commit 方法的调用者。
 	 * @param status object returned by the {@code getTransaction} method
 	 * @throws UnexpectedRollbackException in case of an unexpected rollback
 	 * that the transaction coordinator initiated
@@ -101,15 +92,12 @@ public interface PlatformTransactionManager extends TransactionManager {
 	void commit(TransactionStatus status) throws TransactionException;
 
 	/**
-	 * Perform a rollback of the given transaction.
-	 * <p>If the transaction wasn't a new one, just set it rollback-only for proper
-	 * participation in the surrounding transaction. If a previous transaction
-	 * has been suspended to be able to create a new one, resume the previous
-	 * transaction after rolling back the new one.
-	 * <p><b>Do not call rollback on a transaction if commit threw an exception.</b>
-	 * The transaction will already have been completed and cleaned up when commit
-	 * returns, even in case of a commit exception. Consequently, a rollback call
-	 * after commit failure will lead to an IllegalTransactionStateException.
+	 * 对给定的事务执行回滚。
+	 * <p>如果事务不是新事务，则将其设置为仅回滚，以正确参与周围的事务。
+	 * 如果之前的一个事务被挂起以便创建一个新事务，则在新事务回滚后恢复之前的事务。
+	 * <p><b>如果 commit 抛出异常，不要对事务调用 rollback。</b>
+	 * 事务在 commit 返回时已经被完成和清理，即使在 commit 异常的情况下也是如此。
+	 * 因此，在 commit 失败后调用 rollback 将导致 IllegalTransactionStateException。
 	 * @param status object returned by the {@code getTransaction} method
 	 * @throws TransactionSystemException in case of rollback or system errors
 	 * (typically caused by fundamental resource failures)

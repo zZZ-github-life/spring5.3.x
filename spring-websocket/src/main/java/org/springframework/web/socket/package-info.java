@@ -1,5 +1,5 @@
 /**
- * Common abstractions and Spring configuration support for WebSocket applications.
+ * WebSocket 应用程序的通用抽象和 Spring 配置支持。
  */
 @NonNullApi
 @NonNullFields

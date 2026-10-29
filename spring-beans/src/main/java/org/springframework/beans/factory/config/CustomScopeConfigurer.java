@@ -28,16 +28,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Simple {@link BeanFactoryPostProcessor} implementation that registers
- * custom {@link Scope Scope(s)} with the containing {@link ConfigurableBeanFactory}.
+ * 简单的 {@link BeanFactoryPostProcessor} 实现，用于向所属的 {@link ConfigurableBeanFactory} 注册
+ * 自定义的 {@link Scope Scope(s)}。
  *
- * <p>Will register all of the supplied {@link #setScopes(java.util.Map) scopes}
- * with the {@link ConfigurableListableBeanFactory} that is passed to the
- * {@link #postProcessBeanFactory(ConfigurableListableBeanFactory)} method.
+ * <p>会将所有提供的 {@link #setScopes(java.util.Map) scopes} 注册到传递给
+ * {@link #postProcessBeanFactory(ConfigurableListableBeanFactory)} 方法的
+ * {@link ConfigurableListableBeanFactory} 中。
  *
- * <p>This class allows for <i>declarative</i> registration of custom scopes.
- * Alternatively, consider implementing a custom {@link BeanFactoryPostProcessor}
- * that calls {@link ConfigurableBeanFactory#registerScope} programmatically.
+ * <p>此类允许<i>声明式</i>地注册自定义作用域。或者，可以考虑实现一个自定义的
+ * {@link BeanFactoryPostProcessor}，以编程方式调用 {@link ConfigurableBeanFactory#registerScope}。
  *
  * @author Juergen Hoeller
  * @author Rick Evans
@@ -56,17 +55,15 @@ public class CustomScopeConfigurer implements BeanFactoryPostProcessor, BeanClas
 
 
 	/**
-	 * Specify the custom scopes that are to be registered.
-	 * <p>The keys indicate the scope names (of type String); each value
-	 * is expected to be the corresponding custom {@link Scope} instance
-	 * or class name.
+	 * 指定要注册的自定义作用域。
+	 * <p>键表示作用域名称（String 类型）；每个值应为对应的自定义 {@link Scope} 实例或类名。
 	 */
 	public void setScopes(Map<String, Object> scopes) {
 		this.scopes = scopes;
 	}
 
 	/**
-	 * Add the given scope to this configurer's map of scopes.
+	 * 将给定作用域添加到此配置器的作用域映射中。
 	 * @param scopeName the name of the scope
 	 * @param scope the scope implementation
 	 * @since 4.1.1

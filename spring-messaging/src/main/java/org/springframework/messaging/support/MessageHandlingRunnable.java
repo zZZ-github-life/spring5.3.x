@@ -20,8 +20,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
 
 /**
- * Extension of the {@link Runnable} interface with methods to obtain the
- * {@link MessageHandler} and {@link Message} to be handled.
+ * {@link Runnable} 接口的扩展，提供获取待处理 {@link MessageHandler} 和
+ * {@link Message} 的方法。
  *
  * @author Rossen Stoyanchev
  * @since 4.1.1
@@ -29,12 +29,12 @@ import org.springframework.messaging.MessageHandler;
 public interface MessageHandlingRunnable extends Runnable {
 
 	/**
-	 * Return the Message that will be handled.
+	 * 返回将要处理的 Message。
 	 */
 	Message<?> getMessage();
 
 	/**
-	 * Return the MessageHandler that will be used to handle the message.
+	 * 返回将用于处理消息的 MessageHandler。
 	 */
 	MessageHandler getMessageHandler();
 

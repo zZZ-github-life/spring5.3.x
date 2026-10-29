@@ -28,11 +28,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Mock implementation of the {@link org.springframework.web.multipart.MultipartFile}
- * interface.
+ * {@link org.springframework.web.multipart.MultipartFile}
+ * 接口的 mock 实现。
  *
- * <p>Useful in conjunction with a {@link MockMultipartHttpServletRequest}
- * for testing application controllers that access multipart uploads.
+ * <p>与 {@link MockMultipartHttpServletRequest} 结合使用，
+ * 可测试访问 multipart 上传的应用程序控制器。
  *
  * @author Juergen Hoeller
  * @author Eric Crampton
@@ -52,7 +52,7 @@ public class MockMultipartFile implements MultipartFile {
 
 
 	/**
-	 * Create a new MockMultipartFile with the given content.
+	 * 使用给定内容创建一个新的 MockMultipartFile。
 	 * @param name the name of the file
 	 * @param content the content of the file
 	 */
@@ -61,7 +61,7 @@ public class MockMultipartFile implements MultipartFile {
 	}
 
 	/**
-	 * Create a new MockMultipartFile with the given content.
+	 * 使用给定内容创建一个新的 MockMultipartFile。
 	 * @param name the name of the file
 	 * @param contentStream the content of the file as stream
 	 * @throws IOException if reading from the stream failed
@@ -71,7 +71,7 @@ public class MockMultipartFile implements MultipartFile {
 	}
 
 	/**
-	 * Create a new MockMultipartFile with the given content.
+	 * 使用给定内容创建一个新的 MockMultipartFile。
 	 * @param name the name of the file
 	 * @param originalFilename the original filename (as on the client's machine)
 	 * @param contentType the content type (if known)
@@ -88,7 +88,7 @@ public class MockMultipartFile implements MultipartFile {
 	}
 
 	/**
-	 * Create a new MockMultipartFile with the given content.
+	 * 使用给定内容创建一个新的 MockMultipartFile。
 	 * @param name the name of the file
 	 * @param originalFilename the original filename (as on the client's machine)
 	 * @param contentType the content type (if known)

@@ -21,9 +21,9 @@ import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;
 
 /**
- * A ConversionNotSupportedException raised while resolving a method argument.
- * Provides access to the target {@link org.springframework.core.MethodParameter
- * MethodParameter}.
+ * 在解析方法参数时引发的 ConversionNotSupportedException。
+ * 提供对目标 {@link org.springframework.core.MethodParameter
+ * MethodParameter} 的访问。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -46,14 +46,14 @@ public class MethodArgumentConversionNotSupportedException extends ConversionNot
 
 
 	/**
-	 * Return the name of the method argument.
+	 * 返回方法参数的名称。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * Return the target method parameter.
+	 * 返回目标方法参数。
 	 */
 	public MethodParameter getParameter() {
 		return this.parameter;

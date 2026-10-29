@@ -23,8 +23,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A {@link JmsListenerEndpoint} simply providing the {@link MessageListener} to
- * invoke to process an incoming message for this endpoint.
+ * {@link JmsListenerEndpoint}，仅提供要调用来处理此端点传入消息的
+ * {@link MessageListener}。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -36,16 +36,14 @@ public class SimpleJmsListenerEndpoint extends AbstractJmsListenerEndpoint {
 
 
 	/**
-	 * Set the {@link MessageListener} to invoke when a message matching
-	 * the endpoint is received.
+	 * 设置接收到与端点匹配的消息时要调用的 {@link MessageListener}。
 	 */
 	public void setMessageListener(@Nullable MessageListener messageListener) {
 		this.messageListener = messageListener;
 	}
 
 	/**
-	 * Return the {@link MessageListener} to invoke when a message matching
-	 * the endpoint is received.
+	 * 返回接收到与端点匹配的消息时要调用的 {@link MessageListener}。
 	 */
 	@Nullable
 	public MessageListener getMessageListener() {

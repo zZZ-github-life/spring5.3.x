@@ -31,13 +31,13 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
 /**
- * Convenient base class for {@link org.springframework.web.servlet.ViewResolver}
- * implementations. Caches {@link org.springframework.web.servlet.View} objects
- * once resolved: This means that view resolution won't be a performance problem,
- * no matter how costly initial view retrieval is.
+ * {@link org.springframework.web.servlet.ViewResolver} 实现的便捷基类。
+ * 一旦解析完成，便缓存 {@link org.springframework.web.servlet.View} 对象：
+ * 这意味着无论初始视图获取的代价有多高，
+ * 视图解析都不会成为性能问题。
  *
- * <p>Subclasses need to implement the {@link #loadView} template method,
- * building the View object for a specific view name and locale.
+ * <p>子类需要实现 {@link #loadView} 模板方法，
+ * 为特定的视图名称和区域设置构建 View 对象。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -45,10 +45,10 @@ import org.springframework.web.servlet.ViewResolver;
  */
 public abstract class AbstractCachingViewResolver extends WebApplicationObjectSupport implements ViewResolver {
 
-	/** Default maximum number of entries for the view cache: 1024. */
+	/** 视图缓存的默认最大条目数：1024。 */
 	public static final int DEFAULT_CACHE_LIMIT = 1024;
 
-	/** Dummy marker object for unresolved views in the cache Maps. */
+	/** 缓存 Map 中用于表示未解析视图的占位标记对象。 */
 	private static final View UNRESOLVED_VIEW = new View() {
 		@Override
 		@Nullable
@@ -60,23 +60,23 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 		}
 	};
 
-	/** Default cache filter that always caches. */
+	/** 始终进行缓存的默认缓存过滤器。 */
 	private static final CacheFilter DEFAULT_CACHE_FILTER = (view, viewName, locale) -> true;
 
 
-	/** The maximum number of entries in the cache. */
+	/** 缓存中的最大条目数。 */
 	private volatile int cacheLimit = DEFAULT_CACHE_LIMIT;
 
-	/** Whether we should refrain from resolving views again if unresolved once. */
+	/** 是否在某个视图一次解析失败后不再重复解析。 */
 	private boolean cacheUnresolved = true;
 
-	/** Filter function that determines if view should be cached. */
+	/** 用于判断视图是否应被缓存的过滤器函数。 */
 	private CacheFilter cacheFilter = DEFAULT_CACHE_FILTER;
 
-	/** Fast access cache for Views, returning already cached instances without a global lock. */
+	/** 用于快速访问 View 的缓存，无需全局锁即可返回已缓存的实例。 */
 	private final Map<Object, View> viewAccessCache = new ConcurrentHashMap<>(DEFAULT_CACHE_LIMIT);
 
-	/** Map from view key to View instance, synchronized for View creation. */
+	/** 从视图键到 View 实例的映射，在创建 View 时进行同步。 */
 	@SuppressWarnings("serial")
 	private final Map<Object, View> viewCreationCache =
 			new LinkedHashMap<Object, View>(DEFAULT_CACHE_LIMIT, 0.75f, true) {
@@ -94,64 +94,64 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 
 
 	/**
-	 * Specify the maximum number of entries for the view cache.
-	 * Default is 1024.
+	 * 指定视图缓存的最大条目数。
+	 * 默认为 1024。
 	 */
 	public void setCacheLimit(int cacheLimit) {
 		this.cacheLimit = cacheLimit;
 	}
 
 	/**
-	 * Return the maximum number of entries for the view cache.
+	 * 返回视图缓存的最大条目数。
 	 */
 	public int getCacheLimit() {
 		return this.cacheLimit;
 	}
 
 	/**
-	 * Enable or disable caching.
-	 * <p>This is equivalent to setting the {@link #setCacheLimit "cacheLimit"}
-	 * property to the default limit (1024) or to 0, respectively.
-	 * <p>Default is "true": caching is enabled.
-	 * Disable this only for debugging and development.
+	 * 启用或禁用缓存。
+	 * <p>这等效于将 {@link #setCacheLimit "cacheLimit"}
+	 * 属性分别设置为默认上限（1024）或 0。
+	 * <p>默认值为 "true"：启用缓存。
+	 * 仅出于调试和开发目的才禁用此功能。
 	 */
 	public void setCache(boolean cache) {
 		this.cacheLimit = (cache ? DEFAULT_CACHE_LIMIT : 0);
 	}
 
 	/**
-	 * Return if caching is enabled.
+	 * 返回是否启用了缓存。
 	 */
 	public boolean isCache() {
 		return (this.cacheLimit > 0);
 	}
 
 	/**
-	 * Whether a view name once resolved to {@code null} should be cached and
-	 * automatically resolved to {@code null} subsequently.
-	 * <p>Default is "true": unresolved view names are being cached, as of Spring 3.1.
-	 * Note that this flag only applies if the general {@link #setCache "cache"}
-	 * flag is kept at its default of "true" as well.
-	 * <p>Of specific interest is the ability for some AbstractUrlBasedView
-	 * implementations (FreeMarker, Tiles) to check if an underlying resource
-	 * exists via {@link AbstractUrlBasedView#checkResource(Locale)}.
-	 * With this flag set to "false", an underlying resource that re-appears
-	 * is noticed and used. With the flag set to "true", one check is made only.
+	 * 某个视图名称一旦解析为 {@code null}，是否应被缓存并
+	 * 在后续自动解析为 {@code null}。
+	 * <p>默认值为 "true"：自 Spring 3.1 起，未解析的视图名称会被缓存。
+	 * 请注意，此标志仅在通用 {@link #setCache "cache"}
+	 * 标志也保持默认值 "true" 时才生效。
+	 * <p>特别值得关注的是，某些 AbstractUrlBasedView
+	 * 实现（FreeMarker、Tiles）能够通过 {@link AbstractUrlBasedView#checkResource(Locale)}
+	 * 检查底层资源是否存在。
+	 * 当此标志设为 "false" 时，重新出现的底层资源会被发现并使用。
+	 * 当此标志设为 "true" 时，仅进行一次检查。
 	 */
 	public void setCacheUnresolved(boolean cacheUnresolved) {
 		this.cacheUnresolved = cacheUnresolved;
 	}
 
 	/**
-	 * Return if caching of unresolved views is enabled.
+	 * 返回是否启用了对未解析视图的缓存。
 	 */
 	public boolean isCacheUnresolved() {
 		return this.cacheUnresolved;
 	}
 
 	/**
-	 * Sets the filter that determines if view should be cached.
-	 * Default behaviour is to cache all views.
+	 * 设置用于判断视图是否应被缓存的过滤器。
+	 * 默认行为是缓存所有视图。
 	 * @since 5.2
 	 */
 	public void setCacheFilter(CacheFilter cacheFilter) {
@@ -160,7 +160,7 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	}
 
 	/**
-	 * Return filter function that determines if view should be cached.
+	 * 返回用于判断视图是否应被缓存的过滤器函数。
 	 * @since 5.2
 	 */
 	public CacheFilter getCacheFilter() {
@@ -206,21 +206,21 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	}
 
 	/**
-	 * Return the cache key for the given view name and the given locale.
-	 * <p>Default is a String consisting of view name and locale suffix.
-	 * Can be overridden in subclasses.
-	 * <p>Needs to respect the locale in general, as a different locale can
-	 * lead to a different view resource.
+	 * 返回给定视图名称和给定区域设置的缓存键。
+	 * <p>默认是由视图名称和区域设置后缀组成的 String。
+	 * 可在子类中重写。
+	 * <p>总体上需要考虑区域设置，因为不同的区域设置可能
+	 * 导致使用不同的视图资源。
 	 */
 	protected Object getCacheKey(String viewName, Locale locale) {
 		return viewName + '_' + locale;
 	}
 
 	/**
-	 * Provides functionality to clear the cache for a certain view.
-	 * <p>This can be handy in case developer are able to modify views
-	 * (e.g. FreeMarker templates) at runtime after which you'd need to
-	 * clear the cache for the specified view.
+	 * 提供清除特定视图缓存的功能。
+	 * <p>如果开发者能够在运行时修改视图
+	 * （例如 FreeMarker 模板），随后需要清除指定视图的
+	 * 缓存，此功能会很方便。
 	 * @param viewName the view name for which the cached view object
 	 * (if any) needs to be removed
 	 * @param locale the locale for which the view object should be removed
@@ -245,8 +245,8 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	}
 
 	/**
-	 * Clear the entire view cache, removing all cached view objects.
-	 * Subsequent resolve calls will lead to recreation of demanded view objects.
+	 * 清除整个视图缓存，移除所有已缓存的视图对象。
+	 * 后续的解析调用将重新创建所需的视图对象。
 	 */
 	public void clearCache() {
 		logger.debug("Clearing all views from the cache");
@@ -258,11 +258,10 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 
 
 	/**
-	 * Create the actual View object.
-	 * <p>The default implementation delegates to {@link #loadView}.
-	 * This can be overridden to resolve certain view names in a special fashion,
-	 * before delegating to the actual {@code loadView} implementation
-	 * provided by the subclass.
+	 * 创建实际的 View 对象。
+	 * <p>默认实现委托给 {@link #loadView}。
+	 * 可以重写此方法以特殊方式解析特定的视图名称，
+	 * 然后再委托给子类提供的实际 {@code loadView} 实现。
 	 * @param viewName the name of the view to retrieve
 	 * @param locale the Locale to retrieve the view for
 	 * @return the View instance, or {@code null} if not found
@@ -276,11 +275,11 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	}
 
 	/**
-	 * Subclasses must implement this method, building a View object
-	 * for the specified view. The returned View objects will be
-	 * cached by this ViewResolver base class.
-	 * <p>Subclasses are not forced to support internationalization:
-	 * A subclass that does not may simply ignore the locale parameter.
+	 * 子类必须实现此方法，为指定的视图构建 View 对象。
+	 * 返回的 View 对象将由此 ViewResolver 基类
+	 * 进行缓存。
+	 * <p>不强制子类支持国际化：
+	 * 不支持的子类可以简单地忽略 locale 参数。
 	 * @param viewName the name of the view to retrieve
 	 * @param locale the Locale to retrieve the view for
 	 * @return the View instance, or {@code null} if not found
@@ -293,7 +292,7 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 
 
 	/**
-	 * Filter that determines if view should be cached.
+	 * 用于判断视图是否应被缓存的过滤器。
 	 *
 	 * @author Sergey Galkin
 	 * @author Arjen Poutsma
@@ -303,8 +302,8 @@ public abstract class AbstractCachingViewResolver extends WebApplicationObjectSu
 	public interface CacheFilter {
 
 		/**
-		 * Indicates whether the given view should be cached.
-		 * The name and locale used to resolve the view are also provided.
+		 * 指示给定的视图是否应被缓存。
+		 * 同时提供用于解析该视图的名称和区域设置。
 		 * @param view the view
 		 * @param viewName the name used to resolve the {@code view}
 		 * @param locale the locale used to resolve the {@code view}

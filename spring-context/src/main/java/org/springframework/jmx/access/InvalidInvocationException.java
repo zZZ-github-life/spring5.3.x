@@ -19,8 +19,7 @@ package org.springframework.jmx.access;
 import javax.management.JMRuntimeException;
 
 /**
- * Thrown when trying to invoke an operation on a proxy that is not exposed
- * by the proxied MBean resource's management interface.
+ * 当尝试在代理上调用被代理 MBean 资源的管理接口未暴露的操作时抛出。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -31,8 +30,7 @@ import javax.management.JMRuntimeException;
 public class InvalidInvocationException extends JMRuntimeException {
 
 	/**
-	 * Create a new {@code InvalidInvocationException} with the supplied
-	 * error message.
+	 * 使用提供的错误消息创建新的 {@code InvalidInvocationException}。
 	 * @param msg the detail message
 	 */
 	public InvalidInvocationException(String msg) {

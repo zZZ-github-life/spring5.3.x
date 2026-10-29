@@ -34,8 +34,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MethodInvoker;
 
 /**
- * Utility methods used by the reflection resolver code to discover the appropriate
- * methods/constructors and fields that should be used in expressions.
+ * 反射解析器代码使用的工具方法，用于发现表达式中应使用的适当方法/构造器和字段。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -45,9 +44,8 @@ import org.springframework.util.MethodInvoker;
 public abstract class ReflectionHelper {
 
 	/**
-	 * Compare argument arrays and return information about whether they match.
-	 * A supplied type converter and conversionAllowed flag allow for matches to take
-	 * into account that a type may be transformed into a different type by the converter.
+	 * 比较参数数组，并返回它们是否匹配的信息。所提供的类型转换器和 conversionAllowed 标志使匹配过程能
+	 * 够考虑类型可能被转换器转换为另一种类型的情况。
 	 * @param expectedArgTypes the types the method/constructor is expecting
 	 * @param suppliedArgTypes the types that are being supplied at the point of invocation
 	 * @param typeConverter a registered type converter
@@ -89,7 +87,7 @@ public abstract class ReflectionHelper {
 	}
 
 	/**
-	 * Based on {@link MethodInvoker#getTypeDifferenceWeight(Class[], Object[])} but operates on TypeDescriptors.
+	 * 基于 {@link MethodInvoker#getTypeDifferenceWeight(Class[], Object[])}，但作用于 TypeDescriptor。
 	 */
 	public static int getTypeDifferenceWeight(List<TypeDescriptor> paramTypes, List<TypeDescriptor> argTypes) {
 		int result = 0;
@@ -132,10 +130,8 @@ public abstract class ReflectionHelper {
 	}
 
 	/**
-	 * Compare argument arrays and return information about whether they match.
-	 * A supplied type converter and conversionAllowed flag allow for matches to
-	 * take into account that a type may be transformed into a different type by the
-	 * converter. This variant of compareArguments also allows for a varargs match.
+	 * 比较参数数组，并返回它们是否匹配的信息。所提供的类型转换器和 conversionAllowed 标志使匹配过程能
+	 * 够考虑类型可能被转换器转换为另一种类型的情况。compareArguments 的这个变体还支持可变参数匹配。
 	 * @param expectedArgTypes the types the method/constructor is expecting
 	 * @param suppliedArgTypes the types that are being supplied at the point of invocation
 	 * @param typeConverter a registered type converter
@@ -233,12 +229,11 @@ public abstract class ReflectionHelper {
 
 	// TODO could do with more refactoring around argument handling and varargs
 	/**
-	 * Convert a supplied set of arguments into the requested types. If the parameterTypes are related to
-	 * a varargs method then the final entry in the parameterTypes array is going to be an array itself whose
-	 * component type should be used as the conversion target for extraneous arguments. (For example, if the
-	 * parameterTypes are {Integer, String[]} and the input arguments are {Integer, boolean, float} then both
-	 * the boolean and float must be converted to strings). This method does *not* repackage the arguments
-	 * into a form suitable for the varargs invocation - a subsequent call to setupArgumentsForVarargsInvocation handles that.
+	 * 将提供的一组参数转换为所请求的类型。如果 parameterTypes 与可变参数方法相关，那么 parameterTypes
+	 * 数组的最后一项本身就是一个数组，其组件类型应作为多余参数的转换目标。（例如，如果 parameterTypes
+	 * 为 {Integer, String[]}，输入参数为 {Integer, boolean, float}，则 boolean 和 float 都必须转换为字
+	 * 符串。）此方法*不会*将参数重新打包为适合可变参数调用的形式——后续对
+	 * setupArgumentsForVarargsInvocation 的调用负责处理这一点。
 	 * @param converter the converter to use for type conversions
 	 * @param arguments the arguments to convert to the requested parameter types
 	 * @param method the target Method
@@ -253,8 +248,7 @@ public abstract class ReflectionHelper {
 	}
 
 	/**
-	 * Takes an input set of argument values and converts them to the types specified as the
-	 * required parameter types. The arguments are converted 'in-place' in the input array.
+	 * 接收一组输入参数值，并将其转换为所需参数类型所指定的类型。参数会在输入数组中就地转换。
 	 * @param converter the type converter to use for attempting conversions
 	 * @param arguments the actual arguments that need conversion
 	 * @param executable the target Method or Constructor
@@ -331,7 +325,7 @@ public abstract class ReflectionHelper {
 	}
 
 	/**
-	 * Check if the supplied value is the first entry in the array represented by the possibleArray value.
+	 * 检查所提供的值是否为 possibleArray 值所表示数组中的第一个元素。
 	 * @param value the value to check for in the array
 	 * @param possibleArray an array object that may have the supplied value as the first element
 	 * @return true if the supplied value is the first entry in the array
@@ -350,10 +344,9 @@ public abstract class ReflectionHelper {
 	}
 
 	/**
-	 * Package up the arguments so that they correctly match what is expected in requiredParameterTypes.
-	 * <p>For example, if requiredParameterTypes is {@code (int, String[])} because the second parameter
-	 * was declared {@code String...}, then if arguments is {@code [1,"a","b"]} then it must be
-	 * repackaged as {@code [1,new String[]{"a","b"}]} in order to match the expected types.
+	 * 打包参数，使其正确匹配 requiredParameterTypes 中的预期形式。<p>例如，如果 requiredParameterTypes
+	 * 为 {@code (int, String[])}，因为第二个参数声明为 {@code String...}，而 arguments 为
+	 * {@code [1,"a","b"]}，则必须重新打包为 {@code [1,new String[]{"a","b"}]} 才能匹配预期类型。
 	 * @param requiredParameterTypes the types of the parameters for the invocation
 	 * @param args the arguments to be setup ready for the invocation
 	 * @return a repackaged array of arguments where any varargs setup has been done
@@ -393,27 +386,25 @@ public abstract class ReflectionHelper {
 
 
 	/**
-	 * Arguments match kinds.
+	 * 参数匹配的种类。
 	 */
 	enum ArgumentsMatchKind {
 
-		/** An exact match is where the parameter types exactly match what the method/constructor is expecting. */
+		/** 完全匹配是指参数类型与方法/构造函数所期望的类型完全一致。 */
 		EXACT,
 
-		/** A close match is where the parameter types either exactly match or are assignment-compatible. */
+		/** 近似匹配是指参数类型完全匹配或赋值兼容。 */
 		CLOSE,
 
-		/** A conversion match is where the type converter must be used to transform some of the parameter types. */
+		/** 转换匹配是指必须使用类型转换器来转换部分参数类型。 */
 		REQUIRES_CONVERSION
 	}
 
 
 	/**
-	 * An instance of ArgumentsMatchInfo describes what kind of match was achieved
-	 * between two sets of arguments - the set that a method/constructor is expecting
-	 * and the set that are being supplied at the point of invocation. If the kind
-	 * indicates that conversion is required for some of the arguments then the arguments
-	 * that require conversion are listed in the argsRequiringConversion array.
+	 * ArgumentsMatchInfo 的实例描述了在两组参数之间达成的匹配种类——一组是方法/构造器所期望的参数，另一
+	 * 组是调用时提供的参数。如果该种类表明某些参数需要转换，那么需要转换的参数会列在
+	 * argsRequiringConversion 数组中。
 	 */
 	static class ArgumentsMatchInfo {
 

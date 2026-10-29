@@ -28,8 +28,7 @@
 package org.springframework.asm;
 
 /**
- * The constant pool entries, the BootstrapMethods attribute entries and the (ASM specific) type
- * table entries of a class.
+ * 类的常量池条目、BootstrapMethods 属性条目以及（ASM 专用）类型表条目。
  *
  * @author Eric Bruneton
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.4">JVMS
@@ -40,81 +39,75 @@ package org.springframework.asm;
 final class SymbolTable {
 
   /**
-   * The ClassWriter to which this SymbolTable belongs. This is only used to get access to {@link
-   * ClassWriter#getCommonSuperClass} and to serialize custom attributes with {@link
-   * Attribute#write}.
+   * 此 SymbolTable 所属的 ClassWriter。仅用于访问 {@link ClassWriter#getCommonSuperClass}，以及通过
+   * {@link Attribute#write} 序列化自定义属性。
    */
   final ClassWriter classWriter;
 
   /**
-   * The ClassReader from which this SymbolTable was constructed, or {@literal null} if it was
-   * constructed from scratch.
+   * 构造此 SymbolTable 所使用的 ClassReader；如果是从头构造的，则为 {@literal null}。
    */
   private final ClassReader sourceClassReader;
 
-  /** The major version number of the class to which this symbol table belongs. */
+  /** 此符号表所属类的主版本号。 */
   private int majorVersion;
 
-  /** The internal name of the class to which this symbol table belongs. */
+  /** 此符号表所属类的内部名称。 */
   private String className;
 
   /**
-   * The total number of {@link Entry} instances in {@link #entries}. This includes entries that are
-   * accessible (recursively) via {@link Entry#next}.
+   * {@link #entries} 中 {@link Entry} 实例的总数。其中包括可通过 {@link Entry#next}（递归）访问的条
+   * 目。
    */
   private int entryCount;
 
   /**
-   * A hash set of all the entries in this SymbolTable (this includes the constant pool entries, the
-   * bootstrap method entries and the type table entries). Each {@link Entry} instance is stored at
-   * the array index given by its hash code modulo the array size. If several entries must be stored
-   * at the same array index, they are linked together via their {@link Entry#next} field. The
-   * factory methods of this class make sure that this table does not contain duplicated entries.
+   * 此 SymbolTable 中所有条目的哈希集合（包括常量池条目、引导方法条目和类型表条目）。每个
+   * {@link Entry} 实例存储在其哈希码对数组大小取模所得的数组索引处。如果多个条目必须存储在同一个数组
+   * 索引处，则通过它们的 {@link Entry#next} 字段链接在一起。此类的工厂方法确保此表不包含重复条目。
    */
   private Entry[] entries;
 
   /**
-   * The number of constant pool items in {@link #constantPool}, plus 1. The first constant pool
-   * item has index 1, and long and double items count for two items.
+   * {@link #constantPool} 中常量池项的数量加 1。第一个常量池项的索引为 1，
+   * long 和 double 项各占两项。
    */
   private int constantPoolCount;
 
   /**
-   * The content of the ClassFile's constant_pool JVMS structure corresponding to this SymbolTable.
-   * The ClassFile's constant_pool_count field is <i>not</i> included.
+   * 与此 SymbolTable 对应的 ClassFile 的 constant_pool JVMS 结构的内容。<i>不</i>包含 ClassFile 的
+   * constant_pool_count 字段。
    */
   private ByteVector constantPool;
 
   /**
-   * The number of bootstrap methods in {@link #bootstrapMethods}. Corresponds to the
-   * BootstrapMethods_attribute's num_bootstrap_methods field value.
+   * {@link #bootstrapMethods} 中引导方法的数量。对应于 BootstrapMethods_attribute 的
+   * num_bootstrap_methods 字段值。
    */
   private int bootstrapMethodCount;
 
   /**
-   * The content of the BootstrapMethods attribute 'bootstrap_methods' array corresponding to this
-   * SymbolTable. Note that the first 6 bytes of the BootstrapMethods_attribute, and its
-   * num_bootstrap_methods field, are <i>not</i> included.
+   * 与此 SymbolTable 对应的 BootstrapMethods 属性的 'bootstrap_methods' 数组的内容。注意，<i>不</i>
+   * 包含 BootstrapMethods_attribute 的前 6 个字节及其 num_bootstrap_methods 字段。
    */
   private ByteVector bootstrapMethods;
 
   /**
-   * The actual number of elements in {@link #typeTable}. These elements are stored from index 0 to
-   * typeCount (excluded). The other array entries are empty.
+   * {@link #typeTable} 中元素的实际数量。这些元素从索引 0 存储到 typeCount（不含）。数组的其他条目为
+   * 空。
    */
   private int typeCount;
 
   /**
-   * An ASM specific type table used to temporarily store internal names that will not necessarily
-   * be stored in the constant pool. This type table is used by the control flow and data flow
-   * analysis algorithm used to compute stack map frames from scratch. This array stores {@link
-   * Symbol#TYPE_TAG} and {@link Symbol#UNINITIALIZED_TYPE_TAG}) Symbol. The type symbol at index
-   * {@code i} has its {@link Symbol#index} equal to {@code i} (and vice versa).
+   * 一种 ASM 专用的类型表，用于临时存储不一定会存入常量池的内部名称。此类型表由用于从头计算栈映射帧
+   * 的控制流和数据流分析算法使用。此数组存储 {@link Symbol#TYPE_TAG} 和
+   * {@link Symbol#UNINITIALIZED_TYPE_TAG}) Symbol。索引为 {@code i} 的类型符号的
+   * {@link Symbol#index} 等于 {@code i}（反之亦然）。
    */
   private Entry[] typeTable;
 
   /**
-   * Constructs a new, empty SymbolTable for the given ClassWriter.
+   * 为给定的 ClassWriter 构造一个新的空 SymbolTable。
    *
    * @param classWriter a ClassWriter.
    */
@@ -127,8 +120,7 @@ final class SymbolTable {
   }
 
   /**
-   * Constructs a new SymbolTable for the given ClassWriter, initialized with the constant pool and
-   * bootstrap methods of the given ClassReader.
+   * 为给定的 ClassWriter 构造一个新的 SymbolTable，并使用给定 ClassReader 的常量池和引导方法初始化。
    *
    * @param classWriter a ClassWriter.
    * @param classReader the ClassReader whose constant pool and bootstrap methods must be copied to
@@ -233,8 +225,8 @@ final class SymbolTable {
   }
 
   /**
-   * Read the BootstrapMethods 'bootstrap_methods' array binary content and add them as entries of
-   * the SymbolTable.
+   * 读取 BootstrapMethods 的 'bootstrap_methods' 数组二进制内容，并将它们作为条目添加到 SymbolTable
+   * 中。
    *
    * @param classReader the ClassReader whose bootstrap methods must be copied to initialize the
    *     SymbolTable.
@@ -279,7 +271,7 @@ final class SymbolTable {
   }
 
   /**
-   * Returns the ClassReader from which this SymbolTable was constructed.
+   * 返回构造此 SymbolTable 所使用的 ClassReader。
    *
    * @return the ClassReader from which this SymbolTable was constructed, or {@literal null} if it
    *     was constructed from scratch.
@@ -289,7 +281,7 @@ final class SymbolTable {
   }
 
   /**
-   * Returns the major version of the class to which this symbol table belongs.
+   * 返回此符号表所属类的主版本号。
    *
    * @return the major version of the class to which this symbol table belongs.
    */
@@ -298,7 +290,7 @@ final class SymbolTable {
   }
 
   /**
-   * Returns the internal name of the class to which this symbol table belongs.
+   * 返回此符号表所属类的内部名称。
    *
    * @return the internal name of the class to which this symbol table belongs.
    */
@@ -307,8 +299,7 @@ final class SymbolTable {
   }
 
   /**
-   * Sets the major version and the name of the class to which this symbol table belongs. Also adds
-   * the class name to the constant pool.
+   * 设置此符号表所属类的主版本号和名称。同时将类名添加到常量池中。
    *
    * @param majorVersion a major ClassFile version number.
    * @param className an internal class name.
@@ -321,7 +312,7 @@ final class SymbolTable {
   }
 
   /**
-   * Returns the number of items in this symbol table's constant_pool array (plus 1).
+   * 返回此符号表 constant_pool 数组中的项数（加 1）。
    *
    * @return the number of items in this symbol table's constant_pool array (plus 1).
    */
@@ -330,7 +321,7 @@ final class SymbolTable {
   }
 
   /**
-   * Returns the length in bytes of this symbol table's constant_pool array.
+   * 返回此符号表 constant_pool 数组的字节长度。
    *
    * @return the length in bytes of this symbol table's constant_pool array.
    */
@@ -339,8 +330,7 @@ final class SymbolTable {
   }
 
   /**
-   * Puts this symbol table's constant_pool array in the given ByteVector, preceded by the
-   * constant_pool_count value.
+   * 将此符号表的 constant_pool 数组放入给定的 ByteVector，并在其前面加上 constant_pool_count 值。
    *
    * @param output where the JVMS ClassFile's constant_pool array must be put.
    */
@@ -349,8 +339,7 @@ final class SymbolTable {
   }
 
   /**
-   * Returns the size in bytes of this symbol table's BootstrapMethods attribute. Also adds the
-   * attribute name in the constant pool.
+   * 返回此符号表 BootstrapMethods 属性的字节大小。同时将该属性名添加到常量池中。
    *
    * @return the size in bytes of this symbol table's BootstrapMethods attribute.
    */
@@ -364,8 +353,8 @@ final class SymbolTable {
   }
 
   /**
-   * Puts this symbol table's BootstrapMethods attribute in the given ByteVector. This includes the
-   * 6 attribute header bytes and the num_bootstrap_methods value.
+   * 将此符号表的 BootstrapMethods 属性放入给定的 ByteVector。其中包括 6 个属性头字节和
+   * num_bootstrap_methods 值。
    *
    * @param output where the JVMS BootstrapMethods attribute must be put.
    */
@@ -384,7 +373,7 @@ final class SymbolTable {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the list of entries which can potentially have the given hash code.
+   * 返回可能具有给定哈希码的条目列表。
    *
    * @param hashCode a {@link Entry#hashCode} value.
    * @return the list of entries which can potentially have the given hash code. The list is stored
@@ -395,10 +384,9 @@ final class SymbolTable {
   }
 
   /**
-   * Puts the given entry in the {@link #entries} hash set. This method does <i>not</i> check
-   * whether {@link #entries} already contains a similar entry or not. {@link #entries} is resized
-   * if necessary to avoid hash collisions (multiple entries needing to be stored at the same {@link
-   * #entries} array index) as much as possible, with reasonable memory usage.
+   * 将给定条目放入 {@link #entries} 哈希集合。此方法<i>不</i>检查 {@link #entries} 是否已包含类似条
+   * 目。必要时会调整 {@link #entries} 的大小，以尽可能避免哈希冲突（多个条目需要存储在同一个
+   * {@link #entries} 数组索引处），同时保持合理的内存占用。
    *
    * @param entry an Entry (which must not already be contained in {@link #entries}).
    * @return the given entry
@@ -427,9 +415,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds the given entry in the {@link #entries} hash set. This method does <i>not</i> check
-   * whether {@link #entries} already contains a similar entry or not, and does <i>not</i> resize
-   * {@link #entries} if necessary.
+   * 将给定条目添加到 {@link #entries} 哈希集合。此方法<i>不</i>检查 {@link #entries} 是否已包含类似
+   * 条目，也<i>不</i>在必要时调整 {@link #entries} 的大小。
    *
    * @param entry an Entry (which must not already be contained in {@link #entries}).
    */
@@ -445,8 +432,7 @@ final class SymbolTable {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Adds a number or string constant to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将数字或字符串常量添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value the value of the constant to be added to the constant pool. This parameter must be
    *     an {@link Integer}, {@link Byte}, {@link Character}, {@link Short}, {@link Boolean}, {@link
@@ -503,8 +489,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Class_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Class_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value the internal name of a class.
    * @return a new or already existing Symbol with the given value.
@@ -514,8 +499,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Fieldref_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Fieldref_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param owner the internal name of a class.
    * @param name a field name.
@@ -527,8 +511,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Methodref_info or CONSTANT_InterfaceMethodref_info to the constant pool of this
-   * symbol table. Does nothing if the constant pool already contains a similar item.
+   * 将 CONSTANT_Methodref_info 或 CONSTANT_InterfaceMethodref_info 添加到此符号表的常量池。如果常量
+   * 池中已包含类似项，则不做任何操作。
    *
    * @param owner the internal name of a class.
    * @param name a method name.
@@ -543,9 +527,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Fieldref_info, CONSTANT_Methodref_info or CONSTANT_InterfaceMethodref_info to
-   * the constant pool of this symbol table. Does nothing if the constant pool already contains a
-   * similar item.
+   * 将 CONSTANT_Fieldref_info、CONSTANT_Methodref_info 或 CONSTANT_InterfaceMethodref_info 添加到此
+   * 符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param tag one of {@link Symbol#CONSTANT_FIELDREF_TAG}, {@link Symbol#CONSTANT_METHODREF_TAG}
    *     or {@link Symbol#CONSTANT_INTERFACE_METHODREF_TAG}.
@@ -574,8 +557,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_Fieldref_info, CONSTANT_Methodref_info or CONSTANT_InterfaceMethodref_info
-   * to the constant pool of this symbol table.
+   * 向此符号表的常量池中新增一个 CONSTANT_Fieldref_info、CONSTANT_Methodref_info 或
+   * CONSTANT_InterfaceMethodref_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param tag one of {@link Symbol#CONSTANT_FIELDREF_TAG}, {@link Symbol#CONSTANT_METHODREF_TAG}
@@ -594,8 +577,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_String_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_String_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value a string.
    * @return a new or already existing Symbol with the given value.
@@ -605,8 +587,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Integer_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Integer_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value an int.
    * @return a new or already existing Symbol with the given value.
@@ -616,8 +597,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Float_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Float_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value a float.
    * @return a new or already existing Symbol with the given value.
@@ -627,8 +607,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Integer_info or CONSTANT_Float_info to the constant pool of this symbol table.
-   * Does nothing if the constant pool already contains a similar item.
+   * 将 CONSTANT_Integer_info 或 CONSTANT_Float_info 添加到此符号表的常量池。如果常量池中已包含类似项
+   * ，则不做任何操作。
    *
    * @param tag one of {@link Symbol#CONSTANT_INTEGER_TAG} or {@link Symbol#CONSTANT_FLOAT_TAG}.
    * @param value an int or float.
@@ -648,8 +628,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_Integer_info or CONSTANT_Float_info to the constant pool of this symbol
-   * table.
+   * 向此符号表的常量池中新增一个 CONSTANT_Integer_info 或 CONSTANT_Float_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param tag one of {@link Symbol#CONSTANT_INTEGER_TAG} or {@link Symbol#CONSTANT_FLOAT_TAG}.
@@ -660,8 +639,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Long_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Long_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value a long.
    * @return a new or already existing Symbol with the given value.
@@ -671,8 +649,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Double_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Double_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value a double.
    * @return a new or already existing Symbol with the given value.
@@ -682,8 +659,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Long_info or CONSTANT_Double_info to the constant pool of this symbol table.
-   * Does nothing if the constant pool already contains a similar item.
+   * 将 CONSTANT_Long_info 或 CONSTANT_Double_info 添加到此符号表的常量池。如果常量池中已包含类似项，
+   * 则不做任何操作。
    *
    * @param tag one of {@link Symbol#CONSTANT_LONG_TAG} or {@link Symbol#CONSTANT_DOUBLE_TAG}.
    * @param value a long or double.
@@ -705,8 +682,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_Long_info or CONSTANT_Double_info to the constant pool of this symbol
-   * table.
+   * 向此符号表的常量池中新增一个 CONSTANT_Long_info 或 CONSTANT_Double_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param tag one of {@link Symbol#CONSTANT_LONG_TAG} or {@link Symbol#CONSTANT_DOUBLE_TAG}.
@@ -717,8 +693,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_NameAndType_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_NameAndType_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param name a field or method name.
    * @param descriptor a field or method descriptor.
@@ -742,7 +717,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_NameAndType_info to the constant pool of this symbol table.
+   * 向此符号表的常量池中新增一个 CONSTANT_NameAndType_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param name a field or method name.
@@ -754,8 +729,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Utf8_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Utf8_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param value a string.
    * @return a new or already existing Symbol with the given value.
@@ -776,7 +750,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_String_info to the constant pool of this symbol table.
+   * 向此符号表的常量池中新增一个 CONSTANT_String_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param value a string.
@@ -786,8 +760,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_MethodHandle_info to the constant pool of this symbol table. Does nothing if
-   * the constant pool already contains a similar item.
+   * 将 CONSTANT_MethodHandle_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param referenceKind one of {@link Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link
    *     Opcodes#H_PUTFIELD}, {@link Opcodes#H_PUTSTATIC}, {@link Opcodes#H_INVOKEVIRTUAL}, {@link
@@ -832,7 +805,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_MethodHandle_info to the constant pool of this symbol table.
+   * 向此符号表的常量池中新增一个 CONSTANT_MethodHandle_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param referenceKind one of {@link Opcodes#H_GETFIELD}, {@link Opcodes#H_GETSTATIC}, {@link
@@ -855,8 +828,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_MethodType_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_MethodType_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param methodDescriptor a method descriptor.
    * @return a new or already existing Symbol with the given value.
@@ -866,9 +838,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Dynamic_info to the constant pool of this symbol table. Also adds the related
-   * bootstrap method to the BootstrapMethods of this symbol table. Does nothing if the constant
-   * pool already contains a similar item.
+   * 将 CONSTANT_Dynamic_info 添加到此符号表的常量池。同时将相关的引导方法添加到此符号表的
+   * BootstrapMethods。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param name a method name.
    * @param descriptor a field descriptor.
@@ -887,9 +858,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_InvokeDynamic_info to the constant pool of this symbol table. Also adds the
-   * related bootstrap method to the BootstrapMethods of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_InvokeDynamic_info 添加到此符号表的常量池。同时将相关的引导方法添加到此符号表的
+   * BootstrapMethods。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param name a method name.
    * @param descriptor a method descriptor.
@@ -908,8 +878,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Dynamic or a CONSTANT_InvokeDynamic_info to the constant pool of this symbol
-   * table. Does nothing if the constant pool already contains a similar item.
+   * 将 CONSTANT_Dynamic 或 CONSTANT_InvokeDynamic_info 添加到此符号表的常量池。如果常量池中已包含类
+   * 似项，则不做任何操作。
    *
    * @param tag one of {@link Symbol#CONSTANT_DYNAMIC_TAG} or {@link
    *     Symbol#CONSTANT_INVOKE_DYNAMIC_TAG}.
@@ -940,8 +910,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_Dynamic_info or CONSTANT_InvokeDynamic_info to the constant pool of this
-   * symbol table.
+   * 向此符号表的常量池中新增一个 CONSTANT_Dynamic_info 或 CONSTANT_InvokeDynamic_info。
    *
    * @param tag one of {@link Symbol#CONSTANT_DYNAMIC_TAG} or {@link
    *     Symbol#CONSTANT_INVOKE_DYNAMIC_TAG}.
@@ -962,8 +931,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Module_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Module_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param moduleName a fully qualified name (using dots) of a module.
    * @return a new or already existing Symbol with the given value.
@@ -973,8 +941,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Package_info to the constant pool of this symbol table. Does nothing if the
-   * constant pool already contains a similar item.
+   * 将 CONSTANT_Package_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param packageName the internal name of a package.
    * @return a new or already existing Symbol with the given value.
@@ -984,9 +951,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a CONSTANT_Class_info, CONSTANT_String_info, CONSTANT_MethodType_info,
-   * CONSTANT_Module_info or CONSTANT_Package_info to the constant pool of this symbol table. Does
-   * nothing if the constant pool already contains a similar item.
+   * 将 CONSTANT_Class_info、CONSTANT_String_info、CONSTANT_MethodType_info、CONSTANT_Module_info 或
+   * CONSTANT_Package_info 添加到此符号表的常量池。如果常量池中已包含类似项，则不做任何操作。
    *
    * @param tag one of {@link Symbol#CONSTANT_CLASS_TAG}, {@link Symbol#CONSTANT_STRING_TAG}, {@link
    *     Symbol#CONSTANT_METHOD_TYPE_TAG}, {@link Symbol#CONSTANT_MODULE_TAG} or {@link
@@ -1009,8 +975,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a new CONSTANT_Class_info, CONSTANT_String_info, CONSTANT_MethodType_info,
-   * CONSTANT_Module_info or CONSTANT_Package_info to the constant pool of this symbol table.
+   * 向此符号表的常量池中新增一个 CONSTANT_Class_info、CONSTANT_String_info、CONSTANT_MethodType_info
+   * 、CONSTANT_Module_info 或 CONSTANT_Package_info。
    *
    * @param index the constant pool index of the new Symbol.
    * @param tag one of {@link Symbol#CONSTANT_CLASS_TAG}, {@link Symbol#CONSTANT_STRING_TAG}, {@link
@@ -1028,8 +994,8 @@ final class SymbolTable {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Adds a bootstrap method to the BootstrapMethods attribute of this symbol table. Does nothing if
-   * the BootstrapMethods already contains a similar bootstrap method.
+   * 将引导方法添加到此符号表的 BootstrapMethods 属性。如果 BootstrapMethods 中已包含类似的引导方法，
+   * 则不做任何操作。
    *
    * @param bootstrapMethodHandle a bootstrap method handle.
    * @param bootstrapMethodArguments the bootstrap method arguments.
@@ -1083,9 +1049,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a bootstrap method to the BootstrapMethods attribute of this symbol table. Does nothing if
-   * the BootstrapMethods already contains a similar bootstrap method (more precisely, reverts the
-   * content of {@link #bootstrapMethods} to remove the last, duplicate bootstrap method).
+   * 将引导方法添加到此符号表的 BootstrapMethods 属性。如果 BootstrapMethods 中已包含类似的引导方法，
+   * 则不做任何操作（更确切地说，会回退 {@link #bootstrapMethods} 的内容以移除最后重复的引导方法）。
    *
    * @param offset the offset of the last bootstrap method in {@link #bootstrapMethods}, in bytes.
    * @param length the length of this bootstrap method in {@link #bootstrapMethods}, in bytes.
@@ -1120,7 +1085,7 @@ final class SymbolTable {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the type table element whose index is given.
+   * 返回索引为给定值的类型表元素。
    *
    * @param typeIndex a type table index.
    * @return the type table element whose index is given.
@@ -1130,8 +1095,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a type in the type table of this symbol table. Does nothing if the type table already
-   * contains a similar type.
+   * 向此符号表的类型表中添加一个类型。如果类型表中已包含类似类型，则不做任何操作。
    *
    * @param value an internal class name.
    * @return the index of a new or already existing type Symbol with the given value.
@@ -1149,8 +1113,8 @@ final class SymbolTable {
   }
 
   /**
-   * Adds an {@link Frame#ITEM_UNINITIALIZED} type in the type table of this symbol table. Does
-   * nothing if the type table already contains a similar type.
+   * 向此符号表的类型表中添加一个 {@link Frame#ITEM_UNINITIALIZED} 类型。如果类型表中已包含类似类型，
+   * 则不做任何操作。
    *
    * @param value an internal class name.
    * @param bytecodeOffset the bytecode offset of the NEW instruction that created this {@link
@@ -1174,8 +1138,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds a merged type in the type table of this symbol table. Does nothing if the type table
-   * already contains a similar type.
+   * 向此符号表的类型表中添加一个合并类型。如果类型表中已包含类似类型，则不做任何操作。
    *
    * @param typeTableIndex1 a {@link Symbol#TYPE_TAG} type, specified by its index in the type
    *     table.
@@ -1205,7 +1168,7 @@ final class SymbolTable {
   }
 
   /**
-   * Adds the given type Symbol to {@link #typeTable}.
+   * 将给定的类型 Symbol 添加到 {@link #typeTable}。
    *
    * @param entry a {@link Symbol#TYPE_TAG} or {@link Symbol#UNINITIALIZED_TYPE_TAG} type symbol.
    *     The index of this Symbol must be equal to the current value of {@link #typeCount}.
@@ -1269,20 +1232,18 @@ final class SymbolTable {
   }
 
   /**
-   * An entry of a SymbolTable. This concrete and private subclass of {@link Symbol} adds two fields
-   * which are only used inside SymbolTable, to implement hash sets of symbols (in order to avoid
-   * duplicate symbols). See {@link #entries}.
+   * SymbolTable 的一个条目。这个私有具体子类继承 {@link Symbol}，并添加了两个仅在 SymbolTable 内部使
+   * 用的字段，用于实现符号的哈希集合（以避免符号重复）。请参见 {@link #entries}。
    *
    * @author Eric Bruneton
    */
   private static class Entry extends Symbol {
 
-    /** The hash code of this entry. */
+    /** 此条目的哈希码。 */
     final int hashCode;
 
     /**
-     * Another entry (and so on recursively) having the same hash code (modulo the size of {@link
-     * #entries}) as this one.
+     * 另一个（递归地还有更多）与此条目具有相同哈希码（对 {@link #entries} 的大小取模）的条目。
      */
     Entry next;
 

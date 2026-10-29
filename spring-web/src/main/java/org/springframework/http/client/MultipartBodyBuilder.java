@@ -38,21 +38,20 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Prepare the body of a multipart request, resulting in a
- * {@code MultiValueMap<String, HttpEntity>}. Parts may be concrete values or
- * via asynchronous types such as Reactor {@code Mono}, {@code Flux}, and
- * others registered in the
- * {@link org.springframework.core.ReactiveAdapterRegistry ReactiveAdapterRegistry}.
+ * 准备 multipart 请求的正文，结果为
+ * {@code MultiValueMap<String, HttpEntity>}。部件可以是具体值，也可以
+ * 通过异步类型（例如 Reactor 的 {@code Mono}、{@code Flux} 以及注册在
+ * {@link org.springframework.core.ReactiveAdapterRegistry ReactiveAdapterRegistry} 中的其他类型）提供。
  *
- * <p>This builder is intended for use with the reactive
- * {@link org.springframework.web.reactive.function.client.WebClient WebClient}.
- * For multipart requests with the {@code RestTemplate}, simply create and
- * populate a {@code MultiValueMap<String, HttpEntity>} as shown in the Javadoc for
+ * <p>此构建器旨在与响应式
+ * {@link org.springframework.web.reactive.function.client.WebClient WebClient} 一起使用。
+ * 对于使用 {@code RestTemplate} 的 multipart 请求，只需创建并填充
+ * 一个 {@code MultiValueMap<String, HttpEntity>}，如
  * {@link org.springframework.http.converter.FormHttpMessageConverter FormHttpMessageConverter}
- * and in the
- * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#rest-template-multipart">reference docs</a>.
+ * 的 Javadoc 和
+ * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#rest-template-multipart">参考文档</a>中所示。
  *
- * <p>Below are examples of using this builder:
+ * <p>以下是使用此构建器的示例：
  * <pre class="code">
  *
  * // Add form field
@@ -92,21 +91,21 @@ public final class MultipartBodyBuilder {
 
 
 	/**
-	 * Creates a new, empty instance of the {@code MultipartBodyBuilder}.
+	 * 创建 {@code MultipartBodyBuilder} 的新空实例。
 	 */
 	public MultipartBodyBuilder() {
 	}
 
 
 	/**
-	 * Add a part where the Object may be:
+	 * 添加一个部件，其中对象可以是：
 	 * <ul>
-	 * <li>String -- form field
-	 * <li>{@link org.springframework.core.io.Resource Resource} -- file part
-	 * <li>Object -- content to be encoded (e.g. to JSON)
-	 * <li>{@link HttpEntity} -- part content and headers although generally it's
-	 * easier to add headers through the returned builder
-	 * <li>{@link Part} -- a part from a server request
+	 * <li>String -- 表单字段
+	 * <li>{@link org.springframework.core.io.Resource Resource} -- 文件部件
+	 * <li>Object -- 要编码的内容（例如编码为 JSON）
+	 * <li>{@link HttpEntity} -- 部件内容和头部，不过通常
+	 * 通过返回的构建器添加头部更容易
+	 * <li>{@link Part} -- 服务器请求中的部件
 	 * </ul>
 	 * @param name the name of the part to add
 	 * @param part the part data
@@ -117,7 +116,7 @@ public final class MultipartBodyBuilder {
 	}
 
 	/**
-	 * Variant of {@link #part(String, Object)} that also accepts a MediaType.
+	 * 也接受 MediaType 的 {@link #part(String, Object)} 变体。
 	 * @param name the name of the part to add
 	 * @param part the part data
 	 * @param contentType the media type to help with encoding the part
@@ -180,7 +179,7 @@ public final class MultipartBodyBuilder {
 	}
 
 	/**
-	 * Add a part from {@link Publisher} content.
+	 * 从 {@link Publisher} 内容添加部件。
 	 * @param name the name of the part to add
 	 * @param publisher a Publisher of content for the part
 	 * @param elementClass the type of elements contained in the publisher
@@ -197,8 +196,8 @@ public final class MultipartBodyBuilder {
 	}
 
 	/**
-	 * Variant of {@link #asyncPart(String, Publisher, Class)} with a
-	 * {@link ParameterizedTypeReference} for the element type information.
+	 * 使用 {@link ParameterizedTypeReference} 提供元素类型信息的
+	 * {@link #asyncPart(String, Publisher, Class)} 变体。
 	 * @param name the name of the part to add
 	 * @param publisher the part contents
 	 * @param typeReference the type of elements contained in the publisher
@@ -217,7 +216,7 @@ public final class MultipartBodyBuilder {
 	}
 
 	/**
-	 * Return a {@code MultiValueMap} with the configured parts.
+	 * 返回包含已配置部件的 {@code MultiValueMap}。
 	 */
 	public MultiValueMap<String, HttpEntity<?>> build() {
 		MultiValueMap<String, HttpEntity<?>> result = new LinkedMultiValueMap<>(this.parts.size());
@@ -232,12 +231,12 @@ public final class MultipartBodyBuilder {
 
 
 	/**
-	 * Builder that allows for further customization of part headers.
+	 * 允许进一步自定义部件头部的构建器。
 	 */
 	public interface PartBuilder {
 
 		/**
-		 * Set the {@linkplain MediaType media type} of the part.
+		 * 设置部件的 {@linkplain MediaType 媒体类型}。
 		 * @param contentType the content type
 		 * @since 5.2
 		 * @see HttpHeaders#setContentType(MediaType)
@@ -245,17 +244,16 @@ public final class MultipartBodyBuilder {
 		PartBuilder contentType(MediaType contentType);
 
 		/**
-		 * Set the filename parameter for a file part. This should not be
-		 * necessary with {@link org.springframework.core.io.Resource Resource}
-		 * based parts that expose a filename but may be useful for
-		 * {@link Publisher} parts.
+		 * 设置文件部件的 filename 参数。对于公开文件名的
+		 * 基于 {@link org.springframework.core.io.Resource Resource} 的部件，这应该不是必需的，
+		 * 但对于 {@link Publisher} 部件可能有用。
 		 * @param filename the filename to set on the Content-Disposition
 		 * @since 5.2
 		 */
 		PartBuilder filename(String filename);
 
 		/**
-		 * Add part header values.
+		 * 添加部件头部值。
 		 * @param headerName the part header name
 		 * @param headerValues the part header value(s)
 		 * @return this builder
@@ -264,7 +262,7 @@ public final class MultipartBodyBuilder {
 		PartBuilder header(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate the part headers through the given consumer.
+		 * 通过给定的 consumer 操作部件头部。
 		 * @param headersConsumer consumer to manipulate the part headers with
 		 * @return this builder
 		 */
@@ -357,9 +355,8 @@ public final class MultipartBodyBuilder {
 
 
 	/**
-	 * Specialization of {@link HttpEntity} for use with a
-	 * {@link Publisher}-based body, for which we also need to keep track of
-	 * the element type.
+	 * 用于基于 {@link Publisher} 的正文的 {@link HttpEntity} 特化，
+	 * 对此我们还需要跟踪元素类型。
 	 * @param <T> the type contained in the publisher
 	 * @param <P> the publisher
 	 */
@@ -378,7 +375,7 @@ public final class MultipartBodyBuilder {
 		}
 
 		/**
-		 * Return the element type for the {@code Publisher} body.
+		 * 返回 {@code Publisher} 正文的元素类型。
 		 */
 		@Override
 		@NonNull

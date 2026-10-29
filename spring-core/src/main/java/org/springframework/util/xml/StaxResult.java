@@ -26,19 +26,18 @@ import org.xml.sax.ext.LexicalHandler;
 import org.springframework.lang.Nullable;
 
 /**
- * Implementation of the {@code Result} tagging interface for StAX writers. Can be constructed with
- * an {@code XMLEventConsumer} or an {@code XMLStreamWriter}.
+ * StAX 写入器的 {@code Result} 标记接口实现。可以用
+ * {@code XMLEventConsumer} 或 {@code XMLStreamWriter} 构造。
  *
- * <p>This class is necessary because there is no implementation of {@code Source} for StaxReaders
- * in JAXP 1.3. There is a {@code StAXResult} in JAXP 1.4 (JDK 1.6), but this class is kept around
- * for backwards compatibility reasons.
+ * <p>此类是必要的，因为 JAXP 1.3 中没有针对 StaxReaders 的 {@code Source} 实现。JAXP 1.4（JDK 1.6）
+ * 中提供了 {@code StAXResult}，但出于向后兼容的原因保留了此类。
  *
- * <p>Even though {@code StaxResult} extends from {@code SAXResult}, calling the methods of
- * {@code SAXResult} is <strong>not supported</strong>. In general, the only supported operation
- * on this class is to use the {@code ContentHandler} obtained via {@link #getHandler()} to parse an
- * input source using an {@code XMLReader}. Calling {@link #setHandler(org.xml.sax.ContentHandler)}
- * or {@link #setLexicalHandler(org.xml.sax.ext.LexicalHandler)} will result in
- * {@code UnsupportedOperationException}s.
+ * <p>尽管 {@code StaxResult} 继承自 {@code SAXResult}，但调用 {@code SAXResult} 的方法<strong>不受
+ * 支持</strong>。通常，此类上唯一受支持的操作是使用通过 {@link #getHandler()} 获取的
+ * {@code ContentHandler}，通过 {@code XMLReader} 解析输入源。调用
+ * {@link #setHandler(org.xml.sax.ContentHandler)} 或
+ * {@link #setLexicalHandler(org.xml.sax.ext.LexicalHandler)} 将导致
+ * {@code UnsupportedOperationException}。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -56,7 +55,7 @@ class StaxResult extends SAXResult {
 
 
 	/**
-	 * Construct a new instance of the {@code StaxResult} with the specified {@code XMLEventWriter}.
+	 * 使用指定的 {@code XMLEventWriter} 构造一个新的 {@code StaxResult} 实例。
 	 * @param eventWriter the {@code XMLEventWriter} to write to
 	 */
 	public StaxResult(XMLEventWriter eventWriter) {
@@ -67,7 +66,7 @@ class StaxResult extends SAXResult {
 	}
 
 	/**
-	 * Construct a new instance of the {@code StaxResult} with the specified {@code XMLStreamWriter}.
+	 * 使用指定的 {@code XMLStreamWriter} 构造一个新的 {@code StaxResult} 实例。
 	 * @param streamWriter the {@code XMLStreamWriter} to write to
 	 */
 	public StaxResult(XMLStreamWriter streamWriter) {
@@ -79,9 +78,9 @@ class StaxResult extends SAXResult {
 
 
 	/**
-	 * Return the {@code XMLEventWriter} used by this {@code StaxResult}.
-	 * <p>If this {@code StaxResult} was created with an {@code XMLStreamWriter},
-	 * the result will be {@code null}.
+	 * 返回此 {@code StaxResult} 使用的 {@code XMLEventWriter}。
+	 * <p>如果此 {@code StaxResult} 是使用 {@code XMLStreamWriter} 创建的，
+	 * 则结果为 {@code null}。
 	 * @return the StAX event writer used by this result
 	 * @see #StaxResult(javax.xml.stream.XMLEventWriter)
 	 */
@@ -91,9 +90,9 @@ class StaxResult extends SAXResult {
 	}
 
 	/**
-	 * Return the {@code XMLStreamWriter} used by this {@code StaxResult}.
-	 * <p>If this {@code StaxResult} was created with an {@code XMLEventConsumer},
-	 * the result will be {@code null}.
+	 * 返回此 {@code StaxResult} 使用的 {@code XMLStreamWriter}。
+	 * <p>如果此 {@code StaxResult} 是使用 {@code XMLEventConsumer} 创建的，
+	 * 则结果为 {@code null}。
 	 * @return the StAX stream writer used by this result
 	 * @see #StaxResult(javax.xml.stream.XMLStreamWriter)
 	 */
@@ -104,7 +103,7 @@ class StaxResult extends SAXResult {
 
 
 	/**
-	 * Throws an {@code UnsupportedOperationException}.
+	 * 抛出一个 {@code UnsupportedOperationException}。
 	 * @throws UnsupportedOperationException always
 	 */
 	@Override
@@ -113,7 +112,7 @@ class StaxResult extends SAXResult {
 	}
 
 	/**
-	 * Throws an {@code UnsupportedOperationException}.
+	 * 抛出一个 {@code UnsupportedOperationException}。
 	 * @throws UnsupportedOperationException always
 	 */
 	@Override

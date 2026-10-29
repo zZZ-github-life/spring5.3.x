@@ -25,32 +25,25 @@ import java.lang.annotation.Target;
 import org.springframework.core.Ordered;
 
 /**
- * {@code @Order} defines the sort order for an annotated component.
+ * {@code @Order} 定义了被注解组件的排序顺序。
  *
- * <p>The {@link #value} is optional and represents an order value as defined in the
- * {@link Ordered} interface. Lower values have higher priority. The default value is
- * {@code Ordered.LOWEST_PRECEDENCE}, indicating the lowest priority (losing to any
- * other specified order value).
+ * <p>{@link #value} 是可选的，表示 {@link Ordered} 接口中定义的顺序值。值越低优先级越高。默认值为
+ * {@code Ordered.LOWEST_PRECEDENCE}，表示最低优先级（会输给任何其他指定的顺序值）。
  *
- * <p><b>NOTE:</b> Since Spring 4.0, annotation-based ordering is supported for many
- * kinds of components in Spring, even for collection injection where the order values
- * of the target components are taken into account (either from their target class or
- * from their {@code @Bean} method). While such order values may influence priorities
- * at injection points, please be aware that they do not influence singleton startup
- * order which is an orthogonal concern determined by dependency relationships and
- * {@code @DependsOn} declarations (influencing a runtime-determined dependency graph).
+ * <p><b>注意：</b>自 Spring 4.0 起，Spring 中的许多类型组件都支持基于注解的排序，甚至对于集合注入
+ * 也是如此，此时会考虑目标组件的顺序值（来自其目标类或其 {@code @Bean} 方法）。虽然这些顺序值可能
+ * 影响注入点的优先级，但请注意它们不影响单例启动顺序，后者是一个正交的关注点，由依赖关系和
+ * {@code @DependsOn} 声明决定（影响运行时确定的依赖图）。
  *
- * <p>Since Spring 4.1, the standard {@link javax.annotation.Priority} annotation
- * can be used as a drop-in replacement for this annotation in ordering scenarios.
- * Note that {@code @Priority} may have additional semantics when a single element
- * has to be picked (see {@link AnnotationAwareOrderComparator#getPriority}).
+ * <p>自 Spring 4.1 起，在排序场景中，标准 {@link javax.annotation.Priority} 注解可用作此注解的直接
+ * 替代。请注意，当需要挑选单个元素时，{@code @Priority} 可能具有额外的语义（请参见
+ * {@link AnnotationAwareOrderComparator#getPriority}）。
  *
- * <p>Alternatively, order values may also be determined on a per-instance basis
- * through the {@link Ordered} interface, allowing for configuration-determined
- * instance values instead of hard-coded values attached to a particular class.
+ * <p>或者，也可以通过 {@link Ordered} 接口按实例确定顺序值，从而使用由配置确定的实例值，而不是附加
+ * 到特定类的硬编码值。
  *
- * <p>Consult the javadoc for {@link org.springframework.core.OrderComparator
- * OrderComparator} for details on the sort semantics for non-ordered objects.
+ * <p>有关非有序对象的排序语义的详细信息，请参阅
+ * {@link org.springframework.core.OrderComparator OrderComparator} 的 Javadoc。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -66,8 +59,7 @@ import org.springframework.core.Ordered;
 public @interface Order {
 
 	/**
-	 * The order value.
-	 * <p>Default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 * 顺序值。<p>默认为 {@link Ordered#LOWEST_PRECEDENCE}。
 	 * @see Ordered#getOrder()
 	 */
 	int value() default Ordered.LOWEST_PRECEDENCE;

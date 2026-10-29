@@ -21,8 +21,7 @@ import java.util.concurrent.Callable;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Abstract adapter class for the {@link CallableProcessingInterceptor} interface,
- * for simplified implementation of individual methods.
+ * 用于 {@link CallableProcessingInterceptor} 接口的抽象适配器类，便于简化各个方法的实现。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch

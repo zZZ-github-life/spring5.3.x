@@ -21,7 +21,7 @@ import java.io.IOException;
 import org.springframework.dao.DataRetrievalFailureException;
 
 /**
- * Exception to be thrown when a LOB could not be retrieved.
+ * 当无法检索LOB时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -30,7 +30,7 @@ import org.springframework.dao.DataRetrievalFailureException;
 public class LobRetrievalFailureException extends DataRetrievalFailureException {
 
 	/**
-	 * Constructor for LobRetrievalFailureException.
+	 * 创建LobRetrievalFailureException实例。
 	 * @param msg the detail message
 	 */
 	public LobRetrievalFailureException(String msg) {
@@ -38,7 +38,7 @@ public class LobRetrievalFailureException extends DataRetrievalFailureException 
 	}
 
 	/**
-	 * Constructor for LobRetrievalFailureException.
+	 * 创建LobRetrievalFailureException实例。
 	 * @param msg the detail message
 	 * @param ex the root cause IOException
 	 */

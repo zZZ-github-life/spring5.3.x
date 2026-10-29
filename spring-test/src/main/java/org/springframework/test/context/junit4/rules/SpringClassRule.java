@@ -32,47 +32,26 @@ import org.springframework.test.context.junit4.statements.RunBeforeTestClassCall
 import org.springframework.util.Assert;
 
 /**
- * {@code SpringClassRule} is a custom JUnit {@link TestRule} that supports
- * <em>class-level</em> features of the <em>Spring TestContext Framework</em>
- * in standard JUnit tests by means of the {@link TestContextManager} and
- * associated support classes and annotations.
- *
- * <p>In contrast to the {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner
- * SpringJUnit4ClassRunner}, Spring's rule-based JUnit support has the advantage
- * that it is independent of any {@link org.junit.runner.Runner Runner} and
- * can therefore be combined with existing alternative runners like JUnit's
- * {@code Parameterized} or third-party runners such as the {@code MockitoJUnitRunner}.
- *
- * <p>In order to achieve the same functionality as the {@code SpringJUnit4ClassRunner},
- * however, a {@code SpringClassRule} must be combined with a {@link SpringMethodRule},
- * since {@code SpringClassRule} only supports the class-level features of the
- * {@code SpringJUnit4ClassRunner}.
- *
- * <h3>Example Usage</h3>
+ * {@code SpringClassRule} 是一个自定义 JUnit {@link TestRule}，通过 {@link TestContextManager} 及相关支持类和注解，在标准 JUnit 测试中支持 <em>Spring TestContext Framework</em> 的<em>类级</em>功能。
+ * <p>与 {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner SpringJUnit4ClassRunner} 相比，Spring 基于规则的 JUnit 支持的优势在于它独立于任何 {@link org.junit.runner.Runner Runner}，因此可以与现有的替代运行器（如 JUnit 的 {@code Parameterized} 或第三方运行器如 {@code MockitoJUnitRunner}）结合使用。
+ * <p>然而，为了实现与 {@code SpringJUnit4ClassRunner} 相同的功能，必须将 {@code SpringClassRule} 与 {@link SpringMethodRule} 结合使用，因为 {@code SpringClassRule} 仅支持 {@code SpringJUnit4ClassRunner} 的类级功能。
+ * <h3>示例用法</h3>
  * <pre><code> public class ExampleSpringIntegrationTest {
  *
- *    &#064;ClassRule
- *    public static final SpringClassRule springClassRule = new SpringClassRule();
+ * &#064;ClassRule
+ * public static final SpringClassRule springClassRule = new SpringClassRule();
  *
- *    &#064;Rule
- *    public final SpringMethodRule springMethodRule = new SpringMethodRule();
+ * &#064;Rule
+ * public final SpringMethodRule springMethodRule = new SpringMethodRule();
  *
- *    // ...
+ * // ...
  * }</code></pre>
- *
- * <p>The following list constitutes all annotations currently supported directly
- * or indirectly by {@code SpringClassRule}. <em>(Note that additional annotations
- * may be supported by various
- * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} or
- * {@link org.springframework.test.context.TestContextBootstrapper TestContextBootstrapper}
- * implementations.)</em>
- *
+ * <p>以下列表列出了 {@code SpringClassRule} 当前直接或间接支持的所有注解。<em>（请注意，各种 {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} 或 {@link org.springframework.test.context.TestContextBootstrapper TestContextBootstrapper} 实现可能支持其他注解。）</em>
  * <ul>
  * <li>{@link org.springframework.test.annotation.ProfileValueSourceConfiguration @ProfileValueSourceConfiguration}</li>
  * <li>{@link org.springframework.test.annotation.IfProfileValue @IfProfileValue}</li>
  * </ul>
- *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
+ * <p><strong>注意：</strong>从 Spring Framework 4.3 开始，此类要求 JUnit 4.12 或更高版本。
  *
  * @author Sam Brannen
  * @author Philippe Marschall
@@ -87,24 +66,15 @@ public class SpringClassRule implements TestRule {
 	private static final Log logger = LogFactory.getLog(SpringClassRule.class);
 
 	/**
-	 * Cache of {@code TestContextManagers} keyed by test class.
+	 * 以测试类为键的 {@code TestContextManagers} 缓存。
 	 */
 	private static final Map<Class<?>, TestContextManager> testContextManagerCache = new ConcurrentHashMap<>(64);
 
 
 	/**
-	 * Apply <em>class-level</em> features of the <em>Spring TestContext
-	 * Framework</em> to the supplied {@code base} statement.
-	 * <p>Specifically, this method retrieves the {@link TestContextManager}
-	 * used by this rule and its associated {@link SpringMethodRule} and
-	 * invokes the {@link TestContextManager#beforeTestClass() beforeTestClass()}
-	 * and {@link TestContextManager#afterTestClass() afterTestClass()} methods
-	 * on the {@code TestContextManager}.
-	 * <p>In addition, this method checks whether the test is enabled in
-	 * the current execution environment. This prevents classes with a
-	 * non-matching {@code @IfProfileValue} annotation from running altogether,
-	 * even skipping the execution of {@code beforeTestClass()} methods
-	 * in {@code TestExecutionListeners}.
+	 * 将 <em>Spring TestContext Framework</em> 的<em>类级</em>功能应用于所提供的 {@code base} 语句。
+	 * <p>具体而言，此方法获取此规则及其关联的 {@link SpringMethodRule} 所使用的 {@link TestContextManager}，并在该 {@code TestContextManager} 上调用 {@link TestContextManager#beforeTestClass() beforeTestClass()} 和 {@link TestContextManager#afterTestClass() afterTestClass()} 方法。
+	 * <p>此外，此方法会检查测试在当前执行环境中是否启用。这可防止带有不匹配的 {@code @IfProfileValue} 注解的类完全运行，甚至跳过 {@code TestExecutionListeners} 中 {@code beforeTestClass()} 方法的执行。
 	 * @param base the base {@code Statement} that this rule should be applied to
 	 * @param description a {@code Description} of the current test execution
 	 * @return a statement that wraps the supplied {@code base} with class-level
@@ -132,7 +102,7 @@ public class SpringClassRule implements TestRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunBeforeTestClassCallbacks} statement.
+	 * 用 {@code RunBeforeTestClassCallbacks} 语句包装所提供的 {@link Statement}。
 	 * @see RunBeforeTestClassCallbacks
 	 */
 	private Statement withBeforeTestClassCallbacks(Statement next, TestContextManager testContextManager) {
@@ -140,7 +110,7 @@ public class SpringClassRule implements TestRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunAfterTestClassCallbacks} statement.
+	 * 用 {@code RunAfterTestClassCallbacks} 语句包装所提供的 {@link Statement}。
 	 * @see RunAfterTestClassCallbacks
 	 */
 	private Statement withAfterTestClassCallbacks(Statement next, TestContextManager testContextManager) {
@@ -148,7 +118,7 @@ public class SpringClassRule implements TestRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code ProfileValueChecker} statement.
+	 * 用 {@code ProfileValueChecker} 语句包装所提供的 {@link Statement}。
 	 * @see ProfileValueChecker
 	 */
 	private Statement withProfileValueCheck(Statement next, Class<?> testClass) {
@@ -156,7 +126,7 @@ public class SpringClassRule implements TestRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code TestContextManagerCacheEvictor} statement.
+	 * 用 {@code TestContextManagerCacheEvictor} 语句包装所提供的 {@link Statement}。
 	 * @see TestContextManagerCacheEvictor
 	 */
 	private Statement withTestContextManagerCacheEviction(Statement next, Class<?> testClass) {
@@ -164,7 +134,7 @@ public class SpringClassRule implements TestRule {
 	}
 
 	/**
-	 * Get the {@link TestContextManager} associated with the supplied test class.
+	 * 获取与所提供的测试类关联的 {@link TestContextManager}。
 	 * @param testClass the test class to be managed; never {@code null}
 	 */
 	static TestContextManager getTestContextManager(Class<?> testClass) {

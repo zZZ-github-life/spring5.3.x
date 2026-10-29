@@ -30,56 +30,46 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.support.BindStatus;
 
 /**
- * Provides supporting functionality to render a list of '{@code option}'
- * tags based on some source object. This object can be either an array, a
- * {@link Collection}, or a {@link Map}.
- * <h3>Using an array or a {@link Collection}:</h3>
+ * 提供基于某个源对象渲染一组 '{@code option}' 标签的辅助功能。
+ * 该对象可以是数组、{@link Collection} 或 {@link Map}。
+ * <h3>使用数组或 {@link Collection}：</h3>
  * <p>
- * If you supply an array or {@link Collection} source object to render the
- * inner '{@code option}' tags, you may optionally specify the name of
- * the property on the objects which corresponds to the <em>value</em> of the
- * rendered '{@code option}' (i.e., the {@code valueProperty})
- * and the name of the property that corresponds to the <em>label</em> (i.e.,
- * the {@code labelProperty}). These properties are then used when
- * rendering each element of the array/{@link Collection} as an '{@code option}'.
- * If either property name is omitted, the value of {@link Object#toString()} of
- * the corresponding array/{@link Collection} element is used instead.  However,
- * if the item is an enum, {@link Enum#name()} is used as the default value.
+ * 如果提供数组或 {@link Collection} 作为渲染内部 '{@code option}' 标签的源对象，
+ * 你可以选择性地指定对象上与所渲染 '{@code option}' 的 <em>值</em> 对应的属性名
+ * （即 {@code valueProperty}），以及与 <em>标签</em> 对应的属性名
+ * （即 {@code labelProperty}）。随后在将数组/{@link Collection} 的每个元素
+ * 渲染为 '{@code option}' 时会使用这些属性。如果省略了任一属性名，
+ * 则改为使用对应数组/{@link Collection} 元素的 {@link Object#toString()} 值。
+ * 不过，如果元素是枚举，则默认使用 {@link Enum#name()}。
  * </p>
- * <h3>Using a {@link Map}:</h3>
+ * <h3>使用 {@link Map}：</h3>
  * <p>
- * You can alternatively choose to render '{@code option}' tags by
- * supplying a {@link Map} as the source object.
+ * 你也可以选择通过提供 {@link Map} 作为源对象来渲染 '{@code option}' 标签。
  * </p>
  * <p>
- * If you <strong>omit</strong> property names for the <em>value</em> and
- * <em>label</em>:
+ * 如果<strong>省略</strong> <em>值</em> 和 <em>标签</em> 的属性名：
  * </p>
  * <ul>
- * <li>the {@code key} of each {@link Map} entry will correspond to the
- * <em>value</em> of the rendered '{@code option}', and</li>
- * <li>the {@code value} of each {@link Map} entry will correspond to
- * the <em>label</em> of the rendered '{@code option}'.</li>
+ * <li>每个 {@link Map} 条目的 {@code key} 将对应于所渲染 '{@code option}' 的
+ * <em>值</em>，并且</li>
+ * <li>每个 {@link Map} 条目的 {@code value} 将对应于所渲染 '{@code option}' 的
+ * <em>标签</em>。</li>
  * </ul>
  * <p>
- * If you <strong>supply</strong> property names for the <em>value</em> and
- * <em>label</em>:
+ * 如果<strong>提供</strong> <em>值</em> 和 <em>标签</em> 的属性名：
  * </p>
  * <ul>
- * <li>the <em>value</em> of the rendered '{@code option}' will be
- * retrieved from the {@code valueProperty} on the object
- * corresponding to the {@code key} of each {@link Map} entry, and</li>
- * <li>the <em>label</em> of the rendered '{@code option}' will be
- * retrieved from the {@code labelProperty} on the object
- * corresponding to the {@code value} of each {@link Map} entry.
+ * <li>所渲染 '{@code option}' 的 <em>值</em> 将从每个 {@link Map} 条目的
+ * {@code key} 所对应对象的 {@code valueProperty} 属性中获取，并且</li>
+ * <li>所渲染 '{@code option}' 的 <em>标签</em> 将从每个 {@link Map} 条目的
+ * {@code value} 所对应对象的 {@code labelProperty} 属性中获取。
  * </ul>
- * <h3>When using either of these approaches:</h3>
+ * <h3>使用上述任一方式时：</h3>
  * <ul>
- * <li>Property names for the <em>value</em> and <em>label</em> are
- * specified as arguments to the
- * {@link #OptionWriter(Object, BindStatus, String, String, boolean) constructor}.</li>
- * <li>An '{@code option}' is marked as 'selected' if its key
- * {@link #isOptionSelected matches} the value that is bound to the tag instance.</li>
+ * <li><em>值</em> 和 <em>标签</em> 的属性名作为参数传递给
+ * {@link #OptionWriter(Object, BindStatus, String, String, boolean) 构造函数}。</li>
+ * <li>如果 '{@code option}' 的键 {@link #isOptionSelected 匹配} 绑定到标签实例的值，
+ * 则将该 '{@code option}' 标记为 'selected'。</li>
  * </ul>
  *
  * @author Rob Harrop
@@ -104,7 +94,7 @@ class OptionWriter {
 
 
 	/**
-	 * Create a new {@code OptionWriter} for the supplied {@code objectSource}.
+	 * 为给定的 {@code objectSource} 创建一个新的 {@code OptionWriter}。
 	 * @param optionSource the source of the {@code options} (never {@code null})
 	 * @param bindStatus the {@link BindStatus} for the bound value (never {@code null})
 	 * @param valueProperty the name of the property used to render {@code option} values
@@ -126,8 +116,8 @@ class OptionWriter {
 
 
 	/**
-	 * Write the '{@code option}' tags for the configured {@link #optionSource} to
-	 * the supplied {@link TagWriter}.
+	 * 将配置的 {@link #optionSource} 的 '{@code option}' 标签写入
+	 * 给定的 {@link TagWriter}。
 	 */
 	public void writeOptions(TagWriter tagWriter) throws JspException {
 		if (this.optionSource.getClass().isArray()) {
@@ -149,7 +139,7 @@ class OptionWriter {
 	}
 
 	/**
-	 * Render the inner '{@code option}' tags using the {@link #optionSource}.
+	 * 使用 {@link #optionSource} 渲染内部的 '{@code option}' 标签。
 	 * @see #doRenderFromCollection(java.util.Collection, TagWriter)
 	 */
 	private void renderFromArray(TagWriter tagWriter) throws JspException {
@@ -157,8 +147,7 @@ class OptionWriter {
 	}
 
 	/**
-	 * Render the inner '{@code option}' tags using the supplied
-	 * {@link Map} as the source.
+	 * 使用给定的 {@link Map} 作为源渲染内部的 '{@code option}' 标签。
 	 * @see #renderOption(TagWriter, Object, Object, Object)
 	 */
 	private void renderFromMap(TagWriter tagWriter) throws JspException {
@@ -177,7 +166,7 @@ class OptionWriter {
 	}
 
 	/**
-	 * Render the inner '{@code option}' tags using the {@link #optionSource}.
+	 * 使用 {@link #optionSource} 渲染内部的 '{@code option}' 标签。
 	 * @see #doRenderFromCollection(java.util.Collection, TagWriter)
 	 */
 	private void renderFromCollection(TagWriter tagWriter) throws JspException {
@@ -185,7 +174,7 @@ class OptionWriter {
 	}
 
 	/**
-	 * Render the inner '{@code option}' tags using the {@link #optionSource}.
+	 * 使用 {@link #optionSource} 渲染内部的 '{@code option}' 标签。
 	 * @see #doRenderFromCollection(java.util.Collection, TagWriter)
 	 */
 	private void renderFromEnum(TagWriter tagWriter) throws JspException {
@@ -193,10 +182,9 @@ class OptionWriter {
 	}
 
 	/**
-	 * Render the inner '{@code option}' tags using the supplied {@link Collection} of
-	 * objects as the source. The value of the {@link #valueProperty} field is used
-	 * when rendering the '{@code value}' of the '{@code option}' and the value of the
-	 * {@link #labelProperty} property is used when rendering the label.
+	 * 使用给定的对象 {@link Collection} 作为源渲染内部的 '{@code option}' 标签。
+	 * 渲染 '{@code option}' 的 '{@code value}' 时使用 {@link #valueProperty} 字段的值，
+	 * 渲染标签时使用 {@link #labelProperty} 属性的值。
 	 */
 	private void doRenderFromCollection(Collection<?> optionCollection, TagWriter tagWriter) throws JspException {
 		for (Object item : optionCollection) {
@@ -217,8 +205,8 @@ class OptionWriter {
 	}
 
 	/**
-	 * Render an HTML '{@code option}' with the supplied value and label. Marks the
-	 * value as 'selected' if either the item itself or its value match the bound value.
+	 * 使用给定的值和标签渲染一个 HTML '{@code option}'。如果条目本身或其值
+	 * 与绑定的值匹配，则将该值标记为 'selected'。
 	 */
 	private void renderOption(TagWriter tagWriter, Object item, @Nullable Object value, @Nullable Object label)
 			throws JspException {
@@ -245,8 +233,7 @@ class OptionWriter {
 	}
 
 	/**
-	 * Determine the display value of the supplied {@code Object},
-	 * HTML-escaped as required.
+	 * 确定给定 {@code Object} 的显示值，并按需进行 HTML 转义。
 	 */
 	private String getDisplayString(@Nullable Object value) {
 		PropertyEditor editor = (value != null ? this.bindStatus.findEditor(value.getClass()) : null);
@@ -254,30 +241,30 @@ class OptionWriter {
 	}
 
 	/**
-	 * Process the option value before it is written.
-	 * <p>The default implementation simply returns the same value unchanged.
+	 * 在写入之前处理 option 值。
+	 * <p>默认实现只是原样返回相同的值。
 	 */
 	protected String processOptionValue(String resolvedValue) {
 		return resolvedValue;
 	}
 
 	/**
-	 * Determine whether the supplied values matched the selected value.
-	 * <p>Delegates to {@link SelectedValueComparator#isSelected}.
+	 * 确定给定值是否与选中的值匹配。
+	 * <p>委托给 {@link SelectedValueComparator#isSelected}。
 	 */
 	private boolean isOptionSelected(@Nullable Object resolvedValue) {
 		return SelectedValueComparator.isSelected(this.bindStatus, resolvedValue);
 	}
 
 	/**
-	 * Determine whether the option fields should be disabled.
+	 * 确定 option 字段是否应被禁用。
 	 */
 	protected boolean isOptionDisabled() throws JspException {
 		return false;
 	}
 
 	/**
-	 * Write default attributes configured to the supplied {@link TagWriter}.
+	 * 将配置的默认属性写入给定的 {@link TagWriter}。
 	 */
 	protected void writeCommonAttributes(TagWriter tagWriter) throws JspException {
 	}

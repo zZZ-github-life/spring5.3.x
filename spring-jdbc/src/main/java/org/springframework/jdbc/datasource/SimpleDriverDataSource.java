@@ -26,27 +26,26 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple implementation of the standard JDBC {@link javax.sql.DataSource} interface,
- * configuring a plain old JDBC {@link java.sql.Driver} via bean properties, and
- * returning a new {@link java.sql.Connection} from every {@code getConnection} call.
+ * 标准 JDBC {@link javax.sql.DataSource} 接口的简单实现，
+ * 通过 Bean 属性配置朴素的 JDBC {@link java.sql.Driver}，
+ * 并在每次 {@code getConnection} 调用时返回一个新的 {@link java.sql.Connection}。
  *
- * <p><b>NOTE: This class is not an actual connection pool; it does not actually
- * pool Connections.</b> It just serves as simple replacement for a full-blown
- * connection pool, implementing the same standard interface, but creating new
- * Connections on every call.
+ * <p><b>注意：此类不是真正的连接池；它实际上并不池化 Connection。</b>
+ * 它只是作为完整连接池的简单替代，实现相同的标准接口，
+ * 但每次调用时都会创建新的 Connection。
  *
- * <p>In a Java EE container, it is recommended to use a JNDI DataSource provided by
- * the container. Such a DataSource can be exposed as a DataSource bean in a Spring
- * ApplicationContext via {@link org.springframework.jndi.JndiObjectFactoryBean},
- * for seamless switching to and from a local DataSource bean like this class.
+ * <p>在 Java EE 容器中，建议使用容器提供的 JNDI DataSource。
+ * 此类 DataSource 可以通过 {@link org.springframework.jndi.JndiObjectFactoryBean}
+ * 在 Spring ApplicationContext 中暴露为 DataSource Bean，
+ * 从而可以无缝地与此类这样的本地 DataSource Bean 相互切换。
  *
- * <p>This {@code SimpleDriverDataSource} class was originally designed alongside
+ * <p>这个 {@code SimpleDriverDataSource} 类最初是与
  * <a href="https://commons.apache.org/proper/commons-dbcp">Apache Commons DBCP</a>
- * and <a href="https://sourceforge.net/projects/c3p0">C3P0</a>, featuring bean-style
- * {@code BasicDataSource}/{@code ComboPooledDataSource} classes with configuration
- * properties for local resource setups. For a modern JDBC connection pool, consider
- * <a href="https://github.com/brettwooldridge/HikariCP">HikariCP</a> instead,
- * exposing a corresponding {@code HikariDataSource} instance to the application.
+ * 和 <a href="https://sourceforge.net/projects/c3p0">C3P0</a> 一起设计的，
+ * 后两者提供了 Bean 风格的 {@code BasicDataSource}/{@code ComboPooledDataSource}
+ * 类，并带有用于本地资源设置的配置属性。对于现代的 JDBC 连接池，
+ * 可以考虑改用 <a href="https://github.com/brettwooldridge/HikariCP">HikariCP</a>，
+ * 向应用程序暴露相应的 {@code HikariDataSource} 实例。
  *
  * @author Juergen Hoeller
  * @since 2.5.5
@@ -59,13 +58,13 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 
 
 	/**
-	 * Constructor for bean-style configuration.
+	 * 用于 Bean 风格配置的构造函数。
 	 */
 	public SimpleDriverDataSource() {
 	}
 
 	/**
-	 * Create a new DriverManagerDataSource with the given standard Driver parameters.
+	 * 使用给定的标准 Driver 参数创建一个新的 DriverManagerDataSource。
 	 * @param driver the JDBC Driver object
 	 * @param url the JDBC URL to use for accessing the DriverManager
 	 * @see java.sql.Driver#connect(String, java.util.Properties)
@@ -76,7 +75,7 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 	}
 
 	/**
-	 * Create a new DriverManagerDataSource with the given standard Driver parameters.
+	 * 使用给定的标准 Driver 参数创建一个新的 DriverManagerDataSource。
 	 * @param driver the JDBC Driver object
 	 * @param url the JDBC URL to use for accessing the DriverManager
 	 * @param username the JDBC username to use for accessing the DriverManager
@@ -91,7 +90,7 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 	}
 
 	/**
-	 * Create a new DriverManagerDataSource with the given standard Driver parameters.
+	 * 使用给定的标准 Driver 参数创建一个新的 DriverManagerDataSource。
 	 * @param driver the JDBC Driver object
 	 * @param url the JDBC URL to use for accessing the DriverManager
 	 * @param conProps the JDBC connection properties
@@ -105,9 +104,9 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 
 
 	/**
-	 * Specify the JDBC Driver implementation class to use.
-	 * <p>An instance of this Driver class will be created and held
-	 * within the SimpleDriverDataSource.
+	 * 指定要使用的 JDBC Driver 实现类。
+	 * <p>将创建此 Driver 类的一个实例并保留在
+	 * SimpleDriverDataSource 中。
 	 * @see #setDriver
 	 */
 	public void setDriverClass(Class<? extends Driver> driverClass) {
@@ -115,9 +114,9 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 	}
 
 	/**
-	 * Specify the JDBC Driver instance to use.
-	 * <p>This allows for passing in a shared, possibly pre-configured
-	 * Driver instance.
+	 * 指定要使用的 JDBC Driver 实例。
+	 * <p>这样可以传入一个共享的、可能已预先配置的
+	 * Driver 实例。
 	 * @see #setDriverClass
 	 */
 	public void setDriver(@Nullable Driver driver) {
@@ -125,7 +124,7 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 	}
 
 	/**
-	 * Return the JDBC Driver instance to use.
+	 * 返回要使用的 JDBC Driver 实例。
 	 */
 	@Nullable
 	public Driver getDriver() {

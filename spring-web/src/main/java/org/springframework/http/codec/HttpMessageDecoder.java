@@ -24,8 +24,8 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 
 /**
- * Extension of {@code Decoder} exposing extra methods relevant in the context
- * of HTTP request or response body decoding.
+ * {@code Decoder} 的扩展，公开了 HTTP 请求或响应体解码场景中
+ * 相关的额外方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -34,8 +34,7 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 public interface HttpMessageDecoder<T> extends Decoder<T> {
 
 	/**
-	 * Get decoding hints based on the server request or annotations on the
-	 * target controller method parameter.
+	 * 根据服务器请求或目标控制器方法参数上的注解获取解码提示。
 	 * @param actualType the actual target type to decode to, possibly a reactive
 	 * wrapper and sourced from {@link org.springframework.core.MethodParameter},
 	 * i.e. providing access to method parameter annotations

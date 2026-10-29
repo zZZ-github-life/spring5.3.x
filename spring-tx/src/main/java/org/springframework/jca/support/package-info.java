@@ -1,6 +1,6 @@
 /**
- * Provides generic support classes for JCA usage within Spring,
- * mainly for local setup of a JCA ResourceAdapter and/or ConnectionFactory.
+ * 提供在 Spring 中使用 JCA 的通用支持类，
+ * 主要用于本地设置 JCA ResourceAdapter 和/或 ConnectionFactory。
  */
 @NonNullApi
 @NonNullFields

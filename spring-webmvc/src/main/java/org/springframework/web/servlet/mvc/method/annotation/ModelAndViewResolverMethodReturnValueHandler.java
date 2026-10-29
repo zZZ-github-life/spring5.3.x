@@ -31,25 +31,23 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
 
 /**
- * This return value handler is intended to be ordered after all others as it
- * attempts to handle _any_ return value type (i.e. returns {@code true} for
- * all return types).
+ * 此返回值处理器应当排在其他所有处理器之后，因为它
+ * 尝试处理_任意_返回值类型（即对所有返回类型
+ * 都返回 {@code true}）。
  *
- * <p>The return value is handled either with a {@link ModelAndViewResolver}
- * or otherwise by regarding it as a model attribute if it is a non-simple
- * type. If neither of these succeeds (essentially simple type other than
- * String), {@link UnsupportedOperationException} is raised.
+ * <p>返回值要么通过 {@link ModelAndViewResolver} 处理，
+ * 要么在它是非简单类型时被视为模型属性。
+ * 如果这两种方式都不成功（本质上即除 String 之外的简单类型），
+ * 则抛出 {@link UnsupportedOperationException}。
  *
- * <p><strong>Note:</strong> This class is primarily needed to support
- * {@link ModelAndViewResolver}, which unfortunately cannot be properly
- * adapted to the {@link HandlerMethodReturnValueHandler} contract since the
- * {@link HandlerMethodReturnValueHandler#supportsReturnType} method
- * cannot be implemented. Hence {@code ModelAndViewResolver}s are limited
- * to always being invoked at the end after all other return value
- * handlers have been given a chance. It is recommended to re-implement
- * a {@code ModelAndViewResolver} as {@code HandlerMethodReturnValueHandler},
- * which also provides better access to the return type and method information.
- *
+ * <p><strong>注意：</strong>此类主要是为了支持
+ * {@link ModelAndViewResolver}，遗憾的是后者无法被恰当地
+ * 适配到 {@link HandlerMethodReturnValueHandler} 约定，因为
+ * {@link HandlerMethodReturnValueHandler#supportsReturnType} 方法
+ * 无法实现。因此，{@code ModelAndViewResolver} 只能在所有其他返回值
+ * 处理器都获得机会之后，最后被调用。建议将
+ * {@code ModelAndViewResolver} 重新实现为 {@code HandlerMethodReturnValueHandler}，
+ * 后者还能更好地访问返回类型和方法信息。
  * @author Rossen Stoyanchev
  * @since 3.1
  */
@@ -63,7 +61,7 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 
 
 	/**
-	 * Create a new instance.
+	 * 创建一个新实例。
 	 */
 	public ModelAndViewResolverMethodReturnValueHandler(@Nullable List<ModelAndViewResolver> mavResolvers) {
 		this.mavResolvers = mavResolvers;
@@ -71,7 +69,7 @@ public class ModelAndViewResolverMethodReturnValueHandler implements HandlerMeth
 
 
 	/**
-	 * Always returns {@code true}. See class-level note.
+	 * 始终返回 {@code true}。请参见类级说明。
 	 */
 	@Override
 	public boolean supportsReturnType(MethodParameter returnType) {

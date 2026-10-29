@@ -44,37 +44,37 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Performs the actual initialization work for the root application context.
- * Called by {@link ContextLoaderListener}.
+ * 执行根应用上下文的实际初始化工作。
+ * 由 {@link ContextLoaderListener} 调用。
  *
- * <p>Looks for a {@link #CONTEXT_CLASS_PARAM "contextClass"} parameter at the
- * {@code web.xml} context-param level to specify the context class type, falling
- * back to {@link org.springframework.web.context.support.XmlWebApplicationContext}
- * if not found. With the default ContextLoader implementation, any context class
- * specified needs to implement the {@link ConfigurableWebApplicationContext} interface.
+ * <p>在 {@code web.xml} 的 context-param 级别查找
+ * {@link #CONTEXT_CLASS_PARAM "contextClass"} 参数以指定上下文类类型，
+ * 如果未找到，则回退到
+ * {@link org.springframework.web.context.support.XmlWebApplicationContext}。
+ * 使用默认的 ContextLoader 实现时，指定的任何上下文类都需要实现
+ * {@link ConfigurableWebApplicationContext} 接口。
  *
- * <p>Processes a {@link #CONFIG_LOCATION_PARAM "contextConfigLocation"} context-param
- * and passes its value to the context instance, parsing it into potentially multiple
- * file paths which can be separated by any number of commas and spaces, e.g.
- * "WEB-INF/applicationContext1.xml, WEB-INF/applicationContext2.xml".
- * Ant-style path patterns are supported as well, e.g.
- * "WEB-INF/*Context.xml,WEB-INF/spring*.xml" or "WEB-INF/&#42;&#42;/*Context.xml".
- * If not explicitly specified, the context implementation is supposed to use a
- * default location (with XmlWebApplicationContext: "/WEB-INF/applicationContext.xml").
+ * <p>处理 {@link #CONFIG_LOCATION_PARAM "contextConfigLocation"} context-param
+ * 并将其值传递给上下文实例，将其解析为可能多个文件路径，
+ * 这些路径可由任意数量的逗号和空格分隔，例如
+ * "WEB-INF/applicationContext1.xml, WEB-INF/applicationContext2.xml"。
+ * 也支持 Ant 风格的路径模式，例如
+ * "WEB-INF/*Context.xml,WEB-INF/spring*.xml" 或 "WEB-INF/&#42;&#42;/*Context.xml"。
+ * 如果未显式指定，上下文实现应使用默认位置
+ * （对于 XmlWebApplicationContext："/WEB-INF/applicationContext.xml"）。
  *
- * <p>Note: In case of multiple config locations, later bean definitions will
- * override ones defined in previously loaded files, at least when using one of
- * Spring's default ApplicationContext implementations. This can be leveraged
- * to deliberately override certain bean definitions via an extra XML file.
+ * <p>注意：在存在多个配置位置的情况下，后加载的 bean 定义将覆盖之前加载文件中
+ * 定义的内容，至少在使用 Spring 默认 ApplicationContext 实现之一时如此。
+ * 可以利用这一点，通过一个额外的 XML 文件来有意覆盖某些 bean 定义。
  *
- * <p>Above and beyond loading the root application context, this class can optionally
- * load or obtain and hook up a shared parent context to the root application context.
- * See the {@link #loadParentContext(ServletContext)} method for more information.
+ * <p>除了加载根应用上下文之外，此类还可以选择加载或获取一个共享的父上下文，
+ * 并将其挂接到根应用上下文。更多信息请参见
+ * {@link #loadParentContext(ServletContext)} 方法。
  *
- * <p>As of Spring 3.1, {@code ContextLoader} supports injecting the root web
- * application context via the {@link #ContextLoader(WebApplicationContext)}
- * constructor, allowing for programmatic configuration in Servlet 3.0+ environments.
- * See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
+ * <p>自 Spring 3.1 起，{@code ContextLoader} 支持通过
+ * {@link #ContextLoader(WebApplicationContext)} 构造函数注入根 Web 应用上下文，
+ * 从而允许在 Servlet 3.0+ 环境中进行编程式配置。
+ * 有关用法示例，请参见 {@link org.springframework.web.WebApplicationInitializer}。
  *
  * @author Juergen Hoeller
  * @author Colin Sampaleanu
@@ -87,61 +87,59 @@ import org.springframework.util.StringUtils;
 public class ContextLoader {
 
 	/**
-	 * Config param for the root WebApplicationContext id,
-	 * to be used as serialization id for the underlying BeanFactory: {@value}.
+	 * 根 WebApplicationContext id 的配置参数，
+	 * 用作底层 BeanFactory 的序列化 id：{@value}。
 	 */
 	public static final String CONTEXT_ID_PARAM = "contextId";
 
 	/**
-	 * Name of servlet context parameter (i.e., {@value}) that can specify the
-	 * config location for the root context, falling back to the implementation's
-	 * default otherwise.
+	 * servlet 上下文参数的名称（即 {@value}），可用于指定根上下文的
+	 * 配置位置，否则回退到实现的默认值。
 	 * @see org.springframework.web.context.support.XmlWebApplicationContext#DEFAULT_CONFIG_LOCATION
 	 */
 	public static final String CONFIG_LOCATION_PARAM = "contextConfigLocation";
 
 	/**
-	 * Config param for the root WebApplicationContext implementation class to use: {@value}.
+	 * 要使用的根 WebApplicationContext 实现类的配置参数：{@value}。
 	 * @see #determineContextClass(ServletContext)
 	 */
 	public static final String CONTEXT_CLASS_PARAM = "contextClass";
 
 	/**
-	 * Config param for {@link ApplicationContextInitializer} classes to use
-	 * for initializing the root web application context: {@value}.
+	 * 用于初始化根 Web 应用上下文的 {@link ApplicationContextInitializer} 类的
+	 * 配置参数：{@value}。
 	 * @see #customizeContext(ServletContext, ConfigurableWebApplicationContext)
 	 */
 	public static final String CONTEXT_INITIALIZER_CLASSES_PARAM = "contextInitializerClasses";
 
 	/**
-	 * Config param for global {@link ApplicationContextInitializer} classes to use
-	 * for initializing all web application contexts in the current application: {@value}.
+	 * 用于初始化当前应用程序中所有 Web 应用上下文的全局
+	 * {@link ApplicationContextInitializer} 类的配置参数：{@value}。
 	 * @see #customizeContext(ServletContext, ConfigurableWebApplicationContext)
 	 */
 	public static final String GLOBAL_INITIALIZER_CLASSES_PARAM = "globalInitializerClasses";
 
 	/**
-	 * Any number of these characters are considered delimiters between
-	 * multiple values in a single init-param String value.
+	 * 这些字符中的任意数量都被视为单个 init-param 字符串值中多个值之间的分隔符。
 	 */
 	private static final String INIT_PARAM_DELIMITERS = ",; \t\n";
 
 	/**
-	 * Name of the class path resource (relative to the ContextLoader class)
-	 * that defines ContextLoader's default strategy names.
+	 * 类路径资源的名称（相对于 ContextLoader 类），
+	 * 该资源定义了 ContextLoader 的默认策略名称。
 	 */
 	private static final String DEFAULT_STRATEGIES_PATH = "ContextLoader.properties";
 
 
 	/**
-	 * Map from (thread context) ClassLoader to corresponding 'current' WebApplicationContext.
+	 * 从（线程上下文）ClassLoader 到对应“当前”WebApplicationContext 的映射。
 	 */
 	private static final Map<ClassLoader, WebApplicationContext> currentContextPerThread =
 			new ConcurrentHashMap<>(1);
 
 	/**
-	 * The 'current' WebApplicationContext, if the ContextLoader class is
-	 * deployed in the web app ClassLoader itself.
+	 * “当前”WebApplicationContext，前提是 ContextLoader 类
+	 * 部署在 Web 应用 ClassLoader 本身中。
 	 */
 	@Nullable
 	private static volatile WebApplicationContext currentContext;
@@ -150,27 +148,27 @@ public class ContextLoader {
 	private static Properties defaultStrategies;
 
 	/**
-	 * The root WebApplicationContext instance that this loader manages.
+	 * 此加载器管理的根 WebApplicationContext 实例。
 	 */
 	@Nullable
 	private WebApplicationContext context;
 
-	/** Actual ApplicationContextInitializer instances to apply to the context. */
+	/** 要应用于上下文的实际 ApplicationContextInitializer 实例。 */
 	private final List<ApplicationContextInitializer<ConfigurableApplicationContext>> contextInitializers =
 			new ArrayList<>();
 
 
 	/**
-	 * Create a new {@code ContextLoader} that will create a web application context
-	 * based on the "contextClass" and "contextConfigLocation" servlet context-params.
-	 * See class-level documentation for details on default values for each.
-	 * <p>This constructor is typically used when declaring the {@code
-	 * ContextLoaderListener} subclass as a {@code <listener>} within {@code web.xml}, as
-	 * a no-arg constructor is required.
-	 * <p>The created application context will be registered into the ServletContext under
-	 * the attribute name {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
-	 * and subclasses are free to call the {@link #closeWebApplicationContext} method on
-	 * container shutdown to close the application context.
+	 * 创建一个新的 {@code ContextLoader}，它将基于 "contextClass" 和
+	 * "contextConfigLocation" servlet 上下文参数创建 Web 应用上下文。
+	 * 有关各自默认值的详细信息，请参见类级文档。
+	 * <p>此构造函数通常在 {@code web.xml} 中将 {@code
+	 * ContextLoaderListener} 子类声明为 {@code <listener>} 时使用，
+	 * 因为此时需要一个无参构造函数。
+	 * <p>创建的应用上下文将以
+	 * {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE}
+	 * 属性名注册到 ServletContext 中，子类可自由地在容器关闭时调用
+	 * {@link #closeWebApplicationContext} 方法来关闭应用上下文。
 	 * @see #ContextLoader(WebApplicationContext)
 	 * @see #initWebApplicationContext(ServletContext)
 	 * @see #closeWebApplicationContext(ServletContext)
@@ -179,34 +177,29 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Create a new {@code ContextLoader} with the given application context. This
-	 * constructor is useful in Servlet 3.0+ environments where instance-based
-	 * registration of listeners is possible through the {@link ServletContext#addListener}
-	 * API.
-	 * <p>The context may or may not yet be {@linkplain
-	 * ConfigurableApplicationContext#refresh() refreshed}. If it (a) is an implementation
-	 * of {@link ConfigurableWebApplicationContext} and (b) has <strong>not</strong>
-	 * already been refreshed (the recommended approach), then the following will occur:
+	 * 使用给定的应用上下文创建一个新的 {@code ContextLoader}。
+	 * 在 Servlet 3.0+ 环境中，可以通过 {@link ServletContext#addListener} API
+	 * 进行基于实例的监听器注册，此时此构造函数非常有用。
+	 * <p>该上下文可能已经或尚未 {@linkplain
+	 * ConfigurableApplicationContext#refresh() 刷新}。如果它 (a) 是
+	 * {@link ConfigurableWebApplicationContext} 的实现，并且 (b) <strong>尚未</strong>
+	 * 被刷新（推荐做法），那么将发生以下情况：
 	 * <ul>
-	 * <li>If the given context has not already been assigned an {@linkplain
-	 * ConfigurableApplicationContext#setId id}, one will be assigned to it</li>
-	 * <li>{@code ServletContext} and {@code ServletConfig} objects will be delegated to
-	 * the application context</li>
-	 * <li>{@link #customizeContext} will be called</li>
-	 * <li>Any {@link ApplicationContextInitializer ApplicationContextInitializers} specified through the
-	 * "contextInitializerClasses" init-param will be applied.</li>
-	 * <li>{@link ConfigurableApplicationContext#refresh refresh()} will be called</li>
+	 * <li>如果给定的上下文尚未被分配 {@linkplain
+	 * ConfigurableApplicationContext#setId id}，则会为其分配一个</li>
+	 * <li>{@code ServletContext} 和 {@code ServletConfig} 对象将被委托给应用上下文</li>
+	 * <li>将调用 {@link #customizeContext}</li>
+	 * <li>通过 "contextInitializerClasses" init-param 指定的任何
+	 * {@link ApplicationContextInitializer ApplicationContextInitializers} 都将被应用。</li>
+	 * <li>将调用 {@link ConfigurableApplicationContext#refresh refresh()}</li>
 	 * </ul>
-	 * If the context has already been refreshed or does not implement
-	 * {@code ConfigurableWebApplicationContext}, none of the above will occur under the
-	 * assumption that the user has performed these actions (or not) per his or her
-	 * specific needs.
-	 * <p>See {@link org.springframework.web.WebApplicationInitializer} for usage examples.
-	 * <p>In any case, the given application context will be registered into the
-	 * ServletContext under the attribute name {@link
-	 * WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} and subclasses are
-	 * free to call the {@link #closeWebApplicationContext} method on container shutdown
-	 * to close the application context.
+	 * 如果上下文已被刷新，或者未实现 {@code ConfigurableWebApplicationContext}，
+	 * 则上述任何操作都不会发生，假设用户已根据其具体需求执行了（或未执行）这些操作。
+	 * <p>有关用法示例，请参见 {@link org.springframework.web.WebApplicationInitializer}。
+	 * <p>无论如何，给定的应用上下文都将以
+	 * {@link WebApplicationContext#ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE} 属性名
+	 * 注册到 ServletContext 中，子类可自由地在容器关闭时调用
+	 * {@link #closeWebApplicationContext} 方法来关闭应用上下文。
 	 * @param context the application context to manage
 	 * @see #initWebApplicationContext(ServletContext)
 	 * @see #closeWebApplicationContext(ServletContext)
@@ -217,8 +210,8 @@ public class ContextLoader {
 
 
 	/**
-	 * Specify which {@link ApplicationContextInitializer} instances should be used
-	 * to initialize the application context used by this {@code ContextLoader}.
+	 * 指定应使用哪些 {@link ApplicationContextInitializer} 实例
+	 * 来初始化此 {@code ContextLoader} 所使用的应用上下文。
 	 * @since 4.2
 	 * @see #configureAndRefreshWebApplicationContext
 	 * @see #customizeContext
@@ -234,10 +227,10 @@ public class ContextLoader {
 
 
 	/**
-	 * Initialize Spring's web application context for the given servlet context,
-	 * using the application context provided at construction time, or creating a new one
-	 * according to the "{@link #CONTEXT_CLASS_PARAM contextClass}" and
-	 * "{@link #CONFIG_LOCATION_PARAM contextConfigLocation}" context-params.
+	 * 为给定的 servlet 上下文初始化 Spring 的 Web 应用上下文，
+	 * 使用构造时提供的应用上下文，或者根据
+	 * "{@link #CONTEXT_CLASS_PARAM contextClass}" 和
+	 * "{@link #CONFIG_LOCATION_PARAM contextConfigLocation}" 上下文参数新建一个。
 	 * @param servletContext current servlet context
 	 * @return the new WebApplicationContext
 	 * @see #ContextLoader(WebApplicationContext)
@@ -303,13 +296,10 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Instantiate the root WebApplicationContext for this loader, either the
-	 * default context class or a custom context class if specified.
-	 * <p>This implementation expects custom contexts to implement the
-	 * {@link ConfigurableWebApplicationContext} interface.
-	 * Can be overridden in subclasses.
-	 * <p>In addition, {@link #customizeContext} gets called prior to refreshing the
-	 * context, allowing subclasses to perform custom modifications to the context.
+	 * 为当前加载器实例化根 WebApplicationContext，使用默认的上下文类，或者在指定了自定义上下文类时使用该自定义
+	 * 类。
+	 * <p>此实现要求自定义上下文实现 {@link ConfigurableWebApplicationContext} 接口。可在子类中覆盖。
+	 * <p>此外，在刷新上下文之前还会调用 {@link #customizeContext}，允许子类对上下文执行自定义修改。
 	 * @param sc current servlet context
 	 * @return the root WebApplicationContext
 	 * @see ConfigurableWebApplicationContext
@@ -324,8 +314,8 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Return the WebApplicationContext implementation class to use, either the
-	 * default XmlWebApplicationContext or a custom context class if specified.
+	 * 返回要使用的 WebApplicationContext 实现类，即默认的 XmlWebApplicationContext，或者在指定了自定义上下文类
+	 * 时使用该自定义类。
 	 * @param servletContext current servlet context
 	 * @return the WebApplicationContext implementation class to use
 	 * @see #CONTEXT_CLASS_PARAM
@@ -400,17 +390,16 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Customize the {@link ConfigurableWebApplicationContext} created by this
-	 * ContextLoader after config locations have been supplied to the context
-	 * but before the context is <em>refreshed</em>.
-	 * <p>The default implementation {@linkplain #determineContextInitializerClasses(ServletContext)
-	 * determines} what (if any) context initializer classes have been specified through
-	 * {@linkplain #CONTEXT_INITIALIZER_CLASSES_PARAM context init parameters} and
-	 * {@linkplain ApplicationContextInitializer#initialize invokes each} with the
-	 * given web application context.
-	 * <p>Any {@code ApplicationContextInitializers} implementing
-	 * {@link org.springframework.core.Ordered Ordered} or marked with @{@link
-	 * org.springframework.core.annotation.Order Order} will be sorted appropriately.
+	 * 在配置位置已提供给上下文之后、上下文被<em>刷新</em>之前，定制由此 ContextLoader 创建的
+	 * {@link ConfigurableWebApplicationContext}。
+	 * <p>默认实现会通过 {@linkplain #determineContextInitializerClasses(ServletContext)
+	 * 确定} 通过 {@linkplain #CONTEXT_INITIALIZER_CLASSES_PARAM context 初始化参数}
+	 * 指定了哪些（如果有）上下文初始化器类，并对每一个调用
+	 * {@linkplain ApplicationContextInitializer#initialize 初始化}，传入给定的
+	 * Web 应用上下文。
+	 * <p>任何实现了 {@link org.springframework.core.Ordered Ordered} 或标注了 @{@link
+	 * org.springframework.core.annotation.Order Order} 的 {@code ApplicationContextInitializers}
+	 * 都会按相应顺序排序。
 	 * @param sc the current servlet context
 	 * @param wac the newly created application context
 	 * @see #CONTEXT_INITIALIZER_CLASSES_PARAM
@@ -440,8 +429,8 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Return the {@link ApplicationContextInitializer} implementation classes to use
-	 * if any have been specified by {@link #CONTEXT_INITIALIZER_CLASSES_PARAM}.
+	 * 返回要使用的 {@link ApplicationContextInitializer} 实现类（如果有通过
+	 * {@link #CONTEXT_INITIALIZER_CLASSES_PARAM} 指定的实现类）。
 	 * @param servletContext current servlet context
 	 * @see #CONTEXT_INITIALIZER_CLASSES_PARAM
 	 */
@@ -484,16 +473,11 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Template method with default implementation (which may be overridden by a
-	 * subclass), to load or obtain an ApplicationContext instance which will be
-	 * used as the parent context of the root WebApplicationContext. If the
-	 * return value from the method is null, no parent context is set.
-	 * <p>The main reason to load a parent context here is to allow multiple root
-	 * web application contexts to all be children of a shared EAR context, or
-	 * alternately to also share the same parent context that is visible to
-	 * EJBs. For pure web applications, there is usually no need to worry about
-	 * having a parent context to the root web application context.
-	 * <p>The default implementation simply returns {@code null}, as of 5.0.
+	 * 模板方法，带有默认实现（可由子类覆盖），用于加载或获取一个 ApplicationContext 实例，该实例将用作根
+	 * WebApplicationContext 的父上下文。如果该方法返回 null，则不设置父上下文。
+	 * <p>在此处加载父上下文的主要原因，是允许多个根 Web 应用上下文都作为共享 EAR 上下文的子上下文，或者同时共
+	 * 享对 EJB 可见的同一个父上下文。对于纯 Web 应用，通常无需为根 Web 应用上下文设置父上下文。
+	 * <p>自 5.0 起，默认实现仅返回 {@code null}。
 	 * @param servletContext current servlet context
 	 * @return the parent application context, or {@code null} if none
 	 */
@@ -503,9 +487,8 @@ public class ContextLoader {
 	}
 
 	/**
-	 * Close Spring's web application context for the given servlet context.
-	 * <p>If overriding {@link #loadParentContext(ServletContext)}, you may have
-	 * to override this method as well.
+	 * 关闭针对给定 Servlet 上下文的 Spring Web 应用上下文。<p>如果覆盖了
+	 * {@link #loadParentContext(ServletContext)}，则可能也需要覆盖此方法。
 	 * @param servletContext the ServletContext that the WebApplicationContext runs in
 	 */
 	public void closeWebApplicationContext(ServletContext servletContext) {
@@ -529,9 +512,8 @@ public class ContextLoader {
 
 
 	/**
-	 * Obtain the Spring root web application context for the current thread
-	 * (i.e. for the current thread's context ClassLoader, which needs to be
-	 * the web application's ClassLoader).
+	 * 获取当前线程（即当前线程的上下文 ClassLoader，它需要是 Web 应用的 ClassLoader）的 Spring 根 Web 应用上下
+	 * 文。
 	 * @return the current root web application context, or {@code null}
 	 * if none found
 	 * @see org.springframework.web.context.support.SpringBeanAutowiringSupport

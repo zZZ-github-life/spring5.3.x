@@ -30,36 +30,32 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Proxy for a target R2DBC {@link ConnectionFactory}, adding awareness
- * of Spring-managed transactions.
+ * 目标 R2DBC {@link ConnectionFactory} 的代理，增加了对 Spring 管理事务的感知能力。
  *
- * <p>Data access code that should remain unaware of Spring's data access
- * support can work with this proxy to seamlessly participate in
- * Spring-managed transactions.
- * Note that the transaction manager, for example {@link R2dbcTransactionManager},
- * still needs to work with the underlying {@link ConnectionFactory},
- * <i>not</i> with this proxy.
+ * <p>那些应当对 Spring 的数据访问支持保持无感知的数据访问代码，可以使用此代理
+ * 无缝地参与 Spring 管理的事务。
+ * 请注意，事务管理器（例如 {@link R2dbcTransactionManager}）仍然需要与底层的
+ * {@link ConnectionFactory} 配合使用，而<i>不是</i>与此代理配合使用。
  *
- * <p><b>Make sure that {@link TransactionAwareConnectionFactoryProxy} is the outermost
- * {@link ConnectionFactory} of a chain of {@link ConnectionFactory} proxies/adapters.</b>
- * {@link TransactionAwareConnectionFactoryProxy} can delegate either directly to the
- * target connection pool or to some intermediary proxy/adapter.
+ * <p><b>请确保 {@link TransactionAwareConnectionFactoryProxy} 是
+ * {@link ConnectionFactory} 代理/适配器链中最外层的 {@link ConnectionFactory}。</b>
+ * {@link TransactionAwareConnectionFactoryProxy} 既可以直接委托给目标连接池，
+ * 也可以委托给某个中间代理/适配器。
  *
- * <p>Delegates to {@link ConnectionFactoryUtils} for automatically participating
- * in thread-bound transactions, for example managed by {@link R2dbcTransactionManager}.
- * {@link #create()} calls and {@code close} calls on returned {@link Connection}
- * will behave properly within a transaction, i.e. always operate on the
- * transactional Connection. If not within a transaction, normal {@link ConnectionFactory}
- * behavior applies.
+ * <p>通过委托给 {@link ConnectionFactoryUtils} 来自动参与绑定到事务的事务，
+ * 例如由 {@link R2dbcTransactionManager} 管理的事务。
+ * 在事务内，{@link #create()} 调用以及返回的 {@link Connection} 上的
+ * {@code close} 调用会表现出正确的行为，即始终操作事务性 Connection。
+ * 如果不在事务内，则应用常规的 {@link ConnectionFactory} 行为。
  *
- * <p> This proxy allows data access code to work with the plain R2DBC API. However,
- * if possible, use Spring's {@link ConnectionFactoryUtils} or {@code DatabaseClient}
- * to get transaction participation even without a proxy for the target
- * {@link ConnectionFactory}, avoiding the need to define such a proxy in the first place.
+ * <p>此代理允许数据访问代码使用普通的 R2DBC API。不过，如果可能的话，
+ * 请使用 Spring 的 {@link ConnectionFactoryUtils} 或 {@code DatabaseClient}，
+ * 这样即使没有目标 {@link ConnectionFactory} 的代理也能获得事务参与能力，
+ * 从而一开始就无需定义这样的代理。
  *
- * <p><b>NOTE:</b> This {@link ConnectionFactory} proxy needs to return wrapped
- * {@link Connection}s in order to handle close calls properly.
- * Use {@link Wrapped#unwrap()} to retrieve the native R2DBC Connection.
+ * <p><b>注意：</b>此 {@link ConnectionFactory} 代理需要返回被包装的
+ * {@link Connection}，才能正确处理 close 调用。
+ * 使用 {@link Wrapped#unwrap()} 来获取原生 R2DBC Connection。
  *
  * @author Mark Paluch
  * @author Christoph Strobl
@@ -72,7 +68,7 @@ import org.springframework.util.ReflectionUtils;
 public class TransactionAwareConnectionFactoryProxy extends DelegatingConnectionFactory {
 
 	/**
-	 * Create a new {@link TransactionAwareConnectionFactoryProxy}.
+	 * 创建一个新的 {@link TransactionAwareConnectionFactoryProxy}。
 	 * @param targetConnectionFactory the target {@link ConnectionFactory}
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
@@ -81,8 +77,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 
 	/**
-	 * Delegates to {@link ConnectionFactoryUtils} for automatically participating
-	 * in Spring-managed transactions.
+	 * 委托给 {@link ConnectionFactoryUtils} 以自动参与 Spring 管理的事务。
 	 * @return a transactional {@link Connection} if any, a new one else.
 	 * @see ConnectionFactoryUtils#doGetConnection
 	 */
@@ -92,8 +87,8 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	}
 
 	/**
-	 * Wraps the given {@link Connection} with a proxy that delegates every method call
-	 * to it but delegates {@code close()} calls to {@link ConnectionFactoryUtils}.
+	 * 用代理包装给定的 {@link Connection}，该代理将所有方法调用委托给目标，
+	 * 但将 {@code close()} 调用委托给 {@link ConnectionFactoryUtils}。
 	 * @param targetConnectionFactory the {@link ConnectionFactory} that the {@link Connection} came from
 	 * @return the wrapped {@link Connection}.
 	 * @see Connection#close()
@@ -112,8 +107,8 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 
 	/**
-	 * Invocation handler that delegates close calls on R2DBC Connections to
-	 * {@link ConnectionFactoryUtils} for being aware of context-bound transactions.
+	 * 调用处理器，将 R2DBC Connection 上的 close 调用委托给
+	 * {@link ConnectionFactoryUtils}，以便感知绑定到上下文的事务。
 	 */
 	private static class TransactionAwareInvocationHandler implements InvocationHandler {
 

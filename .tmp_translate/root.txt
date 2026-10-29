@@ -1,0 +1,103 @@
+@@ BindingContext.java :: 1
+用于协助将请求数据绑定到对象上，并提供对带有控制器专属属性的共享 {@link Model} 的访问的上下文。
+
+<p>提供用于为特定目标对象（命令对象）创建 {@link WebExchangeDataBinder} 的方法，以便对其应用数据绑定和校验；也可以在没有目标对象的情况下创建，用于对请求值进行简单类型转换。
+
+<p>请求默认模型的容器。
+@@ BindingContext.java :: 2
+创建一个新的 {@code BindingContext}。
+@@ BindingContext.java :: 3
+使用给定的初始化器创建一个新的 {@code BindingContext}。
+@@ BindingContext.java :: 4
+返回默认模型。
+@@ BindingContext.java :: 5
+创建 {@link WebExchangeDataBinder}，用于对目标命令对象应用数据绑定和校验。
+@@ BindingContext.java :: 6
+为给定的 exchange 初始化数据绑定器实例。
+@@ BindingContext.java :: 7
+创建一个不带目标对象的 {@link WebExchangeDataBinder}，用于将请求值转换为简单类型。
+@@ BindingContext.java :: 8
+{@link WebExchangeDataBinder} 的扩展变体，增加了路径变量支持。
+@@ DispatcherHandler.java :: 1
+HTTP 请求处理器/控制器的中央调度器。将请求分派给已注册的处理器进行处理，并提供便捷的映射机制。
+
+<p>{@code DispatcherHandler} 从 Spring 配置中发现其所需的委托组件。它会在应用上下文中检测以下内容：
+<ul>
+<li>{@link HandlerMapping} -- 将请求映射到处理器对象
+<li>{@link HandlerAdapter} -- 用于支持任意处理器接口
+<li>{@link HandlerResultHandler} -- 处理处理器返回值
+</ul>
+
+<p>{@code DispatcherHandler} 本身也被设计为 Spring bean，并实现 {@link ApplicationContextAware} 以访问其运行所在的上下文。如果 {@code DispatcherHandler} 被声明为名为 "webHandler" 的 bean，则会被 {@link WebHttpHandlerBuilder#applicationContext(ApplicationContext)} 发现，后者会将其与 {@code WebFilter}、{@code WebExceptionHandler} 等一起组装成处理链。
+
+<p>{@code DispatcherHandler} 的 bean 声明包含在 {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux} 配置中。
+@@ DispatcherHandler.java :: 2
+创建一个新的 {@code DispatcherHandler}，需要通过 {@link #setApplicationContext} 为其配置 {@link ApplicationContext}。
+@@ DispatcherHandler.java :: 3
+为给定的 {@link ApplicationContext} 创建一个新的 {@code DispatcherHandler}。
+@@ DispatcherHandler.java :: 4
+返回在{@link #setApplicationContext 注入的上下文}中按类型检测到的所有 {@link HandlerMapping} bean，并已通过 {@link AnnotationAwareOrderComparator#sort(List)} 排序。
+<p><strong>注意：</strong>如果在 {@link #setApplicationContext(ApplicationContext)} 之前调用，此方法可能返回 {@code null}。
+@@ HandlerAdapter.java :: 1
+将 {@link DispatcherHandler} 与调用处理器的具体细节解耦的契约，使得支持任意处理器类型成为可能。
+@@ HandlerAdapter.java :: 2
+此 {@code HandlerAdapter} 是否支持给定的 {@code handler}。
+@@ HandlerAdapter.java :: 3
+使用给定的处理器处理请求。
+<p>鼓励实现类按顺序处理调用处理器时产生的异常，并在必要时返回表示错误响应的替代结果。
+<p>此外，由于异步的 {@code HandlerResult} 可能在后续结果处理过程中产生错误，因此也鼓励实现类在 {@code HandlerResult} 上{@link HandlerResult#setExceptionHandler(Function) 设置异常处理器}，以便在结果处理之后也能应用该处理器。
+@@ HandlerMapping.java :: 1
+定义请求与处理器对象之间映射的对象需要实现的接口。
+@@ HandlerMapping.java :: 2
+包含最佳匹配模式所映射处理器的 {@link ServerWebExchange#getAttributes() 属性}名称。
+@@ HandlerMapping.java :: 3
+包含处理器映射中最佳匹配模式的 {@link ServerWebExchange#getAttributes() 属性}名称。
+@@ HandlerMapping.java :: 4
+在模式匹配（例如 {@code "/static/**"}）的情况下，表示处理器映射内的路径；否则表示完整的相关 URI。该名称对应 {@link ServerWebExchange#getAttributes() 属性}。
+<p>注意：并非所有 HandlerMapping 实现都要求支持此属性。基于 URL 的 HandlerMapping 通常会支持它，但处理器不应假定该请求属性在所有场景下都存在。
+@@ HandlerMapping.java :: 5
+包含将变量名映射到值的 URI 模板映射的 {@link ServerWebExchange#getAttributes() 属性}名称。
+<p>注意：并非所有 HandlerMapping 实现都要求支持此属性。基于 URL 的 HandlerMapping 通常会支持它，但处理器不应假定该请求属性在所有场景下都存在。
+@@ HandlerMapping.java :: 6
+包含 URI 变量名到对应 URI 矩阵变量 MultiValueMap 的映射的 {@link ServerWebExchange#getAttributes() 属性}名称。
+<p>注意：并非所有 HandlerMapping 实现都要求支持此属性，并且根据 HandlerMapping 是否配置为在请求 URI 中保留矩阵变量内容，该属性也可能不存在。
+@@ HandlerMapping.java :: 7
+包含适用于所映射处理器的可生成 MediaType 集合的 {@link ServerWebExchange#getAttributes() 属性}名称。
+<p>注意：并非所有 HandlerMapping 实现都要求支持此属性。处理器不应假定该请求属性在所有场景下都存在。
+@@ HandlerMapping.java :: 8
+返回用于此请求的处理器。
+<p>在返回处理器之前，实现方法应检查与该处理器关联的 CORS 配置，基于该配置执行校验检查，并相应地更新响应。对于预检请求，应基于与预期实际请求相匹配的处理器执行同样的操作。
+@@ HandlerResult.java :: 1
+表示处理器或处理器方法调用结果的对象。
+@@ HandlerResult.java :: 2
+创建一个新的 {@code HandlerResult}。
+@@ HandlerResult.java :: 3
+创建一个新的 {@code HandlerResult}。
+@@ HandlerResult.java :: 4
+返回处理该请求的处理器。
+@@ HandlerResult.java :: 5
+返回处理器返回的值（如果有）。
+@@ HandlerResult.java :: 6
+返回处理器返回值类型，例如控制器方法签名中声明的返回类型。另请参见 {@link #getReturnTypeSource()} 以获取该返回类型对应的底层 {@link MethodParameter}。
+@@ HandlerResult.java :: 7
+返回创建 {@link #getReturnType() returnType} 时所使用的 {@link MethodParameter}。
+@@ HandlerResult.java :: 8
+返回用于请求处理的 BindingContext。
+@@ HandlerResult.java :: 9
+返回用于请求处理的模型。这是 {@code getBindingContext().getModel()} 的快捷方式。
+@@ HandlerResult.java :: 10
+配置异常处理器，用于在结果处理失败时生成替代结果。特别是对于异步返回值，错误可能在处理器调用之后才发生。
+@@ HandlerResult.java :: 11
+是否存在异常处理器。
+@@ HandlerResult.java :: 12
+应用异常处理器并返回替代结果。
+@@ HandlerResultHandler.java :: 1
+处理通常由 {@link HandlerAdapter} 返回的 {@link HandlerResult}。
+@@ HandlerResultHandler.java :: 2
+此处理器是否支持给定的 {@link HandlerResult}。
+@@ HandlerResultHandler.java :: 3
+处理给定的结果，修改响应头并/或向响应写入数据。
+@@ package-info.java :: 1
+{@code spring-webflux} 模块的顶层包，包含 {@link org.springframework.web.reactive.DispatcherHandler}，它是 WebFlux 服务端端点处理的主要入口，包括用于将请求映射到处理器、调用处理器以及处理结果的关键契约。
+
+<p>该模块为响应式服务端端点提供两种编程模型：一种基于注解式 {@code @Controller}，另一种基于函数式路由和处理。该模块还包含函数式、响应式的 {@code WebClient}，以及客户端和服务端的响应式 WebSocket 支持。

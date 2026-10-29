@@ -22,8 +22,7 @@ import org.springframework.dao.UncategorizedDataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when we can't classify an SQLException into
- * one of our generic data access exceptions.
+ * 当无法将SQLException归类为我们的通用数据访问异常之一时抛出的异常。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -31,13 +30,13 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class UncategorizedSQLException extends UncategorizedDataAccessException {
 
-	/** SQL that led to the problem. */
+	/** 导致问题的SQL语句。 */
 	@Nullable
 	private final String sql;
 
 
 	/**
-	 * Constructor for UncategorizedSQLException.
+	 * 创建UncategorizedSQLException实例。
 	 * @param task name of current task
 	 * @param sql the offending SQL statement
 	 * @param ex the root cause
@@ -51,14 +50,14 @@ public class UncategorizedSQLException extends UncategorizedDataAccessException 
 
 
 	/**
-	 * Return the underlying SQLException.
+	 * 返回底层的SQLException。
 	 */
 	public SQLException getSQLException() {
 		return (SQLException) getCause();
 	}
 
 	/**
-	 * Return the SQL that led to the problem (if known).
+	 * 返回导致问题的SQL语句（如果已知）。
 	 */
 	@Nullable
 	public String getSql() {

@@ -35,18 +35,18 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Editor for {@link org.springframework.core.io.Resource} arrays, to
- * automatically convert {@code String} location patterns
- * (e.g. {@code "file:C:/my*.txt"} or {@code "classpath*:myfile.txt"})
- * to {@code Resource} array properties. Can also translate a collection
- * or array of location patterns into a merged Resource array.
+ * 用于 {@link org.springframework.core.io.Resource} 数组的编辑器，
+ * 可将 {@code String} 位置模式
+ * （例如 {@code "file:C:/my*.txt"} 或 {@code "classpath*:myfile.txt"}）
+ * 自动转换为 {@code Resource} 数组属性。也可以将位置模式的集合
+ * 或数组转换为合并后的 Resource 数组。
  *
- * <p>A path may contain {@code ${...}} placeholders, to be
- * resolved as {@link org.springframework.core.env.Environment} properties:
- * e.g. {@code ${user.dir}}. Unresolvable placeholders are ignored by default.
+ * <p>路径中可以包含 {@code ${...}} 占位符，它们会被
+ * 解析为 {@link org.springframework.core.env.Environment} 属性：
+ * 例如 {@code ${user.dir}}。无法解析的占位符默认会被忽略。
  *
- * <p>Delegates to a {@link ResourcePatternResolver},
- * by default using a {@link PathMatchingResourcePatternResolver}.
+ * <p>委托给 {@link ResourcePatternResolver}，
+ * 默认使用 {@link PathMatchingResourcePatternResolver}。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -68,8 +68,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new ResourceArrayPropertyEditor with a default
-	 * {@link PathMatchingResourcePatternResolver} and {@link StandardEnvironment}.
+	 * 使用默认的 {@link PathMatchingResourcePatternResolver} 和 {@link StandardEnvironment}
+	 * 创建一个新的 ResourceArrayPropertyEditor。
 	 * @see PathMatchingResourcePatternResolver
 	 * @see Environment
 	 */
@@ -78,8 +78,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new ResourceArrayPropertyEditor with the given {@link ResourcePatternResolver}
-	 * and {@link PropertyResolver} (typically an {@link Environment}).
+	 * 使用给定的 {@link ResourcePatternResolver} 和 {@link PropertyResolver}
+	 * （通常是 {@link Environment}）创建一个新的 ResourceArrayPropertyEditor。
 	 * @param resourcePatternResolver the ResourcePatternResolver to use
 	 * @param propertyResolver the PropertyResolver to use
 	 */
@@ -90,8 +90,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new ResourceArrayPropertyEditor with the given {@link ResourcePatternResolver}
-	 * and {@link PropertyResolver} (typically an {@link Environment}).
+	 * 使用给定的 {@link ResourcePatternResolver} 和 {@link PropertyResolver}
+	 * （通常是 {@link Environment}）创建一个新的 ResourceArrayPropertyEditor。
 	 * @param resourcePatternResolver the ResourcePatternResolver to use
 	 * @param propertyResolver the PropertyResolver to use
 	 * @param ignoreUnresolvablePlaceholders whether to ignore unresolvable placeholders
@@ -108,7 +108,7 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Treat the given text as a location pattern and convert it to a Resource array.
+	 * 将给定文本视为位置模式，并将其转换为 Resource 数组。
 	 */
 	@Override
 	public void setAsText(String text) {
@@ -123,8 +123,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Treat the given value as a collection or array and convert it to a Resource array.
-	 * Considers String elements as location patterns and takes Resource elements as-is.
+	 * 将给定值视为集合或数组，并将其转换为 Resource 数组。
+	 * 将 String 元素视为位置模式，并将 Resource 元素按原样使用。
 	 */
 	@Override
 	public void setValue(Object value) throws IllegalArgumentException {
@@ -167,8 +167,8 @@ public class ResourceArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Resolve the given path, replacing placeholders with
-	 * corresponding system property values if necessary.
+	 * 解析给定路径，必要时将占位符替换为
+	 * 相应的系统属性值。
 	 * @param path the original file path
 	 * @return the resolved file path
 	 * @see PropertyResolver#resolvePlaceholders

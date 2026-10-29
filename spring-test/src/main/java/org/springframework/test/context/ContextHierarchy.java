@@ -24,51 +24,50 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @ContextHierarchy} is a class-level annotation that is used to define
- * a hierarchy of {@link org.springframework.context.ApplicationContext
- * ApplicationContexts} for integration tests.
+ * {@code @ContextHierarchy} 是一个类级注解，用于为集成测试定义
+ * {@link org.springframework.context.ApplicationContext
+ * ApplicationContext} 的层次结构。
  *
- * <h3>Examples</h3>
- * <p>The following JUnit-based examples demonstrate common configuration
- * scenarios for integration tests that require the use of context hierarchies.
+ * <h3>示例</h3>
+ * <p>以下基于 JUnit 的示例演示了需要上下文层次结构的集成测试
+ * 的常见配置场景。
  *
- * <h4>Single Test Class with Context Hierarchy</h4>
- * <p>{@code ControllerIntegrationTests} represents a typical integration testing
- * scenario for a Spring MVC web application by declaring a context hierarchy
- * consisting of two levels, one for the <em>root</em> {@code WebApplicationContext}
- * (with {@code TestAppConfig}) and one for the <em>dispatcher servlet</em>
- * {@code WebApplicationContext} (with {@code WebConfig}). The {@code
- * WebApplicationContext} that is <em>autowired</em> into the test instance is
- * the one for the child context (i.e., the lowest context in the hierarchy).
+ * <h4>带上下文层次结构的单个测试类</h4>
+ * <p>{@code ControllerIntegrationTests} 通过声明由两个级别组成的上下文层次结构，
+ * 展示了 Spring MVC Web 应用程序的典型集成测试场景：
+ * 一个用于<em>根</em> {@code WebApplicationContext}
+ * （使用 {@code TestAppConfig}），另一个用于<em>调度器 Servlet</em>
+ * {@code WebApplicationContext}（使用 {@code WebConfig}）。<em>自动装配</em>到测试实例中的
+ * {@code WebApplicationContext} 是子上下文的（即层次结构中最低的上下文）。
  *
  * <pre class="code">
  * &#064;RunWith(SpringRunner.class)
  * &#064;WebAppConfiguration
  * &#064;ContextHierarchy({
- *     &#064;ContextConfiguration(classes = TestAppConfig.class),
- *     &#064;ContextConfiguration(classes = WebConfig.class)
+ * &#064;ContextConfiguration(classes = TestAppConfig.class),
+ * &#064;ContextConfiguration(classes = WebConfig.class)
  * })
  * public class ControllerIntegrationTests {
  *
- *     &#064;Autowired
- *     private WebApplicationContext wac;
+ * &#064;Autowired
+ * private WebApplicationContext wac;
  *
- *     // ...
+ * // ...
  * }</pre>
  *
- * <h4>Class Hierarchy with Implicit Parent Context</h4>
- * <p>The following test classes define a context hierarchy within a test class
- * hierarchy. {@code AbstractWebTests} declares the configuration for a root
- * {@code WebApplicationContext} in a Spring-powered web application. Note,
- * however, that {@code AbstractWebTests} does not declare {@code @ContextHierarchy};
- * consequently, subclasses of {@code AbstractWebTests} can optionally participate
- * in a context hierarchy or follow the standard semantics for {@code @ContextConfiguration}.
- * {@code SoapWebServiceTests} and {@code RestWebServiceTests} both extend
- * {@code AbstractWebTests} and define a context hierarchy via {@code @ContextHierarchy}.
- * The result is that three application contexts will be loaded (one for each
- * declaration of {@code @ContextConfiguration}), and the application context
- * loaded based on the configuration in {@code AbstractWebTests} will be set as
- * the parent context for each of the contexts loaded for the concrete subclasses.
+ * <h4>带隐式父上下文的类层次结构</h4>
+ * <p>以下测试类在测试类层次结构中定义上下文层次结构。
+ * {@code AbstractWebTests} 声明了 Spring 驱动的 Web 应用程序中根
+ * {@code WebApplicationContext} 的配置。但请注意，
+ * {@code AbstractWebTests} 并未声明 {@code @ContextHierarchy}；
+ * 因此，{@code AbstractWebTests} 的子类可以选择参与
+ * 上下文层次结构，或遵循 {@code @ContextConfiguration} 的标准语义。
+ * {@code SoapWebServiceTests} 和 {@code RestWebServiceTests} 都扩展了
+ * {@code AbstractWebTests}，并通过 {@code @ContextHierarchy} 定义上下文层次结构。
+ * 结果是，将加载三个应用程序上下文（每个
+ * {@code @ContextConfiguration} 声明对应一个），并且基于
+ * {@code AbstractWebTests} 中的配置加载的应用程序上下文将设置为
+ * 具体子类所加载的每个上下文的父上下文。
  *
  * <pre class="code">
  * &#064;RunWith(SpringRunner.class)
@@ -82,61 +81,61 @@ import java.lang.annotation.Target;
  * &#064;ContextHierarchy(&#064;ContextConfiguration("/spring/rest-ws-config.xml"))
  * public class RestWebServiceTests extends AbstractWebTests {}</pre>
  *
- * <h4>Class Hierarchy with Merged Context Hierarchy Configuration</h4>
- * <p>The following classes demonstrate the use of <em>named</em> hierarchy levels
- * in order to <em>merge</em> the configuration for specific levels in a context
- * hierarchy. {@code BaseTests} defines two levels in the hierarchy, {@code parent}
- * and {@code child}. {@code ExtendedTests} extends {@code BaseTests} and instructs
- * the Spring TestContext Framework to merge the context configuration for the
- * {@code child} hierarchy level, simply by ensuring that the names declared via
- * {@link ContextConfiguration#name} are both {@code "child"}. The result is that
- * three application contexts will be loaded: one for {@code "/app-config.xml"},
- * one for {@code "/user-config.xml"}, and one for <code>{"/user-config.xml",
- * "/order-config.xml"}</code>. As with the previous example, the application
- * context loaded from {@code "/app-config.xml"} will be set as the parent context
- * for the contexts loaded from {@code "/user-config.xml"} and <code>{"/user-config.xml",
- * "/order-config.xml"}</code>.
+ * <h4>带合并上下文层次结构配置的类层次结构</h4>
+ * <p>以下类演示了如何使用<em>命名</em>层次结构级别
+ * 来<em>合并</em>上下文层次结构中特定级别的配置。
+ * {@code BaseTests} 定义了层次结构中的两个级别：{@code parent}
+ * 和 {@code child}。{@code ExtendedTests} 扩展了 {@code BaseTests}，并指示
+ * Spring TestContext Framework 合并
+ * {@code child} 层次结构级别的上下文配置，只需确保通过
+ * {@link ContextConfiguration#name} 声明的名称都是 {@code "child"}。结果是，
+ * 将加载三个应用程序上下文：一个用于 {@code "/app-config.xml"}，
+ * 一个用于 {@code "/user-config.xml"}，还有一个用于 <code>{"/user-config.xml",
+ * "/order-config.xml"}</code>。与前一个示例一样，从
+ * {@code "/app-config.xml"} 加载的应用程序上下文将设置为
+ * 从 {@code "/user-config.xml"} 和 <code>{"/user-config.xml",
+ * "/order-config.xml"}</code> 加载的上下文的父上下文。
  *
  * <pre class="code">
  * &#064;RunWith(SpringRunner.class)
  * &#064;ContextHierarchy({
- *     &#064;ContextConfiguration(name = "parent", locations = "/app-config.xml"),
- *     &#064;ContextConfiguration(name = "child",  locations = "/user-config.xml")
+ * &#064;ContextConfiguration(name = "parent", locations = "/app-config.xml"),
+ * &#064;ContextConfiguration(name = "child",  locations = "/user-config.xml")
  * })
  * public class BaseTests {}
  *
  * &#064;ContextHierarchy(
- *     &#064;ContextConfiguration(name = "child",  locations = "/order-config.xml")
+ * &#064;ContextConfiguration(name = "child",  locations = "/order-config.xml")
  * )
  * public class ExtendedTests extends BaseTests {}</pre>
  *
- * <h4>Class Hierarchy with Overridden Context Hierarchy Configuration</h4>
- * <p>In contrast to the previous example, this example demonstrates how to
- * <em>override</em> the configuration for a given named level in a context hierarchy
- * by setting the {@link ContextConfiguration#inheritLocations} flag to {@code false}.
- * Consequently, the application context for {@code ExtendedTests} will be loaded
- * only from {@code "/test-user-config.xml"} and will have its parent set to the
- * context loaded from {@code "/app-config.xml"}.
+ * <h4>带覆盖上下文层次结构配置的类层次结构</h4>
+ * <p>与前一个示例相比，此示例演示如何通过将
+ * {@link ContextConfiguration#inheritLocations} 标志设置为 {@code false}
+ * 来<em>覆盖</em>上下文层次结构中给定命名级别的配置。
+ * 因此，{@code ExtendedTests} 的应用程序上下文将仅从
+ * {@code "/test-user-config.xml"} 加载，并将其父上下文设置为
+ * 从 {@code "/app-config.xml"} 加载的上下文。
  *
  * <pre class="code">
  * &#064;RunWith(SpringRunner.class)
  * &#064;ContextHierarchy({
- *     &#064;ContextConfiguration(name = "parent", locations = "/app-config.xml"),
- *     &#064;ContextConfiguration(name = "child",  locations = "/user-config.xml")
+ * &#064;ContextConfiguration(name = "parent", locations = "/app-config.xml"),
+ * &#064;ContextConfiguration(name = "child",  locations = "/user-config.xml")
  * })
  * public class BaseTests {}
  *
  * &#064;ContextHierarchy(
- *     &#064;ContextConfiguration(name = "child",  locations = "/test-user-config.xml", inheritLocations = false)
+ * &#064;ContextConfiguration(name = "child",  locations = "/test-user-config.xml", inheritLocations = false)
  * )
  * public class ExtendedTests extends BaseTests {}</pre>
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link NestedTestConfiguration @NestedTestConfiguration} for details.
+ * <p>从 Spring Framework 5.3 开始，此注解默认将从
+ * 外层测试类继承。详情请参见
+ * {@link NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 3.2.2
@@ -150,13 +149,12 @@ import java.lang.annotation.Target;
 public @interface ContextHierarchy {
 
 	/**
-	 * A list of {@link ContextConfiguration @ContextConfiguration} instances,
-	 * each of which defines a level in the context hierarchy.
-	 * <p>If you need to merge or override the configuration for a given level
-	 * of the context hierarchy within a test class hierarchy, you must explicitly
-	 * name that level by supplying the same value to the {@link ContextConfiguration#name
-	 * name} attribute in {@code @ContextConfiguration} at each level in the
-	 * class hierarchy. See the class-level Javadoc for examples.
+	 * 一组 {@link ContextConfiguration @ContextConfiguration} 实例，
+	 * 每个实例定义上下文层次结构中的一个级别。
+	 * <p>如果需要在测试类层次结构中合并或覆盖上下文层次结构
+	 * 给定级别的配置，必须在
+	 * 类层次结构的每个级别向 {@code @ContextConfiguration} 的 {@link ContextConfiguration#name
+	 * name} 属性提供相同的值来显式命名该级别。示例请参见类级 Javadoc。
 	 */
 	ContextConfiguration[] value();
 

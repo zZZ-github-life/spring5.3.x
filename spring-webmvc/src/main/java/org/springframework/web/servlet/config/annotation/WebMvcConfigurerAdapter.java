@@ -28,21 +28,20 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 /**
- * An implementation of {@link WebMvcConfigurer} with empty methods allowing
- * subclasses to override only the methods they're interested in.
+ * {@link WebMvcConfigurer} 的实现，其方法均为空实现，
+ * 允许子类仅重写它们所关心的方法。
  *
  * @author Rossen Stoyanchev
  * @since 3.1
- * @deprecated as of 5.0 {@link WebMvcConfigurer} has default methods (made
- * possible by a Java 8 baseline) and can be implemented directly without the
- * need for this adapter
+ * @deprecated 自 5.0 起，{@link WebMvcConfigurer} 已提供默认方法
+ * （得益于 Java 8 基线），可以直接实现，无需此适配器
  */
 @Deprecated
 public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -50,7 +49,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
@@ -58,7 +57,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
@@ -66,7 +65,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -74,7 +73,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
@@ -82,7 +81,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -90,7 +89,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -98,7 +97,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
@@ -106,7 +105,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
@@ -114,7 +113,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -122,7 +121,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
@@ -130,7 +129,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
@@ -138,7 +137,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -146,7 +145,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -154,7 +153,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
@@ -162,7 +161,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation is empty.
+	 * <p>此实现为空。
 	 */
 	@Override
 	public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
@@ -170,7 +169,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation returns {@code null}.
+	 * <p>此实现返回 {@code null}。
 	 */
 	@Override
 	@Nullable
@@ -180,7 +179,7 @@ public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>This implementation returns {@code null}.
+	 * <p>此实现返回 {@code null}。
 	 */
 	@Override
 	@Nullable

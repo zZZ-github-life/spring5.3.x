@@ -1,7 +1,5 @@
 /**
- * Provides miscellaneous interceptor implementations.
- * More specific interceptors can be found in corresponding
- * functionality packages, like "transaction" and "orm".
+ * 提供各种拦截器实现。更具体的拦截器可在相应的功能包中找到，例如 “transaction” 和 “orm”。
  */
 @NonNullApi
 @NonNullFields

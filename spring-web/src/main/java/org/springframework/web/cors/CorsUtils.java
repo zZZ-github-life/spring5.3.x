@@ -26,8 +26,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Utility class for CORS request handling based on the
- * <a href="https://www.w3.org/TR/cors/">CORS W3C recommendation</a>.
+ * 基于 <a href="https://www.w3.org/TR/cors/">CORS W3C 建议</a>
+ * 进行 CORS 请求处理的工具类。
  *
  * @author Sebastien Deleuze
  * @since 4.2
@@ -35,8 +35,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 public abstract class CorsUtils {
 
 	/**
-	 * Returns {@code true} if the request is a valid CORS one by checking {@code Origin}
-	 * header presence and ensuring that origins are different.
+	 * 通过检查是否存在 {@code Origin} 头并确保 origin 不同，
+	 * 如果请求是有效的 CORS 请求则返回 {@code true}。
 	 */
 	public static boolean isCorsRequest(HttpServletRequest request) {
 		String origin = request.getHeader(HttpHeaders.ORIGIN);
@@ -66,8 +66,9 @@ public abstract class CorsUtils {
 	}
 
 	/**
-	 * Returns {@code true} if the request is a valid CORS pre-flight one by checking {@code OPTIONS} method with
-	 * {@code Origin} and {@code Access-Control-Request-Method} headers presence.
+	 * 通过检查 {@code OPTIONS} 方法以及 {@code Origin} 和
+	 * {@code Access-Control-Request-Method} 头是否存在，如果请求是有效的
+	 * CORS 预检请求则返回 {@code true}。
 	 */
 	public static boolean isPreFlightRequest(HttpServletRequest request) {
 		return (HttpMethod.OPTIONS.matches(request.getMethod()) &&

@@ -26,19 +26,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * JMS-specific implementation of the JCA 1.7
- * {@link javax.resource.spi.endpoint.MessageEndpointFactory} interface,
- * providing transaction management capabilities for a JMS listener object
- * (e.g. a {@link javax.jms.MessageListener} object).
+ * JCA 1.7 {@link javax.resource.spi.endpoint.MessageEndpointFactory} 接口的
+ * JMS 特定实现，为 JMS 监听器对象（例如 {@link javax.jms.MessageListener} 对象）
+ * 提供事务管理能力。
  *
- * <p>Uses a static endpoint implementation, simply wrapping the
- * specified message listener object and exposing all of its implemented
- * interfaces on the endpoint instance.
+ * <p>使用静态端点实现，只是包装指定的消息监听器对象，
+ * 并在端点实例上暴露其实现的所有接口。
  *
- * <p>Typically used with Spring's {@link JmsMessageEndpointManager},
- * but not tied to it. As a consequence, this endpoint factory could
- * also be used with programmatic endpoint management on a native
- * {@link javax.resource.spi.ResourceAdapter} instance.
+ * <p>通常与 Spring 的 {@link JmsMessageEndpointManager} 一起使用，
+ * 但并非必须绑定于它。因此，此端点工厂也可以用于
+ * 原生 {@link javax.resource.spi.ResourceAdapter} 实例上的编程式端点管理。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -54,14 +51,14 @@ public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory  {
 
 
 	/**
-	 * Set the JMS MessageListener for this endpoint.
+	 * 设置此端点的 JMS MessageListener。
 	 */
 	public void setMessageListener(MessageListener messageListener) {
 		this.messageListener = messageListener;
 	}
 
 	/**
-	 * Return the JMS MessageListener for this endpoint.
+	 * 返回此端点的 JMS MessageListener。
 	 */
 	protected MessageListener getMessageListener() {
 		Assert.state(this.messageListener != null, "No MessageListener set");
@@ -69,7 +66,7 @@ public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory  {
 	}
 
 	/**
-	 * Creates a concrete JMS message endpoint, internal to this factory.
+	 * 创建一个具体的 JMS 消息端点，为此工厂内部使用。
 	 */
 	@Override
 	protected AbstractMessageEndpoint createEndpointInternal() throws UnavailableException {
@@ -78,7 +75,7 @@ public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory  {
 
 
 	/**
-	 * Private inner class that implements the concrete JMS message endpoint.
+	 * 实现具体 JMS 消息端点的私有内部类。
 	 */
 	private class JmsMessageEndpoint extends AbstractMessageEndpoint implements MessageListener {
 
@@ -124,12 +121,11 @@ public class JmsMessageEndpointFactory extends AbstractMessageEndpointFactory  {
 
 
 	/**
-	 * Internal exception thrown when a ResourceException has been encountered
-	 * during the endpoint invocation.
-	 * <p>Will only be used if the ResourceAdapter does not invoke the
-	 * endpoint's {@code beforeDelivery} and {@code afterDelivery}
-	 * directly, leaving it up to the concrete endpoint to apply those -
-	 * and to handle any ResourceExceptions thrown from them.
+	 * 端点调用期间遇到 ResourceException 时抛出的内部异常。
+	 * <p>仅当 ResourceAdapter 不直接调用端点的
+	 * {@code beforeDelivery} 和 {@code afterDelivery} 时使用，
+	 * 此时由具体端点负责应用这些方法，
+	 * 并处理它们抛出的任何 ResourceException。
 	 */
 	@SuppressWarnings("serial")
 	public static class JmsResourceException extends RuntimeException {

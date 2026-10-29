@@ -33,8 +33,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link Parser} implementation for a JSR-310 {@link java.time.temporal.TemporalAccessor},
- * using a {@link java.time.format.DateTimeFormatter} (the contextual one, if available).
+ * 用于 JSR-310 {@link java.time.temporal.TemporalAccessor} 的 {@link Parser} 实现，使用
+ * {@link java.time.format.DateTimeFormatter}（如果可用，则使用上下文中的那个）。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -61,7 +61,7 @@ public final class TemporalAccessorParser implements Parser<TemporalAccessor> {
 
 
 	/**
-	 * Create a new TemporalAccessorParser for the given TemporalAccessor type.
+	 * 为给定的 TemporalAccessor 类型创建一个新的 TemporalAccessorParser。
 	 * @param temporalAccessorType the specific TemporalAccessor class
 	 * (LocalDate, LocalTime, LocalDateTime, ZonedDateTime, OffsetDateTime, OffsetTime)
 	 * @param formatter the base DateTimeFormatter instance

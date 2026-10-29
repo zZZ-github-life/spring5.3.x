@@ -33,9 +33,9 @@ import javax.xml.stream.events.XMLEvent;
 import org.springframework.lang.Nullable;
 
 /**
- * Implementation of the {@link javax.xml.stream.XMLStreamReader} interface that wraps a
- * {@link XMLEventReader}. Useful because the StAX {@link javax.xml.stream.XMLInputFactory}
- * allows one to create an event reader from a stream reader, but not vice-versa.
+ * 包装 {@link XMLEventReader} 的 {@link javax.xml.stream.XMLStreamReader} 接口实现。
+ * 这很有用，因为 StAX {@link javax.xml.stream.XMLInputFactory}
+ * 允许从流读取器创建事件读取器，但反之则不行。
  *
  * @author Arjen Poutsma
  * @since 3.0

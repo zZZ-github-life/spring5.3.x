@@ -35,9 +35,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Represents a user-defined {@link Configuration @Configuration} class.
- * <p>Includes a set of {@link Bean} methods, including all such methods
- * defined in the ancestry of the class, in a 'flattened-out' manner.
+ * 表示用户定义的 {@link Configuration @Configuration} 类。
+ * <p>以“扁平化”的方式包含一组 {@link Bean} 方法，包括在该类的继承层次中定义的所有此类方法。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -69,7 +68,7 @@ final class ConfigurationClass {
 
 
 	/**
-	 * Create a new {@link ConfigurationClass} with the given name.
+	 * 使用给定名称创建一个新的 {@link ConfigurationClass}。
 	 * @param metadataReader reader used to parse the underlying {@link Class}
 	 * @param beanName must not be {@code null}
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
@@ -82,9 +81,8 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Create a new {@link ConfigurationClass} representing a class that was imported
-	 * using the {@link Import} annotation or automatically processed as a nested
-	 * configuration class (if importedBy is not {@code null}).
+	 * 创建一个新的 {@link ConfigurationClass}，表示使用 {@link Import} 注解导入的类，或作为嵌套配置类
+	 * 自动处理的类（如果 importedBy 不为 {@code null}）。
 	 * @param metadataReader reader used to parse the underlying {@link Class}
 	 * @param importedBy the configuration class importing this one or {@code null}
 	 * @since 3.1.1
@@ -96,7 +94,7 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Create a new {@link ConfigurationClass} with the given name.
+	 * 使用给定名称创建一个新的 {@link ConfigurationClass}。
 	 * @param clazz the underlying {@link Class} to represent
 	 * @param beanName name of the {@code @Configuration} class bean
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
@@ -109,9 +107,8 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Create a new {@link ConfigurationClass} representing a class that was imported
-	 * using the {@link Import} annotation or automatically processed as a nested
-	 * configuration class (if imported is {@code true}).
+	 * 创建一个新的 {@link ConfigurationClass}，表示使用 {@link Import} 注解导入的类，或作为嵌套配置类
+	 * 自动处理的类（如果 imported 为 {@code true}）。
 	 * @param clazz the underlying {@link Class} to represent
 	 * @param importedBy the configuration class importing this one (or {@code null})
 	 * @since 3.1.1
@@ -123,7 +120,7 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Create a new {@link ConfigurationClass} with the given name.
+	 * 使用给定名称创建一个新的 {@link ConfigurationClass}。
 	 * @param metadata the metadata for the underlying class to represent
 	 * @param beanName name of the {@code @Configuration} class bean
 	 * @see ConfigurationClass#ConfigurationClass(Class, ConfigurationClass)
@@ -158,8 +155,7 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Return whether this configuration class was registered via @{@link Import} or
-	 * automatically registered due to being nested within another configuration class.
+	 * 返回此配置类是通过 @{@link Import} 注册的，还是由于嵌套在另一个配置类中而自动注册的。
 	 * @since 3.1.1
 	 * @see #getImportedBy()
 	 */
@@ -168,7 +164,7 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Merge the imported-by declarations from the given configuration class into this one.
+	 * 将给定配置类中的 imported-by 声明合并到此配置类中。
 	 * @since 4.0.5
 	 */
 	void mergeImportedBy(ConfigurationClass otherConfigClass) {
@@ -176,8 +172,7 @@ final class ConfigurationClass {
 	}
 
 	/**
-	 * Return the configuration classes that imported this class,
-	 * or an empty Set if this configuration was not imported.
+	 * 返回导入了此类的配置类，如果此配置类未被导入则返回空 Set。
 	 * @since 4.0.5
 	 * @see #isImported()
 	 */
@@ -240,7 +235,7 @@ final class ConfigurationClass {
 
 
 	/**
-	 * Configuration classes must be non-final to accommodate CGLIB subclassing.
+	 * 配置类必须为非 final，以支持 CGLIB 子类化。
 	 */
 	private class FinalConfigurationProblem extends Problem {
 

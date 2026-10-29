@@ -52,13 +52,13 @@ import org.springframework.web.socket.sockjs.transport.session.PollingSockJsSess
 import org.springframework.web.socket.sockjs.transport.session.StreamingSockJsSession;
 
 /**
- * An implementation of {@link WebSocketHandler} that delegates incoming WebSocket
- * messages to a {@link SubProtocolHandler} along with a {@link MessageChannel} to which
- * the sub-protocol handler can send messages from WebSocket clients to the application.
+ * {@link WebSocketHandler} 的实现，它将传入的 WebSocket 消息连同
+ * {@link MessageChannel} 一起委托给 {@link SubProtocolHandler}，
+ * 子协议处理器可以通过该通道将来自 WebSocket 客户端的消息发送到应用程序。
  *
- * <p>Also an implementation of {@link MessageHandler} that finds the WebSocket session
- * associated with the {@link Message} and passes it, along with the message, to the
- * sub-protocol handler to send messages from the application back to the client.
+ * <p>它同时也是 {@link MessageHandler} 的实现，会找到与 {@link Message}
+ * 关联的 WebSocket 会话，并将其连同消息一起传递给子协议处理器，
+ * 以便将消息从应用程序发送回客户端。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -69,7 +69,7 @@ import org.springframework.web.socket.sockjs.transport.session.StreamingSockJsSe
 public class SubProtocolWebSocketHandler
 		implements WebSocketHandler, SubProtocolCapable, MessageHandler, SmartLifecycle {
 
-	/** The default value for {@link #setTimeToFirstMessage(int) timeToFirstMessage}. */
+	/** {@link #setTimeToFirstMessage(int) timeToFirstMessage} 的默认值。 */
 	private static final int DEFAULT_TIME_TO_FIRST_MESSAGE = 60 * 1000;
 
 
@@ -108,7 +108,7 @@ public class SubProtocolWebSocketHandler
 
 
 	/**
-	 * Create a new {@code SubProtocolWebSocketHandler} for the given inbound and outbound channels.
+	 * 为给定的入站和出站通道创建一个新的 {@code SubProtocolWebSocketHandler}。
 	 * @param clientInboundChannel the inbound {@code MessageChannel}
 	 * @param clientOutboundChannel the outbound {@code MessageChannel}
 	 */
@@ -121,8 +121,8 @@ public class SubProtocolWebSocketHandler
 
 
 	/**
-	 * Configure one or more handlers to use depending on the sub-protocol requested by
-	 * the client in the WebSocket handshake request.
+	 * 配置一个或多个处理器，根据客户端在 WebSocket 握手请求中请求的子协议
+	 * 来决定使用哪个。
 	 * @param protocolHandlers the sub-protocol handlers to use
 	 */
 	public void setProtocolHandlers(List<SubProtocolHandler> protocolHandlers) {
@@ -138,7 +138,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Register a sub-protocol handler.
+	 * 注册一个子协议处理器。
 	 */
 	public void addProtocolHandler(SubProtocolHandler handler) {
 		List<String> protocols = handler.getSupportedProtocols();
@@ -159,15 +159,14 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return the sub-protocols keyed by protocol name.
+	 * 返回以协议名称为键的子协议。
 	 */
 	public Map<String, SubProtocolHandler> getProtocolHandlerMap() {
 		return this.protocolHandlerLookup;
 	}
 
 	/**
-	 * Set the {@link SubProtocolHandler} to use when the client did not request a
-	 * sub-protocol.
+	 * 设置客户端未请求子协议时要使用的 {@link SubProtocolHandler}。
 	 * @param defaultProtocolHandler the default handler
 	 */
 	public void setDefaultProtocolHandler(@Nullable SubProtocolHandler defaultProtocolHandler) {
@@ -178,7 +177,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return the default sub-protocol handler to use.
+	 * 返回要使用的默认子协议处理器。
 	 */
 	@Nullable
 	public SubProtocolHandler getDefaultProtocolHandler() {
@@ -186,7 +185,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return all supported protocols.
+	 * 返回所有支持的协议。
 	 */
 	@Override
 	public List<String> getSubProtocols() {
@@ -194,7 +193,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Specify the send-time limit (milliseconds).
+	 * 指定发送时间限制（毫秒）。
 	 * @see ConcurrentWebSocketSessionDecorator
 	 */
 	public void setSendTimeLimit(int sendTimeLimit) {
@@ -202,14 +201,14 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return the send-time limit (milliseconds).
+	 * 返回发送时间限制（毫秒）。
 	 */
 	public int getSendTimeLimit() {
 		return this.sendTimeLimit;
 	}
 
 	/**
-	 * Specify the buffer-size limit (number of bytes).
+	 * 指定缓冲区大小限制（字节数）。
 	 * @see ConcurrentWebSocketSessionDecorator
 	 */
 	public void setSendBufferSizeLimit(int sendBufferSizeLimit) {
@@ -217,20 +216,20 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return the buffer-size limit (number of bytes).
+	 * 返回缓冲区大小限制（字节数）。
 	 */
 	public int getSendBufferSizeLimit() {
 		return this.sendBufferSizeLimit;
 	}
 
 	/**
-	 * Set the maximum time allowed in milliseconds after the WebSocket connection
-	 * is established and before the first sub-protocol message is received.
-	 * <p>This handler is for WebSocket connections that use a sub-protocol.
-	 * Therefore, we expect the client to send at least one sub-protocol message
-	 * in the beginning, or else we assume the connection isn't doing well, e.g.
-	 * proxy issue, slow network, and can be closed.
-	 * <p>By default this is set to {@code 60,000} (1 minute).
+	 * 设置 WebSocket 连接建立之后、收到第一条子协议消息之前所允许的
+	 * 最大时间（毫秒）。
+	 * <p>此处理器针对使用子协议的 WebSocket 连接。
+	 * 因此，我们期望客户端在开始时至少发送一条子协议消息，
+	 * 否则就认为连接状态不佳（例如代理问题、网络缓慢），
+	 * 并可以将其关闭。
+	 * <p>默认情况下设置为 {@code 60,000}（1 分钟）。
 	 * @param timeToFirstMessage the maximum time allowed in milliseconds
 	 * @since 5.1
 	 * @see #checkSessions()
@@ -240,8 +239,8 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return the maximum time allowed after the WebSocket connection is
-	 * established and before the first sub-protocol message.
+	 * 返回 WebSocket 连接建立之后、收到第一条子协议消息之前所允许的
+	 * 最大时间。
 	 * @since 5.1
 	 */
 	public int getTimeToFirstMessage() {
@@ -249,15 +248,15 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Return a String describing internal state and counters.
-	 * Effectively {@code toString()} on {@link #getStats() getStats()}.
+	 * 返回描述内部状态和计数器的字符串。
+	 * 实际上就是调用 {@link #getStats() getStats()} 的 {@code toString()}。
 	 */
 	public String getStatsInfo() {
 		return this.stats.toString();
 	}
 
 	/**
-	 * Return a structured object with various session counters.
+	 * 返回包含各种会话计数器的结构化对象。
 	 * @since 5.2
 	 */
 	public Stats getStats() {
@@ -324,7 +323,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Handle an inbound message from a WebSocket client.
+	 * 处理来自 WebSocket 客户端的入站消息。
 	 */
 	@Override
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
@@ -341,7 +340,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Handle an outbound Spring Message to a WebSocket client.
+	 * 处理发往 WebSocket 客户端的出站 Spring Message。
 	 */
 	@Override
 	public void handleMessage(Message<?> message) throws MessagingException {
@@ -407,10 +406,10 @@ public class SubProtocolWebSocketHandler
 
 
 	/**
-	 * Decorate the given {@link WebSocketSession}, if desired.
-	 * <p>The default implementation builds a {@link ConcurrentWebSocketSessionDecorator}
-	 * with the configured {@link #getSendTimeLimit() send-time limit} and
-	 * {@link #getSendBufferSizeLimit() buffer-size limit}.
+	 * 如果需要，装饰给定的 {@link WebSocketSession}。
+	 * <p>默认实现使用配置的 {@link #getSendTimeLimit() 发送时间限制}
+	 * 和 {@link #getSendBufferSizeLimit() 缓冲区大小限制}
+	 * 构建一个 {@link ConcurrentWebSocketSessionDecorator}。
 	 * @param session the original {@code WebSocketSession}
 	 * @return the decorated {@code WebSocketSession}, or potentially the given session as-is
 	 * @since 4.3.13
@@ -420,7 +419,7 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * Find a {@link SubProtocolHandler} for the given session.
+	 * 为给定会话查找 {@link SubProtocolHandler}。
 	 * @param session the {@code WebSocketSession} to find a handler for
 	 */
 	protected final SubProtocolHandler findProtocolHandler(WebSocketSession session) {
@@ -475,12 +474,10 @@ public class SubProtocolWebSocketHandler
 	}
 
 	/**
-	 * When a session is connected through a higher-level protocol it has a chance
-	 * to use heartbeat management to shut down sessions that are too slow to send
-	 * or receive messages. However, after a WebSocketSession is established and
-	 * before the higher level protocol is fully connected there is a possibility for
-	 * sessions to hang. This method checks and closes any sessions that have been
-	 * connected for more than 60 seconds without having received a single message.
+	 * 当会话通过更高级别协议连接时，它有机会使用心跳管理来关闭那些
+	 * 发送或接收消息太慢的会话。然而，在 WebSocketSession 建立之后、
+	 * 更高级别协议完全连接之前，会话有可能挂起。此方法会检查并关闭
+	 * 任何已连接超过 60 秒但未收到任何消息的会话。
 	 */
 	private void checkSessions() {
 		long currentTime = System.currentTimeMillis();
@@ -576,7 +573,7 @@ public class SubProtocolWebSocketHandler
 
 
 	/**
-	 * Contract for access to session counters.
+	 * 用于访问会话计数器的契约。
 	 * @since 5.2
 	 */
 	public interface Stats {

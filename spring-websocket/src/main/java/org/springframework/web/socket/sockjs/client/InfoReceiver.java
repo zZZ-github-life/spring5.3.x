@@ -22,12 +22,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.lang.Nullable;
 
 /**
- * A component that can execute the SockJS "Info" request that needs to be
- * performed before the SockJS session starts in order to check server endpoint
- * capabilities such as whether the endpoint permits use of WebSocket.
+ * 一个可以执行 SockJS "Info" 请求的组件，该请求需要在
+ * SockJS 会话启动之前执行，以检查服务器端点的能力，
+ * 例如端点是否允许使用 WebSocket。
  *
- * <p>Typically {@link XhrTransport} implementations are also implementations
- * of this contract.
+ * <p>通常 {@link XhrTransport} 实现也是此约定的实现。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -36,9 +35,9 @@ import org.springframework.lang.Nullable;
 public interface InfoReceiver {
 
 	/**
-	 * Perform an HTTP request to the SockJS "Info" URL.
-	 * and return the resulting JSON response content, or raise an exception.
-	 * <p>Note that as of 4.2 this method accepts a {@code headers} parameter.
+	 * 对 SockJS "Info" URL 执行 HTTP 请求，
+	 * 并返回得到的 JSON 响应内容，或引发异常。
+	 * <p>请注意，自 4.2 起，此方法接受 {@code headers} 参数。
 	 * @param infoUrl the URL to obtain SockJS server information from
 	 * @param headers the headers to use for the request
 	 * @return the body of the response

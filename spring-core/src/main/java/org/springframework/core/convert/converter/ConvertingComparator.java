@@ -25,10 +25,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.comparator.Comparators;
 
 /**
- * A {@link Comparator} that converts values before they are compared.
+ * 一个在比较值之前先对其进行转换的 {@link Comparator}。
  *
- * <p>The specified {@link Converter} will be used to convert each value
- * before it is passed to the underlying {@code Comparator}.
+ * <p>指定的 {@link Converter} 会在每个值传递给底层 {@code Comparator} 之前对其进行转换。
  *
  * @author Phillip Webb
  * @since 3.2
@@ -43,7 +42,7 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 
 
 	/**
-	 * Create a new {@link ConvertingComparator} instance.
+	 * 创建一个新的 {@link ConvertingComparator} 实例。
 	 * @param converter the converter
 	 */
 	public ConvertingComparator(Converter<S, T> converter) {
@@ -51,7 +50,7 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 	}
 
 	/**
-	 * Create a new {@link ConvertingComparator} instance.
+	 * 创建一个新的 {@link ConvertingComparator} 实例。
 	 * @param comparator the underlying comparator used to compare the converted values
 	 * @param converter the converter
 	 */
@@ -63,7 +62,7 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 	}
 
 	/**
-	 * Create a new {@code ConvertingComparator} instance.
+	 * 创建一个新的 {@code ConvertingComparator} 实例。
 	 * @param comparator the underlying comparator
 	 * @param conversionService the conversion service
 	 * @param targetType the target type
@@ -83,8 +82,8 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 	}
 
 	/**
-	 * Create a new {@link ConvertingComparator} that compares {@linkplain java.util.Map.Entry
-	 * map entries} based on their {@linkplain java.util.Map.Entry#getKey() keys}.
+	 * 创建一个新的 {@link ConvertingComparator}，它根据 {@linkplain java.util.Map.Entry map entries}
+	 * 的 {@linkplain java.util.Map.Entry#getKey() keys} 进行比较。
 	 * @param comparator the underlying comparator used to compare keys
 	 * @return a new {@link ConvertingComparator} instance
 	 */
@@ -93,8 +92,8 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 	}
 
 	/**
-	 * Create a new {@link ConvertingComparator} that compares {@linkplain java.util.Map.Entry
-	 * map entries} based on their {@linkplain java.util.Map.Entry#getValue() values}.
+	 * 创建一个新的 {@link ConvertingComparator}，它根据 {@linkplain java.util.Map.Entry map entries}
+	 * 的 {@linkplain java.util.Map.Entry#getValue() values} 进行比较。
 	 * @param comparator the underlying comparator used to compare values
 	 * @return a new {@link ConvertingComparator} instance
 	 */
@@ -104,7 +103,7 @@ public class ConvertingComparator<S, T> implements Comparator<S> {
 
 
 	/**
-	 * Adapts a {@link ConversionService} and {@code targetType} to a {@link Converter}.
+	 * 将 {@link ConversionService} 和 {@code targetType} 适配为 {@link Converter}。
 	 */
 	private static class ConversionServiceConverter<S, T> implements Converter<S, T> {
 

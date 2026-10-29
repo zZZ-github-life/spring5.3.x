@@ -1,7 +1,6 @@
 /**
- * Classes supporting the org.springframework.context package,
- * such as abstract base classes for ApplicationContext
- * implementations and a MessageSource implementation.
+ * 支持 org.springframework.context 包的类，例如 ApplicationContext 实现的抽象基类以及一个
+ * MessageSource 实现。
  */
 @NonNullApi
 @NonNullFields

@@ -20,22 +20,21 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrategy;
 
 /**
- * A {@link org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrategy
- * HandlerMethodMappingNamingStrategy} for {@code RequestMappingInfo}-based handler
- * method mappings.
+ * 用于基于 {@code RequestMappingInfo} 的处理器方法映射的
+ * {@link org.springframework.web.servlet.handler.HandlerMethodMappingNamingStrategy
+ * HandlerMethodMappingNamingStrategy}。
  *
- * If the {@code RequestMappingInfo} name attribute is set, its value is used.
- * Otherwise the name is based on the capital letters of the class name,
- * followed by "#" as a separator, and the method name. For example "TC#getFoo"
- * for a class named TestController with method getFoo.
- *
+ * 如果设置了 {@code RequestMappingInfo} 的 name 属性，则使用其值。
+ * 否则，名称由类名中的大写字母组成，
+ * 后跟作为分隔符的 "#"，以及方法名。例如，对于名为 TestController
+ * 且方法为 getFoo 的类，名称为 "TC#getFoo"。
  * @author Rossen Stoyanchev
  * @since 4.1
  */
 public class RequestMappingInfoHandlerMethodMappingNamingStrategy
 		implements HandlerMethodMappingNamingStrategy<RequestMappingInfo> {
 
-	/** Separator between the type and method-level parts of a HandlerMethod mapping name. */
+	/** HandlerMethod 映射名称中类型级别部分与方法级别部分之间的分隔符。 */
 	public static final String SEPARATOR = "#";
 
 

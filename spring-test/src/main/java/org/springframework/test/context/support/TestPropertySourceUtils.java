@@ -52,10 +52,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods for working with {@link TestPropertySource @TestPropertySource}
- * and adding test {@link PropertySource PropertySources} to the {@code Environment}.
+ * 用于处理 {@link TestPropertySource @TestPropertySource} 以及将测试 {@link PropertySource PropertySources} 添加到 {@code Environment} 的工具方法。
  *
- * <p>Primarily intended for use within the framework.
+ * <p>主要供框架内部使用。
  *
  * @author Sam Brannen
  * @author Anatoliy Korovin
@@ -66,7 +65,7 @@ import org.springframework.util.StringUtils;
 public abstract class TestPropertySourceUtils {
 
 	/**
-	 * The name of the {@link MapPropertySource} created from <em>inlined properties</em>.
+	 * 由<em>内联属性</em>创建的 {@link MapPropertySource} 的名称。
 	 * @since 4.1.5
 	 * @see #addInlinedPropertiesToEnvironment
 	 */
@@ -172,10 +171,8 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the {@link Properties} files from the given resource {@code locations}
-	 * to the {@link Environment} of the supplied {@code context}.
-	 * <p>This method simply delegates to
-	 * {@link #addPropertiesFilesToEnvironment(ConfigurableEnvironment, ResourceLoader, String...)}.
+	 * 将给定资源 {@code locations} 中的 {@link Properties} 文件添加到所提供 {@code context} 的 {@link Environment} 中。
+	 * <p>此方法简单地委托给 {@link #addPropertiesFilesToEnvironment(ConfigurableEnvironment, ResourceLoader, String...)}。
 	 * @param context the application context whose environment should be updated;
 	 * never {@code null}
 	 * @param locations the resource locations of {@code Properties} files to add
@@ -193,14 +190,9 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the {@link Properties} files from the given resource {@code locations}
-	 * to the supplied {@link ConfigurableEnvironment environment}.
-	 * <p>Property placeholders in resource locations (i.e., <code>${...}</code>)
-	 * will be {@linkplain Environment#resolveRequiredPlaceholders(String) resolved}
-	 * against the {@code Environment}.
-	 * <p>Each properties file will be converted to a {@link ResourcePropertySource}
-	 * that will be added to the {@link PropertySources} of the environment with
-	 * the highest precedence.
+	 * 将给定资源 {@code locations} 中的 {@link Properties} 文件添加到所提供的 {@link ConfigurableEnvironment environment} 中。
+	 * <p>资源位置中的属性占位符（即 <code>${...}</code>）将根据 {@code Environment} 进行{@linkplain Environment#resolveRequiredPlaceholders(String) 解析}。
+	 * <p>每个属性文件将被转换为 {@link ResourcePropertySource}，并以最高优先级添加到环境的 {@link PropertySources} 中。
 	 * @param environment the environment to update; never {@code null}
 	 * @param resourceLoader the {@code ResourceLoader} to use to load each resource;
 	 * never {@code null}
@@ -231,10 +223,8 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the given <em>inlined properties</em> to the {@link Environment} of the
-	 * supplied {@code context}.
-	 * <p>This method simply delegates to
-	 * {@link #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])}.
+	 * 将给定的<em>内联属性</em>添加到所提供 {@code context} 的 {@link Environment} 中。
+	 * <p>此方法简单地委托给 {@link #addInlinedPropertiesToEnvironment(ConfigurableEnvironment, String[])}。
 	 * @param context the application context whose environment should be updated;
 	 * never {@code null}
 	 * @param inlinedProperties the inlined properties to add to the environment;
@@ -250,12 +240,9 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Add the given <em>inlined properties</em> (in the form of <em>key-value</em>
-	 * pairs) to the supplied {@link ConfigurableEnvironment environment}.
-	 * <p>All key-value pairs will be added to the {@code Environment} as a
-	 * single {@link MapPropertySource} with the highest precedence.
-	 * <p>For details on the parsing of <em>inlined properties</em>, consult the
-	 * Javadoc for {@link #convertInlinedPropertiesToMap}.
+	 * 将给定的<em>内联属性</em>（以<em>键值</em>对形式）添加到所提供的 {@link ConfigurableEnvironment environment} 中。
+	 * <p>所有键值对将作为单个具有最高优先级的 {@link MapPropertySource} 添加到 {@code Environment} 中。
+	 * <p>有关<em>内联属性</em>解析的详细信息，请查阅 {@link #convertInlinedPropertiesToMap} 的 Javadoc。
 	 * @param environment the environment to update; never {@code null}
 	 * @param inlinedProperties the inlined properties to add to the environment;
 	 * potentially empty but never {@code null}
@@ -284,14 +271,9 @@ public abstract class TestPropertySourceUtils {
 	}
 
 	/**
-	 * Convert the supplied <em>inlined properties</em> (in the form of <em>key-value</em>
-	 * pairs) into a map keyed by property name, preserving the ordering of property names
-	 * in the returned map.
-	 * <p>Parsing of the key-value pairs is achieved by converting all pairs
-	 * into <em>virtual</em> properties files in memory and delegating to
-	 * {@link Properties#load(java.io.Reader)} to parse each virtual file.
-	 * <p>For a full discussion of <em>inlined properties</em>, consult the Javadoc
-	 * for {@link TestPropertySource#properties}.
+	 * 将所提供的<em>内联属性</em>（以<em>键值</em>对形式）转换为以属性名为键的映射，并在返回的映射中保留属性名的顺序。
+	 * <p>键值对的解析通过将所有对转换为内存中的<em>虚拟</em>属性文件，并委托给 {@link Properties#load(java.io.Reader)} 解析每个虚拟文件来实现。
+	 * <p>有关<em>内联属性</em>的完整讨论，请查阅 {@link TestPropertySource#properties} 的 Javadoc。
 	 * @param inlinedProperties the inlined properties to convert; potentially empty
 	 * but never {@code null}
 	 * @return a new, ordered map containing the converted properties

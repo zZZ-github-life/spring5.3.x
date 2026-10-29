@@ -41,10 +41,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Default object instantiation strategy for use in BeanFactories.
+ * 用于 BeanFactory 的默认对象实例化策略。
  *
- * <p>Uses CGLIB to generate subclasses dynamically if methods need to be
- * overridden by the container to implement <em>Method Injection</em>.
+ * <p>如果方法需要由容器重写以实现<em>方法注入</em>，则使用 CGLIB 动态生成子类。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -54,20 +53,17 @@ import org.springframework.util.StringUtils;
 public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationStrategy {
 
 	/**
-	 * Index in the CGLIB callback array for passthrough behavior,
-	 * in which case the subclass won't override the original class.
+	 * CGLIB 回调数组中用于直通行为的下标，此时子类不会重写原始类。
 	 */
 	private static final int PASSTHROUGH = 0;
 
 	/**
-	 * Index in the CGLIB callback array for a method that should
-	 * be overridden to provide <em>method lookup</em>.
+	 * CGLIB 回调数组中用于应被重写以提供<em>方法查找</em>的方法的下标。
 	 */
 	private static final int LOOKUP_OVERRIDE = 1;
 
 	/**
-	 * Index in the CGLIB callback array for a method that should
-	 * be overridden using generic <em>method replacer</em> functionality.
+	 * CGLIB 回调数组中用于应通过通用<em>方法替换器</em>功能重写的方法的下标。
 	 */
 	private static final int METHOD_REPLACER = 2;
 
@@ -87,8 +83,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 
 	/**
-	 * An inner class created for historical reasons to avoid external CGLIB dependency
-	 * in Spring versions earlier than 3.2.
+	 * 出于历史原因创建的内部类，用于在早于 3.2 的 Spring 版本中避免对外部 CGLIB 依赖。
 	 */
 	private static class CglibSubclassCreator {
 
@@ -105,8 +100,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		}
 
 		/**
-		 * Create a new instance of a dynamically generated subclass implementing the
-		 * required lookups.
+		 * 创建动态生成的子类的新实例，该子类实现所需的查找。
 		 * @param ctor constructor to use. If this is {@code null}, use the
 		 * no-arg constructor (no parameterization, or Setter Injection)
 		 * @param args arguments to use for the constructor.
@@ -139,8 +133,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 		}
 
 		/**
-		 * Create an enhanced subclass of the bean class for the provided bean
-		 * definition, using CGLIB.
+		 * 使用 CGLIB 为提供的 Bean 定义创建 Bean 类的增强子类。
 		 */
 		private Class<?> createEnhancedSubclass(RootBeanDefinition beanDefinition) {
 			Enhancer enhancer = new Enhancer();
@@ -158,9 +151,8 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 
 	/**
-	 * Class providing hashCode and equals methods required by CGLIB to
-	 * ensure that CGLIB doesn't generate a distinct class per bean.
-	 * Identity is based on class and bean definition.
+	 * 提供 CGLIB 所需的 hashCode 和 equals 方法的类，以确保 CGLIB 不会为每个 bean 生成不同的类。标识基
+	 * 于类和 Bean 定义。
 	 */
 	private static class CglibIdentitySupport {
 
@@ -188,7 +180,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 
 	/**
-	 * CGLIB callback for filtering method interception behavior.
+	 * 用于过滤方法拦截行为的 CGLIB 回调。
 	 */
 	private static class MethodOverrideCallbackFilter extends CglibIdentitySupport implements CallbackFilter {
 
@@ -220,8 +212,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 
 	/**
-	 * CGLIB MethodInterceptor to override methods, replacing them with an
-	 * implementation that returns a bean looked up in the container.
+	 * 用于重写方法的 CGLIB MethodInterceptor，将其替换为返回从容器中查找的 bean 的实现。
 	 */
 	private static class LookupOverrideMethodInterceptor extends CglibIdentitySupport implements MethodInterceptor {
 
@@ -255,8 +246,7 @@ public class CglibSubclassingInstantiationStrategy extends SimpleInstantiationSt
 
 
 	/**
-	 * CGLIB MethodInterceptor to override methods, replacing them with a call
-	 * to a generic MethodReplacer.
+	 * 用于重写方法的 CGLIB MethodInterceptor，将其替换为对通用 MethodReplacer 的调用。
 	 */
 	private static class ReplaceOverrideMethodInterceptor extends CglibIdentitySupport implements MethodInterceptor {
 

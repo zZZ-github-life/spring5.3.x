@@ -24,7 +24,7 @@ import javax.xml.stream.XMLStreamReader;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for {@code XMLStreamReader}s.
+ * 用于 {@code XMLStreamReader} 的抽象基类。
  *
  * @author Arjen Poutsma
  * @since 3.0

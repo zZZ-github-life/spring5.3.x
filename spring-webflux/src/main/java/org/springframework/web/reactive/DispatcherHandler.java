@@ -39,30 +39,18 @@ import org.springframework.web.server.WebHandler;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Central dispatcher for HTTP request handlers/controllers. Dispatches to
- * registered handlers for processing a request, providing convenient mapping
- * facilities.
+ * HTTP 请求处理器/控制器的中央调度器。将请求分派给已注册的处理器进行处理，并提供便捷的映射机制。
  *
- * <p>{@code DispatcherHandler} discovers the delegate components it needs from
- * Spring configuration. It detects the following in the application context:
+ * <p>{@code DispatcherHandler} 从 Spring 配置中发现其所需的委托组件。它会在应用上下文中检测以下内容：
  * <ul>
- * <li>{@link HandlerMapping} -- map requests to handler objects
- * <li>{@link HandlerAdapter} -- for using any handler interface
- * <li>{@link HandlerResultHandler} -- process handler return values
+ * <li>{@link HandlerMapping} -- 将请求映射到处理器对象
+ * <li>{@link HandlerAdapter} -- 用于支持任意处理器接口
+ * <li>{@link HandlerResultHandler} -- 处理处理器返回值
  * </ul>
  *
- * <p>{@code DispatcherHandler} is also designed to be a Spring bean itself and
- * implements {@link ApplicationContextAware} for access to the context it runs
- * in. If {@code DispatcherHandler} is declared as a bean with the name
- * "webHandler", it is discovered by
- * {@link WebHttpHandlerBuilder#applicationContext(ApplicationContext)} which
- * puts together a processing chain together with {@code WebFilter},
- * {@code WebExceptionHandler} and others.
+ * <p>{@code DispatcherHandler} 本身也被设计为 Spring bean，并实现 {@link ApplicationContextAware} 以访问其运行所在的上下文。如果 {@code DispatcherHandler} 被声明为名为 "webHandler" 的 bean，则会被 {@link WebHttpHandlerBuilder#applicationContext(ApplicationContext)} 发现，后者会将其与 {@code WebFilter}、{@code WebExceptionHandler} 等一起组装成处理链。
  *
- * <p>A {@code DispatcherHandler} bean declaration is included in
- * {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux}
- * configuration.
- *
+ * <p>{@code DispatcherHandler} 的 bean 声明包含在 {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux} 配置中。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -82,14 +70,13 @@ public class DispatcherHandler implements WebHandler, PreFlightRequestHandler, A
 
 
 	/**
-	 * Create a new {@code DispatcherHandler} which needs to be configured with
-	 * an {@link ApplicationContext} through {@link #setApplicationContext}.
+	 * 创建一个新的 {@code DispatcherHandler}，需要通过 {@link #setApplicationContext} 为其配置 {@link ApplicationContext}。
 	 */
 	public DispatcherHandler() {
 	}
 
 	/**
-	 * Create a new {@code DispatcherHandler} for the given {@link ApplicationContext}.
+	 * 为给定的 {@link ApplicationContext} 创建一个新的 {@code DispatcherHandler}。
 	 * @param applicationContext the application context to find the handler beans in
 	 */
 	public DispatcherHandler(ApplicationContext applicationContext) {
@@ -98,11 +85,8 @@ public class DispatcherHandler implements WebHandler, PreFlightRequestHandler, A
 
 
 	/**
-	 * Return all {@link HandlerMapping} beans detected by type in the
-	 * {@link #setApplicationContext injected context} and also
-	 * {@link AnnotationAwareOrderComparator#sort(List) sorted}.
-	 * <p><strong>Note:</strong> This method may return {@code null} if invoked
-	 * prior to {@link #setApplicationContext(ApplicationContext)}.
+	 * 返回在{@link #setApplicationContext 注入的上下文}中按类型检测到的所有 {@link HandlerMapping} bean，并已通过 {@link AnnotationAwareOrderComparator#sort(List)} 排序。
+	 * <p><strong>注意：</strong>如果在 {@link #setApplicationContext(ApplicationContext)} 之前调用，此方法可能返回 {@code null}。
 	 * @return immutable list with the configured mappings or {@code null}
 	 */
 	@Nullable

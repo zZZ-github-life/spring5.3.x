@@ -42,13 +42,9 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * A central component to use to obtain the public URL path that clients should
- * use to access a static resource.
+ * 用于获取客户端访问静态资源应使用的公共 URL 路径的中央组件。
  *
- * <p>This class is aware of Spring WebFlux handler mappings used to serve static
- * resources and uses the {@code ResourceResolver} chains of the configured
- * {@code ResourceHttpRequestHandler}s to make its decisions.
- *
+ * <p>此类了解用于提供静态资源的 Spring WebFlux 处理器映射，并使用所配置 {@code ResourceHttpRequestHandler} 的 {@code ResourceResolver} 链做出决策。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -69,8 +65,7 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 	}
 
 	/**
-	 * Return a read-only view of the resource handler mappings either manually
-	 * configured or auto-detected from Spring configuration.
+	 * 返回手动配置或从 Spring 配置自动检测的资源处理器映射的只读视图。
 	 */
 	public Map<PathPattern, ResourceWebHandler> getHandlerMap() {
 		return Collections.unmodifiableMap(this.handlerMap);
@@ -78,10 +73,8 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 
 
 	/**
-	 * Manually configure resource handler mappings.
-	 * <p><strong>Note:</strong> by default resource mappings are auto-detected
-	 * from the Spring {@code ApplicationContext}. If this property is used,
-	 * auto-detection is turned off.
+	 * 手动配置资源处理器映射。
+	 * <p><strong>注意：</strong>默认情况下，资源映射会从 Spring {@code ApplicationContext} 自动检测。如果使用此属性，则会关闭自动检测。
 	 */
 	public void registerHandlers(Map<String, ResourceWebHandler> handlerMap) {
 		this.handlerMap.clear();
@@ -119,9 +112,8 @@ public class ResourceUrlProvider implements ApplicationListener<ContextRefreshed
 
 
 	/**
-	 * Get the public resource URL for the given URI string.
-	 * <p>The URI string is expected to be a path and if it contains a query or
-	 * fragment those will be preserved in the resulting public resource URL.
+	 * 获取给定 URI 字符串的公共资源 URL。
+	 * <p>URI 字符串应为路径；如果它包含查询或片段，则这些内容将保留在生成的公共资源 URL 中。
 	 * @param uriString the URI string to transform
 	 * @param exchange the current exchange
 	 * @return the resolved public resource URL path, or empty if unresolved

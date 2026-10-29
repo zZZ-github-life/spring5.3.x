@@ -1,5 +1,5 @@
 /**
- * Annotations and support classes for handling RSocket streams.
+ * 用于处理 RSocket 流的注解和支持类。
  */
 @NonNullApi
 @NonNullFields

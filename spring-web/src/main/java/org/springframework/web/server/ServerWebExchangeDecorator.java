@@ -33,13 +33,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * A convenient base class for classes that need to wrap another
- * {@link ServerWebExchange}. Pre-implements all methods by delegating to the
- * wrapped instance.
+ * 用于包装另一个 {@link ServerWebExchange} 的类的便捷基类。
+ * 预先实现了所有方法，并委托给被包装的实例。
  *
- * <p><strong>Note:</strong> if the purpose for using a decorator is to override
- * properties like {@link #getPrincipal()}, consider using
- * {@link ServerWebExchange#mutate()} instead.
+ * <p><strong>注意：</strong>如果使用装饰器的目的是覆盖诸如
+ * {@link #getPrincipal()} 之类的属性，请考虑改用 {@link ServerWebExchange#mutate()}。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

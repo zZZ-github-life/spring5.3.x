@@ -23,7 +23,7 @@ import org.springframework.web.socket.sockjs.SockJsException;
 import org.springframework.web.socket.sockjs.SockJsService;
 
 /**
- * Handle a SockJS session URL, i.e. transport-specific request.
+ * 处理 SockJS 会话 URL，即特定于传输的请求。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -32,21 +32,20 @@ import org.springframework.web.socket.sockjs.SockJsService;
 public interface TransportHandler {
 
 	/**
-	 * Initialize this handler with the given configuration.
+	 * 使用给定配置初始化此处理器。
 	 * @param serviceConfig the configuration as defined by the containing
 	 * {@link org.springframework.web.socket.sockjs.SockJsService}
 	 */
 	void initialize(SockJsServiceConfig serviceConfig);
 
 	/**
-	 * Return the transport type supported by this handler.
+	 * 返回此处理器支持的传输类型。
 	 */
 	TransportType getTransportType();
 
 	/**
-	 * Check whether the type of the given session matches the transport type
-	 * of this {@code TransportHandler} where session id and the transport type
-	 * are extracted from the SockJS URL.
+	 * 检查给定会话的类型是否与此 {@code TransportHandler} 的传输类型匹配，
+	 * 其中会话 ID 和传输类型是从 SockJS URL 中提取的。
 	 * @return {@code true} if the session matches (and would therefore get
 	 * accepted by {@link #handleRequest}), or {@code false} otherwise
 	 * @since 4.3.4
@@ -54,8 +53,8 @@ public interface TransportHandler {
 	boolean checkSessionType(SockJsSession session);
 
 	/**
-	 * Handle the given request and delegate messages to the provided
-	 * {@link WebSocketHandler}.
+	 * 处理给定请求并将消息委托给提供的
+	 * {@link WebSocketHandler}。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param handler the target WebSocketHandler (never {@code null})

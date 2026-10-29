@@ -19,8 +19,7 @@ package org.springframework.web.reactive.function.client;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Abstract base class for exception published by {@link WebClient} in case of errors.
- *
+ * 在发生错误时由 {@link WebClient} 发布的异常的抽象基类。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -29,7 +28,7 @@ public abstract class WebClientException extends NestedRuntimeException {
 	private static final long serialVersionUID = 472776714118912855L;
 
 	/**
-	 * Construct a new instance of {@code WebClientException} with the given message.
+	 * 使用给定消息构造 {@code WebClientException} 的新实例。
 	 * @param msg the message
 	 */
 	public WebClientException(String msg) {
@@ -37,8 +36,7 @@ public abstract class WebClientException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Construct a new instance of {@code WebClientException} with the given message
-	 * and exception.
+	 * 使用给定消息和异常构造 {@code WebClientException} 的新实例。
 	 * @param msg the message
 	 * @param ex the exception
 	 */

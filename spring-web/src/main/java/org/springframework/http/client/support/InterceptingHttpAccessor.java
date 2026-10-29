@@ -28,12 +28,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Base class for {@link org.springframework.web.client.RestTemplate}
- * and other HTTP accessing gateway helpers, adding interceptor-related
- * properties to {@link HttpAccessor}'s common properties.
+ * {@link org.springframework.web.client.RestTemplate}
+ * 和其他 HTTP 访问网关辅助类的基类，在 {@link HttpAccessor}
+ * 的公共属性基础上添加与拦截器相关的属性。
  *
- * <p>Not intended to be used directly.
- * See {@link org.springframework.web.client.RestTemplate} for an entry point.
+ * <p>不打算直接使用。
+ * 有关入口点，请参阅 {@link org.springframework.web.client.RestTemplate}。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -51,13 +51,13 @@ public abstract class InterceptingHttpAccessor extends HttpAccessor {
 
 
 	/**
-	 * Set the request interceptors that this accessor should use.
-	 * <p>The interceptors will get immediately sorted according to their
-	 * {@linkplain AnnotationAwareOrderComparator#sort(List) order}.
-	 * <p><strong>Note:</strong> This method does not support concurrent changes,
-	 * and in most cases should not be called after initialization on startup.
-	 * See also related note on {@link org.springframework.web.client.RestTemplate}
-	 * regarding concurrent configuration changes.
+	 * 设置此访问器应使用的请求拦截器。
+	 * <p>拦截器将立即根据其
+	 * {@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}进行排序。
+	 * <p><strong>注意：</strong>此方法不支持并发更改，
+	 * 在大多数情况下不应在启动初始化之后调用。
+	 * 另请参阅 {@link org.springframework.web.client.RestTemplate}
+	 * 中关于并发配置更改的相关说明。
 	 * @see #getRequestFactory()
 	 * @see AnnotationAwareOrderComparator
 	 */
@@ -72,11 +72,11 @@ public abstract class InterceptingHttpAccessor extends HttpAccessor {
 	}
 
 	/**
-	 * Get the request interceptors that this accessor uses.
-	 * <p>The returned {@link List} is active and may be modified. Note,
-	 * however, that the interceptors will not be resorted according to their
-	 * {@linkplain AnnotationAwareOrderComparator#sort(List) order} before the
-	 * {@link ClientHttpRequestFactory} is built.
+	 * 获取此访问器使用的请求拦截器。
+	 * <p>返回的 {@link List} 是活动的，可以修改。但请注意，
+	 * 在构建 {@link ClientHttpRequestFactory} 之前，拦截器
+	 * 不会根据其
+	 * {@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}重新排序。
 	 */
 	public List<ClientHttpRequestInterceptor> getInterceptors() {
 		return this.interceptors;
@@ -92,8 +92,8 @@ public abstract class InterceptingHttpAccessor extends HttpAccessor {
 	}
 
 	/**
-	 * Overridden to expose an {@link InterceptingClientHttpRequestFactory}
-	 * if necessary.
+	 * 重写此方法以便在必要时公开
+	 * {@link InterceptingClientHttpRequestFactory}。
 	 * @see #getInterceptors()
 	 */
 	@Override

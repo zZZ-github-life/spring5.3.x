@@ -1,0 +1,393 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/DefaultPartHttpMessageReader.java
+@@BODY 44 45
+Default {@code HttpMessageReader} for parsing {@code "multipart/form-data"}
+requests to a stream of {@link Part}s.
+@@BODY 47 54
+<p>In default, non-streaming mode, this message reader stores the
+{@linkplain Part#content() contents} of parts smaller than
+{@link #setMaxInMemorySize(int) maxInMemorySize} in memory, and parts larger
+than that to a temporary file in
+{@link #setFileStorageDirectory(Path) fileStorageDirectory}.
+<p>In {@linkplain #setStreaming(boolean) streaming} mode, the contents of the
+part is streamed directly from the parsed input buffer stream, and not stored
+in memory nor file.
+@@BODY 56 57
+<p>This reader can be provided to {@link MultipartHttpMessageReader} in order
+to aggregate all parts into a Map.
+@@BODY 82 83
+Configure the maximum amount of memory that is allowed per headers section of each part.
+When the limit
+@@BODY 91 91
+Get the {@link #setMaxInMemorySize configured} maximum in-memory size.
+@@BODY 98 99
+Configure the maximum amount of memory allowed per part.
+When the limit is exceeded:
+@@BODY 101 102
+<li>file parts are written to a temporary file.
+<li>non-file parts are rejected with {@link DataBufferLimitException}.
+@@BODY 104 106
+<p>By default this is set to 256K.
+<p>Note that this property is ignored when
+{@linkplain #setStreaming(boolean) streaming} is enabled.
+@@BODY 115 119
+Configure the maximum amount of disk space allowed for file parts.
+<p>By default this is set to -1, meaning that there is no maximum.
+<p>Note that this property is ignored when
+{@linkplain #setStreaming(boolean) streaming} is enabled, or when
+{@link #setMaxInMemorySize(int) maxInMemorySize} is set to -1.
+@@BODY 126 127
+Specify the maximum number of parts allowed in a given multipart request.
+<p>By default this is set to -1, meaning that there is no maximum.
+@@BODY 134 140
+Set the directory used to store parts larger than
+{@link #setMaxInMemorySize(int) maxInMemorySize}. By default, a directory
+named {@code spring-webflux-multipart} is created under the system
+temporary directory.
+<p>Note that this property is ignored when
+{@linkplain #setStreaming(boolean) streaming} is enabled, or when
+{@link #setMaxInMemorySize(int) maxInMemorySize} is set to -1.
+@@BODY 150 156
+Set the Reactor {@link Scheduler} to be used for creating files and
+directories, and writing to files. By default,
+{@link Schedulers#boundedElastic()} is used, but this property allows for
+changing it to an externally managed scheduler.
+<p>Note that this property is ignored when
+{@linkplain #setStreaming(boolean) streaming} is enabled, or when
+{@link #setMaxInMemorySize(int) maxInMemorySize} is set to -1.
+@@BODY 169 183
+When set to {@code true}, the {@linkplain Part#content() part content}
+is streamed directly from the parsed input buffer stream, and not stored
+in memory nor file.
+When {@code false}, parts are backed by
+in-memory and/or file storage. Defaults to {@code false}.
+<p><strong>NOTE</strong> that with streaming enabled, the
+{@code Flux<Part>} that is produced by this message reader must be
+consumed in the original order, i.e. the order of the HTTP message.
+Additionally, the {@linkplain Part#content() body contents} must either
+be completely consumed or canceled before moving to the next part.
+<p>Also note that enabling this property effectively ignores
+{@link #setMaxInMemorySize(int) maxInMemorySize},
+{@link #setMaxDiskUsagePerPart(long) maxDiskUsagePerPart},
+{@link #setFileStorageDirectory(Path) fileStorageDirectory}, and
+{@link #setBlockingOperationScheduler(Scheduler) fileCreationScheduler}.
+@@BODY 190 191
+Set the character set used to decode headers.
+Defaults to UTF-8 as per RFC 7578.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/DefaultParts.java
+@@BODY 37 37
+Default implementations of {@link Part} and subtypes.
+@@BODY 45 45
+Create a new {@link FormFieldPart} with the given parameters.
+@@BODY 58 61
+Create a new {@link Part} or {@link FilePart} based on a flux of data
+buffers. Returns {@link FilePart} if the {@code Content-Disposition} of
+the given headers contains a filename, or a "normal" {@link Part}
+otherwise.
+@@BODY 74 76
+Create a new {@link Part} or {@link FilePart} based on the given file.
+Returns {@link FilePart} if the {@code Content-Disposition} of the given
+headers contains a filename, or a "normal" {@link Part} otherwise
+@@BODY 103 103
+Abstract base class for {@link Part} implementations.
+@@BODY 129 129
+Default implementation of {@link FormFieldPart}.
+@@BODY 167 167
+Default implementation of {@link Part}.
+@@BODY 202 202
+Default implementation of {@link FilePart}.
+@@BODY 238 238
+Part content abstraction.
+@@BODY 251 251
+{@code Content} implementation based on a flux of data buffers.
+@@BODY 279 279
+{@code Content} implementation based on a file.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/FilePart.java
+@@BODY 25 26
+Specialization of {@link Part} that represents an uploaded file received in
+a multipart request.
+@@BODY 35 41
+Return the original filename in the client's filesystem.
+<p><strong>Note:</strong> Please keep in mind this filename is supplied
+by the client and should not be used blindly. In addition to not using
+the directory portion, the file name could also contain characters such
+as ".." and others that can be used maliciously. It is recommended to not
+use this filename directly. Preferably generate a unique one and save
+this one somewhere for reference, if necessary.
+@@BODY 50 53
+Convenience method to copy the content of the file in this part to the
+given destination file. If the destination file already exists, it will
+be truncated first.
+<p>The default implementation delegates to {@link #transferTo(Path)}.
+@@BODY 64 66
+Convenience method to copy the content of the file in this part to the
+given destination file. If the destination file already exists, it will
+be truncated first.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/FileStorage.java
+@@BODY 30 31
+Represents a directory used to store parts larger than
+{@link DefaultPartHttpMessageReader#setMaxInMemorySize(int)}.
+@@BODY 45 45
+Get the mono of the directory to store files in.
+@@BODY 51 52
+Create a new {@code FileStorage} from a user-specified path. Creates the
+path if it does not exist.
+@@BODY 62 62
+Create a new {@code FileStorage} based on a temporary directory.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/FormFieldPart.java
+@@BODY 20 20
+Specialization of {@link Part} for a form field.
+@@BODY 28 28
+Return the form field value.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/MultipartHttpMessageReader.java
+@@BODY 43 44
+{@code HttpMessageReader} for reading {@code "multipart/form-data"} requests
+into a {@code MultiValueMap<String, Part>}.
+@@BODY 46 48
+<p>Note that this reader depends on access to an
+{@code HttpMessageReader<Part>} for the actual parsing of multipart content.
+The purpose of this reader is to collect the parts into a map.
+@@BODY 73 73
+Return the configured parts reader.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/MultipartHttpMessageWriter.java
+@@BODY 56 58
+{@link HttpMessageWriter} for writing a {@code MultiValueMap<String, ?>}
+as multipart form data, i.e. {@code "multipart/form-data"}, to the body
+of a request.
+@@BODY 60 62
+<p>The serialization of individual parts is delegated to other writers.
+By default only {@link String} and {@link Resource} parts are supported but
+you can configure others through a constructor argument.
+@@BODY 64 69
+<p>This writer can be configured with a {@link FormHttpMessageWriter} to
+delegate to. It is the preferred way of supporting both form data and
+multipart data (as opposed to registering each writer separately) so that
+when the {@link MediaType} is not specified and generics are not present on
+the target element type, we can inspect the values in the actual map and
+decide whether to write plain form data (String values only) or otherwise.
+@@BODY 90 90
+Constructor with a default list of part writers (String and Resource).
+@@BODY 100 100
+Constructor with explicit list of writers for serializing parts.
+@@BODY 107 109
+Constructor with explicit list of writers for serializing parts and a
+writer for plain form data to fall back when no media type is specified
+and the actual map consists of String values only.
+@@BODY 131 131
+Return the configured part writers.
+@@BODY 140 140
+Return the configured form writer.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/MultipartParser.java
+@@BODY 46 46
+Subscribes to a buffer stream and produces a flux of {@link Token} instances.
+@@BODY 89 89
+Parses the given stream of {@link DataBuffer} objects into a stream of {@link Token} objects.
+@@BODY 198 198
+Represents the output of {@link #parse(Flux, byte[], int, Charset)}.
+@@BODY 209 209
+Represents a token that contains {@link HttpHeaders}.
+@@BODY 232 232
+Represents a token that contains {@link DataBuffer}.
+@@BODY 255 256
+Represents the internal state of the {@link MultipartParser}.
+The flow for well-formed multipart messages is shown below:
+@@BODY 266 267
+For malformed messages the flow ends in DISPOSED, and also when the
+sink is {@linkplain #onSinkCancel() cancelled}.
+@@BODY 281 283
+The initial state of the parser. Looks for the first boundary of the
+multipart message. Note that the first boundary is not necessarily
+prefixed with {@code CR LF}; only the prefix {@code --} is required.
+@@BODY 296 298
+Looks for the first boundary in the given buffer. If found, changes
+state to {@link HeadersState}, and passes on the remainder of the
+buffer.
+@@BODY 334 336
+The state of the parser dealing with part headers. Parses header
+buffers into a {@link HttpHeaders} instance, making sure that
+the amount does not exceed {@link #maxHeadersSize}.
+@@BODY 348 355
+First checks whether the multipart boundary leading to this state
+was the final boundary. Then looks for the header-body boundary
+({@code CR LF CR LF}) in the given buffer. If found, checks whether
+the size of all header buffers does not exceed {@link #maxHeadersSize},
+converts all buffers collected so far into a {@link HttpHeaders} object
+and changes to {@link BodyState}, passing the remainder of the
+buffer. If the boundary is not found, the buffer is collected if
+its size does not exceed {@link #maxHeadersSize}.
+@@BODY 395 396
+If the given buffer is the first buffer, check whether it starts with {@code --}.
+If it is the second buffer, check whether it makes up {@code --} together with the first buffer.
+@@BODY 411 412
+Checks whether the given {@code count} is below or equal to {@link #maxHeadersSize}
+and emits a {@link DataBufferLimitException} if not.
+@@BODY 426 428
+Parses the list of buffers into a {@link HttpHeaders} instance.
+Converts the joined buffers into a string using ISO=8859-1, and parses
+that string into key and values.
+@@BODY 476 478
+The state of the parser dealing with multipart bodies. Relays
+data buffers as {@link BodyToken} until the boundary is found (or
+rather: {@code CR LF - - boundary}).
+@@BODY 495 500
+Checks whether the (end of the) needle {@code CR LF - - boundary}
+can be found in {@code buffer}. If found, the needle can overflow into the
+previous buffer, so we calculate the length and slice the current
+and previous buffers accordingly. We then change to {@link HeadersState}
+and pass on the remainder of {@code buffer}. If the needle is not found, we
+make {@code buffer} the previous buffer.
+@@BODY 555 558
+Store the given buffer. Emit buffers that cannot contain boundary bytes,
+by iterating over the queue in reverse order, and summing buffer sizes.
+The first buffer that passes the boundary length and subsequent buffers
+are emitted (in the correct, non-reverse order).
+@@BODY 604 605
+The state of the parser when finished, either due to seeing the final
+boundary or to a malformed message. Releases all incoming buffers.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/MultipartUtils.java
+@@BODY 31 31
+Various static utility methods for dealing with multipart parsing.
+@@BODY 38 39
+Return the character set of the given headers, as defined in the
+{@link HttpHeaders#getContentType()} header.
+@@BODY 53 53
+Concatenates the given array of byte arrays.
+@@BODY 70 70
+Slices the given buffer to the given index (exclusive).
+@@BODY 79 79
+Slices the given buffer from the given index (inclusive).
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/MultipartWriterSupport.java
+@@BODY 39 39
+Support class for multipart HTTP message writers.
+@@BODY 55 55
+Constructor with the list of supported media types.
+@@BODY 63 63
+Return the configured charset for part headers.
+@@BODY 70 74
+Set the character set to use for part headers such as
+"Content-Disposition" (and its filename parameter).
+<p>By default this is set to "UTF-8". If changed from this default,
+the "Content-Type" header will have a "charset" parameter that specifies
+the character set used.
+@@BODY 101 102
+Generate a multipart boundary.
+<p>By default delegates to {@link MimeTypeUtils#generateMultipartBoundary()}.
+@@BODY 109 111
+Prepare the {@code MediaType} to use by adding "boundary" and "charset"
+parameters to the given {@code mediaType} or "multipart/form-data"
+otherwise by default.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/Part.java
+@@BODY 26 26
+Representation for a part in a "multipart/form-data" request.
+@@BODY 28 29
+<p>The origin of a multipart request may be a browser form in which case each
+part is either a {@link FormFieldPart} or a {@link FilePart}.
+@@BODY 31 32
+<p>Multipart requests may also be used outside a browser for data of any
+content type (e.g. JSON, PDF, etc).
+@@BODY 44 44
+Return the name of the part in the multipart form.
+@@BODY 50 50
+Return the headers associated with the part.
+@@BODY 55 57
+Return the content for this part.
+<p>Note that for a {@link FormFieldPart} the content may be accessed
+more easily via {@link FormFieldPart#value()}.
+@@BODY 62 63
+Return a mono that, when subscribed to, deletes the underlying storage
+for this part.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/PartGenerator.java
+@@BODY 57 58
+Subscribes to a token stream (i.e. the result of
+{@link MultipartParser#parse(Flux, byte[], int, Charset)}), and produces a flux of {@link Part} objects.
+@@BODY 101 101
+Creates parts from a given stream of tokens.
+@@BODY 256 261
+Represents the internal state of the {@link PartGenerator} for
+creating a single {@link Part}.
+{@link State} instances are stateful, and created when a new
+{@link MultipartParser.HeadersToken} is accepted (see
+{@link #newPart(State, HttpHeaders)}).
+The following rules determine which state the creator will have:
+@@BODY 263 272
+<li>If the part is a {@linkplain #isFormField(HttpHeaders) form field},
+the creator will be in the {@link FormFieldState}.</li>
+<li>If {@linkplain #streaming} is enabled, the creator will be in the
+{@link StreamingState}.</li>
+<li>Otherwise, the creator will initially be in the
+{@link InMemoryState}, but will switch over to {@link CreateFileState}
+when the part byte count exceeds {@link #maxInMemorySize},
+then to {@link WritingFileState} (to write the memory contents),
+and finally {@link IdleFileState}, which switches back to
+{@link WritingFileState} when more body data comes in.</li>
+@@BODY 278 278
+Invoked when a {@link MultipartParser.BodyToken} is received.
+@@BODY 283 283
+Invoked when all tokens for the part have been received.
+@@BODY 290 290
+Invoked when an error has been received.
+@@BODY 296 296
+Indicates whether the current state is ready to accept a new token.
+@@BODY 303 303
+Cleans up any state.
+@@BODY 311 311
+The initial state of the creator. Throws an exception for {@link #body(DataBuffer)}.
+@@BODY 339 340
+The creator state when a {@linkplain #isFormField(HttpHeaders) form field} is received.
+Stores all body buffers in memory (up until {@link #maxInMemorySize}).
+@@BODY 400 401
+The creator state when {@link #streaming} is {@code true} (and not
+handling a form field). Relays all received buffers to a sink.
+@@BODY 453 457
+The creator state when {@link #streaming} is {@code false} (and not
+handling a form field). Stores all received buffers in a queue.
+If the byte count exceeds {@link #maxInMemorySize}, the creator state
+is changed to {@link CreateFileState}, and eventually to
+{@link CreateFileState}.
+@@BODY 548 551
+The creator state when waiting for a temporary file to be created.
+{@link InMemoryState} initially switches to this state when the byte
+count exceeds {@link #maxInMemorySize}, and then calls
+{@link #createFile()} to switch to {@link WritingFileState}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/PartHttpMessageWriter.java
+@@BODY 38 40
+{@link HttpMessageWriter} for writing with {@link Part}. This can be useful
+on the server side to write a {@code Flux<Part>} received from a client to
+some remote service.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/SynchronossPartHttpMessageReader.java
+@@BODY 71 72
+{@code HttpMessageReader} for parsing {@code "multipart/form-data"} requests
+to a stream of {@link Part}'s using the Synchronoss NIO Multipart library.
+@@BODY 74 75
+<p>This reader can be provided to {@link MultipartHttpMessageReader} in order
+to aggregate all parts into a Map.
+@@BODY 99 100
+Configure the maximum amount of memory that is allowed to use per part.
+When the limit is exceeded:
+@@BODY 102 103
+<li>file parts are written to a temporary file.
+<li>non-file parts are rejected with {@link DataBufferLimitException}.
+@@BODY 105 105
+<p>By default this is set to 256K.
+@@BODY 116 116
+Get the {@link #setMaxInMemorySize configured} maximum in-memory size.
+@@BODY 124 125
+Configure the maximum amount of disk space allowed for file parts.
+<p>By default this is set to -1.
+@@BODY 134 134
+Get the {@link #setMaxDiskUsagePerPart configured} maximum disk usage.
+@@BODY 142 142
+Specify the maximum number of parts allowed in a given multipart request.
+@@BODY 150 150
+Return the {@link #setMaxParts configured} limit on the number of parts.
+@@BODY 158 160
+Set the directory used to store parts larger than
+{@link #setMaxInMemorySize(int) maxInMemorySize}. By default, a new
+temporary directory is created.
+@@BODY 240 241
+Subscribe to the input stream and feed the Synchronoss parser. Then listen
+for parser output, creating parts, and pushing them into the FluxSink.
+@@BODY 388 388
+Listen for parser output and adapt to {@code Flux<Sink<Part>>}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/multipart/package-info.java
+@@BODY 2 2
+Multipart support.

@@ -41,14 +41,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link org.springframework.scripting.ScriptFactory} implementation
- * for a Groovy script.
+ * {@link org.springframework.scripting.ScriptFactory} 的 Groovy 脚本实现。
  *
- * <p>Typically used in combination with a
- * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
- * see the latter's javadoc for a configuration example.
+ * <p>通常与 {@link org.springframework.scripting.support.ScriptFactoryPostProcessor} 结合使用；有
+ * 关配置示例，请参见后者的 javadoc。
  *
- * <p>Note: Spring 4.0 supports Groovy 1.8 and higher.
+ * <p>注意：Spring 4.0 支持 Groovy 1.8 及更高版本。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -85,9 +83,8 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 
 	/**
-	 * Create a new GroovyScriptFactory for the given script source.
-	 * <p>We don't need to specify script interfaces here, since
-	 * a Groovy script defines its Java interfaces itself.
+	 * 为给定的脚本源创建一个新的 GroovyScriptFactory。
+	 * <p>此处无需指定脚本接口，因为 Groovy 脚本会自行定义其 Java 接口。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 */
@@ -97,9 +94,8 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Create a new GroovyScriptFactory for the given script source,
-	 * specifying a strategy interface that can create a custom MetaClass
-	 * to supply missing methods and otherwise change the behavior of the object.
+	 * 为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，该接口可创建自定义 MetaClass
+	 * 以提供缺失的方法，并在其他方面改变对象的行为。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 * @param groovyObjectCustomizer a customizer that can set a custom metaclass
@@ -113,9 +109,8 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Create a new GroovyScriptFactory for the given script source,
-	 * specifying a strategy interface that can create a custom MetaClass
-	 * to supply missing methods and otherwise change the behavior of the object.
+	 * 为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，该接口可创建自定义 MetaClass
+	 * 以提供缺失的方法，并在其他方面改变对象的行为。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 * @param compilerConfiguration a custom compiler configuration to be applied
@@ -129,9 +124,8 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Create a new GroovyScriptFactory for the given script source,
-	 * specifying a strategy interface that can customize Groovy's compilation
-	 * process within the underlying GroovyClassLoader.
+	 * 为给定的脚本源创建一个新的 GroovyScriptFactory，并指定一个策略接口，用于在底层 GroovyClassLoader
+	 * 中自定义 Groovy 的编译过程。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 * @param compilationCustomizers one or more customizers to be applied to the
@@ -169,7 +163,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Return the GroovyClassLoader used by this script factory.
+	 * 返回此脚本工厂使用的 GroovyClassLoader。
 	 */
 	public GroovyClassLoader getGroovyClassLoader() {
 		synchronized (this.scriptClassMonitor) {
@@ -181,7 +175,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Build a {@link GroovyClassLoader} for the given {@code ClassLoader}.
+	 * 为给定的 {@code ClassLoader} 构建一个 {@link GroovyClassLoader}。
 	 * @param classLoader the ClassLoader to build a GroovyClassLoader for
 	 * @since 4.3.3
 	 */
@@ -197,8 +191,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Groovy scripts determine their interfaces themselves,
-	 * hence we don't need to explicitly expose interfaces here.
+	 * Groovy 脚本会自行确定其接口，因此我们无需在此显式暴露接口。
 	 * @return {@code null} always
 	 */
 	@Override
@@ -208,8 +201,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 	}
 
 	/**
-	 * Groovy scripts do not need a config interface,
-	 * since they expose their setters as public methods.
+	 * Groovy 脚本不需要配置接口，因为它们会将其 setter 作为 public 方法暴露。
 	 */
 	@Override
 	public boolean requiresConfigInterface() {
@@ -218,7 +210,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 
 	/**
-	 * Loads and parses the Groovy script via the GroovyClassLoader.
+	 * 通过 GroovyClassLoader 加载并解析 Groovy 脚本。
 	 * @see groovy.lang.GroovyClassLoader
 	 */
 	@Override
@@ -308,7 +300,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 
 	/**
-	 * Instantiate the given Groovy script class and run it if necessary.
+	 * 实例化给定的 Groovy 脚本类，并在必要时运行它。
 	 * @param scriptSource the source for the underlying script
 	 * @param scriptClass the Groovy script class
 	 * @return the result object (either an instance of the script class
@@ -360,7 +352,7 @@ public class GroovyScriptFactory implements ScriptFactory, BeanFactoryAware, Bea
 
 
 	/**
-	 * Wrapper that holds a temporarily cached result object.
+	 * 持有临时缓存结果对象的包装器。
 	 */
 	private static class CachedResultHolder {
 

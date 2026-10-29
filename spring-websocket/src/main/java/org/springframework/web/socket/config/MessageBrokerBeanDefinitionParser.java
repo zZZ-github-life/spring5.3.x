@@ -75,26 +75,26 @@ import org.springframework.web.socket.server.support.WebSocketHttpRequestHandler
 import org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler;
 
 /**
- * A {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that provides
- * the configuration for the {@code <websocket:message-broker/>} XML namespace element.
+ * 一个 {@link org.springframework.beans.factory.xml.BeanDefinitionParser}，
+ * 为 {@code <websocket:message-broker/>} XML 命名空间元素提供配置。
  *
- * <p>Registers a Spring MVC {@link org.springframework.web.servlet.HandlerMapping}
- * with order 1 to map HTTP WebSocket handshake requests from STOMP/WebSocket clients.
+ * <p>注册一个顺序为 1 的 Spring MVC {@link org.springframework.web.servlet.HandlerMapping}，
+ * 用于映射来自 STOMP/WebSocket 客户端的 HTTP WebSocket 握手请求。
  *
- * <p>Registers the following {@link org.springframework.messaging.MessageChannel MessageChannels}:
+ * <p>注册以下 {@link org.springframework.messaging.MessageChannel MessageChannel}：
  * <ul>
- * <li>"clientInboundChannel" for receiving messages from clients (e.g. WebSocket clients)
- * <li>"clientOutboundChannel" for sending messages to clients (e.g. WebSocket clients)
- * <li>"brokerChannel" for sending messages from within the application to the message broker
+ * <li>"clientInboundChannel" 用于接收来自客户端（例如 WebSocket 客户端）的消息
+ * <li>"clientOutboundChannel" 用于向客户端（例如 WebSocket 客户端）发送消息
+ * <li>"brokerChannel" 用于从应用程序内部向消息代理发送消息
  * </ul>
  *
- * <p>Registers one of the following based on the selected message broker options:
+ * <p>根据所选的消息代理选项注册以下之一：
  * <ul>
- * <li>a {@link SimpleBrokerMessageHandler} if the <simple-broker/> is used
- * <li>a {@link StompBrokerRelayMessageHandler} if the <stomp-broker-relay/> is used
+ * <li>如果使用 <simple-broker/>，则注册 {@link SimpleBrokerMessageHandler}
+ * <li>如果使用 <stomp-broker-relay/>，则注册 {@link StompBrokerRelayMessageHandler}
  * </ul>
  *
- * <p>Registers a {@link UserDestinationMessageHandler} for handling user destinations.
+ * <p>注册一个 {@link UserDestinationMessageHandler} 以处理用户目标。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev

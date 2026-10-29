@@ -43,12 +43,11 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * A simple {@code ResourceResolver} that tries to find a resource under the given
- * locations matching to the request path.
+ * 简单的 {@code ResourceResolver}，它尝试在给定
+ * 位置下查找与请求路径匹配的资源。
  *
- * <p>This resolver does not delegate to the {@code ResourceResolverChain} and is
- * expected to be configured at the end in a chain of resolvers.
- *
+ * <p>此解析器不会委托给 {@code ResourceResolverChain}，
+ * 预期配置在解析器链的末尾。
  * @author Jeremy Grelle
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -66,18 +65,17 @@ public class PathResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * By default, when a Resource is found, the path of the resolved resource is
-	 * compared to ensure it's under the input location where it was found.
-	 * However sometimes that may not be the case, e.g. when
+	 * 默认情况下，找到 Resource 时，会将已解析资源的路径
+	 * 与输入位置进行比较，以确保它位于找到它的输入位置之下。
+	 * 但有时情况并非如此，例如当
 	 * {@link org.springframework.web.servlet.resource.CssLinkResourceTransformer}
-	 * resolves public URLs of links it contains, the CSS file is the location
-	 * and the resources being resolved are css files, images, fonts and others
-	 * located in adjacent or parent directories.
-	 * <p>This property allows configuring a complete list of locations under
-	 * which resources must be so that if a resource is not under the location
-	 * relative to which it was found, this list may be checked as well.
-	 * <p>By default {@link ResourceHttpRequestHandler} initializes this property
-	 * to match its list of locations.
+	 * 解析其包含链接的公共 URL 时，CSS 文件就是位置，
+	 * 而被解析的资源是位于相邻或父目录中的 CSS 文件、图片、字体等。
+	 * <p>此属性允许配置一个完整的位置列表，资源必须位于这些位置之下，
+	 * 这样如果资源不在相对于其被发现的位置之下，
+	 * 也可以检查此列表。
+	 * <p>默认情况下，{@link ResourceHttpRequestHandler} 会将此属性
+	 * 初始化为与其位置列表一致。
 	 * @param locations the list of allowed locations
 	 * @since 4.1.2
 	 * @see ResourceHttpRequestHandler#initAllowedLocations()
@@ -92,12 +90,12 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Configure charsets associated with locations. If a static resource is found
-	 * under a {@link org.springframework.core.io.UrlResource URL resource}
-	 * location the charset is used to encode the relative path
-	 * <p><strong>Note:</strong> the charset is used only if the
-	 * {@link #setUrlPathHelper urlPathHelper} property is also configured and
-	 * its {@code urlDecode} property is set to true.
+	 * 配置与位置关联的字符集。如果在
+	 * {@link org.springframework.core.io.UrlResource URL 资源}位置下找到静态资源，
+	 * 则使用该字符集对相对路径进行编码。
+	 * <p><strong>注意：</strong>仅当同时配置了
+	 * {@link #setUrlPathHelper urlPathHelper} 属性且其 {@code urlDecode} 属性设为 true 时，
+	 * 才会使用该字符集。
 	 * @since 4.3.13
 	 */
 	public void setLocationCharsets(Map<Resource, Charset> locationCharsets) {
@@ -106,7 +104,7 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Return charsets associated with static resource locations.
+	 * 返回与静态资源位置关联的字符集。
 	 * @since 4.3.13
 	 */
 	public Map<Resource, Charset> getLocationCharsets() {
@@ -114,9 +112,8 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Provide a reference to the {@link UrlPathHelper} used to map requests to
-	 * static resources. This helps to derive information about the lookup path
-	 * such as whether it is decoded or not.
+	 * 提供对用于将请求映射到静态资源的 {@link UrlPathHelper} 的引用。
+	 * 这有助于推导查找路径的信息，例如它是否已被解码。
 	 * @since 4.3.13
 	 */
 	public void setUrlPathHelper(@Nullable UrlPathHelper urlPathHelper) {
@@ -124,7 +121,7 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * The configured {@link UrlPathHelper}.
+	 * 已配置的 {@link UrlPathHelper}。
 	 * @since 4.3.13
 	 */
 	@Nullable
@@ -176,9 +173,9 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Find the resource under the given location.
-	 * <p>The default implementation checks if there is a readable
-	 * {@code Resource} for the given path relative to the location.
+	 * 在给定位置下查找资源。
+	 * <p>默认实现会检查给定路径是否相对于该位置存在
+	 * 可读的 {@code Resource}。
 	 * @param resourcePath the path to the resource
 	 * @param location the location to check
 	 * @return the resource, or {@code null} if none found
@@ -203,10 +200,10 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Perform additional checks on a resolved resource beyond checking whether the
-	 * resource exists and is readable. The default implementation also verifies
-	 * the resource is either under the location relative to which it was found or
-	 * is under one of the {@linkplain #setAllowedLocations allowed locations}.
+	 * 对已解析的资源执行附加检查，而不仅仅是检查资源
+	 * 是否存在且可读。默认实现还会验证
+	 * 资源位于找到它的位置之下，或者
+	 * 位于 {@linkplain #setAllowedLocations allowed locations} 之一。
 	 * @param resource the resource to check
 	 * @param location the location relative to which the resource was found
 	 * @return "true" if resource is in a valid location, "false" otherwise.
@@ -287,8 +284,8 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * When the {@code HandlerMapping} is set to not decode the URL path, the
-	 * path needs to be decoded for non-{@code UrlResource} locations.
+	 * 当 {@code HandlerMapping} 设置为不解码 URL 路径时，
+	 * 对于非 {@code UrlResource} 位置，需要对路径进行解码。
 	 */
 	private boolean shouldDecodeRelativePath(Resource location, boolean usesPathPattern) {
 		return (!(location instanceof UrlResource) &&
@@ -296,8 +293,8 @@ public class PathResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * When the {@code HandlerMapping} is set to decode the URL path, the path
-	 * needs to be encoded for {@code UrlResource} locations.
+	 * 当 {@code HandlerMapping} 设置为解码 URL 路径时，
+	 * 对于 {@code UrlResource} 位置，需要对路径进行编码。
 	 */
 	private boolean shouldEncodeRelativePath(Resource location, boolean usesPathPattern) {
 		return (location instanceof UrlResource && !usesPathPattern &&

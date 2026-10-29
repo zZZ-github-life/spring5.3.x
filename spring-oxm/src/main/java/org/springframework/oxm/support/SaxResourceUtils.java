@@ -24,7 +24,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * Convenient utility methods for dealing with SAX.
+ * 用于处理 SAX 的便捷工具方法。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -33,8 +33,8 @@ import org.springframework.lang.Nullable;
 public abstract class SaxResourceUtils {
 
 	/**
-	 * Create a SAX {@code InputSource} from the given resource.
-	 * <p>Sets the system identifier to the resource's {@code URL}, if available.
+	 * 根据给定资源创建一个 SAX {@code InputSource}。
+	 * <p>如果可用，将系统标识符设置为该资源的 {@code URL}。
 	 * @param resource the resource
 	 * @return the input source created from the resource
 	 * @throws IOException if an I/O exception occurs
@@ -48,8 +48,8 @@ public abstract class SaxResourceUtils {
 	}
 
 	/**
-	 * Retrieve the URL from the given resource as System ID.
-	 * <p>Returns {@code null} if it cannot be opened.
+	 * 获取给定资源的 URL 作为 System ID。
+	 * <p>如果无法打开，则返回 {@code null}。
 	 */
 	@Nullable
 	private static String getSystemId(Resource resource) {

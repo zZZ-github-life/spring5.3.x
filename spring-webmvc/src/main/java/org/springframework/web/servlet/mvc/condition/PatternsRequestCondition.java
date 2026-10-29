@@ -37,13 +37,12 @@ import org.springframework.web.util.UrlPathHelper;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
- * A logical disjunction (' || ') request condition that matches a request
- * against a set of URL path patterns.
+ * 逻辑析取（' || '）请求条件，用于将请求
+ * 与一组 URL 路径模式进行匹配。
  *
- * <p>In contrast to {@link PathPatternsRequestCondition} which uses parsed
- * {@link PathPattern}s, this condition does String pattern matching via
- * {@link org.springframework.util.AntPathMatcher AntPathMatcher}.
- *
+ * <p>与使用解析后 {@link PathPattern} 的 {@link PathPatternsRequestCondition} 不同，
+ * 此条件通过
+ * {@link org.springframework.util.AntPathMatcher AntPathMatcher} 进行字符串模式匹配。
  * @author Rossen Stoyanchev
  * @since 3.1
  */
@@ -64,7 +63,7 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 
 
 	/**
-	 * Constructor with URL patterns which are prepended with "/" if necessary.
+	 * 使用 URL 模式的构造函数，必要时会在模式前添加 "/"。
 	 * @param patterns 0 or more URL patterns; no patterns results in an empty
 	 * path {@code ""} mapping which matches all requests.
 	 */
@@ -73,8 +72,8 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Variant of {@link #PatternsRequestCondition(String...)} with a
-	 * {@link PathMatcher} and flag for matching trailing slashes.
+	 * {@link #PatternsRequestCondition(String...)} 的变体，带有
+	 * {@link PathMatcher} 以及是否匹配尾部斜杠的标志。
 	 * @since 5.3
 	 */
 	public PatternsRequestCondition(String[] patterns,  boolean useTrailingSlashMatch,
@@ -84,12 +83,12 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Variant of {@link #PatternsRequestCondition(String...)} with a
-	 * {@link UrlPathHelper} and a {@link PathMatcher}, and whether to match
-	 * trailing slashes.
-	 * <p>As of 5.3 the path is obtained through the static method
-	 * {@link UrlPathHelper#getResolvedLookupPath} and a {@code UrlPathHelper}
-	 * does not need to be passed in.
+	 * {@link #PatternsRequestCondition(String...)} 的变体，带有
+	 * {@link UrlPathHelper} 和 {@link PathMatcher}，以及是否匹配
+	 * 尾部斜杠。
+	 * <p>从 5.3 开始，路径通过静态方法
+	 * {@link UrlPathHelper#getResolvedLookupPath} 获取，不再需要传入
+	 * {@code UrlPathHelper}。
 	 * @since 5.2.4
 	 * @deprecated as of 5.3 in favor of
 	 * {@link #PatternsRequestCondition(String[], boolean, PathMatcher)}.
@@ -102,12 +101,12 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Variant of {@link #PatternsRequestCondition(String...)} with a
-	 * {@link UrlPathHelper} and a {@link PathMatcher}, and flags for matching
-	 * with suffixes and trailing slashes.
-	 * <p>As of 5.3 the path is obtained through the static method
-	 * {@link UrlPathHelper#getResolvedLookupPath} and a {@code UrlPathHelper}
-	 * does not need to be passed in.
+	 * {@link #PatternsRequestCondition(String...)} 的变体，带有
+	 * {@link UrlPathHelper} 和 {@link PathMatcher}，以及是否匹配
+	 * 后缀和尾部斜杠的标志。
+	 * <p>从 5.3 开始，路径通过静态方法
+	 * {@link UrlPathHelper#getResolvedLookupPath} 获取，不再需要传入
+	 * {@code UrlPathHelper}。
 	 * @deprecated as of 5.2.4. See class-level note in
 	 * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}
 	 * on the deprecation of path extension config options.
@@ -120,12 +119,12 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Variant of {@link #PatternsRequestCondition(String...)} with a
-	 * {@link UrlPathHelper} and a {@link PathMatcher}, and flags for matching
-	 * with suffixes and trailing slashes, along with specific extensions.
-	 * <p>As of 5.3 the path is obtained through the static method
-	 * {@link UrlPathHelper#getResolvedLookupPath} and a {@code UrlPathHelper}
-	 * does not need to be passed in.
+	 * {@link #PatternsRequestCondition(String...)} 的变体，带有
+	 * {@link UrlPathHelper} 和 {@link PathMatcher}，以及是否匹配
+	 * 后缀和尾部斜杠的标志，并指定特定的扩展名。
+	 * <p>从 5.3 开始，路径通过静态方法
+	 * {@link UrlPathHelper#getResolvedLookupPath} 获取，不再需要传入
+	 * {@code UrlPathHelper}。
 	 * @deprecated as of 5.2.4. See class-level note in
 	 * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}
 	 * on the deprecation of path extension config options.
@@ -176,7 +175,7 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Private constructor for use when combining and matching.
+	 * 用于组合和匹配的私有构造函数。
 	 */
 	private PatternsRequestCondition(Set<String> patterns, PatternsRequestCondition other) {
 		this.patterns = patterns;
@@ -202,14 +201,14 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Whether the condition is the "" (empty path) mapping.
+	 * 此条件是否为 ""（空路径）映射。
 	 */
 	public boolean isEmptyPathMapping() {
 		return this.patterns == EMPTY_PATH_PATTERN;
 	}
 
 	/**
-	 * Return the mapping paths that are not patterns.
+	 * 返回不是模式的映射路径。
 	 * @since 5.3
 	 */
 	public Set<String> getDirectPaths() {
@@ -227,13 +226,14 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Returns a new instance with URL patterns from the current instance ("this") and
-	 * the "other" instance as follows:
+	 * 返回一个新实例，其中包含当前实例（"this"）和
+	 * "other" 实例的 URL 模式，规则如下：
 	 * <ul>
-	 * <li>If there are patterns in both instances, combine the patterns in "this" with
-	 * the patterns in "other" using {@link PathMatcher#combine(String, String)}.
-	 * <li>If only one instance has patterns, use them.
-	 * <li>If neither instance has patterns, use an empty String (i.e. "").
+	 * <li>如果两个实例都有模式，则使用
+	 * {@link PathMatcher#combine(String, String)} 将 "this" 中的模式与
+	 * "other" 中的模式组合起来。
+	 * <li>如果只有一个实例有模式，则使用该实例的模式。
+	 * <li>如果两个实例都没有模式，则使用空字符串（即 ""）。
 	 * </ul>
 	 */
 	@Override
@@ -259,15 +259,15 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Checks if any of the patterns match the given request and returns an instance
-	 * that is guaranteed to contain matching patterns, sorted via
-	 * {@link PathMatcher#getPatternComparator(String)}.
-	 * <p>A matching pattern is obtained by making checks in the following order:
+	 * 检查是否有任何模式匹配给定请求，并返回一个
+	 * 保证包含匹配模式且已通过
+	 * {@link PathMatcher#getPatternComparator(String)} 排序的实例。
+	 * <p>匹配模式按以下顺序进行检查获得：
 	 * <ul>
-	 * <li>Direct match
-	 * <li>Pattern match with ".*" appended if the pattern doesn't already contain a "."
-	 * <li>Pattern match
-	 * <li>Pattern match with "/" appended if the pattern doesn't already end in "/"
+	 * <li>直接匹配
+	 * <li>如果模式中尚不包含 "."，则追加 ".*" 后进行模式匹配
+	 * <li>模式匹配
+	 * <li>如果模式尚未以 "/" 结尾，则追加 "/" 后进行模式匹配
 	 * </ul>
 	 * @param request the current request
 	 * @return the same instance if the condition contains no patterns;
@@ -283,10 +283,10 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Find the patterns matching the given lookup path. Invoking this method should
-	 * yield results equivalent to those of calling {@link #getMatchingCondition}.
-	 * This method is provided as an alternative to be used if no request is available
-	 * (e.g. introspection, tooling, etc).
+	 * 查找匹配给定查找路径的模式。调用此方法应
+	 * 产生与调用 {@link #getMatchingCondition} 等价的结果。
+	 * 此方法作为替代方案提供，用于没有可用请求的场景
+	 * （例如内省、工具等）。
 	 * @param lookupPath the lookup path to match to existing patterns
 	 * @return a collection of matching patterns sorted with the closest match at the top
 	 */
@@ -340,15 +340,15 @@ public class PatternsRequestCondition extends AbstractRequestCondition<PatternsR
 	}
 
 	/**
-	 * Compare the two conditions based on the URL patterns they contain.
-	 * Patterns are compared one at a time, from top to bottom via
-	 * {@link PathMatcher#getPatternComparator(String)}. If all compared
-	 * patterns match equally, but one instance has more patterns, it is
-	 * considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(HttpServletRequest)} to ensure they
-	 * contain only patterns that match the request and are sorted with
-	 * the best matches on top.
+	 * 基于两个条件包含的 URL 模式进行比较。
+	 * 模式从上到下逐一通过
+	 * {@link PathMatcher#getPatternComparator(String)} 进行比较。如果所有比较的
+	 * 模式都相同地匹配，但其中一个实例拥有更多模式，则认为
+	 * 它更匹配。
+	 * <p>假定两个实例都是通过
+	 * {@link #getMatchingCondition(HttpServletRequest)} 获得的，以确保它们
+	 * 只包含匹配请求的模式，并按最匹配的排在前面
+	 * 进行排序。
 	 */
 	@Override
 	public int compareTo(PatternsRequestCondition other, HttpServletRequest request) {

@@ -24,9 +24,9 @@ import reactor.core.publisher.Mono;
 import org.springframework.http.HttpMethod;
 
 /**
- * Abstraction over HTTP clients driving the underlying HTTP client to connect
- * to the origin server and provide all necessary infrastructure to send a
- * {@link ClientHttpRequest} and receive a {@link ClientHttpResponse}.
+ * 对 HTTP 客户端的抽象，驱动底层 HTTP 客户端连接到源服务器，
+ * 并提供发送 {@link ClientHttpRequest} 和接收
+ * {@link ClientHttpResponse} 所需的所有基础设施。
  *
  * @author Brian Clozel
  * @since 5.0
@@ -34,9 +34,9 @@ import org.springframework.http.HttpMethod;
 public interface ClientHttpConnector {
 
 	/**
-	 * Connect to the origin server using the given {@code HttpMethod} and
-	 * {@code URI} and apply the given {@code requestCallback} when the HTTP
-	 * request of the underlying API can be initialized and written to.
+	 * 使用给定的 {@code HttpMethod} 和 {@code URI} 连接到源服务器，
+	 * 并在底层 API 的 HTTP 请求可以初始化并写入时应用给定的
+	 * {@code requestCallback}。
 	 * @param method the HTTP request method
 	 * @param uri the HTTP request URI
 	 * @param requestCallback a function that prepares and writes to the request,

@@ -24,24 +24,22 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@code RequestExpectationManager} that matches requests to expectations
- * sequentially, i.e. in the order of declaration of expectations.
+ * 简单的 {@code RequestExpectationManager}，按顺序（即预期的声明顺序）将请求匹配到预期。
  *
- * <p>When request expectations have an expected count greater than one,
- * only the first execution is expected to match the order of declaration.
- * Subsequent request executions may be inserted anywhere thereafter.
- *
+ * <p>当请求预期的预期次数大于一时，
+ * 只有第一次执行需要遵循声明顺序。
+ * 后续请求执行可以插入到其后的任意位置。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 4.3
  */
 public class SimpleRequestExpectationManager extends AbstractRequestExpectationManager {
 
-	/** Expectations in the order of declaration (count may be > 1). */
+	/** 按声明顺序排列的预期（计数可能 > 1）。 */
 	@Nullable
 	private Iterator<RequestExpectation> expectationIterator;
 
-	/** Track expectations that have a remaining count. */
+	/** 跟踪仍有剩余次数的预期。 */
 	private final RequestExpectationGroup repeatExpectations = new RequestExpectationGroup();
 
 

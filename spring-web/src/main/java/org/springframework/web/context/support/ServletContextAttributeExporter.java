@@ -27,19 +27,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * Exporter that takes Spring-defined objects and exposes them as
- * ServletContext attributes. Usually, bean references will be used
- * to export Spring-defined beans as ServletContext attributes.
+ * 导出器，接收 Spring 定义的对象并将其暴露为 ServletContext 属性。通常使用 bean 引用来将 Spring
+ * 定义的 bean 导出为 ServletContext 属性。
  *
- * <p>Useful to make Spring-defined beans available to code that is
- * not aware of Spring at all, but rather just of the Servlet API.
- * Client code can then use plain ServletContext attribute lookups
- * to access those objects, despite them being defined in a Spring
- * application context.
+ * <p>这对于让那些完全不了解 Spring、只了解 Servlet API 的代码能够使用 Spring 定义的 bean 很有用。
+ * 客户端代码随后可以使用普通的 ServletContext 属性查找来访问这些对象，尽管它们是在 Spring 应用上
+ * 下文中定义的。
  *
- * <p>Alternatively, consider using the WebApplicationContextUtils
- * class to access Spring-defined beans via the WebApplicationContext
- * interface. This makes client code aware of Spring API, of course.
+ * <p>或者，可以考虑使用 WebApplicationContextUtils 类，通过 WebApplicationContext 接口访问
+ * Spring 定义的 bean。当然，这会让客户端代码依赖于 Spring API。
  *
  * @author Juergen Hoeller
  * @since 1.1.4
@@ -55,12 +51,10 @@ public class ServletContextAttributeExporter implements ServletContextAware {
 
 
 	/**
-	 * Set the ServletContext attributes to expose as key-value pairs.
-	 * Each key will be considered a ServletContext attributes key,
-	 * and each value will be used as corresponding attribute value.
-	 * <p>Usually, you will use bean references for the values,
-	 * to export Spring-defined beans as ServletContext attributes.
-	 * Of course, it is also possible to define plain values to export.
+	 * 设置要暴露的 ServletContext 属性，以键值对形式提供。每个键将被视为 ServletContext 属性键，每个
+	 * 值将用作相应的属性值。
+	 * <p>通常，你会为值使用 bean 引用，以便将 Spring 定义的 bean 导出为 ServletContext 属性。当然，
+	 * 也可以定义普通值来导出。
 	 */
 	public void setAttributes(Map<String, Object> attributes) {
 		this.attributes = attributes;

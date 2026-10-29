@@ -34,9 +34,7 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * A logical disjunction (' || ') request condition that matches a request
- * against a set of URL path patterns.
- *
+ * 逻辑析取（' || '）请求条件，用于将请求与一组 URL 路径模式进行匹配。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -53,7 +51,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 
 
 	/**
-	 * Creates a new instance with the given URL patterns.
+	 * 使用给定的 URL 模式创建新实例。
 	 * @param patterns 0 or more URL patterns; if 0 the condition will match to every request.
 	 */
 	public PatternsRequestCondition(PathPattern... patterns) {
@@ -61,7 +59,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	}
 
 	/**
-	 * Creates a new instance with the given URL patterns.
+	 * 使用给定的 URL 模式创建新实例。
 	 */
 	public PatternsRequestCondition(List<PathPattern> patterns) {
 		this.patterns = (patterns.isEmpty() ? EMPTY_PATH_PATTERN : new TreeSet<>(patterns));
@@ -91,7 +89,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	}
 
 	/**
-	 * Return the mapping paths that are not patterns.
+	 * 返回不是模式的映射路径。
 	 * @since 5.3
 	 */
 	public Set<String> getDirectPaths() {
@@ -109,13 +107,11 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	}
 
 	/**
-	 * Returns a new instance with URL patterns from the current instance ("this") and
-	 * the "other" instance as follows:
+	 * 返回一个新实例，其中包含当前实例（"this"）和 "other" 实例的 URL 模式，规则如下：
 	 * <ul>
-	 * <li>If there are patterns in both instances, combine the patterns in "this" with
-	 * the patterns in "other" using {@link PathPattern#combine(PathPattern)}.
-	 * <li>If only one instance has patterns, use them.
-	 * <li>If neither instance has patterns, use an empty String (i.e. "").
+	 * <li>如果两个实例都包含模式，则使用 {@link PathPattern#combine(PathPattern)} 将 "this" 中的模式与 "other" 中的模式组合。
+	 * <li>如果只有一个实例包含模式，则使用这些模式。
+	 * <li>如果两个实例都没有模式，则使用空字符串（即 ""）。
 	 * </ul>
 	 */
 	@Override
@@ -141,8 +137,7 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	}
 
 	/**
-	 * Checks if any of the patterns match the given request and returns an instance
-	 * that is guaranteed to contain matching patterns, sorted.
+	 * 检查是否有任何模式匹配给定请求，并返回一个保证包含匹配模式的实例，结果已排序。
 	 * @param exchange the current exchange
 	 * @return the same instance if the condition contains no patterns;
 	 * or a new condition with sorted matching patterns;
@@ -169,14 +164,8 @@ public final class PatternsRequestCondition extends AbstractRequestCondition<Pat
 	}
 
 	/**
-	 * Compare the two conditions based on the URL patterns they contain.
-	 * Patterns are compared one at a time, from top to bottom. If all compared
-	 * patterns match equally, but one instance has more patterns, it is
-	 * considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(ServerWebExchange)} to ensure they
-	 * contain only patterns that match the request and are sorted with
-	 * the best matches on top.
+	 * 根据所包含的 URL 模式比较两个条件。模式从上到下逐一比较。如果所有比较的模式都同样匹配，但一个实例具有更多模式，则认为它更接近匹配。
+	 * <p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，以确保它们仅包含匹配请求的模式，并且最佳匹配排在前面。
 	 */
 	@Override
 	public int compareTo(PatternsRequestCondition other, ServerWebExchange exchange) {

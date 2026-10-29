@@ -27,28 +27,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.support.BindStatus;
 
 /**
- * Utility class for testing whether a candidate value matches a {@link BindStatus#getValue data bound value}.
- * Eagerly attempts to prove a comparison through a number of avenues to deal with issues such as instance
- * inequality, logical (String-representation-based) equality and {@link PropertyEditor}-based comparison.
- *
- * <p>Full support is provided for comparing arrays, {@link Collection Collections} and {@link Map Maps}.
- *
- * <p><h1><a name="equality-contract">Equality Contract</a></h1>
- * For single-valued objects equality is first tested using standard {@link Object#equals Java equality}. As
- * such, user code should endeavour to implement {@link Object#equals} to speed up the comparison process. If
- * {@link Object#equals} returns {@code false} then an attempt is made at an
- * {@link #exhaustiveCompare exhaustive comparison} with the aim being to <strong>prove</strong> equality rather
- * than disprove it.
- *
- * <p>Next, an attempt is made to compare the {@code String} representations of both the candidate and bound
- * values. This may result in {@code true} in a number of cases due to the fact both values will be represented
- * as {@code Strings} when shown to the user.
- *
- * <p>Next, if the candidate value is a {@code String}, an attempt is made to compare the bound value to
- * result of applying the corresponding {@link PropertyEditor} to the candidate. This comparison may be
- * executed twice, once against the direct {@code String} instances, and then against the {@code String}
- * representations if the first comparison results in {@code false}.
- *
+ * 用于检测候选值是否匹配 {@link BindStatus#getValue 数据绑定值} 的工具类。它会积极地尝试通过多种途径证明二者相等，以处理实例不相等、逻辑（基于 String 表示）相等以及基于 {@link PropertyEditor} 的比较等问题。<p>完全支持比较数组、{@link Collection Collections} 和 {@link Map Maps}。<p><h1><a name="equality-contract">相等性约定</a></h1>对于单值对象，首先使用标准的 {@link Object#equals Java 相等性} 进行检测。因此，用户代码应尽量实现 {@link Object#equals} 以加快比较过程。如果 {@link Object#equals} 返回 {@code false}，则尝试进行 {@link #exhaustiveCompare 穷举比较}，目标是<strong>证明</strong>相等，而不是证明不相等。<p>接下来，尝试比较候选值和绑定值的 {@code String} 表示。由于展示给用户时两个值都会表示为 {@code String}，因此在某些情况下这可能返回 {@code true}。<p>接下来，如果候选值是 {@code String}，则尝试将绑定值与对候选值应用相应 {@link PropertyEditor} 后的结果进行比较。该比较可能执行两次：先直接针对 {@code String} 实例，如果第一次比较结果为 {@code false}，再针对 {@code String} 表示进行比较。
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @since 2.0
@@ -56,9 +35,7 @@ import org.springframework.web.servlet.support.BindStatus;
 abstract class SelectedValueComparator {
 
 	/**
-	 * Returns {@code true} if the supplied candidate value is equal to the value bound to
-	 * the supplied {@link BindStatus}. Equality in this case differs from standard Java equality and
-	 * is described in more detail <a href="#equality-contract">here</a>.
+	 * 如果给定的候选值与绑定到给定 {@link BindStatus} 的值相等，则返回 {@code true}。此处的相等性不同于标准 Java 相等性，详细信息请参见<a href="#equality-contract">此处</a>。
 	 */
 	public static boolean isSelected(BindStatus bindStatus, @Nullable Object candidateValue) {
 		// Check obvious equality matches with the candidate first,

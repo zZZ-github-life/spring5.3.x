@@ -51,13 +51,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * {@code HttpMessageWriter} that can write a {@link Resource}.
+ * 可写入 {@link Resource} 的 {@code HttpMessageWriter}。
  *
- * <p>Also an implementation of {@code HttpMessageWriter} with support for writing one
- * or more {@link ResourceRegion}'s based on the HTTP ranges specified in the request.
+ * <p>同时也是一个 {@code HttpMessageWriter} 实现，支持根据请求中指定的
+ * HTTP 范围写入一个或多个 {@link ResourceRegion}。
  *
- * <p>For reading to a Resource, use {@link ResourceDecoder} wrapped with
- * {@link DecoderHttpMessageReader}.
+ * <p>如需读取到 Resource，请使用由
+ * {@link DecoderHttpMessageReader} 包装的 {@link ResourceDecoder}。
  *
  * @author Arjen Poutsma
  * @author Brian Clozel

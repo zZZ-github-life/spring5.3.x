@@ -1,7 +1,7 @@
 /**
- * Contains an abstraction over server-side HTTP. This package
- * contains the {@code ServerHttpRequest} and {@code ServerHttpResponse},
- * as well as a Servlet-based implementation of these interfaces.
+ * 包含服务器端 HTTP 的抽象。此包
+ * 包含 {@code ServerHttpRequest} 和 {@code ServerHttpResponse}，
+ * 以及这些接口基于 Servlet 的实现。
  */
 @NonNullApi
 @NonNullFields

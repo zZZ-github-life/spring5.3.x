@@ -24,19 +24,18 @@ import org.springframework.lang.Nullable;
 import org.springframework.validation.Errors;
 
 /**
- * This {@code <hasBindErrors>} tag provides an {@link Errors} instance in case of
- * bind errors. The HTML escaping flag participates in a page-wide or
- * application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape"
- * context-param in web.xml).
+ * 在发生绑定错误时，{@code <hasBindErrors>} 标签会提供一个 {@link Errors} 实例。
+ * HTML 转义标志会参与页面级或应用级的设置（即通过 HtmlEscapeTag 或
+ * web.xml 中的 "defaultHtmlEscape" 上下文参数）。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -44,16 +43,16 @@ import org.springframework.validation.Errors;
  * <td>htmlEscape</td>
  * <td>false</td>
  * <td>true</td>
- * <td>Set HTML escaping for this tag, as boolean value.
- * Overrides the default HTML escaping setting for the current page.</td>
+ * <td>以布尔值形式为该标签设置 HTML 转义。
+ * 覆盖当前页面的默认 HTML 转义设置。</td>
  * </tr>
  * <tr>
  * <td>name</td>
  * <td>true</td>
  * <td>true</td>
- * <td>The name of the bean in the request that needs to be inspected for errors.
- * If errors are available for this bean, they will be bound under the
- * 'errors' key.</td>
+ * <td>请求中需要检查错误的 bean 的名称。
+ * 如果该 bean 存在错误，它们将绑定在
+ * 'errors' 键下。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -67,7 +66,7 @@ import org.springframework.validation.Errors;
 public class BindErrorsTag extends HtmlEscapingAwareTag {
 
 	/**
-	 * Page context attribute containing {@link Errors}.
+	 * 存放 {@link Errors} 的页面上下文属性。
 	 */
 	public static final String ERRORS_VARIABLE_NAME = "errors";
 
@@ -79,14 +78,14 @@ public class BindErrorsTag extends HtmlEscapingAwareTag {
 
 
 	/**
-	 * Set the name of the bean that this tag should check.
+	 * 设置此标签应检查的 bean 的名称。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Return the name of the bean that this tag checks.
+	 * 返回此标签所检查的 bean 的名称。
 	 */
 	public String getName() {
 		return this.name;
@@ -112,8 +111,8 @@ public class BindErrorsTag extends HtmlEscapingAwareTag {
 	}
 
 	/**
-	 * Retrieve the Errors instance that this tag is currently bound to.
-	 * <p>Intended for cooperating nesting tags.
+	 * 获取此标签当前所绑定的 Errors 实例。
+	 * <p>该实例供协作的嵌套标签使用。
 	 */
 	@Nullable
 	public final Errors getErrors() {

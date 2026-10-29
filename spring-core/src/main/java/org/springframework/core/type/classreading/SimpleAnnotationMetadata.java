@@ -27,8 +27,7 @@ import org.springframework.core.type.MethodMetadata;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link AnnotationMetadata} created from a
- * {@link SimpleAnnotationMetadataReadingVisitor}.
+ * 由 {@link SimpleAnnotationMetadataReadingVisitor} 创建的 {@link AnnotationMetadata}。
  *
  * @author Phillip Webb
  * @author Sam Brannen

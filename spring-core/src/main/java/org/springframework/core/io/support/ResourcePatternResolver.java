@@ -22,30 +22,29 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 /**
- * Strategy interface for resolving a location pattern (for example,
- * an Ant-style path pattern) into {@link Resource} objects.
+ * 用于将位置模式（例如 Ant 风格的路径模式）
+ * 解析为 {@link Resource} 对象的策略接口。
  *
- * <p>This is an extension to the {@link org.springframework.core.io.ResourceLoader}
- * interface. A passed-in {@code ResourceLoader} (for example, an
- * {@link org.springframework.context.ApplicationContext} passed in via
- * {@link org.springframework.context.ResourceLoaderAware} when running in a context)
- * can be checked whether it implements this extended interface too.
+ * <p>这是对 {@link org.springframework.core.io.ResourceLoader}
+ * 接口的扩展。可以检查传入的 {@code ResourceLoader}（例如在上下文中运行时
+ * 通过 {@link org.springframework.context.ResourceLoaderAware} 传入的
+ * {@link org.springframework.context.ApplicationContext}）
+ * 是否也实现了这个扩展接口。
  *
- * <p>{@link PathMatchingResourcePatternResolver} is a standalone implementation
- * that is usable outside an {@code ApplicationContext}, also used by
- * {@link ResourceArrayPropertyEditor} for populating {@code Resource} array bean
- * properties.
+ * <p>{@link PathMatchingResourcePatternResolver} 是一个独立的实现，
+ * 可在 {@code ApplicationContext} 之外使用，也被
+ * {@link ResourceArrayPropertyEditor} 用于填充 {@code Resource} 数组类型的 Bean
+ * 属性。
  *
- * <p>Can be used with any sort of location pattern &mdash; for example,
- * {@code "/WEB-INF/*-context.xml"}. However, input patterns have to match the
- * strategy implementation. This interface just specifies the conversion method
- * rather than a specific pattern format.
+ * <p>可用于任何类型的位置模式 &mdash; 例如，
+ * {@code "/WEB-INF/*-context.xml"}。不过，输入模式必须与
+ * 策略实现相匹配。此接口只规定转换方法，
+ * 而不规定具体的模式格式。
  *
- * <p>This interface also defines a {@code "classpath*:"} resource prefix for all
- * matching resources from the class path. Note that the resource location may
- * also contain placeholders &mdash; for example {@code "/beans-*.xml"}. JAR files
- * or different directories in the class path can contain multiple files of the
- * same name.
+ * <p>此接口还为类路径中所有匹配的资源定义了一个 {@code "classpath*:"} 资源前缀。
+ * 请注意，资源位置中也可以包含占位符 &mdash; 例如 {@code "/beans-*.xml"}。
+ * JAR 文件或类路径中的不同目录可以包含多个
+ * 同名文件。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -57,19 +56,19 @@ import org.springframework.core.io.ResourceLoader;
 public interface ResourcePatternResolver extends ResourceLoader {
 
 	/**
-	 * Pseudo URL prefix for all matching resources from the class path: "classpath*:"
-	 * <p>This differs from ResourceLoader's classpath URL prefix in that it
-	 * retrieves all matching resources for a given name (e.g. "/beans.xml"),
-	 * for example in the root of all deployed JAR files.
+	 * 类路径中所有匹配资源的伪 URL 前缀："classpath*:"
+	 * <p>这与 ResourceLoader 的 classpath URL 前缀不同，它会
+	 * 为给定名称（例如 "/beans.xml"）检索所有匹配的资源，
+	 * 例如在所有已部署 JAR 文件的根目录中。
 	 * @see org.springframework.core.io.ResourceLoader#CLASSPATH_URL_PREFIX
 	 */
 	String CLASSPATH_ALL_URL_PREFIX = "classpath*:";
 
 	/**
-	 * Resolve the given location pattern into {@code Resource} objects.
-	 * <p>Overlapping resource entries that point to the same physical
-	 * resource should be avoided, as far as possible. The result should
-	 * have set semantics.
+	 * 将给定位置模式解析为 {@code Resource} 对象。
+	 * <p>应尽可能避免指向同一物理资源的
+	 * 重叠资源条目。结果应
+	 * 具有集合语义。
 	 * @param locationPattern the location pattern to resolve
 	 * @return the corresponding {@code Resource} objects
 	 * @throws IOException in case of I/O errors

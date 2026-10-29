@@ -32,15 +32,12 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * An implementation of the {@link ObjectNamingStrategy} interface
- * that reads the {@code ObjectName} from the source-level metadata.
- * Falls back to the bean key (bean name) if no {@code ObjectName}
- * can be found in source-level metadata.
+ * {@link ObjectNamingStrategy} 接口的实现，它从源码级元数据中读取 {@code ObjectName}。如果在源码级
+ * 元数据中找不到 {@code ObjectName}，则回退到 Bean 键（Bean 名称）。
  *
- * <p>Uses the {@link JmxAttributeSource} strategy interface, so that
- * metadata can be read using any supported implementation. Out of the box,
- * {@link org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource}
- * introspects a well-defined set of annotations that come with Spring.
+ * <p>使用 {@link JmxAttributeSource} 策略接口，因此可以使用任何受支持的实现来读取元数据。开箱即用
+ * 的情况下，{@link org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource} 会内省
+ * Spring 自带的一组定义良好的注解。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -51,7 +48,7 @@ import org.springframework.util.StringUtils;
 public class MetadataNamingStrategy implements ObjectNamingStrategy, InitializingBean {
 
 	/**
-	 * The {@code JmxAttributeSource} implementation to use for reading metadata.
+	 * 用于读取元数据的 {@code JmxAttributeSource} 实现。
 	 */
 	@Nullable
 	private JmxAttributeSource attributeSource;
@@ -61,15 +58,13 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 
 
 	/**
-	 * Create a new {@code MetadataNamingStrategy} which needs to be
-	 * configured through the {@link #setAttributeSource} method.
+	 * 创建一个新的 {@code MetadataNamingStrategy}，需要通过 {@link #setAttributeSource} 方法进行配置。
 	 */
 	public MetadataNamingStrategy() {
 	}
 
 	/**
-	 * Create a new {@code MetadataNamingStrategy} for the given
-	 * {@code JmxAttributeSource}.
+	 * 为给定的 {@code JmxAttributeSource} 创建一个新的 {@code MetadataNamingStrategy}。
 	 * @param attributeSource the JmxAttributeSource to use
 	 */
 	public MetadataNamingStrategy(JmxAttributeSource attributeSource) {
@@ -79,8 +74,7 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 
 
 	/**
-	 * Set the implementation of the {@code JmxAttributeSource} interface to use
-	 * when reading the source-level metadata.
+	 * 设置读取源码级元数据时要使用的 {@code JmxAttributeSource} 接口实现。
 	 */
 	public void setAttributeSource(JmxAttributeSource attributeSource) {
 		Assert.notNull(attributeSource, "JmxAttributeSource must not be null");
@@ -88,11 +82,8 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 	}
 
 	/**
-	 * Specify the default domain to be used for generating ObjectNames
-	 * when no source-level metadata has been specified.
-	 * <p>The default is to use the domain specified in the bean name
-	 * (if the bean name follows the JMX ObjectName syntax); else,
-	 * the package name of the managed bean class.
+	 * 指定在未指定源码级元数据时用于生成 ObjectNames 的默认域。<p>默认情况下，使用 Bean 名称中指定的域
+	 * （如果 Bean 名称遵循 JMX ObjectName 语法）；否则使用受管 Bean 类的包名。
 	 */
 	public void setDefaultDomain(String defaultDomain) {
 		this.defaultDomain = defaultDomain;
@@ -107,8 +98,7 @@ public class MetadataNamingStrategy implements ObjectNamingStrategy, Initializin
 
 
 	/**
-	 * Reads the {@code ObjectName} from the source-level metadata associated
-	 * with the managed resource's {@code Class}.
+	 * 从与受管资源的 {@code Class} 关联的源码级元数据中读取 {@code ObjectName}。
 	 */
 	@Override
 	public ObjectName getObjectName(Object managedBean, @Nullable String beanKey) throws MalformedObjectNameException {

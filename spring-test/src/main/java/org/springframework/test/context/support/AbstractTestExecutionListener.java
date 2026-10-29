@@ -21,8 +21,7 @@ import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
 
 /**
- * Abstract {@linkplain Ordered ordered} implementation of the
- * {@link TestExecutionListener} API.
+ * {@link TestExecutionListener} API 的抽象 {@linkplain Ordered 有序}实现。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -32,10 +31,7 @@ import org.springframework.test.context.TestExecutionListener;
 public abstract class AbstractTestExecutionListener implements TestExecutionListener, Ordered {
 
 	/**
-	 * The default implementation returns {@link Ordered#LOWEST_PRECEDENCE},
-	 * thereby ensuring that custom listeners are ordered after default
-	 * listeners supplied by the framework. Can be overridden by subclasses
-	 * as necessary.
+	 * 默认实现返回 {@link Ordered#LOWEST_PRECEDENCE}，从而确保自定义监听器排在框架提供的默认监听器之后。子类可以视需要重写。
 	 * @since 4.1
 	 */
 	@Override
@@ -44,8 +40,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 * @since 3.0
 	 */
 	@Override
@@ -54,8 +49,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 */
 	@Override
 	public void prepareTestInstance(TestContext testContext) throws Exception {
@@ -63,8 +57,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 */
 	@Override
 	public void beforeTestMethod(TestContext testContext) throws Exception {
@@ -72,8 +65,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 * @since 5.2
 	 */
 	@Override
@@ -82,8 +74,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 * @since 5.2
 	 */
 	@Override
@@ -92,8 +83,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 */
 	@Override
 	public void afterTestMethod(TestContext testContext) throws Exception {
@@ -101,8 +91,7 @@ public abstract class AbstractTestExecutionListener implements TestExecutionList
 	}
 
 	/**
-	 * The default implementation is <em>empty</em>. Can be overridden by
-	 * subclasses as necessary.
+	 * 默认实现是<em>空</em>的。子类可以视需要重写。
 	 * @since 3.0
 	 */
 	@Override

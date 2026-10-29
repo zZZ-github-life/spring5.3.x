@@ -36,13 +36,9 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * Resolves arguments annotated with {@link MatrixVariable @MatrixVariable}.
+ * 解析带有 {@link MatrixVariable @MatrixVariable} 注解的参数。
  *
- * <p>If the method parameter is of type {@link Map} it will be resolved by
- * {@link MatrixVariableMapMethodArgumentResolver} instead unless the annotation
- * specifies a name in which case it is considered to be a single attribute of
- * type map (vs multiple attributes collected in a map).
- *
+ * <p>如果方法参数类型为 {@link Map}，则改由 {@link MatrixVariableMapMethodArgumentResolver} 解析，除非注解指定了名称，此时它被视为 Map 类型的单个属性（而不是收集到 Map 中的多个属性）。
  * @author Rossen Stoyanchev
  * @since 5.0.1
  * @see MatrixVariableMapMethodArgumentResolver

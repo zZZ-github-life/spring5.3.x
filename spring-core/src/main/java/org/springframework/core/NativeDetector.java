@@ -17,10 +17,9 @@
 package org.springframework.core;
 
 /**
- * A common delegate for detecting a GraalVM native image environment.
+ * 用于检测 GraalVM 原生镜像环境的通用委托。
  *
- * <p>Requires using the {@code -H:+InlineBeforeAnalysis} native image compiler flag in order to allow code removal at
- * build time.
+ * <p>需要使用 {@code -H:+InlineBeforeAnalysis} 原生镜像编译器标志，以便允许在构建时移除代码。
  *
  * @author Sebastien Deleuze
  * @since 5.3.4
@@ -31,7 +30,7 @@ public abstract class NativeDetector {
 	private static final boolean imageCode = (System.getProperty("org.graalvm.nativeimage.imagecode") != null);
 
 	/**
-	 * Returns {@code true} if invoked in the context of image building or during image runtime, else {@code false}.
+	 * 如果在镜像构建期间或镜像运行时被调用，则返回 {@code true}，否则返回 {@code false}。
 	 */
 	public static boolean inNativeImage() {
 		return imageCode;

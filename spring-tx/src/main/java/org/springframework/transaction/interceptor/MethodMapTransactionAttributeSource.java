@@ -36,8 +36,7 @@ import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Simple {@link TransactionAttributeSource} implementation that
- * allows attributes to be stored per method in a {@link Map}.
+ * 简单的{@link TransactionAttributeSource}实现, 允许将属性按方法存储在{@link Map}中。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -48,10 +47,10 @@ import org.springframework.util.StringValueResolver;
 public class MethodMapTransactionAttributeSource
 		implements TransactionAttributeSource, EmbeddedValueResolverAware, BeanClassLoaderAware, InitializingBean {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Map from method name to attribute value. */
+	/** 从方法名到属性值的映射。 */
 	@Nullable
 	private Map<String, TransactionAttribute> methodMap;
 
@@ -65,21 +64,18 @@ public class MethodMapTransactionAttributeSource
 
 	private boolean initialized = false;
 
-	/** Map from Method to TransactionAttribute. */
+	/** 从Method到TransactionAttribute的映射。 */
 	private final Map<Method, TransactionAttribute> transactionAttributeMap = new HashMap<>();
 
-	/** Map from Method to name pattern used for registration. */
+	/** 从Method到注册时使用的名称模式的映射。 */
 	private final Map<Method, String> methodNameMap = new HashMap<>();
 
 
 	/**
-	 * Set a name/attribute map, consisting of "FQCN.method" method names
-	 * (e.g. "com.mycompany.mycode.MyClass.myMethod") and
-	 * {@link TransactionAttribute} instances (or Strings to be converted
-	 * to {@code TransactionAttribute} instances).
-	 * <p>Intended for configuration via setter injection, typically within
-	 * a Spring bean factory. Relies on {@link #afterPropertiesSet()}
-	 * being called afterwards.
+	 * 设置名称/属性映射, 由"FQCN.method"格式的方法名
+	 * (例如"com.mycompany.mycode.MyClass.myMethod")和{@link TransactionAttribute}实例
+	 * (或要转换为{@code TransactionAttribute}实例的字符串)组成。
+	 * <p>用于通过setter注入进行配置, 通常在Spring bean工厂中。依赖于之后调用{@link #afterPropertiesSet()}。
 	 * @param methodMap said {@link Map} from method name to attribute value
 	 * @see TransactionAttribute
 	 * @see TransactionAttributeEditor
@@ -100,8 +96,7 @@ public class MethodMapTransactionAttributeSource
 
 
 	/**
-	 * Eagerly initializes the specified
-	 * {@link #setMethodMap(java.util.Map) "methodMap"}, if any.
+	 * 立即初始化指定的{@link #setMethodMap(java.util.Map) "methodMap"}(如果有)。
 	 * @see #initMethodMap(java.util.Map)
 	 */
 	@Override
@@ -112,7 +107,7 @@ public class MethodMapTransactionAttributeSource
 	}
 
 	/**
-	 * Initialize the specified {@link #setMethodMap(java.util.Map) "methodMap"}, if any.
+	 * 初始化指定的{@link #setMethodMap(java.util.Map) "methodMap"}(如果有)。
 	 * @param methodMap a Map from method names to {@code TransactionAttribute} instances
 	 * @see #setMethodMap
 	 */
@@ -124,8 +119,8 @@ public class MethodMapTransactionAttributeSource
 
 
 	/**
-	 * Add an attribute for a transactional method.
-	 * <p>Method names can end or start with "*" for matching multiple methods.
+	 * 为事务方法添加属性。
+	 * <p>方法名可以以"*"结尾或开头, 以匹配多个方法。
 	 * @param name class and method name, separated by a dot
 	 * @param attr attribute associated with the method
 	 * @throws IllegalArgumentException in case of an invalid name
@@ -143,8 +138,8 @@ public class MethodMapTransactionAttributeSource
 	}
 
 	/**
-	 * Add an attribute for a transactional method.
-	 * Method names can end or start with "*" for matching multiple methods.
+	 * 为事务方法添加属性。
+	 * 方法名可以以"*"结尾或开头, 以匹配多个方法。
 	 * @param clazz target interface or class
 	 * @param mappedName mapped method name
 	 * @param attr attribute associated with the method
@@ -189,7 +184,7 @@ public class MethodMapTransactionAttributeSource
 	}
 
 	/**
-	 * Add an attribute for a transactional method.
+	 * 为事务方法添加属性。
 	 * @param method the method
 	 * @param attr attribute associated with the method
 	 */
@@ -206,9 +201,8 @@ public class MethodMapTransactionAttributeSource
 	}
 
 	/**
-	 * Return if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*"
-	 * matches, as well as direct equality.
+	 * 返回给定的方法名是否匹配映射名称。
+	 * <p>默认实现检查"xxx*"、"*xxx"和"*xxx*"匹配, 以及直接相等。
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match

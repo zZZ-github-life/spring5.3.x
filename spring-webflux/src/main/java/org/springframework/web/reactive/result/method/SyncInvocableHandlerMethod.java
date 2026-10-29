@@ -32,10 +32,7 @@ import org.springframework.web.server.ServerErrorException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Extension of {@link HandlerMethod} that invokes the underlying method via
- * {@link InvocableHandlerMethod} but uses sync argument resolvers only and
- * thus can return directly a {@link HandlerResult} with no async wrappers.
- *
+ * {@link HandlerMethod} 的扩展，通过 {@link InvocableHandlerMethod} 调用底层方法，但仅使用同步参数解析器，因此可以直接返回不带异步包装的 {@link HandlerResult}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -56,15 +53,14 @@ public class SyncInvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Configure the argument resolvers to use for resolving method
-	 * argument values against a {@code ServerWebExchange}.
+	 * 配置用于针对 {@code ServerWebExchange} 解析方法参数值的参数解析器。
 	 */
 	public void setArgumentResolvers(List<SyncHandlerMethodArgumentResolver> resolvers) {
 		this.delegate.setArgumentResolvers(resolvers);
 	}
 
 	/**
-	 * Return the configured argument resolvers.
+	 * 返回配置的参数解析器。
 	 */
 	public List<SyncHandlerMethodArgumentResolver> getResolvers() {
 		return this.delegate.getResolvers().stream()
@@ -73,16 +69,15 @@ public class SyncInvocableHandlerMethod extends HandlerMethod {
 	}
 
 	/**
-	 * Set the ParameterNameDiscoverer for resolving parameter names when needed
-	 * (e.g. default request attribute name).
-	 * <p>Default is a {@link DefaultParameterNameDiscoverer}.
+	 * 设置 ParameterNameDiscoverer，用于在需要时解析参数名称（例如默认请求属性名称）。
+	 * <p>默认为 {@link DefaultParameterNameDiscoverer}。
 	 */
 	public void setParameterNameDiscoverer(ParameterNameDiscoverer nameDiscoverer) {
 		this.delegate.setParameterNameDiscoverer(nameDiscoverer);
 	}
 
 	/**
-	 * Return the configured parameter name discoverer.
+	 * 返回配置的参数名称发现器。
 	 */
 	public ParameterNameDiscoverer getParameterNameDiscoverer() {
 		return this.delegate.getParameterNameDiscoverer();
@@ -90,7 +85,7 @@ public class SyncInvocableHandlerMethod extends HandlerMethod {
 
 
 	/**
-	 * Invoke the method for the given exchange.
+	 * 为给定交换调用该方法。
 	 * @param exchange the current exchange
 	 * @param bindingContext the binding context to use
 	 * @param providedArgs optional list of argument values to match by type

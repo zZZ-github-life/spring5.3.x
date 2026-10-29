@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 import static java.nio.file.FileVisitOption.FOLLOW_LINKS;
 
 /**
- * Utility methods for working with the file system.
+ * 用于操作文件系统的工具方法。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -43,13 +43,11 @@ import static java.nio.file.FileVisitOption.FOLLOW_LINKS;
 public abstract class FileSystemUtils {
 
 	/**
-	 * Delete the supplied {@link File} - for directories,
-	 * recursively delete any nested directories or files as well.
-	 * <p>Note: Like {@link File#delete()}, this method does not throw any
-	 * exception but rather silently returns {@code false} in case of I/O
-	 * errors. Consider using {@link #deleteRecursively(Path)} for NIO-style
-	 * handling of I/O errors, clearly differentiating between non-existence
-	 * and failure to delete an existing file.
+	 * 删除给定的 {@link File} —— 对于目录，还会递归删除所有嵌套的目录或文件。
+	 *
+	 * <p>注意：与 {@link File#delete()} 一样，此方法不抛出任何异常，而是在发生 I/O 错误时静默返回
+	 * {@code false}。可考虑使用 {@link #deleteRecursively(Path)} 以 NIO 方式处理 I/O 错误，从而明确区
+	 * 分文件不存在与无法删除现有文件。
 	 * @param root the root {@code File} to delete
 	 * @return {@code true} if the {@code File} was successfully deleted,
 	 * otherwise {@code false}
@@ -68,8 +66,7 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Delete the supplied {@link File} &mdash; for directories,
-	 * recursively delete any nested directories or files as well.
+	 * 删除给定的 {@link File} &mdash; 对于目录，还会递归删除所有嵌套的目录或文件。
 	 * @param root the root {@code File} to delete
 	 * @return {@code true} if the {@code File} existed and was deleted,
 	 * or {@code false} if it did not exist
@@ -100,8 +97,7 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Recursively copy the contents of the {@code src} file/directory
-	 * to the {@code dest} file/directory.
+	 * 将 {@code src} 文件/目录的内容递归复制到 {@code dest} 文件/目录。
 	 * @param src the source directory
 	 * @param dest the destination directory
 	 * @throws IOException in the case of I/O errors
@@ -113,8 +109,7 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Recursively copy the contents of the {@code src} file/directory
-	 * to the {@code dest} file/directory.
+	 * 将 {@code src} 文件/目录的内容递归复制到 {@code dest} 文件/目录。
 	 * @param src the source directory
 	 * @param dest the destination directory
 	 * @throws IOException in the case of I/O errors

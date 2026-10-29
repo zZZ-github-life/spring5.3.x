@@ -28,9 +28,9 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
 
 /**
- * Default implementation of {@link WebSessionManager} delegating to a
- * {@link WebSessionIdResolver} for session id resolution and to a
- * {@link WebSessionStore}.
+ * {@link WebSessionManager} 的默认实现，将会话 ID 解析委托给
+ * {@link WebSessionIdResolver}，并将会话持久化委托给
+ * {@link WebSessionStore}。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch
@@ -47,8 +47,8 @@ public class DefaultWebSessionManager implements WebSessionManager {
 
 
 	/**
-	 * Configure the id resolution strategy.
-	 * <p>By default an instance of {@link CookieWebSessionIdResolver}.
+	 * 配置 ID 解析策略。
+	 * <p>默认使用 {@link CookieWebSessionIdResolver} 的实例。
 	 * @param sessionIdResolver the resolver to use
 	 */
 	public void setSessionIdResolver(WebSessionIdResolver sessionIdResolver) {
@@ -57,15 +57,15 @@ public class DefaultWebSessionManager implements WebSessionManager {
 	}
 
 	/**
-	 * Return the configured {@link WebSessionIdResolver}.
+	 * 返回已配置的 {@link WebSessionIdResolver}。
 	 */
 	public WebSessionIdResolver getSessionIdResolver() {
 		return this.sessionIdResolver;
 	}
 
 	/**
-	 * Configure the persistence strategy.
-	 * <p>By default an instance of {@link InMemoryWebSessionStore}.
+	 * 配置持久化策略。
+	 * <p>默认使用 {@link InMemoryWebSessionStore} 的实例。
 	 * @param sessionStore the persistence strategy to use
 	 */
 	public void setSessionStore(WebSessionStore sessionStore) {
@@ -74,7 +74,7 @@ public class DefaultWebSessionManager implements WebSessionManager {
 	}
 
 	/**
-	 * Return the configured {@link WebSessionStore}.
+	 * 返回已配置的 {@link WebSessionStore}。
 	 */
 	public WebSessionStore getSessionStore() {
 		return this.sessionStore;

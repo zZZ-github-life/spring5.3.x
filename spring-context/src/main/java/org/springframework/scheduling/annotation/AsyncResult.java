@@ -28,15 +28,12 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.util.concurrent.SuccessCallback;
 
 /**
- * A pass-through {@code Future} handle that can be used for method signatures
- * which are declared with a {@code Future} return type for asynchronous execution.
+ * 一种直通式 {@code Future} 句柄，可用于为异步执行而声明为 {@code Future} 返回类型的方法签名。
  *
- * <p>As of Spring 4.1, this class implements {@link ListenableFuture}, not just
- * plain {@link java.util.concurrent.Future}, along with the corresponding support
- * in {@code @Async} processing.
+ * <p>从 Spring 4.1 开始，此类实现的是 {@link ListenableFuture}，而不仅仅是普通的
+ * {@link java.util.concurrent.Future}，同时在 {@code @Async} 处理中提供相应支持。
  *
- * <p>As of Spring 4.2, this class also supports passing execution exceptions back
- * to the caller.
+ * <p>从 Spring 4.2 开始，此类还支持将执行异常传递回调用方。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -56,7 +53,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 
 	/**
-	 * Create a new AsyncResult holder.
+	 * 创建一个新的 AsyncResult 持有者。
 	 * @param value the value to pass through
 	 */
 	public AsyncResult(@Nullable V value) {
@@ -64,7 +61,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 	}
 
 	/**
-	 * Create a new AsyncResult holder.
+	 * 创建一个新的 AsyncResult 持有者。
 	 * @param value the value to pass through
 	 */
 	private AsyncResult(@Nullable V value, @Nullable Throwable ex) {
@@ -139,7 +136,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 
 
 	/**
-	 * Create a new async result which exposes the given value from {@link Future#get()}.
+	 * 创建一个新的异步结果，从 {@link Future#get()} 暴露给定值。
 	 * @param value the value to expose
 	 * @since 4.2
 	 * @see Future#get()
@@ -149,8 +146,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 	}
 
 	/**
-	 * Create a new async result which exposes the given exception as an
-	 * {@link ExecutionException} from {@link Future#get()}.
+	 * 创建一个新的异步结果，将给定异常作为 {@link ExecutionException} 从 {@link Future#get()} 暴露。
 	 * @param ex the exception to expose (either an pre-built {@link ExecutionException}
 	 * or a cause to be wrapped in an {@link ExecutionException})
 	 * @since 4.2
@@ -161,8 +157,7 @@ public class AsyncResult<V> implements ListenableFuture<V> {
 	}
 
 	/**
-	 * Determine the exposed exception: either the cause of a given
-	 * {@link ExecutionException}, or the original exception as-is.
+	 * 确定要暴露的异常：给定 {@link ExecutionException} 的原因，或原样返回原始异常。
 	 * @param original the original as given to {@link #forExecutionException}
 	 * @return the exposed exception
 	 */

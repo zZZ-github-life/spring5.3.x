@@ -1,0 +1,576 @@
+@@ result/view/AbstractUrlBasedView.java :: 1
+基于 URL 的视图的抽象基类。以 "url" Bean 属性的形式提供一种保存视图所包装 URL 的一致方式。
+
+@@ result/view/AbstractUrlBasedView.java :: 2
+用作 Bean 的构造函数。
+
+@@ result/view/AbstractUrlBasedView.java :: 3
+使用给定 URL 创建新的 AbstractUrlBasedView。
+
+@@ result/view/AbstractUrlBasedView.java :: 4
+设置此视图所包装资源的 URL。该 URL 必须适合具体的 View 实现。
+
+@@ result/view/AbstractUrlBasedView.java :: 5
+返回此视图所包装资源的 URL。
+
+@@ result/view/AbstractUrlBasedView.java :: 6
+检查配置的 URL 对应资源是否实际存在。
+
+@@ result/view/AbstractView.java :: 1
+用于 {@link View} 实现的基类。
+
+@@ result/view/AbstractView.java :: 4
+设置此视图支持的媒体类型。
+<p>默认为 {@code "text/html;charset=UTF-8"}。
+
+@@ result/view/AbstractView.java :: 5
+获取此视图支持的已配置媒体类型。
+
+@@ result/view/AbstractView.java :: 6
+设置此视图的默认字符集，在{@linkplain #setSupportedMediaTypes(List) 内容类型}不包含字符集时使用。
+<p>默认为 {@linkplain StandardCharsets#UTF_8 UTF 8}。
+
+@@ result/view/AbstractView.java :: 7
+获取默认字符集，在{@linkplain #setSupportedMediaTypes(List) 内容类型}不包含字符集时使用。
+
+@@ result/view/AbstractView.java :: 8
+设置此视图的 {@code RequestContext} 属性名称。
+<p>默认没有（{@code null}）。
+
+@@ result/view/AbstractView.java :: 9
+获取此视图的 {@code RequestContext} 属性名称（如果有）。
+
+@@ result/view/AbstractView.java :: 10
+设置视图名称。有助于跟踪。
+<p>框架代码在构造视图时必须调用此方法。
+
+@@ result/view/AbstractView.java :: 11
+获取视图名称。
+<p>如果视图配置正确，绝不应为 {@code null}。
+
+@@ result/view/AbstractView.java :: 12
+获取实际使用的 {@link ApplicationContext}。
+
+@@ result/view/AbstractView.java :: 13
+准备要渲染的模型。
+
+@@ result/view/AbstractView.java :: 14
+准备用于渲染的模型。
+<p>默认实现创建一个合并的输出 Map，包含模型和静态属性，其中模型优先。
+
+@@ result/view/AbstractView.java :: 15
+使用配置的 {@link ReactiveAdapterRegistry} 将异步属性适配为 {@code Mono<T>} 或 {@code Mono<List<T>>}，然后等待将其解析为实际值。当返回的 {@code Mono<Void>} 完成时，模型中的异步属性将被替换为相应的已解析值。
+
+@@ result/view/AbstractView.java :: 16
+使用配置的 {@link ReactiveAdapterRegistry} 将异步属性适配为 {@code Mono<T>} 或 {@code Mono<List<T>>}，然后等待将其解析为实际值。当返回的 {@code Mono<Void>} 完成时，模型中的异步属性将被替换为相应的已解析值。
+
+@@ result/view/AbstractView.java :: 17
+创建要在{@linkplain #setRequestContextAttribute 指定属性名称}下公开的 {@link RequestContext}。
+<p>默认实现为给定交换和模型创建标准的 {@code RequestContext} 实例。
+<p>可以在子类中重写以创建自定义实例。
+
+@@ result/view/AbstractView.java :: 18
+获取要使用的 {@link RequestDataValueProcessor}。
+<p>默认实现会在 {@link #getApplicationContext() ApplicationContext} 中查找名称为 {@link #REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME} 的 {@code RequestDataValueProcessor} Bean。
+
+@@ result/view/AbstractView.java :: 19
+子类必须实现此方法以实际渲染视图。
+
+@@ result/view/BindStatus.java :: 1
+用于公开字段或对象绑定状态的简单适配器。由 FreeMarker 宏和其他标签库设置为变量。
+
+<p>显然，对象状态表示（即对象级而非字段级的错误）没有表达式和值，只有错误代码和消息。为简单起见并能够使用相同的标签和宏，两种场景使用相同的状态类。
+
+@@ result/view/BindStatus.java :: 2
+创建新的 BindStatus 实例，表示字段或对象状态。
+
+@@ result/view/BindStatus.java :: 3
+从 ObjectError 列表中提取错误代码。
+
+@@ result/view/BindStatus.java :: 4
+返回值及错误将要解析的 Bean 和属性路径（例如 "customer.address.street"）。
+
+@@ result/view/BindStatus.java :: 5
+返回可在 HTML 表单中用作相应字段输入名称的绑定表达式；如果不是字段特定的，则返回 {@code null}。
+<p>返回适合重新提交的绑定路径，例如 "address.street"。请注意，如果绑定到 "customer" Bean，绑定标签所需的完整绑定路径是 "customer.address.street"。
+
+@@ result/view/BindStatus.java :: 6
+返回字段的当前值，即属性值或被拒绝的更新值；如果不是字段特定的，则返回 {@code null}。
+<p>如果原始值已经是 String，则该值将是 HTML 转义后的 String。
+
+@@ result/view/BindStatus.java :: 7
+获取字段的 '{@code Class}' 类型。优先使用此方法而不是 '{@code getValue().getClass()}'，因为 '{@code getValue()}' 可能返回 '{@code null}'。
+
+@@ result/view/BindStatus.java :: 8
+返回字段的实际值，即原始属性值；如果不可用，则返回 {@code null}。
+
+@@ result/view/BindStatus.java :: 9
+返回适合字段的显示值，即非 null 时的字符串化值，null 时为空字符串。
+<p>如果原始值非 null，则该值将是 HTML 转义后的 String：原始值的 {@code toString} 结果将被 HTML 转义。
+
+@@ result/view/BindStatus.java :: 10
+返回此状态表示的是字段错误还是对象错误。
+
+@@ result/view/BindStatus.java :: 11
+返回字段或对象的错误代码（如果有）。如果没有，则返回空数组而不是 null。
+
+@@ result/view/BindStatus.java :: 12
+返回字段或对象的第一个错误代码（如果有）。
+
+@@ result/view/BindStatus.java :: 13
+返回字段或对象的已解析错误消息（如果有）。如果没有，则返回空数组而不是 null。
+
+@@ result/view/BindStatus.java :: 14
+返回字段或对象的第一个错误消息（如果有）。
+
+@@ result/view/BindStatus.java :: 15
+返回错误消息字符串，将所有消息用给定分隔符连接。
+
+@@ result/view/BindStatus.java :: 16
+从 ObjectError 列表中提取错误消息。
+
+@@ result/view/BindStatus.java :: 17
+返回此绑定状态当前关联的 Errors 实例（通常是 BindingResult）。
+
+@@ result/view/BindStatus.java :: 18
+返回此绑定状态当前所绑定属性的 PropertyEditor。
+
+@@ result/view/BindStatus.java :: 19
+为给定值类查找 PropertyEditor，并与此绑定状态当前所绑定的属性关联。
+
+@@ result/view/DefaultRendering.java :: 1
+{@link Rendering} 的默认实现。
+
+@@ result/view/DefaultRenderingBuilder.java :: 1
+{@link Rendering.RedirectBuilder} 的默认实现。
+
+@@ result/view/HttpMessageWriterView.java :: 1
+{@code View}，使用 {@link HttpMessageWriter} 写入模型属性。
+
+@@ result/view/HttpMessageWriterView.java :: 2
+使用 {@code Encoder} 的构造函数。
+
+@@ result/view/HttpMessageWriterView.java :: 3
+使用完全初始化的 {@link HttpMessageWriter} 的构造函数。
+
+@@ result/view/HttpMessageWriterView.java :: 4
+返回配置的消息写入器。
+
+@@ result/view/HttpMessageWriterView.java :: 5
+{@inheritDoc}
+<p>此方法针对 {@link HttpMessageWriterView} 的实现委托给 {@link HttpMessageWriter#getWritableMediaTypes()}。
+
+@@ result/view/HttpMessageWriterView.java :: 6
+设置应由此视图渲染的模型属性。设置后，所有其他模型属性将被忽略。匹配的属性会通过 {@link HttpMessageWriter#canWrite} 进一步缩小范围。匹配属性的处理方式如下：
+<ul>
+<li>0：不向响应正文写入任何内容。
+<li>1：将匹配的属性传递给写入器。
+<li>2..N：如果写入器支持 {@link Map}，则写入所有匹配项；否则抛出 {@link IllegalStateException}。
+</ul>
+
+@@ result/view/HttpMessageWriterView.java :: 7
+返回配置的模型键。
+
+@@ result/view/RedirectView.java :: 1
+重定向到绝对 URL 或相对于上下文的 URL 的视图。该 URL 可以是 URI 模板，此时 URI 模板变量将替换为模型中的值或当前请求中的 URI 变量。
+
+<p>默认使用 {@link HttpStatus#SEE_OTHER}，但可以通过构造函数或 setter 参数提供其他状态代码。
+
+@@ result/view/RedirectView.java :: 2
+用作 Bean 的构造函数。
+
+@@ result/view/RedirectView.java :: 3
+使用给定重定向 URL 创建新的 {@code RedirectView}。
+<p>默认使用状态代码 {@link HttpStatus#SEE_OTHER}。
+
+@@ result/view/RedirectView.java :: 4
+使用给定 URL 和替代重定向状态代码（例如 {@link HttpStatus#TEMPORARY_REDIRECT} 或 {@link HttpStatus#PERMANENT_REDIRECT}）创建新的 {@code RedirectView}。
+
+@@ result/view/RedirectView.java :: 5
+设置替代重定向状态代码，例如 {@link HttpStatus#TEMPORARY_REDIRECT} 或 {@link HttpStatus#PERMANENT_REDIRECT}。
+
+@@ result/view/RedirectView.java :: 6
+获取要使用的重定向状态代码。
+
+@@ result/view/RedirectView.java :: 7
+是否将以斜杠（"/"）开头的重定向 URL 解释为相对于当前上下文路径（{@code true}，默认值）还是相对于 Web 服务器根路径（{@code false}）。
+
+@@ result/view/RedirectView.java :: 8
+是否将 URL 解释为相对于当前上下文路径。
+
+@@ result/view/RedirectView.java :: 9
+是否将当前 URL 的查询字符串追加到重定向 URL（{@code true}），或不追加（{@code false}，默认值）。
+
+@@ result/view/RedirectView.java :: 10
+当前 URL 的查询字符串是否追加到重定向 URL。
+
+@@ result/view/RedirectView.java :: 11
+配置与应用程序关联的一个或多个主机。
+<p>所有其他主机将被视为外部主机。
+<p>实际上，这提供了一种方式：对于具有主机且该主机未列为已知主机的 URL，关闭编码。
+<p>如果未设置（默认），则对所有重定向 URL 进行编码。
+
+@@ result/view/RedirectView.java :: 12
+返回配置的应用程序主机。
+
+@@ result/view/RedirectView.java :: 13
+将模型转换为请求参数并重定向到给定 URL。
+
+@@ result/view/RedirectView.java :: 14
+创建目标 URL，并在必要时在前面加上 contextPath、展开 URI 模板变量、追加当前请求查询，并应用配置的 {@link #getRequestDataValueProcessor() RequestDataValueProcessor}。
+
+@@ result/view/RedirectView.java :: 15
+使用模型属性值或当前请求中的 URI 变量值（作为回退）展开目标 URL 中的 URI 模板变量。值会被编码。
+
+@@ result/view/RedirectView.java :: 16
+将当前请求的查询追加到目标重定向 URL。
+
+@@ result/view/RedirectView.java :: 17
+向 HTTP 客户端发送重定向。
+
+@@ result/view/RedirectView.java :: 18
+给定 targetUrl 是否具有“外部”系统主机，在这种情况下不会应用 {@link javax.servlet.http.HttpServletResponse#encodeRedirectURL}。
+<p>如果配置了 {@link #setHosts(String[])} 属性且目标 URL 的主机不匹配，则此方法返回 {@code true}。
+
+@@ result/view/Rendering.java :: 1
+HTML 渲染的公共 API。在 Spring WebFlux 控制器中支持作为返回值。可与 Spring MVC 控制器中 {@code ModelAndView} 作为返回值的使用相类比。
+
+<p>控制器通常返回 {@link String} 视图名称，并依赖也可以注入控制器方法的“隐式”模型。或者控制器可以返回模型属性，并依赖基于请求路径选择的默认视图名称。
+
+<p>{@code Rendering} 可用于将视图名称与模型属性组合、设置 HTTP 状态或头，以及用于重定向场景的其他更高级选项。
+
+@@ result/view/Rendering.java :: 2
+返回选定的 {@link String} 视图名称或 {@link View} 对象。
+
+@@ result/view/Rendering.java :: 3
+返回要添加到模型的属性。
+
+@@ result/view/Rendering.java :: 4
+返回要设置到响应的 HTTP 状态。
+
+@@ result/view/Rendering.java :: 5
+返回要添加到响应的头。
+
+@@ result/view/Rendering.java :: 6
+基于给定视图名称创建用于响应渲染的新构建器。
+
+@@ result/view/Rendering.java :: 7
+创建用于通过 {@link RedirectView} 重定向的新构建器。
+
+@@ result/view/Rendering.java :: 8
+定义 {@link Rendering} 的构建器。
+
+@@ result/view/Rendering.java :: 9
+使用提供的名称添加给定模型属性。
+
+@@ result/view/Rendering.java :: 10
+使用{@link org.springframework.core.Conventions#getVariableName 生成的名称}向模型添加属性。
+
+@@ result/view/Rendering.java :: 11
+使用{@link org.springframework.core.Conventions#getVariableName 生成的名称}将所有给定属性添加到模型。
+
+@@ result/view/Rendering.java :: 12
+将给定属性添加到模型。
+
+@@ result/view/Rendering.java :: 13
+指定用于响应的状态。
+
+@@ result/view/Rendering.java :: 14
+指定要添加到响应的头。
+
+@@ result/view/Rendering.java :: 15
+指定要添加到响应的多个头。
+
+@@ result/view/Rendering.java :: 16
+构建 {@link Rendering} 实例。
+
+@@ result/view/Rendering.java :: 17
+扩展 {@link Builder}，为重定向场景提供额外选项。
+
+@@ result/view/Rendering.java :: 18
+是否应在提供的重定向 URL 前加上应用程序上下文路径（如果有）。
+<p>默认设置为 {@code true}。
+
+@@ result/view/Rendering.java :: 19
+是否将当前 URL 的查询字符串追加到目标重定向 URL。
+<p>默认设置为 {@code false}。
+
+@@ result/view/RequestContext.java :: 1
+请求特定状态的上下文持有者，例如要使用的 {@link MessageSource}、当前区域设置、绑定错误等。提供对本地化消息和 Errors 实例的便捷访问。
+
+<p>适合向视图公开，并在 FreeMarker 模板和标签库中使用。
+
+<p>可以手动实例化，也可以通过 AbstractView 的 "requestContextAttribute" 属性自动作为模型属性公开给视图。
+
+@@ result/view/RequestContext.java :: 2
+返回此请求使用的 MessageSource。
+
+@@ result/view/RequestContext.java :: 3
+返回此 RequestContext 封装的模型 Map（如果有）。
+
+@@ result/view/RequestContext.java :: 4
+返回当前 Locale。
+
+@@ result/view/RequestContext.java :: 5
+返回当前 TimeZone。
+
+@@ result/view/RequestContext.java :: 6
+将当前区域设置更改为指定的区域设置。
+
+@@ result/view/RequestContext.java :: 7
+将当前区域设置更改为指定的区域设置和时区上下文。
+
+@@ result/view/RequestContext.java :: 8
+在此 RequestContext 的范围内（取消）激活消息和错误的默认 HTML 转义。
+<p>TODO：目前没有应用程序范围的设置 ...
+
+@@ result/view/RequestContext.java :: 9
+默认 HTML 转义是否已激活？如果未给出显式默认值，则回退为 {@code false}。
+
+@@ result/view/RequestContext.java :: 10
+返回默认 HTML 转义设置，区分未指定默认值和显式值。
+
+@@ result/view/RequestContext.java :: 11
+返回要应用于表单标签库和重定向 URL 的 {@link RequestDataValueProcessor} 实例。
+
+@@ result/view/RequestContext.java :: 12
+返回当前 Web 应用程序的上下文路径。这对于构建指向应用程序内其他资源的链接很有用。
+<p>委托给 {@link ServerHttpRequest#getPath()}。
+
+@@ result/view/RequestContext.java :: 13
+为给定相对 URL 返回上下文感知的 URL。
+
+@@ result/view/RequestContext.java :: 14
+为带占位符（使用花括号 {@code {}} 命名的键）的给定相对 URL 返回上下文感知的 URL。例如，传入相对 URL {@code foo/{bar}?spam={spam}} 和参数映射 {@code {bar=baz,spam=nuts}}，结果将是 {@code [contextpath]/foo/baz?spam=nuts}。
+
+@@ result/view/RequestContext.java :: 15
+返回请求的请求路径。这对于作为 HTML 表单 action 目标很有用，也可以与原始查询字符串组合使用。
+
+@@ result/view/RequestContext.java :: 16
+返回当前请求的查询字符串。这对于结合原始请求路径构建 HTML 表单 action 目标很有用。
+
+@@ result/view/RequestContext.java :: 17
+使用 "defaultHtmlEscape" 设置检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 18
+使用 "defaultHtmlEscape" 设置检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 19
+使用 "defaultHtmlEscape" 设置检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 20
+检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 21
+使用 "defaultHtmlEscape" 设置检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 22
+使用 "defaultHtmlEscape" 设置检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 23
+使用 "defaultHtmlEscape" 设置检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 24
+检索给定代码的消息。
+
+@@ result/view/RequestContext.java :: 25
+使用 "defaultHtmlEscape" 设置检索给定的 MessageSourceResolvable（例如 ObjectError 实例）。
+
+@@ result/view/RequestContext.java :: 26
+检索给定的 MessageSourceResolvable（例如 ObjectError 实例）。
+
+@@ result/view/RequestContext.java :: 27
+使用 "defaultHtmlEscape" 设置检索给定绑定对象的 Errors 实例。
+
+@@ result/view/RequestContext.java :: 28
+检索给定绑定对象的 Errors 实例。
+
+@@ result/view/RequestContext.java :: 29
+从模型或请求属性中检索给定模型名称的模型对象。
+
+@@ result/view/RequestContext.java :: 30
+使用 "defaultHtmlEscape" 设置为给定绑定对象创建 BindStatus。
+
+@@ result/view/RequestContext.java :: 31
+为给定绑定对象创建 BindStatus，使用 "defaultHtmlEscape" 设置。
+
+@@ result/view/RequestDataValueProcessor.java :: 1
+用于在视图渲染请求数据值（例如 URL 查询参数或表单字段值）之前，或在重定向之前，检查并可能修改这些值的契约。
+
+<p>实现可以例如将此契约用作提供数据完整性、机密性、跨站请求伪造（CSRF）防护等解决方案的一部分，或用于其他任务，例如自动向所有表单和 URL 添加隐藏字段。
+
+<p>支持此契约的视图技术可以通过 {@link RequestContext#getRequestDataValueProcessor()} 获取要委托的实例。
+
+@@ result/view/RequestDataValueProcessor.java :: 2
+在渲染新表单 action 时调用。
+
+@@ result/view/RequestDataValueProcessor.java :: 3
+在渲染表单字段值时调用。
+
+@@ result/view/RequestDataValueProcessor.java :: 4
+在所有表单字段渲染后调用。
+
+@@ result/view/RequestDataValueProcessor.java :: 5
+在即将渲染或重定向到 URL 时调用。
+
+@@ result/view/UrlBasedViewResolver.java :: 1
+{@link ViewResolver}，允许将符号视图名称直接解析为 URL，而无需显式映射定义。如果符号名称以直接的方式与视图资源名称匹配（即符号名称是资源文件名的唯一部分），并且不需要为每个视图定义专用映射，则此解析器很有用。
+
+<p>支持 {@link AbstractUrlBasedView} 子类，例如 {@link org.springframework.web.reactive.result.view.freemarker.FreeMarkerView}。可以通过 "viewClass" 属性指定此解析器生成的所有视图的视图类。
+
+<p>视图名称可以是资源 URL 本身，也可以通过指定的前缀和/或后缀进行扩展。明确支持将持有 RequestContext 的属性导出到所有视图。
+
+<p>示例：prefix="templates/"、suffix=".ftl"、viewname="test" &rarr; "templates/test.ftl"
+
+<p>作为特殊功能，可以通过 "redirect:" 前缀指定重定向 URL。例如："redirect:myAction" 将触发重定向到给定 URL，而不是作为标准视图名称解析。这通常用于在完成表单工作流后重定向到控制器 URL。
+
+<p>注意：此类不支持本地化解析，即根据当前区域设置将符号视图名称解析为不同资源。
+
+@@ result/view/UrlBasedViewResolver.java :: 2
+指定重定向 URL 的特殊视图名称前缀（通常是在表单提交并处理之后重定向到控制器）。此类视图名称不会按配置的默认方式解析，而是被视为特殊快捷方式。
+
+@@ result/view/UrlBasedViewResolver.java :: 3
+设置应用于创建视图的视图类。
+
+@@ result/view/UrlBasedViewResolver.java :: 4
+返回用于创建视图的视图类。
+
+@@ result/view/UrlBasedViewResolver.java :: 5
+设置构建 URL 时添加到视图名称前面的前缀。
+
+@@ result/view/UrlBasedViewResolver.java :: 6
+返回构建 URL 时添加到视图名称前面的前缀。
+
+@@ result/view/UrlBasedViewResolver.java :: 7
+设置构建 URL 时追加到视图名称后的后缀。
+
+@@ result/view/UrlBasedViewResolver.java :: 8
+返回构建 URL 时追加到视图名称后的后缀。
+
+@@ result/view/UrlBasedViewResolver.java :: 9
+设置此 {@link ViewResolver} 可以处理的视图名称（或名称模式）。视图名称可以包含简单通配符，例如 'my*'、'*Report' 和 '*Repo*' 都将匹配视图名称 'myReport'。
+
+@@ result/view/UrlBasedViewResolver.java :: 10
+返回此 {@link ViewResolver} 可以处理的视图名称（或名称模式）。
+
+@@ result/view/UrlBasedViewResolver.java :: 11
+基于 URL 的 {@link RedirectView} 提供程序，可用于提供例如具有自定义默认状态代码的重定向视图。
+
+@@ result/view/UrlBasedViewResolver.java :: 12
+为所有视图设置 {@link RequestContext} 属性的名称。
+
+@@ result/view/UrlBasedViewResolver.java :: 13
+返回所有视图的 {@link RequestContext} 属性名称（如果有）。
+
+@@ result/view/UrlBasedViewResolver.java :: 14
+接受包含的 {@code ApplicationContext}（如果有）。
+<p>用于初始化新创建的 {@link View} 实例、应用生命周期回调并提供对包含环境的访问。
+
+@@ result/view/UrlBasedViewResolver.java :: 15
+返回包含的 {@code ApplicationContext}（如果有）。
+
+@@ result/view/UrlBasedViewResolver.java :: 16
+指示此 {@link ViewResolver} 是否可以处理提供的视图名称。如果无法处理，则返回空结果。默认实现会检查配置的 {@link #setViewNames 视图名称}。
+
+@@ result/view/UrlBasedViewResolver.java :: 17
+返回此解析器所需的视图类型。此实现返回 {@link AbstractUrlBasedView}。
+
+@@ result/view/UrlBasedViewResolver.java :: 18
+实例化指定的视图类。
+<p>默认实现使用反射实例化该类。
+
+@@ result/view/UrlBasedViewResolver.java :: 19
+创建指定视图类的新 View 实例并进行配置。
+<p><i>不</i>对预定义 View 实例执行任何查找。
+<p>无需在此调用 Bean 容器定义的 Spring 生命周期方法：如果 {@link #setApplicationContext ApplicationContext} 可用，它们将在之后自动应用。
+
+@@ result/view/UrlBasedViewResolver.java :: 20
+如果包含的 {@link ApplicationContext} 可用，则将其生命周期方法应用到给定 {@link View} 实例。
+
+@@ result/view/View.java :: 1
+将 {@link HandlerResult} 渲染到 HTTP 响应的契约。
+
+<p>与 {@link org.springframework.core.codec.Encoder Encoder}（它是单例并编码给定类型的任何对象）不同，{@code View} 通常按名称选择，并使用 {@link ViewResolver} 解析，例如可以将名称匹配到 HTML 模板。此外，{@code View} 可以基于模型中包含的多个属性进行渲染。
+
+<p>{@code View} 还可以选择从模型中选择一个属性，并使用任何现有的 {@code Encoder} 渲染替代媒体类型。
+
+@@ result/view/View.java :: 2
+包含请求的 {@link org.springframework.web.reactive.BindingContext BindingContext} 的交换属性名称，可用于为模型中的对象创建 {@link org.springframework.validation.BindingResult BindingResult} 实例。
+<p>注意：此属性不是必需的，可能不存在。
+
+@@ result/view/View.java :: 3
+返回此 View 支持的媒体类型列表，或空列表。
+
+@@ result/view/View.java :: 4
+此 View 是否通过执行重定向进行渲染。
+
+@@ result/view/View.java :: 5
+基于给定 {@link HandlerResult} 渲染视图。实现可以访问并使用模型，或仅使用其中的特定属性。
+
+@@ result/view/ViewResolutionResultHandler.java :: 1
+{@code HandlerResultHandler}，封装视图解析算法，支持以下返回类型：
+<ul>
+<li>{@link Void} 或无值 —— 默认视图名称</li>
+<li>{@link String} —— 视图名称，除非带有 {@code @ModelAttribute} 注解
+<li>{@link View} —— 用于渲染的 View
+<li>{@link Model} —— 要添加到模型的属性
+<li>{@link Map} —— 要添加到模型的属性
+<li>{@link Rendering} —— 用例驱动的视图解析 API</li>
+<li>{@link ModelAttribute @ModelAttribute} —— 模型的属性
+<li>非简单值 —— 模型的属性
+</ul>
+
+<p>基于 String 的视图名称通过配置的 {@link ViewResolver} 实例解析为用于渲染的 {@link View}。如果未指定视图（例如返回 {@code null} 或与模型相关的返回值），则选择默认视图名称。
+
+<p>默认情况下，此解析器在 {@link Ordered#LOWEST_PRECEDENCE} 排序，通常需要较晚执行，因为它将任何 String 返回值解释为视图名称，或将任何非简单值类型解释为模型属性，而其他结果处理器可能根据注解的存在对相同值做出不同解释，例如 {@code @ResponseBody}。
+
+@@ result/view/ViewResolutionResultHandler.java :: 2
+使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
+
+@@ result/view/ViewResolutionResultHandler.java :: 3
+使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
+
+@@ result/view/ViewResolutionResultHandler.java :: 4
+返回视图解析器的只读列表。
+
+@@ result/view/ViewResolutionResultHandler.java :: 5
+设置解析视图名称并尝试满足最佳匹配内容类型时始终考虑的默认视图。
+
+@@ result/view/ViewResolutionResultHandler.java :: 6
+返回配置的默认 {@code View}。
+
+@@ result/view/ViewResolutionResultHandler.java :: 7
+当控制器未指定视图时选择默认视图名称。使用去掉前导和尾部斜杠的请求路径。
+
+@@ result/view/ViewResolver.java :: 1
+将视图名称解析为 {@link View} 实例的契约。视图名称可以对应 HTML 模板，也可以是动态生成的。
+
+<p>视图解析过程由名为 {@link ViewResolutionResultHandler ViewResolutionResultHandler} 的基于 ViewResolver 的 {@code HandlerResultHandler} 实现驱动。
+
+@@ result/view/ViewResolver.java :: 2
+将视图名称解析为 View 实例。
+
+@@ result/view/ViewResolverSupport.java :: 1
+具有共享属性的 {@code ViewResolver} 实现的基类。
+
+@@ result/view/ViewResolverSupport.java :: 2
+视图的默认 {@link MediaType 内容类型}。
+
+@@ result/view/ViewResolverSupport.java :: 3
+设置此视图支持的媒体类型。默认是 "text/html;charset=UTF-8"。
+
+@@ result/view/ViewResolverSupport.java :: 4
+返回此视图支持的已配置媒体类型。
+
+@@ result/view/ViewResolverSupport.java :: 5
+设置此视图的默认字符集，在{@linkplain #setSupportedMediaTypes(List) 内容类型}不包含字符集时使用。默认为 {@linkplain StandardCharsets#UTF_8 UTF 8}。
+
+@@ result/view/ViewResolverSupport.java :: 6
+返回默认字符集，在{@linkplain #setSupportedMediaTypes(List) 内容类型}不包含字符集时使用。
+
+@@ result/view/ViewResolverSupport.java :: 7
+指定此 ViewResolver Bean 的顺序值。
+<p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示未排序。
+
+@@ result/view/package-info.java :: 1
+通过视图解析支持结果处理。

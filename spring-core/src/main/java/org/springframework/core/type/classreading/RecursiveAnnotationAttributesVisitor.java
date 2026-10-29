@@ -22,7 +22,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link AnnotationVisitor} to recursively visit annotation attributes.
+ * 用于递归访问注解属性的 {@link AnnotationVisitor}。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

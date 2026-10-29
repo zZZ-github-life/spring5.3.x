@@ -24,8 +24,8 @@ import org.springframework.messaging.Message;
 import org.springframework.util.Assert;
 
 /**
- * A base class for events for a message received from a WebSocket client and
- * parsed into a higher-level sub-protocol (e.g. STOMP).
+ * 用于表示从 WebSocket 客户端接收并解析为更高级别子协议（例如 STOMP）的消息
+ * 的事件的基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -40,7 +40,7 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 
 
 	/**
-	 * Create a new AbstractSubProtocolEvent.
+	 * 创建一个新的 AbstractSubProtocolEvent。
 	 * @param source the component that published the event (never {@code null})
 	 * @param message the incoming message (never {@code null})
 	 */
@@ -49,7 +49,7 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Create a new AbstractSubProtocolEvent.
+	 * 创建一个新的 AbstractSubProtocolEvent。
 	 * @param source the component that published the event (never {@code null})
 	 * @param message the incoming message (never {@code null})
 	 */
@@ -62,9 +62,8 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 
 
 	/**
-	 * Return the Message associated with the event. Here is an example of
-	 * obtaining information about the session id or any headers in the
-	 * message:
+	 * 返回与事件关联的 Message。以下示例展示了
+	 * 如何获取会话 ID 或消息中任何头的信息：
 	 * <pre class="code">
 	 * StompHeaderAccessor headers = StompHeaderAccessor.wrap(message);
 	 * headers.getSessionId();
@@ -77,7 +76,7 @@ public abstract class AbstractSubProtocolEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Return the user for the session associated with the event.
+	 * 返回与事件关联的会话的用户。
 	 */
 	@Nullable
 	public Principal getUser() {

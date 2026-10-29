@@ -36,11 +36,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for most {@link HttpMessageConverter} implementations.
+ * 大多数 {@link HttpMessageConverter} 实现的抽象基类。
  *
- * <p>This base class adds support for setting supported {@code MediaTypes}, through the
- * {@link #setSupportedMediaTypes(List) supportedMediaTypes} bean property. It also adds
- * support for {@code Content-Type} and {@code Content-Length} when writing to output messages.
+ * <p>此基类增加了对通过 {@link #setSupportedMediaTypes(List) supportedMediaTypes}
+ * bean 属性设置受支持 {@code MediaTypes} 的支持。它还增加了在写入输出消息时
+ * 对 {@code Content-Type} 和 {@code Content-Length} 的支持。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -50,7 +50,7 @@ import org.springframework.util.Assert;
  */
 public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConverter<T> {
 
-	/** Logger available to subclasses. */
+	/** 供子类使用的 Logger。 */
 	protected final Log logger = HttpLogging.forLogName(getClass());
 
 	private List<MediaType> supportedMediaTypes = Collections.emptyList();
@@ -60,14 +60,14 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 
 
 	/**
-	 * Construct an {@code AbstractHttpMessageConverter} with no supported media types.
+	 * 构造一个不支持任何媒体类型的 {@code AbstractHttpMessageConverter}。
 	 * @see #setSupportedMediaTypes
 	 */
 	protected AbstractHttpMessageConverter() {
 	}
 
 	/**
-	 * Construct an {@code AbstractHttpMessageConverter} with one supported media type.
+	 * 构造一个支持一种媒体类型的 {@code AbstractHttpMessageConverter}。
 	 * @param supportedMediaType the supported media type
 	 */
 	protected AbstractHttpMessageConverter(MediaType supportedMediaType) {
@@ -75,7 +75,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Construct an {@code AbstractHttpMessageConverter} with multiple supported media types.
+	 * 构造一个支持多种媒体类型的 {@code AbstractHttpMessageConverter}。
 	 * @param supportedMediaTypes the supported media types
 	 */
 	protected AbstractHttpMessageConverter(MediaType... supportedMediaTypes) {
@@ -83,8 +83,8 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Construct an {@code AbstractHttpMessageConverter} with a default charset and
-	 * multiple supported media types.
+	 * 构造一个具有默认字符集并支持多种媒体类型的
+	 * {@code AbstractHttpMessageConverter}。
 	 * @param defaultCharset the default character set
 	 * @param supportedMediaTypes the supported media types
 	 * @since 4.3
@@ -96,7 +96,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 
 
 	/**
-	 * Set the list of {@link MediaType} objects supported by this converter.
+	 * 设置此转换器支持的 {@link MediaType} 对象列表。
 	 */
 	public void setSupportedMediaTypes(List<MediaType> supportedMediaTypes) {
 		Assert.notEmpty(supportedMediaTypes, "MediaType List must not be empty");
@@ -109,7 +109,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Set the default character set, if any.
+	 * 设置默认字符集（如果有）。
 	 * @since 4.3
 	 */
 	public void setDefaultCharset(@Nullable Charset defaultCharset) {
@@ -117,7 +117,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Return the default character set, if any.
+	 * 返回默认字符集（如果有）。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -127,9 +127,9 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 
 
 	/**
-	 * This implementation checks if the given class is {@linkplain #supports(Class) supported},
-	 * and if the {@linkplain #getSupportedMediaTypes() supported media types}
-	 * {@linkplain MediaType#includes(MediaType) include} the given media type.
+	 * 此实现检查给定类是否{@linkplain #supports(Class) 受支持}，
+	 * 以及{@linkplain #getSupportedMediaTypes() 受支持的媒体类型}
+	 * 是否{@linkplain MediaType#includes(MediaType) 包含}给定媒体类型。
 	 */
 	@Override
 	public boolean canRead(Class<?> clazz, @Nullable MediaType mediaType) {
@@ -137,9 +137,9 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Returns {@code true} if any of the {@linkplain #setSupportedMediaTypes(List)
-	 * supported} media types {@link MediaType#includes(MediaType) include} the
-	 * given media type.
+	 * 如果{@linkplain #setSupportedMediaTypes(List) 受支持的}媒体类型中
+	 * 有任何一个{@link MediaType#includes(MediaType) 包含}给定媒体类型，
+	 * 则返回 {@code true}。
 	 * @param mediaType the media type to read, can be {@code null} if not specified.
 	 * Typically the value of a {@code Content-Type} header.
 	 * @return {@code true} if the supported media types include the media type,
@@ -158,10 +158,9 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * This implementation checks if the given class is
-	 * {@linkplain #supports(Class) supported}, and if the
-	 * {@linkplain #getSupportedMediaTypes() supported} media types
-	 * {@linkplain MediaType#includes(MediaType) include} the given media type.
+	 * 此实现检查给定类是否{@linkplain #supports(Class) 受支持}，
+	 * 以及{@linkplain #getSupportedMediaTypes() 受支持的}媒体类型
+	 * 是否{@linkplain MediaType#includes(MediaType) 包含}给定媒体类型。
 	 */
 	@Override
 	public boolean canWrite(Class<?> clazz, @Nullable MediaType mediaType) {
@@ -169,8 +168,8 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Returns {@code true} if the given media type includes any of the
-	 * {@linkplain #setSupportedMediaTypes(List) supported media types}.
+	 * 如果给定媒体类型包含{@linkplain #setSupportedMediaTypes(List) 受支持的媒体类型}
+	 * 中的任何一个，则返回 {@code true}。
 	 * @param mediaType the media type to write, can be {@code null} if not specified.
 	 * Typically the value of an {@code Accept} header.
 	 * @return {@code true} if the supported media types are compatible with the media type,
@@ -189,8 +188,8 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * This implementation simple delegates to {@link #readInternal(Class, HttpInputMessage)}.
-	 * Future implementations might add some default behavior, however.
+	 * 此实现简单地委托给 {@link #readInternal(Class, HttpInputMessage)}。
+	 * 不过，未来的实现可能会添加一些默认行为。
 	 */
 	@Override
 	public final T read(Class<? extends T> clazz, HttpInputMessage inputMessage)
@@ -200,8 +199,8 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * This implementation sets the default headers by calling {@link #addDefaultHeaders},
-	 * and then calls {@link #writeInternal}.
+	 * 此实现通过调用 {@link #addDefaultHeaders} 设置默认头，
+	 * 然后调用 {@link #writeInternal}。
 	 */
 	@Override
 	public final void write(final T t, @Nullable MediaType contentType, HttpOutputMessage outputMessage)
@@ -230,10 +229,10 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Add default headers to the output message.
-	 * <p>This implementation delegates to {@link #getDefaultContentType(Object)} if a
-	 * content type was not provided, set if necessary the default character set, calls
-	 * {@link #getContentLength}, and sets the corresponding headers.
+	 * 向输出消息添加默认头。
+	 * <p>此实现会在未提供内容类型时委托给 {@link #getDefaultContentType(Object)}，
+	 * 在必要时设置默认字符集，调用 {@link #getContentLength}，
+	 * 并设置相应的头。
 	 * @since 4.2
 	 */
 	protected void addDefaultHeaders(HttpHeaders headers, T t, @Nullable MediaType contentType) throws IOException {
@@ -265,11 +264,11 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Returns the default content type for the given type. Called when {@link #write}
-	 * is invoked without a specified content type parameter.
-	 * <p>By default, this returns the first element of the
-	 * {@link #setSupportedMediaTypes(List) supportedMediaTypes} property, if any.
-	 * Can be overridden in subclasses.
+	 * 返回给定类型的默认内容类型。当调用 {@link #write}
+	 * 而未指定内容类型参数时调用。
+	 * <p>默认情况下，如果存在，返回
+	 * {@link #setSupportedMediaTypes(List) supportedMediaTypes} 属性的第一个元素。
+	 * 可在子类中重写。
 	 * @param t the type to return the content type for
 	 * @return the content type, or {@code null} if not known
 	 */
@@ -280,9 +279,9 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 	}
 
 	/**
-	 * Returns the content length for the given type.
-	 * <p>By default, this returns {@code null}, meaning that the content length is unknown.
-	 * Can be overridden in subclasses.
+	 * 返回给定类型的内容长度。
+	 * <p>默认返回 {@code null}，表示内容长度未知。
+	 * 可在子类中重写。
 	 * @param t the type to return the content length for
 	 * @return the content length, or {@code null} if not known
 	 */
@@ -293,14 +292,14 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 
 
 	/**
-	 * Indicates whether the given class is supported by this converter.
+	 * 指示给定类是否受此转换器支持。
 	 * @param clazz the class to test for support
 	 * @return {@code true} if supported; {@code false} otherwise
 	 */
 	protected abstract boolean supports(Class<?> clazz);
 
 	/**
-	 * Abstract template method that reads the actual object. Invoked from {@link #read}.
+	 * 读取实际对象的抽象模板方法。由 {@link #read} 调用。
 	 * @param clazz the type of object to return
 	 * @param inputMessage the HTTP input message to read from
 	 * @return the converted object
@@ -311,7 +310,7 @@ public abstract class AbstractHttpMessageConverter<T> implements HttpMessageConv
 			throws IOException, HttpMessageNotReadableException;
 
 	/**
-	 * Abstract template method that writes the actual body. Invoked from {@link #write}.
+	 * 写入实际正文的抽象模板方法。由 {@link #write} 调用。
 	 * @param t the object to write to the output message
 	 * @param outputMessage the HTTP output message to write to
 	 * @throws IOException in case of I/O errors

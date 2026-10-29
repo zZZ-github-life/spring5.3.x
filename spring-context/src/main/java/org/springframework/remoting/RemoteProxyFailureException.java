@@ -17,9 +17,8 @@
 package org.springframework.remoting;
 
 /**
- * RemoteAccessException subclass to be thrown in case of a failure
- * within the client-side proxy for a remote service, for example
- * when a method was not found on the underlying RMI stub.
+ * RemoteAccessException 的子类，在远程服务的客户端代理内部发生失败时抛出，例如在底层 RMI stub 上找
+ * 不到某个方法时。
  *
  * @author Juergen Hoeller
  * @since 1.2.8
@@ -29,7 +28,7 @@ package org.springframework.remoting;
 public class RemoteProxyFailureException extends RemoteAccessException {
 
 	/**
-	 * Constructor for RemoteProxyFailureException.
+	 * RemoteProxyFailureException 的构造器。
 	 * @param msg the detail message
 	 * @param cause the root cause from the remoting API in use
 	 */

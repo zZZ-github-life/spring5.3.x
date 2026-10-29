@@ -63,9 +63,9 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Extends {@link AbstractMessageConverterMethodArgumentResolver} with the ability to handle method
- * return values by writing to the response with {@link HttpMessageConverter HttpMessageConverters}.
- *
+ * 扩展 {@link AbstractMessageConverterMethodArgumentResolver}，使其能够通过
+ * {@link HttpMessageConverter HttpMessageConverters} 向响应写入数据来处理方法
+ * 返回值。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -97,14 +97,14 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 
 
 	/**
-	 * Constructor with list of converters only.
+	 * 仅包含转换器列表的构造函数。
 	 */
 	protected AbstractMessageConverterMethodProcessor(List<HttpMessageConverter<?>> converters) {
 		this(converters, null, null);
 	}
 
 	/**
-	 * Constructor with list of converters and ContentNegotiationManager.
+	 * 包含转换器列表和 ContentNegotiationManager 的构造函数。
 	 */
 	protected AbstractMessageConverterMethodProcessor(List<HttpMessageConverter<?>> converters,
 			@Nullable ContentNegotiationManager contentNegotiationManager) {
@@ -113,8 +113,8 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Constructor with list of converters and ContentNegotiationManager as well
-	 * as request/response body advice instances.
+	 * 包含转换器列表、ContentNegotiationManager 以及
+	 * 请求/响应体通知实例的构造函数。
 	 */
 	protected AbstractMessageConverterMethodProcessor(List<HttpMessageConverter<?>> converters,
 			@Nullable ContentNegotiationManager manager, @Nullable List<Object> requestResponseBodyAdvice) {
@@ -128,7 +128,7 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 
 
 	/**
-	 * Creates a new {@link HttpOutputMessage} from the given {@link NativeWebRequest}.
+	 * 根据给定的 {@link NativeWebRequest} 创建一个新的 {@link HttpOutputMessage}。
 	 * @param webRequest the web request to create an output message from
 	 * @return the output message
 	 */
@@ -139,7 +139,7 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Writes the given return value to the given web request. Delegates to
+	 * 将给定返回值写入给定 Web 请求。委托给
 	 * {@link #writeWithMessageConverters(Object, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)}
 	 */
 	protected <T> void writeWithMessageConverters(T value, MethodParameter returnType, NativeWebRequest webRequest)
@@ -151,7 +151,7 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Writes the given return type to the given output message.
+	 * 将给定返回类型写入给定的输出消息。
 	 * @param value the value to write to the output message
 	 * @param returnType the type of the value
 	 * @param inputMessage the input messages. Used to inspect the {@code Accept} header.
@@ -317,17 +317,17 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Return the type of the value to be written to the response. Typically this is
-	 * a simple check via getClass on the value but if the value is null, then the
-	 * return type needs to be examined possibly including generic type determination
-	 * (e.g. {@code ResponseEntity<T>}).
+	 * 返回要写入响应的值的类型。通常这是
+	 * 通过对值调用 getClass 进行简单检查，但如果值为 null，
+	 * 则需要检查返回类型，其中可能包括泛型类型判定
+	 * （例如 {@code ResponseEntity<T>}）。
 	 */
 	protected Class<?> getReturnValueType(@Nullable Object value, MethodParameter returnType) {
 		return (value != null ? value.getClass() : returnType.getParameterType());
 	}
 
 	/**
-	 * Return whether the returned value or the declared return type extends {@link Resource}.
+	 * 返回返回值或声明的返回类型是否扩展自 {@link Resource}。
 	 */
 	protected boolean isResourceType(@Nullable Object value, MethodParameter returnType) {
 		Class<?> clazz = getReturnValueType(value, returnType);
@@ -335,8 +335,8 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Return the generic type of the {@code returnType} (or of the nested type
-	 * if it is an {@link HttpEntity}).
+	 * 返回 {@code returnType} 的泛型类型（如果它是 {@link HttpEntity}，
+	 * 则返回其嵌套类型的泛型类型）。
 	 */
 	private Type getGenericType(MethodParameter returnType) {
 		if (HttpEntity.class.isAssignableFrom(returnType.getParameterType())) {
@@ -348,7 +348,7 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Returns the media types that can be produced.
+	 * 返回可生成的媒体类型。
 	 * @see #getProducibleMediaTypes(HttpServletRequest, Class, Type)
 	 */
 	@SuppressWarnings("unused")
@@ -357,10 +357,10 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Returns the media types that can be produced. The resulting media types are:
+	 * 返回可生成的媒体类型。结果媒体类型为：
 	 * <ul>
-	 * <li>The producible media types specified in the request mappings, or
-	 * <li>Media types of configured converters that can write the specific return value, or
+	 * <li>请求映射中指定的可生成媒体类型，或者
+	 * <li>已配置转换器中可写入特定返回值的媒体类型，或者
 	 * <li>{@link MediaType#ALL}
 	 * </ul>
 	 * @since 4.2
@@ -395,8 +395,8 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Return the more specific of the acceptable and the producible media types
-	 * with the q-value of the former.
+	 * 返回可接受媒体类型与可生成媒体类型中更具体的那个，
+	 * 并采用前者的 q 值。
 	 */
 	private MediaType getMostSpecificMediaType(MediaType acceptType, MediaType produceType) {
 		MediaType produceTypeToUse = produceType.copyQualityValue(acceptType);
@@ -404,12 +404,12 @@ public abstract class AbstractMessageConverterMethodProcessor extends AbstractMe
 	}
 
 	/**
-	 * Check if the path has a file extension and whether the extension is either
-	 * on the list of {@link #SAFE_EXTENSIONS safe extensions} or explicitly
-	 * {@link ContentNegotiationManager#getAllFileExtensions() registered}.
-	 * If not, and the status is in the 2xx range, a 'Content-Disposition'
-	 * header with a safe attachment file name ("f.txt") is added to prevent
-	 * RFD exploits.
+	 * 检查路径是否具有文件扩展名，以及该扩展名是否
+	 * 位于 {@link #SAFE_EXTENSIONS 安全扩展名}列表中，或者已显式
+	 * {@link ContentNegotiationManager#getAllFileExtensions() 注册}。
+	 * 如果不是，且状态码在 2xx 范围内，则添加一个带有安全附件文件名称
+	 * （"f.txt"）的 'Content-Disposition' 头，以防止
+	 * RFD 攻击。
 	 */
 	private void addContentDispositionHeader(ServletServerHttpRequest request, ServletServerHttpResponse response) {
 		HttpHeaders headers = response.getHeaders();

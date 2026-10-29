@@ -39,11 +39,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility class that allows for convenient registration of common
- * {@link org.springframework.beans.factory.config.BeanPostProcessor} and
- * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor}
- * definitions for annotation-based configuration. Also registers a common
- * {@link org.springframework.beans.factory.support.AutowireCandidateResolver}.
+ * 工具类，便于为基于注解的配置注册常见的
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 和
+ * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor} 定义。还会注册一个通用
+ * 的 {@link org.springframework.beans.factory.support.AutowireCandidateResolver}。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -60,30 +59,28 @@ import org.springframework.util.ClassUtils;
 public abstract class AnnotationConfigUtils {
 
 	/**
-	 * The bean name of the internally managed Configuration annotation processor.
+	 * 内部管理的 Configuration 注解处理器的 Bean 名称。
 	 */
 	public static final String CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME =
 			"org.springframework.context.annotation.internalConfigurationAnnotationProcessor";
 
 	/**
-	 * The bean name of the internally managed BeanNameGenerator for use when processing
-	 * {@link Configuration} classes. Set by {@link AnnotationConfigApplicationContext}
-	 * and {@code AnnotationConfigWebApplicationContext} during bootstrap in order to make
-	 * any custom name generation strategy available to the underlying
-	 * {@link ConfigurationClassPostProcessor}.
+	 * 内部管理的 BeanNameGenerator 的 Bean 名称，在处理 {@link Configuration} 类时使用。在引导期间由
+	 * {@link AnnotationConfigApplicationContext} 和 {@code AnnotationConfigWebApplicationContext} 设置，
+	 * 以便将任何自定义名称生成策略提供给底层的 {@link ConfigurationClassPostProcessor}。
 	 * @since 3.1.1
 	 */
 	public static final String CONFIGURATION_BEAN_NAME_GENERATOR =
 			"org.springframework.context.annotation.internalConfigurationBeanNameGenerator";
 
 	/**
-	 * The bean name of the internally managed Autowired annotation processor.
+	 * 内部管理的 Autowired 注解处理器的 Bean 名称。
 	 */
 	public static final String AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME =
 			"org.springframework.context.annotation.internalAutowiredAnnotationProcessor";
 
 	/**
-	 * The bean name of the internally managed Required annotation processor.
+	 * 内部管理的 Required 注解处理器的 Bean 名称。
 	 * @deprecated as of 5.1, since no Required processor is registered by default anymore
 	 */
 	@Deprecated
@@ -91,13 +88,13 @@ public abstract class AnnotationConfigUtils {
 			"org.springframework.context.annotation.internalRequiredAnnotationProcessor";
 
 	/**
-	 * The bean name of the internally managed JSR-250 annotation processor.
+	 * 内部管理的 JSR-250 注解处理器的 Bean 名称。
 	 */
 	public static final String COMMON_ANNOTATION_PROCESSOR_BEAN_NAME =
 			"org.springframework.context.annotation.internalCommonAnnotationProcessor";
 
 	/**
-	 * The bean name of the internally managed JPA annotation processor.
+	 * 内部管理的 JPA 注解处理器的 Bean 名称。
 	 */
 	public static final String PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME =
 			"org.springframework.context.annotation.internalPersistenceAnnotationProcessor";
@@ -106,13 +103,13 @@ public abstract class AnnotationConfigUtils {
 			"org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor";
 
 	/**
-	 * The bean name of the internally managed @EventListener annotation processor.
+	 * 内部管理的 @EventListener 注解处理器的 Bean 名称。
 	 */
 	public static final String EVENT_LISTENER_PROCESSOR_BEAN_NAME =
 			"org.springframework.context.event.internalEventListenerProcessor";
 
 	/**
-	 * The bean name of the internally managed EventListenerFactory.
+	 * 内部管理的 EventListenerFactory 的 Bean 名称。
 	 */
 	public static final String EVENT_LISTENER_FACTORY_BEAN_NAME =
 			"org.springframework.context.event.internalEventListenerFactory";
@@ -130,7 +127,7 @@ public abstract class AnnotationConfigUtils {
 
 
 	/**
-	 * Register all relevant annotation post processors in the given registry.
+	 * 在给定注册表中注册所有相关的注解后处理器。
 	 * @param registry the registry to operate on
 	 */
 	public static void registerAnnotationConfigProcessors(BeanDefinitionRegistry registry) {
@@ -138,7 +135,7 @@ public abstract class AnnotationConfigUtils {
 	}
 
 	/**
-	 * Register all relevant annotation post processors in the given registry.
+	 * 在给定注册表中注册所有相关的注解后处理器。
 	 * @param registry the registry to operate on
 	 * @param source the configuration source element (already extracted)
 	 * that this registration was triggered from. May be {@code null}.

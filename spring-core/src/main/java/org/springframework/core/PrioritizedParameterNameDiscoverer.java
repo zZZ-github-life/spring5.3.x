@@ -24,11 +24,10 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link ParameterNameDiscoverer} implementation that tries several discoverer
- * delegates in succession. Those added first in the {@code addDiscoverer} method
- * have the highest priority. If one returns {@code null}, the next will be tried.
+ * {@link ParameterNameDiscoverer} 实现，会依次尝试多个发现器委托。在 {@code addDiscoverer} 方法中
+ * 最先添加的具有最高优先级。如果某个发现器返回 {@code null}，则尝试下一个。
  *
- * <p>The default behavior is to return {@code null} if no discoverer matches.
+ * <p>默认行为是：如果没有发现器匹配，则返回 {@code null}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -40,8 +39,8 @@ public class PrioritizedParameterNameDiscoverer implements ParameterNameDiscover
 
 
 	/**
-	 * Add a further {@link ParameterNameDiscoverer} delegate to the list of
-	 * discoverers that this {@code PrioritizedParameterNameDiscoverer} checks.
+	 * 向此 {@code PrioritizedParameterNameDiscoverer} 检查的发现器列表中添加另一个
+	 * {@link ParameterNameDiscoverer} 委托。
 	 */
 	public void addDiscoverer(ParameterNameDiscoverer pnd) {
 		this.parameterNameDiscoverers.add(pnd);

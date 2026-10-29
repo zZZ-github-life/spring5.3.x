@@ -1,7 +1,7 @@
 /**
- * Provides implementations of {@link org.springframework.http.codec.ClientCodecConfigurer}
- * and {@link org.springframework.http.codec.ServerCodecConfigurer} based on the converter
- * implementations from {@code org.springframework.http.codec.json} and co.
+ * 提供 {@link org.springframework.http.codec.ClientCodecConfigurer} 和
+ * {@link org.springframework.http.codec.ServerCodecConfigurer} 的实现，
+ * 这些实现基于 {@code org.springframework.http.codec.json} 等包中的转换器实现。
  */
 @NonNullApi
 @NonNullFields

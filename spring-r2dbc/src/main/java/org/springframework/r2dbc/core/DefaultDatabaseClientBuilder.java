@@ -27,7 +27,7 @@ import org.springframework.r2dbc.core.binding.BindMarkersFactoryResolver;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@link DatabaseClient.Builder}.
+ * {@link DatabaseClient.Builder} 的默认实现。
  *
  * @author Mark Paluch
  * @since 5.3

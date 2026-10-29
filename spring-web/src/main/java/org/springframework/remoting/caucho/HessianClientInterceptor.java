@@ -39,19 +39,16 @@ import org.springframework.remoting.support.UrlBasedRemoteAccessor;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.aopalliance.intercept.MethodInterceptor} for accessing a Hessian service.
- * Supports authentication via username and password.
- * The service URL must be an HTTP URL exposing a Hessian service.
+ * {@link org.aopalliance.intercept.MethodInterceptor}，用于访问 Hessian 服务。
+ * 支持通过用户名和密码进行身份验证。
+ * 服务 URL 必须是指向 Hessian 服务的 HTTP URL。
  *
- * <p>Hessian is a slim, binary RPC protocol.
- * For information on Hessian, see the
- * <a href="http://hessian.caucho.com">Hessian website</a>
- * <b>Note: As of Spring 4.0, this client requires Hessian 4.0 or above.</b>
+ * <p>Hessian 是一种轻量级二进制 RPC 协议。
+ * 有关 Hessian 的信息，请参阅
+ * <a href="http://hessian.caucho.com">Hessian 网站</a>
+ * <b>注意：从 Spring 4.0 起，此客户端要求 Hessian 4.0 或更高版本。</b>
  *
- * <p>Note: There is no requirement for services accessed with this proxy factory
- * to have been exported using Spring's {@link HessianServiceExporter}, as there is
- * no special handling involved. As a consequence, you can also access services that
- * have been exported using Caucho's {@link com.caucho.hessian.server.HessianServlet}.
+ * <p>注意：通过此代理工厂访问的服务无需使用 Spring 的 {@link HessianServiceExporter} 导出，因为此处不涉及任何特殊处理。因此，您也可以访问使用 Caucho 的 {@link com.caucho.hessian.server.HessianServlet} 导出的服务。
  *
  * @author Juergen Hoeller
  * @since 29.09.2003
@@ -75,44 +72,41 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 
 
 	/**
-	 * Set the HessianProxyFactory instance to use.
-	 * If not specified, a default HessianProxyFactory will be created.
-	 * <p>Allows to use an externally configured factory instance,
-	 * in particular a custom HessianProxyFactory subclass.
+	 * 设置要使用的 HessianProxyFactory 实例。
+	 * 如果未指定，将创建默认的 HessianProxyFactory。
+	 * <p>允许使用外部配置的工厂实例，
+	 * 特别是自定义的 HessianProxyFactory 子类。
 	 */
 	public void setProxyFactory(@Nullable HessianProxyFactory proxyFactory) {
 		this.proxyFactory = (proxyFactory != null ? proxyFactory : new HessianProxyFactory());
 	}
 
 	/**
-	 * Specify the Hessian SerializerFactory to use.
-	 * <p>This will typically be passed in as an inner bean definition
-	 * of type {@code com.caucho.hessian.io.SerializerFactory},
-	 * with custom bean property values applied.
+	 * 指定要使用的 Hessian SerializerFactory。
+	 * <p>通常将其作为类型为 {@code com.caucho.hessian.io.SerializerFactory} 的内部 bean 定义传入，
+	 * 并应用自定义的 bean 属性值。
 	 */
 	public void setSerializerFactory(SerializerFactory serializerFactory) {
 		this.proxyFactory.setSerializerFactory(serializerFactory);
 	}
 
 	/**
-	 * Set whether to send the Java collection type for each serialized
-	 * collection. Default is "true".
+	 * 设置是否为每个被序列化的集合发送 Java 集合类型。默认为 "true"。
 	 */
 	public void setSendCollectionType(boolean sendCollectionType) {
 		this.proxyFactory.getSerializerFactory().setSendCollectionType(sendCollectionType);
 	}
 
 	/**
-	 * Set whether to allow non-serializable types as Hessian arguments
-	 * and return values. Default is "true".
+	 * 设置是否允许将不可序列化的类型作为 Hessian 参数和返回值。默认为 "true"。
 	 */
 	public void setAllowNonSerializable(boolean allowNonSerializable) {
 		this.proxyFactory.getSerializerFactory().setAllowNonSerializable(allowNonSerializable);
 	}
 
 	/**
-	 * Set whether overloaded methods should be enabled for remote invocations.
-	 * Default is "false".
+	 * 设置是否应为远程调用启用重载方法。
+	 * 默认为 "false"。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setOverloadEnabled
 	 */
 	public void setOverloadEnabled(boolean overloadEnabled) {
@@ -120,9 +114,9 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set the username that this factory should use to access the remote service.
-	 * Default is none.
-	 * <p>The username will be sent by Hessian via HTTP Basic Authentication.
+	 * 设置此工厂访问远程服务时应使用的用户名。
+	 * 默认为无。
+	 * <p>用户名将由 Hessian 通过 HTTP Basic Authentication 发送。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setUser
 	 */
 	public void setUsername(String username) {
@@ -130,9 +124,9 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set the password that this factory should use to access the remote service.
-	 * Default is none.
-	 * <p>The password will be sent by Hessian via HTTP Basic Authentication.
+	 * 设置此工厂访问远程服务时应使用的密码。
+	 * 默认为无。
+	 * <p>密码将由 Hessian 通过 HTTP Basic Authentication 发送。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setPassword
 	 */
 	public void setPassword(String password) {
@@ -140,8 +134,8 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set whether Hessian's debug mode should be enabled.
-	 * Default is "false".
+	 * 设置是否启用 Hessian 的调试模式。
+	 * 默认为 "false"。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setDebug
 	 */
 	public void setDebug(boolean debug) {
@@ -149,7 +143,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set whether to use a chunked post for sending a Hessian request.
+	 * 设置是否使用分块 POST 发送 Hessian 请求。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setChunkedPost
 	 */
 	public void setChunkedPost(boolean chunkedPost) {
@@ -157,14 +151,14 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Specify a custom HessianConnectionFactory to use for the Hessian client.
+	 * 指定用于 Hessian 客户端的自定义 HessianConnectionFactory。
 	 */
 	public void setConnectionFactory(HessianConnectionFactory connectionFactory) {
 		this.proxyFactory.setConnectionFactory(connectionFactory);
 	}
 
 	/**
-	 * Set the socket connect timeout to use for the Hessian client.
+	 * 设置 Hessian 客户端使用的 socket 连接超时时间。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setConnectTimeout
 	 */
 	public void setConnectTimeout(long timeout) {
@@ -172,7 +166,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set the timeout to use when waiting for a reply from the Hessian service.
+	 * 设置等待 Hessian 服务响应时的超时时间。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setReadTimeout
 	 */
 	public void setReadTimeout(long timeout) {
@@ -180,8 +174,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set whether version 2 of the Hessian protocol should be used for
-	 * parsing requests and replies. Default is "false".
+	 * 设置解析请求和响应时是否使用 Hessian 协议版本 2。默认为 "false"。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setHessian2Request
 	 */
 	public void setHessian2(boolean hessian2) {
@@ -190,8 +183,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set whether version 2 of the Hessian protocol should be used for
-	 * parsing requests. Default is "false".
+	 * 设置解析请求时是否使用 Hessian 协议版本 2。默认为 "false"。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setHessian2Request
 	 */
 	public void setHessian2Request(boolean hessian2) {
@@ -199,8 +191,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Set whether version 2 of the Hessian protocol should be used for
-	 * parsing replies. Default is "false".
+	 * 设置解析响应时是否使用 Hessian 协议版本 2。默认为 "false"。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setHessian2Reply
 	 */
 	public void setHessian2Reply(boolean hessian2) {
@@ -215,7 +206,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Initialize the Hessian proxy for this interceptor.
+	 * 为此拦截器初始化 Hessian 代理。
 	 * @throws RemoteLookupFailureException if the service URL is invalid
 	 */
 	public void prepare() throws RemoteLookupFailureException {
@@ -228,7 +219,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Create the Hessian proxy that is wrapped by this interceptor.
+	 * 创建由此拦截器包装的 Hessian 代理。
 	 * @param proxyFactory the proxy factory to use
 	 * @return the Hessian proxy
 	 * @throws MalformedURLException if thrown by the proxy factory
@@ -283,8 +274,7 @@ public class HessianClientInterceptor extends UrlBasedRemoteAccessor implements 
 	}
 
 	/**
-	 * Convert the given Hessian access exception to an appropriate
-	 * Spring RemoteAccessException.
+	 * 将给定的 Hessian 访问异常转换为相应的 Spring RemoteAccessException。
 	 * @param ex the exception to convert
 	 * @return the RemoteAccessException to throw
 	 */

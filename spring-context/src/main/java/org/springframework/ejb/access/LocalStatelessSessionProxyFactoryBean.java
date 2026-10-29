@@ -25,23 +25,20 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Convenient {@link FactoryBean} for local Stateless Session Bean (SLSB) proxies.
- * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
+ * 用于本地无状态会话 Bean（SLSB）代理的便捷 {@link FactoryBean}。为 EJB 2.x 设计，但也适用于 EJB 3
+ * 会话 Bean。
  *
- * <p>See {@link org.springframework.jndi.JndiObjectLocator} for info on
- * how to specify the JNDI location of the target EJB.
+ * <p>有关如何指定目标 EJB 的 JNDI 位置的信息，请参见
+ * {@link org.springframework.jndi.JndiObjectLocator}。
  *
- * <p>If you want control over interceptor chaining, use an AOP ProxyFactoryBean
- * with LocalSlsbInvokerInterceptor rather than rely on this class.
+ * <p>如果希望对拦截器链进行控制，请使用 AOP ProxyFactoryBean 配合 LocalSlsbInvokerInterceptor，而
+ * 不是依赖此类。
  *
- * <p>In a bean container, this class is normally best used as a singleton. However,
- * if that bean container pre-instantiates singletons (as do the XML ApplicationContext
- * variants) you may have a problem if the bean container is loaded before the EJB
- * container loads the target EJB. That is because by default the JNDI lookup will be
- * performed in the init method of this class and cached, but the EJB will not have been
- * bound at the target location yet. The best solution is to set the "lookupHomeOnStartup"
- * property to "false", in which case the home will be fetched on first access to the EJB.
- * (This flag is only true by default for backwards compatibility reasons).
+ * <p>在 Bean 容器中，此类通常最好作为单例使用。但是，如果该 Bean 容器会预先实例化单例（就像 XML
+ * ApplicationContext 的各个变体那样），而 Bean 容器在 EJB 容器加载目标 EJB 之前就已加载，则可能会
+ * 出现问题。这是因为默认情况下，JNDI 查找会在此类的 init 方法中执行并缓存，但此时 EJB 尚未绑定到目
+ * 标位置。最好的解决办法是将 "lookupHomeOnStartup" 属性设为 "false"，这样 home 将在首次访问 EJB 时
+ * 获取。（仅为向后兼容的原因，此标志默认才为 true）。
  *
  * @author Rod Johnson
  * @author Colin Sampaleanu
@@ -52,7 +49,7 @@ import org.springframework.util.ClassUtils;
 public class LocalStatelessSessionProxyFactoryBean extends LocalSlsbInvokerInterceptor
 		implements FactoryBean<Object>, BeanClassLoaderAware {
 
-	/** The business interface of the EJB we're proxying. */
+	/** 我们要代理的 EJB 的业务接口。 */
 	@Nullable
 	private Class<?> businessInterface;
 
@@ -65,9 +62,8 @@ public class LocalStatelessSessionProxyFactoryBean extends LocalSlsbInvokerInter
 
 
 	/**
-	 * Set the business interface of the EJB we're proxying.
-	 * This will normally be a super-interface of the EJB local component interface.
-	 * Using a business methods interface is a best practice when implementing EJBs.
+	 * 设置我们所代理的 EJB 的业务接口。这通常是 EJB 本地组件接口的父接口。在实现 EJB 时，使用业务方法
+	 * 接口是一种最佳实践。
 	 * @param businessInterface set the business interface of the EJB
 	 */
 	public void setBusinessInterface(@Nullable Class<?> businessInterface) {
@@ -75,7 +71,7 @@ public class LocalStatelessSessionProxyFactoryBean extends LocalSlsbInvokerInter
 	}
 
 	/**
-	 * Return the business interface of the EJB we're proxying.
+	 * 返回我们所代理的 EJB 的业务接口。
 	 */
 	@Nullable
 	public Class<?> getBusinessInterface() {

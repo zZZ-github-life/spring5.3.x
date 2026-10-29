@@ -23,12 +23,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface that specifies a basic set of CCI operations on an EIS.
- * Implemented by CciTemplate. Not often used, but a useful option
- * to enhance testability, as it can easily be mocked or stubbed.
+ * 定义在 EIS 上使用 CCI 的基本操作集接口。
+ * 由 CciTemplate 实现。不常使用，但作为增强可测试性的有用选项，
+ * 因为它可以很容易地被模拟或存根化。
  *
- * <p>Alternatively, the standard CCI infrastructure can be mocked.
- * However, mocking this interface constitutes significantly less work.
+ * <p>或者，可以模拟标准 CCI 基础设施。
+ * 然而，模拟此接口的工作量要少得多。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -40,13 +40,11 @@ import org.springframework.lang.Nullable;
 public interface CciOperations {
 
 	/**
-	 * Execute a request on an EIS with CCI, implemented as callback action
-	 * working on a CCI Connection. This allows for implementing arbitrary
-	 * data access operations, within Spring's managed CCI environment:
-	 * that is, participating in Spring-managed transactions and converting
-	 * JCA ResourceExceptions into Spring's DataAccessException hierarchy.
-	 * <p>The callback action can return a result object, for example a
-	 * domain object or a collection of domain objects.
+	 * 使用 CCI 在 EIS 上执行请求，实现为在 CCI Connection 上工作的回调操作。
+	 * 这允许在 Spring 管理的 CCI 环境中实现任意数据访问操作：
+	 * 即参与 Spring 管理的事务并将 JCA ResourceException 转换为
+	 * Spring 的 DataAccessException 层次结构。
+	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象的集合。
 	 * @param action the callback object that specifies the action
 	 * @return the result object returned by the action, if any
 	 * @throws DataAccessException if there is any problem
@@ -55,14 +53,11 @@ public interface CciOperations {
 	<T> T execute(ConnectionCallback<T> action) throws DataAccessException;
 
 	/**
-	 * Execute a request on an EIS with CCI, implemented as callback action
-	 * working on a CCI Interaction. This allows for implementing arbitrary
-	 * data access operations on a single Interaction, within Spring's managed
-	 * CCI environment: that is, participating in Spring-managed transactions
-	 * and converting JCA ResourceExceptions into Spring's DataAccessException
-	 * hierarchy.
-	 * <p>The callback action can return a result object, for example a
-	 * domain object or a collection of domain objects.
+	 * 使用 CCI 在 EIS 上执行请求，实现为在 CCI Interaction 上工作的回调操作。
+	 * 这允许在 Spring 管理的 CCI 环境中，在单个 Interaction 上实现任意数据访问操作：
+	 * 即参与 Spring 管理的事务并将 JCA ResourceException 转换为
+	 * Spring 的 DataAccessException 层次结构。
+	 * <p>回调操作可以返回结果对象，例如领域对象或领域对象的集合。
 	 * @param action the callback object that specifies the action
 	 * @return the result object returned by the action, if any
 	 * @throws DataAccessException if there is any problem
@@ -71,7 +66,7 @@ public interface CciOperations {
 	<T> T execute(InteractionCallback<T> action) throws DataAccessException;
 
 	/**
-	 * Execute the specified interaction on an EIS with CCI.
+	 * 使用 CCI 在 EIS 上执行指定的交互。
 	 * @param spec the CCI InteractionSpec instance that defines
 	 * the interaction (connector-specific)
 	 * @param inputRecord the input record
@@ -82,7 +77,7 @@ public interface CciOperations {
 	Record execute(InteractionSpec spec, Record inputRecord) throws DataAccessException;
 
 	/**
-	 * Execute the specified interaction on an EIS with CCI.
+	 * 使用 CCI 在 EIS 上执行指定的交互。
 	 * @param spec the CCI InteractionSpec instance that defines
 	 * the interaction (connector-specific)
 	 * @param inputRecord the input record
@@ -92,7 +87,7 @@ public interface CciOperations {
 	void execute(InteractionSpec spec, Record inputRecord, Record outputRecord) throws DataAccessException;
 
 	/**
-	 * Execute the specified interaction on an EIS with CCI.
+	 * 使用 CCI 在 EIS 上执行指定的交互。
 	 * @param spec the CCI InteractionSpec instance that defines
 	 * the interaction (connector-specific)
 	 * @param inputCreator object that creates the input record to use
@@ -102,7 +97,7 @@ public interface CciOperations {
 	Record execute(InteractionSpec spec, RecordCreator inputCreator) throws DataAccessException;
 
 	/**
-	 * Execute the specified interaction on an EIS with CCI.
+	 * 使用 CCI 在 EIS 上执行指定的交互。
 	 * @param spec the CCI InteractionSpec instance that defines
 	 * the interaction (connector-specific)
 	 * @param inputRecord the input record
@@ -115,7 +110,7 @@ public interface CciOperations {
 			throws DataAccessException;
 
 	/**
-	 * Execute the specified interaction on an EIS with CCI.
+	 * 使用 CCI 在 EIS 上执行指定的交互。
 	 * @param spec the CCI InteractionSpec instance that defines
 	 * the interaction (connector-specific)
 	 * @param inputCreator object that creates the input record to use

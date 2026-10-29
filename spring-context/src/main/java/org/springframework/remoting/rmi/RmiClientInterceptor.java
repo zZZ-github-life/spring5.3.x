@@ -42,22 +42,16 @@ import org.springframework.remoting.support.RemoteInvocationBasedAccessor;
 import org.springframework.remoting.support.RemoteInvocationUtils;
 
 /**
- * {@link org.aopalliance.intercept.MethodInterceptor} for accessing conventional
- * RMI services or RMI invokers. The service URL must be a valid RMI URL
- * (e.g. "rmi://localhost:1099/myservice").
+ * 用于访问常规 RMI 服务或 RMI 调用器的 {@link org.aopalliance.intercept.MethodInterceptor}。服务
+ * URL 必须是有效的 RMI URL（例如 "rmi://localhost:1099/myservice"）。
  *
- * <p>RMI invokers work at the RmiInvocationHandler level, needing only one stub for
- * any service. Service interfaces do not have to extend {@code java.rmi.Remote}
- * or throw {@code java.rmi.RemoteException}. Spring's unchecked
- * RemoteAccessException will be thrown on remote invocation failure.
- * Of course, in and out parameters have to be serializable.
+ * <p>RMI 调用器工作在 RmiInvocationHandler 层面，任何服务都只需要一个存根。服务接口不必扩展
+ * {@code java.rmi.Remote}，也不必抛出 {@code java.rmi.RemoteException}。远程调用失败时会抛出
+ * Spring 的非受检 RemoteAccessException。当然，入参和出参必须是可序列化的。
  *
- * <p>With conventional RMI services, this invoker is typically used with the RMI
- * service interface. Alternatively, this invoker can also proxy a remote RMI service
- * with a matching non-RMI business interface, i.e. an interface that mirrors the RMI
- * service methods but does not declare RemoteExceptions. In the latter case,
- * RemoteExceptions thrown by the RMI stub will automatically get converted to
- * Spring's unchecked RemoteAccessException.
+ * <p>对于常规的 RMI 服务，此调用器通常与 RMI 服务接口一起使用。此外，此调用器还可以用匹配的非 RMI
+ * 业务接口来代理远程 RMI 服务，即该接口镜像了 RMI 服务的方法但没有声明 RemoteExceptions。在后一种
+ * 情况下，RMI 存根抛出的 RemoteExceptions 会自动转换为 Spring 的非受检 RemoteAccessException。
  *
  * @author Juergen Hoeller
  * @since 29.09.2003
@@ -87,9 +81,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 
 
 	/**
-	 * Set whether to look up the RMI stub on startup. Default is "true".
-	 * <p>Can be turned off to allow for late start of the RMI server.
-	 * In this case, the RMI stub will be fetched on first access.
+	 * 设置是否在启动时查找 RMI 存根。默认值为 "true"。
+	 * <p>可以关闭该功能，以便 RMI 服务器延迟启动。在这种情况下，RMI 存根将在首次访问时获取。
 	 * @see #setCacheStub
 	 */
 	public void setLookupStubOnStartup(boolean lookupStubOnStartup) {
@@ -97,10 +90,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Set whether to cache the RMI stub once it has been located.
-	 * Default is "true".
-	 * <p>Can be turned off to allow for hot restart of the RMI server.
-	 * In this case, the RMI stub will be fetched for each invocation.
+	 * 设置一旦定位到 RMI 存根后是否对其进行缓存。默认值为 "true"。
+	 * <p>可以关闭该功能，以便 RMI 服务器热重启。在这种情况下，每次调用都会重新获取 RMI 存根。
 	 * @see #setLookupStubOnStartup
 	 */
 	public void setCacheStub(boolean cacheStub) {
@@ -108,12 +99,9 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Set whether to refresh the RMI stub on connect failure.
-	 * Default is "false".
-	 * <p>Can be turned on to allow for hot restart of the RMI server.
-	 * If a cached RMI stub throws an RMI exception that indicates a
-	 * remote connect failure, a fresh proxy will be fetched and the
-	 * invocation will be retried.
+	 * 设置是否在连接失败时刷新 RMI 存根。默认值为 "false"。
+	 * <p>可以开启该功能，以便 RMI 服务器热重启。如果缓存的 RMI 存根抛出的 RMI 异常表明远程连接失败，就
+	 * 会获取新的代理并重试调用。
 	 * @see java.rmi.ConnectException
 	 * @see java.rmi.ConnectIOException
 	 * @see java.rmi.NoSuchObjectException
@@ -123,7 +111,7 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Set a custom RMI client socket factory to use for accessing the RMI registry.
+	 * 设置用于访问 RMI 注册表的自定义 RMI 客户端套接字工厂。
 	 * @see java.rmi.server.RMIClientSocketFactory
 	 * @see java.rmi.registry.LocateRegistry#getRegistry(String, int, RMIClientSocketFactory)
 	 */
@@ -139,7 +127,7 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Fetches RMI stub on startup, if necessary.
+	 * 如有必要，在启动时获取 RMI 存根。
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #setLookupStubOnStartup
 	 * @see #lookupStub
@@ -166,11 +154,10 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Create the RMI stub, typically by looking it up.
-	 * <p>Called on interceptor initialization if "cacheStub" is "true";
-	 * else called for each invocation by {@link #getStub()}.
-	 * <p>The default implementation looks up the service URL via
-	 * {@code java.rmi.Naming}. This can be overridden in subclasses.
+	 * 创建 RMI 存根，通常通过查找来完成。
+	 * <p>如果 "cacheStub" 为 "true"，则在拦截器初始化时调用；否则由 {@link #getStub()} 在每次调用时调
+	 * 用。
+	 * <p>默认实现通过 {@code java.rmi.Naming} 查找服务 URL。可以在子类中重写。
 	 * @return the RMI stub to store in this interceptor
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #setCacheStub
@@ -220,12 +207,9 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Return the RMI stub to use. Called for each invocation.
-	 * <p>The default implementation returns the stub created on initialization,
-	 * if any. Else, it invokes {@link #lookupStub} to get a new stub for
-	 * each invocation. This can be overridden in subclasses, for example in
-	 * order to cache a stub for a given amount of time before recreating it,
-	 * or to test the stub whether it is still alive.
+	 * 返回要使用的 RMI 存根。每次调用时都会调用此方法。
+	 * <p>默认实现返回初始化时创建的存根（如果有）。否则，它会调用 {@link #lookupStub} 为每次调用获取新
+	 * 的存根。可以在子类中重写，例如为了在重新创建存根之前将其缓存一段时间，或者测试存根是否仍然存活。
 	 * @return the RMI stub to use for an invocation
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #lookupStub
@@ -246,9 +230,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 
 
 	/**
-	 * Fetches an RMI stub and delegates to {@code doInvoke}.
-	 * If configured to refresh on connect failure, it will call
-	 * {@link #refreshAndRetry} on corresponding RMI exceptions.
+	 * 获取 RMI 存根并委托给 {@code doInvoke}。如果配置为在连接失败时刷新，它会在相应的 RMI 异常上调用
+	 * {@link #refreshAndRetry}。
 	 * @see #getStub
 	 * @see #doInvoke(MethodInvocation, Remote)
 	 * @see #refreshAndRetry
@@ -277,9 +260,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Determine whether the given RMI exception indicates a connect failure.
-	 * <p>The default implementation delegates to
-	 * {@link RmiClientInterceptorUtils#isConnectFailure}.
+	 * 判断给定的 RMI 异常是否表示连接失败。
+	 * <p>默认实现委托给 {@link RmiClientInterceptorUtils#isConnectFailure}。
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure
 	 */
@@ -288,9 +270,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Refresh the stub and retry the remote invocation if necessary.
-	 * <p>If not configured to refresh on connect failure, this method
-	 * simply rethrows the original exception.
+	 * 如有必要，刷新存根并重试远程调用。
+	 * <p>如果未配置为在连接失败时刷新，此方法只是重新抛出原始异常。
 	 * @param invocation the invocation that failed
 	 * @param ex the exception raised on remote invocation
 	 * @return the result value of the new invocation, if succeeded
@@ -317,8 +298,7 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Refresh the RMI stub and retry the given invocation.
-	 * Called by invoke on connect failure.
+	 * 刷新 RMI 存根并重试给定的调用。在连接失败时由 invoke 调用。
 	 * @param invocation the AOP method invocation
 	 * @return the invocation result, if any
 	 * @throws Throwable in case of invocation failure
@@ -338,7 +318,7 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Perform the given invocation on the given RMI stub.
+	 * 在给定的 RMI 存根上执行给定的调用。
 	 * @param invocation the AOP method invocation
 	 * @param stub the RMI stub to invoke
 	 * @return the invocation result, if any
@@ -385,8 +365,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 	}
 
 	/**
-	 * Apply the given AOP method invocation to the given {@link RmiInvocationHandler}.
-	 * <p>The default implementation delegates to {@link #createRemoteInvocation}.
+	 * 将给定的 AOP 方法调用应用到给定的 {@link RmiInvocationHandler}。
+	 * <p>默认实现委托给 {@link #createRemoteInvocation}。
 	 * @param methodInvocation the current AOP method invocation
 	 * @param invocationHandler the RmiInvocationHandler to apply the invocation to
 	 * @return the invocation result
@@ -409,9 +389,8 @@ public class RmiClientInterceptor extends RemoteInvocationBasedAccessor
 
 
 	/**
-	 * Dummy URLStreamHandler that's just specified to suppress the standard
-	 * {@code java.net.URL} URLStreamHandler lookup, to be able to
-	 * use the standard URL class for parsing "rmi:..." URLs.
+	 * 占位的 URLStreamHandler，仅用于抑制标准的 {@code java.net.URL} URLStreamHandler 查找，从而能够使
+	 * 用标准 URL 类解析 "rmi:..." URL。
 	 */
 	private static class DummyURLStreamHandler extends URLStreamHandler {
 

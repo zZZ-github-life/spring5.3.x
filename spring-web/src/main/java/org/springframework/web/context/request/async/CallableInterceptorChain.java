@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Assists with the invocation of {@link CallableProcessingInterceptor}'s.
+ * 协助调用 {@link CallableProcessingInterceptor}。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch

@@ -28,21 +28,19 @@
 package org.springframework.asm;
 
 /**
- * A visitor to visit a Java method. The methods of this class must be called in the following
- * order: ( {@code visitParameter} )* [ {@code visitAnnotationDefault} ] ( {@code visitAnnotation} |
- * {@code visitAnnotableParameterCount} | {@code visitParameterAnnotation} {@code
- * visitTypeAnnotation} | {@code visitAttribute} )* [ {@code visitCode} ( {@code visitFrame} |
- * {@code visit<i>X</i>Insn} | {@code visitLabel} | {@code visitInsnAnnotation} | {@code
- * visitTryCatchBlock} | {@code visitTryCatchAnnotation} | {@code visitLocalVariable} | {@code
- * visitLocalVariableAnnotation} | {@code visitLineNumber} )* {@code visitMaxs} ] {@code visitEnd}.
- * In addition, the {@code visit<i>X</i>Insn} and {@code visitLabel} methods must be called in the
- * sequential order of the bytecode instructions of the visited code, {@code visitInsnAnnotation}
- * must be called <i>after</i> the annotated instruction, {@code visitTryCatchBlock} must be called
- * <i>before</i> the labels passed as arguments have been visited, {@code
- * visitTryCatchBlockAnnotation} must be called <i>after</i> the corresponding try catch block has
- * been visited, and the {@code visitLocalVariable}, {@code visitLocalVariableAnnotation} and {@code
- * visitLineNumber} methods must be called <i>after</i> the labels passed as arguments have been
- * visited.
+ * 用于访问 Java 方法的访问者。该类的方法必须按以下顺序调用：( {@code visitParameter} )* [
+ * {@code visitAnnotationDefault} ] ( {@code visitAnnotation} |
+ * {@code visitAnnotableParameterCount} | {@code visitParameterAnnotation}
+ * {@code visitTypeAnnotation} | {@code visitAttribute} )* [ {@code visitCode} ( {@code visitFrame}
+ * | {@code visit<i>X</i>Insn} | {@code visitLabel} | {@code visitInsnAnnotation} |
+ * {@code visitTryCatchBlock} | {@code visitTryCatchAnnotation} | {@code visitLocalVariable} |
+ * {@code visitLocalVariableAnnotation} | {@code visitLineNumber} )* {@code visitMaxs} ]
+ * {@code visitEnd}。此外，{@code visit<i>X</i>Insn} 和 {@code visitLabel} 方法必须按照被访问代码的
+ * 字节码指令顺序依次调用，{@code visitInsnAnnotation} 必须在被注解的指令<i>之后</i>调用，
+ * {@code visitTryCatchBlock} 必须在作为参数传入的标签被访问<i>之前</i>调用，
+ * {@code visitTryCatchBlockAnnotation} 必须在相应的 try catch 块被访问<i>之后</i>调用，而
+ * {@code visitLocalVariable}、{@code visitLocalVariableAnnotation} 和 {@code visitLineNumber} 方法
+ * 必须在作为参数传入的标签被访问<i>之后</i>调用。
  *
  * @author Eric Bruneton
  */
@@ -51,18 +49,17 @@ public abstract class MethodVisitor {
   private static final String REQUIRES_ASM5 = "This feature requires ASM5";
 
   /**
-   * The ASM API version implemented by this visitor. The value of this field must be one of the
-   * {@code ASM}<i>x</i> values in {@link Opcodes}.
+   * 此访问者实现的 ASM API 版本。该字段的值必须是 {@link Opcodes} 中的 {@code ASM}<i>x</i> 值之一。
    */
   protected final int api;
 
   /**
-   * The method visitor to which this visitor must delegate method calls. May be {@literal null}.
+   * 此访问者必须将方法调用委托给的方法访问者。可以为 {@literal null}。
    */
   protected MethodVisitor mv;
 
   /**
-   * Constructs a new {@link MethodVisitor}.
+   * 构造一个新的 {@link MethodVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of the {@code
    *     ASM}<i>x</i> values in {@link Opcodes}.
@@ -72,7 +69,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Constructs a new {@link MethodVisitor}.
+   * 构造一个新的 {@link MethodVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of the {@code
    *     ASM}<i>x</i> values in {@link Opcodes}.
@@ -95,7 +92,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * The method visitor to which this visitor must delegate method calls. May be {@literal null}.
+   * 此访问者必须将方法调用委托给的方法访问者。可以为 {@literal null}。
    *
    * @return the method visitor to which this visitor must delegate method calls, or {@literal
    *     null}.
@@ -109,7 +106,7 @@ public abstract class MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Visits a parameter of this method.
+   * 访问此方法的一个参数。
    *
    * @param name parameter name or {@literal null} if none is provided.
    * @param access the parameter's access flags, only {@code ACC_FINAL}, {@code ACC_SYNTHETIC}
@@ -125,7 +122,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits the default value of this annotation interface method.
+   * 访问此注解接口方法的默认值。
    *
    * @return a visitor to the visit the actual default value of this annotation interface method, or
    *     {@literal null} if this visitor is not interested in visiting this default value. The
@@ -140,7 +137,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an annotation of this method.
+   * 访问此方法的一个注解。
    *
    * @param descriptor the class descriptor of the annotation class.
    * @param visible {@literal true} if the annotation is visible at runtime.
@@ -155,7 +152,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an annotation on a type in the method signature.
+   * 访问方法签名中某个类型上的注解。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#METHOD_TYPE_PARAMETER}, {@link
@@ -182,9 +179,8 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits the number of method parameters that can have annotations. By default (i.e. when this
-   * method is not called), all the method parameters defined by the method descriptor can have
-   * annotations.
+   * 访问可以带有注解的方法参数数量。默认情况下（即未调用此方法时），由方法描述符定义的所有方法参数都
+   * 可以带有注解。
    *
    * @param parameterCount the number of method parameters than can have annotations. This number
    *     must be less or equal than the number of parameter types in the method descriptor. It can
@@ -202,7 +198,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an annotation of a parameter this method.
+   * 访问此方法某个参数的注解。
    *
    * @param parameter the parameter index. This index must be strictly smaller than the number of
    *     parameters in the method descriptor, and strictly smaller than the parameter count
@@ -224,7 +220,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a non standard attribute of this method.
+   * 访问此方法的非标准属性。
    *
    * @param attribute an attribute.
    */
@@ -234,7 +230,7 @@ public abstract class MethodVisitor {
     }
   }
 
-  /** Starts the visit of the method's code, if any (i.e. non abstract method). */
+  /** 开始访问方法的代码（如果有，即非抽象方法）。 */
   public void visitCode() {
     if (mv != null) {
       mv.visitCode();
@@ -242,43 +238,30 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits the current state of the local variables and operand stack elements. This method must(*)
-   * be called <i>just before</i> any instruction <b>i</b> that follows an unconditional branch
-   * instruction such as GOTO or THROW, that is the target of a jump instruction, or that starts an
-   * exception handler block. The visited types must describe the values of the local variables and
-   * of the operand stack elements <i>just before</i> <b>i</b> is executed.<br>
+   * 访问局部变量和操作数栈元素的当前状态。对于跟在 GOTO 或 THROW 等无条件分支指令之后、作为跳转指令
+   * 的目标、或者以异常处理器块开头的任何指令 <b>i</b>，都必须在它<i>之前</i>紧接着调用此方法。被访问
+   * 的类型必须描述在执行 <b>i</b> <i>之前</i>那一时刻局部变量和操作数栈元素的值。<br>
    * <br>
-   * (*) this is mandatory only for classes whose version is greater than or equal to {@link
-   * Opcodes#V1_6}. <br>
+   * (*) 仅对版本大于或等于 {@link Opcodes#V1_6} 的类，这是必需的。<br>
    * <br>
-   * The frames of a method must be given either in expanded form, or in compressed form (all frames
-   * must use the same format, i.e. you must not mix expanded and compressed frames within a single
-   * method):
+   * 方法的帧必须以展开形式或压缩形式给出（所有帧必须使用相同的格式，即不得在单个方法中混用展开帧和压
+   * 缩帧）：
    *
    * <ul>
-   *   <li>In expanded form, all frames must have the F_NEW type.
-   *   <li>In compressed form, frames are basically "deltas" from the state of the previous frame:
-   *       <ul>
-   *         <li>{@link Opcodes#F_SAME} representing frame with exactly the same locals as the
-   *             previous frame and with the empty stack.
-   *         <li>{@link Opcodes#F_SAME1} representing frame with exactly the same locals as the
-   *             previous frame and with single value on the stack ( <code>numStack</code> is 1 and
-   *             <code>stack[0]</code> contains value for the type of the stack item).
-   *         <li>{@link Opcodes#F_APPEND} representing frame with current locals are the same as the
-   *             locals in the previous frame, except that additional locals are defined (<code>
-   *             numLocal</code> is 1, 2 or 3 and <code>local</code> elements contains values
-   *             representing added types).
-   *         <li>{@link Opcodes#F_CHOP} representing frame with current locals are the same as the
-   *             locals in the previous frame, except that the last 1-3 locals are absent and with
-   *             the empty stack (<code>numLocal</code> is 1, 2 or 3).
-   *         <li>{@link Opcodes#F_FULL} representing complete frame data.
+   * <li>在展开形式中，所有帧都必须具有 F_NEW 类型。
+   * <li>在压缩形式中，帧基本上是相对于前一帧状态的“增量”：
+   * <ul>
+   * <li>{@link Opcodes#F_SAME} 表示与前一帧具有完全相同的局部变量且操作数栈为空的帧。
+   * <li>{@link Opcodes#F_SAME1} 表示与前一帧具有完全相同的局部变量且栈上只有一个值的帧（<code>numStack</code> 为 1，<code>stack[0]</code> 包含该栈项类型的值）。
+   * <li>{@link Opcodes#F_APPEND} 表示当前局部变量与前一帧中的局部变量相同、但额外定义了局部变量的帧（<code>numLocal</code> 为 1、2 或 3，<code>local</code> 元素包含表示新增类型的值）。
+   * <li>{@link Opcodes#F_CHOP} 表示当前局部变量与前一帧中的局部变量相同、但缺少最后 1-3 个局部变量且操作数栈为空的帧（<code>numLocal</code> 为 1、2 或 3）。
+   * <li>{@link Opcodes#F_FULL} 表示完整的帧数据。
    *       </ul>
    * </ul>
    *
    * <br>
-   * In both cases the first frame, corresponding to the method's parameters and access flags, is
-   * implicit and must not be visited. Also, it is illegal to visit two or more frames for the same
-   * code location (i.e., at least one instruction must be visited between two calls to visitFrame).
+   * 这两种情况下，对应于方法参数和访问标志的第一个帧都是隐式的，且不能被访问。此外，为同一代码位置访
+   * 问两个或更多帧是非法的（即两次 visitFrame 调用之间必须至少访问一条指令）。
    *
    * @param type the type of this stack map frame. Must be {@link Opcodes#F_NEW} for expanded
    *     frames, or {@link Opcodes#F_FULL}, {@link Opcodes#F_APPEND}, {@link Opcodes#F_CHOP}, {@link
@@ -316,7 +299,7 @@ public abstract class MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Visits a zero operand instruction.
+   * 访问一条零操作数指令。
    *
    * @param opcode the opcode of the instruction to be visited. This opcode is either NOP,
    *     ACONST_NULL, ICONST_M1, ICONST_0, ICONST_1, ICONST_2, ICONST_3, ICONST_4, ICONST_5,
@@ -336,7 +319,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an instruction with a single int operand.
+   * 访问一条带单个 int 操作数的指令。
    *
    * @param opcode the opcode of the instruction to be visited. This opcode is either BIPUSH, SIPUSH
    *     or NEWARRAY.
@@ -356,8 +339,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a local variable instruction. A local variable instruction is an instruction that loads
-   * or stores the value of a local variable.
+   * 访问一条局部变量指令。局部变量指令是加载或存储局部变量值的指令。
    *
    * @param opcode the opcode of the local variable instruction to be visited. This opcode is either
    *     ILOAD, LLOAD, FLOAD, DLOAD, ALOAD, ISTORE, LSTORE, FSTORE, DSTORE, ASTORE or RET.
@@ -371,8 +353,8 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a type instruction. A type instruction is an instruction that takes the internal name of
-   * a class as parameter (see {@link Type#getInternalName()}).
+   * 访问一条类型指令。类型指令是接受类的内部名称作为参数的指令（参见 {@link Type#getInternalName()}
+   * ）。
    *
    * @param opcode the opcode of the type instruction to be visited. This opcode is either NEW,
    *     ANEWARRAY, CHECKCAST or INSTANCEOF.
@@ -386,8 +368,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a field instruction. A field instruction is an instruction that loads or stores the
-   * value of a field of an object.
+   * 访问一条字段指令。字段指令是加载或存储对象字段值的指令。
    *
    * @param opcode the opcode of the type instruction to be visited. This opcode is either
    *     GETSTATIC, PUTSTATIC, GETFIELD or PUTFIELD.
@@ -403,7 +384,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a method instruction. A method instruction is an instruction that invokes a method.
+   * 访问一条方法指令。方法指令是调用方法的指令。
    *
    * @param opcode the opcode of the type instruction to be visited. This opcode is either
    *     INVOKEVIRTUAL, INVOKESPECIAL, INVOKESTATIC or INVOKEINTERFACE.
@@ -421,7 +402,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a method instruction. A method instruction is an instruction that invokes a method.
+   * 访问一条方法指令。方法指令是调用方法的指令。
    *
    * @param opcode the opcode of the type instruction to be visited. This opcode is either
    *     INVOKEVIRTUAL, INVOKESPECIAL, INVOKESTATIC or INVOKEINTERFACE.
@@ -450,7 +431,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an invokedynamic instruction.
+   * 访问一条 invokedynamic 指令。
    *
    * @param name the method's name.
    * @param descriptor the method's descriptor (see {@link Type}).
@@ -474,8 +455,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a jump instruction. A jump instruction is an instruction that may jump to another
-   * instruction.
+   * 访问一条跳转指令。跳转指令是可以跳转到另一条指令的指令。
    *
    * @param opcode the opcode of the type instruction to be visited. This opcode is either IFEQ,
    *     IFNE, IFLT, IFGE, IFGT, IFLE, IF_ICMPEQ, IF_ICMPNE, IF_ICMPLT, IF_ICMPGE, IF_ICMPGT,
@@ -490,7 +470,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a label. A label designates the instruction that will be visited just after it.
+   * 访问一个标签。标签所指定的是紧随其后将被访问的指令。
    *
    * @param label a {@link Label} object.
    */
@@ -505,9 +485,8 @@ public abstract class MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Visits a LDC instruction. Note that new constant types may be added in future versions of the
-   * Java Virtual Machine. To easily detect new constant types, implementations of this method
-   * should check for unexpected constant types, like this:
+   * 访问一条 LDC 指令。注意，Java 虚拟机的未来版本可能会增加新的常量类型。为了便于检测新的常量类型，
+   * 该方法的实现应检查意外的常量类型，如下所示：
    *
    * <pre>
    * if (cst instanceof Integer) {
@@ -562,7 +541,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an IINC instruction.
+   * 访问一条 IINC 指令。
    *
    * @param varIndex index of the local variable to be incremented.
    * @param increment amount to increment the local variable by.
@@ -574,7 +553,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a TABLESWITCH instruction.
+   * 访问一条 TABLESWITCH 指令。
    *
    * @param min the minimum key value.
    * @param max the maximum key value.
@@ -590,7 +569,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a LOOKUPSWITCH instruction.
+   * 访问一条 LOOKUPSWITCH 指令。
    *
    * @param dflt beginning of the default handler block.
    * @param keys the values of the keys.
@@ -604,7 +583,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a MULTIANEWARRAY instruction.
+   * 访问一条 MULTIANEWARRAY 指令。
    *
    * @param descriptor an array type descriptor (see {@link Type}).
    * @param numDimensions the number of dimensions of the array to allocate.
@@ -616,8 +595,8 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an annotation on an instruction. This method must be called just <i>after</i> the
-   * annotated instruction. It can be called several times for the same instruction.
+   * 访问指令上的注解。此方法必须在被注解的指令<i>之后</i>紧接着调用。对于同一条指令，它可以被调用多
+   * 次。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#INSTANCEOF}, {@link TypeReference#NEW}, {@link
@@ -650,7 +629,7 @@ public abstract class MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Visits a try catch block.
+   * 访问一个 try catch 块。
    *
    * @param start the beginning of the exception handler's scope (inclusive).
    * @param end the end of the exception handler's scope (exclusive).
@@ -669,9 +648,8 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an annotation on an exception handler type. This method must be called <i>after</i> the
-   * {@link #visitTryCatchBlock} for the annotated exception handler. It can be called several times
-   * for the same exception handler.
+   * 访问异常处理器类型上的注解。对于被注解的异常处理器，此方法必须在 {@link #visitTryCatchBlock} <i>
+   * 之后</i>调用。对于同一个异常处理器，它可以被调用多次。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#EXCEPTION_PARAMETER}. See {@link TypeReference}.
@@ -695,7 +673,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a local variable declaration.
+   * 访问一个局部变量声明。
    *
    * @param name the name of a local variable.
    * @param descriptor the type descriptor of this local variable.
@@ -721,7 +699,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits an annotation on a local variable type.
+   * 访问局部变量类型上的注解。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#LOCAL_VARIABLE} or {@link TypeReference#RESOURCE_VARIABLE}. See {@link
@@ -759,7 +737,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits a line number declaration.
+   * 访问一个行号声明。
    *
    * @param line a line number. This number refers to the source file from which the class was
    *     compiled.
@@ -774,7 +752,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits the maximum stack size and the maximum number of local variables of the method.
+   * 访问方法的最大栈大小和最大局部变量数量。
    *
    * @param maxStack maximum stack size of the method.
    * @param maxLocals maximum number of local variables for the method.
@@ -786,8 +764,7 @@ public abstract class MethodVisitor {
   }
 
   /**
-   * Visits the end of the method. This method, which is the last one to be called, is used to
-   * inform the visitor that all the annotations and attributes of the method have been visited.
+   * 访问方法的结尾。此方法是最后一个被调用的方法，用于通知访问者方法的所有注解和属性都已访问完毕。
    */
   public void visitEnd() {
     if (mv != null) {

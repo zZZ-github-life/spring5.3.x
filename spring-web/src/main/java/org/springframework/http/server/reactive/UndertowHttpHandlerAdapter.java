@@ -31,7 +31,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link HttpHandler} to the Undertow {@link io.undertow.server.HttpHandler}.
+ * 将 {@link HttpHandler} 适配到 Undertow 的 {@link io.undertow.server.HttpHandler}。
  *
  * @author Marek Hawrylczak
  * @author Rossen Stoyanchev

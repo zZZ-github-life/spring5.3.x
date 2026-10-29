@@ -21,10 +21,9 @@ import org.springframework.expression.TypedValue;
 import org.springframework.expression.spel.ExpressionState;
 
 /**
- * Represents assignment. An alternative to calling {@code setValue}
- * for an expression which indicates an assign statement.
+ * 表示赋值。对于指示赋值语句的表达式，它是调用 {@code setValue} 的替代方式。
  *
- * <p>Example: 'someNumberProperty=42'
+ * <p>示例：'someNumberProperty=42'
  *
  * @author Andy Clement
  * @author Sam Brannen

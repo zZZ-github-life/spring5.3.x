@@ -24,7 +24,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.handler.PerConnectionWebSocketHandler;
 
 /**
- * Contract for processing a WebSocket handshake request.
+ * 用于处理 WebSocket 握手请求的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -35,7 +35,7 @@ import org.springframework.web.socket.handler.PerConnectionWebSocketHandler;
 public interface HandshakeHandler {
 
 	/**
-	 * Initiate the handshake.
+	 * 发起握手。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param wsHandler the handler to process WebSocket messages; see

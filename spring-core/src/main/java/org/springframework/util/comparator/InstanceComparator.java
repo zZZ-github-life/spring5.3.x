@@ -22,14 +22,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Compares objects based on an arbitrary class order. Allows objects to be sorted based
- * on the types of class that they inherit &mdash; for example, this comparator can be used
- * to sort a list of {@code Number}s such that {@code Long}s occur before {@code Integer}s.
+ * 根据任意的类顺序比较对象。允许基于对象所继承的类类型对其进行排序 &mdash; 例如，此比较器可用于对
+ * {@code Number} 列表排序，使 {@code Long} 出现在 {@code Integer} 之前。
  *
- * <p>Only the specified {@code instanceOrder} classes are considered during comparison.
- * If two objects are both instances of the ordered type this comparator will return a
- * value of {@code 0}. Consider combining with {@link Comparator#thenComparing(Comparator)}
- * if additional sorting is required.
+ * <p>比较时只考虑指定的 {@code instanceOrder} 类。如果两个对象都是有序类型的实例，此比较器将返回
+ * {@code 0}。如果需要额外的排序，可考虑与 {@link Comparator#thenComparing(Comparator)} 结合使用。
  *
  * @author Phillip Webb
  * @since 3.2
@@ -42,7 +39,7 @@ public class InstanceComparator<T> implements Comparator<T> {
 
 
 	/**
-	 * Create a new {@link InstanceComparator} instance.
+	 * 创建一个新的 {@link InstanceComparator} 实例。
 	 * @param instanceOrder the ordered list of classes that should be used when comparing
 	 * objects. Classes earlier in the list will be given a higher priority.
 	 */

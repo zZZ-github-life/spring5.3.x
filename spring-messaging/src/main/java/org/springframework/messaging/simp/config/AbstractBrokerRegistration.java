@@ -28,7 +28,7 @@ import org.springframework.messaging.simp.broker.AbstractBrokerMessageHandler;
 import org.springframework.util.Assert;
 
 /**
- * Base class for message broker registration classes.
+ * 消息代理注册类的基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -43,7 +43,7 @@ public abstract class AbstractBrokerRegistration {
 
 
 	/**
-	 * Create a new broker registration.
+	 * 创建一个新的消息代理注册。
 	 * @param clientInboundChannel the inbound channel
 	 * @param clientOutboundChannel the outbound channel
 	 * @param destinationPrefixes the destination prefixes

@@ -32,21 +32,19 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link DataSource} implementation that delegates all calls to a WebSphere
- * target {@link DataSource}, typically obtained from JNDI, applying a current
- * isolation level and/or current user credentials to every Connection obtained
- * from it.
+ * {@link DataSource} 实现，将所有调用委托给 WebSphere 目标
+ * {@link DataSource}（通常从 JNDI 获取），并将当前的隔离级别
+ * 和/或当前用户凭据应用到从其中获取的每个 Connection。
  *
- * <p>Uses IBM-specific API to get a JDBC Connection with a specific isolation
- * level (and read-only flag) from a WebSphere DataSource
- * (<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v5r1//topic/com.ibm.websphere.base.doc/info/aes/ae/rdat_extiapi.html">IBM code example</a>).
- * Supports the transaction-specific isolation level exposed by
- * {@link org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionIsolationLevel()}.
- * It's also possible to specify a default isolation level, to be applied when the
- * current Spring-managed transaction does not define a specific isolation level.
+ * <p>使用 IBM 特定的 API 从 WebSphere DataSource 获取具有特定隔离级别
+ * （和只读标志）的 JDBC Connection
+ * （<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v5r1//topic/com.ibm.websphere.base.doc/info/aes/ae/rdat_extiapi.html">IBM 代码示例</a>）。
+ * 支持由 {@link org.springframework.transaction.support.TransactionSynchronizationManager#getCurrentTransactionIsolationLevel()}
+ * 暴露的事务特定隔离级别。也可以指定默认隔离级别，在当前 Spring 管理的事务
+ * 未定义特定隔离级别时应用。
  *
- * <p>Usage example, defining the target DataSource as an inner-bean JNDI lookup
- * (of course, you can link to any WebSphere DataSource through a bean reference):
+ * <p>用法示例，将目标 DataSource 定义为内部 Bean 的 JNDI 查找
+ * （当然，你也可以通过 Bean 引用链接到任何 WebSphere DataSource）：
  *
  * <pre class="code">
  * &lt;bean id="myDataSource" class="org.springframework.jdbc.datasource.WebSphereDataSourceAdapter"&gt;
@@ -57,8 +55,7 @@ import org.springframework.util.StringUtils;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * Thanks to Ricardo Olivieri for submitting the original implementation
- * of this approach!
+ * 感谢 Ricardo Olivieri 提交此方法的原始实现！
  *
  * @author Juergen Hoeller
  * @author <a href="mailto:lari.hotari@sagire.fi">Lari Hotari</a>
@@ -89,8 +86,8 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 
 
 	/**
-	 * This constructor retrieves the WebSphere JDBC connection spec API,
-	 * so we can get obtain specific WebSphere Connections using reflection.
+	 * 此构造函数获取 WebSphere JDBC 连接规格 API，
+	 * 以便我们可以通过反射获取特定的 WebSphere Connection。
 	 */
 	public WebSphereDataSourceAdapter() {
 		try {
@@ -113,8 +110,8 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	}
 
 	/**
-	 * Checks that the specified 'targetDataSource' actually is
-	 * a WebSphere WSDataSource.
+	 * 检查指定的 'targetDataSource' 实际上是否是
+	 * WebSphere WSDataSource。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -128,8 +125,8 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 
 
 	/**
-	 * Builds a WebSphere JDBCConnectionSpec object for the current settings
-	 * and calls {@code WSDataSource.getConnection(JDBCConnectionSpec)}.
+	 * 为当前设置构建一个 WebSphere JDBCConnectionSpec 对象，
+	 * 并调用 {@code WSDataSource.getConnection(JDBCConnectionSpec)}。
 	 * @see #createConnectionSpec
 	 * @see com.ibm.websphere.rsadapter.WSDataSource#getConnection(com.ibm.websphere.rsadapter.JDBCConnectionSpec)
 	 */
@@ -150,11 +147,11 @@ public class WebSphereDataSourceAdapter extends IsolationLevelDataSourceAdapter 
 	}
 
 	/**
-	 * Create a WebSphere {@code JDBCConnectionSpec} object for the given characteristics.
-	 * <p>The default implementation uses reflection to apply the given settings.
-	 * Can be overridden in subclasses to customize the JDBCConnectionSpec object
-	 * (<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/topic/com.ibm.websphere.javadoc.doc/public_html/api/com/ibm/websphere/rsadapter/JDBCConnectionSpec.html">JDBCConnectionSpec javadoc</a>;
-	 * <a href="https://www.ibm.com/developerworks/websphere/library/techarticles/0404_tang/0404_tang.html">IBM developerWorks article</a>).
+	 * 为给定的特征创建一个 WebSphere {@code JDBCConnectionSpec} 对象。
+	 * <p>默认实现使用反射来应用给定的设置。
+	 * 可以在子类中重写以自定义 JDBCConnectionSpec 对象
+	 * （<a href="https://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/topic/com.ibm.websphere.javadoc.doc/public_html/api/com/ibm/websphere/rsadapter/JDBCConnectionSpec.html">JDBCConnectionSpec javadoc</a>;
+	 * <a href="https://www.ibm.com/developerworks/websphere/library/techarticles/0404_tang/0404_tang.html">IBM developerWorks 文章</a>）。
 	 * @param isolationLevel the isolation level to apply (or {@code null} if none)
 	 * @param readOnlyFlag the read-only flag to apply (or {@code null} if none)
 	 * @param username the username to apply ({@code null} or empty indicates the default)

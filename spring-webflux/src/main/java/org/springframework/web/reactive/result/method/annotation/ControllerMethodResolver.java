@@ -52,31 +52,28 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.reactive.result.method.SyncInvocableHandlerMethod;
 
 /**
- * Package-private class to assist {@link RequestMappingHandlerAdapter} with
- * resolving, initializing, and caching annotated methods declared in
- * {@code @Controller} and {@code @ControllerAdvice} components.
+ * 包级私有类，协助 {@link RequestMappingHandlerAdapter} 解析、初始化和缓存 {@code @Controller} 和 {@code @ControllerAdvice} 组件中声明的注解方法。
  *
- * <p>Assists with the following annotations:
+ * <p>协助处理以下注解：
  * <ul>
  * <li>{@code @InitBinder}
  * <li>{@code @ModelAttribute}
  * <li>{@code @RequestMapping}
  * <li>{@code @ExceptionHandler}
  * </ul>
- *
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 class ControllerMethodResolver {
 
 	/**
-	 * MethodFilter that matches {@link InitBinder @InitBinder} methods.
+	 * 匹配 {@link InitBinder @InitBinder} 方法的 MethodFilter。
 	 */
 	private static final MethodFilter INIT_BINDER_METHODS = method ->
 			AnnotatedElementUtils.hasAnnotation(method, InitBinder.class);
 
 	/**
-	 * MethodFilter that matches {@link ModelAttribute @ModelAttribute} methods.
+	 * 匹配 {@link ModelAttribute @ModelAttribute} 方法的 MethodFilter。
 	 */
 	private static final MethodFilter MODEL_ATTRIBUTE_METHODS = method ->
 			(!AnnotatedElementUtils.hasAnnotation(method, RequestMapping.class) &&
@@ -254,8 +251,7 @@ class ControllerMethodResolver {
 
 
 	/**
-	 * Return an {@link InvocableHandlerMethod} for the given
-	 * {@code @RequestMapping} method initialized with argument resolvers.
+	 * 为给定的 {@code @RequestMapping} 方法返回使用参数解析器初始化的 {@link InvocableHandlerMethod}。
 	 */
 	public InvocableHandlerMethod getRequestMappingMethod(HandlerMethod handlerMethod) {
 		InvocableHandlerMethod invocable = new InvocableHandlerMethod(handlerMethod);
@@ -265,8 +261,7 @@ class ControllerMethodResolver {
 	}
 
 	/**
-	 * Find {@code @InitBinder} methods in {@code @ControllerAdvice} components
-	 * or in the controller of the given {@code @RequestMapping} method.
+	 * 在 {@code @ControllerAdvice} 组件或给定 {@code @RequestMapping} 方法所属的控制器中查找 {@code @InitBinder} 方法。
 	 */
 	public List<SyncInvocableHandlerMethod> getInitBinderMethods(HandlerMethod handlerMethod) {
 		List<SyncInvocableHandlerMethod> result = new ArrayList<>();
@@ -298,8 +293,7 @@ class ControllerMethodResolver {
 	}
 
 	/**
-	 * Find {@code @ModelAttribute} methods in {@code @ControllerAdvice}
-	 * components or in the controller of the given {@code @RequestMapping} method.
+	 * 在 {@code @ControllerAdvice} 组件或给定 {@code @RequestMapping} 方法所属的控制器中查找 {@code @ModelAttribute} 方法。
 	 */
 	public List<InvocableHandlerMethod> getModelAttributeMethods(HandlerMethod handlerMethod) {
 		List<InvocableHandlerMethod> result = new ArrayList<>();
@@ -331,8 +325,7 @@ class ControllerMethodResolver {
 	}
 
 	/**
-	 * Find an {@code @ExceptionHandler} method in {@code @ControllerAdvice}
-	 * components or in the controller of the given {@code @RequestMapping} method.
+	 * 在 {@code @ControllerAdvice} 组件或给定 {@code @RequestMapping} 方法所属的控制器中查找 {@code @ExceptionHandler} 方法。
 	 */
 	@Nullable
 	public InvocableHandlerMethod getExceptionHandlerMethod(Throwable ex, HandlerMethod handlerMethod) {
@@ -368,8 +361,7 @@ class ControllerMethodResolver {
 	}
 
 	/**
-	 * Return the handler for the type-level {@code @SessionAttributes} annotation
-	 * based on the given controller method.
+	 * 根据给定的控制器方法，返回类型级 {@code @SessionAttributes} 注解的处理器。
 	 */
 	public SessionAttributesHandler getSessionAttributesHandler(HandlerMethod handlerMethod) {
 		Class<?> handlerType = handlerMethod.getBeanType();

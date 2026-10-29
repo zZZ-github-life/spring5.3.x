@@ -22,8 +22,8 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility class for handling validation annotations.
- * Mainly for internal use within the framework.
+ * 用于处理校验注解的工具类。
+ * 主要供框架内部使用。
  *
  * @author Christoph Dreis
  * @since 5.3.7
@@ -33,10 +33,10 @@ public abstract class ValidationAnnotationUtils {
 	private static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
 
 	/**
-	 * Determine any validation hints by the given annotation.
-	 * <p>This implementation checks for {@code @javax.validation.Valid},
-	 * Spring's {@link org.springframework.validation.annotation.Validated},
-	 * and custom annotations whose name starts with "Valid".
+	 * 根据给定注解确定任何校验提示。
+	 *
+	 * <p>此实现会检查 {@code @javax.validation.Valid}、Spring 的
+	 * {@link org.springframework.validation.annotation.Validated}，以及名称以 "Valid" 开头的自定义注解。
 	 * @param ann the annotation (potentially a validation annotation)
 	 * @return the validation hints to apply (possibly an empty array),
 	 * or {@code null} if this annotation does not trigger any validation

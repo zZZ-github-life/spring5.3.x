@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Represent a list in an expression, e.g. '{1,2,3}'
+ * 表示表达式中的列表，例如 '{1,2,3}'
  *
  * @author Andy Clement
  * @since 3.0.4
@@ -50,9 +50,8 @@ public class InlineList extends SpelNodeImpl {
 
 
 	/**
-	 * If all the components of the list are constants, or lists that themselves contain constants, then a constant list
-	 * can be built to represent this node. This will speed up later getValue calls and reduce the amount of garbage
-	 * created.
+	 * 如果列表的所有组成部分都是常量，或者是本身只包含常量的列表，那么可以构建一个常量列表来表示此节点。
+	 * 这会加快后续 getValue 调用的速度，并减少产生的垃圾。
 	 */
 	private void checkIfConstant() {
 		boolean isConstant = true;
@@ -113,7 +112,7 @@ public class InlineList extends SpelNodeImpl {
 	}
 
 	/**
-	 * Return whether this list is a constant value.
+	 * 返回此列表是否为常量值。
 	 */
 	public boolean isConstant() {
 		return (this.constant != null);

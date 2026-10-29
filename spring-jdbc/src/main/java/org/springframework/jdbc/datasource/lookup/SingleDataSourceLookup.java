@@ -21,8 +21,8 @@ import javax.sql.DataSource;
 import org.springframework.util.Assert;
 
 /**
- * An implementation of the DataSourceLookup that simply wraps a
- * single given DataSource, returned for any data source name.
+ * DataSourceLookup 的一个实现，它只是包装单个给定的 DataSource，
+ * 对任何数据源名称都返回该 DataSource。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -33,7 +33,7 @@ public class SingleDataSourceLookup implements DataSourceLookup {
 
 
 	/**
-	 * Create a new instance of the {@link SingleDataSourceLookup} class.
+	 * 创建 {@link SingleDataSourceLookup} 类的新实例。
 	 * @param dataSource the single {@link DataSource} to wrap
 	 */
 	public SingleDataSourceLookup(DataSource dataSource) {

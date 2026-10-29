@@ -39,8 +39,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Static factory methods for {@link BodyExtractor} implementations.
- *
+ * 用于 {@link BodyExtractor} 实现的静态工厂方法。
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -61,7 +60,7 @@ public abstract class BodyExtractors {
 
 
 	/**
-	 * Extractor to decode the input content into {@code Mono<T>}.
+	 * 用于将输入内容解码为 {@code Mono<T>} 的提取器。
 	 * @param elementClass the class of the element type to decode to
 	 * @param <T> the element type to decode to
 	 * @return {@code BodyExtractor} for {@code Mono<T>}
@@ -71,7 +70,7 @@ public abstract class BodyExtractors {
 	}
 
 	/**
-	 * Variant of {@link #toMono(Class)} for type information with generics.
+	 * 带有泛型类型信息的 {@link #toMono(Class)} 变体。
 	 * @param elementTypeRef the type reference for the type to decode to
 	 * @param <T> the element type to decode to
 	 * @return {@code BodyExtractor} for {@code Mono<T>}
@@ -89,7 +88,7 @@ public abstract class BodyExtractors {
 	}
 
 	/**
-	 * Extractor to decode the input content into {@code Flux<T>}.
+	 * 用于将输入内容解码为 {@code Flux<T>} 的提取器。
 	 * @param elementClass the class of the element type to decode to
 	 * @param <T> the element type to decode to
 	 * @return {@code BodyExtractor} for {@code Flux<T>}
@@ -99,7 +98,7 @@ public abstract class BodyExtractors {
 	}
 
 	/**
-	 * Variant of {@link #toFlux(Class)} for type information with generics.
+	 * 带有泛型类型信息的 {@link #toFlux(Class)} 变体。
 	 * @param typeRef the type reference for the type to decode to
 	 * @param <T> the element type to decode to
 	 * @return {@code BodyExtractor} for {@code Flux<T>}
@@ -121,9 +120,8 @@ public abstract class BodyExtractors {
 	// Extractors for specific content ..
 
 	/**
-	 * Extractor to read form data into {@code MultiValueMap<String, String>}.
-	 * <p>As of 5.1 this method can also be used on the client side to read form
-	 * data from a server response (e.g. OAuth).
+	 * 用于将表单数据读入 {@code MultiValueMap<String, String>} 的提取器。
+	 * <p>从 5.1 开始，此方法也可在客户端用于从服务器响应（例如 OAuth）读取表单数据。
 	 * @return {@code BodyExtractor} for form data
 	 */
 	public static BodyExtractor<Mono<MultiValueMap<String, String>>, ReactiveHttpInputMessage> toFormData() {
@@ -136,7 +134,7 @@ public abstract class BodyExtractors {
 	}
 
 	/**
-	 * Extractor to read multipart data into a {@code MultiValueMap<String, Part>}.
+	 * 用于将 multipart 数据读入 {@code MultiValueMap<String, Part>} 的提取器。
 	 * @return {@code BodyExtractor} for multipart data
 	 */
 	// Parameterized for server-side use
@@ -150,7 +148,7 @@ public abstract class BodyExtractors {
 	}
 
 	/**
-	 * Extractor to read multipart data into {@code Flux<Part>}.
+	 * 用于将 multipart 数据读入 {@code Flux<Part>} 的提取器。
 	 * @return {@code BodyExtractor} for multipart request parts
 	 */
 	// Parameterized for server-side use
@@ -164,10 +162,8 @@ public abstract class BodyExtractors {
 	}
 
 	/**
-	 * Extractor that returns the raw {@link DataBuffer DataBuffers}.
-	 * <p><strong>Note:</strong> the data buffers should be
-	 * {@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer)
-	 * released} after being used.
+	 * 返回原始 {@link DataBuffer DataBuffers} 的提取器。
+	 * <p><strong>注意：</strong>使用后应{@link org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}数据缓冲区。
 	 * @return {@code BodyExtractor} for data buffers
 	 */
 	public static BodyExtractor<Flux<DataBuffer>, ReactiveHttpInputMessage> toDataBuffers() {

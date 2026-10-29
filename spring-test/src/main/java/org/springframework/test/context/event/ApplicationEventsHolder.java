@@ -20,20 +20,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Holder class to expose the application events published during the execution
- * of a test in the form of a thread-bound {@link ApplicationEvents} object.
- *
- * <p>{@code ApplicationEvents} are registered in this holder and managed by
- * the {@link ApplicationEventsTestExecutionListener}.
- *
- * <p>Although this class is {@code public}, it is only intended for use within
- * the <em>Spring TestContext Framework</em> or in the implementation of
- * third-party extensions. Test authors should therefore allow the current
- * instance of {@code ApplicationEvents} to be
- * {@link org.springframework.beans.factory.annotation.Autowired @Autowired}
- * into a field in the test class or injected via a parameter in test and
- * lifecycle methods when using JUnit Jupiter and the {@link
- * org.springframework.test.context.junit.jupiter.SpringExtension SpringExtension}.
+ * 持有类，用于以线程绑定的 {@link ApplicationEvents} 对象形式公开测试执行期间发布的应用程序事件。
+ * <p>{@code ApplicationEvents} 在此持有器中注册，并由 {@link ApplicationEventsTestExecutionListener} 管理。
+ * <p>尽管此类是 {@code public} 的，但它仅打算在 <em>Spring TestContext Framework</em> 内或第三方扩展的实现中使用。因此，在使用 JUnit Jupiter 和 {@link org.springframework.test.context.junit.jupiter.SpringExtension SpringExtension} 时，测试作者应允许将当前的 {@code ApplicationEvents} 实例通过 {@link org.springframework.beans.factory.annotation.Autowired @Autowired} 注入测试类的字段中，或通过测试和生命周期方法中的参数注入。
  *
  * @author Sam Brannen
  * @author Oliver Drotbohm
@@ -53,7 +42,7 @@ public abstract class ApplicationEventsHolder {
 
 
 	/**
-	 * Get the {@link ApplicationEvents} for the current thread.
+	 * 获取当前线程的 {@link ApplicationEvents}。
 	 * @return the current {@code ApplicationEvents}, or {@code null} if not registered
 	 */
 	@Nullable
@@ -62,7 +51,7 @@ public abstract class ApplicationEventsHolder {
 	}
 
 	/**
-	 * Get the {@link ApplicationEvents} for the current thread.
+	 * 获取当前线程的 {@link ApplicationEvents}。
 	 * @return the current {@code ApplicationEvents}
 	 * @throws IllegalStateException if an instance of {@code ApplicationEvents}
 	 * has not been registered for the current thread
@@ -77,10 +66,8 @@ public abstract class ApplicationEventsHolder {
 
 
 	/**
-	 * Register a new {@link DefaultApplicationEvents} instance to be used for the
-	 * current thread, if necessary.
-	 * <p>If {@link #registerApplicationEvents()} has already been called for the
-	 * current thread, this method does not do anything.
+	 * 如有必要，为当前线程注册一个新的 {@link DefaultApplicationEvents} 实例以供使用。
+	 * <p>如果已为当前线程调用过 {@link #registerApplicationEvents()}，则此方法不执行任何操作。
 	 */
 	static void registerApplicationEventsIfNecessary() {
 		if (getApplicationEvents() == null) {
@@ -89,15 +76,14 @@ public abstract class ApplicationEventsHolder {
 	}
 
 	/**
-	 * Register a new {@link DefaultApplicationEvents} instance to be used for the
-	 * current thread.
+	 * 为当前线程注册一个新的 {@link DefaultApplicationEvents} 实例以供使用。
 	 */
 	static void registerApplicationEvents() {
 		applicationEvents.set(new DefaultApplicationEvents());
 	}
 
 	/**
-	 * Remove the registration of the {@link ApplicationEvents} for the current thread.
+	 * 移除当前线程的 {@link ApplicationEvents} 注册。
 	 */
 	static void unregisterApplicationEvents() {
 		applicationEvents.remove();

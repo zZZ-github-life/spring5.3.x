@@ -27,20 +27,17 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base regular expression pointcut bean. JavaBean properties are:
+ * 抽象的正则表达式切点基类 Bean。JavaBean 属性包括：
  * <ul>
- * <li>pattern: regular expression for the fully-qualified method names to match.
- * The exact regexp syntax will depend on the subclass (e.g. Perl5 regular expressions)
- * <li>patterns: alternative property taking a String array of patterns.
- * The result will be the union of these patterns.
+ * <li>pattern：用于匹配完全限定方法名的正则表达式。具体正则表达式语法取决于子类（例如 Perl5 正则表达式）
+ * <li>patterns：替代属性，接受由模式组成的 String 数组。结果将是这些模式的并集。
  * </ul>
  *
- * <p>Note: the regular expressions must be a match. For example,
- * {@code .*get.*} will match com.mycom.Foo.getBar().
- * {@code get.*} will not.
+ * <p>注意：正则表达式必须构成匹配。例如，{@code .*get.*} 将匹配 com.mycom.Foo.getBar()，而
+ * {@code get.*} 则不会。
  *
- * <p>This base class is serializable. Subclasses should declare all fields transient;
- * the {@link #initPatternRepresentation} method will be invoked again on deserialization.
+ * <p>此基类可序列化。子类应将所有字段声明为 transient；反序列化时将再次调用
+ * {@link #initPatternRepresentation} 方法。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -53,19 +50,18 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 		implements Serializable {
 
 	/**
-	 * Regular expressions to match.
+	 * 要匹配的正则表达式。
 	 */
 	private String[] patterns = new String[0];
 
 	/**
-	 * Regular expressions <strong>not</strong> to match.
+	 * 用于<strong>不</strong>匹配的正则表达式。
 	 */
 	private String[] excludedPatterns = new String[0];
 
 
 	/**
-	 * Convenience method when we have only a single pattern.
-	 * Use either this method or {@link #setPatterns}, not both.
+	 * 只有一个模式时使用的便捷方法。请使用此方法或 {@link #setPatterns} 之一，不要同时使用两者。
 	 * @see #setPatterns
 	 */
 	public void setPattern(String pattern) {
@@ -73,8 +69,8 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	}
 
 	/**
-	 * Set the regular expressions defining methods to match.
-	 * Matching will be the union of all these; if any match, the pointcut matches.
+	 * 设置用于定义要匹配的方法的正则表达式。匹配结果是所有这些表达式的并集；只要其中任一表达式匹配，该
+	 * 切点就匹配。
 	 * @see #setPattern
 	 */
 	public void setPatterns(String... patterns) {
@@ -87,15 +83,15 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	}
 
 	/**
-	 * Return the regular expressions for method matching.
+	 * 返回用于方法匹配的正则表达式。
 	 */
 	public String[] getPatterns() {
 		return this.patterns;
 	}
 
 	/**
-	 * Convenience method when we have only a single exclusion pattern.
-	 * Use either this method or {@link #setExcludedPatterns}, not both.
+	 * 只有一个排除模式时使用的便捷方法。请使用此方法或 {@link #setExcludedPatterns} 之一，不要同时使用
+	 * 两者。
 	 * @see #setExcludedPatterns
 	 */
 	public void setExcludedPattern(String excludedPattern) {
@@ -103,8 +99,8 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	}
 
 	/**
-	 * Set the regular expressions defining methods to match for exclusion.
-	 * Matching will be the union of all these; if any match, the pointcut matches.
+	 * 设置用于定义要排除匹配的方法的正则表达式。匹配结果是所有这些表达式的并集；只要其中任一表达式匹配，
+	 * 该切点就匹配。
 	 * @see #setExcludedPattern
 	 */
 	public void setExcludedPatterns(String... excludedPatterns) {
@@ -117,7 +113,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	}
 
 	/**
-	 * Returns the regular expressions for exclusion matching.
+	 * 返回用于排除匹配的正则表达式。
 	 */
 	public String[] getExcludedPatterns() {
 		return this.excludedPatterns;
@@ -125,9 +121,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 
 
 	/**
-	 * Try to match the regular expression against the fully qualified name
-	 * of the target class as well as against the method's declaring class,
-	 * plus the name of the method.
+	 * 尝试将正则表达式与目标类的完全限定名以及方法声明类加方法名进行匹配。
 	 */
 	@Override
 	public boolean matches(Method method, Class<?> targetClass) {
@@ -137,7 +131,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	}
 
 	/**
-	 * Match the specified candidate against the configured patterns.
+	 * 将指定的候选对象与已配置的模式进行匹配。
 	 * @param signatureString "java.lang.Object.hashCode" style signature
 	 * @return whether the candidate matches at least one of the specified patterns
 	 */
@@ -159,27 +153,23 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 
 
 	/**
-	 * Subclasses must implement this to initialize regexp pointcuts.
-	 * Can be invoked multiple times.
-	 * <p>This method will be invoked from the {@link #setPatterns} method,
-	 * and also on deserialization.
+	 * 子类必须实现此方法以初始化正则表达式切点。可被多次调用。
+	 * <p>此方法将从 {@link #setPatterns} 方法中调用，也会在反序列化时调用。
 	 * @param patterns the patterns to initialize
 	 * @throws IllegalArgumentException in case of an invalid pattern
 	 */
 	protected abstract void initPatternRepresentation(String[] patterns) throws IllegalArgumentException;
 
 	/**
-	 * Subclasses must implement this to initialize regexp pointcuts.
-	 * Can be invoked multiple times.
-	 * <p>This method will be invoked from the {@link #setExcludedPatterns} method,
-	 * and also on deserialization.
+	 * 子类必须实现此方法以初始化正则表达式切点。可被多次调用。
+	 * <p>此方法将从 {@link #setExcludedPatterns} 方法中调用，也会在反序列化时调用。
 	 * @param patterns the patterns to initialize
 	 * @throws IllegalArgumentException in case of an invalid pattern
 	 */
 	protected abstract void initExcludedPatternRepresentation(String[] patterns) throws IllegalArgumentException;
 
 	/**
-	 * Does the pattern at the given index match the given String?
+	 * 给定索引处的模式是否匹配给定的 String？
 	 * @param pattern the {@code String} pattern to match
 	 * @param patternIndex index of pattern (starting from 0)
 	 * @return {@code true} if there is a match, {@code false} otherwise
@@ -187,7 +177,7 @@ public abstract class AbstractRegexpMethodPointcut extends StaticMethodMatcherPo
 	protected abstract boolean matches(String pattern, int patternIndex);
 
 	/**
-	 * Does the exclusion pattern at the given index match the given String?
+	 * 给定索引处的排除模式是否匹配给定的 String？
 	 * @param pattern the {@code String} pattern to match
 	 * @param patternIndex index of pattern (starting from 0)
 	 * @return {@code true} if there is a match, {@code false} otherwise

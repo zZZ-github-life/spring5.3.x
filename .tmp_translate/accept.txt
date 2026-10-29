@@ -1,0 +1,53 @@
+@@ accept/FixedContentTypeResolver.java :: 1
+始终解析为固定媒体类型列表的解析器。可用作“最后一道”策略，在客户端未请求任何媒体类型时提供回退。
+@@ accept/FixedContentTypeResolver.java :: 2
+使用单个默认 {@code MediaType} 的构造函数。
+@@ accept/FixedContentTypeResolver.java :: 3
+使用有序的默认 {@code MediaType} 列表的构造函数，返回这些类型以供支持多种内容类型的应用使用。
+<p>如果存在不支持其他任何默认媒体类型的目标端，可考虑在末尾追加 {@link MediaType#ALL}。
+@@ accept/FixedContentTypeResolver.java :: 4
+返回配置的媒体类型列表。
+@@ accept/HeaderContentTypeResolver.java :: 1
+查看请求的 'Accept' 头的解析器。
+@@ accept/ParameterContentTypeResolver.java :: 1
+检查查询参数并使用它查找匹配 MediaType 的解析器。查找键可以注册，作为回退也可以使用 {@link MediaTypeFactory} 执行查找。
+@@ accept/ParameterContentTypeResolver.java :: 3
+设置用于确定所请求媒体类型的参数名称。
+<p>默认设置为 {@literal "format"}。
+@@ accept/RequestedContentTypeResolver.java :: 1
+为 {@code ServerWebExchange} 解析所请求媒体类型的策略。
+
+<p>请参见 {@link RequestedContentTypeResolverBuilder} 以创建一系列策略。
+@@ accept/RequestedContentTypeResolver.java :: 2
+包含 {@link MediaType#ALL} 的单元素列表，在未请求特定媒体类型时由 {@link #resolveMediaTypes} 返回。
+@@ accept/RequestedContentTypeResolver.java :: 3
+将给定请求解析为所请求媒体类型的列表。返回的列表首先按特异性排序，其次按质量参数排序。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 1
+用于组合式 {@link RequestedContentTypeResolver} 的构建器，它将请求委托给其他解析器，每个解析器实现不同的策略来确定所请求的内容类型，例如 Accept 头、查询参数或其他。
+
+<p>使用构建器方法按所需顺序添加解析器。对于给定请求，将使用第一个返回非空且不仅包含 {@link MediaType#ALL} 的列表的解析器。
+
+<p>默认情况下，如果未显式配置任何解析器，构建器将添加 {@link HeaderContentTypeResolver}。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 2
+添加从查询参数获取所请求内容类型的解析器。默认情况下查询参数名为 {@code "format"}。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 3
+添加从 {@literal "Accept"} 头获取所请求内容类型的解析器。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 4
+添加返回固定媒体类型集合的解析器。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 5
+添加自定义解析器。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 6
+构建一个 {@link RequestedContentTypeResolver}，将请求委托给通过此构建器配置的解析器列表。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 7
+用于创建和配置 {@link ParameterContentTypeResolver} 的辅助方法。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 8
+配置查找键（从查询参数值中提取）与对应 {@code MediaType} 之间的映射。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 9
+{@link #mediaType(String, MediaType)} 的基于 Map 的变体。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 10
+设置用于确定所请求媒体类型的参数名称。
+<p>默认设置为 {@literal "format"}。
+@@ accept/RequestedContentTypeResolverBuilder.java :: 11
+用于创建解析器的私有工厂方法。
+@@ accept/package-info.java :: 1
+{@link org.springframework.web.reactive.accept.RequestedContentTypeResolver} 策略及实现，用于为给定请求解析所请求的内容类型。

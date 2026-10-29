@@ -24,8 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Utilities for auto-proxy aware components.
- * Mainly for internal use within the framework.
+ * 用于自动代理感知组件的工具类。主要供框架内部使用。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -34,21 +33,18 @@ import org.springframework.util.StringUtils;
 public abstract class AutoProxyUtils {
 
 	/**
-	 * Bean definition attribute that may indicate whether a given bean is supposed
-	 * to be proxied with its target class (in case of it getting proxied in the first
-	 * place). The value is {@code Boolean.TRUE} or {@code Boolean.FALSE}.
-	 * <p>Proxy factories can set this attribute if they built a target class proxy
-	 * for a specific bean, and want to enforce that bean can always be cast
-	 * to its target class (even if AOP advices get applied through auto-proxying).
+	 * Bean 定义属性，用于指示给定 Bean 是否应以其目标类进行代理（前提是该 Bean 确实会被代理）。取值为
+	 * {@code Boolean.TRUE} 或 {@code Boolean.FALSE}。
+	 * <p>如果代理工厂为特定 Bean 构建了目标类代理，并希望强制该 Bean 始终可以转换为它的目标类（即使通
+	 * 过自动代理应用了 AOP 通知），那么代理工厂可以设置此属性。
 	 * @see #shouldProxyTargetClass
 	 */
 	public static final String PRESERVE_TARGET_CLASS_ATTRIBUTE =
 			Conventions.getQualifiedAttributeName(AutoProxyUtils.class, "preserveTargetClass");
 
 	/**
-	 * Bean definition attribute that indicates the original target class of an
-	 * auto-proxied bean, e.g. to be used for the introspection of annotations
-	 * on the target class behind an interface-based proxy.
+	 * Bean 定义属性，用于指示自动代理 Bean 的原始目标类，例如可用于内省基于接口的代理背后的目标类上的
+	 * 注解。
 	 * @since 4.2.3
 	 * @see #determineTargetClass
 	 */
@@ -57,10 +53,8 @@ public abstract class AutoProxyUtils {
 
 
 	/**
-	 * Determine whether the given bean should be proxied with its target
-	 * class rather than its interfaces. Checks the
-	 * {@link #PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}
-	 * of the corresponding bean definition.
+	 * 判断给定 Bean 是否应以其目标类而不是其接口进行代理。会检查相应 Bean 定义中的
+	 * {@link #PRESERVE_TARGET_CLASS_ATTRIBUTE "preserveTargetClass" attribute}。
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
 	 * @param beanName the name of the bean
 	 * @return whether the given bean should be proxied with its target class
@@ -76,8 +70,7 @@ public abstract class AutoProxyUtils {
 	}
 
 	/**
-	 * Determine the original target class for the specified bean, if possible,
-	 * otherwise falling back to a regular {@code getType} lookup.
+	 * 确定指定 Bean 的原始目标类（如果可能），否则回退到常规的 {@code getType} 查找。
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
 	 * @param beanName the name of the bean
 	 * @return the original target class as stored in the bean definition, if any
@@ -102,7 +95,7 @@ public abstract class AutoProxyUtils {
 	}
 
 	/**
-	 * Expose the given target class for the specified bean, if possible.
+	 * 如果可能，为指定 Bean 暴露给定的目标类。
 	 * @param beanFactory the containing ConfigurableListableBeanFactory
 	 * @param beanName the name of the bean
 	 * @param targetClass the corresponding target class
@@ -117,9 +110,8 @@ public abstract class AutoProxyUtils {
 	}
 
 	/**
-	 * Determine whether the given bean name indicates an "original instance"
-	 * according to {@link AutowireCapableBeanFactory#ORIGINAL_INSTANCE_SUFFIX},
-	 * skipping any proxy attempts for it.
+	 * 根据 {@link AutowireCapableBeanFactory#ORIGINAL_INSTANCE_SUFFIX} 判断给定 Bean 名称是否表示一个
+	 * “原始实例”，若是则跳过对它的任何代理尝试。
 	 * @param beanName the name of the bean
 	 * @param beanClass the corresponding bean class
 	 * @since 5.1

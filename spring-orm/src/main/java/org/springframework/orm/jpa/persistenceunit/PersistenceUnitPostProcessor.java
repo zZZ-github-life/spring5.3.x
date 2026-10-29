@@ -17,9 +17,9 @@
 package org.springframework.orm.jpa.persistenceunit;
 
 /**
- * Callback interface for post-processing a JPA PersistenceUnitInfo.
- * Implementations can be registered with a DefaultPersistenceUnitManager
- * or via a LocalContainerEntityManagerFactoryBean.
+ * 用于后处理 JPA PersistenceUnitInfo 的回调接口。
+ * 实现可以注册到 DefaultPersistenceUnitManager，
+ * 或通过 LocalContainerEntityManagerFactoryBean 注册。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -29,8 +29,8 @@ package org.springframework.orm.jpa.persistenceunit;
 public interface PersistenceUnitPostProcessor {
 
 	/**
-	 * Post-process the given PersistenceUnitInfo, for example registering
-	 * further entity classes and jar files.
+	 * 对给定的 PersistenceUnitInfo 进行后处理，例如注册
+	 * 更多的实体类和 jar 文件。
 	 * @param pui the chosen PersistenceUnitInfo, as read from {@code persistence.xml}.
 	 * Passed in as MutablePersistenceUnitInfo.
 	 */

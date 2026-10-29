@@ -19,8 +19,8 @@ package org.springframework.dao;
 import org.springframework.lang.Nullable;
 
 /**
- * Data access exception thrown when a resource fails completely:
- * for example, if we can't connect to a database using JDBC.
+ * 当资源完全失败时抛出的数据访问异常，
+ * 例如，无法通过 JDBC 连接到数据库。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 public class DataAccessResourceFailureException extends NonTransientDataAccessResourceException {
 
 	/**
-	 * Constructor for DataAccessResourceFailureException.
+	 * DataAccessResourceFailureException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public DataAccessResourceFailureException(String msg) {
@@ -37,7 +37,7 @@ public class DataAccessResourceFailureException extends NonTransientDataAccessRe
 	}
 
 	/**
-	 * Constructor for DataAccessResourceFailureException.
+	 * DataAccessResourceFailureException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

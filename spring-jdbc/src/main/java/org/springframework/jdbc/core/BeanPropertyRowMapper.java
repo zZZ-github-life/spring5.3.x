@@ -46,40 +46,32 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link RowMapper} implementation that converts a row into a new instance
- * of the specified mapped target class. The mapped target class must be a
- * top-level class or {@code static} nested class, and it must have a default or
- * no-arg constructor.
+ * {@link RowMapper}实现，将一行数据转换为指定映射目标类的新实例。
+ * 映射目标类必须是顶级类或{@code static}内部类，并且必须具有默认构造函数或无参构造函数。
  *
- * <p>Column values are mapped based on matching the column name (as obtained from
- * result set meta-data) to public setters in the target class for the corresponding
- * properties. The names are matched either directly or by transforming a name
- * separating the parts with underscores to the same name using "camel" case.
+ * <p>列值通过列名（从结果集元数据中获取）与目标类中对应属性的public setter方法进行匹配来映射。
+ * 名称可以直接匹配，也可以将通过下划线分隔的名称转换为"驼峰"命名后进行匹配。
  *
- * <p>Mapping is provided for properties in the target class for many common types &mdash;
- * for example: String, boolean, Boolean, byte, Byte, short, Short, int, Integer,
- * long, Long, float, Float, double, Double, BigDecimal, {@code java.util.Date}, etc.
+ * <p>为目标类中许多常见类型的属性提供了映射支持 &mdash;
+ * 例如：String、boolean、Boolean、byte、Byte、short、Short、int、Integer、
+ * long、Long、float、Float、double、Double、BigDecimal、{@code java.util.Date}等。
  *
- * <p>To facilitate mapping between columns and properties that don't have matching
- * names, try using column aliases in the SQL statement like
- * {@code "select fname as first_name from customer"}, where {@code first_name}
- * can be mapped to a {@code setFirstName(String)} method in the target class.
+ * <p>为了便于在名称不匹配的列和属性之间进行映射，可以尝试在SQL语句中使用列别名，例如
+ * {@code "select fname as first_name from customer"}，其中{@code first_name}
+ * 可以映射到目标类中的{@code setFirstName(String)}方法。
  *
- * <p>For a {@code NULL} value read from the database, an attempt will be made to
- * call the corresponding setter method with {@code null}, but in the case of
- * Java primitives this will result in a {@link TypeMismatchException} by default.
- * To ignore {@code NULL} database values for all primitive properties in the
- * target class, set the {@code primitivesDefaultedForNullValue} flag to
- * {@code true}. See {@link #setPrimitivesDefaultedForNullValue(boolean)} for
- * details.
+ * <p>对于从数据库读取的{@code NULL}值，将尝试使用{@code null}调用对应的setter方法，
+ * 但对于Java基本类型，这将默认导致{@link TypeMismatchException}。
+ * 要忽略目标类中所有基本类型属性的{@code NULL}数据库值，
+ * 请将{@code primitivesDefaultedForNullValue}标志设置为{@code true}。
+ * 详情请参见{@link #setPrimitivesDefaultedForNullValue(boolean)}。
  *
- * <p>If you need to map to a target class which has a <em>data class</em> constructor
- * &mdash; for example, a Java {@code record} or a Kotlin {@code data} class &mdash;
- * use {@link DataClassRowMapper} instead.
+ * <p如果需要映射到具有<em>数据类</em>构造函数的目标类 &mdash;
+ * 例如Java {@code record}或Kotlin {@code data}类 &mdash;
+ * 请改用{@link DataClassRowMapper}。
  *
- * <p>Please note that this class is designed to provide convenience rather than
- * high performance. For best performance, consider using a custom {@code RowMapper}
- * implementation.
+ * <p请注意，此类旨在提供便利性而非高性能。如需最佳性能，
+ * 请考虑使用自定义的{@code RowMapper}实现。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -90,38 +82,37 @@ import org.springframework.util.StringUtils;
  */
 public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
-	/** Logger available to subclasses. */
+	/** 子类可用的Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** The class we are mapping to. */
+	/** 我们要映射到的类。 */
 	@Nullable
 	private Class<T> mappedClass;
 
-	/** Whether we're strictly validating. */
+	/** 是否进行严格验证。 */
 	private boolean checkFullyPopulated = false;
 
 	/**
-	 * Whether {@code NULL} database values should be ignored for primitive
-	 * properties in the target class.
+	 * 目标类中的基本类型属性是否应忽略{@code NULL}数据库值。
 	 * @see #setPrimitivesDefaultedForNullValue(boolean)
 	 */
 	private boolean primitivesDefaultedForNullValue = false;
 
-	/** ConversionService for binding JDBC values to bean properties. */
+	/** 用于将JDBC值绑定到bean属性的ConversionService。 */
 	@Nullable
 	private ConversionService conversionService = DefaultConversionService.getSharedInstance();
 
-	/** Map of the properties we provide mapping for. */
+	/** 我们提供映射的属性Map。 */
 	@Nullable
 	private Map<String, PropertyDescriptor> mappedProperties;
 
-	/** Set of bean property names we provide mapping for. */
+	/** 我们提供映射的bean属性名称集合。 */
 	@Nullable
 	private Set<String> mappedPropertyNames;
 
 
 	/**
-	 * Create a new {@code BeanPropertyRowMapper} for bean-style configuration.
+	 * 创建一个新的{@code BeanPropertyRowMapper}，用于bean风格的配置。
 	 * @see #setMappedClass
 	 * @see #setCheckFullyPopulated
 	 */
@@ -129,8 +120,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Create a new {@code BeanPropertyRowMapper}, accepting unpopulated
-	 * properties in the target bean.
+	 * 创建一个新的{@code BeanPropertyRowMapper}，接受目标bean中未填充的属性。
 	 * @param mappedClass the class that each row should be mapped to
 	 */
 	public BeanPropertyRowMapper(Class<T> mappedClass) {
@@ -138,7 +128,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Create a new {@code BeanPropertyRowMapper}.
+	 * 创建一个新的{@code BeanPropertyRowMapper}。
 	 * @param mappedClass the class that each row should be mapped to
 	 * @param checkFullyPopulated whether we're strictly validating that
 	 * all bean properties have been mapped from corresponding database columns
@@ -150,7 +140,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 
 	/**
-	 * Set the class that each row should be mapped to.
+	 * 设置每行应映射到的类。
 	 */
 	public void setMappedClass(Class<T> mappedClass) {
 		if (this.mappedClass == null) {
@@ -165,7 +155,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Get the class that we are mapping to.
+	 * 获取我们要映射到的类。
 	 */
 	@Nullable
 	public final Class<T> getMappedClass() {
@@ -173,42 +163,35 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Set whether we're strictly validating that all bean properties have been mapped
-	 * from corresponding database columns.
-	 * <p>Default is {@code false}, accepting unpopulated properties in the target bean.
+	 * 设置是否严格验证所有bean属性都已从对应的数据库列映射。
+	 * <p>默认为{@code false}，接受目标bean中未填充的属性。
 	 */
 	public void setCheckFullyPopulated(boolean checkFullyPopulated) {
 		this.checkFullyPopulated = checkFullyPopulated;
 	}
 
 	/**
-	 * Return whether we're strictly validating that all bean properties have been
-	 * mapped from corresponding database columns.
+	 * 返回是否严格验证所有bean属性都已从对应的数据库列映射。
 	 */
 	public boolean isCheckFullyPopulated() {
 		return this.checkFullyPopulated;
 	}
 
 	/**
-	 * Set whether a {@code NULL} database column value should be ignored when
-	 * mapping to a corresponding primitive property in the target class.
-	 * <p>Default is {@code false}, throwing an exception when nulls are mapped
-	 * to Java primitives.
-	 * <p>If this flag is set to {@code true} and you use an <em>ignored</em>
-	 * primitive property value from the mapped bean to update the database, the
-	 * value in the database will be changed from {@code NULL} to the current value
-	 * of that primitive property. That value may be the property's initial value
-	 * (potentially Java's default value for the respective primitive type), or
-	 * it may be some other value set for the property in the default constructor
-	 * (or initialization block) or as a side effect of setting some other property
-	 * in the mapped bean.
+	 * 设置映射到目标类中对应基本类型属性时，是否忽略{@code NULL}数据库列值。
+	 * <p>默认为{@code false}，当null映射到Java基本类型时抛出异常。
+	 * <p>如果将此标志设置为{@code true}，并且使用映射bean中被<em>忽略</em>的
+	 * 基本类型属性值来更新数据库，则数据库中的值将从{@code NULL}更改为该基本类型属性的当前值。
+	 * 该值可能是属性的初始值（可能是Java对应基本类型的默认值），
+	 * 也可能是默认构造函数（或初始化块）中为该属性设置的某些值，
+	 * 或者是设置映射bean中其他属性时产生的副作用值。
 	 */
 	public void setPrimitivesDefaultedForNullValue(boolean primitivesDefaultedForNullValue) {
 		this.primitivesDefaultedForNullValue = primitivesDefaultedForNullValue;
 	}
 
 	/**
-	 * Get the value of the {@code primitivesDefaultedForNullValue} flag.
+	 * 获取{@code primitivesDefaultedForNullValue}标志的值。
 	 * @see #setPrimitivesDefaultedForNullValue(boolean)
 	 */
 	public boolean isPrimitivesDefaultedForNullValue() {
@@ -216,10 +199,10 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Set a {@link ConversionService} for binding JDBC values to bean properties,
-	 * or {@code null} for none.
-	 * <p>Default is a {@link DefaultConversionService}, as of Spring 4.3. This
-	 * provides support for {@code java.time} conversion and other special types.
+	 * 设置用于将JDBC值绑定到bean属性的{@link ConversionService}，
+	 * 或设置为{@code null}表示不使用。
+	 * <p>从Spring 4.3开始，默认为{@link DefaultConversionService}。
+	 * 它提供了对{@code java.time}转换和其他特殊类型的支持。
 	 * @since 4.3
 	 * @see #initBeanWrapper(BeanWrapper)
 	 */
@@ -228,8 +211,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Return a {@link ConversionService} for binding JDBC values to bean properties,
-	 * or {@code null} if none.
+	 * 返回用于将JDBC值绑定到bean属性的{@link ConversionService}，
+	 * 如果没有则返回{@code null}。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -239,7 +222,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 
 	/**
-	 * Initialize the mapping meta-data for the given class.
+	 * 初始化给定类的映射元数据。
 	 * @param mappedClass the mapped class
 	 */
 	protected void initialize(Class<T> mappedClass) {
@@ -261,7 +244,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Remove the specified property from the mapped properties.
+	 * 从映射的属性中移除指定的属性。
 	 * @param propertyName the property name (as used by property descriptors)
 	 * @since 5.3.9
 	 */
@@ -273,8 +256,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Convert the given name to lower case.
-	 * By default, conversions will happen within the US locale.
+	 * 将给定名称转换为小写。
+	 * 默认情况下，转换在US语言环境中进行。
 	 * @param name the original name
 	 * @return the converted name
 	 * @since 4.2
@@ -284,8 +267,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Convert a name in camelCase to an underscored name in lower case.
-	 * Any upper case letters are converted to lower case with a preceding underscore.
+	 * 将驼峰命名转换为小写的下划线命名。
+	 * 任何大写字母都将转换为小写，并在前面加上下划线。
 	 * @param name the original name
 	 * @return the converted name
 	 * @since 4.2
@@ -312,8 +295,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 
 	/**
-	 * Extract the values for all columns in the current row.
-	 * <p>Utilizes public setters and result set meta-data.
+	 * 提取当前行中所有列的值。
+	 * <p>利用public setter方法和结果集元数据。
 	 * @see java.sql.ResultSetMetaData
 	 */
 	@Override
@@ -376,7 +359,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Construct an instance of the mapped class for the current row.
+	 * 为当前行构造映射类的实例。
 	 * @param rs the ResultSet to map (pre-initialized for the current row)
 	 * @param tc a TypeConverter with this RowMapper's conversion service
 	 * @return a corresponding instance of the mapped class
@@ -389,10 +372,10 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Initialize the given BeanWrapper to be used for row mapping.
-	 * To be called for each row.
-	 * <p>The default implementation applies the configured {@link ConversionService},
-	 * if any. Can be overridden in subclasses.
+	 * 初始化给定的BeanWrapper，用于行映射。
+	 * 每行调用时都需要调用此方法。
+	 * <p>默认实现会应用配置的{@link ConversionService}（如果有的话）。
+	 * 子类可以重写此方法。
 	 * @param bw the BeanWrapper to initialize
 	 * @see #getConversionService()
 	 * @see BeanWrapper#setConversionService
@@ -405,9 +388,8 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Retrieve a JDBC object value for the specified column.
-	 * <p>The default implementation delegates to
-	 * {@link #getColumnValue(ResultSet, int, Class)}.
+	 * 检索指定列的JDBC对象值。
+	 * <p>默认实现委托给{@link #getColumnValue(ResultSet, int, Class)}。
 	 * @param rs is the ResultSet holding the data
 	 * @param index is the column index
 	 * @param pd the bean property that each result object is expected to match
@@ -421,11 +403,10 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Retrieve a JDBC object value for the specified column.
-	 * <p>The default implementation calls
-	 * {@link JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)}.
-	 * Subclasses may override this to check specific value types upfront,
-	 * or to post-process values return from {@code getResultSetValue}.
+	 * 检索指定列的JDBC对象值。
+	 * <p>默认实现调用{@link JdbcUtils#getResultSetValue(java.sql.ResultSet, int, Class)}。
+	 * 子类可以重写此方法以预先检查特定的值类型，
+	 * 或对从{@code getResultSetValue}返回的值进行后处理。
 	 * @param rs is the ResultSet holding the data
 	 * @param index is the column index
 	 * @param paramType the target parameter type
@@ -441,7 +422,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 
 
 	/**
-	 * Static factory method to create a new {@code BeanPropertyRowMapper}.
+	 * 静态工厂方法，创建一个新的{@code BeanPropertyRowMapper}。
 	 * @param mappedClass the class that each row should be mapped to
 	 * @see #newInstance(Class, ConversionService)
 	 */
@@ -450,7 +431,7 @@ public class BeanPropertyRowMapper<T> implements RowMapper<T> {
 	}
 
 	/**
-	 * Static factory method to create a new {@code BeanPropertyRowMapper}.
+	 * 静态工厂方法，创建一个新的{@code BeanPropertyRowMapper}。
 	 * @param mappedClass the class that each row should be mapped to
 	 * @param conversionService the {@link ConversionService} for binding
 	 * JDBC values to bean properties, or {@code null} for none

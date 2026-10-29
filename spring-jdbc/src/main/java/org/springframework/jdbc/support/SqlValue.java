@@ -20,13 +20,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Simple interface for complex types to be set as statement parameters.
+ * 简单接口，用于将复杂类型设置为语句参数。
  *
- * <p>Implementations perform the actual work of setting the actual values. They must
- * implement the callback method {@code setValue} which can throw SQLExceptions
- * that will be caught and translated by the calling code. This callback method has
- * access to the underlying Connection via the given PreparedStatement object, if that
- * should be needed to create any database-specific objects.
+ * <p>实现类负责设置实际值的具体工作。它们必须实现回调方法 {@code setValue}，
+ * 该方法可以抛出 SQLException，这些异常会被调用代码捕获并转换。如果需要创建
+ * 任何数据库特定的对象，该回调方法可以通过给定的 PreparedStatement 对象
+ * 访问底层的 Connection。
  *
  * @author Juergen Hoeller
  * @since 2.5.6
@@ -36,7 +35,7 @@ import java.sql.SQLException;
 public interface SqlValue {
 
 	/**
-	 * Set the value on the given PreparedStatement.
+	 * 在给定的 PreparedStatement 上设置值。
 	 * @param ps the PreparedStatement to work on
 	 * @param paramIndex the index of the parameter for which we need to set the value
 	 * @throws SQLException if an SQLException is encountered while setting parameter values
@@ -44,7 +43,7 @@ public interface SqlValue {
 	void setValue(PreparedStatement ps, int paramIndex)	throws SQLException;
 
 	/**
-	 * Clean up resources held by this value object.
+	 * 清理此值对象持有的资源。
 	 */
 	void cleanup();
 

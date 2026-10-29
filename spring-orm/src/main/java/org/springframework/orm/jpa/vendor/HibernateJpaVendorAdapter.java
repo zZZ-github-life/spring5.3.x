@@ -44,25 +44,26 @@ import org.hibernate.resource.jdbc.spi.PhysicalConnectionHandlingMode;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.orm.jpa.JpaVendorAdapter} implementation for Hibernate
- * EntityManager. Developed and tested against Hibernate 5.3 and 5.4;
- * backwards-compatible with Hibernate 5.2 at runtime on a best-effort basis.
+ * 适用于 Hibernate EntityManager 的
+ * {@link org.springframework.orm.jpa.JpaVendorAdapter} 实现。
+ * 基于 Hibernate 5.3 和 5.4 开发并测试；在运行时尽最大努力
+ * 向后兼容 Hibernate 5.2。
  *
- * <p>Exposes Hibernate's persistence provider and Hibernate's Session as extended
- * EntityManager interface, and adapts {@link AbstractJpaVendorAdapter}'s common
- * configuration settings. Also supports the detection of annotated packages (through
- * {@link org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo#getManagedPackages()}),
- * e.g. containing Hibernate {@link org.hibernate.annotations.FilterDef} annotations,
- * along with Spring-driven entity scanning which requires no {@code persistence.xml}
- * ({@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean#setPackagesToScan}).
+ * <p>暴露 Hibernate 的持久化提供者和 Hibernate 的 Session 作为扩展的
+ * EntityManager 接口，并适配 {@link AbstractJpaVendorAdapter} 的通用配置设置。
+ * 还支持带注解包的检测（通过
+ * {@link org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo#getManagedPackages()}），
+ * 例如包含 Hibernate {@link org.hibernate.annotations.FilterDef} 注解的包，
+ * 以及不依赖 {@code persistence.xml} 的 Spring 驱动实体扫描
+ * （{@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean#setPackagesToScan}）。
  *
- * <p><b>A note about {@code HibernateJpaVendorAdapter} vs native Hibernate settings:</b>
- * Some settings on this adapter may conflict with native Hibernate configuration rules
- * or custom Hibernate properties. For example, specify either {@link #setDatabase} or
- * Hibernate's "hibernate.dialect_resolvers" property, not both. Also, be careful about
- * Hibernate's connection release mode: This adapter prefers {@code ON_CLOSE} behavior,
- * aligned with {@link HibernateJpaDialect#setPrepareConnection}, at least for non-JTA
- * scenarios; you may override this through corresponding native Hibernate properties.
+ * <p><b>关于 {@code HibernateJpaVendorAdapter} 与原生 Hibernate 设置的说明：</b>
+ * 此适配器上的某些设置可能与原生 Hibernate 配置规则或自定义 Hibernate 属性冲突。
+ * 例如，请只指定 {@link #setDatabase} 或 Hibernate 的
+ * "hibernate.dialect_resolvers" 属性之一，而不要同时指定两者。
+ * 另外，请注意 Hibernate 的连接释放模式：此适配器倾向于 {@code ON_CLOSE} 行为，
+ * 与 {@link HibernateJpaDialect#setPrepareConnection} 保持一致，
+ * 至少对于非 JTA 场景是如此；你可以通过相应的原生 Hibernate 属性覆盖这一点。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -88,23 +89,22 @@ public class HibernateJpaVendorAdapter extends AbstractJpaVendorAdapter {
 
 
 	/**
-	 * Set whether to prepare the underlying JDBC Connection of a transactional
-	 * Hibernate Session, that is, whether to apply a transaction-specific
-	 * isolation level and/or the transaction's read-only flag to the underlying
-	 * JDBC Connection.
-	 * <p>See {@link HibernateJpaDialect#setPrepareConnection(boolean)} for details.
-	 * This is just a convenience flag passed through to {@code HibernateJpaDialect}.
-	 * <p>On Hibernate 5.1+, this flag remains {@code true} by default like against
-	 * previous Hibernate versions. The vendor adapter manually enforces Hibernate's
-	 * new connection handling mode {@code DELAYED_ACQUISITION_AND_HOLD} in that case
-	 * unless a user-specified connection handling mode property indicates otherwise;
-	 * switch this flag to {@code false} to avoid that interference.
-	 * <p><b>NOTE: For a persistence unit with transaction type JTA e.g. on WebLogic,
-	 * the connection release mode will never be altered from its provider default,
-	 * i.e. not be forced to {@code DELAYED_ACQUISITION_AND_HOLD} by this flag.</b>
-	 * Alternatively, set Hibernate's "hibernate.connection.handling_mode"
-	 * property to "DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION" or even
-	 * "DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT" in such a scenario.
+	 * 设置是否准备事务性 Hibernate Session 底层的 JDBC Connection，
+	 * 即是否将事务特定的隔离级别和/或事务的只读标志
+	 * 应用到该底层 JDBC Connection。
+	 * <p>详情请参见 {@link HibernateJpaDialect#setPrepareConnection(boolean)}。
+	 * 这只是传递给 {@code HibernateJpaDialect} 的便捷标志。
+	 * <p>在 Hibernate 5.1+ 上，此标志默认仍为 {@code true}，
+	 * 与之前的 Hibernate 版本保持一致。在这种情况下，厂商适配器会手动强制
+	 * Hibernate 的新连接处理模式 {@code DELAYED_ACQUISITION_AND_HOLD}，
+	 * 除非用户指定的连接处理模式属性另有指示；
+	 * 将此标志切换为 {@code false} 可避免这种干预。
+	 * <p><b>注意：对于事务类型为 JTA 的持久化单元（例如在 WebLogic 上），
+	 * 连接释放模式绝不会偏离提供者的默认值，
+	 * 即不会被此标志强制为 {@code DELAYED_ACQUISITION_AND_HOLD}。</b>
+	 * 或者，在这种情况下将 Hibernate 的 "hibernate.connection.handling_mode"
+	 * 属性设置为 "DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION"，
+	 * 甚至设置为 "DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT"。
 	 * @since 4.3.1
 	 * @see PersistenceUnitInfo#getTransactionType()
 	 * @see #getJpaPropertyMap(PersistenceUnitInfo)
@@ -165,7 +165,7 @@ public class HibernateJpaVendorAdapter extends AbstractJpaVendorAdapter {
 	}
 
 	/**
-	 * Determine the Hibernate database dialect class for the given target database.
+	 * 确定给定目标数据库对应的 Hibernate 数据库方言类。
 	 * @param database the target database
 	 * @return the Hibernate database dialect class, or {@code null} if none found
 	 */

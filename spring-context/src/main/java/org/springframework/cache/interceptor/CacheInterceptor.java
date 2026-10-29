@@ -26,16 +26,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * AOP Alliance MethodInterceptor for declarative cache
- * management using the common Spring caching infrastructure
- * ({@link org.springframework.cache.Cache}).
+ * 用于使用通用 Spring 缓存基础设施（{@link org.springframework.cache.Cache}）进行声明式缓存管理的
+ * AOP Alliance MethodInterceptor。
  *
- * <p>Derives from the {@link CacheAspectSupport} class which
- * contains the integration with Spring's underlying caching API.
- * CacheInterceptor simply calls the relevant superclass methods
- * in the correct order.
+ * <p>继承自 {@link CacheAspectSupport} 类，该类包含与 Spring 底层缓存 API 的集成。CacheInterceptor
+ * 只是按正确顺序调用相关的超类方法。
  *
- * <p>CacheInterceptors are thread-safe.
+ * <p>CacheInterceptor 是线程安全的。
  *
  * @author Costin Leau
  * @author Juergen Hoeller

@@ -20,11 +20,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Contract for mapping conditions to messages.
+ * 将条件映射到消息的契约。
  *
- * <p>Message conditions can be combined (e.g. type + method-level conditions),
- * matched to a specific Message, as well as compared to each other in the
- * context of a Message to determine which one matches a request more closely.
+ * <p>消息条件可以组合（例如类型级 + 方法级条件），可以与特定 Message 匹配，
+ * 也可以在 Message 的上下文中相互比较，以确定哪一个更接近请求。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -33,28 +32,25 @@ import org.springframework.messaging.Message;
 public interface MessageCondition<T> {
 
 	/**
-	 * Define the rules for combining this condition with another.
-	 * For example combining type- and method-level conditions.
+	 * 定义将此条件与另一个条件组合的规则。
+	 * 例如组合类型级和方法级条件。
 	 * @param other the condition to combine with
 	 * @return the resulting message condition
 	 */
 	T combine(T other);
 
 	/**
-	 * Check if this condition matches the given Message and returns a
-	 * potentially new condition with content tailored to the current message.
-	 * For example a condition with destination patterns might return a new
-	 * condition with sorted, matching patterns only.
+	 * 检查此条件是否匹配给定 Message，并返回一个内容针对当前消息定制的新条件
+	 * （可能是新实例）。例如，包含目标模式的条件可能返回一个仅包含排序后匹配模式的新条件。
 	 * @return a condition instance in case of a match; or {@code null} if there is no match.
 	 */
 	@Nullable
 	T getMatchingCondition(Message<?> message);
 
 	/**
-	 * Compare this condition to another in the context of a specific message.
-	 * It is assumed both instances have been obtained via
-	 * {@link #getMatchingCondition(Message)} to ensure they have content
-	 * relevant to current message only.
+	 * 在特定消息的上下文中将此条件与另一个条件进行比较。
+	 * 假定两个实例都是通过 {@link #getMatchingCondition(Message)} 获取的，
+	 * 以确保它们仅包含与当前消息相关的内容。
 	 */
 	int compareTo(T other, Message<?> message);
 

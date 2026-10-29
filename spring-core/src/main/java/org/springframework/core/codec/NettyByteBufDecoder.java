@@ -30,7 +30,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Decoder for {@link ByteBuf ByteBufs}.
+ * {@link ByteBuf ByteBuf} 的解码器。
  *
  * @author Vladislav Kisel
  * @since 5.3

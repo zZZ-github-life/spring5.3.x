@@ -39,12 +39,11 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * A resolver to extract and convert the payload of a message using a
- * {@link MessageConverter}. It also validates the payload using a
- * {@link Validator} if the argument is annotated with a Validation annotation.
+ * 使用 {@link MessageConverter} 提取并转换消息载荷的解析器。
+ * 如果参数带有校验注解，它还会使用 {@link Validator} 校验载荷。
  *
- * <p>This {@link HandlerMethodArgumentResolver} should be ordered last as it
- * supports all types and does not require the {@link Payload} annotation.
+ * <p>此 {@link HandlerMethodArgumentResolver} 应排在最后，因为它支持所有类型，
+ * 且不要求存在 {@link Payload} 注解。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -63,8 +62,7 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 
 
 	/**
-	 * Create a new {@code PayloadArgumentResolver} with the given
-	 * {@link MessageConverter}.
+	 * 使用给定 {@link MessageConverter} 创建新的 {@code PayloadArgumentResolver}。
 	 * @param messageConverter the MessageConverter to use (required)
 	 */
 	public PayloadMethodArgumentResolver(MessageConverter messageConverter) {
@@ -72,8 +70,8 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Create a new {@code PayloadArgumentResolver} with the given
-	 * {@link MessageConverter} and {@link Validator}.
+	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
+	 * 创建新的 {@code PayloadArgumentResolver}。
 	 * @param messageConverter the MessageConverter to use (required)
 	 * @param validator the Validator to use (optional)
 	 */
@@ -82,8 +80,8 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Create a new {@code PayloadArgumentResolver} with the given
-	 * {@link MessageConverter} and {@link Validator}.
+	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
+	 * 创建新的 {@code PayloadArgumentResolver}。
 	 * @param messageConverter the MessageConverter to use (required)
 	 * @param validator the Validator to use (optional)
 	 * @param useDefaultResolution if "true" (the default) this resolver supports
@@ -155,7 +153,7 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Specify if the given {@code payload} is empty.
+	 * 指定给定 {@code payload} 是否为空。
 	 * @param payload the payload to check (can be {@code null})
 	 */
 	protected boolean isEmptyPayload(@Nullable Object payload) {
@@ -174,11 +172,10 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Resolve the target class to convert the payload to.
-	 * <p>By default this is simply {@link MethodParameter#getParameterType()}
-	 * but that can be overridden to select a more specific target type after
-	 * also taking into account the "Content-Type", e.g. return {@code String}
-	 * if target type is {@code Object} and {@code "Content-Type:text/**"}.
+	 * 解析要将载荷转换为的目标类。
+	 * <p>默认情况下，这只是 {@link MethodParameter#getParameterType()}，
+	 * 但可以重写此方法，以便在同时考虑 "Content-Type" 后选择更具体的目标类型，
+	 * 例如当目标类型为 {@code Object} 且 {@code "Content-Type:text/**"} 时返回 {@code String}。
 	 * @param parameter the target method parameter
 	 * @param message the message being processed
 	 * @return the target type to use
@@ -189,10 +186,9 @@ public class PayloadMethodArgumentResolver implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Validate the payload if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
-	 * Spring's {@link Validated},
-	 * and custom annotations whose name starts with "Valid".
+	 * 在适用时校验载荷。
+	 * <p>默认实现会检查 {@code @javax.validation.Valid}、Spring 的 {@link Validated}
+	 * 以及名称以 "Valid" 开头的自定义注解。
 	 * @param message the currently processed message
 	 * @param parameter the method parameter
 	 * @param target the target payload object

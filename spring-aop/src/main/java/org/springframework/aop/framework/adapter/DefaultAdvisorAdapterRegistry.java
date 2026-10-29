@@ -27,11 +27,11 @@ import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 
 /**
- * Default implementation of the {@link AdvisorAdapterRegistry} interface.
- * Supports {@link org.aopalliance.intercept.MethodInterceptor},
- * {@link org.springframework.aop.MethodBeforeAdvice},
- * {@link org.springframework.aop.AfterReturningAdvice},
- * {@link org.springframework.aop.ThrowsAdvice}.
+ * {@link AdvisorAdapterRegistry} 接口的默认实现。支持
+ * {@link org.aopalliance.intercept.MethodInterceptor}、
+ * {@link org.springframework.aop.MethodBeforeAdvice}、
+ * {@link org.springframework.aop.AfterReturningAdvice}、
+ * {@link org.springframework.aop.ThrowsAdvice}。
  *
  * @author Rod Johnson
  * @author Rob Harrop
@@ -44,7 +44,7 @@ public class DefaultAdvisorAdapterRegistry implements AdvisorAdapterRegistry, Se
 
 
 	/**
-	 * Create a new DefaultAdvisorAdapterRegistry, registering well-known adapters.
+	 * 创建一个新的 DefaultAdvisorAdapterRegistry，并注册已知的适配器。
 	 */
 	public DefaultAdvisorAdapterRegistry() {
 		registerAdvisorAdapter(new MethodBeforeAdviceAdapter());

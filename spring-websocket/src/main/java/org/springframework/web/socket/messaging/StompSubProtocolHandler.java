@@ -64,8 +64,8 @@ import org.springframework.web.socket.handler.WebSocketSessionDecorator;
 import org.springframework.web.socket.sockjs.transport.SockJsSession;
 
 /**
- * A {@link SubProtocolHandler} for STOMP that supports versions 1.0, 1.1, and 1.2
- * of the STOMP specification.
+ * 适用于 STOMP 的 {@link SubProtocolHandler}，支持 STOMP 规范的 1.0、1.1
+ * 和 1.2 版本。
  *
  * @author Rossen Stoyanchev
  * @author Andy Wilkinson
@@ -74,16 +74,16 @@ import org.springframework.web.socket.sockjs.transport.SockJsSession;
 public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationEventPublisherAware {
 
 	/**
-	 * This handler supports assembling large STOMP messages split into multiple
-	 * WebSocket messages and STOMP clients (like stomp.js) indeed split large STOMP
-	 * messages at 16K boundaries. Therefore the WebSocket server input message
-	 * buffer size must allow 16K at least plus a little extra for SockJS framing.
+	 * 此处理器支持将拆分为多条 WebSocket 消息的大型 STOMP 消息重新组装，
+	 * 而 STOMP 客户端（例如 stomp.js）确实会以 16K 为边界拆分大型 STOMP
+	 * 消息。因此，WebSocket 服务器的输入消息缓冲区大小必须至少允许 16K，
+	 * 并为 SockJS 帧格式额外留出一些空间。
 	 */
 	public static final int MINIMUM_WEBSOCKET_MESSAGE_SIZE = 16 * 1024 + 256;
 
 	/**
-	 * The name of the header set on the CONNECTED frame indicating the name
-	 * of the user authenticated on the WebSocket session.
+	 * 设置在 CONNECTED 帧上的头名称，用于指示 WebSocket 会话中
+	 * 已通过认证的用户名称。
 	 */
 	public static final String CONNECTED_USER_HEADER = "user-name";
 
@@ -120,10 +120,10 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 
 
 	/**
-	 * Configure a handler for error messages sent to clients which allows
-	 * customizing the error messages or preventing them from being sent.
-	 * <p>By default this isn't configured in which case an ERROR frame is sent
-	 * with a message header reflecting the error.
+	 * 配置一个用于处理发送给客户端的错误消息的处理器，它允许自定义错误消息
+	 * 或阻止发送错误消息。
+	 * <p>默认情况下未配置此项，此时会发送一个 ERROR 帧，
+	 * 并在消息头中反映该错误。
 	 * @param errorHandler the error handler
 	 */
 	public void setErrorHandler(StompSubProtocolErrorHandler errorHandler) {
@@ -131,7 +131,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Return the configured error handler.
+	 * 返回配置的错误处理器。
 	 */
 	@Nullable
 	public StompSubProtocolErrorHandler getErrorHandler() {
@@ -139,11 +139,10 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Configure the maximum size allowed for an incoming STOMP message.
-	 * Since a STOMP message can be received in multiple WebSocket messages,
-	 * buffering may be required and therefore it is necessary to know the maximum
-	 * allowed message size.
-	 * <p>By default this property is set to 64K.
+	 * 配置传入 STOMP 消息所允许的最大大小。
+	 * 由于一条 STOMP 消息可以通过多条 WebSocket 消息接收，
+	 * 因此可能需要缓冲，所以有必要知道所允许的最大消息大小。
+	 * <p>默认情况下，此属性设置为 64K。
 	 * @since 4.0.3
 	 */
 	public void setMessageSizeLimit(int messageSizeLimit) {
@@ -151,7 +150,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Get the configured message buffer size limit in bytes.
+	 * 获取配置的消息缓冲区大小限制（字节）。
 	 * @since 4.0.3
 	 */
 	public int getMessageSizeLimit() {
@@ -159,7 +158,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Configure a {@link StompEncoder} for encoding STOMP frames.
+	 * 配置用于编码 STOMP 帧的 {@link StompEncoder}。
 	 * @since 4.3.5
 	 */
 	public void setEncoder(StompEncoder encoder) {
@@ -167,7 +166,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Configure a {@link StompDecoder} for decoding STOMP frames.
+	 * 配置用于解码 STOMP 帧的 {@link StompDecoder}。
 	 * @since 4.3.5
 	 */
 	public void setDecoder(StompDecoder decoder) {
@@ -175,10 +174,9 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
-	 * messages created from decoded STOMP frames and other messages sent to the
-	 * client inbound channel.
-	 * <p>By default this property is not set.
+	 * 配置一个 {@link MessageHeaderInitializer}，应用于由解码后的 STOMP 帧
+	 * 创建的所有消息的头，以及发送到客户端入站通道的其他消息。
+	 * <p>默认情况下不设置此属性。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
@@ -186,7 +184,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {
@@ -204,15 +202,15 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Return a String describing internal state and counters.
-	 * Effectively {@code toString()} on {@link #getStats() getStats()}.
+	 * 返回描述内部状态和计数器的字符串。
+	 * 实际上就是调用 {@link #getStats() getStats()} 的 {@code toString()}。
 	 */
 	public String getStatsInfo() {
 		return this.stats.toString();
 	}
 
 	/**
-	 * Return a structured object with internal state and counters.
+	 * 返回包含内部状态和计数器的结构化对象。
 	 * @since 5.2
 	 */
 	public Stats getStats() {
@@ -221,7 +219,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 
 
 	/**
-	 * Handle incoming WebSocket messages from clients.
+	 * 处理来自客户端的传入 WebSocket 消息。
 	 */
 	@Override
 	public void handleMessageFromClient(WebSocketSession session,
@@ -365,9 +363,9 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Invoked when no
+	 * 当未配置
 	 * {@link #setErrorHandler(StompSubProtocolErrorHandler) errorHandler}
-	 * is configured to send an ERROR frame to the client.
+	 * 以向客户端发送 ERROR 帧时调用。
 	 */
 	private void sendErrorMessage(WebSocketSession session, Throwable error) {
 		StompHeaderAccessor headerAccessor = StompHeaderAccessor.create(StompCommand.ERROR);
@@ -422,7 +420,7 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * Handle STOMP messages going back out to WebSocket clients.
+	 * 处理发回 WebSocket 客户端的 STOMP 消息。
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -552,8 +550,8 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 	}
 
 	/**
-	 * The simple broker produces {@code SimpMessageType.CONNECT_ACK} that's not STOMP
-	 * specific and needs to be turned into a STOMP CONNECTED frame.
+	 * 简单代理会产生 {@code SimpMessageType.CONNECT_ACK}，它不是 STOMP
+	 * 特有的，需要转换成 STOMP CONNECTED 帧。
 	 */
 	private StompHeaderAccessor convertConnectAcktoStompConnected(StompHeaderAccessor connectAckHeaders) {
 		String name = StompHeaderAccessor.CONNECT_MESSAGE_HEADER;
@@ -683,23 +681,23 @@ public class StompSubProtocolHandler implements SubProtocolHandler, ApplicationE
 
 
 	/**
-	 * Contract for access to session counters.
+	 * 用于访问会话计数器的契约。
 	 * @since 5.2
 	 */
 	public interface Stats {
 
 		/**
-		 * The number of CONNECT frames processed.
+		 * 已处理的 CONNECT 帧数量。
 		 */
 		int getTotalConnect();
 
 		/**
-		 * The number of CONNECTED frames processed.
+		 * 已处理的 CONNECTED 帧数量。
 		 */
 		int getTotalConnected();
 
 		/**
-		 * The number of DISCONNECT frames processed.
+		 * 已处理的 DISCONNECT 帧数量。
 		 */
 		int getTotalDisconnect();
 	}

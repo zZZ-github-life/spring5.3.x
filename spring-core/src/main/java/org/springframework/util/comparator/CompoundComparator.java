@@ -25,14 +25,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A comparator that chains a sequence of one or more Comparators.
+ * 将一系列（一个或多个）比较器串联起来的比较器。
  *
- * <p>A compound comparator calls each Comparator in sequence until a single
- * Comparator returns a non-zero result, or the comparators are exhausted and
- * zero is returned.
+ * <p>复合比较器按顺序调用每个比较器，直到某个比较器返回非零结果，或者所有比较器都已调用完毕并返回
+ * 零。
  *
- * <p>This facilitates in-memory sorting similar to multi-column sorting in SQL.
- * The order of any single Comparator in the list can also be reversed.
+ * <p>这便于实现类似 SQL 中多列排序的内存排序。列表中任何单个比较器的顺序也可以反转。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -49,18 +47,17 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 
 
 	/**
-	 * Construct a CompoundComparator with initially no Comparators. Clients
-	 * must add at least one Comparator before calling the compare method or an
-	 * IllegalStateException is thrown.
+	 * 构造一个初始不包含任何比较器的 CompoundComparator。客户端在调用 compare 方法之前必须至少添加一个
+	 * 比较器，否则会抛出 IllegalStateException。
 	 */
 	public CompoundComparator() {
 		this.comparators = new ArrayList<>();
 	}
 
 	/**
-	 * Construct a CompoundComparator from the Comparators in the provided array.
-	 * <p>All Comparators will default to ascending sort order,
-	 * unless they are InvertibleComparators.
+	 * 根据提供的数组中的比较器构造一个 CompoundComparator。
+	 *
+	 * <p>所有比较器默认采用升序排序，除非它们是 InvertibleComparator。
 	 * @param comparators the comparators to build into a compound comparator
 	 * @see InvertibleComparator
 	 */
@@ -75,9 +72,9 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 
 
 	/**
-	 * Add a Comparator to the end of the chain.
-	 * <p>The Comparator will default to ascending sort order,
-	 * unless it is a InvertibleComparator.
+	 * 将一个比较器添加到链的末尾。
+	 *
+	 * <p>该比较器默认采用升序排序，除非它是 InvertibleComparator。
 	 * @param comparator the Comparator to add to the end of the chain
 	 * @see InvertibleComparator
 	 */
@@ -92,7 +89,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Add a Comparator to the end of the chain using the provided sort order.
+	 * 使用提供的排序顺序将一个比较器添加到链的末尾。
 	 * @param comparator the Comparator to add to the end of the chain
 	 * @param ascending the sort order: ascending (true) or descending (false)
 	 */
@@ -102,9 +99,9 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Replace the Comparator at the given index.
-	 * <p>The Comparator will default to ascending sort order,
-	 * unless it is a InvertibleComparator.
+	 * 替换给定索引处的比较器。
+	 *
+	 * <p>该比较器默认采用升序排序，除非它是 InvertibleComparator。
 	 * @param index the index of the Comparator to replace
 	 * @param comparator the Comparator to place at the given index
 	 * @see InvertibleComparator
@@ -120,7 +117,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Replace the Comparator at the given index using the given sort order.
+	 * 使用给定的排序顺序替换给定索引处的比较器。
 	 * @param index the index of the Comparator to replace
 	 * @param comparator the Comparator to place at the given index
 	 * @param ascending the sort order: ascending (true) or descending (false)
@@ -130,8 +127,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Invert the sort order of each sort definition contained by this compound
-	 * comparator.
+	 * 反转此复合比较器包含的每个排序定义的排序顺序。
 	 */
 	public void invertOrder() {
 		for (InvertibleComparator comparator : this.comparators) {
@@ -140,7 +136,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Invert the sort order of the sort definition at the specified index.
+	 * 反转指定索引处排序定义的排序顺序。
 	 * @param index the index of the comparator to invert
 	 */
 	public void invertOrder(int index) {
@@ -148,7 +144,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Change the sort order at the given index to ascending.
+	 * 将给定索引处的排序顺序改为升序。
 	 * @param index the index of the comparator to change
 	 */
 	public void setAscendingOrder(int index) {
@@ -156,7 +152,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Change the sort order at the given index to descending sort.
+	 * 将给定索引处的排序顺序改为降序。
 	 * @param index the index of the comparator to change
 	 */
 	public void setDescendingOrder(int index) {
@@ -164,7 +160,7 @@ public class CompoundComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Returns the number of aggregated comparators.
+	 * 返回聚合的比较器数量。
 	 */
 	public int getComparatorCount() {
 		return this.comparators.size();

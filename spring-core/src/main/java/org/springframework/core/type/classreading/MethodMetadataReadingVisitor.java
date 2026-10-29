@@ -34,9 +34,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * ASM method visitor which looks for the annotations defined on a method,
- * exposing them through the {@link org.springframework.core.type.MethodMetadata}
- * interface.
+ * ASM 方法访问器，用于查找定义在方法上的注解，并通过
+ * {@link org.springframework.core.type.MethodMetadata} 接口暴露它们。
  *
  * @author Juergen Hoeller
  * @author Mark Pollack

@@ -28,15 +28,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
 /**
- * Various static utility methods for dealing with multipart parsing.
+ * 用于处理 multipart 解析的各种静态工具方法。
  * @author Arjen Poutsma
  * @since 5.3
  */
 abstract class MultipartUtils {
 
 	/**
-	 * Return the character set of the given headers, as defined in the
-	 * {@link HttpHeaders#getContentType()} header.
+	 * 返回给定头的字符集，如
+	 * {@link HttpHeaders#getContentType()} 头中所定义。
 	 */
 	public static Charset charset(HttpHeaders headers) {
 		MediaType contentType = headers.getContentType();
@@ -50,7 +50,7 @@ abstract class MultipartUtils {
 	}
 
 	/**
-	 * Concatenates the given array of byte arrays.
+	 * 拼接给定的字节数组数组。
 	 */
 	public static byte[] concat(byte[]... byteArrays) {
 		int len = 0;
@@ -67,7 +67,7 @@ abstract class MultipartUtils {
 	}
 
 	/**
-	 * Slices the given buffer to the given index (exclusive).
+	 * 将给定缓冲区切分到给定索引（不含该索引）。
 	 */
 	public static DataBuffer sliceTo(DataBuffer buf, int idx) {
 		int pos = buf.readPosition();
@@ -76,7 +76,7 @@ abstract class MultipartUtils {
 	}
 
 	/**
-	 * Slices the given buffer from the given index (inclusive).
+	 * 从给定索引（含该索引）开始切分给定缓冲区。
 	 */
 	public static DataBuffer sliceFrom(DataBuffer buf, int idx) {
 		int len = buf.writePosition() - idx - 1;

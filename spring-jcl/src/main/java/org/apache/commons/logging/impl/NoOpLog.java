@@ -21,7 +21,7 @@ import java.io.Serializable;
 import org.apache.commons.logging.Log;
 
 /**
- * Trivial implementation of {@link Log} that throws away all messages.
+ * {@link Log} 的简单实现，会丢弃所有消息。
  *
  * @author Juergen Hoeller (for the {@code spring-jcl} variant)
  * @since 5.0

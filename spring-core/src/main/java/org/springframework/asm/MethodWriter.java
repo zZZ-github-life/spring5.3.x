@@ -28,8 +28,8 @@
 package org.springframework.asm;
 
 /**
- * A {@link MethodVisitor} that generates a corresponding 'method_info' structure, as defined in the
- * Java Virtual Machine Specification (JVMS).
+ * 一个 {@link MethodVisitor}，用于生成与 Java 虚拟机规范（JVMS）中定义的 'method_info' 结构相对应
+ * 的结构。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.6">JVMS
  *     4.6</a>
@@ -38,43 +38,38 @@ package org.springframework.asm;
  */
 final class MethodWriter extends MethodVisitor {
 
-  /** Indicates that nothing must be computed. */
+  /** 表示不应计算任何内容。 */
   static final int COMPUTE_NOTHING = 0;
 
   /**
-   * Indicates that the maximum stack size and the maximum number of local variables must be
-   * computed, from scratch.
+   * 指示必须从头开始计算最大栈大小和最大局部变量数量。
    */
   static final int COMPUTE_MAX_STACK_AND_LOCAL = 1;
 
   /**
-   * Indicates that the maximum stack size and the maximum number of local variables must be
-   * computed, from the existing stack map frames. This can be done more efficiently than with the
-   * control flow graph algorithm used for {@link #COMPUTE_MAX_STACK_AND_LOCAL}, by using a linear
-   * scan of the bytecode instructions.
+   * 指示必须根据现有的栈映射帧计算最大栈大小和最大局部变量数量。与
+   * {@link #COMPUTE_MAX_STACK_AND_LOCAL} 所使用的控制流图算法相比，通过线性扫描字节码指令可以更高效
+   * 地完成这一计算。
    */
   static final int COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES = 2;
 
   /**
-   * Indicates that the stack map frames of type F_INSERT must be computed. The other frames are not
-   * computed. They should all be of type F_NEW and should be sufficient to compute the content of
-   * the F_INSERT frames, together with the bytecode instructions between a F_NEW and a F_INSERT
-   * frame - and without any knowledge of the type hierarchy (by definition of F_INSERT).
+   * 指示必须计算类型为 F_INSERT 的栈映射帧。其他帧不计算。它们应全部为 F_NEW 类型，并且与 F_NEW 帧和
+   * F_INSERT 帧之间的字节码指令一起，就应足以计算 F_INSERT 帧的内容——且无需了解类型层次结构（这是
+   * F_INSERT 的定义）。
    */
   static final int COMPUTE_INSERTED_FRAMES = 3;
 
   /**
-   * Indicates that all the stack map frames must be computed. In this case the maximum stack size
-   * and the maximum number of local variables is also computed.
+   * 指示必须计算所有栈映射帧。在这种情况下，最大栈大小和最大局部变量数量也会被计算。
    */
   static final int COMPUTE_ALL_FRAMES = 4;
 
-  /** Indicates that {@link #STACK_SIZE_DELTA} is not applicable (not constant or never used). */
+  /** 表示 {@link #STACK_SIZE_DELTA} 不适用（非常量或从未使用）。 */
   private static final int NA = 0;
 
   /**
-   * The stack size variation corresponding to each JVM opcode. The stack size variation for opcode
-   * 'o' is given by the array element at index 'o'.
+   * 每个 JVM 操作码对应的栈大小变化量。操作码 'o' 的栈大小变化量由索引为 'o' 的数组元素给出。
    *
    * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-6.html">JVMS 6</a>
    */
@@ -283,180 +278,174 @@ final class MethodWriter extends MethodVisitor {
     NA // jsr_w = 201 (0xc9)
   };
 
-  /** Where the constants used in this MethodWriter must be stored. */
+  /** 存储此 MethodWriter 所用常量的位置。 */
   private final SymbolTable symbolTable;
 
   // Note: fields are ordered as in the method_info structure, and those related to attributes are
   // ordered as in Section 4.7 of the JVMS.
 
   /**
-   * The access_flags field of the method_info JVMS structure. This field can contain ASM specific
-   * access flags, such as {@link Opcodes#ACC_DEPRECATED}, which are removed when generating the
-   * ClassFile structure.
+   * method_info JVMS 结构的 access_flags 字段。该字段可以包含 ASM 特有的访问标志，例如
+   * {@link Opcodes#ACC_DEPRECATED}，这些标志在生成 ClassFile 结构时会被移除。
    */
   private final int accessFlags;
 
-  /** The name_index field of the method_info JVMS structure. */
+  /** method_info JVMS 结构的 name_index 字段。 */
   private final int nameIndex;
 
-  /** The name of this method. */
+  /** 此方法的名称。 */
   private final String name;
 
-  /** The descriptor_index field of the method_info JVMS structure. */
+  /** method_info JVMS 结构的 descriptor_index 字段。 */
   private final int descriptorIndex;
 
-  /** The descriptor of this method. */
+  /** 此方法的描述符。 */
   private final String descriptor;
 
   // Code attribute fields and sub attributes:
 
-  /** The max_stack field of the Code attribute. */
+  /** Code 属性的 max_stack 字段。 */
   private int maxStack;
 
-  /** The max_locals field of the Code attribute. */
+  /** Code 属性的 max_locals 字段。 */
   private int maxLocals;
 
-  /** The 'code' field of the Code attribute. */
+  /** Code 属性的 'code' 字段。 */
   private final ByteVector code = new ByteVector();
 
   /**
-   * The first element in the exception handler list (used to generate the exception_table of the
-   * Code attribute). The next ones can be accessed with the {@link Handler#nextHandler} field. May
-   * be {@literal null}.
+   * 异常处理器列表中的第一个元素（用于生成 Code 属性的 exception_table）。后续元素可通过
+   * {@link Handler#nextHandler} 字段访问。可以为 {@literal null}。
    */
   private Handler firstHandler;
 
   /**
-   * The last element in the exception handler list (used to generate the exception_table of the
-   * Code attribute). The next ones can be accessed with the {@link Handler#nextHandler} field. May
-   * be {@literal null}.
+   * 异常处理器列表中的最后一个元素（用于生成 Code 属性的 exception_table）。后续元素可通过
+   * {@link Handler#nextHandler} 字段访问。可以为 {@literal null}。
    */
   private Handler lastHandler;
 
-  /** The line_number_table_length field of the LineNumberTable code attribute. */
+  /** LineNumberTable 代码属性的 line_number_table_length 字段。 */
   private int lineNumberTableLength;
 
-  /** The line_number_table array of the LineNumberTable code attribute, or {@literal null}. */
+  /** LineNumberTable 代码属性的 line_number_table 数组，或 {@literal null}。 */
   private ByteVector lineNumberTable;
 
-  /** The local_variable_table_length field of the LocalVariableTable code attribute. */
+  /** LocalVariableTable 代码属性的 local_variable_table_length 字段。 */
   private int localVariableTableLength;
 
   /**
-   * The local_variable_table array of the LocalVariableTable code attribute, or {@literal null}.
+   * LocalVariableTable 代码属性的 local_variable_table 数组，或者 {@literal null}。
    */
   private ByteVector localVariableTable;
 
-  /** The local_variable_type_table_length field of the LocalVariableTypeTable code attribute. */
+  /** LocalVariableTypeTable 代码属性的 local_variable_type_table_length 字段。 */
   private int localVariableTypeTableLength;
 
   /**
-   * The local_variable_type_table array of the LocalVariableTypeTable code attribute, or {@literal
-   * null}.
+   * LocalVariableTypeTable 代码属性的 local_variable_type_table 数组，或者 {@literal null}。
    */
   private ByteVector localVariableTypeTable;
 
-  /** The number_of_entries field of the StackMapTable code attribute. */
+  /** StackMapTable 代码属性的 number_of_entries 字段。 */
   private int stackMapTableNumberOfEntries;
 
-  /** The 'entries' array of the StackMapTable code attribute. */
+  /** StackMapTable 代码属性的 'entries' 数组。 */
   private ByteVector stackMapTableEntries;
 
   /**
-   * The last runtime visible type annotation of the Code attribute. The previous ones can be
-   * accessed with the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * Code 属性的最后一个运行时可见类型注解。之前的注解可通过
+   * {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。
    */
   private AnnotationWriter lastCodeRuntimeVisibleTypeAnnotation;
 
   /**
-   * The last runtime invisible type annotation of the Code attribute. The previous ones can be
-   * accessed with the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * Code 属性的最后一个运行时不可见类型注解。之前的注解可通过
+   * {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。
    */
   private AnnotationWriter lastCodeRuntimeInvisibleTypeAnnotation;
 
   /**
-   * The first non standard attribute of the Code attribute. The next ones can be accessed with the
-   * {@link Attribute#nextAttribute} field. May be {@literal null}.
+   * Code 属性的第一个非标准属性。后续属性可通过 {@link Attribute#nextAttribute} 字段访问。可以为
+   * {@literal null}。
    *
-   * <p><b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
-   * firstAttribute is actually the last attribute visited in {@link #visitAttribute}. The {@link
-   * #putMethodInfo} method writes the attributes in the order defined by this list, i.e. in the
-   * reverse order specified by the user.
+   * <p><b>警告</b>：该列表按属性被访问顺序的<i>相反</i>顺序存储它们。firstAttribute 实际上是
+   * {@link #visitAttribute} 中最后被访问的属性。{@link #putMethodInfo} 方法按此列表定义的顺序写出属
+   * 性，即按用户指定的相反顺序。
    */
   private Attribute firstCodeAttribute;
 
   // Other method_info attributes:
 
-  /** The number_of_exceptions field of the Exceptions attribute. */
+  /** Exceptions 属性的 number_of_exceptions 字段。 */
   private final int numberOfExceptions;
 
-  /** The exception_index_table array of the Exceptions attribute, or {@literal null}. */
+  /** Exceptions 属性的 exception_index_table 数组，或 {@literal null}。 */
   private final int[] exceptionIndexTable;
 
-  /** The signature_index field of the Signature attribute. */
+  /** Signature 属性的 signature_index 字段。 */
   private final int signatureIndex;
 
   /**
-   * The last runtime visible annotation of this method. The previous ones can be accessed with the
-   * {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此方法的最后一个运行时可见注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字
+   * 段访问。可以为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeVisibleAnnotation;
 
   /**
-   * The last runtime invisible annotation of this method. The previous ones can be accessed with
-   * the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此方法的最后一个运行时不可见注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation}
+   * 字段访问。可以为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeInvisibleAnnotation;
 
-  /** The number of method parameters that can have runtime visible annotations, or 0. */
+  /** 可以有运行时可见注解的方法参数数量，或 0。 */
   private int visibleAnnotableParameterCount;
 
   /**
-   * The runtime visible parameter annotations of this method. Each array element contains the last
-   * annotation of a parameter (which can be {@literal null} - the previous ones can be accessed
-   * with the {@link AnnotationWriter#previousAnnotation} field). May be {@literal null}.
+   * 此方法的运行时可见参数注解。每个数组元素包含某个参数的最后一个注解（该值可以为 {@literal null}
+   * —— 之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问）。可以为
+   * {@literal null}。
    */
   private AnnotationWriter[] lastRuntimeVisibleParameterAnnotations;
 
-  /** The number of method parameters that can have runtime visible annotations, or 0. */
+  /** 可以有运行时可见注解的方法参数数量，或 0。 */
   private int invisibleAnnotableParameterCount;
 
   /**
-   * The runtime invisible parameter annotations of this method. Each array element contains the
-   * last annotation of a parameter (which can be {@literal null} - the previous ones can be
-   * accessed with the {@link AnnotationWriter#previousAnnotation} field). May be {@literal null}.
+   * 此方法的运行时不可见参数注解。每个数组元素包含某个参数的最后一个注解（该值可以为 {@literal null}
+   * —— 之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问）。可以为
+   * {@literal null}。
    */
   private AnnotationWriter[] lastRuntimeInvisibleParameterAnnotations;
 
   /**
-   * The last runtime visible type annotation of this method. The previous ones can be accessed with
-   * the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此方法的最后一个运行时可见类型注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation}
+   * 字段访问。可以为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeVisibleTypeAnnotation;
 
   /**
-   * The last runtime invisible type annotation of this method. The previous ones can be accessed
-   * with the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此方法的最后一个运行时不可见类型注解。之前的注解可通过
+   * {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeInvisibleTypeAnnotation;
 
-  /** The default_value field of the AnnotationDefault attribute, or {@literal null}. */
+  /** AnnotationDefault 属性的 default_value 字段，或 {@literal null}。 */
   private ByteVector defaultValue;
 
-  /** The parameters_count field of the MethodParameters attribute. */
+  /** MethodParameters 属性的 parameters_count 字段。 */
   private int parametersCount;
 
-  /** The 'parameters' array of the MethodParameters attribute, or {@literal null}. */
+  /** MethodParameters 属性的 'parameters' 数组，或 {@literal null}。 */
   private ByteVector parameters;
 
   /**
-   * The first non standard attribute of this method. The next ones can be accessed with the {@link
-   * Attribute#nextAttribute} field. May be {@literal null}.
+   * 此方法的第一个非标准属性。后续属性可通过 {@link Attribute#nextAttribute} 字段访问。可以为
+   * {@literal null}。
    *
-   * <p><b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
-   * firstAttribute is actually the last attribute visited in {@link #visitAttribute}. The {@link
-   * #putMethodInfo} method writes the attributes in the order defined by this list, i.e. in the
-   * reverse order specified by the user.
+   * <p><b>警告</b>：该列表按属性被访问顺序的<i>相反</i>顺序存储它们。firstAttribute 实际上是
+   * {@link #visitAttribute} 中最后被访问的属性。{@link #putMethodInfo} 方法按此列表定义的顺序写出属
+   * 性，即按用户指定的相反顺序。
    */
   private Attribute firstAttribute;
 
@@ -465,108 +454,96 @@ final class MethodWriter extends MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Indicates what must be computed. Must be one of {@link #COMPUTE_ALL_FRAMES}, {@link
-   * #COMPUTE_INSERTED_FRAMES}, {@link COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES}, {@link
-   * #COMPUTE_MAX_STACK_AND_LOCAL} or {@link #COMPUTE_NOTHING}.
+   * 指示必须计算什么。必须是 {@link #COMPUTE_ALL_FRAMES}、{@link #COMPUTE_INSERTED_FRAMES}、
+   * {@link COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES}、{@link #COMPUTE_MAX_STACK_AND_LOCAL} 或
+   * {@link #COMPUTE_NOTHING} 之一。
    */
   private final int compute;
 
   /**
-   * The first basic block of the method. The next ones (in bytecode offset order) can be accessed
-   * with the {@link Label#nextBasicBlock} field.
+   * 方法的第一个基本块。后续基本块（按字节码偏移量顺序）可用 {@link Label#nextBasicBlock} 字段访问。
    */
   private Label firstBasicBlock;
 
   /**
-   * The last basic block of the method (in bytecode offset order). This field is updated each time
-   * a basic block is encountered, and is used to append it at the end of the basic block list.
+   * 方法的最后一个基本块（按字节码偏移量顺序）。每次遇到基本块时都会更新该字段，用于将其追加到基本块
+   * 列表末尾。
    */
   private Label lastBasicBlock;
 
   /**
-   * The current basic block, i.e. the basic block of the last visited instruction. When {@link
-   * #compute} is equal to {@link #COMPUTE_MAX_STACK_AND_LOCAL} or {@link #COMPUTE_ALL_FRAMES}, this
-   * field is {@literal null} for unreachable code. When {@link #compute} is equal to {@link
-   * #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} or {@link #COMPUTE_INSERTED_FRAMES}, this field stays
-   * unchanged throughout the whole method (i.e. the whole code is seen as a single basic block;
-   * indeed, the existing frames are sufficient by hypothesis to compute any intermediate frame -
-   * and the maximum stack size as well - without using any control flow graph).
+   * 当前基本块，即最后被访问的指令所在的基本块。当 {@link #compute} 等于
+   * {@link #COMPUTE_MAX_STACK_AND_LOCAL} 或 {@link #COMPUTE_ALL_FRAMES} 时，对于不可达代码该字段为
+   * {@literal null}。当 {@link #compute} 等于 {@link #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} 或
+   * {@link #COMPUTE_INSERTED_FRAMES} 时，该字段在整个方法中保持不变（即整个代码被视为单个基本块；实
+   * 际上，按照假设，已有的帧足以计算任何中间帧——以及最大栈大小——而无需使用任何控制流图）。
    */
   private Label currentBasicBlock;
 
   /**
-   * The relative stack size after the last visited instruction. This size is relative to the
-   * beginning of {@link #currentBasicBlock}, i.e. the true stack size after the last visited
-   * instruction is equal to the {@link Label#inputStackSize} of the current basic block plus {@link
-   * #relativeStackSize}. When {@link #compute} is equal to {@link
-   * #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES}, {@link #currentBasicBlock} is always the start of
-   * the method, so this relative size is also equal to the absolute stack size after the last
-   * visited instruction.
+   * 最后被访问的指令之后的相对栈大小。该大小相对于 {@link #currentBasicBlock} 的起始位置，即最后被访
+   * 问的指令之后的真实栈大小等于当前基本块的 {@link Label#inputStackSize} 加上
+   * {@link #relativeStackSize}。当 {@link #compute} 等于
+   * {@link #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} 时，{@link #currentBasicBlock} 始终是方法的起始
+   * 位置，因此该相对大小也等于最后被访问的指令之后的绝对栈大小。
    */
   private int relativeStackSize;
 
   /**
-   * The maximum relative stack size after the last visited instruction. This size is relative to
-   * the beginning of {@link #currentBasicBlock}, i.e. the true maximum stack size after the last
-   * visited instruction is equal to the {@link Label#inputStackSize} of the current basic block
-   * plus {@link #maxRelativeStackSize}.When {@link #compute} is equal to {@link
-   * #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES}, {@link #currentBasicBlock} is always the start of
-   * the method, so this relative size is also equal to the absolute maximum stack size after the
-   * last visited instruction.
+   * 最后被访问的指令之后的最大相对栈大小。该大小相对于 {@link #currentBasicBlock} 的起始位置，即最后
+   * 被访问的指令之后的真实最大栈大小等于当前基本块的 {@link Label#inputStackSize} 加上
+   * {@link #maxRelativeStackSize}。当 {@link #compute} 等于
+   * {@link #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} 时，{@link #currentBasicBlock} 始终是方法的起始
+   * 位置，因此该相对大小也等于最后被访问的指令之后的绝对最大栈大小。
    */
   private int maxRelativeStackSize;
 
-  /** The number of local variables in the last visited stack map frame. */
+  /** 上一个访问的栈映射帧中的局部变量数量。 */
   private int currentLocals;
 
-  /** The bytecode offset of the last frame that was written in {@link #stackMapTableEntries}. */
+  /** 最后一次写入 {@link #stackMapTableEntries} 的帧的字节码偏移量。 */
   private int previousFrameOffset;
 
   /**
-   * The last frame that was written in {@link #stackMapTableEntries}. This field has the same
-   * format as {@link #currentFrame}.
+   * 最后写入 {@link #stackMapTableEntries} 的帧。该字段与 {@link #currentFrame} 具有相同的格式。
    */
   private int[] previousFrame;
 
   /**
-   * The current stack map frame. The first element contains the bytecode offset of the instruction
-   * to which the frame corresponds, the second element is the number of locals and the third one is
-   * the number of stack elements. The local variables start at index 3 and are followed by the
-   * operand stack elements. In summary frame[0] = offset, frame[1] = numLocal, frame[2] = numStack.
-   * Local variables and operand stack entries contain abstract types, as defined in {@link Frame},
-   * but restricted to {@link Frame#CONSTANT_KIND}, {@link Frame#REFERENCE_KIND} or {@link
-   * Frame#UNINITIALIZED_KIND} abstract types. Long and double types use only one array entry.
+   * 当前栈映射帧。第一个元素包含该帧所对应指令的字节码偏移量，第二个元素是局部变量的数量，第三个元素
+   * 是栈元素的数量。局部变量从索引 3 开始，其后是操作数栈元素。概括来说：frame[0] = offset，frame[1]
+   * = numLocal，frame[2] = numStack。局部变量和操作数栈条目包含抽象类型，如 {@link Frame} 中所定义，
+   * 但仅限于 {@link Frame#CONSTANT_KIND}、{@link Frame#REFERENCE_KIND} 或
+   * {@link Frame#UNINITIALIZED_KIND} 抽象类型。long 和 double 类型只使用一个数组条目。
    */
   private int[] currentFrame;
 
-  /** Whether this method contains subroutines. */
+  /** 此方法是否包含子例程。 */
   private boolean hasSubroutines;
 
   // -----------------------------------------------------------------------------------------------
   // Other miscellaneous status fields
   // -----------------------------------------------------------------------------------------------
 
-  /** Whether the bytecode of this method contains ASM specific instructions. */
+  /** 此方法的字节码是否包含 ASM 特有指令。 */
   private boolean hasAsmInstructions;
 
   /**
-   * The start offset of the last visited instruction. Used to set the offset field of type
-   * annotations of type 'offset_target' (see <a
-   * href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.20.1">JVMS
-   * 4.7.20.1</a>).
+   * 最后被访问的指令的起始偏移量。用于设置类型为 'offset_target' 的类型注解的 offset 字段（参见
+   * <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.20.1">JVMS
+   * 4.7.20.1</a>）。
    */
   private int lastBytecodeOffset;
 
   /**
-   * The offset in bytes in {@link SymbolTable#getSource} from which the method_info for this method
-   * (excluding its first 6 bytes) must be copied, or 0.
+   * {@link SymbolTable#getSource} 中此方法的 method_info（不包括其前 6 个字节）必须从中复制的字节偏
+   * 移量，或者 0。
    */
   private int sourceOffset;
 
   /**
-   * The length in bytes in {@link SymbolTable#getSource} which must be copied to get the
-   * method_info for this method (excluding its first 6 bytes for access_flags, name_index and
-   * descriptor_index).
+   * {@link SymbolTable#getSource} 中必须复制的字节长度，以获取此方法的 method_info（不包括
+   * access_flags、name_index 和 descriptor_index 的前 6 个字节）。
    */
   private int sourceLength;
 
@@ -575,7 +552,7 @@ final class MethodWriter extends MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Constructs a new {@link MethodWriter}.
+   * 构造一个新的 {@link MethodWriter}。
    *
    * @param symbolTable where the constants used in this AnnotationWriter must be stored.
    * @param access the method's access flags (see {@link Opcodes}).
@@ -1555,7 +1532,7 @@ final class MethodWriter extends MethodVisitor {
     }
   }
 
-  /** Computes all the stack map frames of the method, from scratch. */
+  /** 从头计算该方法的所有栈映射帧。 */
   private void computeAllFrames() {
     // Complete the control flow graph with exception handler blocks.
     Handler handler = firstHandler;
@@ -1657,7 +1634,7 @@ final class MethodWriter extends MethodVisitor {
     this.maxStack = maxStackSize;
   }
 
-  /** Computes the maximum stack size of the method. */
+  /** 计算该方法的最大栈大小。 */
   private void computeMaxStackAndLocal() {
     // Complete the control flow graph with exception handler blocks.
     Handler handler = firstHandler;
@@ -1774,7 +1751,7 @@ final class MethodWriter extends MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Adds a successor to {@link #currentBasicBlock} in the control flow graph.
+   * 在控制流图中向 {@link #currentBasicBlock} 添加一个后继。
    *
    * @param info information about the control flow edge to be added.
    * @param successor the successor block to be added to the current basic block.
@@ -1784,12 +1761,10 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Ends the current basic block. This method must be used in the case where the current basic
-   * block does not have any successor.
+   * 结束当前基本块。在当前基本块没有任何后继的情况下必须使用此方法。
    *
-   * <p>WARNING: this method must be called after the currently visited instruction has been put in
-   * {@link #code} (if frames are computed, this method inserts a new Label to start a new basic
-   * block after the current instruction).
+   * <p>警告：此方法必须在当前被访问的指令已经放入 {@link #code} 之后调用（如果计算帧，此方法会插入一
+   * 个新的 Label，以在当前指令之后开始新的基本块）。
    */
   private void endCurrentBasicBlockWithNoSuccessor() {
     if (compute == COMPUTE_ALL_FRAMES) {
@@ -1810,7 +1785,7 @@ final class MethodWriter extends MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Starts the visit of a new stack map frame, stored in {@link #currentFrame}.
+   * 开始访问一个新的栈映射帧，它存储在 {@link #currentFrame} 中。
    *
    * @param offset the bytecode offset of the instruction to which the frame corresponds.
    * @param numLocal the number of local variables in the frame.
@@ -1829,7 +1804,7 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Sets an abstract type in {@link #currentFrame}.
+   * 在 {@link #currentFrame} 中设置一个抽象类型。
    *
    * @param frameIndex the index of the element to be set in {@link #currentFrame}.
    * @param abstractType an abstract type.
@@ -1839,9 +1814,9 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Ends the visit of {@link #currentFrame} by writing it in the StackMapTable entries and by
-   * updating the StackMapTable number_of_entries (except if the current frame is the first one,
-   * which is implicit in StackMapTable). Then resets {@link #currentFrame} to {@literal null}.
+   * 通过将 {@link #currentFrame} 写入 StackMapTable 条目并更新 StackMapTable 的 number_of_entries，
+   * 来结束对它的访问（当前帧是第一个帧的情况除外，该帧在 StackMapTable 中是隐式的）。然后将
+   * {@link #currentFrame} 重置为 {@literal null}。
    */
   void visitFrameEnd() {
     if (previousFrame != null) {
@@ -1855,7 +1830,7 @@ final class MethodWriter extends MethodVisitor {
     currentFrame = null;
   }
 
-  /** Compresses and writes {@link #currentFrame} in a new StackMapTable entry. */
+  /** 将 {@link #currentFrame} 压缩并写入新的 StackMapTable 条目。 */
   private void putFrame() {
     final int numLocal = currentFrame[1];
     final int numStack = currentFrame[2];
@@ -1949,8 +1924,8 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Puts some abstract types of {@link #currentFrame} in {@link #stackMapTableEntries} , using the
-   * JVMS verification_type_info format used in StackMapTable attributes.
+   * 将 {@link #currentFrame} 的某些抽象类型放入 {@link #stackMapTableEntries}，使用 StackMapTable 属
+   * 性中采用的 JVMS verification_type_info 格式。
    *
    * @param start index of the first type in {@link #currentFrame} to write.
    * @param end index of last type in {@link #currentFrame} to write (exclusive).
@@ -1962,8 +1937,8 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Puts the given public API frame element type in {@link #stackMapTableEntries} , using the JVMS
-   * verification_type_info format used in StackMapTable attributes.
+   * 将给定的公共 API 帧元素类型放入 {@link #stackMapTableEntries}，使用 StackMapTable 属性中采用的
+   * JVMS verification_type_info 格式。
    *
    * @param type a frame element type described using the same format as in {@link
    *     MethodVisitor#visitFrame}, i.e. either {@link Opcodes#TOP}, {@link Opcodes#INTEGER}, {@link
@@ -1990,12 +1965,10 @@ final class MethodWriter extends MethodVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns whether the attributes of this method can be copied from the attributes of the given
-   * method (assuming there is no method visitor between the given ClassReader and this
-   * MethodWriter). This method should only be called just after this MethodWriter has been created,
-   * and before any content is visited. It returns true if the attributes corresponding to the
-   * constructor arguments (at most a Signature, an Exception, a Deprecated and a Synthetic
-   * attribute) are the same as the corresponding attributes in the given method.
+   * 返回此方法的属性是否可以从给定方法的属性复制（假定给定的 ClassReader 与此 MethodWriter 之间没有
+   * 方法访问者）。此方法只应在此 MethodWriter 创建之后、访问任何内容之前调用。如果与构造参数相对应的
+   * 属性（至多包括 Signature、Exception、Deprecated 和 Synthetic 属性）与给定方法中相应的属性相同，
+   * 则返回 true。
    *
    * @param source the source ClassReader from which the attributes of this method might be copied.
    * @param hasSyntheticAttribute whether the method_info JVMS structure from which the attributes
@@ -2052,7 +2025,7 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Sets the source from which the attributes of this method will be copied.
+   * 设置将从中复制此方法属性的源。
    *
    * @param methodInfoOffset the offset in 'symbolTable.getSource()' of the method_info JVMS
    *     structure from which the attributes of this method will be copied.
@@ -2068,8 +2041,7 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Returns the size of the method_info JVMS structure generated by this MethodWriter. Also add the
-   * names of the attributes of this method in the constant pool.
+   * 返回此 MethodWriter 生成的 method_info JVMS 结构的大小。同时将方法属性的名称添加到常量池中。
    *
    * @return the size in bytes of the method_info JVMS structure.
    */
@@ -2173,8 +2145,7 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Puts the content of the method_info JVMS structure generated by this MethodWriter into the
-   * given ByteVector.
+   * 将此 MethodWriter 生成的 method_info JVMS 结构的内容放入给定的 ByteVector 中。
    *
    * @param output where the method_info structure must be put.
    */
@@ -2383,7 +2354,7 @@ final class MethodWriter extends MethodVisitor {
   }
 
   /**
-   * Collects the attributes of this method into the given set of attribute prototypes.
+   * 将此方法的属性收集到给定的属性原型集合中。
    *
    * @param attributePrototypes a set of attribute prototypes.
    */

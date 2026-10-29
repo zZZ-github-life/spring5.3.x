@@ -26,15 +26,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A {@link org.springframework.beans.factory.FactoryBean} implementation that
- * returns a value which is a JSR-330 {@link javax.inject.Provider} that in turn
- * returns a bean sourced from a {@link org.springframework.beans.factory.BeanFactory}.
+ * 一个 {@link org.springframework.beans.factory.FactoryBean} 实现，返回的值是一个 JSR-330
+ * {@link javax.inject.Provider}，该 Provider 又返回从
+ * {@link org.springframework.beans.factory.BeanFactory} 获取的 Bean。
  *
- * <p>This is basically a JSR-330 compliant variant of Spring's good old
- * {@link ObjectFactoryCreatingFactoryBean}. It can be used for traditional
- * external dependency injection configuration that targets a property or
- * constructor argument of type {@code javax.inject.Provider}, as an
- * alternative to JSR-330's {@code @Inject} annotation-driven approach.
+ * <p>这基本上是 Spring 经典的 {@link ObjectFactoryCreatingFactoryBean} 的符合 JSR-330 的变体。它可
+ * 用于传统的外部依赖注入配置，目标为类型是 {@code javax.inject.Provider} 的属性或构造器参数，作为
+ * JSR-330 的 {@code @Inject} 注解驱动方式的替代方案。
  *
  * @author Juergen Hoeller
  * @since 3.0.2
@@ -48,11 +46,9 @@ public class ProviderCreatingFactoryBean extends AbstractFactoryBean<Provider<Ob
 
 
 	/**
-	 * Set the name of the target bean.
-	 * <p>The target does not <i>have</i> to be a non-singleton bean, but realistically
-	 * always will be (because if the target bean were a singleton, then said singleton
-	 * bean could simply be injected straight into the dependent object, thus obviating
-	 * the need for the extra level of indirection afforded by this factory approach).
+	 * 设置目标 Bean 的名称。
+	 * <p>目标<i>不一定</i>是非单例 Bean，但实际上通常如此（因为如果目标 Bean 是单例，那么该单例 Bean
+	 * 可以直接注入到依赖对象中，从而无需这种工厂方式所提供的额外间接层）。
 	 */
 	public void setTargetBeanName(String targetBeanName) {
 		this.targetBeanName = targetBeanName;
@@ -80,7 +76,7 @@ public class ProviderCreatingFactoryBean extends AbstractFactoryBean<Provider<Ob
 
 
 	/**
-	 * Independent inner class - for serialization purposes.
+	 * 独立的内嵌类——用于序列化目的。
 	 */
 	@SuppressWarnings("serial")
 	private static class TargetBeanProvider implements Provider<Object>, Serializable {

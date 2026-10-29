@@ -58,9 +58,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 
 /**
- * A base class for resolving method argument values by reading from the body of
- * a request with {@link HttpMessageConverter HttpMessageConverters}.
- *
+ * 基类，用于通过 {@link HttpMessageConverter HttpMessageConverters}
+ * 读取请求体来解析方法参数值。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -82,14 +81,14 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 
 	/**
-	 * Basic constructor with converters only.
+	 * 仅包含转换器的基本构造函数。
 	 */
 	public AbstractMessageConverterMethodArgumentResolver(List<HttpMessageConverter<?>> converters) {
 		this(converters, null);
 	}
 
 	/**
-	 * Constructor with converters and {@code Request~} and {@code ResponseBodyAdvice}.
+	 * 包含转换器以及 {@code Request~} 和 {@code ResponseBodyAdvice} 的构造函数。
 	 * @since 4.2
 	 */
 	public AbstractMessageConverterMethodArgumentResolver(List<HttpMessageConverter<?>> converters,
@@ -102,17 +101,16 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 
 
 	/**
-	 * Return the configured {@link RequestBodyAdvice} and
-	 * {@link RequestBodyAdvice} where each instance may be wrapped as a
-	 * {@link org.springframework.web.method.ControllerAdviceBean ControllerAdviceBean}.
+	 * 返回已配置的 {@link RequestBodyAdvice} 和
+	 * {@link RequestBodyAdvice}，其中每个实例可能被包装为
+	 * {@link org.springframework.web.method.ControllerAdviceBean ControllerAdviceBean}。
 	 */
 	RequestResponseBodyAdviceChain getAdvice() {
 		return this.advice;
 	}
 
 	/**
-	 * Create the method argument value of the expected parameter type by
-	 * reading from the given request.
+	 * 通过读取给定请求，创建预期参数类型的方法参数值。
 	 * @param <T> the expected type of the argument value to be created
 	 * @param webRequest the current request
 	 * @param parameter the method parameter descriptor (may be {@code null})
@@ -130,8 +128,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Create the method argument value of the expected parameter type by reading
-	 * from the given HttpInputMessage.
+	 * 通过读取给定的 HttpInputMessage，创建预期参数类型的方法参数值。
 	 * @param <T> the expected type of the argument value to be created
 	 * @param inputMessage the HTTP input message representing the current request
 	 * @param parameter the method parameter descriptor
@@ -222,7 +219,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Create a new {@link HttpInputMessage} from the given {@link NativeWebRequest}.
+	 * 根据给定的 {@link NativeWebRequest} 创建一个新的 {@link HttpInputMessage}。
 	 * @param webRequest the web request to create an input message from
 	 * @return the input message
 	 */
@@ -233,10 +230,10 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Validate the binding target if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
-	 * Spring's {@link org.springframework.validation.annotation.Validated},
-	 * and custom annotations whose name starts with "Valid".
+	 * 在适用时校验绑定目标。
+	 * <p>默认实现会检查 {@code @javax.validation.Valid}、
+	 * Spring 的 {@link org.springframework.validation.annotation.Validated}
+	 * 以及名称以 "Valid" 开头的自定义注解。
 	 * @param binder the DataBinder to be used
 	 * @param parameter the method parameter descriptor
 	 * @since 4.1.5
@@ -254,7 +251,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Whether to raise a fatal bind exception on validation errors.
+	 * 在校验错误时是否抛出致命的绑定异常。
 	 * @param binder the data binder used to perform data binding
 	 * @param parameter the method parameter descriptor
 	 * @return {@code true} if the next method argument is not of type {@link Errors}
@@ -268,8 +265,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Return the media types supported by all provided message converters sorted
-	 * by specificity via {@link MediaType#sortBySpecificity(List)}.
+	 * 返回所有提供的消息转换器所支持的媒体类型，并按具体程度
+	 * 通过 {@link MediaType#sortBySpecificity(List)} 排序。
 	 * @since 5.3.4
 	 */
 	protected List<MediaType> getSupportedMediaTypes(Class<?> clazz) {
@@ -283,7 +280,7 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Adapt the given argument against the method parameter, if necessary.
+	 * 如有必要，针对方法参数调整给定参数。
 	 * @param arg the resolved argument
 	 * @param parameter the method parameter descriptor
 	 * @return the adapted argument, or the original resolved argument as-is
@@ -304,8 +301,8 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 	}
 
 	/**
-	 * Allow for closing the body stream if necessary,
-	 * e.g. for part streams in a multipart request.
+	 * 允许在必要时关闭请求体流，
+	 * 例如多部分请求中的部分流。
 	 */
 	void closeStreamIfNecessary(InputStream body) {
 		// No-op by default: A standard HttpInputMessage exposes the HTTP request stream

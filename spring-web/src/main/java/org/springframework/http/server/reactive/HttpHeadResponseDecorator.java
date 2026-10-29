@@ -25,7 +25,7 @@ import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpHeaders;
 
 /**
- * {@link ServerHttpResponse} decorator for HTTP HEAD requests.
+ * 用于 HTTP HEAD 请求的 {@link ServerHttpResponse} 装饰器。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -39,9 +39,9 @@ public class HttpHeadResponseDecorator extends ServerHttpResponseDecorator {
 
 
 	/**
-	 * Consume and release the body without writing.
-	 * <p>If the headers contain neither Content-Length nor Transfer-Encoding,
-	 * and the body is a {@link Mono}, count the bytes and set Content-Length.
+	 * 消费并释放正文而不写入。
+	 * <p>如果头中既没有 Content-Length 也没有 Transfer-Encoding，
+	 * 且正文是 {@link Mono}，则统计字节数并设置 Content-Length。
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -72,9 +72,9 @@ public class HttpHeadResponseDecorator extends ServerHttpResponseDecorator {
 	}
 
 	/**
-	 * Invoke {@link #setComplete()} without writing.
-	 * <p>RFC 7302 allows HTTP HEAD response without content-length and it's not
-	 * something that can be computed on a streaming response.
+	 * 在不写入的情况下调用 {@link #setComplete()}。
+	 * <p>RFC 7302 允许 HTTP HEAD 响应不带 content-length，
+	 * 而且对于流式响应也无法计算该值。
 	 */
 	@Override
 	public final Mono<Void> writeAndFlushWith(Publisher<? extends Publisher<? extends DataBuffer>> body) {

@@ -23,8 +23,7 @@ import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link EnumerablePropertySource} backed by a map with dynamically supplied
- * values.
+ * 由动态提供值的映射支持的 {@link EnumerablePropertySource}。
  *
  * @author Phillip Webb
  * @author Sam Brannen

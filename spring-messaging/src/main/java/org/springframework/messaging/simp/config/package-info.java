@@ -1,5 +1,5 @@
 /**
- * Configuration support for WebSocket messaging using higher level messaging protocols.
+ * 使用高层消息传递协议的 WebSocket 消息传递的配置支持。
  */
 @NonNullApi
 @NonNullFields

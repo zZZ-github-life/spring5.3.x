@@ -31,21 +31,21 @@ import org.springframework.context.Lifecycle;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that retrieves a
- * CommonJ {@link commonj.timers.TimerManager} and exposes it for bean references.
+ * {@link org.springframework.beans.factory.FactoryBean}，用于获取
+ * CommonJ {@link commonj.timers.TimerManager} 并将其暴露为 bean 引用。
  *
- * <p><b>This is the central convenience class for setting up a
- * CommonJ TimerManager in a Spring context.</b>
+ * <p><b>这是在 Spring 上下文中设置
+ * CommonJ TimerManager 的核心便利类。</b>
  *
- * <p>Allows for registration of ScheduledTimerListeners. This is the main
- * purpose of this class; the TimerManager itself could also be fetched
- * from JNDI via {@link org.springframework.jndi.JndiObjectFactoryBean}.
- * In scenarios that just require static registration of tasks at startup,
- * there is no need to access the TimerManager itself in application code.
+ * <p>允许注册 ScheduledTimerListener。这是此类的
+ * 主要用途；TimerManager 本身也可以通过
+ * {@link org.springframework.jndi.JndiObjectFactoryBean} 从 JNDI 获取。
+ * 在只需要在启动时静态注册任务的场景中，
+ * 应用代码无需访问 TimerManager 本身。
  *
- * <p>Note that the TimerManager uses a TimerListener instance that is
- * shared between repeated executions, in contrast to Quartz which
- * instantiates a new Job for each execution.
+ * <p>请注意，TimerManager 使用的 TimerListener 实例在重复执行之间
+ * 是共享的，这与 Quartz 不同——Quartz 在每次执行时
+ * 都会实例化一个新的 Job。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -67,9 +67,10 @@ public class TimerManagerFactoryBean extends TimerManagerAccessor
 
 
 	/**
-	 * Register a list of ScheduledTimerListener objects with the TimerManager
-	 * that this FactoryBean creates. Depending on each ScheduledTimerListener's settings,
-	 * it will be registered via one of TimerManager's schedule methods.
+	 * 向此 FactoryBean 创建的 TimerManager 注册
+	 * ScheduledTimerListener 对象列表。根据每个
+	 * ScheduledTimerListener 的设置，将通过 TimerManager 的
+	 * 某个 schedule 方法进行注册。
 	 * @see commonj.timers.TimerManager#schedule(commonj.timers.TimerListener, long)
 	 * @see commonj.timers.TimerManager#schedule(commonj.timers.TimerListener, long, long)
 	 * @see commonj.timers.TimerManager#scheduleAtFixedRate(commonj.timers.TimerListener, long, long)
@@ -138,8 +139,8 @@ public class TimerManagerFactoryBean extends TimerManagerAccessor
 	//---------------------------------------------------------------------
 
 	/**
-	 * Cancels all statically registered Timers on shutdown,
-	 * and stops the underlying TimerManager (if not shared).
+	 * 在关闭时取消所有静态注册的 Timer，
+	 * 并停止底层的 TimerManager（如果不是共享的）。
 	 * @see commonj.timers.Timer#cancel()
 	 * @see commonj.timers.TimerManager#stop()
 	 */

@@ -81,10 +81,10 @@ import org.springframework.util.StringValueResolver;
 import org.springframework.validation.Validator;
 
 /**
- * A handler for messages delegating to {@link MessageMapping @MessageMapping}
- * and {@link SubscribeMapping @SubscribeMapping} annotated methods.
+ * 将消息委托给使用 {@link MessageMapping @MessageMapping}
+ * 和 {@link SubscribeMapping @SubscribeMapping} 注解的方法的处理器。
  *
- * <p>Supports Ant-style path patterns with template variables.
+ * <p>支持带模板变量的 Ant 风格路径模式。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -127,8 +127,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 
 
 	/**
-	 * Create an instance of SimpAnnotationMethodMessageHandler with the given
-	 * message channels and broker messaging template.
+	 * 使用给定消息通道和代理消息模板创建 SimpAnnotationMethodMessageHandler 实例。
 	 * @param clientInboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
 	 * @param clientOutboundChannel the channel for messages to clients (e.g. WebSocket clients)
 	 * @param brokerTemplate a messaging template to send application messages to the broker
@@ -153,12 +152,10 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Destination prefixes are expected to be slash-separated Strings and
-	 * therefore a slash is automatically appended where missing to ensure a
-	 * proper prefix-based match (i.e. matching complete segments).
-	 * <p>Note however that the remaining portion of a destination after the
-	 * prefix may use a different separator (e.g. commonly "." in messaging)
-	 * depending on the configured {@code PathMatcher}.
+	 * <p>目标前缀应为以斜杠分隔的 String，因此在缺失斜杠时会自动追加斜杠，
+	 * 以确保基于前缀的正确匹配（即匹配完整的段）。
+	 * <p>不过请注意，前缀之后的目标剩余部分可能会使用不同的分隔符
+	 * （例如消息传递中常用的 "."），具体取决于配置的 {@code PathMatcher}。
 	 */
 	@Override
 	public void setDestinationPrefixes(@Nullable Collection<String> prefixes) {
@@ -181,9 +178,8 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	}
 
 	/**
-	 * Configure a {@link MessageConverter} to use to convert the payload of a message from
-	 * its serialized form with a specific MIME type to an Object matching the target method
-	 * parameter. The converter is also used when sending a message to the message broker.
+	 * 配置 {@link MessageConverter}，用于将具有特定 MIME 类型的序列化形式的消息载荷
+	 * 转换为与目标方法参数匹配的 Object。在向消息代理发送消息时也会使用该转换器。
 	 * @see CompositeMessageConverter
 	 */
 	public void setMessageConverter(MessageConverter converter) {
@@ -192,32 +188,30 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	}
 
 	/**
-	 * Return the configured {@link MessageConverter}.
+	 * 返回已配置的 {@link MessageConverter}。
 	 */
 	public MessageConverter getMessageConverter() {
 		return this.messageConverter;
 	}
 
 	/**
-	 * Configure a {@link ConversionService} to use when resolving method arguments,
-	 * for example message header values.
-	 * <p>By default, {@link DefaultFormattingConversionService} is used.
+	 * 配置在解析方法参数（例如消息头值）时使用的 {@link ConversionService}。
+	 * <p>默认使用 {@link DefaultFormattingConversionService}。
 	 */
 	public void setConversionService(ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}
 
 	/**
-	 * Return the configured {@link ConversionService}.
+	 * 返回已配置的 {@link ConversionService}。
 	 */
 	public ConversionService getConversionService() {
 		return this.conversionService;
 	}
 
 	/**
-	 * Set the PathMatcher implementation to use for matching destinations
-	 * against configured destination patterns.
-	 * <p>By default, {@link AntPathMatcher} is used.
+	 * 设置用于将目标与已配置目标模式进行匹配的 PathMatcher 实现。
+	 * <p>默认使用 {@link AntPathMatcher}。
 	 */
 	public void setPathMatcher(PathMatcher pathMatcher) {
 		Assert.notNull(pathMatcher, "PathMatcher must not be null");
@@ -226,14 +220,14 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	}
 
 	/**
-	 * Return the PathMatcher implementation to use for matching destinations.
+	 * 返回用于匹配目标的 PathMatcher 实现。
 	 */
 	public PathMatcher getPathMatcher() {
 		return this.pathMatcher;
 	}
 
 	/**
-	 * Return the configured Validator instance.
+	 * 返回已配置的 Validator 实例。
 	 */
 	@Nullable
 	public Validator getValidator() {
@@ -241,7 +235,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	}
 
 	/**
-	 * Set the Validator instance used for validating {@code @Payload} arguments.
+	 * 设置用于校验 {@code @Payload} 参数的 Validator 实例。
 	 * @see org.springframework.validation.annotation.Validated
 	 * @see PayloadMethodArgumentResolver
 	 */
@@ -255,17 +249,16 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	}
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to pass on to
-	 * {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}
-	 * that send messages from controller return values.
-	 * <p>By default, this property is not set.
+	 * 配置 {@link MessageHeaderInitializer}，并传递给由控制器返回值发送消息的
+	 * {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}。
+	 * <p>默认情况下，不设置此属性。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {
@@ -426,7 +419,7 @@ public class SimpAnnotationMethodMessageHandler extends AbstractMethodMessageHan
 	}
 
 	/**
-	 * Resolve placeholder values in the given array of destinations.
+	 * 解析给定目标数组中的占位符值。
 	 * @return a new array with updated destinations
 	 * @since 4.2
 	 */

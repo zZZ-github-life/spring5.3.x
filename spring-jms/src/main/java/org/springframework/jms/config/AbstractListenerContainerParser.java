@@ -36,8 +36,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract parser for JMS listener container elements, providing support for
- * common properties that are identical for all listener container variants.
+ * JMS 监听器容器元素的抽象解析器，提供对所有监听器容器变体都相同的
+ * 通用属性的支持。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -305,21 +305,19 @@ abstract class AbstractListenerContainerParser implements BeanDefinitionParser {
 
 
 	/**
-	 * Parse the common properties for all listeners as defined by the specified
-	 * container {@link Element}.
+	 * 解析指定容器 {@link Element} 所定义的所有监听器通用属性。
 	 */
 	protected abstract MutablePropertyValues parseSpecificContainerProperties(Element containerEle, ParserContext parserContext);
 
 	/**
-	 * Create the {@link BeanDefinition} for the container factory using the specified
-	 * shared property values.
+	 * 使用指定的共享属性值创建容器工厂的 {@link BeanDefinition}。
 	 */
 	@Nullable
 	protected abstract RootBeanDefinition createContainerFactory(String factoryId, Element containerEle, ParserContext parserContext,
 			PropertyValues commonContainerProperties, PropertyValues specificContainerProperties);
 
 	/**
-	 * Create the container {@link BeanDefinition} for the specified context.
+	 * 为指定上下文创建容器 {@link BeanDefinition}。
 	 */
 	protected abstract RootBeanDefinition createContainer(Element containerEle, Element listenerEle, ParserContext parserContext,
 			PropertyValues commonContainerProperties, PropertyValues specificContainerProperties);

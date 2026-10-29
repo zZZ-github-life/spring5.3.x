@@ -22,8 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.beans.factory.parsing.ComponentDefinition}
- * implementation that holds a pointcut definition.
+ * 持有切点定义的 {@link org.springframework.beans.factory.parsing.ComponentDefinition} 实现。
  *
  * @author Rob Harrop
  * @since 2.0

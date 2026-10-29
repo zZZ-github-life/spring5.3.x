@@ -24,7 +24,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A database value that can be set in a statement.
+ * 可以在语句中设置的数据库值。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -46,7 +46,7 @@ public final class Parameter {
 
 
 	/**
-	 * Create a new {@link Parameter} from {@code value}.
+	 * 根据 {@code value} 创建一个新的 {@link Parameter}。
 	 * @param value the parameter value
 	 * @return the {@link Parameter} value for {@code value}
 	 */
@@ -56,7 +56,7 @@ public final class Parameter {
 	}
 
 	/**
-	 * Create a new {@link Parameter} from {@code value} and {@code type}.
+	 * 根据 {@code value} 和 {@code type} 创建一个新的 {@link Parameter}。
 	 * @param value the parameter value (can be {@code null})
 	 * @param type the parameter type
 	 * @return the {@link Parameter} value for {@code value}
@@ -66,7 +66,7 @@ public final class Parameter {
 	}
 
 	/**
-	 * Create a new empty {@link Parameter} for {@code type}.
+	 * 为 {@code type} 创建一个新的空 {@link Parameter}。
 	 * @return the empty {@link Parameter} value for {@code type}
 	 */
 	public static Parameter empty(Class<?> type) {
@@ -76,7 +76,7 @@ public final class Parameter {
 
 
 	/**
-	 * Return the column value (can be {@code null}).
+	 * 返回列值（可以为 {@code null}）。
 	 * @see #hasValue()
 	 */
 	@Nullable
@@ -85,14 +85,14 @@ public final class Parameter {
 	}
 
 	/**
-	 * Return the column value type. Must be also present if the {@code value} is {@code null}.
+	 * 返回列值类型。即使 {@code value} 为 {@code null}，该类型也必须存在。
 	 */
 	public Class<?> getType() {
 		return this.type;
 	}
 
 	/**
-	 * Return whether this {@link Parameter} has a value.
+	 * 返回此 {@link Parameter} 是否有值。
 	 * @return {@code false} if {@link #getValue()} is {@code null}
 	 */
 	public boolean hasValue() {
@@ -100,7 +100,7 @@ public final class Parameter {
 	}
 
 	/**
-	 * Return whether this {@link Parameter} has an empty value.
+	 * 返回此 {@link Parameter} 是否有空值。
 	 * @return {@code true} if {@link #getValue()} is {@code null}
 	 */
 	public boolean isEmpty() {

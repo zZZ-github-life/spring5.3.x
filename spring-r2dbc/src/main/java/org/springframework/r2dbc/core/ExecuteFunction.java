@@ -23,17 +23,15 @@ import io.r2dbc.spi.Statement;
 import org.reactivestreams.Publisher;
 
 /**
- * Represents a function that executes a {@link Statement} for a (delayed)
- * {@link Result} stream.
+ * 表示一个针对（延迟的）{@link Result} 流执行 {@link Statement} 的函数。
  *
- * <p>Note that discarded {@link Result} objects must be consumed according
- * to the R2DBC spec via either {@link Result#getRowsUpdated()} or
- * {@link Result#map(BiFunction)}.
+ * <p>请注意，被丢弃的 {@link Result} 对象必须根据 R2DBC 规范，
+ * 通过 {@link Result#getRowsUpdated()} 或 {@link Result#map(BiFunction)}
+ * 进行消费。
  *
- * <p>Typically, implementations invoke the {@link Statement#execute()} method
- * to initiate execution of the statement object.
+ * <p>通常，实现会调用 {@link Statement#execute()} 方法来启动语句对象的执行。
  *
- * For example:
+ * 例如：
  * <p><pre class="code">
  * DatabaseClient.builder()
  *		.executeFunction(statement -&gt; statement.execute())
@@ -48,7 +46,7 @@ import org.reactivestreams.Publisher;
 public interface ExecuteFunction {
 
 	/**
-	 * Execute the given {@link Statement} for a stream of {@link Result} objects.
+	 * 对 {@link Result} 对象流执行给定的 {@link Statement}。
 	 * @param statement the request to execute
 	 * @return the delayed result stream
 	 */

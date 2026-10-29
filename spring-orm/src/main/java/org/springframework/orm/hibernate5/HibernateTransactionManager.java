@@ -56,46 +56,46 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager}
- * implementation for a single Hibernate {@link SessionFactory}.
- * Binds a Hibernate Session from the specified factory to the thread,
- * potentially allowing for one thread-bound Session per factory.
- * {@code SessionFactory.getCurrentSession()} is required for Hibernate
- * access code that needs to support this transaction handling mechanism,
- * with the SessionFactory being configured with {@link SpringSessionContext}.
+ * 用于单个 Hibernate {@link SessionFactory} 的
+ * {@link org.springframework.transaction.PlatformTransactionManager} 实现。
+ * 将从指定工厂获取的 Hibernate Session 绑定到线程，
+ * 从而可能允许每个工厂对应一个线程绑定的 Session。
+ * 需要支持此事务处理机制的 Hibernate 访问代码必须使用
+ * {@code SessionFactory.getCurrentSession()}，
+ * 并将 SessionFactory 配置为使用 {@link SpringSessionContext}。
  *
- * <p>Supports custom isolation levels, and timeouts that get applied as
- * Hibernate transaction timeouts.
+ * <p>支持自定义隔离级别，以及会作为
+ * Hibernate 事务超时应用的超时设置。
  *
- * <p>This transaction manager is appropriate for applications that use a single
- * Hibernate SessionFactory for transactional data access, but it also supports
- * direct DataSource access within a transaction (i.e. plain JDBC code working
- * with the same DataSource). This allows for mixing services which access Hibernate
- * and services which use plain JDBC (without being aware of Hibernate)!
- * Application code needs to stick to the same simple Connection lookup pattern as
- * with {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
- * (i.e. {@link org.springframework.jdbc.datasource.DataSourceUtils#getConnection}
- * or going through a
- * {@link org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy}).
+ * <p>此事务管理器适用于使用单个 Hibernate SessionFactory
+ * 进行事务性数据访问的应用程序，但它也支持在事务内
+ * 直接访问 DataSource（即使用同一 DataSource 的普通 JDBC 代码）。
+ * 这允许混合使用访问 Hibernate 的服务和使用普通 JDBC
+ * 的服务（后者无需感知 Hibernate）！
+ * 应用程序代码需要遵循与
+ * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
+ * 相同的简单 Connection 查找模式
+ * （即 {@link org.springframework.jdbc.datasource.DataSourceUtils#getConnection}
+ * 或通过
+ * {@link org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy}）。
  *
- * <p>Note: To be able to register a DataSource's Connection for plain JDBC code,
- * this instance needs to be aware of the DataSource ({@link #setDataSource}).
- * The given DataSource should obviously match the one used by the given SessionFactory.
+ * <p>注意：为了能够为普通 JDBC 代码注册 DataSource 的 Connection，
+ * 此实例需要知道 DataSource（{@link #setDataSource}）。
+ * 给定的 DataSource 显然应与给定 SessionFactory 所使用的 DataSource 一致。
  *
- * <p>JTA (usually through {@link org.springframework.transaction.jta.JtaTransactionManager})
- * is necessary for accessing multiple transactional resources within the same
- * transaction. The DataSource that Hibernate uses needs to be JTA-enabled in
- * such a scenario (see container setup).
+ * <p>若要在同一事务中访问多个事务性资源，需要使用 JTA
+ * （通常通过 {@link org.springframework.transaction.jta.JtaTransactionManager}）。
+ * 在这种场景下，Hibernate 使用的 DataSource 需要启用 JTA
+ * （参见容器配置）。
  *
- * <p>This transaction manager supports nested transactions via JDBC 3.0 Savepoints.
- * The {@link #setNestedTransactionAllowed} "nestedTransactionAllowed"} flag defaults
- * to "false", though, as nested transactions will just apply to the JDBC Connection,
- * not to the Hibernate Session and its cached entity objects and related context.
- * You can manually set the flag to "true" if you want to use nested transactions
- * for JDBC access code which participates in Hibernate transactions (provided that
- * your JDBC driver supports Savepoints). <i>Note that Hibernate itself does not
- * support nested transactions! Hence, do not expect Hibernate access code to
- * semantically participate in a nested transaction.</i>
+ * <p>此事务管理器通过 JDBC 3.0 Savepoints 支持嵌套事务。
+ * 不过，{@link #setNestedTransactionAllowed} "nestedTransactionAllowed"} 标志
+ * 默认为 "false"，因为嵌套事务只会应用于 JDBC Connection，
+ * 而不会应用于 Hibernate Session 及其缓存的实体对象和相关上下文。
+ * 如果你希望对参与 Hibernate 事务的 JDBC 访问代码使用嵌套事务
+ * （前提是你的 JDBC 驱动支持 Savepoints），可以手动将该标志设置为 "true"。
+ * <i>请注意，Hibernate 本身并不支持嵌套事务！因此，不要指望 Hibernate 访问代码
+ * 在语义上参与嵌套事务。</i>
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -133,7 +133,7 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	private Object entityInterceptor;
 
 	/**
-	 * Just needed for entityInterceptorBeanName.
+	 * 仅用于 entityInterceptorBeanName。
 	 * @see #setEntityInterceptorBeanName
 	 */
 	@Nullable
@@ -141,15 +141,15 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 
 
 	/**
-	 * Create a new HibernateTransactionManager instance.
-	 * A SessionFactory has to be set to be able to use it.
+	 * 创建一个新的 HibernateTransactionManager 实例。
+	 * 必须设置 SessionFactory 才能使用它。
 	 * @see #setSessionFactory
 	 */
 	public HibernateTransactionManager() {
 	}
 
 	/**
-	 * Create a new HibernateTransactionManager instance.
+	 * 创建一个新的 HibernateTransactionManager 实例。
 	 * @param sessionFactory the SessionFactory to manage transactions for
 	 */
 	public HibernateTransactionManager(SessionFactory sessionFactory) {
@@ -159,14 +159,14 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 
 
 	/**
-	 * Set the SessionFactory that this instance should manage transactions for.
+	 * 设置此实例应为其管理事务的 SessionFactory。
 	 */
 	public void setSessionFactory(@Nullable SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	/**
-	 * Return the SessionFactory that this instance should manage transactions for.
+	 * 返回此实例应为其管理事务的 SessionFactory。
 	 */
 	@Nullable
 	public SessionFactory getSessionFactory() {
@@ -174,7 +174,7 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Obtain the SessionFactory for actual use.
+	 * 获取实际使用的 SessionFactory。
 	 * @return the SessionFactory (never {@code null})
 	 * @throws IllegalStateException in case of no SessionFactory set
 	 * @since 5.0
@@ -186,29 +186,28 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set the JDBC DataSource that this instance should manage transactions for.
-	 * The DataSource should match the one used by the Hibernate SessionFactory:
-	 * for example, you could specify the same JNDI DataSource for both.
-	 * <p>If the SessionFactory was configured with LocalDataSourceConnectionProvider,
-	 * i.e. by Spring's LocalSessionFactoryBean with a specified "dataSource",
-	 * the DataSource will be auto-detected: You can still explicitly specify the
-	 * DataSource, but you don't need to in this case.
-	 * <p>A transactional JDBC Connection for this DataSource will be provided to
-	 * application code accessing this DataSource directly via DataSourceUtils
-	 * or JdbcTemplate. The Connection will be taken from the Hibernate Session.
-	 * <p>The DataSource specified here should be the target DataSource to manage
-	 * transactions for, not a TransactionAwareDataSourceProxy. Only data access
-	 * code may work with TransactionAwareDataSourceProxy, while the transaction
-	 * manager needs to work on the underlying target DataSource. If there's
-	 * nevertheless a TransactionAwareDataSourceProxy passed in, it will be
-	 * unwrapped to extract its target DataSource.
-	 * <p><b>NOTE: For scenarios with many transactions that just read data from
-	 * Hibernate's cache (and do not actually access the database), consider using
-	 * a {@link org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy}
-	 * for the actual target DataSource. Alternatively, consider switching
-	 * {@link #setPrepareConnection "prepareConnection"} to {@code false}.</b>
-	 * In both cases, this transaction manager will not eagerly acquire a
-	 * JDBC Connection for each Hibernate Session anymore (as of Spring 5.1).
+	 * 设置此实例应为其管理事务的 JDBC DataSource。
+	 * DataSource 应与 Hibernate SessionFactory 所使用的 DataSource 一致：
+	 * 例如，可以为两者指定相同的 JNDI DataSource。
+	 * <p>如果 SessionFactory 使用 LocalDataSourceConnectionProvider 配置，
+	 * 即通过 Spring 的 LocalSessionFactoryBean 并指定 "dataSource"，
+	 * 则会自动检测 DataSource：你仍然可以显式指定
+	 * DataSource，但在这种情况下无需这样做。
+	 * <p>通过 DataSourceUtils 或 JdbcTemplate 直接访问此 DataSource 的
+	 * 应用程序代码将获得此 DataSource 的事务性 JDBC Connection。
+	 * 该 Connection 将从 Hibernate Session 中获取。
+	 * <p>此处指定的 DataSource 应是用于管理事务的目标 DataSource，
+	 * 而不是 TransactionAwareDataSourceProxy。只有数据访问
+	 * 代码可以使用 TransactionAwareDataSourceProxy，而事务
+	 * 管理器需要基于底层的目标 DataSource 工作。如果
+	 * 仍然传入了 TransactionAwareDataSourceProxy，它将被
+	 * 解包以提取其目标 DataSource。
+	 * <p><b>注意：对于包含大量仅从 Hibernate 缓存读取数据
+	 * （而不实际访问数据库）的事务的场景，考虑为实际的目标 DataSource
+	 * 使用 {@link org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy}。
+	 * 或者，考虑将 {@link #setPrepareConnection "prepareConnection"} 切换为 {@code false}。</b>
+	 * 在这两种情况下，此事务管理器都将不再为每个 Hibernate Session
+	 * 急切地获取 JDBC Connection（自 Spring 5.1 起）。
 	 * @see #setAutodetectDataSource
 	 * @see TransactionAwareDataSourceProxy
 	 * @see org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy
@@ -227,7 +226,7 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Return the JDBC DataSource that this instance manages transactions for.
+	 * 返回此实例为其管理事务的 JDBC DataSource。
 	 */
 	@Nullable
 	public DataSource getDataSource() {
@@ -235,10 +234,10 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set whether to autodetect a JDBC DataSource used by the Hibernate SessionFactory,
-	 * if set via LocalSessionFactoryBean's {@code setDataSource}. Default is "true".
-	 * <p>Can be turned off to deliberately ignore an available DataSource, in order
-	 * to not expose Hibernate transactions as JDBC transactions for that DataSource.
+	 * 设置是否自动检测 Hibernate SessionFactory 所使用的 JDBC DataSource，
+	 * 前提是通过 LocalSessionFactoryBean 的 {@code setDataSource} 进行了设置。默认值为 "true"。
+	 * <p>可以关闭此选项以有意忽略可用的 DataSource，从而
+	 * 不为该 DataSource 将 Hibernate 事务暴露为 JDBC 事务。
 	 * @see #setDataSource
 	 */
 	public void setAutodetectDataSource(boolean autodetectDataSource) {
@@ -246,15 +245,14 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set whether to prepare the underlying JDBC Connection of a transactional
-	 * Hibernate Session, that is, whether to apply a transaction-specific
-	 * isolation level and/or the transaction's read-only flag to the underlying
-	 * JDBC Connection.
-	 * <p>Default is "true". If you turn this flag off, the transaction manager
-	 * will not support per-transaction isolation levels anymore. It will not
-	 * call {@code Connection.setReadOnly(true)} for read-only transactions
-	 * anymore either. If this flag is turned off, no cleanup of a JDBC Connection
-	 * is required after a transaction, since no Connection settings will get modified.
+	 * 设置是否准备事务性 Hibernate Session 底层的 JDBC Connection，
+	 * 即是否将事务特定的隔离级别和/或事务的只读标志
+	 * 应用到该底层 JDBC Connection。
+	 * <p>默认值为 "true"。如果关闭此标志，事务管理器
+	 * 将不再支持每事务隔离级别。它也将不再为只读事务
+	 * 调用 {@code Connection.setReadOnly(true)}。
+	 * 如果关闭此标志，事务结束后无需清理 JDBC Connection，
+	 * 因为不会修改任何 Connection 设置。
 	 * @see Connection#setTransactionIsolation
 	 * @see Connection#setReadOnly
 	 */
@@ -263,11 +261,11 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set whether to allow result access after completion, typically via Hibernate's
-	 * ScrollableResults mechanism.
-	 * <p>Default is "false". Turning this flag on enforces over-commit holdability on the
-	 * underlying JDBC Connection (if {@link #prepareConnection "prepareConnection"} is on)
-	 * and skips the disconnect-on-completion step.
+	 * 设置是否允许在事务完成后访问结果，通常通过 Hibernate 的
+	 * ScrollableResults 机制。
+	 * <p>默认值为 "false"。开启此标志会在底层 JDBC Connection 上强制使用
+	 * 超过提交后可保持性（over-commit holdability）（如果 {@link #prepareConnection "prepareConnection"} 开启），
+	 * 并跳过完成时断开连接的步骤。
 	 * @see Connection#setHoldability
 	 * @see ResultSet#HOLD_CURSORS_OVER_COMMIT
 	 * @see #disconnectOnCompletion(Session)
@@ -277,38 +275,37 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set whether to operate on a Hibernate-managed Session instead of a
-	 * Spring-managed Session, that is, whether to obtain the Session through
-	 * Hibernate's {@link SessionFactory#getCurrentSession()}
-	 * instead of {@link SessionFactory#openSession()} (with a Spring
-	 * {@link TransactionSynchronizationManager}
-	 * check preceding it).
-	 * <p>Default is "false", i.e. using a Spring-managed Session: taking the current
-	 * thread-bound Session if available (e.g. in an Open-Session-in-View scenario),
-	 * creating a new Session for the current transaction otherwise.
-	 * <p>Switch this flag to "true" in order to enforce use of a Hibernate-managed Session.
-	 * Note that this requires {@link SessionFactory#getCurrentSession()}
-	 * to always return a proper Session when called for a Spring-managed transaction;
-	 * transaction begin will fail if the {@code getCurrentSession()} call fails.
-	 * <p>This mode will typically be used in combination with a custom Hibernate
-	 * {@link org.hibernate.context.spi.CurrentSessionContext} implementation that stores
-	 * Sessions in a place other than Spring's TransactionSynchronizationManager.
-	 * It may also be used in combination with Spring's Open-Session-in-View support
-	 * (using Spring's default {@link SpringSessionContext}), in which case it subtly
-	 * differs from the Spring-managed Session mode: The pre-bound Session will <i>not</i>
-	 * receive a {@code clear()} call (on rollback) or a {@code disconnect()}
-	 * call (on transaction completion) in such a scenario; this is rather left up
-	 * to a custom CurrentSessionContext implementation (if desired).
+	 * 设置是操作 Hibernate 管理的 Session 而不是
+	 * Spring 管理的 Session，即是否通过
+	 * Hibernate 的 {@link SessionFactory#getCurrentSession()} 获取 Session，
+	 * 而不是通过 {@link SessionFactory#openSession()}（后者前面会有
+	 * Spring {@link TransactionSynchronizationManager} 检查）。
+	 * <p>默认值为 "false"，即使用 Spring 管理的 Session：如果存在
+	 * 当前线程绑定的 Session（例如在 Open-Session-in-View 场景中）则使用它，
+	 * 否则为当前事务创建一个新 Session。
+	 * <p>将此标志切换为 "true" 可强制使用 Hibernate 管理的 Session。
+	 * 注意这要求 {@link SessionFactory#getCurrentSession()}
+	 * 在针对 Spring 管理的事务调用时始终返回合适的 Session；
+	 * 如果 {@code getCurrentSession()} 调用失败，事务开启将失败。
+	 * <p>此模式通常与自定义 Hibernate
+	 * {@link org.hibernate.context.spi.CurrentSessionContext} 实现结合使用，
+	 * 后者将 Session 存储在 Spring 的 TransactionSynchronizationManager 以外的位置。
+	 * 它也可以与 Spring 的 Open-Session-in-View 支持结合使用
+	 * （使用 Spring 默认的 {@link SpringSessionContext}），在这种情况下它与
+	 * Spring 管理的 Session 模式有细微差别：在这种场景下，预先绑定的 Session
+	 * <i>不会</i>收到 {@code clear()} 调用（回滚时）或 {@code disconnect()}
+	 * 调用（事务完成时）；这些操作将留给自定义的 CurrentSessionContext 实现
+	 * （如果需要）。
 	 */
 	public void setHibernateManagedSession(boolean hibernateManagedSession) {
 		this.hibernateManagedSession = hibernateManagedSession;
 	}
 
 	/**
-	 * Specify a callback for customizing every Hibernate {@code Session} resource
-	 * created for a new transaction managed by this {@code HibernateTransactionManager}.
-	 * <p>This enables convenient customizations for application purposes, e.g.
-	 * setting Hibernate filters.
+	 * 指定一个回调，用于自定义为此 {@code HibernateTransactionManager}
+	 * 管理的每个新事务创建的 Hibernate {@code Session} 资源。
+	 * <p>这为应用程序目的提供了便捷的自定义方式，例如
+	 * 设置 Hibernate 过滤器。
 	 * @since 5.3
 	 * @see Session#enableFilter
 	 */
@@ -317,14 +314,14 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set the bean name of a Hibernate entity interceptor that allows to inspect
-	 * and change property values before writing to and reading from the database.
-	 * Will get applied to any new Session created by this transaction manager.
-	 * <p>Requires the bean factory to be known, to be able to resolve the bean
-	 * name to an interceptor instance on session creation. Typically used for
-	 * prototype interceptors, i.e. a new interceptor instance per session.
-	 * <p>Can also be used for shared interceptor instances, but it is recommended
-	 * to set the interceptor reference directly in such a scenario.
+	 * 设置 Hibernate 实体拦截器的 bean 名称，该拦截器允许在写入和读取数据库
+	 * 之前检查和更改属性值。
+	 * 将应用于此事务管理器创建的任何新 Session。
+	 * <p>需要已知 bean 工厂，以便在创建 Session 时能够将 bean
+	 * 名称解析为拦截器实例。通常用于原型拦截器，
+	 * 即每个 Session 一个拦截器实例。
+	 * <p>也可用于共享拦截器实例，但在这种场景下
+	 * 建议直接设置拦截器引用。
 	 * @param entityInterceptorBeanName the name of the entity interceptor in
 	 * the bean factory
 	 * @see #setBeanFactory
@@ -335,12 +332,12 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Set a Hibernate entity interceptor that allows to inspect and change
-	 * property values before writing to and reading from the database.
-	 * Will get applied to any new Session created by this transaction manager.
-	 * <p>Such an interceptor can either be set at the SessionFactory level,
-	 * i.e. on LocalSessionFactoryBean, or at the Session level, i.e. on
-	 * HibernateTransactionManager.
+	 * 设置 Hibernate 实体拦截器，该拦截器允许在写入和读取数据库
+	 * 之前检查和更改属性值。
+	 * 将应用于此事务管理器创建的任何新 Session。
+	 * <p>此类拦截器既可以在 SessionFactory 级别设置，
+	 * 即在 LocalSessionFactoryBean 上设置，也可以在 Session 级别设置，
+	 * 即在 HibernateTransactionManager 上设置。
 	 * @see LocalSessionFactoryBean#setEntityInterceptor
 	 */
 	public void setEntityInterceptor(@Nullable Interceptor entityInterceptor) {
@@ -348,9 +345,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Return the current Hibernate entity interceptor, or {@code null} if none.
-	 * Resolves an entity interceptor bean name via the bean factory,
-	 * if necessary.
+	 * 返回当前的 Hibernate 实体拦截器，如果没有则返回 {@code null}。
+	 * 如有必要，通过 bean 工厂解析实体拦截器的 bean 名称。
 	 * @throws IllegalStateException if bean name specified but no bean factory set
 	 * @throws BeansException if bean name resolution via the bean factory failed
 	 * @see #setEntityInterceptor
@@ -375,8 +371,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * The bean factory just needs to be known for resolving entity interceptor
-	 * bean names. It does not need to be set for any other mode of operation.
+	 * bean 工厂仅需用于解析实体拦截器的 bean 名称。
+	 * 对于任何其他操作模式，都无需设置它。
 	 * @see #setEntityInterceptorBeanName
 	 */
 	@Override
@@ -761,10 +757,10 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Disconnect a pre-existing Hibernate Session on transaction completion,
-	 * returning its database connection but preserving its entity state.
-	 * <p>The default implementation simply calls {@link Session#disconnect()}.
-	 * Subclasses may override this with a no-op or with fine-tuned disconnection logic.
+	 * 在事务完成时断开预先存在的 Hibernate Session，
+	 * 返回其数据库连接但保留其实体状态。
+	 * <p>默认实现仅调用 {@link Session#disconnect()}。
+	 * 子类可以重写此方法以执行空操作或精细调整的断开连接逻辑。
 	 * @param session the Hibernate Session to disconnect
 	 * @see Session#disconnect()
 	 */
@@ -773,10 +769,10 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 	}
 
 	/**
-	 * Convert the given HibernateException to an appropriate exception
-	 * from the {@code org.springframework.dao} hierarchy.
-	 * <p>Will automatically apply a specified SQLExceptionTranslator to a
-	 * Hibernate JDBCException, else rely on Hibernate's default translation.
+	 * 将给定的 HibernateException 转换为 {@code org.springframework.dao} 层次结构中
+	 * 相应的异常。
+	 * <p>会自动将指定的 SQLExceptionTranslator 应用于
+	 * Hibernate JDBCException，否则依赖 Hibernate 的默认转换。
 	 * @param ex the HibernateException that occurred
 	 * @return a corresponding DataAccessException
 	 * @see SessionFactoryUtils#convertHibernateAccessException
@@ -787,8 +783,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 
 
 	/**
-	 * Hibernate transaction object, representing a SessionHolder.
-	 * Used as transaction object by HibernateTransactionManager.
+	 * Hibernate 事务对象，表示一个 SessionHolder。
+	 * 由 HibernateTransactionManager 用作事务对象。
 	 */
 	private class HibernateTransactionObject extends JdbcTransactionObjectSupport {
 
@@ -897,8 +893,8 @@ public class HibernateTransactionManager extends AbstractPlatformTransactionMana
 
 
 	/**
-	 * Holder for suspended resources.
-	 * Used internally by {@code doSuspend} and {@code doResume}.
+	 * 挂起资源的持有器。
+	 * 供 {@code doSuspend} 和 {@code doResume} 内部使用。
 	 */
 	private static final class SuspendedResourcesHolder {
 

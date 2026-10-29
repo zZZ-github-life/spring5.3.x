@@ -31,23 +31,22 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Interceptor to wrap an after-throwing advice.
+ * 用于包装异常抛出后通知的拦截器。
  *
- * <p>The signatures on handler methods on the {@code ThrowsAdvice}
- * implementation method argument must be of the form:<br>
+ * <p>{@code ThrowsAdvice} 实现中处理方法的方法参数签名必须采用以下形式：<br>
  *
  * {@code void afterThrowing([Method, args, target], ThrowableSubclass);}
  *
- * <p>Only the last argument is required.
+ * <p>只有最后一个参数是必需的。
  *
- * <p>Some examples of valid methods would be:
+ * <p>有效方法的一些示例如下：
  *
  * <pre class="code">public void afterThrowing(Exception ex)</pre>
  * <pre class="code">public void afterThrowing(RemoteException)</pre>
  * <pre class="code">public void afterThrowing(Method method, Object[] args, Object target, Exception ex)</pre>
  * <pre class="code">public void afterThrowing(Method method, Object[] args, Object target, ServletException ex)</pre>
  *
- * <p>This is a framework class that need not be used directly by Spring users.
+ * <p>这是一个框架类，Spring 用户无需直接使用。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -63,12 +62,12 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 
 	private final Object throwsAdvice;
 
-	/** Methods on throws advice, keyed by exception class. */
+	/** throws 通知上的方法，以异常类为键。 */
 	private final Map<Class<?>, Method> exceptionHandlerMap = new HashMap<>();
 
 
 	/**
-	 * Create a new ThrowsAdviceInterceptor for the given ThrowsAdvice.
+	 * 为给定 ThrowsAdvice 创建一个新的 ThrowsAdviceInterceptor。
 	 * @param throwsAdvice the advice object that defines the exception handler methods
 	 * (usually a {@link org.springframework.aop.ThrowsAdvice} implementation)
 	 */
@@ -99,7 +98,7 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 
 
 	/**
-	 * Return the number of handler methods in this advice.
+	 * 返回此 advice 中处理方法的数量。
 	 */
 	public int getHandlerMethodCount() {
 		return this.exceptionHandlerMap.size();
@@ -122,7 +121,7 @@ public class ThrowsAdviceInterceptor implements MethodInterceptor, AfterAdvice {
 	}
 
 	/**
-	 * Determine the exception handle method for the given exception.
+	 * 为给定异常确定异常处理方法。
 	 * @param exception the exception thrown
 	 * @return a handler for the given exception type, or {@code null} if none found
 	 */

@@ -29,8 +29,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class implementing the common {@link CacheManager} methods.
- * Useful for 'static' environments where the backing caches do not change.
+ * 实现通用 {@link CacheManager} 方法的抽象基类。
+ * 适用于底层缓存不发生变化的 'static' 环境。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -52,9 +52,9 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	}
 
 	/**
-	 * Initialize the static configuration of caches.
-	 * <p>Triggered on startup through {@link #afterPropertiesSet()};
-	 * can also be called to re-initialize at runtime.
+	 * 初始化缓存的静态配置。
+	 * <p>通过 {@link #afterPropertiesSet()} 在启动时触发；
+	 * 也可以在运行时调用以重新初始化。
 	 * @since 4.2.2
 	 * @see #loadCaches()
 	 */
@@ -75,9 +75,9 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	}
 
 	/**
-	 * Load the initial caches for this cache manager.
-	 * <p>Called by {@link #afterPropertiesSet()} on startup.
-	 * The returned collection may be empty but must not be {@code null}.
+	 * 为该缓存管理器加载初始缓存。
+	 * <p>在启动时由 {@link #afterPropertiesSet()} 调用。
+	 * 返回的集合可以为空，但不能为 {@code null}。
 	 */
 	protected abstract Collection<? extends Cache> loadCaches();
 
@@ -118,9 +118,9 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	// Common cache initialization delegates for subclasses
 
 	/**
-	 * Check for a registered cache of the given name.
-	 * In contrast to {@link #getCache(String)}, this method does not trigger
-	 * the lazy creation of missing caches via {@link #getMissingCache(String)}.
+	 * 检查是否存在给定名称的已注册缓存。
+	 * 与 {@link #getCache(String)} 不同，此方法不会通过
+	 * {@link #getMissingCache(String)} 触发对缺失缓存的延迟创建。
 	 * @param name the cache identifier (must not be {@code null})
 	 * @return the associated Cache instance, or {@code null} if none found
 	 * @since 4.1
@@ -133,7 +133,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	}
 
 	/**
-	 * Dynamically register an additional Cache with this manager.
+	 * 向此管理器动态注册一个额外的 Cache。
 	 * @param cache the Cache to register
 	 * @deprecated as of Spring 4.3, in favor of {@link #getMissingCache(String)}
 	 */
@@ -148,10 +148,10 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	}
 
 	/**
-	 * Update the exposed {@link #cacheNames} set with the given name.
-	 * <p>This will always be called within a full {@link #cacheMap} lock
-	 * and effectively behaves like a {@code CopyOnWriteArraySet} with
-	 * preserved order but exposed as an unmodifiable reference.
+	 * 用给定名称更新公开的 {@link #cacheNames} 集合。
+	 * <p>这一操作始终会在完整的 {@link #cacheMap} 锁内被调用，
+	 * 其行为实际上类似于一个 {@code CopyOnWriteArraySet}，
+	 * 保留顺序但以不可修改的引用对外暴露。
 	 * @param name the name of the cache to be added
 	 */
 	private void updateCacheNames(String name) {
@@ -164,7 +164,7 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	// Overridable template methods for cache initialization
 
 	/**
-	 * Decorate the given Cache object if necessary.
+	 * 如有必要，装饰给定的 Cache 对象。
 	 * @param cache the Cache object to be added to this CacheManager
 	 * @return the decorated Cache object to be used instead,
 	 * or simply the passed-in Cache object by default
@@ -174,12 +174,12 @@ public abstract class AbstractCacheManager implements CacheManager, Initializing
 	}
 
 	/**
-	 * Return a missing cache with the specified {@code name}, or {@code null} if
-	 * such a cache does not exist or could not be created on demand.
-	 * <p>Caches may be lazily created at runtime if the native provider supports it.
-	 * If a lookup by name does not yield any result, an {@code AbstractCacheManager}
-	 * subclass gets a chance to register such a cache at runtime. The returned cache
-	 * will be automatically added to this cache manager.
+	 * 返回具有指定 {@code name} 的缺失缓存，如果此类缓存不存在
+	 * 或无法按需创建，则返回 {@code null}。
+	 * <p>如果原生提供程序支持，缓存可以在运行时延迟创建。
+	 * 如果按名称查找未得到任何结果，{@code AbstractCacheManager}
+	 * 子类就有机会在运行时注册这样的缓存。返回的缓存
+	 * 将被自动添加到该缓存管理器。
 	 * @param name the name of the cache to retrieve
 	 * @return the missing cache, or {@code null} if no such cache exists or could be
 	 * created on demand

@@ -31,12 +31,12 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.lang.Nullable;
 
 /**
- * Bean that checks if a database has already started up. To be referenced
- * via "depends-on" from beans that depend on database startup, like a Hibernate
- * SessionFactory or custom data access objects that access a DataSource directly.
+ * 用于检查数据库是否已启动的 Bean。可以通过 "depends-on" 从依赖数据库启动的
+ * bean 中引用它，例如 Hibernate SessionFactory 或直接访问 DataSource 的自定义
+ * 数据访问对象。
  *
- * <p>Useful to defer application initialization until a database has started up.
- * Particularly appropriate for waiting on a slowly starting Oracle database.
+ * <p>适用于将应用程序初始化推迟到数据库启动之后。尤其适合等待启动缓慢的
+ * Oracle 数据库。
  *
  * @author Juergen Hoeller
  * @author Marten Deinum
@@ -45,12 +45,12 @@ import org.springframework.lang.Nullable;
 public class DatabaseStartupValidator implements InitializingBean {
 
 	/**
-	 * The default interval.
+	 * 默认间隔。
 	 */
 	public static final int DEFAULT_INTERVAL = 1;
 
 	/**
-	 * The default timeout.
+	 * 默认超时时间。
 	 */
 	public static final int DEFAULT_TIMEOUT = 60;
 
@@ -69,14 +69,14 @@ public class DatabaseStartupValidator implements InitializingBean {
 
 
 	/**
-	 * Set the DataSource to validate.
+	 * 设置要校验的 DataSource。
 	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	/**
-	 * Set the SQL query string to use for validation.
+	 * 设置用于校验的 SQL 查询字符串。
 	 * @deprecated as of 5.3, in favor of the JDBC 4.0 connection validation
 	 */
 	@Deprecated
@@ -85,16 +85,16 @@ public class DatabaseStartupValidator implements InitializingBean {
 	}
 
 	/**
-	 * Set the interval between validation runs (in seconds).
-	 * Default is {@value #DEFAULT_INTERVAL}.
+	 * 设置两次校验运行之间的间隔（秒）。
+	 * 默认值为 {@value #DEFAULT_INTERVAL}。
 	 */
 	public void setInterval(int interval) {
 		this.interval = interval;
 	}
 
 	/**
-	 * Set the timeout (in seconds) after which a fatal exception
-	 * will be thrown. Default is {@value #DEFAULT_TIMEOUT}.
+	 * 设置超时时间（秒），超过该时间后将抛出致命异常。
+	 * 默认值为 {@value #DEFAULT_TIMEOUT}。
 	 */
 	public void setTimeout(int timeout) {
 		this.timeout = timeout;
@@ -102,9 +102,8 @@ public class DatabaseStartupValidator implements InitializingBean {
 
 
 	/**
-	 * Check whether the validation query can be executed on a Connection
-	 * from the specified DataSource, with the specified interval between
-	 * checks, until the specified timeout.
+	 * 检查是否可以在指定 DataSource 的连接上执行校验查询，按指定的检查间隔
+	 * 重试，直到达到指定的超时时间。
 	 */
 	@Override
 	public void afterPropertiesSet() {

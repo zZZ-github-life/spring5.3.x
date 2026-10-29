@@ -44,13 +44,12 @@ import org.springframework.web.reactive.socket.adapter.JettyWebSocketHandlerAdap
 import org.springframework.web.reactive.socket.adapter.JettyWebSocketSession;
 
 /**
- * A {@link WebSocketClient} implementation for use with Jetty
- * {@link org.eclipse.jetty.websocket.client.WebSocketClient}.
+ * 与 Jetty {@link org.eclipse.jetty.websocket.client.WebSocketClient} 配合使用的
+ * {@link WebSocketClient} 实现。
  *
- * <p><strong>Note: </strong> the Jetty {@code WebSocketClient} requires
- * lifecycle management and must be started and stopped. This is automatically
- * managed when this class is declared as a Spring bean and created with the
- * default constructor. See constructor notes for more details.
+ * <p><strong>注意：</strong>Jetty {@code WebSocketClient} 需要生命周期管理，
+ * 必须启动和停止。当此类被声明为 Spring bean 并使用默认构造函数创建时，
+ * 这会自动管理。有关详细信息，请参见构造函数说明。
  *
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
@@ -80,13 +79,12 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 
 
 	/**
-	 * Default constructor that creates and manages an instance of a Jetty
-	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient WebSocketClient}.
-	 * The instance can be obtained with {@link #getJettyClient()} for further
-	 * configuration.
+	 * 默认构造函数，创建并管理一个 Jetty
+	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient WebSocketClient} 实例。
+	 * 可以通过 {@link #getJettyClient()} 获取该实例以进行进一步配置。
 	 *
-	 * <p><strong>Note: </strong> When this constructor is used {@link Lifecycle}
-	 * methods of this class are delegated to the Jetty {@code WebSocketClient}.
+	 * <p><strong>注意：</strong>使用此构造函数时，此类的 {@link Lifecycle} 方法会
+	 * 委托给 Jetty 的 {@code WebSocketClient}。
 	 */
 	public JettyWebSocketClient() {
 		this.jettyClient = new org.eclipse.jetty.websocket.client.WebSocketClient();
@@ -94,12 +92,12 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * Constructor that accepts an existing instance of a Jetty
-	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient WebSocketClient}.
+	 * 接受现有 Jetty
+	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient WebSocketClient} 实例的
+	 * 构造函数。
 	 *
-	 * <p><strong>Note: </strong> Use of this constructor implies the Jetty
-	 * {@code WebSocketClient} is externally managed and hence {@link Lifecycle}
-	 * methods of this class are not delegated to it.
+	 * <p><strong>注意：</strong>使用此构造函数意味着 Jetty {@code WebSocketClient}
+	 * 由外部管理，因此此类的 {@link Lifecycle} 方法不会委托给它。
 	 */
 	public JettyWebSocketClient(org.eclipse.jetty.websocket.client.WebSocketClient jettyClient) {
 		this.jettyClient = jettyClient;
@@ -108,7 +106,7 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 
 
 	/**
-	 * Return the underlying Jetty {@code WebSocketClient}.
+	 * 返回底层的 Jetty {@code WebSocketClient}。
 	 */
 	public org.eclipse.jetty.websocket.client.WebSocketClient getJettyClient() {
 		return this.jettyClient;
@@ -189,7 +187,7 @@ public class JettyWebSocketClient implements WebSocketClient, Lifecycle {
 
 
 	/**
-	 * Encapsulate incompatible changes between Jetty 9.4 and 10.
+	 * 封装 Jetty 9.4 与 10 之间的不兼容变更。
 	 */
 	private interface UpgradeHelper {
 

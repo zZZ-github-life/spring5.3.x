@@ -27,15 +27,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Servlet Filter that allows one to specify a character encoding for requests.
- * This is useful because current browsers typically do not set a character
- * encoding even if specified in the HTML page or form.
+ * Servlet 过滤器，允许为请求指定字符编码。这很有用，因为当前浏览器通常
+ * 不会设置字符编码，即使已在 HTML 页面或表单中指定。
  *
- * <p>This filter can either apply its encoding if the request does not already
- * specify an encoding, or enforce this filter's encoding in any case
- * ("forceEncoding"="true"). In the latter case, the encoding will also be
- * applied as default response encoding (although this will usually be overridden
- * by a full content type set in the view).
+ * <p>此过滤器既可以在请求尚未指定编码时应用其编码，也可以在任何情况下
+ * 强制使用此过滤器的编码（"forceEncoding"="true"）。在后一种情况下，
+ * 该编码还会作为默认响应编码应用（不过这通常会被视图中设置的完整内容类型覆盖）。
  *
  * @author Juergen Hoeller
  * @since 15.03.2004
@@ -55,15 +52,15 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Create a default {@code CharacterEncodingFilter},
-	 * with the encoding to be set via {@link #setEncoding}.
+	 * 创建一个默认的 {@code CharacterEncodingFilter}，
+	 * 其编码通过 {@link #setEncoding} 设置。
 	 * @see #setEncoding
 	 */
 	public CharacterEncodingFilter() {
 	}
 
 	/**
-	 * Create a {@code CharacterEncodingFilter} for the given encoding.
+	 * 为给定的编码创建一个 {@code CharacterEncodingFilter}。
 	 * @param encoding the encoding to apply
 	 * @since 4.2.3
 	 * @see #setEncoding
@@ -73,7 +70,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Create a {@code CharacterEncodingFilter} for the given encoding.
+	 * 为给定的编码创建一个 {@code CharacterEncodingFilter}。
 	 * @param encoding the encoding to apply
 	 * @param forceEncoding whether the specified encoding is supposed to
 	 * override existing request and response encodings
@@ -86,7 +83,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Create a {@code CharacterEncodingFilter} for the given encoding.
+	 * 为给定的编码创建一个 {@code CharacterEncodingFilter}。
 	 * @param encoding the encoding to apply
 	 * @param forceRequestEncoding whether the specified encoding is supposed to
 	 * override existing request encodings
@@ -106,18 +103,17 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Set the encoding to use for requests. This encoding will be passed into a
-	 * {@link javax.servlet.http.HttpServletRequest#setCharacterEncoding} call.
-	 * <p>Whether this encoding will override existing request encodings
-	 * (and whether it will be applied as default response encoding as well)
-	 * depends on the {@link #setForceEncoding "forceEncoding"} flag.
+	 * 设置用于请求的编码。该编码将传入
+	 * {@link javax.servlet.http.HttpServletRequest#setCharacterEncoding} 调用。
+	 * <p>该编码是否会覆盖已有的请求编码（以及是否也会作为默认响应编码应用）
+	 * 取决于 {@link #setForceEncoding "forceEncoding"} 标志。
 	 */
 	public void setEncoding(@Nullable String encoding) {
 		this.encoding = encoding;
 	}
 
 	/**
-	 * Return the configured encoding for requests and/or responses.
+	 * 返回为请求和/或响应配置的编码。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -126,14 +122,14 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Set whether the configured {@link #setEncoding encoding} of this filter
-	 * is supposed to override existing request and response encodings.
-	 * <p>Default is "false", i.e. do not modify the encoding if
+	 * 设置此过滤器配置的 {@link #setEncoding encoding} 是否应覆盖已有的
+	 * 请求编码和响应编码。
+	 * <p>默认值为 "false"，即如果
 	 * {@link javax.servlet.http.HttpServletRequest#getCharacterEncoding()}
-	 * returns a non-null value. Switch this to "true" to enforce the specified
-	 * encoding in any case, applying it as default response encoding as well.
-	 * <p>This is the equivalent to setting both {@link #setForceRequestEncoding(boolean)}
-	 * and {@link #setForceResponseEncoding(boolean)}.
+	 * 返回非 null 值，则不修改编码。将其设置为 "true" 可在任何情况下强制使用
+	 * 指定的编码，并同时将其作为默认响应编码应用。
+	 * <p>这等同于同时设置 {@link #setForceRequestEncoding(boolean)} 和
+	 * {@link #setForceResponseEncoding(boolean)}。
 	 * @see #setForceRequestEncoding(boolean)
 	 * @see #setForceResponseEncoding(boolean)
 	 */
@@ -143,12 +139,11 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Set whether the configured {@link #setEncoding encoding} of this filter
-	 * is supposed to override existing request encodings.
-	 * <p>Default is "false", i.e. do not modify the encoding if
+	 * 设置此过滤器配置的 {@link #setEncoding encoding} 是否应覆盖已有的请求编码。
+	 * <p>默认值为 "false"，即如果
 	 * {@link javax.servlet.http.HttpServletRequest#getCharacterEncoding()}
-	 * returns a non-null value. Switch this to "true" to enforce the specified
-	 * encoding in any case.
+	 * 返回非 null 值，则不修改编码。将其设置为 "true" 可在任何情况下强制使用
+	 * 指定的编码。
 	 * @since 4.3
 	 */
 	public void setForceRequestEncoding(boolean forceRequestEncoding) {
@@ -156,7 +151,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Return whether the encoding should be forced on requests.
+	 * 返回是否应对请求强制使用该编码。
 	 * @since 4.3
 	 */
 	public boolean isForceRequestEncoding() {
@@ -164,11 +159,9 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Set whether the configured {@link #setEncoding encoding} of this filter
-	 * is supposed to override existing response encodings.
-	 * <p>Default is "false", i.e. do not modify the encoding.
-	 * Switch this to "true" to enforce the specified encoding
-	 * for responses in any case.
+	 * 设置此过滤器配置的 {@link #setEncoding encoding} 是否应覆盖已有的响应编码。
+	 * <p>默认值为 "false"，即不修改编码。
+	 * 将其设置为 "true" 可在任何情况下强制对响应使用指定的编码。
 	 * @since 4.3
 	 */
 	public void setForceResponseEncoding(boolean forceResponseEncoding) {
@@ -176,7 +169,7 @@ public class CharacterEncodingFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Return whether the encoding should be forced on responses.
+	 * 返回是否应对响应强制使用该编码。
 	 * @since 4.3
 	 */
 	public boolean isForceResponseEncoding() {

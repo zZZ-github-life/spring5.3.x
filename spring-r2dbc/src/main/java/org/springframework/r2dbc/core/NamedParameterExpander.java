@@ -23,17 +23,15 @@ import org.springframework.util.ConcurrentLruCache;
 
 
 /**
- * SQL translation support allowing the use of named parameters
- * rather than native placeholders.
+ * SQL 翻译支持，允许使用命名参数而非原生占位符。
  *
- * <p>This class expands SQL from named parameters to native
- * style placeholders at execution time. It also allows for expanding
- * a {@link List} of values to the appropriate number of placeholders.
+ * <p>此类在执行时会将包含命名参数的 SQL 展开为原生风格的占位符。
+ * 它还允许将 {@link List} 值展开为相应数量的占位符。
  *
- * <p>References to the same parameter name are substituted with the
- * same bind marker placeholder if a {@link BindMarkersFactory} uses
- * {@link BindMarkersFactory#identifiablePlaceholders() identifiable} placeholders.
- * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
+ * <p>如果 {@link BindMarkersFactory} 使用
+ * {@link BindMarkersFactory#identifiablePlaceholders() 可标识的}占位符，
+ * 则对同一参数名的引用会被替换为相同的绑定标记占位符。
+ * <p><b>注意：此类实例在配置完成后是线程安全的。</b>
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -41,18 +39,18 @@ import org.springframework.util.ConcurrentLruCache;
 class NamedParameterExpander {
 
 	/**
-	 * Default maximum number of entries for the SQL cache: 256.
+	 * SQL 缓存的默认最大条目数：256。
 	 */
 	public static final int DEFAULT_CACHE_LIMIT = 256;
 
-	/** Cache of original SQL String to ParsedSql representation. */
+	/** 从原始 SQL 字符串到 ParsedSql 表示的缓存。 */
 	private final ConcurrentLruCache<String, ParsedSql> parsedSqlCache =
 			new ConcurrentLruCache<>(DEFAULT_CACHE_LIMIT, NamedParameterUtils::parseSqlStatement);
 
 
 	/**
-	 * Obtain a parsed representation of the given SQL statement.
-	 * <p>The default implementation uses an LRU cache with an upper limit of 256 entries.
+	 * 获取给定 SQL 语句的已解析表示。
+	 * <p>默认实现使用上限为 256 个条目的 LRU 缓存。
 	 * @param sql the original SQL statement
 	 * @return a representation of the parsed SQL statement
 	 */
@@ -61,19 +59,17 @@ class NamedParameterExpander {
 	}
 
 	/**
-	 * Parse the SQL statement and locate any placeholders or named parameters.
-	 * Named parameters are substituted for a native placeholder, and any
-	 * select list is expanded to the required number of placeholders. Select
-	 * lists may contain an array of objects, and in that case the placeholders
-	 * will be grouped and enclosed with parentheses. This allows for the use of
-	 * "expression lists" in the SQL statement like:
+	 * 解析 SQL 语句并定位任何占位符或命名参数。
+	 * 命名参数会被替换为原生占位符，任何选择列表都会被展开为
+	 * 所需数量的占位符。选择列表可能包含对象数组，
+	 * 在这种情况下，占位符将被分组并用括号括起来。
+	 * 这样便可在 SQL 语句中使用"表达式列表"，例如：
 	 * <pre class="code">
 	 * select id, name, state from table where (name, age) in (('John', 35), ('Ann', 50))
 	 * </pre>
-	 * <p>The parameter values passed in are used to determine the number of
-	 * placeholders to be used for a select list. Select lists should be limited
-	 * to 100 or fewer elements. A larger number of elements is not guaranteed to be
-	 * supported by the database and is strictly vendor-dependent.
+	 * <p>传入的参数值用于确定选择列表要使用的占位符数量。
+	 * 选择列表应限制为 100 个或更少的元素。数据库不保证支持更多元素，
+	 * 并且这严格取决于数据库供应商。
 	 * @param sql sql the original SQL statement
 	 * @param bindMarkersFactory the bind marker factory
 	 * @param paramSource the source for named parameters
@@ -88,8 +84,8 @@ class NamedParameterExpander {
 	}
 
 	/**
-	 * Parse the SQL statement and locate any placeholders or named parameters.
-	 * Named parameters are returned as result of this method invocation.
+	 * 解析 SQL 语句并定位任何占位符或命名参数。
+	 * 命名参数作为此方法调用的结果返回。
 	 * @return the parameter names
 	 */
 	public List<String> getParameterNames(String sql) {

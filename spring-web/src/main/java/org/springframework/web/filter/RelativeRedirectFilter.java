@@ -27,15 +27,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 /**
- * Overrides {@link HttpServletResponse#sendRedirect(String)} and handles it by
- * setting the HTTP status and "Location" headers, which keeps the Servlet
- * container from re-writing relative redirect URLs into absolute ones.
- * Servlet containers are required to do that but against the recommendation of
- * <a href="https://tools.ietf.org/html/rfc7231#section-7.1.2"> RFC 7231 Section 7.1.2</a>,
- * and furthermore not necessarily taking into account "X-Forwarded" headers.
+ * 重写 {@link HttpServletResponse#sendRedirect(String)}，并通过设置 HTTP 状态和
+ * "Location" 头来处理重定向，从而避免 Servlet 容器将相对重定向 URL 重写为绝对 URL。
+ * Servlet 容器被要求这样做，但这违背了
+ * <a href="https://tools.ietf.org/html/rfc7231#section-7.1.2"> RFC 7231 第 7.1.2 节</a>
+ * 的建议，而且不一定会考虑 "X-Forwarded" 头。
  *
- * <p><strong>Note:</strong> While relative redirects are recommended in the
- * RFC, under some configurations with reverse proxies they may not work.
+ * <p><strong>注意：</strong>虽然 RFC 推荐使用相对重定向，
+ * 但在某些使用反向代理的配置下，它们可能无法正常工作。
  *
  * @author Rob Winch
  * @author Rossen Stoyanchev
@@ -47,8 +46,8 @@ public class RelativeRedirectFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Set the default HTTP Status to use for redirects.
-	 * <p>By default this is {@link HttpStatus#SEE_OTHER}.
+	 * 设置用于重定向的默认 HTTP 状态。
+	 * <p>默认值为 {@link HttpStatus#SEE_OTHER}。
 	 * @param status the 3xx redirect status to use
 	 */
 	public void setRedirectStatus(HttpStatus status) {
@@ -58,7 +57,7 @@ public class RelativeRedirectFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Return the configured redirect status.
+	 * 返回配置的重定向状态。
 	 */
 	public HttpStatus getRedirectStatus() {
 		return this.redirectStatus;

@@ -21,9 +21,7 @@ import org.springframework.asm.Opcodes;
 import org.springframework.expression.PropertyAccessor;
 
 /**
- * A compilable property accessor is able to generate bytecode that represents
- * the access operation, facilitating compilation to bytecode of expressions
- * that use the accessor.
+ * 可编译的属性访问器能够生成表示访问操作的字节码，从而便于将使用该访问器的表达式编译为字节码。
  *
  * @author Andy Clement
  * @since 4.1
@@ -31,18 +29,17 @@ import org.springframework.expression.PropertyAccessor;
 public interface CompilablePropertyAccessor extends PropertyAccessor, Opcodes {
 
 	/**
-	 * Return {@code true} if this property accessor is currently suitable for compilation.
+	 * 如果此属性访问器当前适合编译，则返回 {@code true}。
 	 */
 	boolean isCompilable();
 
 	/**
-	 * Return the type of the accessed property - may only be known once an access has occurred.
+	 * 返回被访问属性的类型——可能只有在发生访问后才能确定。
 	 */
 	Class<?> getPropertyType();
 
 	/**
-	 * Generate the bytecode the performs the access operation into the specified MethodVisitor
-	 * using context information from the codeflow where necessary.
+	 * 在必要时使用 codeflow 中的上下文信息，将执行访问操作的字节码生成到指定的 MethodVisitor 中。
 	 * @param propertyName the name of the property
 	 * @param mv the Asm method visitor into which code should be generated
 	 * @param cf the current state of the expression compiler

@@ -34,8 +34,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link ContextCustomizer} to support
- * {@link DynamicPropertySource @DynamicPropertySource} methods.
+ * 用于支持 {@link DynamicPropertySource @DynamicPropertySource} 方法的
+ * {@link ContextCustomizer}。
  *
  * @author Phillip Webb
  * @author Sam Brannen

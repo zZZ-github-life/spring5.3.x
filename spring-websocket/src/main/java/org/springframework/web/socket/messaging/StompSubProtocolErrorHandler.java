@@ -25,7 +25,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.util.Assert;
 
 /**
- * A {@link SubProtocolErrorHandler} for use with STOMP.
+ * 与 STOMP 配合使用的 {@link SubProtocolErrorHandler}。
  *
  * @author Rossen Stoyanchev
  * @since 4.2

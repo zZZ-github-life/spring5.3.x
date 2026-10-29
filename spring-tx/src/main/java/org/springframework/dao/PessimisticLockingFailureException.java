@@ -17,14 +17,12 @@
 package org.springframework.dao;
 
 /**
- * Exception thrown on a pessimistic locking violation.
- * Thrown by Spring's SQLException translation mechanism
- * if a corresponding database error is encountered.
+ * 悲观锁违反时抛出的异常。
+ * 当遇到相应的数据库错误时，由 Spring 的 SQLException 翻译机制抛出。
  *
- * <p>Serves as a superclass for more specific exceptions, e.g.
- * {@link CannotAcquireLockException}. However, it is generally
- * recommended to handle {@code PessimisticLockingFailureException}
- * itself instead of relying on specific exception subclasses.
+ * <p>作为更具体异常的超类，例如 {@link CannotAcquireLockException}。
+ * 然而，通常建议直接处理 {@code PessimisticLockingFailureException}，
+ * 而不是依赖于特定的异常子类。
  *
  * @author Thomas Risberg
  * @since 1.2
@@ -34,7 +32,7 @@ package org.springframework.dao;
 public class PessimisticLockingFailureException extends ConcurrencyFailureException {
 
 	/**
-	 * Constructor for PessimisticLockingFailureException.
+	 * PessimisticLockingFailureException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public PessimisticLockingFailureException(String msg) {
@@ -42,7 +40,7 @@ public class PessimisticLockingFailureException extends ConcurrencyFailureExcept
 	}
 
 	/**
-	 * Constructor for PessimisticLockingFailureException.
+	 * PessimisticLockingFailureException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

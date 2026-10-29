@@ -56,13 +56,10 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Enhances {@link Configuration} classes by generating a CGLIB subclass which
- * interacts with the Spring container to respect bean scoping semantics for
- * {@code @Bean} methods. Each such {@code @Bean} method will be overridden in
- * the generated subclass, only delegating to the actual {@code @Bean} method
- * implementation if the container actually requests the construction of a new
- * instance. Otherwise, a call to such an {@code @Bean} method serves as a
- * reference back to the container, obtaining the corresponding bean by name.
+ * 通过生成 CGLIB 子类来增强 {@link Configuration} 类，该子类与 Spring 容器交互，以遵循
+ * {@code @Bean} 方法的 Bean 作用域语义。每个这样的 {@code @Bean} 方法都会在生成的子类中被重写，只
+ * 有当容器确实请求构造新实例时才委托给实际的 {@code @Bean} 方法实现。否则，对此类 {@code @Bean} 方
+ * 法的调用就相当于反向引用容器，按名称获取相应的 Bean。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -90,8 +87,8 @@ class ConfigurationClassEnhancer {
 
 
 	/**
-	 * Loads the specified class and generates a CGLIB subclass of it equipped with
-	 * container-aware callbacks capable of respecting scoping and other bean semantics.
+	 * 加载指定的类，并为其生成一个配备容器感知回调的 CGLIB 子类，这些回调能够遵循作用域及其他 Bean 语
+	 * 义。
 	 * @return the enhanced subclass
 	 */
 	public Class<?> enhance(Class<?> configClass, @Nullable ClassLoader classLoader) {
@@ -115,7 +112,7 @@ class ConfigurationClassEnhancer {
 	}
 
 	/**
-	 * Creates a new CGLIB {@link Enhancer} instance.
+	 * 创建一个新的 CGLIB {@link Enhancer} 实例。
 	 */
 	private Enhancer newEnhancer(Class<?> configSuperClass, @Nullable ClassLoader classLoader) {
 		Enhancer enhancer = new Enhancer();
@@ -130,8 +127,7 @@ class ConfigurationClassEnhancer {
 	}
 
 	/**
-	 * Uses enhancer to generate a subclass of superclass,
-	 * ensuring that callbacks are registered for the new subclass.
+	 * 使用 enhancer 生成超类的子类，确保为新子类注册回调。
 	 */
 	private Class<?> createClass(Enhancer enhancer) {
 		Class<?> subclass = enhancer.createClass();
@@ -143,22 +139,19 @@ class ConfigurationClassEnhancer {
 
 
 	/**
-	 * Marker interface to be implemented by all @Configuration CGLIB subclasses.
-	 * Facilitates idempotent behavior for {@link ConfigurationClassEnhancer#enhance}
-	 * through checking to see if candidate classes are already assignable to it, e.g.
-	 * have already been enhanced.
-	 * <p>Also extends {@link BeanFactoryAware}, as all enhanced {@code @Configuration}
-	 * classes require access to the {@link BeanFactory} that created them.
-	 * <p>Note that this interface is intended for framework-internal use only, however
-	 * must remain public in order to allow access to subclasses generated from other
-	 * packages (i.e. user code).
+	 * 由所有 @Configuration CGLIB 子类实现的标记接口。通过检查候选类是否已经可赋值给该接口（即是否已经
+	 * 被增强），来促成 {@link ConfigurationClassEnhancer#enhance} 的幂等行为。
+	 * <p>还扩展了 {@link BeanFactoryAware}，因为所有被增强的 {@code @Configuration} 类都需要访问创建它
+	 * 们的 {@link BeanFactory}。
+	 * <p>请注意，此接口仅供框架内部使用，但必须保持 public，以便允许访问从其他包（即用户代码）生成的子
+	 * 类。
 	 */
 	public interface EnhancedConfiguration extends BeanFactoryAware {
 	}
 
 
 	/**
-	 * Conditional {@link Callback}.
+	 * 条件式 {@link Callback}。
 	 * @see ConditionalCallbackFilter
 	 */
 	private interface ConditionalCallback extends Callback {
@@ -168,8 +161,8 @@ class ConfigurationClassEnhancer {
 
 
 	/**
-	 * A {@link CallbackFilter} that works by interrogating {@link Callback Callbacks} in the order
-	 * that they are defined via {@link ConditionalCallback}.
+	 * 一种 {@link CallbackFilter}，它按照通过 {@link ConditionalCallback} 定义
+	 * {@link Callback Callbacks} 的顺序来询问它们，从而完成工作。
 	 */
 	private static class ConditionalCallbackFilter implements CallbackFilter {
 
@@ -203,9 +196,8 @@ class ConfigurationClassEnhancer {
 
 
 	/**
-	 * Custom extension of CGLIB's DefaultGeneratorStrategy, introducing a {@link BeanFactory} field.
-	 * Also exposes the application ClassLoader as thread context ClassLoader for the time of
-	 * class generation (in order for ASM to pick it up when doing common superclass resolution).
+	 * CGLIB DefaultGeneratorStrategy 的自定义扩展，引入了一个 {@link BeanFactory} 字段。还会在类生成期
+	 * 间将应用的 ClassLoader 暴露为线程上下文 ClassLoader（以便 ASM 在解析公共超类时能够获取它）。
 	 */
 	private static class BeanFactoryAwareGeneratorStrategy extends
 			ClassLoaderAwareGeneratorStrategy {
@@ -230,8 +222,8 @@ class ConfigurationClassEnhancer {
 
 
 	/**
-	 * Intercepts the invocation of any {@link BeanFactoryAware#setBeanFactory(BeanFactory)} on
-	 * {@code @Configuration} class instances for the purpose of recording the {@link BeanFactory}.
+	 * 拦截对 {@code @Configuration} 类实例上任何 {@link BeanFactoryAware#setBeanFactory(BeanFactory)}
+	 * 的调用，目的是记录 {@link BeanFactory}。
 	 * @see EnhancedConfiguration
 	 */
 	private static class BeanFactoryAwareMethodInterceptor implements MethodInterceptor, ConditionalCallback {
@@ -266,16 +258,14 @@ class ConfigurationClassEnhancer {
 
 
 	/**
-	 * Intercepts the invocation of any {@link Bean}-annotated methods in order to ensure proper
-	 * handling of bean semantics such as scoping and AOP proxying.
+	 * 拦截对任何标注了 {@link Bean} 的方法的调用，以确保正确处理作用域和 AOP 代理等 Bean 语义。
 	 * @see Bean
 	 * @see ConfigurationClassEnhancer
 	 */
 	private static class BeanMethodInterceptor implements MethodInterceptor, ConditionalCallback {
 
 		/**
-		 * Enhance a {@link Bean @Bean} method to check the supplied BeanFactory for the
-		 * existence of this bean object.
+		 * 增强 {@link Bean @Bean} 方法，以检查所提供的 BeanFactory 中是否存在此 Bean 对象。
 		 * @throws Throwable as a catch-all for any exception that may be thrown when invoking the
 		 * super implementation of the proxied method i.e., the actual {@code @Bean} method
 		 */
@@ -430,15 +420,11 @@ class ConfigurationClassEnhancer {
 		}
 
 		/**
-		 * Check the BeanFactory to see whether the bean named <var>beanName</var> already
-		 * exists. Accounts for the fact that the requested bean may be "in creation", i.e.:
-		 * we're in the middle of servicing the initial request for this bean. From an enhanced
-		 * factory method's perspective, this means that the bean does not actually yet exist,
-		 * and that it is now our job to create it for the first time by executing the logic
-		 * in the corresponding factory method.
-		 * <p>Said another way, this check repurposes
-		 * {@link ConfigurableBeanFactory#isCurrentlyInCreation(String)} to determine whether
-		 * the container is calling this method or the user is calling this method.
+		 * 检查 BeanFactory，确认名为 <var>beanName</var> 的 Bean 是否已存在。考虑到所请求的 Bean 可能处于
+		 * “创建中”状态，即：我们正在处理对该 Bean 的初始请求。从增强后的工厂方法的角度看，这意味着该 Bean
+		 * 实际上尚不存在，而现在我们的工作就是通过执行相应工厂方法中的逻辑来首次创建它。
+		 * <p>换句话说，此检查重新利用了 {@link ConfigurableBeanFactory#isCurrentlyInCreation(String)}，以
+		 * 判断是容器在调用此方法还是用户在调用此方法。
 		 * @param beanName name of bean to check for
 		 * @return whether <var>beanName</var> already exists in the factory
 		 */
@@ -447,10 +433,8 @@ class ConfigurationClassEnhancer {
 		}
 
 		/**
-		 * Check whether the given method corresponds to the container's currently invoked
-		 * factory method. Compares method name and parameter types only in order to work
-		 * around a potential problem with covariant return types (currently only known
-		 * to happen on Groovy classes).
+		 * 检查给定的方法是否对应于容器当前调用的工厂方法。仅比较方法名和参数类型，以规避协变返回类型可能带
+		 * 来的问题（目前已知仅出现在 Groovy 类上）。
 		 */
 		private boolean isCurrentlyInvokedFactoryMethod(Method method) {
 			Method currentlyInvoked = SimpleInstantiationStrategy.getCurrentlyInvokedFactoryMethod();
@@ -459,11 +443,10 @@ class ConfigurationClassEnhancer {
 		}
 
 		/**
-		 * Create a subclass proxy that intercepts calls to getObject(), delegating to the current BeanFactory
-		 * instead of creating a new instance. These proxies are created only when calling a FactoryBean from
-		 * within a Bean method, allowing for proper scoping semantics even when working against the FactoryBean
-		 * instance directly. If a FactoryBean instance is fetched through the container via &-dereferencing,
-		 * it will not be proxied. This too is aligned with the way XML configuration works.
+		 * 创建一个子类代理，用于拦截对 getObject() 的调用，将其委托给当前 BeanFactory，而不是创建新实例。
+		 * 只有在 Bean 方法内调用 FactoryBean 时才会创建这些代理，这样即使直接针对 FactoryBean 实例操作也能
+		 * 保持正确的作用域语义。如果通过 & 解引用从容器获取 FactoryBean 实例，则不会为其创建代理。这也与
+		 * XML 配置的工作方式保持一致。
 		 */
 		private Object enhanceFactoryBean(Object factoryBean, Class<?> exposedType,
 				ConfigurableBeanFactory beanFactory, String beanName) {

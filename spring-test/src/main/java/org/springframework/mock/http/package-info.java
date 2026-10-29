@@ -1,7 +1,7 @@
 /**
- * Mock implementations of client/server-side HTTP abstractions.
- * This package contains {@code MockHttpInputMessage} and
- * {@code MockHttpOutputMessage}.
+ * 客户端/服务端 HTTP 抽象的 mock 实现。
+ * 本包包含 {@code MockHttpInputMessage} 和
+ * {@code MockHttpOutputMessage}。
  */
 @NonNullApi
 @NonNullFields

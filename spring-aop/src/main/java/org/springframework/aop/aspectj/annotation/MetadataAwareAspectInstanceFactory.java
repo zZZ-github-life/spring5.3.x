@@ -20,8 +20,8 @@ import org.springframework.aop.aspectj.AspectInstanceFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Subinterface of {@link org.springframework.aop.aspectj.AspectInstanceFactory}
- * that returns {@link AspectMetadata} associated with AspectJ-annotated classes.
+ * {@link org.springframework.aop.aspectj.AspectInstanceFactory} 的子接口，返回与带 AspectJ 注解的
+ * 类关联的 {@link AspectMetadata}。
  *
  * @author Rod Johnson
  * @since 2.0
@@ -31,13 +31,13 @@ import org.springframework.lang.Nullable;
 public interface MetadataAwareAspectInstanceFactory extends AspectInstanceFactory {
 
 	/**
-	 * Get the AspectJ AspectMetadata for this factory's aspect.
+	 * 获取此工厂切面的 AspectJ AspectMetadata。
 	 * @return the aspect metadata
 	 */
 	AspectMetadata getAspectMetadata();
 
 	/**
-	 * Get the best possible creation mutex for this factory.
+	 * 获取此工厂尽可能最佳的创建互斥体。
 	 * @return the mutex object (may be {@code null} for no mutex to use)
 	 * @since 4.3
 	 */

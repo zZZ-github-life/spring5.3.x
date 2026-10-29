@@ -26,14 +26,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Generic callback interface for code that operates on a CCI Connection.
- * Allows to execute any number of operations on a single Connection,
- * using any type and number of Interaction.
+ * 对操作 CCI Connection 的代码的通用回调接口。
+ * 允许在单个 Connection 上使用任何类型和数量的 Interaction 执行任意数量的操作。
  *
- * <p>This is particularly useful for delegating to existing data access code
- * that expects a Connection to work on and throws ResourceException. For newly
- * written code, it is strongly recommended to use CciTemplate's more specific
- * {@code execute} variants.
+ * <p>这对于委托给期望操作 Connection 并抛出 ResourceException 的现有数据访问代码特别有用。
+ * 对于新编写的代码，强烈建议使用 CciTemplate 更具体的 {@code execute} 变体。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -50,19 +47,15 @@ import org.springframework.lang.Nullable;
 public interface ConnectionCallback<T> {
 
 	/**
-	 * Gets called by {@code CciTemplate.execute} with an active CCI Connection.
-	 * Does not need to care about activating or closing the Connection, or handling
-	 * transactions.
-	 * <p>If called without a thread-bound CCI transaction (initiated by
-	 * CciLocalTransactionManager), the code will simply get executed on the CCI
-	 * Connection with its transactional semantics. If CciTemplate is configured
-	 * to use a JTA-aware ConnectionFactory, the CCI Connection and thus the callback
-	 * code will be transactional if a JTA transaction is active.
-	 * <p>Allows for returning a result object created within the callback, i.e.
-	 * a domain object or a collection of domain objects. Note that there's special
-	 * support for single step actions: see the {@code CciTemplate.execute}
-	 * variants. A thrown RuntimeException is treated as application exception:
-	 * it gets propagated to the caller of the template.
+	 * 由 {@code CciTemplate.execute} 使用活动的 CCI Connection 调用。
+	 * 无需关心激活或关闭 Connection，也无需处理事务。
+	 * <p>如果在没有线程绑定的 CCI 事务（由 CciLocalTransactionManager 发起）的情况下调用，
+	 * 代码将简单地在 CCI Connection 上以其事务语义执行。如果 CciTemplate 配置为使用
+	 * 支持 JTA 的 ConnectionFactory，则当 JTA 事务处于活动状态时，CCI Connection 和
+	 * 回调代码将是事务性的。
+	 * <p>允许返回在回调中创建的结果对象，即领域对象或领域对象的集合。
+	 * 注意对单步操作有特殊支持：参见 {@code CciTemplate.execute} 的各种变体。
+	 * 抛出的 RuntimeException 被视为应用程序异常：它会传播到模板的调用者。
 	 * @param connection active CCI Connection
 	 * @param connectionFactory the CCI ConnectionFactory that the Connection was
 	 * created with (gives access to RecordFactory and ResourceAdapterMetaData)

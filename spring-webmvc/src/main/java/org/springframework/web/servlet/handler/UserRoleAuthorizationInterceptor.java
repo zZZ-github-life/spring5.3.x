@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * Interceptor that checks the authorization of the current user via the
- * user's roles, as evaluated by HttpServletRequest's isUserInRole method.
+ * 拦截器，通过 HttpServletRequest 的 isUserInRole 方法评估用户的角色，
+ * 以此检查当前用户的授权。
  *
  * @author Juergen Hoeller
  * @since 20.06.2003
@@ -40,7 +40,7 @@ public class UserRoleAuthorizationInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Set the roles that this interceptor should treat as authorized.
+	 * 设置此拦截器应视为已授权的角色。
 	 * @param authorizedRoles array of role names
 	 */
 	public final void setAuthorizedRoles(String... authorizedRoles) {
@@ -64,10 +64,10 @@ public class UserRoleAuthorizationInterceptor implements HandlerInterceptor {
 	}
 
 	/**
-	 * Handle a request that is not authorized according to this interceptor.
-	 * Default implementation sends HTTP status code 403 ("forbidden").
-	 * <p>This method can be overridden to write a custom message, forward or
-	 * redirect to some error page or login page, or throw a ServletException.
+	 * 处理根据此拦截器未获授权的请求。
+	 * 默认实现发送 HTTP 状态码 403（"forbidden"）。
+	 * <p>可以重写此方法以写入自定义消息、转发或
+	 * 重定向到某个错误页面或登录页面，或者抛出 ServletException。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param handler chosen handler to execute, for type and/or instance evaluation

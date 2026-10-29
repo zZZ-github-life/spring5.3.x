@@ -35,11 +35,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Represents selection over a map or collection.
- * For example: {1,2,3,4,5,6,7,8,9,10}.?{#isEven(#this) == 'y'} returns [2, 4, 6, 8, 10]
+ * 表示对 Map 或集合的选择。例如：{1,2,3,4,5,6,7,8,9,10}.?{#isEven(#this) == 'y'} 返回 [2, 4, 6, 8,
+ * 10]
  *
- * <p>Basically a subset of the input data is returned based on the
- * evaluation of the expression supplied as selection criteria.
+ * <p>基本上，会根据作为选择条件提供的表达式的求值结果，返回输入数据的一个子集。
  *
  * @author Andy Clement
  * @author Mark Fisher
@@ -50,17 +49,17 @@ import org.springframework.util.ObjectUtils;
 public class Selection extends SpelNodeImpl {
 
 	/**
-	 * All items ({@code ?[]}).
+	 * 所有项（{@code ?[]}）。
 	 */
 	public static final int ALL = 0;
 
 	/**
-	 * The first item ({@code ^[]}).
+	 * 第一项（{@code ^[]}）。
 	 */
 	public static final int FIRST = 1;
 
 	/**
-	 * The last item ({@code $[]}).
+	 * 最后一项（{@code $[]}）。
 	 */
 	public static final int LAST = 2;
 

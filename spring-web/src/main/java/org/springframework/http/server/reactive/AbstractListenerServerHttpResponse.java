@@ -27,8 +27,8 @@ import org.springframework.core.io.buffer.DataBufferFactory;
 import org.springframework.http.HttpHeaders;
 
 /**
- * Abstract base class for listener-based server responses, e.g. Servlet 3.1
- * and Undertow.
+ * 基于监听器的服务器响应的抽象基类，例如 Servlet 3.1
+ * 和 Undertow。
  *
  * @author Arjen Poutsma
  * @since 5.0
@@ -68,9 +68,9 @@ public abstract class AbstractListenerServerHttpResponse extends AbstractServerH
 	}
 
 	/**
-	 * Abstract template method to create a {@code Processor<Publisher<DataBuffer>, Void>}
-	 * that will write the response body with flushes to the underlying output. Called from
-	 * {@link #writeAndFlushWithInternal(Publisher)}.
+	 * 抽象模板方法，用于创建一个 {@code Processor<Publisher<DataBuffer>, Void>}，
+	 * 该处理器将写入响应体，并在每次刷新时刷新到底层输出。由
+	 * {@link #writeAndFlushWithInternal(Publisher)} 调用。
 	 */
 	protected abstract Processor<? super Publisher<? extends DataBuffer>, Void> createBodyFlushProcessor();
 

@@ -17,9 +17,9 @@
 package org.springframework.messaging.simp.user;
 
 /**
- * A {@link java.security.Principal} can also implement this contract when
- * {@link java.security.Principal#getName() getName()} isn't globally unique
- * and therefore not suited for use with "user" destinations.
+ * 当 {@link java.security.Principal#getName() getName()} 不是全局唯一，
+ * 因此不适合与“用户”目标一起使用时，{@link java.security.Principal}
+ * 也可以实现此契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.1
@@ -28,7 +28,7 @@ package org.springframework.messaging.simp.user;
 public interface DestinationUserNameProvider {
 
 	/**
-	 * Return a globally unique user name for use with "user" destinations.
+	 * 返回用于“用户”目标的全局唯一用户名。
 	 */
 	String getDestinationUserName();
 

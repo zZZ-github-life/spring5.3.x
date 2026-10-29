@@ -29,23 +29,21 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Date sequence generator for a
- * <a href="https://www.manpagez.com/man/5/crontab/">Crontab pattern</a>,
- * allowing clients to specify a pattern that the sequence matches.
+ * 用于 <a href="https://www.manpagez.com/man/5/crontab/">Crontab 模式</a>的日期序列生成器，允许客
+ * 户端指定该序列所匹配的模式。
  *
- * <p>The pattern is a list of six single space-separated fields: representing
- * second, minute, hour, day, month, weekday. Month and weekday names can be
- * given as the first three letters of the English names.
+ * <p>该模式是由六个以单个空格分隔的字段组成的列表：分别表示秒、分钟、小时、日、月、星期几。月和星
+ * 期的名称可以使用英文名称的前三个字母。
  *
- * <p>Example patterns:
+ * <p>示例模式：
  * <ul>
- * <li>"0 0 * * * *" = the top of every hour of every day.</li>
- * <li>"*&#47;10 * * * * *" = every ten seconds.</li>
- * <li>"0 0 8-10 * * *" = 8, 9 and 10 o'clock of every day.</li>
- * <li>"0 0 6,19 * * *" = 6:00 AM and 7:00 PM every day.</li>
- * <li>"0 0/30 8-10 * * *" = 8:00, 8:30, 9:00, 9:30, 10:00 and 10:30 every day.</li>
- * <li>"0 0 9-17 * * MON-FRI" = on the hour nine-to-five weekdays</li>
- * <li>"0 0 0 25 12 ?" = every Christmas Day at midnight</li>
+ * <li>"0 0 * * * *" = 每天的每个整点。</li>
+ * <li>"*&#47;10 * * * * *" = 每十秒。</li>
+ * <li>"0 0 8-10 * * *" = 每天 8、9、10 点。</li>
+ * <li>"0 0 6,19 * * *" = 每天上午 6:00 和晚上 7:00。</li>
+ * <li>"0 0/30 8-10 * * *" = 每天 8:00、8:30、9:00、9:30、10:00 和 10:30。</li>
+ * <li>"0 0 9-17 * * MON-FRI" = 工作日九点到十七点整点。</li>
+ * <li>"0 0 0 25 12 ?" = 每年圣诞节午夜。</li>
  * </ul>
  *
  * @author Dave Syer
@@ -77,8 +75,7 @@ public class CronSequenceGenerator {
 
 
 	/**
-	 * Construct a {@code CronSequenceGenerator} from the pattern provided,
-	 * using the default {@link TimeZone}.
+	 * 使用默认的 {@link TimeZone}，根据提供的模式构造一个 {@code CronSequenceGenerator}。
 	 * @param expression a space-separated list of time fields
 	 * @throws IllegalArgumentException if the pattern cannot be parsed
 	 * @see java.util.TimeZone#getDefault()
@@ -90,8 +87,7 @@ public class CronSequenceGenerator {
 	}
 
 	/**
-	 * Construct a {@code CronSequenceGenerator} from the pattern provided,
-	 * using the specified {@link TimeZone}.
+	 * 使用指定的 {@link TimeZone}，根据提供的模式构造一个 {@code CronSequenceGenerator}。
 	 * @param expression a space-separated list of time fields
 	 * @param timeZone the TimeZone to use for generated trigger times
 	 * @throws IllegalArgumentException if the pattern cannot be parsed
@@ -112,7 +108,7 @@ public class CronSequenceGenerator {
 
 
 	/**
-	 * Return the cron pattern that this sequence generator has been built for.
+	 * 返回此序列生成器所依据的 cron 模式。
 	 */
 	String getExpression() {
 		return this.expression;
@@ -120,9 +116,8 @@ public class CronSequenceGenerator {
 
 
 	/**
-	 * Get the next {@link Date} in the sequence matching the Cron pattern and
-	 * after the value provided. The return value will have a whole number of
-	 * seconds, and will be after the input value.
+	 * 获取序列中在给定值之后、与 Cron 模式匹配的下一个 {@link Date}。返回值的秒数为整数，并且位于输入
+	 * 值之后。
 	 * @param date a seed value
 	 * @return the next value matching the pattern
 	 */
@@ -232,8 +227,7 @@ public class CronSequenceGenerator {
 	}
 
 	/**
-	 * Search the bits provided for the next set bit after the value provided,
-	 * and reset the calendar.
+	 * 在所提供的位中搜索给定值之后的下一个置位，并重置日历。
 	 * @param bits a {@link BitSet} representing the allowed values of the field
 	 * @param value the current value of the field
 	 * @param calendar the calendar to increment as we move through the bits
@@ -259,7 +253,7 @@ public class CronSequenceGenerator {
 	}
 
 	/**
-	 * Reset the calendar setting all the fields provided to zero.
+	 * 重置日历，将所有提供的字段设置为零。
 	 */
 	private void reset(Calendar calendar, List<Integer> fields) {
 		for (int field : fields) {
@@ -271,7 +265,7 @@ public class CronSequenceGenerator {
 	// Parsing logic invoked by the constructor
 
 	/**
-	 * Parse the given pattern expression.
+	 * 解析给定的模式表达式。
 	 */
 	private void parse(String expression) throws IllegalArgumentException {
 		String[] fields = StringUtils.tokenizeToStringArray(expression, " ");
@@ -298,8 +292,7 @@ public class CronSequenceGenerator {
 	}
 
 	/**
-	 * Replace the values in the comma-separated list (case-insensitive)
-	 * with their index in the list.
+	 * 将逗号分隔列表中的值（不区分大小写）替换为其在列表中的索引。
 	 * @return a new String with the values from the list replaced
 	 */
 	private String replaceOrdinals(String value, String commaSeparatedList) {
@@ -406,7 +399,7 @@ public class CronSequenceGenerator {
 
 
 	/**
-	 * Determine whether the specified expression represents a valid cron pattern.
+	 * 判断指定的表达式是否表示有效的 cron 模式。
 	 * @param expression the expression to evaluate
 	 * @return {@code true} if the given expression is a valid cron expression
 	 * @since 4.3

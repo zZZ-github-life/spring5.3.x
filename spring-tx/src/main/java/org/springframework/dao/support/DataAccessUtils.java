@@ -28,8 +28,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.NumberUtils;
 
 /**
- * Miscellaneous utility methods for DAO implementations.
- * Useful with any data access technology.
+ * DAO 实现的各种实用工具方法。
+ * 适用于任何数据访问技术。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -37,9 +37,9 @@ import org.springframework.util.NumberUtils;
 public abstract class DataAccessUtils {
 
 	/**
-	 * Return a single result object from the given Collection.
-	 * <p>Returns {@code null} if 0 result objects found;
-	 * throws an exception if more than 1 element found.
+	 * 从给定的 Collection 中返回单个结果对象。
+	 * <p>如果找到 0 个结果对象则返回 {@code null}；
+	 * 如果找到多于 1 个元素则抛出异常。
 	 * @param results the result Collection (can be {@code null})
 	 * @return the single result object, or {@code null} if none
 	 * @throws IncorrectResultSizeDataAccessException if more than one
@@ -57,8 +57,8 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a single result object from the given Collection.
-	 * <p>Throws an exception if 0 or more than 1 element found.
+	 * 从给定的 Collection 中返回单个结果对象。
+	 * <p>如果找到 0 个或多于 1 个元素则抛出异常。
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the single result object
@@ -78,8 +78,8 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a single result object from the given Collection.
-	 * <p>Throws an exception if 0 or more than 1 element found.
+	 * 从给定的 Collection 中返回单个结果对象。
+	 * <p>如果找到 0 个或多于 1 个元素则抛出异常。
 	 * @param results the result Collection (can be {@code null}
 	 * and is also expected to contain {@code null} elements)
 	 * @return the single result object
@@ -103,9 +103,9 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a unique result object from the given Collection.
-	 * <p>Returns {@code null} if 0 result objects found;
-	 * throws an exception if more than 1 instance found.
+	 * 从给定的 Collection 中返回唯一的结果对象。
+	 * <p>如果找到 0 个结果对象则返回 {@code null}；
+	 * 如果找到多于 1 个实例则抛出异常。
 	 * @param results the result Collection (can be {@code null})
 	 * @return the unique result object, or {@code null} if none
 	 * @throws IncorrectResultSizeDataAccessException if more than one
@@ -124,8 +124,8 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a unique result object from the given Collection.
-	 * <p>Throws an exception if 0 or more than 1 instance found.
+	 * 从给定的 Collection 中返回唯一的结果对象。
+	 * <p>如果找到 0 个或多于 1 个实例则抛出异常。
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the unique result object
@@ -146,10 +146,9 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a unique result object from the given Collection.
-	 * Throws an exception if 0 or more than 1 result objects found,
-	 * of if the unique result object is not convertible to the
-	 * specified required type.
+	 * 从给定的 Collection 中返回唯一的结果对象。
+	 * 如果找到 0 个或多于 1 个结果对象，或者唯一的结果对象
+	 * 无法转换为指定的必需类型，则抛出异常。
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the unique result object
@@ -187,9 +186,9 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a unique int result from the given Collection.
-	 * Throws an exception if 0 or more than 1 result objects found,
-	 * of if the unique result object is not convertible to an int.
+	 * 从给定的 Collection 中返回唯一的 int 结果。
+	 * 如果找到 0 个或多于 1 个结果对象，或者唯一的结果对象
+	 * 无法转换为 int，则抛出异常。
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the unique int result
@@ -207,9 +206,9 @@ public abstract class DataAccessUtils {
 	}
 
 	/**
-	 * Return a unique long result from the given Collection.
-	 * Throws an exception if 0 or more than 1 result objects found,
-	 * of if the unique result object is not convertible to a long.
+	 * 从给定的 Collection 中返回唯一的 long 结果。
+	 * 如果找到 0 个或多于 1 个结果对象，或者唯一的结果对象
+	 * 无法转换为 long，则抛出异常。
 	 * @param results the result Collection (can be {@code null}
 	 * but is not expected to contain {@code null} elements)
 	 * @return the unique long result
@@ -228,8 +227,8 @@ public abstract class DataAccessUtils {
 
 
 	/**
-	 * Return a translated exception if this is appropriate,
-	 * otherwise return the given exception as-is.
+	 * 如果合适则返回翻译后的异常，
+	 * 否则返回给定的原始异常。
 	 * @param rawException an exception that we may wish to translate
 	 * @param pet the PersistenceExceptionTranslator to use to perform the translation
 	 * @return a translated persistence exception if translation is possible,

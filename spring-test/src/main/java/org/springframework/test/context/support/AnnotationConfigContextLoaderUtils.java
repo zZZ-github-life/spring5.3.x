@@ -31,8 +31,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility methods for {@link SmartContextLoader SmartContextLoaders} that deal
- * with component classes (e.g., {@link Configuration @Configuration} classes).
+ * 用于处理组件类（例如 {@link Configuration @Configuration} 类）的 {@link SmartContextLoader SmartContextLoaders} 的工具方法。
  *
  * @author Sam Brannen
  * @since 3.2
@@ -43,18 +42,9 @@ public abstract class AnnotationConfigContextLoaderUtils {
 
 
 	/**
-	 * Detect the default configuration classes for the supplied test class.
-	 * <p>The returned class array will contain all static nested classes of
-	 * the supplied class that meet the requirements for {@code @Configuration}
-	 * class implementations as specified in the documentation for
-	 * {@link Configuration @Configuration}.
-	 * <p>The implementation of this method adheres to the contract defined in the
-	 * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader}
-	 * SPI. Specifically, this method uses introspection to detect default
-	 * configuration classes that comply with the constraints required of
-	 * {@code @Configuration} class implementations. If a potential candidate
-	 * configuration class does not meet these requirements, this method will log a
-	 * debug message, and the potential candidate class will be ignored.
+	 * 为所提供的测试类检测默认配置类。
+	 * <p>返回的类数组将包含所提供的类的所有静态嵌套类，这些类满足 {@link Configuration @Configuration} 文档中规定的 {@code @Configuration} 类实现要求。
+	 * <p>此方法的实现遵循 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} SPI 中定义的契约。具体而言，此方法使用内省来检测符合 {@code @Configuration} 类实现所需约束的默认配置类。如果某个潜在候选配置类不满足这些要求，此方法将记录一条调试消息，并忽略该潜在候选类。
 	 * @param declaringClass the test class that declared {@code @ContextConfiguration}
 	 * @return an array of default configuration classes, potentially empty but
 	 * never {@code null}
@@ -90,15 +80,14 @@ public abstract class AnnotationConfigContextLoaderUtils {
 	}
 
 	/**
-	 * Determine if the supplied {@link Class} meets the criteria for being
-	 * considered a <em>default configuration class</em> candidate.
-	 * <p>Specifically, such candidates:
+	 * 确定所提供的 {@link Class} 是否满足被视为<em>默认配置类</em>候选的条件。
+	 * <p>具体而言，此类候选：
 	 * <ul>
-	 * <li>must not be {@code null}</li>
-	 * <li>must not be {@code private}</li>
-	 * <li>must not be {@code final}</li>
-	 * <li>must be {@code static}</li>
-	 * <li>must be annotated or meta-annotated with {@code @Configuration}</li>
+	 * <li>不得为 {@code null}</li>
+	 * <li>不得为 {@code private}</li>
+	 * <li>不得为 {@code final}</li>
+	 * <li>必须为 {@code static}</li>
+	 * <li>必须带有 {@code @Configuration} 注解或元注解</li>
 	 * </ul>
 	 * @param clazz the class to check
 	 * @return {@code true} if the supplied class meets the candidate criteria

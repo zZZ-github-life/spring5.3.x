@@ -23,79 +23,66 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for handling exceptions in specific handler classes and/or
- * handler methods.
+ * 用于在特定处理器类和/或处理器方法中处理异常的注解。
  *
- * <p>Handler methods which are annotated with this annotation are allowed to
- * have very flexible signatures. They may have parameters of the following
- * types, in arbitrary order:
+ * <p>使用此注解标注的处理器方法允许使用非常灵活的方法签名。它们可以按任意顺序
+ * 具有以下类型的参数：
  * <ul>
- * <li>An exception argument: declared as a general Exception or as a more
- * specific exception. This also serves as a mapping hint if the annotation
- * itself does not narrow the exception types through its {@link #value()}.
- * You may refer to a top-level exception being propagated or to a nested
- * cause within a wrapper exception. As of 5.3, any cause level is being
- * exposed, whereas previously only an immediate cause was considered.
- * <li>Request and/or response objects (typically from the Servlet API).
- * You may choose any specific request/response type, e.g.
- * {@link javax.servlet.ServletRequest} / {@link javax.servlet.http.HttpServletRequest}.
- * <li>Session object: typically {@link javax.servlet.http.HttpSession}.
- * An argument of this type will enforce the presence of a corresponding session.
- * As a consequence, such an argument will never be {@code null}.
- * <i>Note that session access may not be thread-safe, in particular in a
- * Servlet environment: Consider switching the
+ * <li>异常参数：声明为通用的 Exception 或更具体的异常。如果注解本身没有通过
+ * {@link #value()} 缩小异常类型范围，此参数也充当映射提示。
+ * 可以引用正在传播的顶层异常，也可以引用包装异常中的嵌套原因。
+ * 自 5.3 起，任何层级的原因都会被暴露，而此前只考虑直接原因。
+ * <li>请求和/或响应对象（通常来自 Servlet API）。可以选择任何特定的
+ * 请求/响应类型，例如 {@link javax.servlet.ServletRequest} /
+ * {@link javax.servlet.http.HttpServletRequest}。
+ * <li>会话对象：通常是 {@link javax.servlet.http.HttpSession}。
+ * 此类型的参数将强制要求存在相应的会话。因此，此类参数永远不会是
+ * {@code null}。<i>请注意，会话访问可能不是线程安全的，特别是在 Servlet 环境中：
+ * 如果允许多个请求并发访问会话，请考虑将
  * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#setSynchronizeOnSession
- * "synchronizeOnSession"} flag to "true" if multiple requests are allowed to
- * access a session concurrently.</i>
- * <li>{@link org.springframework.web.context.request.WebRequest} or
- * {@link org.springframework.web.context.request.NativeWebRequest}.
- * Allows for generic request parameter access as well as request/session
- * attribute access, without ties to the native Servlet API.
- * <li>{@link java.util.Locale} for the current request locale
- * (determined by the most specific locale resolver available,
- * i.e. the configured {@link org.springframework.web.servlet.LocaleResolver}
- * in a Servlet environment).
- * <li>{@link java.io.InputStream} / {@link java.io.Reader} for access
- * to the request's content. This will be the raw InputStream/Reader as
- * exposed by the Servlet API.
- * <li>{@link java.io.OutputStream} / {@link java.io.Writer} for generating
- * the response's content. This will be the raw OutputStream/Writer as
- * exposed by the Servlet API.
- * <li>{@link org.springframework.ui.Model} as an alternative to returning
- * a model map from the handler method. Note that the provided model is not
- * pre-populated with regular model attributes and therefore always empty,
- * as a convenience for preparing the model for an exception-specific view.
+ * "synchronizeOnSession"} 标志设置为 "true"。</i>
+ * <li>{@link org.springframework.web.context.request.WebRequest} 或
+ * {@link org.springframework.web.context.request.NativeWebRequest}。
+ * 允许进行通用的请求参数访问以及请求/会话属性访问，而无需绑定到原生 Servlet API。
+ * <li>{@link java.util.Locale} 表示当前请求的区域设置
+ * （由最具体的可用区域解析器确定，即在 Servlet 环境中为配置的
+ * {@link org.springframework.web.servlet.LocaleResolver}）。
+ * <li>{@link java.io.InputStream} / {@link java.io.Reader} 用于访问请求内容。
+ * 这将是 Servlet API 所暴露的原始 InputStream/Reader。
+ * <li>{@link java.io.OutputStream} / {@link java.io.Writer} 用于生成响应内容。
+ * 这将是 Servlet API 所暴露的原始 OutputStream/Writer。
+ * <li>{@link org.springframework.ui.Model}，作为从处理器方法返回模型 Map 的替代方式。
+ * 请注意，所提供的模型不会预填充常规模型属性，因此始终为空，
+ * 这样便于为异常特定的视图准备模型。
  * </ul>
  *
- * <p>The following return types are supported for handler methods:
+ * <p>处理器方法支持以下返回类型：
  * <ul>
- * <li>A {@code ModelAndView} object (from Servlet MVC).
- * <li>A {@link org.springframework.ui.Model} object, with the view name implicitly
- * determined through a {@link org.springframework.web.servlet.RequestToViewNameTranslator}.
- * <li>A {@link java.util.Map} object for exposing a model,
- * with the view name implicitly determined through a
- * {@link org.springframework.web.servlet.RequestToViewNameTranslator}.
- * <li>A {@link org.springframework.web.servlet.View} object.
- * <li>A {@link String} value which is interpreted as view name.
- * <li>{@link ResponseBody @ResponseBody} annotated methods (Servlet-only)
- * to set the response content. The return value will be converted to the
- * response stream using
- * {@linkplain org.springframework.http.converter.HttpMessageConverter message converters}.
- * <li>An {@link org.springframework.http.HttpEntity HttpEntity&lt;?&gt;} or
- * {@link org.springframework.http.ResponseEntity ResponseEntity&lt;?&gt;} object
- * (Servlet-only) to set response headers and content. The ResponseEntity body
- * will be converted and written to the response stream using
- * {@linkplain org.springframework.http.converter.HttpMessageConverter message converters}.
- * <li>{@code void} if the method handles the response itself (by
- * writing the response content directly, declaring an argument of type
+ * <li>{@code ModelAndView} 对象（来自 Servlet MVC）。
+ * <li>{@link org.springframework.ui.Model} 对象，视图名称通过
+ * {@link org.springframework.web.servlet.RequestToViewNameTranslator} 隐式确定。
+ * <li>{@link java.util.Map} 对象用于暴露模型，视图名称通过
+ * {@link org.springframework.web.servlet.RequestToViewNameTranslator} 隐式确定。
+ * <li>{@link org.springframework.web.servlet.View} 对象。
+ * <li>{@link String} 值，被解释为视图名称。
+ * <li>{@link ResponseBody @ResponseBody} 注解的方法（仅限 Servlet），
+ * 用于设置响应内容。返回值将使用
+ * {@linkplain org.springframework.http.converter.HttpMessageConverter 消息转换器}
+ * 转换为响应流。
+ * <li>{@link org.springframework.http.HttpEntity HttpEntity&lt;?&gt;} 或
+ * {@link org.springframework.http.ResponseEntity ResponseEntity&lt;?&gt;} 对象
+ * （仅限 Servlet），用于设置响应头和内容。ResponseEntity 的正文将使用
+ * {@linkplain org.springframework.http.converter.HttpMessageConverter 消息转换器}
+ * 转换并写入响应流。
+ * <li>{@code void}，如果方法自行处理响应（通过直接写入响应内容，为此声明
  * {@link javax.servlet.ServletResponse} / {@link javax.servlet.http.HttpServletResponse}
- * for that purpose) or if the view name is supposed to be implicitly determined
- * through a {@link org.springframework.web.servlet.RequestToViewNameTranslator}
- * (not declaring a response argument in the handler method signature).
+ * 类型的参数），或者如果视图名称应通过
+ * {@link org.springframework.web.servlet.RequestToViewNameTranslator} 隐式确定
+ * （不在处理器方法签名中声明响应参数）。
  * </ul>
  *
- * <p>You may combine the {@code ExceptionHandler} annotation with
- * {@link ResponseStatus @ResponseStatus} for a specific HTTP error status.
+ * <p>可以将 {@code ExceptionHandler} 注解与 {@link ResponseStatus @ResponseStatus}
+ * 结合使用，以指定特定的 HTTP 错误状态。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -109,8 +96,8 @@ import java.lang.annotation.Target;
 public @interface ExceptionHandler {
 
 	/**
-	 * Exceptions handled by the annotated method. If empty, will default to any
-	 * exceptions listed in the method argument list.
+	 * 注解方法所处理的异常。如果为空，则默认使用方法参数列表中列出的
+	 * 任何异常。
 	 */
 	Class<? extends Throwable>[] value() default {};
 

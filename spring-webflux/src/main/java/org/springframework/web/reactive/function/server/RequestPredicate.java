@@ -19,10 +19,7 @@ package org.springframework.web.reactive.function.server;
 import java.util.Optional;
 
 /**
- * Represents a function that evaluates on a given {@link ServerRequest}.
- * Instances of this function that evaluate on common request properties
- * can be found in {@link RequestPredicates}.
- *
+ * 表示对给定 {@link ServerRequest} 求值的函数。可在 {@link RequestPredicates} 中找到对常见请求属性求值的此函数实例。
  * @author Arjen Poutsma
  * @since 5.0
  * @see RequestPredicates
@@ -33,16 +30,14 @@ import java.util.Optional;
 public interface RequestPredicate {
 
 	/**
-	 * Evaluate this predicate on the given request.
+	 * 对给定请求求值此谓词。
 	 * @param request the request to match against
 	 * @return {@code true} if the request matches the predicate; {@code false} otherwise
 	 */
 	boolean test(ServerRequest request);
 
 	/**
-	 * Return a composed request predicate that tests against both this predicate AND
-	 * the {@code other} predicate. When evaluating the composed predicate, if this
-	 * predicate is {@code false}, then the {@code other} predicate is not evaluated.
+	 * 返回组合请求谓词，对此谓词和 {@code other} 谓词都进行测试（AND）。求值组合谓词时，如果此谓词为 {@code false}，则不会对 {@code other} 谓词求值。
 	 * @param other a predicate that will be logically-ANDed with this predicate
 	 * @return a predicate composed of this predicate AND the {@code other} predicate
 	 */
@@ -51,7 +46,7 @@ public interface RequestPredicate {
 	}
 
 	/**
-	 * Return a predicate that represents the logical negation of this predicate.
+	 * 返回表示此谓词逻辑取反的谓词。
 	 * @return a predicate that represents the logical negation of this predicate
 	 */
 	default RequestPredicate negate() {
@@ -59,9 +54,7 @@ public interface RequestPredicate {
 	}
 
 	/**
-	 * Return a composed request predicate that tests against both this predicate OR
-	 * the {@code other} predicate. When evaluating the composed predicate, if this
-	 * predicate is {@code true}, then the {@code other} predicate is not evaluated.
+	 * 返回组合请求谓词，对此谓词或 {@code other} 谓词进行测试（OR）。求值组合谓词时，如果此谓词为 {@code true}，则不会对 {@code other} 谓词求值。
 	 * @param other a predicate that will be logically-ORed with this predicate
 	 * @return a predicate composed of this predicate OR the {@code other} predicate
 	 */
@@ -70,12 +63,8 @@ public interface RequestPredicate {
 	}
 
 	/**
-	 * Transform the given request into a request used for a nested route. For instance,
-	 * a path-based predicate can return a {@code ServerRequest} with a path remaining
-	 * after a match.
-	 * <p>The default implementation returns an {@code Optional} wrapping the given request if
-	 * {@link #test(ServerRequest)} evaluates to {@code true}; or {@link Optional#empty()}
-	 * if it evaluates to {@code false}.
+	 * 将给定请求转换为用于嵌套路由的请求。例如，基于路径的谓词可以返回匹配后剩余路径的 {@code ServerRequest}。
+	 * <p>默认实现会在 {@link #test(ServerRequest)} 求值为 {@code true} 时返回包装给定请求的 {@code Optional}；如果求值为 {@code false}，则返回 {@link Optional#empty()}。
 	 * @param request the request to be nested
 	 * @return the nested request
 	 * @see RouterFunctions#nest(RequestPredicate, RouterFunction)
@@ -85,10 +74,7 @@ public interface RequestPredicate {
 	}
 
 	/**
-	 * Accept the given visitor. Default implementation calls
-	 * {@link RequestPredicates.Visitor#unknown(RequestPredicate)}; composed {@code RequestPredicate}
-	 * implementations are expected to call {@code accept} for all components that make up this
-	 * request predicate.
+	 * 接受给定的访问者。默认实现调用 {@link RequestPredicates.Visitor#unknown(RequestPredicate)}；组合式 {@code RequestPredicate} 实现应为构成此请求谓词的所有组件调用 {@code accept}。
 	 * @param visitor the visitor to accept
 	 */
 	default void accept(RequestPredicates.Visitor visitor) {

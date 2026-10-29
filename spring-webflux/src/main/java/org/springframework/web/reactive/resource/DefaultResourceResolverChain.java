@@ -29,8 +29,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Default immutable implementation of {@link ResourceResolverChain}.
- *
+ * {@link ResourceResolverChain} 的默认不可变实现。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

@@ -35,12 +35,9 @@ import org.springframework.util.StringUtils;
 import static org.springframework.test.context.TestContextAnnotationUtils.findAnnotationDescriptor;
 
 /**
- * Utility methods for working with {@link ActiveProfiles @ActiveProfiles} and
- * {@link ActiveProfilesResolver ActiveProfilesResolvers}.
+ * 用于处理 {@link ActiveProfiles @ActiveProfiles} 和 {@link ActiveProfilesResolver ActiveProfilesResolvers} 的工具方法。
  *
- * <p>Although {@code ActiveProfilesUtils} was first introduced in Spring Framework
- * 4.1, the initial implementations of methods in this class were based on the
- * existing code base in {@code ContextLoaderUtils}.
+ * <p>尽管 {@code ActiveProfilesUtils} 首次引入于 Spring Framework 4.1，但此类中方法的初始实现基于 {@code ContextLoaderUtils} 中的现有代码库。
  *
  * @author Sam Brannen
  * @author Michail Nikolaev
@@ -56,12 +53,8 @@ abstract class ActiveProfilesUtils {
 
 
 	/**
-	 * Resolve <em>active bean definition profiles</em> for the supplied {@link Class}.
-	 * <p>Note that the {@link ActiveProfiles#inheritProfiles inheritProfiles} flag of
-	 * {@link ActiveProfiles @ActiveProfiles} will be taken into consideration.
-	 * Specifically, if the {@code inheritProfiles} flag is set to {@code true}, profiles
-	 * defined in the test class will be merged with those defined in superclasses
-	 * and enclosing classes.
+	 * 为所提供的 {@link Class} 解析<em>活动 Bean 定义配置文件</em>。
+	 * <p>请注意，将考虑 {@link ActiveProfiles @ActiveProfiles} 的 {@link ActiveProfiles#inheritProfiles inheritProfiles} 标志。具体而言，如果 {@code inheritProfiles} 标志设置为 {@code true}，则测试类中定义的配置文件将与父类和外围类中定义的配置文件合并。
 	 * @param testClass the class for which to resolve the active profiles (must not be
 	 * {@code null})
 	 * @return the set of active profiles for the specified class, including active

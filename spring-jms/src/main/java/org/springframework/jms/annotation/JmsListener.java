@@ -26,54 +26,49 @@ import java.lang.annotation.Target;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 
 /**
- * Annotation that marks a method to be the target of a JMS message listener on the
- * specified {@link #destination}. The {@link #containerFactory} identifies the
- * {@link org.springframework.jms.config.JmsListenerContainerFactory} to use to build
- * the JMS listener container. If not set, a <em>default</em> container factory is
- * assumed to be available with a bean name of {@code jmsListenerContainerFactory}
- * unless an explicit default has been provided through configuration.
+ * 将方法标记为指定 {@link #destination} 上 JMS 消息监听器目标的注解。
+ * {@link #containerFactory} 指定用于构建 JMS 监听器容器的
+ * {@link org.springframework.jms.config.JmsListenerContainerFactory}。
+ * 如果未设置，则假定存在 bean 名称为 {@code jmsListenerContainerFactory}
+ * 的<em>默认</em>容器工厂，除非已通过配置提供了显式的默认值。
  *
- * <p><b>Consider setting up a custom
- * {@link org.springframework.jms.config.DefaultJmsListenerContainerFactory} bean.</b>
- * For production purposes, you'll typically fine-tune timeouts and recovery settings.
- * Most importantly, the default 'AUTO_ACKNOWLEDGE' mode does not provide reliability
- * guarantees, so make sure to use transacted sessions in case of reliability needs.
+ * <p><b>建议设置一个自定义的
+ * {@link org.springframework.jms.config.DefaultJmsListenerContainerFactory} bean。</b>
+ * 对于生产用途，通常需要微调超时和恢复设置。
+ * 最重要的是，默认的 'AUTO_ACKNOWLEDGE' 模式不提供可靠性保证，
+ * 因此如有可靠性需求，请务必使用事务性会话。
  *
- * <p>Processing of {@code @JmsListener} annotations is performed by registering a
- * {@link JmsListenerAnnotationBeanPostProcessor}. This can be done manually or,
- * more conveniently, through the {@code <jms:annotation-driven/>} element or
- * {@link EnableJms @EnableJms} annotation.
+ * <p>对 {@code @JmsListener} 注解的处理通过注册
+ * {@link JmsListenerAnnotationBeanPostProcessor} 来完成。这可以手动完成，
+ * 也可以（更方便地）通过 {@code <jms:annotation-driven/>} 元素或
+ * {@link EnableJms @EnableJms} 注解完成。
  *
- * <p>Annotated JMS listener methods are allowed to have flexible signatures similar
- * to what {@link MessageMapping} provides:
+ * <p>带注解的 JMS 监听器方法可以具有灵活的方法签名，与
+ * {@link MessageMapping} 所提供的类似：
  * <ul>
- * <li>{@link javax.jms.Session} to get access to the JMS session</li>
- * <li>{@link javax.jms.Message} or one of its subclasses to get access to the raw JMS message</li>
- * <li>{@link org.springframework.messaging.Message} to use Spring's messaging abstraction counterpart</li>
- * <li>{@link org.springframework.messaging.handler.annotation.Payload @Payload}-annotated method
- * arguments, including support for validation</li>
- * <li>{@link org.springframework.messaging.handler.annotation.Header @Header}-annotated method
- * arguments to extract specific header values, including standard JMS headers defined by
- * {@link org.springframework.jms.support.JmsHeaders}</li>
- * <li>{@link org.springframework.messaging.handler.annotation.Headers @Headers}-annotated
- * method argument that must also be assignable to {@link java.util.Map} for obtaining
- * access to all headers</li>
- * <li>{@link org.springframework.messaging.MessageHeaders} arguments for obtaining
- * access to all headers</li>
- * <li>{@link org.springframework.messaging.support.MessageHeaderAccessor} or
- * {@link org.springframework.jms.support.JmsMessageHeaderAccessor} for convenient
- * access to all method arguments</li>
+ * <li>{@link javax.jms.Session}，用于访问 JMS 会话</li>
+ * <li>{@link javax.jms.Message} 或其子类之一，用于访问原始 JMS 消息</li>
+ * <li>{@link org.springframework.messaging.Message}，用于使用 Spring 消息抽象中的对应类型</li>
+ * <li>带 {@link org.springframework.messaging.handler.annotation.Payload @Payload} 注解的方法参数，
+ * 包括对校验的支持</li>
+ * <li>带 {@link org.springframework.messaging.handler.annotation.Header @Header} 注解的方法参数，
+ * 用于提取特定的头值，包括由
+ * {@link org.springframework.jms.support.JmsHeaders} 定义的标准 JMS 头</li>
+ * <li>带 {@link org.springframework.messaging.handler.annotation.Headers @Headers} 注解的方法参数，
+ * 该参数还必须可赋值给 {@link java.util.Map}，以便访问所有头</li>
+ * <li>{@link org.springframework.messaging.MessageHeaders} 参数，用于访问所有头</li>
+ * <li>{@link org.springframework.messaging.support.MessageHeaderAccessor} 或
+ * {@link org.springframework.jms.support.JmsMessageHeaderAccessor}，
+ * 用于便捷地访问所有方法参数</li>
  * </ul>
  *
- * <p>Annotated methods may have a non-{@code void} return type. When they do,
- * the result of the method invocation is sent as a JMS reply to the destination
- * defined by the {@code JMSReplyTO} header of the incoming message. If this header
- * is not set, a default destination can be provided by adding
- * {@link org.springframework.messaging.handler.annotation.SendTo @SendTo} to the
- * method declaration.
+ * <p>带注解的方法可以具有非 {@code void} 返回类型。此时，方法调用的结果
+ * 将作为 JMS 回复发送到由传入消息的 {@code JMSReplyTO} 头所定义的目标。
+ * 如果未设置该头，可以通过在方法声明中添加
+ * {@link org.springframework.messaging.handler.annotation.SendTo @SendTo}
+ * 来提供默认目标。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em> with attribute overrides.
+ * <p>此注解可用作<em>元注解</em>，以创建带属性覆盖的自定义<em>组合注解</em>。
  *
  * @author Stephane Nicoll
  * @author Sam Brannen
@@ -90,51 +85,49 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 public @interface JmsListener {
 
 	/**
-	 * The unique identifier of the container managing this endpoint.
-	 * <p>If none is specified, an auto-generated one is provided.
+	 * 管理此端点的容器的唯一标识符。
+	 * <p>如果未指定，则会提供一个自动生成的标识符。
 	 * @see org.springframework.jms.config.JmsListenerEndpointRegistry#getListenerContainer(String)
 	 */
 	String id() default "";
 
 	/**
-	 * The bean name of the {@link org.springframework.jms.config.JmsListenerContainerFactory}
-	 * to use to create the message listener container responsible for serving this endpoint.
-	 * <p>If not specified, the default container factory is used, if any.
+	 * 用于创建服务于此端点的消息监听器容器的
+	 * {@link org.springframework.jms.config.JmsListenerContainerFactory} 的 bean 名称。
+	 * <p>如果未指定，则使用默认容器工厂（如果有）。
 	 */
 	String containerFactory() default "";
 
 	/**
-	 * The destination name for this listener, resolved through the container-wide
-	 * {@link org.springframework.jms.support.destination.DestinationResolver} strategy.
+	 * 此监听器的目标名称，通过容器范围的
+	 * {@link org.springframework.jms.support.destination.DestinationResolver} 策略解析。
 	 */
 	String destination();
 
 	/**
-	 * The name for the durable subscription, if any.
-	 * <p>As of Spring Framework 5.3.26, if an explicit subscription name is not
-	 * specified, a default subscription name will be generated based on the fully
-	 * qualified name of the annotated listener method &mdash; for example,
-	 * {@code "org.example.jms.ProductListener.processRequest"} for a
-	 * {@code processRequest(...)} listener method in the
-	 * {@code org.example.jms.ProductListener} class.
+	 * 持久订阅的名称（如果有）。
+	 * <p>从 Spring Framework 5.3.26 开始，如果未指定显式的订阅名称，
+	 * 将基于带注解的监听器方法的完全限定名生成默认订阅名称 &mdash;
+	 * 例如，对于 {@code org.example.jms.ProductListener} 类中的
+	 * {@code processRequest(...)} 监听器方法，为
+	 * {@code "org.example.jms.ProductListener.processRequest"}。
 	 */
 	String subscription() default "";
 
 	/**
-	 * The JMS message selector expression, if any.
-	 * <p>See the JMS specification for a detailed definition of selector expressions.
+	 * JMS 消息选择器表达式（如果有）。
+	 * <p>有关选择器表达式的详细定义，请参见 JMS 规范。
 	 */
 	String selector() default "";
 
 	/**
-	 * The concurrency limits for the listener, if any. Overrides the value defined
-	 * by the container factory used to create the listener container.
-	 * <p>The concurrency limits can be a "lower-upper" String &mdash; for example,
-	 * "5-10" &mdash; or a simple upper limit String &mdash; for example, "10", in
-	 * which case the lower limit will be 1.
-	 * <p>Note that the underlying container may or may not support all features.
-	 * For instance, it may not be able to scale, in which case only the upper limit
-	 * is used.
+	 * 监听器的并发上限（如果有）。覆盖用于创建监听器容器的
+	 * 容器工厂所定义的值。
+	 * <p>并发上限可以是 "lower-upper"（下限-上限）形式的字符串 &mdash;
+	 * 例如 "5-10" &mdash; 也可以只是上限字符串 &mdash; 例如 "10"，
+	 * 此时下限为 1。
+	 * <p>请注意，底层容器可能支持也可能不支持所有特性。
+	 * 例如，它可能无法伸缩，此时只使用上限。
 	 */
 	String concurrency() default "";
 

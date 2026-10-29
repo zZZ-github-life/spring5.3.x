@@ -1,8 +1,7 @@
 /**
- * Support for testing Spring MVC applications via
- * {@link org.springframework.test.web.reactive.server.WebTestClient}
- * with {@link org.springframework.test.web.servlet.MockMvc} for server request
- * handling.
+ * 支持通过 {@link org.springframework.test.web.reactive.server.WebTestClient}
+ * 并使用 {@link org.springframework.test.web.servlet.MockMvc} 处理服务器请求来
+ * 测试 Spring MVC 应用程序。
  */
 
 @NonNullApi

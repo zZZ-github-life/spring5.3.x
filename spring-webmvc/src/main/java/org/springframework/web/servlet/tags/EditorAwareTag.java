@@ -23,8 +23,8 @@ import javax.servlet.jsp.JspException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to be implemented by JSP tags that expose a
- * PropertyEditor for a property that they are currently bound to.
+ * 由 JSP 标签实现的接口，用于公开其当前所绑定属性的
+ * PropertyEditor。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -34,8 +34,8 @@ import org.springframework.lang.Nullable;
 public interface EditorAwareTag {
 
 	/**
-	 * Retrieve the PropertyEditor for the property that this tag is
-	 * currently bound to. Intended for cooperating nesting tags.
+	 * 获取此标签当前所绑定属性的 PropertyEditor。
+	 * 供协作的嵌套标签使用。
 	 * @return the current PropertyEditor, or {@code null} if none
 	 * @throws JspException if resolving the editor failed
 	 */

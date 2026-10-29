@@ -25,8 +25,8 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebHandler;
 
 /**
- * {@link WebHandlerDecorator} that invokes a chain of {@link WebFilter WebFilters}
- * before invoking the delegate {@link WebHandler}.
+ * {@link WebHandlerDecorator}，在调用委托的 {@link WebHandler} 之前
+ * 调用一条 {@link WebFilter WebFilter} 链。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -37,7 +37,7 @@ public class FilteringWebHandler extends WebHandlerDecorator {
 
 
 	/**
-	 * Constructor.
+	 * 构造函数。
 	 * @param filters the chain of filters
 	 */
 	public FilteringWebHandler(WebHandler handler, List<WebFilter> filters) {
@@ -47,7 +47,7 @@ public class FilteringWebHandler extends WebHandlerDecorator {
 
 
 	/**
-	 * Return a read-only list of the configured filters.
+	 * 返回已配置过滤器的只读列表。
 	 */
 	public List<WebFilter> getFilters() {
 		return this.chain.getFilters();

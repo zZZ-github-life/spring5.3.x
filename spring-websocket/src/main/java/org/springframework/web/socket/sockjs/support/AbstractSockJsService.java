@@ -55,12 +55,12 @@ import org.springframework.web.socket.sockjs.SockJsService;
 import org.springframework.web.util.WebUtils;
 
 /**
- * An abstract base class for {@link SockJsService} implementations that provides SockJS
- * path resolution and handling of static SockJS requests (e.g. "/info", "/iframe.html",
- * etc). Sub-classes must handle session URLs (i.e. transport-specific requests).
+ * {@link SockJsService} 实现的抽象基类，提供 SockJS 路径解析以及
+ * 对静态 SockJS 请求（例如 "/info"、"/iframe.html"
+ * 等）的处理。子类必须处理会话 URL（即特定于传输的请求）。
  *
- * <p>By default, only same origin requests are allowed. Use {@link #setAllowedOrigins}
- * to specify a list of allowed origins (a list containing "*" will allow all origins).
+ * <p>默认情况下，仅允许同源请求。请使用 {@link #setAllowedOrigins}
+ * 指定允许的来源列表（包含 "*" 的列表将允许所有来源）。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -123,178 +123,172 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 
 
 	/**
-	 * A scheduler instance to use for scheduling heart-beat messages.
+	 * 用于调度心跳消息的调度器实例。
 	 */
 	public TaskScheduler getTaskScheduler() {
 		return this.taskScheduler;
 	}
 
 	/**
-	 * Set a unique name for this service (mainly for logging purposes).
+	 * 为此服务设置唯一的名称（主要用于日志记录）。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Return the unique name associated with this service.
+	 * 返回与此服务关联的唯一名称。
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * Transports with no native cross-domain communication (e.g. "eventsource",
-	 * "htmlfile") must get a simple page from the "foreign" domain in an invisible
-	 * iframe so that code in the iframe can run from  a domain local to the SockJS
-	 * server. Since the iframe needs to load the SockJS javascript client library,
-	 * this property allows specifying where to load it from.
-	 * <p>By default this is set to point to
-	 * "https://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js".
-	 * However, it can also be set to point to a URL served by the application.
-	 * <p>Note that it's possible to specify a relative URL in which case the URL
-	 * must be relative to the iframe URL. For example assuming a SockJS endpoint
-	 * mapped to "/sockjs", and resulting iframe URL "/sockjs/iframe.html", then
-	 * the relative URL must start with "../../" to traverse up to the location
-	 * above the SockJS mapping. In case of a prefix-based Servlet mapping one more
-	 * traversal may be needed.
+	 * 没有原生跨域通信的传输（例如 "eventsource"、
+	 * "htmlfile"）必须在一个不可见的 iframe 中从"外部"域获取一个简单页面，
+	 * 以便 iframe 中的代码可以从 SockJS 服务器本地域运行。
+	 * 由于 iframe 需要加载 SockJS JavaScript 客户端库，
+	 * 此属性允许指定从何处加载该库。
+	 * <p>默认情况下，此属性设置为指向
+	 * "https://cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"。
+	 * 不过，也可以将其设置为指向由应用程序提供的 URL。
+	 * <p>请注意，可以指定相对 URL，在这种情况下，URL
+	 * 必须相对于 iframe URL。例如，假设 SockJS 端点
+	 * 映射到 "/sockjs"，生成的 iframe URL 为 "/sockjs/iframe.html"，那么
+	 * 相对 URL 必须以 "../../" 开头，以向上到达 SockJS 映射
+	 * 之上的位置。对于基于前缀的 Servlet 映射，可能还需要
+	 * 再进行一次向上遍历。
 	 */
 	public void setSockJsClientLibraryUrl(String clientLibraryUrl) {
 		this.clientLibraryUrl = clientLibraryUrl;
 	}
 
 	/**
-	 * Return he URL to the SockJS JavaScript client library.
+	 * 返回 SockJS JavaScript 客户端库的 URL。
 	 */
 	public String getSockJsClientLibraryUrl() {
 		return this.clientLibraryUrl;
 	}
 
 	/**
-	 * Streaming transports save responses on the client side and don't free
-	 * memory used by delivered messages. Such transports need to recycle the
-	 * connection once in a while. This property sets a minimum number of bytes
-	 * that can be sent over a single HTTP streaming request before it will be
-	 * closed. After that client will open a new request. Setting this value to
-	 * one effectively disables streaming and will make streaming transports to
-	 * behave like polling transports.
-	 * <p>The default value is 128K (i.e. 128 * 1024).
+	 * 流式传输会在客户端保留响应，并且不会释放
+	 * 已传递消息占用的内存。此类传输需要不时地回收
+	 * 连接。此属性设置单个 HTTP 流式请求在被关闭之前
+	 * 可以发送的最小字节数。之后客户端将打开
+	 * 新的请求。将此值设置为 1 会实际禁用流式传输，
+	 * 并使流式传输的行为类似于轮询传输。
+	 * <p>默认值为 128K（即 128 * 1024）。
 	 */
 	public void setStreamBytesLimit(int streamBytesLimit) {
 		this.streamBytesLimit = streamBytesLimit;
 	}
 
 	/**
-	 * Return the minimum number of bytes that can be sent over a single HTTP
-	 * streaming request before it will be closed.
+	 * 返回在关闭单个 HTTP 流式请求之前可以通过其发送的最小字节数。
 	 */
 	public int getStreamBytesLimit() {
 		return this.streamBytesLimit;
 	}
 
 	/**
-	 * The SockJS protocol requires a server to respond to an initial "/info" request from
-	 * clients with a "cookie_needed" boolean property that indicates whether the use of a
-	 * JSESSIONID cookie is required for the application to function correctly, e.g. for
-	 * load balancing or in Java Servlet containers for the use of an HTTP session.
-	 * <p>This is especially important for IE 8,9 that support XDomainRequest -- a modified
-	 * AJAX/XHR -- that can do requests across domains but does not send any cookies. In
-	 * those cases, the SockJS client prefers the "iframe-htmlfile" transport over
-	 * "xdr-streaming" in order to be able to send cookies.
-	 * <p>The SockJS protocol also expects a SockJS service to echo back the JSESSIONID
-	 * cookie when this property is set to true. However, when running in a Servlet
-	 * container this is not necessary since the container takes care of it.
-	 * <p>The default value is "true" to maximize the chance for applications to work
-	 * correctly in IE 8,9 with support for cookies (and the JSESSIONID cookie in
-	 * particular). However, an application can choose to set this to "false" if
-	 * the use of cookies (and HTTP session) is not required.
+	 * SockJS 协议要求服务器在对客户端初始 "/info" 请求的响应中包含一个
+	 * "cookie_needed" 布尔属性，用于指示应用程序正常运行是否
+	 * 需要使用 JSESSIONID cookie，例如
+	 * 为了负载均衡，或者在 Java Servlet 容器中为了使用 HTTP 会话。
+	 * <p>这对于支持 XDomainRequest（一种修改过的
+	 * AJAX/XHR，可以跨域发送请求但不发送任何 cookie）的 IE 8、9 尤为重要。
+	 * 在这些情况下，SockJS 客户端倾向于使用 "iframe-htmlfile" 传输而不是
+	 * "xdr-streaming"，以便能够发送 cookie。
+	 * <p>SockJS 协议还期望 SockJS 服务在此属性设置为 true 时
+	 * 回显 JSESSIONID cookie。不过，在 Servlet
+	 * 容器中运行时，这并非必需，因为容器会负责处理。
+	 * <p>默认值为 "true"，以最大程度地确保应用程序支持 cookie（特别是
+	 * JSESSIONID cookie）时能够在 IE 8、9 中正常工作。
+	 * 不过，如果不需要使用 cookie（和 HTTP 会话），
+	 * 应用程序可以选择将其设置为 "false"。
 	 */
 	public void setSessionCookieNeeded(boolean sessionCookieNeeded) {
 		this.sessionCookieNeeded = sessionCookieNeeded;
 	}
 
 	/**
-	 * Return whether the JSESSIONID cookie is required for the application to function.
+	 * 返回应用程序正常运行是否需要 JSESSIONID cookie。
 	 */
 	public boolean isSessionCookieNeeded() {
 		return this.sessionCookieNeeded;
 	}
 
 	/**
-	 * Specify the amount of time in milliseconds when the server has not sent
-	 * any messages and after which the server should send a heartbeat frame
-	 * to the client in order to keep the connection from breaking.
-	 * <p>The default value is 25,000 (25 seconds).
+	 * 指定服务器未发送任何消息时的毫秒数，超过该时间后，
+	 * 服务器应向客户端发送心跳帧，
+	 * 以防止连接中断。
+	 * <p>默认值为 25,000（25 秒）。
 	 */
 	public void setHeartbeatTime(long heartbeatTime) {
 		this.heartbeatTime = heartbeatTime;
 	}
 
 	/**
-	 * Return the amount of time in milliseconds when the server has not sent
-	 * any messages.
+	 * 返回服务器未发送任何消息的毫秒数。
 	 */
 	public long getHeartbeatTime() {
 		return this.heartbeatTime;
 	}
 
 	/**
-	 * The amount of time in milliseconds before a client is considered
-	 * disconnected after not having a receiving connection, i.e. an active
-	 * connection over which the server can send data to the client.
-	 * <p>The default value is 5000.
+	 * 在客户端没有接收连接（即服务器可以通过其向客户端发送数据的活动连接）后，
+	 * 将客户端视为断开连接之前的毫秒数。
+	 * <p>默认值为 5000。
 	 */
 	public void setDisconnectDelay(long disconnectDelay) {
 		this.disconnectDelay = disconnectDelay;
 	}
 
 	/**
-	 * Return the amount of time in milliseconds before a client is considered disconnected.
+	 * 返回将客户端视为断开连接之前的毫秒数。
 	 */
 	public long getDisconnectDelay() {
 		return this.disconnectDelay;
 	}
 
 	/**
-	 * The number of server-to-client messages that a session can cache while waiting
-	 * for the next HTTP polling request from the client. All HTTP transports use this
-	 * property since even streaming transports recycle HTTP requests periodically.
-	 * <p>The amount of time between HTTP requests should be relatively brief and will
-	 * not exceed the allows disconnect delay (see {@link #setDisconnectDelay(long)});
-	 * 5 seconds by default.
-	 * <p>The default size is 100.
+	 * 会话在等待客户端下一次 HTTP 轮询请求时可以缓存的服务端到客户端消息数。
+	 * 所有 HTTP 传输都使用此属性，因为即使是流式传输也会定期回收 HTTP 请求。
+	 * <p>HTTP 请求之间的时间应相对较短，
+	 * 并且不会超过允许的断开连接延迟（参见 {@link #setDisconnectDelay(long)}），
+	 * 默认情况下为 5 秒。
+	 * <p>默认大小为 100。
 	 */
 	public void setHttpMessageCacheSize(int httpMessageCacheSize) {
 		this.httpMessageCacheSize = httpMessageCacheSize;
 	}
 
 	/**
-	 * Return the size of the HTTP message cache.
+	 * 返回 HTTP 消息缓存的大小。
 	 */
 	public int getHttpMessageCacheSize() {
 		return this.httpMessageCacheSize;
 	}
 
 	/**
-	 * Some load balancers do not support WebSocket. This option can be used to
-	 * disable the WebSocket transport on the server side.
-	 * <p>The default value is "true".
+	 * 某些负载均衡器不支持 WebSocket。此选项可用于
+	 * 在服务器端禁用 WebSocket 传输。
+	 * <p>默认值为 "true"。
 	 */
 	public void setWebSocketEnabled(boolean webSocketEnabled) {
 		this.webSocketEnabled = webSocketEnabled;
 	}
 
 	/**
-	 * Return whether WebSocket transport is enabled.
+	 * 返回是否启用了 WebSocket 传输。
 	 */
 	public boolean isWebSocketEnabled() {
 		return this.webSocketEnabled;
 	}
 
 	/**
-	 * This option can be used to disable automatic addition of CORS headers for
-	 * SockJS requests.
-	 * <p>The default value is "false".
+	 * 此选项可用于禁用为 SockJS 请求自动添加 CORS 头。
+	 * <p>默认值为 "false"。
 	 * @since 4.1.2
 	 */
 	public void setSuppressCors(boolean suppressCors) {
@@ -302,7 +296,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	}
 
 	/**
-	 * Return if automatic addition of CORS headers has been disabled.
+	 * 返回自动添加 CORS 头是否已被禁用。
 	 * @since 4.1.2
 	 * @see #setSuppressCors
 	 */
@@ -311,21 +305,18 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	}
 
 	/**
-	 * Set the origins for which cross-origin requests are allowed from a browser.
-	 * Please, refer to {@link CorsConfiguration#setAllowedOrigins(List)} for
-	 * format details and considerations, and keep in mind that the CORS spec
-	 * does not allow use of {@code "*"} with {@code allowCredentials=true}.
-	 * For more flexible origin patterns use {@link #setAllowedOriginPatterns}
-	 * instead.
+	 * 设置允许浏览器发起跨域请求的来源。
+	 * 有关格式细节和注意事项，请参阅 {@link CorsConfiguration#setAllowedOrigins(List)}，
+	 * 并记住 CORS 规范不允许在 {@code allowCredentials=true} 时使用 {@code "*"}。
+	 * 如需更灵活的来源模式，请改用 {@link #setAllowedOriginPatterns}。
 	 *
-	 * <p>By default, no origins are allowed. When
-	 * {@link #setAllowedOriginPatterns(Collection) allowedOriginPatterns} is also
-	 * set, then that takes precedence over this property.
+	 * <p>默认情况下，不允许任何来源。当同时设置了
+	 * {@link #setAllowedOriginPatterns(Collection) allowedOriginPatterns} 时，
+	 * 该属性优先于此属性。
 	 *
-	 * <p>Note when SockJS is enabled and origins are restricted, transport types
-	 * that do not allow to check request origin (Iframe based transports) are
-	 * disabled. As a consequence, IE 6 to 9 are not supported when origins are
-	 * restricted.
+	 * <p>请注意，当启用 SockJS 且限制了来源时，不允许检查请求来源的
+	 * 传输类型（基于 Iframe 的传输）将被禁用。因此，在限制来源时
+	 * 不支持 IE 6 到 9。
 	 * @since 4.1.2
 	 * @see #setAllowedOriginPatterns(Collection)
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
@@ -337,7 +328,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	}
 
 	/**
-	 * Return the {@link #setAllowedOrigins(Collection) configured} allowed origins.
+	 * 返回 {@link #setAllowedOrigins(Collection) 已配置的}允许来源。
 	 * @since 4.1.2
 	 */
 	@SuppressWarnings("ConstantConditions")
@@ -345,12 +336,10 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 		return this.corsConfiguration.getAllowedOrigins();
 	}
 	/**
-	 * Alternative to {@link #setAllowedOrigins(Collection)} that supports more
-	 * flexible patterns for specifying the origins for which cross-origin
-	 * requests are allowed from a browser. Please, refer to
-	 * {@link CorsConfiguration#setAllowedOriginPatterns(List)} for format
-	 * details and other considerations.
-	 * <p>By default this is not set.
+	 * {@link #setAllowedOrigins(Collection)} 的替代方案，支持更灵活的模式
+	 * 来指定允许浏览器发起跨域请求的来源。有关格式细节和其他注意事项，
+	 * 请参阅 {@link CorsConfiguration#setAllowedOriginPatterns(List)}。
+	 * <p>默认情况下未设置。
 	 * @since 5.2.3
 	 */
 	public void setAllowedOriginPatterns(Collection<String> allowedOriginPatterns) {
@@ -359,7 +348,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	}
 
 	/**
-	 * Return {@link #setAllowedOriginPatterns(Collection) configured} origin patterns.
+	 * 返回 {@link #setAllowedOriginPatterns(Collection) 已配置的}来源模式。
 	 * @since 5.3.2
 	 */
 	@SuppressWarnings("ConstantConditions")
@@ -369,8 +358,8 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 
 
 	/**
-	 * This method determines the SockJS path and handles SockJS static URLs.
-	 * Session URLs and raw WebSocket requests are delegated to abstract methods.
+	 * 此方法确定 SockJS 路径并处理 SockJS 静态 URL。
+	 * 会话 URL 和原始 WebSocket 请求将委托给抽象方法。
 	 */
 	@Override
 	public final void handleRequest(ServerHttpRequest request, ServerHttpResponse response,
@@ -506,13 +495,13 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 	}
 
 	/**
-	 * Ensure the path does not contain a file extension, either in the filename
-	 * (e.g. "/jsonp.bat") or possibly after path parameters ("/jsonp;Setup.bat")
-	 * which could be used for RFD exploits.
-	 * <p>Since the last part of the path is expected to be a transport type, the
-	 * presence of an extension would not work. All we need to do is check if
-	 * there are any path parameters, which would have been removed from the
-	 * SockJS path during request mapping, and if found reject the request.
+	 * 确保路径中不包含文件扩展名，无论是在文件名中
+	 * （例如 "/jsonp.bat"）还是在路径参数之后（"/jsonp;Setup.bat"），
+	 * 这些都可能被用于 RFD 漏洞利用。
+	 * <p>由于路径的最后一部分预期是传输类型，
+	 * 存在扩展名将无法正常工作。我们只需检查是否
+	 * 存在任何路径参数（这些参数在请求映射期间会从
+	 * SockJS 路径中移除），如果存在则拒绝该请求。
 	 */
 	private boolean validatePath(ServerHttpRequest request) {
 		String path = request.getURI().getPath();
@@ -564,13 +553,13 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 
 
 	/**
-	 * Handle request for raw WebSocket communication, i.e. without any SockJS message framing.
+	 * 处理原始 WebSocket 通信请求，即不包含任何 SockJS 消息帧。
 	 */
 	protected abstract void handleRawWebSocketRequest(ServerHttpRequest request,
 			ServerHttpResponse response, WebSocketHandler webSocketHandler) throws IOException;
 
 	/**
-	 * Handle a SockJS session URL (i.e. transport-specific request).
+	 * 处理 SockJS 会话 URL（即特定于传输的请求）。
 	 */
 	protected abstract void handleTransportRequest(ServerHttpRequest request, ServerHttpResponse response,
 			WebSocketHandler webSocketHandler, String sessionId, String transport) throws SockJsException;

@@ -52,7 +52,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.util.concurrent.SettableListenableFuture;
 
 /**
- * Default implementation of {@link ConnectionHandlingStompSession}.
+ * {@link ConnectionHandlingStompSession} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -64,7 +64,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	private static final IdGenerator idGenerator = new AlternativeJdkIdGenerator();
 
 	/**
-	 * An empty payload.
+	 * 空载荷。
 	 */
 	public static final byte[] EMPTY_PAYLOAD = new byte[0];
 
@@ -116,7 +116,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 
 
 	/**
-	 * Create a new session.
+	 * 创建新会话。
 	 * @param sessionHandler the application handler for the session
 	 * @param connectHeaders headers for the STOMP CONNECT frame
 	 */
@@ -142,7 +142,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	}
 
 	/**
-	 * Return the configured session handler.
+	 * 返回已配置的会话处理器。
 	 */
 	public StompSessionHandler getSessionHandler() {
 		return this.sessionHandler;
@@ -154,10 +154,10 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	}
 
 	/**
-	 * Set the {@link MessageConverter} to use to convert the payload of incoming
-	 * and outgoing messages to and from {@code byte[]} based on object type, or
-	 * expected object type, and the "content-type" header.
-	 * <p>By default, {@link SimpleMessageConverter} is configured.
+	 * 设置用于根据对象类型（或预期对象类型）以及 "content-type" 头，
+	 * 在传入和传出消息的载荷与 {@code byte[]} 之间进行转换的
+	 * {@link MessageConverter}。
+	 * <p>默认配置 {@link SimpleMessageConverter}。
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -166,21 +166,21 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	}
 
 	/**
-	 * Return the configured {@link MessageConverter}.
+	 * 返回已配置的 {@link MessageConverter}。
 	 */
 	public MessageConverter getMessageConverter() {
 		return this.converter;
 	}
 
 	/**
-	 * Configure the TaskScheduler to use for receipt tracking.
+	 * 配置用于回执跟踪的 TaskScheduler。
 	 */
 	public void setTaskScheduler(@Nullable TaskScheduler taskScheduler) {
 		this.taskScheduler = taskScheduler;
 	}
 
 	/**
-	 * Return the configured TaskScheduler to use for receipt tracking.
+	 * 返回已配置的用于回执跟踪的 TaskScheduler。
 	 */
 	@Nullable
 	public TaskScheduler getTaskScheduler() {
@@ -188,8 +188,8 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	}
 
 	/**
-	 * Configure the time in milliseconds before a receipt expires.
-	 * <p>By default set to 15,000 (15 seconds).
+	 * 配置回执过期前的时间（以毫秒为单位）。
+	 * <p>默认设置为 15,000（15 秒）。
 	 */
 	public void setReceiptTimeLimit(long receiptTimeLimit) {
 		Assert.isTrue(receiptTimeLimit > 0, "Receipt time limit must be larger than zero");
@@ -197,7 +197,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	}
 
 	/**
-	 * Return the configured time limit before a receipt expires.
+	 * 返回已配置的回执过期时间限制。
 	 */
 	public long getReceiptTimeLimit() {
 		return this.receiptTimeLimit;
@@ -209,7 +209,7 @@ public class DefaultStompSession implements ConnectionHandlingStompSession {
 	}
 
 	/**
-	 * Whether receipt headers should be automatically added.
+	 * 是否应自动添加回执头。
 	 */
 	public boolean isAutoReceiptEnabled() {
 		return this.autoReceiptEnabled;

@@ -21,8 +21,8 @@ import javax.persistence.OptimisticLockException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 
 /**
- * JPA-specific subclass of ObjectOptimisticLockingFailureException.
- * Converts JPA's OptimisticLockException.
+ * {@link org.springframework.orm.ObjectOptimisticLockingFailureException} 的 JPA 专用子类。
+ * 转换 JPA 的 {@link OptimisticLockException}。
  *
  * @author Juergen Hoeller
  * @since 2.0

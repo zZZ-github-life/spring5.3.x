@@ -25,15 +25,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Helper class for loading a localized resource,
- * specified through name, extension and current locale.
+ * 用于加载本地化资源的辅助类，资源通过名称、扩展名和当前区域设置指定。
  *
  * @author Juergen Hoeller
  * @since 1.2.5
  */
 public class LocalizedResourceHelper {
 
-	/** The default separator to use in-between file name parts: an underscore. */
+	/** 用于分隔文件名各部分的默认分隔符：下划线。 */
 	public static final String DEFAULT_SEPARATOR = "_";
 
 
@@ -43,7 +42,7 @@ public class LocalizedResourceHelper {
 
 
 	/**
-	 * Create a new LocalizedResourceHelper with a DefaultResourceLoader.
+	 * 使用 DefaultResourceLoader 创建一个新的 LocalizedResourceHelper。
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public LocalizedResourceHelper() {
@@ -51,7 +50,7 @@ public class LocalizedResourceHelper {
 	}
 
 	/**
-	 * Create a new LocalizedResourceHelper with the given ResourceLoader.
+	 * 使用给定的 ResourceLoader 创建一个新的 LocalizedResourceHelper。
 	 * @param resourceLoader the ResourceLoader to use
 	 */
 	public LocalizedResourceHelper(ResourceLoader resourceLoader) {
@@ -60,8 +59,7 @@ public class LocalizedResourceHelper {
 	}
 
 	/**
-	 * Set the separator to use in-between file name parts.
-	 * Default is an underscore ("_").
+	 * 设置用于文件名各部分之间的分隔符。默认为下划线（"_"）。
 	 */
 	public void setSeparator(@Nullable String separator) {
 		this.separator = (separator != null ? separator : DEFAULT_SEPARATOR);
@@ -69,18 +67,15 @@ public class LocalizedResourceHelper {
 
 
 	/**
-	 * Find the most specific localized resource for the given name,
-	 * extension and locale:
-	 * <p>The file will be searched with locations in the following order,
-	 * similar to {@code java.util.ResourceBundle}'s search order:
+	 * 为给定的名称、扩展名和区域设置查找最具体的本地化资源：
+	 * <p>将按以下顺序搜索文件位置，类似于 {@code java.util.ResourceBundle} 的搜索顺序：
 	 * <ul>
 	 * <li>[name]_[language]_[country]_[variant][extension]
 	 * <li>[name]_[language]_[country][extension]
 	 * <li>[name]_[language][extension]
 	 * <li>[name][extension]
 	 * </ul>
-	 * <p>If none of the specific files can be found, a resource
-	 * descriptor for the default location will be returned.
+	 * <p>如果找不到任何特定的文件，将返回默认位置的资源描述符。
 	 * @param name the name of the file, without localization part nor extension
 	 * @param extension the file extension (e.g. ".xls")
 	 * @param locale the current locale (may be {@code null})

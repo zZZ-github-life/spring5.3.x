@@ -24,8 +24,7 @@ import org.springframework.core.Conventions;
 import org.springframework.test.context.TestContext;
 
 /**
- * {@code TestExecutionListener} which provides support for dependency
- * injection and initialization of test instances.
+ * 为测试实例的依赖注入和初始化提供支持的 {@code TestExecutionListener}。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -34,19 +33,9 @@ import org.springframework.test.context.TestContext;
 public class DependencyInjectionTestExecutionListener extends AbstractTestExecutionListener {
 
 	/**
-	 * Attribute name for a {@link TestContext} attribute which indicates
-	 * whether the dependencies of a test instance should be
-	 * <em>reinjected</em> in
-	 * {@link #beforeTestMethod(TestContext) beforeTestMethod()}. Note that
-	 * dependencies will be injected in
-	 * {@link #prepareTestInstance(TestContext) prepareTestInstance()} in any
-	 * case.
-	 * <p>Clients of a {@link TestContext} (e.g., other
-	 * {@link org.springframework.test.context.TestExecutionListener TestExecutionListeners})
-	 * may therefore choose to set this attribute to signal that dependencies
-	 * should be reinjected <em>between</em> execution of individual test
-	 * methods.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * {@link TestContext} 属性的属性名，用于指示是否应在 {@link #beforeTestMethod(TestContext) beforeTestMethod()} 中<em>重新注入</em>测试实例的依赖。请注意，无论如何都会在 {@link #prepareTestInstance(TestContext) prepareTestInstance()} 中注入依赖。
+	 * <p>{@link TestContext} 的客户端（例如其他 {@link org.springframework.test.context.TestExecutionListener TestExecutionListeners}）因此可以选择设置此属性，以表明应在各个测试方法执行<em>之间</em>重新注入依赖。
+	 * <p>允许的值包括 {@link Boolean#TRUE} 和 {@link Boolean#FALSE}。
 	 */
 	public static final String REINJECT_DEPENDENCIES_ATTRIBUTE = Conventions.getQualifiedAttributeName(
 			DependencyInjectionTestExecutionListener.class, "reinjectDependencies");
@@ -55,7 +44,7 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 
 
 	/**
-	 * Returns {@code 2000}.
+	 * 返回 {@code 2000}。
 	 */
 	@Override
 	public final int getOrder() {
@@ -63,17 +52,8 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	}
 
 	/**
-	 * Performs dependency injection on the
-	 * {@link TestContext#getTestInstance() test instance} of the supplied
-	 * {@link TestContext test context} by
-	 * {@link AutowireCapableBeanFactory#autowireBeanProperties(Object, int, boolean) autowiring}
-	 * and
-	 * {@link AutowireCapableBeanFactory#initializeBean(Object, String) initializing}
-	 * the test instance via its own
-	 * {@link TestContext#getApplicationContext() application context} (without
-	 * checking dependencies).
-	 * <p>The {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} will be subsequently removed
-	 * from the test context, regardless of its value.
+	 * 通过测试实例自身的{@link TestContext#getApplicationContext() 应用上下文}对所提供的 {@link TestContext 测试上下文}的{@link TestContext#getTestInstance() 测试实例}执行依赖注入（{@link AutowireCapableBeanFactory#autowireBeanProperties(Object, int, boolean) 自动装配}）和初始化（{@link AutowireCapableBeanFactory#initializeBean(Object, String) 初始化}）（不检查依赖）。
+	 * <p>随后将从测试上下文中移除 {@link #REINJECT_DEPENDENCIES_ATTRIBUTE}，无论其值如何。
 	 */
 	@Override
 	public void prepareTestInstance(TestContext testContext) throws Exception {
@@ -84,11 +64,7 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	}
 
 	/**
-	 * If the {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} in the supplied
-	 * {@link TestContext test context} has a value of {@link Boolean#TRUE},
-	 * this method will have the same effect as
-	 * {@link #prepareTestInstance(TestContext) prepareTestInstance()};
-	 * otherwise, this method will have no effect.
+	 * 如果所提供的 {@link TestContext 测试上下文}中的 {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} 值为 {@link Boolean#TRUE}，则此方法的效果与 {@link #prepareTestInstance(TestContext) prepareTestInstance()} 相同；否则，此方法将不起作用。
 	 */
 	@Override
 	public void beforeTestMethod(TestContext testContext) throws Exception {
@@ -101,11 +77,8 @@ public class DependencyInjectionTestExecutionListener extends AbstractTestExecut
 	}
 
 	/**
-	 * Performs dependency injection and bean initialization for the supplied
-	 * {@link TestContext} as described in
-	 * {@link #prepareTestInstance(TestContext) prepareTestInstance()}.
-	 * <p>The {@link #REINJECT_DEPENDENCIES_ATTRIBUTE} will be subsequently removed
-	 * from the test context, regardless of its value.
+	 * 如 {@link #prepareTestInstance(TestContext) prepareTestInstance()} 中所述，为所提供的 {@link TestContext} 执行依赖注入和 Bean 初始化。
+	 * <p>随后将从测试上下文中移除 {@link #REINJECT_DEPENDENCIES_ATTRIBUTE}，无论其值如何。
 	 * @param testContext the test context for which dependency injection should
 	 * be performed (never {@code null})
 	 * @throws Exception allows any exception to propagate

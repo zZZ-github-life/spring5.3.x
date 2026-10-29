@@ -38,14 +38,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.util.Assert;
 
 /**
- * Allows for creating Jackson ({@link JsonSerializer}, {@link JsonDeserializer},
- * {@link KeyDeserializer}, {@link TypeResolverBuilder}, {@link TypeIdResolver})
- * beans with autowiring against a Spring {@link ApplicationContext}.
+ * 允许创建 Jackson（{@link JsonSerializer}、{@link JsonDeserializer}、
+ * {@link KeyDeserializer}、{@link TypeResolverBuilder}、{@link TypeIdResolver}）
+ * bean，并对 Spring {@link ApplicationContext} 进行自动装配。
  *
- * <p>As of Spring 4.3, this overrides all factory methods in {@link HandlerInstantiator},
- * including non-abstract ones and recently introduced ones from Jackson 2.4 and 2.5:
- * for {@link ValueInstantiator}, {@link ObjectIdGenerator}, {@link ObjectIdResolver},
- * {@link PropertyNamingStrategy}, {@link Converter}, {@link VirtualBeanPropertyWriter}.
+ * <p>从 Spring 4.3 起，此类覆盖了 {@link HandlerInstantiator} 中的所有工厂方法，
+ * 包括非抽象方法以及 Jackson 2.4 和 2.5 新增的方法：
+ * 用于 {@link ValueInstantiator}、{@link ObjectIdGenerator}、{@link ObjectIdResolver}、
+ * {@link PropertyNamingStrategy}、{@link Converter}、{@link VirtualBeanPropertyWriter}。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -60,7 +60,7 @@ public class SpringHandlerInstantiator extends HandlerInstantiator {
 
 
 	/**
-	 * Create a new SpringHandlerInstantiator for the given BeanFactory.
+	 * 为给定的 BeanFactory 创建一个新的 SpringHandlerInstantiator。
 	 * @param beanFactory the target BeanFactory
 	 */
 	public SpringHandlerInstantiator(AutowireCapableBeanFactory beanFactory) {

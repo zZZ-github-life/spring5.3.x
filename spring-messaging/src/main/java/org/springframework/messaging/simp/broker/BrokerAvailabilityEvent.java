@@ -19,7 +19,7 @@ package org.springframework.messaging.simp.broker;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * Event raised when a broker's availability changes.
+ * 代理可用性发生变化时引发的事件。
  *
  * @author Andy Wilkinson
  */
@@ -31,7 +31,7 @@ public class BrokerAvailabilityEvent extends ApplicationEvent {
 
 
 	/**
-	 * Creates a new {@code BrokerAvailabilityEvent}.
+	 * 创建新的 {@code BrokerAvailabilityEvent}。
 	 *
 	 * @param brokerAvailable {@code true} if the broker is available, {@code}
 	 * false otherwise

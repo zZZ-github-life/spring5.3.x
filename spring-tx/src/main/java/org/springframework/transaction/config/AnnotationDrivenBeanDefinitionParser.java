@@ -34,15 +34,11 @@ import org.springframework.util.ClassUtils;
 
 /**
  * {@link org.springframework.beans.factory.xml.BeanDefinitionParser
- * BeanDefinitionParser} implementation that allows users to easily configure
- * all the infrastructure beans required to enable annotation-driven transaction
- * demarcation.
+ * BeanDefinitionParser}实现, 允许用户轻松配置启用注解驱动事务界定所需的所有基础设施bean。
  *
- * <p>By default, all proxies are created as JDK proxies. This may cause some
- * problems if you are injecting objects as concrete classes rather than
- * interfaces. To overcome this restriction you can set the
- * '{@code proxy-target-class}' attribute to '{@code true}', which
- * will result in class-based proxies being created.
+ * <p>默认情况下, 所有代理都创建为JDK代理。如果以具体类而非接口的方式注入对象,
+ * 这可能会导致一些问题。要克服此限制, 可以将'{@code proxy-target-class}'属性设置为
+ * '{@code true}', 这将导致创建基于类的代理。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -53,9 +49,8 @@ import org.springframework.util.ClassUtils;
 class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 
 	/**
-	 * Parses the {@code <tx:annotation-driven/>} tag. Will
-	 * {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary register an AutoProxyCreator}
-	 * with the container as necessary.
+	 * 解析{@code <tx:annotation-driven/>}标签。必要时将
+	 * {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary 注册一个AutoProxyCreator}到容器中。
 	 */
 	@Override
 	@Nullable
@@ -114,7 +109,7 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 
 
 	/**
-	 * Inner class to just introduce an AOP framework dependency when actually in proxy mode.
+	 * 内部类, 仅在实际处于代理模式时引入AOP框架依赖。
 	 */
 	private static class AopAutoProxyConfigurer {
 

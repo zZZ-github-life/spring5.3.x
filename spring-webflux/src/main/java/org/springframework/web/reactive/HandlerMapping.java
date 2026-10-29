@@ -21,9 +21,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Interface to be implemented by objects that define a mapping between
- * requests and handler objects.
- *
+ * 定义请求与处理器对象之间映射的对象需要实现的接口。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0
@@ -31,66 +29,43 @@ import org.springframework.web.server.ServerWebExchange;
 public interface HandlerMapping {
 
 	/**
-	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
-	 * contains the mapped handler for the best matching pattern.
+	 * 包含最佳匹配模式所映射处理器的 {@link ServerWebExchange#getAttributes() 属性}名称。
 	 */
 	String BEST_MATCHING_HANDLER_ATTRIBUTE = HandlerMapping.class.getName() + ".bestMatchingHandler";
 
 	/**
-	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
-	 * contains the best matching pattern within the handler mapping.
+	 * 包含处理器映射中最佳匹配模式的 {@link ServerWebExchange#getAttributes() 属性}名称。
 	 */
 	String BEST_MATCHING_PATTERN_ATTRIBUTE = HandlerMapping.class.getName() + ".bestMatchingPattern";
 
 	/**
-	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
-	 * contains the path within the handler mapping, in case of a pattern match
-	 * such as {@code "/static/**"} or the full relevant URI otherwise.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. URL-based HandlerMappings will
-	 * typically support it but handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * 在模式匹配（例如 {@code "/static/**"}）的情况下，表示处理器映射内的路径；否则表示完整的相关 URI。该名称对应 {@link ServerWebExchange#getAttributes() 属性}。
+	 * <p>注意：并非所有 HandlerMapping 实现都要求支持此属性。基于 URL 的 HandlerMapping 通常会支持它，但处理器不应假定该请求属性在所有场景下都存在。
 	 */
 	String PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE = HandlerMapping.class.getName() + ".pathWithinHandlerMapping";
 
 	/**
-	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
-	 * contains the URI templates map mapping variable names to values.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. URL-based HandlerMappings will
-	 * typically support it, but handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * 包含将变量名映射到值的 URI 模板映射的 {@link ServerWebExchange#getAttributes() 属性}名称。
+	 * <p>注意：并非所有 HandlerMapping 实现都要求支持此属性。基于 URL 的 HandlerMapping 通常会支持它，但处理器不应假定该请求属性在所有场景下都存在。
 	 */
 	String URI_TEMPLATE_VARIABLES_ATTRIBUTE = HandlerMapping.class.getName() + ".uriTemplateVariables";
 
 	/**
-	 * Name of the {@link ServerWebExchange#getAttributes() attribute} that
-	 * contains a map with URI variable names and a corresponding MultiValueMap
-	 * of URI matrix variables for each.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations and may also not be present depending on
-	 * whether the HandlerMapping is configured to keep matrix variable content
-	 * in the request URI.
+	 * 包含 URI 变量名到对应 URI 矩阵变量 MultiValueMap 的映射的 {@link ServerWebExchange#getAttributes() 属性}名称。
+	 * <p>注意：并非所有 HandlerMapping 实现都要求支持此属性，并且根据 HandlerMapping 是否配置为在请求 URI 中保留矩阵变量内容，该属性也可能不存在。
 	 */
 	String MATRIX_VARIABLES_ATTRIBUTE = HandlerMapping.class.getName() + ".matrixVariables";
 
 	/**
-	 * Name of the {@link ServerWebExchange#getAttributes() attribute} containing
-	 * the set of producible MediaType's applicable to the mapped handler.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. Handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * 包含适用于所映射处理器的可生成 MediaType 集合的 {@link ServerWebExchange#getAttributes() 属性}名称。
+	 * <p>注意：并非所有 HandlerMapping 实现都要求支持此属性。处理器不应假定该请求属性在所有场景下都存在。
 	 */
 	String PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE = HandlerMapping.class.getName() + ".producibleMediaTypes";
 
 
 	/**
-	 * Return a handler for this request.
-	 * <p>Before returning a handler, an implementing method should check for
-	 * CORS configuration associated with the handler, apply validation checks
-	 * based on it, and update the response accordingly. For pre-flight requests,
-	 * the same should be done based on the handler matching to the expected
-	 * actual request.
+	 * 返回用于此请求的处理器。
+	 * <p>在返回处理器之前，实现方法应检查与该处理器关联的 CORS 配置，基于该配置执行校验检查，并相应地更新响应。对于预检请求，应基于与预期实际请求相匹配的处理器执行同样的操作。
 	 * @param exchange current server exchange
 	 * @return a {@link Mono} that emits one value or none in case the request
 	 * cannot be resolved to a handler

@@ -36,10 +36,9 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * ServletContext-aware subclass of {@link PathMatchingResourcePatternResolver},
- * able to find matching resources below the web application root directory
- * via {@link ServletContext#getResourcePaths}. Falls back to the superclass'
- * file system checking for other resources.
+ * ServletContext 感知的 {@link PathMatchingResourcePatternResolver} 子类，能够通过
+ * {@link ServletContext#getResourcePaths} 查找 Web 应用根目录下匹配的资源。对于其他资源，则回退
+ * 到父类的文件系统检查。
  *
  * @author Juergen Hoeller
  * @since 1.1.2
@@ -50,7 +49,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 
 	/**
-	 * Create a new ServletContextResourcePatternResolver.
+	 * 创建一个新的 ServletContextResourcePatternResolver。
 	 * @param servletContext the ServletContext to load resources with
 	 * @see ServletContextResourceLoader#ServletContextResourceLoader(javax.servlet.ServletContext)
 	 */
@@ -59,7 +58,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 	}
 
 	/**
-	 * Create a new ServletContextResourcePatternResolver.
+	 * 创建一个新的 ServletContextResourcePatternResolver。
 	 * @param resourceLoader the ResourceLoader to load root directories and
 	 * actual resources with
 	 */
@@ -69,10 +68,8 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 
 
 	/**
-	 * Overridden version which checks for ServletContextResource
-	 * and uses {@code ServletContext.getResourcePaths} to find
-	 * matching resources below the web application root directory.
-	 * In case of other resources, delegates to the superclass version.
+	 * 覆盖的版本，会检查 ServletContextResource 并使用 {@code ServletContext.getResourcePaths} 查找
+	 * Web 应用根目录下匹配的资源。对于其他资源，则委托给父类版本。
 	 * @see #doRetrieveMatchingServletContextResources
 	 * @see ServletContextResource
 	 * @see javax.servlet.ServletContext#getResourcePaths
@@ -95,8 +92,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 	}
 
 	/**
-	 * Recursively retrieve ServletContextResources that match the given pattern,
-	 * adding them to the given result set.
+	 * 递归获取与给定模式匹配的 ServletContextResource，并将它们添加到给定的结果集中。
 	 * @param servletContext the ServletContext to work on
 	 * @param fullPattern the pattern to match against,
 	 * with prepended root directory path
@@ -150,7 +146,7 @@ public class ServletContextResourcePatternResolver extends PathMatchingResourceP
 	}
 
 	/**
-	 * Extract entries from the given jar by pattern.
+	 * 按模式从给定 jar 中提取条目。
 	 * @param jarFilePath the path to the jar file
 	 * @param entryPattern the pattern for jar entries to match
 	 * @param result the Set of matching Resources to add to

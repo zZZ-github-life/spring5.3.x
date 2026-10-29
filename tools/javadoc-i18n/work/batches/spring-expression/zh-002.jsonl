@@ -1,0 +1,44 @@
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/package-info.java::1::0", "zh": ["SpEL 的核心实现包。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Assign.java::23::0", "zh": ["表示赋值。对于指示赋值语句的表达式，它是调用 {@code setValue} 的替代方式。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Assign.java::23::1", "zh": ["<p>示例：'someNumberProperty=42'"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/AstUtils.java::25::0", "zh": ["供 AST 类使用的工具方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/AstUtils.java::33::0", "zh": ["确定应当使用哪一组属性解析器，以尝试访问指定目标类型上的属性。这些解析器被视为处于一个有序列表中，但在返回的列表中，凡是与输入目标类型精确匹配的解析器（相对于可用于任何类型的“通用”解析器而言）都排在列表开头。此外，还有一些特定解析器，它们精确命名了所涉的类，另一些则命名了某个特定类、但该类是当前类的超类型。后者被放在特定解析器集合的末尾，会在精确匹配的访问器之后、通用访问器之前被尝试。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/BeanReference.java::27::0", "zh": ["表示对某个类型的 Bean 引用，例如 {@code @foo} 或 {@code @'foo.bar'}。对于 FactoryBean，可以使用 {@code &foo} 语法访问工厂本身。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/BooleanLiteral.java::23::0", "zh": ["表示字面值 {@code TRUE} 和 {@code FALSE}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/CompoundExpression.java::29::0", "zh": ["表示以点号（DOT）分隔的表达式序列，例如 {@code 'property1.property2.methodOne()'}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/CompoundExpression.java::84::0", "zh": ["对复合表达式求值。这涉及依次对每个部分求值，每个部分的返回值即为下一部分的活动上下文对象。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::46::0", "zh": ["表示构造函数的调用。既可以是常规类型上的构造函数，也可以是数组的构造。构造数组时，可以指定初始化器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::46::1", "zh": ["<h4>示例</h4>"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::67::0", "zh": ["数组声明中允许的最大元素数量，适用于一维数组和多维数组。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::85::0", "zh": ["创建一个构造函数引用。第一个参数是类型，其余的是构造函数调用的参数"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::95::0", "zh": ["创建一个构造函数引用。第一个参数是类型，其余的是构造函数调用的参数"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::106::0", "zh": ["实现 getValue() —— 委托给用于构建数组或简单类型的代码。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::119::0", "zh": ["创建一个新的普通对象并返回它。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::190::0", "zh": ["遍历已注册的构造函数解析器列表，检查是否有解析器能找到接受指定参数集的构造函数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/ConstructorReference.java::254::0", "zh": ["创建一个数组并返回它。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Elvis.java::28::0", "zh": ["表示 elvis 运算符 <code>?:</code>。对于表达式 <code>a?:b</code>，如果 <code>a</code> 不为 null，则表达式的值为 <code>a</code>；如果 <code>a</code> 为 null，则表达式的值为 <code>b</code>。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Elvis.java::45::0", "zh": ["对条件求值，若不为 null 则返回它。若为 null，则返回另一个值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FloatLiteral.java::23::0", "zh": ["表示 float 字面值的表达式语言 AST 节点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FormatHelper.java::26::0", "zh": ["解析和求值期间使用的工具方法（格式化器等）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FormatHelper.java::33::0", "zh": ["为带指定参数的给定方法名生成可读的表示形式。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FormatHelper.java::52::0", "zh": ["确定给定 Class 对象的可读名称。", "<p>String 数组的格式化名称为 \"java.lang.String[]\"。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FunctionReference.java::39::0", "zh": ["函数引用的形式为 \"#someFunction(a,b,c)\"。函数可以在表达式求值之前就在上下文中定义。函数也可以是静态 Java 方法，在表达式调用之前注册到上下文中。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FunctionReference.java::39::1", "zh": ["<p>函数非常简单。（目前）参数并不属于定义的一部分，因此名称必须唯一。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FunctionReference.java::88::0", "zh": ["执行以 {@code java.lang.reflect.Method} 表示的函数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/FunctionReference.java::150::0", "zh": ["计算函数的参数，它们是此表达式节点的子节点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Identifier.java::23::0", "zh": ["一种“标识符” {@link SpelNode}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Indexer.java::47::0", "zh": ["Indexer 可以按索引访问前面某个结构中的特定部分。", "<p>支持的结构有：字符串 / 集合（列表/集）/ 数组。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/InlineList.java::33::0", "zh": ["表示表达式中的列表，例如 '{1,2,3}'"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/InlineList.java::52::0", "zh": ["如果列表的所有组成部分都是常量，或者是本身只包含常量的列表，那么可以构建一个常量列表来表示此节点。这会加快后续 getValue 调用的速度，并减少产生的垃圾。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/InlineList.java::115::0", "zh": ["返回此列表是否为常量值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/InlineMap.java::30::0", "zh": ["表示表达式中的映射，例如 '{name:'foo',age:12}'"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/InlineMap.java::49::0", "zh": ["如果映射的所有组成部分都是常量，或者是本身包含常量的列表/映射，那么可以构建一个常量列表来表示此节点。这会加快后续 getValue 调用的速度，并减少产生的垃圾。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/InlineMap.java::153::0", "zh": ["返回此列表是否为常量值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/IntLiteral.java::24::0", "zh": ["表示整数字面值的表达式语言 AST 节点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Literal.java::27::0", "zh": ["表示字面值（boolean、string、number 等）的节点的公共超类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Literal.java::69::0", "zh": ["处理数字的字符串形式，若提供了指定进制则使用该进制，并返回合适的字面值来保存它。将考虑用于表示 long 的任何后缀（支持 'l' 或 'L'）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/LongLiteral.java::23::0", "zh": ["表示长整数字面值的表达式语言 AST 节点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/MethodReference.java::48::0", "zh": ["表示方法引用的表达式语言 AST 节点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/MethodReference.java::229::0", "zh": ["解析 AccessException，抛出一个轻量的求值异常；或者，如果原因是 RuntimeException，则直接抛出该 RuntimeException。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/MethodReference.java::269::0", "zh": ["如果方法引用已解析为可通过反射访问的方法，且其子节点（方法的参数）也可编译，那么该方法引用就是可编译的。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/NullLiteral.java::23::0", "zh": ["表示 null 的表达式语言 AST 节点。"]}

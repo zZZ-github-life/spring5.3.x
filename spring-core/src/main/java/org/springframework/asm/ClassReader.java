@@ -32,10 +32,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * A parser to make a {@link ClassVisitor} visit a ClassFile structure, as defined in the Java
- * Virtual Machine Specification (JVMS). This class parses the ClassFile content and calls the
- * appropriate visit methods of a given {@link ClassVisitor} for each field, method and bytecode
- * instruction encountered.
+ * 一个解析器，用于让 {@link ClassVisitor} 访问 Java 虚拟机规范（JVMS）中定义的 ClassFile 结构。此
+ * 类解析 ClassFile 内容，并针对遇到的每个字段、方法和字节码指令，调用给定 {@link ClassVisitor} 的
+ * 相应 visit 方法。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html">JVMS 4</a>
  * @author Eric Bruneton
@@ -44,58 +43,50 @@ import java.io.InputStream;
 public class ClassReader {
 
   /**
-   * A flag to skip the Code attributes. If this flag is set the Code attributes are neither parsed
-   * nor visited.
+   * 用于跳过 Code 属性的标志。如果设置了此标志，则既不解析也不访问 Code 属性。
    */
   public static final int SKIP_CODE = 1;
 
   /**
-   * A flag to skip the SourceFile, SourceDebugExtension, LocalVariableTable,
-   * LocalVariableTypeTable, LineNumberTable and MethodParameters attributes. If this flag is set
-   * these attributes are neither parsed nor visited (i.e. {@link ClassVisitor#visitSource}, {@link
-   * MethodVisitor#visitLocalVariable}, {@link MethodVisitor#visitLineNumber} and {@link
-   * MethodVisitor#visitParameter} are not called).
+   * 用于跳过 SourceFile、SourceDebugExtension、LocalVariableTable、LocalVariableTypeTable、
+   * LineNumberTable 和 MethodParameters 属性的标志。如果设置了此标志，则既不解析也不访问这些属性（即
+   * 不会调用 {@link ClassVisitor#visitSource}、{@link MethodVisitor#visitLocalVariable}、
+   * {@link MethodVisitor#visitLineNumber} 和 {@link MethodVisitor#visitParameter}）。
    */
   public static final int SKIP_DEBUG = 2;
 
   /**
-   * A flag to skip the StackMap and StackMapTable attributes. If this flag is set these attributes
-   * are neither parsed nor visited (i.e. {@link MethodVisitor#visitFrame} is not called). This flag
-   * is useful when the {@link ClassWriter#COMPUTE_FRAMES} option is used: it avoids visiting frames
-   * that will be ignored and recomputed from scratch.
+   * 用于跳过 StackMap 和 StackMapTable 属性的标志。如果设置了此标志，则既不解析也不访问这些属性（即
+   * 不会调用 {@link MethodVisitor#visitFrame}）。在使用 {@link ClassWriter#COMPUTE_FRAMES} 选项时此
+   * 标志很有用：它可以避免访问那些将被忽略并从头重新计算的帧。
    */
   public static final int SKIP_FRAMES = 4;
 
   /**
-   * A flag to expand the stack map frames. By default stack map frames are visited in their
-   * original format (i.e. "expanded" for classes whose version is less than V1_6, and "compressed"
-   * for the other classes). If this flag is set, stack map frames are always visited in expanded
-   * format (this option adds a decompression/compression step in ClassReader and ClassWriter which
-   * degrades performance quite a lot).
+   * 用于展开栈映射帧的标志。默认情况下，栈映射帧按其原始格式访问（即对于版本低于 V1_6 的类为“展开”格
+   * 式，对于其他类为“压缩”格式）。如果设置了此标志，则始终以展开格式访问栈映射帧（此选项会在
+   * ClassReader 和 ClassWriter 中增加解压/压缩步骤，从而明显降低性能）。
    */
   public static final int EXPAND_FRAMES = 8;
 
   /**
-   * A flag to expand the ASM specific instructions into an equivalent sequence of standard bytecode
-   * instructions. When resolving a forward jump it may happen that the signed 2 bytes offset
-   * reserved for it is not sufficient to store the bytecode offset. In this case the jump
-   * instruction is replaced with a temporary ASM specific instruction using an unsigned 2 bytes
-   * offset (see {@link Label#resolve}). This internal flag is used to re-read classes containing
-   * such instructions, in order to replace them with standard instructions. In addition, when this
-   * flag is used, goto_w and jsr_w are <i>not</i> converted into goto and jsr, to make sure that
-   * infinite loops where a goto_w is replaced with a goto in ClassReader and converted back to a
-   * goto_w in ClassWriter cannot occur.
+   * 用于将 ASM 专用指令展开为等价的标准字节码指令序列的标志。在解析前向跳转时，可能会出现为其保留的
+   * 有符号 2 字节偏移量不足以存储字节码偏移量的情况。此时该跳转指令会被替换为一条使用无符号 2 字节偏
+   * 移量的临时 ASM 专用指令（参见 {@link Label#resolve}）。此内部标志用于重新读取包含此类指令的类，
+   * 以便将它们替换为标准指令。此外，使用此标志时，goto_w 和 jsr_w <i>不会</i>被转换为 goto 和 jsr，
+   * 以确保不会出现 goto_w 在 ClassReader 中被替换为 goto、又在 ClassWriter 中被转换回 goto_w 的无限
+   * 循环。
    */
   static final int EXPAND_ASM_INSNS = 256;
 
-  /** The maximum size of array to allocate. */
+  /** 可分配的数组最大大小。 */
   private static final int MAX_BUFFER_SIZE = 1024 * 1024;
 
-  /** The size of the temporary byte array used to read class input streams chunk by chunk. */
+  /** 用于逐块读取类输入流的临时字节数组大小。 */
   private static final int INPUT_STREAM_DATA_CHUNK_SIZE = 4096;
 
   /**
-   * A byte array containing the JVMS ClassFile structure to be parsed.
+   * 包含要解析的 JVMS ClassFile 结构的字节数组。
    *
    * @deprecated Use {@link #readByte(int)} and the other read methods instead. This field will
    *     eventually be deleted.
@@ -104,43 +95,40 @@ public class ClassReader {
   // DontCheck(MemberName): can't be renamed (for backward binary compatibility).
   public final byte[] b;
 
-  /** The offset in bytes of the ClassFile's access_flags field. */
+  /** ClassFile 的 access_flags 字段的字节偏移量。 */
   public final int header;
 
   /**
-   * A byte array containing the JVMS ClassFile structure to be parsed. <i>The content of this array
-   * must not be modified. This field is intended for {@link Attribute} sub classes, and is normally
-   * not needed by class visitors.</i>
+   * 包含要解析的 JVMS ClassFile 结构的字节数组。<i>不得修改此数组的内容。此字段供 {@link Attribute}
+   * 子类使用，类访问器通常不需要它。</i>
    *
-   * <p>NOTE: the ClassFile structure can start at any offset within this array, i.e. it does not
-   * necessarily start at offset 0. Use {@link #getItem} and {@link #header} to get correct
-   * ClassFile element offsets within this byte array.
+   * <p>注意：ClassFile 结构可以从此数组中的任意偏移量开始，即它不一定从偏移量 0 开始。请使用
+   * {@link #getItem} 和 {@link #header} 获取此字节数组中正确的 ClassFile 元素偏移量。
    */
   final byte[] classFileBuffer;
 
   /**
-   * The offset in bytes, in {@link #classFileBuffer}, of each cp_info entry of the ClassFile's
-   * constant_pool array, <i>plus one</i>. In other words, the offset of constant pool entry i is
-   * given by cpInfoOffsets[i] - 1, i.e. its cp_info's tag field is given by b[cpInfoOffsets[i] -
-   * 1].
+   * ClassFile 的 constant_pool 数组中每个 cp_info 条目在 {@link #classFileBuffer} 中的字节偏移量<i>
+   * 加一</i>。换句话说，常量池条目 i 的偏移量由 cpInfoOffsets[i] - 1 给出，即其 cp_info 的 tag 字段
+   * 由 b[cpInfoOffsets[i] - 1] 给出。
    */
   private final int[] cpInfoOffsets;
 
   /**
-   * The String objects corresponding to the CONSTANT_Utf8 constant pool items. This cache avoids
-   * multiple parsing of a given CONSTANT_Utf8 constant pool item.
+   * 与 CONSTANT_Utf8 常量池条目对应的 String 对象。此缓存避免对给定的 CONSTANT_Utf8 常量池条目进行多
+   * 次解析。
    */
   private final String[] constantUtf8Values;
 
   /**
-   * The ConstantDynamic objects corresponding to the CONSTANT_Dynamic constant pool items. This
-   * cache avoids multiple parsing of a given CONSTANT_Dynamic constant pool item.
+   * 与 CONSTANT_Dynamic 常量池条目对应的 ConstantDynamic 对象。此缓存避免对给定的 CONSTANT_Dynamic
+   * 常量池条目进行多次解析。
    */
   private final ConstantDynamic[] constantDynamicValues;
 
   /**
-   * The start offsets in {@link #classFileBuffer} of each element of the bootstrap_methods array
-   * (in the BootstrapMethods attribute).
+   * bootstrap_methods 数组（位于 BootstrapMethods 属性中）每个元素在 {@link #classFileBuffer} 中的起
+   * 始偏移量。
    *
    * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.23">JVMS
    *     4.7.23</a>
@@ -148,8 +136,7 @@ public class ClassReader {
   private final int[] bootstrapMethodOffsets;
 
   /**
-   * A conservative estimate of the maximum length of the strings contained in the constant pool of
-   * the class.
+   * 对类的常量池中所含字符串最大长度的一个保守估计。
    */
   private final int maxStringLength;
 
@@ -158,7 +145,7 @@ public class ClassReader {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Constructs a new {@link ClassReader} object.
+   * 构造一个新的 {@link ClassReader} 对象。
    *
    * @param classFile the JVMS ClassFile structure to be read.
    */
@@ -167,7 +154,7 @@ public class ClassReader {
   }
 
   /**
-   * Constructs a new {@link ClassReader} object.
+   * 构造一个新的 {@link ClassReader} 对象。
    *
    * @param classFileBuffer a byte array containing the JVMS ClassFile structure to be read.
    * @param classFileOffset the offset in byteBuffer of the first byte of the ClassFile to be read.
@@ -181,8 +168,7 @@ public class ClassReader {
   }
 
   /**
-   * Constructs a new {@link ClassReader} object. <i>This internal constructor must not be exposed
-   * as a public API</i>.
+   * 构造一个新的 {@link ClassReader} 对象。<i>此内部构造函数不得作为公共 API 暴露</i>。
    *
    * @param classFileBuffer a byte array containing the JVMS ClassFile structure to be read.
    * @param classFileOffset the offset in byteBuffer of the first byte of the ClassFile to be read.
@@ -276,7 +262,7 @@ public class ClassReader {
   }
 
   /**
-   * Constructs a new {@link ClassReader} object.
+   * 构造一个新的 {@link ClassReader} 对象。
    *
    * @param inputStream an input stream of the JVMS ClassFile structure to be read. This input
    *     stream must contain nothing more than the ClassFile structure itself. It is read from its
@@ -288,7 +274,7 @@ public class ClassReader {
   }
 
   /**
-   * Constructs a new {@link ClassReader} object.
+   * 构造一个新的 {@link ClassReader} 对象。
    *
    * @param className the fully qualified name of the class to be read. The ClassFile structure is
    *     retrieved with the current class loader's {@link ClassLoader#getSystemResourceAsStream}.
@@ -301,7 +287,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads the given input stream and returns its content as a byte array.
+   * 读取给定的输入流，并将其内容作为字节数组返回。
    *
    * @param inputStream an input stream.
    * @param close true to close the input stream after reading.
@@ -355,8 +341,8 @@ public class ClassReader {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the class's access flags (see {@link Opcodes}). This value may not reflect Deprecated
-   * and Synthetic flags when bytecode is before 1.5 and those flags are represented by attributes.
+   * 返回类的访问标志（参见 {@link Opcodes}）。当字节码版本低于 1.5 且这些标志由属性表示时，此值可能
+   * 不反映 Deprecated 和 Synthetic 标志。
    *
    * @return the class access flags.
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
@@ -366,7 +352,7 @@ public class ClassReader {
   }
 
   /**
-   * Returns the internal name of the class (see {@link Type#getInternalName()}).
+   * 返回类的内部名称（参见 {@link Type#getInternalName()}）。
    *
    * @return the internal class name.
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
@@ -377,8 +363,7 @@ public class ClassReader {
   }
 
   /**
-   * Returns the internal name of the super class (see {@link Type#getInternalName()}). For
-   * interfaces, the super class is {@link Object}.
+   * 返回超类的内部名称（参见 {@link Type#getInternalName()}）。对于接口，超类为 {@link Object}。
    *
    * @return the internal name of the super class, or {@literal null} for {@link Object} class.
    * @see ClassVisitor#visit(int, int, String, String, String, String[])
@@ -389,7 +374,7 @@ public class ClassReader {
   }
 
   /**
-   * Returns the internal names of the implemented interfaces (see {@link Type#getInternalName()}).
+   * 返回所实现接口的内部名称（参见 {@link Type#getInternalName()}）。
    *
    * @return the internal names of the directly implemented interfaces. Inherited implemented
    *     interfaces are not returned.
@@ -415,8 +400,7 @@ public class ClassReader {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Makes the given visitor visit the JVMS ClassFile structure passed to the constructor of this
-   * {@link ClassReader}.
+   * 让给定的访问器访问传递给此 {@link ClassReader} 构造函数的 JVMS ClassFile 结构。
    *
    * @param classVisitor the visitor that must visit this class.
    * @param parsingOptions the options to use to parse this class. One or more of {@link
@@ -427,8 +411,7 @@ public class ClassReader {
   }
 
   /**
-   * Makes the given visitor visit the JVMS ClassFile structure passed to the constructor of this
-   * {@link ClassReader}.
+   * 让给定的访问器访问传递给此 {@link ClassReader} 构造函数的 JVMS ClassFile 结构。
    *
    * @param classVisitor the visitor that must visit this class.
    * @param attributePrototypes prototypes of the attributes that must be parsed during the visit of
@@ -755,7 +738,7 @@ public class ClassReader {
   // ----------------------------------------------------------------------------------------------
 
   /**
-   * Reads the Module, ModulePackages and ModuleMainClass attributes and visit them.
+   * 读取 Module、ModulePackages 和 ModuleMainClass 属性并访问它们。
    *
    * @param classVisitor the current class visitor
    * @param context information about the class being parsed.
@@ -882,7 +865,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a record component and visit it.
+   * 读取一个记录组件并访问它。
    *
    * @param classVisitor the current class visitor
    * @param context information about the class being parsed.
@@ -1056,7 +1039,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a JVMS field_info structure and makes the given visitor visit it.
+   * 读取一个 JVMS field_info 结构，并让给定的访问器访问它。
    *
    * @param classVisitor the visitor that must visit the field.
    * @param context information about the class being parsed.
@@ -1240,7 +1223,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a JVMS method_info structure and makes the given visitor visit it.
+   * 读取一个 JVMS method_info 结构，并让给定的访问器访问它。
    *
    * @param classVisitor the visitor that must visit the method.
    * @param context information about the class being parsed.
@@ -1526,7 +1509,7 @@ public class ClassReader {
   // ----------------------------------------------------------------------------------------------
 
   /**
-   * Reads a JVMS 'Code' attribute and makes the given visitor visit it.
+   * 读取一个 JVMS 'Code' 属性，并让给定的访问器访问它。
    *
    * @param methodVisitor the visitor that must visit the Code attribute.
    * @param context information about the class being parsed.
@@ -2668,8 +2651,7 @@ public class ClassReader {
   }
 
   /**
-   * Returns the label corresponding to the given bytecode offset. The default implementation of
-   * this method creates a label for the given offset if it has not been already created.
+   * 返回与给定字节码偏移量对应的标签。如果尚未为给定偏移量创建标签，此方法的默认实现会为其创建一个。
    *
    * @param bytecodeOffset a bytecode offset in a method.
    * @param labels the already created labels, indexed by their offset. If a label already exists
@@ -2690,9 +2672,8 @@ public class ClassReader {
   }
 
   /**
-   * Creates a label without the {@link Label#FLAG_DEBUG_ONLY} flag set, for the given bytecode
-   * offset. The label is created with a call to {@link #readLabel} and its {@link
-   * Label#FLAG_DEBUG_ONLY} flag is cleared.
+   * 为给定字节码偏移量创建一个未设置 {@link Label#FLAG_DEBUG_ONLY} 标志的标签。该标签通过调用
+   * {@link #readLabel} 创建，并清除其 {@link Label#FLAG_DEBUG_ONLY} 标志。
    *
    * @param bytecodeOffset a bytecode offset in a method.
    * @param labels the already created labels, indexed by their offset.
@@ -2705,9 +2686,8 @@ public class ClassReader {
   }
 
   /**
-   * Creates a label with the {@link Label#FLAG_DEBUG_ONLY} flag set, if there is no already
-   * existing label for the given bytecode offset (otherwise does nothing). The label is created
-   * with a call to {@link #readLabel}.
+   * 如果给定字节码偏移量尚不存在标签，则创建一个设置了 {@link Label#FLAG_DEBUG_ONLY} 标志的标签（否
+   * 则不做任何事）。该标签通过调用 {@link #readLabel} 创建。
    *
    * @param bytecodeOffset a bytecode offset in a method.
    * @param labels the already created labels, indexed by their offset.
@@ -2723,9 +2703,8 @@ public class ClassReader {
   // ----------------------------------------------------------------------------------------------
 
   /**
-   * Parses a Runtime[In]VisibleTypeAnnotations attribute to find the offset of each type_annotation
-   * entry it contains, to find the corresponding labels, and to visit the try catch block
-   * annotations.
+   * 解析 Runtime[In]VisibleTypeAnnotations 属性，以找到其中每个 type_annotation 条目的偏移量、找到相
+   * 应的标签，并访问 try catch 块注解。
    *
    * @param methodVisitor the method visitor to be used to visit the try catch block annotations.
    * @param context information about the class being parsed.
@@ -2830,8 +2809,8 @@ public class ClassReader {
   }
 
   /**
-   * Returns the bytecode offset corresponding to the specified JVMS 'type_annotation' structure, or
-   * -1 if there is no such type_annotation of if it does not have a bytecode offset.
+   * 返回与指定的 JVMS 'type_annotation' 结构相对应的字节码偏移量；如果不存在这样的 type_annotation，
+   * 或者它没有字节码偏移量，则返回 -1。
    *
    * @param typeAnnotationOffsets the offset of each 'type_annotation' entry in a
    *     Runtime[In]VisibleTypeAnnotations attribute, or {@literal null}.
@@ -2850,9 +2829,8 @@ public class ClassReader {
   }
 
   /**
-   * Parses the header of a JVMS type_annotation structure to extract its target_type, target_info
-   * and target_path (the result is stored in the given context), and returns the start offset of
-   * the rest of the type_annotation structure.
+   * 解析 JVMS type_annotation 结构的头部，以提取其 target_type、target_info 和 target_path（结果存储
+   * 在给定的上下文中），并返回该 type_annotation 结构其余部分的起始偏移量。
    *
    * @param context information about the class being parsed. This is where the extracted
    *     target_type and target_path must be stored.
@@ -2932,7 +2910,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a Runtime[In]VisibleParameterAnnotations attribute and makes the given visitor visit it.
+   * 读取一个 Runtime[In]VisibleParameterAnnotations 属性，并让给定的访问器访问它。
    *
    * @param methodVisitor the visitor that must visit the parameter annotations.
    * @param context information about the class being parsed.
@@ -2970,9 +2948,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads the element values of a JVMS 'annotation' structure and makes the given visitor visit
-   * them. This method can also be used to read the values of the JVMS 'array_value' field of an
-   * annotation's 'element_value'.
+   * 读取 JVMS 'annotation' 结构的元素值，并让给定的访问器访问它们。此方法也可用于读取注解的
+   * 'element_value' 中 JVMS 'array_value' 字段的值。
    *
    * @param annotationVisitor the visitor that must visit the values.
    * @param annotationOffset the start offset of an 'annotation' structure (excluding its type_index
@@ -3013,7 +2990,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a JVMS 'element_value' structure and makes the given visitor visit it.
+   * 读取一个 JVMS 'element_value' 结构，并让给定的访问器访问它。
    *
    * @param annotationVisitor the visitor that must visit the element_value structure.
    * @param elementValueOffset the start offset in {@link #classFileBuffer} of the element_value
@@ -3196,8 +3173,7 @@ public class ClassReader {
   // ----------------------------------------------------------------------------------------------
 
   /**
-   * Computes the implicit frame of the method currently being parsed (as defined in the given
-   * {@link Context}) and stores it in the given context.
+   * 计算当前正在解析的方法的隐式帧（如给定 {@link Context} 中所定义），并将其存储在给定的上下文中。
    *
    * @param context information about the class being parsed.
    */
@@ -3264,9 +3240,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a JVMS 'stack_map_frame' structure and stores the result in the given {@link Context}
-   * object. This method can also be used to read a full_frame structure, excluding its frame_type
-   * field (this is used to parse the legacy StackMap attributes).
+   * 读取一个 JVMS 'stack_map_frame' 结构，并将结果存储在给定的 {@link Context} 对象中。此方法也可用
+   * 于读取 full_frame 结构（不包括其 frame_type 字段），这用于解析旧版 StackMap 属性。
    *
    * @param stackMapFrameOffset the start offset in {@link #classFileBuffer} of the
    *     stack_map_frame_value structure to be read, or the start offset of a full_frame structure
@@ -3363,8 +3338,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a JVMS 'verification_type_info' structure and stores it at the given index in the given
-   * array.
+   * 读取一个 JVMS 'verification_type_info' 结构，并将其存储在给定数组的给定索引处。
    *
    * @param verificationTypeInfoOffset the start offset of the 'verification_type_info' structure to
    *     read.
@@ -3425,8 +3399,7 @@ public class ClassReader {
   // ----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the offset in {@link #classFileBuffer} of the first ClassFile's 'attributes' array
-   * field entry.
+   * 返回 ClassFile 的 'attributes' 数组字段第一个条目在 {@link #classFileBuffer} 中的偏移量。
    *
    * @return the offset in {@link #classFileBuffer} of the first ClassFile's 'attributes' array
    *     field entry.
@@ -3472,7 +3445,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads the BootstrapMethods attribute to compute the offset of each bootstrap method.
+   * 读取 BootstrapMethods 属性，以计算每个引导方法的偏移量。
    *
    * @param maxStringLength a conservative estimate of the maximum length of the strings contained
    *     in the constant pool of the class.
@@ -3506,7 +3479,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a non standard JVMS 'attribute' structure in {@link #classFileBuffer}.
+   * 读取 {@link #classFileBuffer} 中一个非标准的 JVMS 'attribute' 结构。
    *
    * @param attributePrototypes prototypes of the attributes that must be parsed during the visit of
    *     the class. Any attribute whose type is not equal to the type of one the prototypes will not
@@ -3547,7 +3520,7 @@ public class ClassReader {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the number of entries in the class's constant pool table.
+   * 返回类的常量池表中的条目数。
    *
    * @return the number of entries in the class's constant pool table.
    */
@@ -3556,9 +3529,8 @@ public class ClassReader {
   }
 
   /**
-   * Returns the start offset in this {@link ClassReader} of a JVMS 'cp_info' structure (i.e. a
-   * constant pool entry), plus one. <i>This method is intended for {@link Attribute} sub classes,
-   * and is normally not needed by class generators or adapters.</i>
+   * 返回某个 JVMS 'cp_info' 结构（即常量池条目）在此 {@link ClassReader} 中的起始偏移量加一。<i>此方
+   * 法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要它。</i>
    *
    * @param constantPoolEntryIndex the index a constant pool entry in the class's constant pool
    *     table.
@@ -3570,8 +3542,7 @@ public class ClassReader {
   }
 
   /**
-   * Returns a conservative estimate of the maximum length of the strings contained in the class's
-   * constant pool table.
+   * 返回对类的常量池表中所含字符串最大长度的一个保守估计。
    *
    * @return a conservative estimate of the maximum length of the strings contained in the class's
    *     constant pool table.
@@ -3581,8 +3552,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a byte value in this {@link ClassReader}. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个字节值。<i>此方法供 {@link Attribute} 子类使用，类生成器或适
+   * 配器通常不需要它。</i>
    *
    * @param offset the start offset of the value to be read in this {@link ClassReader}.
    * @return the read value.
@@ -3592,8 +3563,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads an unsigned short value in this {@link ClassReader}. <i>This method is intended for
-   * {@link Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个无符号 short 值。<i>此方法供 {@link Attribute} 子类使用，类生
+   * 成器或适配器通常不需要它。</i>
    *
    * @param offset the start index of the value to be read in this {@link ClassReader}.
    * @return the read value.
@@ -3604,8 +3575,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a signed short value in this {@link ClassReader}. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个有符号 short 值。<i>此方法供 {@link Attribute} 子类使用，类生
+   * 成器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of the value to be read in this {@link ClassReader}.
    * @return the read value.
@@ -3616,8 +3587,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a signed int value in this {@link ClassReader}. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个有符号 int 值。<i>此方法供 {@link Attribute} 子类使用，类生成
+   * 器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of the value to be read in this {@link ClassReader}.
    * @return the read value.
@@ -3631,8 +3602,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a signed long value in this {@link ClassReader}. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个有符号 long 值。<i>此方法供 {@link Attribute} 子类使用，类生
+   * 成器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of the value to be read in this {@link ClassReader}.
    * @return the read value.
@@ -3644,9 +3615,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Utf8 constant pool entry in this {@link ClassReader}. <i>This method is
-   * intended for {@link Attribute} sub classes, and is normally not needed by class generators or
-   * adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个 CONSTANT_Utf8 常量池条目。<i>此方法供 {@link Attribute} 子类
+   * 使用，类生成器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
    *     value is the index of a CONSTANT_Utf8 entry in the class's constant pool table.
@@ -3664,7 +3634,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Utf8 constant pool entry in {@link #classFileBuffer}.
+   * 在 {@link #classFileBuffer} 中读取一个 CONSTANT_Utf8 常量池条目。
    *
    * @param constantPoolEntryIndex the index of a CONSTANT_Utf8 entry in the class's constant pool
    *     table.
@@ -3683,7 +3653,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads an UTF8 string in {@link #classFileBuffer}.
+   * 在 {@link #classFileBuffer} 中读取一个 UTF8 字符串。
    *
    * @param utfOffset the start offset of the UTF8 string to be read.
    * @param utfLength the length of the UTF8 string to be read.
@@ -3715,10 +3685,9 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Class, CONSTANT_String, CONSTANT_MethodType, CONSTANT_Module or
-   * CONSTANT_Package constant pool entry in {@link #classFileBuffer}. <i>This method is intended
-   * for {@link Attribute} sub classes, and is normally not needed by class generators or
-   * adapters.</i>
+   * 在 {@link #classFileBuffer} 中读取 CONSTANT_Class、CONSTANT_String、CONSTANT_MethodType、
+   * CONSTANT_Module 或 CONSTANT_Package 常量池条目。<i>此方法供 {@link Attribute} 子类使用，类生成器
+   * 或适配器通常不需要它。</i>
    *
    * @param offset the start offset of an unsigned short value in {@link #classFileBuffer}, whose
    *     value is the index of a CONSTANT_Class, CONSTANT_String, CONSTANT_MethodType,
@@ -3734,9 +3703,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Class constant pool entry in this {@link ClassReader}. <i>This method is
-   * intended for {@link Attribute} sub classes, and is normally not needed by class generators or
-   * adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个 CONSTANT_Class 常量池条目。<i>此方法供 {@link Attribute} 子
+   * 类使用，类生成器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
    *     value is the index of a CONSTANT_Class entry in class's constant pool table.
@@ -3749,9 +3717,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Module constant pool entry in this {@link ClassReader}. <i>This method is
-   * intended for {@link Attribute} sub classes, and is normally not needed by class generators or
-   * adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个 CONSTANT_Module 常量池条目。<i>此方法供 {@link Attribute} 子
+   * 类使用，类生成器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
    *     value is the index of a CONSTANT_Module entry in class's constant pool table.
@@ -3764,9 +3731,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Package constant pool entry in this {@link ClassReader}. <i>This method is
-   * intended for {@link Attribute} sub classes, and is normally not needed by class generators or
-   * adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个 CONSTANT_Package 常量池条目。<i>此方法供 {@link Attribute}
+   * 子类使用，类生成器或适配器通常不需要它。</i>
    *
    * @param offset the start offset of an unsigned short value in this {@link ClassReader}, whose
    *     value is the index of a CONSTANT_Package entry in class's constant pool table.
@@ -3779,7 +3745,7 @@ public class ClassReader {
   }
 
   /**
-   * Reads a CONSTANT_Dynamic constant pool entry in {@link #classFileBuffer}.
+   * 在 {@link #classFileBuffer} 中读取一个 CONSTANT_Dynamic 常量池条目。
    *
    * @param constantPoolEntryIndex the index of a CONSTANT_Dynamic entry in the class's constant
    *     pool table.
@@ -3810,9 +3776,8 @@ public class ClassReader {
   }
 
   /**
-   * Reads a numeric or string constant pool entry in this {@link ClassReader}. <i>This method is
-   * intended for {@link Attribute} sub classes, and is normally not needed by class generators or
-   * adapters.</i>
+   * 在此 {@link ClassReader} 中读取一个数值或字符串常量池条目。<i>此方法供 {@link Attribute} 子类使
+   * 用，类生成器或适配器通常不需要它。</i>
    *
    * @param constantPoolEntryIndex the index of a CONSTANT_Integer, CONSTANT_Float, CONSTANT_Long,
    *     CONSTANT_Double, CONSTANT_Class, CONSTANT_String, CONSTANT_MethodType,

@@ -43,7 +43,7 @@ import org.springframework.web.reactive.socket.server.RequestUpgradeStrategy;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link RequestUpgradeStrategy} for use with Tomcat.
+ * 与 Tomcat 配合使用的 {@link RequestUpgradeStrategy}。
  *
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
@@ -71,8 +71,8 @@ public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {
 
 
 	/**
-	 * Exposes the underlying config option on
-	 * {@link javax.websocket.server.ServerContainer#setAsyncSendTimeout(long)}.
+	 * 暴露 {@link javax.websocket.server.ServerContainer#setAsyncSendTimeout(long)}
+	 * 上的底层配置选项。
 	 */
 	public void setAsyncSendTimeout(Long timeoutInMillis) {
 		this.asyncSendTimeout = timeoutInMillis;
@@ -84,8 +84,9 @@ public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {
 	}
 
 	/**
-	 * Exposes the underlying config option on
-	 * {@link javax.websocket.server.ServerContainer#setDefaultMaxSessionIdleTimeout(long)}.
+	 * 暴露
+	 * {@link javax.websocket.server.ServerContainer#setDefaultMaxSessionIdleTimeout(long)}
+	 * 上的底层配置选项。
 	 */
 	public void setMaxSessionIdleTimeout(Long timeoutInMillis) {
 		this.maxSessionIdleTimeout = timeoutInMillis;
@@ -97,8 +98,9 @@ public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {
 	}
 
 	/**
-	 * Exposes the underlying config option on
-	 * {@link javax.websocket.server.ServerContainer#setDefaultMaxTextMessageBufferSize(int)}.
+	 * 暴露
+	 * {@link javax.websocket.server.ServerContainer#setDefaultMaxTextMessageBufferSize(int)}
+	 * 上的底层配置选项。
 	 */
 	public void setMaxTextMessageBufferSize(Integer bufferSize) {
 		this.maxTextMessageBufferSize = bufferSize;
@@ -110,8 +112,9 @@ public class TomcatRequestUpgradeStrategy implements RequestUpgradeStrategy {
 	}
 
 	/**
-	 * Exposes the underlying config option on
-	 * {@link javax.websocket.server.ServerContainer#setDefaultMaxBinaryMessageBufferSize(int)}.
+	 * 暴露
+	 * {@link javax.websocket.server.ServerContainer#setDefaultMaxBinaryMessageBufferSize(int)}
+	 * 上的底层配置选项。
 	 */
 	public void setMaxBinaryMessageBufferSize(Integer bufferSize) {
 		this.maxBinaryMessageBufferSize = bufferSize;

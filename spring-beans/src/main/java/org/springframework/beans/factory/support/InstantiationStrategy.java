@@ -24,10 +24,9 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface responsible for creating instances corresponding to a root bean definition.
+ * 负责创建与根 Bean 定义对应实例的接口。
  *
- * <p>This is pulled out into a strategy as various approaches are possible,
- * including using CGLIB to create subclasses on the fly to support Method Injection.
+ * <p>之所以将其抽取为策略，是因为可以采用多种方式，包括使用 CGLIB 动态创建子类以支持方法注入。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,7 +35,7 @@ import org.springframework.lang.Nullable;
 public interface InstantiationStrategy {
 
 	/**
-	 * Return an instance of the bean with the given name in this factory.
+	 * 返回此工厂中具有给定名称的 Bean 实例。
 	 * @param bd the bean definition
 	 * @param beanName the name of the bean when it is created in this context.
 	 * The name can be {@code null} if we are autowiring a bean which doesn't
@@ -49,8 +48,7 @@ public interface InstantiationStrategy {
 			throws BeansException;
 
 	/**
-	 * Return an instance of the bean with the given name in this factory,
-	 * creating it via the given constructor.
+	 * 返回此工厂中具有给定名称的 Bean 实例，并通过给定构造器创建它。
 	 * @param bd the bean definition
 	 * @param beanName the name of the bean when it is created in this context.
 	 * The name can be {@code null} if we are autowiring a bean which doesn't
@@ -65,8 +63,7 @@ public interface InstantiationStrategy {
 			Constructor<?> ctor, Object... args) throws BeansException;
 
 	/**
-	 * Return an instance of the bean with the given name in this factory,
-	 * creating it via the given factory method.
+	 * 返回此工厂中具有给定名称的 Bean 实例，并通过给定工厂方法创建它。
 	 * @param bd the bean definition
 	 * @param beanName the name of the bean when it is created in this context.
 	 * The name can be {@code null} if we are autowiring a bean which doesn't

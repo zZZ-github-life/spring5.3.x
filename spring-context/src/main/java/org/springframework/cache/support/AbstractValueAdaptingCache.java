@@ -20,13 +20,11 @@ import org.springframework.cache.Cache;
 import org.springframework.lang.Nullable;
 
 /**
- * Common base class for {@link Cache} implementations that need to adapt
- * {@code null} values (and potentially other such special values) before
- * passing them on to the underlying store.
+ * 用于 {@link Cache} 实现的通用基类，这些实现需要先将 {@code null} 值（以及可能的其他此类特殊值）
+ * 适配后再传递给底层存储。
  *
- * <p>Transparently replaces given {@code null} user values with an internal
- * {@link NullValue#INSTANCE}, if configured to support {@code null} values
- * (as indicated by {@link #isAllowNullValues()}).
+ * <p>如果配置为支持 {@code null} 值（由 {@link #isAllowNullValues()} 指示），则会透明地将给定的
+ * {@code null} 用户值替换为内部的 {@link NullValue#INSTANCE}。
  *
  * @author Juergen Hoeller
  * @since 4.2.2
@@ -37,7 +35,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 
 	/**
-	 * Create an {@code AbstractValueAdaptingCache} with the given setting.
+	 * 使用给定设置创建一个 {@code AbstractValueAdaptingCache}。
 	 * @param allowNullValues whether to allow for {@code null} values
 	 */
 	protected AbstractValueAdaptingCache(boolean allowNullValues) {
@@ -46,7 +44,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 
 	/**
-	 * Return whether {@code null} values are allowed in this cache.
+	 * 返回此缓存是否允许 {@code null} 值。
 	 */
 	public final boolean isAllowNullValues() {
 		return this.allowNullValues;
@@ -71,7 +69,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	}
 
 	/**
-	 * Perform an actual lookup in the underlying store.
+	 * 在底层存储中执行实际的查找。
 	 * @param key the key whose associated value is to be returned
 	 * @return the raw store value for the key, or {@code null} if none
 	 */
@@ -80,8 +78,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 
 
 	/**
-	 * Convert the given value from the internal store to a user value
-	 * returned from the get method (adapting {@code null}).
+	 * 将给定值从内部存储转换为从 get 方法返回的用户值（适配 {@code null}）。
 	 * @param storeValue the store value
 	 * @return the value to return to the user
 	 */
@@ -94,8 +91,7 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	}
 
 	/**
-	 * Convert the given user value, as passed into the put method,
-	 * to a value in the internal store (adapting {@code null}).
+	 * 将传入 put 方法的给定用户值转换为内部存储中的值（适配 {@code null}）。
 	 * @param userValue the given user value
 	 * @return the value to store
 	 */
@@ -111,9 +107,8 @@ public abstract class AbstractValueAdaptingCache implements Cache {
 	}
 
 	/**
-	 * Wrap the given store value with a {@link SimpleValueWrapper}, also going
-	 * through {@link #fromStoreValue} conversion. Useful for {@link #get(Object)}
-	 * and {@link #putIfAbsent(Object, Object)} implementations.
+	 * 用 {@link SimpleValueWrapper} 包装给定的存储值，同时也会经过 {@link #fromStoreValue} 转换。适用
+	 * 于 {@link #get(Object)} 和 {@link #putIfAbsent(Object, Object)} 实现。
 	 * @param storeValue the original value
 	 * @return the wrapped value
 	 */

@@ -24,8 +24,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.cors.CorsConfiguration;
 
 /**
- * Assists with the registration of global, URL pattern based
- * {@link CorsConfiguration} mappings.
+ * 协助注册全局的、基于 URL 模式的 {@link CorsConfiguration} 映射。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -38,12 +37,11 @@ public class CorsRegistry {
 
 
 	/**
-	 * Enable cross-origin request handling for the specified path pattern.
-	 * <p>Exact path mapping URIs (such as {@code "/admin"}) are supported as
-	 * well as Ant-style path patterns (such as {@code "/admin/**"}).
-	 * <p>By default, the {@code CorsConfiguration} for this mapping is
-	 * initialized with default values as described in
-	 * {@link CorsConfiguration#applyPermitDefaultValues()}.
+	 * 为指定的路径模式启用跨源请求处理。
+	 * <p>既支持精确的路径映射 URI（例如 {@code "/admin"}），
+	 * 也支持 Ant 风格的路径模式（例如 {@code "/admin/**"}）。
+	 * <p>默认情况下，此映射的 {@code CorsConfiguration} 会使用
+	 * {@link CorsConfiguration#applyPermitDefaultValues()} 中描述的默认值进行初始化。
 	 */
 	public CorsRegistration addMapping(String pathPattern) {
 		CorsRegistration registration = new CorsRegistration(pathPattern);
@@ -52,8 +50,8 @@ public class CorsRegistry {
 	}
 
 	/**
-	 * Return the registered {@link CorsConfiguration} objects,
-	 * keyed by path pattern.
+	 * 返回已注册的 {@link CorsConfiguration} 对象，
+	 * 以路径模式为键。
 	 */
 	protected Map<String, CorsConfiguration> getCorsConfigurations() {
 		Map<String, CorsConfiguration> configs = CollectionUtils.newLinkedHashMap(this.registrations.size());

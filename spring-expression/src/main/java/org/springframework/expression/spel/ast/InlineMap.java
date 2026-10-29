@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Represent a map in an expression, e.g. '{name:'foo',age:12}'
+ * 表示表达式中的映射，例如 '{name:'foo',age:12}'
  *
  * @author Andy Clement
  * @since 4.1
@@ -47,9 +47,8 @@ public class InlineMap extends SpelNodeImpl {
 
 
 	/**
-	 * If all the components of the map are constants, or lists/maps that themselves
-	 * contain constants, then a constant list can be built to represent this node.
-	 * This will speed up later getValue calls and reduce the amount of garbage created.
+	 * 如果映射的所有组成部分都是常量，或者是本身包含常量的列表/映射，那么可以构建一个常量列表来表示此
+	 * 节点。这会加快后续 getValue 调用的速度，并减少产生的垃圾。
 	 */
 	private void checkIfConstant() {
 		boolean isConstant = true;
@@ -151,7 +150,7 @@ public class InlineMap extends SpelNodeImpl {
 	}
 
 	/**
-	 * Return whether this list is a constant value.
+	 * 返回此列表是否为常量值。
 	 */
 	public boolean isConstant() {
 		return this.constant != null;

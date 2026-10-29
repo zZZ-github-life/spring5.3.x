@@ -21,11 +21,10 @@ import javax.servlet.ServletContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 /**
- * Builds a {@link MockHttpServletRequest}.
+ * 构建 {@link MockHttpServletRequest}。
  *
- * <p>See static factory methods in
- * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders MockMvcRequestBuilders}.
- *
+ * <p>请参见
+ * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders MockMvcRequestBuilders} 中的静态工厂方法。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -33,7 +32,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 public interface RequestBuilder {
 
 	/**
-	 * Build the request.
+	 * 构建请求。
 	 * @param servletContext the {@link ServletContext} to use to create the request
 	 * @return the request
 	 */

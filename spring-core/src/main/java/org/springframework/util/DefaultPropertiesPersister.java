@@ -24,26 +24,20 @@ import java.io.Writer;
 import java.util.Properties;
 
 /**
- * Default implementation of the {@link PropertiesPersister} interface.
- * Follows the native parsing of {@code java.util.Properties}.
+ * {@link PropertiesPersister} 接口的默认实现。遵循 {@code java.util.Properties} 的原生解析方式。
  *
- * <p>Allows for reading from any Reader and writing to any Writer, for example
- * to specify a charset for a properties file. This is a capability that standard
- * {@code java.util.Properties} unfortunately lacked up until JDK 5:
- * You were only able to load files using the ISO-8859-1 charset there.
+ * <p>允许从任意 Reader 读取并写入任意 Writer，例如为 properties 文件指定字符集。遗憾的是，标准
+ * {@code java.util.Properties} 直到 JDK 5 才具备此能力：在此之前只能使用 ISO-8859-1 字符集加载文件。
  *
- * <p>Loading from and storing to a stream delegates to {@code Properties.load}
- * and {@code Properties.store}, respectively, to be fully compatible with
- * the Unicode conversion as implemented by the JDK Properties class. As of JDK 6,
- * {@code Properties.load/store} is also used for readers/writers, effectively
- * turning this class into a plain backwards compatibility adapter.
  *
- * <p>The persistence code that works with Reader/Writer follows the JDK's parsing
- * strategy but does not implement Unicode conversion, because the Reader/Writer
- * should already apply proper decoding/encoding of characters. If you prefer
- * to escape unicode characters in your properties files, do <i>not</i> specify
- * an encoding for a Reader/Writer (like ReloadableResourceBundleMessageSource's
- * "defaultEncoding" and "fileEncodings" properties).
+ * <p>从流加载和存储到流分别委托给 {@code Properties.load} 和 {@code Properties.store}，以便与 JDK
+ * Properties 类实现的 Unicode 转换完全兼容。自 JDK 6 起，{@code Properties.load/store} 也用于
+ * reader/writer，实际上使此类成为一个纯粹的后向兼容适配器。
+ *
+ * <p>与 Reader/Writer 配合使用的持久化代码遵循 JDK 的解析策略，但不实现 Unicode 转换，因为
+ * Reader/Writer 应已应用正确的字符解码/编码。如果你希望在 properties 文件中转义 Unicode 字符，请
+ * <i>不要</i>为 Reader/Writer 指定编码（例如 ReloadableResourceBundleMessageSource 的
+ * "defaultEncoding" 和 "fileEncodings" 属性）。
  *
  * @author Juergen Hoeller
  * @since 10.03.2004

@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * A {@link WebSocketSession} that exposes the underlying, native WebSocketSession
- * through a getter.
+ * 通过 getter 方法暴露底层原生 WebSocketSession 的 {@link WebSocketSession}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -29,12 +28,12 @@ import org.springframework.web.socket.WebSocketSession;
 public interface NativeWebSocketSession extends WebSocketSession {
 
 	/**
-	 * Return the underlying native WebSocketSession.
+	 * 返回底层原生 WebSocketSession。
 	 */
 	Object getNativeSession();
 
 	/**
-	 * Return the underlying native WebSocketSession, if available.
+	 * 返回底层原生 WebSocketSession（如果可用）。
 	 * @param requiredType the required type of the session
 	 * @return the native session of the required type,
 	 * or {@code null} if not available

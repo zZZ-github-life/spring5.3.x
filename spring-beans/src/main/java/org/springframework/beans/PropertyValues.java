@@ -26,8 +26,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * Holder containing one or more {@link PropertyValue} objects,
- * typically comprising one update for a specific target bean.
+ * 包含一个或多个 {@link PropertyValue} 对象的持有者，通常表示对某个特定目标 Bean 的一次更新。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -37,7 +36,7 @@ import org.springframework.lang.Nullable;
 public interface PropertyValues extends Iterable<PropertyValue> {
 
 	/**
-	 * Return an {@link Iterator} over the property values.
+	 * 返回遍历属性值的 {@link Iterator}。
 	 * @since 5.1
 	 */
 	@Override
@@ -46,7 +45,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	}
 
 	/**
-	 * Return a {@link Spliterator} over the property values.
+	 * 返回遍历属性值的 {@link Spliterator}。
 	 * @since 5.1
 	 */
 	@Override
@@ -55,7 +54,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	}
 
 	/**
-	 * Return a sequential {@link Stream} containing the property values.
+	 * 返回包含属性值的顺序 {@link Stream}。
 	 * @since 5.1
 	 */
 	default Stream<PropertyValue> stream() {
@@ -63,12 +62,12 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	}
 
 	/**
-	 * Return an array of the PropertyValue objects held in this object.
+	 * 返回此对象中所持有 PropertyValue 对象的数组。
 	 */
 	PropertyValue[] getPropertyValues();
 
 	/**
-	 * Return the property value with the given name, if any.
+	 * 返回具有给定名称的属性值（如果有）。
 	 * @param propertyName the name to search for
 	 * @return the property value, or {@code null} if none
 	 */
@@ -76,8 +75,7 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	PropertyValue getPropertyValue(String propertyName);
 
 	/**
-	 * Return the changes since the previous PropertyValues.
-	 * Subclasses should also override {@code equals}.
+	 * 返回相对于前一个 PropertyValues 的变更。子类还应重写 {@code equals}。
 	 * @param old the old property values
 	 * @return the updated or new properties.
 	 * Return empty PropertyValues if there are no changes.
@@ -86,14 +84,14 @@ public interface PropertyValues extends Iterable<PropertyValue> {
 	PropertyValues changesSince(PropertyValues old);
 
 	/**
-	 * Is there a property value (or other processing entry) for this property?
+	 * 此属性是否存在属性值（或其他处理项）？
 	 * @param propertyName the name of the property we're interested in
 	 * @return whether there is a property value for this property
 	 */
 	boolean contains(String propertyName);
 
 	/**
-	 * Does this holder not contain any PropertyValue objects at all?
+	 * 此持有者是否完全不包含任何 PropertyValue 对象？
 	 */
 	boolean isEmpty();
 

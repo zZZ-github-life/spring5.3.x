@@ -22,8 +22,7 @@ import java.nio.file.Path;
 import reactor.core.publisher.Mono;
 
 /**
- * Sub-interface of {@code ReactiveOutputMessage} that has support for "zero-copy"
- * file transfers.
+ * 支持 "零拷贝" 文件传输的 {@code ReactiveOutputMessage} 子接口。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -33,8 +32,7 @@ import reactor.core.publisher.Mono;
 public interface ZeroCopyHttpOutputMessage extends ReactiveHttpOutputMessage {
 
 	/**
-	 * Use the given {@link File} to write the body of the message to the underlying
-	 * HTTP layer.
+	 * 使用给定的 {@link File} 将消息正文写入底层 HTTP 层。
 	 * @param file the file to transfer
 	 * @param position the position within the file from which the transfer is to begin
 	 * @param count the number of bytes to be transferred
@@ -45,8 +43,7 @@ public interface ZeroCopyHttpOutputMessage extends ReactiveHttpOutputMessage {
 	}
 
 	/**
-	 * Use the given {@link Path} to write the body of the message to the underlying
-	 * HTTP layer.
+	 * 使用给定的 {@link Path} 将消息正文写入底层 HTTP 层。
 	 * @param file the file to transfer
 	 * @param position the position within the file from which the transfer is to begin
 	 * @param count the number of bytes to be transferred

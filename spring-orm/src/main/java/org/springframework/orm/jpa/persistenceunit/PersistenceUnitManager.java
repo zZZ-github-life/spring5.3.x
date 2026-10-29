@@ -19,15 +19,13 @@ package org.springframework.orm.jpa.persistenceunit;
 import javax.persistence.spi.PersistenceUnitInfo;
 
 /**
- * Interface that defines an abstraction for finding and managing
- * JPA PersistenceUnitInfos. Used by
- * {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
- * in order to obtain a {@link javax.persistence.spi.PersistenceUnitInfo}
- * for building a concrete {@link javax.persistence.EntityManagerFactory}.
+ * 定义查找和管理 JPA PersistenceUnitInfo 抽象的接口。
+ * 由 {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
+ * 用于获取 {@link javax.persistence.spi.PersistenceUnitInfo}，
+ * 以构建具体的 {@link javax.persistence.EntityManagerFactory}。
  *
- * <p>Obtaining a PersistenceUnitInfo instance is an exclusive process.
- * A PersistenceUnitInfo instance is not available for further calls
- * anymore once it has been obtained.
+ * <p>获取 PersistenceUnitInfo 实例的过程是独占的。
+ * 一旦 PersistenceUnitInfo 实例已被获取，就不能再用于后续调用。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -37,7 +35,7 @@ import javax.persistence.spi.PersistenceUnitInfo;
 public interface PersistenceUnitManager {
 
 	/**
-	 * Obtain the default PersistenceUnitInfo from this manager.
+	 * 从此管理器获取默认的 PersistenceUnitInfo。
 	 * @return the PersistenceUnitInfo (never {@code null})
 	 * @throws IllegalStateException if there is no default PersistenceUnitInfo defined
 	 * or it has already been obtained
@@ -45,7 +43,7 @@ public interface PersistenceUnitManager {
 	PersistenceUnitInfo obtainDefaultPersistenceUnitInfo() throws IllegalStateException;
 
 	/**
-	 * Obtain the specified PersistenceUnitInfo from this manager.
+	 * 从此管理器获取指定的 PersistenceUnitInfo。
 	 * @param persistenceUnitName the name of the desired persistence unit
 	 * @return the PersistenceUnitInfo (never {@code null})
 	 * @throws IllegalArgumentException if no PersistenceUnitInfo with the given

@@ -23,23 +23,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Variant of JSR-303's {@link javax.validation.Valid}, supporting the
- * specification of validation groups. Designed for convenient use with
- * Spring's JSR-303 support but not JSR-303 specific.
+ * JSR-303 的 {@link javax.validation.Valid} 的变体，支持指定校验组。专为与 Spring 的 JSR-303 支持
+ * 配合使用而设计，但并不特定于 JSR-303。
  *
- * <p>Can be used e.g. with Spring MVC handler methods arguments.
- * Supported through {@link org.springframework.validation.SmartValidator}'s
- * validation hint concept, with validation group classes acting as hint objects.
+ * <p>例如，可用于 Spring MVC 处理方法的参数。通过
+ * {@link org.springframework.validation.SmartValidator} 的校验提示概念提供支持，由校验组类充当提示
+ * 对象。
  *
- * <p>Can also be used with method level validation, indicating that a specific
- * class is supposed to be validated at the method level (acting as a pointcut
- * for the corresponding validation interceptor), but also optionally specifying
- * the validation groups for method-level validation in the annotated class.
- * Applying this annotation at the method level allows for overriding the
- * validation groups for a specific method but does not serve as a pointcut;
- * a class-level annotation is nevertheless necessary to trigger method validation
- * for a specific bean to begin with. Can also be used as a meta-annotation on a
- * custom stereotype annotation or a custom group-specific validated annotation.
+ * <p>也可用于方法级校验，表示应当在方法级别校验某个特定的类（充当相应校验拦截器的切点），同时还可
+ * 选择性地为被注解类中的方法级校验指定校验组。在方法级别应用此注解可以覆盖特定方法的校验组，但不会
+ * 充当切点；要触发特定 Bean 的方法校验，仍然需要类级别的注解。还可以作为元注解用在自定义的构造型注
+ * 解或自定义的、特定于校验组的已校验注解上。
  *
  * @author Juergen Hoeller
  * @since 3.1
@@ -54,13 +48,12 @@ import java.lang.annotation.Target;
 public @interface Validated {
 
 	/**
-	 * Specify one or more validation groups to apply to the validation step
-	 * kicked off by this annotation.
-	 * <p>JSR-303 defines validation groups as custom annotations which an application declares
-	 * for the sole purpose of using them as type-safe group arguments, as implemented in
-	 * {@link org.springframework.validation.beanvalidation.SpringValidatorAdapter}.
-	 * <p>Other {@link org.springframework.validation.SmartValidator} implementations may
-	 * support class arguments in other ways as well.
+	 * 指定一个或多个校验组，应用于由此注解启动的校验步骤。
+	 *
+	 * <p>JSR-303 将校验组定义为应用程序声明的自定义注解，其唯一目的就是作为类型安全的组参数使用，如
+	 * {@link org.springframework.validation.beanvalidation.SpringValidatorAdapter} 中所实现的那样。
+	 *
+	 * <p>其他 {@link org.springframework.validation.SmartValidator} 实现也可能以其他方式支持类参数。
 	 */
 	Class<?>[] value() default {};
 

@@ -1,0 +1,154 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/AbstractJackson2Decoder.java
+@@BODY 54 54
+Abstract base class for Jackson 2.9 decoding, leveraging non-blocking parsing.
+@@BODY 56 56
+<p>Compatible with Jackson 2.9.7 and higher.
+@@BODY 70 70
+Constructor with a Jackson {@link ObjectMapper} to use.
+@@BODY 78 82
+Set the max number of bytes that can be buffered by this decoder. This
+is either the size of the entire input when decoding as a whole, or the
+size of one top-level JSON object within a JSON stream. When the limit
+is exceeded, {@link DataBufferLimitException} is raised.
+<p>By default this is set to 256K.
+@@BODY 91 91
+Return the {@link #setMaxInMemorySize configured} byte count limit.
+@@BODY 158 160
+Process the input publisher into a flux. Default implementation returns
+{@link Flux#from(Publisher)}, but subclasses can choose to customize
+this behavior.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/AbstractJackson2Encoder.java
+@@BODY 61 63
+Base class providing support methods for Jackson 2.9 encoding. For non-streaming use
+cases, {@link Flux} elements are collected into a {@link List} before serialization for
+performance reason.
+@@BODY 88 88
+Constructor with a Jackson {@link ObjectMapper} to use.
+@@BODY 96 97
+Configure "streaming" media types for which flushing should be performed
+automatically vs at the end of the stream.
+@@BODY 323 326
+Return the separator to use for the given mime type.
+<p>By default, this method returns new line {@code "\n"} if the given
+mime type is one of the configured {@link #setStreamingMediaTypes(List)
+streaming} mime types.
+@@BODY 340 340
+Determine the JSON encoding to use for the given mime type.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/Jackson2CodecSupport.java
+@@BODY 51 51
+Base class providing support methods for Jackson 2.9 encoding and decoding.
+@@BODY 60 61
+The key for the hint to specify a "JSON View" for encoding or decoding
+with the value expected to be a {@link Class}.
+@@BODY 67 71
+The key for the hint to access the actual ResolvableType passed into
+{@link org.springframework.http.codec.HttpMessageReader#read(ResolvableType, ResolvableType, ServerHttpRequest, ServerHttpResponse, Map)}
+(server-side only). Currently set when the method argument has generics because
+in case of reactive types, use of {@code ResolvableType.getGeneric()} means no
+MethodParameter source and no knowledge of the containing class.
+@@BODY 96 96
+Constructor with a Jackson {@link ObjectMapper} to use.
+@@BODY 107 107
+Configure the default ObjectMapper instance to use.
+@@BODY 117 117
+Return the {@link #setObjectMapper configured} default ObjectMapper.
+@@BODY 124 133
+Configure the {@link ObjectMapper} instances to use for the given
+{@link Class}. This is useful when you want to deviate from the
+{@link #getObjectMapper() default} ObjectMapper or have the
+{@code ObjectMapper} vary by {@code MediaType}.
+<p><strong>Note:</strong> Use of this method effectively turns off use of
+the default {@link #getObjectMapper() ObjectMapper} and supported
+{@link #getMimeTypes() MimeTypes} for the given class. Therefore it is
+important for the mappings configured here to
+{@link MediaType#includes(MediaType) include} every MediaType that must
+be supported for the given class.
+@@BODY 149 149
+Return ObjectMapper registrations for the given class, if any.
+@@BODY 170 170
+Subclasses should expose this as "decodable" or "encodable" mime types.
+@@BODY 201 202
+Determine whether to log the given exception coming from a
+{@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} check.
+@@BODY 254 256
+Select an ObjectMapper to use, either the main ObjectMapper or another
+if the handling for the given Class has been customized through
+{@link #registerObjectMappersForType(Class, Consumer)}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/Jackson2JsonDecoder.java
+@@BODY 38 39
+Decode a byte stream into JSON and convert to Object's with Jackson 2.9,
+leveraging non-blocking parsing.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/Jackson2JsonEncoder.java
+@@BODY 38 40
+Encode from an {@code Object} stream to a byte stream of JSON objects using Jackson 2.9.
+For non-streaming use cases, {@link Flux} elements are collected into a {@link List}
+before serialization for performance reason.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/Jackson2SmileDecoder.java
+@@BODY 27 28
+Decode a byte stream into Smile and convert to Object's with Jackson 2.9,
+leveraging non-blocking parsing.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/Jackson2SmileEncoder.java
+@@BODY 33 35
+Encode from an {@code Object} stream to a byte stream of Smile objects using Jackson 2.9.
+For non-streaming use cases, {@link Flux} elements are collected into a {@link List}
+before serialization for performance reason.
+@@BODY 62 65
+Return the separator to use for the given mime type.
+<p>By default, this method returns a single byte 0 if the given
+mime type is one of the configured {@link #setStreamingMediaTypes(List)
+streaming} mime types.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/Jackson2Tokenizer.java
+@@BODY 42 44
+{@link Function} to transform a JSON stream of arbitrary size, byte array
+chunks into a {@code Flux<TokenBuffer>} where each token buffer is a
+well-formed JSON object.
+@@BODY 228 228
+Tokenize the given {@code Flux<DataBuffer>} into {@code Flux<TokenBuffer>}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/KotlinSerializationJsonDecoder.java
+@@BODY 43 44
+Decode a byte stream into JSON and convert to Object's with
+<a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>.
+@@BODY 46 50
+<p>This decoder can be used to bind {@code @Serializable} Kotlin classes,
+<a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#open-polymorphism">open polymorphic serialization</a>
+is not supported.
+It supports {@code application/json} and {@code application/*+json} with
+various character sets, {@code UTF-8} being the default.
+@@BODY 52 54
+<p>Decoding streams is not supported yet, see
+<a href="https://github.com/Kotlin/kotlinx.serialization/issues/1073">kotlinx.serialization/issues/1073</a>
+related issue.
+@@BODY 79 86
+Configure a limit on the number of bytes that can be buffered whenever
+the input stream needs to be aggregated. This can be a result of
+decoding to a single {@code DataBuffer},
+{@link java.nio.ByteBuffer ByteBuffer}, {@code byte[]},
+{@link org.springframework.core.io.Resource Resource}, {@code String}, etc.
+It can also occur when splitting the input stream, e.g. delimited text,
+in which case the limit applies to data buffered between delimiters.
+<p>By default this is set to 256K.
+@@BODY 94 94
+Return the {@link #setMaxInMemorySize configured} byte count limit.
+@@BODY 129 132
+Tries to find a serializer that can marshall or unmarshall instances of the given type
+using kotlinx.serialization. If no serializer can be found, an exception is thrown.
+<p>Resolved serializers are cached and cached results are returned on successive calls.
+TODO Avoid relying on throwing exception when https://github.com/Kotlin/kotlinx.serialization/pull/1164 is fixed
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/KotlinSerializationJsonEncoder.java
+@@BODY 46 47
+Encode from an {@code Object} stream to a byte stream of JSON objects using
+<a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>.
+@@BODY 49 53
+<p>This encoder can be used to bind {@code @Serializable} Kotlin classes,
+<a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#open-polymorphism">open polymorphic serialization</a>
+is not supported.
+It supports {@code application/json} and {@code application/*+json} with
+various character sets, {@code UTF-8} being the default.
+@@BODY 117 120
+Tries to find a serializer that can marshall or unmarshall instances of the given type
+using kotlinx.serialization. If no serializer can be found, an exception is thrown.
+<p>Resolved serializers are cached and cached results are returned on successive calls.
+TODO Avoid relying on throwing exception when https://github.com/Kotlin/kotlinx.serialization/pull/1164 is fixed
+===FILE spring-web/src/main/java/org/springframework/http/codec/json/package-info.java
+@@BODY 2 2
+JSON encoder and decoder support.

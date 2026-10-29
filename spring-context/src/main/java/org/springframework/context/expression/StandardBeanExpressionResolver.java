@@ -38,13 +38,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Standard implementation of the
- * {@link org.springframework.beans.factory.config.BeanExpressionResolver}
- * interface, parsing and evaluating Spring EL using Spring's expression module.
+ * {@link org.springframework.beans.factory.config.BeanExpressionResolver} 接口的标准实现，使用
+ * Spring 的表达式模块解析和求值 Spring EL。
  *
- * <p>All beans in the containing {@code BeanFactory} are made available as
- * predefined variables with their common bean name, including standard context
- * beans such as "environment", "systemProperties" and "systemEnvironment".
+ * <p>所在 {@code BeanFactory} 中的所有 Bean 都会以其常见 Bean 名称作为预定义变量提供，包括
+ * "environment"、"systemProperties" 和 "systemEnvironment" 等标准上下文 Bean。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -55,10 +53,10 @@ import org.springframework.util.StringUtils;
  */
 public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 
-	/** Default expression prefix: "#{". */
+	/** 默认表达式前缀："#{"。 */
 	public static final String DEFAULT_EXPRESSION_PREFIX = "#{";
 
-	/** Default expression suffix: "}". */
+	/** 默认表达式后缀："}"。 */
 	public static final String DEFAULT_EXPRESSION_SUFFIX = "}";
 
 
@@ -89,15 +87,15 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 
 
 	/**
-	 * Create a new {@code StandardBeanExpressionResolver} with default settings.
+	 * 使用默认设置创建一个新的 {@code StandardBeanExpressionResolver}。
 	 */
 	public StandardBeanExpressionResolver() {
 		this.expressionParser = new SpelExpressionParser();
 	}
 
 	/**
-	 * Create a new {@code StandardBeanExpressionResolver} with the given bean class loader,
-	 * using it as the basis for expression compilation.
+	 * 使用给定的 Bean 类加载器创建一个新的 {@code StandardBeanExpressionResolver}，并以它作为表达式编
+	 * 译的基础。
 	 * @param beanClassLoader the factory's bean class loader
 	 */
 	public StandardBeanExpressionResolver(@Nullable ClassLoader beanClassLoader) {
@@ -106,8 +104,7 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 
 
 	/**
-	 * Set the prefix that an expression string starts with.
-	 * The default is "#{".
+	 * 设置表达式字符串的起始前缀。默认值为 "#{"。
 	 * @see #DEFAULT_EXPRESSION_PREFIX
 	 */
 	public void setExpressionPrefix(String expressionPrefix) {
@@ -116,8 +113,7 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 	}
 
 	/**
-	 * Set the suffix that an expression string ends with.
-	 * The default is "}".
+	 * 设置表达式字符串的结束后缀。默认值为 "}"。
 	 * @see #DEFAULT_EXPRESSION_SUFFIX
 	 */
 	public void setExpressionSuffix(String expressionSuffix) {
@@ -126,9 +122,9 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 	}
 
 	/**
-	 * Specify the EL parser to use for expression parsing.
-	 * <p>Default is a {@link org.springframework.expression.spel.standard.SpelExpressionParser},
-	 * compatible with standard Unified EL style expression syntax.
+	 * 指定用于表达式解析的 EL 解析器。<p>默认是一个
+	 * {@link org.springframework.expression.spel.standard.SpelExpressionParser}，兼容标准的 Unified EL
+	 * 风格表达式语法。
 	 */
 	public void setExpressionParser(ExpressionParser expressionParser) {
 		Assert.notNull(expressionParser, "ExpressionParser must not be null");
@@ -172,8 +168,7 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 	}
 
 	/**
-	 * Template method for customizing the expression evaluation context.
-	 * <p>The default implementation is empty.
+	 * 用于自定义表达式求值上下文的模板方法。<p>默认实现为空。
 	 */
 	protected void customizeEvaluationContext(StandardEvaluationContext evalContext) {
 	}

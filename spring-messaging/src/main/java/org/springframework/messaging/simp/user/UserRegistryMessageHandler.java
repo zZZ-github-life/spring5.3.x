@@ -33,11 +33,10 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.util.Assert;
 
 /**
- * {@code MessageHandler} that handles user registry broadcasts from other
- * application servers and periodically broadcasts the content of the local
- * user registry.
+ * {@code MessageHandler}，处理来自其他应用服务器的用户注册表广播，
+ * 并定期广播本地用户注册表的内容。
  *
- * <p>The aggregated information is maintained in a {@link MultiServerUserRegistry}.
+ * <p>聚合信息维护在 {@link MultiServerUserRegistry} 中。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -61,7 +60,7 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 
 
 	/**
-	 * Constructor.
+	 * 构造函数。
 	 * @param userRegistry the registry with local and remote user registry information
 	 * @param brokerTemplate template for broadcasting local registry information
 	 * @param broadcastDestination the destination to broadcast to
@@ -83,16 +82,15 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 
 
 	/**
-	 * Return the configured destination for broadcasting UserRegistry information.
+	 * 返回已配置的用于广播 UserRegistry 信息的目标。
 	 */
 	public String getBroadcastDestination() {
 		return this.broadcastDestination;
 	}
 
 	/**
-	 * Configure the amount of time (in milliseconds) before a remote user
-	 * registry snapshot is considered expired.
-	 * <p>By default this is set to 20 seconds (value of 20000).
+	 * 配置远程用户注册表快照被视为过期之前的时间量（以毫秒为单位）。
+	 * <p>默认设置为 20 秒（值 20000）。
 	 * @param milliseconds the expiration period in milliseconds
 	 */
 	@SuppressWarnings("unused")
@@ -101,7 +99,7 @@ public class UserRegistryMessageHandler implements MessageHandler, ApplicationLi
 	}
 
 	/**
-	 * Return the configured registry expiration period.
+	 * 返回已配置的注册表过期时间。
 	 */
 	public long getRegistryExpirationPeriod() {
 		return this.registryExpirationPeriod;

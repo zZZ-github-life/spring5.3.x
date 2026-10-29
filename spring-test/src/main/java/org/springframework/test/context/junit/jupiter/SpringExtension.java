@@ -60,12 +60,8 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.ReflectionUtils.MethodFilter;
 
 /**
- * {@code SpringExtension} integrates the <em>Spring TestContext Framework</em>
- * into JUnit 5's <em>Jupiter</em> programming model.
- *
- * <p>To use this extension, simply annotate a JUnit Jupiter based test class with
- * {@code @ExtendWith(SpringExtension.class)}, {@code @SpringJUnitConfig}, or
- * {@code @SpringJUnitWebConfig}.
+ * {@code SpringExtension} 将 <em>Spring TestContext Framework</em> 集成到 JUnit 5 的 <em>Jupiter</em> 编程模型中。
+ * <p>要使用此扩展，只需使用 {@code @ExtendWith(SpringExtension.class)}、{@code @SpringJUnitConfig} 或 {@code @SpringJUnitWebConfig} 标注基于 JUnit Jupiter 的测试类。
  *
  * @author Sam Brannen
  * @since 5.0
@@ -80,14 +76,12 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 		ParameterResolver {
 
 	/**
-	 * {@link Namespace} in which {@code TestContextManagers} are stored, keyed
-	 * by test class.
+	 * 存储 {@code TestContextManagers} 的 {@link Namespace}，以测试类为键。
 	 */
 	private static final Namespace TEST_CONTEXT_MANAGER_NAMESPACE = Namespace.create(SpringExtension.class);
 
 	/**
-	 * {@link Namespace} in which {@code @Autowired} validation error messages
-	 * are stored, keyed by test class.
+	 * 存储 {@code @Autowired} 验证错误消息的 {@link Namespace}，以测试类为键。
 	 */
 	private static final Namespace AUTOWIRED_VALIDATION_NAMESPACE =
 			Namespace.create(SpringExtension.class.getName() + "#autowired.validation");
@@ -106,7 +100,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 
 
 	/**
-	 * Delegates to {@link TestContextManager#beforeTestClass}.
+	 * 委托给 {@link TestContextManager#beforeTestClass}。
 	 */
 	@Override
 	public void beforeAll(ExtensionContext context) throws Exception {
@@ -114,7 +108,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Delegates to {@link TestContextManager#afterTestClass}.
+	 * 委托给 {@link TestContextManager#afterTestClass}。
 	 */
 	@Override
 	public void afterAll(ExtensionContext context) throws Exception {
@@ -127,10 +121,8 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Delegates to {@link TestContextManager#prepareTestInstance}.
-	 * <p>As of Spring Framework 5.3.2, this method also validates that test
-	 * methods and test lifecycle methods are not annotated with
-	 * {@link Autowired @Autowired}.
+	 * 委托给 {@link TestContextManager#prepareTestInstance}。
+	 * <p>从 Spring Framework 5.3.2 开始，此方法还会验证测试方法和测试生命周期方法未标注 {@link Autowired @Autowired}。
 	 */
 	@Override
 	public void postProcessTestInstance(Object testInstance, ExtensionContext context) throws Exception {
@@ -139,8 +131,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Validate that test methods and test lifecycle methods in the supplied
-	 * test class are not annotated with {@link Autowired @Autowired}.
+	 * 验证所提供测试类中的测试方法和测试生命周期方法未标注 {@link Autowired @Autowired}。
 	 * @since 5.3.2
 	 */
 	private void validateAutowiredConfig(ExtensionContext context) {
@@ -165,7 +156,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Delegates to {@link TestContextManager#beforeTestMethod}.
+	 * 委托给 {@link TestContextManager#beforeTestMethod}。
 	 */
 	@Override
 	public void beforeEach(ExtensionContext context) throws Exception {
@@ -175,7 +166,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Delegates to {@link TestContextManager#beforeTestExecution}.
+	 * 委托给 {@link TestContextManager#beforeTestExecution}。
 	 */
 	@Override
 	public void beforeTestExecution(ExtensionContext context) throws Exception {
@@ -185,7 +176,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Delegates to {@link TestContextManager#afterTestExecution}.
+	 * 委托给 {@link TestContextManager#afterTestExecution}。
 	 */
 	@Override
 	public void afterTestExecution(ExtensionContext context) throws Exception {
@@ -196,7 +187,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Delegates to {@link TestContextManager#afterTestMethod}.
+	 * 委托给 {@link TestContextManager#afterTestMethod}。
 	 */
 	@Override
 	public void afterEach(ExtensionContext context) throws Exception {
@@ -207,26 +198,15 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Determine if the value for the {@link Parameter} in the supplied {@link ParameterContext}
-	 * should be autowired from the test's {@link ApplicationContext}.
-	 * <p>A parameter is considered to be autowirable if one of the following
-	 * conditions is {@code true}.
+	 * 确定是否应从测试的 {@link ApplicationContext} 自动注入所提供的 {@link ParameterContext} 中 {@link Parameter} 的值。
+	 * <p>如果以下条件之一为 {@code true}，则认为参数可自动注入。
 	 * <ol>
-	 * <li>The {@linkplain ParameterContext#getDeclaringExecutable() declaring
-	 * executable} is a {@link Constructor} and
-	 * {@link TestConstructorUtils#isAutowirableConstructor(Constructor, Class, PropertyProvider)}
-	 * returns {@code true}. Note that {@code isAutowirableConstructor()} will be
-	 * invoked with a fallback {@link PropertyProvider} that delegates its lookup
-	 * to {@link ExtensionContext#getConfigurationParameter(String)}.</li>
-	 * <li>The parameter is of type {@link ApplicationContext} or a sub-type thereof.</li>
-	 * <li>The parameter is of type {@link ApplicationEvents} or a sub-type thereof.</li>
-	 * <li>{@link ParameterResolutionDelegate#isAutowirable} returns {@code true}.</li>
+	 * <li>{@linkplain ParameterContext#getDeclaringExecutable() 声明可执行对象}是 {@link Constructor}，并且 {@link TestConstructorUtils#isAutowirableConstructor(Constructor, Class, PropertyProvider)} 返回 {@code true}。请注意，{@code isAutowirableConstructor()} 将使用一个回退 {@link PropertyProvider} 调用，该提供程序将其查找委托给 {@link ExtensionContext#getConfigurationParameter(String)}。</li>
+	 * <li>参数类型为 {@link ApplicationContext} 或其子类型。</li>
+	 * <li>参数类型为 {@link ApplicationEvents} 或其子类型。</li>
+	 * <li>{@link ParameterResolutionDelegate#isAutowirable} 返回 {@code true}。</li>
 	 * </ol>
-	 * <p><strong>WARNING</strong>: If a test class {@code Constructor} is annotated
-	 * with {@code @Autowired} or automatically autowirable (see {@link TestConstructor}),
-	 * Spring will assume the responsibility for resolving all parameters in the
-	 * constructor. Consequently, no other registered {@link ParameterResolver}
-	 * will be able to resolve parameters.
+	 * <p><strong>警告</strong>：如果测试类的 {@code Constructor} 标注了 {@code @Autowired} 或可自动注入（请参见 {@link TestConstructor}），Spring 将负责解析构造函数中的所有参数。因此，其他已注册的 {@link ParameterResolver} 将无法解析参数。
 	 * @see #resolveParameter
 	 * @see TestConstructorUtils#isAutowirableConstructor(Constructor, Class)
 	 * @see ParameterResolutionDelegate#isAutowirable
@@ -254,9 +234,8 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Resolve a value for the {@link Parameter} in the supplied {@link ParameterContext} by
-	 * retrieving the corresponding dependency from the test's {@link ApplicationContext}.
-	 * <p>Delegates to {@link ParameterResolutionDelegate#resolveDependency}.
+	 * 通过从测试的 {@link ApplicationContext} 获取相应依赖，解析所提供的 {@link ParameterContext} 中 {@link Parameter} 的值。
+	 * <p>委托给 {@link ParameterResolutionDelegate#resolveDependency}。
 	 * @see #supportsParameter
 	 * @see ParameterResolutionDelegate#resolveDependency
 	 */
@@ -273,7 +252,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 
 
 	/**
-	 * Get the {@link ApplicationContext} associated with the supplied {@code ExtensionContext}.
+	 * 获取与所提供的 {@code ExtensionContext} 关联的 {@link ApplicationContext}。
 	 * @param context the current {@code ExtensionContext} (never {@code null})
 	 * @return the application context
 	 * @throws IllegalStateException if an error occurs while retrieving the application context
@@ -284,7 +263,7 @@ public class SpringExtension implements BeforeAllCallback, AfterAllCallback, Tes
 	}
 
 	/**
-	 * Get the {@link TestContextManager} associated with the supplied {@code ExtensionContext}.
+	 * 获取与所提供的 {@code ExtensionContext} 关联的 {@link TestContextManager}。
 	 * @return the {@code TestContextManager} (never {@code null})
 	 */
 	static TestContextManager getTestContextManager(ExtensionContext context) {

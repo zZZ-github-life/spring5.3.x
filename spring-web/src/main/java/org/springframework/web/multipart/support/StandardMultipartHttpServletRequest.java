@@ -47,9 +47,9 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Spring MultipartHttpServletRequest adapter, wrapping a Servlet 3.0 HttpServletRequest
- * and its Part objects. Parameters get exposed through the native request's getParameter
- * methods - without any custom processing on our side.
+ * Spring 的 MultipartHttpServletRequest 适配器，包装 Servlet 3.0 HttpServletRequest
+ * 及其 Part 对象。参数通过原生请求的 getParameter 方法暴露，
+ * 我们这边不做任何自定义处理。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -63,8 +63,8 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 
 
 	/**
-	 * Create a new StandardMultipartHttpServletRequest wrapper for the given request,
-	 * immediately parsing the multipart content.
+	 * 为给定请求创建一个新的 StandardMultipartHttpServletRequest 包装器，
+	 * 并立即解析 multipart 内容。
 	 * @param request the servlet request to wrap
 	 * @throws MultipartException if parsing failed
 	 */
@@ -73,7 +73,7 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 	}
 
 	/**
-	 * Create a new StandardMultipartHttpServletRequest wrapper for the given request.
+	 * 为给定请求创建一个新的 StandardMultipartHttpServletRequest 包装器。
 	 * @param request the servlet request to wrap
 	 * @param lazyParsing whether multipart parsing should be triggered lazily on
 	 * first access of multipart files or parameters
@@ -205,7 +205,7 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 
 
 	/**
-	 * Spring MultipartFile adapter, wrapping a Servlet 3.0 Part object.
+	 * Spring 的 MultipartFile 适配器，包装 Servlet 3.0 的 Part 对象。
 	 */
 	@SuppressWarnings("serial")
 	private static class StandardMultipartFile implements MultipartFile, Serializable {
@@ -276,7 +276,7 @@ public class StandardMultipartHttpServletRequest extends AbstractMultipartHttpSe
 
 
 	/**
-	 * Inner class to avoid a hard dependency on the JavaMail API.
+	 * 内部类，用于避免对 JavaMail API 的硬依赖。
 	 */
 	private static class MimeDelegate {
 

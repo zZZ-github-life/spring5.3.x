@@ -28,11 +28,10 @@ import org.springframework.cache.CacheManager;
 import org.springframework.lang.Nullable;
 
 /**
- * A basic, no operation {@link CacheManager} implementation suitable
- * for disabling caching, typically used for backing cache declarations
- * without an actual backing store.
+ * 一个基本的空操作 {@link CacheManager} 实现，适用于禁用缓存，通常用于为没有实际后备存储的缓存声明
+ * 提供支持。
  *
- * <p>Will simply accept any items into the cache not actually storing them.
+ * <p>只会接受放入缓存的任何条目，但并不会真正存储它们。
  *
  * @author Costin Leau
  * @author Stephane Nicoll
@@ -47,8 +46,8 @@ public class NoOpCacheManager implements CacheManager {
 
 
 	/**
-	 * This implementation always returns a {@link Cache} implementation that will not store items.
-	 * Additionally, the request cache will be remembered by the manager for consistency.
+	 * 此实现始终返回一个不会存储条目的 {@link Cache} 实现。此外，管理器会记住所请求的缓存以保持一致性。
+	 *
 	 */
 	@Override
 	@Nullable
@@ -65,7 +64,7 @@ public class NoOpCacheManager implements CacheManager {
 	}
 
 	/**
-	 * This implementation returns the name of the caches previously requested.
+	 * 此实现返回先前请求过的缓存的名称。
 	 */
 	@Override
 	public Collection<String> getCacheNames() {

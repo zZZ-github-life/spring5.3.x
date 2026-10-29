@@ -20,11 +20,8 @@ import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
 
 /**
- * {@code TestExecutionListener} that publishes test execution events to the
- * {@link org.springframework.context.ApplicationContext ApplicationContext}
- * for the currently executing test.
- *
- * <h3>Supported Events</h3>
+ * {@code TestExecutionListener}，将测试执行事件发布到当前执行测试所使用的 {@link org.springframework.context.ApplicationContext ApplicationContext}。
+ * <h3>支持的事件</h3>
  * <ul>
  * <li>{@link BeforeTestClassEvent}</li>
  * <li>{@link PrepareTestInstanceEvent}</li>
@@ -34,55 +31,12 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
  * <li>{@link AfterTestMethodEvent}</li>
  * <li>{@link AfterTestClassEvent}</li>
  * </ul>
- *
- * <p>These events may be consumed for various reasons, such as resetting <em>mock</em>
- * beans or tracing test execution. One advantage of consuming test events rather
- * than implementing a custom {@link org.springframework.test.context.TestExecutionListener
- * TestExecutionListener} is that test events may be consumed by any Spring bean
- * registered in the test {@code ApplicationContext}, and such beans may benefit
- * directly from dependency injection and other features of the {@code ApplicationContext}.
- * In contrast, a {@code TestExecutionListener} is not a bean in the {@code ApplicationContext}.
- *
- * <p>Note that the {@code EventPublishingTestExecutionListener} is registered by
- * default; however, it only publishes events if the {@code ApplicationContext}
- * {@linkplain TestContext#hasApplicationContext() has already been loaded}. This
- * prevents the {@code ApplicationContext} from being loaded unnecessarily or too
- * early. Consequently, a {@code BeforeTestClassEvent} will not be published until
- * after the {@code ApplicationContext} has been loaded by another
- * {@code TestExecutionListener}. For example, with the default set of
- * {@code TestExecutionListeners} registered, a {@code BeforeTestClassEvent} will
- * not be published for the first test class that uses a particular test
- * {@code ApplicationContext}, but a {@code BeforeTestClassEvent} will be published
- * for any subsequent test class in the same test suite that uses the same test
- * {@code ApplicationContext} since the context will already have been loaded
- * when subsequent test classes run (as long as the context has not been removed
- * from the {@link org.springframework.test.context.cache.ContextCache ContextCache}
- * via {@link org.springframework.test.annotation.DirtiesContext @DirtiesContext}
- * or the max-size eviction policy). If you wish to ensure that a
- * {@code BeforeTestClassEvent} is published for every test class, you need to
- * register a {@code TestExecutionListener} that loads the {@code ApplicationContext}
- * in the {@link org.springframework.test.context.TestExecutionListener#beforeTestClass
- * beforeTestClass} callback, and that {@code TestExecutionListener} must be registered
- * before the {@code EventPublishingTestExecutionListener}. Similarly, if
- * {@code @DirtiesContext} is used to remove the {@code ApplicationContext} from
- * the context cache after the last test method in a given test class, the
- * {@code AfterTestClassEvent} will not be published for that test class.
- *
- * <h3>Exception Handling</h3>
- * <p>By default, if a test event listener throws an exception while consuming
- * a test event, that exception will propagate to the underlying testing framework
- * in use. For example, if the consumption of a {@code BeforeTestMethodEvent}
- * results in an exception, the corresponding test method will fail as a result
- * of the exception. In contrast, if an asynchronous test event listener throws
- * an exception, the exception will not propagate to the underlying testing framework.
- * For further details on asynchronous exception handling, consult the class-level
- * Javadoc for {@link org.springframework.context.event.EventListener @EventListener}.
- *
- * <h3>Asynchronous Listeners</h3>
- * <p>If you want a particular test event listener to process events asynchronously,
- * you can use Spring's {@link org.springframework.scheduling.annotation.Async @Async}
- * support. For further details, consult the class-level Javadoc for
- * {@link org.springframework.context.event.EventListener @EventListener}.
+ * <p>这些事件可出于各种原因被消费，例如重置 <em>mock</em> bean 或跟踪测试执行。与实现自定义 {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} 相比，消费测试事件的一个优势是，测试事件可以由测试 {@code ApplicationContext} 中注册的任何 Spring bean 消费，并且此类 bean 可以直接受益于依赖注入和 {@code ApplicationContext} 的其他功能。相比之下，{@code TestExecutionListener} 并不是 {@code ApplicationContext} 中的 bean。
+ * <p>请注意，{@code EventPublishingTestExecutionListener} 默认已注册；但是，只有在 {@code ApplicationContext} {@linkplain TestContext#hasApplicationContext() 已经加载}时，它才会发布事件。这可避免不必要地或过早地加载 {@code ApplicationContext}。因此，{@code BeforeTestClassEvent} 要等到 {@code ApplicationContext} 被另一个 {@code TestExecutionListener} 加载之后才会发布。例如，在注册了默认 {@code TestExecutionListeners} 集合的情况下，对于使用特定测试 {@code ApplicationContext} 的第一个测试类，不会发布 {@code BeforeTestClassEvent}；但对于同一测试套件中随后使用相同测试 {@code ApplicationContext} 的任何测试类，都会发布 {@code BeforeTestClassEvent}，因为当后续测试类运行时上下文已经加载（只要该上下文未通过 {@link org.springframework.test.annotation.DirtiesContext @DirtiesContext} 或最大大小驱逐策略从 {@link org.springframework.test.context.cache.ContextCache ContextCache} 中移除）。如果希望确保为每个测试类都发布 {@code BeforeTestClassEvent}，需要注册一个在 {@link org.springframework.test.context.TestExecutionListener#beforeTestClass beforeTestClass} 回调中加载 {@code ApplicationContext} 的 {@code TestExecutionListener}，并且该 {@code TestExecutionListener} 必须注册在 {@code EventPublishingTestExecutionListener} 之前。类似地，如果在给定测试类的最后一个测试方法之后使用 {@code @DirtiesContext} 将 {@code ApplicationContext} 从上下文缓存中移除，则不会为该测试类发布 {@code AfterTestClassEvent}。
+ * <h3>异常处理</h3>
+ * <p>默认情况下，如果测试事件监听器在消费测试事件时抛出异常，该异常将传播到所使用的底层测试框架。例如，如果消费 {@code BeforeTestMethodEvent} 导致异常，则相应的测试方法将因该异常而失败。相比之下，如果异步测试事件监听器抛出异常，该异常不会传播到底层测试框架。有关异步异常处理的更多详情，请查阅 {@link org.springframework.context.event.EventListener @EventListener} 的类级 Javadoc。
+ * <h3>异步监听器</h3>
+ * <p>如果希望某个测试事件监听器异步处理事件，可以使用 Spring 的 {@link org.springframework.scheduling.annotation.Async @Async} 支持。有关更多详情，请查阅 {@link org.springframework.context.event.EventListener @EventListener} 的类级 Javadoc。
  *
  * @author Sam Brannen
  * @author Frank Scheffler
@@ -98,7 +52,7 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
 public class EventPublishingTestExecutionListener extends AbstractTestExecutionListener {
 
 	/**
-	 * Returns {@code 10000}.
+	 * 返回 {@code 10000}。
 	 */
 	@Override
 	public final int getOrder() {
@@ -106,8 +60,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish a {@link BeforeTestClassEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link BeforeTestClassEvent}。
 	 */
 	@Override
 	public void beforeTestClass(TestContext testContext) {
@@ -115,8 +68,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish a {@link PrepareTestInstanceEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link PrepareTestInstanceEvent}。
 	 */
 	@Override
 	public void prepareTestInstance(TestContext testContext) {
@@ -124,8 +76,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish a {@link BeforeTestMethodEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link BeforeTestMethodEvent}。
 	 */
 	@Override
 	public void beforeTestMethod(TestContext testContext) {
@@ -133,8 +84,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish a {@link BeforeTestExecutionEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link BeforeTestExecutionEvent}。
 	 */
 	@Override
 	public void beforeTestExecution(TestContext testContext) {
@@ -142,8 +92,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish an {@link AfterTestExecutionEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link AfterTestExecutionEvent}。
 	 */
 	@Override
 	public void afterTestExecution(TestContext testContext) {
@@ -151,8 +100,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish an {@link AfterTestMethodEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link AfterTestMethodEvent}。
 	 */
 	@Override
 	public void afterTestMethod(TestContext testContext) {
@@ -160,8 +108,7 @@ public class EventPublishingTestExecutionListener extends AbstractTestExecutionL
 	}
 
 	/**
-	 * Publish an {@link AfterTestClassEvent} to the {@code ApplicationContext}
-	 * for the supplied {@link TestContext}.
+	 * 向所提供的 {@link TestContext} 的 {@code ApplicationContext} 发布 {@link AfterTestClassEvent}。
 	 */
 	@Override
 	public void afterTestClass(TestContext testContext) {

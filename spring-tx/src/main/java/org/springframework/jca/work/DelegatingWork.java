@@ -21,7 +21,7 @@ import javax.resource.spi.work.Work;
 import org.springframework.util.Assert;
 
 /**
- * Simple Work adapter that delegates to a given Runnable.
+ * 委托给给定 Runnable 的简单 Work 适配器。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -34,7 +34,7 @@ public class DelegatingWork implements Work {
 
 
 	/**
-	 * Create a new DelegatingWork.
+	 * 创建新的 DelegatingWork。
 	 * @param delegate the Runnable implementation to delegate to
 	 */
 	public DelegatingWork(Runnable delegate) {
@@ -43,7 +43,7 @@ public class DelegatingWork implements Work {
 	}
 
 	/**
-	 * Return the wrapped Runnable implementation.
+	 * 返回被包装的 Runnable 实现。
 	 */
 	public final Runnable getDelegate() {
 		return this.delegate;
@@ -51,7 +51,7 @@ public class DelegatingWork implements Work {
 
 
 	/**
-	 * Delegates execution to the underlying Runnable.
+	 * 将执行委托给底层的 Runnable。
 	 */
 	@Override
 	public void run() {
@@ -59,8 +59,7 @@ public class DelegatingWork implements Work {
 	}
 
 	/**
-	 * This implementation is empty, since we expect the Runnable
-	 * to terminate based on some specific shutdown signal.
+	 * 此实现为空，因为我们期望 Runnable 基于某个特定的关闭信号来终止。
 	 */
 	@Override
 	public void release() {

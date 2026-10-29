@@ -17,7 +17,7 @@
 package org.springframework.expression;
 
 /**
- * Represent an exception that occurs during expression evaluation.
+ * 表示在表达式求值期间发生的异常。
  *
  * @author Andy Clement
  * @since 3.0
@@ -26,7 +26,7 @@ package org.springframework.expression;
 public class EvaluationException extends ExpressionException {
 
 	/**
-	 * Create a new expression evaluation exception.
+	 * 创建一个新的表达式求值异常。
 	 * @param message description of the problem that occurred
 	 */
 	public EvaluationException(String message) {
@@ -34,7 +34,7 @@ public class EvaluationException extends ExpressionException {
 	}
 
 	/**
-	 * Create a new expression evaluation exception.
+	 * 创建一个新的表达式求值异常。
 	 * @param message description of the problem that occurred
 	 * @param cause the underlying cause of this exception
 	 */
@@ -43,7 +43,7 @@ public class EvaluationException extends ExpressionException {
 	}
 
 	/**
-	 * Create a new expression evaluation exception.
+	 * 创建一个新的表达式求值异常。
 	 * @param position the position in the expression where the problem occurred
 	 * @param message description of the problem that occurred
 	 */
@@ -52,7 +52,7 @@ public class EvaluationException extends ExpressionException {
 	}
 
 	/**
-	 * Create a new expression evaluation exception.
+	 * 创建一个新的表达式求值异常。
 	 * @param expressionString the expression that could not be evaluated
 	 * @param message description of the problem that occurred
 	 */
@@ -61,7 +61,7 @@ public class EvaluationException extends ExpressionException {
 	}
 
 	/**
-	 * Create a new expression evaluation exception.
+	 * 创建一个新的表达式求值异常。
 	 * @param position the position in the expression where the problem occurred
 	 * @param message description of the problem that occurred
 	 * @param cause the underlying cause of this exception

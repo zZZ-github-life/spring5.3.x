@@ -22,9 +22,8 @@ import java.util.Collection;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface used by {@link CacheInterceptor}. Implementations know how to source
- * cache operation attributes, whether from configuration, metadata attributes at
- * source level, or elsewhere.
+ * 由 {@link CacheInterceptor} 使用的接口。实现类知道如何获取缓存操作属性，
+ * 无论这些属性来自配置、源码级别的元数据属性，还是来自其他位置。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -33,13 +32,10 @@ import org.springframework.lang.Nullable;
 public interface CacheOperationSource {
 
 	/**
-	 * Determine whether the given class is a candidate for cache operations
-	 * in the metadata format of this {@code CacheOperationSource}.
-	 * <p>If this method returns {@code false}, the methods on the given class
-	 * will not get traversed for {@link #getCacheOperations} introspection.
-	 * Returning {@code false} is therefore an optimization for non-affected
-	 * classes, whereas {@code true} simply means that the class needs to get
-	 * fully introspected for each method on the given class individually.
+	 * 确定给定类是否为本 {@code CacheOperationSource} 的元数据格式下缓存操作的候选者。
+	 * <p>如果此方法返回 {@code false}，则不会遍历给定类上的方法进行 {@link #getCacheOperations} 内省。
+	 * 因此，返回 {@code false} 是对不受影响的类的优化，而 {@code true} 仅表示
+	 * 需要针对给定类上的每个方法单独进行完整内省。
 	 * @param targetClass the class to introspect
 	 * @return {@code false} if the class is known to have no cache operation
 	 * metadata at class or method level; {@code true} otherwise. The default
@@ -51,8 +47,8 @@ public interface CacheOperationSource {
 	}
 
 	/**
-	 * Return the collection of cache operations for this method,
-	 * or {@code null} if the method contains no <em>cacheable</em> annotations.
+	 * 返回此方法的缓存操作集合，
+	 * 如果该方法不包含 <em>可缓存</em> 注解，则返回 {@code null}。
 	 * @param method the method to introspect
 	 * @param targetClass the target class (may be {@code null}, in which case
 	 * the declaring class of the method must be used)

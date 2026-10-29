@@ -30,12 +30,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Default implementation of the {@link DataBuffer} interface that uses a
- * {@link ByteBuffer} internally. with separate read and write positions.
- * Constructed using the {@link DefaultDataBufferFactory}.
+ * 使用 {@link ByteBuffer} 的 {@link DataBuffer} 接口的默认实现，具有独立的读位置和写位置。使用
+ * {@link DefaultDataBufferFactory} 构造。
  *
- * <p>Inspired by Netty's {@code ByteBuf}. Introduced so that non-Netty runtimes
- * (i.e. Servlet) do not require Netty on the classpath.
+ * <p>受 Netty 的 {@code ByteBuf} 启发。引入它是为了使非 Netty 运行时（即 Servlet）不必在类路径上依
+ * 赖 Netty。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -82,9 +81,8 @@ public class DefaultDataBuffer implements DataBuffer {
 
 
 	/**
-	 * Directly exposes the native {@code ByteBuffer} that this buffer is based
-	 * on also updating the {@code ByteBuffer's} position and limit to match
-	 * the current {@link #readPosition()} and {@link #readableByteCount()}.
+	 * 直接暴露此缓冲区所基于的原生 {@code ByteBuffer}，同时更新 {@code ByteBuffer's} 的位置和限制，以
+	 * 匹配当前的 {@link #readPosition()} 和 {@link #readableByteCount()}。
 	 * @return the wrapped byte buffer
 	 */
 	public ByteBuffer getNativeBuffer() {
@@ -405,7 +403,7 @@ public class DefaultDataBuffer implements DataBuffer {
 	}
 
 	/**
-	 * Calculate the capacity of the buffer.
+	 * 计算缓冲区的容量。
 	 * @see io.netty.buffer.AbstractByteBufAllocator#calculateNewCapacity(int, int)
 	 */
 	private int calculateCapacity(int neededCapacity) {

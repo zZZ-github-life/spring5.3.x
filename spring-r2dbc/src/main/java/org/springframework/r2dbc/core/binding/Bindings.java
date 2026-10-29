@@ -33,9 +33,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Value object representing value and {@code null} bindings
- * for a {@link Statement} using {@link BindMarkers}.
- * Bindings are typically immutable.
+ * 值对象，表示使用 {@link BindMarkers} 为 {@link Statement} 提供的值绑定
+ * 和 {@code null} 绑定。绑定通常是不可变的。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -48,14 +47,14 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 
 	/**
-	 * Create empty {@link Bindings}.
+	 * 创建空的 {@link Bindings}。
 	 */
 	public Bindings() {
 		this.bindings = Collections.emptyMap();
 	}
 
 	/**
-	 * Create {@link Bindings} from the given collection.
+	 * 根据给定的集合创建 {@link Bindings}。
 	 * @param bindings a collection of {@link Binding} objects
 	 */
 	public Bindings(Collection<Binding> bindings) {
@@ -75,8 +74,8 @@ public class Bindings implements Iterable<Bindings.Binding> {
 	}
 
 	/**
-	 * Merge this bindings with an other {@link Bindings} object and
-	 * create a new merged {@link Bindings} object.
+	 * 将此绑定与另一个 {@link Bindings} 对象合并，
+	 * 并创建一个新的合并后的 {@link Bindings} 对象。
 	 * @param other the object to merge with
 	 * @return a newly merged {@link Bindings} object
 	 */
@@ -85,7 +84,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 	}
 
 	/**
-	 * Apply the bindings to a {@link BindTarget}.
+	 * 将绑定应用到 {@link BindTarget}。
 	 * @param bindTarget the target to apply bindings to
 	 */
 	public void apply(BindTarget bindTarget) {
@@ -94,10 +93,9 @@ public class Bindings implements Iterable<Bindings.Binding> {
 	}
 
 	/**
-	 * Perform the given action for each binding of this {@link Bindings} until all
-	 * bindings have been processed or the action throws an exception. Actions are
-	 * performed in the order of iteration (if an iteration order is specified).
-	 * Exceptions thrown by the action are relayed to the
+	 * 对此 {@link Bindings} 的每个绑定执行给定的操作，直到所有绑定
+	 * 都被处理完毕或该操作抛出异常。操作按迭代顺序执行
+	 * （如果指定了迭代顺序）。操作抛出的异常会向调用方传播。
 	 * @param action the action to be performed for each {@link Binding}
 	 */
 	@Override
@@ -117,15 +115,15 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 
 	/**
-	 * Return an empty {@link Bindings} object.
+	 * 返回一个空的 {@link Bindings} 对象。
 	 */
 	public static Bindings empty() {
 		return EMPTY;
 	}
 
 	/**
-	 * Merge this bindings with an other {@link Bindings} object and
-	 * create a new merged {@link Bindings} object.
+	 * 将此绑定与另一个 {@link Bindings} 对象合并，
+	 * 并创建一个新的合并后的 {@link Bindings} 对象。
 	 * @param left the left object to merge with
 	 * @param right the right object to merge with
 	 * @return a newly merged {@link Bindings} object
@@ -141,7 +139,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 
 	/**
-	 * Base class for value objects representing a value or a {@code NULL} binding.
+	 * 值对象的基类，表示值绑定或 {@code NULL} 绑定。
 	 */
 	public abstract static class Binding {
 
@@ -152,21 +150,21 @@ public class Bindings implements Iterable<Bindings.Binding> {
 		}
 
 		/**
-		 * Return the associated {@link BindMarker}.
+		 * 返回关联的 {@link BindMarker}。
 		 */
 		public BindMarker getBindMarker() {
 			return this.marker;
 		}
 
 		/**
-		 * Return whether the binding has a value associated with it.
+		 * 返回该绑定是否关联了值。
 		 * @return {@code true} if there is a value present,
 		 * otherwise {@code false} for a {@code NULL} binding
 		 */
 		public abstract boolean hasValue();
 
 		/**
-		 * Return whether the binding is empty.
+		 * 返回该绑定是否为空。
 		 * @return {@code true} if this is a {@code NULL} binding
 		 */
 		public boolean isNull() {
@@ -174,7 +172,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 		}
 
 		/**
-		 * Return the binding value.
+		 * 返回绑定值。
 		 * @return the value of this binding
 		 * (can be {@code null} if this is a {@code NULL} binding)
 		 */
@@ -182,7 +180,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 		public abstract Object getValue();
 
 		/**
-		 * Apply the binding to a {@link BindTarget}.
+		 * 将绑定应用到 {@link BindTarget}。
 		 * @param bindTarget the target to apply bindings to
 		 */
 		public abstract void apply(BindTarget bindTarget);
@@ -190,7 +188,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 
 	/**
-	 * Value binding.
+	 * 值绑定。
 	 */
 	static class ValueBinding extends Binding {
 
@@ -220,7 +218,7 @@ public class Bindings implements Iterable<Bindings.Binding> {
 
 
 	/**
-	 * {@code NULL} binding.
+	 * {@code NULL} 绑定。
 	 */
 	static class NullBinding extends Binding {
 

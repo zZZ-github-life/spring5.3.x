@@ -28,12 +28,12 @@ import org.springframework.web.util.CookieGenerator;
 import org.springframework.web.util.WebUtils;
 
 /**
- * {@link ThemeResolver} implementation that uses a cookie sent back to the user
- * in case of a custom setting, with a fallback to the default theme.
- * This is particularly useful for stateless applications without user sessions.
+ * {@link ThemeResolver} 实现：对于自定义设置，使用回传给用户的 cookie，
+ * 并回退到默认主题。
+ * 这特别适用于没有用户会话的无状态应用。
  *
- * <p>Custom controllers can thus override the user's theme by calling
- * {@code setThemeName}, e.g. responding to a certain theme change request.
+ * <p>因此，自定义控制器可以通过调用
+ * {@code setThemeName} 来覆盖用户的主题，例如响应某个主题变更请求。
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
@@ -43,21 +43,20 @@ import org.springframework.web.util.WebUtils;
 public class CookieThemeResolver extends CookieGenerator implements ThemeResolver {
 
 	/**
-	 * The default theme name used if no alternative is provided.
+	 * 未提供其他主题名称时使用的默认主题名称。
 	 */
 	public static final String ORIGINAL_DEFAULT_THEME_NAME = "theme";
 
 	/**
-	 * Name of the request attribute that holds the theme name. Only used
-	 * for overriding a cookie value if the theme has been changed in the
-	 * course of the current request! Use RequestContext.getTheme() to
-	 * retrieve the current theme in controllers or views.
+	 * 存放主题名称的请求属性名称。仅在当前请求处理过程中主题发生变化时，
+	 * 用于覆盖 cookie 值！在控制器或视图中请使用 RequestContext.getTheme()
+	 * 获取当前主题。
 	 * @see org.springframework.web.servlet.support.RequestContext#getTheme
 	 */
 	public static final String THEME_REQUEST_ATTRIBUTE_NAME = CookieThemeResolver.class.getName() + ".THEME";
 
 	/**
-	 * The default name of the cookie that holds the theme name.
+	 * 存放主题名称的 cookie 的默认名称。
 	 */
 	public static final String DEFAULT_COOKIE_NAME = CookieThemeResolver.class.getName() + ".THEME";
 
@@ -71,14 +70,14 @@ public class CookieThemeResolver extends CookieGenerator implements ThemeResolve
 
 
 	/**
-	 * Set the name of the default theme.
+	 * 设置默认主题的名称。
 	 */
 	public void setDefaultThemeName(String defaultThemeName) {
 		this.defaultThemeName = defaultThemeName;
 	}
 
 	/**
-	 * Return the name of the default theme.
+	 * 返回默认主题的名称。
 	 */
 	public String getDefaultThemeName() {
 		return this.defaultThemeName;

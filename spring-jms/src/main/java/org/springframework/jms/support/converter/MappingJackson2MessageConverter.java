@@ -44,18 +44,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Message converter that uses Jackson 2.x to convert messages to and from JSON.
- * Maps an object to a {@link BytesMessage}, or to a {@link TextMessage} if the
- * {@link #setTargetType targetType} is set to {@link MessageType#TEXT}.
- * Converts from a {@link TextMessage} or {@link BytesMessage} to an object.
+ * 使用 Jackson 2.x 在消息与 JSON 之间进行转换的消息转换器。
+ * 将对象映射为 {@link BytesMessage}；如果 {@link #setTargetType targetType}
+ * 设置为 {@link MessageType#TEXT}，则映射为 {@link TextMessage}。
+ * 可将 {@link TextMessage} 或 {@link BytesMessage} 转换为对象。
  *
- * <p>It customizes Jackson's default properties with the following ones:
+ * <p>它通过以下设置自定义 Jackson 的默认属性：
  * <ul>
- * <li>{@link MapperFeature#DEFAULT_VIEW_INCLUSION} is disabled</li>
- * <li>{@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES} is disabled</li>
+ * <li>禁用 {@link MapperFeature#DEFAULT_VIEW_INCLUSION}</li>
+ * <li>禁用 {@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES}</li>
  * </ul>
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>截至 Spring 5.3，兼容 Jackson 2.9 至 2.12。
  *
  * @author Mark Pollack
  * @author Dave Syer
@@ -66,7 +66,7 @@ import org.springframework.util.ClassUtils;
 public class MappingJackson2MessageConverter implements SmartMessageConverter, BeanClassLoaderAware {
 
 	/**
-	 * The default encoding used for writing to text messages: UTF-8.
+	 * 写入文本消息时使用的默认编码：UTF-8。
 	 */
 	public static final String DEFAULT_ENCODING = "UTF-8";
 
@@ -100,7 +100,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Specify the {@link ObjectMapper} to use instead of using the default.
+	 * 指定要使用的 {@link ObjectMapper}，而不是使用默认的。
 	 */
 	public void setObjectMapper(ObjectMapper objectMapper) {
 		Assert.notNull(objectMapper, "ObjectMapper must not be null");
@@ -108,11 +108,11 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Specify whether {@link #toMessage(Object, Session)} should marshal to a
-	 * {@link BytesMessage} or a {@link TextMessage}.
-	 * <p>The default is {@link MessageType#BYTES}, i.e. this converter marshals to
-	 * a {@link BytesMessage}. Note that the default version of this converter
-	 * supports {@link MessageType#BYTES} and {@link MessageType#TEXT} only.
+	 * 指定 {@link #toMessage(Object, Session)} 应编组为
+	 * {@link BytesMessage} 还是 {@link TextMessage}。
+	 * <p>默认为 {@link MessageType#BYTES}，即此转换器编组为
+	 * {@link BytesMessage}。请注意，此转换器的默认版本仅支持
+	 * {@link MessageType#BYTES} 和 {@link MessageType#TEXT}。
 	 * @see MessageType#BYTES
 	 * @see MessageType#TEXT
 	 */
@@ -122,11 +122,9 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Specify the encoding to use when converting to and from text-based
-	 * message body content. The default encoding will be "UTF-8".
-	 * <p>When reading from a text-based message, an encoding may have been
-	 * suggested through a special JMS property which will then be preferred
-	 * over the encoding set on this MessageConverter instance.
+	 * 指定在文本形式的消息体内容之间转换时使用的编码。默认编码为 "UTF-8"。
+	 * <p>从文本消息读取时，可能已通过特殊的 JMS 属性建议了编码，
+	 * 该编码将优先于此 MessageConverter 实例上设置的编码。
 	 * @see #setEncodingPropertyName
 	 */
 	public void setEncoding(String encoding) {
@@ -134,10 +132,10 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Specify the name of the JMS message property that carries the encoding from
-	 * bytes to String and back is BytesMessage is used during the conversion process.
-	 * <p>Default is none. Setting this property is optional; if not set, UTF-8 will
-	 * be used for decoding any incoming bytes message.
+	 * 指定 JMS 消息属性的名称，当转换过程中使用 BytesMessage 时，
+	 * 该属性携带从字节到 String（以及反向）转换所用的编码。
+	 * <p>默认为无。设置此属性是可选的；如果未设置，将对任何入站字节消息
+	 * 使用 UTF-8 进行解码。
 	 * @see #setEncoding
 	 */
 	public void setEncodingPropertyName(String encodingPropertyName) {
@@ -145,10 +143,10 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Specify the name of the JMS message property that carries the type id for the
-	 * contained object: either a mapped id value or a raw Java class name.
-	 * <p>Default is none. <b>NOTE: This property needs to be set in order to allow
-	 * for converting from an incoming message to a Java object.</b>
+	 * 指定 JMS 消息属性的名称，该属性携带所包含对象的类型 ID：
+	 * 要么是映射后的 ID 值，要么是原始 Java 类名。
+	 * <p>默认为无。<b>注意：为了能够将入站消息转换为 Java 对象，
+	 * 必须设置此属性。</b>
 	 * @see #setTypeIdMappings
 	 */
 	public void setTypeIdPropertyName(String typeIdPropertyName) {
@@ -156,10 +154,10 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Specify mappings from type ids to Java classes, if desired.
-	 * This allows for synthetic ids in the type id message property,
-	 * instead of transferring Java class names.
-	 * <p>Default is no custom mappings, i.e. transferring raw Java class names.
+	 * 如有需要，指定从类型 ID 到 Java 类的映射。
+	 * 这样可以在类型 ID 消息属性中使用合成的 ID，
+	 * 而不必传输 Java 类名。
+	 * <p>默认没有自定义映射，即传输原始 Java 类名。
 	 * @param typeIdMappings a Map with type id values as keys and Java classes as values
 	 */
 	public void setTypeIdMappings(Map<String, Class<?>> typeIdMappings) {
@@ -206,8 +204,8 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Convert a Java object to a JMS Message using the specified json view
-	 * and the supplied session  to create the message object.
+	 * 使用指定的 JSON 视图和给定的会话将 Java 对象转换为 JMS Message，
+	 * 由该会话创建消息对象。
 	 * @param object the object to convert
 	 * @param session the Session to use for creating a JMS Message
 	 * @param jsonView the view to use to filter the content
@@ -263,7 +261,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 
 
 	/**
-	 * Map the given object to a {@link TextMessage}.
+	 * 将给定对象映射为 {@link TextMessage}。
 	 * @param object the object to be mapped
 	 * @param session current JMS session
 	 * @param objectWriter the writer to use
@@ -282,7 +280,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Map the given object to a {@link BytesMessage}.
+	 * 将给定对象映射为 {@link BytesMessage}。
 	 * @param object the object to be mapped
 	 * @param session current JMS session
 	 * @param objectWriter the writer to use
@@ -316,10 +314,10 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Template method that allows for custom message mapping.
-	 * Invoked when {@link #setTargetType} is not {@link MessageType#TEXT} or
-	 * {@link MessageType#BYTES}.
-	 * <p>The default implementation throws an {@link IllegalArgumentException}.
+	 * 允许自定义消息映射的模板方法。
+	 * 当 {@link #setTargetType} 不是 {@link MessageType#TEXT} 或
+	 * {@link MessageType#BYTES} 时调用。
+	 * <p>默认实现抛出 {@link IllegalArgumentException}。
 	 * @param object the object to marshal
 	 * @param session the JMS Session
 	 * @param objectWriter the writer to use
@@ -336,10 +334,9 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Set a type id for the given payload object on the given JMS Message.
-	 * <p>The default implementation consults the configured type id mapping and
-	 * sets the resulting value (either a mapped id or the raw Java class name)
-	 * into the configured type id message property.
+	 * 在给定的 JMS Message 上为给定负载对象设置类型 ID。
+	 * <p>默认实现会查询已配置的类型 ID 映射，并将结果值
+	 * （映射后的 ID 或原始 Java 类名）设置到已配置的类型 ID 消息属性中。
 	 * @param object the payload object to set a type id for
 	 * @param message the JMS Message on which to set the type id property
 	 * @throws JMSException if thrown by JMS methods
@@ -358,7 +355,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Convenience method to dispatch to converters for individual message types.
+	 * 便捷方法，将处理分派给针对各个消息类型的转换方法。
 	 */
 	private Object convertToObject(Message message, JavaType targetJavaType) throws JMSException, IOException {
 		if (message instanceof TextMessage) {
@@ -373,7 +370,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Convert a TextMessage to a Java Object with the specified type.
+	 * 将 TextMessage 转换为指定类型的 Java 对象。
 	 * @param message the input message
 	 * @param targetJavaType the target type
 	 * @return the message converted to an object
@@ -388,7 +385,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Convert a BytesMessage to a Java Object with the specified type.
+	 * 将 BytesMessage 转换为指定类型的 Java 对象。
 	 * @param message the input message
 	 * @param targetJavaType the target type
 	 * @return the message converted to an object
@@ -420,10 +417,10 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Template method that allows for custom message mapping.
-	 * Invoked when {@link #setTargetType} is not {@link MessageType#TEXT} or
-	 * {@link MessageType#BYTES}.
-	 * <p>The default implementation throws an {@link IllegalArgumentException}.
+	 * 允许自定义消息映射的模板方法。
+	 * 当 {@link #setTargetType} 不是 {@link MessageType#TEXT} 或
+	 * {@link MessageType#BYTES} 时调用。
+	 * <p>默认实现抛出 {@link IllegalArgumentException}。
 	 * @param message the input message
 	 * @param targetJavaType the target type
 	 * @return the message converted to an object
@@ -438,11 +435,10 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Determine a Jackson JavaType for the given JMS Message,
-	 * typically parsing a type id message property.
-	 * <p>The default implementation parses the configured type id property name
-	 * and consults the configured type id mapping. This can be overridden with
-	 * a different strategy, e.g. doing some heuristics based on message origin.
+	 * 为给定的 JMS Message 确定 Jackson JavaType，
+	 * 通常通过解析类型 ID 消息属性实现。
+	 * <p>默认实现解析已配置的类型 ID 属性名称并查询已配置的类型 ID 映射。
+	 * 可以用不同的策略覆盖此方法，例如根据消息来源做一些启发式判断。
 	 * @param message the JMS Message from which to get the type id property
 	 * @throws JMSException if thrown by JMS methods
 	 * @see #setTypeIdOnMessage(Object, javax.jms.Message)
@@ -470,7 +466,7 @@ public class MappingJackson2MessageConverter implements SmartMessageConverter, B
 	}
 
 	/**
-	 * Determine a Jackson serialization view based on the given conversion hint.
+	 * 根据给定的转换提示确定 Jackson 序列化视图。
 	 * @param conversionHint the conversion hint Object as passed into the
 	 * converter for the current conversion attempt
 	 * @return the serialization view class, or {@code null} if none

@@ -19,8 +19,7 @@ package org.springframework.core.convert;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception to be thrown when a suitable converter could not be found
- * in a given conversion service.
+ * 在给定转换服务中找不到合适的转换器时抛出的异常。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -36,7 +35,7 @@ public class ConverterNotFoundException extends ConversionException {
 
 
 	/**
-	 * Create a new conversion executor not found exception.
+	 * 创建一个新的转换执行器未找到异常。
 	 * @param sourceType the source type requested to convert from
 	 * @param targetType the target type requested to convert to
 	 */
@@ -48,7 +47,7 @@ public class ConverterNotFoundException extends ConversionException {
 
 
 	/**
-	 * Return the source type that was requested to convert from.
+	 * 返回请求转换时指定的源类型。
 	 */
 	@Nullable
 	public TypeDescriptor getSourceType() {
@@ -56,7 +55,7 @@ public class ConverterNotFoundException extends ConversionException {
 	}
 
 	/**
-	 * Return the target type that was requested to convert to.
+	 * 返回请求转换时指定的目标类型。
 	 */
 	public TypeDescriptor getTargetType() {
 		return this.targetType;

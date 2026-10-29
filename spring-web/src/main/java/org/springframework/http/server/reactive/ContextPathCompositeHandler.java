@@ -25,13 +25,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 /**
- * {@code HttpHandler} delegating requests to one of several {@code HttpHandler}'s
- * based on simple, prefix-based mappings.
+ * {@code HttpHandler}，根据简单的前缀映射将请求委托给
+ * 多个 {@code HttpHandler} 之一。
  *
- * <p>This is intended as a coarse-grained mechanism for delegating requests to
- * one of several applications -- each represented by an {@code HttpHandler}, with
- * the application "context path" (the prefix-based mapping) exposed via
- * {@link ServerHttpRequest#getPath()}.
+ * <p>此设计旨在作为一种粗粒度的机制，将请求委托给多个应用程序之一——
+ * 每个应用程序由一个 {@code HttpHandler} 表示，其应用程序"上下文路径"
+ * （基于前缀的映射）通过 {@link ServerHttpRequest#getPath()} 公开。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

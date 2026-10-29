@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
- * Assist with the registration of a single redirect view controller.
+ * 辅助注册单个重定向视图控制器。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -49,9 +49,9 @@ public class RedirectViewControllerRegistration {
 
 
 	/**
-	 * Set the specific redirect 3xx status code to use.
-	 * <p>If not set, {@link org.springframework.web.servlet.view.RedirectView}
-	 * will select {@code HttpStatus.MOVED_TEMPORARILY (302)} by default.
+	 * 设置要使用的特定 3xx 重定向状态码。
+	 * <p>如果未设置，{@link org.springframework.web.servlet.view.RedirectView}
+	 * 默认将选择 {@code HttpStatus.MOVED_TEMPORARILY (302)}。
 	 */
 	public RedirectViewControllerRegistration setStatusCode(HttpStatus statusCode) {
 		Assert.isTrue(statusCode.is3xxRedirection(), () -> "Not a redirect status code: " + statusCode);
@@ -60,10 +60,9 @@ public class RedirectViewControllerRegistration {
 	}
 
 	/**
-	 * Whether to interpret a given redirect URL that starts with a slash ("/")
-	 * as relative to the current ServletContext, i.e. as relative to the web
-	 * application root.
-	 * <p>Default is {@code true}.
+	 * 是否将以斜杠（"/"）开头的重定向 URL 解释为相对于当前 ServletContext 的路径，
+	 * 即相对于 Web 应用根目录的路径。
+	 * <p>默认为 {@code true}。
 	 */
 	public RedirectViewControllerRegistration setContextRelative(boolean contextRelative) {
 		this.redirectView.setContextRelative(contextRelative);
@@ -71,9 +70,8 @@ public class RedirectViewControllerRegistration {
 	}
 
 	/**
-	 * Whether to propagate the query parameters of the current request through
-	 * to the target redirect URL.
-	 * <p>Default is {@code false}.
+	 * 是否将当前请求的查询参数传播到目标重定向 URL。
+	 * <p>默认为 {@code false}。
 	 */
 	public RedirectViewControllerRegistration setKeepQueryParams(boolean propagate) {
 		this.redirectView.setPropagateQueryParams(propagate);

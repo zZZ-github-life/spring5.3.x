@@ -22,23 +22,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface for web-based theme resolution strategies that allows for
- * both theme resolution via the request and theme modification via
- * request and response.
+ * 基于 Web 的主题解析策略接口，既支持通过请求解析主题，
+ * 也支持通过请求和响应修改主题。
  *
- * <p>This interface allows for implementations based on session,
- * cookies, etc. The default implementation is
- * {@link org.springframework.web.servlet.theme.FixedThemeResolver},
- * simply using a configured default theme.
+ * <p>该接口允许基于会话、Cookie 等实现多种策略。默认实现是
+ * {@link org.springframework.web.servlet.theme.FixedThemeResolver}，
+ * 它仅使用配置的默认主题。
  *
- * <p>Note that this resolver is only responsible for determining the
- * current theme name. The Theme instance for the resolved theme name
- * gets looked up by DispatcherServlet via the respective ThemeSource,
- * i.e. the current WebApplicationContext.
+ * <p>请注意，此解析器仅负责确定当前主题名称。
+ * 解析出的主题名称对应的 Theme 实例由 DispatcherServlet
+ * 通过相应的 ThemeSource（即当前的 WebApplicationContext）查找。
  *
- * <p>Use {@link org.springframework.web.servlet.support.RequestContext#getTheme()}
- * to retrieve the current theme in controllers or views, independent
- * of the actual resolution strategy.
+ * <p>在控制器或视图中可使用
+ * {@link org.springframework.web.servlet.support.RequestContext#getTheme()}
+ * 获取当前主题，而无需关心实际使用的解析策略。
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
@@ -49,15 +46,15 @@ import org.springframework.lang.Nullable;
 public interface ThemeResolver {
 
 	/**
-	 * Resolve the current theme name via the given request.
-	 * Should return a default theme as fallback in any case.
+	 * 通过给定的请求解析当前主题名称。
+	 * 在任何情况下都应返回默认主题作为回退。
 	 * @param request the request to be used for resolution
 	 * @return the current theme name
 	 */
 	String resolveThemeName(HttpServletRequest request);
 
 	/**
-	 * Set the current theme name to the given one.
+	 * 将当前主题名称设置为给定的名称。
 	 * @param request the request to be used for theme name modification
 	 * @param response the response to be used for theme name modification
 	 * @param themeName the new theme name ({@code null} or empty to reset it)

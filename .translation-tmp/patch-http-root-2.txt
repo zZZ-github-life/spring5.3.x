@@ -1,0 +1,50 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpCookie.java
+@@BODY 23 25
+将 HTTP Cookie 表示为与 "Cookie" 请求头内容一致的名称-值对。{@link ResponseCookie} 子类还包含 "Set-Cookie" 响应头中预期的附加属性。
+@@BODY 45 45
+返回 Cookie 名称。
+@@BODY 52 52
+返回 Cookie 值，或空字符串（永不为 {@code null}）。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpEntity.java
+@@BODY 24 48
+表示由头和正文组成的 HTTP 请求或响应实体。
+<p>通常与 {@link org.springframework.web.client.RestTemplate} 结合使用，如下所示：
+<pre class="code">
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.TEXT_PLAIN);
+HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;("Hello World", headers);
+URI location = template.postForLocation("https://example.com", entity);
+</pre>
+或者
+<pre class="code">
+HttpEntity&lt;String&gt; entity = template.getForEntity("https://example.com", String.class);
+String body = entity.getBody();
+MediaType contentType = entity.getHeaders().getContentType();
+</pre>
+也可用于 Spring MVC，作为 @Controller 方法的返回值：
+<pre class="code">
+&#64;GetMapping("/handle")
+public HttpEntity&lt;String&gt; handle() {
+  HttpHeaders responseHeaders = new HttpHeaders();
+  responseHeaders.set("MyResponseHeader", "MyValue");
+  return new HttpEntity&lt;&gt;("Hello World", responseHeaders);
+}
+</pre>
+@@BODY 61 62
+空的 {@code HttpEntity}，没有正文和头。
+@@BODY 73 74
+创建一个新的空 {@code HttpEntity}。
+@@BODY 80 81
+使用给定正文创建一个新的 {@code HttpEntity}，不包含头。
+@@BODY 88 89
+使用给定头创建一个新的 {@code HttpEntity}，不包含正文。
+@@BODY 96 98
+使用给定正文和头创建一个新的 {@code HttpEntity}。
+@@BODY 107 108
+返回此实体的头。
+@@BODY 114 115
+返回此实体的正文。
+@@BODY 122 123
+指示此实体是否包含正文。
+@@END

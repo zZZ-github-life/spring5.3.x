@@ -1,0 +1,126 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/LocaleEditor.java::23::0", "zh": ["用于 {@code java.util.Locale} 的编辑器，可直接填充 Locale 属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/LocaleEditor.java::23::1", "zh": ["<p>期望与 Locale 的 {@code toString()} 使用相同的语法，即语言 + 可选的国家/地区 + 可选的变体，以 \"_\" 分隔（例如 \"en\"、\"en_US\"）。也接受空格作为分隔符，作为下划线的替代方式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PathEditor.java::32::0", "zh": ["用于 {@code java.nio.file.Path} 的编辑器，可直接填充 Path 属性，而无需使用 String 属性作为桥接。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PathEditor.java::32::1", "zh": ["<p>基于 {@link Paths#get(URI)} 的解析算法，检查已注册的 NIO 文件系统提供程序，包括针对 \"file:...\" 路径的默认文件系统。还支持 Spring 风格的 URL 表示法：任何完全限定的标准 URL 以及 Spring 特殊的 \"classpath:\" 伪 URL，还有 Spring 上下文相关的相对文件路径。作为后备，如果找不到已存在的上下文相关资源，将通过 {@code Paths#get(String)} 在文件系统中解析路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PathEditor.java::58::0", "zh": ["创建一个新的 PathEditor，底层使用默认的 ResourceEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PathEditor.java::65::0", "zh": ["创建一个新的 PathEditor，底层使用给定的 ResourceEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PatternEditor.java::24::0", "zh": ["用于 {@code java.util.regex.Pattern} 的编辑器，可直接填充 Pattern 属性。期望与 Pattern 的 {@code compile} 方法使用相同的语法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PatternEditor.java::38::0", "zh": ["使用默认设置创建一个新的 PatternEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PatternEditor.java::45::0", "zh": ["使用给定设置创建一个新的 PatternEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PropertiesEditor.java::28::0", "zh": ["用于 {@link Properties} 对象的自定义 {@link java.beans.PropertyEditor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PropertiesEditor.java::28::1", "zh": ["<p>处理从内容 {@link String} 到 {@code Properties} 对象的转换。还处理从 {@link Map} 到 {@code Properties} 的转换，以便通过 XML 的 \"map\" 条目填充 {@code Properties} 对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PropertiesEditor.java::28::2", "zh": ["<p>所需格式在标准 {@code Properties} 文档中定义。每个属性必须单独占一行。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PropertiesEditor.java::44::0", "zh": ["将 {@link String} 转换为 {@link Properties}，将其视为属性内容。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/PropertiesEditor.java::66::0", "zh": ["原样接受 {@link Properties}；将 {@link Map} 转换为 {@code Properties}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ReaderEditor.java::28::0", "zh": ["单向 PropertyEditor，可将文本 String 转换为 {@code java.io.Reader}，将给定的 String 解释为 Spring 资源位置（例如 URL 字符串）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ReaderEditor.java::28::1", "zh": ["<p>支持 Spring 风格的 URL 表示法：任何完全限定的标准 URL（\"file:\"、\"http:\" 等）以及 Spring 特殊的 \"classpath:\" 伪 URL。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ReaderEditor.java::28::2", "zh": ["<p>请注意，此类 Reader 通常不会由 Spring 本身关闭！"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ReaderEditor.java::50::0", "zh": ["创建一个新的 ReaderEditor，底层使用默认的 ResourceEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ReaderEditor.java::57::0", "zh": ["创建一个新的 ReaderEditor，底层使用给定的 ResourceEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ReaderEditor.java::79::0", "zh": ["此实现返回 {@code null}，表示没有合适的文本表示形式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::26::0", "zh": ["用于标准 JDK {@link java.util.ResourceBundle ResourceBundles} 的 {@link java.beans.PropertyEditor} 实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::26::1", "zh": ["<p>仅支持<i>从</i> String 转换，不支持<i>到</i> String 的转换。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::26::2", "zh": ["下面给出一些在（正确配置的）使用基于 XML 元数据的 Spring 容器中使用此类的示例："]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::26::3", "zh": ["<p>一个“正确配置的” Spring {@link org.springframework.context.ApplicationContext container}可能包含 {@link org.springframework.beans.factory.config.CustomEditorConfigurer} 定义，从而使转换可以透明地完成："]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::26::4", "zh": ["<p>请注意，此 {@link java.beans.PropertyEditor} <b>不会</b>默认向任何 Spring 基础设施注册。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::26::5", "zh": ["<p>感谢 David Leal Valmana 提出的建议和初始原型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ResourceBundleEditor.java::75::0", "zh": ["用于区分基名和区域设置（如果有）的分隔符，在 {@link #setAsText(String) converting from a String} 时使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::25::0", "zh": ["用于 String 数组的自定义 {@link java.beans.PropertyEditor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::25::1", "zh": ["<p>字符串必须采用 CSV 格式，分隔符可自定义。默认情况下，结果中的值会被去除首尾空白。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::39::0", "zh": ["用于拆分 String 的默认分隔符：逗号（\",\"）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::55::0", "zh": ["使用默认分隔符（逗号）创建一个新的 {@code StringArrayPropertyEditor}。", "<p>空文本（不含元素）将被转换为空数组。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::64::0", "zh": ["使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。", "<p>空文本（不含元素）将被转换为空数组。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::73::0", "zh": ["使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::83::0", "zh": ["使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::95::0", "zh": ["使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringArrayPropertyEditor.java::108::0", "zh": ["使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringTrimmerEditor.java::24::0", "zh": ["用于去除 String 首尾空白的属性编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringTrimmerEditor.java::24::1", "zh": ["<p>可选择将空字符串转换为 {@code null} 值。需要显式注册，例如用于命令绑定。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringTrimmerEditor.java::41::0", "zh": ["创建一个新的 StringTrimmerEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/StringTrimmerEditor.java::51::0", "zh": ["创建一个新的 StringTrimmerEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/TimeZoneEditor.java::24::0", "zh": ["用于 {@code java.util.TimeZone} 的编辑器，将时区 ID 转换为 {@code TimeZone} 对象。将 {@code TimeZone} ID 公开为文本表示形式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::30::0", "zh": ["用于 {@code java.net.URI} 的编辑器，可直接填充 URI 属性，而无需使用 String 属性作为桥接。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::30::1", "zh": ["<p>支持 Spring 风格的 URI 表示法：任何完全限定的标准 URI（\"file:\"、\"http:\" 等）以及 Spring 特殊的 \"classpath:\" 伪 URL，后者将被解析为相应的 URI。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::30::2", "zh": ["<p>默认情况下，此编辑器会将 String 编码为 URI。例如，空格将被编码为 {@code %20}。可以通过调用 {@link #URIEditor(boolean)} 构造函数更改此行为。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::30::3", "zh": ["<p>注意：URI 比 URL 更宽松，因为它不要求指定有效的协议。允许使用有效 URI 语法中的任何 scheme，即使未注册匹配的协议处理器也是如此。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::60::0", "zh": ["创建一个新的编码 URIEditor，将 \"classpath:\" 位置转换为标准 URI（不尝试将其解析为物理资源）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::68::0", "zh": ["创建一个新的 URIEditor，将 \"classpath:\" 位置转换为标准 URI（不尝试将其解析为物理资源）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::79::0", "zh": ["创建一个新的 URIEditor，使用给定的 ClassLoader 将 \"classpath:\" 位置解析为物理资源 URL。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::89::0", "zh": ["创建一个新的 URIEditor，使用给定的 ClassLoader 将 \"classpath:\" 位置解析为物理资源 URL。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URIEditor.java::131::0", "zh": ["为给定的用户指定 String 值创建一个 URI 实例。", "<p>默认实现将该值编码为符合 RFC-2396 的 URI。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URLEditor.java::27::0", "zh": ["用于 {@code java.net.URL} 的编辑器，可直接填充 URL 属性，而无需使用 String 属性作为桥接。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URLEditor.java::27::1", "zh": ["<p>支持 Spring 风格的 URL 表示法：任何完全限定的标准 URL（\"file:\"、\"http:\" 等）以及 Spring 特殊的 \"classpath:\" 伪 URL，还有 Spring 上下文相关的相对文件路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URLEditor.java::27::2", "zh": ["<p>注意：URL 必须指定有效的协议，否则会在一开始就被拒绝。但是，目标资源在创建 URL 时不必一定存在；这取决于具体的资源类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URLEditor.java::52::0", "zh": ["创建一个新的 URLEditor，底层使用默认的 ResourceEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/URLEditor.java::59::0", "zh": ["创建一个新的 URLEditor，底层使用给定的 ResourceEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/UUIDEditor.java::24::0", "zh": ["用于 {@code java.util.UUID} 的编辑器，可在 UUID 字符串表示形式与 UUID 对象之间相互转换。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/ZoneIdEditor.java::24::0", "zh": ["用于 {@code java.time.ZoneId} 的编辑器，将区域 ID 字符串转换为 {@code ZoneId} 对象。将 {@code TimeZone} ID 公开为文本表示形式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/package-info.java::1::0", "zh": ["属性编辑器，用于将 String 值转换为对象类型，例如 java.util.Properties。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/propertyeditors/package-info.java::1::1", "zh": ["<p>其中一些编辑器由 BeanWrapperImpl 自动注册。\"CustomXxxEditor\" 类用于在特定的绑定过程中手动注册，因为它们是与区域设置相关的或类似的。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::31::0", "zh": ["{@link MethodInvoker} 的子类，它尝试通过 {@link TypeConverter} 为实际目标方法转换给定的参数。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::31::1", "zh": ["<p>支持灵活的参数转换，特别是用于调用特定的重载方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::50::0", "zh": ["设置用于参数类型转换的 TypeConverter。", "<p>默认是 {@link org.springframework.beans.SimpleTypeConverter}。可覆盖为任何 TypeConverter 实现，通常是预先配置的 SimpleTypeConverter 或 BeanWrapperImpl 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::63::0", "zh": ["返回用于参数类型转换的 TypeConverter。", "<p>如果需要直接访问底层的 PropertyEditors，可以将其强制转换为 {@link org.springframework.beans.PropertyEditorRegistry}（前提是当前的 TypeConverter 实际实现了 PropertyEditorRegistry 接口）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::78::0", "zh": ["获取此方法调用器的默认 TypeConverter。", "<p>在未指定显式 TypeConverter 时调用。默认实现会构建一个 {@link org.springframework.beans.SimpleTypeConverter}。可以在子类中覆盖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::89::0", "zh": ["为给定类型的所有属性注册给定的自定义属性编辑器。", "<p>通常与默认的 {@link org.springframework.beans.SimpleTypeConverter} 一起使用；也可用于任何实现了 PropertyEditorRegistry 接口的 TypeConverter。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::109::0", "zh": ["此实现会查找参数类型匹配的方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ArgumentConvertingMethodInvoker.java::128::0", "zh": ["实际查找参数类型匹配的方法，即每个参数值都可以赋值给相应的参数类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::24::0", "zh": ["{@link SortDefinition} 接口的可变实现。支持在再次设置同一属性时切换升序值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::45::0", "zh": ["创建一个空的 MutableSortDefinition，通过其 Bean 属性填充。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::55::0", "zh": ["复制构造函数：创建一个新的 MutableSortDefinition，镜像给定的排序定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::66::0", "zh": ["为给定设置创建一个 MutableSortDefinition。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::78::0", "zh": ["创建一个新的 MutableSortDefinition。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::89::0", "zh": ["设置要比较的属性。", "<p>如果该属性与当前属性相同，则在 \"toggleAscendingOnProperty\" 启用时反转排序顺序，否则直接忽略。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::113::0", "zh": ["设置是否忽略 String 值中的大小写。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::125::0", "zh": ["设置是按升序（true）还是降序（false）排序。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::137::0", "zh": ["设置当再次设置同一属性时（即再次以已设置的属性名调用 {@link #setProperty}）是否切换升序标志。", "<p>这对通过 Web 请求进行参数绑定特别有用：再次点击字段标题时，可能期望按相反顺序重新排序。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/MutableSortDefinition.java::148::0", "zh": ["返回当再次设置同一属性时（即再次以已设置的属性名调用 {@code setProperty}）是否切换升序标志。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::28::0", "zh": ["PagedListHolder 是一个简单的状态持有者，用于处理对象列表，并将其分为多页。页码从 0 开始。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::28::1", "zh": ["<p>这主要面向 Web UI 中的使用。通常，会用一个 Bean 列表实例化一个实例，将其放入会话中，并作为模型导出。所有属性都可以通过编程方式设置/获取，但最常见的方式是数据绑定，即从请求参数填充 Bean。getter 主要由视图使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::28::2", "zh": ["<p>支持通过 {@link SortDefinition} 实现（以属性 \"sort\" 提供）对底层列表进行排序。默认情况下将使用 {@link MutableSortDefinition} 实例，在再次设置同一属性时切换升序值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::28::3", "zh": ["<p>数据绑定名称必须为 \"pageSize\" 和 \"sort.ascending\"，以符合 BeanWrapper 的预期。名称和嵌套语法与相应的 JSTL EL 表达式一致，例如 \"myModelAttr.pageSize\" 和 \"myModelAttr.sort.ascending\"。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::56::0", "zh": ["默认页大小。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::61::0", "zh": ["默认的最大页面链接数。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::87::0", "zh": ["创建一个新的持有者实例。", "需要设置源列表才能使用该持有者。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::96::0", "zh": ["使用给定的源列表创建一个新的持有者实例，起始时使用默认排序定义（已启用 \"toggleAscendingOnProperty\"）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::106::0", "zh": ["使用给定的源列表创建一个新的持有者实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::117::0", "zh": ["为此持有者设置源列表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::127::0", "zh": ["返回此持有者的源列表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::134::0", "zh": ["返回从源提供程序获取列表的最后时间。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::142::0", "zh": ["为此持有者设置排序定义。", "通常是 MutableSortDefinition 的实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::151::0", "zh": ["返回此持有者的排序定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::159::0", "zh": ["设置当前页大小。", "如果发生更改，则重置当前页码。", "<p>默认值为 10。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::173::0", "zh": ["返回当前页大小。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::180::0", "zh": ["设置当前页码。", "页码从 0 开始。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::189::0", "zh": ["返回当前页码。", "页码从 0 开始。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::201::0", "zh": ["设置当前页附近几页的页面链接最大数量。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::208::0", "zh": ["返回当前页附近几页的页面链接最大数量。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::216::0", "zh": ["返回当前源列表的页数。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::224::0", "zh": ["返回当前页是否为第一页。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::231::0", "zh": ["返回当前页是否为最后一页。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::238::0", "zh": ["切换到上一页。", "如果已经在第一页，则保持在第一页。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::248::0", "zh": ["切换到下一页。", "如果已经在最后一页，则保持在最后一页。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::258::0", "zh": ["返回源列表中元素的总数。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::265::0", "zh": ["返回当前页第一个元素的元素索引。", "元素编号从 0 开始。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::273::0", "zh": ["返回当前页最后一个元素的元素索引。", "元素编号从 0 开始。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::283::0", "zh": ["返回表示当前页的子列表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::290::0", "zh": ["返回当前页周围要创建链接的第一页。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::297::0", "zh": ["返回当前页周围要创建链接的最后一页。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::305::0", "zh": ["如有必要，对列表重新排序，即当前 {@code sort} 实例与备份的 {@code sortUsed} 实例不相等时。", "<p>调用 {@code doSort} 触发实际排序。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::320::0", "zh": ["创建给定排序定义的深拷贝，用作状态持有者，以便将修改后的排序定义与之比较。", "<p>默认实现会创建一个 MutableSortDefinition 实例。可以在子类中覆盖，特别是在自定义扩展 SortDefinition 接口的情况下。允许返回 null，这意味着不保留任何排序状态，从而在每次 {@code resort} 调用时触发实际排序。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PagedListHolder.java::336::0", "zh": ["根据给定的排序定义，实际对给定的源列表执行排序。", "<p>默认实现使用 Spring 的 PropertyComparator。可以在子类中覆盖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::31::0", "zh": ["PropertyComparator 对两个 Bean 进行比较，通过 BeanWrapper 评估指定的 Bean 属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::48::0", "zh": ["为给定的 SortDefinition 创建一个新的 PropertyComparator。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::56::0", "zh": ["为给定设置创建一个 PropertyComparator。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::66::0", "zh": ["返回此比较器使用的 SortDefinition。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::105::0", "zh": ["获取给定对象对应的 SortDefinition 属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::127::0", "zh": ["根据给定的排序定义对给定的 List 进行排序。", "<p>注意：包含的对象必须以 Bean 属性的形式（即 getXXX 方法）提供给定的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/PropertyComparator.java::141::0", "zh": ["根据给定的排序定义对给定的源进行排序。", "<p>注意：包含的对象必须以 Bean 属性的形式（即 getXXX 方法）提供给定的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ResourceEditorRegistrar.java::50::0", "zh": ["PropertyEditorRegistrar 实现，用于向给定的 {@link org.springframework.beans.PropertyEditorRegistry}（通常是用于在 {@link org.springframework.context.ApplicationContext} 内创建 Bean 的 {@link org.springframework.beans.BeanWrapper}）填充资源编辑器。由 {@link org.springframework.context.support.AbstractApplicationContext} 使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ResourceEditorRegistrar.java::69::0", "zh": ["为给定的 {@link ResourceLoader} 和 {@link PropertyResolver} 创建一个新的 ResourceEditorRegistrar。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ResourceEditorRegistrar.java::85::0", "zh": ["使用以下资源编辑器填充给定的 {@code registry}：ResourceEditor、InputStreamEditor、InputSourceEditor、FileEditor、URLEditor、URIEditor、ClassEditor、ClassArrayEditor。", "<p>如果此注册器已配置 {@link ResourcePatternResolver}，则还会注册 ResourceArrayPropertyEditor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/ResourceEditorRegistrar.java::125::0", "zh": ["如有可能，覆盖默认编辑器（因为这正是我们在此真正想要做的）；否则注册为自定义编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/SortDefinition.java::19::0", "zh": ["用于按属性对 Bean 实例进行排序的定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/SortDefinition.java::27::0", "zh": ["返回要比较的 Bean 属性名称。", "也可以是嵌套的 Bean 属性路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/SortDefinition.java::33::0", "zh": ["返回是否应忽略 String 值中的大小写。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/support/SortDefinition.java::38::0", "zh": ["返回是按升序（true）还是降序（false）排序。"]}

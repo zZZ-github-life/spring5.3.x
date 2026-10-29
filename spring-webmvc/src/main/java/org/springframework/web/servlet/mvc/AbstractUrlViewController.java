@@ -25,13 +25,11 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Abstract base class for {@code Controllers} that return a view name
- * based on the request URL.
+ * 基于请求 URL 返回视图名的 {@code Controllers} 的抽象基类。
  *
- * <p>Provides infrastructure for determining view names from URLs and configurable
- * URL lookup. For information on the latter, see {@code alwaysUseFullPath}
- * and {@code urlDecode} properties.
- *
+ * <p>提供从 URL 确定视图名的基础设施，以及可配置的
+ * URL 查找。有关后者的信息，请参见 {@code alwaysUseFullPath}
+ * 和 {@code urlDecode} 属性。
  * @author Juergen Hoeller
  * @since 1.2.6
  * @see #setAlwaysUseFullPath
@@ -43,10 +41,9 @@ public abstract class AbstractUrlViewController extends AbstractController {
 
 
 	/**
-	 * Set if URL lookup should always use full path within current servlet
-	 * context. Else, the path within the current servlet mapping is used
-	 * if applicable (i.e. in the case of a ".../*" servlet mapping in web.xml).
-	 * Default is "false".
+	 * 设置 URL 查找是否应始终使用当前 Servlet 上下文内的完整路径。
+	 * 否则，如果适用（即 web.xml 中配置了 ".../*" 的 Servlet 映射），
+	 * 将使用当前 Servlet 映射内的路径。默认值为 "false"。
 	 * @see org.springframework.web.util.UrlPathHelper#setAlwaysUseFullPath
 	 */
 	public void setAlwaysUseFullPath(boolean alwaysUseFullPath) {
@@ -54,11 +51,9 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	}
 
 	/**
-	 * Set if context path and request URI should be URL-decoded.
-	 * Both are returned <i>undecoded</i> by the Servlet API,
-	 * in contrast to the servlet path.
-	 * <p>Uses either the request encoding or the default encoding according
-	 * to the Servlet spec (ISO-8859-1).
+	 * 设置是否应对上下文路径和请求 URI 进行 URL 解码。
+	 * 与 Servlet 路径不同，Servlet API 返回的这两者都是<i>未解码</i>的。
+	 * <p>根据 Servlet 规范使用请求编码或默认编码（ISO-8859-1）。
 	 * @see org.springframework.web.util.UrlPathHelper#setUrlDecode
 	 */
 	public void setUrlDecode(boolean urlDecode) {
@@ -66,7 +61,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	}
 
 	/**
-	 * Set if ";" (semicolon) content should be stripped from the request URI.
+	 * 设置是否应从请求 URI 中剥离 ";"（分号）内容。
 	 * @see org.springframework.web.util.UrlPathHelper#setRemoveSemicolonContent(boolean)
 	 */
 	public void setRemoveSemicolonContent(boolean removeSemicolonContent) {
@@ -74,10 +69,10 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	}
 
 	/**
-	 * Set the UrlPathHelper to use for the resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
-	 * or to share common UrlPathHelper settings across multiple MethodNameResolvers
-	 * and HandlerMappings.
+	 * 设置用于解析查找路径的 UrlPathHelper。
+	 * <p>可使用此项以自定义子类覆盖默认的 UrlPathHelper，
+	 * 或在多个 MethodNameResolver 和 HandlerMapping 之间共享通用的
+	 * UrlPathHelper 设置。
 	 * @see org.springframework.web.servlet.handler.AbstractUrlHandlerMapping#setUrlPathHelper
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
@@ -86,7 +81,7 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	}
 
 	/**
-	 * Return the UrlPathHelper to use for the resolution of lookup paths.
+	 * 返回用于解析查找路径的 UrlPathHelper。
 	 */
 	protected UrlPathHelper getUrlPathHelper() {
 		return this.urlPathHelper;
@@ -94,9 +89,9 @@ public abstract class AbstractUrlViewController extends AbstractController {
 
 
 	/**
-	 * Retrieves the URL path to use for lookup and delegates to
-	 * {@link #getViewNameForRequest}. Also adds the content of
-	 * {@link RequestContextUtils#getInputFlashMap} to the model.
+	 * 获取用于查找的 URL 路径并委托给
+	 * {@link #getViewNameForRequest}。同时将
+	 * {@link RequestContextUtils#getInputFlashMap} 的内容添加到模型中。
 	 */
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) {
@@ -108,8 +103,8 @@ public abstract class AbstractUrlViewController extends AbstractController {
 	}
 
 	/**
-	 * Return the name of the view to render for this request, based on the
-	 * given lookup path. Called by {@link #handleRequestInternal}.
+	 * 返回要为此请求渲染的视图名称，依据给定的查找路径。
+	 * 由 {@link #handleRequestInternal} 调用。
 	 * @param request current HTTP request
 	 * @return a view name for this request (never {@code null})
 	 * @see #handleRequestInternal

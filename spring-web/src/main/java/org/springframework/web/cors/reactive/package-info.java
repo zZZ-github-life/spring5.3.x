@@ -1,6 +1,6 @@
 /**
- * Reactive support for CORS (Cross-Origin Resource Sharing),
- * based on a common {@code CorsProcessor} strategy.
+ * 对 CORS（跨源资源共享）的响应式支持，基于通用的
+ * {@code CorsProcessor} 策略。
  */
 @NonNullApi
 @NonNullFields

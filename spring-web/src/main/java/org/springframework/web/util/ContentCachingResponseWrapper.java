@@ -32,12 +32,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.FastByteArrayOutputStream;
 
 /**
- * {@link javax.servlet.http.HttpServletResponse} wrapper that caches all content written to
- * the {@linkplain #getOutputStream() output stream} and {@linkplain #getWriter() writer},
- * and allows this content to be retrieved via a {@link #getContentAsByteArray() byte array}.
+ * {@link javax.servlet.http.HttpServletResponse} 的包装器，缓存写入
+ * {@linkplain #getOutputStream() 输出流}和 {@linkplain #getWriter() writer}的所有
+ * 内容，并允许通过 {@link #getContentAsByteArray() 字节数组}获取这些内容。
  *
- * <p>Used e.g. by {@link org.springframework.web.filter.ShallowEtagHeaderFilter}.
- * Note: As of Spring Framework 5.0, this wrapper is built on the Servlet 3.1 API.
+ * <p>例如由 {@link org.springframework.web.filter.ShallowEtagHeaderFilter} 使用。
+ * 注意：自 Spring Framework 5.0 起，此包装器基于 Servlet 3.1 API 构建。
  *
  * @author Juergen Hoeller
  * @since 4.1.3
@@ -58,7 +58,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 
 
 	/**
-	 * Create a new ContentCachingResponseWrapper for the given servlet response.
+	 * 为给定的 Servlet 响应创建一个新的 ContentCachingResponseWrapper。
 	 * @param response the original servlet response
 	 */
 	public ContentCachingResponseWrapper(HttpServletResponse response) {
@@ -161,7 +161,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	/**
-	 * Return the status code as specified on the response.
+	 * 返回响应上指定的状态码。
 	 * @deprecated as of 5.2 in favor of {@link HttpServletResponse#getStatus()}
 	 */
 	@Deprecated
@@ -170,14 +170,14 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	/**
-	 * Return the cached response content as a byte array.
+	 * 以字节数组形式返回缓存的响应内容。
 	 */
 	public byte[] getContentAsByteArray() {
 		return this.content.toByteArray();
 	}
 
 	/**
-	 * Return an {@link InputStream} to the cached content.
+	 * 返回指向缓存内容的 {@link InputStream}。
 	 * @since 4.2
 	 */
 	public InputStream getContentInputStream() {
@@ -185,7 +185,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	/**
-	 * Return the current size of the cached content.
+	 * 返回缓存内容的当前大小。
 	 * @since 4.2
 	 */
 	public int getContentSize() {
@@ -193,7 +193,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	/**
-	 * Copy the complete cached body content to the response.
+	 * 将完整的缓存正文内容复制到响应。
 	 * @since 4.2
 	 */
 	public void copyBodyToResponse() throws IOException {
@@ -201,7 +201,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 	}
 
 	/**
-	 * Copy the cached body content to the response.
+	 * 将缓存的正文内容复制到响应。
 	 * @param complete whether to set a corresponding content length
 	 * for the complete cached body content
 	 * @since 4.2

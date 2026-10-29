@@ -24,10 +24,10 @@ import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface specifying the API to be implemented by a class providing call meta-data.
+ * 指定提供调用元数据的类所要实现的 API 的接口。
  *
- * <p>This is intended for internal use by Spring's
- * {@link org.springframework.jdbc.core.simple.SimpleJdbcCall}.
+ * <p>此接口供 Spring 的
+ * {@link org.springframework.jdbc.core.simple.SimpleJdbcCall} 内部使用。
  *
  * @author Thomas Risberg
  * @since 2.5
@@ -35,148 +35,145 @@ import org.springframework.lang.Nullable;
 public interface CallMetaDataProvider {
 
 	/**
-	 * Initialize using the provided DatabaseMetData.
-	 * @param databaseMetaData used to retrieve database specific information
-	 * @throws SQLException in case of initialization failure
+	 * 使用提供的 DatabaseMetaData 进行初始化。
+	 * @param databaseMetaData 用于检索数据库特定信息
+	 * @throws SQLException 如果初始化失败
 	 */
 	void initializeWithMetaData(DatabaseMetaData databaseMetaData) throws SQLException;
 
 	/**
-	 * Initialize the database specific management of procedure column meta-data.
-	 * This is only called for databases that are supported. This initialization
-	 * can be turned off by specifying that column meta-data should not be used.
-	 * @param databaseMetaData used to retrieve database specific information
-	 * @param catalogName name of catalog to use (or {@code null} if none)
-	 * @param schemaName name of schema name to use (or {@code null} if none)
-	 * @param procedureName name of the stored procedure
-	 * @throws SQLException in case of initialization failure
+	 * 初始化数据库特定的过程列元数据管理。
+	 * 仅对所支持的数据库调用此方法。可以通过指定不使用列元数据来关闭此初始化。
+	 * @param databaseMetaData 用于检索数据库特定信息
+	 * @param catalogName 要使用的目录名称（如果没有则为 {@code null}）
+	 * @param schemaName 要使用的模式名称（如果没有则为 {@code null}）
+	 * @param procedureName 存储过程的名称
+	 * @throws SQLException 如果初始化失败
 	 * @see	org.springframework.jdbc.core.simple.SimpleJdbcCall#withoutProcedureColumnMetaDataAccess()
 	 */
 	void initializeWithProcedureColumnMetaData(DatabaseMetaData databaseMetaData, @Nullable String catalogName,
 			@Nullable String schemaName, @Nullable String procedureName) throws SQLException;
 
 	/**
-	 * Provide any modification of the procedure name passed in to match the meta-data currently used.
-	 * This could include altering the case.
+	 * 对传入的过程名称进行修改，以匹配当前使用的元数据。
+	 * 这可能包括更改大小写。
 	 */
 	@Nullable
 	String procedureNameToUse(@Nullable String procedureName);
 
 	/**
-	 * Provide any modification of the catalog name passed in to match the meta-data currently used.
-	 * This could include altering the case.
+	 * 对传入的目录名称进行修改，以匹配当前使用的元数据。
+	 * 这可能包括更改大小写。
 	 */
 	@Nullable
 	String catalogNameToUse(@Nullable String catalogName);
 
 	/**
-	 * Provide any modification of the schema name passed in to match the meta-data currently used.
-	 * This could include altering the case.
+	 * 对传入的模式名称进行修改，以匹配当前使用的元数据。
+	 * 这可能包括更改大小写。
 	 */
 	@Nullable
 	String schemaNameToUse(@Nullable String schemaName);
 
 	/**
-	 * Provide any modification of the catalog name passed in to match the meta-data currently used.
-	 * The returned value will be used for meta-data lookups. This could include altering the case
-	 * used or providing a base catalog if none is provided.
+	 * 对传入的目录名称进行修改，以匹配当前使用的元数据。
+	 * 返回的值将用于元数据查找。这可能包括更改所使用的大小写，
+	 * 或在未提供目录时提供一个基础目录。
 	 */
 	@Nullable
 	String metaDataCatalogNameToUse(@Nullable String catalogName) ;
 
 	/**
-	 * Provide any modification of the schema name passed in to match the meta-data currently used.
-	 * The returned value will be used for meta-data lookups. This could include altering the case
-	 * used or providing a base schema if none is provided.
+	 * 对传入的模式名称进行修改，以匹配当前使用的元数据。
+	 * 返回的值将用于元数据查找。这可能包括更改所使用的大小写，
+	 * 或在未提供模式时提供一个基础模式。
 	 */
 	@Nullable
 	String metaDataSchemaNameToUse(@Nullable String schemaName);
 
 	/**
-	 * Provide any modification of the column name passed in to match the meta-data currently used.
-	 * This could include altering the case.
-	 * @param parameterName name of the parameter of column
+	 * 对传入的列名称进行修改，以匹配当前使用的元数据。
+	 * 这可能包括更改大小写。
+	 * @param parameterName 列的参数名称
 	 */
 	@Nullable
 	String parameterNameToUse(@Nullable String parameterName);
 
 	/**
-	 * Create a default out parameter based on the provided meta-data.
-	 * This is used when no explicit parameter declaration has been made.
-	 * @param parameterName the name of the parameter
-	 * @param meta meta-data used for this call
-	 * @return the configured SqlOutParameter
+	 * 根据提供的元数据创建默认的输出参数。
+	 * 当没有显式声明参数时使用此方法。
+	 * @param parameterName 参数的名称
+	 * @param meta 用于此调用的元数据
+	 * @return 配置好的 SqlOutParameter
 	 */
 	SqlParameter createDefaultOutParameter(String parameterName, CallParameterMetaData meta);
 
 	/**
-	 * Create a default in/out parameter based on the provided meta-data.
-	 * This is used when no explicit parameter declaration has been made.
-	 * @param parameterName the name of the parameter
-	 * @param meta meta-data used for this call
-	 * @return the configured SqlInOutParameter
+	 * 根据提供的元数据创建默认的输入/输出参数。
+	 * 当没有显式声明参数时使用此方法。
+	 * @param parameterName 参数的名称
+	 * @param meta 用于此调用的元数据
+	 * @return 配置好的 SqlInOutParameter
 	 */
 	SqlParameter createDefaultInOutParameter(String parameterName, CallParameterMetaData meta);
 
 	/**
-	 * Create a default in parameter based on the provided meta-data.
-	 * This is used when no explicit parameter declaration has been made.
-	 * @param parameterName the name of the parameter
-	 * @param meta meta-data used for this call
-	 * @return the configured SqlParameter
+	 * 根据提供的元数据创建默认的输入参数。
+	 * 当没有显式声明参数时使用此方法。
+	 * @param parameterName 参数的名称
+	 * @param meta 用于此调用的元数据
+	 * @return 配置好的 SqlParameter
 	 */
 	SqlParameter createDefaultInParameter(String parameterName, CallParameterMetaData meta);
 
 	/**
-	 * Get the name of the current user. Useful for meta-data lookups etc.
-	 * @return current user name from database connection
+	 * 获取当前用户的名称。可用于元数据查找等。
+	 * @return 来自数据库连接的当前用户名
 	 */
 	@Nullable
 	String getUserName();
 
 	/**
-	 * Does this database support returning ResultSets that should be retrieved with the JDBC call:
-	 * {@link java.sql.Statement#getResultSet()}?
+	 * 此数据库是否支持通过 JDBC 调用检索 ResultSet：
+	 * {@link java.sql.Statement#getResultSet()}？
 	 */
 	boolean isReturnResultSetSupported();
 
 	/**
-	 * Does this database support returning ResultSets as ref cursors to be retrieved with
-	 * {@link java.sql.CallableStatement#getObject(int)} for the specified column.
+	 * 此数据库是否支持将 ResultSet 作为引用游标返回，
+	 * 通过 {@link java.sql.CallableStatement#getObject(int)} 获取指定列。
 	 */
 	boolean isRefCursorSupported();
 
 	/**
-	 * Get the {@link java.sql.Types} type for columns that return ResultSets as ref cursors
-	 * if this feature is supported.
+	 * 如果此功能受支持，获取以引用游标形式返回 ResultSet 的列的 {@link java.sql.Types} 类型。
 	 */
 	int getRefCursorSqlType();
 
 	/**
-	 * Are we using the meta-data for the procedure columns?
+	 * 是否正在使用过程列的元数据？
 	 */
 	boolean isProcedureColumnMetaDataUsed();
 
 	/**
-	 * Should we bypass the return parameter with the specified name.
-	 * This allows the database specific implementation to skip the processing
-	 * for specific results returned by the database call.
+	 * 是否应绕过指定名称的返回参数。
+	 * 这允许数据库特定的实现跳过数据库调用返回的特定结果的处理。
 	 */
 	boolean byPassReturnParameter(String parameterName);
 
 	/**
-	 * Get the call parameter meta-data that is currently used.
-	 * @return a List of {@link CallParameterMetaData}
+	 * 获取当前使用的调用参数元数据。
+	 * @return {@link CallParameterMetaData} 的列表
 	 */
 	List<CallParameterMetaData> getCallParameterMetaData();
 
 	/**
-	 * Does the database support the use of catalog name in procedure calls?
+	 * 此数据库是否支持在存储过程调用中使用目录名称？
 	 */
 	boolean isSupportsCatalogsInProcedureCalls();
 
 	/**
-	 * Does the database support the use of schema name in procedure calls?
+	 * 此数据库是否支持在存储过程调用中使用模式名称？
 	 */
 	boolean isSupportsSchemasInProcedureCalls();
 

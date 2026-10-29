@@ -33,46 +33,38 @@ import org.springframework.core.Constants;
 import org.springframework.lang.Nullable;
 
 /**
- * Proxy for a target DataSource, fetching actual JDBC Connections lazily,
- * i.e. not until first creation of a Statement. Connection initialization
- * properties like auto-commit mode, transaction isolation and read-only mode
- * will be kept and applied to the actual JDBC Connection as soon as an
- * actual Connection is fetched (if ever). Consequently, commit and rollback
- * calls will be ignored if no Statements have been created.
+ * 目标 DataSource 的代理，延迟获取实际的 JDBC Connection，
+ * 即直到第一次创建 Statement 时才获取。诸如自动提交模式、事务隔离级别
+ * 和只读模式之类的连接初始化属性会被保留，并在实际获取 Connection
+ * （如果有）后立即应用到实际的 JDBC Connection 上。
+ * 因此，如果尚未创建任何 Statement，commit 和 rollback 调用将被忽略。
  *
- * <p>This DataSource proxy allows to avoid fetching JDBC Connections from
- * a pool unless actually necessary. JDBC transaction control can happen
- * without fetching a Connection from the pool or communicating with the
- * database; this will be done lazily on first creation of a JDBC Statement.
+ * <p>此 DataSource 代理可以避免在实际并不需要时从连接池获取 JDBC Connection。
+ * JDBC 事务控制可以在不从连接池获取 Connection、也不与数据库通信的情况下
+ * 进行；这些操作会在首次创建 JDBC Statement 时延迟执行。
  *
- * <p><b>If you configure both a LazyConnectionDataSourceProxy and a
- * TransactionAwareDataSourceProxy, make sure that the latter is the outermost
- * DataSource.</b> In such a scenario, data access code will talk to the
- * transaction-aware DataSource, which will in turn work with the
- * LazyConnectionDataSourceProxy.
+ * <p><b>如果同时配置了 LazyConnectionDataSourceProxy 和
+ * TransactionAwareDataSourceProxy，请确保后者是最外层的 DataSource。</b>
+ * 在这种场景下，数据访问代码将与事务感知的 DataSource 交互，
+ * 而后者又会与 LazyConnectionDataSourceProxy 配合工作。
  *
- * <p>Lazy fetching of physical JDBC Connections is particularly beneficial
- * in a generic transaction demarcation environment. It allows you to demarcate
- * transactions on all methods that could potentially perform data access,
- * without paying a performance penalty if no actual data access happens.
+ * <p>延迟获取物理 JDBC Connection 在通用的事务划分环境中尤其有益。
+ * 它允许你在所有可能执行数据访问的方法上划分事务，
+ * 而不必为并未实际发生的数据访问付出性能代价。
  *
- * <p>This DataSource proxy gives you behavior analogous to JTA and a
- * transactional JNDI DataSource (as provided by the Java EE server), even
- * with a local transaction strategy like DataSourceTransactionManager or
- * HibernateTransactionManager. It does not add value with Spring's
- * JtaTransactionManager as transaction strategy.
+ * <p>即使采用 DataSourceTransactionManager 或 HibernateTransactionManager
+ * 等本地事务策略，此 DataSource 代理也能为你提供类似于 JTA 和事务性 JNDI
+ * DataSource（由 Java EE 服务器提供）的行为。如果以 Spring 的
+ * JtaTransactionManager 作为事务策略，则它不会带来额外价值。
  *
- * <p>Lazy fetching of JDBC Connections is also recommended for read-only
- * operations with Hibernate, in particular if the chances of resolving the
- * result in the second-level cache are high. This avoids the need to
- * communicate with the database at all for such read-only operations.
- * You will get the same effect with non-transactional reads, but lazy fetching
- * of JDBC Connections allows you to still perform reads in transactions.
+ * <p>对于 Hibernate 的只读操作，也建议延迟获取 JDBC Connection，
+ * 特别是在结果很有希望从二级缓存中解析的情况下。这样可以避免为此类
+ * 只读操作与数据库进行任何通信。使用非事务性读取也能获得同样的效果，
+ * 但延迟获取 JDBC Connection 可以让你仍然在事务中执行读取。
  *
- * <p><b>NOTE:</b> This DataSource proxy needs to return wrapped Connections
- * (which implement the {@link ConnectionProxy} interface) in order to handle
- * lazy fetching of an actual JDBC Connection. Use {@link Connection#unwrap}
- * to retrieve the native JDBC Connection.
+ * <p><b>注意：</b>此 DataSource 代理需要返回包装后的 Connection
+ * （实现 {@link ConnectionProxy} 接口），以便处理实际 JDBC Connection 的
+ * 延迟获取。请使用 {@link Connection#unwrap} 获取原生 JDBC Connection。
  *
  * @author Juergen Hoeller
  * @since 1.1.4
@@ -80,7 +72,7 @@ import org.springframework.lang.Nullable;
  */
 public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 
-	/** Constants instance for TransactionDefinition. */
+	/** TransactionDefinition 的 Constants 实例。 */
 	private static final Constants constants = new Constants(Connection.class);
 
 	private static final Log logger = LogFactory.getLog(LazyConnectionDataSourceProxy.class);
@@ -93,14 +85,14 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 
 
 	/**
-	 * Create a new LazyConnectionDataSourceProxy.
+	 * 创建一个新的 LazyConnectionDataSourceProxy。
 	 * @see #setTargetDataSource
 	 */
 	public LazyConnectionDataSourceProxy() {
 	}
 
 	/**
-	 * Create a new LazyConnectionDataSourceProxy.
+	 * 创建一个新的 LazyConnectionDataSourceProxy。
 	 * @param targetDataSource the target DataSource
 	 */
 	public LazyConnectionDataSourceProxy(DataSource targetDataSource) {
@@ -110,11 +102,10 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 
 
 	/**
-	 * Set the default auto-commit mode to expose when no target Connection
-	 * has been fetched yet (when the actual JDBC Connection default is not known yet).
-	 * <p>If not specified, the default gets determined by checking a target
-	 * Connection on startup. If that check fails, the default will be determined
-	 * lazily on first access of a Connection.
+	 * 设置尚未获取目标 Connection 时要暴露的默认自动提交模式
+	 * （此时实际的 JDBC Connection 默认值尚不清楚）。
+	 * <p>如果未指定，默认值将通过启动时检查目标 Connection 来确定。
+	 * 如果该检查失败，则默认值将在首次访问 Connection 时延迟确定。
 	 * @see java.sql.Connection#setAutoCommit
 	 */
 	public void setDefaultAutoCommit(boolean defaultAutoCommit) {
@@ -122,15 +113,14 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
-	 * Set the default transaction isolation level to expose when no target Connection
-	 * has been fetched yet (when the actual JDBC Connection default is not known yet).
-	 * <p>This property accepts the int constant value (e.g. 8) as defined in the
-	 * {@link java.sql.Connection} interface; it is mainly intended for programmatic
-	 * use. Consider using the "defaultTransactionIsolationName" property for setting
-	 * the value by name (e.g. "TRANSACTION_SERIALIZABLE").
-	 * <p>If not specified, the default gets determined by checking a target
-	 * Connection on startup. If that check fails, the default will be determined
-	 * lazily on first access of a Connection.
+	 * 设置尚未获取目标 Connection 时要暴露的默认事务隔离级别
+	 * （此时实际的 JDBC Connection 默认值尚不清楚）。
+	 * <p>此属性接受 {@link java.sql.Connection} 接口中定义的 int 常量值
+	 * （例如 8）；它主要用于编程方式使用。可考虑使用
+	 * "defaultTransactionIsolationName" 属性按名称设置值
+	 * （例如 "TRANSACTION_SERIALIZABLE"）。
+	 * <p>如果未指定，默认值将通过启动时检查目标 Connection 来确定。
+	 * 如果该检查失败，则默认值将在首次访问 Connection 时延迟确定。
 	 * @see #setDefaultTransactionIsolationName
 	 * @see java.sql.Connection#setTransactionIsolation
 	 */
@@ -139,8 +129,8 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
-	 * Set the default transaction isolation level by the name of the corresponding
-	 * constant in {@link java.sql.Connection}, e.g. "TRANSACTION_SERIALIZABLE".
+	 * 通过 {@link java.sql.Connection} 中相应常量的名称设置默认事务隔离级别，
+	 * 例如 "TRANSACTION_SERIALIZABLE"。
 	 * @param constantName name of the constant
 	 * @see #setDefaultTransactionIsolation
 	 * @see java.sql.Connection#TRANSACTION_READ_UNCOMMITTED
@@ -172,12 +162,11 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
-	 * Check the default connection properties (auto-commit, transaction isolation),
-	 * keeping them to be able to expose them correctly without fetching an actual
-	 * JDBC Connection from the target DataSource.
-	 * <p>This will be invoked once on startup, but also for each retrieval of a
-	 * target Connection. If the check failed on startup (because the database was
-	 * down), we'll lazily retrieve those settings.
+	 * 检查默认连接属性（自动提交、事务隔离级别），
+	 * 并保留它们，以便在不从目标 DataSource 获取实际 JDBC Connection
+	 * 的情况下也能正确地暴露这些属性。
+	 * <p>此方法会在启动时调用一次，在每次获取目标 Connection 时也会调用。
+	 * 如果启动时检查失败（因为数据库已关闭），我们会延迟获取这些设置。
 	 * @param con the Connection to use for checking
 	 * @throws SQLException if thrown by Connection methods
 	 */
@@ -191,7 +180,7 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
-	 * Expose the default auto-commit value.
+	 * 暴露默认的自动提交值。
 	 */
 	@Nullable
 	protected Boolean defaultAutoCommit() {
@@ -199,7 +188,7 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
-	 * Expose the default transaction isolation value.
+	 * 暴露默认的事务隔离级别值。
 	 */
 	@Nullable
 	protected Integer defaultTransactionIsolation() {
@@ -208,10 +197,10 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 
 
 	/**
-	 * Return a Connection handle that lazily fetches an actual JDBC Connection
-	 * when asked for a Statement (or PreparedStatement or CallableStatement).
-	 * <p>The returned Connection handle implements the ConnectionProxy interface,
-	 * allowing to retrieve the underlying target Connection.
+	 * 返回一个 Connection 句柄，在请求 Statement（或 PreparedStatement
+	 * 或 CallableStatement）时才延迟获取实际的 JDBC Connection。
+	 * <p>返回的 Connection 句柄实现 ConnectionProxy 接口，
+	 * 从而可以获取底层的目标 Connection。
 	 * @return a lazy Connection handle
 	 * @see ConnectionProxy#getTargetConnection()
 	 */
@@ -224,10 +213,10 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 	}
 
 	/**
-	 * Return a Connection handle that lazily fetches an actual JDBC Connection
-	 * when asked for a Statement (or PreparedStatement or CallableStatement).
-	 * <p>The returned Connection handle implements the ConnectionProxy interface,
-	 * allowing to retrieve the underlying target Connection.
+	 * 返回一个 Connection 句柄，在请求 Statement（或 PreparedStatement
+	 * 或 CallableStatement）时才延迟获取实际的 JDBC Connection。
+	 * <p>返回的 Connection 句柄实现 ConnectionProxy 接口，
+	 * 从而可以获取底层的目标 Connection。
 	 * @param username the per-Connection username
 	 * @param password the per-Connection password
 	 * @return a lazy Connection handle
@@ -243,8 +232,8 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 
 
 	/**
-	 * Invocation handler that defers fetching an actual JDBC Connection
-	 * until first creation of a Statement.
+	 * 调用处理器，将实际 JDBC Connection 的获取推迟到
+	 * 首次创建 Statement 时。
 	 */
 	private class LazyConnectionInvocationHandler implements InvocationHandler {
 
@@ -383,14 +372,14 @@ public class LazyConnectionDataSourceProxy extends DelegatingDataSource {
 		}
 
 		/**
-		 * Return whether the proxy currently holds a target Connection.
+		 * 返回代理当前是否持有目标 Connection。
 		 */
 		private boolean hasTargetConnection() {
 			return (this.target != null);
 		}
 
 		/**
-		 * Return the target Connection, fetching it and initializing it if necessary.
+		 * 返回目标 Connection，必要时获取并初始化它。
 		 */
 		private Connection getTargetConnection(Method operation) throws SQLException {
 			if (this.target == null) {

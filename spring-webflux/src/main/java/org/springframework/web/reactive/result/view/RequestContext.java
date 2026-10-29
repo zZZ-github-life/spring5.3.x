@@ -40,16 +40,11 @@ import org.springframework.web.util.HtmlUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Context holder for request-specific state, like the {@link MessageSource} to
- * use, current locale, binding errors, etc. Provides easy access to localized
- * messages and Errors instances.
+ * 请求特定状态的上下文持有者，例如要使用的 {@link MessageSource}、当前区域设置、绑定错误等。提供对本地化消息和 Errors 实例的便捷访问。
  *
- * <p>Suitable for exposition to views, and usage within FreeMarker templates
- * and tag libraries.
+ * <p>适合向视图公开，并在 FreeMarker 模板和标签库中使用。
  *
- * <p>Can be instantiated manually or automatically exposed to views as a model
- * attribute via AbstractView's "requestContextAttribute" property.
- *
+ * <p>可以手动实例化，也可以通过 AbstractView 的 "requestContextAttribute" 属性自动作为模型属性公开给视图。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -106,14 +101,14 @@ public class RequestContext {
 	}
 
 	/**
-	 * Return the MessageSource in use with this request.
+	 * 返回此请求使用的 MessageSource。
 	 */
 	public MessageSource getMessageSource() {
 		return this.messageSource;
 	}
 
 	/**
-	 * Return the model Map that this RequestContext encapsulates, if any.
+	 * 返回此 RequestContext 封装的模型 Map（如果有）。
 	 * @return the populated model Map, or {@code null} if none available
 	 */
 	@Nullable
@@ -122,28 +117,28 @@ public class RequestContext {
 	}
 
 	/**
-	 * Return the current Locale.
+	 * 返回当前 Locale。
 	 */
 	public final Locale getLocale() {
 		return this.locale;
 	}
 
 	/**
-	 * Return the current TimeZone.
+	 * 返回当前 TimeZone。
 	 */
 	public TimeZone getTimeZone() {
 		return this.timeZone;
 	}
 
 	/**
-	 * Change the current locale to the specified one.
+	 * 将当前区域设置更改为指定的区域设置。
 	 */
 	public void changeLocale(Locale locale) {
 		this.locale = locale;
 	}
 
 	/**
-	 * Change the current locale to the specified locale and time zone context.
+	 * 将当前区域设置更改为指定的区域设置和时区上下文。
 	 */
 	public void changeLocale(Locale locale, TimeZone timeZone) {
 		this.locale = locale;
@@ -151,25 +146,22 @@ public class RequestContext {
 	}
 
 	/**
-	 * (De)activate default HTML escaping for messages and errors, for the scope
-	 * of this RequestContext.
-	 * <p>TODO: currently no application-wide setting ...
+	 * 在此 RequestContext 的范围内（取消）激活消息和错误的默认 HTML 转义。
+	 * <p>TODO：目前没有应用程序范围的设置 ...
 	 */
 	public void setDefaultHtmlEscape(boolean defaultHtmlEscape) {
 		this.defaultHtmlEscape = defaultHtmlEscape;
 	}
 
 	/**
-	 * Is default HTML escaping active? Falls back to {@code false} in case of
-	 * no explicit default given.
+	 * 默认 HTML 转义是否已激活？如果未给出显式默认值，则回退为 {@code false}。
 	 */
 	public boolean isDefaultHtmlEscape() {
 		return (this.defaultHtmlEscape != null && this.defaultHtmlEscape.booleanValue());
 	}
 
 	/**
-	 * Return the default HTML escape setting, differentiating between no default
-	 * specified and an explicit value.
+	 * 返回默认 HTML 转义设置，区分未指定默认值和显式值。
 	 * @return whether default HTML escaping is enabled (null = no explicit default)
 	 */
 	@Nullable
@@ -178,8 +170,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Return the {@link RequestDataValueProcessor} instance to apply to in form
-	 * tag libraries and to redirect URLs.
+	 * 返回要应用于表单标签库和重定向 URL 的 {@link RequestDataValueProcessor} 实例。
 	 */
 	@Nullable
 	public RequestDataValueProcessor getRequestDataValueProcessor() {
@@ -187,16 +178,15 @@ public class RequestContext {
 	}
 
 	/**
-	 * Return the context path of the current web application. This is
-	 * useful for building links to other resources within the application.
-	 * <p>Delegates to {@link ServerHttpRequest#getPath()}.
+	 * 返回当前 Web 应用程序的上下文路径。这对于构建指向应用程序内其他资源的链接很有用。
+	 * <p>委托给 {@link ServerHttpRequest#getPath()}。
 	 */
 	public String getContextPath() {
 		return this.exchange.getRequest().getPath().contextPath().value();
 	}
 
 	/**
-	 * Return a context-aware URl for the given relative URL.
+	 * 为给定相对 URL 返回上下文感知的 URL。
 	 * @param relativeUrl the relative URL part
 	 * @return a URL that points back to the current web application with an
 	 * absolute path also URL-encoded accordingly
@@ -207,10 +197,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Return a context-aware URl for the given relative URL with placeholders --
-	 * named keys with braces {@code {}}. For example, send in a relative URL
-	 * {@code foo/{bar}?spam={spam}} and a parameter map {@code {bar=baz,spam=nuts}}
-	 * and the result will be {@code [contextpath]/foo/baz?spam=nuts}.
+	 * 为带占位符（使用花括号 {@code {}} 命名的键）的给定相对 URL 返回上下文感知的 URL。例如，传入相对 URL {@code foo/{bar}?spam={spam}} 和参数映射 {@code {bar=baz,spam=nuts}}，结果将是 {@code [contextpath]/foo/baz?spam=nuts}。
 	 * @param relativeUrl the relative URL part
 	 * @param params a map of parameters to insert as placeholders in the url
 	 * @return a URL that points back to the current web application with an
@@ -223,24 +210,21 @@ public class RequestContext {
 	}
 
 	/**
-	 * Return the request path of the request. This is useful as HTML form
-	 * action target, also in combination with the original query string.
+	 * 返回请求的请求路径。这对于作为 HTML 表单 action 目标很有用，也可以与原始查询字符串组合使用。
 	 */
 	public String getRequestPath() {
 		return this.exchange.getRequest().getURI().getPath();
 	}
 
 	/**
-	 * Return the query string of the current request. This is useful for
-	 * building an HTML form action target in combination with the original
-	 * request path.
+	 * 返回当前请求的查询字符串。这对于结合原始请求路径构建 HTML 表单 action 目标很有用。
 	 */
 	public String getQueryString() {
 		return this.exchange.getRequest().getURI().getQuery();
 	}
 
 	/**
-	 * Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param defaultMessage the String to return if the lookup fails
 	 * @return the message
@@ -250,7 +234,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param args arguments for the message, or {@code null} if none
 	 * @param defaultMessage the String to return if the lookup fails
@@ -261,7 +245,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param args arguments for the message as a List, or {@code null} if none
 	 * @param defaultMessage the String to return if the lookup fails
@@ -272,7 +256,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code.
+	 * 检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param args arguments for the message, or {@code null} if none
 	 * @param defaultMessage the String to return if the lookup fails
@@ -288,7 +272,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
 	 * @param code the code of the message
 	 * @return the message
 	 * @throws org.springframework.context.NoSuchMessageException if not found
@@ -298,7 +282,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param args arguments for the message, or {@code null} if none
 	 * @return the message
@@ -309,7 +293,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param args arguments for the message as a List, or {@code null} if none
 	 * @return the message
@@ -320,7 +304,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the message for the given code.
+	 * 检索给定代码的消息。
 	 * @param code the code of the message
 	 * @param args arguments for the message, or {@code null} if none
 	 * @param htmlEscape if the message should be HTML-escaped
@@ -333,7 +317,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the given MessageSourceResolvable (e.g. an ObjectError instance), using the "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定的 MessageSourceResolvable（例如 ObjectError 实例）。
 	 * @param resolvable the MessageSourceResolvable
 	 * @return the message
 	 * @throws org.springframework.context.NoSuchMessageException if not found
@@ -343,7 +327,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the given MessageSourceResolvable (e.g. an ObjectError instance).
+	 * 检索给定的 MessageSourceResolvable（例如 ObjectError 实例）。
 	 * @param resolvable the MessageSourceResolvable
 	 * @param htmlEscape if the message should be HTML-escaped
 	 * @return the message
@@ -355,8 +339,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the Errors instance for the given bind object, using the
-	 * "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置检索给定绑定对象的 Errors 实例。
 	 * @param name the name of the bind object
 	 * @return the Errors instance, or {@code null} if not found
 	 */
@@ -366,7 +349,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the Errors instance for the given bind object.
+	 * 检索给定绑定对象的 Errors 实例。
 	 * @param name the name of the bind object
 	 * @param htmlEscape create an Errors instance with automatic HTML escaping?
 	 * @return the Errors instance, or {@code null} if not found
@@ -401,8 +384,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Retrieve the model object for the given model name, either from the model
-	 * or from the request attributes.
+	 * 从模型或请求属性中检索给定模型名称的模型对象。
 	 * @param modelName the name of the model object
 	 * @return the model object
 	 */
@@ -417,8 +399,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Create a BindStatus for the given bind object using the
-	 * "defaultHtmlEscape" setting.
+	 * 使用 "defaultHtmlEscape" 设置为给定绑定对象创建 BindStatus。
 	 * @param path the bean and property path for which values and errors will
 	 * be resolved (e.g. "person.age")
 	 * @return the new BindStatus instance
@@ -429,8 +410,7 @@ public class RequestContext {
 	}
 
 	/**
-	 * Create a BindStatus for the given bind object, using the
-	 * "defaultHtmlEscape" setting.
+	 * 为给定绑定对象创建 BindStatus，使用 "defaultHtmlEscape" 设置。
 	 * @param path the bean and property path for which values and errors will
 	 * be resolved (e.g. "person.age")
 	 * @param htmlEscape create a BindStatus with automatic HTML escaping?

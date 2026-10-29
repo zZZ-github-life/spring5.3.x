@@ -35,8 +35,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Base class for any class that needs to access a JPA {@link EntityManagerFactory},
- * usually in order to obtain a JPA {@link EntityManager}. Defines common properties.
+ * 任何需要访问 JPA {@link EntityManagerFactory} 的类的基类，
+ * 通常用于获取 JPA {@link EntityManager}。定义公共属性。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -44,7 +44,7 @@ import org.springframework.util.CollectionUtils;
  */
 public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -57,8 +57,7 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 
 
 	/**
-	 * Set the JPA EntityManagerFactory that should be used to create
-	 * EntityManagers.
+	 * 设置应用于创建 EntityManager 的 JPA EntityManagerFactory。
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager()
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
@@ -67,8 +66,7 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Return the JPA EntityManagerFactory that should be used to create
-	 * EntityManagers.
+	 * 返回应用于创建 EntityManager 的 JPA EntityManagerFactory。
 	 */
 	@Nullable
 	public EntityManagerFactory getEntityManagerFactory() {
@@ -76,7 +74,7 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Obtain the EntityManagerFactory for actual use.
+	 * 获取供实际使用的 EntityManagerFactory。
 	 * @return the EntityManagerFactory (never {@code null})
 	 * @throws IllegalStateException in case of no EntityManagerFactory set
 	 * @since 5.0
@@ -88,11 +86,11 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Set the name of the persistence unit to access the EntityManagerFactory for.
-	 * <p>This is an alternative to specifying the EntityManagerFactory by direct reference,
-	 * resolving it by its persistence unit name instead. If no EntityManagerFactory and
-	 * no persistence unit name have been specified, a default EntityManagerFactory will
-	 * be retrieved through finding a single unique bean of type EntityManagerFactory.
+	 * 设置要访问其 EntityManagerFactory 的持久化单元名称。
+	 * <p>这是直接引用指定 EntityManagerFactory 的替代方式，
+	 * 改为按持久化单元名称解析它。如果既未指定 EntityManagerFactory
+	 * 也未指定持久化单元名称，则将通过查找唯一的 EntityManagerFactory
+	 * 类型 bean 来获取一个默认的 EntityManagerFactory。
 	 * @see #setEntityManagerFactory
 	 */
 	public void setPersistenceUnitName(@Nullable String persistenceUnitName) {
@@ -100,7 +98,7 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Return the name of the persistence unit to access the EntityManagerFactory for, if any.
+	 * 返回要访问其 EntityManagerFactory 的持久化单元名称（如果有）。
 	 */
 	@Nullable
 	public String getPersistenceUnitName() {
@@ -108,10 +106,10 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Specify JPA properties, to be passed into
-	 * {@code EntityManagerFactory.createEntityManager(Map)} (if any).
-	 * <p>Can be populated with a String "value" (parsed via PropertiesEditor)
-	 * or a "props" element in XML bean definitions.
+	 * 指定要传入 {@code EntityManagerFactory.createEntityManager(Map)} 的
+	 * JPA 属性（如果有）。
+	 * <p>可以通过 String 类型的 "value"（由 PropertiesEditor 解析）
+	 * 或 XML bean 定义中的 "props" 元素来填充。
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
 	public void setJpaProperties(Properties jpaProperties) {
@@ -119,9 +117,9 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Specify JPA properties as a Map, to be passed into
-	 * {@code EntityManagerFactory.createEntityManager(Map)} (if any).
-	 * <p>Can be populated with a "map" or "props" element in XML bean definitions.
+	 * 以 Map 形式指定要传入 {@code EntityManagerFactory.createEntityManager(Map)}
+	 * 的 JPA 属性（如果有）。
+	 * <p>可以通过 XML bean 定义中的 "map" 或 "props" 元素来填充。
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
 	public void setJpaPropertyMap(@Nullable Map<String, Object> jpaProperties) {
@@ -131,17 +129,17 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Allow {@code Map} access to the JPA properties to be passed to the persistence
-	 * provider, with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via {@code jpaPropertyMap[myKey]}.
+	 * 允许以 {@code Map} 方式访问要传递给持久化提供者的 JPA 属性，
+	 * 并可以选择添加或覆盖特定条目。
+	 * <p>适用于直接指定条目，例如通过 {@code jpaPropertyMap[myKey]}。
 	 */
 	public Map<String, Object> getJpaPropertyMap() {
 		return this.jpaPropertyMap;
 	}
 
 	/**
-	 * Retrieves an EntityManagerFactory by persistence unit name, if none set explicitly.
-	 * Falls back to a default EntityManagerFactory bean if no persistence unit specified.
+	 * 如果未显式设置 EntityManagerFactory，则按持久化单元名称获取它。
+	 * 如果未指定持久化单元，则回退到默认的 EntityManagerFactory bean。
 	 * @see #setPersistenceUnitName
 	 */
 	@Override
@@ -158,8 +156,8 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 
 
 	/**
-	 * Obtain a new EntityManager from this accessor's EntityManagerFactory.
-	 * <p>Can be overridden in subclasses to create specific EntityManager variants.
+	 * 从此访问器的 EntityManagerFactory 获取一个新的 EntityManager。
+	 * <p>可以在子类中重写，以创建特定的 EntityManager 变体。
 	 * @return a new EntityManager
 	 * @throws IllegalStateException if this accessor is not configured with an EntityManagerFactory
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager()
@@ -172,7 +170,7 @@ public abstract class EntityManagerFactoryAccessor implements BeanFactoryAware {
 	}
 
 	/**
-	 * Obtain the transactional EntityManager for this accessor's EntityManagerFactory, if any.
+	 * 获取此访问器的 EntityManagerFactory 的事务性 EntityManager（如果有）。
 	 * @return the transactional EntityManager, or {@code null} if none
 	 * @throws IllegalStateException if this accessor is not configured with an EntityManagerFactory
 	 * @see EntityManagerFactoryUtils#getTransactionalEntityManager(javax.persistence.EntityManagerFactory)

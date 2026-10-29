@@ -1,7 +1,5 @@
 /**
- * JavaMail support for Spring's mail infrastructure.
- * Provides an extended JavaMailSender interface and a MimeMessageHelper
- * class for convenient population of a JavaMail MimeMessage.
+ * Spring 邮件基础设施的 JavaMail 支持。提供扩展的 JavaMailSender 接口以及便于填充 JavaMail MimeMessage 的 MimeMessageHelper 类。
  */
 @NonNullApi
 @NonNullFields

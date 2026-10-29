@@ -25,19 +25,16 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves method arguments annotated with {@code @Value}.
+ * 解析带有 {@code @Value} 注解的方法参数。
  *
- * <p>An {@code @Value} does not have a name but gets resolved from the default
- * value string, which may contain ${...} placeholder or Spring Expression
- * Language #{...} expressions.
- *
+ * <p>{@code @Value} 没有名称，而是从默认值字符串解析，该字符串可以包含 ${...} 占位符或 Spring 表达式语言 #{...} 表达式。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class ExpressionValueMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
-	 * Create a new {@link ExpressionValueMethodArgumentResolver} instance.
+	 * 创建新的 {@link ExpressionValueMethodArgumentResolver} 实例。
 	 * @param factory a bean factory to use for resolving {@code ${...}}
 	 * placeholder and {@code #{...}} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to contain expressions

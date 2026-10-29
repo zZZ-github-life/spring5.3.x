@@ -27,9 +27,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts an Object to a single-element Collection containing the Object.
- * Will convert the Object to the target Collection's parameterized type if necessary.
- *
+ * 将 Object 转换为包含该 Object 的单元素 Collection。必要时，会将 Object 转换为目标 Collection 的参数化类型。
  * @author Keith Donald
  * @author Juergen Hoeller
  * @since 3.0

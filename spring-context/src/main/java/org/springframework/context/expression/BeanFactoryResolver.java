@@ -24,8 +24,7 @@ import org.springframework.expression.EvaluationContext;
 import org.springframework.util.Assert;
 
 /**
- * EL bean resolver that operates against a Spring
- * {@link org.springframework.beans.factory.BeanFactory}.
+ * EL Bean 解析器，针对 Spring {@link org.springframework.beans.factory.BeanFactory} 工作。
  *
  * @author Juergen Hoeller
  * @since 3.0.4
@@ -36,7 +35,7 @@ public class BeanFactoryResolver implements BeanResolver {
 
 
 	/**
-	 * Create a new {@link BeanFactoryResolver} for the given factory.
+	 * 为给定的工厂创建一个新的 {@link BeanFactoryResolver}。
 	 * @param beanFactory the {@link BeanFactory} to resolve bean names against
 	 */
 	public BeanFactoryResolver(BeanFactory beanFactory) {

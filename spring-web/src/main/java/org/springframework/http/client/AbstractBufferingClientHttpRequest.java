@@ -23,8 +23,8 @@ import java.io.OutputStream;
 import org.springframework.http.HttpHeaders;
 
 /**
- * Base implementation of {@link ClientHttpRequest} that buffers output
- * in a byte array before sending it over the wire.
+ * 在通过网络发送之前，在字节数组中缓冲输出的
+ * {@link ClientHttpRequest} 基础实现。
  *
  * @author Arjen Poutsma
  * @since 3.0.6
@@ -51,7 +51,7 @@ abstract class AbstractBufferingClientHttpRequest extends AbstractClientHttpRequ
 	}
 
 	/**
-	 * Abstract template method that writes the given headers and content to the HTTP request.
+	 * 将给定头部和内容写入 HTTP 请求的抽象模板方法。
 	 * @param headers the HTTP headers
 	 * @param bufferedOutput the body content
 	 * @return the response object for the executed request

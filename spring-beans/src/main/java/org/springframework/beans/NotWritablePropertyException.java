@@ -19,8 +19,7 @@ package org.springframework.beans;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown on an attempt to set the value of a property that
- * is not writable (typically because there is no setter method).
+ * 当尝试设置不可写属性（通常是因为没有 setter 方法）的值时抛出的异常。
  *
  * @author Rod Johnson
  * @author Alef Arendsen
@@ -34,7 +33,7 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 
 
 	/**
-	 * Create a new NotWritablePropertyException.
+	 * 创建一个新的 NotWritablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property name
 	 */
@@ -46,7 +45,7 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NotWritablePropertyException.
+	 * 创建一个新的 NotWritablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property name
 	 * @param msg the detail message
@@ -57,7 +56,7 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NotWritablePropertyException.
+	 * 创建一个新的 NotWritablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property name
 	 * @param msg the detail message
@@ -69,7 +68,7 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NotWritablePropertyException.
+	 * 创建一个新的 NotWritablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property name
 	 * @param msg the detail message
@@ -83,8 +82,7 @@ public class NotWritablePropertyException extends InvalidPropertyException {
 
 
 	/**
-	 * Return suggestions for actual bean property names that closely match
-	 * the invalid property name, if any.
+	 * 返回与无效属性名非常接近的实际 Bean 属性名建议（如果有）。
 	 */
 	@Nullable
 	public String[] getPossibleMatches() {

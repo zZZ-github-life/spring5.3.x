@@ -52,18 +52,17 @@ import org.springframework.web.reactive.result.view.RequestContext;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@code View} implementation that uses the FreeMarker template engine.
+ * 使用 FreeMarker 模板引擎的 {@code View} 实现。
  *
- * <p>Depends on a single {@link FreeMarkerConfig} object such as
- * {@link FreeMarkerConfigurer} being accessible in the application context.
- * Alternatively the FreeMarker {@link Configuration} can be set directly on this
- * class via {@link #setConfiguration}.
+ * <p>依赖应用程序上下文中的单个 {@link FreeMarkerConfig} 对象（例如
+ * {@link FreeMarkerConfigurer}）可访问。也可以通过 {@link #setConfiguration}
+ * 将 FreeMarker {@link Configuration} 直接设置到此类上。
  *
- * <p>The {@link #setUrl(String) url} property is the location of the FreeMarker
- * template relative to the FreeMarkerConfigurer's
- * {@link FreeMarkerConfigurer#setTemplateLoaderPath templateLoaderPath}.
+ * <p>{@link #setUrl(String) url} 属性指定 FreeMarker 模板相对于
+ * FreeMarkerConfigurer 的
+ * {@link FreeMarkerConfigurer#setTemplateLoaderPath templateLoaderPath} 的位置。
  *
- * <p>Note: Spring's FreeMarker support requires FreeMarker 2.3 or higher.
+ * <p>注意：Spring 的 FreeMarker 支持需要 FreeMarker 2.3 或更高版本。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -72,10 +71,10 @@ import org.springframework.web.server.ServerWebExchange;
 public class FreeMarkerView extends AbstractUrlBasedView {
 
 	/**
-	 * Attribute name of the {@link RequestContext} instance in the template model,
-	 * available to Spring's macros &mdash; for example, for creating
+	 * 模板模型中 {@link RequestContext} 实例的属性名称，
+	 * 可供 Spring 的宏使用 &mdash; 例如，用于创建
 	 * {@link org.springframework.web.reactive.result.view.BindStatus BindStatus}
-	 * objects.
+	 * 对象。
 	 * @since 5.2
 	 * @see #setExposeSpringMacroHelpers(boolean)
 	 */
@@ -92,17 +91,16 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Set the FreeMarker {@link Configuration} to be used by this view.
-	 * <p>Typically this property is not set directly. Instead a single
-	 * {@link FreeMarkerConfig} is expected in the Spring application context
-	 * which is used to obtain the FreeMarker configuration.
+	 * 设置此视图要使用的 FreeMarker {@link Configuration}。
+	 * <p>通常不会直接设置此属性。而是期望在 Spring 应用程序上下文中存在一个
+	 * {@link FreeMarkerConfig}，用于获取 FreeMarker 配置。
 	 */
 	public void setConfiguration(@Nullable Configuration configuration) {
 		this.configuration = configuration;
 	}
 
 	/**
-	 * Get the FreeMarker {@link Configuration} used by this view.
+	 * 获取此视图使用的 FreeMarker {@link Configuration}。
 	 */
 	@Nullable
 	protected Configuration getConfiguration() {
@@ -110,7 +108,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Obtain the FreeMarker {@link Configuration} for actual use.
+	 * 获取用于实际使用的 FreeMarker {@link Configuration}。
 	 * @return the FreeMarker configuration (never {@code null})
 	 * @throws IllegalStateException in case of no {@code Configuration} object set
 	 * @see #getConfiguration()
@@ -122,18 +120,17 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Set the encoding of the FreeMarker template file.
-	 * <p>By default {@link FreeMarkerConfigurer} sets the default encoding in
-	 * the FreeMarker configuration to "UTF-8". It's recommended to specify the
-	 * encoding in the FreeMarker {@link Configuration} rather than per template
-	 * if all your templates share a common encoding.
+	 * 设置 FreeMarker 模板文件的编码。
+	 * <p>默认情况下，{@link FreeMarkerConfigurer} 会将 FreeMarker 配置中的
+	 * 默认编码设置为 "UTF-8"。如果你的所有模板共用一种编码，建议在 FreeMarker
+	 * {@link Configuration} 中指定编码，而不是按模板单独指定。
 	 */
 	public void setEncoding(@Nullable String encoding) {
 		this.encoding = encoding;
 	}
 
 	/**
-	 * Get the encoding for the FreeMarker template.
+	 * 获取 FreeMarker 模板的编码。
 	 */
 	@Nullable
 	protected String getEncoding() {
@@ -141,12 +138,11 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Set whether to expose a {@link RequestContext} for use by Spring's macro
-	 * library, under the name {@value #SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE}.
-	 * <p>Default is {@code true}.
-	 * <p>Needed for Spring's FreeMarker default macros. Note that this is
-	 * <i>not</i> required for templates that use HTML forms <i>unless</i> you
-	 * wish to take advantage of the Spring helper macros.
+	 * 设置是否在名称 {@value #SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE} 下暴露
+	 * 一个供 Spring 宏库使用的 {@link RequestContext}。
+	 * <p>默认值为 {@code true}。
+	 * <p>Spring 的 FreeMarker 默认宏需要此项。请注意，使用 HTML 表单的模板
+	 * <i>并不</i> 需要此项，<i>除非</i> 你希望利用 Spring 的辅助宏。
 	 * @since 5.2
 	 * @see #SPRING_MACRO_REQUEST_CONTEXT_ATTRIBUTE
 	 */
@@ -165,7 +161,7 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Autodetect a {@link FreeMarkerConfig} object in the {@code ApplicationContext}.
+	 * 自动检测 {@code ApplicationContext} 中的 {@link FreeMarkerConfig} 对象。
 	 * @return the {@code FreeMarkerConfig} instance to use for this view
 	 * @throws BeansException if no {@code FreeMarkerConfig} instance could be found
 	 * @see #setConfiguration
@@ -185,9 +181,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Check that the FreeMarker template used for this view exists and is valid.
-	 * <p>Can be overridden to customize the behavior, for example in case of
-	 * multiple templates to be rendered into a single view.
+	 * 检查此视图使用的 FreeMarker 模板是否存在且有效。
+	 * <p>可以重写此方法以自定义行为，例如需要将多个模板渲染到单个视图中的情况。
 	 */
 	@Override
 	public boolean checkResourceExists(Locale locale) throws Exception {
@@ -211,9 +206,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Prepare the model to use for rendering by potentially exposing a
-	 * {@link RequestContext} for use in Spring FreeMarker macros and then
-	 * delegating to the inherited implementation of this method.
+	 * 准备用于渲染的模型，可能会暴露一个 {@link RequestContext} 供 Spring FreeMarker
+	 * 宏使用，然后委托给此方法的继承实现。
 	 * @since 5.2
 	 * @see #setExposeSpringMacroHelpers(boolean)
 	 * @see org.springframework.web.reactive.result.view.AbstractView#getModelAttributes(Map, ServerWebExchange)
@@ -277,8 +271,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Build a FreeMarker template model for the given model map.
-	 * <p>The default implementation builds a {@link SimpleHash}.
+	 * 为给定的模型 Map 构建 FreeMarker 模板模型。
+	 * <p>默认实现构建一个 {@link SimpleHash}。
 	 * @param model the model to use for rendering
 	 * @param exchange current exchange
 	 * @return the FreeMarker template model, as a {@link SimpleHash} or subclass thereof
@@ -290,8 +284,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Get the configured FreeMarker {@link ObjectWrapper}, or the
-	 * {@linkplain ObjectWrapper#DEFAULT_WRAPPER default wrapper} if none specified.
+	 * 获取配置的 FreeMarker {@link ObjectWrapper}，如果未指定则获取
+	 * {@linkplain ObjectWrapper#DEFAULT_WRAPPER 默认包装器}。
 	 * @see freemarker.template.Configuration#getObjectWrapper()
 	 */
 	protected ObjectWrapper getObjectWrapper() {
@@ -301,8 +295,8 @@ public class FreeMarkerView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Get the FreeMarker template for the given locale, to be rendered by this view.
-	 * <p>By default, the template specified by the "url" bean property will be retrieved.
+	 * 获取给定区域设置下、由此视图渲染的 FreeMarker 模板。
+	 * <p>默认情况下，将获取由 "url" bean 属性指定的模板。
 	 * @param locale the current locale
 	 * @return the FreeMarker template to render
 	 */

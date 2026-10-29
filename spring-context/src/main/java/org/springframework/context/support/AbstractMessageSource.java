@@ -30,30 +30,21 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Abstract implementation of the {@link HierarchicalMessageSource} interface,
- * implementing common handling of message variants, making it easy
- * to implement a specific strategy for a concrete MessageSource.
+ * {@link HierarchicalMessageSource} 接口的抽象实现，实现了消息变体的通用处理，使为具体
+ * MessageSource 实现特定策略变得容易。
  *
- * <p>Subclasses must implement the abstract {@link #resolveCode}
- * method. For efficient resolution of messages without arguments, the
- * {@link #resolveCodeWithoutArguments} method should be overridden
- * as well, resolving messages without a MessageFormat being involved.
+ * <p>子类必须实现抽象方法 {@link #resolveCode}。为了高效解析不带参数的消息，还应重写
+ * {@link #resolveCodeWithoutArguments} 方法，以便在不涉及 MessageFormat 的情况下解析消息。
  *
- * <p><b>Note:</b> By default, message texts are only parsed through
- * MessageFormat if arguments have been passed in for the message. In case
- * of no arguments, message texts will be returned as-is. As a consequence,
- * you should only use MessageFormat escaping for messages with actual
- * arguments, and keep all other messages unescaped. If you prefer to
- * escape all messages, set the "alwaysUseMessageFormat" flag to "true".
+ * <p><b>注意：</b>默认情况下，仅当为消息传入了参数时，才会通过 MessageFormat 解析消息文本。在没有
+ * 参数的情况下，消息文本将按原样返回。因此，应仅对带有实际参数的消息使用 MessageFormat 转义，并让
+ * 所有其他消息保持未转义。如果希望转义所有消息，请将 "alwaysUseMessageFormat" 标志设置为 "true"。
  *
- * <p>Supports not only MessageSourceResolvables as primary messages
- * but also resolution of message arguments that are in turn
- * MessageSourceResolvables themselves.
+ * <p>不仅支持将 MessageSourceResolvable 作为主消息，还支持解析本身也是 MessageSourceResolvable 的
+ * 消息参数。
  *
- * <p>This class does not implement caching of messages per code, thus
- * subclasses can dynamically change messages over time. Subclasses are
- * encouraged to cache their messages in a modification-aware fashion,
- * allowing for hot deployment of updated messages.
+ * <p>此类不实现按代码缓存消息，因此子类可以随时间动态更改消息。鼓励子类以感知修改的方式缓存消息，
+ * 从而支持已更新消息的热部署。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -85,17 +76,17 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Specify locale-independent common messages, with the message code as key
-	 * and the full message String (may contain argument placeholders) as value.
-	 * <p>May also link to an externally defined Properties object, e.g. defined
-	 * through a {@link org.springframework.beans.factory.config.PropertiesFactoryBean}.
+	 * 指定与区域设置无关的通用消息，以消息代码为键，以完整消息 String（可能包含参数占位符）为值。
+	 *
+	 * <p>也可以链接到外部定义的 Properties 对象，例如通过
+	 * {@link org.springframework.beans.factory.config.PropertiesFactoryBean} 定义的对象。
 	 */
 	public void setCommonMessages(@Nullable Properties commonMessages) {
 		this.commonMessages = commonMessages;
 	}
 
 	/**
-	 * Return a Properties object defining locale-independent common messages, if any.
+	 * 返回定义与区域设置无关的通用消息的 Properties 对象（如果有）。
 	 */
 	@Nullable
 	protected Properties getCommonMessages() {
@@ -103,19 +94,16 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Set whether to use the message code as default message instead of
-	 * throwing a NoSuchMessageException. Useful for development and debugging.
-	 * Default is "false".
-	 * <p>Note: In case of a MessageSourceResolvable with multiple codes
-	 * (like a FieldError) and a MessageSource that has a parent MessageSource,
-	 * do <i>not</i> activate "useCodeAsDefaultMessage" in the <i>parent</i>:
-	 * Else, you'll get the first code returned as message by the parent,
-	 * without attempts to check further codes.
-	 * <p>To be able to work with "useCodeAsDefaultMessage" turned on in the parent,
-	 * AbstractMessageSource and AbstractApplicationContext contain special checks
-	 * to delegate to the internal {@link #getMessageInternal} method if available.
-	 * In general, it is recommended to just use "useCodeAsDefaultMessage" during
-	 * development and not rely on it in production in the first place, though.
+	 * 设置是否使用消息代码作为默认消息，而不是抛出 NoSuchMessageException。对开发和调试很有用。默认值
+	 * 为 "false"。
+	 *
+	 * <p>注意：对于具有多个代码的 MessageSourceResolvable（如 FieldError）以及具有父 MessageSource 的
+	 * MessageSource，请<i>不要</i>在<i>父级</i>中激活 "useCodeAsDefaultMessage"：否则，父级将返回第一
+	 * 个代码作为消息，而不会尝试检查后续代码。
+	 *
+	 * <p>为了在父级启用 "useCodeAsDefaultMessage" 的情况下正常工作，AbstractMessageSource 和
+	 * AbstractApplicationContext 包含特殊检查，以便在可用时委托给内部 {@link #getMessageInternal} 方法。
+	 * 不过，通常建议仅在开发期间使用 "useCodeAsDefaultMessage"，而不要在生产环境中依赖它。
 	 * @see #getMessage(String, Object[], Locale)
 	 * @see org.springframework.validation.FieldError
 	 */
@@ -124,11 +112,10 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Return whether to use the message code as default message instead of
-	 * throwing a NoSuchMessageException. Useful for development and debugging.
-	 * Default is "false".
-	 * <p>Alternatively, consider overriding the {@link #getDefaultMessage}
-	 * method to return a custom fallback message for an unresolvable code.
+	 * 返回是否使用消息代码作为默认消息，而不是抛出 NoSuchMessageException。对开发和调试很有用。默认值
+	 * 为 "false"。
+	 *
+	 * <p>或者，可以考虑重写 {@link #getDefaultMessage} 方法，为无法解析的代码返回自定义回退消息。
 	 * @see #getDefaultMessage(String)
 	 */
 	protected boolean isUseCodeAsDefaultMessage() {
@@ -181,9 +168,8 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 
 
 	/**
-	 * Resolve the given code and arguments as message in the given Locale,
-	 * returning {@code null} if not found. Does <i>not</i> fall back to
-	 * the code as default message. Invoked by {@code getMessage} methods.
+	 * 在给定的 Locale 中将给定代码和参数解析为消息，如果未找到则返回 {@code null}。<i>不会</i>回退到将
+	 * 代码作为默认消息。由 {@code getMessage} 方法调用。
 	 * @param code the code to lookup up, such as 'calculator.noRateSet'
 	 * @param args array of arguments that will be filled in for params
 	 * within the message
@@ -243,7 +229,7 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Try to retrieve the given message from the parent {@code MessageSource}, if any.
+	 * 如果存在父 {@code MessageSource}，则尝试从中检索给定消息。
 	 * @param code the code to lookup up, such as 'calculator.noRateSet'
 	 * @param args array of arguments that will be filled in for params
 	 * within the message
@@ -271,10 +257,10 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Get a default message for the given {@code MessageSourceResolvable}.
-	 * <p>This implementation fully renders the default message if available,
-	 * or just returns the plain default message {@code String} if the primary
-	 * message code is being used as a default message.
+	 * 获取给定 {@code MessageSourceResolvable} 的默认消息。
+	 *
+	 * <p>此实现会在可用时完整呈现默认消息，或者在主消息代码被用作默认消息时直接返回纯默认消息
+	 * {@code String}。
 	 * @param resolvable the value object to resolve a default message for
 	 * @param locale the current locale
 	 * @return the default message, or {@code null} if none
@@ -303,10 +289,10 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Return a fallback default message for the given code, if any.
-	 * <p>Default is to return the code itself if "useCodeAsDefaultMessage" is activated,
-	 * or return no fallback else. In case of no fallback, the caller will usually
-	 * receive a {@code NoSuchMessageException} from {@code getMessage}.
+	 * 返回给定代码的回退默认消息（如果有）。
+	 *
+	 * <p>默认行为是：如果激活了 "useCodeAsDefaultMessage"，则返回代码本身，否则不返回回退消息。在没有
+	 * 回退消息的情况下，调用者通常会从 {@code getMessage} 收到 {@code NoSuchMessageException}。
 	 * @param code the message code that we couldn't resolve
 	 * and that we didn't receive an explicit default message for
 	 * @return the default message to use, or {@code null} if none
@@ -322,9 +308,9 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 
 
 	/**
-	 * Searches through the given array of objects, finds any MessageSourceResolvable
-	 * objects and resolves them.
-	 * <p>Allows for messages to have MessageSourceResolvables as arguments.
+	 * 搜索给定的对象数组，查找所有 MessageSourceResolvable 对象并解析它们。
+	 *
+	 * <p>允许消息将 MessageSourceResolvable 作为参数。
 	 * @param args array of arguments for a message
 	 * @param locale the locale to resolve through
 	 * @return an array of arguments with any MessageSourceResolvables resolved
@@ -347,15 +333,13 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Subclasses can override this method to resolve a message without arguments
-	 * in an optimized fashion, i.e. to resolve without involving a MessageFormat.
-	 * <p>The default implementation <i>does</i> use MessageFormat, through
-	 * delegating to the {@link #resolveCode} method. Subclasses are encouraged
-	 * to replace this with optimized resolution.
-	 * <p>Unfortunately, {@code java.text.MessageFormat} is not implemented
-	 * in an efficient fashion. In particular, it does not detect that a message
-	 * pattern doesn't contain argument placeholders in the first place. Therefore,
-	 * it is advisable to circumvent MessageFormat for messages without arguments.
+	 * 子类可以重写此方法，以优化的方式解析不带参数的消息，即在不涉及 MessageFormat 的情况下进行解析。
+	 *
+	 * <p>默认实现<i>确实</i>使用 MessageFormat，方式是委托给 {@link #resolveCode} 方法。鼓励子类用优化
+	 * 的解析方式替换它。
+	 *
+	 * <p>遗憾的是，{@code java.text.MessageFormat} 的实现效率不高。特别是，它无法首先检测出消息模式不
+	 * 包含参数占位符。因此，对于不带参数的消息，建议绕过 MessageFormat。
 	 * @param code the code of the message to resolve
 	 * @param locale the locale to resolve the code for
 	 * (subclasses are encouraged to support internationalization)
@@ -375,12 +359,12 @@ public abstract class AbstractMessageSource extends MessageSourceSupport impleme
 	}
 
 	/**
-	 * Subclasses must implement this method to resolve a message.
-	 * <p>Returns a MessageFormat instance rather than a message String,
-	 * to allow for appropriate caching of MessageFormats in subclasses.
-	 * <p><b>Subclasses are encouraged to provide optimized resolution
-	 * for messages without arguments, not involving MessageFormat.</b>
-	 * See the {@link #resolveCodeWithoutArguments} javadoc for details.
+	 * 子类必须实现此方法以解析消息。
+	 *
+	 * <p>返回 MessageFormat 实例而不是消息 String，以便在子类中对 MessageFormat 进行适当的缓存。
+	 *
+	 * <p><b>鼓励子类为不带参数的消息提供优化的解析，不涉及 MessageFormat。</b>有关详细信息，请参阅
+	 * {@link #resolveCodeWithoutArguments} 的 javadoc。
 	 * @param code the code of the message to resolve
 	 * @param locale the locale to resolve the code for
 	 * (subclasses are encouraged to support internationalization)

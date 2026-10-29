@@ -24,19 +24,17 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.util.Assert;
 
 /**
- * Adapter that takes a Spring {@link org.springframework.core.task.TaskExecutor}
- * and exposes a full {@code java.util.concurrent.ExecutorService} for it.
+ * 接收 Spring {@link org.springframework.core.task.TaskExecutor} 并为其暴露完整
+ * {@code java.util.concurrent.ExecutorService} 的适配器。
  *
- * <p>This is primarily for adapting to client components that communicate via the
- * {@code java.util.concurrent.ExecutorService} API. It can also be used as
- * common ground between a local Spring {@code TaskExecutor} backend and a
- * JNDI-located {@code ManagedExecutorService} in a Java EE 7 environment.
+ * <p>这主要用于适配通过 {@code java.util.concurrent.ExecutorService} API 通信的客户端组件。它还可
+ * 以作为本地 Spring {@code TaskExecutor} 后端与 Java EE 7 环境中通过 JNDI 定位的
+ * {@code ManagedExecutorService} 之间的共同基础。
  *
- * <p><b>NOTE:</b> This ExecutorService adapter does <em>not</em> support the
- * lifecycle methods in the {@code java.util.concurrent.ExecutorService} API
- * ("shutdown()" etc), similar to a server-wide {@code ManagedExecutorService}
- * in a Java EE 7 environment. The lifecycle is always up to the backend pool,
- * with this adapter acting as an access-only proxy for that target pool.
+ * <p><b>注意：</b>此 ExecutorService 适配器<em>不</em>支持
+ * {@code java.util.concurrent.ExecutorService} API 中的生命周期方法（“shutdown()”等），这类似于
+ * Java EE 7 环境中服务器范围的 {@code ManagedExecutorService}。生命周期始终由后端池管理，此适配器
+ * 仅作为该目标池的只访问代理。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -48,7 +46,7 @@ public class ExecutorServiceAdapter extends AbstractExecutorService {
 
 
 	/**
-	 * Create a new ExecutorServiceAdapter, using the given target executor.
+	 * 使用给定的目标执行器创建一个新的 ExecutorServiceAdapter。
 	 * @param taskExecutor the target executor to delegate to
 	 */
 	public ExecutorServiceAdapter(TaskExecutor taskExecutor) {

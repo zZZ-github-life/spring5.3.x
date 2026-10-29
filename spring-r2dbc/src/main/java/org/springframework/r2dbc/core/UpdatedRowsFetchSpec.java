@@ -19,7 +19,7 @@ package org.springframework.r2dbc.core;
 import reactor.core.publisher.Mono;
 
 /**
- * Contract for fetching the number of affected rows.
+ * 用于获取受影响行数的约定。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -27,7 +27,7 @@ import reactor.core.publisher.Mono;
 public interface UpdatedRowsFetchSpec {
 
 	/**
-	 * Get the number of updated rows.
+	 * 获取更新的行数。
 	 * @return a Mono emitting the number of updated rows
 	 */
 	Mono<Integer> rowsUpdated();

@@ -23,7 +23,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Represents a client-side reactive HTTP response.
+ * 表示客户端响应式 HTTP 响应。
  *
  * @author Arjen Poutsma
  * @author Brian Clozel
@@ -32,8 +32,8 @@ import org.springframework.util.ObjectUtils;
 public interface ClientHttpResponse extends ReactiveHttpInputMessage {
 
 	/**
-	 * Return an id that represents the underlying connection, if available,
-	 * or the request for the purpose of correlating log messages.
+	 * 返回表示底层连接的 id（如果可用），
+	 * 或返回请求，以便关联日志消息。
 	 * @since 5.3.5
 	 */
 	default String getId() {
@@ -41,7 +41,7 @@ public interface ClientHttpResponse extends ReactiveHttpInputMessage {
 	}
 
 	/**
-	 * Return the HTTP status code as an {@link HttpStatus} enum value.
+	 * 以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
 	 * @return the HTTP status as an HttpStatus enum value (never {@code null})
 	 * @throws IllegalArgumentException in case of an unknown HTTP status code
 	 * @since #getRawStatusCode()
@@ -50,8 +50,8 @@ public interface ClientHttpResponse extends ReactiveHttpInputMessage {
 	HttpStatus getStatusCode();
 
 	/**
-	 * Return the HTTP status code (potentially non-standard and not
-	 * resolvable through the {@link HttpStatus} enum) as an integer.
+	 * 以整数形式返回 HTTP 状态码（可能非标准且
+	 * 无法通过 {@link HttpStatus} 枚举解析）。
 	 * @return the HTTP status as an integer value
 	 * @since 5.0.6
 	 * @see #getStatusCode()
@@ -60,7 +60,7 @@ public interface ClientHttpResponse extends ReactiveHttpInputMessage {
 	int getRawStatusCode();
 
 	/**
-	 * Return a read-only map of response cookies received from the server.
+	 * 返回从服务器接收的响应 Cookie 的只读映射。
 	 */
 	MultiValueMap<String, ResponseCookie> getCookies();
 

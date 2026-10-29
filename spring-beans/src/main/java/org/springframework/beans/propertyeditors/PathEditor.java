@@ -30,16 +30,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.ResourceUtils;
 
 /**
- * Editor for {@code java.nio.file.Path}, to directly populate a Path
- * property instead of using a String property as bridge.
+ * 用于 {@code java.nio.file.Path} 的编辑器，可直接填充 Path 属性，而无需使用 String 属性作为桥接。
  *
- * <p>Based on {@link Paths#get(URI)}'s resolution algorithm, checking
- * registered NIO file system providers, including the default file system
- * for "file:..." paths. Also supports Spring-style URL notation: any fully
- * qualified standard URL and Spring's special "classpath:" pseudo-URL, as
- * well as Spring's context-specific relative file paths. As a fallback, a
- * path will be resolved in the file system via {@code Paths#get(String)}
- * if no existing context-relative resource could be found.
+ * <p>基于 {@link Paths#get(URI)} 的解析算法，检查已注册的 NIO 文件系统提供程序，包括针对
+ * "file:..." 路径的默认文件系统。还支持 Spring 风格的 URL 表示法：任何完全限定的标准 URL 以及
+ * Spring 特殊的 "classpath:" 伪 URL，还有 Spring 上下文相关的相对文件路径。作为后备，如果找不到已
+ * 存在的上下文相关资源，将通过 {@code Paths#get(String)} 在文件系统中解析路径。
  *
  * @author Juergen Hoeller
  * @since 4.3.2
@@ -56,14 +52,14 @@ public class PathEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new PathEditor, using the default ResourceEditor underneath.
+	 * 创建一个新的 PathEditor，底层使用默认的 ResourceEditor。
 	 */
 	public PathEditor() {
 		this.resourceEditor = new ResourceEditor();
 	}
 
 	/**
-	 * Create a new PathEditor, using the given ResourceEditor underneath.
+	 * 创建一个新的 PathEditor，底层使用给定的 ResourceEditor。
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public PathEditor(ResourceEditor resourceEditor) {

@@ -21,8 +21,8 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface used by {@link JCacheInterceptor}. Implementations know how to source
- * cache operation attributes from standard JSR-107 annotations.
+ * {@link JCacheInterceptor} 使用的接口。实现类知道如何从标准 JSR-107 注解中
+ * 获取缓存操作属性。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -31,8 +31,8 @@ import org.springframework.lang.Nullable;
 public interface JCacheOperationSource {
 
 	/**
-	 * Return the cache operations for this method, or {@code null}
-	 * if the method contains no <em>JSR-107</em> related metadata.
+	 * 返回此方法的缓存操作，如果方法不包含 <em>JSR-107</em> 相关元数据，
+	 * 则返回 {@code null}。
 	 * @param method the method to introspect
 	 * @param targetClass the target class (may be {@code null}, in which case
 	 * the declaring class of the method must be used)

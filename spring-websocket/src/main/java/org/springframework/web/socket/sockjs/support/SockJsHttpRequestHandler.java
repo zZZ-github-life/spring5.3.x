@@ -42,8 +42,8 @@ import org.springframework.web.socket.sockjs.SockJsException;
 import org.springframework.web.socket.sockjs.SockJsService;
 
 /**
- * An {@link HttpRequestHandler} that allows mapping a {@link SockJsService} to requests
- * in a Servlet container.
+ * 一个 {@link HttpRequestHandler}，允许将 {@link SockJsService} 映射到
+ * Servlet 容器中的请求。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -62,7 +62,7 @@ public class SockJsHttpRequestHandler
 
 
 	/**
-	 * Create a new SockJsHttpRequestHandler.
+	 * 创建一个新的 SockJsHttpRequestHandler。
 	 * @param sockJsService the SockJS service
 	 * @param webSocketHandler the websocket handler
 	 */
@@ -76,14 +76,14 @@ public class SockJsHttpRequestHandler
 
 
 	/**
-	 * Return the {@link SockJsService}.
+	 * 返回 {@link SockJsService}。
 	 */
 	public SockJsService getSockJsService() {
 		return this.sockJsService;
 	}
 
 	/**
-	 * Return the {@link WebSocketHandler}.
+	 * 返回 {@link WebSocketHandler}。
 	 */
 	public WebSocketHandler getWebSocketHandler() {
 		return this.webSocketHandler;

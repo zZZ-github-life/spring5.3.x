@@ -33,8 +33,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Implementation of the {@code DataBuffer} interface that wraps a Netty
- * {@link ByteBuf}. Typically constructed with {@link NettyDataBufferFactory}.
+ * 包装 Netty {@link ByteBuf} 的 {@code DataBuffer} 接口实现。通常通过
+ * {@link NettyDataBufferFactory} 构造。
  *
  * @author Arjen Poutsma
  * @author Brian Clozel
@@ -48,7 +48,7 @@ public class NettyDataBuffer implements PooledDataBuffer {
 
 
 	/**
-	 * Create a new {@code NettyDataBuffer} based on the given {@code ByteBuff}.
+	 * 基于给定的 {@code ByteBuff} 创建一个新的 {@code NettyDataBuffer}。
 	 * @param byteBuf the buffer to base this buffer on
 	 */
 	NettyDataBuffer(ByteBuf byteBuf, NettyDataBufferFactory dataBufferFactory) {
@@ -60,7 +60,7 @@ public class NettyDataBuffer implements PooledDataBuffer {
 
 
 	/**
-	 * Directly exposes the native {@code ByteBuf} that this buffer is based on.
+	 * 直接暴露此缓冲区所基于的原生 {@code ByteBuf}。
 	 * @return the wrapped byte buffer
 	 */
 	public ByteBuf getNativeBuffer() {
@@ -226,8 +226,7 @@ public class NettyDataBuffer implements PooledDataBuffer {
 	}
 
 	/**
-	 * Writes one or more Netty {@link ByteBuf ByteBufs} to this buffer,
-	 * starting at the current writing position.
+	 * 将一个或多个 Netty {@link ByteBuf ByteBufs} 写入此缓冲区，从当前写入位置开始。
 	 * @param byteBufs the buffers to write into this buffer
 	 * @return this buffer
 	 */

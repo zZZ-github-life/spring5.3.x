@@ -32,21 +32,11 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * Resolver for method arguments annotated with @{@link RequestParam} from URI
- * query string parameters.
+ * 用于解析来自 URI 查询字符串参数、带有 @{@link RequestParam} 注解的方法参数的解析器。
  *
- * <p>This resolver can also be created in default resolution mode in which
- * simple types (int, long, etc.) not annotated with @{@link RequestParam} are
- * also treated as request parameters with the parameter name derived from the
- * argument name.
+ * <p>此解析器也可以在默认解析模式下创建，此时未带 @{@link RequestParam} 注解的简单类型（int、long 等）也会被视为请求参数，参数名称从参数名派生。
  *
- * <p>If the method parameter type is {@link Map}, the name specified in the
- * annotation is used to resolve the request parameter String value. The value is
- * then converted to a {@link Map} via type conversion assuming a suitable
- * {@link Converter} has been registered. Or if a request parameter name is not
- * specified the {@link RequestParamMapMethodArgumentResolver} is used instead
- * to provide access to all request parameters in the form of a map.
- *
+ * <p>如果方法参数类型为 {@link Map}，则使用注解中指定的名称解析请求参数 String 值。然后假定已注册合适的 {@link Converter}，通过类型转换将该值转换为 {@link Map}。如果未指定请求参数名称，则改为使用 {@link RequestParamMapMethodArgumentResolver}，以映射形式提供对所有请求参数的访问。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see RequestParamMapMethodArgumentResolver
@@ -57,7 +47,7 @@ public class RequestParamMethodArgumentResolver extends AbstractNamedValueSyncAr
 
 
 	/**
-	 * Class constructor with a default resolution mode flag.
+	 * 带默认解析模式标志的类构造函数。
 	 * @param factory a bean factory used for resolving  ${...} placeholder
 	 * and #{...} SpEL expressions in default values, or {@code null} if default
 	 * values are not expected to contain expressions

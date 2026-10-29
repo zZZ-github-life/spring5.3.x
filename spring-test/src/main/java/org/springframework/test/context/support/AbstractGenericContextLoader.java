@@ -29,26 +29,14 @@ import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract, generic extension of {@link AbstractContextLoader} that loads a
- * {@link GenericApplicationContext}.
+ * 用于加载 {@link GenericApplicationContext} 的 {@link AbstractContextLoader} 的抽象通用扩展。
  *
  * <ul>
- * <li>If instances of concrete subclasses are invoked via the
- * {@link org.springframework.test.context.ContextLoader ContextLoader} SPI, the
- * context will be loaded from the <em>locations</em> provided to
- * {@link #loadContext(String...)}.</li>
- * <li>If instances of concrete subclasses are invoked via the
- * {@link org.springframework.test.context.SmartContextLoader SmartContextLoader}
- * SPI, the context will be loaded from the {@link MergedContextConfiguration}
- * provided to {@link #loadContext(MergedContextConfiguration)}. In such cases, a
- * {@code SmartContextLoader} will decide whether to load the context from
- * <em>locations</em> or <em>annotated classes</em>.</li>
+ * <li>如果通过 {@link org.springframework.test.context.ContextLoader ContextLoader} SPI 调用具体子类的实例，则将从传递给 {@link #loadContext(String...)} 的<em>位置</em>加载上下文。</li>
+ * <li>如果通过 {@link org.springframework.test.context.SmartContextLoader SmartContextLoader} SPI 调用具体子类的实例，则将从传递给 {@link #loadContext(MergedContextConfiguration)} 的 {@link MergedContextConfiguration} 加载上下文。在这种情况下，{@code SmartContextLoader} 将决定是从<em>位置</em>还是从<em>注解类</em>加载上下文。</li>
  * </ul>
  *
- * <p>Concrete subclasses must provide an appropriate implementation of
- * {@link #createBeanDefinitionReader createBeanDefinitionReader()},
- * potentially overriding {@link #loadBeanDefinitions loadBeanDefinitions()}
- * as well.
+ * <p>具体子类必须提供 {@link #createBeanDefinitionReader createBeanDefinitionReader()} 的适当实现，并且可能还需要重写 {@link #loadBeanDefinitions loadBeanDefinitions()}。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -63,38 +51,20 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 
 
 	/**
-	 * Load a Spring ApplicationContext from the supplied {@link MergedContextConfiguration}.
-	 * <p>Implementation details:
+	 * 从所提供的 {@link MergedContextConfiguration} 加载 Spring ApplicationContext。
+	 * <p>实现细节：
 	 * <ul>
-	 * <li>Calls {@link #validateMergedContextConfiguration(MergedContextConfiguration)}
-	 * to allow subclasses to validate the supplied configuration before proceeding.</li>
-	 * <li>Calls {@link #createContext()} to create a {@link GenericApplicationContext}
-	 * instance.</li>
-	 * <li>If the supplied {@code MergedContextConfiguration} references a
-	 * {@linkplain MergedContextConfiguration#getParent() parent configuration},
-	 * the corresponding {@link MergedContextConfiguration#getParentApplicationContext()
-	 * ApplicationContext} will be retrieved and
-	 * {@linkplain GenericApplicationContext#setParent(ApplicationContext) set as the parent}
-	 * for the context created by this method.</li>
-	 * <li>Calls {@link #prepareContext(GenericApplicationContext)} for backwards
-	 * compatibility with the {@link org.springframework.test.context.ContextLoader
-	 * ContextLoader} SPI.</li>
-	 * <li>Calls {@link #prepareContext(ConfigurableApplicationContext, MergedContextConfiguration)}
-	 * to allow for customizing the context before bean definitions are loaded.</li>
-	 * <li>Calls {@link #customizeBeanFactory(DefaultListableBeanFactory)} to allow for customizing the
-	 * context's {@code DefaultListableBeanFactory}.</li>
-	 * <li>Delegates to {@link #loadBeanDefinitions(GenericApplicationContext, MergedContextConfiguration)}
-	 * to populate the context from the locations or classes in the supplied
-	 * {@code MergedContextConfiguration}.</li>
-	 * <li>Delegates to {@link AnnotationConfigUtils} for
-	 * {@link AnnotationConfigUtils#registerAnnotationConfigProcessors registering}
-	 * annotation configuration processors.</li>
-	 * <li>Calls {@link #customizeContext(GenericApplicationContext)} to allow for customizing the context
-	 * before it is refreshed.</li>
-	 * <li>Calls {@link #customizeContext(ConfigurableApplicationContext, MergedContextConfiguration)} to
-	 * allow for customizing the context before it is refreshed.</li>
-	 * <li>{@link ConfigurableApplicationContext#refresh Refreshes} the
-	 * context and registers a JVM shutdown hook for it.</li>
+	 * <li>调用 {@link #validateMergedContextConfiguration(MergedContextConfiguration)} 以允许子类在继续之前验证所提供的配置。</li>
+	 * <li>调用 {@link #createContext()} 创建 {@link GenericApplicationContext} 实例。</li>
+	 * <li>如果所提供的 {@code MergedContextConfiguration} 引用了{@linkplain MergedContextConfiguration#getParent() 父配置}，则将获取相应的 {@link MergedContextConfiguration#getParentApplicationContext() ApplicationContext}，并将其{@linkplain GenericApplicationContext#setParent(ApplicationContext) 设置为父上下文}，作为此方法创建的上下文的父级。</li>
+	 * <li>调用 {@link #prepareContext(GenericApplicationContext)} 以向后兼容 {@link org.springframework.test.context.ContextLoader ContextLoader} SPI。</li>
+	 * <li>调用 {@link #prepareContext(ConfigurableApplicationContext, MergedContextConfiguration)} 以允许在加载 Bean 定义之前定制上下文。</li>
+	 * <li>调用 {@link #customizeBeanFactory(DefaultListableBeanFactory)} 以允许定制上下文的 {@code DefaultListableBeanFactory}。</li>
+	 * <li>委托给 {@link #loadBeanDefinitions(GenericApplicationContext, MergedContextConfiguration)}，以根据所提供的 {@code MergedContextConfiguration} 中的位置或类填充上下文。</li>
+	 * <li>委托给 {@link AnnotationConfigUtils} 来{@link AnnotationConfigUtils#registerAnnotationConfigProcessors 注册}注解配置处理器。</li>
+	 * <li>调用 {@link #customizeContext(GenericApplicationContext)} 以允许在刷新上下文之前定制上下文。</li>
+	 * <li>调用 {@link #customizeContext(ConfigurableApplicationContext, MergedContextConfiguration)} 以允许在刷新上下文之前定制上下文。</li>
+	 * <li>{@link ConfigurableApplicationContext#refresh 刷新}上下文并为其注册 JVM 关闭钩子。</li>
 	 * </ul>
 	 * @return a new application context
 	 * @since 3.1
@@ -131,10 +101,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Validate the supplied {@link MergedContextConfiguration} with respect to
-	 * what this context loader supports.
-	 * <p>The default implementation is a <em>no-op</em> but can be overridden by
-	 * subclasses as appropriate.
+	 * 针对此上下文加载器所支持的内容，验证所提供的 {@link MergedContextConfiguration}。
+	 * <p>默认实现是<em>无操作</em>，但子类可以视需要重写它。
 	 * @param mergedConfig the merged configuration to validate
 	 * @throws IllegalStateException if the supplied configuration is not valid
 	 * for this context loader
@@ -145,30 +113,18 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Load a Spring ApplicationContext from the supplied {@code locations}.
-	 * <p>Implementation details:
+	 * 从所提供的 {@code locations} 加载 Spring ApplicationContext。
+	 * <p>实现细节：
 	 * <ul>
-	 * <li>Calls {@link #createContext()} to create a {@link GenericApplicationContext}
-	 * instance.</li>
-	 * <li>Calls {@link #prepareContext(GenericApplicationContext)} to allow for customizing the context
-	 * before bean definitions are loaded.</li>
-	 * <li>Calls {@link #customizeBeanFactory(DefaultListableBeanFactory)} to allow for customizing the
-	 * context's {@code DefaultListableBeanFactory}.</li>
-	 * <li>Delegates to {@link #createBeanDefinitionReader(GenericApplicationContext)} to create a
-	 * {@link BeanDefinitionReader} which is then used to populate the context
-	 * from the specified locations.</li>
-	 * <li>Delegates to {@link AnnotationConfigUtils} for
-	 * {@link AnnotationConfigUtils#registerAnnotationConfigProcessors registering}
-	 * annotation configuration processors.</li>
-	 * <li>Calls {@link #customizeContext(GenericApplicationContext)} to allow for customizing the context
-	 * before it is refreshed.</li>
-	 * <li>{@link ConfigurableApplicationContext#refresh Refreshes} the
-	 * context and registers a JVM shutdown hook for it.</li>
+	 * <li>调用 {@link #createContext()} 创建 {@link GenericApplicationContext} 实例。</li>
+	 * <li>调用 {@link #prepareContext(GenericApplicationContext)} 以允许在加载 Bean 定义之前定制上下文。</li>
+	 * <li>调用 {@link #customizeBeanFactory(DefaultListableBeanFactory)} 以允许定制上下文的 {@code DefaultListableBeanFactory}。</li>
+	 * <li>委托给 {@link #createBeanDefinitionReader(GenericApplicationContext)} 创建 {@link BeanDefinitionReader}，然后使用它从指定的位置填充上下文。</li>
+	 * <li>委托给 {@link AnnotationConfigUtils} 来{@link AnnotationConfigUtils#registerAnnotationConfigProcessors 注册}注解配置处理器。</li>
+	 * <li>调用 {@link #customizeContext(GenericApplicationContext)} 以允许在刷新上下文之前定制上下文。</li>
+	 * <li>{@link ConfigurableApplicationContext#refresh 刷新}上下文并为其注册 JVM 关闭钩子。</li>
 	 * </ul>
-	 * <p><b>Note</b>: this method does not provide a means to set active bean definition
-	 * profiles for the loaded context. See {@link #loadContext(MergedContextConfiguration)}
-	 * and {@link AbstractContextLoader#prepareContext(ConfigurableApplicationContext, MergedContextConfiguration)}
-	 * for an alternative.
+	 * <p><b>注意</b>：此方法不提供为所加载的上下文设置活动 Bean 定义配置文件的手段。有关替代方案，请参见 {@link #loadContext(MergedContextConfiguration)} 和 {@link AbstractContextLoader#prepareContext(ConfigurableApplicationContext, MergedContextConfiguration)}。
 	 * @return a new application context
 	 * @since 2.5
 	 * @see org.springframework.test.context.ContextLoader#loadContext
@@ -197,13 +153,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Factory method for creating the {@link GenericApplicationContext} used by
-	 * this {@code ContextLoader}.
-	 * <p>The default implementation creates a {@code GenericApplicationContext}
-	 * using the default constructor. This method may be overridden &mdash; for
-	 * example, to use a custom context subclass or to create a
-	 * {@code GenericApplicationContext} with a custom
-	 * {@link DefaultListableBeanFactory} implementation.
+	 * 创建由此 {@code ContextLoader} 使用的 {@link GenericApplicationContext} 的工厂方法。
+	 * <p>默认实现使用默认构造器创建 {@code GenericApplicationContext}。此方法可以被重写 &mdash; 例如，用于使用自定义上下文子类，或创建带有自定义 {@link DefaultListableBeanFactory} 实现的 {@code GenericApplicationContext}。
 	 * @return a newly instantiated {@code GenericApplicationContext}
 	 * @since 5.2.9
 	 */
@@ -212,10 +163,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Prepare the {@link GenericApplicationContext} created by this {@code ContextLoader}.
-	 * Called <i>before</i> bean definitions are read.
-	 * <p>The default implementation is empty. Can be overridden in subclasses to
-	 * customize {@code GenericApplicationContext}'s standard settings.
+	 * 准备由此 {@code ContextLoader} 创建的 {@link GenericApplicationContext}。在读取 Bean 定义<i>之前</i>调用。
+	 * <p>默认实现为空。可在子类中重写，以定制 {@code GenericApplicationContext} 的标准设置。
 	 * @param context the context that should be prepared
 	 * @since 2.5
 	 * @see #loadContext(MergedContextConfiguration)
@@ -229,10 +178,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Customize the internal bean factory of the ApplicationContext created by
-	 * this {@code ContextLoader}.
-	 * <p>The default implementation is empty but can be overridden in subclasses
-	 * to customize {@code DefaultListableBeanFactory}'s standard settings.
+	 * 定制由此 {@code ContextLoader} 创建的 ApplicationContext 的内部 Bean 工厂。
+	 * <p>默认实现为空，但可在子类中重写，以定制 {@code DefaultListableBeanFactory} 的标准设置。
 	 * @param beanFactory the bean factory created by this {@code ContextLoader}
 	 * @since 2.5
 	 * @see #loadContext(MergedContextConfiguration)
@@ -246,17 +193,9 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Load bean definitions into the supplied {@link GenericApplicationContext context}
-	 * from the locations or classes in the supplied {@code MergedContextConfiguration}.
-	 * <p>The default implementation delegates to the {@link BeanDefinitionReader}
-	 * returned by {@link #createBeanDefinitionReader(GenericApplicationContext)} to
-	 * {@link BeanDefinitionReader#loadBeanDefinitions(String) load} the
-	 * bean definitions.
-	 * <p>Subclasses must provide an appropriate implementation of
-	 * {@link #createBeanDefinitionReader(GenericApplicationContext)}. Alternatively subclasses
-	 * may provide a <em>no-op</em> implementation of {@code createBeanDefinitionReader()}
-	 * and override this method to provide a custom strategy for loading or
-	 * registering bean definitions.
+	 * 从所提供的 {@code MergedContextConfiguration} 中的位置或类，将 Bean 定义加载到所提供的 {@link GenericApplicationContext context} 中。
+	 * <p>默认实现委托给由 {@link #createBeanDefinitionReader(GenericApplicationContext)} 返回的 {@link BeanDefinitionReader}，以{@link BeanDefinitionReader#loadBeanDefinitions(String) 加载} Bean 定义。
+	 * <p>子类必须提供 {@link #createBeanDefinitionReader(GenericApplicationContext)} 的适当实现。或者，子类可以提供 {@code createBeanDefinitionReader()} 的<em>无操作</em>实现，并重写此方法以提供加载或注册 Bean 定义的自定义策略。
 	 * @param context the context into which the bean definitions should be loaded
 	 * @param mergedConfig the merged context configuration
 	 * @since 3.1
@@ -267,8 +206,7 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	}
 
 	/**
-	 * Factory method for creating a new {@link BeanDefinitionReader} for loading
-	 * bean definitions into the supplied {@link GenericApplicationContext context}.
+	 * 为将 Bean 定义加载到所提供的 {@link GenericApplicationContext context} 中而创建新的 {@link BeanDefinitionReader} 的工厂方法。
 	 * @param context the context for which the {@code BeanDefinitionReader}
 	 * should be created
 	 * @return a {@code BeanDefinitionReader} for the supplied context
@@ -280,11 +218,8 @@ public abstract class AbstractGenericContextLoader extends AbstractContextLoader
 	protected abstract BeanDefinitionReader createBeanDefinitionReader(GenericApplicationContext context);
 
 	/**
-	 * Customize the {@link GenericApplicationContext} created by this
-	 * {@code ContextLoader} <i>after</i> bean definitions have been
-	 * loaded into the context but <i>before</i> the context is refreshed.
-	 * <p>The default implementation is empty but can be overridden in subclasses
-	 * to customize the application context.
+	 * 在 Bean 定义已加载到上下文<i>之后</i>但上下文刷新<i>之前</i>，定制由该 {@code ContextLoader} 创建的 {@link GenericApplicationContext}。
+	 * <p>默认实现为空，但可在子类中重写，以定制应用上下文。
 	 * @param context the newly created application context
 	 * @since 2.5
 	 * @see #loadContext(MergedContextConfiguration)

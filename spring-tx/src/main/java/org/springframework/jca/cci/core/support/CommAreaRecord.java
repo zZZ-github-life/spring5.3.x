@@ -26,7 +26,7 @@ import javax.resource.cci.Streamable;
 import org.springframework.util.FileCopyUtils;
 
 /**
- * CCI Record implementation for a COMMAREA, holding a byte array.
+ * COMMAREA 的 CCI Record 实现，持有字节数组。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -47,14 +47,14 @@ public class CommAreaRecord implements Record, Streamable {
 
 
 	/**
-	 * Create a new CommAreaRecord.
+	 * 创建新的 CommAreaRecord。
 	 * @see #read(java.io.InputStream)
 	 */
 	public CommAreaRecord() {
 	}
 
 	/**
-	 * Create a new CommAreaRecord.
+	 * 创建新的 CommAreaRecord。
 	 * @param bytes the bytes to fill the record with
 	 */
 	public CommAreaRecord(byte[] bytes) {

@@ -31,21 +31,15 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Extension of {@link HttpEntity} that adds an {@link HttpStatus} status code.
- * Used in {@code RestTemplate} as well as in {@code @Controller} methods.
- *
- * <p>In {@code RestTemplate}, this class is returned by
- * {@link org.springframework.web.client.RestTemplate#getForEntity getForEntity()} and
- * {@link org.springframework.web.client.RestTemplate#exchange exchange()}:
+ * 扩展 {@link HttpEntity}，增加了 {@link HttpStatus} 状态码。用于 {@code RestTemplate} 以及 {@code @Controller} 方法中。
+ * <p>在 {@code RestTemplate} 中，此类由 {@link org.springframework.web.client.RestTemplate#getForEntity getForEntity()} 和 {@link org.springframework.web.client.RestTemplate#exchange exchange()} 返回：
  * <pre class="code">
  * ResponseEntity&lt;String&gt; entity = template.getForEntity("https://example.com", String.class);
  * String body = entity.getBody();
  * MediaType contentType = entity.getHeaders().getContentType();
  * HttpStatus statusCode = entity.getStatusCode();
  * </pre>
- *
- * <p>This can also be used in Spring MVC as the return value from an
- * {@code @Controller} method:
+ * <p>也可在 Spring MVC 中用作 {@code @Controller} 方法的返回值：
  * <pre class="code">
  * &#64;RequestMapping("/handle")
  * public ResponseEntity&lt;String&gt; handle() {
@@ -57,7 +51,7 @@ import org.springframework.util.ObjectUtils;
  * }
  * </pre>
  *
- * Or, by using a builder accessible via static methods:
+ * 或者，使用可通过静态方法访问的构建器：
  * <pre class="code">
  * &#64;RequestMapping("/handle")
  * public ResponseEntity&lt;String&gt; handle() {
@@ -82,7 +76,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Create a {@code ResponseEntity} with a status code only.
+	 * 创建一个仅包含状态码的 {@code ResponseEntity}。
 	 * @param status the status code
 	 */
 	public ResponseEntity(HttpStatus status) {
@@ -90,7 +84,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a {@code ResponseEntity} with a body and status code.
+	 * 创建一个包含正文和状态码的 {@code ResponseEntity}。
 	 * @param body the entity body
 	 * @param status the status code
 	 */
@@ -99,7 +93,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a {@code ResponseEntity} with headers and a status code.
+	 * 创建一个包含头和状态码的 {@code ResponseEntity}。
 	 * @param headers the entity headers
 	 * @param status the status code
 	 */
@@ -108,7 +102,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a {@code ResponseEntity} with a body, headers, and a status code.
+	 * 创建一个包含正文、头和状态码的 {@code ResponseEntity}。
 	 * @param body the entity body
 	 * @param headers the entity headers
 	 * @param status the status code
@@ -118,7 +112,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a {@code ResponseEntity} with a body, headers, and a raw status code.
+	 * 创建一个包含正文、头和原始状态码的 {@code ResponseEntity}。
 	 * @param body the entity body
 	 * @param headers the entity headers
 	 * @param rawStatus the status code value
@@ -129,7 +123,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Private constructor.
+	 * 私有构造函数。
 	 */
 	private ResponseEntity(@Nullable T body, @Nullable MultiValueMap<String, String> headers, Object status) {
 		super(body, headers);
@@ -139,7 +133,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Return the HTTP status code of the response.
+	 * 返回响应的 HTTP 状态码。
 	 * @return the HTTP status as an HttpStatus enum entry
 	 */
 	public HttpStatus getStatusCode() {
@@ -152,7 +146,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Return the HTTP status code of the response.
+	 * 返回响应的 HTTP 状态码。
 	 * @return the HTTP status as an int value
 	 * @since 4.3
 	 */
@@ -207,7 +201,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	// Static builder methods
 
 	/**
-	 * Create a builder with the given status.
+	 * 使用给定状态创建一个构建器。
 	 * @param status the response status
 	 * @return the created builder
 	 * @since 4.1
@@ -218,7 +212,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with the given status.
+	 * 使用给定状态创建一个构建器。
 	 * @param status the response status
 	 * @return the created builder
 	 * @since 4.1
@@ -228,7 +222,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with the status set to {@linkplain HttpStatus#OK OK}.
+	 * 创建一个状态设置为 {@linkplain HttpStatus#OK OK} 的构建器。
 	 * @return the created builder
 	 * @since 4.1
 	 */
@@ -237,8 +231,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * A shortcut for creating a {@code ResponseEntity} with the given body
-	 * and the status set to {@linkplain HttpStatus#OK OK}.
+	 * 创建具有给定正文且状态设置为 {@linkplain HttpStatus#OK OK} 的 {@code ResponseEntity} 的快捷方式。
 	 * @param body the body of the response entity (possibly empty)
 	 * @return the created {@code ResponseEntity}
 	 * @since 4.1
@@ -248,10 +241,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * A shortcut for creating a {@code ResponseEntity} with the given body
-	 * and the {@linkplain HttpStatus#OK OK} status, or an empty body and a
-	 * {@linkplain HttpStatus#NOT_FOUND NOT FOUND} status in case of an
-	 * {@linkplain Optional#empty()} parameter.
+	 * 创建具有给定正文和 {@linkplain HttpStatus#OK OK} 状态的 {@code ResponseEntity} 的快捷方式；如果参数为 {@linkplain Optional#empty()}，则创建空正文和 {@linkplain HttpStatus#NOT_FOUND NOT FOUND} 状态。
 	 * @return the created {@code ResponseEntity}
 	 * @since 5.1
 	 */
@@ -261,8 +251,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a new builder with a {@linkplain HttpStatus#CREATED CREATED} status
-	 * and a location header set to the given URI.
+	 * 创建一个新构建器，其状态为 {@linkplain HttpStatus#CREATED CREATED}，并将位置头设置为给定 URI。
 	 * @param location the location URI
 	 * @return the created builder
 	 * @since 4.1
@@ -272,7 +261,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with an {@linkplain HttpStatus#ACCEPTED ACCEPTED} status.
+	 * 创建具有 {@linkplain HttpStatus#ACCEPTED ACCEPTED} 状态的构建器。
 	 * @return the created builder
 	 * @since 4.1
 	 */
@@ -281,7 +270,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with a {@linkplain HttpStatus#NO_CONTENT NO_CONTENT} status.
+	 * 创建具有 {@linkplain HttpStatus#NO_CONTENT NO_CONTENT} 状态的构建器。
 	 * @return the created builder
 	 * @since 4.1
 	 */
@@ -290,7 +279,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with a {@linkplain HttpStatus#BAD_REQUEST BAD_REQUEST} status.
+	 * 创建具有 {@linkplain HttpStatus#BAD_REQUEST BAD_REQUEST} 状态的构建器。
 	 * @return the created builder
 	 * @since 4.1
 	 */
@@ -299,7 +288,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with a {@linkplain HttpStatus#NOT_FOUND NOT_FOUND} status.
+	 * 创建具有 {@linkplain HttpStatus#NOT_FOUND NOT_FOUND} 状态的构建器。
 	 * @return the created builder
 	 * @since 4.1
 	 */
@@ -308,8 +297,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with an
-	 * {@linkplain HttpStatus#UNPROCESSABLE_ENTITY UNPROCESSABLE_ENTITY} status.
+	 * 创建具有 {@linkplain HttpStatus#UNPROCESSABLE_ENTITY UNPROCESSABLE_ENTITY} 状态的构建器。
 	 * @return the created builder
 	 * @since 4.1.3
 	 */
@@ -318,8 +306,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 	}
 
 	/**
-	 * Create a builder with an
-	 * {@linkplain HttpStatus#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR} status.
+	 * 创建具有 {@linkplain HttpStatus#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR} 状态的构建器。
 	 * @return the created builder
 	 * @since 5.3.8
 	 */
@@ -329,14 +316,14 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Defines a builder that adds headers to the response entity.
+	 * 定义向响应实体添加头的构建器。
 	 * @since 4.1
 	 * @param <B> the builder subclass
 	 */
 	public interface HeadersBuilder<B extends HeadersBuilder<B>> {
 
 		/**
-		 * Add the given, single header value under the given name.
+		 * 在给定名称下添加给定的单个头值。
 		 * @param headerName the header name
 		 * @param headerValues the header value(s)
 		 * @return this builder
@@ -345,7 +332,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B header(String headerName, String... headerValues);
 
 		/**
-		 * Copy the given headers into the entity's headers map.
+		 * 将给定的头复制到实体的头映射中。
 		 * @param headers the existing HttpHeaders to copy from
 		 * @return this builder
 		 * @since 4.1.2
@@ -354,11 +341,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B headers(@Nullable HttpHeaders headers);
 
 		/**
-		 * Manipulate this entity's headers with the given consumer. The
-		 * headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定的消费者操作此实体的头。提供给消费者的头是“实时”的，因此消费者可以使用它{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 移除}值，或使用任何其他 {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 * @since 5.2
@@ -366,8 +349,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Set the set of allowed {@link HttpMethod HTTP methods}, as specified
-		 * by the {@code Allow} header.
+		 * 设置允许的 {@link HttpMethod HTTP methods} 集合，由 {@code Allow} 头指定。
 		 * @param allowedMethods the allowed methods
 		 * @return this builder
 		 * @see HttpHeaders#setAllow(Set)
@@ -375,7 +357,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B allow(HttpMethod... allowedMethods);
 
 		/**
-		 * Set the entity tag of the body, as specified by the {@code ETag} header.
+		 * 设置正文的实体标签，由 {@code ETag} 头指定。
 		 * @param etag the new entity tag
 		 * @return this builder
 		 * @see HttpHeaders#setETag(String)
@@ -383,8 +365,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B eTag(String etag);
 
 		/**
-		 * Set the time the resource was last changed, as specified by the
-		 * {@code Last-Modified} header.
+		 * 设置资源最后更改的时间，由 {@code Last-Modified} 头指定。
 		 * @param lastModified the last modified date
 		 * @return this builder
 		 * @since 5.1.4
@@ -393,8 +374,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B lastModified(ZonedDateTime lastModified);
 
 		/**
-		 * Set the time the resource was last changed, as specified by the
-		 * {@code Last-Modified} header.
+		 * 设置资源最后更改的时间，由 {@code Last-Modified} 头指定。
 		 * @param lastModified the last modified date
 		 * @return this builder
 		 * @since 5.1.4
@@ -403,10 +383,8 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B lastModified(Instant lastModified);
 
 		/**
-		 * Set the time the resource was last changed, as specified by the
-		 * {@code Last-Modified} header.
-		 * <p>The date should be specified as the number of milliseconds since
-		 * January 1, 1970 GMT.
+		 * 设置资源最后更改的时间，由 {@code Last-Modified} 头指定。
+		 * <p>日期应指定为自格林尼治标准时间 1970 年 1 月 1 日以来的毫秒数。
 		 * @param lastModified the last modified date
 		 * @return this builder
 		 * @see HttpHeaders#setLastModified(long)
@@ -414,7 +392,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B lastModified(long lastModified);
 
 		/**
-		 * Set the location of a resource, as specified by the {@code Location} header.
+		 * 设置资源的位置，由 {@code Location} 头指定。
 		 * @param location the location
 		 * @return this builder
 		 * @see HttpHeaders#setLocation(URI)
@@ -422,10 +400,8 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B location(URI location);
 
 		/**
-		 * Set the caching directives for the resource, as specified by the HTTP 1.1
-		 * {@code Cache-Control} header.
-		 * <p>A {@code CacheControl} instance can be built like
-		 * {@code CacheControl.maxAge(3600).cachePublic().noTransform()}.
+		 * 设置资源的缓存指令，由 HTTP 1.1 的 {@code Cache-Control} 头指定。
+		 * <p>可以像 {@code CacheControl.maxAge(3600).cachePublic().noTransform()} 这样构建 {@code CacheControl} 实例。
 		 * @param cacheControl a builder for cache-related HTTP response headers
 		 * @return this builder
 		 * @since 4.2
@@ -434,18 +410,14 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		B cacheControl(CacheControl cacheControl);
 
 		/**
-		 * Configure one or more request header names (e.g. "Accept-Language") to
-		 * add to the "Vary" response header to inform clients that the response is
-		 * subject to content negotiation and variances based on the value of the
-		 * given request headers. The configured request header names are added only
-		 * if not already present in the response "Vary" header.
+		 * 配置一个或多个请求头名称（例如 "Accept-Language"），将其添加到 "Vary" 响应头中，以告知客户端响应会根据这些请求头的值进行内容协商并产生差异。仅当响应 "Vary" 头中尚不存在这些请求头名称时，才会添加它们。
 		 * @param requestHeaders request header names
 		 * @since 4.3
 		 */
 		B varyBy(String... requestHeaders);
 
 		/**
-		 * Build the response entity with no body.
+		 * 构建不带正文的响应实体。
 		 * @return the response entity
 		 * @see BodyBuilder#body(Object)
 		 */
@@ -454,14 +426,13 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 
 
 	/**
-	 * Defines a builder that adds a body to the response entity.
+	 * 定义向响应实体添加正文的构建器。
 	 * @since 4.1
 	 */
 	public interface BodyBuilder extends HeadersBuilder<BodyBuilder> {
 
 		/**
-		 * Set the length of the body in bytes, as specified by the
-		 * {@code Content-Length} header.
+		 * 设置正文的字节长度，由 {@code Content-Length} 头指定。
 		 * @param contentLength the content length
 		 * @return this builder
 		 * @see HttpHeaders#setContentLength(long)
@@ -469,8 +440,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		BodyBuilder contentLength(long contentLength);
 
 		/**
-		 * Set the {@linkplain MediaType media type} of the body, as specified by the
-		 * {@code Content-Type} header.
+		 * 设置正文的 {@linkplain MediaType media type}，由 {@code Content-Type} 头指定。
 		 * @param contentType the content type
 		 * @return this builder
 		 * @see HttpHeaders#setContentType(MediaType)
@@ -478,7 +448,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		BodyBuilder contentType(MediaType contentType);
 
 		/**
-		 * Set the body of the response entity and returns it.
+		 * 设置响应实体的正文并返回它。
 		 * @param <T> the type of the body
 		 * @param body the body of the response entity
 		 * @return the built response entity

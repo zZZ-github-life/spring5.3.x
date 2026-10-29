@@ -24,9 +24,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.util.Assert;
 
 /**
- * {@code MergedTestPropertySources} encapsulates the <em>merged</em> property
- * sources declared on a test class and all of its superclasses and enclosing
- * classes via {@link TestPropertySource @TestPropertySource}.
+ * {@code MergedTestPropertySources} 封装了在测试类及其所有父类和外围类上通过 {@link TestPropertySource @TestPropertySource} 声明的<em>合并</em>属性源。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -42,7 +40,7 @@ class MergedTestPropertySources {
 
 
 	/**
-	 * Factory for an <em>empty</em> {@code MergedTestPropertySources} instance.
+	 * 用于创建<em>空</em> {@code MergedTestPropertySources} 实例的工厂。
 	 */
 	static MergedTestPropertySources empty() {
 		return empty;
@@ -50,8 +48,7 @@ class MergedTestPropertySources {
 
 
 	/**
-	 * Create a {@code MergedTestPropertySources} instance with the supplied
-	 * {@code locations} and {@code properties}.
+	 * 使用所提供的 {@code locations} 和 {@code properties} 创建 {@code MergedTestPropertySources} 实例。
 	 * @param locations the resource locations of properties files; may be
 	 * empty but never {@code null}
 	 * @param properties the properties in the form of {@code key=value} pairs;
@@ -65,7 +62,7 @@ class MergedTestPropertySources {
 	}
 
 	/**
-	 * Get the resource locations of properties files.
+	 * 获取属性文件的资源位置。
 	 * @see TestPropertySource#locations()
 	 */
 	String[] getLocations() {
@@ -73,7 +70,7 @@ class MergedTestPropertySources {
 	}
 
 	/**
-	 * Get the properties in the form of <em>key-value</em> pairs.
+	 * 获取<em>键值</em>对形式的属性。
 	 * @see TestPropertySource#properties()
 	 */
 	String[] getProperties() {
@@ -81,9 +78,7 @@ class MergedTestPropertySources {
 	}
 
 	/**
-	 * Determine if the supplied object is equal to this {@code MergedTestPropertySources}
-	 * instance by comparing both object's {@linkplain #getLocations() locations}
-	 * and {@linkplain #getProperties() properties}.
+	 * 通过比较两个对象的{@linkplain #getLocations() 位置}和{@linkplain #getProperties() 属性}，确定所提供的对象是否等于此 {@code MergedTestPropertySources} 实例。
 	 * @since 5.3
 	 */
 	@Override
@@ -107,8 +102,7 @@ class MergedTestPropertySources {
 	}
 
 	/**
-	 * Generate a unique hash code for all properties of this
-	 * {@code MergedTestPropertySources} instance.
+	 * 为此 {@code MergedTestPropertySources} 实例的所有属性生成唯一的哈希码。
 	 * @since 5.3
 	 */
 	@Override
@@ -119,8 +113,7 @@ class MergedTestPropertySources {
 	}
 
 	/**
-	 * Provide a String representation of this {@code MergedTestPropertySources}
-	 * instance.
+	 * 提供此 {@code MergedTestPropertySources} 实例的字符串表示。
 	 * @since 5.3
 	 */
 	@Override

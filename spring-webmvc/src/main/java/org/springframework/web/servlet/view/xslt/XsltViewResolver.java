@@ -26,9 +26,8 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
- * {@link org.springframework.web.servlet.ViewResolver} implementation that
- * resolves instances of {@link XsltView} by translating the supplied view name
- * into the URL of the XSLT stylesheet.
+ * {@link org.springframework.web.servlet.ViewResolver} 实现，它通过将提供的视图名称
+ * 转换为 XSLT 样式表的 URL 来解析 {@link XsltView} 实例。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -54,7 +53,7 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 
 
 	/**
-	 * This resolver requires {@link XsltView}.
+	 * 此解析器要求使用 {@link XsltView}。
 	 */
 	public XsltViewResolver() {
 		setViewClass(requiredViewClass());
@@ -62,32 +61,32 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 
 
 	/**
-	 * Set the name of the model attribute that represents the XSLT Source.
-	 * If not specified, the model map will be searched for a matching value type.
-	 * <p>The following source types are supported out of the box:
-	 * {@link javax.xml.transform.Source}, {@link org.w3c.dom.Document},
-	 * {@link org.w3c.dom.Node}, {@link java.io.Reader}, {@link java.io.InputStream}
-	 * and {@link org.springframework.core.io.Resource}.
+	 * 设置表示 XSLT Source 的 model 属性的名称。
+	 * 如果未指定，将在 model map 中搜索匹配的值类型。
+	 * <p>开箱即支持以下 source 类型：
+	 * {@link javax.xml.transform.Source}、{@link org.w3c.dom.Document}、
+	 * {@link org.w3c.dom.Node}、{@link java.io.Reader}、{@link java.io.InputStream}
+	 * 和 {@link org.springframework.core.io.Resource}。
 	 */
 	public void setSourceKey(String sourceKey) {
 		this.sourceKey = sourceKey;
 	}
 
 	/**
-	 * Set the URIResolver used in the transform.
-	 * <p>The URIResolver handles calls to the XSLT {@code document()} function.
+	 * 设置转换中使用的 URIResolver。
+	 * <p>URIResolver 负责处理对 XSLT {@code document()} 函数的调用。
 	 */
 	public void setUriResolver(URIResolver uriResolver) {
 		this.uriResolver = uriResolver;
 	}
 
 	/**
-	 * Set an implementation of the {@link javax.xml.transform.ErrorListener}
-	 * interface for custom handling of transformation errors and warnings.
-	 * <p>If not set, a default
-	 * {@link org.springframework.util.xml.SimpleTransformErrorListener} is
-	 * used that simply logs warnings using the logger instance of the view class,
-	 * and rethrows errors to discontinue the XML transformation.
+	 * 设置 {@link javax.xml.transform.ErrorListener} 接口的实现，
+	 * 用于自定义处理转换错误和警告。
+	 * <p>如果未设置，将使用默认的
+	 * {@link org.springframework.util.xml.SimpleTransformErrorListener}，
+	 * 它仅使用视图类的 logger 实例记录警告，
+	 * 并重新抛出错误以中止 XML 转换。
 	 * @see org.springframework.util.xml.SimpleTransformErrorListener
 	 */
 	public void setErrorListener(ErrorListener errorListener) {
@@ -95,10 +94,9 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Set whether the XSLT transformer may add additional whitespace when
-	 * outputting the result tree.
-	 * <p>Default is {@code true} (on); set this to {@code false} (off)
-	 * to not specify an "indent" key, leaving the choice up to the stylesheet.
+	 * 设置 XSLT 转换器在输出结果树时是否可以添加额外的空白。
+	 * <p>默认值为 {@code true}（开启）；将其设置为 {@code false}（关闭）
+	 * 将不指定 "indent" 键，由样式表自行决定。
 	 * @see javax.xml.transform.OutputKeys#INDENT
 	 */
 	public void setIndent(boolean indent) {
@@ -106,9 +104,8 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Set arbitrary transformer output properties to be applied to the stylesheet.
-	 * <p>Any values specified here will override defaults that this view sets
-	 * programmatically.
+	 * 设置要应用于样式表的任意转换器输出属性。
+	 * <p>此处指定的任何值都将覆盖此视图以编程方式设置的默认值。
 	 * @see javax.xml.transform.Transformer#setOutputProperty
 	 */
 	public void setOutputProperties(Properties outputProperties) {
@@ -116,9 +113,9 @@ public class XsltViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Turn on/off the caching of the XSLT templates.
-	 * <p>The default value is "true". Only set this to "false" in development,
-	 * where caching does not seriously impact performance.
+	 * 开启/关闭 XSLT 模板的缓存。
+	 * <p>默认值为 "true"。仅在开发环境中将其设置为 "false"，
+	 * 因为在开发环境中缓存不会严重影响性能。
 	 */
 	public void setCacheTemplates(boolean cacheTemplates) {
 		this.cacheTemplates = cacheTemplates;

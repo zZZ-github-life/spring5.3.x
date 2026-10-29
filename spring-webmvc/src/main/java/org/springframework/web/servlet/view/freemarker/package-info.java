@@ -1,8 +1,7 @@
 /**
- * Support classes for the integration of
- * <a href="https://freemarker.apache.org/">FreeMarker</a>
- * as Spring web view technology.
- * Contains a View implementation for FreeMarker templates.
+ * 用于将 <a href="https://freemarker.apache.org/">FreeMarker</a>
+ * 集成为 Spring Web 视图技术的支持类。
+ * 包含 FreeMarker 模板的 View 实现。
  */
 @NonNullApi
 @NonNullFields

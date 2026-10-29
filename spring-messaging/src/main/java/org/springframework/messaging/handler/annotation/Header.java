@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation which indicates that a method parameter should be bound to a message header.
+ * 指示方法参数应绑定到消息头的注解。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -37,30 +37,29 @@ import org.springframework.core.annotation.AliasFor;
 public @interface Header {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the request header to bind to.
+	 * 要绑定的请求头名称。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Whether the header is required.
-	 * <p>Default is {@code true}, leading to an exception if the header is
-	 * missing. Switch this to {@code false} if you prefer a {@code null}
-	 * value in case of a header missing.
+	 * 头是否为必需。
+	 * <p>默认值为 {@code true}，当头缺失时会引发异常。
+	 * 如果希望在头缺失时使用 {@code null} 值，请将其设置为 {@code false}。
 	 * @see #defaultValue
 	 */
 	boolean required() default true;
 
 	/**
-	 * The default value to use as a fallback.
-	 * <p>Supplying a default value implicitly sets {@link #required} to {@code false}.
+	 * 用作回退的默认值。
+	 * <p>提供默认值会隐式地将 {@link #required} 设置为 {@code false}。
 	 */
 	String defaultValue() default ValueConstants.DEFAULT_NONE;
 

@@ -17,13 +17,12 @@
 package org.springframework.transaction;
 
 /**
- * Representation of an ongoing reactive transaction.
- * This is currently a marker interface extending {@link TransactionExecution}
- * but may acquire further methods in a future revision.
+ * 表示一个正在进行的响应式事务。
+ * 目前这是一个扩展 {@link TransactionExecution} 的标记接口，
+ * 但在未来的版本中可能会增加更多方法。
  *
- * <p>Transactional code can use this to retrieve status information,
- * and to programmatically request a rollback (instead of throwing
- * an exception that causes an implicit rollback).
+ * <p>事务代码可以使用它来获取状态信息，
+ * 并以编程方式请求回滚（而不是抛出导致隐式回滚的异常）。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller

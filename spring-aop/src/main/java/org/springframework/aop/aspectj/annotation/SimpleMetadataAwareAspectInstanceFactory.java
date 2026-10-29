@@ -21,9 +21,8 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.OrderUtils;
 
 /**
- * Implementation of {@link MetadataAwareAspectInstanceFactory} that
- * creates a new instance of the specified aspect class for every
- * {@link #getAspectInstance()} call.
+ * {@link MetadataAwareAspectInstanceFactory} 的实现，每次调用 {@link #getAspectInstance()} 时都会
+ * 创建指定切面类的新实例。
  *
  * @author Juergen Hoeller
  * @since 2.0.4
@@ -35,7 +34,7 @@ public class SimpleMetadataAwareAspectInstanceFactory extends SimpleAspectInstan
 
 
 	/**
-	 * Create a new SimpleMetadataAwareAspectInstanceFactory for the given aspect class.
+	 * 为给定的切面类创建一个新的 SimpleMetadataAwareAspectInstanceFactory。
 	 * @param aspectClass the aspect class
 	 * @param aspectName the aspect name
 	 */

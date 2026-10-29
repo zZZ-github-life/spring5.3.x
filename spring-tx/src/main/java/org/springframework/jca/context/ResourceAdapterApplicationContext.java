@@ -26,10 +26,9 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.context.ApplicationContext} implementation
- * for a JCA ResourceAdapter. Needs to be initialized with the JCA
- * {@link javax.resource.spi.BootstrapContext}, passing it on to
- * Spring-managed beans that implement {@link BootstrapContextAware}.
+ * 用于 JCA ResourceAdapter 的 {@link org.springframework.context.ApplicationContext} 实现。
+ * 需要使用 JCA {@link javax.resource.spi.BootstrapContext} 进行初始化，
+ * 并将其传递给实现 {@link BootstrapContextAware} 的 Spring 管理的 bean。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -42,7 +41,7 @@ public class ResourceAdapterApplicationContext extends GenericApplicationContext
 
 
 	/**
-	 * Create a new ResourceAdapterApplicationContext for the given BootstrapContext.
+	 * 为给定的 BootstrapContext 创建新的 ResourceAdapterApplicationContext。
 	 * @param bootstrapContext the JCA BootstrapContext that the ResourceAdapter
 	 * has been started with
 	 */

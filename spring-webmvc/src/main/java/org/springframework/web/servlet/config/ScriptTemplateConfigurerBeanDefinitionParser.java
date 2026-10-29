@@ -30,8 +30,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Parse the <code>&lt;mvc:script-template-configurer&gt;</code> MVC namespace element and
- * register a {@code ScriptTemplateConfigurer} bean.
+ * 解析 <code>&lt;mvc:script-template-configurer&gt;</code> MVC 命名空间元素，
+ * 并注册 {@code ScriptTemplateConfigurer} bean。
  *
  * @author Sebastien Deleuze
  * @since 4.2
@@ -39,7 +39,7 @@ import org.springframework.util.xml.DomUtils;
 public class ScriptTemplateConfigurerBeanDefinitionParser extends AbstractSimpleBeanDefinitionParser {
 
 	/**
-	 * The bean name used for the {@code ScriptTemplateConfigurer}.
+	 * 用于 {@code ScriptTemplateConfigurer} 的 bean 名称。
 	 */
 	public static final String BEAN_NAME = "mvcScriptTemplateConfigurer";
 

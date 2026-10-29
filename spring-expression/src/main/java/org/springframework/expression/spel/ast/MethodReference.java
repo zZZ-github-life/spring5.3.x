@@ -46,7 +46,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Expression language AST node that represents a method reference.
+ * 表示方法引用的表达式语言 AST 节点。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -227,8 +227,8 @@ public class MethodReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Decode the AccessException, throwing a lightweight evaluation exception or,
-	 * if the cause was a RuntimeException, throw the RuntimeException directly.
+	 * 解析 AccessException，抛出一个轻量的求值异常；或者，如果原因是 RuntimeException，则直接抛出该
+	 * RuntimeException。
 	 */
 	private void throwSimpleExceptionIfPossible(Object value, AccessException ex) {
 		if (ex.getCause() instanceof InvocationTargetException) {
@@ -267,8 +267,8 @@ public class MethodReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * A method reference is compilable if it has been resolved to a reflectively accessible method
-	 * and the child nodes (arguments to the method) are also compilable.
+	 * 如果方法引用已解析为可通过反射访问的方法，且其子节点（方法的参数）也可编译，那么该方法引用就是可
+	 * 编译的。
 	 */
 	@Override
 	public boolean isCompilable() {

@@ -22,13 +22,12 @@ import java.util.TimeZone;
 import org.springframework.core.convert.converter.Converter;
 
 /**
- * Simple converter from Java 8's {@link java.time.ZoneId} to {@link java.util.TimeZone}.
+ * 从 Java 8 的 {@link java.time.ZoneId} 到 {@link java.util.TimeZone} 的简单转换器。
  *
- * <p>Note that Spring's default ConversionService setup understands the 'from'/'to' convention
- * that the JSR-310 {@code java.time} package consistently uses. That convention is implemented
- * reflectively in {@link ObjectToObjectConverter}, not in specific JSR-310 converters.
- * It covers {@link java.util.TimeZone#toZoneId()} as well, and also
- * {@link java.util.Date#from(java.time.Instant)} and {@link java.util.Date#toInstant()}.
+ * <p>请注意，Spring 默认的 ConversionService 配置理解 JSR-310 {@code java.time} 包一贯使用的
+ * “from”/“to”约定。该约定通过反射在 {@link ObjectToObjectConverter} 中实现，而不是在特定的 JSR-310
+ * 转换器中实现。它同样涵盖 {@link java.util.TimeZone#toZoneId()}，以及
+ * {@link java.util.Date#from(java.time.Instant)} 和 {@link java.util.Date#toInstant()}。
  *
  * @author Juergen Hoeller
  * @since 4.0

@@ -19,9 +19,8 @@ package org.springframework.dao;
 import org.springframework.lang.Nullable;
 
 /**
- * Normal superclass when we can't distinguish anything more specific
- * than "something went wrong with the underlying resource": for example,
- * an SQLException from JDBC we can't pinpoint more precisely.
+ * 当我们无法比"底层资源出了问题"更具体地分类时的常规超类，例如，
+ * 来自 JDBC 的 SQLException 无法更精确地定位。
  *
  * @author Rod Johnson
  */
@@ -29,7 +28,7 @@ import org.springframework.lang.Nullable;
 public abstract class UncategorizedDataAccessException extends NonTransientDataAccessException {
 
 	/**
-	 * Constructor for UncategorizedDataAccessException.
+	 * UncategorizedDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the exception thrown by underlying data access API
 	 */

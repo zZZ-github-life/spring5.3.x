@@ -1,7 +1,5 @@
 /**
- * Provides a reactive {@link org.springframework.web.reactive.function.client.WebClient}
- * that builds on top of the
- * {@code org.springframework.http.client.reactive} reactive HTTP adapter layer.
+ * 提供响应式 {@link org.springframework.web.reactive.function.client.WebClient}，它构建在 {@code org.springframework.http.client.reactive} 响应式 HTTP 适配层之上。
  */
 @NonNullApi
 @NonNullFields

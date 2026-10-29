@@ -27,10 +27,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link DestinationResolver} implementation based on a Spring {@link BeanFactory}.
+ * 基于 Spring {@link BeanFactory} 的 {@link DestinationResolver} 实现。
  *
- * <p>Will lookup Spring managed beans identified by bean name,
- * expecting them to be of type {@code javax.jms.Destination}.
+ * <p>将按 bean 名称查找 Spring 管理的 bean，
+ * 并要求其类型为 {@code javax.jms.Destination}。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -43,20 +43,19 @@ public class BeanFactoryDestinationResolver implements DestinationResolver, Bean
 
 
 	/**
-	 * Create a new instance of the {@link BeanFactoryDestinationResolver} class.
-	 * <p>The BeanFactory to access must be set via {@code setBeanFactory}.
+	 * 创建一个新的 {@link BeanFactoryDestinationResolver} 类实例。
+	 * <p>必须通过 {@code setBeanFactory} 设置要访问的 BeanFactory。
 	 * @see #setBeanFactory
 	 */
 	public BeanFactoryDestinationResolver() {
 	}
 
 	/**
-	 * Create a new instance of the {@link BeanFactoryDestinationResolver} class.
-	 * <p>Use of this constructor is redundant if this object is being created
-	 * by a Spring IoC container, as the supplied {@link BeanFactory} will be
-	 * replaced by the {@link BeanFactory} that creates it (c.f. the
-	 * {@link BeanFactoryAware} contract). So only use this constructor if you
-	 * are using this class outside the context of a Spring IoC container.
+	 * 创建一个新的 {@link BeanFactoryDestinationResolver} 类实例。
+	 * <p>如果此对象由 Spring IoC 容器创建，则使用此构造函数是多余的，
+	 * 因为所提供的 {@link BeanFactory} 会被创建它的 {@link BeanFactory} 替换
+	 * （参见 {@link BeanFactoryAware} 契约）。因此，只有在 Spring IoC 容器之外的
+	 * 上下文中使用此类时才应使用此构造函数。
 	 * @param beanFactory the bean factory to be used to lookup {@link javax.jms.Destination Destination}
 	 */
 	public BeanFactoryDestinationResolver(BeanFactory beanFactory) {

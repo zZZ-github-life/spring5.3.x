@@ -32,8 +32,8 @@ import org.springframework.transaction.jta.UserTransactionAdapter;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of Hibernate 5's JtaPlatform SPI, exposing passed-in {@link TransactionManager},
- * {@link UserTransaction} and {@link TransactionSynchronizationRegistry} references.
+ * Hibernate 5 的 JtaPlatform SPI 实现，对外暴露传入的 {@link TransactionManager}、
+ * {@link UserTransaction} 和 {@link TransactionSynchronizationRegistry} 引用。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -50,8 +50,8 @@ class ConfigurableJtaPlatform implements JtaPlatform {
 
 
 	/**
-	 * Create a new ConfigurableJtaPlatform instance with the given
-	 * JTA TransactionManager and optionally a given UserTransaction.
+	 * 使用给定的 JTA TransactionManager 以及可选的给定 UserTransaction
+	 * 创建一个新的 ConfigurableJtaPlatform 实例。
 	 * @param tm the JTA TransactionManager reference (required)
 	 * @param ut the JTA UserTransaction reference (optional)
 	 * @param tsr the JTA 1.1 TransactionSynchronizationRegistry (optional)

@@ -17,7 +17,7 @@
 package org.springframework.messaging.simp.user;
 
 /**
- * Represents a subscription within a user session.
+ * 表示用户会话中的订阅。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -25,17 +25,17 @@ package org.springframework.messaging.simp.user;
 public interface SimpSubscription {
 
 	/**
-	 * Return the id associated of the subscription.
+	 * 返回订阅的 ID。
 	 */
 	String getId();
 
 	/**
-	 * Return the session of the subscription.
+	 * 返回订阅所属的会话。
 	 */
 	SimpSession getSession();
 
 	/**
-	 * Return the subscription's destination.
+	 * 返回订阅的目标。
 	 */
 	String getDestination();
 

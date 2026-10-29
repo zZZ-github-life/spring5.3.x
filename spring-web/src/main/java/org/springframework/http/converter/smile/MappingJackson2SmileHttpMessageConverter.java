@@ -25,17 +25,16 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter}
- * that can read and write Smile data format ("binary JSON") using
- * <a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/smile">
- * the dedicated Jackson 2.x extension</a>.
+ * {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter} 的实现，
+ * 可使用 <a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/smile">
+ * 专用的 Jackson 2.x 扩展</a>读写 Smile 数据格式（"二进制 JSON"）。
  *
- * <p>By default, this converter supports {@code "application/x-jackson-smile"} media type.
- * This can be overridden by setting the {@link #setSupportedMediaTypes supportedMediaTypes} property.
+ * <p>默认情况下，此转换器支持 {@code "application/x-jackson-smile"} 媒体类型。
+ * 可以通过设置 {@link #setSupportedMediaTypes supportedMediaTypes} 属性来覆盖。
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * <p>默认构造函数使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -43,17 +42,17 @@ import org.springframework.util.Assert;
 public class MappingJackson2SmileHttpMessageConverter extends AbstractJackson2HttpMessageConverter {
 
 	/**
-	 * Construct a new {@code MappingJackson2SmileHttpMessageConverter} using default configuration
-	 * provided by {@code Jackson2ObjectMapperBuilder}.
+	 * 使用 {@code Jackson2ObjectMapperBuilder} 提供的默认配置
+	 * 构造一个新的 {@code MappingJackson2SmileHttpMessageConverter}。
 	 */
 	public MappingJackson2SmileHttpMessageConverter() {
 		this(Jackson2ObjectMapperBuilder.smile().build());
 	}
 
 	/**
-	 * Construct a new {@code MappingJackson2SmileHttpMessageConverter} with a custom {@link ObjectMapper}
-	 * (must be configured with a {@code SmileFactory} instance).
-	 * You can use {@link Jackson2ObjectMapperBuilder} to build it easily.
+	 * 使用自定义的 {@link ObjectMapper}（必须配置 {@code SmileFactory} 实例）
+	 * 构造一个新的 {@code MappingJackson2SmileHttpMessageConverter}。
+	 * 可以使用 {@link Jackson2ObjectMapperBuilder} 轻松构建它。
 	 * @see Jackson2ObjectMapperBuilder#smile()
 	 */
 	public MappingJackson2SmileHttpMessageConverter(ObjectMapper objectMapper) {
@@ -64,7 +63,7 @@ public class MappingJackson2SmileHttpMessageConverter extends AbstractJackson2Ht
 
 	/**
 	 * {@inheritDoc}
-	 * The {@code ObjectMapper} must be configured with a {@code SmileFactory} instance.
+	 * {@code ObjectMapper} 必须配置 {@code SmileFactory} 实例。
 	 */
 	@Override
 	public void setObjectMapper(ObjectMapper objectMapper) {

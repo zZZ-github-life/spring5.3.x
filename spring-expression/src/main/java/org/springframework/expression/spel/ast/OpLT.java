@@ -27,7 +27,7 @@ import org.springframework.expression.spel.support.BooleanTypedValue;
 import org.springframework.util.NumberUtils;
 
 /**
- * Implements the less-than operator.
+ * 实现小于运算符。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

@@ -21,7 +21,7 @@ import java.beans.PropertyChangeEvent;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when no suitable editor or converter can be found for a bean property.
+ * 当找不到适合 Bean 属性的编辑器或转换器时抛出的异常。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 public class ConversionNotSupportedException extends TypeMismatchException {
 
 	/**
-	 * Create a new ConversionNotSupportedException.
+	 * 创建一个新的 ConversionNotSupportedException。
 	 * @param propertyChangeEvent the PropertyChangeEvent that resulted in the problem
 	 * @param requiredType the required target type (or {@code null} if not known)
 	 * @param cause the root cause (may be {@code null})
@@ -42,7 +42,7 @@ public class ConversionNotSupportedException extends TypeMismatchException {
 	}
 
 	/**
-	 * Create a new ConversionNotSupportedException.
+	 * 创建一个新的 ConversionNotSupportedException。
 	 * @param value the offending value that couldn't be converted (may be {@code null})
 	 * @param requiredType the required target type (or {@code null} if not known)
 	 * @param cause the root cause (may be {@code null})

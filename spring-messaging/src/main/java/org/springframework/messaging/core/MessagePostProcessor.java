@@ -19,8 +19,8 @@ package org.springframework.messaging.core;
 import org.springframework.messaging.Message;
 
 /**
- * A contract for processing a {@link Message} after it has been created, either
- * returning a modified (effectively new) message or returning the same.
+ * 用于在 {@link Message} 创建后对其进行处理的契约，可以返回修改后的
+ * （实际上是新的）消息，也可以返回原消息。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -32,7 +32,7 @@ import org.springframework.messaging.Message;
 public interface MessagePostProcessor {
 
 	/**
-	 * Process the given message.
+	 * 处理给定消息。
 	 * @param message the message to process
 	 * @return a post-processed variant of the message, or simply the incoming
 	 * message; never {@code null}

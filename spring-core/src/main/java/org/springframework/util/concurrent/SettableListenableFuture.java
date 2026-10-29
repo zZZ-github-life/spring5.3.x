@@ -26,10 +26,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A {@link ListenableFuture} whose value can be set via {@link #set(Object)}
- * or {@link #setException(Throwable)}. It may also get cancelled.
+ * 一个 {@link ListenableFuture}，其值可通过 {@link #set(Object)} 或
+ * {@link #setException(Throwable)} 设置。它也可能被取消。
  *
- * <p>Inspired by {@code com.google.common.util.concurrent.SettableFuture}.
+ * <p>灵感来自 {@code com.google.common.util.concurrent.SettableFuture}。
  *
  * @author Mattias Severson
  * @author Rossen Stoyanchev
@@ -48,9 +48,8 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 
 
 	/**
-	 * Set the value of this future. This method will return {@code true} if the
-	 * value was set successfully, or {@code false} if the future has already been
-	 * set or cancelled.
+	 * 设置此 future 的值。如果值设置成功，此方法返回 {@code true}；如果该 future 已被设置或已取消，则
+	 * 返回 {@code false}。
 	 * @param value the value that will be set
 	 * @return {@code true} if the value was successfully set, else {@code false}
 	 */
@@ -59,9 +58,8 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	}
 
 	/**
-	 * Set the exception of this future. This method will return {@code true} if the
-	 * exception was set successfully, or {@code false} if the future has already been
-	 * set or cancelled.
+	 * 设置此 future 的异常。如果异常设置成功，此方法返回 {@code true}；如果该 future 已被设置或已取消，
+	 * 则返回 {@code false}。
 	 * @param exception the value that will be set
 	 * @return {@code true} if the exception was successfully set, else {@code false}
 	 */
@@ -107,11 +105,11 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	}
 
 	/**
-	 * Retrieve the value.
-	 * <p>This method returns the value if it has been set via {@link #set(Object)},
-	 * throws an {@link java.util.concurrent.ExecutionException} if an exception has
-	 * been set via {@link #setException(Throwable)}, or throws a
-	 * {@link java.util.concurrent.CancellationException} if the future has been cancelled.
+	 * 获取值。
+	 * <p>如果已通过 {@link #set(Object)} 设置值，此方法返回该值；如果已通过
+	 * {@link #setException(Throwable)} 设置异常，则抛出
+	 * {@link java.util.concurrent.ExecutionException}；如果该 future 已被取消，则抛出
+	 * {@link java.util.concurrent.CancellationException}。
 	 * @return the value associated with this future
 	 */
 	@Nullable
@@ -121,11 +119,11 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	}
 
 	/**
-	 * Retrieve the value.
-	 * <p>This method returns the value if it has been set via {@link #set(Object)},
-	 * throws an {@link java.util.concurrent.ExecutionException} if an exception has
-	 * been set via {@link #setException(Throwable)}, or throws a
-	 * {@link java.util.concurrent.CancellationException} if the future has been cancelled.
+	 * 获取值。
+	 * <p>如果已通过 {@link #set(Object)} 设置值，此方法返回该值；如果已通过
+	 * {@link #setException(Throwable)} 设置异常，则抛出
+	 * {@link java.util.concurrent.ExecutionException}；如果该 future 已被取消，则抛出
+	 * {@link java.util.concurrent.CancellationException}。
 	 * @param timeout the maximum time to wait
 	 * @param unit the unit of the timeout argument
 	 * @return the value associated with this future
@@ -137,10 +135,9 @@ public class SettableListenableFuture<T> implements ListenableFuture<T> {
 	}
 
 	/**
-	 * Subclasses can override this method to implement interruption of the future's
-	 * computation. The method is invoked automatically by a successful call to
-	 * {@link #cancel(boolean) cancel(true)}.
-	 * <p>The default implementation is empty.
+	 * 子类可以重写此方法以实现对 future 计算的打断。成功调用 {@link #cancel(boolean) cancel(true)} 时
+	 * 会自动调用此方法。
+	 * <p>默认实现为空。
 	 */
 	protected void interruptTask() {
 	}

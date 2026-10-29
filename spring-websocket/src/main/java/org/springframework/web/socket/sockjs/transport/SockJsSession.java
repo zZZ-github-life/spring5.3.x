@@ -19,7 +19,7 @@ package org.springframework.web.socket.sockjs.transport;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * SockJS extension of Spring's standard {@link WebSocketSession}.
+ * Spring 标准 {@link WebSocketSession} 的 SockJS 扩展。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -28,16 +28,15 @@ import org.springframework.web.socket.WebSocketSession;
 public interface SockJsSession extends WebSocketSession {
 
 	/**
-	 * Return the time (in ms) since the session was last active, or otherwise
-	 * if the session is new, then the time since the session was created.
+	 * 返回自会话上次活动以来的时间（以毫秒为单位）；如果会话是新建的，
+	 * 则返回自会话创建以来的时间。
 	 */
 	long getTimeSinceLastActive();
 
 	/**
-	 * Disable the SockJS heartbeat, presumably because a higher-level protocol
-	 * has heartbeats enabled for the session already. It is not recommended to
-	 * disable this otherwise, as it helps proxies to know the connection is
-	 * not hanging.
+	 * 禁用 SockJS 心跳，可能是因为更高层的协议已为会话启用了心跳。
+	 * 否则不建议禁用，因为它有助于代理了解连接
+	 * 并未挂起。
 	 */
 	void disableHeartbeat();
 

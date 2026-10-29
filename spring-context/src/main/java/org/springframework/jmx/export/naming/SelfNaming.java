@@ -20,10 +20,9 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
 /**
- * Interface that allows infrastructure components to provide their own
- * {@code ObjectName}s to the {@code MBeanExporter}.
+ * 允许基础设施组件向 {@code MBeanExporter} 提供自身 {@code ObjectName} 的接口。
  *
- * <p><b>Note:</b> This interface is mainly intended for internal usage.
+ * <p><b>Note:</b> 此接口主要供内部使用。
  *
  * @author Rob Harrop
  * @since 1.2.2
@@ -32,7 +31,7 @@ import javax.management.ObjectName;
 public interface SelfNaming {
 
 	/**
-	 * Return the {@code ObjectName} for the implementing object.
+	 * 返回实现对象的 {@code ObjectName}。
 	 * @throws MalformedObjectNameException if thrown by the ObjectName constructor
 	 * @see javax.management.ObjectName#ObjectName(String)
 	 * @see javax.management.ObjectName#getInstance(String)

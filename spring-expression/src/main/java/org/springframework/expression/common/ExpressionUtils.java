@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Common utility functions that may be used by any Expression Language provider.
+ * 任何表达式语言提供者都可以使用的通用工具方法。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -34,9 +34,8 @@ import org.springframework.util.ClassUtils;
 public abstract class ExpressionUtils {
 
 	/**
-	 * Determines if there is a type converter available in the specified context and
-	 * attempts to use it to convert the supplied value to the specified type. Throws an
-	 * exception if conversion is not possible.
+	 * 判断指定上下文中是否存在可用的类型转换器，并尝试用它把提供的值转换为指定类型。如果无法转换，则抛
+	 * 出异常。
 	 * @param context the evaluation context that may define a type converter
 	 * @param typedValue the value to convert and a type descriptor describing it
 	 * @param targetType the type to attempt conversion to
@@ -64,56 +63,56 @@ public abstract class ExpressionUtils {
 	}
 
 	/**
-	 * Attempt to convert a typed value to an int using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 int。
 	 */
 	public static int toInt(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Integer.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a boolean using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 boolean。
 	 */
 	public static boolean toBoolean(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Boolean.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a double using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 double。
 	 */
 	public static double toDouble(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Double.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a long using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 long。
 	 */
 	public static long toLong(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Long.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a char using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 char。
 	 */
 	public static char toChar(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Character.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a short using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 short。
 	 */
 	public static short toShort(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Short.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a float using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 float。
 	 */
 	public static float toFloat(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Float.class);
 	}
 
 	/**
-	 * Attempt to convert a typed value to a byte using the supplied type converter.
+	 * 尝试使用提供的类型转换器把带类型的值转换为 byte。
 	 */
 	public static byte toByte(TypeConverter typeConverter, TypedValue typedValue) {
 		return convertValue(typeConverter, typedValue, Byte.class);

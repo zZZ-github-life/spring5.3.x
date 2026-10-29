@@ -25,8 +25,8 @@ import io.netty.buffer.ByteBuf;
 import org.springframework.messaging.Message;
 
 /**
- * Simple holder for a decoding {@link Function} and an encoding
- * {@link BiConsumer} to use with Reactor Netty.
+ * 用于配合 Reactor Netty 的解码 {@link Function} 和编码 {@link BiConsumer}
+ * 的简单持有者。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -35,14 +35,14 @@ import org.springframework.messaging.Message;
 public interface ReactorNettyCodec<P> {
 
 	/**
-	 * Decode the input {@link ByteBuf} into one or more {@link Message Messages}.
+	 * 将输入的 {@link ByteBuf} 解码为一条或多条 {@link Message Messages}。
 	 * @param inputBuffer the input buffer to decode from
 	 * @return 0 or more decoded messages
 	 */
 	Collection<Message<P>> decode(ByteBuf inputBuffer);
 
 	/**
-	 * Encode the given {@link Message} to the output {@link ByteBuf}.
+	 * 将给定的 {@link Message} 编码到输出 {@link ByteBuf} 中。
 	 * @param message the message to encode
 	 * @param outputBuffer the buffer to write to
 	 */

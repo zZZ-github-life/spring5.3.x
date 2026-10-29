@@ -1,0 +1,139 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::42::0", "zh": ["标准 {@link BeanInfo} 对象的装饰器（例如由 {@link Introspector#getBeanInfo(Class)} 创建的对象），旨在发现并注册静态 setter 方法和/或返回非 void 的 setter 方法。例如："]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::42::1", "zh": ["标准 JavaBeans {@code Introspector} 会发现 {@code getFoo} 读取方法，但会绕过 {@code #setFoo(Foo)} 写入方法，因为其返回非 void 的签名不符合 JavaBeans 规范。另一方面，{@code ExtendedBeanInfo} 会识别并包含它。这样设计是为了让具有“builder”或方法链式风格 setter 签名的 API 可以在 Spring {@code <beans>} XML 中使用。{@link #getPropertyDescriptors()} 会返回被包装的 {@code BeanInfo} 中所有现有的属性描述符，以及为返回非 void 的 setter 新增的属性描述符。标准（“非索引”）属性和 <a href=\"https://docs.oracle.com/javase/tutorial/javabeans/writing/properties.html\">索引属性</a> 都完全支持。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::89::0", "zh": ["包装给定的 {@link BeanInfo} 实例；在本地复制其所有现有属性描述符，并将每个描述符包装为自定义的 {@link SimpleIndexedPropertyDescriptor 索引} 或 {@link SimplePropertyDescriptor 非索引} {@code PropertyDescriptor} 变体，从而绕过 JDK 默认的弱引用/软引用管理；然后遍历其方法描述符，查找所有返回非 void 的写入方法，并为找到的每个方法更新或创建对应的 {@link PropertyDescriptor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::215::0", "zh": ["返回被包装的 {@link BeanInfo} 对象中的 {@link PropertyDescriptor PropertyDescriptors} 集合，以及构造过程中找到的每个返回非 void 的 setter 方法对应的 {@code PropertyDescriptors}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::262::0", "zh": ["一个简单的 {@link PropertyDescriptor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::359::0", "zh": ["一个简单的 {@link IndexedPropertyDescriptor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfo.java::526::0", "zh": ["按字母数字顺序对 PropertyDescriptor 实例排序，以模拟 {@link java.beans.BeanInfo#getPropertyDescriptors()} 的行为。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfoFactory.java::27::0", "zh": ["{@link BeanInfoFactory} 实现，用于判断 Bean 类是否具有“非标准”的 JavaBeans setter 方法，从而是否适合由 Spring 的（包可见）{@code ExtendedBeanInfo} 实现进行内省。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfoFactory.java::27::1", "zh": ["<p>排序值为 {@link Ordered#LOWEST_PRECEDENCE}，以便其他用户定义的 {@link BeanInfoFactory} 类型优先。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfoFactory.java::42::0", "zh": ["如果适用，返回给定 Bean 类的 {@link ExtendedBeanInfo}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ExtendedBeanInfoFactory.java::51::0", "zh": ["返回给定 Bean 类是否声明或继承了任何返回非 void 的 Bean 属性或索引属性 setter 方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/FatalBeanException.java::21::0", "zh": ["当 beans 包或其子包中遇到无法恢复的问题（例如类或字段有误）时抛出。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/FatalBeanException.java::30::0", "zh": ["使用指定消息创建一个新的 FatalBeanException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/FatalBeanException.java::38::0", "zh": ["使用指定消息和根本原因创建一个新的 FatalBeanException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/GenericTypeAwarePropertyDescriptor.java::36::0", "zh": ["标准 JavaBeans {@link PropertyDescriptor} 类的扩展，重写了 {@code getPropertyType()}，以便根据包含该属性的 Bean 类解析泛型声明的类型变量。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/InvalidPropertyException.java::21::0", "zh": ["当引用无效的 Bean 属性时抛出的异常。其中包含出错的 Bean 类和属性名。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/InvalidPropertyException.java::36::0", "zh": ["创建一个新的 InvalidPropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/InvalidPropertyException.java::46::0", "zh": ["创建一个新的 InvalidPropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/InvalidPropertyException.java::59::0", "zh": ["返回出错的 Bean 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/InvalidPropertyException.java::66::0", "zh": ["返回出错属性的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/Mergeable.java::21::0", "zh": ["表示其值集合可以与父对象的值集合合并的对象的接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/Mergeable.java::34::0", "zh": ["此特定实例是否启用了合并？"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/Mergeable.java::39::0", "zh": ["将当前值集合与所提供的对象的值集合合并。", "<p>所提供的对象被视为父对象，被调用方的值集合中的值必须覆盖所提供的对象中的值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MethodInvocationException.java::21::0", "zh": ["当 Bean 属性的 getter 或 setter 方法抛出异常时抛出，类似于 InvocationTargetException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MethodInvocationException.java::30::0", "zh": ["方法调用错误将注册到的错误码。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MethodInvocationException.java::36::0", "zh": ["创建一个新的 MethodInvocationException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::34::0", "zh": ["{@link PropertyValues} 接口的默认实现。允许对属性进行简单的操作，并提供支持深拷贝和从 Map 构造的构造函数。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::55::0", "zh": ["创建一个新的空 MutablePropertyValues 对象。", "<p>可以使用 {@code add} 方法添加属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::64::0", "zh": ["深拷贝构造函数。保证 PropertyValue 引用相互独立，但不能深拷贝各个 PropertyValue 对象当前引用的对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::86::0", "zh": ["从 Map 构造一个新的 MutablePropertyValues 对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::104::0", "zh": ["使用给定的 PropertyValue 对象 List 按原样构造一个新的 MutablePropertyValues 对象。", "<p>此构造函数适用于高级使用场景，不适用于典型的编程用途。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::117::0", "zh": ["以原始形式返回底层的 PropertyValue 对象 List。可以直接修改返回的 List，但不推荐这样做。", "<p>这是一个用于优化访问所有 PropertyValue 对象的访问器，不适用于典型的编程用途。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::127::0", "zh": ["返回列表中 PropertyValue 条目的数量。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::134::0", "zh": ["将所有给定的 PropertyValues 复制到此对象中。保证 PropertyValue 引用相互独立，但不能深拷贝各个 PropertyValue 对象当前引用的对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::151::0", "zh": ["添加给定 Map 中的所有属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::165::0", "zh": ["添加一个 PropertyValue 对象，替换对应属性的任何现有对象，或与之合并（如果适用）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::184::0", "zh": ["{@code addPropertyValue} 的重载版本，接受属性名和属性值。", "<p>注意：从 Spring 3.0 开始，建议使用更简洁且支持链式调用的变体 {@link #add}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::197::0", "zh": ["添加一个 PropertyValue 对象，替换对应属性的任何现有对象，或与之合并（如果适用）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::209::0", "zh": ["修改此对象中持有的 PropertyValue 对象。索引从 0 开始。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::217::0", "zh": ["如果支持并启用了合并，则将所提供的“新”{@link PropertyValue} 的值与当前 {@link PropertyValue} 的值合并。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::234::0", "zh": ["如果包含给定的 PropertyValue，则将其移除。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::242::0", "zh": ["{@code removePropertyValue} 的重载版本，接受属性名。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::283::0", "zh": ["获取原始属性值（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::327::0", "zh": ["将指定属性注册为“已处理”，即某个处理器在 PropertyValue(s) 机制之外调用了对应的 setter 方法。", "<p>这将导致对指定属性调用 {@link #contains} 时返回 {@code true}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::342::0", "zh": ["清除给定属性的“已处理”注册（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::352::0", "zh": ["将此持有者标记为仅包含已转换的值（即不再需要运行时解析）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/MutablePropertyValues.java::360::0", "zh": ["返回此持有者是仅包含已转换的值（{@code true}），还是这些值仍需要转换（{@code false}）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotReadablePropertyException.java::19::0", "zh": ["当尝试获取不可读属性（因为没有 getter 方法）的值时抛出的异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotReadablePropertyException.java::29::0", "zh": ["创建一个新的 NotReadablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotReadablePropertyException.java::40::0", "zh": ["创建一个新的 NotReadablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotReadablePropertyException.java::50::0", "zh": ["创建一个新的 NotReadablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotWritablePropertyException.java::21::0", "zh": ["当尝试设置不可写属性（通常是因为没有 setter 方法）的值时抛出的异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotWritablePropertyException.java::36::0", "zh": ["创建一个新的 NotWritablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotWritablePropertyException.java::48::0", "zh": ["创建一个新的 NotWritablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotWritablePropertyException.java::59::0", "zh": ["创建一个新的 NotWritablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotWritablePropertyException.java::71::0", "zh": ["创建一个新的 NotWritablePropertyException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NotWritablePropertyException.java::85::0", "zh": ["返回与无效属性名非常接近的实际 Bean 属性名建议（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NullValueInNestedPathException.java::19::0", "zh": ["当导航有效的嵌套属性路径时遇到 NullPointerException 而抛出的异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NullValueInNestedPathException.java::19::1", "zh": ["<p>例如，导航“spouse.age”可能会失败，因为目标对象的 spouse 属性值为 null。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NullValueInNestedPathException.java::32::0", "zh": ["创建一个新的 NullValueInNestedPathException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NullValueInNestedPathException.java::41::0", "zh": ["创建一个新的 NullValueInNestedPathException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/NullValueInNestedPathException.java::51::0", "zh": ["创建一个新的 NullValueInNestedPathException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::23::0", "zh": ["与属性访问相关的异常的超类，例如类型不匹配或调用目标异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::37::0", "zh": ["创建一个新的 PropertyAccessException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::48::0", "zh": ["创建一个不带 PropertyChangeEvent 的新 PropertyAccessException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::59::0", "zh": ["返回导致问题的 PropertyChangeEvent。", "<p>可能为 {@code null}；仅当实际影响了某个 Bean 属性时才可用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::69::0", "zh": ["返回受影响属性的名称（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::77::0", "zh": ["返回即将设置的受影响值（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessException.java::85::0", "zh": ["返回此类异常对应的错误码。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::24::0", "zh": ["可访问命名属性（例如对象的 Bean 属性或对象中的字段）的类的通用接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::24::1", "zh": ["<p>作为 {@link BeanWrapper} 的基础接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::38::0", "zh": ["嵌套属性的路径分隔符。遵循常规 Java 约定：getFoo().getBar() 对应“foo.bar”。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::44::0", "zh": ["嵌套属性的路径分隔符。遵循常规 Java 约定：getFoo().getBar() 对应“foo.bar”。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::50::0", "zh": ["标记索引或映射属性（如“person.addresses[0]”）中属性键的起始位置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::56::0", "zh": ["标记索引或映射属性（如“person.addresses[0]”）中属性键的起始位置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::62::0", "zh": ["标记索引或映射属性（如“person.addresses[0]”）中属性键的结束位置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::68::0", "zh": ["标记索引或映射属性（如“person.addresses[0]”）中属性键的结束位置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::75::0", "zh": ["确定指定的属性是否可读。", "<p>如果属性不存在，则返回 {@code false}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::84::0", "zh": ["确定指定的属性是否可写。", "<p>如果属性不存在，则返回 {@code false}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::93::0", "zh": ["确定指定属性的属性类型，既可以检查属性描述符，也可以在索引或映射元素的情况下检查值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::107::0", "zh": ["返回指定属性的类型描述符：优先来自读取方法，回退到写入方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::120::0", "zh": ["获取指定属性的当前值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::133::0", "zh": ["将指定值设置为当前属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::145::0", "zh": ["将指定值设置为当前属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::155::0", "zh": ["从 Map 执行批量更新。", "<p>从 PropertyValues 进行批量更新更强大：此方法仅为方便而提供。其行为与 {@link #setPropertyValues(PropertyValues)} 方法完全相同。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::171::0", "zh": ["执行批量更新的首选方式。", "<p>请注意，执行批量更新与执行单次更新不同：如果遇到 <b>可恢复</b>的错误（例如类型不匹配，但 <b>不</b>包括无效的字段名之类），此类的实现会继续更新属性，并抛出包含所有单个错误的 {@link PropertyBatchUpdateException}。之后可以检查此异常以查看所有绑定错误。已成功更新的属性保持更改。", "<p>不允许未知字段或无效字段。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::192::0", "zh": ["对行为具有更多控制地执行批量更新。", "<p>请注意，执行批量更新与执行单次更新不同：如果遇到 <b>可恢复</b>的错误（例如类型不匹配，但 <b>不</b>包括无效的字段名之类），此类的实现会继续更新属性，并抛出包含所有单个错误的 {@link PropertyBatchUpdateException}。之后可以检查此异常以查看所有绑定错误。已成功更新的属性保持更改。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessor.java::214::0", "zh": ["对行为具有完全控制地执行批量更新。", "<p>请注意，执行批量更新与执行单次更新不同：如果遇到 <b>可恢复</b>的错误（例如类型不匹配，但 <b>不</b>包括无效的字段名之类），此类的实现会继续更新属性，并抛出包含所有单个错误的 {@link PropertyBatchUpdateException}。之后可以检查此异常以查看所有绑定错误。已成功更新的属性保持更改。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorFactory.java::19::0", "zh": ["用于获取 {@link PropertyAccessor} 实例（尤其是 {@link BeanWrapper} 实例）的简单工厂门面。隐藏实际的目标实现类及其扩展的公共签名。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorFactory.java::33::0", "zh": ["为给定的目标对象获取一个 BeanWrapper，以 JavaBeans 风格访问属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorFactory.java::44::0", "zh": ["为给定的目标对象获取一个 PropertyAccessor，以直接字段风格访问属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::21::0", "zh": ["用于按照 {@link PropertyAccessor} 接口执行 Bean 属性访问的类的工具方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::30::0", "zh": ["返回给定属性路径的实际属性名。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::42::0", "zh": ["检查给定属性路径是否表示索引属性或嵌套属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::61::0", "zh": ["确定给定属性路径中第一个嵌套属性分隔符，忽略键中的点（如“map[my.key]”）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::71::0", "zh": ["确定给定属性路径中第一个嵌套属性分隔符，忽略键中的点（如“map[my.key]”）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::81::0", "zh": ["确定给定属性路径中第一个（或最后一个）嵌套属性分隔符，忽略键中的点（如“map[my.key]”）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::113::0", "zh": ["确定给定的已注册路径是否与给定的属性路径匹配，即表示该属性本身或该属性的索引元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::134::0", "zh": ["确定给定属性路径的规范名称。移除映射键两侧的引号：<br> {@code map['key']} &rarr; {@code map[key]}<br> {@code map[\"key\"]} &rarr; {@code map[key]}"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyAccessorUtils.java::169::0", "zh": ["确定给定属性路径的规范名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyBatchUpdateException.java::27::0", "zh": ["组合异常，由单个 PropertyAccessException 实例组成。此类的对象在绑定过程开始时创建，并根据需要向其中添加错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyBatchUpdateException.java::27::1", "zh": ["<p>绑定过程在遇到应用级 PropertyAccessExceptions 时继续，应用可以应用的更改，并将被拒绝的更改存储在此类的对象中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyBatchUpdateException.java::47::0", "zh": ["创建一个新的 PropertyBatchUpdateException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyBatchUpdateException.java::58::0", "zh": ["如果返回 0，则表示绑定过程中未遇到错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyBatchUpdateException.java::65::0", "zh": ["返回此对象中存储的 propertyAccessExceptions 数组。", "<p>如果没有错误，将返回空数组（而不是 {@code null}）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyBatchUpdateException.java::73::0", "zh": ["返回此字段的异常，如果不存在则返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::33::0", "zh": ["Spring 内部 {@link PropertyDescriptor} 实现的通用委托方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::44::0", "zh": ["针对基本 set/get/is 访问器方法的简单内省算法，为它们构建相应的 JavaBeans 属性描述符。", "<p>它仅支持基本的 JavaBeans 约定，不支持索引属性或任何定制器，也不支持其他 BeanInfo 元数据。对于标准 JavaBeans 内省，请使用 JavaBeans Introspector。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::115::0", "zh": ["参见 {@link java.beans.FeatureDescriptor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::139::0", "zh": ["参见 {@link java.beans.PropertyDescriptor#findPropertyType}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::184::0", "zh": ["参见 {@link java.beans.IndexedPropertyDescriptor#findIndexedPropertyType}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::242::0", "zh": ["比较给定的 {@code PropertyDescriptors}，如果它们等效（即它们的读取方法、写入方法、属性类型、属性编辑器和标志都等效），则返回 {@code true}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyDescriptorUtils.java::257::0", "zh": ["用于 {@link #determineBasicProperties(Class)} 的 PropertyDescriptor，不会为 {@link #setReadMethod}/{@link #setWriteMethod} 执行任何早期类型确定。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrar.java::19::0", "zh": ["用于将自定义 {@link java.beans.PropertyEditor 属性编辑器} 注册到 {@link org.springframework.beans.PropertyEditorRegistry 属性编辑器注册表} 的策略接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrar.java::19::1", "zh": ["<p>当你需要在多种情况下使用同一组属性编辑器时，这特别有用：编写一个对应的注册器，并在每种情况下复用它。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrar.java::35::0", "zh": ["将自定义 {@link java.beans.PropertyEditor PropertyEditors} 注册到给定的 {@code PropertyEditorRegistry}。", "<p>传入的注册表通常是 {@link BeanWrapper} 或 {@link org.springframework.validation.DataBinder DataBinder}。", "<p>预期实现会在每次调用此方法时创建全新的 {@code PropertyEditors} 实例（因为 {@code PropertyEditors} 不是线程安全的）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistry.java::23::0", "zh": ["封装用于注册 JavaBeans {@link PropertyEditor PropertyEditors} 的方法。这是 {@link PropertyEditorRegistrar} 所操作的核心接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistry.java::23::1", "zh": ["<p>由 {@link BeanWrapper} 扩展；由 {@link BeanWrapperImpl} 和 {@link org.springframework.validation.DataBinder} 实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistry.java::39::0", "zh": ["为给定类型的所有属性注册给定的自定义属性编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistry.java::46::0", "zh": ["为给定的类型和属性注册给定的自定义属性编辑器，或为给定类型的所有属性注册该编辑器。", "<p>如果属性路径表示数组或 Collection 属性，则编辑器将应用于数组/Collection 本身（{@link PropertyEditor} 必须创建数组或 Collection 值）或应用于每个元素（{@code PropertyEditor} 必须创建元素类型），具体取决于指定的必需类型。", "<p>注意：每个属性路径仅支持一个已注册的自定义编辑器。对于 Collection/数组，不要为同一属性既注册集合/数组的编辑器又注册每个元素的编辑器。", "<p>例如，如果你想为“items[n].quantity”（针对所有 n 值）注册编辑器，则应将“items.quantity”作为此方法 'propertyPath' 参数的值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistry.java::71::0", "zh": ["为给定的类型和属性查找自定义属性编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::81::0", "zh": ["{@link PropertyEditorRegistry} 接口的基础实现。提供默认编辑器和自定义编辑器的管理。主要用作 {@link BeanWrapperImpl} 的基类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::96::0", "zh": ["由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring 忽略 XML，即不初始化与 XML 相关的基础设施。", "<p>默认值为“false”。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::127::0", "zh": ["指定用于转换属性值的 Spring 3.0 ConversionService，作为 JavaBeans PropertyEditors 的替代方案。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::135::0", "zh": ["返回关联的 ConversionService（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::148::0", "zh": ["为此注册表实例激活默认编辑器，以便在需要时延迟注册默认编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::156::0", "zh": ["激活仅用于配置目的的配置值编辑器，例如 {@link org.springframework.beans.propertyeditors.StringArrayPropertyEditor}。", "<p>这些编辑器默认不注册，只是因为它们通常不适合数据绑定用途。当然，在任何情况下，你都可以通过 {@link #registerCustomEditor} 单独注册它们。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::167::0", "zh": ["使用给定的属性编辑器覆盖指定类型的默认编辑器。", "<p>请注意，这与注册自定义编辑器不同，因为该编辑器在语义上仍然是默认编辑器。ConversionService 会覆盖这样的默认编辑器，而自定义编辑器通常会覆盖 ConversionService。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::183::0", "zh": ["检索给定属性类型的默认编辑器（如果有）。", "<p>如果默认编辑器处于激活状态，则延迟注册它们。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::207::0", "zh": ["实际为此注册表实例注册默认编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::283::0", "zh": ["将此实例中注册的默认编辑器复制到给定的目标注册表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::352::0", "zh": ["确定此注册表是否包含针对指定数组/集合元素的自定义编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::374::0", "zh": ["确定给定属性路径的属性类型。", "<p>如果未指定必需类型，则由 {@link #findCustomEditor} 调用，以便即使只给定属性路径也能找到特定类型的编辑器。", "<p>默认实现始终返回 {@code null}。BeanWrapperImpl 使用 BeanWrapper 接口定义的标准 {@code getPropertyType} 方法重写此方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::390::0", "zh": ["获取为给定属性注册的自定义编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::403::0", "zh": ["获取给定类型的自定义编辑器。如果未找到直接匹配项，则尝试超类的自定义编辑器（无论如何，它都能通过 {@code getAsText} 将值渲染为 String）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::445::0", "zh": ["从已注册的自定义编辑器中推测指定属性的属性类型（前提是它们是为特定类型注册的）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::470::0", "zh": ["将此实例中注册的自定义编辑器复制到给定的目标注册表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::505::0", "zh": ["添加所有去除键和/或索引变体的属性路径。对嵌套路径递归调用自身。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyEditorRegistrySupport.java::531::0", "zh": ["带有属性名的已注册自定义编辑器的持有者。保留 PropertyEditor 本身以及为其注册的类型。"]}

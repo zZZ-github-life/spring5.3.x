@@ -1,5 +1,5 @@
 /**
- * This package provides JCA-based endpoint management for JMS message listeners.
+ * 此包提供基于 JCA 的 JMS 消息监听器端点管理。
  */
 @NonNullApi
 @NonNullFields

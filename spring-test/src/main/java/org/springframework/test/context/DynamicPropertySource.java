@@ -23,63 +23,57 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Method-level annotation for integration tests that need to add properties with
- * dynamic values to the {@code Environment}'s set of {@code PropertySources}.
+ * 用于集成测试的方法级注解，需要向 {@code Environment} 的
+ * {@code PropertySources} 集合添加具有动态值的属性。
  *
- * <p>This annotation and its supporting infrastructure were originally designed
- * to allow properties from
- * <a href="https://www.testcontainers.org/">Testcontainers</a> based tests to be
- * exposed easily to Spring integration tests. However, this feature may also be
- * used with any form of external resource whose lifecycle is maintained outside
- * the test's {@code ApplicationContext}.
+ * <p>此注解及其支持基础设施最初旨在让基于
+ * <a href="https://www.testcontainers.org/">Testcontainers</a> 的测试中的属性能够
+ * 轻松暴露给 Spring 集成测试。不过，此功能也可用于
+ * 生命周期在测试的 {@code ApplicationContext} 之外维护的任何形式的外部资源。
  *
- * <p>Methods annotated with {@code @DynamicPropertySource} must be {@code static}
- * and must have a single {@link DynamicPropertyRegistry} argument which is used
- * to add <em>name-value</em> pairs to the {@code Environment}'s set of
- * {@code PropertySources}. Values are dynamic and provided via a
- * {@link java.util.function.Supplier} which is only invoked when the property
- * is resolved. Typically, method references are used to supply values, as in the
- * example below.
+ * <p>使用 {@code @DynamicPropertySource} 注解的方法必须是 {@code static}，
+ * 并且必须具有单个 {@link DynamicPropertyRegistry} 参数，用于
+ * 向 {@code Environment} 的 {@code PropertySources} 集合添加<em>名称-值</em>对。
+ * 值是动态的，通过 {@link java.util.function.Supplier} 提供，仅在解析属性时
+ * 才会调用。通常使用方法引用来提供值，如下例所示。
  *
- * <p>As of Spring Framework 5.3.2, dynamic properties from methods annotated with
- * {@code @DynamicPropertySource} will be <em>inherited</em> from enclosing test
- * classes, analogous to inheritance from superclasses and interfaces. See
- * {@link NestedTestConfiguration @NestedTestConfiguration} for details.
+ * <p>从 Spring Framework 5.3.2 开始，来自使用 {@code @DynamicPropertySource}
+ * 注解的方法的动态属性将从封闭测试类<em>继承</em>，
+ * 类似于从超类和接口继承。详情请参见
+ * {@link NestedTestConfiguration @NestedTestConfiguration}。
  *
- * <p><strong>NOTE</strong>: if you use {@code @DynamicPropertySource} in a base
- * class and discover that tests in subclasses fail because the dynamic properties
- * change between subclasses, you may need to annotate your base class with
- * {@link org.springframework.test.annotation.DirtiesContext @DirtiesContext} to
- * ensure that each subclass gets its own {@code ApplicationContext} with the
- * correct dynamic properties.
+ * <p><strong>注意</strong>：如果在基类中使用 {@code @DynamicPropertySource}，
+ * 并发现子类中的测试失败，因为动态属性在子类之间发生变化，
+ * 则可能需要使用 {@link org.springframework.test.annotation.DirtiesContext @DirtiesContext}
+ * 注解基类，以确保每个子类获得具有正确动态属性的自己的
+ * {@code ApplicationContext}。
  *
- * <h3>Precedence</h3>
- * <p>Dynamic properties have higher precedence than those loaded from
- * {@link TestPropertySource @TestPropertySource}, the operating system's
- * environment, Java system properties, or property sources added by the
- * application declaratively by using
+ * <h3>优先级</h3>
+ * <p>动态属性的优先级高于从
+ * {@link TestPropertySource @TestPropertySource}、操作系统
+ * 环境、Java 系统属性或应用程序通过
  * {@link org.springframework.context.annotation.PropertySource @PropertySource}
- * or programmatically. Thus, dynamic properties can be used to selectively
- * override properties loaded via {@code @TestPropertySource}, system property
- * sources, and application property sources.
+ * 以声明方式或编程方式添加的属性源加载的属性。因此，动态属性可用于有选择地
+ * 覆盖通过 {@code @TestPropertySource}、系统属性源
+ * 和应用程序属性源加载的属性。
  *
- * <h3>Example</h3>
+ * <h3>示例</h3>
  * <pre class="code">
  * &#064;SpringJUnitConfig(...)
  * &#064;Testcontainers
  * class ExampleIntegrationTests {
  *
- *     &#064;Container
- *     static GenericContainer redis =
- *         new GenericContainer("redis:5.0.3-alpine").withExposedPorts(6379);
+ * &#064;Container
+ * static GenericContainer redis =
+ * new GenericContainer("redis:5.0.3-alpine").withExposedPorts(6379);
  *
- *     // ...
+ * // ...
  *
- *     &#064;DynamicPropertySource
- *     static void redisProperties(DynamicPropertyRegistry registry) {
- *         registry.add("redis.host", redis::getHost);
- *         registry.add("redis.port", redis::getFirstMappedPort);
- *     }
+ * &#064;DynamicPropertySource
+ * static void redisProperties(DynamicPropertyRegistry registry) {
+ * registry.add("redis.host", redis::getHost);
+ * registry.add("redis.port", redis::getFirstMappedPort);
+ * }
  *
  * }</pre>
  *

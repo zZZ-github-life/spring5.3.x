@@ -22,14 +22,14 @@ import org.springframework.http.HttpRequest;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * Intercepts client-side HTTP requests. Implementations of this interface can be
- * {@linkplain org.springframework.web.client.AsyncRestTemplate#setInterceptors registered}
- * with the {@link org.springframework.web.client.AsyncRestTemplate} as to modify
- * the outgoing {@link HttpRequest} and/or register to modify the incoming
- * {@link ClientHttpResponse} with help of a
- * {@link org.springframework.util.concurrent.ListenableFutureAdapter}.
+ * 拦截客户端 HTTP 请求。此接口的实现可以通过
+ * {@linkplain org.springframework.web.client.AsyncRestTemplate#setInterceptors registered 注册}
+ * 到 {@link org.springframework.web.client.AsyncRestTemplate}，以修改发出的 {@link HttpRequest}
+ * 和/或注册以借助
+ * {@link org.springframework.util.concurrent.ListenableFutureAdapter} 修改传入的
+ * {@link ClientHttpResponse}。
  *
- * <p>The main entry point for interceptors is {@link #intercept}.
+ * <p>拦截器的主要入口点是 {@link #intercept}。
  *
  * @author Jakub Narloch
  * @author Rossen Stoyanchev
@@ -43,23 +43,22 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface AsyncClientHttpRequestInterceptor {
 
 	/**
-	 * Intercept the given request, and return a response future. The given
-	 * {@link AsyncClientHttpRequestExecution} allows the interceptor to pass on
-	 * the request to the next entity in the chain.
-	 * <p>An implementation might follow this pattern:
+	 * 拦截给定请求并返回响应的 future。给定的
+	 * {@link AsyncClientHttpRequestExecution} 允许拦截器将
+	 * 请求传递给链中的下一个实体。
+	 * <p>实现可以遵循以下模式：
 	 * <ol>
-	 * <li>Examine the {@linkplain HttpRequest request} and body</li>
-	 * <li>Optionally {@linkplain org.springframework.http.client.support.HttpRequestWrapper
-	 * wrap} the request to filter HTTP attributes.</li>
-	 * <li>Optionally modify the body of the request.</li>
-	 * <li>One of the following:
+	 * <li>检查 {@linkplain HttpRequest 请求} 和正文</li>
+	 * <li>可选地 {@linkplain org.springframework.http.client.support.HttpRequestWrapper 包装}
+	 * 请求以过滤 HTTP 属性。</li>
+	 * <li>可选地修改请求正文。</li>
+	 * <li>执行以下操作之一：
 	 * <ul>
-	 * <li>execute the request through {@link ClientHttpRequestExecution}</li>
-	 * <li>don't execute the request to block the execution altogether</li>
+	 * <li>通过 {@link ClientHttpRequestExecution} 执行请求</li>
+	 * <li>不执行请求以完全阻止执行</li>
 	 * </ul>
-	 * <li>Optionally adapt the response to filter HTTP attributes with the help of
-	 * {@link org.springframework.util.concurrent.ListenableFutureAdapter
-	 * ListenableFutureAdapter}.</li>
+	 * <li>可选地借助 {@link org.springframework.util.concurrent.ListenableFutureAdapter ListenableFutureAdapter}
+	 * 调整响应以过滤 HTTP 属性。</li>
 	 * </ol>
 	 * @param request the request, containing method, URI, and headers
 	 * @param body the body of the request

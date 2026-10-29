@@ -33,13 +33,12 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * Wrap a {@link org.springframework.web.socket.WebSocketSession WebSocketSession}
- * to guarantee only one thread can send messages at a time.
+ * 包装 {@link org.springframework.web.socket.WebSocketSession WebSocketSession}
+ * 以保证同一时间只有一个线程可以发送消息。
  *
- * <p>If a send is slow, subsequent attempts to send more messages from other threads
- * will not be able to acquire the flush lock and messages will be buffered instead.
- * At that time, the specified buffer-size limit and send-time limit will be checked
- * and the session will be closed if the limits are exceeded.
+ * <p>如果发送速度较慢，其他线程后续尝试发送更多消息时将无法获取刷新锁，
+ * 消息会被缓冲。此时会检查指定的缓冲区大小限制和发送时间限制，
+ * 如果超出限制则关闭会话。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -76,7 +75,7 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 
 
 	/**
-	 * Basic constructor.
+	 * 基本构造函数。
 	 * @param delegate the {@code WebSocketSession} to delegate to
 	 * @param sendTimeLimit the send-time limit (milliseconds)
 	 * @param bufferSizeLimit the buffer-size limit (number of bytes)
@@ -86,7 +85,7 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 	}
 
 	/**
-	 * Constructor that also specifies the overflow strategy to use.
+	 * 同时指定要使用的溢出策略的构造函数。
 	 * @param delegate the {@code WebSocketSession} to delegate to
 	 * @param sendTimeLimit the send-time limit (milliseconds)
 	 * @param bufferSizeLimit the buffer-size limit (number of bytes)
@@ -105,7 +104,7 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 
 
 	/**
-	 * Return the configured send-time limit (milliseconds).
+	 * 返回配置的发送时间限制（毫秒）。
 	 * @since 4.3.13
 	 */
 	public int getSendTimeLimit() {
@@ -113,7 +112,7 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 	}
 
 	/**
-	 * Return the configured buffer-size limit (number of bytes).
+	 * 返回配置的缓冲区大小限制（字节数）。
 	 * @since 4.3.13
 	 */
 	public int getBufferSizeLimit() {
@@ -121,15 +120,15 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 	}
 
 	/**
-	 * Return the current buffer size (number of bytes).
+	 * 返回当前缓冲区大小（字节数）。
 	 */
 	public int getBufferSize() {
 		return this.bufferSize.get();
 	}
 
 	/**
-	 * Return the time (milliseconds) since the current send started,
-	 * or 0 if no send is currently in progress.
+	 * 返回自当前发送开始以来经过的时间（毫秒），
+	 * 如果当前没有正在进行的发送则返回 0。
 	 */
 	public long getTimeSinceSendStarted() {
 		long start = this.sendStartTime;
@@ -137,7 +136,7 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 	}
 
 	/**
-	 * Set a callback invoked after a message is added to the send buffer.
+	 * 设置一个回调，在消息被添加到发送缓冲区后调用。
 	 * @param callback the callback to invoke
 	 * @since 5.3
 	 */
@@ -283,19 +282,19 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 
 
 	/**
-	 * Enum for options of what to do when the buffer fills up.
+	 * 用于指定缓冲区已满时采取何种操作的选项枚举。
 	 * @since 5.1
 	 */
 	public enum OverflowStrategy {
 
 		/**
-		 * Throw {@link SessionLimitExceededException} that will result
-		 * in the session being terminated.
+		 * 抛出 {@link SessionLimitExceededException}，这会导致
+		 * 会话被终止。
 		 */
 		TERMINATE,
 
 		/**
-		 * Drop the oldest messages from the buffer.
+		 * 从缓冲区中丢弃最旧的消息。
 		 */
 		DROP
 	}

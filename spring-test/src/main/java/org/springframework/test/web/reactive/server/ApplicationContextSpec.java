@@ -21,9 +21,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Spec for setting up server-less testing by detecting components in an
- * {@link ApplicationContext}.
- *
+ * 用于通过在 {@link ApplicationContext} 中检测组件来设置无服务器测试的规范。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

@@ -42,8 +42,7 @@ import org.springframework.web.reactive.socket.server.RequestUpgradeStrategy;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link RequestUpgradeStrategy} for use with Undertow.
- *
+ * 用于 Undertow 的 {@link RequestUpgradeStrategy}。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @author Brian Clozel

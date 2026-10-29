@@ -1,6 +1,6 @@
 /**
- * Classes supporting the {@code org.springframework.jms.core} package.
- * Contains a base class for JmsTemplate usage.
+ * 支持 {@code org.springframework.jms.core} 包的类。
+ * 包含用于 JmsTemplate 用法的基类。
  */
 @NonNullApi
 @NonNullFields

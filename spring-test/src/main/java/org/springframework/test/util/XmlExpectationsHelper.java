@@ -36,7 +36,7 @@ import org.xmlunit.diff.ElementSelectors;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * A helper class for assertions on XML content.
+ * 用于 XML 内容断言的辅助类。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -44,7 +44,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class XmlExpectationsHelper {
 
 	/**
-	 * Parse the content as {@link Node} and apply a {@link Matcher}.
+	 * 将内容解析为 {@link Node} 并应用 {@link Matcher}。
 	 */
 	public void assertNode(String content, Matcher<? super Node> matcher) throws Exception {
 		Document document = parseXmlString(content);
@@ -60,7 +60,7 @@ public class XmlExpectationsHelper {
 	}
 
 	/**
-	 * Parse the content as {@link DOMSource} and apply a {@link Matcher}.
+	 * 将内容解析为 {@link DOMSource} 并应用 {@link Matcher}。
 	 * @see <a href="https://github.com/davidehringer/xml-matchers">xml-matchers</a>
 	 */
 	public void assertSource(String content, Matcher<? super Source> matcher) throws Exception {
@@ -69,11 +69,8 @@ public class XmlExpectationsHelper {
 	}
 
 	/**
-	 * Parse the expected and actual content strings as XML and assert that the
-	 * two are "similar" -- i.e. they contain the same elements and attributes
-	 * regardless of order.
-	 * <p>Use of this method assumes the
-	 * <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> library is available.
+	 * 将期望内容字符串和实际内容字符串解析为 XML，并断言两者“相似” -- 即无论顺序如何，它们都包含相同的元素和属性。
+	 * <p>使用此方法假定 <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> 库可用。
 	 * @param expected the expected XML content
 	 * @param actual the actual XML content
 	 * @see org.springframework.test.web.servlet.result.MockMvcResultMatchers#xpath(String, Object...)
@@ -88,7 +85,7 @@ public class XmlExpectationsHelper {
 
 
 	/**
-	 * Inner class to prevent hard dependency on XML Unit.
+	 * 用于避免对 XML Unit 产生硬依赖的内部类。
 	 */
 	private static class XmlUnitDiff {
 

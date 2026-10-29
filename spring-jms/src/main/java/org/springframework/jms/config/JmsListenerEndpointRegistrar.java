@@ -29,7 +29,8 @@ import org.springframework.messaging.handler.annotation.support.MessageHandlerMe
 import org.springframework.util.Assert;
 
 /**
- * Helper bean for registering {@link JmsListenerEndpoint} with a {@link JmsListenerEndpointRegistry}.
+ * 用于将 {@link JmsListenerEndpoint} 注册到 {@link JmsListenerEndpointRegistry}
+ * 的辅助 bean。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -61,15 +62,15 @@ public class JmsListenerEndpointRegistrar implements BeanFactoryAware, Initializ
 
 
 	/**
-	 * Set the {@link JmsListenerEndpointRegistry} instance to use.
+	 * 设置要使用的 {@link JmsListenerEndpointRegistry} 实例。
 	 */
 	public void setEndpointRegistry(@Nullable JmsListenerEndpointRegistry endpointRegistry) {
 		this.endpointRegistry = endpointRegistry;
 	}
 
 	/**
-	 * Return the {@link JmsListenerEndpointRegistry} instance for this
-	 * registrar, may be {@code null}.
+	 * 返回此注册器的 {@link JmsListenerEndpointRegistry} 实例，
+	 * 可能为 {@code null}。
 	 */
 	@Nullable
 	public JmsListenerEndpointRegistry getEndpointRegistry() {
@@ -77,19 +78,19 @@ public class JmsListenerEndpointRegistrar implements BeanFactoryAware, Initializ
 	}
 
 	/**
-	 * Set the {@link MessageHandlerMethodFactory} to use to configure the message
-	 * listener responsible to serve an endpoint detected by this processor.
-	 * <p>By default, {@link DefaultMessageHandlerMethodFactory} is used and it
-	 * can be configured further to support additional method arguments
-	 * or to customize conversion and validation support. See
-	 * {@link DefaultMessageHandlerMethodFactory} javadoc for more details.
+	 * 设置用于配置消息监听器的 {@link MessageHandlerMethodFactory}，
+	 * 该监听器负责服务此处理器检测到的端点。
+	 * <p>默认使用 {@link DefaultMessageHandlerMethodFactory}，
+	 * 可以进一步配置它，以支持额外的方法参数，
+	 * 或自定义转换和校验支持。详情请参见
+	 * {@link DefaultMessageHandlerMethodFactory} 的 javadoc。
 	 */
 	public void setMessageHandlerMethodFactory(@Nullable MessageHandlerMethodFactory messageHandlerMethodFactory) {
 		this.messageHandlerMethodFactory = messageHandlerMethodFactory;
 	}
 
 	/**
-	 * Return the custom {@link MessageHandlerMethodFactory} to use, if any.
+	 * 返回要使用的自定义 {@link MessageHandlerMethodFactory}（如果有）。
 	 */
 	@Nullable
 	public MessageHandlerMethodFactory getMessageHandlerMethodFactory() {
@@ -97,20 +98,20 @@ public class JmsListenerEndpointRegistrar implements BeanFactoryAware, Initializ
 	}
 
 	/**
-	 * Set the {@link JmsListenerContainerFactory} to use in case a {@link JmsListenerEndpoint}
-	 * is registered with a {@code null} container factory.
-	 * <p>Alternatively, the bean name of the {@link JmsListenerContainerFactory} to use
-	 * can be specified for a lazy lookup, see {@link #setContainerFactoryBeanName}.
+	 * 设置当 {@link JmsListenerEndpoint} 以 {@code null} 容器工厂注册时
+	 * 要使用的 {@link JmsListenerContainerFactory}。
+	 * <p>或者，也可以指定要使用的 {@link JmsListenerContainerFactory} 的
+	 * bean 名称以便延迟查找，参见 {@link #setContainerFactoryBeanName}。
 	 */
 	public void setContainerFactory(JmsListenerContainerFactory<?> containerFactory) {
 		this.containerFactory = containerFactory;
 	}
 
 	/**
-	 * Set the bean name of the {@link JmsListenerContainerFactory} to use in case
-	 * a {@link JmsListenerEndpoint} is registered with a {@code null} container factory.
-	 * Alternatively, the container factory instance can be registered directly:
-	 * see {@link #setContainerFactory(JmsListenerContainerFactory)}.
+	 * 设置当 {@link JmsListenerEndpoint} 以 {@code null} 容器工厂注册时
+	 * 要使用的 {@link JmsListenerContainerFactory} 的 bean 名称。
+	 * 或者，也可以直接注册容器工厂实例：
+	 * 参见 {@link #setContainerFactory(JmsListenerContainerFactory)}。
 	 * @see #setBeanFactory
 	 */
 	public void setContainerFactoryBeanName(String containerFactoryBeanName) {
@@ -118,8 +119,8 @@ public class JmsListenerEndpointRegistrar implements BeanFactoryAware, Initializ
 	}
 
 	/**
-	 * A {@link BeanFactory} only needs to be available in conjunction with
-	 * {@link #setContainerFactoryBeanName}.
+	 * 只有配合 {@link #setContainerFactoryBeanName} 使用时才需要提供
+	 * {@link BeanFactory}。
 	 */
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {
@@ -168,10 +169,9 @@ public class JmsListenerEndpointRegistrar implements BeanFactoryAware, Initializ
 	}
 
 	/**
-	 * Register a new {@link JmsListenerEndpoint} alongside the
-	 * {@link JmsListenerContainerFactory} to use to create the underlying container.
-	 * <p>The {@code factory} may be {@code null} if the default factory has to be
-	 * used for that endpoint.
+	 * 注册一个新的 {@link JmsListenerEndpoint}，并指定用于创建底层容器的
+	 * {@link JmsListenerContainerFactory}。
+	 * <p>如果该端点要使用默认工厂，则 {@code factory} 可以为 {@code null}。
 	 */
 	public void registerEndpoint(JmsListenerEndpoint endpoint, @Nullable JmsListenerContainerFactory<?> factory) {
 		Assert.notNull(endpoint, "Endpoint must not be null");
@@ -193,8 +193,8 @@ public class JmsListenerEndpointRegistrar implements BeanFactoryAware, Initializ
 	}
 
 	/**
-	 * Register a new {@link JmsListenerEndpoint} using the default
-	 * {@link JmsListenerContainerFactory} to create the underlying container.
+	 * 使用默认的 {@link JmsListenerContainerFactory} 注册一个新的
+	 * {@link JmsListenerEndpoint}，以创建底层容器。
 	 * @see #setContainerFactory(JmsListenerContainerFactory)
 	 * @see #registerEndpoint(JmsListenerEndpoint, JmsListenerContainerFactory)
 	 */

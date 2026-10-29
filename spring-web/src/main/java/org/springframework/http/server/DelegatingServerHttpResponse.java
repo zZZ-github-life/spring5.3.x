@@ -24,8 +24,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@code ServerHttpResponse} that delegates all calls to a
- * given target {@code ServerHttpResponse}.
+ * {@code ServerHttpResponse} 的实现，将所有调用委托给
+ * 给定的目标 {@code ServerHttpResponse}。
  *
  * @author Arjen Poutsma
  * @since 5.3.2
@@ -35,7 +35,7 @@ public class DelegatingServerHttpResponse implements ServerHttpResponse {
 	private final ServerHttpResponse delegate;
 
 	/**
-	 * Create a new {@code DelegatingServerHttpResponse}.
+	 * 创建一个新的 {@code DelegatingServerHttpResponse}。
 	 * @param delegate the response to delegate to
 	 */
 	public DelegatingServerHttpResponse(ServerHttpResponse delegate) {
@@ -44,7 +44,7 @@ public class DelegatingServerHttpResponse implements ServerHttpResponse {
 	}
 
 	/**
-	 * Returns the target response that this response delegates to.
+	 * 返回此响应所委托的目标响应。
 	 * @return the delegate
 	 */
 	public ServerHttpResponse getDelegate() {

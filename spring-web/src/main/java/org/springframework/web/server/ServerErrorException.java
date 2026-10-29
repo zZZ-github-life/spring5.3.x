@@ -23,9 +23,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception for an {@link HttpStatus#INTERNAL_SERVER_ERROR} that exposes extra
- * information about a controller method that failed, or a controller method
- * argument that could not be resolved.
+ * 针对 {@link HttpStatus#INTERNAL_SERVER_ERROR} 的异常，
+ * 会额外暴露关于失败的控制器方法或无法解析的控制器方法参数的信息。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -41,7 +40,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 
 	/**
-	 * Constructor for a 500 error with a reason and an optional cause.
+	 * 带有原因和可选起因的 500 错误构造函数。
 	 * @since 5.0.5
 	 */
 	public ServerErrorException(String reason, @Nullable Throwable cause) {
@@ -51,7 +50,7 @@ public class ServerErrorException extends ResponseStatusException {
 	}
 
 	/**
-	 * Constructor for a 500 error with a handler {@link Method} and an optional cause.
+	 * 带有处理器 {@link Method} 和可选起因的 500 错误构造函数。
 	 * @since 5.0.5
 	 */
 	public ServerErrorException(String reason, Method handlerMethod, @Nullable Throwable cause) {
@@ -61,7 +60,7 @@ public class ServerErrorException extends ResponseStatusException {
 	}
 
 	/**
-	 * Constructor for a 500 error with a {@link MethodParameter} and an optional cause.
+	 * 带有 {@link MethodParameter} 和可选起因的 500 错误构造函数。
 	 */
 	public ServerErrorException(String reason, MethodParameter parameter, @Nullable Throwable cause) {
 		super(HttpStatus.INTERNAL_SERVER_ERROR, reason, cause);
@@ -70,7 +69,7 @@ public class ServerErrorException extends ResponseStatusException {
 	}
 
 	/**
-	 * Constructor for a 500 error linked to a specific {@code MethodParameter}.
+	 * 与特定 {@code MethodParameter} 关联的 500 错误构造函数。
 	 * @deprecated in favor of {@link #ServerErrorException(String, MethodParameter, Throwable)}
 	 */
 	@Deprecated
@@ -79,7 +78,7 @@ public class ServerErrorException extends ResponseStatusException {
 	}
 
 	/**
-	 * Constructor for a 500 error with a reason only.
+	 * 仅带有原因的 500 错误构造函数。
 	 * @deprecated in favor of {@link #ServerErrorException(String, Throwable)}
 	 */
 	@Deprecated
@@ -91,7 +90,7 @@ public class ServerErrorException extends ResponseStatusException {
 
 
 	/**
-	 * Return the handler method associated with the error, if any.
+	 * 返回与此错误关联的处理器方法（如果有）。
 	 * @since 5.0.5
 	 */
 	@Nullable
@@ -100,7 +99,7 @@ public class ServerErrorException extends ResponseStatusException {
 	}
 
 	/**
-	 * Return the specific method parameter associated with the error, if any.
+	 * 返回与此错误关联的特定方法参数（如果有）。
 	 */
 	@Nullable
 	public MethodParameter getMethodParameter() {

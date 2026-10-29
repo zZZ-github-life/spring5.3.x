@@ -28,14 +28,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Base class for databinding-aware JSP tags that render HTML element. Provides
- * a set of properties corresponding to the set of HTML attributes that are common
- * across elements.
+ * 用于渲染 HTML 元素的数据绑定感知 JSP 标签的基类。提供
+ * 一组与各元素通用 HTML 属性相对应的属性。
  *
- * <p>Additionally, this base class allows for rendering non-standard attributes
- * as part of the tag's output.  These attributes are accessible to subclasses if
- * needed via the {@link AbstractHtmlElementTag#getDynamicAttributes() dynamicAttributes}
- * map.
+ * <p>此外，此基类允许将非标准属性作为标签输出的一部分进行渲染。
+ * 如有需要，子类可以通过
+ * {@link AbstractHtmlElementTag#getDynamicAttributes() dynamicAttributes} map 访问这些属性。
  *
  * @author Rob Harrop
  * @author Jeremy Grelle
@@ -134,16 +132,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 
 
 	/**
-	 * Set the value of the '{@code class}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code class}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setCssClass(String cssClass) {
 		this.cssClass = cssClass;
 	}
 
 	/**
-	 * Get the value of the '{@code class}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code class}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getCssClass() {
@@ -151,16 +149,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * The CSS class to use when the field bound to a particular tag has errors.
-	 * May be a runtime expression.
+	 * 当绑定到特定标签的字段存在错误时要使用的 CSS class。
+	 * 可以是运行时表达式。
 	 */
 	public void setCssErrorClass(String cssErrorClass) {
 		this.cssErrorClass = cssErrorClass;
 	}
 
 	/**
-	 * The CSS class to use when the field bound to a particular tag has errors.
-	 * May be a runtime expression.
+	 * 当绑定到特定标签的字段存在错误时要使用的 CSS class。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getCssErrorClass() {
@@ -168,16 +166,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code style}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code style}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setCssStyle(String cssStyle) {
 		this.cssStyle = cssStyle;
 	}
 
 	/**
-	 * Get the value of the '{@code style}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code style}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getCssStyle() {
@@ -185,16 +183,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code lang}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code lang}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setLang(String lang) {
 		this.lang = lang;
 	}
 
 	/**
-	 * Get the value of the '{@code lang}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code lang}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getLang() {
@@ -202,16 +200,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code title}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code title}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * Get the value of the '{@code title}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code title}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getTitle() {
@@ -219,16 +217,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code dir}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code dir}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setDir(String dir) {
 		this.dir = dir;
 	}
 
 	/**
-	 * Get the value of the '{@code dir}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code dir}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getDir() {
@@ -236,16 +234,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code tabindex}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code tabindex}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setTabindex(String tabindex) {
 		this.tabindex = tabindex;
 	}
 
 	/**
-	 * Get the value of the '{@code tabindex}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code tabindex}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getTabindex() {
@@ -253,16 +251,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onclick}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onclick}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnclick(String onclick) {
 		this.onclick = onclick;
 	}
 
 	/**
-	 * Get the value of the '{@code onclick}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onclick}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnclick() {
@@ -270,16 +268,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code ondblclick}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code ondblclick}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOndblclick(String ondblclick) {
 		this.ondblclick = ondblclick;
 	}
 
 	/**
-	 * Get the value of the '{@code ondblclick}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code ondblclick}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOndblclick() {
@@ -287,16 +285,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onmousedown}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onmousedown}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnmousedown(String onmousedown) {
 		this.onmousedown = onmousedown;
 	}
 
 	/**
-	 * Get the value of the '{@code onmousedown}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onmousedown}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnmousedown() {
@@ -304,16 +302,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onmouseup}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onmouseup}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnmouseup(String onmouseup) {
 		this.onmouseup = onmouseup;
 	}
 
 	/**
-	 * Get the value of the '{@code onmouseup}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onmouseup}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnmouseup() {
@@ -321,16 +319,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onmouseover}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onmouseover}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnmouseover(String onmouseover) {
 		this.onmouseover = onmouseover;
 	}
 
 	/**
-	 * Get the value of the '{@code onmouseover}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onmouseover}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnmouseover() {
@@ -338,16 +336,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onmousemove}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onmousemove}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnmousemove(String onmousemove) {
 		this.onmousemove = onmousemove;
 	}
 
 	/**
-	 * Get the value of the '{@code onmousemove}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onmousemove}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnmousemove() {
@@ -355,15 +353,15 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onmouseout}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onmouseout}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnmouseout(String onmouseout) {
 		this.onmouseout = onmouseout;
 	}
 	/**
-	 * Get the value of the '{@code onmouseout}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onmouseout}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnmouseout() {
@@ -371,16 +369,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onkeypress}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onkeypress}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnkeypress(String onkeypress) {
 		this.onkeypress = onkeypress;
 	}
 
 	/**
-	 * Get the value of the '{@code onkeypress}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onkeypress}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnkeypress() {
@@ -388,16 +386,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onkeyup}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onkeyup}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnkeyup(String onkeyup) {
 		this.onkeyup = onkeyup;
 	}
 
 	/**
-	 * Get the value of the '{@code onkeyup}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onkeyup}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnkeyup() {
@@ -405,16 +403,16 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Set the value of the '{@code onkeydown}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onkeydown}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnkeydown(String onkeydown) {
 		this.onkeydown = onkeydown;
 	}
 
 	/**
-	 * Get the value of the '{@code onkeydown}' attribute.
-	 * May be a runtime expression.
+	 * 获取 '{@code onkeydown}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	@Nullable
 	protected String getOnkeydown() {
@@ -422,7 +420,7 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Get the map of dynamic attributes.
+	 * 获取动态属性的 map。
 	 */
 	@Nullable
 	protected Map<String, Object> getDynamicAttributes() {
@@ -445,15 +443,15 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Whether the given name-value pair is a valid dynamic attribute.
+	 * 给定的名称-值对是否为有效的动态属性。
 	 */
 	protected boolean isValidDynamicAttribute(String localName, Object value) {
 		return true;
 	}
 
 	/**
-	 * Writes the default attributes configured via this base class to the supplied {@link TagWriter}.
-	 * Subclasses should call this when they want the base attribute set to be written to the output.
+	 * 将在此基类中配置的默认属性写入提供的 {@link TagWriter}。
+	 * 当子类希望将基础属性集写入输出时，应调用此方法。
 	 */
 	@Override
 	protected void writeDefaultAttributes(TagWriter tagWriter) throws JspException {
@@ -462,9 +460,9 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Writes the optional attributes configured via this base class to the supplied {@link TagWriter}.
-	 * The set of optional attributes that will be rendered includes any non-standard dynamic attributes.
-	 * Called by {@link #writeDefaultAttributes(TagWriter)}.
+	 * 将在此基类中配置的可选属性写入提供的 {@link TagWriter}。
+	 * 将要渲染的可选属性集包括任何非标准动态属性。
+	 * 由 {@link #writeDefaultAttributes(TagWriter)} 调用。
 	 */
 	protected void writeOptionalAttributes(TagWriter tagWriter) throws JspException {
 		tagWriter.writeOptionalAttributeValue(CLASS_ATTRIBUTE, resolveCssClass());
@@ -493,8 +491,8 @@ public abstract class AbstractHtmlElementTag extends AbstractDataBoundFormElemen
 	}
 
 	/**
-	 * Gets the appropriate CSS class to use based on the state of the current
-	 * {@link org.springframework.web.servlet.support.BindStatus} object.
+	 * 根据当前 {@link org.springframework.web.servlet.support.BindStatus} 对象的状态，
+	 * 获取要使用的适当 CSS class。
 	 */
 	protected String resolveCssClass() throws JspException {
 		if (getBindStatus().isError() && StringUtils.hasText(getCssErrorClass())) {

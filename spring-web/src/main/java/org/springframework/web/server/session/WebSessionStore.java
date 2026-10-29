@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.WebSession;
 
 /**
- * Strategy for {@link WebSession} persistence.
+ * {@link WebSession} 持久化策略。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch
@@ -30,34 +30,31 @@ import org.springframework.web.server.WebSession;
 public interface WebSessionStore {
 
 	/**
-	 * Create a new WebSession.
-	 * <p>Note that this does nothing more than create a new instance.
-	 * The session can later be started explicitly via {@link WebSession#start()}
-	 * or implicitly by adding attributes -- and then persisted via
-	 * {@link WebSession#save()}.
+	 * 创建一个新的 WebSession。
+	 * <p>注意，这仅仅创建一个新实例。会话之后可以通过 {@link WebSession#start()}
+	 * 显式启动，或通过添加属性隐式启动，然后通过 {@link WebSession#save()} 持久化。
 	 * @return the created session instance
 	 */
 	Mono<WebSession> createWebSession();
 
 	/**
-	 * Return the WebSession for the given id.
-	 * <p><strong>Note:</strong> This method should perform an expiration check,
-	 * and if it has expired remove the session and return empty. This method
-	 * should also update the lastAccessTime of retrieved sessions.
+	 * 返回给定 ID 的 WebSession。
+	 * <p><strong>注意：</strong>此方法应执行过期检查，如果会话已过期，
+	 * 则移除该会话并返回空。此方法还应更新所检索会话的 lastAccessTime。
 	 * @param sessionId the session to load
 	 * @return the session, or an empty {@code Mono} .
 	 */
 	Mono<WebSession> retrieveSession(String sessionId);
 
 	/**
-	 * Remove the WebSession for the specified id.
+	 * 移除指定 ID 的 WebSession。
 	 * @param sessionId the id of the session to remove
 	 * @return a completion notification (success or error)
 	 */
 	Mono<Void> removeSession(String sessionId);
 
 	/**
-	 * Update the last accessed timestamp to "now".
+	 * 将最后访问时间戳更新为“当前时间”。
 	 * @param webSession the session to update
 	 * @return the session with the updated last access time
 	 */

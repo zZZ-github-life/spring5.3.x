@@ -22,10 +22,8 @@ import reactor.core.publisher.Flux;
 import org.springframework.core.io.buffer.DataBuffer;
 
 /**
- * A "reactive" HTTP input message that exposes the input as {@link Publisher}.
- *
- * <p>Typically implemented by an HTTP request on the server-side or a response
- * on the client-side.
+ * 以 {@link Publisher} 形式公开输入的 "响应式" HTTP 输入消息。
+ * <p>通常由服务器端的 HTTP 请求或客户端的响应实现。
  *
  * @author Arjen Poutsma
  * @since 5.0
@@ -33,7 +31,7 @@ import org.springframework.core.io.buffer.DataBuffer;
 public interface ReactiveHttpInputMessage extends HttpMessage {
 
 	/**
-	 * Return the body of the message as a {@link Publisher}.
+	 * 以 {@link Publisher} 形式返回消息正文。
 	 * @return the body content publisher
 	 */
 	Flux<DataBuffer> getBody();

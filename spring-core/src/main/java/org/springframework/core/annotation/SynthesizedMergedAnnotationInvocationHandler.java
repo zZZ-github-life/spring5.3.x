@@ -34,9 +34,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link InvocationHandler} for an {@link Annotation} that Spring has
- * <em>synthesized</em> (i.e. wrapped in a dynamic proxy) with additional
- * functionality such as attribute alias handling.
+ * 用于 Spring 已<em>合成</em>（即包装在动态代理中）的 {@link Annotation} 的
+ * {@link InvocationHandler}，这类注解具有属性别名处理等附加功能。
  *
  * @author Sam Brannen
  * @author Phillip Webb
@@ -98,7 +97,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 	}
 
 	/**
-	 * See {@link Annotation#equals(Object)} for a definition of the required algorithm.
+	 * 有关所需算法的定义，请参见 {@link Annotation#equals(Object)}。
 	 * @param other the other object to compare against
 	 */
 	private boolean annotationEquals(Object other) {
@@ -120,7 +119,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 	}
 
 	/**
-	 * See {@link Annotation#hashCode()} for a definition of the required algorithm.
+	 * 有关所需算法的定义，请参见 {@link Annotation#hashCode()}。
 	 */
 	private int annotationHashCode() {
 		Integer hashCode = this.hashCode;
@@ -195,14 +194,11 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 	}
 
 	/**
-	 * This method currently does not address the following issues which we may
-	 * choose to address at a later point in time.
+	 * 此方法目前未处理以下问题，我们可能会在后续阶段选择处理它们。
 	 *
 	 * <ul>
-	 * <li>non-ASCII, non-visible, and non-printable characters within a character
-	 * or String literal are not escaped.</li>
-	 * <li>formatting for float and double values does not take into account whether
-	 * a value is not a number (NaN) or infinite.</li>
+	 * <li>字符或 String 字面量中的非 ASCII、不可见和不可打印字符不会被转义。</li>
+	 * <li>float 和 double 值的格式化不考虑该值是否为非数值 (NaN) 或无穷大。</li>
 	 * </ul>
 	 * @param value the attribute value to format
 	 * @return the formatted string representation
@@ -263,7 +259,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 	}
 
 	/**
-	 * Clone the provided array, ensuring that the original component type is retained.
+	 * 克隆所提供的数组，确保保留原始的组件类型。
 	 * @param array the array to clone
 	 */
 	private Object cloneArray(Object array) {

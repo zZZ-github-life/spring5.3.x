@@ -19,7 +19,7 @@ package org.springframework.messaging.simp.user;
 import java.util.Set;
 
 /**
- * Represents a session of connected user.
+ * 表示已连接用户的会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -27,17 +27,17 @@ import java.util.Set;
 public interface SimpSession {
 
 	/**
-	 * Return the session id.
+	 * 返回会话 ID。
 	 */
 	String getId();
 
 	/**
-	 * Return the user associated with the session.
+	 * 返回与会话关联的用户。
 	 */
 	SimpUser getUser();
 
 	/**
-	 * Return the subscriptions for this session.
+	 * 返回此会话的订阅。
 	 */
 	Set<SimpSubscription> getSubscriptions();
 

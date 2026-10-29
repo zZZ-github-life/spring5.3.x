@@ -29,40 +29,39 @@
 package org.springframework.asm;
 
 /**
- * Information about a class being parsed in a {@link ClassReader}.
+ * 关于在 {@link ClassReader} 中正在解析的类的信息。
  *
  * @author Eric Bruneton
  */
 final class Context {
 
-  /** The prototypes of the attributes that must be parsed in this class. */
+  /** 必须在此类中解析的属性的原型。 */
   Attribute[] attributePrototypes;
 
   /**
-   * The options used to parse this class. One or more of {@link ClassReader#SKIP_CODE}, {@link
-   * ClassReader#SKIP_DEBUG}, {@link ClassReader#SKIP_FRAMES}, {@link ClassReader#EXPAND_FRAMES} or
-   * {@link ClassReader#EXPAND_ASM_INSNS}.
+   * 用于解析此类的选项。为 {@link ClassReader#SKIP_CODE}、{@link ClassReader#SKIP_DEBUG}、
+   * {@link ClassReader#SKIP_FRAMES}、{@link ClassReader#EXPAND_FRAMES} 或
+   * {@link ClassReader#EXPAND_ASM_INSNS} 中的一个或多个。
    */
   int parsingOptions;
 
-  /** The buffer used to read strings in the constant pool. */
+  /** 用于读取常量池中字符串的缓冲区。 */
   char[] charBuffer;
 
   // Information about the current method, i.e. the one read in the current (or latest) call
   // to {@link ClassReader#readMethod()}.
 
-  /** The access flags of the current method. */
+  /** 当前方法的访问标志。 */
   int currentMethodAccessFlags;
 
-  /** The name of the current method. */
+  /** 当前方法的名称。 */
   String currentMethodName;
 
-  /** The descriptor of the current method. */
+  /** 当前方法的描述符。 */
   String currentMethodDescriptor;
 
   /**
-   * The labels of the current method, indexed by bytecode offset (only bytecode offsets for which a
-   * label is needed have a non null associated Label).
+   * 当前方法的标签，按字节码偏移量索引（只有需要标签的字节码偏移量才关联非 null 的 Label）。
    */
   Label[] currentMethodLabels;
 
@@ -70,68 +69,62 @@ final class Context {
   // (or latest) call to {@link ClassReader#readAnnotationTarget()}.
 
   /**
-   * The target_type and target_info of the current type annotation target, encoded as described in
-   * {@link TypeReference}.
+   * 当前类型注解目标的 target_type 和 target_info，按 {@link TypeReference} 中所述的方式编码。
    */
   int currentTypeAnnotationTarget;
 
-  /** The target_path of the current type annotation target. */
+  /** 当前类型注解目标的 target_path。 */
   TypePath currentTypeAnnotationTargetPath;
 
-  /** The start of each local variable range in the current local variable annotation. */
+  /** 当前局部变量注解中每个局部变量范围的起始位置。 */
   Label[] currentLocalVariableAnnotationRangeStarts;
 
-  /** The end of each local variable range in the current local variable annotation. */
+  /** 当前局部变量注解中每个局部变量范围的结束位置。 */
   Label[] currentLocalVariableAnnotationRangeEnds;
 
   /**
-   * The local variable index of each local variable range in the current local variable annotation.
+   * 当前局部变量注解中每个局部变量范围的局部变量索引。
    */
   int[] currentLocalVariableAnnotationRangeIndices;
 
   // Information about the current stack map frame, i.e. the one read in the current (or latest)
   // call to {@link ClassReader#readFrame()}.
 
-  /** The bytecode offset of the current stack map frame. */
+  /** 当前栈映射帧的字节码偏移量。 */
   int currentFrameOffset;
 
   /**
-   * The type of the current stack map frame. One of {@link Opcodes#F_FULL}, {@link
-   * Opcodes#F_APPEND}, {@link Opcodes#F_CHOP}, {@link Opcodes#F_SAME} or {@link Opcodes#F_SAME1}.
+   * 当前栈映射帧的类型。为 {@link Opcodes#F_FULL}、{@link Opcodes#F_APPEND}、{@link Opcodes#F_CHOP}
+   * 、{@link Opcodes#F_SAME} 或 {@link Opcodes#F_SAME1} 之一。
    */
   int currentFrameType;
 
   /**
-   * The number of local variable types in the current stack map frame. Each type is represented
-   * with a single array element (even long and double).
+   * 当前栈映射帧中局部变量类型的数量。每个类型都由单个数组元素表示（即使是 long 和 double）。
    */
   int currentFrameLocalCount;
 
   /**
-   * The delta number of local variable types in the current stack map frame (each type is
-   * represented with a single array element - even long and double). This is the number of local
-   * variable types in this frame, minus the number of local variable types in the previous frame.
+   * 当前栈映射帧中局部变量类型的增量数量（每个类型都由单个数组元素表示——即使是 long 和 double）。它
+   * 等于此帧中的局部变量类型数量减去上一帧中的局部变量类型数量。
    */
   int currentFrameLocalCountDelta;
 
   /**
-   * The types of the local variables in the current stack map frame. Each type is represented with
-   * a single array element (even long and double), using the format described in {@link
-   * MethodVisitor#visitFrame}. Depending on {@link #currentFrameType}, this contains the types of
-   * all the local variables, or only those of the additional ones (compared to the previous frame).
+   * 当前栈映射帧中局部变量的类型。每个类型都由单个数组元素表示（即使是 long 和 double），使用
+   * {@link MethodVisitor#visitFrame} 中描述的格式。根据 {@link #currentFrameType} 的不同，它包含所有
+   * 局部变量的类型，或者只包含（与上一帧相比）新增的那些局部变量的类型。
    */
   Object[] currentFrameLocalTypes;
 
   /**
-   * The number stack element types in the current stack map frame. Each type is represented with a
-   * single array element (even long and double).
+   * 当前栈映射帧中栈元素类型的数量。每个类型都由单个数组元素表示（即使是 long 和 double）。
    */
   int currentFrameStackCount;
 
   /**
-   * The types of the stack elements in the current stack map frame. Each type is represented with a
-   * single array element (even long and double), using the format described in {@link
-   * MethodVisitor#visitFrame}.
+   * 当前栈映射帧中栈元素的类型。每个类型都由单个数组元素表示（即使是 long 和 double），使用
+   * {@link MethodVisitor#visitFrame} 中描述的格式。
    */
   Object[] currentFrameStackTypes;
 }

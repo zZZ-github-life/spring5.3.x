@@ -35,24 +35,23 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * that manages local transactions for a single CCI ConnectionFactory.
- * Binds a CCI Connection from the specified ConnectionFactory to the thread,
- * potentially allowing for one thread-bound Connection per ConnectionFactory.
+ * {@link org.springframework.transaction.PlatformTransactionManager} 实现，
+ * 管理单个 CCI ConnectionFactory 的本地事务。
+ * 将来自指定 ConnectionFactory 的 CCI Connection 绑定到线程，
+ * 允许每个 ConnectionFactory 有一个线程绑定的 Connection。
  *
- * <p>Application code is required to retrieve the CCI Connection via
- * {@link ConnectionFactoryUtils#getConnection(ConnectionFactory)} instead of a standard
- * Java EE-style {@link ConnectionFactory#getConnection()} call. Spring classes such as
- * {@link org.springframework.jca.cci.core.CciTemplate} use this strategy implicitly.
- * If not used in combination with this transaction manager, the
- * {@link ConnectionFactoryUtils} lookup strategy behaves exactly like the native
- * DataSource lookup; it can thus be used in a portable fashion.
+ * <p>应用程序代码需要通过
+ * {@link ConnectionFactoryUtils#getConnection(ConnectionFactory)} 来获取 CCI Connection，
+ * 而不是使用标准的 Java EE 风格 {@link ConnectionFactory#getConnection()} 调用。
+ * Spring 的 {@link org.springframework.jca.cci.core.CciTemplate} 等类隐式使用此策略。
+ * 如果不与此事务管理器结合使用，
+ * {@link ConnectionFactoryUtils} 的查找策略与原生 DataSource 查找的行为完全相同；
+ * 因此可以以可移植的方式使用。
  *
- * <p>Alternatively, you can allow application code to work with the standard
- * Java EE lookup pattern {@link ConnectionFactory#getConnection()}, for example
- * for legacy code that is not aware of Spring at all. In that case, define a
- * {@link TransactionAwareConnectionFactoryProxy} for your target ConnectionFactory,
- * which will automatically participate in Spring-managed transactions.
+ * <p>或者，你可以允许应用程序代码使用标准的 Java EE 查找模式
+ * {@link ConnectionFactory#getConnection()}，例如用于完全不感知 Spring 的遗留代码。
+ * 在这种情况下，为你的目标 ConnectionFactory 定义一个
+ * {@link TransactionAwareConnectionFactoryProxy}，它将自动参与 Spring 管理的事务。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -74,15 +73,15 @@ public class CciLocalTransactionManager extends AbstractPlatformTransactionManag
 
 
 	/**
-	 * Create a new CciLocalTransactionManager instance.
-	 * A ConnectionFactory has to be set to be able to use it.
+	 * 创建新的 CciLocalTransactionManager 实例。
+	 * 必须设置 ConnectionFactory 才能使用。
 	 * @see #setConnectionFactory
 	 */
 	public CciLocalTransactionManager() {
 	}
 
 	/**
-	 * Create a new CciLocalTransactionManager instance.
+	 * 创建新的 CciLocalTransactionManager 实例。
 	 * @param connectionFactory the CCI ConnectionFactory to manage local transactions for
 	 */
 	public CciLocalTransactionManager(ConnectionFactory connectionFactory) {
@@ -92,8 +91,7 @@ public class CciLocalTransactionManager extends AbstractPlatformTransactionManag
 
 
 	/**
-	 * Set the CCI ConnectionFactory that this instance should manage local
-	 * transactions for.
+	 * 设置此实例应管理本地事务的 CCI ConnectionFactory。
 	 */
 	public void setConnectionFactory(@Nullable ConnectionFactory cf) {
 		if (cf instanceof TransactionAwareConnectionFactoryProxy) {
@@ -108,8 +106,7 @@ public class CciLocalTransactionManager extends AbstractPlatformTransactionManag
 	}
 
 	/**
-	 * Return the CCI ConnectionFactory that this instance manages local
-	 * transactions for.
+	 * 返回此实例管理本地事务的 CCI ConnectionFactory。
 	 */
 	@Nullable
 	public ConnectionFactory getConnectionFactory() {
@@ -271,8 +268,8 @@ public class CciLocalTransactionManager extends AbstractPlatformTransactionManag
 
 
 	/**
-	 * CCI local transaction object, representing a ConnectionHolder.
-	 * Used as transaction object by CciLocalTransactionManager.
+	 * CCI 本地事务对象，表示一个 ConnectionHolder。
+	 * 由 CciLocalTransactionManager 用作事务对象。
 	 * @see ConnectionHolder
 	 */
 	private static class CciLocalTransactionObject {

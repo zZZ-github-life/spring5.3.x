@@ -28,8 +28,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link FactoryBean} for creating {@link ThreadPoolTaskExecutor} instances,
- * primarily used behind the XML task namespace.
+ * 用于创建 {@link ThreadPoolTaskExecutor} 实例的 {@link FactoryBean}，主要供 XML 任务命名空间在幕
+ * 后使用。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller

@@ -26,11 +26,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods for formatting and logging messages.
+ * 用于格式化和记录消息的工具方法。
  *
- * <p>Mainly for internal use within the framework with Apache Commons Logging,
- * typically in the form of the {@code spring-jcl} bridge but also compatible
- * with other Commons Logging bridges.
+ * <p>主要供框架内部与 Apache Commons Logging 配合使用，
+ * 通常以 {@code spring-jcl} 桥接的形式出现，但也兼容
+ * 其他 Commons Logging 桥接。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -44,9 +44,9 @@ public abstract class LogFormatUtils {
 
 
 	/**
-	 * Convenience variant of {@link #formatValue(Object, int, boolean)} that
-	 * limits the length of a log message to 100 characters and also replaces
-	 * newline and control characters if {@code limitLength} is set to "true".
+	 * {@link #formatValue(Object, int, boolean)} 的便捷变体，
+	 * 它将日志消息的长度限制为 100 个字符，并且在
+	 * {@code limitLength} 设置为 "true" 时替换换行符和控制字符。
 	 * @param value the value to format
 	 * @param limitLength whether to truncate the value at a length of 100
 	 * @return the formatted value
@@ -56,9 +56,9 @@ public abstract class LogFormatUtils {
 	}
 
 	/**
-	 * Format the given value via {@code toString()}, quoting it if it is a
-	 * {@link CharSequence}, truncating at the specified {@code maxLength}, and
-	 * compacting it into a single line when {@code replaceNewLines} is set.
+	 * 通过 {@code toString()} 格式化给定值，如果它是
+	 * {@link CharSequence} 则为其加引号，截断到指定的 {@code maxLength}，
+	 * 并在设置了 {@code replaceNewLines} 时将其压缩为单行。
 	 * @param value the value to be formatted
 	 * @param maxLength the max length, after which to truncate, or -1 for unlimited
 	 * @param replaceNewlinesAndControlCharacters whether to replace newline and
@@ -92,8 +92,8 @@ public abstract class LogFormatUtils {
 	}
 
 	/**
-	 * Use this to log a message with different levels of detail (or different
-	 * messages) at TRACE vs DEBUG log levels. Effectively, a substitute for:
+	 * 用于在 TRACE 与 DEBUG 日志级别下记录不同详细程度（或不同
+	 * 消息）的日志。实际上，它是以下内容的替代：
 	 * <pre class="code">
 	 * if (logger.isDebugEnabled()) {
 	 *   String str = logger.isTraceEnabled() ? "..." : "...";

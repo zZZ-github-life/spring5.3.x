@@ -1,6 +1,5 @@
 /**
- * Package providing integration of <a href="https://x-stream.github.io/">XStream</a>
- * with Spring's O/X Mapping support.
+ * 提供 <a href="https://x-stream.github.io/">XStream</a> 与 Spring O/X 映射支持的集成。
  */
 @NonNullApi
 @NonNullFields

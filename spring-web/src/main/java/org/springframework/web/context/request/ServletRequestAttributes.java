@@ -32,10 +32,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Servlet-based implementation of the {@link RequestAttributes} interface.
+ * 基于 Servlet 的 {@link RequestAttributes} 接口实现。
  *
- * <p>Accesses objects from servlet request and HTTP session scope,
- * with no distinction between "session" and "global session".
+ * <p>从 Servlet 请求作用域和 HTTP 会话作用域访问对象，不区分“session”和“global session”。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -45,8 +44,7 @@ import org.springframework.web.util.WebUtils;
 public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 	/**
-	 * Constant identifying the {@link String} prefixed to the name of a
-	 * destruction callback when it is stored in a {@link HttpSession}.
+	 * 标识销毁回调存储在 {@link HttpSession} 中时其名称前缀的 {@link String} 常量。
 	 */
 	public static final String DESTRUCTION_CALLBACK_NAME_PREFIX =
 			ServletRequestAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
@@ -73,7 +71,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 
 	/**
-	 * Create a new ServletRequestAttributes instance for the given request.
+	 * 为给定的请求创建一个新的 ServletRequestAttributes 实例。
 	 * @param request current HTTP request
 	 */
 	public ServletRequestAttributes(HttpServletRequest request) {
@@ -82,7 +80,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	}
 
 	/**
-	 * Create a new ServletRequestAttributes instance for the given request.
+	 * 为给定的请求创建一个新的 ServletRequestAttributes 实例。
 	 * @param request current HTTP request
 	 * @param response current HTTP response (for optional exposure)
 	 */
@@ -93,14 +91,14 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 
 	/**
-	 * Exposes the native {@link HttpServletRequest} that we're wrapping.
+	 * 暴露我们正在包装的原生 {@link HttpServletRequest}。
 	 */
 	public final HttpServletRequest getRequest() {
 		return this.request;
 	}
 
 	/**
-	 * Exposes the native {@link HttpServletResponse} that we're wrapping (if any).
+	 * 暴露我们正在包装的原生 {@link HttpServletResponse}（如果有）。
 	 */
 	@Nullable
 	public final HttpServletResponse getResponse() {
@@ -108,7 +106,7 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	}
 
 	/**
-	 * Exposes the {@link HttpSession} that we're wrapping.
+	 * 暴露我们正在包装的 {@link HttpSession}。
 	 * @param allowCreate whether to allow creation of a new session if none exists yet
 	 */
 	@Nullable
@@ -266,8 +264,8 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 
 
 	/**
-	 * Update all accessed session attributes through {@code session.setAttribute}
-	 * calls, explicitly indicating to the container that they might have been modified.
+	 * 通过 {@code session.setAttribute} 调用更新所有已访问的会话属性，明确告知容器这些属性可能已被修
+	 * 改。
 	 */
 	@Override
 	protected void updateAccessedSessionAttributes() {
@@ -294,11 +292,10 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	}
 
 	/**
-	 * Determine whether the given value is to be considered as an immutable session
-	 * attribute, that is, doesn't have to be re-set via {@code session.setAttribute}
-	 * since its value cannot meaningfully change internally.
-	 * <p>The default implementation returns {@code true} for {@code String},
-	 * {@code Character}, {@code Boolean} and standard {@code Number} values.
+	 * 确定给定值是否应被视为不可变的会话属性，即无需通过 {@code session.setAttribute} 重新设置，因为
+	 * 其值在内部不会发生有意义的改变。
+	 * <p>对于 {@code String}、{@code Character}、{@code Boolean} 和标准 {@code Number} 值，默认实现
+	 * 返回 {@code true}。
 	 * @param name the name of the attribute
 	 * @param value the corresponding value to check
 	 * @return {@code true} if the value is to be considered as immutable for the
@@ -310,9 +307,8 @@ public class ServletRequestAttributes extends AbstractRequestAttributes {
 	}
 
 	/**
-	 * Register the given callback as to be executed after session termination.
-	 * <p>Note: The callback object should be serializable in order to survive
-	 * web app restarts.
+	 * 注册给定的回调，使其在会话终止后执行。
+	 * <p>注意：回调对象应可序列化，以便在 Web 应用重启后仍然有效。
 	 * @param name the name of the attribute to register the callback for
 	 * @param callback the callback to be executed for destruction
 	 */

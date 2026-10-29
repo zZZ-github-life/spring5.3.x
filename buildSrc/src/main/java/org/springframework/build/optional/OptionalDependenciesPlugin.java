@@ -27,17 +27,16 @@ import org.gradle.plugins.ide.eclipse.EclipsePlugin;
 import org.gradle.plugins.ide.eclipse.model.EclipseModel;
 
 /**
- * A {@code Plugin} that adds support for Maven-style optional dependencies. Creates a new
- * {@code optional} configuration. The {@code optional} configuration is part of the
- * project's compile and runtime classpaths but does not affect the classpath of
- * dependent projects.
+ * 一个 {@code Plugin}，添加对 Maven 风格可选依赖的支持。
+ * 创建一个新的 {@code optional} 配置。该 {@code optional} 配置是项目
+ * 编译和运行时类路径的一部分，但不会影响依赖项目的类路径。
  *
  * @author Andy Wilkinson
  */
 public class OptionalDependenciesPlugin implements Plugin<Project> {
 
 	/**
-	 * Name of the {@code optional} configuration.
+	 * {@code optional} 配置的名称。
 	 */
 	public static final String OPTIONAL_CONFIGURATION_NAME = "optional";
 

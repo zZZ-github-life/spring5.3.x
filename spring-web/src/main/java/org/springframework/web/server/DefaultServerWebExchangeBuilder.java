@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Package-private implementation of {@link ServerWebExchange.Builder}.
+ * {@link ServerWebExchange.Builder} 的包级私有实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -84,8 +84,8 @@ class DefaultServerWebExchangeBuilder implements ServerWebExchange.Builder {
 
 
 	/**
-	 * An immutable wrapper of an exchange returning property overrides -- given
-	 * to the constructor -- or original values otherwise.
+	 * 交换的不可变包装器，返回传递给构造函数的属性覆盖值，
+	 * 否则返回原始值。
 	 */
 	private static class MutativeDecorator extends ServerWebExchangeDecorator {
 

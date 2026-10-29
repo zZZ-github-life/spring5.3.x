@@ -21,8 +21,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Interface to be implemented by classes (usually HTTP request handlers) that
- * provides a {@link CorsConfiguration} instance based on the provided reactive request.
+ * 由提供基于给定响应式请求的 {@link CorsConfiguration} 实例的类
+ * （通常是 HTTP 请求处理器）实现的接口。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -30,7 +30,7 @@ import org.springframework.web.server.ServerWebExchange;
 public interface CorsConfigurationSource {
 
 	/**
-	 * Return a {@link CorsConfiguration} based on the incoming request.
+	 * 返回基于传入请求的 {@link CorsConfiguration}。
 	 * @return the associated {@link CorsConfiguration}, or {@code null} if none
 	 */
 	@Nullable

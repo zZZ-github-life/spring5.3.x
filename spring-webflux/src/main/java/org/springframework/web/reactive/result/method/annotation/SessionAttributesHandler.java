@@ -29,10 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.server.WebSession;
 
 /**
- * Package-private class to assist {@link ModelInitializer} with managing model
- * attributes in the {@link WebSession} based on model attribute names and types
- * declared va {@link SessionAttributes @SessionAttributes}.
- *
+ * 包级私有类，协助 {@link ModelInitializer} 根据通过 {@link SessionAttributes @SessionAttributes} 声明的模型属性名称和类型，在 {@link WebSession} 中管理模型属性。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -46,9 +43,7 @@ class SessionAttributesHandler {
 
 
 	/**
-	 * Create a new session attributes handler. Session attribute names and types
-	 * are extracted from the {@code @SessionAttributes} annotation, if present,
-	 * on the given type.
+	 * 创建新的会话属性处理器。如果给定类型上存在 {@code @SessionAttributes} 注解，则从中提取会话属性名称和类型。
 	 * @param handlerType the controller type
 	 */
 	public SessionAttributesHandler(Class<?> handlerType) {
@@ -62,19 +57,15 @@ class SessionAttributesHandler {
 
 
 	/**
-	 * Whether the controller represented by this instance has declared any
-	 * session attributes through an {@link SessionAttributes} annotation.
+	 * 此实例所代表的控制器是否通过 {@link SessionAttributes} 注解声明了任何会话属性。
 	 */
 	public boolean hasSessionAttributes() {
 		return (!this.attributeNames.isEmpty() || !this.attributeTypes.isEmpty());
 	}
 
 	/**
-	 * Whether the attribute name or type match the names and types specified
-	 * via {@code @SessionAttributes} on the underlying controller.
-	 * <p>Attributes successfully resolved through this method are "remembered"
-	 * and subsequently used in {@link #retrieveAttributes(WebSession)}
-	 * and also {@link #cleanupAttributes(WebSession)}.
+	 * 属性名称或类型是否匹配底层控制器上通过 {@code @SessionAttributes} 指定的名称和类型。
+	 * <p>通过此方法成功解析的属性会被“记住”，随后用于 {@link #retrieveAttributes(WebSession)} 和 {@link #cleanupAttributes(WebSession)}。
 	 * @param attributeName the attribute name to check
 	 * @param attributeType the type for the attribute
 	 */
@@ -90,9 +81,7 @@ class SessionAttributesHandler {
 	}
 
 	/**
-	 * Retrieve "known" attributes from the session, i.e. attributes listed
-	 * by name in {@code @SessionAttributes} or attributes previously stored
-	 * in the model that matched by type.
+	 * 从会话中检索“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，或之前存储在模型中且类型匹配的属性。
 	 * @param session the current session
 	 * @return a map with handler session attributes, possibly empty
 	 */
@@ -108,8 +97,7 @@ class SessionAttributesHandler {
 	}
 
 	/**
-	 * Store a subset of the given attributes in the session. Attributes not
-	 * declared as session attributes via {@code @SessionAttributes} are ignored.
+	 * 将给定属性的子集存储在会话中。未通过 {@code @SessionAttributes} 声明为会话属性的属性将被忽略。
 	 * @param session the current session
 	 * @param attributes candidate attributes for session storage
 	 */
@@ -122,9 +110,7 @@ class SessionAttributesHandler {
 	}
 
 	/**
-	 * Remove "known" attributes from the session, i.e. attributes listed
-	 * by name in {@code @SessionAttributes} or attributes previously stored
-	 * in the model that matched by type.
+	 * 从会话中移除“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，或之前存储在模型中且类型匹配的属性。
 	 * @param session the current session
 	 */
 	public void cleanupAttributes(WebSession session) {

@@ -21,8 +21,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Strategy interface to handle the value returned from the invocation of a
- * method handling a {@link Message}.
+ * 用于处理调用 {@link Message} 处理方法所返回值的策略接口。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -30,8 +29,7 @@ import org.springframework.messaging.Message;
 public interface HandlerMethodReturnValueHandler {
 
 	/**
-	 * Whether the given {@linkplain MethodParameter method return type} is
-	 * supported by this handler.
+	 * 给定{@linkplain MethodParameter 方法返回类型}是否受此处理器支持。
 	 * @param returnType the method return type to check
 	 * @return {@code true} if this handler supports the supplied return type;
 	 * {@code false} otherwise
@@ -39,7 +37,7 @@ public interface HandlerMethodReturnValueHandler {
 	boolean supportsReturnType(MethodParameter returnType);
 
 	/**
-	 * Handle the given return value.
+	 * 处理给定返回值。
 	 * @param returnValue the value returned from the handler method
 	 * @param returnType the type of the return value. This type must have previously
 	 * been passed to {@link #supportsReturnType(org.springframework.core.MethodParameter)}

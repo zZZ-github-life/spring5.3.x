@@ -27,7 +27,7 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts a Collection to a comma-delimited String.
+ * 将 Collection 转换为以逗号分隔的 String。
  *
  * @author Keith Donald
  * @since 3.0

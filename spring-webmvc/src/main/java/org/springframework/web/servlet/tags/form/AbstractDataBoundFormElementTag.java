@@ -32,12 +32,11 @@ import org.springframework.web.servlet.tags.EditorAwareTag;
 import org.springframework.web.servlet.tags.NestedPathTag;
 
 /**
- * Base tag for all data-binding aware JSP form tags.
+ * 所有数据绑定感知 JSP 表单标签的基类。
  *
- * <p>Provides the common {@link #setPath path} and {@link #setId id} properties.
- * Provides subclasses with utility methods for accessing the {@link BindStatus}
- * of their bound value and also for {@link #writeOptionalAttribute interacting}
- * with the {@link TagWriter}.
+ * <p>提供通用的 {@link #setPath path} 和 {@link #setId id} 属性。
+ * 为子类提供用于访问其绑定值 {@link BindStatus} 的工具方法，
+ * 以及用于与 {@link TagWriter} 交互的 {@link #writeOptionalAttribute interacting} 方法。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -47,42 +46,41 @@ import org.springframework.web.servlet.tags.NestedPathTag;
 public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag implements EditorAwareTag {
 
 	/**
-	 * Name of the exposed path variable within the scope of this tag: "nestedPath".
-	 * Same value as {@link org.springframework.web.servlet.tags.NestedPathTag#NESTED_PATH_VARIABLE_NAME}.
+	 * 此标签作用域内暴露的路径变量的名称："nestedPath"。
+	 * 与 {@link org.springframework.web.servlet.tags.NestedPathTag#NESTED_PATH_VARIABLE_NAME} 的值相同。
 	 */
 	protected static final String NESTED_PATH_VARIABLE_NAME = NestedPathTag.NESTED_PATH_VARIABLE_NAME;
 
 
 	/**
-	 * The property path from the {@link FormTag#setModelAttribute form object}.
+	 * 来自 {@link FormTag#setModelAttribute 表单对象}的属性路径。
 	 */
 	@Nullable
 	private String path;
 
 	/**
-	 * The value of the '{@code id}' attribute.
+	 * '{@code id}' 属性的值。
 	 */
 	@Nullable
 	private String id;
 
 	/**
-	 * The {@link BindStatus} of this tag.
+	 * 此标签的 {@link BindStatus}。
 	 */
 	@Nullable
 	private BindStatus bindStatus;
 
 
 	/**
-	 * Set the property path from the {@link FormTag#setModelAttribute form object}.
-	 * May be a runtime expression.
+	 * 设置来自 {@link FormTag#setModelAttribute 表单对象}的属性路径。
+	 * 可以是运行时表达式。
 	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
 
 	/**
-	 * Get the {@link #evaluate resolved} property path for the
-	 * {@link FormTag#setModelAttribute form object}.
+	 * 获取 {@link FormTag#setModelAttribute 表单对象}的{@link #evaluate 已解析}属性路径。
 	 */
 	protected final String getPath() throws JspException {
 		String resolvedPath = (String) evaluate("path", this.path);
@@ -90,9 +88,9 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Set the value of the '{@code id}' attribute.
-	 * <p>May be a runtime expression; defaults to the value of {@link #getName()}.
-	 * Note that the default value may not be valid for certain tags.
+	 * 设置 '{@code id}' 属性的值。
+	 * <p>可以是运行时表达式；默认值为 {@link #getName()}。
+	 * 请注意，默认值对于某些标签可能无效。
 	 */
 	@Override
 	public void setId(@Nullable String id) {
@@ -100,7 +98,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get the value of the '{@code id}' attribute.
+	 * 获取 '{@code id}' 属性的值。
 	 */
 	@Override
 	@Nullable
@@ -110,12 +108,10 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 
 
 	/**
-	 * Writes the default set of attributes to the supplied {@link TagWriter}.
-	 * Further, abstract subclasses should override this method to add in
-	 * any additional default attributes but <strong>must</strong> remember
-	 * to call the {@code super} method.
-	 * <p>Concrete subclasses should call this method when/if they want
-	 * to render default attributes.
+	 * 将默认属性集写入提供的 {@link TagWriter}。
+	 * 此外，抽象子类应覆盖此方法以添加任何额外的默认属性，
+	 * 但<strong>必须</strong>记得调用 {@code super} 方法。
+	 * <p>具体子类在希望渲染默认属性时应调用此方法。
 	 * @param tagWriter the {@link TagWriter} to which any attributes are to be written
 	 */
 	protected void writeDefaultAttributes(TagWriter tagWriter) throws JspException {
@@ -124,8 +120,8 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Determine the '{@code id}' attribute value for this tag,
-	 * autogenerating one if none specified.
+	 * 确定此标签的 '{@code id}' 属性值，
+	 * 如果未指定则自动生成一个。
 	 * @see #getId()
 	 * @see #autogenerateId()
 	 */
@@ -140,9 +136,9 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Autogenerate the '{@code id}' attribute value for this tag.
-	 * <p>The default implementation simply delegates to {@link #getName()},
-	 * deleting invalid characters (such as "[" or "]").
+	 * 为此标签自动生成 '{@code id}' 属性值。
+	 * <p>默认实现简单地委托给 {@link #getName()}，
+	 * 并删除无效字符（例如 "[" 或 "]"）。
 	 */
 	@Nullable
 	protected String autogenerateId() throws JspException {
@@ -151,12 +147,12 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get the value for the HTML '{@code name}' attribute.
-	 * <p>The default implementation simply delegates to
-	 * {@link #getPropertyPath()} to use the property path as the name.
-	 * For the most part this is desirable as it links with the server-side
-	 * expectation for data binding. However, some subclasses may wish to change
-	 * the value of the '{@code name}' attribute without changing the bind path.
+	 * 获取 HTML '{@code name}' 属性的值。
+	 * <p>默认实现简单地委托给
+	 * {@link #getPropertyPath()}，将属性路径用作名称。
+	 * 大多数情况下这是可取的，因为它与服务器端对数据绑定的
+	 * 期望相一致。但是，某些子类可能希望在不更改绑定路径的情况下
+	 * 更改 '{@code name}' 属性的值。
 	 * @return the value for the HTML '{@code name}' attribute
 	 */
 	@Nullable
@@ -165,7 +161,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get the {@link BindStatus} for this tag.
+	 * 获取此标签的 {@link BindStatus}。
 	 */
 	protected BindStatus getBindStatus() throws JspException {
 		if (this.bindStatus == null) {
@@ -181,8 +177,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get the value of the nested path that may have been exposed by the
-	 * {@link NestedPathTag}.
+	 * 获取可能由 {@link NestedPathTag} 暴露的嵌套路径的值。
 	 */
 	@Nullable
 	protected String getNestedPath() {
@@ -190,8 +185,8 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Build the property path for this tag, including the nested path
-	 * but <i>not</i> prefixed with the name of the form attribute.
+	 * 构建此标签的属性路径，包含嵌套路径，
+	 * 但<i>不</i>以表单属性的名称作为前缀。
 	 * @see #getNestedPath()
 	 * @see #getPath()
 	 */
@@ -201,7 +196,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get the bound value.
+	 * 获取绑定值。
 	 * @see #getBindStatus()
 	 */
 	@Nullable
@@ -210,7 +205,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get the {@link PropertyEditor}, if any, in use for value bound to this tag.
+	 * 获取用于此标签所绑定值的 {@link PropertyEditor}（如果有）。
 	 */
 	@Nullable
 	protected PropertyEditor getPropertyEditor() throws JspException {
@@ -218,8 +213,8 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Exposes the {@link PropertyEditor} for {@link EditorAwareTag}.
-	 * <p>Use {@link #getPropertyEditor()} for internal rendering purposes.
+	 * 为 {@link EditorAwareTag} 暴露 {@link PropertyEditor}。
+	 * <p>内部渲染请使用 {@link #getPropertyEditor()}。
 	 */
 	@Override
 	@Nullable
@@ -228,8 +223,8 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Get a display String for the given value, converted by a PropertyEditor
-	 * that the BindStatus may have registered for the value's Class.
+	 * 获取给定值的显示字符串，该值由 BindStatus 可能为其 Class
+	 * 注册的 PropertyEditor 进行转换。
 	 */
 	protected String convertToDisplayString(@Nullable Object value) throws JspException {
 		PropertyEditor editor = (value != null ? getBindStatus().findEditor(value.getClass()) : null);
@@ -237,8 +232,8 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Process the given form field through a {@link RequestDataValueProcessor}
-	 * instance if one is configured or otherwise returns the same value.
+	 * 如果配置了 {@link RequestDataValueProcessor} 实例，则通过它处理给定的
+	 * 表单字段，否则返回相同的值。
 	 */
 	protected final String processFieldValue(@Nullable String name, String value, String type) {
 		RequestDataValueProcessor processor = getRequestContext().getRequestDataValueProcessor();
@@ -250,7 +245,7 @@ public abstract class AbstractDataBoundFormElementTag extends AbstractFormTag im
 	}
 
 	/**
-	 * Disposes of the {@link BindStatus} instance.
+	 * 释放 {@link BindStatus} 实例。
 	 */
 	@Override
 	public void doFinally() {

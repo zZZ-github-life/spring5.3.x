@@ -78,20 +78,16 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Bean post-processor that registers methods annotated with
- * {@link Scheduled @Scheduled} to be invoked by a
- * {@link org.springframework.scheduling.TaskScheduler} according to the
- * "fixedRate", "fixedDelay", or "cron" expression provided via the annotation.
+ * Bean 后处理器，它注册标注了 {@link Scheduled @Scheduled} 的方法，以便由
+ * {@link org.springframework.scheduling.TaskScheduler} 根据注解中提供的 "fixedRate"、"fixedDelay"
+ * 或 "cron" 表达式进行调用。
  *
- * <p>This post-processor is automatically registered by Spring's
- * {@code <task:annotation-driven>} XML element, and also by the
- * {@link EnableScheduling @EnableScheduling} annotation.
+ * <p>该后处理器由 Spring 的 {@code <task:annotation-driven>} XML 元素自动注册，也可通过
+ * {@link EnableScheduling @EnableScheduling} 注解注册。
  *
- * <p>Autodetects any {@link SchedulingConfigurer} instances in the container,
- * allowing for customization of the scheduler to be used or for fine-grained
- * control over task registration (e.g. registration of {@link Trigger} tasks).
- * See the {@link EnableScheduling @EnableScheduling} javadocs for complete usage
- * details.
+ * <p>自动检测容器中的任何 {@link SchedulingConfigurer} 实例，从而可以自定义要使用的调度器，或对任
+ * 务注册（例如注册 {@link Trigger} 任务）进行细粒度控制。完整用法详情请参见
+ * {@link EnableScheduling @EnableScheduling} 的 Javadoc。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -113,9 +109,8 @@ public class ScheduledAnnotationBeanPostProcessor
 		SmartInitializingSingleton, ApplicationListener<ContextRefreshedEvent>, DisposableBean {
 
 	/**
-	 * The default name of the {@link TaskScheduler} bean to pick up: {@value}.
-	 * <p>Note that the initial lookup happens by type; this is just the fallback
-	 * in case of multiple scheduler beans found in the context.
+	 * 要获取的 {@link TaskScheduler} Bean 的默认名称：{@value}。
+	 * <p>请注意，初始查找是按类型进行的；此名称仅用于在上下文中找到多个调度器 Bean 时的后备方案。
 	 * @since 4.2
 	 */
 	public static final String DEFAULT_TASK_SCHEDULER_BEAN_NAME = "taskScheduler";
@@ -146,15 +141,15 @@ public class ScheduledAnnotationBeanPostProcessor
 
 
 	/**
-	 * Create a default {@code ScheduledAnnotationBeanPostProcessor}.
+	 * 创建一个默认的 {@code ScheduledAnnotationBeanPostProcessor}。
 	 */
 	public ScheduledAnnotationBeanPostProcessor() {
 		this.registrar = new ScheduledTaskRegistrar();
 	}
 
 	/**
-	 * Create a {@code ScheduledAnnotationBeanPostProcessor} delegating to the
-	 * specified {@link ScheduledTaskRegistrar}.
+	 * 创建一个委托给指定 {@link ScheduledTaskRegistrar} 的
+	 * {@code ScheduledAnnotationBeanPostProcessor}。
 	 * @param registrar the ScheduledTaskRegistrar to register {@code @Scheduled}
 	 * tasks on
 	 * @since 5.1
@@ -171,14 +166,11 @@ public class ScheduledAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Set the {@link org.springframework.scheduling.TaskScheduler} that will invoke
-	 * the scheduled methods, or a {@link java.util.concurrent.ScheduledExecutorService}
-	 * to be wrapped as a TaskScheduler.
-	 * <p>If not specified, default scheduler resolution will apply: searching for a
-	 * unique {@link TaskScheduler} bean in the context, or for a {@link TaskScheduler}
-	 * bean named "taskScheduler" otherwise; the same lookup will also be performed for
-	 * a {@link ScheduledExecutorService} bean. If neither of the two is resolvable,
-	 * a local single-threaded default scheduler will be created within the registrar.
+	 * 设置将调用定时方法的 {@link org.springframework.scheduling.TaskScheduler}，或要包装为
+	 * TaskScheduler 的 {@link java.util.concurrent.ScheduledExecutorService}。
+	 * <p>如果未指定，将应用默认的调度器解析方式：在上下文中查找唯一的 {@link TaskScheduler} Bean，否则
+	 * 查找名为 "taskScheduler" 的 {@link TaskScheduler} Bean；对于 {@link ScheduledExecutorService}
+	 * Bean 也会执行相同的查找。如果两者都无法解析，将在注册器内创建一个本地单线程的默认调度器。
 	 * @see #DEFAULT_TASK_SCHEDULER_BEAN_NAME
 	 */
 	public void setScheduler(Object scheduler) {
@@ -196,9 +188,8 @@ public class ScheduledAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Making a {@link BeanFactory} available is optional; if not set,
-	 * {@link SchedulingConfigurer} beans won't get autodetected and
-	 * a {@link #setScheduler scheduler} has to be explicitly configured.
+	 * 提供 {@link BeanFactory} 是可选的；如果未设置，{@link SchedulingConfigurer} Bean 将不会被自动检
+	 * 测，并且必须显式配置 {@link #setScheduler scheduler}。
 	 */
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {
@@ -206,9 +197,9 @@ public class ScheduledAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Setting an {@link ApplicationContext} is optional: If set, registered
-	 * tasks will be activated in the {@link ContextRefreshedEvent} phase;
-	 * if not set, it will happen at {@link #afterSingletonsInstantiated} time.
+	 * 设置 {@link ApplicationContext} 是可选的：如果设置了，已注册的任务将在
+	 * {@link ContextRefreshedEvent} 阶段激活；如果未设置，则在 {@link #afterSingletonsInstantiated} 时
+	 * 激活。
 	 */
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {
@@ -388,7 +379,7 @@ public class ScheduledAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Process the given {@code @Scheduled} method declaration on the given bean.
+	 * 处理给定 Bean 上给定的 {@code @Scheduled} 方法声明。
 	 * @param scheduled the {@code @Scheduled} annotation
 	 * @param method the method that the annotation has been declared on
 	 * @param bean the target bean instance
@@ -520,9 +511,8 @@ public class ScheduledAnnotationBeanPostProcessor
 	}
 
 	/**
-	 * Create a {@link Runnable} for the given bean instance,
-	 * calling the specified scheduled method.
-	 * <p>The default implementation creates a {@link ScheduledMethodRunnable}.
+	 * 为给定 Bean 实例创建一个 {@link Runnable}，用于调用指定的定时方法。
+	 * <p>默认实现会创建一个 {@link ScheduledMethodRunnable}。
 	 * @param target the target bean instance
 	 * @param method the scheduled method to call
 	 * @since 5.1
@@ -555,8 +545,8 @@ public class ScheduledAnnotationBeanPostProcessor
 
 
 	/**
-	 * Return all currently scheduled tasks, from {@link Scheduled} methods
-	 * as well as from programmatic {@link SchedulingConfigurer} interaction.
+	 * 返回当前所有已调度的任务，包括来自 {@link Scheduled} 方法的任务以及来自编程式
+	 * {@link SchedulingConfigurer} 交互的任务。
 	 * @since 5.0.2
 	 */
 	@Override

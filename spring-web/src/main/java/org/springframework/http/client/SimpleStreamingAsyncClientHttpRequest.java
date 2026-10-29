@@ -29,9 +29,9 @@ import org.springframework.util.StreamUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * {@link org.springframework.http.client.ClientHttpRequest} implementation
- * that uses standard Java facilities to execute streaming requests. Created
- * via the {@link org.springframework.http.client.SimpleClientHttpRequestFactory}.
+ * 使用标准 Java 设施执行流式请求的
+ * {@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+ * {@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
  *
  * @author Arjen Poutsma
  * @since 3.0

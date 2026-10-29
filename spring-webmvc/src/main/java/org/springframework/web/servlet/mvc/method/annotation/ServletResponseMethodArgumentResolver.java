@@ -30,14 +30,12 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves servlet backed response-related method arguments. Supports values of the
- * following types:
+ * 解析 Servlet 支持的与响应相关的方法参数。支持以下类型的值：
  * <ul>
  * <li>{@link ServletResponse}
  * <li>{@link OutputStream}
  * <li>{@link Writer}
  * </ul>
- *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -54,10 +52,10 @@ public class ServletResponseMethodArgumentResolver implements HandlerMethodArgum
 	}
 
 	/**
-	 * Set {@link ModelAndViewContainer#setRequestHandled(boolean)} to
-	 * {@code false} to indicate that the method signature provides access
-	 * to the response. If subsequently the underlying method returns
-	 * {@code null}, the request is considered directly handled.
+	 * 将 {@link ModelAndViewContainer#setRequestHandled(boolean)} 设为
+	 * {@code false}，以表示方法签名提供了对响应的访问。
+	 * 如果随后底层方法返回 {@code null}，则认为请求
+	 * 已被直接处理。
 	 */
 	@Override
 	public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,

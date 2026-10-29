@@ -39,39 +39,29 @@ import org.springframework.util.PropertiesPersister;
 import org.springframework.util.StringUtils;
 
 /**
- * Spring-specific {@link org.springframework.context.MessageSource} implementation
- * that accesses resource bundles using specified basenames, participating in the
- * Spring {@link org.springframework.context.ApplicationContext}'s resource loading.
+ * Spring 特有的 {@link org.springframework.context.MessageSource} 实现，使用指定的基名访问资源包，
+ * 并参与 Spring {@link org.springframework.context.ApplicationContext} 的资源加载。
  *
- * <p>In contrast to the JDK-based {@link ResourceBundleMessageSource}, this class uses
- * {@link java.util.Properties} instances as its custom data structure for messages,
- * loading them via a {@link org.springframework.util.PropertiesPersister} strategy
- * from Spring {@link Resource} handles. This strategy is not only capable of
- * reloading files based on timestamp changes, but also of loading properties files
- * with a specific character encoding. It will detect XML property files as well.
+ * <p>与基于 JDK 的 {@link ResourceBundleMessageSource} 不同，此类使用 {@link java.util.Properties}
+ * 实例作为其消息的自定义数据结构，并通过 {@link org.springframework.util.PropertiesPersister} 策略
+ * 从 Spring {@link Resource} 句柄加载它们。该策略不仅能根据时间戳变化重新加载文件，还能以指定的字
+ * 符编码加载属性文件。它也会识别 XML 属性文件。
  *
- * <p>Note that the basenames set as {@link #setBasenames "basenames"} property
- * are treated in a slightly different fashion than the "basenames" property of
- * {@link ResourceBundleMessageSource}. It follows the basic ResourceBundle rule of not
- * specifying file extension or language codes, but can refer to any Spring resource
- * location (instead of being restricted to classpath resources). With a "classpath:"
- * prefix, resources can still be loaded from the classpath, but "cacheSeconds" values
- * other than "-1" (caching forever) might not work reliably in this case.
+ * <p>请注意，通过 {@link #setBasenames "basenames"} 属性设置的基名，其处理方式与
+ * {@link ResourceBundleMessageSource} 的 "basenames" 属性略有不同。它遵循 ResourceBundle 的基本规
+ * 则，不指定文件扩展名或语言代码，但可以指向任意 Spring 资源位置（而不仅限于类路径资源）。使用
+ * "classpath:" 前缀时，资源仍可从类路径加载，但此时除 "-1"（永久缓存）之外的 "cacheSeconds" 值可能
+ * 无法可靠工作。
  *
- * <p>For a typical web application, message files could be placed in {@code WEB-INF}:
- * e.g. a "WEB-INF/messages" basename would find a "WEB-INF/messages.properties",
- * "WEB-INF/messages_en.properties" etc arrangement as well as "WEB-INF/messages.xml",
- * "WEB-INF/messages_en.xml" etc. Note that message definitions in a <i>previous</i>
- * resource bundle will override ones in a later bundle, due to sequential lookup.
-
- * <p>This MessageSource can easily be used outside an
- * {@link org.springframework.context.ApplicationContext}: it will use a
- * {@link org.springframework.core.io.DefaultResourceLoader} as default,
- * simply getting overridden with the ApplicationContext's resource loader
- * if running in a context. It does not have any other specific dependencies.
+ * <p>对于典型的 Web 应用，消息文件可以放在 {@code WEB-INF} 中：例如基名 "WEB-INF/messages" 会找到
+ * "WEB-INF/messages.properties"、"WEB-INF/messages_en.properties" 等组合，以及
+ * "WEB-INF/messages.xml"、"WEB-INF/messages_en.xml" 等。请注意，由于按顺序查找，<i>前一个</i>资源
+ * 包中的消息定义会覆盖后一个资源包中的定义。
+ * <p>此 MessageSource 可以很容易地在 {@link org.springframework.context.ApplicationContext} 之外使
+ * 用：它默认使用 {@link org.springframework.core.io.DefaultResourceLoader}，如果在上下文中运行，则
+ * 会被 ApplicationContext 的资源加载器覆盖。它没有其他特定依赖。
  *
- * <p>Thanks to Thomas Achleitner for providing the initial implementation of
- * this message source!
+ * <p>感谢 Thomas Achleitner 提供了此消息源的初始实现！
  *
  * @author Juergen Hoeller
  * @see #setCacheSeconds
@@ -113,8 +103,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 
 	/**
-	 * Set per-file charsets to use for parsing properties files.
-	 * <p>Only applies to classic properties files, not to XML files.
+	 * 设置用于解析属性文件的按文件字符集。
+	 * <p>仅适用于传统的属性文件，不适用于 XML 文件。
 	 * @param fileEncodings a Properties with filenames as keys and charset
 	 * names as values. Filenames have to match the basename syntax,
 	 * with optional locale-specific components: e.g. "WEB-INF/messages"
@@ -127,13 +117,10 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Specify whether to allow for concurrent refresh behavior, i.e. one thread
-	 * locked in a refresh attempt for a specific cached properties file whereas
-	 * other threads keep returning the old properties for the time being, until
-	 * the refresh attempt has completed.
-	 * <p>Default is "true": this behavior is new as of Spring Framework 4.1,
-	 * minimizing contention between threads. If you prefer the old behavior,
-	 * i.e. to fully block on refresh, switch this flag to "false".
+	 * 指定是否允许并发刷新行为，即一个线程在针对某个已缓存的属性文件进行刷新尝试时被锁定，而其他线程在
+	 * 此期间继续返回旧的属性，直到刷新尝试完成。
+	 * <p>默认值为 "true"：此行为自 Spring Framework 4.1 起新增，可最大限度减少线程之间的争用。如果你更
+	 * 喜欢旧行为（即在刷新时完全阻塞），请将此标志切换为 "false"。
 	 * @since 4.1
 	 * @see #setCacheSeconds
 	 */
@@ -142,8 +129,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Set the PropertiesPersister to use for parsing properties files.
-	 * <p>The default is ResourcePropertiesPersister.
+	 * 设置用于解析属性文件的 PropertiesPersister。
+	 * <p>默认为 ResourcePropertiesPersister。
 	 * @see ResourcePropertiesPersister#INSTANCE
 	 */
 	public void setPropertiesPersister(@Nullable PropertiesPersister propertiesPersister) {
@@ -152,11 +139,9 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Set the ResourceLoader to use for loading bundle properties files.
-	 * <p>The default is a DefaultResourceLoader. Will get overridden by the
-	 * ApplicationContext if running in a context, as it implements the
-	 * ResourceLoaderAware interface. Can be manually overridden when
-	 * running outside an ApplicationContext.
+	 * 设置用于加载资源包属性文件的 ResourceLoader。
+	 * <p>默认为 DefaultResourceLoader。如果在上下文中运行，它会被 ApplicationContext 覆盖，因为它实现
+	 * 了 ResourceLoaderAware 接口。在 ApplicationContext 之外运行时可以手动覆盖。
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 * @see org.springframework.context.ResourceLoaderAware
 	 */
@@ -167,8 +152,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 
 	/**
-	 * Resolves the given message code as key in the retrieved bundle files,
-	 * returning the value found in the bundle as-is (without MessageFormat parsing).
+	 * 在检索到的资源包文件中将给定消息代码作为键进行解析，并原样返回包中找到的值（不进行 MessageFormat
+	 * 解析）。
 	 */
 	@Override
 	protected String resolveCodeWithoutArguments(String code, Locale locale) {
@@ -195,8 +180,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Resolves the given message code as key in the retrieved bundle files,
-	 * using a cached MessageFormat instance per message code.
+	 * 在检索到的资源包文件中将给定消息代码作为键进行解析，并为每个消息代码使用一个缓存的 MessageFormat
+	 * 实例。
 	 */
 	@Override
 	@Nullable
@@ -225,12 +210,9 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 
 	/**
-	 * Get a PropertiesHolder that contains the actually visible properties
-	 * for a Locale, after merging all specified resource bundles.
-	 * Either fetches the holder from the cache or freshly loads it.
-	 * <p>Only used when caching resource bundle contents forever, i.e.
-	 * with cacheSeconds &lt; 0. Therefore, merged properties are always
-	 * cached forever.
+	 * 获取一个 PropertiesHolder，其中包含合并所有指定资源包后对某个 Locale 实际可见的属性。该 holder
+	 * 要么从缓存中获取，要么重新加载。
+	 * <p>仅在永久缓存资源包内容时使用，即 cacheSeconds &lt; 0 的情况。因此，合并后的属性总是被永久缓存。
 	 */
 	protected PropertiesHolder getMergedProperties(Locale locale) {
 		PropertiesHolder mergedHolder = this.cachedMergedProperties.get(locale);
@@ -264,9 +246,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Calculate all filenames for the given bundle basename and Locale.
-	 * Will calculate filenames for the given Locale, the system Locale
-	 * (if applicable), and the default file.
+	 * 计算给定资源包基名和 Locale 的所有文件名。将计算给定 Locale、系统 Locale（如果适用）以及默认文件
+	 * 的文件名。
 	 * @param basename the basename of the bundle
 	 * @param locale the locale
 	 * @return the List of filenames to check
@@ -313,11 +294,10 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Calculate the filenames for the given bundle basename and Locale,
-	 * appending language code, country code, and variant code.
-	 * <p>For example, basename "messages", Locale "de_AT_oo" &rarr; "messages_de_AT_OO",
-	 * "messages_de_AT", "messages_de".
-	 * <p>Follows the rules defined by {@link java.util.Locale#toString()}.
+	 * 计算给定资源包基名和 Locale 的文件名，依次附加语言代码、国家/地区代码和变体代码。
+	 * <p>例如，基名 "messages"、Locale "de_AT_oo" &rarr; "messages_de_AT_OO"、"messages_de_AT"、
+	 * "messages_de"。
+	 * <p>遵循 {@link java.util.Locale#toString()} 定义的规则。
 	 * @param basename the basename of the bundle
 	 * @param locale the locale
 	 * @return the List of filenames to check
@@ -351,8 +331,7 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 
 	/**
-	 * Get a PropertiesHolder for the given filename, either from the
-	 * cache or freshly loaded.
+	 * 获取给定文件名的 PropertiesHolder，或来自缓存，或重新加载。
 	 * @param filename the bundle filename (basename + Locale)
 	 * @return the current PropertiesHolder for the bundle
 	 */
@@ -400,9 +379,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Refresh the PropertiesHolder for the given bundle filename.
-	 * The holder can be {@code null} if not cached before, or a timed-out cache entry
-	 * (potentially getting re-validated against the current last-modified timestamp).
+	 * 刷新给定资源包文件名的 PropertiesHolder。如果之前未缓存，该 holder 可以为 {@code null}，也可以是
+	 * 已超时的缓存条目（可能会根据当前的最后修改时间戳重新校验）。
 	 * @param filename the bundle filename (basename + Locale)
 	 * @param propHolder the current PropertiesHolder for the bundle
 	 */
@@ -464,7 +442,7 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Load the properties from the given resource.
+	 * 从给定资源加载属性。
 	 * @param resource the resource to load from
 	 * @param filename the original bundle filename (basename + Locale)
 	 * @return the populated Properties instance
@@ -506,11 +484,10 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Template method for creating a plain new {@link Properties} instance.
-	 * The default implementation simply calls {@link Properties#Properties()}.
-	 * <p>Allows for returning a custom {@link Properties} extension in subclasses.
-	 * Overriding methods should just instantiate a custom {@link Properties} subclass,
-	 * with no further initialization or population to be performed at that point.
+	 * 用于创建普通的新 {@link Properties} 实例的模板方法。默认实现只是调用
+	 * {@link Properties#Properties()}。
+	 * <p>允许在子类中返回自定义的 {@link Properties} 扩展。覆盖方法只需实例化一个自定义的
+	 * {@link Properties} 子类，此时不应执行进一步的初始化或填充。
 	 * @return a plain Properties instance
 	 * @since 4.2
 	 */
@@ -520,8 +497,7 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 
 	/**
-	 * Clear the resource bundle cache.
-	 * Subsequent resolve calls will lead to reloading of the properties files.
+	 * 清除资源包缓存。之后的解析调用将重新加载属性文件。
 	 */
 	public void clearCache() {
 		logger.debug("Clearing entire resource bundle cache");
@@ -530,7 +506,7 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 	}
 
 	/**
-	 * Clear the resource bundle caches of this MessageSource and all its ancestors.
+	 * 清除此 MessageSource 及其所有祖先的资源包缓存。
 	 * @see #clearCache
 	 */
 	public void clearCacheIncludingAncestors() {
@@ -548,10 +524,8 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 
 	/**
-	 * PropertiesHolder for caching.
-	 * Stores the last-modified timestamp of the source file for efficient
-	 * change detection, and the timestamp of the last refresh attempt
-	 * (updated every time the cache entry gets re-validated).
+	 * 用于缓存的 PropertiesHolder。存储源文件的最后修改时间戳以便高效检测变化，以及上次刷新尝试的时间
+	 * 戳（每次重新校验缓存条目时更新）。
 	 */
 	protected class PropertiesHolder {
 
@@ -564,7 +538,7 @@ public class ReloadableResourceBundleMessageSource extends AbstractResourceBased
 
 		private final ReentrantLock refreshLock = new ReentrantLock();
 
-		/** Cache to hold already generated MessageFormats per message code. */
+		/** 用于保存每个消息码已生成的 MessageFormat 的缓存。 */
 		private final ConcurrentMap<String, Map<Locale, MessageFormat>> cachedMessageFormats =
 				new ConcurrentHashMap<>();
 

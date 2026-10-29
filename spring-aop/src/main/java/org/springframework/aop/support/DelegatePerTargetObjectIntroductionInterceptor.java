@@ -28,23 +28,18 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Convenient implementation of the
- * {@link org.springframework.aop.IntroductionInterceptor} interface.
+ * {@link org.springframework.aop.IntroductionInterceptor} 接口的便捷实现。
  *
- * <p>This differs from {@link DelegatingIntroductionInterceptor} in that a single
- * instance of this class can be used to advise multiple target objects, and each target
- * object will have its <i>own</i> delegate (whereas DelegatingIntroductionInterceptor
- * shares the same delegate, and hence the same state across all targets).
+ * <p>与 {@link DelegatingIntroductionInterceptor} 不同，此类的单个实例可用于通知多个目标对象，并且
+ * 每个目标对象都将拥有<i>自己的</i>委托（而 DelegatingIntroductionInterceptor 共享同一个委托，因而
+ * 在所有目标之间共享同一状态）。
  *
- * <p>The {@code suppressInterface} method can be used to suppress interfaces
- * implemented by the delegate class but which should not be introduced to the
- * owning AOP proxy.
+ * <p>{@code suppressInterface} 方法可用于抑制由委托类实现但不应该引入到所属 AOP 代理的接口。
  *
- * <p>An instance of this class is serializable if the delegates are.
+ * <p>如果各个委托可序列化，则此类的实例也可序列化。
  *
- * <p><i>Note: There are some implementation similarities between this class and
- * {@link DelegatingIntroductionInterceptor} that suggest a possible refactoring
- * to extract a common ancestor class in the future.</i>
+ * <p><i>注意：此类与 {@link DelegatingIntroductionInterceptor} 之间存在一些实现上的相似之处，这提
+ * 示将来可能通过重构提取一个公共父类。</i>
  *
  * @author Adrian Colyer
  * @author Juergen Hoeller
@@ -57,7 +52,7 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 		implements IntroductionInterceptor {
 
 	/**
-	 * Hold weak references to keys as we don't want to interfere with garbage collection..
+	 * 对键保持弱引用，因为我们不希望干扰垃圾回收。
 	 */
 	private final Map<Object, Object> delegateMap = new WeakHashMap<>();
 
@@ -81,9 +76,8 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 
 
 	/**
-	 * Subclasses may need to override this if they want to perform custom
-	 * behaviour in around advice. However, subclasses should invoke this
-	 * method, which handles introduced interfaces and forwarding to the target.
+	 * 如果子类希望在环绕通知中执行自定义行为，则可能需要覆盖此方法。但子类应调用此方法，因为它负责处理
+	 * 引入的接口以及向目标转发。
 	 */
 	@Override
 	@Nullable
@@ -108,11 +102,9 @@ public class DelegatePerTargetObjectIntroductionInterceptor extends Introduction
 	}
 
 	/**
-	 * Proceed with the supplied {@link org.aopalliance.intercept.MethodInterceptor}.
-	 * Subclasses can override this method to intercept method invocations on the
-	 * target object which is useful when an introduction needs to monitor the object
-	 * that it is introduced into. This method is <strong>never</strong> called for
-	 * {@link MethodInvocation MethodInvocations} on the introduced interfaces.
+	 * 使用提供的 {@link org.aopalliance.intercept.MethodInterceptor} 继续执行。子类可以覆盖此方法来拦
+	 * 截目标对象上的方法调用，当引入需要监视其被引入的对象时，这很有用。对于引入接口上的
+	 * {@link MethodInvocation MethodInvocations}，<strong>绝不会</strong>调用此方法。
 	 */
 	@Nullable
 	protected Object doProceed(MethodInvocation mi) throws Throwable {

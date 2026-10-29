@@ -22,9 +22,8 @@ import java.util.function.Function;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Context passed to {@link ScriptTemplateView} render function in order to make
- * the application context, the locale, the template loader and the url available on
- * scripting side.
+ * 传递给 {@link ScriptTemplateView} 渲染函数的上下文，
+ * 以便在脚本侧访问应用上下文、locale、模板加载器和 url。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -41,7 +40,7 @@ public class RenderingContext {
 
 
 	/**
-	 * Create a new {@code RenderingContext}.
+	 * 创建一个新的 {@code RenderingContext}。
 	 *
 	 * @param applicationContext the application context
 	 * @param locale the locale of the rendered template
@@ -60,29 +59,28 @@ public class RenderingContext {
 
 
 	/**
-	 * Return the application context.
+	 * 返回应用上下文。
 	 */
 	public ApplicationContext getApplicationContext() {
 		return this.applicationContext;
 	}
 
 	/**
-	 * Return the locale of the rendered template.
+	 * 返回所渲染模板的 locale。
 	 */
 	public Locale getLocale() {
 		return this.locale;
 	}
 
 	/**
-	 * Return a function that takes a template path as input and returns the template
-	 * content as a String.
+	 * 返回一个函数，该函数以模板路径为输入，返回模板内容字符串。
 	 */
 	public Function<String, String> getTemplateLoader() {
 		return this.templateLoader;
 	}
 
 	/**
-	 * Return the URL of the rendered template.
+	 * 返回所渲染模板的 URL。
 	 */
 	public String getUrl() {
 		return this.url;

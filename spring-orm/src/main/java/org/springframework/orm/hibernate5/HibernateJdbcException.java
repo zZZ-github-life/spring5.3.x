@@ -23,8 +23,8 @@ import org.hibernate.JDBCException;
 import org.springframework.dao.UncategorizedDataAccessException;
 
 /**
- * Hibernate-specific subclass of UncategorizedDataAccessException,
- * for JDBC exceptions that Hibernate wrapped.
+ * UncategorizedDataAccessException 的 Hibernate 专用子类，
+ * 用于 Hibernate 包装的 JDBC 异常。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -39,14 +39,14 @@ public class HibernateJdbcException extends UncategorizedDataAccessException {
 	}
 
 	/**
-	 * Return the underlying SQLException.
+	 * 返回底层的 SQLException。
 	 */
 	public SQLException getSQLException() {
 		return ((JDBCException) getCause()).getSQLException();
 	}
 
 	/**
-	 * Return the SQL that led to the problem.
+	 * 返回导致问题的 SQL。
 	 */
 	public String getSql() {
 		return ((JDBCException) getCause()).getSQL();

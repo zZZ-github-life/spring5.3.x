@@ -1,6 +1,5 @@
 /**
- * Support package for declarative transaction configuration,
- * with XML schema being the primary configuration format.
+ * 声明式事务配置的支持包, XML schema是主要的配置格式。
  */
 @NonNullApi
 @NonNullFields

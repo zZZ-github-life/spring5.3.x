@@ -26,8 +26,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * A {@link MessageConverter} that supports MIME type "text/plain" with the
- * payload converted to and from a String.
+ * 一个 {@link MessageConverter}，支持 "text/plain" MIME 类型，
+ * 载荷会与 String 相互转换。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Abstract base class for {@link Encoder} implementations.
+ * 用于 {@link Encoder} 实现的抽象基类。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -47,7 +47,7 @@ public abstract class AbstractEncoder<T> implements Encoder<T> {
 
 
 	/**
-	 * Set an alternative logger to use than the one based on the class name.
+	 * 设置一个替代日志记录器，用以替代基于类名的日志记录器。
 	 * @param logger the logger to use
 	 * @since 5.1
 	 */
@@ -56,7 +56,7 @@ public abstract class AbstractEncoder<T> implements Encoder<T> {
 	}
 
 	/**
-	 * Return the currently configured Logger.
+	 * 返回当前配置的 Logger。
 	 * @since 5.1
 	 */
 	public Log getLogger() {

@@ -30,13 +30,13 @@ import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link SQLExceptionTranslator} implementation that analyzes the SQL state in
- * the {@link SQLException} based on the first two digits (the SQL state "class").
- * Detects standard SQL state values and well-known vendor-specific SQL states.
+ * {@link SQLExceptionTranslator} 的实现，根据前两位数字（SQL 状态“类别”）
+ * 分析 {@link SQLException} 中的 SQL 状态。它能够识别标准 SQL 状态值
+ * 以及众所周知的厂商特定 SQL 状态。
  *
- * <p>Not able to diagnose all problems, but is portable between databases and
- * does not require special initialization (no database vendor detection, etc.).
- * For more precise translation, consider {@link SQLErrorCodeSQLExceptionTranslator}.
+ * <p>它无法诊断所有问题，但可以在不同数据库之间移植，且不需要特殊初始化
+ * （无需检测数据库厂商等）。如需更精确的转换，请考虑使用
+ * {@link SQLErrorCodeSQLExceptionTranslator}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -125,9 +125,9 @@ public class SQLStateSQLExceptionTranslator extends AbstractFallbackSQLException
 	}
 
 	/**
-	 * Gets the SQL state code from the supplied {@link SQLException exception}.
-	 * <p>Some JDBC drivers nest the actual exception from a batched update, so we
-	 * might need to dig down into the nested exception.
+	 * 从提供的 {@link SQLException exception} 中获取 SQL 状态码。
+	 * <p>某些 JDBC 驱动会将批量更新产生的实际异常嵌套起来，因此我们可能需要
+	 * 深入嵌套异常中获取。
 	 * @param ex the exception from which the {@link SQLException#getSQLState() SQL state}
 	 * is to be extracted
 	 * @return the SQL state code

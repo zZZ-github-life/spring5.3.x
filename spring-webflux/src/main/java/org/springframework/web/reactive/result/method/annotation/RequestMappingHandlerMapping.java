@@ -48,10 +48,7 @@ import org.springframework.web.reactive.result.method.RequestMappingInfo;
 import org.springframework.web.reactive.result.method.RequestMappingInfoHandlerMapping;
 
 /**
- * An extension of {@link RequestMappingInfoHandlerMapping} that creates
- * {@link RequestMappingInfo} instances from class-level and method-level
- * {@link RequestMapping @RequestMapping} annotations.
- *
+ * {@link RequestMappingInfoHandlerMapping} 的扩展，根据类级和方法级 {@link RequestMapping @RequestMapping} 注解创建 {@link RequestMappingInfo} 实例。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 5.0
@@ -70,13 +67,9 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 
 	/**
-	 * Configure path prefixes to apply to controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
-	 * method whose controller type is matched by a corresponding
-	 * {@code Predicate} in the map. The prefix for the first matching predicate
-	 * is used, assuming the input map has predictable order.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
-	 * HandlerTypePredicate} to group controllers.
+	 * 配置要应用于控制器方法的路径前缀。
+	 * <p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，这些方法的控制器类型与映射中对应的 {@code Predicate} 匹配。假定输入映射具有可预测的顺序，将使用第一个匹配谓词的前缀。
+	 * <p>考虑使用 {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} 对控制器进行分组。
 	 * @param prefixes a map with path prefixes as key
 	 * @since 5.1
 	 * @see org.springframework.web.method.HandlerTypePredicate
@@ -89,7 +82,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * The configured path prefixes as a read-only, possibly empty map.
+	 * 配置的路径前缀，为只读映射，可能为空。
 	 * @since 5.1
 	 */
 	public Map<String, Predicate<Class<?>>> getPathPrefixes() {
@@ -97,8 +90,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Set the {@link RequestedContentTypeResolver} to use to determine requested
-	 * media types. If not set, the default constructor is used.
+	 * 设置用于确定请求媒体类型的 {@link RequestedContentTypeResolver}。如果未设置，则使用默认构造函数。
 	 */
 	public void setContentTypeResolver(RequestedContentTypeResolver contentTypeResolver) {
 		Assert.notNull(contentTypeResolver, "'contentTypeResolver' must not be null");
@@ -106,7 +98,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Return the configured {@link RequestedContentTypeResolver}.
+	 * 返回配置的 {@link RequestedContentTypeResolver}。
 	 */
 	public RequestedContentTypeResolver getContentTypeResolver() {
 		return this.contentTypeResolver;
@@ -129,7 +121,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * {@inheritDoc}
-	 * Expects a handler to have a type-level @{@link Controller} annotation.
+	 * 期望处理器具有类型级 @{@link Controller} 注解。
 	 */
 	@Override
 	protected boolean isHandler(Class<?> beanType) {
@@ -138,8 +130,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Uses method and type-level @{@link RequestMapping} annotations to create
-	 * the RequestMappingInfo.
+	 * 使用方法级和类型级 @{@link RequestMapping} 注解创建 RequestMappingInfo。
 	 * @return the created RequestMappingInfo, or {@code null} if the method
 	 * does not have a {@code @RequestMapping} annotation.
 	 * @see #getCustomMethodCondition(Method)
@@ -169,9 +160,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Delegates to {@link #createRequestMappingInfo(RequestMapping, RequestCondition)},
-	 * supplying the appropriate custom {@link RequestCondition} depending on whether
-	 * the supplied {@code annotatedElement} is a class or method.
+	 * 委托给 {@link #createRequestMappingInfo(RequestMapping, RequestCondition)}，并根据提供的 {@code annotatedElement} 是类还是方法提供相应的自定义 {@link RequestCondition}。
 	 * @see #getCustomTypeCondition(Class)
 	 * @see #getCustomMethodCondition(Method)
 	 */
@@ -184,15 +173,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Provide a custom type-level request condition.
-	 * The custom {@link RequestCondition} can be of any type so long as the
-	 * same condition type is returned from all calls to this method in order
-	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending
-	 * {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition
-	 * AbstractRequestCondition} for custom condition types and using
-	 * {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition
-	 * CompositeRequestCondition} to provide multiple custom conditions.
+	 * 提供自定义类型级请求条件。自定义 {@link RequestCondition} 可以是任何类型，只要对此方法的所有调用返回相同的条件类型，以确保自定义请求条件可以组合和比较。
+	 * <p>考虑为自定义条件类型扩展 {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition AbstractRequestCondition}，并使用 {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition CompositeRequestCondition} 提供多个自定义条件。
 	 * @param handlerType the handler type for which to create the condition
 	 * @return the condition, or {@code null}
 	 */
@@ -203,15 +185,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Provide a custom method-level request condition.
-	 * The custom {@link RequestCondition} can be of any type so long as the
-	 * same condition type is returned from all calls to this method in order
-	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending
-	 * {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition
-	 * AbstractRequestCondition} for custom condition types and using
-	 * {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition
-	 * CompositeRequestCondition} to provide multiple custom conditions.
+	 * 提供自定义方法级请求条件。自定义 {@link RequestCondition} 可以是任何类型，只要对此方法的所有调用返回相同的条件类型，以确保自定义请求条件可以组合和比较。
+	 * <p>考虑为自定义条件类型扩展 {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition AbstractRequestCondition}，并使用 {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition CompositeRequestCondition} 提供多个自定义条件。
 	 * @param method the handler method for which to create the condition
 	 * @return the condition, or {@code null}
 	 */
@@ -222,10 +197,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Create a {@link RequestMappingInfo} from the supplied
-	 * {@link RequestMapping @RequestMapping} annotation, which is either
-	 * a directly declared annotation, a meta-annotation, or the synthesized
-	 * result of merging annotation attributes within an annotation hierarchy.
+	 * 根据提供的 {@link RequestMapping @RequestMapping} 注解创建 {@link RequestMappingInfo}，该注解可以是直接声明的注解、元注解，或注解层次结构中合并注解属性后的合成结果。
 	 */
 	protected RequestMappingInfo createRequestMappingInfo(
 			RequestMapping requestMapping, @Nullable RequestCondition<?> customCondition) {
@@ -245,7 +217,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Resolve placeholder values in the given array of patterns.
+	 * 解析给定模式数组中的占位符值。
 	 * @return a new array with updated patterns
 	 */
 	protected String[] resolveEmbeddedValuesInPatterns(String[] patterns) {

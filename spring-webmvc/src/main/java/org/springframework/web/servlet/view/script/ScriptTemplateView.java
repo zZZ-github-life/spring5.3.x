@@ -54,16 +54,14 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
- * An {@link AbstractUrlBasedView} subclass designed to run any template library
- * based on a JSR-223 script engine.
+ * 一个 {@link AbstractUrlBasedView} 子类，用于运行基于 JSR-223 脚本引擎的任意模板库。
  *
- * <p>If not set, each property is auto-detected by looking up a single
- * {@link ScriptTemplateConfig} bean in the web application context and using
- * it to obtain the configured properties.
+ * <p>如果未设置，则通过查找 Web 应用上下文中单个 {@link ScriptTemplateConfig} bean
+ * 并使用它获取已配置的属性，从而自动检测各个属性。
  *
- * <p>The Nashorn JavaScript engine requires Java 8+ and may require setting the
- * {@code sharedEngine} property to {@code false} in order to run properly. See
- * {@link ScriptTemplateConfigurer#setSharedEngine(Boolean)} for more details.
+ * <p>Nashorn JavaScript 引擎要求 Java 8+，并且可能需要将 {@code sharedEngine}
+ * 属性设为 {@code false} 才能正常运行。详情请参阅
+ * {@link ScriptTemplateConfigurer#setSharedEngine(Boolean)}。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -74,7 +72,7 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
 public class ScriptTemplateView extends AbstractUrlBasedView {
 
 	/**
-	 * The default content type for the view.
+	 * 此视图的默认内容类型。
 	 */
 	public static final String DEFAULT_CONTENT_TYPE = "text/html";
 
@@ -119,7 +117,7 @@ public class ScriptTemplateView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 用于作为 bean 使用的构造器。
 	 * @see #setUrl
 	 */
 	public ScriptTemplateView() {
@@ -127,7 +125,7 @@ public class ScriptTemplateView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Create a new ScriptTemplateView with the given URL.
+	 * 使用给定 URL 创建一个新的 ScriptTemplateView。
 	 * @since 4.2.1
 	 */
 	public ScriptTemplateView(String url) {
@@ -137,14 +135,14 @@ public class ScriptTemplateView extends AbstractUrlBasedView {
 
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setEngine(ScriptEngine)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setEngine(ScriptEngine)} 的文档。
 	 */
 	public void setEngine(ScriptEngine engine) {
 		this.engine = engine;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setEngineSupplier(Supplier)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setEngineSupplier(Supplier)} 的文档。
 	 * @since 5.2
 	 */
 	public void setEngineSupplier(Supplier<ScriptEngine> engineSupplier) {
@@ -152,49 +150,49 @@ public class ScriptTemplateView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setEngineName(String)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setEngineName(String)} 的文档。
 	 */
 	public void setEngineName(String engineName) {
 		this.engineName = engineName;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setSharedEngine(Boolean)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setSharedEngine(Boolean)} 的文档。
 	 */
 	public void setSharedEngine(Boolean sharedEngine) {
 		this.sharedEngine = sharedEngine;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setScripts(String...)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setScripts(String...)} 的文档。
 	 */
 	public void setScripts(String... scripts) {
 		this.scripts = scripts;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setRenderObject(String)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setRenderObject(String)} 的文档。
 	 */
 	public void setRenderObject(String renderObject) {
 		this.renderObject = renderObject;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setRenderFunction(String)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setRenderFunction(String)} 的文档。
 	 */
 	public void setRenderFunction(String functionName) {
 		this.renderFunction = functionName;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setCharset(Charset)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setCharset(Charset)} 的文档。
 	 */
 	public void setCharset(Charset charset) {
 		this.charset = charset;
 	}
 
 	/**
-	 * See {@link ScriptTemplateConfigurer#setResourceLoaderPath(String)} documentation.
+	 * 参见 {@link ScriptTemplateConfigurer#setResourceLoaderPath(String)} 的文档。
 	 */
 	public void setResourceLoaderPath(String resourceLoaderPath) {
 		String[] paths = StringUtils.commaDelimitedListToStringArray(resourceLoaderPath);
@@ -449,9 +447,9 @@ public class ScriptTemplateView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Key class for the {@code enginesHolder ThreadLocal}.
-	 * Only used if scripts have been specified; otherwise, the
-	 * {@code engineName String} will be used as cache key directly.
+	 * {@code enginesHolder ThreadLocal} 的键类。
+	 * 仅在已指定脚本时使用；否则，将直接使用
+	 * {@code engineName String} 作为缓存键。
 	 */
 	private static class EngineKey {
 

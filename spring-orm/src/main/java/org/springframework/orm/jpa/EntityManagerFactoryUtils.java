@@ -57,11 +57,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Helper class featuring methods for JPA EntityManager handling,
- * allowing for reuse of EntityManager instances within transactions.
- * Also provides support for exception translation.
+ * 辅助类，提供管理 JPA EntityManager 的方法，
+ * 允许在事务内复用 EntityManager 实例。
+ * 还提供异常转换支持。
  *
- * <p>Mainly intended for internal use within the framework.
+ * <p>主要供框架内部使用。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -69,9 +69,9 @@ import org.springframework.util.StringUtils;
 public abstract class EntityManagerFactoryUtils {
 
 	/**
-	 * Order value for TransactionSynchronization objects that clean up JPA
-	 * EntityManagers. Return DataSourceUtils.CONNECTION_SYNCHRONIZATION_ORDER - 100
-	 * to execute EntityManager cleanup before JDBC Connection cleanup, if any.
+	 * 用于清理 JPA EntityManager 的 TransactionSynchronization 对象的顺序值。
+	 * 返回 DataSourceUtils.CONNECTION_SYNCHRONIZATION_ORDER - 100，
+	 * 以便在 JDBC Connection 清理（如果有）之前执行 EntityManager 清理。
 	 * @see org.springframework.jdbc.datasource.DataSourceUtils#CONNECTION_SYNCHRONIZATION_ORDER
 	 */
 	public static final int ENTITY_MANAGER_SYNCHRONIZATION_ORDER =
@@ -81,15 +81,14 @@ public abstract class EntityManagerFactoryUtils {
 
 
 	/**
-	 * Find an EntityManagerFactory with the given name in the given
-	 * Spring application context (represented as ListableBeanFactory).
-	 * <p>The specified unit name will be matched against the configured
-	 * persistence unit, provided that a discovered EntityManagerFactory
-	 * implements the {@link EntityManagerFactoryInfo} interface. If not,
-	 * the persistence unit name will be matched against the Spring bean name,
-	 * assuming that the EntityManagerFactory bean names follow that convention.
-	 * <p>If no unit name has been given, this method will search for a default
-	 * EntityManagerFactory through {@link ListableBeanFactory#getBean(Class)}.
+	 * 在给定的 Spring 应用上下文（表示为 ListableBeanFactory）中
+	 * 查找具有给定名称的 EntityManagerFactory。
+	 * <p>如果发现的 EntityManagerFactory 实现了 {@link EntityManagerFactoryInfo}
+	 * 接口，则指定的单元名称将与配置的持久化单元进行匹配。否则，
+	 * 持久化单元名称将与 Spring bean 名称进行匹配，
+	 * 假定 EntityManagerFactory 的 bean 名称遵循该约定。
+	 * <p>如果未指定单元名称，此方法将通过
+	 * {@link ListableBeanFactory#getBean(Class)} 搜索默认的 EntityManagerFactory。
 	 * @param beanFactory the ListableBeanFactory to search
 	 * @param unitName the name of the persistence unit (may be {@code null} or empty,
 	 * in which case a single bean of type EntityManagerFactory will be searched for)
@@ -123,9 +122,9 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JPA EntityManager from the given factory. Is aware of a corresponding
-	 * EntityManager bound to the current thread, e.g. when using JpaTransactionManager.
-	 * <p>Note: Will return {@code null} if no thread-bound EntityManager found!
+	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
+	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
+	 * <p>注意：如果找不到线程绑定的 EntityManager，将返回 {@code null}！
 	 * @param emf the EntityManagerFactory to create the EntityManager with
 	 * @return the EntityManager, or {@code null} if none found
 	 * @throws DataAccessResourceFailureException if the EntityManager couldn't be obtained
@@ -139,9 +138,9 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JPA EntityManager from the given factory. Is aware of a corresponding
-	 * EntityManager bound to the current thread, e.g. when using JpaTransactionManager.
-	 * <p>Note: Will return {@code null} if no thread-bound EntityManager found!
+	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
+	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
+	 * <p>注意：如果找不到线程绑定的 EntityManager，将返回 {@code null}！
 	 * @param emf the EntityManagerFactory to create the EntityManager with
 	 * @param properties the properties to be passed into the {@code createEntityManager}
 	 * call (may be {@code null})
@@ -161,9 +160,9 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JPA EntityManager from the given factory. Is aware of a corresponding
-	 * EntityManager bound to the current thread, e.g. when using JpaTransactionManager.
-	 * <p>Same as {@code getEntityManager}, but throwing the original PersistenceException.
+	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
+	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
+	 * <p>与 {@code getEntityManager} 相同，但会抛出原始的 PersistenceException。
 	 * @param emf the EntityManagerFactory to create the EntityManager with
 	 * @param properties the properties to be passed into the {@code createEntityManager}
 	 * call (may be {@code null})
@@ -180,9 +179,9 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Obtain a JPA EntityManager from the given factory. Is aware of a corresponding
-	 * EntityManager bound to the current thread, e.g. when using JpaTransactionManager.
-	 * <p>Same as {@code getEntityManager}, but throwing the original PersistenceException.
+	 * 从给定的工厂获取一个 JPA EntityManager。它能感知绑定到当前线程的
+	 * 相应 EntityManager，例如在使用 JpaTransactionManager 时。
+	 * <p>与 {@code getEntityManager} 相同，但会抛出原始的 PersistenceException。
 	 * @param emf the EntityManagerFactory to create the EntityManager with
 	 * @param properties the properties to be passed into the {@code createEntityManager}
 	 * call (may be {@code null})
@@ -294,7 +293,7 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Prepare a transaction on the given EntityManager, if possible.
+	 * 在给定的 EntityManager 上准备事务（如果可能）。
 	 * @param em the EntityManager to prepare
 	 * @param emf the EntityManagerFactory that the EntityManager has been created with
 	 * @return an arbitrary object that holds transaction data, if any
@@ -316,7 +315,7 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Prepare a transaction on the given EntityManager, if possible.
+	 * 在给定的 EntityManager 上清理事务（如果可能）。
 	 * @param transactionData arbitrary object that holds transaction data, if any
 	 * (as returned by prepareTransaction)
 	 * @param emf the EntityManagerFactory that the EntityManager has been created with
@@ -333,8 +332,8 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Apply the current transaction timeout, if any, to the given JPA Query object.
-	 * <p>This method sets the JPA 2.0 query hint "javax.persistence.query.timeout" accordingly.
+	 * 将当前事务超时（如果有）应用于给定的 JPA Query 对象。
+	 * <p>此方法会相应地设置 JPA 2.0 查询提示 "javax.persistence.query.timeout"。
 	 * @param query the JPA Query object
 	 * @param emf the JPA EntityManagerFactory that the Query was created for
 	 */
@@ -352,13 +351,12 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Convert the given runtime exception to an appropriate exception from the
-	 * {@code org.springframework.dao} hierarchy.
-	 * Return null if no translation is appropriate: any other exception may
-	 * have resulted from user code, and should not be translated.
-	 * <p>The most important cases like object not found or optimistic locking failure
-	 * are covered here. For more fine-granular conversion, JpaTransactionManager etc
-	 * support sophisticated translation of exceptions via a JpaDialect.
+	 * 将给定的运行时异常转换为 {@code org.springframework.dao} 层次结构中
+	 * 的适当异常。如果不需要转换则返回 null：任何其他异常可能
+	 * 源自用户代码，不应进行转换。
+	 * <p>此处涵盖了最重要的情形，如对象未找到或乐观锁失败。
+	 * 对于更细粒度的转换，JpaTransactionManager 等支持
+	 * 通过 JpaDialect 进行复杂的异常转换。
 	 * @param ex runtime exception that occurred
 	 * @return the corresponding DataAccessException instance,
 	 * or {@code null} if the exception should not be translated
@@ -415,8 +413,8 @@ public abstract class EntityManagerFactoryUtils {
 	}
 
 	/**
-	 * Close the given JPA EntityManager,
-	 * catching and logging any cleanup exceptions thrown.
+	 * 关闭给定的 JPA EntityManager，
+	 * 并捕获和记录任何清理异常。
 	 * @param em the JPA EntityManager to close (may be {@code null})
 	 * @see javax.persistence.EntityManager#close()
 	 */
@@ -435,9 +433,9 @@ public abstract class EntityManagerFactoryUtils {
 
 
 	/**
-	 * Callback for resource cleanup at the end of a non-JPA transaction
-	 * (e.g. when participating in a JtaTransactionManager transaction),
-	 * fully synchronized with the ongoing transaction.
+	 * 用于在非 JPA 事务结束时进行资源清理的回调
+	 * （例如在参与 JtaTransactionManager 事务时），
+	 * 与正在进行的事务完全同步。
 	 * @see org.springframework.transaction.jta.JtaTransactionManager
 	 */
 	private static class TransactionalEntityManagerSynchronization
@@ -518,7 +516,7 @@ public abstract class EntityManagerFactoryUtils {
 
 
 	/**
-	 * Minimal callback that just closes the EntityManager at the end of the transaction.
+	 * 最简回调，仅在事务结束时关闭 EntityManager。
 	 */
 	private static class TransactionScopedEntityManagerSynchronization
 			extends ResourceHolderSynchronization<EntityManagerHolder, EntityManagerFactory>

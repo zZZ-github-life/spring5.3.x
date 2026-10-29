@@ -22,29 +22,22 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.Assert;
 
 /**
- * {@link FactoryBean} for RMI proxies, supporting both conventional RMI services
- * and RMI invokers. Exposes the proxied service for use as a bean reference,
- * using the specified service interface. Proxies will throw Spring's unchecked
- * RemoteAccessException on remote invocation failure instead of RMI's RemoteException.
+ * 用于 RMI 代理的 {@link FactoryBean}，同时支持常规 RMI 服务和 RMI 调用器。使用指定的服务接口，将
+ * 被代理的服务暴露出来以用作 Bean 引用。代理在远程调用失败时会抛出 Spring 的非受检
+ * RemoteAccessException，而不是 RMI 的 RemoteException。
  *
- * <p>The service URL must be a valid RMI URL like "rmi://localhost:1099/myservice".
- * RMI invokers work at the RmiInvocationHandler level, using the same invoker stub
- * for any service. Service interfaces do not have to extend {@code java.rmi.Remote}
- * or throw {@code java.rmi.RemoteException}. Of course, in and out parameters
- * have to be serializable.
+ * <p>服务 URL 必须是有效的 RMI URL，例如 "rmi://localhost:1099/myservice"。RMI 调用器工作在
+ * RmiInvocationHandler 层面，任何服务都使用同一个调用器存根。服务接口不必扩展
+ * {@code java.rmi.Remote}，也不必抛出 {@code java.rmi.RemoteException}。当然，入参和出参必须是可序
+ * 列化的。
  *
- * <p>With conventional RMI services, this proxy factory is typically used with the
- * RMI service interface. Alternatively, this factory can also proxy a remote RMI
- * service with a matching non-RMI business interface, i.e. an interface that mirrors
- * the RMI service methods but does not declare RemoteExceptions. In the latter case,
- * RemoteExceptions thrown by the RMI stub will automatically get converted to
- * Spring's unchecked RemoteAccessException.
+ * <p>对于常规的 RMI 服务，此代理工厂通常与 RMI 服务接口一起使用。此外，此工厂还可以用匹配的非 RMI
+ * 业务接口来代理远程 RMI 服务，即该接口镜像了 RMI 服务的方法但没有声明 RemoteExceptions。在后一种
+ * 情况下，RMI 存根抛出的 RemoteExceptions 会自动转换为 Spring 的非受检 RemoteAccessException。
  *
- * <p>The major advantage of RMI, compared to Hessian, is serialization.
- * Effectively, any serializable Java object can be transported without hassle.
- * Hessian has its own (de-)serialization mechanisms, but is HTTP-based and thus
- * much easier to setup than RMI. Alternatively, consider Spring's HTTP invoker
- * to combine Java serialization with HTTP-based transport.
+ * <p>与 Hessian 相比，RMI 的主要优势在于序列化。实际上，任何可序列化的 Java 对象都可以轻松传输。
+ * Hessian 有自己的一套（反）序列化机制，但它基于 HTTP，因此比 RMI 容易配置得多。或者，可以考虑
+ * Spring 的 HTTP 调用器，将 Java 序列化与基于 HTTP 的传输结合起来。
  *
  * @author Juergen Hoeller
  * @since 13.05.2003

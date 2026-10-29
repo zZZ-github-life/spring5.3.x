@@ -23,9 +23,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A decorator for a comparator, with an "ascending" flag denoting
- * whether comparison results should be treated in forward (standard
- * ascending) order or flipped for reverse (descending) order.
+ * 比较器的装饰器，带有一个 "ascending" 标志，用于指明比较结果应按正向（标准升序）顺序处理，还是翻
+ * 转后按反向（降序）顺序处理。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -44,8 +43,7 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 
 
 	/**
-	 * Create an InvertibleComparator that sorts ascending by default.
-	 * For the actual comparison, the specified Comparator will be used.
+	 * 创建一个默认按升序排序的 InvertibleComparator。实际比较时将使用指定的 Comparator。
 	 * @param comparator the comparator to decorate
 	 */
 	public InvertibleComparator(Comparator<T> comparator) {
@@ -54,8 +52,7 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 	}
 
 	/**
-	 * Create an InvertibleComparator that sorts based on the provided order.
-	 * For the actual comparison, the specified Comparator will be used.
+	 * 创建一个根据提供的顺序排序的 InvertibleComparator。实际比较时将使用指定的 Comparator。
 	 * @param comparator the comparator to decorate
 	 * @param ascending the sort order: ascending (true) or descending (false)
 	 */
@@ -67,22 +64,21 @@ public class InvertibleComparator<T> implements Comparator<T>, Serializable {
 
 
 	/**
-	 * Specify the sort order: ascending (true) or descending (false).
+	 * 指定排序顺序：升序 (true) 或降序 (false)。
 	 */
 	public void setAscending(boolean ascending) {
 		this.ascending = ascending;
 	}
 
 	/**
-	 * Return the sort order: ascending (true) or descending (false).
+	 * 返回排序顺序：升序 (true) 或降序 (false)。
 	 */
 	public boolean isAscending() {
 		return this.ascending;
 	}
 
 	/**
-	 * Invert the sort order: ascending &rarr; descending or
-	 * descending &rarr; ascending.
+	 * 反转排序顺序：升序 &rarr; 降序或降序 &rarr; 升序。
 	 */
 	public void invertOrder() {
 		this.ascending = !this.ascending;

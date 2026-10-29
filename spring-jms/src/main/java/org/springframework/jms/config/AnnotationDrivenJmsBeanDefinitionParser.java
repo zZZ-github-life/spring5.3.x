@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the 'annotation-driven' element of the 'jms' namespace.
+ * 'jms' 命名空间中 'annotation-driven' 元素的解析器。
  *
  * @author Stephane Nicoll
  * @since 4.1

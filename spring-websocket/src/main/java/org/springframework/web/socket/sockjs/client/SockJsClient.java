@@ -47,13 +47,13 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * A SockJS implementation of
+ * SockJS 的
  * {@link org.springframework.web.socket.client.WebSocketClient WebSocketClient}
- * with fallback alternatives that simulate a WebSocket interaction through plain
- * HTTP streaming and long polling techniques.
+ * 实现，提供了通过纯 HTTP 流式传输和长轮询技术模拟 WebSocket 交互的
+ * 回退替代方案。
  *
- * <p>Implements {@link Lifecycle} in order to propagate lifecycle events to
- * the transports it is configured with.
+ * <p>实现 {@link Lifecycle} 以将生命周期事件传播给它所配置的
+ * 传输。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -96,11 +96,11 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 
 
 	/**
-	 * Create a {@code SockJsClient} with the given transports.
-	 * <p>If the list includes an {@link XhrTransport} (or more specifically an
-	 * implementation of {@link InfoReceiver}) the instance is used to initialize
-	 * the {@link #setInfoReceiver(InfoReceiver) infoReceiver} property, or
-	 * otherwise is defaulted to {@link RestTemplateXhrTransport}.
+	 * 使用给定传输创建 {@code SockJsClient}。
+	 * <p>如果列表包含 {@link XhrTransport}（或更具体地说，
+	 * {@link InfoReceiver} 的实现），则该实例用于初始化
+	 * {@link #setInfoReceiver(InfoReceiver) infoReceiver} 属性，否则
+	 * 默认为 {@link RestTemplateXhrTransport}。
 	 * @param transports the (non-empty) list of transports to use
 	 */
 	public SockJsClient(List<Transport> transports) {
@@ -123,13 +123,12 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 
 
 	/**
-	 * The names of HTTP headers that should be copied from the handshake headers
-	 * of each call to {@link SockJsClient#doHandshake(WebSocketHandler, WebSocketHttpHeaders, URI)}
-	 * and also used with other HTTP requests issued as part of that SockJS
-	 * connection, e.g. the initial info request, XHR send or receive requests.
-	 * <p>By default if this property is not set, all handshake headers are also
-	 * used for other HTTP requests. Set it if you want only a subset of handshake
-	 * headers (e.g. auth headers) to be used for other HTTP requests.
+	 * 应从每次调用 {@link SockJsClient#doHandshake(WebSocketHandler, WebSocketHttpHeaders, URI)}
+	 * 的握手头中复制的 HTTP 头名称，并且还用于作为该 SockJS 连接一部分
+	 * 发出的其他 HTTP 请求，例如初始 info 请求、XHR 发送或接收请求。
+	 * <p>默认情况下，如果未设置此属性，所有握手头也会
+	 * 用于其他 HTTP 请求。如果你希望只有一部分握手头
+	 * （例如认证头）用于其他 HTTP 请求，请设置此属性。
 	 * @param httpHeaderNames the HTTP header names
 	 */
 	public void setHttpHeaderNames(@Nullable String... httpHeaderNames) {
@@ -137,8 +136,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * The configured HTTP header names to be copied from the handshake
-	 * headers and also included in other HTTP requests.
+	 * 配置的 HTTP 头名称，将从握手头中复制，并包含在其他 HTTP 请求中。
 	 */
 	@Nullable
 	public String[] getHttpHeaderNames() {
@@ -146,12 +144,12 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * Configure the {@code InfoReceiver} to use to perform the SockJS "Info"
-	 * request before the SockJS session starts.
-	 * <p>If the list of transports provided to the constructor contained an
-	 * {@link XhrTransport} or an implementation of {@link InfoReceiver} that
-	 * instance would have been used to initialize this property, or otherwise
-	 * it defaults to {@link RestTemplateXhrTransport}.
+	 * 配置用于在 SockJS 会话启动之前执行 SockJS "Info" 请求的
+	 * {@code InfoReceiver}。
+	 * <p>如果提供给构造函数的传输列表包含
+	 * {@link XhrTransport} 或 {@link InfoReceiver} 的实现，则该
+	 * 实例将用于初始化此属性，否则默认为
+	 * {@link RestTemplateXhrTransport}。
 	 * @param infoReceiver the transport to use for the SockJS "Info" request
 	 */
 	public void setInfoReceiver(InfoReceiver infoReceiver) {
@@ -160,16 +158,17 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * Return the configured {@code InfoReceiver} (never {@code null}).
+	 * 返回配置的 {@code InfoReceiver}（永不为 {@code null}）。
 	 */
 	public InfoReceiver getInfoReceiver() {
 		return this.infoReceiver;
 	}
 
 	/**
-	 * Set the SockJsMessageCodec to use.
-	 * <p>By default {@link org.springframework.web.socket.sockjs.frame.Jackson2SockJsMessageCodec
-	 * Jackson2SockJsMessageCodec} is used if Jackson is on the classpath.
+	 * 设置要使用的 SockJsMessageCodec。
+	 * <p>默认情况下，如果类路径上有 Jackson，则使用
+	 * {@link org.springframework.web.socket.sockjs.frame.Jackson2SockJsMessageCodec
+	 * Jackson2SockJsMessageCodec}。
 	 */
 	public void setMessageCodec(SockJsMessageCodec messageCodec) {
 		Assert.notNull(messageCodec, "SockJsMessageCodec is required");
@@ -177,7 +176,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * Return the SockJsMessageCodec to use.
+	 * 返回要使用的 SockJsMessageCodec。
 	 */
 	public SockJsMessageCodec getMessageCodec() {
 		Assert.state(this.messageCodec != null, "No SockJsMessageCodec set");
@@ -185,11 +184,10 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * Configure a {@code TaskScheduler} for scheduling a connect timeout task
-	 * where the timeout value is calculated based on the duration of the initial
-	 * SockJS "Info" request. The connect timeout task ensures a more timely
-	 * fallback but is otherwise entirely optional.
-	 * <p>By default this is not configured in which case a fallback may take longer.
+	 * 配置一个 {@code TaskScheduler}，用于调度连接超时任务，
+	 * 其中超时值基于初始 SockJS "Info" 请求的持续时间计算。
+	 * 连接超时任务可确保更及时地进行回退，但除此之外完全是可选的。
+	 * <p>默认情况下不配置此项，在这种情况下回退可能需要更长时间。
 	 * @param connectTimeoutScheduler the task scheduler to use
 	 */
 	public void setConnectTimeoutScheduler(TaskScheduler connectTimeoutScheduler) {
@@ -331,9 +329,9 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * Return the user to associate with the SockJS session and make available via
-	 * {@link org.springframework.web.socket.WebSocketSession#getPrincipal()}.
-	 * <p>By default this method returns {@code null}.
+	 * 返回要与 SockJS 会话关联并通过
+	 * {@link org.springframework.web.socket.WebSocketSession#getPrincipal()} 提供的用户。
+	 * <p>默认情况下，此方法返回 {@code null}。
 	 * @return the user to associate with the session (possibly {@code null})
 	 */
 	@Nullable
@@ -342,10 +340,9 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 	}
 
 	/**
-	 * By default, the result of a SockJS "Info" request, including whether the
-	 * server has WebSocket disabled and how long the request took (used for
-	 * calculating transport timeout time) is cached. This method can be used to
-	 * clear that cache hence causing it to re-populate.
+	 * 默认情况下，SockJS "Info" 请求的结果（包括服务器是否禁用了 WebSocket
+	 * 以及请求花费了多长时间，用于计算传输超时时间）会被缓存。此方法可用于
+	 * 清除该缓存，从而使其重新填充。
 	 */
 	public void clearServerInfoCache() {
 		this.serverInfoCache.clear();
@@ -353,7 +350,7 @@ public class SockJsClient implements WebSocketClient, Lifecycle {
 
 
 	/**
-	 * A simple value object holding the result from a SockJS "Info" request.
+	 * 保存 SockJS "Info" 请求结果的简单值对象。
 	 */
 	private static class ServerInfo {
 

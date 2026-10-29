@@ -28,11 +28,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.DisposableBean;
 
 /**
- * Web application listener that cleans up remaining disposable attributes
- * in the ServletContext, i.e. attributes which implement {@link DisposableBean}
- * and haven't been removed before. This is typically used for destroying objects
- * in "application" scope, for which the lifecycle implies destruction at the
- * very end of the web application's shutdown phase.
+ * Web 应用程序监听器，用于清理 ServletContext 中剩余的、可销毁的属性，
+ * 即实现了 {@link DisposableBean} 且此前尚未被移除的属性。
+ * 这通常用于销毁 "application" 作用域中的对象，其生命周期要求在
+ * Web 应用程序关闭阶段的最末端进行销毁。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -55,8 +54,8 @@ public class ContextCleanupListener implements ServletContextListener {
 
 
 	/**
-	 * Find all Spring-internal ServletContext attributes which implement
-	 * {@link DisposableBean} and invoke the destroy method on them.
+	 * 查找所有实现了 {@link DisposableBean} 的 Spring 内部 ServletContext 属性，
+	 * 并对它们调用 destroy 方法。
 	 * @param servletContext the ServletContext to check
 	 * @see DisposableBean#destroy()
 	 */

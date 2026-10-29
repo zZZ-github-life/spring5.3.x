@@ -42,8 +42,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Implementation of an {@link HttpMessageReader} to read HTML form data, i.e.
- * request body with media type {@code "application/x-www-form-urlencoded"}.
+ * {@link HttpMessageReader} 的实现，用于读取 HTML 表单数据，即
+ * 媒体类型为 {@code "application/x-www-form-urlencoded"} 的请求体。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -53,7 +53,7 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 		implements HttpMessageReader<MultiValueMap<String, String>> {
 
 	/**
-	 * The default charset used by the reader.
+	 * 读取器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -67,9 +67,9 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 
 
 	/**
-	 * Set the default character set to use for reading form data when the
-	 * request Content-Type header does not explicitly specify it.
-	 * <p>By default this is set to "UTF-8".
+	 * 设置当请求的 Content-Type 头未明确指定时，读取表单数据所使用的
+	 * 默认字符集。
+	 * <p>默认设置为 "UTF-8"。
 	 */
 	public void setDefaultCharset(Charset charset) {
 		Assert.notNull(charset, "Charset must not be null");
@@ -77,17 +77,17 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 	}
 
 	/**
-	 * Return the configured default charset.
+	 * 返回已配置的默认字符集。
 	 */
 	public Charset getDefaultCharset() {
 		return this.defaultCharset;
 	}
 
 	/**
-	 * Set the max number of bytes for input form data. As form data is buffered
-	 * before it is parsed, this helps to limit the amount of buffering. Once
-	 * the limit is exceeded, {@link DataBufferLimitException} is raised.
-	 * <p>By default this is set to 256K.
+	 * 设置输入表单数据的最大字节数。由于表单数据在解析前会被缓冲，
+	 * 这有助于限制缓冲的数据量。一旦超过限制，将抛出
+	 * {@link DataBufferLimitException}。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 * @since 5.1.11
 	 */
@@ -96,7 +96,7 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回{@link #setMaxInMemorySize 已配置}的字节数限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxInMemorySize() {

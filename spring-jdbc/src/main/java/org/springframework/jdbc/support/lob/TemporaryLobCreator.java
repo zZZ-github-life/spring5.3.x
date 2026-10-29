@@ -34,12 +34,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.FileCopyUtils;
 
 /**
- * {@link LobCreator} implementation based on temporary LOBs,
- * using JDBC 4.0's {@link java.sql.Connection#createBlob()} /
- * {@link java.sql.Connection#createClob()} mechanism.
+ * 基于临时 LOB 的 {@link LobCreator} 实现，
+ * 使用 JDBC 4.0 的 {@link java.sql.Connection#createBlob()} /
+ * {@link java.sql.Connection#createClob()} 机制。
  *
- * <p>Used by DefaultLobHandler's {@link DefaultLobHandler#setCreateTemporaryLob} mode.
- * Can also be used directly to reuse the tracking and freeing of temporary LOBs.
+ * <p>由 DefaultLobHandler 的 {@link DefaultLobHandler#setCreateTemporaryLob} 模式使用。
+ * 也可以直接使用，以复用临时 LOB 的跟踪与释放功能。
  *
  * @author Juergen Hoeller
  * @since 3.2.2

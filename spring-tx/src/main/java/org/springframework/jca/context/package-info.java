@@ -1,6 +1,5 @@
 /**
- * Integration package that allows for deploying a Spring application context
- * as a JCA 1.7 compliant RAR file.
+ * 集成包，允许将 Spring 应用程序上下文部署为符合 JCA 1.7 的 RAR 文件。
  */
 @NonNullApi
 @NonNullFields

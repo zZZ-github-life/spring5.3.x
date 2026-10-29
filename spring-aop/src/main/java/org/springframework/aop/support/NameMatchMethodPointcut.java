@@ -26,9 +26,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.PatternMatchUtils;
 
 /**
- * Pointcut bean for simple method name matches, as an alternative to regexp patterns.
+ * 用于简单方法名匹配的切点 Bean，可作为正则表达式的替代方案。
  *
- * <p>Does not handle overloaded methods: all methods with a given name will be eligible.
+ * <p>不处理重载方法：具有给定名称的所有方法都将符合条件。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -43,8 +43,8 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 
 
 	/**
-	 * Convenience method when we have only a single method name to match.
-	 * Use either this method or {@code setMappedNames}, not both.
+	 * 当我们只有一个方法名需要匹配时使用的便捷方法。请使用此方法或 {@code setMappedNames}，不要同时使
+	 * 用两者。
 	 * @see #setMappedNames
 	 */
 	public void setMappedName(String mappedName) {
@@ -52,20 +52,15 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	}
 
 	/**
-	 * Set the method names defining methods to match.
-	 * Matching will be the union of all these; if any match,
-	 * the pointcut matches.
+	 * 设置用于定义要匹配方法的方法名。匹配将是所有这些的并集；只要有一个匹配，切点就匹配。
 	 */
 	public void setMappedNames(String... mappedNames) {
 		this.mappedNames = new ArrayList<>(Arrays.asList(mappedNames));
 	}
 
 	/**
-	 * Add another eligible method name, in addition to those already named.
-	 * Like the set methods, this method is for use when configuring proxies,
-	 * before a proxy is used.
-	 * <p><b>NB:</b> This method does not work after the proxy is in
-	 * use, as advice chains will be cached.
+	 * 在已指定的方法名之外，再添加一个符合条件的方法名。与 set 方法一样，此方法用于配置代理时、在代理
+	 * 使用之前。<p><b>注意：</b>代理投入使用后此方法不再起作用，因为通知链会被缓存。
 	 * @param name the name of the additional method that will match
 	 * @return this pointcut to allow for multiple additions in one line
 	 */
@@ -86,9 +81,8 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	}
 
 	/**
-	 * Return if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
-	 * as well as direct equality. Can be overridden in subclasses.
+	 * 返回给定的方法名是否与映射的名称匹配。<p>默认实现会检查 "xxx*"、"*xxx" 和 "*xxx*" 形式的匹配，以
+	 * 及直接相等的情况。可以在子类中覆盖。
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match

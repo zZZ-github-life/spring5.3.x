@@ -23,19 +23,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Test annotation for use with JUnit 4 to indicate that a test method should be
- * invoked repeatedly.
+ * 用于 JUnit 4 的测试注解，指示测试方法应
+ * 重复调用。
  *
- * <p>Note that the scope of execution to be repeated includes execution of the
- * test method itself as well as any <em>set up</em> or <em>tear down</em> of
- * the test fixture. When used with the
+ * <p>请注意，重复执行的范围包括测试方法本身的执行
+ * 以及测试夹具的任何<em>设置</em>或<em>清理</em>。当与
  * {@link org.springframework.test.context.junit4.rules.SpringMethodRule
- * SpringMethodRule}, the scope additionally includes
+ * SpringMethodRule} 一起使用时，该范围还包括
  * {@linkplain org.springframework.test.context.TestExecutionListener#prepareTestInstance
- * preparation of the test instance}.
+ * 测试实例的准备工作}。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
  * @author Rod Johnson
  * @author Sam Brannen
@@ -51,7 +50,7 @@ import java.lang.annotation.Target;
 public @interface Repeat {
 
 	/**
-	 * The number of times that the annotated test method should be repeated.
+	 * 带注解的测试方法应重复的次数。
 	 */
 	int value() default 1;
 

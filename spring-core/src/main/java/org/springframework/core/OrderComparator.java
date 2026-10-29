@@ -24,22 +24,20 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link Comparator} implementation for {@link Ordered} objects, sorting
- * by order value ascending, respectively by priority descending.
+ * {@link Ordered} 对象的 {@link Comparator} 实现，按 order 值升序排序，相应地按优先级降序排序。
  *
- * <h3>{@code PriorityOrdered} Objects</h3>
- * <p>{@link PriorityOrdered} objects will be sorted with higher priority than
- * <em>plain</em> {@code Ordered} objects.
+ * <h3>{@code PriorityOrdered} 对象</h3>
  *
- * <h3>Same Order Objects</h3>
- * <p>Objects that have the same order value will be sorted with arbitrary
- * ordering with respect to other objects with the same order value.
+ * <p>{@link PriorityOrdered} 对象的排序优先级高于<em>普通</em> {@code Ordered} 对象。
  *
- * <h3>Non-ordered Objects</h3>
- * <p>Any object that does not provide its own order value is implicitly
- * assigned a value of {@link Ordered#LOWEST_PRECEDENCE}, thus ending up
- * at the end of a sorted collection in arbitrary order with respect to
- * other objects with the same order value.
+ * <h3>Order 值相同的对象</h3>
+ *
+ * <p>具有相同 order 值的对象，相对于其他具有相同 order 值的对象，将以任意顺序排序。
+ *
+ * <h3>非有序对象</h3>
+ *
+ * <p>任何未提供自身 order 值的对象都会被隐式赋予 {@link Ordered#LOWEST_PRECEDENCE} 值，因此最终会
+ * 以任意顺序位于排序集合的末尾（相对于其他具有相同 order 值的对象）。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -53,13 +51,13 @@ import org.springframework.util.ObjectUtils;
 public class OrderComparator implements Comparator<Object> {
 
 	/**
-	 * Shared default instance of {@code OrderComparator}.
+	 * {@code OrderComparator} 的共享默认实例。
 	 */
 	public static final OrderComparator INSTANCE = new OrderComparator();
 
 
 	/**
-	 * Build an adapted order comparator with the given source provider.
+	 * 使用给定的源提供者构建一个适配的 order 比较器。
 	 * @param sourceProvider the order source provider to use
 	 * @return the adapted comparator
 	 * @since 4.1
@@ -89,9 +87,10 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * Determine the order value for the given object.
-	 * <p>The default implementation checks against the given {@link OrderSourceProvider}
-	 * using {@link #findOrder} and falls back to a regular {@link #getOrder(Object)} call.
+	 * 确定给定对象的 order 值。
+	 *
+	 * <p>默认实现使用 {@link #findOrder} 检查给定的 {@link OrderSourceProvider}，并回退到常规的
+	 * {@link #getOrder(Object)} 调用。
 	 * @param obj the object to check
 	 * @return the order value, or {@code Ordered.LOWEST_PRECEDENCE} as fallback
 	 */
@@ -117,9 +116,9 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * Determine the order value for the given object.
-	 * <p>The default implementation checks against the {@link Ordered} interface
-	 * through delegating to {@link #findOrder}. Can be overridden in subclasses.
+	 * 确定给定对象的 order 值。
+	 *
+	 * <p>默认实现通过委托给 {@link #findOrder} 检查 {@link Ordered} 接口。可在子类中重写。
 	 * @param obj the object to check
 	 * @return the order value, or {@code Ordered.LOWEST_PRECEDENCE} as fallback
 	 */
@@ -134,9 +133,9 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * Find an order value indicated by the given object.
-	 * <p>The default implementation checks against the {@link Ordered} interface.
-	 * Can be overridden in subclasses.
+	 * 查找由给定对象指示的 order 值。
+	 *
+	 * <p>默认实现检查 {@link Ordered} 接口。可在子类中重写。
 	 * @param obj the object to check
 	 * @return the order value, or {@code null} if none found
 	 */
@@ -146,12 +145,10 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * Determine a priority value for the given object, if any.
-	 * <p>The default implementation always returns {@code null}.
-	 * Subclasses may override this to give specific kinds of values a
-	 * 'priority' characteristic, in addition to their 'order' semantics.
-	 * A priority indicates that it may be used for selecting one object over
-	 * another, in addition to serving for ordering purposes in a list/array.
+	 * 确定给定对象的优先级值（如果有）。
+	 *
+	 * <p>默认实现总是返回 {@code null}。子类可以重写此方法，为特定类型的值赋予“优先级”特性，作为其
+	 * “order”语义的补充。优先级表示除了用于列表/数组中的排序之外，还可用于在对象之间选择一个对象。
 	 * @param obj the object to check
 	 * @return the priority value, or {@code null} if none
 	 * @since 4.1
@@ -163,9 +160,9 @@ public class OrderComparator implements Comparator<Object> {
 
 
 	/**
-	 * Sort the given List with a default OrderComparator.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
-	 * in order to avoid unnecessary array extraction.
+	 * 使用默认 OrderComparator 对给定 List 进行排序。
+	 *
+	 * <p>针对大小为 0 或 1 的列表优化为跳过排序，以避免不必要的数组提取。
 	 * @param list the List to sort
 	 * @see java.util.List#sort(java.util.Comparator)
 	 */
@@ -176,9 +173,9 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * Sort the given array with a default OrderComparator.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
-	 * in order to avoid unnecessary array extraction.
+	 * 使用默认 OrderComparator 对给定数组进行排序。
+	 *
+	 * <p>针对大小为 0 或 1 的列表优化为跳过排序，以避免不必要的数组提取。
 	 * @param array the array to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
@@ -189,10 +186,9 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * Sort the given array or List with a default OrderComparator,
-	 * if necessary. Simply skips sorting when given any other value.
-	 * <p>Optimized to skip sorting for lists with size 0 or 1,
-	 * in order to avoid unnecessary array extraction.
+	 * 必要时使用默认 OrderComparator 对给定数组或 List 进行排序。给定任何其他值时直接跳过排序。
+	 *
+	 * <p>针对大小为 0 或 1 的列表优化为跳过排序，以避免不必要的数组提取。
 	 * @param value the array or List to sort
 	 * @see java.util.Arrays#sort(Object[], java.util.Comparator)
 	 */
@@ -207,18 +203,18 @@ public class OrderComparator implements Comparator<Object> {
 
 
 	/**
-	 * Strategy interface to provide an order source for a given object.
+	 * 用于为给定对象提供 order 源的策略接口。
 	 * @since 4.1
 	 */
 	@FunctionalInterface
 	public interface OrderSourceProvider {
 
 		/**
-		 * Return an order source for the specified object, i.e. an object that
-		 * should be checked for an order value as a replacement to the given object.
-		 * <p>Can also be an array of order source objects.
-		 * <p>If the returned object does not indicate any order, the comparator
-		 * will fall back to checking the original object.
+		 * 返回指定对象的 order 源，即应作为给定对象替代来检查 order 值的对象。
+		 *
+		 * <p>也可以是 order 源对象数组。
+		 *
+		 * <p>如果返回的对象未指示任何 order，则比较器将回退到检查原始对象。
 		 * @param obj the object to find an order source for
 		 * @return the order source for that object, or {@code null} if none found
 		 */

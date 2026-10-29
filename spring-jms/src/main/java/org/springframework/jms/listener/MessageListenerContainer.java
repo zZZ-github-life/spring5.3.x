@@ -23,9 +23,8 @@ import org.springframework.jms.support.destination.DestinationResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * Internal abstraction used by the framework representing a message
- * listener container. Not meant to be implemented externally with
- * support for both JMS and JCA style containers.
+ * 框架内部使用的抽象，表示消息监听器容器。
+ * 不打算由外部实现，支持 JMS 和 JCA 风格的容器。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -33,42 +32,40 @@ import org.springframework.lang.Nullable;
 public interface MessageListenerContainer extends SmartLifecycle {
 
 	/**
-	 * Set up the message listener to use. Throws an {@link IllegalArgumentException}
-	 * if that message listener type is not supported.
+	 * 设置要使用的消息监听器。如果该消息监听器类型不受支持，
+	 * 则抛出 {@link IllegalArgumentException}。
 	 */
 	void setupMessageListener(Object messageListener);
 
 	/**
-	 * Return the {@link MessageConverter} that can be used to
-	 * convert {@link javax.jms.Message}, if any.
+	 * 返回可用于转换 {@link javax.jms.Message} 的 {@link MessageConverter}（如果有）。
 	 */
 	@Nullable
 	MessageConverter getMessageConverter();
 
 	/**
-	 * Return the {@link DestinationResolver} to use to resolve
-	 * destinations by names.
+	 * 返回用于按名称解析目的地的 {@link DestinationResolver}。
 	 */
 	@Nullable
 	DestinationResolver getDestinationResolver();
 
 	/**
-	 * Return whether the Publish/Subscribe domain ({@link javax.jms.Topic Topics}) is used.
-	 * Otherwise, the Point-to-Point domain ({@link javax.jms.Queue Queues}) is used.
+	 * 返回是否使用发布/订阅域（{@link javax.jms.Topic Topics}）。
+	 * 否则使用点对点域（{@link javax.jms.Queue Queues}）。
 	 */
 	boolean isPubSubDomain();
 
 	/**
-	 * Return whether the reply destination uses Publish/Subscribe domain
-	 * ({@link javax.jms.Topic Topics}). Otherwise, the Point-to-Point domain
-	 * ({@link javax.jms.Queue Queues}) is used.
-	 * <p>By default, the value is identical to {@link #isPubSubDomain()}.
+	 * 返回回复目的地是否使用发布/订阅域
+	 * （{@link javax.jms.Topic Topics}）。否则使用点对点域
+	 * （{@link javax.jms.Queue Queues}）。
+	 * <p>默认情况下，该值与 {@link #isPubSubDomain()} 相同。
 	 */
 	boolean isReplyPubSubDomain();
 
 	/**
-	 * Return the {@link QosSettings} to use when sending a reply,
-	 * or {@code null} if the broker's defaults should be used.
+	 * 返回发送回复时要使用的 {@link QosSettings}；
+	 * 如果应使用代理的默认值，则返回 {@code null}。
 	 * @since 5.0
 	 */
 	@Nullable

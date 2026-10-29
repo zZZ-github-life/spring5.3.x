@@ -33,36 +33,28 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
 
 /**
- * Special {@link JtaTransactionManager} variant for BEA WebLogic (9.0 and higher).
- * Supports the full power of Spring's transaction definitions on WebLogic's
- * transaction coordinator, <i>beyond standard JTA</i>: transaction names,
- * per-transaction isolation levels, and proper resuming of transactions in all cases.
+ * 针对BEA WebLogic(9.0及更高版本)的特殊{@link JtaTransactionManager}变体。
+ * 在WebLogic的事务协调器上支持Spring事务定义的全部功能, <i>超越标准JTA</i>:
+ * 事务名称、每事务隔离级别, 以及在所有情况下正确恢复事务。
  *
- * <p>Uses WebLogic's special {@code begin(name)} method to start a JTA transaction,
- * in order to make <b>Spring-driven transactions visible in WebLogic's transaction
- * monitor</b>. In case of Spring's declarative transactions, the exposed name will
- * (by default) be the fully-qualified class name + "." + method name.
+ * <p>使用WebLogic的特殊{@code begin(name)}方法来启动JTA事务,
+ * 以使<b>Spring驱动的事务在WebLogic的事务监视器中可见</b>。
+ * 对于Spring的声明式事务, 暴露的名称(默认情况下)将是完全限定类名 + "." + 方法名。
  *
- * <p>Supports a <b>per-transaction isolation level</b> through WebLogic's corresponding
- * JTA transaction property "ISOLATION LEVEL". This will apply the specified isolation
- * level (e.g. ISOLATION_SERIALIZABLE) to all JDBC Connections that participate in the
- * given transaction.
+ * <p>通过WebLogic的相应JTA事务属性"ISOLATION LEVEL"支持<b>每事务隔离级别</b>。
+ * 这会将指定的隔离级别(例如ISOLATION_SERIALIZABLE)应用于参与给定事务的所有JDBC连接。
  *
- * <p>Invokes WebLogic's special {@code forceResume} method if standard JTA resume
- * failed, to <b>also resume if the target transaction was marked rollback-only</b>.
- * If you're not relying on this feature of transaction suspension in the first
- * place, Spring's standard JtaTransactionManager will behave properly too.
+ * <p>如果标准JTA resume失败, 则调用WebLogic的特殊{@code forceResume}方法,
+ * 以<b>在目标事务被标记为rollback-only时也能恢复</b>。
+ * 如果您一开始就不依赖此事务挂起功能, Spring的标准JtaTransactionManager也能正常工作。
  *
- * <p>By default, the JTA UserTransaction and TransactionManager handles are
- * fetched directly from WebLogic's {@code TransactionHelper}. This can be
- * overridden by specifying "userTransaction"/"userTransactionName" and
- * "transactionManager"/"transactionManagerName", passing in existing handles
- * or specifying corresponding JNDI locations to look up.
+ * <p>默认情况下, JTA UserTransaction和TransactionManager句柄直接从WebLogic的
+ * {@code TransactionHelper}获取。这可以通过指定"userTransaction"/"userTransactionName"
+ * 和"transactionManager"/"transactionManagerName"来覆盖, 传入现有句柄或指定要查找的相应JNDI位置。
  *
- * <p><b>NOTE: This JtaTransactionManager is intended to refine specific transaction
- * demarcation behavior on Spring's side. It will happily co-exist with independently
- * configured WebLogic transaction strategies in your persistence provider, with no
- * need to specifically connect those setups in any way.</b>
+ * <p><b>注意: 此JtaTransactionManager旨在改进Spring端特定的事务界定行为。
+ * 它将愉快地与您的持久化提供者中独立配置的WebLogic事务策略共存,
+ * 无需以任何方式特别连接这些设置。</b>
  *
  * @author Juergen Hoeller
  * @since 1.1

@@ -22,25 +22,18 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A contract for inspecting and potentially modifying request data values such
- * as URL query parameters or form field values before they are rendered by a
- * view or before a redirect.
+ * 用于在视图渲染请求数据值（例如 URL 查询参数或表单字段值）之前，或在重定向之前，检查并可能修改这些值的契约。
  *
- * <p>Implementations may use this contract for example as part of a solution
- * to provide data integrity, confidentiality, protection against cross-site
- * request forgery (CSRF), and others or for other tasks such as automatically
- * adding a hidden field to all forms and URLs.
+ * <p>实现可以例如将此契约用作提供数据完整性、机密性、跨站请求伪造（CSRF）防护等解决方案的一部分，或用于其他任务，例如自动向所有表单和 URL 添加隐藏字段。
  *
- * <p>View technologies that support this contract can obtain an instance to
- * delegate to via {@link RequestContext#getRequestDataValueProcessor()}.
- *
+ * <p>支持此契约的视图技术可以通过 {@link RequestContext#getRequestDataValueProcessor()} 获取要委托的实例。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public interface RequestDataValueProcessor {
 
 	/**
-	 * Invoked when a new form action is rendered.
+	 * 在渲染新表单 action 时调用。
 	 * @param exchange the current exchange
 	 * @param action the form action
 	 * @param httpMethod the form HTTP method
@@ -49,7 +42,7 @@ public interface RequestDataValueProcessor {
 	String processAction(ServerWebExchange exchange, String action, String httpMethod);
 
 	/**
-	 * Invoked when a form field value is rendered.
+	 * 在渲染表单字段值时调用。
 	 * @param exchange the current exchange
 	 * @param name the form field name
 	 * @param value the form field value
@@ -59,7 +52,7 @@ public interface RequestDataValueProcessor {
 	String processFormFieldValue(ServerWebExchange exchange, String name, String value, String type);
 
 	/**
-	 * Invoked after all form fields have been rendered.
+	 * 在所有表单字段渲染后调用。
 	 * @param exchange the current exchange
 	 * @return additional hidden form fields to be added, or {@code null}
 	 */
@@ -67,7 +60,7 @@ public interface RequestDataValueProcessor {
 	Map<String, String> getExtraHiddenFields(ServerWebExchange exchange);
 
 	/**
-	 * Invoked when a URL is about to be rendered or redirected to.
+	 * 在即将渲染或重定向到 URL 时调用。
 	 * @param exchange the current exchange
 	 * @param url the URL value
 	 * @return the URL to use, possibly modified

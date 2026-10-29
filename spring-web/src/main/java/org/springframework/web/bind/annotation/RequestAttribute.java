@@ -25,11 +25,10 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation to bind a method parameter to a request attribute.
+ * 将方法参数绑定到请求属性的注解。
  *
- * <p>The main motivation is to provide convenient access to request attributes
- * from a controller method with an optional/required check and a cast to the
- * target method parameter type.
+ * <p>主要目的是从控制器方法中方便地访问请求属性，并提供可选/必需检查
+ * 以及到目标方法参数类型的转换。
  *
  * @author Rossen Stoyanchev
  * @since 4.3
@@ -42,24 +41,23 @@ import org.springframework.core.annotation.AliasFor;
 public @interface RequestAttribute {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the request attribute to bind to.
-	 * <p>The default name is inferred from the method parameter name.
+	 * 要绑定到的请求属性名称。
+	 * <p>默认名称从方法参数名推断。
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Whether the request attribute is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown if
-	 * the attribute is missing. Switch this to {@code false} if you prefer
-	 * a {@code null} or Java 8 {@code java.util.Optional} if the attribute
-	 * doesn't exist.
+	 * 请求属性是否为必需。
+	 * <p>默认为 {@code true}，如果属性缺失将抛出异常。
+	 * 如果希望在属性不存在时得到 {@code null} 或 Java 8 的
+	 * {@code java.util.Optional}，请将其改为 {@code false}。
 	 */
 	boolean required() default true;
 

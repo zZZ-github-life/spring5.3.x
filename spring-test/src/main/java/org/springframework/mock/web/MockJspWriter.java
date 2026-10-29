@@ -26,8 +26,8 @@ import javax.servlet.jsp.JspWriter;
 import org.springframework.lang.Nullable;
 
 /**
- * Mock implementation of the {@link javax.servlet.jsp.JspWriter} class.
- * Only necessary for testing applications when testing custom JSP tags.
+ * {@link javax.servlet.jsp.JspWriter} 类的 mock 实现。
+ * 仅在测试自定义 JSP 标签时需要用于测试应用程序。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -41,8 +41,8 @@ public class MockJspWriter extends JspWriter {
 
 
 	/**
-	 * Create a MockJspWriter for the given response,
-	 * using the response's default Writer.
+	 * 为给定响应创建一个 MockJspWriter，
+	 * 使用响应的默认 Writer。
 	 * @param response the servlet response to wrap
 	 */
 	public MockJspWriter(HttpServletResponse response) {
@@ -50,7 +50,7 @@ public class MockJspWriter extends JspWriter {
 	}
 
 	/**
-	 * Create a MockJspWriter for the given plain Writer.
+	 * 为给定的普通 Writer 创建一个 MockJspWriter。
 	 * @param targetWriter the target Writer to wrap
 	 */
 	public MockJspWriter(Writer targetWriter) {
@@ -58,7 +58,7 @@ public class MockJspWriter extends JspWriter {
 	}
 
 	/**
-	 * Create a MockJspWriter for the given response.
+	 * 为给定响应创建一个 MockJspWriter。
 	 * @param response the servlet response to wrap
 	 * @param targetWriter the target Writer to wrap
 	 */
@@ -74,7 +74,7 @@ public class MockJspWriter extends JspWriter {
 	}
 
 	/**
-	 * Lazily initialize the target Writer.
+	 * 延迟初始化目标 Writer。
 	 */
 	protected PrintWriter getTargetWriter() throws IOException {
 		if (this.targetWriter == null) {

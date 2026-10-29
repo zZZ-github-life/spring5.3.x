@@ -20,16 +20,14 @@ import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;
 
 /**
- * A return value handler that supports async types. Such return value types
- * need to be handled with priority so the async value can be "unwrapped".
+ * 支持异步类型的返回值处理器。此类返回值类型需要优先处理，
+ * 以便能够“解包”异步值。
  *
- * <p><strong>Note: </strong> implementing this contract is not required but it
- * should be implemented when the handler needs to be prioritized ahead of others.
- * For example custom (async) handlers, by default ordered after built-in
- * handlers, should take precedence over {@code @ResponseBody} or
- * {@code @ModelAttribute} handling, which should occur once the async value is
- * ready. By contrast, built-in (async) handlers are already ordered ahead of
- * sync handlers.
+ * <p><strong>注意：</strong>实现此契约并非必需，但当处理器需要优先于其他处理器时，
+ * 应当实现此契约。例如，自定义（异步）处理器默认排在内置处理器之后，
+ * 它们应优先于 {@code @ResponseBody} 或 {@code @ModelAttribute} 处理，
+ * 后者应等到异步值就绪后再执行。相比之下，内置（异步）处理器
+ * 已经排在同步处理器之前。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -37,7 +35,7 @@ import org.springframework.lang.Nullable;
 public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodReturnValueHandler {
 
 	/**
-	 * Whether the given return value represents asynchronous computation.
+	 * 给定返回值是否表示异步计算。
 	 * @param returnValue the value returned from the handler method
 	 * @param returnType the return type
 	 * @return {@code true} if the return value type represents an async value

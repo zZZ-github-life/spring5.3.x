@@ -23,13 +23,13 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * Special subclass of the standard JavaMail {@link MimeMessage}, carrying a
- * default encoding to be used when populating the message and a default Java
- * Activation {@link FileTypeMap} to be used for resolving attachment types.
+ * 标准 JavaMail {@link MimeMessage} 的特殊子类，携带在填充消息时
+ * 使用的默认编码和用于解析附件类型的默认 Java Activation
+ * {@link FileTypeMap}。
  *
- * <p>Created by {@link JavaMailSenderImpl} in case of a specified default encoding
- * and/or default FileTypeMap. Autodetected by {@link MimeMessageHelper}, which
- * will use the carried encoding and FileTypeMap unless explicitly overridden.
+ * <p>在指定了默认编码和/或默认 FileTypeMap 的情况下由
+ * {@link JavaMailSenderImpl} 创建。被 {@link MimeMessageHelper} 自动检测，
+ * 后者将使用所携带的编码和 FileTypeMap，除非被显式覆盖。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -47,7 +47,7 @@ class SmartMimeMessage extends MimeMessage {
 
 
 	/**
-	 * Create a new SmartMimeMessage.
+	 * 创建新的 SmartMimeMessage。
 	 * @param session the JavaMail Session to create the message for
 	 * @param defaultEncoding the default encoding, or {@code null} if none
 	 * @param defaultFileTypeMap the default FileTypeMap, or {@code null} if none
@@ -62,7 +62,7 @@ class SmartMimeMessage extends MimeMessage {
 
 
 	/**
-	 * Return the default encoding of this message, or {@code null} if none.
+	 * 返回此消息的默认编码，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public final String getDefaultEncoding() {
@@ -70,7 +70,7 @@ class SmartMimeMessage extends MimeMessage {
 	}
 
 	/**
-	 * Return the default FileTypeMap of this message, or {@code null} if none.
+	 * 返回此消息的默认 FileTypeMap，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public final FileTypeMap getDefaultFileTypeMap() {

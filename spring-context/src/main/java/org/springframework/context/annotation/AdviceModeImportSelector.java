@@ -25,9 +25,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient base class for {@link ImportSelector} implementations that select imports
- * based on an {@link AdviceMode} value from an annotation (such as the {@code @Enable*}
- * annotations).
+ * 用于 {@link ImportSelector} 实现的便捷基类，这些实现基于注解（例如 {@code @Enable*} 注解）中的
+ * {@link AdviceMode} 值来选择导入。
  *
  * @author Chris Beams
  * @since 3.1
@@ -36,28 +35,25 @@ import org.springframework.util.Assert;
 public abstract class AdviceModeImportSelector<A extends Annotation> implements ImportSelector {
 
 	/**
-	 * The default advice mode attribute name.
+	 * 默认的通知模式属性名称。
 	 */
 	public static final String DEFAULT_ADVICE_MODE_ATTRIBUTE_NAME = "mode";
 
 
 	/**
-	 * The name of the {@link AdviceMode} attribute for the annotation specified by the
-	 * generic type {@code A}. The default is {@value #DEFAULT_ADVICE_MODE_ATTRIBUTE_NAME},
-	 * but subclasses may override in order to customize.
+	 * 由泛型类型 {@code A} 所指定注解的 {@link AdviceMode} 属性名称。默认为
+	 * {@value #DEFAULT_ADVICE_MODE_ATTRIBUTE_NAME}，但子类可以覆盖以进行定制。
 	 */
 	protected String getAdviceModeAttributeName() {
 		return DEFAULT_ADVICE_MODE_ATTRIBUTE_NAME;
 	}
 
 	/**
-	 * This implementation resolves the type of annotation from generic metadata and
-	 * validates that (a) the annotation is in fact present on the importing
-	 * {@code @Configuration} class and (b) that the given annotation has an
-	 * {@linkplain #getAdviceModeAttributeName() advice mode attribute} of type
-	 * {@link AdviceMode}.
-	 * <p>The {@link #selectImports(AdviceMode)} method is then invoked, allowing the
-	 * concrete implementation to choose imports in a safe and convenient fashion.
+	 * 此实现从泛型元数据中解析注解类型，并验证 (a) 该注解确实存在于导入的 {@code @Configuration} 类上，
+	 * 以及 (b) 给定注解具有类型为 {@link AdviceMode} 的
+	 * {@linkplain #getAdviceModeAttributeName() 通知模式属性}。
+	 *
+	 * <p>随后会调用 {@link #selectImports(AdviceMode)} 方法，允许具体实现以安全便捷的方式选择导入。
 	 * @throws IllegalArgumentException if expected annotation {@code A} is not present
 	 * on the importing {@code @Configuration} class or if {@link #selectImports(AdviceMode)}
 	 * returns {@code null}
@@ -83,10 +79,10 @@ public abstract class AdviceModeImportSelector<A extends Annotation> implements 
 	}
 
 	/**
-	 * Determine which classes should be imported based on the given {@code AdviceMode}.
-	 * <p>Returning {@code null} from this method indicates that the {@code AdviceMode}
-	 * could not be handled or was unknown and that an {@code IllegalArgumentException}
-	 * should be thrown.
+	 * 根据给定的 {@code AdviceMode} 确定应导入哪些类。
+	 *
+	 * <p>从此方法返回 {@code null} 表示无法处理该 {@code AdviceMode} 或其未知，并且应抛出
+	 * {@code IllegalArgumentException}。
 	 * @param adviceMode the value of the {@linkplain #getAdviceModeAttributeName()
 	 * advice mode attribute} for the annotation specified via generics.
 	 * @return array containing classes to import (empty array if none;

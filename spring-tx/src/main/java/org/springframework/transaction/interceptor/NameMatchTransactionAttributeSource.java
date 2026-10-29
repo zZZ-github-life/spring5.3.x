@@ -35,8 +35,7 @@ import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Simple {@link TransactionAttributeSource} implementation that
- * allows attributes to be matched by registered name.
+ * 简单的{@link TransactionAttributeSource}实现, 允许按注册名称匹配属性。
  *
  * @author Juergen Hoeller
  * @since 21.08.2003
@@ -48,12 +47,12 @@ public class NameMatchTransactionAttributeSource
 		implements TransactionAttributeSource, EmbeddedValueResolverAware, InitializingBean, Serializable {
 
 	/**
-	 * Logger available to subclasses.
-	 * <p>Static for optimal serialization.
+	 * 子类可用的日志记录器。
+	 * <p>静态字段以优化序列化。
 	 */
 	protected static final Log logger = LogFactory.getLog(NameMatchTransactionAttributeSource.class);
 
-	/** Keys are method names; values are TransactionAttributes. */
+	/** 键为方法名; 值为TransactionAttribute。 */
 	private final Map<String, TransactionAttribute> nameMap = new HashMap<>();
 
 	@Nullable
@@ -61,8 +60,7 @@ public class NameMatchTransactionAttributeSource
 
 
 	/**
-	 * Set a name/attribute map, consisting of method names
-	 * (e.g. "myMethod") and {@link TransactionAttribute} instances.
+	 * 设置名称/属性映射, 由方法名(例如"myMethod")和{@link TransactionAttribute}实例组成。
 	 * @see #setProperties
 	 * @see TransactionAttribute
 	 */
@@ -71,10 +69,9 @@ public class NameMatchTransactionAttributeSource
 	}
 
 	/**
-	 * Parse the given properties into a name/attribute map.
-	 * <p>Expects method names as keys and String attributes definitions as values,
-	 * parsable into {@link TransactionAttribute} instances via a
-	 * {@link TransactionAttributeEditor}.
+	 * 将给定的属性解析为名称/属性映射。
+	 * <p>期望方法名作为键, 字符串属性定义作为值,
+	 * 可通过{@link TransactionAttributeEditor}解析为{@link TransactionAttribute}实例。
 	 * @see #setNameMap
 	 * @see TransactionAttributeEditor
 	 */
@@ -91,9 +88,8 @@ public class NameMatchTransactionAttributeSource
 	}
 
 	/**
-	 * Add an attribute for a transactional method.
-	 * <p>Method names can be exact matches, or of the pattern "xxx*",
-	 * "*xxx", or "*xxx*" for matching multiple methods.
+	 * 为事务方法添加属性。
+	 * <p>方法名可以是精确匹配, 也可以是"xxx*"、"*xxx"或"*xxx*"模式以匹配多个方法。
 	 * @param methodName the name of the method
 	 * @param attr attribute associated with the method
 	 */
@@ -149,9 +145,8 @@ public class NameMatchTransactionAttributeSource
 	}
 
 	/**
-	 * Determine if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx", and "*xxx*" matches,
-	 * as well as direct equality. Can be overridden in subclasses.
+	 * 确定给定的方法名是否匹配映射名称。
+	 * <p>默认实现检查"xxx*"、"*xxx"和"*xxx*"匹配, 以及直接相等。可以在子类中重写。
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return {@code true} if the names match

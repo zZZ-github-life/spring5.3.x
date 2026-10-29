@@ -17,7 +17,7 @@
 package org.springframework.messaging;
 
 /**
- * Exception that indicates an error occurred during message delivery.
+ * 表示消息投递期间发生错误的异常。
  *
  * @author Mark Fisher
  * @since 4.0

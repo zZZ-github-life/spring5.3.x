@@ -28,11 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Spring bean-style class for accessing a Quartz Scheduler, i.e. for registering jobs,
- * triggers and listeners on a given {@link org.quartz.Scheduler} instance.
- *
- * <p>Compatible with Quartz 2.1.4 and higher, as of Spring 4.1.
- *
+ * 用于访问 Quartz Scheduler 的 Spring bean 风格类，即在给定的 {@link org.quartz.Scheduler} 实例上注册作业、触发器和监听器。<p>自 Spring 4.1 起，兼容 Quartz 2.1.4 及更高版本。
  * @author Juergen Hoeller
  * @since 2.5.6
  * @see #setScheduler
@@ -51,31 +47,21 @@ public class SchedulerAccessorBean extends SchedulerAccessor implements BeanFact
 
 
 	/**
-	 * Specify the Quartz {@link Scheduler} to operate on via its scheduler name in the Spring
-	 * application context or also in the Quartz {@link org.quartz.impl.SchedulerRepository}.
-	 * <p>Schedulers can be registered in the repository through custom bootstrapping,
-	 * e.g. via the {@link org.quartz.impl.StdSchedulerFactory} or
-	 * {@link org.quartz.impl.DirectSchedulerFactory} factory classes.
-	 * However, in general, it's preferable to use Spring's {@link SchedulerFactoryBean}
-	 * which includes the job/trigger/listener capabilities of this accessor as well.
-	 * <p>If not specified, this accessor will try to retrieve a default {@link Scheduler}
-	 * bean from the containing application context.
+	 * 通过 Spring 应用上下文中的调度器名称，或 Quartz {@link org.quartz.impl.SchedulerRepository} 中的名称，指定要操作的 Quartz {@link Scheduler}。<p>可以通过自定义引导（例如通过 {@link org.quartz.impl.StdSchedulerFactory} 或 {@link org.quartz.impl.DirectSchedulerFactory} 工厂类）将调度器注册到仓库中。不过，通常最好使用 Spring 的 {@link SchedulerFactoryBean}，它也包含此访问器的作业/触发器/监听器能力。<p>如果未指定，此访问器将尝试从所在应用上下文中获取默认的 {@link Scheduler} bean。
 	 */
 	public void setSchedulerName(String schedulerName) {
 		this.schedulerName = schedulerName;
 	}
 
 	/**
-	 * Specify the Quartz {@link Scheduler} instance to operate on.
-	 * <p>If not specified, this accessor will try to retrieve a default {@link Scheduler}
-	 * bean from the containing application context.
+	 * 指定要操作的 Quartz {@link Scheduler} 实例。<p>如果未指定，此访问器将尝试从所在应用上下文中获取默认的 {@link Scheduler} bean。
 	 */
 	public void setScheduler(Scheduler scheduler) {
 		this.scheduler = scheduler;
 	}
 
 	/**
-	 * Return the Quartz Scheduler instance that this accessor operates on.
+	 * 返回此访问器所操作的 Quartz Scheduler 实例。
 	 */
 	@Override
 	public Scheduler getScheduler() {

@@ -25,10 +25,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link DataSourceLookup} implementation based on a Spring {@link BeanFactory}.
+ * 基于 Spring {@link BeanFactory} 的 {@link DataSourceLookup} 实现。
  *
- * <p>Will lookup Spring managed beans identified by bean name,
- * expecting them to be of type {@code javax.sql.DataSource}.
+ * <p>将查找由 bean 名称标识的 Spring 管理的 bean，
+ * 并要求它们是 {@code javax.sql.DataSource} 类型。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -42,20 +42,19 @@ public class BeanFactoryDataSourceLookup implements DataSourceLookup, BeanFactor
 
 
 	/**
-	 * Create a new instance of the {@link BeanFactoryDataSourceLookup} class.
-	 * <p>The BeanFactory to access must be set via {@code setBeanFactory}.
+	 * 创建 {@link BeanFactoryDataSourceLookup} 类的新实例。
+	 * <p>必须通过 {@code setBeanFactory} 设置要访问的 BeanFactory。
 	 * @see #setBeanFactory
 	 */
 	public BeanFactoryDataSourceLookup() {
 	}
 
 	/**
-	 * Create a new instance of the {@link BeanFactoryDataSourceLookup} class.
-	 * <p>Use of this constructor is redundant if this object is being created
-	 * by a Spring IoC container, as the supplied {@link BeanFactory} will be
-	 * replaced by the {@link BeanFactory} that creates it (c.f. the
-	 * {@link BeanFactoryAware} contract). So only use this constructor if you
-	 * are using this class outside the context of a Spring IoC container.
+	 * 创建 {@link BeanFactoryDataSourceLookup} 类的新实例。
+	 * <p>如果此对象由 Spring IoC 容器创建，则使用此构造函数是多余的，
+	 * 因为提供的 {@link BeanFactory} 将被创建它的 {@link BeanFactory} 替换
+	 * （参见 {@link BeanFactoryAware} 契约）。因此，仅在 Spring IoC 容器之外
+	 * 使用本类时才使用此构造函数。
 	 * @param beanFactory the bean factory to be used to lookup {@link DataSource DataSources}
 	 */
 	public BeanFactoryDataSourceLookup(BeanFactory beanFactory) {

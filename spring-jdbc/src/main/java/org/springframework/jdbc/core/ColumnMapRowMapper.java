@@ -26,17 +26,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 /**
- * {@link RowMapper} implementation that creates a {@code java.util.Map}
- * for each row, representing all columns as key-value pairs: one
- * entry for each column, with the column name as key.
+ * {@link RowMapper}实现，为每行创建一个{@code java.util.Map}，
+ * 将所有列表示为键值对：每个列一个条目，列名作为键。
  *
- * <p>The Map implementation to use and the key to use for each column
- * in the column Map can be customized by overriding {@link #createColumnMap}
- * and {@link #getColumnKey}, respectively.
+ * <p>要使用的Map实现和列Map中每列使用的键可以分别通过重写
+ * {@link #createColumnMap}和{@link #getColumnKey}来定制。
  *
- * <p><b>Note:</b> By default, {@code ColumnMapRowMapper} will try to build a linked Map
- * with case-insensitive keys, to preserve column order as well as allow any
- * casing to be used for column names.
+ * <p><b>注意：</b>默认情况下，{@code ColumnMapRowMapper}将尝试构建一个
+ * 大小写不敏感的Linked Map，以保留列顺序并允许使用任何大小写的列名。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -58,8 +55,8 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 	}
 
 	/**
-	 * Create a Map instance to be used as column map.
-	 * <p>By default, a linked case-insensitive Map will be created.
+	 * 创建用作列映射的Map实例。
+	 * <p>默认情况下，将创建一个大小写不敏感的Linked Map。
 	 * @param columnCount the column count, to be used as initial
 	 * capacity for the Map
 	 * @return the new Map instance
@@ -70,8 +67,8 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 	}
 
 	/**
-	 * Determine the key to use for the given column in the column Map.
-	 * <p>By default, the supplied column name will be returned unmodified.
+	 * 确定在列Map中给定列使用的键。
+	 * <p>默认情况下，返回提供的列名不做修改。
 	 * @param columnName the column name as returned by the ResultSet
 	 * @return the column key to use
 	 * @see java.sql.ResultSetMetaData#getColumnName
@@ -81,10 +78,9 @@ public class ColumnMapRowMapper implements RowMapper<Map<String, Object>> {
 	}
 
 	/**
-	 * Retrieve a JDBC object value for the specified column.
-	 * <p>The default implementation uses the {@code getObject} method.
-	 * Additionally, this implementation includes a "hack" to get around Oracle
-	 * returning a non-standard object for their TIMESTAMP data type.
+	 * 检索指定列的JDBC对象值。
+	 * <p>默认实现使用{@code getObject}方法。
+	 * 此外，此实现包含一个"技巧"来绕过Oracle为其TIMESTAMP数据类型返回非标准对象的问题。
 	 * @param rs the ResultSet holding the data
 	 * @param index the column index
 	 * @return the Object returned

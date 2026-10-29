@@ -25,12 +25,11 @@ import org.springframework.web.server.WebFilterChain;
 import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
 
 /**
- * Extract values from "Forwarded" and "X-Forwarded-*" headers to override the
- * request URI (i.e. {@link ServerHttpRequest#getURI()}) so it reflects the
- * client-originated protocol and address.
+ * 从 "Forwarded" 和 "X-Forwarded-*" 头中提取值，覆盖请求 URI
+ * （即 {@link ServerHttpRequest#getURI()}），使其反映客户端发起的协议和地址。
  *
- * <p>Alternatively if {@link #setRemoveOnly removeOnly} is set to "true", then
- * "Forwarded" and "X-Forwarded-*" headers are only removed and not used.
+ * <p>另外，如果将 {@link #setRemoveOnly removeOnly} 设置为 "true"，
+ * 则只会移除 "Forwarded" 和 "X-Forwarded-*" 头，而不会使用它们。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

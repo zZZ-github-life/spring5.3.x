@@ -26,18 +26,15 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.HandlerMapping;
 
 /**
- * Subclass of {@link ServletRequestDataBinder} that adds URI template variables
- * to the values used for data binding.
+ * {@link ServletRequestDataBinder} 的子类，它将 URI 模板变量
+ * 添加到用于数据绑定的值中。
  *
- * <p><strong>WARNING</strong>: Data binding can lead to security issues by exposing
- * parts of the object graph that are not meant to be accessed or modified by
- * external clients. Therefore the design and use of data binding should be considered
- * carefully with regard to security. For more details, please refer to the dedicated
- * sections on data binding for
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> and
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>
- * in the reference manual.
- *
+ * <p><strong>警告</strong>：数据绑定可能会暴露对象图中不应被外部客户端
+ * 访问或修改的部分，从而带来安全问题。因此，在设计和使用数据绑定时，
+ * 应仔细考虑安全性。有关更多详细信息，请参阅参考手册中
+ * 关于数据绑定的专门章节：
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> 和
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>。
  * @author Rossen Stoyanchev
  * @since 3.1
  * @see ServletRequestDataBinder
@@ -46,7 +43,7 @@ import org.springframework.web.servlet.HandlerMapping;
 public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
 
 	/**
-	 * Create a new instance, with default object name.
+	 * 使用默认对象名称创建一个新实例。
 	 * @param target the target object to bind onto (or {@code null}
 	 * if the binder is just used to convert a plain parameter value)
 	 * @see #DEFAULT_OBJECT_NAME
@@ -56,7 +53,7 @@ public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
 	}
 
 	/**
-	 * Create a new instance.
+	 * 创建一个新实例。
 	 * @param target the target object to bind onto (or {@code null}
 	 * if the binder is just used to convert a plain parameter value)
 	 * @param objectName the name of the target object
@@ -68,7 +65,7 @@ public class ExtendedServletRequestDataBinder extends ServletRequestDataBinder {
 
 
 	/**
-	 * Merge URI variables into the property values to use for data binding.
+	 * 将 URI 变量合并到用于数据绑定的属性值中。
 	 */
 	@Override
 	protected void addBindValues(MutablePropertyValues mpvs, ServletRequest request) {

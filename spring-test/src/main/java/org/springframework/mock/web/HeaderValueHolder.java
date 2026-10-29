@@ -26,7 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Internal helper class that serves as a value holder for request headers.
+ * 内部辅助类，用作请求头的值持有者。
  *
  * @author Juergen Hoeller
  * @author Rick Evans

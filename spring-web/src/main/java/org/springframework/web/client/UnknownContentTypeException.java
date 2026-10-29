@@ -24,9 +24,9 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * Raised when no suitable
- * {@link org.springframework.http.converter.HttpMessageConverter} could be
- * found to extract the response.
+ * 当找不到合适的
+ * {@link org.springframework.http.converter.HttpMessageConverter}
+ * 来提取响应时抛出。
  *
  * @author Rossen Stoyanchev
  * @since 5.2.7
@@ -50,7 +50,7 @@ public class UnknownContentTypeException extends RestClientException {
 
 
 	/**
-	 * Construct a new instance of with the given response data.
+	 * 使用给定响应数据构造新实例。
 	 * @param targetType the expected target type
 	 * @param contentType the content type of the response
 	 * @param statusCode the raw status code value
@@ -74,35 +74,35 @@ public class UnknownContentTypeException extends RestClientException {
 
 
 	/**
-	 * Return the target type expected for the response.
+	 * 返回响应所预期的目标类型。
 	 */
 	public Type getTargetType() {
 		return this.targetType;
 	}
 
 	/**
-	 * Return the content type of the response, or "application/octet-stream".
+	 * 返回响应的内容类型，或 "application/octet-stream"。
 	 */
 	public MediaType getContentType() {
 		return this.contentType;
 	}
 
 	/**
-	 * Return the raw HTTP status code value.
+	 * 返回原始 HTTP 状态码值。
 	 */
 	public int getRawStatusCode() {
 		return this.rawStatusCode;
 	}
 
 	/**
-	 * Return the HTTP status text.
+	 * 返回 HTTP 状态文本。
 	 */
 	public String getStatusText() {
 		return this.statusText;
 	}
 
 	/**
-	 * Return the HTTP response headers.
+	 * 返回 HTTP 响应头。
 	 */
 	@Nullable
 	public HttpHeaders getResponseHeaders() {
@@ -110,15 +110,15 @@ public class UnknownContentTypeException extends RestClientException {
 	}
 
 	/**
-	 * Return the response body as a byte array.
+	 * 以字节数组形式返回响应体。
 	 */
 	public byte[] getResponseBody() {
 		return this.responseBody;
 	}
 
 	/**
-	 * Return the response body converted to String using the charset from the
-	 * response "Content-Type" or {@code "UTF-8"} otherwise.
+	 * 返回转换为 String 的响应体，使用响应 "Content-Type" 中的字符集，
+	 * 否则使用 {@code "UTF-8"}。
 	 */
 	public String getResponseBodyAsString() {
 		return new String(this.responseBody, this.contentType.getCharset() != null ?

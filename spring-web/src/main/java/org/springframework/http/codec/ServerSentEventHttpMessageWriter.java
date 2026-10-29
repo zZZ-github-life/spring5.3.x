@@ -45,7 +45,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code HttpMessageWriter} for {@code "text/event-stream"} responses.
+ * 用于 {@code "text/event-stream"} 响应的 {@code HttpMessageWriter}。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -66,16 +66,16 @@ public class ServerSentEventHttpMessageWriter implements HttpMessageWriter<Objec
 
 
 	/**
-	 * Constructor without an {@code Encoder}. In this mode only {@code String}
-	 * is supported for event data to be encoded.
+	 * 不带 {@code Encoder} 的构造函数。在此模式下，待编码的事件数据
+	 * 仅支持 {@code String}。
 	 */
 	public ServerSentEventHttpMessageWriter() {
 		this(null);
 	}
 
 	/**
-	 * Constructor with JSON {@code Encoder} for encoding objects.
-	 * Support for {@code String} event data is built-in.
+	 * 带 JSON {@code Encoder} 的构造函数，用于编码对象。
+	 * 内置了对 {@code String} 事件数据的支持。
 	 * @param encoder the Encoder to use (may be {@code null})
 	 */
 	public ServerSentEventHttpMessageWriter(@Nullable Encoder<?> encoder) {
@@ -84,7 +84,7 @@ public class ServerSentEventHttpMessageWriter implements HttpMessageWriter<Objec
 
 
 	/**
-	 * Return the configured {@code Encoder}, if any.
+	 * 返回已配置的 {@code Encoder}（如果有）。
 	 */
 	@Nullable
 	public Encoder<?> getEncoder() {

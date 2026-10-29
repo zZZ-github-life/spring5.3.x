@@ -47,7 +47,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.adapter.AbstractWebSocketSession;
 
 /**
- * A {@link WebSocketSession} for use with the Jetty 9.4 WebSocket API.
+ * 用于 Jetty 9.4 WebSocket API 的 {@link WebSocketSession}。
  *
  * @author Phillip Webb
  * @author Rossen Stoyanchev
@@ -84,7 +84,7 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 
 
 	/**
-	 * Create a new {@link JettyWebSocketSession} instance.
+	 * 创建一个新的 {@link JettyWebSocketSession} 实例。
 	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket session
 	 */
 	public JettyWebSocketSession(Map<String, Object> attributes) {
@@ -92,7 +92,7 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 	}
 
 	/**
-	 * Create a new {@link JettyWebSocketSession} instance associated with the given user.
+	 * 创建一个与给定用户关联的新 {@link JettyWebSocketSession} 实例。
 	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
 	 * session; the provided attributes are copied, the original map is not used.
 	 * @param user the user associated with the session; if {@code null} we'll fall back on the
@@ -154,8 +154,8 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 	}
 
 	/**
-	 * This method is a no-op for Jetty. As per {@link Session#getPolicy()}, the
-	 * returned {@code WebSocketPolicy} is read-only and changing it has no effect.
+	 * 此方法对 Jetty 而言是空操作。根据 {@link Session#getPolicy()}，
+	 * 返回的 {@code WebSocketPolicy} 是只读的，修改它不会产生任何效果。
 	 */
 	@Override
 	public void setTextMessageSizeLimit(int messageSizeLimit) {
@@ -168,8 +168,8 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 	}
 
 	/**
-	 * This method is a no-op for Jetty. As per {@link Session#getPolicy()}, the
-	 * returned {@code WebSocketPolicy} is read-only and changing it has no effect.
+	 * 此方法对 Jetty 而言是空操作。根据 {@link Session#getPolicy()}，
+	 * 返回的 {@code WebSocketPolicy} 是只读的，修改它不会产生任何效果。
 	 */
 	@Override
 	public void setBinaryMessageSizeLimit(int messageSizeLimit) {
@@ -240,7 +240,7 @@ public class JettyWebSocketSession extends AbstractWebSocketSession<Session> {
 
 
 	/**
-	 * Encapsulate incompatible changes between Jetty 9.4 and 10.
+	 * 封装 Jetty 9.4 与 10 之间的不兼容变更。
 	 */
 	private interface SessionHelper {
 

@@ -19,7 +19,7 @@ package org.springframework.context;
 import org.springframework.beans.FatalBeanException;
 
 /**
- * Exception thrown during application context initialization.
+ * 在应用上下文初始化期间抛出的异常。
  *
  * @author Rod Johnson
  */
@@ -27,8 +27,7 @@ import org.springframework.beans.FatalBeanException;
 public class ApplicationContextException extends FatalBeanException {
 
 	/**
-	 * Create a new {@code ApplicationContextException}
-	 * with the specified detail message and no root cause.
+	 * 使用指定的详细消息且没有根本原因创建一个新的 {@code ApplicationContextException}。
 	 * @param msg the detail message
 	 */
 	public ApplicationContextException(String msg) {
@@ -36,8 +35,7 @@ public class ApplicationContextException extends FatalBeanException {
 	}
 
 	/**
-	 * Create a new {@code ApplicationContextException}
-	 * with the specified detail message and the given root cause.
+	 * 使用指定的详细消息和给定的根本原因创建一个新的 {@code ApplicationContextException}。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

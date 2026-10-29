@@ -29,10 +29,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of the {@link javax.servlet.FilterConfig} interface which
- * simply passes the call through to a given Filter/FilterChain combination
- * (indicating the next Filter in the chain along with the FilterChain that it is
- * supposed to work on) or to a given Servlet (indicating the end of the chain).
+ * {@link javax.servlet.FilterConfig} 接口的实现，
+ * 将调用简单地传递给给定的 Filter/FilterChain 组合
+ * （表示链中的下一个 Filter 及其
+ * 应处理的 FilterChain），或传递给给定的 Servlet（表示链的末端）。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -53,8 +53,8 @@ public class PassThroughFilterChain implements FilterChain {
 
 
 	/**
-	 * Create a new PassThroughFilterChain that delegates to the given Filter,
-	 * calling it with the given FilterChain.
+	 * 创建一个新的 PassThroughFilterChain，它委托给给定的 Filter，
+	 * 并使用给定的 FilterChain 调用它。
 	 * @param filter the Filter to delegate to
 	 * @param nextFilterChain the FilterChain to use for that next Filter
 	 */
@@ -66,7 +66,7 @@ public class PassThroughFilterChain implements FilterChain {
 	}
 
 	/**
-	 * Create a new PassThroughFilterChain that delegates to the given Servlet.
+	 * 创建一个新的 PassThroughFilterChain，它委托给给定的 Servlet。
 	 * @param servlet the Servlet to delegate to
 	 */
 	public PassThroughFilterChain(Servlet servlet) {
@@ -76,7 +76,7 @@ public class PassThroughFilterChain implements FilterChain {
 
 
 	/**
-	 * Pass the call on to the Filter/Servlet.
+	 * 将调用传递给 Filter/Servlet。
 	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response) throws ServletException, IOException {

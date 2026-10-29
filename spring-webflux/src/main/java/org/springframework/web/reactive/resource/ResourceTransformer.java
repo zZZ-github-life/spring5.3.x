@@ -22,8 +22,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * An abstraction for transforming the content of a resource.
- *
+ * 用于转换资源内容的抽象。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -31,7 +30,7 @@ import org.springframework.web.server.ServerWebExchange;
 public interface ResourceTransformer {
 
 	/**
-	 * Transform the given resource.
+	 * 转换给定资源。
 	 * @param exchange the current exchange
 	 * @param resource the resource to transform
 	 * @param transformerChain the chain of remaining transformers to delegate to

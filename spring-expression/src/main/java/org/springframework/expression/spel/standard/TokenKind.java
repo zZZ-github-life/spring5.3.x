@@ -17,7 +17,7 @@
 package org.springframework.expression.spel.standard;
 
 /**
- * Token Kinds.
+ * Token 种类。
  *
  * @author Andy Clement
  * @since 3.0

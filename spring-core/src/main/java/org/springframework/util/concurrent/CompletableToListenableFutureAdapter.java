@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Adapts a {@link CompletableFuture} or {@link CompletionStage} into a
- * Spring {@link ListenableFuture}.
+ * 将 {@link CompletableFuture} 或 {@link CompletionStage} 适配为 Spring 的
+ * {@link ListenableFuture}。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -39,7 +39,7 @@ public class CompletableToListenableFutureAdapter<T> implements ListenableFuture
 
 
 	/**
-	 * Create a new adapter for the given {@link CompletionStage}.
+	 * 为给定的 {@link CompletionStage} 创建一个新的适配器。
 	 * @since 4.3.7
 	 */
 	public CompletableToListenableFutureAdapter(CompletionStage<T> completionStage) {
@@ -47,7 +47,7 @@ public class CompletableToListenableFutureAdapter<T> implements ListenableFuture
 	}
 
 	/**
-	 * Create a new adapter for the given {@link CompletableFuture}.
+	 * 为给定的 {@link CompletableFuture} 创建一个新的适配器。
 	 */
 	public CompletableToListenableFutureAdapter(CompletableFuture<T> completableFuture) {
 		this.completableFuture = completableFuture;

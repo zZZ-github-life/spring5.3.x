@@ -23,8 +23,8 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
- * Convenience subclass of {@link UrlBasedViewResolver} that supports
- * {@link TilesView} (i.e. Tiles definitions) and custom subclasses of it.
+ * {@link UrlBasedViewResolver} 的便捷子类，支持
+ * {@link TilesView}（即 Tiles 定义）及其自定义子类。
  *
  * @author Nicolas Le Bas
  * @author Rossen Stoyanchev
@@ -42,7 +42,7 @@ public class TilesViewResolver extends UrlBasedViewResolver {
 
 
 	/**
-	 * This resolver requires {@link TilesView}.
+	 * 此解析器要求使用 {@link TilesView}。
 	 */
 	public TilesViewResolver() {
 		setViewClass(requiredViewClass());
@@ -50,8 +50,8 @@ public class TilesViewResolver extends UrlBasedViewResolver {
 
 
 	/**
-	 * Set the {@link Renderer} to use. If not specified, a default
-	 * {@link org.apache.tiles.renderer.DefinitionRenderer} will be used.
+	 * 设置要使用的 {@link Renderer}。如果未指定，将使用默认的
+	 * {@link org.apache.tiles.renderer.DefinitionRenderer}。
 	 * @see TilesView#setRenderer(Renderer)
 	 */
 	public void setRenderer(Renderer renderer) {
@@ -59,9 +59,9 @@ public class TilesViewResolver extends UrlBasedViewResolver {
 	}
 
 	/**
-	 * Specify whether to always include the view rather than forward to it.
-	 * <p>Default is "false". Switch this flag on to enforce the use of a
-	 * Servlet include, even if a forward would be possible.
+	 * 指定是否始终包含视图而不是转发到视图。
+	 * <p>默认值为 "false"。开启此标志可强制使用
+	 * Servlet include，即使可以进行转发也是如此。
 	 * @since 4.1.2
 	 * @see TilesView#setAlwaysInclude
 	 */

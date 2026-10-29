@@ -30,12 +30,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Property editor for Collections, converting any source Collection
- * to a given target Collection type.
+ * 用于 Collection 的属性编辑器，可将任意源 Collection 转换为给定的目标 Collection 类型。
  *
- * <p>By default registered for Set, SortedSet and List,
- * to automatically convert any given Collection to one of those
- * target types if the type does not match the target property.
+ * <p>默认注册用于 Set、SortedSet 和 List，当类型与目标属性不匹配时，自动将任意给定 Collection 转换
+ * 为这些目标类型之一。
  *
  * @author Juergen Hoeller
  * @since 1.1.3
@@ -53,8 +51,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new CustomCollectionEditor for the given target type,
-	 * keeping an incoming {@code null} as-is.
+	 * 为给定目标类型创建新的 CustomCollectionEditor，传入的 {@code null} 保持原样。
 	 * @param collectionType the target type, which needs to be a
 	 * sub-interface of Collection or a concrete Collection class
 	 * @see java.util.Collection
@@ -68,14 +65,10 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new CustomCollectionEditor for the given target type.
-	 * <p>If the incoming value is of the given type, it will be used as-is.
-	 * If it is a different Collection type or an array, it will be converted
-	 * to a default implementation of the given Collection type.
-	 * If the value is anything else, a target Collection with that single
-	 * value will be created.
-	 * <p>The default Collection implementations are: ArrayList for List,
-	 * TreeSet for SortedSet, and LinkedHashSet for Set.
+	 * 为给定目标类型创建新的 CustomCollectionEditor。<p>如果传入值的类型就是给定类型，则按原样使用。如
+	 * 果它是其他 Collection 类型或数组，则将其转换为给定 Collection 类型的默认实现。如果值属于其他任何
+	 * 类型，则将创建一个仅包含该值的目标 Collection。<p>默认的 Collection 实现为：List 使用 ArrayList，
+	 * SortedSet 使用 TreeSet，Set 使用 LinkedHashSet。
 	 * @param collectionType the target type, which needs to be a
 	 * sub-interface of Collection or a concrete Collection class
 	 * @param nullAsEmptyCollection whether to convert an incoming {@code null}
@@ -98,7 +91,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Convert the given text value to a Collection with a single element.
+	 * 将给定的文本值转换为仅含一个元素的 Collection。
 	 */
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
@@ -106,7 +99,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Convert the given value to a Collection of the target type.
+	 * 将给定值转换为目标类型的 Collection。
 	 */
 	@Override
 	public void setValue(@Nullable Object value) {
@@ -144,8 +137,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a Collection of the given type, with the given
-	 * initial capacity (if supported by the Collection type).
+	 * 创建给定类型的 Collection，并使用给定的初始容量（如果该 Collection 类型支持）。
 	 * @param collectionType a sub-interface of Collection
 	 * @param initialCapacity the initial capacity
 	 * @return the new Collection instance
@@ -173,10 +165,8 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Return whether to always create a new Collection,
-	 * even if the type of the passed-in Collection already matches.
-	 * <p>Default is "false"; can be overridden to enforce creation of a
-	 * new Collection, for example to convert elements in any case.
+	 * 返回是否始终创建新的 Collection，即使传入 Collection 的类型已经匹配。<p>默认为 "false"；可以覆盖
+	 * 此方法以强制创建新的 Collection，例如在任何情况下都转换元素。
 	 * @see #convertElement
 	 */
 	protected boolean alwaysCreateNewCollection() {
@@ -184,15 +174,11 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Hook to convert each encountered Collection/array element.
-	 * The default implementation simply returns the passed-in element as-is.
-	 * <p>Can be overridden to perform conversion of certain elements,
-	 * for example String to Integer if a String array comes in and
-	 * should be converted to a Set of Integer objects.
-	 * <p>Only called if actually creating a new Collection!
-	 * This is by default not the case if the type of the passed-in Collection
-	 * already matches. Override {@link #alwaysCreateNewCollection()} to
-	 * enforce creating a new Collection in every case.
+	 * 用于转换遇到的每个 Collection/数组元素的钩子。默认实现只是按原样返回传入的元素。<p>可以覆盖以对
+	 * 某些元素执行转换，例如当传入 String 数组并且应转换为 Integer 对象的 Set 时，将 String 转换为
+	 * Integer。<p>仅在确实创建新 Collection 时才调用！如果传入 Collection 的类型已经匹配，默认情况下不
+	 * 会创建新 Collection。覆盖 {@link #alwaysCreateNewCollection()} 以强制在每种情况下都创建新的
+	 * Collection。
 	 * @param element the source element
 	 * @return the element to be used in the target Collection
 	 * @see #alwaysCreateNewCollection()
@@ -203,8 +189,7 @@ public class CustomCollectionEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * This implementation returns {@code null} to indicate that
-	 * there is no appropriate text representation.
+	 * 此实现返回 {@code null}，表示没有合适的文本表示形式。
 	 */
 	@Override
 	@Nullable

@@ -52,14 +52,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Resolves {@link HttpEntity} and {@link RequestEntity} method argument values
- * and also handles {@link HttpEntity} and {@link ResponseEntity} return values.
+ * 解析 {@link HttpEntity} 和 {@link RequestEntity} 方法参数值，
+ * 并处理 {@link HttpEntity} 和 {@link ResponseEntity} 返回值。
  *
- * <p>An {@link HttpEntity} return type has a specific purpose. Therefore this
- * handler should be configured ahead of handlers that support any return
- * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}
- * to ensure they don't take over.
- *
+ * <p>{@link HttpEntity} 返回类型有特定的用途。因此，此
+ * 处理器应配置在支持带有 {@code @ModelAttribute} 或 {@code @ResponseBody}
+ * 注解的任意返回值类型的处理器之前，
+ * 以确保它们不会越俎代庖。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -68,18 +67,18 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodProcessor {
 
 	/**
-	 * Basic constructor with converters only. Suitable for resolving
-	 * {@code HttpEntity}. For handling {@code ResponseEntity} consider also
-	 * providing a {@code ContentNegotiationManager}.
+	 * 仅包含转换器的基本构造函数。适用于解析
+	 * {@code HttpEntity}。若要处理 {@code ResponseEntity}，请考虑同时
+	 * 提供 {@code ContentNegotiationManager}。
 	 */
 	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters) {
 		super(converters);
 	}
 
 	/**
-	 * Basic constructor with converters and {@code ContentNegotiationManager}.
-	 * Suitable for resolving {@code HttpEntity} and handling {@code ResponseEntity}
-	 * without {@code Request~} or {@code ResponseBodyAdvice}.
+	 * 包含转换器和 {@code ContentNegotiationManager} 的基本构造函数。
+	 * 适用于解析 {@code HttpEntity} 和处理 {@code ResponseEntity}，
+	 * 且不使用 {@code Request~} 或 {@code ResponseBodyAdvice}。
 	 */
 	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,
 			ContentNegotiationManager manager) {
@@ -88,9 +87,9 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	}
 
 	/**
-	 * Complete constructor for resolving {@code HttpEntity} method arguments.
-	 * For handling {@code ResponseEntity} consider also providing a
-	 * {@code ContentNegotiationManager}.
+	 * 用于解析 {@code HttpEntity} 方法参数的完整构造函数。
+	 * 若要处理 {@code ResponseEntity}，请考虑同时提供
+	 * {@code ContentNegotiationManager}。
 	 * @since 4.2
 	 */
 	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,
@@ -100,8 +99,8 @@ public class HttpEntityMethodProcessor extends AbstractMessageConverterMethodPro
 	}
 
 	/**
-	 * Complete constructor for resolving {@code HttpEntity} and handling
-	 * {@code ResponseEntity}.
+	 * 用于解析 {@code HttpEntity} 和处理
+	 * {@code ResponseEntity} 的完整构造函数。
 	 */
 	public HttpEntityMethodProcessor(List<HttpMessageConverter<?>> converters,
 			@Nullable ContentNegotiationManager manager, List<Object> requestResponseBodyAdvice) {

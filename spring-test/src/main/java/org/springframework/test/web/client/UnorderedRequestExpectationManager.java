@@ -21,9 +21,7 @@ import java.io.IOException;
 import org.springframework.http.client.ClientHttpRequest;
 
 /**
- * {@code RequestExpectationManager} that matches requests to expectations
- * regardless of the order of declaration of expected requests.
- *
+ * 将请求匹配到预期时不考虑预期请求声明顺序的 {@code RequestExpectationManager}。
  * @author Rossen Stoyanchev
  * @since 4.3
  */

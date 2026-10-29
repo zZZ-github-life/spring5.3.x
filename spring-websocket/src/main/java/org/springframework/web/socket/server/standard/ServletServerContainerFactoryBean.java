@@ -27,18 +27,17 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * A {@link FactoryBean} for configuring {@link javax.websocket.server.ServerContainer}.
- * Since there is usually only one {@code ServerContainer} instance accessible under a
- * well-known {@code javax.servlet.ServletContext} attribute, simply declaring this
- * FactoryBean and using its setters allows for configuring the {@code ServerContainer}
- * through Spring configuration.
+ * 用于配置 {@link javax.websocket.server.ServerContainer} 的 {@link FactoryBean}。
+ * 由于通常只能通过一个众所周知的 {@code javax.servlet.ServletContext} 属性
+ * 访问一个 {@code ServerContainer} 实例，因此只需声明此 FactoryBean
+ * 并使用其 setter，就可以通过 Spring 配置来配置该 {@code ServerContainer}。
  *
- * <p>This is useful even if the {@code ServerContainer} is not injected into any other
- * bean within the Spring application context. For example, an application can configure
- * a {@link org.springframework.web.socket.server.support.DefaultHandshakeHandler},
- * a {@link org.springframework.web.socket.sockjs.SockJsService}, or
- * {@link ServerEndpointExporter}, and separately declare this FactoryBean in order
- * to customize the properties of the (one and only) {@code ServerContainer} instance.
+ * <p>即使 {@code ServerContainer} 没有被注入到 Spring 应用程序上下文中的
+ * 任何其他 Bean 中，这仍然很有用。例如，应用程序可以配置
+ * {@link org.springframework.web.socket.server.support.DefaultHandshakeHandler}、
+ * {@link org.springframework.web.socket.sockjs.SockJsService} 或
+ * {@link ServerEndpointExporter}，并单独声明此 FactoryBean，
+ * 以自定义这个（唯一的）{@code ServerContainer} 实例的属性。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen

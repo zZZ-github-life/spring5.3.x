@@ -1,6 +1,6 @@
 /**
- * Server-side support for testing Spring MVC applications with {@code MockMvc}
- * and the Selenium {@code HtmlUnitDriver}.
+ * 使用 {@code MockMvc} 和 Selenium {@code HtmlUnitDriver} 测试 Spring MVC 应用程序的
+ * 服务器端支持。
  * @see org.springframework.test.web.servlet.MockMvc
  * @see org.openqa.selenium.htmlunit.HtmlUnitDriver
  */

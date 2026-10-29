@@ -1,5 +1,5 @@
 /**
- * Abstractions and support classes for reactive WebSocket interactions.
+ * 响应式 WebSocket 交互的抽象和支持类。
  */
 @NonNullApi
 @NonNullFields

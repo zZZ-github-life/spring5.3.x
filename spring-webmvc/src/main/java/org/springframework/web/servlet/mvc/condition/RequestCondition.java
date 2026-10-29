@@ -21,13 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.lang.Nullable;
 
 /**
- * Contract for request mapping conditions.
+ * 请求映射条件的约定。
  *
- * <p>Request conditions can be combined via {@link #combine(Object)}, matched to
- * a request via {@link #getMatchingCondition(HttpServletRequest)}, and compared
- * to each other via {@link #compareTo(Object, HttpServletRequest)} to determine
- * which is a closer match for a given request.
- *
+ * <p>请求条件可以通过 {@link #combine(Object)} 进行组合，
+ * 通过 {@link #getMatchingCondition(HttpServletRequest)} 与请求进行匹配，
+ * 并通过 {@link #compareTo(Object, HttpServletRequest)} 相互比较，
+ * 以确定哪一个更匹配给定请求。
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
  * @since 3.1
@@ -37,8 +36,8 @@ import org.springframework.lang.Nullable;
 public interface RequestCondition<T> {
 
 	/**
-	 * Combine this condition with another such as conditions from a
-	 * type-level and method-level {@code @RequestMapping} annotation.
+	 * 将此条件与另一个条件组合，例如来自类型级别和方法级别
+	 * {@code @RequestMapping} 注解的条件。
 	 * @param other the condition to combine with.
 	 * @return a request condition instance that is the result of combining
 	 * the two condition instances.
@@ -46,25 +45,24 @@ public interface RequestCondition<T> {
 	T combine(T other);
 
 	/**
-	 * Check if the condition matches the request returning a potentially new
-	 * instance created for the current request. For example a condition with
-	 * multiple URL patterns may return a new instance only with those patterns
-	 * that match the request.
-	 * <p>For CORS pre-flight requests, conditions should match to the would-be,
-	 * actual request (e.g. URL pattern, query parameters, and the HTTP method
-	 * from the "Access-Control-Request-Method" header). If a condition cannot
-	 * be matched to a pre-flight request it should return an instance with
-	 * empty content thus not causing a failure to match.
+	 * 检查条件是否匹配请求，并返回一个可能为当前请求新建的实例。
+	 * 例如，包含多个 URL 模式的条件可能仅返回一个
+	 * 只包含匹配该请求的模式的实例。
+	 * <p>对于 CORS 预检请求，条件应匹配实际将要发生的请求
+	 * （例如 URL 模式、查询参数，以及来自
+	 * "Access-Control-Request-Method" 头的 HTTP 方法）。如果某个条件无法
+	 * 匹配预检请求，它应返回一个内容为空的实例，
+	 * 从而不会导致匹配失败。
 	 * @return a condition instance in case of a match or {@code null} otherwise.
 	 */
 	@Nullable
 	T getMatchingCondition(HttpServletRequest request);
 
 	/**
-	 * Compare this condition to another condition in the context of
-	 * a specific request. This method assumes both instances have
-	 * been obtained via {@link #getMatchingCondition(HttpServletRequest)}
-	 * to ensure they have content relevant to current request only.
+	 * 在特定请求的上下文中将此条件与另一个条件进行比较。
+	 * 此方法假定两个实例都是通过
+	 * {@link #getMatchingCondition(HttpServletRequest)} 获得的，
+	 * 以确保它们仅包含与当前请求相关的内容。
 	 */
 	int compareTo(T other, HttpServletRequest request);
 

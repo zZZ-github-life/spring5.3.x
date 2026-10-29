@@ -33,7 +33,7 @@ import org.springframework.scripting.ScriptSource;
 import org.springframework.scripting.support.ResourceScriptSource;
 
 /**
- * Groovy-based implementation of Spring's {@link ScriptEvaluator} strategy interface.
+ * Spring 的 {@link ScriptEvaluator} 策略接口的 Groovy 实现。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -48,13 +48,13 @@ public class GroovyScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAw
 
 
 	/**
-	 * Construct a new GroovyScriptEvaluator.
+	 * 构造一个新的 GroovyScriptEvaluator。
 	 */
 	public GroovyScriptEvaluator() {
 	}
 
 	/**
-	 * Construct a new GroovyScriptEvaluator.
+	 * 构造一个新的 GroovyScriptEvaluator。
 	 * @param classLoader the ClassLoader to use as a parent for the {@link GroovyShell}
 	 */
 	public GroovyScriptEvaluator(@Nullable ClassLoader classLoader) {
@@ -63,7 +63,7 @@ public class GroovyScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAw
 
 
 	/**
-	 * Set a custom compiler configuration for this evaluator.
+	 * 为此评估器设置自定义的编译器配置。
 	 * @since 4.3.3
 	 * @see #setCompilationCustomizers
 	 */
@@ -73,7 +73,7 @@ public class GroovyScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAw
 	}
 
 	/**
-	 * Return this evaluator's compiler configuration (never {@code null}).
+	 * 返回此评估器的编译器配置（永不为 {@code null}）。
 	 * @since 4.3.3
 	 * @see #setCompilerConfiguration
 	 */
@@ -82,8 +82,8 @@ public class GroovyScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAw
 	}
 
 	/**
-	 * Set one or more customizers to be applied to this evaluator's compiler configuration.
-	 * <p>Note that this modifies the shared compiler configuration held by this evaluator.
+	 * 设置要应用于此评估器编译器配置的一个或多个自定义器。
+	 * <p>请注意，这会修改此评估器持有的共享编译器配置。
 	 * @since 4.3.3
 	 * @see #setCompilerConfiguration
 	 */

@@ -22,9 +22,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for {@link VersionStrategy} implementations that insert
- * a prefix into the URL path, e.g. "version/static/myresource.js".
- *
+ * 将前缀插入 URL 路径的 {@link VersionStrategy} 实现的抽象基类，例如 "version/static/myresource.js"。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0

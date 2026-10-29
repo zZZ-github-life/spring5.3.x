@@ -35,18 +35,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
- * {@link BeanPostProcessor} implementation that supplies the {@code ApplicationContext},
- * {@link org.springframework.core.env.Environment Environment}, or
- * {@link StringValueResolver} for the {@code ApplicationContext} to beans that
- * implement the {@link EnvironmentAware}, {@link EmbeddedValueResolverAware},
- * {@link ResourceLoaderAware}, {@link ApplicationEventPublisherAware},
- * {@link MessageSourceAware}, and/or {@link ApplicationContextAware} interfaces.
+ * {@link BeanPostProcessor} 实现，向实现了 {@link EnvironmentAware}、
+ * {@link EmbeddedValueResolverAware}、{@link ResourceLoaderAware}、
+ * {@link ApplicationEventPublisherAware}、{@link MessageSourceAware} 和/或
+ * {@link ApplicationContextAware} 接口的 Bean 提供 {@code ApplicationContext}、
+ * {@link org.springframework.core.env.Environment Environment} 或用于 {@code ApplicationContext}
+ * 的 {@link StringValueResolver}。
  *
- * <p>Implemented interfaces are satisfied in the order in which they are
- * mentioned above.
+ * <p>已实现的接口按上述提及的顺序得到满足。
  *
- * <p>Application contexts will automatically register this with their
- * underlying bean factory. Applications do not use this directly.
+ * <p>应用上下文会自动将其注册到其底层 Bean 工厂中。应用程序不直接使用此类。
  *
  * @author Juergen Hoeller
  * @author Costin Leau
@@ -68,7 +66,7 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 
 
 	/**
-	 * Create a new ApplicationContextAwareProcessor for the given context.
+	 * 为给定上下文创建一个新的 ApplicationContextAwareProcessor。
 	 */
 	public ApplicationContextAwareProcessor(ConfigurableApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;

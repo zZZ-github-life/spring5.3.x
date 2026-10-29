@@ -31,21 +31,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Default {@link BeanWrapper} implementation that should be sufficient
- * for all typical use cases. Caches introspection results for efficiency.
+ * 默认的 {@link BeanWrapper} 实现，应足以应对所有典型用例。为提高效率而缓存内省结果。
  *
- * <p>Note: Auto-registers default property editors from the
- * {@code org.springframework.beans.propertyeditors} package, which apply
- * in addition to the JDK's standard PropertyEditors. Applications can call
- * the {@link #registerCustomEditor(Class, java.beans.PropertyEditor)} method
- * to register an editor for a particular instance (i.e. they are not shared
- * across the application). See the base class
- * {@link PropertyEditorRegistrySupport} for details.
+ * <p>注意：自动注册 {@code org.springframework.beans.propertyeditors} 包中的默认属性编辑器，这些编
+ * 辑器在 JDK 的标准 PropertyEditors 之外额外适用。应用程序可以调用
+ * {@link #registerCustomEditor(Class, java.beans.PropertyEditor)} 方法为特定实例注册编辑器（即它们
+ * 不会在应用程序范围内共享）。有关详细信息，请参见基类 {@link PropertyEditorRegistrySupport}。
  *
- * <p><b>NOTE: As of Spring 2.5, this is - for almost all purposes - an
- * internal class.</b> It is just public in order to allow for access from
- * other framework packages. For standard application access purposes, use the
- * {@link PropertyAccessorFactory#forBeanPropertyAccess} factory method instead.
+ * <p><b>注意：从 Spring 2.5 开始，在几乎所有用途上，这是一个内部类。</b>它只是 public 的，以便允许
+ * 其他框架包进行访问。对于标准的应用程序访问用途，请改用
+ * {@link PropertyAccessorFactory#forBeanPropertyAccess} 工厂方法。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -63,22 +58,20 @@ import org.springframework.util.ReflectionUtils;
 public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements BeanWrapper {
 
 	/**
-	 * Cached introspections results for this object, to prevent encountering
-	 * the cost of JavaBeans introspection every time.
+	 * 此对象的内省结果缓存，以避免每次都承担 JavaBeans 内省的开销。
 	 */
 	@Nullable
 	private CachedIntrospectionResults cachedIntrospectionResults;
 
 	/**
-	 * The security context used for invoking the property methods.
+	 * 用于调用属性方法的安全上下文。
 	 */
 	@Nullable
 	private AccessControlContext acc;
 
 
 	/**
-	 * Create a new empty BeanWrapperImpl. Wrapped instance needs to be set afterwards.
-	 * Registers default editors.
+	 * 创建一个新的空 BeanWrapperImpl。之后需要设置被包装的实例。会注册默认编辑器。
 	 * @see #setWrappedInstance
 	 */
 	public BeanWrapperImpl() {
@@ -86,7 +79,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Create a new empty BeanWrapperImpl. Wrapped instance needs to be set afterwards.
+	 * 创建一个新的空 BeanWrapperImpl。之后需要设置被包装的实例。
 	 * @param registerDefaultEditors whether to register default editors
 	 * (can be suppressed if the BeanWrapper won't need any type conversion)
 	 * @see #setWrappedInstance
@@ -96,7 +89,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Create a new BeanWrapperImpl for the given object.
+	 * 为给定对象创建一个新的 BeanWrapperImpl。
 	 * @param object the object wrapped by this BeanWrapper
 	 */
 	public BeanWrapperImpl(Object object) {
@@ -104,7 +97,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Create a new BeanWrapperImpl, wrapping a new instance of the specified class.
+	 * 创建一个新的 BeanWrapperImpl，包装指定类的新实例。
 	 * @param clazz class to instantiate and wrap
 	 */
 	public BeanWrapperImpl(Class<?> clazz) {
@@ -112,8 +105,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Create a new BeanWrapperImpl for the given object,
-	 * registering a nested path that the object is in.
+	 * 为给定对象创建一个新的 BeanWrapperImpl，并注册该对象所处的嵌套路径。
 	 * @param object the object wrapped by this BeanWrapper
 	 * @param nestedPath the nested path of the object
 	 * @param rootObject the root object at the top of the path
@@ -123,8 +115,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Create a new BeanWrapperImpl for the given object,
-	 * registering a nested path that the object is in.
+	 * 为给定对象创建一个新的 BeanWrapperImpl，并注册该对象所处的嵌套路径。
 	 * @param object the object wrapped by this BeanWrapper
 	 * @param nestedPath the nested path of the object
 	 * @param parent the containing BeanWrapper (must not be {@code null})
@@ -136,7 +127,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 
 	/**
-	 * Set a bean instance to hold, without any unwrapping of {@link java.util.Optional}.
+	 * 设置要持有的 Bean 实例，不对 {@link java.util.Optional} 做任何解包。
 	 * @param object the actual target object
 	 * @since 4.3
 	 * @see #setWrappedInstance(Object)
@@ -155,8 +146,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Set the class to introspect.
-	 * Needs to be called when the target object changes.
+	 * 设置要内省的类。目标对象更改时需要调用。
 	 * @param clazz the class to introspect
 	 */
 	protected void setIntrospectionClass(Class<?> clazz) {
@@ -166,8 +156,7 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Obtain a lazily initialized CachedIntrospectionResults instance
-	 * for the wrapped object.
+	 * 为被包装对象获取一个延迟初始化的 CachedIntrospectionResults 实例。
 	 */
 	private CachedIntrospectionResults getCachedIntrospectionResults() {
 		if (this.cachedIntrospectionResults == null) {
@@ -177,16 +166,14 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 	}
 
 	/**
-	 * Set the security context used during the invocation of the wrapped instance methods.
-	 * Can be null.
+	 * 设置调用被包装实例方法时使用的安全上下文。可以为 null。
 	 */
 	public void setSecurityContext(@Nullable AccessControlContext acc) {
 		this.acc = acc;
 	}
 
 	/**
-	 * Return the security context used during the invocation of the wrapped instance methods.
-	 * Can be null.
+	 * 返回调用被包装实例方法时使用的安全上下文。可以为 null。
 	 */
 	@Nullable
 	public AccessControlContext getSecurityContext() {
@@ -195,9 +182,8 @@ public class BeanWrapperImpl extends AbstractNestablePropertyAccessor implements
 
 
 	/**
-	 * Convert the given value for the specified property to the latter's type.
-	 * <p>This method is only intended for optimizations in a BeanFactory.
-	 * Use the {@code convertIfNecessary} methods for programmatic conversion.
+	 * 将指定属性的给定值转换为该属性的类型。<p>此方法仅用于 BeanFactory 中的优化。对于编程式转换，请使
+	 * 用 {@code convertIfNecessary} 方法。
 	 * @param value the value to convert
 	 * @param propertyName the target property
 	 * (note that nested or indexed properties are not supported here)

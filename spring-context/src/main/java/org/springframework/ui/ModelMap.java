@@ -25,11 +25,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link java.util.Map} for use when building model data for use
- * with UI tools. Supports chained calls and generation of model attribute names.
+ * {@link java.util.Map} 的实现，用于为 UI 工具构建模型数据。支持链式调用以及模型属性名称的生成。
  *
- * <p>This class serves as generic model holder for Servlet MVC but is not tied to it.
- * Check out the {@link Model} interface for an interface variant.
+ * <p>此类用作 Servlet MVC 的通用模型持有者，但并不与 Servlet MVC 绑定。请查看 {@link Model} 接口以
+ * 了解接口形式的变体。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -41,14 +40,13 @@ import org.springframework.util.Assert;
 public class ModelMap extends LinkedHashMap<String, Object> {
 
 	/**
-	 * Construct a new, empty {@code ModelMap}.
+	 * 构造一个新的空 {@code ModelMap}。
 	 */
 	public ModelMap() {
 	}
 
 	/**
-	 * Construct a new {@code ModelMap} containing the supplied attribute
-	 * under the supplied name.
+	 * 构造一个新的 {@code ModelMap}，其中包含以给定名称提供的属性。
 	 * @see #addAttribute(String, Object)
 	 */
 	public ModelMap(String attributeName, @Nullable Object attributeValue) {
@@ -56,9 +54,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Construct a new {@code ModelMap} containing the supplied attribute.
-	 * Uses attribute name generation to generate the key for the supplied model
-	 * object.
+	 * 构造一个新的 {@code ModelMap}，其中包含提供的属性。使用属性名生成方式为提供的模型对象生成键。
 	 * @see #addAttribute(Object)
 	 */
 	public ModelMap(Object attributeValue) {
@@ -67,7 +63,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 
 
 	/**
-	 * Add the supplied attribute under the supplied name.
+	 * 在给定名称下添加提供的属性。
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @param attributeValue the model attribute value (can be {@code null})
 	 */
@@ -78,12 +74,11 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Add the supplied attribute to this {@code Map} using a
-	 * {@link org.springframework.core.Conventions#getVariableName generated name}.
-	 * <p><i>Note: Empty {@link Collection Collections} are not added to
-	 * the model when using this method because we cannot correctly determine
-	 * the true convention name. View code should check for {@code null} rather
-	 * than for empty collections as is already done by JSTL tags.</i>
+	 * 使用 {@link org.springframework.core.Conventions#getVariableName generated name} 将提供的属性添
+	 * 加到此 {@code Map}。
+	 *
+	 * <p><i>注意：使用此方法时，空的 {@link Collection Collections} 不会被添加到模型中，因为我们无法正
+	 * 确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样做了。</i>
 	 * @param attributeValue the model attribute value (never {@code null})
 	 */
 	public ModelMap addAttribute(Object attributeValue) {
@@ -95,8 +90,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Copy all attributes in the supplied {@code Collection} into this
-	 * {@code Map}, using attribute name generation for each element.
+	 * 将提供的 {@code Collection} 中的所有属性复制到此 {@code Map}，并对每个元素使用属性名生成方式。
 	 * @see #addAttribute(Object)
 	 */
 	public ModelMap addAllAttributes(@Nullable Collection<?> attributeValues) {
@@ -109,7 +103,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Copy all attributes in the supplied {@code Map} into this {@code Map}.
+	 * 将提供的 {@code Map} 中的所有属性复制到此 {@code Map}。
 	 * @see #addAttribute(String, Object)
 	 */
 	public ModelMap addAllAttributes(@Nullable Map<String, ?> attributes) {
@@ -120,9 +114,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Copy all attributes in the supplied {@code Map} into this {@code Map},
-	 * with existing objects of the same name taking precedence (i.e. not getting
-	 * replaced).
+	 * 将提供的 {@code Map} 中的所有属性复制到此 {@code Map}，同名对象以现有对象优先（即不会被替换）。
 	 */
 	public ModelMap mergeAttributes(@Nullable Map<String, ?> attributes) {
 		if (attributes != null) {
@@ -136,7 +128,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Does this model contain an attribute of the given name?
+	 * 此模型是否包含给定名称的属性？
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @return whether this model contains a corresponding attribute
 	 */
@@ -145,7 +137,7 @@ public class ModelMap extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Return the attribute value for the given name, if any.
+	 * 返回给定名称的属性值（如果有）。
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @return the corresponding attribute value, or {@code null} if none
 	 * @since 5.2

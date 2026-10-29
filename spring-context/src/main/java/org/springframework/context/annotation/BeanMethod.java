@@ -22,8 +22,7 @@ import org.springframework.core.type.MethodMetadata;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a {@link Configuration @Configuration} class method annotated with
- * {@link Bean @Bean}.
+ * 表示标注了 {@link Bean @Bean} 的 {@link Configuration @Configuration} 类方法。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

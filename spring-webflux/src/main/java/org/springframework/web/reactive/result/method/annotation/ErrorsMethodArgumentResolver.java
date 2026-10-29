@@ -33,11 +33,9 @@ import org.springframework.web.reactive.result.method.HandlerMethodArgumentResol
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolve {@link Errors} or {@link BindingResult} method arguments.
+ * 解析 {@link Errors} 或 {@link BindingResult} 方法参数。
  *
- * <p>An {@code Errors} argument is expected to appear immediately after the
- * model attribute in the method signature.
- *
+ * <p>在方法签名中，{@code Errors} 参数应紧跟在模型属性之后。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 5.0

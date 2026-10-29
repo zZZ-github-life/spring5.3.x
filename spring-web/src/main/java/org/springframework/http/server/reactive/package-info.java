@@ -1,11 +1,11 @@
 /**
- * Abstractions for reactive HTTP server support including a
- * {@link org.springframework.http.server.reactive.ServerHttpRequest} and
- * {@link org.springframework.http.server.reactive.ServerHttpResponse} along with an
- * {@link org.springframework.http.server.reactive.HttpHandler} for processing.
+ * 响应式 HTTP 服务器支持的抽象，包括
+ * {@link org.springframework.http.server.reactive.ServerHttpRequest} 和
+ * {@link org.springframework.http.server.reactive.ServerHttpResponse}，以及用于处理的
+ * {@link org.springframework.http.server.reactive.HttpHandler}。
  *
- * <p>Also provides implementations adapting to different runtimes
- * including Servlet 3.1 containers, Netty + Reactor IO, and Undertow.
+ * <p>还提供了适配不同运行时的实现，
+ * 包括 Servlet 3.1 容器、Netty + Reactor IO 和 Undertow。
  */
 @NonNullApi
 @NonNullFields

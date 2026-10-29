@@ -23,12 +23,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor for {@link Class java.lang.Class}, to enable the direct
- * population of a {@code Class} property without recourse to having to use a
- * String class name property as bridge.
+ * 用于 {@link Class java.lang.Class} 的属性编辑器，可直接填充 {@code Class} 属性，无需借助 String
+ * 类名属性作为桥梁。
  *
- * <p>Also supports "java.lang.String[]"-style array class names, in contrast to the
- * standard {@link Class#forName(String)} method.
+ * <p>与标准的 {@link Class#forName(String)} 方法不同，它还支持 "java.lang.String[]" 风格的数组类名。
  *
  * @author Juergen Hoeller
  * @author Rick Evans
@@ -43,14 +41,14 @@ public class ClassEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a default ClassEditor, using the thread context ClassLoader.
+	 * 使用线程上下文 ClassLoader 创建默认的 ClassEditor。
 	 */
 	public ClassEditor() {
 		this(null);
 	}
 
 	/**
-	 * Create a default ClassEditor, using the given ClassLoader.
+	 * 使用给定的 ClassLoader 创建默认的 ClassEditor。
 	 * @param classLoader the ClassLoader to use
 	 * (or {@code null} for the thread context ClassLoader)
 	 */

@@ -34,15 +34,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple exporter for JAX-WS services, autodetecting annotated service beans
- * (through the JAX-WS {@link javax.jws.WebService} annotation) and exporting
- * them through the HTTP server included in Sun's JDK 1.6. The full address
- * for each service will consist of the server's base address with the
- * service name appended (e.g. "http://localhost:8080/OrderService").
+ * JAX-WS 服务的简单导出器，自动检测带注解的服务 bean
+ * （通过 JAX-WS 的 {@link javax.jws.WebService} 注解），并通过
+ * Sun JDK 1.6 内置的 HTTP 服务器导出它们。每个服务的完整地址
+ * 由服务器的基地址加上服务名称组成
+ * （例如 "http://localhost:8080/OrderService"）。
  *
- * <p>Note that this exporter will only work on Sun's JDK 1.6 or higher, as well
- * as on JDKs that ship Sun's entire class library as included in the Sun JDK.
- * For a portable JAX-WS exporter, have a look at {@link SimpleJaxWsServiceExporter}.
+ * <p>请注意，此导出器仅能在 Sun JDK 1.6 或更高版本上运行，
+ * 以及在包含 Sun JDK 完整类库的 JDK 上运行。
+ * 如需可移植的 JAX-WS 导出器，请参阅 {@link SimpleJaxWsServiceExporter}。
  *
  * @author Juergen Hoeller
  * @since 2.5.5
@@ -81,61 +81,61 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 
 
 	/**
-	 * Specify an existing HTTP server to register the web service contexts
-	 * with. This will typically be a server managed by the general Spring
-	 * {@link org.springframework.remoting.support.SimpleHttpServerFactoryBean}.
-	 * <p>Alternatively, configure a local HTTP server through the
-	 * {@link #setPort "port"}, {@link #setHostname "hostname"} and
-	 * {@link #setBacklog "backlog"} properties (or rely on the defaults there).
+	 * 指定用于注册 Web 服务上下文的现有 HTTP 服务器。
+	 * 这通常是由通用 Spring
+	 * {@link org.springframework.remoting.support.SimpleHttpServerFactoryBean} 管理的服务器。
+	 * <p>或者，通过
+	 * {@link #setPort "port"}、{@link #setHostname "hostname"} 和
+	 * {@link #setBacklog "backlog"} 属性配置本地 HTTP 服务器（或使用其中的默认值）。
 	 */
 	public void setServer(HttpServer server) {
 		this.server = server;
 	}
 
 	/**
-	 * Specify the HTTP server's port. Default is 8080.
-	 * <p>Only applicable for a locally configured HTTP server.
-	 * Ignored when the {@link #setServer "server"} property has been specified.
+	 * 指定 HTTP 服务器的端口。默认为 8080。
+	 * <p>仅适用于本地配置的 HTTP 服务器。
+	 * 如果已指定 {@link #setServer "server"} 属性，则忽略此项。
 	 */
 	public void setPort(int port) {
 		this.port = port;
 	}
 
 	/**
-	 * Specify the HTTP server's hostname to bind to. Default is localhost;
-	 * can be overridden with a specific network address to bind to.
-	 * <p>Only applicable for a locally configured HTTP server.
-	 * Ignored when the {@link #setServer "server"} property has been specified.
+	 * 指定要绑定的 HTTP 服务器主机名。默认为 localhost；
+	 * 可以覆盖为要绑定的特定网络地址。
+	 * <p>仅适用于本地配置的 HTTP 服务器。
+	 * 如果已指定 {@link #setServer "server"} 属性，则忽略此项。
 	 */
 	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 
 	/**
-	 * Specify the HTTP server's TCP backlog. Default is -1,
-	 * indicating the system's default value.
-	 * <p>Only applicable for a locally configured HTTP server.
-	 * Ignored when the {@link #setServer "server"} property has been specified.
+	 * 指定 HTTP 服务器的 TCP backlog。默认为 -1，
+	 * 表示使用系统的默认值。
+	 * <p>仅适用于本地配置的 HTTP 服务器。
+	 * 如果已指定 {@link #setServer "server"} 属性，则忽略此项。
 	 */
 	public void setBacklog(int backlog) {
 		this.backlog = backlog;
 	}
 
 	/**
-	 * Specify the number of seconds to wait until HTTP exchanges have
-	 * completed when shutting down the HTTP server. Default is 0.
-	 * <p>Only applicable for a locally configured HTTP server.
-	 * Ignored when the {@link #setServer "server"} property has been specified.
+	 * 指定关闭 HTTP 服务器时等待 HTTP 交换完成的秒数。
+	 * 默认为 0。
+	 * <p>仅适用于本地配置的 HTTP 服务器。
+	 * 如果已指定 {@link #setServer "server"} 属性，则忽略此项。
 	 */
 	public void setShutdownDelay(int shutdownDelay) {
 		this.shutdownDelay = shutdownDelay;
 	}
 
 	/**
-	 * Set the base path for context publication. Default is "/".
-	 * <p>For each context publication path, the service name will be
-	 * appended to this base address. E.g. service name "OrderService"
-	 * &rarr; "/OrderService".
+	 * 设置用于发布上下文的基路径。默认为 "/"。
+	 * <p>对于每个上下文发布路径，服务名称将
+	 * 追加到此基地址之后。例如服务名称 "OrderService"
+	 * &rarr; "/OrderService"。
 	 * @see javax.xml.ws.Endpoint#publish(Object)
 	 * @see javax.jws.WebService#serviceName()
 	 */
@@ -144,16 +144,16 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	}
 
 	/**
-	 * Register common {@link com.sun.net.httpserver.Filter Filters} to be
-	 * applied to all detected {@link javax.jws.WebService} annotated beans.
+	 * 注册通用的 {@link com.sun.net.httpserver.Filter Filter}，以应用于
+	 * 所有检测到的标注 {@link javax.jws.WebService} 的 bean。
 	 */
 	public void setFilters(List<Filter> filters) {
 		this.filters = filters;
 	}
 
 	/**
-	 * Register a common {@link com.sun.net.httpserver.Authenticator} to be
-	 * applied to all detected {@link javax.jws.WebService} annotated beans.
+	 * 注册通用的 {@link com.sun.net.httpserver.Authenticator}，以应用于
+	 * 所有检测到的标注 {@link javax.jws.WebService} 的 bean。
 	 */
 	public void setAuthenticator(Authenticator authenticator) {
 		this.authenticator = authenticator;
@@ -187,7 +187,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	}
 
 	/**
-	 * Build the HttpContext for the given endpoint.
+	 * 为给定的端点构建 HttpContext。
 	 * @param endpoint the JAX-WS Provider Endpoint object
 	 * @param serviceName the given service name
 	 * @return the fully populated HttpContext
@@ -206,7 +206,7 @@ public class SimpleHttpServerJaxWsServiceExporter extends AbstractJaxWsServiceEx
 	}
 
 	/**
-	 * Calculate the full endpoint path for the given endpoint.
+	 * 计算给定端点的完整端点路径。
 	 * @param endpoint the JAX-WS Provider Endpoint object
 	 * @param serviceName the given service name
 	 * @return the full endpoint path

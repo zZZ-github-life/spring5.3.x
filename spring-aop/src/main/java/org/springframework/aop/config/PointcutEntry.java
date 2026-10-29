@@ -19,7 +19,7 @@ package org.springframework.aop.config;
 import org.springframework.beans.factory.parsing.ParseState;
 
 /**
- * {@link ParseState} entry representing a pointcut.
+ * 表示切点的 {@link ParseState} 条目。
  *
  * @author Mark Fisher
  * @since 2.0
@@ -30,7 +30,7 @@ public class PointcutEntry implements ParseState.Entry {
 
 
 	/**
-	 * Create a new {@code PointcutEntry} instance.
+	 * 创建一个新的 {@code PointcutEntry} 实例。
 	 * @param name the bean name of the pointcut
 	 */
 	public PointcutEntry(String name) {

@@ -27,16 +27,16 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
 /**
- * A simple implementation of {@link org.springframework.web.servlet.ViewResolver}
- * that interprets a view name as a bean name in the current application context,
- * i.e. typically in the XML file of the executing {@code DispatcherServlet}
- * or in a corresponding configuration class.
+ * {@link org.springframework.web.servlet.ViewResolver} 的一个简单实现，
+ * 它将视图名称解释为当前应用上下文中的 bean 名称，
+ * 即通常位于执行中的 {@code DispatcherServlet} 的 XML 文件
+ * 或相应的配置类中。
  *
- * <p>Note: This {@code ViewResolver} implements the {@link Ordered} interface
- * in order to allow for flexible participation in {@code ViewResolver} chaining.
- * For example, some special views could be defined via this {@code ViewResolver}
- * (giving it 0 as "order" value), while all remaining views could be resolved by
- * a {@link UrlBasedViewResolver}.
+ * <p>注意：此 {@code ViewResolver} 实现了 {@link Ordered} 接口，
+ * 以便灵活参与 {@code ViewResolver} 链。例如，可以通过此 {@code ViewResolver}
+ * 定义一些特殊视图（将其 "order" 值设为 0），
+ * 而所有其余视图则可由 {@link UrlBasedViewResolver}
+ * 解析。
  *
  * @author Juergen Hoeller
  * @since 18.06.2003
@@ -48,8 +48,8 @@ public class BeanNameViewResolver extends WebApplicationObjectSupport implements
 
 
 	/**
-	 * Specify the order value for this ViewResolver bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * 指定此 ViewResolver bean 的顺序值。
+	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示无序。
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {

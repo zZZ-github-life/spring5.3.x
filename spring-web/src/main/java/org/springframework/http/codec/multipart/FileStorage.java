@@ -27,8 +27,8 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
 /**
- * Represents a directory used to store parts larger than
- * {@link DefaultPartHttpMessageReader#setMaxInMemorySize(int)}.
+ * 表示用于存储大于
+ * {@link DefaultPartHttpMessageReader#setMaxInMemorySize(int)} 的部件的目录。
  *
  * @author Arjen Poutsma
  * @since 5.3.7
@@ -42,14 +42,14 @@ abstract class FileStorage {
 	}
 
 	/**
-	 * Get the mono of the directory to store files in.
+	 * 获取用于存储文件的目录的 Mono。
 	 */
 	public abstract Mono<Path> directory();
 
 
 	/**
-	 * Create a new {@code FileStorage} from a user-specified path. Creates the
-	 * path if it does not exist.
+	 * 从用户指定的路径创建新的 {@code FileStorage}。如果路径不存在，
+	 * 则创建该路径。
 	 */
 	public static FileStorage fromPath(Path path) throws IOException {
 		if (!Files.exists(path)) {
@@ -59,7 +59,7 @@ abstract class FileStorage {
 	}
 
 	/**
-	 * Create a new {@code FileStorage} based on a temporary directory.
+	 * 基于临时目录创建新的 {@code FileStorage}。
 	 * @param scheduler the scheduler to use for blocking operations
 	 */
 	public static FileStorage tempDirectory(Supplier<Scheduler> scheduler) {

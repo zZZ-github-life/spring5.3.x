@@ -37,8 +37,8 @@ import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * {@link WebSocketSession} implementation for use with the Reactor Netty's
- * {@link NettyInbound} and {@link NettyOutbound}.
+ * 与 Reactor Netty 的 {@link NettyInbound} 和 {@link NettyOutbound} 配合使用的
+ * {@link WebSocketSession} 实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -52,7 +52,7 @@ public class ReactorNettyWebSocketSession
 
 
 	/**
-	 * Constructor for the session, using the {@link #DEFAULT_FRAME_MAX_SIZE} value.
+	 * 会话的构造函数，使用 {@link #DEFAULT_FRAME_MAX_SIZE} 值。
 	 */
 	public ReactorNettyWebSocketSession(WebsocketInbound inbound, WebsocketOutbound outbound,
 			HandshakeInfo info, NettyDataBufferFactory bufferFactory) {
@@ -61,7 +61,7 @@ public class ReactorNettyWebSocketSession
 	}
 
 	/**
-	 * Constructor with an additional maxFramePayloadLength argument.
+	 * 带有额外 maxFramePayloadLength 参数的构造函数。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("rawtypes")
@@ -76,7 +76,7 @@ public class ReactorNettyWebSocketSession
 
 
 	/**
-	 * Return the id of the underlying Netty channel.
+	 * 返回底层 Netty 通道的 id。
 	 * @since 5.3.4
 	 */
 	public ChannelId getChannelId() {
@@ -131,7 +131,7 @@ public class ReactorNettyWebSocketSession
 	}
 
 	/**
-	 * Simple container for {@link NettyInbound} and {@link NettyOutbound}.
+	 * {@link NettyInbound} 和 {@link NettyOutbound} 的简单容器。
 	 */
 	public static class WebSocketConnection {
 

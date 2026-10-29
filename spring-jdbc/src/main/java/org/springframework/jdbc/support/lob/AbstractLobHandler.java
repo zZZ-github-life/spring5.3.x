@@ -24,10 +24,10 @@ import java.sql.SQLException;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for {@link LobHandler} implementations.
+ * {@link LobHandler} 实现的抽象基类。
  *
- * <p>Implements all accessor methods for column names through a column lookup
- * and delegating to the corresponding accessor that takes a column index.
+ * <p>所有以列名访问的方法都通过列查找来实现，
+ * 并委托给以列索引为参数的相应访问方法。
  *
  * @author Juergen Hoeller
  * @since 1.2

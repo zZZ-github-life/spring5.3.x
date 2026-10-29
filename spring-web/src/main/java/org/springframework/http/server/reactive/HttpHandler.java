@@ -19,21 +19,20 @@ package org.springframework.http.server.reactive;
 import reactor.core.publisher.Mono;
 
 /**
- * Lowest level contract for reactive HTTP request handling that serves as a
- * common denominator across different runtimes.
+ * 响应式 HTTP 请求处理的最低层契约，充当不同运行时之间的
+ * 公共基础。
  *
- * <p>Higher-level, but still generic, building blocks for applications such as
- * {@code WebFilter}, {@code WebSession}, {@code ServerWebExchange}, and others
- * are available in the {@code org.springframework.web.server} package.
+ * <p>更高层但仍通用的应用程序构建块（如
+ * {@code WebFilter}、{@code WebSession}、{@code ServerWebExchange} 等）
+ * 可在 {@code org.springframework.web.server} 包中使用。
  *
- * <p>Application level programming models such as annotated controllers and
- * functional handlers are available in the {@code spring-webflux} module.
+ * <p>应用级编程模型（如注解控制器和函数式处理器）可在
+ * {@code spring-webflux} 模块中使用。
  *
- * <p>Typically an {@link HttpHandler} represents an entire application with
- * higher-level programming models bridged via
- * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder}.
- * Multiple applications at unique context paths can be plugged in with the
- * help of the {@link ContextPathCompositeHandler}.
+ * <p>通常一个 {@link HttpHandler} 代表整个应用程序，其高层编程模型
+ * 通过 {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder} 桥接。
+ * 借助 {@link ContextPathCompositeHandler}，可以在唯一的上下文路径下
+ * 接入多个应用程序。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -43,7 +42,7 @@ import reactor.core.publisher.Mono;
 public interface HttpHandler {
 
 	/**
-	 * Handle the given request and write to the response.
+	 * 处理给定的请求并写入响应。
 	 * @param request current request
 	 * @param response current response
 	 * @return indicates completion of request handling

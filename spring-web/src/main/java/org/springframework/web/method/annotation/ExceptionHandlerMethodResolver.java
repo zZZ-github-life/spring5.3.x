@@ -33,9 +33,9 @@ import org.springframework.util.ReflectionUtils.MethodFilter;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * Discovers {@linkplain ExceptionHandler @ExceptionHandler} methods in a given class,
- * including all of its superclasses, and helps to resolve a given {@link Exception}
- * to the exception types supported by a given {@link Method}.
+ * 在给定类（包括其所有父类）中发现
+ * {@linkplain ExceptionHandler @ExceptionHandler} 方法，
+ * 并帮助将给定的 {@link Exception} 解析为给定 {@link Method} 所支持的异常类型。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionHandlerMethodResolver {
 
 	/**
-	 * A filter for selecting {@code @ExceptionHandler} methods.
+	 * 用于选择 {@code @ExceptionHandler} 方法的过滤器。
 	 */
 	public static final MethodFilter EXCEPTION_HANDLER_METHODS = method ->
 			AnnotatedElementUtils.hasAnnotation(method, ExceptionHandler.class);
@@ -69,7 +69,7 @@ public class ExceptionHandlerMethodResolver {
 
 
 	/**
-	 * A constructor that finds {@link ExceptionHandler} methods in the given type.
+	 * 一个构造函数，用于在给定类型中查找 {@link ExceptionHandler} 方法。
 	 * @param handlerType the type to introspect
 	 */
 	public ExceptionHandlerMethodResolver(Class<?> handlerType) {
@@ -82,8 +82,8 @@ public class ExceptionHandlerMethodResolver {
 
 
 	/**
-	 * Extract exception mappings from the {@code @ExceptionHandler} annotation first,
-	 * and then as a fallback from the method signature itself.
+	 * 首先从 {@code @ExceptionHandler} 注解中提取异常映射，
+	 * 然后作为回退方案从方法签名本身提取。
 	 */
 	@SuppressWarnings("unchecked")
 	private List<Class<? extends Throwable>> detectExceptionMappings(Method method) {
@@ -117,15 +117,15 @@ public class ExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Whether the contained type has any exception mappings.
+	 * 所包含的类型是否有任何异常映射。
 	 */
 	public boolean hasExceptionMappings() {
 		return !this.mappedMethods.isEmpty();
 	}
 
 	/**
-	 * Find a {@link Method} to handle the given exception.
-	 * <p>Uses {@link ExceptionDepthComparator} if more than one match is found.
+	 * 查找用于处理给定异常的 {@link Method}。
+	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator} 进行选择。
 	 * @param exception the exception
 	 * @return a Method to handle the exception, or {@code null} if none found
 	 */
@@ -135,8 +135,8 @@ public class ExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Find a {@link Method} to handle the given Throwable.
-	 * <p>Uses {@link ExceptionDepthComparator} if more than one match is found.
+	 * 查找用于处理给定 Throwable 的 {@link Method}。
+	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator} 进行选择。
 	 * @param exception the exception
 	 * @return a Method to handle the exception, or {@code null} if none found
 	 * @since 5.0
@@ -154,9 +154,9 @@ public class ExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Find a {@link Method} to handle the given exception type. This can be
-	 * useful if an {@link Exception} instance is not available (e.g. for tools).
-	 * <p>Uses {@link ExceptionDepthComparator} if more than one match is found.
+	 * 查找用于处理给定异常类型的 {@link Method}。当 {@link Exception} 实例
+	 * 不可用时（例如供工具使用），此方法会很有用。
+	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator} 进行选择。
 	 * @param exceptionType the exception type
 	 * @return a Method to handle the exception, or {@code null} if none found
 	 */
@@ -171,8 +171,8 @@ public class ExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Return the {@link Method} mapped to the given exception type, or
-	 * {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} if none.
+	 * 返回映射到给定异常类型的 {@link Method}，如果没有则返回
+	 * {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD}。
 	 */
 	private Method getMappedMethod(Class<? extends Throwable> exceptionType) {
 		List<Class<? extends Throwable>> matches = new ArrayList<>();
@@ -193,7 +193,7 @@ public class ExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * For the {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} constant.
+	 * 用于 {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} 常量。
  	 */
 	@SuppressWarnings("unused")
 	private void noMatchingExceptionHandler() {

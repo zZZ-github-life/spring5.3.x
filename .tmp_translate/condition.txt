@@ -1,0 +1,301 @@
+@@ result/condition/AbstractMediaTypeExpression.java :: 1
+支持媒体类型表达式，具体语法参见：
+{@link RequestMapping#consumes()} 和 {@link RequestMapping#produces()}。
+
+@@ result/condition/AbstractNameValueExpression.java :: 1
+支持 "name=value" 形式的表达式，具体语法参见：
+{@link org.springframework.web.bind.annotation.RequestMapping#params()} 和
+{@link org.springframework.web.bind.annotation.RequestMapping#headers()}。
+
+@@ result/condition/AbstractRequestCondition.java :: 1
+{@link RequestCondition} 类型的基类，提供 {@link #equals(Object)}、{@link #hashCode()} 和 {@link #toString()} 的实现。
+
+@@ result/condition/AbstractRequestCondition.java :: 2
+指示此条件是否为空，即是否不包含任何离散项。
+
+@@ result/condition/AbstractRequestCondition.java :: 3
+返回请求条件所组成的离散项。
+<p>例如 URL 模式、HTTP 请求方法、参数表达式等。
+
+@@ result/condition/AbstractRequestCondition.java :: 4
+打印离散内容项时使用的记号。
+<p>例如 URL 模式使用 {@code " || "}，参数表达式使用 {@code " && "}。
+
+@@ result/condition/CompositeRequestCondition.java :: 1
+通过委托给多个 {@code RequestCondition} 类型并使用逻辑合取（{@code ' && '}）来确保所有条件都匹配给定请求，从而实现 {@link RequestCondition} 契约。
+
+<p>当组合或比较 {@code CompositeRequestCondition} 实例时，要求 (a) 它们包含相同数量的条件，且 (b) 相同索引处的条件类型相同。构造函数可以接受 {@code null} 条件或完全不提供条件。
+
+@@ result/condition/CompositeRequestCondition.java :: 2
+创建包含 0 个或多个 {@code RequestCondition} 类型的实例。请务必使用相同数量的条件创建 {@code CompositeRequestCondition} 实例，以便它们可以比较和组合。可以提供 {@code null} 条件。
+
+@@ result/condition/CompositeRequestCondition.java :: 3
+此实例是否包含 0 个条件。
+
+@@ result/condition/CompositeRequestCondition.java :: 4
+返回底层条件，可能为空，但绝不会是 {@code null}。
+
+@@ result/condition/CompositeRequestCondition.java :: 5
+如果其中一个实例为空，则返回另一个。
+<p>如果两个实例都包含条件，则在确保类型和数量相同后合并各个条件。
+
+@@ result/condition/CompositeRequestCondition.java :: 6
+委托给<em>所有</em>包含的条件来匹配请求，并返回得到的“匹配”条件实例。
+<p>空的 {@code CompositeRequestCondition} 匹配所有请求。
+
+@@ result/condition/CompositeRequestCondition.java :: 7
+如果其中一个实例为空，则另一个“获胜”。如果两个实例都包含条件，则按提供顺序进行比较。
+
+@@ result/condition/ConsumesRequestCondition.java :: 1
+逻辑析取（' || '）请求条件，用于将请求的 'Content-Type' 头与媒体类型表达式列表进行匹配。支持两种媒体类型表达式，分别在 {@link RequestMapping#consumes()} 和 {@link RequestMapping#headers()} 中描述，其中头名称为 'Content-Type'。无论使用哪种语法，语义都相同。
+
+@@ result/condition/ConsumesRequestCondition.java :: 2
+根据 0 个或多个 "consumes" 表达式创建新实例。
+
+@@ result/condition/ConsumesRequestCondition.java :: 3
+使用 "consumes" 和 "header" 表达式创建新实例。头名称不是 'Content-Type' 或未定义头值的 "header" 表达式将被忽略。如果总共提供 0 个表达式，则该条件将匹配所有请求。
+
+@@ result/condition/ConsumesRequestCondition.java :: 4
+内部私有构造函数，用于创建匹配条件。
+
+@@ result/condition/ConsumesRequestCondition.java :: 5
+返回包含的 MediaType 表达式。
+
+@@ result/condition/ConsumesRequestCondition.java :: 6
+返回此条件的媒体类型，不包括否定表达式。
+
+@@ result/condition/ConsumesRequestCondition.java :: 7
+此条件是否包含任何媒体类型表达式。
+
+@@ result/condition/ConsumesRequestCondition.java :: 8
+此条件是否应要求请求包含正文。
+<p>默认设置为 {@code true}，此时假定需要请求正文，该条件匹配 "Content-Type" 头，或回退到 "Content-Type: application/octet-stream"。
+<p>如果设置为 {@code false} 且请求没有正文，则该条件自动匹配，即无需检查表达式。
+
+@@ result/condition/ConsumesRequestCondition.java :: 9
+返回 {@link #setBodyRequired(boolean)} 的设置。
+
+@@ result/condition/ConsumesRequestCondition.java :: 10
+如果 "other" 实例包含任何表达式，则返回它；否则返回 "this" 实例。实际上这意味着方法级 "consumes" 会覆盖类型级 "consumes" 条件。
+
+@@ result/condition/ConsumesRequestCondition.java :: 11
+检查所包含的任何媒体类型表达式是否匹配给定请求的 'Content-Type' 头，并返回一个保证仅包含匹配表达式的实例。匹配通过 {@link MediaType#includes(MediaType)} 执行。
+
+@@ result/condition/ConsumesRequestCondition.java :: 12
+返回值：
+<ul>
+<li>如果两个条件具有相同数量的表达式，则返回 0
+<li>如果 "this" 具有更多或更具体的媒体类型表达式，则小于 0
+<li>如果 "other" 具有更多或更具体的媒体类型表达式，则大于 0
+</ul>
+<p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，并且每个实例仅包含匹配的可消费媒体类型表达式，或者为空。
+
+@@ result/condition/ConsumesRequestCondition.java :: 13
+解析单个媒体类型表达式并将其与请求的 'Content-Type' 头匹配。
+
+@@ result/condition/HeadersRequestCondition.java :: 1
+逻辑合取（{@code ' && '}）请求条件，用于将请求与一组头表达式匹配，语法定义参见 {@link RequestMapping#headers()}。
+
+<p>传递给构造函数且头名称为 'Accept' 或 'Content-Type' 的表达式将被忽略。相关处理请参见 {@link ConsumesRequestCondition} 和 {@link ProducesRequestCondition}。
+
+@@ result/condition/HeadersRequestCondition.java :: 2
+根据给定的头表达式创建新实例。头名称为 'Accept' 或 'Content-Type' 的表达式将被忽略。相关处理请参见 {@link ConsumesRequestCondition} 和 {@link ProducesRequestCondition}。
+
+@@ result/condition/HeadersRequestCondition.java :: 3
+返回包含的请求头表达式。
+
+@@ result/condition/HeadersRequestCondition.java :: 4
+返回一个新实例，其中包含 "this" 和 "other" 实例的头表达式并集。
+
+@@ result/condition/HeadersRequestCondition.java :: 5
+如果请求匹配所有表达式，则返回 "this" 实例；否则返回 {@code null}。
+
+@@ result/condition/HeadersRequestCondition.java :: 6
+基于头表达式与另一个条件进行比较。如果条件具有以下特征，则被视为更具体的匹配：
+<ol>
+<li>表达式数量更多。
+<li>具有具体值的非否定表达式数量更多。
+</ol>
+<p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，并且每个实例仅包含匹配的头表达式，或者为空。
+
+@@ result/condition/HeadersRequestCondition.java :: 7
+解析单个头表达式并将其与请求匹配。
+
+@@ result/condition/MediaTypeExpression.java :: 1
+媒体类型表达式（例如 "text/plain"、"!text/plain"）的契约，如 {@code @RequestMapping} 注解中 "consumes" 和 "produces" 条件所定义。
+
+@@ result/condition/NameValueExpression.java :: 1
+{@code "name!=value"} 形式表达式的契约，用于在 {@code @RequestMapping} 中指定请求参数和请求头条件。
+
+@@ result/condition/ParamsRequestCondition.java :: 1
+逻辑合取（{@code ' && '}）请求条件，用于将请求与一组参数表达式匹配，语法定义参见 {@link RequestMapping#params()}。
+
+@@ result/condition/ParamsRequestCondition.java :: 2
+根据给定的参数表达式创建新实例。
+
+@@ result/condition/ParamsRequestCondition.java :: 3
+返回包含的请求参数表达式。
+
+@@ result/condition/ParamsRequestCondition.java :: 4
+返回一个新实例，其中包含 "this" 和 "other" 实例的参数表达式并集。
+
+@@ result/condition/ParamsRequestCondition.java :: 5
+如果请求匹配所有参数表达式，则返回 "this" 实例；否则返回 {@code null}。
+
+@@ result/condition/ParamsRequestCondition.java :: 6
+基于参数表达式与另一个条件进行比较。如果条件具有以下特征，则被视为更具体的匹配：
+<ol>
+<li>表达式数量更多。
+<li>具有具体值的非否定表达式数量更多。
+</ol>
+<p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，并且每个实例仅包含匹配的参数表达式，或者为空。
+
+@@ result/condition/ParamsRequestCondition.java :: 7
+解析单个参数表达式并将其与请求匹配。
+
+@@ result/condition/PatternsRequestCondition.java :: 1
+逻辑析取（' || '）请求条件，用于将请求与一组 URL 路径模式进行匹配。
+
+@@ result/condition/PatternsRequestCondition.java :: 2
+使用给定的 URL 模式创建新实例。
+
+@@ result/condition/PatternsRequestCondition.java :: 3
+使用给定的 URL 模式创建新实例。
+
+@@ result/condition/PatternsRequestCondition.java :: 4
+返回不是模式的映射路径。
+
+@@ result/condition/PatternsRequestCondition.java :: 5
+返回一个新实例，其中包含当前实例（"this"）和 "other" 实例的 URL 模式，规则如下：
+<ul>
+<li>如果两个实例都包含模式，则使用 {@link PathPattern#combine(PathPattern)} 将 "this" 中的模式与 "other" 中的模式组合。
+<li>如果只有一个实例包含模式，则使用这些模式。
+<li>如果两个实例都没有模式，则使用空字符串（即 ""）。
+</ul>
+
+@@ result/condition/PatternsRequestCondition.java :: 6
+检查是否有任何模式匹配给定请求，并返回一个保证包含匹配模式的实例，结果已排序。
+
+@@ result/condition/PatternsRequestCondition.java :: 7
+根据所包含的 URL 模式比较两个条件。模式从上到下逐一比较。如果所有比较的模式都同样匹配，但一个实例具有更多模式，则认为它更接近匹配。
+<p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，以确保它们仅包含匹配请求的模式，并且最佳匹配排在前面。
+
+@@ result/condition/ProducesRequestCondition.java :: 1
+逻辑析取（' || '）请求条件，用于将请求的 'Accept' 头与媒体类型表达式列表进行匹配。支持两种媒体类型表达式，分别在 {@link RequestMapping#produces()} 和 {@link RequestMapping#headers()} 中描述，其中头名称为 'Accept'。无论使用哪种语法，语义都相同。
+
+@@ result/condition/ProducesRequestCondition.java :: 2
+根据 "produces" 表达式创建新实例。如果总共提供 0 个表达式，则该条件将匹配任何请求。
+
+@@ result/condition/ProducesRequestCondition.java :: 3
+使用 "produces" 和 "header" 表达式创建新实例。头名称不是 'Accept' 或未定义头值的 "header" 表达式将被忽略。如果总共提供 0 个表达式，则该条件将匹配任何请求。
+
+@@ result/condition/ProducesRequestCondition.java :: 4
+与 {@link #ProducesRequestCondition(String[], String[])} 相同，但还接受 {@link ContentNegotiationManager}。
+
+@@ result/condition/ProducesRequestCondition.java :: 5
+内部私有构造函数，用于创建匹配条件。注意表达式列表既未排序，也未深拷贝。
+
+@@ result/condition/ProducesRequestCondition.java :: 6
+返回包含的 "produces" 表达式。
+
+@@ result/condition/ProducesRequestCondition.java :: 7
+返回包含的可生成媒体类型，不包括否定表达式。
+
+@@ result/condition/ProducesRequestCondition.java :: 8
+此条件是否包含任何媒体类型表达式。
+
+@@ result/condition/ProducesRequestCondition.java :: 9
+如果 "other" 实例包含任何表达式，则返回它；否则返回 "this" 实例。实际上这意味着方法级 "produces" 会覆盖类型级 "produces" 条件。
+
+@@ result/condition/ProducesRequestCondition.java :: 10
+检查所包含的任何媒体类型表达式是否匹配给定请求的 'Content-Type' 头，并返回一个保证仅包含匹配表达式的实例。匹配通过 {@link MediaType#isCompatibleWith(MediaType)} 执行。
+
+@@ result/condition/ProducesRequestCondition.java :: 11
+按如下方式比较此条件与另一个 "produces" 条件：
+<ol>
+<li>通过 {@link MediaType#sortByQualityValue(List)} 按质量值对 'Accept' 头媒体类型排序，并遍历该列表。
+<li>在每个 "produces" 条件中获取匹配媒体类型的第一个索引，先使用 {@link MediaType#equals(Object)} 匹配，再使用 {@link MediaType#includes(MediaType)} 匹配。
+<li>如果找到更低的索引，则该索引处的条件获胜。
+<li>如果两个索引相等，则进一步使用 {@link MediaType#SPECIFICITY_COMPARATOR} 比较该索引处的媒体类型。
+</ol>
+<p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，并且每个实例仅包含匹配的可生成媒体类型表达式，或者为空。
+
+@@ result/condition/ProducesRequestCondition.java :: 12
+返回包含的 "produces" 表达式；如果为空，则返回包含 {@value MediaType#ALL_VALUE} 表达式的列表。
+
+@@ result/condition/ProducesRequestCondition.java :: 13
+用于清除包含已解析的请求媒体类型的 {@link #MEDIA_TYPES_ATTRIBUTE}。
+
+@@ result/condition/ProducesRequestCondition.java :: 14
+解析单个媒体类型表达式并将其与请求的 'Accept' 头匹配。
+
+@@ result/condition/RequestCondition.java :: 1
+请求映射条件的契约。
+
+<p>请求条件可以通过 {@link #combine(Object)} 组合，通过 {@link #getMatchingCondition(ServerWebExchange)} 与请求匹配，并通过 {@link #compareTo(Object, ServerWebExchange)} 相互比较，以确定哪个条件对给定请求更接近匹配。
+
+@@ result/condition/RequestCondition.java :: 2
+将此条件与另一个条件组合，例如来自类型级和方法级 {@code @RequestMapping} 注解的条件。
+
+@@ result/condition/RequestCondition.java :: 3
+检查条件是否匹配请求，并返回为当前请求创建的潜在新实例。例如，包含多个 URL 模式的条件可能仅返回与请求匹配的那些模式的新实例。
+<p>对于 CORS 预检请求，条件应匹配将要执行的实际请求（例如 URL 模式、查询参数以及来自 "Access-Control-Request-Method" 头的 HTTP 方法）。如果条件无法匹配预检请求，则应返回内容为空的实例，从而不会导致匹配失败。
+
+@@ result/condition/RequestCondition.java :: 4
+在特定请求的上下文中将此条件与另一个条件进行比较。此方法假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，以确保它们仅包含与当前请求相关的内容。
+
+@@ result/condition/RequestConditionHolder.java :: 1
+用于持有 {@link RequestCondition} 的容器，适用于事先不知道请求条件类型的情况，例如自定义条件。由于此类也是 {@code RequestCondition} 的实现，因此它实际上装饰了所持有的请求条件，并允许以类型安全和空安全的方式与其他请求条件组合和比较。
+
+<p>当组合或比较两个 {@code RequestConditionHolder} 实例时，期望它们持有的条件类型相同。如果不同，则抛出 {@link ClassCastException}。
+
+@@ result/condition/RequestConditionHolder.java :: 2
+创建新容器以包装给定的请求条件。
+
+@@ result/condition/RequestConditionHolder.java :: 3
+返回持有的请求条件；如果未持有，则返回 {@code null}。
+
+@@ result/condition/RequestConditionHolder.java :: 4
+在确保条件类型相同后，合并两个 RequestConditionHolder 实例持有的请求条件。如果其中一个容器为空，则返回另一个容器。
+
+@@ result/condition/RequestConditionHolder.java :: 5
+获取所持有请求条件的匹配条件，并将其包装到新的 RequestConditionHolder 实例中。如果这是空容器，则返回同一容器实例。
+
+@@ result/condition/RequestConditionHolder.java :: 6
+在确保条件类型相同后，比较两个 RequestConditionHolder 实例持有的请求条件。如果其中一个容器为空，则优先使用另一个容器。
+
+@@ result/condition/RequestConditionHolder.java :: 7
+确保所持有的请求条件类型相同。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 1
+逻辑析取（' || '）请求条件，用于将请求与一组 {@link RequestMethod RequestMethods} 进行匹配。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 3
+使用给定的请求方法创建新实例。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 4
+内部私有构造函数，用于组合条件。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 5
+返回此条件中包含的所有 {@link RequestMethod RequestMethods}。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 6
+返回一个新实例，其中包含 "this" 和 "other" 实例的 HTTP 请求方法并集。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 7
+检查是否有任何 HTTP 请求方法匹配给定请求，并返回仅包含匹配 HTTP 请求方法的实例。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 8
+在预检请求中，匹配将要执行的实际请求。因此空条件即为匹配，否则尝试匹配 "Access-Control-Request-Method" 头中的 HTTP 方法。
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 9
+返回值：
+<ul>
+<li>如果两个条件包含相同数量的 HTTP 请求方法，则返回 0
+<li>如果 "this" 实例包含 HTTP 请求方法而 "other" 不包含，则小于 0
+<li>如果 "other" 包含 HTTP 请求方法而 "this" 不包含，则大于 0
+</ul>
+<p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，因此每个实例仅包含匹配的 HTTP 请求方法，或者为空。
+
+@@ result/condition/package-info.java :: 1
+{@link org.springframework.web.reactive.result.condition.RequestCondition} 及基于不同条件匹配请求的实现。

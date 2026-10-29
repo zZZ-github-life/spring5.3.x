@@ -22,10 +22,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor that trims Strings.
+ * 用于去除 String 首尾空白的属性编辑器。
  *
- * <p>Optionally allows transforming an empty string into a {@code null} value.
- * Needs to be explicitly registered, e.g. for command binding.
+ * <p>可选择将空字符串转换为 {@code null} 值。需要显式注册，例如用于命令绑定。
  *
  * @author Juergen Hoeller
  * @see org.springframework.validation.DataBinder#registerCustomEditor
@@ -39,7 +38,7 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new StringTrimmerEditor.
+	 * 创建一个新的 StringTrimmerEditor。
 	 * @param emptyAsNull {@code true} if an empty String is to be
 	 * transformed into {@code null}
 	 */
@@ -49,7 +48,7 @@ public class StringTrimmerEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new StringTrimmerEditor.
+	 * 创建一个新的 StringTrimmerEditor。
 	 * @param charsToDelete a set of characters to delete, in addition to
 	 * trimming an input String. Useful for deleting unwanted line breaks:
 	 * e.g. "\r\n\f" will delete all new lines and line feeds in a String.

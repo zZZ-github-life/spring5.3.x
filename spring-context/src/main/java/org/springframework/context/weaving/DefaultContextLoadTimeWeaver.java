@@ -36,19 +36,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default {@link LoadTimeWeaver} bean for use in an application context,
- * decorating an automatically detected internal {@code LoadTimeWeaver}.
+ * 用于应用上下文的默认 {@link LoadTimeWeaver} Bean，它装饰一个自动检测到的内部
+ * {@code LoadTimeWeaver}。
  *
- * <p>Typically registered for the default bean name "{@code loadTimeWeaver}";
- * the most convenient way to achieve this is Spring's
- * {@code <context:load-time-weaver>} XML tag or {@code @EnableLoadTimeWeaving}
- * on a {@code @Configuration} class.
+ * <p>通常以默认 Bean 名称 "{@code loadTimeWeaver}" 注册；最方便的实现方式是使用 Spring 的
+ * {@code <context:load-time-weaver>} XML 标签，或在 {@code @Configuration} 类上使用
+ * {@code @EnableLoadTimeWeaving}。
  *
- * <p>This class implements a runtime environment check for obtaining the
- * appropriate weaver implementation. As of Spring Framework 5.0, it detects
- * Oracle WebLogic 10+, GlassFish 4+, Tomcat 8+, WildFly 8+, IBM WebSphere 8.5+,
- * {@link InstrumentationSavingAgent Spring's VM agent}, and any {@link ClassLoader}
- * supported by Spring's {@link ReflectiveLoadTimeWeaver} (such as Liberty's).
+ * <p>此类执行运行时环境检查，以获取合适的织入器实现。自 Spring Framework 5.0 起，它可以检测 Oracle
+ * WebLogic 10+、GlassFish 4+、Tomcat 8+、WildFly 8+、IBM WebSphere 8.5+、
+ * {@link InstrumentationSavingAgent Spring's VM agent}，以及 Spring 的
+ * {@link ReflectiveLoadTimeWeaver} 所支持的任何 {@link ClassLoader}（例如 Liberty 的）。
  *
  * @author Juergen Hoeller
  * @author Ramnivas Laddad

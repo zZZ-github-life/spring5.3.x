@@ -26,18 +26,14 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation indicating that a method (or all methods on a class) triggers a
- * {@link org.springframework.cache.Cache#put(Object, Object) cache put} operation.
+ * 指示某个方法（或类中的所有方法）触发
+ * {@link org.springframework.cache.Cache#put(Object, Object) 缓存放入}操作的注解。
  *
- * <p>In contrast to the {@link Cacheable @Cacheable} annotation, this annotation
- * does not cause the advised method to be skipped. Rather, it always causes the
- * method to be invoked and its result to be stored in the associated cache if the
- * {@link #condition()} and {@link #unless()} expressions match accordingly. Note
- * that Java8's {@code Optional} return types are automatically handled and its
- * content is stored in the cache if present.
+ * <p>与 {@link Cacheable @Cacheable} 注解不同，此注解不会导致跳过被通知的方法。相反，它总是会调用
+ * 该方法，并在 {@link #condition()} 和 {@link #unless()} 表达式相应匹配时将结果存储到关联的缓存中。
+ * 请注意，Java8 的 {@code Optional} 返回类型会被自动处理，如果存在内容，则会将其存储到缓存中。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em> with attribute overrides.
+ * <p>此注解可用作<em>元注解</em>，以创建带属性覆盖的自定义<em>组合注解</em>。
  *
  * @author Costin Leau
  * @author Phillip Webb
@@ -53,15 +49,15 @@ import org.springframework.core.annotation.AliasFor;
 public @interface CachePut {
 
 	/**
-	 * Alias for {@link #cacheNames}.
+	 * {@link #cacheNames} 的别名。
 	 */
 	@AliasFor("cacheNames")
 	String[] value() default {};
 
 	/**
-	 * Names of the caches to use for the cache put operation.
-	 * <p>Names may be used to determine the target cache (or caches), matching
-	 * the qualifier value or bean name of a specific bean definition.
+	 * 用于缓存放入操作的缓存名称。
+	 *
+	 * <p>名称可用于确定目标缓存（或缓存集合），匹配限定符值或特定 Bean 定义的 Bean 名称。
 	 * @since 4.2
 	 * @see #value
 	 * @see CacheConfig#cacheNames
@@ -70,95 +66,74 @@ public @interface CachePut {
 	String[] cacheNames() default {};
 
 	/**
-	 * Spring Expression Language (SpEL) expression for computing the key dynamically.
-	 * <p>Default is {@code ""}, meaning all method parameters are considered as a key,
-	 * unless a custom {@link #keyGenerator} has been set.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
-	 * following meta-data:
+	 * 用于动态计算键的 Spring 表达式语言 (SpEL) 表达式。
+	 *
+	 * <p>默认值为 {@code ""}，表示所有方法参数都被视为键，除非已设置自定义的 {@link #keyGenerator}。
+	 *
+	 * <p>SpEL 表达式在提供以下元数据的专用上下文中求值：
 	 * <ul>
-	 * <li>{@code #result} for a reference to the result of the method invocation. For
-	 * supported wrappers such as {@code Optional}, {@code #result} refers to the actual
-	 * object, not the wrapper</li>
-	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
-	 * references to the {@link java.lang.reflect.Method method}, target object, and
-	 * affected cache(s) respectively.</li>
-	 * <li>Shortcuts for the method name ({@code #root.methodName}) and target class
-	 * ({@code #root.targetClass}) are also available.
-	 * <li>Method arguments can be accessed by index. For instance the second argument
-	 * can be accessed via {@code #root.args[1]}, {@code #p1} or {@code #a1}. Arguments
-	 * can also be accessed by name if that information is available.</li>
+	 * <li>{@code #result} 用于引用方法调用的结果。对于受支持的包装类型（例如 {@code Optional}），{@code #result} 引用实际对象，而不是包装器</li>
+	 * <li>{@code #root.method}、{@code #root.target} 和 {@code #root.caches}，分别用于引用 {@link java.lang.reflect.Method 方法}、目标对象和受影响的缓存。</li>
+	 * <li>还提供方法名（{@code #root.methodName}）和目标类（{@code #root.targetClass}）的快捷方式。
+	 * <li>方法参数可以通过索引访问。例如，第二个参数可以通过 {@code #root.args[1]}、{@code #p1} 或 {@code #a1} 访问。如果参数名信息可用，也可以通过参数名访问参数。</li>
 	 * </ul>
 	 */
 	String key() default "";
 
 	/**
-	 * The bean name of the custom {@link org.springframework.cache.interceptor.KeyGenerator}
-	 * to use.
-	 * <p>Mutually exclusive with the {@link #key} attribute.
+	 * 要使用的自定义 {@link org.springframework.cache.interceptor.KeyGenerator} 的 Bean 名称。
+	 *
+	 * <p>与 {@link #key} 属性互斥。
 	 * @see CacheConfig#keyGenerator
 	 */
 	String keyGenerator() default "";
 
 	/**
-	 * The bean name of the custom {@link org.springframework.cache.CacheManager} to use to
-	 * create a default {@link org.springframework.cache.interceptor.CacheResolver} if none
-	 * is set already.
-	 * <p>Mutually exclusive with the {@link #cacheResolver} attribute.
+	 * 用于在尚未设置时创建默认 {@link org.springframework.cache.interceptor.CacheResolver} 的自定义
+	 * {@link org.springframework.cache.CacheManager} 的 Bean 名称。
+	 *
+	 * <p>与 {@link #cacheResolver} 属性互斥。
 	 * @see org.springframework.cache.interceptor.SimpleCacheResolver
 	 * @see CacheConfig#cacheManager
 	 */
 	String cacheManager() default "";
 
 	/**
-	 * The bean name of the custom {@link org.springframework.cache.interceptor.CacheResolver}
-	 * to use.
+	 * 要使用的自定义 {@link org.springframework.cache.interceptor.CacheResolver} 的 Bean 名称。
 	 * @see CacheConfig#cacheResolver
 	 */
 	String cacheResolver() default "";
 
 	/**
-	 * Spring Expression Language (SpEL) expression used for making the cache
-	 * put operation conditional. Update the cache if the condition evaluates to
-	 * {@code true}.
-	 * <p>This expression is evaluated after the method has been called due to the
-	 * nature of the put operation and can therefore refer to the {@code result}.
-	 * <p>Default is {@code ""}, meaning the method result is always cached.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
-	 * following meta-data:
+	 * 用于使缓存放入操作带条件的 Spring 表达式语言 (SpEL) 表达式。如果条件求值为 {@code true}，则更新
+	 * 缓存。
+	 *
+	 * <p>由于放入操作的性质，此表达式在调用方法之后求值，因此可以引用 {@code result}。
+	 *
+	 * <p>默认值为 {@code ""}，表示始终缓存方法结果。
+	 *
+	 * <p>SpEL 表达式在提供以下元数据的专用上下文中求值：
 	 * <ul>
-	 * <li>{@code #result} for a reference to the result of the method invocation. For
-	 * supported wrappers such as {@code Optional}, {@code #result} refers to the actual
-	 * object, not the wrapper</li>
-	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
-	 * references to the {@link java.lang.reflect.Method method}, target object, and
-	 * affected cache(s) respectively.</li>
-	 * <li>Shortcuts for the method name ({@code #root.methodName}) and target class
-	 * ({@code #root.targetClass}) are also available.
-	 * <li>Method arguments can be accessed by index. For instance the second argument
-	 * can be accessed via {@code #root.args[1]}, {@code #p1} or {@code #a1}. Arguments
-	 * can also be accessed by name if that information is available.</li>
+	 * <li>{@code #result} 用于引用方法调用的结果。对于受支持的包装类型（例如 {@code Optional}），{@code #result} 引用实际对象，而不是包装器</li>
+	 * <li>{@code #root.method}、{@code #root.target} 和 {@code #root.caches}，分别用于引用 {@link java.lang.reflect.Method 方法}、目标对象和受影响的缓存。</li>
+	 * <li>还提供方法名（{@code #root.methodName}）和目标类（{@code #root.targetClass}）的快捷方式。
+	 * <li>方法参数可以通过索引访问。例如，第二个参数可以通过 {@code #root.args[1]}、{@code #p1} 或 {@code #a1} 访问。如果参数名信息可用，也可以通过参数名访问参数。</li>
 	 * </ul>
 	 */
 	String condition() default "";
 
 	/**
-	 * Spring Expression Language (SpEL) expression used to veto the cache put operation.
-	 * Veto updating the cache if the condition evaluates to {@code true}.
-	 * <p>Default is {@code ""}, meaning that caching is never vetoed.
-	 * <p>The SpEL expression evaluates against a dedicated context that provides the
-	 * following meta-data:
+	 * 用于否决缓存放入操作的 Spring 表达式语言 (SpEL) 表达式。如果条件求值为 {@code true}，则否决更新
+	 * 缓存。
+	 *
+	 * <p>默认值为 {@code ""}，表示从不否决缓存。
+	 *
+	 * <p>SpEL 表达式在提供以下元数据的专用上下文中求值：
 	 * <ul>
-	 * <li>{@code #result} for a reference to the result of the method invocation. For
-	 * supported wrappers such as {@code Optional}, {@code #result} refers to the actual
-	 * object, not the wrapper</li>
-	 * <li>{@code #root.method}, {@code #root.target}, and {@code #root.caches} for
-	 * references to the {@link java.lang.reflect.Method method}, target object, and
-	 * affected cache(s) respectively.</li>
-	 * <li>Shortcuts for the method name ({@code #root.methodName}) and target class
-	 * ({@code #root.targetClass}) are also available.
-	 * <li>Method arguments can be accessed by index. For instance the second argument
-	 * can be accessed via {@code #root.args[1]}, {@code #p1} or {@code #a1}. Arguments
-	 * can also be accessed by name if that information is available.</li>
+	 * <li>{@code #result} 用于引用方法调用的结果。对于受支持的包装类型（例如 {@code Optional}），{@code #result} 引用实际对象，而不是包装器</li>
+	 * <li>{@code #root.method}、{@code #root.target} 和 {@code #root.caches}，分别用于引用 {@link java.lang.reflect.Method 方法}、目标对象和受影响的缓存。</li>
+	 * <li>还提供方法名（{@code #root.methodName}）和目标类（{@code #root.targetClass}）的快捷方式。
+	 * <li>方法参数可以通过索引访问。例如，第二个参数可以通过 {@code #root.args[1]}、{@code #p1} 或 {@code #a1} 访问。如果参数名信息可用，也可以通过参数名访问参数。</li>
 	 * </ul>
 	 * @since 3.2
 	 */

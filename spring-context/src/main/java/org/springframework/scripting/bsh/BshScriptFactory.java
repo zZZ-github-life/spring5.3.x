@@ -30,12 +30,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link org.springframework.scripting.ScriptFactory} implementation
- * for a BeanShell script.
+ * {@link org.springframework.scripting.ScriptFactory} 的 BeanShell 脚本实现。
  *
- * <p>Typically used in combination with a
- * {@link org.springframework.scripting.support.ScriptFactoryPostProcessor};
- * see the latter's javadoc for a configuration example.
+ * <p>通常与 {@link org.springframework.scripting.support.ScriptFactoryPostProcessor} 结合使用；有
+ * 关配置示例，请参见后者的 javadoc。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -62,9 +60,8 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 
 
 	/**
-	 * Create a new BshScriptFactory for the given script source.
-	 * <p>With this {@code BshScriptFactory} variant, the script needs to
-	 * declare a full class or return an actual instance of the scripted object.
+	 * 为给定的脚本源创建一个新的 BshScriptFactory。
+	 * <p>使用此 {@code BshScriptFactory} 变体时，脚本需要声明完整的类，或返回脚本化对象的实际实例。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 */
@@ -75,11 +72,9 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 	}
 
 	/**
-	 * Create a new BshScriptFactory for the given script source.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
-	 * generated (implementing the specified interfaces), or declare a full class
-	 * or return an actual instance of the scripted object (in which case the
-	 * specified interfaces, if any, need to be implemented by that class/instance).
+	 * 为给定的脚本源创建一个新的 BshScriptFactory。
+	 * <p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚
+	 * 本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。
 	 * @param scriptSourceLocator a locator that points to the source of the script.
 	 * Interpreted by the post-processor that actually creates the script.
 	 * @param scriptInterfaces the Java interfaces that the scripted object
@@ -110,7 +105,7 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 	}
 
 	/**
-	 * BeanShell scripts do require a config interface.
+	 * BeanShell 脚本确实需要配置接口。
 	 */
 	@Override
 	public boolean requiresConfigInterface() {
@@ -118,7 +113,7 @@ public class BshScriptFactory implements ScriptFactory, BeanClassLoaderAware {
 	}
 
 	/**
-	 * Load and parse the BeanShell script via {@link BshScriptUtils}.
+	 * 通过 {@link BshScriptUtils} 加载并解析 BeanShell 脚本。
 	 * @see BshScriptUtils#createBshObject(String, Class[], ClassLoader)
 	 */
 	@Override

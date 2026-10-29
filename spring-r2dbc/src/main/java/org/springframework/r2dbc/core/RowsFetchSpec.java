@@ -20,7 +20,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Contract for fetching tabular results.
+ * 用于获取表格结果的约定。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -29,20 +29,20 @@ import reactor.core.publisher.Mono;
 public interface RowsFetchSpec<T> {
 
 	/**
-	 * Get exactly zero or one result.
+	 * 获取恰好零个或一个结果。
 	 * @return a Mono emitting one element, or {@link Mono#empty()} if no match found.
 	 * Completes with {@code IncorrectResultSizeDataAccessException} if more than one match found
 	 */
 	Mono<T> one();
 
 	/**
-	 * Get the first or no result.
+	 * 获取第一个结果，或者不返回结果。
 	 * @return a Mono emitting the first element, or {@link Mono#empty()} if no match found
 	 */
 	Mono<T> first();
 
 	/**
-	 * Get all matching elements.
+	 * 获取所有匹配的元素。
 	 * @return a Flux emitting all results
 	 */
 	Flux<T> all();

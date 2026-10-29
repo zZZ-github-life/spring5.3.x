@@ -19,14 +19,11 @@ package org.springframework.beans.factory.wiring;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface to be implemented by objects than can resolve bean name
- * information, given a newly instantiated bean object. Invocations to the
- * {@link #resolveWiringInfo} method on this interface will be driven by
- * the AspectJ pointcut in the relevant concrete aspect.
+ * 由能够根据新实例化的 Bean 对象解析 Bean 名称信息的对象实现的策略接口。对此接口上
+ * {@link #resolveWiringInfo} 方法的调用将由相关具体切面中的 AspectJ 切点驱动。
  *
- * <p>Metadata resolution strategy can be pluggable. A good default is
- * {@link ClassNameBeanWiringInfoResolver}, which uses the fully-qualified
- * class name as bean name.
+ * <p>元数据解析策略可以插拔。一个良好的默认实现是 {@link ClassNameBeanWiringInfoResolver}，它使用
+ * 完全限定类名作为 Bean 名称。
  *
  * @author Rod Johnson
  * @since 2.0
@@ -37,7 +34,7 @@ import org.springframework.lang.Nullable;
 public interface BeanWiringInfoResolver {
 
 	/**
-	 * Resolve the BeanWiringInfo for the given bean instance.
+	 * 解析给定 Bean 实例的 BeanWiringInfo。
 	 * @param beanInstance the bean instance to resolve info for
 	 * @return the BeanWiringInfo, or {@code null} if not found
 	 */

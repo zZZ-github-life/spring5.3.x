@@ -17,7 +17,7 @@
 package org.springframework.r2dbc.core.binding;
 
 /**
- * Target to apply bindings to.
+ * 用于应用绑定的目标。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -27,28 +27,28 @@ package org.springframework.r2dbc.core.binding;
 public interface BindTarget {
 
 	/**
-	 * Bind a value.
+	 * 绑定一个值。
 	 * @param identifier the identifier to bind to
 	 * @param value the value to bind
 	 */
 	void bind(String identifier, Object value);
 
 	/**
-	 * Bind a value to an index. Indexes are zero-based.
+	 * 将值绑定到索引。索引从零开始。
 	 * @param index the index to bind to
 	 * @param value the value to bind
 	 */
 	void bind(int index, Object value);
 
 	/**
-	 * Bind a {@code null} value.
+	 * 绑定一个 {@code null} 值。
 	 * @param identifier the identifier to bind to
 	 * @param type the type of {@code null} value
 	 */
 	void bindNull(String identifier, Class<?> type);
 
 	/**
-	 * Bind a {@code null} value.
+	 * 绑定一个 {@code null} 值。
 	 * @param index the index to bind to
 	 * @param type the type of {@code null} value
 	 */

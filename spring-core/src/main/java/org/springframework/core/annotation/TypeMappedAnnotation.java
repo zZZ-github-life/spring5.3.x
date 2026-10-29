@@ -35,29 +35,23 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link MergedAnnotation} that adapts attributes from a root annotation by
- * applying the mapping and mirroring rules of an {@link AnnotationTypeMapping}.
+ * 一种 {@link MergedAnnotation}，通过应用 {@link AnnotationTypeMapping} 的映射和镜像规则，从根注解
+ * 适配属性。
  *
- * <p>Root attribute values are extracted from a source object using a supplied
- * {@code BiFunction}. This allows various different annotation models to be
- * supported by the same class. For example, the attributes source might be an
- * actual {@link Annotation} instance where methods on the annotation instance
- * are {@linkplain AnnotationUtils#invokeAnnotationMethod(Method, Object) invoked}
- * to extract values. Similarly, the source could be a simple {@link Map} with
- * values extracted using {@link Map#get(Object)}.
+ * <p>根属性值使用提供的 {@code BiFunction} 从源对象中提取。这样同一个类便能够支持各种不同的注解模
+ * 型。例如，属性来源可以是实际的 {@link Annotation} 实例，此时会
+ * {@linkplain AnnotationUtils#invokeAnnotationMethod(Method, Object) invoked} 该注解实例上的方法来
+ * 提取值。类似地，来源也可以是一个简单的 {@link Map}，其中的值通过 {@link Map#get(Object)} 提取。
  *
- * <p>Extracted root attribute values must be compatible with the attribute
- * return type, namely:
+ * <p>提取出的根属性值必须与属性返回类型兼容，即：
  *
  * <p><table border="1">
- * <tr><th>Return Type</th><th>Extracted Type</th></tr>
- * <tr><td>Class</td><td>Class or String</td></tr>
- * <tr><td>Class[]</td><td>Class[] or String[]</td></tr>
- * <tr><td>Annotation</td><td>Annotation, Map, or Object compatible with the value
- * extractor</td></tr>
- * <tr><td>Annotation[]</td><td>Annotation[], Map[], or Object[] where elements are
- * compatible with the value extractor</td></tr>
- * <tr><td>Other types</td><td>An exact match or the appropriate primitive wrapper</td></tr>
+ * <tr><th>返回类型</th><th>提取的类型</th></tr>
+ * <tr><td>Class</td><td>Class 或 String</td></tr>
+ * <tr><td>Class[]</td><td>Class[] 或 String[]</td></tr>
+ * <tr><td>Annotation</td><td>Annotation、Map，或与值提取器兼容的 Object</td></tr>
+ * <tr><td>Annotation[]</td><td>Annotation[]、Map[] 或 Object[]，其中元素与值提取器兼容</td></tr>
+ * <tr><td>其他类型</td><td>精确匹配的类型或相应的基本类型包装器</td></tr>
  * </table>
  *
  * @author Phillip Webb
@@ -340,8 +334,7 @@ final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnn
 	}
 
 	/**
-	 * Determine if the supplied object is an annotation of the required
-	 * {@linkplain #getType() type}.
+	 * 判断所提供的对象是否为所需{@linkplain #getType() type}的注解。
 	 * @param obj the object to check
 	 * @since 5.3.22
 	 */
@@ -350,10 +343,8 @@ final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnn
 	}
 
 	/**
-	 * Determine if the supplied annotation has not already been synthesized
-	 * <strong>and</strong> whether the mapped annotation is a composed annotation
-	 * that needs to have its attributes merged or the mapped annotation is
-	 * {@linkplain AnnotationTypeMapping#isSynthesizable() synthesizable} in general.
+	 * 判断所提供的注解是否尚未被合成，<strong>并且</strong>判断映射的注解是否为需要合并其属性的组合注
+	 * 解，或者映射的注解是否通常{@linkplain AnnotationTypeMapping#isSynthesizable() synthesizable}。
 	 * @param annotation the annotation to check
 	 * @since 5.3.22
 	 */

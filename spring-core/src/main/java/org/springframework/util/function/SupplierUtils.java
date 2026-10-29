@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 import org.springframework.lang.Nullable;
 
 /**
- * Convenience utilities for {@link java.util.function.Supplier} handling.
+ * 用于处理 {@link java.util.function.Supplier} 的便捷工具。
  *
  * @author Juergen Hoeller
  * @since 5.1
@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
 public abstract class SupplierUtils {
 
 	/**
-	 * Resolve the given {@code Supplier}, getting its result or immediately
-	 * returning {@code null} if the supplier itself was {@code null}.
+	 * 解析给定的 {@code Supplier}，获取其结果；如果该 supplier 本身为 {@code null}，则立即返回
+	 * {@code null}。
 	 * @param supplier the supplier to resolve
 	 * @return the supplier's result, or {@code null} if none
 	 */

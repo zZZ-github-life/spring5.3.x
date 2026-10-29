@@ -19,13 +19,10 @@ package org.springframework.test.web.servlet;
 import org.springframework.test.util.ExceptionCollector;
 
 /**
- * Allows applying actions, such as expectations, on the result of an executed
- * request.
+ * 允许对已执行请求的结果应用操作，例如断言。
  *
- * <p>See static factory methods in
- * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers} and
- * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}.
- *
+ * <p>请参见 {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers} 和
+ * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers} 中的静态工厂方法。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @author Michał Rowicki
@@ -34,48 +31,48 @@ import org.springframework.test.util.ExceptionCollector;
 public interface ResultActions {
 
 	/**
-	 * Perform an expectation.
+	 * 执行一个预期。
 	 *
-	 * <h4>Example</h4>
-	 * <p>You can invoke {@code andExpect()} multiple times as in the following
-	 * example.
+	 * <h4>示例</h4>
+	 * <p>您可以多次调用 {@code andExpect()}，如以下
+	 * 示例所示。
 	 * <pre class="code">
 	 * // static imports: MockMvcRequestBuilders.*, MockMvcResultMatchers.*
 	 *
 	 * mockMvc.perform(get("/person/1"))
-	 *   .andExpect(status().isOk())
-	 *   .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-	 *   .andExpect(jsonPath("$.person.name").value("Jason"));
+	 * .andExpect(status().isOk())
+	 * .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+	 * .andExpect(jsonPath("$.person.name").value("Jason"));
 	 * </pre>
 	 * @see #andExpectAll(ResultMatcher...)
 	 */
 	ResultActions andExpect(ResultMatcher matcher) throws Exception;
 
 	/**
-	 * Perform multiple expectations, with the guarantee that all expectations
-	 * will be asserted even if one or more expectations fail with an exception.
-	 * <p>If a single {@link Error} or {@link Exception} is thrown, it will
-	 * be rethrown.
-	 * <p>If multiple exceptions are thrown, this method will throw an
-	 * {@link AssertionError} whose error message is a summary of all the
-	 * exceptions. In addition, each exception will be added as a
-	 * {@linkplain Throwable#addSuppressed(Throwable) suppressed exception} to
-	 * the {@code AssertionError}.
-	 * <p>This feature is similar to the {@code SoftAssertions} support in AssertJ
-	 * and the {@code assertAll()} support in JUnit Jupiter.
+	 * 执行多个预期，并保证即使一个或多个预期因异常失败，
+	 * 所有预期仍会被断言。
+	 * <p>如果抛出单个 {@link Error} 或 {@link Exception}，它将被
+	 * 重新抛出。
+	 * <p>如果抛出多个异常，此方法将抛出
+	 * {@link AssertionError}，其错误消息是所有异常的摘要。
+	 * 此外，每个异常都会作为
+	 * {@linkplain Throwable#addSuppressed(Throwable) 抑制异常} 添加到
+	 * 该 {@code AssertionError}。
+	 * <p>此功能类似于 AssertJ 中的 {@code SoftAssertions} 支持
+	 * 和 JUnit Jupiter 中的 {@code assertAll()} 支持。
 	 *
-	 * <h4>Example</h4>
-	 * <p>Instead of invoking {@code andExpect()} multiple times, you can invoke
-	 * {@code andExpectAll()} as in the following example.
+	 * <h4>示例</h4>
+	 * <p>与多次调用 {@code andExpect()} 不同，您可以调用
+	 * {@code andExpectAll()}，如以下示例所示。
 	 * <pre class="code">
 	 * // static imports: MockMvcRequestBuilders.*, MockMvcResultMatchers.*
 	 *
 	 * mockMvc.perform(get("/person/1"))
-	 *   .andExpectAll(
-	 *       status().isOk(),
-	 *       content().contentType(MediaType.APPLICATION_JSON),
-	 *       jsonPath("$.person.name").value("Jason")
-	 *   );
+	 * .andExpectAll(
+	 * status().isOk(),
+	 * content().contentType(MediaType.APPLICATION_JSON),
+	 * jsonPath("$.person.name").value("Jason")
+	 * );
 	 * </pre>
 	 * @since 5.3.10
 	 * @see #andExpect(ResultMatcher)
@@ -90,9 +87,9 @@ public interface ResultActions {
 	}
 
 	/**
-	 * Perform a general action.
+	 * 执行通用操作。
 	 *
-	 * <h4>Example</h4>
+	 * <h4>示例</h4>
 	 * <pre class="code">
 	 * static imports: MockMvcRequestBuilders.*, MockMvcResultMatchers.*
 	 *
@@ -102,7 +99,7 @@ public interface ResultActions {
 	ResultActions andDo(ResultHandler handler) throws Exception;
 
 	/**
-	 * Return the result of the executed request for direct access to the results.
+	 * 返回已执行请求的结果，以便直接访问结果。
 	 * @return the result of the request
 	 */
 	MvcResult andReturn();

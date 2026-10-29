@@ -1,0 +1,145 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::70::0", "zh": ["用于解析 XML Bean 定义的有状态委托类。既供主解析器使用，也供任意扩展 {@link BeanDefinitionParser BeanDefinitionParsers} 或 {@link BeanDefinitionDecorator BeanDefinitionDecorators} 使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::91::0", "zh": ["表示 true 的 T/F 属性值。其他任何值都表示 false。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::236::0", "zh": ["存储所有已使用的 bean 名称，以便按每个 beans 元素强制保证唯一性。相同的 bean id/name 不能在同一层级的 beans 元素嵌套中出现重复，但可以跨层级重复。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::244::0", "zh": ["创建一个与所提供的 {@link XmlReaderContext} 关联的新 BeanDefinitionParserDelegate。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::254::0", "zh": ["获取与此辅助实例关联的 {@link XmlReaderContext}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::261::0", "zh": ["调用 {@link org.springframework.beans.factory.parsing.SourceExtractor}，从所提供的 {@link Element} 中提取源元数据。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::270::0", "zh": ["针对给定的源元素报告带有给定消息的错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::277::0", "zh": ["针对给定的源元素报告带有给定消息的错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::284::0", "zh": ["针对给定的源元素报告带有给定消息的错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::292::0", "zh": ["在假定父委托为 {@code null} 的情况下初始化默认设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::299::0", "zh": ["初始化默认的 lazy-init、autowire、dependency check 设置，以及 init-method、destroy-method 和 merge 设置。通过回退到给定的父级来支持嵌套的 'beans' 元素用例，以防本地没有显式设置这些默认值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::312::0", "zh": ["用默认的 lazy-init、autowire、dependency check 设置以及 init-method、destroy-method 和 merge 设置填充给定的 DocumentDefaultsDefinition 实例。通过回退到 {@code parentDefaults} 来支持嵌套的 'beans' 元素用例，以防本地没有显式设置这些默认值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::367::0", "zh": ["返回默认值定义对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::374::0", "zh": ["返回 Bean 定义的默认设置，这些设置由顶层 {@code <beans/>} 元素的属性指定。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::387::0", "zh": ["返回顶层 {@code <beans/>} 元素的 'default-autowire-candidates' 属性中提供的任何模式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::398::0", "zh": ["解析所提供的 {@code <bean>} 元素。如果解析过程中出现错误，可能返回 {@code null}。错误会报告给 {@link org.springframework.beans.factory.parsing.ProblemReporter}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::408::0", "zh": ["解析所提供的 {@code <bean>} 元素。如果解析过程中出现错误，可能返回 {@code null}。错误会报告给 {@link org.springframework.beans.factory.parsing.ProblemReporter}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::474::0", "zh": ["校验指定的 bean 名称和别名在当前层级的 beans 元素嵌套中尚未被使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::495::0", "zh": ["解析 Bean 定义本身，而不考虑名称或别名。如果在解析 Bean 定义期间出现问题，可能返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::549::0", "zh": ["将给定 bean 元素的属性应用到给定的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::632::0", "zh": ["为给定的类名和父名称创建 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::646::0", "zh": ["解析给定元素下方的 meta 元素（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::664::0", "zh": ["将给定的 autowire 属性值解析为 {@link AbstractBeanDefinition} 的 autowire 常量。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::691::0", "zh": ["解析给定 bean 元素的 constructor-arg 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::704::0", "zh": ["解析给定 bean 元素的 property 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::717::0", "zh": ["解析给定 bean 元素的 qualifier 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::730::0", "zh": ["解析给定 bean 元素的 lookup-override 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::748::0", "zh": ["解析给定 bean 元素的 replaced-method 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::775::0", "zh": ["解析 constructor-arg 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::836::0", "zh": ["解析 property 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::862::0", "zh": ["解析 qualifier 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::904::0", "zh": ["获取 property 元素的值。可以是 list 等。也用于构造函数参数，此时 “propertyName” 为 null。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::963::0", "zh": ["解析 property 或 constructor-arg 元素的 value、ref 或 collection 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::974::0", "zh": ["解析 property 或 constructor-arg 元素的 value、ref 或 collection 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1049::0", "zh": ["为给定的 'idref' 元素返回一个带类型的 String 值对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1069::0", "zh": ["为给定的 value 元素返回一个带类型的 String 值对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1092::0", "zh": ["为给定的原始值构建一个带类型的 String 值对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1114::0", "zh": ["解析 array 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1128::0", "zh": ["解析 list 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1142::0", "zh": ["解析 set 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1167::0", "zh": ["解析 map 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1288::0", "zh": ["为给定的原始值构建一个带类型的 String 值对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1304::0", "zh": ["解析 map 元素的 key 子元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1329::0", "zh": ["解析 props 元素。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1353::0", "zh": ["解析集合元素的 merge 属性（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1364::0", "zh": ["解析自定义元素（位于默认命名空间之外）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1374::0", "zh": ["解析自定义元素（位于默认命名空间之外）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1394::0", "zh": ["如果适用，通过命名空间处理器装饰给定的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1404::0", "zh": ["如果适用，通过命名空间处理器装饰给定的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1434::0", "zh": ["如果适用，通过命名空间处理器装饰给定的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1486::0", "zh": ["获取所提供节点的命名空间 URI。<p>默认实现使用 {@link Node#getNamespaceURI}。子类可以覆盖默认实现，以提供不同的命名空间识别机制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1498::0", "zh": ["获取所提供 {@link Node} 的本地名称。<p>默认实现调用 {@link Node#getLocalName}。子类可以覆盖默认实现，以提供获取本地名称的不同机制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1509::0", "zh": ["确定所提供节点的名称是否等于所提供的名称。<p>默认实现会将所提供的期望名称同时与 {@link Node#getNodeName()} 和 {@link Node#getLocalName()} 进行比对。<p>子类可以覆盖默认实现，以提供比较节点名称的不同机制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1522::0", "zh": ["确定给定 URI 是否表示默认命名空间。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeanDefinitionParserDelegate.java::1529::0", "zh": ["确定给定节点是否表示默认命名空间。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeansDtdResolver.java::31::0", "zh": ["用于 Spring beans DTD 的 {@link EntityResolver} 实现，从 Spring 类路径（或 JAR 文件）加载 DTD。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/BeansDtdResolver.java::31::1", "zh": ["<p>从类路径资源 “/org/springframework/beans/factory/xml/spring-beans.dtd” 获取 “spring-beans.dtd”，无论它是以包含 “spring-beans” 的某个本地 URL 形式指定，还是以“https://www.springframework.org/dtd/spring-beans-2.0.dtd” 形式指定。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::42::0", "zh": ["{@link BeanDefinitionDocumentReader} 接口的默认实现，按照 “spring-beans” DTD 和 XSD 格式（Spring 默认的 XML Bean 定义格式）读取 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::42::1", "zh": ["<p>所需 XML 文档的结构、元素和属性名称都硬编码在此类中。（当然，如有必要，可以运行转换来生成这种格式）。{@code <beans>} 不必是 XML 文档的根元素：此类会解析 XML 文件中的所有 Bean 定义元素，而不管实际的根元素是什么。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::87::0", "zh": ["此实现按照 “spring-beans” XSD（或历史上的 DTD）解析 Bean 定义。<p>打开 DOM Document；然后初始化在 {@code <beans/>} 级别指定的默认设置；接着解析其中包含的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::99::0", "zh": ["返回此解析器所处理的 XML 资源的描述符。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::107::0", "zh": ["调用 {@link org.springframework.beans.factory.parsing.SourceExtractor}，从所提供的 {@link Element} 中提取源元数据。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::117::0", "zh": ["在给定的根 {@code <beans/>} 元素中注册每个 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::163::0", "zh": ["解析文档根级别的元素：“import”、“alias”、“bean”。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::205::0", "zh": ["解析 “import” 元素，并将给定资源中的 Bean 定义加载到 Bean 工厂中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::274::0", "zh": ["处理给定的 alias 元素，向注册表注册该别名。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::301::0", "zh": ["处理给定的 bean 元素，解析 Bean 定义并将其注册到注册表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::323::0", "zh": ["允许处理任意自定义元素类型来扩展 XML，且在处理 Bean 定义之前进行。此方法是任何其他自定义 XML 预处理的自然扩展点。<p>默认实现为空。例如，子类可以覆盖此方法，将自定义元素转换为标准的 Spring Bean 定义。实现者可以通过相应的访问器访问解析器的 Bean 定义读取器和底层 XML 资源。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultBeanDefinitionDocumentReader.java::336::0", "zh": ["允许处理任意自定义元素类型来扩展 XML，且在处理完 Bean 定义之后进行。此方法是任何其他自定义 XML 后处理的自然扩展点。<p>默认实现为空。例如，子类可以覆盖此方法，将自定义元素转换为标准的 Spring Bean 定义。实现者可以通过相应的访问器访问解析器的 Bean 定义读取器和底层 XML 资源。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::33::0", "zh": ["Spring 默认的 {@link DocumentLoader} 实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::33::1", "zh": ["<p>使用标准 JAXP 配置的 XML 解析器简单地加载 {@link Document documents}。如果要更改用于加载文档的 {@link DocumentBuilder}，一种策略是在启动 JVM 时定义相应的 Java 系统属性。例如，要使用 Oracle {@link DocumentBuilder}，可以按如下方式启动应用："]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::50::0", "zh": ["用于配置验证所用 schema 语言的 JAXP 属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::55::0", "zh": ["表示 XSD schema 语言的 JAXP 属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::64::0", "zh": ["使用标准 JAXP 配置的 XML 解析器，加载位于所提供 {@link InputSource} 处的 {@link Document}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::80::0", "zh": ["创建 {@link DocumentBuilderFactory} 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultDocumentLoader.java::116::0", "zh": ["创建一个 JAXP DocumentBuilder，此 Bean 定义读取器将用它解析 XML 文档。可以在子类中覆盖，以添加对 builder 的进一步初始化。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::35::0", "zh": ["{@link NamespaceHandlerResolver} 接口的默认实现。基于映射文件中包含的映射关系将命名空间 URI 解析为实现类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::35::1", "zh": ["<p>默认情况下，此实现在 {@code META-INF/spring.handlers} 处查找映射文件，但可以使用 {@link #DefaultNamespaceHandlerResolver(ClassLoader, String)} 构造函数进行更改。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::52::0", "zh": ["查找映射文件的位置。可以存在于多个 JAR 文件中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::73::0", "zh": ["使用默认映射文件位置创建一个新的 {@code DefaultNamespaceHandlerResolver}。<p>此构造函数将使用线程上下文 ClassLoader 来加载资源。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::84::0", "zh": ["使用默认映射文件位置创建一个新的 {@code DefaultNamespaceHandlerResolver}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::95::0", "zh": ["使用所提供的映射文件位置创建一个新的 {@code DefaultNamespaceHandlerResolver}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::109::0", "zh": ["根据配置的映射关系，为所提供的命名空间 URI 定位 {@link NamespaceHandler}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DefaultNamespaceHandlerResolver.java::150::0", "zh": ["延迟加载指定的 NamespaceHandler 映射。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DelegatingEntityResolver.java::28::0", "zh": ["将调用委托给 {@link BeansDtdResolver} 和 {@link PluggableSchemaResolver} 的 {@link EntityResolver} 实现，二者分别用于 DTD 和 XML schema。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DelegatingEntityResolver.java::53::0", "zh": ["创建一个新的 DelegatingEntityResolver，它委托给默认的 {@link BeansDtdResolver} 和默认的 {@link PluggableSchemaResolver}。<p>使用所提供的 {@link ClassLoader} 配置 {@link PluggableSchemaResolver}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DelegatingEntityResolver.java::66::0", "zh": ["创建一个新的 DelegatingEntityResolver，它委托给给定的 {@link EntityResolver EntityResolvers}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::22::0", "zh": ["简单的 JavaBean，用于保存在标准 Spring XML Bean 定义文档中 {@code <beans>} 级别指定的默认值：{@code default-lazy-init}、{@code default-autowire} 等。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::54::0", "zh": ["为当前正在解析的文档设置默认的 lazy-init 标志。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::61::0", "zh": ["返回当前正在解析的文档的默认 lazy-init 标志。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::69::0", "zh": ["为当前正在解析的文档设置默认的 merge 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::76::0", "zh": ["返回当前正在解析的文档的默认 merge 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::84::0", "zh": ["为当前正在解析的文档设置默认的 autowire 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::91::0", "zh": ["返回当前正在解析的文档的默认 autowire 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::99::0", "zh": ["为当前正在解析的文档设置默认的 autowire-candidate 模式。也接受逗号分隔的模式列表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::107::0", "zh": ["返回当前正在解析的文档的默认 autowire-candidate 模式。也可能返回逗号分隔的模式列表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::116::0", "zh": ["为当前正在解析的文档设置默认的 init-method 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::123::0", "zh": ["返回当前正在解析的文档的默认 init-method 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::131::0", "zh": ["为当前正在解析的文档设置默认的 destroy-method 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::138::0", "zh": ["返回当前正在解析的文档的默认 destroy-method 设置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentDefaultsDefinition.java::146::0", "zh": ["为此元数据元素设置配置源 {@code Object}。<p>该对象的确切类型取决于所使用的配置机制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentLoader.java::24::0", "zh": ["用于加载 XML {@link Document} 的策略接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/DocumentLoader.java::33::0", "zh": ["从所提供的 {@link InputSource source} 加载 {@link Document document}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::26::0", "zh": ["由 {@link DefaultBeanDefinitionDocumentReader} 使用的基础接口，用于处理 Spring XML 配置文件中的自定义命名空间。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::26::1", "zh": ["<p>实现类应为自定义顶层标签返回 {@link BeanDefinitionParser} 接口的实现，为自定义嵌套标签返回 {@link BeanDefinitionDecorator} 接口的实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::26::2", "zh": ["<p>解析器在遇到位于 {@code <beans>} 标签正下方的自定义标签时会调用 {@link #parse}，在遇到位于 {@code <bean>} 标签正下方的自定义标签时会调用 {@link #decorate}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::26::3", "zh": ["<p>编写自己自定义元素扩展的开发者通常不会直接实现此接口，而是使用所提供的 {@link NamespaceHandlerSupport} 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::51::0", "zh": ["由 {@link DefaultBeanDefinitionDocumentReader} 在构造之后、解析任何自定义元素之前调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::58::0", "zh": ["解析指定的 {@link Element}，并将任何产生的 {@link BeanDefinition BeanDefinitions} 注册到嵌入在所提供 {@link ParserContext} 中的 {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}。<p>如果实现希望被嵌套使用（例如）在 {@code <property>} 标签内，则应返回解析阶段产生的主 {@code BeanDefinition}。<p>如果实现<strong>不会</strong>用于嵌套场景，则可以返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandler.java::75::0", "zh": ["解析指定的 {@link Node} 并装饰所提供的 {@link BeanDefinitionHolder}，返回装饰后的定义。<p>根据正在解析的是自定义属性还是元素，{@link Node} 可以是 {@link org.w3c.dom.Attr} 或 {@link Element}。<p>实现可以选择返回一个全新的定义，它将替换 {@link org.springframework.beans.factory.BeanFactory} 中的原始定义。<p>所提供的 {@link ParserContext} 可用于注册支持主定义所需的任何附加 bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerResolver.java::21::0", "zh": ["由 {@link org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader} 使用，为特定命名空间 URI 定位 {@link NamespaceHandler} 实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerResolver.java::33::0", "zh": ["解析命名空间 URI 并返回定位到的 {@link NamespaceHandler} 实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::30::0", "zh": ["用于实现自定义 {@link NamespaceHandler NamespaceHandlers} 的支持类。单个 {@link Node Nodes} 的解析和装饰分别通过 {@link BeanDefinitionParser} 和 {@link BeanDefinitionDecorator} 策略接口完成。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::30::1", "zh": ["<p>提供 {@link #registerBeanDefinitionParser} 和 {@link #registerBeanDefinitionDecorator} 方法，用于注册处理特定元素的 {@link BeanDefinitionParser} 或 {@link BeanDefinitionDecorator}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::47::0", "zh": ["存储 {@link BeanDefinitionParser} 实现，以其所处理的 {@link Element Elements} 的本地名称作为键。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::53::0", "zh": ["存储 {@link BeanDefinitionDecorator} 实现，以其所处理的 {@link Element Elements} 的本地名称作为键。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::59::0", "zh": ["存储 {@link BeanDefinitionDecorator} 实现，以其所处理的 {@link Attr Attrs} 的本地名称作为键。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::66::0", "zh": ["通过委托给为该 {@link Element} 注册的 {@link BeanDefinitionParser} 来解析所提供的 {@link Element}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::77::0", "zh": ["使用所提供 {@link Element} 的本地名称，从已注册的实现中定位 {@link BeanDefinitionParser}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::92::0", "zh": ["通过委托给注册用于处理该 {@link Node} 的 {@link BeanDefinitionDecorator} 来装饰所提供的 {@link Node}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::105::0", "zh": ["使用所提供 {@link Node} 的本地名称，从已注册的实现中定位 {@link BeanDefinitionParser}。同时支持 {@link Element Elements} 和 {@link Attr Attrs}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::132::0", "zh": ["子类可以调用此方法注册所提供的 {@link BeanDefinitionParser} 以处理指定的元素。元素名称是本地名称（不带命名空间限定）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::141::0", "zh": ["子类可以调用此方法注册所提供的 {@link BeanDefinitionDecorator} 以处理指定的元素。元素名称是本地名称（不带命名空间限定）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/NamespaceHandlerSupport.java::150::0", "zh": ["子类可以调用此方法注册所提供的 {@link BeanDefinitionDecorator} 以处理指定的属性。属性名称是本地名称（不带命名空间限定）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/ParserContext.java::30::0", "zh": ["在 Bean 定义解析过程中传递的上下文，封装了所有相关配置和状态。嵌套在 {@link XmlReaderContext} 中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::37::0", "zh": ["尝试使用一组映射文件将 schema URL 解析为本地 {@link ClassPathResource classpath resources} 的 {@link EntityResolver} 实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::37::1", "zh": ["<p>默认情况下，此类将使用模式 {@code META-INF/spring.schemas} 在类路径中查找映射文件，允许类路径上同时存在多个文件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::37::2", "zh": ["<p>{@code META-INF/spring.schemas} 的格式是属性文件，其中每一行的形式应为 {@code systemId=schema-location}，其中 {@code schema-location} 也应是类路径中的 schema 文件。由于 {@code systemId} 通常是 URL，必须小心转义任何在属性文件中被视为分隔符的 “:” 字符。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::37::3", "zh": ["<p>映射文件的模式可以使用 {@link #PluggableSchemaResolver(ClassLoader, String)} 构造函数覆盖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::60::0", "zh": ["定义 schema 映射的文件位置。可以存在于多个 JAR 文件中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::79::0", "zh": ["使用默认映射文件模式 “META-INF/spring.schemas” 加载 schema URL &rarr; schema 文件位置的映射。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::91::0", "zh": ["使用给定的映射文件模式加载 schema URL &rarr; schema 文件位置的映射。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/PluggableSchemaResolver.java::144::0", "zh": ["延迟加载指定的 schema 映射。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/ResourceEntityResolver.java::33::0", "zh": ["尝试通过 {@link org.springframework.core.io.ResourceLoader}（通常是相对于 {@code ApplicationContext} 的资源基址）解析实体引用的 {@code EntityResolver} 实现（如果适用）。扩展 {@link DelegatingEntityResolver} 以同时提供 DTD 和 XSD 查找。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/ResourceEntityResolver.java::33::1", "zh": ["<p>允许使用标准 XML 实体将 XML 片段包含到应用上下文定义中，例如将大型 XML 文件拆分为多个模块。包含路径可以像往常一样相对于应用上下文的资源基址，而不是相对于 JVM 工作目录（XML 解析器的默认值）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/ResourceEntityResolver.java::33::2", "zh": ["<p>注意：除相对路径外，指定当前系统根目录（即 JVM 工作目录）中文件的每个 URL 也将相对于应用上下文进行解释。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/ResourceEntityResolver.java::61::0", "zh": ["为指定的 ResourceLoader（通常是 ApplicationContext）创建一个 ResourceEntityResolver。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimpleConstructorNamespaceHandler.java::34::0", "zh": ["简单的 {@code NamespaceHandler} 实现，将自定义属性直接映射到 Bean 属性。需要注意的重要一点是，此 {@code NamespaceHandler} 没有对应的 schema，因为无法预先知道所有可能的属性名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimpleConstructorNamespaceHandler.java::34::1", "zh": ["<p>下面展示了此 {@code NamespaceHandler} 的用法示例："]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimpleConstructorNamespaceHandler.java::34::2", "zh": ["这里的 '{@code c:name}' 直接对应于类 '{@code TestBean}' 的构造函数上声明的 '{@code name}' 参数。'{@code c:work-ref}' 属性对应于 '{@code work}' 参数，并且它不是具体值，而是包含将被视为参数的 bean 的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimpleConstructorNamespaceHandler.java::34::3", "zh": ["<b>Note</b>：此实现只支持命名参数，不支持索引或类型。此外，这些名称被容器用作提示，容器默认会执行类型内省。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimplePropertyNamespaceHandler.java::30::0", "zh": ["简单的 {@code NamespaceHandler} 实现，将自定义属性直接映射到 Bean 属性。需要注意的重要一点是，此 {@code NamespaceHandler} 没有对应的 schema，因为无法预先知道所有可能的属性名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimplePropertyNamespaceHandler.java::30::1", "zh": ["<p>下面展示了此 {@code NamespaceHandler} 的用法示例："]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/SimplePropertyNamespaceHandler.java::30::2", "zh": ["这里的 '{@code p:name}' 直接对应于类 '{@code TestBean}' 上的 '{@code name}' 属性。'{@code p:spouse-ref}' 属性对应于 '{@code spouse}' 属性，并且它不是具体值，而是包含将被注入到该属性中的 bean 的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/xml/UtilNamespaceHandler.java::36::0", "zh": ["{@code util} 命名空间的 {@link NamespaceHandler}。"]}

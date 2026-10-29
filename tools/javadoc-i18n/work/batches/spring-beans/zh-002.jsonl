@@ -1,0 +1,109 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::28::0", "zh": "用于根据可配置的距离计算属性匹配的辅助类。提供潜在匹配的列表以及生成错误消息的简便方式。既适用于 Java Bean 属性，也适用于字段。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::28::1", "zh": "<p>主要供框架内部使用，特别是绑定设施。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::51::0", "zh": "为给定的 Bean 属性创建 PropertyMatches。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::60::0", "zh": "为给定的 Bean 属性创建 PropertyMatches。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::70::0", "zh": "为给定的字段属性创建 PropertyMatches。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::79::0", "zh": "为给定的字段属性创建 PropertyMatches。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::97::0", "zh": "为给定的属性及可能的匹配创建新的 PropertyMatches 实例。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::106::0", "zh": "返回所请求属性的名称。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::113::0", "zh": "返回计算出的可能匹配。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::120::0", "zh": "为给定的无效属性名构建错误消息，并指出可能的属性匹配。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::144::0", "zh": "根据 Levenshtein 算法计算给定的两个字符串之间的距离。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyMatches.java::195::0", "zh": "为给定的属性和类生成可能的属性备选名称。内部使用 {@code getStringDistance} 方法，该方法进而使用 Levenshtein 算法确定两个字符串之间的距离。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::25::0", "zh": "用于保存单个 Bean 属性的信息和值的对象。在此使用对象，而不是简单地将所有属性存储在按属性名索引的 Map 中，可以获得更大的灵活性，并能以优化的方式处理索引属性等。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::25::1", "zh": "<p>请注意，该值不必是最终所需的类型：{@link BeanWrapper} 实现应负责完成任何必要的转换，因为此对象对其将应用到的对象一无所知。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::66::0", "zh": "创建新的 PropertyValue 实例。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::77::0", "zh": "复制构造函数。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::94::0", "zh": "为原始值持有者暴露新值的构造函数。原始持有者将作为新持有者的源暴露。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::112::0", "zh": "返回属性的名称。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::119::0", "zh": ["返回属性的值。", "<p>请注意，此处<i>不会</i>进行类型转换。执行类型转换是 BeanWrapper 实现的职责。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::130::0", "zh": "返回此值持有者对应的原始 PropertyValue 实例。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::145::0", "zh": "设置此值是否为可选值，即当目标类上不存在对应属性时忽略该值。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::154::0", "zh": "返回此值是否为可选值，即当目标类上不存在对应属性时是否忽略该值。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::163::0", "zh": "返回此持有者是否已包含转换后的值（{@code true}），还是该值仍需转换（{@code false}）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::171::0", "zh": "在处理完类型转换之后设置此属性值的转换后值。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValue.java::180::0", "zh": "在处理完类型转换之后返回此属性值的转换后值。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::28::0", "zh": "包含一个或多个 {@link PropertyValue} 对象的持有者，通常表示对某个特定目标 Bean 的一次更新。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::39::0", "zh": "返回遍历属性值的 {@link Iterator}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::48::0", "zh": "返回遍历属性值的 {@link Spliterator}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::57::0", "zh": "返回包含属性值的顺序 {@link Stream}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::65::0", "zh": "返回此对象中所持有 PropertyValue 对象的数组。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::70::0", "zh": "返回具有给定名称的属性值（如果有）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::78::0", "zh": "返回相对于前一个 PropertyValues 的变更。子类还应重写 {@code equals}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::88::0", "zh": "此属性是否存在属性值（或其他处理项）？"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValues.java::95::0", "zh": "此持有者是否完全不包含任何 PropertyValue 对象？"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValuesEditor.java::24::0", "zh": "用于 {@link PropertyValues} 对象的 {@link java.beans.PropertyEditor Editor}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValuesEditor.java::24::1", "zh": "<p>所需格式在 {@link java.util.Properties} 文档中定义。每个属性必须单独占一行。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/PropertyValuesEditor.java::24::2", "zh": "<p>当前的实现底层依赖于 {@link org.springframework.beans.propertyeditors.PropertiesEditor}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/SimpleBeanInfoFactory.java::29::0", "zh": "绕过标准 {@link java.beans.Introspector} 以加快内省的 {@link BeanInfoFactory} 实现，其功能缩减为基本的属性判定（Spring 中通常所需的程度）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/SimpleBeanInfoFactory.java::29::1", "zh": ["<p>可通过内容如下的 {@code META-INF/spring.factories} 文件进行配置，以覆盖其他自定义的 {@code org.springframework.beans.BeanInfoFactory} 声明：", "{@code org.springframework.beans.BeanInfoFactory=org.springframework.beans.SimpleBeanInfoFactory}"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/SimpleBeanInfoFactory.java::29::2", "zh": "<p>排序值为 {@code Ordered.LOWEST_PRECEDENCE - 1}，以便在必要时覆盖 {@link ExtendedBeanInfoFactory}（5.3 中默认注册），同时仍允许其他用户自定义的 {@link BeanInfoFactory} 类型优先。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/SimpleTypeConverter.java::19::0", "zh": "{@link TypeConverter} 接口的简单实现，不针对特定的目标对象进行操作。对于任意类型转换需求，它是使用完整的 BeanWrapperImpl 实例的替代方案，同时底层使用完全相同的转换算法（包括委托给 {@link java.beans.PropertyEditor} 和 {@link org.springframework.core.convert.ConversionService}）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/SimpleTypeConverter.java::19::1", "zh": "<p><b>注意：</b>由于依赖于 {@link java.beans.PropertyEditor PropertyEditors}，SimpleTypeConverter <em>不是</em>线程安全的。请为每个线程使用单独的实例。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverter.java::25::0", "zh": "定义类型转换方法的接口。通常（但并非必须）与 {@link PropertyEditorRegistry} 接口配合实现。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverter.java::25::1", "zh": "<p><b>注意：</b>由于 TypeConverter 实现通常基于并非线程安全的 {@link java.beans.PropertyEditor PropertyEditors}，因此 TypeConverter 本身也<em>不应</em>被视为线程安全。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverter.java::40::0", "zh": ["将值转换为所需的类型（如有必要，从 String 转换）。", "<p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或 ConversionService 中的 Spring Converter。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverter.java::57::0", "zh": ["将值转换为所需的类型（如有必要，从 String 转换）。", "<p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或 ConversionService 中的 Spring Converter。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverter.java::77::0", "zh": ["将值转换为所需的类型（如有必要，从 String 转换）。", "<p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或 ConversionService 中的 Spring Converter。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverter.java::97::0", "zh": ["将值转换为所需的类型（如有必要，从 String 转换）。", "<p>从 String 到任意类型的转换通常使用 PropertyEditor 类的 {@code setAsText} 方法，或 ConversionService 中的 Spring Converter。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::42::0", "zh": "用于将属性值转换为目标类型的内部辅助类。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::42::1", "zh": "<p>基于给定的 {@link PropertyEditorRegistrySupport} 实例工作。由 {@link BeanWrapperImpl} 和 {@link SimpleTypeConverter} 用作委托。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::65::0", "zh": "为给定的编辑器注册表创建新的 TypeConverterDelegate。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::73::0", "zh": "为给定的编辑器注册表和 Bean 实例创建新的 TypeConverterDelegate。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::84::0", "zh": "将值转换为指定属性所需的类型。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::101::0", "zh": "将值转换为指定属性所需的类型（如有必要，从 String 转换）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::324::0", "zh": "为给定类型查找默认编辑器。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::343::0", "zh": "使用给定的属性编辑器将值转换为所需的类型（如有必要，从 String 转换）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java::412::0", "zh": "使用给定的属性编辑器转换给定的文本值。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeConverterSupport.java::28::0", "zh": "{@link TypeConverter} 接口的基础实现，使用包级私有的委托。主要用作 {@link BeanWrapperImpl} 的基类。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::25::0", "zh": "尝试设置 Bean 属性时发生类型不匹配所抛出的异常。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::34::0", "zh": "类型不匹配错误将注册到的错误码。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::50::0", "zh": "创建新的 {@code TypeMismatchException}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::59::0", "zh": "创建新的 {@code TypeMismatchException}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::81::0", "zh": "创建不带 {@code PropertyChangeEvent} 的新的 {@code TypeMismatchException}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::91::0", "zh": "创建不带 {@code PropertyChangeEvent} 的新的 {@code TypeMismatchException}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::107::0", "zh": "初始化此异常的属性名，以便通过 {@link #getPropertyName()} 暴露，作为通过 {@link PropertyChangeEvent} 初始化的替代方式。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::120::0", "zh": "返回受影响的属性名（如果可用）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::129::0", "zh": "返回引起问题的值（可能为 {@code null}）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/TypeMismatchException.java::138::0", "zh": "返回所需的目标类型（如果有）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/package-info.java::1::0", "zh": "此包包含用于操作 Java Bean 的接口和类。它被大多数其他 Spring 包所使用。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/package-info.java::1::1", "zh": "<p>可以使用 BeanWrapper 对象单个或批量地设置和获取 Bean 属性。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/package-info.java::1::2", "zh": "<p>此包中的类在 Rod Johnson 所著 <a href=\"https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/\">Expert One-On-One J2EE Design and Development</a>（Wrox，2002）第 11 章中讨论。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/annotation/AnnotationBeanUtils.java::32::0", "zh": "以 JavaBeans 风格处理注解的通用工具方法。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/annotation/AnnotationBeanUtils.java::43::0", "zh": "将所提供 {@link Annotation} 的属性复制到所提供目标 Bean。在 {@code excludedProperties} 中定义的任何属性都不会被复制。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/annotation/AnnotationBeanUtils.java::55::0", "zh": ["将所提供 {@link Annotation} 的属性复制到所提供目标 Bean。在 {@code excludedProperties} 中定义的任何属性都不会被复制。", "<p>例如，指定的值解析器可以解析属性值中的占位符。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/annotation/package-info.java::1::0", "zh": "用于以 Bean 风格处理注解的支持包。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/Aware.java::19::0", "zh": "一个标记父接口，表示 Bean 有资格通过回调风格的方法被 Spring 容器告知某个特定的框架对象。实际的方法签名由各个子接口决定，但通常应仅包含一个接受单个参数的 void 返回方法。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/Aware.java::19::1", "zh": "<p>请注意，仅实现 {@link Aware} 并不会提供任何默认功能。相反，必须显式进行处理，例如在 {@link org.springframework.beans.factory.config.BeanPostProcessor} 中。关于处理特定 {@code *Aware} 接口回调的示例，请参阅 {@link org.springframework.context.support.ApplicationContextAwareProcessor}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanClassLoaderAware.java::19::0", "zh": "允许 Bean 感知 Bean {@link ClassLoader class loader} 的回调；即当前 Bean 工厂用于加载 Bean 类的类加载器。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanClassLoaderAware.java::19::1", "zh": "<p>这主要适用于那些必须按名称获取应用类、而自身可能从共享类加载器加载的框架类来实现。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanClassLoaderAware.java::19::2", "zh": "<p>有关所有 Bean 生命周期方法的列表，请参阅 {@link BeanFactory BeanFactory javadocs}。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanClassLoaderAware.java::40::0", "zh": ["向 Bean 实例提供 Bean {@link ClassLoader class loader} 的回调。", "<p>在填充普通 Bean 属性<i>之后</i>、但在初始化回调（如 {@link InitializingBean InitializingBean's} 的 {@link InitializingBean#afterPropertiesSet()} 方法或自定义 init-method）<i>之前</i>调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::28::0", "zh": "当 BeanFactory 尝试根据 Bean 定义创建 Bean 时遇到错误所抛出的异常。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::47::0", "zh": "创建新的 BeanCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::57::0", "zh": "创建新的 BeanCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::68::0", "zh": "创建新的 BeanCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::79::0", "zh": "创建新的 BeanCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::90::0", "zh": "创建新的 BeanCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::105::0", "zh": "创建新的 BeanCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::119::0", "zh": "返回 Bean 定义所来自资源的描述（如果有）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::128::0", "zh": "返回所请求的 Bean 名称（如果有）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::136::0", "zh": "为此 Bean 创建异常添加一个相关原因，它不是失败的直接原因，而是在同一 Bean 实例的创建过程中更早发生的。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationException.java::149::0", "zh": "返回相关原因（如果有）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationNotAllowedException.java::19::0", "zh": "在 Bean 创建当前不被允许（例如在 Bean 工厂的关闭阶段）却仍请求 Bean 的情况下抛出的异常。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCreationNotAllowedException.java::30::0", "zh": "创建新的 BeanCreationNotAllowedException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCurrentlyInCreationException.java::19::0", "zh": "在引用当前正在创建中的 Bean 时抛出的异常。通常发生在构造器自动装配匹配到当前正在构造的 Bean 时。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCurrentlyInCreationException.java::29::0", "zh": "创建新的 BeanCurrentlyInCreationException，并带有指示循环引用的默认错误消息。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanCurrentlyInCreationException.java::39::0", "zh": "创建新的 BeanCurrentlyInCreationException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::22::0", "zh": "当 BeanFactory 遇到无效的 Bean 定义时抛出的异常：例如 Bean 元数据不完整或自相矛盾的情况。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::40::0", "zh": "创建新的 BeanDefinitionStoreException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::50::0", "zh": "创建新的 BeanDefinitionStoreException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::61::0", "zh": "创建新的 BeanDefinitionStoreException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::72::0", "zh": "创建新的 BeanDefinitionStoreException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::84::0", "zh": "创建新的 BeanDefinitionStoreException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::95::0", "zh": "创建新的 BeanDefinitionStoreException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::113::0", "zh": "返回 Bean 定义所来自资源的描述（如果可用）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanDefinitionStoreException.java::121::0", "zh": "返回 Bean 的名称（如果可用）。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanExpressionException.java::21::0", "zh": "表示表达式求值尝试失败的异常。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanExpressionException.java::30::0", "zh": "使用指定的消息创建新的 BeanExpressionException。"}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/BeanExpressionException.java::38::0", "zh": "使用指定的消息和根本原因创建新的 BeanExpressionException。"}

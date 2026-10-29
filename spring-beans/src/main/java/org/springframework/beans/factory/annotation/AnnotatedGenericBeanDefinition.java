@@ -24,15 +24,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition}
- * class, adding support for annotation metadata exposed through the
- * {@link AnnotatedBeanDefinition} interface.
+ * {@link org.springframework.beans.factory.support.GenericBeanDefinition} 类的扩展，增加了对通过
+ * {@link AnnotatedBeanDefinition} 接口暴露的注解元数据的支持。
  *
- * <p>This GenericBeanDefinition variant is mainly useful for testing code that expects
- * to operate on an AnnotatedBeanDefinition, for example strategy implementations
- * in Spring's component scanning support (where the default definition class is
- * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition},
- * which also implements the AnnotatedBeanDefinition interface).
+ * <p>此 GenericBeanDefinition 变体主要用于测试那些期望操作 AnnotatedBeanDefinition 的代码，例如
+ * Spring 组件扫描支持中的策略实现（其中的默认定义类是
+ * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition}，它也实现了
+ * AnnotatedBeanDefinition 接口）。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -50,7 +48,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 
 
 	/**
-	 * Create a new AnnotatedGenericBeanDefinition for the given bean class.
+	 * 为给定的 Bean 类创建一个新的 AnnotatedGenericBeanDefinition。
 	 * @param beanClass the loaded bean class
 	 */
 	public AnnotatedGenericBeanDefinition(Class<?> beanClass) {
@@ -59,12 +57,10 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	}
 
 	/**
-	 * Create a new AnnotatedGenericBeanDefinition for the given annotation metadata,
-	 * allowing for ASM-based processing and avoidance of early loading of the bean class.
-	 * Note that this constructor is functionally equivalent to
-	 * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition
-	 * ScannedGenericBeanDefinition}, however the semantics of the latter indicate that a
-	 * bean was discovered specifically via component-scanning as opposed to other means.
+	 * 为给定的注解元数据创建一个新的 AnnotatedGenericBeanDefinition，从而支持基于 ASM 的处理并避免过早
+	 * 加载 Bean 类。请注意，该构造器在功能上等同于
+	 * {@link org.springframework.context.annotation.ScannedGenericBeanDefinition ScannedGenericBeanDefinition}，
+	 * 但后者的语义表明某个 Bean 是通过组件扫描而非其他方式专门发现的。
 	 * @param metadata the annotation metadata for the bean class in question
 	 * @since 3.1.1
 	 */
@@ -80,8 +76,8 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 	}
 
 	/**
-	 * Create a new AnnotatedGenericBeanDefinition for the given annotation metadata,
-	 * based on an annotated class and a factory method on that class.
+	 * 基于带注解的类及该类上的工厂方法，为给定的注解元数据创建一个新的 AnnotatedGenericBeanDefinition。
+	 *
 	 * @param metadata the annotation metadata for the bean class in question
 	 * @param factoryMethodMetadata metadata for the selected factory method
 	 * @since 4.1.1

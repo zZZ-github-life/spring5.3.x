@@ -21,13 +21,12 @@ import java.io.IOException;
 import javax.xml.transform.Result;
 
 /**
- * Defines the contract for Object XML Mapping Marshallers. Implementations of this interface
- * can serialize a given Object to an XML Stream.
+ * 定义对象 XML 映射（Object XML Mapping）marshaller 的契约。此接口的实现类
+ * 可以将给定对象序列化为 XML 流。
  *
- * <p>Although the {@code marshal} method accepts a {@code java.lang.Object} as its
- * first parameter, most {@code Marshaller} implementations cannot handle arbitrary
- * {@code Object}s. Instead, an object class must be registered with the marshaller,
- * or have a common base class.
+ * <p>尽管 {@code marshal} 方法以 {@code java.lang.Object} 作为第一个参数，
+ * 但大多数 {@code Marshaller} 实现无法处理任意 {@code Object}。相反，必须将
+ * 对象类注册到 marshaller，或者让其具有共同的基类。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -36,7 +35,7 @@ import javax.xml.transform.Result;
 public interface Marshaller {
 
 	/**
-	 * Indicate whether this marshaller can marshal instances of the supplied type.
+	 * 指示此 marshaller 是否能够 marshal 所提供类型的实例。
 	 * @param clazz the class that this marshaller is being asked if it can marshal
 	 * @return {@code true} if this marshaller can indeed marshal instances of the supplied class;
 	 * {@code false} otherwise
@@ -44,7 +43,7 @@ public interface Marshaller {
 	boolean supports(Class<?> clazz);
 
 	/**
-	 * Marshal the object graph with the given root into the provided {@link Result}.
+	 * 将给定根对象的对象图 marshal 到所提供的 {@link Result} 中。
 	 * @param graph the root of the object graph to marshal
 	 * @param result the result to marshal to
 	 * @throws IOException if an I/O error occurs

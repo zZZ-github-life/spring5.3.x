@@ -1,6 +1,5 @@
 /**
- * Server-side support classes including container-specific strategies
- * for upgrading a request.
+ * 服务器端支持类，包括用于升级请求的容器特定策略。
  */
 @NonNullApi
 @NonNullFields

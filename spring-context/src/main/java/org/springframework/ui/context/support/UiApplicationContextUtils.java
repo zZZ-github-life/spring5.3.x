@@ -24,9 +24,8 @@ import org.springframework.ui.context.HierarchicalThemeSource;
 import org.springframework.ui.context.ThemeSource;
 
 /**
- * Utility class for UI application context implementations.
- * Provides support for a special bean named "themeSource",
- * of type {@link org.springframework.ui.context.ThemeSource}.
+ * UI 应用上下文实现的工具类。为名为 "themeSource"、类型为
+ * {@link org.springframework.ui.context.ThemeSource} 的特殊 Bean 提供支持。
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
@@ -35,8 +34,7 @@ import org.springframework.ui.context.ThemeSource;
 public abstract class UiApplicationContextUtils {
 
 	/**
-	 * Name of the ThemeSource bean in the factory.
-	 * If none is supplied, theme resolution is delegated to the parent.
+	 * 工厂中 ThemeSource Bean 的名称。如果未提供，则主题解析将委托给父级。
 	 * @see org.springframework.ui.context.ThemeSource
 	 */
 	public static final String THEME_SOURCE_BEAN_NAME = "themeSource";
@@ -46,9 +44,8 @@ public abstract class UiApplicationContextUtils {
 
 
 	/**
-	 * Initialize the ThemeSource for the given application context,
-	 * autodetecting a bean with the name "themeSource". If no such
-	 * bean is found, a default (empty) ThemeSource will be used.
+	 * 为给定应用上下文初始化 ThemeSource，自动检测名为 "themeSource" 的 Bean。如果未找到此类 Bean，将
+	 * 使用默认的（空）ThemeSource。
 	 * @param context current application context
 	 * @return the initialized theme source (will never be {@code null})
 	 * @see #THEME_SOURCE_BEAN_NAME

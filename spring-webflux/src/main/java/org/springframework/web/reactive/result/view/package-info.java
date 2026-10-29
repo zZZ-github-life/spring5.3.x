@@ -1,5 +1,5 @@
 /**
- * Support for result handling through view resolution.
+ * 通过视图解析支持结果处理。
  */
 @NonNullApi
 @NonNullFields

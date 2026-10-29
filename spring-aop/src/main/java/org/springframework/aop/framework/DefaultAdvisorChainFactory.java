@@ -35,9 +35,8 @@ import org.springframework.aop.framework.adapter.GlobalAdvisorAdapterRegistry;
 import org.springframework.lang.Nullable;
 
 /**
- * A simple but definitive way of working out an advice chain for a Method,
- * given an {@link Advised} object. Always rebuilds each advice chain;
- * caching can be provided by subclasses.
+ * 在给定 {@link Advised} 对象的情况下，为某个 Method 算出通知链的一种简单而确定的方式。每次都会重
+ * 新构建通知链；缓存可由子类提供。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -107,7 +106,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 	}
 
 	/**
-	 * Determine whether the Advisors contain matching introductions.
+	 * 确定各 Advisor 是否包含匹配的引介。
 	 */
 	private static boolean hasMatchingIntroductions(Advisor[] advisors, Class<?> actualClass) {
 		for (Advisor advisor : advisors) {

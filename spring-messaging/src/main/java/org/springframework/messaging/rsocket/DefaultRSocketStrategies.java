@@ -43,7 +43,7 @@ import org.springframework.util.RouteMatcher;
 import org.springframework.util.SimpleRouteMatcher;
 
 /**
- * Default implementation of {@link RSocketStrategies}.
+ * {@link RSocketStrategies} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -109,7 +109,7 @@ final class DefaultRSocketStrategies implements RSocketStrategies {
 
 
 	/**
-	 * Default implementation of {@link RSocketStrategies.Builder}.
+	 * {@link RSocketStrategies.Builder} 的默认实现。
 	 */
 	static class DefaultRSocketStrategiesBuilder implements RSocketStrategies.Builder {
 

@@ -23,9 +23,9 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Additional interface that a {@link HandlerMapping} can implement to expose
- * a request matching API aligned with its internal request matching
- * configuration and implementation.
+ * 附加接口，{@link HandlerMapping} 可以实现此接口，以暴露
+ * 与其内部请求匹配配置和实现相一致的请求匹配
+ * API。
  *
  * @author Rossen Stoyanchev
  * @since 4.3.1
@@ -34,8 +34,8 @@ import org.springframework.web.util.pattern.PathPatternParser;
 public interface MatchableHandlerMapping extends HandlerMapping {
 
 	/**
-	 * Return the parser of this {@code HandlerMapping}, if configured in which
-	 * case pre-parsed patterns are used.
+	 * 返回此 {@code HandlerMapping} 的解析器（如果已配置），
+	 * 在这种情况下会使用预先解析的模式。
 	 * @since 5.3
 	 */
 	@Nullable
@@ -44,9 +44,9 @@ public interface MatchableHandlerMapping extends HandlerMapping {
 	}
 
 	/**
-	 * Determine whether the request matches the given pattern. Use this method
-	 * when {@link #getPatternParser()} returns {@code null} which means that the
-	 * {@code HandlerMapping} is using String pattern matching.
+	 * 确定请求是否匹配给定模式。当 {@link #getPatternParser()}
+	 * 返回 {@code null}（表示 {@code HandlerMapping} 正在使用字符串
+	 * 模式匹配）时，请使用此方法。
 	 * @param request the current request
 	 * @param pattern the pattern to match
 	 * @return the result from request matching, or {@code null} if none

@@ -36,16 +36,13 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.util.AssertionErrors.fail;
 
 /**
- * Factory for assertions on the selected handler or handler method.
+ * 用于对所选处理器或处理器方法进行断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockMvcResultMatchers#handler}.
+ * <p>此类的实例通常通过 {@link MockMvcResultMatchers#handler} 访问。
  *
- * <p><strong>Note:</strong> Expectations that assert the controller method
- * used to process the request work only for requests processed with
- * {@link RequestMappingHandlerMapping} and {@link RequestMappingHandlerAdapter}
- * which is used by default with the Spring MVC Java config and XML namespace.
- *
+ * <p><strong>注意：</strong>断言用于处理请求的控制器方法的预期
+ * 仅对使用 {@link RequestMappingHandlerMapping} 和 {@link RequestMappingHandlerAdapter}
+ * 处理的请求有效，Spring MVC Java 配置和 XML 命名空间默认使用它们。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 3.2
@@ -53,15 +50,15 @@ import static org.springframework.test.util.AssertionErrors.fail;
 public class HandlerResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * Use {@link MockMvcResultMatchers#handler()}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockMvcResultMatchers#handler()}。
 	 */
 	protected HandlerResultMatchers() {
 	}
 
 
 	/**
-	 * Assert the type of the handler that processed the request.
+	 * 断言处理请求的处理器类型。
 	 */
 	public ResultMatcher handlerType(Class<?> type) {
 		return result -> {
@@ -76,10 +73,10 @@ public class HandlerResultMatchers {
 	}
 
 	/**
-	 * Assert the controller method used to process the request.
-	 * <p>The expected method is specified through a "mock" controller method
-	 * invocation similar to {@link MvcUriComponentsBuilder#fromMethodCall(Object)}.
-	 * <p>For example, given this controller:
+	 * 断言用于处理请求的控制器方法。
+	 * <p>预期的方法通过“mock”控制器方法调用来指定，
+	 * 类似于 {@link MvcUriComponentsBuilder#fromMethodCall(Object)}。
+	 * <p>例如，给定以下控制器：
 	 * <pre class="code">
 	 * &#064;RestController
 	 * public class SimpleController {
@@ -90,8 +87,8 @@ public class HandlerResultMatchers {
 	 *     }
 	 * }
 	 * </pre>
-	 * <p>A test that has statically imported {@link MvcUriComponentsBuilder#on}
-	 * can be performed as follows:
+	 * <p>静态导入了 {@link MvcUriComponentsBuilder#on} 的测试
+	 * 可以按如下方式执行：
 	 * <pre class="code">
 	 * mockMvc.perform(get("/"))
 	 *     .andExpect(handler().methodCall(on(SimpleController.class).handle()));
@@ -114,8 +111,7 @@ public class HandlerResultMatchers {
 	}
 
 	/**
-	 * Assert the name of the controller method used to process the request
-	 * using the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言用于处理请求的控制器方法名称。
 	 */
 	public ResultMatcher methodName(Matcher<? super String> matcher) {
 		return result -> {
@@ -125,7 +121,7 @@ public class HandlerResultMatchers {
 	}
 
 	/**
-	 * Assert the name of the controller method used to process the request.
+	 * 断言用于处理请求的控制器方法名称。
 	 */
 	public ResultMatcher methodName(String name) {
 		return result -> {
@@ -135,7 +131,7 @@ public class HandlerResultMatchers {
 	}
 
 	/**
-	 * Assert the controller method used to process the request.
+	 * 断言用于处理请求的控制器方法。
 	 */
 	public ResultMatcher method(Method method) {
 		return result -> {

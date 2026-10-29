@@ -1,5 +1,5 @@
 /**
- * Provides extensible support for creating embedded database instances.
+ * 为创建嵌入式数据库实例提供可扩展的支持。
  */
 @NonNullApi
 @NonNullFields

@@ -19,16 +19,13 @@ package org.springframework.core;
 import org.springframework.lang.Nullable;
 
 /**
- * Handy class for wrapping runtime {@code Exceptions} with a root cause.
+ * 用于包装带根因的运行时 {@code Exceptions} 的便捷类。
  *
- * <p>This class is {@code abstract} to force the programmer to extend
- * the class. {@code getMessage} will include nested exception
- * information; {@code printStackTrace} and other like methods will
- * delegate to the wrapped exception, if any.
+ * <p>此类为 {@code abstract}，以强制程序员扩展该类。{@code getMessage} 将包含嵌套异常信息；
+ * {@code printStackTrace} 及类似方法将委托给所包装的异常（如果有）。
  *
- * <p>The similarity between this class and the {@link NestedCheckedException}
- * class is unavoidable, as Java forces these two classes to have different
- * superclasses (ah, the inflexibility of concrete inheritance!).
+ * <p>此类与 {@link NestedCheckedException} 类之间的相似性不可避免，因为 Java 强制这两个类具有不同
+ * 的超类（唉，具体继承的不灵活性！）。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -38,7 +35,7 @@ import org.springframework.lang.Nullable;
  */
 public abstract class NestedRuntimeException extends RuntimeException {
 
-	/** Use serialVersionUID from Spring 1.2 for interoperability. */
+	/** 使用 Spring 1.2 中的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = 5439915454935047936L;
 
 	static {
@@ -49,7 +46,7 @@ public abstract class NestedRuntimeException extends RuntimeException {
 
 
 	/**
-	 * Construct a {@code NestedRuntimeException} with the specified detail message.
+	 * 使用指定的详细消息构造一个 {@code NestedRuntimeException}。
 	 * @param msg the detail message
 	 */
 	public NestedRuntimeException(String msg) {
@@ -57,8 +54,7 @@ public abstract class NestedRuntimeException extends RuntimeException {
 	}
 
 	/**
-	 * Construct a {@code NestedRuntimeException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code NestedRuntimeException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */
@@ -68,8 +64,7 @@ public abstract class NestedRuntimeException extends RuntimeException {
 
 
 	/**
-	 * Return the detail message, including the message from the nested exception
-	 * if there is one.
+	 * 返回详细消息，其中包括来自嵌套异常的消息（如果有）。
 	 */
 	@Override
 	@Nullable
@@ -79,7 +74,7 @@ public abstract class NestedRuntimeException extends RuntimeException {
 
 
 	/**
-	 * Retrieve the innermost cause of this exception, if any.
+	 * 获取此异常的最内层原因（如果有）。
 	 * @return the innermost exception, or {@code null} if none
 	 * @since 2.0
 	 */
@@ -89,10 +84,9 @@ public abstract class NestedRuntimeException extends RuntimeException {
 	}
 
 	/**
-	 * Retrieve the most specific cause of this exception, that is,
-	 * either the innermost cause (root cause) or this exception itself.
-	 * <p>Differs from {@link #getRootCause()} in that it falls back
-	 * to the present exception if there is no root cause.
+	 * 获取此异常最具体的原因，即最内层原因（根因）或此异常本身。
+	 *
+	 * <p>与 {@link #getRootCause()} 的不同之处在于：如果没有根因，则回退到当前异常。
 	 * @return the most specific cause (never {@code null})
 	 * @since 2.0.3
 	 */
@@ -102,9 +96,7 @@ public abstract class NestedRuntimeException extends RuntimeException {
 	}
 
 	/**
-	 * Check whether this exception contains an exception of the given type:
-	 * either it is of the given class itself or it contains a nested cause
-	 * of the given type.
+	 * 检查此异常是否包含给定类型的异常：它本身属于给定的类，或包含给定类型的嵌套原因。
 	 * @param exType the exception type to look for
 	 * @return whether there is a nested exception of the specified type
 	 */

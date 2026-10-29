@@ -24,8 +24,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * No-op resolver for method arguments of type {@link kotlin.coroutines.Continuation}.
- *
+ * 针对 {@link kotlin.coroutines.Continuation} 类型方法参数的空操作解析器。
  * @author Sebastien Deleuze
  * @since 5.3
  */

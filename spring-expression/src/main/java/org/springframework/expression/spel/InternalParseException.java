@@ -17,8 +17,7 @@
 package org.springframework.expression.spel;
 
 /**
- * Wraps a real parse exception. This exception flows to the top parse method and then
- * the wrapped exception is thrown as the real problem.
+ * 包装真实的解析异常。该异常会流向顶层解析方法，然后抛出被包装的异常作为真正的问题。
  *
  * @author Andy Clement
  * @since 3.0

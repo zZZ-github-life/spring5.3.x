@@ -25,11 +25,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Proxy for a target {@link CacheManager}, exposing transaction-aware {@link Cache} objects
- * which synchronize their {@link Cache#put} operations with Spring-managed transactions
- * (through Spring's {@link org.springframework.transaction.support.TransactionSynchronizationManager}),
- * performing the actual cache put operation only in the after-commit phase of a successful transaction.
- * If no transaction is active, {@link Cache#put} operations will be performed immediately, as usual.
+ * 目标 {@link CacheManager} 的代理，暴露事务感知的 {@link Cache} 对象，
+ * 将其 {@link Cache#put} 操作与 Spring 管理的事务同步
+ * （通过 Spring 的 {@link org.springframework.transaction.support.TransactionSynchronizationManager}），
+ * 仅在事务成功提交后的阶段执行实际的缓存 put 操作。
+ * 如果没有活跃的事务，{@link Cache#put} 操作将立即执行。
  *
  * @author Juergen Hoeller
  * @since 3.2
@@ -44,14 +44,14 @@ public class TransactionAwareCacheManagerProxy implements CacheManager, Initiali
 
 
 	/**
-	 * Create a new TransactionAwareCacheManagerProxy, setting the target CacheManager
-	 * through the {@link #setTargetCacheManager} bean property.
+	 * 创建一个新的 TransactionAwareCacheManagerProxy，
+	 * 通过 {@link #setTargetCacheManager} bean 属性设置目标 CacheManager。
 	 */
 	public TransactionAwareCacheManagerProxy() {
 	}
 
 	/**
-	 * Create a new TransactionAwareCacheManagerProxy for the given target CacheManager.
+	 * 为给定的目标 CacheManager 创建一个新的 TransactionAwareCacheManagerProxy。
 	 * @param targetCacheManager the target CacheManager to proxy
 	 */
 	public TransactionAwareCacheManagerProxy(CacheManager targetCacheManager) {
@@ -61,7 +61,7 @@ public class TransactionAwareCacheManagerProxy implements CacheManager, Initiali
 
 
 	/**
-	 * Set the target CacheManager to proxy.
+	 * 设置要代理的目标 CacheManager。
 	 */
 	public void setTargetCacheManager(CacheManager targetCacheManager) {
 		this.targetCacheManager = targetCacheManager;

@@ -19,19 +19,17 @@ package org.springframework.web.servlet.mvc;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Supports last-modified HTTP requests to facilitate content caching.
- * Same contract as for the Servlet API's {@code getLastModified} method.
+ * 支持最后修改（last-modified）HTTP 请求，以促进内容缓存。
+ * 约定与 Servlet API 的 {@code getLastModified} 方法相同。
  *
- * <p>Delegated to by a {@link org.springframework.web.servlet.HandlerAdapter#getLastModified}
- * implementation. By default, any Controller or HttpRequestHandler within Spring's
- * default framework can implement this interface to enable last-modified checking.
+ * <p>由 {@link org.springframework.web.servlet.HandlerAdapter#getLastModified}
+ * 实现进行委托调用。默认情况下，Spring 默认框架中的任何 Controller 或
+ * HttpRequestHandler 都可以实现此接口以启用最后修改检查。
  *
- * <p><b>Note:</b> Alternative handler implementation approaches have different
- * last-modified handling styles. For example, Spring 2.5's annotated controller
- * approach (using {@code @RequestMapping}) provides last-modified support
- * through the {@link org.springframework.web.context.request.WebRequest#checkNotModified}
- * method, allowing for last-modified checking within the main handler method.
- *
+ * <p><b>注意：</b>替代的处理器实现方式具有不同的最后修改处理风格。
+ * 例如，Spring 2.5 基于注解的控制器方式（使用 {@code @RequestMapping}）
+ * 通过 {@link org.springframework.web.context.request.WebRequest#checkNotModified}
+ * 方法提供最后修改支持，允许在主处理方法中执行最后修改检查。
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @see javax.servlet.http.HttpServlet#getLastModified
@@ -49,11 +47,11 @@ import javax.servlet.http.HttpServletRequest;
 public interface LastModified {
 
 	/**
-	 * Same contract as for HttpServlet's {@code getLastModified} method.
-	 * Invoked <b>before</b> request processing.
-	 * <p>The return value will be sent to the HTTP client as Last-Modified header,
-	 * and compared with If-Modified-Since headers that the client sends back.
-	 * The content will only get regenerated if there has been a modification.
+	 * 约定与 HttpServlet 的 {@code getLastModified} 方法相同。
+	 * 在请求处理<b>之前</b>调用。
+	 * <p>返回值将作为 Last-Modified 头发送给 HTTP 客户端，
+	 * 并与客户端回传的 If-Modified-Since 头进行比较。
+	 * 只有当内容发生修改时才会重新生成。
 	 * @param request current HTTP request
 	 * @return the time the underlying resource was last modified, or -1
 	 * meaning that the content must always be regenerated

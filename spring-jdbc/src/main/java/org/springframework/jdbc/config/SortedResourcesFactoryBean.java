@@ -31,8 +31,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
 
 /**
- * {@link FactoryBean} implementation that takes a list of location Strings
- * and creates a sorted array of {@link Resource} instances.
+ * {@link FactoryBean}实现，接收位置字符串列表并创建排序后的{@link Resource}实例数组。
  *
  * @author Dave Syer
  * @author Juergen Hoeller

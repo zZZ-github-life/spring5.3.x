@@ -34,34 +34,27 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Generic converter that uses conventions to convert a source object to a
- * {@code targetType} by delegating to a method on the source object or to
- * a static factory method or constructor on the {@code targetType}.
+ * 通用转换器，通过委托源对象上的方法、{@code targetType} 上的静态工厂方法或构造函数，
+ * 按照约定将源对象转换为 {@code targetType}。
  *
- * <h3>Conversion Algorithm</h3>
+ * <h3>转换算法</h3>
  * <ol>
- * <li>Invoke a non-static {@code to[targetType.simpleName]()} method on the
- * source object that has a return type assignable to {@code targetType}, if such
- * a method exists. For example, {@code org.example.Bar Foo#toBar()} is a
- * method that follows this convention.
- * <li>Otherwise invoke a <em>static</em> {@code valueOf(sourceType)} or Java
- * 8 style <em>static</em> {@code of(sourceType)} or {@code from(sourceType)}
- * method on the {@code targetType} that has a return type <em>related</em> to
- * {@code targetType}, if such a method exists. For example, a static
- * {@code Foo.of(sourceType)} method that returns a {@code Foo},
- * {@code SuperFooType}, or {@code SubFooType} is a method that follows this
- * convention. {@link java.time.ZoneId#of(String)} is a concrete example of
- * such a static factory method which returns a subtype of {@code ZoneId}.
- * <li>Otherwise invoke a constructor on the {@code targetType} that accepts
- * a single {@code sourceType} argument, if such a constructor exists.
- * <li>Otherwise throw a {@link ConversionFailedException} or
- * {@link IllegalStateException}.
+ * <li>如果存在这样的方法，则调用源对象上返回类型可赋值给 {@code targetType} 的非静态
+ * {@code to[targetType.simpleName]()} 方法。例如，{@code org.example.Bar Foo#toBar()} 是
+ * 遵循此约定的方法。
+ * <li>否则，如果存在这样的方法，则调用 {@code targetType} 上的 <em>静态</em> {@code valueOf(sourceType)}
+ * 或 Java 8 风格的 <em>静态</em> {@code of(sourceType)} 或 {@code from(sourceType)} 方法，
+ * 其返回类型与 {@code targetType} <em>相关</em>。例如，返回 {@code Foo}、{@code SuperFooType}
+ * 或 {@code SubFooType} 的静态 {@code Foo.of(sourceType)} 方法是遵循此约定的方法。
+ * {@link java.time.ZoneId#of(String)} 是此类静态工厂方法的具体示例，它返回 {@code ZoneId} 的子类型。
+ * <li>否则，如果存在这样的构造函数，则调用 {@code targetType} 上接受单个 {@code sourceType}
+ * 参数的构造函数。
+ * <li>否则抛出 {@link ConversionFailedException} 或 {@link IllegalStateException}。
  * </ol>
  *
- * <p><strong>Warning</strong>: this converter does <em>not</em> support the
- * {@link Object#toString()} or {@link String#valueOf(Object)} methods for converting
- * from a {@code sourceType} to {@code java.lang.String}. For {@code toString()}
- * support, use {@link FallbackObjectToStringConverter} instead.
+ * <p><strong>警告</strong>：此转换器<em>不</em>支持通过 {@link Object#toString()} 或
+ * {@link String#valueOf(Object)} 方法将 {@code sourceType} 转换为 {@code java.lang.String}。
+ * 如需 {@code toString()} 支持，请改用 {@link FallbackObjectToStringConverter}。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -204,8 +197,7 @@ final class ObjectToObjectConverter implements ConditionalGenericConverter {
 	}
 
 	/**
-	 * Determine if the two types reside in the same type hierarchy (i.e., type 1
-	 * is assignable to type 2 or vice versa).
+	 * 判断两个类型是否存在于同一类型层次结构中（即类型 1 可赋值给类型 2，或反之）。
 	 * @since 5.3.21
 	 * @see ClassUtils#isAssignable(Class, Class)
 	 */

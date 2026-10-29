@@ -24,9 +24,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * An {@code HttpCookie} subclass with the additional attributes allowed in
- * the "Set-Cookie" response header. To build an instance use the {@link #from}
- * static method.
+ * 带有 "Set-Cookie" 响应头所允许的附加属性的 {@code HttpCookie} 子类。要构建实例，请使用 {@link #from} 静态方法。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -52,7 +50,7 @@ public final class ResponseCookie extends HttpCookie {
 
 
 	/**
-	 * Private constructor. See {@link #from(String, String)}.
+	 * 私有构造函数。请参见 {@link #from(String, String)}。
 	 */
 	private ResponseCookie(String name, String value, Duration maxAge, @Nullable String domain,
 			@Nullable String path, boolean secure, boolean httpOnly, @Nullable String sameSite) {
@@ -75,18 +73,15 @@ public final class ResponseCookie extends HttpCookie {
 
 
 	/**
-	 * Return the cookie "Max-Age" attribute in seconds.
-	 * <p>A positive value indicates when the cookie expires relative to the
-	 * current time. A value of 0 means the cookie should expire immediately.
-	 * A negative value means no "Max-Age" attribute in which case the cookie
-	 * is removed when the browser is closed.
+	 * 以秒为单位返回 Cookie 的 "Max-Age" 属性。
+	 * <p>正值表示 Cookie 相对于当前时间的过期时间。值为 0 表示 Cookie 应立即过期。负值表示没有 "Max-Age" 属性，此时 Cookie 会在浏览器关闭时被移除。
 	 */
 	public Duration getMaxAge() {
 		return this.maxAge;
 	}
 
 	/**
-	 * Return the cookie "Domain" attribute, or {@code null} if not set.
+	 * 返回 Cookie 的 "Domain" 属性；如果未设置则返回 {@code null}。
 	 */
 	@Nullable
 	public String getDomain() {
@@ -94,7 +89,7 @@ public final class ResponseCookie extends HttpCookie {
 	}
 
 	/**
-	 * Return the cookie "Path" attribute, or {@code null} if not set.
+	 * 返回 Cookie 的 "Path" 属性；如果未设置则返回 {@code null}。
 	 */
 	@Nullable
 	public String getPath() {
@@ -102,14 +97,14 @@ public final class ResponseCookie extends HttpCookie {
 	}
 
 	/**
-	 * Return {@code true} if the cookie has the "Secure" attribute.
+	 * 如果 Cookie 具有 "Secure" 属性，则返回 {@code true}。
 	 */
 	public boolean isSecure() {
 		return this.secure;
 	}
 
 	/**
-	 * Return {@code true} if the cookie has the "HttpOnly" attribute.
+	 * 如果 Cookie 具有 "HttpOnly" 属性，则返回 {@code true}。
 	 * @see <a href="https://www.owasp.org/index.php/HTTPOnly">https://www.owasp.org/index.php/HTTPOnly</a>
 	 */
 	public boolean isHttpOnly() {
@@ -117,9 +112,8 @@ public final class ResponseCookie extends HttpCookie {
 	}
 
 	/**
-	 * Return the cookie "SameSite" attribute, or {@code null} if not set.
-	 * <p>This limits the scope of the cookie such that it will only be attached to
-	 * same site requests if {@code "Strict"} or cross-site requests if {@code "Lax"}.
+	 * 返回 Cookie 的 "SameSite" 属性；如果未设置则返回 {@code null}。
+	 * <p>这会限制 Cookie 的作用范围：当值为 {@code "Strict"} 时仅附加到同站请求，当值为 {@code "Lax"} 时附加到跨站请求。
 	 * @since 5.1
 	 * @see <a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis#section-4.1.2.7">RFC6265 bis</a>
 	 */
@@ -181,8 +175,7 @@ public final class ResponseCookie extends HttpCookie {
 
 
 	/**
-	 * Factory method to obtain a builder for a server-defined cookie that starts
-	 * with a name-value pair and may also include attributes.
+	 * 工厂方法，用于获取服务器端定义的 Cookie 的构建器；该 Cookie 以名称-值对开始，也可以包含属性。
 	 * @param name the cookie name
 	 * @param value the cookie value
 	 * @return a builder to create the cookie with
@@ -192,10 +185,7 @@ public final class ResponseCookie extends HttpCookie {
 	}
 
 	/**
-	 * Factory method to obtain a builder for a server-defined cookie. Unlike
-	 * {@link #from(String, String)} this option assumes input from a remote
-	 * server, which can be handled more leniently, e.g. ignoring an empty domain
-	 * name with double quotes.
+	 * 工厂方法，用于获取服务器端定义的 Cookie 的构建器。与 {@link #from(String, String)} 不同，此选项假定输入来自远程服务器，因此可以更宽松地处理，例如忽略用双引号表示的空白域名。
 	 * @param name the cookie name
 	 * @param value the cookie value
 	 * @return a builder to create the cookie with
@@ -290,58 +280,52 @@ public final class ResponseCookie extends HttpCookie {
 
 
 	/**
-	 * A builder for a server-defined HttpCookie with attributes.
+	 * 用于构建带属性的服务器端定义 HttpCookie 的构建器。
 	 */
 	public interface ResponseCookieBuilder {
 
 		/**
-		 * Set the cookie "Max-Age" attribute.
-		 *
-		 * <p>A positive value indicates when the cookie should expire relative
-		 * to the current time. A value of 0 means the cookie should expire
-		 * immediately. A negative value results in no "Max-Age" attribute in
-		 * which case the cookie is removed when the browser is closed.
+		 * 设置 Cookie 的 "Max-Age" 属性。
+		 * <p>正值表示 Cookie 应相对于当前时间过期的时间。值为 0 表示 Cookie 应立即过期。负值表示没有 "Max-Age" 属性，此时 Cookie 会在浏览器关闭时被移除。
 		 */
 		ResponseCookieBuilder maxAge(Duration maxAge);
 
 		/**
-		 * Variant of {@link #maxAge(Duration)} accepting a value in seconds.
+		 * 接受以秒为单位值的 {@link #maxAge(Duration)} 变体。
 		 */
 		ResponseCookieBuilder maxAge(long maxAgeSeconds);
 
 		/**
-		 * Set the cookie "Path" attribute.
+		 * 设置 Cookie 的 "Path" 属性。
 		 */
 		ResponseCookieBuilder path(@Nullable String path);
 
 		/**
-		 * Set the cookie "Domain" attribute.
+		 * 设置 Cookie 的 "Domain" 属性。
 		 */
 		ResponseCookieBuilder domain(@Nullable String domain);
 
 		/**
-		 * Add the "Secure" attribute to the cookie.
+		 * 向 Cookie 添加 "Secure" 属性。
 		 */
 		ResponseCookieBuilder secure(boolean secure);
 
 		/**
-		 * Add the "HttpOnly" attribute to the cookie.
+		 * 向 Cookie 添加 "HttpOnly" 属性。
 		 * @see <a href="https://www.owasp.org/index.php/HTTPOnly">https://www.owasp.org/index.php/HTTPOnly</a>
 		 */
 		ResponseCookieBuilder httpOnly(boolean httpOnly);
 
 		/**
-		 * Add the "SameSite" attribute to the cookie.
-		 * <p>This limits the scope of the cookie such that it will only be
-		 * attached to same site requests if {@code "Strict"} or cross-site
-		 * requests if {@code "Lax"}.
+		 * 向 Cookie 添加 "SameSite" 属性。
+		 * <p>这会限制 Cookie 的作用范围：当值为 {@code "Strict"} 时仅附加到同站请求，当值为 {@code "Lax"} 时附加到跨站请求。
 		 * @since 5.1
 		 * @see <a href="https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis#section-4.1.2.7">RFC6265 bis</a>
 		 */
 		ResponseCookieBuilder sameSite(@Nullable String sameSite);
 
 		/**
-		 * Create the HttpCookie.
+		 * 创建 HttpCookie。
 		 */
 		ResponseCookie build();
 	}

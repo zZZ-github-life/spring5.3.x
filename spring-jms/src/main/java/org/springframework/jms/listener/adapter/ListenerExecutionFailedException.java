@@ -19,7 +19,7 @@ package org.springframework.jms.listener.adapter;
 import org.springframework.jms.JmsException;
 
 /**
- * Exception to be thrown when the execution of a listener method failed.
+ * 监听器方法执行失败时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -29,7 +29,7 @@ import org.springframework.jms.JmsException;
 public class ListenerExecutionFailedException extends JmsException {
 
 	/**
-	 * Constructor for ListenerExecutionFailedException.
+	 * ListenerExecutionFailedException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the exception thrown by the listener method
 	 */

@@ -33,23 +33,22 @@ import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.util.NestedServletException;
 
 /**
- * Servlet-API-based HTTP request handler that exports the specified service bean
- * as HTTP invoker service endpoint, accessible via an HTTP invoker proxy.
+ * 基于 Servlet API 的 HTTP 请求处理器，将指定的服务 bean 导出为
+ * HTTP invoker 服务端点，可通过 HTTP invoker 代理访问。
  *
- * <p>Deserializes remote invocation objects and serializes remote invocation
- * result objects. Uses Java serialization just like RMI, but provides the
- * same ease of setup as Caucho's HTTP-based Hessian protocol.
+ * <p>反序列化远程调用对象，并序列化远程调用结果对象。
+ * 与 RMI 一样使用 Java 序列化，但提供了与 Caucho 基于 HTTP 的
+ * Hessian 协议同样简单的配置方式。
  *
- * <p><b>HTTP invoker is the recommended protocol for Java-to-Java remoting.</b>
- * It is more powerful and more extensible than Hessian, at the expense of
- * being tied to Java. Nevertheless, it is as easy to set up as Hessian,
- * which is its main advantage compared to RMI.
+ * <p><b>HTTP invoker 是 Java 到 Java 远程调用的推荐协议。</b>
+ * 它比 Hessian 更强大、更具扩展性，代价是与 Java 绑定。
+ * 不过，它的配置与 Hessian 一样简单，这是它相对于 RMI 的主要优势。
  *
- * <p><b>WARNING: Be aware of vulnerabilities due to unsafe Java deserialization:
- * Manipulated input streams could lead to unwanted code execution on the server
- * during the deserialization step. As a consequence, do not expose HTTP invoker
- * endpoints to untrusted clients but rather just between your own services.</b>
- * In general, we strongly recommend any other message format (e.g. JSON) instead.
+ * <p><b>警告：请注意不安全的 Java 反序列化所带来的漏洞：
+ * 被篡改的输入流可能导致在反序列化步骤中于服务器上执行非预期代码。
+ * 因此，不要将 HTTP invoker 端点暴露给不受信任的客户端，
+ * 而应仅在自己内部的服务之间使用。</b>
+ * 一般而言，我们强烈建议改用其他任何消息格式（例如 JSON）。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -63,8 +62,8 @@ import org.springframework.web.util.NestedServletException;
 public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi.RemoteInvocationSerializingExporter implements HttpRequestHandler {
 
 	/**
-	 * Reads a remote invocation from the request, executes it,
-	 * and writes the remote invocation result to the response.
+	 * 从请求中读取远程调用，执行该调用，
+	 * 并将远程调用结果写入响应。
 	 * @see #readRemoteInvocation(HttpServletRequest)
 	 * @see #invokeAndCreateResult(org.springframework.remoting.support.RemoteInvocation, Object)
 	 * @see #writeRemoteInvocationResult(HttpServletRequest, HttpServletResponse, RemoteInvocationResult)
@@ -84,9 +83,9 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	}
 
 	/**
-	 * Read a RemoteInvocation from the given HTTP request.
-	 * <p>Delegates to {@link #readRemoteInvocation(HttpServletRequest, InputStream)} with
-	 * the {@link HttpServletRequest#getInputStream() servlet request's input stream}.
+	 * 从给定的 HTTP 请求中读取 RemoteInvocation。
+	 * <p>使用 {@link HttpServletRequest#getInputStream() servlet 请求的输入流}
+	 * 委托给 {@link #readRemoteInvocation(HttpServletRequest, InputStream)}。
 	 * @param request current HTTP request
 	 * @return the RemoteInvocation object
 	 * @throws IOException in case of I/O failure
@@ -99,12 +98,12 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	}
 
 	/**
-	 * Deserialize a RemoteInvocation object from the given InputStream.
-	 * <p>Gives {@link #decorateInputStream} a chance to decorate the stream
-	 * first (for example, for custom encryption or compression). Creates a
-	 * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}
-	 * and calls {@link #doReadRemoteInvocation} to actually read the object.
-	 * <p>Can be overridden for custom serialization of the invocation.
+	 * 从给定的 InputStream 中反序列化 RemoteInvocation 对象。
+	 * <p>先给 {@link #decorateInputStream} 一次装饰流的机会
+	 * （例如用于自定义加密或压缩）。创建
+	 * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}，
+	 * 并调用 {@link #doReadRemoteInvocation} 实际读取对象。
+	 * <p>可重写以自定义调用的序列化方式。
 	 * @param request current HTTP request
 	 * @param is the InputStream to read from
 	 * @return the RemoteInvocation object
@@ -120,10 +119,10 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	}
 
 	/**
-	 * Return the InputStream to use for reading remote invocations,
-	 * potentially decorating the given original InputStream.
-	 * <p>The default implementation returns the given stream as-is.
-	 * Can be overridden, for example, for custom encryption or compression.
+	 * 返回用于读取远程调用的 InputStream，
+	 * 可能会装饰给定的原始 InputStream。
+	 * <p>默认实现按原样返回给定的流。
+	 * 可重写，例如用于自定义加密或压缩。
 	 * @param request current HTTP request
 	 * @param is the original InputStream
 	 * @return the potentially decorated InputStream
@@ -134,7 +133,7 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	}
 
 	/**
-	 * Write the given RemoteInvocationResult to the given HTTP response.
+	 * 将给定的 RemoteInvocationResult 写入给定的 HTTP 响应。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param result the RemoteInvocationResult object
@@ -149,12 +148,12 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	}
 
 	/**
-	 * Serialize the given RemoteInvocation to the given OutputStream.
-	 * <p>The default implementation gives {@link #decorateOutputStream} a chance
-	 * to decorate the stream first (for example, for custom encryption or compression).
-	 * Creates an {@link java.io.ObjectOutputStream} for the final stream and calls
-	 * {@link #doWriteRemoteInvocationResult} to actually write the object.
-	 * <p>Can be overridden for custom serialization of the invocation.
+	 * 将给定的 RemoteInvocation 序列化到给定的 OutputStream 中。
+	 * <p>默认实现会先给 {@link #decorateOutputStream} 一次装饰流的机会
+	 * （例如用于自定义加密或压缩）。
+	 * 为最终的流创建 {@link java.io.ObjectOutputStream}，并调用
+	 * {@link #doWriteRemoteInvocationResult} 实际写入对象。
+	 * <p>可重写以自定义调用的序列化方式。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param result the RemoteInvocationResult object
@@ -174,10 +173,10 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 	}
 
 	/**
-	 * Return the OutputStream to use for writing remote invocation results,
-	 * potentially decorating the given original OutputStream.
-	 * <p>The default implementation returns the given stream as-is.
-	 * Can be overridden, for example, for custom encryption or compression.
+	 * 返回用于写入远程调用结果的 OutputStream，
+	 * 可能会装饰给定的原始 OutputStream。
+	 * <p>默认实现按原样返回给定的流。
+	 * 可重写，例如用于自定义加密或压缩。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param os the original OutputStream
@@ -192,12 +191,11 @@ public class HttpInvokerServiceExporter extends org.springframework.remoting.rmi
 
 
 	/**
-	 * Decorate an {@code OutputStream} to guard against {@code flush()} calls,
-	 * which are turned into no-ops.
-	 * <p>Because {@link ObjectOutputStream#close()} will in fact flush/drain
-	 * the underlying stream twice, this {@link FilterOutputStream} will
-	 * guard against individual flush calls. Multiple flush calls can lead
-	 * to performance issues, since writes aren't gathered as they should be.
+	 * 装饰 {@code OutputStream} 以防止 {@code flush()} 调用，
+	 * 这些调用会被转换为空操作。
+	 * <p>由于 {@link ObjectOutputStream#close()} 实际上会两次刷新/排空
+	 * 底层流，此 {@link FilterOutputStream} 会防止单次 flush 调用。
+	 * 多次 flush 调用可能导致性能问题，因为写入不会被按预期汇聚。
 	 * @see <a href="https://jira.spring.io/browse/SPR-14040">SPR-14040</a>
 	 */
 	private static class FlushGuardedOutputStream extends FilterOutputStream {

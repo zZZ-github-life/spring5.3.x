@@ -36,16 +36,15 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link ResourceTransformer} implementation that modifies links in a CSS
- * file to match the public URL paths that should be exposed to clients (e.g.
- * with an MD5 content-based hash inserted in the URL).
+ * {@link ResourceTransformer} 实现，用于修改 CSS 文件中的链接，
+ * 使其与应暴露给客户端的公共 URL 路径匹配（例如，
+ * 在 URL 中插入基于内容计算的 MD5 哈希）。
  *
- * <p>The implementation looks for links in CSS {@code @import} statements and
- * also inside CSS {@code url()} functions. All links are then passed through the
- * {@link ResourceResolverChain} and resolved relative to the location of the
- * containing CSS file. If successfully resolved, the link is modified, otherwise
- * the original link is preserved.
- *
+ * <p>该实现会查找 CSS {@code @import} 语句中的链接，
+ * 以及 CSS {@code url()} 函数中的链接。随后所有链接都会经过
+ * {@link ResourceResolverChain}，并相对于
+ * 包含它们的 CSS 文件所在位置进行解析。如果解析成功，则修改链接，
+ * 否则保留原始链接。
  * @author Rossen Stoyanchev
  * @since 4.1
  */
@@ -115,7 +114,7 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 
 
 	/**
-	 * Extract content chunks that represent links.
+	 * 提取表示链接的内容片段。
 	 */
 	@FunctionalInterface
 	protected interface LinkParser {
@@ -126,11 +125,11 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 
 
 	/**
-	 * Abstract base class for {@link LinkParser} implementations.
+	 * {@link LinkParser} 实现的抽象基类。
 	 */
 	protected abstract static class AbstractLinkParser implements LinkParser {
 
-		/** Return the keyword to use to search for links, e.g. "@import", "url(" */
+		/** 返回用于搜索链接的关键字，例如 "@import"、"url("。 */
 		protected abstract String getKeyword();
 
 		@Override
@@ -165,8 +164,8 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 		}
 
 		/**
-		 * Invoked after a keyword match, after whitespace has been removed, and when
-		 * the next char is neither a single nor double quote.
+		 * 在关键字匹配之后、移除空白之后，且当
+		 * 下一个字符既不是单引号也不是双引号时调用。
 		 */
 		protected abstract int extractLink(int index, String content, SortedSet<ContentChunkInfo> linksToAdd);
 	}

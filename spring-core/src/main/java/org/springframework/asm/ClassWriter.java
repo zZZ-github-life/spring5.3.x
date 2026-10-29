@@ -28,10 +28,9 @@
 package org.springframework.asm;
 
 /**
- * A {@link ClassVisitor} that generates a corresponding ClassFile structure, as defined in the Java
- * Virtual Machine Specification (JVMS). It can be used alone, to generate a Java class "from
- * scratch", or with one or more {@link ClassReader} and adapter {@link ClassVisitor} to generate a
- * modified class from one or more existing Java classes.
+ * 一个 {@link ClassVisitor}，用于生成与 Java 虚拟机规范（JVMS）中定义相对应的 ClassFile 结构。它既
+ * 可以单独使用，从头生成一个 Java 类，也可以与一个或多个 {@link ClassReader} 及适配器
+ * {@link ClassVisitor} 一起使用，从现有的一个或多个 Java 类生成修改后的类。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html">JVMS 4</a>
  * @author Eric Bruneton
@@ -39,35 +38,30 @@ package org.springframework.asm;
 public class ClassWriter extends ClassVisitor {
 
   /**
-   * A flag to automatically compute the maximum stack size and the maximum number of local
-   * variables of methods. If this flag is set, then the arguments of the {@link
-   * MethodVisitor#visitMaxs} method of the {@link MethodVisitor} returned by the {@link
-   * #visitMethod} method will be ignored, and computed automatically from the signature and the
-   * bytecode of each method.
+   * 一个标志，用于自动计算方法的最大栈大小和最大局部变量数量。如果设置了此标志，那么
+   * {@link #visitMethod} 方法返回的 {@link MethodVisitor} 的 {@link MethodVisitor#visitMaxs} 方法的
+   * 参数将被忽略，并根据每个方法的签名和字节码自动计算。
    *
-   * <p><b>Note:</b> for classes whose version is {@link Opcodes#V1_7} of more, this option requires
-   * valid stack map frames. The maximum stack size is then computed from these frames, and from the
-   * bytecode instructions in between. If stack map frames are not present or must be recomputed,
-   * used {@link #COMPUTE_FRAMES} instead.
+   * <p><b>注意：</b>对于版本为 {@link Opcodes#V1_7} 或更高的类，此选项要求存在有效的栈映射帧。此时最
+   * 大栈大小将根据这些帧以及它们之间的字节码指令计算。如果栈映射帧不存在或必须重新计算，请改用
+   * {@link #COMPUTE_FRAMES}。
    *
    * @see #ClassWriter(int)
    */
   public static final int COMPUTE_MAXS = 1;
 
   /**
-   * A flag to automatically compute the stack map frames of methods from scratch. If this flag is
-   * set, then the calls to the {@link MethodVisitor#visitFrame} method are ignored, and the stack
-   * map frames are recomputed from the methods bytecode. The arguments of the {@link
-   * MethodVisitor#visitMaxs} method are also ignored and recomputed from the bytecode. In other
-   * words, {@link #COMPUTE_FRAMES} implies {@link #COMPUTE_MAXS}.
+   * 一个标志，用于从头自动计算方法的栈映射帧。如果设置了此标志，那么对
+   * {@link MethodVisitor#visitFrame} 方法的调用将被忽略，栈映射帧将根据方法的字节码重新计算。
+   * {@link MethodVisitor#visitMaxs} 方法的参数也会被忽略，并根据字节码重新计算。换言之，
+   * {@link #COMPUTE_FRAMES} 蕴含 {@link #COMPUTE_MAXS}。
    *
    * @see #ClassWriter(int)
    */
   public static final int COMPUTE_FRAMES = 2;
 
   /**
-   * The flags passed to the constructor. Must be zero or more of {@link #COMPUTE_MAXS} and {@link
-   * #COMPUTE_FRAMES}.
+   * 传递给构造函数的标志。必须是 {@link #COMPUTE_MAXS} 和 {@link #COMPUTE_FRAMES} 中的零个或多个。
    */
   private final int flags;
 
@@ -75,149 +69,146 @@ public class ClassWriter extends ClassVisitor {
   // ordered as in Section 4.7 of the JVMS.
 
   /**
-   * The minor_version and major_version fields of the JVMS ClassFile structure. minor_version is
-   * stored in the 16 most significant bits, and major_version in the 16 least significant bits.
+   * JVMS ClassFile 结构的 minor_version 和 major_version 字段。minor_version 存储在最高的 16 位中，
+   * major_version 存储在最低的 16 位中。
    */
   private int version;
 
-  /** The symbol table for this class (contains the constant_pool and the BootstrapMethods). */
+  /** 此类的符号表（包含 constant_pool 和 BootstrapMethods）。 */
   private final SymbolTable symbolTable;
 
   /**
-   * The access_flags field of the JVMS ClassFile structure. This field can contain ASM specific
-   * access flags, such as {@link Opcodes#ACC_DEPRECATED} or {@link Opcodes#ACC_RECORD}, which are
-   * removed when generating the ClassFile structure.
+   * JVMS ClassFile 结构的 access_flags 字段。此字段可以包含 ASM 特有的访问标志，例如
+   * {@link Opcodes#ACC_DEPRECATED} 或 {@link Opcodes#ACC_RECORD}，这些标志在生成 ClassFile 结构时会
+   * 被移除。
    */
   private int accessFlags;
 
-  /** The this_class field of the JVMS ClassFile structure. */
+  /** JVMS ClassFile 结构的 this_class 字段。 */
   private int thisClass;
 
-  /** The super_class field of the JVMS ClassFile structure. */
+  /** JVMS ClassFile 结构的 super_class 字段。 */
   private int superClass;
 
-  /** The interface_count field of the JVMS ClassFile structure. */
+  /** JVMS ClassFile 结构的 interface_count 字段。 */
   private int interfaceCount;
 
-  /** The 'interfaces' array of the JVMS ClassFile structure. */
+  /** JVMS ClassFile 结构的 'interfaces' 数组。 */
   private int[] interfaces;
 
   /**
-   * The fields of this class, stored in a linked list of {@link FieldWriter} linked via their
-   * {@link FieldWriter#fv} field. This field stores the first element of this list.
+   * 此类的字段，存储在通过各自 {@link FieldWriter#fv} 字段链接起来的 {@link FieldWriter} 链表中。此
+   * 字段存储该链表的第一个元素。
    */
   private FieldWriter firstField;
 
   /**
-   * The fields of this class, stored in a linked list of {@link FieldWriter} linked via their
-   * {@link FieldWriter#fv} field. This field stores the last element of this list.
+   * 此类的字段，存储在通过各自 {@link FieldWriter#fv} 字段链接起来的 {@link FieldWriter} 链表中。此
+   * 字段存储该链表的最后一个元素。
    */
   private FieldWriter lastField;
 
   /**
-   * The methods of this class, stored in a linked list of {@link MethodWriter} linked via their
-   * {@link MethodWriter#mv} field. This field stores the first element of this list.
+   * 此类的方法，存储在通过各自 {@link MethodWriter#mv} 字段链接起来的 {@link MethodWriter} 链表中。
+   * 此字段存储该链表的第一个元素。
    */
   private MethodWriter firstMethod;
 
   /**
-   * The methods of this class, stored in a linked list of {@link MethodWriter} linked via their
-   * {@link MethodWriter#mv} field. This field stores the last element of this list.
+   * 此类的方法，存储在通过各自 {@link MethodWriter#mv} 字段链接起来的 {@link MethodWriter} 链表中。
+   * 此字段存储该链表的最后一个元素。
    */
   private MethodWriter lastMethod;
 
-  /** The number_of_classes field of the InnerClasses attribute, or 0. */
+  /** InnerClasses 属性的 number_of_classes 字段，或 0。 */
   private int numberOfInnerClasses;
 
-  /** The 'classes' array of the InnerClasses attribute, or {@literal null}. */
+  /** InnerClasses 属性的 'classes' 数组，或 {@literal null}。 */
   private ByteVector innerClasses;
 
-  /** The class_index field of the EnclosingMethod attribute, or 0. */
+  /** EnclosingMethod 属性的 class_index 字段，或 0。 */
   private int enclosingClassIndex;
 
-  /** The method_index field of the EnclosingMethod attribute. */
+  /** EnclosingMethod 属性的 method_index 字段。 */
   private int enclosingMethodIndex;
 
-  /** The signature_index field of the Signature attribute, or 0. */
+  /** Signature 属性的 signature_index 字段，或 0。 */
   private int signatureIndex;
 
-  /** The source_file_index field of the SourceFile attribute, or 0. */
+  /** SourceFile 属性的 source_file_index 字段，或 0。 */
   private int sourceFileIndex;
 
-  /** The debug_extension field of the SourceDebugExtension attribute, or {@literal null}. */
+  /** SourceDebugExtension 属性的 debug_extension 字段，或 {@literal null}。 */
   private ByteVector debugExtension;
 
   /**
-   * The last runtime visible annotation of this class. The previous ones can be accessed with the
-   * {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此类最后一个运行时可见注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段
+   * 访问。可能为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeVisibleAnnotation;
 
   /**
-   * The last runtime invisible annotation of this class. The previous ones can be accessed with the
-   * {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此类最后一个运行时不可见注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字
+   * 段访问。可能为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeInvisibleAnnotation;
 
   /**
-   * The last runtime visible type annotation of this class. The previous ones can be accessed with
-   * the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此类最后一个运行时可见类型注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation}
+   * 字段访问。可能为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeVisibleTypeAnnotation;
 
   /**
-   * The last runtime invisible type annotation of this class. The previous ones can be accessed
-   * with the {@link AnnotationWriter#previousAnnotation} field. May be {@literal null}.
+   * 此类最后一个运行时不可见类型注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation}
+   * 字段访问。可能为 {@literal null}。
    */
   private AnnotationWriter lastRuntimeInvisibleTypeAnnotation;
 
-  /** The Module attribute of this class, or {@literal null}. */
+  /** 此类的 Module 属性，或 {@literal null}。 */
   private ModuleWriter moduleWriter;
 
-  /** The host_class_index field of the NestHost attribute, or 0. */
+  /** NestHost 属性的 host_class_index 字段，或 0。 */
   private int nestHostClassIndex;
 
-  /** The number_of_classes field of the NestMembers attribute, or 0. */
+  /** NestMembers 属性的 number_of_classes 字段，或 0。 */
   private int numberOfNestMemberClasses;
 
-  /** The 'classes' array of the NestMembers attribute, or {@literal null}. */
+  /** NestMembers 属性的 'classes' 数组，或 {@literal null}。 */
   private ByteVector nestMemberClasses;
 
-  /** The number_of_classes field of the PermittedSubclasses attribute, or 0. */
+  /** PermittedSubclasses 属性的 number_of_classes 字段，或 0。 */
   private int numberOfPermittedSubclasses;
 
-  /** The 'classes' array of the PermittedSubclasses attribute, or {@literal null}. */
+  /** PermittedSubclasses 属性的 'classes' 数组，或 {@literal null}。 */
   private ByteVector permittedSubclasses;
 
   /**
-   * The record components of this class, stored in a linked list of {@link RecordComponentWriter}
-   * linked via their {@link RecordComponentWriter#delegate} field. This field stores the first
-   * element of this list.
+   * 此类的记录组件，存储在通过各自 {@link RecordComponentWriter#delegate} 字段链接起来的
+   * {@link RecordComponentWriter} 链表中。此字段存储该链表的第一个元素。
    */
   private RecordComponentWriter firstRecordComponent;
 
   /**
-   * The record components of this class, stored in a linked list of {@link RecordComponentWriter}
-   * linked via their {@link RecordComponentWriter#delegate} field. This field stores the last
-   * element of this list.
+   * 此类的记录组件，存储在通过各自 {@link RecordComponentWriter#delegate} 字段链接起来的
+   * {@link RecordComponentWriter} 链表中。此字段存储该链表的最后一个元素。
    */
   private RecordComponentWriter lastRecordComponent;
 
   /**
-   * The first non standard attribute of this class. The next ones can be accessed with the {@link
-   * Attribute#nextAttribute} field. May be {@literal null}.
+   * 此类第一个非标准属性。后续属性可以通过 {@link Attribute#nextAttribute} 字段访问。可能为
+   * {@literal null}。
    *
-   * <p><b>WARNING</b>: this list stores the attributes in the <i>reverse</i> order of their visit.
-   * firstAttribute is actually the last attribute visited in {@link #visitAttribute}. The {@link
-   * #toByteArray} method writes the attributes in the order defined by this list, i.e. in the
-   * reverse order specified by the user.
+   * <p><b>警告</b>：此链表以与其访问顺序<i>相反</i>的顺序存储属性。firstAttribute 实际上是
+   * {@link #visitAttribute} 中最后访问的属性。{@link #toByteArray} 方法按此链表定义的顺序写入属性，
+   * 也就是用户指定的相反顺序。
    */
   private Attribute firstAttribute;
 
   /**
-   * Indicates what must be automatically computed in {@link MethodWriter}. Must be one of {@link
-   * MethodWriter#COMPUTE_NOTHING}, {@link MethodWriter#COMPUTE_MAX_STACK_AND_LOCAL}, {@link
-   * MethodWriter#COMPUTE_INSERTED_FRAMES}, or {@link MethodWriter#COMPUTE_ALL_FRAMES}.
+   * 指示在 {@link MethodWriter} 中必须自动计算的内容。必须是 {@link MethodWriter#COMPUTE_NOTHING}、
+   * {@link MethodWriter#COMPUTE_MAX_STACK_AND_LOCAL}、{@link MethodWriter#COMPUTE_INSERTED_FRAMES}
+   * 或 {@link MethodWriter#COMPUTE_ALL_FRAMES} 之一。
    */
   private int compute;
 
@@ -226,7 +217,7 @@ public class ClassWriter extends ClassVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Constructs a new {@link ClassWriter} object.
+   * 构造一个新的 {@link ClassWriter} 对象。
    *
    * @param flags option flags that can be used to modify the default behavior of this class. Must
    *     be zero or more of {@link #COMPUTE_MAXS} and {@link #COMPUTE_FRAMES}.
@@ -236,19 +227,11 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Constructs a new {@link ClassWriter} object and enables optimizations for "mostly add" bytecode
-   * transformations. These optimizations are the following:
+   * 构造一个新的 {@link ClassWriter} 对象，并为“以添加为主”的字节码变换启用优化。这些优化如下：
    *
    * <ul>
-   *   <li>The constant pool and bootstrap methods from the original class are copied as is in the
-   *       new class, which saves time. New constant pool entries and new bootstrap methods will be
-   *       added at the end if necessary, but unused constant pool entries or bootstrap methods
-   *       <i>won't be removed</i>.
-   *   <li>Methods that are not transformed are copied as is in the new class, directly from the
-   *       original class bytecode (i.e. without emitting visit events for all the method
-   *       instructions), which saves a <i>lot</i> of time. Untransformed methods are detected by
-   *       the fact that the {@link ClassReader} receives {@link MethodVisitor} objects that come
-   *       from a {@link ClassWriter} (and not from any other {@link ClassVisitor} instance).
+   * <li>原始类的常量池和引导方法会原样复制到新类中，从而节省时间。如有必要，新的常量池项和引导方法会追加到末尾，但未使用的常量池项和引导方法<i>不会</i>被删除。
+   * <li>未被变换的方法会原样从原始类字节码复制到新类中（即不为所有方法指令发出 visit 事件），这可以节省<i>大量</i>时间。未变换方法的判定方式是：{@link ClassReader} 收到的 {@link MethodVisitor} 对象来自 {@link ClassWriter}（而不是来自任何其他 {@link ClassVisitor} 实例）。
    * </ul>
    *
    * @param classReader the {@link ClassReader} used to read the original class. It will be used to
@@ -277,7 +260,7 @@ public class ClassWriter extends ClassVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns true if all the given flags were passed to the constructor.
+   * 如果所有给定标志都已传递给构造函数，则返回 true。
    *
    * @param flags some option flags. Must be zero or more of {@link #COMPUTE_MAXS} and {@link
    *     #COMPUTE_FRAMES}.
@@ -485,7 +468,7 @@ public class ClassWriter extends ClassVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the content of the class file that was built by this ClassWriter.
+   * 返回由此 ClassWriter 构建的类文件的内容。
    *
    * @return the binary content of the JVMS ClassFile structure that was built by this ClassWriter.
    * @throws ClassTooLargeException if the constant pool of the class is too large.
@@ -744,8 +727,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Returns the equivalent of the given class file, with the ASM specific instructions replaced
-   * with standard ones. This is done with a ClassReader -&gt; ClassWriter round trip.
+   * 返回给定类文件的等价形式，其中 ASM 特有的指令已替换为标准指令。这是通过 ClassReader -&gt;
+   * ClassWriter 的往返过程完成的。
    *
    * @param classFile a class file containing ASM specific instructions, generated by this
    *     ClassWriter.
@@ -782,7 +765,7 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Returns the prototypes of the attributes used by this class, its fields and its methods.
+   * 返回此类及其字段和方法所使用的属性原型。
    *
    * @return the prototypes of the attributes used by this class, its fields and its methods.
    */
@@ -812,9 +795,8 @@ public class ClassWriter extends ClassVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Adds a number or string constant to the constant pool of the class being build. Does nothing if
-   * the constant pool already contains a similar item. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将数字或字符串常量添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此
+   * 方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param value the value of the constant to be added to the constant pool. This parameter must be
    *     an {@link Integer}, a {@link Float}, a {@link Long}, a {@link Double} or a {@link String}.
@@ -825,9 +807,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds an UTF8 string to the constant pool of the class being build. Does nothing if the constant
-   * pool already contains a similar item. <i>This method is intended for {@link Attribute} sub
-   * classes, and is normally not needed by class generators or adapters.</i>
+   * 将 UTF8 字符串添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法
+   * 供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param value the String value.
    * @return the index of a new or already existing UTF8 item.
@@ -838,9 +819,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a class reference to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将类引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param value the internal name of the class (see {@link Type#getInternalName()}).
    * @return the index of a new or already existing class reference item.
@@ -850,9 +830,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a method type reference to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将方法类型引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法
+   * 供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param methodDescriptor method descriptor of the method type.
    * @return the index of a new or already existing method type reference item.
@@ -862,9 +841,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a module reference to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将模块引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param moduleName name of the module.
    * @return the index of a new or already existing module reference item.
@@ -874,9 +852,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a package reference to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将包引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param packageName name of the package in its internal form.
    * @return the index of a new or already existing module reference item.
@@ -886,9 +863,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a handle to the constant pool of the class being build. Does nothing if the constant pool
-   * already contains a similar item. <i>This method is intended for {@link Attribute} sub classes,
-   * and is normally not needed by class generators or adapters.</i>
+   * 将句柄添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param tag the kind of this handle. Must be {@link Opcodes#H_GETFIELD}, {@link
    *     Opcodes#H_GETSTATIC}, {@link Opcodes#H_PUTFIELD}, {@link Opcodes#H_PUTSTATIC}, {@link
@@ -909,9 +885,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a handle to the constant pool of the class being build. Does nothing if the constant pool
-   * already contains a similar item. <i>This method is intended for {@link Attribute} sub classes,
-   * and is normally not needed by class generators or adapters.</i>
+   * 将句柄添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param tag the kind of this handle. Must be {@link Opcodes#H_GETFIELD}, {@link
    *     Opcodes#H_GETSTATIC}, {@link Opcodes#H_PUTFIELD}, {@link Opcodes#H_PUTSTATIC}, {@link
@@ -934,9 +909,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a dynamic constant reference to the constant pool of the class being build. Does nothing
-   * if the constant pool already contains a similar item. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将动态常量引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法
+   * 供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param name name of the invoked method.
    * @param descriptor field descriptor of the constant type.
@@ -955,9 +929,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds an invokedynamic reference to the constant pool of the class being build. Does nothing if
-   * the constant pool already contains a similar item. <i>This method is intended for {@link
-   * Attribute} sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将 invokedynamic 引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>
+   * 此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param name name of the invoked method.
    * @param descriptor descriptor of the invoke method.
@@ -976,9 +949,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a field reference to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将字段引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param owner the internal name of the field's owner class (see {@link Type#getInternalName()}).
    * @param name the field's name.
@@ -990,9 +962,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a method reference to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将方法引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param owner the internal name of the method's owner class (see {@link
    *     Type#getInternalName()}).
@@ -1007,9 +978,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Adds a name and type to the constant pool of the class being build. Does nothing if the
-   * constant pool already contains a similar item. <i>This method is intended for {@link Attribute}
-   * sub classes, and is normally not needed by class generators or adapters.</i>
+   * 将名称和类型添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供
+   * {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>
    *
    * @param name a name.
    * @param descriptor a type descriptor.
@@ -1024,12 +994,9 @@ public class ClassWriter extends ClassVisitor {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the common super type of the two given types. The default implementation of this method
-   * <i>loads</i> the two given classes and uses the java.lang.Class methods to find the common
-   * super class. It can be overridden to compute this common super type in other ways, in
-   * particular without actually loading any class, or to take into account the class that is
-   * currently being generated by this ClassWriter, which can of course not be loaded since it is
-   * under construction.
+   * 返回两个给定类型的公共超类型。此方法的默认实现会<i>加载</i>这两个给定的类，并使用
+   * java.lang.Class 的方法查找公共超类。可以重写此方法，以其他方式计算该公共超类型，特别是无需实际加
+   * 载任何类，或者将当前正由此 ClassWriter 生成、因而当然无法加载（它仍在构建中）的类考虑在内。
    *
    * @param type1 the internal name of a class (see {@link Type#getInternalName()}).
    * @param type2 the internal name of another class (see {@link Type#getInternalName()}).
@@ -1067,9 +1034,8 @@ public class ClassWriter extends ClassVisitor {
   }
 
   /**
-   * Returns the {@link ClassLoader} to be used by the default implementation of {@link
-   * #getCommonSuperClass(String, String)}, that of this {@link ClassWriter}'s runtime type by
-   * default.
+   * 返回 {@link #getCommonSuperClass(String, String)} 的默认实现所使用的 {@link ClassLoader}，默认情
+   * 况下为 {@link ClassWriter} 运行时类型的类加载器。
    *
    * @return ClassLoader
    */

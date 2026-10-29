@@ -27,7 +27,7 @@ import org.springframework.cache.interceptor.CacheResolver;
 import org.springframework.cache.interceptor.KeyGenerator;
 
 /**
- * A base {@link JCacheOperation} that operates with a key.
+ * 基于键进行操作的 {@link JCacheOperation} 基类。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -41,7 +41,7 @@ abstract class AbstractJCacheKeyOperation<A extends Annotation> extends Abstract
 
 
 	/**
-	 * Create a new instance.
+	 * 创建一个新实例。
 	 * @param methodDetails the {@link CacheMethodDetails} related to the cached method
 	 * @param cacheResolver the cache resolver to resolve regular caches
 	 * @param keyGenerator the key generator to compute cache keys
@@ -56,20 +56,18 @@ abstract class AbstractJCacheKeyOperation<A extends Annotation> extends Abstract
 
 
 	/**
-	 * Return the {@link KeyGenerator} to use to compute cache keys.
+	 * 返回用于计算缓存键的 {@link KeyGenerator}。
 	 */
 	public KeyGenerator getKeyGenerator() {
 		return this.keyGenerator;
 	}
 
 	/**
-	 * Return the {@link CacheInvocationParameter} for the parameters that are to be
-	 * used to compute the key.
-	 * <p>Per the spec, if some method parameters are annotated with
-	 * {@link javax.cache.annotation.CacheKey}, only those parameters should be part
-	 * of the key. If none are annotated, all parameters except the parameter annotated
-	 * with {@link javax.cache.annotation.CacheValue} should be part of the key.
-	 * <p>The method arguments must match the signature of the related method invocation
+	 * 返回用于计算键的参数所对应的 {@link CacheInvocationParameter}。
+	 * <p>按照规范，如果部分方法参数带有 {@link javax.cache.annotation.CacheKey} 注解，则只有这些参数应
+	 * 参与构成键。如果没有任何参数带该注解，则除带 {@link javax.cache.annotation.CacheValue} 注解的参
+	 * 数外，其余所有参数都应参与构成键。
+	 * <p>方法参数必须与相关方法调用的签名一致
 	 * @param values the parameters value for a particular invocation
 	 * @return the {@link CacheInvocationParameter} instances for the parameters to be
 	 * used to compute the key

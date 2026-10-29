@@ -20,11 +20,10 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.lang.Nullable;
 
 /**
- * Event raised when a request is handled within an ApplicationContext.
+ * 在 ApplicationContext 中处理请求时引发的事件。
  *
- * <p>Supported by Spring's own FrameworkServlet (through a specific
- * ServletRequestHandledEvent subclass), but can also be raised by any
- * other web component.
+ * <p>由 Spring 自带的 FrameworkServlet 支持（通过特定的 ServletRequestHandledEvent 子类），但也
+ * 可以由任何其他 Web 组件引发。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,24 +35,24 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class RequestHandledEvent extends ApplicationEvent {
 
-	/** Session id that applied to the request, if any. */
+	/** 应用于该请求的会话 id（如果有）。 */
 	@Nullable
 	private String sessionId;
 
-	/** Usually the UserPrincipal. */
+	/** 通常是 UserPrincipal。 */
 	@Nullable
 	private String userName;
 
-	/** Request processing time. */
+	/** 请求处理时间。 */
 	private final long processingTimeMillis;
 
-	/** Cause of failure, if any. */
+	/** 失败原因（如果有）。 */
 	@Nullable
 	private Throwable failureCause;
 
 
 	/**
-	 * Create a new RequestHandledEvent with session information.
+	 * 创建一个带有会话信息的 RequestHandledEvent。
 	 * @param source the component that published the event
 	 * @param sessionId the id of the HTTP session, if any
 	 * @param userName the name of the user that was associated with the
@@ -70,7 +69,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Create a new RequestHandledEvent with session information.
+	 * 创建一个带有会话信息的 RequestHandledEvent。
 	 * @param source the component that published the event
 	 * @param sessionId the id of the HTTP session, if any
 	 * @param userName the name of the user that was associated with the
@@ -87,14 +86,14 @@ public class RequestHandledEvent extends ApplicationEvent {
 
 
 	/**
-	 * Return the processing time of the request in milliseconds.
+	 * 返回请求的处理时间（以毫秒为单位）。
 	 */
 	public long getProcessingTimeMillis() {
 		return this.processingTimeMillis;
 	}
 
 	/**
-	 * Return the id of the HTTP session, if any.
+	 * 返回 HTTP 会话的 id（如果有）。
 	 */
 	@Nullable
 	public String getSessionId() {
@@ -102,8 +101,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Return the name of the user that was associated with the request
-	 * (usually the UserPrincipal).
+	 * 返回与该请求关联的用户名称（通常是 UserPrincipal）。
 	 * @see javax.servlet.http.HttpServletRequest#getUserPrincipal()
 	 */
 	@Nullable
@@ -112,14 +110,14 @@ public class RequestHandledEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Return whether the request failed.
+	 * 返回请求是否失败。
 	 */
 	public boolean wasFailure() {
 		return (this.failureCause != null);
 	}
 
 	/**
-	 * Return the cause of failure, if any.
+	 * 返回失败原因（如果有）。
 	 */
 	@Nullable
 	public Throwable getFailureCause() {
@@ -128,8 +126,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 
 
 	/**
-	 * Return a short description of this event, only involving
-	 * the most important context data.
+	 * 返回此事件的简短描述，只涉及最重要的上下文数据。
 	 */
 	public String getShortDescription() {
 		StringBuilder sb = new StringBuilder();
@@ -139,8 +136,7 @@ public class RequestHandledEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Return a full description of this event, involving
-	 * all available context data.
+	 * 返回此事件的完整描述，涉及所有可用的上下文数据。
 	 */
 	public String getDescription() {
 		StringBuilder sb = new StringBuilder();

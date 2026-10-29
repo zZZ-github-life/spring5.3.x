@@ -42,9 +42,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Descriptor for a specific dependency that is about to be injected.
- * Wraps a constructor parameter, a method parameter or a field,
- * allowing unified access to their metadata.
+ * 描述一个即将被注入的特定依赖。它包装构造方法参数、方法参数或字段，从而统一访问它们的元数据。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -82,8 +80,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 
 	/**
-	 * Create a new descriptor for a method or constructor parameter.
-	 * Considers the dependency as 'eager'.
+	 * 为方法或构造方法参数创建一个新的描述符。将该依赖视为“eager”。
 	 * @param methodParameter the MethodParameter to wrap
 	 * @param required whether the dependency is required
 	 */
@@ -92,7 +89,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Create a new descriptor for a method or constructor parameter.
+	 * 为方法或构造方法参数创建一个新的描述符。
 	 * @param methodParameter the MethodParameter to wrap
 	 * @param required whether the dependency is required
 	 * @param eager whether this dependency is 'eager' in the sense of
@@ -113,8 +110,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Create a new descriptor for a field.
-	 * Considers the dependency as 'eager'.
+	 * 为字段创建一个新的描述符。将该依赖视为“eager”。
 	 * @param field the field to wrap
 	 * @param required whether the dependency is required
 	 */
@@ -123,7 +119,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Create a new descriptor for a field.
+	 * 为字段创建一个新的描述符。
 	 * @param field the field to wrap
 	 * @param required whether the dependency is required
 	 * @param eager whether this dependency is 'eager' in the sense of
@@ -139,7 +135,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Copy constructor.
+	 * 复制构造方法。
 	 * @param original the original descriptor to create a copy from
 	 */
 	public DependencyDescriptor(DependencyDescriptor original) {
@@ -158,11 +154,9 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 
 	/**
-	 * Return whether this dependency is required.
-	 * <p>Optional semantics are derived from Java 8's {@link java.util.Optional},
-	 * any variant of a parameter-level {@code Nullable} annotation (such as from
-	 * JSR-305 or the FindBugs set of annotations), or a language-level nullable
-	 * type declaration in Kotlin.
+	 * 返回此依赖是否为必需。
+	 * <p>可选语义来源于 Java 8 的 {@link java.util.Optional}、参数级 {@code Nullable} 注解的任何变体
+	 * （例如来自 JSR-305 或 FindBugs 注解集），或 Kotlin 中的语言级可空类型声明。
 	 */
 	public boolean isRequired() {
 		if (!this.required) {
@@ -181,9 +175,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Check whether the underlying field is annotated with any variant of a
-	 * {@code Nullable} annotation, e.g. {@code javax.annotation.Nullable} or
-	 * {@code edu.umd.cs.findbugs.annotations.Nullable}.
+	 * 检查底层字段是否标注了 {@code Nullable} 注解的任意变体，例如 {@code javax.annotation.Nullable}
+	 * 或 {@code edu.umd.cs.findbugs.annotations.Nullable}。
 	 */
 	private boolean hasNullableAnnotation() {
 		for (Annotation ann : getAnnotations()) {
@@ -195,18 +188,15 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Return whether this dependency is 'eager' in the sense of
-	 * eagerly resolving potential target beans for type matching.
+	 * 返回此依赖是否为“eager”，即是否为类型匹配而急切地解析潜在的目标 Bean。
 	 */
 	public boolean isEager() {
 		return this.eager;
 	}
 
 	/**
-	 * Resolve the specified not-unique scenario: by default,
-	 * throwing a {@link NoUniqueBeanDefinitionException}.
-	 * <p>Subclasses may override this to select one of the instances or
-	 * to opt out with no result at all through returning {@code null}.
+	 * 解析所指定的非唯一场景：默认情况下抛出 {@link NoUniqueBeanDefinitionException}。
+	 * <p>子类可以重写此方法以选择其中一个实例，或通过返回 {@code null} 选择完全不返回结果。
 	 * @param type the requested bean type
 	 * @param matchingBeans a map of bean names and corresponding bean
 	 * instances which have been pre-selected for the given type
@@ -221,10 +211,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Resolve the specified not-unique scenario: by default,
-	 * throwing a {@link NoUniqueBeanDefinitionException}.
-	 * <p>Subclasses may override this to select one of the instances or
-	 * to opt out with no result at all through returning {@code null}.
+	 * 解析所指定的非唯一场景：默认情况下抛出 {@link NoUniqueBeanDefinitionException}。
+	 * <p>子类可以重写此方法以选择其中一个实例，或通过返回 {@code null} 选择完全不返回结果。
 	 * @param type the requested bean type
 	 * @param matchingBeans a map of bean names and corresponding bean
 	 * instances which have been pre-selected for the given type
@@ -241,12 +229,9 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Resolve a shortcut for this dependency against the given factory, for example
-	 * taking some pre-resolved information into account.
-	 * <p>The resolution algorithm will first attempt to resolve a shortcut through this
-	 * method before going into the regular type matching algorithm across all beans.
-	 * Subclasses may override this method to improve resolution performance based on
-	 * pre-cached information while still receiving {@link InjectionPoint} exposure etc.
+	 * 针对给定的工厂解析此依赖的快捷结果，例如将某些预先解析的信息考虑在内。
+	 * <p>解析算法会先尝试通过此方法解析快捷结果，然后再进入对所有 Bean 的常规类型匹配算法。子类可以重
+	 * 写此方法，以便基于预缓存的信息提升解析性能，同时仍然获得 {@link InjectionPoint} 等的暴露。
 	 * @param beanFactory the associated factory
 	 * @return the shortcut result if any, or {@code null} if none
 	 * @throws BeansException if the shortcut could not be obtained
@@ -258,10 +243,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Resolve the specified bean name, as a candidate result of the matching
-	 * algorithm for this dependency, to a bean instance from the given factory.
-	 * <p>The default implementation calls {@link BeanFactory#getBean(String)}.
-	 * Subclasses may provide additional arguments or other customizations.
+	 * 将所指定的 Bean 名称（作为此依赖匹配算法的候选结果）解析为来自给定工厂的 Bean 实例。
+	 * <p>默认实现调用 {@link BeanFactory#getBean(String)}。子类可以提供额外的参数或其他定制。
 	 * @param beanName the bean name, as a candidate result for this dependency
 	 * @param requiredType the expected type of the bean (as an assertion)
 	 * @param beanFactory the associated factory
@@ -278,7 +261,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 
 	/**
-	 * Increase this descriptor's nesting level.
+	 * 增加此描述符的嵌套层级。
 	 */
 	public void increaseNestingLevel() {
 		this.nestingLevel++;
@@ -289,9 +272,8 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Optionally set the concrete class that contains this dependency.
-	 * This may differ from the class that declares the parameter/field in that
-	 * it may be a subclass thereof, potentially substituting type variables.
+	 * 可选地设置包含此依赖的具体类。它可能与声明该参数/字段的类不同，因为它可能是后者的子类，并可能替
+	 * 换类型变量。
 	 * @since 4.0
 	 */
 	public void setContainingClass(Class<?> containingClass) {
@@ -303,7 +285,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Build a {@link ResolvableType} object for the wrapped parameter/field.
+	 * 为所包装的参数/字段构建一个 {@link ResolvableType} 对象。
 	 * @since 4.0
 	 */
 	public ResolvableType getResolvableType() {
@@ -318,7 +300,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Build a {@link TypeDescriptor} object for the wrapped parameter/field.
+	 * 为所包装的参数/字段构建一个 {@link TypeDescriptor} 对象。
 	 * @since 5.1.4
 	 */
 	public TypeDescriptor getTypeDescriptor() {
@@ -333,10 +315,10 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Return whether a fallback match is allowed.
-	 * <p>This is {@code false} by default but may be overridden to return {@code true} in order
-	 * to suggest to an {@link org.springframework.beans.factory.support.AutowireCandidateResolver}
-	 * that a fallback match is acceptable as well.
+	 * 返回是否允许回退匹配。
+	 * <p>默认情况下为 {@code false}，但可以重写为返回 {@code true}，以向
+	 * {@link org.springframework.beans.factory.support.AutowireCandidateResolver} 表明回退匹配也是可接
+	 * 受的。
 	 * @since 4.0
 	 */
 	public boolean fallbackMatchAllowed() {
@@ -344,7 +326,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Return a variant of this descriptor that is intended for a fallback match.
+	 * 返回此描述符的一个变体，用于回退匹配。
 	 * @since 4.0
 	 * @see #fallbackMatchAllowed()
 	 */
@@ -358,10 +340,9 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Initialize parameter name discovery for the underlying method parameter, if any.
-	 * <p>This method does not actually try to retrieve the parameter name at
-	 * this point; it just allows discovery to happen when the application calls
-	 * {@link #getDependencyName()} (if ever).
+	 * 为底层方法参数（如果有）初始化参数名称发现。
+	 * <p>此方法在此刻并不会真正检索参数名称；它只是允许在应用调用 {@link #getDependencyName()} 时（如
+	 * 果发生的话）进行发现。
 	 */
 	public void initParameterNameDiscovery(@Nullable ParameterNameDiscoverer parameterNameDiscoverer) {
 		if (this.methodParameter != null) {
@@ -370,7 +351,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Determine the name of the wrapped parameter/field.
+	 * 确定所包装的参数/字段的名称。
 	 * @return the declared name (may be {@code null} if unresolvable)
 	 */
 	@Nullable
@@ -379,7 +360,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 	}
 
 	/**
-	 * Determine the declared (non-generic) type of the wrapped parameter/field.
+	 * 确定所包装的参数/字段的声明类型（非泛型）。
 	 * @return the declared type (never {@code null})
 	 */
 	public Class<?> getDependencyType() {
@@ -466,12 +447,12 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 
 
 	/**
-	 * Inner class to avoid a hard dependency on Kotlin at runtime.
+	 * 内部类，用于避免在运行时对 Kotlin 产生硬依赖。
 	 */
 	private static class KotlinDelegate {
 
 		/**
-		 * Check whether the specified {@link Field} represents a nullable Kotlin type or not.
+		 * 检查所指定的 {@link Field} 是否表示可为空的 Kotlin 类型。
 		 */
 		public static boolean isNullable(Field field) {
 			KProperty<?> property = ReflectJvmMapping.getKotlinProperty(field);

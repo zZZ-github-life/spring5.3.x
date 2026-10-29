@@ -1,9 +1,9 @@
 /**
- * The classes in this package represent EIS operations as threadsafe,
- * reusable objects. This higher level of CCI abstraction depends on the
- * lower-level abstraction in the {@code org.springframework.jca.cci.core} package.
- * Exceptions thrown are as in the {@code org.springframework.dao} package,
- * meaning that code using this package does not need to worry about error handling.
+ * 此包中的类将 EIS 操作表示为线程安全的、可重用的对象。
+ * 这种更高级别的 CCI 抽象依赖于
+ * {@code org.springframework.jca.cci.core} 包中的较低级别抽象。
+ * 抛出的异常与 {@code org.springframework.dao} 包中的一样，
+ * 这意味着使用此包的代码无需担心错误处理。
  */
 @NonNullApi
 @NonNullFields

@@ -34,99 +34,78 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ErrorHandler;
 
 /**
- * Abstract base class for Spring message listener container implementations.
- * Can either host a standard JMS {@link javax.jms.MessageListener} or Spring's
- * {@link SessionAwareMessageListener} for actual message processing.
+ * Spring 消息监听器容器实现的抽象基类。
+ * 它既可以承载标准的 JMS {@link javax.jms.MessageListener}，
+ * 也可以承载 Spring 的 {@link SessionAwareMessageListener} 来进行实际的消息处理。
  *
- * <p>Usually holds a single JMS {@link Connection} that all listeners are supposed
- * to be registered on, which is the standard JMS way of managing listener sessions.
- * Can alternatively also be used with a fresh Connection per listener, for Java EE
- * style XA-aware JMS messaging. The actual registration process is up to concrete
- * subclasses.
+ * <p>通常持有一个所有监听器都应注册其上的单一 JMS {@link Connection}，
+ * 这是管理监听器会话的标准 JMS 方式。它也可以选择为每个监听器使用新的 Connection，
+ * 以支持 Java EE 风格的 XA 感知 JMS 消息传递。实际的注册过程由具体的子类负责。
  *
- * <p><b>NOTE:</b> The default behavior of this message listener container is to
- * <b>never</b> propagate an exception thrown by a message listener up to the JMS
- * provider. Instead, it will log any such exception at the error level.
- * This means that from the perspective of the attendant JMS provider no such
- * listener will ever fail. However, if error handling is necessary, then
- * any implementation of the {@link ErrorHandler} strategy may be provided to
- * the {@link #setErrorHandler(ErrorHandler)} method. Note that JMSExceptions
- * <b>will</b> be passed to the ErrorHandler in addition to (but after) being
- * passed to an {@link ExceptionListener}, if one has been provided.
+ * <p><b>注意：</b>此消息监听器容器的默认行为是<b>绝不</b>将消息监听器抛出的异常
+ * 传播给 JMS 提供者。相反，它会以 error 级别记录任何此类异常。
+ * 这意味着从相关 JMS 提供者的角度来看，这样的监听器永远不会失败。然而，
+ * 如果需要错误处理，可以向 {@link #setErrorHandler(ErrorHandler)} 方法提供
+ * 任何 {@link ErrorHandler} 策略实现。请注意，如果提供了 {@link ExceptionListener}，
+ * JMSException <b>会</b>在传递给 {@link ExceptionListener} 之后（但之后）再传递给 ErrorHandler。
  *
- * <p>The listener container offers the following message acknowledgment options:
+ * <p>监听器容器提供以下消息确认选项：
  * <ul>
- * <li>"sessionAcknowledgeMode" set to "AUTO_ACKNOWLEDGE" (default):
- * This mode is container-dependent: For {@link DefaultMessageListenerContainer},
- * it means automatic message acknowledgment <i>before</i> listener execution, with
- * no redelivery in case of an exception and no redelivery in case of other listener
- * execution interruptions either. For {@link SimpleMessageListenerContainer},
- * it means automatic message acknowledgment <i>after</i> listener execution, with
- * no redelivery in case of a user exception thrown but potential redelivery in case
- * of the JVM dying during listener execution. In order to consistently arrange for
- * redelivery with any container variant, consider "CLIENT_ACKNOWLEDGE" mode or -
- * preferably - setting "sessionTransacted" to "true" instead.
- * <li>"sessionAcknowledgeMode" set to "DUPS_OK_ACKNOWLEDGE":
- * <i>Lazy</i> message acknowledgment during ({@link DefaultMessageListenerContainer})
- * or shortly after ({@link SimpleMessageListenerContainer}) listener execution;
- * no redelivery in case of a user exception thrown but potential redelivery in case
- * of the JVM dying during listener execution. In order to consistently arrange for
- * redelivery with any container variant, consider "CLIENT_ACKNOWLEDGE" mode or -
- * preferably - setting "sessionTransacted" to "true" instead.
- * <li>"sessionAcknowledgeMode" set to "CLIENT_ACKNOWLEDGE":
- * Automatic message acknowledgment <i>after</i> successful listener execution;
- * best-effort redelivery in case of a user exception thrown as well as in case
- * of other listener execution interruptions (such as the JVM dying).
- * <li>"sessionTransacted" set to "true":
- * Transactional acknowledgment after successful listener execution;
- * <i>guaranteed redelivery</i> in case of a user exception thrown as well as
- * in case of other listener execution interruptions (such as the JVM dying).
+ * <li>"sessionAcknowledgeMode" 设置为 "AUTO_ACKNOWLEDGE"（默认）：
+ * 此模式取决于具体容器：对于 {@link DefaultMessageListenerContainer}，
+ * 它意味着在监听器执行<i>之前</i>进行自动消息确认，发生异常时不会重新投递，
+ * 其他监听器执行中断情况下也不会重新投递。对于 {@link SimpleMessageListenerContainer}，
+ * 它意味着在监听器执行<i>之后</i>进行自动消息确认，抛出用户异常时不会重新投递，
+ * 但如果 JVM 在监听器执行期间终止则可能重新投递。为了在任意容器变体上一致地安排
+ * 重新投递，请考虑使用 "CLIENT_ACKNOWLEDGE" 模式，或者（更好的做法）将
+ * "sessionTransacted" 设置为 "true"。
+ * <li>"sessionAcknowledgeMode" 设置为 "DUPS_OK_ACKNOWLEDGE"：
+ * 在监听器执行<i>期间</i>（{@link DefaultMessageListenerContainer}）或
+ * 稍后（{@link SimpleMessageListenerContainer}）进行<i>惰性</i>消息确认；
+ * 抛出用户异常时不会重新投递，但如果 JVM 在监听器执行期间终止则可能重新投递。
+ * 为了在任意容器变体上一致地安排重新投递，请考虑使用 "CLIENT_ACKNOWLEDGE" 模式，
+ * 或者（更好的做法）将 "sessionTransacted" 设置为 "true"。
+ * <li>"sessionAcknowledgeMode" 设置为 "CLIENT_ACKNOWLEDGE"：
+ * 在监听器成功执行<i>之后</i>进行自动消息确认；抛出用户异常时以及其他监听器执行中断
+ * （例如 JVM 终止）情况下都会尽力重新投递。
+ * <li>"sessionTransacted" 设置为 "true"：
+ * 在监听器成功执行后进行事务性确认；抛出用户异常时以及其他监听器执行中断
+ * （例如 JVM 终止）情况下都会<i>保证重新投递</i>。
  * </ul>
  *
- * <p>There are two solutions to the duplicate message processing problem:
+ * <p>重复消息处理问题有两种解决方案：
  * <ul>
- * <li>Either add <i>duplicate message detection</i> to your listener, in the
- * form of a business entity existence check or a protocol table check. This
- * usually just needs to be done in case of the JMSRedelivered flag being
- * set on the incoming message (otherwise just process straightforwardly).
- * Note that with "sessionTransacted" set to "true", duplicate messages will
- * only appear in case of the JVM dying at the most unfortunate point possible
- * (i.e. after your business logic executed but before the JMS part got committed),
- * so duplicate message detection is just there to cover a corner case.
- * <li>Or wrap your <i>entire processing with an XA transaction</i>, covering the
- * reception of the JMS message as well as the execution of the business logic in
- * your message listener (including database operations etc). This is only
- * supported by {@link DefaultMessageListenerContainer}, through specifying
- * an external "transactionManager" (typically a
- * {@link org.springframework.transaction.jta.JtaTransactionManager}, with
- * a corresponding XA-aware JMS {@link javax.jms.ConnectionFactory} passed in
- * as "connectionFactory").
+ * <li>要么在监听器中添加<i>重复消息检测</i>，形式可以是业务实体存在性检查
+ * 或协议表检查。这通常只需要在传入消息上设置了 JMSRedelivered 标志时进行
+ * （否则直接正常处理即可）。请注意，当 "sessionTransacted" 设置为 "true" 时，
+ * 重复消息只会在 JVM 恰好在最不幸的时刻终止时出现（即在业务逻辑已执行、
+ * 但 JMS 部分尚未提交之前），因此重复消息检测只是用来覆盖这种边缘情况。
+ * <li>或者<i>用 XA 事务包装整个处理过程</i>，同时涵盖 JMS 消息的接收
+ * 以及消息监听器中业务逻辑的执行（包括数据库操作等）。只有
+ * {@link DefaultMessageListenerContainer} 支持这种方式，方法是指定外部
+ * "transactionManager"（通常是 {@link org.springframework.transaction.jta.JtaTransactionManager}，
+ * 并传入相应的 XA 感知的 JMS {@link javax.jms.ConnectionFactory} 作为
+ * "connectionFactory"）。
  * </ul>
- * Note that XA transaction coordination adds significant runtime overhead,
- * so it might be feasible to avoid it unless absolutely necessary.
+ * 请注意，XA 事务协调会带来显著的运行时开销，因此除非绝对必要，
+ * 避免使用它可能是可行的。
  *
- * <p><b>Recommendations:</b>
+ * <p><b>建议：</b>
  * <ul>
- * <li>The general recommendation is to set "sessionTransacted" to "true",
- * typically in combination with local database transactions triggered by the
- * listener implementation, through Spring's standard transaction facilities.
- * This will work nicely in Tomcat or in a standalone environment, often
- * combined with custom duplicate message detection (if it is unacceptable
- * to ever process the same message twice).
- * <li>Alternatively, specify a
- * {@link org.springframework.transaction.jta.JtaTransactionManager} as
- * "transactionManager" for a fully XA-aware JMS provider - typically when
- * running on a Java EE server, but also for other environments with a JTA
- * transaction manager present. This will give full "exactly-once" guarantees
- * without custom duplicate message checks, at the price of additional
- * runtime processing overhead.
+ * <li>一般建议将 "sessionTransacted" 设置为 "true"，通常与由监听器实现
+ * 通过 Spring 标准事务设施触发的本地数据库事务结合使用。
+ * 这在 Tomcat 或独立环境中工作良好，通常结合自定义的重复消息检测
+ * （如果绝不能处理同一条消息两次）。
+ * <li>或者，为完全 XA 感知的 JMS 提供者指定
+ * {@link org.springframework.transaction.jta.JtaTransactionManager} 作为
+ * "transactionManager"——通常是在 Java EE 服务器上运行时，但也适用于存在
+ * JTA 事务管理器的其他环境。这样可以在没有自定义重复消息检查的情况下
+ * 获得完整的“恰好一次”保证，代价是额外的运行时处理开销。
  * </ul>
  *
- * <p>Note that the "sessionTransacted" flag is strongly recommended over
- * {@link org.springframework.jms.connection.JmsTransactionManager}, provided
- * that transactions do not need to be managed externally. As a consequence,
- * set the transaction manager only if you are using JTA or if you need to
- * synchronize with custom external transaction arrangements.
+ * <p>请注意，只要不需要在外部管理事务，强烈建议使用 "sessionTransacted" 标志，
+ * 而不是 {@link org.springframework.jms.connection.JmsTransactionManager}。
+ * 因此，只有在使用 JTA 或需要与自定义外部事务安排同步时才设置事务管理器。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -181,18 +160,17 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 
 	/**
-	 * Specify concurrency limits.
+	 * 指定并发限制。
 	 */
 	public abstract void setConcurrency(String concurrency);
 
 	/**
-	 * Set the destination to receive messages from.
-	 * <p>Alternatively, specify a "destinationName", to be dynamically
-	 * resolved via the {@link org.springframework.jms.support.destination.DestinationResolver}.
-	 * <p>Note: The destination may be replaced at runtime, with the listener
-	 * container picking up the new destination immediately (works e.g. with
-	 * DefaultMessageListenerContainer, as long as the cache level is less than
-	 * CACHE_CONSUMER). However, this is considered advanced usage; use it with care!
+	 * 设置要从中接收消息的目的地。
+	 * <p>或者，指定 "destinationName"，以便通过
+	 * {@link org.springframework.jms.support.destination.DestinationResolver} 动态解析。
+	 * <p>注意：目的地可以在运行时替换，监听器容器会立即采用新的目的地
+	 * （例如 DefaultMessageListenerContainer 可以做到这一点，只要缓存级别低于
+	 * CACHE_CONSUMER）。不过，这属于高级用法；请谨慎使用！
 	 * @see #setDestinationName(String)
 	 */
 	public void setDestination(@Nullable Destination destination) {
@@ -204,9 +182,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return the destination to receive messages from. Will be {@code null}
-	 * if the configured destination is not an actual {@link Destination} type;
-	 * c.f. {@link #setDestinationName(String) when the destination is a String}.
+	 * 返回要从中接收消息的目的地。如果配置的目的地不是实际的 {@link Destination}
+	 * 类型，则返回 {@code null}；当目的地是 String 时，请参见
+	 * {@link #setDestinationName(String)}。
 	 */
 	@Nullable
 	public Destination getDestination() {
@@ -214,14 +192,13 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the name of the destination to receive messages from.
-	 * <p>The specified name will be dynamically resolved via the configured
-	 * {@link #setDestinationResolver destination resolver}.
-	 * <p>Alternatively, specify a JMS {@link Destination} object as "destination".
-	 * <p>Note: The destination may be replaced at runtime, with the listener
-	 * container picking up the new destination immediately (works e.g. with
-	 * DefaultMessageListenerContainer, as long as the cache level is less than
-	 * CACHE_CONSUMER). However, this is considered advanced usage; use it with care!
+	 * 设置要从中接收消息的目的地的名称。
+	 * <p>指定的名称将通过配置的 {@link #setDestinationResolver destination resolver}
+	 * 动态解析。
+	 * <p>或者，将 JMS {@link Destination} 对象指定为 "destination"。
+	 * <p>注意：目的地可以在运行时替换，监听器容器会立即采用新的目的地
+	 * （例如 DefaultMessageListenerContainer 可以做到这一点，只要缓存级别低于
+	 * CACHE_CONSUMER）。不过，这属于高级用法；请谨慎使用！
 	 * @see #setDestination(javax.jms.Destination)
 	 */
 	public void setDestinationName(@Nullable String destinationName) {
@@ -229,10 +206,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return the name of the destination to receive messages from.
-	 * Will be {@code null} if the configured destination is not a
-	 * {@link String} type; c.f. {@link #setDestination(Destination) when
-	 * it is an actual Destination}.
+	 * 返回要从中接收消息的目的地的名称。
+	 * 如果配置的目的地不是 {@link String} 类型，则返回 {@code null}；
+	 * 当它是实际的 Destination 时，请参见 {@link #setDestination(Destination)}。
 	 */
 	@Nullable
 	public String getDestinationName() {
@@ -240,8 +216,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return a descriptive String for this container's JMS destination
-	 * (never {@code null}).
+	 * 返回此容器的 JMS 目的地的描述性字符串（永不为 {@code null}）。
 	 */
 	protected String getDestinationDescription() {
 		Object destination = this.destination;
@@ -249,20 +224,18 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the JMS message selector expression (or {@code null} if none).
-	 * Default is none.
-	 * <p>See the JMS specification for a detailed definition of selector expressions.
-	 * <p>Note: The message selector may be replaced at runtime, with the listener
-	 * container picking up the new selector value immediately (works e.g. with
-	 * DefaultMessageListenerContainer, as long as the cache level is less than
-	 * CACHE_CONSUMER). However, this is considered advanced usage; use it with care!
+	 * 设置 JMS 消息选择器表达式（如果没有则为 {@code null}）。默认为无。
+	 * <p>关于选择器表达式的详细定义，请参阅 JMS 规范。
+	 * <p>注意：消息选择器可以在运行时替换，监听器容器会立即采用新的选择器值
+	 * （例如 DefaultMessageListenerContainer 可以做到这一点，只要缓存级别低于
+	 * CACHE_CONSUMER）。不过，这属于高级用法；请谨慎使用！
 	 */
 	public void setMessageSelector(@Nullable String messageSelector) {
 		this.messageSelector = messageSelector;
 	}
 
 	/**
-	 * Return the JMS message selector expression (or {@code null} if none).
+	 * 返回 JMS 消息选择器表达式（如果没有则为 {@code null}）。
 	 */
 	@Nullable
 	public String getMessageSelector() {
@@ -271,13 +244,12 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 
 	/**
-	 * Set the message listener implementation to register.
-	 * This can be either a standard JMS {@link MessageListener} object
-	 * or a Spring {@link SessionAwareMessageListener} object.
-	 * <p>Note: The message listener may be replaced at runtime, with the listener
-	 * container picking up the new listener object immediately (works e.g. with
-	 * DefaultMessageListenerContainer, as long as the cache level is less than
-	 * CACHE_CONSUMER). However, this is considered advanced usage; use it with care!
+	 * 设置要注册的消息监听器实现。
+	 * 这既可以是标准的 JMS {@link MessageListener} 对象，
+	 * 也可以是 Spring 的 {@link SessionAwareMessageListener} 对象。
+	 * <p>注意：消息监听器可以在运行时替换，监听器容器会立即采用新的监听器对象
+	 * （例如 DefaultMessageListenerContainer 可以做到这一点，只要缓存级别低于
+	 * CACHE_CONSUMER）。不过，这属于高级用法；请谨慎使用！
 	 * @throws IllegalArgumentException if the supplied listener is not a
 	 * {@link MessageListener} or a {@link SessionAwareMessageListener}
 	 * @see javax.jms.MessageListener
@@ -292,7 +264,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return the message listener object to register.
+	 * 返回要注册的消息监听器对象。
 	 */
 	@Nullable
 	public Object getMessageListener() {
@@ -300,10 +272,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Check the given message listener, throwing an exception
-	 * if it does not correspond to a supported listener type.
-	 * <p>By default, only a standard JMS {@link MessageListener} object or a
-	 * Spring {@link SessionAwareMessageListener} object will be accepted.
+	 * 检查给定的消息监听器，如果它不符合受支持的监听器类型则抛出异常。
+	 * <p>默认情况下，只接受标准的 JMS {@link MessageListener} 对象
+	 * 或 Spring 的 {@link SessionAwareMessageListener} 对象。
 	 * @param messageListener the message listener object to check
 	 * @throws IllegalArgumentException if the supplied listener is not a
 	 * {@link MessageListener} or a {@link SessionAwareMessageListener}
@@ -320,7 +291,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Determine the default subscription name for the given message listener.
+	 * 确定给定消息监听器的默认订阅名称。
 	 * @param messageListener the message listener object to check
 	 * @return the default subscription name
 	 * @see SubscriptionNameProvider
@@ -335,13 +306,13 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set whether to make the subscription durable. The durable subscription name
-	 * to be used can be specified through the "subscriptionName" property.
-	 * <p>Default is "false". Set this to "true" to register a durable subscription,
-	 * typically in combination with a "subscriptionName" value (unless
-	 * your message listener class name is good enough as subscription name).
-	 * <p>Only makes sense when listening to a topic (pub-sub domain),
-	 * therefore this method switches the "pubSubDomain" flag as well.
+	 * 设置是否使订阅持久化。要使用的持久订阅名称可以通过
+	 * "subscriptionName" 属性指定。
+	 * <p>默认值为 "false"。将其设置为 "true" 可注册持久订阅，
+	 * 通常与 "subscriptionName" 值结合使用（除非你的消息监听器类名
+	 * 足以作为订阅名称）。
+	 * <p>仅在监听主题（发布-订阅域）时才有意义，
+	 * 因此此方法也会切换 "pubSubDomain" 标志。
 	 * @see #setSubscriptionName
 	 * @see #setPubSubDomain
 	 */
@@ -353,23 +324,22 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return whether to make the subscription durable.
+	 * 返回是否使订阅持久化。
 	 */
 	public boolean isSubscriptionDurable() {
 		return this.subscriptionDurable;
 	}
 
 	/**
-	 * Set whether to make the subscription shared. The shared subscription name
-	 * to be used can be specified through the "subscriptionName" property.
-	 * <p>Default is "false". Set this to "true" to register a shared subscription,
-	 * typically in combination with a "subscriptionName" value (unless
-	 * your message listener class name is good enough as subscription name).
-	 * Note that shared subscriptions may also be durable, so this flag can
-	 * (and often will) be combined with "subscriptionDurable" as well.
-	 * <p>Only makes sense when listening to a topic (pub-sub domain),
-	 * therefore this method switches the "pubSubDomain" flag as well.
-	 * <p><b>Requires a JMS 2.0 compatible message broker.</b>
+	 * 设置是否使订阅共享。要使用的共享订阅名称可以通过
+	 * "subscriptionName" 属性指定。
+	 * <p>默认值为 "false"。将其设置为 "true" 可注册共享订阅，
+	 * 通常与 "subscriptionName" 值结合使用（除非你的消息监听器类名
+	 * 足以作为订阅名称）。请注意，共享订阅也可以是持久化的，
+	 * 因此此标志可以（而且经常会）与 "subscriptionDurable" 一起使用。
+	 * <p>仅在监听主题（发布-订阅域）时才有意义，
+	 * 因此此方法也会切换 "pubSubDomain" 标志。
+	 * <p><b>需要兼容 JMS 2.0 的消息代理。</b>
 	 * @since 4.1
 	 * @see #setSubscriptionName
 	 * @see #setSubscriptionDurable
@@ -383,7 +353,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return whether to make the subscription shared.
+	 * 返回是否使订阅共享。
 	 * @since 4.1
 	 */
 	public boolean isSubscriptionShared() {
@@ -391,13 +361,12 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the name of a subscription to create. To be applied in case
-	 * of a topic (pub-sub domain) with a shared or durable subscription.
-	 * <p>The subscription name needs to be unique within this client's
-	 * JMS client id. Default is the class name of the specified message listener.
-	 * <p>Note: Only 1 concurrent consumer (which is the default of this
-	 * message listener container) is allowed for each subscription,
-	 * except for a shared subscription (which requires JMS 2.0).
+	 * 设置要创建的订阅名称。适用于带共享订阅或持久订阅的主题
+	 * （发布-订阅域）场景。
+	 * <p>订阅名称在此客户端的 JMS 客户端 ID 内必须唯一。
+	 * 默认值为指定消息监听器的类名。
+	 * <p>注意：每个订阅只允许 1 个并发消费者（这也是此消息监听器容器的默认值），
+	 * 共享订阅除外（共享订阅需要 JMS 2.0）。
 	 * @since 4.1
 	 * @see #setPubSubDomain
 	 * @see #setSubscriptionDurable
@@ -410,7 +379,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return the name of a subscription to create, if any.
+	 * 返回要创建的订阅名称（如果有）。
 	 * @since 4.1
 	 */
 	@Nullable
@@ -419,13 +388,12 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the name of a durable subscription to create. This method switches
-	 * to pub-sub domain mode and activates subscription durability as well.
-	 * <p>The durable subscription name needs to be unique within this client's
-	 * JMS client id. Default is the class name of the specified message listener.
-	 * <p>Note: Only 1 concurrent consumer (which is the default of this
-	 * message listener container) is allowed for each durable subscription,
-	 * except for a shared durable subscription (which requires JMS 2.0).
+	 * 设置要创建的持久订阅名称。此方法会切换到发布-订阅域模式，
+	 * 并同时激活订阅持久化。
+	 * <p>持久订阅名称在此客户端的 JMS 客户端 ID 内必须唯一。
+	 * 默认值为指定消息监听器的类名。
+	 * <p>注意：每个持久订阅只允许 1 个并发消费者（这也是此消息监听器容器的默认值），
+	 * 共享持久订阅除外（共享持久订阅需要 JMS 2.0）。
 	 * @see #setPubSubDomain
 	 * @see #setSubscriptionDurable
 	 * @see #setSubscriptionShared
@@ -438,7 +406,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return the name of a durable subscription to create, if any.
+	 * 返回要创建的持久订阅名称（如果有）。
 	 */
 	@Nullable
 	public String getDurableSubscriptionName() {
@@ -446,8 +414,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set whether to inhibit the delivery of messages published by its own connection.
-	 * Default is "false".
+	 * 设置是否阻止投递由其自身连接发布的消息。默认值为 "false"。
 	 * @since 4.1
 	 * @see javax.jms.Session#createConsumer(javax.jms.Destination, String, boolean)
 	 */
@@ -456,7 +423,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return whether to inhibit the delivery of messages published by its own connection.
+	 * 返回是否阻止投递由其自身连接发布的消息。
 	 * @since 4.1
 	 */
 	public boolean isPubSubNoLocal() {
@@ -464,10 +431,9 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Configure the reply destination type. By default, the configured {@code pubSubDomain}
-	 * value is used (see {@link #isPubSubDomain()}).
-	 * <p>This setting primarily indicates what type of destination to resolve if dynamic
-	 * destinations are enabled.
+	 * 配置回复目的地类型。默认情况下，使用配置的 {@code pubSubDomain} 值
+	 * （参见 {@link #isPubSubDomain()}）。
+	 * <p>如果启用了动态目的地，此设置主要指示要解析的目的地类型。
 	 * @param replyPubSubDomain "true" for the Publish/Subscribe domain ({@link Topic Topics}),
 	 * "false" for the Point-to-Point domain ({@link Queue Queues})
 	 * @since 4.2
@@ -478,9 +444,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return whether the Publish/Subscribe domain ({@link javax.jms.Topic Topics}) is used
-	 * for replies. Otherwise, the Point-to-Point domain ({@link javax.jms.Queue Queues})
-	 * is used.
+	 * 返回回复是否使用发布-订阅域（{@link javax.jms.Topic Topic}）。
+	 * 否则使用点对点域（{@link javax.jms.Queue Queue}）。
 	 * @since 4.2
 	 */
 	@Override
@@ -494,8 +459,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Configure the {@link QosSettings} to use when sending a reply. Can be set to
-	 * {@code null} to indicate that the broker's defaults should be used.
+	 * 配置发送回复时要使用的 {@link QosSettings}。可以设置为 {@code null}，
+	 * 表示应使用代理的默认值。
 	 * @param replyQosSettings the QoS settings to use when sending a reply or {@code null}
 	 * to use the default vas.
 	 * @since 5.0
@@ -511,7 +476,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the {@link MessageConverter} strategy for converting JMS Messages.
+	 * 设置用于转换 JMS 消息的 {@link MessageConverter} 策略。
 	 * @since 4.1
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {
@@ -525,16 +490,16 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the JMS ExceptionListener to notify in case of a JMSException thrown
-	 * by the registered message listener or the invocation infrastructure.
+	 * 设置要通知的 JMS ExceptionListener，用于在已注册的消息监听器
+	 * 或调用基础设施抛出 JMSException 时进行通知。
 	 */
 	public void setExceptionListener(@Nullable ExceptionListener exceptionListener) {
 		this.exceptionListener = exceptionListener;
 	}
 
 	/**
-	 * Return the JMS ExceptionListener to notify in case of a JMSException thrown
-	 * by the registered message listener or the invocation infrastructure, if any.
+	 * 返回要通知的 JMS ExceptionListener（如果有），用于在已注册的消息监听器
+	 * 或调用基础设施抛出 JMSException 时进行通知。
 	 */
 	@Nullable
 	public ExceptionListener getExceptionListener() {
@@ -542,18 +507,15 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set the ErrorHandler to be invoked in case of any uncaught exceptions thrown
-	 * while processing a Message.
-	 * <p>By default, there will be <b>no</b> ErrorHandler so that error-level
-	 * logging is the only result.
+	 * 设置要在处理 Message 期间抛出任何未捕获异常时调用的 ErrorHandler。
+	 * <p>默认情况下<b>没有</b> ErrorHandler，因此唯一的处理结果就是 error 级别的日志记录。
 	 */
 	public void setErrorHandler(@Nullable ErrorHandler errorHandler) {
 		this.errorHandler = errorHandler;
 	}
 
 	/**
-	 * Return the ErrorHandler to be invoked in case of any uncaught exceptions thrown
-	 * while processing a Message.
+	 * 返回要在处理 Message 期间抛出任何未捕获异常时调用的 ErrorHandler。
 	 * @since 4.1
 	 */
 	@Nullable
@@ -562,17 +524,14 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Set whether to expose the listener JMS Session to a registered
-	 * {@link SessionAwareMessageListener} as well as to
-	 * {@link org.springframework.jms.core.JmsTemplate} calls.
-	 * <p>Default is "true", reusing the listener's {@link Session}.
-	 * Turn this off to expose a fresh JMS Session fetched from the same
-	 * underlying JMS {@link Connection} instead, which might be necessary
-	 * on some JMS providers.
-	 * <p>Note that Sessions managed by an external transaction manager will
-	 * always get exposed to {@link org.springframework.jms.core.JmsTemplate}
-	 * calls. So in terms of JmsTemplate exposure, this setting only affects
-	 * locally transacted Sessions.
+	 * 设置是否向已注册的 {@link SessionAwareMessageListener} 以及
+	 * {@link org.springframework.jms.core.JmsTemplate} 调用暴露监听器 JMS Session。
+	 * <p>默认值为 "true"，即复用监听器的 {@link Session}。
+	 * 关闭此选项可以改为暴露从同一底层 JMS {@link Connection} 获取的新 JMS Session，
+	 * 这在某些 JMS 提供者上可能是必需的。
+	 * <p>请注意，由外部事务管理器管理的 Session 始终会暴露给
+	 * {@link org.springframework.jms.core.JmsTemplate} 调用。
+	 * 因此就 JmsTemplate 暴露而言，此设置只影响本地事务的 Session。
 	 * @see SessionAwareMessageListener
 	 */
 	public void setExposeListenerSession(boolean exposeListenerSession) {
@@ -580,34 +539,28 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Return whether to expose the listener JMS {@link Session} to a
-	 * registered {@link SessionAwareMessageListener}.
+	 * 返回是否向已注册的 {@link SessionAwareMessageListener}
+	 * 暴露监听器 JMS {@link Session}。
 	 */
 	public boolean isExposeListenerSession() {
 		return this.exposeListenerSession;
 	}
 
 	/**
-	 * Set whether to accept received messages while the listener container
-	 * in the process of stopping.
-	 * <p>Default is "false", rejecting such messages through aborting the
-	 * receive attempt. Switch this flag on to fully process such messages
-	 * even in the stopping phase, with the drawback that even newly sent
-	 * messages might still get processed (if coming in before all receive
-	 * timeouts have expired).
-	 * <p><b>NOTE:</b> Aborting receive attempts for such incoming messages
-	 * might lead to the provider's retry count decreasing for the affected
-	 * messages. If you have a high number of concurrent consumers, make sure
-	 * that the number of retries is higher than the number of consumers,
-	 * to be on the safe side for all potential stopping scenarios.
+	 * 设置是否在监听器容器停止的过程中继续接受已收到的消息。
+	 * <p>默认值为 "false"，即通过中止接收尝试来拒绝此类消息。
+	 * 启用此标志后，即使在停止阶段也会完整处理此类消息，
+	 * 缺点是甚至新发送的消息也可能仍会被处理（如果在所有接收超时到期之前到达）。
+	 * <p><b>注意：</b>中止对这些传入消息的接收尝试可能会导致提供者对
+	 * 受影响消息的重试计数递减。如果你有大量的并发消费者，
+	 * 请确保重试次数高于消费者数量，以便安全应对所有可能的停止场景。
 	 */
 	public void setAcceptMessagesWhileStopping(boolean acceptMessagesWhileStopping) {
 		this.acceptMessagesWhileStopping = acceptMessagesWhileStopping;
 	}
 
 	/**
-	 * Return whether to accept received messages while the listener container
-	 * in the process of stopping.
+	 * 返回是否在监听器容器停止的过程中继续接受已收到的消息。
 	 */
 	public boolean isAcceptMessagesWhileStopping() {
 		return this.acceptMessagesWhileStopping;
@@ -631,8 +584,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	//-------------------------------------------------------------------------
 
 	/**
-	 * Execute the specified listener,
-	 * committing or rolling back the transaction afterwards (if necessary).
+	 * 执行指定的监听器，之后（如有必要）提交或回滚事务。
 	 * @param session the JMS Session to operate on
 	 * @param message the received JMS Message
 	 * @see #invokeListener
@@ -650,8 +602,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Execute the specified listener,
-	 * committing or rolling back the transaction afterwards (if necessary).
+	 * 执行指定的监听器，之后（如有必要）提交或回滚事务。
 	 * @param session the JMS Session to operate on
 	 * @param message the received JMS Message
 	 * @throws JMSException if thrown by JMS API methods
@@ -681,8 +632,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Invoke the specified listener: either as standard JMS MessageListener
-	 * or (preferably) as Spring SessionAwareMessageListener.
+	 * 调用指定的监听器：可以作为标准的 JMS MessageListener，
+	 * 也可以（更可取地）作为 Spring 的 SessionAwareMessageListener。
 	 * @param session the JMS Session to operate on
 	 * @param message the received JMS Message
 	 * @throws JMSException if thrown by JMS API methods
@@ -708,9 +659,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Invoke the specified listener as Spring SessionAwareMessageListener,
-	 * exposing a new JMS Session (potentially with its own transaction)
-	 * to the listener if demanded.
+	 * 将指定的监听器作为 Spring 的 SessionAwareMessageListener 调用，
+	 * 并在监听器需要时向其暴露一个新的 JMS Session（可能带有自己的事务）。
 	 * @param listener the Spring SessionAwareMessageListener to invoke
 	 * @param session the JMS Session to operate on
 	 * @param message the received JMS Message
@@ -749,9 +699,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Invoke the specified listener as standard JMS MessageListener.
-	 * <p>Default implementation performs a plain invocation of the
-	 * {@code onMessage} method.
+	 * 将指定的监听器作为标准的 JMS MessageListener 调用。
+	 * <p>默认实现只是简单地调用 {@code onMessage} 方法。
 	 * @param listener the JMS MessageListener to invoke
 	 * @param message the received JMS Message
 	 * @throws JMSException if thrown by JMS API methods
@@ -762,7 +711,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Perform a commit or message acknowledgement, as appropriate.
+	 * 视情况执行提交或消息确认。
 	 * @param session the JMS Session to commit
 	 * @param message the Message to acknowledge
 	 * @throws javax.jms.JMSException in case of commit failure
@@ -782,7 +731,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Perform a rollback, if appropriate.
+	 * 视情况执行回滚。
 	 * @param session the JMS Session to rollback
 	 * @throws javax.jms.JMSException in case of a rollback error
 	 */
@@ -799,7 +748,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Perform a rollback, handling rollback exceptions properly.
+	 * 执行回滚，并正确处理回滚异常。
 	 * @param session the JMS Session to rollback
 	 * @param ex the thrown application exception or error
 	 * @throws javax.jms.JMSException in case of a rollback error
@@ -829,12 +778,10 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Check whether the given Session is locally transacted, that is, whether
-	 * its transaction is managed by this listener container's Session handling
-	 * and not by an external transaction coordinator.
-	 * <p>Note: The Session's own transacted flag will already have been checked
-	 * before. This method is about finding out whether the Session's transaction
-	 * is local or externally coordinated.
+	 * 检查给定的 Session 是否为本地事务的，也就是说，它的事务是否由此监听器容器的
+	 * Session 处理机制管理，而不是由外部事务协调器管理。
+	 * <p>注意：Session 自身的 transacted 标志此前已经检查过。此方法用于判断
+	 * Session 的事务是本地事务还是外部协调的事务。
 	 * @param session the Session to check
 	 * @return whether the given Session is locally transacted
 	 * @see #isSessionTransacted()
@@ -845,8 +792,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Create a JMS MessageConsumer for the given Session and Destination.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 为给定的 Session 和 Destination 创建 JMS MessageConsumer。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @param session the JMS Session to create a MessageConsumer for
 	 * @param destination the JMS Destination to create a MessageConsumer for
 	 * @return the new JMS MessageConsumer
@@ -876,11 +823,10 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Handle the given exception that arose during listener execution.
-	 * <p>The default implementation logs the exception at warn level,
-	 * not propagating it to the JMS provider &mdash; assuming that all handling of
-	 * acknowledgement and/or transactions is done by this listener container.
-	 * This can be overridden in subclasses.
+	 * 处理监听器执行期间出现的给定异常。
+	 * <p>默认实现以 warn 级别记录该异常，而不将其传播给 JMS 提供者
+	 * ——假定确认和/或事务的全部处理都由本监听器容器完成。
+	 * 可以在子类中重写。
 	 * @param ex the exception to handle
 	 */
 	protected void handleListenerException(Throwable ex) {
@@ -904,7 +850,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Invoke the registered JMS ExceptionListener, if any.
+	 * 调用已注册的 JMS ExceptionListener（如果有）。
 	 * @param ex the exception that arose during JMS processing
 	 * @see #setExceptionListener
 	 */
@@ -916,7 +862,7 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 	}
 
 	/**
-	 * Invoke the registered ErrorHandler, if any. Log at warn level otherwise.
+	 * 调用已注册的 ErrorHandler（如果有）。否则以 warn 级别记录日志。
 	 * @param ex the uncaught error that arose during JMS processing.
 	 * @see #setErrorHandler
 	 */
@@ -932,8 +878,8 @@ public abstract class AbstractMessageListenerContainer extends AbstractJmsListen
 
 
 	/**
-	 * Internal exception class that indicates a rejected message on shutdown.
-	 * Used to trigger a rollback for an external transaction manager in that case.
+	 * 内部异常类，表示在关闭时拒绝了一条消息。
+	 * 用于在此情况下触发外部事务管理器的回滚。
 	 */
 	@SuppressWarnings("serial")
 	private static class MessageRejectedWhileStoppingException extends RuntimeException {

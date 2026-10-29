@@ -62,12 +62,9 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriBuilderFactory;
 
 /**
- * Client for testing web servers that uses {@link WebClient} internally to
- * perform requests while also providing a fluent API to verify responses.
- * This client can connect to any server over HTTP, or to a WebFlux application
- * via mock request and response objects.
+ * 用于测试 Web 服务器的客户端，它在内部使用 {@link WebClient} 执行请求，同时提供用于验证响应的流畅 API。此客户端可以通过 HTTP 连接到任何服务器，也可以通过模拟请求和响应对象连接到 WebFlux 应用程序。
  *
- * <p>Use one of the bindToXxx methods to create an instance. For example:
+ * <p>使用某个 bindToXxx 方法创建实例。例如：
  * <ul>
  * <li>{@link #bindToController(Object...)}
  * <li>{@link #bindToRouterFunction(RouterFunction)}
@@ -76,14 +73,12 @@ import org.springframework.web.util.UriBuilderFactory;
  * <li>...
  * </ul>
  *
- * <p><strong>Warning</strong>: {@code WebTestClient} is not usable yet in
- * Kotlin due to a <a href="https://youtrack.jetbrains.com/issue/KT-5464">type inference issue</a>
- * which is expected to be fixed as of Kotlin 1.3. You can watch
+ * <p><strong>警告</strong>：由于 <a href="https://youtrack.jetbrains.com/issue/KT-5464">类型推断问题</a>，
+ * {@code WebTestClient} 目前尚不能在 Kotlin 中使用，该问题预计在 Kotlin 1.3 中修复。您可以关注
  * <a href="https://github.com/spring-projects/spring-framework/issues/20606">gh-20606</a>
- * for up-to-date information. Meanwhile, the proposed alternative is to use
- * directly {@link WebClient} with its Reactor and Spring Kotlin extensions to
- * perform integration tests on an embedded WebFlux server.
- *
+ * 了解最新信息。同时，建议的替代方案是直接使用
+ * {@link WebClient} 及其 Reactor 和 Spring Kotlin 扩展，
+ * 在嵌入式 WebFlux 服务器上执行集成测试。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @author Sam Brannen
@@ -96,72 +91,68 @@ import org.springframework.web.util.UriBuilderFactory;
 public interface WebTestClient {
 
 	/**
-	 * The name of a request header used to assign a unique id to every request
-	 * performed through the {@code WebTestClient}. This can be useful for
-	 * storing contextual information at all phases of request processing (e.g.
-	 * from a server-side component) under that id and later to look up
-	 * that information once an {@link ExchangeResult} is available.
+	 * 一个请求头的名称，用于为通过 {@code WebTestClient} 执行的每个请求分配唯一 id。这对于在请求处理的所有阶段（例如来自服务器端组件）在该 id 下存储上下文信息，并在获得 {@link ExchangeResult} 后查找该信息很有用。
 	 */
 	String WEBTESTCLIENT_REQUEST_ID = "WebTestClient-Request-Id";
 
 
 	/**
-	 * Prepare an HTTP GET request.
+	 * 准备 HTTP GET 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> get();
 
 	/**
-	 * Prepare an HTTP HEAD request.
+	 * 准备 HTTP HEAD 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> head();
 
 	/**
-	 * Prepare an HTTP POST request.
+	 * 准备 HTTP POST 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec post();
 
 	/**
-	 * Prepare an HTTP PUT request.
+	 * 准备 HTTP PUT 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec put();
 
 	/**
-	 * Prepare an HTTP PATCH request.
+	 * 准备 HTTP PATCH 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec patch();
 
 	/**
-	 * Prepare an HTTP DELETE request.
+	 * 准备 HTTP DELETE 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> delete();
 
 	/**
-	 * Prepare an HTTP OPTIONS request.
+	 * 准备 HTTP OPTIONS 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> options();
 
 	/**
-	 * Prepare a request for the specified {@code HttpMethod}.
+	 * 为指定的 {@code HttpMethod} 准备请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec method(HttpMethod method);
 
 
 	/**
-	 * Return a builder to mutate properties of this web test client.
+	 * 返回用于修改此 Web 测试客户端属性的构建器。
 	 */
 	Builder mutate();
 
 	/**
-	 * Mutate the {@link WebTestClient}, apply the given configurer, and build
-	 * a new instance. Essentially a shortcut for:
+	 * 修改 {@link WebTestClient}，应用给定配置器，并构建
+	 * 新实例。本质上是以下代码的快捷方式：
 	 * <pre>
 	 * mutate().apply(configurer).build();
 	 * </pre>
@@ -174,12 +165,11 @@ public interface WebTestClient {
 	// Static factory methods
 
 	/**
-	 * Use this server setup to test one {@code @Controller} at a time.
-	 * This option loads the default configuration of
-	 * {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux}.
-	 * There are builder methods to customize the Java config. The resulting
-	 * WebFlux application will be tested without an HTTP server using a mock
-	 * request and response.
+	 * 使用此服务器设置一次测试一个 {@code @Controller}。
+	 * 此选项加载 {@link org.springframework.web.reactive.config.EnableWebFlux @EnableWebFlux} 的默认配置。
+	 * 提供了构建器方法来自定义 Java 配置。生成的
+	 * WebFlux 应用程序将在没有 HTTP 服务器的情况下使用模拟
+	 * 请求和响应进行测试。
 	 * @param controllers one or more controller instances to test
 	 * (specified {@code Class} will be turned into instance)
 	 * @return chained API to customize server and client config; use
@@ -190,10 +180,9 @@ public interface WebTestClient {
 	}
 
 	/**
-	 * Use this option to set up a server from a {@link RouterFunction}.
-	 * Internally the provided configuration is passed to
-	 * {@code RouterFunctions#toWebHandler}. The resulting WebFlux application
-	 * will be tested without an HTTP server using a mock request and response.
+	 * 使用此选项从 {@link RouterFunction} 设置服务器。
+	 * 在内部，提供的配置会传递给 {@code RouterFunctions#toWebHandler}。生成的 WebFlux 应用程序
+	 * 将在没有 HTTP 服务器的情况下使用模拟请求和响应进行测试。
 	 * @param routerFunction the RouterFunction to test
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
@@ -203,15 +192,14 @@ public interface WebTestClient {
 	}
 
 	/**
-	 * Use this option to set up a server from the Spring configuration of your
-	 * application, or some subset of it. Internally the provided configuration
-	 * is passed to {@code WebHttpHandlerBuilder} to set up the request
-	 * processing chain. The resulting WebFlux application will be tested
-	 * without an HTTP server using a mock request and response.
-	 * <p>Consider using the TestContext framework and
-	 * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration}
-	 * in order to efficiently load and inject the Spring configuration into the
-	 * test class.
+	 * 使用此选项从应用程序的 Spring 配置或其某个子集设置服务器。
+	 * 在内部，提供的配置会传递给 {@code WebHttpHandlerBuilder} 以设置请求
+	 * 处理链。生成的 WebFlux 应用程序将在没有 HTTP 服务器的情况下
+	 * 使用模拟请求和响应进行测试。
+	 * <p>考虑使用 TestContext 框架和
+	 * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration}，
+	 * 以便高效地将 Spring 配置加载并注入到
+	 * 测试类中。
 	 * @param applicationContext the Spring context
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
@@ -221,7 +209,7 @@ public interface WebTestClient {
 	}
 
 	/**
-	 * Integration testing with a "mock" server targeting the given WebHandler.
+	 * 针对给定 WebHandler 的“模拟”服务器集成测试。
 	 * @param webHandler the handler to test
 	 * @return chained API to customize server and client config; use
 	 * {@link MockServerSpec#configureClient()} to transition to client config
@@ -231,12 +219,11 @@ public interface WebTestClient {
 	}
 
 	/**
-	 * This server setup option allows you to connect to a live server through
-	 * a Reactor Netty client connector.
+	 * 此服务器设置选项允许您通过 Reactor Netty 客户端连接器连接到活动服务器。
 	 * <p><pre class="code">
 	 * WebTestClient client = WebTestClient.bindToServer()
-	 *         .baseUrl("http://localhost:8080")
-	 *         .build();
+	 * .baseUrl("http://localhost:8080")
+	 * .build();
 	 * </pre>
 	 * @return chained API to customize client config
 	 */
@@ -245,7 +232,7 @@ public interface WebTestClient {
 	}
 
 	/**
-	 * A variant of {@link #bindToServer()} with a pre-configured connector.
+	 * 带有预配置连接器的 {@link #bindToServer()} 变体。
 	 * @return chained API to customize client config
 	 * @since 5.0.2
 	 */
@@ -255,101 +242,100 @@ public interface WebTestClient {
 
 
 	/**
-	 * Base specification for setting up tests without a server.
-	 *
+	 * 用于设置无服务器测试的基础规范。
 	 * @param <B> a self reference to the builder type
 	 */
 	interface MockServerSpec<B extends MockServerSpec<B>> {
 
 		/**
-		 * Register {@link WebFilter} instances to add to the mock server.
+		 * 注册要添加到模拟服务器的 {@link WebFilter} 实例。
 		 * @param filter one or more filters
 		 */
 		<T extends B> T webFilter(WebFilter... filter);
 
 		/**
-		 * Provide a session manager instance for the mock server.
-		 * <p>By default an instance of
+		 * 为模拟服务器提供会话管理器实例。
+		 * <p>默认使用
 		 * {@link org.springframework.web.server.session.DefaultWebSessionManager
-		 * DefaultWebSessionManager} is used.
+		 * DefaultWebSessionManager} 的实例。
 		 * @param sessionManager the session manager to use
 		 */
 		<T extends B> T webSessionManager(WebSessionManager sessionManager);
 
 		/**
-		 * Shortcut for pre-packaged customizations to the mock server setup.
+		 * 用于对模拟服务器设置进行预打包自定义配置的快捷方式。
 		 * @param configurer the configurer to apply
 		 */
 		<T extends B> T apply(MockServerConfigurer configurer);
 
 		/**
-		 * Proceed to configure and build the test client.
+		 * 继续配置并构建测试客户端。
 		 */
 		Builder configureClient();
 
 		/**
-		 * Shortcut to build the test client.
+		 * 构建测试客户端的快捷方式。
 		 */
 		WebTestClient build();
 	}
 
 
 	/**
-	 * Specification for customizing controller configuration equivalent to, and
-	 * internally delegating to, a {@link WebFluxConfigurer}.
+	 * 用于自定义控制器配置的规范，等价于 {@link WebFluxConfigurer}
+	 * 并在内部委托给它。
 	 */
 	interface ControllerSpec extends MockServerSpec<ControllerSpec> {
 
 		/**
-		 * Register one or more {@link org.springframework.web.bind.annotation.ControllerAdvice}
-		 * instances to be used in tests (specified {@code Class} will be turned into instance).
+		 * 注册一个或多个用于测试的 {@link org.springframework.web.bind.annotation.ControllerAdvice}
+		 * 实例（指定的 {@code Class} 将被转换为实例）。
 		 */
 		ControllerSpec controllerAdvice(Object... controllerAdvice);
 
 		/**
-		 * Customize content type resolution.
+		 * 自定义内容类型解析。
 		 * @see WebFluxConfigurer#configureContentTypeResolver
 		 */
 		ControllerSpec contentTypeResolver(Consumer<RequestedContentTypeResolverBuilder> consumer);
 
 		/**
-		 * Configure CORS support.
+		 * 配置 CORS 支持。
 		 * @see WebFluxConfigurer#addCorsMappings
 		 */
 		ControllerSpec corsMappings(Consumer<CorsRegistry> consumer);
 
 		/**
-		 * Configure path matching options.
+		 * 配置路径匹配选项。
 		 * @see WebFluxConfigurer#configurePathMatching
 		 */
 		ControllerSpec pathMatching(Consumer<PathMatchConfigurer> consumer);
 
 		/**
-		 * Configure resolvers for custom controller method arguments.
+		 * 配置自定义控制器方法参数的解析器。
 		 * @see WebFluxConfigurer#configureHttpMessageCodecs
 		 */
 		ControllerSpec argumentResolvers(Consumer<ArgumentResolverConfigurer> configurer);
 
 		/**
-		 * Configure custom HTTP message readers and writers or override built-in ones.
+		 * 配置自定义 HTTP 消息读写器，或覆盖内置的读写器。
 		 * @see WebFluxConfigurer#configureHttpMessageCodecs
 		 */
 		ControllerSpec httpMessageCodecs(Consumer<ServerCodecConfigurer> configurer);
 
 		/**
-		 * Register formatters and converters to use for type conversion.
+		 * 注册用于类型转换的格式化器和转换器。
 		 * @see WebFluxConfigurer#addFormatters
 		 */
 		ControllerSpec formatters(Consumer<FormatterRegistry> consumer);
 
 		/**
-		 * Configure a global Validator.
+		 * 配置全局 Validator。
 		 * @see WebFluxConfigurer#getValidator()
 		 */
 		ControllerSpec validator(Validator validator);
 
 		/**
-		 * Configure view resolution.
+		 * 配置视图解析。
 		 * @see WebFluxConfigurer#configureViewResolvers
 		 */
 		ControllerSpec viewResolvers(Consumer<ViewResolverRegistry> consumer);
@@ -357,110 +343,108 @@ public interface WebTestClient {
 
 
 	/**
-	 * Specification for customizing router function configuration.
+	 * 用于自定义路由函数配置的规范。
 	 */
 	interface RouterFunctionSpec extends MockServerSpec<RouterFunctionSpec> {
 
 		/**
-		 * Configure handler strategies.
+		 * 配置处理器策略。
 		 */
 		RouterFunctionSpec handlerStrategies(HandlerStrategies handlerStrategies);
 	}
 
 
 	/**
-	 * Steps for customizing the {@link WebClient} used to test with,
-	 * internally delegating to a
+	 * 用于自定义测试所用 {@link WebClient} 的步骤，
+	 * 在内部委托给
 	 * {@link org.springframework.web.reactive.function.client.WebClient.Builder
-	 * WebClient.Builder}.
+	 * WebClient.Builder}。
 	 */
 	interface Builder {
 
 		/**
-		 * Configure a base URI as described in
+		 * 配置基础 URI，如
 		 * {@link org.springframework.web.reactive.function.client.WebClient#create(String)
-		 * WebClient.create(String)}.
+		 * WebClient.create(String)} 所述。
 		 */
 		Builder baseUrl(String baseUrl);
 
 		/**
-		 * Provide a pre-configured {@link UriBuilderFactory} instance as an
-		 * alternative to and effectively overriding {@link #baseUrl(String)}.
+		 * 提供预配置的 {@link UriBuilderFactory} 实例，作为
+		 * {@link #baseUrl(String)} 的替代并实际覆盖它。
 		 */
 		Builder uriBuilderFactory(UriBuilderFactory uriBuilderFactory);
 
 		/**
-		 * Add the given header to all requests that haven't added it.
+		 * 将给定请求头添加到所有尚未添加该请求头的请求中。
 		 * @param headerName the header name
 		 * @param headerValues the header values
 		 */
 		Builder defaultHeader(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate the default headers with the given consumer. The
-		 * headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定消费者操作默认请求头。提供给消费者的请求头是“实时”的，
+		 * 因此消费者可以使用它来
+		 * {@linkplain HttpHeaders#set(String, String) 覆盖}现有请求头值、
+		 * {@linkplain HttpHeaders#remove(Object) 删除}值，或使用其他任意
+		 * {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
 		Builder defaultHeaders(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Add the given header to all requests that haven't added it.
+		 * 将给定请求头添加到所有尚未添加该请求头的请求中。
 		 * @param cookieName the cookie name
 		 * @param cookieValues the cookie values
 		 */
 		Builder defaultCookie(String cookieName, String... cookieValues);
 
 		/**
-		 * Manipulate the default cookies with the given consumer. The
-		 * map provided to the consumer is "live", so that the consumer can be used to
-		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing header values,
-		 * {@linkplain MultiValueMap#remove(Object) remove} values, or use any of the other
-		 * {@link MultiValueMap} methods.
+		 * 使用给定消费者操作默认 Cookie。提供给消费者的
+		 * 映射是“实时”的，因此消费者可以使用它来
+		 * {@linkplain MultiValueMap#set(Object, Object) 覆盖}现有请求头值、
+		 * {@linkplain MultiValueMap#remove(Object) 删除}值，或使用其他任意
+		 * {@link MultiValueMap} 方法。
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 * @return this builder
 		 */
 		Builder defaultCookies(Consumer<MultiValueMap<String, String>> cookiesConsumer);
 
 		/**
-		 * Add the given filter to the filter chain.
+		 * 将给定过滤器添加到过滤器链。
 		 * @param filter the filter to be added to the chain
 		 */
 		Builder filter(ExchangeFilterFunction filter);
 
 		/**
-		 * Manipulate the filters with the given consumer. The
-		 * list provided to the consumer is "live", so that the consumer can be used to remove
-		 * filters, change ordering, etc.
+		 * 使用给定消费者操作过滤器。提供给消费者的
+		 * 列表是“实时”的，因此消费者可以使用它移除
+		 * 过滤器、更改顺序等。
 		 * @param filtersConsumer a function that consumes the filter list
 		 * @return this builder
 		 */
 		Builder filters(Consumer<List<ExchangeFilterFunction>> filtersConsumer);
 
 		/**
-		 * Configure an {@code EntityExchangeResult} callback that is invoked
-		 * every time after a response is fully decoded to a single entity, to a
-		 * List of entities, or to a byte[]. In effect, equivalent to each and
-		 * all of the below but registered once, globally:
+		 * 配置 {@code EntityExchangeResult} 回调，每次响应被完整解码为单个实体、
+		 * 实体 List 或 byte[] 后都会调用该回调。实际上，等价于以下每一项，
+		 * 但只全局注册一次：
 		 * <pre>
 		 * client.get().uri("/accounts/1")
-		 *         .exchange()
-		 *         .expectBody(Person.class).consumeWith(exchangeResult -&gt; ... ));
+		 * .exchange()
+		 * .expectBody(Person.class).consumeWith(exchangeResult -&gt; ... ));
 		 *
 		 * client.get().uri("/accounts")
-		 *         .exchange()
-		 *         .expectBodyList(Person.class).consumeWith(exchangeResult -&gt; ... ));
+		 * .exchange()
+		 * .expectBodyList(Person.class).consumeWith(exchangeResult -&gt; ... ));
 		 *
 		 * client.get().uri("/accounts/1")
-		 *         .exchange()
-		 *         .expectBody().consumeWith(exchangeResult -&gt; ... ));
+		 * .exchange()
+		 * .expectBody().consumeWith(exchangeResult -&gt; ... ));
 		 * </pre>
-		 * <p>Note that the configured consumer does not apply to responses
-		 * decoded to {@code Flux<T>} which can be consumed outside the workflow
-		 * of the test client, for example via {@code reactor.test.StepVerifier}.
+		 * <p>请注意，配置的消费者不适用于解码为 {@code Flux<T>} 的响应，
+		 * 此类响应可以在测试客户端工作流之外消费，例如通过 {@code reactor.test.StepVerifier}。
 		 * @param consumer the consumer to apply to entity responses
 		 * @return the builder
 		 * @since 5.3.5
@@ -468,93 +452,88 @@ public interface WebTestClient {
 		Builder entityExchangeResultConsumer(Consumer<EntityExchangeResult<?>> consumer);
 
 		/**
-		 * Configure the codecs for the {@code WebClient} in the
-		 * {@link #exchangeStrategies(ExchangeStrategies) underlying}
-		 * {@code ExchangeStrategies}.
+		 * 为 {@link #exchangeStrategies(ExchangeStrategies) 底层}
+		 * {@code ExchangeStrategies} 中的 {@code WebClient} 配置编解码器。
 		 * @param configurer the configurer to apply
 		 * @since 5.1.13
 		 */
 		Builder codecs(Consumer<ClientCodecConfigurer> configurer);
 
 		/**
-		 * Configure the {@link ExchangeStrategies} to use.
-		 * <p>For most cases, prefer using {@link #codecs(Consumer)} which allows
-		 * customizing the codecs in the {@code ExchangeStrategies} rather than
-		 * replace them. That ensures multiple parties can contribute to codecs
-		 * configuration.
-		 * <p>By default this is set to {@link ExchangeStrategies#withDefaults()}.
+		 * 配置要使用的 {@link ExchangeStrategies}。
+		 * <p>大多数情况下，优先使用 {@link #codecs(Consumer)}，它允许
+		 * 自定义 {@code ExchangeStrategies} 中的编解码器，而不是
+		 * 替换它们。这可确保多方都能参与编解码器
+		 * 配置。
+		 * <p>默认设置为 {@link ExchangeStrategies#withDefaults()}。
 		 * @param strategies the strategies to use
 		 */
 		Builder exchangeStrategies(ExchangeStrategies strategies);
 
 		/**
-		 * Customize the strategies configured via
-		 * {@link #exchangeStrategies(ExchangeStrategies)}. This method is
-		 * designed for use in scenarios where multiple parties wish to update
-		 * the {@code ExchangeStrategies}.
+		 * 自定义通过 {@link #exchangeStrategies(ExchangeStrategies)} 配置的策略。
+		 * 此方法设计用于多方希望更新 {@code ExchangeStrategies} 的场景。
 		 * @deprecated as of 5.1.13 in favor of {@link #codecs(Consumer)}
 		 */
 		@Deprecated
 		Builder exchangeStrategies(Consumer<ExchangeStrategies.Builder> configurer);
 
 		/**
-		 * Max amount of time to wait for responses.
-		 * <p>By default 5 seconds.
+		 * 等待响应的最长时间。
+		 * <p>默认为 5 秒。
 		 * @param timeout the response timeout value
 		 */
 		Builder responseTimeout(Duration timeout);
 
 		/**
-		 * Apply the given configurer to this builder instance.
-		 * <p>This can be useful for applying pre-packaged customizations.
+		 * 将给定配置器应用于此构建器实例。
+		 * <p>这对于应用预打包的自定义配置很有用。
 		 * @param configurer the configurer to apply
 		 */
 		Builder apply(WebTestClientConfigurer configurer);
 
 		/**
-		 * Build the {@link WebTestClient} instance.
+		 * 构建 {@link WebTestClient} 实例。
 		 */
 		WebTestClient build();
 	}
 
 
 	/**
-	 * Specification for providing the URI of a request.
-	 *
+	 * 用于提供请求 URI 的规范。
 	 * @param <S> a self reference to the spec type
 	 */
 	interface UriSpec<S extends RequestHeadersSpec<?>> {
 
 		/**
-		 * Specify the URI using an absolute, fully constructed {@link java.net.URI}.
-		 * <p>If a {@link UriBuilderFactory} was configured for the client with
-		 * a base URI, that base URI will <strong>not</strong> be applied to the
-		 * supplied {@code java.net.URI}. If you wish to have a base URI applied to a
-		 * {@code java.net.URI} you must invoke either {@link #uri(String, Object...)}
-		 * or {@link #uri(String, Map)} &mdash; for example, {@code uri(myUri.toString())}.
+		 * 使用绝对且完整构造的 {@link java.net.URI} 指定 URI。
+		 * <p>如果为客户端配置了带基础 URI 的 {@link UriBuilderFactory}，
+		 * 该基础 URI <strong>不会</strong>应用于提供的 {@code java.net.URI}。如果希望将基础 URI 应用于
+		 * {@code java.net.URI}，必须调用 {@link #uri(String, Object...)}
+		 * 或 {@link #uri(String, Map)} &mdash; 例如 {@code uri(myUri.toString())}。
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(URI uri);
 
 		/**
-		 * Specify the URI for the request using a URI template and URI variables.
-		 * <p>If a {@link UriBuilderFactory} was configured for the client (e.g.
-		 * with a base URI) it will be used to expand the URI template.
+		 * 使用 URI 模板和 URI 变量指定请求的 URI。
+		 * <p>如果为客户端配置了 {@link UriBuilderFactory}（例如
+		 * 带基础 URI），它将用于展开 URI 模板。
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(String uri, Object... uriVariables);
 
 		/**
-		 * Specify the URI for the request using a URI template and URI variables.
-		 * <p>If a {@link UriBuilderFactory} was configured for the client (e.g.
-		 * with a base URI) it will be used to expand the URI template.
+		 * 使用 URI 模板和 URI 变量指定请求的 URI。
+		 * <p>如果为客户端配置了 {@link UriBuilderFactory}（例如
+		 * 带基础 URI），它将用于展开 URI 模板。
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(String uri, Map<String, ?> uriVariables);
 
 		/**
-		 * Build the URI for the request with a {@link UriBuilder} obtained
-		 * through the {@link UriBuilderFactory} configured for this client.
+		 * 使用通过为此客户端配置的 {@link UriBuilderFactory} 获取的 {@link UriBuilder}
+		 * 构建请求 URI。
 		 * @return spec to add headers or perform the exchange
 		 */
 		S uri(Function<UriBuilder, URI> uriFunction);
@@ -562,30 +541,29 @@ public interface WebTestClient {
 
 
 	/**
-	 * Specification for adding request headers and performing an exchange.
-	 *
+	 * 用于添加请求头并执行交换的规范。
 	 * @param <S> a self reference to the spec type
 	 */
 	interface RequestHeadersSpec<S extends RequestHeadersSpec<S>> {
 
 		/**
-		 * Set the list of acceptable {@linkplain MediaType media types}, as
-		 * specified by the {@code Accept} header.
+		 * 设置可接受的 {@linkplain MediaType 媒体类型}列表，
+		 * 由 {@code Accept} 头指定。
 		 * @param acceptableMediaTypes the acceptable media types
 		 * @return the same instance
 		 */
 		S accept(MediaType... acceptableMediaTypes);
 
 		/**
-		 * Set the list of acceptable {@linkplain Charset charsets}, as specified
-		 * by the {@code Accept-Charset} header.
+		 * 设置可接受的 {@linkplain Charset 字符集}列表，
+		 * 由 {@code Accept-Charset} 头指定。
 		 * @param acceptableCharsets the acceptable charsets
 		 * @return the same instance
 		 */
 		S acceptCharset(Charset... acceptableCharsets);
 
 		/**
-		 * Add a cookie with the given name and value.
+		 * 添加具有给定名称和值的 Cookie。
 		 * @param name the cookie name
 		 * @param value the cookie value
 		 * @return the same instance
@@ -593,34 +571,34 @@ public interface WebTestClient {
 		S cookie(String name, String value);
 
 		/**
-		 * Manipulate this request's cookies with the given consumer. The
-		 * map provided to the consumer is "live", so that the consumer can be used to
-		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing header values,
-		 * {@linkplain MultiValueMap#remove(Object) remove} values, or use any of the other
-		 * {@link MultiValueMap} methods.
+		 * 使用给定消费者操作此请求的 Cookie。提供给消费者的
+		 * 映射是“实时”的，因此消费者可以使用它来
+		 * {@linkplain MultiValueMap#set(Object, Object) 覆盖}现有请求头值、
+		 * {@linkplain MultiValueMap#remove(Object) 删除}值，或使用其他任意
+		 * {@link MultiValueMap} 方法。
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 * @return this builder
 		 */
 		S cookies(Consumer<MultiValueMap<String, String>> cookiesConsumer);
 
 		/**
-		 * Set the value of the {@code If-Modified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
-		 * January 1, 1970 GMT.
+		 * 设置 {@code If-Modified-Since} 头的值。
+		 * <p>日期应指定为自
+		 * 1970 年 1 月 1 日 GMT 起的毫秒数。
 		 * @param ifModifiedSince the new value of the header
 		 * @return the same instance
 		 */
 		S ifModifiedSince(ZonedDateTime ifModifiedSince);
 
 		/**
-		 * Set the values of the {@code If-None-Match} header.
+		 * 设置 {@code If-None-Match} 头的值。
 		 * @param ifNoneMatches the new value of the header
 		 * @return the same instance
 		 */
 		S ifNoneMatch(String... ifNoneMatches);
 
 		/**
-		 * Add the given, single header value under the given name.
+		 * 在给定名称下添加给定的单个请求头值。
 		 * @param headerName  the header name
 		 * @param headerValues the header value(s)
 		 * @return the same instance
@@ -628,18 +606,18 @@ public interface WebTestClient {
 		S header(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate the request's headers with the given consumer. The
-		 * headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定消费者操作请求头。提供给消费者的
+		 * 请求头是“实时”的，因此消费者可以使用它来
+		 * {@linkplain HttpHeaders#set(String, String) 覆盖}现有请求头值、
+		 * {@linkplain HttpHeaders#remove(Object) 删除}值，或使用其他任意
+		 * {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
 		S headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Set the attribute with the given name to the given value.
+		 * 将具有给定名称的属性设置为给定值。
 		 * @param name the name of the attribute to add
 		 * @param value the value of the attribute to add
 		 * @return this builder
@@ -647,16 +625,15 @@ public interface WebTestClient {
 		S attribute(String name, Object value);
 
 		/**
-		 * Manipulate the request attributes with the given consumer. The attributes provided to
-		 * the consumer are "live", so that the consumer can be used to inspect attributes,
-		 * remove attributes, or use any of the other map-provided methods.
+		 * 使用给定消费者操作请求属性。提供给消费者的属性是“实时”的，
+		 * 因此消费者可以使用它检查属性、移除属性，或使用其他任意映射提供的方法。
 		 * @param attributesConsumer a function that consumes the attributes
 		 * @return this builder
 		 */
 		S attributes(Consumer<Map<String, Object>> attributesConsumer);
 
 		/**
-		 * Perform the exchange without a request body.
+		 * 执行不带请求体的交换。
 		 * @return spec for decoding the response
 		 */
 		ResponseSpec exchange();
@@ -664,12 +641,12 @@ public interface WebTestClient {
 
 
 	/**
-	 * Specification for providing body of a request.
+	 * 用于提供请求体的规范。
 	 */
 	interface RequestBodySpec extends RequestHeadersSpec<RequestBodySpec> {
 		/**
-		 * Set the length of the body in bytes, as specified by the
-		 * {@code Content-Length} header.
+		 * 设置正文的字节长度，由
+		 * {@code Content-Length} 头指定。
 		 * @param contentLength the content length
 		 * @return the same instance
 		 * @see HttpHeaders#setContentLength(long)
@@ -677,8 +654,8 @@ public interface WebTestClient {
 		RequestBodySpec contentLength(long contentLength);
 
 		/**
-		 * Set the {@linkplain MediaType media type} of the body, as specified
-		 * by the {@code Content-Type} header.
+		 * 设置正文的 {@linkplain MediaType 媒体类型}，
+		 * 由 {@code Content-Type} 头指定。
 		 * @param contentType the content type
 		 * @return the same instance
 		 * @see HttpHeaders#setContentType(MediaType)
@@ -686,9 +663,10 @@ public interface WebTestClient {
 		RequestBodySpec contentType(MediaType contentType);
 
 		/**
-		 * Set the body to the given {@code Object} value. This method invokes the
+		 * 将正文设置为给定的 {@code Object} 值。此方法会在底层
+		 * {@code WebClient} 上调用
 		 * {@link org.springframework.web.reactive.function.client.WebClient.RequestBodySpec#bodyValue(Object)
-		 * bodyValue} method on the underlying {@code WebClient}.
+		 * bodyValue} 方法。
 		 * @param body the value to write to the request body
 		 * @return spec for further declaration of the request
 		 * @since 5.2
@@ -696,9 +674,9 @@ public interface WebTestClient {
 		RequestHeadersSpec<?> bodyValue(Object body);
 
 		/**
-		 * Set the body from the given {@code Publisher}. Shortcut for
-		 * {@link #body(BodyInserter)} with a
-		 * {@linkplain BodyInserters#fromPublisher Publisher inserter}.
+		 * 从给定 {@code Publisher} 设置正文。使用
+		 * {@linkplain BodyInserters#fromPublisher Publisher 插入器} 调用
+		 * {@link #body(BodyInserter)} 的快捷方式。
 		 * @param publisher the request body data
 		 * @param elementClass the class of elements contained in the publisher
 		 * @param <T> the type of the elements contained in the publisher
@@ -708,8 +686,8 @@ public interface WebTestClient {
 		<T, S extends Publisher<T>> RequestHeadersSpec<?> body(S publisher, Class<T> elementClass);
 
 		/**
-		 * Variant of {@link #body(Publisher, Class)} that allows providing
-		 * element type information with generics.
+		 * 对 {@link #body(Publisher, Class)} 的变体，允许
+		 * 提供带泛型的元素类型信息。
 		 * @param publisher the request body data
 		 * @param elementTypeRef the type reference of elements contained in the publisher
 		 * @param <T> the type of the elements contained in the publisher
@@ -721,9 +699,10 @@ public interface WebTestClient {
 				S publisher, ParameterizedTypeReference<T> elementTypeRef);
 
 		/**
-		 * Set the body from the given producer. This method invokes the
+		 * 从给定生产者设置正文。此方法会在底层
+		 * {@code WebClient} 上调用
 		 * {@link org.springframework.web.reactive.function.client.WebClient.RequestBodySpec#body(Object, Class)
-		 * body(Object, Class)} method on the underlying {@code WebClient}.
+		 * body(Object, Class)} 方法。
 		 * @param producer the producer to write to the request. This must be a
 		 * {@link Publisher} or another producer adaptable to a
 		 * {@code Publisher} via {@link ReactiveAdapterRegistry}
@@ -734,9 +713,10 @@ public interface WebTestClient {
 		RequestHeadersSpec<?> body(Object producer, Class<?> elementClass);
 
 		/**
-		 * Set the body from the given producer. This method invokes the
+		 * 从给定生产者设置正文。此方法会在底层
+		 * {@code WebClient} 上调用
 		 * {@link org.springframework.web.reactive.function.client.WebClient.RequestBodySpec#body(Object, ParameterizedTypeReference)
-		 * body(Object, ParameterizedTypeReference)} method on the underlying {@code WebClient}.
+		 * body(Object, ParameterizedTypeReference)} 方法。
 		 * @param producer the producer to write to the request. This must be a
 		 * {@link Publisher} or another producer adaptable to a
 		 * {@code Publisher} via {@link ReactiveAdapterRegistry}
@@ -747,10 +727,10 @@ public interface WebTestClient {
 		RequestHeadersSpec<?> body(Object producer, ParameterizedTypeReference<?> elementTypeRef);
 
 		/**
-		 * Set the body of the request to the given {@code BodyInserter}.
-		 * This method invokes the
+		 * 将请求正文设置为给定的 {@code BodyInserter}。
+		 * 此方法会在底层 {@code WebClient} 上调用
 		 * {@link org.springframework.web.reactive.function.client.WebClient.RequestBodySpec#body(BodyInserter)
-		 * body(BodyInserter)} method on the underlying {@code WebClient}.
+		 * body(BodyInserter)} 方法。
 		 * @param inserter the body inserter to use
 		 * @return spec for further declaration of the request
 		 * @see org.springframework.web.reactive.function.BodyInserters
@@ -758,9 +738,9 @@ public interface WebTestClient {
 		RequestHeadersSpec<?> body(BodyInserter<?, ? super ClientHttpRequest> inserter);
 
 		/**
-		 * Shortcut for {@link #body(BodyInserter)} with a
-		 * {@linkplain BodyInserters#fromValue value inserter}.
-		 * As of 5.2 this method delegates to {@link #bodyValue(Object)}.
+		 * 使用 {@linkplain BodyInserters#fromValue 值插入器} 调用
+		 * {@link #body(BodyInserter)} 的快捷方式。
+		 * 从 5.2 开始，此方法委托给 {@link #bodyValue(Object)}。
 		 * @deprecated as of Spring Framework 5.2 in favor of {@link #bodyValue(Object)}
 		 */
 		@Deprecated
@@ -769,47 +749,44 @@ public interface WebTestClient {
 
 
 	/**
-	 * Specification for providing request headers and the URI of a request.
-	 *
+	 * 用于提供请求头和请求 URI 的规范。
 	 * @param <S> a self reference to the spec type
 	 */
 	interface RequestHeadersUriSpec<S extends RequestHeadersSpec<S>> extends UriSpec<S>, RequestHeadersSpec<S> {
 	}
 
 	/**
-	 * Specification for providing the body and the URI of a request.
+	 * 用于提供请求体和请求 URI 的规范。
 	 */
 	interface RequestBodyUriSpec extends RequestBodySpec, RequestHeadersUriSpec<RequestBodySpec> {
 	}
 
 
 	/**
-	 * Chained API for applying assertions to a response.
+	 * 用于对响应应用断言的链式 API。
 	 */
 	interface ResponseSpec {
 
 		/**
-		 * Apply multiple assertions to a response with the given
-		 * {@linkplain ResponseSpecConsumer consumers}, with the guarantee that
-		 * all assertions will be applied even if one or more assertions fails
-		 * with an exception.
-		 * <p>If a single {@link Error} or {@link RuntimeException} is thrown,
-		 * it will be rethrown.
-		 * <p>If multiple exceptions are thrown, this method will throw an
-		 * {@link AssertionError} whose error message is a summary of all the
-		 * exceptions. In addition, each exception will be added as a
-		 * {@linkplain Throwable#addSuppressed(Throwable) suppressed exception} to
-		 * the {@code AssertionError}.
-		 * <p>This feature is similar to the {@code SoftAssertions} support in
-		 * AssertJ and the {@code assertAll()} support in JUnit Jupiter.
+		 * 使用给定的 {@linkplain ResponseSpecConsumer 消费者} 对响应应用多个断言，
+		 * 并保证即使一个或多个断言因异常失败，
+		 * 所有断言仍会被应用。
+		 * <p>如果抛出单个 {@link Error} 或 {@link RuntimeException}，
+		 * 它将被重新抛出。
+		 * <p>如果抛出多个异常，此方法将抛出
+		 * {@link AssertionError}，其错误消息是所有异常的摘要。此外，每个异常都会作为
+		 * {@linkplain Throwable#addSuppressed(Throwable) 抑制异常} 添加到
+		 * 该 {@code AssertionError}。
+		 * <p>此功能类似于 AssertJ 中的 {@code SoftAssertions} 支持和
+		 * JUnit Jupiter 中的 {@code assertAll()} 支持。
 		 *
-		 * <h4>Example</h4>
+		 * <h4>示例</h4>
 		 * <pre class="code">
 		 * webTestClient.get().uri("/hello").exchange()
-		 *     .expectAll(
-		 *         responseSpec -&gt; responseSpec.expectStatus().isOk(),
-		 *         responseSpec -&gt; responseSpec.expectBody(String.class).isEqualTo("Hello, World!")
-		 *     );
+		 * .expectAll(
+		 * responseSpec -&gt; responseSpec.expectStatus().isOk(),
+		 * responseSpec -&gt; responseSpec.expectBody(String.class).isEqualTo("Hello, World!")
+		 * );
 		 * </pre>
 		 * @param consumers the list of {@code ResponseSpec} consumers
 		 * @since 5.3.10
@@ -817,66 +794,66 @@ public interface WebTestClient {
 		ResponseSpec expectAll(ResponseSpecConsumer... consumers);
 
 		/**
-		 * Assertions on the response status.
+		 * 对响应状态的断言。
 		 */
 		StatusAssertions expectStatus();
 
 		/**
-		 * Assertions on the headers of the response.
+		 * 对响应头的断言。
 		 */
 		HeaderAssertions expectHeader();
 
 		/**
-		 * Assertions on the cookies of the response.
+		 * 对响应 Cookie 的断言。
 		 * @since 5.3
 		 */
 		CookieAssertions expectCookie();
 
 		/**
-		 * Consume and decode the response body to a single object of type
-		 * {@code <B>} and then apply assertions.
+		 * 消费响应体并将其解码为 {@code <B>} 类型的单个对象，
+		 * 然后应用断言。
 		 * @param bodyType the expected body type
 		 */
 		<B> BodySpec<B, ?> expectBody(Class<B> bodyType);
 
 		/**
-		 * Alternative to {@link #expectBody(Class)} that accepts information
-		 * about a target type with generics.
+		 * 对 {@link #expectBody(Class)} 的替代方法，接受
+		 * 带泛型的目标类型信息。
 		 */
 		<B> BodySpec<B, ?> expectBody(ParameterizedTypeReference<B> bodyType);
 
 		/**
-		 * Consume and decode the response body to {@code List<E>} and then apply
-		 * List-specific assertions.
+		 * 消费响应体并将其解码为 {@code List<E>}，然后应用
+		 * 特定于列表的断言。
 		 * @param elementType the expected List element type
 		 */
 		<E> ListBodySpec<E> expectBodyList(Class<E> elementType);
 
 		/**
-		 * Alternative to {@link #expectBodyList(Class)} that accepts information
-		 * about a target type with generics.
+		 * 对 {@link #expectBodyList(Class)} 的替代方法，接受
+		 * 带泛型的目标类型信息。
 		 */
 		<E> ListBodySpec<E> expectBodyList(ParameterizedTypeReference<E> elementType);
 
 		/**
-		 * Consume and decode the response body to {@code byte[]} and then apply
-		 * assertions on the raw content (e.g. isEmpty, JSONPath, etc.)
+		 * 消费响应体并将其解码为 {@code byte[]}，然后对
+		 * 原始内容应用断言（例如 isEmpty、JSONPath 等）。
 		 */
 		BodyContentSpec expectBody();
 
 		/**
-		 * Exit the chained flow in order to consume the response body
-		 * externally, e.g. via {@link reactor.test.StepVerifier}.
-		 * <p>Note that when {@code Void.class} is passed in, the response body
-		 * is consumed and released. If no content is expected, then consider
-		 * using {@code .expectBody().isEmpty()} instead which asserts that
-		 * there is no content.
+		 * 退出链式流程，以便在外部消费响应体，
+		 * 例如通过 {@link reactor.test.StepVerifier}。
+		 * <p>请注意，当传入 {@code Void.class} 时，响应体
+		 * 会被消费并释放。如果不期望有内容，请考虑
+		 * 使用 {@code .expectBody().isEmpty()}，它会断言
+		 * 没有内容。
 		 */
 		<T> FluxExchangeResult<T> returnResult(Class<T> elementClass);
 
 		/**
-		 * Alternative to {@link #returnResult(Class)} that accepts information
-		 * about a target type with generics.
+		 * 对 {@link #returnResult(Class)} 的替代方法，接受
+		 * 带泛型的目标类型信息。
 		 */
 		<T> FluxExchangeResult<T> returnResult(ParameterizedTypeReference<T> elementTypeRef);
 
@@ -893,72 +870,70 @@ public interface WebTestClient {
 
 
 	/**
-	 * Spec for expectations on the response body decoded to a single Object.
-	 *
+	 * 对解码为单个对象的响应体进行预期的规范。
 	 * @param <S> a self reference to the spec type
 	 * @param <B> the body type
 	 */
 	interface BodySpec<B, S extends BodySpec<B, S>> {
 
 		/**
-		 * Assert the extracted body is equal to the given value.
+		 * 断言提取的正文等于给定值。
 		 */
 		<T extends S> T isEqualTo(B expected);
 
 		/**
-		 * Assert the extracted body with a {@link Matcher}.
+		 * 使用 {@link Matcher} 断言提取的正文。
 		 * @since 5.1
 		 */
 		<T extends S> T value(Matcher<? super B> matcher);
 
 		/**
-		 * Transform the extracted the body with a function, e.g. extracting a
-		 * property, and assert the mapped value with a {@link Matcher}.
+		 * 使用函数转换提取的正文（例如提取属性），
+		 * 并使用 {@link Matcher} 断言映射后的值。
 		 * @since 5.1
 		 */
 		<T extends S, R> T value(Function<B, R> bodyMapper, Matcher<? super R> matcher);
 
 		/**
-		 * Assert the extracted body with a {@link Consumer}.
+		 * 使用 {@link Consumer} 断言提取的正文。
 		 * @since 5.1
 		 */
 		<T extends S> T value(Consumer<B> consumer);
 
 		/**
-		 * Assert the exchange result with the given {@link Consumer}.
+		 * 使用给定 {@link Consumer} 断言交换结果。
 		 */
 		<T extends S> T consumeWith(Consumer<EntityExchangeResult<B>> consumer);
 
 		/**
-		 * Exit the chained API and return an {@code ExchangeResult} with the
-		 * decoded response content.
+		 * 退出链式 API 并返回包含
+		 * 解码后响应内容的 {@code ExchangeResult}。
 		 */
 		EntityExchangeResult<B> returnResult();
 	}
 
 
 	/**
-	 * Spec for expectations on the response body decoded to a List.
-	 *
+	 * 对解码为 List 的响应体进行预期的规范。
 	 * @param <E> the body list element type
 	 */
 	interface ListBodySpec<E> extends BodySpec<List<E>, ListBodySpec<E>> {
 
 		/**
-		 * Assert the extracted list of values is of the given size.
+		 * 断言提取的值列表具有给定大小。
 		 * @param size the expected size
 		 */
 		ListBodySpec<E> hasSize(int size);
 
 		/**
-		 * Assert the extracted list of values contains the given elements.
+		 * 断言提取的值列表包含给定元素。
 		 * @param elements the elements to check
 		 */
 		@SuppressWarnings("unchecked")
 		ListBodySpec<E> contains(E... elements);
 
 		/**
-		 * Assert the extracted list of values doesn't contain the given elements.
+		 * 断言提取的值列表不包含给定元素。
 		 * @param elements the elements to check
 		 */
 		@SuppressWarnings("unchecked")
@@ -967,23 +942,22 @@ public interface WebTestClient {
 
 
 	/**
-	 * Spec for expectations on the response body content.
+	 * 对响应体内容进行预期的规范。
 	 */
 	interface BodyContentSpec {
 
 		/**
-		 * Assert the response body is empty and return the exchange result.
+		 * 断言响应体为空，并返回交换结果。
 		 */
 		EntityExchangeResult<Void> isEmpty();
 
 		/**
-		 * Parse the expected and actual response content as JSON and perform a
-		 * comparison verifying that they contain the same attribute-value pairs
-		 * regardless of formatting with <em>lenient</em> checking (extensible
-		 * and non-strict array ordering).
-		 * <p>Use of this method requires the
-		 * <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> library
-		 * to be on the classpath.
+		 * 将预期和实际响应内容解析为 JSON 并执行
+		 * 比较，验证它们在格式不同的情况下仍包含相同的属性值对，
+		 * 使用<em>宽松</em>检查（可扩展
+		 * 且数组顺序不严格）。
+		 * <p>使用此方法需要类路径上有
+		 * <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
 		 * @param expectedJson the expected JSON content
 		 * @see #json(String, boolean)
 		 */
@@ -992,17 +966,15 @@ public interface WebTestClient {
 		}
 
 		/**
-		 * Parse the expected and actual response content as JSON and perform a
-		 * comparison verifying that they contain the same attribute-value pairs
-		 * regardless of formatting.
-		 * <p>Can compare in two modes, depending on the {@code strict} parameter value:
+		 * 将预期和实际响应内容解析为 JSON 并执行
+		 * 比较，验证它们在格式不同的情况下仍包含相同的属性值对。
+		 * <p>可根据 {@code strict} 参数值以两种模式进行比较：
 		 * <ul>
-		 * <li>{@code true}: strict checking. Not extensible and strict array ordering.</li>
-		 * <li>{@code false}: lenient checking. Extensible and non-strict array ordering.</li>
+		 * <li>{@code true}：严格检查。不可扩展且数组顺序严格。</li>
+		 * <li>{@code false}：宽松检查。可扩展且数组顺序不严格。</li>
 		 * </ul>
-		 * <p>Use of this method requires the
-		 * <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> library
-		 * to be on the classpath.
+		 * <p>使用此方法需要类路径上有
+		 * <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
 		 * @param expectedJson the expected JSON content
 		 * @param strict enables strict checking if {@code true}
 		 * @since 5.3.16
@@ -1011,12 +983,11 @@ public interface WebTestClient {
 		BodyContentSpec json(String expectedJson, boolean strict);
 
 		/**
-		 * Parse expected and actual response content as XML and assert that
-		 * the two are "similar", i.e. they contain the same elements and
-		 * attributes regardless of order.
-		 * <p>Use of this method requires the
-		 * <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> library on
-		 * the classpath.
+		 * 将预期和实际响应内容解析为 XML，并断言
+		 * 二者“相似”，即它们包含相同的元素和
+		 * 属性，与顺序无关。
+		 * <p>使用此方法需要类路径上有
+		 * <a href="https://github.com/xmlunit/xmlunit">XMLUnit</a> 库。
 		 * @param expectedXml the expected JSON content.
 		 * @since 5.1
 		 * @see org.springframework.test.util.XmlExpectationsHelper#assertXmlEqual(String, String)
@@ -1024,21 +995,20 @@ public interface WebTestClient {
 		BodyContentSpec xml(String expectedXml);
 
 		/**
-		 * Access to response body assertions using a
-		 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression
-		 * to inspect a specific subset of the body.
-		 * <p>The JSON path expression can be a parameterized string using
-		 * formatting specifiers as defined in {@link String#format}.
+		 * 使用 <a href="https://github.com/jayway/JsonPath">JsonPath</a> 表达式
+		 * 访问响应体断言，以检查响应体的特定子集。
+		 * <p>JSON 路径表达式可以是使用
+		 * {@link String#format} 中定义的格式说明符的参数化字符串。
 		 * @param expression the JsonPath expression
 		 * @param args arguments to parameterize the expression
 		 */
 		JsonPathAssertions jsonPath(String expression, Object... args);
 
 		/**
-		 * Access to response body assertions using an XPath expression to
-		 * inspect a specific subset of the body.
-		 * <p>The XPath expression can be a parameterized string using
-		 * formatting specifiers as defined in {@link String#format}.
+		 * 使用 XPath 表达式访问响应体断言，以
+		 * 检查响应体的特定子集。
+		 * <p>XPath 表达式可以是使用
+		 * {@link String#format} 中定义的格式说明符的参数化字符串。
 		 * @param expression the XPath expression
 		 * @param args arguments to parameterize the expression
 		 * @since 5.1
@@ -1049,10 +1019,10 @@ public interface WebTestClient {
 		}
 
 		/**
-		 * Access to response body assertions with specific namespaces using an
-		 * XPath expression to inspect a specific subset of the body.
-		 * <p>The XPath expression can be a parameterized string using
-		 * formatting specifiers as defined in {@link String#format}.
+		 * 使用带特定命名空间的 XPath 表达式访问响应体断言，
+		 * 以检查响应体的特定子集。
+		 * <p>XPath 表达式可以是使用
+		 * {@link String#format} 中定义的格式说明符的参数化字符串。
 		 * @param expression the XPath expression
 		 * @param namespaces the namespaces to use
 		 * @param args arguments to parameterize the expression
@@ -1061,15 +1031,15 @@ public interface WebTestClient {
 		XpathAssertions xpath(String expression, @Nullable Map<String, String> namespaces, Object... args);
 
 		/**
-		 * Assert the response body content with the given {@link Consumer}.
+		 * 使用给定 {@link Consumer} 断言响应体内容。
 		 * @param consumer the consumer for the response body; the input
 		 * {@code byte[]} may be {@code null} if there was no response body.
 		 */
 		BodyContentSpec consumeWith(Consumer<EntityExchangeResult<byte[]>> consumer);
 
 		/**
-		 * Exit the chained API and return an {@code ExchangeResult} with the
-		 * raw response content.
+		 * 退出链式 API 并返回包含
+		 * 原始响应内容的 {@code ExchangeResult}。
 		 */
 		EntityExchangeResult<byte[]> returnResult();
 	}

@@ -38,10 +38,10 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrame;
 import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 
 /**
- * Base class for SockJS client implementations of {@link WebSocketSession}.
- * Provides processing of incoming SockJS message frames and delegates lifecycle
- * events and messages to the (application) {@link WebSocketHandler}.
- * Sub-classes implement actual send as well as disconnect logic.
+ * SockJS 客户端 {@link WebSocketSession} 实现的基类。
+ * 提供对传入 SockJS 消息帧的处理，并将生命周期
+ * 事件和消息委托给（应用）{@link WebSocketHandler}。
+ * 子类实现实际的发送以及断开连接逻辑。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -112,10 +112,9 @@ public abstract class AbstractClientSockJsSession implements WebSocketSession {
 	}
 
 	/**
-	 * Return a timeout cleanup task to invoke if the SockJS sessions is not
-	 * fully established within the retransmission timeout period calculated in
-	 * {@code SockJsRequest} based on the duration of the initial SockJS "Info"
-	 * request.
+	 * 返回一个超时清理任务，如果在基于初始 SockJS "Info" 请求持续时间于
+	 * {@code SockJsRequest} 中计算的重新传输超时期限内 SockJS 会话
+	 * 未完全建立，则调用该任务。
 	 */
 	Runnable getTimeoutTask() {
 		return new Runnable() {

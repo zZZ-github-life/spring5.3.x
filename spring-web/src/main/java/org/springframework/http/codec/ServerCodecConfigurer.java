@@ -19,33 +19,33 @@ package org.springframework.http.codec;
 import org.springframework.core.codec.Encoder;
 
 /**
- * Extension of {@link CodecConfigurer} for HTTP message reader and writer
- * options relevant on the server side.
+ * {@link CodecConfigurer} 的扩展，提供服务器端相关的
+ * HTTP 消息读写器选项。
  *
- * <p>HTTP message readers for the following are registered by default:
+ * <p>默认注册以下 HTTP 消息读取器：
  * <ul>{@code byte[]}
  * <li>{@link java.nio.ByteBuffer}
  * <li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
  * <li>{@link org.springframework.core.io.Resource Resource}
  * <li>{@link String}
- * <li>{@link org.springframework.util.MultiValueMap
- * MultiValueMap&lt;String,String&gt;} for form data
- * <li>{@link org.springframework.util.MultiValueMap
- * MultiValueMap&lt;String,Object&gt;} for multipart data
- * <li>JSON and Smile, if Jackson is present
- * <li>XML, if JAXB2 is present
+ * <li>用于表单数据的 {@link org.springframework.util.MultiValueMap
+ * MultiValueMap&lt;String,String&gt;}
+ * <li>用于 multipart 数据的 {@link org.springframework.util.MultiValueMap
+ * MultiValueMap&lt;String,Object&gt;}
+ * <li>JSON 和 Smile（如果存在 Jackson）
+ * <li>XML（如果存在 JAXB2）
  * </ul>
  *
- * <p>HTTP message writers registered by default:
+ * <p>默认注册的 HTTP 消息写入器：
  * <ul>{@code byte[]}
  * <li>{@link java.nio.ByteBuffer}
  * <li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
  * <li>{@link org.springframework.core.io.Resource Resource}
  * <li>{@link String}
- * <li>{@link org.springframework.util.MultiValueMap
- * MultiValueMap&lt;String,String&gt;} for form data
- * <li>JSON and Smile, if Jackson is present
- * <li>XML, if JAXB2 is present
+ * <li>用于表单数据的 {@link org.springframework.util.MultiValueMap
+ * MultiValueMap&lt;String,String&gt;}
+ * <li>JSON 和 Smile（如果存在 Jackson）
+ * <li>XML（如果存在 JAXB2）
  * <li>Server-Sent Events
  * </ul>
  *
@@ -56,21 +56,20 @@ public interface ServerCodecConfigurer extends CodecConfigurer {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>On the server side, built-in default also include customizations
-	 * related to the encoder for SSE.
+	 * <p>在服务器端，内置默认值还包括与 SSE 编码器相关的定制。
 	 */
 	@Override
 	ServerDefaultCodecs defaultCodecs();
 
 	/**
-	 * {@inheritDoc}.
+	 * {@inheritDoc}。
 	 */
 	@Override
 	ServerCodecConfigurer clone();
 
 
 	/**
-	 * Static factory method for a {@code ServerCodecConfigurer}.
+	 * {@code ServerCodecConfigurer} 的静态工厂方法。
 	 */
 	static ServerCodecConfigurer create() {
 		return CodecConfigurerFactory.create(ServerCodecConfigurer.class);
@@ -78,32 +77,32 @@ public interface ServerCodecConfigurer extends CodecConfigurer {
 
 
 	/**
-	 * {@link CodecConfigurer.DefaultCodecs} extension with extra server-side options.
+	 * {@link CodecConfigurer.DefaultCodecs} 的扩展，提供额外的服务器端选项。
 	 */
 	interface ServerDefaultCodecs extends DefaultCodecs {
 
 		/**
-		 * Configure the {@code HttpMessageReader} to use for multipart requests.
-		 * <p>By default, if
-		 * <a href="https://github.com/synchronoss/nio-multipart">Synchronoss NIO Multipart</a>
-		 * is present, this is set to
-		 * {@link org.springframework.http.codec.multipart.MultipartHttpMessageReader
-		 * MultipartHttpMessageReader} created with an instance of
+		 * 配置用于 multipart 请求的 {@code HttpMessageReader}。
+		 * <p>默认情况下，如果存在
+		 * <a href="https://github.com/synchronoss/nio-multipart">Synchronoss NIO Multipart</a>，
+		 * 则将其设置为使用
 		 * {@link org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader
-		 * SynchronossPartHttpMessageReader}.
-		 * <p>Note that {@link #maxInMemorySize(int)} and/or
-		 * {@link #enableLoggingRequestDetails(boolean)}, if configured, will be
-		 * applied to the given reader, if applicable.
+		 * SynchronossPartHttpMessageReader} 实例创建的
+		 * {@link org.springframework.http.codec.multipart.MultipartHttpMessageReader
+		 * MultipartHttpMessageReader}。
+		 * <p>请注意，如果配置了 {@link #maxInMemorySize(int)} 和/或
+		 * {@link #enableLoggingRequestDetails(boolean)}，
+		 * 它们将应用于给定的读取器（如适用）。
 		 * @param reader the message reader to use for multipart requests.
 		 * @since 5.1.11
 		 */
 		void multipartReader(HttpMessageReader<?> reader);
 
 		/**
-		 * Configure the {@code Encoder} to use for Server-Sent Events.
-		 * <p>By default if this is not set, and Jackson is available,
-		 * the {@link #jackson2JsonEncoder} override is used instead.
-		 * Use this method to customize the SSE encoder.
+		 * 配置用于 Server-Sent Events 的 {@code Encoder}。
+		 * <p>默认情况下，如果未设置此项且 Jackson 可用，
+		 * 则会使用 {@link #jackson2JsonEncoder} 覆盖项。
+		 * 使用此方法可以自定义 SSE 编码器。
 		 */
 		void serverSentEventEncoder(Encoder<?> encoder);
 	}

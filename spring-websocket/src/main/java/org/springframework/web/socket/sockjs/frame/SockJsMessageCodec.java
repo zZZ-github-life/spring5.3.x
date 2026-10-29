@@ -22,8 +22,8 @@ import java.io.InputStream;
 import org.springframework.lang.Nullable;
 
 /**
- * Encode and decode messages to and from a SockJS message frame,
- * essentially an array of JSON-encoded messages. For example:
+ * 将消息编码为 SockJS 消息帧以及从 SockJS 消息帧解码，SockJS 消息帧本质上是一个
+ * JSON 编码消息的数组。例如：
  *
  * <pre class="code">
  * a["message1","message2"]
@@ -35,17 +35,17 @@ import org.springframework.lang.Nullable;
 public interface SockJsMessageCodec {
 
 	/**
-	 * Encode the given messages as a SockJS message frame. Aside from applying standard
-	 * JSON quoting to each message, there are some additional JSON Unicode escaping
-	 * rules. See the "JSON Unicode Encoding" section of SockJS protocol (i.e. the
-	 * protocol test suite).
+	 * 将给定消息编码为 SockJS 消息帧。除了对每条消息应用标准
+	 * JSON 引用外，还有一些额外的 JSON Unicode 转义
+	 * 规则。请参阅 SockJS 协议的 "JSON Unicode Encoding" 部分（即
+	 * 协议测试套件）。
 	 * @param messages the messages to encode
 	 * @return the content for a SockJS message frame (never {@code null})
 	 */
 	String encode(String... messages);
 
 	/**
-	 * Decode the given SockJS message frame.
+	 * 解码给定的 SockJS 消息帧。
 	 * @param content the SockJS message frame
 	 * @return an array of messages, or {@code null} if none
 	 * @throws IOException if the content could not be parsed
@@ -54,7 +54,7 @@ public interface SockJsMessageCodec {
 	String[] decode(String content) throws IOException;
 
 	/**
-	 * Decode the given SockJS message frame.
+	 * 解码给定的 SockJS 消息帧。
 	 * @param content the SockJS message frame
 	 * @return an array of messages, or {@code null} if none
 	 * @throws IOException if the content could not be parsed

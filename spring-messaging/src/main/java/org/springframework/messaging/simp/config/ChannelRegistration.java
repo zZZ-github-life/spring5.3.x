@@ -25,8 +25,7 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * A registration class for customizing the configuration for a
- * {@link org.springframework.messaging.MessageChannel}.
+ * 用于自定义 {@link org.springframework.messaging.MessageChannel} 配置的注册类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -40,15 +39,14 @@ public class ChannelRegistration {
 
 
 	/**
-	 * Configure the thread pool backing this message channel.
+	 * 配置支持此消息通道的线程池。
 	 */
 	public TaskExecutorRegistration taskExecutor() {
 		return taskExecutor(null);
 	}
 
 	/**
-	 * Configure the thread pool backing this message channel using a custom
-	 * ThreadPoolTaskExecutor.
+	 * 使用自定义的 ThreadPoolTaskExecutor 配置支持此消息通道的线程池。
 	 * @param taskExecutor the executor to use (or {@code null} for a default executor)
 	 */
 	public TaskExecutorRegistration taskExecutor(@Nullable ThreadPoolTaskExecutor taskExecutor) {
@@ -60,8 +58,7 @@ public class ChannelRegistration {
 	}
 
 	/**
-	 * Configure the given interceptors for this message channel,
-	 * adding them to the channel's current list of interceptors.
+	 * 为消息通道配置给定的拦截器，将它们添加到通道当前的拦截器列表中。
 	 * @since 4.3.12
 	 */
 	public ChannelRegistration interceptors(ChannelInterceptor... interceptors) {
@@ -70,7 +67,7 @@ public class ChannelRegistration {
 	}
 
 	/**
-	 * Configure interceptors for the message channel.
+	 * 为消息通道配置拦截器。
 	 * @deprecated as of 4.3.12, in favor of {@link #interceptors(ChannelInterceptor...)}
 	 */
 	@Deprecated

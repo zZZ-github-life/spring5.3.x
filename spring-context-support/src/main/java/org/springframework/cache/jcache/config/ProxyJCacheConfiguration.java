@@ -26,11 +26,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
 
 /**
- * {@code @Configuration} class that registers the Spring infrastructure beans necessary
- * to enable proxy-based annotation-driven JSR-107 cache management.
- *
- * <p>Can safely be used alongside Spring's caching support.
- *
+ * 注册启用基于代理的注解驱动 JSR-107 缓存管理所需 Spring 基础设施 bean 的 {@code @Configuration} 类。<p>可以与 Spring 的缓存支持一起安全使用。
  * @author Stephane Nicoll
  * @author Juergen Hoeller
  * @since 4.1

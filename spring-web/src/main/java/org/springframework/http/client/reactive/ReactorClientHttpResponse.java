@@ -44,7 +44,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link ClientHttpResponse} implementation for the Reactor-Netty HTTP client.
+ * 用于 Reactor-Netty HTTP 客户端的 {@link ClientHttpResponse} 实现。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -53,7 +53,7 @@ import org.springframework.util.ObjectUtils;
  */
 class ReactorClientHttpResponse implements ClientHttpResponse {
 
-	/** Reactor Netty 1.0.5+. */
+	/** 要求 Reactor Netty 1.0.5+。 */
 	static final boolean reactorNettyRequestChannelOperationsIdPresent = ClassUtils.isPresent(
 			"reactor.netty.ChannelOperationsId", ReactorClientHttpResponse.class.getClassLoader());
 
@@ -73,8 +73,8 @@ class ReactorClientHttpResponse implements ClientHttpResponse {
 
 
 	/**
-	 * Constructor that matches the inputs from
-	 * {@link reactor.netty.http.client.HttpClient.ResponseReceiver#responseConnection(BiFunction)}.
+	 * 与来自
+	 * {@link reactor.netty.http.client.HttpClient.ResponseReceiver#responseConnection(BiFunction)} 的输入相匹配的构造函数。
 	 * @since 5.2.8
 	 */
 	public ReactorClientHttpResponse(HttpClientResponse response, Connection connection) {
@@ -86,7 +86,7 @@ class ReactorClientHttpResponse implements ClientHttpResponse {
 	}
 
 	/**
-	 * Constructor with inputs extracted from a {@link Connection}.
+	 * 使用从 {@link Connection} 提取的输入的构造函数。
 	 * @deprecated as of 5.2.8, in favor of {@link #ReactorClientHttpResponse(HttpClientResponse, Connection)}
 	 */
 	@Deprecated
@@ -173,11 +173,10 @@ class ReactorClientHttpResponse implements ClientHttpResponse {
 	}
 
 	/**
-	 * Called by {@link ReactorClientHttpConnector} when a cancellation is detected
-	 * but the content has not been subscribed to. If the subscription never
-	 * materializes then the content will remain not drained. Or it could still
-	 * materialize if the cancellation happened very early, or the response
-	 * reading was delayed for some reason.
+	 * 当检测到取消但内容尚未订阅时，由 {@link ReactorClientHttpConnector}
+	 * 调用。如果订阅始终未实现，则内容将保持未排空状态。
+	 * 或者，如果取消发生得很早，或者响应读取因某种原因被延迟，
+	 * 订阅仍可能实现。
 	 */
 	void releaseAfterCancel(HttpMethod method) {
 		if (mayHaveBody(method) && this.state.compareAndSet(0, 2)) {

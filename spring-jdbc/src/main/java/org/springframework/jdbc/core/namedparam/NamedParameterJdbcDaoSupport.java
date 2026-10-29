@@ -21,7 +21,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of JdbcDaoSupport that exposes a NamedParameterJdbcTemplate as well.
+ * JdbcDaoSupport 的扩展，同时暴露 NamedParameterJdbcTemplate。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -35,7 +35,7 @@ public class NamedParameterJdbcDaoSupport extends JdbcDaoSupport {
 
 
 	/**
-	 * Create a NamedParameterJdbcTemplate based on the configured JdbcTemplate.
+	 * 基于已配置的 JdbcTemplate 创建 NamedParameterJdbcTemplate。
 	 */
 	@Override
 	protected void initTemplateConfig() {
@@ -46,7 +46,7 @@ public class NamedParameterJdbcDaoSupport extends JdbcDaoSupport {
 	}
 
 	/**
-	 * Return a NamedParameterJdbcTemplate wrapping the configured JdbcTemplate.
+	 * 返回包装已配置 JdbcTemplate 的 NamedParameterJdbcTemplate。
 	 */
 	@Nullable
 	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {

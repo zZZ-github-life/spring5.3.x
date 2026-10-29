@@ -40,10 +40,10 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Internal helper class for converting property values to target types.
+ * 用于将属性值转换为目标类型的内部辅助类。
  *
- * <p>Works on a given {@link PropertyEditorRegistrySupport} instance.
- * Used as a delegate by {@link BeanWrapperImpl} and {@link SimpleTypeConverter}.
+ * <p>基于给定的 {@link PropertyEditorRegistrySupport} 实例工作。由 {@link BeanWrapperImpl} 和
+ * {@link SimpleTypeConverter} 用作委托。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -63,7 +63,7 @@ class TypeConverterDelegate {
 
 
 	/**
-	 * Create a new TypeConverterDelegate for the given editor registry.
+	 * 为给定的编辑器注册表创建新的 TypeConverterDelegate。
 	 * @param propertyEditorRegistry the editor registry to use
 	 */
 	public TypeConverterDelegate(PropertyEditorRegistrySupport propertyEditorRegistry) {
@@ -71,7 +71,7 @@ class TypeConverterDelegate {
 	}
 
 	/**
-	 * Create a new TypeConverterDelegate for the given editor registry and bean instance.
+	 * 为给定的编辑器注册表和 Bean 实例创建新的 TypeConverterDelegate。
 	 * @param propertyEditorRegistry the editor registry to use
 	 * @param targetObject the target object to work on (as context that can be passed to editors)
 	 */
@@ -82,7 +82,7 @@ class TypeConverterDelegate {
 
 
 	/**
-	 * Convert the value to the required type for the specified property.
+	 * 将值转换为指定属性所需的类型。
 	 * @param propertyName name of the property
 	 * @param oldValue the previous value, if available (may be {@code null})
 	 * @param newValue the proposed new value
@@ -99,8 +99,7 @@ class TypeConverterDelegate {
 	}
 
 	/**
-	 * Convert the value to the required type (if necessary from a String),
-	 * for the specified property.
+	 * 将值转换为指定属性所需的类型（如有必要，从 String 转换）。
 	 * @param propertyName name of the property
 	 * @param oldValue the previous value, if available (may be {@code null})
 	 * @param newValue the proposed new value
@@ -322,7 +321,7 @@ class TypeConverterDelegate {
 		return convertedValue;
 	}
 	/**
-	 * Find a default editor for the given type.
+	 * 为给定类型查找默认编辑器。
 	 * @param requiredType the type to find an editor for
 	 * @return the corresponding editor, or {@code null} if none
 	 */
@@ -341,8 +340,7 @@ class TypeConverterDelegate {
 	}
 
 	/**
-	 * Convert the value to the required type (if necessary from a String),
-	 * using the given property editor.
+	 * 使用给定的属性编辑器将值转换为所需的类型（如有必要，从 String 转换）。
 	 * @param oldValue the previous value, if available (may be {@code null})
 	 * @param newValue the proposed new value
 	 * @param requiredType the type we must convert to
@@ -410,7 +408,7 @@ class TypeConverterDelegate {
 	}
 
 	/**
-	 * Convert the given text value using the given property editor.
+	 * 使用给定的属性编辑器转换给定的文本值。
 	 * @param oldValue the previous value, if available (may be {@code null})
 	 * @param newTextValue the proposed text value
 	 * @param editor the PropertyEditor to use

@@ -22,12 +22,10 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to discover parameter names for methods and constructors.
+ * 用于发现方法和构造函数参数名的接口。
  *
- * <p>Parameter name discovery is not always possible, but various strategies are
- * available to try, such as looking for debug information that may have been
- * emitted at compile time, and looking for argname annotation values optionally
- * accompanying AspectJ annotated methods.
+ * <p>参数名发现并非总是可行，但有多种策略可以尝试，例如查找可能在编译时生成的调试信息，以及查找可
+ * 能随 AspectJ 注解方法一起出现的 argname 注解值。
  *
  * @author Rod Johnson
  * @author Adrian Colyer
@@ -36,10 +34,10 @@ import org.springframework.lang.Nullable;
 public interface ParameterNameDiscoverer {
 
 	/**
-	 * Return parameter names for a method, or {@code null} if they cannot be determined.
-	 * <p>Individual entries in the array may be {@code null} if parameter names are only
-	 * available for some parameters of the given method but not for others. However,
-	 * it is recommended to use stub parameter names instead wherever feasible.
+	 * 返回方法的参数名；如果无法确定，则返回 {@code null}。
+	 *
+	 * <p>如果参数名仅对给定方法的部分参数可用而对其他参数不可用，则数组中的各个条目可以为 {@code null}
+	 * 。不过，建议在可行的情况下改用占位参数名。
 	 * @param method the method to find parameter names for
 	 * @return an array of parameter names if the names can be resolved,
 	 * or {@code null} if they cannot
@@ -48,10 +46,10 @@ public interface ParameterNameDiscoverer {
 	String[] getParameterNames(Method method);
 
 	/**
-	 * Return parameter names for a constructor, or {@code null} if they cannot be determined.
-	 * <p>Individual entries in the array may be {@code null} if parameter names are only
-	 * available for some parameters of the given constructor but not for others. However,
-	 * it is recommended to use stub parameter names instead wherever feasible.
+	 * 返回构造函数的参数名；如果无法确定，则返回 {@code null}。
+	 *
+	 * <p>如果参数名仅对给定构造函数的部分参数可用而对其他参数不可用，则数组中的各个条目可以为
+	 * {@code null}。不过，建议在可行的情况下改用占位参数名。
 	 * @param ctor the constructor to find parameter names for
 	 * @return an array of parameter names if the names can be resolved,
 	 * or {@code null} if they cannot

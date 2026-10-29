@@ -22,8 +22,7 @@ import java.nio.file.Path;
 import reactor.core.publisher.Mono;
 
 /**
- * Specialization of {@link Part} that represents an uploaded file received in
- * a multipart request.
+ * {@link Part} 的特化，表示在 multipart 请求中接收到的上传文件。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -32,13 +31,12 @@ import reactor.core.publisher.Mono;
 public interface FilePart extends Part {
 
 	/**
-	 * Return the original filename in the client's filesystem.
-	 * <p><strong>Note:</strong> Please keep in mind this filename is supplied
-	 * by the client and should not be used blindly. In addition to not using
-	 * the directory portion, the file name could also contain characters such
-	 * as ".." and others that can be used maliciously. It is recommended to not
-	 * use this filename directly. Preferably generate a unique one and save
-	 * this one somewhere for reference, if necessary.
+	 * 返回客户端文件系统中的原始文件名。
+	 * <p><strong>注意：</strong>请记住，此文件名由客户端提供，
+	 * 不应盲目使用。除了不应使用其中的目录部分之外，
+	 * 文件名还可能包含 ".." 等可被恶意利用的字符。
+	 * 建议不要直接使用此文件名。最好生成一个唯一的名称，
+	 * 并在必要时将此名称保存到某处以供参考。
 	 * @return the original filename, or the empty String if no file has been chosen
 	 * in the multipart form, or {@code null} if not defined or not available
 	 * @see <a href="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a>
@@ -47,10 +45,9 @@ public interface FilePart extends Part {
 	String filename();
 
 	/**
-	 * Convenience method to copy the content of the file in this part to the
-	 * given destination file. If the destination file already exists, it will
-	 * be truncated first.
-	 * <p>The default implementation delegates to {@link #transferTo(Path)}.
+	 * 便捷方法，用于将此部件中文件的内容复制到给定的目标文件。
+	 * 如果目标文件已存在，将先被截断。
+	 * <p>默认实现委托给 {@link #transferTo(Path)}。
 	 * @param dest the target file
 	 * @return completion {@code Mono} with the result of the file transfer,
 	 * possibly {@link IllegalStateException} if the part isn't a file
@@ -61,9 +58,8 @@ public interface FilePart extends Part {
 	}
 
 	/**
-	 * Convenience method to copy the content of the file in this part to the
-	 * given destination file. If the destination file already exists, it will
-	 * be truncated first.
+	 * 便捷方法，用于将此部件中文件的内容复制到给定的目标文件。
+	 * 如果目标文件已存在，将先被截断。
 	 * @param dest the target file
 	 * @return completion {@code Mono} with the result of the file transfer,
 	 * possibly {@link IllegalStateException} if the part isn't a file

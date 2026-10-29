@@ -35,8 +35,8 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Decode a byte stream into JSON and convert to Object's with Jackson 2.9,
- * leveraging non-blocking parsing.
+ * 将字节流解码为 JSON，并使用 Jackson 2.9 转换为 Object，
+ * 利用非阻塞解析。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev

@@ -19,8 +19,8 @@ package org.springframework.transaction.support;
 import org.springframework.transaction.TransactionDefinition;
 
 /**
- * Extended variant of {@link TransactionDefinition}, indicating a resource transaction
- * and in particular whether the transactional resource is ready for local optimizations.
+ * {@link TransactionDefinition} 的扩展变体，表示资源事务，
+ * 特别是事务资源是否已准备好进行本地优化。
  *
  * @author Juergen Hoeller
  * @since 5.1
@@ -29,9 +29,9 @@ import org.springframework.transaction.TransactionDefinition;
 public interface ResourceTransactionDefinition extends TransactionDefinition {
 
 	/**
-	 * Determine whether the transactional resource is ready for local optimizations.
-	 * @return {@code true} if the resource is known to be entirely transaction-local,
-	 * not affecting any operations outside the scope of the current transaction
+	 * 确定事务资源是否已准备好进行本地优化。
+	 * @return {@code true} 如果资源已知完全是事务本地的，
+	 * 不影响当前事务范围之外的任何操作
 	 * @see #isReadOnly()
 	 */
 	boolean isLocalResource();

@@ -22,15 +22,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor for Boolean/boolean properties.
+ * 用于 Boolean/boolean 属性的属性编辑器。
  *
- * <p>This is not meant to be used as system PropertyEditor but rather as
- * locale-specific Boolean editor within custom controller code, to parse
- * UI-caused boolean strings into boolean properties of beans and check
- * them in the UI form.
+ * <p>它并非用作系统 PropertyEditor，而是在自定义控制器代码中用作区域特定的 Boolean 编辑器，用于将
+ * UI 产生的布尔字符串解析为 Bean 的 boolean 属性，并在 UI 表单中校验它们。
  *
- * <p>In web MVC code, this editor will typically be registered with
- * {@code binder.registerCustomEditor} calls.
+ * <p>在 Web MVC 代码中，通常会通过 {@code binder.registerCustomEditor} 调用注册此编辑器。
  *
  * @author Juergen Hoeller
  * @since 10.06.2003
@@ -39,42 +36,42 @@ import org.springframework.util.StringUtils;
 public class CustomBooleanEditor extends PropertyEditorSupport {
 
 	/**
-	 * Value of {@code "true"}.
+	 * 值为 {@code "true"}。
 	 */
 	public static final String VALUE_TRUE = "true";
 
 	/**
-	 * Value of {@code "false"}.
+	 * 值为 {@code "false"}。
 	 */
 	public static final String VALUE_FALSE = "false";
 
 	/**
-	 * Value of {@code "on"}.
+	 * 值为 {@code "on"}。
 	 */
 	public static final String VALUE_ON = "on";
 
 	/**
-	 * Value of {@code "off"}.
+	 * 值为 {@code "off"}。
 	 */
 	public static final String VALUE_OFF = "off";
 
 	/**
-	 * Value of {@code "yes"}.
+	 * 值为 {@code "yes"}。
 	 */
 	public static final String VALUE_YES = "yes";
 
 	/**
-	 * Value of {@code "no"}.
+	 * 值为 {@code "no"}。
 	 */
 	public static final String VALUE_NO = "no";
 
 	/**
-	 * Value of {@code "1"}.
+	 * 值为 {@code "1"}。
 	 */
 	public static final String VALUE_1 = "1";
 
 	/**
-	 * Value of {@code "0"}.
+	 * 值为 {@code "0"}。
 	 */
 	public static final String VALUE_0 = "0";
 
@@ -89,11 +86,9 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new CustomBooleanEditor instance, with "true"/"on"/"yes"
-	 * and "false"/"off"/"no" as recognized String values.
-	 * <p>The "allowEmpty" parameter states if an empty String should
-	 * be allowed for parsing, i.e. get interpreted as null value.
-	 * Else, an IllegalArgumentException gets thrown in that case.
+	 * 创建一个新的 CustomBooleanEditor 实例，将 "true"/"on"/"yes" 和 "false"/"off"/"no" 作为可识别的
+	 * String 值。<p>"allowEmpty" 参数表明解析时是否应允许空 String，即将其解释为 null 值。否则，在这种
+	 * 情况下将抛出 IllegalArgumentException。
 	 * @param allowEmpty if empty strings should be allowed
 	 */
 	public CustomBooleanEditor(boolean allowEmpty) {
@@ -101,11 +96,9 @@ public class CustomBooleanEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new CustomBooleanEditor instance,
-	 * with configurable String values for true and false.
-	 * <p>The "allowEmpty" parameter states if an empty String should
-	 * be allowed for parsing, i.e. get interpreted as null value.
-	 * Else, an IllegalArgumentException gets thrown in that case.
+	 * 创建一个新的 CustomBooleanEditor 实例，可为 true 和 false 配置 String 值。<p>"allowEmpty" 参数表
+	 * 明解析时是否应允许空 String，即将其解释为 null 值。否则，在这种情况下将抛出
+	 * IllegalArgumentException。
 	 * @param trueString the String value that represents true:
 	 * for example, "true" (VALUE_TRUE), "on" (VALUE_ON),
 	 * "yes" (VALUE_YES) or some custom value

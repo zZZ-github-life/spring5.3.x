@@ -19,7 +19,7 @@ package org.springframework.format;
 import java.util.Locale;
 
 /**
- * Prints objects of type T for display.
+ * 打印类型 T 的对象以供显示。
  *
  * @author Keith Donald
  * @since 3.0
@@ -29,7 +29,7 @@ import java.util.Locale;
 public interface Printer<T> {
 
 	/**
-	 * Print the object of type T for display.
+	 * 打印类型 T 的对象以供显示。
 	 * @param object the instance to print
 	 * @param locale the current user locale
 	 * @return the printed text string

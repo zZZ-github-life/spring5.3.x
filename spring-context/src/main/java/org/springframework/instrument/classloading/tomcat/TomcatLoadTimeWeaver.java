@@ -27,9 +27,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link org.springframework.instrument.classloading.LoadTimeWeaver} implementation
- * for Tomcat's new {@code org.apache.tomcat.InstrumentableClassLoader}.
- * Also capable of handling Spring's TomcatInstrumentableClassLoader when encountered.
+ * 针对 Tomcat 新的 {@code org.apache.tomcat.InstrumentableClassLoader} 的
+ * {@link org.springframework.instrument.classloading.LoadTimeWeaver} 实现。在遇到 Spring 的
+ * TomcatInstrumentableClassLoader 时也能处理它。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -47,8 +47,7 @@ public class TomcatLoadTimeWeaver implements LoadTimeWeaver {
 
 
 	/**
-	 * Create a new instance of the {@link TomcatLoadTimeWeaver} class using
-	 * the default {@link ClassLoader class loader}.
+	 * 使用默认的 {@link ClassLoader class loader} 创建 {@link TomcatLoadTimeWeaver} 类的新实例。
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	public TomcatLoadTimeWeaver() {
@@ -56,8 +55,7 @@ public class TomcatLoadTimeWeaver implements LoadTimeWeaver {
 	}
 
 	/**
-	 * Create a new instance of the {@link TomcatLoadTimeWeaver} class using
-	 * the supplied {@link ClassLoader}.
+	 * 使用提供的 {@link ClassLoader} 创建 {@link TomcatLoadTimeWeaver} 类的新实例。
 	 * @param classLoader the {@code ClassLoader} to delegate to for weaving
 	 */
 	public TomcatLoadTimeWeaver(@Nullable ClassLoader classLoader) {

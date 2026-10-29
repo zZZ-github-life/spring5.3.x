@@ -25,9 +25,9 @@ import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * Contract for initiating a WebSocket request. As an alternative considering using the
- * declarative style {@link WebSocketConnectionManager} that starts a WebSocket connection
- * to a pre-configured URI when the application starts.
+ * 发起 WebSocket 请求的契约。另一种选择是使用声明式风格的
+ * {@link WebSocketConnectionManager}，它在应用程序启动时启动到
+ * 预配置 URI 的 WebSocket 连接。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

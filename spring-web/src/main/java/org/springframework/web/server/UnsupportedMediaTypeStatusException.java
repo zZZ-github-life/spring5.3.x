@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Exception for errors that fit response status 415 (unsupported media type).
+ * 适用于响应状态 415（不支持的媒体类型）的异常。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -49,7 +49,7 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 
 
 	/**
-	 * Constructor for when the specified Content-Type is invalid.
+	 * 当指定的 Content-Type 无效时使用的构造函数。
 	 */
 	public UnsupportedMediaTypeStatusException(@Nullable String reason) {
 		super(HttpStatus.UNSUPPORTED_MEDIA_TYPE, reason);
@@ -60,14 +60,14 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 	}
 
 	/**
-	 * Constructor for when the Content-Type can be parsed but is not supported.
+	 * 当 Content-Type 可以解析但不受支持时使用的构造函数。
 	 */
 	public UnsupportedMediaTypeStatusException(@Nullable MediaType contentType, List<MediaType> supportedTypes) {
 		this(contentType, supportedTypes, null, null);
 	}
 
 	/**
-	 * Constructor for when trying to encode from or decode to a specific Java type.
+	 * 在尝试从特定 Java 类型编码或解码到特定 Java 类型时使用的构造函数。
 	 * @since 5.1
 	 */
 	public UnsupportedMediaTypeStatusException(@Nullable MediaType contentType, List<MediaType> supportedTypes,
@@ -76,7 +76,7 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 	}
 
 	/**
-	 * Constructor that provides the HTTP method.
+	 * 提供 HTTP 方法的构造函数。
 	 * @since 5.3.6
 	 */
 	public UnsupportedMediaTypeStatusException(@Nullable MediaType contentType, List<MediaType> supportedTypes,
@@ -85,7 +85,7 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 	}
 
 	/**
-	 * Constructor for when trying to encode from or decode to a specific Java type.
+	 * 在尝试从特定 Java 类型编码或解码到特定 Java 类型时使用的构造函数。
 	 * @since 5.3.6
 	 */
 	public UnsupportedMediaTypeStatusException(@Nullable MediaType contentType, List<MediaType> supportedTypes,
@@ -105,8 +105,8 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 
 
 	/**
-	 * Return the request Content-Type header if it was parsed successfully,
-	 * or {@code null} otherwise.
+	 * 如果请求的 Content-Type 头部解析成功，则返回该头部，
+	 * 否则返回 {@code null}。
 	 */
 	@Nullable
 	public MediaType getContentType() {
@@ -114,17 +114,17 @@ public class UnsupportedMediaTypeStatusException extends ResponseStatusException
 	}
 
 	/**
-	 * Return the list of supported content types in cases when the Content-Type
-	 * header is parsed but not supported, or an empty list otherwise.
+	 * 返回受支持的内容类型列表：当 Content-Type 头部可以解析但不受支持时返回该列表，
+	 * 否则返回空列表。
 	 */
 	public List<MediaType> getSupportedMediaTypes() {
 		return this.supportedMediaTypes;
 	}
 
 	/**
-	 * Return the body type in the context of which this exception was generated.
-	 * <p>This is applicable when the exception was raised as a result trying to
-	 * encode from or decode to a specific Java type.
+	 * 返回生成此异常时所处上下文中的主体类型。
+	 * <p>当异常是由于尝试从特定 Java 类型编码或解码到特定 Java 类型而引发时，
+	 * 该信息适用。
 	 * @return the body type, or {@code null} if not available
 	 * @since 5.1
 	 */

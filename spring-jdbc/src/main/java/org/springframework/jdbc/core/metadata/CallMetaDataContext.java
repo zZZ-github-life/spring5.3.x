@@ -45,8 +45,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Class to manage context meta-data used for the configuration
- * and execution of a stored procedure call.
+ * 管理存储过程调用的配置和执行所需的上下文元数据的类。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -101,56 +100,56 @@ public class CallMetaDataContext {
 
 
 	/**
-	 * Specify the name used for the return value of the function.
+	 * 指定函数返回值所使用的名称。
 	 */
 	public void setFunctionReturnName(String functionReturnName) {
 		this.actualFunctionReturnName = functionReturnName;
 	}
 
 	/**
-	 * Get the name used for the return value of the function.
+	 * 获取函数返回值所使用的名称。
 	 */
 	public String getFunctionReturnName() {
 		return (this.actualFunctionReturnName != null ? this.actualFunctionReturnName : "return");
 	}
 
 	/**
-	 * Specify a limited set of in parameters to be used.
+	 * 指定要使用的有限输入参数集。
 	 */
 	public void setLimitedInParameterNames(Set<String> limitedInParameterNames) {
 		this.limitedInParameterNames = limitedInParameterNames;
 	}
 
 	/**
-	 * Get a limited set of in parameters to be used.
+	 * 获取要使用的有限输入参数集。
 	 */
 	public Set<String> getLimitedInParameterNames() {
 		return this.limitedInParameterNames;
 	}
 
 	/**
-	 * Specify the names of the out parameters.
+	 * 指定输出参数的名称。
 	 */
 	public void setOutParameterNames(List<String> outParameterNames) {
 		this.outParameterNames = outParameterNames;
 	}
 
 	/**
-	 * Get a list of the out parameter names.
+	 * 获取输出参数名称列表。
 	 */
 	public List<String> getOutParameterNames() {
 		return this.outParameterNames;
 	}
 
 	/**
-	 * Specify the name of the procedure.
+	 * 指定存储过程的名称。
 	 */
 	public void setProcedureName(@Nullable String procedureName) {
 		this.procedureName = procedureName;
 	}
 
 	/**
-	 * Get the name of the procedure.
+	 * 获取存储过程的名称。
 	 */
 	@Nullable
 	public String getProcedureName() {
@@ -158,14 +157,14 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Specify the name of the catalog.
+	 * 指定目录（catalog）的名称。
 	 */
 	public void setCatalogName(@Nullable String catalogName) {
 		this.catalogName = catalogName;
 	}
 
 	/**
-	 * Get the name of the catalog.
+	 * 获取目录（catalog）的名称。
 	 */
 	@Nullable
 	public String getCatalogName() {
@@ -173,14 +172,14 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Specify the name of the schema.
+	 * 指定模式（schema）的名称。
 	 */
 	public void setSchemaName(@Nullable String schemaName) {
 		this.schemaName = schemaName;
 	}
 
 	/**
-	 * Get the name of the schema.
+	 * 获取模式（schema）的名称。
 	 */
 	@Nullable
 	public String getSchemaName() {
@@ -188,49 +187,49 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Specify whether this call is a function call.
+	 * 指定此调用是否为函数调用。
 	 */
 	public void setFunction(boolean function) {
 		this.function = function;
 	}
 
 	/**
-	 * Check whether this call is a function call.
+	 * 检查此调用是否为函数调用。
 	 */
 	public boolean isFunction() {
 		return this.function;
 	}
 
 	/**
-	 * Specify whether a return value is required.
+	 * 指定是否需要返回值。
 	 */
 	public void setReturnValueRequired(boolean returnValueRequired) {
 		this.returnValueRequired = returnValueRequired;
 	}
 
 	/**
-	 * Check whether a return value is required.
+	 * 检查是否需要返回值。
 	 */
 	public boolean isReturnValueRequired() {
 		return this.returnValueRequired;
 	}
 
 	/**
-	 * Specify whether call parameter meta-data should be accessed.
+	 * 指定是否应访问调用参数的元数据。
 	 */
 	public void setAccessCallParameterMetaData(boolean accessCallParameterMetaData) {
 		this.accessCallParameterMetaData = accessCallParameterMetaData;
 	}
 
 	/**
-	 * Check whether call parameter meta-data should be accessed.
+	 * 检查是否应访问调用参数的元数据。
 	 */
 	public boolean isAccessCallParameterMetaData() {
 		return this.accessCallParameterMetaData;
 	}
 
 	/**
-	 * Specify whether parameters should be bound by name.
+	 * 指定参数是否应按名称绑定。
 	 * @since 4.2
 	 */
 	public void setNamedBinding(boolean namedBinding) {
@@ -238,7 +237,7 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Check whether parameters should be bound by name.
+	 * 检查参数是否应按名称绑定。
 	 * @since 4.2
 	 */
 	public boolean isNamedBinding() {
@@ -247,8 +246,8 @@ public class CallMetaDataContext {
 
 
 	/**
-	 * Initialize this class with meta-data from the database.
-	 * @param dataSource the DataSource used to retrieve meta-data
+	 * 使用数据库中的元数据初始化此类。
+	 * @param dataSource 用于检索元数据的 DataSource
 	 */
 	public void initializeMetaData(DataSource dataSource) {
 		this.metaDataProvider = CallMetaDataProviderFactory.createMetaDataProvider(dataSource, this);
@@ -260,11 +259,10 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Create a ReturnResultSetParameter/SqlOutParameter depending on the support provided
-	 * by the JDBC driver used for the database in use.
-	 * @param parameterName the name of the parameter (also used as the name of the List returned in the output)
-	 * @param rowMapper a RowMapper implementation used to map the data returned in the result set
-	 * @return the appropriate SqlParameter
+	 * 根据所使用的数据库的 JDBC 驱动支持情况，创建 ReturnResultSetParameter/SqlOutParameter。
+	 * @param parameterName 参数的名称（也用作输出中返回的 List 的名称）
+	 * @param rowMapper 用于映射结果集中数据的 RowMapper 实现
+	 * @return 相应的 SqlParameter
 	 */
 	public SqlParameter createReturnResultSetParameter(String parameterName, RowMapper<?> rowMapper) {
 		CallMetaDataProvider provider = obtainMetaDataProvider();
@@ -283,8 +281,8 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Get the name of the single out parameter for this call.
-	 * If there are multiple parameters, the name of the first one will be returned.
+	 * 获取此调用的单个输出参数的名称。
+	 * 如果有多个参数，则返回第一个参数的名称。
 	 */
 	@Nullable
 	public String getScalarOutParameterName() {
@@ -300,24 +298,23 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Get the List of SqlParameter objects to be used in call execution.
+	 * 获取用于调用执行的 SqlParameter 对象列表。
 	 */
 	public List<SqlParameter> getCallParameters() {
 		return this.callParameters;
 	}
 
 	/**
-	 * Process the list of parameters provided, and if procedure column meta-data is used,
-	 * the parameters will be matched against the meta-data information and any missing
-	 * ones will be automatically included.
-	 * @param parameters the list of parameters to use as a base
+	 * 处理提供的参数列表，如果使用了过程列元数据，
+	 * 则参数将与元数据信息进行匹配，任何缺失的参数将被自动包含。
+	 * @param parameters 用作基础的参数列表
 	 */
 	public void processParameters(List<SqlParameter> parameters) {
 		this.callParameters = reconcileParameters(parameters);
 	}
 
 	/**
-	 * Reconcile the provided parameters with available meta-data and add new ones where appropriate.
+	 * 将提供的参数与可用元数据进行协调，并在适当时添加新参数。
 	 */
 	protected List<SqlParameter> reconcileParameters(List<SqlParameter> parameters) {
 		CallMetaDataProvider provider = obtainMetaDataProvider();
@@ -472,9 +469,9 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Match input parameter values with the parameters declared to be used in the call.
-	 * @param parameterSource the input values
-	 * @return a Map containing the matched parameter names with the value taken from the input
+	 * 将输入参数值与调用中声明的参数进行匹配。
+	 * @param parameterSource 输入值
+	 * @return 包含匹配的参数名称及其从输入中获取的值的 Map
 	 */
 	public Map<String, Object> matchInParameterValuesWithCallParameters(SqlParameterSource parameterSource) {
 		// For parameter source lookups we need to provide case-insensitive lookup support
@@ -541,9 +538,9 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Match input parameter values with the parameters declared to be used in the call.
-	 * @param inParameters the input values
-	 * @return a Map containing the matched parameter names with the value taken from the input
+	 * 将输入参数值与调用中声明的参数进行匹配。
+	 * @param inParameters 输入值
+	 * @return 包含匹配的参数名称及其从输入中获取的值的 Map
 	 */
 	public Map<String, ?> matchInParameterValuesWithCallParameters(Map<String, ?> inParameters) {
 		CallMetaDataProvider provider = obtainMetaDataProvider();
@@ -614,8 +611,8 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Build the call string based on configuration and meta-data information.
-	 * @return the call string to be used
+	 * 根据配置和元数据信息构建调用字符串。
+	 * @return 要使用的调用字符串
 	 */
 	public String createCallString() {
 		Assert.state(this.metaDataProvider != null, "No CallMetaDataProvider available");
@@ -671,9 +668,9 @@ public class CallMetaDataContext {
 	}
 
 	/**
-	 * Build the parameter binding fragment.
-	 * @param parameter call parameter
-	 * @return parameter binding fragment
+	 * 构建参数绑定片段。
+	 * @param parameter 调用参数
+	 * @return 参数绑定片段
 	 * @since 4.2
 	 */
 	protected String createParameterBinding(SqlParameter parameter) {

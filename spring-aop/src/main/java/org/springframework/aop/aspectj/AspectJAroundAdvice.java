@@ -28,8 +28,7 @@ import org.springframework.aop.ProxyMethodInvocation;
 import org.springframework.lang.Nullable;
 
 /**
- * Spring AOP around advice (MethodInterceptor) that wraps
- * an AspectJ advice method. Exposes ProceedingJoinPoint.
+ * 包装 AspectJ 通知方法的 Spring AOP 环绕通知（MethodInterceptor）。公开 ProceedingJoinPoint。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -73,8 +72,7 @@ public class AspectJAroundAdvice extends AbstractAspectJAdvice implements Method
 	}
 
 	/**
-	 * Return the ProceedingJoinPoint for the current invocation,
-	 * instantiating it lazily if it hasn't been bound to the thread already.
+	 * 返回当前调用的 ProceedingJoinPoint，如果尚未绑定到线程，则以延迟方式实例化它。
 	 * @param rmi the current Spring AOP ReflectiveMethodInvocation,
 	 * which we'll use for attribute binding
 	 * @return the ProceedingJoinPoint to make available to advice methods

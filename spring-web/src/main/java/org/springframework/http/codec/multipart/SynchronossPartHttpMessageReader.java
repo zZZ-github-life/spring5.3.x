@@ -68,11 +68,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@code HttpMessageReader} for parsing {@code "multipart/form-data"} requests
- * to a stream of {@link Part}'s using the Synchronoss NIO Multipart library.
+ * {@code HttpMessageReader}，用于使用 Synchronoss NIO Multipart 库
+ * 将 {@code "multipart/form-data"} 请求解析为 {@link Part} 流。
  *
- * <p>This reader can be provided to {@link MultipartHttpMessageReader} in order
- * to aggregate all parts into a Map.
+ * <p>可以将此读取器提供给 {@link MultipartHttpMessageReader}，
+ * 以便将所有部件聚合到一个 Map 中。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -96,13 +96,13 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 
 
 	/**
-	 * Configure the maximum amount of memory that is allowed to use per part.
-	 * When the limit is exceeded:
+	 * 配置每个部件允许使用的最大内存量。
+	 * 超过限制时：
 	 * <ul>
-	 * <li>file parts are written to a temporary file.
-	 * <li>non-file parts are rejected with {@link DataBufferLimitException}.
+	 * <li>文件部件将写入临时文件。
+	 * <li>非文件部件将被拒绝，并抛出 {@link DataBufferLimitException}。
 	 * </ul>
-	 * <p>By default this is set to 256K.
+	 * <p>默认设置为 256K。
 	 * @param byteCount the in-memory limit in bytes; if set to -1 this limit is
 	 * not enforced, and all parts may be written to disk and are limited only
 	 * by the {@link #setMaxDiskUsagePerPart(long) maxDiskUsagePerPart} property.
@@ -113,7 +113,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	}
 
 	/**
-	 * Get the {@link #setMaxInMemorySize configured} maximum in-memory size.
+	 * 获取{@link #setMaxInMemorySize 已配置}的最大内存大小。
 	 * @since 5.1.11
 	 */
 	public int getMaxInMemorySize() {
@@ -121,8 +121,8 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	}
 
 	/**
-	 * Configure the maximum amount of disk space allowed for file parts.
-	 * <p>By default this is set to -1.
+	 * 配置文件部件允许使用的最大磁盘空间量。
+	 * <p>默认为 -1。
 	 * @param maxDiskUsagePerPart the disk limit in bytes, or -1 for unlimited
 	 * @since 5.1.11
 	 */
@@ -131,7 +131,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	}
 
 	/**
-	 * Get the {@link #setMaxDiskUsagePerPart configured} maximum disk usage.
+	 * 获取{@link #setMaxDiskUsagePerPart 已配置}的最大磁盘使用量。
 	 * @since 5.1.11
 	 */
 	public long getMaxDiskUsagePerPart() {
@@ -139,7 +139,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	}
 
 	/**
-	 * Specify the maximum number of parts allowed in a given multipart request.
+	 * 指定给定 multipart 请求中允许的最大部件数。
 	 * @since 5.1.11
 	 */
 	public void setMaxParts(int maxParts) {
@@ -147,7 +147,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	}
 
 	/**
-	 * Return the {@link #setMaxParts configured} limit on the number of parts.
+	 * 返回{@link #setMaxParts 已配置}的部件数量限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxParts() {
@@ -155,9 +155,9 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 	}
 
 	/**
-	 * Set the directory used to store parts larger than
-	 * {@link #setMaxInMemorySize(int) maxInMemorySize}. By default, a new
-	 * temporary directory is created.
+	 * 设置用于存储大于
+	 * {@link #setMaxInMemorySize(int) maxInMemorySize} 的部件的目录。
+	 * 默认情况下会创建一个新的临时目录。
 	 * @throws IOException if an I/O error occurs, or the parent directory
 	 * does not exist
 	 * @since 5.3.7
@@ -237,8 +237,8 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 
 
 	/**
-	 * Subscribe to the input stream and feed the Synchronoss parser. Then listen
-	 * for parser output, creating parts, and pushing them into the FluxSink.
+	 * 订阅输入流并将其提供给 Synchronoss 解析器。然后监听
+	 * 解析器输出，创建部件，并将它们推入 FluxSink。
 	 */
 	private class SynchronossPartGenerator extends BaseSubscriber<DataBuffer> implements Consumer<FluxSink<Part>> {
 
@@ -385,7 +385,7 @@ public class SynchronossPartHttpMessageReader extends LoggingCodecSupport implem
 
 
 	/**
-	 * Listen for parser output and adapt to {@code Flux<Sink<Part>>}.
+	 * 监听解析器输出并适配为 {@code Flux<Sink<Part>>}。
 	 */
 	private static class FluxSinkAdapterListener implements NioMultipartParserListener {
 

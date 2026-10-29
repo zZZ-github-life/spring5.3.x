@@ -35,8 +35,8 @@ import org.springframework.web.socket.sockjs.SockJsService;
 import org.springframework.web.socket.sockjs.transport.handler.WebSocketTransportHandler;
 
 /**
- * Base class for {@link WebSocketHandlerRegistration WebSocketHandlerRegistrations} that gathers all the configuration
- * options but allows subclasses to put together the actual HTTP request mappings.
+ * {@link WebSocketHandlerRegistration WebSocketHandlerRegistration} 的基类，
+ * 汇总所有配置选项，但允许子类组装实际的 HTTP 请求映射。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -138,10 +138,9 @@ public abstract class AbstractWebSocketHandlerRegistration<M> implements WebSock
 	}
 
 	/**
-	 * Expose the {@code SockJsServiceRegistration} -- if SockJS is enabled or
-	 * {@code null} otherwise -- so that it can be configured with a TaskScheduler
-	 * if the application did not provide one. This should be done prior to
-	 * calling {@link #getMappings()}.
+	 * 暴露 {@code SockJsServiceRegistration}（如果启用了 SockJS）或
+	 * {@code null}（否则），以便在应用程序未提供 TaskScheduler 时
+	 * 为其配置一个。应在调用 {@link #getMappings()} 之前完成此操作。
 	 */
 	@Nullable
 	protected SockJsServiceRegistration getSockJsServiceRegistration() {

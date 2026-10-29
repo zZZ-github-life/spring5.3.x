@@ -23,12 +23,10 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.beans.factory.config.BeanPostProcessor}
- * implementation that passes the BootstrapContext to beans that implement
- * the {@link BootstrapContextAware} interface.
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 实现，
+ * 将 BootstrapContext 传递给实现 {@link BootstrapContextAware} 接口的 bean。
  *
- * <p>{@link ResourceAdapterApplicationContext} automatically registers
- * this processor with its underlying bean factory.
+ * <p>{@link ResourceAdapterApplicationContext} 会自动在其底层 bean 工厂中注册此处理器。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -41,7 +39,7 @@ class BootstrapContextAwareProcessor implements BeanPostProcessor {
 
 
 	/**
-	 * Create a new BootstrapContextAwareProcessor for the given context.
+	 * 为给定的上下文创建新的 BootstrapContextAwareProcessor。
 	 */
 	public BootstrapContextAwareProcessor(@Nullable BootstrapContext bootstrapContext) {
 		this.bootstrapContext = bootstrapContext;

@@ -46,18 +46,18 @@ import org.springframework.web.server.session.DefaultWebSessionManager;
 import org.springframework.web.server.session.WebSessionManager;
 
 /**
- * This builder has two purposes:
+ * 此构建器有两个用途：
  *
- * <p>One is to assemble a processing chain that consists of a target {@link WebHandler},
- * then decorated with a set of {@link WebFilter WebFilters}, then further decorated with
- * a set of {@link WebExceptionHandler WebExceptionHandlers}.
+ * <p>其一，组装一条处理链：由目标 {@link WebHandler} 构成，
+ * 然后用一组 {@link WebFilter WebFilter} 进行装饰，
+ * 再用一组 {@link WebExceptionHandler WebExceptionHandler} 进一步装饰。
  *
- * <p>The second purpose is to adapt the resulting processing chain to an {@link HttpHandler}:
- * the lowest-level reactive HTTP handling abstraction which can then be used with any of the
- * supported runtimes. The adaptation is done with the help of {@link HttpWebHandlerAdapter}.
+ * <p>其二，将生成的处理链适配为 {@link HttpHandler}：
+ * 这是最低层级的响应式 HTTP 处理抽象，之后可与任何受支持的运行时配合使用。
+ * 该适配借助 {@link HttpWebHandlerAdapter} 完成。
  *
- * <p>The processing chain can be assembled manually via builder methods, or detected from
- * a Spring {@link ApplicationContext} via {@link #applicationContext}, or a mix of both.
+ * <p>处理链可以通过构建器方法手动组装，也可以通过 {@link #applicationContext}
+ * 从 Spring {@link ApplicationContext} 中检测获得，或者两者兼用。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -66,19 +66,19 @@ import org.springframework.web.server.session.WebSessionManager;
  */
 public final class WebHttpHandlerBuilder {
 
-	/** Well-known name for the target WebHandler in the bean factory. */
+	/** Bean 工厂中目标 WebHandler 的众所周知名称。 */
 	public static final String WEB_HANDLER_BEAN_NAME = "webHandler";
 
-	/** Well-known name for the WebSessionManager in the bean factory. */
+	/** Bean 工厂中 WebSessionManager 的众所周知名称。 */
 	public static final String WEB_SESSION_MANAGER_BEAN_NAME = "webSessionManager";
 
-	/** Well-known name for the ServerCodecConfigurer in the bean factory. */
+	/** Bean 工厂中 ServerCodecConfigurer 的众所周知名称。 */
 	public static final String SERVER_CODEC_CONFIGURER_BEAN_NAME = "serverCodecConfigurer";
 
-	/** Well-known name for the LocaleContextResolver in the bean factory. */
+	/** Bean 工厂中 LocaleContextResolver 的众所周知名称。 */
 	public static final String LOCALE_CONTEXT_RESOLVER_BEAN_NAME = "localeContextResolver";
 
-	/** Well-known name for the ForwardedHeaderTransformer in the bean factory. */
+	/** Bean 工厂中 ForwardedHeaderTransformer 的众所周知名称。 */
 	public static final String FORWARDED_HEADER_TRANSFORMER_BEAN_NAME = "forwardedHeaderTransformer";
 
 	private final WebHandler webHandler;
@@ -107,7 +107,7 @@ public final class WebHttpHandlerBuilder {
 
 
 	/**
-	 * Private constructor to use when initialized from an ApplicationContext.
+	 * 从 ApplicationContext 初始化时使用的私有构造函数。
 	 */
 	private WebHttpHandlerBuilder(WebHandler webHandler, @Nullable ApplicationContext applicationContext) {
 		Assert.notNull(webHandler, "WebHandler must not be null");
@@ -116,7 +116,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Copy constructor.
+	 * 拷贝构造函数。
 	 */
 	private WebHttpHandlerBuilder(WebHttpHandlerBuilder other) {
 		this.webHandler = other.webHandler;
@@ -132,7 +132,7 @@ public final class WebHttpHandlerBuilder {
 
 
 	/**
-	 * Static factory method to create a new builder instance.
+	 * 创建新构建器实例的静态工厂方法。
 	 * @param webHandler the target handler for the request
 	 * @return the prepared builder
 	 */
@@ -141,23 +141,21 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Static factory method to create a new builder instance by detecting beans
-	 * in an {@link ApplicationContext}. The following are detected:
+	 * 通过在 {@link ApplicationContext} 中检测 Bean 来创建新构建器实例的静态工厂方法。
+	 * 将检测以下内容：
 	 * <ul>
-	 * <li>{@link WebHandler} [1] -- looked up by the name
-	 * {@link #WEB_HANDLER_BEAN_NAME}.
-	 * <li>{@link WebFilter} [0..N] -- detected by type and ordered,
-	 * see {@link AnnotationAwareOrderComparator}.
-	 * <li>{@link WebExceptionHandler} [0..N] -- detected by type and
-	 * ordered.
-	 * <li>{@link HttpHandlerDecoratorFactory} [0..N] -- detected by type and
-	 * ordered.
-	 * <li>{@link WebSessionManager} [0..1] -- looked up by the name
-	 * {@link #WEB_SESSION_MANAGER_BEAN_NAME}.
-	 * <li>{@link ServerCodecConfigurer} [0..1] -- looked up by the name
-	 * {@link #SERVER_CODEC_CONFIGURER_BEAN_NAME}.
-	 * <li>{@link LocaleContextResolver} [0..1] -- looked up by the name
-	 * {@link #LOCALE_CONTEXT_RESOLVER_BEAN_NAME}.
+	 * <li>{@link WebHandler} [1] -- 通过名称
+	 * {@link #WEB_HANDLER_BEAN_NAME} 查找。
+	 * <li>{@link WebFilter} [0..N] -- 按类型检测并排序，
+	 * 请参阅 {@link AnnotationAwareOrderComparator}。
+	 * <li>{@link WebExceptionHandler} [0..N] -- 按类型检测并排序。
+	 * <li>{@link HttpHandlerDecoratorFactory} [0..N] -- 按类型检测并排序。
+	 * <li>{@link WebSessionManager} [0..1] -- 通过名称
+	 * {@link #WEB_SESSION_MANAGER_BEAN_NAME} 查找。
+	 * <li>{@link ServerCodecConfigurer} [0..1] -- 通过名称
+	 * {@link #SERVER_CODEC_CONFIGURER_BEAN_NAME} 查找。
+	 * <li>{@link LocaleContextResolver} [0..1] -- 通过名称
+	 * {@link #LOCALE_CONTEXT_RESOLVER_BEAN_NAME} 查找。
 	 * </ul>
 	 * @param context the application context to use for the lookup
 	 * @return the prepared builder
@@ -220,7 +218,7 @@ public final class WebHttpHandlerBuilder {
 
 
 	/**
-	 * Add the given filter(s).
+	 * 添加给定的过滤器。
 	 * @param filters the filter(s) to add that's
 	 */
 	public WebHttpHandlerBuilder filter(WebFilter... filters) {
@@ -232,7 +230,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Manipulate the "live" list of currently configured filters.
+	 * 操作当前已配置过滤器的"实时"列表。
 	 * @param consumer the consumer to use
 	 */
 	public WebHttpHandlerBuilder filters(Consumer<List<WebFilter>> consumer) {
@@ -260,7 +258,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Add the given exception handler(s).
+	 * 添加给定的异常处理器。
 	 * @param handlers the exception handler(s)
 	 */
 	public WebHttpHandlerBuilder exceptionHandler(WebExceptionHandler... handlers) {
@@ -271,7 +269,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Manipulate the "live" list of currently configured exception handlers.
+	 * 操作当前已配置异常处理器的"实时"列表。
 	 * @param consumer the consumer to use
 	 */
 	public WebHttpHandlerBuilder exceptionHandlers(Consumer<List<WebExceptionHandler>> consumer) {
@@ -280,9 +278,9 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link WebSessionManager} to set on the
-	 * {@link ServerWebExchange WebServerExchange}.
-	 * <p>By default {@link DefaultWebSessionManager} is used.
+	 * 配置要设置到 {@link ServerWebExchange WebServerExchange} 上的
+	 * {@link WebSessionManager}。
+	 * <p>默认使用 {@link DefaultWebSessionManager}。
 	 * @param manager the session manager
 	 * @see HttpWebHandlerAdapter#setSessionManager(WebSessionManager)
 	 */
@@ -292,8 +290,8 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Whether a {@code WebSessionManager} is configured or not, either detected from an
-	 * {@code ApplicationContext} or explicitly configured via {@link #sessionManager}.
+	 * 是否配置了 {@code WebSessionManager}：可以是从 {@code ApplicationContext}
+	 * 检测到的，也可以是通过 {@link #sessionManager} 显式配置的。
 	 * @since 5.0.9
 	 */
 	public boolean hasSessionManager() {
@@ -301,7 +299,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link ServerCodecConfigurer} to set on the {@code WebServerExchange}.
+	 * 配置要设置到 {@code WebServerExchange} 上的 {@link ServerCodecConfigurer}。
 	 * @param codecConfigurer the codec configurer
 	 */
 	public WebHttpHandlerBuilder codecConfigurer(ServerCodecConfigurer codecConfigurer) {
@@ -311,8 +309,8 @@ public final class WebHttpHandlerBuilder {
 
 
 	/**
-	 * Whether a {@code ServerCodecConfigurer} is configured or not, either detected from an
-	 * {@code ApplicationContext} or explicitly configured via {@link #codecConfigurer}.
+	 * 是否配置了 {@code ServerCodecConfigurer}：可以是从 {@code ApplicationContext}
+	 * 检测到的，也可以是通过 {@link #codecConfigurer} 显式配置的。
 	 * @since 5.0.9
 	 */
 	public boolean hasCodecConfigurer() {
@@ -320,8 +318,8 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link LocaleContextResolver} to set on the
-	 * {@link ServerWebExchange WebServerExchange}.
+	 * 配置要设置到 {@link ServerWebExchange WebServerExchange} 上的
+	 * {@link LocaleContextResolver}。
 	 * @param localeContextResolver the locale context resolver
 	 */
 	public WebHttpHandlerBuilder localeContextResolver(LocaleContextResolver localeContextResolver) {
@@ -330,8 +328,8 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Whether a {@code LocaleContextResolver} is configured or not, either detected from an
-	 * {@code ApplicationContext} or explicitly configured via {@link #localeContextResolver}.
+	 * 是否配置了 {@code LocaleContextResolver}：可以是从 {@code ApplicationContext}
+	 * 检测到的，也可以是通过 {@link #localeContextResolver} 显式配置的。
 	 * @since 5.0.9
 	 */
 	public boolean hasLocaleContextResolver() {
@@ -339,8 +337,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure the {@link ForwardedHeaderTransformer} for extracting and/or
-	 * removing forwarded headers.
+	 * 配置用于提取和/或移除转发头部的 {@link ForwardedHeaderTransformer}。
 	 * @param transformer the transformer
 	 * @since 5.1
 	 */
@@ -350,9 +347,9 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Whether a {@code ForwardedHeaderTransformer} is configured or not, either
-	 * detected from an {@code ApplicationContext} or explicitly configured via
-	 * {@link #forwardedHeaderTransformer(ForwardedHeaderTransformer)}.
+	 * 是否配置了 {@code ForwardedHeaderTransformer}：可以是从 {@code ApplicationContext}
+	 * 检测到的，也可以是通过
+	 * {@link #forwardedHeaderTransformer(ForwardedHeaderTransformer)} 显式配置的。
 	 * @since 5.1
 	 */
 	public boolean hasForwardedHeaderTransformer() {
@@ -360,12 +357,11 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Configure a {@link Function} to decorate the {@link HttpHandler} returned
-	 * by this builder which effectively wraps the entire
+	 * 配置一个 {@link Function} 来装饰此构建器返回的 {@link HttpHandler}，
+	 * 该函数实际上会包装整个
 	 * {@link WebExceptionHandler} - {@link WebFilter} - {@link WebHandler}
-	 * processing chain. This provides access to the request and response before
-	 * the entire chain and likewise the ability to observe the result of
-	 * the entire chain.
+	 * 处理链。这样就可以在整个处理链之前访问请求和响应，
+	 * 同样也可以观察整个处理链的结果。
 	 * @param handlerDecorator the decorator to apply
 	 * @since 5.3
 	 */
@@ -376,8 +372,8 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Whether a decorator for {@link HttpHandler} is configured or not via
-	 * {@link #httpHandlerDecorator(Function)}.
+	 * 是否通过 {@link #httpHandlerDecorator(Function)} 配置了
+	 * {@link HttpHandler} 的装饰器。
 	 * @since 5.3
 	 */
 	public boolean hasHttpHandlerDecorator() {
@@ -385,7 +381,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Build the {@link HttpHandler}.
+	 * 构建 {@link HttpHandler}。
 	 */
 	public HttpHandler build() {
 		WebHandler decorated = new FilteringWebHandler(this.webHandler, this.filters);
@@ -413,7 +409,7 @@ public final class WebHttpHandlerBuilder {
 	}
 
 	/**
-	 * Clone this {@link WebHttpHandlerBuilder}.
+	 * 克隆此 {@link WebHttpHandlerBuilder}。
 	 * @return the cloned builder instance
 	 */
 	@Override
@@ -423,7 +419,7 @@ public final class WebHttpHandlerBuilder {
 
 
 	/**
-	 * {@code BlockHoundIntegration} for spring-web classes.
+	 * 适用于 spring-web 类的 {@code BlockHoundIntegration}。
 	 * @since 5.3.6
 	 */
 	public static class SpringWebBlockHoundIntegration implements BlockHoundIntegration {

@@ -33,18 +33,17 @@ import org.springframework.remoting.support.RemoteInvocationBasedExporter;
 import org.springframework.remoting.support.RemoteInvocationResult;
 
 /**
- * JMS message listener that exports the specified service bean as a
- * JMS service endpoint, accessible via a JMS invoker proxy.
+ * JMS 消息监听器，将指定的服务 Bean 导出为
+ * JMS 服务端点，可通过 JMS 调用器代理访问。
  *
- * <p>Note that this class implements Spring's
+ * <p>请注意，此类实现了 Spring 的
  * {@link org.springframework.jms.listener.SessionAwareMessageListener}
- * interface, since it requires access to the active JMS Session.
- * Hence, this class can only be used with message listener containers
- * which support the SessionAwareMessageListener interface (e.g. Spring's
- * {@link org.springframework.jms.listener.DefaultMessageListenerContainer}).
+ * 接口，因为它需要访问活动的 JMS Session。
+ * 因此，此类只能与支持 SessionAwareMessageListener 接口的
+ * 消息监听器容器（例如 Spring 的
+ * {@link org.springframework.jms.listener.DefaultMessageListenerContainer}）一起使用。
  *
- * <p>Thanks to James Strachan for the original prototype that this
- * JMS invoker mechanism was inspired by!
+ * <p>感谢 James Strachan 提供了启发此 JMS 调用器机制的原始原型！
  *
  * @author Juergen Hoeller
  * @author James Strachan
@@ -66,28 +65,24 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 
 
 	/**
-	 * Specify the MessageConverter to use for turning request messages into
-	 * {@link org.springframework.remoting.support.RemoteInvocation} objects,
-	 * as well as {@link org.springframework.remoting.support.RemoteInvocationResult}
-	 * objects into response messages.
-	 * <p>Default is a {@link org.springframework.jms.support.converter.SimpleMessageConverter},
-	 * using a standard JMS {@link javax.jms.ObjectMessage} for each invocation /
-	 * invocation result object.
-	 * <p>Custom implementations may generally adapt Serializables into
-	 * special kinds of messages, or might be specifically tailored for
-	 * translating RemoteInvocation(Result)s into specific kinds of messages.
+	 * 指定用于将请求消息转换为
+	 * {@link org.springframework.remoting.support.RemoteInvocation} 对象，
+	 * 以及将 {@link org.springframework.remoting.support.RemoteInvocationResult}
+	 * 对象转换为响应消息的 MessageConverter。
+	 * <p>默认是 {@link org.springframework.jms.support.converter.SimpleMessageConverter}，
+	 * 为每个调用/调用结果对象使用标准的 JMS {@link javax.jms.ObjectMessage}。
+	 * <p>自定义实现通常可以将 Serializable 适配为特殊类型的消息，
+	 * 或者专门定制用于将 RemoteInvocation(Result) 转换为特定类型的消息。
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {
 		this.messageConverter = (messageConverter != null ? messageConverter : new SimpleMessageConverter());
 	}
 
 	/**
-	 * Set whether invalidly formatted messages should be discarded.
-	 * Default is "true".
-	 * <p>Switch this flag to "false" to throw an exception back to the
-	 * listener container. This will typically lead to redelivery of
-	 * the message, which is usually undesirable - since the message
-	 * content will be the same (that is, still invalid).
+	 * 设置是否丢弃格式无效的消息。默认为 "true"。
+	 * <p>将此标志切换为 "false" 可将异常抛回监听器容器。
+	 * 这通常会导致消息重新投递，而这通常是不可取的——
+	 * 因为消息内容仍然相同（即仍然无效）。
 	 */
 	public void setIgnoreInvalidRequests(boolean ignoreInvalidRequests) {
 		this.ignoreInvalidRequests = ignoreInvalidRequests;
@@ -109,7 +104,7 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 	}
 
 	/**
-	 * Read a RemoteInvocation from the given JMS message.
+	 * 从给定的 JMS 消息中读取 RemoteInvocation。
 	 * @param requestMessage current request message
 	 * @return the RemoteInvocation object (or {@code null}
 	 * in case of an invalid message that will simply be ignored)
@@ -126,7 +121,7 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 
 
 	/**
-	 * Send the given RemoteInvocationResult as a JMS message to the originator.
+	 * 将给定的 RemoteInvocationResult 作为 JMS 消息发送给发起方。
 	 * @param requestMessage current request message
 	 * @param session the JMS Session to use
 	 * @param result the RemoteInvocationResult object
@@ -146,11 +141,10 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 	}
 
 	/**
-	 * Create the invocation result response message.
-	 * <p>The default implementation creates a JMS ObjectMessage for the given
-	 * RemoteInvocationResult object. It sets the response's correlation id
-	 * to the request message's correlation id, if any; otherwise to the
-	 * request message id.
+	 * 创建调用结果响应消息。
+	 * <p>默认实现为给定的 RemoteInvocationResult 对象创建一个 JMS ObjectMessage。
+	 * 它将响应的关联 ID 设置为请求消息的关联 ID（如果存在）；
+	 * 否则设置为请求消息 ID。
 	 * @param request the original request message
 	 * @param session the JMS session to use
 	 * @param result the invocation result
@@ -170,11 +164,10 @@ public class JmsInvokerServiceExporter extends RemoteInvocationBasedExporter
 	}
 
 	/**
-	 * Callback that is invoked by {@link #readRemoteInvocation}
-	 * when it encounters an invalid request message.
-	 * <p>The default implementation either discards the invalid message or
-	 * throws a MessageFormatException - according to the "ignoreInvalidRequests"
-	 * flag, which is set to "true" (that is, discard invalid messages) by default.
+	 * 由 {@link #readRemoteInvocation} 在遇到无效请求消息时调用的回调。
+	 * <p>默认实现会根据 "ignoreInvalidRequests" 标志
+	 * 丢弃无效消息或抛出 MessageFormatException，
+	 * 该标志默认设置为 "true"（即丢弃无效消息）。
 	 * @param requestMessage the invalid request message
 	 * @return the RemoteInvocation to expose for the invalid request (typically
 	 * {@code null} in case of an invalid message that will simply be ignored)

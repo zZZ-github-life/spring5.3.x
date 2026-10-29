@@ -40,9 +40,9 @@ import org.springframework.format.Printer;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
- * Configures Joda-Time's formatting system for use with Spring.
+ * 为与 Spring 一起使用而配置 Joda-Time 的格式化系统。
  *
- * <p><b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
+ * <p><b>NOTE:</b> 自 Spring 4.0 起，Spring 的 Joda-Time 支持要求 Joda-Time 2.x。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -64,12 +64,12 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 
 
 	/**
-	 * User defined formatters.
+	 * 用户定义的格式化器。
 	 */
 	private final Map<Type, DateTimeFormatter> formatters = new EnumMap<>(Type.class);
 
 	/**
-	 * Factories used when specific formatters have not been specified.
+	 * 在未指定特定格式化器时使用的工厂。
 	 */
 	private final Map<Type, DateTimeFormatterFactory> factories;
 
@@ -83,10 +83,8 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 
 
 	/**
-	 * Set whether standard ISO formatting should be applied to all date/time types.
-	 * Default is "false" (no).
-	 * <p>If set to "true", the "dateStyle", "timeStyle" and "dateTimeStyle"
-	 * properties are effectively ignored.
+	 * 设置是否应对所有日期/时间类型应用标准 ISO 格式化。默认为 "false"（否）。<p>如果设为 "true"，则
+	 * "dateStyle"、"timeStyle" 和 "dateTimeStyle" 属性将被忽略。
 	 */
 	public void setUseIsoFormat(boolean useIsoFormat) {
 		this.factories.get(Type.DATE).setIso(useIsoFormat ? ISO.DATE : ISO.NONE);
@@ -95,35 +93,31 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	}
 
 	/**
-	 * Set the default format style of Joda {@link LocalDate} objects.
-	 * Default is {@link DateTimeFormat#shortDate()}.
+	 * 设置 Joda {@link LocalDate} 对象的默认格式样式。默认为 {@link DateTimeFormat#shortDate()}。
 	 */
 	public void setDateStyle(String dateStyle) {
 		this.factories.get(Type.DATE).setStyle(dateStyle + "-");
 	}
 
 	/**
-	 * Set the default format style of Joda {@link LocalTime} objects.
-	 * Default is {@link DateTimeFormat#shortTime()}.
+	 * 设置 Joda {@link LocalTime} 对象的默认格式样式。默认为 {@link DateTimeFormat#shortTime()}。
 	 */
 	public void setTimeStyle(String timeStyle) {
 		this.factories.get(Type.TIME).setStyle("-" + timeStyle);
 	}
 
 	/**
-	 * Set the default format style of Joda {@link LocalDateTime} and {@link DateTime} objects,
-	 * as well as JDK {@link Date} and {@link Calendar} objects.
-	 * Default is {@link DateTimeFormat#shortDateTime()}.
+	 * 设置 Joda {@link LocalDateTime} 和 {@link DateTime} 对象以及 JDK {@link Date} 和
+	 * {@link Calendar} 对象的默认格式样式。默认为 {@link DateTimeFormat#shortDateTime()}。
 	 */
 	public void setDateTimeStyle(String dateTimeStyle) {
 		this.factories.get(Type.DATE_TIME).setStyle(dateTimeStyle);
 	}
 
 	/**
-	 * Set the formatter that will be used for objects representing date values.
-	 * <p>This formatter will be used for the {@link LocalDate} type. When specified
-	 * the {@link #setDateStyle(String) dateStyle} and
-	 * {@link #setUseIsoFormat(boolean) useIsoFormat} properties will be ignored.
+	 * 设置用于表示日期值的对象的格式化器。<p>此格式化器将用于 {@link LocalDate} 类型。指定后，
+	 * {@link #setDateStyle(String) dateStyle} 和 {@link #setUseIsoFormat(boolean) useIsoFormat} 属性将
+	 * 被忽略。
 	 * @param formatter the formatter to use
 	 * @since 3.2
 	 * @see #setTimeFormatter
@@ -134,10 +128,9 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	}
 
 	/**
-	 * Set the formatter that will be used for objects representing time values.
-	 * <p>This formatter will be used for the {@link LocalTime} type. When specified
-	 * the {@link #setTimeStyle(String) timeStyle} and
-	 * {@link #setUseIsoFormat(boolean) useIsoFormat} properties will be ignored.
+	 * 设置用于表示时间值的对象的格式化器。<p>此格式化器将用于 {@link LocalTime} 类型。指定后，
+	 * {@link #setTimeStyle(String) timeStyle} 和 {@link #setUseIsoFormat(boolean) useIsoFormat} 属性将
+	 * 被忽略。
 	 * @param formatter the formatter to use
 	 * @since 3.2
 	 * @see #setDateFormatter
@@ -148,11 +141,10 @@ public class JodaTimeFormatterRegistrar implements FormatterRegistrar {
 	}
 
 	/**
-	 * Set the formatter that will be used for objects representing date and time values.
-	 * <p>This formatter will be used for {@link LocalDateTime}, {@link ReadableInstant},
-	 * {@link Date} and {@link Calendar} types. When specified
-	 * the {@link #setDateTimeStyle(String) dateTimeStyle} and
-	 * {@link #setUseIsoFormat(boolean) useIsoFormat} properties will be ignored.
+	 * 设置用于表示日期和时间值的对象的格式化器。<p>此格式化器将用于 {@link LocalDateTime}、
+	 * {@link ReadableInstant}、{@link Date} 和 {@link Calendar} 类型。指定后，
+	 * {@link #setDateTimeStyle(String) dateTimeStyle} 和
+	 * {@link #setUseIsoFormat(boolean) useIsoFormat} 属性将被忽略。
 	 * @param formatter the formatter to use
 	 * @since 3.2
 	 * @see #setDateFormatter

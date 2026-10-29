@@ -1,7 +1,7 @@
 /**
- * Contains built-in {@code MockMvcBuilder} implementations.
- * Use {@link org.springframework.test.web.servlet.setup.MockMvcBuilders}
- * to access to instances of those implementations.
+ * 包含内置的 {@code MockMvcBuilder} 实现。
+ * 使用 {@link org.springframework.test.web.servlet.setup.MockMvcBuilders}
+ * 访问这些实现的实例。
  */
 @NonNullApi
 @NonNullFields

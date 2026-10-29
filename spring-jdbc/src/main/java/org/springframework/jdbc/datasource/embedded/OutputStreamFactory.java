@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Internal helper for exposing dummy OutputStreams to embedded databases
- * such as Derby, preventing the creation of a log file.
+ * 内部辅助类，用于向 Derby 等嵌入式数据库暴露虚拟的 OutputStream，
+ * 以防止创建日志文件。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -33,7 +33,7 @@ public final class OutputStreamFactory {
 
 
 	/**
-	 * Returns an {@link java.io.OutputStream} that ignores all data given to it.
+	 * 返回一个忽略所有写入数据的 {@link java.io.OutputStream}。
 	 */
 	public static OutputStream getNoopOutputStream() {
 		return new OutputStream() {

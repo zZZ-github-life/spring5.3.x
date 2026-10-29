@@ -17,8 +17,7 @@
 package org.springframework.transaction;
 
 /**
- * Exception thrown when attempting to suspend an existing transaction
- * but transaction suspension is not supported by the underlying backend.
+ * 当尝试挂起现有事务但底层后端不支持事务挂起时抛出此异常。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -27,7 +26,7 @@ package org.springframework.transaction;
 public class TransactionSuspensionNotSupportedException extends CannotCreateTransactionException {
 
 	/**
-	 * Constructor for TransactionSuspensionNotSupportedException.
+	 * TransactionSuspensionNotSupportedException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public TransactionSuspensionNotSupportedException(String msg) {
@@ -35,7 +34,7 @@ public class TransactionSuspensionNotSupportedException extends CannotCreateTran
 	}
 
 	/**
-	 * Constructor for TransactionSuspensionNotSupportedException.
+	 * TransactionSuspensionNotSupportedException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */

@@ -24,8 +24,8 @@ import org.joda.time.YearMonth;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a Joda-Time {@link YearMonth},
- * following Joda-Time's parsing rules for a YearMonth.
+ * 用于 Joda-Time {@link YearMonth} 的 {@link Formatter} 实现，遵循 Joda-Time 对 YearMonth 的解析规
+ * 则。
  *
  * @author Juergen Hoeller
  * @since 4.2.4

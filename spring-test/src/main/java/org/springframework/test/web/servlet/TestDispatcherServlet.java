@@ -41,10 +41,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 /**
- * A subclass of {@code DispatcherServlet} that saves the result in an
- * {@link MvcResult}. The {@code MvcResult} instance is expected to be available
- * as the request attribute {@link MockMvc#MVC_RESULT_ATTRIBUTE}.
- *
+ * 在 {@link MvcResult} 中保存结果的 {@code DispatcherServlet} 子类。
+ * {@code MvcResult} 实例应作为请求属性 {@link MockMvc#MVC_RESULT_ATTRIBUTE} 提供。
  * @author Rossen Stoyanchev
  * @author Rob Winch
  * @since 3.2
@@ -56,7 +54,7 @@ final class TestDispatcherServlet extends DispatcherServlet {
 
 
 	/**
-	 * Create a new instance with the given web application context.
+	 * 使用给定 Web 应用程序上下文创建新实例。
 	 */
 	public TestDispatcherServlet(WebApplicationContext webApplicationContext) {
 		super(webApplicationContext);

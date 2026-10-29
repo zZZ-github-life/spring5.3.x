@@ -29,8 +29,8 @@ import org.springframework.util.StreamUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * An {@link AsyncClientHttpRequest} wrapper that enriches it proceeds the actual
- * request execution with calling the registered interceptors.
+ * 一个 {@link AsyncClientHttpRequest} 包装器，它在执行实际请求之前
+ * 调用已注册的拦截器。
  *
  * @author Jakub Narloch
  * @author Rossen Stoyanchev
@@ -50,7 +50,7 @@ class InterceptingAsyncClientHttpRequest extends AbstractBufferingAsyncClientHtt
 
 
 	/**
-	 * Create new instance of {@link InterceptingAsyncClientHttpRequest}.
+	 * 创建 {@link InterceptingAsyncClientHttpRequest} 的新实例。
 	 * @param requestFactory the async request factory
 	 * @param interceptors the list of interceptors
 	 * @param uri the request URI

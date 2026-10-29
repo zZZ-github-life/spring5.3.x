@@ -1,0 +1,98 @@
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedAccessor.java::23::0", "zh": ["基于 {@link RemoteInvocation} 对象序列化的远程服务访问器的抽象基类。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedAccessor.java::23::1", "zh": ["提供 \"remoteInvocationFactory\" 属性，默认策略为 {@link DefaultRemoteInvocationFactory}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedAccessor.java::42::0", "zh": ["设置此访问器要使用的 RemoteInvocationFactory。默认为 {@link DefaultRemoteInvocationFactory}。", "<p>自定义调用工厂可以为调用添加更多上下文信息，例如用户凭据。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedAccessor.java::53::0", "zh": ["返回此访问器使用的 RemoteInvocationFactory。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedAccessor.java::60::0", "zh": ["为给定的 AOP 方法调用创建一个新的 RemoteInvocation 对象。", "<p>默认实现委托给已配置的 {@link #setRemoteInvocationFactory RemoteInvocationFactory}。可以在子类中覆盖此方法，以提供包含额外调用参数（例如用户凭据）的自定义 RemoteInvocation 子类。", "<p>请注意，最好构建一个可复用的自定义 RemoteInvocationFactory 策略，而不是覆盖此方法。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedAccessor.java::76::0", "zh": ["重建给定 RemoteInvocationResult 对象中包含的调用结果。", "<p>默认实现调用默认的 {@code recreate()} 方法。可以在子类中覆盖此方法以提供自定义重建逻辑，可能还会处理返回的结果对象。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedExporter.java::21::0", "zh": ["基于 {@link RemoteInvocation} 对象反序列化的远程服务导出器的抽象基类。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedExporter.java::21::1", "zh": ["<p>提供 \"remoteInvocationExecutor\" 属性，默认策略为 {@link DefaultRemoteInvocationExecutor}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedExporter.java::38::0", "zh": ["设置此导出器要使用的 RemoteInvocationExecutor。默认为 DefaultRemoteInvocationExecutor。", "<p>自定义调用执行器可以从调用中提取更多上下文信息，例如用户凭据。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedExporter.java::48::0", "zh": ["返回此导出器使用的 RemoteInvocationExecutor。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedExporter.java::56::0", "zh": ["将给定的远程调用应用到给定的目标对象。默认实现委托给 RemoteInvocationExecutor。", "<p>可以在子类中覆盖此方法以实现自定义调用行为，例如应用来自自定义 RemoteInvocation 子类的额外调用参数。请注意，最好使用可复用的自定义 RemoteInvocationExecutor 策略。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationBasedExporter.java::100::0", "zh": ["将给定的远程调用应用到给定的目标对象，并把调用结果包装在可序列化的 RemoteInvocationResult 对象中。默认实现创建一个普通的 RemoteInvocationResult。", "<p>可以在子类中覆盖此方法以实现自定义调用行为，例如返回额外的上下文信息。请注意，这不在 RemoteInvocationExecutor 策略的覆盖范围内！"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationExecutor.java::21::0", "zh": ["用于在目标对象上执行 {@link RemoteInvocation} 的策略接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationExecutor.java::21::1", "zh": ["<p>由 {@link org.springframework.remoting.rmi.RmiServiceExporter}（用于 RMI 调用器）以及 {@link org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter} 使用。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationExecutor.java::35::0", "zh": ["在给定的目标对象上执行此调用。通常在服务器端接收到 RemoteInvocation 时调用。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationFactory.java::21::0", "zh": ["用于从 AOP Alliance {@link org.aopalliance.intercept.MethodInvocation} 创建 {@link RemoteInvocation} 的策略接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationFactory.java::21::1", "zh": ["<p>由 {@link org.springframework.remoting.rmi.RmiClientInterceptor}（用于 RMI 调用器）以及 {@link org.springframework.remoting.httpinvoker.HttpInvokerClientInterceptor} 使用。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationFactory.java::36::0", "zh": ["根据给定的 AOP MethodInvocation 创建可序列化的 RemoteInvocation 对象。", "<p>可以实现此方法，以便为远程调用添加自定义上下文信息，例如用户凭据。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::24::0", "zh": ["封装远程调用结果，其中保存结果值或异常。用于基于 HTTP 的序列化调用器。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::24::1", "zh": ["<p>这是一个 SPI 类，通常不由应用程序直接使用。可以对其子类化以添加额外的调用参数。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::24::2", "zh": ["<p>{@link RemoteInvocation} 和 {@link RemoteInvocationResult} 均可与标准 Java 序列化以及 JavaBean 风格序列化配合使用。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::51::0", "zh": ["为给定的结果值创建一个新的 RemoteInvocationResult。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::60::0", "zh": ["为给定的异常创建一个新的 RemoteInvocationResult。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::69::0", "zh": ["为 JavaBean 风格反序列化（例如使用 Jackson）创建一个新的 RemoteInvocationResult。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::79::0", "zh": ["设置目标方法成功调用后返回的结果值（如果有）。", "<p>此设置方法用于 JavaBean 风格反序列化。否则请使用 {@link #RemoteInvocationResult(Object)}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::90::0", "zh": ["返回目标方法成功调用后返回的结果值（如果有）。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::100::0", "zh": ["设置目标方法调用失败时抛出的异常（如果有）。", "<p>此设置方法用于 JavaBean 风格反序列化。否则请使用 {@link #RemoteInvocationResult(Throwable)}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::111::0", "zh": ["返回目标方法调用失败时抛出的异常（如果有）。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::121::0", "zh": ["返回此调用结果是否包含异常。如果返回 {@code false}，则以结果值为准（即使它为 {@code null}）。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::132::0", "zh": ["返回此调用结果是否包含由目标方法自身调用所抛出的 InvocationTargetException。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationResult.java::142::0", "zh": ["重建调用结果：如果目标方法调用成功，则返回结果值；否则重新抛出目标方法抛出的异常。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationTraceInterceptor.java::29::0", "zh": ["用于跟踪远程调用的 AOP Alliance MethodInterceptor。由 RemoteExporter 及其子类自动应用。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationTraceInterceptor.java::29::1", "zh": ["<p>以 DEBUG 级别记录传入的远程调用以及远程调用处理完成的情况。如果远程调用的处理导致受检异常，该异常将以 INFO 级别记录；如果导致非受检异常（或错误），该异常将以 WARN 级别记录。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationTraceInterceptor.java::29::2", "zh": ["<p>记录异常特别有用：它可以在服务器端保存堆栈跟踪信息，而不是仅仅把异常传播到客户端（客户端可能会也可能不会正确记录它）。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationTraceInterceptor.java::54::0", "zh": ["创建一个新的 RemoteInvocationTraceInterceptor。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationTraceInterceptor.java::61::0", "zh": ["创建一个新的 RemoteInvocationTraceInterceptor。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationUtils.java::22::0", "zh": ["用于处理远程调用的通用工具。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationUtils.java::22::1", "zh": ["<p>主要用于远程调用框架内部。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemoteInvocationUtils.java::32::0", "zh": ["将当前客户端的堆栈跟踪填充到给定异常中。", "<p>给定异常通常是在服务器端抛出并按原样序列化的，客户端希望它也包含客户端部分的堆栈跟踪。这里我们能做的是：在运行于 JDK 1.4+ 时，用当前客户端的堆栈跟踪更新 {@code StackTraceElement} 数组。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemotingSupport.java::26::0", "zh": ["远程访问器和导出器的通用支持基类，提供通用的 Bean ClassLoader 处理。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemotingSupport.java::46::0", "zh": ["返回此访问器运行所在的 ClassLoader，用于反序列化和生成代理。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemotingSupport.java::55::0", "zh": ["如有必要，即当 Bean ClassLoader 与线程上下文 ClassLoader 尚不一致时，用环境中的 Bean ClassLoader 覆盖线程上下文 ClassLoader。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/RemotingSupport.java::66::0", "zh": ["如有必要，重置原始的线程上下文 ClassLoader。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::37::0", "zh": ["创建简单 HTTP 服务器的 {@link org.springframework.beans.factory.FactoryBean}，基于 Sun 的 JRE 1.6 中包含的 HTTP 服务器。初始化时启动该 HTTP 服务器，销毁时停止它。暴露生成的 {@link com.sun.net.httpserver.HttpServer} 对象。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::37::1", "zh": ["<p>允许为特定的 {@link #setContexts context paths} 注册 {@link com.sun.net.httpserver.HttpHandler HttpHandlers}。或者，也可以在 {@link com.sun.net.httpserver.HttpServer} 本身上以编程方式注册此类特定于上下文的处理器。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::80::0", "zh": ["指定 HTTP 服务器的端口。默认为 8080。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::87::0", "zh": ["指定 HTTP 服务器要绑定的主机名。默认为 localhost；可以覆盖为要绑定的特定网络地址。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::95::0", "zh": ["指定 HTTP 服务器的 TCP backlog。默认为 -1，表示使用系统默认值。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::103::0", "zh": ["指定关闭 HTTP 服务器时等待 HTTP 交换完成的秒数。默认为 0。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::111::0", "zh": ["设置用于分派传入请求的 JDK 并发执行器。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::119::0", "zh": ["为特定上下文路径注册 {@link com.sun.net.httpserver.HttpHandler HttpHandlers}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::131::0", "zh": ["注册通用的 {@link com.sun.net.httpserver.Filter Filters}，将其应用于所有本地注册的 {@link #setContexts contexts}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/SimpleHttpServerFactoryBean.java::139::0", "zh": ["注册通用的 {@link com.sun.net.httpserver.Authenticator}，将其应用于所有本地注册的 {@link #setContexts contexts}。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/UrlBasedRemoteAccessor.java::21::0", "zh": ["通过 URL 访问远程服务的类的抽象基类。提供 \"serviceUrl\" Bean 属性，该属性被视为必需。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/UrlBasedRemoteAccessor.java::33::0", "zh": ["设置此远程访问器目标服务的 URL。该 URL 必须与特定远程调用提供者的规则兼容。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/UrlBasedRemoteAccessor.java::41::0", "zh": ["返回此远程访问器目标服务的 URL。"]}
+{"id": "spring-context/src/main/java/org/springframework/remoting/support/package-info.java::1::0", "zh": ["远程调用实现的通用支持类。为远程代理工厂提供抽象基类。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingAwareRunnable.java::19::0", "zh": ["Runnable 接口的扩展，为长时间运行的操作添加了特殊回调。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingAwareRunnable.java::19::1", "zh": ["<p>此接口与 CommonJ Work 接口密切对应，但保持独立，以避免强制的 CommonJ 依赖。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingAwareRunnable.java::19::2", "zh": ["<p>鼓励支持调度的 TaskExecutor 检查提交的 Runnable，检测是否实现了此接口，并尽可能做出适当的响应。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingAwareRunnable.java::39::0", "zh": ["返回 Runnable 的操作是长期存在（{@code true}）还是短期存在（{@code false}）。", "<p>在前一种情况下，任务不会从线程池（如果有）中分配线程，而是被视为长时间运行的后台线程。", "<p>这应被视为一种提示。当然，TaskExecutor 实现可以自由地忽略此标志以及整个 SchedulingAwareRunnable 接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingException.java::21::0", "zh": ["在调度失败时抛出的通用异常，例如调度器已经关闭。由于调度失败通常是致命的，因此该异常为非受检异常。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingException.java::32::0", "zh": ["SchedulingException 的构造方法。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingException.java::40::0", "zh": ["SchedulingException 的构造方法。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingTaskExecutor.java::21::0", "zh": ["{@link org.springframework.core.task.TaskExecutor} 的扩展，暴露与潜在任务提交者相关的调度特征。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingTaskExecutor.java::21::1", "zh": ["<p>鼓励调度客户端提交与所用 {@code TaskExecutor} 实现所暴露的偏好相匹配的 {@link Runnable Runnables}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingTaskExecutor.java::21::2", "zh": ["<p>注意：鼓励 {@link SchedulingTaskExecutor} 实现同时实现 {@link org.springframework.core.task.AsyncListenableTaskExecutor} 接口。但这不是必需的，因为它依赖于 Spring 4.0 新增的 {@link org.springframework.util.concurrent.ListenableFuture} 接口，这会使得第三方执行器实现无法同时兼容 Spring 4.0 和 Spring 3.x。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/SchedulingTaskExecutor.java::44::0", "zh": ["此 {@code TaskExecutor} 是否更偏好短期任务而非长期任务？", "<p>{@code SchedulingTaskExecutor} 实现可以表明它是否希望提交的任务在单次任务执行中尽可能少地完成工作。例如，提交的任务可以将重复循环拆分为各个子任务，这些子任务随后（如果可行）再提交一个后续任务。", "<p>这应被视为一种提示。当然，{@code TaskExecutor} 客户端可以自由地忽略此标志，从而也忽略整个 {@code SchedulingTaskExecutor} 接口。不过，线程池通常会表示偏好短期任务，从而支持更细粒度的调度。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::27::0", "zh": ["任务调度器接口，抽象了基于不同类型触发器对 {@link Runnable Runnables} 的调度。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::27::1", "zh": ["<p>此接口与 {@link SchedulingTaskExecutor} 分开，因为它通常代表另一种后端，即具有不同特征和能力的线程池。如果实现能够处理这两种执行特征，则可以实现这两个接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::27::2", "zh": ["<p>“默认”实现是 {@link org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler}，它包装了原生 {@link java.util.concurrent.ScheduledExecutorService}，并添加了扩展的触发器能力。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::27::3", "zh": ["<p>此接口大致相当于 Java EE 7 环境中所支持的 JSR-236 {@code ManagedScheduledExecutorService}，但与 Spring 的 {@code TaskExecutor} 模型保持一致。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::53::0", "zh": ["返回用于调度目的的时钟。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::62::0", "zh": ["调度给定的 {@link Runnable}，每当触发器指示下一个执行时间时就调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::81::0", "zh": ["调度给定的 {@link Runnable}，在指定的执行时间调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::98::0", "zh": ["调度给定的 {@link Runnable}，在指定的执行时间调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::111::0", "zh": ["调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的周期调用。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::130::0", "zh": ["调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的周期调用。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::145::0", "zh": ["调度给定的 {@link Runnable}，尽快启动并按给定的周期调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::162::0", "zh": ["调度给定的 {@link Runnable}，尽快启动并按给定的周期调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::175::0", "zh": ["调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的一次执行完成到下一次执行开始之间的延迟调用。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::195::0", "zh": ["调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的一次执行完成到下一次执行开始之间的延迟调用。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::212::0", "zh": ["调度给定的 {@link Runnable}，尽快启动，并按给定的一次执行完成到下一次执行开始之间的延迟调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TaskScheduler.java::229::0", "zh": ["调度给定的 {@link Runnable}，尽快启动，并按给定的一次执行完成到下一次执行开始之间的延迟调用它。", "<p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/Trigger.java::23::0", "zh": ["触发器对象的通用接口，触发器用于确定与其关联的任务的下一次执行时间。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/Trigger.java::34::0", "zh": ["根据给定的触发器上下文确定下一次执行时间。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TriggerContext.java::24::0", "zh": ["上下文对象，封装给定任务的最近执行时间和最近完成时间。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TriggerContext.java::33::0", "zh": ["返回用于触发器计算的时钟。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TriggerContext.java::43::0", "zh": ["返回任务最近一次<i>计划</i>执行时间，如果之前未调度过则返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TriggerContext.java::50::0", "zh": ["返回任务最近一次<i>实际</i>执行时间，如果之前未调度过则返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/TriggerContext.java::57::0", "zh": ["返回任务最近一次完成时间，如果之前未调度过则返回 {@code null}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/package-info.java::1::0", "zh": ["Spring 调度支持的通用异常，独立于任何特定的调度系统。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/annotation/AbstractAsyncConfiguration.java::36::0", "zh": ["抽象基类 {@code Configuration}，为启用 Spring 的异步方法执行能力提供通用结构。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/annotation/AbstractAsyncConfiguration.java::69::0", "zh": ["通过自动装配收集所有 {@link AsyncConfigurer} Bean。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/annotation/AnnotationAsyncExecutionInterceptor.java::27::0", "zh": ["{@link AsyncExecutionInterceptor} 的特化，根据 {@link Async} 注解将方法执行委托给 {@code Executor}。专门设计用于支持 Spring 3.1.2 引入的 {@link Async#value()} 执行器限定机制。支持在方法或声明类级别通过 {@code @Async} 检测限定符元数据。详情请参见 {@link #getExecutorQualifier(Method)}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/annotation/AnnotationAsyncExecutionInterceptor.java::42::0", "zh": ["使用给定的执行器和一个简单的 {@link AsyncUncaughtExceptionHandler} 创建一个新的 {@code AnnotationAsyncExecutionInterceptor}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/annotation/AnnotationAsyncExecutionInterceptor.java::53::0", "zh": ["使用给定的执行器创建一个新的 {@code AnnotationAsyncExecutionInterceptor}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scheduling/annotation/AnnotationAsyncExecutionInterceptor.java::67::0", "zh": ["返回执行给定方法时要使用的执行器的限定符或 Bean 名称，它通过方法或声明类级别的 {@link Async#value} 指定。如果在方法级别和类级别都指定了 {@code @Async}，则方法的 {@code #value} 优先（即使为空字符串，也表示应优先使用默认执行器）。"]}

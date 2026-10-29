@@ -1,7 +1,7 @@
 /**
- * Root package for Spring's serializer interfaces and implementations.
- * Provides an abstraction over various serialization techniques.
- * Includes exceptions for serialization and deserialization failures.
+ * Spring 序列化器接口和实现的根包。
+ * 为各种序列化技术提供抽象。
+ * 包含用于序列化和反序列化失败的异常。
  */
 @NonNullApi
 @NonNullFields

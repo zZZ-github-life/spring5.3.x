@@ -39,27 +39,24 @@ import org.springframework.util.function.SingletonSupplier;
 import org.springframework.util.function.SupplierUtils;
 
 /**
- * Implementation of {@link SQLExceptionTranslator} that analyzes vendor-specific error codes.
- * More precise than an implementation based on SQL state, but heavily vendor-specific.
+ * {@link SQLExceptionTranslator} 的实现，用于分析厂商特定的错误码。
+ * 它比基于 SQL 状态的实现更为精确，但也高度依赖具体的数据库厂商。
  *
- * <p>This class applies the following matching rules:
+ * <p>本类应用以下匹配规则：
  * <ul>
- * <li>Try custom translation implemented by any subclass. Note that this class is
- * concrete and is typically used itself, in which case this rule doesn't apply.
- * <li>Apply error code matching. Error codes are obtained from the SQLErrorCodesFactory
- * by default. This factory loads a "sql-error-codes.xml" file from the class path,
- * defining error code mappings for database names from database meta-data.
- * <li>Fallback to a fallback translator. {@link SQLStateSQLExceptionTranslator} is the
- * default fallback translator, analyzing the exception's SQL state only. Since Java 6
- * which introduces its own {@code SQLException} subclass hierarchy, we use
- * {@link SQLExceptionSubclassTranslator} by default, which in turns falls back
- * to Spring's own SQL state translation when not encountering specific subclasses.
+ * <li>尝试由任意子类实现的自定义转换。请注意，本类是具体类，通常直接使用，
+ * 在这种情况下此规则不适用。
+ * <li>应用错误码匹配。错误码默认从 SQLErrorCodesFactory 获取。该工厂从类路径
+ * 加载 "sql-error-codes.xml" 文件，为数据库元数据中的数据库名称定义错误码映射。
+ * <li>回退到回退转换器。{@link SQLStateSQLExceptionTranslator} 是默认的回退转换器，
+ * 仅分析异常的 SQL 状态。由于 Java 6 引入了自有的 {@code SQLException} 子类层次结构，
+ * 我们默认使用 {@link SQLExceptionSubclassTranslator}，当未遇到特定子类时，
+ * 它会转而回退到 Spring 自有的 SQL 状态转换。
  * </ul>
  *
- * <p>The configuration file named "sql-error-codes.xml" is by default read from
- * this package. It can be overridden through a file of the same name in the root
- * of the class path (e.g. in the "/WEB-INF/classes" directory), as long as the
- * Spring JDBC package is loaded from the same ClassLoader.
+ * <p>名为 "sql-error-codes.xml" 的配置文件默认从本包中读取。只要 Spring JDBC
+ * 包从同一个 ClassLoader 加载，就可以通过类路径根目录（例如 "/WEB-INF/classes"
+ * 目录）下的同名文件覆盖它。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -76,23 +73,22 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	private static final int MESSAGE_SQL_SQLEX_CONSTRUCTOR = 5;
 
 
-	/** Error codes used by this translator. */
+	/** 此转换器使用的错误码。 */
 	@Nullable
 	private SingletonSupplier<SQLErrorCodes> sqlErrorCodes;
 
 
 	/**
-	 * Constructor for use as a JavaBean.
-	 * The SqlErrorCodes or DataSource property must be set.
+	 * 供作为 JavaBean 使用的构造函数。
+	 * 必须设置 SqlErrorCodes 或 DataSource 属性。
 	 */
 	public SQLErrorCodeSQLExceptionTranslator() {
 		setFallbackTranslator(new SQLExceptionSubclassTranslator());
 	}
 
 	/**
-	 * Create an SQL error code translator for the given DataSource.
-	 * Invoking this constructor will cause a Connection to be obtained
-	 * from the DataSource to get the meta-data.
+	 * 为给定的 DataSource 创建 SQL 错误码转换器。
+	 * 调用此构造函数会导致从 DataSource 获取 Connection 以读取元数据。
 	 * @param dataSource the DataSource to use to find meta-data and establish
 	 * which error codes are usable
 	 * @see SQLErrorCodesFactory
@@ -103,9 +99,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Create an SQL error code translator for the given database product name.
-	 * Invoking this constructor will avoid obtaining a Connection from the
-	 * DataSource to get the meta-data.
+	 * 为给定的数据库产品名称创建 SQL 错误码转换器。
+	 * 调用此构造函数可避免从 DataSource 获取 Connection 来读取元数据。
 	 * @param dbName the database product name that identifies the error codes entry
 	 * @see SQLErrorCodesFactory
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
@@ -116,8 +111,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Create an SQLErrorCode translator given these error codes.
-	 * Does not require a database meta-data lookup to be performed using a connection.
+	 * 使用给定的错误码创建 SQLErrorCode 转换器。
+	 * 无需使用连接执行数据库元数据查找。
 	 * @param sec error codes
 	 */
 	public SQLErrorCodeSQLExceptionTranslator(SQLErrorCodes sec) {
@@ -127,9 +122,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 
 
 	/**
-	 * Set the DataSource for this translator.
-	 * <p>Setting this property will cause a Connection to be obtained from
-	 * the DataSource to get the meta-data.
+	 * 设置此转换器使用的 DataSource。
+	 * <p>设置此属性会导致从 DataSource 获取 Connection 以读取元数据。
 	 * @param dataSource the DataSource to use to find meta-data and establish
 	 * which error codes are usable
 	 * @see SQLErrorCodesFactory#getErrorCodes(javax.sql.DataSource)
@@ -142,9 +136,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Set the database product name for this translator.
-	 * <p>Setting this property will avoid obtaining a Connection from the DataSource
-	 * to get the meta-data.
+	 * 设置此转换器使用的数据库产品名称。
+	 * <p>设置此属性可避免从 DataSource 获取 Connection 来读取元数据。
 	 * @param dbName the database product name that identifies the error codes entry
 	 * @see SQLErrorCodesFactory#getErrorCodes(String)
 	 * @see java.sql.DatabaseMetaData#getDatabaseProductName()
@@ -154,7 +147,7 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Set custom error codes to be used for translation.
+	 * 设置用于转换的自定义错误码。
 	 * @param sec custom error codes to use
 	 */
 	public void setSqlErrorCodes(@Nullable SQLErrorCodes sec) {
@@ -162,8 +155,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Return the error codes used by this translator.
-	 * Usually determined via a DataSource.
+	 * 返回此转换器使用的错误码。
+	 * 通常通过 DataSource 确定。
 	 * @see #setDataSource
 	 */
 	@Nullable
@@ -293,8 +286,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Subclasses can override this method to attempt a custom mapping from
-	 * {@link SQLException} to {@link DataAccessException}.
+	 * 子类可以重写此方法，尝试将 {@link SQLException} 自定义映射为
+	 * {@link DataAccessException}。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL query or update that caused the problem (may be {@code null})
 	 * @param sqlEx the offending SQLException
@@ -309,8 +302,8 @@ public class SQLErrorCodeSQLExceptionTranslator extends AbstractFallbackSQLExcep
 	}
 
 	/**
-	 * Create a custom {@link DataAccessException}, based on a given exception
-	 * class from a {@link CustomSQLErrorCodesTranslation} definition.
+	 * 根据 {@link CustomSQLErrorCodesTranslation} 定义中给定的异常类，
+	 * 创建自定义的 {@link DataAccessException}。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL query or update that caused the problem (may be {@code null})
 	 * @param sqlEx the offending SQLException

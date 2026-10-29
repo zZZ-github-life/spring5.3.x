@@ -31,7 +31,7 @@ import org.springframework.web.util.ServletRequestPathUtils;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
- * Assists with the creation of a {@link MappedInterceptor}.
+ * 辅助创建 {@link MappedInterceptor}。
  *
  * @author Rossen Stoyanchev
  * @author Keith Donald
@@ -54,7 +54,7 @@ public class InterceptorRegistration {
 
 
 	/**
-	 * Create an {@link InterceptorRegistration} instance.
+	 * 创建 {@link InterceptorRegistration} 实例。
 	 */
 	public InterceptorRegistration(HandlerInterceptor interceptor) {
 		Assert.notNull(interceptor, "Interceptor is required");
@@ -63,18 +63,18 @@ public class InterceptorRegistration {
 
 
 	/**
-	 * Add patterns for URLs the interceptor should be included in.
-	 * <p>For pattern syntax see {@link PathPattern} when parsed patterns
-	 * are {@link PathMatchConfigurer#setPatternParser enabled} or
-	 * {@link AntPathMatcher} otherwise. The syntax is largely the same with
-	 * {@link PathPattern} more tailored for web usage and more efficient.
+	 * 添加该拦截器应包含的 URL 模式。
+	 * <p>关于模式语法，当解析模式被
+	 * {@link PathMatchConfigurer#setPatternParser 启用}时请参见 {@link PathPattern}，
+	 * 否则请参见 {@link AntPathMatcher}。两者语法大体相同，
+	 * 但 {@link PathPattern} 更贴合 Web 用途且更高效。
 	 */
 	public InterceptorRegistration addPathPatterns(String... patterns) {
 		return addPathPatterns(Arrays.asList(patterns));
 	}
 
 	/**
-	 * List-based variant of {@link #addPathPatterns(String...)}.
+	 * {@link #addPathPatterns(String...)} 的基于列表的变体。
 	 * @since 5.0.3
 	 */
 	public InterceptorRegistration addPathPatterns(List<String> patterns) {
@@ -85,18 +85,18 @@ public class InterceptorRegistration {
 	}
 
 	/**
-	 * Add patterns for URLs the interceptor should be excluded from.
-	 * <p>For pattern syntax see {@link PathPattern} when parsed patterns
-	 * are {@link PathMatchConfigurer#setPatternParser enabled} or
-	 * {@link AntPathMatcher} otherwise. The syntax is largely the same with
-	 * {@link PathPattern} more tailored for web usage and more efficient.
+	 * 添加该拦截器应排除的 URL 模式。
+	 * <p>关于模式语法，当解析模式被
+	 * {@link PathMatchConfigurer#setPatternParser 启用}时请参见 {@link PathPattern}，
+	 * 否则请参见 {@link AntPathMatcher}。两者语法大体相同，
+	 * 但 {@link PathPattern} 更贴合 Web 用途且更高效。
 	 */
 	public InterceptorRegistration excludePathPatterns(String... patterns) {
 		return excludePathPatterns(Arrays.asList(patterns));
 	}
 
 	/**
-	 * List-based variant of {@link #excludePathPatterns(String...)}.
+	 * {@link #excludePathPatterns(String...)} 的基于列表的变体。
 	 * @since 5.0.3
 	 */
 	public InterceptorRegistration excludePathPatterns(List<String> patterns) {
@@ -107,15 +107,13 @@ public class InterceptorRegistration {
 	}
 
 	/**
-	 * Configure the PathMatcher to use to match URL paths with against include
-	 * and exclude patterns.
-	 * <p>This is an advanced property that should be used only when a
-	 * customized {@link AntPathMatcher} or a custom PathMatcher is required.
-	 * <p>By default this is {@link AntPathMatcher}.
-	 * <p><strong>Note:</strong> Setting {@code PathMatcher} enforces use of
-	 * String pattern matching even when a
-	 * {@link ServletRequestPathUtils#parseAndCache parsed} {@code RequestPath}
-	 * is available.
+	 * 配置用于将 URL 路径与包含和排除模式进行匹配的 PathMatcher。
+	 * <p>这是一个高级属性，仅当需要自定义的 {@link AntPathMatcher} 或自定义 PathMatcher
+	 * 时才应使用。
+	 * <p>默认为 {@link AntPathMatcher}。
+	 * <p><strong>注意：</strong>设置 {@code PathMatcher} 会强制使用
+	 * 字符串模式匹配，即使有已
+	 * {@link ServletRequestPathUtils#parseAndCache 解析}的 {@code RequestPath} 可用。
 	 */
 	public InterceptorRegistration pathMatcher(PathMatcher pathMatcher) {
 		this.pathMatcher = pathMatcher;
@@ -123,7 +121,7 @@ public class InterceptorRegistration {
 	}
 
 	/**
-	 * Specify an order position to be used. Default is 0.
+	 * 指定要使用的排序位置。默认为 0。
 	 * @since 4.3.23
 	 */
 	public InterceptorRegistration order(int order){
@@ -132,15 +130,15 @@ public class InterceptorRegistration {
 	}
 
 	/**
-	 * Return the order position to be used.
+	 * 返回要使用的排序位置。
 	 */
 	protected int getOrder() {
 		return this.order;
 	}
 
 	/**
-	 * Build the underlying interceptor. If URL patterns are provided, the returned
-	 * type is {@link MappedInterceptor}; otherwise {@link HandlerInterceptor}.
+	 * 构建底层的拦截器。如果提供了 URL 模式，返回的类型为 {@link MappedInterceptor}；
+	 * 否则为 {@link HandlerInterceptor}。
 	 */
 	protected Object getInterceptor() {
 

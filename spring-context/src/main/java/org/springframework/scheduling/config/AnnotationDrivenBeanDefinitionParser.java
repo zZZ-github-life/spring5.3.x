@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the 'annotation-driven' element of the 'task' namespace.
+ * 'task' 命名空间的 'annotation-driven' 元素的解析器。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller

@@ -19,14 +19,11 @@ package org.springframework.mail;
 import java.util.Date;
 
 /**
- * This is a common interface for mail messages, allowing a user to set key
- * values required in assembling a mail message, without needing to know if
- * the underlying message is a simple text message or a more sophisticated
- * MIME message.
+ * 邮件消息的通用接口，允许用户设置组装邮件消息所需的关键值，
+ * 而无需知道底层消息是简单的文本消息还是更复杂的 MIME 消息。
  *
- * <p>Implemented by both SimpleMailMessage and MimeMessageHelper,
- * to let message population code interact with a simple message or a
- * MIME message through a common interface.
+ * <p>由 {@code SimpleMailMessage} 和 {@code MimeMessageHelper} 共同实现，
+ * 使消息填充代码可以通过统一接口操作简单消息或 MIME 消息。
  *
  * @author Juergen Hoeller
  * @since 1.1.5

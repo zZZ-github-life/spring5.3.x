@@ -23,8 +23,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Extends {@link MessageSendingOperations} and adds operations for sending messages
- * to a destination specified as a (resolvable) String name.
+ * 扩展 {@link MessageSendingOperations}，增加了向以（可解析的）String 名称
+ * 指定的目标发送消息的操作。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -35,28 +35,25 @@ import org.springframework.messaging.MessagingException;
 public interface DestinationResolvingMessageSendingOperations<D> extends MessageSendingOperations<D> {
 
 	/**
-	 * Resolve the given destination name to a destination and send a message to it.
+	 * 将给定目标名称解析为目标并向其发送消息。
 	 * @param destinationName the destination name to resolve
 	 * @param message the message to send
 	 */
 	void send(String destinationName, Message<?> message) throws MessagingException;
 
 	/**
-	 * Resolve the given destination name to a destination, convert the payload Object
-	 * to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message and send it to the resolved destination.
+	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为消息并发送到解析后的目标。
 	 * @param destinationName the destination name to resolve
    	 * @param payload the Object to use as payload
 	 */
 	<T> void convertAndSend(String destinationName, T payload) throws MessagingException;
 
 	/**
-	 * Resolve the given destination name to a destination, convert the payload
-	 * Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers and send it to the resolved
-	 * destination.
+	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为带有给定头的消息并发送到解析后的目标。
 	 * @param destinationName the destination name to resolve
 	 * @param payload the Object to use as payload
  	 * @param headers the headers for the message to send
@@ -65,11 +62,9 @@ public interface DestinationResolvingMessageSendingOperations<D> extends Message
 			throws MessagingException;
 
 	/**
-	 * Resolve the given destination name to a destination, convert the payload
-	 * Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message, apply the given post processor, and send the resulting
-	 * message to the resolved destination.
+	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为消息，应用给定的后处理器，并将结果消息发送到解析后的目标。
 	 * @param destinationName the destination name to resolve
 	 * @param payload the Object to use as payload
 	 * @param postProcessor the post processor to apply to the message
@@ -78,11 +73,10 @@ public interface DestinationResolvingMessageSendingOperations<D> extends Message
 			throws MessagingException;
 
 	/**
-	 * Resolve the given destination name to a destination, convert the payload
-	 * Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers, apply the given post processor,
-	 * and send the resulting message to the resolved destination.
+	 * 将给定目标名称解析为目标，将载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为带有给定头的消息，应用给定的后处理器，
+	 * 并将结果消息发送到解析后的目标。
 	 * @param destinationName the destination name to resolve
 	 * @param payload the Object to use as payload
 	 * @param headers the headers for the message to send

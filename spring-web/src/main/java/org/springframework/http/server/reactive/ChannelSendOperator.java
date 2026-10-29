@@ -34,12 +34,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Given a write function that accepts a source {@code Publisher<T>} to write
- * with and returns {@code Publisher<Void>} for the result, this operator helps
- * to defer the invocation of the write function, until we know if the source
- * publisher will begin publishing without an error. If the first emission is
- * an error, the write function is bypassed, and the error is sent directly
- * through the result publisher. Otherwise the write function is invoked.
+ * 给定一个写入函数，它接受用于写入的源 {@code Publisher<T>} 并
+ * 返回结果 {@code Publisher<Void>}，此操作符有助于延迟写入函数的调用，
+ * 直到我们确认源发布者是否会开始发布且没有错误。如果第一次发射是
+ * 错误，则绕过写入函数，错误直接通过结果发布者发送。
+ * 否则，将调用写入函数。
  *
  * @author Rossen Stoyanchev
  * @author Stephane Maldini
@@ -80,25 +79,23 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 
 	private enum State {
 
-		/** No emissions from the upstream source yet. */
+		/** 上游源尚未发射任何内容。 */
 		NEW,
 
 		/**
-		 * At least one signal of any kind has been received; we're ready to
-		 * call the write function and proceed with actual writing.
+		 * 已接收到任意类型的至少一个信号；我们已准备好
+		 * 调用写入函数并继续实际写入。
 		 */
 		FIRST_SIGNAL_RECEIVED,
 
 		/**
-		 * The write subscriber has subscribed and requested; we're going to
-		 * emit the cached signals.
+		 * 写入订阅者已订阅并请求；我们将发射缓存的信号。
 		 */
 		EMITTING_CACHED_SIGNALS,
 
 		/**
-		 * The write subscriber has subscribed, and cached signals have been
-		 * emitted to it; we're ready to switch to a simple pass-through mode
-		 * for all remaining signals.
+		 * 写入订阅者已订阅，且缓存的信号已发射给它；
+		 * 我们已准备好对所有剩余信号切换到简单的直通模式。
 		 **/
 		READY_TO_WRITE
 
@@ -106,19 +103,18 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 
 
 	/**
-	 * A barrier inserted between the write source and the write subscriber
-	 * (i.e. the HTTP server adapter) that pre-fetches and waits for the first
-	 * signal before deciding whether to hook in to the write subscriber.
+	 * 插入在写入源与写入订阅者（即 HTTP 服务器适配器）之间的屏障，
+	 * 它预取并等待第一个信号，然后再决定是否接入写入订阅者。
 	 *
-	 * <p>Acts as:
+	 * <p>充当：
 	 * <ul>
-	 * <li>Subscriber to the write source.
-	 * <li>Subscription to the write subscriber.
-	 * <li>Publisher to the write subscriber.
+	 * <li>写入源的 Subscriber。
+	 * <li>写入订阅者的 Subscription。
+	 * <li>写入订阅者的 Publisher。
 	 * </ul>
 	 *
-	 * <p>Also uses {@link WriteCompletionBarrier} to communicate completion
-	 * and detect cancel signals from the completion subscriber.
+	 * <p>还使用 {@link WriteCompletionBarrier} 来传递完成信号，
+	 * 并检测来自完成订阅者的取消信号。
 	 */
 	private class WriteBarrier implements CoreSubscriber<T>, Subscription, Publisher<T> {
 
@@ -129,24 +125,24 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 		@Nullable
 		private Subscription subscription;
 
-		/** Cached data item before readyToWrite. */
+		/** readyToWrite 之前缓存的数据项。 */
 		@Nullable
 		private T item;
 
-		/** Cached error signal before readyToWrite. */
+		/** readyToWrite 之前缓存的错误信号。 */
 		@Nullable
 		private Throwable error;
 
-		/** Cached onComplete signal before readyToWrite. */
+		/** readyToWrite 之前缓存的 onComplete 信号。 */
 		private boolean completed = false;
 
-		/** Recursive demand while emitting cached signals. */
+		/** 发射缓存信号期间的递归需求。 */
 		private long demandBeforeReadyToWrite;
 
-		/** Current state. */
+		/** 当前状态。 */
 		private State state = State.NEW;
 
-		/** The actual writeSubscriber from the HTTP server adapter. */
+		/** 来自 HTTP 服务器适配器的实际写入订阅者。 */
 		@Nullable
 		private Subscriber<? super T> writeSubscriber;
 
@@ -363,13 +359,12 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 
 
 	/**
-	 * We need an extra barrier between the WriteBarrier itself and the actual
-	 * completion subscriber.
+	 * 我们需要在 WriteBarrier 本身与实际完成订阅者之间增加一道屏障。
 	 *
-	 * <p>The completionSubscriber is subscribed initially to the WriteBarrier.
-	 * Later after the first signal is received, we need one more subscriber
-	 * instance (per spec can only subscribe once) to subscribe to the write
-	 * function and switch to delegating completion signals from it.
+	 * <p>完成订阅者最初订阅到 WriteBarrier。
+	 * 在接收到第一个信号之后，我们需要再创建一个订阅者实例
+	 * （根据规范只能订阅一次）来订阅写入函数，并切换为委托
+	 * 来自它的完成信号。
 	 */
 	private class WriteCompletionBarrier implements CoreSubscriber<Void>, Subscription {
 
@@ -389,8 +384,8 @@ public class ChannelSendOperator<T> extends Mono<Void> implements Scannable {
 
 
 		/**
-		 * Connect the underlying completion subscriber to this barrier in order
-		 * to track cancel signals and pass them on to the write barrier.
+		 * 将底层完成订阅者连接到此屏障，以便跟踪取消信号
+		 * 并将其传递给写入屏障。
 		 */
 		public void connect() {
 			this.completionSubscriber.onSubscribe(this);

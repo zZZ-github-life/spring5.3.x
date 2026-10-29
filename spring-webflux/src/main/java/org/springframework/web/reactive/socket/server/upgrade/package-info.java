@@ -1,6 +1,5 @@
 /**
- * Holds implementations of
- * {@link org.springframework.web.reactive.socket.server.RequestUpgradeStrategy}.
+ * 包含 {@link org.springframework.web.reactive.socket.server.RequestUpgradeStrategy} 的实现。
  */
 @NonNullApi
 @NonNullFields

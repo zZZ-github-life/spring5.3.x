@@ -43,17 +43,16 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
- * Abstract base class for {@link org.springframework.web.servlet.View}
- * implementations. Subclasses should be JavaBeans, to allow for
- * convenient configuration as Spring-managed bean instances.
+ * {@link org.springframework.web.servlet.View} 实现的抽象基类。
+ * 子类应为 JavaBean，以便作为 Spring 管理的 bean 实例
+ * 进行便捷配置。
  *
- * <p>Provides support for static attributes, to be made available to the view,
- * with a variety of ways to specify them. Static attributes will be merged
- * with the given dynamic attributes (the model that the controller returned)
- * for each render operation.
+ * <p>提供对静态属性的支持，可通过多种方式指定这些属性
+ * 使其可供视图使用。每次渲染操作时，静态属性将与
+ * 给定的动态属性（控制器返回的模型）合并。
  *
- * <p>Extends {@link WebApplicationObjectSupport}, which will be helpful to
- * some views. Subclasses just need to implement the actual rendering.
+ * <p>继承自 {@link WebApplicationObjectSupport}，这对某些视图会有帮助。
+ * 子类只需实现实际的渲染逻辑。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -63,10 +62,10 @@ import org.springframework.web.servlet.support.RequestContext;
  */
 public abstract class AbstractView extends WebApplicationObjectSupport implements View, BeanNameAware {
 
-	/** Default content type. Overridable as bean property. */
+	/** 默认内容类型。可通过 bean 属性覆盖。 */
 	public static final String DEFAULT_CONTENT_TYPE = "text/html;charset=ISO-8859-1";
 
-	/** Initial size for the temporary output byte array (if any). */
+	/** 临时输出字节数组（如有）的初始大小。 */
 	private static final int OUTPUT_BYTE_ARRAY_INITIAL_SIZE = 4096;
 
 
@@ -91,17 +90,17 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 
 	/**
-	 * Set the content type for this view.
-	 * Default is "text/html;charset=ISO-8859-1".
-	 * <p>May be ignored by subclasses if the view itself is assumed
-	 * to set the content type, e.g. in case of JSPs.
+	 * 设置此视图的内容类型。
+	 * 默认为 "text/html;charset=ISO-8859-1"。
+	 * <p>如果假定视图本身会设置内容类型（例如 JSP 的情况），
+	 * 子类可以忽略此设置。
 	 */
 	public void setContentType(@Nullable String contentType) {
 		this.contentType = contentType;
 	}
 
 	/**
-	 * Return the content type for this view.
+	 * 返回此视图的内容类型。
 	 */
 	@Override
 	@Nullable
@@ -110,15 +109,15 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set the name of the RequestContext attribute for this view.
-	 * Default is none.
+	 * 设置此视图的 RequestContext 属性名称。
+	 * 默认不设置。
 	 */
 	public void setRequestContextAttribute(@Nullable String requestContextAttribute) {
 		this.requestContextAttribute = requestContextAttribute;
 	}
 
 	/**
-	 * Return the name of the RequestContext attribute, if any.
+	 * 返回 RequestContext 属性的名称（如果有）。
 	 */
 	@Nullable
 	public String getRequestContextAttribute() {
@@ -126,11 +125,11 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set static attributes as a CSV string.
-	 * Format is: attname0={value1},attname1={value1}
-	 * <p>"Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
+	 * 以 CSV 字符串形式设置静态属性。
+	 * 格式为：attname0={value1},attname1={value1}
+	 * <p>"静态"属性是在 View 实例配置中指定的固定属性。
+	 * 另一方面，"动态"属性是作为模型一部分
+	 * 传入的值。
 	 */
 	public void setAttributesCSV(@Nullable String propString) throws IllegalArgumentException {
 		if (propString != null) {
@@ -158,16 +157,14 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set static attributes for this view from a
-	 * {@code java.util.Properties} object.
-	 * <p>"Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
-	 * <p>This is the most convenient way to set static attributes. Note that
-	 * static attributes can be overridden by dynamic attributes, if a value
-	 * with the same name is included in the model.
-	 * <p>Can be populated with a String "value" (parsed via PropertiesEditor)
-	 * or a "props" element in XML bean definitions.
+	 * 从 {@code java.util.Properties} 对象为此视图设置静态属性。
+	 * <p>"静态"属性是在 View 实例配置中指定的固定属性。
+	 * 另一方面，"动态"属性是作为模型一部分
+	 * 传入的值。
+	 * <p>这是设置静态属性最便捷的方式。请注意，
+	 * 如果模型中包含同名值，静态属性可以被动态属性覆盖。
+	 * <p>可以使用 String 类型的 "value"（通过 PropertiesEditor 解析）
+	 * 或 XML bean 定义中的 "props" 元素进行填充。
 	 * @see org.springframework.beans.propertyeditors.PropertiesEditor
 	 */
 	public void setAttributes(Properties attributes) {
@@ -175,12 +172,12 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set static attributes for this view from a Map. This allows to set
-	 * any kind of attribute values, for example bean references.
-	 * <p>"Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
-	 * <p>Can be populated with a "map" or "props" element in XML bean definitions.
+	 * 从 Map 为此视图设置静态属性。这允许设置
+	 * 任意类型的属性值，例如 bean 引用。
+	 * <p>"静态"属性是在 View 实例配置中指定的固定属性。
+	 * 另一方面，"动态"属性是作为模型一部分
+	 * 传入的值。
+	 * <p>可以使用 XML bean 定义中的 "map" 或 "props" 元素进行填充。
 	 * @param attributes a Map with name Strings as keys and attribute objects as values
 	 */
 	public void setAttributesMap(@Nullable Map<String, ?> attributes) {
@@ -190,22 +187,22 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Allow {@code Map} access to the static attributes of this view,
-	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
-	 * {@code attributesMap[myKey]}. This is particularly useful for
-	 * adding or overriding entries in child view definitions.
+	 * 允许以 {@code Map} 方式访问此视图的静态属性，
+	 * 并可选择添加或覆盖特定条目。
+	 * <p>适用于直接指定条目，例如通过
+	 * {@code attributesMap[myKey]}。这在添加或覆盖
+	 * 子视图定义中的条目时特别有用。
 	 */
 	public Map<String, Object> getAttributesMap() {
 		return this.staticAttributes;
 	}
 
 	/**
-	 * Add static data to this view, exposed in each view.
-	 * <p>"Static" attributes are fixed attributes that are specified in
-	 * the View instance configuration. "Dynamic" attributes, on the other hand,
-	 * are values passed in as part of the model.
-	 * <p>Must be invoked before any calls to {@code render}.
+	 * 向此视图添加静态数据，并在每个视图中公开。
+	 * <p>"静态"属性是在 View 实例配置中指定的固定属性。
+	 * 另一方面，"动态"属性是作为模型一部分
+	 * 传入的值。
+	 * <p>必须在任何 {@code render} 调用之前调用。
 	 * @param name the name of the attribute to expose
 	 * @param value the attribute value to expose
 	 * @see #render
@@ -215,9 +212,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Return the static attributes for this view. Handy for testing.
-	 * <p>Returns an unmodifiable Map, as this is not intended for
-	 * manipulating the Map but rather just for checking the contents.
+	 * 返回此视图的静态属性。便于测试。
+	 * <p>返回一个不可修改的 Map，因为其目的不是
+	 * 操作该 Map，而只是检查其内容。
 	 * @return the static attributes in this view
 	 */
 	public Map<String, Object> getStaticAttributes() {
@@ -225,14 +222,14 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Specify whether to add path variables to the model or not.
-	 * <p>Path variables are commonly bound to URI template variables through the {@code @PathVariable}
-	 * annotation. They are effectively URI template variables with type conversion applied to
-	 * them to derive typed Object values. Such values are frequently needed in views for
-	 * constructing links to the same and other URLs.
-	 * <p>Path variables added to the model override static attributes (see {@link #setAttributes(Properties)})
-	 * but not attributes already present in the model.
-	 * <p>By default this flag is set to {@code true}. Concrete view types can override this.
+	 * 指定是否将路径变量添加到模型中。
+	 * <p>路径变量通常通过 {@code @PathVariable}
+	 * 注解绑定到 URI 模板变量。它们实际上是 URI 模板变量，并对其应用类型转换
+	 * 以得到有类型的 Object 值。在视图中构建指向同一 URL 及其他 URL 的链接时，
+	 * 经常需要这类值。
+	 * <p>添加到模型中的路径变量会覆盖静态属性（参见 {@link #setAttributes(Properties)}），
+	 * 但不会覆盖模型中已存在的属性。
+	 * <p>默认情况下此标志设为 {@code true}。具体的视图类型可以覆盖此设置。
 	 * @param exposePathVariables {@code true} to expose path variables, and {@code false} otherwise
 	 */
 	public void setExposePathVariables(boolean exposePathVariables) {
@@ -240,24 +237,23 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Return whether to add path variables to the model or not.
+	 * 返回是否将路径变量添加到模型中。
 	 */
 	public boolean isExposePathVariables() {
 		return this.exposePathVariables;
 	}
 
 	/**
-	 * Set whether to make all Spring beans in the application context accessible
-	 * as request attributes, through lazy checking once an attribute gets accessed.
-	 * <p>This will make all such beans accessible in plain {@code ${...}}
-	 * expressions in a JSP 2.0 page, as well as in JSTL's {@code c:out}
-	 * value expressions.
-	 * <p>Default is "false". Switch this flag on to transparently expose all
-	 * Spring beans in the request attribute namespace.
-	 * <p><b>NOTE:</b> Context beans will override any custom request or session
-	 * attributes of the same name that have been manually added. However, model
-	 * attributes (as explicitly exposed to this view) of the same name will
-	 * always override context beans.
+	 * 设置是否通过一次属性访问时的惰性检查，使应用上下文中的
+	 * 所有 Spring bean 可作为请求属性访问。
+	 * <p>这将使所有此类 bean 可在 JSP 2.0 页面的普通 {@code ${...}}
+	 * 表达式中访问，也可在 JSTL 的 {@code c:out}
+	 * 值表达式中访问。
+	 * <p>默认为 "false"。开启此标志即可透明地在请求属性命名空间中
+	 * 公开所有 Spring bean。
+	 * <p><b>注意：</b>上下文 bean 将覆盖手动添加的任何同名自定义请求或会话
+	 * 属性。但是，同名的模型属性（明确公开给此视图的属性）
+	 * 将始终覆盖上下文 bean。
 	 * @see #getRequestToExpose
 	 */
 	public void setExposeContextBeansAsAttributes(boolean exposeContextBeansAsAttributes) {
@@ -265,20 +261,20 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Specify the names of beans in the context which are supposed to be exposed.
-	 * If this is non-null, only the specified beans are eligible for exposure as
-	 * attributes.
-	 * <p>If you'd like to expose all Spring beans in the application context, switch
-	 * the {@link #setExposeContextBeansAsAttributes "exposeContextBeansAsAttributes"}
-	 * flag on but do not list specific bean names for this property.
+	 * 指定上下文中应被公开的 bean 名称。
+	 * 如果此值非 null，则只有指定的 bean 才有资格作为
+	 * 属性公开。
+	 * <p>如果你希望公开应用上下文中的所有 Spring bean，请开启
+	 * {@link #setExposeContextBeansAsAttributes "exposeContextBeansAsAttributes"}
+	 * 标志，但不要为此属性列出具体的 bean 名称。
 	 */
 	public void setExposedContextBeanNames(String... exposedContextBeanNames) {
 		this.exposedContextBeanNames = new HashSet<>(Arrays.asList(exposedContextBeanNames));
 	}
 
 	/**
-	 * Set the view's name. Helpful for traceability.
-	 * <p>Framework code must call this when constructing views.
+	 * 设置视图的名称。便于追踪。
+	 * <p>框架代码在构造视图时必须调用此方法。
 	 */
 	@Override
 	public void setBeanName(@Nullable String beanName) {
@@ -286,8 +282,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Return the view's name. Should never be {@code null},
-	 * if the view was correctly configured.
+	 * 返回视图的名称。如果视图配置正确，
+	 * 则绝不应为 {@code null}。
 	 */
 	@Nullable
 	public String getBeanName() {
@@ -296,9 +292,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 
 	/**
-	 * Prepares the view given the specified model, merging it with static
-	 * attributes and a RequestContext attribute, if necessary.
-	 * Delegates to renderMergedOutputModel for the actual rendering.
+	 * 根据指定的模型准备视图，必要时将其与静态属性
+	 * 及 RequestContext 属性合并。
+	 * 实际渲染委托给 renderMergedOutputModel。
 	 * @see #renderMergedOutputModel
 	 */
 	@Override
@@ -317,8 +313,8 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Creates a combined output Map (never {@code null}) that includes dynamic values and static attributes.
-	 * Dynamic values take precedence over static attributes.
+	 * 创建一个合并后的输出 Map（绝不为 {@code null}），其中包含动态值和静态属性。
+	 * 动态值优先于静态属性。
 	 */
 	protected Map<String, Object> createMergedOutputModel(@Nullable Map<String, ?> model,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -350,9 +346,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Create a RequestContext to expose under the specified attribute name.
-	 * <p>The default implementation creates a standard RequestContext instance for the
-	 * given request and model. Can be overridden in subclasses for custom instances.
+	 * 创建一个 RequestContext 并在指定属性名称下公开。
+	 * <p>默认实现为给定请求和模型创建一个标准的 RequestContext 实例。
+	 * 可在子类中重写以使用自定义实例。
 	 * @param request current HTTP request
 	 * @param model combined output Map (never {@code null}),
 	 * with dynamic values taking precedence over static attributes
@@ -367,9 +363,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Prepare the given response for rendering.
-	 * <p>The default implementation applies a workaround for an IE bug
-	 * when sending download content via HTTPS.
+	 * 为渲染准备给定的响应。
+	 * <p>默认实现针对通过 HTTPS 发送下载内容时
+	 * 的 IE 缺陷应用了一个变通方案。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 */
@@ -381,12 +377,11 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Return whether this view generates download content
-	 * (typically binary content like PDF or Excel files).
-	 * <p>The default implementation returns {@code false}. Subclasses are
-	 * encouraged to return {@code true} here if they know that they are
-	 * generating download content that requires temporary caching on the
-	 * client side, typically via the response OutputStream.
+	 * 返回此视图是否生成下载内容
+	 * （通常是 PDF 或 Excel 文件之类的二进制内容）。
+	 * <p>默认实现返回 {@code false}。如果子类知道自己
+	 * 生成的是需要在客户端进行临时缓存的下载内容，
+	 * 通常通过响应的 OutputStream 输出，则鼓励在此返回 {@code true}。
 	 * @see #prepareResponse
 	 * @see javax.servlet.http.HttpServletResponse#getOutputStream()
 	 */
@@ -395,9 +390,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Get the request handle to expose to {@link #renderMergedOutputModel}, i.e. to the view.
-	 * <p>The default implementation wraps the original request for exposure of Spring beans
-	 * as request attributes (if demanded).
+	 * 获取要公开给 {@link #renderMergedOutputModel}（即视图）的请求句柄。
+	 * <p>默认实现会包装原始请求，以便按要求将 Spring bean
+	 * 作为请求属性公开。
 	 * @param originalRequest the original servlet request as provided by the engine
 	 * @return the wrapped request, or the original request if no wrapping is necessary
 	 * @see #setExposeContextBeansAsAttributes
@@ -414,11 +409,11 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Subclasses must implement this method to actually render the view.
-	 * <p>The first step will be preparing the request: In the JSP case,
-	 * this would mean setting model objects as request attributes.
-	 * The second step will be the actual rendering of the view,
-	 * for example including the JSP via a RequestDispatcher.
+	 * 子类必须实现此方法以实际渲染视图。
+	 * <p>第一步是准备请求：在 JSP 的情况下，
+	 * 这意味着将模型对象设置为请求属性。
+	 * 第二步是视图的实际渲染，
+	 * 例如通过 RequestDispatcher 包含 JSP。
 	 * @param model combined output Map (never {@code null}),
 	 * with dynamic values taking precedence over static attributes
 	 * @param request current HTTP request
@@ -430,9 +425,9 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 
 
 	/**
-	 * Expose the model objects in the given map as request attributes.
-	 * Names will be taken from the model Map.
-	 * This method is suitable for all resources reachable by {@link javax.servlet.RequestDispatcher}.
+	 * 将给定 Map 中的模型对象作为请求属性公开。
+	 * 名称取自模型 Map。
+	 * 此方法适用于 {@link javax.servlet.RequestDispatcher} 可访问的所有资源。
 	 * @param model a Map of model objects to expose
 	 * @param request current HTTP request
 	 */
@@ -450,16 +445,16 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Create a temporary OutputStream for this view.
-	 * <p>This is typically used as IE workaround, for setting the content length header
-	 * from the temporary stream before actually writing the content to the HTTP response.
+	 * 为此视图创建一个临时 OutputStream。
+	 * <p>这通常用作 IE 的变通方案，以便在实际将内容写入 HTTP 响应之前，
+	 * 根据临时流设置内容长度标头。
 	 */
 	protected ByteArrayOutputStream createTemporaryOutputStream() {
 		return new ByteArrayOutputStream(OUTPUT_BYTE_ARRAY_INITIAL_SIZE);
 	}
 
 	/**
-	 * Write the given temporary OutputStream to the HTTP response.
+	 * 将给定的临时 OutputStream 写入 HTTP 响应。
 	 * @param response current HTTP response
 	 * @param baos the temporary OutputStream to write
 	 * @throws IOException if writing/flushing failed
@@ -476,10 +471,10 @@ public abstract class AbstractView extends WebApplicationObjectSupport implement
 	}
 
 	/**
-	 * Set the content type of the response to the configured
-	 * {@link #setContentType(String) content type} unless the
-	 * {@link View#SELECTED_CONTENT_TYPE} request attribute is present and set
-	 * to a concrete media type.
+	 * 将响应的内容类型设置为所配置的
+	 * {@link #setContentType(String) content type}，除非
+	 * {@link View#SELECTED_CONTENT_TYPE} 请求属性存在且
+	 * 设置为具体的媒体类型。
 	 */
 	protected void setResponseContentType(HttpServletRequest request, HttpServletResponse response) {
 		MediaType mediaType = (MediaType) request.getAttribute(View.SELECTED_CONTENT_TYPE);

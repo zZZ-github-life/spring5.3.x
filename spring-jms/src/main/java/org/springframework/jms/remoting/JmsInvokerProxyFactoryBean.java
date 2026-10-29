@@ -24,15 +24,14 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * FactoryBean for JMS invoker proxies. Exposes the proxied service for use
- * as a bean reference, using the specified service interface.
+ * JMS 调用器代理的 FactoryBean。使用指定的服务接口暴露
+ * 被代理的服务，以便作为 Bean 引用使用。
  *
- * <p>Serializes remote invocation objects and deserializes remote invocation
- * result objects. Uses Java serialization just like RMI, but with the JMS
- * provider as communication infrastructure.
+ * <p>序列化远程调用对象并反序列化远程调用结果对象。
+ * 与 RMI 一样使用 Java 序列化，但以 JMS 提供者为通信基础设施。
  *
- * <p>To be configured with a {@link javax.jms.QueueConnectionFactory} and a
- * target queue (either as {@link javax.jms.Queue} reference or as queue name).
+ * <p>需使用 {@link javax.jms.QueueConnectionFactory} 和目标队列
+ * （可以是 {@link javax.jms.Queue} 引用或队列名称）进行配置。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -58,7 +57,7 @@ public class JmsInvokerProxyFactoryBean extends JmsInvokerClientInterceptor
 
 
 	/**
-	 * Set the interface that the proxy must implement.
+	 * 设置代理必须实现的接口。
 	 * @param serviceInterface the interface that the proxy must implement
 	 * @throws IllegalArgumentException if the supplied {@code serviceInterface}
 	 * is not an interface type

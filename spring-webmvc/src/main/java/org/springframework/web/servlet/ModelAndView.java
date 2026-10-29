@@ -24,16 +24,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Holder for both Model and View in the web MVC framework.
- * Note that these are entirely distinct. This class merely holds
- * both to make it possible for a controller to return both model
- * and view in a single return value.
+ * Web MVC 框架中 Model 和 View 的持有者。
+ * 请注意，二者是完全不同的概念。本类只是同时持有它们，
+ * 使控制器能够在单个返回值中同时返回模型和视图。
  *
- * <p>Represents a model and view returned by a handler, to be resolved
- * by a DispatcherServlet. The view can take the form of a String
- * view name which will need to be resolved by a ViewResolver object;
- * alternatively a View object can be specified directly. The model
- * is a Map, allowing the use of multiple objects keyed by name.
+ * <p>表示处理器返回的模型和视图，由 DispatcherServlet 进行解析。
+ * 视图可以是 String 类型的视图名称，需要由 ViewResolver 对象解析；
+ * 也可以直接指定 View 对象。模型是一个 Map，允许使用按名称索引的多个对象。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -46,25 +43,25 @@ import org.springframework.util.CollectionUtils;
  */
 public class ModelAndView {
 
-	/** View instance or view name String. */
+	/** View 实例或视图名称字符串。 */
 	@Nullable
 	private Object view;
 
-	/** Model Map. */
+	/** 模型 Map。 */
 	@Nullable
 	private ModelMap model;
 
-	/** Optional HTTP status for the response. */
+	/** 可选的响应 HTTP 状态。 */
 	@Nullable
 	private HttpStatus status;
 
-	/** Indicates whether this instance has been cleared with a call to {@link #clear()}. */
+	/** 指示此实例是否已通过调用 {@link #clear()} 被清空。 */
 	private boolean cleared = false;
 
 
 	/**
-	 * Default constructor for bean-style usage: populating bean
-	 * properties instead of passing in constructor arguments.
+	 * 用于 bean 风格用法的默认构造函数：通过填充 bean 属性
+	 * 而不是传入构造参数来构建对象。
 	 * @see #setView(View)
 	 * @see #setViewName(String)
 	 */
@@ -72,8 +69,8 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Convenient constructor when there is no model data to expose.
-	 * Can also be used in conjunction with {@code addObject}.
+	 * 当没有模型数据需要暴露时使用的便捷构造函数。
+	 * 也可以与 {@code addObject} 配合使用。
 	 * @param viewName name of the View to render, to be resolved
 	 * by the DispatcherServlet's ViewResolver
 	 * @see #addObject
@@ -83,8 +80,8 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Convenient constructor when there is no model data to expose.
-	 * Can also be used in conjunction with {@code addObject}.
+	 * 当没有模型数据需要暴露时使用的便捷构造函数。
+	 * 也可以与 {@code addObject} 配合使用。
 	 * @param view the View object to render
 	 * @see #addObject
 	 */
@@ -93,7 +90,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Create a new ModelAndView given a view name and a model.
+	 * 根据视图名称和模型创建一个新的 ModelAndView。
 	 * @param viewName name of the View to render, to be resolved
 	 * by the DispatcherServlet's ViewResolver
 	 * @param model a Map of model names (Strings) to model objects
@@ -108,10 +105,9 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Create a new ModelAndView given a View object and a model.
-	 * <em>Note: the supplied model data is copied into the internal
-	 * storage of this class. You should not consider to modify the supplied
-	 * Map after supplying it to this class</em>
+	 * 根据 View 对象和模型创建一个新的 ModelAndView。
+	 * <em>注意：所提供的模型数据会被复制到本类的内部存储中。
+	 * 将 Map 提供给本类之后，不应再修改它</em>
 	 * @param view the View object to render
 	 * @param model a Map of model names (Strings) to model objects
 	 * (Objects). Model entries may not be {@code null}, but the
@@ -125,7 +121,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Create a new ModelAndView given a view name and HTTP status.
+	 * 根据视图名称和 HTTP 状态创建一个新的 ModelAndView。
 	 * @param viewName name of the View to render, to be resolved
 	 * by the DispatcherServlet's ViewResolver
 	 * @param status an HTTP status code to use for the response
@@ -138,7 +134,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Create a new ModelAndView given a view name, model, and HTTP status.
+	 * 根据视图名称、模型和 HTTP 状态创建一个新的 ModelAndView。
 	 * @param viewName name of the View to render, to be resolved
 	 * by the DispatcherServlet's ViewResolver
 	 * @param model a Map of model names (Strings) to model objects
@@ -157,7 +153,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Convenient constructor to take a single model object.
+	 * 用于接收单个模型对象的便捷构造函数。
 	 * @param viewName name of the View to render, to be resolved
 	 * by the DispatcherServlet's ViewResolver
 	 * @param modelName name of the single entry in the model
@@ -169,7 +165,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Convenient constructor to take a single model object.
+	 * 用于接收单个模型对象的便捷构造函数。
 	 * @param view the View object to render
 	 * @param modelName name of the single entry in the model
 	 * @param modelObject the single model object
@@ -181,17 +177,16 @@ public class ModelAndView {
 
 
 	/**
-	 * Set a view name for this ModelAndView, to be resolved by the
-	 * DispatcherServlet via a ViewResolver. Will override any
-	 * pre-existing view name or View.
+	 * 为此 ModelAndView 设置视图名称，由 DispatcherServlet
+	 * 通过 ViewResolver 解析。将覆盖任何已有的视图名称或 View。
 	 */
 	public void setViewName(@Nullable String viewName) {
 		this.view = viewName;
 	}
 
 	/**
-	 * Return the view name to be resolved by the DispatcherServlet
-	 * via a ViewResolver, or {@code null} if we are using a View object.
+	 * 返回要由 DispatcherServlet 通过 ViewResolver 解析的视图名称，
+	 * 如果使用的是 View 对象则返回 {@code null}。
 	 */
 	@Nullable
 	public String getViewName() {
@@ -199,16 +194,15 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Set a View object for this ModelAndView. Will override any
-	 * pre-existing view name or View.
+	 * 为此 ModelAndView 设置 View 对象。将覆盖任何已有的视图名称或 View。
 	 */
 	public void setView(@Nullable View view) {
 		this.view = view;
 	}
 
 	/**
-	 * Return the View object, or {@code null} if we are using a view name
-	 * to be resolved by the DispatcherServlet via a ViewResolver.
+	 * 返回 View 对象；如果使用的是需要由 DispatcherServlet
+	 * 通过 ViewResolver 解析的视图名称，则返回 {@code null}。
 	 */
 	@Nullable
 	public View getView() {
@@ -216,25 +210,24 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Indicate whether this {@code ModelAndView} has a view, either
-	 * as a view name or as a direct {@link View} instance.
+	 * 指示此 {@code ModelAndView} 是否具有视图，
+	 * 无论是作为视图名称还是作为直接的 {@link View} 实例。
 	 */
 	public boolean hasView() {
 		return (this.view != null);
 	}
 
 	/**
-	 * Return whether we use a view reference, i.e. {@code true}
-	 * if the view has been specified via a name to be resolved by the
-	 * DispatcherServlet via a ViewResolver.
+	 * 返回是否使用的是视图引用，即如果视图是通过名称指定的，
+	 * 需要由 DispatcherServlet 通过 ViewResolver 解析，则返回 {@code true}。
 	 */
 	public boolean isReference() {
 		return (this.view instanceof String);
 	}
 
 	/**
-	 * Return the model map. May return {@code null}.
-	 * Called by DispatcherServlet for evaluation of the model.
+	 * 返回模型 map。可能返回 {@code null}。
+	 * 由 DispatcherServlet 调用以评估模型。
 	 */
 	@Nullable
 	protected Map<String, Object> getModelInternal() {
@@ -242,7 +235,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Return the underlying {@code ModelMap} instance (never {@code null}).
+	 * 返回底层的 {@code ModelMap} 实例（永不为 {@code null}）。
 	 */
 	public ModelMap getModelMap() {
 		if (this.model == null) {
@@ -252,16 +245,16 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Return the model map. Never returns {@code null}.
-	 * To be called by application code for modifying the model.
+	 * 返回模型 map。永不返回 {@code null}。
+	 * 供应用代码调用以修改模型。
 	 */
 	public Map<String, Object> getModel() {
 		return getModelMap();
 	}
 
 	/**
-	 * Set the HTTP status to use for the response.
-	 * <p>The response status is set just prior to View rendering.
+	 * 设置用于响应的 HTTP 状态。
+	 * <p>响应状态会在渲染 View 之前设置。
 	 * @since 4.3
 	 */
 	public void setStatus(@Nullable HttpStatus status) {
@@ -269,7 +262,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Return the configured HTTP status for the response, if any.
+	 * 返回为响应配置的 HTTP 状态（如果有）。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -279,7 +272,7 @@ public class ModelAndView {
 
 
 	/**
-	 * Add an attribute to the model.
+	 * 向模型中添加一个属性。
 	 * @param attributeName name of the object to add to the model (never {@code null})
 	 * @param attributeValue object to add to the model (can be {@code null})
 	 * @see ModelMap#addAttribute(String, Object)
@@ -291,7 +284,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Add an attribute to the model using parameter name generation.
+	 * 使用参数名生成方式向模型中添加一个属性。
 	 * @param attributeValue the object to add to the model (never {@code null})
 	 * @see ModelMap#addAttribute(Object)
 	 * @see #getModelMap()
@@ -302,7 +295,7 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Add all attributes contained in the provided Map to the model.
+	 * 将所提供的 Map 中包含的所有属性添加到模型中。
 	 * @param modelMap a Map of attributeName &rarr; attributeValue pairs
 	 * @see ModelMap#addAllAttributes(Map)
 	 * @see #getModelMap()
@@ -314,10 +307,10 @@ public class ModelAndView {
 
 
 	/**
-	 * Clear the state of this ModelAndView object.
-	 * The object will be empty afterwards.
-	 * <p>Can be used to suppress rendering of a given ModelAndView object
-	 * in the {@code postHandle} method of a HandlerInterceptor.
+	 * 清除此 ModelAndView 对象的状态。
+	 * 之后该对象将为空。
+	 * <p>可用于在 HandlerInterceptor 的 {@code postHandle} 方法中
+	 * 抑制对给定 ModelAndView 对象的渲染。
 	 * @see #isEmpty()
 	 * @see HandlerInterceptor#postHandle
 	 */
@@ -328,18 +321,18 @@ public class ModelAndView {
 	}
 
 	/**
-	 * Return whether this ModelAndView object is empty,
-	 * i.e. whether it does not hold any view and does not contain a model.
+	 * 返回此 ModelAndView 对象是否为空，
+	 * 即它是否不持有任何视图且不包含模型。
 	 */
 	public boolean isEmpty() {
 		return (this.view == null && CollectionUtils.isEmpty(this.model));
 	}
 
 	/**
-	 * Return whether this ModelAndView object is empty as a result of a call to {@link #clear}
-	 * i.e. whether it does not hold any view and does not contain a model.
-	 * <p>Returns {@code false} if any additional state was added to the instance
-	 * <strong>after</strong> the call to {@link #clear}.
+	 * 返回此 ModelAndView 对象是否因调用 {@link #clear} 而为空，
+	 * 即它是否不持有任何视图且不包含模型。
+	 * <p>如果在对 {@link #clear} 的调用<strong>之后</strong>又向该实例添加了
+	 * 任何额外状态，则返回 {@code false}。
 	 * @see #clear()
 	 */
 	public boolean wasCleared() {
@@ -348,7 +341,7 @@ public class ModelAndView {
 
 
 	/**
-	 * Return diagnostic information about this model and view.
+	 * 返回有关此模型和视图的诊断信息。
 	 */
 	@Override
 	public String toString() {

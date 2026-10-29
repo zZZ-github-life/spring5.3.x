@@ -29,40 +29,13 @@ import org.springframework.test.context.SmartContextLoader;
 import org.springframework.util.Assert;
 
 /**
- * {@code AbstractDelegatingSmartContextLoader} serves as an abstract base class
- * for implementations of the {@link SmartContextLoader} SPI that delegate to a
- * set of <em>candidate</em> SmartContextLoaders (i.e., one that supports XML
- * configuration files or Groovy scripts and one that supports annotated classes)
- * to determine which context loader is appropriate for a given test class's
- * configuration. Each candidate is given a chance to
- * {@linkplain #processContextConfiguration process} the
- * {@link ContextConfigurationAttributes} for each class in the test class hierarchy
- * and enclosing class hierarchy that is annotated with
- * {@link ContextConfiguration @ContextConfiguration}, and the candidate that
- * supports the merged, processed configuration will be used to actually
- * {@linkplain #loadContext load} the context.
+ * {@code AbstractDelegatingSmartContextLoader} 作为 {@link SmartContextLoader} SPI 实现的抽象基类，这些实现委托给一组<em>候选</em> SmartContextLoader（即一个支持 XML 配置文件或 Groovy 脚本，另一个支持注解类），以确定为给定测试类的配置使用哪个上下文加载器。每个候选加载器都有机会为测试类层次结构及外围类层次结构中每个带有 {@link ContextConfiguration @ContextConfiguration} 注解的类{@linkplain #processContextConfiguration 处理} {@link ContextConfigurationAttributes}，然后支持合并处理后的配置的候选加载器将被用于实际{@linkplain #loadContext 加载}上下文。
  *
- * <p>Any reference to an <em>XML-based loader</em> can be interpreted to mean
- * a context loader that supports only XML configuration files or one that
- * supports both XML configuration files and Groovy scripts simultaneously.
+ * <p>任何对<em>基于 XML 的加载器</em>的引用都可理解为仅支持 XML 配置文件的上下文加载器，或同时支持 XML 配置文件和 Groovy 脚本的上下文加载器。
  *
- * <p>Placing an empty {@code @ContextConfiguration} annotation on a test class signals
- * that default resource locations (e.g., XML configuration files or Groovy scripts)
- * or default
- * {@linkplain org.springframework.context.annotation.Configuration configuration classes}
- * should be detected. Furthermore, if a specific {@link ContextLoader} or
- * {@link SmartContextLoader} is not explicitly declared via
- * {@code @ContextConfiguration}, a concrete subclass of
- * {@code AbstractDelegatingSmartContextLoader} will be used as the default loader,
- * thus providing automatic support for either path-based resource locations
- * (e.g., XML configuration files and Groovy scripts) or annotated classes,
- * but not both simultaneously.
+ * <p>在测试类上放置一个空的 {@code @ContextConfiguration} 注解表示应检测默认资源位置（例如 XML 配置文件或 Groovy 脚本）或默认的 {@linkplain org.springframework.context.annotation.Configuration 配置类}。此外，如果未通过 {@code @ContextConfiguration} 显式声明特定的 {@link ContextLoader} 或 {@link SmartContextLoader}，则将使用 {@code AbstractDelegatingSmartContextLoader} 的具体子类作为默认加载器，从而自动支持基于路径的资源位置（例如 XML 配置文件和 Groovy 脚本）或注解类，但不能同时支持两者。
  *
- * <p>As of Spring 3.2, a test class may optionally declare neither path-based
- * resource locations nor annotated classes and instead declare only {@linkplain
- * ContextConfiguration#initializers application context initializers}. In such
- * cases, an attempt will still be made to detect defaults, but their absence will
- * not result in an exception.
+ * <p>从 Spring 3.2 开始，测试类可以选择既不声明基于路径的资源位置，也不声明注解类，而仅声明 {@linkplain ContextConfiguration#initializers 应用上下文初始化器}。在这种情况下，仍将尝试检测默认值，但如果不存在默认值，也不会导致异常。
  *
  * @author Sam Brannen
  * @author Phillip Webb
@@ -75,13 +48,12 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 
 
 	/**
-	 * Get the delegate {@code SmartContextLoader} that supports XML configuration
-	 * files and/or Groovy scripts.
+	 * 获取支持 XML 配置文件和/或 Groovy 脚本的委托 {@code SmartContextLoader}。
 	 */
 	protected abstract SmartContextLoader getXmlLoader();
 
 	/**
-	 * Get the delegate {@code SmartContextLoader} that supports annotated classes.
+	 * 获取支持注解类的委托 {@code SmartContextLoader}。
 	 */
 	protected abstract SmartContextLoader getAnnotationConfigLoader();
 
@@ -89,9 +61,7 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	// ContextLoader
 
 	/**
-	 * {@code AbstractDelegatingSmartContextLoader} does not support the
-	 * {@link ContextLoader#processLocations(Class, String...)} method. Call
-	 * {@link #processContextConfiguration(ContextConfigurationAttributes)} instead.
+	 * {@code AbstractDelegatingSmartContextLoader} 不支持 {@link ContextLoader#processLocations(Class, String...)} 方法。请改用 {@link #processContextConfiguration(ContextConfigurationAttributes)}。
 	 * @throws UnsupportedOperationException in this implementation
 	 */
 	@Override
@@ -102,9 +72,7 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	}
 
 	/**
-	 * {@code AbstractDelegatingSmartContextLoader} does not support the
-	 * {@link ContextLoader#loadContext(String...) } method. Call
-	 * {@link #loadContext(MergedContextConfiguration)} instead.
+	 * {@code AbstractDelegatingSmartContextLoader} 不支持 {@link ContextLoader#loadContext(String...) } 方法。请改用 {@link #loadContext(MergedContextConfiguration)}。
 	 * @throws UnsupportedOperationException in this implementation
 	 */
 	@Override
@@ -118,25 +86,12 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	// SmartContextLoader
 
 	/**
-	 * Delegates to candidate {@code SmartContextLoaders} to process the supplied
-	 * {@link ContextConfigurationAttributes}.
-	 * <p>Delegation is based on explicit knowledge of the implementations of the
-	 * default loaders for {@linkplain #getXmlLoader() XML configuration files and
-	 * Groovy scripts} and {@linkplain #getAnnotationConfigLoader() annotated classes}.
-	 * Specifically, the delegation algorithm is as follows:
+	 * 委托给候选 {@code SmartContextLoaders} 来处理所提供的 {@link ContextConfigurationAttributes}。
+	 * <p>委托基于对 {@linkplain #getXmlLoader() XML 配置文件和 Groovy 脚本}以及 {@linkplain #getAnnotationConfigLoader() 注解类}的默认加载器实现的明确了解。具体而言，委托算法如下：
 	 * <ul>
-	 * <li>If the resource locations or annotated classes in the supplied
-	 * {@code ContextConfigurationAttributes} are not empty, the appropriate
-	 * candidate loader will be allowed to process the configuration <em>as is</em>,
-	 * without any checks for detection of defaults.</li>
-	 * <li>Otherwise, the XML-based loader will be allowed to process
-	 * the configuration in order to detect default resource locations. If
-	 * the XML-based loader detects default resource locations,
-	 * an {@code info} message will be logged.</li>
-	 * <li>Subsequently, the annotation-based loader will be allowed to
-	 * process the configuration in order to detect default configuration classes.
-	 * If the annotation-based loader detects default configuration
-	 * classes, an {@code info} message will be logged.</li>
+	 * <li>如果所提供的 {@code ContextConfigurationAttributes} 中的资源位置或注解类不为空，则将允许相应的候选加载器<em>按原样</em>处理该配置，而不进行任何默认值检测检查。</li>
+	 * <li>否则，将允许基于 XML 的加载器处理该配置以检测默认资源位置。如果基于 XML 的加载器检测到默认资源位置，将记录一条 {@code info} 消息。</li>
+	 * <li>随后，将允许基于注解的加载器处理该配置以检测默认配置类。如果基于注解的加载器检测到默认配置类，将记录一条 {@code info} 消息。</li>
 	 * </ul>
 	 * @param configAttributes the context configuration attributes to process
 	 * @throws IllegalArgumentException if the supplied configuration attributes are
@@ -208,19 +163,11 @@ public abstract class AbstractDelegatingSmartContextLoader implements SmartConte
 	}
 
 	/**
-	 * Delegates to an appropriate candidate {@code SmartContextLoader} to load
-	 * an {@link ApplicationContext}.
-	 * <p>Delegation is based on explicit knowledge of the implementations of the
-	 * default loaders for {@linkplain #getXmlLoader() XML configuration files and
-	 * Groovy scripts} and {@linkplain #getAnnotationConfigLoader() annotated classes}.
-	 * Specifically, the delegation algorithm is as follows:
+	 * 委托给适当的候选 {@code SmartContextLoader} 来加载 {@link ApplicationContext}。
+	 * <p>委托基于对 {@linkplain #getXmlLoader() XML 配置文件和 Groovy 脚本}以及 {@linkplain #getAnnotationConfigLoader() 注解类}的默认加载器实现的明确了解。具体而言，委托算法如下：
 	 * <ul>
-	 * <li>If the resource locations in the supplied {@code MergedContextConfiguration}
-	 * are not empty and the annotated classes are empty,
-	 * the XML-based loader will load the {@code ApplicationContext}.</li>
-	 * <li>If the annotated classes in the supplied {@code MergedContextConfiguration}
-	 * are not empty and the resource locations are empty,
-	 * the annotation-based loader will load the {@code ApplicationContext}.</li>
+	 * <li>如果所提供的 {@code MergedContextConfiguration} 中的资源位置不为空且注解类为空，则基于 XML 的加载器将加载该 {@code ApplicationContext}。</li>
+	 * <li>如果所提供的 {@code MergedContextConfiguration} 中的注解类不为空且资源位置为空，则基于注解的加载器将加载该 {@code ApplicationContext}。</li>
 	 * </ul>
 	 * @param mergedConfig the merged context configuration to use to load the application context
 	 * @throws IllegalArgumentException if the supplied merged configuration is {@code null}

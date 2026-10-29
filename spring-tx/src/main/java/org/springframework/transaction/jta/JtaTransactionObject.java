@@ -25,10 +25,10 @@ import org.springframework.transaction.support.SmartTransactionObject;
 import org.springframework.transaction.support.TransactionSynchronizationUtils;
 
 /**
- * JTA transaction object, representing a {@link javax.transaction.UserTransaction}.
- * Used as transaction object by Spring's {@link JtaTransactionManager}.
+ * JTA事务对象, 表示{@link javax.transaction.UserTransaction}。
+ * 由Spring的{@link JtaTransactionManager}用作事务对象。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意: 这是一个SPI类, 不打算被应用程序使用。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -43,7 +43,7 @@ public class JtaTransactionObject implements SmartTransactionObject {
 
 
 	/**
-	 * Create a new JtaTransactionObject for the given JTA UserTransaction.
+	 * 为给定的JTA UserTransaction创建一个新的JtaTransactionObject。
 	 * @param userTransaction the JTA UserTransaction for the current transaction
 	 * (either a shared object or retrieved through a fresh per-transaction lookup)
 	 */
@@ -52,7 +52,7 @@ public class JtaTransactionObject implements SmartTransactionObject {
 	}
 
 	/**
-	 * Return the JTA UserTransaction object for the current transaction.
+	 * 返回当前事务的JTA UserTransaction对象。
 	 */
 	public final UserTransaction getUserTransaction() {
 		return this.userTransaction;
@@ -60,7 +60,7 @@ public class JtaTransactionObject implements SmartTransactionObject {
 
 
 	/**
-	 * This implementation checks the UserTransaction's rollback-only flag.
+	 * 此实现检查UserTransaction的rollback-only标志。
 	 */
 	@Override
 	public boolean isRollbackOnly() {
@@ -74,8 +74,7 @@ public class JtaTransactionObject implements SmartTransactionObject {
 	}
 
 	/**
-	 * This implementation triggers flush callbacks,
-	 * assuming that they will flush all affected ORM sessions.
+	 * 此实现触发flush回调, 假定它们会flush所有受影响的ORM会话。
 	 * @see org.springframework.transaction.support.TransactionSynchronization#flush()
 	 */
 	@Override

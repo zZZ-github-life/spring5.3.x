@@ -43,9 +43,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Factory for collections that is aware of common Java and Spring collection types.
+ * 能识别常见 Java 和 Spring 集合类型的集合工厂。
  *
- * <p>Mainly for internal use within the framework.
+ * <p>主要供框架内部使用。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -90,8 +90,8 @@ public final class CollectionFactory {
 
 
 	/**
-	 * Determine whether the given collection type is an <em>approximable</em> type,
-	 * i.e. a type that {@link #createApproximateCollection} can approximate.
+	 * 判断给定的集合类型是否为<em>可近似</em>类型，
+	 * 即 {@link #createApproximateCollection} 能够近似创建的类型。
 	 * @param collectionType the collection type to check
 	 * @return {@code true} if the type is <em>approximable</em>
 	 */
@@ -100,15 +100,12 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create the most approximate collection for the given collection.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code E} is
-	 * not bound to the type of elements contained in the supplied
-	 * {@code collection}, type safety cannot be guaranteed if the supplied
-	 * {@code collection} is an {@link EnumSet}. In such scenarios, the caller
-	 * is responsible for ensuring that the element type for the supplied
-	 * {@code collection} is an enum type matching type {@code E}. As an
-	 * alternative, the caller may wish to treat the return value as a raw
-	 * collection or collection of {@link Object}.
+	 * 为给定的集合创建最接近的集合。
+	 * <p><strong>警告</strong>：
+	 * 由于参数化类型 {@code E} 并未绑定到提供的 {@code collection} 中所包含元素的类型，
+	 * 因此如果提供的 {@code collection} 是 {@link EnumSet}，则无法保证类型安全。在此类场景中，
+	 * 调用者需负责确保提供的 {@code collection} 的元素类型是与类型 {@code E} 匹配的枚举类型。
+	 * 作为替代方案，调用者可以将返回值视为原始集合或 {@link Object} 的集合。
 	 * @param collection the original collection object, potentially {@code null}
 	 * @param capacity the initial capacity
 	 * @return a new, empty collection instance
@@ -142,9 +139,8 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create the most appropriate collection for the given collection type.
-	 * <p>Delegates to {@link #createCollection(Class, Class, int)} with a
-	 * {@code null} element type.
+	 * 为给定的集合类型创建最合适的集合。
+	 * <p>以 {@code null} 元素类型委托给 {@link #createCollection(Class, Class, int)}。
 	 * @param collectionType the desired type of the target collection (never {@code null})
 	 * @param capacity the initial capacity
 	 * @return a new collection instance
@@ -156,14 +152,12 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create the most appropriate collection for the given collection type.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code E} is
-	 * not bound to the supplied {@code elementType}, type safety cannot be
-	 * guaranteed if the desired {@code collectionType} is {@link EnumSet}.
-	 * In such scenarios, the caller is responsible for ensuring that the
-	 * supplied {@code elementType} is an enum type matching type {@code E}.
-	 * As an alternative, the caller may wish to treat the return value as a
-	 * raw collection or collection of {@link Object}.
+	 * 为给定的集合类型创建最合适的集合。
+	 * <p><strong>警告</strong>：由于参数化类型 {@code E} 未绑定到提供的 {@code elementType}，
+	 * 因此如果期望的 {@code collectionType} 是 {@link EnumSet}，则无法保证类型安全。
+	 * 在此类场景中，
+	 * 调用者需负责确保提供的 {@code elementType} 是与类型 {@code E} 匹配的枚举类型。
+	 * 作为替代方案，调用者可以将返回值视为原始集合或 {@link Object} 的集合。
 	 * @param collectionType the desired type of the target collection (never {@code null})
 	 * @param elementType the collection's element type, or {@code null} if unknown
 	 * (note: only relevant for {@link EnumSet} creation)
@@ -215,8 +209,8 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Determine whether the given map type is an <em>approximable</em> type,
-	 * i.e. a type that {@link #createApproximateMap} can approximate.
+	 * 判断给定的映射类型是否为<em>可近似</em>类型，
+	 * 即 {@link #createApproximateMap} 能够近似创建的类型。
 	 * @param mapType the map type to check
 	 * @return {@code true} if the type is <em>approximable</em>
 	 */
@@ -225,14 +219,12 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create the most approximate map for the given map.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code K} is
-	 * not bound to the type of keys contained in the supplied {@code map},
-	 * type safety cannot be guaranteed if the supplied {@code map} is an
-	 * {@link EnumMap}. In such scenarios, the caller is responsible for
-	 * ensuring that the key type in the supplied {@code map} is an enum type
-	 * matching type {@code K}. As an alternative, the caller may wish to
-	 * treat the return value as a raw map or map keyed by {@link Object}.
+	 * 为给定的映射创建最接近的映射。
+	 * <p><strong>警告</strong>：
+	 * 由于参数化类型 {@code K} 未绑定到提供的 {@code map} 中所包含键的类型，
+	 * 因此如果提供的 {@code map} 是 {@link EnumMap}，则无法保证类型安全。在此类场景中，
+	 * 调用者需负责确保提供的 {@code map} 中的键类型是与类型 {@code K} 匹配的枚举类型。
+	 * 作为替代方案，调用者可以将返回值视为原始映射或以 {@link Object} 为键的映射。
 	 * @param map the original map object, potentially {@code null}
 	 * @param capacity the initial capacity
 	 * @return a new, empty map instance
@@ -257,9 +249,8 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create the most appropriate map for the given map type.
-	 * <p>Delegates to {@link #createMap(Class, Class, int)} with a
-	 * {@code null} key type.
+	 * 为给定的映射类型创建最合适的映射。
+	 * <p>以 {@code null} 键类型委托给 {@link #createMap(Class, Class, int)}。
 	 * @param mapType the desired type of the target map
 	 * @param capacity the initial capacity
 	 * @return a new map instance
@@ -271,15 +262,12 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create the most appropriate map for the given map type.
-	 * <p><strong>Warning</strong>: Since the parameterized type {@code K}
-	 * is not bound to the supplied {@code keyType}, type safety cannot be
-	 * guaranteed if the desired {@code mapType} is {@link EnumMap}. In such
-	 * scenarios, the caller is responsible for ensuring that the {@code keyType}
-	 * is an enum type matching type {@code K}. As an alternative, the caller
-	 * may wish to treat the return value as a raw map or map keyed by
-	 * {@link Object}. Similarly, type safety cannot be enforced if the
-	 * desired {@code mapType} is {@link MultiValueMap}.
+	 * 为给定的映射类型创建最合适的映射。
+	 * <p><strong>警告</strong>：由于参数化类型 {@code K} 未绑定到提供的 {@code keyType}，
+	 * 因此如果期望的 {@code mapType} 是 {@link EnumMap}，则无法保证类型安全。在此类场景中，
+	 * 调用者需负责确保 {@code keyType} 是与类型 {@code K} 匹配的枚举类型。作为替代方案，
+	 * 调用者可以将返回值视为原始映射或以 {@link Object} 为键的映射。同样，
+	 * 如果期望的 {@code mapType} 是 {@link MultiValueMap}，也无法强制保证类型安全。
 	 * @param mapType the desired type of the target map (never {@code null})
 	 * @param keyType the map's key type, or {@code null} if unknown
 	 * (note: only relevant for {@link EnumMap} creation)
@@ -329,10 +317,9 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create a variant of {@link java.util.Properties} that automatically adapts
-	 * non-String values to String representations in {@link Properties#getProperty}.
-	 * <p>In addition, the returned {@code Properties} instance sorts properties
-	 * alphanumerically based on their keys.
+	 * 创建 {@link java.util.Properties} 的一个变体，
+	 * 它会在 {@link Properties#getProperty} 中自动将非 String 值适配为 String 表示形式。
+	 * <p>此外，返回的 {@code Properties} 实例会根据键按字母数字顺序对属性排序。
 	 * @return a new {@code Properties} instance
 	 * @since 4.3.4
 	 * @see #createSortedProperties(boolean)
@@ -351,12 +338,10 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create a variant of {@link java.util.Properties} that sorts properties
-	 * alphanumerically based on their keys.
-	 * <p>This can be useful when storing the {@link Properties} instance in a
-	 * properties file, since it allows such files to be generated in a repeatable
-	 * manner with consistent ordering of properties. Comments in generated
-	 * properties files can also be optionally omitted.
+	 * 创建 {@link java.util.Properties} 的一个变体，它会根据键按字母数字顺序对属性排序。
+	 * <p>当把 {@link Properties} 实例存储到 properties 文件时，这可能很有用，
+	 * 因为它允许以可重复的方式生成此类文件，并保持属性顺序一致。
+	 * 生成的 properties 文件中的注释也可以选择省略。
 	 * @param omitComments {@code true} if comments should be omitted when
 	 * storing properties in a file
 	 * @return a new {@code Properties} instance
@@ -369,15 +354,12 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Create a variant of {@link java.util.Properties} that sorts properties
-	 * alphanumerically based on their keys.
-	 * <p>This can be useful when storing the {@code Properties} instance in a
-	 * properties file, since it allows such files to be generated in a repeatable
-	 * manner with consistent ordering of properties. Comments in generated
-	 * properties files can also be optionally omitted.
-	 * <p>The returned {@code Properties} instance will be populated with
-	 * properties from the supplied {@code properties} object, but default
-	 * properties from the supplied {@code properties} object will not be copied.
+	 * 创建 {@link java.util.Properties} 的一个变体，它会根据键按字母数字顺序对属性排序。
+	 * <p>当把 {@code Properties} 实例存储到 properties 文件时，这可能很有用，
+	 * 因为它允许以可重复的方式生成此类文件，并保持属性顺序一致。
+	 * 生成的 properties 文件中的注释也可以选择省略。
+	 * <p>返回的 {@code Properties} 实例将使用提供的 {@code properties} 对象中的属性填充，
+	 * 但提供的 {@code properties} 对象中的默认属性不会被复制。
 	 * @param properties the {@code Properties} object from which to copy the
 	 * initial properties
 	 * @param omitComments {@code true} if comments should be omitted when
@@ -392,7 +374,7 @@ public final class CollectionFactory {
 	}
 
 	/**
-	 * Cast the given type to a subtype of {@link Enum}.
+	 * 将给定类型转换为 {@link Enum} 的子类型。
 	 * @param enumType the enum type, never {@code null}
 	 * @return the given type as subtype of {@link Enum}
 	 * @throws IllegalArgumentException if the given type is not a subtype of {@link Enum}

@@ -44,8 +44,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriBuilderFactory;
 
 /**
- * Default implementation of {@link WebTestClient.Builder}.
- *
+ * {@link WebTestClient.Builder} 的默认实现。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -104,17 +103,17 @@ class DefaultWebTestClientBuilder implements WebTestClient.Builder {
 	private Duration responseTimeout;
 
 
-	/** Determine connector via classpath detection. */
+	/** 通过类路径检测确定连接器。 */
 	DefaultWebTestClientBuilder() {
 		this(null, null);
 	}
 
-	/** Use HttpHandlerConnector with mock server. */
+	/** 将 HttpHandlerConnector 与模拟服务器一起使用。 */
 	DefaultWebTestClientBuilder(WebHttpHandlerBuilder httpHandlerBuilder) {
 		this(httpHandlerBuilder, null);
 	}
 
-	/** Use given connector. */
+	/** 使用给定的连接器。 */
 	DefaultWebTestClientBuilder(ClientHttpConnector connector) {
 		this(null, connector);
 	}
@@ -133,7 +132,7 @@ class DefaultWebTestClientBuilder implements WebTestClient.Builder {
 		this.httpHandlerBuilder = (httpHandlerBuilder != null ? httpHandlerBuilder.clone() : null);
 	}
 
-	/** Copy constructor. */
+	/** 复制构造函数。 */
 	DefaultWebTestClientBuilder(DefaultWebTestClientBuilder other) {
 		this.httpHandlerBuilder = (other.httpHandlerBuilder != null ? other.httpHandlerBuilder.clone() : null);
 		this.connector = other.connector;

@@ -37,7 +37,7 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Resolves ServerWebExchange-related method argument values of the following types:
+ * 解析以下类型的 ServerWebExchange 相关方法参数值：
  * <ul>
  * <li>{@link ServerWebExchange}
  * <li>{@link ServerHttpRequest}
@@ -46,13 +46,10 @@ import org.springframework.web.util.UriComponentsBuilder;
  * <li>{@link Locale}
  * <li>{@link TimeZone}
  * <li>{@link ZoneId}
- * <li>{@link UriBuilder} or {@link UriComponentsBuilder} -- for building URL's
- * relative to the current request
+ * <li>{@link UriBuilder} 或 {@link UriComponentsBuilder} —— 用于构建相对于当前请求的 URL
  * </ul>
  *
- * <p>For the {@code WebSession} see {@link WebSessionMethodArgumentResolver}
- * and for the {@code Principal} see {@link PrincipalMethodArgumentResolver}.
- *
+ * <p>关于 {@code WebSession}，请参见 {@link WebSessionMethodArgumentResolver}；关于 {@code Principal}，请参见 {@link PrincipalMethodArgumentResolver}。
  * @author Rossen Stoyanchev
  * @since 5.2
  * @see WebSessionMethodArgumentResolver

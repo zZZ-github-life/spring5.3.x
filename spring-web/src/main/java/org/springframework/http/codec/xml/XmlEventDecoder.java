@@ -50,18 +50,18 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.xml.StaxUtils;
 
 /**
- * Decodes a {@link DataBuffer} stream into a stream of {@link XMLEvent XMLEvents}.
+ * 将 {@link DataBuffer} 流解码为 {@link XMLEvent XMLEvent} 流。
  *
- * <p>Given the following XML:
+ * <p>给定以下 XML：
  *
  * <pre class="code">
  * &lt;root&gt;
- *     &lt;child&gt;foo&lt;/child&gt;
- *     &lt;child&gt;bar&lt;/child&gt;
+ * &lt;child&gt;foo&lt;/child&gt;
+ * &lt;child&gt;bar&lt;/child&gt;
  * &lt;/root&gt;
  * </pre>
  *
- * this decoder will produce a {@link Flux} with the following events:
+ * 此解码器将生成包含以下事件的 {@link Flux}：
  *
  * <ol>
  * <li>{@link javax.xml.stream.events.StartDocument}</li>
@@ -75,8 +75,8 @@ import org.springframework.util.xml.StaxUtils;
  * <li>{@link javax.xml.stream.events.EndElement} {@code root}</li>
  * </ol>
  *
- * <p>Note that this decoder is not registered by default but is used internally
- * by other decoders which are registered by default.
+ * <p>请注意，此解码器默认不注册，而是由其他默认注册的
+ * 解码器在内部使用。
  *
  * @author Arjen Poutsma
  * @author Sam Brannen
@@ -100,11 +100,11 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 
 
 	/**
-	 * Set the max number of bytes that can be buffered by this decoder. This
-	 * is either the size the entire input when decoding as a whole, or when
-	 * using async parsing via Aalto XML, it is size one top-level XML tree.
-	 * When the limit is exceeded, {@link DataBufferLimitException} is raised.
-	 * <p>By default this is set to 256K.
+	 * 设置此解码器可缓冲的最大字节数。这可以是整体解码时
+	 * 整个输入的大小，或者在使用 Aalto XML 进行异步解析时，
+	 * 一个顶层 XML 树的大小。超过限制时会抛出
+	 * {@link DataBufferLimitException}。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 * @since 5.1.11
 	 */
@@ -113,7 +113,7 @@ public class XmlEventDecoder extends AbstractDecoder<XMLEvent> {
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回{@link #setMaxInMemorySize 已配置}的字节数限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxInMemorySize() {

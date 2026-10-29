@@ -46,11 +46,11 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Encode from single value to a byte stream containing XML elements.
+ * 将单个值编码为包含 XML 元素的字节流。
  *
- * <p>{@link javax.xml.bind.annotation.XmlElements @XmlElements} and
- * {@link javax.xml.bind.annotation.XmlElement @XmlElement} can be used
- * to specify how collections should be marshalled.
+ * <p>{@link javax.xml.bind.annotation.XmlElements @XmlElements} 和
+ * {@link javax.xml.bind.annotation.XmlElement @XmlElement} 可用于
+ * 指定集合的编组方式。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -70,7 +70,7 @@ public class Jaxb2XmlEncoder extends AbstractSingleValueEncoder<Object> {
 
 
 	/**
-	 * Configure a processor function to customize Marshaller instances.
+	 * 配置用于自定义 Marshaller 实例的处理器函数。
 	 * @param processor the function to use
 	 * @since 5.1.3
 	 */
@@ -79,7 +79,7 @@ public class Jaxb2XmlEncoder extends AbstractSingleValueEncoder<Object> {
 	}
 
 	/**
-	 * Return the configured processor for customizing Marshaller instances.
+	 * 返回用于自定义 Marshaller 实例的已配置处理器。
 	 * @since 5.1.3
 	 */
 	public Function<Marshaller, Marshaller> getMarshallerProcessor() {

@@ -19,7 +19,7 @@ package org.springframework.messaging.simp.stomp;
 import org.springframework.messaging.simp.SimpMessageType;
 
 /**
- * Represents a STOMP command.
+ * 表示 STOMP 命令。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

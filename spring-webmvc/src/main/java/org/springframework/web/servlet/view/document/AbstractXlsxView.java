@@ -24,11 +24,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
- * Convenient superclass for Excel document views in the Office 2007 XLSX format
- * (as supported by POI-OOXML). Compatible with Apache POI 3.5 and higher.
+ * Office 2007 XLSX 格式（由 POI-OOXML 支持）Excel 文档视图的便捷超类。
+ * 兼容 Apache POI 3.5 及更高版本。
  *
- * <p>For working with the workbook in subclasses, see
- * <a href="https://poi.apache.org">Apache's POI site</a>.
+ * <p>关于如何在子类中操作工作簿，请参阅
+ * <a href="https://poi.apache.org">Apache 的 POI 网站</a>。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -36,16 +36,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public abstract class AbstractXlsxView extends AbstractXlsView {
 
 	/**
-	 * Default Constructor.
-	 * <p>Sets the content type of the view to
-	 * {@code "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}.
+	 * 默认构造器。
+	 * <p>将视图的内容类型设置为
+	 * {@code "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}。
 	 */
 	public AbstractXlsxView() {
 		setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	}
 
 	/**
-	 * This implementation creates an {@link XSSFWorkbook} for the XLSX format.
+	 * 此实现为 XLSX 格式创建一个 {@link XSSFWorkbook}。
 	 */
 	@Override
 	protected Workbook createWorkbook(Map<String, Object> model, HttpServletRequest request) {

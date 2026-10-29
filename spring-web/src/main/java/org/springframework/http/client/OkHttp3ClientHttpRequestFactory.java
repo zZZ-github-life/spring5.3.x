@@ -34,8 +34,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ClientHttpRequestFactory} implementation that uses
- * <a href="https://square.github.io/okhttp/">OkHttp</a> 3.x to create requests.
+ * 使用 <a href="https://square.github.io/okhttp/">OkHttp</a> 3.x 创建请求的
+ * {@link ClientHttpRequestFactory} 实现。
  *
  * @author Luciano Leggieri
  * @author Arjen Poutsma
@@ -52,7 +52,7 @@ public class OkHttp3ClientHttpRequestFactory
 
 
 	/**
-	 * Create a factory with a default {@link OkHttpClient} instance.
+	 * 使用默认的 {@link OkHttpClient} 实例创建工厂。
 	 */
 	public OkHttp3ClientHttpRequestFactory() {
 		this.client = new OkHttpClient();
@@ -60,7 +60,7 @@ public class OkHttp3ClientHttpRequestFactory
 	}
 
 	/**
-	 * Create a factory with the given {@link OkHttpClient} instance.
+	 * 使用给定的 {@link OkHttpClient} 实例创建工厂。
 	 * @param client the client to use
 	 */
 	public OkHttp3ClientHttpRequestFactory(OkHttpClient client) {
@@ -71,8 +71,8 @@ public class OkHttp3ClientHttpRequestFactory
 
 
 	/**
-	 * Set the underlying read timeout in milliseconds.
-	 * A value of 0 specifies an infinite timeout.
+	 * 设置底层读取超时（以毫秒为单位）。
+	 * 值 0 表示无限超时。
 	 */
 	public void setReadTimeout(int readTimeout) {
 		this.client = this.client.newBuilder()
@@ -81,8 +81,8 @@ public class OkHttp3ClientHttpRequestFactory
 	}
 
 	/**
-	 * Set the underlying write timeout in milliseconds.
-	 * A value of 0 specifies an infinite timeout.
+	 * 设置底层写入超时（以毫秒为单位）。
+	 * 值 0 表示无限超时。
 	 */
 	public void setWriteTimeout(int writeTimeout) {
 		this.client = this.client.newBuilder()
@@ -91,8 +91,8 @@ public class OkHttp3ClientHttpRequestFactory
 	}
 
 	/**
-	 * Set the underlying connect timeout in milliseconds.
-	 * A value of 0 specifies an infinite timeout.
+	 * 设置底层连接超时（以毫秒为单位）。
+	 * 值 0 表示无限超时。
 	 */
 	public void setConnectTimeout(int connectTimeout) {
 		this.client = this.client.newBuilder()

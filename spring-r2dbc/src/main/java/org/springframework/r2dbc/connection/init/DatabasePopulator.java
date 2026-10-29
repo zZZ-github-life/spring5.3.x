@@ -25,7 +25,7 @@ import org.springframework.r2dbc.connection.ConnectionFactoryUtils;
 import org.springframework.util.Assert;
 
 /**
- * Strategy used to populate, initialize, or clean up a database.
+ * 用于填充、初始化或清理数据库的策略。
  *
  * @author Mark Paluch
  * @author Keith Donald
@@ -38,8 +38,7 @@ import org.springframework.util.Assert;
 public interface DatabasePopulator {
 
 	/**
-	 * Populate, initialize, or clean up the database using the
-	 * provided R2DBC {@link Connection}.
+	 * 使用提供的 R2DBC {@link Connection} 填充、初始化或清理数据库。
 	 * @param connection the R2DBC connection to use to populate the db;
 	 * already configured and ready to use, must not be {@code null}
 	 * @return {@link Mono} that initiates script execution and is
@@ -49,7 +48,7 @@ public interface DatabasePopulator {
 	Mono<Void> populate(Connection connection) throws ScriptException;
 
 	/**
-	 * Execute the given {@link DatabasePopulator} against the given {@link ConnectionFactory}.
+	 * 针对给定的 {@link ConnectionFactory} 执行当前 {@link DatabasePopulator}。
 	 * @param connectionFactory the {@link ConnectionFactory} to execute against
 	 * @return {@link Mono} that initiates {@link DatabasePopulator#populate(Connection)}
 	 * and is notified upon completion

@@ -21,14 +21,12 @@ import org.springframework.beans.factory.config.Scope;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract {@link Scope} implementation that reads from a particular scope
- * in the current thread-bound {@link RequestAttributes} object.
+ * 抽象的 {@link Scope} 实现，从当前线程绑定的 {@link RequestAttributes} 对象中的特定作用域读取。
  *
- * <p>Subclasses simply need to implement {@link #getScope()} to instruct
- * this class which {@link RequestAttributes} scope to read attributes from.
+ * <p>子类只需实现 {@link #getScope()}，以告知本类应从哪个 {@link RequestAttributes} 作用域读取属
+ * 性。
  *
- * <p>Subclasses may wish to override the {@link #get} and {@link #remove}
- * methods to add synchronization around the call back into this superclass.
+ * <p>子类可能希望覆盖 {@link #get} 和 {@link #remove} 方法，以便在回调父类时添加同步。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -85,7 +83,7 @@ public abstract class AbstractRequestAttributesScope implements Scope {
 
 
 	/**
-	 * Template method that determines the actual target scope.
+	 * 确定实际目标作用域的模板方法。
 	 * @return the target scope, in the form of an appropriate
 	 * {@link RequestAttributes} constant
 	 * @see RequestAttributes#SCOPE_REQUEST

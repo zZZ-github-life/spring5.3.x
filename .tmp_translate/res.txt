@@ -1,0 +1,594 @@
+#### FILE resource/AbstractFileNameVersionStrategy.java
+@@ resource/AbstractFileNameVersionStrategy.java :: 1
+Abstract base class for filename suffix based {@link VersionStrategy}
+implementations, e.g. "static/myresource-version.js"
+
+#### FILE resource/AbstractPrefixVersionStrategy.java
+@@ resource/AbstractPrefixVersionStrategy.java :: 1
+Abstract base class for {@link VersionStrategy} implementations that insert
+a prefix into the URL path, e.g. "version/static/myresource.js".
+
+#### FILE resource/AbstractResourceResolver.java
+@@ resource/AbstractResourceResolver.java :: 1
+Base {@link ResourceResolver} providing consistent logging.
+
+#### FILE resource/AppCacheManifestTransformer.java
+@@ resource/AppCacheManifestTransformer.java :: 1
+A {@link ResourceTransformer} HTML5 AppCache manifests.
+
+<p>This transformer:
+<ul>
+<li>modifies links to match the public URL paths that should be exposed to
+clients, using configured {@code ResourceResolver} strategies
+<li>appends a comment in the manifest, containing a Hash
+(e.g. "# Hash: 9de0f09ed7caf84e885f1f0f11c7e326"), thus changing the content
+of the manifest in order to trigger an appcache reload in the browser.
+</ul>
+
+<p>All files with an ".appcache" file extension (or the extension given
+to the constructor) will be transformed by this class. The hash is computed
+using the content of the appcache manifest so that changes in the manifest
+should invalidate the browser cache. This should also work with changes in
+referenced resources whose links are also versioned.
+
+@@ resource/AppCacheManifestTransformer.java :: 2
+Create an AppCacheResourceTransformer that transforms files with extension ".appcache".
+
+@@ resource/AppCacheManifestTransformer.java :: 3
+Create an AppCacheResourceTransformer that transforms files with the extension
+given as a parameter.
+
+#### FILE resource/CachingResourceResolver.java
+@@ resource/CachingResourceResolver.java :: 1
+A {@link ResourceResolver} that resolves resources from a {@link Cache} or
+otherwise delegates to the resolver chain and caches the result.
+
+@@ resource/CachingResourceResolver.java :: 2
+The prefix used for resolved resource cache keys.
+
+@@ resource/CachingResourceResolver.java :: 3
+The prefix used for resolved URL path cache keys.
+
+@@ resource/CachingResourceResolver.java :: 4
+Return the configured {@code Cache}.
+
+@@ resource/CachingResourceResolver.java :: 5
+Configure the supported content codings from the
+{@literal "Accept-Encoding"} header for which to cache resource variations.
+<p>The codings configured here are generally expected to match those
+configured on {@link EncodedResourceResolver#setContentCodings(List)}.
+<p>By default this property is set to {@literal ["br", "gzip"]} based on
+the value of {@link EncodedResourceResolver#DEFAULT_CODINGS}.
+
+@@ resource/CachingResourceResolver.java :: 6
+Return a read-only list with the supported content codings.
+
+#### FILE resource/CachingResourceTransformer.java
+@@ resource/CachingResourceTransformer.java :: 1
+A {@link ResourceTransformer} that checks a {@link Cache} to see if a
+previously transformed resource exists in the cache and returns it if found,
+or otherwise delegates to the resolver chain and caches the result.
+
+@@ resource/CachingResourceTransformer.java :: 2
+Return the configured {@code Cache}.
+
+#### FILE resource/ContentVersionStrategy.java
+@@ resource/ContentVersionStrategy.java :: 1
+A {@code VersionStrategy} that calculates a Hex MD5 hash from the content
+of the resource and appends it to the file name, e.g.
+{@code "styles/main-e36d2e05253c6c7085a91522ce43a0b4.css"}.
+
+#### FILE resource/CssLinkResourceTransformer.java
+@@ resource/CssLinkResourceTransformer.java :: 1
+A {@link ResourceTransformer} implementation that modifies links in a CSS
+file to match the public URL paths that should be exposed to clients (e.g.
+with an MD5 content-based hash inserted in the URL).
+
+<p>The implementation looks for links in CSS {@code @import} statements and
+also inside CSS {@code url()} functions. All links are then passed through the
+{@link ResourceResolverChain} and resolved relative to the location of the
+containing CSS file. If successfully resolved, the link is modified, otherwise
+the original link is preserved.
+
+@@ resource/CssLinkResourceTransformer.java :: 2
+Extract content chunks that represent links.
+
+@@ resource/CssLinkResourceTransformer.java :: 3
+Abstract base class for {@link LinkParser} implementations.
+
+@@ resource/CssLinkResourceTransformer.java :: 5
+Invoked after a keyword match, after whitespace has been removed, and when
+the next char is neither a single nor double quote.
+
+#### FILE resource/DefaultResourceResolverChain.java
+@@ resource/DefaultResourceResolverChain.java :: 1
+Default immutable implementation of {@link ResourceResolverChain}.
+
+#### FILE resource/DefaultResourceTransformerChain.java
+@@ resource/DefaultResourceTransformerChain.java :: 1
+Default immutable implementation of {@link ResourceTransformerChain}.
+
+#### FILE resource/EncodedResourceResolver.java
+@@ resource/EncodedResourceResolver.java :: 1
+Resolver that delegates to the chain, and if a resource is found, it then
+attempts to find an encoded (e.g. gzip, brotli) variant that is acceptable
+based on the "Accept-Encoding" request header.
+
+<p>The list of supported {@link #setContentCodings(List) contentCodings} can
+be configured, in order of preference, and each coding must be associated
+with {@link #setExtensions(Map) extensions}.
+
+<p>Note that this resolver must be ordered ahead of a
+{@link VersionResourceResolver} with a content-based, version strategy to
+ensure the version calculation is not impacted by the encoding.
+
+@@ resource/EncodedResourceResolver.java :: 2
+The default content codings.
+
+@@ resource/EncodedResourceResolver.java :: 3
+Configure the supported content codings in order of preference. The first
+coding that is present in the {@literal "Accept-Encoding"} header for a
+given request, and that has a file present with the associated extension,
+is used.
+<p><strong>Note:</strong> Each coding must be associated with a file
+extension via {@link #registerExtension} or {@link #setExtensions}. Also
+customizations to the list of codings here should be matched by
+customizations to the same list in {@link CachingResourceResolver} to
+ensure encoded variants of a resource are cached under separate keys.
+<p>By default this property is set to {@literal ["br", "gzip"]}.
+
+@@ resource/EncodedResourceResolver.java :: 4
+Return a read-only list with the supported content codings.
+
+@@ resource/EncodedResourceResolver.java :: 5
+Configure mappings from content codings to file extensions. A dot "."
+will be prepended in front of the extension value if not present.
+<p>By default this is configured with {@literal ["br" -> ".br"]} and
+{@literal ["gzip" -> ".gz"]}.
+
+@@ resource/EncodedResourceResolver.java :: 6
+Return a read-only map with coding-to-extension mappings.
+
+@@ resource/EncodedResourceResolver.java :: 7
+Java config friendly alternative to {@link #setExtensions(Map)}.
+
+@@ resource/EncodedResourceResolver.java :: 8
+An encoded {@link HttpResource}.
+
+#### FILE resource/FixedVersionStrategy.java
+@@ resource/FixedVersionStrategy.java :: 1
+A {@code VersionStrategy} that relies on a fixed version applied as a request
+path prefix, e.g. reduced SHA, version name, release date, etc.
+
+<p>This is useful for example when {@link ContentVersionStrategy} cannot be
+used such as when using JavaScript module loaders which are in charge of
+loading the JavaScript resources and need to know their relative paths.
+
+@@ resource/FixedVersionStrategy.java :: 2
+Create a new FixedVersionStrategy with the given version string.
+
+#### FILE resource/GzipResourceResolver.java
+@@ resource/GzipResourceResolver.java :: 1
+A {@code ResourceResolver} that delegates to the chain to locate a resource
+and then attempts to find a variation with the ".gz" extension.
+
+<p>The resolver gets involved only if the "Accept-Encoding" request header
+contains the value "gzip" indicating the client accepts gzipped responses.
+
+@@ resource/GzipResourceResolver.java :: 2
+A gzipped {@link HttpResource}.
+
+#### FILE resource/HttpResource.java
+@@ resource/HttpResource.java :: 1
+Extended interface for a {@link Resource} to be written to an
+HTTP response.
+
+@@ resource/HttpResource.java :: 2
+The HTTP headers to be contributed to the HTTP response
+that serves the current resource.
+
+#### FILE resource/PathResourceResolver.java
+@@ resource/PathResourceResolver.java :: 1
+A simple {@code ResourceResolver} that tries to find a resource under the given
+locations matching to the request path.
+
+<p>This resolver does not delegate to the {@code ResourceResolverChain} and is
+expected to be configured at the end in a chain of resolvers.
+
+@@ resource/PathResourceResolver.java :: 2
+By default, when a Resource is found, the path of the resolved resource is
+compared to ensure it's under the input location where it was found.
+However sometimes that may not be the case, e.g. when
+{@link CssLinkResourceTransformer}
+resolves public URLs of links it contains, the CSS file is the location
+and the resources being resolved are css files, images, fonts and others
+located in adjacent or parent directories.
+<p>This property allows configuring a complete list of locations under
+which resources must be so that if a resource is not under the location
+relative to which it was found, this list may be checked as well.
+<p>By default {@link ResourceWebHandler} initializes this property
+to match its list of locations.
+
+@@ resource/PathResourceResolver.java :: 3
+Find the resource under the given location.
+<p>The default implementation checks if there is a readable
+{@code Resource} for the given path relative to the location.
+
+@@ resource/PathResourceResolver.java :: 4
+Perform additional checks on a resolved resource beyond checking whether the
+resource exists and is readable. The default implementation also verifies
+the resource is either under the location relative to which it was found or
+is under one of the {@link #setAllowedLocations allowed locations}.
+
+#### FILE resource/ResourceResolver.java
+@@ resource/ResourceResolver.java :: 1
+A strategy for resolving a request to a server-side resource.
+
+<p>Provides mechanisms for resolving an incoming request to an actual
+{@link Resource} and for obtaining the
+public URL path that clients should use when requesting the resource.
+
+@@ resource/ResourceResolver.java :: 2
+Resolve the supplied request and request path to a {@link Resource} that
+exists under one of the given resource locations.
+
+@@ resource/ResourceResolver.java :: 3
+Resolve the externally facing <em>public</em> URL path for clients to use
+to access the resource that is located at the given <em>internal</em>
+resource path.
+<p>This is useful when rendering URL links to clients.
+
+#### FILE resource/ResourceResolverChain.java
+@@ resource/ResourceResolverChain.java :: 1
+A contract for invoking a chain of {@link ResourceResolver ResourceResolvers} where each resolver
+is given a reference to the chain allowing it to delegate when necessary.
+
+@@ resource/ResourceResolverChain.java :: 2
+Resolve the supplied request and request path to a {@link Resource} that
+exists under one of the given resource locations.
+
+@@ resource/ResourceResolverChain.java :: 3
+Resolve the externally facing <em>public</em> URL path for clients to use
+to access the resource that is located at the given <em>internal</em>
+resource path.
+<p>This is useful when rendering URL links to clients.
+
+#### FILE resource/ResourceTransformer.java
+@@ resource/ResourceTransformer.java :: 1
+An abstraction for transforming the content of a resource.
+
+@@ resource/ResourceTransformer.java :: 2
+Transform the given resource.
+
+#### FILE resource/ResourceTransformerChain.java
+@@ resource/ResourceTransformerChain.java :: 1
+A contract for invoking a chain of {@link ResourceTransformer ResourceTransformers} where each resolver
+is given a reference to the chain allowing it to delegate when necessary.
+
+@@ resource/ResourceTransformerChain.java :: 2
+Return the {@code ResourceResolverChain} that was used to resolve the
+{@code Resource} being transformed. This may be needed for resolving
+related resources, e.g. links to other resources.
+
+@@ resource/ResourceTransformerChain.java :: 3
+Transform the given resource.
+
+#### FILE resource/ResourceTransformerSupport.java
+@@ resource/ResourceTransformerSupport.java :: 1
+A base class for a {@code ResourceTransformer} with an optional helper method
+for resolving public links within a transformed resource.
+
+@@ resource/ResourceTransformerSupport.java :: 2
+Configure a {@link ResourceUrlProvider} to use when resolving the public
+URL of links in a transformed resource (e.g. import links in a CSS file).
+This is required only for links expressed as full paths and not for
+relative links.
+
+@@ resource/ResourceTransformerSupport.java :: 3
+Return the configured {@code ResourceUrlProvider}.
+
+@@ resource/ResourceTransformerSupport.java :: 4
+A transformer can use this method when a resource being transformed
+contains links to other resources. Such links need to be replaced with the
+public facing link as determined by the resource resolver chain (e.g. the
+public URL may have a version inserted).
+
+@@ resource/ResourceTransformerSupport.java :: 5
+Transform the given relative request path to an absolute path,
+taking the path of the given request as a point of reference.
+The resulting path is also cleaned from sequences like "path/..".
+
+#### FILE resource/ResourceUrlProvider.java
+@@ resource/ResourceUrlProvider.java :: 1
+A central component to use to obtain the public URL path that clients should
+use to access a static resource.
+
+<p>This class is aware of Spring WebFlux handler mappings used to serve static
+resources and uses the {@code ResourceResolver} chains of the configured
+{@code ResourceHttpRequestHandler}s to make its decisions.
+
+@@ resource/ResourceUrlProvider.java :: 2
+Return a read-only view of the resource handler mappings either manually
+configured or auto-detected from Spring configuration.
+
+@@ resource/ResourceUrlProvider.java :: 3
+Manually configure resource handler mappings.
+<p><strong>Note:</strong> by default resource mappings are auto-detected
+from the Spring {@code ApplicationContext}. If this property is used,
+auto-detection is turned off.
+
+@@ resource/ResourceUrlProvider.java :: 4
+Get the public resource URL for the given URI string.
+<p>The URI string is expected to be a path and if it contains a query or
+fragment those will be preserved in the resulting public resource URL.
+
+#### FILE resource/ResourceWebHandler.java
+@@ resource/ResourceWebHandler.java :: 1
+{@code HttpRequestHandler} that serves static resources in an optimized way
+according to the guidelines of Page Speed, YSlow, etc.
+
+<p>The {@linkplain #setLocations "locations"} property takes a list of Spring
+{@link Resource} locations from which static resources are allowed to
+be served by this handler. Resources could be served from a classpath location,
+e.g. "classpath:/META-INF/public-web-resources/", allowing convenient packaging
+and serving of resources such as .js, .css, and others in jar files.
+
+<p>This request handler may also be configured with a
+{@link #setResourceResolvers(List) resourcesResolver} and
+{@link #setResourceTransformers(List) resourceTransformer} chains to support
+arbitrary resolution and transformation of resources being served. By default
+a {@link PathResourceResolver} simply finds resources based on the configured
+"locations". An application can configure additional resolvers and
+transformers such as the {@link VersionResourceResolver} which can resolve
+and prepare URLs for resources with a version in the URL.
+
+<p>This handler also properly evaluates the {@code Last-Modified} header (if
+present) so that a {@code 304} status code will be returned as appropriate,
+avoiding unnecessary overhead for resources that are already cached by the
+client.
+
+@@ resource/ResourceWebHandler.java :: 2
+Provide the ResourceLoader to load {@link #setLocationValues location values} with.
+
+@@ resource/ResourceWebHandler.java :: 3
+Accepts a list of String-based location values to be resolved into
+{@link Resource} locations.
+
+@@ resource/ResourceWebHandler.java :: 4
+Return the configured location values.
+
+@@ resource/ResourceWebHandler.java :: 5
+Set the {@code List} of {@code Resource} paths to use as sources
+for serving static resources.
+
+@@ resource/ResourceWebHandler.java :: 6
+Return the {@code List} of {@code Resource} paths to use as sources
+for serving static resources.
+<p>Note that if {@link #setLocationValues(List) locationValues} are provided,
+instead of loaded Resource-based locations, this method will return
+empty until after initialization via {@link #afterPropertiesSet()}.
+<p><strong>Note:</strong> As of 5.3.11 the list of locations may be filtered to
+exclude those that don't actually exist and therefore the list returned from this
+method may be a subset of all given locations. See {@link #setOptimizeLocations}.
+
+@@ resource/ResourceWebHandler.java :: 7
+Configure the list of {@link ResourceResolver ResourceResolvers} to use.
+<p>By default {@link PathResourceResolver} is configured. If using this property,
+it is recommended to add {@link PathResourceResolver} as the last resolver.
+
+@@ resource/ResourceWebHandler.java :: 8
+Return the list of configured resource resolvers.
+
+@@ resource/ResourceWebHandler.java :: 9
+Configure the list of {@link ResourceTransformer ResourceTransformers} to use.
+<p>By default no transformers are configured for use.
+
+@@ resource/ResourceWebHandler.java :: 10
+Return the list of configured resource transformers.
+
+@@ resource/ResourceWebHandler.java :: 11
+Configure the {@link ResourceHttpMessageWriter} to use.
+<p>By default a {@link ResourceHttpMessageWriter} will be configured.
+
+@@ resource/ResourceWebHandler.java :: 12
+Return the configured resource message writer.
+
+@@ resource/ResourceWebHandler.java :: 13
+Set the {@link org.springframework.http.CacheControl} instance to build
+the Cache-Control HTTP response header.
+
+@@ resource/ResourceWebHandler.java :: 14
+Return the {@link org.springframework.http.CacheControl} instance to build
+the Cache-Control HTTP response header.
+
+@@ resource/ResourceWebHandler.java :: 15
+Set whether we should look at the {@link Resource#lastModified()}
+when serving resources and use this information to drive {@code "Last-Modified"}
+HTTP response headers.
+<p>This option is enabled by default and should be turned off if the metadata of
+the static files should be ignored.
+
+@@ resource/ResourceWebHandler.java :: 16
+Return whether the {@link Resource#lastModified()} information is used
+to drive HTTP responses when serving static resources.
+
+@@ resource/ResourceWebHandler.java :: 17
+Set whether to optimize the specified locations through an existence
+check on startup, filtering non-existing directories upfront so that
+they do not have to be checked on every resource access.
+<p>The default is {@code false}, for defensiveness against zip files
+without directory entries which are unable to expose the existence of
+a directory upfront. Switch this flag to {@code true} for optimized
+access in case of a consistent jar layout with directory entries.
+
+@@ resource/ResourceWebHandler.java :: 18
+Return whether to optimize the specified locations through an existence
+check on startup, filtering non-existing directories upfront so that
+they do not have to be checked on every resource access.
+
+@@ resource/ResourceWebHandler.java :: 19
+Add mappings between file extensions extracted from the filename of static
+{@link Resource}s and the media types to use for the response.
+<p>Use of this method is typically not necessary since mappings can be
+also determined via {@link MediaTypeFactory#getMediaType(Resource)}.
+
+@@ resource/ResourceWebHandler.java :: 20
+Return the {@link #setMediaTypes(Map) configured} media type mappings.
+
+@@ resource/ResourceWebHandler.java :: 21
+Look for a {@code PathResourceResolver} among the configured resource
+resolvers and set its {@code allowedLocations} property (if empty) to
+match the {@link #setLocations locations} configured on this class.
+
+@@ resource/ResourceWebHandler.java :: 22
+Processes a resource request.
+<p>Checks for the existence of the requested resource in the configured list of locations.
+If the resource does not exist, a {@code 404} response will be returned to the client.
+If the resource exists, the request will be checked for the presence of the
+{@code Last-Modified} header, and its value will be compared against the last-modified
+timestamp of the given resource, returning a {@code 304} status code if the
+{@code Last-Modified} value  is greater. If the resource is newer than the
+{@code Last-Modified} value, or the header is not present, the content resource
+of the resource will be written to the response with caching headers
+set to expire one year in the future.
+
+@@ resource/ResourceWebHandler.java :: 23
+Process the given resource path.
+<p>The default implementation replaces:
+<ul>
+<li>Backslash with forward slash.
+<li>Duplicate occurrences of slash with a single slash.
+<li>Any combination of leading slash and control characters (00-1F and 7F)
+with a single "/" or "". For example {@code "  / // foo/bar"}
+becomes {@code "/foo/bar"}.
+</ul>
+
+@@ resource/ResourceWebHandler.java :: 24
+Check whether the given path contains invalid escape sequences.
+
+@@ resource/ResourceWebHandler.java :: 25
+Identifies invalid resource paths. By default rejects:
+<ul>
+<li>Paths that contain "WEB-INF" or "META-INF"
+<li>Paths that contain "../" after a call to
+{@link StringUtils#cleanPath}.
+<li>Paths that represent a {@link ResourceUtils#isUrl
+valid URL} or would represent one after the leading slash is removed.
+</ul>
+<p><strong>Note:</strong> this method assumes that leading, duplicate '/'
+or control characters (e.g. white space) have been trimmed so that the
+path starts predictably with a single '/' or does not have one.
+
+@@ resource/ResourceWebHandler.java :: 26
+Set headers on the response. Called for both GET and HEAD requests.
+
+#### FILE resource/TransformedResource.java
+@@ resource/TransformedResource.java :: 1
+An extension of {@link ByteArrayResource} that a {@link ResourceTransformer}
+can use to represent an original resource preserving all other information
+except the content.
+
+#### FILE resource/VersionResourceResolver.java
+@@ resource/VersionResourceResolver.java :: 1
+Resolves request paths containing a version string that can be used as part
+of an HTTP caching strategy in which a resource is cached with a date in the
+distant future (e.g. 1 year) and cached until the version, and therefore the
+URL, is changed.
+
+<p>Different versioning strategies exist, and this resolver must be configured
+with one or more such strategies along with path mappings to indicate which
+strategy applies to which resources.
+
+<p>{@code ContentVersionStrategy} is a good default choice except in cases
+where it cannot be used. Most notably the {@code ContentVersionStrategy}
+cannot be combined with JavaScript module loaders. For such cases the
+{@code FixedVersionStrategy} is a better choice.
+
+<p>Note that using this resolver to serve CSS files means that the
+{@link CssLinkResourceTransformer} should also be used in order to modify
+links within CSS files to also contain the appropriate versions generated
+by this resolver.
+
+@@ resource/VersionResourceResolver.java :: 3
+Set a Map with URL paths as keys and {@code VersionStrategy} as values.
+<p>Supports direct URL matches and Ant-style pattern matches. For syntax
+details, see the {@link AntPathMatcher} javadoc.
+
+@@ resource/VersionResourceResolver.java :: 4
+Return the map with version strategies keyed by path pattern.
+
+@@ resource/VersionResourceResolver.java :: 5
+Insert a content-based version in resource URLs that match the given path
+patterns. The version is computed from the content of the file, e.g.
+{@code "css/main-e36d2e05253c6c7085a91522ce43a0b4.css"}. This is a good
+default strategy to use except when it cannot be, for example when using
+JavaScript module loaders, use {@link #addFixedVersionStrategy} instead
+for serving JavaScript files.
+
+@@ resource/VersionResourceResolver.java :: 6
+Insert a fixed, prefix-based version in resource URLs that match the given
+path patterns, for example: <code>"{version}/js/main.js"</code>. This is useful (vs.
+content-based versions) when using JavaScript module loaders.
+<p>The version may be a random number, the current date, or a value
+fetched from a git commit sha, a property file, or environment variable
+and set with SpEL expressions in the configuration (e.g. see {@code @Value}
+in Java config).
+<p>If not done already, variants of the given {@code pathPatterns}, prefixed with
+the {@code version} will be also configured. For example, adding a {@code "/js/**"} path pattern
+will also configure automatically a {@code "/v1.0.0/js/**"} with {@code "v1.0.0"} the
+{@code version} String given as an argument.
+
+@@ resource/VersionResourceResolver.java :: 7
+Register a custom VersionStrategy to apply to resource URLs that match the
+given path patterns.
+
+@@ resource/VersionResourceResolver.java :: 8
+Find a {@code VersionStrategy} for the request path of the requested resource.
+
+#### FILE resource/VersionStrategy.java
+@@ resource/VersionStrategy.java :: 1
+A strategy to determine the version of a static resource and to apply and/or
+extract it from the URL path.
+
+@@ resource/VersionStrategy.java :: 2
+Extract the resource version from the request path.
+
+@@ resource/VersionStrategy.java :: 3
+Remove the version from the request path. It is assumed that the given
+version was extracted via {@link #extractVersion(String)}.
+
+@@ resource/VersionStrategy.java :: 4
+Add a version to the given request path.
+
+@@ resource/VersionStrategy.java :: 5
+Determine the version for the given resource.
+
+#### FILE resource/WebJarsResourceResolver.java
+@@ resource/WebJarsResourceResolver.java :: 1
+A {@code ResourceResolver} that delegates to the chain to locate a resource and then
+attempts to find a matching versioned resource contained in a WebJar JAR file.
+
+<p>This allows WebJars.org users to write version agnostic paths in their templates,
+like {@code <script src="/webjars/jquery/jquery.min.js"/>}.
+This path will be resolved to the unique version {@code <script src="/webjars/jquery/1.2.0/jquery.min.js"/>},
+which is a better fit for HTTP caching and version management in applications.
+
+<p>This also resolves resources for version agnostic HTTP requests {@code "GET /jquery/jquery.min.js"}.
+
+<p>This resolver requires the {@code org.webjars:webjars-locator-core} library
+on the classpath and is automatically registered if that library is present.
+
+<p>Be aware that {@code WebJarAssetLocator} constructor performs a classpath scanning that
+could slow down application startup.
+
+@@ resource/WebJarsResourceResolver.java :: 2
+Create a {@code WebJarsResourceResolver} with a default {@code WebJarAssetLocator} instance.
+
+@@ resource/WebJarsResourceResolver.java :: 3
+Create a {@code WebJarsResourceResolver} with a custom {@code WebJarAssetLocator} instance,
+e.g. with a custom index.
+
+#### FILE resource/package-info.java
+@@ resource/package-info.java :: 1
+Support classes for serving static resources.
+

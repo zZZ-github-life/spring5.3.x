@@ -24,9 +24,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link PersistenceExceptionTranslator} that supports chaining,
- * allowing the addition of PersistenceExceptionTranslator instances in order.
- * Returns {@code non-null} on the first (if any) match.
+ * {@link PersistenceExceptionTranslator} 的实现，支持链式调用，
+ * 允许按顺序添加 PersistenceExceptionTranslator 实例。
+ * 在第一个匹配（如果有）时返回 {@code non-null}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -34,12 +34,12 @@ import org.springframework.util.Assert;
  */
 public class ChainedPersistenceExceptionTranslator implements PersistenceExceptionTranslator {
 
-	/** List of PersistenceExceptionTranslators. */
+	/** 已注册的 PersistenceExceptionTranslator 代理列表。 */
 	private final List<PersistenceExceptionTranslator> delegates = new ArrayList<>(4);
 
 
 	/**
-	 * Add a PersistenceExceptionTranslator to the chained delegate list.
+	 * 将 PersistenceExceptionTranslator 添加到链式代理列表中。
 	 */
 	public final void addDelegate(PersistenceExceptionTranslator pet) {
 		Assert.notNull(pet, "PersistenceExceptionTranslator must not be null");
@@ -47,7 +47,7 @@ public class ChainedPersistenceExceptionTranslator implements PersistenceExcepti
 	}
 
 	/**
-	 * Return all registered PersistenceExceptionTranslator delegates (as array).
+	 * 返回所有已注册的 PersistenceExceptionTranslator 代理（以数组形式）。
 	 */
 	public final PersistenceExceptionTranslator[] getDelegates() {
 		return this.delegates.toArray(new PersistenceExceptionTranslator[0]);

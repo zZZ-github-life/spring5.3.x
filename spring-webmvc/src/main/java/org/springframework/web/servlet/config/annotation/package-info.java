@@ -1,5 +1,5 @@
 /**
- * Annotation-based setup for Spring MVC.
+ * Spring MVC 的基于注解的配置。
  */
 @NonNullApi
 @NonNullFields

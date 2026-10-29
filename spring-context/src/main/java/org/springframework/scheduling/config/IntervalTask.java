@@ -17,9 +17,8 @@
 package org.springframework.scheduling.config;
 
 /**
- * {@link Task} implementation defining a {@code Runnable} to be executed at a given
- * millisecond interval which may be treated as fixed-rate or fixed-delay depending on
- * context.
+ * {@link Task} 实现，定义一个按给定毫秒间隔执行的 {@code Runnable}，该间隔可根据上下文被视为固定速
+ * 率或固定延迟。
  *
  * @author Chris Beams
  * @since 3.2
@@ -34,7 +33,7 @@ public class IntervalTask extends Task {
 
 
 	/**
-	 * Create a new {@code IntervalTask}.
+	 * 创建一个新的 {@code IntervalTask}。
 	 * @param runnable the underlying task to execute
 	 * @param interval how often in milliseconds the task should be executed
 	 * @param initialDelay the initial delay before first execution of the task
@@ -46,7 +45,7 @@ public class IntervalTask extends Task {
 	}
 
 	/**
-	 * Create a new {@code IntervalTask} with no initial delay.
+	 * 创建一个没有初始延迟的新 {@code IntervalTask}。
 	 * @param runnable the underlying task to execute
 	 * @param interval how often in milliseconds the task should be executed
 	 */
@@ -56,14 +55,14 @@ public class IntervalTask extends Task {
 
 
 	/**
-	 * Return how often in milliseconds the task should be executed.
+	 * 返回任务应以多少毫秒的间隔执行。
 	 */
 	public long getInterval() {
 		return this.interval;
 	}
 
 	/**
-	 * Return the initial delay before first execution of the task.
+	 * 返回任务首次执行前的初始延迟。
 	 */
 	public long getInitialDelay() {
 		return this.initialDelay;

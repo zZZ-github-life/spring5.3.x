@@ -21,7 +21,7 @@ import java.sql.DatabaseMetaData;
 import org.springframework.lang.Nullable;
 
 /**
- * Holder of meta-data for a specific parameter that is used for call processing.
+ * 持有用于调用处理的特定参数的元数据。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -46,7 +46,7 @@ public class CallParameterMetaData {
 
 
 	/**
-	 * Constructor taking all the properties except the function marker.
+	 * 接受除函数标记外所有属性的构造函数。
 	 */
 	@Deprecated
 	public CallParameterMetaData(
@@ -56,7 +56,7 @@ public class CallParameterMetaData {
 	}
 
 	/**
-	 * Constructor taking all the properties including the function marker.
+	 * 接受包括函数标记在内所有属性的构造函数。
 	 * @since 5.2.9
 	 */
 	public CallParameterMetaData(boolean function, @Nullable String columnName, int columnType,
@@ -72,7 +72,7 @@ public class CallParameterMetaData {
 
 
 	/**
-	 * Return whether this parameter is declared in a function.
+	 * 返回此参数是否在函数中声明。
 	 * @since 5.2.9
 	 */
 	public boolean isFunction() {
@@ -80,7 +80,7 @@ public class CallParameterMetaData {
 	}
 
 	/**
-	 * Return the parameter name.
+	 * 返回参数名称。
 	 */
 	@Nullable
 	public String getParameterName() {
@@ -88,17 +88,17 @@ public class CallParameterMetaData {
 	}
 
 	/**
-	 * Return the parameter type.
+	 * 返回参数类型。
 	 */
 	public int getParameterType() {
 		return this.parameterType;
 	}
 
 	/**
-	 * Determine whether the declared parameter qualifies as a 'return' parameter
-	 * for our purposes: type {@link DatabaseMetaData#procedureColumnReturn} or
-	 * {@link DatabaseMetaData#procedureColumnResult}, or in case of a function,
-	 * {@link DatabaseMetaData#functionReturn}.
+	 * 判断声明的参数是否符合我们的"返回"参数条件：
+	 * 类型为 {@link DatabaseMetaData#procedureColumnReturn} 或
+	 * {@link DatabaseMetaData#procedureColumnResult}，或者在函数的情况下，
+	 * 类型为 {@link DatabaseMetaData#functionReturn}。
 	 * @since 4.3.15
 	 */
 	public boolean isReturnParameter() {
@@ -108,14 +108,14 @@ public class CallParameterMetaData {
 	}
 
 	/**
-	 * Return the parameter SQL type.
+	 * 返回参数的 SQL 类型。
 	 */
 	public int getSqlType() {
 		return this.sqlType;
 	}
 
 	/**
-	 * Return the parameter type name.
+	 * 返回参数的类型名称。
 	 */
 	@Nullable
 	public String getTypeName() {
@@ -123,7 +123,7 @@ public class CallParameterMetaData {
 	}
 
 	/**
-	 * Return whether the parameter is nullable.
+	 * 返回参数是否可为空。
 	 */
 	public boolean isNullable() {
 		return this.nullable;

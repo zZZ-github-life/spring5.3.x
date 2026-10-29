@@ -28,8 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * {@link ClientHttpRequest} implementation that uses standard JDK facilities to
- * execute streaming requests. Created via the {@link SimpleClientHttpRequestFactory}.
+ * 使用标准 JDK 设施执行流式请求的
+ * {@link ClientHttpRequest} 实现。通过 {@link SimpleClientHttpRequestFactory} 创建。
  *
  * @author Arjen Poutsma
  * @since 3.0

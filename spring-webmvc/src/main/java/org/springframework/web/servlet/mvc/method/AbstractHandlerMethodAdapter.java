@@ -27,9 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.WebContentGenerator;
 
 /**
- * Abstract base class for {@link HandlerAdapter} implementations that support
- * handlers of type {@link HandlerMethod}.
- *
+ * {@link HandlerAdapter} 实现的抽象基类，用于支持
+ * 类型为 {@link HandlerMethod} 的处理器。
  * @author Arjen Poutsma
  * @since 3.1
  */
@@ -45,8 +44,8 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 
 
 	/**
-	 * Specify the order value for this HandlerAdapter bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * 指定此 HandlerAdapter bean 的顺序值。
+	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示无序。
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -60,7 +59,7 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 
 
 	/**
-	 * This implementation expects the handler to be an {@link HandlerMethod}.
+	 * 此实现要求处理器为 {@link HandlerMethod}。
 	 * @param handler the handler instance to check
 	 * @return whether this adapter can adapt the given handler
 	 */
@@ -70,14 +69,14 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	}
 
 	/**
-	 * Given a handler method, return whether this adapter can support it.
+	 * 给定处理器方法，返回此适配器是否支持它。
 	 * @param handlerMethod the handler method to check
 	 * @return whether this adapter can adapt the given method
 	 */
 	protected abstract boolean supportsInternal(HandlerMethod handlerMethod);
 
 	/**
-	 * This implementation expects the handler to be an {@link HandlerMethod}.
+	 * 此实现要求处理器为 {@link HandlerMethod}。
 	 */
 	@Override
 	@Nullable
@@ -88,7 +87,7 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	}
 
 	/**
-	 * Use the given handler method to handle the request.
+	 * 使用给定的处理器方法来处理请求。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 * @param handlerMethod handler method to use. This object must have previously been passed to the
@@ -102,7 +101,7 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception;
 
 	/**
-	 * This implementation expects the handler to be an {@link HandlerMethod}.
+	 * 此实现要求处理器为 {@link HandlerMethod}。
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
@@ -111,7 +110,7 @@ public abstract class AbstractHandlerMethodAdapter extends WebContentGenerator i
 	}
 
 	/**
-	 * Same contract as for {@link javax.servlet.http.HttpServlet#getLastModified(HttpServletRequest)}.
+	 * 约定与 {@link javax.servlet.http.HttpServlet#getLastModified(HttpServletRequest)} 相同。
 	 * @param request current HTTP request
 	 * @param handlerMethod handler method to use
 	 * @return the lastModified value for the given handler

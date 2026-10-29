@@ -26,10 +26,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Representation of a WebSocket message.
+ * WebSocket 消息的描述。
  *
- * <p>See static factory methods in {@link WebSocketSession} for creating messages with
- * the {@link org.springframework.core.io.buffer.DataBufferFactory} for the session.
+ * <p>有关使用会话的 {@link org.springframework.core.io.buffer.DataBufferFactory}
+ * 创建消息的信息，请参见 {@link WebSocketSession} 中的静态工厂方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -45,17 +45,16 @@ public class WebSocketMessage {
 
 
 	/**
-	 * Constructor for a WebSocketMessage.
-	 * <p>See static factory methods in {@link WebSocketSession} or alternatively
-	 * use {@link WebSocketSession#bufferFactory()} to create the payload and
-	 * then invoke this constructor.
+	 * WebSocketMessage 的构造函数。
+	 * <p>请参见 {@link WebSocketSession} 中的静态工厂方法，或者使用
+	 * {@link WebSocketSession#bufferFactory()} 创建负载，然后调用此构造函数。
 	 */
 	public WebSocketMessage(Type type, DataBuffer payload) {
 		this(type, payload, null);
 	}
 
 	/**
-	 * Constructor for an inbound message with access to the underlying message.
+	 * 用于入站消息并可以访问底层消息的构造函数。
 	 * @param type the type of WebSocket message
 	 * @param payload the message content
 	 * @param nativeMessage the message from the API of the underlying WebSocket
@@ -71,24 +70,22 @@ public class WebSocketMessage {
 	}
 
 	/**
-	 * Return the message type (text, binary, etc).
+	 * 返回消息类型（文本、二进制等）。
 	 */
 	public Type getType() {
 		return this.type;
 	}
 
 	/**
-	 * Return the message payload.
+	 * 返回消息负载。
 	 */
 	public DataBuffer getPayload() {
 		return this.payload;
 	}
 
 	/**
-	 * Return the message from the API of the underlying WebSocket library. This
-	 * is applicable for inbound messages only and when the underlying message
-	 * has additional fields other than the content. Currently this is the case
-	 * for Reactor Netty only.
+	 * 返回底层 WebSocket 库 API 中的消息。这仅适用于入站消息，并且当底层消息
+	 * 除内容之外还有其他字段时。目前只有 Reactor Netty 属于这种情况。
 	 * @param <T> the type to cast the underlying message to
 	 * @return the underlying message, or {@code null}
 	 * @since 5.3
@@ -100,17 +97,16 @@ public class WebSocketMessage {
 	}
 
 	/**
-	 * A variant of {@link #getPayloadAsText(Charset)} that uses {@code UTF-8}
-	 * for decoding the raw content to text.
+	 * {@link #getPayloadAsText(Charset)} 的一个变体，使用 {@code UTF-8}
+	 * 将原始内容解码为文本。
 	 */
 	public String getPayloadAsText() {
 		return getPayloadAsText(StandardCharsets.UTF_8);
 	}
 
 	/**
-	 * A shortcut for decoding the raw content of the message to text with the
-	 * given character encoding. This is useful for text WebSocket messages, or
-	 * otherwise when the payload is expected to contain text.
+	 * 使用给定的字符编码将消息原始内容解码为文本的快捷方式。这对于文本 WebSocket
+	 * 消息很有用，或者在负载预期包含文本的其他情况下也很有用。
 	 * @param charset the character encoding
 	 * @since 5.0.5
 	 */
@@ -119,8 +115,8 @@ public class WebSocketMessage {
 	}
 
 	/**
-	 * Retain the data buffer for the message payload, which is useful on
-	 * runtimes (e.g. Netty) with pooled buffers. A shortcut for:
+	 * 保留消息负载的数据缓冲区，这在具有池化缓冲区的运行时（例如 Netty）中很有用。
+	 * 是以下代码的快捷方式：
 	 * <pre>
 	 * DataBuffer payload = message.getPayload();
 	 * DataBufferUtils.retain(payload);
@@ -133,8 +129,8 @@ public class WebSocketMessage {
 	}
 
 	/**
-	 * Release the payload {@code DataBuffer} which is useful on runtimes
-	 * (e.g. Netty) with pooled buffers such as Netty. A shortcut for:
+	 * 释放负载 {@code DataBuffer}，这在具有池化缓冲区的运行时（例如 Netty）中
+	 * 很有用。是以下代码的快捷方式：
 	 * <pre>
 	 * DataBuffer payload = message.getPayload();
 	 * DataBufferUtils.release(payload);
@@ -171,23 +167,23 @@ public class WebSocketMessage {
 
 
 	/**
-	 * WebSocket message types.
+	 * WebSocket 消息类型。
 	 */
 	public enum Type {
 		/**
-		 * Text WebSocket message.
+		 * 文本 WebSocket 消息。
 		 */
 		TEXT,
 		/**
-		 * Binary WebSocket message.
+		 * 二进制 WebSocket 消息。
 		 */
 		BINARY,
 		/**
-		 * WebSocket ping.
+		 * WebSocket ping。
 		 */
 		PING,
 		/**
-		 * WebSocket pong.
+		 * WebSocket pong。
 		 */
 		PONG
 	}

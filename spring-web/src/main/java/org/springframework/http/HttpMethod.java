@@ -22,9 +22,7 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
- * Enumeration of HTTP request methods. Intended for use
- * with {@link org.springframework.http.client.ClientHttpRequest}
- * and {@link org.springframework.web.client.RestTemplate}.
+ * HTTP 请求方法的枚举。预期与 {@link org.springframework.http.client.ClientHttpRequest} 和 {@link org.springframework.web.client.RestTemplate} 一起使用。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -45,7 +43,7 @@ public enum HttpMethod {
 
 
 	/**
-	 * Resolve the given method value to an {@code HttpMethod}.
+	 * 将给定的方法值解析为 {@code HttpMethod}。
 	 * @param method the method value as a String
 	 * @return the corresponding {@code HttpMethod}, or {@code null} if not found
 	 * @since 4.2.4
@@ -57,7 +55,7 @@ public enum HttpMethod {
 
 
 	/**
-	 * Determine whether this {@code HttpMethod} matches the given method value.
+	 * 确定此 {@code HttpMethod} 是否与给定的方法值匹配。
 	 * @param method the HTTP method as a String
 	 * @return {@code true} if it matches, {@code false} otherwise
 	 * @since 4.2.4

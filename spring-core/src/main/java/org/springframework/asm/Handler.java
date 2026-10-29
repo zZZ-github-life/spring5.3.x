@@ -28,10 +28,9 @@
 package org.springframework.asm;
 
 /**
- * Information about an exception handler. Corresponds to an element of the exception_table array of
- * a Code attribute, as defined in the Java Virtual Machine Specification (JVMS). Handler instances
- * can be chained together, with their {@link #nextHandler} field, to describe a full JVMS
- * exception_table array.
+ * 关于异常处理器的信息。它对应于 Java 虚拟机规范（JVMS）中定义的 Code 属性的 exception_table 数组
+ * 的一个元素。Handler 实例可以通过其 {@link #nextHandler} 字段链接在一起，以描述完整的 JVMS
+ * exception_table 数组。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.3">JVMS
  *     4.7.3</a>
@@ -40,40 +39,36 @@ package org.springframework.asm;
 final class Handler {
 
   /**
-   * The start_pc field of this JVMS exception_table entry. Corresponds to the beginning of the
-   * exception handler's scope (inclusive).
+   * 此 JVMS exception_table 条目的 start_pc 字段。对应于异常处理器作用域的开始（包含）。
    */
   final Label startPc;
 
   /**
-   * The end_pc field of this JVMS exception_table entry. Corresponds to the end of the exception
-   * handler's scope (exclusive).
+   * 此 JVMS exception_table 条目的 end_pc 字段。对应于异常处理器作用域的结束（不包含）。
    */
   final Label endPc;
 
   /**
-   * The handler_pc field of this JVMS exception_table entry. Corresponding to the beginning of the
-   * exception handler's code.
+   * 此 JVMS exception_table 条目的 handler_pc 字段。对应于异常处理器代码的开始。
    */
   final Label handlerPc;
 
   /**
-   * The catch_type field of this JVMS exception_table entry. This is the constant pool index of the
-   * internal name of the type of exceptions handled by this handler, or 0 to catch any exceptions.
+   * 此 JVMS exception_table 条目的 catch_type 字段。它是此处理器所处理的异常类型的内部名称在常量池中
+   * 的索引，若要捕获任何异常则为 0。
    */
   final int catchType;
 
   /**
-   * The internal name of the type of exceptions handled by this handler, or {@literal null} to
-   * catch any exceptions.
+   * 此处理器所处理的异常类型的内部名称，若要捕获任何异常则为 {@literal null}。
    */
   final String catchTypeDescriptor;
 
-  /** The next exception handler. */
+  /** 下一个异常处理器。 */
   Handler nextHandler;
 
   /**
-   * Constructs a new Handler.
+   * 构造一个新的 Handler。
    *
    * @param startPc the start_pc field of this JVMS exception_table entry.
    * @param endPc the end_pc field of this JVMS exception_table entry.
@@ -96,7 +91,7 @@ final class Handler {
   }
 
   /**
-   * Constructs a new Handler from the given one, with a different scope.
+   * 根据给定的 Handler 构造一个新的 Handler，其作用域不同。
    *
    * @param handler an existing Handler.
    * @param startPc the start_pc field of this JVMS exception_table entry.
@@ -108,8 +103,7 @@ final class Handler {
   }
 
   /**
-   * Removes the range between start and end from the Handler list that begins with the given
-   * element.
+   * 从以给定元素开头的 Handler 列表中移除 start 与 end 之间的范围。
    *
    * @param firstHandler the beginning of a Handler list. May be {@literal null}.
    * @param start the start of the range to be removed.
@@ -150,7 +144,7 @@ final class Handler {
   }
 
   /**
-   * Returns the number of elements of the Handler list that begins with the given element.
+   * 返回以给定元素开头的 Handler 列表的元素数量。
    *
    * @param firstHandler the beginning of a Handler list. May be {@literal null}.
    * @return the number of elements of the Handler list that begins with 'handler'.
@@ -166,8 +160,8 @@ final class Handler {
   }
 
   /**
-   * Returns the size in bytes of the JVMS exception_table corresponding to the Handler list that
-   * begins with the given element. <i>This includes the exception_table_length field.</i>
+   * 返回与以给定元素开头的 Handler 列表相对应的 JVMS exception_table 的字节大小。<i>这包括
+   * exception_table_length 字段。</i>
    *
    * @param firstHandler the beginning of a Handler list. May be {@literal null}.
    * @return the size in bytes of the exception_table_length and exception_table structures.
@@ -177,8 +171,8 @@ final class Handler {
   }
 
   /**
-   * Puts the JVMS exception_table corresponding to the Handler list that begins with the given
-   * element. <i>This includes the exception_table_length field.</i>
+   * 放入与以给定元素开头的 Handler 列表相对应的 JVMS exception_table。<i>这包括
+   * exception_table_length 字段。</i>
    *
    * @param firstHandler the beginning of a Handler list. May be {@literal null}.
    * @param output where the exception_table_length and exception_table structures must be put.

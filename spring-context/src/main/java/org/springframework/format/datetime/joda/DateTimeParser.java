@@ -25,7 +25,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.springframework.format.Parser;
 
 /**
- * Parses Joda {@link DateTime} instances using a {@link DateTimeFormatter}.
+ * 使用 {@link DateTimeFormatter} 解析 Joda {@link DateTime} 实例。
  *
  * @author Keith Donald
  * @since 3.0
@@ -38,7 +38,7 @@ public final class DateTimeParser implements Parser<DateTime> {
 
 
 	/**
-	 * Create a new DateTimeParser.
+	 * 创建一个新的 DateTimeParser。
 	 * @param formatter the Joda DateTimeFormatter instance
 	 */
 	public DateTimeParser(DateTimeFormatter formatter) {

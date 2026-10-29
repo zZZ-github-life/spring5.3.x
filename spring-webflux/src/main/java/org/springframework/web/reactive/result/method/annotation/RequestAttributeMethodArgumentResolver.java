@@ -30,8 +30,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * Resolves method arguments annotated with an @{@link RequestAttribute}.
- *
+ * 解析带有 @{@link RequestAttribute} 注解的方法参数。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see SessionAttributeMethodArgumentResolver
@@ -39,7 +38,7 @@ import org.springframework.web.server.ServerWebInputException;
 public class RequestAttributeMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
-	 * Create a new {@link RequestAttributeMethodArgumentResolver} instance.
+	 * 创建新的 {@link RequestAttributeMethodArgumentResolver} 实例。
 	 * @param factory a bean factory to use for resolving {@code ${...}}
 	 * placeholder and {@code #{...}} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to have expressions

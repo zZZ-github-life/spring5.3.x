@@ -24,27 +24,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @WebAppConfiguration} is a class-level annotation that is used to
- * declare that the {@code ApplicationContext} loaded for an integration test
- * should be a {@link org.springframework.web.context.WebApplicationContext
- * WebApplicationContext}.
- *
- * <p>The presence of {@code @WebAppConfiguration} on a test class indicates that
- * a {@code WebApplicationContext} should be loaded for the test using a default
- * for the path to the root of the web application. To override the default,
- * specify an explicit resource path via the {@link #value} attribute.
- *
- * <p>Note that {@code @WebAppConfiguration} must be used in conjunction with
- * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration},
- * either within a single test class or within a test class hierarchy.
- *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
- *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * {@code @WebAppConfiguration} 是一个类级注解，用于声明为集成测试加载的 {@code ApplicationContext} 应为 {@link org.springframework.web.context.WebApplicationContext WebApplicationContext}。
+ * <p>测试类上存在 {@code @WebAppConfiguration} 表示应使用 Web 应用程序根路径的默认值为测试加载 {@code WebApplicationContext}。要覆盖默认值，请通过 {@link #value} 属性指定显式资源路径。
+ * <p>请注意，{@code @WebAppConfiguration} 必须与 {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration} 结合使用，可以位于单个测试类中，也可以位于测试类层次结构中。
+ * <p>此注解可用作<em>元注解</em>以创建自定义<em>组合注解</em>。
+ * <p>从 Spring Framework 5.3 开始，此注解默认会从封闭测试类继承。有关详情，请参见 {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 3.2
@@ -59,13 +43,9 @@ import java.lang.annotation.Target;
 public @interface WebAppConfiguration {
 
 	/**
-	 * The resource path to the root directory of the web application.
-	 * <p>A path that does not include a Spring resource prefix (e.g., {@code classpath:},
-	 * {@code file:}, etc.) will be interpreted as a file system resource, and a
-	 * path should not end with a slash.
-	 * <p>Defaults to {@code "src/main/webapp"} as a file system resource. Note
-	 * that this is the standard directory for the root of a web application in
-	 * a project that follows the standard Maven project layout for a WAR.
+	 * Web 应用程序根目录的资源路径。
+	 * <p>不包含 Spring 资源前缀（例如 {@code classpath:}、{@code file:} 等）的路径将被解释为文件系统资源，并且路径不应以斜杠结尾。
+	 * <p>默认为文件系统资源 {@code "src/main/webapp"}。请注意，对于遵循标准 Maven WAR 项目布局的项目，这是 Web 应用程序根目录的标准目录。
 	 */
 	String value() default "src/main/webapp";
 

@@ -40,7 +40,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Base class for {@link ServerHttpResponse} implementations.
+ * {@link ServerHttpResponse} 实现的基类。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -51,10 +51,9 @@ import org.springframework.util.MultiValueMap;
 public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 	/**
-	 * COMMITTING -> COMMITTED is the period after doCommit is called but before
-	 * the response status and headers have been applied to the underlying
-	 * response during which time pre-commit actions can still make changes to
-	 * the response status and headers.
+	 * COMMITTING -> COMMITTED 是调用 doCommit 之后、但在响应状态和头
+	 * 应用到基础响应之前的时期，在此期间提交前操作仍可以更改
+	 * 响应的状态和头。
 	 */
 	private enum State {NEW, COMMITTING, COMMIT_ACTION_FAILED, COMMITTED}
 
@@ -129,7 +128,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	}
 
 	/**
-	 * Set the HTTP status code of the response.
+	 * 设置响应的 HTTP 状态码。
 	 * @param statusCode the HTTP status as an integer value
 	 * @since 5.0.1
 	 * @deprecated as of 5.2.4 in favor of {@link ServerHttpResponse#setRawStatusCode(Integer)}.
@@ -142,7 +141,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	}
 
 	/**
-	 * Return the HTTP status code of the response.
+	 * 返回响应的 HTTP 状态码。
 	 * @return the HTTP status as an integer value
 	 * @since 5.0.1
 	 * @deprecated as of 5.2.4 in favor of {@link ServerHttpResponse#getRawStatusCode()}.
@@ -187,9 +186,9 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	}
 
 	/**
-	 * Return the underlying server response.
-	 * <p><strong>Note:</strong> This is exposed mainly for internal framework
-	 * use such as WebSocket upgrades in the spring-webflux module.
+	 * 返回底层的服务器响应。
+	 * <p><strong>注意：</strong>主要公开此方法供框架内部使用，
+	 * 例如 spring-webflux 模块中的 WebSocket 升级。
 	 */
 	public abstract <T> T getNativeResponse();
 
@@ -254,7 +253,7 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	}
 
 	/**
-	 * A variant of {@link #doCommit(Supplier)} for a response without a body.
+	 * {@link #doCommit(Supplier)} 的变体，用于没有正文的响应。
 	 * @return a completion publisher
 	 */
 	protected Mono<Void> doCommit() {
@@ -262,8 +261,8 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 	}
 
 	/**
-	 * Apply {@link #beforeCommit(Supplier) beforeCommit} actions, apply the
-	 * response status and headers/cookies, and write the response body.
+	 * 执行 {@link #beforeCommit(Supplier) beforeCommit} 操作，应用
+	 * 响应状态和头/cookie，并写入响应体。
 	 * @param writeAction the action to write the response body (may be {@code null})
 	 * @return a completion publisher
 	 */
@@ -302,43 +301,41 @@ public abstract class AbstractServerHttpResponse implements ServerHttpResponse {
 
 
 	/**
-	 * Write to the underlying the response.
+	 * 写入底层响应。
 	 * @param body the publisher to write with
 	 */
 	protected abstract Mono<Void> writeWithInternal(Publisher<? extends DataBuffer> body);
 
 	/**
-	 * Write to the underlying the response, and flush after each {@code Publisher<DataBuffer>}.
+	 * 写入底层响应，并在每个 {@code Publisher<DataBuffer>} 之后刷新。
 	 * @param body the publisher to write and flush with
 	 */
 	protected abstract Mono<Void> writeAndFlushWithInternal(Publisher<? extends Publisher<? extends DataBuffer>> body);
 
 	/**
-	 * Write the status code to the underlying response.
-	 * This method is called once only.
+	 * 将状态码写入底层响应。
+	 * 此方法只会被调用一次。
 	 */
 	protected abstract void applyStatusCode();
 
 	/**
-	 * Invoked when the response is getting committed allowing subclasses to
-	 * make apply header values to the underlying response.
-	 * <p>Note that most subclasses use an {@link HttpHeaders} instance that
-	 * wraps an adapter to the native response headers such that changes are
-	 * propagated to the underlying response on the go. That means this callback
-	 * is typically not used other than for specialized updates such as setting
-	 * the contentType or characterEncoding fields in a Servlet response.
+	 * 在响应即将提交时调用，允许子类向底层响应应用头值。
+	 * <p>请注意，大多数子类使用一个包装了原生响应头适配器的
+	 * {@link HttpHeaders} 实例，因此更改会即时传播到底层响应。
+	 * 这意味着此回调通常不会用到，除非用于专门的更新，例如设置
+	 * Servlet 响应中的 contentType 或 characterEncoding 字段。
 	 */
 	protected abstract void applyHeaders();
 
 	/**
-	 * Add cookies from {@link #getHeaders()} to the underlying response.
-	 * This method is called once only.
+	 * 将 {@link #getHeaders()} 中的 cookie 添加到基础响应。
+	 * 此方法只会被调用一次。
 	 */
 	protected abstract void applyCookies();
 
 	/**
-	 * Allow subclasses to associate a hint with the data buffer if it is a
-	 * pooled buffer and supports leak tracking.
+	 * 如果数据缓冲区是池化缓冲区并支持泄漏跟踪，
+	 * 允许子类为其关联一个提示。
 	 * @param buffer the buffer to attach a hint to
 	 * @since 5.3.2
 	 */

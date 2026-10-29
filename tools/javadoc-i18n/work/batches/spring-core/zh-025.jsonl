@@ -1,0 +1,102 @@
+{"id": "spring-core/src/main/java/org/springframework/objenesis/package-info.java::1::0", "zh": ["Spring 对 <a href=\"http://objenesis.org\">Objenesis 3.2</a> 的重新打包", "（入口点为 SpringObjenesis；仅供内部使用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/package-info.java::1::1", "zh": ["<p>这种重新打包技术可避免在应用层面或来自第三方库和框架的、对不同 Objenesis 版本的依赖产生任何潜在冲突。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/package-info.java::1::2", "zh": ["<p>由于这种重新打包发生在 class 文件级别，因此这里不提供源码和 javadoc。在使用这些类时，详细信息请参阅原始的 <a href=\"http://objenesis.org/tutorial.html\">Objenesis 文档</a>。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AlternativeJdkIdGenerator.java::24::0", "zh": ["一个 {@link IdGenerator}，其初始种子使用 {@link SecureRandom}，之后使用 {@link Random}，而不是像 {@link org.springframework.util.JdkIdGenerator JdkIdGenerator} 那样每次都调用 {@link UUID#randomUUID()}。这在安全随机 id 与性能之间取得了更好的平衡。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::30::0", "zh": ["用于 Ant 风格路径模式的 {@link PathMatcher} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::30::1", "zh": ["<p>此映射代码的一部分借鉴自 <a href=\"https://ant.apache.org\">Apache Ant</a>。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::30::2", "zh": ["<p>该映射使用以下规则匹配 URL：<br>"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::30::3", "zh": ["<h3>示例</h3>"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::30::4", "zh": ["<p><strong>注意：</strong>模式与路径必须同为绝对或同为相对，二者才能匹配。因此，建议此实现的使用者对模式进行规范化，在其使用场景合理的情况下为其加上 \"/\" 前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::102::0", "zh": ["使用 {@link #DEFAULT_PATH_SEPARATOR} 创建一个新实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::110::0", "zh": ["用于自定义路径分隔符的便捷替代构造函数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::122::0", "zh": ["设置用于模式解析的路径分隔符。", "<p>默认值为 \"/\"，与 Ant 中相同。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::131::0", "zh": ["指定是否以区分大小写的方式执行模式匹配。", "<p>默认为 {@code true}。将其改为 {@code false} 即可进行不区分大小写的匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::140::0", "zh": ["指定是否对分词后的路径和模式进行修剪。", "<p>默认为 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::148::0", "zh": ["指定是否对传入此匹配器 {@link #match} 方法的模式缓存解析后的模式元数据。值为 {@code true} 会启用无限制的模式缓存；值为 {@code false} 则完全关闭模式缓存。", "<p>默认情况下缓存处于开启状态，但当运行时遇到过多需要缓存的模式（阈值为 65536）时会自动关闭，其前提是假定会有任意排列的模式进来，极少出现重复的模式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::203::0", "zh": ["实际将给定的 {@code path} 与给定的 {@code pattern} 进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::391::0", "zh": ["根据此匹配器的设置将给定的路径模式分词为多个部分。", "<p>根据 {@link #setCachePatterns} 执行缓存，实际的词法分析算法委托给 {@link #tokenizePath(String)}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::420::0", "zh": ["根据此匹配器的设置将给定的路径分词为多个部分。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::429::0", "zh": ["测试某个字符串是否与模式匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::441::0", "zh": ["为给定的模式构建或获取一个 {@link AntPathStringMatcher}。", "<p>默认实现会检查此 AntPathMatcher 的内部缓存（参见 {@link #setCachePatterns}），如果未找到缓存副本，则创建一个新的 AntPathStringMatcher 实例。", "<p>当运行时遇到过多需要缓存的模式（阈值为 65536）时，它会关闭默认缓存，其前提是假定会有任意排列的模式进来，极少出现重复的模式。", "<p>可以重写此方法以实现自定义的缓存策略。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::476::0", "zh": ["<p>假定 {@link #match} 对 '{@code pattern}' 和 '{@code path}' 返回 {@code true}，但<strong>不</strong>强制要求如此。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::522::0", "zh": ["将两个模式组合成一个新模式。", "<p>此实现只是简单地将两个模式拼接起来，除非第一个模式包含文件扩展名匹配（例如 {@code *.html}）。在这种情况下，第二个模式会被合并到第一个模式中。否则将抛出 {@code IllegalArgumentException}。", "<h3>示例</h3>"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::615::0", "zh": ["给定完整路径，返回一个适合按明确程度对模式排序的 {@link Comparator}。", "<p>这个 {@code Comparator} 会{@linkplain java.util.List#sort(Comparator) 排序}列表，使更具体的模式（不含 URI 模板或通配符）排在通用模式之前。因此，给定一个包含以下模式的列表，返回的比较器会按所示顺序对该列表排序。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::615::1", "zh": ["<p>作为参数传入的完整路径用于测试精确匹配。因此当给定路径为 {@code /hotels/2} 时，模式 {@code /hotels/2} 会排在 {@code /hotels/1} 之前。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::638::0", "zh": ["通过 {@link Pattern} 测试某个字符串是否与模式匹配。", "<p>模式可以包含特殊字符：'*' 表示零个或多个字符；'?' 表示一个且仅一个字符；'{' 和 '}' 表示 URI 模板模式。例如 {@code /users/{user}}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::716::0", "zh": ["主入口点。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::753::0", "zh": ["由 {@link #getPatternComparator(String)} 返回的默认 {@link Comparator} 实现。", "<p>按顺序，最“通用”的模式由以下各项决定："]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::774::0", "zh": ["比较两个模式以确定哪个应先匹配，即相对于当前路径哪个更具体。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::843::0", "zh": ["保存模式相关信息的值类，例如 \"*\"、\"**\" 和 \"{\" 等模式元素出现的次数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::929::0", "zh": ["返回给定模式的长度，其中模板变量被视为长度为 1。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AntPathMatcher.java::943::0", "zh": ["用于依赖已配置路径分隔符的模式的简单缓存。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::25::0", "zh": ["用于协助校验参数的断言工具类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::25::1", "zh": ["<p>有助于在运行时尽早、清晰地识别程序员错误。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::25::2", "zh": ["<p>例如，如果某个公共方法的约定声明其不允许 {@code null} 参数，就可以用 {@code Assert} 来校验该约定。这样做在发生约定违反时能清晰地指出问题，并保护类的不变量。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::25::3", "zh": ["<p>通常用于校验方法参数而非配置属性，以检查那些通常属于程序员错误而非配置错误的情况。与配置初始化代码不同，在此类方法中回退到默认值通常没有意义。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::25::4", "zh": ["<p>此类类似于 JUnit 的断言库。如果某个参数值被认为无效，通常会抛出 {@link IllegalArgumentException}。例如："]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::25::5", "zh": ["<p>主要用于框架内部；如需更全面的断言工具集，可考虑 <a href=\"https://commons.apache.org/proper/commons-lang/\">Apache Commons Lang</a> 中的 {@code org.apache.commons.lang3.Validate}、Google Guava 的 <a href=\"https://github.com/google/guava/wiki/PreconditionsExplained\">Preconditions</a>，或类似的第三方库。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::64::0", "zh": ["断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalStateException}。", "<p>如果希望在断言失败时抛出 {@code IllegalArgumentException}，请调用 {@link #isTrue}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::80::0", "zh": ["断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalStateException}。", "<p>如果希望在断言失败时抛出 {@code IllegalArgumentException}，请调用 {@link #isTrue}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::101::0", "zh": ["断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalStateException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::111::0", "zh": ["断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalArgumentException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::125::0", "zh": ["断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalArgumentException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::143::0", "zh": ["断言一个布尔表达式，如果表达式的值为 {@code false}，则抛出 {@code IllegalArgumentException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::153::0", "zh": ["断言对象为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::166::0", "zh": ["断言对象为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::183::0", "zh": ["断言对象为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::192::0", "zh": ["断言对象不为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::205::0", "zh": ["断言对象不为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::223::0", "zh": ["断言对象不为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::232::0", "zh": ["断言给定 String 不为空；也就是说，它不能为 {@code null}，也不能是空 String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::247::0", "zh": ["断言给定 String 不为空；也就是说，它不能为 {@code null}，也不能是空 String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::267::0", "zh": ["断言给定 String 不为空；也就是说，它不能为 {@code null}，也不能是空 String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::278::0", "zh": ["断言给定 String 包含有效的文本内容；也就是说，它不能为 {@code null}，并且必须至少包含一个非空白字符。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::293::0", "zh": ["断言给定 String 包含有效的文本内容；也就是说，它不能为 {@code null}，并且必须至少包含一个非空白字符。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::313::0", "zh": ["断言给定 String 包含有效的文本内容；也就是说，它不能为 {@code null}，并且必须至少包含一个非空白字符。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::324::0", "zh": ["断言给定文本不包含给定的子字符串。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::339::0", "zh": ["断言给定文本不包含给定的子字符串。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::358::0", "zh": ["断言给定文本不包含给定的子字符串。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::368::0", "zh": ["断言数组包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::382::0", "zh": ["断言数组包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::400::0", "zh": ["断言数组包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::410::0", "zh": ["断言数组不包含 {@code null} 元素。", "<p>注意：如果数组为空，则不会报错！"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::428::0", "zh": ["断言数组不包含 {@code null} 元素。", "<p>注意：如果数组为空，则不会报错！"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::450::0", "zh": ["断言数组不包含 {@code null} 元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::459::0", "zh": ["断言集合包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::474::0", "zh": ["断言集合包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::493::0", "zh": ["断言集合包含元素；也就是说，它不能为 {@code null}，并且必须至少包含一个元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::504::0", "zh": ["断言集合不包含 {@code null} 元素。", "<p>注意：如果集合为空，则不会报错！"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::523::0", "zh": ["断言集合不包含 {@code null} 元素。", "<p>注意：如果集合为空，则不会报错！"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::545::0", "zh": ["断言 Map 包含条目；也就是说，它不能为 {@code null}，并且必须至少包含一个条目。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::559::0", "zh": ["断言 Map 包含条目；也就是说，它不能为 {@code null}，并且必须至少包含一个条目。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::577::0", "zh": ["断言 Map 包含条目；也就是说，它不能为 {@code null}，并且必须至少包含一个条目。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::587::0", "zh": ["断言提供的对象是提供的类的实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::606::0", "zh": ["断言提供的对象是提供的类的实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::625::0", "zh": ["断言提供的对象是提供的类的实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::636::0", "zh": ["断言 {@code superType.isAssignableFrom(subType)} 为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::655::0", "zh": ["断言 {@code superType.isAssignableFrom(subType)} 为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Assert.java::674::0", "zh": ["断言 {@code superType.isAssignableFrom(subType)} 为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::30::0", "zh": ["简单的 {@link List} 包装类，允许在请求元素时自动填充它们。这对于向 {@link List Lists} 进行数据绑定尤为有用，可以“即时”创建元素并将其添加到 {@link List} 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::30::1", "zh": ["<p>注意：此类不是线程安全的。要创建线程安全的版本，请使用 {@link java.util.Collections#synchronizedList} 工具方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::30::2", "zh": ["<p>受 Commons Collections 中的 {@code LazyList} 启发。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::49::0", "zh": ["所有操作最终都会委托给的 {@link List}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::54::0", "zh": ["用于按需创建新的 {@link List} 元素所使用的 {@link ElementFactory}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::61::0", "zh": ["创建一个新的 {@code AutoPopulatingList}，它由标准 {@link ArrayList} 支持，并按需将所提供 {@link Class element Class} 的新实例添加到后备 {@link List} 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::70::0", "zh": ["创建一个新的 {@code AutoPopulatingList}，它由所提供的 {@link List} 支持，并按需将所提供 {@link Class element Class} 的新实例添加到后备 {@link List} 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::79::0", "zh": ["创建一个新的 {@code AutoPopulatingList}，它由标准 {@link ArrayList} 支持，并使用所提供的 {@link ElementFactory} 按需创建新元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::87::0", "zh": ["创建一个新的 {@code AutoPopulatingList}，它由所提供的 {@link List} 支持，并使用所提供的 {@link ElementFactory} 按需创建新元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::134::0", "zh": ["获取所提供索引处的元素，如果该索引处没有元素，则创建它。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::246::0", "zh": ["用于为基于索引访问的数据结构（例如 {@link java.util.List}）创建元素的工厂接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::255::0", "zh": ["为所提供的索引创建元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::265::0", "zh": ["从 ElementFactory 抛出的异常。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/AutoPopulatingList.java::280::0", "zh": ["ElementFactory 接口的反射实现，在给定的元素类上使用 {@code Class.getDeclaredConstructor().newInstance()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::23::0", "zh": ["用于 Base64 编码和解码的简单工具类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::23::1", "zh": ["<p>以便捷的方式适配 Java 8 的 {@link java.util.Base64}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::38::0", "zh": ["对给定的字节数组进行 Base64 编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::50::0", "zh": ["对给定的字节数组进行 Base64 解码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::62::0", "zh": ["使用 RFC 4648 的 \"URL and Filename Safe Alphabet\" 对给定的字节数组进行 Base64 编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::76::0", "zh": ["使用 RFC 4648 的 \"URL and Filename Safe Alphabet\" 对给定的字节数组进行 Base64 解码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::90::0", "zh": ["将给定的字节数组进行 Base64 编码为 String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::102::0", "zh": ["从 UTF-8 String 对给定的字节数组进行 Base64 解码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::114::0", "zh": ["使用 RFC 4648 的 \"URL and Filename Safe Alphabet\" 将给定的字节数组进行 Base64 编码为 String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/Base64Utils.java::124::0", "zh": ["从 UTF-8 String 使用 RFC 4648 的 \"URL and Filename Safe Alphabet\" 对给定的字节数组进行 Base64 解码。"]}

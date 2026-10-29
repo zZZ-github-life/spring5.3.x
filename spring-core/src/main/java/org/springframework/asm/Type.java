@@ -31,82 +31,81 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 /**
- * A Java field or method type. This class can be used to make it easier to manipulate type and
- * method descriptors.
+ * Java 字段或方法类型。借助此类可以更轻松地操作类型描述符和方法描述符。
  *
  * @author Eric Bruneton
  * @author Chris Nokleberg
  */
 public final class Type {
 
-  /** The sort of the {@code void} type. See {@link #getSort}. */
+  /** {@code void} 类型的类别。参见 {@link #getSort}。 */
   public static final int VOID = 0;
 
-  /** The sort of the {@code boolean} type. See {@link #getSort}. */
+  /** {@code boolean} 类型的类别。参见 {@link #getSort}。 */
   public static final int BOOLEAN = 1;
 
-  /** The sort of the {@code char} type. See {@link #getSort}. */
+  /** {@code char} 类型的类别。参见 {@link #getSort}。 */
   public static final int CHAR = 2;
 
-  /** The sort of the {@code byte} type. See {@link #getSort}. */
+  /** {@code byte} 类型的类别。参见 {@link #getSort}。 */
   public static final int BYTE = 3;
 
-  /** The sort of the {@code short} type. See {@link #getSort}. */
+  /** {@code short} 类型的类别。参见 {@link #getSort}。 */
   public static final int SHORT = 4;
 
-  /** The sort of the {@code int} type. See {@link #getSort}. */
+  /** {@code int} 类型的类别。参见 {@link #getSort}。 */
   public static final int INT = 5;
 
-  /** The sort of the {@code float} type. See {@link #getSort}. */
+  /** {@code float} 类型的类别。参见 {@link #getSort}。 */
   public static final int FLOAT = 6;
 
-  /** The sort of the {@code long} type. See {@link #getSort}. */
+  /** {@code long} 类型的类别。参见 {@link #getSort}。 */
   public static final int LONG = 7;
 
-  /** The sort of the {@code double} type. See {@link #getSort}. */
+  /** {@code double} 类型的类别。参见 {@link #getSort}。 */
   public static final int DOUBLE = 8;
 
-  /** The sort of array reference types. See {@link #getSort}. */
+  /** 数组引用类型的类别。参见 {@link #getSort}。 */
   public static final int ARRAY = 9;
 
-  /** The sort of object reference types. See {@link #getSort}. */
+  /** 对象引用类型的类别。参见 {@link #getSort}。 */
   public static final int OBJECT = 10;
 
-  /** The sort of method types. See {@link #getSort}. */
+  /** 方法类型的类别。参见 {@link #getSort}。 */
   public static final int METHOD = 11;
 
-  /** The (private) sort of object reference types represented with an internal name. */
+  /** （私有）用内部名称表示的对象引用类型的类别。 */
   private static final int INTERNAL = 12;
 
-  /** The descriptors of the primitive types. */
+  /** 基本类型的描述符。 */
   private static final String PRIMITIVE_DESCRIPTORS = "VZCBSIFJD";
 
-  /** The {@code void} type. */
+  /** {@code void} 类型。 */
   public static final Type VOID_TYPE = new Type(VOID, PRIMITIVE_DESCRIPTORS, VOID, VOID + 1);
 
-  /** The {@code boolean} type. */
+  /** {@code boolean} 类型。 */
   public static final Type BOOLEAN_TYPE =
       new Type(BOOLEAN, PRIMITIVE_DESCRIPTORS, BOOLEAN, BOOLEAN + 1);
 
-  /** The {@code char} type. */
+  /** {@code char} 类型。 */
   public static final Type CHAR_TYPE = new Type(CHAR, PRIMITIVE_DESCRIPTORS, CHAR, CHAR + 1);
 
-  /** The {@code byte} type. */
+  /** {@code byte} 类型。 */
   public static final Type BYTE_TYPE = new Type(BYTE, PRIMITIVE_DESCRIPTORS, BYTE, BYTE + 1);
 
-  /** The {@code short} type. */
+  /** {@code short} 类型。 */
   public static final Type SHORT_TYPE = new Type(SHORT, PRIMITIVE_DESCRIPTORS, SHORT, SHORT + 1);
 
   /** The {@code int} type. */
   public static final Type INT_TYPE = new Type(INT, PRIMITIVE_DESCRIPTORS, INT, INT + 1);
 
-  /** The {@code float} type. */
+  /** {@code float} 类型。 */
   public static final Type FLOAT_TYPE = new Type(FLOAT, PRIMITIVE_DESCRIPTORS, FLOAT, FLOAT + 1);
 
-  /** The {@code long} type. */
+  /** {@code long} 类型。 */
   public static final Type LONG_TYPE = new Type(LONG, PRIMITIVE_DESCRIPTORS, LONG, LONG + 1);
 
-  /** The {@code double} type. */
+  /** {@code double} 类型。 */
   public static final Type DOUBLE_TYPE =
       new Type(DOUBLE, PRIMITIVE_DESCRIPTORS, DOUBLE, DOUBLE + 1);
 
@@ -115,39 +114,35 @@ public final class Type {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * The sort of this type. Either {@link #VOID}, {@link #BOOLEAN}, {@link #CHAR}, {@link #BYTE},
-   * {@link #SHORT}, {@link #INT}, {@link #FLOAT}, {@link #LONG}, {@link #DOUBLE}, {@link #ARRAY},
-   * {@link #OBJECT}, {@link #METHOD} or {@link #INTERNAL}.
+   * 此类型的种类。取值为 {@link #VOID}、{@link #BOOLEAN}、{@link #CHAR}、{@link #BYTE}、
+   * {@link #SHORT}、{@link #INT}、{@link #FLOAT}、{@link #LONG}、{@link #DOUBLE}、{@link #ARRAY}、
+   * {@link #OBJECT}、{@link #METHOD} 或 {@link #INTERNAL}。
    */
   private final int sort;
 
   /**
-   * A buffer containing the value of this field or method type. This value is an internal name for
-   * {@link #OBJECT} and {@link #INTERNAL} types, and a field or method descriptor in the other
-   * cases.
+   * 包含此字段或方法类型值的缓冲区。对于 {@link #OBJECT} 和 {@link #INTERNAL} 类型，该值是内部名称；
+   * 其他情况下则是字段描述符或方法描述符。
    *
-   * <p>For {@link #OBJECT} types, this field also contains the descriptor: the characters in
-   * [{@link #valueBegin},{@link #valueEnd}) contain the internal name, and those in [{@link
-   * #valueBegin} - 1, {@link #valueEnd} + 1) contain the descriptor.
+   * <p>对于 {@link #OBJECT} 类型，此字段还包含描述符：区间 [{@link #valueBegin},{@link #valueEnd})
+   * 中的字符是内部名称，区间 [{@link #valueBegin} - 1, {@link #valueEnd} + 1) 中的字符则是描述符。
    */
   private final String valueBuffer;
 
   /**
-   * The beginning index, inclusive, of the value of this Java field or method type in {@link
-   * #valueBuffer}. This value is an internal name for {@link #OBJECT} and {@link #INTERNAL} types,
-   * and a field or method descriptor in the other cases.
+   * 此 Java 字段或方法类型的值在 {@link #valueBuffer} 中的起始索引（含）。对于 {@link #OBJECT} 和
+   * {@link #INTERNAL} 类型，该值是内部名称；其他情况下则是字段描述符或方法描述符。
    */
   private final int valueBegin;
 
   /**
-   * The end index, exclusive, of the value of this Java field or method type in {@link
-   * #valueBuffer}. This value is an internal name for {@link #OBJECT} and {@link #INTERNAL} types,
-   * and a field or method descriptor in the other cases.
+   * 此 Java 字段或方法类型的值在 {@link #valueBuffer} 中的结束索引（不含）。对于 {@link #OBJECT} 和
+   * {@link #INTERNAL} 类型，该值是内部名称；其他情况下则是字段描述符或方法描述符。
    */
   private final int valueEnd;
 
   /**
-   * Constructs a reference type.
+   * 构造一个引用类型。
    *
    * @param sort the sort of this type, see {@link #sort}.
    * @param valueBuffer a buffer containing the value of this field or method type.
@@ -168,7 +163,7 @@ public final class Type {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the {@link Type} corresponding to the given type descriptor.
+   * 返回给定类型描述符对应的 {@link Type}。
    *
    * @param typeDescriptor a field or method type descriptor.
    * @return the {@link Type} corresponding to the given type descriptor.
@@ -178,7 +173,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} corresponding to the given class.
+   * 返回给定类对应的 {@link Type}。
    *
    * @param clazz a class.
    * @return the {@link Type} corresponding to the given class.
@@ -212,7 +207,7 @@ public final class Type {
   }
 
   /**
-   * Returns the method {@link Type} corresponding to the given constructor.
+   * 返回给定构造方法对应的方法 {@link Type}。
    *
    * @param constructor a {@link Constructor} object.
    * @return the method {@link Type} corresponding to the given constructor.
@@ -222,7 +217,7 @@ public final class Type {
   }
 
   /**
-   * Returns the method {@link Type} corresponding to the given method.
+   * 返回给定方法对应的方法 {@link Type}。
    *
    * @param method a {@link Method} object.
    * @return the method {@link Type} corresponding to the given method.
@@ -232,8 +227,7 @@ public final class Type {
   }
 
   /**
-   * Returns the type of the elements of this array type. This method should only be used for an
-   * array type.
+   * 返回此数组类型各元素的类型。此方法只能用于数组类型。
    *
    * @return Returns the type of the elements of this array type.
    */
@@ -243,7 +237,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} corresponding to the given internal name.
+   * 返回给定内部名称对应的 {@link Type}。
    *
    * @param internalName an internal name (see {@link Type#getInternalName()}).
    * @return the {@link Type} corresponding to the given internal name.
@@ -254,8 +248,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} corresponding to the given method descriptor. Equivalent to <code>
-   * Type.getType(methodDescriptor)</code>.
+   * 返回给定方法描述符对应的 {@link Type}。等价于 <code>Type.getType(methodDescriptor)</code>。
    *
    * @param methodDescriptor a method descriptor.
    * @return the {@link Type} corresponding to the given method descriptor.
@@ -265,7 +258,7 @@ public final class Type {
   }
 
   /**
-   * Returns the method {@link Type} corresponding to the given argument and return types.
+   * 返回给定参数类型和返回类型对应的方法 {@link Type}。
    *
    * @param returnType the return type of the method.
    * @param argumentTypes the argument types of the method.
@@ -276,8 +269,7 @@ public final class Type {
   }
 
   /**
-   * Returns the argument types of methods of this type. This method should only be used for method
-   * types.
+   * 返回此类型各方法的参数类型。此方法只能用于方法类型。
    *
    * @return the argument types of methods of this type.
    */
@@ -286,8 +278,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} values corresponding to the argument types of the given method
-   * descriptor.
+   * 返回给定方法描述符的各参数类型对应的 {@link Type} 值。
    *
    * @param methodDescriptor a method descriptor.
    * @return the {@link Type} values corresponding to the argument types of the given method
@@ -334,7 +325,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} values corresponding to the argument types of the given method.
+   * 返回给定方法的各参数类型对应的 {@link Type} 值。
    *
    * @param method a method.
    * @return the {@link Type} values corresponding to the argument types of the given method.
@@ -349,8 +340,7 @@ public final class Type {
   }
 
   /**
-   * Returns the return type of methods of this type. This method should only be used for method
-   * types.
+   * 返回此类型各方法的返回类型。此方法只能用于方法类型。
    *
    * @return the return type of methods of this type.
    */
@@ -359,7 +349,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} corresponding to the return type of the given method descriptor.
+   * 返回给定方法描述符的返回类型对应的 {@link Type}。
    *
    * @param methodDescriptor a method descriptor.
    * @return the {@link Type} corresponding to the return type of the given method descriptor.
@@ -370,7 +360,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} corresponding to the return type of the given method.
+   * 返回给定方法的返回类型对应的 {@link Type}。
    *
    * @param method a method.
    * @return the {@link Type} corresponding to the return type of the given method.
@@ -380,7 +370,7 @@ public final class Type {
   }
 
   /**
-   * Returns the start index of the return type of the given method descriptor.
+   * 返回给定方法描述符中返回类型的起始索引。
    *
    * @param methodDescriptor a method descriptor.
    * @return the start index of the return type of the given method descriptor.
@@ -403,7 +393,7 @@ public final class Type {
   }
 
   /**
-   * Returns the {@link Type} corresponding to the given field or method descriptor.
+   * 返回给定字段描述符或方法描述符对应的 {@link Type}。
    *
    * @param descriptorBuffer a buffer containing the field or method descriptor.
    * @param descriptorBegin the beginning index, inclusive, of the field or method descriptor in
@@ -449,8 +439,7 @@ public final class Type {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the binary name of the class corresponding to this type. This method must not be used
-   * on method types.
+   * 返回此类型对应类的二进制名称。此方法不得用于方法类型。
    *
    * @return the binary name of the class corresponding to this type.
    */
@@ -489,9 +478,8 @@ public final class Type {
   }
 
   /**
-   * Returns the internal name of the class corresponding to this object or array type. The internal
-   * name of a class is its fully qualified name (as returned by Class.getName(), where '.' are
-   * replaced by '/'). This method should only be used for an object or array type.
+   * 返回此对象类型或数组类型对应类的内部名称。类的内部名称是其完全限定名（即 Class.getName() 返回的
+   * 名称，其中的 '.' 被替换为 '/'）。此方法只能用于对象类型或数组类型。
    *
    * @return the internal name of the class corresponding to this object type.
    */
@@ -500,8 +488,8 @@ public final class Type {
   }
 
   /**
-   * Returns the internal name of the given class. The internal name of a class is its fully
-   * qualified name, as returned by Class.getName(), where '.' are replaced by '/'.
+   * 返回给定类的内部名称。类的内部名称是其完全限定名（即 Class.getName() 返回的名称），其中的 '.' 被
+   * 替换为 '/'。
    *
    * @param clazz an object or array class.
    * @return the internal name of the given class.
@@ -511,7 +499,7 @@ public final class Type {
   }
 
   /**
-   * Returns the descriptor corresponding to this type.
+   * 返回此类型对应的描述符。
    *
    * @return the descriptor corresponding to this type.
    */
@@ -526,7 +514,7 @@ public final class Type {
   }
 
   /**
-   * Returns the descriptor corresponding to the given class.
+   * 返回给定类对应的描述符。
    *
    * @param clazz an object class, a primitive class or an array class.
    * @return the descriptor corresponding to the given class.
@@ -538,7 +526,7 @@ public final class Type {
   }
 
   /**
-   * Returns the descriptor corresponding to the given constructor.
+   * 返回给定构造方法对应的描述符。
    *
    * @param constructor a {@link Constructor} object.
    * @return the descriptor of the given constructor.
@@ -554,7 +542,7 @@ public final class Type {
   }
 
   /**
-   * Returns the descriptor corresponding to the given argument and return types.
+   * 返回给定参数类型和返回类型对应的描述符。
    *
    * @param returnType the return type of the method.
    * @param argumentTypes the argument types of the method.
@@ -572,7 +560,7 @@ public final class Type {
   }
 
   /**
-   * Returns the descriptor corresponding to the given method.
+   * 返回给定方法对应的描述符。
    *
    * @param method a {@link Method} object.
    * @return the descriptor of the given method.
@@ -590,7 +578,7 @@ public final class Type {
   }
 
   /**
-   * Appends the descriptor corresponding to this type to the given string buffer.
+   * 将此类型对应的描述符追加到给定的字符串缓冲区。
    *
    * @param stringBuilder the string builder to which the descriptor must be appended.
    */
@@ -605,7 +593,7 @@ public final class Type {
   }
 
   /**
-   * Appends the descriptor of the given class to the given string builder.
+   * 将给定类的描述符追加到给定的字符串构建器。
    *
    * @param clazz the class whose descriptor must be computed.
    * @param stringBuilder the string builder to which the descriptor must be appended.
@@ -650,7 +638,7 @@ public final class Type {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the sort of this type.
+   * 返回此类型的种类。
    *
    * @return {@link #VOID}, {@link #BOOLEAN}, {@link #CHAR}, {@link #BYTE}, {@link #SHORT}, {@link
    *     #INT}, {@link #FLOAT}, {@link #LONG}, {@link #DOUBLE}, {@link #ARRAY}, {@link #OBJECT} or
@@ -661,8 +649,7 @@ public final class Type {
   }
 
   /**
-   * Returns the number of dimensions of this array type. This method should only be used for an
-   * array type.
+   * 返回此数组类型的维度数。此方法只能用于数组类型。
    *
    * @return the number of dimensions of this array type.
    */
@@ -675,7 +662,7 @@ public final class Type {
   }
 
   /**
-   * Returns the size of values of this type. This method must not be used for method types.
+   * 返回此类型值的大小。此方法不得用于方法类型。
    *
    * @return the size of values of this type, i.e., 2 for {@code long} and {@code double}, 0 for
    *     {@code void} and 1 otherwise.
@@ -703,8 +690,7 @@ public final class Type {
   }
 
   /**
-   * Returns the size of the arguments and of the return value of methods of this type. This method
-   * should only be used for method types.
+   * 返回此类型各方法的参数和返回值的大小。此方法只能用于方法类型。
    *
    * @return the size of the arguments of the method (plus one for the implicit this argument),
    *     argumentsSize, and the size of its return value, returnSize, packed into a single int i =
@@ -716,7 +702,7 @@ public final class Type {
   }
 
   /**
-   * Computes the size of the arguments and of the return value of a method.
+   * 计算方法的参数和返回值的大小。
    *
    * @param methodDescriptor a method descriptor.
    * @return the size of the arguments of the method (plus one for the implicit this argument),
@@ -757,8 +743,7 @@ public final class Type {
   }
 
   /**
-   * Returns a JVM instruction opcode adapted to this {@link Type}. This method must not be used for
-   * method types.
+   * 返回适用于此 {@link Type} 的 JVM 指令操作码。此方法不得用于方法类型。
    *
    * @param opcode a JVM instruction opcode. This opcode must be one of ILOAD, ISTORE, IALOAD,
    *     IASTORE, IADD, ISUB, IMUL, IDIV, IREM, INEG, ISHL, ISHR, IUSHR, IAND, IOR, IXOR and
@@ -834,7 +819,7 @@ public final class Type {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Tests if the given object is equal to this type.
+   * 测试给定对象是否与此类型相等。
    *
    * @param object the object to be compared to this type.
    * @return {@literal true} if the given object is equal to this type.
@@ -868,7 +853,7 @@ public final class Type {
   }
 
   /**
-   * Returns a hash code value for this type.
+   * 返回此类型的哈希码值。
    *
    * @return a hash code value for this type.
    */
@@ -884,7 +869,7 @@ public final class Type {
   }
 
   /**
-   * Returns a string representation of this type.
+   * 返回此类型的字符串表示形式。
    *
    * @return the descriptor of this type.
    */

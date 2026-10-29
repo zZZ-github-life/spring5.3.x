@@ -23,25 +23,19 @@ import org.springframework.http.client.ClientHttpRequest;
 import org.springframework.http.client.ClientHttpResponse;
 
 /**
- * Encapsulates the behavior required to implement {@link MockRestServiceServer}
- * including its public API (create expectations + verify/reset) along with an
- * extra method for verifying actual requests.
+ * 封装实现 {@link MockRestServiceServer} 所需的行为，包括其公共 API（创建预期 + 验证/重置）以及用于验证实际请求的额外方法。
  *
- * <p>This contract is not used directly in applications but a custom
- * implementation can be
+ * <p>应用程序不会直接使用此约定，但可以通过 {@code MockRestServiceServer} 构建器
  * {@link org.springframework.test.web.client.MockRestServiceServer.MockRestServiceServerBuilder#build(RequestExpectationManager)
- * plugged} in through the {@code MockRestServiceServer} builder.
- *
+ * 插入} 自定义实现。
  * @author Rossen Stoyanchev
  * @since 4.3
  */
 public interface RequestExpectationManager {
 
 	/**
-	 * Set up a new request expectation. The returned {@link ResponseActions} is
-	 * used to add more expectations and define a response.
-	 * <p>This is a delegate for
-	 * {@link MockRestServiceServer#expect(ExpectedCount, RequestMatcher)}.
+	 * 设置新的请求预期。返回的 {@link ResponseActions} 用于添加更多预期并定义响应。
+	 * <p>这是 {@link MockRestServiceServer#expect(ExpectedCount, RequestMatcher)} 的委托。
 	 * @param requestMatcher a request expectation
 	 * @return for setting up further expectations and define a response
 	 * @see MockRestServiceServer#expect(RequestMatcher)
@@ -50,17 +44,16 @@ public interface RequestExpectationManager {
 	ResponseActions expectRequest(ExpectedCount count, RequestMatcher requestMatcher);
 
 	/**
-	 * Verify that all expectations have been met.
-	 * <p>This is a delegate for {@link MockRestServiceServer#verify()}.
+	 * 验证所有预期都已满足。
+	 * <p>这是 {@link MockRestServiceServer#verify()} 的委托。
 	 * @throws AssertionError if not all expectations are met
 	 * @see MockRestServiceServer#verify()
 	 */
 	void verify();
 
 	/**
-	 * Variant of {@link #verify()} that waits for up to the specified time for
-	 * all expectations to be fulfilled. This can be useful for tests that
-	 * involve asynchronous requests.
+	 * {@link #verify()} 的变体，最多等待指定时间直到所有预期都得到满足。
+	 * 这对于涉及异步请求的测试很有用。
 	 * @param timeout how long to wait for all expectations to be met
 	 * @throws AssertionError if not all expectations are met by the specified
 	 * timeout, or if any expectation fails at any time before that.
@@ -69,17 +62,16 @@ public interface RequestExpectationManager {
 	void verify(Duration timeout);
 
 	/**
-	 * Reset the internal state removing all expectations and recorded requests.
-	 * <p>This is a delegate for {@link MockRestServiceServer#reset()}.
+	 * 重置内部状态，移除所有预期和已记录的请求。
+	 * <p>这是 {@link MockRestServiceServer#reset()} 的委托。
 	 * @see MockRestServiceServer#reset()
 	 */
 	void reset();
 
 
 	/**
-	 * Validate the given actual request against the declared expectations.
-	 * Is successful return the mock response to use or raise an error.
-	 * <p>This is used in {@link MockRestServiceServer} against actual requests.
+	 * 根据已声明的预期验证给定的实际请求。如果验证成功，则返回要使用的模拟响应，否则抛出错误。
+	 * <p>在 {@link MockRestServiceServer} 中用于处理实际请求。
 	 * @param request the request
 	 * @return the response to return if the request was validated.
 	 * @throws AssertionError when some expectations were not met

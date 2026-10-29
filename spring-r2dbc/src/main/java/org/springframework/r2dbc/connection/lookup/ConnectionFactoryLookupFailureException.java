@@ -19,9 +19,8 @@ package org.springframework.r2dbc.connection.lookup;
 import org.springframework.dao.NonTransientDataAccessException;
 
 /**
- * Exception to be thrown by a {@link ConnectionFactoryLookup} implementation,
- * indicating that the specified {@link io.r2dbc.spi.ConnectionFactory} could
- * not be obtained.
+ * 由 {@link ConnectionFactoryLookup} 实现抛出的异常，
+ * 表示无法获取指定的 {@link io.r2dbc.spi.ConnectionFactory}。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -30,7 +29,7 @@ import org.springframework.dao.NonTransientDataAccessException;
 public class ConnectionFactoryLookupFailureException extends NonTransientDataAccessException {
 
 	/**
-	 * Create a new {@code ConnectionFactoryLookupFailureException}.
+	 * 创建一个新的 {@code ConnectionFactoryLookupFailureException}。
 	 * @param msg the detail message
 	 */
 	public ConnectionFactoryLookupFailureException(String msg) {
@@ -38,7 +37,7 @@ public class ConnectionFactoryLookupFailureException extends NonTransientDataAcc
 	}
 
 	/**
-	 * Create a new {@code ConnectionFactoryLookupFailureException}.
+	 * 创建一个新的 {@code ConnectionFactoryLookupFailureException}。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

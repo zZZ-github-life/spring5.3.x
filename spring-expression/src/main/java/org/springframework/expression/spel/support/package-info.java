@@ -1,5 +1,5 @@
 /**
- * SpEL's default implementations for various core abstractions.
+ * SpEL 对各种核心抽象的默认实现。
  */
 @NonNullApi
 @NonNullFields

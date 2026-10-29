@@ -22,27 +22,24 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link CommandLinePropertySource} implementation backed by a simple String array.
+ * 由简单 String 数组支持的 {@link CommandLinePropertySource} 实现。
  *
- * <h3>Purpose</h3>
- * <p>This {@code CommandLinePropertySource} implementation aims to provide the simplest
- * possible approach to parsing command line arguments. As with all {@code
- * CommandLinePropertySource} implementations, command line arguments are broken into two
- * distinct groups: <em>option arguments</em> and <em>non-option arguments</em>, as
- * described below <em>(some sections copied from Javadoc for
- * {@link SimpleCommandLineArgsParser})</em>:
+ * <h3>用途</h3>
+ * <p>此 {@code CommandLinePropertySource} 实现旨在提供尽可能简单的命令行参数解析方式。
+ * 与所有 {@code CommandLinePropertySource} 实现一样，命令行参数被分为两个不同的组：
+ * <em>选项参数</em>和<em>非选项参数</em>，如下所述
+ * <em>（部分内容复制自 {@link SimpleCommandLineArgsParser} 的 Javadoc）</em>：
  *
- * <h3>Working with option arguments</h3>
- * <p>Option arguments must adhere to the exact syntax:
+ * <h3>处理选项参数</h3>
+ * <p>选项参数必须遵循以下确切语法：
  *
  * <pre class="code">--optName[=optValue]</pre>
  *
- * <p>That is, options must be prefixed with "{@code --}" and may or may not
- * specify a value. If a value is specified, the name and value must be separated
- * <em>without spaces</em> by an equals sign ("="). The value may optionally be
- * an empty string.
+ * <p>也就是说，选项必须以 "{@code --}" 为前缀，并且可以指定值，也可以不指定。
+ * 如果指定了值，名称和值必须通过等号（"="）分隔，且<em>不能有空格</em>。
+ * 值可选地可以是空字符串。
  *
- * <h4>Valid examples of option arguments</h4>
+ * <h4>选项参数的有效示例</h4>
  * <pre class="code">
  * --foo
  * --foo=
@@ -51,33 +48,31 @@ import org.springframework.util.StringUtils;
  * --foo="bar then baz"
  * --foo=bar,baz,biz</pre>
  *
- * <h4>Invalid examples of option arguments</h4>
+ * <h4>选项参数的无效示例</h4>
  * <pre class="code">
  * -foo
  * --foo bar
  * --foo = bar
  * --foo=bar --foo=baz --foo=biz</pre>
  *
- * <h3>Working with non-option arguments</h3>
- * <p>Any and all arguments specified at the command line without the "{@code --}"
- * option prefix will be considered as "non-option arguments" and made available
- * through the {@link CommandLineArgs#getNonOptionArgs()} method.
+ * <h3>处理非选项参数</h3>
+ * <p>在命令行中指定但未带 "{@code --}" 选项前缀的任何及所有参数
+ * 都将被视为“非选项参数”，并可通过 {@link CommandLineArgs#getNonOptionArgs()} 方法获取。
  *
- * <h3>Typical usage</h3>
+ * <h3>典型用法</h3>
  * <pre class="code">
  * public static void main(String[] args) {
  *     PropertySource&lt;?&gt; ps = new SimpleCommandLinePropertySource(args);
  *     // ...
  * }</pre>
  *
- * See {@link CommandLinePropertySource} for complete general usage examples.
+ * 有关完整的一般用法示例，请参见 {@link CommandLinePropertySource}。
  *
- * <h3>Beyond the basics</h3>
+ * <h3>进阶用法</h3>
  *
- * <p>When more fully-featured command line parsing is necessary, consider using
- * the provided {@link JOptCommandLinePropertySource}, or implement your own
- * {@code CommandLinePropertySource} against the command line parsing library of your
- * choice.
+ * <p>当需要功能更完整的命令行解析时，可以考虑使用所提供的
+ * {@link JOptCommandLinePropertySource}，或者针对你选择的命令行解析库
+ * 实现自己的 {@code CommandLinePropertySource}。
  *
  * @author Chris Beams
  * @since 3.1
@@ -87,8 +82,8 @@ import org.springframework.util.StringUtils;
 public class SimpleCommandLinePropertySource extends CommandLinePropertySource<CommandLineArgs> {
 
 	/**
-	 * Create a new {@code SimpleCommandLinePropertySource} having the default name
-	 * and backed by the given {@code String[]} of command line arguments.
+	 * 创建一个具有默认名称、由给定的命令行参数 {@code String[]} 支持的新
+	 * {@code SimpleCommandLinePropertySource}。
 	 * @see CommandLinePropertySource#COMMAND_LINE_PROPERTY_SOURCE_NAME
 	 * @see CommandLinePropertySource#CommandLinePropertySource(Object)
 	 */
@@ -97,15 +92,15 @@ public class SimpleCommandLinePropertySource extends CommandLinePropertySource<C
 	}
 
 	/**
-	 * Create a new {@code SimpleCommandLinePropertySource} having the given name
-	 * and backed by the given {@code String[]} of command line arguments.
+	 * 创建一个具有给定名称、由给定的命令行参数 {@code String[]} 支持的新
+	 * {@code SimpleCommandLinePropertySource}。
 	 */
 	public SimpleCommandLinePropertySource(String name, String[] args) {
 		super(name, new SimpleCommandLineArgsParser().parse(args));
 	}
 
 	/**
-	 * Get the property names for the option arguments.
+	 * 获取选项参数的属性名。
 	 */
 	@Override
 	public String[] getPropertyNames() {

@@ -35,7 +35,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code MultiValueMap} implementation for wrapping Tomcat HTTP headers.
+ * 用于包装 Tomcat HTTP 头的 {@code MultiValueMap} 实现。
  *
  * @author Brian Clozel
  * @since 5.1.1

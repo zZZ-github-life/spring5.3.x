@@ -71,21 +71,19 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * JMX exporter that allows for exposing any <i>Spring-managed bean</i> to a
- * JMX {@link javax.management.MBeanServer}, without the need to define any
- * JMX-specific information in the bean classes.
+ * JMX 导出器，允许将任何 <i>由 Spring 管理的 Bean</i> 暴露到 JMX
+ * {@link javax.management.MBeanServer}，而无需在 Bean 类中定义任何 JMX 特定信息。
  *
- * <p>If a bean implements one of the JMX management interfaces, MBeanExporter can
- * simply register the MBean with the server through its autodetection process.
+ * <p>如果 Bean 实现了某个 JMX 管理接口，MBeanExporter 可以通过其自动检测过程直接将 MBean 注册到服
+ * 务器。
  *
- * <p>If a bean does not implement one of the JMX management interfaces, MBeanExporter
- * will create the management information using the supplied {@link MBeanInfoAssembler}.
+ * <p>如果 Bean 未实现任何 JMX 管理接口，MBeanExporter 将使用所提供的 {@link MBeanInfoAssembler} 创
+ * 建管理信息。
  *
- * <p>A list of {@link MBeanExporterListener MBeanExporterListeners} can be registered
- * via the {@link #setListeners(MBeanExporterListener[]) listeners} property, allowing
- * application code to be notified of MBean registration and unregistration events.
+ * <p>可以通过 {@link #setListeners(MBeanExporterListener[]) listeners} 属性注册一组
+ * {@link MBeanExporterListener MBeanExporterListeners}，以便将 MBean 注册和注销事件通知给应用代码。
  *
- * <p>This exporter is compatible with MBeans as well as MXBeans.
+ * <p>此导出器兼容 MBean 以及 MXBean。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -104,100 +102,94 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 		BeanClassLoaderAware, BeanFactoryAware, InitializingBean, SmartInitializingSingleton, DisposableBean {
 
 	/**
-	 * Autodetection mode indicating that no autodetection should be used.
+	 * 自动检测模式，表示不应使用自动检测。
 	 */
 	public static final int AUTODETECT_NONE = 0;
 
 	/**
-	 * Autodetection mode indicating that only valid MBeans should be autodetected.
+	 * 自动检测模式，表示只应自动检测有效的 MBean。
 	 */
 	public static final int AUTODETECT_MBEAN = 1;
 
 	/**
-	 * Autodetection mode indicating that only the {@link MBeanInfoAssembler} should be able
-	 * to autodetect beans.
+	 * 自动检测模式，表示只有 {@link MBeanInfoAssembler} 才能自动检测 Bean。
 	 */
 	public static final int AUTODETECT_ASSEMBLER = 2;
 
 	/**
-	 * Autodetection mode indicating that all autodetection mechanisms should be used.
+	 * 自动检测模式，表示应使用所有自动检测机制。
 	 */
 	public static final int AUTODETECT_ALL = AUTODETECT_MBEAN | AUTODETECT_ASSEMBLER;
 
 
 	/**
-	 * Wildcard used to map a {@link javax.management.NotificationListener}
-	 * to all MBeans registered by the {@code MBeanExporter}.
+	 * 通配符，用于将 {@link javax.management.NotificationListener} 映射到由 {@code MBeanExporter} 注册
+	 * 的所有 MBean。
 	 */
 	private static final String WILDCARD = "*";
 
-	/** Constant for the JMX {@code mr_type} "ObjectReference". */
+	/** 用于 JMX {@code mr_type} "ObjectReference" 的常量。 */
 	private static final String MR_TYPE_OBJECT_REFERENCE = "ObjectReference";
 
-	/** Prefix for the autodetect constants defined in this class. */
+	/** 此类中定义的自动检测常量的前缀。 */
 	private static final String CONSTANT_PREFIX_AUTODETECT = "AUTODETECT_";
 
 
-	/** Constants instance for this class. */
+	/** 此类的 Constants 实例。 */
 	private static final Constants constants = new Constants(MBeanExporter.class);
 
-	/** The beans to be exposed as JMX managed resources, with JMX names as keys. */
+	/** 要作为 JMX 受管资源公开的 bean，以 JMX 名称为键。 */
 	@Nullable
 	private Map<String, Object> beans;
 
-	/** The autodetect mode to use for this MBeanExporter. */
+	/** 用于此 MBeanExporter 的自动检测模式。 */
 	@Nullable
 	private Integer autodetectMode;
 
-	/** Whether to eagerly initialize candidate beans when autodetecting MBeans. */
+	/** 在自动检测 MBean 时是否急切初始化候选 bean。 */
 	private boolean allowEagerInit = false;
 
-	/** Stores the MBeanInfoAssembler to use for this exporter. */
+	/** 存储此导出器要使用的 MBeanInfoAssembler。 */
 	private MBeanInfoAssembler assembler = new SimpleReflectiveMBeanInfoAssembler();
 
-	/** The strategy to use for creating ObjectNames for an object. */
+	/** 用于为对象创建 ObjectName 的策略。 */
 	private ObjectNamingStrategy namingStrategy = new KeyNamingStrategy();
 
-	/** Indicates whether Spring should modify generated ObjectNames. */
+	/** 指示 Spring 是否应修改生成的 ObjectName。 */
 	private boolean ensureUniqueRuntimeObjectNames = true;
 
-	/** Indicates whether Spring should expose the managed resource ClassLoader in the MBean. */
+	/** 指示 Spring 是否应在 MBean 中公开受管资源的 ClassLoader。 */
 	private boolean exposeManagedResourceClassLoader = true;
 
-	/** A set of bean names that should be excluded from autodetection. */
+	/** 应从自动检测中排除的一组 bean 名称。 */
 	private Set<String> excludedBeans = new HashSet<>();
 
-	/** The MBeanExporterListeners registered with this exporter. */
+	/** 在此导出器中注册的 MBeanExporterListener。 */
 	@Nullable
 	private MBeanExporterListener[] listeners;
 
-	/** The NotificationListeners to register for the MBeans registered by this exporter. */
+	/** 要为此导出器注册的 MBean 注册的 NotificationListener。 */
 	@Nullable
 	private NotificationListenerBean[] notificationListeners;
 
-	/** Map of actually registered NotificationListeners. */
+	/** 实际已注册的 NotificationListener 的 Map。 */
 	private final Map<NotificationListenerBean, ObjectName[]> registeredNotificationListeners = new LinkedHashMap<>();
 
-	/** Stores the ClassLoader to use for generating lazy-init proxies. */
+	/** 存储用于生成延迟初始化代理的 ClassLoader。 */
 	@Nullable
 	private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
-	/** Stores the BeanFactory for use in autodetection process. */
+	/** 存储用于自动检测过程的 BeanFactory。 */
 	@Nullable
 	private ListableBeanFactory beanFactory;
 
 
 	/**
-	 * Supply a {@code Map} of beans to be registered with the JMX
-	 * {@code MBeanServer}.
-	 * <p>The String keys are the basis for the creation of JMX object names.
-	 * By default, a JMX {@code ObjectName} will be created straight
-	 * from the given key. This can be customized through specifying a
-	 * custom {@code NamingStrategy}.
-	 * <p>Both bean instances and bean names are allowed as values.
-	 * Bean instances are typically linked in through bean references.
-	 * Bean names will be resolved as beans in the current factory, respecting
-	 * lazy-init markers (that is, not triggering initialization of such beans).
+	 * 提供要注册到 JMX {@code MBeanServer} 的 Bean 的 {@code Map}。<p>String 键是创建 JMX 对象名的基础。
+	 * 默认情况下，将直接根据给定键创建 JMX {@code ObjectName}。可以通过指定自定义
+	 * {@code NamingStrategy} 进行定制。<p>值可以是 Bean 实例，也可以是 Bean 名称。Bean 实例通常通过
+	 * Bean 引用链接进来。Bean 名称将作为当前工厂中的 Bean 解析，并遵循延迟初始化标记（也就是说，不会触
+	 * 发此类 Bean 的初始化）。
 	 * @param beans a Map with JMX names as keys and bean instances or bean names
 	 * as values
 	 * @see #setNamingStrategy
@@ -209,11 +201,9 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set whether to autodetect MBeans in the bean factory that this exporter
-	 * runs in. Will also ask an {@code AutodetectCapableMBeanInfoAssembler}
-	 * if available.
-	 * <p>This feature is turned off by default. Explicitly specify
-	 * {@code true} here to enable autodetection.
+	 * 设置是否在运行此导出器的 Bean 工厂中自动检测 MBean。如果存在
+	 * {@code AutodetectCapableMBeanInfoAssembler}，也会询问它。<p>此功能默认关闭。在此显式指定
+	 * {@code true} 以启用自动检测。
 	 * @see #setAssembler
 	 * @see AutodetectCapableMBeanInfoAssembler
 	 * @see #isMBean
@@ -223,7 +213,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set the autodetection mode to use.
+	 * 设置要使用的自动检测模式。
 	 * @throws IllegalArgumentException if the supplied value is not
 	 * one of the {@code AUTODETECT_} constants
 	 * @see #setAutodetectModeName(String)
@@ -240,7 +230,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set the autodetection mode to use by name.
+	 * 按名称设置要使用的自动检测模式。
 	 * @throws IllegalArgumentException if the supplied value is not resolvable
 	 * to one of the {@code AUTODETECT_} constants or is {@code null}
 	 * @see #setAutodetectMode(int)
@@ -257,22 +247,18 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Specify whether to allow eager initialization of candidate beans
-	 * when autodetecting MBeans in the Spring application context.
-	 * <p>Default is "false", respecting lazy-init flags on bean definitions.
-	 * Switch this to "true" in order to search lazy-init beans as well,
-	 * including FactoryBean-produced objects that haven't been initialized yet.
+	 * 指定在 Spring 应用上下文中自动检测 MBean 时，是否允许对候选 Bean 进行提前初始化。<p>默认值为
+	 * "false"，遵循 Bean 定义上的延迟初始化标志。将其切换为 "true" 可以同时搜索延迟初始化的 Bean，包括
+	 * FactoryBean 生成但尚未初始化的对象。
 	 */
 	public void setAllowEagerInit(boolean allowEagerInit) {
 		this.allowEagerInit = allowEagerInit;
 	}
 
 	/**
-	 * Set the implementation of the {@code MBeanInfoAssembler} interface to use
-	 * for this exporter. Default is a {@code SimpleReflectiveMBeanInfoAssembler}.
-	 * <p>The passed-in assembler can optionally implement the
-	 * {@code AutodetectCapableMBeanInfoAssembler} interface, which enables it
-	 * to participate in the exporter's MBean autodetection process.
+	 * 设置此导出器要使用的 {@code MBeanInfoAssembler} 接口实现。默认是
+	 * {@code SimpleReflectiveMBeanInfoAssembler}。<p>传入的装配器可以选择实现
+	 * {@code AutodetectCapableMBeanInfoAssembler} 接口，从而能够参与导出器的 MBean 自动检测过程。
 	 * @see org.springframework.jmx.export.assembler.SimpleReflectiveMBeanInfoAssembler
 	 * @see org.springframework.jmx.export.assembler.AutodetectCapableMBeanInfoAssembler
 	 * @see org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler
@@ -283,8 +269,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set the implementation of the {@code ObjectNamingStrategy} interface
-	 * to use for this exporter. Default is a {@code KeyNamingStrategy}.
+	 * 设置此导出器要使用的 {@code ObjectNamingStrategy} 接口实现。默认是 {@code KeyNamingStrategy}。
 	 * @see org.springframework.jmx.export.naming.KeyNamingStrategy
 	 * @see org.springframework.jmx.export.naming.MetadataNamingStrategy
 	 */
@@ -293,11 +278,9 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Indicates whether Spring should ensure that {@link ObjectName ObjectNames}
-	 * generated by the configured {@link ObjectNamingStrategy} for
-	 * runtime-registered MBeans ({@link #registerManagedResource}) should get
-	 * modified: to ensure uniqueness for every instance of a managed {@code Class}.
-	 * <p>The default value is {@code true}.
+	 * 指示 Spring 是否应确保为运行时注册的 MBean（{@link #registerManagedResource}）由所配置的
+	 * {@link ObjectNamingStrategy} 生成的 {@link ObjectName ObjectNames} 被修改：以确保受管
+	 * {@code Class} 的每个实例的唯一性。<p>默认值为 {@code true}。
 	 * @see #registerManagedResource
 	 * @see JmxUtils#appendIdentityToObjectName(javax.management.ObjectName, Object)
 	 */
@@ -306,19 +289,17 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Indicates whether the managed resource should be exposed on the
-	 * {@link Thread#getContextClassLoader() thread context ClassLoader} before
-	 * allowing any invocations on the MBean to occur.
-	 * <p>The default value is {@code true}, exposing a {@link SpringModelMBean}
-	 * which performs thread context ClassLoader management. Switch this flag off to
-	 * expose a standard JMX {@link javax.management.modelmbean.RequiredModelMBean}.
+	 * 指示是否应在允许对 MBean 进行任何调用之前，将受管资源暴露在
+	 * {@link Thread#getContextClassLoader() thread context ClassLoader} 上。<p>默认值为 {@code true}，
+	 * 即暴露一个执行线程上下文 ClassLoader 管理的 {@link SpringModelMBean}。关闭此标志可暴露标准的 JMX
+	 * {@link javax.management.modelmbean.RequiredModelMBean}。
 	 */
 	public void setExposeManagedResourceClassLoader(boolean exposeManagedResourceClassLoader) {
 		this.exposeManagedResourceClassLoader = exposeManagedResourceClassLoader;
 	}
 
 	/**
-	 * Set the list of names for beans that should be excluded from autodetection.
+	 * 设置应从自动检测中排除的 Bean 名称列表。
 	 */
 	public void setExcludedBeans(String... excludedBeans) {
 		this.excludedBeans.clear();
@@ -326,7 +307,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Add the name of bean that should be excluded from autodetection.
+	 * 添加应从自动检测中排除的 Bean 名称。
 	 */
 	public void addExcludedBean(String excludedBean) {
 		Assert.notNull(excludedBean, "ExcludedBean must not be null");
@@ -334,8 +315,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set the {@code MBeanExporterListener}s that should be notified
-	 * of MBean registration and unregistration events.
+	 * 设置应接收 MBean 注册和注销事件通知的 {@code MBeanExporterListener}。
 	 * @see MBeanExporterListener
 	 */
 	public void setListeners(MBeanExporterListener... listeners) {
@@ -343,10 +323,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set the {@link NotificationListenerBean NotificationListenerBeans}
-	 * containing the
-	 * {@link javax.management.NotificationListener NotificationListeners}
-	 * that will be registered with the {@link MBeanServer}.
+	 * 设置 {@link NotificationListenerBean NotificationListenerBeans}，其中包含将向
+	 * {@link MBeanServer} 注册的 {@link javax.management.NotificationListener NotificationListeners}。
 	 * @see #setNotificationListenerMappings(java.util.Map)
 	 * @see NotificationListenerBean
 	 */
@@ -355,18 +333,13 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Set the {@link NotificationListener NotificationListeners} to register
-	 * with the {@link javax.management.MBeanServer}.
-	 * <P>The key of each entry in the {@code Map} is a {@link String}
-	 * representation of the {@link javax.management.ObjectName} or the bean
-	 * name of the MBean the listener should be registered for. Specifying an
-	 * asterisk ({@code *}) for a key will cause the listener to be
-	 * associated with all MBeans registered by this class at startup time.
-	 * <p>The value of each entry is the
-	 * {@link javax.management.NotificationListener} to register. For more
-	 * advanced options such as registering
-	 * {@link javax.management.NotificationFilter NotificationFilters} and
-	 * handback objects see {@link #setNotificationListeners(NotificationListenerBean[])}.
+	 * 设置要注册到 {@link javax.management.MBeanServer} 的
+	 * {@link NotificationListener NotificationListeners}。<P>{@code Map} 中每个条目的键是监听器应注册
+	 * 到的 MBean 的 {@link javax.management.ObjectName} 的 {@link String} 表示形式或 Bean 名称。为键指
+	 * 定星号（{@code *}）将使监听器在启动时与此类注册的所有 MBean 关联。<p>每个条目的值是要注册的
+	 * {@link javax.management.NotificationListener}。有关更高级的选项，例如注册
+	 * {@link javax.management.NotificationFilter NotificationFilters} 和 handback 对象，请参阅
+	 * {@link #setNotificationListeners(NotificationListenerBean[])}。
 	 */
 	public void setNotificationListenerMappings(Map<?, ? extends NotificationListener> listeners) {
 		Assert.notNull(listeners, "'listeners' must not be null");
@@ -393,10 +366,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * This callback is only required for resolution of bean names in the
-	 * {@link #setBeans(java.util.Map) "beans"} {@link Map} and for
-	 * autodetection of MBeans (in the latter case, a
-	 * {@code ListableBeanFactory} is required).
+	 * 仅当需要解析 {@link #setBeans(java.util.Map) "beans"} {@link Map} 中的 Bean 名称，以及自动检测
+	 * MBean 时（后一种情况需要 {@code ListableBeanFactory}），才需要此回调。
 	 * @see #setBeans
 	 * @see #setAutodetect
 	 */
@@ -425,7 +396,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Kick off bean registration automatically after the regular singleton instantiation phase.
+	 * 在常规单例实例化阶段之后自动启动 Bean 注册。
 	 * @see #registerBeans()
 	 */
 	@Override
@@ -444,8 +415,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Unregisters all beans that this exported has exposed via JMX
-	 * when the enclosing {@code ApplicationContext} is destroyed.
+	 * 当外层 {@code ApplicationContext} 被销毁时，注销此导出器通过 JMX 暴露的所有 Bean。
 	 */
 	@Override
 	public void destroy() {
@@ -508,17 +478,12 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	//---------------------------------------------------------------------
 
 	/**
-	 * Register the defined beans with the {@link MBeanServer}.
-	 * <p>Each bean is exposed to the {@code MBeanServer} via a
-	 * {@code ModelMBean}. The actual implementation of the
-	 * {@code ModelMBean} interface used depends on the implementation of
-	 * the {@code ModelMBeanProvider} interface that is configured. By
-	 * default, the {@code RequiredModelMBean} class that is supplied with
-	 * all JMX implementations is used.
-	 * <p>The management interface produced for each bean is dependent on the
-	 * {@code MBeanInfoAssembler} implementation being used. The
-	 * {@code ObjectName} given to each bean is dependent on the
-	 * implementation of the {@code ObjectNamingStrategy} interface being used.
+	 * 将已定义的 Bean 注册到 {@link MBeanServer}。<p>每个 Bean 都通过 {@code ModelMBean} 暴露给
+	 * {@code MBeanServer}。所使用的 {@code ModelMBean} 接口的实际实现取决于所配置的
+	 * {@code ModelMBeanProvider} 接口的实现。默认情况下，使用所有 JMX 实现都提供的
+	 * {@code RequiredModelMBean} 类。<p>为每个 Bean 生成的管理接口取决于所使用的
+	 * {@code MBeanInfoAssembler} 实现。为每个 Bean 指定的 {@code ObjectName} 取决于所使用的
+	 * {@code ObjectNamingStrategy} 接口的实现。
 	 */
 	protected void registerBeans() {
 		// The beans property may be null, for example if we are relying solely on autodetection.
@@ -554,7 +519,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Return whether the specified bean definition should be considered as lazy-init.
+	 * 返回指定的 Bean 定义是否应被视为延迟初始化。
 	 * @param beanFactory the bean factory that is supposed to contain the bean definition
 	 * @param beanName the name of the bean to check
 	 * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory#getBeanDefinition
@@ -566,16 +531,11 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Register an individual bean with the {@link #setServer MBeanServer}.
-	 * <p>This method is responsible for deciding <strong>how</strong> a bean
-	 * should be exposed to the {@code MBeanServer}. Specifically, if the
-	 * supplied {@code mapValue} is the name of a bean that is configured
-	 * for lazy initialization, then a proxy to the resource is registered with
-	 * the {@code MBeanServer} so that the lazy load behavior is
-	 * honored. If the bean is already an MBean then it will be registered
-	 * directly with the {@code MBeanServer} without any intervention. For
-	 * all other beans or bean names, the resource itself is registered with
-	 * the {@code MBeanServer} directly.
+	 * 将单个 Bean 注册到 {@link #setServer MBeanServer}。<p>此方法负责决定 Bean <strong>如何</strong>
+	 * 暴露给 {@code MBeanServer}。具体而言，如果所提供的 {@code mapValue} 是配置为延迟初始化的 Bean 的
+	 * 名称，则向 {@code MBeanServer} 注册指向该资源的代理，以便遵循延迟加载行为。如果该 Bean 已经是
+	 * MBean，则会在没有任何干预的情况下直接注册到 {@code MBeanServer}。对于所有其他 Bean 或 Bean 名称，
+	 * 资源本身会直接注册到 {@code MBeanServer}。
 	 * @param mapValue the value configured for this bean in the beans map;
 	 * may be either the {@code String} name of a bean, or the bean itself
 	 * @param beanKey the key associated with this bean in the beans map
@@ -629,8 +589,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Replace any bean names used as keys in the {@code NotificationListener}
-	 * mappings with their corresponding {@code ObjectName} values.
+	 * 将 {@code NotificationListener} 映射中用作键的任何 Bean 名称替换为对应的 {@code ObjectName} 值。
 	 * @param beanName the name of the bean to be registered
 	 * @param objectName the {@code ObjectName} under which the bean will be registered
 	 * with the {@code MBeanServer}
@@ -644,8 +603,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Registers an existing MBean or an MBean adapter for a plain bean
-	 * with the {@code MBeanServer}.
+	 * 将现有的 MBean 或普通 Bean 的 MBean 适配器注册到 {@code MBeanServer}。
 	 * @param bean the bean to register, either an MBean or a plain bean
 	 * @param beanKey the key associated with this bean in the beans map
 	 * @return the {@code ObjectName} under which the bean was registered
@@ -685,8 +643,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Register beans that are configured for lazy initialization with the
-	 * {@code MBeanServer} indirectly through a proxy.
+	 * 将配置为延迟初始化的 Bean 通过代理间接注册到 {@code MBeanServer}。
 	 * @param beanName the name of the bean in the {@code BeanFactory}
 	 * @param beanKey the key associated with this bean in the beans map
 	 * @return the {@code ObjectName} under which the bean was registered
@@ -738,10 +695,9 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Retrieve the {@code ObjectName} for a bean.
-	 * <p>If the bean implements the {@code SelfNaming} interface, then the
-	 * {@code ObjectName} will be retrieved using {@code SelfNaming.getObjectName()}.
-	 * Otherwise, the configured {@code ObjectNamingStrategy} is used.
+	 * 检索 Bean 的 {@code ObjectName}。<p>如果该 Bean 实现了 {@code SelfNaming} 接口，则使用
+	 * {@code SelfNaming.getObjectName()} 检索 {@code ObjectName}。否则，使用所配置的
+	 * {@code ObjectNamingStrategy}。
 	 * @param bean the name of the bean in the {@code BeanFactory}
 	 * @param beanKey the key associated with the bean in the beans map
 	 * @return the {@code ObjectName} for the supplied bean
@@ -758,11 +714,9 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Determine whether the given bean class qualifies as an MBean as-is.
-	 * <p>The default implementation delegates to {@link JmxUtils#isMBean},
-	 * which checks for {@link javax.management.DynamicMBean} classes as well
-	 * as classes with corresponding "*MBean" interface (Standard MBeans)
-	 * or corresponding "*MXBean" interface (Java MXBeans).
+	 * 确定给定的 Bean 类本身是否符合 MBean 的条件。<p>默认实现委托给 {@link JmxUtils#isMBean}，它会检
+	 * 查 {@link javax.management.DynamicMBean} 类，以及具有对应 "*MBean" 接口（Standard MBean）或对应
+	 * "*MXBean" 接口（Java MXBean）的类。
 	 * @param beanClass the bean class to analyze
 	 * @return whether the class qualifies as an MBean
 	 * @see org.springframework.jmx.support.JmxUtils#isMBean(Class)
@@ -772,10 +726,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Build an adapted MBean for the given bean instance, if possible.
-	 * <p>The default implementation builds a JMX 1.2 StandardMBean
-	 * for the target's MBean/MXBean interface in case of an AOP proxy,
-	 * delegating the interface's management operations to the proxy.
+	 * 如果可能，为给定的 Bean 实例构建适配的 MBean。<p>对于 AOP 代理，默认实现会为目标对象的
+	 * MBean/MXBean 接口构建 JMX 1.2 StandardMBean，并将该接口的管理操作委托给代理。
 	 * @param bean the original bean instance
 	 * @return the adapted MBean, or {@code null} if not possible
 	 */
@@ -807,8 +759,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Creates an MBean that is configured with the appropriate management
-	 * interface for the supplied managed resource.
+	 * 创建为所提供的受管资源配置了适当管理接口的 MBean。
 	 * @param managedResource the resource that is to be exported as an MBean
 	 * @param beanKey the key associated with the managed bean
 	 * @see #createModelMBean()
@@ -829,10 +780,9 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Create an instance of a class that implements {@code ModelMBean}.
-	 * <p>This method is called to obtain a {@code ModelMBean} instance to
-	 * use when registering a bean. This method is called once per bean during the
-	 * registration phase and must return a new instance of {@code ModelMBean}
+	 * 创建实现 {@code ModelMBean} 的类的实例。<p>调用此方法以获取注册 Bean 时要使用的
+	 * {@code ModelMBean} 实例。在注册阶段，每个 Bean 会调用一次此方法，并且必须返回一个新的
+	 * {@code ModelMBean} 实例。
 	 * @return a new instance of a class that implements {@code ModelMBean}
 	 * @throws javax.management.MBeanException if creation of the ModelMBean failed
 	 */
@@ -841,8 +791,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Gets the {@code ModelMBeanInfo} for the bean with the supplied key
-	 * and of the supplied type.
+	 * 获取具有所提供键且属于所提供类型的 Bean 的 {@code ModelMBeanInfo}。
 	 */
 	private ModelMBeanInfo getMBeanInfo(Object managedBean, String beanKey) throws JMException {
 		ModelMBeanInfo info = this.assembler.getMBeanInfo(managedBean, beanKey);
@@ -860,9 +809,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	//---------------------------------------------------------------------
 
 	/**
-	 * Performs the actual autodetection process, delegating to an
-	 * {@code AutodetectCallback} instance to vote on the inclusion of a
-	 * given bean.
+	 * 执行实际的自动检测过程，委托给 {@code AutodetectCallback} 实例来对是否包含给定 Bean 进行投票。
 	 * @param callback the {@code AutodetectCallback} to use when deciding
 	 * whether to include a bean or not
 	 */
@@ -914,7 +861,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Indicates whether a particular bean name is present in the excluded beans list.
+	 * 指示特定的 Bean 名称是否存在于排除的 Bean 列表中。
 	 */
 	private boolean isExcluded(String beanName) {
 		return (this.excludedBeans.contains(beanName) ||
@@ -923,7 +870,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Return whether the specified bean definition should be considered as abstract.
+	 * 返回指定的 Bean 定义是否应被视为抽象。
 	 */
 	private boolean isBeanDefinitionAbstract(ListableBeanFactory beanFactory, String beanName) {
 		return (beanFactory instanceof ConfigurableListableBeanFactory && beanFactory.containsBeanDefinition(beanName) &&
@@ -936,8 +883,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	//---------------------------------------------------------------------
 
 	/**
-	 * If the supplied managed resource implements the {@link NotificationPublisherAware} an instance of
-	 * {@link org.springframework.jmx.export.notification.NotificationPublisher} is injected.
+	 * 如果所提供的受管资源实现了 {@link NotificationPublisherAware}，则注入
+	 * {@link org.springframework.jmx.export.notification.NotificationPublisher} 的实例。
 	 */
 	private void injectNotificationPublisherIfNecessary(
 			Object managedResource, @Nullable ModelMBean modelMBean, @Nullable ObjectName objectName) {
@@ -949,8 +896,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Register the configured {@link NotificationListener NotificationListeners}
-	 * with the {@link MBeanServer}.
+	 * 将所配置的 {@link NotificationListener NotificationListeners} 注册到 {@link MBeanServer}。
 	 */
 	private void registerNotificationListeners() throws MBeanExportException {
 		if (this.notificationListeners != null) {
@@ -977,8 +923,7 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Unregister the configured {@link NotificationListener NotificationListeners}
-	 * from the {@link MBeanServer}.
+	 * 从 {@link MBeanServer} 注销所配置的 {@link NotificationListener NotificationListeners}。
 	 */
 	private void unregisterNotificationListeners() {
 		if (this.server != null) {
@@ -1000,13 +945,10 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Called when an MBean is registered. Notifies all registered
-	 * {@link MBeanExporterListener MBeanExporterListeners} of the registration event.
-	 * <p>Please note that if an {@link MBeanExporterListener} throws a (runtime)
-	 * exception when notified, this will essentially interrupt the notification process
-	 * and any remaining listeners that have yet to be notified will not (obviously)
-	 * receive the {@link MBeanExporterListener#mbeanRegistered(javax.management.ObjectName)}
-	 * callback.
+	 * 在 MBean 被注册时调用。向所有已注册的 {@link MBeanExporterListener MBeanExporterListeners} 通知
+	 * 该注册事件。<p>请注意，如果某个 {@link MBeanExporterListener} 在收到通知时抛出（运行时）异常，实
+	 * 际上会中断通知过程，任何尚未收到通知的其余监听器将（显然）不会收到
+	 * {@link MBeanExporterListener#mbeanRegistered(javax.management.ObjectName)} 回调。
 	 * @param objectName the {@code ObjectName} of the registered MBean
 	 */
 	@Override
@@ -1015,13 +957,10 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Called when an MBean is unregistered. Notifies all registered
-	 * {@link MBeanExporterListener MBeanExporterListeners} of the unregistration event.
-	 * <p>Please note that if an {@link MBeanExporterListener} throws a (runtime)
-	 * exception when notified, this will essentially interrupt the notification process
-	 * and any remaining listeners that have yet to be notified will not (obviously)
-	 * receive the {@link MBeanExporterListener#mbeanUnregistered(javax.management.ObjectName)}
-	 * callback.
+	 * 在 MBean 被注销时调用。向所有已注册的 {@link MBeanExporterListener MBeanExporterListeners} 通知
+	 * 该注销事件。<p>请注意，如果某个 {@link MBeanExporterListener} 在收到通知时抛出（运行时）异常，实
+	 * 际上会中断通知过程，任何尚未收到通知的其余监听器将（显然）不会收到
+	 * {@link MBeanExporterListener#mbeanUnregistered(javax.management.ObjectName)} 回调。
 	 * @param objectName the {@code ObjectName} of the unregistered MBean
 	 */
 	@Override
@@ -1031,8 +970,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 
 
 	/**
-	 * Notifies all registered {@link MBeanExporterListener MBeanExporterListeners} of the
-	 * registration of the MBean identified by the supplied {@link ObjectName}.
+	 * 向所有已注册的 {@link MBeanExporterListener MBeanExporterListeners} 通知由所提供的
+	 * {@link ObjectName} 标识的 MBean 的注册。
 	 */
 	private void notifyListenersOfRegistration(ObjectName objectName) {
 		if (this.listeners != null) {
@@ -1043,8 +982,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	}
 
 	/**
-	 * Notifies all registered {@link MBeanExporterListener MBeanExporterListeners} of the
-	 * unregistration of the MBean identified by the supplied {@link ObjectName}.
+	 * 向所有已注册的 {@link MBeanExporterListener MBeanExporterListeners} 通知由所提供的
+	 * {@link ObjectName} 标识的 MBean 的注销。
 	 */
 	private void notifyListenersOfUnregistration(ObjectName objectName) {
 		if (this.listeners != null) {
@@ -1060,14 +999,13 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 	//---------------------------------------------------------------------
 
 	/**
-	 * Internal callback interface for the autodetection process.
+	 * 自动检测过程的内部回调接口。
 	 */
 	@FunctionalInterface
 	private interface AutodetectCallback {
 
 		/**
-		 * Called during the autodetection process to decide whether
-		 * a bean should be included.
+		 * 在自动检测过程中调用，以决定是否应包含某个 Bean。
 		 * @param beanClass the class of the bean
 		 * @param beanName the name of the bean
 		 */
@@ -1076,9 +1014,8 @@ public class MBeanExporter extends MBeanRegistrationSupport implements MBeanExpo
 
 
 	/**
-	 * Extension of {@link LazyInitTargetSource} that will inject a
-	 * {@link org.springframework.jmx.export.notification.NotificationPublisher}
-	 * into the lazy resource as it is created if required.
+	 * 对 {@link LazyInitTargetSource} 的扩展，在需要时会在延迟资源创建时向其注入
+	 * {@link org.springframework.jmx.export.notification.NotificationPublisher}。
 	 */
 	@SuppressWarnings("serial")
 	private class NotificationPublisherAwareLazyTargetSource extends LazyInitTargetSource {

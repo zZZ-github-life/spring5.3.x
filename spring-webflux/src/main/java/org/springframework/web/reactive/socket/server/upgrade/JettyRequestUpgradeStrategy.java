@@ -45,7 +45,7 @@ import org.springframework.web.reactive.socket.server.RequestUpgradeStrategy;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link RequestUpgradeStrategy} for use with Jetty.
+ * 与 Jetty 配合使用的 {@link RequestUpgradeStrategy}。
  *
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
@@ -72,8 +72,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Life
 
 
 	/**
-	 * Configure a {@link WebSocketPolicy} to use to initialize
-	 * {@link WebSocketServerFactory}.
+	 * 配置用于初始化 {@link WebSocketServerFactory} 的 {@link WebSocketPolicy}。
 	 * @param webSocketPolicy the WebSocket settings
 	 */
 	public void setWebSocketPolicy(WebSocketPolicy webSocketPolicy) {
@@ -81,7 +80,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Life
 	}
 
 	/**
-	 * Return the configured {@link WebSocketPolicy}, if any.
+	 * 返回已配置的 {@link WebSocketPolicy}（如果有）。
 	 */
 	@Nullable
 	public WebSocketPolicy getWebSocketPolicy() {

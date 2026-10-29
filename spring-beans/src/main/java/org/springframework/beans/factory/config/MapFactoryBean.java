@@ -25,8 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Simple factory for shared Map instances. Allows for central setup
- * of Maps via the "map" element in XML bean definitions.
+ * 用于共享 Map 实例的简单工厂。可通过 XML Bean 定义中的 "map" 元素集中设置 Maps。
  *
  * @author Juergen Hoeller
  * @since 09.12.2003
@@ -44,16 +43,15 @@ public class MapFactoryBean extends AbstractFactoryBean<Map<Object, Object>> {
 
 
 	/**
-	 * Set the source Map, typically populated via XML "map" elements.
+	 * 设置源 Map，通常通过 XML "map" 元素填充。
 	 */
 	public void setSourceMap(Map<?, ?> sourceMap) {
 		this.sourceMap = sourceMap;
 	}
 
 	/**
-	 * Set the class to use for the target Map. Can be populated with a fully
-	 * qualified class name when defined in a Spring application context.
-	 * <p>Default is a linked HashMap, keeping the registration order.
+	 * 设置用于目标 Map 的类。在 Spring 应用上下文中定义时，可以使用完全限定的类名来填充。
+	 * <p>默认是一个保持注册顺序的 linked HashMap。
 	 * @see java.util.LinkedHashMap
 	 */
 	@SuppressWarnings("rawtypes")

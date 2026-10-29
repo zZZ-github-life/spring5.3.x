@@ -28,23 +28,22 @@ import org.springframework.core.NamedThreadLocal;
 import org.springframework.lang.Nullable;
 
 /**
- * A simple thread-backed {@link Scope} implementation.
+ * 一个简单的、基于线程的 {@link Scope} 实现。
  *
- * <p><b>NOTE:</b> This thread scope is not registered by default in common contexts.
- * Instead, you need to explicitly assign it to a scope key in your setup, either through
- * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory#registerScope}
- * or through a {@link org.springframework.beans.factory.config.CustomScopeConfigurer} bean.
+ * <p><b>NOTE:</b> 此线程作用域在常见上下文中默认不注册。你需要在自己的配置中显式将其分配给某个作用
+ * 域键，方式是通过
+ * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory#registerScope}，或通过一
+ * 个 {@link org.springframework.beans.factory.config.CustomScopeConfigurer} Bean。
  *
- * <p>{@code SimpleThreadScope} <em>does not clean up any objects</em> associated with it.
- * It is therefore typically preferable to use a request-bound scope implementation such
- * as {@code org.springframework.web.context.request.RequestScope} in web environments,
- * implementing the full lifecycle for scoped attributes (including reliable destruction).
+ * <p>{@code SimpleThreadScope} <em>不会清理</em>与其关联的任何对象。因此在 Web 环境中，通常更可取
+ * 的是使用像 {@code org.springframework.web.context.request.RequestScope} 这样与请求绑定的作用域实
+ * 现，它为作用域属性实现了完整的生命周期（包括可靠的销毁）。
  *
- * <p>For an implementation of a thread-based {@code Scope} with support for destruction
- * callbacks, refer to
- * <a href="https://www.springbyexample.org/examples/custom-thread-scope-module.html">Spring by Example</a>.
+ * <p>有关支持销毁回调的基于线程的 {@code Scope} 实现，请参见
+ * <a href="https://www.springbyexample.org/examples/custom-thread-scope-module.html">Spring by
+ * Example</a>。
  *
- * <p>Thanks to Eugene Kuleshov for submitting the original prototype for a thread scope!
+ * <p>感谢 Eugene Kuleshov 提交了线程作用域的原始原型！
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller

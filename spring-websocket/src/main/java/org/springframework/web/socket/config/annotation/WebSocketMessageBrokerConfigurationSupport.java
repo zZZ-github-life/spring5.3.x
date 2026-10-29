@@ -42,12 +42,12 @@ import org.springframework.web.socket.messaging.SubProtocolWebSocketHandler;
 import org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler;
 
 /**
- * Extends {@link AbstractMessageBrokerConfiguration} and adds configuration for
- * receiving and responding to STOMP messages from WebSocket clients.
+ * 扩展 {@link AbstractMessageBrokerConfiguration}，并添加用于接收和响应
+ * 来自 WebSocket 客户端的 STOMP 消息的配置。
  *
- * <p>Typically used in conjunction with
- * {@link EnableWebSocketMessageBroker @EnableWebSocketMessageBroker} but can
- * also be extended directly.
+ * <p>通常与
+ * {@link EnableWebSocketMessageBroker @EnableWebSocketMessageBroker} 结合使用，
+ * 但也可以直接继承。
  *
  * @author Rossen Stoyanchev
  * @author Artem Bilan

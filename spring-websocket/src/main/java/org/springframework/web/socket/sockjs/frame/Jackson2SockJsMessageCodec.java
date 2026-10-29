@@ -29,16 +29,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A Jackson 2.6+ codec for encoding and decoding SockJS messages.
+ * 用于编码和解码 SockJS 消息的 Jackson 2.6+ 编解码器。
  *
- * <p>It customizes Jackson's default properties with the following ones:
+ * <p>它使用以下属性自定义 Jackson 的默认属性：
  * <ul>
- * <li>{@link MapperFeature#DEFAULT_VIEW_INCLUSION} is disabled</li>
- * <li>{@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES} is disabled</li>
+ * <li>禁用 {@link MapperFeature#DEFAULT_VIEW_INCLUSION}</li>
+ * <li>禁用 {@link DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES}</li>
  * </ul>
  *
- * <p>Note that Jackson's JSR-310 and Joda-Time support modules will be registered automatically
- * when available (and when Java 8 and Joda-Time themselves are available, respectively).
+ * <p>请注意，Jackson 的 JSR-310 和 Joda-Time 支持模块将在可用时自动注册
+ * （分别在 Java 8 和 Joda-Time 本身可用时）。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

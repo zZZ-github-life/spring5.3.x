@@ -25,11 +25,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Operation object representing an SQL-based operation such as a query or update,
- * as opposed to a stored procedure.
+ * 表示基于 SQL 的操作（例如查询或更新）的操作对象，与存储过程相对。
  *
- * <p>Configures a {@link org.springframework.jdbc.core.PreparedStatementCreatorFactory}
- * based on the declared parameters.
+ * <p>根据声明的参数配置 {@link org.springframework.jdbc.core.PreparedStatementCreatorFactory}。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -37,23 +35,21 @@ import org.springframework.util.Assert;
 public abstract class SqlOperation extends RdbmsOperation {
 
 	/**
-	 * Object enabling us to create PreparedStatementCreators efficiently,
-	 * based on this class's declared parameters.
+	 * 基于本类声明的参数，能够高效创建 PreparedStatementCreator 的对象。
 	 */
 	@Nullable
 	private PreparedStatementCreatorFactory preparedStatementFactory;
 
-	/** Parsed representation of the SQL statement. */
+	/** SQL 语句的解析后表示形式。 */
 	@Nullable
 	private ParsedSql cachedSql;
 
-	/** Monitor for locking the cached representation of the parsed SQL statement. */
+	/** 用于锁定已解析 SQL 语句缓存表示的监视器。 */
 	private final Object parsedSqlMonitor = new Object();
 
 
 	/**
-	 * Overridden method to configure the PreparedStatementCreatorFactory
-	 * based on our declared parameters.
+	 * 重写的方法，根据我们声明的参数配置 PreparedStatementCreatorFactory。
 	 */
 	@Override
 	protected final void compileInternal() {
@@ -69,16 +65,16 @@ public abstract class SqlOperation extends RdbmsOperation {
 	}
 
 	/**
-	 * Hook method that subclasses may override to post-process compilation.
-	 * This implementation does nothing.
+	 * 钩子方法，子类可以重写以对编译进行后处理。
+	 * 此实现不执行任何操作。
 	 * @see #compileInternal
 	 */
 	protected void onCompileInternal() {
 	}
 
 	/**
-	 * Obtain a parsed representation of this operation's SQL statement.
-	 * <p>Typically used for named parameter parsing.
+	 * 获取此操作 SQL 语句的解析后表示形式。
+	 * <p>通常用于命名参数解析。
 	 */
 	protected ParsedSql getParsedSql() {
 		synchronized (this.parsedSqlMonitor) {
@@ -91,8 +87,7 @@ public abstract class SqlOperation extends RdbmsOperation {
 
 
 	/**
-	 * Return a PreparedStatementSetter to perform an operation
-	 * with the given parameters.
+	 * 返回用于使用给定参数执行操作的 PreparedStatementSetter。
 	 * @param params the parameter array (may be {@code null})
 	 */
 	protected final PreparedStatementSetter newPreparedStatementSetter(@Nullable Object[] params) {
@@ -101,8 +96,7 @@ public abstract class SqlOperation extends RdbmsOperation {
 	}
 
 	/**
-	 * Return a PreparedStatementCreator to perform an operation
-	 * with the given parameters.
+	 * 返回用于使用给定参数执行操作的 PreparedStatementCreator。
 	 * @param params the parameter array (may be {@code null})
 	 */
 	protected final PreparedStatementCreator newPreparedStatementCreator(@Nullable Object[] params) {
@@ -111,8 +105,7 @@ public abstract class SqlOperation extends RdbmsOperation {
 	}
 
 	/**
-	 * Return a PreparedStatementCreator to perform an operation
-	 * with the given parameters.
+	 * 返回用于使用给定参数执行操作的 PreparedStatementCreator。
 	 * @param sqlToUse the actual SQL statement to use (if different from
 	 * the factory's, for example because of named parameter expanding)
 	 * @param params the parameter array (may be {@code null})

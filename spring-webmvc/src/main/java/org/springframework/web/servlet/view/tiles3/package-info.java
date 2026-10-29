@@ -1,8 +1,7 @@
 /**
- * Support classes for the integration of
- * <a href="https://tiles.apache.org">Tiles 3</a>
- * (the standalone version of Tiles) as Spring web view technology.
- * Contains a View implementation for Tiles definitions.
+ * 用于将 <a href="https://tiles.apache.org">Tiles 3</a>
+ *（Tiles 的独立版本）集成为 Spring Web 视图技术的支持类。
+ * 包含 Tiles 定义的 View 实现。
  */
 @NonNullApi
 @NonNullFields

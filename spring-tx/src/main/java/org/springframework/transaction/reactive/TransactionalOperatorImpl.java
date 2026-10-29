@@ -30,8 +30,7 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
 
 /**
- * Operator class that simplifies programmatic transaction demarcation and
- * transaction exception handling.
+ * 简化编程式事务界定和事务异常处理的操作器类。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -49,8 +48,8 @@ final class TransactionalOperatorImpl implements TransactionalOperator {
 
 
 	/**
-	 * Construct a new TransactionTemplate using the given transaction manager,
-	 * taking its default settings from the given transaction definition.
+	 * 使用给定的事务管理器构造一个新的TransactionTemplate，
+	 * 从给定的事务定义中获取其默认设置。
 	 * @param transactionManager the transaction management strategy to be used
 	 * @param transactionDefinition the transaction definition to copy the
 	 * default settings from. Local properties can still be set to change values.
@@ -64,7 +63,7 @@ final class TransactionalOperatorImpl implements TransactionalOperator {
 
 
 	/**
-	 * Return the transaction management strategy to be used.
+	 * 返回要使用的事务管理策略。
 	 */
 	public ReactiveTransactionManager getTransactionManager() {
 		return this.transactionManager;
@@ -109,7 +108,7 @@ final class TransactionalOperatorImpl implements TransactionalOperator {
 	}
 
 	/**
-	 * Perform a rollback, handling rollback exceptions properly.
+	 * 执行回滚，正确处理回滚异常。
 	 * @param status object representing the transaction
 	 * @param ex the thrown application exception or error
 	 * @throws TransactionException in case of a rollback error

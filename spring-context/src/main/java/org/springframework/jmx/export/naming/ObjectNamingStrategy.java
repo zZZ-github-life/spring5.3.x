@@ -22,10 +22,9 @@ import javax.management.ObjectName;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface that encapsulates the creation of {@code ObjectName} instances.
+ * 封装 {@code ObjectName} 实例创建过程的策略接口。
  *
- * <p>Used by the {@code MBeanExporter} to obtain {@code ObjectName}s
- * when registering beans.
+ * <p>由 {@code MBeanExporter} 在注册 Bean 时用来获取 {@code ObjectName}。
  *
  * @author Rob Harrop
  * @since 1.2
@@ -36,7 +35,7 @@ import org.springframework.lang.Nullable;
 public interface ObjectNamingStrategy {
 
 	/**
-	 * Obtain an {@code ObjectName} for the supplied bean.
+	 * 为提供的 Bean 获取一个 {@code ObjectName}。
 	 * @param managedBean the bean that will be exposed under the
 	 * returned {@code ObjectName}
 	 * @param beanKey the key associated with this bean in the beans map

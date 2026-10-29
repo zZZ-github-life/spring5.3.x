@@ -19,7 +19,7 @@ package org.springframework.jms.listener.adapter;
 import org.springframework.jms.JmsException;
 
 /**
- * Exception to be thrown when the reply of a message failed to be sent.
+ * 消息的回复发送失败时抛出的异常。
  *
  * @author Stephane Nicoll
  * @since 4.1

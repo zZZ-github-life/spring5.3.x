@@ -29,8 +29,8 @@ import javax.jms.TopicPublisher;
 import org.springframework.lang.Nullable;
 
 /**
- * JMS MessageProducer decorator that adapts calls to a shared MessageProducer
- * instance underneath, managing QoS settings locally within the decorator.
+ * JMS MessageProducer 装饰器，将调用适配到其下共享的 MessageProducer 实例，
+ * 并在装饰器内部本地管理 QoS 设置。
  *
  * @author Juergen Hoeller
  * @since 2.5.3

@@ -34,39 +34,35 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Default implementation of the {@link LobHandler} interface.
- * Invokes the direct accessor methods that {@code java.sql.ResultSet}
- * and {@code java.sql.PreparedStatement} offer.
+ * {@link LobHandler} 接口的默认实现。
+ * 调用 {@code java.sql.ResultSet} 和 {@code java.sql.PreparedStatement} 提供的直接访问方法。
  *
- * <p>By default, incoming streams are going to be passed to the appropriate
- * {@code setBinary/Ascii/CharacterStream} method on the JDBC driver's
- * {@link PreparedStatement}. If the specified content length is negative,
- * this handler will use the JDBC 4.0 variants of the set-stream methods
- * without a length parameter; otherwise, it will pass the specified length
- * on to the driver.
+ * <p>默认情况下，传入的流将被传递给 JDBC 驱动 {@link PreparedStatement}
+ * 上相应的 {@code setBinary/Ascii/CharacterStream} 方法。
+ * 如果指定的内容长度为负数，此处理器将使用不带长度参数的 JDBC 4.0 版 set-stream 方法；
+ * 否则，它将把指定的长度传递给驱动。
  *
- * <p>This LobHandler should work for any JDBC driver that is JDBC compliant
- * in terms of the spec's suggestions regarding simple BLOB and CLOB handling.
- * This does not apply to Oracle 9i's drivers at all; as of Oracle 10g,
- * it does work but may still come with LOB size limitations. Consider using
- * recent Oracle drivers even when working against an older database server.
- * See the {@link LobHandler} javadoc for the full set of recommendations.
+ * <p>只要 JDBC 驱动在规范关于简单 BLOB 和 CLOB 处理的建议方面符合 JDBC 规范，
+ * 此 LobHandler 就应能正常工作。
+ * 这完全不适用于 Oracle 9i 的驱动；从 Oracle 10g 起，它可以工作，
+ * 但仍可能带有 LOB 大小限制。即使针对较旧的数据库服务器，
+ * 也应考虑使用较新的 Oracle 驱动。
+ * 完整建议请参见 {@link LobHandler} 的 javadoc。
  *
- * <p>Some JDBC drivers require values with a BLOB/CLOB target column to be
- * explicitly set through the JDBC {@code setBlob} / {@code setClob} API:
- * for example, PostgreSQL's driver. Switch the {@link #setWrapAsLob "wrapAsLob"}
- * property to "true" when operating against such a driver.
+ * <p>某些 JDBC 驱动要求通过 JDBC {@code setBlob} / {@code setClob} API
+ * 显式设置 BLOB/CLOB 目标列的值：例如 PostgreSQL 的驱动。
+ * 针对此类驱动操作时，请将 {@link #setWrapAsLob "wrapAsLob"} 属性切换为 "true"。
  *
- * <p>On JDBC 4.0, this LobHandler also supports streaming the BLOB/CLOB content
- * via the {@code setBlob} / {@code setClob} variants that take a stream
- * argument directly. Consider switching the {@link #setStreamAsLob "streamAsLob"}
- * property to "true" when operating against a fully compliant JDBC 4.0 driver.
+ * <p>在 JDBC 4.0 上，此 LobHandler 还支持通过直接接收流参数的
+ * {@code setBlob} / {@code setClob} 变体来流式传输 BLOB/CLOB 内容。
+ * 针对完全符合 JDBC 4.0 的驱动操作时，
+ * 可考虑将 {@link #setStreamAsLob "streamAsLob"} 属性切换为 "true"。
  *
- * <p>Finally, this LobHandler also supports the creation of temporary BLOB/CLOB
- * objects. Consider switching the {@link #setCreateTemporaryLob "createTemporaryLob"}
- * property to "true" when "streamAsLob" happens to run into LOB size limitations.
+ * <p>最后，此 LobHandler 还支持创建临时 BLOB/CLOB 对象。
+ * 当 "streamAsLob" 遇到 LOB 大小限制时，
+ * 可考虑将 {@link #setCreateTemporaryLob "createTemporaryLob"} 属性切换为 "true"。
  *
- * <p>See the {@link LobHandler} interface javadoc for a summary of recommendations.
+ * <p>建议摘要请参见 {@link LobHandler} 接口的 javadoc。
  *
  * @author Juergen Hoeller
  * @since 04.12.2003
@@ -93,17 +89,15 @@ public class DefaultLobHandler extends AbstractLobHandler {
 
 
 	/**
-	 * Specify whether to submit a byte array / String to the JDBC driver
-	 * wrapped in a JDBC Blob / Clob object, using the JDBC {@code setBlob} /
-	 * {@code setClob} method with a Blob / Clob argument.
-	 * <p>Default is "false", using the common JDBC 2.0 {@code setBinaryStream}
-	 * / {@code setCharacterStream} method for setting the content. Switch this
-	 * to "true" for explicit Blob / Clob wrapping against JDBC drivers that
-	 * are known to require such wrapping (e.g. PostgreSQL's for access to OID
-	 * columns, whereas BYTEA columns need to be accessed the standard way).
-	 * <p>This setting affects byte array / String arguments as well as stream
-	 * arguments, unless {@link #setStreamAsLob "streamAsLob"} overrides this
-	 * handling to use JDBC 4.0's new explicit streaming support (if available).
+	 * 指定是否将字节数组 / String 包装在 JDBC Blob / Clob 对象中提交给 JDBC 驱动，
+	 * 即使用以 Blob / Clob 为参数的 JDBC {@code setBlob} / {@code setClob} 方法。
+	 * <p>默认值为 "false"，使用常见的 JDBC 2.0 {@code setBinaryStream}
+	 * / {@code setCharacterStream} 方法来设置内容。
+	 * 对于已知需要此类包装的 JDBC 驱动（例如 PostgreSQL 驱动访问 OID 列时需要，
+	 * 而 BYTEA 列则需按标准方式访问），可将此值切换为 "true"。
+	 * <p>此设置同时影响字节数组 / String 参数以及流参数，
+	 * 除非 {@link #setStreamAsLob "streamAsLob"} 覆盖此处理方式，
+	 * 改用 JDBC 4.0 新增的显式流支持（如果可用）。
 	 * @see java.sql.PreparedStatement#setBlob(int, java.sql.Blob)
 	 * @see java.sql.PreparedStatement#setClob(int, java.sql.Clob)
 	 */
@@ -112,16 +106,14 @@ public class DefaultLobHandler extends AbstractLobHandler {
 	}
 
 	/**
-	 * Specify whether to submit a binary stream / character stream to the JDBC
-	 * driver as explicit LOB content, using the JDBC 4.0 {@code setBlob} /
-	 * {@code setClob} method with a stream argument.
-	 * <p>Default is "false", using the common JDBC 2.0 {@code setBinaryStream}
-	 * / {@code setCharacterStream} method for setting the content.
-	 * Switch this to "true" for explicit JDBC 4.0 streaming, provided that your
-	 * JDBC driver actually supports those JDBC 4.0 operations (e.g. Derby's).
-	 * <p>This setting affects stream arguments as well as byte array / String
-	 * arguments, requiring JDBC 4.0 support. For supporting LOB content against
-	 * JDBC 3.0, check out the {@link #setWrapAsLob "wrapAsLob"} setting.
+	 * 指定是否将二进制流 / 字符流作为显式 LOB 内容提交给 JDBC 驱动，
+	 * 即使用以流为参数的 JDBC 4.0 {@code setBlob} / {@code setClob} 方法。
+	 * <p>默认值为 "false"，使用常见的 JDBC 2.0 {@code setBinaryStream}
+	 * / {@code setCharacterStream} 方法来设置内容。
+	 * 如果你的 JDBC 驱动确实支持这些 JDBC 4.0 操作（例如 Derby 的驱动），
+	 * 可将此值切换为 "true" 以启用显式 JDBC 4.0 流式传输。
+	 * <p>此设置同时影响流参数以及字节数组 / String 参数，需要 JDBC 4.0 支持。
+	 * 若要在 JDBC 3.0 上支持 LOB 内容，请查看 {@link #setWrapAsLob "wrapAsLob"} 设置。
 	 * @see java.sql.PreparedStatement#setBlob(int, java.io.InputStream, long)
 	 * @see java.sql.PreparedStatement#setClob(int, java.io.Reader, long)
 	 */
@@ -130,15 +122,13 @@ public class DefaultLobHandler extends AbstractLobHandler {
 	}
 
 	/**
-	 * Specify whether to copy a byte array / String into a temporary JDBC
-	 * Blob / Clob object created through the JDBC 4.0 {@code createBlob} /
-	 * {@code createClob} methods.
-	 * <p>Default is "false", using the common JDBC 2.0 {@code setBinaryStream}
-	 * / {@code setCharacterStream} method for setting the content. Switch this
-	 * to "true" for explicit Blob / Clob creation using JDBC 4.0.
-	 * <p>This setting affects stream arguments as well as byte array / String
-	 * arguments, requiring JDBC 4.0 support. For supporting LOB content against
-	 * JDBC 3.0, check out the {@link #setWrapAsLob "wrapAsLob"} setting.
+	 * 指定是否将字节数组 / String 复制到通过 JDBC 4.0 {@code createBlob} /
+	 * {@code createClob} 方法创建的临时 JDBC Blob / Clob 对象中。
+	 * <p>默认值为 "false"，使用常见的 JDBC 2.0 {@code setBinaryStream}
+	 * / {@code setCharacterStream} 方法来设置内容。
+	 * 可将此值切换为 "true"，使用 JDBC 4.0 显式创建 Blob / Clob。
+	 * <p>此设置同时影响流参数以及字节数组 / String 参数，需要 JDBC 4.0 支持。
+	 * 若要在 JDBC 3.0 上支持 LOB 内容，请查看 {@link #setWrapAsLob "wrapAsLob"} 设置。
 	 * @see java.sql.Connection#createBlob()
 	 * @see java.sql.Connection#createClob()
 	 */
@@ -217,8 +207,8 @@ public class DefaultLobHandler extends AbstractLobHandler {
 
 
 	/**
-	 * Default LobCreator implementation as an inner class.
-	 * Can be subclassed in DefaultLobHandler extensions.
+	 * 作为内部类提供的默认 LobCreator 实现。
+	 * 可在 DefaultLobHandler 的扩展类中继承。
 	 */
 	protected class DefaultLobCreator implements LobCreator {
 

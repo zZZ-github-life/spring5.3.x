@@ -23,10 +23,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Custom {@link java.beans.PropertyEditor} for String arrays.
+ * 用于 String 数组的自定义 {@link java.beans.PropertyEditor}。
  *
- * <p>Strings must be in CSV format, with a customizable separator.
- * By default, values in the result are trimmed of whitespace.
+ * <p>字符串必须采用 CSV 格式，分隔符可自定义。默认情况下，结果中的值会被去除首尾空白。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -37,7 +36,7 @@ import org.springframework.util.StringUtils;
 public class StringArrayPropertyEditor extends PropertyEditorSupport {
 
 	/**
-	 * Default separator for splitting a String: a comma (",").
+	 * 用于拆分 String 的默认分隔符：逗号（","）。
 	 */
 	public static final String DEFAULT_SEPARATOR = ",";
 
@@ -53,17 +52,16 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new {@code StringArrayPropertyEditor} with the default separator
-	 * (a comma).
-	 * <p>An empty text (without elements) will be turned into an empty array.
+	 * 使用默认分隔符（逗号）创建一个新的 {@code StringArrayPropertyEditor}。
+	 * <p>空文本（不含元素）将被转换为空数组。
 	 */
 	public StringArrayPropertyEditor() {
 		this(DEFAULT_SEPARATOR, null, false);
 	}
 
 	/**
-	 * Create a new {@code StringArrayPropertyEditor} with the given separator.
-	 * <p>An empty text (without elements) will be turned into an empty array.
+	 * 使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。
+	 * <p>空文本（不含元素）将被转换为空数组。
 	 * @param separator the separator to use for splitting a {@link String}
 	 */
 	public StringArrayPropertyEditor(String separator) {
@@ -71,7 +69,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new {@code StringArrayPropertyEditor} with the given separator.
+	 * 使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。
 	 * @param separator the separator to use for splitting a {@link String}
 	 * @param emptyArrayAsNull {@code true} if an empty String array
 	 * is to be transformed into {@code null}
@@ -81,7 +79,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new {@code StringArrayPropertyEditor} with the given separator.
+	 * 使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。
 	 * @param separator the separator to use for splitting a {@link String}
 	 * @param emptyArrayAsNull {@code true} if an empty String array
 	 * is to be transformed into {@code null}
@@ -93,7 +91,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new {@code StringArrayPropertyEditor} with the given separator.
+	 * 使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。
 	 * @param separator the separator to use for splitting a {@link String}
 	 * @param charsToDelete a set of characters to delete, in addition to
 	 * trimming an input String. Useful for deleting unwanted line breaks:
@@ -106,7 +104,7 @@ public class StringArrayPropertyEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new {@code StringArrayPropertyEditor} with the given separator.
+	 * 使用给定的分隔符创建一个新的 {@code StringArrayPropertyEditor}。
 	 * @param separator the separator to use for splitting a {@link String}
 	 * @param charsToDelete a set of characters to delete, in addition to
 	 * trimming an input String. Useful for deleting unwanted line breaks:

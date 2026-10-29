@@ -1,5 +1,6 @@
 /**
- * Support for context caching within the <em>Spring TestContext Framework</em>.
+ * 对 <em>Spring TestContext Framework</em> 内上下文缓存的支持。
+ *
  */
 @NonNullApi
 @NonNullFields

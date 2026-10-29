@@ -1,6 +1,6 @@
 /**
- * Provides common WebHandler implementations and a
- * {@link org.springframework.web.server.handler.WebHandlerDecorator}.
+ * 提供常用的 WebHandler 实现以及
+ * {@link org.springframework.web.server.handler.WebHandlerDecorator}。
  */
 @NonNullApi
 @NonNullFields

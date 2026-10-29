@@ -37,13 +37,12 @@ import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Factory for creating {@link SQLErrorCodes} based on the
- * "databaseProductName" taken from the {@link java.sql.DatabaseMetaData}.
+ * 工厂类，用于根据从 {@link java.sql.DatabaseMetaData} 中获取的
+ * "databaseProductName" 创建 {@link SQLErrorCodes}。
  *
- * <p>Returns {@code SQLErrorCodes} populated with vendor codes
- * defined in a configuration file named "sql-error-codes.xml".
- * Reads the default file in this package if not overridden by a file in
- * the root of the class path (for example in the "/WEB-INF/classes" directory).
+ * <p>返回填充了厂商错误码的 {@code SQLErrorCodes}，这些错误码定义在名为
+ * "sql-error-codes.xml" 的配置文件中。如果类路径根目录（例如 "/WEB-INF/classes"
+ * 目录）下存在同名文件覆盖默认配置，则读取该文件；否则读取本包中的默认文件。
  *
  * @author Thomas Risberg
  * @author Rod Johnson
@@ -53,13 +52,13 @@ import org.springframework.util.StringUtils;
 public class SQLErrorCodesFactory {
 
 	/**
-	 * The name of custom SQL error codes file, loading from the root
-	 * of the class path (e.g. from the "/WEB-INF/classes" directory).
+	 * 自定义 SQL 错误码文件的名称，从类路径根目录加载
+	 * （例如 "/WEB-INF/classes" 目录）。
 	 */
 	public static final String SQL_ERROR_CODE_OVERRIDE_PATH = "sql-error-codes.xml";
 
 	/**
-	 * The name of default SQL error code files, loading from the class path.
+	 * 默认 SQL 错误码文件的名称，从类路径加载。
 	 */
 	public static final String SQL_ERROR_CODE_DEFAULT_PATH = "org/springframework/jdbc/support/sql-error-codes.xml";
 
@@ -67,13 +66,13 @@ public class SQLErrorCodesFactory {
 	private static final Log logger = LogFactory.getLog(SQLErrorCodesFactory.class);
 
 	/**
-	 * Keep track of a single instance so we can return it to classes that request it.
+	 * 跟踪单个实例，以便能够将其返回给请求它的类。
 	 */
 	private static final SQLErrorCodesFactory instance = new SQLErrorCodesFactory();
 
 
 	/**
-	 * Return the singleton instance.
+	 * 返回单例实例。
 	 */
 	public static SQLErrorCodesFactory getInstance() {
 		return instance;
@@ -81,23 +80,22 @@ public class SQLErrorCodesFactory {
 
 
 	/**
-	 * Map to hold error codes for all databases defined in the config file.
-	 * Key is the database product name, value is the SQLErrorCodes instance.
+	 * 用于保存配置文件中定义的所有数据库的错误码的 Map。
+	 * 键为数据库产品名称，值为 SQLErrorCodes 实例。
 	 */
 	private final Map<String, SQLErrorCodes> errorCodesMap;
 
 	/**
-	 * Map to cache the SQLErrorCodes instance per DataSource.
+	 * 用于按 DataSource 缓存 SQLErrorCodes 实例的 Map。
 	 */
 	private final Map<DataSource, SQLErrorCodes> dataSourceCache = new ConcurrentReferenceHashMap<>(16);
 
 
 	/**
-	 * Create a new instance of the {@link SQLErrorCodesFactory} class.
-	 * <p>Not public to enforce Singleton design pattern. Would be private
-	 * except to allow testing via overriding the
-	 * {@link #loadResource(String)} method.
-	 * <p><b>Do not subclass in application code.</b>
+	 * 创建一个新的 {@link SQLErrorCodesFactory} 类实例。
+	 * <p>声明为非 public 以强制实现单例设计模式。之所以不是 private，是为了允许
+	 * 通过重写 {@link #loadResource(String)} 方法进行测试。
+	 * <p><b>请勿在应用程序代码中创建子类。</b>
 	 * @see #loadResource(String)
 	 */
 	protected SQLErrorCodesFactory() {
@@ -139,10 +137,10 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Load the given resource from the class path.
-	 * <p><b>Not to be overridden by application developers, who should obtain
-	 * instances of this class from the static {@link #getInstance()} method.</b>
-	 * <p>Protected for testability.
+	 * 从类路径加载给定的资源。
+	 * <p><b>应用程序开发者不应重写此方法，而应通过静态的 {@link #getInstance()}
+	 * 方法获取此类的实例。</b>
+	 * <p>声明为 protected 是为了便于测试。
 	 * @param path resource path; either a custom path or one of either
 	 * {@link #SQL_ERROR_CODE_DEFAULT_PATH} or
 	 * {@link #SQL_ERROR_CODE_OVERRIDE_PATH}.
@@ -156,8 +154,8 @@ public class SQLErrorCodesFactory {
 
 
 	/**
-	 * Return the {@link SQLErrorCodes} instance for the given database.
-	 * <p>No need for a database meta-data lookup.
+	 * 返回给定数据库对应的 {@link SQLErrorCodes} 实例。
+	 * <p>无需进行数据库元数据查找。
 	 * @param databaseName the database name (must not be {@code null})
 	 * @return the {@code SQLErrorCodes} instance for the given database
 	 * (never {@code null}; potentially empty)
@@ -191,10 +189,9 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Return {@link SQLErrorCodes} for the given {@link DataSource},
-	 * evaluating "databaseProductName" from the
-	 * {@link java.sql.DatabaseMetaData}, or an empty error codes
-	 * instance if no {@code SQLErrorCodes} were found.
+	 * 返回给定 {@link DataSource} 对应的 {@link SQLErrorCodes}，通过
+	 * {@link java.sql.DatabaseMetaData} 评估 "databaseProductName"；
+	 * 如果未找到任何 {@code SQLErrorCodes}，则返回空的错误码实例。
 	 * @param dataSource the {@code DataSource} identifying the database
 	 * @return the corresponding {@code SQLErrorCodes} object
 	 * (never {@code null}; potentially empty)
@@ -206,10 +203,9 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Return {@link SQLErrorCodes} for the given {@link DataSource},
-	 * evaluating "databaseProductName" from the
-	 * {@link java.sql.DatabaseMetaData}, or {@code null} if case
-	 * of a JDBC meta-data access problem.
+	 * 返回给定 {@link DataSource} 对应的 {@link SQLErrorCodes}，通过
+	 * {@link java.sql.DatabaseMetaData} 评估 "databaseProductName"；
+	 * 如果出现 JDBC 元数据访问问题，则返回 {@code null}。
 	 * @param dataSource the {@code DataSource} identifying the database
 	 * @return the corresponding {@code SQLErrorCodes} object,
 	 * or {@code null} in case of a JDBC meta-data access problem
@@ -254,7 +250,7 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Associate the specified database name with the given {@link DataSource}.
+	 * 将指定的数据库名称与给定的 {@link DataSource} 关联起来。
 	 * @param dataSource the {@code DataSource} identifying the database
 	 * @param databaseName the corresponding database name as stated in the error codes
 	 * definition file (must not be {@code null})
@@ -272,7 +268,7 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Clear the cache for the specified {@link DataSource}, if registered.
+	 * 清除指定 {@link DataSource} 的缓存（如果已注册）。
 	 * @param dataSource the {@code DataSource} identifying the database
 	 * @return the corresponding {@code SQLErrorCodes} object that got removed,
 	 * or {@code null} if not registered
@@ -285,8 +281,7 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Build an identification String for the given {@link DataSource},
-	 * primarily for logging purposes.
+	 * 为给定的 {@link DataSource} 构建标识字符串，主要用于日志记录。
 	 * @param dataSource the {@code DataSource} to introspect
 	 * @return the identification String
 	 */
@@ -295,7 +290,7 @@ public class SQLErrorCodesFactory {
 	}
 
 	/**
-	 * Check the {@link CustomSQLExceptionTranslatorRegistry} for any entries.
+	 * 检查 {@link CustomSQLExceptionTranslatorRegistry} 中是否有对应条目。
 	 */
 	private void checkCustomTranslatorRegistry(String databaseName, SQLErrorCodes errorCodes) {
 		SQLExceptionTranslator customTranslator =

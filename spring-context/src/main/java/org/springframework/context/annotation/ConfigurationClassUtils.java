@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 /**
- * Utilities for identifying {@link Configuration} classes.
+ * 用于识别 {@link Configuration} 类的工具。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -75,9 +75,8 @@ abstract class ConfigurationClassUtils {
 
 
 	/**
-	 * Check whether the given bean definition is a candidate for a configuration class
-	 * (or a nested component class declared within a configuration/component class,
-	 * to be auto-registered as well), and mark it accordingly.
+	 * 检查给定的 Bean 定义是否是配置类的候选（或者是配置类/组件类中声明的、也要自动注册的嵌套组件类），
+	 * 并相应地标记它。
 	 * @param beanDef the bean definition to check
 	 * @param metadataReaderFactory the current factory in use by the caller
 	 * @return whether the candidate qualifies as (any kind of) configuration class
@@ -151,8 +150,7 @@ abstract class ConfigurationClassUtils {
 	}
 
 	/**
-	 * Check the given metadata for a configuration class candidate
-	 * (or nested component class declared within a configuration/component class).
+	 * 检查给定元数据是否为配置类候选（或在配置类/组件类中声明的嵌套组件类）。
 	 * @param metadata the metadata of the annotated class
 	 * @return {@code true} if the given class is to be registered for
 	 * configuration class processing; {@code false} otherwise
@@ -194,7 +192,7 @@ abstract class ConfigurationClassUtils {
 	}
 
 	/**
-	 * Determine the order for the given configuration class metadata.
+	 * 确定给定配置类元数据的顺序。
 	 * @param metadata the metadata of the annotated class
 	 * @return the {@code @Order} annotation value on the configuration class,
 	 * or {@code Ordered.LOWEST_PRECEDENCE} if none declared
@@ -207,8 +205,7 @@ abstract class ConfigurationClassUtils {
 	}
 
 	/**
-	 * Determine the order for the given configuration class bean definition,
-	 * as set by {@link #checkConfigurationClassCandidate}.
+	 * 确定给定配置类 Bean 定义的顺序，该顺序由 {@link #checkConfigurationClassCandidate} 设置。
 	 * @param beanDef the bean definition to check
 	 * @return the {@link Order @Order} annotation value on the configuration class,
 	 * or {@link Ordered#LOWEST_PRECEDENCE} if none declared

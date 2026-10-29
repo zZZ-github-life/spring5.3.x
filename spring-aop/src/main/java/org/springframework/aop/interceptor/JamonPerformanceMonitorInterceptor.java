@@ -25,12 +25,10 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 
 /**
- * Performance monitor interceptor that uses <b>JAMon</b> library to perform the
- * performance measurement on the intercepted method and output the stats.
- * In addition, it tracks/counts exceptions thrown by the intercepted method.
- * The stack traces can be viewed in the JAMon web application.
+ * 使用 <b>JAMon</b> 库对被拦截方法进行性能测量并输出统计信息的性能监控拦截器。此外，它还会跟踪/统
+ * 计被拦截方法抛出的异常。堆栈信息可在 JAMon Web 应用中查看。
  *
- * <p>This code is inspired by Thierry Templier's blog.
+ * <p>此代码受 Thierry Templier 的博客启发。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -47,14 +45,13 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 
 
 	/**
-	 * Create a new JamonPerformanceMonitorInterceptor with a static logger.
+	 * 使用静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。
 	 */
 	public JamonPerformanceMonitorInterceptor() {
 	}
 
 	/**
-	 * Create a new JamonPerformanceMonitorInterceptor with a dynamic or static logger,
-	 * according to the given flag.
+	 * 根据给定标志，使用动态或静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。
 	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
 	 * @see #setUseDynamicLogger
 	 */
@@ -63,8 +60,7 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 	}
 
 	/**
-	 * Create a new JamonPerformanceMonitorInterceptor with a dynamic or static logger,
-	 * according to the given flag.
+	 * 根据给定标志，使用动态或静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。
 	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
 	 * @param trackAllInvocations whether to track all invocations that go through
 	 * this interceptor, or just invocations with trace logging enabled
@@ -77,11 +73,9 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 
 
 	/**
-	 * Set whether to track all invocations that go through this interceptor,
-	 * or just invocations with trace logging enabled.
-	 * <p>Default is "false": Only invocations with trace logging enabled will
-	 * be monitored. Specify "true" to let JAMon track all invocations,
-	 * gathering statistics even when trace logging is disabled.
+	 * 设置是跟踪经过此拦截器的所有调用，还是仅跟踪启用了跟踪日志的调用。
+	 * <p>默认值为 “false”：仅监控启用了跟踪日志的调用。指定为 “true” 可让 JAMon 跟踪所有调用，即使禁用
+	 * 了跟踪日志也会收集统计数据。
 	 */
 	public void setTrackAllInvocations(boolean trackAllInvocations) {
 		this.trackAllInvocations = trackAllInvocations;
@@ -89,8 +83,7 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 
 
 	/**
-	 * Always applies the interceptor if the "trackAllInvocations" flag has been set;
-	 * else just kicks in if the log is enabled.
+	 * 如果已设置 “trackAllInvocations” 标志，则始终应用该拦截器；否则仅在日志启用时才生效。
 	 * @see #setTrackAllInvocations
 	 * @see #isLogEnabled
 	 */
@@ -100,8 +93,7 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 	}
 
 	/**
-	 * Wraps the invocation with a JAMon Monitor and writes the current
-	 * performance statistics to the log (if enabled).
+	 * 用 JAMon Monitor 包装调用，并将当前性能统计信息写入日志（如果已启用）。
 	 * @see com.jamonapi.MonitorFactory#start
 	 * @see com.jamonapi.Monitor#stop
 	 */
@@ -127,8 +119,7 @@ public class JamonPerformanceMonitorInterceptor extends AbstractMonitoringInterc
 	}
 
 	/**
-	 * Count the thrown exception and put the stack trace in the details portion of the key.
-	 * This will allow the stack trace to be viewed in the JAMon web application.
+	 * 统计抛出的异常，并将堆栈信息放入键的明细部分。这样便可在 JAMon Web 应用中查看堆栈信息。
 	 */
 	protected void trackException(MonKey key, Throwable ex) {
 		String stackTrace = "stackTrace=" + Misc.getExceptionTrace(ex);

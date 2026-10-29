@@ -34,8 +34,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.reactive.function.BodyInserters;
 
 /**
- * Resource-based implementation of {@link HandlerFunction}.
- *
+ * 基于资源的 {@link HandlerFunction} 实现。
  * @author Arjen Poutsma
  * @since 5.0
  */

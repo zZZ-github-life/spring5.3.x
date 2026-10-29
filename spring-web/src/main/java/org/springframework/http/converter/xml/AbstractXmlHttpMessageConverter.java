@@ -37,12 +37,13 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.util.StreamUtils;
 
 /**
- * Abstract base class for {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverters}
- * that convert from/to XML.
+ * 用于在 XML 之间进行转换的
+ * {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter}
+ * 抽象基类。
  *
- * <p>By default, subclasses of this converter support {@code text/xml}, {@code application/xml}, and {@code
- * application/*-xml}. This can be overridden by setting the {@link #setSupportedMediaTypes(java.util.List)
- * supportedMediaTypes} property.
+ * <p>默认情况下，此转换器的子类支持 {@code text/xml}、{@code application/xml} 和
+ * {@code application/*-xml}。可以通过设置
+ * {@link #setSupportedMediaTypes(java.util.List) supportedMediaTypes} 属性来覆盖。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -55,8 +56,8 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 
 	/**
-	 * Protected constructor that sets the {@link #setSupportedMediaTypes(java.util.List) supportedMediaTypes}
-	 * to {@code text/xml} and {@code application/xml}, and {@code application/*-xml}.
+	 * 受保护的构造函数，将 {@link #setSupportedMediaTypes(java.util.List) supportedMediaTypes}
+	 * 设置为 {@code text/xml}、{@code application/xml} 和 {@code application/*-xml}。
 	 */
 	protected AbstractXmlHttpMessageConverter() {
 		super(MediaType.APPLICATION_XML, MediaType.TEXT_XML, new MediaType("application", "*+xml"));
@@ -96,7 +97,7 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 	}
 
 	/**
-	 * Transforms the given {@code Source} to the {@code Result}.
+	 * 将给定的 {@code Source} 转换为 {@code Result}。
 	 * @param source the source to transform from
 	 * @param result the result to transform to
 	 * @throws TransformerException in case of transformation errors
@@ -107,7 +108,7 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 
 
 	/**
-	 * Abstract template method called from {@link #read(Class, HttpInputMessage)}.
+	 * 从 {@link #read(Class, HttpInputMessage)} 调用的抽象模板方法。
 	 * @param clazz the type of object to return
 	 * @param headers the HTTP input headers
 	 * @param source the HTTP input body
@@ -117,7 +118,7 @@ public abstract class AbstractXmlHttpMessageConverter<T> extends AbstractHttpMes
 	protected abstract T readFromSource(Class<? extends T> clazz, HttpHeaders headers, Source source) throws Exception;
 
 	/**
-	 * Abstract template method called from {@link #writeInternal(Object, HttpOutputMessage)}.
+	 * 从 {@link #writeInternal(Object, HttpOutputMessage)} 调用的抽象模板方法。
 	 * @param t the object to write to the output message
 	 * @param headers the HTTP output headers
 	 * @param result the HTTP output body

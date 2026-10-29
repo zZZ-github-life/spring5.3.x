@@ -25,24 +25,24 @@ import org.springframework.beans.PropertyAccessor;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>The {@code <nestedPath>} tag supports and assists with nested beans or
- * bean properties in the model. Exports a "nestedPath" variable of type String
- * in request scope, visible to the current page and also included pages, if any.
+ * <p>{@code <nestedPath>} 标签支持并辅助处理模型中的嵌套 bean 或
+ * bean 属性。它在 request 作用域中导出一个类型为 String 的 "nestedPath" 变量，
+ * 对当前页面以及可能包含的页面均可见。
  *
- * <p>The BindTag will auto-detect the current nested path and automatically
- * prepend it to its own path to form a complete path to the bean or bean property.
+ * <p>BindTag 会自动检测当前的嵌套路径，并自动
+ * 将其前置到自身的路径之前，从而构成指向该 bean 或 bean 属性的完整路径。
  *
- * <p>This tag will also prepend any existing nested path that is currently set.
- * Thus, you can nest multiple nested-path tags.
+ * <p>此标签还会前置当前已设置的任何现有嵌套路径。
+ * 因此，你可以嵌套多个 nested-path 标签。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -50,8 +50,8 @@ import org.springframework.lang.Nullable;
  * <td>path</td>
  * <td>true</td>
  * <td>true</td>
- * <td>Set the path that this tag should apply. E.g. 'customer' to allow bind
- * paths like 'address.street' rather than 'customer.address.street'.</td>
+ * <td>设置此标签应应用的路径。例如 'customer'，以便允许使用
+ * 'address.street' 这样的绑定路径，而不是 'customer.address.street'。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -63,7 +63,7 @@ import org.springframework.lang.Nullable;
 public class NestedPathTag extends TagSupport implements TryCatchFinally {
 
 	/**
-	 * Name of the exposed variable within the scope of this tag: "nestedPath".
+	 * 此标签所公开变量在本标签作用域内的名称："nestedPath"。
 	 */
 	public static final String NESTED_PATH_VARIABLE_NAME = "nestedPath";
 
@@ -71,15 +71,15 @@ public class NestedPathTag extends TagSupport implements TryCatchFinally {
 	@Nullable
 	private String path;
 
-	/** Caching a previous nested path, so that it may be reset. */
+	/** 缓存先前的嵌套路径，以便可以将其重置。 */
 	@Nullable
 	private String previousNestedPath;
 
 
 	/**
-	 * Set the path that this tag should apply.
-	 * <p>E.g. "customer" to allow bind paths like "address.street"
-	 * rather than "customer.address.street".
+	 * 设置此标签应应用的路径。
+	 * <p>例如 "customer"，以便允许使用 "address.street"
+	 * 这样的绑定路径，而不是 "customer.address.street"。
 	 * @see BindTag#setPath
 	 */
 	public void setPath(@Nullable String path) {
@@ -93,7 +93,7 @@ public class NestedPathTag extends TagSupport implements TryCatchFinally {
 	}
 
 	/**
-	 * Return the path that this tag applies to.
+	 * 返回此标签所应用的路径。
 	 */
 	@Nullable
 	public String getPath() {
@@ -115,7 +115,7 @@ public class NestedPathTag extends TagSupport implements TryCatchFinally {
 	}
 
 	/**
-	 * Reset any previous nestedPath value.
+	 * 重置先前的任何 nestedPath 值。
 	 */
 	@Override
 	public int doEndTag() {

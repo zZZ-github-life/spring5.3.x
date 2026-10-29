@@ -32,8 +32,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Simple {@link org.springframework.aop.IntroductionAdvisor} implementation
- * that by default applies to any class.
+ * 简单的 {@link org.springframework.aop.IntroductionAdvisor} 实现，默认适用于任何类。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -50,7 +49,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 
 	/**
-	 * Create a DefaultIntroductionAdvisor for the given advice.
+	 * 为给定的通知创建一个 DefaultIntroductionAdvisor。
 	 * @param advice the Advice to apply (may implement the
 	 * {@link org.springframework.aop.IntroductionInfo} interface)
 	 * @see #addInterface
@@ -60,7 +59,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 	}
 
 	/**
-	 * Create a DefaultIntroductionAdvisor for the given advice.
+	 * 为给定的通知创建一个 DefaultIntroductionAdvisor。
 	 * @param advice the Advice to apply
 	 * @param introductionInfo the IntroductionInfo that describes
 	 * the interface to introduce (may be {@code null})
@@ -81,7 +80,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 	}
 
 	/**
-	 * Create a DefaultIntroductionAdvisor for the given advice.
+	 * 为给定的通知创建一个 DefaultIntroductionAdvisor。
 	 * @param advice the Advice to apply
 	 * @param ifc the interface to introduce
 	 */
@@ -93,7 +92,7 @@ public class DefaultIntroductionAdvisor implements IntroductionAdvisor, ClassFil
 
 
 	/**
-	 * Add the specified interface to the list of interfaces to introduce.
+	 * 将指定的接口添加到要引入的接口列表中。
 	 * @param ifc the interface to introduce
 	 */
 	public void addInterface(Class<?> ifc) {

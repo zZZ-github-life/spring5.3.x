@@ -24,44 +24,40 @@ import javax.servlet.ServletContextListener;
 import org.springframework.beans.CachedIntrospectionResults;
 
 /**
- * Listener that flushes the JDK's {@link java.beans.Introspector JavaBeans Introspector}
- * cache on web app shutdown. Register this listener in your {@code web.xml} to
- * guarantee proper release of the web application class loader and its loaded classes.
+ * 在 Web 应用关闭时刷新 JDK {@link java.beans.Introspector JavaBeans Introspector}
+ * 缓存的监听器。请在 {@code web.xml} 中注册此监听器，以确保正确释放
+ * Web 应用类加载器及其已加载的类。
  *
- * <p><b>If the JavaBeans Introspector has been used to analyze application classes,
- * the system-level Introspector cache will hold a hard reference to those classes.
- * Consequently, those classes and the web application class loader will not be
- * garbage-collected on web app shutdown!</b> This listener performs proper cleanup,
- * to allow for garbage collection to take effect.
+ * <p><b>如果 JavaBeans Introspector 已用于分析应用类，
+ * 系统级 Introspector 缓存将持有对这些类的强引用。
+ * 因此，这些类和 Web 应用类加载器在 Web 应用关闭时不会被垃圾回收！</b>
+ * 此监听器会执行适当的清理，使垃圾回收能够生效。
  *
- * <p>Unfortunately, the only way to clean up the Introspector is to flush
- * the entire cache, as there is no way to specifically determine the
- * application's classes referenced there. This will remove cached
- * introspection results for all other applications in the server too.
+ * <p>不幸的是，清理 Introspector 的唯一方法是刷新整个缓存，
+ * 因为无法具体确定其中引用了哪些应用类。这也会移除服务器中
+ * 所有其他应用的缓存内省结果。
  *
- * <p>Note that this listener is <i>not</i> necessary when using Spring's beans
- * infrastructure within the application, as Spring's own introspection results
- * cache will immediately flush an analyzed class from the JavaBeans Introspector
- * cache and only hold a cache within the application's own ClassLoader.
+ * <p>请注意，在应用内使用 Spring 的 bean 基础设施时，此监听器
+ * <i>并不</i>必要，因为 Spring 自己的内省结果缓存会立即从
+ * JavaBeans Introspector 缓存中刷新已分析的类，并且仅在应用自身的
+ * ClassLoader 内保留缓存。
  *
- * <b>Although Spring itself does not create JDK Introspector leaks, note that this
- * listener should nevertheless be used in scenarios where the Spring framework classes
- * themselves reside in a 'common' ClassLoader (such as the system ClassLoader).</b>
- * In such a scenario, this listener will properly clean up Spring's introspection cache.
+ * <b>尽管 Spring 本身不会造成 JDK Introspector 泄漏，但请注意，
+ * 在 Spring 框架类本身位于“公共”ClassLoader（例如系统 ClassLoader）
+ * 的场景中，仍应使用此监听器。</b>在这种情况下，此监听器将正确清理
+ * Spring 的内省缓存。
  *
- * <p>Application classes hardly ever need to use the JavaBeans Introspector
- * directly, so are normally not the cause of Introspector resource leaks.
- * Rather, many libraries and frameworks do not clean up the Introspector:
- * e.g. Struts and Quartz.
+ * <p>应用类几乎从不需要直接使用 JavaBeans Introspector，
+ * 因此通常不是 Introspector 资源泄漏的原因。相反，许多库和框架
+ * 没有清理 Introspector，例如 Struts 和 Quartz。
  *
- * <p>Note that a single such Introspector leak will cause the entire web
- * app class loader to not get garbage collected! This has the consequence that
- * you will see all the application's static class resources (like singletons)
- * around after web app shutdown, which is not the fault of those classes!
+ * <p>请注意，仅仅一处这样的 Introspector 泄漏就会导致整个 Web 应用
+ * 类加载器无法被垃圾回收！其后果是，在 Web 应用关闭后，你仍会看到
+ * 该应用的所有静态类资源（如单例）存在，而这不是这些类的过错！
  *
- * <p><b>This listener should be registered as the first one in {@code web.xml},
- * before any application listeners such as Spring's ContextLoaderListener.</b>
- * This allows the listener to take full effect at the right time of the lifecycle.
+ * <p><b>此监听器应作为 {@code web.xml} 中的第一个监听器注册，
+ * 位于任何应用监听器（如 Spring 的 ContextLoaderListener）之前。</b>
+ * 这样可以使其在生命周期的正确时机充分发挥作用。
  *
  * @author Juergen Hoeller
  * @since 1.1

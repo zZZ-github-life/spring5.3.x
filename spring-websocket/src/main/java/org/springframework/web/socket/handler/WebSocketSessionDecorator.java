@@ -32,12 +32,12 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * Wraps another {@link org.springframework.web.socket.WebSocketSession} instance
- * and delegates to it.
+ * 包装另一个 {@link org.springframework.web.socket.WebSocketSession} 实例
+ * 并将调用委托给它。
  *
- * <p>Also provides a {@link #getDelegate()} method to return the decorated session
- * as well as a {@link #getLastSession()} method to go through all nested delegates
- * and return the "last" session.
+ * <p>还提供了 {@link #getDelegate()} 方法以返回被装饰的会话，
+ * 以及 {@link #getLastSession()} 方法以遍历所有嵌套委托
+ * 并返回“最后一个”会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.3

@@ -44,19 +44,18 @@ import org.springframework.web.reactive.BindingContext;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Base class for {@link View} implementations.
- *
+ * 用于 {@link View} 实现的基类。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 5.0
  */
 public abstract class AbstractView implements View, BeanNameAware, ApplicationContextAware {
 
-	/** Well-known name for the RequestDataValueProcessor in the bean factory. */
+	/** bean 工厂中 RequestDataValueProcessor 的众所周知名称。 */
 	public static final String REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME = "requestDataValueProcessor";
 
 
-	/** Logger that is available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final ReactiveAdapterRegistry adapterRegistry;
@@ -86,8 +85,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 
 	/**
-	 * Set the supported media types for this view.
-	 * <p>Default is {@code "text/html;charset=UTF-8"}.
+	 * 设置此视图支持的媒体类型。
+	 * <p>默认为 {@code "text/html;charset=UTF-8"}。
 	 */
 	public void setSupportedMediaTypes(List<MediaType> supportedMediaTypes) {
 		Assert.notEmpty(supportedMediaTypes, "MediaType List must not be empty");
@@ -96,7 +95,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Get the configured media types supported by this view.
+	 * 获取此视图支持的已配置媒体类型。
 	 */
 	@Override
 	public List<MediaType> getSupportedMediaTypes() {
@@ -104,9 +103,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Set the default charset for this view, used when the
-	 * {@linkplain #setSupportedMediaTypes(List) content type} does not contain one.
-	 * <p>Default is {@linkplain StandardCharsets#UTF_8 UTF 8}.
+	 * 设置此视图的默认字符集，在{@linkplain #setSupportedMediaTypes(List) 内容类型}不包含字符集时使用。
+	 * <p>默认为 {@linkplain StandardCharsets#UTF_8 UTF 8}。
 	 */
 	public void setDefaultCharset(Charset defaultCharset) {
 		Assert.notNull(defaultCharset, "'defaultCharset' must not be null");
@@ -114,23 +112,22 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Get the default charset, used when the
-	 * {@linkplain #setSupportedMediaTypes(List) content type} does not contain one.
+	 * 获取默认字符集，在{@linkplain #setSupportedMediaTypes(List) 内容类型}不包含字符集时使用。
 	 */
 	public Charset getDefaultCharset() {
 		return this.defaultCharset;
 	}
 
 	/**
-	 * Set the name of the {@code RequestContext} attribute for this view.
-	 * <p>Default is none ({@code null}).
+	 * 设置此视图的 {@code RequestContext} 属性名称。
+	 * <p>默认没有（{@code null}）。
 	 */
 	public void setRequestContextAttribute(@Nullable String requestContextAttribute) {
 		this.requestContextAttribute = requestContextAttribute;
 	}
 
 	/**
-	 * Get the name of the {@code RequestContext} attribute for this view, if any.
+	 * 获取此视图的 {@code RequestContext} 属性名称（如果有）。
 	 */
 	@Nullable
 	public String getRequestContextAttribute() {
@@ -138,8 +135,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Set the view's name. Helpful for traceability.
-	 * <p>Framework code must call this when constructing views.
+	 * 设置视图名称。有助于跟踪。
+	 * <p>框架代码在构造视图时必须调用此方法。
 	 */
 	@Override
 	public void setBeanName(@Nullable String beanName) {
@@ -147,8 +144,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Get the view's name.
-	 * <p>Should never be {@code null} if the view was correctly configured.
+	 * 获取视图名称。
+	 * <p>如果视图配置正确，绝不应为 {@code null}。
 	 */
 	@Nullable
 	public String getBeanName() {
@@ -166,7 +163,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Obtain the {@link ApplicationContext} for actual use.
+	 * 获取实际使用的 {@link ApplicationContext}。
 	 * @return the {@code ApplicationContext} (never {@code null})
 	 * @throws IllegalStateException if the ApplicationContext cannot be obtained
 	 * @see #getApplicationContext()
@@ -179,7 +176,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 
 
 	/**
-	 * Prepare the model to render.
+	 * 准备要渲染的模型。
 	 * @param model a map with attribute names as keys and corresponding model
 	 * objects as values (the map can also be {@code null} in case of an empty model)
 	 * @param contentType the content type selected to render with, which should
@@ -210,9 +207,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Prepare the model to use for rendering.
-	 * <p>The default implementation creates a combined output Map that includes
-	 * model as well as static attributes with the former taking precedence.
+	 * 准备用于渲染的模型。
+	 * <p>默认实现创建一个合并的输出 Map，包含模型和静态属性，其中模型优先。
 	 */
 	protected Mono<Map<String, Object>> getModelAttributes(
 			@Nullable Map<String, ?> model, ServerWebExchange exchange) {
@@ -238,11 +234,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Use the configured {@link ReactiveAdapterRegistry} to adapt asynchronous
-	 * attributes to {@code Mono<T>} or {@code Mono<List<T>>} and then wait to
-	 * resolve them into actual values. When the returned {@code Mono<Void>}
-	 * completes, the asynchronous attributes in the model will have been
-	 * replaced with their corresponding resolved values.
+	 * 使用配置的 {@link ReactiveAdapterRegistry} 将异步属性适配为 {@code Mono<T>} 或 {@code Mono<List<T>>}，然后等待将其解析为实际值。当返回的 {@code Mono<Void>} 完成时，模型中的异步属性将被替换为相应的已解析值。
 	 * @return result a {@code Mono} that completes when the model is ready
 	 * @since 5.1.8
 	 */
@@ -294,11 +286,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Use the configured {@link ReactiveAdapterRegistry} to adapt asynchronous
-	 * attributes to {@code Mono<T>} or {@code Mono<List<T>>} and then wait to
-	 * resolve them into actual values. When the returned {@code Mono<Void>}
-	 * completes, the asynchronous attributes in the model would have been
-	 * replaced with their corresponding resolved values.
+	 * 使用配置的 {@link ReactiveAdapterRegistry} 将异步属性适配为 {@code Mono<T>} 或 {@code Mono<List<T>>}，然后等待将其解析为实际值。当返回的 {@code Mono<Void>} 完成时，模型中的异步属性将被替换为相应的已解析值。
 	 * @return result {@code Mono} that completes when the model is ready
 	 * @deprecated as of 5.1.8 this method is still invoked but it is a no-op.
 	 * Please use {@link #resolveAsyncAttributes(Map, ServerWebExchange)}
@@ -310,11 +298,9 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Create a {@link RequestContext} to expose under the
-	 * {@linkplain #setRequestContextAttribute specified attribute name}.
-	 * <p>The default implementation creates a standard {@code RequestContext}
-	 * instance for the given exchange and model.
-	 * <p>Can be overridden in subclasses to create custom instances.
+	 * 创建要在{@linkplain #setRequestContextAttribute 指定属性名称}下公开的 {@link RequestContext}。
+	 * <p>默认实现为给定交换和模型创建标准的 {@code RequestContext} 实例。
+	 * <p>可以在子类中重写以创建自定义实例。
 	 * @param exchange the current exchange
 	 * @param model a combined output Map (never {@code null}), with dynamic values
 	 * taking precedence over static attributes
@@ -326,10 +312,8 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Get the {@link RequestDataValueProcessor} to use.
-	 * <p>The default implementation looks in the {@link #getApplicationContext()
-	 * ApplicationContext} for a {@code RequestDataValueProcessor} bean with
-	 * the name {@link #REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME}.
+	 * 获取要使用的 {@link RequestDataValueProcessor}。
+	 * <p>默认实现会在 {@link #getApplicationContext() ApplicationContext} 中查找名称为 {@link #REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME} 的 {@code RequestDataValueProcessor} Bean。
 	 * @return the {@code RequestDataValueProcessor}, or {@code null} if there is
 	 * none in the application context
 	 */
@@ -343,7 +327,7 @@ public abstract class AbstractView implements View, BeanNameAware, ApplicationCo
 	}
 
 	/**
-	 * Subclasses must implement this method to actually render the view.
+	 * 子类必须实现此方法以实际渲染视图。
 	 * @param renderAttributes combined output Map (never {@code null}),
 	 * with dynamic values taking precedence over static attributes
 	 * @param contentType the content type selected to render with, which should

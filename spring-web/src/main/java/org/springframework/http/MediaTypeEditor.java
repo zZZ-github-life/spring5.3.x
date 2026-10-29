@@ -21,9 +21,7 @@ import java.beans.PropertyEditorSupport;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link java.beans.PropertyEditor Editor} for {@link MediaType}
- * descriptors, to automatically convert {@code String} specifications
- * (e.g. {@code "text/html"}) to {@code MediaType} properties.
+ * 用于 {@link MediaType} 描述符的 {@link java.beans.PropertyEditor Editor}，可自动将 {@code String} 规范（例如 {@code "text/html"}）转换为 {@code MediaType} 属性。
  *
  * @author Juergen Hoeller
  * @since 3.0

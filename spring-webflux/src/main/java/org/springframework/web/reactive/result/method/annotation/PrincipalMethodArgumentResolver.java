@@ -28,8 +28,7 @@ import org.springframework.web.reactive.result.method.HandlerMethodArgumentResol
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves method argument value of type {@link java.security.Principal}.
- *
+ * 解析 {@link java.security.Principal} 类型的方法参数值。
  * @author Rossen Stoyanchev
  * @since 5.2
  * @see ServerWebExchangeMethodArgumentResolver

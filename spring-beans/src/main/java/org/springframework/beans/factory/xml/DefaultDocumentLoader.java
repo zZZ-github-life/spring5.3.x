@@ -31,13 +31,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.xml.XmlValidationModeDetector;
 
 /**
- * Spring's default {@link DocumentLoader} implementation.
+ * Spring 默认的 {@link DocumentLoader} 实现。
  *
- * <p>Simply loads {@link Document documents} using the standard JAXP-configured
- * XML parser. If you want to change the {@link DocumentBuilder} that is used to
- * load documents, then one strategy is to define a corresponding Java system property
- * when starting your JVM. For example, to use the Oracle {@link DocumentBuilder},
- * you might start your application like as follows:
+ * <p>使用标准 JAXP 配置的 XML 解析器简单地加载 {@link Document documents}。如果要更改用于加载文档
+ * 的 {@link DocumentBuilder}，一种策略是在启动 JVM 时定义相应的 Java 系统属性。例如，要使用 Oracle
+ * {@link DocumentBuilder}，可以按如下方式启动应用：
  *
  * <pre class="code">java -Djavax.xml.parsers.DocumentBuilderFactory=oracle.xml.jaxp.JXDocumentBuilderFactory MyMainClass</pre>
  *
@@ -48,12 +46,12 @@ import org.springframework.util.xml.XmlValidationModeDetector;
 public class DefaultDocumentLoader implements DocumentLoader {
 
 	/**
-	 * JAXP attribute used to configure the schema language for validation.
+	 * 用于配置验证所用 schema 语言的 JAXP 属性。
 	 */
 	private static final String SCHEMA_LANGUAGE_ATTRIBUTE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
 
 	/**
-	 * JAXP attribute value indicating the XSD schema language.
+	 * 表示 XSD schema 语言的 JAXP 属性值。
 	 */
 	private static final String XSD_SCHEMA_LANGUAGE = "http://www.w3.org/2001/XMLSchema";
 
@@ -62,8 +60,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 
 	/**
-	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured
-	 * XML parser.
+	 * 使用标准 JAXP 配置的 XML 解析器，加载位于所提供 {@link InputSource} 处的 {@link Document}。
 	 */
 	@Override
 	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,
@@ -78,7 +75,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	}
 
 	/**
-	 * Create the {@link DocumentBuilderFactory} instance.
+	 * 创建 {@link DocumentBuilderFactory} 实例。
 	 * @param validationMode the type of validation: {@link XmlValidationModeDetector#VALIDATION_DTD DTD}
 	 * or {@link XmlValidationModeDetector#VALIDATION_XSD XSD})
 	 * @param namespaceAware whether the returned factory is to provide support for XML namespaces
@@ -114,9 +111,8 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	}
 
 	/**
-	 * Create a JAXP DocumentBuilder that this bean definition reader
-	 * will use for parsing XML documents. Can be overridden in subclasses,
-	 * adding further initialization of the builder.
+	 * 创建一个 JAXP DocumentBuilder，此 Bean 定义读取器将用它解析 XML 文档。可以在子类中覆盖，以添加对
+	 * builder 的进一步初始化。
 	 * @param factory the JAXP DocumentBuilderFactory that the DocumentBuilder
 	 * should be created with
 	 * @param entityResolver the SAX EntityResolver to use

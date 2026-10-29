@@ -38,27 +38,24 @@ import org.springframework.web.context.request.async.WebAsyncManager;
 import org.springframework.web.context.request.async.WebAsyncUtils;
 
 /**
- * Spring web request interceptor that binds a Hibernate {@code Session} to the
- * thread for the entire processing of the request.
+ * Spring Web 请求拦截器，在整个请求处理过程中将 Hibernate {@code Session}
+ * 绑定到当前线程。
  *
- * <p>This class is a concrete expression of the "Open Session in View" pattern, which
- * is a pattern that allows for the lazy loading of associations in web views despite
- * the original transactions already being completed.
+ * <p>此类是 "Open Session in View" 模式的具体实现，该模式允许在 Web 视图中
+ * 对关联对象进行延迟加载，即便原始事务已经完成。
  *
- * <p>This interceptor makes Hibernate Sessions available via the current thread,
- * which will be autodetected by transaction managers. It is suitable for service layer
- * transactions via {@link org.springframework.orm.hibernate5.HibernateTransactionManager}
- * as well as for non-transactional execution (if configured appropriately).
+ * <p>此拦截器使 Hibernate Session 可通过当前线程获取，
+ * 事务管理器会自动检测到它。它既适用于通过
+ * {@link org.springframework.orm.hibernate5.HibernateTransactionManager}
+ * 管理服务层事务的场景，也适用于非事务性执行（如果配置得当）。
  *
- * <p>In contrast to {@link OpenSessionInViewFilter}, this interceptor is configured
- * in a Spring application context and can thus take advantage of bean wiring.
+ * <p>与 {@link OpenSessionInViewFilter} 不同，此拦截器在 Spring 应用上下文中
+ * 进行配置，因此可以利用 bean 装配的优势。
  *
- * <p><b>WARNING:</b> Applying this interceptor to existing logic can cause issues
- * that have not appeared before, through the use of a single Hibernate
- * {@code Session} for the processing of an entire request. In particular, the
- * reassociation of persistent objects with a Hibernate {@code Session} has to
- * occur at the very beginning of request processing, to avoid clashes with already
- * loaded instances of the same objects.
+ * <p><b>警告：</b>将此拦截器应用于现有逻辑可能会因为对整个请求的处理使用
+ * 单个 Hibernate {@code Session} 而引发以前未出现过的问题。特别是，必须在
+ * 请求处理的最开始处将持久化对象重新关联到 Hibernate {@code Session}，
+ * 以避免与已加载的同一对象实例发生冲突。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -71,9 +68,8 @@ import org.springframework.web.context.request.async.WebAsyncUtils;
 public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor {
 
 	/**
-	 * Suffix that gets appended to the {@code SessionFactory}
-	 * {@code toString()} representation for the "participate in existing
-	 * session handling" request attribute.
+	 * 附加到 {@code SessionFactory} 的 {@code toString()} 表示形式之后的后缀，
+	 * 用于 "参与现有会话处理" 的请求属性。
 	 * @see #getParticipateAttributeName
 	 */
 	public static final String PARTICIPATE_SUFFIX = ".PARTICIPATE";
@@ -85,14 +81,14 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 
 
 	/**
-	 * Set the Hibernate SessionFactory that should be used to create Hibernate Sessions.
+	 * 设置应用于创建 Hibernate Session 的 Hibernate SessionFactory。
 	 */
 	public void setSessionFactory(@Nullable SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	/**
-	 * Return the Hibernate SessionFactory that should be used to create Hibernate Sessions.
+	 * 返回应用于创建 Hibernate Session 的 Hibernate SessionFactory。
 	 */
 	@Nullable
 	public SessionFactory getSessionFactory() {
@@ -107,8 +103,8 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 
 
 	/**
-	 * Open a new Hibernate {@code Session} according and bind it to the thread via the
-	 * {@link TransactionSynchronizationManager}.
+	 * 打开一个新的 Hibernate {@code Session}，并通过
+	 * {@link TransactionSynchronizationManager} 将其绑定到线程。
 	 */
 	@Override
 	public void preHandle(WebRequest request) throws DataAccessException {
@@ -142,7 +138,7 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 	}
 
 	/**
-	 * Unbind the Hibernate {@code Session} from the thread and close it.
+	 * 从线程解绑 Hibernate {@code Session} 并将其关闭。
 	 * @see TransactionSynchronizationManager
 	 */
 	@Override
@@ -179,9 +175,9 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 	}
 
 	/**
-	 * Open a Session for the SessionFactory that this interceptor uses.
-	 * <p>The default implementation delegates to the {@link SessionFactory#openSession}
-	 * method and sets the {@link Session}'s flush mode to "MANUAL".
+	 * 为此拦截器使用的 SessionFactory 打开一个 Session。
+	 * <p>默认实现委托给 {@link SessionFactory#openSession} 方法，
+	 * 并将 {@link Session} 的 flush 模式设置为 "MANUAL"。
 	 * @return the Session to use
 	 * @throws DataAccessResourceFailureException if the Session could not be created
 	 * @see FlushMode#MANUAL
@@ -198,10 +194,9 @@ public class OpenSessionInViewInterceptor implements AsyncWebRequestInterceptor 
 	}
 
 	/**
-	 * Return the name of the request attribute that identifies that a request is
-	 * already intercepted.
-	 * <p>The default implementation takes the {@code toString()} representation
-	 * of the {@code SessionFactory} instance and appends {@link #PARTICIPATE_SUFFIX}.
+	 * 返回标识某个请求已被拦截的请求属性名称。
+	 * <p>默认实现取 {@code SessionFactory} 实例的 {@code toString()} 表示形式，
+	 * 并追加 {@link #PARTICIPATE_SUFFIX}。
 	 */
 	protected String getParticipateAttributeName() {
 		return obtainSessionFactory().toString() + PARTICIPATE_SUFFIX;

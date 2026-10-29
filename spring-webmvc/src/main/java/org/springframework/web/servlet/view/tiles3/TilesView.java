@@ -44,9 +44,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
- * {@link org.springframework.web.servlet.View} implementation that renders
- * through the Tiles Request API. The "url" property is interpreted as name of a
- * Tiles definition.
+ * 通过 Tiles Request API 进行渲染的 {@link org.springframework.web.servlet.View} 实现。
+ * "url" 属性被解释为 Tiles 定义的名称。
  *
  * @author Nicolas Le Bas
  * @author mick semb wever
@@ -68,15 +67,15 @@ public class TilesView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Set the {@link Renderer} to use.
-	 * If not set, by default {@link DefinitionRenderer} is used.
+	 * 设置要使用的 {@link Renderer}。
+	 * 如果未设置，默认使用 {@link DefinitionRenderer}。
 	 */
 	public void setRenderer(Renderer renderer) {
 		this.renderer = renderer;
 	}
 
 	/**
-	 * Whether to expose JSTL attributes. By default set to {@code true}.
+	 * 是否暴露 JSTL 属性。默认设置为 {@code true}。
 	 * @see JstlUtils#exposeLocalizationContext(RequestContext)
 	 */
 	protected void setExposeJstlAttributes(boolean exposeJstlAttributes) {
@@ -84,9 +83,9 @@ public class TilesView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Specify whether to always include the view rather than forward to it.
-	 * <p>Default is "false". Switch this flag on to enforce the use of a
-	 * Servlet include, even if a forward would be possible.
+	 * 指定是否始终包含视图而不是转发到视图。
+	 * <p>默认值为 "false"。开启此标志可强制使用
+	 * Servlet include，即使可以进行转发也是如此。
 	 * @since 4.1.2
 	 * @see TilesViewResolver#setAlwaysInclude
 	 */
@@ -148,8 +147,8 @@ public class TilesView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Create a Tiles {@link Request}.
-	 * <p>This implementation creates a {@link ServletRequest}.
+	 * 创建一个 Tiles {@link Request}。
+	 * <p>此实现创建一个 {@link ServletRequest}。
 	 * @param request the current request
 	 * @param response the current response
 	 * @return the Tiles request

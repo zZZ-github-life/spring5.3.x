@@ -1,5 +1,5 @@
 /**
- * SpEL's central implementation package.
+ * SpEL 的核心实现包。
  */
 @NonNullApi
 @NonNullFields

@@ -24,7 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.lang.Nullable;
 
 /**
- * Common base class for exceptions that contain actual HTTP response data.
+ * 包含实际 HTTP 响应数据的异常的公共基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.3
@@ -50,7 +50,7 @@ public class RestClientResponseException extends RestClientException {
 
 
 	/**
-	 * Construct a new instance of with the given response data.
+	 * 使用给定响应数据构造新实例。
 	 * @param statusCode the raw status code value
 	 * @param statusText the status text
 	 * @param responseHeaders the response headers (may be {@code null})
@@ -70,21 +70,21 @@ public class RestClientResponseException extends RestClientException {
 
 
 	/**
-	 * Return the raw HTTP status code value.
+	 * 返回原始 HTTP 状态码值。
 	 */
 	public int getRawStatusCode() {
 		return this.rawStatusCode;
 	}
 
 	/**
-	 * Return the HTTP status text.
+	 * 返回 HTTP 状态文本。
 	 */
 	public String getStatusText() {
 		return this.statusText;
 	}
 
 	/**
-	 * Return the HTTP response headers.
+	 * 返回 HTTP 响应头。
 	 */
 	@Nullable
 	public HttpHeaders getResponseHeaders() {
@@ -92,23 +92,23 @@ public class RestClientResponseException extends RestClientException {
 	}
 
 	/**
-	 * Return the response body as a byte array.
+	 * 以字节数组形式返回响应体。
 	 */
 	public byte[] getResponseBodyAsByteArray() {
 		return this.responseBody;
 	}
 
 	/**
-	 * Return the response body converted to String. The charset used is that
-	 * of the response "Content-Type" or otherwise {@code "UTF-8"}.
+	 * 返回转换为 String 的响应体。所使用的字符集来自响应的 "Content-Type"，
+	 * 否则为 {@code "UTF-8"}。
 	 */
 	public String getResponseBodyAsString() {
 		return getResponseBodyAsString(DEFAULT_CHARSET);
 	}
 
 	/**
-	 * Return the response body converted to String. The charset used is that
-	 * of the response "Content-Type" or otherwise the one given.
+	 * 返回转换为 String 的响应体。所使用的字符集来自响应的 "Content-Type"，
+	 * 否则使用给定字符集。
 	 * @param fallbackCharset the charset to use on if the response doesn't specify.
 	 * @since 5.1.11
 	 */

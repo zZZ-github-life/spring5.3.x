@@ -24,8 +24,7 @@ import org.springframework.core.NamedThreadLocal;
 import org.springframework.lang.Nullable;
 
 /**
- * A holder for a thread-local {@link JodaTimeContext}
- * with user-specific Joda-Time settings.
+ * 线程本地 {@link JodaTimeContext} 的持有者，包含用户特定的 Joda-Time 设置。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -45,14 +44,14 @@ public final class JodaTimeContextHolder {
 
 
 	/**
-	 * Reset the JodaTimeContext for the current thread.
+	 * 重置当前线程的 JodaTimeContext。
 	 */
 	public static void resetJodaTimeContext() {
 		jodaTimeContextHolder.remove();
 	}
 
 	/**
-	 * Associate the given JodaTimeContext with the current thread.
+	 * 将给定的 JodaTimeContext 关联到当前线程。
 	 * @param jodaTimeContext the current JodaTimeContext,
 	 * or {@code null} to reset the thread-bound context
 	 */
@@ -66,7 +65,7 @@ public final class JodaTimeContextHolder {
 	}
 
 	/**
-	 * Return the JodaTimeContext associated with the current thread, if any.
+	 * 返回与当前线程关联的 JodaTimeContext（如果有）。
 	 * @return the current JodaTimeContext, or {@code null} if none
 	 */
 	@Nullable
@@ -76,7 +75,7 @@ public final class JodaTimeContextHolder {
 
 
 	/**
-	 * Obtain a DateTimeFormatter with user-specific settings applied to the given base Formatter.
+	 * 获取应用了用户特定设置的 DateTimeFormatter，作用于给定的基础 Formatter。
 	 * @param formatter the base formatter that establishes default formatting rules
 	 * (generally user independent)
 	 * @param locale the current user locale (may be {@code null} if not known)

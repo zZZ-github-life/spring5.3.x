@@ -20,8 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Interface defining handling involved with providing {@code OutputStream}
- * data for XML input.
+ * 定义提供 XML 输入所需 {@code OutputStream} 数据相关处理的接口。
  *
  * @author Thomas Risberg
  * @since 2.5.5
@@ -30,8 +29,7 @@ import java.io.OutputStream;
 public interface XmlBinaryStreamProvider {
 
 	/**
-	 * Implementations must implement this method to provide the XML content
-	 * for the {@code OutputStream}.
+	 * 实现类必须实现此方法，以为 {@code OutputStream} 提供 XML 内容。
 	 * @param outputStream the {@code OutputStream} object being used to provide the XML input
 	 * @throws IOException if an I/O error occurs while providing the XML
 	 */

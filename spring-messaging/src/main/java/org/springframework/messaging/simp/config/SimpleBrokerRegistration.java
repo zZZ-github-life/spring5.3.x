@@ -23,7 +23,7 @@ import org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler;
 import org.springframework.scheduling.TaskScheduler;
 
 /**
- * Registration class for configuring a {@link SimpleBrokerMessageHandler}.
+ * 用于配置 {@link SimpleBrokerMessageHandler} 的注册类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -41,7 +41,7 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 
 
 	/**
-	 * Create a new {@code SimpleBrokerRegistration}.
+	 * 创建一个新的 {@code SimpleBrokerRegistration}。
 	 * @param clientInboundChannel the inbound channel
 	 * @param clientOutboundChannel the outbound channel
 	 * @param destinationPrefixes the destination prefixes
@@ -54,10 +54,9 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 
 
 	/**
-	 * Configure the {@link org.springframework.scheduling.TaskScheduler} to
-	 * use for providing heartbeat support. Setting this property also sets the
-	 * {@link #setHeartbeatValue heartbeatValue} to "10000, 10000".
-	 * <p>By default this is not set.
+	 * 配置用于提供心跳支持的 {@link org.springframework.scheduling.TaskScheduler}。
+	 * 设置此属性还会将 {@link #setHeartbeatValue heartbeatValue} 设置为 "10000, 10000"。
+	 * <p>默认情况下不设置此项。
 	 * @since 4.2
 	 */
 	public SimpleBrokerRegistration setTaskScheduler(TaskScheduler taskScheduler) {
@@ -66,12 +65,10 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	}
 
 	/**
-	 * Configure the value for the heartbeat settings. The first number
-	 * represents how often the server will write or send a heartbeat.
-	 * The second is how often the client should write. 0 means no heartbeats.
-	 * <p>By default this is set to "0, 0" unless the {@link #setTaskScheduler
-	 * taskScheduler} in which case the default becomes "10000,10000"
-	 * (in milliseconds).
+	 * 配置心跳设置的值。第一个数字表示服务器写入或发送心跳的频率。
+	 * 第二个数字表示客户端应写入的频率。0 表示不发送心跳。
+	 * <p>默认情况下此项设置为 "0, 0"，除非设置了 {@link #setTaskScheduler
+	 * taskScheduler}，此时默认值变为 "10000,10000"（以毫秒为单位）。
 	 * @since 4.2
 	 */
 	public SimpleBrokerRegistration setHeartbeatValue(long[] heartbeat) {
@@ -80,16 +77,14 @@ public class SimpleBrokerRegistration extends AbstractBrokerRegistration {
 	}
 
 	/**
-	 * Configure the name of a header that a subscription message can have for
-	 * the purpose of filtering messages matched to the subscription. The header
-	 * value is expected to be a Spring EL boolean expression to be applied to
-	 * the headers of messages matched to the subscription.
-	 * <p>For example:
+	 * 配置订阅消息可携带的、用于过滤与该订阅匹配的消息的头部名称。
+	 * 该头部的值应为 Spring EL 布尔表达式，将应用于与该订阅匹配的消息的头部。
+	 * <p>例如：
 	 * <pre>
 	 * headers.foo == 'bar'
 	 * </pre>
-	 * <p>By default this is set to "selector". You can set it to a different
-	 * name, or to {@code null} to turn off support for a selector header.
+	 * <p>默认情况下此项设置为 "selector"。可以将其设置为其他名称，
+	 * 或设置为 {@code null} 以关闭对选择器头部的支持。
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.3.17
 	 */

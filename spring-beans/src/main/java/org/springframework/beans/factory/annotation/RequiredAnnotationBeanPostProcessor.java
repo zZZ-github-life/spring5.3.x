@@ -42,29 +42,20 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
- * that enforces required JavaBean properties to have been configured.
- * Required bean properties are detected through an annotation:
- * by default, Spring's {@link Required} annotation.
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 实现，强制要求必需的 JavaBean
+ * 属性已被配置。必需的 Bean 属性通过注解来检测：默认情况下是 Spring 的 {@link Required} 注解。
  *
- * <p>The motivation for the existence of this BeanPostProcessor is to allow
- * developers to annotate the setter properties of their own classes with an
- * arbitrary JDK 1.5 annotation to indicate that the container must check
- * for the configuration of a dependency injected value. This neatly pushes
- * responsibility for such checking onto the container (where it arguably belongs),
- * and obviates the need (<b>in part</b>) for a developer to code a method that
- * simply checks that all required properties have actually been set.
+ * <p>此 BeanPostProcessor 存在的动机是让开发者可以用任意 JDK 1.5 注解来标注自己类的 setter 属性，
+ * 以指示容器必须检查依赖注入值的配置情况。这将此类检查的职责巧妙地交给容器（可以说本该如此），并
+ * （<b>部分</b>）免除了开发者编写仅用于检查所有必需属性是否实际已设置的方法的需要。
  *
- * <p>Please note that an 'init' method may still need to be implemented (and may
- * still be desirable), because all that this class does is enforcing that a
- * 'required' property has actually been configured with a value. It does
- * <b>not</b> check anything else... In particular, it does not check that a
- * configured value is not {@code null}.
+ * <p>请注意，可能仍然需要实现（并且可能仍然期望有）一个 'init' 方法，因为此类所做的只是强制要求某
+ * 个 'required' 属性实际已配置了值。它<b>不</b>检查其他任何内容……特别是，它不检查所配置的值是否为
+ * {@code null}。
  *
- * <p>Note: A default RequiredAnnotationBeanPostProcessor will be registered
- * by the "context:annotation-config" and "context:component-scan" XML tags.
- * Remove or turn off the default annotation configuration there if you intend
- * to specify a custom RequiredAnnotationBeanPostProcessor bean definition.
+ * <p>注意：默认的 RequiredAnnotationBeanPostProcessor 会由 "context:annotation-config" 和
+ * "context:component-scan" XML 标签注册。如果你打算指定自定义的
+ * RequiredAnnotationBeanPostProcessor Bean 定义，请在此处移除或关闭默认的注解配置。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -79,8 +70,7 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 		MergedBeanDefinitionPostProcessor, PriorityOrdered, BeanFactoryAware {
 
 	/**
-	 * Bean definition attribute that may indicate whether a given bean is supposed
-	 * to be skipped when performing this post-processor's required property check.
+	 * Bean 定义属性，可用于指示在执行此后处理器的必需属性检查时是否应跳过给定的 Bean。
 	 * @see #shouldSkip
 	 */
 	public static final String SKIP_REQUIRED_CHECK_ATTRIBUTE =
@@ -95,19 +85,15 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	private ConfigurableListableBeanFactory beanFactory;
 
 	/**
-	 * Cache for validated bean names, skipping re-validation for the same bean.
+	 * 已验证 Bean 名称的缓存，跳过对同一 Bean 的重复验证。
 	 */
 	private final Set<String> validatedBeanNames = Collections.newSetFromMap(new ConcurrentHashMap<>(64));
 
 
 	/**
-	 * Set the 'required' annotation type, to be used on bean property
-	 * setter methods.
-	 * <p>The default required annotation type is the Spring-provided
-	 * {@link Required} annotation.
-	 * <p>This setter property exists so that developers can provide their own
-	 * (non-Spring-specific) annotation type to indicate that a property value
-	 * is required.
+	 * 设置 'required' 注解类型，用于 Bean 属性的 setter 方法。<p>默认的必需注解类型是 Spring 提供的
+	 * {@link Required} 注解。<p>此 setter 属性的存在是为了让开发者能够提供自己的（非 Spring 特有的）注
+	 * 解类型，以指示某个属性值是必需的。
 	 */
 	public void setRequiredAnnotationType(Class<? extends Annotation> requiredAnnotationType) {
 		Assert.notNull(requiredAnnotationType, "'requiredAnnotationType' must not be null");
@@ -115,7 +101,7 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	}
 
 	/**
-	 * Return the 'required' annotation type.
+	 * 返回 'required' 注解类型。
 	 */
 	protected Class<? extends Annotation> getRequiredAnnotationType() {
 		return this.requiredAnnotationType;
@@ -164,12 +150,9 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	}
 
 	/**
-	 * Check whether the given bean definition is not subject to the annotation-based
-	 * required property check as performed by this post-processor.
-	 * <p>The default implementations check for the presence of the
-	 * {@link #SKIP_REQUIRED_CHECK_ATTRIBUTE} attribute in the bean definition, if any.
-	 * It also suggests skipping in case of a bean definition with a "factory-bean"
-	 * reference set, assuming that instance-based factories pre-populate the bean.
+	 * 检查给定的 Bean 定义是否不受此后处理器所执行的基于注解的必需属性检查约束。<p>默认实现会检查 Bean
+	 * 定义中是否存在 {@link #SKIP_REQUIRED_CHECK_ATTRIBUTE} 属性（如果有的话）。它还建议在 Bean 定义设
+	 * 置了 "factory-bean" 引用的情况下跳过检查，假设基于实例的工厂会预先填充该 Bean。
 	 * @param beanFactory the BeanFactory to check against
 	 * @param beanName the name of the bean to check against
 	 * @return {@code true} to skip the bean; {@code false} to process it
@@ -187,10 +170,9 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	}
 
 	/**
-	 * Is the supplied property required to have a value (that is, to be dependency-injected)?
-	 * <p>This implementation looks for the existence of a
-	 * {@link #setRequiredAnnotationType "required" annotation}
-	 * on the supplied {@link PropertyDescriptor property}.
+	 * 所提供的属性是否要求必须有值（即通过依赖注入获得值）？<p>此实现会查找所提供的
+	 * {@link PropertyDescriptor property} 上是否存在
+	 * {@link #setRequiredAnnotationType "required" annotation}。
 	 * @param propertyDescriptor the target PropertyDescriptor (never {@code null})
 	 * @return {@code true} if the supplied property has been marked as being required;
 	 * {@code false} if not, or if the supplied property does not have a setter method
@@ -201,7 +183,7 @@ public class RequiredAnnotationBeanPostProcessor implements SmartInstantiationAw
 	}
 
 	/**
-	 * Build an exception message for the given list of invalid properties.
+	 * 为给定的无效属性列表构建异常消息。
 	 * @param invalidProperties the list of names of invalid properties
 	 * @param beanName the name of the bean
 	 * @return the exception message

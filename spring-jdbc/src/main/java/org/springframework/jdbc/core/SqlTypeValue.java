@@ -23,15 +23,14 @@ import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to be implemented for setting values for more complex database-specific
- * types not supported by the standard {@code setObject} method. This is
- * effectively an extended variant of {@link org.springframework.jdbc.support.SqlValue}.
+ * 为设置标准{@code setObject}方法不支持的
+ * 更复杂的数据库特定类型的值而实现的接口。
+ * 这实际上是{@link org.springframework.jdbc.support.SqlValue}的扩展变体。
  *
- * <p>Implementations perform the actual work of setting the actual values. They must
- * implement the callback method {@code setTypeValue} which can throw SQLExceptions
- * that will be caught and translated by the calling code. This callback method has
- * access to the underlying Connection via the given PreparedStatement object, if that
- * should be needed to create any database-specific objects.
+ * <p>实现负责设置实际值的实际工作。它们必须实现回调方法{@code setTypeValue}，
+ * 该方法可以抛出SQLException，由调用代码捕获并转换。
+ * 此回调方法可以通过给定的PreparedStatement对象访问底层的Connection，
+ * 如果需要创建任何数据库特定对象的话。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -44,9 +43,8 @@ import org.springframework.lang.Nullable;
 public interface SqlTypeValue {
 
 	/**
-	 * Constant that indicates an unknown (or unspecified) SQL type.
-	 * Passed into {@code setTypeValue} if the original operation method
-	 * does not specify an SQL type.
+	 * 表示未知（或未指定）SQL类型的常量。
+	 * 如果原始操作方法未指定SQL类型，则传入{@code setTypeValue}。
 	 * @see java.sql.Types
 	 * @see JdbcOperations#update(String, Object[])
 	 */
@@ -54,7 +52,7 @@ public interface SqlTypeValue {
 
 
 	/**
-	 * Set the type value on the given PreparedStatement.
+	 * 在给定的PreparedStatement上设置类型值。
 	 * @param ps the PreparedStatement to work on
 	 * @param paramIndex the index of the parameter for which we need to set the value
 	 * @param sqlType the SQL type of the parameter we are setting

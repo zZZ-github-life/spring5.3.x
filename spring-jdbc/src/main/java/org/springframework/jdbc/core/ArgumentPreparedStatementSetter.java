@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple adapter for {@link PreparedStatementSetter} that applies a given array of arguments.
+ * {@link PreparedStatementSetter}的简单适配器，应用给定的参数数组。
  *
  * @author Juergen Hoeller
  * @since 3.2.3
@@ -34,7 +34,7 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter,
 
 
 	/**
-	 * Create a new ArgPreparedStatementSetter for the given arguments.
+	 * 为给定参数创建新的ArgPreparedStatementSetter。
 	 * @param args the arguments to set
 	 */
 	public ArgumentPreparedStatementSetter(@Nullable Object[] args) {
@@ -53,8 +53,8 @@ public class ArgumentPreparedStatementSetter implements PreparedStatementSetter,
 	}
 
 	/**
-	 * Set the value for prepared statements specified parameter index using the passed in value.
-	 * This method can be overridden by subclasses if needed.
+	 * 使用传入的值为PreparedStatement的指定参数位置设置值。
+	 * 子类可以根据需要重写此方法。
 	 * @param ps the PreparedStatement
 	 * @param parameterPosition index of the parameter position
 	 * @param argValue the value to set

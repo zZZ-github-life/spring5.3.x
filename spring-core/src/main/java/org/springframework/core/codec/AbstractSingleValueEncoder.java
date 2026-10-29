@@ -30,8 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Abstract base class for {@link org.springframework.core.codec.Encoder}
- * classes that can only deal with a single value.
+ * 抽象基类，适用于只能处理单个值的 {@link org.springframework.core.codec.Encoder} 类。
  *
  * @author Arjen Poutsma
  * @since 5.0
@@ -56,7 +55,7 @@ public abstract class AbstractSingleValueEncoder<T> extends AbstractEncoder<T> {
 	}
 
 	/**
-	 * Encode {@code T} to an output {@link DataBuffer} stream.
+	 * 将 {@code T} 编码为输出 {@link DataBuffer} 流。
 	 * @param t the value to process
 	 * @param dataBufferFactory a buffer factory used to create the output
 	 * @param type the stream element type to process

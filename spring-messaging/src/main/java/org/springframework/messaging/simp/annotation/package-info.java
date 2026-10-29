@@ -1,5 +1,5 @@
 /**
- * Annotations and for handling messages from SImple Messaging Protocols such as STOMP.
+ * 用于处理来自简单消息传递协议（如 STOMP）消息的注解和支持类。
  */
 @NonNullApi
 @NonNullFields

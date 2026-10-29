@@ -27,8 +27,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Utility class for CORS reactive request handling based on the
- * <a href="https://www.w3.org/TR/cors/">CORS W3C recommendation</a>.
+ * 基于 <a href="https://www.w3.org/TR/cors/">CORS W3C 建议</a>
+ * 进行响应式 CORS 请求处理的工具类。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -36,8 +36,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 public abstract class CorsUtils {
 
 	/**
-	 * Returns {@code true} if the request is a valid CORS one by checking {@code Origin}
-	 * header presence and ensuring that origins are different via {@link #isSameOrigin}.
+	 * 通过检查是否存在 {@code Origin} 头，并通过 {@link #isSameOrigin}
+	 * 确保 origin 不同，如果请求是有效的 CORS 请求则返回 {@code true}。
 	 */
 	@SuppressWarnings("deprecation")
 	public static boolean isCorsRequest(ServerHttpRequest request) {
@@ -45,8 +45,9 @@ public abstract class CorsUtils {
 	}
 
 	/**
-	 * Returns {@code true} if the request is a valid CORS pre-flight one by checking {@code OPTIONS} method with
-	 * {@code Origin} and {@code Access-Control-Request-Method} headers presence.
+	 * 通过检查 {@code OPTIONS} 方法以及 {@code Origin} 和
+	 * {@code Access-Control-Request-Method} 头是否存在，如果请求是有效的
+	 * CORS 预检请求则返回 {@code true}。
 	 */
 	public static boolean isPreFlightRequest(ServerHttpRequest request) {
 		HttpHeaders headers = request.getHeaders();
@@ -56,13 +57,11 @@ public abstract class CorsUtils {
 	}
 
 	/**
-	 * Check if the request is a same-origin one, based on {@code Origin}, and
-	 * {@code Host} headers.
+	 * 基于 {@code Origin} 和 {@code Host} 头检查请求是否为同源请求。
 	 *
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores
-	 * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
-	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
-	 * to extract and use, or to discard such headers.
+	 * <p><strong>注意：</strong>从 5.1 开始，此方法会忽略指定客户端发起地址的
+	 * {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可以考虑使用
+	 * {@code ForwardedHeaderFilter} 来提取并使用，或丢弃此类头。
 	 * @return {@code true} if the request is a same-origin one, {@code false} in case
 	 * of a cross-origin request
 	 * @deprecated as of 5.2, same-origin checks are performed directly by {@link #isCorsRequest}

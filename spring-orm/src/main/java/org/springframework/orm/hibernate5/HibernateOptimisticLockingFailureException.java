@@ -23,9 +23,9 @@ import org.hibernate.dialect.lock.OptimisticEntityLockException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 
 /**
- * Hibernate-specific subclass of ObjectOptimisticLockingFailureException.
- * Converts Hibernate's StaleObjectStateException, StaleStateException
- * and OptimisticEntityLockException.
+ * ObjectOptimisticLockingFailureException 的 Hibernate 专用子类。
+ * 转换 Hibernate 的 StaleObjectStateException、StaleStateException
+ * 和 OptimisticEntityLockException。
  *
  * @author Juergen Hoeller
  * @since 4.2

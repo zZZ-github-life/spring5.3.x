@@ -25,17 +25,13 @@ import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.lang.Nullable;
 
 /**
- * Cache specific evaluation context that adds a method parameters as SpEL
- * variables, in a lazy manner. The lazy nature eliminates unneeded
- * parsing of classes byte code for parameter discovery.
+ * 缓存特定的求值上下文，它以延迟方式将方法参数添加为 SpEL 变量。这种延迟特性消除了为发现参数而对类
+ * 字节码进行不必要的解析。
  *
- * <p>Also define a set of "unavailable variables" (i.e. variables that should
- * lead to an exception right the way when they are accessed). This can be useful
- * to verify a condition does not match even when not all potential variables
- * are present.
+ * <p>还定义了一组“不可用变量”（即在访问时应立即导致异常的变量）。这对于验证条件不匹配很有用，即使
+ * 并非所有潜在变量都存在。
  *
- * <p>To limit the creation of objects, an ugly constructor is used
- * (rather than a dedicated 'closure'-like class for deferred execution).
+ * <p>为限制对象创建，使用了一个不美观的构造函数（而不是为延迟执行使用专门的类似 'closure' 的类）。
  *
  * @author Costin Leau
  * @author Stephane Nicoll
@@ -55,11 +51,9 @@ class CacheEvaluationContext extends MethodBasedEvaluationContext {
 
 
 	/**
-	 * Add the specified variable name as unavailable for that context.
-	 * Any expression trying to access this variable should lead to an exception.
-	 * <p>This permits the validation of expressions that could potentially a
-	 * variable even when such variable isn't available yet. Any expression
-	 * trying to use that variable should therefore fail to evaluate.
+	 * 将指定变量名称添加为该上下文的不可用变量。任何尝试访问此变量的表达式都应导致异常。
+	 * <p>这允许验证可能使用某个变量的表达式，即使该变量尚不可用。因此，任何尝试使用该变量的表达式都应
+	 * 求值失败。
 	 */
 	public void addUnavailableVariable(String name) {
 		this.unavailableVariables.add(name);
@@ -67,7 +61,7 @@ class CacheEvaluationContext extends MethodBasedEvaluationContext {
 
 
 	/**
-	 * Load the param information only when needed.
+	 * 仅在需要时加载参数信息。
 	 */
 	@Override
 	@Nullable

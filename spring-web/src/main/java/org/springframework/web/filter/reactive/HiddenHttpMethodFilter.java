@@ -32,15 +32,15 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 
 /**
- * Reactive {@link WebFilter} that converts posted method parameters into HTTP methods,
- * retrievable via {@link ServerHttpRequest#getMethod()}. Since browsers currently only
- * support GET and POST, a common technique is to use a normal POST with an additional
- * hidden form field ({@code _method}) to pass the "real" HTTP method along.
- * This filter reads that parameter and changes the {@link ServerHttpRequest#getMethod()}
- * return value using {@link ServerWebExchange#mutate()}.
+ * 响应式 {@link WebFilter}，将 POST 请求中的方法参数转换为 HTTP 方法，
+ * 可通过 {@link ServerHttpRequest#getMethod()} 获取。由于浏览器目前只支持
+ * GET 和 POST，一种常见技术是使用普通的 POST 请求并附加一个隐藏表单字段
+ * （{@code _method}）来传递“真正的”HTTP 方法。
+ * 此过滤器读取该参数，并使用 {@link ServerWebExchange#mutate()} 修改
+ * {@link ServerHttpRequest#getMethod()} 的返回值。
  *
- * <p>The name of the request parameter defaults to {@code _method}, but can be
- * adapted via the {@link #setMethodParamName(String) methodParamName} property.
+ * <p>请求参数名默认为 {@code _method}，但可以通过
+ * {@link #setMethodParamName(String) methodParamName} 属性进行调整。
  *
  * @author Greg Turnquist
  * @author Rossen Stoyanchev
@@ -52,7 +52,7 @@ public class HiddenHttpMethodFilter implements WebFilter {
 			Collections.unmodifiableList(Arrays.asList(HttpMethod.PUT,
 					HttpMethod.DELETE, HttpMethod.PATCH));
 
-	/** Default name of the form parameter with the HTTP method to use. */
+	/** 携带要使用的 HTTP 方法的表单参数的默认名称。 */
 	public static final String DEFAULT_METHOD_PARAMETER_NAME = "_method";
 
 
@@ -60,8 +60,8 @@ public class HiddenHttpMethodFilter implements WebFilter {
 
 
 	/**
-	 * Set the name of the form parameter with the HTTP method to use.
-	 * <p>By default this is set to {@code "_method"}.
+	 * 设置携带要使用的 HTTP 方法的表单参数名称。
+	 * <p>默认设置为 {@code "_method"}。
 	 */
 	public void setMethodParamName(String methodParamName) {
 		Assert.hasText(methodParamName, "'methodParamName' must not be empty");
@@ -70,7 +70,7 @@ public class HiddenHttpMethodFilter implements WebFilter {
 
 
 	/**
-	 * Transform an HTTP POST into another method based on {@code methodParamName}.
+	 * 根据 {@code methodParamName} 将 HTTP POST 转换为另一种方法。
 	 * @param exchange the current server exchange
 	 * @param chain provides a way to delegate to the next filter
 	 * @return {@code Mono<Void>} to indicate when request processing is complete

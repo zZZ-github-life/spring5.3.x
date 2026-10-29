@@ -1,5 +1,6 @@
 /**
- * General utility classes for use in unit and integration tests.
+ * 用于单元和集成测试的通用实用类。
+ *
  */
 @NonNullApi
 @NonNullFields

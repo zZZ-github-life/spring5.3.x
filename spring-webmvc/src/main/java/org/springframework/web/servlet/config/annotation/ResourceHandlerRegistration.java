@@ -29,7 +29,7 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 /**
- * Encapsulates information required to create a resource handler.
+ * 封装创建资源处理器所需的信息。
  *
  * @author Rossen Stoyanchev
  * @author Keith Donald
@@ -59,7 +59,7 @@ public class ResourceHandlerRegistration {
 
 
 	/**
-	 * Create a {@link ResourceHandlerRegistration} instance.
+	 * 创建 {@link ResourceHandlerRegistration} 实例。
 	 * @param pathPatterns one or more resource URL path patterns
 	 */
 	public ResourceHandlerRegistration(String... pathPatterns) {
@@ -69,20 +69,17 @@ public class ResourceHandlerRegistration {
 
 
 	/**
-	 * Add one or more resource locations from which to serve static content.
-	 * Each location must point to a valid directory. Multiple locations may
-	 * be specified as a comma-separated list, and the locations will be checked
-	 * for a given resource in the order specified.
-	 * <p>For example, {{@code "/"}, {@code "classpath:/META-INF/public-web-resources/"}}
-	 * allows resources to be served both from the web application root and
-	 * from any JAR on the classpath that contains a
-	 * {@code /META-INF/public-web-resources/} directory, with resources in the
-	 * web application root taking precedence.
-	 * <p>For {@link org.springframework.core.io.UrlResource URL-based resources}
-	 * (e.g. files, HTTP URLs, etc) this method supports a special prefix to
-	 * indicate the charset associated with the URL so that relative paths
-	 * appended to it can be encoded correctly, e.g.
-	 * {@code [charset=Windows-31J]https://example.org/path}.
+	 * 添加一个或多个用于提供静态内容的资源位置。
+	 * 每个位置都必须指向一个有效目录。可以以逗号分隔列表的形式指定多个位置，
+	 * 并将按指定的顺序在这些位置中查找给定资源。
+	 * <p>例如，{{@code "/"}、{@code "classpath:/META-INF/public-web-resources/"}}
+	 * 允许既从 Web 应用根目录提供资源，也从类路径上任何包含
+	 * {@code /META-INF/public-web-resources/} 目录的 JAR 中提供资源，
+	 * 其中 Web 应用根目录中的资源优先。
+	 * <p>对于{@link org.springframework.core.io.UrlResource 基于 URL 的资源}
+	 * （例如文件、HTTP URL 等），此方法支持一个特殊前缀来指定与该 URL 关联的字符集，
+	 * 以便正确地编码追加到其后的相对路径，例如
+	 * {@code [charset=Windows-31J]https://example.org/path}。
 	 * @return the same {@link ResourceHandlerRegistration} instance, for
 	 * chained method invocation
 	 */
@@ -92,8 +89,7 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Configure locations to serve static resources from based on pre-resolved
-	 * {@code Resource} references.
+	 * 配置基于预先解析的 {@code Resource} 引用来提供静态资源的位置。
 	 * @param locations the resource locations to use
 	 * @return the same {@link ResourceHandlerRegistration} instance, for
 	 * chained method invocation
@@ -105,9 +101,9 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Specify the cache period for the resources served by the resource handler, in seconds. The default is to not
-	 * send any cache headers but to rely on last-modified timestamps only. Set to 0 in order to send cache headers
-	 * that prevent caching, or to a positive number of seconds to send cache headers with the given max-age value.
+	 * 指定资源处理器所服务资源的缓存周期，以秒为单位。默认不发送任何缓存标头，
+	 * 而仅依赖最后修改时间戳。设置为 0 可发送禁止缓存的缓存标头，
+	 * 或设置为正数秒数以发送带有给定 max-age 值的缓存标头。
 	 * @param cachePeriod the time to cache resources in seconds
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 */
@@ -117,9 +113,8 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Specify the {@link org.springframework.http.CacheControl} which should be used
-	 * by the resource handler.
-	 * <p>Setting a custom value here will override the configuration set with {@link #setCachePeriod}.
+	 * 指定资源处理器应使用的 {@link org.springframework.http.CacheControl}。
+	 * <p>在此处设置自定义值将覆盖通过 {@link #setCachePeriod} 设置的配置。
 	 * @param cacheControl the CacheControl configuration to use
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 * @since 4.2
@@ -130,8 +125,8 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Set whether the {@link Resource#lastModified()} information should be used to drive HTTP responses.
-	 * <p>This configuration is set to {@code true} by default.
+	 * 设置是否应使用 {@link Resource#lastModified()} 信息来驱动 HTTP 响应。
+	 * <p>此配置默认设置为 {@code true}。
 	 * @param useLastModified whether the "last modified" resource information should be used
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 * @since 5.3
@@ -143,12 +138,11 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Set whether to optimize the specified locations through an existence check on startup,
-	 * filtering non-existing directories upfront so that they do not have to be checked
-	 * on every resource access.
-	 * <p>The default is {@code false}, for defensiveness against zip files without directory
-	 * entries which are unable to expose the existence of a directory upfront. Switch this flag to
-	 * {@code true} for optimized access in case of a consistent jar layout with directory entries.
+	 * 设置是否在启动时通过存在性检查来优化指定的位置，提前过滤掉不存在的目录，
+	 * 从而无需在每次资源访问时都进行检查。
+	 * <p>默认值为 {@code false}，这是为了防范没有目录条目的 zip 文件——
+	 * 这类文件无法提前暴露目录是否存在。如果 jar 布局一致且包含目录条目，
+	 * 可将此标志切换为 {@code true} 以优化访问。
 	 * @param optimizeLocations whether to optimize the locations through an existence check on startup
 	 * @return the same {@link ResourceHandlerRegistration} instance, for chained method invocation
 	 * @since 5.3.13
@@ -160,11 +154,9 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Configure a chain of resource resolvers and transformers to use. This
-	 * can be useful, for example, to apply a version strategy to resource URLs.
-	 * <p>If this method is not invoked, by default only a simple
-	 * {@link PathResourceResolver} is used in order to match URL paths to
-	 * resources under the configured locations.
+	 * 配置要使用的资源解析器和转换器链。例如，这对于为资源 URL 应用版本策略很有用。
+	 * <p>如果未调用此方法，默认仅使用一个简单的
+	 * {@link PathResourceResolver} 来将 URL 路径与配置位置下的资源进行匹配。
 	 * @param cacheResources whether to cache the result of resource resolution;
 	 * setting this to "true" is recommended for production (and "false" for
 	 * development, especially when applying a version strategy)
@@ -177,11 +169,9 @@ public class ResourceHandlerRegistration {
 	}
 
 	/**
-	 * Configure a chain of resource resolvers and transformers to use. This
-	 * can be useful, for example, to apply a version strategy to resource URLs.
-	 * <p>If this method is not invoked, by default only a simple
-	 * {@link PathResourceResolver} is used in order to match URL paths to
-	 * resources under the configured locations.
+	 * 配置要使用的资源解析器和转换器链。例如，这对于为资源 URL 应用版本策略很有用。
+	 * <p>如果未调用此方法，默认仅使用一个简单的
+	 * {@link PathResourceResolver} 来将 URL 路径与配置位置下的资源进行匹配。
 	 * @param cacheResources whether to cache the result of resource resolution;
 	 * setting this to "true" is recommended for production (and "false" for
 	 * development, especially when applying a version strategy
@@ -200,14 +190,14 @@ public class ResourceHandlerRegistration {
 
 
 	/**
-	 * Return the URL path patterns for the resource handler.
+	 * 返回资源处理器的 URL 路径模式。
 	 */
 	protected String[] getPathPatterns() {
 		return this.pathPatterns;
 	}
 
 	/**
-	 * Return a {@link ResourceHttpRequestHandler} instance.
+	 * 返回 {@link ResourceHttpRequestHandler} 实例。
 	 */
 	protected ResourceHttpRequestHandler getRequestHandler() {
 		ResourceHttpRequestHandler handler = new ResourceHttpRequestHandler();

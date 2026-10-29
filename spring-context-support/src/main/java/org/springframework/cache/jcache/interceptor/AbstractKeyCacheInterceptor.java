@@ -25,7 +25,7 @@ import org.springframework.cache.interceptor.CacheOperationInvocationContext;
 import org.springframework.cache.interceptor.KeyGenerator;
 
 /**
- * A base interceptor for JSR-107 key-based cache annotations.
+ * 针对 JSR-107 基于键的缓存注解的拦截器基类。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -42,7 +42,7 @@ abstract class AbstractKeyCacheInterceptor<O extends AbstractJCacheKeyOperation<
 
 
 	/**
-	 * Generate a key for the specified invocation.
+	 * 为指定的调用生成键。
 	 * @param context the context of the invocation
 	 * @return the key to use
 	 */
@@ -56,7 +56,7 @@ abstract class AbstractKeyCacheInterceptor<O extends AbstractJCacheKeyOperation<
 	}
 
 	/**
-	 * Create a {@link CacheKeyInvocationContext} based on the specified invocation.
+	 * 基于指定的调用创建 {@link CacheKeyInvocationContext}。
 	 * @param context the context of the invocation.
 	 * @return the related {@code CacheKeyInvocationContext}
 	 */

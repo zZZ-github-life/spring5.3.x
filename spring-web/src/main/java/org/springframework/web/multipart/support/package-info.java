@@ -1,7 +1,7 @@
 /**
- * Support classes for the multipart resolution framework.
- * Contains property editors for multipart files, and a Servlet filter
- * for multipart handling without Spring's Web MVC.
+ * multipart 解析框架的支撑类。
+ * 包含用于 multipart 文件的属性编辑器，以及一个无需 Spring Web MVC
+ * 即可处理 multipart 的 Servlet 过滤器。
  */
 @NonNullApi
 @NonNullFields

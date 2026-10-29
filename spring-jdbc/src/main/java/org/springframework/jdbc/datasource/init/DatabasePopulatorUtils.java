@@ -25,7 +25,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.util.Assert;
 
 /**
- * Utility methods for executing a {@link DatabasePopulator}.
+ * 用于执行 {@link DatabasePopulator} 的工具方法。
  *
  * @author Juergen Hoeller
  * @author Oliver Gierke
@@ -35,11 +35,11 @@ import org.springframework.util.Assert;
 public abstract class DatabasePopulatorUtils {
 
 	/**
-	 * Execute the given {@link DatabasePopulator} against the given {@link DataSource}.
-	 * <p>As of Spring Framework 5.3.11, the {@link Connection} for the supplied
-	 * {@code DataSource} will be {@linkplain Connection#commit() committed} if
-	 * it is not configured for {@link Connection#getAutoCommit() auto-commit} and
-	 * is not {@linkplain DataSourceUtils#isConnectionTransactional transactional}.
+	 * 针对给定的 {@link DataSource} 执行给定的 {@link DatabasePopulator}。
+	 * <p>从 Spring Framework 5.3.11 开始，如果所提供的 {@code DataSource}
+	 * 的 {@link Connection} 未配置为{@link Connection#getAutoCommit() 自动提交}
+	 * 且不是{@linkplain DataSourceUtils#isConnectionTransactional 事务性的}，
+	 * 它将被{@linkplain Connection#commit() 提交}。
 	 * @param populator the {@code DatabasePopulator} to execute
 	 * @param dataSource the {@code DataSource} to execute against
 	 * @throws DataAccessException if an error occurs, specifically a {@link ScriptException}

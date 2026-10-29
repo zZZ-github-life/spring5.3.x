@@ -30,16 +30,16 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 /**
- * Abstract base class for Atom and RSS Feed views, using the
- * <a href="https://github.com/rometools/rome">ROME</a> package.
+ * Atom 和 RSS Feed 视图的抽象基类，使用
+ * <a href="https://github.com/rometools/rome">ROME</a> 包。
  *
- * <p><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
- * variant of ROME, version 1.5. Please upgrade your build dependency.</b>
+ * <p><b>注意：从 Spring 4.1 开始，此实现基于 ROME 的 {@code com.rometools}
+ * 变体，版本为 1.5。请升级你的构建依赖。</b>
  *
- * <p>Application-specific view classes will typically extend from either
- * {@link AbstractRssFeedView} or {@link AbstractAtomFeedView} instead of from this class.
+ * <p>应用特有的视图类通常应扩展
+ * {@link AbstractRssFeedView} 或 {@link AbstractAtomFeedView}，而不是直接扩展此类。
  *
- * <p>Thanks to Jettro Coenradie and Sergio Bossa for the original feed view prototype!
+ * <p>感谢 Jettro Coenradie 和 Sergio Bossa 提供原始的 feed 视图原型！
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -71,15 +71,15 @@ public abstract class AbstractFeedView<T extends WireFeed> extends AbstractView 
 	}
 
 	/**
-	 * Create a new feed to hold the entries.
+	 * 创建一个新的 feed 以承载条目。
 	 * @return the newly created Feed instance
 	 */
 	protected abstract T newFeed();
 
 	/**
-	 * Populate the feed metadata (title, link, description, etc.).
-	 * <p>Default is an empty implementation. Subclasses can override this method
-	 * to add meta fields such as title, link description, etc.
+	 * 填充 feed 元数据（标题、链接、描述等）。
+	 * <p>默认实现为空。子类可以重写此方法，
+	 * 添加标题、链接描述等元数据字段。
 	 * @param model the model, in case meta information must be populated from it
 	 * @param feed the feed being populated
 	 * @param request in case we need locale etc. Shouldn't look at attributes.
@@ -88,10 +88,9 @@ public abstract class AbstractFeedView<T extends WireFeed> extends AbstractView 
 	}
 
 	/**
-	 * Subclasses must implement this method to build feed entries, given the model.
-	 * <p>Note that the passed-in HTTP response is just supposed to be used for
-	 * setting cookies or other HTTP headers. The built feed itself will automatically
-	 * get written to the response after this method returns.
+	 * 子类必须实现此方法，以便根据 model 构建 feed 条目。
+	 * <p>注意，传入的 HTTP response 仅应用于设置 cookie 或其他 HTTP 头。
+	 * 构建好的 feed 本身将在该方法返回后自动写入 response。
 	 * @param model the model Map
 	 * @param feed the feed to add entries to
 	 * @param request in case we need locale etc. Shouldn't look at attributes.

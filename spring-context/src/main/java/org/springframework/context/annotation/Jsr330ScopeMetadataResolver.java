@@ -25,13 +25,13 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link ScopeMetadataResolver} implementation that follows JSR-330 scoping rules:
- * defaulting to prototype scope unless {@link javax.inject.Singleton} is present.
+ * 遵循 JSR-330 作用域规则的简单 {@link ScopeMetadataResolver} 实现：除非存在
+ * {@link javax.inject.Singleton}，否则默认为 prototype 作用域。
  *
- * <p>This scope resolver can be used with {@link ClassPathBeanDefinitionScanner} and
- * {@link AnnotatedBeanDefinitionReader} for standard JSR-330 compliance. However,
- * in practice, you will typically use Spring's rich default scoping instead - or extend
- * this resolver with custom scoping annotations that point to extended Spring scopes.
+ * <p>此作用域解析器可与 {@link ClassPathBeanDefinitionScanner} 和
+ * {@link AnnotatedBeanDefinitionReader} 一起使用，以实现标准的 JSR-330 合规性。不过在实践中，通常
+ * 应改用 Spring 丰富的默认作用域机制，或者用指向扩展 Spring 作用域的自定义作用域注解来扩展此解析器。
+ *
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -51,8 +51,7 @@ public class Jsr330ScopeMetadataResolver implements ScopeMetadataResolver {
 
 
 	/**
-	 * Register an extended JSR-330 scope annotation, mapping it onto a
-	 * specific Spring scope by name.
+	 * 注册扩展的 JSR-330 作用域注解，并按名称将其映射到特定的 Spring 作用域。
 	 * @param annotationType the JSR-330 annotation type as a Class
 	 * @param scopeName the Spring scope name
 	 */
@@ -61,8 +60,7 @@ public class Jsr330ScopeMetadataResolver implements ScopeMetadataResolver {
 	}
 
 	/**
-	 * Register an extended JSR-330 scope annotation, mapping it onto a
-	 * specific Spring scope by name.
+	 * 注册扩展的 JSR-330 作用域注解，并按名称将其映射到特定的 Spring 作用域。
 	 * @param annotationType the JSR-330 annotation type by name
 	 * @param scopeName the Spring scope name
 	 */
@@ -71,9 +69,8 @@ public class Jsr330ScopeMetadataResolver implements ScopeMetadataResolver {
 	}
 
 	/**
-	 * Resolve the given annotation type into a named Spring scope.
-	 * <p>The default implementation simply checks against registered scopes.
-	 * Can be overridden for custom mapping rules, e.g. naming conventions.
+	 * 将给定的注解类型解析为具名的 Spring 作用域。
+	 * <p>默认实现仅对照已注册的作用域进行检查。可重写以实现自定义映射规则，例如命名约定。
 	 * @param annotationType the JSR-330 annotation type
 	 * @return the Spring scope name
 	 */

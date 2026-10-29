@@ -21,16 +21,13 @@ import javax.jms.Message;
 import javax.jms.Session;
 
 /**
- * Creates a JMS message given a {@link Session}.
+ * 根据给定的 {@link Session} 创建 JMS 消息。
  *
- * <p>The {@code Session} typically is provided by an instance
- * of the {@link JmsTemplate} class.
+ * <p>{@code Session} 通常由 {@link JmsTemplate} 类的实例提供。
  *
- * <p>Implementations <i>do not</i> need to concern themselves with
- * checked {@code JMSExceptions} (from the '{@code javax.jms}'
- * package) that may be thrown from operations they attempt. The
- * {@code JmsTemplate} will catch and handle these
- * {@code JMSExceptions} appropriately.
+ * <p>实现<i>不需要</i>关心其尝试执行的操作可能抛出的受检
+ * {@code JMSExceptions}（来自 '{@code javax.jms}' 包）。
+ * {@code JmsTemplate} 会捕获并妥善处理这些 {@code JMSExceptions}。
  *
  * @author Mark Pollack
  * @since 1.1
@@ -39,7 +36,7 @@ import javax.jms.Session;
 public interface MessageCreator {
 
 	/**
-	 * Create a {@link Message} to be sent.
+	 * 创建一个要发送的 {@link Message}。
 	 * @param session the JMS {@link Session} to be used to create the
 	 * {@code Message} (never {@code null})
 	 * @return the {@code Message} to be sent

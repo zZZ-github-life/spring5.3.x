@@ -25,8 +25,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * A path element representing capturing the rest of a path. In the pattern
- * '/foo/{*foobar}' the /{*foobar} is represented as a {@link CaptureTheRestPathElement}.
+ * 表示捕获路径剩余部分的路径元素。在模式
+ * '/foo/{*foobar}' 中，/{*foobar} 表示为 {@link CaptureTheRestPathElement}。
  *
  * @author Andy Clement
  * @since 5.0
@@ -37,7 +37,7 @@ class CaptureTheRestPathElement extends PathElement {
 
 
 	/**
-	 * Create a new {@link CaptureTheRestPathElement} instance.
+	 * 创建一个新的 {@link CaptureTheRestPathElement} 实例。
 	 * @param pos position of the path element within the path pattern text
 	 * @param captureDescriptor a character array containing contents like '{' '*' 'a' 'b' '}'
 	 * @param separator the separator used in the path pattern

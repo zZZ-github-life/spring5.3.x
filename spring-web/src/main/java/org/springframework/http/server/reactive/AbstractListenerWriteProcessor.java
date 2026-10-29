@@ -30,12 +30,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for {@code Processor} implementations that bridge between
- * event-listener write APIs and Reactive Streams.
+ * {@code Processor} 实现的抽象基类，用于在事件监听式写入 API
+ * 与 Reactive Streams 之间进行桥接。
  *
- * <p>Specifically a base class for writing to the HTTP response body with
- * Servlet 3.1 non-blocking I/O and Undertow XNIO as well for writing WebSocket
- * messages through the Java WebSocket API (JSR-356), Jetty, and Undertow.
+ * <p>具体而言，是用于通过 Servlet 3.1 非阻塞 I/O 和 Undertow XNIO 写入
+ * HTTP 响应体，以及通过 Java WebSocket API（JSR-356）、Jetty 和 Undertow
+ * 写入 WebSocket 消息的基类。
  *
  * @author Arjen Poutsma
  * @author Violeta Georgieva
@@ -46,7 +46,7 @@ import org.springframework.util.StringUtils;
 public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, Void> {
 
 	/**
-	 * Special logger for debugging Reactive Streams signals.
+	 * 用于调试 Reactive Streams 信号的专用日志记录器。
 	 * @see LogDelegateFactory#getHiddenLog(Class)
 	 * @see AbstractListenerReadPublisher#rsReadLogger
 	 * @see AbstractListenerWriteFlushProcessor#rsWriteFlushLogger
@@ -67,10 +67,10 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	private volatile boolean sourceCompleted;
 
 	/**
-	 * Indicates we're waiting for one last isReady-onWritePossible cycle
-	 * after "onComplete" because some Servlet containers expect this to take
-	 * place prior to calling AsyncContext.complete().
-	 * See https://github.com/eclipse-ee4j/servlet-api/issues/273
+	 * 表示在 "onComplete" 之后我们仍在等待最后一次
+	 * isReady-onWritePossible 周期，因为某些 Servlet 容器希望在调用
+	 * AsyncContext.complete() 之前发生此过程。
+	 * 参见 https://github.com/eclipse-ee4j/servlet-api/issues/273
 	 */
 	private volatile boolean readyToCompleteAfterLastWrite;
 
@@ -84,7 +84,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Create an instance with the given log prefix.
+	 * 使用给定日志前缀创建实例。
 	 * @since 5.1
 	 */
 	public AbstractListenerWriteProcessor(String logPrefix) {
@@ -96,7 +96,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 
 
 	/**
-	 * Get the configured log prefix.
+	 * 获取已配置的日志前缀。
 	 * @since 5.1
 	 */
 	public String getLogPrefix() {
@@ -120,8 +120,8 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Error signal from the upstream, write Publisher. This is also used by
-	 * subclasses to delegate error notifications from the container.
+	 * 来自上游（写入 Publisher）的错误信号。子类也用它来
+	 * 委派来自容器的错误通知。
 	 */
 	@Override
 	public final void onError(Throwable ex) {
@@ -133,8 +133,8 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Completion signal from the upstream, write Publisher. This is also used
-	 * by subclasses to delegate completion notifications from the container.
+	 * 来自上游（写入 Publisher）的完成信号。子类也用它来
+	 * 委派来自容器的完成通知。
 	 */
 	@Override
 	public final void onComplete() {
@@ -146,9 +146,8 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Invoked when writing is possible, either in the same thread after a check
-	 * via {@link #isWritePossible()}, or as a callback from the underlying
-	 * container.
+	 * 在可以写入时调用，可能是在通过 {@link #isWritePossible()} 检查后的
+	 * 同一线程中，也可能是来自底层容器的回调。
 	 */
 	public final void onWritePossible() {
 		State state = this.state.get();
@@ -159,11 +158,10 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Cancel the upstream "write" Publisher only, for example due to
-	 * Servlet container error/completion notifications. This should usually
-	 * be followed up with a call to either {@link #onError(Throwable)} or
-	 * {@link #onComplete()} to notify the downstream chain, that is unless
-	 * cancellation came from downstream.
+	 * 仅取消上游"写入"Publisher，例如由于
+	 * Servlet 容器的错误/完成通知。通常应随后调用
+	 * {@link #onError(Throwable)} 或 {@link #onComplete()} 来通知下游链，
+	 * 除非取消来自下游。
 	 */
 	public void cancel() {
 		if (rsWriteLogger.isTraceEnabled()) {
@@ -175,9 +173,8 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Cancel the "write" Publisher and transition to COMPLETED immediately also
-	 * without notifying the downstream. For use when cancellation came from
-	 * downstream.
+	 * 取消"写入"Publisher 并立即转换为 COMPLETED，同时
+	 * 不通知下游。用于取消来自下游的情况。
 	 */
 	void cancelAndSetCompleted() {
 		cancel();
@@ -209,15 +206,14 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	// Write API methods to be implemented or template methods to override...
 
 	/**
-	 * Whether the given data item has any content to write.
-	 * If false the item is not written.
+	 * 给定的数据项是否有内容可写入。
+	 * 如果为 false，则不会写入该项。
 	 */
 	protected abstract boolean isDataEmpty(T data);
 
 	/**
-	 * Template method invoked after a data item to write is received via
-	 * {@link Subscriber#onNext(Object)}. The default implementation saves the
-	 * data item for writing once that is possible.
+	 * 在通过 {@link Subscriber#onNext(Object)} 接收到待写入的数据项后
+	 * 调用的模板方法。默认实现会保存该数据项，以便在可以写入时再写入。
 	 */
 	protected void dataReceived(T data) {
 		T prev = this.currentData;
@@ -233,15 +229,14 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Whether writing is possible.
+	 * 是否可以写入。
 	 */
 	protected abstract boolean isWritePossible();
 
 	/**
-	 * Write the given item.
-	 * <p><strong>Note:</strong> Sub-classes are responsible for releasing any
-	 * data buffer associated with the item, once fully written, if pooled
-	 * buffers apply to the underlying container.
+	 * 写入给定的项。
+	 * <p><strong>注意：</strong>如果底层容器使用池化缓冲区，
+	 * 子类负责在完全写入后释放与该数据项关联的任何数据缓冲区。
 	 * @param data the item to write
 	 * @return {@code true} if the current data item was written completely and
 	 * a new item requested, or {@code false} if it was written partially and
@@ -250,9 +245,8 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	protected abstract boolean write(T data) throws IOException;
 
 	/**
-	 * Invoked after the current data has been written and before requesting
-	 * the next item from the upstream, write Publisher.
-	 * <p>The default implementation is a no-op.
+	 * 在当前数据写入完成之后、从上游写入 Publisher 请求下一个项之前调用。
+	 * <p>默认实现为空操作。
 	 * @deprecated originally introduced for Undertow to stop write notifications
 	 * when no data is available, but deprecated as of 5.0.6 since constant
 	 * switching on every requested item causes a significant slowdown.
@@ -262,26 +256,24 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 	}
 
 	/**
-	 * Invoked after onComplete or onError notification.
-	 * <p>The default implementation is a no-op.
+	 * 在 onComplete 或 onError 通知之后调用。
+	 * <p>默认实现为空操作。
 	 */
 	protected void writingComplete() {
 	}
 
 	/**
-	 * Invoked when an I/O error occurs during a write. Subclasses may choose
-	 * to ignore this if they know the underlying API will provide an error
-	 * notification in a container thread.
-	 * <p>Defaults to no-op.
+	 * 写入过程中发生 I/O 错误时调用。如果子类知道底层 API 会在
+	 * 容器线程中提供错误通知，可以选择忽略此调用。
+	 * <p>默认为空操作。
 	 */
 	protected void writingFailed(Throwable ex) {
 	}
 
 	/**
-	 * Invoked after any error (either from the upstream write Publisher, or
-	 * from I/O operations to the underlying server) and cancellation
-	 * to discard in-flight data that was in
-	 * the process of being written when the error took place.
+	 * 在发生任何错误（来自上游写入 Publisher 或对底层服务器的 I/O 操作）
+	 * 以及取消之后调用，用于丢弃错误发生时正在写入的
+	 * 在途数据。
 	 * @param data the data to be released
 	 * @since 5.0.11
 	 */
@@ -335,7 +327,7 @@ public abstract class AbstractListenerWriteProcessor<T> implements Processor<T, 
 
 
 	/**
-	 * Represents a state for the {@link Processor} to be in.
+	 * 表示 {@link Processor} 可能处于的状态。
 	 *
 	 * <p><pre>
 	 *        UNSUBSCRIBED

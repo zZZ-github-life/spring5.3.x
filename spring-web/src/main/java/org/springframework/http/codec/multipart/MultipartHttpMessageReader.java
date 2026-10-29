@@ -40,12 +40,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code HttpMessageReader} for reading {@code "multipart/form-data"} requests
- * into a {@code MultiValueMap<String, Part>}.
+ * {@code HttpMessageReader}，用于将 {@code "multipart/form-data"} 请求
+ * 读取为 {@code MultiValueMap<String, Part>}。
  *
- * <p>Note that this reader depends on access to an
- * {@code HttpMessageReader<Part>} for the actual parsing of multipart content.
- * The purpose of this reader is to collect the parts into a map.
+ * <p>请注意，此读取器依赖于对 {@code HttpMessageReader<Part>} 的访问
+ * 来实际解析 multipart 内容。此读取器的作用是将各部件收集到 Map 中。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -70,7 +69,7 @@ public class MultipartHttpMessageReader extends LoggingCodecSupport
 
 
 	/**
-	 * Return the configured parts reader.
+	 * 返回配置的部件读取器。
 	 * @since 5.1.11
 	 */
 	public HttpMessageReader<Part> getPartReader() {

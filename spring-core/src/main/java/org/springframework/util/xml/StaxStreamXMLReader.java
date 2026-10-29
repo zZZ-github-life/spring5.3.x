@@ -32,8 +32,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * SAX {@code XMLReader} that reads from a StAX {@code XMLStreamReader}. Reads from an
- * {@code XMLStreamReader}, and calls the corresponding methods on the SAX callback interfaces.
+ * 从 StAX {@code XMLStreamReader} 读取的 SAX {@code XMLReader}。从
+ * {@code XMLStreamReader} 读取，并在 SAX 回调接口上调用相应的方法。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -56,9 +56,9 @@ class StaxStreamXMLReader extends AbstractStaxXMLReader {
 
 
 	/**
-	 * Construct a new instance of the {@code StaxStreamXmlReader} that reads from the given
-	 * {@code XMLStreamReader}. The supplied stream reader must be in {@code XMLStreamConstants.START_DOCUMENT}
-	 * or {@code XMLStreamConstants.START_ELEMENT} state.
+	 * 构造一个从给定 {@code XMLStreamReader} 读取的 {@code StaxStreamXmlReader} 新实例。
+	 * 提供的流读取器必须处于 {@code XMLStreamConstants.START_DOCUMENT}
+	 * 或 {@code XMLStreamConstants.START_ELEMENT} 状态。
 	 * @param reader the {@code XMLEventReader} to read from
 	 * @throws IllegalStateException if the reader is not at the start of a document or element
 	 */

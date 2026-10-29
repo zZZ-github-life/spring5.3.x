@@ -23,10 +23,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Object to represent an SQL parameter definition.
+ * 表示SQL参数定义的对象。
  *
- * <p>Parameters may be anonymous, in which case "name" is {@code null}.
- * However, all parameters must define an SQL type according to {@link java.sql.Types}.
+ * <p>参数可以是匿名的，此时"name"为{@code null}。
+ * 但是，所有参数必须根据{@link java.sql.Types}定义SQL类型。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -52,7 +52,7 @@ public class SqlParameter {
 
 
 	/**
-	 * Create a new anonymous SqlParameter, supplying the SQL type.
+	 * 创建新的匿名SqlParameter，提供SQL类型。
 	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
 	 */
 	public SqlParameter(int sqlType) {
@@ -60,7 +60,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Create a new anonymous SqlParameter, supplying the SQL type.
+	 * 创建新的匿名SqlParameter，提供SQL类型。
 	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
 	 * @param typeName the type name of the parameter (optional)
 	 */
@@ -70,7 +70,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Create a new anonymous SqlParameter, supplying the SQL type.
+	 * 创建新的匿名SqlParameter，提供SQL类型。
 	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
 	 * @param scale the number of digits after the decimal point
 	 * (for DECIMAL and NUMERIC types)
@@ -81,7 +81,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Create a new SqlParameter, supplying name and SQL type.
+	 * 创建新的SqlParameter，提供名称和SQL类型。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
 	 */
@@ -91,7 +91,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Create a new SqlParameter, supplying name and SQL type.
+	 * 创建新的SqlParameter，提供名称和SQL类型。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
 	 * @param typeName the type name of the parameter (optional)
@@ -103,7 +103,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Create a new SqlParameter, supplying name and SQL type.
+	 * 创建新的SqlParameter，提供名称和SQL类型。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the SQL type of the parameter according to {@code java.sql.Types}
 	 * @param scale the number of digits after the decimal point
@@ -116,7 +116,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Copy constructor.
+	 * 拷贝构造函数。
 	 * @param otherParam the SqlParameter object to copy from
 	 */
 	public SqlParameter(SqlParameter otherParam) {
@@ -129,7 +129,7 @@ public class SqlParameter {
 
 
 	/**
-	 * Return the name of the parameter, or {@code null} if anonymous.
+	 * 返回参数名称，如果是匿名的则返回{@code null}。
 	 */
 	@Nullable
 	public String getName() {
@@ -137,14 +137,14 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Return the SQL type of the parameter.
+	 * 返回参数的SQL类型。
 	 */
 	public int getSqlType() {
 		return this.sqlType;
 	}
 
 	/**
-	 * Return the type name of the parameter, if any.
+	 * 返回参数的类型名称（如果有）。
 	 */
 	@Nullable
 	public String getTypeName() {
@@ -152,7 +152,7 @@ public class SqlParameter {
 	}
 
 	/**
-	 * Return the scale of the parameter, if any.
+	 * 返回参数的精度（如果有）。
 	 */
 	@Nullable
 	public Integer getScale() {
@@ -161,18 +161,17 @@ public class SqlParameter {
 
 
 	/**
-	 * Return whether this parameter holds input values that should be set
-	 * before execution even if they are {@code null}.
-	 * <p>This implementation always returns {@code true}.
+	 * 返回此参数是否持有在执行前应设置的输入值，即使它们是{@code null}。
+	 * <p>此实现始终返回{@code true}。
 	 */
 	public boolean isInputValueProvided() {
 		return true;
 	}
 
 	/**
-	 * Return whether this parameter is an implicit return parameter used during the
-	 * results processing of {@code CallableStatement.getMoreResults/getUpdateCount}.
-	 * <p>This implementation always returns {@code false}.
+	 * 返回此参数是否为在{@code CallableStatement.getMoreResults/getUpdateCount}
+	 * 结果处理期间使用的隐式返回参数。
+	 * <p>此实现始终返回{@code false}。
 	 */
 	public boolean isResultsParameter() {
 		return false;
@@ -180,8 +179,7 @@ public class SqlParameter {
 
 
 	/**
-	 * Convert a list of JDBC types, as defined in {@code java.sql.Types},
-	 * to a List of SqlParameter objects as used in this package.
+	 * 将JDBC类型列表（如{@code java.sql.Types}中定义的）转换为此包中使用的SqlParameter对象列表。
 	 */
 	public static List<SqlParameter> sqlTypesToAnonymousParameterList(@Nullable int... types) {
 		if (types == null) {

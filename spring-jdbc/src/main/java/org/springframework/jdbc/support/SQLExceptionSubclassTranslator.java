@@ -43,11 +43,11 @@ import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link SQLExceptionTranslator} implementation which analyzes the specific
- * {@link java.sql.SQLException} subclass thrown by the JDBC driver.
+ * {@link SQLExceptionTranslator} 的实现，用于分析 JDBC 驱动抛出的具体
+ * {@link java.sql.SQLException} 子类。
  *
- * <p>Falls back to a standard {@link SQLStateSQLExceptionTranslator} if the JDBC
- * driver does not actually expose JDBC 4 compliant {@code SQLException} subclasses.
+ * <p>如果 JDBC 驱动实际上并未暴露符合 JDBC 4 规范的 {@code SQLException} 子类，
+ * 则回退到标准的 {@link SQLStateSQLExceptionTranslator}。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller

@@ -27,20 +27,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient superclass for application objects that want to be aware of
- * the application context, e.g. for custom lookup of collaborating beans
- * or for context-specific resource access. It saves the application
- * context reference and provides an initialization callback method.
- * Furthermore, it offers numerous convenience methods for message lookup.
+ * 适用于希望感知应用上下文的应用对象的便捷超类，例如用于自定义查找协作 Bean 或进行特定于上下文的资
+ * 源访问。它保存应用上下文引用并提供初始化回调方法。此外，它还提供了许多用于消息查找的便捷方法。
  *
- * <p>There is no requirement to subclass this class: It just makes things
- * a little easier if you need access to the context, e.g. for access to
- * file resources or to the message source. Note that many application
- * objects do not need to be aware of the application context at all,
- * as they can receive collaborating beans via bean references.
+ * <p>并不要求继承此类：如果你需要访问上下文（例如访问文件资源或消息源），它只是让事情稍微简单一些。
+ * 请注意，许多应用对象根本不需要感知应用上下文，因为它们可以通过 Bean 引用接收协作 Bean。
  *
- * <p>Many framework classes are derived from this class, particularly
- * within the web support.
+ * <p>许多框架类都派生自此类，尤其是在 Web 支持中。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -48,14 +41,14 @@ import org.springframework.util.Assert;
  */
 public abstract class ApplicationObjectSupport implements ApplicationContextAware {
 
-	/** Logger that is available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** ApplicationContext this object runs in. */
+	/** 此对象运行所在的 ApplicationContext。 */
 	@Nullable
 	private ApplicationContext applicationContext;
 
-	/** MessageSourceAccessor for easy message access. */
+	/** 用于便捷访问消息的 MessageSourceAccessor。 */
 	@Nullable
 	private MessageSourceAccessor messageSourceAccessor;
 
@@ -88,9 +81,10 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Determine whether this application object needs to run in an ApplicationContext.
-	 * <p>Default is "false". Can be overridden to enforce running in a context
-	 * (i.e. to throw IllegalStateException on accessors if outside a context).
+	 * 确定此应用对象是否需要在 ApplicationContext 中运行。
+	 *
+	 * <p>默认值为 "false"。可以重写以强制在上下文中运行（即如果在上下文之外访问访问器，则抛出
+	 * IllegalStateException）。
 	 * @see #getApplicationContext
 	 * @see #getMessageSourceAccessor
 	 */
@@ -99,9 +93,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Determine the context class that any context passed to
-	 * {@code setApplicationContext} must be an instance of.
-	 * Can be overridden in subclasses.
+	 * 确定传递给 {@code setApplicationContext} 的任何上下文必须属于哪个上下文类。可以在子类中重写。
 	 * @see #setApplicationContext
 	 */
 	protected Class<?> requiredContextClass() {
@@ -109,12 +101,12 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Subclasses can override this for custom initialization behavior.
-	 * Gets called by {@code setApplicationContext} after setting the context instance.
-	 * <p>Note: Does <i>not</i> get called on re-initialization of the context
-	 * but rather just on first initialization of this object's context reference.
-	 * <p>The default implementation calls the overloaded {@link #initApplicationContext()}
-	 * method without ApplicationContext reference.
+	 * 子类可以重写此方法以实现自定义初始化行为。在设置上下文实例后由 {@code setApplicationContext} 调
+	 * 用。
+	 *
+	 * <p>注意：在重新初始化上下文时<i>不会</i>调用，而只在此对象的上下文引用首次初始化时调用。
+	 *
+	 * <p>默认实现调用不带 ApplicationContext 引用的重载 {@link #initApplicationContext()} 方法。
 	 * @param context the containing ApplicationContext
 	 * @throws ApplicationContextException in case of initialization errors
 	 * @throws BeansException if thrown by ApplicationContext methods
@@ -125,9 +117,10 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Subclasses can override this for custom initialization behavior.
-	 * <p>The default implementation is empty. Called by
-	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)}.
+	 * 子类可以重写此方法以实现自定义初始化行为。
+	 *
+	 * <p>默认实现为空。由
+	 * {@link #initApplicationContext(org.springframework.context.ApplicationContext)} 调用。
 	 * @throws ApplicationContextException in case of initialization errors
 	 * @throws BeansException if thrown by ApplicationContext methods
 	 * @see #setApplicationContext
@@ -137,7 +130,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 
 
 	/**
-	 * Return the ApplicationContext that this object is associated with.
+	 * 返回此对象所关联的 ApplicationContext。
 	 * @throws IllegalStateException if not running in an ApplicationContext
 	 */
 	@Nullable
@@ -150,7 +143,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Obtain the ApplicationContext for actual use.
+	 * 获取供实际使用的 ApplicationContext。
 	 * @return the ApplicationContext (never {@code null})
 	 * @throws IllegalStateException in case of no ApplicationContext set
 	 * @since 5.0
@@ -162,8 +155,7 @@ public abstract class ApplicationObjectSupport implements ApplicationContextAwar
 	}
 
 	/**
-	 * Return a MessageSourceAccessor for the application context
-	 * used by this object, for easy message access.
+	 * 返回此对象使用的应用上下文的 MessageSourceAccessor，以便轻松访问消息。
 	 * @throws IllegalStateException if not running in an ApplicationContext
 	 */
 	@Nullable

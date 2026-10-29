@@ -17,12 +17,10 @@
 package org.springframework.core.style;
 
 /**
- * Simple utility class to allow for convenient access to value
- * styling logic, mainly to support descriptive logging messages.
+ * 简单的工具类，便于访问值样式化逻辑，主要用于支持描述性的日志消息。
  *
- * <p>For more sophisticated needs, use the {@link ValueStyler} abstraction
- * directly. This class simply uses a shared {@link DefaultValueStyler}
- * instance underneath.
+ * <p>对于更复杂的需求，请直接使用 {@link ValueStyler} 抽象。此类底层只是使用一个共享的
+ * {@link DefaultValueStyler} 实例。
  *
  * @author Keith Donald
  * @since 1.2.2
@@ -32,13 +30,13 @@ package org.springframework.core.style;
 public abstract class StylerUtils {
 
 	/**
-	 * Default ValueStyler instance used by the {@code style} method.
-	 * Also available for the {@link ToStringCreator} class in this package.
+	 * 供 {@code style} 方法使用的默认 ValueStyler 实例。也可供此包中的 {@link ToStringCreator} 类使用。
+	 *
 	 */
 	static final ValueStyler DEFAULT_VALUE_STYLER = new DefaultValueStyler();
 
 	/**
-	 * Style the specified value according to default conventions.
+	 * 按照默认约定为指定的值设置样式。
 	 * @param value the Object value to style
 	 * @return the styled String
 	 * @see DefaultValueStyler

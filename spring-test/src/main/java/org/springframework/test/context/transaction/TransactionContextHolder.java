@@ -20,7 +20,7 @@ import org.springframework.core.NamedInheritableThreadLocal;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link InheritableThreadLocal}-based holder for the current {@link TransactionContext}.
+ * 基于 {@link InheritableThreadLocal} 的当前 {@link TransactionContext} 持有器。
  *
  * @author Sam Brannen
  * @since 4.1

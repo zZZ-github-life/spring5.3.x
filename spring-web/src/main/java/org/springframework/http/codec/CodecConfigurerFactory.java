@@ -27,9 +27,9 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.ClassUtils;
 
 /**
- * Internal delegate for loading the default codec configurer class names.
- * Models a loose relationship with the default implementations in the support
- * package, literally only needing to know the default class name to use.
+ * 用于加载默认编解码器配置器类名的内部委托。
+ * 与 support 包中的默认实现之间是一种松散关系，
+ * 实际上只需知道要使用的默认类名。
  *
  * @author Juergen Hoeller
  * @since 5.0.1

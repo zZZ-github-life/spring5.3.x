@@ -28,12 +28,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * JDBC {@link javax.sql.DataSource} implementation that delegates all calls
- * to a given target {@link javax.sql.DataSource}.
+ * JDBC {@link javax.sql.DataSource} 实现，将所有调用
+ * 委托给指定的目标 {@link javax.sql.DataSource}。
  *
- * <p>This class is meant to be subclassed, with subclasses overriding only
- * those methods (such as {@link #getConnection()}) that should not simply
- * delegate to the target DataSource.
+ * <p>此类旨在被继承，子类只需重写那些不应简单委托给
+ * 目标 DataSource 的方法（例如 {@link #getConnection()}）。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -46,14 +45,14 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 
 	/**
-	 * Create a new DelegatingDataSource.
+	 * 创建一个新的 DelegatingDataSource。
 	 * @see #setTargetDataSource
 	 */
 	public DelegatingDataSource() {
 	}
 
 	/**
-	 * Create a new DelegatingDataSource.
+	 * 创建一个新的 DelegatingDataSource。
 	 * @param targetDataSource the target DataSource
 	 */
 	public DelegatingDataSource(DataSource targetDataSource) {
@@ -62,14 +61,14 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 
 
 	/**
-	 * Set the target DataSource that this DataSource should delegate to.
+	 * 设置此 DataSource 应委托到的目标 DataSource。
 	 */
 	public void setTargetDataSource(@Nullable DataSource targetDataSource) {
 		this.targetDataSource = targetDataSource;
 	}
 
 	/**
-	 * Return the target DataSource that this DataSource should delegate to.
+	 * 返回此 DataSource 应委托到的目标 DataSource。
 	 */
 	@Nullable
 	public DataSource getTargetDataSource() {
@@ -77,7 +76,7 @@ public class DelegatingDataSource implements DataSource, InitializingBean {
 	}
 
 	/**
-	 * Obtain the target {@code DataSource} for actual use (never {@code null}).
+	 * 获取实际使用的目标 {@code DataSource}（永不为 {@code null}）。
 	 * @since 5.0
 	 */
 	protected DataSource obtainTargetDataSource() {

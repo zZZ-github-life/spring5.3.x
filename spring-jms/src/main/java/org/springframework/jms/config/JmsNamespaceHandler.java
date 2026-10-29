@@ -19,8 +19,7 @@ package org.springframework.jms.config;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
- * A {@link org.springframework.beans.factory.xml.NamespaceHandler}
- * for the JMS namespace.
+ * 用于 JMS 命名空间的 {@link org.springframework.beans.factory.xml.NamespaceHandler}。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller

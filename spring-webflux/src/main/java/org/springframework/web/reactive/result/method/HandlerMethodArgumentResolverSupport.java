@@ -29,9 +29,7 @@ import org.springframework.core.ReactiveAdapterRegistry;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@link HandlerMethodArgumentResolver} implementations with access to a
- * {@code ReactiveAdapterRegistry} and methods to check for method parameter support.
- *
+ * {@link HandlerMethodArgumentResolver} 实现的基类，可访问 {@code ReactiveAdapterRegistry}，并提供检查方法参数支持情况的方法。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 5.0
@@ -50,7 +48,7 @@ public abstract class HandlerMethodArgumentResolverSupport implements HandlerMet
 
 
 	/**
-	 * Return the configured {@link ReactiveAdapterRegistry}.
+	 * 返回配置的 {@link ReactiveAdapterRegistry}。
 	 */
 	public ReactiveAdapterRegistry getAdapterRegistry() {
 		return this.adapterRegistry;
@@ -58,8 +56,7 @@ public abstract class HandlerMethodArgumentResolverSupport implements HandlerMet
 
 
 	/**
-	 * Evaluate the {@code Predicate} on the method parameter type or on
-	 * the generic type within a reactive type wrapper.
+	 * 在方法参数类型上或在响应式类型包装内的泛型类型上求值 {@code Predicate}。
 	 */
 	protected boolean checkParameterType(MethodParameter parameter, Predicate<Class<?>> predicate) {
 		Class<?> type = parameter.getParameterType();
@@ -79,9 +76,7 @@ public abstract class HandlerMethodArgumentResolverSupport implements HandlerMet
 	}
 
 	/**
-	 * Evaluate the {@code Predicate} on the method parameter type but raise an
-	 * {@code IllegalStateException} if the same matches the generic type
-	 * within a reactive type wrapper.
+	 * 在方法参数类型上求值 {@code Predicate}，但如果它与响应式类型包装内的泛型类型匹配，则抛出 {@code IllegalStateException}。
 	 */
 	protected boolean checkParameterTypeNoReactiveWrapper(MethodParameter parameter, Predicate<Class<?>> predicate) {
 		Class<?> type = parameter.getParameterType();
@@ -105,10 +100,7 @@ public abstract class HandlerMethodArgumentResolverSupport implements HandlerMet
 	}
 
 	/**
-	 * Evaluate the {@code Predicate} on the method parameter type if it has the
-	 * given annotation, nesting within {@link java.util.Optional} if necessary,
-	 * but raise an {@code IllegalStateException} if the same matches the generic
-	 * type within a reactive type wrapper.
+	 * 如果方法参数类型具有给定注解，则在其上求值 {@code Predicate}，必要时嵌套在 {@link java.util.Optional} 中，但如果它与响应式类型包装内的泛型类型匹配，则抛出 {@code IllegalStateException}。
 	 */
 	protected <A extends Annotation> boolean checkAnnotatedParamNoReactiveWrapper(
 			MethodParameter parameter, Class<A> annotationType, BiPredicate<A, Class<?>> typePredicate) {

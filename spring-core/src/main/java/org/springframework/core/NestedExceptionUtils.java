@@ -19,11 +19,10 @@ package org.springframework.core;
 import org.springframework.lang.Nullable;
 
 /**
- * Helper class for implementing exception classes which are capable of
- * holding nested exceptions. Necessary because we can't share a base
- * class among different exception types.
+ * 用于实现能够持有嵌套异常的异常类的辅助类。之所以必要，是因为我们无法在不同异常类型之间共享一个基
+ * 类。
  *
- * <p>Mainly for use within the framework.
+ * <p>主要供框架内部使用。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -34,7 +33,7 @@ import org.springframework.lang.Nullable;
 public abstract class NestedExceptionUtils {
 
 	/**
-	 * Build a message for the given base message and root cause.
+	 * 为给定的基础消息和根因构建一条消息。
 	 * @param message the base message
 	 * @param cause the root cause
 	 * @return the full exception message
@@ -53,7 +52,7 @@ public abstract class NestedExceptionUtils {
 	}
 
 	/**
-	 * Retrieve the innermost cause of the given exception, if any.
+	 * 获取给定异常的最内层原因（如果有）。
 	 * @param original the original exception to introspect
 	 * @return the innermost exception, or {@code null} if none
 	 * @since 4.3.9
@@ -73,10 +72,9 @@ public abstract class NestedExceptionUtils {
 	}
 
 	/**
-	 * Retrieve the most specific cause of the given exception, that is,
-	 * either the innermost cause (root cause) or the exception itself.
-	 * <p>Differs from {@link #getRootCause} in that it falls back
-	 * to the original exception if there is no root cause.
+	 * 获取给定异常最具体的原因，即最内层原因（根因）或该异常本身。
+	 *
+	 * <p>与 {@link #getRootCause} 的不同之处在于：如果没有根因，则回退到原始异常。
 	 * @param original the original exception to introspect
 	 * @return the most specific cause (never {@code null})
 	 * @since 4.3.9

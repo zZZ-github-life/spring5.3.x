@@ -32,7 +32,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Internal utility methods used with JDBC configuration.
+ * JDBC配置中使用的内部工具方法。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll

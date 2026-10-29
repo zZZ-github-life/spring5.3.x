@@ -31,8 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Helper for retrieving standard Spring Advisors from a BeanFactory,
- * for use with auto-proxying.
+ * 用于从 BeanFactory 中获取标准 Spring Advisor 的辅助类，供自动代理使用。
  *
  * @author Juergen Hoeller
  * @since 2.0.2
@@ -49,7 +48,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 
 
 	/**
-	 * Create a new BeanFactoryAdvisorRetrievalHelper for the given BeanFactory.
+	 * 为给定的 BeanFactory 创建一个新的 BeanFactoryAdvisorRetrievalHelper。
 	 * @param beanFactory the ListableBeanFactory to scan
 	 */
 	public BeanFactoryAdvisorRetrievalHelper(ConfigurableListableBeanFactory beanFactory) {
@@ -59,8 +58,7 @@ public class BeanFactoryAdvisorRetrievalHelper {
 
 
 	/**
-	 * Find all eligible Advisor beans in the current bean factory,
-	 * ignoring FactoryBeans and excluding beans that are currently in creation.
+	 * 查找当前 Bean 工厂中所有合格的 Advisor Bean，忽略 FactoryBean，并排除当前正在创建中的 Bean。
 	 * @return the list of {@link org.springframework.aop.Advisor} beans
 	 * @see #isEligibleBean
 	 */
@@ -114,8 +112,8 @@ public class BeanFactoryAdvisorRetrievalHelper {
 	}
 
 	/**
-	 * Determine whether the aspect bean with the given name is eligible.
-	 * <p>The default implementation always returns {@code true}.
+	 * 判断具有给定名称的切面 Bean 是否合格。
+	 * <p>默认实现始终返回 {@code true}。
 	 * @param beanName the name of the aspect bean
 	 * @return whether the bean is eligible
 	 */

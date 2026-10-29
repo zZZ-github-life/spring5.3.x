@@ -17,7 +17,7 @@
 package org.springframework.http.codec.multipart;
 
 /**
- * Specialization of {@link Part} for a form field.
+ * 用于表单字段的 {@link Part} 特化。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -25,7 +25,7 @@ package org.springframework.http.codec.multipart;
 public interface FormFieldPart extends Part {
 
 	/**
-	 * Return the form field value.
+	 * 返回表单字段的值。
 	 */
 	String value();
 

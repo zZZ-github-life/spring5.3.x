@@ -24,20 +24,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Container annotation that aggregates several {@link Sql @Sql} annotations.
- *
- * <p>Can be used natively, declaring several nested {@code @Sql} annotations.
- * Can also be used in conjunction with Java 8's support for repeatable
- * annotations, where {@code @Sql} can simply be declared several times on the
- * same class or method, implicitly generating this container annotation.
- *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
- *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * 聚合多个 {@link Sql @Sql} 注解的容器注解。
+ * <p>可以原生使用，声明多个嵌套的 {@code @Sql} 注解。也可以结合 Java 8 对可重复注解的支持使用，此时只需在同一类或方法上多次声明 {@code @Sql}，即可隐式生成此容器注解。
+ * <p>此注解可用作<em>元注解</em>以创建自定义<em>组合注解</em>。
+ * <p>从 Spring Framework 5.3 开始，此注解默认会从封闭测试类继承。有关详情，请参见 {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 4.1

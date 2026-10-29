@@ -20,20 +20,18 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 /**
- * Interface to be implemented in Servlet 3.0+ environments in order to configure the
- * {@link ServletContext} programmatically -- as opposed to (or possibly in conjunction
- * with) the traditional {@code web.xml}-based approach.
+ * 在 Servlet 3.0+ 环境中实现的接口，用于以编程方式配置
+ * {@link ServletContext} —— 而不是（或可能结合）传统的基于 {@code web.xml} 的方式。
  *
- * <p>Implementations of this SPI will be detected automatically by {@link
- * SpringServletContainerInitializer}, which itself is bootstrapped automatically
- * by any Servlet 3.0 container. See {@linkplain SpringServletContainerInitializer its
- * Javadoc} for details on this bootstrapping mechanism.
+ * <p>此 SPI 的实现将由 {@link
+ * SpringServletContainerInitializer} 自动检测，而后者本身会由任何 Servlet 3.0 容器
+ * 自动引导。有关此引导机制的详细信息，请参阅
+ * {@linkplain SpringServletContainerInitializer 其 Javadoc}。
  *
- * <h2>Example</h2>
- * <h3>The traditional, XML-based approach</h3>
- * Most Spring users building a web application will need to register Spring's {@code
- * DispatcherServlet}. For reference, in WEB-INF/web.xml, this would typically be done as
- * follows:
+ * <h2>示例</h2>
+ * <h3>传统的基于 XML 的方式</h3>
+ * 大多数构建 Web 应用的 Spring 用户都需要注册 Spring 的 {@code
+ * DispatcherServlet}。作为参考，在 WEB-INF/web.xml 中，通常如下所示：
  * <pre class="code">
  * &lt;servlet&gt;
  *   &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
@@ -52,9 +50,9 @@ import javax.servlet.ServletException;
  *   &lt;url-pattern&gt;/&lt;/url-pattern&gt;
  * &lt;/servlet-mapping&gt;</pre>
  *
- * <h3>The code-based approach with {@code WebApplicationInitializer}</h3>
- * Here is the equivalent {@code DispatcherServlet} registration logic,
- * {@code WebApplicationInitializer}-style:
+ * <h3>使用 {@code WebApplicationInitializer} 的基于代码的方式</h3>
+ * 以下是等效的 {@code DispatcherServlet} 注册逻辑，采用
+ * {@code WebApplicationInitializer} 风格：
  * <pre class="code">
  * public class MyWebAppInitializer implements WebApplicationInitializer {
  *
@@ -71,41 +69,39 @@ import javax.servlet.ServletException;
  *
  * }</pre>
  *
- * As an alternative to the above, you can also extend from {@link
- * org.springframework.web.servlet.support.AbstractDispatcherServletInitializer}.
+ * 作为上述方式的替代方案，你也可以继承 {@link
+ * org.springframework.web.servlet.support.AbstractDispatcherServletInitializer}。
  *
- * As you can see, thanks to Servlet 3.0's new {@link ServletContext#addServlet} method
- * we're actually registering an <em>instance</em> of the {@code DispatcherServlet}, and
- * this means that the {@code DispatcherServlet} can now be treated like any other object
- * -- receiving constructor injection of its application context in this case.
+ * 如你所见，得益于 Servlet 3.0 新增的 {@link ServletContext#addServlet} 方法，
+ * 我们实际上注册的是 {@code DispatcherServlet} 的一个<em>实例</em>，这意味着
+ * {@code DispatcherServlet} 现在可以像任何其他对象一样对待 —— 在此例中，
+ * 是通过构造函数注入其应用上下文。
  *
- * <p>This style is both simpler and more concise. There is no concern for dealing with
- * init-params, etc, just normal JavaBean-style properties and constructor arguments. You
- * are free to create and work with your Spring application contexts as necessary before
- * injecting them into the {@code DispatcherServlet}.
+ * <p>这种风格既更简单又更简洁。无需担心处理 init-param 等，只需普通的
+ * JavaBean 风格属性和构造函数参数。你可以在必要时自由创建和操作 Spring 应用上下文，
+ * 然后将其注入 {@code DispatcherServlet}。
  *
- * <p>Most major Spring Web components have been updated to support this style of
- * registration.  You'll find that {@code DispatcherServlet}, {@code FrameworkServlet},
- * {@code ContextLoaderListener} and {@code DelegatingFilterProxy} all now support
- * constructor arguments. Even if a component (e.g. non-Spring, other third party) has not
- * been specifically updated for use within {@code WebApplicationInitializers}, they still
- * may be used in any case. The Servlet 3.0 {@code ServletContext} API allows for setting
- * init-params, context-params, etc programmatically.
+ * <p>大多数主要的 Spring Web 组件都已更新以支持这种注册风格。你会发现
+ * {@code DispatcherServlet}、{@code FrameworkServlet}、{@code ContextLoaderListener}
+ * 和 {@code DelegatingFilterProxy} 现在都支持构造函数参数。即使某个组件
+ * （例如非 Spring 的其他第三方组件）没有专门针对在
+ * {@code WebApplicationInitializers} 中使用而更新，它们在任何情况下仍可使用。
+ * Servlet 3.0 的 {@code ServletContext} API 允许以编程方式设置 init-param、
+ * context-param 等。
  *
- * <h2>A 100% code-based approach to configuration</h2>
- * In the example above, {@code WEB-INF/web.xml} was successfully replaced with code in
- * the form of a {@code WebApplicationInitializer}, but the actual
- * {@code dispatcher-config.xml} Spring configuration remained XML-based.
- * {@code WebApplicationInitializer} is a perfect fit for use with Spring's code-based
- * {@code @Configuration} classes. See @{@link
- * org.springframework.context.annotation.Configuration Configuration} Javadoc for
- * complete details, but the following example demonstrates refactoring to use Spring's
+ * <h2>100% 基于代码的配置方式</h2>
+ * 在上面的示例中，{@code WEB-INF/web.xml} 已成功被
+ * {@code WebApplicationInitializer} 形式的代码所替代，但实际的
+ * {@code dispatcher-config.xml} Spring 配置仍然是基于 XML 的。
+ * {@code WebApplicationInitializer} 非常适合与 Spring 基于代码的
+ * {@code @Configuration} 类一起使用。完整细节请参阅 @{@link
+ * org.springframework.context.annotation.Configuration Configuration} 的 Javadoc，
+ * 但以下示例展示了重构为使用 Spring 的
  * {@link org.springframework.web.context.support.AnnotationConfigWebApplicationContext
- * AnnotationConfigWebApplicationContext} in lieu of {@code XmlWebApplicationContext}, and
- * user-defined {@code @Configuration} classes {@code AppConfig} and
- * {@code DispatcherConfig} instead of Spring XML files. This example also goes a bit
- * beyond those above to demonstrate typical configuration of the 'root' application
- * context and registration of the {@code ContextLoaderListener}:
+ * AnnotationConfigWebApplicationContext} 代替 {@code XmlWebApplicationContext}，
+ * 并使用用户定义的 {@code @Configuration} 类 {@code AppConfig} 和
+ * {@code DispatcherConfig} 代替 Spring XML 文件。此示例还比上面的示例更进一步，
+ * 演示了“根”应用上下文的典型配置以及 {@code ContextLoaderListener} 的注册：
  * <pre class="code">
  * public class MyWebAppInitializer implements WebApplicationInitializer {
  *
@@ -133,39 +129,34 @@ import javax.servlet.ServletException;
  *
  * }</pre>
  *
- * As an alternative to the above, you can also extend from {@link
- * org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}.
+ * 作为上述方式的替代方案，你也可以继承 {@link
+ * org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}。
  *
- * Remember that {@code WebApplicationInitializer} implementations are <em>detected
- * automatically</em> -- so you are free to package them within your application as you
- * see fit.
+ * 请记住，{@code WebApplicationInitializer} 实现是<em>自动检测</em>的 ——
+ * 因此你可以随意将它们打包到应用中。
  *
- * <h2>Ordering {@code WebApplicationInitializer} execution</h2>
- * {@code WebApplicationInitializer} implementations may optionally be annotated at the
- * class level with Spring's @{@link org.springframework.core.annotation.Order Order}
- * annotation or may implement Spring's {@link org.springframework.core.Ordered Ordered}
- * interface. If so, the initializers will be ordered prior to invocation. This provides
- * a mechanism for users to ensure the order in which servlet container initialization
- * occurs. Use of this feature is expected to be rare, as typical applications will likely
- * centralize all container initialization within a single {@code WebApplicationInitializer}.
+ * <h2>对 {@code WebApplicationInitializer} 的执行排序</h2>
+ * {@code WebApplicationInitializer} 实现可以选择在类级别使用 Spring 的 @{@link
+ * org.springframework.core.annotation.Order Order} 注解进行标注，或者实现 Spring 的
+ * {@link org.springframework.core.Ordered Ordered} 接口。若如此，初始化器将在调用前
+ * 进行排序。这为用户提供了一种机制，以确保 Servlet 容器初始化的执行顺序。
+ * 预计该特性很少使用，因为典型的应用可能会将所有容器初始化集中在一个
+ * {@code WebApplicationInitializer} 中。
  *
- * <h2>Caveats</h2>
+ * <h2>注意事项</h2>
  *
- * <h3>web.xml versioning</h3>
- * <p>{@code WEB-INF/web.xml} and {@code WebApplicationInitializer} use are not mutually
- * exclusive; for example, web.xml can register one servlet, and a {@code
- * WebApplicationInitializer} can register another. An initializer can even
- * <em>modify</em> registrations performed in {@code web.xml} through methods such as
- * {@link ServletContext#getServletRegistration(String)}. <strong>However, if
- * {@code WEB-INF/web.xml} is present in the application, its {@code version} attribute
- * must be set to "3.0" or greater, otherwise {@code ServletContainerInitializer}
- * bootstrapping will be ignored by the servlet container.</strong>
+ * <h3>web.xml 版本控制</h3>
+ * <p>{@code WEB-INF/web.xml} 与 {@code WebApplicationInitializer} 的使用并不互斥；
+ * 例如，web.xml 可以注册一个 Servlet，而 {@code WebApplicationInitializer} 可以注册
+ * 另一个。初始化器甚至可以通过 {@link ServletContext#getServletRegistration(String)}
+ * 等方法<em>修改</em>在 {@code web.xml} 中执行的注册。<strong>但是，如果应用中存在
+ * {@code WEB-INF/web.xml}，其 {@code version} 属性必须设置为 "3.0" 或更高，
+ * 否则 Servlet 容器将忽略 {@code ServletContainerInitializer} 引导。</strong>
  *
- * <h3>Mapping to '/' under Tomcat</h3>
- * <p>Apache Tomcat maps its internal {@code DefaultServlet} to "/", and on Tomcat versions
- * &lt;= 7.0.14, this servlet mapping <em>cannot be overridden programmatically</em>.
- * 7.0.15 fixes this issue. Overriding the "/" servlet mapping has also been tested
- * successfully under GlassFish 3.1.<p>
+ * <h3>在 Tomcat 下映射到 '/'</h3>
+ * <p>Apache Tomcat 将其内部的 {@code DefaultServlet} 映射到 "/"，在 Tomcat
+ * 7.0.14 及更低版本上，此 Servlet 映射<em>无法以编程方式覆盖</em>。
+ * 7.0.15 修复了此问题。在 GlassFish 3.1 下覆盖 "/" Servlet 映射也已成功测试。<p>
  *
  * @author Chris Beams
  * @since 3.1
@@ -177,9 +168,9 @@ import javax.servlet.ServletException;
 public interface WebApplicationInitializer {
 
 	/**
-	 * Configure the given {@link ServletContext} with any servlets, filters, listeners
-	 * context-params and attributes necessary for initializing this web application. See
-	 * examples {@linkplain WebApplicationInitializer above}.
+	 * 使用初始化此 Web 应用所需的任何 Servlet、过滤器、监听器、
+	 * context-param 和属性来配置给定的 {@link ServletContext}。示例请参阅
+	 * {@linkplain WebApplicationInitializer 上文}。
 	 * @param servletContext the {@code ServletContext} to initialize
 	 * @throws ServletException if any call against the given {@code ServletContext}
 	 * throws a {@code ServletException}

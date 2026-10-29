@@ -36,9 +36,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage.Type;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Adapter for Java WebSocket API (JSR-356) that delegates events to a reactive
- * {@link WebSocketHandler} and its session.
- *
+ * Java WebSocket API（JSR-356）的适配器，将事件委托给响应式 {@link WebSocketHandler} 及其会话。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0

@@ -21,9 +21,8 @@ import java.util.function.Consumer;
 import reactor.core.publisher.Flux;
 
 /**
- * {@code ExchangeResult} variant with the response body decoded as
- * {@code Flux<T>} but not yet consumed.
- *
+ * 响应体被解码为 {@code Flux<T>} 但尚未消费的
+ * {@code ExchangeResult} 变体。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @param <T> the type of elements in the response body
@@ -41,28 +40,27 @@ public class FluxExchangeResult<T> extends ExchangeResult {
 
 
 	/**
-	 * Return the response body as a {@code Flux<T>} of decoded elements.
+	 * 以解码元素的 {@code Flux<T>} 形式返回响应体。
 	 *
-	 * <p>The response body stream can then be consumed further with the
-	 * "reactor-test" {@code StepVerifier} and cancelled when enough elements have been
-	 * consumed from the (possibly infinite) stream:
+	 * <p>随后可以使用“reactor-test”的 {@code StepVerifier} 进一步消费响应体流，
+	 * 并在从（可能无限的）流中消费了足够元素后取消：
 	 *
 	 * <pre>
 	 * FluxExchangeResult&lt;Person&gt; result = this.client.get()
-	 * 	.uri("/persons")
-	 * 	.accept(TEXT_EVENT_STREAM)
-	 * 	.exchange()
-	 * 	.expectStatus().isOk()
-	 * 	.expectHeader().contentType(TEXT_EVENT_STREAM)
-	 * 	.expectBody(Person.class)
-	 * 	.returnResult();
+	 * .uri("/persons")
+	 * .accept(TEXT_EVENT_STREAM)
+	 * .exchange()
+	 * .expectStatus().isOk()
+	 * .expectHeader().contentType(TEXT_EVENT_STREAM)
+	 * .expectBody(Person.class)
+	 * .returnResult();
 	 *
 	 * StepVerifier.create(result.getResponseBody())
-	 * 	.expectNext(new Person("Jane"), new Person("Jason"))
-	 * 	.expectNextCount(4)
-	 * 	.expectNext(new Person("Jay"))
-	 * 	.thenCancel()
-	 * 	.verify();
+	 * .expectNext(new Person("Jane"), new Person("Jason"))
+	 * .expectNextCount(4)
+	 * .expectNext(new Person("Jay"))
+	 * .thenCancel()
+	 * .verify();
 	 * </pre>
 	 */
 	public Flux<T> getResponseBody() {
@@ -70,17 +68,17 @@ public class FluxExchangeResult<T> extends ExchangeResult {
 	}
 
 	/**
-	 * Invoke the given consumer within {@link #assertWithDiagnostics(Runnable)}
-	 * passing {@code "this"} instance to it. This method allows the following,
-	 * without leaving the {@code WebTestClient} chain of calls:
+	 * 在 {@link #assertWithDiagnostics(Runnable)} 中调用给定消费者，
+	 * 并将 {@code “this”} 实例传递给它。此方法允许以下操作，
+	 * 而无需离开 {@code WebTestClient} 调用链：
 	 * <pre class="code">
-	 *	client.get()
-	 * 		.uri("/persons")
-	 * 		.accept(TEXT_EVENT_STREAM)
-	 * 		.exchange()
-	 * 		.expectStatus().isOk()
-	 *	 	.returnResult()
-	 *	 	.consumeWith(result -&gt; assertThat(...);
+	 * client.get()
+	 * .uri("/persons")
+	 * .accept(TEXT_EVENT_STREAM)
+	 * .exchange()
+	 * .expectStatus().isOk()
+	 * .returnResult()
+	 * .consumeWith(result -&gt; assertThat(...);
 	 * </pre>
 	 * @param consumer the consumer for {@code "this"} instance
 	 */

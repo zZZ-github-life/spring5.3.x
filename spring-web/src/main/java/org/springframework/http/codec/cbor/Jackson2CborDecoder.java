@@ -32,8 +32,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Decode bytes into CBOR and convert to Object's with Jackson.
- * Stream decoding is not supported yet.
+ * 使用 Jackson 将字节解码为 CBOR 并转换为 Object。
+ * 尚不支持流式解码。
  *
  * @author Sebastien Deleuze
  * @since 5.2

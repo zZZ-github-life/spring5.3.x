@@ -17,10 +17,8 @@
 package org.springframework.dao;
 
 /**
- * Data access exception thrown when something unintended appears to have
- * happened with an update, but the transaction hasn't already been rolled back.
- * Thrown, for example, when we wanted to update 1 row in an RDBMS but actually
- * updated 3.
+ * 当更新操作发生了非预期的情况，但事务尚未回滚时抛出的数据访问异常。
+ * 例如，当在 RDBMS 中期望更新 1 行但实际更新了 3 行时抛出。
  *
  * @author Rod Johnson
  */
@@ -28,7 +26,7 @@ package org.springframework.dao;
 public class IncorrectUpdateSemanticsDataAccessException extends InvalidDataAccessResourceUsageException {
 
 	/**
-	 * Constructor for IncorrectUpdateSemanticsDataAccessException.
+	 * IncorrectUpdateSemanticsDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public IncorrectUpdateSemanticsDataAccessException(String msg) {
@@ -36,7 +34,7 @@ public class IncorrectUpdateSemanticsDataAccessException extends InvalidDataAcce
 	}
 
 	/**
-	 * Constructor for IncorrectUpdateSemanticsDataAccessException.
+	 * IncorrectUpdateSemanticsDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the underlying API, such as JDBC
 	 */
@@ -45,10 +43,10 @@ public class IncorrectUpdateSemanticsDataAccessException extends InvalidDataAcce
 	}
 
 	/**
-	 * Return whether data was updated.
-	 * If this method returns false, there's nothing to roll back.
-	 * <p>The default implementation always returns true.
-	 * This can be overridden in subclasses.
+	 * 返回数据是否已更新。
+	 * 如果此方法返回 false，则无需回滚。
+	 * <p>默认实现始终返回 true。
+	 * 子类可以覆盖此方法。
 	 */
 	public boolean wasDataUpdated() {
 		return true;

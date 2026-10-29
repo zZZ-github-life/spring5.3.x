@@ -1,6 +1,5 @@
 /**
- * Convenience classes for scheduling based on the JCA WorkManager facility,
- * as supported within ResourceAdapters.
+ * 基于 JCA WorkManager 设施（在 ResourceAdapter 中支持）的调度便利类。
  */
 @NonNullApi
 @NonNullFields

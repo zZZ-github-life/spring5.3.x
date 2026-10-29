@@ -23,7 +23,7 @@ import org.springframework.expression.PropertyAccessor;
 import org.springframework.lang.Nullable;
 
 /**
- * Utilities methods for use in the Ast classes.
+ * 供 AST 类使用的工具方法。
  *
  * @author Andy Clement
  * @since 3.0.2
@@ -31,14 +31,11 @@ import org.springframework.lang.Nullable;
 public abstract class AstUtils {
 
 	/**
-	 * Determines the set of property resolvers that should be used to try and access a
-	 * property on the specified target type. The resolvers are considered to be in an
-	 * ordered list, however in the returned list any that are exact matches for the input
-	 * target type (as opposed to 'general' resolvers that could work for any type) are
-	 * placed at the start of the list. In addition, there are specific resolvers that
-	 * exactly name the class in question and resolvers that name a specific class but it
-	 * is a supertype of the class we have. These are put at the end of the specific resolvers
-	 * set and will be tried after exactly matching accessors but before generic accessors.
+	 * 确定应当使用哪一组属性解析器，以尝试访问指定目标类型上的属性。这些解析器被视为处于一个有序列表中，
+	 * 但在返回的列表中，凡是与输入目标类型精确匹配的解析器（相对于可用于任何类型的“通用”解析器而言）
+	 * 都排在列表开头。此外，还有一些特定解析器，它们精确命名了所涉的类，另一些则命名了某个特定类、但该
+	 * 类是当前类的超类型。后者被放在特定解析器集合的末尾，会在精确匹配的访问器之后、通用访问器之前被尝
+	 * 试。
 	 * @param targetType the type upon which property access is being attempted
 	 * @return a list of resolvers that should be tried in order to access the property
 	 */

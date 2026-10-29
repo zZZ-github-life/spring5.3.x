@@ -17,8 +17,7 @@
 package org.springframework.expression.spel;
 
 /**
- * Captures the possible configuration settings for a compiler that can be
- * used when evaluating expressions.
+ * 捕获可用于表达式求值的编译器的可能配置设置。
  *
  * @author Andy Clement
  * @since 4.1
@@ -26,21 +25,20 @@ package org.springframework.expression.spel;
 public enum SpelCompilerMode {
 
 	/**
-	 * The compiler is switched off; this is the default.
+	 * 编译器已关闭；这是默认设置。
 	 */
 	OFF,
 
 	/**
-	 * In immediate mode, expressions are compiled as soon as possible (usually after 1 interpreted run).
-	 * If a compiled expression fails it will throw an exception to the caller.
+	 * 在即时模式下，表达式会尽快编译（通常在 1 次解释执行之后）。如果已编译的表达式失败，它会向调用方
+	 * 抛出异常。
 	 */
 	IMMEDIATE,
 
 	/**
-	 * In mixed mode, expression evaluation silently switches between interpreted and compiled over time.
-	 * After a number of runs the expression gets compiled. If it later fails (possibly due to inferred
-	 * type information changing) then that will be caught internally and the system switches back to
-	 * interpreted mode. It may subsequently compile it again later.
+	 * 在混合模式下，表达式求值会随时间在解释执行与编译执行之间静默切换。经过若干次运行后，表达式会被编
+	 * 译。如果之后它失败了（可能是由于推断出的类型信息发生变化），这将在内部被捕获，系统会切换回解释模
+	 * 式。之后它可能再次进行编译。
 	 */
 	MIXED
 

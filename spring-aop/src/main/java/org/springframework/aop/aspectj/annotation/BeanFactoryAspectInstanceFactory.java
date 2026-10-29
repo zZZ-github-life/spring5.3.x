@@ -27,13 +27,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link org.springframework.aop.aspectj.AspectInstanceFactory} implementation
- * backed by a Spring {@link org.springframework.beans.factory.BeanFactory}.
+ * {@link org.springframework.aop.aspectj.AspectInstanceFactory} 实现，由 Spring
+ * {@link org.springframework.beans.factory.BeanFactory} 提供支持。
  *
- * <p>Note that this may instantiate multiple times if using a prototype,
- * which probably won't give the semantics you expect.
- * Use a {@link LazySingletonAspectInstanceFactoryDecorator}
- * to wrap this to ensure only one new aspect comes back.
+ * <p>请注意，如果使用 prototype 作用域，这可能会实例化多次，这大概不会产生你所期望的语义。可使用
+ * {@link LazySingletonAspectInstanceFactoryDecorator} 包装它，以确保只返回一个新的切面。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -52,9 +50,8 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 
 
 	/**
-	 * Create a BeanFactoryAspectInstanceFactory. AspectJ will be called to
-	 * introspect to create AJType metadata using the type returned for the
-	 * given bean name from the BeanFactory.
+	 * 创建一个 BeanFactoryAspectInstanceFactory。将调用 AspectJ 进行内省，使用 BeanFactory 中给定 Bean
+	 * 名称所返回的类型创建 AJType 元数据。
 	 * @param beanFactory the BeanFactory to obtain instance(s) from
 	 * @param name the name of the bean
 	 */
@@ -63,9 +60,8 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 	}
 
 	/**
-	 * Create a BeanFactoryAspectInstanceFactory, providing a type that AspectJ should
-	 * introspect to create AJType metadata. Use if the BeanFactory may consider the type
-	 * to be a subclass (as when using CGLIB), and the information should relate to a superclass.
+	 * 创建一个 BeanFactoryAspectInstanceFactory，并提供 AspectJ 应用于内省以创建 AJType 元数据的类型。
+	 * 当 BeanFactory 可能将该类型视为子类（例如使用 CGLIB 时），而相关信息应关联到超类时使用。
 	 * @param beanFactory the BeanFactory to obtain instance(s) from
 	 * @param name the name of the bean
 	 * @param type the type that should be introspected by AspectJ
@@ -122,12 +118,9 @@ public class BeanFactoryAspectInstanceFactory implements MetadataAwareAspectInst
 	}
 
 	/**
-	 * Determine the order for this factory's target aspect, either
-	 * an instance-specific order expressed through implementing the
-	 * {@link org.springframework.core.Ordered} interface (only
-	 * checked for singleton beans), or an order expressed through the
-	 * {@link org.springframework.core.annotation.Order} annotation
-	 * at the class level.
+	 * 确定此工厂目标切面的顺序：或者通过实现 {@link org.springframework.core.Ordered} 接口表达的实例级
+	 * 顺序（仅对单例 Bean 检查），或者通过类级别上的 {@link org.springframework.core.annotation.Order}
+	 * 注解表达的顺序。
 	 * @see org.springframework.core.Ordered
 	 * @see org.springframework.core.annotation.Order
 	 */

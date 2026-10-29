@@ -21,11 +21,10 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * A formatter for number values in percent style.
+ * 用于百分比样式数值的格式化器。
  *
- * <p>Delegates to {@link java.text.NumberFormat#getPercentInstance(Locale)}.
- * Configures BigDecimal parsing so there is no loss in precision.
- * The {@link #parse(String, Locale)} routine always returns a BigDecimal.
+ * <p>委托给 {@link java.text.NumberFormat#getPercentInstance(Locale)}。配置 BigDecimal 解析，因此
+ * 不会损失精度。{@link #parse(String, Locale)} 方法始终返回 BigDecimal。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

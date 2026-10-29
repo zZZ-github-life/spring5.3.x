@@ -24,7 +24,7 @@ import javax.servlet.ServletException;
 import org.springframework.http.MediaType;
 
 /**
- * Abstract base for exceptions related to media types. Adds a list of supported {@link MediaType MediaTypes}.
+ * 与媒体类型相关异常的抽象基类。添加了受支持的 {@link MediaType MediaTypes} 列表。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -36,7 +36,7 @@ public abstract class HttpMediaTypeException extends ServletException {
 
 
 	/**
-	 * Create a new HttpMediaTypeException.
+	 * 创建一个新的 HttpMediaTypeException。
 	 * @param message the exception message
 	 */
 	protected HttpMediaTypeException(String message) {
@@ -45,7 +45,7 @@ public abstract class HttpMediaTypeException extends ServletException {
 	}
 
 	/**
-	 * Create a new HttpMediaTypeException with a list of supported media types.
+	 * 使用受支持媒体类型列表创建一个新的 HttpMediaTypeException。
 	 * @param supportedMediaTypes the list of supported media types
 	 */
 	protected HttpMediaTypeException(String message, List<MediaType> supportedMediaTypes) {
@@ -55,7 +55,7 @@ public abstract class HttpMediaTypeException extends ServletException {
 
 
 	/**
-	 * Return the list of supported media types.
+	 * 返回受支持的媒体类型列表。
 	 */
 	public List<MediaType> getSupportedMediaTypes() {
 		return this.supportedMediaTypes;

@@ -17,9 +17,8 @@
 package org.springframework.transaction;
 
 /**
- * Exception that gets thrown when an invalid isolation level is specified,
- * i.e. an isolation level that the transaction manager implementation
- * doesn't support.
+ * 当指定了无效的隔离级别时抛出此异常，
+ * 即事务管理器实现不支持的隔离级别。
  *
  * @author Juergen Hoeller
  * @since 12.05.2003
@@ -28,7 +27,7 @@ package org.springframework.transaction;
 public class InvalidIsolationLevelException extends TransactionUsageException {
 
 	/**
-	 * Constructor for InvalidIsolationLevelException.
+	 * InvalidIsolationLevelException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public InvalidIsolationLevelException(String msg) {

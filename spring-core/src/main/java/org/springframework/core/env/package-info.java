@@ -1,6 +1,5 @@
 /**
- * Spring's environment abstraction consisting of bean definition
- * profile and hierarchical property source support.
+ * Spring 的环境抽象，包含 Bean 定义 profile 与分层属性源支持。
  */
 @NonNullApi
 @NonNullFields

@@ -28,12 +28,9 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.i18n.LocaleContextResolver;
 
 /**
- * Defines the strategies to be used for processing {@link HandlerFunction HandlerFunctions}.
+ * 定义用于处理 {@link HandlerFunction HandlerFunctions} 的策略。
  *
- * <p>An instance of this class is immutable. Instances are typically created through the
- * mutable {@link Builder}: either through {@link #builder()} to set up default strategies,
- * or {@link #empty()} to start from scratch.
- *
+ * <p>此类的实例是不可变的。实例通常通过可变的 {@link Builder} 创建：使用 {@link #builder()} 设置默认策略，或使用 {@link #empty()} 从零开始。
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -43,37 +40,37 @@ import org.springframework.web.server.i18n.LocaleContextResolver;
 public interface HandlerStrategies {
 
 	/**
-	 * Return the {@link HttpMessageReader HttpMessageReaders} to be used for request body conversion.
+	 * 返回用于请求正文转换的 {@link HttpMessageReader HttpMessageReaders}。
 	 * @return the message readers
 	 */
 	List<HttpMessageReader<?>> messageReaders();
 
 	/**
-	 * Return the {@link HttpMessageWriter HttpMessageWriters} to be used for response body conversion.
+	 * 返回用于响应正文转换的 {@link HttpMessageWriter HttpMessageWriters}。
 	 * @return the message writers
 	 */
 	List<HttpMessageWriter<?>> messageWriters();
 
 	/**
-	 * Return the {@link ViewResolver ViewResolvers} to be used for view name resolution.
+	 * 返回用于视图名称解析的 {@link ViewResolver ViewResolvers}。
 	 * @return the view resolvers
 	 */
 	List<ViewResolver> viewResolvers();
 
 	/**
-	 * Return the {@link WebFilter WebFilters} to be used for filtering the request and response.
+	 * 返回用于过滤请求和响应的 {@link WebFilter WebFilters}。
 	 * @return the web filters
 	 */
 	List<WebFilter> webFilters();
 
 	/**
-	 * Return the {@link WebExceptionHandler WebExceptionHandlers} to be used for handling exceptions.
+	 * 返回用于处理异常的 {@link WebExceptionHandler WebExceptionHandlers}。
 	 * @return the exception handlers
 	 */
 	List<WebExceptionHandler> exceptionHandlers();
 
 	/**
-	 * Return the {@link LocaleContextResolver} to be used for resolving locale context.
+	 * 返回用于解析区域上下文的 {@link LocaleContextResolver}。
 	 * @return the locale context resolver
 	 */
 	LocaleContextResolver localeContextResolver();
@@ -82,7 +79,7 @@ public interface HandlerStrategies {
 	// Static builder methods
 
 	/**
-	 * Return a new {@code HandlerStrategies} with default initialization.
+	 * 返回具有默认初始化的新 {@code HandlerStrategies}。
 	 * @return the new {@code HandlerStrategies}
 	 */
 	static HandlerStrategies withDefaults() {
@@ -90,7 +87,7 @@ public interface HandlerStrategies {
 	}
 
 	/**
-	 * Return a mutable builder for a {@code HandlerStrategies} with default initialization.
+	 * 返回具有默认初始化的 {@code HandlerStrategies} 可变构建器。
 	 * @return the builder
 	 */
 	static Builder builder() {
@@ -100,7 +97,7 @@ public interface HandlerStrategies {
 	}
 
 	/**
-	 * Return a mutable, empty builder for a {@code HandlerStrategies}.
+	 * 返回 {@code HandlerStrategies} 的可变空构建器。
 	 * @return the builder
 	 */
 	static Builder empty() {
@@ -109,47 +106,47 @@ public interface HandlerStrategies {
 
 
 	/**
-	 * A mutable builder for a {@link HandlerStrategies}.
+	 * 用于 {@link HandlerStrategies} 的可变构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Customize the list of server-side HTTP message readers and writers.
+		 * 自定义服务器端 HTTP 消息读写器列表。
 		 * @param consumer the consumer to customize the codecs
 		 * @return this builder
 		 */
 		Builder codecs(Consumer<ServerCodecConfigurer> consumer);
 
 		/**
-		 * Add the given view resolver to this builder.
+		 * 将给定视图解析器添加到此构建器。
 		 * @param viewResolver the view resolver to add
 		 * @return this builder
 		 */
 		Builder viewResolver(ViewResolver viewResolver);
 
 		/**
-		 * Add the given web filter to this builder.
+		 * 将给定 Web 过滤器添加到此构建器。
 		 * @param filter the filter to add
 		 * @return this builder
 		 */
 		Builder webFilter(WebFilter filter);
 
 		/**
-		 * Add the given exception handler to this builder.
+		 * 将给定异常处理器添加到此构建器。
 		 * @param exceptionHandler the exception handler to add
 		 * @return this builder
 		 */
 		Builder exceptionHandler(WebExceptionHandler exceptionHandler);
 
 		/**
-		 * Add the given locale context resolver to this builder.
+		 * 将给定区域上下文解析器添加到此构建器。
 		 * @param localeContextResolver the locale context resolver to add
 		 * @return this builder
 		 */
 		Builder localeContextResolver(LocaleContextResolver localeContextResolver);
 
 		/**
-		 * Builds the {@link HandlerStrategies}.
+		 * 构建 {@link HandlerStrategies}。
 		 * @return the built strategies
 		 */
 		HandlerStrategies build();

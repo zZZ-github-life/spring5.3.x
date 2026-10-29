@@ -29,8 +29,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility methods for triggering specific {@link TransactionSynchronization}
- * callback methods on all currently registered synchronizations.
+ * 用于在所有当前注册的同步上触发特定
+ * {@link TransactionSynchronization}回调方法的工具类。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -47,8 +47,7 @@ abstract class TransactionSynchronizationUtils {
 
 
 	/**
-	 * Unwrap the given resource handle if necessary; otherwise return
-	 * the given handle as-is.
+	 * 必要时解包给定的资源句柄；否则原样返回。
 	 * @see InfrastructureProxy#getWrappedObject()
 	 */
 	static Object unwrapResourceIfNecessary(Object resource) {
@@ -67,8 +66,8 @@ abstract class TransactionSynchronizationUtils {
 
 
 	/**
-	 * Actually invoke the {@code triggerBeforeCommit} methods of the
-	 * given Spring TransactionSynchronization objects.
+	 * 实际调用给定Spring TransactionSynchronization对象的
+	 * {@code triggerBeforeCommit}方法。
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @see TransactionSynchronization#beforeCommit(boolean)
 	 */
@@ -77,8 +76,8 @@ abstract class TransactionSynchronizationUtils {
 	}
 
 	/**
-	 * Actually invoke the {@code beforeCompletion} methods of the
-	 * given Spring TransactionSynchronization objects.
+	 * 实际调用给定Spring TransactionSynchronization对象的
+	 * {@code beforeCompletion}方法。
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @see TransactionSynchronization#beforeCompletion()
 	 */
@@ -89,8 +88,8 @@ abstract class TransactionSynchronizationUtils {
 	}
 
 	/**
-	 * Actually invoke the {@code afterCommit} methods of the
-	 * given Spring TransactionSynchronization objects.
+	 * 实际调用给定Spring TransactionSynchronization对象的
+	 * {@code afterCommit}方法。
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @see TransactionSynchronization#afterCommit()
 	 */
@@ -101,8 +100,8 @@ abstract class TransactionSynchronizationUtils {
 	}
 
 	/**
-	 * Actually invoke the {@code afterCompletion} methods of the
-	 * given Spring TransactionSynchronization objects.
+	 * 实际调用给定Spring TransactionSynchronization对象的
+	 * {@code afterCompletion}方法。
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @param completionStatus the completion status according to the
 	 * constants in the TransactionSynchronization interface
@@ -120,7 +119,7 @@ abstract class TransactionSynchronizationUtils {
 
 
 	/**
-	 * Inner class to avoid hard-coded dependency on AOP module.
+	 * 避免对AOP模块硬编码依赖的内部类。
 	 */
 	private static class ScopedProxyUnwrapper {
 

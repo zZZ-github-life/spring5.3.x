@@ -23,8 +23,8 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
- * Generic utility methods for working with JDBC batch statements.
- * Mainly for internal use within the framework.
+ * 处理JDBC批量语句的通用工具方法。
+ * 主要在框架内部使用。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller

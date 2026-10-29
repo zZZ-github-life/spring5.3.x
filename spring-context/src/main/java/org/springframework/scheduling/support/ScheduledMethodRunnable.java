@@ -23,9 +23,8 @@ import java.lang.reflect.UndeclaredThrowableException;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Variant of {@link MethodInvokingRunnable} meant to be used for processing
- * of no-arg scheduled methods. Propagates user exceptions to the caller,
- * assuming that an error strategy for Runnables is in place.
+ * {@link MethodInvokingRunnable} 的变体，用于处理无参计划方法。将用户异常传播给调用方，前提是已为
+ * Runnable 配置了错误处理策略。
  *
  * @author Juergen Hoeller
  * @since 3.0.6
@@ -39,8 +38,7 @@ public class ScheduledMethodRunnable implements Runnable {
 
 
 	/**
-	 * Create a {@code ScheduledMethodRunnable} for the given target instance,
-	 * calling the specified method.
+	 * 为给定目标实例创建一个 {@code ScheduledMethodRunnable}，调用指定的方法。
 	 * @param target the target instance to call the method on
 	 * @param method the target method to call
 	 */
@@ -50,8 +48,7 @@ public class ScheduledMethodRunnable implements Runnable {
 	}
 
 	/**
-	 * Create a {@code ScheduledMethodRunnable} for the given target instance,
-	 * calling the specified method by name.
+	 * 为给定目标实例创建一个 {@code ScheduledMethodRunnable}，按名称调用指定的方法。
 	 * @param target the target instance to call the method on
 	 * @param methodName the name of the target method
 	 * @throws NoSuchMethodException if the specified method does not exist
@@ -63,14 +60,14 @@ public class ScheduledMethodRunnable implements Runnable {
 
 
 	/**
-	 * Return the target instance to call the method on.
+	 * 返回要在其上调用方法的目标实例。
 	 */
 	public Object getTarget() {
 		return this.target;
 	}
 
 	/**
-	 * Return the target method to call.
+	 * 返回要调用的目标方法。
 	 */
 	public Method getMethod() {
 		return this.method;

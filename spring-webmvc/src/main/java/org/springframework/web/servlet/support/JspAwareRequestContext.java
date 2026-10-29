@@ -28,12 +28,9 @@ import javax.servlet.jsp.jstl.core.Config;
 import org.springframework.lang.Nullable;
 
 /**
- * JSP-aware (and JSTL-aware) subclass of RequestContext, allowing for
- * population of the context from a {@code javax.servlet.jsp.PageContext}.
+ * RequestContext 的 JSP 感知（以及 JSTL 感知）子类，允许从 {@code javax.servlet.jsp.PageContext} 填充上下文。
  *
- * <p>This context will detect a JSTL locale attribute in page/request/session/application
- * scope, in addition to the fallback locale strategy provided by the base class.
- *
+ * <p>除了基类提供的回退区域设置策略之外，此上下文还会在页面/请求/会话/应用作用域中检测 JSTL 区域设置属性。
  * @author Juergen Hoeller
  * @since 1.1.4
  * @see #getFallbackLocale
@@ -44,8 +41,7 @@ public class JspAwareRequestContext extends RequestContext {
 
 
 	/**
-	 * Create a new JspAwareRequestContext for the given page context,
-	 * using the request attributes for Errors retrieval.
+	 * 为给定的页面上下文创建一个新的 JspAwareRequestContext，使用请求属性来获取 Errors。
 	 * @param pageContext current JSP page context
 	 */
 	public JspAwareRequestContext(PageContext pageContext) {
@@ -53,8 +49,7 @@ public class JspAwareRequestContext extends RequestContext {
 	}
 
 	/**
-	 * Create a new JspAwareRequestContext for the given page context,
-	 * using the given model attributes for Errors retrieval.
+	 * 为给定的页面上下文创建一个新的 JspAwareRequestContext，使用给定的模型属性来获取 Errors。
 	 * @param pageContext current JSP page context
 	 * @param model the model attributes for the current view
 	 * (can be {@code null}, using the request attributes for Errors retrieval)
@@ -67,17 +62,15 @@ public class JspAwareRequestContext extends RequestContext {
 
 
 	/**
-	 * Return the underlying PageContext.
-	 * Only intended for cooperating classes in this package.
+	 * 返回底层的 PageContext。
+	 * 仅供此包中协作的类使用。
 	 */
 	protected final PageContext getPageContext() {
 		return this.pageContext;
 	}
 
 	/**
-	 * This implementation checks for a JSTL locale attribute in page,
-	 * request, session or application scope; if not found, returns the
-	 * {@code HttpServletRequest.getLocale()}.
+	 * 此实现会检查页面、请求、会话或应用作用域中的 JSTL 区域设置属性；如果未找到，则返回 {@code HttpServletRequest.getLocale()}。
 	 */
 	@Override
 	protected Locale getFallbackLocale() {
@@ -91,8 +84,7 @@ public class JspAwareRequestContext extends RequestContext {
 	}
 
 	/**
-	 * This implementation checks for a JSTL time zone attribute in page,
-	 * request, session or application scope; if not found, returns {@code null}.
+	 * 此实现会检查页面、请求、会话或应用作用域中的 JSTL 时区属性；如果未找到，则返回 {@code null}。
 	 */
 	@Override
 	protected TimeZone getFallbackTimeZone() {
@@ -107,8 +99,8 @@ public class JspAwareRequestContext extends RequestContext {
 
 
 	/**
-	 * Inner class that isolates the JSTL dependency.
-	 * Just called to resolve the fallback locale if the JSTL API is present.
+	 * 用于隔离 JSTL 依赖的内部类。
+	 * 仅在 JSTL API 存在时调用，以解析回退区域设置。
 	 */
 	private static class JstlPageLocaleResolver {
 

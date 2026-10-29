@@ -22,8 +22,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.transaction.support.TransactionSynchronization;
 
 /**
- * {@link TransactionSynchronization} implementation for event processing with a
- * {@link TransactionalApplicationListener}.
+ * 用于{@link TransactionalApplicationListener}事件处理的{@link TransactionSynchronization}实现。
  *
  * @author Juergen Hoeller
  * @since 5.3

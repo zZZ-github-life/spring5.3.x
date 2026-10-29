@@ -29,10 +29,9 @@ import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.invocation.AbstractExceptionHandlerMethodResolver;
 
 /**
- * A subclass of {@link AbstractExceptionHandlerMethodResolver} that looks for
- * {@link MessageExceptionHandler}-annotated methods in a given class. The actual
- * exception types handled are extracted either from the annotation, if present,
- * or from the method signature as a fallback option.
+ * {@link AbstractExceptionHandlerMethodResolver} 的子类，用于在给定类中查找
+ * 使用 {@link MessageExceptionHandler} 注解的方法。实际的异常处理类型
+ * 从注解中提取（如果存在），否则从方法签名中提取作为回退选项。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -41,7 +40,7 @@ import org.springframework.messaging.handler.invocation.AbstractExceptionHandler
 public class AnnotationExceptionHandlerMethodResolver extends AbstractExceptionHandlerMethodResolver {
 
 	/**
-	 * A constructor that finds {@link MessageExceptionHandler} methods in the given type.
+	 * 在给定类型中查找 {@link MessageExceptionHandler} 方法的构造函数。
 	 * @param handlerType the type to introspect
 	 */
 	public AnnotationExceptionHandlerMethodResolver(Class<?> handlerType) {

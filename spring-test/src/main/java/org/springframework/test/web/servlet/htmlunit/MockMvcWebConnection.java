@@ -38,10 +38,10 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.Assert;
 
 /**
- * {@code MockMvcWebConnection} enables {@link MockMvc} to transform a
- * {@link WebRequest} into a {@link WebResponse}.
- * <p>This is the core integration with <a href="https://htmlunit.sourceforge.io/">HtmlUnit</a>.
- * <p>Example usage can be seen below.
+ * {@code MockMvcWebConnection} 使 {@link MockMvc} 能够将
+ * {@link WebRequest} 转换为 {@link WebResponse}。
+ * <p>这是与 <a href="https://htmlunit.sourceforge.io/">HtmlUnit</a> 的核心集成。
+ * <p>下面是一个用法示例。
  *
  * <pre class="code">
  * WebClient webClient = new WebClient();
@@ -51,7 +51,6 @@ import org.springframework.util.Assert;
  *
  * // Use webClient as normal ...
  * </pre>
- *
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
@@ -72,10 +71,10 @@ public final class MockMvcWebConnection implements WebConnection {
 
 
 	/**
-	 * Create a new instance that assumes the context path of the application
-	 * is {@code ""} (i.e., the root context).
-	 * <p>For example, the URL {@code http://localhost/test/this} would use
-	 * {@code ""} as the context path.
+	 * 创建一个新实例，假定应用程序的上下文路径
+	 * 为 {@code ""}（即根上下文）。
+	 * <p>例如，URL {@code http://localhost/test/this} 将使用
+	 * {@code ""} 作为上下文路径。
 	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
 	 * @param webClient the {@link WebClient} to use. never {@code null}
 	 */
@@ -84,12 +83,12 @@ public final class MockMvcWebConnection implements WebConnection {
 	}
 
 	/**
-	 * Create a new instance with the specified context path.
-	 * <p>The path may be {@code null} in which case the first path segment
-	 * of the URL is turned into the contextPath. Otherwise it must conform
-	 * to {@link javax.servlet.http.HttpServletRequest#getContextPath()}
-	 * which states that it can be an empty string and otherwise must start
-	 * with a "/" character and not end with a "/" character.
+	 * 使用指定的上下文路径创建新实例。
+	 * <p>该路径可以为 {@code null}，此时 URL 的第一个路径段
+	 * 会转换为 contextPath。否则它必须符合
+	 * {@link javax.servlet.http.HttpServletRequest#getContextPath()}
+	 * 的要求，即可以是空字符串，否则必须以“/”字符开头且
+	 * 不以“/”字符结尾。
 	 * @param mockMvc the {@code MockMvc} instance to use (never {@code null})
 	 * @param webClient the {@link WebClient} to use (never {@code null})
 	 * @param contextPath the contextPath to use
@@ -105,11 +104,10 @@ public final class MockMvcWebConnection implements WebConnection {
 	}
 
 	/**
-	 * Validate the supplied {@code contextPath}.
-	 * <p>If the value is not {@code null}, it must conform to
-	 * {@link javax.servlet.http.HttpServletRequest#getContextPath()} which
-	 * states that it can be an empty string and otherwise must start with
-	 * a "/" character and not end with a "/" character.
+	 * 验证提供的 {@code contextPath}。
+	 * <p>如果该值不为 {@code null}，它必须符合
+	 * {@link javax.servlet.http.HttpServletRequest#getContextPath()} 的要求，
+	 * 即可以是空字符串，否则必须以“/”字符开头且不以“/”字符结尾。
 	 * @param contextPath the path to validate
 	 */
 	static void validateContextPath(@Nullable String contextPath) {

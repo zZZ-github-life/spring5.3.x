@@ -40,10 +40,10 @@ import org.springframework.oxm.XmlMappingException;
 import org.springframework.util.Assert;
 
 /**
- * Spring JMS {@link MessageConverter} that uses a {@link Marshaller} and {@link Unmarshaller}.
- * Marshals an object to a {@link BytesMessage}, or to a {@link TextMessage} if the
- * {@link #setTargetType targetType} is set to {@link MessageType#TEXT}.
- * Unmarshals from a {@link TextMessage} or {@link BytesMessage} to an object.
+ * Spring JMS {@link MessageConverter}，使用 {@link Marshaller} 和 {@link Unmarshaller}。
+ * 将对象编组为 {@link BytesMessage}；如果 {@link #setTargetType targetType}
+ * 设置为 {@link MessageType#TEXT}，则编组为 {@link TextMessage}。
+ * 从 {@link TextMessage} 或 {@link BytesMessage} 解组为对象。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -61,19 +61,19 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 
 	/**
-	 * Construct a new {@code MarshallingMessageConverter} with no {@link Marshaller}
-	 * or {@link Unmarshaller} set. The marshaller must be set after construction by invoking
-	 * {@link #setMarshaller(Marshaller)} and {@link #setUnmarshaller(Unmarshaller)} .
+	 * 构造一个新的 {@code MarshallingMessageConverter}，未设置 {@link Marshaller}
+	 * 和 {@link Unmarshaller}。必须在构造后通过调用
+	 * {@link #setMarshaller(Marshaller)} 和 {@link #setUnmarshaller(Unmarshaller)} 设置 marshaller。
 	 */
 	public MarshallingMessageConverter() {
 	}
 
 	/**
-	 * Construct a new {@code MarshallingMessageConverter} with the given {@link Marshaller} set.
-	 * <p>If the given {@link Marshaller} also implements the {@link Unmarshaller} interface,
-	 * it is used for both marshalling and unmarshalling. Otherwise, an exception is thrown.
-	 * <p>Note that all {@link Marshaller} implementations in Spring also implement the
-	 * {@link Unmarshaller} interface, so that you can safely use this constructor.
+	 * 使用给定的 {@link Marshaller} 构造一个新的 {@code MarshallingMessageConverter}。
+	 * <p>如果给定的 {@link Marshaller} 也实现了 {@link Unmarshaller} 接口，
+	 * 则它同时用于编组和解组。否则将抛出异常。
+	 * <p>请注意，Spring 中的所有 {@link Marshaller} 实现也都实现了
+	 * {@link Unmarshaller} 接口，因此可以安全地使用此构造函数。
 	 * @param marshaller object used as marshaller and unmarshaller
 	 * @throws IllegalArgumentException when {@code marshaller} does not implement the
 	 * {@link Unmarshaller} interface as well
@@ -93,8 +93,8 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Construct a new {@code MarshallingMessageConverter} with the
-	 * given Marshaller and Unmarshaller.
+	 * 使用给定的 Marshaller 和 Unmarshaller 构造一个新的
+	 * {@code MarshallingMessageConverter}。
 	 * @param marshaller the Marshaller to use
 	 * @param unmarshaller the Unmarshaller to use
 	 */
@@ -107,7 +107,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 
 	/**
-	 * Set the {@link Marshaller} to be used by this message converter.
+	 * 设置此消息转换器要使用的 {@link Marshaller}。
 	 */
 	public void setMarshaller(Marshaller marshaller) {
 		Assert.notNull(marshaller, "Marshaller must not be null");
@@ -115,7 +115,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Set the {@link Unmarshaller} to be used by this message converter.
+	 * 设置此消息转换器要使用的 {@link Unmarshaller}。
 	 */
 	public void setUnmarshaller(Unmarshaller unmarshaller) {
 		Assert.notNull(unmarshaller, "Unmarshaller must not be null");
@@ -123,11 +123,11 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Specify whether {@link #toMessage(Object, Session)} should marshal to
-	 * a {@link BytesMessage} or a {@link TextMessage}.
-	 * <p>The default is {@link MessageType#BYTES}, i.e. this converter marshals
-	 * to a {@link BytesMessage}. Note that the default version of this converter
-	 * supports {@link MessageType#BYTES} and {@link MessageType#TEXT} only.
+	 * 指定 {@link #toMessage(Object, Session)} 应编组为
+	 * {@link BytesMessage} 还是 {@link TextMessage}。
+	 * <p>默认为 {@link MessageType#BYTES}，即此转换器编组为
+	 * {@link BytesMessage}。请注意，此转换器的默认版本仅支持
+	 * {@link MessageType#BYTES} 和 {@link MessageType#TEXT}。
 	 * @see MessageType#BYTES
 	 * @see MessageType#TEXT
 	 */
@@ -144,9 +144,9 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 
 	/**
-	 * This implementation marshals the given object to a {@link javax.jms.TextMessage} or
-	 * {@link javax.jms.BytesMessage}. The desired message type can be defined by setting
-	 * the {@link #setTargetType "marshalTo"} property.
+	 * 此实现将给定对象编组为 {@link javax.jms.TextMessage} 或
+	 * {@link javax.jms.BytesMessage}。可以通过设置
+	 * {@link #setTargetType "marshalTo"} 属性来指定所需的消息类型。
 	 * @see #marshalToTextMessage
 	 * @see #marshalToBytesMessage
 	 */
@@ -169,7 +169,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * This implementation unmarshals the given {@link Message} into an object.
+	 * 此实现将给定的 {@link Message} 解组为对象。
 	 * @see #unmarshalFromTextMessage
 	 * @see #unmarshalFromBytesMessage
 	 */
@@ -199,7 +199,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 
 	/**
-	 * Marshal the given object to a {@link TextMessage}.
+	 * 将给定对象编组为 {@link TextMessage}。
 	 * @param object the object to be marshalled
 	 * @param session current JMS session
 	 * @param marshaller the marshaller to use
@@ -220,7 +220,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Marshal the given object to a {@link BytesMessage}.
+	 * 将给定对象编组为 {@link BytesMessage}。
 	 * @param object the object to be marshalled
 	 * @param session current JMS session
 	 * @param marshaller the marshaller to use
@@ -243,10 +243,10 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Template method that allows for custom message marshalling.
-	 * Invoked when {@link #setTargetType} is not {@link MessageType#TEXT} or
-	 * {@link MessageType#BYTES}.
-	 * <p>The default implementation throws an {@link IllegalArgumentException}.
+	 * 允许自定义消息编组的模板方法。
+	 * 当 {@link #setTargetType} 不是 {@link MessageType#TEXT} 或
+	 * {@link MessageType#BYTES} 时调用。
+	 * <p>默认实现抛出 {@link IllegalArgumentException}。
 	 * @param object the object to marshal
 	 * @param session the JMS session
 	 * @param marshaller the marshaller to use
@@ -265,7 +265,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 
 
 	/**
-	 * Unmarshal the given {@link TextMessage} into an object.
+	 * 将给定的 {@link TextMessage} 解组为对象。
 	 * @param message the message
 	 * @param unmarshaller the unmarshaller to use
 	 * @return the unmarshalled object
@@ -282,7 +282,7 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Unmarshal the given {@link BytesMessage} into an object.
+	 * 将给定的 {@link BytesMessage} 解组为对象。
 	 * @param message the message
 	 * @param unmarshaller the unmarshaller to use
 	 * @return the unmarshalled object
@@ -302,10 +302,10 @@ public class MarshallingMessageConverter implements MessageConverter, Initializi
 	}
 
 	/**
-	 * Template method that allows for custom message unmarshalling.
-	 * Invoked when {@link #fromMessage(Message)} is invoked with a message
-	 * that is not a {@link TextMessage} or {@link BytesMessage}.
-	 * <p>The default implementation throws an {@link IllegalArgumentException}.
+	 * 允许自定义消息解组的模板方法。
+	 * 当调用 {@link #fromMessage(Message)} 时传入的消息
+	 * 不是 {@link TextMessage} 或 {@link BytesMessage} 的情况下调用。
+	 * <p>默认实现抛出 {@link IllegalArgumentException}。
 	 * @param message the message
 	 * @param unmarshaller the unmarshaller to use
 	 * @return the unmarshalled object

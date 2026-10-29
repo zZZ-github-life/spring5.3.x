@@ -44,7 +44,7 @@ import org.springframework.web.reactive.socket.adapter.StandardWebSocketHandlerA
 import org.springframework.web.reactive.socket.adapter.StandardWebSocketSession;
 
 /**
- * {@link WebSocketClient} implementation for use with the Java WebSocket API.
+ * 与 Java WebSocket API 配合使用的 {@link WebSocketClient} 实现。
  *
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
@@ -60,16 +60,15 @@ public class StandardWebSocketClient implements WebSocketClient {
 
 
 	/**
-	 * Default constructor that calls
-	 * {@code ContainerProvider.getWebSocketContainer()} to obtain a (new)
-	 * {@link WebSocketContainer} instance.
+	 * 默认构造函数，调用 {@code ContainerProvider.getWebSocketContainer()} 获取一个
+	 * （新的）{@link WebSocketContainer} 实例。
 	 */
 	public StandardWebSocketClient() {
 		this(ContainerProvider.getWebSocketContainer());
 	}
 
 	/**
-	 * Constructor accepting an existing {@link WebSocketContainer} instance.
+	 * 接受现有 {@link WebSocketContainer} 实例的构造函数。
 	 * @param webSocketContainer a web socket container
 	 */
 	public StandardWebSocketClient(WebSocketContainer webSocketContainer) {
@@ -78,7 +77,7 @@ public class StandardWebSocketClient implements WebSocketClient {
 
 
 	/**
-	 * Return the configured {@link WebSocketContainer} to use.
+	 * 返回要使用的配置的 {@link WebSocketContainer}。
 	 */
 	public WebSocketContainer getWebSocketContainer() {
 		return this.webSocketContainer;

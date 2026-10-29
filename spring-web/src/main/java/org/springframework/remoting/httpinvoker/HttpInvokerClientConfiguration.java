@@ -19,7 +19,7 @@ package org.springframework.remoting.httpinvoker;
 import org.springframework.lang.Nullable;
 
 /**
- * Configuration interface for executing HTTP invoker requests.
+ * 用于执行 HTTP invoker 请求的配置接口。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -31,13 +31,13 @@ import org.springframework.lang.Nullable;
 public interface HttpInvokerClientConfiguration {
 
 	/**
-	 * Return the HTTP URL of the target service.
+	 * 返回目标服务的 HTTP URL。
 	 */
 	String getServiceUrl();
 
 	/**
-	 * Return the codebase URL to download classes from if not found locally.
-	 * Can consist of multiple URLs, separated by spaces.
+	 * 返回在本地找不到类时用于下载类的 codebase URL。
+	 * 可以由多个 URL 组成，以空格分隔。
 	 * @return the codebase URL, or {@code null} if none
 	 * @see java.rmi.server.RMIClassLoader
 	 */

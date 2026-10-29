@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 
 /**
- * Collection of utility methods for working with Spring's core testing annotations.
+ * 用于处理 Spring 核心测试注解的工具方法集合。
  *
  * @author Sam Brannen
  * @since 4.2
@@ -29,9 +29,9 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 public abstract class TestAnnotationUtils {
 
 	/**
-	 * Get the {@code timeout} configured via the {@link Timed @Timed}
-	 * annotation on the supplied {@code method}.
-	 * <p>Negative configured values will be converted to {@code 0}.
+	 * 获取通过提供的 {@code method} 上的 {@link Timed @Timed}
+	 * 注解配置的 {@code timeout}。
+	 * <p>配置的负值将转换为 {@code 0}。
 	 * @return the configured timeout, or {@code 0} if the method is not
 	 * annotated with {@code @Timed}
 	 */
@@ -41,9 +41,9 @@ public abstract class TestAnnotationUtils {
 	}
 
 	/**
-	 * Get the repeat count configured via the {@link Repeat @Repeat}
-	 * annotation on the supplied {@code method}.
-	 * <p>Non-negative configured values will be converted to {@code 1}.
+	 * 获取通过提供的 {@code method} 上的 {@link Repeat @Repeat}
+	 * 注解配置的重复次数。
+	 * <p>配置的非负值将转换为 {@code 1}。
 	 * @return the configured repeat count, or {@code 1} if the method is
 	 * not annotated with {@code @Repeat}
 	 */

@@ -26,12 +26,12 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.lang.Nullable;
 
 /**
- * The standard implementation of the {@link KeyHolder} interface, to be used for
- * holding auto-generated keys (as potentially returned by JDBC insert statements).
+ * {@link KeyHolder} 接口的标准实现，用于保存自动生成的主键
+ * （即 JDBC 插入语句可能返回的主键）。
  *
- * <p>Create an instance of this class for each insert operation, and pass it
- * to the corresponding {@link org.springframework.jdbc.core.JdbcTemplate} or
- * {@link org.springframework.jdbc.object.SqlUpdate} methods.
+ * <p>为每个插入操作创建一个此类的实例，并将其传递给相应的
+ * {@link org.springframework.jdbc.core.JdbcTemplate} 或
+ * {@link org.springframework.jdbc.object.SqlUpdate} 方法。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -44,14 +44,14 @@ public class GeneratedKeyHolder implements KeyHolder {
 
 
 	/**
-	 * Create a new GeneratedKeyHolder with a default list.
+	 * 使用默认列表创建新的 GeneratedKeyHolder。
 	 */
 	public GeneratedKeyHolder() {
 		this.keyList = new ArrayList<>(1);
 	}
 
 	/**
-	 * Create a new GeneratedKeyHolder with a given list.
+	 * 使用给定列表创建新的 GeneratedKeyHolder。
 	 * @param keyList a list to hold maps of keys
 	 */
 	public GeneratedKeyHolder(List<Map<String, Object>> keyList) {

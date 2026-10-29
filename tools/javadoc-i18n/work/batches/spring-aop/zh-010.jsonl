@@ -1,0 +1,128 @@
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/package-info.java::1::0", "zh": ["使用 Spring AOP API 的便捷类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationClassFilter.java::26::0", "zh": ["简单的 ClassFilter，用于查找类上是否存在指定的注解。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationClassFilter.java::40::0", "zh": ["为给定的注解类型创建一个新的 AnnotationClassFilter。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationClassFilter.java::48::0", "zh": ["为给定的注解类型创建一个新的 AnnotationClassFilter。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::28::0", "zh": ["简单的 {@link Pointcut}，用于查找 {@linkplain #forClassAnnotation class} 或 {@linkplain #forMethodAnnotation method} 上是否存在指定的注解。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::45::0", "zh": ["为给定的注解类型创建一个新的 AnnotationMatchingPointcut。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::53::0", "zh": ["为给定的注解类型创建一个新的 AnnotationMatchingPointcut。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::65::0", "zh": ["为给定的注解类型创建一个新的 AnnotationMatchingPointcut。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::78::0", "zh": ["为给定的注解类型创建一个新的 AnnotationMatchingPointcut。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::145::0", "zh": ["用于创建 AnnotationMatchingPointcut 的工厂方法，它在类级别匹配指定的注解。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::156::0", "zh": ["用于创建 AnnotationMatchingPointcut 的工厂方法，它在方法级别匹配指定的注解。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMatchingPointcut.java::168::0", "zh": ["{@link ClassFilter}，委托给 {@link AnnotationUtils#isCandidateClass}，用于过滤掉那些其方法从一开始就不值得搜索的类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMethodMatcher.java::29::0", "zh": ["简单的 {@link org.springframework.aop.MethodMatcher MethodMatcher}，用于查找方法上是否存在指定的注解（同时检查被调用接口上的方法（如果有）以及目标类上对应的方法）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMethodMatcher.java::47::0", "zh": ["为给定的注解类型创建一个新的 AnnotationClassFilter。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/AnnotationMethodMatcher.java::55::0", "zh": ["为给定的注解类型创建一个新的 AnnotationClassFilter。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/annotation/package-info.java::1::0", "zh": ["AOP 切点的注解支持。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::29::0", "zh": ["基于 Spring {@link org.springframework.beans.factory.BeanFactory} 的 {@link org.springframework.aop.TargetSource} 实现的基类，会委托给由 Spring 管理的 Bean 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::29::1", "zh": ["<p>例如，子类可以创建原型实例，也可以延迟访问单例目标。具体策略参见 {@link LazyInitTargetSource} 以及 {@link AbstractPrototypeBasedTargetSource} 的子类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::29::2", "zh": ["<p>基于 BeanFactory 的 TargetSource 是可序列化的。这涉及断开当前目标并转换为 {@link SingletonTargetSource}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::65::0", "zh": ["拥有此 TargetSource 的 BeanFactory。我们需要保留此引用，以便在必要时创建新的原型实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::72::0", "zh": ["设置目标 Bean 在工厂中的名称。", "<p>目标 Bean 不应是单例，否则每次从工厂获取到的都将是同一个实例，其行为与 {@link SingletonTargetSource} 提供的行为相同。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::85::0", "zh": ["返回目标 Bean 在工厂中的名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::92::0", "zh": ["显式指定目标类，以避免对目标 Bean 的任何形式的访问（例如，避免初始化 FactoryBean 实例）。", "<p>默认情况下，通过调用 BeanFactory 上的 {@code getType}（甚至回退为完整的 {@code getBean} 调用）来自动检测类型。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::102::0", "zh": ["设置所属的 BeanFactory。我们需要保存引用，以便在每次调用时使用 {@code getBean} 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::114::0", "zh": ["返回所属的 BeanFactory。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractBeanFactoryBasedTargetSource.java::158::0", "zh": ["从另一个 AbstractBeanFactoryBasedTargetSource 对象复制配置。如果子类希望暴露此方法，则应重写它。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::25::0", "zh": ["延迟创建由用户管理的对象的 {@link org.springframework.aop.TargetSource} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::25::1", "zh": ["<p>延迟目标对象的创建由用户通过实现 {@link #createObject()} 方法控制。此 {@code TargetSource} 将在首次访问代理时调用该方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::25::2", "zh": ["<p>当你需要把某个依赖的引用传递给对象，但并不希望该依赖在首次使用之前就被创建时，这很有用。典型场景是与远程资源的连接。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::52::0", "zh": ["返回此 TargetSource 的延迟目标对象是否已被获取。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::60::0", "zh": ["如果目标为 {@code null}（尚未初始化），此默认实现返回 {@code null}；如果目标已初始化，则返回目标类。", "<p>子类可能希望重写此方法，以便在目标仍为 {@code null} 时提供有意义的值。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::79::0", "zh": ["返回延迟初始化的目标对象，如果它尚不存在，则即时创建。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractLazyCreationTargetSource.java::99::0", "zh": ["子类应实现此方法以返回延迟初始化的对象。在首次调用代理时调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::27::0", "zh": ["池化 {@link org.springframework.aop.TargetSource} 实现的抽象基类，这些实现维护一个目标实例池，并在每次方法调用时从池中获取和释放目标对象。此抽象基类独立于具体的池化技术；具体示例参见子类 {@link CommonsPool2TargetSource}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::27::1", "zh": ["<p>子类必须根据所选的对象池实现 {@link #getTarget} 和 {@link #releaseTarget} 方法。可以使用从 {@link AbstractPrototypeBasedTargetSource} 继承的 {@link #newPrototypeInstance()} 方法创建对象，以便将其放入池中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::27::2", "zh": ["<p>子类还必须实现 {@link PoolingConfig} 接口中的一些监控方法。{@link #getPoolingConfigMixin()} 方法通过 IntroductionAdvisor 使这些统计信息在代理对象上可用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::27::3", "zh": ["<p>此类实现 {@link org.springframework.beans.factory.DisposableBean} 接口，以强制子类实现 {@link #destroy()} 方法，从而关闭其对象池。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::62::0", "zh": ["设置池的最大大小。默认值为 -1，表示没有大小限制。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::70::0", "zh": ["返回池的最大大小。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::91::0", "zh": ["创建池。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::97::0", "zh": ["从池中获取一个对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::107::0", "zh": ["将给定对象归还到池中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPoolingTargetSource.java::118::0", "zh": ["返回一个 IntroductionAdvisor，它提供一个 mixin，用于暴露有关此对象所维护池的统计信息。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPrototypeBasedTargetSource.java::30::0", "zh": ["动态 {@link org.springframework.aop.TargetSource} 实现的基类，这些实现创建新的原型 Bean 实例，以支持池化或每次调用使用新实例的策略。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPrototypeBasedTargetSource.java::30::1", "zh": ["<p>此类 TargetSource 必须在 {@link BeanFactory} 中运行，因为它需要调用 {@code getBean} 方法来创建新的原型实例。因此，此基类继承 {@link AbstractBeanFactoryBasedTargetSource}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPrototypeBasedTargetSource.java::61::0", "zh": ["子类应调用此方法来创建新的原型实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPrototypeBasedTargetSource.java::72::0", "zh": ["子类应调用此方法来销毁过时的原型实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/AbstractPrototypeBasedTargetSource.java::103::0", "zh": ["序列化时用 SingletonTargetSource 替换此对象。声明为 protected，否则不会对子类调用。（{@code writeReplace()} 方法必须对将被序列化的类可见。）", "<p>采用此方法的这一实现后，无需将此类别或其子类中的不可序列化字段标记为 transient。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::29::0", "zh": ["将对象保存在可配置的 Apache Commons2 Pool 中的 {@link org.springframework.aop.TargetSource} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::29::1", "zh": ["<p>默认情况下会创建一个 {@code GenericObjectPool} 实例。子类可以通过重写 {@code createObjectPool()} 方法来更改所使用的 {@code ObjectPool} 类型。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::29::2", "zh": ["<p>提供许多与 Commons Pool {@code GenericObjectPool} 类对应的配置属性；这些属性会在构造期间传递给 {@code GenericObjectPool}。如果要创建此类的子类以更改 {@code ObjectPool} 实现类型，请传入与所选实现相关的配置属性值。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::29::3", "zh": ["<p>{@code testOnBorrow}、{@code testOnReturn} 和 {@code testWhileIdle} 属性被明确地不做对应，因为此类所使用的 {@code PoolableObjectFactory} 实现并未实现有意义的校验。所有暴露的 Commons Pool 属性都使用相应的 Commons Pool 默认值。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::29::4", "zh": ["<p>自 Spring 4.2 起，与 Apache Commons Pool 2.4 兼容。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::81::0", "zh": ["用于池化目标对象的 Apache Commons {@code ObjectPool}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::88::0", "zh": ["使用默认设置创建 CommonsPoolTargetSource。池的默认最大大小为 8。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::99::0", "zh": ["设置池中空闲对象的最大数量。默认值为 8。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::108::0", "zh": ["返回池中空闲对象的最大数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::115::0", "zh": ["设置池中空闲对象的最小数量。默认值为 0。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::124::0", "zh": ["返回池中空闲对象的最小数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::131::0", "zh": ["设置从池中获取对象的最大等待时间。默认值为 -1，表示永久等待。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::140::0", "zh": ["返回从池中获取对象的最大等待时间。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::147::0", "zh": ["设置两次逐出运行之间的时间间隔，这些运行会检查空闲对象是否空闲时间过长或已失效。默认值为 -1，表示不执行任何逐出。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::157::0", "zh": ["返回检查空闲对象的两次逐出运行之间的时间间隔。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::164::0", "zh": ["设置空闲对象在池中可停留的最短时间，超过后将被逐出。默认值为 1800000（30 分钟）。", "<p>请注意，需要执行逐出运行才能使此设置生效。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::176::0", "zh": ["返回空闲对象在池中可停留的最短时间。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::183::0", "zh": ["设置当池耗尽时调用是否应阻塞。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::190::0", "zh": ["指定当池耗尽时调用是否应阻塞。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::198::0", "zh": ["创建并持有一个 ObjectPool 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::208::0", "zh": ["如果子类希望返回特定的 Commons 池，可以重写此方法。子类应在此处将任何配置属性应用到池上。", "<p>默认是一个具有给定池大小的 GenericObjectPool 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::229::0", "zh": ["从 {@code ObjectPool} 借用对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::238::0", "zh": ["将指定对象归还给底层的 {@code ObjectPool}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/CommonsPool2TargetSource.java::259::0", "zh": ["在销毁此对象时关闭底层的 {@code ObjectPool}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::25::0", "zh": ["在没有目标（或仅已知目标类）、且行为仅由接口和 advisor 提供时使用的规范 {@code TargetSource}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::43::0", "zh": ["此 {@link EmptyTargetSource} 的规范（单例）实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::49::0", "zh": ["为给定的目标 Class 返回一个 EmptyTargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::58::0", "zh": ["为给定的目标 Class 返回一个 EmptyTargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::78::0", "zh": ["创建 {@link EmptyTargetSource} 类的新实例。", "<p>此构造方法为 {@code private}，以强制实现单例模式 / 工厂方法模式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::91::0", "zh": ["始终返回指定的目标 Class，如果没有则返回 {@code null}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::100::0", "zh": ["始终返回 {@code true}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::108::0", "zh": ["始终返回 {@code null}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::117::0", "zh": ["无需释放任何内容。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/EmptyTargetSource.java::125::0", "zh": ["在没有目标类的情况下，反序列化时返回规范实例，从而保护单例模式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::24::0", "zh": ["缓存本地目标对象，但允许在应用程序运行期间替换目标的 {@link org.springframework.aop.TargetSource} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::24::1", "zh": ["<p>如果要在 Spring IoC 容器中配置此类的对象，请使用构造器注入。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::24::2", "zh": ["<p>如果在序列化时目标可序列化，则此 TargetSource 可序列化。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::48::0", "zh": ["使用给定的初始目标对象创建一个新的 HotSwappableTargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::58::0", "zh": ["返回当前目标对象的类型。", "<p>返回的类型通常应在所有目标对象之间保持不变。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::83::0", "zh": ["替换目标，并返回旧的目标对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/HotSwappableTargetSource.java::97::0", "zh": ["如果当前目标对象相等，则两个 HotSwappableTargetSources 相等。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/LazyInitTargetSource.java::22::0", "zh": ["从 {@link org.springframework.beans.factory.BeanFactory} 延迟访问单例 Bean 的 {@link org.springframework.aop.TargetSource}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/LazyInitTargetSource.java::22::1", "zh": ["<p>当初始化时需要代理引用，而实际目标对象不应在首次使用之前初始化时，这很有用。如果目标 Bean 定义在 {@link org.springframework.context.ApplicationContext}（或会急切预实例化单例 Bean 的 {@code BeanFactory}）中，则还必须将其标记为 \"lazy-init\"，否则它将在启动时由该 {@code ApplicationContext}（或 {@code BeanFactory}）实例化。", "<p>例如："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/LazyInitTargetSource.java::22::2", "zh": ["\"serviceTarget\" Bean 在调用 \"service\" 代理上的方法之前不会被初始化。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/LazyInitTargetSource.java::22::3", "zh": ["<p>子类可以扩展此类并重写 {@link #postProcessTargetObject(Object)}，以便在目标对象首次加载时对其执行一些额外处理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/LazyInitTargetSource.java::77::0", "zh": ["子类可以重写此方法，以便在目标对象首次加载时对其执行额外处理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PoolingConfig.java::19::0", "zh": ["池化目标源的配置接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PoolingConfig.java::27::0", "zh": ["返回池的最大大小。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PoolingConfig.java::32::0", "zh": ["返回池中活动对象的数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PoolingConfig.java::38::0", "zh": ["返回池中空闲对象的数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PrototypeTargetSource.java::21::0", "zh": ["为每个请求创建目标 Bean 的新实例、并在释放时（每个请求之后）销毁每个实例的 {@link org.springframework.aop.TargetSource} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PrototypeTargetSource.java::21::1", "zh": ["<p>从其所属的 {@link org.springframework.beans.factory.BeanFactory} 获取 Bean 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PrototypeTargetSource.java::37::0", "zh": ["为每次调用获取一个新的原型实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/PrototypeTargetSource.java::46::0", "zh": ["销毁给定的独立实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SimpleBeanTargetSource.java::19::0", "zh": ["简单的 {@link org.springframework.aop.TargetSource} 实现，每次都会从其所属的 Spring {@link org.springframework.beans.factory.BeanFactory} 中重新获取指定的目标 Bean。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SimpleBeanTargetSource.java::19::1", "zh": ["<p>可以获取任何类型的目标 Bean：单例、作用域或原型。通常用于作用域 Bean。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SingletonTargetSource.java::25::0", "zh": ["持有给定对象的 {@link org.springframework.aop.TargetSource} 接口实现。这是 TargetSource 接口的默认实现，由 Spring AOP 框架使用。通常无需在应用代码中创建此类的对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SingletonTargetSource.java::25::1", "zh": ["<p>此类可序列化。但是，SingletonTargetSource 的实际可序列化性取决于目标是否可序列化。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SingletonTargetSource.java::48::0", "zh": ["为给定目标创建一个新的 SingletonTargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SingletonTargetSource.java::79::0", "zh": ["如果两个 invoker 拦截器具有相同的目标，或者两者的目标相等，则它们相等。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/SingletonTargetSource.java::95::0", "zh": ["SingletonTargetSource 使用目标对象的哈希码。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::29::0", "zh": ["对象池的替代方案。此 {@link org.springframework.aop.TargetSource} 使用一种线程模型，其中每个线程都有自己的目标副本。目标之间不存在争用。在运行的服务器上，目标对象的创建被保持在最低限度。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::29::1", "zh": ["<p>应用代码的编写方式与普通池类似；调用方不能假定在不同线程的调用中会处理同一个实例。但是，在单个线程的操作期间可以依赖状态：例如，如果某个调用方对 AOP 代理进行重复调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::29::2", "zh": ["<p>线程绑定对象的清理在 BeanFactory 销毁时执行，如果可用则调用其 {@code DisposableBean.destroy()} 方法。请注意，许多线程绑定对象可能会一直存在，直到应用程序真正关闭。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::55::0", "zh": ["保存与当前线程关联的目标的 ThreadLocal。与大多数为静态的 ThreadLocal 不同，此变量旨在按 ThreadLocalTargetSource 类的每个实例、每个线程分别保存。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::63::0", "zh": ["受管理目标的集合，使我们能够跟踪已创建的目标。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::73::0", "zh": ["抽象 getTarget() 方法的实现。我们查找保存在 ThreadLocal 中的目标。如果找不到，就创建一个并将其绑定到该线程。无需同步。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::100::0", "zh": ["如有必要，释放目标；清除 ThreadLocal。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSource.java::136::0", "zh": ["返回一个引入 advisor mixin，使 AOP 代理可以强制转换为 ThreadLocalInvokerStats。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSourceStats.java::19::0", "zh": ["ThreadLocal TargetSource 的统计信息。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSourceStats.java::27::0", "zh": ["返回客户端调用的数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSourceStats.java::32::0", "zh": ["返回由线程绑定对象满足的命中次数。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/ThreadLocalTargetSourceStats.java::37::0", "zh": ["返回已创建的线程绑定对象的数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::25::0", "zh": ["包装可刷新目标对象的抽象 {@link org.springframework.aop.TargetSource} 实现。子类可以决定是否需要刷新，并需要提供新的目标对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::25::1", "zh": ["<p>实现 {@link Refreshable} 接口，以便可以显式控制刷新状态。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::57::0", "zh": ["设置刷新检查之间的延迟，单位为毫秒。默认值为 -1，表示完全不进行刷新检查。", "<p>请注意，仅当 {@link #requiresRefresh()} 返回 {@code true} 时才会实际执行刷新。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::76::0", "zh": ["非静态。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::93::0", "zh": ["无需释放目标。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::141::0", "zh": ["判断是否需要刷新。在刷新检查延迟过去之后，每次刷新检查时都会调用。", "<p>默认实现始终返回 {@code true}，从而在每次延迟过去时触发刷新。子类应通过适当检查底层目标资源来重写此方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/target/dynamic/AbstractRefreshableTargetSource.java::153::0", "zh": ["获取新的目标对象。", "<p>仅当刷新检查发现需要刷新（即 {@link #requiresRefresh()} 返回 {@code true}）时才会调用。"]}

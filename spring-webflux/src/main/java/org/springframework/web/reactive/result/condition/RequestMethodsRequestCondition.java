@@ -33,15 +33,13 @@ import org.springframework.web.cors.reactive.CorsUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A logical disjunction (' || ') request condition that matches a request
- * against a set of {@link RequestMethod RequestMethods}.
- *
+ * 逻辑析取（' || '）请求条件，用于将请求与一组 {@link RequestMethod RequestMethods} 进行匹配。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public final class RequestMethodsRequestCondition extends AbstractRequestCondition<RequestMethodsRequestCondition> {
 
-	/** Per HTTP method cache to return ready instances from getMatchingCondition. */
+	/** 按 HTTP 方法的缓存，用于从 getMatchingCondition 返回现成实例。 */
 	private static final Map<HttpMethod, RequestMethodsRequestCondition> requestMethodConditionCache;
 
 	static {
@@ -57,7 +55,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 
 
 	/**
-	 * Create a new instance with the given request methods.
+	 * 使用给定的请求方法创建新实例。
 	 * @param requestMethods 0 or more HTTP request methods;
 	 * if, 0 the condition will match to every request
 	 */
@@ -67,7 +65,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Private constructor for internal use when combining conditions.
+	 * 内部私有构造函数，用于组合条件。
 	 */
 	private RequestMethodsRequestCondition(Set<RequestMethod> requestMethods) {
 		this.methods = requestMethods;
@@ -75,7 +73,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 
 
 	/**
-	 * Returns all {@link RequestMethod RequestMethods} contained in this condition.
+	 * 返回此条件中包含的所有 {@link RequestMethod RequestMethods}。
 	 */
 	public Set<RequestMethod> getMethods() {
 		return this.methods;
@@ -92,8 +90,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Returns a new instance with a union of the HTTP request methods
-	 * from "this" and the "other" instance.
+	 * 返回一个新实例，其中包含 "this" 和 "other" 实例的 HTTP 请求方法并集。
 	 */
 	@Override
 	public RequestMethodsRequestCondition combine(RequestMethodsRequestCondition other) {
@@ -112,8 +109,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Check if any of the HTTP request methods match the given request and
-	 * return an instance that contains the matching HTTP request method only.
+	 * 检查是否有任何 HTTP 请求方法匹配给定请求，并返回仅包含匹配 HTTP 请求方法的实例。
 	 * @param exchange the current exchange
 	 * @return the same instance if the condition is empty (unless the request
 	 * method is HTTP OPTIONS), a new condition with the matched request method,
@@ -136,9 +132,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * On a pre-flight request match to the would-be, actual request.
-	 * Hence empty conditions is a match, otherwise try to match to the HTTP
-	 * method in the "Access-Control-Request-Method" header.
+	 * 在预检请求中，匹配将要执行的实际请求。因此空条件即为匹配，否则尝试匹配 "Access-Control-Request-Method" 头中的 HTTP 方法。
 	 */
 	@Nullable
 	private RequestMethodsRequestCondition matchPreFlight(ServerHttpRequest request) {
@@ -165,15 +159,13 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Returns:
+	 * 返回值：
 	 * <ul>
-	 * <li>0 if the two conditions contain the same number of HTTP request methods
-	 * <li>Less than 0 if "this" instance has an HTTP request method but "other" doesn't
-	 * <li>Greater than 0 "other" has an HTTP request method but "this" doesn't
+	 * <li>如果两个条件包含相同数量的 HTTP 请求方法，则返回 0
+	 * <li>如果 "this" 实例包含 HTTP 请求方法而 "other" 不包含，则小于 0
+	 * <li>如果 "other" 包含 HTTP 请求方法而 "this" 不包含，则大于 0
 	 * </ul>
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(ServerWebExchange)} and therefore each instance
-	 * contains the matching HTTP request method only or is otherwise empty.
+	 * <p>假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，因此每个实例仅包含匹配的 HTTP 请求方法，或者为空。
 	 */
 	@Override
 	public int compareTo(RequestMethodsRequestCondition other, ServerWebExchange exchange) {

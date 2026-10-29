@@ -1,5 +1,5 @@
 /**
- * Support classes for annotation-based handler method processing.
+ * 基于注解的处理器方法处理的支撑类。
  */
 @NonNullApi
 @NonNullFields

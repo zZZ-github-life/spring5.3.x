@@ -22,15 +22,14 @@ import com.google.protobuf.util.JsonFormat;
 import org.springframework.lang.Nullable;
 
 /**
- * Subclass of {@link ProtobufMessageConverter} for use with the official
- * {@code "com.google.protobuf:protobuf-java-util"} library for JSON support.
+ * {@link ProtobufMessageConverter} 的子类，用于配合官方
+ * {@code "com.google.protobuf:protobuf-java-util"} 库提供 JSON 支持。
  *
- * <p>Most importantly, this class allows for custom JSON parser and printer
- * configurations through the {@link JsonFormat} utility. If no special parser
- * or printer configuration is given, default variants will be used instead.
+ * <p>最重要的是，此类允许通过 {@link JsonFormat} 工具自定义 JSON 解析器和打印器配置。
+ * 如果未提供特殊的解析器或打印器配置，则使用默认变体。
  *
- * <p>Requires Protobuf 3.x and {@code "com.google.protobuf:protobuf-java-util"} 3.x,
- * with 3.3 or higher recommended.
+ * <p>需要 Protobuf 3.x 和 {@code "com.google.protobuf:protobuf-java-util"} 3.x，
+ * 建议使用 3.3 或更高版本。
  *
  * @author Rossen Stoyanchev
  * @since 5.2.2
@@ -38,18 +37,18 @@ import org.springframework.lang.Nullable;
 public class ProtobufJsonFormatMessageConverter extends ProtobufMessageConverter {
 
 	/**
-	 * Constructor with default instances of {@link com.google.protobuf.util.JsonFormat.Parser
-	 * JsonFormat.Parser}, {@link com.google.protobuf.util.JsonFormat.Printer
-	 * JsonFormat.Printer}, and {@link ExtensionRegistry}.
+	 * 使用默认的 {@link com.google.protobuf.util.JsonFormat.Parser
+	 * JsonFormat.Parser}、{@link com.google.protobuf.util.JsonFormat.Printer
+	 * JsonFormat.Printer} 和 {@link ExtensionRegistry} 实例的构造函数。
 	 */
 	public ProtobufJsonFormatMessageConverter(@Nullable ExtensionRegistry extensionRegistry) {
 		this(null, null);
 	}
 
 	/**
-	 * Constructor with given instances of {@link com.google.protobuf.util.JsonFormat.Parser
-	 * JsonFormat.Parser}, {@link com.google.protobuf.util.JsonFormat.Printer
-	 * JsonFormat.Printer}, and a default instance of {@link ExtensionRegistry}.
+	 * 使用给定的 {@link com.google.protobuf.util.JsonFormat.Parser
+	 * JsonFormat.Parser}、{@link com.google.protobuf.util.JsonFormat.Printer
+	 * JsonFormat.Printer} 实例以及默认的 {@link ExtensionRegistry} 实例的构造函数。
 	 */
 	public ProtobufJsonFormatMessageConverter(
 			@Nullable JsonFormat.Parser parser, @Nullable JsonFormat.Printer printer) {
@@ -58,9 +57,9 @@ public class ProtobufJsonFormatMessageConverter extends ProtobufMessageConverter
 	}
 
 	/**
-	 * Constructor with given instances of {@link com.google.protobuf.util.JsonFormat.Parser
-	 * JsonFormat.Parser}, {@link com.google.protobuf.util.JsonFormat.Printer
-	 * JsonFormat.Printer}, and {@link ExtensionRegistry}.
+	 * 使用给定的 {@link com.google.protobuf.util.JsonFormat.Parser
+	 * JsonFormat.Parser}、{@link com.google.protobuf.util.JsonFormat.Printer
+	 * JsonFormat.Printer} 和 {@link ExtensionRegistry} 实例的构造函数。
 	 */
 	public ProtobufJsonFormatMessageConverter(@Nullable JsonFormat.Parser parser,
 			@Nullable JsonFormat.Printer printer, @Nullable ExtensionRegistry extensionRegistry) {

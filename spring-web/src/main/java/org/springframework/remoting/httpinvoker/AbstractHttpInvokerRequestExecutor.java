@@ -35,10 +35,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Abstract base implementation of the HttpInvokerRequestExecutor interface.
+ * HttpInvokerRequestExecutor 接口的抽象基类实现。
  *
- * <p>Pre-implements serialization of RemoteInvocation objects and
- * deserialization of RemoteInvocationResults objects.
+ * <p>预先实现了 RemoteInvocation 对象的序列化以及
+ * RemoteInvocationResults 对象的反序列化。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -49,7 +49,7 @@ import org.springframework.util.ClassUtils;
 public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerRequestExecutor, BeanClassLoaderAware {
 
 	/**
-	 * Default content type: "application/x-java-serialized-object".
+	 * 默认内容类型："application/x-java-serialized-object"。
 	 */
 	public static final String CONTENT_TYPE_SERIALIZED_OBJECT = "application/x-java-serialized-object";
 
@@ -82,8 +82,8 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 
 
 	/**
-	 * Specify the content type to use for sending HTTP invoker requests.
-	 * <p>Default is "application/x-java-serialized-object".
+	 * 指定发送 HTTP invoker 请求时使用的内容类型。
+	 * <p>默认为 "application/x-java-serialized-object"。
 	 */
 	public void setContentType(String contentType) {
 		Assert.notNull(contentType, "'contentType' must not be null");
@@ -91,25 +91,25 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Return the content type to use for sending HTTP invoker requests.
+	 * 返回发送 HTTP invoker 请求时使用的内容类型。
 	 */
 	public String getContentType() {
 		return this.contentType;
 	}
 
 	/**
-	 * Set whether to accept GZIP encoding, that is, whether to
-	 * send the HTTP "Accept-Encoding" header with "gzip" as value.
-	 * <p>Default is "true". Turn this flag off if you do not want
-	 * GZIP response compression even if enabled on the HTTP server.
+	 * 设置是否接受 GZIP 编码，即是否发送值为 "gzip" 的
+	 * HTTP "Accept-Encoding" 头。
+	 * <p>默认为 "true"。即使 HTTP 服务器启用了 GZIP 响应压缩，
+	 * 如果不需要该功能，可将此标志关闭。
 	 */
 	public void setAcceptGzipEncoding(boolean acceptGzipEncoding) {
 		this.acceptGzipEncoding = acceptGzipEncoding;
 	}
 
 	/**
-	 * Return whether to accept GZIP encoding, that is, whether to
-	 * send the HTTP "Accept-Encoding" header with "gzip" as value.
+	 * 返回是否接受 GZIP 编码，即是否发送值为 "gzip" 的
+	 * HTTP "Accept-Encoding" 头。
 	 */
 	public boolean isAcceptGzipEncoding() {
 		return this.acceptGzipEncoding;
@@ -121,7 +121,7 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Return the bean ClassLoader that this executor is supposed to use.
+	 * 返回此执行器应使用的 bean ClassLoader。
 	 */
 	@Nullable
 	protected ClassLoader getBeanClassLoader() {
@@ -142,7 +142,7 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Serialize the given RemoteInvocation into a ByteArrayOutputStream.
+	 * 将给定的 RemoteInvocation 序列化到 ByteArrayOutputStream 中。
 	 * @param invocation the RemoteInvocation object
 	 * @return a ByteArrayOutputStream with the serialized RemoteInvocation
 	 * @throws IOException if thrown by I/O methods
@@ -154,12 +154,12 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Serialize the given RemoteInvocation to the given OutputStream.
-	 * <p>The default implementation gives {@code decorateOutputStream} a chance
-	 * to decorate the stream first (for example, for custom encryption or compression).
-	 * Creates an {@code ObjectOutputStream} for the final stream and calls
-	 * {@code doWriteRemoteInvocation} to actually write the object.
-	 * <p>Can be overridden for custom serialization of the invocation.
+	 * 将给定的 RemoteInvocation 序列化到给定的 OutputStream 中。
+	 * <p>默认实现会先给 {@code decorateOutputStream} 一次装饰流的机会
+	 * （例如用于自定义加密或压缩）。
+	 * 然后为最终的流创建 {@code ObjectOutputStream}，并调用
+	 * {@code doWriteRemoteInvocation} 实际写入对象。
+	 * <p>可重写以自定义调用的序列化方式。
 	 * @param invocation the RemoteInvocation object
 	 * @param os the OutputStream to write to
 	 * @throws IOException if thrown by I/O methods
@@ -173,10 +173,10 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Return the OutputStream to use for writing remote invocations,
-	 * potentially decorating the given original OutputStream.
-	 * <p>The default implementation returns the given stream as-is.
-	 * Can be overridden, for example, for custom encryption or compression.
+	 * 返回用于写入远程调用的 OutputStream，
+	 * 可能会装饰给定的原始 OutputStream。
+	 * <p>默认实现按原样返回给定的流。
+	 * 可重写，例如用于自定义加密或压缩。
 	 * @param os the original OutputStream
 	 * @return the potentially decorated OutputStream
 	 */
@@ -185,11 +185,10 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Perform the actual writing of the given invocation object to the
-	 * given ObjectOutputStream.
-	 * <p>The default implementation simply calls {@code writeObject}.
-	 * Can be overridden for serialization of a custom wrapper object rather
-	 * than the plain invocation, for example an encryption-aware holder.
+	 * 执行将给定调用对象实际写入给定 ObjectOutputStream 的操作。
+	 * <p>默认实现仅调用 {@code writeObject}。
+	 * 可重写，以便序列化自定义包装对象（而非普通调用），
+	 * 例如加密感知的持有器。
 	 * @param invocation the RemoteInvocation object
 	 * @param oos the ObjectOutputStream to write to
 	 * @throws IOException if thrown by I/O methods
@@ -201,9 +200,9 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 
 
 	/**
-	 * Execute a request to send the given serialized remote invocation.
-	 * <p>Implementations will usually call {@code readRemoteInvocationResult}
-	 * to deserialize a returned RemoteInvocationResult object.
+	 * 执行请求以发送给定的已序列化远程调用。
+	 * <p>实现通常会调用 {@code readRemoteInvocationResult}
+	 * 来反序列化返回的 RemoteInvocationResult 对象。
 	 * @param config the HTTP invoker configuration that specifies the
 	 * target service
 	 * @param baos the ByteArrayOutputStream that contains the serialized
@@ -219,12 +218,12 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 			throws Exception;
 
 	/**
-	 * Deserialize a RemoteInvocationResult object from the given InputStream.
-	 * <p>Gives {@code decorateInputStream} a chance to decorate the stream
-	 * first (for example, for custom encryption or compression). Creates an
-	 * {@code ObjectInputStream} via {@code createObjectInputStream} and
-	 * calls {@code doReadRemoteInvocationResult} to actually read the object.
-	 * <p>Can be overridden for custom serialization of the invocation.
+	 * 从给定的 InputStream 中反序列化 RemoteInvocationResult 对象。
+	 * <p>先给 {@code decorateInputStream} 一次装饰流的机会
+	 * （例如用于自定义加密或压缩）。通过 {@code createObjectInputStream}
+	 * 创建 {@code ObjectInputStream}，并调用 {@code doReadRemoteInvocationResult}
+	 * 实际读取对象。
+	 * <p>可重写以自定义调用的序列化方式。
 	 * @param is the InputStream to read from
 	 * @param codebaseUrl the codebase URL to load classes from if not found locally
 	 * @return the RemoteInvocationResult object
@@ -243,10 +242,10 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Return the InputStream to use for reading remote invocation results,
-	 * potentially decorating the given original InputStream.
-	 * <p>The default implementation returns the given stream as-is.
-	 * Can be overridden, for example, for custom encryption or compression.
+	 * 返回用于读取远程调用结果的 InputStream，
+	 * 可能会装饰给定的原始 InputStream。
+	 * <p>默认实现按原样返回给定的流。
+	 * 可重写，例如用于自定义加密或压缩。
 	 * @param is the original InputStream
 	 * @return the potentially decorated InputStream
 	 */
@@ -255,8 +254,8 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Create an ObjectInputStream for the given InputStream and codebase.
-	 * The default implementation creates a CodebaseAwareObjectInputStream.
+	 * 为给定的 InputStream 和 codebase 创建 ObjectInputStream。
+	 * 默认实现创建 CodebaseAwareObjectInputStream。
 	 * @param is the InputStream to read from
 	 * @param codebaseUrl the codebase URL to load classes from if not found locally
 	 * (can be {@code null})
@@ -269,11 +268,10 @@ public abstract class AbstractHttpInvokerRequestExecutor implements HttpInvokerR
 	}
 
 	/**
-	 * Perform the actual reading of an invocation object from the
-	 * given ObjectInputStream.
-	 * <p>The default implementation simply calls {@code readObject}.
-	 * Can be overridden for deserialization of a custom wrapper object rather
-	 * than the plain invocation, for example an encryption-aware holder.
+	 * 执行从给定 ObjectInputStream 实际读取调用对象的操作。
+	 * <p>默认实现仅调用 {@code readObject}。
+	 * 可重写，以便反序列化自定义包装对象（而非普通调用），
+	 * 例如加密感知的持有器。
 	 * @param ois the ObjectInputStream to read from
 	 * @return the RemoteInvocationResult object
 	 * @throws IOException if thrown by I/O methods

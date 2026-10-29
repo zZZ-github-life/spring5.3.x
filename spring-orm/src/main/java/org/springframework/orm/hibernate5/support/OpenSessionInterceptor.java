@@ -32,13 +32,13 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * Simple AOP Alliance {@link MethodInterceptor} implementation that binds a new
- * Hibernate {@link Session} for each method invocation, if none bound before.
+ * 简单的 AOP Alliance {@link MethodInterceptor} 实现，用于在每次方法调用时
+ * 绑定一个新的 Hibernate {@link Session}（如果之前没有绑定任何 Session）。
  *
- * <p>This is a simple Hibernate Session scoping interceptor along the lines of
- * {@link OpenSessionInViewInterceptor}, just for use with AOP setup instead of
- * MVC setup. It opens a new {@link Session} with flush mode "MANUAL" since the
- * Session is only meant for reading, except when participating in a transaction.
+ * <p>这是一个简单的 Hibernate Session 作用域拦截器，与
+ * {@link OpenSessionInViewInterceptor} 类似，只是用于 AOP 配置而非 MVC 配置。
+ * 它以 "MANUAL" flush 模式打开一个新的 {@link Session}，
+ * 因为除非参与事务，否则该 Session 仅用于读取。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -55,14 +55,14 @@ public class OpenSessionInterceptor implements MethodInterceptor, InitializingBe
 
 
 	/**
-	 * Set the Hibernate SessionFactory that should be used to create Hibernate Sessions.
+	 * 设置应用于创建 Hibernate Session 的 Hibernate SessionFactory。
 	 */
 	public void setSessionFactory(@Nullable SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	/**
-	 * Return the Hibernate SessionFactory that should be used to create Hibernate Sessions.
+	 * 返回应用于创建 Hibernate Session 的 Hibernate SessionFactory。
 	 */
 	@Nullable
 	public SessionFactory getSessionFactory() {
@@ -102,9 +102,9 @@ public class OpenSessionInterceptor implements MethodInterceptor, InitializingBe
 	}
 
 	/**
-	 * Open a Session for the given SessionFactory.
-	 * <p>The default implementation delegates to the {@link SessionFactory#openSession}
-	 * method and sets the {@link Session}'s flush mode to "MANUAL".
+	 * 为给定的 SessionFactory 打开一个 Session。
+	 * <p>默认实现委托给 {@link SessionFactory#openSession} 方法，
+	 * 并将 {@link Session} 的 flush 模式设置为 "MANUAL"。
 	 * @param sessionFactory the SessionFactory to use
 	 * @return the Session to use
 	 * @throws DataAccessResourceFailureException if the Session could not be created
@@ -126,7 +126,7 @@ public class OpenSessionInterceptor implements MethodInterceptor, InitializingBe
 	}
 
 	/**
-	 * Open a Session for the given SessionFactory.
+	 * 为给定的 SessionFactory 打开一个 Session。
 	 * @deprecated as of 5.0, in favor of {@link #openSession(SessionFactory)}
 	 */
 	@Deprecated

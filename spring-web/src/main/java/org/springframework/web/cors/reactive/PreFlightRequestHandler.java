@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Handler for CORS pre-flight requests.
+ * CORS 预检请求的处理器。
  *
  * @author Rossen Stoyanchev
  * @since 5.3.4
@@ -30,10 +30,9 @@ import org.springframework.web.server.ServerWebExchange;
 public interface PreFlightRequestHandler {
 
 	/**
-	 * Handle a pre-flight request by finding and applying the CORS configuration
-	 * that matches the expected actual request. As a result of handling, the
-	 * response should be updated with CORS headers or rejected with
-	 * {@link org.springframework.http.HttpStatus#FORBIDDEN}.
+	 * 通过查找并应用与预期实际请求匹配的 CORS 配置来处理预检请求。
+	 * 处理完成后，应使用 CORS 头更新响应，或以
+	 * {@link org.springframework.http.HttpStatus#FORBIDDEN} 拒绝请求。
 	 * @param exchange the exchange for the request
 	 * @return a completion handle
 	 */

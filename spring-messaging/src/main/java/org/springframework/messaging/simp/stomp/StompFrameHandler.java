@@ -21,7 +21,7 @@ import java.lang.reflect.Type;
 import org.springframework.lang.Nullable;
 
 /**
- * Contract to handle a STOMP frame.
+ * 处理 STOMP 帧的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -29,15 +29,15 @@ import org.springframework.lang.Nullable;
 public interface StompFrameHandler {
 
 	/**
-	 * Invoked before {@link #handleFrame(StompHeaders, Object)} to determine the
-	 * type of Object the payload should be converted to.
+	 * 在 {@link #handleFrame(StompHeaders, Object)} 之前调用，
+	 * 以确定载荷应转换为的对象类型。
 	 * @param headers the headers of a message
 	 */
 	Type getPayloadType(StompHeaders headers);
 
 	/**
-	 * Handle a STOMP frame with the payload converted to the target type returned
-	 * from {@link #getPayloadType(StompHeaders)}.
+	 * 处理 STOMP 帧，其载荷已转换为
+	 * {@link #getPayloadType(StompHeaders)} 返回的目标类型。
 	 * @param headers the headers of the frame
 	 * @param payload the payload, or {@code null} if there was no payload
 	 */

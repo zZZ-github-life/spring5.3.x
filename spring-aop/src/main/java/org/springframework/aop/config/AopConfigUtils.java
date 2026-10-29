@@ -30,12 +30,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Utility class for handling registration of AOP auto-proxy creators.
+ * 用于处理 AOP 自动代理创建器注册的工具类。
  *
- * <p>Only a single auto-proxy creator should be registered yet multiple concrete
- * implementations are available. This class provides a simple escalation protocol,
- * allowing a caller to request a particular auto-proxy creator and know that creator,
- * <i>or a more capable variant thereof</i>, will be registered as a post-processor.
+ * <p>应当只注册一个自动代理创建器，但可用的具体实现却有多个。本类提供了一个简单的升级协议，允许调
+ * 用者请求特定的自动代理创建器，并确知该创建器（<i>或其能力更强的变体</i>）将被注册为后处理器。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -46,13 +44,13 @@ import org.springframework.util.Assert;
 public abstract class AopConfigUtils {
 
 	/**
-	 * The bean name of the internally managed auto-proxy creator.
+	 * 内部管理的自动代理创建器的 Bean 名称。
 	 */
 	public static final String AUTO_PROXY_CREATOR_BEAN_NAME =
 			"org.springframework.aop.config.internalAutoProxyCreator";
 
 	/**
-	 * Stores the auto proxy creator classes in escalation order.
+	 * 按升级顺序存储自动代理创建器类。
 	 */
 	private static final List<Class<?>> APC_PRIORITY_LIST = new ArrayList<>(3);
 

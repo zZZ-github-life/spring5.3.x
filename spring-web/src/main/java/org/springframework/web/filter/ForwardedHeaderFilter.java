@@ -45,24 +45,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Extract values from "Forwarded" and "X-Forwarded-*" headers, wrap the request
- * and response, and make they reflect the client-originated protocol and
- * address in the following methods:
+ * 从 "Forwarded" 和 "X-Forwarded-*" 头中提取值，包装请求和响应，
+ * 并使它们在以下方法中反映客户端发起的协议和地址：
  * <ul>
  * <li>{@link HttpServletRequest#getServerName() getServerName()}
  * <li>{@link HttpServletRequest#getServerPort() getServerPort()}
  * <li>{@link HttpServletRequest#getScheme() getScheme()}
  * <li>{@link HttpServletRequest#isSecure() isSecure()}
- * <li>{@link HttpServletResponse#sendRedirect(String) sendRedirect(String)}.
+ * <li>{@link HttpServletResponse#sendRedirect(String) sendRedirect(String)}。
  * </ul>
  *
- * <p>There are security considerations for forwarded headers since an application
- * cannot know if the headers were added by a proxy, as intended, or by a malicious
- * client. This is why a proxy at the boundary of trust should be configured to
- * remove untrusted Forwarded headers that come from the outside.
+ * <p>转发头存在安全隐患，因为应用程序无法知道这些头是按预期由代理添加的，
+ * 还是由恶意客户端添加的。因此，位于信任边界的代理应配置为移除来自外部的
+ * 不受信任的 Forwarded 头。
  *
- * <p>You can also configure the ForwardedHeaderFilter with {@link #setRemoveOnly removeOnly},
- * in which case it removes but does not use the headers.
+ * <p>还可以通过 {@link #setRemoveOnly removeOnly} 配置 ForwardedHeaderFilter，
+ * 在这种情况下它只会移除这些头，而不会使用它们。
  *
  * @author Rossen Stoyanchev
  * @author Eddú Meléndez
@@ -92,8 +90,8 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Enables mode in which any "Forwarded" or "X-Forwarded-*" headers are
-	 * removed only and the information in them ignored.
+	 * 启用一种模式，在该模式下只移除任何 "Forwarded" 或 "X-Forwarded-*" 头，
+	 * 并忽略其中的信息。
 	 * @param removeOnly whether to discard and ignore forwarded headers
 	 * @since 4.3.9
 	 */
@@ -102,13 +100,12 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Use this property to enable relative redirects as explained in
-	 * {@link RelativeRedirectFilter}, and also using the same response wrapper
-	 * as that filter does, or if both are configured, only one will wrap.
-	 * <p>By default, if this property is set to false, in which case calls to
-	 * {@link HttpServletResponse#sendRedirect(String)} are overridden in order
-	 * to turn relative into absolute URLs, also taking into account forwarded
-	 * headers.
+	 * 使用此属性可启用相对重定向，如
+	 * {@link RelativeRedirectFilter} 中所述，并且也会使用与该过滤器相同的响应包装器；
+	 * 如果两者都进行了配置，则只会有一个包装器生效。
+	 * <p>默认情况下（此属性为 false），会重写对
+	 * {@link HttpServletResponse#sendRedirect(String)} 的调用，以便将相对 URL
+	 * 转换为绝对 URL，同时也会考虑转发头。
 	 * @param relativeRedirects whether to use relative redirects
 	 * @since 4.3.10
 	 */
@@ -165,7 +162,7 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * Hide "Forwarded" or "X-Forwarded-*" headers.
+	 * 隐藏 "Forwarded" 或 "X-Forwarded-*" 头。
 	 */
 	private static class ForwardedHeaderRemovingRequest extends HttpServletRequestWrapper {
 
@@ -211,7 +208,7 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Extract and use "Forwarded" or "X-Forwarded-*" headers.
+	 * 提取并使用 "Forwarded" 或 "X-Forwarded-*" 头。
 	 */
 	private static class ForwardedHeaderExtractingRequest extends ForwardedHeaderRemovingRequest {
 
@@ -308,9 +305,8 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Responsible for the contextPath, requestURI, and requestURL with forwarded
-	 * headers in mind, and also taking into account changes to the path of the
-	 * underlying delegate request (e.g. on a Servlet FORWARD).
+	 * 负责考虑转发头情况下的 contextPath、requestURI 和 requestURL，
+	 * 同时也会考虑底层委托请求路径的变化（例如在 Servlet FORWARD 时）。
 	 */
 	private static class ForwardedPrefixExtractor {
 
@@ -330,7 +326,7 @@ public class ForwardedHeaderFilter extends OncePerRequestFilter {
 
 
 		/**
-		 * Constructor with required information.
+		 * 使用必需信息构造实例。
 		 * @param delegateRequest supplier for the current
 		 * {@link HttpServletRequestWrapper#getRequest() delegate request} which
 		 * may change during a forward (e.g. Tomcat.

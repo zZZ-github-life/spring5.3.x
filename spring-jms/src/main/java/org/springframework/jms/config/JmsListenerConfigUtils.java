@@ -17,7 +17,7 @@
 package org.springframework.jms.config;
 
 /**
- * Configuration constants for internal sharing across subpackages.
+ * 用于跨子包内部共享的配置常量。
  *
  * @author Juergen Hoeller
  * @since 4.1
@@ -25,13 +25,13 @@ package org.springframework.jms.config;
 public abstract class JmsListenerConfigUtils {
 
 	/**
-	 * The bean name of the internally managed JMS listener annotation processor.
+	 * 内部管理的 JMS 监听器注解处理器的 bean 名称。
 	 */
 	public static final String JMS_LISTENER_ANNOTATION_PROCESSOR_BEAN_NAME =
 			"org.springframework.jms.config.internalJmsListenerAnnotationProcessor";
 
 	/**
-	 * The bean name of the internally managed JMS listener endpoint registry.
+	 * 内部管理的 JMS 监听器端点注册表的 bean 名称。
 	 */
 	public static final String JMS_LISTENER_ENDPOINT_REGISTRY_BEAN_NAME =
 			"org.springframework.jms.config.internalJmsListenerEndpointRegistry";

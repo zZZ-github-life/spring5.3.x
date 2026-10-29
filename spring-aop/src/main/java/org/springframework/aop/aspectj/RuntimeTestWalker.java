@@ -42,16 +42,13 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * This class encapsulates some AspectJ internal knowledge that should be
- * pushed back into the AspectJ project in a future release.
+ * 此类封装了一些 AspectJ 内部知识，这些知识应在未来的版本中回推到 AspectJ 项目中。
  *
- * <p>It relies on implementation specific knowledge in AspectJ to break
- * encapsulation and do something AspectJ was not designed to do: query
- * the types of runtime tests that will be performed. The code here should
- * migrate to {@code ShadowMatch.getVariablesInvolvedInRuntimeTest()}
- * or some similar operation.
+ * <p>它依赖 AspectJ 中特定于实现的知识来打破封装，并做了一些 AspectJ 并非为此设计的事情：查询将要
+ * 执行的运行时测试的类型。此处的代码应迁移到
+ * {@code ShadowMatch.getVariablesInvolvedInRuntimeTest()} 或类似的操作。
  *
- * <p>See <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=151593">Bug 151593</a>
+ * <p>参见 <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=151593">Bug 151593</a>
  *
  * @author Adrian Colyer
  * @author Ramnivas Laddad
@@ -95,8 +92,8 @@ class RuntimeTestWalker {
 
 
 	/**
-	 * If the test uses any of the this, target, at_this, at_target, and at_annotation vars,
-	 * then it tests subtype sensitive vars.
+	 * 如果测试使用了 this、target、at_this、at_target 和 at_annotation 这些变量中的任意一个，则它测试
+	 * 的是对子类型敏感的变量。
 	 */
 	public boolean testsSubtypeSensitiveVars() {
 		return (this.runtimeTest != null &&
@@ -229,7 +226,7 @@ class RuntimeTestWalker {
 
 
 	/**
-	 * Check if residue of target(TYPE) kind. See SPR-3783 for more details.
+	 * 检查是否为 target(TYPE) 类型的残留。详细信息请参见 SPR-3783。
 	 */
 	private static class TargetInstanceOfResidueTestVisitor extends InstanceOfResidueTestVisitor {
 
@@ -244,7 +241,7 @@ class RuntimeTestWalker {
 
 
 	/**
-	 * Check if residue of this(TYPE) kind. See SPR-2979 for more details.
+	 * 检查是否为 this(TYPE) 类型的残留。详细信息请参见 SPR-2979。
 	 */
 	private static class ThisInstanceOfResidueTestVisitor extends InstanceOfResidueTestVisitor {
 

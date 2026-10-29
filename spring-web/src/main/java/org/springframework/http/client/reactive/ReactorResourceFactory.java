@@ -30,12 +30,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Factory to manage Reactor Netty resources, i.e. {@link LoopResources} for
- * event loop threads, and {@link ConnectionProvider} for the connection pool,
- * within the lifecycle of a Spring {@code ApplicationContext}.
+ * 用于在 Spring {@code ApplicationContext} 生命周期内管理 Reactor Netty 资源
+ * （即用于事件循环线程的 {@link LoopResources}，以及用于连接池的
+ * {@link ConnectionProvider}）的工厂。
  *
- * <p>This factory implements {@link InitializingBean} and {@link DisposableBean}
- * and is expected typically to be declared as a Spring-managed bean.
+ * <p>此工厂实现 {@link InitializingBean} 和 {@link DisposableBean}，
+ * 通常应声明为 Spring 管理的 bean。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -68,11 +68,10 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 
 
 	/**
-	 * Whether to use global Reactor Netty resources via {@link HttpResources}.
-	 * <p>Default is "true" in which case this factory initializes and stops the
-	 * global Reactor Netty resources within Spring's {@code ApplicationContext}
-	 * lifecycle. If set to "false" the factory manages its resources independent
-	 * of the global ones.
+	 * 是否通过 {@link HttpResources} 使用全局 Reactor Netty 资源。
+	 * <p>默认值为 "true"，此时此工厂会在 Spring 的
+	 * {@code ApplicationContext} 生命周期内初始化和停止全局 Reactor Netty 资源。
+	 * 如果设置为 "false"，则工厂将独立于全局资源管理其资源。
 	 * @param useGlobalResources whether to expose and manage the global resources
 	 * @see #addGlobalResourcesConsumer(Consumer)
 	 */
@@ -81,17 +80,16 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Whether this factory exposes the global
-	 * {@link reactor.netty.http.HttpResources HttpResources} holder.
+	 * 此工厂是否公开全局
+	 * {@link reactor.netty.http.HttpResources HttpResources} 持有者。
 	 */
 	public boolean isUseGlobalResources() {
 		return this.useGlobalResources;
 	}
 
 	/**
-	 * Add a Consumer for configuring the global Reactor Netty resources on
-	 * startup. When this option is used, {@link #setUseGlobalResources} is also
-	 * enabled.
+	 * 添加一个 Consumer，用于在启动时配置全局 Reactor Netty 资源。
+	 * 使用此选项时，也会启用 {@link #setUseGlobalResources}。
 	 * @param consumer the consumer to apply
 	 * @see #setUseGlobalResources(boolean)
 	 */
@@ -102,11 +100,11 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Use this when you don't want to participate in global resources and
-	 * you want to customize the creation of the managed {@code ConnectionProvider}.
-	 * <p>By default, {@code ConnectionProvider.elastic("http")} is used.
-	 * <p>Note that this option is ignored if {@code userGlobalResources=false} or
-	 * {@link #setConnectionProvider(ConnectionProvider)} is set.
+	 * 当你不想参与全局资源，并且希望自定义托管
+	 * {@code ConnectionProvider} 的创建时，请使用此项。
+	 * <p>默认使用 {@code ConnectionProvider.elastic("http")}。
+	 * <p>请注意，如果 {@code userGlobalResources=false} 或
+	 * 设置了 {@link #setConnectionProvider(ConnectionProvider)}，则忽略此选项。
 	 * @param supplier the supplier to use
 	 */
 	public void setConnectionProviderSupplier(Supplier<ConnectionProvider> supplier) {
@@ -114,8 +112,8 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Use this when you want to provide an externally managed
-	 * {@link ConnectionProvider} instance.
+	 * 当你希望提供外部管理的
+	 * {@link ConnectionProvider} 实例时，请使用此项。
 	 * @param connectionProvider the connection provider to use as is
 	 */
 	public void setConnectionProvider(ConnectionProvider connectionProvider) {
@@ -123,7 +121,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Return the configured {@link ConnectionProvider}.
+	 * 返回已配置的 {@link ConnectionProvider}。
 	 */
 	public ConnectionProvider getConnectionProvider() {
 		Assert.state(this.connectionProvider != null, "ConnectionProvider not initialized yet");
@@ -131,11 +129,11 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Use this when you don't want to participate in global resources and
-	 * you want to customize the creation of the managed {@code LoopResources}.
-	 * <p>By default, {@code LoopResources.create("reactor-http")} is used.
-	 * <p>Note that this option is ignored if {@code userGlobalResources=false} or
-	 * {@link #setLoopResources(LoopResources)} is set.
+	 * 当你不想参与全局资源，并且希望自定义托管
+	 * {@code LoopResources} 的创建时，请使用此项。
+	 * <p>默认使用 {@code LoopResources.create("reactor-http")}。
+	 * <p>请注意，如果 {@code userGlobalResources=false} 或
+	 * 设置了 {@link #setLoopResources(LoopResources)}，则忽略此选项。
 	 * @param supplier the supplier to use
 	 */
 	public void setLoopResourcesSupplier(Supplier<LoopResources> supplier) {
@@ -143,8 +141,8 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Use this option when you want to provide an externally managed
-	 * {@link LoopResources} instance.
+	 * 当你希望提供外部管理的
+	 * {@link LoopResources} 实例时，请使用此选项。
 	 * @param loopResources the loop resources to use as is
 	 */
 	public void setLoopResources(LoopResources loopResources) {
@@ -152,7 +150,7 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Return the configured {@link LoopResources}.
+	 * 返回已配置的 {@link LoopResources}。
 	 */
 	public LoopResources getLoopResources() {
 		Assert.state(this.loopResources != null, "LoopResources not initialized yet");
@@ -160,14 +158,14 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Configure the amount of time we'll wait before shutting down resources.
-	 * If a task is submitted during the {@code shutdownQuietPeriod}, it is guaranteed
-	 * to be accepted and the {@code shutdownQuietPeriod} will start over.
-	 * <p>By default, this is set to
-	 * {@link LoopResources#DEFAULT_SHUTDOWN_QUIET_PERIOD} which is 2 seconds but
-	 * can also be overridden with the system property
+	 * 配置在关闭资源之前等待的时间量。
+	 * 如果在 {@code shutdownQuietPeriod} 期间提交任务，则保证
+	 * 接受该任务，并且 {@code shutdownQuietPeriod} 将重新开始。
+	 * <p>默认设置为
+	 * {@link LoopResources#DEFAULT_SHUTDOWN_QUIET_PERIOD}，即 2 秒，
+	 * 但也可以通过系统属性
 	 * {@link reactor.netty.ReactorNetty#SHUTDOWN_QUIET_PERIOD
-	 * ReactorNetty.SHUTDOWN_QUIET_PERIOD}.
+	 * ReactorNetty.SHUTDOWN_QUIET_PERIOD} 覆盖。
 	 * @since 5.2.4
 	 * @see #setShutdownTimeout(Duration)
 	 */
@@ -177,14 +175,13 @@ public class ReactorResourceFactory implements InitializingBean, DisposableBean 
 	}
 
 	/**
-	 * Configure the maximum amount of time to wait until the disposal of the
-	 * underlying resources regardless if a task was submitted during the
-	 * {@code shutdownQuietPeriod}.
-	 * <p>By default, this is set to
-	 * {@link LoopResources#DEFAULT_SHUTDOWN_TIMEOUT} which is 15 seconds but
-	 * can also be overridden with the system property
+	 * 配置等待底层资源释放的最长时间，无论
+	 * 在 {@code shutdownQuietPeriod} 期间是否提交了任务。
+	 * <p>默认设置为
+	 * {@link LoopResources#DEFAULT_SHUTDOWN_TIMEOUT}，即 15 秒，
+	 * 但也可以通过系统属性
 	 * {@link reactor.netty.ReactorNetty#SHUTDOWN_TIMEOUT
-	 * ReactorNetty.SHUTDOWN_TIMEOUT}.
+	 * ReactorNetty.SHUTDOWN_TIMEOUT} 覆盖。
 	 * @since 5.2.4
 	 * @see #setShutdownQuietPeriod(Duration)
 	 */

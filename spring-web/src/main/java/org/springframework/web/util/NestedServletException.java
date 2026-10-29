@@ -22,17 +22,16 @@ import org.springframework.core.NestedExceptionUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Subclass of {@link ServletException} that properly handles a root cause in terms
- * of message and stacktrace, just like NestedChecked/RuntimeException does.
+ * {@link ServletException} 的子类，能像 NestedChecked/RuntimeException 那样
+ * 正确处理根因的消息和堆栈跟踪。
  *
- * <p>Note that the plain ServletException doesn't expose its root cause at all,
- * neither in the exception message nor in printed stack traces! While this might
- * be fixed in later Servlet API variants (which even differ per vendor for the
- * same API version), it is not reliably available on Servlet 2.4 (the minimum
- * version required by Spring 3.x), which is why we need to do it ourselves.
+ * <p>请注意，普通 ServletException 完全不公开其根因，无论是在异常消息中
+ * 还是在打印的堆栈跟踪中！虽然在后续的 Servlet API 变体中可能会修复这一点
+ * （同一 API 版本在不同供应商之间甚至也有差异），但在 Servlet 2.4
+ * （Spring 3.x 要求的最低版本）上无法可靠获得该信息，因此我们需要自行处理。
  *
- * <p>The similarity between this class and the NestedChecked/RuntimeException
- * class is unavoidable, as this class needs to derive from ServletException.
+ * <p>此类与 NestedChecked/RuntimeException 类之间的相似性不可避免，
+ * 因为此类必须派生自 ServletException。
  *
  * @author Juergen Hoeller
  * @since 1.2.5
@@ -43,7 +42,7 @@ import org.springframework.lang.Nullable;
  */
 public class NestedServletException extends ServletException {
 
-	/** Use serialVersionUID from Spring 1.2 for interoperability. */
+	/** 使用 Spring 1.2 的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = -5292377985529381145L;
 
 	static {
@@ -54,7 +53,7 @@ public class NestedServletException extends ServletException {
 
 
 	/**
-	 * Construct a {@code NestedServletException} with the specified detail message.
+	 * 使用指定的详细消息构造一个 {@code NestedServletException}。
 	 * @param msg the detail message
 	 */
 	public NestedServletException(String msg) {
@@ -62,8 +61,7 @@ public class NestedServletException extends ServletException {
 	}
 
 	/**
-	 * Construct a {@code NestedServletException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code NestedServletException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */
@@ -73,8 +71,7 @@ public class NestedServletException extends ServletException {
 
 
 	/**
-	 * Return the detail message, including the message from the nested exception
-	 * if there is one.
+	 * 返回详细消息；如果存在嵌套异常，则包含其消息。
 	 */
 	@Override
 	@Nullable

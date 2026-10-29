@@ -31,8 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Strategy to encode a stream of Objects of type {@code <T>} into an output
- * stream of bytes.
+ * 将 {@code <T>} 类型的对象流编码为字节输出流的策略。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -42,8 +41,7 @@ import org.springframework.util.MimeType;
 public interface Encoder<T> {
 
 	/**
-	 * Whether the encoder supports the given source element type and the MIME
-	 * type for the output stream.
+	 * 此编码器是否支持给定的源元素类型以及输出流的 MIME 类型。
 	 * @param elementType the type of elements in the source stream
 	 * @param mimeType the MIME type for the output stream
 	 * (can be {@code null} if not specified)
@@ -52,8 +50,7 @@ public interface Encoder<T> {
 	boolean canEncode(ResolvableType elementType, @Nullable MimeType mimeType);
 
 	/**
-	 * Encode a stream of Objects of type {@code T} into a {@link DataBuffer}
-	 * output stream.
+	 * 将 {@code T} 类型的对象流编码为 {@link DataBuffer} 输出流。
 	 * @param inputStream the input stream of Objects to encode. If the input should be
 	 * encoded as a single value rather than as a stream of elements, an instance of
 	 * {@link Mono} should be used.
@@ -69,12 +66,10 @@ public interface Encoder<T> {
 			ResolvableType elementType, @Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
 
 	/**
-	 * Encode an Object of type T to a data buffer. This is useful for scenarios,
-	 * that distinct messages (or events) are encoded and handled individually,
-	 * in fully aggregated form.
-	 * <p>By default this method raises {@link UnsupportedOperationException}
-	 * and it is expected that some encoders cannot produce a single buffer or
-	 * cannot do so synchronously (e.g. encoding a {@code Resource}).
+	 * 将类型 T 的对象编码为数据缓冲区。这适用于需要将独立的消息（或事件）以完全聚合的形式逐个编码并处
+	 * 理的场景。
+	 * <p>默认情况下，此方法会抛出 {@link UnsupportedOperationException}，因为某些编码器无法生成单个缓
+	 * 冲区，或者无法同步地完成（例如编码 {@code Resource}）。
 	 * @param value the value to be encoded
 	 * @param bufferFactory for creating the output {@code DataBuffer}
 	 * @param valueType the type for the value being encoded
@@ -91,21 +86,17 @@ public interface Encoder<T> {
 	}
 
 	/**
-	 * Return the list of MIME types supported by this Encoder. The list may not
-	 * apply to every possible target element type and calls to this method should
-	 * typically be guarded via {@link #canEncode(ResolvableType, MimeType)
-	 * canEncode(elementType, null)}. The list may also exclude MIME types
-	 * supported only for a specific element type. Alternatively, use
-	 * {@link #getEncodableMimeTypes(ResolvableType)} for a more precise list.
+	 * 返回此 Encoder 支持的 MIME 类型列表。该列表可能并不适用于所有可能的目标元素类型，调用此方法时通
+	 * 常应通过 {@link #canEncode(ResolvableType, MimeType) canEncode(elementType, null)} 加以防护。该
+	 * 列表也可能不包含仅对特定元素类型提供支持的 MIME 类型。或者，可使用
+	 * {@link #getEncodableMimeTypes(ResolvableType)} 获取更精确的列表。
 	 * @return the list of supported MIME types
 	 */
 	List<MimeType> getEncodableMimeTypes();
 
 	/**
-	 * Return the list of MIME types supported by this Encoder for the given type
-	 * of element. This list may differ from the {@link #getEncodableMimeTypes()}
-	 * if the Encoder doesn't support the element type or if it supports it only
-	 * for a subset of MIME types.
+	 * 返回此 Encoder 针对给定元素类型支持的 MIME 类型列表。如果 Encoder 不支持该元素类型，或者仅对部分
+	 * MIME 类型提供支持，则该列表可能与 {@link #getEncodableMimeTypes()} 不同。
 	 * @param elementType the type of element to check for encoding
 	 * @return the list of MIME types supported for the given element type
 	 * @since 5.3.4

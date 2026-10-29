@@ -1,5 +1,5 @@
 /**
- * Multipart support.
+ * multipart 支持。
  */
 @NonNullApi
 @NonNullFields

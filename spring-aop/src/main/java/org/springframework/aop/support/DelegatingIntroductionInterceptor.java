@@ -25,23 +25,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient implementation of the
- * {@link org.springframework.aop.IntroductionInterceptor} interface.
+ * {@link org.springframework.aop.IntroductionInterceptor} 接口的便捷实现。
  *
- * <p>Subclasses merely need to extend this class and implement the interfaces
- * to be introduced themselves. In this case the delegate is the subclass
- * instance itself. Alternatively a separate delegate may implement the
- * interface, and be set via the delegate bean property.
+ * <p>子类只需扩展此类并自行实现要引入的接口。在这种情况下，委托就是子类实例本身。或者，也可以由一
+ * 个单独的委托实现该接口，并通过 delegate Bean 属性进行设置。
  *
- * <p>Delegates or subclasses may implement any number of interfaces.
- * All interfaces except IntroductionInterceptor are picked up from
- * the subclass or delegate by default.
+ * <p>委托或子类可以实现任意数量的接口。默认情况下，除 IntroductionInterceptor 之外的所有接口都会从
+ * 子类或委托中选取。
  *
- * <p>The {@code suppressInterface} method can be used to suppress interfaces
- * implemented by the delegate but which should not be introduced to the owning
- * AOP proxy.
+ * <p>{@code suppressInterface} 方法可用于抑制由委托实现但不应该引入到所属 AOP 代理的接口。
  *
- * <p>An instance of this class is serializable if the delegate is.
+ * <p>如果委托可序列化，则此类的实例也可序列化。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -54,16 +48,14 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 		implements IntroductionInterceptor {
 
 	/**
-	 * Object that actually implements the interfaces.
-	 * May be "this" if a subclass implements the introduced interfaces.
+	 * 实际实现这些接口的对象。如果子类实现了所引入的接口，则可能是 "this"。
 	 */
 	@Nullable
 	private Object delegate;
 
 
 	/**
-	 * Construct a new DelegatingIntroductionInterceptor, providing
-	 * a delegate that implements the interfaces to be introduced.
+	 * 构造一个新的 DelegatingIntroductionInterceptor，并提供一个实现要引入接口的委托。
 	 * @param delegate the delegate that implements the introduced interfaces
 	 */
 	public DelegatingIntroductionInterceptor(Object delegate) {
@@ -71,9 +63,7 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 	}
 
 	/**
-	 * Construct a new DelegatingIntroductionInterceptor.
-	 * The delegate will be the subclass, which must implement
-	 * additional interfaces.
+	 * 构造一个新的 DelegatingIntroductionInterceptor。委托将是子类，该子类必须实现额外的接口。
 	 */
 	protected DelegatingIntroductionInterceptor() {
 		init(this);
@@ -81,8 +71,7 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 
 
 	/**
-	 * Both constructors use this init method, as it is impossible to pass
-	 * a "this" reference from one constructor to another.
+	 * 两个构造函数都使用此初始化方法，因为无法从一个构造函数向另一个构造函数传递 "this" 引用。
 	 * @param delegate the delegate object
 	 */
 	private void init(Object delegate) {
@@ -97,9 +86,8 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 
 
 	/**
-	 * Subclasses may need to override this if they want to perform custom
-	 * behaviour in around advice. However, subclasses should invoke this
-	 * method, which handles introduced interfaces and forwarding to the target.
+	 * 如果子类希望在环绕通知中执行自定义行为，则可能需要覆盖此方法。但子类应调用此方法，因为它负责处理
+	 * 引入的接口以及向目标转发。
 	 */
 	@Override
 	@Nullable
@@ -125,11 +113,9 @@ public class DelegatingIntroductionInterceptor extends IntroductionInfoSupport
 	}
 
 	/**
-	 * Proceed with the supplied {@link org.aopalliance.intercept.MethodInterceptor}.
-	 * Subclasses can override this method to intercept method invocations on the
-	 * target object which is useful when an introduction needs to monitor the object
-	 * that it is introduced into. This method is <strong>never</strong> called for
-	 * {@link MethodInvocation MethodInvocations} on the introduced interfaces.
+	 * 使用提供的 {@link org.aopalliance.intercept.MethodInterceptor} 继续执行。子类可以覆盖此方法来拦
+	 * 截目标对象上的方法调用，当引入需要监视其被引入的对象时，这很有用。对于引入接口上的
+	 * {@link MethodInvocation MethodInvocations}，<strong>绝不会</strong>调用此方法。
 	 */
 	@Nullable
 	protected Object doProceed(MethodInvocation mi) throws Throwable {

@@ -71,19 +71,16 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link org.aopalliance.intercept.MethodInterceptor} that routes calls to an
- * MBean running on the supplied {@code MBeanServerConnection}.
- * Works for both local and remote {@code MBeanServerConnection}s.
+ * {@link org.aopalliance.intercept.MethodInterceptor}，将调用路由到运行于所提供的
+ * {@code MBeanServerConnection} 上的 MBean。既适用于本地，也适用于远程
+ * {@code MBeanServerConnection}。
  *
- * <p>By default, the {@code MBeanClientInterceptor} will connect to the
- * {@code MBeanServer} and cache MBean metadata at startup. This can
- * be undesirable when running against a remote {@code MBeanServer}
- * that may not be running when the application starts. Through setting the
- * {@link #setConnectOnStartup(boolean) connectOnStartup} property to "false",
- * you can defer this process until the first invocation against the proxy.
+ * <p>默认情况下，{@code MBeanClientInterceptor} 会在启动时连接到 {@code MBeanServer} 并缓存 MBean
+ * 元数据。当连接的是远程 {@code MBeanServer}，而它可能在应用启动时尚未运行时，这种行为可能并不合适。
+ * 通过将 {@link #setConnectOnStartup(boolean) connectOnStartup} 属性设置为 "false"，可以将此过程
+ * 推迟到首次对代理进行调用时。
  *
- * <p>This functionality is usually used through {@link MBeanProxyFactoryBean}.
- * See the javadoc of that class for more information.
+ * <p>此功能通常通过 {@link MBeanProxyFactoryBean} 使用。有关更多信息，请参阅该类的 javadoc。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -94,7 +91,7 @@ import org.springframework.util.StringUtils;
 public class MBeanClientInterceptor
 		implements MethodInterceptor, BeanClassLoaderAware, InitializingBean, DisposableBean {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -142,22 +139,21 @@ public class MBeanClientInterceptor
 
 
 	/**
-	 * Set the {@code MBeanServerConnection} used to connect to the
-	 * MBean which all invocations are routed to.
+	 * 设置用于连接到 MBean 的 {@code MBeanServerConnection}，所有调用都会被路由到该 MBean。
 	 */
 	public void setServer(MBeanServerConnection server) {
 		this.server = server;
 	}
 
 	/**
-	 * Set the service URL of the remote {@code MBeanServer}.
+	 * 设置远程 {@code MBeanServer} 的服务 URL。
 	 */
 	public void setServiceUrl(String url) throws MalformedURLException {
 		this.serviceUrl = new JMXServiceURL(url);
 	}
 
 	/**
-	 * Specify the environment for the JMX connector.
+	 * 指定 JMX 连接器的环境。
 	 * @see javax.management.remote.JMXConnectorFactory#connect(javax.management.remote.JMXServiceURL, java.util.Map)
 	 */
 	public void setEnvironment(@Nullable Map<String, ?> environment) {
@@ -165,11 +161,8 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Allow {@code Map} access to the environment to be set for the connector,
-	 * with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via
-	 * {@code environment[myKey]}. This is particularly useful for
-	 * adding or overriding entries in child bean definitions.
+	 * 允许以 {@code Map} 方式访问要为连接器设置的环境，并可选择添加或覆盖特定条目。<p>适用于直接指定条
+	 * 目，例如通过 {@code environment[myKey]}。这在添加或覆盖子 Bean 定义中的条目时特别有用。
 	 */
 	@Nullable
 	public Map<String, ?> getEnvironment() {
@@ -177,10 +170,8 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Set the agent id of the {@code MBeanServer} to locate.
-	 * <p>Default is none. If specified, this will result in an
-	 * attempt being made to locate the attendant MBeanServer, unless
-	 * the {@link #setServiceUrl "serviceUrl"} property has been set.
+	 * 设置要定位的 {@code MBeanServer} 的 agent id。<p>默认无。如果指定，则会尝试定位相应的
+	 * MBeanServer，除非已设置 {@link #setServiceUrl "serviceUrl"} 属性。
 	 * @see javax.management.MBeanServerFactory#findMBeanServer(String)
 	 * <p>Specifying the empty String indicates the platform MBeanServer.
 	 */
@@ -189,55 +180,47 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Set whether the proxy should connect to the {@code MBeanServer}
-	 * at creation time ({@code true}) or the first time it is invoked
-	 * ({@code false}). Default is {@code true}.
+	 * 设置代理是在创建时（{@code true}）还是首次被调用时（{@code false}）连接到 {@code MBeanServer}。
+	 * 默认值为 {@code true}。
 	 */
 	public void setConnectOnStartup(boolean connectOnStartup) {
 		this.connectOnStartup = connectOnStartup;
 	}
 
 	/**
-	 * Set whether to refresh the MBeanServer connection on connect failure.
-	 * Default is {@code false}.
-	 * <p>Can be turned on to allow for hot restart of the JMX server,
-	 * automatically reconnecting and retrying in case of an IOException.
+	 * 设置连接失败时是否刷新 MBeanServer 连接。默认值为 {@code false}。<p>可以开启此选项以支持 JMX 服
+	 * 务器的热重启，在发生 IOException 时自动重新连接并重试。
 	 */
 	public void setRefreshOnConnectFailure(boolean refreshOnConnectFailure) {
 		this.refreshOnConnectFailure = refreshOnConnectFailure;
 	}
 
 	/**
-	 * Set the {@code ObjectName} of the MBean which calls are routed to,
-	 * as {@code ObjectName} instance or as {@code String}.
+	 * 设置调用所路由到的 MBean 的 {@code ObjectName}，可以是 {@code ObjectName} 实例或 {@code String}。
 	 */
 	public void setObjectName(Object objectName) throws MalformedObjectNameException {
 		this.objectName = ObjectNameManager.getInstance(objectName);
 	}
 
 	/**
-	 * Set whether to use strict casing for attributes. Enabled by default.
-	 * <p>When using strict casing, a JavaBean property with a getter such as
-	 * {@code getFoo()} translates to an attribute called {@code Foo}.
-	 * With strict casing disabled, {@code getFoo()} would translate to just
-	 * {@code foo}.
+	 * 设置属性是否使用严格大小写。默认启用。<p>使用严格大小写时，带有 {@code getFoo()} 之类 getter 的
+	 * JavaBean 属性会转换为名为 {@code Foo} 的属性。禁用严格大小写后，{@code getFoo()} 将仅转换为
+	 * {@code foo}。
 	 */
 	public void setUseStrictCasing(boolean useStrictCasing) {
 		this.useStrictCasing = useStrictCasing;
 	}
 
 	/**
-	 * Set the management interface of the target MBean, exposing bean property
-	 * setters and getters for MBean attributes and conventional Java methods
-	 * for MBean operations.
+	 * 设置目标 MBean 的管理接口，为 MBean 属性暴露 Bean 属性的 setter 和 getter，并为 MBean 操作暴露常
+	 * 规 Java 方法。
 	 */
 	public void setManagementInterface(@Nullable Class<?> managementInterface) {
 		this.managementInterface = managementInterface;
 	}
 
 	/**
-	 * Return the management interface of the target MBean,
-	 * or {@code null} if none specified.
+	 * 返回目标 MBean 的管理接口，如果未指定则返回 {@code null}。
 	 */
 	@Nullable
 	protected final Class<?> getManagementInterface() {
@@ -251,8 +234,7 @@ public class MBeanClientInterceptor
 
 
 	/**
-	 * Prepares the {@code MBeanServerConnection} if the "connectOnStartup"
-	 * is turned on (which it is by default).
+	 * 如果 "connectOnStartup" 已开启（默认即开启），则准备 {@code MBeanServerConnection}。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -266,8 +248,7 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Ensures that an {@code MBeanServerConnection} is configured and attempts
-	 * to detect a local connection if one is not supplied.
+	 * 确保已配置 {@code MBeanServerConnection}，如果未提供，则尝试检测本地连接。
 	 */
 	public void prepare() {
 		synchronized (this.preparationMonitor) {
@@ -293,9 +274,8 @@ public class MBeanClientInterceptor
 		}
 	}
 	/**
-	 * Loads the management interface info for the configured MBean into the caches.
-	 * This information is used by the proxy when determining whether an invocation matches
-	 * a valid operation or attribute on the management interface of the managed resource.
+	 * 将所配置 MBean 的管理接口信息加载到缓存中。代理在判断某个调用是否匹配受管资源管理接口上的有效操
+	 * 作或属性时会使用此信息。
 	 */
 	private void retrieveMBeanInfo(MBeanServerConnection server) throws MBeanInfoRetrievalException {
 		try {
@@ -337,8 +317,7 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Return whether this client interceptor has already been prepared,
-	 * i.e. has already looked up the server and cached all metadata.
+	 * 返回此客户端拦截器是否已准备就绪，即是否已查找服务器并缓存所有元数据。
 	 */
 	protected boolean isPrepared() {
 		synchronized (this.preparationMonitor) {
@@ -348,7 +327,7 @@ public class MBeanClientInterceptor
 
 
 	/**
-	 * Route the invocation to the configured managed resource..
+	 * 将调用路由到所配置的受管资源。
 	 * @param invocation the {@code MethodInvocation} to re-route
 	 * @return the value returned as a result of the re-routed invocation
 	 * @throws Throwable an invocation error propagated to the user
@@ -373,9 +352,8 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Refresh the connection and retry the MBean invocation if possible.
-	 * <p>If not configured to refresh on connect failure, this method
-	 * simply rethrows the original exception.
+	 * 刷新连接，并在可能的情况下重试 MBean 调用。<p>如果未配置为在连接失败时刷新，则此方法仅重新抛出原
+	 * 始异常。
 	 * @param invocation the invocation that failed
 	 * @param ex the exception raised on remote invocation
 	 * @return the result value of the new invocation, if succeeded
@@ -403,9 +381,9 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Route the invocation to the configured managed resource. Correctly routes JavaBean property
-	 * access to {@code MBeanServerConnection.get/setAttribute} and method invocation to
-	 * {@code MBeanServerConnection.invoke}.
+	 * 将调用路由到所配置的受管资源。正确地将 JavaBean 属性访问路由到
+	 * {@code MBeanServerConnection.get/setAttribute}，将方法调用路由到
+	 * {@code MBeanServerConnection.invoke}。
 	 * @param invocation the {@code MethodInvocation} to re-route
 	 * @return the value returned as a result of the re-routed invocation
 	 * @throws Throwable an invocation error propagated to the user
@@ -516,8 +494,7 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Routes a method invocation (not a property get/set) to the corresponding
-	 * operation on the managed resource.
+	 * 将方法调用（而非属性 get/set）路由到受管资源上对应的操作。
 	 * @param method the method corresponding to operation on the managed resource.
 	 * @param args the invocation arguments
 	 * @return the value returned by the method invocation.
@@ -545,8 +522,7 @@ public class MBeanClientInterceptor
 	}
 
 	/**
-	 * Convert the given result object (from attribute access or operation invocation)
-	 * to the specified target class for returning from the proxy method.
+	 * 将给定结果对象（来自属性访问或操作调用）转换为指定的目标类，以便从代理方法返回。
 	 * @param result the result object as returned by the {@code MBeanServer}
 	 * @param parameter the method parameter of the proxy method that's been invoked
 	 * @return the converted result object, or the passed-in object if no conversion
@@ -635,8 +611,7 @@ public class MBeanClientInterceptor
 
 
 	/**
-	 * Simple wrapper class around a method name and its signature.
-	 * Used as the key when caching methods.
+	 * 围绕方法名及其签名的简单包装类。用作缓存方法时的键。
 	 */
 	private static final class MethodCacheKey implements Comparable<MethodCacheKey> {
 
@@ -645,8 +620,7 @@ public class MBeanClientInterceptor
 		private final Class<?>[] parameterTypes;
 
 		/**
-		 * Create a new instance of {@code MethodCacheKey} with the supplied
-		 * method name and parameter list.
+		 * 使用提供的方法名和参数列表创建 {@code MethodCacheKey} 的新实例。
 		 * @param name the name of the method
 		 * @param parameterTypes the arguments in the method signature
 		 */

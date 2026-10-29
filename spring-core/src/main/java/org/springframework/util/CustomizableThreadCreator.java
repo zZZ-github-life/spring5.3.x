@@ -22,11 +22,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple customizable helper class for creating new {@link Thread} instances.
- * Provides various bean properties: thread name prefix, thread priority, etc.
+ * 用于创建新 {@link Thread} 实例的简单可定制辅助类。提供各种 Bean 属性：线程名称前缀、线程优先级等。
  *
- * <p>Serves as base class for thread factories such as
- * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}.
+ *
+ * <p>用作线程工厂（例如
+ * {@link org.springframework.scheduling.concurrent.CustomizableThreadFactory}）的基类。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -48,14 +48,14 @@ public class CustomizableThreadCreator implements Serializable {
 
 
 	/**
-	 * Create a new CustomizableThreadCreator with default thread name prefix.
+	 * 使用默认线程名称前缀创建一个新的 CustomizableThreadCreator。
 	 */
 	public CustomizableThreadCreator() {
 		this.threadNamePrefix = getDefaultThreadNamePrefix();
 	}
 
 	/**
-	 * Create a new CustomizableThreadCreator with the given thread name prefix.
+	 * 使用给定的线程名称前缀创建一个新的 CustomizableThreadCreator。
 	 * @param threadNamePrefix the prefix to use for the names of newly created threads
 	 */
 	public CustomizableThreadCreator(@Nullable String threadNamePrefix) {
@@ -64,24 +64,21 @@ public class CustomizableThreadCreator implements Serializable {
 
 
 	/**
-	 * Specify the prefix to use for the names of newly created threads.
-	 * Default is "SimpleAsyncTaskExecutor-".
+	 * 指定新建线程名称所使用的前缀。默认值为 "SimpleAsyncTaskExecutor-"。
 	 */
 	public void setThreadNamePrefix(@Nullable String threadNamePrefix) {
 		this.threadNamePrefix = (threadNamePrefix != null ? threadNamePrefix : getDefaultThreadNamePrefix());
 	}
 
 	/**
-	 * Return the thread name prefix to use for the names of newly
-	 * created threads.
+	 * 返回新建线程名称所使用的线程名称前缀。
 	 */
 	public String getThreadNamePrefix() {
 		return this.threadNamePrefix;
 	}
 
 	/**
-	 * Set the priority of the threads that this factory creates.
-	 * Default is 5.
+	 * 设置此工厂创建的线程的优先级。默认值为 5。
 	 * @see java.lang.Thread#NORM_PRIORITY
 	 */
 	public void setThreadPriority(int threadPriority) {
@@ -89,20 +86,18 @@ public class CustomizableThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Return the priority of the threads that this factory creates.
+	 * 返回此工厂创建的线程的优先级。
 	 */
 	public int getThreadPriority() {
 		return this.threadPriority;
 	}
 
 	/**
-	 * Set whether this factory is supposed to create daemon threads,
-	 * just executing as long as the application itself is running.
-	 * <p>Default is "false": Concrete factories usually support explicit cancelling.
-	 * Hence, if the application shuts down, Runnables will by default finish their
-	 * execution.
-	 * <p>Specify "true" for eager shutdown of threads which still actively execute
-	 * a {@link Runnable} at the time that the application itself shuts down.
+	 * 设置此工厂是否应创建守护线程，即仅当应用本身运行期间才执行。
+	 *
+	 * <p>默认值为 "false"：具体工厂通常支持显式取消。因此，如果应用关闭，Runnable 默认会完成其执行。
+	 *
+	 * <p>如果希望在应用本身关闭时立即关闭仍在积极执行 {@link Runnable} 的线程，请指定 "true"。
 	 * @see java.lang.Thread#setDaemon
 	 */
 	public void setDaemon(boolean daemon) {
@@ -110,14 +105,14 @@ public class CustomizableThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Return whether this factory should create daemon threads.
+	 * 返回此工厂是否应创建守护线程。
 	 */
 	public boolean isDaemon() {
 		return this.daemon;
 	}
 
 	/**
-	 * Specify the name of the thread group that threads should be created in.
+	 * 指定应在其中创建线程的线程组的名称。
 	 * @see #setThreadGroup
 	 */
 	public void setThreadGroupName(String name) {
@@ -125,7 +120,7 @@ public class CustomizableThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Specify the thread group that threads should be created in.
+	 * 指定应在其中创建线程的线程组。
 	 * @see #setThreadGroupName
 	 */
 	public void setThreadGroup(@Nullable ThreadGroup threadGroup) {
@@ -133,8 +128,7 @@ public class CustomizableThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Return the thread group that threads should be created in
-	 * (or {@code null} for the default group).
+	 * 返回应在其中创建线程的线程组（默认组则为 {@code null}）。
 	 */
 	@Nullable
 	public ThreadGroup getThreadGroup() {
@@ -143,9 +137,9 @@ public class CustomizableThreadCreator implements Serializable {
 
 
 	/**
-	 * Template method for the creation of a new {@link Thread}.
-	 * <p>The default implementation creates a new Thread for the given
-	 * {@link Runnable}, applying an appropriate thread name.
+	 * 用于创建新 {@link Thread} 的模板方法。
+	 *
+	 * <p>默认实现为给定的 {@link Runnable} 创建一个新 Thread，并应用适当的线程名称。
 	 * @param runnable the Runnable to execute
 	 * @see #nextThreadName()
 	 */
@@ -157,9 +151,9 @@ public class CustomizableThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Return the thread name to use for a newly created {@link Thread}.
-	 * <p>The default implementation returns the specified thread name prefix
-	 * with an increasing thread count appended: e.g. "SimpleAsyncTaskExecutor-0".
+	 * 返回新建 {@link Thread} 所使用的线程名称。
+	 *
+	 * <p>默认实现返回指定的线程名称前缀并附加递增的线程计数：例如 "SimpleAsyncTaskExecutor-0"。
 	 * @see #getThreadNamePrefix()
 	 */
 	protected String nextThreadName() {
@@ -167,7 +161,7 @@ public class CustomizableThreadCreator implements Serializable {
 	}
 
 	/**
-	 * Build the default thread name prefix for this factory.
+	 * 为此工厂构建默认的线程名称前缀。
 	 * @return the default thread name prefix (never {@code null})
 	 */
 	protected String getDefaultThreadNamePrefix() {

@@ -35,25 +35,9 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.web.ServletTestExecutionListener;
 
 /**
- * Abstract base test class which integrates the <em>Spring TestContext
- * Framework</em> with explicit {@link ApplicationContext} testing support
- * in a <strong>JUnit 4</strong> environment.
- *
- * <p>Concrete subclasses should typically declare a class-level
- * {@link ContextConfiguration @ContextConfiguration} annotation to
- * configure the {@linkplain ApplicationContext application context} {@linkplain
- * ContextConfiguration#locations() resource locations} or {@linkplain
- * ContextConfiguration#classes() component classes}. <em>If your test does not
- * need to load an application context, you may choose to omit the
- * {@link ContextConfiguration @ContextConfiguration} declaration and to configure
- * the appropriate {@link org.springframework.test.context.TestExecutionListener
- * TestExecutionListeners} manually.</em>
- *
- * <p>This class explicitly registers the following {@code TestExecutionListener}
- * implementations. If you want to switch to using the <em>default</em> set of
- * listeners, see the class-level Javadoc for
- * {@link TestExecutionListeners @TestExecutionListeners} for details.
- *
+ * 抽象基测试类，在 <strong>JUnit 4</strong> 环境中将 <em>Spring TestContext Framework</em> 与显式的 {@link ApplicationContext} 测试支持集成在一起。
+ * <p>具体子类通常应声明类级 {@link ContextConfiguration @ContextConfiguration} 注解，以配置 {@linkplain ApplicationContext 应用程序上下文}的{@linkplain ContextConfiguration#locations() 资源位置}或{@linkplain ContextConfiguration#classes() 组件类}。<em>如果测试不需要加载应用程序上下文，可以选择省略 {@link ContextConfiguration @ContextConfiguration} 声明，并手动配置适当的 {@link org.springframework.test.context.TestExecutionListener TestExecutionListeners}。</em>
+ * <p>此类显式注册以下 {@code TestExecutionListener} 实现。如果希望切换到<em>默认</em>监听器集合，请参阅 {@link TestExecutionListeners @TestExecutionListeners} 的类级 Javadoc 以了解详情。
  * <ul>
  * <li>{@link org.springframework.test.context.web.ServletTestExecutionListener}
  * <li>{@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener}
@@ -62,21 +46,12 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
  * <li>{@link org.springframework.test.context.support.DirtiesContextTestExecutionListener}
  * <li>{@link org.springframework.test.context.event.EventPublishingTestExecutionListener}
  * </ul>
- *
- * <p>This class serves only as a convenience for extension.
+ * <p>此类仅作为便于扩展的基类。
  * <ul>
- * <li>If you do not wish for your test classes to be tied to a Spring-specific
- * class hierarchy, you may configure your own custom test classes by using
- * {@link SpringRunner}, {@link ContextConfiguration @ContextConfiguration},
- * {@link TestExecutionListeners @TestExecutionListeners}, etc.</li>
- * <li>If you wish to extend this class and use a runner other than the
- * {@link SpringRunner}, you can use
- * {@link org.springframework.test.context.junit4.rules.SpringClassRule SpringClassRule} and
- * {@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule}
- * and specify your runner of choice via {@link RunWith @RunWith(...)}.</li>
+ * <li>如果不希望测试类绑定到 Spring 特定的类层次结构，可以使用 {@link SpringRunner}、{@link ContextConfiguration @ContextConfiguration}、{@link TestExecutionListeners @TestExecutionListeners} 等配置自己的自定义测试类。</li>
+ * <li>如果希望扩展此类并使用 {@link SpringRunner} 以外的运行器，可以使用 {@link org.springframework.test.context.junit4.rules.SpringClassRule SpringClassRule} 和 {@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule}，并通过 {@link RunWith @RunWith(...)} 指定所选的运行器。</li>
  * </ul>
- *
- * <p><strong>NOTE:</strong> This class requires JUnit 4.12 or higher.
+ * <p><strong>注意：</strong>此类要求 JUnit 4.12 或更高版本。
  *
  * @author Sam Brannen
  * @since 2.5
@@ -100,21 +75,19 @@ import org.springframework.test.context.web.ServletTestExecutionListener;
 public abstract class AbstractJUnit4SpringContextTests implements ApplicationContextAware {
 
 	/**
-	 * Logger available to subclasses.
+	 * 可供子类使用的 Logger。
 	 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	/**
-	 * The {@link ApplicationContext} that was injected into this test instance
-	 * via {@link #setApplicationContext(ApplicationContext)}.
+	 * 通过 {@link #setApplicationContext(ApplicationContext)} 注入此测试实例的 {@link ApplicationContext}。
 	 */
 	@Nullable
 	protected ApplicationContext applicationContext;
 
 
 	/**
-	 * Set the {@link ApplicationContext} to be used by this test instance,
-	 * provided via {@link ApplicationContextAware} semantics.
+	 * 设置此测试实例要使用的 {@link ApplicationContext}，通过 {@link ApplicationContextAware} 语义提供。
 	 * @param applicationContext the ApplicationContext that this test runs in
 	 */
 	@Override

@@ -19,11 +19,9 @@ package org.springframework.beans.factory.support;
 import java.lang.reflect.Method;
 
 /**
- * Interface to be implemented by classes that can reimplement any method on an
- * IoC-managed object: the <b>Method Injection</b> form of Dependency Injection.
+ * 由能够重新实现 IoC 受管对象上任意方法的类实现的接口：依赖注入的<b>方法注入</b>形式。
  *
- * <p>Such methods may be (but need not be) abstract, in which case the
- * container will create a concrete subclass to instantiate.
+ * <p>此类方法可以（但不必）是抽象的，此时容器将创建一个具体子类来进行实例化。
  *
  * @author Rod Johnson
  * @since 1.1
@@ -31,7 +29,7 @@ import java.lang.reflect.Method;
 public interface MethodReplacer {
 
 	/**
-	 * Reimplement the given method.
+	 * 重新实现给定方法。
 	 * @param obj the instance we're reimplementing the method for
 	 * @param method the method to reimplement
 	 * @param args arguments to the method

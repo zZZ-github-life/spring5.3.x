@@ -44,8 +44,8 @@ import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Implementation of {@link ServerResponse} for sending
- * <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>.
+ * 用于发送 <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events</a>
+ * 的 {@link ServerResponse} 实现。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -274,8 +274,8 @@ final class SseServerResponse extends AbstractServerResponse {
 
 
 		/**
-		 * Wrap to silently ignore header changes HttpMessageConverter's that would
-		 * otherwise cause HttpHeaders to raise exceptions.
+		 * 包装起来，以便静默忽略对 HttpMessageConverter 的标头更改，
+		 * 否则这些更改会导致 HttpHeaders 抛出异常。
 		 */
 		private static final class MutableHeadersServerHttpResponse extends DelegatingServerHttpResponse {
 

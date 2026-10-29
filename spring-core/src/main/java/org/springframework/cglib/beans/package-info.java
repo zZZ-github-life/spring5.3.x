@@ -1,10 +1,7 @@
 /**
- * Spring's repackaging of the
- * <a href="https://github.com/cglib/cglib">CGLIB</a> beans package
- * (for internal use only).
+ * Spring 对 <a href="https://github.com/cglib/cglib">CGLIB</a> beans 包重新打包（仅供内部使用）。
  *
- * <p>As this repackaging happens at the class file level, sources
- * and javadocs are not available here... except for a few files
- * that have been patched for Spring's purposes on JDK 9-17.
+ * <p>由于这种重新打包发生在类文件层面，此处不提供源码和 javadoc……只有少数为 Spring 目的在 JDK 9-17
+ * 上打过补丁的文件除外。
  */
 package org.springframework.cglib.beans;

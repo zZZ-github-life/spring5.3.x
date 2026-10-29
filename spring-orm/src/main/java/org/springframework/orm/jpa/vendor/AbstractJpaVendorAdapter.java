@@ -28,8 +28,8 @@ import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 
 /**
- * Abstract {@link JpaVendorAdapter} implementation that defines common properties,
- * to be translated into vendor-specific JPA properties by concrete subclasses.
+ * 抽象的 {@link JpaVendorAdapter} 实现，定义了通用属性，
+ * 由具体子类转换为厂商特定的 JPA 属性。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -48,34 +48,34 @@ public abstract class AbstractJpaVendorAdapter implements JpaVendorAdapter {
 
 
 	/**
-	 * Specify the target database to operate on, as a value of the {@code Database} enum:
-	 * DB2, DERBY, H2, HANA, HSQL, INFORMIX, MYSQL, ORACLE, POSTGRESQL, SQL_SERVER, SYBASE
-	 * <p><b>NOTE:</b> This setting will override your JPA provider's default algorithm.
-	 * Custom vendor properties may still fine-tune the database dialect. However,
-	 * there may nevertheless be conflicts: For example, specify either this setting
-	 * or Hibernate's "hibernate.dialect_resolvers" property, not both.
+	 * 指定要操作的目标数据库，取值为 {@code Database} 枚举中的值：
+	 * DB2、DERBY、H2、HANA、HSQL、INFORMIX、MYSQL、ORACLE、POSTGRESQL、SQL_SERVER、SYBASE
+	 * <p><b>注意：</b>此设置将覆盖 JPA 提供者的默认算法。
+	 * 自定义厂商属性仍可微调数据库方言。不过，仍可能存在冲突：
+	 * 例如，请只指定此设置或 Hibernate 的 "hibernate.dialect_resolvers" 属性之一，
+	 * 而不要同时指定两者。
 	 */
 	public void setDatabase(Database database) {
 		this.database = database;
 	}
 
 	/**
-	 * Return the target database to operate on.
+	 * 返回要操作的目标数据库。
 	 */
 	protected Database getDatabase() {
 		return this.database;
 	}
 
 	/**
-	 * Specify the name of the target database to operate on.
-	 * The supported values are vendor-dependent platform identifiers.
+	 * 指定要操作的目标数据库的名称。
+	 * 支持的取值为厂商相关的平台标识符。
 	 */
 	public void setDatabasePlatform(@Nullable String databasePlatform) {
 		this.databasePlatform = databasePlatform;
 	}
 
 	/**
-	 * Return the name of the target database to operate on.
+	 * 返回要操作的目标数据库的名称。
 	 */
 	@Nullable
 	protected String getDatabasePlatform() {
@@ -83,15 +83,16 @@ public abstract class AbstractJpaVendorAdapter implements JpaVendorAdapter {
 	}
 
 	/**
-	 * Set whether to generate DDL after the EntityManagerFactory has been initialized,
-	 * creating/updating all relevant tables.
-	 * <p>Note that the exact semantics of this flag depend on the underlying
-	 * persistence provider. For any more advanced needs, specify the appropriate
-	 * vendor-specific settings as "jpaProperties".
-	 * <p><b>NOTE: Do not set this flag to 'true' while also setting JPA 2.1's
-	 * {@code javax.persistence.schema-generation.database.action} property.</b>
-	 * These two schema generation mechanisms - standard JPA versus provider-native -
-	 * are mutually exclusive, e.g. with Hibernate 5.
+	 * 设置是否在 EntityManagerFactory 初始化之后生成 DDL，
+	 * 即创建/更新所有相关的表。
+	 * <p>请注意，此标志的确切语义取决于底层持久化提供者。
+	 * 如需更高级的功能，请通过 "jpaProperties" 指定相应的
+	 * 厂商特定设置。
+	 * <p><b>注意：在同时设置 JPA 2.1 的
+	 * {@code javax.persistence.schema-generation.database.action} 属性时，
+	 * 不要将此标志设置为 'true'。</b>
+	 * 这两种 schema 生成机制（标准 JPA 与提供者原生方式）互斥，
+	 * 例如在 Hibernate 5 中就是如此。
 	 * @see org.springframework.orm.jpa.AbstractEntityManagerFactoryBean#setJpaProperties
 	 */
 	public void setGenerateDdl(boolean generateDdl) {
@@ -99,17 +100,17 @@ public abstract class AbstractJpaVendorAdapter implements JpaVendorAdapter {
 	}
 
 	/**
-	 * Return whether to generate DDL after the EntityManagerFactory has been initialized
-	 * creating/updating all relevant tables.
+	 * 返回是否在 EntityManagerFactory 初始化之后生成 DDL，
+	 * 即创建/更新所有相关的表。
 	 */
 	protected boolean isGenerateDdl() {
 		return this.generateDdl;
 	}
 
 	/**
-	 * Set whether to show SQL in the log (or in the console).
-	 * <p>For more specific logging configuration, specify the appropriate
-	 * vendor-specific settings as "jpaProperties".
+	 * 设置是否在日志（或控制台）中显示 SQL。
+	 * <p>如需更具体的日志配置，请通过 "jpaProperties" 指定相应的
+	 * 厂商特定设置。
 	 * @see org.springframework.orm.jpa.AbstractEntityManagerFactoryBean#setJpaProperties
 	 */
 	public void setShowSql(boolean showSql) {
@@ -117,7 +118,7 @@ public abstract class AbstractJpaVendorAdapter implements JpaVendorAdapter {
 	}
 
 	/**
-	 * Return whether to show SQL in the log (or in the console).
+	 * 返回是否在日志（或控制台）中显示 SQL。
 	 */
 	protected boolean isShowSql() {
 		return this.showSql;

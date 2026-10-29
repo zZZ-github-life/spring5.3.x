@@ -1,5 +1,5 @@
 /**
- * Support classes for reading annotation and class-level metadata.
+ * 用于读取注解和类级元数据的支持类。
  */
 @NonNullApi
 @NonNullFields

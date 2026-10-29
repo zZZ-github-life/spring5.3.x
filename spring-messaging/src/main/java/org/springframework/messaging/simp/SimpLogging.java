@@ -22,17 +22,14 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.core.log.LogDelegateFactory;
 
 /**
- * Holds the shared logger named "org.springframework.web.SimpLogging" to use
- * for STOMP over WebSocket messaging when logging for
- * "org.springframework.messaging.simp" is off but logging for
- * "org.springframework.web" is on.
+ * 持有名为 "org.springframework.web.SimpLogging" 的共享日志记录器，
+ * 当 "org.springframework.messaging.simp" 的日志记录关闭而
+ * "org.springframework.web" 的日志记录开启时，用于基于 WebSocket 的 STOMP 消息传递。
  *
- * <p>This makes it possible to enable all web related logging via
- * "org.springframework.web" including logging from lower-level packages such as
- * "org.springframework.messaging.simp".
+ * <p>这样可以启用 "org.springframework.web" 下所有与 Web 相关的日志记录，
+ * 包括来自 "org.springframework.messaging.simp" 等较低级别包的日志记录。
  *
- * <p>To see logging from the primary classes where log messages originate from,
- * simply enable logging for "org.springframework.messaging".
+ * <p>要查看日志消息主要来源类的日志，只需为 "org.springframework.messaging" 启用日志记录。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -45,9 +42,8 @@ public abstract class SimpLogging {
 
 
 	/**
-	 * Create a primary logger for the given class and wrap it with a composite
-	 * that delegates to it or to the fallback logger named
-	 * "org.springframework.web.SimpLogging", if the primary is not enabled.
+	 * 为给定类创建主日志记录器，并用组合日志记录器包装它，该组合日志记录器会委托给主日志记录器，
+	 * 如果主日志记录器未启用，则委托给名为 "org.springframework.web.SimpLogging" 的回退日志记录器。
 	 * @param primaryLoggerClass the class for the name of the primary logger
 	 * @return the resulting composite logger
 	 */
@@ -57,9 +53,9 @@ public abstract class SimpLogging {
 	}
 
 	/**
-	 * Wrap the given primary logger with a composite logger that delegates to
-	 * either the primary or to the shared fallback logger
-	 * "org.springframework.web.HttpLogging", if the primary is not enabled.
+	 * 用组合日志记录器包装给定主日志记录器，该组合日志记录器会委托给主日志记录器，
+	 * 如果主日志记录器未启用，则委托给共享回退日志记录器
+	 * "org.springframework.web.HttpLogging"。
 	 * @param primaryLogger the primary logger to use
 	 * @return the resulting composite logger
 	 */

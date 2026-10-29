@@ -27,16 +27,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
 
 /**
- * {@code TestContext} encapsulates the context in which a test is executed,
- * agnostic of the actual testing framework in use.
+ * {@code TestContext} 封装测试执行所处的上下文，
+ * 与所使用的实际测试框架无关。
  *
- * <p>As of Spring Framework 5.0, concrete implementations are highly encouraged
- * to implement a <em>copy constructor</em> in order to allow the immutable state
- * and attributes of a {@code TestContext} to be used as a template for additional
- * contexts created for parallel test execution. The copy constructor must accept a
- * single argument of the type of the concrete implementation. Any implementation
- * that does not provide a copy constructor will likely fail in an environment
- * that executes tests concurrently.
+ * <p>从 Spring Framework 5.0 开始，强烈建议具体实现
+ * 提供<em>复制构造函数</em>，以便将 {@code TestContext} 的不可变状态
+ * 和属性用作模板，为并行测试执行创建其他
+ * 上下文。复制构造函数必须接受一个
+ * 类型为具体实现的参数。任何不提供复制构造函数的实现
+ * 都可能在并发执行测试的环境中
+ * 失败。
  *
  * @author Sam Brannen
  * @since 2.5
@@ -48,15 +48,15 @@ import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
 public interface TestContext extends AttributeAccessor, Serializable {
 
 	/**
-	 * Determine if the {@linkplain ApplicationContext application context} for
-	 * this test context is known to be available.
-	 * <p>If this method returns {@code true}, a subsequent invocation of
-	 * {@link #getApplicationContext()} should succeed.
-	 * <p>The default implementation of this method always returns {@code false}.
-	 * Custom {@code TestContext} implementations are therefore highly encouraged
-	 * to override this method with a more meaningful implementation. Note that
-	 * the standard {@code TestContext} implementation in Spring overrides this
-	 * method appropriately.
+	 * 确定此测试上下文的 {@linkplain ApplicationContext 应用程序上下文}
+	 * 是否已知可用。
+	 * <p>如果此方法返回 {@code true}，则后续调用
+	 * {@link #getApplicationContext()} 应能成功。
+	 * <p>此方法的默认实现始终返回 {@code false}。
+	 * 因此，强烈建议自定义 {@code TestContext} 实现
+	 * 覆写此方法并提供更有意义的实现。请注意，
+	 * Spring 中标准的 {@code TestContext} 实现已适当地
+	 * 覆写了此方法。
 	 * @return {@code true} if the application context has already been loaded
 	 * @since 5.2
 	 * @see #getApplicationContext()
@@ -66,11 +66,10 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	}
 
 	/**
-	 * Get the {@linkplain ApplicationContext application context} for this
-	 * test context, possibly cached.
-	 * <p>Implementations of this method are responsible for loading the
-	 * application context if the corresponding context has not already been
-	 * loaded, potentially caching the context as well.
+	 * 获取此测试上下文的
+	 * {@linkplain ApplicationContext 应用程序上下文}，可能已缓存。
+	 * <p>此方法的实现负责在相应上下文尚未加载时
+	 * 加载应用程序上下文，并可能缓存该上下文。
 	 * @return the application context (never {@code null})
 	 * @throws IllegalStateException if an error occurs while retrieving the
 	 * application context
@@ -79,11 +78,10 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	ApplicationContext getApplicationContext();
 
 	/**
-	 * Publish the {@link ApplicationEvent} created by the given {@code eventFactory}
-	 * to the {@linkplain ApplicationContext application context} for this
-	 * test context.
-	 * <p>The {@code ApplicationEvent} will only be published if the application
-	 * context for this test context {@linkplain #hasApplicationContext() is available}.
+	 * 将由给定 {@code eventFactory} 创建的 {@link ApplicationEvent} 发布到此
+	 * 测试上下文的 {@linkplain ApplicationContext 应用程序上下文}。
+	 * <p>仅当此测试上下文的应用程序
+	 * 上下文{@linkplain #hasApplicationContext() 可用}时，才会发布 {@code ApplicationEvent}。
 	 * @param eventFactory factory for lazy creation of the {@code ApplicationEvent}
 	 * @since 5.2
 	 * @see #hasApplicationContext()
@@ -96,31 +94,31 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	}
 
 	/**
-	 * Get the {@linkplain Class test class} for this test context.
+	 * 获取此测试上下文的 {@linkplain Class 测试类}。
 	 * @return the test class (never {@code null})
 	 */
 	Class<?> getTestClass();
 
 	/**
-	 * Get the current {@linkplain Object test instance} for this test context.
-	 * <p>Note: this is a mutable property.
+	 * 获取此测试上下文的当前 {@linkplain Object 测试实例}。
+	 * <p>注意：这是一个可变属性。
 	 * @return the current test instance (never {@code null})
 	 * @see #updateState(Object, Method, Throwable)
 	 */
 	Object getTestInstance();
 
 	/**
-	 * Get the current {@linkplain Method test method} for this test context.
-	 * <p>Note: this is a mutable property.
+	 * 获取此测试上下文的当前 {@linkplain Method 测试方法}。
+	 * <p>注意：这是一个可变属性。
 	 * @return the current test method (never {@code null})
 	 * @see #updateState(Object, Method, Throwable)
 	 */
 	Method getTestMethod();
 
 	/**
-	 * Get the {@linkplain Throwable exception} that was thrown during execution
-	 * of the {@linkplain #getTestMethod() test method}.
-	 * <p>Note: this is a mutable property.
+	 * 获取在
+	 * {@linkplain #getTestMethod() 测试方法}执行期间抛出的 {@linkplain Throwable 异常}。
+	 * <p>注意：这是一个可变属性。
 	 * @return the exception that was thrown, or {@code null} if no exception was thrown
 	 * @see #updateState(Object, Method, Throwable)
 	 */
@@ -128,23 +126,22 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	Throwable getTestException();
 
 	/**
-	 * Call this method to signal that the {@linkplain ApplicationContext application
-	 * context} associated with this test context is <em>dirty</em> and should be
-	 * removed from the context cache.
-	 * <p>Do this if a test has modified the context &mdash; for example, by
-	 * modifying the state of a singleton bean, modifying the state of an embedded
-	 * database, etc.
+	 * 调用此方法以表明与此测试上下文关联的 {@linkplain ApplicationContext 应用程序
+	 * 上下文}是<em>脏的</em>，应从上下文缓存中
+	 * 移除。
+	 * <p>如果测试修改了上下文（例如
+	 * 修改单例 Bean 的状态、修改嵌入式数据库的状态等），请执行此操作。
 	 * @param hierarchyMode the context cache clearing mode to be applied if the
 	 * context is part of a hierarchy (may be {@code null})
 	 */
 	void markApplicationContextDirty(@Nullable HierarchyMode hierarchyMode);
 
 	/**
-	 * Update this test context to reflect the state of the currently executing test.
-	 * <p><strong>WARNING</strong>: This method should only be invoked by the
-	 * {@link TestContextManager}.
-	 * <p>Caution: concurrent invocations of this method might not be thread-safe,
-	 * depending on the underlying implementation.
+	 * 更新此测试上下文以反映当前执行测试的状态。
+	 * <p><strong>警告</strong>：此方法只应由
+	 * {@link TestContextManager} 调用。
+	 * <p>注意：对此方法的并发调用可能不是线程安全的，
+	 * 具体取决于底层实现。
 	 * @param testInstance the current test instance (may be {@code null})
 	 * @param testMethod the current test method (may be {@code null})
 	 * @param testException the exception that was thrown in the test method,

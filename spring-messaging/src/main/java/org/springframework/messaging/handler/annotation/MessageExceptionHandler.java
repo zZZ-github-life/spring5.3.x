@@ -23,8 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for handling exceptions thrown from message-handling methods within a
- * specific handler class.
+ * 用于处理特定处理器类中消息处理方法所抛出异常的注解。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -35,8 +34,7 @@ import java.lang.annotation.Target;
 public @interface MessageExceptionHandler {
 
 	/**
-	 * Exceptions handled by the annotated method. If empty, will default to any
-	 * exceptions listed in the method argument list.
+	 * 带注解方法处理的异常。如果为空，则默认为方法参数列表中列出的任何异常。
 	 */
 	Class<? extends Throwable>[] value() default {};
 

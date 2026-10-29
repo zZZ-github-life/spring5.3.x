@@ -1,0 +1,87 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpRequestFactoryWrapper.java
+@@BODY 50 50
+{@link #createRequest(URI, HttpMethod, ClientHttpRequestFactory)}。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestInterceptor.java
+@@BODY 30 30
+{@link ClientHttpResponse}。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestInterceptor.java
+@@BODY 28 28
+{@link ClientHttpResponse}。
+@@BODY 31 31
+{@link #intercept(HttpRequest, byte[], ClientHttpRequestExecution)}。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpResponse.java
+@@BODY 41 41
+{@link #getRawStatusCode()}。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpRequestFactory.java
+@@BODY 40 40
+<a href="https://hc.apache.org/httpcomponents-asyncclient-dev/">Apache HttpComponents
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpRequestFactory.java
+@@BODY 115 115
+{@link org.apache.http.config.SocketConfig}。
+@@BODY 319 319
+{@link org.apache.http.conn.HttpClientConnectionManager ClientConnectionManager}
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingAsyncClientHttpRequestFactory.java
+@@BODY 28 28
+{@link AsyncClientHttpRequestInterceptor AsyncClientHttpRequestInterceptors}。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingClientHttpRequest.java
+@@BODY 33 33
+ClientHttpRequestInterceptors}。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingClientHttpRequestFactory.java
+@@BODY 28 28
+{@link ClientHttpRequestInterceptor ClientHttpRequestInterceptors}。
+===FILE spring-web/src/main/java/org/springframework/http/client/MultipartBodyBuilder.java
+@@BODY 50 50
+{@link org.springframework.http.converter.FormHttpMessageConverter FormHttpMessageConverter}
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequest.java
+@@BODY 166 166
+A SimpleChannelInboundHandler to update the given SettableListenableFuture.
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequestFactory.java
+@@BODY 223 224
+Template method for changing properties on the given {@link SocketChannelConfig}.
+<p>The default implementation sets the connect timeout based on the set property.
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpResponse.java
+@@BODY 32 32
+{@link ClientHttpResponse} implementation based on Netty 4.
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3AsyncClientHttpRequest.java
+@@BODY 36 36
+<p>Created via the {@link OkHttp3ClientHttpRequestFactory}.
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequest.java
+@@BODY 31 31
+<p>Created via the {@link OkHttp3ClientHttpRequestFactory}.
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequestFactory.java
+@@BODY 94 95
+Set the underlying connect timeout in milliseconds.
+A value of 0 specifies an infinite timeout.
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpResponse.java
+@@BODY 31 31
+{@link ClientHttpResponse} implementation based on OkHttp 3.x.
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingAsyncClientHttpRequest.java
+@@BODY 31 33
+{@link org.springframework.http.client.ClientHttpRequest} implementation that uses
+standard JDK facilities to execute buffered requests. Created via the
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory}.
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingClientHttpRequest.java
+@@BODY 89 89
+Add the given headers to the given HTTP connection.
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpRequestFactory.java
+@@BODY 77 77
+{@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
+@@BODY 157 157
+{@inheritDoc}
+@@BODY 196 197
+Template method for preparing the given {@link HttpURLConnection}.
+<p>The default implementation prepares the connection for input and output, and sets the HTTP method.
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpResponse.java
+@@BODY 29 31
+{@link ClientHttpResponse} implementation that uses standard JDK facilities.
+Obtained via {@link SimpleBufferingClientHttpRequest#execute()} and
+{@link SimpleStreamingClientHttpRequest#execute()}.
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingAsyncClientHttpRequest.java
+@@BODY 32 34
+{@link org.springframework.http.client.ClientHttpRequest} implementation
+that uses standard Java facilities to execute streaming requests. Created
+via the {@link org.springframework.http.client.SimpleClientHttpRequestFactory}.
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingClientHttpRequest.java
+@@BODY 31 32
+{@link ClientHttpRequest} implementation that uses standard JDK facilities to
+execute streaming requests. Created via the {@link SimpleClientHttpRequestFactory}.

@@ -28,8 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Represents a reference to a type, for example
- * {@code "T(String)" or "T(com.somewhere.Foo)"}.
+ * 表示对类型的引用，例如 {@code "T(String)" or "T(com.somewhere.Foo)"}。
  *
  * @author Andy Clement
  */

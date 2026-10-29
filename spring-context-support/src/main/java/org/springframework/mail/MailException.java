@@ -20,7 +20,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Base class for all mail exceptions.
+ * 所有邮件异常的基类。
  *
  * @author Dmitriy Kopylenko
  */
@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 public abstract class MailException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for MailException.
+	 * MailException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public MailException(String msg) {
@@ -36,7 +36,7 @@ public abstract class MailException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for MailException.
+	 * MailException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the mail API in use
 	 */

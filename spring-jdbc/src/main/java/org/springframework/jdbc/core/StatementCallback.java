@@ -23,12 +23,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Generic callback interface for code that operates on a JDBC Statement.
- * Allows to execute any number of operations on a single Statement,
- * for example a single {@code executeUpdate} call or repeated
- * {@code executeUpdate} calls with varying SQL.
+ * 对JDBC Statement进行操作的代码的通用回调接口。
+ * 允许在单个Statement上执行任意数量的操作，
+ * 例如单次{@code executeUpdate}调用或具有不同SQL的重复{@code executeUpdate}调用。
  *
- * <p>Used internally by JdbcTemplate, but also useful for application code.
+ * <p>由JdbcTemplate内部使用，但也对应用程序代码有用。
  *
  * @author Juergen Hoeller
  * @since 16.03.2004
@@ -39,26 +38,19 @@ import org.springframework.lang.Nullable;
 public interface StatementCallback<T> {
 
 	/**
-	 * Gets called by {@code JdbcTemplate.execute} with an active JDBC
-	 * Statement. Does not need to care about closing the Statement or the
-	 * Connection, or about handling transactions: this will all be handled
-	 * by Spring's JdbcTemplate.
-	 * <p><b>NOTE:</b> Any ResultSets opened should be closed in finally blocks
-	 * within the callback implementation. Spring will close the Statement
-	 * object after the callback returned, but this does not necessarily imply
-	 * that the ResultSet resources will be closed: the Statement objects might
-	 * get pooled by the connection pool, with {@code close} calls only
-	 * returning the object to the pool but not physically closing the resources.
-	 * <p>If called without a thread-bound JDBC transaction (initiated by
-	 * DataSourceTransactionManager), the code will simply get executed on the
-	 * JDBC connection with its transactional semantics. If JdbcTemplate is
-	 * configured to use a JTA-aware DataSource, the JDBC connection and thus
-	 * the callback code will be transactional if a JTA transaction is active.
-	 * <p>Allows for returning a result object created within the callback, i.e.
-	 * a domain object or a collection of domain objects. Note that there's
-	 * special support for single step actions: see JdbcTemplate.queryForObject etc.
-	 * A thrown RuntimeException is treated as application exception, it gets
-	 * propagated to the caller of the template.
+	 * 由{@code JdbcTemplate.execute}使用活跃的JDBC Statement调用。
+	 * 不需要关心关闭Statement或Connection，也不需要处理事务：
+	 * 这些都由Spring的JdbcTemplate处理。
+	 * <p><b>注意：</b>在回调实现的finally块中应关闭打开的任何ResultSet。
+	 * Spring将在回调返回后关闭Statement对象，但这并不意味着ResultSet资源也会被关闭：
+	 * Statement对象可能被连接池池化，{@code close}调用只是将对象返回到池中，
+	 * 而不会物理关闭资源。
+	 * <p>如果在没有线程绑定的JDBC事务（由DataSourceTransactionManager发起）的情况下调用，
+	 * 代码将在JDBC连接上以其事务语义直接执行。如果JdbcTemplate配置为使用支持JTA的DataSource，
+	 * 则如果有活跃的JTA事务，JDBC连接和回调代码将具有事务性。
+	 * <p>允许返回在回调内创建的结果对象，即领域对象或领域对象集合。
+	 * 请注意，对单步操作有特殊支持：请参见JdbcTemplate.queryForObject等。
+	 * 抛出的RuntimeException被视为应用程序异常，它会传播到模板的调用者。
 	 * @param stmt active JDBC Statement
 	 * @return a result object, or {@code null} if none
 	 * @throws SQLException if thrown by a JDBC method, to be auto-converted

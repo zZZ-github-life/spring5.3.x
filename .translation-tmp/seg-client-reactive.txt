@@ -1,0 +1,250 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/AbstractClientHttpRequest.java
+@@BODY 38 38
+Base class for {@link ClientHttpRequest} implementations.
+@@BODY 47 50
+COMMITTING -> COMMITTED is the period after doCommit is called but before
+the response status and headers have been applied to the underlying
+response during which time pre-commit actions can still make changes to
+the response status and headers.
+@@BODY 93 95
+Initialize the read-only headers after the request is committed.
+<p>By default, this method simply applies a read-only wrapper.
+Subclasses can do the same for headers from the native request.
+@@BODY 122 122
+A variant of {@link #doCommit(Supplier)} for a request without body.
+@@BODY 130 131
+Apply {@link #beforeCommit(Supplier) beforeCommit} actions, apply the
+request headers/cookies, and write the request body.
+@@BODY 159 160
+Apply header changes from {@link #getHeaders()} to the underlying request.
+This method is called once only.
+@@BODY 165 166
+Add cookies from {@link #getHeaders()} to the underlying request.
+This method is called once only.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpConnector.java
+@@BODY 27 29
+Abstraction over HTTP clients driving the underlying HTTP client to connect
+to the origin server and provide all necessary infrastructure to send a
+{@link ClientHttpRequest} and receive a {@link ClientHttpResponse}.
+@@BODY 37 39
+Connect to the origin server using the given {@code HttpMethod} and
+{@code URI} and apply the given {@code requestCallback} when the HTTP
+request of the underlying API can be initialized and written to.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpRequest.java
+@@BODY 27 27
+Represents a client-side reactive HTTP request.
+@@BODY 36 36
+Return the HTTP method of the request.
+@@BODY 41 41
+Return the URI of the request.
+@@BODY 46 46
+Return a mutable map of request cookies to send to the server.
+@@BODY 51 51
+Return the request from the underlying HTTP library.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpRequestDecorator.java
+@@BODY 34 35
+Wraps another {@link ClientHttpRequest} and delegates all methods to it.
+Subclasses can override specific methods selectively.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpResponse.java
+@@BODY 26 26
+Represents a client-side reactive HTTP response.
+@@BODY 35 36
+Return an id that represents the underlying connection, if available,
+or the request for the purpose of correlating log messages.
+@@BODY 44 44
+Return the HTTP status code as an {@link HttpStatus} enum value.
+@@BODY 53 54
+Return the HTTP status code (potentially non-standard and not
+resolvable through the {@link HttpStatus} enum) as an integer.
+@@BODY 63 63
+Return a read-only map of response cookies received from the server.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpResponseDecorator.java
+@@BODY 29 30
+Wraps another {@link ClientHttpResponse} and delegates all methods to it.
+Subclasses can override specific methods selectively.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsClientHttpConnector.java
+@@BODY 46 46
+{@link ClientHttpConnector} implementation for the Apache HttpComponents HttpClient 5.x.
+@@BODY 63 63
+Default constructor that creates and starts a new instance of {@link CloseableHttpAsyncClient}.
+@@BODY 70 70
+Constructor with a pre-configured {@link CloseableHttpAsyncClient} instance.
+@@BODY 78 80
+Constructor with a pre-configured {@link CloseableHttpAsyncClient} instance
+and a {@link HttpClientContext} supplier lambda which is called before each request
+and passed to the client.
+@@BODY 97 97
+Set the buffer factory to use.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsClientHttpRequest.java
+@@BODY 48 48
+{@link ClientHttpRequest} implementation for the Apache HttpComponents HttpClient 5.x.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsClientHttpResponse.java
+@@BODY 38 38
+{@link ClientHttpResponse} implementation for the Apache HttpComponents HttpClient 5.x.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsHeadersAdapter.java
+@@BODY 39 40
+{@code MultiValueMap} implementation for wrapping Apache HttpComponents
+HttpClient headers.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/Jetty10HttpFieldsHelper.java
+@@BODY 30 30
+Used to support Jetty 10.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyClientHttpConnector.java
+@@BODY 37 37
+{@link ClientHttpConnector} for the Jetty Reactive Streams HttpClient.
+@@BODY 51 51
+Default constructor that creates a new instance of {@link HttpClient}.
+@@BODY 58 58
+Constructor with an initialized {@link HttpClient}.
+@@BODY 65 66
+Constructor with an initialized {@link HttpClient} and configures it
+with the given {@link JettyResourceFactory}.
+@@BODY 82 82
+Constructor with an {@link JettyResourceFactory} that will manage shared resources.
+@@BODY 98 98
+Set the buffer factory to use.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyClientHttpRequest.java
+@@BODY 43 43
+{@link ClientHttpRequest} implementation for the Jetty ReactiveStreams HTTP client.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyClientHttpResponse.java
+@@BODY 38 38
+{@link ClientHttpResponse} implementation for the Jetty ReactiveStreams HTTP client.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyHeadersAdapter.java
+@@BODY 37 37
+{@code MultiValueMap} implementation for wrapping Jetty HTTP headers.
+@@BODY 39 39
+<p>There is a duplicate of this class in the server package!
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyResourceFactory.java
+@@BODY 38 39
+Factory to manage Jetty resources, i.e. {@link Executor}, {@link ByteBufferPool} and
+{@link Scheduler}, within the lifecycle of a Spring {@code ApplicationContext}.
+@@BODY 41 42
+<p>This factory implements {@link InitializingBean} and {@link DisposableBean}
+and is expected typically to be declared as a Spring-managed bean.
+@@BODY 62 63
+Configure the {@link Executor} to use.
+<p>By default, initialized with a {@link QueuedThreadPool}.
+@@BODY 71 72
+Configure the {@link ByteBufferPool} to use.
+<p>By default, initialized with a {@link MappedByteBufferPool}.
+@@BODY 80 81
+Configure the {@link Scheduler} to use.
+<p>By default, initialized with a {@link ScheduledExecutorScheduler}.
+@@BODY 89 92
+Configure the thread prefix to initialize {@link QueuedThreadPool} executor with. This
+is used only when a {@link Executor} instance isn't
+{@link #setExecutor(Executor) provided}.
+<p>By default set to "jetty-http".
+@@BODY 101 101
+Return the configured {@link Executor}.
+@@BODY 109 109
+Return the configured {@link ByteBufferPool}.
+@@BODY 117 117
+Return the configured {@link Scheduler}.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/NettyHeadersAdapter.java
+@@BODY 34 34
+{@code MultiValueMap} implementation for wrapping Netty HTTP headers.
+@@BODY 36 36
+<p>There is a duplicate of this class in the server package!
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorClientHttpConnector.java
+@@BODY 34 34
+Reactor-Netty implementation of {@link ClientHttpConnector}.
+@@BODY 50 50
+Default constructor. Initializes {@link HttpClient} via:
+@@BODY 60 70
+Constructor with externally managed Reactor Netty resources, including
+{@link LoopResources} for event loop threads, and {@link ConnectionProvider}
+for the connection pool.
+<p>This constructor should be used only when you don't want the client
+to participate in the Reactor Netty global resources. By default the
+client participates in the Reactor Netty global resources held in
+{@link reactor.netty.http.HttpResources}, which is recommended since
+fixed, shared resources are favored for event loop concurrency. However,
+consider declaring a {@link ReactorResourceFactory} bean with
+{@code globalResources=true} in order to ensure the Reactor Netty global
+resources are shut down when the Spring ApplicationContext is closed.
+@@BODY 92 92
+Constructor with a pre-configured {@code HttpClient} instance.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorClientHttpRequest.java
+@@BODY 39 39
+{@link ClientHttpRequest} implementation for the Reactor-Netty HTTP client.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorClientHttpResponse.java
+@@BODY 47 47
+{@link ClientHttpResponse} implementation for the Reactor-Netty HTTP client.
+@@BODY 76 77
+Constructor that matches the inputs from
+{@link reactor.netty.http.client.HttpClient.ResponseReceiver#responseConnection(BiFunction)}.
+@@BODY 89 89
+Constructor with inputs extracted from a {@link Connection}.
+@@BODY 176 180
+Called by {@link ReactorClientHttpConnector} when a cancellation is detected
+but the content has not been subscribed to. If the subscription never
+materializes then the content will remain not drained. Or it could still
+materialize if the cancellation happened very early, or the response
+reading was delayed for some reason.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorResourceFactory.java
+@@BODY 33 35
+Factory to manage Reactor Netty resources, i.e. {@link LoopResources} for
+event loop threads, and {@link ConnectionProvider} for the connection pool,
+within the lifecycle of a Spring {@code ApplicationContext}.
+@@BODY 37 38
+<p>This factory implements {@link InitializingBean} and {@link DisposableBean}
+and is expected typically to be declared as a Spring-managed bean.
+@@BODY 71 75
+Whether to use global Reactor Netty resources via {@link HttpResources}.
+<p>Default is "true" in which case this factory initializes and stops the
+global Reactor Netty resources within Spring's {@code ApplicationContext}
+lifecycle. If set to "false" the factory manages its resources independent
+of the global ones.
+@@BODY 84 85
+Whether this factory exposes the global
+{@link reactor.netty.http.HttpResources HttpResources} holder.
+@@BODY 92 94
+Add a Consumer for configuring the global Reactor Netty resources on
+startup. When this option is used, {@link #setUseGlobalResources} is also
+enabled.
+@@BODY 105 109
+Use this when you don't want to participate in global resources and
+you want to customize the creation of the managed {@code ConnectionProvider}.
+<p>By default, {@code ConnectionProvider.elastic("http")} is used.
+<p>Note that this option is ignored if {@code userGlobalResources=false} or
+{@link #setConnectionProvider(ConnectionProvider)} is set.
+@@BODY 117 118
+Use this when you want to provide an externally managed
+{@link ConnectionProvider} instance.
+@@BODY 126 126
+Return the configured {@link ConnectionProvider}.
+@@BODY 134 138
+Use this when you don't want to participate in global resources and
+you want to customize the creation of the managed {@code LoopResources}.
+<p>By default, {@code LoopResources.create("reactor-http")} is used.
+<p>Note that this option is ignored if {@code userGlobalResources=false} or
+{@link #setLoopResources(LoopResources)} is set.
+@@BODY 146 147
+Use this option when you want to provide an externally managed
+{@link LoopResources} instance.
+@@BODY 155 155
+Return the configured {@link LoopResources}.
+@@BODY 163 170
+Configure the amount of time we'll wait before shutting down resources.
+If a task is submitted during the {@code shutdownQuietPeriod}, it is guaranteed
+to be accepted and the {@code shutdownQuietPeriod} will start over.
+<p>By default, this is set to
+{@link LoopResources#DEFAULT_SHUTDOWN_QUIET_PERIOD} which is 2 seconds but
+can also be overridden with the system property
+{@link reactor.netty.ReactorNetty#SHUTDOWN_QUIET_PERIOD
+ReactorNetty.SHUTDOWN_QUIET_PERIOD}.
+@@BODY 180 187
+Configure the maximum amount of time to wait until the disposal of the
+underlying resources regardless if a task was submitted during the
+{@code shutdownQuietPeriod}.
+<p>By default, this is set to
+{@link LoopResources#DEFAULT_SHUTDOWN_TIMEOUT} which is 15 seconds but
+can also be overridden with the system property
+{@link reactor.netty.ReactorNetty#SHUTDOWN_TIMEOUT
+ReactorNetty.SHUTDOWN_TIMEOUT}.
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/package-info.java
+@@BODY 2 5
+Abstractions for reactive HTTP client support including
+{@link org.springframework.http.client.reactive.ClientHttpRequest} and
+{@link org.springframework.http.client.reactive.ClientHttpResponse} as well as a
+{@link org.springframework.http.client.reactive.ClientHttpConnector}.

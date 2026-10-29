@@ -1,6 +1,6 @@
 /**
- * Root package for Spring's O/R Mapping integration classes.
- * Contains generic DataAccessExceptions related to O/R Mapping.
+ * Spring O/R 映射集成类的根包。
+ * 包含与 O/R 映射相关的通用 DataAccessExceptions。
  */
 @NonNullApi
 @NonNullFields

@@ -1,0 +1,584 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractAsyncClientHttpRequest.java
+@@BODY 27 28
+用于 {@link AsyncClientHttpRequest} 的抽象基类，确保头部和正文
+不会被多次写入。
+@@BODY 62 62
+断言此请求尚未被 {@linkplain #executeAsync() 执行}。
+@@BODY 71 71
+返回正文的抽象模板方法。
+@@BODY 78 78
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractBufferingAsyncClientHttpRequest.java
+@@BODY 27 28
+在通过网络发送之前，在字节数组中缓冲输出的
+{@link AsyncClientHttpRequest} 基础实现。
+@@BODY 57 57
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractBufferingClientHttpRequest.java
+@@BODY 26 27
+在通过网络发送之前，在字节数组中缓冲输出的
+{@link ClientHttpRequest} 基础实现。
+@@BODY 54 54
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpRequest.java
+@@BODY 27 28
+用于 {@link ClientHttpRequest} 的抽象基类，确保头部
+和正文不会被多次写入。
+@@BODY 72 72
+断言此请求尚未被 {@linkplain #execute() 执行}。
+@@BODY 81 81
+返回正文的抽象模板方法。
+@@BODY 88 88
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpRequestFactoryWrapper.java
+@@BODY 26 27
+用于装饰另一个请求工厂的 {@link ClientHttpRequestFactory} 实现的
+抽象基类。
+@@BODY 38 38
+创建一个包装给定请求工厂的 {@code AbstractClientHttpRequestFactoryWrapper}。
+@@BODY 48 50
+此实现仅使用传递给 {@linkplain #AbstractClientHttpRequestFactoryWrapper(ClientHttpRequestFactory) 构造函数}
+的被包装请求工厂调用
+{@link #createRequest(URI, HttpMethod, ClientHttpRequestFactory)}。
+@@BODY 58 60
+通过传入的请求工厂为指定的 URI 和 HTTP 方法
+创建新的 {@link ClientHttpRequest}。
+<p>由 {@link #createRequest(URI, HttpMethod)} 调用。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpResponse.java
+@@BODY 24 24
+用于 {@link ClientHttpResponse} 的抽象基类。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequest.java
+@@BODY 26 27
+表示客户端异步 HTTP 请求。通过 {@link AsyncClientHttpRequestFactory}
+的实现创建。
+@@BODY 29 30
+<p>可以 {@linkplain #executeAsync() 执行} {@code AsyncHttpRequest}，
+获得可读取的未来 {@link ClientHttpResponse}。
+@@BODY 41 42
+异步执行此请求，返回可读取的 {@link ClientHttpResponse} 的 Future 句柄。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestExecution.java
+@@BODY 25 25
+表示客户端 HTTP 请求执行的上下文。
+@@BODY 27 28
+<p>用于调用拦截器链中的下一个拦截器，或者
+如果当前拦截器是最后一个，则执行请求本身。
+@@BODY 41 42
+通过调用链中的下一个拦截器或向远程服务执行请求
+来恢复请求执行。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestFactory.java
+@@BODY 25 26
+用于创建 {@link AsyncClientHttpRequest} 对象的工厂。
+请求通过 {@link #createAsyncRequest(URI, HttpMethod)} 方法创建。
+@@BODY 36 39
+为指定的 URI 和 HTTP 方法创建新的异步 {@link AsyncClientHttpRequest}。
+<p>返回的请求可以写入，然后通过调用
+{@link AsyncClientHttpRequest#executeAsync()} 执行。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestInterceptor.java
+@@BODY 25 30
+拦截客户端 HTTP 请求。此接口的实现可以通过
+{@linkplain org.springframework.web.client.AsyncRestTemplate#setInterceptors registered 注册}
+到 {@link org.springframework.web.client.AsyncRestTemplate}，以修改发出的 {@link HttpRequest}
+和/或注册以借助
+{@link org.springframework.util.concurrent.ListenableFutureAdapter} 修改传入的
+{@link ClientHttpResponse}。
+@@BODY 32 32
+<p>拦截器的主要入口点是 {@link #intercept}。
+@@BODY 46 49
+拦截给定请求并返回响应的 future。给定的
+{@link AsyncClientHttpRequestExecution} 允许拦截器将
+请求传递给链中的下一个实体。
+<p>实现可以遵循以下模式：
+@@BODY 51 55
+<li>检查 {@linkplain HttpRequest 请求} 和正文</li>
+<li>可选地 {@linkplain org.springframework.http.client.support.HttpRequestWrapper 包装}
+请求以过滤 HTTP 属性。</li>
+<li>可选地修改请求正文。</li>
+<li>执行以下操作之一：
+@@BODY 57 58
+<li>通过 {@link ClientHttpRequestExecution} 执行请求</li>
+<li>不执行请求以完全阻止执行</li>
+@@BODY 60 62
+<li>可选地借助 {@link org.springframework.util.concurrent.ListenableFutureAdapter ListenableFutureAdapter}
+调整响应以过滤 HTTP 属性。</li>
+===FILE spring-web/src/main/java/org/springframework/http/client/BufferingClientHttpRequestFactory.java
+@@BODY 25 26
+用于 {@link ClientHttpRequestFactory} 的包装器，在内存中缓冲
+所有传出和传入流。
+@@BODY 28 29
+<p>使用此包装器可以多次读取
+{@linkplain ClientHttpResponse#getBody() 响应正文}。
+@@BODY 37 37
+为给定的 {@link ClientHttpRequestFactory} 创建缓冲包装器。
+@@BODY 59 62
+指示给定 URI 和方法的请求/响应交换是否应在内存中缓冲。
+<p>默认实现对所有 URI 和方法返回 {@code true}。
+子类可以覆盖此方法以更改此行为。
+===FILE spring-web/src/main/java/org/springframework/http/client/BufferingClientHttpRequestWrapper.java
+@@BODY 28 28
+包装另一个请求的 {@link ClientHttpRequest} 简单实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/BufferingClientHttpResponseWrapper.java
+@@BODY 29 30
+读取响应正文到内存的 {@link ClientHttpResponse} 简单实现，
+从而允许多次调用 {@link #getBody()}。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequest.java
+@@BODY 26 27
+表示客户端 HTTP 请求。
+通过 {@link ClientHttpRequestFactory} 的实现创建。
+@@BODY 29 30
+<p>可以 {@linkplain #execute() 执行} {@code ClientHttpRequest}，
+接收可读取的 {@link ClientHttpResponse}。
+@@BODY 39 39
+执行此请求，返回可读取的 {@link ClientHttpResponse}。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestExecution.java
+@@BODY 24 24
+表示客户端 HTTP 请求执行的上下文。
+@@BODY 26 27
+<p>用于调用拦截器链中的下一个拦截器，
+或者如果当前拦截器是最后一个，则执行请求本身。
+@@BODY 37 38
+使用给定的请求属性和正文执行请求，
+并返回响应。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestFactory.java
+@@BODY 25 26
+用于创建 {@link ClientHttpRequest} 对象的工厂。
+请求通过 {@link #createRequest(URI, HttpMethod)} 方法创建。
+@@BODY 35 37
+为指定的 URI 和 HTTP 方法创建新的 {@link ClientHttpRequest}。
+<p>返回的请求可以写入，然后通过调用
+{@link ClientHttpRequest#execute()} 执行。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestInitializer.java
+@@BODY 22 23
+在 {@link ClientHttpRequest} 被使用之前对其进行初始化的
+回调接口。
+@@BODY 25 27
+<p>通常与 {@link HttpAccessor} 及其子类（例如
+{@link org.springframework.web.client.RestTemplate RestTemplate}）一起使用，以便为每个请求应用
+一致的设置或头部。
+@@BODY 29 30
+<p>与 {@link ClientHttpRequestInterceptor} 不同，此接口可以应用
+自定义设置，而无需将整个请求正文读入内存。
+@@BODY 40 40
+初始化给定的客户端 HTTP 请求。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestInterceptor.java
+@@BODY 24 28
+拦截客户端 HTTP 请求。此接口的实现可以通过
+{@linkplain org.springframework.web.client.RestTemplate#setInterceptors registered 注册}
+到 {@link org.springframework.web.client.RestTemplate RestTemplate}，
+以修改发出的 {@link ClientHttpRequest} 和/或传入的
+{@link ClientHttpResponse}。
+@@BODY 30 31
+<p>拦截器的主要入口点是
+{@link #intercept(HttpRequest, byte[], ClientHttpRequestExecution)}。
+@@BODY 40 43
+拦截给定请求并返回响应。给定的
+{@link ClientHttpRequestExecution} 允许拦截器将
+请求和响应传递给链中的下一个实体。
+<p>此方法的典型实现将遵循以下模式：
+@@BODY 45 48
+<li>检查 {@linkplain HttpRequest 请求} 和正文。</li>
+<li>可选地 {@linkplain org.springframework.http.client.support.HttpRequestWrapper 包装}
+请求以过滤 HTTP 属性。</li>
+<li>可选地修改请求正文。</li>
+@@BODY 50 54
+<li><strong>要么</strong>
+<li>使用
+{@link ClientHttpRequestExecution#execute(org.springframework.http.HttpRequest, byte[])} 执行请求，</li>
+<li><strong>要么</strong></li>
+<li>不执行请求以完全阻止执行。</li>
+@@BODY 56 56
+<li>可选地包装响应以过滤 HTTP 属性。</li>
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpResponse.java
+@@BODY 26 26
+表示客户端 HTTP 响应。
+@@BODY 28 28
+<p>通过调用 {@link ClientHttpRequest#execute()} 获得。
+@@BODY 30 31
+<p>{@code ClientHttpResponse} 必须被 {@linkplain #close() 关闭}，
+通常在 {@code finally} 块中进行。
+@@BODY 39 41
+以 {@link HttpStatus} 枚举值形式获取 HTTP 状态码。
+<p>对于 {@code HttpStatus} 不支持的状态码，请改用
+{@link #getRawStatusCode()}。
+@@BODY 51 52
+以整数形式获取 HTTP 状态码（可能非标准且
+无法通过 {@link HttpStatus} 枚举解析）。
+@@BODY 62 62
+获取响应的 HTTP 状态文本。
+@@BODY 69 69
+关闭此响应，释放所创建的所有资源。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpRequest.java
+@@BODY 42 43
+基于 Apache HttpComponents HttpAsyncClient 的
+{@link ClientHttpRequest} 实现。
+@@BODY 45 45
+<p>通过 {@link HttpComponentsClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpRequestFactory.java
+@@BODY 39 41
+{@link HttpComponentsClientHttpRequestFactory} 的异步扩展。使用
+<a href="https://hc.apache.org/httpcomponents-asyncclient-dev/">Apache HttpComponents
+HttpAsyncClient 4.0</a> 创建请求。
+@@BODY 58 59
+使用默认的 {@link HttpAsyncClient} 和 {@link HttpClient}
+创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
+@@BODY 67 68
+使用给定的 {@link HttpAsyncClient} 实例和默认的 {@link HttpClient}
+创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
+@@BODY 78 79
+使用给定的 {@link CloseableHttpAsyncClient} 实例和默认的 {@link HttpClient}
+创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
+@@BODY 88 89
+使用给定的 {@link HttpClient} 和 {@link HttpAsyncClient} 实例
+创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
+@@BODY 100 101
+使用给定的 {@link CloseableHttpClient} 和 {@link CloseableHttpAsyncClient} 实例
+创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
+@@BODY 114 115
+设置用于
+{@linkplain #createAsyncRequest(URI, HttpMethod) 同步执行}的 {@code HttpAsyncClient}。
+@@BODY 125 126
+返回用于
+{@linkplain #createAsyncRequest(URI, HttpMethod) 同步执行}的 {@code HttpAsyncClient}。
+@@BODY 135 136
+设置用于
+{@linkplain #createAsyncRequest(URI, HttpMethod) 异步执行}的 {@code CloseableHttpAsyncClient}。
+@@BODY 145 146
+返回用于
+{@linkplain #createAsyncRequest(URI, HttpMethod) 异步执行}的 {@code CloseableHttpAsyncClient}。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpResponse.java
+@@BODY 31 32
+基于 Apache HttpComponents HttpAsyncClient 的
+{@link ClientHttpResponse} 实现。
+@@BODY 34 34
+<p>通过 {@link HttpComponentsAsyncClientHttpRequest} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpRequest.java
+@@BODY 36 37
+基于 Apache HttpComponents HttpClient 的
+{@link ClientHttpRequest} 实现。
+@@BODY 39 39
+<p>通过 {@link HttpComponentsClientHttpRequestFactory} 创建。
+@@BODY 93 93
+将给定头部添加到给定的 HTTP 请求。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpRequestFactory.java
+@@BODY 46 48
+使用 <a href="https://hc.apache.org/httpcomponents-client-ga/">Apache HttpComponents
+HttpClient</a> 创建请求的 {@link org.springframework.http.client.ClientHttpRequestFactory} 实现。
+@@BODY 50 51
+<p>允许使用预配置的 {@link HttpClient} 实例 -
+可能带有身份验证、HTTP 连接池等。
+@@BODY 53 53
+<p><b>注意：</b>从 Spring 4.0 开始，需要 Apache HttpComponents 4.3 或更高版本。
+@@BODY 75 76
+使用基于系统属性的默认 {@link HttpClient}
+创建新的 {@code HttpComponentsClientHttpRequestFactory} 实例。
+@@BODY 83 84
+使用给定的 {@link HttpClient} 实例
+创建新的 {@code HttpComponentsClientHttpRequestFactory} 实例。
+@@BODY 93 94
+设置用于
+{@linkplain #createRequest(URI, HttpMethod) 同步执行}的 {@code HttpClient}。
+@@BODY 102 103
+返回用于
+{@linkplain #createRequest(URI, HttpMethod) 同步执行}的 {@code HttpClient}。
+@@BODY 110 117
+设置底层 {@link RequestConfig} 的连接超时。
+超时值 0 表示无限超时。
+<p>可以通过在自定义 {@link HttpClient} 上指定
+{@link RequestConfig} 实例来配置其他属性。
+<p>此选项不影响 SSL 握手或 CONNECT 请求的连接超时；
+为此，需要在 {@link HttpClient} 自身上使用
+{@link org.apache.http.config.SocketConfig}。
+@@BODY 128 132
+使用底层 {@link RequestConfig} 设置从连接管理器请求连接时
+使用的超时（以毫秒为单位）。
+超时值 0 表示无限超时。
+<p>可以通过在自定义 {@link HttpClient} 上指定
+{@link RequestConfig} 实例来配置其他属性。
+@@BODY 142 145
+设置底层 {@link RequestConfig} 的套接字读取超时。
+超时值 0 表示无限超时。
+<p>可以通过在自定义 {@link HttpClient} 上指定
+{@link RequestConfig} 实例来配置其他属性。
+@@BODY 155 157
+指示此请求工厂是否应在内部缓冲请求正文。
+<p>默认值为 {@code true}。通过 POST 或 PUT 发送大量数据时，
+建议将此属性更改为 {@code false}，以免耗尽内存。
+@@BODY 165 170
+配置工厂为每个请求预先创建 {@link HttpContext}。
+<p>例如，在双向 TLS 身份验证中，这可能很有用：为每个客户端证书
+使用不同的 {@code RestTemplate}，以便通过给定 {@code RestTemplate} 实例
+发出的所有调用都关联到同一客户端身份。{@link HttpClientContext#setUserToken(Object)}
+可用于为所有请求指定固定的用户令牌。
+@@BODY 214 214
+返回用于修改工厂级 {@link RequestConfig} 的构建器。
+@@BODY 222 226
+创建要与给定客户端一起使用的默认 {@link RequestConfig}。
+可以返回 {@code null} 以表示不应设置自定义请求配置，
+而应使用 {@link HttpClient} 的默认值。
+<p>默认实现会尝试将客户端的默认值
+与此工厂实例的本地自定义配置（如果有）合并。
+@@BODY 242 243
+如有必要，将给定的 {@link HttpClient} 级 {@link RequestConfig}
+与工厂级 {@link RequestConfig} 合并。
+@@BODY 270 270
+为给定的 HTTP 方法和 URI 规范创建 Commons HttpMethodBase 对象。
+@@BODY 299 301
+允许在将 {@link HttpUriRequest} 作为
+{@link HttpComponentsClientHttpRequest} 的一部分返回之前对其进行操作的模板方法。
+<p>默认实现为空。
+@@BODY 308 309
+为给定的 HTTP 方法和 URI 创建 {@link HttpContext} 的模板方法。
+<p>默认实现返回 {@code null}。
+@@BODY 321 323
+关闭底层
+{@link org.apache.http.conn.HttpClientConnectionManager ClientConnectionManager}
+连接池（如果有）的关闭钩子。
+@@BODY 335 339
+{@link org.apache.http.client.methods.HttpDelete} 的替代方案，它
+扩展 {@link org.apache.http.client.methods.HttpEntityEnclosingRequestBase}
+而不是 {@link org.apache.http.client.methods.HttpRequestBase}，
+因此允许带请求正文的 HTTP DELETE。用于 RestTemplate
+的 exchange 方法，这些方法允许将 HTTP DELETE 与实体组合使用。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpResponse.java
+@@BODY 33 34
+基于 Apache HttpComponents HttpClient 的
+{@link ClientHttpResponse} 实现。
+@@BODY 36 36
+<p>通过 {@link HttpComponentsClientHttpRequest} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsStreamingClientHttpRequest.java
+@@BODY 39 40
+基于 Apache HttpComponents HttpClient 流式模式的
+{@link ClientHttpRequest} 实现。
+@@BODY 42 42
+<p>通过 {@link HttpComponentsClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingAsyncClientHttpRequest.java
+@@BODY 32 33
+一个 {@link AsyncClientHttpRequest} 包装器，它在执行实际请求之前
+调用已注册的拦截器。
+@@BODY 53 53
+创建 {@link InterceptingAsyncClientHttpRequest} 的新实例。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingAsyncClientHttpRequestFactory.java
+@@BODY 27 28
+用于 {@link AsyncClientHttpRequestFactory} 的包装器，支持
+{@link AsyncClientHttpRequestInterceptor AsyncClientHttpRequestInterceptors}。
+@@BODY 44 45
+使用委托请求工厂和拦截器列表
+创建 {@link InterceptingAsyncClientHttpRequestFactory} 的新实例。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingClientHttpRequest.java
+@@BODY 32 33
+用于 {@link ClientHttpRequest} 的包装器，支持 {@link ClientHttpRequestInterceptor
+ClientHttpRequestInterceptors}。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingClientHttpRequestFactory.java
+@@BODY 27 28
+{@link ClientHttpRequestFactory} 包装器，支持
+{@link ClientHttpRequestInterceptor ClientHttpRequestInterceptors}。
+@@BODY 41 41
+使用给定参数创建 {@code InterceptingClientHttpRequestFactory} 的新实例。
+===FILE spring-web/src/main/java/org/springframework/http/client/MultipartBodyBuilder.java
+@@BODY 41 45
+准备 multipart 请求的正文，结果为
+{@code MultiValueMap<String, HttpEntity>}。部件可以是具体值，也可以
+通过异步类型（例如 Reactor 的 {@code Mono}、{@code Flux} 以及注册在
+{@link org.springframework.core.ReactiveAdapterRegistry ReactiveAdapterRegistry} 中的其他类型）提供。
+@@BODY 47 53
+<p>此构建器旨在与响应式
+{@link org.springframework.web.reactive.function.client.WebClient WebClient} 一起使用。
+对于使用 {@code RestTemplate} 的 multipart 请求，只需创建并填充
+一个 {@code MultiValueMap<String, HttpEntity>}，如
+{@link org.springframework.http.converter.FormHttpMessageConverter FormHttpMessageConverter}
+的 Javadoc 和
+<a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#rest-template-multipart">参考文档</a>中所示。
+@@BODY 55 55
+<p>以下是使用此构建器的示例：
+@@BODY 95 95
+创建 {@code MultipartBodyBuilder} 的新空实例。
+@@BODY 102 102
+添加一个部件，其中对象可以是：
+@@BODY 104 109
+<li>String -- 表单字段
+<li>{@link org.springframework.core.io.Resource Resource} -- 文件部件
+<li>Object -- 要编码的内容（例如编码为 JSON）
+<li>{@link HttpEntity} -- 部件内容和头部，不过通常
+通过返回的构建器添加头部更容易
+<li>{@link Part} -- 服务器请求中的部件
+@@BODY 120 120
+也接受 MediaType 的 {@link #part(String, Object)} 变体。
+@@BODY 183 183
+从 {@link Publisher} 内容添加部件。
+@@BODY 200 201
+使用 {@link ParameterizedTypeReference} 提供元素类型信息的
+{@link #asyncPart(String, Publisher, Class)} 变体。
+@@BODY 220 220
+返回包含已配置部件的 {@code MultiValueMap}。
+@@BODY 235 235
+允许进一步自定义部件头部的构建器。
+@@BODY 240 240
+设置部件的 {@linkplain MediaType 媒体类型}。
+@@BODY 248 251
+设置文件部件的 filename 参数。对于公开文件名的
+基于 {@link org.springframework.core.io.Resource Resource} 的部件，这应该不是必需的，
+但对于 {@link Publisher} 部件可能有用。
+@@BODY 258 258
+添加部件头部值。
+@@BODY 267 267
+通过给定的 consumer 操作部件头部。
+@@BODY 360 362
+用于基于 {@link Publisher} 的正文的 {@link HttpEntity} 特化，
+对此我们还需要跟踪元素类型。
+@@BODY 381 381
+返回 {@code Publisher} 正文的元素类型。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequest.java
+@@BODY 42 42
+基于 Netty 4 的 {@link ClientHttpRequest} 实现。
+@@BODY 44 44
+<p>通过 {@link Netty4ClientHttpRequestFactory} 创建。
+@@BODY 166 166
+用于更新给定 SettableListenableFuture 的 SimpleChannelInboundHandler。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequestFactory.java
+@@BODY 47 48
+使用 <a href="https://netty.io/">Netty 4</a> 创建请求的
+{@link org.springframework.http.client.ClientHttpRequestFactory} 实现。
+@@BODY 50 51
+<p>允许使用预配置的 {@link EventLoopGroup} 实例：便于
+跨多个客户端共享。
+@@BODY 53 54
+<p>请注意，此实现会在每次请求时始终关闭
+HTTP 连接。
+@@BODY 69 69
+默认的最大响应大小。
+@@BODY 93 94
+使用默认的 {@link NioEventLoopGroup}
+创建新的 {@code Netty4ClientHttpRequestFactory}。
+@@BODY 103 107
+使用给定的 {@link EventLoopGroup}
+创建新的 {@code Netty4ClientHttpRequestFactory}。
+<p><b>注意：</b>此工厂<strong>不会</strong> {@linkplain EventLoopGroup#shutdownGracefully() 关闭}
+给定的 group；关闭操作由调用者负责。
+@@BODY 117 118
+设置默认的最大响应大小。
+<p>默认设置为 {@link #DEFAULT_MAX_RESPONSE_SIZE}。
+@@BODY 127 129
+设置 SSL 上下文。配置后，将使用它在通道管道中
+创建并插入 {@link io.netty.handler.ssl.SslHandler}。
+<p>如果未提供，则配置默认的客户端 SslContext。
+@@BODY 136 137
+设置底层连接超时（以毫秒为单位）。
+超时值 0 表示无限超时。
+@@BODY 145 146
+设置底层 URLConnection 的读取超时（以毫秒为单位）。
+超时值 0 表示无限超时。
+@@BODY 224 225
+用于更改给定 {@link SocketChannelConfig} 属性的模板方法。
+<p>默认实现根据所设置的属性设置连接超时。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpResponse.java
+@@BODY 32 32
+基于 Netty 4 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3AsyncClientHttpRequest.java
+@@BODY 34 34
+基于 OkHttp 3.x 的 {@link AsyncClientHttpRequest} 实现。
+@@BODY 36 36
+<p>通过 {@link OkHttp3ClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequest.java
+@@BODY 29 29
+基于 OkHttp 3.x 的 {@link ClientHttpRequest} 实现。
+@@BODY 31 31
+<p>通过 {@link OkHttp3ClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequestFactory.java
+@@BODY 37 38
+使用 <a href="https://square.github.io/okhttp/">OkHttp</a> 3.x 创建请求的
+{@link ClientHttpRequestFactory} 实现。
+@@BODY 55 55
+使用默认的 {@link OkHttpClient} 实例创建工厂。
+@@BODY 63 63
+使用给定的 {@link OkHttpClient} 实例创建工厂。
+@@BODY 74 75
+设置底层读取超时（以毫秒为单位）。
+值 0 表示无限超时。
+@@BODY 84 85
+设置底层写入超时（以毫秒为单位）。
+值 0 表示无限超时。
+@@BODY 94 95
+设置底层连接超时（以毫秒为单位）。
+值 0 表示无限超时。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpResponse.java
+@@BODY 31 31
+基于 OkHttp 3.x 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingAsyncClientHttpRequest.java
+@@BODY 31 33
+使用标准 JDK 设施执行缓冲请求的
+{@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingClientHttpRequest.java
+@@BODY 30 31
+使用标准 JDK 设施执行缓冲请求的
+{@link ClientHttpRequest} 实现。通过 {@link SimpleClientHttpRequestFactory} 创建。
+@@BODY 89 89
+将给定头部添加到给定的 HTTP 连接。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpRequestFactory.java
+@@BODY 32 32
+使用标准 JDK 设施的 {@link ClientHttpRequestFactory} 实现。
+@@BODY 64 64
+设置用于此请求工厂的 {@link Proxy}。
+@@BODY 71 79
+指示此请求工厂是否应在内部缓冲
+{@linkplain ClientHttpRequest#getBody() 请求正文}。
+<p>默认值为 {@code true}。通过 POST 或 PUT 发送大量数据时，
+建议将此属性更改为 {@code false}，以免
+耗尽内存。这将导致 {@link ClientHttpRequest} 要么直接
+流式传输到底层 {@link HttpURLConnection}（如果
+{@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
+提前已知），要么使用"分块传输编码"
+（如果 {@code Content-Length} 提前未知）。
+@@BODY 88 93
+设置不在本地缓冲请求正文时
+每个块写入的字节数。
+<p>请注意，仅当
+{@link #setBufferRequestBody(boolean) bufferRequestBody} 设置为 {@code false}，
+且 {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
+提前未知时，才使用此参数。
+@@BODY 101 103
+设置底层 URLConnection 的连接超时（以毫秒为单位）。
+超时值 0 表示无限超时。
+<p>默认值为系统的默认超时。
+@@BODY 111 113
+设置底层 URLConnection 的读取超时（以毫秒为单位）。
+超时值 0 表示无限超时。
+<p>默认值为系统的默认超时。
+@@BODY 121 126
+设置底层 URLConnection 是否可以设置为"输出流式"模式。
+默认值为 {@code true}。
+<p>启用输出流式传输时，无法自动处理身份验证和重定向。
+如果禁用输出流式传输，则底层连接的
+{@link HttpURLConnection#setFixedLengthStreamingMode} 和
+{@link HttpURLConnection#setChunkedStreamingMode} 方法将永远不会被调用。
+@@BODY 134 135
+设置此请求工厂的任务执行器。要为
+{@linkplain #createAsyncRequest(URI, HttpMethod) 创建异步请求}，必须设置此属性。
+@@BODY 157 158
+{@inheritDoc}
+<p>在调用此方法之前，需要设置 {@link #setTaskExecutor taskExecutor} 属性。
+@@BODY 178 180
+打开并返回到给定 URL 的连接。
+<p>默认实现使用给定的 {@linkplain #setProxy(java.net.Proxy) 代理}
+（如果有）来打开连接。
+@@BODY 196 197
+用于准备给定 {@link HttpURLConnection} 的模板方法。
+<p>默认实现为输入和输出准备连接，并设置 HTTP 方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpResponse.java
+@@BODY 29 31
+使用标准 JDK 设施的 {@link ClientHttpResponse} 实现。
+通过 {@link SimpleBufferingClientHttpRequest#execute()} 和
+{@link SimpleStreamingClientHttpRequest#execute()} 获得。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingAsyncClientHttpRequest.java
+@@BODY 32 34
+使用标准 Java 设施执行流式请求的
+{@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingClientHttpRequest.java
+@@BODY 31 32
+使用标准 JDK 设施执行流式请求的
+{@link ClientHttpRequest} 实现。通过 {@link SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/package-info.java
+@@BODY 2 4
+包含对客户端 HTTP 的抽象。此包
+包含 {@code ClientHttpRequest} 和 {@code ClientHttpResponse}，
+以及这些接口的基本实现。

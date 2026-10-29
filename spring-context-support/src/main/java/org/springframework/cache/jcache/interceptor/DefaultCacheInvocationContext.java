@@ -27,9 +27,9 @@ import javax.cache.annotation.CacheInvocationParameter;
 import org.springframework.cache.interceptor.CacheOperationInvocationContext;
 
 /**
- * The default {@link CacheOperationInvocationContext} implementation used
- * by all interceptors. Also implements {@link CacheInvocationContext} to
- * act as a proper bridge when calling JSR-107 {@link javax.cache.annotation.CacheResolver}
+ * 由所有拦截器使用的默认 {@link CacheOperationInvocationContext} 实现。它还实现
+ * {@link CacheInvocationContext}，以便在调用 JSR-107 {@link javax.cache.annotation.CacheResolver}
+ * 时充当合适的桥接。
  *
  * @author Stephane Nicoll
  * @since 4.1

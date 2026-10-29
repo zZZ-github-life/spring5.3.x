@@ -25,17 +25,16 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Indicates the return value of a message-handling method should be sent as a
- * {@link org.springframework.messaging.Message} to the specified destination(s)
- * further prepended with <code>"/user/{username}"</code> where the user name
- * is extracted from the headers of the input message being handled.
+ * 指示消息处理方法的返回值应作为 {@link org.springframework.messaging.Message}
+ * 发送到指定目标，并在前面加上 <code>"/user/{username}"</code>，
+ * 其中用户名从正在处理的输入消息头中提取。
  *
- * <p>Both {@code @SendTo} and {@code @SendToUser} may be used on the same method
- * in which case a message is sent to the destinations of both annotations.
+ * <p>{@code @SendTo} 和 {@code @SendToUser} 可以用于同一方法，
+ * 此时消息会发送到两个注解指定的目标。
  *
- * <p>This annotation may be placed class-level in which case it is inherited
- * by methods of the class. At the same time, method-level {@code @SendTo} or
- * {@code @SendToUser} annotations override any such at the class level.
+ * <p>此注解可以放在类级别，此时会由该类的方法继承。
+ * 同时，方法级的 {@code @SendTo} 或 {@code @SendToUser} 注解
+ * 会覆盖类级别上的相应注解。
 
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -50,16 +49,15 @@ import org.springframework.core.annotation.AliasFor;
 public @interface SendToUser {
 
 	/**
-	 * Alias for {@link #destinations}.
+	 * {@link #destinations} 的别名。
 	 * @see #destinations
 	 */
 	@AliasFor("destinations")
 	String[] value() default {};
 
 	/**
-	 * One or more destinations to send a message to.
-	 * <p>If left unspecified, a default destination is selected based on the
-	 * destination of the input message being handled.
+	 * 一个或多个要发送消息的目标。
+	 * <p>如果未指定，则根据正在处理的输入消息的目标选择默认目标。
 	 * @since 4.2
 	 * @see #value
 	 * @see org.springframework.messaging.simp.annotation.support.SendToMethodReturnValueHandler
@@ -68,10 +66,8 @@ public @interface SendToUser {
 	String[] destinations() default {};
 
 	/**
-	 * Whether messages should be sent to all sessions associated with the user
-	 * or only to the session of the input message being handled.
-	 * <p>By default, this is set to {@code true} in which case messages are
-	 * broadcast to all sessions.
+	 * 消息应发送到与该用户关联的所有会话，还是仅发送到正在处理的输入消息的会话。
+	 * <p>默认值为 {@code true}，此时消息会广播到所有会话。
 	 */
 	boolean broadcast() default true;
 

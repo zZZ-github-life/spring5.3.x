@@ -19,12 +19,10 @@ package org.springframework.beans.factory.annotation;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 
 /**
- * Enumeration determining autowiring status: that is, whether a bean should
- * have its dependencies automatically injected by the Spring container using
- * setter injection. This is a core concept in Spring DI.
+ * 用于确定自动装配状态的枚举：即某个 Bean 的依赖是否应由 Spring 容器通过 setter 注入自动注入。这是
+ * Spring DI 中的核心概念。
  *
- * <p>Available for use in annotation-based configurations, such as for the
- * AspectJ AnnotationBeanConfigurer aspect.
+ * <p>可用于基于注解的配置，例如用于 AspectJ AnnotationBeanConfigurer 切面。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -35,17 +33,17 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 public enum Autowire {
 
 	/**
-	 * Constant that indicates no autowiring at all.
+	 * 表示完全不进行自动装配的常量。
 	 */
 	NO(AutowireCapableBeanFactory.AUTOWIRE_NO),
 
 	/**
-	 * Constant that indicates autowiring bean properties by name.
+	 * 表示按名称自动装配 Bean 属性的常量。
 	 */
 	BY_NAME(AutowireCapableBeanFactory.AUTOWIRE_BY_NAME),
 
 	/**
-	 * Constant that indicates autowiring bean properties by type.
+	 * 表示按类型自动装配 Bean 属性的常量。
 	 */
 	BY_TYPE(AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE);
 
@@ -62,7 +60,7 @@ public enum Autowire {
 	}
 
 	/**
-	 * Return whether this represents an actual autowiring value.
+	 * 返回该值是否表示一个实际的自动装配值。
 	 * @return whether actual autowiring was specified
 	 * (either BY_NAME or BY_TYPE)
 	 */

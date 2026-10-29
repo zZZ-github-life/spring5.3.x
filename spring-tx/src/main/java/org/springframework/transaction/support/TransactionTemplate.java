@@ -31,29 +31,21 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
 
 /**
- * Template class that simplifies programmatic transaction demarcation and
- * transaction exception handling.
+ * 简化编程式事务划分和事务异常处理的模板类。
  *
- * <p>The central method is {@link #execute}, supporting transactional code that
- * implements the {@link TransactionCallback} interface. This template handles
- * the transaction lifecycle and possible exceptions such that neither the
- * TransactionCallback implementation nor the calling code needs to explicitly
- * handle transactions.
+ * <p>核心方法是 {@link #execute}，支持实现 {@link TransactionCallback} 接口的事务性代码。
+ * 此模板处理事务生命周期和可能出现的异常，因此 TransactionCallback 实现和调用方都不需要
+ * 显式处理事务。
  *
- * <p>Typical usage: Allows for writing low-level data access objects that use
- * resources such as JDBC DataSources but are not transaction-aware themselves.
- * Instead, they can implicitly participate in transactions handled by higher-level
- * application services utilizing this class, making calls to the low-level
- * services via an inner-class callback object.
+ * <p>典型用法：允许编写使用 JDBC DataSource 等资源但自身不感知事务的底层数据访问对象。
+ * 相反，它们可以通过内部类回调对象调用底层服务，从而隐式参与由使用此类的上层应用服务
+ * 所处理的事务。
  *
- * <p>Can be used within a service implementation via direct instantiation with
- * a transaction manager reference, or get prepared in an application context
- * and passed to services as bean reference. Note: The transaction manager should
- * always be configured as bean in the application context: in the first case given
- * to the service directly, in the second case given to the prepared template.
+ * <p>可以在服务实现中通过直接实例化并引用事务管理器来使用，也可以在应用上下文中准备好
+ * 并作为 bean 引用传递给服务。注意：事务管理器应始终在应用上下文中配置为 bean：在第一种
+ * 情况下直接提供给服务，在第二种情况下提供给准备好的模板。
  *
- * <p>Supports setting the propagation behavior and the isolation level by name,
- * for convenient configuration in context definitions.
+ * <p>支持按名称设置传播行为和隔离级别，便于在上下文定义中进行配置。
  *
  * @author Juergen Hoeller
  * @since 17.03.2003
@@ -65,7 +57,7 @@ import org.springframework.util.Assert;
 public class TransactionTemplate extends DefaultTransactionDefinition
 		implements TransactionOperations, InitializingBean {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -73,16 +65,15 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 
 
 	/**
-	 * Construct a new TransactionTemplate for bean usage.
-	 * <p>Note: The PlatformTransactionManager needs to be set before
-	 * any {@code execute} calls.
+	 * 构造一个新的 TransactionTemplate 以供 bean 使用。
+	 * <p>注意：必须在任何 {@code execute} 调用之前设置 PlatformTransactionManager。
 	 * @see #setTransactionManager
 	 */
 	public TransactionTemplate() {
 	}
 
 	/**
-	 * Construct a new TransactionTemplate using the given transaction manager.
+	 * 使用给定的事务管理器构造一个新的 TransactionTemplate。
 	 * @param transactionManager the transaction management strategy to be used
 	 */
 	public TransactionTemplate(PlatformTransactionManager transactionManager) {
@@ -90,8 +81,7 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 	}
 
 	/**
-	 * Construct a new TransactionTemplate using the given transaction manager,
-	 * taking its default settings from the given transaction definition.
+	 * 使用给定的事务管理器构造一个新的 TransactionTemplate，并从给定的事务定义中获取其默认设置。
 	 * @param transactionManager the transaction management strategy to be used
 	 * @param transactionDefinition the transaction definition to copy the
 	 * default settings from. Local properties can still be set to change values.
@@ -103,14 +93,14 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 
 
 	/**
-	 * Set the transaction management strategy to be used.
+	 * 设置要使用的事务管理策略。
 	 */
 	public void setTransactionManager(@Nullable PlatformTransactionManager transactionManager) {
 		this.transactionManager = transactionManager;
 	}
 
 	/**
-	 * Return the transaction management strategy to be used.
+	 * 返回要使用的事务管理策略。
 	 */
 	@Nullable
 	public PlatformTransactionManager getTransactionManager() {
@@ -155,7 +145,7 @@ public class TransactionTemplate extends DefaultTransactionDefinition
 	}
 
 	/**
-	 * Perform a rollback, handling rollback exceptions properly.
+	 * 执行回滚，并妥善处理回滚异常。
 	 * @param status object representing the transaction
 	 * @param ex the thrown application exception or error
 	 * @throws TransactionException in case of a rollback error

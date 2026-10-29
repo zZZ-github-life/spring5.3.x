@@ -21,8 +21,7 @@ import java.lang.reflect.Method;
 import org.springframework.aop.MethodMatcher;
 
 /**
- * Convenient abstract superclass for dynamic method matchers,
- * which do care about arguments at runtime.
+ * 动态方法匹配器的便捷抽象父类，这类匹配器在运行时确实关心参数。
  *
  * @author Rod Johnson
  */
@@ -34,8 +33,7 @@ public abstract class DynamicMethodMatcher implements MethodMatcher {
 	}
 
 	/**
-	 * Can override to add preconditions for dynamic matching. This implementation
-	 * always returns true.
+	 * 可以覆盖此方法，为动态匹配添加前置条件。此实现始终返回 true。
 	 */
 	@Override
 	public boolean matches(Method method, Class<?> targetClass) {

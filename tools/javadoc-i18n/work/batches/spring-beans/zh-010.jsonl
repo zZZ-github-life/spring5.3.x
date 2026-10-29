@@ -1,0 +1,106 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ProblemReporter.java::19::0", "zh": ["SPI 接口，允许工具和其他外部进程处理 Bean 定义解析过程中报告的错误和警告。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ProblemReporter.java::30::0", "zh": ["在解析过程中遇到致命错误时调用。", "<p>实现必须将给定的问题视为致命错误，即它们最终必须抛出异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ProblemReporter.java::38::0", "zh": ["在解析过程中遇到错误时调用。", "<p>实现可以选择将错误视为致命错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ProblemReporter.java::45::0", "zh": ["在解析过程中出现警告时调用。", "<p>警告<strong>绝不会</strong>被视为致命错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/PropertyEntry.java::21::0", "zh": ["表示 JavaBean 属性的 {@link ParseState} 条目。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/PropertyEntry.java::32::0", "zh": ["创建一个新的 {@code PropertyEntry} 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/QualifierEntry.java::21::0", "zh": ["表示自动装配候选者限定符的 {@link ParseState} 条目。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/QualifierEntry.java::32::0", "zh": ["创建一个新的 {@code QualifierEntry} 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::22::0", "zh": ["在 Bean 定义读取过程中传递的上下文，封装了所有相关的配置以及状态。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::41::0", "zh": ["构造一个新的 {@code ReaderContext}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::64::0", "zh": ["抛出致命错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::71::0", "zh": ["抛出致命错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::78::0", "zh": ["抛出致命错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::85::0", "zh": ["抛出致命错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::93::0", "zh": ["抛出普通错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::100::0", "zh": ["抛出普通错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::107::0", "zh": ["抛出普通错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::114::0", "zh": ["抛出普通错误。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::122::0", "zh": ["抛出非关键警告。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::129::0", "zh": ["抛出非关键警告。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::136::0", "zh": ["抛出非关键警告。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::143::0", "zh": ["抛出非关键警告。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::154::0", "zh": ["触发 defaults-registered 事件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::161::0", "zh": ["触发 component-registered 事件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::168::0", "zh": ["触发 alias-registered 事件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::175::0", "zh": ["触发 import-processed 事件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::182::0", "zh": ["触发 import-processed 事件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::192::0", "zh": ["返回正在使用的源提取器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderContext.java::199::0", "zh": ["针对给定的源对象调用源提取器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderEventListener.java::21::0", "zh": ["接收 Bean 定义读取过程中组件、别名和导入注册回调的接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderEventListener.java::32::0", "zh": ["通知：给定的默认值已注册。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderEventListener.java::39::0", "zh": ["通知：给定的组件已注册。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderEventListener.java::46::0", "zh": ["通知：给定的别名已注册。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/ReaderEventListener.java::52::0", "zh": ["通知：给定的导入已处理。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/SourceExtractor.java::22::0", "zh": ["简单的策略，允许工具控制如何将源元数据附加到 Bean 定义元数据上。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/SourceExtractor.java::22::1", "zh": ["<p>配置解析器<strong>可以</strong>提供在解析阶段附加源元数据的能力。它们会以通用格式提供此元数据，该元数据可由 {@link SourceExtractor} 进一步修改，然后再附加到 Bean 定义元数据上。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/SourceExtractor.java::40::0", "zh": ["从配置解析器提供的候选对象中提取源元数据。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/parsing/package-info.java::1::0", "zh": ["Bean 定义解析的支持性基础设施。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/AbstractServiceLoaderBasedFactoryBean.java::27::0", "zh": ["基于 JDK 1.6 {@link java.util.ServiceLoader} 设施运行的 FactoryBean 的抽象基类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/AbstractServiceLoaderBasedFactoryBean.java::45::0", "zh": ["指定所需的服务类型（通常是服务的公共 API）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/AbstractServiceLoaderBasedFactoryBean.java::52::0", "zh": ["返回所需的服务类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/AbstractServiceLoaderBasedFactoryBean.java::66::0", "zh": ["委托给 {@link #getObjectToExpose(java.util.ServiceLoader)}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/AbstractServiceLoaderBasedFactoryBean.java::76::0", "zh": ["确定要为给定 ServiceLoader 暴露的实际对象。", "<p>由具体的子类实现。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/ServiceFactoryBean.java::25::0", "zh": ["一个 {@link org.springframework.beans.factory.FactoryBean}，它通过 JDK 1.6 {@link java.util.ServiceLoader} 设施为配置的服务类暴露“主要”服务。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/ServiceListFactoryBean.java::25::0", "zh": ["一个 {@link org.springframework.beans.factory.FactoryBean}，它通过 JDK 1.6 {@link java.util.ServiceLoader} 设施，为配置的服务类暴露<i>所有</i>服务，并以服务对象列表的形式表示。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/ServiceLoaderFactoryBean.java::23::0", "zh": ["一个 {@link org.springframework.beans.factory.FactoryBean}，它为配置的服务类暴露 JDK 1.6 {@link java.util.ServiceLoader}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/serviceloader/package-info.java::1::0", "zh": ["Java {@link java.util.ServiceLoader} 设施的支持包。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::77::0", "zh": ["抽象 Bean 工厂超类，实现了默认的 Bean 创建，具备 {@link RootBeanDefinition} 类所规定的完整能力。除了 AbstractBeanFactory 的 {@link #createBean} 方法之外，还实现了 {@link org.springframework.beans.factory.config.AutowireCapableBeanFactory} 接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::77::1", "zh": ["<p>提供 Bean 创建（含构造器解析）、属性填充、装配（包括自动装配）以及初始化。处理运行时 Bean 引用、解析受管集合、调用初始化方法等。支持自动装配构造器、按名称装配属性以及按类型装配属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::77::2", "zh": ["<p>子类要实现的主要模板方法是 {@link #resolveDependency(DependencyDescriptor, String, Set, TypeConverter)}，用于按类型自动装配。对于能够搜索其 Bean 定义的工厂，匹配的 Bean 通常通过这种搜索来实现。对于其他风格的工厂，可以实现简化的匹配算法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::77::3", "zh": ["<p>请注意，此类<i>不</i>假定或实现 Bean 定义注册表能力。关于 {@link org.springframework.beans.factory.ListableBeanFactory} 和 {@link BeanDefinitionRegistry} 接口的实现，请参见 {@link DefaultListableBeanFactory}，这两个接口分别代表此类工厂的 API 视图和 SPI 视图。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::126::0", "zh": ["在发生循环引用时是否改为注入原始 Bean 实例，即使被注入的 Bean 最终会被包装。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::132::0", "zh": ["在依赖检查和自动装配时忽略的依赖类型，以 Class 对象组成的 Set 表示：例如 String。默认为无。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::138::0", "zh": ["在依赖检查和自动装配时忽略的依赖接口，以 Class 对象组成的 Set 表示。默认情况下，仅忽略 BeanFactory 接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::144::0", "zh": ["当前正在创建的 Bean 的名称，用于在由用户指定的 Supplier 回调触发的 getBean 等调用上隐式注册依赖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::161::0", "zh": ["创建一个新的 AbstractAutowireCapableBeanFactory。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::177::0", "zh": ["使用给定的父工厂创建一个新的 AbstractAutowireCapableBeanFactory。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::187::0", "zh": ["设置用于创建 Bean 实例的实例化策略。", "默认为 CglibSubclassingInstantiationStrategy。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::196::0", "zh": ["返回用于创建 Bean 实例的实例化策略。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::203::0", "zh": ["设置用于在需要时解析方法参数名称（例如用于构造器名称）的 ParameterNameDiscoverer。", "<p>默认为 {@link DefaultParameterNameDiscoverer}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::212::0", "zh": ["返回用于在需要时解析方法参数名称的 ParameterNameDiscoverer。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::221::0", "zh": ["设置是否允许 Bean 之间的循环引用，并自动尝试解析它们。", "<p>请注意，循环引用解析意味着涉及的 Bean 之一将收到对另一个尚未完全初始化的 Bean 的引用。这可能会在初始化时产生细微或明显的副作用；不过在许多场景下它确实工作良好。", "<p>默认值为 \"true\"。将其关闭后，遇到循环引用时会抛出异常，从而完全禁止循环引用。", "<p><b>注意：</b>通常建议不要依赖 Bean 之间的循环引用。请重构应用逻辑，让涉及的两个 Bean 都委托给一个封装了它们公共逻辑的第三个 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::238::0", "zh": ["返回是否允许 Bean 之间的循环引用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::247::0", "zh": ["设置是否允许将 Bean 实例原始地注入到其他 Bean 的属性中，即使被注入的 Bean 最终会被包装（例如通过 AOP 自动代理）。", "<p>这仅会在循环引用无法通过其他方式解析时作为最后手段使用：本质上，宁可注入原始实例，也不让整个 Bean 装配过程失败。", "<p>自 Spring 2.0 起默认值为 \"false\"。开启后，允许将未包装的原始 Bean 注入到你的某些引用中，这也是 Spring 1.2（可以说并不干净）的默认行为。", "<p><b>注意：</b>通常建议不要依赖 Bean 之间的循环引用，尤其是在涉及自动代理时。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::265::0", "zh": ["返回是否允许原始注入 Bean 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::274::0", "zh": ["忽略给定的依赖类型以进行自动装配：例如 String。默认为无。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::282::0", "zh": ["忽略给定的依赖接口以进行自动装配。", "<p>这通常由应用上下文用于注册以其他方式解析的依赖，例如通过 BeanFactoryAware 解析 BeanFactory，或通过 ApplicationContextAware 解析 ApplicationContext。", "<p>默认情况下，仅忽略 BeanFactoryAware 接口。若要忽略更多类型，请为每个类型调用此方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::486::0", "zh": ["本类的核心方法：创建 Bean 实例、填充 Bean 实例、应用后处理器等。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::569::0", "zh": ["实际创建指定的 Bean。此时创建前的处理已经完成，例如检查 {@code postProcessBeforeInstantiation} 回调。", "<p>区分默认的 Bean 实例化、使用工厂方法以及自动装配构造器这几种方式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::761::0", "zh": ["确定给定 Bean 定义的目标类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::783::0", "zh": ["确定基于工厂方法的给定 Bean 定义的目标类型。仅当目标 Bean 尚未注册单例实例时才会调用。", "<p>此实现确定与 {@link #createBean} 的不同创建策略相匹配的类型。我们会尽可能执行静态类型检查，以避免创建目标 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::906::0", "zh": ["此实现会尝试查询 FactoryBean 的泛型参数元数据（如果存在）以确定对象类型。如果不存在，即 FactoryBean 被声明为原始类型，则会在 FactoryBean 的普通实例上检查 FactoryBean 的 {@code getObjectType} 方法，此时尚未应用 Bean 属性。如果这样仍未返回类型，且 {@code allowInit} 为 {@code true}，则会作为后备方案完整创建 FactoryBean（通过委托给超类的实现）。", "<p>对 FactoryBean 的快捷检查仅在单例 FactoryBean 的情况下适用。如果 FactoryBean 实例本身未作为单例保留，则会完整创建它，以检查其暴露对象的类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1011::0", "zh": ["内省给定 Bean 类上的工厂方法签名，尝试找出在那里声明的公共 {@code FactoryBean} 对象类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1026::0", "zh": ["此实现会尝试查询 FactoryBean 的泛型参数元数据（如果存在）以确定对象类型。如果不存在，即 FactoryBean 被声明为原始类型，则会在 FactoryBean 的普通实例上检查 FactoryBean 的 {@code getObjectType} 方法，此时尚未应用 Bean 属性。如果这样仍未返回类型，则会作为后备方案完整创建 FactoryBean（通过委托给超类的实现）。", "<p>对 FactoryBean 的快捷检查仅在单例 FactoryBean 的情况下适用。如果 FactoryBean 实例本身未作为单例保留，则会完整创建它，以检查其暴露对象的类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1044::0", "zh": ["获取对指定 Bean 的早期访问引用，通常用于解析循环引用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1068::0", "zh": ["获取一个“快捷”单例 FactoryBean 实例，用于执行 {@code getObjectType()} 调用，而无需完整初始化该 FactoryBean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1133::0", "zh": ["获取一个“快捷”非单例 FactoryBean 实例，用于执行 {@code getObjectType()} 调用，而无需完整初始化该 FactoryBean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1178::0", "zh": ["将 MergedBeanDefinitionPostProcessors 应用于指定的 Bean 定义，调用它们的 {@code postProcessMergedBeanDefinition} 方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1192::0", "zh": ["应用实例化前处理器，解析指定 Bean 是否存在实例化前的快捷方式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1218::0", "zh": ["将 InstantiationAwareBeanPostProcessors 应用于指定的 Bean 定义（按类和名称），调用它们的 {@code postProcessBeforeInstantiation} 方法。", "<p>任何返回的对象都将作为 Bean 使用，而不会真正实例化目标 Bean。若后处理器返回 {@code null}，则会实例化目标 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1240::0", "zh": ["为指定的 Bean 创建新实例，使用适当的实例化策略：工厂方法、构造器自动装配或简单实例化。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1334::0", "zh": ["从给定的 supplier 获取 Bean 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1367::0", "zh": ["重写该方法是为了在 {@link Supplier} 回调期间以编程方式获取其他 Bean 时，将当前正在创建的 Bean 隐式注册为它们的依赖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1386::0", "zh": ["确定要用于给定 Bean 的候选构造器，检查所有已注册的 {@link SmartInstantiationAwareBeanPostProcessor SmartInstantiationAwareBeanPostProcessors}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1410::0", "zh": ["使用其默认构造器实例化给定的 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1437::0", "zh": ["使用具名工厂方法实例化 Bean。如果 mbd 参数指定的是类而不是 factoryBean，或者指定的是通过依赖注入配置在工厂对象自身上的实例变量，则该工厂方法可以是静态的。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1454::0", "zh": ["“自动装配构造器”（按类型提供构造器参数）行为。", "如果指定了显式的构造器参数值，也会应用该行为，将剩余的所有参数与 Bean 工厂中的 Bean 进行匹配。", "<p>这对应于构造器注入：在此模式下，Spring Bean 工厂能够承载期望基于构造器进行依赖解析的组件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1474::0", "zh": ["使用 Bean 定义中的属性值填充给定 BeanWrapper 中的 Bean 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1579::0", "zh": ["如果 autowire 设置为 \"byName\"，则用此工厂中其他 Bean 的引用来填补任何缺失的属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1611::0", "zh": ["定义“按类型自动装配”（按类型装配 Bean 属性）行为的抽象方法。", "<p>这类似 PicoContainer 的默认行为，即 Bean 工厂中必须恰好有一个该属性类型的 Bean。对于较小的命名空间，这让 Bean 工厂易于配置，但对于较大的应用，其效果不如标准 Spring 行为。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1663::0", "zh": ["返回未满足的非简单 Bean 属性数组。这些可能是对工厂中其他 Bean 的未满足引用。不包含原始类型或 String 等简单属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1685::0", "zh": ["从给定的 BeanWrapper 中提取经过过滤的 PropertyDescriptors 集合，排除被忽略的依赖类型或被忽略的依赖接口上定义的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1709::0", "zh": ["从给定的 BeanWrapper 中提取经过过滤的 PropertyDescriptors 集合，排除被忽略的依赖类型或被忽略的依赖接口上定义的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1722::0", "zh": ["确定给定 Bean 属性是否被排除在依赖检查之外。", "<p>此实现会排除由 CGLIB 定义的属性，以及类型与被忽略的依赖类型匹配、或由被忽略的依赖接口定义的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1738::0", "zh": ["在需要时执行依赖检查，确认所有暴露的属性都已设置。依赖检查可以是 objects（协作 Bean）、simple（原始类型和 String）或 all（两者）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1767::0", "zh": ["应用给定的属性值，解析对此 Bean 工厂中其他 Bean 的任何运行时引用。必须使用深拷贝，这样我们就不会永久修改该属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1871::0", "zh": ["为指定的目标属性转换给定的值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1889::0", "zh": ["初始化给定的 Bean 实例，应用工厂回调以及初始化方法和 Bean 后处理器。", "<p>对于传统方式定义的 Bean，由 {@link #createBean} 调用；对于已存在的 Bean 实例，由 {@link #initializeBean} 调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::1970::0", "zh": ["给 Bean 一个机会，在其所有属性都设置好之后作出反应，并让它了解自己所属的 Bean 工厂（即此对象）。", "这意味着检查该 Bean 是否实现了 InitializingBean 或定义了自定义初始化方法，如果是，则调用必要的回调。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2016::0", "zh": ["在给定 Bean 上调用指定的自定义初始化方法。由 invokeInitMethods 调用。", "<p>可以在子类中重写，以实现对带参数的初始化方法的自定义解析。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2078::0", "zh": ["应用所有已注册 BeanPostProcessors 的 {@code postProcessAfterInitialization} 回调，使它们有机会对从 FactoryBeans 获取的对象进行后处理（例如自动代理它们）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2089::0", "zh": ["重写此方法以便同时清除 FactoryBean 实例缓存。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2100::0", "zh": ["重写此方法以便同时清除 FactoryBean 实例缓存。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2111::0", "zh": ["将日志记录器暴露给协作的委托对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2120::0", "zh": ["Spring 经典的 autowire=\"byType\" 模式专用的 DependencyDescriptor 变体。始终可选；从不考虑参数名称来选择主要候选者。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java::2138::0", "zh": ["用于查找 {@link FactoryBean} 类型信息的 {@link MethodCallback}。"]}

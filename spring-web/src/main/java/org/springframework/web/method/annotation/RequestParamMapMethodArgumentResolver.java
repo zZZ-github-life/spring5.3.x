@@ -40,15 +40,14 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.support.MultipartResolutionDelegate;
 
 /**
- * Resolves {@link Map} method arguments annotated with an @{@link RequestParam}
- * where the annotation does not specify a request parameter name.
+ * 解析标注了 @{@link RequestParam} 且注解未指定请求参数名称的
+ * {@link Map} 方法参数。
  *
- * <p>The created {@link Map} contains all request parameter name/value pairs,
- * or all multipart files for a given parameter name if specifically declared
- * with {@link MultipartFile} as the value type. If the method parameter type is
- * {@link MultiValueMap} instead, the created map contains all request parameters
- * and all their values for cases where request parameters have multiple values
- * (or multiple multipart files of the same name).
+ * <p>创建的 {@link Map} 包含所有请求参数名称/值对；
+ * 如果以 {@link MultipartFile} 作为值类型明确声明，则包含给定参数名称的所有
+ * multipart 文件。如果方法参数类型为 {@link MultiValueMap}，
+ * 则创建的映射包含所有请求参数及其所有值，适用于请求参数具有多个值
+ * （或存在多个同名 multipart 文件）的情况。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev

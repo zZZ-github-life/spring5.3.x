@@ -25,9 +25,8 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 
 /**
- * Convenient {@link WebBindingInitializer} for declarative configuration
- * in a Spring application context. Allows for reusing pre-configured
- * initializers with multiple controller/handlers.
+ * 用于在 Spring 应用上下文中进行声明式配置的便捷 {@link WebBindingInitializer}。
+ * 允许在多个控制器/处理器之间复用预先配置好的初始化器。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -61,12 +60,11 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 
 
 	/**
-	 * Set whether a binder should attempt to "auto-grow" a nested path that contains a null value.
-	 * <p>If "true", a null path location will be populated with a default object value and traversed
-	 * instead of resulting in an exception. This flag also enables auto-growth of collection elements
-	 * when accessing an out-of-bounds index.
-	 * <p>Default is "true" on a standard DataBinder. Note that this feature is only supported
-	 * for bean property access (DataBinder's default mode), not for field access.
+	 * 设置绑定器是否应尝试 "自动增长" 包含 null 值的嵌套路径。
+	 * <p>如果为 "true"，null 路径位置将用默认对象值填充并继续遍历，
+	 * 而不是导致异常。此标志还可在访问越界索引时启用集合元素的自动增长。
+	 * <p>标准 DataBinder 上的默认值为 "true"。请注意，此功能仅支持 bean 属性访问
+	 * （DataBinder 的默认模式），不支持字段访问。
 	 * @see org.springframework.validation.DataBinder#initBeanPropertyAccess()
 	 * @see org.springframework.validation.DataBinder#setAutoGrowNestedPaths
 	 */
@@ -75,16 +73,16 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Return whether a binder should attempt to "auto-grow" a nested path that contains a null value.
+	 * 返回绑定器是否应尝试 "自动增长" 包含 null 值的嵌套路径。
 	 */
 	public boolean isAutoGrowNestedPaths() {
 		return this.autoGrowNestedPaths;
 	}
 
 	/**
-	 * Set whether to use direct field access instead of bean property access.
-	 * <p>Default is {@code false}, using bean property access.
-	 * Switch this to {@code true} in order to enforce direct field access.
+	 * 设置是否使用直接字段访问而不是 bean 属性访问。
+	 * <p>默认为 {@code false}，即使用 bean 属性访问。
+	 * 将此值切换为 {@code true} 可强制使用直接字段访问。
 	 * @see org.springframework.validation.DataBinder#initDirectFieldAccess()
 	 * @see org.springframework.validation.DataBinder#initBeanPropertyAccess()
 	 */
@@ -93,17 +91,16 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Return whether to use direct field access instead of bean property access.
+	 * 返回是否使用直接字段访问而不是 bean 属性访问。
 	 */
 	public boolean isDirectFieldAccess() {
 		return this.directFieldAccess;
 	}
 
 	/**
-	 * Set the strategy to use for resolving errors into message codes.
-	 * Applies the given strategy to all data binders used by this controller.
-	 * <p>Default is {@code null}, i.e. using the default strategy of
-	 * the data binder.
+	 * 设置用于将错误解析为消息代码的策略。
+	 * 将给定策略应用于此控制器使用的所有数据绑定器。
+	 * <p>默认为 {@code null}，即使用数据绑定器的默认策略。
 	 * @see org.springframework.validation.DataBinder#setMessageCodesResolver
 	 */
 	public final void setMessageCodesResolver(@Nullable MessageCodesResolver messageCodesResolver) {
@@ -111,7 +108,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Return the strategy to use for resolving errors into message codes.
+	 * 返回用于将错误解析为消息代码的策略。
 	 */
 	@Nullable
 	public final MessageCodesResolver getMessageCodesResolver() {
@@ -119,10 +116,9 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Set the strategy to use for processing binding errors, that is,
-	 * required field errors and {@code PropertyAccessException}s.
-	 * <p>Default is {@code null}, that is, using the default strategy
-	 * of the data binder.
+	 * 设置用于处理绑定错误的策略，即必需字段错误和
+	 * {@code PropertyAccessException}。
+	 * <p>默认为 {@code null}，即使用数据绑定器的默认策略。
 	 * @see org.springframework.validation.DataBinder#setBindingErrorProcessor
 	 */
 	public final void setBindingErrorProcessor(@Nullable BindingErrorProcessor bindingErrorProcessor) {
@@ -130,7 +126,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Return the strategy to use for processing binding errors.
+	 * 返回用于处理绑定错误的策略。
 	 */
 	@Nullable
 	public final BindingErrorProcessor getBindingErrorProcessor() {
@@ -138,14 +134,14 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Set the Validator to apply after each binding step.
+	 * 设置每次绑定步骤之后要应用的 Validator。
 	 */
 	public final void setValidator(@Nullable Validator validator) {
 		this.validator = validator;
 	}
 
 	/**
-	 * Return the Validator to apply after each binding step, if any.
+	 * 返回每次绑定步骤之后要应用的 Validator（如果有）。
 	 */
 	@Nullable
 	public final Validator getValidator() {
@@ -153,7 +149,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Specify a ConversionService which will apply to every DataBinder.
+	 * 指定应用于每个 DataBinder 的 ConversionService。
 	 * @since 3.0
 	 */
 	public final void setConversionService(@Nullable ConversionService conversionService) {
@@ -161,7 +157,7 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Return the ConversionService which will apply to every DataBinder.
+	 * 返回应用于每个 DataBinder 的 ConversionService。
 	 */
 	@Nullable
 	public final ConversionService getConversionService() {
@@ -169,21 +165,21 @@ public class ConfigurableWebBindingInitializer implements WebBindingInitializer 
 	}
 
 	/**
-	 * Specify a single PropertyEditorRegistrar to be applied to every DataBinder.
+	 * 指定应用于每个 DataBinder 的单个 PropertyEditorRegistrar。
 	 */
 	public final void setPropertyEditorRegistrar(PropertyEditorRegistrar propertyEditorRegistrar) {
 		this.propertyEditorRegistrars = new PropertyEditorRegistrar[] {propertyEditorRegistrar};
 	}
 
 	/**
-	 * Specify multiple PropertyEditorRegistrars to be applied to every DataBinder.
+	 * 指定应用于每个 DataBinder 的多个 PropertyEditorRegistrar。
 	 */
 	public final void setPropertyEditorRegistrars(@Nullable PropertyEditorRegistrar[] propertyEditorRegistrars) {
 		this.propertyEditorRegistrars = propertyEditorRegistrars;
 	}
 
 	/**
-	 * Return the PropertyEditorRegistrars to be applied to every DataBinder.
+	 * 返回应用于每个 DataBinder 的 PropertyEditorRegistrar。
 	 */
 	@Nullable
 	public final PropertyEditorRegistrar[] getPropertyEditorRegistrars() {

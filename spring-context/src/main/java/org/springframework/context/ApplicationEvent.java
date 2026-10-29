@@ -20,8 +20,8 @@ import java.time.Clock;
 import java.util.EventObject;
 
 /**
- * Class to be extended by all application events. Abstract as it
- * doesn't make sense for generic events to be published directly.
+ * 所有应用事件都应扩展的类。
+ * 由于通用事件被直接发布没有意义，因此该类是抽象的。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -30,16 +30,16 @@ import java.util.EventObject;
  */
 public abstract class ApplicationEvent extends EventObject {
 
-	/** use serialVersionUID from Spring 1.2 for interoperability. */
+	/** 使用 Spring 1.2 的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = 7099057708183571937L;
 
-	/** System time when the event happened. */
+	/** 事件发生时的系统时间。 */
 	private final long timestamp;
 
 
 	/**
-	 * Create a new {@code ApplicationEvent} with its {@link #getTimestamp() timestamp}
-	 * set to {@link System#currentTimeMillis()}.
+	 * 创建一个新的 {@code ApplicationEvent}，其 {@link #getTimestamp() 时间戳} 设置为
+	 * {@link System#currentTimeMillis()}。
 	 * @param source the object on which the event initially occurred or with
 	 * which the event is associated (never {@code null})
 	 * @see #ApplicationEvent(Object, Clock)
@@ -50,9 +50,10 @@ public abstract class ApplicationEvent extends EventObject {
 	}
 
 	/**
-	 * Create a new {@code ApplicationEvent} with its {@link #getTimestamp() timestamp}
-	 * set to the value returned by {@link Clock#millis()} in the provided {@link Clock}.
-	 * <p>This constructor is typically used in testing scenarios.
+	 * 创建一个新的 {@code ApplicationEvent}，其 {@link #getTimestamp() 时间戳} 设置为所提供的
+	 * {@link Clock} 中 {@link Clock#millis()} 返回的值。
+	 *
+	 * <p>此构造函数通常用于测试场景。
 	 * @param source the object on which the event initially occurred or with
 	 * which the event is associated (never {@code null})
 	 * @param clock a clock which will provide the timestamp
@@ -66,7 +67,7 @@ public abstract class ApplicationEvent extends EventObject {
 
 
 	/**
-	 * Return the time in milliseconds when the event occurred.
+	 * 返回事件发生的时间，以毫秒为单位。
 	 * @see #ApplicationEvent(Object)
 	 * @see #ApplicationEvent(Object, Clock)
 	 */

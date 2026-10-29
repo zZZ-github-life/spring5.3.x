@@ -17,8 +17,7 @@
 package org.springframework.expression;
 
 /**
- * Input provided to an expression parser that can influence an expression
- * parsing/compilation routine.
+ * 提供给表达式解析器的输入，可影响表达式的解析/编译流程。
  *
  * @author Keith Donald
  * @author Andy Clement
@@ -27,8 +26,7 @@ package org.springframework.expression;
 public interface ParserContext {
 
 	/**
-	 * Whether the expression being parsed is a template. A template expression
-	 * consists of literal text that can be mixed with evaluatable blocks. Some examples:
+	 * 正在解析的表达式是否为模板。模板表达式由可与可求值块混合的字面文本组成。一些示例：
 	 * <pre class="code">
 	 * 	   Some literal text
 	 *     Hello #{name.firstName}!
@@ -39,23 +37,20 @@ public interface ParserContext {
 	boolean isTemplate();
 
 	/**
-	 * For template expressions, returns the prefix that identifies the start of an
-	 * expression block within a string. For example: "${"
+	 * 对于模板表达式，返回用于标识字符串中表达式块起始位置的前缀。例如："${"
 	 * @return the prefix that identifies the start of an expression
 	 */
 	String getExpressionPrefix();
 
 	/**
-	 * For template expressions, return the prefix that identifies the end of an
-	 * expression block within a string. For example: "}"
+	 * 对于模板表达式，返回用于标识字符串中表达式块结束位置的前缀。例如："}"
 	 * @return the suffix that identifies the end of an expression
 	 */
 	String getExpressionSuffix();
 
 
 	/**
-	 * The default ParserContext implementation that enables template expression
-	 * parsing mode. The expression prefix is "#{" and the expression suffix is "}".
+	 * 默认的 ParserContext 实现，启用模板表达式解析模式。表达式前缀为 "#{"，表达式后缀为 "}"。
 	 * @see #isTemplate()
 	 */
 	ParserContext TEMPLATE_EXPRESSION = new ParserContext() {

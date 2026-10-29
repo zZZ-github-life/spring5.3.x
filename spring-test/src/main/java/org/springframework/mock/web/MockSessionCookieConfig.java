@@ -21,7 +21,7 @@ import javax.servlet.SessionCookieConfig;
 import org.springframework.lang.Nullable;
 
 /**
- * Mock implementation of the {@link javax.servlet.SessionCookieConfig} interface.
+ * {@link javax.servlet.SessionCookieConfig} 接口的 mock 实现。
  *
  * @author Juergen Hoeller
  * @since 4.0

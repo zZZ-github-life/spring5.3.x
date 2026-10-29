@@ -1,5 +1,5 @@
 /**
- * Provides HttpMessageConverter implementations for handling XML.
+ * 提供用于处理 XML 的 HttpMessageConverter 实现。
  */
 @NonNullApi
 @NonNullFields

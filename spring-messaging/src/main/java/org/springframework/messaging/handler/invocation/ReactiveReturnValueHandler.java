@@ -25,8 +25,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
 
 /**
- * Support for single-value reactive types (like {@code Mono} or {@code Single})
- * as a return value type.
+ * 支持将单值响应式类型（例如 {@code Mono} 或 {@code Single}）作为返回值类型。
  *
  * @author Sebastien Deleuze
  * @since 5.1

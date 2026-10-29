@@ -20,8 +20,7 @@ import org.springframework.beans.factory.Aware;
 import org.springframework.core.metrics.ApplicationStartup;
 
 /**
- * Interface to be implemented by any object that wishes to be notified
- * of the {@link ApplicationStartup} that it runs with.
+ * 由任何希望获知其运行所使用的 {@link ApplicationStartup} 的对象实现的接口。
  *
  * @author Brian Clozel
  * @since 5.3
@@ -30,10 +29,10 @@ import org.springframework.core.metrics.ApplicationStartup;
 public interface ApplicationStartupAware extends Aware {
 
 	/**
-	 * Set the ApplicationStartup that this object runs with.
-	 * <p>Invoked after population of normal bean properties but before an init
-	 * callback like InitializingBean's afterPropertiesSet or a custom init-method.
-	 * Invoked before ApplicationContextAware's setApplicationContext.
+	 * 设置此对象运行所使用的 ApplicationStartup。
+	 *
+	 * <p>在填充常规 Bean 属性之后、但在诸如 InitializingBean 的 afterPropertiesSet 之类的初始化回调或
+	 * 自定义 init-method 之前调用。在 ApplicationContextAware 的 setApplicationContext 之前调用。
 	 * @param applicationStartup application startup to be used by this object
 	 */
 	void setApplicationStartup(ApplicationStartup applicationStartup);

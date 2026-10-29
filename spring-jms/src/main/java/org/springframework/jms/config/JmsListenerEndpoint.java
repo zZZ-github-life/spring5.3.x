@@ -19,9 +19,9 @@ package org.springframework.jms.config;
 import org.springframework.jms.listener.MessageListenerContainer;
 
 /**
- * Model for a JMS listener endpoint. Can be used against a
+ * JMS 监听器端点的模型。可与
  * {@link org.springframework.jms.annotation.JmsListenerConfigurer
- * JmsListenerConfigurer} to register endpoints programmatically.
+ * JmsListenerConfigurer} 配合使用，以编程方式注册端点。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -29,18 +29,15 @@ import org.springframework.jms.listener.MessageListenerContainer;
 public interface JmsListenerEndpoint {
 
 	/**
-	 * Return the id of this endpoint.
+	 * 返回此端点的 id。
 	 */
 	String getId();
 
 	/**
-	 * Set up the specified message listener container with the model
-	 * defined by this endpoint.
-	 * <p>This endpoint must provide the requested missing option(s) of
-	 * the specified container to make it usable. Usually, this is about
-	 * setting the {@code destination} and the {@code messageListener} to
-	 * use but an implementation may override any default setting that
-	 * was already set.
+	 * 使用此端点定义的模型设置指定的消息监听器容器。
+	 * <p>此端点必须提供指定容器所缺少的必需选项，使其可用。
+	 * 通常，这涉及设置要使用的 {@code destination} 和 {@code messageListener}，
+	 * 但实现也可以覆盖任何已设置的默认设置。
 	 * @param listenerContainer the listener container to configure
 	 */
 	void setupListenerContainer(MessageListenerContainer listenerContainer);

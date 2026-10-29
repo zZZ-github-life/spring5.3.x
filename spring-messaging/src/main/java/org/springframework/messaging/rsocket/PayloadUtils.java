@@ -31,8 +31,7 @@ import org.springframework.core.io.buffer.NettyDataBuffer;
 import org.springframework.core.io.buffer.NettyDataBufferFactory;
 
 /**
- * Static utility methods to create {@link Payload} from {@link DataBuffer}s
- * and vice versa.
+ * 用于在 {@link DataBuffer} 与 {@link Payload} 之间相互转换的静态工具方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -40,10 +39,9 @@ import org.springframework.core.io.buffer.NettyDataBufferFactory;
 public abstract class PayloadUtils {
 
 	/**
-	 * Use this method to slice, retain and wrap the data portion of the
-	 * {@code Payload}, and also to release the {@code Payload}. This assumes
-	 * the Payload metadata has been read by now and ensures downstream code
-	 * need only be aware of {@code DataBuffer}s.
+	 * 使用此方法对 {@code Payload} 的数据部分进行切片、保留和包装，并释放
+	 * {@code Payload}。这里假设 Payload 元数据此时已被读取，从而确保下游代码
+	 * 只需关注 {@code DataBuffer}。
 	 * @param payload the payload to process
 	 * @param bufferFactory the DataBufferFactory to wrap with
 	 * @return the created {@code DataBuffer} instance
@@ -66,12 +64,11 @@ public abstract class PayloadUtils {
 	}
 
 	/**
-	 * Create a Payload from the given metadata and data.
-	 * <p>If at least one is {@link NettyDataBuffer} then {@link ByteBufPayload}
-	 * is created with either obtaining the underlying native {@link ByteBuf}
-	 * or using {@link Unpooled#wrappedBuffer(ByteBuffer...)} if necessary.
-	 * Otherwise, if both are {@link DefaultDataBuffer}, then
-	 * {@link DefaultPayload} is created.
+	 * 根据给定的元数据和数据创建 Payload。
+	 * <p>如果至少有一个是 {@link NettyDataBuffer}，则创建 {@link ByteBufPayload}，
+	 * 其中要么获取底层原生 {@link ByteBuf}，要么在必要时使用
+	 * {@link Unpooled#wrappedBuffer(ByteBuffer...)}。否则，如果两者都是
+	 * {@link DefaultDataBuffer}，则创建 {@link DefaultPayload}。
 	 * @param data the data part for the payload
 	 * @param metadata the metadata part for the payload
 	 * @return the created payload
@@ -83,9 +80,8 @@ public abstract class PayloadUtils {
 	}
 
 	/**
-	 * Create a Payload with data only. The created payload is
-	 * {@link ByteBufPayload} if the input is {@link NettyDataBuffer} or
-	 * otherwise it is {@link DefaultPayload}.
+	 * 仅使用数据创建 Payload。如果输入是 {@link NettyDataBuffer}，则创建
+	 * {@link ByteBufPayload}，否则创建 {@link DefaultPayload}。
 	 * @param data the data part for the payload
 	 * @return created payload
 	 */

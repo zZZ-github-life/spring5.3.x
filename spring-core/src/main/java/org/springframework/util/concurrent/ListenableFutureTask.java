@@ -24,7 +24,7 @@ import java.util.concurrent.FutureTask;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of {@link FutureTask} that implements {@link ListenableFuture}.
+ * 实现 {@link ListenableFuture} 的 {@link FutureTask} 扩展。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -36,8 +36,7 @@ public class ListenableFutureTask<T> extends FutureTask<T> implements Listenable
 
 
 	/**
-	 * Create a new {@code ListenableFutureTask} that will, upon running,
-	 * execute the given {@link Callable}.
+	 * 创建一个新的 {@code ListenableFutureTask}，它在运行时会执行给定的 {@link Callable}。
 	 * @param callable the callable task
 	 */
 	public ListenableFutureTask(Callable<T> callable) {
@@ -45,9 +44,8 @@ public class ListenableFutureTask<T> extends FutureTask<T> implements Listenable
 	}
 
 	/**
-	 * Create a {@code ListenableFutureTask} that will, upon running,
-	 * execute the given {@link Runnable}, and arrange that {@link #get()}
-	 * will return the given result on successful completion.
+	 * 创建一个 {@code ListenableFutureTask}，它在运行时会执行给定的 {@link Runnable}，并安排在成功完成
+	 * 时由 {@link #get()} 返回给定的结果。
 	 * @param runnable the runnable task
 	 * @param result the result to return on successful completion
 	 */

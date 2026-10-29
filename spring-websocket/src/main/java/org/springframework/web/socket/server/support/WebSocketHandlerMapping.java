@@ -28,10 +28,10 @@ import org.springframework.web.servlet.HandlerExecutionChain;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 /**
- * Extension of {@link SimpleUrlHandlerMapping} with support for more
- * precise mapping of WebSocket handshake requests to handlers of type
- * {@link WebSocketHttpRequestHandler}. Also delegates {@link Lifecycle}
- * methods to handlers in the {@link #getUrlMap()} that implement it.
+ * {@link SimpleUrlHandlerMapping} 的扩展，支持将 WebSocket 握手请求
+ * 更精确地映射到 {@link WebSocketHttpRequestHandler} 类型的处理器。
+ * 还会将 {@link Lifecycle} 方法委托给 {@link #getUrlMap()} 中实现了
+ * 这些方法的处理器。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -44,12 +44,11 @@ public class WebSocketHandlerMapping extends SimpleUrlHandlerMapping implements 
 
 
 	/**
-	 * When this is set, if the matched handler is
-	 * {@link WebSocketHttpRequestHandler}, ensure the request is a WebSocket
-	 * handshake, i.e. HTTP GET with the header {@code "Upgrade:websocket"},
-	 * or otherwise suppress the match and return {@code null} allowing another
-	 * {@link org.springframework.web.servlet.HandlerMapping} to match for the
-	 * same URL path.
+	 * 设置后，如果匹配的处理器是
+	 * {@link WebSocketHttpRequestHandler}，则确保请求是 WebSocket
+	 * 握手，即带有 {@code "Upgrade:websocket"} 头的 HTTP GET 请求，
+	 * 否则取消匹配并返回 {@code null}，允许另一个
+	 * {@link org.springframework.web.servlet.HandlerMapping} 匹配同一 URL 路径。
 	 * @param match whether to enable matching on {@code "Upgrade: websocket"}
 	 * @since 5.3.5
 	 */

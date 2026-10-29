@@ -20,12 +20,12 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 
 /**
- * To be used with JmsTemplate's send method that converts an object to a message.
+ * 与 JmsTemplate 中可将对象转换为消息的 send 方法一起使用。
  *
- * <p>This allows for further modification of the message after it has been processed
- * by the converter and is useful for setting JMS headers and properties.
+ * <p>这允许在消息经过转换器处理之后对其进行进一步修改，
+ * 对于设置 JMS 头和属性很有用。
  *
- * <p>Often implemented as a lambda expression or as an anonymous inner class.
+ * <p>通常实现为 lambda 表达式或匿名内部类。
  *
  * @author Mark Pollack
  * @since 1.1
@@ -37,8 +37,8 @@ import javax.jms.Message;
 public interface MessagePostProcessor {
 
 	/**
-	 * Process the given message.
-	 * <p>The returned message is typically a modified version of the original.
+	 * 处理给定的消息。
+	 * <p>返回的消息通常是原始消息的修改版本。
 	 * @param message the JMS message from the MessageConverter
 	 * @return a post-processed variant of the message, or simply the incoming
 	 * message; never {@code null}

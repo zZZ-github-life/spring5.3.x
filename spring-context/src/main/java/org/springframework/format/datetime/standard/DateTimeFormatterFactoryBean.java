@@ -23,8 +23,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link FactoryBean} that creates a JSR-310 {@link java.time.format.DateTimeFormatter}.
- * See the {@link DateTimeFormatterFactory base class} for configuration details.
+ * 创建 JSR-310 {@link java.time.format.DateTimeFormatter} 的 {@link FactoryBean}。有关配置细节，请
+ * 参见 {@link DateTimeFormatterFactory base class}。
  *
  * @author Juergen Hoeller
  * @since 4.0

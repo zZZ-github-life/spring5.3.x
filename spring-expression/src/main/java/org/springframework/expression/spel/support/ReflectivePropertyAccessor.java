@@ -46,11 +46,10 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A powerful {@link PropertyAccessor} that uses reflection to access properties
- * for reading and possibly also for writing on a target instance.
+ * 一个功能强大的 {@link PropertyAccessor}，通过反射在目标实例上读取属性，也可能写入属性。
  *
- * <p>A property can be referenced through a public getter method (when being read)
- * or a public setter method (when being written), and also as a public field.
+ * <p>属性可以通过公共 getter 方法（读取时）或公共 setter 方法（写入时）引用，也可以作为公共字段引
+ * 用。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -90,7 +89,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 
 
 	/**
-	 * Create a new property accessor for reading as well writing.
+	 * 创建一个新的属性访问器，用于读取和写入。
 	 * @see #ReflectivePropertyAccessor(boolean)
 	 */
 	public ReflectivePropertyAccessor() {
@@ -98,7 +97,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Create a new property accessor for reading and possibly also writing.
+	 * 创建一个新的属性访问器，用于读取，也可能用于写入。
 	 * @param allowWrite whether to allow write operations on a target instance
 	 * @since 4.3.15
 	 * @see #canWrite
@@ -109,7 +108,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 
 
 	/**
-	 * Returns {@code null} which means this is a general purpose accessor.
+	 * 返回 {@code null}，表示这是一个通用访问器。
 	 */
 	@Override
 	@Nullable
@@ -333,7 +332,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Get the last read invoker pair.
+	 * 获取最近一次读取的调用器对。
 	 * @deprecated as of 4.3.15 since it is not used within the framework anymore
 	 */
 	@Deprecated
@@ -386,7 +385,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Find a getter method for the specified property.
+	 * 查找指定属性的 getter 方法。
 	 */
 	@Nullable
 	protected Method findGetterForProperty(String propertyName, Class<?> clazz, boolean mustBeStatic) {
@@ -405,7 +404,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Find a setter method for the specified property.
+	 * 查找指定属性的 setter 方法。
 	 */
 	@Nullable
 	protected Method findSetterForProperty(String propertyName, Class<?> clazz, boolean mustBeStatic) {
@@ -432,7 +431,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Return class methods ordered with non-bridge methods appearing higher.
+	 * 返回类的方法，其中非桥接方法排在前面。
 	 */
 	private Method[] getSortedMethods(Class<?> clazz) {
 		return this.sortedMethodsCache.computeIfAbsent(clazz, key -> {
@@ -443,10 +442,8 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Determine whether the given {@code Method} is a candidate for property access
-	 * on an instance of the given target class.
-	 * <p>The default implementation considers any method as a candidate, even for
-	 * non-user-declared properties on the {@link Object} base class.
+	 * 判断给定的 {@code Method} 是否为在给定目标类实例上进行属性访问的候选方法。<p>默认实现将任何方法
+	 * 都视为候选方法，即使是 {@link Object} 基类上非用户声明的属性。
 	 * @param method the Method to evaluate
 	 * @param targetClass the concrete target class that is being introspected
 	 * @since 4.3.15
@@ -456,10 +453,8 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Return the method suffixes for a given property name. The default implementation
-	 * uses JavaBean conventions with additional support for properties of the form 'xY'
-	 * where the method 'getXY()' is used in preference to the JavaBean convention of
-	 * 'getxY()'.
+	 * 返回给定属性名的方法后缀。默认实现使用 JavaBean 约定，并额外支持形如 'xY' 的属性，此时优先使用方
+	 * 法 'getXY()'，而不是 JavaBean 约定的 'getxY()'。
 	 */
 	protected String[] getPropertyMethodSuffixes(String propertyName) {
 		String suffix = getPropertyMethodSuffix(propertyName);
@@ -470,8 +465,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Return the method suffix for a given property name. The default implementation
-	 * uses JavaBean conventions.
+	 * 返回给定属性名的方法后缀。默认实现使用 JavaBean 约定。
 	 */
 	protected String getPropertyMethodSuffix(String propertyName) {
 		if (propertyName.length() > 1 && Character.isUpperCase(propertyName.charAt(1))) {
@@ -490,7 +484,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Find a field of a certain name on a specified class.
+	 * 在指定类上查找具有特定名称的字段。
 	 */
 	@Nullable
 	protected Field findField(String name, Class<?> clazz, boolean mustBeStatic) {
@@ -518,14 +512,10 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Attempt to create an optimized property accessor tailored for a property of a
-	 * particular name on a particular class. The general ReflectivePropertyAccessor
-	 * will always work but is not optimal due to the need to lookup which reflective
-	 * member (method/field) to use each time read() is called. This method will just
-	 * return the ReflectivePropertyAccessor instance if it is unable to build a more
-	 * optimal accessor.
-	 * <p>Note: An optimal accessor is currently only usable for read attempts.
-	 * Do not call this method if you need a read-write accessor.
+	 * 尝试为特定类上的特定属性创建定制的优化属性访问器。通用的 ReflectivePropertyAccessor 总是可用，但
+	 * 由于每次调用 read() 时都需要查找要使用的反射成员（方法/字段），因此并非最优。如果无法构建更优的
+	 * 访问器，此方法只会返回 ReflectivePropertyAccessor 实例。<p>注意：优化访问器目前仅可用于读取操作。
+	 * 如果需要读写访问器，请不要调用此方法。
 	 * @see OptimalPropertyAccessor
 	 */
 	public PropertyAccessor createOptimalAccessor(EvaluationContext context, @Nullable Object target, String name) {
@@ -578,8 +568,7 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 
 
 	/**
-	 * Captures the member (method/field) to call reflectively to access a property value
-	 * and the type descriptor for the value returned by the reflective call.
+	 * 封装用于通过反射调用以访问属性值的成员（方法/字段），以及该反射调用所返回值的类型描述符。
 	 */
 	private static class InvokerPair {
 
@@ -644,17 +633,14 @@ public class ReflectivePropertyAccessor implements PropertyAccessor {
 
 
 	/**
-	 * An optimized form of a PropertyAccessor that will use reflection but only knows
-	 * how to access a particular property on a particular class. This is unlike the
-	 * general ReflectivePropertyResolver which manages a cache of methods/fields that
-	 * may be invoked to access different properties on different classes. This optimal
-	 * accessor exists because looking up the appropriate reflective object by class/name
-	 * on each read is not cheap.
+	 * PropertyAccessor 的一种优化形式，它使用反射，但只知道如何访问特定类上的特定属性。这与通用的
+	 * ReflectivePropertyResolver 不同，后者管理着可在不同类上调用以访问不同属性的方法和字段缓存。之所
+	 * 以存在这种优化访问器，是因为每次读取时按类/名称查找相应的反射对象并不便宜。
 	 */
 	public static class OptimalPropertyAccessor implements CompilablePropertyAccessor {
 
 		/**
-		 * The member being accessed.
+		 * 被访问的成员。
 		 */
 		public final Member member;
 

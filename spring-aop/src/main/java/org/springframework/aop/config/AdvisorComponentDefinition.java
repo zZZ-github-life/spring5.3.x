@@ -24,10 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.beans.factory.parsing.ComponentDefinition}
- * that bridges the gap between the advisor bean definition configured
- * by the {@code <aop:advisor>} tag and the component definition
- * infrastructure.
+ * 用于在由 {@code <aop:advisor>} 标签配置的 advisor Bean 定义与组件定义基础设施之间架起桥梁的
+ * {@link org.springframework.beans.factory.parsing.ComponentDefinition}。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller

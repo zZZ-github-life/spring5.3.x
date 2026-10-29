@@ -17,11 +17,9 @@
 package org.springframework.core.io;
 
 /**
- * Extended interface for a resource that is loaded from an enclosing
- * 'context', e.g. from a {@link javax.servlet.ServletContext} but also
- * from plain classpath paths or relative file system paths (specified
- * without an explicit prefix, hence applying relative to the local
- * {@link ResourceLoader}'s context).
+ * 从外围“上下文”加载的资源的扩展接口，例如从 {@link javax.servlet.ServletContext} 加载，也包括从普
+ * 通类路径或相对文件系统路径加载（指定时不带显式前缀，因此相对于本地 {@link ResourceLoader} 的上下
+ * 文应用）。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -30,9 +28,8 @@ package org.springframework.core.io;
 public interface ContextResource extends Resource {
 
 	/**
-	 * Return the path within the enclosing 'context'.
-	 * <p>This is typically path relative to a context-specific root directory,
-	 * e.g. a ServletContext root or a PortletContext root.
+	 * 返回外围“上下文”内的路径。
+	 * <p>这通常是相对于特定上下文根目录的路径，例如 ServletContext 根目录或 PortletContext 根目录。
 	 */
 	String getPathWithinContext();
 

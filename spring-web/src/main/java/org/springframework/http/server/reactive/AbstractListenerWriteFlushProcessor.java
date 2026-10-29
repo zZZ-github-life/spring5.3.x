@@ -30,9 +30,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * An alternative to {@link AbstractListenerWriteProcessor} but instead writing
- * a {@code Publisher<Publisher<T>>} with flush boundaries enforces after
- * the completion of each nested Publisher.
+ * {@link AbstractListenerWriteProcessor} 的替代方案，但改为写入
+ * {@code Publisher<Publisher<T>>}，并在每个嵌套 Publisher 完成后
+ * 强制执行刷新边界。
  *
  * @author Arjen Poutsma
  * @author Violeta Georgieva
@@ -43,7 +43,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractListenerWriteFlushProcessor<T> implements Processor<Publisher<? extends T>, Void> {
 
 	/**
-	 * Special logger for debugging Reactive Streams signals.
+	 * 用于调试 Reactive Streams 信号的专用日志记录器。
 	 * @see LogDelegateFactory#getHiddenLog(Class)
 	 * @see AbstractListenerReadPublisher#rsReadLogger
 	 * @see AbstractListenerWriteProcessor#rsWriteLogger
@@ -73,7 +73,7 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	}
 
 	/**
-	 * Create an instance with the given log prefix.
+	 * 使用给定日志前缀创建实例。
 	 * @since 5.1
 	 */
 	public AbstractListenerWriteFlushProcessor(String logPrefix) {
@@ -97,7 +97,7 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 
 
 	/**
-	 * Create an instance with the given log prefix.
+	 * 使用给定日志前缀创建实例。
 	 * @since 5.1
 	 */
 	public String getLogPrefix() {
@@ -121,8 +121,8 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	}
 
 	/**
-	 * Error signal from the upstream, write Publisher. This is also used by
-	 * subclasses to delegate error notifications from the container.
+	 * 来自上游（写入 Publisher）的错误信号。子类也用它来
+	 * 委派来自容器的错误通知。
 	 */
 	@Override
 	public final void onError(Throwable ex) {
@@ -134,8 +134,8 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	}
 
 	/**
-	 * Completion signal from the upstream, write Publisher. This is also used
-	 * by subclasses to delegate completion notifications from the container.
+	 * 来自上游（写入 Publisher）的完成信号。子类也用它来
+	 * 委派来自容器的完成通知。
 	 */
 	@Override
 	public final void onComplete() {
@@ -147,20 +147,18 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	}
 
 	/**
-	 * Invoked when flushing is possible, either in the same thread after a check
-	 * via {@link #isWritePossible()}, or as a callback from the underlying
-	 * container.
+	 * 在可以刷新时调用，可能是在通过 {@link #isWritePossible()} 检查后的
+	 * 同一线程中，也可能是来自底层容器的回调。
 	 */
 	protected final void onFlushPossible() {
 		this.state.get().onFlushPossible(this);
 	}
 
 	/**
-	 * Cancel the upstream chain of "write" Publishers only, for example due to
-	 * Servlet container error/completion notifications. This should usually
-	 * be followed up with a call to either {@link #onError(Throwable)} or
-	 * {@link #onComplete()} to notify the downstream chain, that is unless
-	 * cancellation came from downstream.
+	 * 仅取消"写入"Publisher 的上游链，例如由于
+	 * Servlet 容器的错误/完成通知。通常应随后调用
+	 * {@link #onError(Throwable)} 或 {@link #onComplete()} 来通知下游链，
+	 * 除非取消来自下游。
 	 */
 	protected void cancel() {
 		if (rsWriteFlushLogger.isTraceEnabled()) {
@@ -183,34 +181,34 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 	// Write API methods to be implemented or template methods to override...
 
 	/**
-	 * Create a new processor for the current flush boundary.
+	 * 为当前刷新边界创建新的处理器。
 	 */
 	protected abstract Processor<? super T, Void> createWriteProcessor();
 
 	/**
-	 * Whether writing/flushing is possible.
+	 * 是否可以写入/刷新。
 	 */
 	protected abstract boolean isWritePossible();
 
 	/**
-	 * Flush the output if ready, or otherwise {@link #isFlushPending()} should
-	 * return true after.
-	 * <p>This is primarily for the Servlet non-blocking I/O API where flush
-	 * cannot be called without a readyToWrite check.
+	 * 如果已就绪则刷新输出，否则之后 {@link #isFlushPending()}
+	 * 应返回 true。
+	 * <p>这主要适用于 Servlet 非阻塞 I/O API，在该 API 中
+	 * 不进行 readyToWrite 检查就无法调用 flush。
 	 */
 	protected abstract void flush() throws IOException;
 
 	/**
-	 * Whether flushing is pending.
-	 * <p>This is primarily for the Servlet non-blocking I/O API where flush
-	 * cannot be called without a readyToWrite check.
+	 * 是否有待执行的刷新。
+	 * <p>这主要适用于 Servlet 非阻塞 I/O API，在该 API 中
+	 * 不进行 readyToWrite 检查就无法调用 flush。
 	 */
 	protected abstract boolean isFlushPending();
 
 	/**
-	 * Invoked when an error happens while flushing.
-	 * <p>The default implementation cancels the upstream write publisher and
-	 * sends an onError downstream as the result of request handling.
+	 * 刷新过程中发生错误时调用。
+	 * <p>默认实现会取消上游写入发布者，并作为请求处理的结果
+	 * 向下游发送 onError。
 	 */
 	protected void flushingFailed(Throwable t) {
 		cancel();
@@ -240,7 +238,7 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 
 
 	/**
-	 * Represents a state for the {@link Processor} to be in.
+	 * 表示 {@link Processor} 可能处于的状态。
 	 *
 	 * <p><pre>
 	 *       UNSUBSCRIBED
@@ -423,8 +421,8 @@ public abstract class AbstractListenerWriteFlushProcessor<T> implements Processo
 
 
 		/**
-		 * Subscriber to receive and delegate completion notifications for from
-		 * the current Publisher, i.e. for the current flush boundary.
+		 * 用于接收并委派来自当前 Publisher（即当前刷新边界）的
+		 * 完成通知的 Subscriber。
 		 */
 		private static class WriteResultSubscriber implements Subscriber<Void> {
 

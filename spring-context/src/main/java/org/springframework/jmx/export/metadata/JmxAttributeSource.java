@@ -21,8 +21,7 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface used by the {@code MetadataMBeanInfoAssembler} to
- * read source-level metadata from a managed resource's class.
+ * 由 {@code MetadataMBeanInfoAssembler} 使用的接口，用于从受管资源的类中读取源码级元数据。
  *
  * @author Rob Harrop
  * @author Jennifer Hickey
@@ -33,9 +32,8 @@ import org.springframework.lang.Nullable;
 public interface JmxAttributeSource {
 
 	/**
-	 * Implementations should return an instance of {@code ManagedResource}
-	 * if the supplied {@code Class} has the appropriate metadata.
-	 * Otherwise, should return {@code null}.
+	 * 如果提供的 {@code Class} 具有相应的元数据，实现类应返回一个 {@code ManagedResource} 实例。否则应
+	 * 返回 {@code null}。
 	 * @param clazz the class to read the attribute data from
 	 * @return the attribute, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -44,9 +42,8 @@ public interface JmxAttributeSource {
 	ManagedResource getManagedResource(Class<?> clazz) throws InvalidMetadataException;
 
 	/**
-	 * Implementations should return an instance of {@code ManagedAttribute}
-	 * if the supplied {@code Method} has the corresponding metadata.
-	 * Otherwise, should return {@code null}.
+	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedAttribute} 实例。否则
+	 * 应返回 {@code null}。
 	 * @param method the method to read the attribute data from
 	 * @return the attribute, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -55,9 +52,8 @@ public interface JmxAttributeSource {
 	ManagedAttribute getManagedAttribute(Method method) throws InvalidMetadataException;
 
 	/**
-	 * Implementations should return an instance of {@code ManagedMetric}
-	 * if the supplied {@code Method} has the corresponding metadata.
-	 * Otherwise, should return {@code null}.
+	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedMetric} 实例。否则应
+	 * 返回 {@code null}。
 	 * @param method the method to read the attribute data from
 	 * @return the metric, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -66,9 +62,8 @@ public interface JmxAttributeSource {
 	ManagedMetric getManagedMetric(Method method) throws InvalidMetadataException;
 
 	/**
-	 * Implementations should return an instance of {@code ManagedOperation}
-	 * if the supplied {@code Method} has the corresponding metadata.
-	 * Otherwise, should return {@code null}.
+	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回一个 {@code ManagedOperation} 实例。否则
+	 * 应返回 {@code null}。
 	 * @param method the method to read the attribute data from
 	 * @return the attribute, or {@code null} if not found
 	 * @throws InvalidMetadataException in case of invalid attributes
@@ -77,9 +72,8 @@ public interface JmxAttributeSource {
 	ManagedOperation getManagedOperation(Method method) throws InvalidMetadataException;
 
 	/**
-	 * Implementations should return an array of {@code ManagedOperationParameter}
-	 * if the supplied {@code Method} has the corresponding metadata. Otherwise,
-	 * should return an empty array if no metadata is found.
+	 * 如果提供的 {@code Method} 具有相应的元数据，实现类应返回 {@code ManagedOperationParameter} 数组。
+	 * 否则，如果未找到元数据，应返回空数组。
 	 * @param method the {@code Method} to read the metadata from
 	 * @return the parameter information.
 	 * @throws InvalidMetadataException in the case of invalid attributes.
@@ -87,9 +81,8 @@ public interface JmxAttributeSource {
 	ManagedOperationParameter[] getManagedOperationParameters(Method method) throws InvalidMetadataException;
 
 	/**
-	 * Implementations should return an array of {@link ManagedNotification ManagedNotifications}
-	 * if the supplied {@code Class} has the corresponding metadata. Otherwise,
-	 * should return an empty array.
+	 * 如果提供的 {@code Class} 具有相应的元数据，实现类应返回
+	 * {@link ManagedNotification ManagedNotifications} 数组。否则应返回空数组。
 	 * @param clazz the {@code Class} to read the metadata from
 	 * @return the notification information
 	 * @throws InvalidMetadataException in the case of invalid metadata

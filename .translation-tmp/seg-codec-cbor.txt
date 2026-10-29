@@ -1,0 +1,8 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/cbor/Jackson2CborDecoder.java
+@@BODY 35 36
+Decode bytes into CBOR and convert to Object's with Jackson.
+Stream decoding is not supported yet.
+===FILE spring-web/src/main/java/org/springframework/http/codec/cbor/Jackson2CborEncoder.java
+@@BODY 36 37
+Encode from an {@code Object} to bytes of CBOR objects using Jackson.
+Stream encoding is not supported yet.

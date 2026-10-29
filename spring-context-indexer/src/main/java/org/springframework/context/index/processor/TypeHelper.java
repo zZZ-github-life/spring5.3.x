@@ -30,7 +30,7 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Types;
 
 /**
- * Type utilities.
+ * 类型工具。
  *
  * @author Stephane Nicoll
  * @since 5.0
@@ -81,8 +81,7 @@ class TypeHelper {
 	}
 
 	/**
-	 * Return the superclass of the specified {@link Element} or null if this
-	 * {@code element} represents {@link Object}.
+	 * 返回指定 {@link Element} 的父类；如果此 {@code element} 表示 {@link Object}，则返回 null。
 	 */
 	public Element getSuperClass(Element element) {
 		List<? extends TypeMirror> superTypes = this.types.directSupertypes(element.asType());
@@ -93,9 +92,8 @@ class TypeHelper {
 	}
 
 	/**
-	 * Return the interfaces that are <strong>directly</strong> implemented by the
-	 * specified {@link Element} or an empty list if this {@code element} does not
-	 * implement any interface.
+	 * 返回由指定 {@link Element} <strong>直接</strong>实现的接口；若此 {@code element} 未实现任何接口
+	 * 则返回空列表。
 	 */
 	public List<Element> getDirectInterfaces(Element element) {
 		List<? extends TypeMirror> superTypes = this.types.directSupertypes(element.asType());

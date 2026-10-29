@@ -31,16 +31,13 @@ import org.springframework.web.server.NotAcceptableStatusException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolver that checks a query parameter and uses it to look up a matching
- * MediaType. Lookup keys can be registered or as a fallback
- * {@link MediaTypeFactory} can be used to perform a lookup.
- *
+ * 检查查询参数并使用它查找匹配 MediaType 的解析器。查找键可以注册，作为回退也可以使用 {@link MediaTypeFactory} 执行查找。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class ParameterContentTypeResolver implements RequestedContentTypeResolver {
 
-	/** Primary lookup for media types by key (e.g. "json" -> "application/json") */
+	/** 按键查找媒体类型的主要查找表（例如 "json" -> "application/json"） */
 	private final Map<String, MediaType> mediaTypes = new ConcurrentHashMap<>(64);
 
 	private String parameterName = "format";
@@ -56,8 +53,8 @@ public class ParameterContentTypeResolver implements RequestedContentTypeResolve
 
 
 	/**
-	 * Set the name of the parameter to use to determine requested media types.
-	 * <p>By default this is set to {@literal "format"}.
+	 * 设置用于确定所请求媒体类型的参数名称。
+	 * <p>默认设置为 {@literal "format"}。
 	 */
 	public void setParameterName(String parameterName) {
 		Assert.notNull(parameterName, "'parameterName' is required");

@@ -33,20 +33,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 
 /**
- * A {@link org.springframework.web.servlet.HandlerExceptionResolver
- * HandlerExceptionResolver} that uses the {@link ResponseStatus @ResponseStatus}
- * annotation to map exceptions to HTTP status codes.
+ * 一个 {@link org.springframework.web.servlet.HandlerExceptionResolver
+ * HandlerExceptionResolver}，它使用 {@link ResponseStatus @ResponseStatus}
+ * 注解将异常映射到 HTTP 状态码。
  *
- * <p>This exception resolver is enabled by default in the
+ * <p>此异常解析器在
  * {@link org.springframework.web.servlet.DispatcherServlet DispatcherServlet}
- * and the MVC Java config and the MVC namespace.
+ * 以及 MVC Java 配置和 MVC 命名空间中默认启用。
  *
- * <p>As of 4.2 this resolver also looks recursively for {@code @ResponseStatus}
- * present on cause exceptions, and as of 4.2.2 this resolver supports
- * attribute overrides for {@code @ResponseStatus} in custom composed annotations.
+ * <p>从 4.2 开始，此解析器还会递归查找原因异常上存在的
+ * {@code @ResponseStatus}；从 4.2.2 开始，此解析器支持
+ * 在自定义组合注解中覆盖 {@code @ResponseStatus} 的属性。
  *
- * <p>As of 5.0 this resolver also supports {@link ResponseStatusException}.
- *
+ * <p>从 5.0 开始，此解析器还支持 {@link ResponseStatusException}。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -94,9 +93,9 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Template method that handles the {@link ResponseStatus @ResponseStatus} annotation.
-	 * <p>The default implementation delegates to {@link #applyStatusAndReason}
-	 * with the status code and reason from the annotation.
+	 * 处理 {@link ResponseStatus @ResponseStatus} 注解的模板方法。
+	 * <p>默认实现使用注解中的状态码和原因
+	 * 委托给 {@link #applyStatusAndReason}。
 	 * @param responseStatus the {@code @ResponseStatus} annotation
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -114,11 +113,11 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Template method that handles an {@link ResponseStatusException}.
-	 * <p>The default implementation applies the headers from
-	 * {@link ResponseStatusException#getResponseHeaders()} and delegates to
-	 * {@link #applyStatusAndReason} with the status code and reason from the
-	 * exception.
+	 * 处理 {@link ResponseStatusException} 的模板方法。
+	 * <p>默认实现应用
+	 * {@link ResponseStatusException#getResponseHeaders()} 中的响应头，并使用
+	 * 异常中的状态码和原因委托给
+	 * {@link #applyStatusAndReason}。
 	 * @param ex the exception
 	 * @param request current HTTP request
 	 * @param response current HTTP response
@@ -137,11 +136,11 @@ public class ResponseStatusExceptionResolver extends AbstractHandlerExceptionRes
 	}
 
 	/**
-	 * Apply the resolved status code and reason to the response.
-	 * <p>The default implementation sends a response error using
-	 * {@link HttpServletResponse#sendError(int)} or
-	 * {@link HttpServletResponse#sendError(int, String)} if there is a reason
-	 * and then returns an empty ModelAndView.
+	 * 将解析出的状态码和原因应用到响应。
+	 * <p>如果存在原因，默认实现使用
+	 * {@link HttpServletResponse#sendError(int)} 或
+	 * {@link HttpServletResponse#sendError(int, String)} 发送响应错误，
+	 * 然后返回一个空的 ModelAndView。
 	 * @param statusCode the HTTP status code
 	 * @param reason the associated reason (may be {@code null} or empty)
 	 * @param response current HTTP response

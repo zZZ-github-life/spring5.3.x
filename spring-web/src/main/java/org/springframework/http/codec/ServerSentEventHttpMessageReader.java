@@ -37,8 +37,9 @@ import org.springframework.http.ReactiveHttpInputMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * Reader that supports a stream of {@link ServerSentEvent ServerSentEvents} and also plain
- * {@link Object Objects} which is the same as an {@link ServerSentEvent} with data only.
+ * 支持 {@link ServerSentEvent ServerSentEvent} 流以及纯
+ * {@link Object Object} 的读取器，后者等同于仅包含数据的
+ * {@link ServerSentEvent}。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -57,16 +58,16 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 
 
 	/**
-	 * Constructor without a {@code Decoder}. In this mode only {@code String}
-	 * is supported as the data of an event.
+	 * 不带 {@code Decoder} 的构造函数。在此模式下，事件数据
+	 * 仅支持 {@code String}。
 	 */
 	public ServerSentEventHttpMessageReader() {
 		this(null);
 	}
 
 	/**
-	 * Constructor with JSON {@code Decoder} for decoding to Objects.
-	 * Support for decoding to {@code String} event data is built-in.
+	 * 带 JSON {@code Decoder} 的构造函数，用于解码为 Object。
+	 * 内置了对解码为 {@code String} 事件数据的支持。
 	 */
 	public ServerSentEventHttpMessageReader(@Nullable Decoder<?> decoder) {
 		this.decoder = decoder;
@@ -74,7 +75,7 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 
 
 	/**
-	 * Return the configured {@code Decoder}.
+	 * 返回已配置的 {@code Decoder}。
 	 */
 	@Nullable
 	public Decoder<?> getDecoder() {
@@ -82,12 +83,11 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 	}
 
 	/**
-	 * Configure a limit on the maximum number of bytes per SSE event which are
-	 * buffered before the event is parsed.
-	 * <p>Note that the {@link #getDecoder() data decoder}, if provided, must
-	 * also be customized accordingly to raise the limit if necessary in order
-	 * to be able to parse the data portion of the event.
-	 * <p>By default this is set to 256K.
+	 * 配置在解析事件之前缓冲的每个 SSE 事件的最大字节数限制。
+	 * <p>请注意，{@link #getDecoder() 数据解码器}（如果提供）
+	 * 也必须相应地定制以提高限制（如有必要），
+	 * 以便能够解析事件的数据部分。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 * @since 5.1.13
 	 */
@@ -96,7 +96,7 @@ public class ServerSentEventHttpMessageReader implements HttpMessageReader<Objec
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回{@link #setMaxInMemorySize 已配置}的字节数限制。
 	 * @since 5.1.13
 	 */
 	public int getMaxInMemorySize() {

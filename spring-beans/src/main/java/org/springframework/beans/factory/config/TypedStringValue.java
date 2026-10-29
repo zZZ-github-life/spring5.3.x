@@ -23,12 +23,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Holder for a typed String value. Can be added to bean definitions
- * in order to explicitly specify a target type for a String value,
- * for example for collection elements.
+ * 类型化 String 值的持有者。可以添加到 Bean 定义中，以便为 String 值显式指定目标类型，例如用于集合
+ * 元素。
  *
- * <p>This holder will just store the String value and the target type.
- * The actual conversion will be performed by the bean factory.
+ * <p>此持有者仅存储 String 值和目标类型。实际转换将由 Bean 工厂执行。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -53,7 +51,7 @@ public class TypedStringValue implements BeanMetadataElement {
 
 
 	/**
-	 * Create a new {@link TypedStringValue} for the given String value.
+	 * 为给定 String 值创建一个新的 {@link TypedStringValue}。
 	 * @param value the String value
 	 */
 	public TypedStringValue(@Nullable String value) {
@@ -61,8 +59,7 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Create a new {@link TypedStringValue} for the given String value
-	 * and target type.
+	 * 为给定 String 值和目标类型创建一个新的 {@link TypedStringValue}。
 	 * @param value the String value
 	 * @param targetType the type to convert to
 	 */
@@ -72,8 +69,7 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Create a new {@link TypedStringValue} for the given String value
-	 * and target type.
+	 * 为给定 String 值和目标类型创建一个新的 {@link TypedStringValue}。
 	 * @param value the String value
 	 * @param targetTypeName the type to convert to
 	 */
@@ -84,16 +80,15 @@ public class TypedStringValue implements BeanMetadataElement {
 
 
 	/**
-	 * Set the String value.
-	 * <p>Only necessary for manipulating a registered value,
-	 * for example in BeanFactoryPostProcessors.
+	 * 设置 String 值。
+	 * <p>仅在操作已注册的值时需要，例如在 BeanFactoryPostProcessors 中。
 	 */
 	public void setValue(@Nullable String value) {
 		this.value = value;
 	}
 
 	/**
-	 * Return the String value.
+	 * 返回 String 值。
 	 */
 	@Nullable
 	public String getValue() {
@@ -101,9 +96,8 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Set the type to convert to.
-	 * <p>Only necessary for manipulating a registered value,
-	 * for example in BeanFactoryPostProcessors.
+	 * 设置要转换到的类型。
+	 * <p>仅在操作已注册的值时需要，例如在 BeanFactoryPostProcessors 中。
 	 */
 	public void setTargetType(Class<?> targetType) {
 		Assert.notNull(targetType, "'targetType' must not be null");
@@ -111,7 +105,7 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Return the type to convert to.
+	 * 返回要转换到的类型。
 	 */
 	public Class<?> getTargetType() {
 		Object targetTypeValue = this.targetType;
@@ -122,14 +116,14 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Specify the type to convert to.
+	 * 指定要转换到的类型。
 	 */
 	public void setTargetTypeName(@Nullable String targetTypeName) {
 		this.targetType = targetTypeName;
 	}
 
 	/**
-	 * Return the type to convert to.
+	 * 返回要转换到的类型。
 	 */
 	@Nullable
 	public String getTargetTypeName() {
@@ -143,16 +137,15 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Return whether this typed String value carries a target type .
+	 * 返回此类型化 String 值是否带有目标类型。
 	 */
 	public boolean hasTargetType() {
 		return (this.targetType instanceof Class);
 	}
 
 	/**
-	 * Determine the type to convert to, resolving it from a specified class name
-	 * if necessary. Will also reload a specified Class from its name when called
-	 * with the target type already resolved.
+	 * 确定要转换到的类型，必要时从指定的类名解析。当调用时目标类型已解析，还会根据类名重新加载指定的
+	 * Class。
 	 * @param classLoader the ClassLoader to use for resolving a (potential) class name
 	 * @return the resolved type to convert to
 	 * @throws ClassNotFoundException if the type cannot be resolved
@@ -170,8 +163,8 @@ public class TypedStringValue implements BeanMetadataElement {
 
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置来源 {@code Object}。
+	 * <p>对象的确切类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
@@ -184,14 +177,14 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Set the type name as actually specified for this particular value, if any.
+	 * 设置此特定值实际指定的类型名称（如果有）。
 	 */
 	public void setSpecifiedTypeName(@Nullable String specifiedTypeName) {
 		this.specifiedTypeName = specifiedTypeName;
 	}
 
 	/**
-	 * Return the type name as actually specified for this particular value, if any.
+	 * 返回此特定值实际指定的类型名称（如果有）。
 	 */
 	@Nullable
 	public String getSpecifiedTypeName() {
@@ -199,15 +192,14 @@ public class TypedStringValue implements BeanMetadataElement {
 	}
 
 	/**
-	 * Mark this value as dynamic, i.e. as containing an expression
-	 * and hence not being subject to caching.
+	 * 将此值标记为动态，即包含表达式，因此不受缓存影响。
 	 */
 	public void setDynamic() {
 		this.dynamic = true;
 	}
 
 	/**
-	 * Return whether this value has been marked as dynamic.
+	 * 返回此值是否已被标记为动态。
 	 */
 	public boolean isDynamic() {
 		return this.dynamic;

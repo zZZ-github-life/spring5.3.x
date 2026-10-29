@@ -1,6 +1,5 @@
 /**
- * Classes supporting the org.springframework.beans package,
- * such as utility classes for sorting and holding lists of beans.
+ * 支持 org.springframework.beans 包的类，例如用于排序和持有 Bean 列表的工具类。
  */
 @NonNullApi
 @NonNullFields

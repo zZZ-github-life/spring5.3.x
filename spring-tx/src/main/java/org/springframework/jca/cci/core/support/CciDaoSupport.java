@@ -25,15 +25,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient superclass for CCI-based data access objects.
+ * 基于 CCI 的数据访问对象的便捷超类。
  *
- * <p>Requires a {@link javax.resource.cci.ConnectionFactory} to be set,
- * providing a {@link org.springframework.jca.cci.core.CciTemplate} based
- * on it to subclasses through the {@link #getCciTemplate()} method.
+ * <p>需要设置 {@link javax.resource.cci.ConnectionFactory}，
+ * 通过 {@link #getCciTemplate()} 方法向子类提供基于它的
+ * {@link org.springframework.jca.cci.core.CciTemplate}。
  *
- * <p>This base class is mainly intended for CciTemplate usage but can
- * also be used when working with a Connection directly or when using
- * {@code org.springframework.jca.cci.object} classes.
+ * <p>此基类主要用于 CciTemplate 使用，但也可以在使用
+ * Connection 直接操作或使用 {@code org.springframework.jca.cci.object} 类时使用。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -52,7 +51,7 @@ public abstract class CciDaoSupport extends DaoSupport {
 
 
 	/**
-	 * Set the ConnectionFactory to be used by this DAO.
+	 * 设置此 DAO 使用的 ConnectionFactory。
 	 */
 	public final void setConnectionFactory(ConnectionFactory connectionFactory) {
 		if (this.cciTemplate == null || connectionFactory != this.cciTemplate.getConnectionFactory()) {
@@ -61,10 +60,10 @@ public abstract class CciDaoSupport extends DaoSupport {
 	}
 
 	/**
-	 * Create a CciTemplate for the given ConnectionFactory.
-	 * Only invoked if populating the DAO with a ConnectionFactory reference!
-	 * <p>Can be overridden in subclasses to provide a CciTemplate instance
-	 * with different configuration, or a custom CciTemplate subclass.
+	 * 为给定的 ConnectionFactory 创建 CciTemplate。
+	 * 仅在使用 ConnectionFactory 引用填充 DAO 时调用！
+	 * <p>可以在子类中重写，以提供具有不同配置的 CciTemplate 实例，
+	 * 或自定义的 CciTemplate 子类。
 	 * @param connectionFactory the CCI ConnectionFactory to create a CciTemplate for
 	 * @return the new CciTemplate instance
 	 * @see #setConnectionFactory(javax.resource.cci.ConnectionFactory)
@@ -74,7 +73,7 @@ public abstract class CciDaoSupport extends DaoSupport {
 	}
 
 	/**
-	 * Return the ConnectionFactory used by this DAO.
+	 * 返回此 DAO 使用的 ConnectionFactory。
 	 */
 	@Nullable
 	public final ConnectionFactory getConnectionFactory() {
@@ -82,16 +81,14 @@ public abstract class CciDaoSupport extends DaoSupport {
 	}
 
 	/**
-	 * Set the CciTemplate for this DAO explicitly,
-	 * as an alternative to specifying a ConnectionFactory.
+	 * 显式设置此 DAO 的 CciTemplate，作为指定 ConnectionFactory 的替代方案。
 	 */
 	public final void setCciTemplate(org.springframework.jca.cci.core.CciTemplate cciTemplate) {
 		this.cciTemplate = cciTemplate;
 	}
 
 	/**
-	 * Return the CciTemplate for this DAO,
-	 * pre-initialized with the ConnectionFactory or set explicitly.
+	 * 返回此 DAO 的 CciTemplate，已使用 ConnectionFactory 预初始化或显式设置。
 	 */
 	@Nullable
 	public final org.springframework.jca.cci.core.CciTemplate getCciTemplate() {
@@ -107,9 +104,8 @@ public abstract class CciDaoSupport extends DaoSupport {
 
 
 	/**
-	 * Obtain a CciTemplate derived from the main template instance,
-	 * inheriting the ConnectionFactory and other settings but
-	 * overriding the ConnectionSpec used for obtaining Connections.
+	 * 获取从主模板实例派生的 CciTemplate，
+	 * 继承 ConnectionFactory 和其他设置，但覆盖用于获取 Connection 的 ConnectionSpec。
 	 * @param connectionSpec the CCI ConnectionSpec that the returned
 	 * template instance is supposed to obtain Connections for
 	 * @return the derived template instance
@@ -122,7 +118,7 @@ public abstract class CciDaoSupport extends DaoSupport {
 	}
 
 	/**
-	 * Get a CCI Connection, either from the current transaction or a new one.
+	 * 获取 CCI Connection，来自当前事务或新建的。
 	 * @return the CCI Connection
 	 * @throws org.springframework.jca.cci.CannotGetCciConnectionException
 	 * if the attempt to get a Connection failed
@@ -135,8 +131,8 @@ public abstract class CciDaoSupport extends DaoSupport {
 	}
 
 	/**
-	 * Close the given CCI Connection, created via this bean's ConnectionFactory,
-	 * if it isn't bound to the thread.
+	 * 关闭通过此 bean 的 ConnectionFactory 创建的给定 CCI Connection，
+	 * 如果它未绑定到线程。
 	 * @param con the Connection to close
 	 * @see org.springframework.jca.cci.connection.ConnectionFactoryUtils#releaseConnection
 	 */

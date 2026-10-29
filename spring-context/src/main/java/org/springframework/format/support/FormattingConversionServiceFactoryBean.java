@@ -32,28 +32,21 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
- * A factory providing convenient access to a {@code FormattingConversionService}
- * configured with converters and formatters for common types such as numbers and
- * datetimes.
+ * 一个工厂，提供对 {@code FormattingConversionService} 的便捷访问，该服务配置了用于数字和日期时间
+ * 等常见类型的转换器和格式化器。
  *
- * <p>Additional converters and formatters can be registered declaratively through
- * {@link #setConverters(Set)} and {@link #setFormatters(Set)}. Another option
- * is to register converters and formatters in code by implementing the
- * {@link FormatterRegistrar} interface. You can then configure provide the set
- * of registrars to use through {@link #setFormatterRegistrars(Set)}.
+ * <p>可以通过 {@link #setConverters(Set)} 和 {@link #setFormatters(Set)} 以声明方式注册额外的转换
+ * 器和格式化器。另一种方式是通过实现 {@link FormatterRegistrar} 接口在代码中注册转换器和格式化器。
+ * 然后可以通过 {@link #setFormatterRegistrars(Set)} 配置要使用的注册器集合。
  *
- * <p>A good example for registering converters and formatters in code is
- * {@code JodaTimeFormatterRegistrar}, which registers a number of
- * date-related formatters and converters. For a more detailed list of cases
- * see {@link #setFormatterRegistrars(Set)}
+ * <p>在代码中注册转换器和格式化器的一个很好的例子是 {@code JodaTimeFormatterRegistrar}，它注册了许
+ * 多与日期相关的格式化器和转换器。有关更详细的情况列表，请参见
+ * {@link #setFormatterRegistrars(Set)}
  *
- * <p>Like all {@code FactoryBean} implementations, this class is suitable for
- * use when configuring a Spring application context using Spring {@code <beans>}
- * XML. When configuring the container with
- * {@link org.springframework.context.annotation.Configuration @Configuration}
- * classes, simply instantiate, configure and return the appropriate
- * {@code FormattingConversionService} object from a
- * {@link org.springframework.context.annotation.Bean @Bean} method.
+ * <p>与所有 {@code FactoryBean} 实现一样，此类适用于使用 Spring {@code <beans>} XML 配置 Spring 应
+ * 用上下文时使用。使用 {@link org.springframework.context.annotation.Configuration @Configuration}
+ * 类配置容器时，只需从 {@link org.springframework.context.annotation.Bean @Bean} 方法中实例化、配
+ * 置并返回适当的 {@code FormattingConversionService} 对象即可。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -83,7 +76,7 @@ public class FormattingConversionServiceFactoryBean
 
 
 	/**
-	 * Configure the set of custom converter objects that should be added.
+	 * 配置应添加的自定义转换器对象集合。
 	 * @param converters instances of any of the following:
 	 * {@link org.springframework.core.convert.converter.Converter},
 	 * {@link org.springframework.core.convert.converter.ConverterFactory},
@@ -94,7 +87,7 @@ public class FormattingConversionServiceFactoryBean
 	}
 
 	/**
-	 * Configure the set of custom formatter objects that should be added.
+	 * 配置应添加的自定义格式化器对象集合。
 	 * @param formatters instances of {@link Formatter} or {@link AnnotationFormatterFactory}
 	 */
 	public void setFormatters(Set<?> formatters) {
@@ -102,16 +95,13 @@ public class FormattingConversionServiceFactoryBean
 	}
 
 	/**
-	 * <p>Configure the set of FormatterRegistrars to invoke to register
-	 * Converters and Formatters in addition to those added declaratively
-	 * via {@link #setConverters(Set)} and {@link #setFormatters(Set)}.
-	 * <p>FormatterRegistrars are useful when registering multiple related
-	 * converters and formatters for a formatting category, such as Date
-	 * formatting. All types related needed to support the formatting
-	 * category can be registered from one place.
-	 * <p>FormatterRegistrars can also be used to register Formatters
-	 * indexed under a specific field type different from its own &lt;T&gt;,
-	 * or when registering a Formatter from a Printer/Parser pair.
+	 * <p>配置要调用的 FormatterRegistrars 集合，以便在通过 {@link #setConverters(Set)} 和
+	 * {@link #setFormatters(Set)} 以声明方式添加的转换器和格式化器之外，注册其他 Converters 和
+	 * Formatters。
+	 * <p>当为某个格式化类别（例如 Date 格式化）注册多个相关的转换器和格式化器时，FormatterRegistrars
+	 * 很有用。支持该格式化类别所需的所有相关类型都可以在一个地方注册。
+	 * <p>FormatterRegistrars 还可用于注册以其自身 &lt;T&gt; 之外的其他特定字段类型为索引的 Formatters，
+	 * 或者用于从 Printer/Parser 对注册 Formatter。
 	 * @see FormatterRegistry#addFormatterForFieldType(Class, Formatter)
 	 * @see FormatterRegistry#addFormatterForFieldType(Class, Printer, Parser)
 	 */
@@ -120,9 +110,8 @@ public class FormattingConversionServiceFactoryBean
 	}
 
 	/**
-	 * Indicate whether default formatters should be registered or not.
-	 * <p>By default, built-in formatters are registered. This flag can be used
-	 * to turn that off and rely on explicitly registered formatters only.
+	 * 指示是否应注册默认格式化器。
+	 * <p>默认情况下会注册内置格式化器。此标志可用于关闭该行为，仅依赖显式注册的格式化器。
 	 * @see #setFormatters(Set)
 	 * @see #setFormatterRegistrars(Set)
 	 */

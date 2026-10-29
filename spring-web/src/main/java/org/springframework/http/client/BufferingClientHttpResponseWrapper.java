@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * Simple implementation of {@link ClientHttpResponse} that reads the response's body
- * into memory, thus allowing for multiple invocations of {@link #getBody()}.
+ * 读取响应正文到内存的 {@link ClientHttpResponse} 简单实现，
+ * 从而允许多次调用 {@link #getBody()}。
  *
  * @author Arjen Poutsma
  * @since 3.1

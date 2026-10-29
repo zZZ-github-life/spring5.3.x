@@ -29,16 +29,9 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * UriComponentsBuilder with additional static factory methods to create links
- * based on the current HttpServletRequest.
+ * UriComponentsBuilder，提供额外的静态工厂方法以基于当前的 HttpServletRequest 创建链接。
  *
- * <p><strong>Note:</strong> As of 5.1, methods in this class do not extract
- * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
- * client-originated address. Please, use
- * {@link org.springframework.web.filter.ForwardedHeaderFilter
- * ForwardedHeaderFilter}, or similar from the underlying server, to extract
- * and use such headers, or to discard them.
- *
+ * <p><strong>注意：</strong>从 5.1 开始，此类中的方法不会提取指定客户端原始地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。请使用 {@link org.springframework.web.filter.ForwardedHeaderFilter ForwardedHeaderFilter} 或底层服务器中的类似机制来提取和使用此类头，或将其丢弃。
  * @author Rossen Stoyanchev
  * @since 3.1
  */
@@ -49,7 +42,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 
 
 	/**
-	 * Default constructor. Protected to prevent direct instantiation.
+	 * 默认构造函数。设为 protected 以防止直接实例化。
 	 * @see #fromContextPath(HttpServletRequest)
 	 * @see #fromServletMapping(HttpServletRequest)
 	 * @see #fromRequest(HttpServletRequest)
@@ -61,7 +54,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Create a deep copy of the given ServletUriComponentsBuilder.
+	 * 创建给定 ServletUriComponentsBuilder 的深拷贝。
 	 * @param other the other builder to copy from
 	 */
 	protected ServletUriComponentsBuilder(ServletUriComponentsBuilder other) {
@@ -73,8 +66,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	// Factory methods based on an HttpServletRequest
 
 	/**
-	 * Prepare a builder from the host, port, scheme, and context path of the
-	 * given HttpServletRequest.
+	 * 根据给定 HttpServletRequest 的主机、端口、协议和上下文路径准备一个构建器。
 	 */
 	public static ServletUriComponentsBuilder fromContextPath(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = initFromRequest(request);
@@ -83,12 +75,8 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Prepare a builder from the host, port, scheme, context path, and
-	 * servlet mapping of the given HttpServletRequest.
-	 * <p>If the servlet is mapped by name, e.g. {@code "/main/*"}, the path
-	 * will end with "/main". If the servlet is mapped otherwise, e.g.
-	 * {@code "/"} or {@code "*.do"}, the result will be the same as
-	 * if calling {@link #fromContextPath(HttpServletRequest)}.
+	 * 根据给定 HttpServletRequest 的主机、端口、协议、上下文路径和 servlet 映射准备一个构建器。
+	 * <p>如果 servlet 按名称映射，例如 {@code "/main/*"}，则路径将以 "/main" 结尾。如果 servlet 以其他方式映射，例如 {@code "/"} 或 {@code "*.do"}，则结果与调用 {@link #fromContextPath(HttpServletRequest)} 相同。
 	 */
 	public static ServletUriComponentsBuilder fromServletMapping(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = fromContextPath(request);
@@ -99,8 +87,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Prepare a builder from the host, port, scheme, and path (but not the query)
-	 * of the HttpServletRequest.
+	 * 根据 HttpServletRequest 的主机、端口、协议和路径（但不包括查询字符串）准备一个构建器。
 	 */
 	public static ServletUriComponentsBuilder fromRequestUri(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = initFromRequest(request);
@@ -109,8 +96,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Prepare a builder by copying the scheme, host, port, path, and
-	 * query string of an HttpServletRequest.
+	 * 通过复制 HttpServletRequest 的协议、主机、端口、路径和查询字符串来准备一个构建器。
 	 */
 	public static ServletUriComponentsBuilder fromRequest(HttpServletRequest request) {
 		ServletUriComponentsBuilder builder = initFromRequest(request);
@@ -120,7 +106,7 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Initialize a builder with a scheme, host,and port (but not path and query).
+	 * 使用协议、主机和端口（但不包括路径和查询字符串）初始化一个构建器。
 	 */
 	private static ServletUriComponentsBuilder initFromRequest(HttpServletRequest request) {
 		String scheme = request.getScheme();
@@ -140,39 +126,35 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	// Alternative methods relying on RequestContextHolder to find the request
 
 	/**
-	 * Same as {@link #fromContextPath(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * 与 {@link #fromContextPath(HttpServletRequest)} 相同，只是请求是通过 {@link RequestContextHolder} 获取的。
 	 */
 	public static ServletUriComponentsBuilder fromCurrentContextPath() {
 		return fromContextPath(getCurrentRequest());
 	}
 
 	/**
-	 * Same as {@link #fromServletMapping(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * 与 {@link #fromServletMapping(HttpServletRequest)} 相同，只是请求是通过 {@link RequestContextHolder} 获取的。
 	 */
 	public static ServletUriComponentsBuilder fromCurrentServletMapping() {
 		return fromServletMapping(getCurrentRequest());
 	}
 
 	/**
-	 * Same as {@link #fromRequestUri(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * 与 {@link #fromRequestUri(HttpServletRequest)} 相同，只是请求是通过 {@link RequestContextHolder} 获取的。
 	 */
 	public static ServletUriComponentsBuilder fromCurrentRequestUri() {
 		return fromRequestUri(getCurrentRequest());
 	}
 
 	/**
-	 * Same as {@link #fromRequest(HttpServletRequest)} except the
-	 * request is obtained through {@link RequestContextHolder}.
+	 * 与 {@link #fromRequest(HttpServletRequest)} 相同，只是请求是通过 {@link RequestContextHolder} 获取的。
 	 */
 	public static ServletUriComponentsBuilder fromCurrentRequest() {
 		return fromRequest(getCurrentRequest());
 	}
 
 	/**
-	 * Obtain current request through {@link RequestContextHolder}.
+	 * 通过 {@link RequestContextHolder} 获取当前请求。
 	 */
 	protected static HttpServletRequest getCurrentRequest() {
 		RequestAttributes attrs = RequestContextHolder.getRequestAttributes();
@@ -187,9 +169,9 @@ public class ServletUriComponentsBuilder extends UriComponentsBuilder {
 	}
 
 	/**
-	 * Remove any path extension from the {@link HttpServletRequest#getRequestURI()
-	 * requestURI}. This method must be invoked before any calls to {@link #path(String)}
-	 * or {@link #pathSegment(String...)}.
+	 * 从 {@link HttpServletRequest#getRequestURI()
+	 * requestURI} 中移除任何路径扩展名。必须在调用 {@link #path(String)}
+	 * 或 {@link #pathSegment(String...)} 之前调用此方法。
 	 * <pre>
 	 * GET http://www.foo.example/rest/books/6.json
 	 *

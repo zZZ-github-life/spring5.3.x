@@ -19,8 +19,8 @@ package org.springframework.jdbc.datasource.embedded;
 import org.springframework.util.Assert;
 
 /**
- * Maps well-known {@linkplain EmbeddedDatabaseType embedded database types}
- * to {@link EmbeddedDatabaseConfigurer} strategies.
+ * 将已知的{@linkplain EmbeddedDatabaseType 嵌入式数据库类型}
+ * 映射到 {@link EmbeddedDatabaseConfigurer} 策略。
  *
  * @author Keith Donald
  * @author Oliver Gierke
@@ -34,7 +34,7 @@ final class EmbeddedDatabaseConfigurerFactory {
 
 
 	/**
-	 * Return a configurer instance for the given embedded database type.
+	 * 返回给定嵌入式数据库类型的配置器实例。
 	 * @param type the embedded database type (HSQL, H2 or Derby)
 	 * @return the configurer instance
 	 * @throws IllegalStateException if the driver for the specified database type is not available

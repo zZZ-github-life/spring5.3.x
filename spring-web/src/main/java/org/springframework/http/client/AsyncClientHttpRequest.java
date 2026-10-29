@@ -23,11 +23,11 @@ import org.springframework.http.HttpRequest;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * Represents a client-side asynchronous HTTP request. Created via an
- * implementation of the {@link AsyncClientHttpRequestFactory}.
+ * 表示客户端异步 HTTP 请求。通过 {@link AsyncClientHttpRequestFactory}
+ * 的实现创建。
  *
- * <p>A {@code AsyncHttpRequest} can be {@linkplain #executeAsync() executed},
- * getting a future {@link ClientHttpResponse} which can be read from.
+ * <p>可以 {@linkplain #executeAsync() 执行} {@code AsyncHttpRequest}，
+ * 获得可读取的未来 {@link ClientHttpResponse}。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -38,8 +38,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface AsyncClientHttpRequest extends HttpRequest, HttpOutputMessage {
 
 	/**
-	 * Execute this request asynchronously, resulting in a Future handle.
-	 * {@link ClientHttpResponse} that can be read.
+	 * 异步执行此请求，返回可读取的 {@link ClientHttpResponse} 的 Future 句柄。
 	 * @return the future response result of the execution
 	 * @throws java.io.IOException in case of I/O errors
 	 */

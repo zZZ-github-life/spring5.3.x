@@ -23,14 +23,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Indicates that an annotated class is a "component".
- * Such classes are considered as candidates for auto-detection
- * when using annotation-based configuration and classpath scanning.
+ * 表示被注解的类是一个“组件”。在使用基于注解的配置和类路径扫描时，此类类被视为自动检测的候选者。
  *
- * <p>Other class-level annotations may be considered as identifying
- * a component as well, typically a special kind of component:
- * e.g. the {@link Repository @Repository} annotation or AspectJ's
- * {@link org.aspectj.lang.annotation.Aspect @Aspect} annotation.
+ * <p>其他类级别注解也可能被视为标识一个组件，通常是某种特殊类型的组件：例如
+ * {@link Repository @Repository} 注解或 AspectJ 的
+ * {@link org.aspectj.lang.annotation.Aspect @Aspect} 注解。
  *
  * @author Mark Fisher
  * @since 2.5
@@ -46,8 +43,7 @@ import java.lang.annotation.Target;
 public @interface Component {
 
 	/**
-	 * The value may indicate a suggestion for a logical component name,
-	 * to be turned into a Spring bean in case of an autodetected component.
+	 * 该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。
 	 * @return the suggested component name, if any (or empty String otherwise)
 	 */
 	String value() default "";

@@ -22,14 +22,10 @@ import javax.naming.NamingException;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback interface to be implemented by classes that need to perform an
- * operation (such as a lookup) in a JNDI context. This callback approach
- * is valuable in simplifying error handling, which is performed by the
- * JndiTemplate class. This is a similar to JdbcTemplate's approach.
+ * 供需要在 JNDI 上下文中执行操作（例如查找）的类实现的回调接口。这种回调方式有助于简化错误处理，错
+ * 误处理由 JndiTemplate 类执行。这与 JdbcTemplate 的方式类似。
  *
- * <p>Note that there is hardly any need to implement this callback
- * interface, as JndiTemplate provides all usual JNDI operations via
- * convenience methods.
+ * <p>请注意，几乎不需要实现此回调接口，因为 JndiTemplate 通过便捷方法提供了所有常见的 JNDI 操作。
  *
  * @author Rod Johnson
  * @param <T> the resulting object type
@@ -40,9 +36,8 @@ import org.springframework.lang.Nullable;
 public interface JndiCallback<T> {
 
 	/**
-	 * Do something with the given JNDI context.
-	 * <p>Implementations don't need to worry about error handling
-	 * or cleanup, as the JndiTemplate class will handle this.
+	 * 对给定的 JNDI 上下文执行某些操作。
+	 * <p>实现无需担心错误处理或清理，JndiTemplate 类会处理这些。
 	 * @param ctx the current JNDI context
 	 * @return a result object, or {@code null}
 	 * @throws NamingException if thrown by JNDI methods

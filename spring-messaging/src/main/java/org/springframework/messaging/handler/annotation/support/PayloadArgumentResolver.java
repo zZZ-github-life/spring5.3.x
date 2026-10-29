@@ -21,9 +21,8 @@ import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.validation.Validator;
 
 /**
- * A resolver to extract and convert the payload of a message using a
- * {@link MessageConverter}. It also validates the payload using a
- * {@link Validator} if the argument is annotated with a Validation annotation.
+ * 使用 {@link MessageConverter} 提取并转换消息载荷的解析器。
+ * 如果参数带有校验注解，它还会使用 {@link Validator} 校验载荷。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -36,8 +35,7 @@ import org.springframework.validation.Validator;
 public class PayloadArgumentResolver extends PayloadMethodArgumentResolver {
 
 	/**
-	 * Create a new {@code PayloadArgumentResolver} with the given
-	 * {@link MessageConverter}.
+	 * 使用给定 {@link MessageConverter} 创建新的 {@code PayloadArgumentResolver}。
 	 * @param messageConverter the MessageConverter to use (required)
 	 * @since 4.0.9
 	 */
@@ -46,8 +44,8 @@ public class PayloadArgumentResolver extends PayloadMethodArgumentResolver {
 	}
 
 	/**
-	 * Create a new {@code PayloadArgumentResolver} with the given
-	 * {@link MessageConverter} and {@link Validator}.
+	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
+	 * 创建新的 {@code PayloadArgumentResolver}。
 	 * @param messageConverter the MessageConverter to use (required)
 	 * @param validator the Validator to use (optional)
 	 */
@@ -56,8 +54,8 @@ public class PayloadArgumentResolver extends PayloadMethodArgumentResolver {
 	}
 
 	/**
-	 * Create a new {@code PayloadArgumentResolver} with the given
-	 * {@link MessageConverter} and {@link Validator}.
+	 * 使用给定 {@link MessageConverter} 和 {@link Validator}
+	 * 创建新的 {@code PayloadArgumentResolver}。
 	 * @param messageConverter the MessageConverter to use (required)
 	 * @param validator the Validator to use (optional)
 	 * @param useDefaultResolution if "true" (the default) this resolver supports

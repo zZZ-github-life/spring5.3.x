@@ -37,10 +37,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Adapter for live beans view exposure, building a snapshot of current beans
- * and their dependencies from either a local {@code ApplicationContext} (with a
- * local {@code LiveBeansView} bean definition) or all registered ApplicationContexts
- * (driven by the {@value #MBEAN_DOMAIN_PROPERTY_NAME} environment property).
+ * 实时 Bean 视图暴露的适配器，从本地 {@code ApplicationContext}（带有本地 {@code LiveBeansView}
+ * Bean 定义）或所有已注册的 ApplicationContext（由 {@value #MBEAN_DOMAIN_PROPERTY_NAME} 环境属性驱
+ * 动）构建当前 Bean 及其依赖关系的快照。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -53,12 +52,12 @@ import org.springframework.util.StringUtils;
 public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAware {
 
 	/**
-	 * The "MBean Domain" property name.
+	 * "MBean Domain" 属性名称。
 	 */
 	public static final String MBEAN_DOMAIN_PROPERTY_NAME = "spring.liveBeansView.mbeanDomain";
 
 	/**
-	 * The MBean application key.
+	 * MBean 应用键。
 	 */
 	public static final String MBEAN_APPLICATION_KEY = "application";
 
@@ -122,9 +121,8 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 
 
 	/**
-	 * Generate a JSON snapshot of current beans and their dependencies,
-	 * finding all active ApplicationContexts through {@link #findApplicationContexts()},
-	 * then delegating to {@link #generateJson(java.util.Set)}.
+	 * 生成当前 Bean 及其依赖关系的 JSON 快照，通过 {@link #findApplicationContexts()} 查找所有活动的
+	 * ApplicationContext，然后委托给 {@link #generateJson(java.util.Set)}。
 	 */
 	@Override
 	public String getSnapshotAsJson() {
@@ -139,8 +137,8 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 	}
 
 	/**
-	 * Find all applicable ApplicationContexts for the current application.
-	 * <p>Called if no specific ApplicationContext has been set for this LiveBeansView.
+	 * 查找当前应用程序所有适用的 ApplicationContext。<p>如果未为此 LiveBeansView 设置特定的
+	 * ApplicationContext，则会调用此方法。
 	 * @return the set of ApplicationContexts
 	 */
 	protected Set<ConfigurableApplicationContext> findApplicationContexts() {
@@ -150,13 +148,10 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 	}
 
 	/**
-	 * Actually generate a JSON snapshot of the beans in the given ApplicationContexts.
-	 * <p>This implementation doesn't use any JSON parsing libraries in order to avoid
-	 * third-party library dependencies. It produces an array of context description
-	 * objects, each containing a context and parent attribute as well as a beans
-	 * attribute with nested bean description objects. Each bean object contains a
-	 * bean, scope, type and resource attribute, as well as a dependencies attribute
-	 * with a nested array of bean names that the present bean depends on.
+	 * 实际生成给定 ApplicationContexts 中 Bean 的 JSON 快照。<p>此实现不使用任何 JSON 解析库，以避免第
+	 * 三方库依赖。它生成一个上下文描述对象数组，每个对象包含 context 和 parent 属性，以及带有嵌套 Bean
+	 * 描述对象的 beans 属性。每个 Bean 对象包含 bean、scope、type 和 resource 属性，以及一个
+	 * dependencies 属性，其中嵌套了当前 Bean 所依赖的 Bean 名称数组。
 	 * @param contexts the set of ApplicationContexts
 	 * @return the JSON document
 	 */
@@ -215,8 +210,7 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 	}
 
 	/**
-	 * Determine whether the specified bean is eligible for inclusion in the
-	 * LiveBeansView JSON snapshot.
+	 * 确定指定的 Bean 是否有资格包含在 LiveBeansView JSON 快照中。
 	 * @param beanName the name of the bean
 	 * @param bd the corresponding bean definition
 	 * @param bf the containing bean factory
@@ -228,8 +222,7 @@ public class LiveBeansView implements LiveBeansViewMBean, ApplicationContextAwar
 	}
 
 	/**
-	 * Determine a resource description for the given bean definition and
-	 * apply basic JSON escaping (backslashes, double quotes) to it.
+	 * 确定给定 Bean 定义的资源描述，并对其应用基本的 JSON 转义（反斜杠、双引号）。
 	 * @param bd the bean definition to build the resource description for
 	 * @return the JSON-escaped resource description
 	 */

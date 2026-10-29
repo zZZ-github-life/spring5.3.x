@@ -26,7 +26,7 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.util.StringUtils;
 
 /**
- * A base {@link HeaderMapper} implementation.
+ * {@link HeaderMapper} 实现的基础类。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -42,18 +42,16 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 
 
 	/**
-	 * Specify a prefix to be appended to the message header name for any
-	 * user-defined property that is being mapped into the MessageHeaders.
-	 * The default is an empty String (no prefix).
+	 * 指定一个前缀，添加到映射到 MessageHeaders 的任何用户定义属性所对应的
+	 * 消息头部名称之前。默认为空字符串（无前缀）。
 	 */
 	public void setInboundPrefix(@Nullable String inboundPrefix) {
 		this.inboundPrefix = (inboundPrefix != null ? inboundPrefix : "");
 	}
 
 	/**
-	 * Specify a prefix to be appended to the protocol property name for any
-	 * user-defined message header that is being mapped into the protocol-specific
-	 * Message. The default is an empty String (no prefix).
+	 * 指定一个前缀，添加到映射到特定协议消息的任何用户定义消息头部所对应的
+	 * 协议属性名称之前。默认为空字符串（无前缀）。
 	 */
 	public void setOutboundPrefix(@Nullable String outboundPrefix) {
 		this.outboundPrefix = (outboundPrefix != null ? outboundPrefix : "");
@@ -61,8 +59,7 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 
 
 	/**
-	 * Generate the name to use to set the header defined by the specified
-	 * {@code headerName} to the protocol specific message.
+	 * 生成用于将指定 {@code headerName} 定义的头部设置到特定协议消息中的名称。
 	 * @see #setOutboundPrefix
 	 */
 	protected String fromHeaderName(String headerName) {
@@ -74,8 +71,8 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 	}
 
 	/**
-	 * Generate the name to use to set the header defined by the specified
-	 * {@code propertyName} to the {@link MessageHeaders} instance.
+	 * 生成用于将指定 {@code propertyName} 定义的头部设置到
+	 * {@link MessageHeaders} 实例中的名称。
 	 * @see #setInboundPrefix(String)
 	 */
 	protected String toHeaderName(String propertyName) {
@@ -87,8 +84,7 @@ public abstract class AbstractHeaderMapper<T> implements HeaderMapper<T> {
 	}
 
 	/**
-	 * Return the header value, or {@code null} if it does not exist
-	 * or does not match the requested {@code type}.
+	 * 返回头部值；如果不存在或与请求的 {@code type} 不匹配，则返回 {@code null}。
 	 */
 	@Nullable
 	protected <V> V getHeaderIfAvailable(Map<String, Object> headers, String name, Class<V> type) {

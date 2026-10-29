@@ -39,7 +39,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Internal class used to evaluate {@link Conditional} annotations.
+ * 用于评估 {@link Conditional} 注解的内部类。
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
@@ -51,7 +51,7 @@ class ConditionEvaluator {
 
 
 	/**
-	 * Create a new {@link ConditionEvaluator} instance.
+	 * 创建一个新的 {@link ConditionEvaluator} 实例。
 	 */
 	public ConditionEvaluator(@Nullable BeanDefinitionRegistry registry,
 			@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
@@ -61,9 +61,8 @@ class ConditionEvaluator {
 
 
 	/**
-	 * Determine if an item should be skipped based on {@code @Conditional} annotations.
-	 * The {@link ConfigurationPhase} will be deduced from the type of item (i.e. a
-	 * {@code @Configuration} class will be {@link ConfigurationPhase#PARSE_CONFIGURATION})
+	 * 根据 {@code @Conditional} 注解判断是否应跳过某个项。{@link ConfigurationPhase} 将从项的类型推断
+	 * （即 {@code @Configuration} 类会对应 {@link ConfigurationPhase#PARSE_CONFIGURATION}）。
 	 * @param metadata the meta data
 	 * @return if the item should be skipped
 	 */
@@ -72,7 +71,7 @@ class ConditionEvaluator {
 	}
 
 	/**
-	 * Determine if an item should be skipped based on {@code @Conditional} annotations.
+	 * 根据 {@code @Conditional} 注解判断是否应跳过某个项。
 	 * @param metadata the meta data
 	 * @param phase the phase of the call
 	 * @return if the item should be skipped
@@ -127,7 +126,7 @@ class ConditionEvaluator {
 
 
 	/**
-	 * Implementation of a {@link ConditionContext}.
+	 * {@link ConditionContext} 的实现。
 	 */
 	private static class ConditionContextImpl implements ConditionContext {
 

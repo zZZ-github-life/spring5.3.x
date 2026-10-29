@@ -33,8 +33,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
 
 /**
- * Extends {@link BindingContext} with {@code @InitBinder} method initialization.
- *
+ * 扩展 {@link BindingContext}，支持 {@code @InitBinder} 方法初始化。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -60,8 +59,7 @@ class InitBinderBindingContext extends BindingContext {
 
 
 	/**
-	 * Return the {@link SessionStatus} instance to use that can be used to
-	 * signal that session processing is complete.
+	 * 返回要使用的 {@link SessionStatus} 实例，可用于表示会话处理已完成。
 	 */
 	public SessionStatus getSessionStatus() {
 		return this.sessionStatus;
@@ -99,8 +97,7 @@ class InitBinderBindingContext extends BindingContext {
 	}
 
 	/**
-	 * Provide the context required to apply {@link #saveModel()} after the
-	 * controller method has been invoked.
+	 * 提供在调用控制器方法后应用 {@link #saveModel()} 所需的上下文。
 	 */
 	public void setSessionContext(SessionAttributesHandler attributesHandler, WebSession session) {
 		this.saveModelOperation = () -> {
@@ -114,8 +111,7 @@ class InitBinderBindingContext extends BindingContext {
 	}
 
 	/**
-	 * Save model attributes in the session based on a type-level declarations
-	 * in an {@code @SessionAttributes} annotation.
+	 * 根据 {@code @SessionAttributes} 注解中的类型级声明，将会话中的模型属性保存。
 	 */
 	public void saveModel() {
 		if (this.saveModelOperation != null) {

@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@link SslInfo}.
+ * {@link SslInfo} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0.2

@@ -38,9 +38,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Simple wrapper around a {@link StandaloneMockMvcBuilder} that implements
- * {@link MockMvcWebTestClient.ControllerSpec}.
- *
+ * 实现 {@link MockMvcWebTestClient.ControllerSpec} 的
+ * {@link StandaloneMockMvcBuilder} 简单包装器。
  * @author Rossen Stoyanchev
  * @since 5.3
  */

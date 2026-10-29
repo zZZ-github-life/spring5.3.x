@@ -26,16 +26,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Bean definition reader that reads values from a database table,
- * based on a given SQL statement.
+ * 基于给定的 SQL 语句从数据库表中读取值的 Bean 定义读取器。
  *
- * <p>Expects columns for bean name, property name and value as String.
- * Formats for each are identical to the properties format recognized
- * by PropertiesBeanDefinitionReader.
+ * <p>期望有分别以 String 形式表示 bean 名称、属性名称和值的列。
+ * 每一列的格式与 PropertiesBeanDefinitionReader 所识别的属性格式相同。
  *
- * <p><b>NOTE:</b> This is mainly intended as an example for a custom
- * JDBC-based bean definition reader. It does not aim to offer
- * comprehensive functionality.
+ * <p><b>注意：</b>这主要用作自定义的基于 JDBC 的 bean 定义读取器的示例。
+ * 它并不旨在提供全面的功能。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -54,9 +51,9 @@ public class JdbcBeanDefinitionReader {
 
 
 	/**
-	 * Create a new JdbcBeanDefinitionReader for the given bean factory,
-	 * using a default PropertiesBeanDefinitionReader underneath.
-	 * <p>DataSource or JdbcTemplate still need to be set.
+	 * 为给定的 bean 工厂创建一个新的 JdbcBeanDefinitionReader，
+	 * 底层使用默认的 PropertiesBeanDefinitionReader。
+	 * <p>仍然需要设置 DataSource 或 JdbcTemplate。
 	 * @see #setDataSource
 	 * @see #setJdbcTemplate
 	 */
@@ -65,9 +62,9 @@ public class JdbcBeanDefinitionReader {
 	}
 
 	/**
-	 * Create a new JdbcBeanDefinitionReader that delegates to the
-	 * given PropertiesBeanDefinitionReader underneath.
-	 * <p>DataSource or JdbcTemplate still need to be set.
+	 * 创建一个新的 JdbcBeanDefinitionReader，委托给
+	 * 底层给定的 PropertiesBeanDefinitionReader。
+	 * <p>仍然需要设置 DataSource 或 JdbcTemplate。
 	 * @see #setDataSource
 	 * @see #setJdbcTemplate
 	 */
@@ -78,16 +75,16 @@ public class JdbcBeanDefinitionReader {
 
 
 	/**
-	 * Set the DataSource to use to obtain database connections.
-	 * Will implicitly create a new JdbcTemplate with the given DataSource.
+	 * 设置用于获取数据库连接的 DataSource。
+	 * 将使用给定的 DataSource 隐式创建一个新的 JdbcTemplate。
 	 */
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	/**
-	 * Set the JdbcTemplate to be used by this bean factory.
-	 * Contains settings for DataSource, SQLExceptionTranslator, etc.
+	 * 设置此 bean 工厂要使用的 JdbcTemplate。
+	 * 其中包含 DataSource、SQLExceptionTranslator 等设置。
 	 */
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		Assert.notNull(jdbcTemplate, "JdbcTemplate must not be null");
@@ -96,7 +93,7 @@ public class JdbcBeanDefinitionReader {
 
 
 	/**
-	 * Load bean definitions from the database via the given SQL string.
+	 * 通过给定的 SQL 字符串从数据库加载 bean 定义。
 	 * @param sql the SQL query to use for loading bean definitions.
 	 * The first three columns must be bean name, property name and value.
 	 * Any join and any other columns are permitted: e.g.

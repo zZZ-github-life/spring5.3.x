@@ -28,8 +28,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.lang.Nullable;
 
 /**
- * A WebSocket session abstraction. Allows sending messages over a WebSocket
- * connection and closing it.
+ * WebSocket 会话抽象。允许通过 WebSocket 连接发送消息并将其关闭。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -37,54 +36,54 @@ import org.springframework.lang.Nullable;
 public interface WebSocketSession extends Closeable {
 
 	/**
-	 * Return a unique session identifier.
+	 * 返回唯一的会话标识符。
 	 */
 	String getId();
 
 	/**
-	 * Return the URI used to open the WebSocket connection.
+	 * 返回用于打开 WebSocket 连接的 URI。
 	 */
 	@Nullable
 	URI getUri();
 
 	/**
-	 * Return the headers used in the handshake request (never {@code null}).
+	 * 返回握手请求中使用的头信息（永远不会是 {@code null}）。
 	 */
 	HttpHeaders getHandshakeHeaders();
 
 	/**
-	 * Return the map with attributes associated with the WebSocket session.
-	 * <p>On the server side the map can be populated initially through a
+	 * 返回与 WebSocket 会话关联的属性映射。
+	 * <p>在服务器端，该映射可以通过
 	 * {@link org.springframework.web.socket.server.HandshakeInterceptor
-	 * HandshakeInterceptor}. On the client side the map can be populated via
+	 * HandshakeInterceptor} 进行初始填充。在客户端，
+	 * 该映射可以通过
 	 * {@link org.springframework.web.socket.client.WebSocketClient
-	 * WebSocketClient} handshake methods.
+	 * WebSocketClient} 的握手方法进行填充。
 	 * @return a Map with the session attributes (never {@code null})
 	 */
 	Map<String, Object> getAttributes();
 
 	/**
-	 * Return a {@link java.security.Principal} instance containing the name
-	 * of the authenticated user.
-	 * <p>If the user has not been authenticated, the method returns <code>null</code>.
+	 * 返回包含已认证用户名称的 {@link java.security.Principal} 实例。
+	 * <p>如果用户尚未通过认证，则该方法返回 <code>null</code>。
 	 */
 	@Nullable
 	Principal getPrincipal();
 
 	/**
-	 * Return the address on which the request was received.
+	 * 返回接收请求的地址。
 	 */
 	@Nullable
 	InetSocketAddress getLocalAddress();
 
 	/**
-	 * Return the address of the remote client.
+	 * 返回远程客户端的地址。
 	 */
 	@Nullable
 	InetSocketAddress getRemoteAddress();
 
 	/**
-	 * Return the negotiated sub-protocol.
+	 * 返回协商后的子协议。
 	 * @return the protocol identifier, or {@code null} if no protocol
 	 * was specified or negotiated successfully
 	 */
@@ -92,50 +91,50 @@ public interface WebSocketSession extends Closeable {
 	String getAcceptedProtocol();
 
 	/**
-	 * Configure the maximum size for an incoming text message.
+	 * 配置传入文本消息的最大大小。
 	 */
 	void setTextMessageSizeLimit(int messageSizeLimit);
 
 	/**
-	 * Get the configured maximum size for an incoming text message.
+	 * 获取为传入文本消息配置的最大大小。
 	 */
 	int getTextMessageSizeLimit();
 
 	/**
-	 * Configure the maximum size for an incoming binary message.
+	 * 配置传入二进制消息的最大大小。
 	 */
 	void setBinaryMessageSizeLimit(int messageSizeLimit);
 
 	/**
-	 * Get the configured maximum size for an incoming binary message.
+	 * 获取为传入二进制消息配置的最大大小。
 	 */
 	int getBinaryMessageSizeLimit();
 
 	/**
-	 * Determine the negotiated extensions.
+	 * 确定协商后的扩展。
 	 * @return the list of extensions, or an empty list if no extension
 	 * was specified or negotiated successfully
 	 */
 	List<WebSocketExtension> getExtensions();
 
 	/**
-	 * Send a WebSocket message: either {@link TextMessage} or {@link BinaryMessage}.
-	 * <p><strong>Note:</strong> The underlying standard WebSocket session (JSR-356) does
-	 * not allow concurrent sending. Therefore, sending must be synchronized. To ensure
-	 * that, one option is to wrap the {@code WebSocketSession} with the
+	 * 发送 WebSocket 消息：{@link TextMessage} 或 {@link BinaryMessage}。
+	 * <p><strong>注意：</strong>底层标准 WebSocket 会话（JSR-356）不允许
+	 * 并发发送。因此，发送必须同步进行。为确保这一点，
+	 * 一种选择是使用
 	 * {@link org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator
-	 * ConcurrentWebSocketSessionDecorator}.
+	 * ConcurrentWebSocketSessionDecorator} 包装 {@code WebSocketSession}。
 	 * @see org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator
 	 */
 	void sendMessage(WebSocketMessage<?> message) throws IOException;
 
 	/**
-	 * Whether the underlying connection is open.
+	 * 底层连接是否已打开。
 	 */
 	boolean isOpen();
 
 	/**
-	 * Close the WebSocket connection with status 1000, i.e. equivalent to:
+	 * 以状态码 1000 关闭 WebSocket 连接，即等价于：
 	 * <pre class="code">
 	 * session.close(CloseStatus.NORMAL);
 	 * </pre>
@@ -144,7 +143,7 @@ public interface WebSocketSession extends Closeable {
 	void close() throws IOException;
 
 	/**
-	 * Close the WebSocket connection with the given close status.
+	 * 使用给定的关闭状态关闭 WebSocket 连接。
 	 */
 	void close(CloseStatus status) throws IOException;
 

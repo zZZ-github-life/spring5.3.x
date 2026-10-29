@@ -30,12 +30,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Visitor class for traversing {@link BeanDefinition} objects, in particular
- * the property values and constructor argument values contained in them,
- * resolving bean metadata values.
+ * 用于遍历 {@link BeanDefinition} 对象的访问者类，特别是其中包含的属性值和构造方法参数值，并解析
+ * Bean 元数据值。
  *
- * <p>Used by {@link PlaceholderConfigurerSupport} to parse all String values
- * contained in a BeanDefinition, resolving any placeholders found.
+ * <p>由 {@link PlaceholderConfigurerSupport} 用于解析 BeanDefinition 中包含的所有 String 值，解析
+ * 找到的任何占位符。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -52,8 +51,7 @@ public class BeanDefinitionVisitor {
 
 
 	/**
-	 * Create a new BeanDefinitionVisitor, applying the specified
-	 * value resolver to all bean metadata values.
+	 * 创建一个新的 BeanDefinitionVisitor，对所有 Bean 元数据值应用指定的值解析器。
 	 * @param valueResolver the StringValueResolver to apply
 	 */
 	public BeanDefinitionVisitor(StringValueResolver valueResolver) {
@@ -62,16 +60,15 @@ public class BeanDefinitionVisitor {
 	}
 
 	/**
-	 * Create a new BeanDefinitionVisitor for subclassing.
-	 * Subclasses need to override the {@link #resolveStringValue} method.
+	 * 创建一个用于子类化的新 BeanDefinitionVisitor。子类需要重写 {@link #resolveStringValue} 方法。
 	 */
 	protected BeanDefinitionVisitor() {
 	}
 
 
 	/**
-	 * Traverse the given BeanDefinition object and the MutablePropertyValues
-	 * and ConstructorArgumentValues contained in them.
+	 * 遍历给定的 BeanDefinition 对象以及其中包含的 MutablePropertyValues 和 ConstructorArgumentValues。
+	 *
 	 * @param beanDefinition the BeanDefinition object to traverse
 	 * @see #resolveStringValue(String)
 	 */
@@ -283,7 +280,7 @@ public class BeanDefinitionVisitor {
 	}
 
 	/**
-	 * Resolve the given String value, for example parsing placeholders.
+	 * 解析给定的 String 值，例如解析占位符。
 	 * @param strVal the original String value
 	 * @return the resolved String value
 	 */

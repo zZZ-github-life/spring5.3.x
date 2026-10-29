@@ -27,22 +27,18 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Editor for {@code java.io.File}, to directly populate a File property
- * from a Spring resource location.
+ * 用于 {@code java.io.File} 的编辑器，可从 Spring 资源位置直接填充 File 属性。
  *
- * <p>Supports Spring-style URL notation: any fully qualified standard URL
- * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL.
+ * <p>支持 Spring 风格的 URL 表示法：任何完全限定的标准 URL（"file:"、"http:" 等）以及 Spring 特殊
+ * 的 "classpath:" 伪 URL。
  *
- * <p><b>NOTE:</b> The behavior of this editor has changed in Spring 2.0.
- * Previously, it created a File instance directly from a filename.
- * As of Spring 2.0, it takes a standard Spring resource location as input;
- * this is consistent with URLEditor and InputStreamEditor now.
+ * <p><b>注意：</b>此编辑器的行为在 Spring 2.0 中已更改。以前，它直接从文件名创建 File 实例。从
+ * Spring 2.0 起，它将标准的 Spring 资源位置作为输入；现在这与 URLEditor 和 InputStreamEditor 保持
+ * 一致。
  *
- * <p><b>NOTE:</b> In Spring 2.5 the following modification was made.
- * If a file name is specified without a URL prefix or without an absolute path
- * then we try to locate the file using standard ResourceLoader semantics.
- * If the file was not found, then a File instance is created assuming the file
- * name refers to a relative file location.
+ * <p><b>注意：</b>在 Spring 2.5 中做了以下修改。如果指定的文件名没有 URL 前缀或不是绝对路径，我们
+ * 将尝试使用标准的 ResourceLoader 语义定位该文件。如果未找到该文件，则创建 File 实例，并假定该文件
+ * 名指向相对文件位置。
  *
  * @author Juergen Hoeller
  * @author Thomas Risberg
@@ -59,14 +55,14 @@ public class FileEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new FileEditor, using a default ResourceEditor underneath.
+	 * 创建一个新的 FileEditor，底层使用默认的 ResourceEditor。
 	 */
 	public FileEditor() {
 		this.resourceEditor = new ResourceEditor();
 	}
 
 	/**
-	 * Create a new FileEditor, using the given ResourceEditor underneath.
+	 * 创建一个新的 FileEditor，底层使用给定的 ResourceEditor。
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public FileEditor(ResourceEditor resourceEditor) {

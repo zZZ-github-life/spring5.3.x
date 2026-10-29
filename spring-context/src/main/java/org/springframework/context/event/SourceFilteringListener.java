@@ -23,12 +23,10 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.context.ApplicationListener} decorator that filters
- * events from a specified event source, invoking its delegate listener for
- * matching {@link org.springframework.context.ApplicationEvent} objects only.
+ * 一个 {@link org.springframework.context.ApplicationListener} 装饰器，用于过滤来自指定事件源的事
+ * 件，仅对匹配的 {@link org.springframework.context.ApplicationEvent} 对象调用其委托监听器。
  *
- * <p>Can also be used as base class, overriding the {@link #onApplicationEventInternal}
- * method instead of specifying a delegate listener.
+ * <p>也可以用作基类，此时重写 {@link #onApplicationEventInternal} 方法，而不是指定委托监听器。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -43,7 +41,7 @@ public class SourceFilteringListener implements GenericApplicationListener {
 
 
 	/**
-	 * Create a SourceFilteringListener for the given event source.
+	 * 为给定事件源创建一个 SourceFilteringListener。
 	 * @param source the event source that this listener filters for,
 	 * only processing events from this source
 	 * @param delegate the delegate listener to invoke with event
@@ -56,9 +54,8 @@ public class SourceFilteringListener implements GenericApplicationListener {
 	}
 
 	/**
-	 * Create a SourceFilteringListener for the given event source,
-	 * expecting subclasses to override the {@link #onApplicationEventInternal}
-	 * method (instead of specifying a delegate listener).
+	 * 为给定事件源创建一个 SourceFilteringListener，并期望子类重写 {@link #onApplicationEventInternal}
+	 * 方法（而不是指定委托监听器）。
 	 * @param source the event source that this listener filters for,
 	 * only processing events from this source
 	 */
@@ -96,9 +93,7 @@ public class SourceFilteringListener implements GenericApplicationListener {
 
 
 	/**
-	 * Actually process the event, after having filtered according to the
-	 * desired event source already.
-	 * <p>The default implementation invokes the specified delegate, if any.
+	 * 在已按所需事件源进行过滤之后，实际处理该事件。<p>默认实现会调用指定的委托（如果有）。
 	 * @param event the event to process (matching the specified source)
 	 */
 	protected void onApplicationEventInternal(ApplicationEvent event) {

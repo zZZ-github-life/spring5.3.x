@@ -21,22 +21,20 @@ import org.springframework.beans.factory.xml.BeanDefinitionParser;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
- * {@code NamespaceHandler} for the {@code aop} namespace.
+ * 用于 {@code aop} 命名空间的 {@code NamespaceHandler}。
  *
- * <p>Provides a {@link org.springframework.beans.factory.xml.BeanDefinitionParser} for the
- * {@code <aop:config>} tag. A {@code config} tag can include nested
- * {@code pointcut}, {@code advisor} and {@code aspect} tags.
+ * <p>为 {@code <aop:config>} 标签提供
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}。{@code config} 标签可以包含
+ * 嵌套的 {@code pointcut}、{@code advisor} 和 {@code aspect} 标签。
  *
- * <p>The {@code pointcut} tag allows for creation of named
- * {@link AspectJExpressionPointcut} beans using a simple syntax:
+ * <p>{@code pointcut} 标签允许使用简单的语法创建具名的 {@link AspectJExpressionPointcut} Bean：
  * <pre class="code">
  * &lt;aop:pointcut id=&quot;getNameCalls&quot; expression=&quot;execution(* *..ITestBean.getName(..))&quot;/&gt;
  * </pre>
  *
- * <p>Using the {@code advisor} tag you can configure an {@link org.springframework.aop.Advisor}
- * and have it applied to all relevant beans in you {@link org.springframework.beans.factory.BeanFactory}
- * automatically. The {@code advisor} tag supports both in-line and referenced
- * {@link org.springframework.aop.Pointcut Pointcuts}:
+ * <p>使用 {@code advisor} 标签，可以配置一个 {@link org.springframework.aop.Advisor}，并让它在您的
+ * {@link org.springframework.beans.factory.BeanFactory} 中自动应用于所有相关的 Bean。
+ * {@code advisor} 标签同时支持内联的和引用的 {@link org.springframework.aop.Pointcut Pointcuts}：
  *
  * <pre class="code">
  * &lt;aop:advisor id=&quot;getAgeAdvisor&quot;
@@ -55,9 +53,8 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 public class AopNamespaceHandler extends NamespaceHandlerSupport {
 
 	/**
-	 * Register the {@link BeanDefinitionParser BeanDefinitionParsers} for the
-	 * '{@code config}', '{@code spring-configured}', '{@code aspectj-autoproxy}'
-	 * and '{@code scoped-proxy}' tags.
+	 * 为 '{@code config}'、'{@code spring-configured}'、'{@code aspectj-autoproxy}' 和 '
+	 * {@code scoped-proxy}' 标签注册 {@link BeanDefinitionParser BeanDefinitionParsers}。
 	 */
 	@Override
 	public void init() {

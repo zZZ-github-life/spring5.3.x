@@ -17,14 +17,13 @@
 package org.springframework.web.context.request.async;
 
 /**
- * Exception to be thrown when an async request times out.
- * Alternatively an applications can register a
- * {@link DeferredResultProcessingInterceptor} or a
- * {@link CallableProcessingInterceptor} to handle the timeout through
- * the MVC Java config or the MVC XML namespace or directly through properties
- * of the {@code RequestMappingHandlerAdapter}.
+ * 当异步请求超时时抛出的异常。
+ * 或者，应用程序可以注册
+ * {@link DeferredResultProcessingInterceptor} 或
+ * {@link CallableProcessingInterceptor}，通过 MVC Java 配置或 MVC XML 命名空间，
+ * 或直接通过 {@code RequestMappingHandlerAdapter} 的属性来处理超时。
  *
- * <p>By default the exception will be handled as a 503 error.
+ * <p>默认情况下，该异常将作为 503 错误处理。
  *
  * @author Rossen Stoyanchev
  * @since 4.2.8

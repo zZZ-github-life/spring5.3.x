@@ -38,7 +38,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Mock implementation of {@link ClientHttpResponse}.
+ * {@link ClientHttpResponse} 的模拟实现。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -115,8 +115,8 @@ public class MockClientHttpResponse implements ClientHttpResponse {
 	}
 
 	/**
-	 * Return the response body aggregated and converted to a String using the
-	 * charset of the Content-Type response or otherwise as "UTF-8".
+	 * 返回聚合后的响应体，并使用响应 Content-Type 的字符集
+	 * （否则使用 "UTF-8"）将其转换为 String。
 	 */
 	public Mono<String> getBodyAsString() {
 		return DataBufferUtils.join(getBody())

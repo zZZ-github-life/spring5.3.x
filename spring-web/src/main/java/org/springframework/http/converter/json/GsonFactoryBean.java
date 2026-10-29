@@ -26,7 +26,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * A {@link FactoryBean} for creating a Google Gson 2.x {@link Gson} instance.
+ * 用于创建 Google Gson 2.x {@link Gson} 实例的 {@link FactoryBean}。
  *
  * @author Roy Clarkson
  * @author Juergen Hoeller
@@ -50,12 +50,11 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 
 
 	/**
-	 * Whether to Base64-encode {@code byte[]} properties when reading and
-	 * writing JSON.
-	 * <p>When set to {@code true}, a custom {@link com.google.gson.TypeAdapter} will be
-	 * registered via {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)}
-	 * which serializes a {@code byte[]} property to and from a Base64-encoded String
-	 * instead of a JSON array.
+	 * 读写 JSON 时是否对 {@code byte[]} 属性进行 Base64 编码。
+	 * <p>设置为 {@code true} 时，将通过
+	 * {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)}
+	 * 注册自定义的 {@link com.google.gson.TypeAdapter}，以 Base64 编码的字符串
+	 * （而非 JSON 数组）序列化和反序列化 {@code byte[]} 属性。
 	 * @see GsonBuilderUtils#gsonBuilderWithBase64EncodedByteArrays()
 	 */
 	public void setBase64EncodeByteArrays(boolean base64EncodeByteArrays) {
@@ -63,8 +62,8 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 	}
 
 	/**
-	 * Whether to use the {@link GsonBuilder#serializeNulls()} option when writing
-	 * JSON. This is a shortcut for setting up a {@code Gson} as follows:
+	 * 写入 JSON 时是否使用 {@link GsonBuilder#serializeNulls()} 选项。
+	 * 这是按如下方式设置 {@code Gson} 的快捷方式：
 	 * <pre class="code">
 	 * new GsonBuilder().serializeNulls().create();
 	 * </pre>
@@ -74,8 +73,8 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 	}
 
 	/**
-	 * Whether to use the {@link GsonBuilder#setPrettyPrinting()} when writing
-	 * JSON. This is a shortcut for setting up a {@code Gson} as follows:
+	 * 写入 JSON 时是否使用 {@link GsonBuilder#setPrettyPrinting()}。
+	 * 这是按如下方式设置 {@code Gson} 的快捷方式：
 	 * <pre class="code">
 	 * new GsonBuilder().setPrettyPrinting().create();
 	 * </pre>
@@ -85,9 +84,9 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 	}
 
 	/**
-	 * Whether to use the {@link GsonBuilder#disableHtmlEscaping()} when writing
-	 * JSON. Set to {@code true} to disable HTML escaping in JSON. This is a
-	 * shortcut for setting up a {@code Gson} as follows:
+	 * 写入 JSON 时是否使用 {@link GsonBuilder#disableHtmlEscaping()}。
+	 * 设置为 {@code true} 可禁用 JSON 中的 HTML 转义。这是
+	 * 按如下方式设置 {@code Gson} 的快捷方式：
 	 * <pre class="code">
 	 * new GsonBuilder().disableHtmlEscaping().create();
 	 * </pre>
@@ -97,8 +96,8 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 	}
 
 	/**
-	 * Define the date/time format with a {@link SimpleDateFormat}-style pattern.
-	 * This is a shortcut for setting up a {@code Gson} as follows:
+	 * 使用 {@link SimpleDateFormat} 风格的模式定义日期/时间格式。
+	 * 这是按如下方式设置 {@code Gson} 的快捷方式：
 	 * <pre class="code">
 	 * new GsonBuilder().setDateFormat(dateFormatPattern).create();
 	 * </pre>
@@ -129,7 +128,7 @@ public class GsonFactoryBean implements FactoryBean<Gson>, InitializingBean {
 
 
 	/**
-	 * Return the created Gson instance.
+	 * 返回创建的 Gson 实例。
 	 */
 	@Override
 	@Nullable

@@ -17,7 +17,7 @@
 package org.springframework.oxm;
 
 /**
- * Exception thrown on unmarshalling failure.
+ * 在 unmarshalling 失败时抛出的异常。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -26,7 +26,7 @@ package org.springframework.oxm;
 public class UnmarshallingFailureException extends MarshallingException {
 
 	/**
-	 * Construct a {@code MarshallingFailureException} with the specified detail message.
+	 * 使用指定的详细消息构造一个 {@code UnmarshallingFailureException}。
 	 * @param msg the detail message
 	 */
 	public UnmarshallingFailureException(String msg) {
@@ -34,8 +34,7 @@ public class UnmarshallingFailureException extends MarshallingException {
 	}
 
 	/**
-	 * Construct a {@code MarshallingFailureException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code UnmarshallingFailureException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */

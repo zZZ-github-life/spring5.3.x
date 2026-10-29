@@ -32,12 +32,11 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * A {@code ContentNegotiationStrategy} that resolves the file extension in the
- * request path to a key to be used to look up a media type.
+ * 一种 {@code ContentNegotiationStrategy}，将请求路径中的文件扩展名解析为
+ * 用于查找媒体类型的键。
  *
- * <p>If the file extension is not found in the explicit registrations provided
- * to the constructor, the {@link MediaTypeFactory} is used as a fallback
- * mechanism.
+ * <p>如果在提供给构造函数的显式注册中找不到该文件扩展名，则使用
+ * {@link MediaTypeFactory} 作为回退机制。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -52,15 +51,15 @@ public class PathExtensionContentNegotiationStrategy extends AbstractMappingCont
 
 
 	/**
-	 * Create an instance without any mappings to start with. Mappings may be added
-	 * later on if any extensions are resolved through the Java Activation framework.
+	 * 创建一个不带任何初始映射的实例。之后如果通过 Java Activation 框架
+	 * 解析出任何扩展名，则可以添加映射。
 	 */
 	public PathExtensionContentNegotiationStrategy() {
 		this(null);
 	}
 
 	/**
-	 * Create an instance with the given map of file extensions and media types.
+	 * 使用给定的文件扩展名与媒体类型映射创建实例。
 	 */
 	public PathExtensionContentNegotiationStrategy(@Nullable Map<String, MediaType> mediaTypes) {
 		super(mediaTypes);
@@ -71,8 +70,8 @@ public class PathExtensionContentNegotiationStrategy extends AbstractMappingCont
 
 
 	/**
-	 * Configure a {@code UrlPathHelper} to use in {@link #getMediaTypeKey}
-	 * in order to derive the lookup path for a target request URL path.
+	 * 配置一个 {@code UrlPathHelper}，用于在 {@link #getMediaTypeKey} 中
+	 * 推导目标请求 URL 路径的查找路径。
 	 * @since 4.2.8
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
@@ -80,8 +79,7 @@ public class PathExtensionContentNegotiationStrategy extends AbstractMappingCont
 	}
 
 	/**
-	 * Indicate whether to use the Java Activation Framework as a fallback option
-	 * to map from file extensions to media types.
+	 * 指示是否使用 Java Activation 框架作为从文件扩展名映射到媒体类型的回退选项。
 	 * @deprecated as of 5.0, in favor of {@link #setUseRegisteredExtensionsOnly(boolean)}.
 	 */
 	@Deprecated
@@ -103,10 +101,9 @@ public class PathExtensionContentNegotiationStrategy extends AbstractMappingCont
 	}
 
 	/**
-	 * A public method exposing the knowledge of the path extension strategy to
-	 * resolve file extensions to a {@link MediaType} in this case for a given
-	 * {@link Resource}. The method first looks up any explicitly registered
-	 * file extensions first and then falls back on {@link MediaTypeFactory} if available.
+	 * 一个公开方法，将路径扩展名策略的知识暴露出来，以便针对给定的
+	 * {@link Resource} 将文件扩展名解析为 {@link MediaType}。此方法首先查找
+	 * 任何显式注册的文件扩展名，然后如果可用则回退到 {@link MediaTypeFactory}。
 	 * @param resource the resource to look up
 	 * @return the MediaType for the extension, or {@code null} if none found
 	 * @since 4.3

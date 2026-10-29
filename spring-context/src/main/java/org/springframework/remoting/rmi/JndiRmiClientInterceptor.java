@@ -39,21 +39,16 @@ import org.springframework.remoting.support.RemoteInvocationFactory;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.aopalliance.intercept.MethodInterceptor} for accessing RMI services
- * from JNDI. Typically used for RMI-IIOP but can also be used for EJB home objects
- * (for example, a Stateful Session Bean home). In contrast to a plain JNDI lookup,
- * this accessor also performs narrowing through PortableRemoteObject.
+ * {@link org.aopalliance.intercept.MethodInterceptor}，用于从 JNDI 访问 RMI 服务。通常用于
+ * RMI-IIOP，但也可用于 EJB home 对象（例如有状态会话 Bean 的 home）。与普通的 JNDI 查找不同，此访
+ * 问器还会通过 PortableRemoteObject 执行窄化转换。
  *
- * <p>With conventional RMI services, this invoker is typically used with the RMI
- * service interface. Alternatively, this invoker can also proxy a remote RMI service
- * with a matching non-RMI business interface, i.e. an interface that mirrors the RMI
- * service methods but does not declare RemoteExceptions. In the latter case,
- * RemoteExceptions thrown by the RMI stub will automatically get converted to
- * Spring's unchecked RemoteAccessException.
+ * <p>对于传统的 RMI 服务，此调用器通常与 RMI 服务接口一起使用。或者，此调用器也可以用一个匹配的非
+ * RMI 业务接口来代理远程 RMI 服务，即一个镜像 RMI 服务方法但不声明 RemoteExceptions 的接口。在后一
+ * 种情况下，RMI stub 抛出的 RemoteExceptions 会自动转换为 Spring 的非受检 RemoteAccessException。
  *
- * <p>The JNDI environment can be specified as "jndiEnvironment" property,
- * or be configured in a {@code jndi.properties} file or as system properties.
- * For example:
+ * <p>JNDI 环境可以通过 "jndiEnvironment" 属性指定，也可以在 {@code jndi.properties} 文件中或作为系
+ * 统属性配置。例如：
  *
  * <pre class="code">&lt;property name="jndiEnvironment"&gt;
  * 	 &lt;props&gt;
@@ -95,10 +90,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 
 	/**
-	 * Set the interface of the service to access.
-	 * The interface must be suitable for the particular service and remoting tool.
-	 * <p>Typically required to be able to create a suitable service proxy,
-	 * but can also be optional if the lookup returns a typed stub.
+	 * 设置要访问的服务的接口。该接口必须适合特定的服务和 remoting 工具。
+	 * <p>通常需要用它来创建合适的服务代理，但如果查找返回的是带类型的 stub，则也可以省略。
 	 */
 	public void setServiceInterface(Class<?> serviceInterface) {
 		Assert.notNull(serviceInterface, "'serviceInterface' must not be null");
@@ -107,33 +100,30 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Return the interface of the service to access.
+	 * 返回要访问的服务的接口。
 	 */
 	public Class<?> getServiceInterface() {
 		return this.serviceInterface;
 	}
 
 	/**
-	 * Set the RemoteInvocationFactory to use for this accessor.
-	 * Default is a {@link DefaultRemoteInvocationFactory}.
-	 * <p>A custom invocation factory can add further context information
-	 * to the invocation, for example user credentials.
+	 * 设置此访问器要使用的 RemoteInvocationFactory。默认为 {@link DefaultRemoteInvocationFactory}。
+	 * <p>自定义调用工厂可以向调用中添加更多上下文信息，例如用户凭证。
 	 */
 	public void setRemoteInvocationFactory(RemoteInvocationFactory remoteInvocationFactory) {
 		this.remoteInvocationFactory = remoteInvocationFactory;
 	}
 
 	/**
-	 * Return the RemoteInvocationFactory used by this accessor.
+	 * 返回此访问器使用的 RemoteInvocationFactory。
 	 */
 	public RemoteInvocationFactory getRemoteInvocationFactory() {
 		return this.remoteInvocationFactory;
 	}
 
 	/**
-	 * Set whether to look up the RMI stub on startup. Default is "true".
-	 * <p>Can be turned off to allow for late start of the RMI server.
-	 * In this case, the RMI stub will be fetched on first access.
+	 * 设置是否在启动时查找 RMI stub。默认值为 "true"。
+	 * <p>可以关闭该选项，以允许 RMI 服务器延迟启动。在这种情况下，RMI stub 将在首次访问时获取。
 	 * @see #setCacheStub
 	 */
 	public void setLookupStubOnStartup(boolean lookupStubOnStartup) {
@@ -141,10 +131,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Set whether to cache the RMI stub once it has been located.
-	 * Default is "true".
-	 * <p>Can be turned off to allow for hot restart of the RMI server.
-	 * In this case, the RMI stub will be fetched for each invocation.
+	 * 设置 RMI stub 被定位后是否对其进行缓存。默认值为 "true"。
+	 * <p>可以关闭该选项，以允许热重启 RMI 服务器。在这种情况下，每次调用都会获取 RMI stub。
 	 * @see #setLookupStubOnStartup
 	 */
 	public void setCacheStub(boolean cacheStub) {
@@ -152,12 +140,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Set whether to refresh the RMI stub on connect failure.
-	 * Default is "false".
-	 * <p>Can be turned on to allow for hot restart of the RMI server.
-	 * If a cached RMI stub throws an RMI exception that indicates a
-	 * remote connect failure, a fresh proxy will be fetched and the
-	 * invocation will be retried.
+	 * 设置是否在连接失败时刷新 RMI stub。默认值为 "false"。
+	 * <p>可以开启该选项，以允许热重启 RMI 服务器。如果缓存的 RMI stub 抛出表示远程连接失败的 RMI 异常，
+	 * 则会获取一个新的代理并重试该调用。
 	 * @see java.rmi.ConnectException
 	 * @see java.rmi.ConnectIOException
 	 * @see java.rmi.NoSuchObjectException
@@ -167,12 +152,9 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Set whether to expose the JNDI environment context for all access to the target
-	 * RMI stub, i.e. for all method invocations on the exposed object reference.
-	 * <p>Default is "false", i.e. to only expose the JNDI context for object lookup.
-	 * Switch this flag to "true" in order to expose the JNDI environment (including
-	 * the authorization context) for each RMI invocation, as needed by WebLogic
-	 * for RMI stubs with authorization requirements.
+	 * 设置是否对所有访问目标 RMI stub 的操作（即对暴露的对象引用上的所有方法调用）暴露 JNDI 环境上下文。
+	 * <p>默认值为 "false"，即只在对象查找时暴露 JNDI 上下文。将该标志切换为 "true"，以便在每次 RMI 调
+	 * 用时暴露 JNDI 环境（包括授权上下文），这是 WebLogic 对带授权要求的 RMI stub 的需要。
 	 */
 	public void setExposeAccessContext(boolean exposeAccessContext) {
 		this.exposeAccessContext = exposeAccessContext;
@@ -186,7 +168,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Fetches the RMI stub on startup, if necessary.
+	 * 如有必要，在启动时获取 RMI stub。
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #setLookupStubOnStartup
 	 * @see #lookupStub
@@ -213,11 +195,10 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Create the RMI stub, typically by looking it up.
-	 * <p>Called on interceptor initialization if "cacheStub" is "true";
-	 * else called for each invocation by {@link #getStub()}.
-	 * <p>The default implementation retrieves the service from the
-	 * JNDI environment. This can be overridden in subclasses.
+	 * 创建 RMI stub，通常通过查找来完成。
+	 * <p>如果 "cacheStub" 为 "true"，则在拦截器初始化时调用；否则由 {@link #getStub()} 在每次调用时调
+	 * 用。
+	 * <p>默认实现从 JNDI 环境中获取服务。子类可以覆盖此方法。
 	 * @return the RMI stub to store in this interceptor
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
 	 * @see #setCacheStub
@@ -233,12 +214,10 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Return the RMI stub to use. Called for each invocation.
-	 * <p>The default implementation returns the stub created on initialization,
-	 * if any. Else, it invokes {@link #lookupStub} to get a new stub for
-	 * each invocation. This can be overridden in subclasses, for example in
-	 * order to cache a stub for a given amount of time before recreating it,
-	 * or to test the stub whether it is still alive.
+	 * 返回要使用的 RMI stub。每次调用时都会调用。
+	 * <p>默认实现返回初始化时创建的 stub（如果有）。否则，它会调用 {@link #lookupStub} 为每次调用获取
+	 * 新的 stub。子类可以覆盖此方法，例如为了在重新创建之前将 stub 缓存一段时间，或测试 stub 是否仍然
+	 * 存活。
 	 * @return the RMI stub to use for an invocation
 	 * @throws NamingException if stub creation failed
 	 * @throws RemoteLookupFailureException if RMI stub creation failed
@@ -259,9 +238,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 
 	/**
-	 * Fetches an RMI stub and delegates to {@link #doInvoke}.
-	 * If configured to refresh on connect failure, it will call
-	 * {@link #refreshAndRetry} on corresponding RMI exceptions.
+	 * 获取 RMI stub 并委托给 {@link #doInvoke}。如果配置为在连接失败时刷新，则会在相应的 RMI 异常上调
+	 * 用 {@link #refreshAndRetry}。
 	 * @see #getStub
 	 * @see #doInvoke
 	 * @see #refreshAndRetry
@@ -301,9 +279,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Determine whether the given RMI exception indicates a connect failure.
-	 * <p>The default implementation delegates to
-	 * {@link RmiClientInterceptorUtils#isConnectFailure}.
+	 * 判断给定的 RMI 异常是否表示连接失败。
+	 * <p>默认实现委托给 {@link RmiClientInterceptorUtils#isConnectFailure}。
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure
 	 */
@@ -312,9 +289,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Refresh the stub and retry the remote invocation if necessary.
-	 * <p>If not configured to refresh on connect failure, this method
-	 * simply rethrows the original exception.
+	 * 如有必要，刷新 stub 并重试远程调用。
+	 * <p>如果未配置为在连接失败时刷新，此方法只会重新抛出原始异常。
 	 * @param invocation the invocation that failed
 	 * @param ex the exception raised on remote invocation
 	 * @return the result value of the new invocation, if succeeded
@@ -336,8 +312,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Refresh the RMI stub and retry the given invocation.
-	 * Called by invoke on connect failure.
+	 * 刷新 RMI stub 并重试给定的调用。由 invoke 在连接失败时调用。
 	 * @param invocation the AOP method invocation
 	 * @return the invocation result, if any
 	 * @throws Throwable in case of invocation failure
@@ -358,7 +333,7 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 
 
 	/**
-	 * Perform the given invocation on the given RMI stub.
+	 * 在给定的 RMI stub 上执行给定的调用。
 	 * @param invocation the AOP method invocation
 	 * @param stub the RMI stub to invoke
 	 * @return the invocation result, if any
@@ -400,8 +375,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Apply the given AOP method invocation to the given {@link RmiInvocationHandler}.
-	 * <p>The default implementation delegates to {@link #createRemoteInvocation}.
+	 * 将给定的 AOP 方法调用应用到给定的 {@link RmiInvocationHandler}。
+	 * <p>默认实现委托给 {@link #createRemoteInvocation}。
 	 * @param methodInvocation the current AOP method invocation
 	 * @param invocationHandler the RmiInvocationHandler to apply the invocation to
 	 * @return the invocation result
@@ -422,13 +397,10 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Create a new RemoteInvocation object for the given AOP method invocation.
-	 * <p>The default implementation delegates to the configured
-	 * {@link #setRemoteInvocationFactory RemoteInvocationFactory}.
-	 * This can be overridden in subclasses in order to provide custom RemoteInvocation
-	 * subclasses, containing additional invocation parameters (e.g. user credentials).
-	 * <p>Note that it is preferable to build a custom RemoteInvocationFactory
-	 * as a reusable strategy, instead of overriding this method.
+	 * 为给定的 AOP 方法调用创建一个新的 RemoteInvocation 对象。
+	 * <p>默认实现委托给已配置的 {@link #setRemoteInvocationFactory RemoteInvocationFactory}。子类可以
+	 * 覆盖此方法，以提供包含附加调用参数（例如用户凭证）的自定义 RemoteInvocation 子类。
+	 * <p>注意，最好将自定义 RemoteInvocationFactory 构建为可复用的策略，而不是覆盖此方法。
 	 * @param methodInvocation the current AOP method invocation
 	 * @return the RemoteInvocation object
 	 * @see RemoteInvocationFactory#createRemoteInvocation
@@ -438,9 +410,8 @@ public class JndiRmiClientInterceptor extends JndiObjectLocator implements Metho
 	}
 
 	/**
-	 * Convert the given RMI RemoteException that happened during remote access
-	 * to Spring's RemoteAccessException if the method signature does not declare
-	 * RemoteException. Else, return the original RemoteException.
+	 * 将远程访问期间发生的给定 RMI RemoteException 转换为 Spring 的 RemoteAccessException（如果方法签
+	 * 名未声明 RemoteException）。否则，返回原始的 RemoteException。
 	 * @param method the invoked method
 	 * @param ex the RemoteException that happened
 	 * @return the exception to be thrown to the caller

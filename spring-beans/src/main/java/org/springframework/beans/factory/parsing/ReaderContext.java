@@ -20,8 +20,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * Context that gets passed along a bean definition reading process,
- * encapsulating all relevant configuration as well as state.
+ * 在 Bean 定义读取过程中传递的上下文，封装了所有相关的配置以及状态。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -39,7 +38,7 @@ public class ReaderContext {
 
 
 	/**
-	 * Construct a new {@code ReaderContext}.
+	 * 构造一个新的 {@code ReaderContext}。
 	 * @param resource the XML bean definition resource
 	 * @param problemReporter the problem reporter in use
 	 * @param eventListener the event listener in use
@@ -62,28 +61,28 @@ public class ReaderContext {
 	// Errors and warnings
 
 	/**
-	 * Raise a fatal error.
+	 * 抛出致命错误。
 	 */
 	public void fatal(String message, @Nullable Object source) {
 		fatal(message, source, null, null);
 	}
 
 	/**
-	 * Raise a fatal error.
+	 * 抛出致命错误。
 	 */
 	public void fatal(String message, @Nullable Object source, @Nullable Throwable cause) {
 		fatal(message, source, null, cause);
 	}
 
 	/**
-	 * Raise a fatal error.
+	 * 抛出致命错误。
 	 */
 	public void fatal(String message, @Nullable Object source, @Nullable ParseState parseState) {
 		fatal(message, source, parseState, null);
 	}
 
 	/**
-	 * Raise a fatal error.
+	 * 抛出致命错误。
 	 */
 	public void fatal(String message, @Nullable Object source, @Nullable ParseState parseState, @Nullable Throwable cause) {
 		Location location = new Location(getResource(), source);
@@ -91,28 +90,28 @@ public class ReaderContext {
 	}
 
 	/**
-	 * Raise a regular error.
+	 * 抛出普通错误。
 	 */
 	public void error(String message, @Nullable Object source) {
 		error(message, source, null, null);
 	}
 
 	/**
-	 * Raise a regular error.
+	 * 抛出普通错误。
 	 */
 	public void error(String message, @Nullable Object source, @Nullable Throwable cause) {
 		error(message, source, null, cause);
 	}
 
 	/**
-	 * Raise a regular error.
+	 * 抛出普通错误。
 	 */
 	public void error(String message, @Nullable Object source, @Nullable ParseState parseState) {
 		error(message, source, parseState, null);
 	}
 
 	/**
-	 * Raise a regular error.
+	 * 抛出普通错误。
 	 */
 	public void error(String message, @Nullable Object source, @Nullable ParseState parseState, @Nullable Throwable cause) {
 		Location location = new Location(getResource(), source);
@@ -120,28 +119,28 @@ public class ReaderContext {
 	}
 
 	/**
-	 * Raise a non-critical warning.
+	 * 抛出非关键警告。
 	 */
 	public void warning(String message, @Nullable Object source) {
 		warning(message, source, null, null);
 	}
 
 	/**
-	 * Raise a non-critical warning.
+	 * 抛出非关键警告。
 	 */
 	public void warning(String message, @Nullable Object source, @Nullable Throwable cause) {
 		warning(message, source, null, cause);
 	}
 
 	/**
-	 * Raise a non-critical warning.
+	 * 抛出非关键警告。
 	 */
 	public void warning(String message, @Nullable Object source, @Nullable ParseState parseState) {
 		warning(message, source, parseState, null);
 	}
 
 	/**
-	 * Raise a non-critical warning.
+	 * 抛出非关键警告。
 	 */
 	public void warning(String message, @Nullable Object source, @Nullable ParseState parseState, @Nullable Throwable cause) {
 		Location location = new Location(getResource(), source);
@@ -152,35 +151,35 @@ public class ReaderContext {
 	// Explicit parse events
 
 	/**
-	 * Fire a defaults-registered event.
+	 * 触发 defaults-registered 事件。
 	 */
 	public void fireDefaultsRegistered(DefaultsDefinition defaultsDefinition) {
 		this.eventListener.defaultsRegistered(defaultsDefinition);
 	}
 
 	/**
-	 * Fire a component-registered event.
+	 * 触发 component-registered 事件。
 	 */
 	public void fireComponentRegistered(ComponentDefinition componentDefinition) {
 		this.eventListener.componentRegistered(componentDefinition);
 	}
 
 	/**
-	 * Fire an alias-registered event.
+	 * 触发 alias-registered 事件。
 	 */
 	public void fireAliasRegistered(String beanName, String alias, @Nullable Object source) {
 		this.eventListener.aliasRegistered(new AliasDefinition(beanName, alias, source));
 	}
 
 	/**
-	 * Fire an import-processed event.
+	 * 触发 import-processed 事件。
 	 */
 	public void fireImportProcessed(String importedResource, @Nullable Object source) {
 		this.eventListener.importProcessed(new ImportDefinition(importedResource, source));
 	}
 
 	/**
-	 * Fire an import-processed event.
+	 * 触发 import-processed 事件。
 	 */
 	public void fireImportProcessed(String importedResource, Resource[] actualResources, @Nullable Object source) {
 		this.eventListener.importProcessed(new ImportDefinition(importedResource, actualResources, source));
@@ -190,14 +189,14 @@ public class ReaderContext {
 	// Source extraction
 
 	/**
-	 * Return the source extractor in use.
+	 * 返回正在使用的源提取器。
 	 */
 	public SourceExtractor getSourceExtractor() {
 		return this.sourceExtractor;
 	}
 
 	/**
-	 * Call the source extractor for the given source object.
+	 * 针对给定的源对象调用源提取器。
 	 * @param sourceCandidate the original source object
 	 * @return the source object to store, or {@code null} for none.
 	 * @see #getSourceExtractor()

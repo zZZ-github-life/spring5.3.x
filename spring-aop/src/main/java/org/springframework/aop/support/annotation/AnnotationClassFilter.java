@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple ClassFilter that looks for a specific annotation being present on a class.
+ * 简单的 ClassFilter，用于查找类上是否存在指定的注解。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -38,7 +38,7 @@ public class AnnotationClassFilter implements ClassFilter {
 
 
 	/**
-	 * Create a new AnnotationClassFilter for the given annotation type.
+	 * 为给定的注解类型创建一个新的 AnnotationClassFilter。
 	 * @param annotationType the annotation type to look for
 	 */
 	public AnnotationClassFilter(Class<? extends Annotation> annotationType) {
@@ -46,7 +46,7 @@ public class AnnotationClassFilter implements ClassFilter {
 	}
 
 	/**
-	 * Create a new AnnotationClassFilter for the given annotation type.
+	 * 为给定的注解类型创建一个新的 AnnotationClassFilter。
 	 * @param annotationType the annotation type to look for
 	 * @param checkInherited whether to also check the superclasses and
 	 * interfaces as well as meta-annotations for the annotation type

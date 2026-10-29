@@ -29,18 +29,17 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.lang.Nullable;
 
 /**
- * Object to represent an SQL BLOB/CLOB value parameter. BLOBs can either be an
- * InputStream or a byte array. CLOBs can be in the form of a Reader, InputStream,
- * or String. Each CLOB/BLOB value will be stored together with its length.
- * The type is based on which constructor is used. Instances of this class are
- * stateful and immutable: use them and discard them.
+ * 表示 SQL BLOB/CLOB 值参数的对象。BLOB 可以是 InputStream 或字节数组。
+ * CLOB 可以是 Reader、InputStream 或 String 形式。每个 CLOB/BLOB 值
+ * 都与其长度一起存储。类型取决于所使用的构造器。此类的实例是有状态的
+ * 且不可变的：使用后即丢弃。
  *
- * <p>This class holds a reference to a {@link LobCreator} that must be closed after
- * the update has completed. This is done via a call to the {@link #cleanup()} method.
- * All handling of the {@code LobCreator} is done by the framework classes that use it -
- * no need to set or close the {@code LobCreator} for end users of this class.
+ * <p>此类持有对 {@link LobCreator} 的引用，该 {@code LobCreator} 必须在更新
+ * 完成后关闭。这是通过调用 {@link #cleanup()} 方法完成的。
+ * 对 {@code LobCreator} 的所有处理都由使用它的框架类完成——
+ * 此类的最终用户无需设置或关闭 {@code LobCreator}。
  *
- * <p>A usage example:
+ * <p>使用示例：
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  * LobHandler lobHandler = new DefaultLobHandler();  // reusable object
@@ -72,14 +71,14 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	private final int length;
 
 	/**
-	 * Reference to the LobCreator - so we can close it once the update is done.
+	 * 对 LobCreator 的引用——以便在更新完成后将其关闭。
 	 */
 	private final LobCreator lobCreator;
 
 
 	/**
-	 * Create a new BLOB value with the given byte array,
-	 * using a DefaultLobHandler.
+	 * 使用给定的字节数组创建一个新的 BLOB 值，
+	 * 使用 DefaultLobHandler。
 	 * @param bytes the byte array containing the BLOB value
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
 	 */
@@ -88,7 +87,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new BLOB value with the given byte array.
+	 * 使用给定的字节数组创建一个新的 BLOB 值。
 	 * @param bytes the byte array containing the BLOB value
 	 * @param lobHandler the LobHandler to be used
 	 */
@@ -99,8 +98,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new CLOB value with the given content string,
-	 * using a DefaultLobHandler.
+	 * 使用给定的内容字符串创建一个新的 CLOB 值，
+	 * 使用 DefaultLobHandler。
 	 * @param content the String containing the CLOB value
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
 	 */
@@ -109,7 +108,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new CLOB value with the given content string.
+	 * 使用给定的内容字符串创建一个新的 CLOB 值。
 	 * @param content the String containing the CLOB value
 	 * @param lobHandler the LobHandler to be used
 	 */
@@ -120,8 +119,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new BLOB/CLOB value with the given stream,
-	 * using a DefaultLobHandler.
+	 * 使用给定的流创建一个新的 BLOB/CLOB 值，
+	 * 使用 DefaultLobHandler。
 	 * @param stream the stream containing the LOB value
 	 * @param length the length of the LOB value
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
@@ -131,7 +130,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new BLOB/CLOB value with the given stream.
+	 * 使用给定的流创建一个新的 BLOB/CLOB 值。
 	 * @param stream the stream containing the LOB value
 	 * @param length the length of the LOB value
 	 * @param lobHandler the LobHandler to be used
@@ -143,8 +142,8 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new CLOB value with the given character stream,
-	 * using a DefaultLobHandler.
+	 * 使用给定的字符流创建一个新的 CLOB 值，
+	 * 使用 DefaultLobHandler。
 	 * @param reader the character stream containing the CLOB value
 	 * @param length the length of the CLOB value
 	 * @see org.springframework.jdbc.support.lob.DefaultLobHandler
@@ -154,7 +153,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Create a new CLOB value with the given character stream.
+	 * 使用给定的字符流创建一个新的 CLOB 值。
 	 * @param reader the character stream containing the CLOB value
 	 * @param length the length of the CLOB value
 	 * @param lobHandler the LobHandler to be used
@@ -167,7 +166,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 
 
 	/**
-	 * Set the specified content via the LobCreator.
+	 * 通过 LobCreator 设置指定的内容。
 	 */
 	@Override
 	public void setTypeValue(PreparedStatement ps, int paramIndex, int sqlType, @Nullable String typeName)
@@ -209,7 +208,7 @@ public class SqlLobValue implements DisposableSqlTypeValue {
 	}
 
 	/**
-	 * Close the LobCreator, if any.
+	 * 关闭 LobCreator（如果有）。
 	 */
 	@Override
 	public void cleanup() {

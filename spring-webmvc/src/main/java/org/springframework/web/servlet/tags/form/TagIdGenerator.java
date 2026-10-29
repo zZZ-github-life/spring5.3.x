@@ -19,14 +19,7 @@ package org.springframework.web.servlet.tags.form;
 import javax.servlet.jsp.PageContext;
 
 /**
- * Utility class for generating '{@code id}' attributes values for JSP tags. Given the
- * name of a tag (the data bound path in most cases) returns a unique ID for that name within
- * the current {@link PageContext}. Each request for an ID for a given name will append an
- * ever-increasing counter to the name itself. For instance, given the name '{@code person.name}',
- * the first request will give '{@code person.name1}' and the second will give
- * '{@code person.name2}'. This supports the common use case where a set of radio or check buttons
- * are generated for the same data field, with each button being a distinct tag instance.
- *
+ * 用于为 JSP 标签生成 '{@code id}' 属性值的工具类。给定标签名称（大多数情况下是数据绑定路径），返回该名称在当前 {@link PageContext} 中的唯一 ID。每次为给定名称请求 ID 时，都会在名称后追加一个不断递增的计数器。例如，给定名称 '{@code person.name}'，第一次请求将得到 '{@code person.name1}'，第二次将得到 '{@code person.name2}'。这支持一种常见用例：为同一数据字段生成一组单选按钮或复选框，每个按钮都是独立的标签实例。
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @since 2.0
@@ -34,12 +27,12 @@ import javax.servlet.jsp.PageContext;
 abstract class TagIdGenerator {
 
 	/**
-	 * The prefix for all {@link PageContext} attributes created by this tag.
+	 * 此标签创建的所有 {@link PageContext} 属性的前缀。
 	 */
 	private static final String PAGE_CONTEXT_ATTRIBUTE_PREFIX = TagIdGenerator.class.getName() + ".";
 
 	/**
-	 * Get the next unique ID (within the given {@link PageContext}) for the supplied name.
+	 * 获取给定名称（在给定 {@link PageContext} 内）的下一个唯一 ID。
 	 */
 	public static String nextId(String name, PageContext pageContext) {
 		String attributeName = PAGE_CONTEXT_ATTRIBUTE_PREFIX + name;

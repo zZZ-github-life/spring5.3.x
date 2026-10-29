@@ -30,11 +30,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@code @Configuration} class that registers a {@link LoadTimeWeaver} bean.
+ * 注册 {@link LoadTimeWeaver} Bean 的 {@code @Configuration} 类。
  *
- * <p>This configuration class is automatically imported when using the
- * {@link EnableLoadTimeWeaving} annotation. See {@code @EnableLoadTimeWeaving}
- * javadoc for complete usage details.
+ * <p>使用 {@link EnableLoadTimeWeaving} 注解时，此配置类会被自动导入。完整的使用详情请参见
+ * {@code @EnableLoadTimeWeaving} 的 Javadoc。
  *
  * @author Chris Beams
  * @since 3.1

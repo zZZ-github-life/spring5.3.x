@@ -30,12 +30,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * CCI {@link ConnectionFactory} implementation that delegates all calls
- * to a given target {@link ConnectionFactory}.
+ * CCI {@link ConnectionFactory} 实现，将所有调用委托给给定的目标
+ * {@link ConnectionFactory}。
  *
- * <p>This class is meant to be subclassed, with subclasses overriding only
- * those methods (such as {@link #getConnection()}) that should not simply
- * delegate to the target {@link ConnectionFactory}.
+ * <p>此类旨在被子类化，子类只需重写那些不应简单地委托给目标
+ * {@link ConnectionFactory} 的方法（如 {@link #getConnection()}）。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -52,14 +51,14 @@ public class DelegatingConnectionFactory implements ConnectionFactory, Initializ
 
 
 	/**
-	 * Set the target ConnectionFactory that this ConnectionFactory should delegate to.
+	 * 设置此 ConnectionFactory 应委托的目标 ConnectionFactory。
 	 */
 	public void setTargetConnectionFactory(@Nullable ConnectionFactory targetConnectionFactory) {
 		this.targetConnectionFactory = targetConnectionFactory;
 	}
 
 	/**
-	 * Return the target ConnectionFactory that this ConnectionFactory should delegate to.
+	 * 返回此 ConnectionFactory 应委托的目标 ConnectionFactory。
 	 */
 	@Nullable
 	public ConnectionFactory getTargetConnectionFactory() {
@@ -67,7 +66,7 @@ public class DelegatingConnectionFactory implements ConnectionFactory, Initializ
 	}
 
 	/**
-	 * Obtain the target {@code ConnectionFactory} for actual use (never {@code null}).
+	 * 获取实际使用的目标 {@code ConnectionFactory}（永不返回 {@code null}）。
 	 * @since 5.0
 	 */
 	protected ConnectionFactory obtainTargetConnectionFactory() {

@@ -19,11 +19,11 @@ package org.springframework.web.servlet.tags;
 import org.springframework.lang.Nullable;
 
 /**
- * Bean used to pass name-value pair parameters from a {@link ParamTag} to a
- * {@link ParamAware} tag.
+ * 用于将名称-值对参数从 {@link ParamTag} 传递给
+ * {@link ParamAware} 标签的 bean。
  *
- * <p>Attributes are the raw values passed to the spring:param tag and have not
- * been encoded or escaped.
+ * <p>各属性是传递给 spring:param 标签的原始值，尚未
+ * 经过编码或转义。
  *
  * @author Scott Andrews
  * @since 3.0
@@ -39,14 +39,14 @@ public class Param {
 
 
 	/**
-	 * Set the raw name of the parameter.
+	 * 设置参数的原始名称。
 	 */
 	public void setName(@Nullable String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Return the raw parameter name.
+	 * 返回原始的参数名称。
 	 */
 	@Nullable
 	public String getName() {
@@ -54,14 +54,14 @@ public class Param {
 	}
 
 	/**
-	 * Set the raw value of the parameter.
+	 * 设置参数的原始值。
 	 */
 	public void setValue(@Nullable String value) {
 		this.value = value;
 	}
 
 	/**
-	 * Return the raw parameter value.
+	 * 返回原始的参数值。
 	 */
 	@Nullable
 	public String getValue() {

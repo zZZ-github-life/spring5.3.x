@@ -19,10 +19,8 @@ package org.springframework.core.codec;
 import org.springframework.lang.Nullable;
 
 /**
- * Indicates an issue with encoding the input Object stream with a focus on
- * not being able to encode Objects. As opposed to a more general I/O errors
- * or a {@link CodecException} such as a configuration issue that an
- * {@link Encoder} may also choose to raise.
+ * 表示编码输入对象流时出现的问题，重点关注无法编码对象的情况。这与更一般的 I/O 错误，或者
+ * {@link Encoder} 也可能选择抛出的、诸如配置问题之类的 {@link CodecException} 不同。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -32,7 +30,7 @@ import org.springframework.lang.Nullable;
 public class EncodingException extends CodecException {
 
 	/**
-	 * Create a new EncodingException.
+	 * 创建一个新的 EncodingException。
 	 * @param msg the detail message
 	 */
 	public EncodingException(String msg) {
@@ -40,7 +38,7 @@ public class EncodingException extends CodecException {
 	}
 
 	/**
-	 * Create a new EncodingException.
+	 * 创建一个新的 EncodingException。
 	 * @param msg the detail message
 	 * @param cause root cause for the exception, if any
 	 */

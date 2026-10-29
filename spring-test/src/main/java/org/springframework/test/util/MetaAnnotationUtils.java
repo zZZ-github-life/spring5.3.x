@@ -29,25 +29,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@code MetaAnnotationUtils} is a collection of utility methods that complements
- * the standard support already available in {@link AnnotationUtils}.
+ * {@code MetaAnnotationUtils} 是一组实用方法，补充 {@link AnnotationUtils} 中已有的标准支持。
  *
- * <p>Whereas {@code AnnotationUtils} provides utilities for <em>getting</em> or
- * <em>finding</em> an annotation, {@code MetaAnnotationUtils} goes a step further
- * by providing support for determining the <em>root class</em> on which an
- * annotation is declared, either directly or indirectly via a <em>composed
- * annotation</em>. This additional information is encapsulated in an
- * {@link AnnotationDescriptor}.
+ * <p>虽然 {@code AnnotationUtils} 提供了<em>获取</em>或<em>查找</em>注解的工具，但 {@code MetaAnnotationUtils} 更进一步，提供了确定直接或通过<em>组合注解</em>间接声明注解的<em>根类</em>的支持。这些附加信息封装在 {@link AnnotationDescriptor} 中。
  *
- * <p>The additional information provided by an {@code AnnotationDescriptor} is
- * required by the <em>Spring TestContext Framework</em> in order to be able to
- * support class hierarchy traversals for annotations such as
- * {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration},
- * {@link org.springframework.test.context.TestExecutionListeners @TestExecutionListeners},
- * and {@link org.springframework.test.context.ActiveProfiles @ActiveProfiles}
- * which offer support for merging and overriding various <em>inherited</em>
- * annotation attributes (e.g.
- * {@link org.springframework.test.context.ContextConfiguration#inheritLocations}).
+ * <p>为了支持对 {@link org.springframework.test.context.ContextConfiguration @ContextConfiguration}、{@link org.springframework.test.context.TestExecutionListeners @TestExecutionListeners} 和 {@link org.springframework.test.context.ActiveProfiles @ActiveProfiles} 等注解进行类层次结构遍历，<em>Spring TestContext Framework</em> 需要 {@code AnnotationDescriptor} 提供的附加信息，这些注解支持合并和覆盖各种<em>继承</em>的注解属性（例如 {@link org.springframework.test.context.ContextConfiguration#inheritLocations}）。
  *
  * @author Sam Brannen
  * @since 4.0
@@ -60,23 +46,16 @@ import org.springframework.util.ObjectUtils;
 public abstract class MetaAnnotationUtils {
 
 	/**
-	 * Find the {@link AnnotationDescriptor} for the supplied {@code annotationType}
-	 * on the supplied {@link Class}, traversing its annotations, interfaces, and
-	 * superclasses if no annotation can be found on the given class itself.
-	 * <p>This method explicitly handles class-level annotations which are not
-	 * declared as {@linkplain java.lang.annotation.Inherited inherited} <em>as
-	 * well as meta-annotations</em>.
-	 * <p>The algorithm operates as follows:
+	 * 为所提供的 {@link Class} 上的给定 {@code annotationType} 查找 {@link AnnotationDescriptor}；如果在给定类本身上找不到注解，则遍历其注解、接口和父类。
+	 * <p>此方法显式处理未声明为{@linkplain java.lang.annotation.Inherited 继承的}类级注解<em>以及元注解</em>。
+	 * <p>算法如下：
 	 * <ol>
-	 * <li>Search for the annotation on the given class and return a corresponding
-	 * {@code AnnotationDescriptor} if found.
-	 * <li>Recursively search through all annotations that the given class declares.
-	 * <li>Recursively search through all interfaces implemented by the given class.
-	 * <li>Recursively search through the superclass hierarchy of the given class.
+	 * <li>在给定类上搜索该注解，如果找到则返回对应的 {@code AnnotationDescriptor}。
+	 * <li>递归搜索给定类声明的所有注解。
+	 * <li>递归搜索给定类实现的所有接口。
+	 * <li>递归搜索给定类的父类层次结构。
 	 * </ol>
-	 * <p>In this context, the term <em>recursively</em> means that the search
-	 * process continues by returning to step #1 with the current annotation,
-	 * interface, or superclass as the class to look for annotations on.
+	 * <p>在此上下文中，<em>递归</em>一词意味着搜索过程会继续返回到步骤 #1，并将当前注解、接口或父类作为要查找注解的类。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
 	 * @return the corresponding annotation descriptor if the annotation was found;
@@ -91,9 +70,7 @@ public abstract class MetaAnnotationUtils {
 	}
 
 	/**
-	 * Perform the search algorithm for {@link #findAnnotationDescriptor(Class, Class)},
-	 * avoiding endless recursion by tracking which annotations have already been
-	 * <em>visited</em>.
+	 * 执行 {@link #findAnnotationDescriptor(Class, Class)} 的搜索算法，通过跟踪已<em>访问</em>的注解来避免无限递归。
 	 * @param clazz the class to look for annotations on
 	 * @param visited the set of annotations that have already been visited
 	 * @param annotationType the type of annotation to look for
@@ -140,28 +117,17 @@ public abstract class MetaAnnotationUtils {
 	}
 
 	/**
-	 * Find the {@link UntypedAnnotationDescriptor} for the first {@link Class}
-	 * in the inheritance hierarchy of the specified {@code clazz} (including
-	 * the specified {@code clazz} itself) which declares at least one of the
-	 * specified {@code annotationTypes}.
-	 * <p>This method traverses the annotations, interfaces, and superclasses
-	 * of the specified {@code clazz} if no annotation can be found on the given
-	 * class itself.
-	 * <p>This method explicitly handles class-level annotations which are not
-	 * declared as {@linkplain java.lang.annotation.Inherited inherited} <em>as
-	 * well as meta-annotations</em>.
-	 * <p>The algorithm operates as follows:
+	 * 在指定 {@code clazz} 的继承层次结构中（包括指定 {@code clazz} 本身）查找第一个声明了至少一个指定 {@code annotationTypes} 的 {@link Class} 的 {@link UntypedAnnotationDescriptor}。
+	 * <p>如果在给定类本身上找不到注解，则此方法会遍历指定 {@code clazz} 的注解、接口和父类。
+	 * <p>此方法显式处理未声明为{@linkplain java.lang.annotation.Inherited 继承的}类级注解<em>以及元注解</em>。
+	 * <p>算法如下：
 	 * <ol>
-	 * <li>Search for a local declaration of one of the annotation types on
-	 * the given class and return a corresponding {@code UntypedAnnotationDescriptor}
-	 * if found.
-	 * <li>Recursively search through all annotations that the given class declares.
-	 * <li>Recursively search through all interfaces implemented by the given class.
-	 * <li>Recursively search through the superclass hierarchy of the given class.
+	 * <li>在给定类上搜索指定注解类型之一的本地声明，如果找到则返回对应的 {@code UntypedAnnotationDescriptor}。
+	 * <li>递归搜索给定类声明的所有注解。
+	 * <li>递归搜索给定类实现的所有接口。
+	 * <li>递归搜索给定类的父类层次结构。
 	 * </ol>
-	 * <p>In this context, the term <em>recursively</em> means that the search
-	 * process continues by returning to step #1 with the current annotation,
-	 * interface, or superclass as the class to look for annotations on.
+	 * <p>在此上下文中，<em>递归</em>一词意味着搜索过程会继续返回到步骤 #1，并将当前注解、接口或父类作为要查找注解的类。
 	 * @param clazz the class to look for annotations on
 	 * @param annotationTypes the types of annotations to look for
 	 * @return the corresponding annotation descriptor if one of the annotations
@@ -177,9 +143,7 @@ public abstract class MetaAnnotationUtils {
 	}
 
 	/**
-	 * Perform the search algorithm for {@link #findAnnotationDescriptorForTypes(Class, Class...)},
-	 * avoiding endless recursion by tracking which annotations have already been
-	 * <em>visited</em>.
+	 * 执行 {@link #findAnnotationDescriptorForTypes(Class, Class...)} 的搜索算法，通过跟踪已<em>访问</em>的注解来避免无限递归。
 	 * @param clazz the class to look for annotations on
 	 * @param visited the set of annotations that have already been visited
 	 * @param annotationTypes the types of annotations to look for
@@ -241,36 +205,26 @@ public abstract class MetaAnnotationUtils {
 
 
 	/**
-	 * Descriptor for an {@link Annotation}, including the {@linkplain
-	 * #getDeclaringClass() class} on which the annotation is <em>declared</em>
-	 * as well as the actual {@linkplain #getAnnotation() annotation} instance.
-	 * <p>If the annotation is used as a meta-annotation, the descriptor also includes
-	 * the {@linkplain #getComposedAnnotation() composed annotation} on which the
-	 * annotation is present. In such cases, the <em>root declaring class</em> is
-	 * not directly annotated with the annotation but rather indirectly via the
-	 * composed annotation.
-	 * <p>Given the following example, if we are searching for the {@code @Transactional}
-	 * annotation <em>on</em> the {@code TransactionalTests} class, then the
-	 * properties of the {@code AnnotationDescriptor} would be as follows.
+	 * 用于 {@link Annotation} 的描述符，包括<em>声明</em>该注解的{@linkplain #getDeclaringClass() 类}以及实际的{@linkplain #getAnnotation() 注解}实例。
+	 * <p>如果该注解用作元注解，描述符还包含其上存在该注解的{@linkplain #getComposedAnnotation() 组合注解}。在这种情况下，<em>根声明类</em>并非直接带有该注解，而是通过组合注解间接带有该注解。
+	 * <p>给定以下示例，如果我们在 {@code TransactionalTests} 类<em>上</em>搜索 {@code @Transactional} 注解，则 {@code AnnotationDescriptor} 的属性将如下所示：
 	 * <ul>
-	 * <li>rootDeclaringClass: {@code TransactionalTests} class object</li>
-	 * <li>declaringClass: {@code TransactionalTests} class object</li>
+	 * <li>rootDeclaringClass: {@code TransactionalTests} 类对象</li>
+	 * <li>declaringClass: {@code TransactionalTests} 类对象</li>
 	 * <li>composedAnnotation: {@code null}</li>
-	 * <li>annotation: instance of the {@code Transactional} annotation</li>
+	 * <li>annotation: {@code Transactional} 注解的实例</li>
 	 * </ul>
 	 * <p><pre style="code">
 	 * &#064;Transactional
 	 * &#064;ContextConfiguration({"/test-datasource.xml", "/repository-config.xml"})
 	 * public class TransactionalTests { }
 	 * </pre>
-	 * <p>Given the following example, if we are searching for the {@code @Transactional}
-	 * annotation <em>on</em> the {@code UserRepositoryTests} class, then the
-	 * properties of the {@code AnnotationDescriptor} would be as follows.
+	 * <p>给定以下示例，如果我们在 {@code UserRepositoryTests} 类<em>上</em>搜索 {@code @Transactional} 注解，则 {@code AnnotationDescriptor} 的属性将如下所示：
 	 * <ul>
-	 * <li>rootDeclaringClass: {@code UserRepositoryTests} class object</li>
-	 * <li>declaringClass: {@code RepositoryTests} class object</li>
-	 * <li>composedAnnotation: instance of the {@code RepositoryTests} annotation</li>
-	 * <li>annotation: instance of the {@code Transactional} annotation</li>
+	 * <li>rootDeclaringClass: {@code UserRepositoryTests} 类对象</li>
+	 * <li>declaringClass: {@code RepositoryTests} 类对象</li>
+	 * <li>composedAnnotation: {@code RepositoryTests} 注解的实例</li>
+	 * <li>annotation: {@code Transactional} 注解的实例</li>
 	 * </ul>
 	 * <p><pre style="code">
 	 * &#064;Transactional
@@ -329,9 +283,7 @@ public abstract class MetaAnnotationUtils {
 		}
 
 		/**
-		 * Synthesize the merged {@link #getAnnotationAttributes AnnotationAttributes}
-		 * in this descriptor back into an annotation of the target
-		 * {@linkplain #getAnnotationType annotation type}.
+		 * 将此描述符中合并后的 {@link #getAnnotationAttributes AnnotationAttributes} 合成为目标{@linkplain #getAnnotationType 注解类型}的注解。
 		 * @since 4.2
 		 * @see #getAnnotationAttributes()
 		 * @see #getAnnotationType()
@@ -362,7 +314,7 @@ public abstract class MetaAnnotationUtils {
 		}
 
 		/**
-		 * Provide a textual representation of this {@code AnnotationDescriptor}.
+		 * 提供此 {@code AnnotationDescriptor} 的文本表示。
 		 */
 		@Override
 		public String toString() {
@@ -377,9 +329,7 @@ public abstract class MetaAnnotationUtils {
 
 
 	/**
-	 * <em>Untyped</em> extension of {@link AnnotationDescriptor} that is used
-	 * to describe the declaration of one of several candidate annotation types
-	 * where the actual annotation type cannot be predetermined.
+	 * {@link AnnotationDescriptor} 的<em>无类型</em>扩展，用于描述多个候选注解类型中某一个的声明，其中实际注解类型无法预先确定。
 	 */
 	public static class UntypedAnnotationDescriptor extends AnnotationDescriptor<Annotation> {
 
@@ -394,9 +344,7 @@ public abstract class MetaAnnotationUtils {
 		}
 
 		/**
-		 * Throws an {@link UnsupportedOperationException} since the type of annotation
-		 * represented by the {@link #getAnnotationAttributes AnnotationAttributes} in
-		 * an {@code UntypedAnnotationDescriptor} is unknown.
+		 * 抛出 {@link UnsupportedOperationException}，因为 {@code UntypedAnnotationDescriptor} 中由 {@link #getAnnotationAttributes AnnotationAttributes} 表示的注解类型未知。
 		 * @since 4.2
 		 */
 		@Override

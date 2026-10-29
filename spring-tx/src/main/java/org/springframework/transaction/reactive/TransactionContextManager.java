@@ -26,10 +26,10 @@ import reactor.util.context.Context;
 import org.springframework.transaction.NoTransactionException;
 
 /**
- * Delegate to register and obtain transactional contexts.
+ * 用于注册和获取事务上下文的委托类。
  *
- * <p>Typically used by components that intercept or orchestrate transactional flows
- * such as AOP interceptors or transactional operators.
+ * <p>通常由拦截或编排事务流的组件使用，
+ * 例如AOP拦截器或事务操作器。
  *
  * @author Mark Paluch
  * @since 5.2
@@ -42,9 +42,9 @@ public abstract class TransactionContextManager {
 
 
 	/**
-	 * Obtain the current {@link TransactionContext} from the subscriber context or the
-	 * transactional context holder. Context retrieval fails with NoTransactionException
-	 * if no context or context holder is registered.
+	 * 从订阅者上下文或事务上下文持有者中获取当前的
+	 * {@link TransactionContext}。如果没有注册上下文或上下文持有者，
+	 * 上下文获取将因NoTransactionException而失败。
 	 * @return the current {@link TransactionContext}
 	 * @throws NoTransactionException if no TransactionContext was found in the subscriber context
 	 * or no context found in a holder
@@ -65,7 +65,7 @@ public abstract class TransactionContextManager {
 	}
 
 	/**
-	 * Create a {@link TransactionContext} and register it in the subscriber {@link Context}.
+	 * 创建一个{@link TransactionContext}并将其注册到订阅者{@link Context}中。
 	 * @return functional context registration.
 	 * @throws IllegalStateException if a transaction context is already associated.
 	 * @see Mono#contextWrite(Function)
@@ -76,10 +76,9 @@ public abstract class TransactionContextManager {
 	}
 
 	/**
-	 * Return a {@link Function} to create or associate a new {@link TransactionContext}.
-	 * Interaction with transactional resources through
-	 * {@link TransactionSynchronizationManager} requires a TransactionContext
-	 * to be registered in the subscriber context.
+	 * 返回一个{@link Function}，用于创建或关联一个新的{@link TransactionContext}。
+	 * 通过{@link TransactionSynchronizationManager}与事务资源交互
+	 * 需要在订阅者上下文中注册一个TransactionContext。
 	 * @return functional context registration.
 	 */
 	public static Function<Context, Context> getOrCreateContext() {
@@ -93,11 +92,10 @@ public abstract class TransactionContextManager {
 	}
 
 	/**
-	 * Return a {@link Function} to create or associate a new
-	 * {@link TransactionContextHolder}. Creation and release of transactions
-	 * within a reactive flow requires a mutable holder that follows a top to
-	 * down execution scheme. Reactor's subscriber context follows a down to top
-	 * approach regarding mutation visibility.
+	 * 返回一个{@link Function}，用于创建或关联一个新的
+	 * {@link TransactionContextHolder}。在响应式流中创建和释放事务
+	 * 需要一个遵循自上而下执行方案的可变持有者。
+	 * Reactor的订阅者上下文在变更可见性方面遵循自下而上的方式。
 	 * @return functional context registration.
 	 */
 	public static Function<Context, Context> getOrCreateContextHolder() {
@@ -111,7 +109,7 @@ public abstract class TransactionContextManager {
 
 
 	/**
-	 * Stackless variant of {@link NoTransactionException} for reactive flows.
+	 * 用于响应式流的无堆栈{@link NoTransactionException}变体。
 	 */
 	@SuppressWarnings("serial")
 	private static class NoTransactionInContextException extends NoTransactionException {

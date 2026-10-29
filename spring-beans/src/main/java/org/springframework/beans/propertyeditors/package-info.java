@@ -1,10 +1,8 @@
 /**
- * Properties editors used to convert from String values to object
- * types such as java.util.Properties.
+ * 属性编辑器，用于将 String 值转换为对象类型，例如 java.util.Properties。
  *
- * <p>Some of these editors are registered automatically by BeanWrapperImpl.
- * "CustomXxxEditor" classes are intended for manual registration in
- * specific binding processes, as they are localized or the like.
+ * <p>其中一些编辑器由 BeanWrapperImpl 自动注册。"CustomXxxEditor" 类用于在特定的绑定过程中手动注册，
+ * 因为它们是与区域设置相关的或类似的。
  */
 @NonNullApi
 @NonNullFields

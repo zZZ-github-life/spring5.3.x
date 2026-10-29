@@ -26,11 +26,10 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@link LocaleContextResolver} implementation that always returns a fixed locale
- * and optionally time zone. Default is the current JVM's default locale.
+ * {@link LocaleContextResolver} 实现，始终返回固定的区域设置，并可选地返回时区。
+ * 默认为当前 JVM 的默认区域设置。
  *
- * <p>Note: Does not support {@link #setLocaleContext}, as the fixed locale and
- * time zone cannot be changed.
+ * <p>注意：不支持 {@link #setLocaleContext}，因为固定的区域设置和时区无法更改。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -44,15 +43,15 @@ public class FixedLocaleContextResolver implements LocaleContextResolver {
 
 
 	/**
-	 * Create a default FixedLocaleResolver, exposing a configured default
-	 * locale (or the JVM's default locale as fallback).
+	 * 创建一个默认的 FixedLocaleResolver，暴露已配置的默认区域设置
+	 * （或回退到 JVM 的默认区域设置）。
 	 */
 	public FixedLocaleContextResolver() {
 		this(Locale.getDefault());
 	}
 
 	/**
-	 * Create a FixedLocaleResolver that exposes the given locale.
+	 * 创建一个暴露给定区域设置的 FixedLocaleResolver。
 	 * @param locale the locale to expose
 	 */
 	public FixedLocaleContextResolver(Locale locale) {
@@ -60,7 +59,7 @@ public class FixedLocaleContextResolver implements LocaleContextResolver {
 	}
 
 	/**
-	 * Create a FixedLocaleResolver that exposes the given locale and time zone.
+	 * 创建一个暴露给定区域设置和时区的 FixedLocaleResolver。
 	 * @param locale the locale to expose
 	 * @param timeZone the time zone to expose
 	 */

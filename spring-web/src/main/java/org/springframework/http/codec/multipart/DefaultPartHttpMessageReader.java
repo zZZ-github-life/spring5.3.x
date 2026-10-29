@@ -41,20 +41,19 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default {@code HttpMessageReader} for parsing {@code "multipart/form-data"}
- * requests to a stream of {@link Part}s.
+ * 用于将 {@code "multipart/form-data"} 请求解析为 {@link Part} 流的
+ * 默认 {@code HttpMessageReader}。
  *
- * <p>In default, non-streaming mode, this message reader stores the
- * {@linkplain Part#content() contents} of parts smaller than
- * {@link #setMaxInMemorySize(int) maxInMemorySize} in memory, and parts larger
- * than that to a temporary file in
- * {@link #setFileStorageDirectory(Path) fileStorageDirectory}.
- * <p>In {@linkplain #setStreaming(boolean) streaming} mode, the contents of the
- * part is streamed directly from the parsed input buffer stream, and not stored
- * in memory nor file.
+ * <p>在默认的非流式模式下，此消息读取器会将小于
+ * {@link #setMaxInMemorySize(int) maxInMemorySize} 的部件的
+ * {@linkplain Part#content() 内容}存储在内存中，而将更大的部件
+ * 存储在 {@link #setFileStorageDirectory(Path) fileStorageDirectory}
+ * 中的临时文件里。
+ * <p>在{@linkplain #setStreaming(boolean) 流式}模式下，部件内容直接从
+ * 解析后的输入缓冲区流中流式传输，既不存储在内存中，也不存储在文件中。
  *
- * <p>This reader can be provided to {@link MultipartHttpMessageReader} in order
- * to aggregate all parts into a Map.
+ * <p>可以将此读取器提供给 {@link MultipartHttpMessageReader}，
+ * 以便将所有部件聚合到一个 Map 中。
  *
  * @author Arjen Poutsma
  * @since 5.3
@@ -79,8 +78,7 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 
 
 	/**
-	 * Configure the maximum amount of memory that is allowed per headers section of each part.
-	 * When the limit
+	 * 配置每个部件的头部分允许使用的最大内存量。当达到该限制时
 	 * @param byteCount the maximum amount of memory for headers
 	 */
 	public void setMaxHeadersSize(int byteCount) {
@@ -88,22 +86,22 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	}
 
 	/**
-	 * Get the {@link #setMaxInMemorySize configured} maximum in-memory size.
+	 * 获取{@link #setMaxInMemorySize 已配置}的最大内存大小。
 	 */
 	public int getMaxInMemorySize() {
 		return this.maxInMemorySize;
 	}
 
 	/**
-	 * Configure the maximum amount of memory allowed per part.
-	 * When the limit is exceeded:
+	 * 配置每个部件允许使用的最大内存量。
+	 * 超过限制时：
 	 * <ul>
-	 * <li>file parts are written to a temporary file.
-	 * <li>non-file parts are rejected with {@link DataBufferLimitException}.
+	 * <li>文件部件将写入临时文件。
+	 * <li>非文件部件将被拒绝，并抛出 {@link DataBufferLimitException}。
 	 * </ul>
-	 * <p>By default this is set to 256K.
-	 * <p>Note that this property is ignored when
-	 * {@linkplain #setStreaming(boolean) streaming} is enabled.
+	 * <p>默认设置为 256K。
+	 * <p>请注意，启用{@linkplain #setStreaming(boolean) 流式}模式时，
+	 * 此属性将被忽略。
 	 * @param maxInMemorySize the in-memory limit in bytes; if set to -1 the entire
 	 * contents will be stored in memory
 	 */
@@ -112,32 +110,32 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	}
 
 	/**
-	 * Configure the maximum amount of disk space allowed for file parts.
-	 * <p>By default this is set to -1, meaning that there is no maximum.
-	 * <p>Note that this property is ignored when
-	 * {@linkplain #setStreaming(boolean) streaming} is enabled, or when
-	 * {@link #setMaxInMemorySize(int) maxInMemorySize} is set to -1.
+	 * 配置文件部件允许使用的最大磁盘空间量。
+	 * <p>默认设置为 -1，表示没有上限。
+	 * <p>请注意，启用{@linkplain #setStreaming(boolean) 流式}模式时，
+	 * 或将 {@link #setMaxInMemorySize(int) maxInMemorySize} 设置为 -1 时，
+	 * 此属性将被忽略。
 	 */
 	public void setMaxDiskUsagePerPart(long maxDiskUsagePerPart) {
 		this.maxDiskUsagePerPart = maxDiskUsagePerPart;
 	}
 
 	/**
-	 * Specify the maximum number of parts allowed in a given multipart request.
-	 * <p>By default this is set to -1, meaning that there is no maximum.
+	 * 指定给定 multipart 请求中允许的最大部件数。
+	 * <p>默认设置为 -1，表示没有上限。
 	 */
 	public void setMaxParts(int maxParts) {
 		this.maxParts = maxParts;
 	}
 
 	/**
-	 * Set the directory used to store parts larger than
-	 * {@link #setMaxInMemorySize(int) maxInMemorySize}. By default, a directory
-	 * named {@code spring-webflux-multipart} is created under the system
-	 * temporary directory.
-	 * <p>Note that this property is ignored when
-	 * {@linkplain #setStreaming(boolean) streaming} is enabled, or when
-	 * {@link #setMaxInMemorySize(int) maxInMemorySize} is set to -1.
+	 * 设置用于存储大于
+	 * {@link #setMaxInMemorySize(int) maxInMemorySize} 的部件的目录。
+	 * 默认情况下，会在系统临时目录下创建名为
+	 * {@code spring-webflux-multipart} 的目录。
+	 * <p>请注意，启用{@linkplain #setStreaming(boolean) 流式}模式时，
+	 * 或将 {@link #setMaxInMemorySize(int) maxInMemorySize} 设置为 -1 时，
+	 * 此属性将被忽略。
 	 * @throws IOException if an I/O error occurs, or the parent directory
 	 * does not exist
 	 */
@@ -147,13 +145,12 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	}
 
 	/**
-	 * Set the Reactor {@link Scheduler} to be used for creating files and
-	 * directories, and writing to files. By default,
-	 * {@link Schedulers#boundedElastic()} is used, but this property allows for
-	 * changing it to an externally managed scheduler.
-	 * <p>Note that this property is ignored when
-	 * {@linkplain #setStreaming(boolean) streaming} is enabled, or when
-	 * {@link #setMaxInMemorySize(int) maxInMemorySize} is set to -1.
+	 * 设置用于创建文件和目录以及写入文件的 Reactor {@link Scheduler}。
+	 * 默认使用 {@link Schedulers#boundedElastic()}，但此属性允许
+	 * 将其改为外部管理的调度器。
+	 * <p>请注意，启用{@linkplain #setStreaming(boolean) 流式}模式时，
+	 * 或将 {@link #setMaxInMemorySize(int) maxInMemorySize} 设置为 -1 时，
+	 * 此属性将被忽略。
 	 * @see Schedulers#newBoundedElastic
 	 */
 	public void setBlockingOperationScheduler(Scheduler blockingOperationScheduler) {
@@ -166,29 +163,27 @@ public class DefaultPartHttpMessageReader extends LoggingCodecSupport implements
 	}
 
 	/**
-	 * When set to {@code true}, the {@linkplain Part#content() part content}
-	 * is streamed directly from the parsed input buffer stream, and not stored
-	 * in memory nor file.
-	 * When {@code false}, parts are backed by
-	 * in-memory and/or file storage. Defaults to {@code false}.
-	 * <p><strong>NOTE</strong> that with streaming enabled, the
-	 * {@code Flux<Part>} that is produced by this message reader must be
-	 * consumed in the original order, i.e. the order of the HTTP message.
-	 * Additionally, the {@linkplain Part#content() body contents} must either
-	 * be completely consumed or canceled before moving to the next part.
-	 * <p>Also note that enabling this property effectively ignores
-	 * {@link #setMaxInMemorySize(int) maxInMemorySize},
-	 * {@link #setMaxDiskUsagePerPart(long) maxDiskUsagePerPart},
-	 * {@link #setFileStorageDirectory(Path) fileStorageDirectory}, and
-	 * {@link #setBlockingOperationScheduler(Scheduler) fileCreationScheduler}.
+	 * 当设置为 {@code true} 时，{@linkplain Part#content() 部件内容}
+	 * 直接从解析后的输入缓冲区流中流式传输，既不存储在内存中，
+	 * 也不存储在文件中。
+	 * 当为 {@code false} 时，部件由内存和/或文件存储支持。默认为 {@code false}。
+	 * <p><strong>注意</strong>：启用流式处理后，此消息读取器生成的
+	 * {@code Flux<Part>} 必须按原始顺序消费，即 HTTP 消息的顺序。
+	 * 此外，在移动到下一个部件之前，必须完全消费或取消
+	 * {@linkplain Part#content() 正文内容}。
+	 * <p>另请注意，启用此属性会实际忽略
+	 * {@link #setMaxInMemorySize(int) maxInMemorySize}、
+	 * {@link #setMaxDiskUsagePerPart(long) maxDiskUsagePerPart}、
+	 * {@link #setFileStorageDirectory(Path) fileStorageDirectory} 和
+	 * {@link #setBlockingOperationScheduler(Scheduler) fileCreationScheduler}。
 	 */
 	public void setStreaming(boolean streaming) {
 		this.streaming = streaming;
 	}
 
 	/**
-	 * Set the character set used to decode headers.
-	 * Defaults to UTF-8 as per RFC 7578.
+	 * 设置用于解码头的字符集。
+	 * 按照 RFC 7578 默认为 UTF-8。
 	 * @param headersCharset the charset to use for decoding headers
 	 * @since 5.3.6
 	 * @see <a href="https://tools.ietf.org/html/rfc7578#section-5.1">RFC-7578 Section 5.1</a>

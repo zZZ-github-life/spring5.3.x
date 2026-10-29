@@ -25,19 +25,17 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.RequestToViewNameTranslator;
 
 /**
- * Handles return values of types {@code void} and {@code String} interpreting them
- * as view name reference. As of 4.2, it also handles general {@code CharSequence}
- * types, e.g. {@code StringBuilder} or Groovy's {@code GString}, as view names.
+ * 处理 {@code void} 和 {@code String} 类型的返回值，将其
+ * 解释为视图名称引用。从 4.2 开始，它还会将通用的 {@code CharSequence}
+ * 类型（例如 {@code StringBuilder} 或 Groovy 的 {@code GString}）作为视图名称处理。
  *
- * <p>A {@code null} return value, either due to a {@code void} return type or
- * as the actual return value is left as-is allowing the configured
- * {@link RequestToViewNameTranslator} to select a view name by convention.
+ * <p>由于返回类型为 {@code void} 或实际返回值本身为
+ * {@code null} 时，返回值会被原样保留，从而允许已配置的
+ * {@link RequestToViewNameTranslator} 按约定选择视图名称。
  *
- * <p>A String return value can be interpreted in more than one way depending on
- * the presence of annotations like {@code @ModelAttribute} or {@code @ResponseBody}.
- * Therefore, this handler should be configured after the handlers that support these
- * annotations.
- *
+ * <p>String 返回值可以有多种解释方式，具体取决于
+ * 是否存在 {@code @ModelAttribute} 或 {@code @ResponseBody} 等注解。
+ * 因此，此处理器应配置在支持这些注解的处理器之后。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 3.1
@@ -49,10 +47,10 @@ public class ViewNameMethodReturnValueHandler implements HandlerMethodReturnValu
 
 
 	/**
-	 * Configure one more simple patterns (as described in {@link PatternMatchUtils#simpleMatch})
-	 * to use in order to recognize custom redirect prefixes in addition to "redirect:".
-	 * <p>Note that simply configuring this property will not make a custom redirect prefix work.
-	 * There must be a custom View that recognizes the prefix as well.
+	 * 配置一个或多个简单模式（如 {@link PatternMatchUtils#simpleMatch} 所述），
+	 * 用于在 "redirect:" 之外识别自定义的重定向前缀。
+	 * <p>请注意，仅配置此属性并不会使自定义重定向前缀生效。
+	 * 还必须有一个能够识别该前缀的自定义 View。
 	 * @since 4.1
 	 */
 	public void setRedirectPatterns(@Nullable String... redirectPatterns) {
@@ -60,7 +58,7 @@ public class ViewNameMethodReturnValueHandler implements HandlerMethodReturnValu
 	}
 
 	/**
-	 * The configured redirect patterns, if any.
+	 * 已配置的重定向模式（如果有）。
 	 */
 	@Nullable
 	public String[] getRedirectPatterns() {
@@ -93,9 +91,9 @@ public class ViewNameMethodReturnValueHandler implements HandlerMethodReturnValu
 	}
 
 	/**
-	 * Whether the given view name is a redirect view reference.
-	 * The default implementation checks the configured redirect patterns and
-	 * also if the view name starts with the "redirect:" prefix.
+	 * 给定的视图名称是否为重定向视图引用。
+	 * 默认实现会检查已配置的重定向模式，
+	 * 以及视图名称是否以 "redirect:" 前缀开头。
 	 * @param viewName the view name to check, never {@code null}
 	 * @return "true" if the given view name is recognized as a redirect view
 	 * reference; "false" otherwise.

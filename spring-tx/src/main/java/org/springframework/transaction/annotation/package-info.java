@@ -1,7 +1,6 @@
 /**
- * Spring's support for annotation-based transaction demarcation.
- * Hooked into Spring's transaction interception infrastructure
- * via a special TransactionAttributeSource implementation.
+ * Spring对基于注解的事务界定支持。
+ * 通过特殊的TransactionAttributeSource实现接入Spring的事务拦截基础设施。
  */
 @NonNullApi
 @NonNullFields

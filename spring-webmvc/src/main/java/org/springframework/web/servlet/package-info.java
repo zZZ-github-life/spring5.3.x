@@ -1,11 +1,10 @@
 /**
- * Provides servlets that integrate with the application context
- * infrastructure, and the core interfaces and classes for the
- * Spring web MVC framework.
+ * 提供与应用程序上下文基础设施集成的 Servlet，
+ * 以及 Spring Web MVC 框架的核心接口和类。
  *
- * <p>This package and related packages are discussed in Chapters 12 and 13 of
+ * <p>本包及相关包在 Rod Johnson（Wrox，2002）所著的
  * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE Design and Development</a>
- * by Rod Johnson (Wrox, 2002).
+ * 一书第 12 章和第 13 章中有详细讨论。
  */
 @NonNullApi
 @NonNullFields

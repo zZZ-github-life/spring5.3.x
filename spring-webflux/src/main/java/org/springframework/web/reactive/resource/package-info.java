@@ -1,5 +1,5 @@
 /**
- * Support classes for serving static resources.
+ * 用于提供静态资源的支持类。
  */
 @NonNullApi
 @NonNullFields

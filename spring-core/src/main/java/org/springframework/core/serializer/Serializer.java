@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * A strategy interface for streaming an object to an OutputStream.
+ * 用于将对象流式写入 OutputStream 的策略接口。
  *
  * @author Gary Russell
  * @author Mark Fisher
@@ -34,10 +34,9 @@ import java.io.OutputStream;
 public interface Serializer<T> {
 
 	/**
-	 * Write an object of type T to the given OutputStream.
-	 * <p>Note: Implementations should not close the given OutputStream
-	 * (or any decorators of that OutputStream) but rather leave this up
-	 * to the caller.
+	 * 将类型为 T 的对象写入给定的 OutputStream。
+	 * <p>注意：实现不应关闭给定的 OutputStream（或该 OutputStream 的任何装饰器），而应将此留给调用者处
+	 * 理。
 	 * @param object the object to serialize
 	 * @param outputStream the output stream
 	 * @throws IOException in case of errors writing to the stream
@@ -45,7 +44,7 @@ public interface Serializer<T> {
 	void serialize(T object, OutputStream outputStream) throws IOException;
 
 	/**
-	 * Turn an object of type T into a serialized byte array.
+	 * 将类型为 T 的对象转换为序列化的字节数组。
 	 * @param object the object to serialize
 	 * @return the resulting byte array
 	 * @throws IOException in case of serialization failure

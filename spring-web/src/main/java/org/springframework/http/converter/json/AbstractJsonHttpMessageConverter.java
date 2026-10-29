@@ -36,10 +36,10 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.lang.Nullable;
 
 /**
- * Common base class for plain JSON converters, e.g. Gson and JSON-B.
+ * 纯 JSON 转换器（例如 Gson 和 JSON-B）的公共基类。
  *
- * <p>Note that the Jackson converters have a dedicated class hierarchy
- * due to their multi-format support.
+ * <p>请注意，由于 Jackson 转换器支持多种格式，
+ * 它们具有专门的类层次结构。
  *
  * @author Juergen Hoeller
  * @since 5.0
@@ -51,7 +51,7 @@ import org.springframework.lang.Nullable;
 public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHttpMessageConverter<Object> {
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -66,7 +66,7 @@ public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHt
 
 
 	/**
-	 * Specify a custom prefix to use for JSON output. Default is none.
+	 * 指定用于 JSON 输出的自定义前缀。默认为无。
 	 * @see #setPrefixJson
 	 */
 	public void setJsonPrefix(String jsonPrefix) {
@@ -74,12 +74,12 @@ public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHt
 	}
 
 	/**
-	 * Indicate whether the JSON output by this view should be prefixed with ")]}', ".
-	 * Default is {@code false}.
-	 * <p>Prefixing the JSON string in this manner is used to help prevent JSON
-	 * Hijacking. The prefix renders the string syntactically invalid as a script
-	 * so that it cannot be hijacked.
-	 * This prefix should be stripped before parsing the string as JSON.
+	 * 指示此视图输出的 JSON 是否应以 ")]}', " 为前缀。
+	 * 默认为 {@code false}。
+	 * <p>以这种方式为 JSON 字符串添加前缀有助于防止
+	 * JSON 劫持。该前缀使字符串在语法上无法作为脚本，
+	 * 从而无法被劫持。
+	 * 在将字符串解析为 JSON 之前应去掉该前缀。
 	 * @see #setJsonPrefix
 	 */
 	public void setPrefixJson(boolean prefixJson) {
@@ -132,7 +132,7 @@ public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHt
 
 
 	/**
-	 * Template method that reads the JSON-bound object from the given {@link Reader}.
+	 * 模板方法，从给定的 {@link Reader} 读取绑定到 JSON 的对象。
 	 * @param resolvedType the resolved generic type
 	 * @param reader the {@code} Reader to use
 	 * @return the JSON-bound object
@@ -141,7 +141,7 @@ public abstract class AbstractJsonHttpMessageConverter extends AbstractGenericHt
 	protected abstract Object readInternal(Type resolvedType, Reader reader) throws Exception;
 
 	/**
-	 * Template method that writes the JSON-bound object to the given {@link Writer}.
+	 * 模板方法，将绑定到 JSON 的对象写入给定的 {@link Writer}。
 	 * @param object the object to write to the output message
 	 * @param type the type of object to write (may be {@code null})
 	 * @param writer the {@code} Writer to use

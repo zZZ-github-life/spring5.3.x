@@ -31,13 +31,11 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.context.ConfigurableWebEnvironment;
 
 /**
- * {@link Environment} implementation to be used by {@code Servlet}-based web
- * applications. All web-related (servlet-based) {@code ApplicationContext} classes
- * initialize an instance by default.
+ * 供基于 {@code Servlet} 的 Web 应用使用的 {@link Environment} 实现。所有与 Web 相关的（基于
+ * Servlet 的）{@code ApplicationContext} 类默认都会初始化一个实例。
  *
- * <p>Contributes {@code ServletConfig}, {@code ServletContext}, and JNDI-based
- * {@link PropertySource} instances. See {@link #customizePropertySources} method
- * documentation for details.
+ * <p>提供基于 {@code ServletConfig}、{@code ServletContext} 以及 JNDI 的
+ * {@link PropertySource} 实例。详情参见 {@link #customizePropertySources} 方法的文档。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -46,13 +44,13 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
  */
 public class StandardServletEnvironment extends StandardEnvironment implements ConfigurableWebEnvironment {
 
-	/** Servlet context init parameters property source name: {@value}. */
+	/** Servlet 上下文初始化参数的属性源名称：{@value}。 */
 	public static final String SERVLET_CONTEXT_PROPERTY_SOURCE_NAME = "servletContextInitParams";
 
-	/** Servlet config init parameters property source name: {@value}. */
+	/** Servlet 配置初始化参数的属性源名称：{@value}。 */
 	public static final String SERVLET_CONFIG_PROPERTY_SOURCE_NAME = "servletConfigInitParams";
 
-	/** JNDI property source name: {@value}. */
+	/** JNDI 属性源名称：{@value}。 */
 	public static final String JNDI_PROPERTY_SOURCE_NAME = "jndiProperties";
 
 
@@ -62,13 +60,14 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 
 
 	/**
-	 * Create a new {@code StandardServletEnvironment} instance.
+	 * 创建一个新的 {@code StandardServletEnvironment} 实例。
 	 */
 	public StandardServletEnvironment() {
 	}
 
 	/**
-	 * Create a new {@code StandardServletEnvironment} instance with a specific {@link MutablePropertySources} instance.
+	 * 使用特定的 {@link MutablePropertySources} 实例创建一个新的 {@code StandardServletEnvironment}
+	 * 实例。
 	 * @param propertySources property sources to use
 	 * @since 5.3.4
 	 */
@@ -78,25 +77,22 @@ public class StandardServletEnvironment extends StandardEnvironment implements C
 
 
 	/**
-	 * Customize the set of property sources with those contributed by superclasses as
-	 * well as those appropriate for standard servlet-based environments:
+	 * 定制属性源集合，包括由父类提供的属性源以及适用于标准基于 Servlet 环境的属性源：
 	 * <ul>
 	 * <li>{@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}
 	 * <li>{@value #JNDI_PROPERTY_SOURCE_NAME}
 	 * </ul>
-	 * <p>Properties present in {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} will
-	 * take precedence over those in {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME}, and
-	 * properties found in either of the above take precedence over those found in
-	 * {@value #JNDI_PROPERTY_SOURCE_NAME}.
-	 * <p>Properties in any of the above will take precedence over system properties and
-	 * environment variables contributed by the {@link StandardEnvironment} superclass.
-	 * <p>The {@code Servlet}-related property sources are added as
-	 * {@link StubPropertySource stubs} at this stage, and will be
-	 * {@linkplain #initPropertySources(ServletContext, ServletConfig) fully initialized}
-	 * once the actual {@link ServletContext} object becomes available.
-	 * <p>Addition of {@value #JNDI_PROPERTY_SOURCE_NAME} can be disabled with
-	 * {@link JndiLocatorDelegate#IGNORE_JNDI_PROPERTY_NAME}.
+	 * <p>在 {@value #SERVLET_CONFIG_PROPERTY_SOURCE_NAME} 中存在的属性
+	 * 优先于 {@value #SERVLET_CONTEXT_PROPERTY_SOURCE_NAME} 中的属性，而上述两者中的属性
+	 * 优先于 {@value #JNDI_PROPERTY_SOURCE_NAME} 中的属性。
+	 * <p>上述任何属性源中的属性都优先于 {@link StandardEnvironment} 父类提供的
+	 * 系统属性和环境变量。
+	 * <p>在此阶段，与 {@code Servlet} 相关的属性源会以
+	 * {@link StubPropertySource 存根} 的形式添加，待实际的 {@link ServletContext}
+	 * 对象可用后再{@linkplain #initPropertySources(ServletContext, ServletConfig) 完全初始化}。
+	 * <p>可以通过 {@link JndiLocatorDelegate#IGNORE_JNDI_PROPERTY_NAME}
+	 * 禁用 {@value #JNDI_PROPERTY_SOURCE_NAME} 的添加。
 	 * @see StandardEnvironment#customizePropertySources
 	 * @see org.springframework.core.env.AbstractEnvironment#customizePropertySources
 	 * @see ServletConfigPropertySource

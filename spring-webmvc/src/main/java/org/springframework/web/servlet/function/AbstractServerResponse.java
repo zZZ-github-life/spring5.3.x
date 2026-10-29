@@ -37,7 +37,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Abstract base class for {@link ServerResponse} implementations.
+ * {@link ServerResponse} 实现的抽象基类。
  *
  * @author Arjen Poutsma
  * @since 5.3.2

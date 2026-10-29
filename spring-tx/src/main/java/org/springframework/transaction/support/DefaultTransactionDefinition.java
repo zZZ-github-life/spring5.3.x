@@ -23,12 +23,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.TransactionDefinition;
 
 /**
- * Default implementation of the {@link TransactionDefinition} interface,
- * offering bean-style configuration and sensible default values
- * (PROPAGATION_REQUIRED, ISOLATION_DEFAULT, TIMEOUT_DEFAULT, readOnly=false).
+ * {@link TransactionDefinition} 接口的默认实现，
+ * 提供 bean 风格的配置和合理的默认值
+ * （PROPAGATION_REQUIRED，ISOLATION_DEFAULT，TIMEOUT_DEFAULT，readOnly=false）。
  *
- * <p>Base class for both {@link TransactionTemplate} and
- * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute}.
+ * <p>作为 {@link TransactionTemplate} 和
+ * {@link org.springframework.transaction.interceptor.DefaultTransactionAttribute} 的基类。
  *
  * @author Juergen Hoeller
  * @since 08.05.2003
@@ -36,20 +36,20 @@ import org.springframework.transaction.TransactionDefinition;
 @SuppressWarnings("serial")
 public class DefaultTransactionDefinition implements TransactionDefinition, Serializable {
 
-	/** Prefix for the propagation constants defined in TransactionDefinition. */
+	/** TransactionDefinition 中定义的传播常量前缀。 */
 	public static final String PREFIX_PROPAGATION = "PROPAGATION_";
 
-	/** Prefix for the isolation constants defined in TransactionDefinition. */
+	/** TransactionDefinition 中定义的隔离常量前缀。 */
 	public static final String PREFIX_ISOLATION = "ISOLATION_";
 
-	/** Prefix for transaction timeout values in description strings. */
+	/** 描述字符串中事务超时值的前缀。 */
 	public static final String PREFIX_TIMEOUT = "timeout_";
 
-	/** Marker for read-only transactions in description strings. */
+	/** 描述字符串中只读事务的标记。 */
 	public static final String READ_ONLY_MARKER = "readOnly";
 
 
-	/** Constants instance for TransactionDefinition. */
+	/** TransactionDefinition 的常量实例。 */
 	static final Constants constants = new Constants(TransactionDefinition.class);
 
 	private int propagationBehavior = PROPAGATION_REQUIRED;
@@ -65,8 +65,8 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 
 	/**
-	 * Create a new DefaultTransactionDefinition, with default settings.
-	 * Can be modified through bean property setters.
+	 * 创建新的 DefaultTransactionDefinition，使用默认设置。
+	 * 可以通过 bean 属性修改器进行修改。
 	 * @see #setPropagationBehavior
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
@@ -77,7 +77,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Copy constructor. Definition can be modified through bean property setters.
+	 * 拷贝构造函数。定义可以通过 bean 属性修改器进行修改。
 	 * @see #setPropagationBehavior
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
@@ -93,10 +93,9 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Create a new DefaultTransactionDefinition with the given
-	 * propagation behavior. Can be modified through bean property setters.
-	 * @param propagationBehavior one of the propagation constants in the
-	 * TransactionDefinition interface
+	 * 使用给定的传播行为创建新的 DefaultTransactionDefinition。
+	 * 可以通过 bean 属性修改器进行修改。
+	 * @param propagationBehavior TransactionDefinition 接口中的传播常量之一
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
 	 * @see #setReadOnly
@@ -107,11 +106,9 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 
 	/**
-	 * Set the propagation behavior by the name of the corresponding constant in
-	 * TransactionDefinition, e.g. "PROPAGATION_REQUIRED".
-	 * @param constantName name of the constant
-	 * @throws IllegalArgumentException if the supplied value is not resolvable
-	 * to one of the {@code PROPAGATION_} constants or is {@code null}
+	 * 通过 TransactionDefinition 中对应常量的名称设置传播行为，例如 "PROPAGATION_REQUIRED"。
+	 * @param constantName 常量名称
+	 * @throws IllegalArgumentException 如果提供的值无法解析为 {@code PROPAGATION_} 常量之一或为 {@code null}
 	 * @see #setPropagationBehavior
 	 * @see #PROPAGATION_REQUIRED
 	 */
@@ -123,18 +120,13 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set the propagation behavior. Must be one of the propagation constants
-	 * in the TransactionDefinition interface. Default is PROPAGATION_REQUIRED.
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
-	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
-	 * transactions. Consider switching the "validateExistingTransactions" flag to
-	 * "true" on your transaction manager if you'd like isolation level declarations
-	 * to get rejected when participating in an existing transaction with a different
-	 * isolation level.
-	 * <p>Note that a transaction manager that does not support custom isolation levels
-	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
-	 * @throws IllegalArgumentException if the supplied value is not one of the
-	 * {@code PROPAGATION_} constants
+	 * 设置传播行为。必须是 TransactionDefinition 接口中的传播常量之一。默认为 PROPAGATION_REQUIRED。
+	 * <p>专为 {@link #PROPAGATION_REQUIRED} 或 {@link #PROPAGATION_REQUIRES_NEW} 设计，
+	 * 因为它仅适用于新启动的事务。如果您希望在参与具有不同隔离级别的现有事务时
+	 * 拒绝隔离级别声明，请考虑将事务管理器上的 "validateExistingTransactions" 标志切换为 "true"。
+	 * <p>请注意，不支持自定义隔离级别的事务管理器在给定 {@link #ISOLATION_DEFAULT}
+	 * 以外的任何级别时将抛出异常。
+	 * @throws IllegalArgumentException 如果提供的值不是 {@code PROPAGATION_} 常量之一
 	 * @see #PROPAGATION_REQUIRED
 	 */
 	public final void setPropagationBehavior(int propagationBehavior) {
@@ -150,11 +142,9 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set the isolation level by the name of the corresponding constant in
-	 * TransactionDefinition, e.g. "ISOLATION_DEFAULT".
-	 * @param constantName name of the constant
-	 * @throws IllegalArgumentException if the supplied value is not resolvable
-	 * to one of the {@code ISOLATION_} constants or is {@code null}
+	 * 通过 TransactionDefinition 中对应常量的名称设置隔离级别，例如 "ISOLATION_DEFAULT"。
+	 * @param constantName 常量名称
+	 * @throws IllegalArgumentException 如果提供的值无法解析为 {@code ISOLATION_} 常量之一或为 {@code null}
 	 * @see #setIsolationLevel
 	 * @see #ISOLATION_DEFAULT
 	 */
@@ -166,18 +156,13 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set the isolation level. Must be one of the isolation constants
-	 * in the TransactionDefinition interface. Default is ISOLATION_DEFAULT.
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
-	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
-	 * transactions. Consider switching the "validateExistingTransactions" flag to
-	 * "true" on your transaction manager if you'd like isolation level declarations
-	 * to get rejected when participating in an existing transaction with a different
-	 * isolation level.
-	 * <p>Note that a transaction manager that does not support custom isolation levels
-	 * will throw an exception when given any other level than {@link #ISOLATION_DEFAULT}.
-	 * @throws IllegalArgumentException if the supplied value is not one of the
-	 * {@code ISOLATION_} constants
+	 * 设置隔离级别。必须是 TransactionDefinition 接口中的隔离常量之一。默认为 ISOLATION_DEFAULT。
+	 * <p>专为 {@link #PROPAGATION_REQUIRED} 或 {@link #PROPAGATION_REQUIRES_NEW} 设计，
+	 * 因为它仅适用于新启动的事务。如果您希望在参与具有不同隔离级别的现有事务时
+	 * 拒绝隔离级别声明，请考虑将事务管理器上的 "validateExistingTransactions" 标志切换为 "true"。
+	 * <p>请注意，不支持自定义隔离级别的事务管理器在给定 {@link #ISOLATION_DEFAULT}
+	 * 以外的任何级别时将抛出异常。
+	 * @throws IllegalArgumentException 如果提供的值不是 {@code ISOLATION_} 常量之一
 	 * @see #ISOLATION_DEFAULT
 	 */
 	public final void setIsolationLevel(int isolationLevel) {
@@ -193,13 +178,11 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set the timeout to apply, as number of seconds.
-	 * Default is TIMEOUT_DEFAULT (-1).
-	 * <p>Exclusively designed for use with {@link #PROPAGATION_REQUIRED} or
-	 * {@link #PROPAGATION_REQUIRES_NEW} since it only applies to newly started
-	 * transactions.
-	 * <p>Note that a transaction manager that does not support timeouts will throw
-	 * an exception when given any other timeout than {@link #TIMEOUT_DEFAULT}.
+	 * 设置要应用的超时时间，以秒为单位。默认为 TIMEOUT_DEFAULT（-1）。
+	 * <p>专为 {@link #PROPAGATION_REQUIRED} 或 {@link #PROPAGATION_REQUIRES_NEW} 设计，
+	 * 因为它仅适用于新启动的事务。
+	 * <p>请注意，不支持超时的事务管理器在给定 {@link #TIMEOUT_DEFAULT}
+	 * 以外的任何超时值时将抛出异常。
 	 * @see #TIMEOUT_DEFAULT
 	 */
 	public final void setTimeout(int timeout) {
@@ -215,18 +198,13 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set whether to optimize as read-only transaction.
-	 * Default is "false".
-	 * <p>The read-only flag applies to any transaction context, whether backed
-	 * by an actual resource transaction ({@link #PROPAGATION_REQUIRED}/
-	 * {@link #PROPAGATION_REQUIRES_NEW}) or operating non-transactionally at
-	 * the resource level ({@link #PROPAGATION_SUPPORTS}). In the latter case,
-	 * the flag will only apply to managed resources within the application,
-	 * such as a Hibernate {@code Session}.
-	 * <p>This just serves as a hint for the actual transaction subsystem;
-	 * it will <i>not necessarily</i> cause failure of write access attempts.
-	 * A transaction manager which cannot interpret the read-only hint will
-	 * <i>not</i> throw an exception when asked for a read-only transaction.
+	 * 设置是否优化为只读事务。默认为 "false"。
+	 * <p>只读标志适用于任何事务上下文，无论是由实际资源事务支持
+	 * （{@link #PROPAGATION_REQUIRED}/{@link #PROPAGATION_REQUIRES_NEW}）
+	 * 还是在资源级别以非事务方式运行（{@link #PROPAGATION_SUPPORTS}）。
+	 * 在后一种情况下，该标志仅适用于应用程序内的托管资源，如 Hibernate {@code Session}。
+	 * <p>这仅作为实际事务子系统的提示；它<i>不一定</i>会导致写访问尝试失败。
+	 * 无法解读只读提示的事务管理器在被要求只读事务时<i>不会</i>抛出异常。
 	 */
 	public final void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
@@ -238,9 +216,8 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Set the name of this transaction. Default is none.
-	 * <p>This will be used as transaction name to be shown in a
-	 * transaction monitor, if applicable (for example, WebLogic's).
+	 * 设置此事务的名称。默认为无。
+	 * <p>这将用作事务监视器中显示的事务名称（如果适用，例如 WebLogic 的）。
 	 */
 	public final void setName(String name) {
 		this.name = name;
@@ -254,7 +231,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 
 
 	/**
-	 * This implementation compares the {@code toString()} results.
+	 * 此实现比较 {@code toString()} 的结果。
 	 * @see #toString()
 	 */
 	@Override
@@ -263,7 +240,7 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * This implementation returns {@code toString()}'s hash code.
+	 * 此实现返回 {@code toString()} 的哈希码。
 	 * @see #toString()
 	 */
 	@Override
@@ -272,14 +249,12 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Return an identifying description for this transaction definition.
-	 * <p>The format matches the one used by
-	 * {@link org.springframework.transaction.interceptor.TransactionAttributeEditor},
-	 * to be able to feed {@code toString} results into bean properties of type
-	 * {@link org.springframework.transaction.interceptor.TransactionAttribute}.
-	 * <p>Has to be overridden in subclasses for correct {@code equals}
-	 * and {@code hashCode} behavior. Alternatively, {@link #equals}
-	 * and {@link #hashCode} can be overridden themselves.
+	 * 返回此事务定义的标识性描述。
+	 * <p>格式与 {@link org.springframework.transaction.interceptor.TransactionAttributeEditor}
+	 * 使用的格式匹配，以便能够将 {@code toString} 结果输入到
+	 * {@link org.springframework.transaction.interceptor.TransactionAttribute} 类型的 bean 属性中。
+	 * <p>必须在子类中重写以实现正确的 {@code equals} 和 {@code hashCode} 行为。
+	 * 或者，可以重写 {@link #equals} 和 {@link #hashCode} 本身。
 	 * @see #getDefinitionDescription()
 	 * @see org.springframework.transaction.interceptor.TransactionAttributeEditor
 	 */
@@ -289,8 +264,8 @@ public class DefaultTransactionDefinition implements TransactionDefinition, Seri
 	}
 
 	/**
-	 * Return an identifying description for this transaction definition.
-	 * <p>Available to subclasses, for inclusion in their {@code toString()} result.
+	 * 返回此事务定义的标识性描述。
+	 * <p>供子类使用，包含在其 {@code toString()} 结果中。
 	 */
 	protected final StringBuilder getDefinitionDescription() {
 		StringBuilder result = new StringBuilder();

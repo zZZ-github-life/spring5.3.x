@@ -47,7 +47,7 @@ import org.springframework.web.reactive.socket.adapter.UndertowWebSocketHandlerA
 import org.springframework.web.reactive.socket.adapter.UndertowWebSocketSession;
 
 /**
- * Undertow based implementation of {@link WebSocketClient}.
+ * 基于 Undertow 的 {@link WebSocketClient} 实现。
  *
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
@@ -68,8 +68,9 @@ public class UndertowWebSocketClient implements WebSocketClient {
 
 
 	/**
-	 * Constructor with the {@link XnioWorker} to pass to
-	 * {@link io.undertow.websockets.client.WebSocketClient#connectionBuilder}.
+	 * 使用要传递给
+	 * {@link io.undertow.websockets.client.WebSocketClient#connectionBuilder} 的
+	 * {@link XnioWorker} 构造。
 	 * @param worker the Xnio worker
 	 */
 	public UndertowWebSocketClient(XnioWorker worker) {
@@ -78,8 +79,8 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Alternate constructor providing additional control over the
-	 * {@link ConnectionBuilder} for each WebSocket connection.
+	 * 备用构造函数，可对每个 WebSocket 连接的 {@link ConnectionBuilder}
+	 * 提供额外控制。
 	 * @param worker the Xnio worker to use to create {@code ConnectionBuilder}'s
 	 * @param builderConsumer a consumer to configure {@code ConnectionBuilder}'s
 	 */
@@ -88,8 +89,8 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Alternate constructor providing additional control over the
-	 * {@link ConnectionBuilder} for each WebSocket connection.
+	 * 备用构造函数，可对每个 WebSocket 连接的 {@link ConnectionBuilder}
+	 * 提供额外控制。
 	 * @param worker the Xnio worker to use to create {@code ConnectionBuilder}'s
 	 * @param byteBufferPool the ByteBufferPool to use to create {@code ConnectionBuilder}'s
 	 * @param builderConsumer a consumer to configure {@code ConnectionBuilder}'s
@@ -107,17 +108,18 @@ public class UndertowWebSocketClient implements WebSocketClient {
 
 
 	/**
-	 * Return the configured {@link XnioWorker}.
+	 * 返回配置的 {@link XnioWorker}。
 	 */
 	public XnioWorker getXnioWorker() {
 		return this.worker;
 	}
 
 	/**
-	 * Set the {@link io.undertow.connector.ByteBufferPool ByteBufferPool} to pass to
-	 * {@link io.undertow.websockets.client.WebSocketClient#connectionBuilder}.
-	 * <p>By default an indirect {@link io.undertow.server.DefaultByteBufferPool}
-	 * with a buffer size of 8192 is used.
+	 * 设置要传递给
+	 * {@link io.undertow.websockets.client.WebSocketClient#connectionBuilder} 的
+	 * {@link io.undertow.connector.ByteBufferPool ByteBufferPool}。
+	 * <p>默认使用缓冲区大小为 8192 的间接
+	 * {@link io.undertow.server.DefaultByteBufferPool}。
 	 * @since 5.0.8
 	 * @see #DEFAULT_POOL_BUFFER_SIZE
 	 */
@@ -127,8 +129,8 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Return the {@link io.undertow.connector.ByteBufferPool} currently used
-	 * for newly created WebSocket sessions by this client.
+	 * 返回此客户端当前用于新创建的 WebSocket 会话的
+	 * {@link io.undertow.connector.ByteBufferPool}。
 	 * @return the byte buffer pool
 	 * @since 5.0.8
 	 */
@@ -137,7 +139,7 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Return the configured <code>Consumer&lt;ConnectionBuilder&gt;</code>.
+	 * 返回配置的 <code>Consumer&lt;ConnectionBuilder&gt;</code>。
 	 */
 	public Consumer<ConnectionBuilder> getConnectionBuilderConsumer() {
 		return this.builderConsumer;
@@ -184,11 +186,10 @@ public class UndertowWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Create a {@link ConnectionBuilder} for the given URI.
-	 * <p>The default implementation creates a builder with the configured
-	 * {@link #getXnioWorker() XnioWorker} and {@link #getByteBufferPool() ByteBufferPool} and
-	 * then passes it to the {@link #getConnectionBuilderConsumer() consumer}
-	 * provided at construction time.
+	 * 为给定 URI 创建一个 {@link ConnectionBuilder}。
+	 * <p>默认实现使用配置的 {@link #getXnioWorker() XnioWorker} 和
+	 * {@link #getByteBufferPool() ByteBufferPool} 创建一个构建器，然后将其传递给
+	 * 构造时提供的 {@link #getConnectionBuilderConsumer() consumer}。
 	 */
 	protected ConnectionBuilder createConnectionBuilder(URI url) {
 		ConnectionBuilder builder = io.undertow.websockets.client.WebSocketClient

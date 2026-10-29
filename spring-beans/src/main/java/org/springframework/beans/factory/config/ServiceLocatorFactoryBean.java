@@ -36,42 +36,31 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link FactoryBean} implementation that takes an interface which must have one or more
- * methods with the signatures {@code MyType xxx()} or {@code MyType xxx(MyIdType id)}
- * (typically, {@code MyService getService()} or {@code MyService getService(String id)})
- * and creates a dynamic proxy which implements that interface, delegating to an
- * underlying {@link org.springframework.beans.factory.BeanFactory}.
+ * 一个 {@link FactoryBean} 实现，接受一个接口，该接口必须有一个或多个签名如 {@code MyType xxx()}
+ * 或 {@code MyType xxx(MyIdType id)} 的方法（通常是 {@code MyService getService()} 或
+ * {@code MyService getService(String id)}），并创建一个实现该接口的动态代理，将调用委托给底层的
+ * {@link org.springframework.beans.factory.BeanFactory}。
  *
- * <p>Such service locators permit the decoupling of calling code from
- * the {@link org.springframework.beans.factory.BeanFactory} API, by using an
- * appropriate custom locator interface. They will typically be used for
- * <b>prototype beans</b>, i.e. for factory methods that are supposed to
- * return a new instance for each call. The client receives a reference to the
- * service locator via setter or constructor injection, to be able to invoke
- * the locator's factory methods on demand. <b>For singleton beans, direct
- * setter or constructor injection of the target bean is preferable.</b>
+ * <p>此类服务定位器通过使用合适的自定义定位器接口，使调用代码与
+ * {@link org.springframework.beans.factory.BeanFactory} API 解耦。它们通常用于<b>原型 Bean</b>，即
+ * 用于每次调用都应返回新实例的工厂方法。客户端通过 setter 或构造器注入获得对服务定位器的引用，从而
+ * 能够按需调用定位器的工厂方法。<b>对于单例 Bean，直接对目标 Bean 进行 setter 或构造器注入更为可取。
+ * </b>
  *
- * <p>On invocation of the no-arg factory method, or the single-arg factory
- * method with a String id of {@code null} or empty String, if exactly
- * <b>one</b> bean in the factory matches the return type of the factory
- * method, that bean is returned, otherwise a
- * {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}
- * is thrown.
+ * <p>在调用无参工厂方法，或调用 String 类型的 id 为 {@code null} 或空字符串的单参工厂方法时，如果
+ * 工厂中恰好有<b>一个</b> Bean 与工厂方法的返回类型匹配，则返回该 Bean，否则抛出
+ * {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}。
  *
- * <p>On invocation of the single-arg factory method with a non-null (and
- * non-empty) argument, the proxy returns the result of a
- * {@link org.springframework.beans.factory.BeanFactory#getBean(String)} call,
- * using a stringified version of the passed-in id as bean name.
+ * <p>在使用非 null（且非空）参数调用单参工厂方法时，代理会返回
+ * {@link org.springframework.beans.factory.BeanFactory#getBean(String)} 调用的结果，并将传入 id 的
+ * 字符串化版本用作 Bean 名称。
  *
- * <p>A factory method argument will usually be a String, but can also be an
- * int or a custom enumeration type, for example, stringified via
- * {@code toString}. The resulting String can be used as bean name as-is,
- * provided that corresponding beans are defined in the bean factory.
- * Alternatively, {@linkplain #setServiceMappings(java.util.Properties) a custom
- * mapping} between service IDs and bean names can be defined.
+ * <p>工厂方法的参数通常是 String，但也可以是 int 或自定义枚举类型，例如通过 {@code toString} 字符
+ * 串化。只要在 Bean 工厂中定义了相应的 Bean，生成的 String 就可以直接用作 Bean 名称。或者，也可以
+ * 定义服务 ID 与 Bean 名称之间的
+ * {@linkplain #setServiceMappings(java.util.Properties) a custom mapping}。
  *
- * <p>By way of an example, consider the following service locator interface.
- * Note that this interface is not dependent on any Spring APIs.
+ * <p>作为一个示例，考虑以下服务定位器接口。请注意，此接口不依赖于任何 Spring API。
  *
  * <pre class="code">package a.b.c;
  *
@@ -80,8 +69,7 @@ import org.springframework.util.StringUtils;
  *    public MyService getService();
  *}</pre>
  *
- * <p>A sample config in an XML-based
- * {@link org.springframework.beans.factory.BeanFactory} might look as follows:
+ * <p>基于 XML 的 {@link org.springframework.beans.factory.BeanFactory} 中的示例配置可能如下所示：
  *
  * <pre class="code">&lt;beans&gt;
  *
@@ -100,8 +88,7 @@ import org.springframework.util.StringUtils;
  *
  *&lt;/beans&gt;</pre>
  *
- * <p>The attendant {@code MyClientBean} class implementation might then
- * look something like this:
+ * <p>相应的 {@code MyClientBean} 类实现可能类似如下：
  *
  * <pre class="code">package a.b.c;
  *
@@ -121,9 +108,8 @@ import org.springframework.util.StringUtils;
  *    }
  *}</pre>
  *
- * <p>By way of an example that looks up a bean <b>by name</b>, consider
- * the following service locator interface. Again, note that this
- * interface is not dependent on any Spring APIs.
+ * <p>作为按<b>名称</b>查找 Bean 的示例，考虑以下服务定位器接口。同样请注意，此接口不依赖于任何
+ * Spring API。
  *
  * <pre class="code">package a.b.c;
  *
@@ -132,8 +118,7 @@ import org.springframework.util.StringUtils;
  *    public MyService getService (String serviceName);
  *}</pre>
  *
- * <p>A sample config in an XML-based
- * {@link org.springframework.beans.factory.BeanFactory} might look as follows:
+ * <p>基于 XML 的 {@link org.springframework.beans.factory.BeanFactory} 中的示例配置可能如下所示：
  *
  * <pre class="code">&lt;beans&gt;
  *
@@ -152,8 +137,7 @@ import org.springframework.util.StringUtils;
  *
  *&lt;/beans&gt;</pre>
  *
- * <p>The attendant {@code MyClientBean} class implementation might then
- * look something like this:
+ * <p>相应的 {@code MyClientBean} 类实现可能类似如下：
  *
  * <pre class="code">package a.b.c;
  *
@@ -179,7 +163,7 @@ import org.springframework.util.StringUtils;
  *    }
  *}</pre>
  *
- * <p>See {@link ObjectFactoryCreatingFactoryBean} for an alternate approach.
+ * <p>有关替代方法，请参见 {@link ObjectFactoryCreatingFactoryBean}。
  *
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
@@ -207,25 +191,20 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 
 
 	/**
-	 * Set the service locator interface to use, which must have one or more methods with
-	 * the signatures {@code MyType xxx()} or {@code MyType xxx(MyIdType id)}
-	 * (typically, {@code MyService getService()} or {@code MyService getService(String id)}).
-	 * See the {@link ServiceLocatorFactoryBean class-level Javadoc} for
-	 * information on the semantics of such methods.
+	 * 设置要使用的服务定位器接口，该接口必须有一个或多个签名如 {@code MyType xxx()} 或
+	 * {@code MyType xxx(MyIdType id)} 的方法（通常是 {@code MyService getService()} 或
+	 * {@code MyService getService(String id)}）。有关此类方法语义的信息，请参见
+	 * {@link ServiceLocatorFactoryBean class-level Javadoc}。
 	 */
 	public void setServiceLocatorInterface(Class<?> interfaceType) {
 		this.serviceLocatorInterface = interfaceType;
 	}
 
 	/**
-	 * Set the exception class that the service locator should throw if service
-	 * lookup failed. The specified exception class must have a constructor
-	 * with one of the following parameter types: {@code (String, Throwable)}
-	 * or {@code (Throwable)} or {@code (String)}.
-	 * <p>If not specified, subclasses of Spring's BeansException will be thrown,
-	 * for example NoSuchBeanDefinitionException. As those are unchecked, the
-	 * caller does not need to handle them, so it might be acceptable that
-	 * Spring exceptions get thrown as long as they are just handled generically.
+	 * 设置服务查找失败时服务定位器应抛出的异常类。指定的异常类必须具有以下参数类型之一的构造器：
+	 * {@code (String, Throwable)} 或 {@code (Throwable)} 或 {@code (String)}。
+	 * <p>如果未指定，将抛出 Spring 的 BeansException 的子类，例如 NoSuchBeanDefinitionException。由于
+	 * 这些是非受检异常，调用方无需处理它们，因此只要以通用方式处理，抛出 Spring 异常是可以接受的。
 	 * @see #determineServiceLocatorExceptionConstructor
 	 * @see #createServiceLocatorException
 	 */
@@ -235,12 +214,10 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	}
 
 	/**
-	 * Set mappings between service ids (passed into the service locator)
-	 * and bean names (in the bean factory). Service ids that are not defined
-	 * here will be treated as bean names as-is.
-	 * <p>The empty string as service id key defines the mapping for {@code null} and
-	 * empty string, and for factory methods without parameter. If not defined,
-	 * a single matching bean will be retrieved from the bean factory.
+	 * 设置服务 id（传入服务定位器）与 Bean 名称（在 Bean 工厂中）之间的映射。此处未定义的服务 id 将直
+	 * 接作为 Bean 名称处理。
+	 * <p>空字符串作为服务 id 键时，定义了 {@code null} 和空字符串的映射，以及无参数工厂方法的映射。如
+	 * 果未定义，则将从 Bean 工厂中检索单个匹配的 Bean。
 	 * @param serviceMappings mappings between service ids and bean names,
 	 * with service ids as keys as bean names as values
 	 */
@@ -272,11 +249,9 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 
 
 	/**
-	 * Determine the constructor to use for the given service locator exception
-	 * class. Only called in case of a custom service locator exception.
-	 * <p>The default implementation looks for a constructor with one of the
-	 * following parameter types: {@code (String, Throwable)}
-	 * or {@code (Throwable)} or {@code (String)}.
+	 * 确定用于给定服务定位器异常类的构造器。仅在自定义服务定位器异常的情况下调用。
+	 * <p>默认实现会查找具有以下参数类型之一的构造器：{@code (String, Throwable)} 或
+	 * {@code (Throwable)} 或 {@code (String)}。
 	 * @param exceptionClass the exception class
 	 * @return the constructor to use
 	 * @see #setServiceLocatorExceptionClass
@@ -304,10 +279,8 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 	}
 
 	/**
-	 * Create a service locator exception for the given cause.
-	 * Only called in case of a custom service locator exception.
-	 * <p>The default implementation can handle all variations of
-	 * message and exception arguments.
+	 * 为给定原因创建服务定位器异常。仅在自定义服务定位器异常的情况下调用。
+	 * <p>默认实现可以处理消息和异常参数的所有变体。
 	 * @param exceptionConstructor the constructor to use
 	 * @param cause the cause of the service lookup failure
 	 * @return the service locator exception to throw
@@ -346,7 +319,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 
 
 	/**
-	 * Invocation handler that delegates service locator calls to the bean factory.
+	 * 将服务定位器调用委托给 Bean 工厂的调用处理器。
 	 */
 	private class ServiceLocatorInvocationHandler implements InvocationHandler {
 
@@ -391,7 +364,7 @@ public class ServiceLocatorFactoryBean implements FactoryBean<Object>, BeanFacto
 		}
 
 		/**
-		 * Check whether a service id was passed in.
+		 * 检查是否传入了服务 id。
 		 */
 		private String tryGetBeanName(@Nullable Object[] args) {
 			String beanName = "";

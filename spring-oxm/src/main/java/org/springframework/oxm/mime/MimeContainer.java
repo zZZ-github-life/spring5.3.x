@@ -21,8 +21,8 @@ import javax.activation.DataHandler;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a container for MIME attachments
- * Concrete implementations might adapt a SOAPMessage or an email message.
+ * 表示 MIME 附件的容器。
+ * 具体实现可以适配 SOAPMessage 或电子邮件消息。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 public interface MimeContainer {
 
 	/**
-	 * Indicate whether this container is a XOP package.
+	 * 指示此容器是否为 XOP 包。
 	 * @return {@code true} when the constraints specified in
 	 * <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#identifying_xop_documents">Identifying XOP Documents</a>
 	 * are met
@@ -40,21 +40,21 @@ public interface MimeContainer {
 	boolean isXopPackage();
 
 	/**
-	 * Turn this message into a XOP package.
+	 * 将此消息转换为 XOP 包。
 	 * @return {@code true} when the message actually is a XOP package
 	 * @see <a href="https://www.w3.org/TR/2005/REC-xop10-20050125/#xop_packages">XOP Packages</a>
 	 */
 	boolean convertToXopPackage();
 
 	/**
-	 * Add the given data handler as an attachment to this container.
+	 * 将给定的数据处理器作为附件添加到此容器中。
 	 * @param contentId  the content id of the attachment
 	 * @param dataHandler the data handler containing the data of the attachment
 	 */
 	void addAttachment(String contentId, DataHandler dataHandler);
 
 	/**
-	 * Return the attachment with the given content id, or {@code null} if not found.
+	 * 返回具有给定内容 ID 的附件，如果未找到则返回 {@code null}。
 	 * @param contentId the content id
 	 * @return the attachment, as a data handler
 	 */

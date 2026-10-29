@@ -28,36 +28,30 @@ import javax.resource.cci.ConnectionFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Proxy for a target CCI {@link javax.resource.cci.ConnectionFactory}, adding
- * awareness of Spring-managed transactions. Similar to a transactional JNDI
- * ConnectionFactory as provided by a Java EE server.
+ * 目标 CCI {@link javax.resource.cci.ConnectionFactory} 的代理，
+ * 增加了对 Spring 管理事务的感知。类似于 Java EE 服务器提供的事务性 JNDI ConnectionFactory。
  *
- * <p>Data access code that should remain unaware of Spring's data access support
- * can work with this proxy to seamlessly participate in Spring-managed transactions.
- * Note that the transaction manager, for example the {@link CciLocalTransactionManager},
- * still needs to work with underlying ConnectionFactory, <i>not</i> with this proxy.
+ * <p>不需要感知 Spring 数据访问支持的数据访问代码可以使用此代理来无缝参与
+ * Spring 管理的事务。注意，事务管理器（例如 {@link CciLocalTransactionManager}）
+ * 仍然需要操作底层的 ConnectionFactory，<i>而不是</i>此代理。
  *
- * <p><b>Make sure that TransactionAwareConnectionFactoryProxy is the outermost
- * ConnectionFactory of a chain of ConnectionFactory proxies/adapters.</b>
- * TransactionAwareConnectionFactoryProxy can delegate either directly to the
- * target connection pool or to some intermediate proxy/adapter like
- * {@link ConnectionSpecConnectionFactoryAdapter}.
+ * <p><b>确保 TransactionAwareConnectionFactoryProxy 是 ConnectionFactory 代理/适配器链中
+ * 最外层的 ConnectionFactory。</b> TransactionAwareConnectionFactoryProxy 可以直接委托给
+ * 目标连接池，也可以委托给某些中间代理/适配器，如 {@link ConnectionSpecConnectionFactoryAdapter}。
  *
- * <p>Delegates to {@link ConnectionFactoryUtils} for automatically participating in
- * thread-bound transactions, for example managed by {@link CciLocalTransactionManager}.
- * {@code getConnection} calls and {@code close} calls on returned Connections
- * will behave properly within a transaction, i.e. always operate on the transactional
- * Connection. If not within a transaction, normal ConnectionFactory behavior applies.
+ * <p>委托 {@link ConnectionFactoryUtils} 自动参与线程绑定的事务，
+ * 例如由 {@link CciLocalTransactionManager} 管理的事务。
+ * 返回的 Connection 上的 {@code getConnection} 调用和 {@code close} 调用
+ * 将在事务中正确运行，即始终操作事务性 Connection。如果不在事务中，
+ * 则应用普通的 ConnectionFactory 行为。
  *
- * <p>This proxy allows data access code to work with the plain JCA CCI API and still
- * participate in Spring-managed transactions, similar to CCI code in a Java EE/JTA
- * environment. However, if possible, use Spring's ConnectionFactoryUtils, CciTemplate or
- * CCI operation objects to get transaction participation even without a proxy for
- * the target ConnectionFactory, avoiding the need to define such a proxy in the first place.
+ * <p>此代理允许数据访问代码使用纯 JCA CCI API 工作，同时参与 Spring 管理的事务，
+ * 类似于 Java EE/JTA 环境中的 CCI 代码。但是，如果可能的话，请使用 Spring 的
+ * ConnectionFactoryUtils、CciTemplate 或 CCI 操作对象来获得事务参与，
+ * 而无需为目标 ConnectionFactory 设置代理，从而避免首先定义此类代理的需要。
  *
- * <p><b>NOTE:</b> This ConnectionFactory proxy needs to return wrapped Connections
- * in order to handle close calls properly. Therefore, the returned Connections cannot
- * be cast to a native CCI Connection type or to a connection pool implementation type.
+ * <p><b>注意：</b>此 ConnectionFactory 代理需要返回包装的 Connection 以正确处理 close 调用。
+ * 因此，返回的 Connection 不能转换为原生 CCI Connection 类型或连接池实现类型。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -73,14 +67,14 @@ import org.springframework.lang.Nullable;
 public class TransactionAwareConnectionFactoryProxy extends DelegatingConnectionFactory {
 
 	/**
-	 * Create a new TransactionAwareConnectionFactoryProxy.
+	 * 创建新的 TransactionAwareConnectionFactoryProxy。
 	 * @see #setTargetConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy() {
 	}
 
 	/**
-	 * Create a new TransactionAwareConnectionFactoryProxy.
+	 * 创建新的 TransactionAwareConnectionFactoryProxy。
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
@@ -90,8 +84,8 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 
 	/**
-	 * Delegate to ConnectionFactoryUtils for automatically participating in Spring-managed
-	 * transactions. Throws the original ResourceException, if any.
+	 * 委托 ConnectionFactoryUtils 自动参与 Spring 管理的事务。
+	 * 如有原始 ResourceException 则抛出。
 	 * @return a transactional Connection if any, a new one else
 	 * @see org.springframework.jca.cci.connection.ConnectionFactoryUtils#doGetConnection
 	 */
@@ -103,8 +97,8 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 	}
 
 	/**
-	 * Wrap the given Connection with a proxy that delegates every method call to it
-	 * but delegates {@code close} calls to ConnectionFactoryUtils.
+	 * 使用代理包装给定的 Connection，该代理将每个方法调用委托给它，
+	 * 但将 {@code close} 调用委托给 ConnectionFactoryUtils。
 	 * @param target the original Connection to wrap
 	 * @param cf the ConnectionFactory that the Connection came from
 	 * @return the wrapped Connection
@@ -120,8 +114,7 @@ public class TransactionAwareConnectionFactoryProxy extends DelegatingConnection
 
 
 	/**
-	 * Invocation handler that delegates close calls on CCI Connections
-	 * to ConnectionFactoryUtils for being aware of thread-bound transactions.
+	 * 将 CCI Connection 的 close 调用委托给 ConnectionFactoryUtils 以感知线程绑定事务的调用处理器。
 	 */
 	private static class TransactionAwareInvocationHandler implements InvocationHandler {
 

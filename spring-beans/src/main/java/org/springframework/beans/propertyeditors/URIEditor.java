@@ -28,20 +28,16 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Editor for {@code java.net.URI}, to directly populate a URI property
- * instead of using a String property as bridge.
+ * 用于 {@code java.net.URI} 的编辑器，可直接填充 URI 属性，而无需使用 String 属性作为桥接。
  *
- * <p>Supports Spring-style URI notation: any fully qualified standard URI
- * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL,
- * which will be resolved to a corresponding URI.
+ * <p>支持 Spring 风格的 URI 表示法：任何完全限定的标准 URI（"file:"、"http:" 等）以及 Spring 特殊
+ * 的 "classpath:" 伪 URL，后者将被解析为相应的 URI。
  *
- * <p>By default, this editor will encode Strings into URIs. For instance,
- * a space will be encoded into {@code %20}. This behavior can be changed
- * by calling the {@link #URIEditor(boolean)} constructor.
+ * <p>默认情况下，此编辑器会将 String 编码为 URI。例如，空格将被编码为 {@code %20}。可以通过调用
+ * {@link #URIEditor(boolean)} 构造函数更改此行为。
  *
- * <p>Note: A URI is more relaxed than a URL in that it does not require
- * a valid protocol to be specified. Any scheme within a valid URI syntax
- * is allowed, even without a matching protocol handler being registered.
+ * <p>注意：URI 比 URL 更宽松，因为它不要求指定有效的协议。允许使用有效 URI 语法中的任何 scheme，即
+ * 使未注册匹配的协议处理器也是如此。
  *
  * @author Juergen Hoeller
  * @since 2.0.2
@@ -58,16 +54,14 @@ public class URIEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new, encoding URIEditor, converting "classpath:" locations into
-	 * standard URIs (not trying to resolve them into physical resources).
+	 * 创建一个新的编码 URIEditor，将 "classpath:" 位置转换为标准 URI（不尝试将其解析为物理资源）。
 	 */
 	public URIEditor() {
 		this(true);
 	}
 
 	/**
-	 * Create a new URIEditor, converting "classpath:" locations into
-	 * standard URIs (not trying to resolve them into physical resources).
+	 * 创建一个新的 URIEditor，将 "classpath:" 位置转换为标准 URI（不尝试将其解析为物理资源）。
 	 * @param encode indicates whether Strings will be encoded or not
 	 * @since 3.0
 	 */
@@ -77,8 +71,7 @@ public class URIEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new URIEditor, using the given ClassLoader to resolve
-	 * "classpath:" locations into physical resource URLs.
+	 * 创建一个新的 URIEditor，使用给定的 ClassLoader 将 "classpath:" 位置解析为物理资源 URL。
 	 * @param classLoader the ClassLoader to use for resolving "classpath:" locations
 	 * (may be {@code null} to indicate the default ClassLoader)
 	 */
@@ -87,8 +80,7 @@ public class URIEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new URIEditor, using the given ClassLoader to resolve
-	 * "classpath:" locations into physical resource URLs.
+	 * 创建一个新的 URIEditor，使用给定的 ClassLoader 将 "classpath:" 位置解析为物理资源 URL。
 	 * @param classLoader the ClassLoader to use for resolving "classpath:" locations
 	 * (may be {@code null} to indicate the default ClassLoader)
 	 * @param encode indicates whether Strings will be encoded or not
@@ -129,8 +121,8 @@ public class URIEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a URI instance for the given user-specified String value.
-	 * <p>The default implementation encodes the value into an RFC-2396 compliant URI.
+	 * 为给定的用户指定 String 值创建一个 URI 实例。
+	 * <p>默认实现将该值编码为符合 RFC-2396 的 URI。
 	 * @param value the value to convert into a URI instance
 	 * @return the URI instance
 	 * @throws java.net.URISyntaxException if URI conversion failed

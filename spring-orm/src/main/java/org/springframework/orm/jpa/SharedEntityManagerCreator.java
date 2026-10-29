@@ -45,18 +45,18 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * Delegate for creating a shareable JPA {@link javax.persistence.EntityManager}
- * reference for a given {@link javax.persistence.EntityManagerFactory}.
+ * 为给定的 {@link javax.persistence.EntityManagerFactory} 创建可共享的
+ * JPA {@link javax.persistence.EntityManager} 引用的委托类。
  *
- * <p>A shared EntityManager will behave just like an EntityManager fetched from
- * an application server's JNDI environment, as defined by the JPA specification.
- * It will delegate all calls to the current transactional EntityManager, if any;
- * otherwise it will fall back to a newly created EntityManager per operation.
+ * <p>共享 EntityManager 的行为与从应用服务器 JNDI 环境中获取的
+ * EntityManager 完全相同（如 JPA 规范所定义）。
+ * 它会将所有调用委托给当前的事务性 EntityManager（如果有）；
+ * 否则将回退到为每次操作新建的 EntityManager。
  *
- * <p>For a behavioral definition of such a shared transactional EntityManager,
- * see {@link javax.persistence.PersistenceContextType#TRANSACTION} and its
- * discussion in the JPA spec document. This is also the default being used
- * for the annotation-based {@link javax.persistence.PersistenceContext#type()}.
+ * <p>关于这种共享事务性 EntityManager 的行为定义，
+ * 请参阅 {@link javax.persistence.PersistenceContextType#TRANSACTION}
+ * 及其在 JPA 规范文档中的讨论。这也是基于注解的
+ * {@link javax.persistence.PersistenceContext#type()} 所使用的默认值。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -100,7 +100,7 @@ public abstract class SharedEntityManagerCreator {
 
 
 	/**
-	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
+	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
 	 * @param emf the EntityManagerFactory to delegate to.
 	 * @return a shareable transaction EntityManager proxy
 	 */
@@ -109,7 +109,7 @@ public abstract class SharedEntityManagerCreator {
 	}
 
 	/**
-	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
+	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
 	 * @param emf the EntityManagerFactory to delegate to.
 	 * @param properties the properties to be passed into the
 	 * {@code createEntityManager} call (may be {@code null})
@@ -120,7 +120,7 @@ public abstract class SharedEntityManagerCreator {
 	}
 
 	/**
-	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
+	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
 	 * @param emf the EntityManagerFactory to delegate to.
 	 * @param properties the properties to be passed into the
 	 * {@code createEntityManager} call (may be {@code null})
@@ -139,7 +139,7 @@ public abstract class SharedEntityManagerCreator {
 	}
 
 	/**
-	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
+	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
 	 * @param emf the EntityManagerFactory to obtain EntityManagers from as needed
 	 * @param properties the properties to be passed into the
 	 * {@code createEntityManager} call (may be {@code null})
@@ -154,7 +154,7 @@ public abstract class SharedEntityManagerCreator {
 	}
 
 	/**
-	 * Create a transactional EntityManager proxy for the given EntityManagerFactory.
+	 * 为给定的 EntityManagerFactory 创建一个事务性 EntityManager 代理。
 	 * @param emf the EntityManagerFactory to obtain EntityManagers from as needed
 	 * @param properties the properties to be passed into the
 	 * {@code createEntityManager} call (may be {@code null})
@@ -182,9 +182,8 @@ public abstract class SharedEntityManagerCreator {
 
 
 	/**
-	 * Invocation handler that delegates all calls to the current
-	 * transactional EntityManager, if any; else, it will fall back
-	 * to a newly created EntityManager per operation.
+	 * 将所有调用委托给当前事务性 EntityManager（如果有）的调用处理器；
+	 * 否则将回退到为每次操作新建的 EntityManager。
 	 */
 	@SuppressWarnings("serial")
 	private static class SharedEntityManagerInvocationHandler implements InvocationHandler, Serializable {
@@ -348,11 +347,11 @@ public abstract class SharedEntityManagerCreator {
 
 
 	/**
-	 * Invocation handler that handles deferred Query objects created by
-	 * non-transactional createQuery invocations on a shared EntityManager.
-	 * <p>Includes deferred output parameter access for JPA 2.1 StoredProcedureQuery,
-	 * retrieving the corresponding values for all registered parameters on query
-	 * termination and returning the locally cached values for subsequent access.
+	 * 调用处理器，负责处理在共享 EntityManager 上通过非事务性 createQuery
+	 * 调用所创建的延迟 Query 对象。
+	 * <p>包括对 JPA 2.1 StoredProcedureQuery 的延迟输出参数访问：
+	 * 在查询终止时获取所有已注册参数的相应值，
+	 * 并在后续访问时返回本地缓存的值。
 	 */
 	private static class DeferredQueryInvocationHandler implements InvocationHandler {
 

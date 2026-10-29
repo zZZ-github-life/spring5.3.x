@@ -17,13 +17,12 @@
 package org.springframework.dao;
 
 /**
- * Exception thrown when an attempt to insert or update data
- * results in violation of a primary key or unique constraint.
- * Note that this is not necessarily a purely relational concept;
- * unique primary keys are required by most database types.
+ * 当插入或更新数据的尝试导致违反主键或唯一约束时抛出的异常。
+ * 请注意，这不一定纯粹是关系型数据库的概念；
+ * 大多数数据库类型都需要唯一主键。
  *
- * <p>Consider handling the general {@link DataIntegrityViolationException}
- * instead, semantically including a wider range of constraint violations.
+ * <p>建议考虑处理更通用的 {@link DataIntegrityViolationException}，
+ * 它在语义上涵盖了更广泛的约束违反情况。
  *
  * @author Thomas Risberg
  */
@@ -31,7 +30,7 @@ package org.springframework.dao;
 public class DuplicateKeyException extends DataIntegrityViolationException {
 
 	/**
-	 * Constructor for DuplicateKeyException.
+	 * DuplicateKeyException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public DuplicateKeyException(String msg) {
@@ -39,7 +38,7 @@ public class DuplicateKeyException extends DataIntegrityViolationException {
 	}
 
 	/**
-	 * Constructor for DuplicateKeyException.
+	 * DuplicateKeyException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

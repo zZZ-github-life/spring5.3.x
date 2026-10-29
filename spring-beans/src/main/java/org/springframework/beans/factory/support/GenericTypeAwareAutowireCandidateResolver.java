@@ -31,13 +31,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Basic {@link AutowireCandidateResolver} that performs a full generic type
- * match with the candidate's type if the dependency is declared as a generic type
- * (e.g. {@code Repository<Customer>}).
+ * 基本的 {@link AutowireCandidateResolver}，当依赖被声明为泛型类型（例如
+ * {@code Repository<Customer>}）时，会与候选者的类型执行完整的泛型类型匹配。
  *
- * <p>This is the base class for
- * {@link org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver},
- * providing an implementation all non-annotation-based resolution steps at this level.
+ * <p>这是
+ * {@link org.springframework.beans.factory.annotation.QualifierAnnotationAutowireCandidateResolver}
+ * 的基类，在此层级提供所有非基于注解的解析步骤的实现。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -70,8 +69,7 @@ public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCan
 	}
 
 	/**
-	 * Match the given dependency type with its generic type information against the given
-	 * candidate bean definition.
+	 * 根据给定依赖类型及其泛型类型信息，与给定的候选 Bean 定义进行匹配。
 	 */
 	protected boolean checkGenericTypeMatch(BeanDefinitionHolder bdHolder, DependencyDescriptor descriptor) {
 		ResolvableType dependencyType = descriptor.getResolvableType();
@@ -179,9 +177,8 @@ public class GenericTypeAwareAutowireCandidateResolver extends SimpleAutowireCan
 
 
 	/**
-	 * This implementation clones all instance fields through standard
-	 * {@link Cloneable} support, allowing for subsequent reconfiguration
-	 * of the cloned instance through a fresh {@link #setBeanFactory} call.
+	 * 此实现通过标准 {@link Cloneable} 支持克隆所有实例字段，从而允许通过新的 {@link #setBeanFactory}
+	 * 调用对克隆实例进行后续重新配置。
 	 * @see #clone()
 	 */
 	@Override

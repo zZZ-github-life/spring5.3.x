@@ -19,8 +19,7 @@ package org.springframework.jdbc.support.xml;
 import javax.xml.transform.Result;
 
 /**
- * Interface defining handling involved with providing {@code Result}
- * data for XML input.
+ * 定义提供 XML 输入所需 {@code Result} 数据相关处理的接口。
  *
  * @author Thomas Risberg
  * @since 2.5.5
@@ -29,9 +28,8 @@ import javax.xml.transform.Result;
 public interface XmlResultProvider {
 
 	/**
-	 * Implementations must implement this method to provide the XML content
-	 * for the {@code Result}. Implementations will vary depending on
-	 * the {@code Result} implementation used.
+	 * 实现类必须实现此方法，以为 {@code Result} 提供 XML 内容。
+	 * 具体实现因所使用的 {@code Result} 实现而异。
 	 * @param result the {@code Result} object being used to provide the XML input
 	 */
 	void provideXml(Result result);

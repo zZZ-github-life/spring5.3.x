@@ -1,5 +1,5 @@
 /**
- * Annotations and support classes for handling messages.
+ * 用于处理消息的注解和支持类。
  */
 @NonNullApi
 @NonNullFields

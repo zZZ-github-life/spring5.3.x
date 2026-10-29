@@ -19,8 +19,7 @@ package org.springframework.beans;
 import org.springframework.lang.Nullable;
 
 /**
- * Thrown on an unrecoverable problem encountered in the
- * beans packages or sub-packages, e.g. bad class or field.
+ * 当 beans 包或其子包中遇到无法恢复的问题（例如类或字段有误）时抛出。
  *
  * @author Rod Johnson
  */
@@ -28,7 +27,7 @@ import org.springframework.lang.Nullable;
 public class FatalBeanException extends BeansException {
 
 	/**
-	 * Create a new FatalBeanException with the specified message.
+	 * 使用指定消息创建一个新的 FatalBeanException。
 	 * @param msg the detail message
 	 */
 	public FatalBeanException(String msg) {
@@ -36,8 +35,7 @@ public class FatalBeanException extends BeansException {
 	}
 
 	/**
-	 * Create a new FatalBeanException with the specified message
-	 * and root cause.
+	 * 使用指定消息和根本原因创建一个新的 FatalBeanException。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

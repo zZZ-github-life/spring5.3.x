@@ -38,11 +38,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@code SimpUserRegistry} that looks up users in a "local" user registry as
- * well as a set of "remote" user registries. The local registry is provided as
- * a constructor argument while remote registries are updated via broadcasts
- * handled by {@link UserRegistryMessageHandler} which in turn notifies this
- * registry when updates are received.
+ * {@code SimpUserRegistry}，既在“本地”用户注册表中查找用户，
+ * 也在一组“远程”用户注册表中查找。本地注册表作为构造函数参数提供，
+ * 而远程注册表通过由 {@link UserRegistryMessageHandler} 处理的广播进行更新，
+ * 后者在收到更新时会通知此注册表。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -63,7 +62,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * Create an instance wrapping the local user registry.
+	 * 创建包装本地用户注册表的实例。
 	 */
 	public MultiServerUserRegistry(SimpUserRegistry localRegistry) {
 		Assert.notNull(localRegistry, "'localRegistry' is required");
@@ -187,8 +186,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * Holds a copy of a SimpUserRegistry for the purpose of broadcasting to and
-	 * receiving broadcasts from other application servers.
+	 * 持有 SimpUserRegistry 的副本，用于向其他应用服务器广播以及接收来自它们的广播。
 	 */
 	private static class UserRegistrySnapshot {
 
@@ -199,14 +197,14 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		private long expirationTime;
 
 		/**
-		 * Default constructor for JSON deserialization.
+		 * 用于 JSON 反序列化的默认构造函数。
 		 */
 		@SuppressWarnings("unused")
 		public UserRegistrySnapshot() {
 		}
 
 		/**
-		 * Constructor to create DTO from a local user registry.
+		 * 从本地用户注册表创建 DTO 的构造函数。
 		 */
 		public UserRegistrySnapshot(String id, SimpUserRegistry registry) {
 			this.id = id;
@@ -268,7 +266,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * SimpUser that can be (de)serialized and broadcast to other servers.
+	 * 可以（反）序列化并广播到其他服务器的 SimpUser。
 	 */
 	private static class TransferSimpUser implements SimpUser {
 
@@ -282,7 +280,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		private SessionLookup sessionLookup;
 
 		/**
-		 * Default constructor for JSON deserialization.
+		 * 用于 JSON 反序列化的默认构造函数。
 		 */
 		@SuppressWarnings("unused")
 		public TransferSimpUser() {
@@ -290,7 +288,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		}
 
 		/**
-		 * Constructor to create user from a local user.
+		 * 从本地用户创建用户的构造函数。
 		 */
 		public TransferSimpUser(SimpUser user) {
 			this.name = user.getName();
@@ -386,7 +384,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * SimpSession that can be (de)serialized and broadcast to other servers.
+	 * 可以（反）序列化并广播到其他服务器的 SimpSession。
 	 */
 	private static class TransferSimpSession implements SimpSession {
 
@@ -397,7 +395,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		private final Set<TransferSimpSubscription> subscriptions;
 
 		/**
-		 * Default constructor for JSON deserialization.
+		 * 用于 JSON 反序列化的默认构造函数。
 		 */
 		@SuppressWarnings("unused")
 		public TransferSimpSession() {
@@ -407,7 +405,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		}
 
 		/**
-		 * Constructor to create DTO from the local user session.
+		 * 从本地用户会话创建 DTO 的构造函数。
 		 */
 		public TransferSimpSession(SimpSession session) {
 			this.id = session.getId();
@@ -472,7 +470,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * SimpSubscription that can be (de)serialized and broadcast to other servers.
+	 * 可以（反）序列化并广播到其他服务器的 SimpSubscription。
 	 */
 	private static class TransferSimpSubscription implements SimpSubscription {
 
@@ -483,7 +481,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		private String destination;
 
 		/**
-		 * Default constructor for JSON deserialization.
+		 * 用于 JSON 反序列化的默认构造函数。
 		 */
 		@SuppressWarnings("unused")
 		public TransferSimpSubscription() {
@@ -493,7 +491,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 		}
 
 		/**
-		 * Constructor to create DTO from a local user subscription.
+		 * 从本地用户订阅创建 DTO 的构造函数。
 		 */
 		public TransferSimpSubscription(SimpSubscription subscription) {
 			this.id = subscription.getId();
@@ -556,7 +554,7 @@ public class MultiServerUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * Helper class to find user sessions across all servers.
+	 * 用于在所有服务器中查找用户会话的辅助类。
 	 */
 	private class SessionLookup {
 

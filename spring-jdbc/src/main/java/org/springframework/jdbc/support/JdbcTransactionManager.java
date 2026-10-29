@@ -26,22 +26,22 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link JdbcAccessor}-aligned subclass of the plain {@link DataSourceTransactionManager},
- * adding common JDBC exception translation for the commit and rollback step.
- * Typically used in combination with {@link org.springframework.jdbc.core.JdbcTemplate}
- * which applies the same {@link SQLExceptionTranslator} infrastructure by default.
+ * 与 {@link JdbcAccessor} 对齐的普通 {@link DataSourceTransactionManager} 子类，
+ * 为提交和回滚步骤添加了通用的 JDBC 异常转换。
+ * 通常与 {@link org.springframework.jdbc.core.JdbcTemplate} 结合使用，
+ * 后者默认应用相同的 {@link SQLExceptionTranslator} 基础设施。
  *
- * <p>Exception translation is specifically relevant for commit steps in serializable
- * transactions (e.g. on Postgres) where concurrency failures may occur late on commit.
- * This allows for throwing {@link org.springframework.dao.ConcurrencyFailureException} to
- * callers instead of {@link org.springframework.transaction.TransactionSystemException}.
+ * <p>异常转换对于可串行化事务（例如在 Postgres 上）中的提交步骤尤为重要，
+ * 因为并发失败可能在提交后期才发生。这样便可以向调用方抛出
+ * {@link org.springframework.dao.ConcurrencyFailureException}，而不是
+ * {@link org.springframework.transaction.TransactionSystemException}。
  *
- * <p>Analogous to {@code HibernateTransactionManager} and {@code JpaTransactionManager},
- * this transaction manager may throw {@link DataAccessException} from {@link #commit}
- * and possibly also from {@link #rollback}. Calling code should be prepared for handling
- * such exceptions next to {@link org.springframework.transaction.TransactionException},
- * which is generally sensible since {@code TransactionSynchronization} implementations
- * may also throw such exceptions in their {@code flush} and {@code beforeCommit} phases.
+ * <p>与 {@code HibernateTransactionManager} 和 {@code JpaTransactionManager} 类似，
+ * 此事务管理器可能会从 {@link #commit} 抛出 {@link DataAccessException}，
+ * 也可能从 {@link #rollback} 抛出。调用方代码应准备好处理
+ * {@link org.springframework.transaction.TransactionException} 以及此类异常，
+ * 这通常是合理的，因为 {@code TransactionSynchronization} 实现也可能在其
+ * {@code flush} 和 {@code beforeCommit} 阶段抛出此类异常。
  *
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -54,9 +54,9 @@ import org.springframework.lang.Nullable;
 public class JdbcTransactionManager extends DataSourceTransactionManager {
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring 忽略 XML，
+	 * 即不初始化与 XML 相关的基础设施。
+	 * <p>默认为 "false"。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 
@@ -68,8 +68,8 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 
 
 	/**
-	 * Create a new JdbcTransactionManager instance.
-	 * A DataSource has to be set to be able to use it.
+	 * 创建新的 JdbcTransactionManager 实例。
+	 * 必须设置 DataSource 才能使用。
 	 * @see #setDataSource
 	 */
 	public JdbcTransactionManager() {
@@ -77,7 +77,7 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	}
 
 	/**
-	 * Create a new JdbcTransactionManager instance.
+	 * 创建新的 JdbcTransactionManager 实例。
 	 * @param dataSource the JDBC DataSource to manage transactions for
 	 */
 	public JdbcTransactionManager(DataSource dataSource) {
@@ -88,9 +88,9 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 
 
 	/**
-	 * Specify the database product name for the DataSource that this transaction manager
-	 * uses. This allows to initialize an SQLErrorCodeSQLExceptionTranslator without
-	 * obtaining a Connection from the DataSource to get the meta-data.
+	 * 为此事务管理器所使用的 DataSource 指定数据库产品名称。
+	 * 这样可以在不从 DataSource 获取 Connection 以读取元数据的情况下
+	 * 初始化 SQLErrorCodeSQLExceptionTranslator。
 	 * @param dbName the database product name that identifies the error codes entry
 	 * @see JdbcAccessor#setDatabaseProductName
 	 * @see SQLErrorCodeSQLExceptionTranslator#setDatabaseProductName
@@ -103,10 +103,10 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	}
 
 	/**
-	 * Set the exception translator for this instance.
-	 * <p>If no custom translator is provided, a default
-	 * {@link SQLErrorCodeSQLExceptionTranslator} is used
-	 * which examines the SQLException's vendor-specific error code.
+	 * 设置此实例的异常转换器。
+	 * <p>如果未提供自定义转换器，则使用默认的
+	 * {@link SQLErrorCodeSQLExceptionTranslator}，它会检查 SQLException
+	 * 中供应商特定的错误码。
 	 * @see JdbcAccessor#setExceptionTranslator
 	 * @see org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator
 	 */
@@ -115,9 +115,9 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	}
 
 	/**
-	 * Return the exception translator for this instance.
-	 * <p>Creates a default {@link SQLErrorCodeSQLExceptionTranslator}
-	 * for the specified DataSource if none set.
+	 * 返回此实例的异常转换器。
+	 * <p>如果未设置，则为指定的 DataSource 创建默认的
+	 * {@link SQLErrorCodeSQLExceptionTranslator}。
 	 * @see #getDataSource()
 	 */
 	public SQLExceptionTranslator getExceptionTranslator() {
@@ -141,10 +141,9 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	}
 
 	/**
-	 * Set whether to lazily initialize the SQLExceptionTranslator for this transaction manager,
-	 * on first encounter of an SQLException. Default is "true"; can be switched to
-	 * "false" for initialization on startup.
-	 * <p>Early initialization just applies if {@code afterPropertiesSet()} is called.
+	 * 设置是否在首次遇到 SQLException 时延迟初始化此事务管理器的
+	 * SQLExceptionTranslator。默认为 "true"；可以切换为 "false" 以在启动时初始化。
+	 * <p>只有在调用 {@code afterPropertiesSet()} 时，提前初始化才会生效。
 	 * @see #getExceptionTranslator()
 	 * @see #afterPropertiesSet()
 	 */
@@ -153,7 +152,7 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	}
 
 	/**
-	 * Return whether to lazily initialize the SQLExceptionTranslator for this transaction manager.
+	 * 返回是否延迟初始化此事务管理器的 SQLExceptionTranslator。
 	 * @see #getExceptionTranslator()
 	 */
 	public boolean isLazyInit() {
@@ -161,8 +160,8 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 	}
 
 	/**
-	 * Eagerly initialize the exception translator, if demanded,
-	 * creating a default one for the specified DataSource if none set.
+	 * 如果要求，则立即初始化异常转换器；如果未设置，则为指定的
+	 * DataSource 创建默认的异常转换器。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -174,8 +173,8 @@ public class JdbcTransactionManager extends DataSourceTransactionManager {
 
 
 	/**
-	 * This implementation attempts to use the {@link SQLExceptionTranslator},
-	 * falling back to a {@link org.springframework.transaction.TransactionSystemException}.
+	 * 此实现尝试使用 {@link SQLExceptionTranslator}，
+	 * 如果无法转换，则回退到 {@link org.springframework.transaction.TransactionSystemException}。
 	 * @see #getExceptionTranslator()
 	 * @see DataSourceTransactionManager#translateException
 	 */

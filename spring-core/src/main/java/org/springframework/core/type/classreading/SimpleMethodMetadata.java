@@ -22,7 +22,7 @@ import org.springframework.core.type.MethodMetadata;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link MethodMetadata} created from a {@link SimpleMethodMetadataReadingVisitor}.
+ * 由 {@link SimpleMethodMetadataReadingVisitor} 创建的 {@link MethodMetadata}。
  *
  * @author Phillip Webb
  * @author Sam Brannen

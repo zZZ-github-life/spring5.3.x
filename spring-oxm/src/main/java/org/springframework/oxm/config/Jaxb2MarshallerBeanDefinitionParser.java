@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Parser for the {@code <oxm:jaxb2-marshaller/>} element.
+ * {@code <oxm:jaxb2-marshaller/>} 元素的解析器。
  *
  * @author Arjen Poutsma
  * @since 3.0

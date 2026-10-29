@@ -1,5 +1,5 @@
 /**
- * Basic abstractions for working with message handler methods.
+ * 用于处理消息处理方法的基本抽象。
  */
 @NonNullApi
 @NonNullFields

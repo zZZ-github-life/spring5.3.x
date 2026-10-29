@@ -32,17 +32,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionManager;
 
 /**
- * AOP Alliance MethodInterceptor for declarative transaction
- * management using the common Spring transaction infrastructure
- * ({@link org.springframework.transaction.PlatformTransactionManager}/
- * {@link org.springframework.transaction.ReactiveTransactionManager}).
+ * 使用通用Spring事务基础设施({@link org.springframework.transaction.PlatformTransactionManager}/
+ * {@link org.springframework.transaction.ReactiveTransactionManager})进行声明式事务管理的
+ * AOP Alliance MethodInterceptor。
  *
- * <p>Derives from the {@link TransactionAspectSupport} class which
- * contains the integration with Spring's underlying transaction API.
- * TransactionInterceptor simply calls the relevant superclass methods
- * such as {@link #invokeWithinTransaction} in the correct order.
+ * <p>继承自{@link TransactionAspectSupport}类, 该类包含与Spring底层事务API的集成。
+ * TransactionInterceptor简单地按正确顺序调用相关的父类方法, 如{@link #invokeWithinTransaction}。
  *
- * <p>TransactionInterceptors are thread-safe.
+ * <p>TransactionInterceptor是线程安全的。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -55,8 +52,8 @@ import org.springframework.transaction.TransactionManager;
 public class TransactionInterceptor extends TransactionAspectSupport implements MethodInterceptor, Serializable {
 
 	/**
-	 * Create a new TransactionInterceptor.
-	 * <p>Transaction manager and transaction attributes still need to be set.
+	 * 创建一个新的TransactionInterceptor。
+	 * <p>仍需设置事务管理器和事务属性。
 	 * @see #setTransactionManager
 	 * @see #setTransactionAttributes(java.util.Properties)
 	 * @see #setTransactionAttributeSource(TransactionAttributeSource)
@@ -65,7 +62,7 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	}
 
 	/**
-	 * Create a new TransactionInterceptor.
+	 * 创建一个新的TransactionInterceptor。
 	 * @param ptm the default transaction manager to perform the actual transaction management
 	 * @param tas the attribute source to be used to find transaction attributes
 	 * @since 5.2.5
@@ -78,7 +75,7 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	}
 
 	/**
-	 * Create a new TransactionInterceptor.
+	 * 创建一个新的TransactionInterceptor。
 	 * @param ptm the default transaction manager to perform the actual transaction management
 	 * @param tas the attribute source to be used to find transaction attributes
 	 * @see #setTransactionManager
@@ -93,7 +90,7 @@ public class TransactionInterceptor extends TransactionAspectSupport implements 
 	}
 
 	/**
-	 * Create a new TransactionInterceptor.
+	 * 创建一个新的TransactionInterceptor。
 	 * @param ptm the default transaction manager to perform the actual transaction management
 	 * @param attributes the transaction attributes in properties format
 	 * @see #setTransactionManager

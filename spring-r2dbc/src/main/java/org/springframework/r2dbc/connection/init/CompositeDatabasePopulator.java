@@ -28,8 +28,8 @@ import reactor.core.publisher.Mono;
 import org.springframework.util.Assert;
 
 /**
- * Composite {@link DatabasePopulator} that delegates to a list of given
- * {@code DatabasePopulator} implementations, executing all scripts.
+ * 组合 {@link DatabasePopulator}，委托给一组给定的 {@code DatabasePopulator}
+ * 实现，依次执行所有脚本。
  *
  * @author Dave Syer
  * @author Juergen Hoeller
@@ -44,7 +44,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 
 	/**
-	 * Create an empty {@code CompositeDatabasePopulator}.
+	 * 创建一个空的 {@code CompositeDatabasePopulator}。
 	 * @see #setPopulators
 	 * @see #addPopulators
 	 */
@@ -52,7 +52,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 	}
 
 	/**
-	 * Create a {@code CompositeDatabasePopulator}. with the given populators.
+	 * 使用给定的 populator 创建一个 {@code CompositeDatabasePopulator}。
 	 * @param populators one or more populators to delegate to.
 	 */
 	public CompositeDatabasePopulator(Collection<DatabasePopulator> populators) {
@@ -61,7 +61,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 	}
 
 	/**
-	 * Create a {@code CompositeDatabasePopulator} with the given populators.
+	 * 使用给定的 populator 创建一个 {@code CompositeDatabasePopulator}。
 	 * @param populators one or more populators to delegate to.
 	 */
 	public CompositeDatabasePopulator(DatabasePopulator... populators) {
@@ -71,7 +71,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 
 	/**
-	 * Specify one or more populators to delegate to.
+	 * 指定要委托的一个或多个 populator。
 	 */
 	public void setPopulators(DatabasePopulator... populators) {
 		Assert.notNull(populators, "DatabasePopulators must not be null");
@@ -80,7 +80,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 	}
 
 	/**
-	 * Add one or more populators to the list of delegates.
+	 * 向委托列表中增加一个或多个 populator。
 	 */
 	public void addPopulators(DatabasePopulator... populators) {
 		Assert.notNull(populators, "DatabasePopulators must not be null");

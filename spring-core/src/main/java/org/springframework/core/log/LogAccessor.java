@@ -22,9 +22,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * A convenient accessor for Commons Logging, providing not only
- * {@code CharSequence} based log methods but also {@code Supplier}
- * based variants for use with Java 8 lambda expressions.
+ * Commons Logging 的便捷访问器，不仅提供
+ * 基于 {@code CharSequence} 的日志方法，还提供
+ * 基于 {@code Supplier} 的变体，以便与 Java 8 lambda 表达式配合使用。
  *
  * @author Juergen Hoeller
  * @since 5.2
@@ -35,7 +35,7 @@ public class LogAccessor {
 
 
 	/**
-	 * Create a new accessor for the given Commons Log.
+	 * 为给定的 Commons Log 创建一个新的访问器。
 	 * @see LogFactory#getLog(Class)
 	 * @see LogFactory#getLog(String)
 	 */
@@ -44,7 +44,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Create a new accessor for the specified Commons Log category.
+	 * 为指定的 Commons Log 类别创建一个新的访问器。
 	 * @see LogFactory#getLog(Class)
 	 */
 	public LogAccessor(Class<?> logCategory) {
@@ -52,7 +52,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Create a new accessor for the specified Commons Log category.
+	 * 为指定的 Commons Log 类别创建一个新的访问器。
 	 * @see LogFactory#getLog(String)
 	 */
 	public LogAccessor(String logCategory) {
@@ -61,7 +61,7 @@ public class LogAccessor {
 
 
 	/**
-	 * Return the target Commons Log.
+	 * 返回目标 Commons Log。
 	 */
 	public final Log getLog() {
 		return this.log;
@@ -71,42 +71,42 @@ public class LogAccessor {
 	// Log level checks
 
 	/**
-	 * Is fatal logging currently enabled?
+	 * 当前是否启用了 fatal 日志？
 	 */
 	public boolean isFatalEnabled() {
 		return this.log.isFatalEnabled();
 	}
 
 	/**
-	 * Is error logging currently enabled?
+	 * 当前是否启用了 error 日志？
 	 */
 	public boolean isErrorEnabled() {
 		return this.log.isErrorEnabled();
 	}
 
 	/**
-	 * Is warn logging currently enabled?
+	 * 当前是否启用了 warn 日志？
 	 */
 	public boolean isWarnEnabled() {
 		return this.log.isWarnEnabled();
 	}
 
 	/**
-	 * Is info logging currently enabled?
+	 * 当前是否启用了 info 日志？
 	 */
 	public boolean isInfoEnabled() {
 		return this.log.isInfoEnabled();
 	}
 
 	/**
-	 * Is debug logging currently enabled?
+	 * 当前是否启用了 debug 日志？
 	 */
 	public boolean isDebugEnabled() {
 		return this.log.isDebugEnabled();
 	}
 
 	/**
-	 * Is trace logging currently enabled?
+	 * 当前是否启用了 trace 日志？
 	 */
 	public boolean isTraceEnabled() {
 		return this.log.isTraceEnabled();
@@ -116,7 +116,7 @@ public class LogAccessor {
 	// Plain log methods
 
 	/**
-	 * Log a message with fatal log level.
+	 * 以 fatal 日志级别记录一条消息。
 	 * @param message the message to log
 	 */
 	public void fatal(CharSequence message) {
@@ -124,7 +124,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with fatal log level.
+	 * 以 fatal 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param message the message to log
 	 */
@@ -133,7 +133,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with error log level.
+	 * 以 error 日志级别记录一条消息。
 	 * @param message the message to log
 	 */
 	public void error(CharSequence message) {
@@ -141,7 +141,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with error log level.
+	 * 以 error 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param message the message to log
 	 */
@@ -150,7 +150,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with warn log level.
+	 * 以 warn 日志级别记录一条消息。
 	 * @param message the message to log
 	 */
 	public void warn(CharSequence message) {
@@ -158,7 +158,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with warn log level.
+	 * 以 warn 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param message the message to log
 	 */
@@ -167,7 +167,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with info log level.
+	 * 以 info 日志级别记录一条消息。
 	 * @param message the message to log
 	 */
 	public void info(CharSequence message) {
@@ -175,7 +175,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with info log level.
+	 * 以 info 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param message the message to log
 	 */
@@ -184,7 +184,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with debug log level.
+	 * 以 debug 日志级别记录一条消息。
 	 * @param message the message to log
 	 */
 	public void debug(CharSequence message) {
@@ -192,7 +192,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with debug log level.
+	 * 以 debug 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param message the message to log
 	 */
@@ -201,7 +201,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with trace log level.
+	 * 以 trace 日志级别记录一条消息。
 	 * @param message the message to log
 	 */
 	public void trace(CharSequence message) {
@@ -209,7 +209,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with trace log level.
+	 * 以 trace 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param message the message to log
 	 */
@@ -221,7 +221,7 @@ public class LogAccessor {
 	// Supplier-based log methods
 
 	/**
-	 * Log a message with fatal log level.
+	 * 以 fatal 日志级别记录一条消息。
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
 	public void fatal(Supplier<? extends CharSequence> messageSupplier) {
@@ -231,7 +231,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with fatal log level.
+	 * 以 fatal 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
@@ -242,7 +242,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with error log level.
+	 * 以 error 日志级别记录一条消息。
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
 	public void error(Supplier<? extends CharSequence> messageSupplier) {
@@ -252,7 +252,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with error log level.
+	 * 以 error 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
@@ -263,7 +263,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with warn log level.
+	 * 以 warn 日志级别记录一条消息。
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
 	public void warn(Supplier<? extends CharSequence> messageSupplier) {
@@ -273,7 +273,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with warn log level.
+	 * 以 warn 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
@@ -284,7 +284,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with info log level.
+	 * 以 info 日志级别记录一条消息。
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
 	public void info(Supplier<? extends CharSequence> messageSupplier) {
@@ -294,7 +294,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with info log level.
+	 * 以 info 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
@@ -305,7 +305,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with debug log level.
+	 * 以 debug 日志级别记录一条消息。
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
 	public void debug(Supplier<? extends CharSequence> messageSupplier) {
@@ -315,7 +315,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with debug log level.
+	 * 以 debug 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
@@ -326,7 +326,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log a message with trace log level.
+	 * 以 trace 日志级别记录一条消息。
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */
 	public void trace(Supplier<? extends CharSequence> messageSupplier) {
@@ -336,7 +336,7 @@ public class LogAccessor {
 	}
 
 	/**
-	 * Log an error with trace log level.
+	 * 以 trace 日志级别记录一个错误。
 	 * @param cause the exception to log
 	 * @param messageSupplier a lazy supplier for the message to log
 	 */

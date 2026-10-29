@@ -26,15 +26,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * A simple {@link TypeFilter} which matches classes with a given annotation,
- * checking inherited annotations as well.
+ * 一个简单的 {@link TypeFilter}，它匹配带有给定注解的类，同时还会检查继承的注解。
  *
- * <p>By default, the matching logic mirrors that of
- * {@link AnnotationUtils#getAnnotation(java.lang.reflect.AnnotatedElement, Class)},
- * supporting annotations that are <em>present</em> or <em>meta-present</em> for a
- * single level of meta-annotations. The search for meta-annotations may be disabled.
- * Similarly, the search for annotations on interfaces may optionally be enabled.
- * Consult the various constructors in this class for details.
+ * <p>默认情况下，匹配逻辑与
+ * {@link AnnotationUtils#getAnnotation(java.lang.reflect.AnnotatedElement, Class)} 一致，支持单层
+ * 元注解上<em>存在</em>或<em>元存在</em>的注解。可以禁用对元注解的搜索。同样，也可以选择启用对接口
+ * 上注解的搜索。详情请参阅本类中的各个构造函数。
  *
  * @author Mark Fisher
  * @author Ramnivas Laddad
@@ -50,11 +47,10 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 
 
 	/**
-	 * Create a new {@code AnnotationTypeFilter} for the given annotation type.
-	 * <p>The filter will also match meta-annotations. To disable the
-	 * meta-annotation matching, use the constructor that accepts a
-	 * '{@code considerMetaAnnotations}' argument.
-	 * <p>The filter will not match interfaces.
+	 * 为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。
+	 * <p>该过滤器还会匹配元注解。要禁用元注解匹配，请使用接受 '{@code considerMetaAnnotations}' 参数的
+	 * 构造函数。
+	 * <p>该过滤器不会匹配接口。
 	 * @param annotationType the annotation type to match
 	 */
 	public AnnotationTypeFilter(Class<? extends Annotation> annotationType) {
@@ -62,8 +58,8 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	}
 
 	/**
-	 * Create a new {@code AnnotationTypeFilter} for the given annotation type.
-	 * <p>The filter will not match interfaces.
+	 * 为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。
+	 * <p>该过滤器不会匹配接口。
 	 * @param annotationType the annotation type to match
 	 * @param considerMetaAnnotations whether to also match on meta-annotations
 	 */
@@ -72,7 +68,7 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	}
 
 	/**
-	 * Create a new {@code AnnotationTypeFilter} for the given annotation type.
+	 * 为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。
 	 * @param annotationType the annotation type to match
 	 * @param considerMetaAnnotations whether to also match on meta-annotations
 	 * @param considerInterfaces whether to also match interfaces
@@ -86,8 +82,7 @@ public class AnnotationTypeFilter extends AbstractTypeHierarchyTraversingFilter 
 	}
 
 	/**
-	 * Return the {@link Annotation} that this instance is using to filter
-	 * candidates.
+	 * 返回此实例用于筛选候选对象的 {@link Annotation}。
 	 * @since 5.0
 	 */
 	public final Class<? extends Annotation> getAnnotationType() {

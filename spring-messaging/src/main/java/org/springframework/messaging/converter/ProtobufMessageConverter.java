@@ -39,17 +39,17 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON;
 import static org.springframework.util.MimeTypeUtils.TEXT_PLAIN;
 
 /**
- * An {@code MessageConverter} that reads and writes
- * {@link com.google.protobuf.Message com.google.protobuf.Messages} using
- * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
+ * 一个 {@code MessageConverter}，使用
+ * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>
+ * 读写 {@link com.google.protobuf.Message com.google.protobuf.Messages}。
  *
- * <p>To generate {@code Message} Java classes, you need to install the {@code protoc} binary.
+ * <p>要生成 {@code Message} Java 类，需要安装 {@code protoc} 二进制文件。
  *
- * <p>This converter supports by default {@code "application/x-protobuf"} with the official
- * {@code "com.google.protobuf:protobuf-java"} library.
+ * <p>此转换器默认支持 {@code "application/x-protobuf"}，并使用官方
+ * {@code "com.google.protobuf:protobuf-java"} 库。
  *
- * <p>{@code "application/json"} can be supported with the official
- * {@code "com.google.protobuf:protobuf-java-util"} 3.x, with 3.3 or higher recommended.
+ * <p>可以配合官方 {@code "com.google.protobuf:protobuf-java-util"} 3.x 支持
+ * {@code "application/json"}，建议使用 3.3 或更高版本。
  *
  * @author Parviz Rozikov
  * @author Rossen Stoyanchev
@@ -58,12 +58,12 @@ import static org.springframework.util.MimeTypeUtils.TEXT_PLAIN;
 public class ProtobufMessageConverter extends AbstractMessageConverter {
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
 	/**
-	 * The mime-type for protobuf {@code application/x-protobuf}.
+	 * protobuf 的 MIME 类型 {@code application/x-protobuf}。
 	 */
 	public static final MimeType PROTOBUF = new MimeType("application", "x-protobuf", DEFAULT_CHARSET);
 
@@ -77,14 +77,14 @@ public class ProtobufMessageConverter extends AbstractMessageConverter {
 
 
 	/**
-	 * Constructor with a default instance of {@link ExtensionRegistry}.
+	 * 使用默认的 {@link ExtensionRegistry} 实例的构造函数。
 	 */
 	public ProtobufMessageConverter() {
 		this(null, null);
 	}
 
 	/**
-	 * Constructor with a given {@code ExtensionRegistry}.
+	 * 使用给定 {@code ExtensionRegistry} 的构造函数。
 	 */
 	public ProtobufMessageConverter(ExtensionRegistry extensionRegistry) {
 		this(null, extensionRegistry);
@@ -194,8 +194,8 @@ public class ProtobufMessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentReferenceHashMap for caching method lookups.
+	 * 为给定类创建新的 {@code Message.Builder} 实例。
+	 * <p>此方法使用 ConcurrentReferenceHashMap 缓存方法查找。
 	 */
 	private Message.Builder getMessageBuilder(Class<?> clazz) {
 		try {
@@ -214,7 +214,7 @@ public class ProtobufMessageConverter extends AbstractMessageConverter {
 
 
 	/**
-	 * Protobuf format support.
+	 * Protobuf 格式支持。
 	 */
 	interface ProtobufFormatSupport {
 
@@ -232,8 +232,8 @@ public class ProtobufMessageConverter extends AbstractMessageConverter {
 
 
 	/**
-	 * {@link ProtobufFormatSupport} implementation used when
-	 * {@code com.google.protobuf.util.JsonFormat} is available.
+	 * 当 {@code com.google.protobuf.util.JsonFormat} 可用时使用的
+	 * {@link ProtobufFormatSupport} 实现。
 	 */
 	static class ProtobufJavaUtilSupport implements ProtobufFormatSupport {
 

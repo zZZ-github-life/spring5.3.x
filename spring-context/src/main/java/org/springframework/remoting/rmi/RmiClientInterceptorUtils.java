@@ -37,10 +37,10 @@ import org.springframework.remoting.RemoteProxyFailureException;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Factored-out methods for performing invocations within an RMI client.
- * Can handle both RMI and non-RMI service interfaces working on an RMI stub.
+ * 从 RMI 客户端中抽出的、用于执行调用的方法。既可以处理 RMI 服务接口，也可以处理在 RMI 存根上工作
+ * 的非 RMI 服务接口。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不打算供应用程序使用。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -53,8 +53,7 @@ public abstract class RmiClientInterceptorUtils {
 
 
 	/**
-	 * Perform a raw method invocation on the given RMI stub,
-	 * letting reflection exceptions through as-is.
+	 * 在给定的 RMI 存根上执行原始方法调用，让反射异常原样抛出。
 	 * @param invocation the AOP MethodInvocation
 	 * @param stub the RMI stub
 	 * @return the invocation result, if any
@@ -88,11 +87,9 @@ public abstract class RmiClientInterceptorUtils {
 	}
 
 	/**
-	 * Wrap the given arbitrary exception that happened during remote access
-	 * in either a RemoteException or a Spring RemoteAccessException (if the
-	 * method signature does not support RemoteException).
-	 * <p>Only call this for remote access exceptions, not for exceptions
-	 * thrown by the target service itself!
+	 * 将远程访问期间发生的给定任意异常包装为 RemoteException 或 Spring 的 RemoteAccessException（如果
+	 * 方法签名不支持 RemoteException）。
+	 * <p>仅对远程访问异常调用此方法，不要用于目标服务自身抛出的异常！
 	 * @param method the invoked method
 	 * @param ex the exception that happened, to be used as cause for the
 	 * RemoteAccessException or RemoteException
@@ -113,9 +110,8 @@ public abstract class RmiClientInterceptorUtils {
 	}
 
 	/**
-	 * Convert the given RemoteException that happened during remote access
-	 * to Spring's RemoteAccessException if the method signature does not
-	 * support RemoteException. Else, return the original RemoteException.
+	 * 如果方法签名不支持 RemoteException，则将远程访问期间发生的给定 RemoteException 转换为 Spring 的
+	 * RemoteAccessException。否则返回原始的 RemoteException。
 	 * @param method the invoked method
 	 * @param ex the RemoteException that happened
 	 * @param serviceName the name of the service (for debugging purposes)
@@ -126,9 +122,8 @@ public abstract class RmiClientInterceptorUtils {
 	}
 
 	/**
-	 * Convert the given RemoteException that happened during remote access
-	 * to Spring's RemoteAccessException if the method signature does not
-	 * support RemoteException. Else, return the original RemoteException.
+	 * 如果方法签名不支持 RemoteException，则将远程访问期间发生的给定 RemoteException 转换为 Spring 的
+	 * RemoteAccessException。否则返回原始的 RemoteException。
 	 * @param method the invoked method
 	 * @param ex the RemoteException that happened
 	 * @param isConnectFailure whether the given exception should be considered
@@ -156,9 +151,9 @@ public abstract class RmiClientInterceptorUtils {
 	}
 
 	/**
-	 * Determine whether the given RMI exception indicates a connect failure.
-	 * <p>Treats RMI's ConnectException, ConnectIOException, UnknownHostException,
-	 * NoSuchObjectException and StubNotFoundException as connect failure.
+	 * 判断给定的 RMI 异常是否表示连接失败。
+	 * <p>将 RMI 的 ConnectException、ConnectIOException、UnknownHostException、NoSuchObjectException
+	 * 和 StubNotFoundException 视为连接失败。
 	 * @param ex the RMI exception to check
 	 * @return whether the exception should be treated as connect failure
 	 * @see java.rmi.ConnectException

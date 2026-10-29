@@ -49,27 +49,22 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link org.springframework.beans.factory.config.BeanPostProcessor} implementation
- * that invokes annotated init and destroy methods. Allows for an annotation
- * alternative to Spring's {@link org.springframework.beans.factory.InitializingBean}
- * and {@link org.springframework.beans.factory.DisposableBean} callback interfaces.
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 实现，用于调用带注解的初始化
+ * 和销毁方法。它提供了一种注解方式，作为 Spring 的
+ * {@link org.springframework.beans.factory.InitializingBean} 和
+ * {@link org.springframework.beans.factory.DisposableBean} 回调接口的替代方案。
  *
- * <p>The actual annotation types that this post-processor checks for can be
- * configured through the {@link #setInitAnnotationType "initAnnotationType"}
- * and {@link #setDestroyAnnotationType "destroyAnnotationType"} properties.
- * Any custom annotation can be used, since there are no required annotation
- * attributes.
+ * <p>该后处理器实际检查的注解类型可通过 {@link #setInitAnnotationType "initAnnotationType"} 和
+ * {@link #setDestroyAnnotationType "destroyAnnotationType"} 属性进行配置。可以使用任何自定义注解，
+ * 因为没有必需的注解属性。
  *
- * <p>Init and destroy annotations may be applied to methods of any visibility:
- * public, package-protected, protected, or private. Multiple such methods
- * may be annotated, but it is recommended to only annotate one single
- * init method and destroy method, respectively.
+ * <p>初始化和销毁注解可应用于任意可见性的方法：public、package-protected、protected 或 private。可
+ * 以标注多个此类方法，但建议分别只标注一个初始化方法和一个销毁方法。
  *
- * <p>Spring's {@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor}
- * supports the JSR-250 {@link javax.annotation.PostConstruct} and {@link javax.annotation.PreDestroy}
- * annotations out of the box, as init annotation and destroy annotation, respectively.
- * Furthermore, it also supports the {@link javax.annotation.Resource} annotation
- * for annotation-driven injection of named beans.
+ * <p>Spring 的 {@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor} 开
+ * 箱即用地支持 JSR-250 的 {@link javax.annotation.PostConstruct} 和
+ * {@link javax.annotation.PreDestroy} 注解，分别作为初始化注解和销毁注解。此外，它还支持
+ * {@link javax.annotation.Resource} 注解，用于以注解驱动的方式注入具名 Bean。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -113,22 +108,18 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 
 	/**
-	 * Specify the init annotation to check for, indicating initialization
-	 * methods to call after configuration of a bean.
-	 * <p>Any custom annotation can be used, since there are no required
-	 * annotation attributes. There is no default, although a typical choice
-	 * is the JSR-250 {@link javax.annotation.PostConstruct} annotation.
+	 * 指定要检查的初始化注解，用于指示在 Bean 配置完成后要调用的初始化方法。
+	 * <p>可以使用任何自定义注解，因为没有必需的注解属性。没有默认值，不过典型的选择是 JSR-250 的
+	 * {@link javax.annotation.PostConstruct} 注解。
 	 */
 	public void setInitAnnotationType(Class<? extends Annotation> initAnnotationType) {
 		this.initAnnotationType = initAnnotationType;
 	}
 
 	/**
-	 * Specify the destroy annotation to check for, indicating destruction
-	 * methods to call when the context is shutting down.
-	 * <p>Any custom annotation can be used, since there are no required
-	 * annotation attributes. There is no default, although a typical choice
-	 * is the JSR-250 {@link javax.annotation.PreDestroy} annotation.
+	 * 指定要检查的销毁注解，用于指示在上下文关闭时要调用的销毁方法。
+	 * <p>可以使用任何自定义注解，因为没有必需的注解属性。没有默认值，不过典型的选择是 JSR-250 的
+	 * {@link javax.annotation.PreDestroy} 注解。
 	 */
 	public void setDestroyAnnotationType(Class<? extends Annotation> destroyAnnotationType) {
 		this.destroyAnnotationType = destroyAnnotationType;
@@ -270,7 +261,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 
 	/**
-	 * Class representing information about annotated init and destroy methods.
+	 * 表示带注解的初始化和销毁方法相关信息的类。
 	 */
 	private class LifecycleMetadata {
 
@@ -359,7 +350,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 
 	/**
-	 * Class representing injection information about an annotated method.
+	 * 表示带注解方法的注入信息的类。
 	 */
 	private static class LifecycleElement {
 

@@ -21,9 +21,9 @@ import org.springframework.http.server.PathContainer.Element;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * A wildcard path element. In the pattern '/foo/&ast;/goo' the * is
- * represented by a WildcardPathElement. Within a path it matches at least
- * one character but at the end of a path it can match zero characters.
+ * 通配符路径元素。在模式 '/foo/&ast;/goo' 中，* 由
+ * WildcardPathElement 表示。在路径中间，它至少匹配一个字符；
+ * 但在路径末尾，它可以匹配零个字符。
  *
  * @author Andy Clement
  * @since 5.0
@@ -36,9 +36,8 @@ class WildcardPathElement extends PathElement {
 
 
 	/**
-	 * Matching on a WildcardPathElement is quite straight forward. Scan the
-	 * candidate from the candidateIndex onwards for the next separator or the end of the
-	 * candidate.
+	 * 对 WildcardPathElement 的匹配非常直接。从 candidateIndex 开始
+	 * 扫描候选路径，查找下一个分隔符或候选路径的末尾。
 	 */
 	@Override
 	public boolean matches(int pathIndex, MatchingContext matchingContext) {

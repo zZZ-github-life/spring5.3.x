@@ -23,12 +23,12 @@ import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpStatus;
 
 /**
- * Represents a client-side HTTP response.
+ * 表示客户端 HTTP 响应。
  *
- * <p>Obtained via an invocation of {@link ClientHttpRequest#execute()}.
+ * <p>通过调用 {@link ClientHttpRequest#execute()} 获得。
  *
- * <p>A {@code ClientHttpResponse} must be {@linkplain #close() closed},
- * typically in a {@code finally} block.
+ * <p>{@code ClientHttpResponse} 必须被 {@linkplain #close() 关闭}，
+ * 通常在 {@code finally} 块中进行。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -36,9 +36,9 @@ import org.springframework.http.HttpStatus;
 public interface ClientHttpResponse extends HttpInputMessage, Closeable {
 
 	/**
-	 * Get the HTTP status code as an {@link HttpStatus} enum value.
-	 * <p>For status codes not supported by {@code HttpStatus}, use
-	 * {@link #getRawStatusCode()} instead.
+	 * 以 {@link HttpStatus} 枚举值形式获取 HTTP 状态码。
+	 * <p>对于 {@code HttpStatus} 不支持的状态码，请改用
+	 * {@link #getRawStatusCode()}。
 	 * @return the HTTP status as an HttpStatus enum value (never {@code null})
 	 * @throws IOException in case of I/O errors
 	 * @throws IllegalArgumentException in case of an unknown HTTP status code
@@ -48,8 +48,8 @@ public interface ClientHttpResponse extends HttpInputMessage, Closeable {
 	HttpStatus getStatusCode() throws IOException;
 
 	/**
-	 * Get the HTTP status code (potentially non-standard and not
-	 * resolvable through the {@link HttpStatus} enum) as an integer.
+	 * 以整数形式获取 HTTP 状态码（可能非标准且
+	 * 无法通过 {@link HttpStatus} 枚举解析）。
 	 * @return the HTTP status as an integer value
 	 * @throws IOException in case of I/O errors
 	 * @since 3.1.1
@@ -59,14 +59,14 @@ public interface ClientHttpResponse extends HttpInputMessage, Closeable {
 	int getRawStatusCode() throws IOException;
 
 	/**
-	 * Get the HTTP status text of the response.
+	 * 获取响应的 HTTP 状态文本。
 	 * @return the HTTP status text
 	 * @throws IOException in case of I/O errors
 	 */
 	String getStatusText() throws IOException;
 
 	/**
-	 * Close this response, freeing any resources created.
+	 * 关闭此响应，释放所创建的所有资源。
 	 */
 	@Override
 	void close();

@@ -36,41 +36,35 @@ import org.springframework.transaction.reactive.TransactionSynchronizationManage
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.transaction.ReactiveTransactionManager}
- * implementation for a single R2DBC {@link ConnectionFactory}. This class is
- * capable of working in any environment with any R2DBC driver, as long as the
- * setup uses a {@code ConnectionFactory} as its {@link Connection} factory
- * mechanism. Binds a R2DBC {@code Connection} from the specified
- * {@code ConnectionFactory} to the current subscriber context, potentially
- * allowing for one context-bound {@code Connection} per {@code ConnectionFactory}.
+ * 适用于单个 R2DBC {@link ConnectionFactory} 的
+ * {@link org.springframework.transaction.ReactiveTransactionManager} 实现。
+ * 只要配置使用 {@code ConnectionFactory} 作为 {@link Connection} 的工厂机制，
+ * 此类就可以在任何环境中与任何 R2DBC 驱动一起工作。它将指定
+ * {@code ConnectionFactory} 中的 R2DBC {@code Connection} 绑定到当前订阅者上下文，
+ * 从而可能为每个 {@code ConnectionFactory} 提供一个绑定到上下文的 {@code Connection}。
  *
- * <p><b>Note: The {@code ConnectionFactory} that this transaction manager
- * operates on needs to return independent {@code Connection}s.</b>
- * The {@code Connection}s may come from a pool (the typical case), but the
- * {@code ConnectionFactory} must not return scoped {@code Connection}s
- * or the like. This transaction manager will associate {@code Connection}
- * with context-bound transactions itself, according to the specified propagation
- * behavior. It assumes that a separate, independent {@code Connection} can
- * be obtained even during an ongoing transaction.
+ * <p><b>注意：此事务管理器所操作的 {@code ConnectionFactory} 必须返回相互独立的
+ * {@code Connection}。</b>{@code Connection} 可以来自连接池（这是典型情况），
+ * 但 {@code ConnectionFactory} 不得返回作用域化的 {@code Connection} 之类的东西。
+ * 此事务管理器会根据指定的传播行为，自行将 {@code Connection} 与绑定到上下文的
+ * 事务关联。它假定即使在事务进行期间，也能获取到单独的、独立的 {@code Connection}。
  *
- * <p>Application code is required to retrieve the R2DBC Connection via
+ * <p>应用程序代码需要通过
  * {@link ConnectionFactoryUtils#getConnection(ConnectionFactory)}
- * instead of a standard R2DBC-style {@link ConnectionFactory#create()} call.
- * Spring classes such as {@code DatabaseClient} use this strategy implicitly.
- * If not used in combination with this transaction manager, the
- * {@link ConnectionFactoryUtils} lookup strategy behaves exactly like the
- * native {@code ConnectionFactory} lookup; it can thus be used in a portable fashion.
+ * 获取 R2DBC Connection，而不是采用标准的 R2DBC 风格
+ * {@link ConnectionFactory#create()} 调用。诸如 {@code DatabaseClient} 之类的
+ * Spring 类会隐式使用此策略。如果不与此事务管理器配合使用，
+ * {@link ConnectionFactoryUtils} 的查找策略的行为与原生
+ * {@code ConnectionFactory} 查找完全一致，因此可以以可移植的方式使用。
  *
- * <p>Alternatively, you can allow application code to work with the standard
- * R2DBC lookup pattern {@link ConnectionFactory#create()}, for example for code
- * that is not aware of Spring at all. In that case, define a
- * {@link TransactionAwareConnectionFactoryProxy} for your target {@code ConnectionFactory},
- * and pass that proxy {@code ConnectionFactory} to your DAOs, which will automatically
- * participate in Spring-managed transactions when accessing it.
+ * <p>或者，你也可以允许应用程序代码使用标准的 R2DBC 查找方式
+ * {@link ConnectionFactory#create()}，例如对于完全不感知 Spring 的代码。
+ * 这种情况下，请为目标 {@code ConnectionFactory} 定义一个
+ * {@link TransactionAwareConnectionFactoryProxy}，并将该代理
+ * {@code ConnectionFactory} 传给 DAO，这样在访问时就会自动参与 Spring 管理的事务。
  *
- * <p>This transaction manager triggers flush callbacks on registered transaction
- * synchronizations (if synchronization is generally active), assuming resources
- * operating on the underlying R2DBC {@code Connection}.
+ * <p>此事务管理器会在已注册的事务同步上触发 flush 回调（如果同步总体上处于活动状态），
+ * 并假定这些资源操作的是底层的 R2DBC {@code Connection}。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -88,14 +82,14 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 
 
 	/**
-	 * Create a new {@code R2dbcTransactionManager} instance.
-	 * A ConnectionFactory has to be set to be able to use it.
+	 * 创建一个新的 {@code R2dbcTransactionManager} 实例。
+	 * 必须设置 ConnectionFactory 才能使用它。
 	 * @see #setConnectionFactory
 	 */
 	public R2dbcTransactionManager() {}
 
 	/**
-	 * Create a new {@code R2dbcTransactionManager} instance.
+	 * 创建一个新的 {@code R2dbcTransactionManager} 实例。
 	 * @param connectionFactory the R2DBC ConnectionFactory to manage transactions for
 	 */
 	public R2dbcTransactionManager(ConnectionFactory connectionFactory) {
@@ -106,11 +100,11 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 
 
 	/**
-	 * Set the R2DBC {@link ConnectionFactory} that this instance should manage transactions for.
-	 * <p>This will typically be a locally defined {@code ConnectionFactory}, for example a connection pool.
-	 * <p><b>The {@code ConnectionFactory} passed in here needs to return independent {@link Connection}s.</b>
-	 * The {@code Connection}s may come from a pool (the typical case), but the {@code ConnectionFactory}
-	 * must not return scoped {@code Connection}s or the like.
+	 * 设置此实例应为其管理事务的 R2DBC {@link ConnectionFactory}。
+	 * <p>通常这是一个本地定义的 {@code ConnectionFactory}，例如连接池。
+	 * <p><b>此处传入的 {@code ConnectionFactory} 必须返回相互独立的 {@link Connection}。</b>
+	 * {@code Connection} 可以来自连接池（这是典型情况），但 {@code ConnectionFactory}
+	 * 不得返回作用域化的 {@code Connection} 之类的东西。
 	 * @see TransactionAwareConnectionFactoryProxy
 	 */
 	public void setConnectionFactory(@Nullable ConnectionFactory connectionFactory) {
@@ -118,7 +112,7 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Return the R2DBC {@link ConnectionFactory} that this instance manages transactions for.
+	 * 返回此实例为其管理事务的 R2DBC {@link ConnectionFactory}。
 	 */
 	@Nullable
 	public ConnectionFactory getConnectionFactory() {
@@ -126,7 +120,7 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Obtain the {@link ConnectionFactory} for actual use.
+	 * 获取实际使用的 {@link ConnectionFactory}。
 	 * @return the {@code ConnectionFactory} (never {@code null})
 	 * @throws IllegalStateException in case of no ConnectionFactory set
 	 */
@@ -137,12 +131,11 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Specify whether to enforce the read-only nature of a transaction (as indicated by
-	 * {@link TransactionDefinition#isReadOnly()}) through an explicit statement on the
-	 * transactional connection: "SET TRANSACTION READ ONLY" as understood by Oracle,
-	 * MySQL and Postgres.
-	 * <p>The exact treatment, including any SQL statement executed on the connection,
-	 * can be customized through {@link #prepareTransactionalConnection(Connection, TransactionDefinition)}.
+	 * 指定是否通过事务连接上的显式语句来强制事务的只读特性
+	 * （由 {@link TransactionDefinition#isReadOnly()} 指示）：即 Oracle、
+	 * MySQL 和 Postgres 所理解的 "SET TRANSACTION READ ONLY"。
+	 * <p>具体的处理方式（包括在连接上执行的任何 SQL 语句）可以通过
+	 * {@link #prepareTransactionalConnection(Connection, TransactionDefinition)} 进行自定义。
 	 * @see #prepareTransactionalConnection(Connection, TransactionDefinition)
 	 */
 	public void setEnforceReadOnly(boolean enforceReadOnly) {
@@ -150,8 +143,7 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Return whether to enforce the read-only nature of a transaction through an
-	 * explicit statement on the transactional connection.
+	 * 返回是否通过事务连接上的显式语句来强制事务的只读特性。
 	 * @see #setEnforceReadOnly
 	 */
 	public boolean isEnforceReadOnly() {
@@ -232,9 +224,8 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Determine the actual timeout to use for the given definition.
-	 * Will fall back to this manager's default timeout if the
-	 * transaction definition doesn't specify a non-default value.
+	 * 确定为给定定义实际使用的超时时间。
+	 * 如果事务定义未指定非默认值，则回退到本管理器的默认超时时间。
 	 * @param definition the transaction definition
 	 * @return the actual timeout to use
 	 * @see org.springframework.transaction.TransactionDefinition#getTimeout()
@@ -368,7 +359,7 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Prepare the transactional {@link Connection} right before transaction begin.
+	 * 在事务开始之前准备事务性 {@link Connection}。
 	 * @deprecated in favor of {@link #prepareTransactionalConnection(Connection, TransactionDefinition)}
 	 * since this variant gets called too early (before transaction begin) for read-only customization
 	 */
@@ -409,13 +400,11 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Prepare the transactional {@link Connection} right after transaction begin.
-	 * <p>The default implementation executes a "SET TRANSACTION READ ONLY" statement if the
-	 * {@link #setEnforceReadOnly "enforceReadOnly"} flag is set to {@code true} and the
-	 * transaction definition indicates a read-only transaction.
-	 * <p>The "SET TRANSACTION READ ONLY" is understood by Oracle, MySQL and Postgres
-	 * and may work with other databases as well. If you'd like to adapt this treatment,
-	 * override this method accordingly.
+	 * 在事务开始之后立即准备事务性 {@link Connection}。
+	 * <p>如果 {@link #setEnforceReadOnly "enforceReadOnly"} 标志设置为 {@code true}
+	 * 且事务定义指示为只读事务，默认实现会执行 "SET TRANSACTION READ ONLY" 语句。
+	 * <p>"SET TRANSACTION READ ONLY" 为 Oracle、MySQL 和 Postgres 所理解，
+	 * 也可能适用于其他数据库。如果你希望调整这一处理方式，请相应地覆盖此方法。
 	 * @param con the transactional R2DBC Connection
 	 * @param definition the current transaction definition
 	 * @since 5.3.22
@@ -432,9 +421,9 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Resolve the {@linkplain TransactionDefinition#getIsolationLevel() isolation level constant} to a R2DBC
-	 * {@link IsolationLevel}. If you'd like to extend isolation level translation for vendor-specific
-	 * {@code IsolationLevel}s, override this method accordingly.
+	 * 将 {@linkplain TransactionDefinition#getIsolationLevel() 隔离级别常量}
+	 * 解析为 R2DBC 的 {@link IsolationLevel}。如果你希望为特定厂商的
+	 * {@code IsolationLevel} 扩展隔离级别转换，请相应地覆盖此方法。
 	 * @param isolationLevel the isolation level to translate.
 	 * @return the resolved isolation level. Can be {@code null} if not resolvable or the isolation level
 	 * should remain {@link TransactionDefinition#ISOLATION_DEFAULT default}.
@@ -456,8 +445,8 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 	}
 
 	/**
-	 * Translate the given R2DBC commit/rollback exception to a common Spring exception to propagate
-	 * from the {@link #commit}/{@link #rollback} call.
+	 * 将给定的 R2DBC 提交/回滚异常转换为通用的 Spring 异常，
+	 * 以便从 {@link #commit}/{@link #rollback} 调用中传播出去。
 	 * @param task the task description (commit or rollback).
 	 * @param ex the SQLException thrown from commit/rollback.
 	 * @return the translated exception to emit
@@ -468,8 +457,8 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 
 
 	/**
-	 * ConnectionFactory transaction object, representing a ConnectionHolder.
-	 * Used as transaction object by R2dbcTransactionManager.
+	 * ConnectionFactory 事务对象，表示一个 ConnectionHolder。
+	 * 由 R2dbcTransactionManager 用作事务对象。
 	 */
 	private static class ConnectionFactoryTransactionObject {
 

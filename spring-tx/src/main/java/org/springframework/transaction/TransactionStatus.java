@@ -19,15 +19,13 @@ package org.springframework.transaction;
 import java.io.Flushable;
 
 /**
- * Representation of the status of a transaction.
+ * 事务状态的表示。
  *
- * <p>Transactional code can use this to retrieve status information,
- * and to programmatically request a rollback (instead of throwing
- * an exception that causes an implicit rollback).
+ * <p>事务代码可以使用它来获取状态信息，
+ * 并以编程方式请求回滚（而不是抛出导致隐式回滚的异常）。
  *
- * <p>Includes the {@link SavepointManager} interface to provide access
- * to savepoint management facilities. Note that savepoint management
- * is only available if supported by the underlying transaction manager.
+ * <p>包含 {@link SavepointManager} 接口，以提供对保存点管理功能的访问。
+ * 请注意，保存点管理仅在底层事务管理器支持时可用。
  *
  * @author Juergen Hoeller
  * @since 27.03.2003
@@ -39,11 +37,10 @@ import java.io.Flushable;
 public interface TransactionStatus extends TransactionExecution, SavepointManager, Flushable {
 
 	/**
-	 * Return whether this transaction internally carries a savepoint,
-	 * that is, has been created as nested transaction based on a savepoint.
-	 * <p>This method is mainly here for diagnostic purposes, alongside
-	 * {@link #isNewTransaction()}. For programmatic handling of custom
-	 * savepoints, use the operations provided by {@link SavepointManager}.
+	 * 返回此事务内部是否携带保存点，
+	 * 即是否基于保存点创建为嵌套事务。
+	 * <p>此方法主要用于诊断目的，与 {@link #isNewTransaction()} 一起使用。
+	 * 对于自定义保存点的编程式处理，请使用 {@link SavepointManager} 提供的操作。
 	 * @see #isNewTransaction()
 	 * @see #createSavepoint()
 	 * @see #rollbackToSavepoint(Object)
@@ -52,12 +49,11 @@ public interface TransactionStatus extends TransactionExecution, SavepointManage
 	boolean hasSavepoint();
 
 	/**
-	 * Flush the underlying session to the datastore, if applicable:
-	 * for example, all affected Hibernate/JPA sessions.
-	 * <p>This is effectively just a hint and may be a no-op if the underlying
-	 * transaction manager does not have a flush concept. A flush signal may
-	 * get applied to the primary resource or to transaction synchronizations,
-	 * depending on the underlying resource.
+	 * 如果适用，将底层会话刷新到数据存储中：
+	 * 例如，所有受影响的 Hibernate/JPA 会话。
+	 * <p>这实际上只是一个提示，如果底层事务管理器没有刷新概念，
+	 * 则可能是空操作。刷新信号可能会应用于主要资源或事务同步，
+	 * 具体取决于底层资源。
 	 */
 	@Override
 	void flush();

@@ -26,25 +26,24 @@ import org.springframework.lang.Nullable;
 import org.springframework.test.web.client.ResponseCreator;
 
 /**
- * Static factory methods for obtaining a {@link ResponseCreator} instance.
+ * 用于获取 {@link ResponseCreator} 实例的静态工厂方法。
  *
- * <p><strong>Eclipse users:</strong> consider adding this class as a Java editor
- * favorite. To navigate, open the Preferences and type "favorites".
- *
+ * <p><strong>Eclipse 用户：</strong>考虑将此类别添加为 Java 编辑器
+ * 收藏项。要导航，请打开“首选项”并输入“favorites”。
  * @author Rossen Stoyanchev
  * @since 3.2
  */
 public abstract class MockRestResponseCreators {
 
 	/**
-	 * {@code ResponseCreator} for a 200 response (OK).
+	 * 用于 200 响应（OK）的 {@code ResponseCreator}。
 	 */
 	public static DefaultResponseCreator withSuccess() {
 		return new DefaultResponseCreator(HttpStatus.OK);
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 200 response (OK) with String body.
+	 * 用于带 String 正文的 200 响应（OK）的 {@code ResponseCreator}。
 	 * @param body the response body, a "UTF-8" string
 	 * @param contentType the type of the content (may be {@code null})
 	 */
@@ -54,7 +53,7 @@ public abstract class MockRestResponseCreators {
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 200 response (OK) with byte[] body.
+	 * 用于带 byte[] 正文的 200 响应（OK）的 {@code ResponseCreator}。
 	 * @param body the response body
 	 * @param contentType the type of the content (may be {@code null})
 	 */
@@ -64,7 +63,7 @@ public abstract class MockRestResponseCreators {
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 200 response (OK) content with {@link Resource}-based body.
+	 * 用于带基于 {@link Resource} 正文的 200 响应（OK）内容的 {@code ResponseCreator}。
 	 * @param body the response body
 	 * @param contentType the type of the content (may be {@code null})
 	 */
@@ -74,7 +73,7 @@ public abstract class MockRestResponseCreators {
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 201 response (CREATED) with a 'Location' header.
+	 * 用于带 'Location' 头的 201 响应（CREATED）的 {@code ResponseCreator}。
 	 * @param location the value for the {@code Location} header
 	 */
 	public static DefaultResponseCreator withCreatedEntity(URI location) {
@@ -82,35 +81,35 @@ public abstract class MockRestResponseCreators {
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 204 response (NO_CONTENT).
+	 * 用于 204 响应（NO_CONTENT）的 {@code ResponseCreator}。
 	 */
 	public static DefaultResponseCreator withNoContent() {
 		return new DefaultResponseCreator(HttpStatus.NO_CONTENT);
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 400 response (BAD_REQUEST).
+	 * 用于 400 响应（BAD_REQUEST）的 {@code ResponseCreator}。
 	 */
 	public static DefaultResponseCreator withBadRequest() {
 		return new DefaultResponseCreator(HttpStatus.BAD_REQUEST);
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 401 response (UNAUTHORIZED).
+	 * 用于 401 响应（UNAUTHORIZED）的 {@code ResponseCreator}。
 	 */
 	public static DefaultResponseCreator withUnauthorizedRequest() {
 		return new DefaultResponseCreator(HttpStatus.UNAUTHORIZED);
 	}
 
 	/**
-	 * {@code ResponseCreator} for a 500 response (SERVER_ERROR).
+	 * 用于 500 响应（SERVER_ERROR）的 {@code ResponseCreator}。
 	 */
 	public static DefaultResponseCreator withServerError() {
 		return new DefaultResponseCreator(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	/**
-	 * {@code ResponseCreator} with a specific HTTP status.
+	 * 用于特定 HTTP 状态的 {@code ResponseCreator}。
 	 * @param status the response status
 	 */
 	public static DefaultResponseCreator withStatus(HttpStatus status) {
@@ -118,7 +117,7 @@ public abstract class MockRestResponseCreators {
 	}
 
 	/**
-	 * Variant of {@link #withStatus(HttpStatus)} for a custom HTTP status code.
+	 * 用于自定义 HTTP 状态码的 {@link #withStatus(HttpStatus)} 变体。
 	 * @param status the response status
 	 * @since 5.3.17
 	 */
@@ -127,8 +126,8 @@ public abstract class MockRestResponseCreators {
 	}
 
 	/**
-	 * {@code ResponseCreator} with an internal application {@code IOException}.
-	 * <p>For example, one could use this to simulate a {@code SocketTimeoutException}.
+	 * 带有内部应用程序 {@code IOException} 的 {@code ResponseCreator}。
+	 * <p>例如，可以使用它来模拟 {@code SocketTimeoutException}。
 	 * @param ex the {@code Exception} to be thrown at HTTP call time
 	 * @since 5.2.2
 	 */

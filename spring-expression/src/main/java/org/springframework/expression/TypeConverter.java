@@ -20,10 +20,8 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.lang.Nullable;
 
 /**
- * A type converter can convert values between different types encountered during
- * expression evaluation. This is an SPI for the expression parser; see
- * {@link org.springframework.core.convert.ConversionService} for the primary
- * user API to Spring's conversion facilities.
+ * 类型转换器可以在表达式求值期间遇到的不同类型之间转换值。这是表达式解析器的 SPI；Spring 转换设施
+ * 的主要用户 API 参见 {@link org.springframework.core.convert.ConversionService}。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -32,8 +30,7 @@ import org.springframework.lang.Nullable;
 public interface TypeConverter {
 
 	/**
-	 * Return {@code true} if the type converter can convert the specified type
-	 * to the desired target type.
+	 * 如果类型转换器可以将指定类型转换为所需的目标类型，则返回 {@code true}。
 	 * @param sourceType a type descriptor that describes the source type
 	 * @param targetType a type descriptor that describes the requested result type
 	 * @return {@code true} if that conversion can be performed
@@ -41,11 +38,9 @@ public interface TypeConverter {
 	boolean canConvert(@Nullable TypeDescriptor sourceType, TypeDescriptor targetType);
 
 	/**
-	 * Convert (or coerce) a value from one type to another, for example from a
-	 * {@code boolean} to a {@code String}.
-	 * <p>The {@link TypeDescriptor} parameters enable support for typed collections:
-	 * A caller may prefer a {@code List<Integer>}, for example, rather than
-	 * simply any {@code List}.
+	 * 将值从一种类型转换（或强制转换）为另一种类型，例如从 {@code boolean} 转换为 {@code String}。
+	 * <p>{@link TypeDescriptor} 参数支持带类型的集合：例如，调用方可能更希望使用 {@code List<Integer>}，
+	 * 而不是任意 {@code List}。
 	 * @param value the value to be converted
 	 * @param sourceType a type descriptor that supplies extra information about the
 	 * source object

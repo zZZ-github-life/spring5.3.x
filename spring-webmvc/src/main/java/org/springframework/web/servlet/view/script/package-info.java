@@ -1,7 +1,7 @@
 /**
- * Support classes for views based on the JSR-223 script engine abstraction
- * (as included in Java 6+), e.g. using JavaScript via Nashorn on JDK 8.
- * Contains a View implementation for scripted templates.
+ * 基于 JSR-223 脚本引擎抽象（Java 6+ 中已包含）的视图支持类，
+ * 例如在 JDK 8 上通过 Nashorn 使用 JavaScript。
+ * 包含脚本化模板的 View 实现。
  */
 @NonNullApi
 @NonNullFields

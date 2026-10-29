@@ -26,16 +26,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link ConfigurablePropertyAccessor} implementation that directly accesses
- * instance fields. Allows for direct binding to fields instead of going through
- * JavaBean setters.
+ * {@link ConfigurablePropertyAccessor} 实现，直接访问实例字段。允许直接绑定到字段，而不是通过
+ * JavaBean 的 setter。
  *
- * <p>As of Spring 4.2, the vast majority of the {@link BeanWrapper} features have
- * been merged to {@link AbstractPropertyAccessor}, which means that property
- * traversal as well as collections and map access is now supported here as well.
+ * <p>从 Spring 4.2 开始，{@link BeanWrapper} 的绝大多数特性已合并到
+ * {@link AbstractPropertyAccessor}，这意味着此处也支持属性遍历以及集合和 Map 访问。
  *
- * <p>A DirectFieldAccessor's default for the "extractOldValueForEditor" setting
- * is "true", since a field can always be read without side effects.
+ * <p>DirectFieldAccessor 对 "extractOldValueForEditor" 设置的默认值为 "true"，因为字段总是可以在没
+ * 有副作用的情况下读取。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -51,7 +49,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 
 
 	/**
-	 * Create a new DirectFieldAccessor for the given object.
+	 * 为给定对象创建一个新的 DirectFieldAccessor。
 	 * @param object the object wrapped by this DirectFieldAccessor
 	 */
 	public DirectFieldAccessor(Object object) {
@@ -59,8 +57,7 @@ public class DirectFieldAccessor extends AbstractNestablePropertyAccessor {
 	}
 
 	/**
-	 * Create a new DirectFieldAccessor for the given object,
-	 * registering a nested path that the object is in.
+	 * 为给定对象创建一个新的 DirectFieldAccessor，并注册该对象所处的嵌套路径。
 	 * @param object the object wrapped by this DirectFieldAccessor
 	 * @param nestedPath the nested path of the object
 	 * @param parent the containing DirectFieldAccessor (must not be {@code null})

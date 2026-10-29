@@ -81,7 +81,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Handwritten SpEL parser. Instances are reusable but are not thread-safe.
+ * 手写的 SpEL 解析器。实例可复用，但不是线程安全的。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -94,7 +94,7 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 	private static final Pattern VALID_QUALIFIED_ID_PATTERN = Pattern.compile("[\\p{L}\\p{N}_$]+");
 
 	/**
-	 * Maximum length permitted for a SpEL expression.
+	 * SpEL 表达式允许的最大长度。
 	 * @since 5.2.24
 	 */
 	private static final int MAX_EXPRESSION_LENGTH = 10_000;
@@ -122,7 +122,7 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 
 
 	/**
-	 * Create a parser with some configured behavior.
+	 * 创建一个具有某些已配置行为的解析器。
 	 * @param configuration custom configuration options
 	 */
 	public InternalSpelExpressionParser(SpelParserConfiguration configuration) {
@@ -474,7 +474,7 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 	}
 
 	/**
-	 * Used for consuming arguments for either a method or a constructor call.
+	 * 用于为方法调用或构造器调用消费参数。
 	 */
 	private void consumeArguments(List<SpelNodeImpl> accumulatedArguments) {
 		Token t = peekToken();
@@ -737,8 +737,8 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 	}
 
 	/**
-	 * Eat an identifier, possibly qualified (meaning that it is dotted).
-	 * TODO AndyC Could create complete identifiers (a.b.c) here rather than a sequence of them? (a, b, c)
+	 * 读取一个标识符，它可能是限定的（即带点）。TODO AndyC：是否可以在这里创建完整的标识符（a.b.c），
+	 * 而不是使用它们的序列？（a, b, c）
 	 */
 	private SpelNodeImpl eatPossiblyQualifiedId() {
 		Deque<SpelNodeImpl> qualifiedIdPieces = new ArrayDeque<>();

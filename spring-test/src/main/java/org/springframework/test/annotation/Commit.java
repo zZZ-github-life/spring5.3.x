@@ -24,30 +24,27 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @Commit} is a test annotation that is used to indicate that a
- * <em>test-managed transaction</em> should be <em>committed</em> after
- * the test method has completed.
+ * {@code @Commit} 是一个测试注解，用于指示<em>测试管理的事务</em>应在
+ * 测试方法完成后<em>提交</em>。
  *
- * <p>Consult the class-level Javadoc for
+ * <p>有关<em>测试管理的事务</em>的说明，请参阅
  * {@link org.springframework.test.context.transaction.TransactionalTestExecutionListener}
- * for an explanation of <em>test-managed transactions</em>.
+ * 的类级 Javadoc。
  *
- * <p>When declared as a class-level annotation, {@code @Commit} defines
- * the default commit semantics for all test methods within the test class
- * hierarchy or nested class hierarchy. When declared as a method-level annotation,
- * {@code @Commit} defines commit semantics for the specific test method, potentially
- * overriding class-level default commit or rollback semantics.
+ * <p>当声明为类级注解时，{@code @Commit} 为测试类
+ * 层次结构或嵌套类层次结构中的所有测试方法定义默认的提交语义。当声明为方法级注解时，
+ * {@code @Commit} 为特定测试方法定义提交语义，可能
+ * 覆盖类级默认的提交或回滚语义。
  *
- * <p><strong>Warning</strong>: {@code @Commit} can be used as direct
- * replacement for {@code @Rollback(false)}; however, it should
- * <strong>not</strong> be declared alongside {@code @Rollback}. Declaring
- * {@code @Commit} and {@code @Rollback} on the same test method or on the
- * same test class is unsupported and may lead to unpredictable results.
+ * <p><strong>警告</strong>：{@code @Commit} 可以直接
+ * 替代 {@code @Rollback(false)}；但是，<strong>不应</strong>
+ * 与 {@code @Rollback} 一起声明。在同一测试方法或
+ * 同一测试类上同时声明 {@code @Commit} 和 {@code @Rollback} 是不受支持的，
+ * 可能导致不可预测的结果。
  *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * <p>从 Spring Framework 5.3 开始，此注解默认将从
+ * 外层测试类继承。详情请参见
+ * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 4.2

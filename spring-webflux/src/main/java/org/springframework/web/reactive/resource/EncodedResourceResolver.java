@@ -40,25 +40,18 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolver that delegates to the chain, and if a resource is found, it then
- * attempts to find an encoded (e.g. gzip, brotli) variant that is acceptable
- * based on the "Accept-Encoding" request header.
+ * 委托给链的解析器；如果找到资源，则尝试根据 "Accept-Encoding" 请求头查找可接受的编码（例如 gzip、brotli）变体。
  *
- * <p>The list of supported {@link #setContentCodings(List) contentCodings} can
- * be configured, in order of preference, and each coding must be associated
- * with {@link #setExtensions(Map) extensions}.
+ * <p>可以按首选项顺序配置受支持的{@link #setContentCodings(List) contentCodings} 列表，并且每种编码都必须与{@link #setExtensions(Map) 扩展名}关联。
  *
- * <p>Note that this resolver must be ordered ahead of a
- * {@link VersionResourceResolver} with a content-based, version strategy to
- * ensure the version calculation is not impacted by the encoding.
- *
+ * <p>请注意，此解析器必须排在具有基于内容版本策略的 {@link VersionResourceResolver} 之前，以确保版本计算不受编码影响。
  * @author Rossen Stoyanchev
  * @since 5.1
  */
 public class EncodedResourceResolver extends AbstractResourceResolver {
 
 	/**
-	 * The default content codings.
+	 * 默认内容编码。
 	 */
 	public static final List<String> DEFAULT_CODINGS = Arrays.asList("br", "gzip");
 
@@ -75,16 +68,9 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * Configure the supported content codings in order of preference. The first
-	 * coding that is present in the {@literal "Accept-Encoding"} header for a
-	 * given request, and that has a file present with the associated extension,
-	 * is used.
-	 * <p><strong>Note:</strong> Each coding must be associated with a file
-	 * extension via {@link #registerExtension} or {@link #setExtensions}. Also
-	 * customizations to the list of codings here should be matched by
-	 * customizations to the same list in {@link CachingResourceResolver} to
-	 * ensure encoded variants of a resource are cached under separate keys.
-	 * <p>By default this property is set to {@literal ["br", "gzip"]}.
+	 * 按首选项顺序配置受支持的内容编码。将使用在给定请求的 {@literal "Accept-Encoding"} 头中出现的第一个编码，并且该编码存在具有关联扩展名的文件。
+	 * <p><strong>注意：</strong>每种编码都必须通过 {@link #registerExtension} 或 {@link #setExtensions} 与文件扩展名关联。此外，对此处编码列表的自定义应与 {@link CachingResourceResolver} 中相同列表的自定义相匹配，以确保资源的编码变体缓存在单独的键下。
+	 * <p>默认情况下，此属性设置为 {@literal ["br", "gzip"]}。
 	 * @param codings one or more supported content codings
 	 */
 	public void setContentCodings(List<String> codings) {
@@ -94,17 +80,15 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Return a read-only list with the supported content codings.
+	 * 返回受支持内容编码的只读列表。
 	 */
 	public List<String> getContentCodings() {
 		return Collections.unmodifiableList(this.contentCodings);
 	}
 
 	/**
-	 * Configure mappings from content codings to file extensions. A dot "."
-	 * will be prepended in front of the extension value if not present.
-	 * <p>By default this is configured with {@literal ["br" -> ".br"]} and
-	 * {@literal ["gzip" -> ".gz"]}.
+	 * 配置内容编码到文件扩展名的映射。如果扩展名值前没有点 "."，则会添加一个点。
+	 * <p>默认配置为 {@literal ["br" -> ".br"]} 和 {@literal ["gzip" -> ".gz"]}。
 	 * @param extensions the extensions to use.
 	 * @see #registerExtension(String, String)
 	 */
@@ -113,14 +97,14 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Return a read-only map with coding-to-extension mappings.
+	 * 返回编码到扩展名映射的只读映射。
 	 */
 	public Map<String, String> getExtensions() {
 		return Collections.unmodifiableMap(this.extensions);
 	}
 
 	/**
-	 * Java config friendly alternative to {@link #setExtensions(Map)}.
+	 * 对 Java 配置友好的 {@link #setExtensions(Map)} 替代方法。
 	 * @param coding the content coding
 	 * @param extension the associated file extension
 	 */
@@ -188,7 +172,7 @@ public class EncodedResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * An encoded {@link HttpResource}.
+	 * 已编码的 {@link HttpResource}。
 	 */
 	static final class EncodedResource extends AbstractResource implements HttpResource {
 

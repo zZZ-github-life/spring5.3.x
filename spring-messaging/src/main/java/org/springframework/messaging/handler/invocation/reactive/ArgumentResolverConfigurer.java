@@ -23,8 +23,8 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
- * Assist with configuration for handler method argument resolvers.
- * At present, it supports only providing a list of custom resolvers.
+ * 协助配置处理器方法参数解析器。
+ * 目前仅支持提供自定义解析器列表。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -35,7 +35,7 @@ public class ArgumentResolverConfigurer {
 
 
 	/**
-	 * Configure resolvers for custom handler method arguments.
+	 * 为自定义处理器方法参数配置解析器。
 	 * @param resolver the resolvers to add
 	 */
 	public void addCustomResolver(HandlerMethodArgumentResolver... resolver) {

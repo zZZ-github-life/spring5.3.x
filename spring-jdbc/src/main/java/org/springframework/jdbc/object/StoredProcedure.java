@@ -28,12 +28,10 @@ import org.springframework.jdbc.core.ParameterMapper;
 import org.springframework.jdbc.core.SqlParameter;
 
 /**
- * Superclass for object abstractions of RDBMS stored procedures.
- * This class is abstract and it is intended that subclasses will provide a typed
- * method for invocation that delegates to the supplied {@link #execute} method.
+ * RDBMS 存储过程对象抽象的父类。
+ * 本类是抽象类，子类应提供类型化的调用方法，并委托给提供的 {@link #execute} 方法。
  *
- * <p>The inherited {@link #setSql sql} property is the name of the stored procedure
- * in the RDBMS.
+ * <p>继承的 {@link #setSql sql} 属性是 RDBMS 中存储过程的名称。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -41,13 +39,13 @@ import org.springframework.jdbc.core.SqlParameter;
 public abstract class StoredProcedure extends SqlCall {
 
 	/**
-	 * Allow use as a bean.
+	 * 允许作为 bean 使用。
 	 */
 	protected StoredProcedure() {
 	}
 
 	/**
-	 * Create a new object wrapper for a stored procedure.
+	 * 为存储过程创建新的对象包装器。
 	 * @param ds the DataSource to use throughout the lifetime
 	 * of this object to obtain connections
 	 * @param name the name of the stored procedure in the database
@@ -58,7 +56,7 @@ public abstract class StoredProcedure extends SqlCall {
 	}
 
 	/**
-	 * Create a new object wrapper for a stored procedure.
+	 * 为存储过程创建新的对象包装器。
 	 * @param jdbcTemplate the JdbcTemplate which wraps DataSource
 	 * @param name the name of the stored procedure in the database
 	 */
@@ -69,8 +67,7 @@ public abstract class StoredProcedure extends SqlCall {
 
 
 	/**
-	 * StoredProcedure parameter Maps are by default allowed to contain
-	 * additional entries that are not actually used as parameters.
+	 * StoredProcedure 的参数 Map 默认允许包含未实际用作参数的额外条目。
 	 */
 	@Override
 	protected boolean allowsUnusedParameters() {
@@ -78,14 +75,13 @@ public abstract class StoredProcedure extends SqlCall {
 	}
 
 	/**
-	 * Declare a parameter.
-	 * <p>Parameters declared as {@code SqlParameter} and {@code SqlInOutParameter}
-	 * will always be used to provide input values. In addition to this, any parameter declared
-	 * as {@code SqlOutParameter} where a non-null input value is provided will also be used
-	 * as an input parameter.
-	 * <b>Note: Calls to declareParameter must be made in the same order as
-	 * they appear in the database's stored procedure parameter list.</b>
-	 * <p>Names are purely used to help mapping.
+	 * 声明一个参数。
+	 * <p>声明为 {@code SqlParameter} 和 {@code SqlInOutParameter} 的参数始终用于
+	 * 提供输入值。除此之外，任何声明为 {@code SqlOutParameter} 且提供了非 null
+	 * 输入值的参数也将用作输入参数。
+	 * <b>注意：调用 declareParameter 的顺序必须与它们在数据库存储过程参数列表中
+	 * 出现的顺序一致。</b>
+	 * <p>名称纯粹用于辅助映射。
 	 * @param param the parameter object
 	 * @throws InvalidDataAccessApiUsageException if the parameter has no name, or if the
 	 * operation is already compiled, and hence cannot be configured further
@@ -99,9 +95,8 @@ public abstract class StoredProcedure extends SqlCall {
 	}
 
 	/**
-	 * Execute the stored procedure with the provided parameter values. This is
-	 * a convenience method where the order of the passed in parameter values
-	 * must match the order that the parameters where declared in.
+	 * 使用提供的参数值执行存储过程。这是一个便捷方法，传入参数值的顺序
+	 * 必须与声明参数的顺序一致。
 	 * @param inParams variable number of input parameters. Output parameters should
 	 * not be included in this map. It is legal for values to be {@code null}, and this
 	 * will produce the correct behavior using a NULL argument to the stored procedure.
@@ -122,11 +117,10 @@ public abstract class StoredProcedure extends SqlCall {
 	}
 
 	/**
-	 * Execute the stored procedure. Subclasses should define a strongly typed
-	 * execute method (with a meaningful name) that invokes this method, populating
-	 * the input map and extracting typed values from the output map. Subclass
-	 * execute methods will often take domain objects as arguments and return values.
-	 * Alternatively, they can return void.
+	 * 执行存储过程。子类应定义强类型的 execute 方法（使用有意义的名称），
+	 * 由该方法调用此方法，填充输入 map 并从输出 map 中提取类型化的值。
+	 * 子类的 execute 方法通常接受领域对象作为参数并返回结果值。
+	 * 也可以返回 void。
 	 * @param inParams map of input parameters, keyed by name as in parameter
 	 * declarations. Output parameters need not (but can) be included in this map.
 	 * It is legal for map entries to be {@code null}, and this will produce the
@@ -141,13 +135,11 @@ public abstract class StoredProcedure extends SqlCall {
 	}
 
 	/**
-	 * Execute the stored procedure. Subclasses should define a strongly typed
-	 * execute method (with a meaningful name) that invokes this method, passing in
-	 * a ParameterMapper that will populate the input map.  This allows mapping database
-	 * specific features since the ParameterMapper has access to the Connection object.
-	 * The execute method is also responsible for extracting typed values from the output map.
-	 * Subclass execute methods will often take domain objects as arguments and return values.
-	 * Alternatively, they can return void.
+	 * 执行存储过程。子类应定义强类型的 execute 方法（使用有意义的名称），
+	 * 由该方法调用此方法，并传入一个用于填充输入 map 的 ParameterMapper。
+	 * 由于 ParameterMapper 可以访问 Connection 对象，因此可以处理数据库特有的特性。
+	 * execute 方法还负责从输出 map 中提取类型化的值。子类的 execute 方法通常
+	 * 接受领域对象作为参数并返回结果值。也可以返回 void。
 	 * @param inParamMapper map of input parameters, keyed by name as in parameter
 	 * declarations. Output parameters need not (but can) be included in this map.
 	 * It is legal for map entries to be {@code null}, and this will produce the correct

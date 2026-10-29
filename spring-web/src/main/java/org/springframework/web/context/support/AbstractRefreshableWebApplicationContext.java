@@ -36,40 +36,34 @@ import org.springframework.web.context.ServletContextAware;
 
 /**
  * {@link org.springframework.context.support.AbstractRefreshableApplicationContext}
- * subclass which implements the
+ * 的子类，为 Web 环境实现了
  * {@link org.springframework.web.context.ConfigurableWebApplicationContext}
- * interface for web environments. Provides a "configLocations" property,
- * to be populated through the ConfigurableWebApplicationContext interface
- * on web application startup.
+ * 接口。提供 "configLocations" 属性，
+ * 可在 Web 应用启动时通过 ConfigurableWebApplicationContext 接口进行填充。
  *
- * <p>This class is as easy to subclass as AbstractRefreshableApplicationContext:
- * All you need to implement is the {@link #loadBeanDefinitions} method;
- * see the superclass javadoc for details. Note that implementations are supposed
- * to load bean definitions from the files specified by the locations returned
- * by the {@link #getConfigLocations} method.
+ * <p>此类与 AbstractRefreshableApplicationContext 一样易于子类化：只需实现
+ * {@link #loadBeanDefinitions} 方法即可；详细信息请参见父类 javadoc。注意，实现应当从
+ * {@link #getConfigLocations} 方法返回的位置所指定的文件中加载 bean 定义。
  *
- * <p>Interprets resource paths as servlet context resources, i.e. as paths beneath
- * the web application root. Absolute paths, e.g. for files outside the web app root,
- * can be accessed via "file:" URLs, as implemented by
- * {@link org.springframework.core.io.DefaultResourceLoader}.
+ * <p>将资源路径解释为 Servlet 上下文资源，即 Web 应用根路径下的路径。
+ * 绝对路径（例如 Web 应用根路径之外的文件）可以通过 "file:" URL 访问，
+ * 具体由 {@link org.springframework.core.io.DefaultResourceLoader} 实现。
  *
- * <p>In addition to the special beans detected by
- * {@link org.springframework.context.support.AbstractApplicationContext},
- * this class detects a bean of type {@link org.springframework.ui.context.ThemeSource}
- * in the context, under the special bean name "themeSource".
+ * <p>除了
+ * {@link org.springframework.context.support.AbstractApplicationContext} 检测的特殊 bean 之外，
+ * 此类还会在上下文中以特殊 bean 名称 "themeSource" 检测
+ * 类型为 {@link org.springframework.ui.context.ThemeSource} 的 bean。
  *
- * <p><b>This is the web context to be subclassed for a different bean definition format.</b>
- * Such a context implementation can be specified as "contextClass" context-param
- * for {@link org.springframework.web.context.ContextLoader} or as "contextClass"
- * init-param for {@link org.springframework.web.servlet.FrameworkServlet},
- * replacing the default {@link XmlWebApplicationContext}. It will then automatically
- * receive the "contextConfigLocation" context-param or init-param, respectively.
+ * <p><b>这是为不同的 bean 定义格式而应子类化的 Web 上下文。</b>
+ * 这种上下文实现可以指定为
+ * {@link org.springframework.web.context.ContextLoader} 的 "contextClass" context-param，
+ * 或 {@link org.springframework.web.servlet.FrameworkServlet} 的 "contextClass"
+ * init-param，取代默认的 {@link XmlWebApplicationContext}。之后它会自动
+ * 接收相应的 "contextConfigLocation" context-param 或 init-param。
  *
- * <p>Note that WebApplicationContext implementations are generally supposed
- * to configure themselves based on the configuration received through the
- * {@link ConfigurableWebApplicationContext} interface. In contrast, a standalone
- * application context might allow for configuration in custom startup code
- * (for example, {@link org.springframework.context.support.GenericApplicationContext}).
+ * <p>注意，WebApplicationContext 实现通常应根据通过 {@link ConfigurableWebApplicationContext} 接
+ * 口收到的配置进行自我配置。相比之下，独立的应用程序上下文可能允许在自定义启动代码中进行配置（例
+ * 如 {@link org.springframework.context.support.GenericApplicationContext}）。
  *
  * @author Juergen Hoeller
  * @since 1.1.3
@@ -81,19 +75,19 @@ import org.springframework.web.context.ServletContextAware;
 public abstract class AbstractRefreshableWebApplicationContext extends AbstractRefreshableConfigApplicationContext
 		implements ConfigurableWebApplicationContext, ThemeSource {
 
-	/** Servlet context that this context runs in. */
+	/** 此上下文运行所在的 Servlet 上下文。 */
 	@Nullable
 	private ServletContext servletContext;
 
-	/** Servlet config that this context runs in, if any. */
+	/** 此上下文运行所在的 Servlet 配置（如果有）。 */
 	@Nullable
 	private ServletConfig servletConfig;
 
-	/** Namespace of this context, or {@code null} if root. */
+	/** 此上下文的命名空间，如果是根上下文则为 {@code null}。 */
 	@Nullable
 	private String namespace;
 
-	/** the ThemeSource for this ApplicationContext. */
+	/** 此 ApplicationContext 的 ThemeSource。 */
 	@Nullable
 	private ThemeSource themeSource;
 
@@ -153,8 +147,8 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	}
 
 	/**
-	 * Create and return a new {@link StandardServletEnvironment}. Subclasses may override
-	 * in order to configure the environment or specialize the environment type returned.
+	 * 创建并返回一个新的 {@link StandardServletEnvironment}。子类可以覆盖此方法以配置环境或特化所返
+	 * 回的环境类型。
 	 */
 	@Override
 	protected ConfigurableEnvironment createEnvironment() {
@@ -162,7 +156,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	}
 
 	/**
-	 * Register request/session scopes, a {@link ServletContextAwareProcessor}, etc.
+	 * 注册请求/会话作用域、{@link ServletContextAwareProcessor} 等。
 	 */
 	@Override
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
@@ -175,7 +169,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	}
 
 	/**
-	 * This implementation supports file paths beneath the root of the ServletContext.
+	 * 此实现支持 ServletContext 根路径下的文件路径。
 	 * @see ServletContextResource
 	 */
 	@Override
@@ -185,7 +179,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	}
 
 	/**
-	 * This implementation supports pattern matching in unexpanded WARs too.
+	 * 此实现也支持未展开 WAR 中的模式匹配。
 	 * @see ServletContextResourcePatternResolver
 	 */
 	@Override
@@ -194,7 +188,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 	}
 
 	/**
-	 * Initialize the theme capability.
+	 * 初始化主题（theme）能力。
 	 */
 	@Override
 	protected void onRefresh() {
@@ -203,7 +197,7 @@ public abstract class AbstractRefreshableWebApplicationContext extends AbstractR
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Replace {@code Servlet}-related property sources.
+	 * <p>替换与 {@code Servlet} 相关的属性源。
 	 */
 	@Override
 	protected void initPropertySources() {

@@ -35,8 +35,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Provides mapping information for a single annotation (or meta-annotation) in
- * the context of a root annotation type.
+ * 在根注解类型的上下文中，为单个注解（或元注解）提供映射信息。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -360,8 +359,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Method called after all mappings have been set. At this point no further
-	 * lookups from child mappings will occur.
+	 * 在所有映射都设置完成后调用的方法。此时不会再有来自子映射的查找。
 	 */
 	void afterAllMappingsSet() {
 		validateAllAliasesClaimed();
@@ -404,7 +402,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the root mapping.
+	 * 获取根映射。
 	 * @return the root mapping
 	 */
 	AnnotationTypeMapping getRoot() {
@@ -412,7 +410,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the source of the mapping or {@code null}.
+	 * 获取映射的来源，或 {@code null}。
 	 * @return the source of the mapping
 	 */
 	@Nullable
@@ -421,7 +419,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the distance of this mapping.
+	 * 获取此映射的距离。
 	 * @return the distance of the mapping
 	 */
 	int getDistance() {
@@ -429,7 +427,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the type of the mapped annotation.
+	 * 获取被映射注解的类型。
 	 * @return the annotation type
 	 */
 	Class<? extends Annotation> getAnnotationType() {
@@ -441,8 +439,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the source annotation for this mapping. This will be the
-	 * meta-annotation, or {@code null} if this is the root mapping.
+	 * 获取此映射的源注解。它将是元注解；如果这是根映射，则为 {@code null}。
 	 * @return the source annotation of the mapping
 	 */
 	@Nullable
@@ -451,7 +448,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the annotation attributes for the mapping annotation type.
+	 * 获取映射注解类型的注解属性。
 	 * @return the attribute methods
 	 */
 	AttributeMethods getAttributes() {
@@ -459,10 +456,8 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the related index of an alias mapped attribute, or {@code -1} if
-	 * there is no mapping. The resulting value is the index of the attribute on
-	 * the root annotation that can be invoked in order to obtain the actual
-	 * value.
+	 * 获取别名映射属性的关联索引；如果不存在映射，则为 {@code -1}。结果值是根注解上该属性的索引，调用
+	 * 该属性可获取实际值。
 	 * @param attributeIndex the attribute index of the source attribute
 	 * @return the mapped attribute index or {@code -1}
 	 */
@@ -471,10 +466,8 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the related index of a convention mapped attribute, or {@code -1}
-	 * if there is no mapping. The resulting value is the index of the attribute
-	 * on the root annotation that can be invoked in order to obtain the actual
-	 * value.
+	 * 获取约定映射属性的关联索引；如果不存在映射，则为 {@code -1}。结果值是根注解上该属性的索引，调用
+	 * 该属性可获取实际值。
 	 * @param attributeIndex the attribute index of the source attribute
 	 * @return the mapped attribute index or {@code -1}
 	 */
@@ -483,11 +476,9 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get a mapped attribute value from the most suitable
-	 * {@link #getAnnotation() meta-annotation}.
-	 * <p>The resulting value is obtained from the closest meta-annotation,
-	 * taking into consideration both convention and alias based mapping rules.
-	 * For root mappings, this method will always return {@code null}.
+	 * 从最合适的 {@link #getAnnotation() 元注解}获取映射的属性值。
+	 * <p>结果值取自最近的元注解，同时考虑基于约定和基于别名的映射规则。对于根映射，此方法始终返回
+	 * {@code null}。
 	 * @param attributeIndex the attribute index of the source attribute
 	 * @param metaAnnotationsOnly if only meta annotations should be considered.
 	 * If this parameter is {@code false} then aliases within the annotation will
@@ -508,8 +499,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Determine if the specified value is equivalent to the default value of the
-	 * attribute at the given index.
+	 * 判断指定值是否等同于给定索引处属性的默认值。
 	 * @param attributeIndex the attribute index of the source attribute
 	 * @param value the value to check
 	 * @param valueExtractor the value extractor used to extract values from any
@@ -522,7 +512,7 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Get the mirror sets for this type mapping.
+	 * 获取此类型映射的镜像集。
 	 * @return the attribute mirror sets
 	 */
 	MirrorSets getMirrorSets() {
@@ -530,9 +520,8 @@ final class AnnotationTypeMapping {
 	}
 
 	/**
-	 * Determine if the mapped annotation is <em>synthesizable</em>.
-	 * <p>Consult the documentation for {@link MergedAnnotation#synthesize()}
-	 * for an explanation of what is considered synthesizable.
+	 * 判断被映射的注解是否<em>可合成</em>。
+	 * <p>有关何种情况被视为可合成的说明，请参见 {@link MergedAnnotation#synthesize()} 的文档。
 	 * @return {@code true} if the mapped annotation is synthesizable
 	 * @since 5.2.6
 	 */
@@ -610,8 +599,7 @@ final class AnnotationTypeMapping {
 
 
 	/**
-	 * A collection of {@link MirrorSet} instances that provides details of all
-	 * defined mirrors.
+	 * {@link MirrorSet} 实例的集合，提供所有已定义镜像的详细信息。
 	 */
 	class MirrorSets {
 
@@ -680,7 +668,7 @@ final class AnnotationTypeMapping {
 
 
 		/**
-		 * A single set of mirror attributes.
+		 * 单组镜像属性。
 		 */
 		class MirrorSet {
 

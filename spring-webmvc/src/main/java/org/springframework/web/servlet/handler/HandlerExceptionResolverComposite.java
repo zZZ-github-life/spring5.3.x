@@ -28,8 +28,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * A {@link HandlerExceptionResolver} that delegates to a list of other
- * {@link HandlerExceptionResolver HandlerExceptionResolvers}.
+ * {@link HandlerExceptionResolver}，委托给一组其他
+ * {@link HandlerExceptionResolver HandlerExceptionResolvers}。
  *
  * @author Rossen Stoyanchev
  * @since 3.1
@@ -43,14 +43,14 @@ public class HandlerExceptionResolverComposite implements HandlerExceptionResolv
 
 
 	/**
-	 * Set the list of exception resolvers to delegate to.
+	 * 设置要委托的异常解析器列表。
 	 */
 	public void setExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
 		this.resolvers = exceptionResolvers;
 	}
 
 	/**
-	 * Return the list of exception resolvers to delegate to.
+	 * 返回要委托的异常解析器列表。
 	 */
 	public List<HandlerExceptionResolver> getExceptionResolvers() {
 		return (this.resolvers != null ? Collections.unmodifiableList(this.resolvers) : Collections.emptyList());
@@ -67,8 +67,8 @@ public class HandlerExceptionResolverComposite implements HandlerExceptionResolv
 
 
 	/**
-	 * Resolve the exception by iterating over the list of configured exception resolvers.
-	 * <p>The first one to return a {@link ModelAndView} wins. Otherwise {@code null} is returned.
+	 * 通过遍历所配置的异常解析器列表来解析异常。
+	 * <p>第一个返回 {@link ModelAndView} 的解析器胜出。否则返回 {@code null}。
 	 */
 	@Override
 	@Nullable

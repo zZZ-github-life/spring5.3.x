@@ -29,16 +29,14 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * A specialization of {@link FormattingConversionService} configured by default with
- * converters and formatters appropriate for most applications.
+ * {@link FormattingConversionService} 的专用版本，默认配置了适用于大多数应用的转换器和格式化器。
  *
- * <p>Designed for direct instantiation but also exposes the static {@link #addDefaultFormatters}
- * utility method for ad hoc use against any {@code FormatterRegistry} instance, just
- * as {@code DefaultConversionService} exposes its own
- * {@link DefaultConversionService#addDefaultConverters addDefaultConverters} method.
+ * <p>设计用于直接实例化，但也公开了静态工具方法 {@link #addDefaultFormatters}，以便针对任意
+ * {@code FormatterRegistry} 实例临时使用，就像 {@code DefaultConversionService} 公开其自身的
+ * {@link DefaultConversionService#addDefaultConverters addDefaultConverters} 方法一样。
  *
- * <p>Automatically registers formatters for JSR-354 Money &amp; Currency, JSR-310 Date-Time
- * and/or Joda-Time 2.x, depending on the presence of the corresponding API on the classpath.
+ * <p>自动为 JSR-354 Money &amp; Currency、JSR-310 Date-Time 和/或 Joda-Time 2.x 注册格式化器，具体
+ * 取决于类路径上是否存在相应的 API。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -57,19 +55,18 @@ public class DefaultFormattingConversionService extends FormattingConversionServ
 	}
 
 	/**
-	 * Create a new {@code DefaultFormattingConversionService} with the set of
-	 * {@linkplain DefaultConversionService#addDefaultConverters default converters} and
-	 * {@linkplain #addDefaultFormatters default formatters}.
+	 * 创建一个新的 {@code DefaultFormattingConversionService}，其中包含
+	 * {@linkplain DefaultConversionService#addDefaultConverters 默认转换器} 和
+	 * {@linkplain #addDefaultFormatters 默认格式化器}。
 	 */
 	public DefaultFormattingConversionService() {
 		this(null, true);
 	}
 
 	/**
-	 * Create a new {@code DefaultFormattingConversionService} with the set of
-	 * {@linkplain DefaultConversionService#addDefaultConverters default converters} and,
-	 * based on the value of {@code registerDefaultFormatters}, the set of
-	 * {@linkplain #addDefaultFormatters default formatters}.
+	 * 创建一个新的 {@code DefaultFormattingConversionService}，其中包含
+	 * {@linkplain DefaultConversionService#addDefaultConverters 默认转换器}，并根据
+	 * {@code registerDefaultFormatters} 的值包含 {@linkplain #addDefaultFormatters 默认格式化器}。
 	 * @param registerDefaultFormatters whether to register default formatters
 	 */
 	public DefaultFormattingConversionService(boolean registerDefaultFormatters) {
@@ -77,10 +74,9 @@ public class DefaultFormattingConversionService extends FormattingConversionServ
 	}
 
 	/**
-	 * Create a new {@code DefaultFormattingConversionService} with the set of
-	 * {@linkplain DefaultConversionService#addDefaultConverters default converters} and,
-	 * based on the value of {@code registerDefaultFormatters}, the set of
-	 * {@linkplain #addDefaultFormatters default formatters}.
+	 * 创建一个新的 {@code DefaultFormattingConversionService}，其中包含
+	 * {@linkplain DefaultConversionService#addDefaultConverters 默认转换器}，并根据
+	 * {@code registerDefaultFormatters} 的值包含 {@linkplain #addDefaultFormatters 默认格式化器}。
 	 * @param embeddedValueResolver delegated to {@link #setEmbeddedValueResolver(StringValueResolver)}
 	 * prior to calling {@link #addDefaultFormatters}.
 	 * @param registerDefaultFormatters whether to register default formatters
@@ -99,9 +95,8 @@ public class DefaultFormattingConversionService extends FormattingConversionServ
 
 
 	/**
-	 * Add formatters appropriate for most environments: including number formatters,
-	 * JSR-354 Money &amp; Currency formatters, JSR-310 Date-Time and/or Joda-Time formatters,
-	 * depending on the presence of the corresponding API on the classpath.
+	 * 添加适用于大多数环境的格式化器：包括数字格式化器、JSR-354 Money &amp; Currency 格式化器、JSR-310
+	 * Date-Time 和/或 Joda-Time 格式化器，具体取决于类路径上是否存在相应的 API。
 	 * @param formatterRegistry the service to register default formatters with
 	 */
 	@SuppressWarnings("deprecation")

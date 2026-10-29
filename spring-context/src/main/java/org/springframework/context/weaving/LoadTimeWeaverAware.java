@@ -20,8 +20,7 @@ import org.springframework.beans.factory.Aware;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
 
 /**
- * Interface to be implemented by any object that wishes to be notified
- * of the application context's default {@link LoadTimeWeaver}.
+ * 任何希望获知应用上下文默认 {@link LoadTimeWeaver} 的对象都应实现的接口。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -31,19 +30,17 @@ import org.springframework.instrument.classloading.LoadTimeWeaver;
 public interface LoadTimeWeaverAware extends Aware {
 
 	/**
-	 * Set the {@link LoadTimeWeaver} of this object's containing
-	 * {@link org.springframework.context.ApplicationContext ApplicationContext}.
-	 * <p>Invoked after the population of normal bean properties but before an
-	 * initialization callback like
+	 * 设置此对象所在 {@link org.springframework.context.ApplicationContext ApplicationContext} 的
+	 * {@link LoadTimeWeaver}。
+	 * <p>在普通 Bean 属性填充之后、但在诸如
 	 * {@link org.springframework.beans.factory.InitializingBean InitializingBean's}
 	 * {@link org.springframework.beans.factory.InitializingBean#afterPropertiesSet() afterPropertiesSet()}
-	 * or a custom init-method. Invoked after
+	 * 或自定义 init-method 之类的初始化回调之前调用。在
 	 * {@link org.springframework.context.ApplicationContextAware ApplicationContextAware's}
-	 * {@link org.springframework.context.ApplicationContextAware#setApplicationContext setApplicationContext(..)}.
-	 * <p><b>NOTE:</b> This method will only be called if there actually is a
-	 * {@code LoadTimeWeaver} available in the application context. If
-	 * there is none, the method will simply not get invoked, assuming that the
-	 * implementing object is able to activate its weaving dependency accordingly.
+	 * {@link org.springframework.context.ApplicationContextAware#setApplicationContext setApplicationContext(..)}
+	 * 之后调用。
+	 * <p><b>NOTE:</b> 只有在应用上下文中确实存在可用的 {@code LoadTimeWeaver} 时才会调用此方法。如果不
+	 * 存在，则根本不会调用该方法，此时假定实现对象能够相应地激活其织入依赖。
 	 * @param loadTimeWeaver the {@code LoadTimeWeaver} instance (never {@code null})
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext

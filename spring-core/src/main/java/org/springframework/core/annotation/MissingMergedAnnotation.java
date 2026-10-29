@@ -28,8 +28,7 @@ import java.util.function.Predicate;
 import org.springframework.lang.Nullable;
 
 /**
- * An {@link AbstractMergedAnnotation} used as the implementation of
- * {@link MergedAnnotation#missing()}.
+ * 用作 {@link MergedAnnotation#missing()} 实现的 {@link AbstractMergedAnnotation}。
  *
  * @author Phillip Webb
  * @author Juergen Hoeller

@@ -1,8 +1,6 @@
 /**
- * Package providing integration of
- * <a href="https://beanshell.github.io/">BeanShell</a>
- * (and <a href="https://code.google.com/p/beanshell2/">BeanShell2</a>)
- * into Spring's scripting infrastructure.
+ * 本包提供 <a href="https://beanshell.github.io/">BeanShell</a>（以及
+ * <a href="https://code.google.com/p/beanshell2/">BeanShell2</a>）与 Spring 脚本基础设施的集成。
  */
 @NonNullApi
 @NonNullFields

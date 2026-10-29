@@ -37,11 +37,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@code HttpMessageReader} that wraps and delegates to a {@link Decoder}.
+ * {@code HttpMessageReader}，包装并委托给 {@link Decoder}。
  *
- * <p>Also a {@code HttpMessageReader} that pre-resolves decoding hints
- * from the extra information available on the server side such as the request
- * or controller method parameter annotations.
+ * <p>同时也是一个 {@code HttpMessageReader}，可依据服务器端提供的
+ * 额外信息（如请求或控制器方法参数上的注解）预先解析解码提示。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -57,7 +56,7 @@ public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 
 
 	/**
-	 * Create an instance wrapping the given {@link Decoder}.
+	 * 创建包装给定 {@link Decoder} 的实例。
 	 */
 	public DecoderHttpMessageReader(Decoder<T> decoder) {
 		Assert.notNull(decoder, "Decoder is required");
@@ -76,7 +75,7 @@ public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 
 
 	/**
-	 * Return the {@link Decoder} of this reader.
+	 * 返回此读取器的 {@link Decoder}。
 	 */
 	public Decoder<T> getDecoder() {
 		return this.decoder;
@@ -112,9 +111,8 @@ public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 	}
 
 	/**
-	 * Determine the Content-Type of the HTTP message based on the
-	 * "Content-Type" header or otherwise default to
-	 * {@link MediaType#APPLICATION_OCTET_STREAM}.
+	 * 根据 "Content-Type" 头确定 HTTP 消息的 Content-Type，
+	 * 否则默认为 {@link MediaType#APPLICATION_OCTET_STREAM}。
 	 * @param inputMessage the HTTP message
 	 * @return the MediaType, possibly {@code null}.
 	 */
@@ -125,7 +123,7 @@ public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 	}
 
 	/**
-	 * Get additional hints for decoding based on the input HTTP message.
+	 * 根据输入 HTTP 消息获取用于解码的额外提示。
 	 * @since 5.3
 	 */
 	protected Map<String, Object> getReadHints(ResolvableType elementType, ReactiveHttpInputMessage message) {
@@ -156,9 +154,9 @@ public class DecoderHttpMessageReader<T> implements HttpMessageReader<T> {
 	}
 
 	/**
-	 * Get additional hints for decoding for example based on the server request
-	 * or annotations from controller method parameters. By default, delegate to
-	 * the decoder if it is an instance of {@link HttpMessageDecoder}.
+	 * 获取用于解码的额外提示，例如基于服务器请求
+	 * 或控制器方法参数上的注解。默认情况下，如果解码器是
+	 * {@link HttpMessageDecoder} 的实例，则委托给该解码器。
 	 */
 	protected Map<String, Object> getReadHints(ResolvableType actualType,
 			ResolvableType elementType, ServerHttpRequest request, ServerHttpResponse response) {

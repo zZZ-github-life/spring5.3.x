@@ -22,9 +22,9 @@ import javax.xml.transform.TransformerException;
 import org.apache.commons.logging.Log;
 
 /**
- * Simple {@code javax.xml.transform.ErrorListener} implementation:
- * logs warnings using the given Commons Logging logger instance,
- * and rethrows errors to discontinue the XML transformation.
+ * {@code javax.xml.transform.ErrorListener} 的简单实现：
+ * 使用给定的 Commons Logging logger 实例记录警告，
+ * 并重新抛出错误以中止 XML 转换。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -35,8 +35,8 @@ public class SimpleTransformErrorListener implements ErrorListener {
 
 
 	/**
-	 * Create a new SimpleTransformErrorListener for the given
-	 * Commons Logging logger instance.
+	 * 为给定的 Commons Logging logger 实例创建一个新的
+	 * SimpleTransformErrorListener。
 	 */
 	public SimpleTransformErrorListener(Log logger) {
 		this.logger = logger;

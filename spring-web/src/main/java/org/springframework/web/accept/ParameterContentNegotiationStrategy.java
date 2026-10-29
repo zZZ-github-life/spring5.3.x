@@ -24,13 +24,13 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Strategy that resolves the requested content type from a query parameter.
- * The default query parameter name is {@literal "format"}.
+ * 从查询参数解析所请求内容类型的策略。
+ * 默认查询参数名为 {@literal "format"}。
  *
- * <p>You can register static mappings between keys (i.e. the expected value of
- * the query parameter) and MediaType's via {@link #addMapping(String, MediaType)}.
- * As of 5.0 this strategy also supports dynamic lookups of keys via
- * {@link org.springframework.http.MediaTypeFactory#getMediaType}.
+ * <p>你可以通过 {@link #addMapping(String, MediaType)} 注册键（即查询参数的预期值）
+ * 与 MediaType 之间的静态映射。
+ * 从 5.0 开始，此策略还支持通过
+ * {@link org.springframework.http.MediaTypeFactory#getMediaType} 对键进行动态查找。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -41,7 +41,7 @@ public class ParameterContentNegotiationStrategy extends AbstractMappingContentN
 
 
 	/**
-	 * Create an instance with the given map of file extensions and media types.
+	 * 使用给定的文件扩展名与媒体类型映射创建实例。
 	 */
 	public ParameterContentNegotiationStrategy(Map<String, MediaType> mediaTypes) {
 		super(mediaTypes);
@@ -49,8 +49,8 @@ public class ParameterContentNegotiationStrategy extends AbstractMappingContentN
 
 
 	/**
-	 * Set the name of the parameter to use to determine requested media types.
-	 * <p>By default this is set to {@code "format"}.
+	 * 设置用于确定所请求媒体类型的参数名称。
+	 * <p>默认情况下设置为 {@code "format"}。
 	 */
 	public void setParameterName(String parameterName) {
 		Assert.notNull(parameterName, "'parameterName' is required");

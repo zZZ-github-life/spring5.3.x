@@ -1,6 +1,5 @@
 /**
- * Classes supporting the {@code org.springframework.beans.factory} package.
- * Contains abstract base classes for {@code BeanFactory} implementations.
+ * 支持 {@code org.springframework.beans.factory} 包的类。包含 {@code BeanFactory} 实现的抽象基类。
  */
 @NonNullApi
 @NonNullFields

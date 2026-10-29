@@ -23,8 +23,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for {@link ClientHttpRequestFactory} implementations
- * that decorate another request factory.
+ * 用于装饰另一个请求工厂的 {@link ClientHttpRequestFactory} 实现的
+ * 抽象基类。
  *
  * @author Arjen Poutsma
  * @since 3.1
@@ -35,7 +35,7 @@ public abstract class AbstractClientHttpRequestFactoryWrapper implements ClientH
 
 
 	/**
-	 * Create a {@code AbstractClientHttpRequestFactoryWrapper} wrapping the given request factory.
+	 * 创建一个包装给定请求工厂的 {@code AbstractClientHttpRequestFactoryWrapper}。
 	 * @param requestFactory the request factory to be wrapped
 	 */
 	protected AbstractClientHttpRequestFactoryWrapper(ClientHttpRequestFactory requestFactory) {
@@ -45,9 +45,9 @@ public abstract class AbstractClientHttpRequestFactoryWrapper implements ClientH
 
 
 	/**
-	 * This implementation simply calls {@link #createRequest(URI, HttpMethod, ClientHttpRequestFactory)}
-	 * with the wrapped request factory provided to the
-	 * {@linkplain #AbstractClientHttpRequestFactoryWrapper(ClientHttpRequestFactory) constructor}.
+	 * 此实现仅使用传递给 {@linkplain #AbstractClientHttpRequestFactoryWrapper(ClientHttpRequestFactory) 构造函数}
+	 * 的被包装请求工厂调用
+	 * {@link #createRequest(URI, HttpMethod, ClientHttpRequestFactory)}。
 	 */
 	@Override
 	public final ClientHttpRequest createRequest(URI uri, HttpMethod httpMethod) throws IOException {
@@ -55,9 +55,9 @@ public abstract class AbstractClientHttpRequestFactoryWrapper implements ClientH
 	}
 
 	/**
-	 * Create a new {@link ClientHttpRequest} for the specified URI and HTTP method
-	 * by using the passed-on request factory.
-	 * <p>Called from {@link #createRequest(URI, HttpMethod)}.
+	 * 通过传入的请求工厂为指定的 URI 和 HTTP 方法
+	 * 创建新的 {@link ClientHttpRequest}。
+	 * <p>由 {@link #createRequest(URI, HttpMethod)} 调用。
 	 * @param uri the URI to create a request for
 	 * @param httpMethod the HTTP method to execute
 	 * @param requestFactory the wrapped request factory

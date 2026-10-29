@@ -33,7 +33,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
 /**
- * Formats fields annotated with the {@link DateTimeFormat} annotation using a {@link DateFormatter}.
+ * 使用 {@link DateFormatter} 格式化标注了 {@link DateTimeFormat} 注解的字段。
  *
  * @author Phillip Webb
  * @author Sam Brannen

@@ -57,48 +57,44 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * for a single JPA {@link javax.persistence.EntityManagerFactory}. Binds a JPA
- * EntityManager from the specified factory to the thread, potentially allowing for
- * one thread-bound EntityManager per factory. {@link SharedEntityManagerCreator} and
- * {@code @PersistenceContext} are aware of thread-bound entity managers and participate
- * in such transactions automatically. Using either is required for JPA access code
- * supporting this transaction management mechanism.
+ * 针对单个 JPA {@link javax.persistence.EntityManagerFactory} 的
+ * {@link org.springframework.transaction.PlatformTransactionManager} 实现。
+ * 它从指定的工厂中绑定一个 JPA EntityManager 到线程，可能允许每个工厂
+ * 有一个线程绑定的 EntityManager。{@link SharedEntityManagerCreator} 和
+ * {@code @PersistenceContext} 能感知线程绑定的 EntityManager，
+ * 并自动参与此类事务。支持此事务管理机制的 JPA 访问代码
+ * 需要使用其中之一。
  *
- * <p>This transaction manager is appropriate for applications that use a single
- * JPA EntityManagerFactory for transactional data access. JTA (usually through
- * {@link org.springframework.transaction.jta.JtaTransactionManager}) is necessary
- * for accessing multiple transactional resources within the same transaction.
- * Note that you need to configure your JPA provider accordingly in order to make
- * it participate in JTA transactions.
+ * <p>此事务管理器适用于使用单个 JPA EntityManagerFactory
+ * 进行事务性数据访问的应用程序。如果要在同一事务中访问多个事务性资源，
+ * 则需要使用 JTA（通常通过
+ * {@link org.springframework.transaction.jta.JtaTransactionManager}）。
+ * 请注意，你需要相应地配置 JPA 提供者，使其能够参与 JTA 事务。
  *
- * <p>This transaction manager also supports direct DataSource access within a
- * transaction (i.e. plain JDBC code working with the same DataSource).
- * This allows for mixing services which access JPA and services which use plain
- * JDBC (without being aware of JPA)! Application code needs to stick to the
- * same simple Connection lookup pattern as with
+ * <p>此事务管理器还支持在事务中直接访问 DataSource
+ * （即使用同一 DataSource 的纯 JDBC 代码）。
+ * 这样便可以混合使用访问 JPA 的服务和使用纯 JDBC 的服务（无需感知 JPA）！
+ * 应用程序代码需要遵循与
  * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
- * (i.e. {@link org.springframework.jdbc.datasource.DataSourceUtils#getConnection}
- * or going through a
- * {@link org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy}).
- * Note that this requires a vendor-specific {@link JpaDialect} to be configured.
+ * 相同的简单 Connection 查找模式
+ * （即 {@link org.springframework.jdbc.datasource.DataSourceUtils#getConnection}
+ * 或通过 {@link org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy}）。
+ * 请注意，这需要配置供应商特定的 {@link JpaDialect}。
  *
- * <p>Note: To be able to register a DataSource's Connection for plain JDBC code,
- * this instance needs to be aware of the DataSource ({@link #setDataSource}).
- * The given DataSource should obviously match the one used by the given
- * EntityManagerFactory. This transaction manager will autodetect the DataSource
- * used as the connection factory of the EntityManagerFactory, so you usually
- * don't need to explicitly specify the "dataSource" property.
+ * <p>注意：为了能为纯 JDBC 代码注册 DataSource 的 Connection，
+ * 此实例需要感知 DataSource（{@link #setDataSource}）。
+ * 显然，给定的 DataSource 应与给定的 EntityManagerFactory 所使用的 DataSource 一致。
+ * 此事务管理器将自动检测用作 EntityManagerFactory 连接工厂的 DataSource，
+ * 因此通常无需显式指定 "dataSource" 属性。
  *
- * <p>This transaction manager supports nested transactions via JDBC 3.0 Savepoints.
- * The {@link #setNestedTransactionAllowed "nestedTransactionAllowed"} flag defaults
- * to {@code false} though, since nested transactions will just apply to the JDBC
- * Connection, not to the JPA EntityManager and its cached entity objects and related
- * context. You can manually set the flag to {@code true} if you want to use nested
- * transactions for JDBC access code which participates in JPA transactions (provided
- * that your JDBC driver supports Savepoints). <i>Note that JPA itself does not support
- * nested transactions! Hence, do not expect JPA access code to semantically
- * participate in a nested transaction.</i>
+ * <p>此事务管理器通过 JDBC 3.0 Savepoints 支持嵌套事务。
+ * 不过 {@link #setNestedTransactionAllowed "nestedTransactionAllowed"} 标志
+ * 默认为 {@code false}，因为嵌套事务仅适用于 JDBC Connection，
+ * 而不适用于 JPA EntityManager 及其缓存的实体对象和相关上下文。
+ * 如果你希望对参与 JPA 事务的 JDBC 访问代码使用嵌套事务
+ * （前提是你的 JDBC 驱动程序支持 Savepoints），可以手动将该标志设置为 {@code true}。
+ * <i>请注意，JPA 本身并不支持嵌套事务！因此，不要期望 JPA 访问代码
+ * 在语义上参与嵌套事务。</i>
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -134,8 +130,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Create a new JpaTransactionManager instance.
-	 * <p>An EntityManagerFactory has to be set to be able to use it.
+	 * 创建一个新的 JpaTransactionManager 实例。
+	 * <p>必须先设置 EntityManagerFactory 才能使用。
 	 * @see #setEntityManagerFactory
 	 */
 	public JpaTransactionManager() {
@@ -143,7 +139,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a new JpaTransactionManager instance.
+	 * 创建一个新的 JpaTransactionManager 实例。
 	 * @param emf the EntityManagerFactory to manage transactions for
 	 */
 	public JpaTransactionManager(EntityManagerFactory emf) {
@@ -154,10 +150,10 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Set the EntityManagerFactory that this instance should manage transactions for.
-	 * <p>Alternatively, specify the persistence unit name of the target EntityManagerFactory.
-	 * By default, a default EntityManagerFactory will be retrieved by finding a
-	 * single unique bean of type EntityManagerFactory in the containing BeanFactory.
+	 * 设置此实例应为其管理事务的 EntityManagerFactory。
+	 * <p>也可以指定目标 EntityManagerFactory 的持久化单元名称。
+	 * 默认情况下，将通过查找所在 BeanFactory 中唯一的
+	 * EntityManagerFactory 类型 bean 来获取默认的 EntityManagerFactory。
 	 * @see #setPersistenceUnitName
 	 */
 	public void setEntityManagerFactory(@Nullable EntityManagerFactory emf) {
@@ -165,7 +161,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the EntityManagerFactory that this instance should manage transactions for.
+	 * 返回此实例应为其管理事务的 EntityManagerFactory。
 	 */
 	@Nullable
 	public EntityManagerFactory getEntityManagerFactory() {
@@ -173,7 +169,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Obtain the EntityManagerFactory for actual use.
+	 * 获取供实际使用的 EntityManagerFactory。
 	 * @return the EntityManagerFactory (never {@code null})
 	 * @throws IllegalStateException in case of no EntityManagerFactory set
 	 * @since 5.0
@@ -185,11 +181,11 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the name of the persistence unit to manage transactions for.
-	 * <p>This is an alternative to specifying the EntityManagerFactory by direct reference,
-	 * resolving it by its persistence unit name instead. If no EntityManagerFactory and
-	 * no persistence unit name have been specified, a default EntityManagerFactory will
-	 * be retrieved by finding a single unique bean of type EntityManagerFactory.
+	 * 设置要为其管理事务的持久化单元名称。
+	 * <p>这是直接引用指定 EntityManagerFactory 的替代方式，
+	 * 改为按持久化单元名称解析它。如果既未指定 EntityManagerFactory
+	 * 也未指定持久化单元名称，则将通过查找唯一的
+	 * EntityManagerFactory 类型 bean 来获取默认的 EntityManagerFactory。
 	 * @see #setEntityManagerFactory
 	 */
 	public void setPersistenceUnitName(@Nullable String persistenceUnitName) {
@@ -197,7 +193,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the name of the persistence unit to manage transactions for, if any.
+	 * 返回要为其管理事务的持久化单元名称（如果有）。
 	 */
 	@Nullable
 	public String getPersistenceUnitName() {
@@ -205,10 +201,10 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Specify JPA properties, to be passed into
-	 * {@code EntityManagerFactory.createEntityManager(Map)} (if any).
-	 * <p>Can be populated with a String "value" (parsed via PropertiesEditor)
-	 * or a "props" element in XML bean definitions.
+	 * 指定要传入 {@code EntityManagerFactory.createEntityManager(Map)}
+	 * 的 JPA 属性（如果有）。
+	 * <p>可以通过 String 类型的 "value"（由 PropertiesEditor 解析）
+	 * 或 XML bean 定义中的 "props" 元素来填充。
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
 	public void setJpaProperties(@Nullable Properties jpaProperties) {
@@ -216,9 +212,9 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Specify JPA properties as a Map, to be passed into
-	 * {@code EntityManagerFactory.createEntityManager(Map)} (if any).
-	 * <p>Can be populated with a "map" or "props" element in XML bean definitions.
+	 * 以 Map 形式指定要传入 {@code EntityManagerFactory.createEntityManager(Map)}
+	 * 的 JPA 属性（如果有）。
+	 * <p>可以通过 XML bean 定义中的 "map" 或 "props" 元素来填充。
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager(java.util.Map)
 	 */
 	public void setJpaPropertyMap(@Nullable Map<String, ?> jpaProperties) {
@@ -228,32 +224,31 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Allow {@code Map} access to the JPA properties to be passed to the persistence
-	 * provider, with the option to add or override specific entries.
-	 * <p>Useful for specifying entries directly, for example via {@code jpaPropertyMap[myKey]}.
+	 * 允许以 {@code Map} 方式访问要传递给持久化提供者的 JPA 属性，
+	 * 并可以选择添加或覆盖特定条目。
+	 * <p>适用于直接指定条目，例如通过 {@code jpaPropertyMap[myKey]}。
 	 */
 	public Map<String, Object> getJpaPropertyMap() {
 		return this.jpaPropertyMap;
 	}
 
 	/**
-	 * Set the JDBC DataSource that this instance should manage transactions for.
-	 * The DataSource should match the one used by the JPA EntityManagerFactory:
-	 * for example, you could specify the same JNDI DataSource for both.
-	 * <p>If the EntityManagerFactory uses a known DataSource as its connection factory,
-	 * the DataSource will be autodetected: You can still explicitly specify the
-	 * DataSource, but you don't need to in this case.
-	 * <p>A transactional JDBC Connection for this DataSource will be provided to
-	 * application code accessing this DataSource directly via DataSourceUtils
-	 * or JdbcTemplate. The Connection will be taken from the JPA EntityManager.
-	 * <p>Note that you need to use a JPA dialect for a specific JPA implementation
-	 * to allow for exposing JPA transactions as JDBC transactions.
-	 * <p>The DataSource specified here should be the target DataSource to manage
-	 * transactions for, not a TransactionAwareDataSourceProxy. Only data access
-	 * code may work with TransactionAwareDataSourceProxy, while the transaction
-	 * manager needs to work on the underlying target DataSource. If there's
-	 * nevertheless a TransactionAwareDataSourceProxy passed in, it will be
-	 * unwrapped to extract its target DataSource.
+	 * 设置此实例应为其管理事务的 JDBC DataSource。
+	 * 该 DataSource 应与 JPA EntityManagerFactory 所使用的 DataSource 一致：
+	 * 例如，可以为两者指定同一个 JNDI DataSource。
+	 * <p>如果 EntityManagerFactory 使用已知的 DataSource 作为其连接工厂，
+	 * 则会自动检测该 DataSource：这种情况下你仍然可以显式指定 DataSource，
+	 * 但不必这样做。
+	 * <p>此 DataSource 的事务性 JDBC Connection 将提供给直接通过
+	 * DataSourceUtils 或 JdbcTemplate 访问该 DataSource 的应用程序代码。
+	 * 该 Connection 将从 JPA EntityManager 中获取。
+	 * <p>请注意，需要为特定的 JPA 实现使用相应的 JPA 方言，
+	 * 才能将 JPA 事务暴露为 JDBC 事务。
+	 * <p>此处指定的 DataSource 应是用于管理事务的目标 DataSource，
+	 * 而不是 TransactionAwareDataSourceProxy。只有数据访问代码
+	 * 可以使用 TransactionAwareDataSourceProxy，而事务管理器需要
+	 * 在底层的目标 DataSource 上工作。如果仍然传入了
+	 * TransactionAwareDataSourceProxy，它将被解包以提取其目标 DataSource。
 	 * @see EntityManagerFactoryInfo#getDataSource()
 	 * @see #setJpaDialect
 	 * @see org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy
@@ -273,7 +268,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JDBC DataSource that this instance manages transactions for.
+	 * 返回此实例为其管理事务的 JDBC DataSource。
 	 */
 	@Nullable
 	public DataSource getDataSource() {
@@ -281,12 +276,12 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the JPA dialect to use for this transaction manager.
-	 * Used for vendor-specific transaction management and JDBC connection exposure.
-	 * <p>If the EntityManagerFactory uses a known JpaDialect, it will be autodetected:
-	 * You can still explicitly specify the DataSource, but you don't need to in this case.
-	 * <p>The dialect object can be used to retrieve the underlying JDBC connection
-	 * and thus allows for exposing JPA transactions as JDBC transactions.
+	 * 设置此事务管理器要使用的 JPA 方言。
+	 * 用于供应商特定的事务管理和 JDBC 连接暴露。
+	 * <p>如果 EntityManagerFactory 使用已知的 JpaDialect，则会自动检测：
+	 * 这种情况下你仍然可以显式指定 DataSource，但不必这样做。
+	 * <p>方言对象可用于获取底层 JDBC 连接，
+	 * 从而允许将 JPA 事务暴露为 JDBC 事务。
 	 * @see EntityManagerFactoryInfo#getJpaDialect()
 	 * @see JpaDialect#beginTransaction
 	 * @see JpaDialect#getJdbcConnection
@@ -296,18 +291,18 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JPA dialect to use for this transaction manager.
+	 * 返回此事务管理器要使用的 JPA 方言。
 	 */
 	public JpaDialect getJpaDialect() {
 		return this.jpaDialect;
 	}
 
 	/**
-	 * Specify a callback for customizing every {@code EntityManager} resource
-	 * created for a new transaction managed by this {@code JpaTransactionManager}.
-	 * <p>This is an alternative to a factory-level {@code EntityManager} customizer
-	 * and to a {@code JpaVendorAdapter}-level {@code postProcessEntityManager}
-	 * callback, enabling specific customizations of transactional resources.
+	 * 指定一个回调，用于自定义为此 {@code JpaTransactionManager} 管理的
+	 * 新事务而创建的每个 {@code EntityManager} 资源。
+	 * <p>这是工厂级 {@code EntityManager} 定制器和
+	 * {@code JpaVendorAdapter} 级 {@code postProcessEntityManager} 回调的替代方式，
+	 * 支持对事务性资源进行特定定制。
 	 * @since 5.3
 	 * @see #createEntityManagerForTransaction()
 	 * @see AbstractEntityManagerFactoryBean#setEntityManagerInitializer
@@ -318,8 +313,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Retrieves an EntityManagerFactory by persistence unit name, if none set explicitly.
-	 * Falls back to a default EntityManagerFactory bean if no persistence unit specified.
+	 * 如果未显式设置 EntityManagerFactory，则按持久化单元名称获取它。
+	 * 如果未指定持久化单元，则回退到默认的 EntityManagerFactory bean。
 	 * @see #setPersistenceUnitName
 	 */
 	@Override
@@ -335,9 +330,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Eagerly initialize the JPA dialect, creating a default one
-	 * for the specified EntityManagerFactory if none set.
-	 * Auto-detect the EntityManagerFactory's DataSource, if any.
+	 * 尽早初始化 JPA 方言，如果未设置，则为指定的 EntityManagerFactory
+	 * 创建一个默认方言。自动检测 EntityManagerFactory 的 DataSource（如果有）。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -469,12 +463,11 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a JPA EntityManager to be used for a transaction.
-	 * <p>The default implementation checks whether the EntityManagerFactory
-	 * is a Spring proxy and delegates to
-	 * {@link EntityManagerFactoryInfo#createNativeEntityManager}
-	 * if possible which in turns applies
-	 * {@link JpaVendorAdapter#postProcessEntityManager(EntityManager)}.
+	 * 创建一个用于事务的 JPA EntityManager。
+	 * <p>默认实现会检查 EntityManagerFactory 是否为 Spring 代理，
+	 * 如果可能，则委托给 {@link EntityManagerFactoryInfo#createNativeEntityManager}，
+	 * 后者会进而应用
+	 * {@link JpaVendorAdapter#postProcessEntityManager(EntityManager)}。
 	 * @see javax.persistence.EntityManagerFactory#createEntityManager()
 	 */
 	protected EntityManager createEntityManagerForTransaction() {
@@ -495,8 +488,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Close the current transaction's EntityManager.
-	 * Called after a transaction begin attempt failed.
+	 * 关闭当前事务的 EntityManager。
+	 * 在事务开启尝试失败后调用。
 	 * @param txObject the current transaction
 	 */
 	protected void closeEntityManagerAfterFailedBegin(JpaTransactionObject txObject) {
@@ -542,8 +535,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * This implementation returns "true": a JPA commit will properly handle
-	 * transactions that have been marked rollback-only at a global level.
+	 * 此实现返回 "true"：JPA 提交将正确处理
+	 * 在全局级别被标记为仅回滚的事务。
 	 */
 	@Override
 	protected boolean shouldCommitOnGlobalRollbackOnly() {
@@ -656,8 +649,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * JPA transaction object, representing a EntityManagerHolder.
-	 * Used as transaction object by JpaTransactionManager.
+	 * JPA 事务对象，表示一个 EntityManagerHolder。
+	 * 由 JpaTransactionManager 用作事务对象。
 	 */
 	private class JpaTransactionObject extends JdbcTransactionObjectSupport {
 
@@ -768,7 +761,7 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * JPA-specific transaction definition to be passed to {@link JpaDialect#beginTransaction}.
+	 * 要传递给 {@link JpaDialect#beginTransaction} 的 JPA 特定事务定义。
 	 * @since 5.1
 	 */
 	private static class JpaTransactionDefinition extends DelegatingTransactionDefinition
@@ -797,8 +790,8 @@ public class JpaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Holder for suspended resources.
-	 * Used internally by {@code doSuspend} and {@code doResume}.
+	 * 挂起资源的持有器。
+	 * 供 {@code doSuspend} 和 {@code doResume} 内部使用。
 	 */
 	private static final class SuspendedResourcesHolder {
 

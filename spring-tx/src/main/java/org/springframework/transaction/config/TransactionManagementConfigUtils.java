@@ -17,7 +17,7 @@
 package org.springframework.transaction.config;
 
 /**
- * Configuration constants for internal sharing across subpackages.
+ * 跨子包内部共享的配置常量。
  *
  * @author Chris Beams
  * @author Stephane Nicoll
@@ -26,52 +26,52 @@ package org.springframework.transaction.config;
 public abstract class TransactionManagementConfigUtils {
 
 	/**
-	 * The bean name of the internally managed transaction advisor (used when mode == PROXY).
+	 * 内部管理的事务通知器的bean名称(在mode == PROXY时使用)。
 	 */
 	public static final String TRANSACTION_ADVISOR_BEAN_NAME =
 			"org.springframework.transaction.config.internalTransactionAdvisor";
 
 	/**
-	 * The bean name of the internally managed transaction aspect (used when mode == ASPECTJ).
+	 * 内部管理的事务切面的bean名称(在mode == ASPECTJ时使用)。
 	 */
 	public static final String TRANSACTION_ASPECT_BEAN_NAME =
 			"org.springframework.transaction.config.internalTransactionAspect";
 
 	/**
-	 * The class name of the AspectJ transaction management aspect.
+	 * AspectJ事务管理切面的类名。
 	 */
 	public static final String TRANSACTION_ASPECT_CLASS_NAME =
 			"org.springframework.transaction.aspectj.AnnotationTransactionAspect";
 
 	/**
-	 * The name of the AspectJ transaction management @{@code Configuration} class.
+	 * AspectJ事务管理@{@code Configuration}类的类名。
 	 */
 	public static final String TRANSACTION_ASPECT_CONFIGURATION_CLASS_NAME =
 			"org.springframework.transaction.aspectj.AspectJTransactionManagementConfiguration";
 
 	/**
-	 * The bean name of the internally managed JTA transaction aspect (used when mode == ASPECTJ).
+	 * 内部管理的JTA事务切面的bean名称(在mode == ASPECTJ时使用)。
 	 * @since 5.1
 	 */
 	public static final String JTA_TRANSACTION_ASPECT_BEAN_NAME =
 			"org.springframework.transaction.config.internalJtaTransactionAspect";
 
 	/**
-	 * The class name of the AspectJ transaction management aspect.
+	 * AspectJ事务管理切面的类名。
 	 * @since 5.1
 	 */
 	public static final String JTA_TRANSACTION_ASPECT_CLASS_NAME =
 			"org.springframework.transaction.aspectj.JtaAnnotationTransactionAspect";
 
 	/**
-	 * The name of the AspectJ transaction management @{@code Configuration} class for JTA.
+	 * JTA的AspectJ事务管理@{@code Configuration}类的类名。
 	 * @since 5.1
 	 */
 	public static final String JTA_TRANSACTION_ASPECT_CONFIGURATION_CLASS_NAME =
 			"org.springframework.transaction.aspectj.AspectJJtaTransactionManagementConfiguration";
 
 	/**
-	 * The bean name of the internally managed TransactionalEventListenerFactory.
+	 * 内部管理的TransactionalEventListenerFactory的bean名称。
 	 */
 	public static final String TRANSACTIONAL_EVENT_LISTENER_FACTORY_BEAN_NAME =
 			"org.springframework.transaction.config.internalTransactionalEventListenerFactory";

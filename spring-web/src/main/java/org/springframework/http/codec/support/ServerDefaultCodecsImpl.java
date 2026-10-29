@@ -29,7 +29,7 @@ import org.springframework.http.codec.multipart.PartHttpMessageWriter;
 import org.springframework.lang.Nullable;
 
 /**
- * Default implementation of {@link ServerCodecConfigurer.ServerDefaultCodecs}.
+ * {@link ServerCodecConfigurer.ServerDefaultCodecs} 的默认实现。
  *
  * @author Rossen Stoyanchev
  */

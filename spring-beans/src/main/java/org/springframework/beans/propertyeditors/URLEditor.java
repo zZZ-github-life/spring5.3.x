@@ -25,16 +25,13 @@ import org.springframework.core.io.ResourceEditor;
 import org.springframework.util.Assert;
 
 /**
- * Editor for {@code java.net.URL}, to directly populate a URL property
- * instead of using a String property as bridge.
+ * 用于 {@code java.net.URL} 的编辑器，可直接填充 URL 属性，而无需使用 String 属性作为桥接。
  *
- * <p>Supports Spring-style URL notation: any fully qualified standard URL
- * ("file:", "http:", etc) and Spring's special "classpath:" pseudo-URL,
- * as well as Spring's context-specific relative file paths.
+ * <p>支持 Spring 风格的 URL 表示法：任何完全限定的标准 URL（"file:"、"http:" 等）以及 Spring 特殊
+ * 的 "classpath:" 伪 URL，还有 Spring 上下文相关的相对文件路径。
  *
- * <p>Note: A URL must specify a valid protocol, else it will be rejected
- * upfront. However, the target resource does not necessarily have to exist
- * at the time of URL creation; this depends on the specific resource type.
+ * <p>注意：URL 必须指定有效的协议，否则会在一开始就被拒绝。但是，目标资源在创建 URL 时不必一定存在；
+ * 这取决于具体的资源类型。
  *
  * @author Juergen Hoeller
  * @since 15.12.2003
@@ -50,14 +47,14 @@ public class URLEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new URLEditor, using a default ResourceEditor underneath.
+	 * 创建一个新的 URLEditor，底层使用默认的 ResourceEditor。
 	 */
 	public URLEditor() {
 		this.resourceEditor = new ResourceEditor();
 	}
 
 	/**
-	 * Create a new URLEditor, using the given ResourceEditor underneath.
+	 * 创建一个新的 URLEditor，底层使用给定的 ResourceEditor。
 	 * @param resourceEditor the ResourceEditor to use
 	 */
 	public URLEditor(ResourceEditor resourceEditor) {

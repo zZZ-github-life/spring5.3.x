@@ -19,11 +19,9 @@ package org.springframework.jdbc.support.incrementer;
 import org.springframework.dao.DataAccessException;
 
 /**
- * Interface that defines contract of incrementing any data store field's
- * maximum value. Works much like a sequence number generator.
+ * 定义递增任意数据存储字段最大值的契约的接口。其工作方式类似于序列号生成器。
  *
- * <p>Typical implementations may use standard SQL, native RDBMS sequences
- * or Stored Procedures to do the job.
+ * <p>典型实现可能使用标准 SQL、原生 RDBMS 序列或存储过程来完成此任务。
  *
  * @author Dmitriy Kopylenko
  * @author Jean-Pierre Pawlak
@@ -32,21 +30,21 @@ import org.springframework.dao.DataAccessException;
 public interface DataFieldMaxValueIncrementer {
 
 	/**
-	 * Increment the data store field's max value as int.
+	 * 以 int 形式递增数据存储字段的最大值。
 	 * @return int next data store value such as <b>max + 1</b>
 	 * @throws org.springframework.dao.DataAccessException in case of errors
 	 */
 	int nextIntValue() throws DataAccessException;
 
 	/**
-	 * Increment the data store field's max value as long.
+	 * 以 long 形式递增数据存储字段的最大值。
 	 * @return int next data store value such as <b>max + 1</b>
 	 * @throws org.springframework.dao.DataAccessException in case of errors
 	 */
 	long nextLongValue() throws DataAccessException;
 
 	/**
-	 * Increment the data store field's max value as String.
+	 * 以 String 形式递增数据存储字段的最大值。
 	 * @return next data store value such as <b>max + 1</b>
 	 * @throws org.springframework.dao.DataAccessException in case of errors
 	 */

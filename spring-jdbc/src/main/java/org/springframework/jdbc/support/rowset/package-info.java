@@ -1,6 +1,6 @@
 /**
- * Provides a convenient holder for disconnected result sets.
- * Supported by JdbcTemplate, but can be used independently too.
+ * 为断开连接的结果集提供便捷的持有者。
+ * 由 JdbcTemplate 支持，但也可以独立使用。
  */
 @NonNullApi
 @NonNullFields

@@ -27,17 +27,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * AOP Alliance MethodInterceptor for tracing remote invocations.
- * Automatically applied by RemoteExporter and its subclasses.
+ * 用于跟踪远程调用的 AOP Alliance MethodInterceptor。由 RemoteExporter 及其子类自动应用。
  *
- * <p>Logs an incoming remote call as well as the finished processing of a remote call
- * at DEBUG level. If the processing of a remote call results in a checked exception,
- * the exception will get logged at INFO level; if it results in an unchecked
- * exception (or error), the exception will get logged at WARN level.
+ * <p>以 DEBUG 级别记录传入的远程调用以及远程调用处理完成的情况。如果远程调用的处理导致受检异常，该
+ * 异常将以 INFO 级别记录；如果导致非受检异常（或错误），该异常将以 WARN 级别记录。
  *
- * <p>The logging of exceptions is particularly useful to save the stacktrace
- * information on the server-side rather than just propagating the exception
- * to the client (who might or might not log it properly).
+ * <p>记录异常特别有用：它可以在服务器端保存堆栈跟踪信息，而不是仅仅把异常传播到客户端（客户端可能
+ * 会也可能不会正确记录它）。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -52,14 +48,14 @@ public class RemoteInvocationTraceInterceptor implements MethodInterceptor {
 
 
 	/**
-	 * Create a new RemoteInvocationTraceInterceptor.
+	 * 创建一个新的 RemoteInvocationTraceInterceptor。
 	 */
 	public RemoteInvocationTraceInterceptor() {
 		this.exporterNameClause = "";
 	}
 
 	/**
-	 * Create a new RemoteInvocationTraceInterceptor.
+	 * 创建一个新的 RemoteInvocationTraceInterceptor。
 	 * @param exporterName the name of the remote exporter
 	 * (to be used as context information in log messages)
 	 */

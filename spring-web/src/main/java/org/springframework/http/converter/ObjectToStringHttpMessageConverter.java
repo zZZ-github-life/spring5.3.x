@@ -27,15 +27,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * An {@code HttpMessageConverter} that uses {@link StringHttpMessageConverter}
- * for reading and writing content and a {@link ConversionService} for converting
- * the String content to and from the target object type.
+ * {@code HttpMessageConverter}，使用 {@link StringHttpMessageConverter}
+ * 读写内容，并使用 {@link ConversionService} 在 String 内容与目标对象类型
+ * 之间进行转换。
  *
- * <p>By default, this converter supports the media type {@code text/plain} only.
- * This can be overridden through the {@link #setSupportedMediaTypes supportedMediaTypes}
- * property.
+ * <p>默认情况下，此转换器仅支持媒体类型 {@code text/plain}。
+ * 可以通过 {@link #setSupportedMediaTypes supportedMediaTypes}
+ * 属性覆盖。
  *
- * <p>A usage example:
+ * <p>用法示例：
  *
  * <pre class="code">
  * &lt;bean class="org.springframework.http.converter.ObjectToStringHttpMessageConverter"&gt;
@@ -57,9 +57,9 @@ public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConve
 
 
 	/**
-	 * A constructor accepting a {@code ConversionService} to use to convert the
-	 * (String) message body to/from the target class type. This constructor uses
-	 * {@link StringHttpMessageConverter#DEFAULT_CHARSET} as the default charset.
+	 * 接受一个 {@code ConversionService} 的构造函数，用于将
+	 * （String）消息体与目标类类型相互转换。此构造函数使用
+	 * {@link StringHttpMessageConverter#DEFAULT_CHARSET} 作为默认字符集。
 	 * @param conversionService the conversion service
 	 */
 	public ObjectToStringHttpMessageConverter(ConversionService conversionService) {
@@ -67,7 +67,7 @@ public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConve
 	}
 
 	/**
-	 * A constructor accepting a {@code ConversionService} as well as a default charset.
+	 * 同时接受 {@code ConversionService} 和默认字符集的构造函数。
 	 * @param conversionService the conversion service
 	 * @param defaultCharset the default charset
 	 */
@@ -81,7 +81,7 @@ public class ObjectToStringHttpMessageConverter extends AbstractHttpMessageConve
 
 
 	/**
-	 * Delegates to {@link StringHttpMessageConverter#setWriteAcceptCharset(boolean)}.
+	 * 委托给 {@link StringHttpMessageConverter#setWriteAcceptCharset(boolean)}。
 	 */
 	public void setWriteAcceptCharset(boolean writeAcceptCharset) {
 		this.stringHttpMessageConverter.setWriteAcceptCharset(writeAcceptCharset);

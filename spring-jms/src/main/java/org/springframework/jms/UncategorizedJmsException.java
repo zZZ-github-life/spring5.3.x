@@ -17,7 +17,7 @@
 package org.springframework.jms;
 
 /**
- * JmsException to be thrown when no other matching subclass found.
+ * 在找不到其他匹配的子类时抛出的 JmsException。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -26,7 +26,7 @@ package org.springframework.jms;
 public class UncategorizedJmsException extends JmsException {
 
 	/**
-	 * Constructor that takes a message.
+	 * 接受消息的构造函数。
 	 * @param msg the detail message
 	 */
 	public UncategorizedJmsException(String msg) {
@@ -34,7 +34,7 @@ public class UncategorizedJmsException extends JmsException {
 	}
 
 	/**
-	 * Constructor that takes a message and a root cause.
+	 * 接受消息和根本原因的构造函数。
 	 * @param msg the detail message
 	 * @param cause the cause of the exception. This argument is generally
 	 * expected to be a proper subclass of {@link javax.jms.JMSException},
@@ -45,7 +45,7 @@ public class UncategorizedJmsException extends JmsException {
 	}
 
 	/**
-	 * Constructor that takes a root cause only.
+	 * 仅接受根本原因的构造函数。
 	 * @param cause the cause of the exception. This argument is generally
 	 * expected to be a proper subclass of {@link javax.jms.JMSException},
 	 * but can also be a JNDI NamingException or the like.

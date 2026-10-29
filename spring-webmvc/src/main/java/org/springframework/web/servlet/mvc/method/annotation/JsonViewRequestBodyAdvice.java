@@ -29,18 +29,16 @@ import org.springframework.http.converter.json.MappingJacksonInputMessage;
 import org.springframework.util.Assert;
 
 /**
- * A {@link RequestBodyAdvice} implementation that adds support for Jackson's
- * {@code @JsonView} annotation declared on a Spring MVC {@code @HttpEntity}
- * or {@code @RequestBody} method parameter.
+ * {@link RequestBodyAdvice} 实现，用于增加对 Jackson 的
+ * {@code @JsonView} 注解的支持，该注解声明在 Spring MVC 的 {@code @HttpEntity}
+ * 或 {@code @RequestBody} 方法参数上。
  *
- * <p>The deserialization view specified in the annotation will be passed in to the
- * {@link org.springframework.http.converter.json.MappingJackson2HttpMessageConverter}
- * which will then use it to deserialize the request body with.
+ * <p>注解中指定的反序列化视图将传递给
+ * {@link org.springframework.http.converter.json.MappingJackson2HttpMessageConverter}，
+ * 后者将使用该视图来反序列化请求体。
  *
- * <p>Note that despite {@code @JsonView} allowing for more than one class to
- * be specified, the use for a request body advice is only supported with
- * exactly one class argument. Consider the use of a composite interface.
- *
+ * <p>请注意，尽管 {@code @JsonView} 允许指定多个类，
+ * 但请求体通知仅支持恰好一个类参数。可考虑使用组合接口。
  * @author Sebastien Deleuze
  * @since 4.2
  * @see com.fasterxml.jackson.annotation.JsonView

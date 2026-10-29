@@ -59,23 +59,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Mock implementation of the {@link javax.servlet.ServletContext} interface.
- *
- * <p>As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
- *
- * <p>Compatible with Servlet 3.1 but can be configured to expose a specific version
- * through {@link #setMajorVersion}/{@link #setMinorVersion}; default is 3.1.
- * Note that Servlet 3.1 support is limited: servlet, filter and listener
- * registration methods are not supported; neither is JSP configuration.
- * We generally do not recommend to unit test your ServletContainerInitializers and
- * WebApplicationInitializers which is where those registration methods would be used.
- *
- * <p>For setting up a full {@code WebApplicationContext} in a test environment, you can
- * use {@code AnnotationConfigWebApplicationContext}, {@code XmlWebApplicationContext},
- * or {@code GenericWebApplicationContext}, passing in a corresponding
- * {@code MockServletContext} instance. Consider configuring your
- * {@code MockServletContext} with a {@code FileSystemResourceLoader} in order to
- * interpret resource paths as relative filesystem locations.
+ * {@link javax.servlet.ServletContext} 接口的 Mock 实现。
+ * <p>从 Spring 5.0 开始，这组 mock 以 Servlet 4.0 为基准设计。
+ * <p>与 Servlet 3.1 兼容，但可以通过 {@link #setMajorVersion}/{@link #setMinorVersion} 配置以公开特定版本；默认为 3.1。请注意，Servlet 3.1 支持是有限的：不支持 servlet、filter 和 listener 注册方法；也不支持 JSP 配置。我们通常不建议对 ServletContainerInitializers 和 WebApplicationInitializers 进行单元测试，因为这些注册方法通常会在其中使用。
+ * <p>要在测试环境中设置完整的 {@code WebApplicationContext}，可以使用 {@code AnnotationConfigWebApplicationContext}、{@code XmlWebApplicationContext} 或 {@code GenericWebApplicationContext}，并传入相应的 {@code MockServletContext} 实例。考虑使用 {@code FileSystemResourceLoader} 配置 {@code MockServletContext}，以便将资源路径解释为相对文件系统位置。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -88,7 +75,7 @@ import org.springframework.web.util.WebUtils;
  */
 public class MockServletContext implements ServletContext {
 
-	/** Default Servlet name used by Tomcat, Jetty, JBoss, and GlassFish: {@value}. */
+	/** Tomcat、Jetty、JBoss 和 GlassFish 使用的默认 Servlet 名称：{@value}。 */
 	private static final String COMMON_DEFAULT_SERVLET_NAME = "default";
 
 	private static final String TEMP_DIR_SYSTEM_PROPERTY = "java.io.tmpdir";
@@ -149,8 +136,7 @@ public class MockServletContext implements ServletContext {
 
 
 	/**
-	 * Create a new {@code MockServletContext}, using no base path and a
-	 * {@link DefaultResourceLoader} (i.e. the classpath root as WAR root).
+	 * 创建一个新的 {@code MockServletContext}，不使用基路径，并使用 {@link DefaultResourceLoader}（即以类路径根作为 WAR 根目录）。
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public MockServletContext() {
@@ -158,7 +144,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Create a new {@code MockServletContext}, using a {@link DefaultResourceLoader}.
+	 * 使用 {@link DefaultResourceLoader} 创建一个新的 {@code MockServletContext}。
 	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
@@ -167,8 +153,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Create a new {@code MockServletContext}, using the specified {@link ResourceLoader}
-	 * and no base path.
+	 * 使用指定的 {@link ResourceLoader} 创建一个新的 {@code MockServletContext}，不使用基路径。
 	 * @param resourceLoader the ResourceLoader to use (or null for the default)
 	 */
 	public MockServletContext(@Nullable ResourceLoader resourceLoader) {
@@ -176,10 +161,8 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Create a new {@code MockServletContext} using the supplied resource base
-	 * path and resource loader.
-	 * <p>Registers a {@link MockRequestDispatcher} for the Servlet named
-	 * {@literal 'default'}.
+	 * 使用提供的资源基路径和资源加载器创建一个新的 {@code MockServletContext}。
+	 * <p>为名为 {@literal 'default'} 的 Servlet 注册一个 {@link MockRequestDispatcher}。
 	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)
 	 * @param resourceLoader the ResourceLoader to use (or null for the default)
 	 * @see #registerNamedDispatcher
@@ -198,8 +181,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Build a full resource location for the given path, prepending the resource
-	 * base path of this {@code MockServletContext}.
+	 * 为给定路径构建完整的资源位置，并在前面加上此 {@code MockServletContext} 的资源基路径。
 	 * @param path the path as specified
 	 * @return the full resource path
 	 */
@@ -282,7 +264,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Adds a mime type mapping for use by {@link #getMimeType(String)}.
+	 * 添加供 {@link #getMimeType(String)} 使用的 MIME 类型映射。
 	 * @param fileExtension a file extension, such as {@code txt}, {@code gif}
 	 * @param mimeType the mime type
 	 */
@@ -381,8 +363,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Register a {@link RequestDispatcher} (typically a {@link MockRequestDispatcher})
-	 * that acts as a wrapper for the named Servlet.
+	 * 注册一个 {@link RequestDispatcher}（通常是 {@link MockRequestDispatcher}），作为指定 Servlet 的包装器。
 	 * @param name the name of the wrapped Servlet
 	 * @param requestDispatcher the dispatcher that wraps the named Servlet
 	 * @see #getNamedDispatcher
@@ -395,7 +376,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Unregister the {@link RequestDispatcher} with the given name.
+	 * 注销具有给定名称的 {@link RequestDispatcher}。
 	 * @param name the name of the dispatcher to unregister
 	 * @see #getNamedDispatcher
 	 * @see #registerNamedDispatcher
@@ -406,8 +387,8 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Get the name of the <em>default</em> {@code Servlet}.
-	 * <p>Defaults to {@literal 'default'}.
+	 * 获取<em>默认</em> {@code Servlet} 的名称。
+	 * <p>默认为 {@literal 'default'}。
 	 * @see #setDefaultServletName
 	 */
 	public String getDefaultServletName() {
@@ -415,11 +396,8 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * Set the name of the <em>default</em> {@code Servlet}.
-	 * <p>Also {@link #unregisterNamedDispatcher unregisters} the current default
-	 * {@link RequestDispatcher} and {@link #registerNamedDispatcher replaces}
-	 * it with a {@link MockRequestDispatcher} for the provided
-	 * {@code defaultServletName}.
+	 * 设置<em>默认</em> {@code Servlet} 的名称。
+	 * <p>还会{@link #unregisterNamedDispatcher 注销}当前的默认 {@link RequestDispatcher}，并将其{@link #registerNamedDispatcher 替换}为针对所提供的 {@code defaultServletName} 的 {@link MockRequestDispatcher}。
 	 * @param defaultServletName the name of the <em>default</em> {@code Servlet};
 	 * never {@code null} or empty
 	 * @see #getDefaultServletName
@@ -662,7 +640,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * This method always returns {@code null}.
+	 * 此方法始终返回 {@code null}。
 	 * @see javax.servlet.ServletContext#getServletRegistration(java.lang.String)
 	 */
 	@Override
@@ -672,7 +650,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * This method always returns an {@linkplain Collections#emptyMap empty map}.
+	 * 此方法始终返回{@linkplain Collections#emptyMap 空映射}。
 	 * @see javax.servlet.ServletContext#getServletRegistrations()
 	 */
 	@Override
@@ -701,7 +679,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * This method always returns {@code null}.
+	 * 此方法始终返回 {@code null}。
 	 * @see javax.servlet.ServletContext#getFilterRegistration(java.lang.String)
 	 */
 	@Override
@@ -711,7 +689,7 @@ public class MockServletContext implements ServletContext {
 	}
 
 	/**
-	 * This method always returns an {@linkplain Collections#emptyMap empty map}.
+	 * 此方法始终返回{@linkplain Collections#emptyMap 空映射}。
 	 * @see javax.servlet.ServletContext#getFilterRegistrations()
 	 */
 	@Override

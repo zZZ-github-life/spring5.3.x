@@ -22,14 +22,13 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface used by the {@link DefaultBeanDefinitionDocumentReader} to handle custom,
- * top-level (directly under {@code <beans/>}) tags.
+ * 由 {@link DefaultBeanDefinitionDocumentReader} 用于处理自定义顶级标签（直接位于 {@code <beans/>}
+ * 下）的接口。
  *
- * <p>Implementations are free to turn the metadata in the custom tag into as many
- * {@link BeanDefinition BeanDefinitions} as required.
+ * <p>实现可以自由地将自定义标签中的元数据转换为所需数量的 {@link BeanDefinition BeanDefinitions}。
  *
- * <p>The parser locates a {@link BeanDefinitionParser} from the associated
- * {@link NamespaceHandler} for the namespace in which the custom tag resides.
+ * <p>解析器会从自定义标签所在命名空间关联的 {@link NamespaceHandler} 中定位
+ * {@link BeanDefinitionParser}。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -39,14 +38,12 @@ import org.springframework.lang.Nullable;
 public interface BeanDefinitionParser {
 
 	/**
-	 * Parse the specified {@link Element} and register the resulting
-	 * {@link BeanDefinition BeanDefinition(s)} with the
-	 * {@link org.springframework.beans.factory.xml.ParserContext#getRegistry() BeanDefinitionRegistry}
-	 * embedded in the supplied {@link ParserContext}.
-	 * <p>Implementations must return the primary {@link BeanDefinition} that results
-	 * from the parse if they will ever be used in a nested fashion (for example as
-	 * an inner tag in a {@code <property/>} tag). Implementations may return
-	 * {@code null} if they will <strong>not</strong> be used in a nested fashion.
+	 * 解析指定的 {@link Element}，并将生成的 {@link BeanDefinition BeanDefinition(s)} 注册到嵌入在提供
+	 * 的 {@link ParserContext} 中的
+	 * {@link org.springframework.beans.factory.xml.ParserContext#getRegistry() BeanDefinitionRegistry}。
+	 * <p>如果实现会被以嵌套方式使用（例如作为 {@code <property/>} 标签中的内部标签），则必须返回解析
+	 * 得到的主要 {@link BeanDefinition}。如果实现<strong>不会</strong>以嵌套方式使用，则可以返回
+	 * {@code null}。
 	 * @param element the element that is to be parsed into one or more {@link BeanDefinition BeanDefinitions}
 	 * @param parserContext the object encapsulating the current state of the parsing process;
 	 * provides access to a {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}

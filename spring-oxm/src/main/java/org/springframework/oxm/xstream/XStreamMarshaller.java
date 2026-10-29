@@ -90,28 +90,25 @@ import org.springframework.util.function.SingletonSupplier;
 import org.springframework.util.xml.StaxUtils;
 
 /**
- * Implementation of the {@code Marshaller} interface for XStream.
+ * 适用于 XStream 的 {@code Marshaller} 接口实现。
  *
- * <p>By default, XStream does not require any further configuration and can (un)marshal
- * any class on the classpath. As such, it is <b>not recommended to use the
- * {@code XStreamMarshaller} to unmarshal XML from external sources</b> (i.e. the Web),
- * as this can result in <b>security vulnerabilities</b>. If you do use the
- * {@code XStreamMarshaller} to unmarshal external XML, set the
- * {@link #setSupportedClasses(Class[]) supportedClasses} and
- * {@link #setConverters(ConverterMatcher[]) converters} properties (possibly using
- * a {@link CatchAllConverter}) or override the {@link #customizeXStream(XStream)}
- * method to make sure it only accepts the classes you want it to support.
+ * <p>默认情况下，XStream 不需要任何额外配置，并且可以 (un)marshal classpath 上的任何类。
+ * 因此，<b>不建议使用 {@code XStreamMarshaller} 来 unmarshal 来自外部来源（例如 Web）
+ * 的 XML</b>，因为这可能导致<b>安全漏洞</b>。如果确实要使用 {@code XStreamMarshaller}
+ * 来 unmarshal 外部 XML，请设置 {@link #setSupportedClasses(Class[]) supportedClasses}
+ * 和 {@link #setConverters(ConverterMatcher[]) converters} 属性（可以使用
+ * {@link CatchAllConverter}），或者覆盖 {@link #customizeXStream(XStream)} 方法，
+ * 以确保它只接受你希望支持的类。
  *
- * <p>Due to XStream's API, it is required to set the encoding used for writing to
- * OutputStreams. It defaults to {@code UTF-8}.
+ * <p>由于 XStream 的 API 限制，必须设置写入 OutputStream 时使用的编码。
+ * 默认值为 {@code UTF-8}。
  *
- * <p><b>NOTE:</b> XStream is an XML serialization library, not a data binding library.
- * Therefore, it has limited namespace support. As such, it is rather unsuitable for
- * usage within Web Services.
+ * <p><b>注意：</b>XStream 是 XML 序列化库，而不是数据绑定库。
+ * 因此，它的命名空间支持有限。所以它不太适合在 Web 服务中使用。
  *
- * <p>This marshaller requires XStream 1.4.7 or higher, as of Spring 5.2.17.
- * Note that {@link XStream} construction has been reworked in 4.0, with the
- * stream driver and the class loader getting passed into XStream itself now.
+ * <p>自 Spring 5.2.17 起，此 marshaller 要求 XStream 1.4.7 或更高版本。
+ * 请注意，{@link XStream} 的构造方式在 4.0 中已重构，现在流驱动程序和类加载器
+ * 都直接传入 XStream 本身。
  *
  * @author Peter Meijer
  * @author Arjen Poutsma
@@ -122,7 +119,7 @@ import org.springframework.util.xml.StaxUtils;
 public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLoaderAware, InitializingBean {
 
 	/**
-	 * The default encoding used for stream access: UTF-8.
+	 * 用于流访问的默认编码：UTF-8。
 	 */
 	public static final String DEFAULT_ENCODING = "UTF-8";
 
@@ -198,7 +195,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 
 	/**
-	 * Set a custom XStream {@link ReflectionProvider} to use.
+	 * 设置要使用的自定义 XStream {@link ReflectionProvider}。
 	 * @since 4.0
 	 */
 	public void setReflectionProvider(ReflectionProvider reflectionProvider) {
@@ -206,9 +203,9 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set a XStream {@link HierarchicalStreamDriver} to be used for readers and writers.
-	 * <p>As of Spring 4.0, this stream driver will also be passed to the {@link XStream}
-	 * constructor and therefore used by streaming-related native API methods themselves.
+	 * 设置用于读写器的 XStream {@link HierarchicalStreamDriver}。
+	 * <p>自 Spring 4.0 起，此流驱动程序也会传给 {@link XStream} 构造函数，
+	 * 因此流相关的原生 API 方法本身也会使用它。
 	 */
 	public void setStreamDriver(HierarchicalStreamDriver streamDriver) {
 		this.streamDriver = streamDriver;
@@ -223,7 +220,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set a custom XStream {@link Mapper} to use.
+	 * 设置要使用的自定义 XStream {@link Mapper}。
 	 * @since 4.0
 	 */
 	public void setMapper(Mapper mapper) {
@@ -231,9 +228,9 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set one or more custom XStream {@link MapperWrapper} classes.
-	 * Each of those classes needs to have a constructor with a single argument
-	 * of type {@link Mapper} or {@link MapperWrapper}.
+	 * 设置一个或多个自定义 XStream {@link MapperWrapper} 类。
+	 * 每个类都需要有一个仅接收一个 {@link Mapper} 或 {@link MapperWrapper}
+	 * 类型参数的构造函数。
 	 * @since 4.0
 	 */
 	@SuppressWarnings("unchecked")
@@ -242,8 +239,8 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set a custom XStream {@link ConverterLookup} to use.
-	 * Also used as {@link ConverterRegistry} if the given reference implements it as well.
+	 * 设置要使用的自定义 XStream {@link ConverterLookup}。
+	 * 如果给定的引用同时实现了 {@link ConverterRegistry}，也会将其用作 {@link ConverterRegistry}。
 	 * @since 4.0
 	 * @see DefaultConverterLookup
 	 */
@@ -255,7 +252,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set a custom XStream {@link ConverterRegistry} to use.
+	 * 设置要使用的自定义 XStream {@link ConverterRegistry}。
 	 * @since 4.0
 	 * @see #setConverterLookup
 	 * @see DefaultConverterLookup
@@ -265,8 +262,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the {@code Converters} or {@code SingleValueConverters} to be registered
-	 * with the {@code XStream} instance.
+	 * 设置要注册到 {@code XStream} 实例的 {@code Converters} 或 {@code SingleValueConverters}。
 	 * @see Converter
 	 * @see SingleValueConverter
 	 */
@@ -275,13 +271,12 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set XStream type permissions such as
-	 * {@link com.thoughtworks.xstream.security.AnyTypePermission},
-	 * {@link com.thoughtworks.xstream.security.ExplicitTypePermission} etc,
-	 * as an alternative to overriding the {@link #customizeXStream} method.
-	 * <p>Note: As of XStream 1.4.18, the default type permissions are
-	 * restricted to well-known core JDK types. For any custom types,
-	 * explicit type permissions need to be registered.
+	 * 设置 XStream 类型权限，例如
+	 * {@link com.thoughtworks.xstream.security.AnyTypePermission}、
+	 * {@link com.thoughtworks.xstream.security.ExplicitTypePermission} 等，
+	 * 作为覆盖 {@link #customizeXStream} 方法的替代方案。
+	 * <p>注意：自 XStream 1.4.18 起，默认类型权限被限制为知名的核心 JDK 类型。
+	 * 对于任何自定义类型，都需要注册显式的类型权限。
 	 * @since 5.2.17
 	 */
 	public void setTypePermissions(TypePermission... typePermissions) {
@@ -289,7 +284,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set a custom XStream {@link MarshallingStrategy} to use.
+	 * 设置要使用的自定义 XStream {@link MarshallingStrategy}。
 	 * @since 4.0
 	 */
 	public void setMarshallingStrategy(MarshallingStrategy marshallingStrategy) {
@@ -297,7 +292,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the XStream mode to use.
+	 * 设置要使用的 XStream 模式。
 	 * @see XStream#ID_REFERENCES
 	 * @see XStream#NO_REFERENCES
 	 */
@@ -306,8 +301,8 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the alias/type map, consisting of string aliases mapped to classes.
-	 * <p>Keys are aliases; values are either {@code Class} instances, or String class names.
+	 * 设置别名/类型映射，由映射到类的字符串别名组成。
+	 * <p>键为别名；值为 {@code Class} 实例或 String 类名。
 	 * @see XStream#alias(String, Class)
 	 */
 	public void setAliases(Map<String, ?> aliases) {
@@ -315,9 +310,9 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the <em>aliases by type</em> map, consisting of string aliases mapped to classes.
-	 * <p>Any class that is assignable to this type will be aliased to the same name.
-	 * Keys are aliases; values are either {@code Class} instances, or String class names.
+	 * 设置<em>按类型别名</em>映射，由映射到类的字符串别名组成。
+	 * <p>任何可赋值给此类型的类都将被赋予相同的别名。
+	 * 键为别名；值为 {@code Class} 实例或 String 类名。
 	 * @see XStream#aliasType(String, Class)
 	 */
 	public void setAliasesByType(Map<String, ?> aliasesByType) {
@@ -325,7 +320,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the field alias/type map, consisting of field names.
+	 * 设置字段别名/类型映射，由字段名组成。
 	 * @see XStream#aliasField(String, Class, String)
 	 */
 	public void setFieldAliases(Map<String, String> fieldAliases) {
@@ -333,7 +328,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set types to use XML attributes for.
+	 * 设置要使用 XML 属性的类型。
 	 * @see XStream#useAttributeFor(Class)
 	 */
 	public void setUseAttributeForTypes(Class<?>... useAttributeForTypes) {
@@ -341,20 +336,19 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the types to use XML attributes for. The given map can contain
-	 * either {@code <String, Class>} pairs, in which case
-	 * {@link XStream#useAttributeFor(String, Class)} is called.
-	 * Alternatively, the map can contain {@code <Class, String>}
-	 * or {@code <Class, List<String>>} pairs, which results
-	 * in {@link XStream#useAttributeFor(Class, String)} calls.
+	 * 设置要使用 XML 属性的类型。给定的映射可以包含
+	 * {@code <String, Class>} 键值对，此时会调用
+	 * {@link XStream#useAttributeFor(String, Class)}。
+	 * 或者，映射也可以包含 {@code <Class, String>}
+	 * 或 {@code <Class, List<String>>} 键值对，此时会调用
+	 * {@link XStream#useAttributeFor(Class, String)}。
 	 */
 	public void setUseAttributeFor(Map<?, ?> useAttributeFor) {
 		this.useAttributeFor = useAttributeFor;
 	}
 
 	/**
-	 * Specify implicit collection fields, as a Map consisting of {@code Class} instances
-	 * mapped to comma separated collection field names.
+	 * 指定隐式集合字段，形式为将 {@code Class} 实例映射到逗号分隔的集合字段名的 Map。
 	 * @see XStream#addImplicitCollection(Class, String)
 	 */
 	public void setImplicitCollections(Map<Class<?>, String> implicitCollections) {
@@ -362,8 +356,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Specify omitted fields, as a Map consisting of {@code Class} instances
-	 * mapped to comma separated field names.
+	 * 指定要忽略的字段，形式为将 {@code Class} 实例映射到逗号分隔的字段名的 Map。
 	 * @see XStream#omitField(Class, String)
 	 */
 	public void setOmittedFields(Map<Class<?>, String> omittedFields) {
@@ -371,7 +364,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set annotated classes for which aliases will be read from class-level annotation metadata.
+	 * 设置带注解的类，这些类的别名将从类级注解元数据中读取。
 	 * @see XStream#processAnnotations(Class[])
 	 */
 	public void setAnnotatedClasses(Class<?>... annotatedClasses) {
@@ -379,9 +372,9 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Activate XStream's autodetection mode.
-	 * <p><b>Note</b>: Autodetection implies that the XStream instance is being configured while
-	 * it is processing the XML streams, and thus introduces a potential concurrency problem.
+	 * 激活 XStream 的自动检测模式。
+	 * <p><b>注意</b>：自动检测意味着 XStream 实例会在处理 XML 流的同时进行配置，
+	 * 因此会引入潜在的并发问题。
 	 * @see XStream#autodetectAnnotations(boolean)
 	 */
 	public void setAutodetectAnnotations(boolean autodetectAnnotations) {
@@ -389,7 +382,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the encoding to be used for stream access.
+	 * 设置用于流访问的编码。
 	 * @see #DEFAULT_ENCODING
 	 */
 	public void setEncoding(String encoding) {
@@ -402,8 +395,8 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set a custom XStream {@link NameCoder} to use.
-	 * The default is an {@link XmlFriendlyNameCoder}.
+	 * 设置要使用的自定义 XStream {@link NameCoder}。
+	 * 默认为 {@link XmlFriendlyNameCoder}。
 	 * @since 4.0.4
 	 */
 	public void setNameCoder(NameCoder nameCoder) {
@@ -411,8 +404,8 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Set the classes supported by this marshaller.
-	 * <p>If this property is empty (the default), all classes are supported.
+	 * 设置此 marshaller 所支持的类。
+	 * <p>如果此属性为空（默认值），则支持所有类。
 	 * @see #supports(Class)
 	 */
 	public void setSupportedClasses(Class<?>... supportedClasses) {
@@ -431,9 +424,9 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Build the native XStream delegate to be used by this marshaller,
-	 * delegating to {@link #constructXStream}, {@link #configureXStream},
-	 * and {@link #customizeXStream}.
+	 * 构建此 marshaller 使用的原生 XStream 委托，依次委托给
+	 * {@link #constructXStream}、{@link #configureXStream}
+	 * 和 {@link #customizeXStream}。
 	 */
 	protected XStream buildXStream() {
 		XStream xstream = constructXStream();
@@ -443,8 +436,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Construct an XStream instance, either using one of the
-	 * standard constructors or creating a custom subclass.
+	 * 构造一个 XStream 实例，可以使用标准构造函数之一，或创建自定义子类。
 	 * @return the {@code XStream} instance
 	 */
 	protected XStream constructXStream() {
@@ -481,7 +473,7 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Configure the XStream instance with this marshaller's bean properties.
+	 * 使用此 marshaller 的 bean 属性配置 XStream 实例。
 	 * @param xstream the {@code XStream} instance
 	 */
 	protected void configureXStream(XStream xstream) {
@@ -631,20 +623,20 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Template to allow for customizing the given {@link XStream}.
-	 * <p>The default implementation is empty.
+	 * 用于自定义给定 {@link XStream} 的模板。
+	 * <p>默认实现为空。
 	 * @param xstream the {@code XStream} instance
 	 */
 	protected void customizeXStream(XStream xstream) {
 	}
 
 	/**
-	 * Return the native XStream delegate used by this marshaller.
-	 * <p><b>NOTE: This method has been marked as final as of Spring 4.0.</b>
-	 * It can be used to access the fully configured XStream for marshalling
-	 * but not configuration purposes anymore.
-	 * <p>As of Spring Framework 5.1.16, creation of the {@link XStream} instance
-	 * returned by this method is thread safe.
+	 * 返回此 marshaller 所使用的原生 XStream 委托。
+	 * <p><b>注意：此方法自 Spring 4.0 起已被标记为 final。</b>
+	 * 它可用于访问完全配置好的 XStream 以进行 marshalling，
+	 * 但不再用于配置目的。
+	 * <p>自 Spring Framework 5.1.16 起，此方法返回的 {@link XStream} 实例的创建
+	 * 是线程安全的。
 	 */
 	public final XStream getXStream() {
 		return this.xstream.obtain();
@@ -753,8 +745,8 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Marshals the given graph to the given XStream HierarchicalStreamWriter.
-	 * Converts exceptions using {@link #convertXStreamException}.
+	 * 将给定对象图 marshalling 到给定的 XStream HierarchicalStreamWriter。
+	 * 使用 {@link #convertXStreamException} 转换异常。
 	 */
 	private void doMarshal(Object graph, HierarchicalStreamWriter streamWriter, @Nullable DataHolder dataHolder) {
 		try {
@@ -852,8 +844,8 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 	}
 
 	/**
-	 * Unmarshals the given graph to the given XStream HierarchicalStreamWriter.
-	 * Converts exceptions using {@link #convertXStreamException}.
+	 * 将给定对象图 unmarshalling 到给定的 XStream HierarchicalStreamWriter。
+	 * 使用 {@link #convertXStreamException} 转换异常。
 	 */
 	private Object doUnmarshal(HierarchicalStreamReader streamReader, @Nullable DataHolder dataHolder) {
 		try {
@@ -866,10 +858,10 @@ public class XStreamMarshaller extends AbstractMarshaller implements BeanClassLo
 
 
 	/**
-	 * Convert the given XStream exception to an appropriate exception from the
-	 * {@code org.springframework.oxm} hierarchy.
-	 * <p>A boolean flag is used to indicate whether this exception occurs during marshalling or
-	 * unmarshalling, since XStream itself does not make this distinction in its exception hierarchy.
+	 * 将给定的 XStream 异常转换为 {@code org.springframework.oxm} 异常层次结构中
+	 * 相应的异常。
+	 * <p>由于 XStream 自身的异常层次结构并不区分 marshalling 与 unmarshalling，
+	 * 因此使用一个布尔标志来指示该异常是发生在 marshalling 还是 unmarshalling 期间。
 	 * @param ex the XStream exception that occurred
 	 * @param marshalling indicates whether the exception occurs during marshalling ({@code true}),
 	 * or unmarshalling ({@code false})

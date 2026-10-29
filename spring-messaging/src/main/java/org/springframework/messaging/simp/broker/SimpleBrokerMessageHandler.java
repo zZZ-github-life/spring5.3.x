@@ -39,9 +39,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.PathMatcher;
 
 /**
- * A "simple" message broker that recognizes the message types defined in
- * {@link SimpMessageType}, keeps track of subscriptions with the help of a
- * {@link SubscriptionRegistry} and sends messages to subscribers.
+ * 一个“简单”的消息代理，它识别 {@link SimpMessageType} 中定义的消息类型，
+ * 借助 {@link SubscriptionRegistry} 跟踪订阅，并向订阅者发送消息。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -80,8 +79,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 
 	/**
-	 * Create a SimpleBrokerMessageHandler instance with the given message channels
-	 * and destination prefixes.
+	 * 使用给定消息通道和目标前缀创建 SimpleBrokerMessageHandler 实例。
 	 * @param clientInboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
 	 * @param clientOutboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
 	 * @param brokerChannel the channel for the application to send messages to the broker
@@ -96,11 +94,10 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 
 
 	/**
-	 * Configure a custom SubscriptionRegistry to use for storing subscriptions.
-	 * <p><strong>Note</strong> that when a custom PathMatcher is configured via
-	 * {@link #setPathMatcher}, if the custom registry is not an instance of
-	 * {@link DefaultSubscriptionRegistry}, the provided PathMatcher is not used
-	 * and must be configured directly on the custom registry.
+	 * 配置用于存储订阅的自定义 SubscriptionRegistry。
+	 * <p><strong>注意</strong>，当通过 {@link #setPathMatcher} 配置自定义 PathMatcher 时，
+	 * 如果自定义注册表不是 {@link DefaultSubscriptionRegistry} 实例，
+	 * 则不会使用提供的 PathMatcher，必须直接在自定义注册表上进行配置。
 	 */
 	public void setSubscriptionRegistry(SubscriptionRegistry subscriptionRegistry) {
 		Assert.notNull(subscriptionRegistry, "SubscriptionRegistry must not be null");
@@ -115,9 +112,9 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * When configured, the given PathMatcher is passed down to the underlying
-	 * SubscriptionRegistry to use for matching destination to subscriptions.
-	 * <p>Default is a standard {@link org.springframework.util.AntPathMatcher}.
+	 * 配置后，给定 PathMatcher 会传递给底层 SubscriptionRegistry，
+	 * 用于将目标与订阅进行匹配。
+	 * <p>默认使用标准的 {@link org.springframework.util.AntPathMatcher}。
 	 * @since 4.1
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setPathMatcher
@@ -135,10 +132,8 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * When configured, the specified cache limit is passed down to the
-	 * underlying SubscriptionRegistry, overriding any default there.
-	 * <p>With a standard {@link DefaultSubscriptionRegistry}, the default
-	 * cache limit is 1024.
+	 * 配置后，指定的缓存限制会传递给底层 SubscriptionRegistry，覆盖其中的任何默认值。
+	 * <p>使用标准的 {@link DefaultSubscriptionRegistry} 时，默认缓存限制为 1024。
 	 * @since 4.3.2
 	 * @see #setSubscriptionRegistry
 	 * @see DefaultSubscriptionRegistry#setCacheLimit
@@ -156,16 +151,14 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * Configure the name of a header that a subscription message can have for
-	 * the purpose of filtering messages matched to the subscription. The header
-	 * value is expected to be a Spring EL boolean expression to be applied to
-	 * the headers of messages matched to the subscription.
-	 * <p>For example:
+	 * 配置订阅消息可以带有的头名称，用于过滤与订阅匹配的消息。
+	 * 该头值应为 Spring EL 布尔表达式，应用于与订阅匹配的消息头。
+	 * <p>例如：
 	 * <pre>
 	 * headers.foo == 'bar'
 	 * </pre>
-	 * <p>By default this is set to "selector". You can set it to a different
-	 * name, or to {@code null} to turn off support for a selector header.
+	 * <p>默认设置为 "selector"。可以将其设置为其他名称，或设置为 {@code null}
+	 * 以关闭对选择器头的支持。
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.3.17
 	 * @see #setSubscriptionRegistry
@@ -183,10 +176,10 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * Configure the {@link org.springframework.scheduling.TaskScheduler} to
-	 * use for providing heartbeat support. Setting this property also sets the
-	 * {@link #setHeartbeatValue heartbeatValue} to "10000, 10000".
-	 * <p>By default this is not set.
+	 * 配置用于提供心跳支持的
+	 * {@link org.springframework.scheduling.TaskScheduler}。设置此属性还会将
+	 * {@link #setHeartbeatValue heartbeatValue} 设置为 "10000, 10000"。
+	 * <p>默认不设置。
 	 * @since 4.2
 	 */
 	public void setTaskScheduler(@Nullable TaskScheduler taskScheduler) {
@@ -197,7 +190,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * Return the configured TaskScheduler.
+	 * 返回已配置的 TaskScheduler。
 	 * @since 4.2
 	 */
 	@Nullable
@@ -206,12 +199,10 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * Configure the value for the heart-beat settings. The first number
-	 * represents how often the server will write or send a heartbeat.
-	 * The second is how often the client should write. 0 means no heartbeats.
-	 * <p>By default this is set to "0, 0" unless the {@link #setTaskScheduler
-	 * taskScheduler} in which case the default becomes "10000,10000"
-	 * (in milliseconds).
+	 * 配置心跳设置的值。第一个数字表示服务器写入或发送心跳的频率。
+	 * 第二个数字表示客户端应写入的频率。0 表示不发送心跳。
+	 * <p>默认设置为 "0, 0"，除非设置了 {@link #setTaskScheduler
+	 * taskScheduler}，此时默认值变为 "10000,10000"（以毫秒为单位）。
 	 * @since 4.2
 	 */
 	public void setHeartbeatValue(@Nullable long[] heartbeat) {
@@ -222,7 +213,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * The configured value for the heart-beat settings.
+	 * 心跳设置的已配置值。
 	 * @since 4.2
 	 */
 	@Nullable
@@ -231,9 +222,9 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers
-	 * of all messages sent to the client outbound channel.
-	 * <p>By default this property is not set.
+	 * 配置要应用于发送到客户端出站通道的所有消息头的
+	 * {@link MessageHeaderInitializer}。
+	 * <p>默认情况下，不设置此属性。
 	 * @since 4.1
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
@@ -241,7 +232,7 @@ public class SimpleBrokerMessageHandler extends AbstractBrokerMessageHandler {
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 * @since 4.1
 	 */
 	@Nullable

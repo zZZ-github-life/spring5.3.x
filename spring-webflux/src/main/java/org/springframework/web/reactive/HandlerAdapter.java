@@ -23,9 +23,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Contract that decouples the {@link DispatcherHandler} from the details of
- * invoking a handler and makes it possible to support any handler type.
- *
+ * 将 {@link DispatcherHandler} 与调用处理器的具体细节解耦的契约，使得支持任意处理器类型成为可能。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0
@@ -33,22 +31,16 @@ import org.springframework.web.server.ServerWebExchange;
 public interface HandlerAdapter {
 
 	/**
-	 * Whether this {@code HandlerAdapter} supports the given {@code handler}.
+	 * 此 {@code HandlerAdapter} 是否支持给定的 {@code handler}。
 	 * @param handler the handler object to check
 	 * @return whether the handler is supported
 	 */
 	boolean supports(Object handler);
 
 	/**
-	 * Handle the request with the given handler.
-	 * <p>Implementations are encouraged to handle exceptions resulting from the
-	 * invocation of a handler in order and if necessary to return an alternate
-	 * result that represents an error response.
-	 * <p>Furthermore since an async {@code HandlerResult} may produce an error
-	 * later during result handling implementations are also encouraged to
-	 * {@link HandlerResult#setExceptionHandler(Function) set an exception
-	 * handler} on the {@code HandlerResult} so that may also be applied later
-	 * after result handling.
+	 * 使用给定的处理器处理请求。
+	 * <p>鼓励实现类按顺序处理调用处理器时产生的异常，并在必要时返回表示错误响应的替代结果。
+	 * <p>此外，由于异步的 {@code HandlerResult} 可能在后续结果处理过程中产生错误，因此也鼓励实现类在 {@code HandlerResult} 上{@link HandlerResult#setExceptionHandler(Function) 设置异常处理器}，以便在结果处理之后也能应用该处理器。
 	 * @param exchange current server exchange
 	 * @param handler the selected handler which must have been previously
 	 * checked via {@link #supports(Object)}

@@ -21,9 +21,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 
 /**
- * A converter to turn the payload of a {@link Message} from serialized form to a typed
- * Object and vice versa. The {@link MessageHeaders#CONTENT_TYPE} message header may be
- * used to specify the media type of the message content.
+ * 用于将 {@link Message} 的载荷从序列化形式转换为类型化对象（反之亦然）的转换器。
+ * 可以使用 {@link MessageHeaders#CONTENT_TYPE} 消息头指定消息内容的媒体类型。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -32,11 +31,9 @@ import org.springframework.messaging.MessageHeaders;
 public interface MessageConverter {
 
 	/**
-	 * Convert the payload of a {@link Message} from a serialized form to a typed Object
-	 * of the specified target class. The {@link MessageHeaders#CONTENT_TYPE} header
-	 * should indicate the MIME type to convert from.
-	 * <p>If the converter does not support the specified media type or cannot perform
-	 * the conversion, it should return {@code null}.
+	 * 将 {@link Message} 的载荷从序列化形式转换为指定目标类的类型化对象。
+	 * {@link MessageHeaders#CONTENT_TYPE} 头应指明要转换的 MIME 类型。
+	 * <p>如果转换器不支持指定的媒体类型或无法执行转换，则应返回 {@code null}。
 	 * @param message the input message
 	 * @param targetClass the target class for the conversion
 	 * @return the result of the conversion, or {@code null} if the converter cannot
@@ -46,13 +43,10 @@ public interface MessageConverter {
 	Object fromMessage(Message<?> message, Class<?> targetClass);
 
 	/**
-	 * Create a {@link Message} whose payload is the result of converting the given
-	 * payload Object to serialized form. The optional {@link MessageHeaders} parameter
-	 * may contain a {@link MessageHeaders#CONTENT_TYPE} header to specify the target
-	 * media type for the conversion and it may contain additional headers to be added
-	 * to the message.
-	 * <p>If the converter does not support the specified media type or cannot perform
-	 * the conversion, it should return {@code null}.
+	 * 创建一个 {@link Message}，其载荷是将给定载荷对象转换为序列化形式的结果。
+	 * 可选的 {@link MessageHeaders} 参数可以包含 {@link MessageHeaders#CONTENT_TYPE} 头，
+	 * 用于指定转换的目标媒体类型，也可以包含要添加到消息中的其他头。
+	 * <p>如果转换器不支持指定的媒体类型或无法执行转换，则应返回 {@code null}。
 	 * @param payload the Object to convert
 	 * @param headers optional headers for the message (may be {@code null})
 	 * @return the new message, or {@code null} if the converter does not support the

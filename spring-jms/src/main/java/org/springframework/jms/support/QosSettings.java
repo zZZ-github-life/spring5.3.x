@@ -21,7 +21,7 @@ import javax.jms.Message;
 import org.springframework.lang.Nullable;
 
 /**
- * Gather the Quality-of-Service settings that can be used when sending a message.
+ * 收集发送消息时可使用的服务质量（Quality-of-Service）设置。
  *
  * @author Stephane Nicoll
  * @since 5.0
@@ -36,7 +36,7 @@ public class QosSettings {
 
 
 	/**
-	 * Create a new instance with the default settings.
+	 * 使用默认设置创建一个新实例。
 	 * @see Message#DEFAULT_DELIVERY_MODE
 	 * @see Message#DEFAULT_PRIORITY
 	 * @see Message#DEFAULT_TIME_TO_LIVE
@@ -46,7 +46,7 @@ public class QosSettings {
 	}
 
 	/**
-	 * Create a new instance with the specified settings.
+	 * 使用指定的设置创建一个新实例。
 	 */
 	public QosSettings(int deliveryMode, int priority, long timeToLive) {
 		this.deliveryMode = deliveryMode;
@@ -56,8 +56,8 @@ public class QosSettings {
 
 
 	/**
-	 * Set the delivery mode to use when sending a message.
-	 * Default is the JMS Message default: "PERSISTENT".
+	 * 设置发送消息时要使用的投递模式。
+	 * 默认是 JMS Message 的默认值："PERSISTENT"。
 	 * @param deliveryMode the delivery mode to use
 	 * @see javax.jms.DeliveryMode#PERSISTENT
 	 * @see javax.jms.DeliveryMode#NON_PERSISTENT
@@ -69,14 +69,14 @@ public class QosSettings {
 	}
 
 	/**
-	 * Return the delivery mode to use when sending a message.
+	 * 返回发送消息时要使用的投递模式。
 	 */
 	public int getDeliveryMode() {
 		return this.deliveryMode;
 	}
 
 	/**
-	 * Set the priority of a message when sending.
+	 * 设置发送时消息的优先级。
 	 * @see javax.jms.Message#DEFAULT_PRIORITY
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)
 	 */
@@ -85,14 +85,14 @@ public class QosSettings {
 	}
 
 	/**
-	 * Return the priority of a message when sending.
+	 * 返回发送时消息的优先级。
 	 */
 	public int getPriority() {
 		return this.priority;
 	}
 
 	/**
-	 * Set the time-to-live of the message when sending.
+	 * 设置发送时消息的生存时间。
 	 * @param timeToLive the message's lifetime (in milliseconds)
 	 * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
 	 * @see javax.jms.MessageProducer#send(javax.jms.Message, int, int, long)
@@ -102,7 +102,7 @@ public class QosSettings {
 	}
 
 	/**
-	 * Return the time-to-live of the message when sending.
+	 * 返回发送时消息的生存时间。
 	 */
 	public long getTimeToLive() {
 		return this.timeToLive;

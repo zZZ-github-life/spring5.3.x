@@ -31,35 +31,28 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that sets up
- * a {@link java.util.concurrent.ScheduledExecutorService}
- * (by default: a {@link java.util.concurrent.ScheduledThreadPoolExecutor})
- * and exposes it for bean references.
+ * {@link org.springframework.beans.factory.FactoryBean}，用于设置一个
+ * {@link java.util.concurrent.ScheduledExecutorService}（默认情况下是一个
+ * {@link java.util.concurrent.ScheduledThreadPoolExecutor}），并将其暴露以供 Bean 引用。
  *
- * <p>Allows for registration of {@link ScheduledExecutorTask ScheduledExecutorTasks},
- * automatically starting the {@link ScheduledExecutorService} on initialization and
- * cancelling it on destruction of the context. In scenarios that only require static
- * registration of tasks at startup, there is no need to access the
- * {@link ScheduledExecutorService} instance itself in application code at all;
- * {@code ScheduledExecutorFactoryBean} is then just being used for lifecycle integration.
+ * <p>允许注册 {@link ScheduledExecutorTask ScheduledExecutorTasks}，在初始化时自动启动
+ * {@link ScheduledExecutorService}，并在上下文销毁时取消它。在只需在启动时静态注册任务的场景中，应
+ * 用代码完全不需要访问 {@link ScheduledExecutorService} 实例本身；此时
+ * {@code ScheduledExecutorFactoryBean} 仅用于生命周期集成。
  *
- * <p>For an alternative, you may set up a {@link ScheduledThreadPoolExecutor} instance
- * directly using constructor injection, or use a factory method definition that points
- * to the {@link java.util.concurrent.Executors} class.
- * <b>This is strongly recommended in particular for common {@code @Bean} methods in
- * configuration classes, where this {@code FactoryBean} variant would force you to
- * return the {@code FactoryBean} type instead of {@code ScheduledExecutorService}.</b>
+ * <p>作为替代方案，你可以使用构造器注入直接设置 {@link ScheduledThreadPoolExecutor} 实例，或使用指
+ * 向 {@link java.util.concurrent.Executors} 类的工厂方法定义。<b>对于配置类中的常规 {@code @Bean}
+ * 方法，尤其强烈推荐这样做，因为这种 {@code FactoryBean} 变体会迫使你返回 {@code FactoryBean} 类型，
+ * 而不是 {@code ScheduledExecutorService}。</b>
  *
- * <p>Note that {@link java.util.concurrent.ScheduledExecutorService}
- * uses a {@link Runnable} instance that is shared between repeated executions,
- * in contrast to Quartz which instantiates a new Job for each execution.
+ * <p>请注意，{@link java.util.concurrent.ScheduledExecutorService} 使用在重复执行之间共享的
+ * {@link Runnable} 实例，这与 Quartz 不同，后者在每次执行时都会实例化一个新的 Job。
  *
- * <p><b>WARNING:</b> {@link Runnable Runnables} submitted via a native
- * {@link java.util.concurrent.ScheduledExecutorService} are removed from
- * the execution schedule once they throw an exception. If you would prefer
- * to continue execution after such an exception, switch this FactoryBean's
+ * <p><b>WARNING:</b> 通过原生 {@link java.util.concurrent.ScheduledExecutorService} 提交的
+ * {@link Runnable Runnables} 一旦抛出异常，就会从执行调度中移除。如果你希望在此类异常之后继续执行，
+ * 请将此 FactoryBean 的
  * {@link #setContinueScheduledExecutionAfterException "continueScheduledExecutionAfterException"}
- * property to "true".
+ * 属性切换为 "true"。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -90,8 +83,7 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 
 
 	/**
-	 * Set the ScheduledExecutorService's pool size.
-	 * Default is 1.
+	 * 设置 ScheduledExecutorService 的池大小。默认值为 1。
 	 */
 	public void setPoolSize(int poolSize) {
 		Assert.isTrue(poolSize > 0, "'poolSize' must be 1 or higher");
@@ -99,9 +91,8 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Register a list of ScheduledExecutorTask objects with the ScheduledExecutorService
-	 * that this FactoryBean creates. Depending on each ScheduledExecutorTask's settings,
-	 * it will be registered via one of ScheduledExecutorService's schedule methods.
+	 * 向此 FactoryBean 创建的 ScheduledExecutorService 注册一组 ScheduledExecutorTask 对象。根据每个
+	 * ScheduledExecutorTask 的设置，它将通过 ScheduledExecutorService 的某个 schedule 方法进行注册。
 	 * @see java.util.concurrent.ScheduledExecutorService#schedule(java.lang.Runnable, long, java.util.concurrent.TimeUnit)
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleWithFixedDelay(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable, long, long, java.util.concurrent.TimeUnit)
@@ -111,21 +102,18 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Set the remove-on-cancel mode on {@link ScheduledThreadPoolExecutor}.
-	 * <p>Default is {@code false}. If set to {@code true}, the target executor will be
-	 * switched into remove-on-cancel mode (if possible, with a soft fallback otherwise).
+	 * 设置 {@link ScheduledThreadPoolExecutor} 的取消时移除模式。
+	 * <p>默认值为 {@code false}。如果设为 {@code true}，目标执行器将切换为取消时移除模式（如果可能，否
+	 * 则会进行软回退）。
 	 */
 	public void setRemoveOnCancelPolicy(boolean removeOnCancelPolicy) {
 		this.removeOnCancelPolicy = removeOnCancelPolicy;
 	}
 
 	/**
-	 * Specify whether to continue the execution of a scheduled task
-	 * after it threw an exception.
-	 * <p>Default is "false", matching the native behavior of a
-	 * {@link java.util.concurrent.ScheduledExecutorService}.
-	 * Switch this flag to "true" for exception-proof execution of each task,
-	 * continuing scheduled execution as in the case of successful execution.
+	 * 指定在已调度任务抛出异常后是否继续执行该任务。
+	 * <p>默认值为 "false"，与 {@link java.util.concurrent.ScheduledExecutorService} 的原生行为一致。将
+	 * 此标志切换为 "true"，可使每个任务都能不受异常影响地执行，并像成功执行时那样继续进行调度执行。
 	 * @see java.util.concurrent.ScheduledExecutorService#scheduleAtFixedRate
 	 */
 	public void setContinueScheduledExecutionAfterException(boolean continueScheduledExecutionAfterException) {
@@ -133,11 +121,9 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Specify whether this FactoryBean should expose an unconfigurable
-	 * decorator for the created executor.
-	 * <p>Default is "false", exposing the raw executor as bean reference.
-	 * Switch this flag to "true" to strictly prevent clients from
-	 * modifying the executor's configuration.
+	 * 指定此 FactoryBean 是否应为创建的执行器暴露一个不可配置的装饰器。
+	 * <p>默认值为 "false"，即把原始执行器作为 Bean 引用暴露。将此标志切换为 "true" 可严格防止客户端修
+	 * 改执行器的配置。
 	 * @see java.util.concurrent.Executors#unconfigurableScheduledExecutorService
 	 */
 	public void setExposeUnconfigurableExecutor(boolean exposeUnconfigurableExecutor) {
@@ -174,9 +160,9 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Create a new {@link ScheduledExecutorService} instance.
-	 * <p>The default implementation creates a {@link ScheduledThreadPoolExecutor}.
-	 * Can be overridden in subclasses to provide custom {@link ScheduledExecutorService} instances.
+	 * 创建一个新的 {@link ScheduledExecutorService} 实例。
+	 * <p>默认实现创建一个 {@link ScheduledThreadPoolExecutor}。可在子类中重写，以提供自定义的
+	 * {@link ScheduledExecutorService} 实例。
 	 * @param poolSize the specified pool size
 	 * @param threadFactory the ThreadFactory to use
 	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
@@ -191,8 +177,8 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Register the specified {@link ScheduledExecutorTask ScheduledExecutorTasks}
-	 * on the given {@link ScheduledExecutorService}.
+	 * 在给定的 {@link ScheduledExecutorService} 上注册指定的
+	 * {@link ScheduledExecutorTask ScheduledExecutorTasks}。
 	 * @param tasks the specified ScheduledExecutorTasks (never empty)
 	 * @param executor the ScheduledExecutorService to register the tasks on.
 	 */
@@ -214,13 +200,12 @@ public class ScheduledExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Determine the actual Runnable to schedule for the given task.
-	 * <p>Wraps the task's Runnable in a
-	 * {@link org.springframework.scheduling.support.DelegatingErrorHandlingRunnable}
-	 * that will catch and log the Exception. If necessary, it will suppress the
-	 * Exception according to the
+	 * 确定为给定任务要调度的实际 Runnable。
+	 * <p>将任务的 Runnable 包装在
+	 * {@link org.springframework.scheduling.support.DelegatingErrorHandlingRunnable} 中，该包装会捕获
+	 * 并记录 Exception。如有必要，它会根据
 	 * {@link #setContinueScheduledExecutionAfterException "continueScheduledExecutionAfterException"}
-	 * flag.
+	 * 标志抑制该 Exception。
 	 * @param task the ScheduledExecutorTask to schedule
 	 * @return the actual Runnable to schedule (may be a decorator)
 	 */

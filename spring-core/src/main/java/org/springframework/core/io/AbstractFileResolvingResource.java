@@ -31,11 +31,9 @@ import java.nio.file.StandardOpenOption;
 import org.springframework.util.ResourceUtils;
 
 /**
- * Abstract base class for resources which resolve URLs into File references,
- * such as {@link UrlResource} or {@link ClassPathResource}.
+ * 将 URL 解析为 File 引用的资源的抽象基类，例如 {@link UrlResource} 或 {@link ClassPathResource}。
  *
- * <p>Detects the "file" protocol as well as the JBoss "vfs" protocol in URLs,
- * resolving file system references accordingly.
+ * <p>检测 URL 中的 "file" 协议以及 JBoss "vfs" 协议，并相应地解析文件系统引用。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -151,8 +149,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a File reference for the underlying class path
-	 * resource, provided that it refers to a file in the file system.
+	 * 此实现为底层类路径资源返回 File 引用，前提是该资源指向文件系统中的一个文件。
 	 * @see org.springframework.util.ResourceUtils#getFile(java.net.URL, String)
 	 */
 	@Override
@@ -165,8 +162,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation determines the underlying File
-	 * (or jar file, in case of a resource in a jar/zip).
+	 * 此实现确定底层的 File（对于 jar/zip 中的资源，则为 jar 文件）。
 	 */
 	@Override
 	protected File getFileForLastModifiedCheck() throws IOException {
@@ -184,7 +180,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * Determine whether the given {@link URI} represents a file in a file system.
+	 * 判断给定的 {@link URI} 是否表示文件系统中的一个文件。
 	 * @since 5.0
 	 * @see #getFile(URI)
 	 */
@@ -201,8 +197,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a File reference for the given URI-identified
-	 * resource, provided that it refers to a file in the file system.
+	 * 此实现为由 URI 标识的资源返回 File 引用，前提是该资源指向文件系统中的一个文件。
 	 * @see org.springframework.util.ResourceUtils#getFile(java.net.URI, String)
 	 */
 	protected File getFile(URI uri) throws IOException {
@@ -213,8 +208,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a FileChannel for the given URI-identified
-	 * resource, provided that it refers to a file in the file system.
+	 * 此实现为由 URI 标识的资源返回 FileChannel，前提是该资源指向文件系统中的一个文件。
 	 * @since 5.0
 	 * @see #getFile()
 	 */
@@ -289,10 +283,9 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * Customize the given {@link URLConnection} before fetching the resource.
-	 * <p>Calls {@link ResourceUtils#useCachesIfNecessary(URLConnection)} and
-	 * delegates to {@link #customizeConnection(HttpURLConnection)} if possible.
-	 * Can be overridden in subclasses.
+	 * 在获取资源之前定制给定的 {@link URLConnection}。
+	 * <p>调用 {@link ResourceUtils#useCachesIfNecessary(URLConnection)}，并在可能时委托给
+	 * {@link #customizeConnection(HttpURLConnection)}。可在子类中覆盖。
 	 * @param con the URLConnection to customize
 	 * @throws IOException if thrown from URLConnection methods
 	 */
@@ -304,8 +297,8 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 	}
 
 	/**
-	 * Customize the given {@link HttpURLConnection} before fetching the resource.
-	 * <p>Can be overridden in subclasses for configuring request headers and timeouts.
+	 * 在获取资源之前定制给定的 {@link HttpURLConnection}。
+	 * <p>可在子类中覆盖，以配置请求头和超时时间。
 	 * @param con the HttpURLConnection to customize
 	 * @throws IOException if thrown from HttpURLConnection methods
 	 */
@@ -314,7 +307,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 
 
 	/**
-	 * Inner delegate class, avoiding a hard JBoss VFS API dependency at runtime.
+	 * 内部委托类，避免在运行时对 JBoss VFS API 产生硬依赖。
 	 */
 	private static class VfsResourceDelegate {
 

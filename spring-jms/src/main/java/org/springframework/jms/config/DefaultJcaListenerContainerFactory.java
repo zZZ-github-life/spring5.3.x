@@ -25,8 +25,8 @@ import org.springframework.jms.support.destination.DestinationResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * A {@link JmsListenerContainerFactory} implementation to build a
- * JCA-based {@link JmsMessageEndpointManager}.
+ * {@link JmsListenerContainerFactory} 实现，用于构建基于 JCA 的
+ * {@link JmsMessageEndpointManager}。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -119,7 +119,7 @@ public class DefaultJcaListenerContainerFactory extends JmsActivationSpecConfig
 	}
 
 	/**
-	 * Create an empty container instance.
+	 * 创建一个空的容器实例。
 	 */
 	protected JmsMessageEndpointManager createContainerInstance() {
 		return new JmsMessageEndpointManager();

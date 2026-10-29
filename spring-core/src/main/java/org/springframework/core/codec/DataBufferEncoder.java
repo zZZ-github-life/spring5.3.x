@@ -29,7 +29,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Simple pass-through encoder for {@link DataBuffer DataBuffers}.
+ * 用于 {@link DataBuffer DataBuffers} 的简单直通编码器。
  *
  * @author Arjen Poutsma
  * @since 5.0

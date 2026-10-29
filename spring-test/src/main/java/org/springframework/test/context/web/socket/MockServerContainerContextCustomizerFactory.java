@@ -28,10 +28,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link ContextCustomizerFactory} which creates a {@link MockServerContainerContextCustomizer}
- * if WebSocket support is present in the classpath and the test class or one of
- * its enclosing classes is annotated or meta-annotated with
- * {@link WebAppConfiguration @WebAppConfiguration}.
+ * {@link ContextCustomizerFactory}，如果类路径中存在 WebSocket 支持，并且测试类或其某个封闭类标注或元标注了 {@link WebAppConfiguration @WebAppConfiguration}，则创建 {@link MockServerContainerContextCustomizer}。
  *
  * @author Sam Brannen
  * @since 4.3.1

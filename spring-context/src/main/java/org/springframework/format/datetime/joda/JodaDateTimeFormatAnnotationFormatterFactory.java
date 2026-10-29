@@ -37,9 +37,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
 /**
- * Formats fields annotated with the {@link DateTimeFormat} annotation using Joda-Time.
+ * 使用 Joda-Time 格式化标注了 {@link DateTimeFormat} 注解的字段。
  *
- * <p><b>NOTE:</b> Spring's Joda-Time support requires Joda-Time 2.x, as of Spring 4.0.
+ * <p><b>NOTE:</b> 自 Spring 4.0 起，Spring 的 Joda-Time 支持要求 Joda-Time 2.x。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -110,7 +110,7 @@ public class JodaDateTimeFormatAnnotationFormatterFactory extends EmbeddedValueR
 	}
 
 	/**
-	 * Factory method used to create a {@link DateTimeFormatter}.
+	 * 用于创建 {@link DateTimeFormatter} 的工厂方法。
 	 * @param annotation the format annotation for the field
 	 * @param fieldType the type of field
 	 * @return a {@link DateTimeFormatter} instance

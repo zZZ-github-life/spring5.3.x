@@ -49,18 +49,15 @@ import org.springframework.remoting.support.RemoteInvocationResult;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.aopalliance.intercept.MethodInterceptor} for accessing a
- * JMS-based remote service.
+ * 用于访问基于 JMS 的远程服务的 {@link org.aopalliance.intercept.MethodInterceptor}。
  *
- * <p>Serializes remote invocation objects and deserializes remote invocation
- * result objects. Uses Java serialization just like RMI, but with the JMS
- * provider as communication infrastructure.
+ * <p>序列化远程调用对象并反序列化远程调用结果对象。与 RMI 一样使用 Java 序列化，
+ * 但以 JMS 提供者作为通信基础设施。
  *
- * <p>To be configured with a {@link javax.jms.QueueConnectionFactory} and a
- * target queue (either as {@link javax.jms.Queue} reference or as queue name).
+ * <p>需要配置一个 {@link javax.jms.QueueConnectionFactory} 和一个目标队列
+ * （可以是 {@link javax.jms.Queue} 引用，也可以是队列名称）。
  *
- * <p>Thanks to James Strachan for the original prototype that this
- * JMS invoker mechanism was inspired by!
+ * <p>感谢 James Strachan 提供了原始原型，此 JMS 调用者机制正是受其启发！
  *
  * @author Juergen Hoeller
  * @author James Strachan
@@ -92,14 +89,14 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 
 
 	/**
-	 * Set the QueueConnectionFactory to use for obtaining JMS QueueConnections.
+	 * 设置用于获取 JMS QueueConnection 的 QueueConnectionFactory。
 	 */
 	public void setConnectionFactory(@Nullable ConnectionFactory connectionFactory) {
 		this.connectionFactory = connectionFactory;
 	}
 
 	/**
-	 * Return the QueueConnectionFactory to use for obtaining JMS QueueConnections.
+	 * 返回用于获取 JMS QueueConnection 的 QueueConnectionFactory。
 	 */
 	@Nullable
 	protected ConnectionFactory getConnectionFactory() {
@@ -107,26 +104,24 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Set the target Queue to send invoker requests to.
+	 * 设置用于发送调用者请求的目标 Queue。
 	 */
 	public void setQueue(Queue queue) {
 		this.queue = queue;
 	}
 
 	/**
-	 * Set the name of target queue to send invoker requests to.
-	 * <p>The specified name will be dynamically resolved via the
-	 * {@link #setDestinationResolver DestinationResolver}.
+	 * 设置用于发送调用者请求的目标队列名称。
+	 * <p>指定的名称将通过 {@link #setDestinationResolver DestinationResolver} 动态解析。
 	 */
 	public void setQueueName(String queueName) {
 		this.queue = queueName;
 	}
 
 	/**
-	 * Set the DestinationResolver that is to be used to resolve Queue
-	 * references for this accessor.
-	 * <p>The default resolver is a {@code DynamicDestinationResolver}. Specify a
-	 * {@code JndiDestinationResolver} for resolving destination names as JNDI locations.
+	 * 设置用于为此访问器解析 Queue 引用的 DestinationResolver。
+	 * <p>默认解析器是 {@code DynamicDestinationResolver}。如果需要将目的地名称
+	 * 作为 JNDI 位置解析，请指定 {@code JndiDestinationResolver}。
 	 * @see org.springframework.jms.support.destination.DynamicDestinationResolver
 	 * @see org.springframework.jms.support.destination.JndiDestinationResolver
 	 */
@@ -136,10 +131,9 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Set the {@link RemoteInvocationFactory} to use for this accessor.
-	 * <p>Default is a {@link DefaultRemoteInvocationFactory}.
-	 * <p>A custom invocation factory can add further context information
-	 * to the invocation, for example user credentials.
+	 * 设置此访问器要使用的 {@link RemoteInvocationFactory}。
+	 * <p>默认是 {@link DefaultRemoteInvocationFactory}。
+	 * <p>自定义调用工厂可以向调用添加更多上下文信息，例如用户凭证。
 	 */
 	public void setRemoteInvocationFactory(@Nullable RemoteInvocationFactory remoteInvocationFactory) {
 		this.remoteInvocationFactory =
@@ -147,25 +141,22 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Specify the {@link MessageConverter} to use for turning
-	 * {@link org.springframework.remoting.support.RemoteInvocation}
-	 * objects into request messages, as well as response messages into
-	 * {@link org.springframework.remoting.support.RemoteInvocationResult} objects.
-	 * <p>Default is a {@link SimpleMessageConverter}, using a standard JMS
-	 * {@link javax.jms.ObjectMessage} for each invocation / invocation result
-	 * object.
-	 * <p>Custom implementations may generally adapt {@link java.io.Serializable}
-	 * objects into special kinds of messages, or might be specifically tailored for
-	 * translating {@code RemoteInvocation(Result)s} into specific kinds of messages.
+	 * 指定用于将 {@link org.springframework.remoting.support.RemoteInvocation} 对象
+	 * 转换为请求消息，以及将响应消息转换为
+	 * {@link org.springframework.remoting.support.RemoteInvocationResult} 对象的
+	 * {@link MessageConverter}。
+	 * <p>默认是 {@link SimpleMessageConverter}，为每个调用/调用结果对象使用
+	 * 标准的 JMS {@link javax.jms.ObjectMessage}。
+	 * <p>自定义实现通常可以将 {@link java.io.Serializable} 对象适配为特殊类型的消息，
+	 * 或者专门用于将 {@code RemoteInvocation(Result)} 转换为特定类型的消息。
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {
 		this.messageConverter = (messageConverter != null ? messageConverter : new SimpleMessageConverter());
 	}
 
 	/**
-	 * Set the timeout to use for receiving the response message for a request
-	 * (in milliseconds).
-	 * <p>The default is 0, which indicates a blocking receive without timeout.
+	 * 设置接收请求响应消息所用的超时时间（单位为毫秒）。
+	 * <p>默认值为 0，表示无超时的阻塞接收。
 	 * @see javax.jms.MessageConsumer#receive(long)
 	 * @see javax.jms.MessageConsumer#receive()
 	 */
@@ -174,8 +165,7 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Return the timeout to use for receiving the response message for a request
-	 * (in milliseconds).
+	 * 返回接收请求响应消息所用的超时时间（单位为毫秒）。
 	 */
 	protected long getReceiveTimeout() {
 		return this.receiveTimeout;
@@ -223,12 +213,12 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Create a new {@code RemoteInvocation} object for the given AOP method invocation.
-	 * <p>The default implementation delegates to the {@link RemoteInvocationFactory}.
-	 * <p>Can be overridden in subclasses to provide custom {@code RemoteInvocation}
-	 * subclasses, containing additional invocation parameters like user credentials.
-	 * Note that it is preferable to use a custom {@code RemoteInvocationFactory} which
-	 * is a reusable strategy.
+	 * 为给定的 AOP 方法调用创建一个新的 {@code RemoteInvocation} 对象。
+	 * <p>默认实现委托给 {@link RemoteInvocationFactory}。
+	 * <p>可以在子类中重写，以提供自定义的 {@code RemoteInvocation} 子类，
+	 * 其中包含额外的调用参数（例如用户凭证）。
+	 * 请注意，更可取的做法是使用自定义的 {@code RemoteInvocationFactory}，
+	 * 它是一种可复用的策略。
 	 * @param methodInvocation the current AOP method invocation
 	 * @return the RemoteInvocation object
 	 * @see RemoteInvocationFactory#createRemoteInvocation
@@ -238,8 +228,8 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Execute the given remote invocation, sending an invoker request message
-	 * to this accessor's target queue and waiting for a corresponding response.
+	 * 执行给定的远程调用：向此访问器的目标队列发送调用者请求消息，
+	 * 并等待相应的响应。
 	 * @param invocation the RemoteInvocation to execute
 	 * @return the RemoteInvocationResult object
 	 * @throws JMSException in case of JMS failure
@@ -268,7 +258,7 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Create a new JMS Connection for this JMS invoker.
+	 * 为此 JMS 调用者创建一个新的 JMS Connection。
 	 */
 	protected Connection createConnection() throws JMSException {
 		ConnectionFactory connectionFactory = getConnectionFactory();
@@ -277,14 +267,14 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Create a new JMS Session for this JMS invoker.
+	 * 为此 JMS 调用者创建一个新的 JMS Session。
 	 */
 	protected Session createSession(Connection con) throws JMSException {
 		return con.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	}
 
 	/**
-	 * Resolve this accessor's target queue.
+	 * 解析此访问器的目标队列。
 	 * @param session the current JMS Session
 	 * @return the resolved target Queue
 	 * @throws JMSException if resolution failed
@@ -303,8 +293,8 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Resolve the given queue name into a JMS {@link javax.jms.Queue},
-	 * via this accessor's {@link DestinationResolver}.
+	 * 通过此访问器的 {@link DestinationResolver} 将给定的队列名称解析为
+	 * JMS {@link javax.jms.Queue}。
 	 * @param session the current JMS Session
 	 * @param queueName the name of the queue
 	 * @return the located Queue
@@ -316,9 +306,9 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Create the invoker request message.
-	 * <p>The default implementation creates a JMS {@link javax.jms.ObjectMessage}
-	 * for the given RemoteInvocation object.
+	 * 创建调用者请求消息。
+	 * <p>默认实现为给定的 RemoteInvocation 对象创建一个 JMS
+	 * {@link javax.jms.ObjectMessage}。
 	 * @param session the current JMS Session
 	 * @param invocation the remote invocation to send
 	 * @return the JMS Message to send
@@ -329,10 +319,10 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Actually execute the given request, sending the invoker request message
-	 * to the specified target queue and waiting for a corresponding response.
-	 * <p>The default implementation is based on standard JMS send/receive,
-	 * using a {@link javax.jms.TemporaryQueue} for receiving the response.
+	 * 实际执行给定的请求：将调用者请求消息发送到指定的目标队列，
+	 * 并等待相应的响应。
+	 * <p>默认实现基于标准的 JMS 发送/接收，使用 {@link javax.jms.TemporaryQueue}
+	 * 来接收响应。
 	 * @param session the JMS Session to use
 	 * @param queue the resolved target Queue to send to
 	 * @param requestMessage the JMS Message to send
@@ -363,10 +353,10 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Extract the invocation result from the response message.
-	 * <p>The default implementation expects a JMS {@link javax.jms.ObjectMessage}
-	 * carrying a {@link RemoteInvocationResult} object. If an invalid response
-	 * message is encountered, the {@code onInvalidResponse} callback gets invoked.
+	 * 从响应消息中提取调用结果。
+	 * <p>默认实现期望一个携带 {@link RemoteInvocationResult} 对象的
+	 * JMS {@link javax.jms.ObjectMessage}。如果遇到无效的响应消息，
+	 * 将调用 {@code onInvalidResponse} 回调。
 	 * @param responseMessage the response message
 	 * @return the invocation result
 	 * @throws JMSException is thrown if a JMS exception occurs
@@ -381,11 +371,10 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Callback that is invoked by {@link #executeRequest} when the receive
-	 * timeout has expired for the specified {@link RemoteInvocation}.
-	 * <p>By default, an {@link RemoteTimeoutException} is thrown. Sub-classes
-	 * can choose to either throw a more dedicated exception or even return
-	 * a default {@link RemoteInvocationResult} as a fallback.
+	 * 当指定的 {@link RemoteInvocation} 的接收超时已过时，由
+	 * {@link #executeRequest} 调用的回调。
+	 * <p>默认情况下会抛出 {@link RemoteTimeoutException}。子类可以选择抛出
+	 * 更专门的异常，甚至返回一个默认的 {@link RemoteInvocationResult} 作为后备。
 	 * @param invocation the invocation
 	 * @return a default result when the receive timeout has expired
 	 */
@@ -394,9 +383,8 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Callback that is invoked by {@link #extractInvocationResult} when
-	 * it encounters an invalid response message.
-	 * <p>The default implementation throws a {@link MessageFormatException}.
+	 * 当 {@link #extractInvocationResult} 遇到无效的响应消息时调用的回调。
+	 * <p>默认实现抛出 {@link MessageFormatException}。
 	 * @param responseMessage the invalid response message
 	 * @return an alternative invocation result that should be returned to
 	 * the caller (if desired)
@@ -409,11 +397,9 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Recreate the invocation result contained in the given {@link RemoteInvocationResult}
-	 * object.
-	 * <p>The default implementation calls the default {@code recreate()} method.
-	 * <p>Can be overridden in subclasses to provide custom recreation, potentially
-	 * processing the returned result object.
+	 * 重建给定 {@link RemoteInvocationResult} 对象中包含的调用结果。
+	 * <p>默认实现调用默认的 {@code recreate()} 方法。
+	 * <p>可以在子类中重写以提供自定义的重建逻辑，可能还会处理返回的结果对象。
 	 * @param result the RemoteInvocationResult to recreate
 	 * @return a return value if the invocation result is a successful return
 	 * @throws Throwable if the invocation result is an exception
@@ -425,8 +411,7 @@ public class JmsInvokerClientInterceptor implements MethodInterceptor, Initializ
 	}
 
 	/**
-	 * Convert the given JMS invoker access exception to an appropriate
-	 * Spring {@link RemoteAccessException}.
+	 * 将给定的 JMS 调用者访问异常转换为适当的 Spring {@link RemoteAccessException}。
 	 * @param ex the exception to convert
 	 * @return the RemoteAccessException to throw
 	 */

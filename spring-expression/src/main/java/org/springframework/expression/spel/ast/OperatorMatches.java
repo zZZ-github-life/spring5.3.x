@@ -29,10 +29,8 @@ import org.springframework.expression.spel.SpelMessage;
 import org.springframework.expression.spel.support.BooleanTypedValue;
 
 /**
- * Implements the matches operator. Matches takes two operands:
- * The first is a String and the second is a Java regex.
- * It will return {@code true} when {@link #getValue} is called
- * if the first operand matches the regex.
+ * 实现 matches 运算符。Matches 接受两个操作数：第一个是 String，第二个是 Java 正则表达式。调用
+ * {@link #getValue} 时，如果第一个操作数与正则表达式匹配，将返回 {@code true}。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -44,7 +42,7 @@ public class OperatorMatches extends Operator {
 	private static final int PATTERN_ACCESS_THRESHOLD = 1000000;
 
 	/**
-	 * Maximum number of characters permitted in a regular expression.
+	 * 正则表达式中允许的最大字符数。
 	 * @since 5.2.23
 	 */
 	private static final int MAX_REGEX_LENGTH = 1000;
@@ -53,7 +51,7 @@ public class OperatorMatches extends Operator {
 
 
 	/**
-	 * Create a new {@link OperatorMatches} instance.
+	 * 创建一个新的 {@link OperatorMatches} 实例。
 	 * @deprecated as of Spring Framework 5.2.23 in favor of invoking
 	 * {@link #OperatorMatches(ConcurrentMap, int, int, SpelNodeImpl...)}
 	 * with a shared pattern cache instead
@@ -64,7 +62,7 @@ public class OperatorMatches extends Operator {
 	}
 
 	/**
-	 * Create a new {@link OperatorMatches} instance with a shared pattern cache.
+	 * 创建具有共享模式缓存的新 {@link OperatorMatches} 实例。
 	 * @since 5.2.23
 	 */
 	public OperatorMatches(ConcurrentMap<String, Pattern> patternCache, int startPos, int endPos, SpelNodeImpl... operands) {
@@ -73,7 +71,7 @@ public class OperatorMatches extends Operator {
 	}
 
 	/**
-	 * Check the first operand matches the regex specified as the second operand.
+	 * 检查第一个操作数是否与作为第二个操作数指定的正则表达式匹配。
 	 * @param state the expression state
 	 * @return {@code true} if the first operand matches the regex specified as the
 	 * second operand, otherwise {@code false}

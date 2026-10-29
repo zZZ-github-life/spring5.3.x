@@ -22,7 +22,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 
 /**
- * Convert a String to a {@link Currency}.
+ * 将 String 转换为 {@link Currency}。
  *
  * @author Stephane Nicoll
  * @author Sam Brannen

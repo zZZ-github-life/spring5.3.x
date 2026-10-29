@@ -37,7 +37,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Abstract base class for {@link WebSocketClient} implementations.
+ * {@link WebSocketClient} 实现的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -109,7 +109,7 @@ public abstract class AbstractWebSocketClient implements WebSocketClient {
 	}
 
 	/**
-	 * Perform the actual handshake to establish a connection to the server.
+	 * 执行实际的握手以建立到服务器的连接。
 	 * @param webSocketHandler the client-side handler for WebSocket messages
 	 * @param headers the HTTP headers to use for the handshake, with unwanted (forbidden)
 	 * headers filtered out (never {@code null})

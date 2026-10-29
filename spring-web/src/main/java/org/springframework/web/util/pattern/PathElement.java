@@ -22,7 +22,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * Common supertype for the Ast nodes created to represent a path pattern.
+ * 用于表示路径模式的 AST 节点的公共父类型。
  *
  * @author Andy Clement
  * @author Brian Clozel
@@ -53,7 +53,7 @@ abstract class PathElement {
 
 
 	/**
-	 * Create a new path element.
+	 * 创建一个新的路径元素。
 	 * @param pos the position where this path element starts in the pattern data
 	 * @param separator the separator in use in the path pattern
 	 */
@@ -64,7 +64,7 @@ abstract class PathElement {
 
 
 	/**
-	 * Attempt to match this path element.
+	 * 尝试匹配此路径元素。
 	 * @param candidatePos the current position within the candidate path
 	 * @param matchingContext encapsulates context for the match including the candidate
 	 * @return {@code true} if it matches, otherwise {@code false}
@@ -72,7 +72,7 @@ abstract class PathElement {
 	public abstract boolean matches(int candidatePos, MatchingContext matchingContext);
 
 	/**
-	 * Return the length of the path element where captures are considered to be one character long.
+	 * 返回路径元素的长度，其中捕获部分按一个字符计算。
 	 * @return the normalized length
 	 */
 	public abstract int getNormalizedLength();
@@ -80,36 +80,36 @@ abstract class PathElement {
 	public abstract char[] getChars();
 
 	/**
-	 * Return the number of variables captured by the path element.
+	 * 返回此路径元素捕获的变量数量。
 	 */
 	public int getCaptureCount() {
 		return 0;
 	}
 
 	/**
-	 * Return the number of wildcard elements (*, ?) in the path element.
+	 * 返回路径元素中通配符元素（*、?）的数量。
 	 */
 	public int getWildcardCount() {
 		return 0;
 	}
 
 	/**
-	 * Return the score for this PathElement, combined score is used to compare parsed patterns.
+	 * 返回此 PathElement 的分数，组合分数用于比较解析后的模式。
 	 */
 	public int getScore() {
 		return 0;
 	}
 
 	/**
-	 * Return whether this PathElement can be strictly {@link String#compareTo(String) compared}
-	 * against another element for matching.
+	 * 返回此 PathElement 是否可以与另一个元素进行严格的
+	 * {@link String#compareTo(String) 比较}以用于匹配。
 	 */
 	public boolean isLiteral() {
 		return false;
 	}
 
 	/**
-	 * Return if the there are no more PathElements in the pattern.
+	 * 返回模式中是否已没有更多 PathElement。
 	 * @return {@code true} if the there are no more elements
 	 */
 	protected final boolean isNoMorePattern() {

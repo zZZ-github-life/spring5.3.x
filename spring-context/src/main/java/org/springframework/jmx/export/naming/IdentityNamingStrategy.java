@@ -27,11 +27,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * An implementation of the {@code ObjectNamingStrategy} interface that
- * creates a name based on the identity of a given instance.
+ * {@code ObjectNamingStrategy} 接口的实现，它基于给定实例的标识创建名称。
  *
- * <p>The resulting {@code ObjectName} will be in the form
- * <i>package</i>:class=<i>class name</i>,hashCode=<i>identity hash (in hex)</i>
+ * <p>生成的 {@code ObjectName} 形式为 <i>package</i>:class=<i>类名</i>,hashCode=<i>标识哈希值（十六进制）</i>
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -40,19 +38,18 @@ import org.springframework.util.ObjectUtils;
 public class IdentityNamingStrategy implements ObjectNamingStrategy {
 
 	/**
-	 * The type key.
+	 * 类型键。
 	 */
 	public static final String TYPE_KEY = "type";
 
 	/**
-	 * The hash code key.
+	 * 哈希码键。
 	 */
 	public static final String HASH_CODE_KEY = "hashCode";
 
 
 	/**
-	 * Returns an instance of {@code ObjectName} based on the identity
-	 * of the managed resource.
+	 * 基于受管资源的标识返回一个 {@code ObjectName} 实例。
 	 */
 	@Override
 	public ObjectName getObjectName(Object managedBean, @Nullable String beanKey) throws MalformedObjectNameException {

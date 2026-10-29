@@ -26,21 +26,18 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.KeyHolder;
 
 /**
- * A SimpleJdbcInsert is a multithreaded, reusable object providing easy insert
- * capabilities for a table. It provides meta-data processing to simplify the code
- * needed to construct a basic insert statement. All you need to provide is the
- * name of the table and a Map containing the column names and the column values.
+ * SimpleJdbcInsert 是一个多线程安全、可重复使用的对象，为表提供便捷的
+ * 插入能力。它提供元数据处理，以简化构造基本插入语句所需的代码。
+ * 你只需提供表名以及包含列名和列值的 Map。
  *
- * <p>The meta-data processing is based on the DatabaseMetaData provided by the
- * JDBC driver. As long as the JDBC driver can provide the names of the columns
- * for a specified table then we can rely on this auto-detection feature. If that
- * is not the case, then the column names must be specified explicitly.
+ * <p>元数据处理基于 JDBC 驱动提供的 DatabaseMetaData。只要 JDBC 驱动
+ * 能够提供指定表的列名，我们就可以依赖这种自动检测功能。如果情况
+ * 并非如此，则必须显式指定列名。
  *
- * <p>The actual insert is handled using Spring's {@link JdbcTemplate}.
+ * <p>实际的插入操作使用 Spring 的 {@link JdbcTemplate} 处理。
  *
- * <p>Many of the configuration methods return the current instance of the
- * SimpleJdbcInsert to provide the ability to chain multiple ones together
- * in a "fluent" interface style.
+ * <p>许多配置方法会返回当前的 SimpleJdbcInsert 实例，以便能够以“流式”
+ * 接口风格将多个方法链式调用组合在一起。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -51,8 +48,8 @@ import org.springframework.jdbc.support.KeyHolder;
 public class SimpleJdbcInsert extends AbstractJdbcInsert implements SimpleJdbcInsertOperations {
 
 	/**
-	 * Constructor that takes one parameter with the JDBC DataSource to use when creating the
-	 * JdbcTemplate.
+	 * 接受一个参数的构造器，参数为创建 JdbcTemplate 时使用的
+	 * JDBC DataSource。
 	 * @param dataSource the {@code DataSource} to use
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */
@@ -61,7 +58,7 @@ public class SimpleJdbcInsert extends AbstractJdbcInsert implements SimpleJdbcIn
 	}
 
 	/**
-	 * Alternative Constructor that takes one parameter with the JdbcTemplate to be used.
+	 * 备选构造器，接受一个参数，即要使用的 JdbcTemplate。
 	 * @param jdbcTemplate the {@code JdbcTemplate} to use
 	 * @see org.springframework.jdbc.core.JdbcTemplate#setDataSource
 	 */

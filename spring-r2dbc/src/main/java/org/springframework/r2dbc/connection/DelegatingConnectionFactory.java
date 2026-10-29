@@ -25,12 +25,10 @@ import reactor.core.publisher.Mono;
 import org.springframework.util.Assert;
 
 /**
- * R2DBC {@link ConnectionFactory} implementation that delegates
- * all calls to a given target {@link ConnectionFactory}.
+ * R2DBC {@link ConnectionFactory} 实现，将所有调用委托给给定的目标 {@link ConnectionFactory}。
  *
- * <p>This class is meant to be subclassed, with subclasses overriding
- * only those methods (such as {@link #create()}) that should not simply
- * delegate to the target {@link ConnectionFactory}.
+ * <p>此类设计为可被继承，子类只需覆盖那些不应简单委托给目标
+ * {@link ConnectionFactory} 的方法（例如 {@link #create()}）。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -42,7 +40,7 @@ public class DelegatingConnectionFactory implements ConnectionFactory, Wrapped<C
 
 
 	/**
-	 * Create a new DelegatingConnectionFactory.
+	 * 创建一个新的 DelegatingConnectionFactory。
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public DelegatingConnectionFactory(ConnectionFactory targetConnectionFactory) {
@@ -52,7 +50,7 @@ public class DelegatingConnectionFactory implements ConnectionFactory, Wrapped<C
 
 
 	/**
-	 * Return the target ConnectionFactory that this ConnectionFactory delegates to.
+	 * 返回此 ConnectionFactory 所委托的目标 ConnectionFactory。
 	 */
 	public ConnectionFactory getTargetConnectionFactory() {
 		return this.targetConnectionFactory;

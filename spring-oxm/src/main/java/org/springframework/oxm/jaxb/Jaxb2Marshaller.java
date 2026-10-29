@@ -102,11 +102,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.StaxUtils;
 
 /**
- * Implementation of the {@code GenericMarshaller} interface for JAXB 2.2.
+ * 适用于 JAXB 2.2 的 {@code GenericMarshaller} 接口实现。
  *
- * <p>The typical usage will be to set either the "contextPath" or the "classesToBeBound"
- * property on this bean, possibly customize the marshaller and unmarshaller by setting
- * properties, schemas, adapters, and listeners, and to refer to it.
+ * <p>典型用法是为此 bean 设置 "contextPath" 或 "classesToBeBound" 属性，
+ * 并可能通过设置属性、schema、适配器和监听器来自定义 marshaller 和 unmarshaller，
+ * 然后引用它。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -132,7 +132,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 			(publicId, systemId) -> new InputSource(new StringReader(""));
 
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -201,8 +201,8 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 
 	/**
-	 * Set multiple JAXB context paths. The given array of context paths gets
-	 * converted to a colon-delimited string, as supported by JAXB.
+	 * 设置多个 JAXB 上下文路径。给定的上下文路径数组会被转换为
+	 * JAXB 所支持的冒号分隔字符串。
 	 */
 	public void setContextPaths(String... contextPaths) {
 		Assert.notEmpty(contextPaths, "'contextPaths' must not be empty");
@@ -210,16 +210,16 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set a JAXB context path.
-	 * <p>Setting either this property, {@link #setClassesToBeBound "classesToBeBound"}
-	 * or {@link #setPackagesToScan "packagesToScan"} is required.
+	 * 设置 JAXB 上下文路径。
+	 * <p>必须设置此属性、{@link #setClassesToBeBound "classesToBeBound"}
+	 * 或 {@link #setPackagesToScan "packagesToScan"} 之一。
 	 */
 	public void setContextPath(@Nullable String contextPath) {
 		this.contextPath = contextPath;
 	}
 
 	/**
-	 * Return the JAXB context path.
+	 * 返回 JAXB 上下文路径。
 	 */
 	@Nullable
 	public String getContextPath() {
@@ -227,16 +227,16 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set the list of Java classes to be recognized by a newly created JAXBContext.
-	 * <p>Setting either this property, {@link #setContextPath "contextPath"}
-	 * or {@link #setPackagesToScan "packagesToScan"} is required.
+	 * 设置新建的 JAXBContext 所要识别的 Java 类列表。
+	 * <p>必须设置此属性、{@link #setContextPath "contextPath"}
+	 * 或 {@link #setPackagesToScan "packagesToScan"} 之一。
 	 */
 	public void setClassesToBeBound(@Nullable Class<?>... classesToBeBound) {
 		this.classesToBeBound = classesToBeBound;
 	}
 
 	/**
-	 * Return the list of Java classes to be recognized by a newly created JAXBContext.
+	 * 返回新建的 JAXBContext 所要识别的 Java 类列表。
 	 */
 	@Nullable
 	public Class<?>[] getClassesToBeBound() {
@@ -244,18 +244,18 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set the packages to search for classes with JAXB2 annotations in the classpath.
-	 * This is using a Spring-bases search and therefore analogous to Spring's component-scan
-	 * feature ({@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
-	 * <p>Setting either this property, {@link #setContextPath "contextPath"} or
-	 * {@link #setClassesToBeBound "classesToBeBound"} is required.
+	 * 设置要在 classpath 中搜索带有 JAXB2 注解的类的包。
+	 * 这里使用的是基于 Spring 的搜索，因此类似于 Spring 的组件扫描功能
+	 * （{@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}）。
+	 * <p>必须设置此属性、{@link #setContextPath "contextPath"} 或
+	 * {@link #setClassesToBeBound "classesToBeBound"} 之一。
 	 */
 	public void setPackagesToScan(@Nullable String... packagesToScan) {
 		this.packagesToScan = packagesToScan;
 	}
 
 	/**
-	 * Return the packages to search for JAXB2 annotations.
+	 * 返回用于搜索 JAXB2 注解的包。
 	 */
 	@Nullable
 	public String[] getPackagesToScan() {
@@ -263,17 +263,17 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set the {@code JAXBContext} properties. These implementation-specific
-	 * properties will be set on the underlying {@code JAXBContext}.
+	 * 设置 {@code JAXBContext} 属性。这些特定于实现的属性
+	 * 将被设置到底层的 {@code JAXBContext} 上。
 	 */
 	public void setJaxbContextProperties(Map<String, ?> jaxbContextProperties) {
 		this.jaxbContextProperties = jaxbContextProperties;
 	}
 
 	/**
-	 * Set the JAXB {@code Marshaller} properties.
-	 * <p>These properties will be set on the underlying JAXB {@code Marshaller},
-	 * and allow for features such as indentation.
+	 * 设置 JAXB {@code Marshaller} 属性。
+	 * <p>这些属性将被设置到底层的 JAXB {@code Marshaller} 上，
+	 * 可用于缩进等功能。
 	 * @param properties the properties
 	 * @see javax.xml.bind.Marshaller#setProperty(String, Object)
 	 * @see javax.xml.bind.Marshaller#JAXB_ENCODING
@@ -286,8 +286,8 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set the JAXB {@code Unmarshaller} properties.
-	 * <p>These properties will be set on the underlying JAXB {@code Unmarshaller}.
+	 * 设置 JAXB {@code Unmarshaller} 属性。
+	 * <p>这些属性将被设置到底层的 JAXB {@code Unmarshaller} 上。
 	 * @param properties the properties
 	 * @see javax.xml.bind.Unmarshaller#setProperty(String, Object)
 	 */
@@ -296,52 +296,51 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Specify the {@code Marshaller.Listener} to be registered with the JAXB {@code Marshaller}.
+	 * 指定要注册到 JAXB {@code Marshaller} 的 {@code Marshaller.Listener}。
 	 */
 	public void setMarshallerListener(Marshaller.Listener marshallerListener) {
 		this.marshallerListener = marshallerListener;
 	}
 
 	/**
-	 * Set the {@code Unmarshaller.Listener} to be registered with the JAXB {@code Unmarshaller}.
+	 * 设置要注册到 JAXB {@code Unmarshaller} 的 {@code Unmarshaller.Listener}。
 	 */
 	public void setUnmarshallerListener(Unmarshaller.Listener unmarshallerListener) {
 		this.unmarshallerListener = unmarshallerListener;
 	}
 
 	/**
-	 * Set the JAXB validation event handler. This event handler will be called by JAXB
-	 * if any validation errors are encountered during calls to any of the marshal APIs.
+	 * 设置 JAXB 校验事件处理器。如果在调用任何 marshal API 期间遇到
+	 * 校验错误，JAXB 将调用此事件处理器。
 	 */
 	public void setValidationEventHandler(ValidationEventHandler validationEventHandler) {
 		this.validationEventHandler = validationEventHandler;
 	}
 
 	/**
-	 * Specify the {@code XmlAdapter}s to be registered with the JAXB {@code Marshaller}
-	 * and {@code Unmarshaller}.
+	 * 指定要注册到 JAXB {@code Marshaller} 和 {@code Unmarshaller} 的 {@code XmlAdapter}。
 	 */
 	public void setAdapters(XmlAdapter<?, ?>... adapters) {
 		this.adapters = adapters;
 	}
 
 	/**
-	 * Set the schema resource to use for validation.
+	 * 设置用于校验的 schema 资源。
 	 */
 	public void setSchema(Resource schemaResource) {
 		this.schemaResources = new Resource[] {schemaResource};
 	}
 
 	/**
-	 * Set the schema resources to use for validation.
+	 * 设置用于校验的 schema 资源。
 	 */
 	public void setSchemas(Resource... schemaResources) {
 		this.schemaResources = schemaResources;
 	}
 
 	/**
-	 * Set the schema language.
-	 * Default is the W3C XML Schema: {@code http://www.w3.org/2001/XMLSchema"}.
+	 * 设置 schema 语言。
+	 * 默认为 W3C XML Schema：{@code http://www.w3.org/2001/XMLSchema"}。
 	 * @see XMLConstants#W3C_XML_SCHEMA_NS_URI
 	 * @see XMLConstants#RELAXNG_NS_URI
 	 */
@@ -350,7 +349,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set the resource resolver, as used to load the schema resources.
+	 * 设置资源解析器，用于加载 schema 资源。
 	 * @see SchemaFactory#setResourceResolver(org.w3c.dom.ls.LSResourceResolver)
 	 * @see #setSchema
 	 * @see #setSchemas
@@ -360,31 +359,29 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Set whether to lazily initialize the {@link JAXBContext} for this marshaller.
-	 * Default is {@code false} to initialize on startup; can be switched to {@code true}.
-	 * <p>Early initialization just applies if {@link #afterPropertiesSet()} is called.
+	 * 设置是否为此 marshaller 延迟初始化 {@link JAXBContext}。
+	 * 默认为 {@code false}，即在启动时初始化；可以改为 {@code true}。
+	 * <p>只有在调用了 {@link #afterPropertiesSet()} 时才会执行提前初始化。
 	 */
 	public void setLazyInit(boolean lazyInit) {
 		this.lazyInit = lazyInit;
 	}
 
 	/**
-	 * Specify whether MTOM support should be enabled or not.
-	 * Default is {@code false}: marshalling using XOP/MTOM not being enabled.
+	 * 指定是否启用 MTOM 支持。
+	 * 默认为 {@code false}：不启用使用 XOP/MTOM 的 marshalling。
 	 */
 	public void setMtomEnabled(boolean mtomEnabled) {
 		this.mtomEnabled = mtomEnabled;
 	}
 
 	/**
-	 * Specify whether the {@link #supports(Class)} returns {@code true} for the
-	 * {@link JAXBElement} class.
-	 * <p>Default is {@code false}, meaning that {@code supports(Class)} always returns
-	 * {@code false} for {@code JAXBElement} classes (though {@link #supports(Type)} can
-	 * return {@code true}, since it can obtain the type parameters of {@code JAXBElement}).
-	 * <p>This property is typically enabled in combination with usage of classes like
-	 * {@link org.springframework.web.servlet.view.xml.MarshallingView MarshallingView},
-	 * since the {@code ModelAndView} does not offer type parameter information at runtime.
+	 * 指定 {@link #supports(Class)} 对 {@link JAXBElement} 类是否返回 {@code true}。
+	 * <p>默认为 {@code false}，表示 {@code supports(Class)} 对 {@code JAXBElement}
+	 * 类始终返回 {@code false}（不过 {@link #supports(Type)} 可能返回 {@code true}，
+	 * 因为它可以获取 {@code JAXBElement} 的类型参数）。
+	 * <p>此属性通常与 {@link org.springframework.web.servlet.view.xml.MarshallingView MarshallingView}
+	 * 之类的类配合使用，因为 {@code ModelAndView} 在运行时并不提供类型参数信息。
 	 * @see #supports(Class)
 	 * @see #supports(Type)
 	 */
@@ -393,13 +390,10 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Specify whether the {@link #supports(Class)} should check for
-	 * {@link XmlRootElement @XmlRootElement} annotations.
-	 * <p>Default is {@code true}, meaning that {@code supports(Class)} will check for
-	 * this annotation. However, some JAXB implementations (i.e. EclipseLink MOXy) allow
-	 * for defining the bindings in an external definition file, thus keeping the classes
-	 * annotations free. Setting this property to {@code false} supports these
-	 * JAXB implementations.
+	 * 指定 {@link #supports(Class)} 是否应检查 {@link XmlRootElement @XmlRootElement} 注解。
+	 * <p>默认为 {@code true}，表示 {@code supports(Class)} 将检查此注解。然而，某些 JAXB
+	 * 实现（例如 EclipseLink MOXy）允许在外部定义文件中定义绑定，从而使类无需注解。
+	 * 将此属性设置为 {@code false} 可支持这些 JAXB 实现。
 	 * @see #supports(Class)
 	 * @see #supports(Type)
 	 */
@@ -408,7 +402,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Specify a JAXB mapped class for partial unmarshalling.
+	 * 指定用于部分 unmarshalling 的 JAXB 映射类。
 	 * @see javax.xml.bind.Unmarshaller#unmarshal(javax.xml.transform.Source, Class)
 	 */
 	public void setMappedClass(Class<?> mappedClass) {
@@ -416,29 +410,28 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Indicate whether DTD parsing should be supported.
-	 * <p>Default is {@code false} meaning that DTD is disabled.
+	 * 指示是否应支持 DTD 解析。
+	 * <p>默认值为 {@code false}，表示禁用 DTD。
 	 */
 	public void setSupportDtd(boolean supportDtd) {
 		this.supportDtd = supportDtd;
 	}
 
 	/**
-	 * Return whether DTD parsing is supported.
+	 * 返回是否支持 DTD 解析。
 	 */
 	public boolean isSupportDtd() {
 		return this.supportDtd;
 	}
 
 	/**
-	 * Indicate whether external XML entities are processed when unmarshalling.
-	 * <p>Default is {@code false}, meaning that external entities are not resolved.
-	 * Note that processing of external entities will only be enabled/disabled when the
-	 * {@code Source} passed to {@link #unmarshal(Source)} is a {@link SAXSource} or
-	 * {@link StreamSource}. It has no effect for {@link DOMSource} or {@link StAXSource}
-	 * instances.
-	 * <p><strong>Note:</strong> setting this option to {@code true} also automatically
-	 * sets {@link #setSupportDtd} to {@code true}.
+	 * 指示在 unmarshalling 时是否处理外部 XML 实体。
+	 * <p>默认值为 {@code false}，表示不解析外部实体。
+	 * 请注意，只有当传递给 {@link #unmarshal(Source)} 的 {@code Source} 是
+	 * {@link SAXSource} 或 {@link StreamSource} 时，才会启用/禁用外部实体的处理。
+	 * 该设置对 {@link DOMSource} 或 {@link StAXSource} 实例没有影响。
+	 * <p><strong>注意：</strong>将此选项设置为 {@code true} 也会自动将
+	 * {@link #setSupportDtd} 设置为 {@code true}。
 	 */
 	public void setProcessExternalEntities(boolean processExternalEntities) {
 		this.processExternalEntities = processExternalEntities;
@@ -448,7 +441,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Return whether XML external entities are allowed.
+	 * 返回是否允许 XML 外部实体。
 	 */
 	public boolean isProcessExternalEntities() {
 		return this.processExternalEntities;
@@ -485,7 +478,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Return the JAXBContext used by this marshaller, lazily building it if necessary.
+	 * 返回此 marshaller 所使用的 JAXBContext，如有必要则延迟构建。
 	 */
 	public JAXBContext getJaxbContext() {
 		JAXBContext context = this.jaxbContext;
@@ -652,8 +645,8 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Checks whether the given type is a primitive wrapper type.
-	 * Compare section 8.5.1 of the JAXB2 spec.
+	 * 检查给定类型是否为基本类型的包装类型。
+	 * 参见 JAXB2 规范第 8.5.1 节。
 	 */
 	private boolean isPrimitiveWrapper(Class<?> clazz) {
 		return (Boolean.class == clazz ||
@@ -666,8 +659,8 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Checks whether the given type is a standard class.
-	 * Compare section 8.5.2 of the JAXB2 spec.
+	 * 检查给定类型是否为标准类。
+	 * 参见 JAXB2 规范第 8.5.2 节。
 	 */
 	private boolean isStandardClass(Class<?> clazz) {
 		return (String.class == clazz ||
@@ -715,9 +708,9 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Return a newly created JAXB marshaller.
-	 * <p>Note: JAXB marshallers are not necessarily thread-safe.
-	 * This method is public as of 5.2.
+	 * 返回一个新创建的 JAXB marshaller。
+	 * <p>注意：JAXB marshaller 不一定是线程安全的。
+	 * 此方法自 5.2 起为 public。
 	 * @since 5.2
 	 * @see #createUnmarshaller()
 	 */
@@ -749,14 +742,13 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Template method that can be overridden by concrete JAXB marshallers
-	 * for custom initialization behavior. Gets called after creation of JAXB
-	 * {@code Marshaller}, and after the respective properties have been set.
-	 * <p>The default implementation sets the
-	 * {@link #setMarshallerProperties defined properties}, the
-	 * {@link #setValidationEventHandler validation event handler}, the
-	 * {@link #setSchemas schemas}, {@link #setMarshallerListener listener},
-	 * and {@link #setAdapters adapters}.
+	 * 模板方法，可由具体的 JAXB marshaller 覆盖以实现自定义初始化行为。
+	 * 在创建 JAXB {@code Marshaller} 之后、且设置好相应属性之后调用。
+	 * <p>默认实现会设置
+	 * {@link #setMarshallerProperties 已定义的属性}、
+	 * {@link #setValidationEventHandler 校验事件处理器}、
+	 * {@link #setSchemas schema}、{@link #setMarshallerListener 监听器}
+	 * 以及 {@link #setAdapters 适配器}。
 	 */
 	protected void initJaxbMarshaller(Marshaller marshaller) throws JAXBException {
 		if (this.marshallerProperties != null) {
@@ -820,9 +812,9 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Return a newly created JAXB unmarshaller.
-	 * <p>Note: JAXB unmarshallers are not necessarily thread-safe.
-	 * This method is public as of 5.2.
+	 * 返回一个新创建的 JAXB unmarshaller。
+	 * <p>注意：JAXB unmarshaller 不一定是线程安全的。
+	 * 此方法自 5.2 起为 public。
 	 * @since 5.2
 	 * @see #createMarshaller()
 	 */
@@ -903,14 +895,13 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Template method that can be overridden by concrete JAXB marshallers
-	 * for custom initialization behavior. Gets called after creation of JAXB
-	 * {@code Marshaller}, and after the respective properties have been set.
-	 * <p>The default implementation sets the
-	 * {@link #setUnmarshallerProperties defined properties}, the
-	 * {@link #setValidationEventHandler validation event handler}, the
-	 * {@link #setSchemas schemas}, {@link #setUnmarshallerListener listener},
-	 * and {@link #setAdapters adapters}.
+	 * 模板方法，可由具体的 JAXB marshaller 覆盖以实现自定义初始化行为。
+	 * 在创建 JAXB {@code Unmarshaller} 之后、且设置好相应属性之后调用。
+	 * <p>默认实现会设置
+	 * {@link #setUnmarshallerProperties 已定义的属性}、
+	 * {@link #setValidationEventHandler 校验事件处理器}、
+	 * {@link #setSchemas schema}、{@link #setUnmarshallerListener 监听器}
+	 * 以及 {@link #setAdapters 适配器}。
 	 */
 	protected void initJaxbUnmarshaller(Unmarshaller unmarshaller) throws JAXBException {
 		if (this.unmarshallerProperties != null) {
@@ -935,8 +926,8 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 	}
 
 	/**
-	 * Convert the given {@code JAXBException} to an appropriate exception
-	 * from the {@code org.springframework.oxm} hierarchy.
+	 * 将给定的 {@code JAXBException} 转换为 {@code org.springframework.oxm}
+	 * 异常层次结构中相应的异常。
 	 * @param ex {@code JAXBException} that occurred
 	 * @return the corresponding {@code XmlMappingException}
 	 */
@@ -1057,7 +1048,7 @@ public class Jaxb2Marshaller implements MimeMarshaller, MimeUnmarshaller, Generi
 
 
 	/**
-	 * DataSource that wraps around a byte array.
+	 * 包装字节数组的 DataSource。
 	 */
 	private static class ByteArrayDataSource implements DataSource {
 

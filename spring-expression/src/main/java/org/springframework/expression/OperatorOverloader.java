@@ -19,9 +19,8 @@ package org.springframework.expression;
 import org.springframework.lang.Nullable;
 
 /**
- * By default the mathematical operators {@link Operation} support simple types
- * like numbers. By providing an implementation of OperatorOverloader, a user
- * of the expression language can support these operations on other types.
+ * 默认情况下，数学运算符 {@link Operation} 支持数字等简单类型。通过提供 OperatorOverloader 的实现，
+ * 表达式语言的用户可以在其他类型上支持这些运算。
  *
  * @author Andy Clement
  * @since 3.0
@@ -29,8 +28,7 @@ import org.springframework.lang.Nullable;
 public interface OperatorOverloader {
 
 	/**
-	 * Return true if the operator overloader supports the specified operation
-	 * between the two operands and so should be invoked to handle it.
+	 * 如果运算符重载器支持两个操作数之间的指定运算因而应被调用来处理该运算，则返回 true。
 	 * @param operation the operation to be performed
 	 * @param leftOperand the left operand
 	 * @param rightOperand the right operand
@@ -42,8 +40,7 @@ public interface OperatorOverloader {
 			throws EvaluationException;
 
 	/**
-	 * Execute the specified operation on two operands, returning a result.
-	 * See {@link Operation} for supported operations.
+	 * 对两个操作数执行指定的运算并返回结果。受支持的运算参见 {@link Operation}。
 	 * @param operation the operation to be performed
 	 * @param leftOperand the left operand
 	 * @param rightOperand the right operand

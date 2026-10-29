@@ -20,11 +20,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 /**
- * Extend {@link Future} with the capability to accept completion callbacks.
- * If the future has completed when the callback is added, the callback is
- * triggered immediately.
+ * 扩展 {@link Future}，使其能够接受完成回调。如果在添加回调时 future 已经完成，则立即触发该回调。
  *
- * <p>Inspired by {@code com.google.common.util.concurrent.ListenableFuture}.
+ * <p>受 {@code com.google.common.util.concurrent.ListenableFuture} 启发。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -35,13 +33,13 @@ import java.util.concurrent.Future;
 public interface ListenableFuture<T> extends Future<T> {
 
 	/**
-	 * Register the given {@code ListenableFutureCallback}.
+	 * 注册给定的 {@code ListenableFutureCallback}。
 	 * @param callback the callback to register
 	 */
 	void addCallback(ListenableFutureCallback<? super T> callback);
 
 	/**
-	 * Java 8 lambda-friendly alternative with success and failure callbacks.
+	 * 对 Java 8 lambda 友好的替代方案，提供成功和失败回调。
 	 * @param successCallback the success callback
 	 * @param failureCallback the failure callback
 	 * @since 4.1
@@ -50,7 +48,7 @@ public interface ListenableFuture<T> extends Future<T> {
 
 
 	/**
-	 * Expose this {@link ListenableFuture} as a JDK {@link CompletableFuture}.
+	 * 将此 {@link ListenableFuture} 暴露为 JDK 的 {@link CompletableFuture}。
 	 * @since 5.0
 	 */
 	default CompletableFuture<T> completable() {

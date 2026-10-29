@@ -1,5 +1,5 @@
 /**
- * Support for annotation-based WebSocket setup in configuration classes.
+ * 对配置类中基于注解的 WebSocket 设置的支持。
  */
 @NonNullApi
 @NonNullFields

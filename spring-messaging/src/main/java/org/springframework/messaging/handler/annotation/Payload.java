@@ -26,10 +26,9 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.messaging.converter.MessageConverter;
 
 /**
- * Annotation that binds a method parameter to the payload of a message. Can also
- * be used to associate a payload to a method invocation. The payload may be passed
- * through a {@link MessageConverter} to convert it from serialized form with a
- * specific MIME type to an Object matching the target method parameter.
+ * 将方法参数绑定到消息载荷的注解。也可以用于将载荷与方法调用关联。
+ * 载荷可以通过 {@link MessageConverter} 从具有特定 MIME 类型的序列化形式
+ * 转换为与目标方法参数匹配的 Object。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -41,26 +40,25 @@ import org.springframework.messaging.converter.MessageConverter;
 public @interface Payload {
 
 	/**
-	 * Alias for {@link #expression}.
+	 * {@link #expression} 的别名。
 	 */
 	@AliasFor("expression")
 	String value() default "";
 
 	/**
-	 * A SpEL expression to be evaluated against the payload object as the root context.
-	 * <p>This attribute may or may not be supported depending on whether the message being
-	 * handled contains a non-primitive Object as its payload or is in serialized form and
-	 * requires message conversion.
-	 * <p>When processing STOMP over WebSocket messages this attribute is not supported.
+	 * 以载荷对象为根上下文求值的 SpEL 表达式。
+	 * <p>此属性是否受支持取决于正在处理的消息的载荷是否为非原始 Object，
+	 * 或者是否处于序列化形式并需要消息转换。
+	 * <p>处理基于 WebSocket 的 STOMP 消息时不支持此属性。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String expression() default "";
 
 	/**
-	 * Whether payload content is required.
-	 * <p>Default is {@code true}, leading to an exception if there is no payload. Switch
-	 * to {@code false} to have {@code null} passed when there is no payload.
+	 * 载荷内容是否为必需。
+	 * <p>默认值为 {@code true}，如果没有载荷则会引发异常。
+	 * 将其切换为 {@code false}，以便在没有载荷时传入 {@code null}。
 	 */
 	boolean required() default true;
 

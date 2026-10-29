@@ -17,7 +17,7 @@
 package org.springframework.jms;
 
 /**
- * Runtime exception mirroring the JMS ResourceAllocationException.
+ * 与 JMS ResourceAllocationException 对应的运行时异常。
  *
  * @author Mark Pollack
  * @since 1.1

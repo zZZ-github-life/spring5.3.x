@@ -1,0 +1,530 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/ClientCodecConfigurer.java
+@@BODY 23 24
+Extension of {@link CodecConfigurer} for HTTP message reader and writer
+options relevant on the client side.
+@@BODY 26 36
+<p>HTTP message readers for the following are registered by default:
+<ul>{@code byte[]}
+<li>{@link java.nio.ByteBuffer}
+<li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
+<li>{@link org.springframework.core.io.Resource Resource}
+<li>{@link String}
+<li>{@link org.springframework.util.MultiValueMap
+MultiValueMap&lt;String,String&gt;} for form data
+<li>JSON and Smile, if Jackson is present
+<li>XML, if JAXB2 is present
+<li>Server-Sent Events
+@@BODY 39 50
+<p>HTTP message writers registered by default:
+<ul>{@code byte[]}
+<li>{@link java.nio.ByteBuffer}
+<li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
+<li>{@link org.springframework.core.io.Resource Resource}
+<li>{@link String}
+<li>{@link org.springframework.util.MultiValueMap
+MultiValueMap&lt;String,String&gt;} for form data
+<li>{@link org.springframework.util.MultiValueMap
+MultiValueMap&lt;String,Object&gt;} for multipart data
+<li>JSON and Smile, if Jackson is present
+<li>XML, if JAXB2 is present
+@@BODY 59 61
+{@inheritDoc}
+<p>On the client side, built-in default also include customizations related
+to multipart readers and writers, as well as the decoder for SSE.
+@@BODY 67 67
+{@inheritDoc}.
+@@BODY 74 74
+Static factory method for a {@code ClientCodecConfigurer}.
+@@BODY 82 82
+{@link CodecConfigurer.DefaultCodecs} extension with extra client-side options.
+@@BODY 87 89
+Configure encoders or writers for use with
+{@link org.springframework.http.codec.multipart.MultipartHttpMessageWriter
+MultipartHttpMessageWriter}.
+@@BODY 94 99
+Configure the {@code Decoder} to use for Server-Sent Events.
+<p>By default if this is not set, and Jackson is available,
+the {@link #jackson2JsonDecoder} override is used instead.
+Use this method to customize the SSE decoder.
+<p>Note that {@link #maxInMemorySize(int)}, if configured,
+will be applied to the given decoder.
+@@BODY 107 107
+Registry and container for multipart HTTP message writers.
+@@BODY 112 113
+Add a Part {@code Encoder}, internally wrapped with
+{@link EncoderHttpMessageWriter}.
+@@BODY 119 121
+Add a Part {@link HttpMessageWriter}. For writers of type
+{@link EncoderHttpMessageWriter} consider using the shortcut
+{@link #encoder(Encoder)} instead.
+===FILE spring-web/src/main/java/org/springframework/http/codec/CodecConfigurer.java
+@@BODY 27 28
+Defines a common interface for configuring either client or server HTTP
+message readers and writers. This is used as follows:
+@@BODY 30 36
+<li>Use {@link ClientCodecConfigurer#create()} or
+{@link ServerCodecConfigurer#create()} to create an instance.
+<li>Use {@link #defaultCodecs()} to customize HTTP message readers or writers
+registered by default.
+<li>Use {@link #customCodecs()} to add custom HTTP message readers or writers.
+<li>Use {@link #getReaders()} and {@link #getWriters()} to obtain the list of
+configured HTTP message readers and writers.
+@@BODY 39 40
+<p>HTTP message readers and writers are divided into 3 categories that are
+ordered as follows:
+@@BODY 42 44
+<li>Typed readers and writers that support specific types, e.g. byte[], String.
+<li>Object readers and writers, e.g. JSON, XML.
+<li>Catch-all readers or writers, e.g. String with any media type.
+@@BODY 47 47
+<p>Typed and object readers are further subdivided and ordered as follows:
+@@BODY 49 50
+<li>Default HTTP reader and writer registrations.
+<li>Custom readers and writers.
+@@BODY 59 60
+Provides a way to customize or replace HTTP message readers and writers
+registered by default.
+@@BODY 66 67
+Register custom HTTP message readers or writers in addition to the ones
+registered by default.
+@@BODY 72 77
+Provides a way to completely turn off registration of default HTTP message
+readers and writers, and instead rely only on the ones provided via
+{@link #customCodecs()}.
+<p>By default this is set to {@code "true"} in which case default
+registrations are made; setting this to {@code false} disables default
+registrations.
+@@BODY 83 83
+Obtain the configured HTTP message readers.
+@@BODY 88 88
+Obtain the configured HTTP message writers.
+@@BODY 93 96
+Create a copy of this {@link CodecConfigurer}. The returned clone has its
+own lists of default and custom codecs and generally can be configured
+independently. Keep in mind however that codec instances (if any are
+configured) are themselves not cloned.
+@@BODY 103 106
+Customize or replace the HTTP message readers and writers registered by
+default. The options are further extended by
+{@link ClientCodecConfigurer.ClientDefaultCodecs ClientDefaultCodecs} and
+{@link ServerCodecConfigurer.ServerDefaultCodecs ServerDefaultCodecs}.
+@@BODY 111 113
+Override the default Jackson JSON {@code Decoder}.
+<p>Note that {@link #maxInMemorySize(int)}, if configured, will be
+applied to the given decoder.
+@@BODY 120 120
+Override the default Jackson JSON {@code Encoder}.
+@@BODY 127 129
+Override the default Jackson Smile {@code Decoder}.
+<p>Note that {@link #maxInMemorySize(int)}, if configured, will be
+applied to the given decoder.
+@@BODY 136 136
+Override the default Jackson Smile {@code Encoder}.
+@@BODY 143 145
+Override the default Protobuf {@code Decoder}.
+<p>Note that {@link #maxInMemorySize(int)}, if configured, will be
+applied to the given decoder.
+@@BODY 153 153
+Override the default Protobuf {@code Encoder}.
+@@BODY 162 164
+Override the default JAXB2 {@code Decoder}.
+<p>Note that {@link #maxInMemorySize(int)}, if configured, will be
+applied to the given decoder.
+@@BODY 172 172
+Override the default JABX2 {@code Encoder}.
+@@BODY 180 180
+Override the default Kotlin Serialization JSON {@code Decoder}.
+@@BODY 188 188
+Override the default Kotlin Serialization JSON {@code Encoder}.
+@@BODY 196 200
+Register a consumer to apply to default config instances. This can be
+used to configure rather than replace a specific codec or multiple
+codecs. The consumer is applied to every default {@link Encoder},
+{@link Decoder}, {@link HttpMessageReader} and {@link HttpMessageWriter}
+instance.
+@@BODY 207 215
+Configure a limit on the number of bytes that can be buffered whenever
+the input stream needs to be aggregated. This can be a result of
+decoding to a single {@code DataBuffer},
+{@link java.nio.ByteBuffer ByteBuffer}, {@code byte[]},
+{@link org.springframework.core.io.Resource Resource}, {@code String}, etc.
+It can also occur when splitting the input stream, e.g. delimited text,
+in which case the limit applies to data buffered between delimiters.
+<p>By default this is not set, in which case individual codec defaults
+apply. All codecs are limited to 256K by default.
+@@BODY 222 224
+Whether to log form data at DEBUG level, and headers at TRACE level.
+Both may contain sensitive information.
+<p>By default set to {@code false} so that request details are not shown.
+@@BODY 233 233
+Registry for custom HTTP message readers and writers.
+@@BODY 238 238
+Register a custom codec. This is expected to be one of the following:
+@@BODY 240 243
+<li>{@link HttpMessageReader}
+<li>{@link HttpMessageWriter}
+<li>{@link Encoder} (wrapped internally with {@link EncoderHttpMessageWriter})
+<li>{@link Decoder} (wrapped internally with {@link DecoderHttpMessageReader})
+@@BODY 251 252
+Variant of {@link #register(Object)} that also applies the below
+properties, if configured, via {@link #defaultCodecs()}:
+@@BODY 254 255
+<li>{@link CodecConfigurer.DefaultCodecs#maxInMemorySize(int) maxInMemorySize}
+<li>{@link CodecConfigurer.DefaultCodecs#enableLoggingRequestDetails(boolean) enableLoggingRequestDetails}
+@@BODY 257 259
+<p>The properties are applied every time {@link #getReaders()} or
+{@link #getWriters()} are used to obtain the list of configured
+readers or writers.
+@@BODY 266 272
+Variant of {@link #register(Object)} that also allows the caller to
+apply the properties from {@link DefaultCodecConfig} to the given
+codec. If you want to apply all the properties, prefer using
+{@link #registerWithDefaultConfig(Object)}.
+<p>The consumer is called every time {@link #getReaders()} or
+{@link #getWriters()} are used to obtain the list of configured
+readers or writers.
+@@BODY 280 281
+Add a custom {@code Decoder} internally wrapped with
+{@link DecoderHttpMessageReader}).
+@@BODY 290 291
+Add a custom {@code Encoder}, internally wrapped with
+{@link EncoderHttpMessageWriter}.
+@@BODY 300 302
+Add a custom {@link HttpMessageReader}. For readers of type
+{@link DecoderHttpMessageReader} consider using the shortcut
+{@link #decoder(Decoder)} instead.
+@@BODY 311 313
+Add a custom {@link HttpMessageWriter}. For writers of type
+{@link EncoderHttpMessageWriter} consider using the shortcut
+{@link #encoder(Encoder)} instead.
+@@BODY 322 325
+Register a callback for the {@link DefaultCodecConfig configuration}
+applied to default codecs. This allows custom codecs to follow general
+guidelines applied to default ones, such as logging details and limiting
+the amount of buffered data.
+@@BODY 336 339
+Exposes the values of properties configured through
+{@link #defaultCodecs()} that are applied to default codecs.
+The main purpose of this interface is to provide access to them so they
+can also be applied to custom codecs if needed.
+@@BODY 346 347
+Get the configured limit on the number of bytes that can be buffered whenever
+the input stream needs to be aggregated.
+@@BODY 353 354
+Whether to log form data at DEBUG level, and headers at TRACE level.
+Both may contain sensitive information.
+===FILE spring-web/src/main/java/org/springframework/http/codec/CodecConfigurerFactory.java
+@@BODY 30 32
+Internal delegate for loading the default codec configurer class names.
+Models a loose relationship with the default implementations in the support
+package, literally only needing to know the default class name to use.
+===FILE spring-web/src/main/java/org/springframework/http/codec/DecoderHttpMessageReader.java
+@@BODY 40 40
+{@code HttpMessageReader} that wraps and delegates to a {@link Decoder}.
+@@BODY 42 44
+<p>Also a {@code HttpMessageReader} that pre-resolves decoding hints
+from the extra information available on the server side such as the request
+or controller method parameter annotations.
+@@BODY 60 60
+Create an instance wrapping the given {@link Decoder}.
+@@BODY 79 79
+Return the {@link Decoder} of this reader.
+@@BODY 115 117
+Determine the Content-Type of the HTTP message based on the
+"Content-Type" header or otherwise default to
+{@link MediaType#APPLICATION_OCTET_STREAM}.
+@@BODY 128 128
+Get additional hints for decoding based on the input HTTP message.
+@@BODY 159 161
+Get additional hints for decoding for example based on the server request
+or annotations from controller method parameters. By default, delegate to
+the decoder if it is an instance of {@link HttpMessageDecoder}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/EncoderHttpMessageWriter.java
+@@BODY 44 44
+{@code HttpMessageWriter} that wraps and delegates to an {@link Encoder}.
+@@BODY 46 48
+<p>Also a {@code HttpMessageWriter} that pre-resolves encoding hints
+from the extra information available on the server side such as the request
+or controller method annotations.
+@@BODY 72 72
+Create an instance wrapping the given {@link Encoder}.
+@@BODY 97 97
+Return the {@code Encoder} of this writer.
+@@BODY 221 223
+Get additional hints for encoding for example based on the server request
+or annotations from controller method parameters. By default, delegate to
+the encoder if it is an instance of {@link HttpMessageEncoder}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/FormHttpMessageReader.java
+@@BODY 45 46
+Implementation of an {@link HttpMessageReader} to read HTML form data, i.e.
+request body with media type {@code "application/x-www-form-urlencoded"}.
+@@BODY 56 56
+The default charset used by the reader.
+@@BODY 70 72
+Set the default character set to use for reading form data when the
+request Content-Type header does not explicitly specify it.
+<p>By default this is set to "UTF-8".
+@@BODY 80 80
+Return the configured default charset.
+@@BODY 87 90
+Set the max number of bytes for input form data. As form data is buffered
+before it is parsed, this helps to limit the amount of buffering. Once
+the limit is exceeded, {@link DataBufferLimitException} is raised.
+<p>By default this is set to 256K.
+@@BODY 99 99
+Return the {@link #setMaxInMemorySize configured} byte count limit.
+===FILE spring-web/src/main/java/org/springframework/http/codec/FormHttpMessageWriter.java
+@@BODY 42 44
+{@link HttpMessageWriter} for writing a {@code MultiValueMap<String, String>}
+as HTML form data, i.e. {@code "application/x-www-form-urlencoded"}, to the
+body of a request.
+@@BODY 46 50
+<p>Note that unless the media type is explicitly set to
+{@link MediaType#APPLICATION_FORM_URLENCODED}, the {@link #canWrite} method
+will need generic type information to confirm the target map has String values.
+This is because a MultiValueMap with non-String values can be used to write
+multipart requests.
+@@BODY 52 54
+<p>To support both form data and multipart requests, consider using
+{@link org.springframework.http.codec.multipart.MultipartHttpMessageWriter}
+configured with this writer as the fallback for writing plain form data.
+@@BODY 65 65
+The default charset used by the writer.
+@@BODY 83 85
+Set the default character set to use for writing form data when the response
+Content-Type header does not explicitly specify it.
+<p>By default this is set to "UTF-8".
+@@BODY 93 93
+Return the configured default charset.
+===FILE spring-web/src/main/java/org/springframework/http/codec/HttpMessageDecoder.java
+@@BODY 27 28
+Extension of {@code Decoder} exposing extra methods relevant in the context
+of HTTP request or response body decoding.
+@@BODY 37 38
+Get decoding hints based on the server request or annotations on the
+target controller method parameter.
+===FILE spring-web/src/main/java/org/springframework/http/codec/HttpMessageEncoder.java
+@@BODY 31 32
+Extension of {@code Encoder} exposing extra methods relevant in the context
+of HTTP request or response body encoding.
+@@BODY 41 42
+Return "streaming" media types for which flushing should be performed
+automatically vs at the end of the input stream.
+@@BODY 47 48
+Get decoding hints based on the server request or annotations on the
+target controller method parameter.
+===FILE spring-web/src/main/java/org/springframework/http/codec/HttpMessageReader.java
+@@BODY 35 36
+Strategy for reading from a {@link ReactiveHttpInputMessage} and decoding
+the stream of bytes to Objects of type {@code <T>}.
+@@BODY 47 52
+Return the list of media types supported by this reader. The list may not
+apply to every possible target element type and calls to this method
+should typically be guarded via {@link #canRead(ResolvableType, MediaType)
+canWrite(elementType, null)}. The list may also exclude media types
+supported only for a specific element type. Alternatively, use
+{@link #getReadableMediaTypes(ResolvableType)} for a more precise list.
+@@BODY 58 61
+Return the list of media types supported by this Reader for the given type
+of element. This list may differ from {@link #getReadableMediaTypes()}
+if the Reader doesn't support the element type, or if it supports it
+only for a subset of media types.
+@@BODY 71 71
+Whether the given object type is supported by this reader.
+@@BODY 79 79
+Read from the input message and decode to a stream of objects.
+@@BODY 89 89
+Read from the input message and decode to a single object.
+@@BODY 99 101
+Server-side only alternative to
+{@link #read(ResolvableType, ReactiveHttpInputMessage, Map)}
+with additional context available.
+@@BODY 118 120
+Server-side only alternative to
+{@link #readMono(ResolvableType, ReactiveHttpInputMessage, Map)}
+with additional, context available.
+===FILE spring-web/src/main/java/org/springframework/http/codec/HttpMessageWriter.java
+@@BODY 35 36
+Strategy for encoding a stream of objects of type {@code <T>} and writing
+the encoded stream of bytes to an {@link ReactiveHttpOutputMessage}.
+@@BODY 47 52
+Return the list of media types supported by this Writer. The list may not
+apply to every possible target element type and calls to this method should
+typically be guarded via {@link #canWrite(ResolvableType, MediaType)
+canWrite(elementType, null)}. The list may also exclude media types
+supported only for a specific element type. Alternatively, use
+{@link #getWritableMediaTypes(ResolvableType)} for a more precise list.
+@@BODY 58 61
+Return the list of media types supported by this Writer for the given type
+of element. This list may differ from {@link #getWritableMediaTypes()}
+if the Writer doesn't support the element type, or if it supports it
+only for a subset of media types.
+@@BODY 71 71
+Whether the given object type is supported by this writer.
+@@BODY 79 79
+Write a given stream of object to the output message.
+@@BODY 93 95
+Server-side only alternative to
+{@link #write(Publisher, ResolvableType, MediaType, ReactiveHttpOutputMessage, Map)}
+with additional context available.
+===FILE spring-web/src/main/java/org/springframework/http/codec/LoggingCodecSupport.java
+@@BODY 24 27
+Base class for {@link org.springframework.core.codec.Encoder},
+{@link org.springframework.core.codec.Decoder}, {@link HttpMessageReader}, or
+{@link HttpMessageWriter} that uses a logger and shows potentially sensitive
+request data.
+@@BODY 41 43
+Whether to log form data at DEBUG level, and headers at TRACE level.
+Both may contain sensitive information.
+<p>By default set to {@code false} so that request details are not shown.
+@@BODY 51 52
+Whether any logging of values being encoded or decoded is explicitly
+disabled regardless of log level.
+===FILE spring-web/src/main/java/org/springframework/http/codec/ResourceHttpMessageReader.java
+@@BODY 31 33
+{@code HttpMessageReader} that wraps and delegates to a {@link ResourceDecoder}
+that extracts the filename from the {@code "Content-Disposition"} header, if
+available, and passes it as the {@link ResourceDecoder#FILENAME_HINT}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/ResourceHttpMessageWriter.java
+@@BODY 54 54
+{@code HttpMessageWriter} that can write a {@link Resource}.
+@@BODY 56 57
+<p>Also an implementation of {@code HttpMessageWriter} with support for writing one
+or more {@link ResourceRegion}'s based on the HTTP ranges specified in the request.
+@@BODY 59 60
+<p>For reading to a Resource, use {@link ResourceDecoder} wrapped with
+{@link DecoderHttpMessageReader}.
+===FILE spring-web/src/main/java/org/springframework/http/codec/ServerCodecConfigurer.java
+@@BODY 22 23
+Extension of {@link CodecConfigurer} for HTTP message reader and writer
+options relevant on the server side.
+@@BODY 25 36
+<p>HTTP message readers for the following are registered by default:
+<ul>{@code byte[]}
+<li>{@link java.nio.ByteBuffer}
+<li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
+<li>{@link org.springframework.core.io.Resource Resource}
+<li>{@link String}
+<li>{@link org.springframework.util.MultiValueMap
+MultiValueMap&lt;String,String&gt;} for form data
+<li>{@link org.springframework.util.MultiValueMap
+MultiValueMap&lt;String,Object&gt;} for multipart data
+<li>JSON and Smile, if Jackson is present
+<li>XML, if JAXB2 is present
+@@BODY 39 49
+<p>HTTP message writers registered by default:
+<ul>{@code byte[]}
+<li>{@link java.nio.ByteBuffer}
+<li>{@link org.springframework.core.io.buffer.DataBuffer DataBuffer}
+<li>{@link org.springframework.core.io.Resource Resource}
+<li>{@link String}
+<li>{@link org.springframework.util.MultiValueMap
+MultiValueMap&lt;String,String&gt;} for form data
+<li>JSON and Smile, if Jackson is present
+<li>XML, if JAXB2 is present
+<li>Server-Sent Events
+@@BODY 58 60
+{@inheritDoc}
+<p>On the server side, built-in default also include customizations
+related to the encoder for SSE.
+@@BODY 66 66
+{@inheritDoc}.
+@@BODY 73 73
+Static factory method for a {@code ServerCodecConfigurer}.
+@@BODY 81 81
+{@link CodecConfigurer.DefaultCodecs} extension with extra server-side options.
+@@BODY 86 96
+Configure the {@code HttpMessageReader} to use for multipart requests.
+<p>By default, if
+<a href="https://github.com/synchronoss/nio-multipart">Synchronoss NIO Multipart</a>
+is present, this is set to
+{@link org.springframework.http.codec.multipart.MultipartHttpMessageReader
+MultipartHttpMessageReader} created with an instance of
+{@link org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader
+SynchronossPartHttpMessageReader}.
+<p>Note that {@link #maxInMemorySize(int)} and/or
+{@link #enableLoggingRequestDetails(boolean)}, if configured, will be
+applied to the given reader, if applicable.
+@@BODY 103 106
+Configure the {@code Encoder} to use for Server-Sent Events.
+<p>By default if this is not set, and Jackson is available,
+the {@link #jackson2JsonEncoder} override is used instead.
+Use this method to customize the SSE encoder.
+===FILE spring-web/src/main/java/org/springframework/http/codec/ServerSentEvent.java
+@@BODY 24 26
+Representation for a Server-Sent Event for use with Spring's reactive Web support.
+{@code Flux<ServerSentEvent>} or {@code Observable<ServerSentEvent>} is the
+reactive equivalent to Spring MVC's {@code SseEmitter}.
+@@BODY 65 65
+Return the {@code id} field of this event, if available.
+@@BODY 73 73
+Return the {@code event} field of this event, if available.
+@@BODY 81 81
+Return the {@code retry} field of this event, if available.
+@@BODY 89 89
+Return the comment of this event, if available.
+@@BODY 97 97
+Return the {@code data} field of this event, if available.
+@@BODY 113 113
+Return a builder for a {@code SseEvent}.
+@@BODY 122 122
+Return a builder for a {@code SseEvent}, populated with the given {@linkplain #data() data}.
+@@BODY 132 132
+A mutable builder for a {@code SseEvent}.
+@@BODY 139 139
+Set the value of the {@code id} field.
+@@BODY 146 146
+Set the value of the {@code event} field.
+@@BODY 153 153
+Set the value of the {@code retry} field.
+@@BODY 160 161
+Set SSE comment. If a multi-line comment is provided, it will be turned into multiple
+SSE comment lines as defined in Server-Sent Events W3C recommendation.
+@@BODY 168 171
+Set the value of the {@code data} field. If the {@code data} argument is a multi-line
+{@code String}, it will be turned into multiple {@code data} field lines as defined
+in the Server-Sent Events W3C recommendation. If {@code data} is not a String, it will
+be {@linkplain org.springframework.http.codec.json.Jackson2JsonEncoder encoded} into JSON.
+@@BODY 178 178
+Builds the event.
+===FILE spring-web/src/main/java/org/springframework/http/codec/ServerSentEventHttpMessageReader.java
+@@BODY 40 41
+Reader that supports a stream of {@link ServerSentEvent ServerSentEvents} and also plain
+{@link Object Objects} which is the same as an {@link ServerSentEvent} with data only.
+@@BODY 60 61
+Constructor without a {@code Decoder}. In this mode only {@code String}
+is supported as the data of an event.
+@@BODY 68 69
+Constructor with JSON {@code Decoder} for decoding to Objects.
+Support for decoding to {@code String} event data is built-in.
+@@BODY 77 77
+Return the configured {@code Decoder}.
+@@BODY 85 90
+Configure a limit on the maximum number of bytes per SSE event which are
+buffered before the event is parsed.
+<p>Note that the {@link #getDecoder() data decoder}, if provided, must
+also be customized accordingly to raise the limit if necessary in order
+to be able to parse the data portion of the event.
+<p>By default this is set to 256K.
+@@BODY 99 99
+Return the {@link #setMaxInMemorySize configured} byte count limit.
+===FILE spring-web/src/main/java/org/springframework/http/codec/ServerSentEventHttpMessageWriter.java
+@@BODY 48 48
+{@code HttpMessageWriter} for {@code "text/event-stream"} responses.
+@@BODY 69 70
+Constructor without an {@code Encoder}. In this mode only {@code String}
+is supported for event data to be encoded.
+@@BODY 77 78
+Constructor with JSON {@code Encoder} for encoding objects.
+Support for {@code String} event data is built-in.
+@@BODY 87 87
+Return the configured {@code Encoder}, if any.
+===FILE spring-web/src/main/java/org/springframework/http/codec/package-info.java
+@@BODY 2 3
+Provides implementations of {@link org.springframework.core.codec.Encoder}
+and {@link org.springframework.core.codec.Decoder} for web use.
+@@BODY 5 8
+<p>Also declares a high-level
+{@link org.springframework.http.codec.HttpMessageReader} and
+{@link org.springframework.http.codec.HttpMessageWriter} for reading and
+writing the body of HTTP requests and responses.

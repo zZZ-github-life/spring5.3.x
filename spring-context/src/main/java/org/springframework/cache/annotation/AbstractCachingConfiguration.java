@@ -36,8 +36,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.function.SingletonSupplier;
 
 /**
- * Abstract base {@code @Configuration} class providing common structure
- * for enabling Spring's annotation-driven cache management capability.
+ * 抽象基类 {@code @Configuration}，为启用 Spring 的注解驱动缓存管理能力提供通用结构。
  *
  * @author Chris Beams
  * @author Stephane Nicoll
@@ -93,7 +92,7 @@ public abstract class AbstractCachingConfiguration implements ImportAware {
 	}
 
 	/**
-	 * Extract the configuration from the nominated {@link CachingConfigurer}.
+	 * 从指定的 {@link CachingConfigurer} 中提取配置。
 	 */
 	protected void useCachingConfigurer(CachingConfigurerSupplier cachingConfigurerSupplier) {
 		this.cacheManager = cachingConfigurerSupplier.adapt(CachingConfigurer::cacheManager);
@@ -112,10 +111,8 @@ public abstract class AbstractCachingConfiguration implements ImportAware {
 		}
 
 		/**
-		 * Adapt the {@link CachingConfigurer} supplier to another supplier
-		 * provided by the specified mapping function. If the underlying
-		 * {@link CachingConfigurer} is {@code null}, {@code null} is returned
-		 * and the mapping function is not invoked.
+		 * 将 {@link CachingConfigurer} 供应器适配为指定映射函数提供的另一个供应器。如果底层
+		 * {@link CachingConfigurer} 为 {@code null}，则返回 {@code null}，并且不会调用该映射函数。
 		 * @param provider the provider to use to adapt the supplier
 		 * @param <T> the type of the supplier
 		 * @return another supplier mapped by the specified function

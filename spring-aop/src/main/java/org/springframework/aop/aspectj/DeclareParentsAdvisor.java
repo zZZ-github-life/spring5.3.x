@@ -26,8 +26,7 @@ import org.springframework.aop.support.DelegatePerTargetObjectIntroductionInterc
 import org.springframework.aop.support.DelegatingIntroductionInterceptor;
 
 /**
- * Introduction advisor delegating to the given object.
- * Implements AspectJ annotation-style behavior for the DeclareParents annotation.
+ * 委托给给定对象的引入 Advisor。为 DeclareParents 注解实现 AspectJ 注解风格的行为。
  *
  * @author Rod Johnson
  * @author Ramnivas Laddad
@@ -43,7 +42,7 @@ public class DeclareParentsAdvisor implements IntroductionAdvisor {
 
 
 	/**
-	 * Create a new advisor for this DeclareParents field.
+	 * 为这个 DeclareParents 字段创建一个新的 Advisor。
 	 * @param interfaceType static field defining the introduction
 	 * @param typePattern type pattern the introduction is restricted to
 	 * @param defaultImpl the default implementation class
@@ -54,7 +53,7 @@ public class DeclareParentsAdvisor implements IntroductionAdvisor {
 	}
 
 	/**
-	 * Create a new advisor for this DeclareParents field.
+	 * 为这个 DeclareParents 字段创建一个新的 Advisor。
 	 * @param interfaceType static field defining the introduction
 	 * @param typePattern type pattern the introduction is restricted to
 	 * @param delegateRef the delegate implementation object
@@ -64,8 +63,8 @@ public class DeclareParentsAdvisor implements IntroductionAdvisor {
 	}
 
 	/**
-	 * Private constructor to share common code between impl-based delegate and reference-based delegate
-	 * (cannot use method such as init() to share common code, due the use of final fields).
+	 * 私有构造函数，用于在基于 impl 的委托和基于引用的委托之间共享公共代码（由于使用了 final 字段，无
+	 * 法使用 init() 之类的方法来共享公共代码）。
 	 * @param interfaceType static field defining the introduction
 	 * @param typePattern type pattern the introduction is restricted to
 	 * @param interceptor the delegation advice as {@link IntroductionInterceptor}

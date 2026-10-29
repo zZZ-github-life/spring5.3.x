@@ -17,7 +17,7 @@
 package org.springframework.web.socket.sockjs.frame;
 
 /**
- * SockJS frame types.
+ * SockJS 帧类型。
  *
  * @author Rossen Stoyanchev
  * @since 4.1

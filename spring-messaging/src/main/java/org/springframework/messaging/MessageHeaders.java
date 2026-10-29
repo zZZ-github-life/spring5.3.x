@@ -37,21 +37,21 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.IdGenerator;
 
 /**
- * The headers for a {@link Message}.
+ * {@link Message} 的消息头。
  *
- * <p><b>IMPORTANT</b>: This class is immutable. Any mutating operation such as
- * {@code put(..)}, {@code putAll(..)} and others will throw
- * {@link UnsupportedOperationException}.
- * <p>Subclasses do have access to the raw headers, however, via {@link #getRawHeaders()}.
+ * <p><b>重要</b>：此类是不可变的。任何修改操作（例如
+ * {@code put(..)}、{@code putAll(..)} 等）都会抛出
+ * {@link UnsupportedOperationException}。
+ * <p>不过，子类可以通过 {@link #getRawHeaders()} 访问原始头。
  *
- * <p>One way to create message headers is to use the
- * {@link org.springframework.messaging.support.MessageBuilder MessageBuilder}:
+ * <p>创建消息头的一种方式是使用
+ * {@link org.springframework.messaging.support.MessageBuilder MessageBuilder}：
  * <pre class="code">
  * MessageBuilder.withPayload("foo").setHeader("key1", "value1").setHeader("key2", "value2");
  * </pre>
  *
- * A second option is to create {@link org.springframework.messaging.support.GenericMessage}
- * passing a payload as {@link Object} and headers as a {@link Map java.util.Map}:
+ * 第二种选择是创建 {@link org.springframework.messaging.support.GenericMessage}，
+ * 将载荷作为 {@link Object} 传入，将头作为 {@link Map java.util.Map} 传入：
  * <pre class="code">
  * Map headers = new HashMap();
  * headers.put("key1", "value1");
@@ -59,8 +59,9 @@ import org.springframework.util.IdGenerator;
  * new GenericMessage("foo", headers);
  * </pre>
  *
- * A third option is to use {@link org.springframework.messaging.support.MessageHeaderAccessor}
- * or one of its subclasses to create specific categories of headers.
+ * 第三种选择是使用
+ * {@link org.springframework.messaging.support.MessageHeaderAccessor}
+ * 或其子类创建特定类别的头。
  *
  * @author Arjen Poutsma
  * @author Mark Fisher
@@ -73,35 +74,34 @@ import org.springframework.util.IdGenerator;
 public class MessageHeaders implements Map<String, Object>, Serializable {
 
 	/**
-	 * UUID for none.
+	 * 表示“无”的 UUID。
 	 */
 	public static final UUID ID_VALUE_NONE = new UUID(0,0);
 
 	/**
-	 * The key for the Message ID. This is an automatically generated UUID and
-	 * should never be explicitly set in the header map <b>except</b> in the
-	 * case of Message deserialization where the serialized Message's generated
-	 * UUID is being restored.
+	 * 消息 ID 的键。这是一个自动生成的 UUID，
+	 * <b>除</b>消息反序列化时恢复序列化消息所生成的 UUID 的情况外，
+	 * 绝不应在头映射中显式设置。
 	 */
 	public static final String ID = "id";
 
 	/**
-	 * The key for the message timestamp.
+	 * 消息时间戳的键。
 	 */
 	public static final String TIMESTAMP = "timestamp";
 
 	/**
-	 * The key for the message content type.
+	 * 消息内容类型的键。
 	 */
 	public static final String CONTENT_TYPE = "contentType";
 
 	/**
-	 * The key for the message reply channel.
+	 * 消息应答通道的键。
 	 */
 	public static final String REPLY_CHANNEL = "replyChannel";
 
 	/**
-	 * The key for the message error channel.
+	 * 消息错误通道的键。
 	 */
 	public static final String ERROR_CHANNEL = "errorChannel";
 
@@ -120,8 +120,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 
 
 	/**
-	 * Construct a {@link MessageHeaders} with the given headers. An {@link #ID} and
-	 * {@link #TIMESTAMP} headers will also be added, overriding any existing values.
+	 * 使用给定头构造 {@link MessageHeaders}。还会添加 {@link #ID} 和
+	 * {@link #TIMESTAMP} 头，并覆盖任何现有值。
 	 * @param headers a map with headers to add
 	 */
 	public MessageHeaders(@Nullable Map<String, Object> headers) {
@@ -129,7 +129,7 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	}
 
 	/**
-	 * Constructor providing control over the ID and TIMESTAMP header values.
+	 * 提供对 ID 和 TIMESTAMP 头值控制的构造函数。
 	 * @param headers a map with headers to add
 	 * @param id the {@link #ID} header value
 	 * @param timestamp the {@link #TIMESTAMP} header value
@@ -159,8 +159,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	}
 
 	/**
-	 * Copy constructor which allows for ignoring certain entries.
-	 * Used for serialization without non-serializable entries.
+	 * 允许忽略某些条目的拷贝构造函数。
+	 * 用于不包含不可序列化条目的序列化。
 	 * @param original the MessageHeaders to copy
 	 * @param keysToIgnore the keys of the entries to ignore
 	 */
@@ -266,8 +266,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	// Unsupported Map operations
 
 	/**
-	 * Since MessageHeaders are immutable, the call to this method
-	 * will result in {@link UnsupportedOperationException}.
+	 * 由于 MessageHeaders 是不可变的，调用此方法将导致
+	 * {@link UnsupportedOperationException}。
 	 */
 	@Override
 	public Object put(String key, Object value) {
@@ -275,8 +275,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	}
 
 	/**
-	 * Since MessageHeaders are immutable, the call to this method
-	 * will result in {@link UnsupportedOperationException}.
+	 * 由于 MessageHeaders 是不可变的，调用此方法将导致
+	 * {@link UnsupportedOperationException}。
 	 */
 	@Override
 	public void putAll(Map<? extends String, ? extends Object> map) {
@@ -284,8 +284,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	}
 
 	/**
-	 * Since MessageHeaders are immutable, the call to this method
-	 * will result in {@link UnsupportedOperationException}.
+	 * 由于 MessageHeaders 是不可变的，调用此方法将导致
+	 * {@link UnsupportedOperationException}。
 	 */
 	@Override
 	public Object remove(Object key) {
@@ -293,8 +293,8 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	}
 
 	/**
-	 * Since MessageHeaders are immutable, the call to this method
-	 * will result in {@link UnsupportedOperationException}.
+	 * 由于 MessageHeaders 是不可变的，调用此方法将导致
+	 * {@link UnsupportedOperationException}。
 	 */
 	@Override
 	public void clear() {

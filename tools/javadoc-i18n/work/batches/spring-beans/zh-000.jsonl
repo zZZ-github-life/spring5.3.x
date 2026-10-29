@@ -1,0 +1,148 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::48::0", "zh": ["一个基本的 {@link ConfigurablePropertyAccessor}，为所有典型用例提供所需的基础设施。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::48::1", "zh": ["<p>该访问器会在必要时将集合和数组值转换为对应的目标集合或数组。处理集合或数组的自定义属性编辑器，既可以通过 PropertyEditor 的 {@code setValue} 编写，也可以针对逗号分隔的 String 通过 {@code setAsText} 编写，因为当数组本身不可赋值时，String 数组会按这种格式进行转换。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::74::0", "zh": ["我们会创建大量此类对象，因此不希望每次都新建一个 logger。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::94::0", "zh": ["创建一个新的空访问器。之后需要设置被包装的实例。会注册默认编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::103::0", "zh": ["创建一个新的空访问器。之后需要设置被包装的实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::116::0", "zh": ["为给定对象创建一个新的访问器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::125::0", "zh": ["创建一个新的访问器，包装指定类的新实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::134::0", "zh": ["为给定对象创建一个新的访问器，并注册该对象所处的嵌套路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::146::0", "zh": ["为给定对象创建一个新的访问器，并注册该对象所处的嵌套路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::162::0", "zh": ["指定数组和集合自动增长的限值。<p>在普通访问器上默认不限制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::170::0", "zh": ["返回数组和集合自动增长的限值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::177::0", "zh": ["切换目标对象，仅当新对象的类与被替换对象的类不同时，才替换缓存的内省结果。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::186::0", "zh": ["切换目标对象，仅当新对象的类与被替换对象的类不同时，才替换缓存的内省结果。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::211::0", "zh": ["返回此访问器所包装对象的嵌套路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::218::0", "zh": ["返回此访问器路径顶部的根对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::227::0", "zh": ["返回此访问器路径顶部根对象的类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::718::0", "zh": ["返回指定 {@code propertyName} 的 {@link PropertyHandler}，必要时进行导航。如果未找到则返回 {@code null}，而不是抛出异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::733::0", "zh": ["返回指定本地 {@code propertyName} 的 {@link PropertyHandler}。仅用于访问当前上下文中可用的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::742::0", "zh": ["创建一个新的嵌套属性访问器实例。可在子类中覆盖，以创建 PropertyAccessor 的子类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::751::0", "zh": ["为指定属性创建一个 {@link NotWritablePropertyException}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::796::0", "zh": ["获取路径的最后一个组成部分。即使不是嵌套的也适用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::809::0", "zh": ["递归导航，返回嵌套属性路径的属性访问器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::828::0", "zh": ["获取给定嵌套属性的 Property 访问器。如果缓存中未找到，则创建一个新的。<p>注意：现在必须缓存嵌套的 PropertyAccessor，以保留为嵌套属性注册的自定义编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::927::0", "zh": ["将给定属性名解析为相应的属性名标记。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::1002::0", "zh": ["特定属性的处理器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java::1060::0", "zh": ["用于存储属性标记的持有者类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java::26::0", "zh": ["{@link PropertyAccessor} 接口的抽象实现。提供所有便捷方法的基础实现，而实际属性访问的实现留给子类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java::147::0", "zh": ["实际获取属性的值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java::160::0", "zh": ["实际设置属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInfoFactory.java::24::0", "zh": ["用于为 Spring Bean 创建 {@link BeanInfo} 实例的策略接口。可用于插入自定义的 Bean 属性解析策略（例如针对 JVM 上的其他语言）或更高效的 {@link BeanInfo} 获取算法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInfoFactory.java::24::1", "zh": ["<p>BeanInfoFactory 由 {@link CachedIntrospectionResults} 使用 {@link org.springframework.core.io.support.SpringFactoriesLoader} 工具类来实例化。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInfoFactory.java::24::2", "zh": ["当需要创建 {@link BeanInfo} 时，{@code CachedIntrospectionResults} 会遍历已发现的工厂，并对每个工厂调用 {@link #getBeanInfo(Class)}。如果返回 {@code null}，则查询下一个工厂。如果没有任何工厂支持该类，则将创建一个标准的 {@link BeanInfo} 作为默认值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInfoFactory.java::24::3", "zh": ["<p>请注意，{@link org.springframework.core.io.support.SpringFactoriesLoader} 会按 {@link org.springframework.core.annotation.Order @Order} 对 {@code BeanInfoFactory} 实例排序，因此优先级更高的会排在前面。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInfoFactory.java::51::0", "zh": ["如果支持，返回给定类的 Bean 信息。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::24::0", "zh": ["Bean 实例化失败时抛出的异常。携带出错的 Bean 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::43::0", "zh": ["创建一个新的 BeanInstantiationException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::52::0", "zh": ["创建一个新的 BeanInstantiationException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::65::0", "zh": ["创建一个新的 BeanInstantiationException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::79::0", "zh": ["创建一个新的 BeanInstantiationException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::95::0", "zh": ["返回出错的 Bean 类（永不为 {@code null}）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::103::0", "zh": ["返回出错的构造方法（如果已知）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanInstantiationException.java::114::0", "zh": ["返回用于 Bean 构造的委托对象（如果已知）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttribute.java::23::0", "zh": ["Bean 定义中键值风格属性的持有者。除键值对外，还跟踪定义来源。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttribute.java::41::0", "zh": ["创建一个新的 AttributeValue 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttribute.java::53::0", "zh": ["返回属性的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttribute.java::60::0", "zh": ["返回属性的值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttribute.java::68::0", "zh": ["为此元数据元素设置配置源 {@code Object}。<p>对象的确切类型取决于所使用的配置机制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttributeAccessor.java::22::0", "zh": ["{@link org.springframework.core.AttributeAccessorSupport} 的扩展，以 {@link BeanMetadataAttribute} 对象的形式持有属性，以便跟踪定义来源。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttributeAccessor.java::37::0", "zh": ["为此元数据元素设置配置源 {@code Object}。<p>对象的确切类型取决于所使用的配置机制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttributeAccessor.java::52::0", "zh": ["将给定的 BeanMetadataAttribute 添加到此访问器的属性集合中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataAttributeAccessor.java::60::0", "zh": ["在此访问器的属性集合中查找给定的 BeanMetadataAttribute。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataElement.java::21::0", "zh": ["由携带配置源对象的 Bean 元数据元素实现的接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanMetadataElement.java::30::0", "zh": ["返回此元数据元素的配置源 {@code Object}（可能为 {@code null}）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::58::0", "zh": ["用于 JavaBeans 的静态便捷方法：实例化 Bean、检查 Bean 属性类型、复制 Bean 属性等。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::58::1", "zh": ["<p>主要供框架内部使用，但在某种程度上对应用程序类也有用。如需更全面的 Bean 工具，可考虑 <a href=\"https://commons.apache.org/proper/commons-beanutils/\">Apache Commons BeanUtils</a>、<a href=\"https://github.com/ExpediaGroup/bull\">BULL - Bean Utils Light Library</a> 或类似的第三方框架。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::98::0", "zh": ["使用无参构造方法实例化类的便捷方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::124::0", "zh": ["使用类的“主”构造方法（对于 Kotlin 类，可能声明了默认参数）或其默认构造方法（对于常规 Java 类，期望标准的无参设置）来实例化类。<p>请注意，如果给定的构造方法不可访问（即非 public），此方法会尝试将其设置为可访问。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::160::0", "zh": ["使用无参构造方法实例化类，并将新实例作为指定的可赋值类型返回。<p>在待实例化类的类型（clazz）不可用、但所需类型（assignableTo）已知的情况下很有用。<p>请注意，如果给定的构造方法不可访问（即非 public），此方法会尝试将其设置为可访问。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::179::0", "zh": ["使用给定构造方法实例化类的便捷方法。<p>请注意，如果给定的构造方法不可访问（即非 public），此方法会尝试将其设置为可访问，并支持带可选参数和默认值的 Kotlin 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::228::0", "zh": ["为提供的类返回一个可解析的构造方法：要么是带参数的主构造方法或单个 public 构造方法，要么是带参数的单个非 public 构造方法，要么就是默认构造方法。调用方必须准备好为返回构造方法的参数（如果有）解析实参。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::271::0", "zh": ["返回所提供类的主构造方法。对于 Kotlin 类，返回与 Kotlin 主构造方法相对应的 Java 构造方法（按 Kotlin 规范定义）。否则，尤其是对于非 Kotlin 类，仅返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::289::0", "zh": ["查找具有给定方法名和给定参数类型、声明在给定类或其某个超类上的方法。优先选择 public 方法，但也会返回 protected、包级访问或 private 方法。<p>先检查 {@code Class.getMethod}，再回退到 {@code findDeclaredMethod}。这样即使在 Java 安全设置受限的环境中也能顺利找到 public 方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::313::0", "zh": ["查找具有给定方法名和给定参数类型、声明在给定类或其某个超类上的方法。将返回 public、protected、包级访问或 private 方法。<p>检查 {@code Class.getDeclaredMethod}，并向上级联到所有超类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::337::0", "zh": ["查找具有给定方法名和最少参数（最好是无参数）、声明在给定类或其某个超类上的方法。优先选择 public 方法，但也会返回 protected、包级访问或 private 方法。<p>先检查 {@code Class.getMethods}，再回退到 {@code findDeclaredMethodWithMinimalParameters}。这样即使在 Java 安全设置受限的环境中也能顺利找到 public 方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::363::0", "zh": ["查找具有给定方法名和最少参数（最好是无参数）、声明在给定类或其某个超类上的方法。将返回 public、protected、包级访问或 private 方法。<p>检查 {@code Class.getDeclaredMethods}，并向上级联到所有超类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::386::0", "zh": ["在给定的方法列表中查找具有给定方法名和最少参数（最好是无参数）的方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::429::0", "zh": ["解析形式为 {@code methodName[([arg_list])]} 的方法签名，其中 {@code arg_list} 是可选的、以逗号分隔的完全限定类型名列表，并尝试根据所提供的 {@code Class} 解析该签名。<p>不提供参数列表（{@code methodName}）时，将返回名称匹配且参数数量最少的方法。提供参数类型列表时，只返回名称和参数类型均匹配的方法。<p>请注意，{@code methodName} 和 {@code methodName()} 的解析方式<strong>并不</strong>相同。签名 {@code methodName} 表示名为 {@code methodName} 且参数数量最少的方法，而 {@code methodName()} 表示名为 {@code methodName} 且参数恰好为 0 个的方法。<p>如果找不到方法，则返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::484::0", "zh": ["获取给定类的 JavaBeans {@code PropertyDescriptor}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::494::0", "zh": ["获取给定属性的 JavaBeans {@code PropertyDescriptors}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::506::0", "zh": ["查找给定方法的 JavaBeans {@code PropertyDescriptor}，该方法可以是该 Bean 属性的读方法或写方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::520::0", "zh": ["查找给定方法的 JavaBeans {@code PropertyDescriptor}，该方法可以是该 Bean 属性的读方法或写方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::542::0", "zh": ["按 'Editor' 后缀约定查找 JavaBeans PropertyEditor（例如 \"mypackage.MyDomainClass\" &rarr; \"mypackage.MyDomainClassEditor\"）。<p>与 {@link java.beans.PropertyEditorManager} 实现的标准 JavaBeans 约定兼容，但与该管理器为基本类型注册的默认编辑器相隔离。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::592::0", "zh": ["如果可能，根据给定的类/接口确定给定属性的 Bean 属性类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::611::0", "zh": ["为指定属性的写方法获取一个新的 MethodParameter 对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::628::0", "zh": ["确定给定构造方法所需的参数名，同时考虑 JavaBeans 的 {@link ConstructorProperties} 注解以及 Spring 的 {@link DefaultParameterNameDiscoverer}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::648::0", "zh": ["检查给定类型是否表示“简单”属性：简单值类型或简单值类型的数组。<p>有关<em>简单值类型</em>的定义，请参见 {@link #isSimpleValueType(Class)}。<p>用于确定要针对“简单”依赖检查进行校验的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::665::0", "zh": ["检查给定类型是否表示“简单”值类型：基本类型或基本类型包装类、枚举、String 或其他 CharSequence、Number、Date、Temporal、URI、URL、Locale 或 Class。<p>{@code Void} 和 {@code void} 不被视为简单值类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::689::0", "zh": ["将给定源 Bean 的属性值复制到目标 Bean 中。<p>注意：源类和目标类不必相同，也不必相互派生，只要属性匹配即可。源 Bean 公开而目标 Bean 不公开的任何 Bean 属性都将被静默忽略。<p>这只是一个便捷方法。对于更复杂的传输需求，可考虑使用完整的 {@link BeanWrapper}。<p>从 Spring Framework 5.3 开始，此方法在匹配源对象和目标对象中的属性时会遵循泛型类型信息。<p>下表提供了一组非穷尽的示例，说明可以复制的源和目标属性类型，以及不能复制的源和目标属性类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::723::0", "zh": ["将给定源 Bean 的属性值复制到给定目标 Bean 中，仅设置给定“可编辑”类（或接口）中定义的属性。<p>注意：源类和目标类不必相同，也不必相互派生，只要属性匹配即可。源 Bean 公开而目标 Bean 不公开的任何 Bean 属性都将被静默忽略。<p>这只是一个便捷方法。对于更复杂的传输需求，可考虑使用完整的 {@link BeanWrapper}。<p>从 Spring Framework 5.3 开始，此方法在匹配源对象和目标对象中的属性时会遵循泛型类型信息。有关详细信息，请参见 {@link #copyProperties(Object, Object)} 的文档。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::744::0", "zh": ["将给定源 Bean 的属性值复制到给定目标 Bean 中，忽略给定的 \"ignoreProperties\"。<p>注意：源类和目标类不必相同，也不必相互派生，只要属性匹配即可。源 Bean 公开而目标 Bean 不公开的任何 Bean 属性都将被静默忽略。<p>这只是一个便捷方法。对于更复杂的传输需求，可考虑使用完整的 {@link BeanWrapper}。<p>从 Spring Framework 5.3 开始，此方法在匹配源对象和目标对象中的属性时会遵循泛型类型信息。有关详细信息，请参见 {@link #copyProperties(Object, Object)} 的文档。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::765::0", "zh": ["将给定源 Bean 的属性值复制到给定目标 Bean 中。<p>注意：源类和目标类不必相同，也不必相互派生，只要属性匹配即可。源 Bean 公开而目标 Bean 不公开的任何 Bean 属性都将被静默忽略。<p>从 Spring Framework 5.3 开始，此方法在匹配源对象和目标对象中的属性时会遵循泛型类型信息。有关详细信息，请参见 {@link #copyProperties(Object, Object)} 的文档。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::836::0", "zh": ["内部类，用于避免运行时对 Kotlin 的硬依赖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::841::0", "zh": ["获取与 Kotlin 主构造方法相对应的 Java 构造方法（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanUtils.java::866::0", "zh": ["使用提供的构造方法实例化 Kotlin 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::21::0", "zh": ["Spring 底层 JavaBeans 基础设施的核心接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::21::1", "zh": ["<p>通常不直接使用，而是通过 {@link org.springframework.beans.factory.BeanFactory} 或 {@link org.springframework.validation.DataBinder} 隐式使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::21::2", "zh": ["<p>提供用于分析和操作标准 JavaBeans 的操作：获取和设置属性值（单独或批量）、获取属性描述符，以及查询属性的可读性/可写性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::21::3", "zh": ["<p>此接口支持<b>嵌套属性</b>，可以将子属性上的属性设置到无限深度。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::21::4", "zh": ["<p>BeanWrapper 对 \"extractOldValueForEditor\" 设置的默认值为 \"false\"，以避免调用 getter 方法带来的副作用。将其设为 \"true\"，可将当前属性值暴露给自定义编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::51::0", "zh": ["指定数组和集合自动增长的限值。<p>在普通 BeanWrapper 上默认不限制。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::58::0", "zh": ["返回数组和集合自动增长的限值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::64::0", "zh": ["返回此对象包装的 Bean 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::69::0", "zh": ["返回被包装 Bean 实例的类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::74::0", "zh": ["获取被包装对象的 PropertyDescriptors（由标准 JavaBeans 内省确定）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapper.java::81::0", "zh": ["获取被包装对象特定属性的属性描述符。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::33::0", "zh": ["默认的 {@link BeanWrapper} 实现，应足以应对所有典型用例。为提高效率而缓存内省结果。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::33::1", "zh": ["<p>注意：自动注册 {@code org.springframework.beans.propertyeditors} 包中的默认属性编辑器，这些编辑器在 JDK 的标准 PropertyEditors 之外额外适用。应用程序可以调用 {@link #registerCustomEditor(Class, java.beans.PropertyEditor)} 方法为特定实例注册编辑器（即它们不会在应用程序范围内共享）。有关详细信息，请参见基类 {@link PropertyEditorRegistrySupport}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::33::2", "zh": ["<p><b>注意：从 Spring 2.5 开始，在几乎所有用途上，这是一个内部类。</b>它只是 public 的，以便允许其他框架包进行访问。对于标准的应用程序访问用途，请改用 {@link PropertyAccessorFactory#forBeanPropertyAccess} 工厂方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::65::0", "zh": ["此对象的内省结果缓存，以避免每次都承担 JavaBeans 内省的开销。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::72::0", "zh": ["用于调用属性方法的安全上下文。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::79::0", "zh": ["创建一个新的空 BeanWrapperImpl。之后需要设置被包装的实例。会注册默认编辑器。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::88::0", "zh": ["创建一个新的空 BeanWrapperImpl。之后需要设置被包装的实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::98::0", "zh": ["为给定对象创建一个新的 BeanWrapperImpl。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::106::0", "zh": ["创建一个新的 BeanWrapperImpl，包装指定类的新实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::114::0", "zh": ["为给定对象创建一个新的 BeanWrapperImpl，并注册该对象所处的嵌套路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::125::0", "zh": ["为给定对象创建一个新的 BeanWrapperImpl，并注册该对象所处的嵌套路径。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::138::0", "zh": ["设置要持有的 Bean 实例，不对 {@link java.util.Optional} 做任何解包。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::157::0", "zh": ["设置要内省的类。目标对象更改时需要调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::168::0", "zh": ["为被包装对象获取一个延迟初始化的 CachedIntrospectionResults 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::179::0", "zh": ["设置调用被包装实例方法时使用的安全上下文。可以为 null。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::187::0", "zh": ["返回调用被包装实例方法时使用的安全上下文。可以为 null。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java::197::0", "zh": ["将指定属性的给定值转换为该属性的类型。<p>此方法仅用于 BeanFactory 中的优化。对于编程式转换，请使用 {@code convertIfNecessary} 方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeansException.java::22::0", "zh": ["beans 包及其子包中抛出的所有异常的抽象超类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeansException.java::22::1", "zh": ["<p>请注意，这是一个运行时（非受检）异常。Beans 异常通常是致命的；没有理由将它们设为受检异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeansException.java::35::0", "zh": ["使用指定消息创建一个新的 BeansException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/BeansException.java::43::0", "zh": ["使用指定消息和根本原因创建一个新的 BeansException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::48::0", "zh": ["为 Java 类缓存 JavaBeans {@link java.beans.PropertyDescriptor} 信息的内部类。不适用于应用程序代码直接使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::48::1", "zh": ["<p>对于 Spring 自身在应用程序 {@link ClassLoader} 内缓存 Bean 描述符是必要的，而不是依赖 JDK 系统范围的 {@link BeanInfo} 缓存（以避免在共享 JVM 中单个应用程序关闭时发生泄漏）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::48::2", "zh": ["<p>信息以静态方式缓存，因此无需为每个操作的 JavaBean 创建此类的新对象。因此，此类实现了工厂设计模式，使用私有构造方法和静态的 {@link #forClass(Class)} 工厂方法来获取实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::48::3", "zh": ["<p>请注意，要使缓存有效工作，需要满足一些前提条件：最好安排 Spring jar 与应用程序类位于同一个 ClassLoader 中，这样在任何情况下都能随应用程序的生命周期进行干净的缓存。对于 Web 应用程序，如果是多 ClassLoader 布局，可考虑在 {@code web.xml} 中声明一个本地 {@link org.springframework.web.util.IntrospectorCleanupListener}，这也将允许有效缓存。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::48::4", "zh": ["<p>如果 ClassLoader 布局不干净且未设置清理监听器，此类将回退到基于弱引用的缓存模型，每次垃圾回收器移除条目时都会重新创建被大量请求的条目。在这种情况下，可考虑使用 {@link #IGNORE_BEANINFO_PROPERTY_NAME} 系统属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::82::0", "zh": ["系统属性，指示 Spring 在调用 JavaBeans {@link Introspector} 时使用 {@link Introspector#IGNORE_ALL_BEANINFO} 模式：\"spring.beaninfo.ignore\"，值为 \"true\" 时会跳过对 {@code BeanInfo} 类的搜索（通常适用于应用程序中一开始就未为此类 Bean 定义任何此类类的场景）。<p>默认值为 \"false\"，会考虑所有 {@code BeanInfo} 元数据类，与标准的 {@link Introspector#getBeanInfo(Class)} 调用相同。如果你遇到对不存在的 {@code BeanInfo} 类反复进行 ClassLoader 访问，且此类访问在启动或延迟加载时开销很大，可考虑将此标志切换为 \"true\"。<p>请注意，这种影响也可能表明缓存未有效工作的场景：最好安排 Spring jar 与应用程序类位于同一个 ClassLoader 中，这样在任何情况下都能随应用程序的生命周期进行干净的缓存。对于 Web 应用程序，如果是多 ClassLoader 布局，可考虑在 {@code web.xml} 中声明一个本地 {@link org.springframework.web.util.IntrospectorCleanupListener}，这也将允许有效缓存。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::111::0", "zh": ["此 CachedIntrospectionResults 类始终接受其类的 ClassLoader 集合，即使这些类不符合缓存安全条件。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::118::0", "zh": ["以 Class 为键、包含 CachedIntrospectionResults 的 Map，采用强引用。此变体用于缓存安全的 Bean 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::125::0", "zh": ["以 Class 为键、包含 CachedIntrospectionResults 的 Map，采用软引用。此变体用于非缓存安全的 Bean 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::133::0", "zh": ["将给定 ClassLoader 接受为缓存安全，即使其类在此 CachedIntrospectionResults 类中不符合缓存安全条件。<p>此配置方法仅在 Spring 类驻留于 'common' ClassLoader（例如系统 ClassLoader）且其生命周期不与应用程序耦合的场景中才有意义。在这种场景下，CachedIntrospectionResults 默认不会缓存应用程序的任何类，因为它们会在 common ClassLoader 中造成泄漏。<p>应用程序启动时的任何 {@code acceptClassLoader} 调用都应与应用程序关闭时的 {@link #clearClassLoader} 调用配对使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::151::0", "zh": ["清除给定 ClassLoader 的内省缓存，移除该 ClassLoader 下所有类的内省结果，并将该 ClassLoader（及其子 ClassLoader）从接受列表中移除。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::170::0", "zh": ["为给定 Bean 类创建 CachedIntrospectionResults。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::204::0", "zh": ["检查此 CachedIntrospectionResults 类是否配置为接受给定 ClassLoader。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::220::0", "zh": ["检查给定 ClassLoader 是否位于给定父级之下，即父级是否在候选者的层级结构中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::243::0", "zh": ["获取给定目标类的 {@link BeanInfo} 描述符。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/CachedIntrospectionResults.java::272::0", "zh": ["为给定类创建一个新的 CachedIntrospectionResults 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::22::0", "zh": ["封装 PropertyAccessor 配置方法的接口。还扩展了 PropertyEditorRegistry 接口，该接口定义了 PropertyEditor 管理的方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::22::1", "zh": ["<p>作为 {@link BeanWrapper} 的基础接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::36::0", "zh": ["指定一个 Spring 3.0 ConversionService，用于转换属性值，作为 JavaBeans PropertyEditors 的替代方案。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::42::0", "zh": ["返回关联的 ConversionService（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::48::0", "zh": ["设置在对属性的新值应用属性编辑器时是否提取旧属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::54::0", "zh": ["返回在对属性的新值应用属性编辑器时是否提取旧属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::60::0", "zh": ["设置此实例是否应尝试“自动增长”包含 {@code null} 值的嵌套路径。<p>如果为 {@code true}，则 {@code null} 的路径位置将被填充一个默认对象值并被遍历，而不是导致 {@link NullValueInNestedPathException}。<p>在普通 PropertyAccessor 实例上默认为 {@code false}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConfigurablePropertyAccessor.java::70::0", "zh": ["返回是否已启用嵌套路径的“自动增长”。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConversionNotSupportedException.java::23::0", "zh": ["当找不到适合 Bean 属性的编辑器或转换器时抛出的异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConversionNotSupportedException.java::33::0", "zh": ["创建一个新的 ConversionNotSupportedException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/ConversionNotSupportedException.java::44::0", "zh": ["创建一个新的 ConversionNotSupportedException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/DirectFieldAccessor.java::28::0", "zh": ["{@link ConfigurablePropertyAccessor} 实现，直接访问实例字段。允许直接绑定到字段，而不是通过 JavaBean 的 setter。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/DirectFieldAccessor.java::28::1", "zh": ["<p>从 Spring 4.2 开始，{@link BeanWrapper} 的绝大多数特性已合并到 {@link AbstractPropertyAccessor}，这意味着此处也支持属性遍历以及集合和 Map 访问。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/DirectFieldAccessor.java::28::2", "zh": ["<p>DirectFieldAccessor 对 \"extractOldValueForEditor\" 设置的默认值为 \"true\"，因为字段总是可以在没有副作用的情况下读取。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/DirectFieldAccessor.java::53::0", "zh": ["为给定对象创建一个新的 DirectFieldAccessor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/DirectFieldAccessor.java::61::0", "zh": ["为给定对象创建一个新的 DirectFieldAccessor，并注册该对象所处的嵌套路径。"]}

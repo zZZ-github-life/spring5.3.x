@@ -20,7 +20,7 @@ import org.springframework.beans.factory.xml.NamespaceHandler;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
- * {@link NamespaceHandler} for the '{@code oxm}' namespace.
+ * '{@code oxm}' 命名空间的 {@link NamespaceHandler}。
  *
  * @author Arjen Poutsma
  * @since 3.0

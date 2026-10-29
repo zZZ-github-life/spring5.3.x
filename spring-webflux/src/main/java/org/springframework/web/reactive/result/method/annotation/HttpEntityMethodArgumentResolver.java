@@ -31,10 +31,7 @@ import org.springframework.web.reactive.BindingContext;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves method arguments of type {@link HttpEntity} or {@link RequestEntity}
- * by reading the body of the request through a compatible
- * {@code HttpMessageReader}.
- *
+ * 通过兼容的 {@code HttpMessageReader} 读取请求正文，解析 {@link HttpEntity} 或 {@link RequestEntity} 类型的方法参数。
  * @author Rossen Stoyanchev
  * @since 5.2
  */

@@ -43,8 +43,7 @@ import org.springframework.web.reactive.socket.server.RequestUpgradeStrategy;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link RequestUpgradeStrategy} for use with Jetty 10.
- *
+ * 用于 Jetty 10 的 {@link RequestUpgradeStrategy}。
  * @author Rossen Stoyanchev
  * @since 5.3.4
  */

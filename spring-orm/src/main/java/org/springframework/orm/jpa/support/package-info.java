@@ -1,5 +1,5 @@
 /**
- * Classes supporting the {@code org.springframework.orm.jpa} package.
+ * 支持 {@code org.springframework.orm.jpa} 包的类。
  */
 @NonNullApi
 @NonNullFields

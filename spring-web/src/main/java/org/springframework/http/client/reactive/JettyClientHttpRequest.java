@@ -40,7 +40,7 @@ import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link ClientHttpRequest} implementation for the Jetty ReactiveStreams HTTP client.
+ * 用于 Jetty ReactiveStreams HTTP 客户端的 {@link ClientHttpRequest} 实现。
  *
  * @author Sebastien Deleuze
  * @since 5.1

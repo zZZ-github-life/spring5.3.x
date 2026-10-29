@@ -22,12 +22,12 @@ import org.springframework.dao.InvalidDataAccessResourceUsageException;
 
 
 /**
- * Exception thrown when SQL specified is invalid. Such exceptions always have a
- * {@link io.r2dbc.spi.R2dbcException} root cause.
+ * 在指定的 SQL 无效时抛出的异常。此类异常始终具有
+ * {@link io.r2dbc.spi.R2dbcException} 作为根本原因。
  *
- * <p>It would be possible to have subclasses for no such table, no such column etc.
- * A custom R2dbcExceptionTranslator could create such more specific exceptions,
- * without affecting code using this class.
+ * <p>可以为表不存在、列不存在等情况提供子类。
+ * 自定义的 R2dbcExceptionTranslator 可以创建这类更具体的异常，
+ * 而不会影响使用此类的代码。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -39,7 +39,7 @@ public class BadSqlGrammarException extends InvalidDataAccessResourceUsageExcept
 
 
 	/**
-	 * Constructor for BadSqlGrammarException.
+	 * BadSqlGrammarException 的构造函数。
 	 * @param task name of current task
 	 * @param sql the offending SQL statement
 	 * @param ex the root cause
@@ -51,14 +51,14 @@ public class BadSqlGrammarException extends InvalidDataAccessResourceUsageExcept
 
 
 	/**
-	 * Return the wrapped {@link R2dbcException}.
+	 * 返回被包装的 {@link R2dbcException}。
 	 */
 	public R2dbcException getR2dbcException() {
 		return (R2dbcException) getCause();
 	}
 
 	/**
-	 * Return the SQL that caused the problem.
+	 * 返回导致问题的 SQL。
 	 */
 	public String getSql() {
 		return this.sql;

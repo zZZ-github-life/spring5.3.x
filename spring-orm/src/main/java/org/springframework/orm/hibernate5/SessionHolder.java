@@ -24,12 +24,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.orm.jpa.EntityManagerHolder;
 
 /**
- * Resource holder wrapping a Hibernate {@link Session} (plus an optional {@link Transaction}).
- * {@link HibernateTransactionManager} binds instances of this class to the thread,
- * for a given {@link org.hibernate.SessionFactory}. Extends {@link EntityManagerHolder}
- * as of 5.1, automatically exposing an {@code EntityManager} handle on Hibernate 5.2+.
+ * 包装 Hibernate {@link Session}（以及可选的 {@link Transaction}）的资源持有器。
+ * {@link HibernateTransactionManager} 会将此类的实例绑定到线程，
+ * 针对给定的 {@link org.hibernate.SessionFactory}。自 5.1 起继承 {@link EntityManagerHolder}，
+ * 在 Hibernate 5.2+ 上自动暴露 {@code EntityManager} 句柄。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不供应用程序使用。
  *
  * @author Juergen Hoeller
  * @since 4.2

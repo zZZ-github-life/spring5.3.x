@@ -1,0 +1,747 @@
+#### FILE result/view/AbstractUrlBasedView.java
+@@ result/view/AbstractUrlBasedView.java :: 1
+Abstract base class for URL-based views. Provides a consistent way of
+holding the URL that a View wraps, in the form of a "url" bean property.
+
+@@ result/view/AbstractUrlBasedView.java :: 2
+Constructor for use as a bean.
+
+@@ result/view/AbstractUrlBasedView.java :: 3
+Create a new AbstractUrlBasedView with the given URL.
+
+@@ result/view/AbstractUrlBasedView.java :: 4
+Set the URL of the resource that this view wraps.
+The URL must be appropriate for the concrete View implementation.
+
+@@ result/view/AbstractUrlBasedView.java :: 5
+Return the URL of the resource that this view wraps.
+
+@@ result/view/AbstractUrlBasedView.java :: 6
+Check whether the resource for the configured URL actually exists.
+
+#### FILE result/view/AbstractView.java
+@@ result/view/AbstractView.java :: 1
+Base class for {@link View} implementations.
+
+@@ result/view/AbstractView.java :: 4
+Set the supported media types for this view.
+<p>Default is {@code "text/html;charset=UTF-8"}.
+
+@@ result/view/AbstractView.java :: 5
+Get the configured media types supported by this view.
+
+@@ result/view/AbstractView.java :: 6
+Set the default charset for this view, used when the
+{@linkplain #setSupportedMediaTypes(List) content type} does not contain one.
+<p>Default is {@linkplain StandardCharsets#UTF_8 UTF 8}.
+
+@@ result/view/AbstractView.java :: 7
+Get the default charset, used when the
+{@linkplain #setSupportedMediaTypes(List) content type} does not contain one.
+
+@@ result/view/AbstractView.java :: 8
+Set the name of the {@code RequestContext} attribute for this view.
+<p>Default is none ({@code null}).
+
+@@ result/view/AbstractView.java :: 9
+Get the name of the {@code RequestContext} attribute for this view, if any.
+
+@@ result/view/AbstractView.java :: 10
+Set the view's name. Helpful for traceability.
+<p>Framework code must call this when constructing views.
+
+@@ result/view/AbstractView.java :: 11
+Get the view's name.
+<p>Should never be {@code null} if the view was correctly configured.
+
+@@ result/view/AbstractView.java :: 12
+Obtain the {@link ApplicationContext} for actual use.
+
+@@ result/view/AbstractView.java :: 13
+Prepare the model to render.
+
+@@ result/view/AbstractView.java :: 14
+Prepare the model to use for rendering.
+<p>The default implementation creates a combined output Map that includes
+model as well as static attributes with the former taking precedence.
+
+@@ result/view/AbstractView.java :: 15
+Use the configured {@link ReactiveAdapterRegistry} to adapt asynchronous
+attributes to {@code Mono<T>} or {@code Mono<List<T>>} and then wait to
+resolve them into actual values. When the returned {@code Mono<Void>}
+completes, the asynchronous attributes in the model will have been
+replaced with their corresponding resolved values.
+
+@@ result/view/AbstractView.java :: 16
+Use the configured {@link ReactiveAdapterRegistry} to adapt asynchronous
+attributes to {@code Mono<T>} or {@code Mono<List<T>>} and then wait to
+resolve them into actual values. When the returned {@code Mono<Void>}
+completes, the asynchronous attributes in the model would have been
+replaced with their corresponding resolved values.
+
+@@ result/view/AbstractView.java :: 17
+Create a {@link RequestContext} to expose under the
+{@linkplain #setRequestContextAttribute specified attribute name}.
+<p>The default implementation creates a standard {@code RequestContext}
+instance for the given exchange and model.
+<p>Can be overridden in subclasses to create custom instances.
+
+@@ result/view/AbstractView.java :: 18
+Get the {@link RequestDataValueProcessor} to use.
+<p>The default implementation looks in the {@link #getApplicationContext()
+ApplicationContext} for a {@code RequestDataValueProcessor} bean with
+the name {@link #REQUEST_DATA_VALUE_PROCESSOR_BEAN_NAME}.
+
+@@ result/view/AbstractView.java :: 19
+Subclasses must implement this method to actually render the view.
+
+#### FILE result/view/BindStatus.java
+@@ result/view/BindStatus.java :: 1
+Simple adapter to expose the bind status of a field or object.
+Set as a variable by FreeMarker macros and other tag libraries.
+
+<p>Obviously, object status representations (i.e. errors at the object level
+rather than the field level) do not have an expression and a value but only
+error codes and messages. For simplicity's sake and to be able to use the same
+tags and macros, the same status class is used for both scenarios.
+
+@@ result/view/BindStatus.java :: 2
+Create a new BindStatus instance, representing a field or object status.
+
+@@ result/view/BindStatus.java :: 3
+Extract the error codes from the ObjectError list.
+
+@@ result/view/BindStatus.java :: 4
+Return the bean and property path for which values and errors
+will be resolved (e.g. "customer.address.street").
+
+@@ result/view/BindStatus.java :: 5
+Return a bind expression that can be used in HTML forms as input name
+for the respective field, or {@code null} if not field-specific.
+<p>Returns a bind path appropriate for resubmission, e.g. "address.street".
+Note that the complete bind path as required by the bind tag is
+"customer.address.street", if bound to a "customer" bean.
+
+@@ result/view/BindStatus.java :: 6
+Return the current value of the field, i.e. either the property value
+or a rejected update, or {@code null} if not field-specific.
+<p>This value will be an HTML-escaped String if the original value
+already was a String.
+
+@@ result/view/BindStatus.java :: 7
+Get the '{@code Class}' type of the field. Favor this instead of
+'{@code getValue().getClass()}' since '{@code getValue()}' may
+return '{@code null}'.
+
+@@ result/view/BindStatus.java :: 8
+Return the actual value of the field, i.e. the raw property value,
+or {@code null} if not available.
+
+@@ result/view/BindStatus.java :: 9
+Return a suitable display value for the field, i.e. the stringified
+value if not null, and an empty string in case of a null value.
+<p>This value will be an HTML-escaped String if the original value
+was non-null: the {@code toString} result of the original value
+will get HTML-escaped.
+
+@@ result/view/BindStatus.java :: 10
+Return if this status represents a field or object error.
+
+@@ result/view/BindStatus.java :: 11
+Return the error codes for the field or object, if any.
+Returns an empty array instead of null if none.
+
+@@ result/view/BindStatus.java :: 12
+Return the first error codes for the field or object, if any.
+
+@@ result/view/BindStatus.java :: 13
+Return the resolved error messages for the field or object,
+if any. Returns an empty array instead of null if none.
+
+@@ result/view/BindStatus.java :: 14
+Return the first error message for the field or object, if any.
+
+@@ result/view/BindStatus.java :: 15
+Return an error message string, concatenating all messages
+separated by the given delimiter.
+
+@@ result/view/BindStatus.java :: 16
+Extract the error messages from the ObjectError list.
+
+@@ result/view/BindStatus.java :: 17
+Return the Errors instance (typically a BindingResult) that this
+bind status is currently associated with.
+
+@@ result/view/BindStatus.java :: 18
+Return the PropertyEditor for the property that this bind status
+is currently bound to.
+
+@@ result/view/BindStatus.java :: 19
+Find a PropertyEditor for the given value class, associated with
+the property that this bound status is currently bound to.
+
+#### FILE result/view/DefaultRendering.java
+@@ result/view/DefaultRendering.java :: 1
+Default implementation of {@link Rendering}.
+
+#### FILE result/view/DefaultRenderingBuilder.java
+@@ result/view/DefaultRenderingBuilder.java :: 1
+Default implementation of {@link Rendering.RedirectBuilder}.
+
+#### FILE result/view/HttpMessageWriterView.java
+@@ result/view/HttpMessageWriterView.java :: 1
+{@code View} that writes model attribute(s) with an {@link HttpMessageWriter}.
+
+@@ result/view/HttpMessageWriterView.java :: 2
+Constructor with an {@code Encoder}.
+
+@@ result/view/HttpMessageWriterView.java :: 3
+Constructor with a fully initialized {@link HttpMessageWriter}.
+
+@@ result/view/HttpMessageWriterView.java :: 4
+Return the configured message writer.
+
+@@ result/view/HttpMessageWriterView.java :: 5
+{@inheritDoc}
+<p>The implementation of this method for {@link HttpMessageWriterView}
+delegates to {@link HttpMessageWriter#getWritableMediaTypes()}.
+
+@@ result/view/HttpMessageWriterView.java :: 6
+Set the attributes in the model that should be rendered by this view.
+When set, all other model attributes will be ignored. The matching
+attributes are further narrowed with {@link HttpMessageWriter#canWrite}.
+The matching attributes are processed as follows:
+<ul>
+<li>0: nothing is written to the response body.
+<li>1: the matching attribute is passed to the writer.
+<li>2..N: if the writer supports {@link Map}, write all matches;
+otherwise raise an {@link IllegalStateException}.
+</ul>
+
+@@ result/view/HttpMessageWriterView.java :: 7
+Return the configured model keys.
+
+#### FILE result/view/RedirectView.java
+@@ result/view/RedirectView.java :: 1
+View that redirects to an absolute or context relative URL. The URL may be a
+URI template in which case the URI template variables will be replaced with
+values from the model or with URI variables from the current request.
+
+<p>By default {@link HttpStatus#SEE_OTHER} is used but alternate status codes
+may be supplied via constructor or setters arguments.
+
+@@ result/view/RedirectView.java :: 2
+Constructor for use as a bean.
+
+@@ result/view/RedirectView.java :: 3
+Create a new {@code RedirectView} with the given redirect URL.
+<p>Status code {@link HttpStatus#SEE_OTHER} is used by default.
+
+@@ result/view/RedirectView.java :: 4
+Create a new {@code RedirectView} with the given URL and an alternate
+redirect status code such as {@link HttpStatus#TEMPORARY_REDIRECT} or
+{@link HttpStatus#PERMANENT_REDIRECT}.
+
+@@ result/view/RedirectView.java :: 5
+Set an alternate redirect status code such as
+{@link HttpStatus#TEMPORARY_REDIRECT} or
+{@link HttpStatus#PERMANENT_REDIRECT}.
+
+@@ result/view/RedirectView.java :: 6
+Get the redirect status code to use.
+
+@@ result/view/RedirectView.java :: 7
+Whether to interpret a given redirect URL that starts with a slash ("/")
+as relative to the current context path ({@code true}, the default) or
+relative to the web server root ({@code false}).
+
+@@ result/view/RedirectView.java :: 8
+Whether to interpret URLs as relative to the current context path.
+
+@@ result/view/RedirectView.java :: 9
+Whether to append the query string of the current URL to the redirect URL
+({@code true}) or not ({@code false}, the default).
+
+@@ result/view/RedirectView.java :: 10
+Whether the query string of the current URL is appended to the redirect URL.
+
+@@ result/view/RedirectView.java :: 11
+Configure one or more hosts associated with the application.
+<p>All other hosts will be considered external hosts.
+<p>In effect this provides a way turn off encoding for URLs that
+have a host and that host is not listed as a known host.
+<p>If not set (the default) all redirect URLs are encoded.
+
+@@ result/view/RedirectView.java :: 12
+Return the configured application hosts.
+
+@@ result/view/RedirectView.java :: 13
+Convert model to request parameters and redirect to the given URL.
+
+@@ result/view/RedirectView.java :: 14
+Create the target URL and, if necessary, pre-pend the contextPath, expand
+URI template variables, append the current request query, and apply the
+configured {@link #getRequestDataValueProcessor()
+RequestDataValueProcessor}.
+
+@@ result/view/RedirectView.java :: 15
+Expand URI template variables in the target URL with either model
+attribute values or as a fallback with URI variable values from the
+current request. Values are encoded.
+
+@@ result/view/RedirectView.java :: 16
+Append the query of the current request to the target redirect URL.
+
+@@ result/view/RedirectView.java :: 17
+Send a redirect back to the HTTP client.
+
+@@ result/view/RedirectView.java :: 18
+Whether the given targetUrl has a host that is a "foreign" system in which
+case {@link javax.servlet.http.HttpServletResponse#encodeRedirectURL} will not be applied.
+<p>This method returns {@code true} if the {@link #setHosts(String[])}
+property is configured and the target URL has a host that does not match.
+
+#### FILE result/view/Rendering.java
+@@ result/view/Rendering.java :: 1
+Public API for HTML rendering. Supported as a return value in Spring WebFlux
+controllers. Comparable to the use of {@code ModelAndView} as a return value
+in Spring MVC controllers.
+
+<p>Controllers typically return a {@link String} view name and rely on the
+"implicit" model which can also be injected into the controller method.
+Or controllers may return model attribute(s) and rely on a default view name
+being selected based on the request path.
+
+<p>{@code Rendering} can be used to combine a view name with model attributes,
+set the HTTP status or headers, and for other more advanced options around
+redirect scenarios.
+
+@@ result/view/Rendering.java :: 2
+Return the selected {@link String} view name or {@link View} object.
+
+@@ result/view/Rendering.java :: 3
+Return attributes to add to the model.
+
+@@ result/view/Rendering.java :: 4
+Return the HTTP status to set the response to.
+
+@@ result/view/Rendering.java :: 5
+Return headers to add to the response.
+
+@@ result/view/Rendering.java :: 6
+Create a new builder for response rendering based on the given view name.
+
+@@ result/view/Rendering.java :: 7
+Create a new builder for a redirect through a {@link RedirectView}.
+
+@@ result/view/Rendering.java :: 8
+Defines a builder for {@link Rendering}.
+
+@@ result/view/Rendering.java :: 9
+Add the given model attribute with the supplied name.
+
+@@ result/view/Rendering.java :: 10
+Add an attribute to the model using a
+{@link org.springframework.core.Conventions#getVariableName generated name}.
+
+@@ result/view/Rendering.java :: 11
+Add all given attributes to the model using
+{@link org.springframework.core.Conventions#getVariableName generated names}.
+
+@@ result/view/Rendering.java :: 12
+Add the given attributes to the model.
+
+@@ result/view/Rendering.java :: 13
+Specify the status to use for the response.
+
+@@ result/view/Rendering.java :: 14
+Specify a header to add to the response.
+
+@@ result/view/Rendering.java :: 15
+Specify headers to add to the response.
+
+@@ result/view/Rendering.java :: 16
+Build the {@link Rendering} instance.
+
+@@ result/view/Rendering.java :: 17
+Extends {@link Builder} with extra options for redirect scenarios.
+
+@@ result/view/Rendering.java :: 18
+Whether to the provided redirect URL should be prepended with the
+application context path (if any).
+<p>By default this is set to {@code true}.
+
+@@ result/view/Rendering.java :: 19
+Whether to append the query string of the current URL to the target
+redirect URL or not.
+<p>By default this is set to {@code false}.
+
+#### FILE result/view/RequestContext.java
+@@ result/view/RequestContext.java :: 1
+Context holder for request-specific state, like the {@link MessageSource} to
+use, current locale, binding errors, etc. Provides easy access to localized
+messages and Errors instances.
+
+<p>Suitable for exposition to views, and usage within FreeMarker templates
+and tag libraries.
+
+<p>Can be instantiated manually or automatically exposed to views as a model
+attribute via AbstractView's "requestContextAttribute" property.
+
+@@ result/view/RequestContext.java :: 2
+Return the MessageSource in use with this request.
+
+@@ result/view/RequestContext.java :: 3
+Return the model Map that this RequestContext encapsulates, if any.
+
+@@ result/view/RequestContext.java :: 4
+Return the current Locale.
+
+@@ result/view/RequestContext.java :: 5
+Return the current TimeZone.
+
+@@ result/view/RequestContext.java :: 6
+Change the current locale to the specified one.
+
+@@ result/view/RequestContext.java :: 7
+Change the current locale to the specified locale and time zone context.
+
+@@ result/view/RequestContext.java :: 8
+(De)activate default HTML escaping for messages and errors, for the scope
+of this RequestContext.
+<p>TODO: currently no application-wide setting ...
+
+@@ result/view/RequestContext.java :: 9
+Is default HTML escaping active? Falls back to {@code false} in case of
+no explicit default given.
+
+@@ result/view/RequestContext.java :: 10
+Return the default HTML escape setting, differentiating between no default
+specified and an explicit value.
+
+@@ result/view/RequestContext.java :: 11
+Return the {@link RequestDataValueProcessor} instance to apply to in form
+tag libraries and to redirect URLs.
+
+@@ result/view/RequestContext.java :: 12
+Return the context path of the current web application. This is
+useful for building links to other resources within the application.
+<p>Delegates to {@link ServerHttpRequest#getPath()}.
+
+@@ result/view/RequestContext.java :: 13
+Return a context-aware URl for the given relative URL.
+
+@@ result/view/RequestContext.java :: 14
+Return a context-aware URl for the given relative URL with placeholders --
+named keys with braces {@code {}}. For example, send in a relative URL
+{@code foo/{bar}?spam={spam}} and a parameter map {@code {bar=baz,spam=nuts}}
+and the result will be {@code [contextpath]/foo/baz?spam=nuts}.
+
+@@ result/view/RequestContext.java :: 15
+Return the request path of the request. This is useful as HTML form
+action target, also in combination with the original query string.
+
+@@ result/view/RequestContext.java :: 16
+Return the query string of the current request. This is useful for
+building an HTML form action target in combination with the original
+request path.
+
+@@ result/view/RequestContext.java :: 17
+Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 18
+Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 19
+Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 20
+Retrieve the message for the given code.
+
+@@ result/view/RequestContext.java :: 21
+Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 22
+Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 23
+Retrieve the message for the given code, using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 24
+Retrieve the message for the given code.
+
+@@ result/view/RequestContext.java :: 25
+Retrieve the given MessageSourceResolvable (e.g. an ObjectError instance), using the "defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 26
+Retrieve the given MessageSourceResolvable (e.g. an ObjectError instance).
+
+@@ result/view/RequestContext.java :: 27
+Retrieve the Errors instance for the given bind object, using the
+"defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 28
+Retrieve the Errors instance for the given bind object.
+
+@@ result/view/RequestContext.java :: 29
+Retrieve the model object for the given model name, either from the model
+or from the request attributes.
+
+@@ result/view/RequestContext.java :: 30
+Create a BindStatus for the given bind object using the
+"defaultHtmlEscape" setting.
+
+@@ result/view/RequestContext.java :: 31
+Create a BindStatus for the given bind object, using the
+"defaultHtmlEscape" setting.
+
+#### FILE result/view/RequestDataValueProcessor.java
+@@ result/view/RequestDataValueProcessor.java :: 1
+A contract for inspecting and potentially modifying request data values such
+as URL query parameters or form field values before they are rendered by a
+view or before a redirect.
+
+<p>Implementations may use this contract for example as part of a solution
+to provide data integrity, confidentiality, protection against cross-site
+request forgery (CSRF), and others or for other tasks such as automatically
+adding a hidden field to all forms and URLs.
+
+<p>View technologies that support this contract can obtain an instance to
+delegate to via {@link RequestContext#getRequestDataValueProcessor()}.
+
+@@ result/view/RequestDataValueProcessor.java :: 2
+Invoked when a new form action is rendered.
+
+@@ result/view/RequestDataValueProcessor.java :: 3
+Invoked when a form field value is rendered.
+
+@@ result/view/RequestDataValueProcessor.java :: 4
+Invoked after all form fields have been rendered.
+
+@@ result/view/RequestDataValueProcessor.java :: 5
+Invoked when a URL is about to be rendered or redirected to.
+
+#### FILE result/view/UrlBasedViewResolver.java
+@@ result/view/UrlBasedViewResolver.java :: 1
+A {@link ViewResolver} that allows direct resolution of symbolic view names
+to URLs without explicit mapping definitions. This is useful if symbolic names
+match the names of view resources in a straightforward manner (i.e. the
+symbolic name is the unique part of the resource's filename), without the need
+for a dedicated mapping to be defined for each view.
+
+<p>Supports {@link AbstractUrlBasedView} subclasses like
+{@link org.springframework.web.reactive.result.view.freemarker.FreeMarkerView}.
+The view class for all views generated by this resolver can be specified
+via the "viewClass" property.
+
+<p>View names can either be resource URLs themselves, or get augmented by a
+specified prefix and/or suffix. Exporting an attribute that holds the
+RequestContext to all views is explicitly supported.
+
+<p>Example: prefix="templates/", suffix=".ftl", viewname="test" &rarr;
+"templates/test.ftl"
+
+<p>As a special feature, redirect URLs can be specified via the "redirect:"
+prefix. E.g.: "redirect:myAction" will trigger a redirect to the given
+URL, rather than resolution as standard view name. This is typically used
+for redirecting to a controller URL after finishing a form workflow.
+
+<p>Note: This class does not support localized resolution, i.e. resolving
+a symbolic view name to different resources depending on the current locale.
+
+@@ result/view/UrlBasedViewResolver.java :: 2
+Prefix for special view names that specify a redirect URL (usually
+to a controller after a form has been submitted and processed).
+Such view names will not be resolved in the configured default
+way but rather be treated as special shortcut.
+
+@@ result/view/UrlBasedViewResolver.java :: 3
+Set the view class that should be used to create views.
+
+@@ result/view/UrlBasedViewResolver.java :: 4
+Return the view class to be used to create views.
+
+@@ result/view/UrlBasedViewResolver.java :: 5
+Set the prefix that gets prepended to view names when building a URL.
+
+@@ result/view/UrlBasedViewResolver.java :: 6
+Return the prefix that gets prepended to view names when building a URL.
+
+@@ result/view/UrlBasedViewResolver.java :: 7
+Set the suffix that gets appended to view names when building a URL.
+
+@@ result/view/UrlBasedViewResolver.java :: 8
+Return the suffix that gets appended to view names when building a URL.
+
+@@ result/view/UrlBasedViewResolver.java :: 9
+Set the view names (or name patterns) that can be handled by this
+{@link ViewResolver}. View names can contain simple wildcards such that
+'my*', '*Report' and '*Repo*' will all match the view name 'myReport'.
+
+@@ result/view/UrlBasedViewResolver.java :: 10
+Return the view names (or name patterns) that can be handled by this
+{@link ViewResolver}.
+
+@@ result/view/UrlBasedViewResolver.java :: 11
+URL based {@link RedirectView} provider which can be used to provide, for example,
+redirect views with a custom default status code.
+
+@@ result/view/UrlBasedViewResolver.java :: 12
+Set the name of the {@link RequestContext} attribute for all views.
+
+@@ result/view/UrlBasedViewResolver.java :: 13
+Return the name of the {@link RequestContext} attribute for all views, if any.
+
+@@ result/view/UrlBasedViewResolver.java :: 14
+Accept the containing {@code ApplicationContext}, if any.
+<p>To be used for the initialization of newly created {@link View} instances,
+applying lifecycle callbacks and providing access to the containing environment.
+
+@@ result/view/UrlBasedViewResolver.java :: 15
+Return the containing {@code ApplicationContext}, if any.
+
+@@ result/view/UrlBasedViewResolver.java :: 16
+Indicates whether this {@link ViewResolver} can handle the supplied
+view name. If not, an empty result is returned. The default implementation
+checks against the configured {@link #setViewNames view names}.
+
+@@ result/view/UrlBasedViewResolver.java :: 17
+Return the required type of view for this resolver.
+This implementation returns {@link AbstractUrlBasedView}.
+
+@@ result/view/UrlBasedViewResolver.java :: 18
+Instantiate the specified view class.
+<p>The default implementation uses reflection to instantiate the class.
+
+@@ result/view/UrlBasedViewResolver.java :: 19
+Creates a new View instance of the specified view class and configures it.
+<p>Does <i>not</i> perform any lookup for pre-defined View instances.
+<p>Spring lifecycle methods as defined by the bean container do not have to
+be called here: They will be automatically applied afterwards, provided
+that an {@link #setApplicationContext ApplicationContext} is available.
+
+@@ result/view/UrlBasedViewResolver.java :: 20
+Apply the containing {@link ApplicationContext}'s lifecycle methods
+to the given {@link View} instance, if such a context is available.
+
+#### FILE result/view/View.java
+@@ result/view/View.java :: 1
+Contract to render {@link HandlerResult} to the HTTP response.
+
+<p>In contrast to an {@link org.springframework.core.codec.Encoder Encoder}
+which is a singleton and encodes any object of a given type, a {@code View}
+is typically selected by name and resolved using a {@link ViewResolver}
+which may for example match it to an HTML template. Furthermore a {@code View}
+may render based on multiple attributes contained in the model.
+
+<p>A {@code View} can also choose to select an attribute from the model use
+any existing {@code Encoder} to render alternate media types.
+
+@@ result/view/View.java :: 2
+The name of the exchange attribute that contains the
+{@link org.springframework.web.reactive.BindingContext BindingContext}
+for the request which can be used to create
+{@link org.springframework.validation.BindingResult BindingResult}
+instances for objects in to the model.
+<p>Note: This attribute is not required and may not be present.
+
+@@ result/view/View.java :: 3
+Return the list of media types this View supports, or an empty list.
+
+@@ result/view/View.java :: 4
+Whether this View does render by performing a redirect.
+
+@@ result/view/View.java :: 5
+Render the view based on the given {@link HandlerResult}. Implementations
+can access and use the model or only a specific attribute in it.
+
+#### FILE result/view/ViewResolutionResultHandler.java
+@@ result/view/ViewResolutionResultHandler.java :: 1
+{@code HandlerResultHandler} that encapsulates the view resolution algorithm
+supporting the following return types:
+<ul>
+<li>{@link Void} or no value -- default view name</li>
+<li>{@link String} -- view name unless {@code @ModelAttribute}-annotated
+<li>{@link View} -- View to render with
+<li>{@link Model} -- attributes to add to the model
+<li>{@link Map} -- attributes to add to the model
+<li>{@link Rendering} -- use case driven API for view resolution</li>
+<li>{@link ModelAttribute @ModelAttribute} -- attribute for the model
+<li>Non-simple value -- attribute for the model
+</ul>
+
+<p>A String-based view name is resolved through the configured
+{@link ViewResolver} instances into a {@link View} to use for rendering.
+If a view is left unspecified (e.g. by returning {@code null} or a
+model-related return value), a default view name is selected.
+
+<p>By default this resolver is ordered at {@link Ordered#LOWEST_PRECEDENCE}
+and generally needs to be late in the order since it interprets any String
+return value as a view name or any non-simple value type as a model attribute
+while other result handlers may interpret the same otherwise based on the
+presence of annotations, e.g. for {@code @ResponseBody}.
+
+@@ result/view/ViewResolutionResultHandler.java :: 2
+Basic constructor with a default {@link ReactiveAdapterRegistry}.
+
+@@ result/view/ViewResolutionResultHandler.java :: 3
+Constructor with an {@link ReactiveAdapterRegistry} instance.
+
+@@ result/view/ViewResolutionResultHandler.java :: 4
+Return a read-only list of view resolvers.
+
+@@ result/view/ViewResolutionResultHandler.java :: 5
+Set the default views to consider always when resolving view names and
+trying to satisfy the best matching content type.
+
+@@ result/view/ViewResolutionResultHandler.java :: 6
+Return the configured default {@code View}'s.
+
+@@ result/view/ViewResolutionResultHandler.java :: 7
+Select a default view name when a controller did not specify it.
+Use the request path the leading and trailing slash stripped.
+
+#### FILE result/view/ViewResolver.java
+@@ result/view/ViewResolver.java :: 1
+Contract to resolve a view name to a {@link View} instance. The view name may
+correspond to an HTML template or be generated dynamically.
+
+<p>The process of view resolution is driven through a ViewResolver-based
+{@code HandlerResultHandler} implementation called
+{@link ViewResolutionResultHandler
+ViewResolutionResultHandler}.
+
+@@ result/view/ViewResolver.java :: 2
+Resolve the view name to a View instance.
+
+#### FILE result/view/ViewResolverSupport.java
+@@ result/view/ViewResolverSupport.java :: 1
+Base class for {@code ViewResolver} implementations with shared properties.
+
+@@ result/view/ViewResolverSupport.java :: 2
+The default {@link MediaType content-type} for views.
+
+@@ result/view/ViewResolverSupport.java :: 3
+Set the supported media types for this view.
+Default is "text/html;charset=UTF-8".
+
+@@ result/view/ViewResolverSupport.java :: 4
+Return the configured media types supported by this view.
+
+@@ result/view/ViewResolverSupport.java :: 5
+Set the default charset for this view, used when the
+{@linkplain #setSupportedMediaTypes(List) content type} does not contain one.
+Default is {@linkplain StandardCharsets#UTF_8 UTF 8}.
+
+@@ result/view/ViewResolverSupport.java :: 6
+Return the default charset, used when the
+{@linkplain #setSupportedMediaTypes(List) content type} does not contain one.
+
+@@ result/view/ViewResolverSupport.java :: 7
+Specify the order value for this ViewResolver bean.
+<p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+
+#### FILE result/view/package-info.java
+@@ result/view/package-info.java :: 1
+Support for result handling through view resolution.
+

@@ -22,14 +22,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
 
 /**
- * A {@code CacheAwareContextLoaderDelegate} is responsible for {@linkplain
- * #loadContext loading} and {@linkplain #closeContext closing} application
- * contexts, interacting transparently with a
+ * {@code CacheAwareContextLoaderDelegate} 负责{@linkplain #loadContext 加载}和{@linkplain #closeContext 关闭}应用程序
+ * 上下文，并在幕后与
  * {@link org.springframework.test.context.cache.ContextCache ContextCache}
- * behind the scenes.
+ * 透明交互。
  *
- * <p>Note: {@code CacheAwareContextLoaderDelegate} does not extend the
- * {@link ContextLoader} or {@link SmartContextLoader} interface.
+ * <p>注意：{@code CacheAwareContextLoaderDelegate} 不扩展
+ * {@link ContextLoader} 或 {@link SmartContextLoader} 接口。
  *
  * @author Sam Brannen
  * @since 3.2.2
@@ -37,13 +36,13 @@ import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
 public interface CacheAwareContextLoaderDelegate {
 
 	/**
-	 * System property used to configure the fully qualified class name of the
-	 * default {@code CacheAwareContextLoaderDelegate}.
-	 * <p>May alternatively be configured via the
-	 * {@link org.springframework.core.SpringProperties} mechanism.
-	 * <p>If this property is not defined, the
+	 * 用于配置默认 {@code CacheAwareContextLoaderDelegate} 的
+	 * 完全限定类名的系统属性。
+	 * <p>也可以通过
+	 * {@link org.springframework.core.SpringProperties} 机制配置。
+	 * <p>如果未定义此属性，将使用
 	 * {@link org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate
-	 * DefaultCacheAwareContextLoaderDelegate} will be used as the default.
+	 * DefaultCacheAwareContextLoaderDelegate} 作为默认值。
 	 * @since 5.3.11
 	 */
 	String DEFAULT_CACHE_AWARE_CONTEXT_LOADER_DELEGATE_PROPERTY_NAME =
@@ -51,18 +50,16 @@ public interface CacheAwareContextLoaderDelegate {
 
 
 	/**
-	 * Determine if the {@linkplain ApplicationContext application context} for
-	 * the supplied {@link MergedContextConfiguration} has been loaded (i.e.,
-	 * is present in the {@code ContextCache}).
-	 * <p>Implementations of this method <strong>must not</strong> load the
-	 * application context as a side effect. In addition, implementations of
-	 * this method should not log the cache statistics via
-	 * {@link org.springframework.test.context.cache.ContextCache#logStatistics()}.
-	 * <p>The default implementation of this method always returns {@code false}.
-	 * Custom {@code CacheAwareContextLoaderDelegate} implementations are
-	 * therefore highly encouraged to override this method with a more meaningful
-	 * implementation. Note that the standard {@code CacheAwareContextLoaderDelegate}
-	 * implementation in Spring overrides this method appropriately.
+	 * 确定提供的 {@link MergedContextConfiguration} 的
+	 * {@linkplain ApplicationContext 应用程序上下文}是否已加载（即
+	 * 存在于 {@code ContextCache} 中）。
+	 * <p>此方法的实现<strong>不得</strong>作为副作用
+	 * 加载应用程序上下文。此外，此方法的实现不应通过
+	 * {@link org.springframework.test.context.cache.ContextCache#logStatistics()} 记录缓存统计信息。
+	 * <p>此方法的默认实现始终返回 {@code false}。
+	 * 因此，强烈建议自定义 {@code CacheAwareContextLoaderDelegate} 实现
+	 * 覆写此方法并提供更有意义的实现。请注意，Spring 中标准的
+	 * {@code CacheAwareContextLoaderDelegate} 实现已适当地覆写了此方法。
 	 * @param mergedContextConfiguration the merged context configuration used
 	 * to load the application context; never {@code null}
 	 * @return {@code true} if the application context has been loaded
@@ -75,13 +72,13 @@ public interface CacheAwareContextLoaderDelegate {
 	}
 
 	/**
-	 * Load the {@linkplain ApplicationContext application context} for the supplied
-	 * {@link MergedContextConfiguration} by delegating to the {@link ContextLoader}
-	 * configured in the given {@code MergedContextConfiguration}.
-	 * <p>If the context is present in the {@code ContextCache} it will simply
-	 * be returned; otherwise, it will be loaded, stored in the cache, and returned.
-	 * <p>The cache statistics should be logged by invoking
-	 * {@link org.springframework.test.context.cache.ContextCache#logStatistics()}.
+	 * 通过委托给给定 {@code MergedContextConfiguration} 中配置的
+	 * {@link ContextLoader}，加载提供的
+	 * {@link MergedContextConfiguration} 的 {@linkplain ApplicationContext 应用程序上下文}。
+	 * <p>如果上下文存在于 {@code ContextCache} 中，将直接
+	 * 返回；否则，将加载它、存储到缓存中并返回。
+	 * <p>应通过调用
+	 * {@link org.springframework.test.context.cache.ContextCache#logStatistics()} 来记录缓存统计信息。
 	 * @param mergedContextConfiguration the merged context configuration to use
 	 * to load the application context; never {@code null}
 	 * @return the application context (never {@code null})
@@ -93,17 +90,14 @@ public interface CacheAwareContextLoaderDelegate {
 	ApplicationContext loadContext(MergedContextConfiguration mergedContextConfiguration);
 
 	/**
-	 * Remove the {@linkplain ApplicationContext application context} for the
-	 * supplied {@link MergedContextConfiguration} from the {@code ContextCache}
-	 * and {@linkplain ConfigurableApplicationContext#close() close} it if it is
-	 * an instance of {@link ConfigurableApplicationContext}.
-	 * <p>The semantics of the supplied {@code HierarchyMode} must be honored when
-	 * removing the context from the cache. See the Javadoc for {@link HierarchyMode}
-	 * for details.
-	 * <p>Generally speaking, this method should only be called if the state of
-	 * a singleton bean has been changed (potentially affecting future interaction
-	 * with the context) or if the context needs to be prematurely removed from
-	 * the cache.
+	 * 从 {@code ContextCache} 中移除提供的
+	 * {@link MergedContextConfiguration} 的 {@linkplain ApplicationContext 应用程序上下文}，
+	 * 如果它是 {@link ConfigurableApplicationContext} 的实例，则
+	 * {@linkplain ConfigurableApplicationContext#close() 关闭}它。
+	 * <p>从缓存中移除上下文时，必须遵循提供的 {@code HierarchyMode} 的语义。
+	 * 详情请参见 {@link HierarchyMode} 的 Javadoc。
+	 * <p>一般而言，仅当单例 Bean 的状态已更改（可能影响未来与
+	 * 上下文的交互）或需要提前从缓存中移除上下文时，才应调用此方法。
 	 * @param mergedContextConfiguration the merged context configuration for the
 	 * application context to close; never {@code null}
 	 * @param hierarchyMode the hierarchy mode; may be {@code null} if the context

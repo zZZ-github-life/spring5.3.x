@@ -25,11 +25,12 @@ import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 
 /**
- * Defines methods for configuring message handling with simple messaging
- * protocols (e.g. STOMP) from WebSocket clients.
+ * 定义用于配置来自 WebSocket 客户端的简单消息传递协议（例如 STOMP）
+ * 消息处理的方法。
  *
- * <p>Typically used to customize the configuration provided via
- * {@link EnableWebSocketMessageBroker @EnableWebSocketMessageBroker}.
+ * <p>通常用于定制通过
+ * {@link EnableWebSocketMessageBroker @EnableWebSocketMessageBroker}
+ * 提供的配置。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -37,42 +38,40 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 public interface WebSocketMessageBrokerConfigurer {
 
 	/**
-	 * Register STOMP endpoints mapping each to a specific URL and (optionally)
-	 * enabling and configuring SockJS fallback options.
+	 * 注册 STOMP 端点，将每个端点映射到特定的 URL，并（可选地）
+	 * 启用和配置 SockJS 回退选项。
 	 */
 	default void registerStompEndpoints(StompEndpointRegistry registry) {
 	}
 
 	/**
-	 * Configure options related to the processing of messages received from and
-	 * sent to WebSocket clients.
+	 * 配置与接收和发送 WebSocket 客户端消息相关的处理选项。
 	 */
 	default void configureWebSocketTransport(WebSocketTransportRegistration registry) {
 	}
 
 	/**
-	 * Configure the {@link org.springframework.messaging.MessageChannel} used for
-	 * incoming messages from WebSocket clients. By default, the channel is backed
-	 * by a thread pool of size 1. It is recommended to customize thread pool
-	 * settings for production use.
+	 * 配置用于接收来自 WebSocket 客户端传入消息的
+	 * {@link org.springframework.messaging.MessageChannel}。默认情况下，
+	 * 该通道由大小为 1 的线程池支持。对于生产环境，
+	 * 建议自定义线程池设置。
 	 */
 	default void configureClientInboundChannel(ChannelRegistration registration) {
 	}
 
 	/**
-	 * Configure the {@link org.springframework.messaging.MessageChannel} used for
-	 * outbound messages to WebSocket clients. By default, the channel is backed
-	 * by a thread pool of size 1. It is recommended to customize thread pool
-	 * settings for production use.
+	 * 配置用于向 WebSocket 客户端发送传出消息的
+	 * {@link org.springframework.messaging.MessageChannel}。默认情况下，
+	 * 该通道由大小为 1 的线程池支持。对于生产环境，
+	 * 建议自定义线程池设置。
 	 */
 	default void configureClientOutboundChannel(ChannelRegistration registration) {
 	}
 
 	/**
-	 * Add resolvers to support custom controller method argument types.
-	 * <p>This does not override the built-in support for resolving handler
-	 * method arguments. To customize the built-in support for argument
-	 * resolution, configure {@code SimpAnnotationMethodMessageHandler} directly.
+	 * 添加解析器以支持自定义控制器方法参数类型。
+	 * <p>这不会覆盖解析处理器方法参数的内置支持。要定制参数解析的内置支持，
+	 * 请直接配置 {@code SimpAnnotationMethodMessageHandler}。
 	 * @param argumentResolvers the resolvers to register (initially an empty list)
 	 * @since 4.1.1
 	 */
@@ -80,10 +79,9 @@ public interface WebSocketMessageBrokerConfigurer {
 	}
 
 	/**
-	 * Add handlers to support custom controller method return value types.
-	 * <p>Using this option does not override the built-in support for handling
-	 * return values. To customize the built-in support for handling return
-	 * values, configure  {@code SimpAnnotationMethodMessageHandler} directly.
+	 * 添加处理器以支持自定义控制器方法返回值类型。
+	 * <p>使用此选项不会覆盖处理返回值的内置支持。要定制处理返回值的内置支持，
+	 * 请直接配置 {@code SimpAnnotationMethodMessageHandler}。
 	 * @param returnValueHandlers the handlers to register (initially an empty list)
 	 * @since 4.1.1
 	 */
@@ -91,12 +89,10 @@ public interface WebSocketMessageBrokerConfigurer {
 	}
 
 	/**
-	 * Configure the message converters to use when extracting the payload of
-	 * messages in annotated methods and when sending messages (e.g. through the
-	 * "broker" SimpMessagingTemplate).
-	 * <p>The provided list, initially empty, can be used to add message converters
-	 * while the boolean return value is used to determine if default message should
-	 * be added as well.
+	 * 配置在注解方法中提取消息负载以及发送消息（例如通过 "broker"
+	 * SimpMessagingTemplate）时要使用的消息转换器。
+	 * <p>提供的列表初始为空，可用于添加消息转换器，而布尔返回值
+	 * 用于确定是否还应添加默认消息转换器。
 	 * @param messageConverters the converters to configure (initially an empty list)
 	 * @return whether to also add default converter or not
 	 */
@@ -105,7 +101,7 @@ public interface WebSocketMessageBrokerConfigurer {
 	}
 
 	/**
-	 * Configure message broker options.
+	 * 配置消息代理选项。
 	 */
 	default void configureMessageBroker(MessageBrokerRegistry registry) {
 	}

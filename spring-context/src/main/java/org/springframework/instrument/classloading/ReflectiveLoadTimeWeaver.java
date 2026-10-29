@@ -30,31 +30,20 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link LoadTimeWeaver} which uses reflection to delegate to an underlying ClassLoader
- * with well-known transformation hooks. The underlying ClassLoader is expected to
- * support the following weaving methods (as defined in the {@link LoadTimeWeaver}
- * interface):
+ * 使用反射委托给具有已知转换钩子的底层 ClassLoader 的 {@link LoadTimeWeaver}。底层 ClassLoader 应
+ * 支持以下织入方法（如 {@link LoadTimeWeaver} 接口中所定义）：
  * <ul>
- * <li>{@code public void addTransformer(java.lang.instrument.ClassFileTransformer)}:
- * for registering the given ClassFileTransformer on this ClassLoader
- * <li>{@code public ClassLoader getThrowawayClassLoader()}:
- * for obtaining a throwaway class loader for this ClassLoader (optional;
- * ReflectiveLoadTimeWeaver will fall back to a SimpleThrowawayClassLoader if
- * that method isn't available)
+ * <li>{@code public void addTransformer(java.lang.instrument.ClassFileTransformer)}：用于在此 ClassLoader 上注册给定的 ClassFileTransformer
+ * <li>{@code public ClassLoader getThrowawayClassLoader()}：用于为此 ClassLoader 获取一个一次性类加载器（可选；如果该方法不可用，ReflectiveLoadTimeWeaver 将回退到 SimpleThrowawayClassLoader）
  * </ul>
  *
- * <p>Please note that the above methods <i>must</i> reside in a class that is
- * publicly accessible, although the class itself does not have to be visible
- * to the application's class loader.
+ * <p>请注意，上述方法<i>必须</i>位于可公开访问的类中，尽管该类本身不必对应用的类加载器可见。
  *
- * <p>The reflective nature of this LoadTimeWeaver is particularly useful when the
- * underlying ClassLoader implementation is loaded in a different class loader itself
- * (such as the application server's class loader which is not visible to the
- * web application). There is no direct API dependency between this LoadTimeWeaver
- * adapter and the underlying ClassLoader, just a 'loose' method contract.
+ * <p>当底层 ClassLoader 实现本身加载在另一个类加载器中（例如应用服务器的类加载器，对 Web 应用不可
+ * 见）时，此 LoadTimeWeaver 的反射特性尤其有用。此 LoadTimeWeaver 适配器与底层 ClassLoader 之间没
+ * 有直接的 API 依赖，只有一个“松散”的方法契约。
  *
- * <p>This is the LoadTimeWeaver to use e.g. with the Resin application server
- * version 3.1+.
+ * <p>例如，这是要与 Resin 应用服务器 3.1 及更高版本一起使用的 LoadTimeWeaver。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -81,15 +70,14 @@ public class ReflectiveLoadTimeWeaver implements LoadTimeWeaver {
 
 
 	/**
-	 * Create a new ReflectiveLoadTimeWeaver for the current context class
-	 * loader, <i>which needs to support the required weaving methods</i>.
+	 * 为当前上下文类加载器创建一个新的 ReflectiveLoadTimeWeaver，<i>该加载器需要支持所需的织入方法</i>。
 	 */
 	public ReflectiveLoadTimeWeaver() {
 		this(ClassUtils.getDefaultClassLoader());
 	}
 
 	/**
-	 * Create a new SimpleLoadTimeWeaver for the given class loader.
+	 * 为给定的类加载器创建一个新的 SimpleLoadTimeWeaver。
 	 * @param classLoader the {@code ClassLoader} to delegate to for
 	 * weaving (<i>must</i> support the required weaving methods).
 	 * @throws IllegalStateException if the supplied {@code ClassLoader}

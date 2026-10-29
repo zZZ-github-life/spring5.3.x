@@ -22,7 +22,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a connected user.
+ * 表示已连接的用户。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -30,26 +30,25 @@ import org.springframework.lang.Nullable;
 public interface SimpUser {
 
 	/**
-	 * The unique user name.
+	 * 唯一用户名。
 	 */
 	String getName();
 
 	/**
-	 * Return the user associated with the session, if available. Typically, the
-	 * user information is available unless the user is connected to a different
-	 * server in a multi-server user registry scenario.
+	 * 返回与会话关联的用户（如果可用）。通常，除非在多服务器用户注册表场景中
+	 * 用户连接到其他服务器，否则用户信息是可用的。
 	 * @since 5.3
 	 */
 	@Nullable
 	Principal getPrincipal();
 
 	/**
-	 * Whether the user has any sessions.
+	 * 用户是否有任何会话。
 	 */
 	boolean hasSessions();
 
 	/**
-	 * Look up the session for the given id.
+	 * 查找给定 ID 的会话。
 	 * @param sessionId the session id
 	 * @return the matching session, or {@code null} if none found
 	 */
@@ -57,8 +56,8 @@ public interface SimpUser {
 	SimpSession getSession(String sessionId);
 
 	/**
-	 * Return the sessions for the user.
-	 * The returned set is a copy and will never be modified.
+	 * 返回用户的会话。
+	 * 返回的集合是副本，永远不会被修改。
 	 * @return a set of session ids, or an empty set if none
 	 */
 	Set<SimpSession> getSessions();

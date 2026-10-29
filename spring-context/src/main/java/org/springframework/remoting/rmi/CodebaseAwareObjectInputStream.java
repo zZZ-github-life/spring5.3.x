@@ -24,26 +24,20 @@ import org.springframework.core.ConfigurableObjectInputStream;
 import org.springframework.lang.Nullable;
 
 /**
- * Special ObjectInputStream subclass that falls back to a specified codebase
- * to load classes from if not found locally. In contrast to standard RMI
- * conventions for dynamic class download, it is the client that determines
- * the codebase URL here, rather than the "java.rmi.server.codebase" system
- * property on the server.
+ * 特殊的 ObjectInputStream 子类，在本地找不到类时会回退到指定的 codebase 加载类。与标准的 RMI 动态
+ * 类下载约定不同，这里由客户端而不是服务器上的 "java.rmi.server.codebase" 系统属性决定 codebase
+ * URL。
  *
- * <p>Uses the JDK's RMIClassLoader to load classes from the specified codebase.
- * The codebase can consist of multiple URLs, separated by spaces.
- * Note that RMIClassLoader requires a SecurityManager to be set, like when
- * using dynamic class download with standard RMI! (See the RMI documentation
- * for details.)
+ * <p>使用 JDK 的 RMIClassLoader 从指定的 codebase 加载类。codebase 可以由多个 URL 组成，以空格分隔。
+ * 注意，RMIClassLoader 需要设置 SecurityManager，就像使用标准 RMI 的动态类下载时一样！（详情参见
+ * RMI 文档。）
  *
- * <p>Despite residing in the RMI package, this class is <i>not</i> used for
- * RmiClientInterceptor, which uses the standard RMI infrastructure instead
- * and thus is only able to rely on RMI's standard dynamic class download via
- * "java.rmi.server.codebase". CodebaseAwareObjectInputStream is used by
- * HttpInvokerClientInterceptor (see the "codebaseUrl" property there).
+ * <p>尽管位于 RMI 包中，此类<i>并不</i>用于 RmiClientInterceptor，后者使用标准的 RMI 基础设施，因
+ * 此只能依赖 RMI 通过 "java.rmi.server.codebase" 提供的标准动态类下载。
+ * CodebaseAwareObjectInputStream 由 HttpInvokerClientInterceptor 使用（参见其中的 "codebaseUrl" 属
+ * 性）。
  *
- * <p>Thanks to Lionel Mestre for suggesting the option and providing
- * a prototype!
+ * <p>感谢 Lionel Mestre 提出该选项并提供了原型！
  *
  * @author Juergen Hoeller
  * @since 1.1.3
@@ -59,7 +53,7 @@ public class CodebaseAwareObjectInputStream extends ConfigurableObjectInputStrea
 
 
 	/**
-	 * Create a new CodebaseAwareObjectInputStream for the given InputStream and codebase.
+	 * 为给定的 InputStream 和 codebase 创建一个新的 CodebaseAwareObjectInputStream。
 	 * @param in the InputStream to read from
 	 * @param codebaseUrl the codebase URL to load classes from if not found locally
 	 * (can consist of multiple URLs, separated by spaces)
@@ -70,7 +64,7 @@ public class CodebaseAwareObjectInputStream extends ConfigurableObjectInputStrea
 	}
 
 	/**
-	 * Create a new CodebaseAwareObjectInputStream for the given InputStream and codebase.
+	 * 为给定的 InputStream 和 codebase 创建一个新的 CodebaseAwareObjectInputStream。
 	 * @param in the InputStream to read from
 	 * @param classLoader the ClassLoader to use for loading local classes
 	 * (may be {@code null} to indicate RMI's default ClassLoader)
@@ -86,7 +80,7 @@ public class CodebaseAwareObjectInputStream extends ConfigurableObjectInputStrea
 	}
 
 	/**
-	 * Create a new CodebaseAwareObjectInputStream for the given InputStream and codebase.
+	 * 为给定的 InputStream 和 codebase 创建一个新的 CodebaseAwareObjectInputStream。
 	 * @param in the InputStream to read from
 	 * @param classLoader the ClassLoader to use for loading local classes
 	 * (may be {@code null} to indicate RMI's default ClassLoader)

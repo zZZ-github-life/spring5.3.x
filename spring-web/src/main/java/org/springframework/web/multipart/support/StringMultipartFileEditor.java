@@ -23,10 +23,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * Custom {@link java.beans.PropertyEditor} for converting
- * {@link MultipartFile MultipartFiles} to Strings.
+ * 用于将 {@link MultipartFile MultipartFiles} 转换为 String 的
+ * 自定义 {@link java.beans.PropertyEditor}。
  *
- * <p>Allows one to specify the charset to use.
+ * <p>允许指定要使用的字符集。
  *
  * @author Juergen Hoeller
  * @since 13.10.2003
@@ -38,14 +38,14 @@ public class StringMultipartFileEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new {@link StringMultipartFileEditor}, using the default charset.
+	 * 使用默认字符集创建一个新的 {@link StringMultipartFileEditor}。
 	 */
 	public StringMultipartFileEditor() {
 		this.charsetName = null;
 	}
 
 	/**
-	 * Create a new {@link StringMultipartFileEditor}, using the given charset.
+	 * 使用给定字符集创建一个新的 {@link StringMultipartFileEditor}。
 	 * @param charsetName valid charset name
 	 * @see java.lang.String#String(byte[],String)
 	 */

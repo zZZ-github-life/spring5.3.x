@@ -26,7 +26,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.lang.Nullable;
 
 /**
- * SockJS transport types.
+ * SockJS 传输类型。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze

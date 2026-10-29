@@ -35,8 +35,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Strategy implementation for parsing Spring's {@link Caching}, {@link Cacheable},
- * {@link CacheEvict}, and {@link CachePut} annotations.
+ * 用于解析 Spring 的 {@link Caching}、{@link Cacheable}、{@link CacheEvict} 和 {@link CachePut} 注
+ * 解的策略实现。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -198,10 +198,10 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 
 	/**
-	 * Validates the specified {@link CacheOperation}.
-	 * <p>Throws an {@link IllegalStateException} if the state of the operation is
-	 * invalid. As there might be multiple sources for default values, this ensures
-	 * that the operation is in a proper state before being returned.
+	 * 验证指定的 {@link CacheOperation}。
+	 *
+	 * <p>如果操作状态无效，则抛出 {@link IllegalStateException}。由于默认值可能有多个来源，这可确保操
+	 * 作在返回之前处于正确状态。
 	 * @param ae the annotated element of the cache operation
 	 * @param operation the {@link CacheOperation} to validate
 	 */
@@ -233,7 +233,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 
 
 	/**
-	 * Provides default settings for a given set of cache operations.
+	 * 为给定的一组缓存操作提供默认设置。
 	 */
 	private static class DefaultCacheConfig {
 
@@ -258,7 +258,7 @@ public class SpringCacheAnnotationParser implements CacheAnnotationParser, Seria
 		}
 
 		/**
-		 * Apply the defaults to the specified {@link CacheOperation.Builder}.
+		 * 将默认值应用到指定的 {@link CacheOperation.Builder}。
 		 * @param builder the operation builder to update
 		 */
 		public void applyDefault(CacheOperation.Builder builder) {

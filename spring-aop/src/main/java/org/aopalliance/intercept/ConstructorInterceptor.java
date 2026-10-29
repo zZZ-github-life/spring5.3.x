@@ -19,13 +19,10 @@ package org.aopalliance.intercept;
 import javax.annotation.Nonnull;
 
 /**
- * Intercepts the construction of a new object.
+ * 拦截新对象的构造过程。
  *
- * <p>The user should implement the {@link
- * #construct(ConstructorInvocation)} method to modify the original
- * behavior. E.g. the following class implements a singleton
- * interceptor (allows only one unique instance for the intercepted
- * class):
+ * <p>用户应实现 {@link #construct(ConstructorInvocation)} 方法来修改原有行为。例如，下面的类实现了
+ * 一个单例拦截器（被拦截的类只允许有一个唯一实例）：
  *
  * <pre class=code>
  * class DebuggingInterceptor implements ConstructorInterceptor {
@@ -46,9 +43,7 @@ import javax.annotation.Nonnull;
 public interface ConstructorInterceptor extends Interceptor  {
 
 	/**
-	 * Implement this method to perform extra treatments before and
-	 * after the construction of a new object. Polite implementations
-	 * would certainly like to invoke {@link Joinpoint#proceed()}.
+	 * 实现此方法以在新对象构造前后执行额外的处理。有礼貌的实现通常会调用 {@link Joinpoint#proceed()}。
 	 * @param invocation the construction joinpoint
 	 * @return the newly created object, which is also the result of
 	 * the call to {@link Joinpoint#proceed()}; might be replaced by

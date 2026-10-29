@@ -20,15 +20,14 @@ import org.springframework.web.reactive.result.view.AbstractUrlBasedView;
 import org.springframework.web.reactive.result.view.UrlBasedViewResolver;
 
 /**
- * Convenience subclass of {@link UrlBasedViewResolver} that supports
- * {@link ScriptTemplateView} and custom subclasses of it.
+ * {@link UrlBasedViewResolver} 的便捷子类，支持 {@link ScriptTemplateView}
+ * 及其自定义子类。
  *
- * <p>The view class for all views created by this resolver can be specified
- * via the {@link #setViewClass(Class)} property.
+ * <p>此解析器创建的所有视图的视图类可以通过
+ * {@link #setViewClass(Class)} 属性指定。
  *
- * <p><b>Note:</b> When chaining ViewResolvers this resolver will check for the
- * existence of the specified template resources and only return a non-null
- * View object if a template is actually found.
+ * <p><b>注意：</b>在串联 ViewResolver 时，此解析器会检查指定的模板资源是否存在，
+ * 仅当确实找到模板时才返回非 null 的 View 对象。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -37,16 +36,16 @@ import org.springframework.web.reactive.result.view.UrlBasedViewResolver;
 public class ScriptTemplateViewResolver extends UrlBasedViewResolver {
 
 	/**
-	 * Sets the default {@link #setViewClass view class} to {@link #requiredViewClass}:
-	 * by default {@link ScriptTemplateView}.
+	 * 将默认的 {@link #setViewClass view class} 设置为 {@link #requiredViewClass}：
+	 * 默认为 {@link ScriptTemplateView}。
 	 */
 	public ScriptTemplateViewResolver() {
 		setViewClass(requiredViewClass());
 	}
 
 	/**
-	 * A convenience constructor that allows for specifying {@link #setPrefix prefix}
-	 * and {@link #setSuffix suffix} as constructor arguments.
+	 * 一个便捷构造函数，允许将 {@link #setPrefix prefix} 和
+	 * {@link #setSuffix suffix} 指定为构造函数参数。
 	 * @param prefix the prefix that gets prepended to view names when building a URL
 	 * @param suffix the suffix that gets appended to view names when building a URL
 	 */

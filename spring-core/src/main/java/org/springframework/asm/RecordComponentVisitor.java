@@ -28,27 +28,26 @@
 package org.springframework.asm;
 
 /**
- * A visitor to visit a record component. The methods of this class must be called in the following
- * order: ( {@code visitAnnotation} | {@code visitTypeAnnotation} | {@code visitAttribute} )* {@code
- * visitEnd}.
+ * 用于访问记录组件的访问器。此类的方法必须按以下顺序调用：( {@code visitAnnotation} |
+ * {@code visitTypeAnnotation} | {@code visitAttribute} )* {@code visitEnd}。
  *
  * @author Remi Forax
  * @author Eric Bruneton
  */
 public abstract class RecordComponentVisitor {
   /**
-   * The ASM API version implemented by this visitor. The value of this field must be one of {@link
-   * Opcodes#ASM8} or {@link Opcodes#ASM9}.
+   * 此访问器实现的 ASM API 版本。此字段的值必须是 {@link Opcodes#ASM8} 或
+   * {@link Opcodes#ASM9} 之一。
    */
   protected final int api;
 
   /**
-   * The record visitor to which this visitor must delegate method calls. May be {@literal null}.
+   * 此访问器必须将方法调用委托给它的记录访问器。可以为 {@literal null}。
    */
   protected RecordComponentVisitor delegate;
 
   /**
-   * Constructs a new {@link RecordComponentVisitor}.
+   * 构造一个新的 {@link RecordComponentVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of {@link Opcodes#ASM8}
    *     or {@link Opcodes#ASM9}.
@@ -58,7 +57,7 @@ public abstract class RecordComponentVisitor {
   }
 
   /**
-   * Constructs a new {@link RecordComponentVisitor}.
+   * 构造一个新的 {@link RecordComponentVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be {@link Opcodes#ASM8}.
    * @param recordComponentVisitor the record component visitor to which this visitor must delegate
@@ -81,7 +80,7 @@ public abstract class RecordComponentVisitor {
   }
 
   /**
-   * The record visitor to which this visitor must delegate method calls. May be {@literal null}.
+   * 此访问器必须将方法调用委托给它的记录访问器。可以为 {@literal null}。
    *
    * @return the record visitor to which this visitor must delegate method calls, or {@literal
    *     null}.
@@ -91,7 +90,7 @@ public abstract class RecordComponentVisitor {
   }
 
   /**
-   * Visits an annotation of the record component.
+   * 访问记录组件的一个注解。
    *
    * @param descriptor the class descriptor of the annotation class.
    * @param visible {@literal true} if the annotation is visible at runtime.
@@ -106,7 +105,7 @@ public abstract class RecordComponentVisitor {
   }
 
   /**
-   * Visits an annotation on a type in the record component signature.
+   * 访问记录组件签名中某个类型上的注解。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#CLASS_TYPE_PARAMETER}, {@link
@@ -129,7 +128,7 @@ public abstract class RecordComponentVisitor {
   }
 
   /**
-   * Visits a non standard attribute of the record component.
+   * 访问记录组件的一个非标准属性。
    *
    * @param attribute an attribute.
    */
@@ -140,8 +139,7 @@ public abstract class RecordComponentVisitor {
   }
 
   /**
-   * Visits the end of the record component. This method, which is the last one to be called, is
-   * used to inform the visitor that everything have been visited.
+   * 访问记录组件的结尾。此方法是最后一个被调用的方法，用于告知访问器所有内容都已访问完毕。
    */
   public void visitEnd() {
     if (delegate != null) {

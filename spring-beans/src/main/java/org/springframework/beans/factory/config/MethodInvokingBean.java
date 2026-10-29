@@ -28,30 +28,26 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Simple method invoker bean: just invoking a target method, not expecting a result
- * to expose to the container (in contrast to {@link MethodInvokingFactoryBean}).
+ * 简单的方法调用器 Bean：仅调用目标方法，不期望向容器暴露结果（与
+ * {@link MethodInvokingFactoryBean} 相反）。
  *
- * <p>This invoker supports any kind of target method. A static method may be specified
- * by setting the {@link #setTargetMethod targetMethod} property to a String representing
- * the static method name, with {@link #setTargetClass targetClass} specifying the Class
- * that the static method is defined on. Alternatively, a target instance method may be
- * specified, by setting the {@link #setTargetObject targetObject} property as the target
- * object, and the {@link #setTargetMethod targetMethod} property as the name of the
- * method to call on that target object. Arguments for the method invocation may be
- * specified by setting the {@link #setArguments arguments} property.
+ * <p>此调用器支持任意类型的目标方法。可以通过将 {@link #setTargetMethod targetMethod} 属性设置为表
+ * 示静态方法名称的 String 来指定静态方法，并通过 {@link #setTargetClass targetClass} 指定定义该静
+ * 态方法的 Class。或者，也可以指定目标实例方法：将 {@link #setTargetObject targetObject} 属性设置
+ * 为目标对象，并将 {@link #setTargetMethod targetMethod} 属性设置为要在该目标对象上调用的方法名称。
+ * 方法的调用参数可以通过设置 {@link #setArguments arguments} 属性来指定。
  *
- * <p>This class depends on {@link #afterPropertiesSet()} being called once
- * all properties have been set, as per the InitializingBean contract.
+ * <p>按照 InitializingBean 的约定，此类依赖于在所有属性设置完成后调用一次
+ * {@link #afterPropertiesSet()}。
  *
- * <p>An example (in an XML based bean factory definition) of a bean definition
- * which uses this class to call a static initialization method:
+ * <p>以下示例（在基于 XML 的 Bean 工厂定义中）展示了一个使用此类调用静态初始化方法的 Bean 定义：
  *
  * <pre class="code">
  * &lt;bean id="myObject" class="org.springframework.beans.factory.config.MethodInvokingBean"&gt;
  *   &lt;property name="staticMethod" value="com.whatever.MyClass.init"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>An example of calling an instance method to start some server bean:
+ * <p>以下示例调用实例方法来启动某个服务器 Bean：
  *
  * <pre class="code">
  * &lt;bean id="myStarter" class="org.springframework.beans.factory.config.MethodInvokingBean"&gt;
@@ -92,8 +88,7 @@ public class MethodInvokingBean extends ArgumentConvertingMethodInvoker
 	}
 
 	/**
-	 * Obtain the TypeConverter from the BeanFactory that this bean runs in,
-	 * if possible.
+	 * 如果可能，从运行此 Bean 的 BeanFactory 获取 TypeConverter。
 	 * @see ConfigurableBeanFactory#getTypeConverter()
 	 */
 	@Override
@@ -114,8 +109,7 @@ public class MethodInvokingBean extends ArgumentConvertingMethodInvoker
 	}
 
 	/**
-	 * Perform the invocation and convert InvocationTargetException
-	 * into the underlying target exception.
+	 * 执行调用，并将 InvocationTargetException 转换为底层的目标异常。
 	 */
 	@Nullable
 	protected Object invokeWithTargetException() throws Exception {

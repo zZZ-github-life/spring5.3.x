@@ -36,11 +36,9 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code TestPropertySourceAttributes} encapsulates attributes declared
- * via {@link TestPropertySource @TestPropertySource} annotations.
+ * {@code TestPropertySourceAttributes} 封装通过 {@link TestPropertySource @TestPropertySource} 注解声明的属性。
  *
- * <p>In addition to encapsulating declared attributes,
- * {@code TestPropertySourceAttributes} also enforces configuration rules.
+ * <p>除了封装已声明的属性外，{@code TestPropertySourceAttributes} 还强制执行配置规则。
  *
  * @author Sam Brannen
  * @author Phillip Webb
@@ -75,12 +73,7 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Merge this {@code TestPropertySourceAttributes} instance with the
-	 * supplied {@code TestPropertySourceAttributes}, asserting that the two sets
-	 * of test property source attributes have identical values for the
-	 * {@link TestPropertySource#inheritLocations} and
-	 * {@link TestPropertySource#inheritProperties} flags and that the two
-	 * underlying annotations were declared on the same class.
+	 * 将此 {@code TestPropertySourceAttributes} 实例与所提供的 {@code TestPropertySourceAttributes} 合并，并断言两组测试属性源属性在 {@link TestPropertySource#inheritLocations} 和 {@link TestPropertySource#inheritProperties} 标志上具有相同的值，且两个底层注解声明在同一个类上。
 	 * @since 5.2
 	 */
 	void mergeWith(TestPropertySourceAttributes attributes) {
@@ -132,10 +125,8 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Add all the supplied elements to the provided list, honoring the
-	 * {@code prepend} flag.
-	 * <p>If the {@code prepend} flag is {@code false}, the elements will be appended
-	 * to the list.
+	 * 将所提供的所有元素添加到给定列表中，并遵循 {@code prepend} 标志。
+	 * <p>如果 {@code prepend} 标志为 {@code false}，则元素将追加到列表中。
 	 * @param prepend whether the elements should be prepended to the list
 	 * @param list the list to which to add the elements
 	 * @param elements the elements to add to the list
@@ -165,7 +156,7 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Get the {@linkplain Class class} that declared {@code @TestPropertySource}.
+	 * 获取声明 {@code @TestPropertySource} 的{@linkplain Class 类}。
 	 * @return the declaring class; never {@code null}
 	 */
 	Class<?> getDeclaringClass() {
@@ -173,10 +164,8 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Get the resource locations that were declared via {@code @TestPropertySource}.
-	 * <p>Note: The returned value may represent a <em>detected default</em>
-	 * or merged locations that do not match the original value declared via a
-	 * single {@code @TestPropertySource} annotation.
+	 * 获取通过 {@code @TestPropertySource} 声明的资源位置。
+	 * <p>注意：返回的值可能表示<em>检测到的默认值</em>或合并后的位置，它们可能与通过单个 {@code @TestPropertySource} 注解声明的原始值不匹配。
 	 * @return the resource locations; potentially <em>empty</em>
 	 * @see TestPropertySource#value
 	 * @see TestPropertySource#locations
@@ -186,7 +175,7 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Get the {@code inheritLocations} flag that was declared via {@code @TestPropertySource}.
+	 * 获取通过 {@code @TestPropertySource} 声明的 {@code inheritLocations} 标志。
 	 * @return the {@code inheritLocations} flag
 	 * @see TestPropertySource#inheritLocations
 	 */
@@ -195,10 +184,8 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Get the inlined properties that were declared via {@code @TestPropertySource}.
-	 * <p>Note: The returned value may represent merged properties that do not
-	 * match the original value declared via a single {@code @TestPropertySource}
-	 * annotation.
+	 * 获取通过 {@code @TestPropertySource} 声明的内联属性。
+	 * <p>注意：返回的值可能表示合并后的属性，它们可能与通过单个 {@code @TestPropertySource} 注解声明的原始值不匹配。
 	 * @return the inlined properties; potentially <em>empty</em>
 	 * @see TestPropertySource#properties
 	 */
@@ -207,7 +194,7 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Get the {@code inheritProperties} flag that was declared via {@code @TestPropertySource}.
+	 * 获取通过 {@code @TestPropertySource} 声明的 {@code inheritProperties} 标志。
 	 * @return the {@code inheritProperties} flag
 	 * @see TestPropertySource#inheritProperties
 	 */
@@ -255,8 +242,7 @@ class TestPropertySourceAttributes {
 	}
 
 	/**
-	 * Provide a String representation of the {@code @TestPropertySource}
-	 * attributes and declaring class.
+	 * 提供 {@code @TestPropertySource} 属性和声明类的字符串表示。
 	 */
 	@Override
 	public String toString() {

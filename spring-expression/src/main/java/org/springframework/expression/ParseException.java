@@ -19,7 +19,7 @@ package org.springframework.expression;
 import org.springframework.lang.Nullable;
 
 /**
- * Represent an exception that occurs during expression parsing.
+ * 表示在表达式解析期间发生的异常。
  *
  * @author Andy Clement
  * @since 3.0
@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 public class ParseException extends ExpressionException {
 
 	/**
-	 * Create a new expression parsing exception.
+	 * 创建一个新的表达式解析异常。
 	 * @param expressionString the expression string that could not be parsed
 	 * @param position the position in the expression string where the problem occurred
 	 * @param message description of the problem that occurred
@@ -38,7 +38,7 @@ public class ParseException extends ExpressionException {
 	}
 
 	/**
-	 * Create a new expression parsing exception.
+	 * 创建一个新的表达式解析异常。
 	 * @param position the position in the expression string where the problem occurred
 	 * @param message description of the problem that occurred
 	 * @param cause the underlying cause of this exception
@@ -48,7 +48,7 @@ public class ParseException extends ExpressionException {
 	}
 
 	/**
-	 * Create a new expression parsing exception.
+	 * 创建一个新的表达式解析异常。
 	 * @param position the position in the expression string where the problem occurred
 	 * @param message description of the problem that occurred
 	 */

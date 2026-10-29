@@ -32,11 +32,10 @@ import org.springframework.aop.framework.AopConfigException;
 import org.springframework.aop.support.ComposablePointcut;
 
 /**
- * Metadata for an AspectJ aspect class, with an additional Spring AOP pointcut
- * for the per clause.
+ * AspectJ 切面类的元数据，并附带一个用于 per 子句的额外 Spring AOP 切点。
  *
- * <p>Uses AspectJ 5 AJType reflection API, enabling us to work with different
- * AspectJ instantiation models such as "singleton", "pertarget" and "perthis".
+ * <p>使用 AspectJ 5 AJType 反射 API，使我们能够处理不同的 AspectJ 实例化模型，例如 "singleton"、
+ * "pertarget" 和 "perthis"。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -47,34 +46,30 @@ import org.springframework.aop.support.ComposablePointcut;
 public class AspectMetadata implements Serializable {
 
 	/**
-	 * The name of this aspect as defined to Spring (the bean name) -
-	 * allows us to determine if two pieces of advice come from the
-	 * same aspect and hence their relative precedence.
+	 * 该切面在 Spring 中定义的名称（Bean 名称）——使我们能够判断两条通知是否来自同一个切面，从而确定它
+	 * 们的相对优先级。
 	 */
 	private final String aspectName;
 
 	/**
-	 * The aspect class, stored separately for re-resolution of the
-	 * corresponding AjType on deserialization.
+	 * 切面类，单独存储，以便在反序列化时重新解析对应的 AjType。
 	 */
 	private final Class<?> aspectClass;
 
 	/**
-	 * AspectJ reflection information.
-	 * <p>Re-resolved on deserialization since it isn't serializable itself.
+	 * AspectJ 反射信息。<p>由于它本身不可序列化，会在反序列化时重新解析。
 	 */
 	private transient AjType<?> ajType;
 
 	/**
-	 * Spring AOP pointcut corresponding to the per clause of the
-	 * aspect. Will be the {@code Pointcut.TRUE} canonical instance in the
-	 * case of a singleton, otherwise an AspectJExpressionPointcut.
+	 * 与该切面 per 子句对应的 Spring AOP 切点。对于单例，它将是 {@code Pointcut.TRUE} 规范实例，否则是
+	 * 一个 AspectJExpressionPointcut。
 	 */
 	private final Pointcut perClausePointcut;
 
 
 	/**
-	 * Create a new AspectMetadata instance for the given aspect class.
+	 * 为给定的切面类创建一个新的 AspectMetadata 实例。
 	 * @param aspectClass the aspect class
 	 * @param aspectName the name of the aspect
 	 */
@@ -123,7 +118,7 @@ public class AspectMetadata implements Serializable {
 	}
 
 	/**
-	 * Extract contents from String of form {@code pertarget(contents)}.
+	 * 从形如 {@code pertarget(contents)} 的字符串中提取内容。
 	 */
 	private String findPerClause(Class<?> aspectClass) {
 		String str = aspectClass.getAnnotation(Aspect.class).value();
@@ -134,36 +129,35 @@ public class AspectMetadata implements Serializable {
 
 
 	/**
-	 * Return AspectJ reflection information.
+	 * 返回 AspectJ 反射信息。
 	 */
 	public AjType<?> getAjType() {
 		return this.ajType;
 	}
 
 	/**
-	 * Return the aspect class.
+	 * 返回切面类。
 	 */
 	public Class<?> getAspectClass() {
 		return this.aspectClass;
 	}
 
 	/**
-	 * Return the aspect name.
+	 * 返回切面名称。
 	 */
 	public String getAspectName() {
 		return this.aspectName;
 	}
 
 	/**
-	 * Return a Spring pointcut expression for a singleton aspect.
-	 * (e.g. {@code Pointcut.TRUE} if it's a singleton).
+	 * 返回单例切面的 Spring 切点表达式。（例如，如果是单例，则为 {@code Pointcut.TRUE}）。
 	 */
 	public Pointcut getPerClausePointcut() {
 		return this.perClausePointcut;
 	}
 
 	/**
-	 * Return whether the aspect is defined as "perthis" or "pertarget".
+	 * 返回该切面是否定义为 "perthis" 或 "pertarget"。
 	 */
 	public boolean isPerThisOrPerTarget() {
 		PerClauseKind kind = getAjType().getPerClause().getKind();
@@ -171,7 +165,7 @@ public class AspectMetadata implements Serializable {
 	}
 
 	/**
-	 * Return whether the aspect is defined as "pertypewithin".
+	 * 返回该切面是否定义为 "pertypewithin"。
 	 */
 	public boolean isPerTypeWithin() {
 		PerClauseKind kind = getAjType().getPerClause().getKind();
@@ -179,7 +173,7 @@ public class AspectMetadata implements Serializable {
 	}
 
 	/**
-	 * Return whether the aspect needs to be lazily instantiated.
+	 * 返回该切面是否需要延迟实例化。
 	 */
 	public boolean isLazilyInstantiated() {
 		return (isPerThisOrPerTarget() || isPerTypeWithin());

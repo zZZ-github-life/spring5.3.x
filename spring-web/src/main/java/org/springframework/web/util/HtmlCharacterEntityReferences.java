@@ -27,11 +27,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Represents a set of character entity references defined by the
- * HTML 4.0 standard.
+ * 表示由 HTML 4.0 标准定义的一组字符实体引用。
  *
- * <p>A complete description of the HTML 4.0 character set can be found
- * at https://www.w3.org/TR/html4/charset.html.
+ * <p>HTML 4.0 字符集的完整说明参见
+ * https://www.w3.org/TR/html4/charset.html。
  *
  * @author Juergen Hoeller
  * @author Martin Kersten
@@ -59,7 +58,7 @@ class HtmlCharacterEntityReferences {
 
 
 	/**
-	 * Returns a new set of character entity references reflecting the HTML 4.0 character set.
+	 * 返回一组反映 HTML 4.0 字符集的新字符实体引用。
 	 */
 	public HtmlCharacterEntityReferences() {
 		Properties entityReferences = new Properties();
@@ -99,28 +98,28 @@ class HtmlCharacterEntityReferences {
 
 
 	/**
-	 * Return the number of supported entity references.
+	 * 返回支持的实体引用数量。
 	 */
 	public int getSupportedReferenceCount() {
 		return this.entityReferenceToCharacterMap.size();
 	}
 
 	/**
-	 * Return true if the given character is mapped to a supported entity reference.
+	 * 如果给定字符映射到受支持的实体引用，则返回 true。
 	 */
 	public boolean isMappedToReference(char character) {
 		return isMappedToReference(character, WebUtils.DEFAULT_CHARACTER_ENCODING);
 	}
 
 	/**
-	 * Return true if the given character is mapped to a supported entity reference.
+	 * 如果给定字符映射到受支持的实体引用，则返回 true。
 	 */
 	public boolean isMappedToReference(char character, String encoding) {
 		return (convertToReference(character, encoding) != null);
 	}
 
 	/**
-	 * Return the reference mapped to the given character, or {@code null} if none found.
+	 * 返回映射到给定字符的引用，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public String convertToReference(char character) {
@@ -128,7 +127,7 @@ class HtmlCharacterEntityReferences {
 	}
 
 	/**
-	 * Return the reference mapped to the given character, or {@code null} if none found.
+	 * 返回映射到给定字符的引用，如果没有则返回 {@code null}。
 	 * @since 4.1.2
 	 */
 	@Nullable
@@ -158,7 +157,7 @@ class HtmlCharacterEntityReferences {
 	}
 
 	/**
-	 * Return the char mapped to the given entityReference or -1.
+	 * 返回映射到给定 entityReference 的字符，或 -1。
 	 */
 	public char convertToCharacter(String entityReference) {
 		Character referredCharacter = this.entityReferenceToCharacterMap.get(entityReference);

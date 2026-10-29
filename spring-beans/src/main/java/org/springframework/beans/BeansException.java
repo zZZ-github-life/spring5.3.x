@@ -20,11 +20,9 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract superclass for all exceptions thrown in the beans package
- * and subpackages.
+ * beans 包及其子包中抛出的所有异常的抽象超类。
  *
- * <p>Note that this is a runtime (unchecked) exception. Beans exceptions
- * are usually fatal; there is no reason for them to be checked.
+ * <p>请注意，这是一个运行时（非受检）异常。Beans 异常通常是致命的；没有理由将它们设为受检异常。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -33,7 +31,7 @@ import org.springframework.lang.Nullable;
 public abstract class BeansException extends NestedRuntimeException {
 
 	/**
-	 * Create a new BeansException with the specified message.
+	 * 使用指定消息创建一个新的 BeansException。
 	 * @param msg the detail message
 	 */
 	public BeansException(String msg) {
@@ -41,8 +39,7 @@ public abstract class BeansException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Create a new BeansException with the specified message
-	 * and root cause.
+	 * 使用指定消息和根本原因创建一个新的 BeansException。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

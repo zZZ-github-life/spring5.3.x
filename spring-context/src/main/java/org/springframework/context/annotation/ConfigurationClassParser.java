@@ -88,18 +88,15 @@ import org.springframework.util.StringUtils;
 
 /*该类会递归处理spring的扫描到的bean*/
 /**
- * Parses a {@link Configuration} class definition, populating a collection of
- * {@link ConfigurationClass} objects (parsing a single Configuration class may result in
- * any number of ConfigurationClass objects because one Configuration class may import
- * another using the {@link Import} annotation).
+ * 解析 {@link Configuration} 类定义，填充 {@link ConfigurationClass} 对象集合（解析单个
+ * Configuration 类可能会产生任意数量的 ConfigurationClass 对象，因为一个 Configuration 类可以使用
+ * {@link Import} 注解导入另一个 Configuration 类）。
  *
- * <p>This class helps separate the concern of parsing the structure of a Configuration
- * class from the concern of registering BeanDefinition objects based on the content of
- * that model (with the exception of {@code @ComponentScan} annotations which need to be
- * registered immediately).
+ * <p>此类有助于将解析 Configuration 类结构的关注点与根据该模型内容注册 BeanDefinition 对象的关注点
+ * 分离（{@code @ComponentScan} 注解除外，它们需要立即注册）。
  *
- * <p>This ASM-based implementation avoids reflection and eager class loading in order to
- * interoperate effectively with lazy class loading in a Spring ApplicationContext.
+ * <p>这个基于 ASM 的实现避免了反射和提前加载类，以便与 Spring ApplicationContext 中的延迟类加载有
+ * 效协作。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -154,8 +151,7 @@ class ConfigurationClassParser {
 
 
 	/**
-	 * Create a new {@link ConfigurationClassParser} instance that will be used
-	 * to populate the set of configuration classes.
+	 * 创建一个新的 {@link ConfigurationClassParser} 实例，用于填充配置类集合。
 	 */
 	public ConfigurationClassParser(MetadataReaderFactory metadataReaderFactory,
 			ProblemReporter problemReporter, Environment environment, ResourceLoader resourceLoader,
@@ -213,7 +209,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Validate each {@link ConfigurationClass} object.
+	 * 校验每个 {@link ConfigurationClass} 对象。
 	 * @see ConfigurationClass#validate
 	 */
 	public void validate() {
@@ -284,9 +280,8 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Apply processing and build a complete {@link ConfigurationClass} by reading the
-	 * annotations, members and methods from the source class. This method can be called
-	 * multiple times as relevant sources are discovered.
+	 * 通过从源类读取注解、成员和方法来应用处理并构建完整的 {@link ConfigurationClass}。随着相关源被发
+	 * 现，此方法可以被多次调用。
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
 	 * @return the superclass, or {@code null} if none found or previously processed
@@ -419,7 +414,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Register member (nested) classes that happen to be configuration classes themselves.
+	 * 注册那些恰好本身也是配置类的成员（嵌套）类。
 	 */
 	private void processMemberClasses(ConfigurationClass configClass, SourceClass sourceClass,
 			Predicate<String> filter) throws IOException {
@@ -452,7 +447,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Register default methods on interfaces implemented by the configuration class.
+	 * 注册配置类所实现接口上的默认方法。
 	 */
 	private void processInterfaces(ConfigurationClass configClass, SourceClass sourceClass) throws IOException {
 		for (SourceClass ifc : sourceClass.getInterfaces()) {
@@ -468,7 +463,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Retrieve the metadata for all <code>@Bean</code> methods.
+	 * 检索所有 <code>@Bean</code> 方法的元数据。
 	 */
 	private Set<MethodMetadata> retrieveBeanMethodMetadata(SourceClass sourceClass) {
 		AnnotationMetadata original = sourceClass.getMetadata();
@@ -507,7 +502,7 @@ class ConfigurationClassParser {
 
 
 	/**
-	 * Process the given <code>@PropertySource</code> annotation metadata.
+	 * 处理给定的 <code>@PropertySource</code> 注解元数据。
 	 * @param propertySource metadata for the <code>@PropertySource</code> annotation found
 	 * @throws IOException if loading a property source failed
 	 */
@@ -586,7 +581,7 @@ class ConfigurationClassParser {
 
 
 	/**
-	 * Returns {@code @Import} class, considering all meta-annotations.
+	 * 返回 {@code @Import} 类，并考虑所有元注解。
 	 */
 	private Set<SourceClass> getImports(SourceClass sourceClass) throws IOException {
 		Set<SourceClass> imports = new LinkedHashSet<>();
@@ -596,13 +591,10 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Recursively collect all declared {@code @Import} values. Unlike most
-	 * meta-annotations it is valid to have several {@code @Import}s declared with
-	 * different values; the usual process of returning values from the first
-	 * meta-annotation on a class is not sufficient.
-	 * <p>For example, it is common for a {@code @Configuration} class to declare direct
-	 * {@code @Import}s in addition to meta-imports originating from an {@code @Enable}
-	 * annotation.
+	 * 递归收集所有声明的 {@code @Import} 值。与大多数元注解不同，声明多个具有不同值的 {@code @Import}
+	 * 是有效的；从类上的第一个元注解返回值这一常规过程并不足够。
+	 * <p>例如，{@code @Configuration} 类除了声明源自 {@code @Enable} 注解的元导入之外，还常常声明直接
+	 * 的 {@code @Import}。
 	 * @param sourceClass the class to search
 	 * @param imports the imports collected so far
 	 * @param visited used to track visited classes to prevent infinite recursion
@@ -731,7 +723,7 @@ class ConfigurationClassParser {
 
 
 	/**
-	 * Factory method to obtain a {@link SourceClass} from a {@link ConfigurationClass}.
+	 * 从 {@link ConfigurationClass} 获取 {@link SourceClass} 的工厂方法。
 	 */
 	private SourceClass asSourceClass(ConfigurationClass configurationClass, Predicate<String> filter) throws IOException {
 		AnnotationMetadata metadata = configurationClass.getMetadata();
@@ -742,7 +734,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Factory method to obtain a {@link SourceClass} from a {@link Class}.
+	 * 从 {@link Class} 获取 {@link SourceClass} 的工厂方法。
 	 */
 	SourceClass asSourceClass(@Nullable Class<?> classType, Predicate<String> filter) throws IOException {
 		if (classType == null || filter.test(classType.getName())) {
@@ -771,7 +763,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Factory method to obtain a {@link SourceClass} collection from class names.
+	 * 从类名获取 {@link SourceClass} 集合的工厂方法。
 	 */
 	private Collection<SourceClass> asSourceClasses(String[] classNames, Predicate<String> filter) throws IOException {
 		List<SourceClass> annotatedClasses = new ArrayList<>(classNames.length);
@@ -782,7 +774,7 @@ class ConfigurationClassParser {
 	}
 
 	/**
-	 * Factory method to obtain a {@link SourceClass} from a class name.
+	 * 从类名获取 {@link SourceClass} 的工厂方法。
 	 */
 	@SuppressWarnings("deprecation")
 	SourceClass asSourceClass(@Nullable String className, Predicate<String> filter) throws IOException {
@@ -830,13 +822,13 @@ class ConfigurationClassParser {
 		}
 
 		/**
-		 * Given a stack containing (in order)
+		 * 给定一个（按顺序）包含以下内容的栈
 		 * <ul>
 		 * <li>com.acme.Foo</li>
 		 * <li>com.acme.Bar</li>
 		 * <li>com.acme.Baz</li>
 		 * </ul>
-		 * return "[Foo->Bar->Baz]".
+		 * 返回 "[Foo->Bar->Baz]"。
 		 */
 		@Override
 		public String toString() {
@@ -855,10 +847,9 @@ class ConfigurationClassParser {
 		private List<DeferredImportSelectorHolder> deferredImportSelectors = new ArrayList<>();
 
 		/**
-		 * Handle the specified {@link DeferredImportSelector}. If deferred import
-		 * selectors are being collected, this registers this instance to the list. If
-		 * they are being processed, the {@link DeferredImportSelector} is also processed
-		 * immediately according to its {@link DeferredImportSelector.Group}.
+		 * 处理指定的 {@link DeferredImportSelector}。如果正在收集延迟导入选择器，则将此实例注册到列表中。
+		 * 如果正在处理它们，则还会根据其 {@link DeferredImportSelector.Group} 立即处理该
+		 * {@link DeferredImportSelector}。
 		 * @param configClass the source configuration class
 		 * @param importSelector the selector to handle
 		 */
@@ -981,7 +972,7 @@ class ConfigurationClassParser {
 		}
 
 		/**
-		 * Return the imports defined by the group.
+		 * 返回该组定义的导入。
 		 * @return each import with its associated configuration class
 		 */
 		public Iterable<Group.Entry> getImports() {
@@ -1024,8 +1015,7 @@ class ConfigurationClassParser {
 
 
 	/**
-	 * Simple wrapper that allows annotated source classes to be dealt with
-	 * in a uniform manner, regardless of how they are loaded.
+	 * 简单的包装器，使标注的源类能够以统一方式处理，无论它们是如何加载的。
 	 */
 	private class SourceClass implements Ordered {
 
@@ -1220,7 +1210,7 @@ class ConfigurationClassParser {
 
 
 	/**
-	 * {@link Problem} registered upon detection of a circular {@link Import}.
+	 * 检测到循环 {@link Import} 时注册的 {@link Problem}。
 	 */
 	private static class CircularImportProblem extends Problem {
 

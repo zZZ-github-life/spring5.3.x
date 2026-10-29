@@ -36,8 +36,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code MultiValueMap} implementation for wrapping Apache HttpComponents
- * HttpClient headers.
+ * 用于包装 Apache HttpComponents HttpClient 头部的
+ * {@code MultiValueMap} 实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.3

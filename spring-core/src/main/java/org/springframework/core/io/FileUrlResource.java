@@ -30,15 +30,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ResourceUtils;
 
 /**
- * Subclass of {@link UrlResource} which assumes file resolution, to the degree
- * of implementing the {@link WritableResource} interface for it. This resource
- * variant also caches resolved {@link File} handles from {@link #getFile()}.
+ * {@link UrlResource} 的子类，假定进行文件解析，并为此实现了 {@link WritableResource} 接口。此资源
+ * 变体还会缓存从 {@link #getFile()} 解析得到的 {@link File} 句柄。
  *
- * <p>This is the class resolved by {@link DefaultResourceLoader} for a "file:..."
- * URL location, allowing a downcast to {@link WritableResource} for it.
+ * <p>这是 {@link DefaultResourceLoader} 为 "file:..." URL 位置解析出的类，允许将其向下转型为
+ * {@link WritableResource}。
  *
- * <p>Alternatively, for direct construction from a {@link java.io.File} handle
- * or NIO {@link java.nio.file.Path}, consider using {@link FileSystemResource}.
+ * <p>或者，如需从 {@link java.io.File} 句柄或 NIO {@link java.nio.file.Path} 直接构造，请考虑使用
+ * {@link FileSystemResource}。
  *
  * @author Juergen Hoeller
  * @since 5.0.2
@@ -50,9 +49,9 @@ public class FileUrlResource extends UrlResource implements WritableResource {
 
 
 	/**
-	 * Create a new {@code FileUrlResource} based on the given URL object.
-	 * <p>Note that this does not enforce "file" as URL protocol. If a protocol
-	 * is known to be resolvable to a file, it is acceptable for this purpose.
+	 * 基于给定的 URL 对象创建一个新的 {@code FileUrlResource}。
+	 * <p>请注意，这并不强制要求 "file" 作为 URL 协议。如果某个协议已知可解析为文件，那么用于此目的是可
+	 * 以接受的。
 	 * @param url a URL
 	 * @see ResourceUtils#isFileURL(URL)
 	 * @see #getFile()
@@ -62,9 +61,8 @@ public class FileUrlResource extends UrlResource implements WritableResource {
 	}
 
 	/**
-	 * Create a new {@code FileUrlResource} based on the given file location,
-	 * using the URL protocol "file".
-	 * <p>The given parts will automatically get encoded if necessary.
+	 * 基于给定的文件位置创建一个新的 {@code FileUrlResource}，使用 URL 协议 "file"。
+	 * <p>给定的各部分将在必要时自动进行编码。
 	 * @param location the location (i.e. the file path within that protocol)
 	 * @throws MalformedURLException if the given URL specification is not valid
 	 * @see UrlResource#UrlResource(String, String)

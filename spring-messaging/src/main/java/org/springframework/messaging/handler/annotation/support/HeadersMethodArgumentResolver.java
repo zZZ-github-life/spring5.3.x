@@ -29,7 +29,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Argument resolver for headers. Resolves the following method parameters:
+ * 头的参数解析器。解析以下方法参数：
  * <ul>
  * <li>{@link Headers @Headers} {@link Map}
  * <li>{@link MessageHeaders}

@@ -24,9 +24,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
 
 /**
- * A variation of {@link WebSocketConfigurationSupport} that detects implementations of
- * {@link WebSocketConfigurer} in Spring configuration and invokes them in order to
- * configure WebSocket request handling.
+ * {@link WebSocketConfigurationSupport} 的一种变体，它会检测 Spring 配置中的
+ * {@link WebSocketConfigurer} 实现，并调用它们来配置 WebSocket 请求处理。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze

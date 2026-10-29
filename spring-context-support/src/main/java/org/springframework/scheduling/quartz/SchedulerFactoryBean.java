@@ -50,35 +50,35 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * {@link FactoryBean} that creates and configures a Quartz {@link org.quartz.Scheduler},
- * manages its lifecycle as part of the Spring application context, and exposes the
- * Scheduler as bean reference for dependency injection.
+ * {@link FactoryBean}，创建并配置 Quartz {@link org.quartz.Scheduler}，
+ * 作为 Spring 应用上下文的一部分管理其生命周期，
+ * 并将 Scheduler 作为 bean 引用暴露以供依赖注入。
  *
- * <p>Allows registration of JobDetails, Calendars and Triggers, automatically
- * starting the scheduler on initialization and shutting it down on destruction.
- * In scenarios that just require static registration of jobs at startup, there
- * is no need to access the Scheduler instance itself in application code.
+ * <p>允许注册 JobDetail、Calendar 和 Trigger，在初始化时
+ * 自动启动调度器，在销毁时关闭。
+ * 在只需要在启动时静态注册 job 的场景中，
+ * 应用代码无需访问 Scheduler 实例本身。
  *
- * <p>For dynamic registration of jobs at runtime, use a bean reference to
- * this SchedulerFactoryBean to get direct access to the Quartz Scheduler
- * ({@code org.quartz.Scheduler}). This allows you to create new jobs
- * and triggers, and also to control and monitor the entire Scheduler.
+ * <p>对于运行时的动态 job 注册，使用此 SchedulerFactoryBean
+ * 的 bean 引用以直接访问 Quartz Scheduler
+ * （{@code org.quartz.Scheduler}）。这允许您创建新的 job
+ * 和 trigger，以及控制和监控整个 Scheduler。
  *
- * <p>Note that Quartz instantiates a new Job for each execution, in
- * contrast to Timer which uses a TimerTask instance that is shared
- * between repeated executions. Just JobDetail descriptors are shared.
+ * <p>请注意，Quartz 在每次执行时都会实例化新的 Job，
+ * 与 Timer 不同——Timer 使用在重复执行之间共享的
+ * TimerTask 实例。只有 JobDetail 描述符是共享的。
  *
- * <p>When using persistent jobs, it is strongly recommended to perform all
- * operations on the Scheduler within Spring-managed (or plain JTA) transactions.
- * Else, database locking will not properly work and might even break.
- * (See {@link #setDataSource setDataSource} javadoc for details.)
+ * <p>使用持久化 job 时，强烈建议在 Spring 管理的
+ * （或纯 JTA）事务中执行 Scheduler 上的所有操作。
+ * 否则，数据库锁将无法正常工作，甚至可能被破坏。
+ * （详见 {@link #setDataSource setDataSource} 的 javadoc。）
  *
- * <p>The preferred way to achieve transactional execution is to demarcate
- * declarative transactions at the business facade level, which will
- * automatically apply to Scheduler operations performed within those scopes.
- * Alternatively, you may add transactional advice for the Scheduler itself.
+ * <p>实现事务执行的首选方式是在业务外观层
+ * 声明事务边界，这将自动应用于
+ * 在这些范围内执行的 Scheduler 操作。
+ * 或者，您可以为 Scheduler 本身添加事务通知。
  *
- * <p>Compatible with Quartz 2.1.4 and higher, as of Spring 4.1.
+ * <p>从 Spring 4.1 开始，兼容 Quartz 2.1.4 及更高版本。
  *
  * @author Juergen Hoeller
  * @since 18.02.2004
@@ -92,12 +92,12 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 		BeanNameAware, ApplicationContextAware, InitializingBean, DisposableBean, SmartLifecycle {
 
 	/**
-	 * The thread count property.
+	 * 线程数属性。
 	 */
 	public static final String PROP_THREAD_COUNT = "org.quartz.threadPool.threadCount";
 
 	/**
-	 * The default thread count.
+	 * 默认线程数。
 	 */
 	public static final int DEFAULT_THREAD_COUNT = 10;
 
@@ -112,10 +112,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 
 	/**
-	 * Return the {@link ResourceLoader} for the currently configured Quartz Scheduler,
-	 * to be used by {@link ResourceLoaderClassLoadHelper}.
-	 * <p>This instance will be set before initialization of the corresponding Scheduler,
-	 * and reset immediately afterwards. It is thus only available during configuration.
+	 * 返回当前配置的 Quartz Scheduler 的 {@link ResourceLoader}，
+	 * 供 {@link ResourceLoaderClassLoadHelper} 使用。
+	 * <p>此实例将在对应 Scheduler 初始化之前设置，
+	 * 并在之后立即重置。因此仅在配置期间可用。
 	 * @see #setApplicationContext
 	 * @see ResourceLoaderClassLoadHelper
 	 */
@@ -125,10 +125,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Return the {@link Executor} for the currently configured Quartz Scheduler,
-	 * to be used by {@link LocalTaskExecutorThreadPool}.
-	 * <p>This instance will be set before initialization of the corresponding Scheduler,
-	 * and reset immediately afterwards. It is thus only available during configuration.
+	 * 返回当前配置的 Quartz Scheduler 的 {@link Executor}，
+	 * 供 {@link LocalTaskExecutorThreadPool} 使用。
+	 * <p>此实例将在对应 Scheduler 初始化之前设置，
+	 * 并在之后立即重置。因此仅在配置期间可用。
 	 * @since 2.0
 	 * @see #setTaskExecutor
 	 * @see LocalTaskExecutorThreadPool
@@ -139,10 +139,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Return the {@link DataSource} for the currently configured Quartz Scheduler,
-	 * to be used by {@link LocalDataSourceJobStore}.
-	 * <p>This instance will be set before initialization of the corresponding Scheduler,
-	 * and reset immediately afterwards. It is thus only available during configuration.
+	 * 返回当前配置的 Quartz Scheduler 的 {@link DataSource}，
+	 * 供 {@link LocalDataSourceJobStore} 使用。
+	 * <p>此实例将在对应 Scheduler 初始化之前设置，
+	 * 并在之后立即重置。因此仅在配置期间可用。
 	 * @since 1.1
 	 * @see #setDataSource
 	 * @see LocalDataSourceJobStore
@@ -153,10 +153,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Return the non-transactional {@link DataSource} for the currently configured
-	 * Quartz Scheduler, to be used by {@link LocalDataSourceJobStore}.
-	 * <p>This instance will be set before initialization of the corresponding Scheduler,
-	 * and reset immediately afterwards. It is thus only available during configuration.
+	 * 返回当前配置的 Quartz Scheduler 的非事务性 {@link DataSource}，
+	 * 供 {@link LocalDataSourceJobStore} 使用。
+	 * <p>此实例将在对应 Scheduler 初始化之前设置，
+	 * 并在之后立即重置。因此仅在配置期间可用。
 	 * @since 1.1
 	 * @see #setNonTransactionalDataSource
 	 * @see LocalDataSourceJobStore
@@ -222,15 +222,15 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 
 	/**
-	 * Set an external Quartz {@link SchedulerFactory} instance to use.
-	 * <p>Default is an internal {@link StdSchedulerFactory} instance. If this method is
-	 * called, it overrides any class specified through {@link #setSchedulerFactoryClass}
-	 * as well as any settings specified through {@link #setConfigLocation},
-	 * {@link #setQuartzProperties}, {@link #setTaskExecutor} or {@link #setDataSource}.
-	 * <p><b>NOTE:</b> With an externally provided {@code SchedulerFactory} instance,
-	 * local settings such as {@link #setConfigLocation} or {@link #setQuartzProperties}
-	 * will be ignored here in {@code SchedulerFactoryBean}, expecting the external
-	 * {@code SchedulerFactory} instance to get initialized on its own.
+	 * 设置要使用的外部 Quartz {@link SchedulerFactory} 实例。
+	 * <p>默认为内部 {@link StdSchedulerFactory} 实例。如果调用此方法，
+	 * 它将覆盖通过 {@link #setSchedulerFactoryClass} 指定的任何类，
+	 * 以及通过 {@link #setConfigLocation}、{@link #setQuartzProperties}、
+	 * {@link #setTaskExecutor} 或 {@link #setDataSource} 指定的任何设置。
+	 * <p><b>注意：</b>对于外部提供的 {@code SchedulerFactory} 实例，
+	 * 此处 {@code SchedulerFactoryBean} 中的本地设置（如 {@link #setConfigLocation}
+	 * 或 {@link #setQuartzProperties}）将被忽略，期望外部
+	 * {@code SchedulerFactory} 实例自行初始化。
 	 * @since 4.3.15
 	 * @see #setSchedulerFactoryClass
 	 */
@@ -239,12 +239,12 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the Quartz {@link SchedulerFactory} implementation to use.
-	 * <p>Default is the {@link StdSchedulerFactory} class, reading in the standard
-	 * {@code quartz.properties} from {@code quartz.jar}. For applying custom Quartz
-	 * properties, specify {@link #setConfigLocation "configLocation"} and/or
-	 * {@link #setQuartzProperties "quartzProperties"} etc on this local
-	 * {@code SchedulerFactoryBean} instance.
+	 * 设置要使用的 Quartz {@link SchedulerFactory} 实现类。
+	 * <p>默认为 {@link StdSchedulerFactory} 类，从 {@code quartz.jar} 中
+	 * 读取标准的 {@code quartz.properties}。要应用自定义的 Quartz 属性，
+	 * 请在此本地 {@code SchedulerFactoryBean} 实例上指定
+	 * {@link #setConfigLocation "configLocation"} 和/或
+	 * {@link #setQuartzProperties "quartzProperties"} 等。
 	 * @see org.quartz.impl.StdSchedulerFactory
 	 * @see #setConfigLocation
 	 * @see #setQuartzProperties
@@ -256,11 +256,11 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the name of the Scheduler to create via the SchedulerFactory, as an
-	 * alternative to the {@code org.quartz.scheduler.instanceName} property.
-	 * <p>If not specified, the name will be taken from Quartz properties
-	 * ({@code org.quartz.scheduler.instanceName}), or from the declared
-	 * {@code SchedulerFactoryBean} bean name as a fallback.
+	 * 设置通过 SchedulerFactory 创建的 Scheduler 名称，
+	 * 作为 {@code org.quartz.scheduler.instanceName} 属性的替代方案。
+	 * <p>如果未指定，名称将从 Quartz 属性
+	 * （{@code org.quartz.scheduler.instanceName}）中获取，
+	 * 或作为后备从声明的 {@code SchedulerFactoryBean} bean 名称中获取。
 	 * @see #setBeanName
 	 * @see StdSchedulerFactory#PROP_SCHED_INSTANCE_NAME
 	 * @see org.quartz.SchedulerFactory#getScheduler()
@@ -271,10 +271,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the location of the Quartz properties config file, for example
-	 * as classpath resource "classpath:quartz.properties".
-	 * <p>Note: Can be omitted when all necessary properties are specified
-	 * locally via this bean, or when relying on Quartz' default configuration.
+	 * 设置 Quartz 属性配置文件的位置，例如
+	 * 类路径资源 "classpath:quartz.properties"。
+	 * <p>注意：当所有必要属性都通过此 bean 本地指定时，
+	 * 或依赖 Quartz 的默认配置时，可以省略。
 	 * @see #setQuartzProperties
 	 */
 	public void setConfigLocation(Resource configLocation) {
@@ -282,9 +282,9 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set Quartz properties, like "org.quartz.threadPool.class".
-	 * <p>Can be used to override values in a Quartz properties config file,
-	 * or to specify all necessary properties locally.
+	 * 设置 Quartz 属性，如 "org.quartz.threadPool.class"。
+	 * <p>可用于覆盖 Quartz 属性配置文件中的值，
+	 * 或本地指定所有必要属性。
 	 * @see #setConfigLocation
 	 */
 	public void setQuartzProperties(Properties quartzProperties) {
@@ -292,12 +292,12 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set a Spring-managed {@link Executor} to use as Quartz backend.
-	 * Exposed as thread pool through the Quartz SPI.
-	 * <p>Can be used to assign a local JDK ThreadPoolExecutor or a CommonJ
-	 * WorkManager as Quartz backend, to avoid Quartz's manual thread creation.
-	 * <p>By default, a Quartz SimpleThreadPool will be used, configured through
-	 * the corresponding Quartz properties.
+	 * 设置 Spring 管理的 {@link Executor} 用作 Quartz 后端。
+	 * 通过 Quartz SPI 暴露为线程池。
+	 * <p>可用于将本地 JDK ThreadPoolExecutor 或 CommonJ
+	 * WorkManager 指定为 Quartz 后端，以避免 Quartz 的手动线程创建。
+	 * <p>默认情况下，将使用通过相应 Quartz 属性配置的
+	 * Quartz SimpleThreadPool。
 	 * @since 2.0
 	 * @see #setQuartzProperties
 	 * @see LocalTaskExecutorThreadPool
@@ -309,22 +309,22 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the default {@link DataSource} to be used by the Scheduler.
-	 * <p>Note: If this is set, the Quartz settings should not define
-	 * a job store "dataSource" to avoid meaningless double configuration.
-	 * Also, do not define a "org.quartz.jobStore.class" property at all.
-	 * (You may explicitly define Spring's {@link LocalDataSourceJobStore}
-	 * but that's the default when using this method anyway.)
-	 * <p>A Spring-specific subclass of Quartz' JobStoreCMT will be used.
-	 * It is therefore strongly recommended to perform all operations on
-	 * the Scheduler within Spring-managed (or plain JTA) transactions.
-	 * Else, database locking will not properly work and might even break
-	 * (e.g. if trying to obtain a lock on Oracle without a transaction).
-	 * <p>Supports both transactional and non-transactional DataSource access.
-	 * With a non-XA DataSource and local Spring transactions, a single DataSource
-	 * argument is sufficient. In case of an XA DataSource and global JTA transactions,
-	 * SchedulerFactoryBean's "nonTransactionalDataSource" property should be set,
-	 * passing in a non-XA DataSource that will not participate in global transactions.
+	 * 设置供 Scheduler 使用的默认 {@link DataSource}。
+	 * <p>注意：如果设置了此项，Quartz 设置中不应定义
+	 * job store 的 "dataSource"，以避免无意义的双重配置。
+	 * 同时，也不要定义 "org.quartz.jobStore.class" 属性。
+	 * （您可以显式定义 Spring 的 {@link LocalDataSourceJobStore}，
+	 * 但使用此方法时默认就是它。）
+	 * <p>将使用 Quartz JobStoreCMT 的 Spring 特定子类。
+	 * 因此，强烈建议所有 Scheduler 操作都在
+	 * Spring 管理的（或纯 JTA）事务中执行。
+	 * 否则，数据库锁将无法正常工作，甚至可能被破坏
+	 * （例如，如果在没有事务的情况下尝试在 Oracle 上获取锁）。
+	 * <p>支持事务性和非事务性的 DataSource 访问。
+	 * 使用非 XA DataSource 和本地 Spring 事务时，单个 DataSource
+	 * 参数即可满足需求。对于 XA DataSource 和全局 JTA 事务，
+	 * 应设置 SchedulerFactoryBean 的 "nonTransactionalDataSource" 属性，
+	 * 传入一个不参与全局事务的非 XA DataSource。
 	 * @since 1.1
 	 * @see #setNonTransactionalDataSource
 	 * @see #setQuartzProperties
@@ -336,12 +336,12 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the {@link DataSource} to be used <i>for non-transactional access</i>.
-	 * <p>This is only necessary if the default DataSource is an XA DataSource that will
-	 * always participate in transactions: A non-XA version of that DataSource should
-	 * be specified as "nonTransactionalDataSource" in such a scenario.
-	 * <p>This is not relevant with a local DataSource instance and Spring transactions.
-	 * Specifying a single default DataSource as "dataSource" is sufficient there.
+	 * 设置用于<i>非事务性访问</i>的 {@link DataSource}。
+	 * <p>仅在默认 DataSource 是 XA DataSource（始终参与事务）
+	 * 时才需要此设置：在这种情况下，应将该 DataSource 的
+	 * 非 XA 版本指定为 "nonTransactionalDataSource"。
+	 * <p>对于本地 DataSource 实例和 Spring 事务，这并不相关。
+	 * 在那里指定单个默认 DataSource 作为 "dataSource" 即可。
 	 * @since 1.1
 	 * @see #setDataSource
 	 * @see LocalDataSourceJobStore
@@ -351,11 +351,12 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Register objects in the Scheduler context via a given Map.
-	 * These objects will be available to any Job that runs in this Scheduler.
-	 * <p>Note: When using persistent Jobs whose JobDetail will be kept in the
-	 * database, do not put Spring-managed beans or an ApplicationContext
-	 * reference into the JobDataMap but rather into the SchedulerContext.
+	 * 通过给定的 Map 在 Scheduler 上下文中注册对象。
+	 * 这些对象将对在此 Scheduler 中运行的任何 Job 可用。
+	 * <p>注意：当使用持久化 Job（其 JobDetail 将保存在
+	 * 数据库中）时，不要将 Spring 管理的 bean 或
+	 * ApplicationContext 引用放入 JobDataMap 中，
+	 * 而应放入 SchedulerContext 中。
 	 * @param schedulerContextAsMap a Map with String keys and any objects as
 	 * values (for example Spring-managed beans)
 	 * @see JobDetailFactoryBean#setJobDataAsMap
@@ -365,18 +366,18 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the key of an {@link ApplicationContext} reference to expose in the
-	 * SchedulerContext, for example "applicationContext". Default is none.
-	 * Only applicable when running in a Spring ApplicationContext.
-	 * <p>Note: When using persistent Jobs whose JobDetail will be kept in the
-	 * database, do not put an ApplicationContext reference into the JobDataMap
-	 * but rather into the SchedulerContext.
-	 * <p>In case of a QuartzJobBean, the reference will be applied to the Job
-	 * instance as bean property. An "applicationContext" attribute will
-	 * correspond to a "setApplicationContext" method in that scenario.
-	 * <p>Note that BeanFactory callback interfaces like ApplicationContextAware
-	 * are not automatically applied to Quartz Job instances, because Quartz
-	 * itself is responsible for the lifecycle of its Jobs.
+	 * 设置要在 SchedulerContext 中暴露的 {@link ApplicationContext}
+	 * 引用的键，例如 "applicationContext"。默认为无。
+	 * 仅在 Spring ApplicationContext 中运行时适用。
+	 * <p>注意：当使用持久化 Job（其 JobDetail 将保存在
+	 * 数据库中）时，不要将 ApplicationContext 引用放入
+	 * JobDataMap 中，而应放入 SchedulerContext 中。
+	 * <p>对于 QuartzJobBean，该引用将作为 bean 属性
+	 * 应用到 Job 实例。在此场景下，"applicationContext" 属性
+	 * 将对应 "setApplicationContext" 方法。
+	 * <p>请注意，BeanFactory 回调接口（如 ApplicationContextAware）
+	 * 不会自动应用到 Quartz Job 实例，因为 Quartz
+	 * 本身负责其 Job 的生命周期。
 	 * @see JobDetailFactoryBean#setApplicationContextJobDataKey
 	 * @see org.springframework.context.ApplicationContext
 	 */
@@ -385,15 +386,15 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the Quartz {@link JobFactory} to use for this Scheduler.
-	 * <p>Default is Spring's {@link AdaptableJobFactory}, which supports
-	 * {@link java.lang.Runnable} objects as well as standard Quartz
-	 * {@link org.quartz.Job} instances. Note that this default only applies
-	 * to a <i>local</i> Scheduler, not to a RemoteScheduler (where setting
-	 * a custom JobFactory is not supported by Quartz).
-	 * <p>Specify an instance of Spring's {@link SpringBeanJobFactory} here
-	 * (typically as an inner bean definition) to automatically populate a job's
-	 * bean properties from the specified job data map and scheduler context.
+	 * 设置此 Scheduler 使用的 Quartz {@link JobFactory}。
+	 * <p>默认为 Spring 的 {@link AdaptableJobFactory}，支持
+	 * {@link java.lang.Runnable} 对象以及标准的 Quartz
+	 * {@link org.quartz.Job} 实例。请注意，此默认设置仅适用于
+	 * <i>本地</i> Scheduler，不适用于 RemoteScheduler
+	 * （Quartz 不支持在 RemoteScheduler 上设置自定义 JobFactory）。
+	 * <p>指定 Spring 的 {@link SpringBeanJobFactory} 实例
+	 * （通常作为内部 bean 定义）以自动从指定的
+	 * job 数据映射和调度器上下文中填充 job 的 bean 属性。
 	 * @since 2.0
 	 * @see AdaptableJobFactory
 	 * @see SpringBeanJobFactory
@@ -404,17 +405,16 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set whether to automatically start the scheduler after initialization.
-	 * <p>Default is "true"; set this to "false" to allow for manual startup.
+	 * 设置是否在初始化后自动启动调度器。
+	 * <p>默认为 "true"；设置为 "false" 以允许手动启动。
 	 */
 	public void setAutoStartup(boolean autoStartup) {
 		this.autoStartup = autoStartup;
 	}
 
 	/**
-	 * Return whether this scheduler is configured for auto-startup. If "true",
-	 * the scheduler will start after the context is refreshed and after the
-	 * start delay, if any.
+	 * 返回此调度器是否配置为自动启动。如果为 "true"，
+	 * 调度器将在上下文刷新后以及开始延迟（如果有）之后启动。
 	 */
 	@Override
 	public boolean isAutoStartup() {
@@ -422,11 +422,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Specify the phase in which this scheduler should be started and stopped.
-	 * The startup order proceeds from lowest to highest, and the shutdown order
-	 * is the reverse of that. By default this value is {@code Integer.MAX_VALUE}
-	 * meaning that this scheduler starts as late as possible and stops as soon
-	 * as possible.
+	 * 指定此调度器应在哪个阶段启动和停止。
+	 * 启动顺序从低到高，关闭顺序则相反。
+	 * 默认值为 {@code Integer.MAX_VALUE}，表示此调度器
+	 * 尽可能晚启动，尽可能早停止。
 	 * @since 3.0
 	 */
 	public void setPhase(int phase) {
@@ -434,7 +433,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Return the phase in which this scheduler will be started and stopped.
+	 * 返回此调度器将在哪个阶段启动和停止。
 	 */
 	@Override
 	public int getPhase() {
@@ -442,33 +441,34 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Set the number of seconds to wait after initialization before
-	 * starting the scheduler asynchronously. Default is 0, meaning
-	 * immediate synchronous startup on initialization of this bean.
-	 * <p>Setting this to 10 or 20 seconds makes sense if no jobs
-	 * should be run before the entire application has started up.
+	 * 设置在初始化后异步启动调度器之前
+	 * 等待的秒数。默认为 0，即在初始化此 bean 时
+	 * 立即同步启动。
+	 * <p>如果不应在整个应用程序启动之前运行任何 job，
+	 * 将此设置为 10 或 20 秒是有意义的。
 	 */
 	public void setStartupDelay(int startupDelay) {
 		this.startupDelay = startupDelay;
 	}
 
 	/**
-	 * Set whether to expose the Spring-managed {@link Scheduler} instance in the
-	 * Quartz {@link SchedulerRepository}. Default is "false", since the Spring-managed
-	 * Scheduler is usually exclusively intended for access within the Spring context.
-	 * <p>Switch this flag to "true" in order to expose the Scheduler globally.
-	 * This is not recommended unless you have an existing Spring application that
-	 * relies on this behavior. Note that such global exposure was the accidental
-	 * default in earlier Spring versions; this has been fixed as of Spring 2.5.6.
+	 * 设置是否在 Quartz {@link SchedulerRepository} 中暴露
+	 * Spring 管理的 {@link Scheduler} 实例。默认为 "false"，
+	 * 因为 Spring 管理的 Scheduler 通常专门用于
+	 * 在 Spring 上下文内访问。
+	 * <p>将此标志切换为 "true" 以全局暴露 Scheduler。
+	 * 除非您有一个依赖此行为的现有 Spring 应用程序，
+	 * 否则不推荐这样做。请注意，这种全局暴露在早期
+	 * Spring 版本中是意外的默认行为；从 Spring 2.5.6 开始已修复。
 	 */
 	public void setExposeSchedulerInRepository(boolean exposeSchedulerInRepository) {
 		this.exposeSchedulerInRepository = exposeSchedulerInRepository;
 	}
 
 	/**
-	 * Set whether to wait for running jobs to complete on shutdown.
-	 * <p>Default is "false". Switch this to "true" if you prefer
-	 * fully completed jobs at the expense of a longer shutdown phase.
+	 * 设置是否在关闭时等待运行中的 job 完成。
+	 * <p>默认为 "false"。如果您更倾向于
+	 * 完全完成的 job 而接受更长的关闭阶段，请切换为 "true"。
 	 * @see org.quartz.Scheduler#shutdown(boolean)
 	 */
 	public void setWaitForJobsToCompleteOnShutdown(boolean waitForJobsToCompleteOnShutdown) {
@@ -519,7 +519,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 
 	/**
-	 * Create a SchedulerFactory if necessary and apply locally defined Quartz properties to it.
+	 * 如有必要，创建 SchedulerFactory 并将本地定义的 Quartz 属性应用于其中。
 	 * @return the initialized SchedulerFactory
 	 */
 	private SchedulerFactory prepareSchedulerFactory() throws SchedulerException, IOException {
@@ -542,7 +542,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Initialize the given SchedulerFactory, applying locally defined Quartz properties to it.
+	 * 初始化给定的 SchedulerFactory，将本地定义的 Quartz 属性应用于其中。
 	 * @param schedulerFactory the SchedulerFactory to initialize
 	 */
 	private void initSchedulerFactory(StdSchedulerFactory schedulerFactory) throws SchedulerException, IOException {
@@ -650,10 +650,10 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Create the Scheduler instance for the given factory and scheduler name.
-	 * Called by {@link #afterPropertiesSet}.
-	 * <p>The default implementation invokes SchedulerFactory's {@code getScheduler}
-	 * method. Can be overridden for custom Scheduler creation.
+	 * 为给定的工厂和调度器名称创建 Scheduler 实例。
+	 * 由 {@link #afterPropertiesSet} 调用。
+	 * <p>默认实现调用 SchedulerFactory 的 {@code getScheduler}
+	 * 方法。可以重写以自定义创建 Scheduler。
 	 * @param schedulerFactory the factory to create the Scheduler with
 	 * @param schedulerName the name of the scheduler to create
 	 * @return the Scheduler instance
@@ -697,8 +697,8 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	}
 
 	/**
-	 * Expose the specified context attributes and/or the current
-	 * ApplicationContext in the Quartz SchedulerContext.
+	 * 在 Quartz SchedulerContext 中暴露指定的上下文属性和/或
+	 * 当前 ApplicationContext。
 	 */
 	private void populateSchedulerContext(Scheduler scheduler) throws SchedulerException {
 		// Put specified objects into Scheduler context.
@@ -719,7 +719,7 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 
 
 	/**
-	 * Start the Quartz Scheduler, respecting the "startupDelay" setting.
+	 * 启动 Quartz Scheduler，遵循 "startupDelay" 设置。
 	 * @param scheduler the Scheduler to start
 	 * @param startupDelay the number of seconds to wait before starting
 	 * the Scheduler asynchronously
@@ -838,8 +838,8 @@ public class SchedulerFactoryBean extends SchedulerAccessor implements FactoryBe
 	//---------------------------------------------------------------------
 
 	/**
-	 * Shut down the Quartz scheduler on bean factory shutdown,
-	 * stopping all scheduled jobs.
+	 * 在 bean 工厂关闭时关闭 Quartz 调度器，
+	 * 停止所有已调度的 job。
 	 */
 	@Override
 	public void destroy() throws SchedulerException {

@@ -42,7 +42,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Adapt {@link ServerHttpRequest} to the Reactor {@link HttpServerRequest}.
+ * 将 {@link ServerHttpRequest} 适配到 Reactor 的 {@link HttpServerRequest}。
  *
  * @author Stephane Maldini
  * @author Rossen Stoyanchev
@@ -50,7 +50,7 @@ import org.springframework.util.MultiValueMap;
  */
 class ReactorServerHttpRequest extends AbstractServerHttpRequest {
 
-	/** Reactor Netty 1.0.5+. */
+	/** 要求 Reactor Netty 1.0.5+。 */
 	static final boolean reactorNettyRequestChannelOperationsIdPresent = ClassUtils.isPresent(
 			"reactor.netty.ChannelOperationsId", ReactorServerHttpRequest.class.getClassLoader());
 

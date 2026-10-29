@@ -27,16 +27,16 @@ import org.springframework.core.Ordered;
 import org.springframework.lang.NonNull;
 
 /**
- * {@link BeanInfoFactory} implementation that bypasses the standard {@link java.beans.Introspector}
- * for faster introspection, reduced to basic property determination (as commonly needed in Spring).
+ * 绕过标准 {@link java.beans.Introspector} 以加快内省的 {@link BeanInfoFactory} 实现，其功能缩减为
+ * 基本的属性判定（Spring 中通常所需的程度）。
  *
- * <p>To be configured via a {@code META-INF/spring.factories} file with the following content,
- * overriding other custom {@code org.springframework.beans.BeanInfoFactory} declarations:
+ * <p>可通过内容如下的 {@code META-INF/spring.factories} 文件进行配置，以覆盖其他自定义的
+ * {@code org.springframework.beans.BeanInfoFactory} 声明：
  * {@code org.springframework.beans.BeanInfoFactory=org.springframework.beans.SimpleBeanInfoFactory}
  *
- * <p>Ordered at {@code Ordered.LOWEST_PRECEDENCE - 1} to override {@link ExtendedBeanInfoFactory}
- * (registered by default in 5.3) if necessary while still allowing other user-defined
- * {@link BeanInfoFactory} types to take precedence.
+ * <p>排序值为 {@code Ordered.LOWEST_PRECEDENCE - 1}，以便在必要时覆盖
+ * {@link ExtendedBeanInfoFactory}（5.3 中默认注册），同时仍允许其他用户自定义的
+ * {@link BeanInfoFactory} 类型优先。
  *
  * @author Juergen Hoeller
  * @since 5.3.24

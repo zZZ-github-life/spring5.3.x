@@ -31,13 +31,12 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A description of a JavaBeans Property that allows us to avoid a dependency on
- * {@code java.beans.PropertyDescriptor}. The {@code java.beans} package
- * is not available in a number of environments (e.g. Android, Java ME), so this is
- * desirable for portability of Spring's core conversion facility.
+ * 对 JavaBeans Property 的描述，使我们能够避免依赖 {@code java.beans.PropertyDescriptor}。
+ * {@code java.beans} 包在许多环境中不可用（例如 Android、Java ME），因此这对于 Spring 核心转换设施
+ * 的便携性而言是理想的。
  *
- * <p>Used to build a {@link TypeDescriptor} from a property location. The built
- * {@code TypeDescriptor} can then be used to convert from/to the property type.
+ * <p>用于从属性位置构建 {@link TypeDescriptor}。构建出的 {@code TypeDescriptor} 随后可用于在该属性
+ * 类型与其他类型之间进行转换。
  *
  * @author Keith Donald
  * @author Phillip Webb
@@ -81,28 +80,28 @@ public final class Property {
 
 
 	/**
-	 * The object declaring this property, either directly or in a superclass the object extends.
+	 * 声明此属性的对象，该声明可能直接位于此对象中，也可能位于此对象所继承的父类中。
 	 */
 	public Class<?> getObjectType() {
 		return this.objectType;
 	}
 
 	/**
-	 * The name of the property: e.g. 'foo'
+	 * 属性名称：例如 'foo'
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * The property type: e.g. {@code java.lang.String}
+	 * 属性类型：例如 {@code java.lang.String}
 	 */
 	public Class<?> getType() {
 		return this.methodParameter.getParameterType();
 	}
 
 	/**
-	 * The property getter method: e.g. {@code getFoo()}
+	 * 属性的 getter 方法：例如 {@code getFoo()}
 	 */
 	@Nullable
 	public Method getReadMethod() {
@@ -110,7 +109,7 @@ public final class Property {
 	}
 
 	/**
-	 * The property setter method: e.g. {@code setFoo(String)}
+	 * 属性的 setter 方法：例如 {@code setFoo(String)}
 	 */
 	@Nullable
 	public Method getWriteMethod() {

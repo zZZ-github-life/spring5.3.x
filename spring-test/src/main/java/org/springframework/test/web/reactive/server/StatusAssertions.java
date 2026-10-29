@@ -25,8 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.util.AssertionErrors;
 
 /**
- * Assertions on the response status.
- *
+ * 对响应状态的断言。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see WebTestClient.ResponseSpec#expectStatus()
@@ -45,14 +44,14 @@ public class StatusAssertions {
 
 
 	/**
-	 * Assert the response status as an {@link HttpStatus}.
+	 * 以 {@link HttpStatus} 形式断言响应状态。
 	 */
 	public WebTestClient.ResponseSpec isEqualTo(HttpStatus status) {
 		return isEqualTo(status.value());
 	}
 
 	/**
-	 * Assert the response status as an integer.
+	 * 以整数形式断言响应状态。
 	 */
 	public WebTestClient.ResponseSpec isEqualTo(int status) {
 		int actual = this.exchangeResult.getRawStatusCode();
@@ -61,84 +60,84 @@ public class StatusAssertions {
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.OK} (200).
+	 * 断言响应状态码为 {@code HttpStatus.OK} (200)。
 	 */
 	public WebTestClient.ResponseSpec isOk() {
 		return assertStatusAndReturn(HttpStatus.OK);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.CREATED} (201).
+	 * 断言响应状态码为 {@code HttpStatus.CREATED} (201)。
 	 */
 	public WebTestClient.ResponseSpec isCreated() {
 		return assertStatusAndReturn(HttpStatus.CREATED);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.ACCEPTED} (202).
+	 * 断言响应状态码为 {@code HttpStatus.ACCEPTED} (202)。
 	 */
 	public WebTestClient.ResponseSpec isAccepted() {
 		return assertStatusAndReturn(HttpStatus.ACCEPTED);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.NO_CONTENT} (204).
+	 * 断言响应状态码为 {@code HttpStatus.NO_CONTENT} (204)。
 	 */
 	public WebTestClient.ResponseSpec isNoContent() {
 		return assertStatusAndReturn(HttpStatus.NO_CONTENT);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.FOUND} (302).
+	 * 断言响应状态码为 {@code HttpStatus.FOUND} (302)。
 	 */
 	public WebTestClient.ResponseSpec isFound() {
 		return assertStatusAndReturn(HttpStatus.FOUND);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.SEE_OTHER} (303).
+	 * 断言响应状态码为 {@code HttpStatus.SEE_OTHER} (303)。
 	 */
 	public WebTestClient.ResponseSpec isSeeOther() {
 		return assertStatusAndReturn(HttpStatus.SEE_OTHER);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.NOT_MODIFIED} (304).
+	 * 断言响应状态码为 {@code HttpStatus.NOT_MODIFIED} (304)。
 	 */
 	public WebTestClient.ResponseSpec isNotModified() {
 		return assertStatusAndReturn(HttpStatus.NOT_MODIFIED);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.TEMPORARY_REDIRECT} (307).
+	 * 断言响应状态码为 {@code HttpStatus.TEMPORARY_REDIRECT} (307)。
 	 */
 	public WebTestClient.ResponseSpec isTemporaryRedirect() {
 		return assertStatusAndReturn(HttpStatus.TEMPORARY_REDIRECT);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.PERMANENT_REDIRECT} (308).
+	 * 断言响应状态码为 {@code HttpStatus.PERMANENT_REDIRECT} (308)。
 	 */
 	public WebTestClient.ResponseSpec isPermanentRedirect() {
 		return assertStatusAndReturn(HttpStatus.PERMANENT_REDIRECT);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.BAD_REQUEST} (400).
+	 * 断言响应状态码为 {@code HttpStatus.BAD_REQUEST} (400)。
 	 */
 	public WebTestClient.ResponseSpec isBadRequest() {
 		return assertStatusAndReturn(HttpStatus.BAD_REQUEST);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.UNAUTHORIZED} (401).
+	 * 断言响应状态码为 {@code HttpStatus.UNAUTHORIZED} (401)。
 	 */
 	public WebTestClient.ResponseSpec isUnauthorized() {
 		return assertStatusAndReturn(HttpStatus.UNAUTHORIZED);
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.FORBIDDEN} (403).
+	 * 断言响应状态码为 {@code HttpStatus.FORBIDDEN} (403)。
 	 * @since 5.0.2
 	 */
 	public WebTestClient.ResponseSpec isForbidden() {
@@ -146,14 +145,14 @@ public class StatusAssertions {
 	}
 
 	/**
-	 * Assert the response status code is {@code HttpStatus.NOT_FOUND} (404).
+	 * 断言响应状态码为 {@code HttpStatus.NOT_FOUND} (404)。
 	 */
 	public WebTestClient.ResponseSpec isNotFound() {
 		return assertStatusAndReturn(HttpStatus.NOT_FOUND);
 	}
 
 	/**
-	 * Assert the response error message.
+	 * 断言响应错误消息。
 	 */
 	public WebTestClient.ResponseSpec reasonEquals(String reason) {
 		String actual = this.exchangeResult.getStatus().getReasonPhrase();
@@ -163,42 +162,42 @@ public class StatusAssertions {
 	}
 
 	/**
-	 * Assert the response status code is in the 1xx range.
+	 * 断言响应状态码在 1xx 范围内。
 	 */
 	public WebTestClient.ResponseSpec is1xxInformational() {
 		return assertSeriesAndReturn(HttpStatus.Series.INFORMATIONAL);
 	}
 
 	/**
-	 * Assert the response status code is in the 2xx range.
+	 * 断言响应状态码在 2xx 范围内。
 	 */
 	public WebTestClient.ResponseSpec is2xxSuccessful() {
 		return assertSeriesAndReturn(HttpStatus.Series.SUCCESSFUL);
 	}
 
 	/**
-	 * Assert the response status code is in the 3xx range.
+	 * 断言响应状态码在 3xx 范围内。
 	 */
 	public WebTestClient.ResponseSpec is3xxRedirection() {
 		return assertSeriesAndReturn(HttpStatus.Series.REDIRECTION);
 	}
 
 	/**
-	 * Assert the response status code is in the 4xx range.
+	 * 断言响应状态码在 4xx 范围内。
 	 */
 	public WebTestClient.ResponseSpec is4xxClientError() {
 		return assertSeriesAndReturn(HttpStatus.Series.CLIENT_ERROR);
 	}
 
 	/**
-	 * Assert the response status code is in the 5xx range.
+	 * 断言响应状态码在 5xx 范围内。
 	 */
 	public WebTestClient.ResponseSpec is5xxServerError() {
 		return assertSeriesAndReturn(HttpStatus.Series.SERVER_ERROR);
 	}
 
 	/**
-	 * Match the response status value with a Hamcrest matcher.
+	 * 使用 Hamcrest 匹配器匹配响应状态值。
 	 * @param matcher the matcher to use
 	 * @since 5.1
 	 */
@@ -209,7 +208,7 @@ public class StatusAssertions {
 	}
 
 	/**
-	 * Consume the response status value as an integer.
+	 * 以整数形式消费响应状态值。
 	 * @param consumer the consumer to use
 	 * @since 5.1
 	 */

@@ -21,8 +21,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Create a {@link WebRequestDataBinder} instance and initialize it with a
- * {@link WebBindingInitializer}.
+ * 创建 {@link WebRequestDataBinder} 实例并用 {@link WebBindingInitializer} 对其进行初始化。
  *
  * @author Rossen Stoyanchev
  * @since 3.1
@@ -34,7 +33,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 
 
 	/**
-	 * Create a new {@code DefaultDataBinderFactory} instance.
+	 * 创建一个新的 {@code DefaultDataBinderFactory} 实例。
 	 * @param initializer for global data binder initialization
 	 * (or {@code null} if none)
 	 */
@@ -44,8 +43,8 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 
 
 	/**
-	 * Create a new {@link WebDataBinder} for the given target object and
-	 * initialize it through a {@link WebBindingInitializer}.
+	 * 为给定目标对象创建新的 {@link WebDataBinder}，并通过
+	 * {@link WebBindingInitializer} 对其进行初始化。
 	 * @throws Exception in case of invalid state or arguments
 	 */
 	@Override
@@ -62,8 +61,7 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	}
 
 	/**
-	 * Extension point to create the WebDataBinder instance.
-	 * By default this is {@code WebRequestDataBinder}.
+	 * 用于创建 WebDataBinder 实例的扩展点。默认情况下为 {@code WebRequestDataBinder}。
 	 * @param target the binding target or {@code null} for type conversion only
 	 * @param objectName the binding target object name
 	 * @param webRequest the current request
@@ -76,9 +74,8 @@ public class DefaultDataBinderFactory implements WebDataBinderFactory {
 	}
 
 	/**
-	 * Extension point to further initialize the created data binder instance
-	 * (e.g. with {@code @InitBinder} methods) after "global" initialization
-	 * via {@link WebBindingInitializer}.
+	 * 扩展点，用于在通过 {@link WebBindingInitializer} 完成 "全局" 初始化之后
+	 * 进一步初始化所创建的数据绑定器实例（例如使用 {@code @InitBinder} 方法）。
 	 * @param dataBinder the data binder instance to customize
 	 * @param webRequest the current request
 	 * @throws Exception if initialization fails

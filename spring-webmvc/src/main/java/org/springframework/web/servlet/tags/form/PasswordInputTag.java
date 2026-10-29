@@ -19,18 +19,18 @@ package org.springframework.web.servlet.tags.form;
 import javax.servlet.jsp.JspException;
 
 /**
- * The {@code <password>} tag renders an HTML 'input' tag with type 'password'
- * using the bound value.
+ * {@code <password>} 标签使用绑定值渲染一个 type 为 'password' 的
+ * HTML 'input' 标签。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -38,196 +38,193 @@ import javax.servlet.jsp.JspException;
  * <td><p>accesskey</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>alt</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>autocomplete</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Common Optional Attribute</p></td>
+ * <td><p>通用可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>cssErrorClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has
- * errors.</p></td>
+ * <td><p>HTML 可选属性。当绑定字段存在错误时使用。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssStyle</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>dir</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
- * will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性值设置为 'true' 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>lang</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>maxlength</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onblur</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onchange</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>ondblclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onfocus</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeydown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onkeypress</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeyup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmousedown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmousemove</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseout</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmouseover</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onselect</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>path</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>Path to property for data binding</p></td>
+ * <td><p>用于数据绑定的属性路径</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>readonly</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
- * will make the HTML element readonly.</p></td>
+ * <td><p>HTML 可选属性。将此属性值设置为 'true' 将使该 HTML 元素变为只读。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>showPassword</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Is the password value to be shown? Defaults to false.</p></td>
+ * <td><p>是否显示密码值？默认为 false。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>size</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>tabindex</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>title</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -244,7 +241,7 @@ public class PasswordInputTag extends InputTag {
 
 
 	/**
-	 * Is the password value to be rendered?
+	 * 是否渲染密码值？
 	 * @param showPassword {@code true} if the password value is to be rendered
 	 */
 	public void setShowPassword(boolean showPassword) {
@@ -252,7 +249,7 @@ public class PasswordInputTag extends InputTag {
 	}
 
 	/**
-	 * Is the password value to be rendered?
+	 * 是否渲染密码值？
 	 * @return {@code true} if the password value to be rendered
 	 */
 	public boolean isShowPassword() {
@@ -261,7 +258,7 @@ public class PasswordInputTag extends InputTag {
 
 
 	/**
-	 * Flags "type" as an illegal dynamic attribute.
+	 * 将 "type" 标记为非法动态属性。
 	 */
 	@Override
 	protected boolean isValidDynamicAttribute(String localName, Object value) {
@@ -269,8 +266,7 @@ public class PasswordInputTag extends InputTag {
 	}
 
 	/**
-	 * Return '{@code password}' causing the rendered HTML '{@code input}'
-	 * element to have a '{@code type}' of '{@code password}'.
+	 * 返回 '{@code password}'，使渲染的 HTML '{@code input}' 元素的 '{@code type}' 为 '{@code password}'。
 	 */
 	@Override
 	protected String getType() {
@@ -278,9 +274,7 @@ public class PasswordInputTag extends InputTag {
 	}
 
 	/**
-	 * The {@link PasswordInputTag} only writes its value if the
-	 * {@link #setShowPassword(boolean) 'showPassword'} property value is
-	 * {@link Boolean#TRUE true}.
+	 * 仅当 {@link #setShowPassword(boolean) 'showPassword'} 属性值为 {@link Boolean#TRUE true} 时，{@link PasswordInputTag} 才会写出其值。
 	 */
 	@Override
 	protected void writeValue(TagWriter tagWriter) throws JspException {

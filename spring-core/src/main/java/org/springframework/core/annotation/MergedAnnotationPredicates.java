@@ -28,8 +28,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Predicate implementations that provide various test operations for
- * {@link MergedAnnotation MergedAnnotations}.
+ * 为 {@link MergedAnnotation MergedAnnotations} 提供各种测试操作的 Predicate 实现。
  *
  * @author Phillip Webb
  * @since 5.2
@@ -41,9 +40,8 @@ public abstract class MergedAnnotationPredicates {
 
 
 	/**
-	 * Create a new {@link Predicate} that evaluates to {@code true} if the name of the
-	 * {@linkplain MergedAnnotation#getType() merged annotation type} is contained in
-	 * the specified array.
+	 * 创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}的名称包含
+	 * 在指定数组中，则其结果为 {@code true}。
 	 * @param <A> the annotation type
 	 * @param typeNames the names that should be matched
 	 * @return a {@link Predicate} to test the annotation type
@@ -53,9 +51,8 @@ public abstract class MergedAnnotationPredicates {
 	}
 
 	/**
-	 * Create a new {@link Predicate} that evaluates to {@code true} if the
-	 * {@linkplain MergedAnnotation#getType() merged annotation type} is contained in
-	 * the specified array.
+	 * 创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}包含在指定
+	 * 数组中，则其结果为 {@code true}。
 	 * @param <A> the annotation type
 	 * @param types the types that should be matched
 	 * @return a {@link Predicate} to test the annotation type
@@ -65,9 +62,8 @@ public abstract class MergedAnnotationPredicates {
 	}
 
 	/**
-	 * Create a new {@link Predicate} that evaluates to {@code true} if the
-	 * {@linkplain MergedAnnotation#getType() merged annotation type} is contained in
-	 * the specified collection.
+	 * 创建新的 {@link Predicate}，如果 {@linkplain MergedAnnotation#getType() 合并注解类型}包含在指定
+	 * 集合中，则其结果为 {@code true}。
 	 * @param <A> the annotation type
 	 * @param types the type names or classes that should be matched
 	 * @return a {@link Predicate} to test the annotation type
@@ -79,15 +75,11 @@ public abstract class MergedAnnotationPredicates {
 	}
 
 	/**
-	 * Create a new stateful, single use {@link Predicate} that matches only
-	 * the first run of an extracted value. For example,
-	 * {@code MergedAnnotationPredicates.firstRunOf(MergedAnnotation::distance)}
-	 * will match the first annotation, and any subsequent runs that have the
-	 * same distance.
-	 * <p>NOTE: This predicate only matches the first run. Once the extracted
-	 * value changes, the predicate always returns {@code false}. For example,
-	 * if you have a set of annotations with distances {@code [1, 1, 2, 1]} then
-	 * only the first two will match.
+	 * 创建新的有状态、一次性使用的 {@link Predicate}，它仅匹配提取值的第一个连续段。例如，
+	 * {@code MergedAnnotationPredicates.firstRunOf(MergedAnnotation::distance)} 将匹配第一个注解，以及
+	 * 具有相同距离的任何后续连续段。<p>注意：此谓词仅匹配第一个连续段。一旦提取的值发生变化，该谓词将
+	 * 始终返回 {@code false}。例如，如果您有一组距离为 {@code [1, 1, 2, 1]} 的注解，则只有前两个会匹配。
+	 *
 	 * @param valueExtractor function used to extract the value to check
 	 * @return a {@link Predicate} that matches the first run of the extracted
 	 * values
@@ -99,10 +91,9 @@ public abstract class MergedAnnotationPredicates {
 	}
 
 	/**
-	 * Create a new stateful, single use {@link Predicate} that matches
-	 * annotations that are unique based on the extracted key. For example
-	 * {@code MergedAnnotationPredicates.unique(MergedAnnotation::getType)} will
-	 * match the first time a unique type is encountered.
+	 * 创建新的有状态、一次性使用的 {@link Predicate}，它匹配基于提取键唯一的注解。例如，
+	 * {@code MergedAnnotationPredicates.unique(MergedAnnotation::getType)} 将在首次遇到唯一类型时匹配。
+	 *
 	 * @param keyExtractor function used to extract the key used to test for
 	 * uniqueness
 	 * @return a {@link Predicate} that matches a unique annotation based on the
@@ -116,8 +107,7 @@ public abstract class MergedAnnotationPredicates {
 
 
 	/**
-	 * {@link Predicate} implementation used for
-	 * {@link MergedAnnotationPredicates#firstRunOf(Function)}.
+	 * 用于 {@link MergedAnnotationPredicates#firstRunOf(Function)} 的 {@link Predicate} 实现。
 	 */
 	private static class FirstRunOfPredicate<A extends Annotation> implements Predicate<MergedAnnotation<A>> {
 
@@ -147,8 +137,7 @@ public abstract class MergedAnnotationPredicates {
 
 
 	/**
-	 * {@link Predicate} implementation used for
-	 * {@link MergedAnnotationPredicates#unique(Function)}.
+	 * 用于 {@link MergedAnnotationPredicates#unique(Function)} 的 {@link Predicate} 实现。
 	 */
 	private static class UniquePredicate<A extends Annotation, K> implements Predicate<MergedAnnotation<A>> {
 

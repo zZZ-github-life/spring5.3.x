@@ -23,11 +23,11 @@ import org.springframework.util.PropertyPlaceholderHelper;
 import org.springframework.util.SystemPropertyUtils;
 
 /**
- * Helper class for resolving placeholders in texts. Usually applied to file paths.
+ * 用于解析文本中占位符的辅助类。通常应用于文件路径。
  *
- * <p>A text may contain {@code ${...}} placeholders, to be resolved as servlet context
- * init parameters or system properties: e.g. {@code ${user.dir}}. Default values can
- * be supplied using the ":" separator between key and value.
+ * <p>文本中可能包含 {@code ${...}} 占位符，将被解析为 Servlet 上下文
+ * 初始化参数或系统属性，例如 {@code ${user.dir}}。可以使用键和值之间的
+ * ":" 分隔符提供默认值。
  *
  * @author Juergen Hoeller
  * @author Marten Deinum
@@ -47,8 +47,8 @@ public abstract class ServletContextPropertyUtils {
 
 
 	/**
-	 * Resolve ${...} placeholders in the given text, replacing them with corresponding
-	 * servlet context init parameter or system property values.
+	 * 解析给定文本中的 ${...} 占位符，将其替换为对应的
+	 * Servlet 上下文初始化参数或系统属性值。
 	 * @param text the String to resolve
 	 * @param servletContext the servletContext to use for lookups.
 	 * @return the resolved String
@@ -62,9 +62,9 @@ public abstract class ServletContextPropertyUtils {
 	}
 
 	/**
-	 * Resolve ${...} placeholders in the given text, replacing them with corresponding
-	 * servlet context init parameter or system property values. Unresolvable placeholders
-	 * with no default value are ignored and passed through unchanged if the flag is set to true.
+	 * 解析给定文本中的 ${...} 占位符，将其替换为对应的
+	 * Servlet 上下文初始化参数或系统属性值。如果标志设置为 true，
+	 * 则没有默认值的无法解析占位符会被忽略并原样保留。
 	 * @param text the String to resolve
 	 * @param servletContext the servletContext to use for lookups.
 	 * @param ignoreUnresolvablePlaceholders flag to determine is unresolved placeholders are ignored

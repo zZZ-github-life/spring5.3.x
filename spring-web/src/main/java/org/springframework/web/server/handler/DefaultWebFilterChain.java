@@ -31,14 +31,13 @@ import org.springframework.web.server.WebFilterChain;
 import org.springframework.web.server.WebHandler;
 
 /**
- * Default implementation of {@link WebFilterChain}.
+ * {@link WebFilterChain} 的默认实现。
  *
- * <p>Each instance of this class represents one link in the chain. The public
- * constructor {@link #DefaultWebFilterChain(WebHandler, List)}
- * initializes the full chain and represents its first link.
+ * <p>此类的每个实例代表链中的一个环节。公共构造函数
+ * {@link #DefaultWebFilterChain(WebHandler, List)} 会初始化整条链，
+ * 并代表链的第一个环节。
  *
- * <p>This class is immutable and thread-safe. It can be created once and
- * re-used to handle request concurrently.
+ * <p>此类是不可变的，并且线程安全。它可以创建一次，然后被复用于并发处理请求。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -57,7 +56,7 @@ public class DefaultWebFilterChain implements WebFilterChain {
 
 
 	/**
-	 * Public constructor with the list of filters and the target handler to use.
+	 * 带有过滤器列表和要使用的目标处理器的公共构造函数。
 	 * @param handler the target handler
 	 * @param filters the filters ahead of the handler
 	 * @since 5.1
@@ -81,7 +80,7 @@ public class DefaultWebFilterChain implements WebFilterChain {
 	}
 
 	/**
-	 * Private constructor to represent one link in the chain.
+	 * 表示链中某一环节的私有构造函数。
 	 */
 	private DefaultWebFilterChain(List<WebFilter> allFilters, WebHandler handler,
 			@Nullable WebFilter currentFilter, @Nullable DefaultWebFilterChain chain) {
@@ -93,7 +92,7 @@ public class DefaultWebFilterChain implements WebFilterChain {
 	}
 
 	/**
-	 * Public constructor with the list of filters and the target handler to use.
+	 * 带有过滤器列表和要使用的目标处理器的公共构造函数。
 	 * @param handler the target handler
 	 * @param filters the filters ahead of the handler
 	 * @deprecated as of 5.1 this constructor is deprecated in favor of

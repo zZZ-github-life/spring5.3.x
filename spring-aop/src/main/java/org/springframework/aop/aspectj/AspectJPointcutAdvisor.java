@@ -25,8 +25,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * AspectJPointcutAdvisor that adapts an {@link AbstractAspectJAdvice}
- * to the {@link org.springframework.aop.PointcutAdvisor} interface.
+ * 将 {@link AbstractAspectJAdvice} 适配到 {@link org.springframework.aop.PointcutAdvisor} 接口的
+ * AspectJPointcutAdvisor。
  *
  * @author Adrian Colyer
  * @author Juergen Hoeller
@@ -43,7 +43,7 @@ public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {
 
 
 	/**
-	 * Create a new AspectJPointcutAdvisor for the given advice.
+	 * 为给定通知创建一个新的 AspectJPointcutAdvisor。
 	 * @param advice the AbstractAspectJAdvice to wrap
 	 */
 	public AspectJPointcutAdvisor(AbstractAspectJAdvice advice) {
@@ -83,7 +83,7 @@ public class AspectJPointcutAdvisor implements PointcutAdvisor, Ordered {
 	}
 
 	/**
-	 * Return the name of the aspect (bean) in which the advice was declared.
+	 * 返回声明该通知的切面（Bean）的名称。
 	 * @since 4.3.15
 	 * @see AbstractAspectJAdvice#getAspectName()
 	 */

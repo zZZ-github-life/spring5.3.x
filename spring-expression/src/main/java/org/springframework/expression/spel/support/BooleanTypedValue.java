@@ -19,7 +19,7 @@ package org.springframework.expression.spel.support;
 import org.springframework.expression.TypedValue;
 
 /**
- * A {@link TypedValue} for booleans.
+ * 用于布尔值的 {@link TypedValue}。
  *
  * @author Andy Clement
  * @since 3.0
@@ -27,12 +27,12 @@ import org.springframework.expression.TypedValue;
 public final class BooleanTypedValue extends TypedValue {
 
 	/**
-	 * True.
+	 * 真。
 	 */
 	public static final BooleanTypedValue TRUE = new BooleanTypedValue(true);
 
 	/**
-	 * False.
+	 * 假。
 	 */
 	public static final BooleanTypedValue FALSE = new BooleanTypedValue(false);
 

@@ -26,9 +26,9 @@ import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ClientHttpResponse} implementation that uses standard JDK facilities.
- * Obtained via {@link SimpleBufferingClientHttpRequest#execute()} and
- * {@link SimpleStreamingClientHttpRequest#execute()}.
+ * 使用标准 JDK 设施的 {@link ClientHttpResponse} 实现。
+ * 通过 {@link SimpleBufferingClientHttpRequest#execute()} 和
+ * {@link SimpleStreamingClientHttpRequest#execute()} 获得。
  *
  * @author Arjen Poutsma
  * @author Brian Clozel

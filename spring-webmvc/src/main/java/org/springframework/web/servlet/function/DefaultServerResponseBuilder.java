@@ -42,7 +42,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Default {@link ServerResponse.BodyBuilder} implementation.
+ * 默认的 {@link ServerResponse.BodyBuilder} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.2

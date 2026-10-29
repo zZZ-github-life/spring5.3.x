@@ -19,10 +19,9 @@ package org.springframework.jdbc.support.xml;
 import org.springframework.jdbc.support.SqlValue;
 
 /**
- * Subinterface of {@link org.springframework.jdbc.support.SqlValue}
- * that supports passing in XML data to specified column and adds a
- * cleanup callback, to be invoked after the value has been set and
- * the corresponding statement has been executed.
+ * {@link org.springframework.jdbc.support.SqlValue} 的子接口，
+ * 支持将 XML 数据传入指定列，并新增一个清理回调，
+ * 在值设置完成且相应语句执行之后调用。
  *
  * @author Thomas Risberg
  * @since 2.5.5

@@ -29,9 +29,9 @@ import org.springframework.messaging.core.MessageRequestReplyOperations;
 import org.springframework.messaging.core.MessageSendingOperations;
 
 /**
- * A specialization of {@link MessageSendingOperations}, {@link MessageReceivingOperations}
- * and {@link MessageRequestReplyOperations} for JMS related operations that allow to specify
- * a destination name rather than the actual {@link javax.jms.Destination}.
+ * {@link MessageSendingOperations}、{@link MessageReceivingOperations}
+ * 和 {@link MessageRequestReplyOperations} 针对 JMS 相关操作的特化，
+ * 允许指定目标名称而不是实际的 {@link javax.jms.Destination}。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -44,26 +44,25 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 		MessageReceivingOperations<Destination>, MessageRequestReplyOperations<Destination> {
 
 	/**
-	 * Send a message to the given destination.
+	 * 向给定的目标发送消息。
 	 * @param destinationName the name of the target destination
 	 * @param message the message to send
 	 */
 	void send(String destinationName, Message<?> message) throws MessagingException;
 
 	/**
-	 * Convert the given Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message and send it to the given destination.
+	 * 将给定对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为消息并发送到给定的目标。
 	 * @param destinationName the name of the target destination
 	 * @param payload the Object to use as payload
 	 */
 	void convertAndSend(String destinationName, Object payload) throws MessagingException;
 
 	/**
-	 * Convert the given Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers and send it to
-	 * the given destination.
+	 * 将给定对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 使用给定的头将其包装为消息并发送到给定的目标。
 	 * @param destinationName the name of the target destination
 	 * @param payload the Object to use as payload
 	 * @param headers the headers for the message to send
@@ -72,10 +71,9 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 			throws MessagingException;
 
 	/**
-	 * Convert the given Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message, apply the given post processor, and send
-	 * the resulting message to the given destination.
+	 * 将给定对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为消息，应用给定的后处理器，并将结果消息发送到给定的目标。
 	 * @param destinationName the name of the target destination
 	 * @param payload the Object to use as payload
 	 * @param postProcessor the post processor to apply to the message
@@ -84,10 +82,10 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 			throws MessagingException;
 
 	/**
-	 * Convert the given Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers, apply the given post processor,
-	 * and send the resulting message to the given destination.
+	 * 将给定对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 使用给定的头将其包装为消息，应用给定的后处理器，
+	 * 并将结果消息发送到给定的目标。
 	 * @param destinationName the name of the target destination
 	 * @param payload the Object to use as payload
 	 * @param headers the headers for the message to send
@@ -97,7 +95,7 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 			@Nullable MessagePostProcessor postProcessor) throws MessagingException;
 
 	/**
-	 * Receive a message from the given destination.
+	 * 从给定的目标接收消息。
 	 * @param destinationName the name of the target destination
 	 * @return the received message, possibly {@code null} if the message could not
 	 * be received, for example due to a timeout
@@ -106,8 +104,7 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 	Message<?> receive(String destinationName) throws MessagingException;
 
 	/**
-	 * Receive a message from the given destination and convert its payload to the
-	 * specified target class.
+	 * 从给定的目标接收消息，并将其负载转换为指定的目标类。
 	 * @param destinationName the name of the target destination
 	 * @param targetClass the target class to convert the payload to
 	 * @return the converted payload of the reply message, possibly {@code null} if
@@ -117,7 +114,7 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 	<T> T receiveAndConvert(String destinationName, Class<T> targetClass) throws MessagingException;
 
 	/**
-	 * Send a request message and receive the reply from the given destination.
+	 * 发送请求消息并从给定的目标接收回复。
 	 * @param destinationName the name of the target destination
 	 * @param requestMessage the message to send
 	 * @return the reply, possibly {@code null} if the message could not be received,
@@ -127,10 +124,10 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 	Message<?> sendAndReceive(String destinationName, Message<?> requestMessage) throws MessagingException;
 
 	/**
-	 * Convert the given request Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter}, send
-	 * it as a {@link Message} to the given destination, receive the reply and convert
-	 * its body of the specified target class.
+	 * 将给定的请求对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其作为 {@link Message} 发送到给定的目标，接收回复并将其消息体转换为
+	 * 指定的目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request payload for the request message to send
 	 * @param targetClass the target type to convert the payload of the reply to
@@ -141,10 +138,10 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 	<T> T convertSendAndReceive(String destinationName, Object request, Class<T> targetClass) throws MessagingException;
 
 	/**
-	 * Convert the given request Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter}, send
-	 * it as a {@link Message} with the given headers, to the specified destination,
-	 * receive the reply and convert its body of the specified target class.
+	 * 将给定的请求对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 使用给定的头将其作为 {@link Message} 发送到指定的目标，
+	 * 接收回复并将其消息体转换为指定的目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request payload for the request message to send
 	 * @param headers the headers for the request message to send
@@ -157,11 +154,10 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 			throws MessagingException;
 
 	/**
-	 * Convert the given request Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * apply the given post processor and send the resulting {@link Message} to the
-	 * given destination, receive the reply and convert its body of the given
-	 * target class.
+	 * 将给定的请求对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 应用给定的后处理器，并将结果 {@link Message} 发送到给定的目标，
+	 * 接收回复并将其消息体转换为给定的目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request payload for the request message to send
 	 * @param targetClass the target type to convert the payload of the reply to
@@ -174,11 +170,10 @@ public interface JmsMessageOperations extends MessageSendingOperations<Destinati
 			MessagePostProcessor requestPostProcessor) throws MessagingException;
 
 	/**
-	 * Convert the given request Object to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers, apply the given post processor
-	 * and send the resulting {@link Message} to the specified destination, receive
-	 * the reply and convert its body of the given target class.
+	 * 将给定的请求对象转换为序列化形式（可能使用
+	 * {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 使用给定的头将其包装为消息，应用给定的后处理器，并将结果
+	 * {@link Message} 发送到指定的目标，接收回复并将其消息体转换为给定的目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request payload for the request message to send
 	 * @param targetClass the target type to convert the payload of the reply to

@@ -27,21 +27,16 @@ import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.lang.Nullable;
 
 /**
- * A factory providing convenient access to a ConversionService configured with
- * converters appropriate for most environments. Set the
- * {@link #setConverters "converters"} property to supplement the default converters.
+ * 一个工厂，提供对 ConversionService 的便捷访问，该 ConversionService 使用适合大多数环境的转换器进
+ * 行配置。设置 {@link #setConverters "converters"} 属性可补充默认转换器。
  *
- * <p>This implementation creates a {@link DefaultConversionService}.
- * Subclasses may override {@link #createConversionService()} in order to return
- * a {@link GenericConversionService} instance of their choosing.
+ * <p>此实现创建一个 {@link DefaultConversionService}。子类可以覆盖
+ * {@link #createConversionService()}，以返回自行选择的 {@link GenericConversionService} 实例。
  *
- * <p>Like all {@code FactoryBean} implementations, this class is suitable for
- * use when configuring a Spring application context using Spring {@code <beans>}
- * XML. When configuring the container with
- * {@link org.springframework.context.annotation.Configuration @Configuration}
- * classes, simply instantiate, configure and return the appropriate
- * {@code ConversionService} object from a {@link
- * org.springframework.context.annotation.Bean @Bean} method.
+ * <p>与所有 {@code FactoryBean} 实现一样，此类适用于使用 Spring {@code <beans>} XML 配置 Spring 应
+ * 用上下文的场景。使用 {@link org.springframework.context.annotation.Configuration @Configuration}
+ * 类配置容器时，只需在 {@link org.springframework.context.annotation.Bean @Bean} 方法中实例化、配
+ * 置并返回适当的 {@code ConversionService} 对象。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -58,10 +53,10 @@ public class ConversionServiceFactoryBean implements FactoryBean<ConversionServi
 
 
 	/**
-	 * Configure the set of custom converter objects that should be added:
-	 * implementing {@link org.springframework.core.convert.converter.Converter},
-	 * {@link org.springframework.core.convert.converter.ConverterFactory},
-	 * or {@link org.springframework.core.convert.converter.GenericConverter}.
+	 * 配置要添加的自定义转换器对象集合：实现
+	 * {@link org.springframework.core.convert.converter.Converter}、
+	 * {@link org.springframework.core.convert.converter.ConverterFactory} 或
+	 * {@link org.springframework.core.convert.converter.GenericConverter}。
 	 */
 	public void setConverters(Set<?> converters) {
 		this.converters = converters;
@@ -74,10 +69,9 @@ public class ConversionServiceFactoryBean implements FactoryBean<ConversionServi
 	}
 
 	/**
-	 * Create the ConversionService instance returned by this factory bean.
-	 * <p>Creates a simple {@link GenericConversionService} instance by default.
-	 * Subclasses may override to customize the ConversionService instance that
-	 * gets created.
+	 * 创建此工厂 Bean 返回的 ConversionService 实例。<p>默认创建一个简单的
+	 * {@link GenericConversionService} 实例。子类可以覆盖此方法，以自定义所创建的 ConversionService 实
+	 * 例。
 	 */
 	protected GenericConversionService createConversionService() {
 		return new DefaultConversionService();

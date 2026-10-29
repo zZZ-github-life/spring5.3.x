@@ -29,15 +29,11 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.jmx.support.JmxUtils;
 
 /**
- * Abstract implementation of the {@code MBeanInfoAssembler} interface
- * that encapsulates the creation of a {@code ModelMBeanInfo} instance
- * but delegates the creation of metadata to subclasses.
+ * {@code MBeanInfoAssembler} 接口的抽象实现，它封装了 {@code ModelMBeanInfo} 实例的创建，但将元数
+ * 据的创建委托给子类。
  *
- * <p>This class offers two flavors of Class extraction from a managed bean
- * instance: {@link #getTargetClass}, extracting the target class behind
- * any kind of AOP proxy, and {@link #getClassToExpose}, returning the
- * class or interface that will be searched for annotations and exposed
- * to the JMX runtime.
+ * <p>此类提供两种从被管理 Bean 实例中提取 Class 的方式：{@link #getTargetClass} 提取任意类型 AOP
+ * 代理背后的目标类，{@link #getClassToExpose} 返回将要在其中搜索注解并暴露给 JMX 运行时的类或接口。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -46,8 +42,7 @@ import org.springframework.jmx.support.JmxUtils;
 public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 
 	/**
-	 * Create an instance of the {@code ModelMBeanInfoSupport} class supplied with all
-	 * JMX implementations and populates the metadata through calls to the subclass.
+	 * 创建所有 JMX 实现都会提供的 {@code ModelMBeanInfoSupport} 类实例，并通过调用子类来填充元数据。
 	 * @param managedBean the bean that will be exposed (might be an AOP proxy)
 	 * @param beanKey the key associated with the managed bean
 	 * @return the populated ModelMBeanInfo instance
@@ -73,9 +68,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Check the given bean instance, throwing an IllegalArgumentException
-	 * if it is not eligible for exposure with this assembler.
-	 * <p>Default implementation is empty, accepting every bean instance.
+	 * 检查给定的 Bean 实例，如果它不适合用此装配器暴露，则抛出 IllegalArgumentException。
+	 * <p>默认实现为空，接受所有 Bean 实例。
 	 * @param managedBean the bean that will be exposed (might be an AOP proxy)
 	 * @throws IllegalArgumentException the bean is not valid for exposure
 	 */
@@ -83,10 +77,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Return the actual bean class of the given bean instance.
-	 * This is the class exposed to description-style JMX properties.
-	 * <p>Default implementation returns the target class for an AOP proxy,
-	 * and the plain bean class else.
+	 * 返回给定 Bean 实例的实际 Bean 类。这是暴露给描述式 JMX 属性的类。
+	 * <p>默认实现对于 AOP 代理返回目标类，否则返回普通 Bean 类。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @return the bean class to expose
 	 * @see org.springframework.aop.support.AopUtils#getTargetClass(Object)
@@ -96,9 +88,7 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Return the class or interface to expose for the given bean.
-	 * This is the class that will be searched for attributes and operations
-	 * (for example, checked for annotations).
+	 * 返回要为给定 Bean 暴露的类或接口。这是将要搜索属性和操作（例如检查注解）的类。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @return the bean class to expose
 	 * @see JmxUtils#getClassToExpose(Object)
@@ -108,8 +98,7 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Return the class or interface to expose for the given bean class.
-	 * This is the class that will be searched for attributes and operations
+	 * 返回要为给定 Bean 类暴露的类或接口。这是将要搜索属性和操作的类。
 	 * @param beanClass the bean class (might be an AOP proxy class)
 	 * @return the bean class to expose
 	 * @see JmxUtils#getClassToExpose(Class)
@@ -119,9 +108,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Get the class name of the MBean resource.
-	 * <p>Default implementation returns a simple description for the MBean
-	 * based on the class name.
+	 * 获取 MBean 资源的类名。
+	 * <p>默认实现基于类名返回 MBean 的简单描述。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * of the {@code MBeanExporter}
@@ -133,9 +121,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Get the description of the MBean resource.
-	 * <p>Default implementation returns a simple description for the MBean
-	 * based on the class name.
+	 * 获取 MBean 资源的描述。
+	 * <p>默认实现基于类名返回 MBean 的简单描述。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * of the {@code MBeanExporter}
@@ -150,10 +137,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Called after the {@code ModelMBeanInfo} instance has been constructed but
-	 * before it is passed to the {@code MBeanExporter}.
-	 * <p>Subclasses can implement this method to add additional descriptors to the
-	 * MBean metadata. Default implementation is empty.
+	 * 在 {@code ModelMBeanInfo} 实例构造完成之后、传递给 {@code MBeanExporter} 之前调用。
+	 * <p>子类可以实现此方法，向 MBean 元数据添加额外的描述符。默认实现为空。
 	 * @param descriptor the {@code Descriptor} for the MBean resource.
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
@@ -165,10 +150,9 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Get the constructor metadata for the MBean resource. Subclasses should implement
-	 * this method to return the appropriate metadata for all constructors that should
-	 * be exposed in the management interface for the managed resource.
-	 * <p>Default implementation returns an empty array of {@code ModelMBeanConstructorInfo}.
+	 * 获取 MBean 资源的构造器元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的构造器返
+	 * 回适当的元数据。
+	 * <p>默认实现返回空的 {@code ModelMBeanConstructorInfo} 数组。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * of the {@code MBeanExporter}
@@ -181,10 +165,9 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 	}
 
 	/**
-	 * Get the notification metadata for the MBean resource. Subclasses should implement
-	 * this method to return the appropriate metadata for all notifications that should
-	 * be exposed in the management interface for the managed resource.
-	 * <p>Default implementation returns an empty array of {@code ModelMBeanNotificationInfo}.
+	 * 获取 MBean 资源的通知元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的通知返回适
+	 * 当的元数据。
+	 * <p>默认实现返回空的 {@code ModelMBeanNotificationInfo} 数组。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * of the {@code MBeanExporter}
@@ -198,9 +181,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 
 
 	/**
-	 * Get the attribute metadata for the MBean resource. Subclasses should implement
-	 * this method to return the appropriate metadata for all the attributes that should
-	 * be exposed in the management interface for the managed resource.
+	 * 获取 MBean 资源的属性元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的属性返回适
+	 * 当的元数据。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * of the {@code MBeanExporter}
@@ -211,9 +193,8 @@ public abstract class AbstractMBeanInfoAssembler implements MBeanInfoAssembler {
 			throws JMException;
 
 	/**
-	 * Get the operation metadata for the MBean resource. Subclasses should implement
-	 * this method to return the appropriate metadata for all operations that should
-	 * be exposed in the management interface for the managed resource.
+	 * 获取 MBean 资源的操作元数据。子类应实现此方法，为所有应在被管理资源的管理接口中暴露的操作返回适
+	 * 当的元数据。
 	 * @param managedBean the bean instance (might be an AOP proxy)
 	 * @param beanKey the key associated with the MBean in the beans map
 	 * of the {@code MBeanExporter}

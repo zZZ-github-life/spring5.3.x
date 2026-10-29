@@ -57,7 +57,7 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Mock implementation of {@link ServerRequest}.
+ * {@link ServerRequest} 的模拟实现。
  *
  * @author Arjen Poutsma
  * @since 5.0
@@ -268,7 +268,7 @@ public final class MockServerRequest implements ServerRequest {
 	}
 
 	/**
-	 * Builder for {@link MockServerRequest}.
+	 * {@link MockServerRequest} 的构建器。
 	 */
 	public interface Builder {
 
@@ -301,7 +301,7 @@ public final class MockServerRequest implements ServerRequest {
 		Builder session(WebSession session);
 
 		/**
-		 * Sets the request {@link Principal}.
+		 * 设置请求的 {@link Principal}。
 		 * @deprecated in favor of {@link #principal(Principal)}
 		 */
 		@Deprecated

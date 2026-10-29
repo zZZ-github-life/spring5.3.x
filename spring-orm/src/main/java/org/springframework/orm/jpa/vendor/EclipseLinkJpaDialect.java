@@ -31,17 +31,17 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
 
 /**
- * {@link org.springframework.orm.jpa.JpaDialect} implementation for Eclipse
- * Persistence Services (EclipseLink). Developed and tested against EclipseLink 2.7;
- * backwards-compatible with EclipseLink 2.5 and 2.6 at runtime.
+ * 适用于 Eclipse Persistence Services（EclipseLink）的
+ * {@link org.springframework.orm.jpa.JpaDialect} 实现。基于 EclipseLink 2.7
+ * 开发并测试；在运行时向后兼容 EclipseLink 2.5 和 2.6。
  *
- * <p>By default, this class acquires an early EclipseLink transaction with an early
- * JDBC Connection for non-read-only transactions. This allows for mixing JDBC and
- * JPA/EclipseLink operations in the same transaction, with cross visibility of
- * their impact. If this is not needed, set the "lazyDatabaseTransaction" flag to
- * {@code true} or consistently declare all affected transactions as read-only.
- * As of Spring 4.1.2, this will reliably avoid early JDBC Connection retrieval
- * and therefore keep EclipseLink in shared cache mode.
+ * <p>默认情况下，对于非只读事务，此类会通过提前获取的 JDBC 连接
+ * 提前启动 EclipseLink 事务。这样可以在同一事务中混合使用 JDBC 和
+ * JPA/EclipseLink 操作，并让二者的影响相互可见。如果不需要这样做，
+ * 请将 "lazyDatabaseTransaction" 标志设置为 {@code true}，
+ * 或一致地将所有受影响的事务声明为只读。
+ * 从 Spring 4.1.2 开始，这将可靠地避免提前获取 JDBC 连接，
+ * 从而使 EclipseLink 保持在共享缓存模式。
  *
  * @author Juergen Hoeller
  * @since 2.5.2
@@ -55,17 +55,14 @@ public class EclipseLinkJpaDialect extends DefaultJpaDialect {
 
 
 	/**
-	 * Set whether to lazily start a database resource transaction within a
-	 * Spring-managed EclipseLink transaction.
-	 * <p>By default, read-only transactions are started lazily but regular
-	 * non-read-only transactions are started early. This allows for reusing the
-	 * same JDBC Connection throughout an entire EclipseLink transaction, for
-	 * enforced isolation and consistent visibility with JDBC access code working
-	 * on the same DataSource.
-	 * <p>Switch this flag to "true" to enforce a lazy database transaction begin
-	 * even for non-read-only transactions, allowing access to EclipseLink's
-	 * shared cache and following EclipseLink's connection mode configuration,
-	 * assuming that isolation and visibility at the JDBC level are less important.
+	 * 设置是否在 Spring 管理的 EclipseLink 事务中延迟启动数据库资源事务。
+	 * <p>默认情况下，只读事务会延迟启动，而常规的非只读事务会提前启动。
+	 * 这样可以在整个 EclipseLink 事务中复用同一个 JDBC 连接，
+	 * 以便与在同一 DataSource 上工作的 JDBC 访问代码保持强制隔离
+	 * 和一致的可见性。
+	 * <p>将此标志切换为 "true" 可强制对非只读事务也延迟开始数据库事务，
+	 * 从而允许访问 EclipseLink 的共享缓存并遵循 EclipseLink 的连接模式配置，
+	 * 前提是 JDBC 层面的隔离性和可见性不太重要。
 	 * @see org.eclipse.persistence.sessions.UnitOfWork#beginEarlyTransaction()
 	 */
 	public void setLazyDatabaseTransaction(boolean lazyDatabaseTransaction) {
@@ -108,11 +105,11 @@ public class EclipseLinkJpaDialect extends DefaultJpaDialect {
 
 
 	/**
-	 * {@link ConnectionHandle} implementation that lazily fetches an
-	 * EclipseLink-provided Connection on the first {@code getConnection} call -
-	 * which may never come if no application code requests a JDBC Connection.
-	 * This is useful to defer the early transaction begin that obtaining a
-	 * JDBC Connection implies within an EclipseLink EntityManager.
+	 * {@link ConnectionHandle} 实现，在第一次调用 {@code getConnection} 时
+	 * 才延迟获取 EclipseLink 提供的 Connection——如果没有应用代码请求
+	 * JDBC Connection，则可能永远不会调用。
+	 * 这对于推迟在 EclipseLink EntityManager 中获取 JDBC Connection
+	 * 所隐含的提前事务启动非常有用。
 	 */
 	private static class EclipseLinkConnectionHandle implements ConnectionHandle {
 

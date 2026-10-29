@@ -19,9 +19,8 @@ package org.springframework.aop;
 import java.lang.reflect.Method;
 
 /**
- * A specialized type of {@link MethodMatcher} that takes into account introductions
- * when matching methods. If there are no introductions on the target class,
- * a method matcher may be able to optimize matching more effectively for example.
+ * 一种专门的 {@link MethodMatcher} 类型，在匹配方法时会考虑引入。例如，如果目标类上没有任何引入，
+ * 方法匹配器或许能够更有效地优化匹配。
  *
  * @author Adrian Colyer
  * @since 2.0
@@ -29,9 +28,8 @@ import java.lang.reflect.Method;
 public interface IntroductionAwareMethodMatcher extends MethodMatcher {
 
 	/**
-	 * Perform static checking whether the given method matches. This may be invoked
-	 * instead of the 2-arg {@link #matches(java.lang.reflect.Method, Class)} method
-	 * if the caller supports the extended IntroductionAwareMethodMatcher interface.
+	 * 执行静态检查，判断给定方法是否匹配。如果调用方支持扩展的 IntroductionAwareMethodMatcher 接口，则
+	 * 可能会调用此方法，而不是 2 参数版本的 {@link #matches(java.lang.reflect.Method, Class)} 方法。
 	 * @param method the candidate method
 	 * @param targetClass the target class
 	 * @param hasIntroductions {@code true} if the object on whose behalf we are

@@ -35,10 +35,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
 /**
- * {@link ServerHttpRequest} implementation that accesses one part of a multipart
- * request. If using {@link MultipartResolver} configuration the part is accessed
- * through a {@link MultipartFile}. Or if using Servlet 3.0 multipart processing
- * the part is accessed through {@code ServletRequest.getPart}.
+ * 访问 multipart 请求中某个部分的 {@link ServerHttpRequest} 实现。
+ * 如果使用 {@link MultipartResolver} 配置，则通过 {@link MultipartFile} 访问该部分。
+ * 如果使用 Servlet 3.0 的 multipart 处理，则通过 {@code ServletRequest.getPart} 访问该部分。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -54,7 +53,7 @@ public class RequestPartServletServerHttpRequest extends ServletServerHttpReques
 
 
 	/**
-	 * Create a new {@code RequestPartServletServerHttpRequest} instance.
+	 * 创建一个新的 {@code RequestPartServletServerHttpRequest} 实例。
 	 * @param request the current servlet request
 	 * @param requestPartName the name of the part to adapt to the {@link ServerHttpRequest} contract
 	 * @throws MissingServletRequestPartException if the request part cannot be found

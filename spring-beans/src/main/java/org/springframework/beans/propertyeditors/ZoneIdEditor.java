@@ -22,8 +22,8 @@ import java.time.ZoneId;
 import org.springframework.util.StringUtils;
 
 /**
- * Editor for {@code java.time.ZoneId}, translating zone ID Strings into {@code ZoneId}
- * objects. Exposes the {@code TimeZone} ID as a text representation.
+ * 用于 {@code java.time.ZoneId} 的编辑器，将区域 ID 字符串转换为 {@code ZoneId} 对象。将
+ * {@code TimeZone} ID 公开为文本表示形式。
  *
  * @author Nicholas Williams
  * @author Sam Brannen

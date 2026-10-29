@@ -38,11 +38,7 @@ import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 /**
- * Implementation of the {@link ClientResponse} interface that can be subclassed
- * to adapt the request in a
- * {@link org.springframework.web.reactive.function.client.ExchangeFilterFunction exchange filter function}.
- * All methods default to calling through to the wrapped request.
- *
+ * {@link ClientResponse} 接口的实现，可子类化以在{@link org.springframework.web.reactive.function.client.ExchangeFilterFunction 交换过滤器函数}中适配响应。所有方法默认调用所包装的响应。
  * @author Arjen Poutsma
  * @since 5.0.5
  */
@@ -52,7 +48,7 @@ public class ClientResponseWrapper implements ClientResponse {
 
 
 	/**
-	 * Create a new {@code ClientResponseWrapper} that wraps the given response.
+	 * 创建一个包装给定响应的新 {@code ClientResponseWrapper}。
 	 * @param delegate the response to wrap
 	 */
 	public ClientResponseWrapper(ClientResponse delegate) {
@@ -62,7 +58,7 @@ public class ClientResponseWrapper implements ClientResponse {
 
 
 	/**
-	 * Return the wrapped request.
+	 * 返回被包装的响应。
 	 */
 	public ClientResponse response() {
 		return this.delegate;
@@ -159,10 +155,7 @@ public class ClientResponseWrapper implements ClientResponse {
 	}
 
 	/**
-	 * Implementation of the {@code Headers} interface that can be subclassed
-	  * to adapt the headers in a
-	  * {@link org.springframework.web.reactive.function.client.ExchangeFilterFunction exchange filter function}.
-	  * All methods default to calling through to the wrapped request.
+	 * {@code Headers} 接口的实现，可子类化以在{@link org.springframework.web.reactive.function.client.ExchangeFilterFunction 交换过滤器函数}中适配头。所有方法默认调用所包装的响应。
 	 */
 	public static class HeadersWrapper implements ClientResponse.Headers {
 
@@ -170,7 +163,7 @@ public class ClientResponseWrapper implements ClientResponse {
 
 
 		/**
-		 * Create a new {@code HeadersWrapper} that wraps the given request.
+		 * 创建一个包装给定响应的新 {@code HeadersWrapper}。
 		 * @param headers the headers to wrap
 		 */
 		public HeadersWrapper(Headers headers) {

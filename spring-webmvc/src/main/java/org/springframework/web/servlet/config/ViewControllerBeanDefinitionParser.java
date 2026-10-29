@@ -34,19 +34,19 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that
- * parses the following MVC namespace elements:
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}，
+ * 用于解析以下 MVC 命名空间元素：
  * <ul>
  * <li>{@code <view-controller>}
  * <li>{@code <redirect-view-controller>}
  * <li>{@code <status-controller>}
  * </ul>
  *
- * <p>All elements result in the registration of a
+ * <p>所有元素都会注册一个
  * {@link org.springframework.web.servlet.mvc.ParameterizableViewController
- * ParameterizableViewController} with all controllers mapped using in a single
+ * ParameterizableViewController}，所有控制器都通过在单个
  * {@link org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
- * SimpleUrlHandlerMapping}.
+ * SimpleUrlHandlerMapping} 中进行映射。
  *
  * @author Keith Donald
  * @author Christian Dupuis

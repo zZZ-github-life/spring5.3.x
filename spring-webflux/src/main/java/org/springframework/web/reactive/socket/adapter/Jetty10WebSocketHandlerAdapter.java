@@ -38,10 +38,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage.Type;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Identical to {@link JettyWebSocketHandlerAdapter}, only excluding the
- * {@code onWebSocketFrame} method, since the {@link Frame} argument has moved
- * to a different package in Jetty 10.
- *
+ * 与 {@link JettyWebSocketHandlerAdapter} 相同，只是排除了 {@code onWebSocketFrame} 方法，因为 {@link Frame} 参数在 Jetty 10 中已移至不同的包。
  * @author Rossen Stoyanchev
  * @since 5.3.4
  */

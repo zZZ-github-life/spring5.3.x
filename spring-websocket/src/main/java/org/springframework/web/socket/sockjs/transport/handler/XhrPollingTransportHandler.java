@@ -30,7 +30,7 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 import org.springframework.web.socket.sockjs.transport.session.PollingSockJsSession;
 
 /**
- * A {@link TransportHandler} based on XHR (long) polling.
+ * 基于 XHR（长）轮询的 {@link TransportHandler}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

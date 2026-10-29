@@ -31,8 +31,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Handler execution chain, consisting of handler object and any handler interceptors.
- * Returned by HandlerMapping's {@link HandlerMapping#getHandler} method.
+ * 处理器执行链，由处理器对象和任意处理器拦截器组成。
+ * 由 HandlerMapping 的 {@link HandlerMapping#getHandler} 方法返回。
  *
  * @author Juergen Hoeller
  * @since 20.06.2003
@@ -50,7 +50,7 @@ public class HandlerExecutionChain {
 
 
 	/**
-	 * Create a new HandlerExecutionChain.
+	 * 创建一个新的 HandlerExecutionChain。
 	 * @param handler the handler object to execute
 	 */
 	public HandlerExecutionChain(Object handler) {
@@ -58,7 +58,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Create a new HandlerExecutionChain.
+	 * 创建一个新的 HandlerExecutionChain。
 	 * @param handler the handler object to execute
 	 * @param interceptors the array of interceptors to apply
 	 * (in the given order) before the handler itself executes
@@ -68,7 +68,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Create a new HandlerExecutionChain.
+	 * 创建一个新的 HandlerExecutionChain。
 	 * @param handler the handler object to execute
 	 * @param interceptorList the list of interceptors to apply
 	 * (in the given order) before the handler itself executes
@@ -88,21 +88,21 @@ public class HandlerExecutionChain {
 
 
 	/**
-	 * Return the handler object to execute.
+	 * 返回要执行的处理器对象。
 	 */
 	public Object getHandler() {
 		return this.handler;
 	}
 
 	/**
-	 * Add the given interceptor to the end of this chain.
+	 * 将给定的拦截器添加到本执行链的末尾。
 	 */
 	public void addInterceptor(HandlerInterceptor interceptor) {
 		this.interceptorList.add(interceptor);
 	}
 
 	/**
-	 * Add the given interceptor at the specified index of this chain.
+	 * 将给定的拦截器添加到本执行链的指定索引位置。
 	 * @since 5.2
 	 */
 	public void addInterceptor(int index, HandlerInterceptor interceptor) {
@@ -110,14 +110,14 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Add the given interceptors to the end of this chain.
+	 * 将给定的拦截器添加到本执行链的末尾。
 	 */
 	public void addInterceptors(HandlerInterceptor... interceptors) {
 		CollectionUtils.mergeArrayIntoCollection(interceptors, this.interceptorList);
 	}
 
 	/**
-	 * Return the array of interceptors to apply (in the given order).
+	 * 返回要应用的拦截器数组（按给定顺序）。
 	 * @return the array of HandlerInterceptors instances (may be {@code null})
 	 */
 	@Nullable
@@ -126,7 +126,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Return the list of interceptors to apply (in the given order).
+	 * 返回要应用的拦截器列表（按给定顺序）。
 	 * @return the list of HandlerInterceptors instances (potentially empty)
 	 * @since 5.3
 	 */
@@ -137,7 +137,7 @@ public class HandlerExecutionChain {
 
 
 	/**
-	 * Apply preHandle methods of registered interceptors.
+	 * 调用已注册拦截器的 preHandle 方法。
 	 * @return {@code true} if the execution chain should proceed with the
 	 * next interceptor or the handler itself. Else, DispatcherServlet assumes
 	 * that this interceptor has already dealt with the response itself.
@@ -155,7 +155,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Apply postHandle methods of registered interceptors.
+	 * 调用已注册拦截器的 postHandle 方法。
 	 */
 	void applyPostHandle(HttpServletRequest request, HttpServletResponse response, @Nullable ModelAndView mv)
 			throws Exception {
@@ -167,9 +167,8 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Trigger afterCompletion callbacks on the mapped HandlerInterceptors.
-	 * Will just invoke afterCompletion for all interceptors whose preHandle invocation
-	 * has successfully completed and returned true.
+	 * 在映射的 HandlerInterceptor 上触发 afterCompletion 回调。
+	 * 只会为那些 preHandle 调用已成功完成并返回 true 的拦截器调用 afterCompletion。
 	 */
 	void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex) {
 		for (int i = this.interceptorIndex; i >= 0; i--) {
@@ -184,7 +183,7 @@ public class HandlerExecutionChain {
 	}
 
 	/**
-	 * Apply afterConcurrentHandlerStarted callback on mapped AsyncHandlerInterceptors.
+	 * 在映射的 AsyncHandlerInterceptor 上调用 afterConcurrentHandlingStarted 回调。
 	 */
 	void applyAfterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response) {
 		for (int i = this.interceptorList.size() - 1; i >= 0; i--) {
@@ -205,7 +204,7 @@ public class HandlerExecutionChain {
 
 
 	/**
-	 * Delegates to the handler's {@code toString()} implementation.
+	 * 委托给处理器的 {@code toString()} 实现。
 	 */
 	@Override
 	public String toString() {

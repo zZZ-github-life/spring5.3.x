@@ -36,10 +36,7 @@ import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * A filter that wraps the {@link HttpServletResponse} and overrides its
- * {@link HttpServletResponse#encodeURL(String) encodeURL} method in order to
- * translate internal resource request URLs into public URL paths for external use.
- *
+ * 包装 {@link HttpServletResponse} 并重写其 {@link HttpServletResponse#encodeURL(String) encodeURL} 方法的过滤器，用于将内部资源请求 URL 转换为可供外部使用的公共 URL 路径。
  * @author Jeremy Grelle
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -167,9 +164,7 @@ public class ResourceUrlEncodingFilter extends GenericFilterBean {
 
 
 	/**
-	 * Runtime exception to get far enough (to ResourceUrlProviderExposingInterceptor)
-	 * where it can be re-thrown as ServletRequestBindingException to result in
-	 * a 400 response.
+	 * 运行时异常，用于传播到足够远的位置（到达 ResourceUrlProviderExposingInterceptor），以便在那里将其重新抛出为 ServletRequestBindingException，从而产生 400 响应。
 	 */
 	@SuppressWarnings("serial")
 	static class LookupPathIndexException extends IllegalArgumentException {

@@ -27,9 +27,7 @@ import org.springframework.core.codec.CodecException;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Internal methods shared between {@link DefaultWebClient} and
- * {@link DefaultClientResponse}.
- *
+ * {@link DefaultWebClient} 和 {@link DefaultClientResponse} 之间共享的内部方法。
  * @author Arjen Poutsma
  * @since 5.2
  */
@@ -38,14 +36,14 @@ abstract class WebClientUtils {
 	private static final String VALUE_NONE = "\n\t\t\n\t\t\n\uE000\uE001\uE002\n\t\t\t\t\n";
 
 	/**
-	 * Predicate that returns true if an exception should be wrapped.
+	 * 如果异常应被包装则返回 true 的谓词。
 	 */
 	public final static Predicate<? super Throwable> WRAP_EXCEPTION_PREDICATE =
 			t -> !(t instanceof WebClientException) && !(t instanceof CodecException);
 
 
 	/**
-	 * Map the given response to a single value {@code ResponseEntity<T>}.
+	 * 将给定响应映射为单个值 {@code ResponseEntity<T>}。
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Mono<ResponseEntity<T>> mapToEntity(ClientResponse response, Mono<T> bodyMono) {
@@ -57,7 +55,7 @@ abstract class WebClientUtils {
 	}
 
 	/**
-	 * Map the given response to a {@code ResponseEntity<List<T>>}.
+	 * 将给定响应映射为 {@code ResponseEntity<List<T>>}。
 	 */
 	public static <T> Mono<ResponseEntity<List<T>>> mapToEntityList(ClientResponse response, Publisher<T> body) {
 		return Flux.from(body).collectList().map(list ->

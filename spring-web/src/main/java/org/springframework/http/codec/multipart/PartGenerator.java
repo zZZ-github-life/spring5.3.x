@@ -54,8 +54,9 @@ import org.springframework.http.MediaType;
 import org.springframework.util.FastByteArrayOutputStream;
 
 /**
- * Subscribes to a token stream (i.e. the result of
- * {@link MultipartParser#parse(Flux, byte[], int, Charset)}), and produces a flux of {@link Part} objects.
+ * 订阅 token 流（即
+ * {@link MultipartParser#parse(Flux, byte[], int, Charset)} 的结果），
+ * 并生成 {@link Part} 对象的 Flux。
  *
  * @author Arjen Poutsma
  * @since 5.3
@@ -98,7 +99,7 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 	}
 
 	/**
-	 * Creates parts from a given stream of tokens.
+	 * 从给定的 token 流创建部件。
 	 */
 	public static Flux<Part> createParts(Flux<MultipartParser.Token> tokens, int maxParts, int maxInMemorySize,
 			long maxDiskUsagePerPart, boolean streaming, Mono<Path> fileStorageDirectory,
@@ -253,54 +254,52 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 	}
 
 	/**
-	 * Represents the internal state of the {@link PartGenerator} for
-	 * creating a single {@link Part}.
-	 * {@link State} instances are stateful, and created when a new
-	 * {@link MultipartParser.HeadersToken} is accepted (see
-	 * {@link #newPart(State, HttpHeaders)}).
-	 * The following rules determine which state the creator will have:
+	 * 表示 {@link PartGenerator} 用于创建单个 {@link Part} 的
+	 * 内部状态。{@link State} 实例是有状态的，在接受新的
+	 * {@link MultipartParser.HeadersToken} 时创建
+	 * （参见 {@link #newPart(State, HttpHeaders)}）。
+	 * 以下规则决定创建器将处于哪个状态：
 	 * <ol>
-	 * <li>If the part is a {@linkplain #isFormField(HttpHeaders) form field},
-	 * the creator will be in the {@link FormFieldState}.</li>
-	 * <li>If {@linkplain #streaming} is enabled, the creator will be in the
-	 * {@link StreamingState}.</li>
-	 * <li>Otherwise, the creator will initially be in the
-	 * {@link InMemoryState}, but will switch over to {@link CreateFileState}
-	 * when the part byte count exceeds {@link #maxInMemorySize},
-	 * then to {@link WritingFileState} (to write the memory contents),
-	 * and finally {@link IdleFileState}, which switches back to
-	 * {@link WritingFileState} when more body data comes in.</li>
+	 * <li>如果部件是{@linkplain #isFormField(HttpHeaders) 表单字段}，
+	 * 则创建器将处于 {@link FormFieldState}。</li>
+	 * <li>如果启用了 {@linkplain #streaming 流式处理}，则创建器将处于
+	 * {@link StreamingState}。</li>
+	 * <li>否则，创建器最初将处于 {@link InMemoryState}，但当部件字节数
+	 * 超过 {@link #maxInMemorySize} 时，将切换到 {@link CreateFileState}，
+	 * 然后切换到 {@link WritingFileState}（以写入内存中的内容），
+	 * 最后切换到 {@link IdleFileState}；当有更多正文数据到来时，
+	 * 再切换回 {@link WritingFileState}。</li>
 	 * </ol>
 	 */
 	private interface State {
 
 		/**
-		 * Invoked when a {@link MultipartParser.BodyToken} is received.
+		 * 接收到 {@link MultipartParser.BodyToken} 时调用。
 		 */
 		void body(DataBuffer dataBuffer);
 
 		/**
-		 * Invoked when all tokens for the part have been received.
+		 * 当该部件的所有 token 都已接收时调用。
 		 * @param finalPart {@code true} if this was the last part (and
 		 * {@link #emitComplete()} should be called; {@code false} otherwise
 		 */
 		void partComplete(boolean finalPart);
 
 		/**
-		 * Invoked when an error has been received.
+		 * 接收到错误时调用。
 		 */
 		default void error(Throwable throwable) {
 		}
 
 		/**
-		 * Indicates whether the current state is ready to accept a new token.
+		 * 指示当前状态是否已准备好接受新的 token。
 		 */
 		default boolean canRequest() {
 			return true;
 		}
 
 		/**
-		 * Cleans up any state.
+		 * 清理所有状态。
 		 */
 		default void dispose() {
 		}
@@ -308,7 +307,7 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 
 
 	/**
-	 * The initial state of the creator. Throws an exception for {@link #body(DataBuffer)}.
+	 * 创建器的初始状态。对于 {@link #body(DataBuffer)} 抛出异常。
 	 */
 	private final class InitialState implements State {
 
@@ -336,8 +335,8 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 
 
 	/**
-	 * The creator state when a {@linkplain #isFormField(HttpHeaders) form field} is received.
-	 * Stores all body buffers in memory (up until {@link #maxInMemorySize}).
+	 * 接收到{@linkplain #isFormField(HttpHeaders) 表单字段}时的创建器状态。
+	 * 将所有正文缓冲区存储在内存中（直到 {@link #maxInMemorySize}）。
 	 */
 	private final class FormFieldState implements State {
 
@@ -397,8 +396,8 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 
 
 	/**
-	 * The creator state when {@link #streaming} is {@code true} (and not
-	 * handling a form field). Relays all received buffers to a sink.
+	 * {@link #streaming} 为 {@code true}（且不处理表单字段）时的
+	 * 创建器状态。将所有接收到的缓冲区转发到 sink。
 	 */
 	private final class StreamingState implements State {
 
@@ -450,11 +449,11 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 
 
 	/**
-	 * The creator state when {@link #streaming} is {@code false} (and not
-	 * handling a form field). Stores all received buffers in a queue.
-	 * If the byte count exceeds {@link #maxInMemorySize}, the creator state
-	 * is changed to {@link CreateFileState}, and eventually to
-	 * {@link CreateFileState}.
+	 * {@link #streaming} 为 {@code false}（且不处理表单字段）时的
+	 * 创建器状态。将所有接收到的缓冲区存储在队列中。
+	 * 如果字节数超过 {@link #maxInMemorySize}，创建器状态
+	 * 将切换为 {@link CreateFileState}，最终切换为
+	 * {@link CreateFileState}。
 	 */
 	private final class InMemoryState implements State {
 
@@ -545,10 +544,10 @@ final class PartGenerator extends BaseSubscriber<MultipartParser.Token> {
 
 
 	/**
-	 * The creator state when waiting for a temporary file to be created.
-	 * {@link InMemoryState} initially switches to this state when the byte
-	 * count exceeds {@link #maxInMemorySize}, and then calls
-	 * {@link #createFile()} to switch to {@link WritingFileState}.
+	 * 等待创建临时文件时的创建器状态。
+	 * {@link InMemoryState} 在字节数超过 {@link #maxInMemorySize} 时
+	 * 最初会切换到此状态，然后调用
+	 * {@link #createFile()} 切换到 {@link WritingFileState}。
 	 */
 	private final class CreateFileState implements State {
 

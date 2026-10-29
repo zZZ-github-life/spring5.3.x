@@ -17,8 +17,7 @@
 package org.springframework.remoting;
 
 /**
- * RemoteAccessException subclass to be thrown in case of a lookup failure,
- * typically if the lookup happens on demand for each method invocation.
+ * RemoteAccessException 的子类，在查找失败时抛出，通常发生在每次方法调用都按需查找的情况下。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -27,7 +26,7 @@ package org.springframework.remoting;
 public class RemoteLookupFailureException extends RemoteAccessException {
 
 	/**
-	 * Constructor for RemoteLookupFailureException.
+	 * RemoteLookupFailureException 的构造器。
 	 * @param msg the detail message
 	 */
 	public RemoteLookupFailureException(String msg) {
@@ -35,7 +34,7 @@ public class RemoteLookupFailureException extends RemoteAccessException {
 	}
 
 	/**
-	 * Constructor for RemoteLookupFailureException.
+	 * RemoteLookupFailureException 的构造器。
 	 * @param msg message
 	 * @param cause the root cause from the remoting API in use
 	 */

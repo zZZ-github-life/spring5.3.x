@@ -23,7 +23,7 @@ import org.springframework.core.ResolvableTypeProvider;
 import org.springframework.util.Assert;
 
 /**
- * An {@link ApplicationEvent} that carries an arbitrary payload.
+ * 携带任意载荷的 {@link ApplicationEvent}。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -39,7 +39,7 @@ public class PayloadApplicationEvent<T> extends ApplicationEvent implements Reso
 
 
 	/**
-	 * Create a new PayloadApplicationEvent.
+	 * 创建一个新的 PayloadApplicationEvent。
 	 * @param source the object on which the event initially occurred (never {@code null})
 	 * @param payload the payload object (never {@code null})
 	 */
@@ -56,7 +56,7 @@ public class PayloadApplicationEvent<T> extends ApplicationEvent implements Reso
 	}
 
 	/**
-	 * Return the payload of the event.
+	 * 返回事件的载荷。
 	 */
 	public T getPayload() {
 		return this.payload;

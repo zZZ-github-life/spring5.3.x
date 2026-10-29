@@ -26,8 +26,7 @@ import org.springframework.http.codec.HttpMessageReader;
 import org.springframework.http.codec.HttpMessageWriter;
 
 /**
- * Default implementation of {@link ExchangeStrategies.Builder}.
- *
+ * {@link ExchangeStrategies.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @author Brian Clozel
  * @since 5.0

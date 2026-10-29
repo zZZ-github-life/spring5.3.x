@@ -1,6 +1,5 @@
 /**
- * Classes supporting the {@code org.springframework.web.reactive.function.client} package.
- * Contains a {@code ClientResponse} wrapper to adapt a request.
+ * 支持 {@code org.springframework.web.reactive.function.client} 包的类。包含用于适配响应的 {@code ClientResponse} 包装器。
  */
 @NonNullApi
 @NonNullFields

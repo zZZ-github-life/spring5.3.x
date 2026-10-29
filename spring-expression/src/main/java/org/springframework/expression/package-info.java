@@ -1,5 +1,5 @@
 /**
- * Core abstractions behind the <em>Spring Expression Language</em>.
+ * 用于 <em>Spring Expression Language</em> 的核心抽象。
  */
 @NonNullApi
 @NonNullFields

@@ -30,10 +30,10 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
 /**
- * JSF {@code ELResolver} that delegates to the Spring root {@code WebApplicationContext},
- * resolving name references to Spring-defined beans.
+ * JSF {@code ELResolver}，委托给 Spring 根 {@code WebApplicationContext}，
+ * 将对名称的引用解析为 Spring 定义的 Bean。
  *
- * <p>Configure this resolver in your {@code faces-config.xml} file as follows:
+ * <p>在 {@code faces-config.xml} 文件中按如下方式配置此解析器：
  *
  * <pre class="code">
  * &lt;application&gt;
@@ -41,9 +41,8 @@ import org.springframework.web.jsf.FacesContextUtils;
  *   &lt;el-resolver&gt;org.springframework.web.jsf.el.SpringBeanFacesELResolver&lt;/el-resolver&gt;
  * &lt;/application&gt;</pre>
  *
- * All your JSF expressions can then implicitly refer to the names of
- * Spring-managed service layer beans, for example in property values of
- * JSF-managed beans:
+ * 之后，所有 JSF 表达式都可以隐式引用 Spring 管理的服务层 Bean 的名称，
+ * 例如在 JSF 托管 Bean 的属性值中：
  *
  * <pre class="code">
  * &lt;managed-bean&gt;
@@ -56,8 +55,8 @@ import org.springframework.web.jsf.FacesContextUtils;
  *   &lt;/managed-property&gt;
  * &lt;/managed-bean&gt;</pre>
  *
- * with "mySpringManagedBusinessObject" defined as Spring bean in
- * applicationContext.xml:
+ * 其中 "mySpringManagedBusinessObject" 在 applicationContext.xml 中
+ * 定义为 Spring Bean：
  *
  * <pre class="code">
  * &lt;bean id="mySpringManagedBusinessObject" class="example.MySpringManagedBusinessObject"&gt;
@@ -141,8 +140,8 @@ public class SpringBeanFacesELResolver extends ELResolver {
 	}
 
 	/**
-	 * Retrieve the web application context to delegate bean name resolution to.
-	 * <p>The default implementation delegates to FacesContextUtils.
+	 * 获取用于委托 Bean 名称解析的 Web 应用上下文。
+	 * <p>默认实现委托给 FacesContextUtils。
 	 * @param elContext the current JSF ELContext
 	 * @return the Spring web application context (never {@code null})
 	 * @see org.springframework.web.jsf.FacesContextUtils#getRequiredWebApplicationContext

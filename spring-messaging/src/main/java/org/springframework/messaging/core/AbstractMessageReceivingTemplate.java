@@ -22,8 +22,8 @@ import org.springframework.messaging.converter.MessageConversionException;
 import org.springframework.messaging.converter.MessageConverter;
 
 /**
- * An extension of {@link AbstractMessageSendingTemplate} that adds support for
- * receive style operations as defined by {@link MessageReceivingOperations}.
+ * 对 {@link AbstractMessageSendingTemplate} 的扩展，增加了对
+ * {@link MessageReceivingOperations} 定义的接收式操作的支持。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -47,7 +47,7 @@ public abstract class AbstractMessageReceivingTemplate<D> extends AbstractMessag
 	}
 
 	/**
-	 * Actually receive a message from the given destination.
+	 * 实际从给定目标接收消息。
 	 * @param destination the target destination
 	 * @return the received message, possibly {@code null} if the message could not
 	 * be received, for example due to a timeout
@@ -75,7 +75,7 @@ public abstract class AbstractMessageReceivingTemplate<D> extends AbstractMessag
 	}
 
 	/**
-	 * Convert from the given message to the given target class.
+	 * 将给定消息转换为给定目标类。
 	 * @param message the message to convert
 	 * @param targetClass the target class to convert the payload to
 	 * @return the converted payload of the reply message (never {@code null})

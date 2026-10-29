@@ -24,11 +24,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Factory for common {@link Log} delegates with Spring's logging conventions.
+ * 用于 Spring 日志约定的通用 {@link Log} 委托的工厂。
  *
- * <p>Mainly for internal use within the framework with Apache Commons Logging,
- * typically in the form of the {@code spring-jcl} bridge but also compatible
- * with other Commons Logging bridges.
+ * <p>主要供框架内部与 Apache Commons Logging 配合使用，
+ * 通常以 {@code spring-jcl} 桥接的形式出现，但也兼容
+ * 其他 Commons Logging 桥接。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -42,13 +42,13 @@ public final class LogDelegateFactory {
 
 
 	/**
-	 * Create a composite logger that delegates to a primary or falls back on a
-	 * secondary logger if logging for the primary logger is not enabled.
-	 * <p>This may be used for fallback logging from lower-level packages that
-	 * logically should log together with some higher-level package but the two
-	 * don't happen to share a suitable parent package (e.g. logging for the web
-	 * and lower-level http and codec packages). For such cases the primary
-	 * (class-based) logger can be wrapped with a shared fallback logger.
+	 * 创建一个复合日志记录器，它会委托给主日志记录器，
+	 * 如果主日志记录器的日志未启用，则回退到次级日志记录器。
+	 * <p>这可用于来自较低层包的备用日志记录，这些包
+	 * 在逻辑上应与某些较高层包一起记录日志，但两者
+	 * 并未恰好共享合适的父包（例如 web 包以及
+	 * 较低层 http 和 codec 包的日志记录）。对于这种情况，可以将主（基于类的）
+	 * 日志记录器包装在一个共享的回退日志记录器周围。
 	 * @param primaryLogger primary logger to try first
 	 * @param secondaryLogger secondary logger
 	 * @param tertiaryLoggers optional vararg of further fallback loggers
@@ -63,10 +63,10 @@ public final class LogDelegateFactory {
 	}
 
 	/**
-	 * Create a "hidden" logger with a category name prefixed with "_", thus
-	 * precluding it from being enabled together with other log categories from
-	 * the same package. This is useful for specialized output that is either
-	 * too verbose or otherwise optional or unnecessary to see all the time.
+	 * 创建一个类别名以 "_" 为前缀的“隐藏”日志记录器，从而
+	 * 使其无法与同一包中的其他日志类别一起启用。
+	 * 这对于过于冗长、或者在其他方面属于可选
+	 * 或无需始终查看的专门输出很有用。
 	 * @param clazz the class for which to create a logger
 	 * @return a Log with the category {@code "_" + fully-qualified class name}
 	 */
@@ -75,10 +75,10 @@ public final class LogDelegateFactory {
 	}
 
 	/**
-	 * Create a "hidden" logger with a category name prefixed with "_", thus
-	 * precluding it from being enabled together with other log categories from
-	 * the same package. This is useful for specialized output that is either
-	 * too verbose or otherwise optional or unnecessary to see all the time.
+	 * 创建一个类别名以 "_" 为前缀的“隐藏”日志记录器，从而
+	 * 使其无法与同一包中的其他日志类别一起启用。
+	 * 这对于过于冗长、或者在其他方面属于可选
+	 * 或无需始终查看的专门输出很有用。
 	 * @param category the log category to use
 	 * @return a Log with the category {@code "_" + category}
 	 * @since 5.3.5

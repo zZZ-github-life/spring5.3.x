@@ -47,14 +47,14 @@ import org.springframework.web.method.support.InvocableHandlerMethod;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Assist with initialization of the {@link Model} before controller method
- * invocation and with updates to it after the invocation.
+ * 协助在控制器方法调用之前初始化 {@link Model}，
+ * 以及在其调用之后更新模型。
  *
- * <p>On initialization the model is populated with attributes temporarily stored
- * in the session and through the invocation of {@code @ModelAttribute} methods.
+ * <p>初始化时，模型会填充以临时存储在会话中的属性，
+ * 以及通过调用 {@code @ModelAttribute} 方法得到的属性。
  *
- * <p>On update model attributes are synchronized with the session and also
- * {@link BindingResult} attributes are added if missing.
+ * <p>更新时，模型属性会与会话同步，并在缺失时补充
+ * {@link BindingResult} 属性。
  *
  * @author Rossen Stoyanchev
  * @since 3.1
@@ -72,7 +72,7 @@ public final class ModelFactory {
 
 
 	/**
-	 * Create a new instance with the given {@code @ModelAttribute} methods.
+	 * 使用给定的 {@code @ModelAttribute} 方法创建一个新实例。
 	 * @param handlerMethods the {@code @ModelAttribute} methods to invoke
 	 * @param binderFactory for preparation of {@link BindingResult} attributes
 	 * @param attributeHandler for access to session attributes
@@ -91,13 +91,12 @@ public final class ModelFactory {
 
 
 	/**
-	 * Populate the model in the following order:
+	 * 按以下顺序填充模型：
 	 * <ol>
-	 * <li>Retrieve "known" session attributes listed as {@code @SessionAttributes}.
-	 * <li>Invoke {@code @ModelAttribute} methods
-	 * <li>Find {@code @ModelAttribute} method arguments also listed as
-	 * {@code @SessionAttributes} and ensure they're present in the model raising
-	 * an exception if necessary.
+	 * <li>获取以 {@code @SessionAttributes} 列出的“已知”会话属性。
+	 * <li>调用 {@code @ModelAttribute} 方法
+	 * <li>查找同时以 {@code @SessionAttributes} 列出的 {@code @ModelAttribute}
+	 * 方法参数，确保它们存在于模型中，必要时抛出异常。
 	 * </ol>
 	 * @param request the current request
 	 * @param container a container with the model to be initialized
@@ -123,8 +122,8 @@ public final class ModelFactory {
 	}
 
 	/**
-	 * Invoke model attribute methods to populate the model.
-	 * Attributes are added only if not already present in the model.
+	 * 调用模型属性方法以填充模型。
+	 * 仅当模型中尚不存在属性时才添加该属性。
 	 */
 	private void invokeModelAttributeMethods(NativeWebRequest request, ModelAndViewContainer container)
 			throws Exception {
@@ -174,7 +173,7 @@ public final class ModelFactory {
 	}
 
 	/**
-	 * Find {@code @ModelAttribute} arguments also listed as {@code @SessionAttributes}.
+	 * 查找同时以 {@code @SessionAttributes} 列出的 {@code @ModelAttribute} 参数。
 	 */
 	private List<String> findSessionAttributeArguments(HandlerMethod handlerMethod) {
 		List<String> result = new ArrayList<>();
@@ -191,8 +190,8 @@ public final class ModelFactory {
 	}
 
 	/**
-	 * Promote model attributes listed as {@code @SessionAttributes} to the session.
-	 * Add {@link BindingResult} attributes where necessary.
+	 * 将以 {@code @SessionAttributes} 列出的模型属性提升到会话中。
+	 * 必要时添加 {@link BindingResult} 属性。
 	 * @param request the current request
 	 * @param container contains the model to update
 	 * @throws Exception if creating BindingResult attributes fails
@@ -211,7 +210,7 @@ public final class ModelFactory {
 	}
 
 	/**
-	 * Add {@link BindingResult} attributes to the model for attributes that require it.
+	 * 为需要 {@link BindingResult} 的属性向模型中添加该属性。
 	 */
 	private void updateBindingResult(NativeWebRequest request, ModelMap model) throws Exception {
 		List<String> keyNames = new ArrayList<>(model.keySet());
@@ -228,7 +227,7 @@ public final class ModelFactory {
 	}
 
 	/**
-	 * Whether the given attribute requires a {@link BindingResult} in the model.
+	 * 给定属性是否需要在模型中提供 {@link BindingResult}。
 	 */
 	private boolean isBindingCandidate(String attributeName, Object value) {
 		if (attributeName.startsWith(BindingResult.MODEL_KEY_PREFIX)) {
@@ -245,9 +244,8 @@ public final class ModelFactory {
 
 
 	/**
-	 * Derive the model attribute name for the given method parameter based on
-	 * a {@code @ModelAttribute} parameter annotation (if present) or falling
-	 * back on parameter type based conventions.
+	 * 基于 {@code @ModelAttribute} 参数注解（如果存在）派生给定方法参数的
+	 * 模型属性名称，否则回退到基于参数类型的约定。
 	 * @param parameter a descriptor for the method parameter
 	 * @return the derived name
 	 * @see Conventions#getVariableNameForParameter(MethodParameter)
@@ -259,12 +257,11 @@ public final class ModelFactory {
 	}
 
 	/**
-	 * Derive the model attribute name for the given return value. Results will be
-	 * based on:
+	 * 派生给定返回值的模型属性名称。结果将基于：
 	 * <ol>
-	 * <li>the method {@code ModelAttribute} annotation value
-	 * <li>the declared return type if it is more specific than {@code Object}
-	 * <li>the actual return value type
+	 * <li>方法的 {@code ModelAttribute} 注解值
+	 * <li>声明的返回类型（如果比 {@code Object} 更具体）
+	 * <li>实际的返回值类型
 	 * </ol>
 	 * @param returnValue the value returned from a method invocation
 	 * @param returnType a descriptor for the return type of the method

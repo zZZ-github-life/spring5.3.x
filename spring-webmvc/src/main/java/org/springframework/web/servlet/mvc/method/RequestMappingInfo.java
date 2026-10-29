@@ -47,18 +47,17 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Request mapping information. A composite for the following conditions:
+ * 请求映射信息。以下条件的组合体：
  * <ol>
- * <li>{@link PathPatternsRequestCondition} with parsed {@code PathPatterns} or
- * {@link PatternsRequestCondition} with String patterns via {@code PathMatcher}
+ * <li>使用解析后 {@code PathPatterns} 的 {@link PathPatternsRequestCondition}，或
+ * 通过 {@code PathMatcher} 使用字符串模式的 {@link PatternsRequestCondition}
  * <li>{@link RequestMethodsRequestCondition}
  * <li>{@link ParamsRequestCondition}
  * <li>{@link HeadersRequestCondition}
  * <li>{@link ConsumesRequestCondition}
  * <li>{@link ProducesRequestCondition}
- * <li>{@code RequestCondition} (optional, custom request condition)
+ * <li>{@code RequestCondition}（可选的自定义请求条件）
  * </ol>
- *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.1
@@ -109,7 +108,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 
 	/**
-	 * Full constructor with a mapping name.
+	 * 带映射名称的完整构造函数。
 	 * @deprecated as of 5.3 in favor using {@link RequestMappingInfo.Builder} via
 	 * {@link #paths(String...)}.
 	 */
@@ -131,7 +130,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Create an instance with the given conditions.
+	 * 使用给定条件创建实例。
 	 * @deprecated as of 5.3 in favor using {@link RequestMappingInfo.Builder} via
 	 * {@link #paths(String...)}.
 	 */
@@ -145,7 +144,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Re-create a RequestMappingInfo with the given custom request condition.
+	 * 使用给定的自定义请求条件重新创建 RequestMappingInfo。
 	 * @deprecated since 5.3 in favor of using {@link #addCustomCondition(RequestCondition)}.
 	 */
 	@Deprecated
@@ -184,7 +183,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 
 	/**
-	 * Return the name for this mapping, or {@code null}.
+	 * 返回此映射的名称，或 {@code null}。
 	 */
 	@Nullable
 	public String getName() {
@@ -192,10 +191,10 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Return the patterns condition in use when parsed patterns are
-	 * {@link AbstractHandlerMapping#usesPathPatterns() enabled}.
-	 * <p>This is mutually exclusive with {@link #getPatternsCondition()} such
-	 * that when one returns {@code null} the other one returns an instance.
+	 * 返回在解析模式
+	 * {@link AbstractHandlerMapping#usesPathPatterns() 启用}时使用的模式条件。
+	 * <p>这与 {@link #getPatternsCondition()} 互斥，即其中一个返回 {@code null} 时，
+	 * 另一个会返回实例。
 	 * @since 5.3
 	 * @see #getActivePatternsCondition()
 	 */
@@ -205,10 +204,9 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Return the patterns condition when String pattern matching via
-	 * {@link PathMatcher} is in use.
-	 * <p>This is mutually exclusive with {@link #getPathPatternsCondition()}
-	 * such that when one returns {@code null} the other one returns an instance.
+	 * 返回在使用通过 {@link PathMatcher} 进行字符串模式匹配时的模式条件。
+	 * <p>这与 {@link #getPathPatternsCondition()} 互斥，
+	 * 即其中一个返回 {@code null} 时，另一个会返回实例。
 	 */
 	@Nullable
 	public PatternsRequestCondition getPatternsCondition() {
@@ -216,8 +214,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Returns either {@link #getPathPatternsCondition()} or
-	 * {@link #getPatternsCondition()} depending on which is not null.
+	 * 根据哪一个不为 null，返回 {@link #getPathPatternsCondition()} 或
+	 * {@link #getPatternsCondition()}。
 	 * @since 5.3
 	 */
 	@SuppressWarnings("unchecked")
@@ -235,7 +233,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Return the mapping paths that are not patterns.
+	 * 返回不是模式的映射路径。
 	 * @since 5.3
 	 */
 	public Set<String> getDirectPaths() {
@@ -246,8 +244,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Return the patterns for the {@link #getActivePatternsCondition() active}
-	 * patterns condition as Strings.
+	 * 返回 {@link #getActivePatternsCondition() 活动}
+	 * 模式条件的模式，以字符串表示。
 	 * @since 5.3
 	 */
 	public Set<String> getPatternValues() {
@@ -258,47 +256,47 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Return the HTTP request methods of this {@link RequestMappingInfo};
-	 * or instance with 0 request methods (never {@code null}).
+	 * 返回此 {@link RequestMappingInfo} 的 HTTP 请求方法；
+	 * 如果没有则为包含 0 个请求方法的实例（绝不为 {@code null}）。
 	 */
 	public RequestMethodsRequestCondition getMethodsCondition() {
 		return this.methodsCondition;
 	}
 
 	/**
-	 * Return the "parameters" condition of this {@link RequestMappingInfo};
-	 * or instance with 0 parameter expressions (never {@code null}).
+	 * 返回此 {@link RequestMappingInfo} 的 "parameters" 条件；
+	 * 如果没有则为包含 0 个参数表达式的实例（绝不为 {@code null}）。
 	 */
 	public ParamsRequestCondition getParamsCondition() {
 		return this.paramsCondition;
 	}
 
 	/**
-	 * Return the "headers" condition of this {@link RequestMappingInfo};
-	 * or instance with 0 header expressions (never {@code null}).
+	 * 返回此 {@link RequestMappingInfo} 的 "headers" 条件；
+	 * 如果没有则为包含 0 个头表达式的实例（绝不为 {@code null}）。
 	 */
 	public HeadersRequestCondition getHeadersCondition() {
 		return this.headersCondition;
 	}
 
 	/**
-	 * Return the "consumes" condition of this {@link RequestMappingInfo};
-	 * or instance with 0 consumes expressions (never {@code null}).
+	 * 返回此 {@link RequestMappingInfo} 的 "consumes" 条件；
+	 * 如果没有则为包含 0 个 consumes 表达式的实例（绝不为 {@code null}）。
 	 */
 	public ConsumesRequestCondition getConsumesCondition() {
 		return this.consumesCondition;
 	}
 
 	/**
-	 * Return the "produces" condition of this {@link RequestMappingInfo};
-	 * or instance with 0 produces expressions (never {@code null}).
+	 * 返回此 {@link RequestMappingInfo} 的 "produces" 条件；
+	 * 如果没有则为包含 0 个 produces 表达式的实例（绝不为 {@code null}）。
 	 */
 	public ProducesRequestCondition getProducesCondition() {
 		return this.producesCondition;
 	}
 
 	/**
-	 * Return the "custom" condition of this {@link RequestMappingInfo}, or {@code null}.
+	 * 返回此 {@link RequestMappingInfo} 的 "custom" 条件，或 {@code null}。
 	 */
 	@Nullable
 	public RequestCondition<?> getCustomCondition() {
@@ -306,8 +304,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Create a new instance based on the current one, also adding the given
-	 * custom condition.
+	 * 基于当前实例创建一个新实例，同时添加给定的
+	 * 自定义条件。
 	 * @param customCondition the custom condition to add
 	 * @since 5.3
 	 */
@@ -320,9 +318,9 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Combine "this" request mapping info (i.e. the current instance) with
-	 * another request mapping info instance.
-	 * <p>Example: combine type- and method-level request mappings.
+	 * 将 "this" 请求映射信息（即当前实例）与
+	 * 另一个请求映射信息实例组合起来。
+	 * <p>示例：组合类型级别和方法级别的请求映射。
 	 * @return a new request mapping info instance; never {@code null}
 	 */
 	@Override
@@ -363,12 +361,11 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Checks if all conditions in this request mapping info match the provided
-	 * request and returns a potentially new request mapping info with conditions
-	 * tailored to the current request.
-	 * <p>For example the returned instance may contain the subset of URL
-	 * patterns that match to the current request, sorted with best matching
-	 * patterns on top.
+	 * 检查此请求映射信息中的所有条件是否匹配所提供的
+	 * 请求，并返回一个可能为当前请求量身定制条件的
+	 * 新请求映射信息。
+	 * <p>例如，返回的实例可能包含与当前请求匹配的 URL
+	 * 模式子集，并按最匹配的模式排在前面进行排序。
 	 * @return a new instance in case of a match; or {@code null} otherwise
 	 */
 	@Override
@@ -417,11 +414,11 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Compares "this" info (i.e. the current instance) with another info in the
-	 * context of a request.
-	 * <p>Note: It is assumed both instances have been obtained via
-	 * {@link #getMatchingCondition(HttpServletRequest)} to ensure they have
-	 * conditions with content relevant to current request.
+	 * 在请求的上下文中比较 "this" 信息（即当前实例）
+	 * 与另一个信息。
+	 * <p>注意：假定两个实例都是通过
+	 * {@link #getMatchingCondition(HttpServletRequest)} 获得的，以确保它们具有
+	 * 与当前请求相关的内容条件。
 	 */
 	@Override
 	public int compareTo(RequestMappingInfo other, HttpServletRequest request) {
@@ -531,7 +528,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 	}
 
 	/**
-	 * Return a builder to create a new RequestMappingInfo by modifying this one.
+	 * 返回一个构建器，用于通过修改此实例来创建新的 RequestMappingInfo。
 	 * @return a builder to create a new, modified instance
 	 * @since 5.3.4
 	 */
@@ -541,7 +538,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 
 	/**
-	 * Create a new {@code RequestMappingInfo.Builder} with the given paths.
+	 * 使用给定路径创建一个新的 {@code RequestMappingInfo.Builder}。
 	 * @param paths the paths to use
 	 * @since 4.2
 	 */
@@ -551,59 +548,59 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 
 	/**
-	 * Defines a builder for creating a RequestMappingInfo.
+	 * 定义用于创建 RequestMappingInfo 的构建器。
 	 * @since 4.2
 	 */
 	public interface Builder {
 
 		/**
-		 * Set the URL path patterns.
+		 * 设置 URL 路径模式。
 		 */
 		Builder paths(String... paths);
 
 		/**
-		 * Set the request method conditions.
+		 * 设置请求方法条件。
 		 */
 		Builder methods(RequestMethod... methods);
 
 		/**
-		 * Set the request param conditions.
+		 * 设置请求参数条件。
 		 */
 		Builder params(String... params);
 
 		/**
-		 * Set the header conditions.
-		 * <p>By default this is not set.
+		 * 设置头条件。
+		 * <p>默认不设置。
 		 */
 		Builder headers(String... headers);
 
 		/**
-		 * Set the consumes conditions.
+		 * 设置 consumes 条件。
 		 */
 		Builder consumes(String... consumes);
 
 		/**
-		 * Set the produces conditions.
+		 * 设置 produces 条件。
 		 */
 		Builder produces(String... produces);
 
 		/**
-		 * Set the mapping name.
+		 * 设置映射名称。
 		 */
 		Builder mappingName(String name);
 
 		/**
-		 * Set a custom condition to use.
+		 * 设置要使用的自定义条件。
 		 */
 		Builder customCondition(RequestCondition<?> condition);
 
 		/**
-		 * Provide additional configuration needed for request mapping purposes.
+		 * 提供请求映射所需的附加配置。
 		 */
 		Builder options(BuilderConfiguration options);
 
 		/**
-		 * Build the RequestMappingInfo.
+		 * 构建 RequestMappingInfo。
 		 */
 		RequestMappingInfo build();
 	}
@@ -863,9 +860,9 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 
 	/**
-	 * Container for configuration options used for request mapping purposes.
-	 * Such configuration is required to create RequestMappingInfo instances but
-	 * is typically used across all RequestMappingInfo instances.
+	 * 用于请求映射目的的配置选项容器。
+	 * 此类配置是创建 RequestMappingInfo 实例所必需的，
+	 * 但通常在所有 RequestMappingInfo 实例之间共用。
 	 * @since 4.2
 	 * @see Builder#options
 	 */
@@ -888,11 +885,11 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 
 
 		/**
-		 * Enable use of parsed {@link PathPattern}s as described in
-		 * {@link AbstractHandlerMapping#setPatternParser(PathPatternParser)}.
-		 * <p><strong>Note:</strong> This property is mutually exclusive with
-		 * {@link #setPathMatcher(PathMatcher)}.
-		 * <p>By default this is not enabled.
+		 * 启用解析后的 {@link PathPattern}，如
+		 * {@link AbstractHandlerMapping#setPatternParser(PathPatternParser)} 所述。
+		 * <p><strong>注意：</strong>此属性与
+		 * {@link #setPathMatcher(PathMatcher)} 互斥。
+		 * <p>默认不启用。
 		 * @since 5.3
 		 */
 		public void setPatternParser(@Nullable PathPatternParser patternParser) {
@@ -900,8 +897,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Return the {@link #setPatternParser(PathPatternParser) configured}
-		 * {@code PathPatternParser}, or {@code null}.
+		 * 返回 {@link #setPatternParser(PathPatternParser) configured}
+		 * 的 {@code PathPatternParser}，或 {@code null}。
 		 * @since 5.3
 		 */
 		@Nullable
@@ -910,8 +907,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Set a custom UrlPathHelper to use for the PatternsRequestCondition.
-		 * <p>By default this is not set.
+		 * 设置用于 PatternsRequestCondition 的自定义 UrlPathHelper。
+		 * <p>默认不设置。
 		 * @since 4.2.8
 		 * @deprecated as of 5.3, the path is resolved externally and obtained with
 		 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
@@ -921,7 +918,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Return the configured UrlPathHelper.
+		 * 返回已配置的 UrlPathHelper。
 		 * @deprecated as of 5.3, the path is resolved externally and obtained with
 		 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)};
 		 * this method always returns {@link UrlPathHelper#defaultInstance}.
@@ -933,15 +930,15 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Set a custom PathMatcher to use for the PatternsRequestCondition.
-		 * <p>By default this is not set.
+		 * 设置用于 PatternsRequestCondition 的自定义 PathMatcher。
+		 * <p>默认不设置。
 		 */
 		public void setPathMatcher(@Nullable PathMatcher pathMatcher) {
 			this.pathMatcher = pathMatcher;
 		}
 
 		/**
-		 * Return a custom PathMatcher to use for the PatternsRequestCondition, if any.
+		 * 返回用于 PatternsRequestCondition 的自定义 PathMatcher（如果有）。
 		 */
 		@Nullable
 		public PathMatcher getPathMatcher() {
@@ -949,23 +946,23 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Set whether to apply trailing slash matching in PatternsRequestCondition.
-		 * <p>By default this is set to 'true'.
+		 * 设置是否在 PatternsRequestCondition 中应用尾部斜杠匹配。
+		 * <p>默认值为 'true'。
 		 */
 		public void setTrailingSlashMatch(boolean trailingSlashMatch) {
 			this.trailingSlashMatch = trailingSlashMatch;
 		}
 
 		/**
-		 * Return whether to apply trailing slash matching in PatternsRequestCondition.
+		 * 返回是否在 PatternsRequestCondition 中应用尾部斜杠匹配。
 		 */
 		public boolean useTrailingSlashMatch() {
 			return this.trailingSlashMatch;
 		}
 
 		/**
-		 * Set whether to apply suffix pattern matching in PatternsRequestCondition.
-		 * <p>By default this is set to 'false'.
+		 * 设置是否在 PatternsRequestCondition 中应用后缀模式匹配。
+		 * <p>默认值为 'false'。
 		 * @see #setRegisteredSuffixPatternMatch(boolean)
 		 * @deprecated as of 5.2.4. See deprecation note on
 		 * {@link RequestMappingHandlerMapping#setUseSuffixPatternMatch(boolean)}.
@@ -976,7 +973,7 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Return whether to apply suffix pattern matching in PatternsRequestCondition.
+		 * 返回是否在 PatternsRequestCondition 中应用后缀模式匹配。
 		 * @deprecated as of 5.2.4. See deprecation note on
 		 * {@link RequestMappingHandlerMapping#setUseSuffixPatternMatch(boolean)}.
 		 */
@@ -986,11 +983,10 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Set whether suffix pattern matching should be restricted to registered
-		 * file extensions only. Setting this property also sets
-		 * {@code suffixPatternMatch=true} and requires that a
-		 * {@link #setContentNegotiationManager} is also configured in order to
-		 * obtain the registered file extensions.
+		 * 设置后缀模式匹配是否应仅限于已注册的文件扩展名。
+		 * 设置此属性还会将 {@code suffixPatternMatch=true}，并且需要
+		 * 同时配置 {@link #setContentNegotiationManager}，以便
+		 * 获取已注册的文件扩展名。
 		 * @deprecated as of 5.2.4. See class-level note in
 		 * {@link RequestMappingHandlerMapping} on the deprecation of path
 		 * extension config options.
@@ -1002,8 +998,8 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Return whether suffix pattern matching should be restricted to registered
-		 * file extensions only.
+		 * 返回后缀模式匹配是否应仅限于已注册的
+		 * 文件扩展名。
 		 * @deprecated as of 5.2.4. See class-level note in
 		 * {@link RequestMappingHandlerMapping} on the deprecation of path
 		 * extension config options.
@@ -1014,9 +1010,9 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Return the file extensions to use for suffix pattern matching. If
-		 * {@code registeredSuffixPatternMatch=true}, the extensions are obtained
-		 * from the configured {@code contentNegotiationManager}.
+		 * 返回用于后缀模式匹配的文件扩展名。如果
+		 * {@code registeredSuffixPatternMatch=true}，则扩展名从
+		 * 已配置的 {@code contentNegotiationManager} 获取。
 		 * @deprecated as of 5.2.4. See class-level note in
 		 * {@link RequestMappingHandlerMapping} on the deprecation of path
 		 * extension config options.
@@ -1031,16 +1027,16 @@ public final class RequestMappingInfo implements RequestCondition<RequestMapping
 		}
 
 		/**
-		 * Set the ContentNegotiationManager to use for the ProducesRequestCondition.
-		 * <p>By default this is not set.
+		 * 设置用于 ProducesRequestCondition 的 ContentNegotiationManager。
+		 * <p>默认不设置。
 		 */
 		public void setContentNegotiationManager(ContentNegotiationManager contentNegotiationManager) {
 			this.contentNegotiationManager = contentNegotiationManager;
 		}
 
 		/**
-		 * Return the ContentNegotiationManager to use for the ProducesRequestCondition,
-		 * if any.
+		 * 返回用于 ProducesRequestCondition 的 ContentNegotiationManager
+		 * （如果有）。
 		 */
 		@Nullable
 		public ContentNegotiationManager getContentNegotiationManager() {

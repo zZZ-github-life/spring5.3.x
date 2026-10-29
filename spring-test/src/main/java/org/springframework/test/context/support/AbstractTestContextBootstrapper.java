@@ -55,19 +55,15 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract implementation of the {@link TestContextBootstrapper} interface which
- * provides most of the behavior required by a bootstrapper.
+ * {@link TestContextBootstrapper} 接口的抽象实现，提供引导器所需的大部分行为。
  *
- * <p>Concrete subclasses typically will only need to provide implementations for
- * the following methods:
+ * <p>具体子类通常只需为以下方法提供实现：
  * <ul>
  * <li>{@link #getDefaultContextLoaderClass}
  * <li>{@link #processMergedContextConfiguration}
  * </ul>
  *
- * <p>To plug in custom
- * {@link org.springframework.test.context.cache.ContextCache ContextCache}
- * support, override {@link #getCacheAwareContextLoaderDelegate()}.
+ * <p>要插入自定义 {@link org.springframework.test.context.cache.ContextCache ContextCache} 支持，请重写 {@link #getCacheAwareContextLoaderDelegate()}。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -94,12 +90,8 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Build a new {@link DefaultTestContext} using the {@linkplain Class test class}
-	 * in the {@link BootstrapContext} associated with this bootstrapper and
-	 * by delegating to {@link #buildMergedContextConfiguration()} and
-	 * {@link #getCacheAwareContextLoaderDelegate()}.
-	 * <p>Concrete subclasses may choose to override this method to return a
-	 * custom {@link TestContext} implementation.
+	 * 使用与此引导器关联的 {@link BootstrapContext} 中的 {@linkplain Class 测试类}，并通过委托给 {@link #buildMergedContextConfiguration()} 和 {@link #getCacheAwareContextLoaderDelegate()} 来构建新的 {@link DefaultTestContext}。
+	 * <p>具体子类可以选择重写此方法，以返回自定义的 {@link TestContext} 实现。
 	 * @since 4.2
 	 */
 	@Override
@@ -202,12 +194,9 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Get the default {@link TestExecutionListener} classes for this bootstrapper.
-	 * <p>This method is invoked by {@link #getTestExecutionListeners()} and
-	 * delegates to {@link #getDefaultTestExecutionListenerClassNames()} to
-	 * retrieve the class names.
-	 * <p>If a particular class cannot be loaded, a {@code DEBUG} message will
-	 * be logged, but the associated exception will not be rethrown.
+	 * 获取此引导器的默认 {@link TestExecutionListener} 类。
+	 * <p>此方法由 {@link #getTestExecutionListeners()} 调用，并委托给 {@link #getDefaultTestExecutionListenerClassNames()} 来检索类名。
+	 * <p>如果无法加载某个特定类，将记录一条 {@code DEBUG} 消息，但不会重新抛出关联的异常。
 	 */
 	@SuppressWarnings("unchecked")
 	protected Set<Class<? extends TestExecutionListener>> getDefaultTestExecutionListenerClasses() {
@@ -228,12 +217,9 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Get the names of the default {@link TestExecutionListener} classes for
-	 * this bootstrapper.
-	 * <p>The default implementation looks up all
-	 * {@code org.springframework.test.context.TestExecutionListener} entries
-	 * configured in all {@code META-INF/spring.factories} files on the classpath.
-	 * <p>This method is invoked by {@link #getDefaultTestExecutionListenerClasses()}.
+	 * 获取此引导器的默认 {@link TestExecutionListener} 类的名称。
+	 * <p>默认实现会查找类路径上所有 {@code META-INF/spring.factories} 文件中配置的所有 {@code org.springframework.test.context.TestExecutionListener} 条目。
+	 * <p>此方法由 {@link #getDefaultTestExecutionListenerClasses()} 调用。
 	 * @return an <em>unmodifiable</em> list of names of default {@code TestExecutionListener}
 	 * classes
 	 * @see SpringFactoriesLoader#loadFactoryNames
@@ -311,9 +297,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Build the {@link MergedContextConfiguration merged context configuration}
-	 * for the supplied {@link Class testClass}, context configuration attributes,
-	 * and parent context configuration.
+	 * 为所提供的 {@link Class testClass}、上下文配置属性和父上下文配置构建 {@link MergedContextConfiguration 合并上下文配置}。
 	 * @param testClass the test class for which the {@code MergedContextConfiguration}
 	 * should be built (must not be {@code null})
 	 * @param configAttributesList the list of context configuration attributes for the
@@ -408,10 +392,8 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Get the {@link ContextCustomizerFactory} instances for this bootstrapper.
-	 * <p>The default implementation uses the {@link SpringFactoriesLoader} mechanism
-	 * for loading factories configured in all {@code META-INF/spring.factories}
-	 * files on the classpath.
+	 * 获取此引导器的 {@link ContextCustomizerFactory} 实例。
+	 * <p>默认实现使用 {@link SpringFactoriesLoader} 机制加载类路径上所有 {@code META-INF/spring.factories} 文件中配置的工厂。
 	 * @since 4.3
 	 * @see SpringFactoriesLoader#loadFactories
 	 */
@@ -420,14 +402,8 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Resolve the {@link ContextLoader} {@linkplain Class class} to use for the
-	 * supplied list of {@link ContextConfigurationAttributes} and then instantiate
-	 * and return that {@code ContextLoader}.
-	 * <p>If the user has not explicitly declared which loader to use, the value
-	 * returned from {@link #getDefaultContextLoaderClass} will be used as the
-	 * default context loader class. For details on the class resolution process,
-	 * see {@link #resolveExplicitContextLoaderClass} and
-	 * {@link #getDefaultContextLoaderClass}.
+	 * 解析要用于所提供的 {@link ContextConfigurationAttributes} 列表的 {@link ContextLoader} {@linkplain Class 类}，然后实例化并返回该 {@code ContextLoader}。
+	 * <p>如果用户未显式声明要使用哪个加载器，则 {@link #getDefaultContextLoaderClass} 返回的值将用作默认上下文加载器类。有关类解析过程的详细信息，请参见 {@link #resolveExplicitContextLoaderClass} 和 {@link #getDefaultContextLoaderClass}。
 	 * @param testClass the test class for which the {@code ContextLoader} should be
 	 * resolved; must not be {@code null}
 	 * @param configAttributesList the list of configuration attributes to process; must
@@ -456,16 +432,11 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Resolve the {@link ContextLoader} {@linkplain Class class} to use for the supplied
-	 * list of {@link ContextConfigurationAttributes}.
-	 * <p>Beginning with the first level in the context configuration attributes hierarchy:
+	 * 解析要用于所提供的 {@link ContextConfigurationAttributes} 列表的 {@link ContextLoader} {@linkplain Class 类}。
+	 * <p>从上下文配置属性层次结构中的第一层开始：
 	 * <ol>
-	 * <li>If the {@link ContextConfigurationAttributes#getContextLoaderClass()
-	 * contextLoaderClass} property of {@link ContextConfigurationAttributes} is
-	 * configured with an explicit class, that class will be returned.</li>
-	 * <li>If an explicit {@code ContextLoader} class is not specified at the current
-	 * level in the hierarchy, traverse to the next level in the hierarchy and return to
-	 * step #1.</li>
+	 * <li>如果 {@link ContextConfigurationAttributes} 的 {@link ContextConfigurationAttributes#getContextLoaderClass() contextLoaderClass} 属性配置了显式类，则将返回该类。</li>
+	 * <li>如果未在层次结构的当前层指定显式的 {@code ContextLoader} 类，则遍历到层次结构的下一层并返回步骤 #1。</li>
 	 * </ol>
 	 * @param configAttributesList the list of configuration attributes to process;
 	 * must not be {@code null}; must be ordered <em>bottom-up</em>
@@ -500,13 +471,9 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Get the {@link CacheAwareContextLoaderDelegate} to use for transparent
-	 * interaction with the {@code ContextCache}.
-	 * <p>The default implementation simply delegates to
-	 * {@code getBootstrapContext().getCacheAwareContextLoaderDelegate()}.
-	 * <p>Concrete subclasses may choose to override this method to return a custom
-	 * {@code CacheAwareContextLoaderDelegate} implementation with custom
-	 * {@link org.springframework.test.context.cache.ContextCache ContextCache} support.
+	 * 获取用于与 {@code ContextCache} 进行透明交互的 {@link CacheAwareContextLoaderDelegate}。
+	 * <p>默认实现简单地委托给 {@code getBootstrapContext().getCacheAwareContextLoaderDelegate()}。
+	 * <p>具体子类可以选择重写此方法，以返回带有自定义 {@link org.springframework.test.context.cache.ContextCache ContextCache} 支持的自定义 {@code CacheAwareContextLoaderDelegate} 实现。
 	 * @return the context loader delegate (never {@code null})
 	 */
 	protected CacheAwareContextLoaderDelegate getCacheAwareContextLoaderDelegate() {
@@ -514,10 +481,8 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	}
 
 	/**
-	 * Determine the default {@link ContextLoader} {@linkplain Class class}
-	 * to use for the supplied test class.
-	 * <p>The class returned by this method will only be used if a {@code ContextLoader}
-	 * class has not been explicitly declared via {@link ContextConfiguration#loader}.
+	 * 确定为所提供的测试类使用的默认 {@link ContextLoader} {@linkplain Class 类}。
+	 * <p>仅当未通过 {@link ContextConfiguration#loader} 显式声明 {@code ContextLoader} 类时，才会使用此方法返回的类。
 	 * @param testClass the test class for which to retrieve the default
 	 * {@code ContextLoader} class
 	 * @return the default {@code ContextLoader} class for the supplied test class
@@ -526,12 +491,10 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 	protected abstract Class<? extends ContextLoader> getDefaultContextLoaderClass(Class<?> testClass);
 
 	/**
-	 * Process the supplied, newly instantiated {@link MergedContextConfiguration} instance.
-	 * <p>The returned {@link MergedContextConfiguration} instance may be a wrapper
-	 * around or a replacement for the original.
-	 * <p>The default implementation simply returns the supplied instance unmodified.
-	 * <p>Concrete subclasses may choose to return a specialized subclass of
-	 * {@link MergedContextConfiguration} based on properties in the supplied instance.
+	 * 处理所提供的、新实例化的 {@link MergedContextConfiguration} 实例。
+	 * <p>返回的 {@link MergedContextConfiguration} 实例可能是对原始实例的包装或替换。
+	 * <p>默认实现只是原样返回所提供的实例。
+	 * <p>具体子类可以选择根据所提供的实例中的属性返回 {@link MergedContextConfiguration} 的专用子类。
 	 * @param mergedConfig the {@code MergedContextConfiguration} to process; never {@code null}
 	 * @return a fully initialized {@code MergedContextConfiguration}; never {@code null}
 	 */

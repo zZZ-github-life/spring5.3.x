@@ -27,22 +27,21 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.util.ServletRequestPathUtils;
 
 /**
- * Simple {@code Controller} implementation that transforms the virtual
- * path of a URL into a view name and returns that view.
+ * 简单的 {@code Controller} 实现，它将 URL 的虚拟路径
+ * 转换为视图名称并返回该视图。
  *
- * <p>Can optionally prepend a {@link #setPrefix prefix} and/or append a
- * {@link #setSuffix suffix} to build the viewname from the URL filename.
+ * <p>可以选择添加 {@link #setPrefix prefix} 前缀和/或附加
+ * {@link #setSuffix suffix} 后缀，以基于 URL 文件名构建视图名称。
  *
- * <p>Find some examples below:
+ * <p>以下是一些示例：
  * <ol>
  * <li>{@code "/index" -> "index"}</li>
  * <li>{@code "/index.html" -> "index"}</li>
- * <li>{@code "/index.html"} + prefix {@code "pre_"} and suffix {@code "_suf" -> "pre_index_suf"}</li>
+ * <li>{@code "/index.html"} + 前缀 {@code "pre_"} 和后缀 {@code "_suf" -> "pre_index_suf"}</li>
  * <li>{@code "/products/view.html" -> "products/view"}</li>
  * </ol>
  *
- * <p>Thanks to David Barri for suggesting prefix/suffix support!
- *
+ * <p>感谢 David Barri 提出支持前缀/后缀的建议！
  * @author Alef Arendsen
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -55,35 +54,35 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 
 	private String suffix = "";
 
-	/** Request URL path String to view name String. */
+	/** 将请求 URL 路径字符串转换为视图名称字符串。 */
 	private final Map<String, String> viewNameCache = new ConcurrentHashMap<>(256);
 
 
 	/**
-	 * Set the prefix to prepend to the request URL filename
-	 * to build a view name.
+	 * 设置要添加到请求 URL 文件名之前的前缀，
+	 * 用于构建视图名称。
 	 */
 	public void setPrefix(@Nullable String prefix) {
 		this.prefix = (prefix != null ? prefix : "");
 	}
 
 	/**
-	 * Return the prefix to prepend to the request URL filename.
+	 * 返回要添加到请求 URL 文件名之前的前缀。
 	 */
 	protected String getPrefix() {
 		return this.prefix;
 	}
 
 	/**
-	 * Set the suffix to append to the request URL filename
-	 * to build a view name.
+	 * 设置要附加到请求 URL 文件名之后的后缀，
+	 * 用于构建视图名称。
 	 */
 	public void setSuffix(@Nullable String suffix) {
 		this.suffix = (suffix != null ? suffix : "");
 	}
 
 	/**
-	 * Return the suffix to append to the request URL filename.
+	 * 返回要附加到请求 URL 文件名之后的后缀。
 	 */
 	protected String getSuffix() {
 		return this.suffix;
@@ -91,8 +90,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 
 
 	/**
-	 * Returns view name based on the URL filename,
-	 * with prefix/suffix applied when appropriate.
+	 * 基于 URL 文件名返回视图名称，
+	 * 并在适当时应用前缀/后缀。
 	 * @see #extractViewNameFromUrlPath
 	 * @see #setPrefix
 	 * @see #setSuffix
@@ -104,8 +103,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Extract a URL path from the given request,
-	 * suitable for view name extraction.
+	 * 从给定请求中提取 URL 路径，
+	 * 以便用于提取视图名称。
 	 * @param request current HTTP request
 	 * @return the URL to use for view name extraction
 	 */
@@ -118,8 +117,8 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Returns view name based on the URL filename,
-	 * with prefix/suffix applied when appropriate.
+	 * 基于 URL 文件名返回视图名称，
+	 * 并在适当时应用前缀/后缀。
 	 * @param uri the request URI; for example {@code "/index.html"}
 	 * @return the extracted URI filename; for example {@code "index"}
 	 * @see #extractViewNameFromUrlPath
@@ -130,7 +129,7 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Extract the URL filename from the given request URI.
+	 * 从给定请求 URI 中提取 URL 文件名。
 	 * @param uri the request URI; for example {@code "/index.html"}
 	 * @return the extracted URI filename; for example {@code "index"}
 	 */
@@ -142,11 +141,10 @@ public class UrlFilenameViewController extends AbstractUrlViewController {
 	}
 
 	/**
-	 * Build the full view name based on the given view name
-	 * as indicated by the URL path.
-	 * <p>The default implementation simply applies prefix and suffix.
-	 * This can be overridden, for example, to manipulate upper case
-	 * / lower case, etc.
+	 * 基于由 URL 路径指示的给定视图名称
+	 * 构建完整的视图名称。
+	 * <p>默认实现只是简单地应用前缀和后缀。
+	 * 可以覆盖此方法，例如用于处理大写/小写转换等。
 	 * @param viewName the original view name, as indicated by the URL path
 	 * @return the full view name to use
 	 * @see #getPrefix()

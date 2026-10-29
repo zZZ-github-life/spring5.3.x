@@ -19,8 +19,7 @@ package org.springframework.jmx.access;
 import org.springframework.jmx.JmxException;
 
 /**
- * Thrown when an invocation on an MBean resource failed with an exception (either
- * a reflection exception or an exception thrown by the target method itself).
+ * 当对 MBean 资源的调用因异常而失败时抛出（可能是反射异常，也可能是目标方法本身抛出的异常）。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -30,8 +29,7 @@ import org.springframework.jmx.JmxException;
 public class InvocationFailureException extends JmxException {
 
 	/**
-	 * Create a new {@code InvocationFailureException} with the supplied
-	 * error message.
+	 * 使用提供的错误消息创建新的 {@code InvocationFailureException}。
 	 * @param msg the detail message
 	 */
 	public InvocationFailureException(String msg) {
@@ -39,8 +37,7 @@ public class InvocationFailureException extends JmxException {
 	}
 
 	/**
-	 * Create a new {@code InvocationFailureException} with the
-	 * specified error message and root cause.
+	 * 使用指定的错误消息和根本原因创建新的 {@code InvocationFailureException}。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

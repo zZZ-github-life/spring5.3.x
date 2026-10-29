@@ -21,12 +21,9 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.util.Assert;
 
 /**
- * {@code AopTestUtils} is a collection of AOP-related utility methods for
- * use in unit and integration testing scenarios.
+ * {@code AopTestUtils} 是一组与 AOP 相关的实用方法，用于单元和集成测试场景。
  *
- * <p>For Spring's core AOP utilities, see
- * {@link org.springframework.aop.support.AopUtils AopUtils} and
- * {@link org.springframework.aop.framework.AopProxyUtils AopProxyUtils}.
+ * <p>有关 Spring 核心 AOP 工具，请参见 {@link org.springframework.aop.support.AopUtils AopUtils} 和 {@link org.springframework.aop.framework.AopProxyUtils AopProxyUtils}。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -38,11 +35,8 @@ import org.springframework.util.Assert;
 public abstract class AopTestUtils {
 
 	/**
-	 * Get the <em>target</em> object of the supplied {@code candidate} object.
-	 * <p>If the supplied {@code candidate} is a Spring
-	 * {@linkplain AopUtils#isAopProxy proxy}, the target of the proxy will
-	 * be returned; otherwise, the {@code candidate} will be returned
-	 * <em>as is</em>.
+	 * 获取所提供 {@code candidate} 对象的<em>目标</em>对象。
+	 * <p>如果所提供的 {@code candidate} 是 Spring {@linkplain AopUtils#isAopProxy 代理}，则将返回该代理的目标；否则，将<em>原样</em>返回 {@code candidate}。
 	 * @param <T> the type of the target object
 	 * @param candidate the instance to check (potentially a Spring AOP proxy;
 	 * never {@code null})
@@ -69,18 +63,9 @@ public abstract class AopTestUtils {
 	}
 
 	/**
-	 * Get the ultimate <em>target</em> object of the supplied {@code candidate}
-	 * object, unwrapping not only a top-level proxy but also any number of
-	 * nested proxies.
-	 * <p>If the supplied {@code candidate} is a Spring
-	 * {@linkplain AopUtils#isAopProxy proxy}, the ultimate target of all
-	 * nested proxies will be returned; otherwise, the {@code candidate}
-	 * will be returned <em>as is</em>.
-	 * <p>NOTE: If the top-level proxy or a nested proxy is not backed by a
-	 * {@linkplain org.springframework.aop.TargetSource#isStatic() static}
-	 * {@link org.springframework.aop.TargetSource TargetSource}, invocation of
-	 * this utility method may result in undesired behavior such as infinite
-	 * recursion leading to a {@link StackOverflowError}.
+	 * 获取所提供 {@code candidate} 对象的最终<em>目标</em>对象，不仅解包顶层代理，还解包任意数量的嵌套代理。
+	 * <p>如果所提供的 {@code candidate} 是 Spring {@linkplain AopUtils#isAopProxy 代理}，则将返回所有嵌套代理的最终目标；否则，将<em>原样</em>返回 {@code candidate}。
+	 * <p>注意：如果顶层代理或某个嵌套代理不是由{@linkplain org.springframework.aop.TargetSource#isStatic() 静态}{@link org.springframework.aop.TargetSource TargetSource} 支持的，则调用此实用方法可能导致不良行为，例如无限递归并导致 {@link StackOverflowError}。
 	 * @param <T> the type of the target object
 	 * @param candidate the instance to check (potentially a Spring AOP proxy;
 	 * never {@code null})

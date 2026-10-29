@@ -27,12 +27,11 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves {@link Model} arguments and handles {@link Model} return values.
+ * 解析 {@link Model} 参数并处理 {@link Model} 返回值。
  *
- * <p>A {@link Model} return type has a set purpose. Therefore this handler
- * should be configured ahead of handlers that support any return value type
- * annotated with {@code @ModelAttribute} or {@code @ResponseBody} to ensure
- * they don't take over.
+ * <p>{@link Model} 返回类型有明确的用途。因此，此处理器应配置在
+ * 支持任何标注了 {@code @ModelAttribute} 或 {@code @ResponseBody} 的返回值类型的
+ * 处理器之前，以确保后者不会接管处理。
  *
  * @author Rossen Stoyanchev
  * @since 3.1

@@ -22,8 +22,8 @@ import java.sql.SQLException;
 import org.springframework.lang.Nullable;
 
 /**
- * DB2 specific implementation for the {@link CallMetaDataProvider} interface.
- * This class is intended for internal use by the Simple JDBC classes.
+ * {@link CallMetaDataProvider} 接口的 DB2 特定实现。
+ * 此类供 Simple JDBC 类内部使用。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller

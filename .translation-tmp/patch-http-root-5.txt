@@ -1,0 +1,27 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpOutputMessage.java
+@@BODY 23 27
+表示 HTTP 输出消息，由 {@linkplain #getHeaders() headers} 和可写的 {@linkplain #getBody() body} 组成。
+<p>通常由客户端的 HTTP 请求处理器或服务器端的 HTTP 响应处理器实现。
+@@BODY 35 35
+以输出流的形式返回消息正文。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpRequest.java
+@@BODY 24 25
+表示 HTTP 请求消息，由 {@linkplain #getMethod() method} 和 {@linkplain #getURI() uri} 组成。
+@@BODY 33 33
+返回请求的 HTTP 方法。
+@@BODY 45 45
+以字符串值的形式返回请求的 HTTP 方法。
+@@BODY 53 54
+返回请求的 URI（如果存在查询字符串也会包含在内，但前提是它符合 URI 表示形式的规范）。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/InvalidMediaTypeException.java
+@@BODY 22 23
+当遇到无效的媒体类型规范字符串时，由 {@link MediaType#parseMediaType(String)} 抛出。
+@@BODY 35 35
+为给定的媒体类型创建一个新的 InvalidMediaTypeException。
+@@BODY 45 45
+允许包装 {@link InvalidMimeTypeException} 的构造函数。
+@@BODY 54 54
+返回有问题的媒体类型。
+@@END

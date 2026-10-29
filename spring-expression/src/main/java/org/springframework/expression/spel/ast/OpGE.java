@@ -27,7 +27,7 @@ import org.springframework.expression.spel.support.BooleanTypedValue;
 import org.springframework.util.NumberUtils;
 
 /**
- * Implements greater-than-or-equal operator.
+ * 实现大于等于运算符。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

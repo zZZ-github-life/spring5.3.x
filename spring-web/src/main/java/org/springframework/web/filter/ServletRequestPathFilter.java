@@ -29,17 +29,18 @@ import org.springframework.http.server.RequestPath;
 import org.springframework.web.util.ServletRequestPathUtils;
 
 /**
- * A {@code Filter} to {@link ServletRequestPathUtils#parseAndCache parse}
- * and cache a {@link org.springframework.http.server.RequestPath} for further
- * {@link ServletRequestPathUtils#getParsedRequestPath access} throughout the
- * filter chain. This is useful when parsed
- * {@link org.springframework.web.util.pattern.PathPattern}s are in use anywhere
- * in an application instead of String pattern matching with
- * {@link org.springframework.util.PathMatcher}.
- * <p>Note that in Spring MVC, the {@code DispatcherServlet} will also parse and
- * cache the {@code RequestPath} if it detects that parsed {@code PathPatterns}
- * are enabled for any {@code HandlerMapping} but it will skip doing that if it
- * finds the {@link ServletRequestPathUtils#PATH_ATTRIBUTE} already exists.
+ * 一个 {@code Filter}，用于 {@link ServletRequestPathUtils#parseAndCache parse}
+ * 并缓存 {@link org.springframework.http.server.RequestPath}，
+ * 以便在整个过滤器链中后续
+ * {@link ServletRequestPathUtils#getParsedRequestPath access} 使用。
+ * 当应用程序中任何位置使用已解析的
+ * {@link org.springframework.web.util.pattern.PathPattern}，而不是使用
+ * {@link org.springframework.util.PathMatcher} 进行 String 模式匹配时，
+ * 此过滤器非常有用。
+ * <p>请注意，在 Spring MVC 中，如果 {@code DispatcherServlet} 检测到任何
+ * {@code HandlerMapping} 启用了已解析的 {@code PathPattern}，它也会解析并缓存
+ * {@code RequestPath}，但如果发现 {@link ServletRequestPathUtils#PATH_ATTRIBUTE}
+ * 已存在，则会跳过该操作。
  *
  * @author Rossen Stoyanchev
  * @since 5.3

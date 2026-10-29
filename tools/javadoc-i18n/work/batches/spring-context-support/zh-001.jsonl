@@ -1,0 +1,70 @@
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheKeyOperation.java::29::0", "zh": ["基于键进行操作的 {@link JCacheOperation} 基类。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheKeyOperation.java::43::0", "zh": ["创建一个新实例。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheKeyOperation.java::58::0", "zh": ["返回用于计算缓存键的 {@link KeyGenerator}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheKeyOperation.java::65::0", "zh": ["返回用于计算键的参数所对应的 {@link CacheInvocationParameter}。", "<p>按照规范，如果部分方法参数带有 {@link javax.cache.annotation.CacheKey} 注解，则只有这些参数应参与构成键。如果没有任何参数带该注解，则除带 {@link javax.cache.annotation.CacheValue} 注解的参数外，其余所有参数都应参与构成键。", "<p>方法参数必须与相关方法调用的签名一致"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::37::0", "zh": ["一个 {@link JCacheOperation} 的基础实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::53::0", "zh": ["构造一个新的 {@code AbstractJCacheOperation}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::121::0", "zh": ["返回用于过滤调用方法时抛出的异常的 {@link ExceptionTypeFilter}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::128::0", "zh": ["供子类创建特定 {@code ExceptionTypeFilter} 的便捷方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::144::0", "zh": ["返回此缓存操作的可识别描述。", "<p>供子类使用，以便将其纳入 {@code toString()} 结果中。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::157::0", "zh": ["单个缓存参数的详情。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractJCacheOperation.java::209::0", "zh": ["单个缓存调用参数。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractKeyCacheInterceptor.java::27::0", "zh": ["针对 JSR-107 基于键的缓存注解的拦截器基类。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractKeyCacheInterceptor.java::44::0", "zh": ["为指定的调用生成键。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AbstractKeyCacheInterceptor.java::58::0", "zh": ["基于指定的调用创建 {@link CacheKeyInvocationContext}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AnnotationJCacheOperationSource.java::38::0", "zh": ["读取 JSR-107 的 {@link CacheResult}、{@link CachePut}、{@link CacheRemove} 和 {@link CacheRemoveAll} 注解的 {@link JCacheOperationSource} 接口实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AnnotationJCacheOperationSource.java::204::0", "zh": ["为指定的 {@link Method} 生成默认缓存名称。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AnnotationJCacheOperationSource.java::232::0", "zh": ["定位或创建指定缓存策略 {@code type} 的实例。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AnnotationJCacheOperationSource.java::239::0", "zh": ["返回默认的 {@link CacheResolver}（如果未设置）。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AnnotationJCacheOperationSource.java::244::0", "zh": ["返回默认的异常 {@link CacheResolver}（如果未设置）。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/AnnotationJCacheOperationSource.java::249::0", "zh": ["返回默认的 {@link KeyGenerator}（如果未设置）。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/BeanFactoryJCacheOperationSourceAdvisor.java::24::0", "zh": ["由 {@link JCacheOperationSource} 驱动的通知器，用于为可缓存的方法纳入缓存通知 Bean。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/BeanFactoryJCacheOperationSourceAdvisor.java::45::0", "zh": ["设置用于查找缓存属性的缓存操作属性源。该属性源通常应与缓存拦截器自身设置的源引用相同。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/BeanFactoryJCacheOperationSourceAdvisor.java::54::0", "zh": ["设置用于此切点的 {@link org.springframework.aop.ClassFilter}。默认为 {@link org.springframework.aop.ClassFilter#TRUE}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CachePutInterceptor.java::27::0", "zh": ["拦截带有 {@link CachePut} 注解的方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CachePutOperation.java::31::0", "zh": ["{@link CachePut} 操作的 {@link JCacheOperation} 实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CachePutOperation.java::68::0", "zh": ["指定是否应在调用方法之前更新缓存。默认情况下，缓存会在方法调用之后更新。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CachePutOperation.java::77::0", "zh": ["返回持有待缓存值的参数所对应的 {@link CacheInvocationParameter}。", "<p>方法参数必须与相关方法调用的签名一致"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheRemoveAllInterceptor.java::26::0", "zh": ["拦截带有 {@link CacheRemoveAll} 注解的方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheRemoveAllOperation.java::25::0", "zh": ["{@link CacheRemoveAll} 操作的 {@link JCacheOperation} 实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheRemoveAllOperation.java::49::0", "zh": ["指定是否应在调用方法之前清空缓存。默认情况下，缓存会在方法调用之后清空。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheRemoveEntryInterceptor.java::26::0", "zh": ["拦截带有 {@link CacheRemove} 注解的方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheRemoveOperation.java::26::0", "zh": ["{@link CacheRemove} 操作的 {@link JCacheOperation} 实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheRemoveOperation.java::52::0", "zh": ["指定是否应在调用方法之前移除缓存条目。", "<p>默认情况下，缓存条目会在方法调用之后移除。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResolverAdapter.java::30::0", "zh": ["Spring 的 {@link CacheResolver} 实现，将调用委托给标准的 JSR-107 {@link javax.cache.annotation.CacheResolver}。", "<p>在内部用于调用用户提供的 JSR-107 缓存解析器。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResolverAdapter.java::43::0", "zh": ["使用要调用的 JSR-107 缓存解析器创建一个新实例。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResolverAdapter.java::52::0", "zh": ["返回此实例所使用的底层 {@link javax.cache.annotation.CacheResolver}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultInterceptor.java::31::0", "zh": ["拦截带有 {@link CacheResult} 注解的方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultInterceptor.java::76::0", "zh": ["检查是否存在已缓存的异常。如果找到该异常，则直接抛出。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultInterceptor.java::110::0", "zh": ["重写指定 {@code exception} 的调用栈，使其与当前调用栈一致，直至（含）指定的方法调用。", "<p>克隆指定的异常。如果该异常不是 {@code serializable}，则返回原始异常。如果找不到共同的祖先，则返回原始异常。", "<p>用于确保已缓存的异常具有有效的调用上下文。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultOperation.java::28::0", "zh": ["{@link CacheResult} 操作的 {@link JCacheOperation} 实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultOperation.java::63::0", "zh": ["指定是否无论缓存是否命中都应始终调用该方法。默认情况下，仅在缓存未命中时调用该方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultOperation.java::72::0", "zh": ["返回用于解析处理此操作所抛出异常时应使用的缓存的 {@link CacheResolver} 实例。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/CacheResultOperation.java::81::0", "zh": ["返回用于缓存异常的缓存名称；如果应禁用异常缓存，则返回 {@code null}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultCacheInvocationContext.java::29::0", "zh": ["由所有拦截器使用的默认 {@link CacheOperationInvocationContext} 实现。它还实现 {@link CacheInvocationContext}，以便在调用 JSR-107 {@link javax.cache.annotation.CacheResolver} 时充当合适的桥接。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultCacheKeyInvocationContext.java::26::0", "zh": ["默认的 {@link CacheKeyInvocationContext} 实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultCacheMethodDetails.java::28::0", "zh": ["默认的 {@link CacheMethodDetails} 实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::40::0", "zh": ["默认的 {@link JCacheOperationSource} 实现，将默认操作委托给可配置的服务，并在服务不存在时使用合理的默认值。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::70::0", "zh": ["使用默认键生成器构造一个新的 {@code DefaultJCacheOperationSource}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::78::0", "zh": ["使用给定的缓存管理器、缓存解析器和键生成器供应商构造一个新的 {@code DefaultJCacheOperationSource}，对于无法解析的供应商则应用相应的默认值。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::95::0", "zh": ["设置用于按名称查找缓存的默认 {@link CacheManager}。仅当尚未设置 {@linkplain CacheResolver 缓存解析器} 时才为必需。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::103::0", "zh": ["返回要使用的指定缓存管理器（如果有）。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::111::0", "zh": ["设置用于解析常规缓存的 {@link CacheResolver}。如果未设置，将使用基于指定缓存管理器的默认实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::119::0", "zh": ["返回要使用的指定缓存解析器（如果有）。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::127::0", "zh": ["设置用于解析异常缓存的 {@link CacheResolver}。如果未设置，将使用基于指定缓存管理器的默认实现。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::135::0", "zh": ["返回要使用的指定异常缓存解析器（如果有）。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::143::0", "zh": ["设置默认的 {@link KeyGenerator}。如果未设置，将使用遵循 JSR-107 的 {@link javax.cache.annotation.CacheKey} 和 {@link javax.cache.annotation.CacheValue} 的 {@link SimpleKeyGenerator}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::152::0", "zh": ["返回要使用的指定键生成器。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/DefaultJCacheOperationSource.java::231::0", "zh": ["仅在需要处理异常时才解析默认的异常缓存解析器。", "<p>非 JSR-107 的配置需要 {@link CacheManager} 或 {@link CacheResolver}。如果只指定了后者，则无法从自定义的 {@code CacheResolver} 实现中提取默认的异常 {@code CacheResolver}，因此必须回退到 {@code CacheManager}。", "<p>这会导致一种奇怪的情况：完全有效的配置因为启用了 JCache 支持而突然失效。为避免这种情况，我们尽可能延迟解析默认的异常 {@code CacheResolver}，以免在其他情况下产生如此严格的要求。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::34::0", "zh": ["JSR-107 缓存切面的基类，例如 {@link JCacheInterceptor} 或 AspectJ 切面。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::34::1", "zh": ["<p>使用 Spring 缓存抽象来执行与缓存相关的操作。处理标准 JSR-107 缓存注解不需要任何 JSR-107 {@link javax.cache.Cache} 或 {@link javax.cache.CacheManager}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::34::2", "zh": ["<p>{@link JCacheOperationSource} 用于确定缓存操作"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::34::3", "zh": ["<p>如果缓存切面的 {@code JCacheOperationSource} 是可序列化的，则该切面也是可序列化的。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::74::0", "zh": ["设置此缓存切面的 CacheOperationSource。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::82::0", "zh": ["返回此缓存切面的 CacheOperationSource。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheAspectSupport.java::159::0", "zh": ["执行底层操作（通常在缓存未命中时），并返回调用的结果。如果发生异常，它将被包装在 {@code ThrowableWrapper} 中：该异常可以被处理或修改，但也<em>必须</em>包装在 {@code ThrowableWrapper} 中。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheInterceptor.java::33::0", "zh": ["用于通过 JSR-107 缓存注解进行声明式缓存管理的 AOP Alliance MethodInterceptor。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheInterceptor.java::33::1", "zh": ["<p>继承自 {@link JCacheAspectSupport} 类，该类包含与 Spring 底层缓存 API 的集成。JCacheInterceptor 只是调用父类中的相关方法。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheInterceptor.java::33::2", "zh": ["<p>JCacheInterceptor 是线程安全的。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheInterceptor.java::51::0", "zh": ["使用默认错误处理器构造一个新的 {@code JCacheInterceptor}。"]}
+{"id": "spring-context-support/src/main/java/org/springframework/cache/jcache/interceptor/JCacheInterceptor.java::57::0", "zh": ["使用给定的错误处理器构造一个新的 {@code JCacheInterceptor}。"]}

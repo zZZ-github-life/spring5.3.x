@@ -26,11 +26,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 /**
- * Convenient superclass for Excel document views in the Office 2007 XLSX format,
- * using POI's streaming variant. Compatible with Apache POI 3.9 and higher.
+ * Office 2007 XLSX 格式 Excel 文档视图的便捷超类，
+ * 使用 POI 的流式变体。兼容 Apache POI 3.9 及更高版本。
  *
- * <p>For working with the workbook in subclasses, see
- * <a href="https://poi.apache.org">Apache's POI site</a>.
+ * <p>关于如何在子类中操作工作簿，请参阅
+ * <a href="https://poi.apache.org">Apache 的 POI 网站</a>。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -38,7 +38,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 public abstract class AbstractXlsxStreamingView extends AbstractXlsxView {
 
 	/**
-	 * This implementation creates a {@link SXSSFWorkbook} for streaming the XLSX format.
+	 * 此实现创建一个 {@link SXSSFWorkbook} 用于流式输出 XLSX 格式。
 	 */
 	@Override
 	protected SXSSFWorkbook createWorkbook(Map<String, Object> model, HttpServletRequest request) {
@@ -46,7 +46,7 @@ public abstract class AbstractXlsxStreamingView extends AbstractXlsxView {
 	}
 
 	/**
-	 * This implementation disposes of the {@link SXSSFWorkbook} when done with rendering.
+	 * 此实现在渲染完成后释放 {@link SXSSFWorkbook}。
 	 * @see org.apache.poi.xssf.streaming.SXSSFWorkbook#dispose()
 	 */
 	@Override

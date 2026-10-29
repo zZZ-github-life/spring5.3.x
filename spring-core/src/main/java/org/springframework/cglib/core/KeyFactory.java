@@ -27,31 +27,24 @@ import org.springframework.asm.Type;
 import org.springframework.cglib.core.internal.CustomizerRegistry;
 
 /**
- * Generates classes to handle multi-valued keys, for use in things such as Maps and Sets.
- * Code for <code>equals</code> and <code>hashCode</code> methods follow the
- * the rules laid out in <i>Effective Java</i> by Joshua Bloch.
- * <p>
- * To generate a <code>KeyFactory</code>, you need to supply an interface which
- * describes the structure of the key. The interface should have a
- * single method named <code>newInstance</code>, which returns an
- * <code>Object</code>. The arguments array can be
- * <i>anything</i>--Objects, primitive values, or single or
- * multi-dimension arrays of either. For example:
+ * 生成用于处理多值键的类，供 Maps 和 Sets 等场景使用。<code>equals</code> 和 <code>hashCode</code>
+ * 方法的代码遵循 Joshua Bloch 在<i>Effective Java</i>中提出的规则。<p>要生成 <code>KeyFactory
+ * </code>，需要提供一个描述键结构的接口。该接口应有一个名为 <code>newInstance</code> 的单一方法，
+ * 该方法返回 <code>Object</code>。参数数组可以是<i>任意内容</i>——对象、基本类型值，或其中任一类型
+ * 的单维或多维数组。例如：
  * <p><pre>
  *     private interface IntStringKey {
  *         public Object newInstance(int i, String s);
  *     }
  * </pre><p>
- * Once you have made a <code>KeyFactory</code>, you generate a new key by calling
- * the <code>newInstance</code> method defined by your interface.
+ * 创建 <code>KeyFactory</code> 之后，通过调用接口定义的 <code>newInstance</code> 方法生成新的键。
  * <p><pre>
  *     IntStringKey factory = (IntStringKey)KeyFactory.create(IntStringKey.class);
  *     Object key1 = factory.newInstance(4, "Hello");
  *     Object key2 = factory.newInstance(4, "World");
  * </pre><p>
- * <b>Note:</b>
- * <code>hashCode</code> equality between two keys <code>key1</code> and <code>key2</code> is only guaranteed if
- * <code>key1.equals(key2)</code> <i>and</i> the keys were produced by the same factory.
+ * <b>注意：</b><code>key1</code> 和 <code>key2</code> 两个键之间 <code>hashCode</code> 的相等性只
+ * 有在 <code>key1.equals(key2)</code> <i>并且</i>这两个键由同一工厂生成时才能保证。
  * @version $Id: KeyFactory.java,v 1.26 2006/03/05 02:43:19 herbyderby Exp $
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
@@ -121,8 +114,8 @@ abstract public class KeyFactory {
 	};
 
 	/**
-	 * {@link Type#hashCode()} is very expensive as it traverses full descriptor to calculate hash code.
-	 * This customizer uses {@link Type#getSort()} as a hash code.
+	 * {@link Type#hashCode()} 的开销很大，因为它会遍历完整描述符来计算哈希码。此定制器使用
+	 * {@link Type#getSort()} 作为哈希码。
 	 */
 	public static final HashCodeCustomizer HASH_ASM_TYPE = new HashCodeCustomizer() {
 		public boolean customize(CodeEmitter e, Type type) {

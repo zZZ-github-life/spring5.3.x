@@ -43,15 +43,15 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.StreamUtils;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter}
- * that can read and write JSON using
- * <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>.
+ * {@link org.springframework.http.converter.HttpMessageConverter} 的实现，
+ * 可使用 <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>
+ * 读写 JSON。
  *
- * <p>This converter can be used to bind {@code @Serializable} Kotlin classes,
- * <a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#open-polymorphism">open polymorphic serialization</a>
- * is not supported.
- * It supports {@code application/json} and {@code application/*+json} with
- * various character sets, {@code UTF-8} being the default.
+ * <p>此转换器可用于绑定 {@code @Serializable} Kotlin 类，
+ * 但不支持
+ * <a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#open-polymorphism">开放式多态序列化</a>。
+ * 它支持使用各种字符集的 {@code application/json} 和 {@code application/*+json}，
+ * 默认使用 {@code UTF-8}。
  *
  * @author Andreas Ahlenstorf
  * @author Sebastien Deleuze
@@ -68,14 +68,14 @@ public class KotlinSerializationJsonHttpMessageConverter extends AbstractGeneric
 
 
 	/**
-	 * Construct a new {@code KotlinSerializationJsonHttpMessageConverter} with the default configuration.
+	 * 使用默认配置构造一个新的 {@code KotlinSerializationJsonHttpMessageConverter}。
 	 */
 	public KotlinSerializationJsonHttpMessageConverter() {
 		this(Json.Default);
 	}
 
 	/**
-	 * Construct a new {@code KotlinSerializationJsonHttpMessageConverter} with a custom configuration.
+	 * 使用自定义配置构造一个新的 {@code KotlinSerializationJsonHttpMessageConverter}。
 	 */
 	public KotlinSerializationJsonHttpMessageConverter(Json json) {
 		super(MediaType.APPLICATION_JSON, new MediaType("application", "*+json"));
@@ -176,10 +176,10 @@ public class KotlinSerializationJsonHttpMessageConverter extends AbstractGeneric
 	}
 
 	/**
-	 * Tries to find a serializer that can marshall or unmarshall instances of the given type
-	 * using kotlinx.serialization. If no serializer can be found, an exception is thrown.
-	 * <p>Resolved serializers are cached and cached results are returned on successive calls.
-	 * TODO Avoid relying on throwing exception when https://github.com/Kotlin/kotlinx.serialization/pull/1164 is fixed
+	 * 尝试查找可使用 kotlinx.serialization 对给定类型实例进行编组或
+	 * 反编组的序列化器。如果找不到序列化器，则抛出异常。
+	 * <p>已解析的序列化器会被缓存，后续调用会返回缓存的结果。
+	 * TODO 在 https://github.com/Kotlin/kotlinx.serialization/pull/1164 修复后，避免依赖抛出异常
 	 * @param type the type to find a serializer for
 	 * @return a resolved serializer for the given type
 	 * @throws RuntimeException if no serializer supporting the given type can be found

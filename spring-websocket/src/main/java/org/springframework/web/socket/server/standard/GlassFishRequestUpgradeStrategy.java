@@ -33,7 +33,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.web.socket.server.HandshakeFailureException;
 
 /**
- * A WebSocket {@code RequestUpgradeStrategy} for Oracle's GlassFish 4.1 and higher.
+ * 用于 Oracle GlassFish 4.1 及更高版本的 WebSocket {@code RequestUpgradeStrategy}。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

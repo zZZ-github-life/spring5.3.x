@@ -37,17 +37,16 @@ import org.springframework.web.socket.messaging.SubProtocolHandler;
 import org.springframework.web.socket.messaging.SubProtocolWebSocketHandler;
 
 /**
- * A central class for aggregating information about internal state and counters
- * from key infrastructure components of the setup that comes with
- * {@code @EnableWebSocketMessageBroker} for Java config and
- * {@code <websocket:message-broker>} for XML.
+ * 用于汇总配置中关键基础设施组件内部状态和计数器信息的核心类，这些配置
+ * 来自 Java 配置的 {@code @EnableWebSocketMessageBroker} 或 XML 的
+ * {@code <websocket:message-broker>}。
  *
- * <p>By default aggregated information is logged every 30 minutes at INFO level.
- * The frequency of logging can be changed via {@link #setLoggingPeriod(long)}.
+ * <p>默认情况下，汇总信息每 30 分钟以 INFO 级别记录一次日志。
+ * 可以通过 {@link #setLoggingPeriod(long)} 更改日志记录频率。
  *
- * <p>This class is declared as a Spring bean by the above configuration with the
- * name "webSocketMessageBrokerStats" and can be easily exported to JMX, e.g. with
- * the {@link org.springframework.jmx.export.MBeanExporter MBeanExporter}.
+ * <p>上述配置会将此类声明为名为 "webSocketMessageBrokerStats" 的 Spring Bean，
+ * 并且可以很容易地导出到 JMX，例如通过
+ * {@link org.springframework.jmx.export.MBeanExporter MBeanExporter}。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -132,9 +131,9 @@ public class WebSocketMessageBrokerStats {
 	}
 
 	/**
-	 * Set the frequency for logging information at INFO level in milliseconds.
-	 * If set 0 or less than 0, the logging task is cancelled.
-	 * <p>By default this property is set to 30 minutes (30 * 60 * 1000).
+	 * 设置以 INFO 级别记录信息的频率（毫秒）。
+	 * 如果设置为 0 或小于 0，则取消日志记录任务。
+	 * <p>默认情况下，此属性设置为 30 分钟（30 * 60 * 1000）。
 	 */
 	public void setLoggingPeriod(long period) {
 		if (this.loggingTask != null) {
@@ -145,49 +144,49 @@ public class WebSocketMessageBrokerStats {
 	}
 
 	/**
-	 * Return the configured logging period frequency in milliseconds.
+	 * 返回配置的日志记录周期频率（毫秒）。
 	 */
 	public long getLoggingPeriod() {
 		return this.loggingPeriod;
 	}
 
 	/**
-	 * Get stats about WebSocket sessions.
+	 * 获取关于 WebSocket 会话的统计信息。
 	 */
 	public String getWebSocketSessionStatsInfo() {
 		return (this.webSocketHandler != null ? this.webSocketHandler.getStatsInfo() : "null");
 	}
 
 	/**
-	 * Get stats about STOMP-related WebSocket message processing.
+	 * 获取关于与 STOMP 相关的 WebSocket 消息处理的统计信息。
 	 */
 	public String getStompSubProtocolStatsInfo() {
 		return (this.stompSubProtocolHandler != null ? this.stompSubProtocolHandler.getStatsInfo() : "null");
 	}
 
 	/**
-	 * Get stats about STOMP broker relay (when using a full-featured STOMP broker).
+	 * 获取关于 STOMP 代理中继的统计信息（当使用功能完整的 STOMP 代理时）。
 	 */
 	public String getStompBrokerRelayStatsInfo() {
 		return (this.stompBrokerRelay != null ? this.stompBrokerRelay.getStatsInfo() : "null");
 	}
 
 	/**
-	 * Get stats about the executor processing incoming messages from WebSocket clients.
+	 * 获取关于处理来自 WebSocket 客户端的传入消息的执行器的统计信息。
 	 */
 	public String getClientInboundExecutorStatsInfo() {
 		return getExecutorStatsInfo(this.inboundChannelExecutor);
 	}
 
 	/**
-	 * Get stats about the executor processing outgoing messages to WebSocket clients.
+	 * 获取关于处理发往 WebSocket 客户端的传出消息的执行器的统计信息。
 	 */
 	public String getClientOutboundExecutorStatsInfo() {
 		return getExecutorStatsInfo(this.outboundChannelExecutor);
 	}
 
 	/**
-	 * Get stats about the SockJS task scheduler.
+	 * 获取关于 SockJS 任务调度器的统计信息。
 	 */
 	public String getSockJsTaskSchedulerStatsInfo() {
 		if (this.sockJsTaskScheduler == null) {

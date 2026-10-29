@@ -30,21 +30,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods for URI encoding and decoding based on RFC 3986.
- *
- * <p>There are two types of encode methods:
- * <ul>
- * <li>{@code "encodeXyz"} -- these encode a specific URI component (e.g. path,
- * query) by percent encoding illegal characters, which includes non-US-ASCII
- * characters, and also characters that are otherwise illegal within the given
- * URI component type, as defined in RFC 3986. The effect of this method, with
- * regards to encoding, is comparable to using the multi-argument constructor
- * of {@link URI}.
- * <li>{@code "encode"} and {@code "encodeUriVariables"} -- these can be used
- * to encode URI variable values by percent encoding all characters that are
- * either illegal, or have any reserved meaning, anywhere within a URI.
- * </ul>
- *
+ * 基于 RFC 3986 的 URI 编码和解码工具方法。<p>有两类编码方法：<ul> <li>{@code "encodeXyz"} -- 这些方法通过百分号编码非法字符来编码特定的 URI 组件（例如路径、查询），非法字符包括非 US-ASCII 字符，以及 RFC 3986 中定义的、在给定 URI 组件类型内本来非法的字符。就编码而言，此方法的效果与使用 {@link URI} 的多参数构造函数相当。<li>{@code "encode"} 和 {@code "encodeUriVariables"} -- 这些方法可用于编码 URI 变量值，对 URI 中任何位置属于非法或具有保留含义的所有字符进行百分号编码。 </ul>
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -54,7 +40,7 @@ import org.springframework.util.StringUtils;
 public abstract class UriUtils {
 
 	/**
-	 * Encode the given URI scheme with the given encoding.
+	 * 使用给定编码对给定 URI scheme 进行编码。
 	 * @param scheme the scheme to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded scheme
@@ -64,7 +50,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI scheme with the given encoding.
+	 * 使用给定编码对给定 URI scheme 进行编码。
 	 * @param scheme the scheme to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded scheme
@@ -75,7 +61,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI authority with the given encoding.
+	 * 使用给定编码对给定 URI 授权部分进行编码。
 	 * @param authority the authority to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded authority
@@ -85,7 +71,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI authority with the given encoding.
+	 * 使用给定编码对给定 URI 授权部分进行编码。
 	 * @param authority the authority to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded authority
@@ -96,7 +82,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI user info with the given encoding.
+	 * 使用给定编码对给定 URI 用户信息进行编码。
 	 * @param userInfo the user info to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded user info
@@ -106,7 +92,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI user info with the given encoding.
+	 * 使用给定编码对给定 URI 用户信息进行编码。
 	 * @param userInfo the user info to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded user info
@@ -117,7 +103,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI host with the given encoding.
+	 * 使用给定编码对给定 URI 主机进行编码。
 	 * @param host the host to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded host
@@ -127,7 +113,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI host with the given encoding.
+	 * 使用给定编码对给定 URI 主机进行编码。
 	 * @param host the host to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded host
@@ -138,7 +124,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI port with the given encoding.
+	 * 使用给定编码对给定 URI 端口进行编码。
 	 * @param port the port to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded port
@@ -148,7 +134,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI port with the given encoding.
+	 * 使用给定编码对给定 URI 端口进行编码。
 	 * @param port the port to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded port
@@ -159,7 +145,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI path with the given encoding.
+	 * 使用给定编码对给定 URI 路径进行编码。
 	 * @param path the path to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded path
@@ -169,7 +155,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI path with the given encoding.
+	 * 使用给定编码对给定 URI 路径进行编码。
 	 * @param path the path to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded path
@@ -180,7 +166,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI path segment with the given encoding.
+	 * 使用给定编码对给定 URI 路径段进行编码。
 	 * @param segment the segment to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded segment
@@ -190,7 +176,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI path segment with the given encoding.
+	 * 使用给定编码对给定 URI 路径段进行编码。
 	 * @param segment the segment to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded segment
@@ -201,7 +187,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI query with the given encoding.
+	 * 使用给定编码对给定 URI 查询进行编码。
 	 * @param query the query to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded query
@@ -211,7 +197,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI query with the given encoding.
+	 * 使用给定编码对给定 URI 查询进行编码。
 	 * @param query the query to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded query
@@ -222,7 +208,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI query parameter with the given encoding.
+	 * 使用给定编码对给定 URI 查询参数进行编码。
 	 * @param queryParam the query parameter to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded query parameter
@@ -232,7 +218,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI query parameter with the given encoding.
+	 * 使用给定编码对给定 URI 查询参数进行编码。
 	 * @param queryParam the query parameter to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded query parameter
@@ -243,9 +229,8 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the query parameters from the given {@code MultiValueMap} with UTF-8.
-	 * <p>This can be used with {@link UriComponentsBuilder#queryParams(MultiValueMap)}
-	 * when building a URI from an already encoded template.
+	 * 使用 UTF-8 编码给定 {@code MultiValueMap} 中的查询参数。
+	 * <p>当从已编码的模板构建 URI 时，可将其与 {@link UriComponentsBuilder#queryParams(MultiValueMap)} 一起使用。
 	 * <pre class="code">{@code
 	 * MultiValueMap<String, String> params = new LinkedMultiValueMap<>(2);
 	 * // add to params...
@@ -271,7 +256,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI fragment with the given encoding.
+	 * 使用给定编码对给定 URI 片段进行编码。
 	 * @param fragment the fragment to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded fragment
@@ -281,7 +266,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode the given URI fragment with the given encoding.
+	 * 使用给定编码对给定 URI 片段进行编码。
 	 * @param fragment the fragment to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded fragment
@@ -293,7 +278,7 @@ public abstract class UriUtils {
 
 
 	/**
-	 * Variant of {@link #encode(String, Charset)} with a String charset.
+	 * 使用 String 字符集的 {@link #encode(String, Charset)} 变体。
 	 * @param source the String to be encoded
 	 * @param encoding the character encoding to encode to
 	 * @return the encoded String
@@ -303,11 +288,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Encode all characters that are either illegal, or have any reserved
-	 * meaning, anywhere within a URI, as defined in
-	 * <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>.
-	 * This is useful to ensure that the given String will be preserved as-is
-	 * and will not have any o impact on the structure or meaning of the URI.
+	 * 按照 <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> 的定义，对 URI 中任何位置属于非法或具有保留含义的所有字符进行编码。这有助于确保给定 String 按原样保留，不会对 URI 的结构或含义产生任何影响。
 	 * @param source the String to be encoded
 	 * @param charset the character encoding to encode to
 	 * @return the encoded String
@@ -318,8 +299,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Convenience method to apply {@link #encode(String, Charset)} to all
-	 * given URI variable values.
+	 * 便捷方法，将 {@link #encode(String, Charset)} 应用于所有给定 URI 变量值。
 	 * @param uriVariables the URI variable values to be encoded
 	 * @return the encoded String
 	 * @since 5.0
@@ -334,8 +314,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Convenience method to apply {@link #encode(String, Charset)} to all
-	 * given URI variable values.
+	 * 便捷方法，将 {@link #encode(String, Charset)} 应用于所有给定 URI 变量值。
 	 * @param uriVariables the URI variable values to be encoded
 	 * @return the encoded String
 	 * @since 5.0
@@ -359,8 +338,7 @@ public abstract class UriUtils {
 
 
 	/**
-	 * Decode the given encoded URI component.
-	 * <p>See {@link StringUtils#uriDecode(String, Charset)} for the decoding rules.
+	 * 解码给定的已编码 URI 组件。<p>解码规则请参见 {@link StringUtils#uriDecode(String, Charset)}。
 	 * @param source the encoded String
 	 * @param encoding the character encoding to use
 	 * @return the decoded value
@@ -373,8 +351,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Decode the given encoded URI component.
-	 * <p>See {@link StringUtils#uriDecode(String, Charset)} for the decoding rules.
+	 * 解码给定的已编码 URI 组件。<p>解码规则请参见 {@link StringUtils#uriDecode(String, Charset)}。
 	 * @param source the encoded String
 	 * @param charset the character encoding to use
 	 * @return the decoded value
@@ -388,7 +365,7 @@ public abstract class UriUtils {
 	}
 
 	/**
-	 * Extract the file extension from the given URI path.
+	 * 从给定 URI 路径中提取文件扩展名。
 	 * @param path the URI path (e.g. "/products/index.html")
 	 * @return the extracted file extension (e.g. "html")
 	 * @since 4.3.2

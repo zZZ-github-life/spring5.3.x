@@ -23,14 +23,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to be implemented by configurable web application contexts.
- * Supported by {@link ContextLoader} and
- * {@link org.springframework.web.servlet.FrameworkServlet}.
+ * 由可配置的 Web 应用上下文实现的接口。
+ * 由 {@link ContextLoader} 和
+ * {@link org.springframework.web.servlet.FrameworkServlet} 提供支持。
  *
- * <p>Note: The setters of this interface need to be called before an
- * invocation of the {@link #refresh} method inherited from
- * {@link org.springframework.context.ConfigurableApplicationContext}.
- * They do not cause an initialization of the context on their own.
+ * <p>注意：此接口的 setter 方法需要在调用从
+ * {@link org.springframework.context.ConfigurableApplicationContext}
+ * 继承的 {@link #refresh} 方法之前调用。
+ * 它们本身不会导致上下文的初始化。
  *
  * @author Juergen Hoeller
  * @since 05.12.2003
@@ -41,69 +41,69 @@ import org.springframework.lang.Nullable;
 public interface ConfigurableWebApplicationContext extends WebApplicationContext, ConfigurableApplicationContext {
 
 	/**
-	 * Prefix for ApplicationContext ids that refer to context path and/or servlet name.
+	 * 引用上下文路径和/或 servlet 名称的 ApplicationContext id 的前缀。
 	 */
 	String APPLICATION_CONTEXT_ID_PREFIX = WebApplicationContext.class.getName() + ":";
 
 	/**
-	 * Name of the ServletConfig environment bean in the factory.
+	 * 工厂中 ServletConfig 环境 bean 的名称。
 	 * @see javax.servlet.ServletConfig
 	 */
 	String SERVLET_CONFIG_BEAN_NAME = "servletConfig";
 
 
 	/**
-	 * Set the ServletContext for this web application context.
-	 * <p>Does not cause an initialization of the context: refresh needs to be
-	 * called after the setting of all configuration properties.
+	 * 为此 Web 应用上下文设置 ServletContext。
+	 * <p>不会导致上下文的初始化：需要在设置所有配置属性之后
+	 * 调用 refresh。
 	 * @see #refresh()
 	 */
 	void setServletContext(@Nullable ServletContext servletContext);
 
 	/**
-	 * Set the ServletConfig for this web application context.
-	 * Only called for a WebApplicationContext that belongs to a specific Servlet.
+	 * 为此 Web 应用上下文设置 ServletConfig。
+	 * 仅对属于特定 Servlet 的 WebApplicationContext 调用。
 	 * @see #refresh()
 	 */
 	void setServletConfig(@Nullable ServletConfig servletConfig);
 
 	/**
-	 * Return the ServletConfig for this web application context, if any.
+	 * 返回此 Web 应用上下文的 ServletConfig（如果有）。
 	 */
 	@Nullable
 	ServletConfig getServletConfig();
 
 	/**
-	 * Set the namespace for this web application context,
-	 * to be used for building a default context config location.
-	 * The root web application context does not have a namespace.
+	 * 为此 Web 应用上下文设置命名空间，
+	 * 用于构建默认的上下文配置位置。
+	 * 根 Web 应用上下文没有命名空间。
 	 */
 	void setNamespace(@Nullable String namespace);
 
 	/**
-	 * Return the namespace for this web application context, if any.
+	 * 返回此 Web 应用上下文的命名空间（如果有）。
 	 */
 	@Nullable
 	String getNamespace();
 
 	/**
-	 * Set the config locations for this web application context in init-param style,
-	 * i.e. with distinct locations separated by commas, semicolons or whitespace.
-	 * <p>If not set, the implementation is supposed to use a default for the
-	 * given namespace or the root web application context, as appropriate.
+	 * 以 init-param 的风格为此 Web 应用上下文设置配置位置，
+	 * 即使用逗号、分号或空白分隔不同的位置。
+	 * <p>如果未设置，实现应根据情况为给定命名空间或根 Web 应用上下文
+	 * 使用默认值。
 	 */
 	void setConfigLocation(String configLocation);
 
 	/**
-	 * Set the config locations for this web application context.
-	 * <p>If not set, the implementation is supposed to use a default for the
-	 * given namespace or the root web application context, as appropriate.
+	 * 为此 Web 应用上下文设置配置位置。
+	 * <p>如果未设置，实现应根据情况为给定命名空间或根 Web 应用上下文
+	 * 使用默认值。
 	 */
 	void setConfigLocations(String... configLocations);
 
 	/**
-	 * Return the config locations for this web application context,
-	 * or {@code null} if none specified.
+	 * 返回此 Web 应用上下文的配置位置，
+	 * 如果未指定则返回 {@code null}。
 	 */
 	@Nullable
 	String[] getConfigLocations();

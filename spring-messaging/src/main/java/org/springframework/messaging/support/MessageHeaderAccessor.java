@@ -39,17 +39,14 @@ import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Wrapper around {@link MessageHeaders} that provides extra features such as
- * strongly typed accessors for specific headers, the ability to leave headers
- * in a {@link Message} mutable, and the option to suppress automatic generation
- * of {@link MessageHeaders#ID id} and {@link MessageHeaders#TIMESTAMP
- * timestamp} headers. Subclasses such as {@link NativeMessageHeaderAccessor}
- * and others provide support for managing processing vs external source headers
- * as well as protocol specific headers.
+ * {@link MessageHeaders} 的包装器，提供额外功能，例如针对特定头部的强类型访问器、
+ * 使 {@link Message} 中的头部保持可变的能力，以及禁止自动生成
+ * {@link MessageHeaders#ID id} 和 {@link MessageHeaders#TIMESTAMP
+ * timestamp} 头部的选项。{@link NativeMessageHeaderAccessor} 等子类
+ * 提供了对处理头部与外部来源头部以及特定协议头部的管理支持。
  *
- * <p>Below is a workflow to initialize headers via {@code MessageHeaderAccessor},
- * or one of its subclasses, then create a {@link Message}, and then re-obtain
- * the accessor possibly from a different component:
+ * <p>下面是先通过 {@code MessageHeaderAccessor} 或其子类初始化头部，
+ * 然后创建 {@link Message}，随后（可能从不同组件中）重新获取该访问器的工作流程：
  * <pre class="code">
  * // Create a message with headers
  * MessageHeaderAccessor accessor = new MessageHeaderAccessor();
@@ -62,12 +59,11 @@ import org.springframework.util.StringUtils;
  * Assert.notNull(accessor, "No MessageHeaderAccessor");
  * </pre>
  *
- * <p>In order for the above to work, all participating components must use
- * {@code MessageHeaders} to create, access, or modify headers, or otherwise
- * {@link MessageHeaderAccessor#getAccessor(Message, Class)} will return null.
- * Below is a workflow that shows how headers are created and left mutable,
- * then modified possibly by a different component, and finally made immutable
- * perhaps before the possibility of being accessed on a different thread:
+ * <p>为使上述流程正常工作，所有参与的组件都必须使用 {@code MessageHeaders} 来创建、
+ * 访问或修改头部，否则
+ * {@link MessageHeaderAccessor#getAccessor(Message, Class)} 将返回 null。
+ * 下面的工作流程展示了如何创建并保持头部可变，然后（可能由不同组件）进行修改，
+ * 最后（可能在不同线程上被访问之前）将其变为不可变：
  * <pre class="code">
  * // Create a message with mutable headers
  * MessageHeaderAccessor accessor = new MessageHeaderAccessor();
@@ -102,7 +98,7 @@ import org.springframework.util.StringUtils;
 public class MessageHeaderAccessor {
 
 	/**
-	 * The default charset used for headers.
+	 * 头部使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -125,14 +121,14 @@ public class MessageHeaderAccessor {
 
 
 	/**
-	 * A constructor to create new headers.
+	 * 创建新头部的构造函数。
 	 */
 	public MessageHeaderAccessor() {
 		this(null);
 	}
 
 	/**
-	 * A constructor accepting the headers of an existing message to copy.
+	 * 接受现有消息头部进行复制的构造函数。
 	 * @param message a message to copy the headers from, or {@code null} if none
 	 */
 	public MessageHeaderAccessor(@Nullable Message<?> message) {
@@ -141,7 +137,7 @@ public class MessageHeaderAccessor {
 
 
 	/**
-	 * Build a 'nested' accessor for the given message.
+	 * 为给定消息构建“嵌套”访问器。
 	 * @param message the message to build a new accessor for
 	 * @return the nested accessor (typically a specific subclass)
 	 */
@@ -153,18 +149,17 @@ public class MessageHeaderAccessor {
 	// Configuration properties
 
 	/**
-	 * By default, when {@link #getMessageHeaders()} is called, {@code "this"}
-	 * {@code MessageHeaderAccessor} instance can no longer be used to modify the
-	 * underlying message headers and the returned {@code MessageHeaders} is immutable.
-	 * <p>However when this is set to {@code true}, the returned (underlying)
-	 * {@code MessageHeaders} instance remains mutable. To make further modifications
-	 * continue to use the same accessor instance or re-obtain it via:<br>
+	 * 默认情况下，调用 {@link #getMessageHeaders()} 后，{@code "this"}
+	 * {@code MessageHeaderAccessor} 实例不能再用于修改底层消息头部，
+	 * 并且返回的 {@code MessageHeaders} 是不可变的。
+	 * <p>不过，当此项设置为 {@code true} 时，返回的（底层）
+	 * {@code MessageHeaders} 实例保持可变。如需进一步修改，请继续使用同一个
+	 * 访问器实例，或通过以下方式重新获取它：<br>
 	 * {@link MessageHeaderAccessor#getAccessor(Message, Class)
 	 * MessageHeaderAccessor.getAccessor(Message, Class)}
-	 * <p>When modifications are complete use {@link #setImmutable()} to prevent
-	 * further changes. The intended use case for this mechanism is initialization
-	 * of a Message within a single thread.
-	 * <p>By default this is set to {@code false}.
+	 * <p>修改完成后，使用 {@link #setImmutable()} 防止进一步更改。
+	 * 此机制的预期使用场景是在单个线程内初始化 Message。
+	 * <p>默认情况下此项设置为 {@code false}。
 	 * @since 4.1
 	 */
 	public void setLeaveMutable(boolean leaveMutable) {
@@ -173,11 +168,10 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * By default, when {@link #getMessageHeaders()} is called, {@code "this"}
-	 * {@code MessageHeaderAccessor} instance can no longer be used to modify the
-	 * underlying message headers. However if {@link #setLeaveMutable(boolean)}
-	 * is used, this method is necessary to indicate explicitly when the
-	 * {@code MessageHeaders} instance should no longer be modified.
+	 * 默认情况下，调用 {@link #getMessageHeaders()} 后，{@code "this"}
+	 * {@code MessageHeaderAccessor} 实例不能再用于修改底层消息头部。
+	 * 不过，如果使用了 {@link #setLeaveMutable(boolean)}，则必须通过此方法
+	 * 显式指示 {@code MessageHeaders} 实例何时不应再被修改。
 	 * @since 4.1
 	 */
 	public void setImmutable() {
@@ -185,7 +179,7 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Whether the underlying headers can still be modified.
+	 * 底层头部是否仍可修改。
 	 * @since 4.1
 	 */
 	public boolean isMutable() {
@@ -193,7 +187,7 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Mark the underlying message headers as modified.
+	 * 将底层消息头部标记为已修改。
 	 * @param modified typically {@code true}, or {@code false} to reset the flag
 	 * @since 4.1
 	 */
@@ -202,7 +196,7 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Check whether the underlying message headers have been marked as modified.
+	 * 检查底层消息头部是否已被标记为已修改。
 	 * @return {@code true} if the flag has been set, {@code false} otherwise
 	 */
 	public boolean isModified() {
@@ -210,9 +204,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * A package private mechanism to enables the automatic addition of the
-	 * {@link org.springframework.messaging.MessageHeaders#TIMESTAMP} header.
-	 * <p>By default, this property is set to {@code false}.
+	 * 一种包级私有机制，用于启用
+	 * {@link org.springframework.messaging.MessageHeaders#TIMESTAMP} 头部的自动添加。
+	 * <p>默认情况下，此属性设置为 {@code false}。
 	 * @see IdTimestampMessageHeaderInitializer
 	 */
 	void setEnableTimestamp(boolean enableTimestamp) {
@@ -220,9 +214,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * A package-private mechanism to configure the IdGenerator strategy to use.
-	 * <p>By default this property is not set in which case the default IdGenerator
-	 * in {@link org.springframework.messaging.MessageHeaders} is used.
+	 * 一种包级私有机制，用于配置要使用的 IdGenerator 策略。
+	 * <p>默认情况下不设置此属性，此时使用
+	 * {@link org.springframework.messaging.MessageHeaders} 中的默认 IdGenerator。
 	 * @see IdTimestampMessageHeaderInitializer
 	 */
 	void setIdGenerator(IdGenerator idGenerator) {
@@ -233,13 +227,12 @@ public class MessageHeaderAccessor {
 	// Accessors for the resulting MessageHeaders
 
 	/**
-	 * Return the underlying {@code MessageHeaders} instance.
-	 * <p>Unless {@link #setLeaveMutable(boolean)} was set to {@code true}, after
-	 * this call, the headers are immutable and this accessor can no longer
-	 * modify them.
-	 * <p>This method always returns the same {@code MessageHeaders} instance if
-	 * invoked multiples times. To obtain a copy of the underlying headers, use
-	 * {@link #toMessageHeaders()} or {@link #toMap()} instead.
+	 * 返回底层的 {@code MessageHeaders} 实例。
+	 * <p>除非将 {@link #setLeaveMutable(boolean)} 设置为 {@code true}，
+	 * 否则在此调用之后，头部将变为不可变，此访问器不能再修改它们。
+	 * <p>如果多次调用，此方法始终返回相同的 {@code MessageHeaders} 实例。
+	 * 若要获取底层头部的副本，请改用 {@link #toMessageHeaders()} 或
+	 * {@link #toMap()}。
 	 * @since 4.1
 	 */
 	public MessageHeaders getMessageHeaders() {
@@ -250,9 +243,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Return a copy of the underlying header values as a {@link MessageHeaders} object.
-	 * <p>This method can be invoked many times, with modifications in between
-	 * where each new call returns a fresh copy of the current header values.
+	 * 以 {@link MessageHeaders} 对象形式返回底层头部值的副本。
+	 * <p>此方法可以多次调用，其间可进行修改，每次调用都会返回当前头部值的
+	 * 新副本。
 	 * @since 4.1
 	 */
 	public MessageHeaders toMessageHeaders() {
@@ -260,9 +253,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Return a copy of the underlying header values as a plain {@link Map} object.
-	 * <p>This method can be invoked many times, with modifications in between
-	 * where each new call returns a fresh copy of the current header values.
+	 * 以普通 {@link Map} 对象形式返回底层头部值的副本。
+	 * <p>此方法可以多次调用，其间可进行修改，每次调用都会返回当前头部值的
+	 * 新副本。
 	 */
 	public Map<String, Object> toMap() {
 		return new HashMap<>(this.headers);
@@ -272,7 +265,7 @@ public class MessageHeaderAccessor {
 	// Generic header accessors
 
 	/**
-	 * Retrieve the value for the header with the given name.
+	 * 检索具有给定名称的头部值。
 	 * @param headerName the name of the header
 	 * @return the associated value, or {@code null} if none found
 	 */
@@ -282,8 +275,8 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Set the value for the given header name.
-	 * <p>If the provided value is {@code null}, the header will be removed.
+	 * 设置给定头部名称的值。
+	 * <p>如果提供的值为 {@code null}，则将移除该头部。
 	 */
 	public void setHeader(String name, @Nullable Object value) {
 		if (isReadOnly(name)) {
@@ -319,8 +312,7 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Set the value for the given header name only if the header name is not
-	 * already associated with a value.
+	 * 仅当给定头部名称尚未关联值时，才设置该头部名称的值。
 	 */
 	public void setHeaderIfAbsent(String name, Object value) {
 		if (getHeader(name) == null) {
@@ -329,7 +321,7 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Remove the value for the given header name.
+	 * 移除给定头部名称的值。
 	 */
 	public void removeHeader(String headerName) {
 		if (StringUtils.hasLength(headerName) && !isReadOnly(headerName)) {
@@ -338,9 +330,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Removes all headers provided via array of 'headerPatterns'.
-	 * <p>As the name suggests, array may contain simple matching patterns for header
-	 * names. Supported pattern styles are: "xxx*", "*xxx", "*xxx*" and "xxx*yyy".
+	 * 移除通过 'headerPatterns' 数组提供的所有头部。
+	 * <p>顾名思义，该数组可以包含头部名称的简单匹配模式。支持的样式包括：
+	 * "xxx*"、"*xxx"、"*xxx*" 和 "xxx*yyy"。
 	 */
 	public void removeHeaders(String... headerPatterns) {
 		List<String> headersToRemove = new ArrayList<>();
@@ -373,9 +365,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Copy the name-value pairs from the provided Map.
-	 * <p>This operation will overwrite any existing values. Use
-	 * {@link #copyHeadersIfAbsent(Map)} to avoid overwriting values.
+	 * 从提供的 Map 复制名称-值对。
+	 * <p>此操作将覆盖任何现有值。可使用
+	 * {@link #copyHeadersIfAbsent(Map)} 避免覆盖值。
 	 */
 	public void copyHeaders(@Nullable Map<String, ?> headersToCopy) {
 		if (headersToCopy == null || this.headers == headersToCopy) {
@@ -389,8 +381,8 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Copy the name-value pairs from the provided Map.
-	 * <p>This operation will <em>not</em> overwrite any existing values.
+	 * 从提供的 Map 复制名称-值对。
+	 * <p>此操作<em>不会</em>覆盖任何现有值。
 	 */
 	public void copyHeadersIfAbsent(@Nullable Map<String, ?> headersToCopy) {
 		if (headersToCopy == null || this.headers == headersToCopy) {
@@ -477,7 +469,7 @@ public class MessageHeaderAccessor {
 	// Log message stuff
 
 	/**
-	 * Return a concise message for logging purposes.
+	 * 返回用于日志记录目的的简洁消息。
 	 * @param payload the payload that corresponds to the headers.
 	 * @return the message
 	 */
@@ -486,7 +478,7 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Return a more detailed message for logging purposes.
+	 * 返回用于日志记录目的的更详细消息。
 	 * @param payload the payload that corresponds to the headers.
 	 * @return the message
 	 */
@@ -557,11 +549,9 @@ public class MessageHeaderAccessor {
 	// Static factory methods
 
 	/**
-	 * Return the original {@code MessageHeaderAccessor} used to create the headers
-	 * of the given {@code Message}, or {@code null} if that's not available or if
-	 * its type does not match the required type.
-	 * <p>This is for cases where the existence of an accessor is strongly expected
-	 * (followed up with an assertion) or where an accessor will be created otherwise.
+	 * 返回用于创建给定 {@code Message} 头部的原始 {@code MessageHeaderAccessor}，
+	 * 如果不可用或其类型与所需类型不匹配，则返回 {@code null}。
+	 * <p>这适用于强烈预期访问器存在（后续会进行断言）或否则将创建访问器的情况。
 	 * @param message the message to get an accessor for
 	 * @return an accessor instance of the specified type, or {@code null} if none
 	 * @since 5.1.19
@@ -572,11 +562,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the original {@code MessageHeaderAccessor} used to create the headers
-	 * of the given {@code Message}, or {@code null} if that's not available or if
-	 * its type does not match the required type.
-	 * <p>This is for cases where the existence of an accessor is strongly expected
-	 * (followed up with an assertion) or where an accessor will be created otherwise.
+	 * 返回用于创建给定 {@code Message} 头部的原始 {@code MessageHeaderAccessor}，
+	 * 如果不可用或其类型与所需类型不匹配，则返回 {@code null}。
+	 * <p>这适用于强烈预期访问器存在（后续会进行断言）或否则将创建访问器的情况。
 	 * @param message the message to get an accessor for
 	 * @param requiredType the required accessor type (or {@code null} for any)
 	 * @return an accessor instance of the specified type, or {@code null} if none
@@ -588,9 +576,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * A variation of {@link #getAccessor(org.springframework.messaging.Message, Class)}
-	 * with a {@code MessageHeaders} instance instead of a {@code Message}.
-	 * <p>This is for cases when a full message may not have been created yet.
+	 * {@link #getAccessor(org.springframework.messaging.Message, Class)} 的变体，
+	 * 使用 {@code MessageHeaders} 实例而不是 {@code Message}。
+	 * <p>这适用于完整消息可能尚未创建的情况。
 	 * @param messageHeaders the message headers to get an accessor for
 	 * @param requiredType the required accessor type (or {@code null} for any)
 	 * @return an accessor instance of the specified type, or {@code null} if none
@@ -612,11 +600,9 @@ public class MessageHeaderAccessor {
 	}
 
 	/**
-	 * Return a mutable {@code MessageHeaderAccessor} for the given message attempting
-	 * to match the type of accessor used to create the message headers, or otherwise
-	 * wrapping the message with a {@code MessageHeaderAccessor} instance.
-	 * <p>This is for cases where a header needs to be updated in generic code
-	 * while preserving the accessor type for downstream processing.
+	 * 为给定消息返回可变的 {@code MessageHeaderAccessor}，尝试匹配用于创建该消息
+	 * 头部的访问器类型，否则使用 {@code MessageHeaderAccessor} 实例包装该消息。
+	 * <p>这适用于通用代码中需要更新头部、同时为下游处理保留访问器类型的情况。
 	 * @return an accessor of the required type (never {@code null})
 	 * @since 4.1
 	 */
@@ -631,9 +617,8 @@ public class MessageHeaderAccessor {
 
 
 	/**
-	 * Extension of {@link MessageHeaders} that helps to preserve the link to
-	 * the outer {@link MessageHeaderAccessor} instance that created it as well
-	 * as keeps track of whether headers are still mutable.
+	 * {@link MessageHeaders} 的扩展，有助于保留对创建它的外部
+	 * {@link MessageHeaderAccessor} 实例的链接，并跟踪头部是否仍可变。
 	 */
 	@SuppressWarnings("serial")
 	private class MutableMessageHeaders extends MessageHeaders {

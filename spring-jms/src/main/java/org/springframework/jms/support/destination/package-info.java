@@ -1,5 +1,5 @@
 /**
- * Support classes for Spring's JMS framework.
+ * Spring JMS 框架的支持类。
  */
 @NonNullApi
 @NonNullFields

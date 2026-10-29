@@ -35,16 +35,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A CCI ConnectionFactory adapter that returns the same Connection on all
- * {@code getConnection} calls, and ignores calls to
- * {@code Connection.close()}.
+ * CCI ConnectionFactory 适配器，在所有 {@code getConnection} 调用中返回相同的 Connection，
+ * 并忽略 {@code Connection.close()} 调用。
  *
- * <p>Useful for testing and standalone environments, to keep using the same
- * Connection for multiple CciTemplate calls, without having a pooling
- * ConnectionFactory, also spanning any number of transactions.
+ * <p>适用于测试和独立环境，用于保持对多次 CciTemplate 调用使用相同的 Connection，
+ * 而无需使用池化 ConnectionFactory，也可跨越任意数量的事务。
  *
- * <p>You can either pass in a CCI Connection directly, or let this
- * factory lazily create a Connection via a given target ConnectionFactory.
+ * <p>你可以直接传入 CCI Connection，或者让此工厂通过给定的目标 ConnectionFactory 延迟创建 Connection。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -60,28 +57,27 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Wrapped Connection. */
+	/** 包装的 Connection。 */
 	@Nullable
 	private Connection target;
 
-	/** Proxy Connection. */
+	/** 代理 Connection。 */
 	@Nullable
 	private Connection connection;
 
-	/** Synchronization monitor for the shared Connection. */
+	/** 共享 Connection 的同步监视器。 */
 	private final Object connectionMonitor = new Object();
 
 
 	/**
-	 * Create a new SingleConnectionFactory for bean-style usage.
+	 * 创建新的 SingleConnectionFactory，用于 bean 风格的使用。
 	 * @see #setTargetConnectionFactory
 	 */
 	public SingleConnectionFactory() {
 	}
 
 	/**
-	 * Create a new SingleConnectionFactory that always returns the
-	 * given Connection.
+	 * 创建新的 SingleConnectionFactory，始终返回给定的 Connection。
 	 * @param target the single Connection
 	 */
 	public SingleConnectionFactory(Connection target) {
@@ -91,9 +87,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	}
 
 	/**
-	 * Create a new SingleConnectionFactory that always returns a single
-	 * Connection which it will lazily create via the given target
-	 * ConnectionFactory.
+	 * 创建新的 SingleConnectionFactory，始终返回通过给定的目标 ConnectionFactory
+	 * 延迟创建的单个 Connection。
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public SingleConnectionFactory(ConnectionFactory targetConnectionFactory) {
@@ -103,7 +98,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 
 	/**
-	 * Make sure a Connection or ConnectionFactory has been set.
+	 * 确保已设置 Connection 或 ConnectionFactory。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -130,10 +125,9 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	}
 
 	/**
-	 * Close the underlying Connection.
-	 * The provider of this ConnectionFactory needs to care for proper shutdown.
-	 * <p>As this bean implements DisposableBean, a bean factory will
-	 * automatically invoke this on destruction of its cached singletons.
+	 * 关闭底层的 Connection。
+	 * 此 ConnectionFactory 的提供者需要负责正确关闭。
+	 * <p>由于此 bean 实现了 DisposableBean，bean 工厂会在销毁其缓存的单例时自动调用此方法。
 	 */
 	@Override
 	public void destroy() {
@@ -142,9 +136,8 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 
 	/**
-	 * Initialize the single underlying Connection.
-	 * <p>Closes and reinitializes the Connection if an underlying
-	 * Connection is present already.
+	 * 初始化底层的单个 Connection。
+	 * <p>如果已经存在底层 Connection，则关闭并重新初始化。
 	 * @throws javax.resource.ResourceException if thrown by CCI API methods
 	 */
 	public void initConnection() throws ResourceException {
@@ -166,7 +159,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	}
 
 	/**
-	 * Reset the underlying shared Connection, to be reinitialized on next access.
+	 * 重置底层共享的 Connection，在下次访问时重新初始化。
 	 */
 	public void resetConnection() {
 		synchronized (this.connectionMonitor) {
@@ -179,7 +172,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	}
 
 	/**
-	 * Create a CCI Connection via this template's ConnectionFactory.
+	 * 通过此模板的 ConnectionFactory 创建 CCI Connection。
 	 * @return the new CCI Connection
 	 * @throws javax.resource.ResourceException if thrown by CCI API methods
 	 */
@@ -190,15 +183,15 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	}
 
 	/**
-	 * Prepare the given Connection before it is exposed.
-	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 * 在给定的 Connection 暴露之前进行准备。
+	 * <p>默认实现为空。可以在子类中重写。
 	 * @param con the Connection to prepare
 	 */
 	protected void prepareConnection(Connection con) throws ResourceException {
 	}
 
 	/**
-	 * Close the given Connection.
+	 * 关闭给定的 Connection。
 	 * @param con the Connection to close
 	 */
 	protected void closeConnection(Connection con) {
@@ -211,10 +204,9 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 	}
 
 	/**
-	 * Wrap the given Connection with a proxy that delegates every method call to it
-	 * but suppresses close calls. This is useful for allowing application code to
-	 * handle a special framework Connection just like an ordinary Connection from a
-	 * CCI ConnectionFactory.
+	 * 使用抑制 close 调用的代理包装给定的 Connection。
+	 * 这允许应用程序代码像处理来自 CCI ConnectionFactory 的普通 Connection 一样
+	 * 处理特殊的框架 Connection。
 	 * @param target the original Connection to wrap
 	 * @return the wrapped Connection
 	 */
@@ -227,7 +219,7 @@ public class SingleConnectionFactory extends DelegatingConnectionFactory impleme
 
 
 	/**
-	 * Invocation handler that suppresses close calls on CCI Connections.
+	 * 抑制 CCI Connection close 调用的调用处理器。
 	 */
 	private static final class CloseSuppressingInvocationHandler implements InvocationHandler {
 

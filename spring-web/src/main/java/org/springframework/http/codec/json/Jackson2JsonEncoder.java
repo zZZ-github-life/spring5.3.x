@@ -35,9 +35,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Encode from an {@code Object} stream to a byte stream of JSON objects using Jackson 2.9.
- * For non-streaming use cases, {@link Flux} elements are collected into a {@link List}
- * before serialization for performance reason.
+ * 使用 Jackson 2.9 将 {@code Object} 流编码为 JSON 对象的字节流。
+ * 对于非流式使用场景，出于性能考虑，{@link Flux} 元素会在序列化前
+ * 收集到 {@link List} 中。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma

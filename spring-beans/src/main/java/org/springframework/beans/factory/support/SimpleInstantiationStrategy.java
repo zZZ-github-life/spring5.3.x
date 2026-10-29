@@ -32,10 +32,9 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Simple object instantiation strategy for use in a BeanFactory.
+ * 用于 BeanFactory 的简单对象实例化策略。
  *
- * <p>Does not support Method Injection, although it provides hooks for subclasses
- * to override to add Method Injection support, for example by overriding methods.
+ * <p>不支持方法注入，但提供了钩子，供子类覆盖以添加方法注入支持，例如通过覆盖方法。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -47,9 +46,8 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
 
 	/**
-	 * Return the factory method currently being invoked or {@code null} if none.
-	 * <p>Allows factory method implementations to determine whether the current
-	 * caller is the container itself as opposed to user code.
+	 * 返回当前正在调用的工厂方法，如果没有则返回 {@code null}。<p>允许工厂方法实现判断当前调用者是容器
+	 * 本身还是用户代码。
 	 */
 	@Nullable
 	public static Method getCurrentlyInvokedFactoryMethod() {
@@ -93,10 +91,8 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 	}
 
 	/**
-	 * Subclasses can override this method, which is implemented to throw
-	 * UnsupportedOperationException, if they can instantiate an object with
-	 * the Method Injection specified in the given RootBeanDefinition.
-	 * Instantiation should use a no-arg constructor.
+	 * 如果子类能够使用给定 RootBeanDefinition 中指定的方法注入来实例化对象，则可以覆盖此方法，该方法的
+	 * 默认实现会抛出 UnsupportedOperationException。实例化应使用无参构造器。
 	 */
 	protected Object instantiateWithMethodInjection(RootBeanDefinition bd, @Nullable String beanName, BeanFactory owner) {
 		throw new UnsupportedOperationException("Method Injection not supported in SimpleInstantiationStrategy");
@@ -122,10 +118,8 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 	}
 
 	/**
-	 * Subclasses can override this method, which is implemented to throw
-	 * UnsupportedOperationException, if they can instantiate an object with
-	 * the Method Injection specified in the given RootBeanDefinition.
-	 * Instantiation should use the given constructor and parameters.
+	 * 如果子类能够使用给定 RootBeanDefinition 中指定的方法注入来实例化对象，则可以覆盖此方法，该方法的
+	 * 默认实现会抛出 UnsupportedOperationException。实例化应使用给定的构造器和参数。
 	 */
 	protected Object instantiateWithMethodInjection(RootBeanDefinition bd, @Nullable String beanName,
 			BeanFactory owner, @Nullable Constructor<?> ctor, Object... args) {

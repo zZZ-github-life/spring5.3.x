@@ -31,49 +31,19 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@code TestContextManager} is the main entry point into the <em>Spring
- * TestContext Framework</em>.
- *
- * <p>Specifically, a {@code TestContextManager} is responsible for managing a
- * single {@link TestContext} and signaling events to each registered
- * {@link TestExecutionListener} at the following test execution points.
- *
+ * {@code TestContextManager} 是 <em>Spring TestContext Framework</em>（Spring 测试上下文框架）的主要入口点。
+ * <p>具体而言，{@code TestContextManager} 负责管理单个 {@link TestContext}，并在以下测试执行点向每个已注册的 {@link TestExecutionListener} 发送事件。
  * <ul>
- * <li>{@link #beforeTestClass() before test class execution}: prior to any
- * <em>before class callbacks</em> of a particular testing framework (e.g.,
- * JUnit 4's {@link org.junit.BeforeClass @BeforeClass})</li>
- * <li>{@link #prepareTestInstance test instance preparation}:
- * immediately following instantiation of the test class</li>
- * <li>{@link #beforeTestMethod before test setup}:
- * prior to any <em>before method callbacks</em> of a particular testing framework
- * (e.g., JUnit 4's {@link org.junit.Before @Before})</li>
- * <li>{@link #beforeTestExecution before test execution}:
- * immediately before execution of the {@linkplain java.lang.reflect.Method
- * test method} but after test setup</li>
- * <li>{@link #afterTestExecution after test execution}:
- * immediately after execution of the {@linkplain java.lang.reflect.Method
- * test method} but before test tear down</li>
- * <li>{@link #afterTestMethod(Object, Method, Throwable) after test tear down}:
- * after any <em>after method callbacks</em> of a particular testing
- * framework (e.g., JUnit 4's {@link org.junit.After @After})</li>
- * <li>{@link #afterTestClass() after test class execution}: after any
- * <em>after class callbacks</em> of a particular testing framework (e.g., JUnit 4's
- * {@link org.junit.AfterClass @AfterClass})</li>
+ * <li>{@link #beforeTestClass() 测试类执行之前}：在某个测试框架的任意 <em>before class 回调</em>（例如 JUnit 4 的 {@link org.junit.BeforeClass @BeforeClass}）之前</li>
+ * <li>{@link #prepareTestInstance 测试实例准备}：紧随测试类实例化之后</li>
+ * <li>{@link #beforeTestMethod 测试准备之前}：在某个测试框架的任意 <em>before method 回调</em>（例如 JUnit 4 的 {@link org.junit.Before @Before}）之前</li>
+ * <li>{@link #beforeTestExecution 测试执行之前}：紧邻 {@linkplain java.lang.reflect.Method 测试方法}执行之前，但在测试准备之后</li>
+ * <li>{@link #afterTestExecution 测试执行之后}：紧邻 {@linkplain java.lang.reflect.Method 测试方法}执行之后，但在测试清理之前</li>
+ * <li>{@link #afterTestMethod(Object, Method, Throwable) 测试清理之后}：在某个测试框架的任意 <em>after method 回调</em>（例如 JUnit 4 的 {@link org.junit.After @After}）之后</li>
+ * <li>{@link #afterTestClass() 测试类执行之后}：在某个测试框架的任意 <em>after class 回调</em>（例如 JUnit 4 的 {@link org.junit.AfterClass @AfterClass}）之后</li>
  * </ul>
- *
- * <p>Support for loading and accessing
- * {@linkplain org.springframework.context.ApplicationContext application contexts},
- * dependency injection of test instances,
- * {@linkplain org.springframework.transaction.annotation.Transactional transactional}
- * execution of test methods, etc. is provided by
- * {@link SmartContextLoader ContextLoaders} and {@code TestExecutionListeners},
- * which are configured via {@link ContextConfiguration @ContextConfiguration} and
- * {@link TestExecutionListeners @TestExecutionListeners}, respectively.
- *
- * <p>Bootstrapping of the {@code TestContext}, the default {@code ContextLoader},
- * default {@code TestExecutionListeners}, and their collaborators is performed
- * by a {@link TestContextBootstrapper}, which is configured via
- * {@link BootstrapWith @BootstrapWith}.
+ * <p>对{@linkplain org.springframework.context.ApplicationContext 应用程序上下文}的加载与访问、测试实例的依赖注入、测试方法的{@linkplain org.springframework.transaction.annotation.Transactional 事务性}执行等支持，由 {@link SmartContextLoader ContextLoaders} 和 {@code TestExecutionListeners} 提供，它们分别通过 {@link ContextConfiguration @ContextConfiguration} 和 {@link TestExecutionListeners @TestExecutionListeners} 进行配置。
+ * <p>{@code TestContext}、默认 {@code ContextLoader}、默认 {@code TestExecutionListeners} 及其协作者的引导工作由 {@link TestContextBootstrapper} 完成，并通过 {@link BootstrapWith @BootstrapWith} 进行配置。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -107,14 +77,8 @@ public class TestContextManager {
 
 
 	/**
-	 * Construct a new {@code TestContextManager} for the supplied {@linkplain Class test class}.
-	 * <p>Delegates to {@link #TestContextManager(TestContextBootstrapper)} with
-	 * the {@link TestContextBootstrapper} configured for the test class. If the
-	 * {@link BootstrapWith @BootstrapWith} annotation is present on the test
-	 * class, either directly or as a meta-annotation, then its
-	 * {@link BootstrapWith#value value} will be used as the bootstrapper type;
-	 * otherwise, the {@link org.springframework.test.context.support.DefaultTestContextBootstrapper
-	 * DefaultTestContextBootstrapper} will be used.
+	 * 为提供的{@linkplain Class 测试类}构造一个新的 {@code TestContextManager}。
+	 * <p>使用为该测试类配置的 {@link TestContextBootstrapper} 委托给 {@link #TestContextManager(TestContextBootstrapper)}。如果测试类上直接或作为元注解存在 {@link BootstrapWith @BootstrapWith} 注解，则使用其 {@link BootstrapWith#value value} 作为引导器类型；否则使用 {@link org.springframework.test.context.support.DefaultTestContextBootstrapper DefaultTestContextBootstrapper}。
 	 * @param testClass the test class to be managed
 	 * @see #TestContextManager(TestContextBootstrapper)
 	 */
@@ -123,11 +87,8 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Construct a new {@code TestContextManager} using the supplied {@link TestContextBootstrapper}
-	 * and {@linkplain #registerTestExecutionListeners register} the necessary
-	 * {@link TestExecutionListener TestExecutionListeners}.
-	 * <p>Delegates to the supplied {@code TestContextBootstrapper} for building
-	 * the {@code TestContext} and retrieving the {@code TestExecutionListeners}.
+	 * 使用提供的 {@link TestContextBootstrapper} 构造一个新的 {@code TestContextManager}，并{@linkplain #registerTestExecutionListeners 注册}所需的 {@link TestExecutionListener TestExecutionListeners}。
+	 * <p>由提供的 {@code TestContextBootstrapper} 负责构建 {@code TestContext} 并获取 {@code TestExecutionListeners}。
 	 * @param testContextBootstrapper the bootstrapper to use
 	 * @see TestContextBootstrapper#buildTestContext
 	 * @see TestContextBootstrapper#getTestExecutionListeners
@@ -139,15 +100,14 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Get the {@link TestContext} managed by this {@code TestContextManager}.
+	 * 获取此 {@code TestContextManager} 管理的 {@link TestContext}。
 	 */
 	public final TestContext getTestContext() {
 		return this.testContextHolder.get();
 	}
 
 	/**
-	 * Register the supplied list of {@link TestExecutionListener TestExecutionListeners}
-	 * by appending them to the list of listeners used by this {@code TestContextManager}.
+	 * 将提供的 {@link TestExecutionListener TestExecutionListeners} 列表追加到此 {@code TestContextManager} 使用的监听器列表末尾以完成注册。
 	 * @see #registerTestExecutionListeners(TestExecutionListener...)
 	 */
 	public void registerTestExecutionListeners(List<TestExecutionListener> testExecutionListeners) {
@@ -155,8 +115,7 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Register the supplied array of {@link TestExecutionListener TestExecutionListeners}
-	 * by appending them to the list of listeners used by this {@code TestContextManager}.
+	 * 将提供的 {@link TestExecutionListener TestExecutionListeners} 数组追加到此 {@code TestContextManager} 使用的监听器列表末尾以完成注册。
 	 */
 	public void registerTestExecutionListeners(TestExecutionListener... testExecutionListeners) {
 		for (TestExecutionListener listener : testExecutionListeners) {
@@ -168,18 +127,15 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Get the current {@link TestExecutionListener TestExecutionListeners}
-	 * registered for this {@code TestContextManager}.
-	 * <p>Allows for modifications, e.g. adding a listener to the beginning of the list.
-	 * However, make sure to keep the list stable while actually executing tests.
+	 * 获取为此 {@code TestContextManager} 注册的当前 {@link TestExecutionListener TestExecutionListeners}。
+	 * <p>允许进行修改，例如向列表开头添加监听器。不过，请确保在实际执行测试期间保持列表稳定。
 	 */
 	public final List<TestExecutionListener> getTestExecutionListeners() {
 		return this.testExecutionListeners;
 	}
 
 	/**
-	 * Get a copy of the {@link TestExecutionListener TestExecutionListeners}
-	 * registered for this {@code TestContextManager} in reverse order.
+	 * 按逆序获取为此 {@code TestContextManager} 注册的 {@link TestExecutionListener TestExecutionListeners} 的副本。
 	 */
 	private List<TestExecutionListener> getReversedTestExecutionListeners() {
 		List<TestExecutionListener> listenersReversed = new ArrayList<>(getTestExecutionListeners());
@@ -188,14 +144,8 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for pre-processing a test class <em>before</em> execution of any
-	 * tests within the class. Should be called prior to any framework-specific
-	 * <em>before class methods</em> (e.g., methods annotated with JUnit 4's
-	 * {@link org.junit.BeforeClass @BeforeClass}).
-	 * <p>An attempt will be made to give each registered
-	 * {@link TestExecutionListener} a chance to pre-process the test class
-	 * execution. If a listener throws an exception, however, the remaining
-	 * registered listeners will <strong>not</strong> be called.
+	 * 用于在类中任何测试执行<em>之前</em>预处理测试类的钩子。应在任何特定于框架的<em>before class 方法</em>（例如使用 JUnit 4 的 {@link org.junit.BeforeClass @BeforeClass} 注解的方法）之前调用。
+	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会预处理测试类的执行。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
 	 * @throws Exception if a registered TestExecutionListener throws an
 	 * exception
 	 * @since 3.0
@@ -220,19 +170,10 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for preparing a test instance prior to execution of any individual
-	 * test methods &mdash; for example, to inject dependencies.
-	 * <p>This method should be called immediately after instantiation of the test
-	 * class or as soon after instantiation as possible (as is the case with the
-	 * {@link org.springframework.test.context.junit4.rules.SpringMethodRule
-	 * SpringMethodRule}). In any case, this method must be called prior to any
-	 * framework-specific lifecycle callbacks.
-	 * <p>The managed {@link TestContext} will be updated with the supplied
-	 * {@code testInstance}.
-	 * <p>An attempt will be made to give each registered
-	 * {@link TestExecutionListener} a chance to prepare the test instance. If a
-	 * listener throws an exception, however, the remaining registered listeners
-	 * will <strong>not</strong> be called.
+	 * 用于在执行任何单个测试方法之前准备测试实例的钩子，例如用于注入依赖。
+	 * <p>此方法应在测试类实例化之后立即调用，或尽可能在实例化之后尽快调用（{@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule} 就是如此）。无论如何，此方法必须在任何特定于框架的生命周期回调之前调用。
+	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance} 进行更新。
+	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会准备测试实例。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
 	 * @param testInstance the test instance to prepare (never {@code null})
 	 * @throws Exception if a registered TestExecutionListener throws an exception
 	 * @see #getTestExecutionListeners()
@@ -258,23 +199,10 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for pre-processing a test <em>before</em> execution of <em>before</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
-	 * setting up test fixtures, starting a transaction, etc.
-	 * <p>This method <strong>must</strong> be called immediately prior to
-	 * framework-specific <em>before</em> lifecycle callbacks (e.g., methods
-	 * annotated with JUnit 4's {@link org.junit.Before @Before}). For historical
-	 * reasons, this method is named {@code beforeTestMethod}. Since the
-	 * introduction of {@link #beforeTestExecution}, a more suitable name for
-	 * this method might be something like {@code beforeTestSetUp} or
-	 * {@code beforeEach}; however, it is unfortunately impossible to rename
-	 * this method due to backward compatibility concerns.
-	 * <p>The managed {@link TestContext} will be updated with the supplied
-	 * {@code testInstance} and {@code testMethod}.
-	 * <p>An attempt will be made to give each registered
-	 * {@link TestExecutionListener} a chance to perform its pre-processing.
-	 * If a listener throws an exception, however, the remaining registered
-	 * listeners will <strong>not</strong> be called.
+	 * 用于在底层测试框架的 <em>before</em> 生命周期回调之前预处理测试的钩子，例如设置测试夹具、启动事务等。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调（例如使用 JUnit 4 的 {@link org.junit.Before @Before} 注解的方法）之前立即调用。由于历史原因，此方法被命名为 {@code beforeTestMethod}。自引入 {@link #beforeTestExecution} 以来，此方法更合适的名称也许是 {@code beforeTestSetUp} 或 {@code beforeEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
+	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance} 和 {@code testMethod} 进行更新。
+	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会执行其预处理。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
 	 * @param testInstance the current test instance (never {@code null})
 	 * @param testMethod the test method which is about to be executed on the
 	 * test instance
@@ -299,19 +227,10 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for pre-processing a test <em>immediately before</em> execution of
-	 * the {@linkplain java.lang.reflect.Method test method} in the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, for timing
-	 * or logging purposes.
-	 * <p>This method <strong>must</strong> be called after framework-specific
-	 * <em>before</em> lifecycle callbacks (e.g., methods annotated with JUnit 4's
-	 * {@link org.junit.Before @Before}).
-	 * <p>The managed {@link TestContext} will be updated with the supplied
-	 * {@code testInstance} and {@code testMethod}.
-	 * <p>An attempt will be made to give each registered
-	 * {@link TestExecutionListener} a chance to perform its pre-processing.
-	 * If a listener throws an exception, however, the remaining registered
-	 * listeners will <strong>not</strong> be called.
+	 * 用于在提供的{@linkplain TestContext 测试上下文}中{@linkplain java.lang.reflect.Method 测试方法}执行<em>之前一刻</em>预处理测试的钩子，例如用于计时或日志记录。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调（例如使用 JUnit 4 的 {@link org.junit.Before @Before} 注解的方法）之后调用。
+	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance} 和 {@code testMethod} 进行更新。
+	 * <p>将尝试让每个已注册的 {@link TestExecutionListener} 有机会执行其预处理。但是，如果某个监听器抛出异常，则其余已注册的监听器将<strong>不会</strong>被调用。
 	 * @param testInstance the current test instance (never {@code null})
 	 * @param testMethod the test method which is about to be executed on the
 	 * test instance
@@ -338,23 +257,11 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for post-processing a test <em>immediately after</em> execution of
-	 * the {@linkplain java.lang.reflect.Method test method} in the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, for timing
-	 * or logging purposes.
-	 * <p>This method <strong>must</strong> be called before framework-specific
-	 * <em>after</em> lifecycle callbacks (e.g., methods annotated with JUnit 4's
-	 * {@link org.junit.After @After}).
-	 * <p>The managed {@link TestContext} will be updated with the supplied
-	 * {@code testInstance}, {@code testMethod}, and {@code exception}.
-	 * <p>Each registered {@link TestExecutionListener} will be given a chance
-	 * to perform its post-processing. If a listener throws an exception, the
-	 * remaining registered listeners will still be called. After all listeners
-	 * have executed, the first caught exception will be rethrown with any
-	 * subsequent exceptions {@linkplain Throwable#addSuppressed suppressed} in
-	 * the first exception.
-	 * <p>Note that registered listeners will be executed in the opposite
-	 * order in which they were registered.
+	 * 用于在提供的{@linkplain TestContext 测试上下文}中{@linkplain java.lang.reflect.Method 测试方法}执行<em>之后一刻</em>后处理测试的钩子，例如用于计时或日志记录。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>after</em> 生命周期回调（例如使用 JUnit 4 的 {@link org.junit.After @After} 注解的方法）之前调用。
+	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance}、{@code testMethod} 和 {@code exception} 进行更新。
+	 * <p>每个已注册的 {@link TestExecutionListener} 都将有机会执行其后处理。如果某个监听器抛出异常，其余已注册的监听器仍将被调用。在所有监听器执行完毕后，将重新抛出第一个捕获的异常，并将后续异常{@linkplain Throwable#addSuppressed 抑制}到第一个异常中。
+	 * <p>请注意，已注册的监听器将按其注册顺序的相反顺序执行。
 	 * @param testInstance the current test instance (never {@code null})
 	 * @param testMethod the test method which has just been executed on the
 	 * test instance
@@ -399,26 +306,11 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for post-processing a test <em>after</em> execution of <em>after</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
-	 * tearing down test fixtures, ending a transaction, etc.
-	 * <p>This method <strong>must</strong> be called immediately after
-	 * framework-specific <em>after</em> lifecycle callbacks (e.g., methods
-	 * annotated with JUnit 4's {@link org.junit.After @After}). For historical
-	 * reasons, this method is named {@code afterTestMethod}. Since the
-	 * introduction of {@link #afterTestExecution}, a more suitable name for
-	 * this method might be something like {@code afterTestTearDown} or
-	 * {@code afterEach}; however, it is unfortunately impossible to rename
-	 * this method due to backward compatibility concerns.
-	 * <p>The managed {@link TestContext} will be updated with the supplied
-	 * {@code testInstance}, {@code testMethod}, and {@code exception}.
-	 * <p>Each registered {@link TestExecutionListener} will be given a chance
-	 * to perform its post-processing. If a listener throws an exception, the
-	 * remaining registered listeners will still be called. After all listeners
-	 * have executed, the first caught exception will be rethrown with any
-	 * subsequent exceptions {@linkplain Throwable#addSuppressed suppressed} in
-	 * the first exception.
-	 * <p>Note that registered listeners will be executed in the opposite
+	 * 用于在底层测试框架的 <em>after</em> 生命周期回调之后后处理测试的钩子，例如拆除测试夹具、结束事务等。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>after</em> 生命周期回调（例如使用 JUnit 4 的 {@link org.junit.After @After} 注解的方法）之后立即调用。由于历史原因，此方法被命名为 {@code afterTestMethod}。自引入 {@link #afterTestExecution} 以来，此方法更合适的名称也许是 {@code afterTestTearDown} 或 {@code afterEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
+	 * <p>受管理的 {@link TestContext} 将使用提供的 {@code testInstance}、{@code testMethod} 和 {@code exception} 进行更新。
+	 * <p>每个已注册的 {@link TestExecutionListener} 都将有机会执行其后处理。如果某个监听器抛出异常，其余已注册的监听器仍将被调用。在所有监听器执行完毕后，将重新抛出第一个捕获的异常，并将后续异常{@linkplain Throwable#addSuppressed 抑制}到第一个异常中。
+	 * <p>请注意，已注册的监听器将按其注册顺序的相反顺序执行。
 	 * @param testInstance the current test instance (never {@code null})
 	 * @param testMethod the test method which has just been executed on the
 	 * test instance
@@ -461,17 +353,9 @@ public class TestContextManager {
 	}
 
 	/**
-	 * Hook for post-processing a test class <em>after</em> execution of all
-	 * tests within the class. Should be called after any framework-specific
-	 * <em>after class methods</em> (e.g., methods annotated with JUnit 4's
-	 * {@link org.junit.AfterClass @AfterClass}).
-	 * <p>Each registered {@link TestExecutionListener} will be given a chance
-	 * to perform its post-processing. If a listener throws an exception, the
-	 * remaining registered listeners will still be called. After all listeners
-	 * have executed, the first caught exception will be rethrown with any
-	 * subsequent exceptions {@linkplain Throwable#addSuppressed suppressed} in
-	 * the first exception.
-	 * <p>Note that registered listeners will be executed in the opposite
+	 * 用于在类中所有测试执行<em>之后</em>后处理测试类的钩子。应在任何特定于框架的 <em>after class 方法</em>（例如使用 JUnit 4 的 {@link org.junit.AfterClass @AfterClass} 注解的方法）之后调用。
+	 * <p>每个已注册的 {@link TestExecutionListener} 都将有机会执行其后处理。如果某个监听器抛出异常，其余已注册的监听器仍将被调用。在所有监听器执行完毕后，将重新抛出第一个捕获的异常，并将后续异常{@linkplain Throwable#addSuppressed 抑制}到第一个异常中。
+	 * <p>请注意，已注册的监听器将按其注册顺序的相反顺序执行。
 	 * @throws Exception if a registered TestExecutionListener throws an exception
 	 * @since 3.0
 	 * @see #getTestExecutionListeners()
@@ -555,8 +439,7 @@ public class TestContextManager {
 
 
 	/**
-	 * Attempt to create a copy of the supplied {@code TestContext} using its
-	 * <em>copy constructor</em>.
+	 * 尝试使用提供的 {@code TestContext} 的<em>拷贝构造函数</em>创建其副本。
 	 */
 	private static TestContext copyTestContext(TestContext testContext) {
 		Constructor<? extends TestContext> constructor =

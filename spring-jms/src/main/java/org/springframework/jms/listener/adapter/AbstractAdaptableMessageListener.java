@@ -45,8 +45,8 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.util.Assert;
 
 /**
- * An abstract JMS {@link MessageListener} adapter providing the necessary
- * infrastructure to extract the payload of a JMS {@link Message}.
+ * 抽象的 JMS {@link MessageListener} 适配器，提供提取 JMS {@link Message}
+ * 负载所需的基础设施。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -57,7 +57,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractAdaptableMessageListener
 		implements MessageListener, SessionAwareMessageListener<Message> {
 
-	/** Logger available to subclasses. */
+	/** 子类可用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -75,13 +75,12 @@ public abstract class AbstractAdaptableMessageListener
 
 
 	/**
-	 * Set the default destination to send response messages to. This will be applied
-	 * in case of a request message that does not carry a "JMSReplyTo" field.
-	 * <p>Response destinations are only relevant for listener methods that return
-	 * result objects, which will be wrapped in a response message and sent to a
-	 * response destination.
-	 * <p>Alternatively, specify a "defaultResponseQueueName" or "defaultResponseTopicName",
-	 * to be dynamically resolved via the DestinationResolver.
+	 * 设置用于发送响应消息的默认目的地。在请求消息未携带 "JMSReplyTo" 字段时
+	 * 将应用此设置。
+	 * <p>响应目的地只与返回结果对象的监听器方法相关，这些结果对象将被包装成
+	 * 响应消息并发送到响应目的地。
+	 * <p>或者，指定 "defaultResponseQueueName" 或 "defaultResponseTopicName"，
+	 * 以便通过 DestinationResolver 动态解析。
 	 * @see #setDefaultResponseQueueName(String)
 	 * @see #setDefaultResponseTopicName(String)
 	 * @see #getResponseDestination
@@ -91,10 +90,9 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Set the name of the default response queue to send response messages to.
-	 * This will be applied in case of a request message that does not carry a
-	 * "JMSReplyTo" field.
-	 * <p>Alternatively, specify a JMS Destination object as "defaultResponseDestination".
+	 * 设置用于发送响应消息的默认响应队列名称。
+	 * 在请求消息未携带 "JMSReplyTo" 字段时将应用此设置。
+	 * <p>或者，将 JMS Destination 对象指定为 "defaultResponseDestination"。
 	 * @see #setDestinationResolver
 	 * @see #setDefaultResponseDestination(javax.jms.Destination)
 	 */
@@ -103,10 +101,9 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Set the name of the default response topic to send response messages to.
-	 * This will be applied in case of a request message that does not carry a
-	 * "JMSReplyTo" field.
-	 * <p>Alternatively, specify a JMS Destination object as "defaultResponseDestination".
+	 * 设置用于发送响应消息的默认响应主题名称。
+	 * 在请求消息未携带 "JMSReplyTo" 字段时将应用此设置。
+	 * <p>或者，将 JMS Destination 对象指定为 "defaultResponseDestination"。
 	 * @see #setDestinationResolver
 	 * @see #setDefaultResponseDestination(javax.jms.Destination)
 	 */
@@ -115,10 +112,9 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Set the DestinationResolver that should be used to resolve response
-	 * destination names for this adapter.
-	 * <p>The default resolver is a DynamicDestinationResolver. Specify a
-	 * JndiDestinationResolver for resolving destination names as JNDI locations.
+	 * 设置用于为此适配器解析响应目的地名称的 DestinationResolver。
+	 * <p>默认解析器是 DynamicDestinationResolver。如果需要将目的地名称作为
+	 * JNDI 位置解析，请指定 JndiDestinationResolver。
 	 * @see org.springframework.jms.support.destination.DynamicDestinationResolver
 	 * @see org.springframework.jms.support.destination.JndiDestinationResolver
 	 */
@@ -128,29 +124,27 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Return the DestinationResolver for this adapter.
+	 * 返回此适配器的 DestinationResolver。
 	 */
 	protected DestinationResolver getDestinationResolver() {
 		return this.destinationResolver;
 	}
 
 	/**
-	 * Set the converter that will convert incoming JMS messages to
-	 * listener method arguments, and objects returned from listener
-	 * methods back to JMS messages.
-	 * <p>The default converter is a {@link SimpleMessageConverter}, which is able
-	 * to handle {@link javax.jms.BytesMessage BytesMessages},
-	 * {@link javax.jms.TextMessage TextMessages} and
-	 * {@link javax.jms.ObjectMessage ObjectMessages}.
+	 * 设置转换器，用于将传入的 JMS 消息转换为监听器方法参数，
+	 * 以及将监听器方法返回的对象转换回 JMS 消息。
+	 * <p>默认转换器是 {@link SimpleMessageConverter}，它能够处理
+	 * {@link javax.jms.BytesMessage BytesMessage}、
+	 * {@link javax.jms.TextMessage TextMessage} 和
+	 * {@link javax.jms.ObjectMessage ObjectMessage}。
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {
 		this.messageConverter = messageConverter;
 	}
 
 	/**
-	 * Return the converter that will convert incoming JMS messages to
-	 * listener method arguments, and objects returned from listener
-	 * methods back to JMS messages.
+	 * 返回转换器，用于将传入的 JMS 消息转换为监听器方法参数，
+	 * 以及将监听器方法返回的对象转换回 JMS 消息。
 	 */
 	@Nullable
 	protected MessageConverter getMessageConverter() {
@@ -158,8 +152,8 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Set the {@link JmsHeaderMapper} implementation to use to map the standard
-	 * JMS headers. By default, a {@link SimpleJmsHeaderMapper} is used.
+	 * 设置用于映射标准 JMS 头部的 {@link JmsHeaderMapper} 实现。
+	 * 默认使用 {@link SimpleJmsHeaderMapper}。
 	 * @see SimpleJmsHeaderMapper
 	 */
 	public void setHeaderMapper(JmsHeaderMapper headerMapper) {
@@ -168,16 +162,16 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Return the {@link MessagingMessageConverter} for this listener,
-	 * being able to convert {@link org.springframework.messaging.Message}.
+	 * 返回此监听器的 {@link MessagingMessageConverter}，
+	 * 它能够转换 {@link org.springframework.messaging.Message}。
 	 */
 	protected final MessagingMessageConverter getMessagingMessageConverter() {
 		return this.messagingMessageConverter;
 	}
 
 	/**
-	 * Set the {@link QosSettings} to use when sending a response. Can be set to
-	 * {@code null} to indicate that the broker's defaults should be used.
+	 * 设置发送响应时要使用的 {@link QosSettings}。可以设置为 {@code null}，
+	 * 表示应使用代理的默认值。
 	 * @param responseQosSettings the QoS settings to use when sending a response or
 	 * {@code null} to use the default values.
 	 * @since 5.0
@@ -187,8 +181,8 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Return the {@link QosSettings} to use when sending a response,
-	 * or {@code null} if the defaults should be used.
+	 * 返回发送响应时要使用的 {@link QosSettings}，
+	 * 如果应使用默认值则返回 {@code null}。
 	 * @since 5.0
 	 */
 	@Nullable
@@ -198,14 +192,12 @@ public abstract class AbstractAdaptableMessageListener
 
 
 	/**
-	 * Standard JMS {@link MessageListener} entry point.
-	 * <p>Delegates the message to the target listener method, with appropriate
-	 * conversion of the message argument. In case of an exception, the
-	 * {@link #handleListenerException(Throwable)} method will be invoked.
-	 * <p><b>Note:</b> Does not support sending response messages based on
-	 * result objects returned from listener methods. Use the
-	 * {@link SessionAwareMessageListener} entry point (typically through a Spring
-	 * message listener container) for handling result objects as well.
+	 * 标准 JMS {@link MessageListener} 入口点。
+	 * <p>将消息（经过适当的消息参数转换）委托给目标监听器方法。
+	 * 发生异常时，将调用 {@link #handleListenerException(Throwable)} 方法。
+	 * <p><b>注意：</b>不支持根据监听器方法返回的结果对象发送响应消息。
+	 * 如需同时处理结果对象，请使用 {@link SessionAwareMessageListener} 入口点
+	 * （通常通过 Spring 消息监听器容器）。
 	 * @param message the incoming JMS message
 	 * @see #handleListenerException
 	 * @see #onMessage(javax.jms.Message, javax.jms.Session)
@@ -224,11 +216,10 @@ public abstract class AbstractAdaptableMessageListener
 	public abstract void onMessage(Message message, @Nullable Session session) throws JMSException;
 
 	/**
-	 * Handle the given exception that arose during listener execution.
-	 * The default implementation logs the exception at error level.
-	 * <p>This method only applies when used as standard JMS {@link MessageListener}.
-	 * In case of the Spring {@link SessionAwareMessageListener} mechanism,
-	 * exceptions get handled by the caller instead.
+	 * 处理监听器执行期间出现的给定异常。
+	 * 默认实现以 error 级别记录该异常。
+	 * <p>此方法仅在作为标准 JMS {@link MessageListener} 使用时适用。
+	 * 在 Spring {@link SessionAwareMessageListener} 机制下，异常由调用方处理。
 	 * @param ex the exception to handle
 	 * @see #onMessage(javax.jms.Message)
 	 */
@@ -238,7 +229,7 @@ public abstract class AbstractAdaptableMessageListener
 
 
 	/**
-	 * Extract the message body from the given JMS message.
+	 * 从给定的 JMS 消息中提取消息体。
 	 * @param message the JMS {@code Message}
 	 * @return the content of the message, to be passed into the listener method
 	 * as an argument
@@ -258,8 +249,7 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Handle the given result object returned from the listener method,
-	 * sending a response message back.
+	 * 处理监听器方法返回的给定结果对象，并发送响应消息。
 	 * @param result the result object to handle (never {@code null})
 	 * @param request the original request message
 	 * @param session the JMS Session to operate on (may be {@code null})
@@ -296,7 +286,7 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Build a JMS message to be sent as response based on the given result object.
+	 * 根据给定的结果对象构建要作为响应发送的 JMS 消息。
 	 * @param session the JMS Session to operate on
 	 * @param result the content of the message, as returned from the listener method
 	 * @return the JMS {@code Message} (never {@code null})
@@ -325,7 +315,7 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Pre-process the given result before it is converted to a {@link Message}.
+	 * 在给定结果被转换为 {@link Message} 之前对其进行预处理。
 	 * @param result the result of the invocation
 	 * @return the payload response to handle, either the {@code result} argument
 	 * or any other object (for instance wrapping the result).
@@ -336,10 +326,9 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Post-process the given response message before it will be sent.
-	 * <p>The default implementation sets the response's correlation id
-	 * to the request message's correlation id, if any; otherwise to the
-	 * request message id.
+	 * 在发送之前对给定的响应消息进行后处理。
+	 * <p>默认实现将响应的关联 ID 设置为请求消息的关联 ID（如果有）；
+	 * 否则设置为请求消息的 ID。
 	 * @param request the original incoming JMS message
 	 * @param response the outgoing JMS message about to be sent
 	 * @throws JMSException if thrown by JMS API methods
@@ -367,13 +356,11 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Determine a response destination for the given message.
-	 * <p>The default implementation first checks the JMS Reply-To
-	 * {@link Destination} of the supplied request; if that is not {@code null}
-	 * it is returned; if it is {@code null}, then the configured
-	 * {@link #resolveDefaultResponseDestination default response destination}
-	 * is returned; if this too is {@code null}, then an
-	 * {@link javax.jms.InvalidDestinationException} is thrown.
+	 * 为给定消息确定响应目的地。
+	 * <p>默认实现首先检查所提供请求消息的 JMS Reply-To {@link Destination}；
+	 * 如果不为 {@code null} 则返回它；如果为 {@code null}，则返回配置的
+	 * {@link #resolveDefaultResponseDestination default response destination}；
+	 * 如果这也为 {@code null}，则抛出 {@link javax.jms.InvalidDestinationException}。
 	 * @param request the original incoming JMS message
 	 * @param response the outgoing JMS message about to be sent
 	 * @param session the JMS Session to operate on
@@ -398,8 +385,8 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Resolve the default response destination into a JMS {@link Destination}, using this
-	 * accessor's {@link DestinationResolver} in case of a destination name.
+	 * 使用此访问器的 {@link DestinationResolver} 将默认响应目的地
+	 * （在目的地名称的情况下）解析为 JMS {@link Destination}。
 	 * @return the located {@link Destination}
 	 * @throws javax.jms.JMSException if resolution failed
 	 * @see #setDefaultResponseDestination
@@ -420,7 +407,7 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Send the given response message to the given destination.
+	 * 将给定的响应消息发送到给定的目的地。
 	 * @param response the JMS message to send
 	 * @param destination the JMS destination to send to
 	 * @param session the JMS session to operate on
@@ -448,8 +435,8 @@ public abstract class AbstractAdaptableMessageListener
 	}
 
 	/**
-	 * Post-process the given message producer before using it to send the response.
-	 * <p>The default implementation is empty.
+	 * 在使用给定的消息生产者发送响应之前对其进行后处理。
+	 * <p>默认实现为空。
 	 * @param producer the JMS message producer that will be used to send the message
 	 * @param response the outgoing JMS message about to be sent
 	 * @throws JMSException if thrown by JMS API methods
@@ -459,9 +446,9 @@ public abstract class AbstractAdaptableMessageListener
 
 
 	/**
-	 * A {@link MessagingMessageConverter} that lazily invokes payload extraction and
-	 * delegates it to {@link #extractMessage(javax.jms.Message)} in order to enforce
-	 * backward compatibility.
+	 * 一个 {@link MessagingMessageConverter}，它以惰性方式调用负载提取，
+	 * 并将其委托给 {@link #extractMessage(javax.jms.Message)}，
+	 * 以保持向后兼容性。
 	 */
 	private class MessagingMessageConverterAdapter extends MessagingMessageConverter {
 
@@ -532,9 +519,8 @@ public abstract class AbstractAdaptableMessageListener
 			}
 
 			/**
-			 * Extract the payload of the current message. Since we deferred the resolution
-			 * of the payload, a custom converter may still return a full message for it. In
-			 * this case, its payload is returned.
+			 * 提取当前消息的负载。由于我们推迟了负载的解析，自定义转换器仍可能
+			 * 为其返回一条完整消息。在这种情况下，将返回该消息的负载。
 			 * @return the payload of the message
 			 */
 			@SuppressWarnings("rawtypes")
@@ -558,8 +544,7 @@ public abstract class AbstractAdaptableMessageListener
 
 
 	/**
-	 * Internal class combining a destination name
-	 * and its target destination type (queue or topic).
+	 * 内部类，组合了目的地名称及其目标目的地类型（队列或主题）。
 	 */
 	private static class DestinationNameHolder {
 

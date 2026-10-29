@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.NumberUtils;
 
 /**
- * Implements the modulus operator.
+ * 实现取模运算符。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

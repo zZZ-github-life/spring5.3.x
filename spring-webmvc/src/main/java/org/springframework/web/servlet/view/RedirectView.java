@@ -48,29 +48,24 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * View that redirects to an absolute, context relative, or current request
- * relative URL. The URL may be a URI template in which case the URI template
- * variables will be replaced with values available in the model. By default,
- * all primitive model attributes (or collections thereof) are exposed as HTTP
- * query parameters (assuming they've not been used as URI template variables),
- * but this behavior can be changed by overriding the
- * {@link #isEligibleProperty(String, Object)} method.
+ * 将请求重定向到绝对 URL、相对于上下文（context）的 URL 或相对于当前请求的 URL 的 View。
+ * URL 可以是一个 URI 模板，此时 URI 模板变量将被替换为 model 中可用的值。
+ * 默认情况下，所有简单类型（primitive）的 model 属性（或其集合）都会作为
+ * HTTP 查询参数暴露出来（前提是它们未被用作 URI 模板变量），
+ * 但可以通过重写 {@link #isEligibleProperty(String, Object)} 方法来改变此行为。
  *
- * <p>A URL for this view is supposed to be an HTTP redirect URL, i.e.
- * suitable for HttpServletResponse's {@code sendRedirect} method, which
- * is what actually does the redirect if the HTTP 1.0 flag is on, or via sending
- * back an HTTP 303 code - if the HTTP 1.0 compatibility flag is off.
+ * <p>此视图的 URL 应当是一个 HTTP 重定向 URL，即适合传给 HttpServletResponse 的
+ * {@code sendRedirect} 方法；如果开启了 HTTP 1.0 标志，实际的重定向就由该方法完成，
+ * 或者在关闭 HTTP 1.0 兼容标志时，通过返回 HTTP 303 状态码完成重定向。
  *
- * <p>Note that while the default value for the "contextRelative" flag is off,
- * you will probably want to almost always set it to true. With the flag off,
- * URLs starting with "/" are considered relative to the web server root, while
- * with the flag on, they are considered relative to the web application root.
- * Since most web applications will never know or care what their context path
- * actually is, they are much better off setting this flag to true, and submitting
- * paths which are to be considered relative to the web application root.
+ * <p>请注意：虽然 "contextRelative" 标志的默认值为关闭，但你可能几乎总是希望将其设为 true。
+ * 当标志关闭时，以 "/" 开头的 URL 被视为相对于 Web 服务器根路径；
+ * 当标志开启时，它们则被视为相对于 Web 应用根路径。
+ * 由于大多数 Web 应用从不了解也不关心自己的 context path 究竟是什么，
+ * 因此最好将此标志设为 true，并提交相对于 Web 应用根路径解释的路径。
  *
- * <p><b>NOTE when using this redirect view in a Portlet environment:</b> Make sure
- * that your controller respects the Portlet {@code sendRedirect} constraints.
+ * <p><b>在 Portlet 环境中使用此重定向视图时的注意事项：</b>请确保
+ * 你的控制器遵守 Portlet {@code sendRedirect} 的约束。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -109,16 +104,15 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 用于作为 bean 使用的构造器。
 	 */
 	public RedirectView() {
 		setExposePathVariables(false);
 	}
 
 	/**
-	 * Create a new RedirectView with the given URL.
-	 * <p>The given URL will be considered as relative to the web server,
-	 * not as relative to the current ServletContext.
+	 * 使用给定 URL 创建一个新的 RedirectView。
+	 * <p>给定的 URL 将被视为相对于 Web 服务器，而不是相对于当前 ServletContext。
 	 * @param url the URL to redirect to
 	 * @see #RedirectView(String, boolean)
 	 */
@@ -128,7 +122,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Create a new RedirectView with the given URL.
+	 * 使用给定 URL 创建一个新的 RedirectView。
 	 * @param url the URL to redirect to
 	 * @param contextRelative whether to interpret the given URL as
 	 * relative to the current ServletContext
@@ -140,7 +134,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Create a new RedirectView with the given URL.
+	 * 使用给定 URL 创建一个新的 RedirectView。
 	 * @param url the URL to redirect to
 	 * @param contextRelative whether to interpret the given URL as
 	 * relative to the current ServletContext
@@ -154,7 +148,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Create a new RedirectView with the given URL.
+	 * 使用给定 URL 创建一个新的 RedirectView。
 	 * @param url the URL to redirect to
 	 * @param contextRelative whether to interpret the given URL as
 	 * relative to the current ServletContext
@@ -172,12 +166,10 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 
 
 	/**
-	 * Set whether to interpret a given URL that starts with a slash ("/")
-	 * as relative to the current ServletContext, i.e. as relative to the
-	 * web application root.
-	 * <p>Default is "false": A URL that starts with a slash will be interpreted
-	 * as absolute, i.e. taken as-is. If "true", the context path will be
-	 * prepended to the URL in such a case.
+	 * 设置是否将以斜杠（"/"）开头的给定 URL 解释为相对于当前 ServletContext，
+	 * 即相对于 Web 应用根路径。
+	 * <p>默认值为 "false"：以斜杠开头的 URL 将被解释为绝对路径，即按原样使用。
+	 * 如果设为 "true"，则在这种情况下会将 context path 添加到 URL 前面。
 	 * @see javax.servlet.http.HttpServletRequest#getContextPath
 	 */
 	public void setContextRelative(boolean contextRelative) {
@@ -185,14 +177,14 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Set whether to stay compatible with HTTP 1.0 clients.
-	 * <p>In the default implementation, this will enforce HTTP status code 302
-	 * in any case, i.e. delegate to {@code HttpServletResponse.sendRedirect}.
-	 * Turning this off will send HTTP status code 303, which is the correct
-	 * code for HTTP 1.1 clients, but not understood by HTTP 1.0 clients.
-	 * <p>Many HTTP 1.1 clients treat 302 just like 303, not making any
-	 * difference. However, some clients depend on 303 when redirecting
-	 * after a POST request; turn this flag off in such a scenario.
+	 * 设置是否保持与 HTTP 1.0 客户端兼容。
+	 * <p>在默认实现中，无论如何都会强制使用 HTTP 状态码 302，
+	 * 即委托给 {@code HttpServletResponse.sendRedirect}。
+	 * 关闭此选项将发送 HTTP 状态码 303，这是适用于 HTTP 1.1 客户端的正确状态码，
+	 * 但 HTTP 1.0 客户端无法理解。
+	 * <p>许多 HTTP 1.1 客户端对待 302 与 303 的方式相同，并无区别。
+	 * 不过，有些客户端在 POST 请求之后进行重定向时依赖 303；
+	 * 在这种场景下请关闭此标志。
 	 * @see javax.servlet.http.HttpServletResponse#sendRedirect
 	 */
 	public void setHttp10Compatible(boolean http10Compatible) {
@@ -200,47 +192,45 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Set the {@code exposeModelAttributes} flag which denotes whether
-	 * model attributes should be exposed as HTTP query parameters.
-	 * <p>Defaults to {@code true}.
+	 * 设置 {@code exposeModelAttributes} 标志，它表示是否将
+	 * model 属性暴露为 HTTP 查询参数。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setExposeModelAttributes(final boolean exposeModelAttributes) {
 		this.exposeModelAttributes = exposeModelAttributes;
 	}
 
 	/**
-	 * Set the encoding scheme for this view.
-	 * <p>Default is the request's encoding scheme
-	 * (which is ISO-8859-1 if not specified otherwise).
+	 * 设置此视图使用的编码方案。
+	 * <p>默认使用请求的编码方案（如果未另行指定，则为 ISO-8859-1）。
 	 */
 	public void setEncodingScheme(String encodingScheme) {
 		this.encodingScheme = encodingScheme;
 	}
 
 	/**
-	 * Set the status code for this view.
-	 * <p>Default is to send 302/303, depending on the value of the
-	 * {@link #setHttp10Compatible(boolean) http10Compatible} flag.
+	 * 设置此视图使用的状态码。
+	 * <p>默认发送 302/303，具体取决于
+	 * {@link #setHttp10Compatible(boolean) http10Compatible} 标志的值。
 	 */
 	public void setStatusCode(HttpStatus statusCode) {
 		this.statusCode = statusCode;
 	}
 
 	/**
-	 * Whether to treat the redirect URL as a URI template.
-	 * Set this flag to {@code false} if the redirect URL contains open
-	 * and close curly braces "{", "}" and you don't want them interpreted
-	 * as URI variables.
-	 * <p>Defaults to {@code true}.
+	 * 是否将重定向 URL 视为 URI 模板。
+	 * 如果重定向 URL 中包含左花括号 "{" 和右花括号 "}"，
+	 * 而你不希望它们被解释为 URI 变量，请将此标志设为 {@code false}。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setExpandUriTemplateVariables(boolean expandUriTemplateVariables) {
 		this.expandUriTemplateVariables = expandUriTemplateVariables;
 	}
 
 	/**
-	 * When set to {@code true} the query string of the current URL is appended
-	 * and thus propagated through to the redirected URL.
-	 * <p>Defaults to {@code false}.
+	 * 当设为 {@code true} 时，当前 URL 的查询字符串将被追加，
+	 * 从而传递到重定向后的 URL。
+	 * <p>默认值为 {@code false}。
 	 * @since 4.1
 	 */
 	public void setPropagateQueryParams(boolean propagateQueryParams) {
@@ -248,7 +238,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Whether to propagate the query params of the current URL.
+	 * 是否传播当前 URL 的查询参数。
 	 * @since 4.1
 	 */
 	public boolean isPropagateQueryProperties() {
@@ -256,12 +246,11 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Configure one or more hosts associated with the application.
-	 * All other hosts will be considered external hosts.
-	 * <p>In effect, this property provides a way turn off encoding via
-	 * {@link HttpServletResponse#encodeRedirectURL} for URLs that have a
-	 * host and that host is not listed as a known host.
-	 * <p>If not set (the default) all URLs are encoded through the response.
+	 * 配置与应用关联的一个或多个主机。
+	 * 所有其他主机都将被视为外部主机。
+	 * <p>实际上，此属性提供了一种对带有主机且该主机未被列为已知主机的 URL
+	 * 关闭通过 {@link HttpServletResponse#encodeRedirectURL} 进行编码的方式。
+	 * <p>如果未设置（默认情况），则所有 URL 都会通过响应进行编码。
 	 * @param hosts one or more application hosts
 	 * @since 4.3
 	 */
@@ -270,7 +259,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Return the configured application hosts.
+	 * 返回已配置的应用主机。
 	 * @since 4.3
 	 */
 	@Nullable
@@ -279,7 +268,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Returns "true" indicating this view performs a redirect.
+	 * 返回 "true"，表示此视图执行重定向。
 	 */
 	@Override
 	public boolean isRedirectView() {
@@ -287,7 +276,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * An ApplicationContext is not strictly required for RedirectView.
+	 * RedirectView 并不严格要求 ApplicationContext。
 	 */
 	@Override
 	protected boolean isContextRequired() {
@@ -296,7 +285,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 
 
 	/**
-	 * Convert model to request parameters and redirect to the given URL.
+	 * 将 model 转换为请求参数并重定向到给定 URL。
 	 * @see #appendQueryProperties
 	 * @see #sendRedirect
 	 */
@@ -315,9 +304,9 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Create the target URL by checking if the redirect string is a URI template first,
-	 * expanding it with the given model, and then optionally appending simple type model
-	 * attributes as query String parameters.
+	 * 创建目标 URL：首先检查重定向字符串是否为 URI 模板，
+	 * 若是则用给定的 model 展开它，然后可选地将简单类型的 model 属性
+	 * 作为查询字符串参数追加到 URL。
 	 */
 	protected final String createTargetUrl(Map<String, Object> model, HttpServletRequest request)
 			throws UnsupportedEncodingException {
@@ -364,9 +353,8 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Replace URI template variables in the target URL with encoded model
-	 * attributes or URI variables from the current request. Model attributes
-	 * referenced in the URL are removed from the model.
+	 * 用编码后的 model 属性或当前请求的 URI 变量替换目标 URL 中的 URI 模板变量。
+	 * URL 中引用到的 model 属性将从 model 中移除。
 	 * @param targetUrl the redirect URL
 	 * @param model a Map that contains model attributes
 	 * @param currentUriVariables current request URI variables to use
@@ -402,7 +390,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Append the query string of the current request to the target redirect URL.
+	 * 将当前请求的查询字符串追加到目标重定向 URL。
 	 * @param targetUrl the StringBuilder to append the properties to
 	 * @param request the current request
 	 * @since 4.1
@@ -432,8 +420,8 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Append query properties to the redirect URL.
-	 * Stringifies, URL-encodes and formats model attributes as query properties.
+	 * 将查询属性追加到重定向 URL。
+	 * 将 model 属性转换为字符串、进行 URL 编码并格式化为查询属性。
 	 * @param targetUrl the StringBuilder to append the properties to
 	 * @param model a Map that contains model attributes
 	 * @param encodingScheme the encoding scheme to use
@@ -487,11 +475,10 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Determine name-value pairs for query strings, which will be stringified,
-	 * URL-encoded and formatted by {@link #appendQueryProperties}.
-	 * <p>This implementation filters the model through checking
-	 * {@link #isEligibleProperty(String, Object)} for each element,
-	 * by default accepting Strings, primitives and primitive wrappers only.
+	 * 确定查询字符串的名称-值对，这些名称-值对将由
+	 * {@link #appendQueryProperties} 转换为字符串、进行 URL 编码并格式化。
+	 * <p>此实现通过对每个元素调用 {@link #isEligibleProperty(String, Object)}
+	 * 来过滤 model，默认只接受 String、简单类型（primitive）及其包装类型。
 	 * @param model the original model Map
 	 * @return the filtered Map of eligible query properties
 	 * @see #isEligibleProperty(String, Object)
@@ -507,11 +494,10 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Determine whether the given model element should be exposed
-	 * as a query property.
-	 * <p>The default implementation considers Strings and primitives
-	 * as eligible, and also arrays and Collections/Iterables with
-	 * corresponding elements. This can be overridden in subclasses.
+	 * 确定给定的 model 元素是否应作为查询属性暴露。
+	 * <p>默认实现认为 String 和简单类型（primitive）是符合条件的，
+	 * 元素类型相应的数组和 Collection/Iterable 也符合条件。
+	 * 此方法可以在子类中重写。
 	 * @param key the key of the model element
 	 * @param value the value of the model element
 	 * @return whether the element is eligible as query property
@@ -552,10 +538,10 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Determine whether the given model element value is eligible for exposure.
-	 * <p>The default implementation considers primitives, strings, numbers, dates,
-	 * URIs, URLs etc as eligible, according to {@link BeanUtils#isSimpleValueType}.
-	 * This can be overridden in subclasses.
+	 * 确定给定的 model 元素值是否适合暴露。
+	 * <p>默认实现根据 {@link BeanUtils#isSimpleValueType} 认为简单类型（primitive）、
+	 * 字符串、数字、日期、URI、URL 等是符合条件的。
+	 * 此方法可以在子类中重写。
 	 * @param value the model element value
 	 * @return whether the element value is eligible
 	 * @see BeanUtils#isSimpleValueType
@@ -565,8 +551,8 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * URL-encode the given input String with the given encoding scheme.
-	 * <p>The default implementation uses {@code URLEncoder.encode(input, enc)}.
+	 * 使用给定的编码方案对给定的输入字符串进行 URL 编码。
+	 * <p>默认实现使用 {@code URLEncoder.encode(input, enc)}。
 	 * @param input the unencoded input String
 	 * @param encodingScheme the encoding scheme
 	 * @return the encoded output String
@@ -578,8 +564,8 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Find the registered {@link RequestDataValueProcessor}, if any, and allow
-	 * it to update the redirect target URL.
+	 * 查找已注册的 {@link RequestDataValueProcessor}（如果有），
+	 * 并允许它更新重定向目标 URL。
 	 * @param targetUrl the given redirect URL
 	 * @return the updated URL or the same as URL as the one passed in
 	 */
@@ -601,7 +587,7 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Send a redirect back to the HTTP client.
+	 * 向 HTTP 客户端发送重定向响应。
 	 * @param request current HTTP request (allows for reacting to request method)
 	 * @param response current HTTP response (for sending response headers)
 	 * @param targetUrl the target URL to redirect to
@@ -635,10 +621,10 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Whether the given targetUrl has a host that is a "foreign" system in which
-	 * case {@link HttpServletResponse#encodeRedirectURL} will not be applied.
-	 * <p>This method returns {@code true} if the {@link #setHosts(String[])}
-	 * property is configured and the target URL has a host that does not match.
+	 * 判断给定 targetUrl 的主机是否为“外部”系统，若是，
+	 * 则不会应用 {@link HttpServletResponse#encodeRedirectURL}。
+	 * <p>如果配置了 {@link #setHosts(String[])} 属性，
+	 * 并且目标 URL 的主机与之不匹配，此方法返回 {@code true}。
 	 * @param targetUrl the target redirect URL
 	 * @return {@code true} if the target URL has a remote host, {@code false} if
 	 * the URL does not have a host or the "host" property is not configured
@@ -661,10 +647,10 @@ public class RedirectView extends AbstractUrlBasedView implements SmartView {
 	}
 
 	/**
-	 * Determines the status code to use for HTTP 1.1 compatible requests.
-	 * <p>The default implementation returns the {@link #setStatusCode(HttpStatus) statusCode}
-	 * property if set, or the value of the {@link #RESPONSE_STATUS_ATTRIBUTE} attribute.
-	 * If neither are set, it defaults to {@link HttpStatus#SEE_OTHER} (303).
+	 * 确定用于 HTTP 1.1 兼容请求的状态码。
+	 * <p>默认实现会返回 {@link #setStatusCode(HttpStatus) statusCode} 属性（如果已设置），
+	 * 否则返回 {@link #RESPONSE_STATUS_ATTRIBUTE} 属性的值。
+	 * 如果两者都未设置，则默认为 {@link HttpStatus#SEE_OTHER}（303）。
 	 * @param request the request to inspect
 	 * @param response the servlet response
 	 * @param targetUrl the target URL

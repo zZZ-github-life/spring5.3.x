@@ -34,7 +34,7 @@ import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 
 /**
- * Assists with the registration of resource resolvers and transformers.
+ * 辅助注册资源解析器和转换器。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -74,7 +74,7 @@ public class ResourceChainRegistration {
 
 
 	/**
-	 * Add a resource resolver to the chain.
+	 * 向链中添加资源解析器。
 	 * @param resolver the resolver to add
 	 * @return the current instance for chained method invocation
 	 */
@@ -94,7 +94,7 @@ public class ResourceChainRegistration {
 	}
 
 	/**
-	 * Add a resource transformer to the chain.
+	 * 向链中添加资源转换器。
 	 * @param transformer the transformer to add
 	 * @return the current instance for chained method invocation
 	 */

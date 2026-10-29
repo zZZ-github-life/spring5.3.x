@@ -26,8 +26,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Base class for {@link EmbeddedDatabaseConfigurer} implementations
- * providing common shutdown behavior through a "SHUTDOWN" statement.
+ * {@link EmbeddedDatabaseConfigurer} 实现类的基类，
+ * 通过 "SHUTDOWN" 语句提供通用的关闭行为。
  *
  * @author Oliver Gierke
  * @author Juergen Hoeller

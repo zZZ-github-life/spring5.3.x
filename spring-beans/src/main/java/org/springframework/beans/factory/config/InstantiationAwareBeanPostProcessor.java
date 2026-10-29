@@ -23,18 +23,14 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
- * Subinterface of {@link BeanPostProcessor} that adds a before-instantiation callback,
- * and a callback after instantiation but before explicit properties are set or
- * autowiring occurs.
+ * {@link BeanPostProcessor} 的子接口，增加了实例化前回调，以及实例化之后但在设置显式属性或进行自动
+ * 装配之前执行的回调。
  *
- * <p>Typically used to suppress default instantiation for specific target beans,
- * for example to create proxies with special TargetSources (pooling targets,
- * lazily initializing targets, etc), or to implement additional injection strategies
- * such as field injection.
+ * <p>通常用于抑制特定目标 Bean 的默认实例化，例如使用特殊的 TargetSources（池化目标、延迟初始化目
+ * 标等）创建代理，或实现额外的注入策略，例如字段注入。
  *
- * <p><b>NOTE:</b> This interface is a special purpose interface, mainly for
- * internal use within the framework. It is recommended to implement the plain
- * {@link BeanPostProcessor} interface as far as possible.
+ * <p><b>NOTE:</b> 此接口是一个特殊用途的接口，主要用于框架内部。建议尽可能实现普通的
+ * {@link BeanPostProcessor} 接口。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -45,20 +41,15 @@ import org.springframework.lang.Nullable;
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 
 	/**
-	 * Apply this BeanPostProcessor <i>before the target bean gets instantiated</i>.
-	 * The returned bean object may be a proxy to use instead of the target bean,
-	 * effectively suppressing default instantiation of the target bean.
-	 * <p>If a non-null object is returned by this method, the bean creation process
-	 * will be short-circuited. The only further processing applied is the
-	 * {@link #postProcessAfterInitialization} callback from the configured
-	 * {@link BeanPostProcessor BeanPostProcessors}.
-	 * <p>This callback will be applied to bean definitions with their bean class,
-	 * as well as to factory-method definitions in which case the returned bean type
-	 * will be passed in here.
-	 * <p>Post-processors may implement the extended
-	 * {@link SmartInstantiationAwareBeanPostProcessor} interface in order
-	 * to predict the type of the bean object that they are going to return here.
-	 * <p>The default implementation returns {@code null}.
+	 * 在<i>目标 Bean 被实例化之前</i>应用此 BeanPostProcessor。返回的 Bean 对象可以是用于替代目标 Bean
+	 * 的代理，从而有效地抑制目标 Bean 的默认实例化。
+	 * <p>如果此方法返回非 null 对象，则 Bean 创建过程将被短路。唯一进一步执行的处理是来自已配置的
+	 * {@link BeanPostProcessor BeanPostProcessors} 的 {@link #postProcessAfterInitialization} 回调。
+	 * <p>此回调将应用于带有 Bean 类的 Bean 定义，也会应用于工厂方法定义，在后一种情况下这里会传入返回
+	 * 的 Bean 类型。
+	 * <p>后处理器可以实现扩展的 {@link SmartInstantiationAwareBeanPostProcessor} 接口，以预测它们将在
+	 * 此处返回的 Bean 对象的类型。
+	 * <p>默认实现返回 {@code null}。
 	 * @param beanClass the class of the bean to be instantiated
 	 * @param beanName the name of the bean
 	 * @return the bean object to expose instead of a default instance of the target bean,
@@ -74,11 +65,10 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
-	 * Perform operations after the bean has been instantiated, via a constructor or factory method,
-	 * but before Spring property population (from explicit properties or autowiring) occurs.
-	 * <p>This is the ideal callback for performing custom field injection on the given bean
-	 * instance, right before Spring's autowiring kicks in.
-	 * <p>The default implementation returns {@code true}.
+	 * 在 Bean 通过构造方法或工厂方法实例化之后，但在 Spring 进行属性填充（来自显式属性或自动装配）之前
+	 * 执行操作。
+	 * <p>这是在给定 Bean 实例上执行自定义字段注入的理想回调，此时正好在 Spring 的自动装配生效之前。
+	 * <p>默认实现返回 {@code true}。
 	 * @param bean the bean instance created, with properties not having been set yet
 	 * @param beanName the name of the bean
 	 * @return {@code true} if properties should be set on the bean; {@code false}
@@ -93,12 +83,10 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
-	 * Post-process the given property values before the factory applies them
-	 * to the given bean, without any need for property descriptors.
-	 * <p>Implementations should return {@code null} (the default) if they provide a custom
-	 * {@link #postProcessPropertyValues} implementation, and {@code pvs} otherwise.
-	 * In a future version of this interface (with {@link #postProcessPropertyValues} removed),
-	 * the default implementation will return the given {@code pvs} as-is directly.
+	 * 在工厂将给定的属性值应用到给定 Bean 之前对其进行后处理，无需任何属性描述符。
+	 * <p>如果实现提供了自定义的 {@link #postProcessPropertyValues} 实现，则应返回 {@code null}（默认值），
+	 * 否则应返回 {@code pvs}。在此接口的未来版本中（移除了 {@link #postProcessPropertyValues}），
+	 * 默认实现将直接原样返回给定的 {@code pvs}。
 	 * @param pvs the property values that the factory is about to apply (never {@code null})
 	 * @param bean the bean instance created, but whose properties have not yet been set
 	 * @param beanName the name of the bean
@@ -118,13 +106,11 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 	}
 
 	/**
-	 * Post-process the given property values before the factory applies them
-	 * to the given bean. Allows for checking whether all dependencies have been
-	 * satisfied, for example based on a "Required" annotation on bean property setters.
-	 * <p>Also allows for replacing the property values to apply, typically through
-	 * creating a new MutablePropertyValues instance based on the original PropertyValues,
-	 * adding or removing specific values.
-	 * <p>The default implementation returns the given {@code pvs} as-is.
+	 * 在工厂将给定的属性值应用到给定 Bean 之前对其进行后处理。可以检查所有依赖是否已满足，例如基于
+	 * Bean 属性 setter 上的 "Required" 注解。
+	 * <p>还允许替换要应用的属性值，通常是通过基于原始 PropertyValues 创建新的 MutablePropertyValues 实
+	 * 例，并添加或删除特定的值。
+	 * <p>默认实现原样返回给定的 {@code pvs}。
 	 * @param pvs the property values that the factory is about to apply (never {@code null})
 	 * @param pds the relevant property descriptors for the target bean (with ignored
 	 * dependency types - which the factory handles specifically - already filtered out)

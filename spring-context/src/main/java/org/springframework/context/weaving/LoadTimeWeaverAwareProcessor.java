@@ -26,15 +26,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.beans.factory.config.BeanPostProcessor}
- * implementation that passes the context's default {@link LoadTimeWeaver}
- * to beans that implement the {@link LoadTimeWeaverAware} interface.
+ * {@link org.springframework.beans.factory.config.BeanPostProcessor} 的实现，将上下文默认的
+ * {@link LoadTimeWeaver} 传递给实现了 {@link LoadTimeWeaverAware} 接口的 Bean。
  *
- * <p>{@link org.springframework.context.ApplicationContext Application contexts}
- * will automatically register this with their underlying {@link BeanFactory bean factory},
- * provided that a default {@code LoadTimeWeaver} is actually available.
+ * <p>{@link org.springframework.context.ApplicationContext Application contexts} 会自动将其注册到
+ * 其底层的 {@link BeanFactory bean factory} 中，前提是确实有默认的 {@code LoadTimeWeaver} 可用。
  *
- * <p>Applications should not use this class directly.
+ * <p>应用程序不应直接使用此类。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -51,21 +49,18 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 
 
 	/**
-	 * Create a new {@code LoadTimeWeaverAwareProcessor} that will
-	 * auto-retrieve the {@link LoadTimeWeaver} from the containing
-	 * {@link BeanFactory}, expecting a bean named
-	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
+	 * 创建一个新的 {@code LoadTimeWeaverAwareProcessor}，它将从所在的 {@link BeanFactory} 自动获取
+	 * {@link LoadTimeWeaver}，并期望有一个名为
+	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"} 的 Bean。
 	 */
 	public LoadTimeWeaverAwareProcessor() {
 	}
 
 	/**
-	 * Create a new {@code LoadTimeWeaverAwareProcessor} for the given
-	 * {@link LoadTimeWeaver}.
-	 * <p>If the given {@code loadTimeWeaver} is {@code null}, then a
-	 * {@code LoadTimeWeaver} will be auto-retrieved from the containing
-	 * {@link BeanFactory}, expecting a bean named
-	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
+	 * 为给定的 {@link LoadTimeWeaver} 创建一个新的 {@code LoadTimeWeaverAwareProcessor}。
+	 * <p>如果给定的 {@code loadTimeWeaver} 为 {@code null}，则会从所在的 {@link BeanFactory} 自动获取
+	 * 一个 {@code LoadTimeWeaver}，并期望有一个名为
+	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"} 的 Bean。
 	 * @param loadTimeWeaver the specific {@code LoadTimeWeaver} that is to be used
 	 */
 	public LoadTimeWeaverAwareProcessor(@Nullable LoadTimeWeaver loadTimeWeaver) {
@@ -73,10 +68,9 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 	}
 
 	/**
-	 * Create a new {@code LoadTimeWeaverAwareProcessor}.
-	 * <p>The {@code LoadTimeWeaver} will be auto-retrieved from
-	 * the given {@link BeanFactory}, expecting a bean named
-	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"}.
+	 * 创建一个新的 {@code LoadTimeWeaverAwareProcessor}。
+	 * <p>{@code LoadTimeWeaver} 将从给定的 {@link BeanFactory} 自动获取，并期望有一个名为
+	 * {@link ConfigurableApplicationContext#LOAD_TIME_WEAVER_BEAN_NAME "loadTimeWeaver"} 的 Bean。
 	 * @param beanFactory the BeanFactory to retrieve the LoadTimeWeaver from
 	 */
 	public LoadTimeWeaverAwareProcessor(BeanFactory beanFactory) {

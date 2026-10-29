@@ -44,9 +44,7 @@ import org.springframework.web.server.NotAcceptableStatusException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Abstract base class for result handlers that handle return values by writing
- * to the response with {@link HttpMessageWriter}.
- *
+ * 结果处理器的抽象基类，通过 {@link HttpMessageWriter} 将返回值写入响应来进行处理。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0
@@ -59,8 +57,7 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 
 	/**
-	 * Constructor with {@link HttpMessageWriter HttpMessageWriters} and a
-	 * {@code RequestedContentTypeResolver}.
+	 * 使用 {@link HttpMessageWriter HttpMessageWriters} 和 {@code RequestedContentTypeResolver} 的构造函数。
 	 * @param messageWriters for serializing Objects to the response body stream
 	 * @param contentTypeResolver for resolving the requested content type
 	 */
@@ -71,7 +68,7 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 	}
 
 	/**
-	 * Constructor with an additional {@link ReactiveAdapterRegistry}.
+	 * 附带 {@link ReactiveAdapterRegistry} 的构造函数。
 	 * @param messageWriters for serializing Objects to the response body stream
 	 * @param contentTypeResolver for resolving the requested content type
 	 * @param adapterRegistry for adapting other reactive types (e.g. rx.Observable,
@@ -87,7 +84,7 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 
 	/**
-	 * Return the configured message converters.
+	 * 返回配置的消息转换器。
 	 */
 	public List<HttpMessageWriter<?>> getMessageWriters() {
 		return this.messageWriters;
@@ -95,7 +92,7 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 
 
 	/**
-	 * Write a given body to the response with {@link HttpMessageWriter}.
+	 * 使用 {@link HttpMessageWriter} 将给定正文写入响应。
 	 * @param body the object to write
 	 * @param bodyParameter the {@link MethodParameter} of the body to write
 	 * @param exchange the current exchange
@@ -107,7 +104,7 @@ public abstract class AbstractMessageWriterResultHandler extends HandlerResultHa
 	}
 
 	/**
-	 * Write a given body to the response with {@link HttpMessageWriter}.
+	 * 使用 {@link HttpMessageWriter} 将给定正文写入响应。
 	 * @param body the object to write
 	 * @param bodyParameter the {@link MethodParameter} of the body to write
 	 * @param actualParam the actual return type of the method that returned the value;

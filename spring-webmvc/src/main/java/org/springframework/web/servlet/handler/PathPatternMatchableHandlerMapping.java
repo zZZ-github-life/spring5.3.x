@@ -30,9 +30,9 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Decorate another {@link MatchableHandlerMapping} that's configured with a
- * {@link PathPatternParser} in order to parse and cache String patterns passed
- * into the {@code match} method.
+ * 装饰另一个使用 {@link PathPatternParser} 配置的
+ * {@link MatchableHandlerMapping}，以便解析并缓存传入
+ * {@code match} 方法的字符串模式。
  *
  * @author Rossen Stoyanchev
  * @since 5.3

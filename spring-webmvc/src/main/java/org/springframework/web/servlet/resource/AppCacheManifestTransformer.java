@@ -38,27 +38,26 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link ResourceTransformer} implementation that helps handling resources
- * within HTML5 AppCache manifests for HTML5 offline applications.
+ * {@link ResourceTransformer} 实现，用于协助处理 HTML5 离线应用程序
+ * 中 HTML5 AppCache 清单内的资源。
  *
- * <p>This transformer:
+ * <p>此转换器：
  * <ul>
- * <li>modifies links to match the public URL paths that should be exposed to clients,
- * using configured {@code ResourceResolver} strategies
- * <li>appends a comment in the manifest, containing a Hash (e.g. "# Hash: 9de0f09ed7caf84e885f1f0f11c7e326"),
- * thus changing the content of the manifest in order to trigger an appcache reload in the browser.
+ * <li>使用已配置的 {@code ResourceResolver} 策略修改链接，
+ * 使其与应暴露给客户端的公共 URL 路径匹配
+ * <li>在清单中追加一条包含 Hash 的注释（例如 "# Hash: 9de0f09ed7caf84e885f1f0f11c7e326"），
+ * 从而更改清单内容，以便触发浏览器中的 appcache 重新加载。
  * </ul>
  *
- * <p>All files that have the ".appcache" file extension, or the extension given in the constructor,
- * will be transformed by this class. This hash is computed using the content of the appcache manifest
- * and the content of the linked resources; so changing a resource linked in the manifest
- * or the manifest itself should invalidate the browser cache.
+ * <p>所有具有 ".appcache" 文件扩展名或构造函数中给定扩展名的文件，
+ * 都将由此类转换。此哈希使用 appcache 清单的内容
+ * 以及所链接资源的内容计算；因此，更改清单中链接的资源
+ * 或清单本身都应使浏览器缓存失效。
  *
- * <p>In order to serve manifest files with the proper {@code "text/manifest"} content type,
- * it is required to configure it with
+ * <p>为了以正确的 {@code "text/manifest"} 内容类型提供清单文件，
+ * 需要在 {@code WebMvcConfigurer} 中使用
  * {@code contentNegotiationConfigurer.mediaType("appcache", MediaType.valueOf("text/manifest")}
- * in a {@code WebMvcConfigurer}.
- *
+ * 进行配置。
  * @author Brian Clozel
  * @since 4.1
  * @see <a href="https://html.spec.whatwg.org/multipage/browsers.html#offline">HTML5 offline applications spec</a>
@@ -83,15 +82,15 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 
 
 	/**
-	 * Create an AppCacheResourceTransformer that transforms files with extension ".appcache".
+	 * 创建一个 AppCacheResourceTransformer，用于转换扩展名为 ".appcache" 的文件。
 	 */
 	public AppCacheManifestTransformer() {
 		this("appcache");
 	}
 
 	/**
-	 * Create an AppCacheResourceTransformer that transforms files with the extension
-	 * given as a parameter.
+	 * 创建一个 AppCacheResourceTransformer，用于转换扩展名为
+	 * 参数所给值的文件。
 	 */
 	public AppCacheManifestTransformer(String fileExtension) {
 		this.fileExtension = fileExtension;

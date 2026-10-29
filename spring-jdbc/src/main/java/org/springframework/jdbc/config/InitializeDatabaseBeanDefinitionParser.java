@@ -27,9 +27,9 @@ import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses an {@code initialize-database}
- * element and creates a {@link BeanDefinition} of type {@link DataSourceInitializer}. Picks up nested
- * {@code script} elements and configures a {@link ResourceDatabasePopulator} for them.
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}，解析{@code initialize-database}
+ * 元素并创建{@link DataSourceInitializer}类型的{@link BeanDefinition}。捕获嵌套的
+ * {@code script}元素并为它们配置{@link ResourceDatabasePopulator}。
  *
  * @author Dave Syer
  * @author Juergen Hoeller

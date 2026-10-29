@@ -50,11 +50,10 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.xml.StaxUtils;
 
 /**
- * An {@code HttpMessageConverter} that can read XML collections using JAXB2.
+ * 可使用 JAXB2 读取 XML 集合的 {@code HttpMessageConverter}。
  *
- * <p>This converter can read {@linkplain Collection collections} that contain classes
- * annotated with {@link XmlRootElement} and {@link XmlType}. Note that this converter
- * does not support writing.
+ * <p>此转换器可以读取包含标注 {@link XmlRootElement} 和 {@link XmlType}
+ * 的类的{@linkplain Collection 集合}。请注意，此转换器不支持写入。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -69,8 +68,8 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 
 
 	/**
-	 * Always returns {@code false} since Jaxb2CollectionHttpMessageConverter
-	 * required generic type information in order to read a Collection.
+	 * 始终返回 {@code false}，因为 Jaxb2CollectionHttpMessageConverter
+	 * 需要泛型类型信息才能读取 Collection。
 	 */
 	@Override
 	public boolean canRead(Class<?> clazz, @Nullable MediaType mediaType) {
@@ -79,9 +78,9 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Jaxb2CollectionHttpMessageConverter can read a generic
-	 * {@link Collection} where the generic type is a JAXB type annotated with
-	 * {@link XmlRootElement} or {@link XmlType}.
+	 * <p>Jaxb2CollectionHttpMessageConverter 可以读取泛型
+	 * {@link Collection}，其中泛型类型是标注 {@link XmlRootElement}
+	 * 或 {@link XmlType} 的 JAXB 类型。
 	 */
 	@Override
 	public boolean canRead(Type type, @Nullable Class<?> contextClass, @Nullable MediaType mediaType) {
@@ -109,8 +108,8 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	}
 
 	/**
-	 * Always returns {@code false} since Jaxb2CollectionHttpMessageConverter
-	 * does not convert collections to XML.
+	 * 始终返回 {@code false}，因为 Jaxb2CollectionHttpMessageConverter
+	 * 不会将集合转换为 XML。
 	 */
 	@Override
 	public boolean canWrite(Class<?> clazz, @Nullable MediaType mediaType) {
@@ -118,8 +117,8 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	}
 
 	/**
-	 * Always returns {@code false} since Jaxb2CollectionHttpMessageConverter
-	 * does not convert collections to XML.
+	 * 始终返回 {@code false}，因为 Jaxb2CollectionHttpMessageConverter
+	 * 不会将集合转换为 XML。
 	 */
 	@Override
 	public boolean canWrite(@Nullable Type type, @Nullable Class<?> clazz, @Nullable MediaType mediaType) {
@@ -182,8 +181,8 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	}
 
 	/**
-	 * Create a Collection of the given type, with the given initial capacity
-	 * (if supported by the Collection type).
+	 * 创建给定类型的 Collection，并使用给定的初始容量
+	 * （如果该 Collection 类型支持）。
 	 * @param collectionClass the type of Collection to instantiate
 	 * @return the created Collection instance
 	 */
@@ -245,11 +244,11 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 	}
 
 	/**
-	 * Create an {@code XMLInputFactory} that this converter will use to create
-	 * {@link javax.xml.stream.XMLStreamReader} and {@link javax.xml.stream.XMLEventReader}
-	 * objects.
-	 * <p>Can be overridden in subclasses, adding further initialization of the factory.
-	 * The resulting factory is cached, so this method will only be called once.
+	 * 创建此转换器用于创建
+	 * {@link javax.xml.stream.XMLStreamReader} 和 {@link javax.xml.stream.XMLEventReader}
+	 * 对象的 {@code XMLInputFactory}。
+	 * <p>可在子类中重写，以对工厂进行进一步的初始化。
+	 * 生成的工厂会被缓存，因此此方法只会被调用一次。
 	 * @see StaxUtils#createDefensiveInputFactory()
 	 */
 	protected XMLInputFactory createXmlInputFactory() {

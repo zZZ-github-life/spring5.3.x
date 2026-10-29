@@ -20,19 +20,15 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.util.Assert;
 
 /**
- * An extension of {@code AnnotationBeanNameGenerator} that uses the fully qualified
- * class name as the default bean name if an explicit bean name is not supplied via
- * a supported type-level annotation such as {@code @Component} (see
- * {@link AnnotationBeanNameGenerator} for details on supported annotations).
+ * {@code AnnotationBeanNameGenerator} 的扩展，在未通过受支持的类级注解（例如 {@code @Component}）
+ * 提供显式 Bean 名称时，使用完全限定类名作为默认 Bean 名称（关于受支持的注解，请参见
+ * {@link AnnotationBeanNameGenerator}）。
  *
- * <p>Favor this bean naming strategy over {@code AnnotationBeanNameGenerator} if
- * you run into naming conflicts due to multiple autodetected components having the
- * same non-qualified class name (i.e., classes with identical names but residing in
- * different packages).
+ * <p>如果由于多个自动检测到的组件具有相同的非限定类名（即名称相同但位于不同包中的类）而遇到命名冲
+ * 突，请优先使用此 Bean 命名策略，而不是 {@code AnnotationBeanNameGenerator}。
  *
- * <p>Note that an instance of this class is used by default for configuration-level
- * import purposes; whereas, the default for component scanning purposes is a plain
- * {@code AnnotationBeanNameGenerator}.
+ * <p>请注意，该类的一个实例默认用于配置级别的导入目的；而组件扫描目的默认使用的是普通的
+ * {@code AnnotationBeanNameGenerator}。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -44,8 +40,7 @@ import org.springframework.util.Assert;
 public class FullyQualifiedAnnotationBeanNameGenerator extends AnnotationBeanNameGenerator {
 
 	/**
-	 * A convenient constant for a default {@code FullyQualifiedAnnotationBeanNameGenerator}
-	 * instance, as used for configuration-level import purposes.
+	 * 用于配置级别导入目的的默认 {@code FullyQualifiedAnnotationBeanNameGenerator} 实例的便捷常量。
 	 * @since 5.2.11
 	 */
 	public static final FullyQualifiedAnnotationBeanNameGenerator INSTANCE =

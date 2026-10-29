@@ -19,12 +19,10 @@ package org.springframework.web.client;
 import java.io.IOException;
 
 /**
- * Callback interface for code that operates on an
- * {@link org.springframework.http.client.AsyncClientHttpRequest}. Allows to
- * manipulate the request headers, and write to the request body.
+ * 用于操作 {@link org.springframework.http.client.AsyncClientHttpRequest}
+ * 的代码的回调接口。允许操作请求头并写入请求体。
  *
- * <p>Used internally by the {@link AsyncRestTemplate}, but also useful for
- * application code.
+ * <p>由 {@link AsyncRestTemplate} 内部使用，但也适用于应用代码。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -37,9 +35,8 @@ import java.io.IOException;
 public interface AsyncRequestCallback {
 
 	/**
-	 * Gets called by {@link AsyncRestTemplate#execute} with an opened {@code ClientHttpRequest}.
-	 * Does not need to care about closing the request or about handling errors:
-	 * this will all be handled by the {@code RestTemplate}.
+	 * 由 {@link AsyncRestTemplate#execute} 在打开 {@code ClientHttpRequest} 后调用。
+	 * 无需关心关闭请求或处理错误：这些都将由 {@code RestTemplate} 处理。
 	 * @param request the active HTTP request
 	 * @throws java.io.IOException in case of I/O errors
 	 */

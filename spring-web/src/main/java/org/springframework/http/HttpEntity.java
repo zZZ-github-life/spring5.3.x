@@ -21,23 +21,21 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Represents an HTTP request or response entity, consisting of headers and body.
- *
- * <p>Often used in combination with the {@link org.springframework.web.client.RestTemplate},
- * like so:
+ * 表示由头和正文组成的 HTTP 请求或响应实体。
+ * <p>通常与 {@link org.springframework.web.client.RestTemplate} 结合使用，如下所示：
  * <pre class="code">
  * HttpHeaders headers = new HttpHeaders();
  * headers.setContentType(MediaType.TEXT_PLAIN);
  * HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;("Hello World", headers);
  * URI location = template.postForLocation("https://example.com", entity);
  * </pre>
- * or
+ * 或者
  * <pre class="code">
  * HttpEntity&lt;String&gt; entity = template.getForEntity("https://example.com", String.class);
  * String body = entity.getBody();
  * MediaType contentType = entity.getHeaders().getContentType();
  * </pre>
- * Can also be used in Spring MVC, as a return value from a @Controller method:
+ * 也可用于 Spring MVC，作为 @Controller 方法的返回值：
  * <pre class="code">
  * &#64;GetMapping("/handle")
  * public HttpEntity&lt;String&gt; handle() {
@@ -58,7 +56,7 @@ import org.springframework.util.ObjectUtils;
 public class HttpEntity<T> {
 
 	/**
-	 * The empty {@code HttpEntity}, with no body or headers.
+	 * 空的 {@code HttpEntity}，没有正文和头。
 	 */
 	public static final HttpEntity<?> EMPTY = new HttpEntity<>();
 
@@ -70,14 +68,14 @@ public class HttpEntity<T> {
 
 
 	/**
-	 * Create a new, empty {@code HttpEntity}.
+	 * 创建一个新的空 {@code HttpEntity}。
 	 */
 	protected HttpEntity() {
 		this(null, null);
 	}
 
 	/**
-	 * Create a new {@code HttpEntity} with the given body and no headers.
+	 * 使用给定正文创建一个新的 {@code HttpEntity}，不包含头。
 	 * @param body the entity body
 	 */
 	public HttpEntity(T body) {
@@ -85,7 +83,7 @@ public class HttpEntity<T> {
 	}
 
 	/**
-	 * Create a new {@code HttpEntity} with the given headers and no body.
+	 * 使用给定头创建一个新的 {@code HttpEntity}，不包含正文。
 	 * @param headers the entity headers
 	 */
 	public HttpEntity(MultiValueMap<String, String> headers) {
@@ -93,7 +91,7 @@ public class HttpEntity<T> {
 	}
 
 	/**
-	 * Create a new {@code HttpEntity} with the given body and headers.
+	 * 使用给定正文和头创建一个新的 {@code HttpEntity}。
 	 * @param body the entity body
 	 * @param headers the entity headers
 	 */
@@ -104,14 +102,14 @@ public class HttpEntity<T> {
 
 
 	/**
-	 * Returns the headers of this entity.
+	 * 返回此实体的头。
 	 */
 	public HttpHeaders getHeaders() {
 		return this.headers;
 	}
 
 	/**
-	 * Returns the body of this entity.
+	 * 返回此实体的正文。
 	 */
 	@Nullable
 	public T getBody() {
@@ -119,7 +117,7 @@ public class HttpEntity<T> {
 	}
 
 	/**
-	 * Indicates whether this entity has a body.
+	 * 指示此实体是否包含正文。
 	 */
 	public boolean hasBody() {
 		return (this.body != null);

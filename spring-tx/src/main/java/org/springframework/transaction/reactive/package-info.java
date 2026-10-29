@@ -1,7 +1,7 @@
 /**
- * Support classes for reactive transaction management.
- * Provides an abstract base class for reactive transaction manager implementations,
- * and a transactional operator plus callback for transaction demarcation.
+ * 响应式事务管理的支持类。
+ * 提供响应式事务管理器实现的抽象基类，
+ * 以及用于事务界定的事务操作器和回调。
  */
 @NonNullApi
 @NonNullFields

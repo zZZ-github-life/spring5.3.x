@@ -24,12 +24,12 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Common configuration object for activating a JMS message endpoint.
- * Gets converted into a provider-specific JCA 1.5 ActivationSpec
- * object for activating the endpoint.
+ * 用于激活 JMS 消息端点的通用配置对象。
+ * 会被转换为特定于提供者的 JCA 1.5 ActivationSpec 对象，
+ * 用于激活端点。
  *
- * <p>Typically used in combination with {@link JmsMessageEndpointManager},
- * but not tied to it.
+ * <p>通常与 {@link JmsMessageEndpointManager} 结合使用，
+ * 但并非必须绑定于它。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -40,7 +40,7 @@ import org.springframework.lang.Nullable;
  */
 public class JmsActivationSpecConfig {
 
-	/** Constants instance for {@code javax.jms.Session}. */
+	/** {@code javax.jms.Session} 的 Constants 实例。 */
 	private static final Constants sessionConstants = new Constants(Session.class);
 
 
@@ -177,12 +177,12 @@ public class JmsActivationSpecConfig {
 	}
 
 	/**
-	 * Set the JMS acknowledgement mode by the name of the corresponding constant
-	 * in the JMS {@link Session} interface, e.g. "CLIENT_ACKNOWLEDGE".
-	 * <p>Note that JCA resource adapters generally only support auto and dups-ok
-	 * (see Spring's {@link StandardJmsActivationSpecFactory}). ActiveMQ also
-	 * supports "SESSION_TRANSACTED" in the form of RA-managed transactions
-	 * (automatically translated by Spring's {@link DefaultJmsActivationSpecFactory}).
+	 * 通过 JMS {@link Session} 接口中相应常量的名称设置 JMS 确认模式，
+	 * 例如 "CLIENT_ACKNOWLEDGE"。
+	 * <p>请注意，JCA 资源适配器通常只支持 auto 和 dups-ok
+	 * （参见 Spring 的 {@link StandardJmsActivationSpecFactory}）。ActiveMQ 还
+	 * 以 RA 管理事务的形式支持 "SESSION_TRANSACTED"
+	 * （由 Spring 的 {@link DefaultJmsActivationSpecFactory} 自动转换）。
 	 * @param constantName the name of the {@link Session} acknowledge mode constant
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
@@ -196,7 +196,7 @@ public class JmsActivationSpecConfig {
 	}
 
 	/**
-	 * Set the JMS acknowledgement mode to use.
+	 * 设置要使用的 JMS 确认模式。
 	 * @see javax.jms.Session#AUTO_ACKNOWLEDGE
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Session#DUPS_OK_ACKNOWLEDGE
@@ -207,20 +207,20 @@ public class JmsActivationSpecConfig {
 	}
 
 	/**
-	 * Return the JMS acknowledgement mode to use.
+	 * 返回要使用的 JMS 确认模式。
 	 */
 	public int getAcknowledgeMode() {
 		return this.acknowledgeMode;
 	}
 
 	/**
-	 * Specify concurrency limits via a "lower-upper" String, e.g. "5-10", or a simple
-	 * upper limit String, e.g. "10".
-	 * <p>JCA listener containers will always scale from zero to the given upper limit.
-	 * A specified lower limit will effectively be ignored.
-	 * <p>This property is primarily supported for configuration compatibility with
-	 * {@link org.springframework.jms.listener.DefaultMessageListenerContainer}.
-	 * For this activation config, generally use {@link #setMaxConcurrency} instead.
+	 * 通过 "lower-upper" 形式的字符串（例如 "5-10"）或简单的上限字符串
+	 * （例如 "10"）指定并发限制。
+	 * <p>JCA 监听器容器始终从零扩展到给定的上限。
+	 * 指定的下限实际上会被忽略。
+	 * <p>支持此属性主要是为了与
+	 * {@link org.springframework.jms.listener.DefaultMessageListenerContainer} 的配置兼容。
+	 * 对于此激活配置，通常请改用 {@link #setMaxConcurrency}。
 	 */
 	public void setConcurrency(String concurrency) {
 		try {
@@ -241,37 +241,37 @@ public class JmsActivationSpecConfig {
 	}
 
 	/**
-	 * Specify the maximum number of consumers/sessions to use, effectively
-	 * controlling the number of concurrent invocations on the target listener.
+	 * 指定要使用的最大消费者/会话数量，从而有效控制
+	 * 对目标监听器的并发调用数。
 	 */
 	public void setMaxConcurrency(int maxConcurrency) {
 		this.maxConcurrency = maxConcurrency;
 	}
 
 	/**
-	 * Return the maximum number of consumers/sessions to use.
+	 * 返回要使用的最大消费者/会话数量。
 	 */
 	public int getMaxConcurrency() {
 		return this.maxConcurrency;
 	}
 
 	/**
-	 * Specify the maximum number of messages to load into a session
-	 * (a kind of batch size).
+	 * 指定要加载到单个会话中的最大消息数
+	 * （一种批处理大小）。
 	 */
 	public void setPrefetchSize(int prefetchSize) {
 		this.prefetchSize = prefetchSize;
 	}
 
 	/**
-	 * Return the maximum number of messages to load into a session.
+	 * 返回要加载到单个会话中的最大消息数。
 	 */
 	public int getPrefetchSize() {
 		return this.prefetchSize;
 	}
 
 	/**
-	 * Set the {@link MessageConverter} strategy for converting JMS Messages.
+	 * 设置用于转换 JMS 消息的 {@link MessageConverter} 策略。
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(@Nullable MessageConverter messageConverter) {
@@ -279,7 +279,7 @@ public class JmsActivationSpecConfig {
 	}
 
 	/**
-	 * Return the {@link MessageConverter} to use, if any.
+	 * 返回要使用的 {@link MessageConverter}（如果有）。
 	 */
 	@Nullable
 	public MessageConverter getMessageConverter() {

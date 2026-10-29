@@ -38,9 +38,9 @@ import org.springframework.web.servlet.view.AbstractTemplateView;
 import org.springframework.web.util.NestedServletException;
 
 /**
- * An {@link AbstractTemplateView} subclass based on Groovy XML/XHTML markup templates.
+ * 基于 Groovy XML/XHTML markup 模板的 {@link AbstractTemplateView} 子类。
  *
- * <p>Spring's Groovy Markup Template support requires Groovy 2.3.1 and higher.
+ * <p>Spring 的 Groovy Markup 模板支持要求 Groovy 2.3.1 或更高版本。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -57,10 +57,10 @@ public class GroovyMarkupView extends AbstractTemplateView {
 
 
 	/**
-	 * Set the MarkupTemplateEngine to use in this view.
-	 * <p>If not set, the engine is auto-detected by looking up a single
-	 * {@link GroovyMarkupConfig} bean in the web application context and using
-	 * it to obtain the configured {@code MarkupTemplateEngine} instance.
+	 * 设置此视图要使用的 MarkupTemplateEngine。
+	 * <p>如果未设置，则会通过查找 Web 应用上下文中单个
+	 * {@link GroovyMarkupConfig} bean 并从中获取已配置的
+	 * {@code MarkupTemplateEngine} 实例来自动检测引擎。
 	 * @see GroovyMarkupConfig
 	 */
 	public void setTemplateEngine(MarkupTemplateEngine engine) {
@@ -68,10 +68,10 @@ public class GroovyMarkupView extends AbstractTemplateView {
 	}
 
 	/**
-	 * Invoked at startup.
-	 * If no {@link #setTemplateEngine(MarkupTemplateEngine) templateEngine} has
-	 * been manually set, this method looks up a {@link GroovyMarkupConfig} bean
-	 * by type and uses it to obtain the Groovy Markup template engine.
+	 * 在启动时调用。
+	 * 如果未手动设置 {@link #setTemplateEngine(MarkupTemplateEngine) templateEngine}，
+	 * 此方法会按类型查找 {@link GroovyMarkupConfig} bean，
+	 * 并使用它获取 Groovy Markup 模板引擎。
 	 * @see GroovyMarkupConfig
 	 * @see #setTemplateEngine(groovy.text.markup.MarkupTemplateEngine)
 	 */
@@ -84,8 +84,8 @@ public class GroovyMarkupView extends AbstractTemplateView {
 	}
 
 	/**
-	 * Autodetect a MarkupTemplateEngine via the ApplicationContext.
-	 * Called if a MarkupTemplateEngine has not been manually configured.
+	 * 通过 ApplicationContext 自动检测 MarkupTemplateEngine。
+	 * 在未手动配置 MarkupTemplateEngine 时调用。
 	 */
 	protected MarkupTemplateEngine autodetectMarkupTemplateEngine() throws BeansException {
 		try {
@@ -124,8 +124,7 @@ public class GroovyMarkupView extends AbstractTemplateView {
 	}
 
 	/**
-	 * Return a template compiled by the configured Groovy Markup template engine
-	 * for the given view URL.
+	 * 返回由已配置的 Groovy Markup 模板引擎针对给定视图 URL 编译的模板。
 	 */
 	protected Template getTemplate(String viewUrl) throws Exception {
 		Assert.state(this.engine != null, "No MarkupTemplateEngine set");

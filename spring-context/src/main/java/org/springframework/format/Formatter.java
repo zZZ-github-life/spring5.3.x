@@ -17,8 +17,7 @@
 package org.springframework.format;
 
 /**
- * Formats objects of type T.
- * A Formatter is both a Printer <i>and</i> a Parser for an object type.
+ * 格式化类型 T 的对象。Formatter 对某个对象类型既是 Printer <i>也是</i> Parser。
  *
  * @author Keith Donald
  * @since 3.0

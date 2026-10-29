@@ -19,9 +19,9 @@ package org.springframework.test.web.client;
 import org.springframework.util.Assert;
 
 /**
- * A simple type representing a range for an expected count.
+ * 表示预期调用次数范围的简单类型。
  *
- * <p>Examples:
+ * <p>示例：
  * <pre>
  * import static org.springframework.test.web.client.ExpectedCount.*
  *
@@ -34,7 +34,6 @@ import org.springframework.util.Assert;
  * between(2, 4)
  * never()
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @since 4.3
  */
@@ -46,8 +45,8 @@ public final class ExpectedCount {
 
 
 	/**
-	 * Private constructor.
-	 * See static factory methods in this class.
+	 * 私有构造函数。
+	 * 请参见此类中的静态工厂方法。
 	 */
 	private ExpectedCount(int minCount, int maxCount) {
 		Assert.isTrue(minCount >= 0, "minCount >= 0 is required");
@@ -58,14 +57,14 @@ public final class ExpectedCount {
 
 
 	/**
-	 * Return the {@code min} boundary of the expected count range.
+	 * 返回预期次数范围的下界 {@code min}。
 	 */
 	public int getMinCount() {
 		return this.minCount;
 	}
 
 	/**
-	 * Return the {@code max} boundary of the expected count range.
+	 * 返回预期次数范围的上界 {@code max}。
 	 */
 	public int getMaxCount() {
 		return this.maxCount;
@@ -73,28 +72,28 @@ public final class ExpectedCount {
 
 
 	/**
-	 * Exactly once.
+	 * 恰好一次。
 	 */
 	public static ExpectedCount once() {
 		return new ExpectedCount(1, 1);
 	}
 
 	/**
-	 * Exactly twice.
+	 * 恰好两次。
 	 */
 	public static ExpectedCount twice() {
 		return new ExpectedCount(2, 2);
 	}
 
 	/**
-	 * Many times (range of 1..Integer.MAX_VALUE).
+	 * 多次（范围为 1..Integer.MAX_VALUE）。
 	 */
 	public static ExpectedCount manyTimes() {
 		return new ExpectedCount(1, Integer.MAX_VALUE);
 	}
 
 	/**
-	 * Exactly N times.
+	 * 恰好 N 次。
 	 */
 	public static ExpectedCount times(int count) {
 		Assert.isTrue(count >= 1, "'count' must be >= 1");
@@ -102,7 +101,7 @@ public final class ExpectedCount {
 	}
 
 	/**
-	 * At least {@code min} number of times.
+	 * 至少 {@code min} 次。
 	 */
 	public static ExpectedCount min(int min) {
 		Assert.isTrue(min >= 1, "'min' must be >= 1");
@@ -110,7 +109,7 @@ public final class ExpectedCount {
 	}
 
 	/**
-	 * At most {@code max} number of times.
+	 * 至多 {@code max} 次。
 	 */
 	public static ExpectedCount max(int max) {
 		Assert.isTrue(max >= 1, "'max' must be >= 1");
@@ -118,7 +117,7 @@ public final class ExpectedCount {
 	}
 
 	/**
-	 * No calls expected at all, i.e. min=0 and max=0.
+	 * 完全不期望调用，即 min=0 且 max=0。
 	 * @since 4.3.6
 	 */
 	public static ExpectedCount never() {
@@ -126,7 +125,7 @@ public final class ExpectedCount {
 	}
 
 	/**
-	 * Between {@code min} and {@code max} number of times.
+	 * 介于 {@code min} 与 {@code max} 次之间。
 	 */
 	public static ExpectedCount between(int min, int max) {
 		return new ExpectedCount(min, max);

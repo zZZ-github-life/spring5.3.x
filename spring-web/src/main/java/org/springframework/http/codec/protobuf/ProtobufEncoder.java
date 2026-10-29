@@ -37,19 +37,19 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * An {@code Encoder} that writes {@link com.google.protobuf.Message}s
- * using <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
+ * 使用 <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>
+ * 写入 {@link com.google.protobuf.Message} 的 {@code Encoder}。
  *
- * <p>Flux are serialized using
- * <a href="https://developers.google.com/protocol-buffers/docs/techniques?hl=en#streaming">delimited Protobuf messages</a>
- * with the size of each message specified before the message itself. Single values are
- * serialized using regular Protobuf message format (without the size prepended before the message).
+ * <p>Flux 使用
+ * <a href="https://developers.google.com/protocol-buffers/docs/techniques?hl=en#streaming">带分隔符的 Protobuf 消息</a>
+ * 进行序列化，每条消息的大小需在消息本身之前指定。单个值
+ * 使用常规的 Protobuf 消息格式进行序列化（不在消息前附加大小）。
  *
- * <p>To generate {@code Message} Java classes, you need to install the {@code protoc} binary.
+ * <p>要生成 {@code Message} Java 类，需要安装 {@code protoc} 二进制文件。
  *
- * <p>This encoder requires Protobuf 3 or higher, and supports
- * {@code "application/x-protobuf"} and {@code "application/octet-stream"} with the official
- * {@code "com.google.protobuf:protobuf-java"} library.
+ * <p>此编码器要求 Protobuf 3 或更高版本，并支持
+ * {@code "application/x-protobuf"} 和 {@code "application/octet-stream"}，
+ * 需使用官方的 {@code "com.google.protobuf:protobuf-java"} 库。
  *
  * @author Sebastien Deleuze
  * @since 5.1

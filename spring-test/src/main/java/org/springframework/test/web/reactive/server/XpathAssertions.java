@@ -32,8 +32,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * XPath assertions for the {@link WebTestClient}.
- *
+ * 用于 {@link WebTestClient} 的 XPath 断言。
  * @author Eric Deandrea
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -65,49 +64,49 @@ public class XpathAssertions {
 
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertString(byte[], String, String)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertString(byte[], String, String)}。
 	 */
 	public WebTestClient.BodyContentSpec isEqualTo(String expectedValue) {
 		return assertWith(() -> this.xpathHelper.assertString(getContent(), getCharset(), expectedValue));
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertNumber(byte[], String, Double)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertNumber(byte[], String, Double)}。
 	 */
 	public WebTestClient.BodyContentSpec isEqualTo(Double expectedValue) {
 		return assertWith(() -> this.xpathHelper.assertNumber(getContent(), getCharset(), expectedValue));
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertBoolean(byte[], String, boolean)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertBoolean(byte[], String, boolean)}。
 	 */
 	public WebTestClient.BodyContentSpec isEqualTo(boolean expectedValue) {
 		return assertWith(() -> this.xpathHelper.assertBoolean(getContent(), getCharset(), expectedValue));
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#exists(byte[], String)}.
+	 * 委托给 {@link XpathExpectationsHelper#exists(byte[], String)}。
 	 */
 	public WebTestClient.BodyContentSpec exists() {
 		return assertWith(() -> this.xpathHelper.exists(getContent(), getCharset()));
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#doesNotExist(byte[], String)}.
+	 * 委托给 {@link XpathExpectationsHelper#doesNotExist(byte[], String)}。
 	 */
 	public WebTestClient.BodyContentSpec doesNotExist() {
 		return assertWith(() -> this.xpathHelper.doesNotExist(getContent(), getCharset()));
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertNodeCount(byte[], String, int)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertNodeCount(byte[], String, int)}。
 	 */
 	public WebTestClient.BodyContentSpec nodeCount(int expectedCount) {
 		return assertWith(() -> this.xpathHelper.assertNodeCount(getContent(), getCharset(), expectedCount));
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertString(byte[], String, Matcher)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertString(byte[], String, Matcher)}。
 	 * @since 5.1
 	 */
 	public WebTestClient.BodyContentSpec string(Matcher<? super String> matcher){
@@ -115,7 +114,7 @@ public class XpathAssertions {
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertNumber(byte[], String, Matcher)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertNumber(byte[], String, Matcher)}。
 	 * @since 5.1
 	 */
 	public WebTestClient.BodyContentSpec number(Matcher<? super Double> matcher){
@@ -123,7 +122,7 @@ public class XpathAssertions {
 	}
 
 	/**
-	 * Delegates to {@link XpathExpectationsHelper#assertNodeCount(byte[], String, Matcher)}.
+	 * 委托给 {@link XpathExpectationsHelper#assertNodeCount(byte[], String, Matcher)}。
 	 * @since 5.1
 	 */
 	public WebTestClient.BodyContentSpec nodeCount(Matcher<? super Integer> matcher){
@@ -131,7 +130,7 @@ public class XpathAssertions {
 	}
 
 	/**
-	 * Consume the result of the XPath evaluation as a String.
+	 * 以 String 形式消费 XPath 求值的结果。
 	 * @since 5.1
 	 */
 	public WebTestClient.BodyContentSpec string(Consumer<String> consumer){
@@ -142,7 +141,7 @@ public class XpathAssertions {
 	}
 
 	/**
-	 * Consume the result of the XPath evaluation as a Double.
+	 * 以 Double 形式消费 XPath 求值的结果。
 	 * @since 5.1
 	 */
 	public WebTestClient.BodyContentSpec number(Consumer<Double> consumer){
@@ -153,7 +152,7 @@ public class XpathAssertions {
 	}
 
 	/**
-	 * Consume the count of nodes as result of the XPath evaluation.
+	 * 消费作为 XPath 求值结果的节点数。
 	 * @since 5.1
 	 */
 	public WebTestClient.BodyContentSpec nodeCount(Consumer<Integer> consumer){
@@ -202,8 +201,8 @@ public class XpathAssertions {
 
 
 	/**
-	 * Lets us be able to use lambda expressions that could throw checked exceptions, since
-	 * {@link XpathExpectationsHelper} throws {@link Exception} on its methods.
+	 * 使我们能够使用可能抛出受检异常的 lambda 表达式，因为
+	 * {@link XpathExpectationsHelper} 的方法会抛出 {@link Exception}。
 	 */
 	private interface CheckedExceptionTask {
 

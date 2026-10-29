@@ -1,0 +1,242 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/AbstractClientHttpRequest.java
+@@BODY 38 38
+用于 {@link ClientHttpRequest} 实现的基类。
+@@BODY 47 50
+COMMITTING -> COMMITTED 是调用 doCommit 之后、但在响应状态和头部
+被应用到基础响应之前的时期，在此期间提交前操作仍可以
+更改响应状态和头部。
+@@BODY 93 95
+在请求提交后初始化只读头部。
+<p>默认情况下，此方法仅应用只读包装器。
+子类可以对来自原生请求的头部执行相同操作。
+@@BODY 122 122
+不带正文的请求的 {@link #doCommit(Supplier)} 变体。
+@@BODY 130 131
+应用 {@link #beforeCommit(Supplier) beforeCommit} 操作，应用
+请求头部/Cookie，并写入请求正文。
+@@BODY 159 160
+将 {@link #getHeaders()} 中的头部更改应用到基础请求。
+此方法仅调用一次。
+@@BODY 165 166
+将 {@link #getHeaders()} 中的 Cookie 添加到基础请求。
+此方法仅调用一次。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpConnector.java
+@@BODY 27 29
+对 HTTP 客户端的抽象，驱动底层 HTTP 客户端连接到源服务器，
+并提供发送 {@link ClientHttpRequest} 和接收
+{@link ClientHttpResponse} 所需的所有基础设施。
+@@BODY 37 39
+使用给定的 {@code HttpMethod} 和 {@code URI} 连接到源服务器，
+并在底层 API 的 HTTP 请求可以初始化并写入时应用给定的
+{@code requestCallback}。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpRequest.java
+@@BODY 27 27
+表示客户端响应式 HTTP 请求。
+@@BODY 36 36
+返回请求的 HTTP 方法。
+@@BODY 41 41
+返回请求的 URI。
+@@BODY 46 46
+返回要发送到服务器的请求 Cookie 的可变映射。
+@@BODY 51 51
+返回来自底层 HTTP 库的请求。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpRequestDecorator.java
+@@BODY 34 35
+包装另一个 {@link ClientHttpRequest} 并将所有方法委托给它。
+子类可以选择性地覆盖特定方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpResponse.java
+@@BODY 26 26
+表示客户端响应式 HTTP 响应。
+@@BODY 35 36
+返回表示底层连接的 id（如果可用），
+或返回请求，以便关联日志消息。
+@@BODY 44 44
+以 {@link HttpStatus} 枚举值形式返回 HTTP 状态码。
+@@BODY 53 54
+以整数形式返回 HTTP 状态码（可能非标准且
+无法通过 {@link HttpStatus} 枚举解析）。
+@@BODY 63 63
+返回从服务器接收的响应 Cookie 的只读映射。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ClientHttpResponseDecorator.java
+@@BODY 29 30
+包装另一个 {@link ClientHttpResponse} 并将所有方法委托给它。
+子类可以选择性地覆盖特定方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsClientHttpConnector.java
+@@BODY 46 46
+用于 Apache HttpComponents HttpClient 5.x 的 {@link ClientHttpConnector} 实现。
+@@BODY 63 63
+默认构造函数，创建并启动新的 {@link CloseableHttpAsyncClient} 实例。
+@@BODY 70 70
+使用预配置的 {@link CloseableHttpAsyncClient} 实例的构造函数。
+@@BODY 78 80
+使用预配置的 {@link CloseableHttpAsyncClient} 实例以及
+{@link HttpClientContext} 供应商 lambda 的构造函数，该 lambda 在每个请求之前
+调用并传递给客户端。
+@@BODY 97 97
+设置要使用的缓冲区工厂。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsClientHttpRequest.java
+@@BODY 48 48
+用于 Apache HttpComponents HttpClient 5.x 的 {@link ClientHttpRequest} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsClientHttpResponse.java
+@@BODY 38 38
+用于 Apache HttpComponents HttpClient 5.x 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/HttpComponentsHeadersAdapter.java
+@@BODY 39 40
+用于包装 Apache HttpComponents HttpClient 头部的
+{@code MultiValueMap} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/Jetty10HttpFieldsHelper.java
+@@BODY 30 30
+用于支持 Jetty 10。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyClientHttpConnector.java
+@@BODY 37 37
+用于 Jetty Reactive Streams HttpClient 的 {@link ClientHttpConnector}。
+@@BODY 51 51
+默认构造函数，创建新的 {@link HttpClient} 实例。
+@@BODY 58 58
+使用已初始化的 {@link HttpClient} 的构造函数。
+@@BODY 65 66
+使用已初始化的 {@link HttpClient} 的构造函数，并使用
+给定的 {@link JettyResourceFactory} 对其进行配置。
+@@BODY 82 82
+使用将管理共享资源的 {@link JettyResourceFactory} 的构造函数。
+@@BODY 98 98
+设置要使用的缓冲区工厂。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyClientHttpRequest.java
+@@BODY 43 43
+用于 Jetty ReactiveStreams HTTP 客户端的 {@link ClientHttpRequest} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyClientHttpResponse.java
+@@BODY 38 38
+用于 Jetty ReactiveStreams HTTP 客户端的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyHeadersAdapter.java
+@@BODY 37 37
+用于包装 Jetty HTTP 头部的 {@code MultiValueMap} 实现。
+@@BODY 39 39
+<p>服务器包中有一个此类的副本！
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/JettyResourceFactory.java
+@@BODY 38 39
+用于在 Spring {@code ApplicationContext} 生命周期内管理 Jetty 资源（即
+{@link Executor}、{@link ByteBufferPool} 和 {@link Scheduler}）的工厂。
+@@BODY 41 42
+<p>此工厂实现 {@link InitializingBean} 和 {@link DisposableBean}，
+通常应声明为 Spring 管理的 bean。
+@@BODY 62 63
+配置要使用的 {@link Executor}。
+<p>默认使用 {@link QueuedThreadPool} 初始化。
+@@BODY 71 72
+配置要使用的 {@link ByteBufferPool}。
+<p>默认使用 {@link MappedByteBufferPool} 初始化。
+@@BODY 80 81
+配置要使用的 {@link Scheduler}。
+<p>默认使用 {@link ScheduledExecutorScheduler} 初始化。
+@@BODY 89 92
+配置用于初始化 {@link QueuedThreadPool} 执行器的线程前缀。
+仅当未{@link #setExecutor(Executor) 提供} {@link Executor} 实例时
+使用此项。
+<p>默认设置为 "jetty-http"。
+@@BODY 101 101
+返回已配置的 {@link Executor}。
+@@BODY 109 109
+返回已配置的 {@link ByteBufferPool}。
+@@BODY 117 117
+返回已配置的 {@link Scheduler}。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/NettyHeadersAdapter.java
+@@BODY 34 34
+用于包装 Netty HTTP 头部的 {@code MultiValueMap} 实现。
+@@BODY 36 36
+<p>服务器包中有一个此类的副本！
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorClientHttpConnector.java
+@@BODY 34 34
+Reactor-Netty 的 {@link ClientHttpConnector} 实现。
+@@BODY 50 50
+默认构造函数。通过以下方式初始化 {@link HttpClient}：
+@@BODY 60 70
+使用外部管理的 Reactor Netty 资源的构造函数，包括用于事件循环线程的
+{@link LoopResources}，以及用于连接池的 {@link ConnectionProvider}。
+<p>仅当你希望客户端不参与 Reactor Netty 全局资源时，
+才应使用此构造函数。默认情况下，客户端参与
+{@link reactor.netty.http.HttpResources} 中持有的 Reactor Netty 全局资源，
+建议这样做，因为固定、共享的资源更适合事件循环并发。不过，
+可以考虑声明一个 {@code globalResources=true} 的 {@link ReactorResourceFactory} bean，
+以确保在 Spring ApplicationContext 关闭时关闭 Reactor Netty 全局资源。
+@@BODY 92 92
+使用预配置的 {@code HttpClient} 实例的构造函数。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorClientHttpRequest.java
+@@BODY 39 39
+用于 Reactor-Netty HTTP 客户端的 {@link ClientHttpRequest} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorClientHttpResponse.java
+@@BODY 47 47
+用于 Reactor-Netty HTTP 客户端的 {@link ClientHttpResponse} 实现。
+@@BODY 76 77
+与来自
+{@link reactor.netty.http.client.HttpClient.ResponseReceiver#responseConnection(BiFunction)} 的输入相匹配的构造函数。
+@@BODY 89 89
+使用从 {@link Connection} 提取的输入的构造函数。
+@@BODY 176 180
+当检测到取消但内容尚未订阅时，由 {@link ReactorClientHttpConnector}
+调用。如果订阅始终未实现，则内容将保持未排空状态。
+或者，如果取消发生得很早，或者响应读取因某种原因被延迟，
+订阅仍可能实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/ReactorResourceFactory.java
+@@BODY 33 35
+用于在 Spring {@code ApplicationContext} 生命周期内管理 Reactor Netty 资源
+（即用于事件循环线程的 {@link LoopResources}，以及用于连接池的
+{@link ConnectionProvider}）的工厂。
+@@BODY 37 38
+<p>此工厂实现 {@link InitializingBean} 和 {@link DisposableBean}，
+通常应声明为 Spring 管理的 bean。
+@@BODY 71 75
+是否通过 {@link HttpResources} 使用全局 Reactor Netty 资源。
+<p>默认值为 "true"，此时此工厂会在 Spring 的
+{@code ApplicationContext} 生命周期内初始化和停止全局 Reactor Netty 资源。
+如果设置为 "false"，则工厂将独立于全局资源管理其资源。
+@@BODY 84 85
+此工厂是否公开全局
+{@link reactor.netty.http.HttpResources HttpResources} 持有者。
+@@BODY 92 94
+添加一个 Consumer，用于在启动时配置全局 Reactor Netty 资源。
+使用此选项时，也会启用 {@link #setUseGlobalResources}。
+@@BODY 105 109
+当你不想参与全局资源，并且希望自定义托管
+{@code ConnectionProvider} 的创建时，请使用此项。
+<p>默认使用 {@code ConnectionProvider.elastic("http")}。
+<p>请注意，如果 {@code userGlobalResources=false} 或
+设置了 {@link #setConnectionProvider(ConnectionProvider)}，则忽略此选项。
+@@BODY 117 118
+当你希望提供外部管理的
+{@link ConnectionProvider} 实例时，请使用此项。
+@@BODY 126 126
+返回已配置的 {@link ConnectionProvider}。
+@@BODY 134 138
+当你不想参与全局资源，并且希望自定义托管
+{@code LoopResources} 的创建时，请使用此项。
+<p>默认使用 {@code LoopResources.create("reactor-http")}。
+<p>请注意，如果 {@code userGlobalResources=false} 或
+设置了 {@link #setLoopResources(LoopResources)}，则忽略此选项。
+@@BODY 146 147
+当你希望提供外部管理的
+{@link LoopResources} 实例时，请使用此选项。
+@@BODY 155 155
+返回已配置的 {@link LoopResources}。
+@@BODY 163 170
+配置在关闭资源之前等待的时间量。
+如果在 {@code shutdownQuietPeriod} 期间提交任务，则保证
+接受该任务，并且 {@code shutdownQuietPeriod} 将重新开始。
+<p>默认设置为
+{@link LoopResources#DEFAULT_SHUTDOWN_QUIET_PERIOD}，即 2 秒，
+但也可以通过系统属性
+{@link reactor.netty.ReactorNetty#SHUTDOWN_QUIET_PERIOD
+ReactorNetty.SHUTDOWN_QUIET_PERIOD} 覆盖。
+@@BODY 180 187
+配置等待底层资源释放的最长时间，无论
+在 {@code shutdownQuietPeriod} 期间是否提交了任务。
+<p>默认设置为
+{@link LoopResources#DEFAULT_SHUTDOWN_TIMEOUT}，即 15 秒，
+但也可以通过系统属性
+{@link reactor.netty.ReactorNetty#SHUTDOWN_TIMEOUT
+ReactorNetty.SHUTDOWN_TIMEOUT} 覆盖。
+===FILE spring-web/src/main/java/org/springframework/http/client/reactive/package-info.java
+@@BODY 2 5
+响应式 HTTP 客户端支持的抽象，包括
+{@link org.springframework.http.client.reactive.ClientHttpRequest} 和
+{@link org.springframework.http.client.reactive.ClientHttpResponse}，以及
+{@link org.springframework.http.client.reactive.ClientHttpConnector}。

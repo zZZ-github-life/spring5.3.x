@@ -1,0 +1,90 @@
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AdviceEntry.java::21::0", "zh": ["表示通知元素的 {@link ParseState} 条目。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AdviceEntry.java::32::0", "zh": ["创建一个新的 {@code AdviceEntry} 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AdvisorComponentDefinition.java::26::0", "zh": ["用于在由 {@code <aop:advisor>} 标签配置的 advisor Bean 定义与组件定义基础设施之间架起桥梁的 {@link org.springframework.beans.factory.parsing.ComponentDefinition}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AdvisorEntry.java::21::0", "zh": ["表示 advisor 的 {@link ParseState} 条目。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AdvisorEntry.java::32::0", "zh": ["创建一个新的 {@code AdvisorEntry} 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopConfigUtils.java::32::0", "zh": ["用于处理 AOP 自动代理创建器注册的工具类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopConfigUtils.java::32::1", "zh": ["<p>应当只注册一个自动代理创建器，但可用的具体实现却有多个。本类提供了一个简单的升级协议，允许调用者请求特定的自动代理创建器，并确知该创建器（<i>或其能力更强的变体</i>）将被注册为后处理器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopConfigUtils.java::48::0", "zh": ["内部管理的自动代理创建器的 Bean 名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopConfigUtils.java::54::0", "zh": ["按升级顺序存储自动代理创建器类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceHandler.java::23::0", "zh": ["用于 {@code aop} 命名空间的 {@code NamespaceHandler}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceHandler.java::23::1", "zh": ["<p>为 {@code <aop:config>} 标签提供 {@link org.springframework.beans.factory.xml.BeanDefinitionParser}。{@code config} 标签可以包含嵌套的 {@code pointcut}、{@code advisor} 和 {@code aspect} 标签。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceHandler.java::23::2", "zh": ["<p>{@code pointcut} 标签允许使用简单的语法创建具名的 {@link AspectJExpressionPointcut} Bean："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceHandler.java::23::3", "zh": ["<p>使用 {@code advisor} 标签，可以配置一个 {@link org.springframework.aop.Advisor}，并让它在您的 {@link org.springframework.beans.factory.BeanFactory} 中自动应用于所有相关的 Bean。{@code advisor} 标签同时支持内联的和引用的 {@link org.springframework.aop.Pointcut Pointcuts}："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceHandler.java::57::0", "zh": ["为 '{@code config}'、'{@code spring-configured}'、'{@code aspectj-autoproxy}' 和 '{@code scoped-proxy}' 标签注册 {@link BeanDefinitionParser BeanDefinitionParsers}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceUtils.java::27::0", "zh": ["用于处理 '{@code aop}' 命名空间标签内部使用的自动代理创建器注册的工具类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceUtils.java::27::1", "zh": ["<p>应当只注册一个自动代理创建器，而多个配置元素可能希望注册不同的具体实现。因此，本类委托给 {@link AopConfigUtils}，后者提供了一个简单的升级协议。调用者可以请求特定的自动代理创建器，并确知该创建器（<i>或其能力更强的变体</i>）将被注册为后处理器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceUtils.java::45::0", "zh": ["在 AOP 相关的 XML 标签中出现的 {@code proxy-target-class} 属性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AopNamespaceUtils.java::50::0", "zh": ["在 AOP 相关的 XML 标签中出现的 {@code expose-proxy} 属性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AspectComponentDefinition.java::24::0", "zh": ["持有切面定义（包括其嵌套切点）的 {@link org.springframework.beans.factory.parsing.ComponentDefinition}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AspectEntry.java::22::0", "zh": ["表示切面的 {@link ParseState} 条目。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AspectEntry.java::36::0", "zh": ["创建一个新的 {@code AspectEntry} 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/AspectJAutoProxyBeanDefinitionParser.java::30::0", "zh": ["用于 {@code aspectj-autoproxy} 标签的 {@link BeanDefinitionParser}，可自动应用 {@link org.springframework.beans.factory.BeanFactory} 中发现的 @AspectJ 风格切面。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::52::0", "zh": ["用于 {@code <aop:config>} 标签的 {@link BeanDefinitionParser}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::126::0", "zh": ["配置支持由 '{@code <aop:config/>}' 标签创建的 {@link BeanDefinition BeanDefinitions} 所需的自动代理创建器。如果 '{@code proxy-target-class}' 属性设置为 '{@code true}'，将强制使用类代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::136::0", "zh": ["解析所提供的 {@code <advisor>} 元素，并将得到的 {@link org.springframework.aop.Advisor} 以及任何得到的 {@link org.springframework.aop.Pointcut} 注册到所提供的 {@link BeanDefinitionRegistry}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::172::0", "zh": ["为所提供元素中描述的 advisor 创建一个 {@link RootBeanDefinition}。该方法<strong>不会</strong>解析任何关联的 '{@code pointcut}' 或 '{@code pointcut-ref}' 属性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::262::0", "zh": ["如果所提供的节点描述的是通知类型，则返回 {@code true}。通知类型可以是以下之一：'{@code before}'、'{@code after}'、'{@code after-returning}'、'{@code after-throwing}' 或 '{@code around}'。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::278::0", "zh": ["解析 '{@code declare-parents}' 元素，并将相应的 DeclareParentsAdvisor 注册到封装在所提供的 ParserContext 中的 BeanDefinitionRegistry。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::309::0", "zh": ["解析 '{@code before}'、'{@code after}'、'{@code after-returning}'、'{@code after-throwing}' 或 '{@code around}' 之一，并将得到的 BeanDefinition 注册到所提供的 BeanDefinitionRegistry。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::358::0", "zh": ["为 POJO 通知 Bean 创建 RootBeanDefinition。还会触发切点解析，以便将该切点与通知 Bean 关联。同一个切点还会通过所提供的 MutablePropertyValues 配置为外层 Advisor 定义的切点。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::407::0", "zh": ["获取与所提供的 {@link Element} 对应的通知实现类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::432::0", "zh": ["解析所提供的 {@code <pointcut>}，并将得到的 Pointcut 注册到 BeanDefinitionRegistry。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::465::0", "zh": ["解析所提供的 {@link Element} 的 {@code pointcut} 或 {@code pointcut-ref} 属性，并按需添加 {@code pointcut} 属性。如需要，会为该切点生成一个 {@link org.springframework.beans.factory.config.BeanDefinition} 并返回其 Bean 名称；否则返回所引用切点的 Bean 名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ConfigBeanDefinitionParser.java::503::0", "zh": ["使用所提供的切点表达式为 {@link AspectJExpressionPointcut} 类创建一个 {@link BeanDefinition}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/MethodLocatingFactoryBean.java::28::0", "zh": ["在指定 Bean 上定位 {@link Method} 的 {@link FactoryBean} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/MethodLocatingFactoryBean.java::46::0", "zh": ["设置要在其上定位 {@link Method} 的 Bean 名称。", "<p>此属性是必需的。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/MethodLocatingFactoryBean.java::55::0", "zh": ["设置要定位的 {@link Method} 名称。", "<p>此属性是必需的。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/PointcutComponentDefinition.java::24::0", "zh": ["持有切点定义的 {@link org.springframework.beans.factory.parsing.ComponentDefinition} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/PointcutEntry.java::21::0", "zh": ["表示切点的 {@link ParseState} 条目。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/PointcutEntry.java::32::0", "zh": ["创建一个新的 {@code PointcutEntry} 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/ScopedProxyBeanDefinitionDecorator.java::28::0", "zh": ["负责解析 {@code <aop:scoped-proxy/>} 标签的 {@link BeanDefinitionDecorator}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/SimpleBeanFactoryAwareAspectInstanceFactory.java::28::0", "zh": ["使用配置的 Bean 名称从 {@link org.springframework.beans.factory.BeanFactory} 中定位切面的 {@link AspectInstanceFactory} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/SimpleBeanFactoryAwareAspectInstanceFactory.java::45::0", "zh": ["设置切面 Bean 的名称。调用 {@link #getAspectInstance()} 时返回的就是该 Bean。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/SimpleBeanFactoryAwareAspectInstanceFactory.java::60::0", "zh": ["从 {@link BeanFactory} 中查找切面 Bean 并返回它。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/SpringConfiguredBeanDefinitionParser.java::27::0", "zh": ["负责解析 {@code <aop:spring-configured/>} 标签的 {@link BeanDefinitionParser}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/SpringConfiguredBeanDefinitionParser.java::27::1", "zh": ["<p><b>NOTE:</b> 这实质上重复了 Spring 2.5 中用于 {@code <context:spring-configured/>} 标签的 {@link org.springframework.context.config.SpringConfiguredBeanDefinitionParser}，此处镜像一份是为了兼容 Spring 2.0 的 {@code <aop:spring-configured/>} 标签（避免直接依赖 context 包）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/SpringConfiguredBeanDefinitionParser.java::43::0", "zh": ["内部管理的 Bean 配置器切面的 Bean 名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/config/package-info.java::1::0", "zh": ["声明式 AOP 配置的支持包，以 XML schema 作为主要配置格式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractAdvisingBeanPostProcessor.java::28::0", "zh": ["用于将 Spring AOP {@link Advisor} 应用于特定 Bean 的 {@link BeanPostProcessor} 实现的基类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractAdvisingBeanPostProcessor.java::46::0", "zh": ["设置当遇到已被通知过的对象时，此后处理器的 advisor 是否应在此之前已有的 advisor 之前应用。", "<p>默认值为 \"false\"，即在现有 advisor 之后应用该 advisor，也就是尽可能靠近目标方法。将其切换为 \"true\"，以便此后处理器的 advisor 也能包裹现有 advisor。", "<p>注意：请查看具体后处理器的 javadoc，了解它是否会根据其 advisor 的性质默认更改此标志。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractAdvisingBeanPostProcessor.java::106::0", "zh": ["检查给定的 Bean 是否有资格被此后处理器的 {@link Advisor} 通知。", "<p>目标类检查委托给 {@link #isEligible(Class)}。可以重写该方法，例如按名称专门排除某些 Bean。", "<p>注意：仅对普通 Bean 实例调用，不会对现有代理实例调用；后者实现了 {@link Advised}，并允许将本地 {@link Advisor} 添加到现有代理的 {@link Advisor} 链中。对于后者，会直接调用 {@link #isEligible(Class)}，并传入现有代理背后的实际目标类（由 {@link AopUtils#getTargetClass(Object)} 确定）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractAdvisingBeanPostProcessor.java::125::0", "zh": ["检查给定的类是否有资格被此后处理器的 {@link Advisor} 通知。", "<p>按 Bean 目标类缓存 {@code canApply} 的结果。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractAdvisingBeanPostProcessor.java::145::0", "zh": ["为给定的 Bean 准备一个 {@link ProxyFactory}。", "<p>子类可以自定义目标实例的处理方式，特别是目标类的暴露方式。随后会应用默认的非目标类代理接口内省以及已配置的 advisor；{@link #customizeProxyFactory} 允许在创建代理之前立即对这些部分进行后期定制。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractAdvisingBeanPostProcessor.java::166::0", "zh": ["子类可以选择实现此方法：例如，更改所暴露的接口。", "<p>默认实现为空。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::30::0", "zh": ["用于生成单例作用域代理对象的 {@link FactoryBean} 类型的便捷超类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::30::1", "zh": ["<p>管理前置和后置拦截器（与 {@link ProxyFactoryBean} 中一样是引用，而不是拦截器名称），并提供一致的接口管理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::67::0", "zh": ["设置目标对象，即要用事务代理包装的 Bean。", "<p>目标可以是任何对象，此时会创建一个 SingletonTargetSource。如果它是一个 TargetSource，则不会创建包装用的 TargetSource：这允许使用池化或原型 TargetSource 等。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::82::0", "zh": ["指定要代理的接口集。", "<p>如果未指定（默认情况），AOP 基础设施会通过分析目标来确定需要代理哪些接口，并代理目标对象实现的所有接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::92::0", "zh": ["设置要在隐式事务拦截器之前应用的附加拦截器（或 advisor），例如 PerformanceMonitorInterceptor。", "<p>可以指定任何 AOP Alliance MethodInterceptor 或其他 Spring AOP Advice，以及 Spring AOP Advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::103::0", "zh": ["设置要在隐式事务拦截器之后应用的附加拦截器（或 advisor）。", "<p>可以指定任何 AOP Alliance MethodInterceptor 或其他 Spring AOP Advice，以及 Spring AOP Advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::113::0", "zh": ["指定要使用的 AdvisorAdapterRegistry。默认是全局 AdvisorAdapterRegistry。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::122::0", "zh": ["设置用于生成代理类的 ClassLoader。", "<p>默认是 Bean 的 ClassLoader，即包含它的 BeanFactory 用来加载所有 Bean 类的 ClassLoader。可以在此针对特定的代理进行覆盖。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::190::0", "zh": ["为给定的目标（或 TargetSource）确定一个 TargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::205::0", "zh": ["供子类在使用 {@link ProxyFactory} 创建代理实例之前对其进行后处理的钩子。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.java::247::0", "zh": ["为此代理工厂 Bean 创建“主”拦截器。通常是 Advisor，但也可以是任何类型的 Advice。", "<p>前置拦截器将在此拦截器之前应用，后置拦截器将在此拦截器之后应用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::25::0", "zh": ["由持有 AOP 代理工厂配置的类实现的接口。该配置包括拦截器和其他通知、Advisor，以及被代理的接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::25::1", "zh": ["<p>从 Spring 获得的任何 AOP 代理都可以强制转换为该接口，以便操作其 AOP 通知。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::40::0", "zh": ["返回 Advised 配置是否已被冻结；若已冻结，则无法进行任何通知更改。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::46::0", "zh": ["我们是否代理整个目标类，而不是指定的接口？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::51::0", "zh": ["返回由 AOP 代理所代理的接口。", "<p>不会包含目标类，虽然目标类也可能被代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::57::0", "zh": ["确定给定的接口是否被代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::63::0", "zh": ["更改此 {@code Advised} 对象使用的 {@code TargetSource}。", "<p>仅在配置未 {@linkplain #isFrozen 冻结} 时有效。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::70::0", "zh": ["返回此 {@code Advised} 对象使用的 {@code TargetSource}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::75::0", "zh": ["设置 AOP 框架是否应将该代理暴露为 {@link ThreadLocal}，以便通过 {@link AopContext} 类获取。", "<p>如果被通知的对象需要在自身调用方法时应用通知，则可能需要暴露该代理。否则，当被通知的对象在 {@code this} 上调用方法时，不会应用任何通知。", "<p>默认值为 {@code false}，以获得最佳性能。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::85::0", "zh": ["返回工厂是否应将代理暴露为 {@link ThreadLocal}。", "<p>如果被通知的对象需要在自身调用方法时应用通知，则可能需要暴露该代理。否则，当被通知的对象在 {@code this} 上调用方法时，不会应用任何通知。", "<p>获取代理类似于 EJB 调用 {@code getEJBObject()}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::95::0", "zh": ["设置此代理配置是否已预先过滤，从而仅包含适用的 advisor（与此代理的目标类匹配）。", "<p>默认值为 \"false\"。如果 advisor 已经预先过滤，请将其设置为 \"true\"，这意味着在为代理调用构建实际 advisor 链时可以跳过 ClassFilter 检查。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::105::0", "zh": ["返回此代理配置是否已预先过滤，从而仅包含适用的 advisor（与此代理的目标类匹配）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::111::0", "zh": ["返回应用于此代理的 advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::117::0", "zh": ["返回应用于此代理的 advisor 数量。", "<p>默认实现委托给 {@code getAdvisors().length}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::126::0", "zh": ["在 advisor 链的末尾添加一个 advisor。", "<p>该 Advisor 可以是 {@link org.springframework.aop.IntroductionAdvisor}，此时当再次从相关工厂获取代理时，新的接口将可用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::136::0", "zh": ["在链中的指定位置添加一个 Advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::144::0", "zh": ["移除给定的 advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::152::0", "zh": ["移除给定索引处的 advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::159::0", "zh": ["返回给定 advisor 的索引（从 0 开始），如果没有此类 advisor 应用于此代理，则返回 -1。", "<p>该方法的返回值可用作 advisors 数组的索引。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::168::0", "zh": ["替换给定的 advisor。", "<p><b>Note:</b> 如果该 advisor 是 {@link org.springframework.aop.IntroductionAdvisor}，而替换者不是该类型或实现了不同的接口，则需要重新获取代理，否则旧接口将不再受支持，新接口也不会被实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::182::0", "zh": ["将给定的 AOP Alliance 通知添加到通知（拦截器）链的末尾。", "<p>它会被包装在一个带始终应用的切点的 DefaultPointcutAdvisor 中，并以这种包装形式从 {@code getAdvisors()} 方法返回。", "<p>注意，给定的通知将应用于代理上的所有调用，甚至包括 {@code toString()} 方法！请使用适当的通知实现或指定适当的切点，以应用于更窄的方法集合。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::196::0", "zh": ["在通知链中的指定位置添加给定的 AOP Alliance Advice。", "<p>它会被包装在一个带始终应用的切点的 {@link org.springframework.aop.support.DefaultPointcutAdvisor} 中，并以这种包装形式从 {@link #getAdvisors()} 方法返回。", "<p>注意：给定的通知将应用于代理上的所有调用，甚至包括 {@code toString()} 方法！请使用适当的通知实现或指定适当的切点，以应用于更窄的方法集合。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::210::0", "zh": ["移除包含给定通知的 Advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::218::0", "zh": ["返回给定 AOP Alliance Advice 的索引（从 0 开始），如果没有此类通知作为此代理的通知，则返回 -1。", "<p>该方法的返回值可用作 advisors 数组的索引。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/Advised.java::228::0", "zh": ["由于 {@code toString()} 通常会委托给目标，此方法返回 AOP 代理的对应结果。"]}

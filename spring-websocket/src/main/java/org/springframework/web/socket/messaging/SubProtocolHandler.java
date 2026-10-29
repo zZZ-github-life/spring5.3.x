@@ -26,15 +26,15 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * A contract for handling WebSocket messages as part of a higher level protocol,
- * referred to as "sub-protocol" in the WebSocket RFC specification.
- * Handles both {@link WebSocketMessage WebSocketMessages} from a client
- * as well as {@link Message Messages} to a client.
+ * 作为更高级别协议的一部分处理 WebSocket 消息的契约，该协议在 WebSocket
+ * RFC 规范中称为“子协议”。
+ * 既处理来自客户端的 {@link WebSocketMessage WebSocketMessage}，
+ * 也处理发往客户端的 {@link Message Message}。
  *
- * <p>Implementations of this interface can be configured on a
- * {@link SubProtocolWebSocketHandler} which selects a sub-protocol handler to
- * delegate messages to based on the sub-protocol requested by the client through
- * the {@code Sec-WebSocket-Protocol} request header.
+ * <p>此接口的实现可以配置在
+ * {@link SubProtocolWebSocketHandler} 上，后者根据客户端通过
+ * {@code Sec-WebSocket-Protocol} 请求头请求的子协议，
+ * 选择一个子协议处理器来委托消息处理。
  *
  * @author Andy Wilkinson
  * @author Rossen Stoyanchev
@@ -43,12 +43,12 @@ import org.springframework.web.socket.WebSocketSession;
 public interface SubProtocolHandler {
 
 	/**
-	 * Return the list of sub-protocols supported by this handler (never {@code null}).
+	 * 返回此处理器支持的子协议列表（永远不会是 {@code null}）。
 	 */
 	List<String> getSupportedProtocols();
 
 	/**
-	 * Handle the given {@link WebSocketMessage} received from a client.
+	 * 处理从客户端接收到的给定 {@link WebSocketMessage}。
 	 * @param session the client session
 	 * @param message the client message
 	 * @param outputChannel an output channel to send messages to
@@ -57,28 +57,28 @@ public interface SubProtocolHandler {
 			throws Exception;
 
 	/**
-	 * Handle the given {@link Message} to the client associated with the given WebSocket session.
+	 * 处理发往与给定 WebSocket 会话关联的客户端的给定 {@link Message}。
 	 * @param session the client session
 	 * @param message the client message
 	 */
 	void handleMessageToClient(WebSocketSession session, Message<?> message) throws Exception;
 
 	/**
-	 * Resolve the session id from the given message or return {@code null}.
+	 * 从给定消息中解析会话 ID，或返回 {@code null}。
 	 * @param message the message to resolve the session id from
 	 */
 	@Nullable
 	String resolveSessionId(Message<?> message);
 
 	/**
-	 * Invoked after a {@link WebSocketSession} has started.
+	 * 在 {@link WebSocketSession} 启动后调用。
 	 * @param session the client session
 	 * @param outputChannel a channel
 	 */
 	void afterSessionStarted(WebSocketSession session, MessageChannel outputChannel) throws Exception;
 
 	/**
-	 * Invoked after a {@link WebSocketSession} has ended.
+	 * 在 {@link WebSocketSession} 结束后调用。
 	 * @param session the client session
 	 * @param closeStatus the reason why the session was closed
 	 * @param outputChannel a channel

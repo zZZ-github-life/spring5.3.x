@@ -33,14 +33,14 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * Helper class that provides static methods for obtaining JDBC Connections from
- * a {@link javax.sql.DataSource}. Includes special support for Spring-managed
- * transactional Connections, e.g. managed by {@link DataSourceTransactionManager}
- * or {@link org.springframework.transaction.jta.JtaTransactionManager}.
+ * 提供从 {@link javax.sql.DataSource} 获取 JDBC Connection 的静态方法的
+ * 辅助类。包含对 Spring 管理的事务性 Connection 的特殊支持，
+ * 例如由 {@link DataSourceTransactionManager} 或
+ * {@link org.springframework.transaction.jta.JtaTransactionManager} 管理的 Connection。
  *
- * <p>Used internally by Spring's {@link org.springframework.jdbc.core.JdbcTemplate},
- * Spring's JDBC operation objects and the JDBC {@link DataSourceTransactionManager}.
- * Can also be used directly in application code.
+ * <p>由 Spring 的 {@link org.springframework.jdbc.core.JdbcTemplate}、
+ * Spring 的 JDBC 操作对象以及 JDBC {@link DataSourceTransactionManager} 内部使用。
+ * 也可以直接在应用程序代码中使用。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -53,7 +53,7 @@ import org.springframework.util.Assert;
 public abstract class DataSourceUtils {
 
 	/**
-	 * Order value for TransactionSynchronization objects that clean up JDBC Connections.
+	 * 用于清理 JDBC Connection 的 TransactionSynchronization 对象的排序值。
 	 */
 	public static final int CONNECTION_SYNCHRONIZATION_ORDER = 1000;
 
@@ -61,13 +61,13 @@ public abstract class DataSourceUtils {
 
 
 	/**
-	 * Obtain a Connection from the given DataSource. Translates SQLExceptions into
-	 * the Spring hierarchy of unchecked generic data access exceptions, simplifying
-	 * calling code and making any exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
-	 * when using {@link DataSourceTransactionManager}. Will bind a Connection to the
-	 * thread if transaction synchronization is active, e.g. when running within a
-	 * {@link org.springframework.transaction.jta.JtaTransactionManager JTA} transaction).
+	 * 从给定的 DataSource 获取一个 Connection。会将 SQLException 转换为
+	 * Spring 的非受检通用数据访问异常体系中的异常，从而简化调用代码
+	 * 并使抛出的任何异常更具意义。
+	 * <p>能够感知绑定到当前线程的相应 Connection，例如在使用
+	 * {@link DataSourceTransactionManager} 时。如果事务同步处于活动状态
+	 * （例如在 {@link org.springframework.transaction.jta.JtaTransactionManager JTA}
+	 * 事务中运行时），会将 Connection 绑定到线程。
 	 * @param dataSource the DataSource to obtain Connections from
 	 * @return a JDBC Connection from the given DataSource
 	 * @throws org.springframework.jdbc.CannotGetJdbcConnectionException
@@ -88,12 +88,12 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Actually obtain a JDBC Connection from the given DataSource.
-	 * Same as {@link #getConnection}, but throwing the original SQLException.
-	 * <p>Is aware of a corresponding Connection bound to the current thread, for example
-	 * when using {@link DataSourceTransactionManager}. Will bind a Connection to the thread
-	 * if transaction synchronization is active (e.g. if in a JTA transaction).
-	 * <p>Directly accessed by {@link TransactionAwareDataSourceProxy}.
+	 * 实际从给定的 DataSource 获取一个 JDBC Connection。
+	 * 与 {@link #getConnection} 相同，但会抛出原始的 SQLException。
+	 * <p>能够感知绑定到当前线程的相应 Connection，例如在使用
+	 * {@link DataSourceTransactionManager} 时。如果事务同步处于活动状态
+	 * （例如在 JTA 事务中），会将 Connection 绑定到线程。
+	 * <p>由 {@link TransactionAwareDataSourceProxy} 直接访问。
 	 * @param dataSource the DataSource to obtain Connections from
 	 * @return a JDBC Connection from the given DataSource
 	 * @throws SQLException if thrown by JDBC methods
@@ -146,9 +146,9 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Actually fetch a {@link Connection} from the given {@link DataSource},
-	 * defensively turning an unexpected {@code null} return value from
-	 * {@link DataSource#getConnection()} into an {@link IllegalStateException}.
+	 * 实际从给定的 {@link DataSource} 获取一个 {@link Connection}，
+	 * 并将 {@link DataSource#getConnection()} 意外返回的 {@code null}
+	 * 防御性地转换为 {@link IllegalStateException}。
 	 * @param dataSource the DataSource to obtain Connections from
 	 * @return a JDBC Connection from the given DataSource (never {@code null})
 	 * @throws SQLException if thrown by JDBC methods
@@ -164,7 +164,7 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Prepare the given Connection with the given transaction semantics.
+	 * 使用给定的事务语义准备给定的 Connection。
 	 * @param con the Connection to prepare
 	 * @param definition the transaction definition to apply
 	 * @return the previous isolation level, if any
@@ -220,8 +220,8 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Reset the given Connection after a transaction,
-	 * regarding read-only flag and isolation level.
+	 * 在事务结束后重置给定的 Connection，
+	 * 包括只读标志和隔离级别。
 	 * @param con the Connection to reset
 	 * @param previousIsolationLevel the isolation level to restore, if any
 	 * @param resetReadOnly whether to reset the connection's read-only flag
@@ -259,8 +259,8 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Reset the given Connection after a transaction,
-	 * regarding read-only flag and isolation level.
+	 * 在事务结束后重置给定的 Connection，
+	 * 包括只读标志和隔离级别。
 	 * @param con the Connection to reset
 	 * @param previousIsolationLevel the isolation level to restore, if any
 	 * @deprecated as of 5.1.11, in favor of
@@ -293,8 +293,8 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Determine whether the given JDBC Connection is transactional, that is,
-	 * bound to the current thread by Spring's transaction facilities.
+	 * 判断给定的 JDBC Connection 是否为事务性的，即是否
+	 * 由 Spring 的事务设施绑定到当前线程。
 	 * @param con the Connection to check
 	 * @param dataSource the DataSource that the Connection was obtained from
 	 * (may be {@code null})
@@ -310,8 +310,7 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Apply the current transaction timeout, if any,
-	 * to the given JDBC Statement object.
+	 * 将当前事务超时（如果有）应用到给定的 JDBC Statement 对象。
 	 * @param stmt the JDBC Statement object
 	 * @param dataSource the DataSource that the Connection was obtained from
 	 * @throws SQLException if thrown by JDBC methods
@@ -322,8 +321,8 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Apply the specified timeout - overridden by the current transaction timeout,
-	 * if any - to the given JDBC Statement object.
+	 * 将指定的超时（如果存在当前事务超时，则由其覆盖）
+	 * 应用到给定的 JDBC Statement 对象。
 	 * @param stmt the JDBC Statement object
 	 * @param dataSource the DataSource that the Connection was obtained from
 	 * @param timeout the timeout to apply (or 0 for no timeout outside of a transaction)
@@ -347,8 +346,8 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Close the given Connection, obtained from the given DataSource,
-	 * if it is not managed externally (that is, not bound to the thread).
+	 * 关闭从给定 DataSource 获取的给定 Connection，
+	 * 前提是它不由外部管理（即未绑定到线程）。
 	 * @param con the Connection to close if necessary
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param dataSource the DataSource that the Connection was obtained from
@@ -368,9 +367,9 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Actually close the given Connection, obtained from the given DataSource.
-	 * Same as {@link #releaseConnection}, but throwing the original SQLException.
-	 * <p>Directly accessed by {@link TransactionAwareDataSourceProxy}.
+	 * 实际关闭从给定 DataSource 获取的给定 Connection。
+	 * 与 {@link #releaseConnection} 相同，但会抛出原始的 SQLException。
+	 * <p>由 {@link TransactionAwareDataSourceProxy} 直接访问。
 	 * @param con the Connection to close if necessary
 	 * (if this is {@code null}, the call will be ignored)
 	 * @param dataSource the DataSource that the Connection was obtained from
@@ -394,7 +393,7 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Close the Connection, unless a {@link SmartDataSource} doesn't want us to.
+	 * 关闭 Connection，除非 {@link SmartDataSource} 不希望我们关闭。
 	 * @param con the Connection to close if necessary
 	 * @param dataSource the DataSource that the Connection was obtained from
 	 * @throws SQLException if thrown by JDBC methods
@@ -408,9 +407,9 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Determine whether the given two Connections are equal, asking the target
-	 * Connection in case of a proxy. Used to detect equality even if the
-	 * user passed in a raw target Connection while the held one is a proxy.
+	 * 判断给定的两个 Connection 是否相等，如果是代理则询问目标
+	 * Connection。用于在用户传入原始目标 Connection 而持有的是代理时
+	 * 也能检测出相等性。
 	 * @param conHolder the ConnectionHolder for the held Connection (potentially a proxy)
 	 * @param passedInCon the Connection passed-in by the user
 	 * (potentially a target Connection without proxy)
@@ -429,9 +428,9 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Return the innermost target Connection of the given Connection. If the given
-	 * Connection is a proxy, it will be unwrapped until a non-proxy Connection is
-	 * found. Otherwise, the passed-in Connection will be returned as-is.
+	 * 返回给定 Connection 最内层的目标 Connection。如果给定的
+	 * Connection 是代理，则会不断解包，直到找到非代理的 Connection。
+	 * 否则，将原样返回传入的 Connection。
 	 * @param con the Connection proxy to unwrap
 	 * @return the innermost target Connection, or the passed-in one if no proxy
 	 * @see ConnectionProxy#getTargetConnection()
@@ -445,9 +444,9 @@ public abstract class DataSourceUtils {
 	}
 
 	/**
-	 * Determine the connection synchronization order to use for the given
-	 * DataSource. Decreased for every level of nesting that a DataSource
-	 * has, checked through the level of DelegatingDataSource nesting.
+	 * 确定要用于给定 DataSource 的连接同步顺序。
+	 * DataSource 每嵌套一层（通过 DelegatingDataSource 的嵌套层级检查），
+	 * 该顺序值就递减一次。
 	 * @param dataSource the DataSource to check
 	 * @return the connection synchronization order to use
 	 * @see #CONNECTION_SYNCHRONIZATION_ORDER
@@ -464,8 +463,8 @@ public abstract class DataSourceUtils {
 
 
 	/**
-	 * Callback for resource cleanup at the end of a non-native JDBC transaction
-	 * (e.g. when participating in a JtaTransactionManager transaction).
+	 * 用于在非原生 JDBC 事务结束时清理资源的回调
+	 * （例如参与 JtaTransactionManager 事务时）。
 	 * @see org.springframework.transaction.jta.JtaTransactionManager
 	 */
 	private static class ConnectionSynchronization implements TransactionSynchronization {

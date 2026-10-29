@@ -19,7 +19,7 @@ package org.springframework.web.socket;
 import java.util.List;
 
 /**
- * An interface for WebSocket handlers that support sub-protocols as defined in RFC 6455.
+ * 用于支持 RFC 6455 中定义的子协议的 WebSocket 处理器的接口。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -29,7 +29,7 @@ import java.util.List;
 public interface SubProtocolCapable {
 
 	/**
-	 * Return the list of supported sub-protocols.
+	 * 返回支持的子协议列表。
 	 */
 	List<String> getSubProtocols();
 

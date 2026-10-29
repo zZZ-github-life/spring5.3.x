@@ -23,10 +23,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Helper class for {@link ListenableFuture} implementations that maintains a queue
- * of success and failure callbacks and helps to notify them.
+ * 用于 {@link ListenableFuture} 实现的辅助类，维护成功和失败回调的队列并协助通知它们。
  *
- * <p>Inspired by {@code com.google.common.util.concurrent.ExecutionList}.
+ * <p>受 {@code com.google.common.util.concurrent.ExecutionList} 启发。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -49,7 +48,7 @@ public class ListenableFutureCallbackRegistry<T> {
 
 
 	/**
-	 * Add the given callback to this registry.
+	 * 将给定的回调添加到此注册表。
 	 * @param callback the callback to add
 	 */
 	public void addCallback(ListenableFutureCallback<? super T> callback) {
@@ -91,7 +90,7 @@ public class ListenableFutureCallbackRegistry<T> {
 	}
 
 	/**
-	 * Add the given success callback to this registry.
+	 * 将给定的成功回调添加到此注册表。
 	 * @param callback the success callback to add
 	 * @since 4.1
 	 */
@@ -110,7 +109,7 @@ public class ListenableFutureCallbackRegistry<T> {
 	}
 
 	/**
-	 * Add the given failure callback to this registry.
+	 * 将给定的失败回调添加到此注册表。
 	 * @param callback the failure callback to add
 	 * @since 4.1
 	 */
@@ -129,8 +128,7 @@ public class ListenableFutureCallbackRegistry<T> {
 	}
 
 	/**
-	 * Trigger a {@link ListenableFutureCallback#onSuccess(Object)} call on all
-	 * added callbacks with the given result.
+	 * 使用给定结果对所有已添加的回调触发 {@link ListenableFutureCallback#onSuccess(Object)} 调用。
 	 * @param result the result to trigger the callbacks with
 	 */
 	public void success(@Nullable T result) {
@@ -145,8 +143,8 @@ public class ListenableFutureCallbackRegistry<T> {
 	}
 
 	/**
-	 * Trigger a {@link ListenableFutureCallback#onFailure(Throwable)} call on all
-	 * added callbacks with the given {@code Throwable}.
+	 * 使用给定的 {@code Throwable} 对所有已添加的回调触发
+	 * {@link ListenableFutureCallback#onFailure(Throwable)} 调用。
 	 * @param ex the exception to trigger the callbacks with
 	 */
 	public void failure(Throwable ex) {

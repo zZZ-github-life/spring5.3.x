@@ -21,11 +21,10 @@ import javax.servlet.ServletRequest;
 import org.springframework.lang.Nullable;
 
 /**
- * Parameter extraction methods, for an approach distinct from data binding,
- * in which parameters of specific types are required.
+ * 参数提取方法，提供一种不同于数据绑定的方式，要求特定类型的参数。
  *
- * <p>This approach is very useful for simple submissions, where binding
- * request parameters to a command object would be overkill.
+ * <p>此方式对于简单的提交非常有用，因为在这些场景中将请求参数绑定到命令对象
+ * 会显得过于繁琐。
  *
  * @author Juergen Hoeller
  * @author Keith Donald
@@ -47,8 +46,8 @@ public abstract class ServletRequestUtils {
 
 
 	/**
-	 * Get an Integer parameter, or {@code null} if not present.
-	 * Throws an exception if the parameter value isn't a number.
+	 * 获取一个 Integer 参数，如果不存在则返回 {@code null}。
+	 * 如果参数值不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return the Integer value, or {@code null} if not present
@@ -66,8 +65,8 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an int parameter, with a fallback value. Never throws an exception.
-	 * Can pass a distinguished value as default to enable checks of whether it was supplied.
+	 * 获取一个 int 参数，带有回退值。从不抛出异常。
+	 * 可以传入一个特殊值作为默认值，以便检查该参数是否被提供。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @param defaultVal the default value to use as fallback
@@ -85,7 +84,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of int parameters, return an empty array if not found.
+	 * 获取一个 int 参数数组，如果未找到则返回空数组。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 */
@@ -99,7 +98,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an int parameter, throwing an exception if it isn't found or isn't a number.
+	 * 获取一个 int 参数，如果未找到或不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -112,7 +111,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of int parameters, throwing an exception if not found or one is not a number.
+	 * 获取一个 int 参数数组，如果未找到或其中某个不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -126,8 +125,8 @@ public abstract class ServletRequestUtils {
 
 
 	/**
-	 * Get a Long parameter, or {@code null} if not present.
-	 * Throws an exception if the parameter value isn't a number.
+	 * 获取一个 Long 参数，如果不存在则返回 {@code null}。
+	 * 如果参数值不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return the Long value, or {@code null} if not present
@@ -145,8 +144,8 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a long parameter, with a fallback value. Never throws an exception.
-	 * Can pass a distinguished value as default to enable checks of whether it was supplied.
+	 * 获取一个 long 参数，带有回退值。从不抛出异常。
+	 * 可以传入一个特殊值作为默认值，以便检查该参数是否被提供。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @param defaultVal the default value to use as fallback
@@ -164,7 +163,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of long parameters, return an empty array if not found.
+	 * 获取一个 long 参数数组，如果未找到则返回空数组。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 */
@@ -178,7 +177,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a long parameter, throwing an exception if it isn't found or isn't a number.
+	 * 获取一个 long 参数，如果未找到或不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -191,7 +190,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of long parameters, throwing an exception if not found or one is not a number.
+	 * 获取一个 long 参数数组，如果未找到或其中某个不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -205,8 +204,8 @@ public abstract class ServletRequestUtils {
 
 
 	/**
-	 * Get a Float parameter, or {@code null} if not present.
-	 * Throws an exception if the parameter value isn't a number.
+	 * 获取一个 Float 参数，如果不存在则返回 {@code null}。
+	 * 如果参数值不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return the Float value, or {@code null} if not present
@@ -224,8 +223,8 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a float parameter, with a fallback value. Never throws an exception.
-	 * Can pass a distinguished value as default to enable checks of whether it was supplied.
+	 * 获取一个 float 参数，带有回退值。从不抛出异常。
+	 * 可以传入一个特殊值作为默认值，以便检查该参数是否被提供。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @param defaultVal the default value to use as fallback
@@ -243,7 +242,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of float parameters, return an empty array if not found.
+	 * 获取一个 float 参数数组，如果未找到则返回空数组。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 */
@@ -257,7 +256,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a float parameter, throwing an exception if it isn't found or isn't a number.
+	 * 获取一个 float 参数，如果未找到或不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -270,7 +269,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of float parameters, throwing an exception if not found or one is not a number.
+	 * 获取一个 float 参数数组，如果未找到或其中某个不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -284,8 +283,8 @@ public abstract class ServletRequestUtils {
 
 
 	/**
-	 * Get a Double parameter, or {@code null} if not present.
-	 * Throws an exception if the parameter value isn't a number.
+	 * 获取一个 Double 参数，如果不存在则返回 {@code null}。
+	 * 如果参数值不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return the Double value, or {@code null} if not present
@@ -303,8 +302,8 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a double parameter, with a fallback value. Never throws an exception.
-	 * Can pass a distinguished value as default to enable checks of whether it was supplied.
+	 * 获取一个 double 参数，带有回退值。从不抛出异常。
+	 * 可以传入一个特殊值作为默认值，以便检查该参数是否被提供。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @param defaultVal the default value to use as fallback
@@ -322,7 +321,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of double parameters, return an empty array if not found.
+	 * 获取一个 double 参数数组，如果未找到则返回空数组。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 */
@@ -336,7 +335,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a double parameter, throwing an exception if it isn't found or isn't a number.
+	 * 获取一个 double 参数，如果未找到或不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -349,7 +348,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of double parameters, throwing an exception if not found or one is not a number.
+	 * 获取一个 double 参数数组，如果未找到或其中某个不是数字则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -363,10 +362,10 @@ public abstract class ServletRequestUtils {
 
 
 	/**
-	 * Get a Boolean parameter, or {@code null} if not present.
-	 * Throws an exception if the parameter value isn't a boolean.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
-	 * treats every other non-empty value as false (i.e. parses leniently).
+	 * 获取一个 Boolean 参数，如果不存在则返回 {@code null}。
+	 * 如果参数值不是布尔值则抛出异常。
+	 * <p>接受 "true"、"on"、"yes"（不区分大小写）和 "1" 作为 true 值；
+	 * 将其他所有非空值视为 false（即宽松解析）。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return the Boolean value, or {@code null} if not present
@@ -384,10 +383,10 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a boolean parameter, with a fallback value. Never throws an exception.
-	 * Can pass a distinguished value as default to enable checks of whether it was supplied.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
-	 * treats every other non-empty value as false (i.e. parses leniently).
+	 * 获取一个 boolean 参数，带有回退值。从不抛出异常。
+	 * 可以传入一个特殊值作为默认值，以便检查该参数是否被提供。
+	 * <p>接受 "true"、"on"、"yes"（不区分大小写）和 "1" 作为 true 值；
+	 * 将其他所有非空值视为 false（即宽松解析）。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @param defaultVal the default value to use as fallback
@@ -405,9 +404,9 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of boolean parameters, return an empty array if not found.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
-	 * treats every other non-empty value as false (i.e. parses leniently).
+	 * 获取一个 boolean 参数数组，如果未找到则返回空数组。
+	 * <p>接受 "true"、"on"、"yes"（不区分大小写）和 "1" 作为 true 值；
+	 * 将其他所有非空值视为 false（即宽松解析）。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 */
@@ -421,10 +420,9 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a boolean parameter, throwing an exception if it isn't found
-	 * or isn't a boolean.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
-	 * treats every other non-empty value as false (i.e. parses leniently).
+	 * 获取一个 boolean 参数，如果未找到或不是布尔值则抛出异常。
+	 * <p>接受 "true"、"on"、"yes"（不区分大小写）和 "1" 作为 true 值；
+	 * 将其他所有非空值视为 false（即宽松解析）。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -437,10 +435,9 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of boolean parameters, throwing an exception if not found
-	 * or one isn't a boolean.
-	 * <p>Accepts "true", "on", "yes" (any case) and "1" as values for true;
-	 * treats every other non-empty value as false (i.e. parses leniently).
+	 * 获取一个 boolean 参数数组，如果未找到或其中某个不是布尔值则抛出异常。
+	 * <p>接受 "true"、"on"、"yes"（不区分大小写）和 "1" 作为 true 值；
+	 * 将其他所有非空值视为 false（即宽松解析）。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -454,7 +451,7 @@ public abstract class ServletRequestUtils {
 
 
 	/**
-	 * Get a String parameter, or {@code null} if not present.
+	 * 获取一个 String 参数，如果不存在则返回 {@code null}。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return the String value, or {@code null} if not present
@@ -472,8 +469,8 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a String parameter, with a fallback value. Never throws an exception.
-	 * Can pass a distinguished value to default to enable checks of whether it was supplied.
+	 * 获取一个 String 参数，带有回退值。从不抛出异常。
+	 * 可以传入一个特殊值作为默认值，以便检查该参数是否被提供。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @param defaultVal the default value to use as fallback
@@ -484,7 +481,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of String parameters, return an empty array if not found.
+	 * 获取一个 String 参数数组，如果未找到则返回空数组。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter with multiple possible values
 	 */
@@ -498,7 +495,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get a String parameter, throwing an exception if it isn't found.
+	 * 获取一个 String 参数，如果未找到则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,
@@ -511,7 +508,7 @@ public abstract class ServletRequestUtils {
 	}
 
 	/**
-	 * Get an array of String parameters, throwing an exception if not found.
+	 * 获取一个 String 参数数组，如果未找到则抛出异常。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @throws ServletRequestBindingException a subclass of ServletException,

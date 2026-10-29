@@ -27,11 +27,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Servlet variant of {@link org.springframework.context.support.LiveBeansView}'s
- * MBean exposure.
+ * {@link org.springframework.context.support.LiveBeansView} 的 MBean 暴露方式的 Servlet 变体。
  *
- * <p>Generates a JSON snapshot for current beans and their dependencies in
- * all ApplicationContexts that live within the current web application.
+ * <p>为当前 Web 应用中所有 ApplicationContext 里的当前 bean 及其依赖关系生成 JSON 快照。
  *
  * @author Juergen Hoeller
  * @since 3.2

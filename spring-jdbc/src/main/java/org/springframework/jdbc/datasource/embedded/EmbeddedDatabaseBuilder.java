@@ -25,9 +25,9 @@ import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.util.Assert;
 
 /**
- * A builder that provides a convenient API for constructing an embedded database.
+ * 一个构建器，提供用于构造嵌入式数据库的便捷 API。
  *
- * <h3>Usage Example</h3>
+ * <h3>用法示例</h3>
  * <pre class="code">
  * EmbeddedDatabase db = new EmbeddedDatabaseBuilder()
  *     .generateUniqueName(true)
@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  *     .addScripts("user_data.sql", "country_data.sql")
  *     .build();
  *
- * // perform actions against the db (EmbeddedDatabase extends javax.sql.DataSource)
+ * // 对数据库执行操作（EmbeddedDatabase 继承自 javax.sql.DataSource）
  *
  * db.shutdown();
  * </pre>
@@ -62,14 +62,14 @@ public class EmbeddedDatabaseBuilder {
 
 
 	/**
-	 * Create a new embedded database builder with a {@link DefaultResourceLoader}.
+	 * 使用 {@link DefaultResourceLoader} 创建一个新的嵌入式数据库构建器。
 	 */
 	public EmbeddedDatabaseBuilder() {
 		this(new DefaultResourceLoader());
 	}
 
 	/**
-	 * Create a new embedded database builder with the given {@link ResourceLoader}.
+	 * 使用给定的 {@link ResourceLoader} 创建一个新的嵌入式数据库构建器。
 	 * @param resourceLoader the {@code ResourceLoader} to delegate to
 	 */
 	public EmbeddedDatabaseBuilder(ResourceLoader resourceLoader) {
@@ -80,12 +80,11 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify whether a unique ID should be generated and used as the database name.
-	 * <p>If the configuration for this builder is reused across multiple
-	 * application contexts within a single JVM, this flag should be <em>enabled</em>
-	 * (i.e., set to {@code true}) in order to ensure that each application context
-	 * gets its own embedded database.
-	 * <p>Enabling this flag overrides any explicit name set via {@link #setName}.
+	 * 指定是否应生成唯一 ID 并将其用作数据库名称。
+	 * <p>如果此构建器的配置在单个 JVM 中的多个应用程序上下文之间被重用，
+	 * 则应<em>启用</em>此标志（即设置为 {@code true}），
+	 * 以确保每个应用程序上下文都获得自己的嵌入式数据库。
+	 * <p>启用此标志将覆盖通过 {@link #setName} 设置的任何显式名称。
 	 * @param flag {@code true} if a unique database name should be generated
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.2
@@ -97,11 +96,9 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Set the name of the embedded database.
-	 * <p>Defaults to {@link EmbeddedDatabaseFactory#DEFAULT_DATABASE_NAME} if
-	 * not called.
-	 * <p>Will be overridden if the {@code generateUniqueName} flag has been
-	 * set to {@code true}.
+	 * 设置嵌入式数据库的名称。
+	 * <p>如果未调用，则默认为 {@link EmbeddedDatabaseFactory#DEFAULT_DATABASE_NAME}。
+	 * <p>如果 {@code generateUniqueName} 标志已设置为 {@code true}，则会被覆盖。
 	 * @param databaseName the name of the embedded database to build
 	 * @return {@code this}, to facilitate method chaining
 	 * @see #generateUniqueName
@@ -112,8 +109,8 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Set the type of embedded database.
-	 * <p>Defaults to HSQL if not called.
+	 * 设置嵌入式数据库的类型。
+	 * <p>如果未调用，则默认为 HSQL。
 	 * @param databaseType the type of embedded database to build
 	 * @return {@code this}, to facilitate method chaining
 	 */
@@ -123,10 +120,9 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Set the factory to use to create the {@link DataSource} instance that
-	 * connects to the embedded database.
-	 * <p>Defaults to {@link SimpleDriverDataSourceFactory} but can be overridden,
-	 * for example to introduce connection pooling.
+	 * 设置用于创建连接嵌入式数据库的 {@link DataSource} 实例的工厂。
+	 * <p>默认为 {@link SimpleDriverDataSourceFactory}，但可以重写，
+	 * 例如为了引入连接池。
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
 	 */
@@ -137,9 +133,9 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Add default SQL scripts to execute to populate the database.
-	 * <p>The default scripts are {@code "schema.sql"} to create the database
-	 * schema and {@code "data.sql"} to populate the database with data.
+	 * 添加要执行的默认 SQL 脚本以填充数据库。
+	 * <p>默认脚本为 {@code "schema.sql"}（用于创建数据库 schema）
+	 * 和 {@code "data.sql"}（用于向数据库填充数据）。
 	 * @return {@code this}, to facilitate method chaining
 	 */
 	public EmbeddedDatabaseBuilder addDefaultScripts() {
@@ -147,7 +143,7 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Add an SQL script to execute to initialize or populate the database.
+	 * 添加要执行的 SQL 脚本以初始化或填充数据库。
 	 * @param script the script to execute
 	 * @return {@code this}, to facilitate method chaining
 	 */
@@ -157,7 +153,7 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Add multiple SQL scripts to execute to initialize or populate the database.
+	 * 添加多个要执行的 SQL 脚本以初始化或填充数据库。
 	 * @param scripts the scripts to execute
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -170,8 +166,7 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify the character encoding used in all SQL scripts, if different from
-	 * the platform encoding.
+	 * 指定所有 SQL 脚本中使用的字符编码（如果与平台编码不同）。
 	 * @param scriptEncoding the encoding used in scripts
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -182,10 +177,10 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify the statement separator used in all SQL scripts, if a custom one.
-	 * <p>Defaults to {@code ";"} if not specified and falls back to {@code "\n"}
-	 * as a last resort; may be set to {@link ScriptUtils#EOF_STATEMENT_SEPARATOR}
-	 * to signal that each script contains a single statement without a separator.
+	 * 指定所有 SQL 脚本中使用的语句分隔符（如果是自定义分隔符）。
+	 * <p>如果未指定，则默认为 {@code ";"}，最后的手段是回退到 {@code "\n"}；
+	 * 可以设置为 {@link ScriptUtils#EOF_STATEMENT_SEPARATOR}，
+	 * 以表示每个脚本只包含一个不带分隔符的语句。
 	 * @param separator the statement separator
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -196,8 +191,8 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify the single-line comment prefix used in all SQL scripts.
-	 * <p>Defaults to {@code "--"}.
+	 * 指定所有 SQL 脚本中使用的单行注释前缀。
+	 * <p>默认为 {@code "--"}。
 	 * @param commentPrefix the prefix for single-line comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -209,8 +204,8 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify the prefixes that identify single-line comments within all SQL scripts.
-	 * <p>Defaults to {@code ["--"]}.
+	 * 指定用于标识所有 SQL 脚本中单行注释的前缀。
+	 * <p>默认为 {@code ["--"]}。
 	 * @param commentPrefixes the prefixes for single-line comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 5.2
@@ -221,8 +216,8 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify the start delimiter for block comments in all SQL scripts.
-	 * <p>Defaults to {@code "/*"}.
+	 * 指定所有 SQL 脚本中块注释的起始分隔符。
+	 * <p>默认为 {@code "/*"}。
 	 * @param blockCommentStartDelimiter the start delimiter for block comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -234,8 +229,8 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify the end delimiter for block comments in all SQL scripts.
-	 * <p>Defaults to <code>"*&#47;"</code>.
+	 * 指定所有 SQL 脚本中块注释的结束分隔符。
+	 * <p>默认为 <code>"*&#47;"</code>。
 	 * @param blockCommentEndDelimiter the end delimiter for block comments
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -247,9 +242,8 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify that all failures which occur while executing SQL scripts should
-	 * be logged but should not cause a failure.
-	 * <p>Defaults to {@code false}.
+	 * 指定执行 SQL 脚本时发生的所有失败都应记录日志，但不应导致失败。
+	 * <p>默认为 {@code false}。
 	 * @param flag {@code true} if script execution should continue on error
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -260,12 +254,11 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Specify that a failed SQL {@code DROP} statement within an executed
-	 * script can be ignored.
-	 * <p>This is useful for a database whose SQL dialect does not support an
-	 * {@code IF EXISTS} clause in a {@code DROP} statement.
-	 * <p>The default is {@code false} so that {@link #build building} will fail
-	 * fast if a script starts with a {@code DROP} statement.
+	 * 指定可以忽略所执行脚本中失败的 SQL {@code DROP} 语句。
+	 * <p>这对于 SQL 方言不支持在 {@code DROP} 语句中使用 {@code IF EXISTS}
+	 * 子句的数据库很有用。
+	 * <p>默认值为 {@code false}，因此如果脚本以 {@code DROP} 语句开头，
+	 * {@link #build 构建}将快速失败。
 	 * @param flag {@code true} if failed drop statements should be ignored
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 4.0.3
@@ -276,7 +269,7 @@ public class EmbeddedDatabaseBuilder {
 	}
 
 	/**
-	 * Build the embedded database.
+	 * 构建嵌入式数据库。
 	 * @return the embedded database
 	 */
 	public EmbeddedDatabase build() {

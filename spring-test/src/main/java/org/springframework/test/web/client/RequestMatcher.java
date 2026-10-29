@@ -21,11 +21,10 @@ import java.io.IOException;
 import org.springframework.http.client.ClientHttpRequest;
 
 /**
- * A contract for matching requests to expectations.
+ * 用于将请求匹配到预期的约定。
  *
- * <p>See {@link org.springframework.test.web.client.match.MockRestRequestMatchers
- * MockRestRequestMatchers} for static factory methods.
- *
+ * <p>有关静态工厂方法，请参见 {@link org.springframework.test.web.client.match.MockRestRequestMatchers
+ * MockRestRequestMatchers}。
  * @author Craig Walls
  * @since 3.2
  */
@@ -33,7 +32,7 @@ import org.springframework.http.client.ClientHttpRequest;
 public interface RequestMatcher {
 
 	/**
-	 * Match the given request against specific expectations.
+	 * 根据特定预期匹配给定请求。
 	 * @param request the request to make assertions on
 	 * @throws IOException in case of I/O errors
 	 * @throws AssertionError if expectations are not met

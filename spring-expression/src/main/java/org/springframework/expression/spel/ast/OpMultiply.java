@@ -31,20 +31,17 @@ import org.springframework.util.Assert;
 import org.springframework.util.NumberUtils;
 
 /**
- * Implements the {@code multiply} operator.
+ * 实现 {@code multiply} 运算符。
  *
- * <p>Conversions and promotions are handled as defined in
- * <a href="https://java.sun.com/docs/books/jls/third_edition/html/conversions.html">Section 5.6.2 of the
- * Java Language Specification</a>, with the addiction of {@code BigDecimal}/{@code BigInteger} management:
+ * <p>类型转换和提升按照
+ * <a href="https://java.sun.com/docs/books/jls/third_edition/html/conversions.html">Java 语言规范
+ * 第 5.6.2 节</a> 中的定义处理，此外还增加了 {@code BigDecimal}/{@code BigInteger} 管理：
  *
- * <p>If any of the operands is of a reference type, unboxing conversion (Section 5.1.8)
- * is performed. Then:<br>
- * If either operand is of type {@code BigDecimal}, the other is converted to {@code BigDecimal}.<br>
- * If either operand is of type double, the other is converted to double.<br>
- * Otherwise, if either operand is of type float, the other is converted to float.<br>
- * If either operand is of type {@code BigInteger}, the other is converted to {@code BigInteger}.<br>
- * Otherwise, if either operand is of type long, the other is converted to long.<br>
- * Otherwise, both operands are converted to type int.
+ * <p>如果任一操作数为引用类型，则执行拆箱转换（第 5.1.8 节）。然后：<br>如果任一操作数的类型为
+ * {@code BigDecimal}，则将另一个转换为 {@code BigDecimal}。<br>如果任一操作数为 double 类型，则将
+ * 另一个转换为 double。<br>否则，如果任一操作数为 float 类型，则将另一个转换为 float。<br>如果任一
+ * 操作数为 {@code BigInteger} 类型，则将另一个转换为 {@code BigInteger}。<br>否则，如果任一操作数
+ * 为 long 类型，则将另一个转换为 long。<br>否则，两个操作数都转换为 int 类型。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -55,7 +52,7 @@ import org.springframework.util.NumberUtils;
 public class OpMultiply extends Operator {
 
 	/**
-	 * Maximum number of characters permitted in repeated text.
+	 * 重复文本中允许的最大字符数。
 	 * @since 5.2.23
 	 */
 	private static final int MAX_REPEATED_TEXT_SIZE = 256;
@@ -67,13 +64,12 @@ public class OpMultiply extends Operator {
 
 
 	/**
-	 * Implements the {@code multiply} operator directly here for certain types
-	 * of supported operands and otherwise delegates to any registered overloader
-	 * for types not supported here.
-	 * <p>Supported operand types:
+	 * 对于某些支持的操作数类型，直接在此处实现 {@code multiply} 运算符；对于此处不支持的类型，则委托给
+	 * 任何已注册的重载器处理。
+	 * <p>支持的操作数类型：
 	 * <ul>
-	 * <li>numbers
-	 * <li>String and int ('abc' * 2 == 'abcabc')
+	 * <li>数字
+	 * <li>String 和 int（'abc' * 2 == 'abcabc'）
 	 * </ul>
 	 */
 	@Override

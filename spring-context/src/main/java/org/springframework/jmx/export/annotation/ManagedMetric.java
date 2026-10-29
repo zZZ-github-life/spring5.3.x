@@ -25,10 +25,9 @@ import java.lang.annotation.Target;
 import org.springframework.jmx.support.MetricType;
 
 /**
- * Method-level annotation that indicates to expose a given bean property as a
- * JMX attribute, with added descriptor properties to indicate that it is a metric.
+ * 方法级注解，表示将给定的 Bean 属性暴露为 JMX 属性，并附带描述符属性以表明它是一个度量指标。
  *
- * <p>Only valid when used on a JavaBean getter.
+ * <p>仅在 JavaBean getter 上使用时有效。
  *
  * @author Jennifer Hickey
  * @since 3.0

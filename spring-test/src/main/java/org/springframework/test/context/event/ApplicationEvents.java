@@ -21,24 +21,13 @@ import java.util.stream.Stream;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * {@code ApplicationEvents} encapsulates all {@linkplain ApplicationEvent
- * application events} that were fired during the execution of a single test method.
- *
- * <p>To use {@code ApplicationEvents} in your tests, do the following.
+ * {@code ApplicationEvents} 封装了在单个测试方法执行期间发布的所有{@linkplain ApplicationEvent 应用程序事件}。
+ * <p>要在测试中使用 {@code ApplicationEvents}，请执行以下操作。
  * <ul>
- * <li>Ensure that your test class is annotated or meta-annotated with
- * {@link RecordApplicationEvents @RecordApplicationEvents}.</li>
- * <li>Ensure that the {@link ApplicationEventsTestExecutionListener} is
- * registered. Note, however, that it is registered by default and only needs
- * to be manually registered if you have custom configuration via
- * {@link org.springframework.test.context.TestExecutionListeners @TestExecutionListeners}
- * that does not include the default listeners.</li>
- * <li>Annotate a field of type {@code ApplicationEvents} with
- * {@link org.springframework.beans.factory.annotation.Autowired @Autowired} and
- * use that instance of {@code ApplicationEvents} in your test and lifecycle methods.</li>
- * <li>With JUnit Jupiter, you may optionally declare a parameter of type
- * {@code ApplicationEvents} in a test or lifecycle method as an alternative to
- * an {@code @Autowired} field in the test class.</li>
+ * <li>确保测试类标注或元标注了 {@link RecordApplicationEvents @RecordApplicationEvents}。</li>
+ * <li>确保 {@link ApplicationEventsTestExecutionListener} 已注册。但请注意，它默认已注册，只有在通过 {@link org.springframework.test.context.TestExecutionListeners @TestExecutionListeners} 进行自定义配置且未包含默认监听器时，才需要手动注册它。</li>
+ * <li>使用 {@link org.springframework.beans.factory.annotation.Autowired @Autowired} 注解 {@code ApplicationEvents} 类型的字段，并在测试方法和生命周期方法中使用该 {@code ApplicationEvents} 实例。</li>
+ * <li>使用 JUnit Jupiter 时，可以选择在测试或生命周期方法中声明 {@code ApplicationEvents} 类型的参数，作为测试类中 {@code @Autowired} 字段的替代方案。</li>
  * </ul>
  *
  * @author Sam Brannen
@@ -51,7 +40,7 @@ import org.springframework.context.ApplicationEvent;
 public interface ApplicationEvents {
 
 	/**
-	 * Stream all application events that were fired during test execution.
+	 * 流式获取测试执行期间发布的所有应用程序事件。
 	 * @return a stream of all application events
 	 * @see #stream(Class)
 	 * @see #clear()
@@ -59,8 +48,7 @@ public interface ApplicationEvents {
 	Stream<ApplicationEvent> stream();
 
 	/**
-	 * Stream all application events or event payloads of the given type that
-	 * were fired during test execution.
+	 * 流式获取测试执行期间发布的指定类型的所有应用程序事件或事件负载。
 	 * @param <T> the event type
 	 * @param type the type of events or payloads to stream; never {@code null}
 	 * @return a stream of all application events or event payloads of the
@@ -71,9 +59,8 @@ public interface ApplicationEvents {
 	<T> Stream<T> stream(Class<T> type);
 
 	/**
-	 * Clear all application events recorded by this {@code ApplicationEvents} instance.
-	 * <p>Subsequent calls to {@link #stream()} or {@link #stream(Class)} will
-	 * only include events recorded since this method was invoked.
+	 * 清除此 {@code ApplicationEvents} 实例记录的所有应用程序事件。
+	 * <p>后续对 {@link #stream()} 或 {@link #stream(Class)} 的调用将只包含自调用此方法以来记录的事件。
 	 * @see #stream()
 	 * @see #stream(Class)
 	 */

@@ -30,9 +30,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Encode from an {@code Object} stream to a byte stream of Smile objects using Jackson 2.9.
- * For non-streaming use cases, {@link Flux} elements are collected into a {@link List}
- * before serialization for performance reason.
+ * 使用 Jackson 2.9 将 {@code Object} 流编码为 Smile 对象的字节流。
+ * 对于非流式使用场景，出于性能考虑，{@link Flux} 元素会在序列化前
+ * 收集到 {@link List} 中。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -59,10 +59,10 @@ public class Jackson2SmileEncoder extends AbstractJackson2Encoder {
 
 
 	/**
-	 * Return the separator to use for the given mime type.
-	 * <p>By default, this method returns a single byte 0 if the given
-	 * mime type is one of the configured {@link #setStreamingMediaTypes(List)
-	 * streaming} mime types.
+	 * 返回用于给定 MIME 类型的分隔符。
+	 * <p>默认情况下，如果给定的 MIME 类型是所配置的
+	 * {@link #setStreamingMediaTypes(List) 流式} MIME 类型之一，
+	 * 此方法返回单字节 0。
 	 * @since 5.3
 	 */
 	@Nullable

@@ -29,8 +29,8 @@ import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.util.ClassUtils;
 
 /**
- * Extension of {@link org.springframework.http.converter.FormHttpMessageConverter},
- * adding support for XML and JSON-based parts.
+ * {@link org.springframework.http.converter.FormHttpMessageConverter} 的扩展，
+ * 增加了对基于 XML 和 JSON 的各部分的支持。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -40,9 +40,9 @@ import org.springframework.util.ClassUtils;
 public class AllEncompassingFormHttpMessageConverter extends FormHttpMessageConverter {
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring
+	 * 忽略 XML，即不初始化与 XML 相关的基础设施。
+	 * <p>默认为 "false"。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 

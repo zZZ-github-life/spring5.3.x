@@ -30,11 +30,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Factory for locally defined JAX-WS {@link javax.xml.ws.Service} references.
- * Uses the JAX-WS {@link javax.xml.ws.Service#create} factory API underneath.
+ * 用于本地定义的 JAX-WS {@link javax.xml.ws.Service} 引用的工厂。
+ * 底层使用 JAX-WS {@link javax.xml.ws.Service#create} 工厂 API。
  *
- * <p>Serves as base class for {@link LocalJaxWsServiceFactoryBean} as well as
- * {@link JaxWsPortClientInterceptor} and {@link JaxWsPortProxyFactoryBean}.
+ * <p>作为 {@link LocalJaxWsServiceFactoryBean} 以及
+ * {@link JaxWsPortClientInterceptor} 和 {@link JaxWsPortProxyFactoryBean} 的基类。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -65,7 +65,7 @@ public class LocalJaxWsServiceFactory {
 
 
 	/**
-	 * Set the URL of the WSDL document that describes the service.
+	 * 设置描述该服务的 WSDL 文档的 URL。
 	 * @see #setWsdlDocumentResource(Resource)
 	 */
 	public void setWsdlDocumentUrl(@Nullable URL wsdlDocumentUrl) {
@@ -73,7 +73,7 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Set the WSDL document URL as a {@link Resource}.
+	 * 以 {@link Resource} 形式设置 WSDL 文档 URL。
 	 * @since 3.2
 	 */
 	public void setWsdlDocumentResource(Resource wsdlDocumentResource) throws IOException {
@@ -82,7 +82,7 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Return the URL of the WSDL document that describes the service.
+	 * 返回描述该服务的 WSDL 文档的 URL。
 	 */
 	@Nullable
 	public URL getWsdlDocumentUrl() {
@@ -90,15 +90,15 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Set the namespace URI of the service.
-	 * Corresponds to the WSDL "targetNamespace".
+	 * 设置服务的命名空间 URI。
+	 * 对应于 WSDL 的 "targetNamespace"。
 	 */
 	public void setNamespaceUri(@Nullable String namespaceUri) {
 		this.namespaceUri = (namespaceUri != null ? namespaceUri.trim() : null);
 	}
 
 	/**
-	 * Return the namespace URI of the service.
+	 * 返回服务的命名空间 URI。
 	 */
 	@Nullable
 	public String getNamespaceUri() {
@@ -106,15 +106,15 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Set the name of the service to look up.
-	 * Corresponds to the "wsdl:service" name.
+	 * 设置要查找的服务的名称。
+	 * 对应于 "wsdl:service" 名称。
 	 */
 	public void setServiceName(@Nullable String serviceName) {
 		this.serviceName = serviceName;
 	}
 
 	/**
-	 * Return the name of the service.
+	 * 返回服务的名称。
 	 */
 	@Nullable
 	public String getServiceName() {
@@ -122,8 +122,8 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Specify WebServiceFeature objects (e.g. as inner bean definitions)
-	 * to apply to JAX-WS service creation.
+	 * 指定要应用于 JAX-WS 服务创建的 WebServiceFeature 对象
+	 * （例如作为内部 bean 定义）。
 	 * @since 4.0
 	 * @see Service#create(QName, WebServiceFeature...)
 	 */
@@ -132,8 +132,8 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Set the JDK concurrent executor to use for asynchronous executions
-	 * that require callbacks.
+	 * 设置用于需要回调的异步执行的
+	 * JDK 并发执行器。
 	 * @see javax.xml.ws.Service#setExecutor
 	 */
 	public void setExecutor(Executor executor) {
@@ -141,8 +141,8 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Set the JAX-WS HandlerResolver to use for all proxies and dispatchers
-	 * created through this factory.
+	 * 设置用于通过此工厂创建的所有代理和分派器的
+	 * JAX-WS HandlerResolver。
 	 * @see javax.xml.ws.Service#setHandlerResolver
 	 */
 	public void setHandlerResolver(HandlerResolver handlerResolver) {
@@ -151,7 +151,7 @@ public class LocalJaxWsServiceFactory {
 
 
 	/**
-	 * Create a JAX-WS Service according to the parameters of this factory.
+	 * 根据此工厂的参数创建 JAX-WS Service。
 	 * @see #setServiceName
 	 * @see #setWsdlDocumentUrl
 	 */
@@ -181,8 +181,8 @@ public class LocalJaxWsServiceFactory {
 	}
 
 	/**
-	 * Return a QName for the given name, relative to the namespace URI
-	 * of this factory, if given.
+	 * 为给定名称返回一个 QName，如果已指定，
+	 * 则相对于此工厂的命名空间 URI。
 	 * @see #setNamespaceUri
 	 */
 	protected QName getQName(String name) {

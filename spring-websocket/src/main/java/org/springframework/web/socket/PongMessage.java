@@ -19,7 +19,7 @@ package org.springframework.web.socket;
 import java.nio.ByteBuffer;
 
 /**
- * A WebSocket pong message.
+ * WebSocket pong 消息。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -27,14 +27,14 @@ import java.nio.ByteBuffer;
 public final class PongMessage extends AbstractWebSocketMessage<ByteBuffer> {
 
 	/**
-	 * Create a new pong message with an empty payload.
+	 * 创建一个负载为空的 pong 消息。
 	 */
 	public PongMessage() {
 		super(ByteBuffer.allocate(0));
 	}
 
 	/**
-	 * Create a new pong message with the given ByteBuffer payload.
+	 * 使用给定的 ByteBuffer 负载创建一个 pong 消息。
 	 * @param payload the non-null payload
 	 */
 	public PongMessage(ByteBuffer payload) {

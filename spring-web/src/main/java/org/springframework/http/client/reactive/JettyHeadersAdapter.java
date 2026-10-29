@@ -34,9 +34,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code MultiValueMap} implementation for wrapping Jetty HTTP headers.
+ * 用于包装 Jetty HTTP 头部的 {@code MultiValueMap} 实现。
  *
- * <p>There is a duplicate of this class in the server package!
+ * <p>服务器包中有一个此类的副本！
  *
  * @author Rossen Stoyanchev
  * @since 5.3

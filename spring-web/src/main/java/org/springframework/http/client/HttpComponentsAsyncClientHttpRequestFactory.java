@@ -36,9 +36,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
 
 /**
- * Asynchronous extension of the {@link HttpComponentsClientHttpRequestFactory}. Uses
+ * {@link HttpComponentsClientHttpRequestFactory} 的异步扩展。使用
  * <a href="https://hc.apache.org/httpcomponents-asyncclient-dev/">Apache HttpComponents
- * HttpAsyncClient 4.0</a> to create requests.
+ * HttpAsyncClient 4.0</a> 创建请求。
  *
  * @author Arjen Poutsma
  * @author Stephane Nicoll
@@ -55,8 +55,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 
 
 	/**
-	 * Create a new instance of the {@code HttpComponentsAsyncClientHttpRequestFactory}
-	 * with a default {@link HttpAsyncClient} and {@link HttpClient}.
+	 * 使用默认的 {@link HttpAsyncClient} 和 {@link HttpClient}
+	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
 	 */
 	public HttpComponentsAsyncClientHttpRequestFactory() {
 		super();
@@ -64,8 +64,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Create a new instance of the {@code HttpComponentsAsyncClientHttpRequestFactory}
-	 * with the given {@link HttpAsyncClient} instance and a default {@link HttpClient}.
+	 * 使用给定的 {@link HttpAsyncClient} 实例和默认的 {@link HttpClient}
+	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
 	 * @param asyncClient the HttpAsyncClient instance to use for this request factory
 	 * @since 4.3.10
 	 */
@@ -75,8 +75,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Create a new instance of the {@code HttpComponentsAsyncClientHttpRequestFactory}
-	 * with the given {@link CloseableHttpAsyncClient} instance and a default {@link HttpClient}.
+	 * 使用给定的 {@link CloseableHttpAsyncClient} 实例和默认的 {@link HttpClient}
+	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
 	 * @param asyncClient the CloseableHttpAsyncClient instance to use for this request factory
 	 */
 	public HttpComponentsAsyncClientHttpRequestFactory(CloseableHttpAsyncClient asyncClient) {
@@ -85,8 +85,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Create a new instance of the {@code HttpComponentsAsyncClientHttpRequestFactory}
-	 * with the given {@link HttpClient} and {@link HttpAsyncClient} instances.
+	 * 使用给定的 {@link HttpClient} 和 {@link HttpAsyncClient} 实例
+	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
 	 * @param httpClient the HttpClient instance to use for this request factory
 	 * @param asyncClient the HttpAsyncClient instance to use for this request factory
 	 * @since 4.3.10
@@ -97,8 +97,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Create a new instance of the {@code HttpComponentsAsyncClientHttpRequestFactory}
-	 * with the given {@link CloseableHttpClient} and {@link CloseableHttpAsyncClient} instances.
+	 * 使用给定的 {@link CloseableHttpClient} 和 {@link CloseableHttpAsyncClient} 实例
+	 * 创建新的 {@code HttpComponentsAsyncClientHttpRequestFactory} 实例。
 	 * @param httpClient the CloseableHttpClient instance to use for this request factory
 	 * @param asyncClient the CloseableHttpAsyncClient instance to use for this request factory
 	 */
@@ -111,8 +111,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 
 
 	/**
-	 * Set the {@code HttpAsyncClient} used for
-	 * {@linkplain #createAsyncRequest(URI, HttpMethod) synchronous execution}.
+	 * 设置用于
+	 * {@linkplain #createAsyncRequest(URI, HttpMethod) 同步执行}的 {@code HttpAsyncClient}。
 	 * @since 4.3.10
 	 * @see #setHttpClient(HttpClient)
 	 */
@@ -122,8 +122,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Return the {@code HttpAsyncClient} used for
-	 * {@linkplain #createAsyncRequest(URI, HttpMethod) synchronous execution}.
+	 * 返回用于
+	 * {@linkplain #createAsyncRequest(URI, HttpMethod) 同步执行}的 {@code HttpAsyncClient}。
 	 * @since 4.3.10
 	 * @see #getHttpClient()
 	 */
@@ -132,8 +132,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Set the {@code CloseableHttpAsyncClient} used for
-	 * {@linkplain #createAsyncRequest(URI, HttpMethod) asynchronous execution}.
+	 * 设置用于
+	 * {@linkplain #createAsyncRequest(URI, HttpMethod) 异步执行}的 {@code CloseableHttpAsyncClient}。
 	 * @deprecated as of 4.3.10, in favor of {@link #setAsyncClient(HttpAsyncClient)}
 	 */
 	@Deprecated
@@ -142,8 +142,8 @@ public class HttpComponentsAsyncClientHttpRequestFactory extends HttpComponentsC
 	}
 
 	/**
-	 * Return the {@code CloseableHttpAsyncClient} used for
-	 * {@linkplain #createAsyncRequest(URI, HttpMethod) asynchronous execution}.
+	 * 返回用于
+	 * {@linkplain #createAsyncRequest(URI, HttpMethod) 异步执行}的 {@code CloseableHttpAsyncClient}。
 	 * @deprecated as of 4.3.10, in favor of {@link #getAsyncClient()}
 	 */
 	@Deprecated

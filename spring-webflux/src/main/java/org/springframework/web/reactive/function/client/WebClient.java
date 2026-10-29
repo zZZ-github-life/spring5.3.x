@@ -51,24 +51,21 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriBuilderFactory;
 
 /**
- * Non-blocking, reactive client to perform HTTP requests, exposing a fluent,
- * reactive API over underlying HTTP client libraries such as Reactor Netty.
+ * 用于执行 HTTP 请求的非阻塞、响应式客户端，在 Reactor Netty 等底层 HTTP 客户端库之上提供流畅的响应式 API。
  *
- * <p>Use static factory methods {@link #create()} or {@link #create(String)},
- * or {@link WebClient#builder()} to prepare an instance.
+ * <p>使用静态工厂方法 {@link #create()} 或 {@link #create(String)}，或 {@link WebClient#builder()} 来准备实例。
  *
- * <p>For examples with a response body see:
+ * <p>有关带响应正文的示例，请参见：
  * <ul>
  * <li>{@link RequestHeadersSpec#retrieve() retrieve()}
  * <li>{@link RequestHeadersSpec#exchangeToMono(Function) exchangeToMono()}
  * <li>{@link RequestHeadersSpec#exchangeToFlux(Function) exchangeToFlux()}
  * </ul>
- * <p>For examples with a request body see:
+ * <p>有关带请求正文的示例，请参见：
  * <ul>
  * <li>{@link RequestBodySpec#bodyValue(Object) bodyValue(Object)}
  * <li>{@link RequestBodySpec#body(Publisher, Class) body(Publisher,Class)}
  * </ul>
- *
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -78,57 +75,56 @@ import org.springframework.web.util.UriBuilderFactory;
 public interface WebClient {
 
 	/**
-	 * Start building an HTTP GET request.
+	 * 开始构建 HTTP GET 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> get();
 
 	/**
-	 * Start building an HTTP HEAD request.
+	 * 开始构建 HTTP HEAD 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> head();
 
 	/**
-	 * Start building an HTTP POST request.
+	 * 开始构建 HTTP POST 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec post();
 
 	/**
-	 * Start building an HTTP PUT request.
+	 * 开始构建 HTTP PUT 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec put();
 
 	/**
-	 * Start building an HTTP PATCH request.
+	 * 开始构建 HTTP PATCH 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec patch();
 
 	/**
-	 * Start building an HTTP DELETE request.
+	 * 开始构建 HTTP DELETE 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> delete();
 
 	/**
-	 * Start building an HTTP OPTIONS request.
+	 * 开始构建 HTTP OPTIONS 请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestHeadersUriSpec<?> options();
 
 	/**
-	 * Start building a request for the given {@code HttpMethod}.
+	 * 开始为给定的 {@code HttpMethod} 构建请求。
 	 * @return a spec for specifying the target URL
 	 */
 	RequestBodyUriSpec method(HttpMethod method);
 
 
 	/**
-	 * Return a builder to create a new {@code WebClient} whose settings are
-	 * replicated from the current {@code WebClient}.
+	 * 返回用于创建新的 {@code WebClient} 的构建器，其设置从当前 {@code WebClient} 复制。
 	 */
 	Builder mutate();
 
@@ -136,7 +132,7 @@ public interface WebClient {
 	// Static, factory methods
 
 	/**
-	 * Create a new {@code WebClient} with Reactor Netty by default.
+	 * 默认使用 Reactor Netty 创建新的 {@code WebClient}。
 	 * @see #create(String)
 	 * @see #builder()
 	 */
@@ -145,8 +141,7 @@ public interface WebClient {
 	}
 
 	/**
-	 * Variant of {@link #create()} that accepts a default base URL. For more
-	 * details see {@link Builder#baseUrl(String) Builder.baseUrl(String)}.
+	 * {@link #create()} 的变体，接受默认基础 URL。更多详情请参见 {@link Builder#baseUrl(String) Builder.baseUrl(String)}。
 	 * @param baseUrl the base URI for all requests
 	 * @see #builder()
 	 */
@@ -155,7 +150,7 @@ public interface WebClient {
 	}
 
 	/**
-	 * Obtain a {@code WebClient} builder.
+	 * 获取 {@code WebClient} 构建器。
 	 */
 	static WebClient.Builder builder() {
 		return new DefaultWebClientBuilder();
@@ -163,32 +158,27 @@ public interface WebClient {
 
 
 	/**
-	 * A mutable builder for creating a {@link WebClient}.
+	 * 用于创建 {@link WebClient} 的可变构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Configure a base URL for requests. Effectively a shortcut for:
+		 * 为请求配置基础 URL。实际上是以下代码的快捷方式：
 		 * <p>
 		 * <pre class="code">
 		 * String baseUrl = "https://abc.go.com/v1";
 		 * DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(baseUrl);
 		 * WebClient client = WebClient.builder().uriBuilderFactory(factory).build();
 		 * </pre>
-		 * <p>The {@code DefaultUriBuilderFactory} is used to prepare the URL
-		 * for every request with the given base URL, unless the URL request
-		 * for a given URL is absolute in which case the base URL is ignored.
-		 * <p><strong>Note:</strong> this method is mutually exclusive with
-		 * {@link #uriBuilderFactory(UriBuilderFactory)}. If both are used, the
-		 * baseUrl value provided here will be ignored.
+		 * <p>{@code DefaultUriBuilderFactory} 用于为每个请求准备带有给定基础 URL 的 URL，除非给定 URL 的请求是绝对 URL，此时将忽略基础 URL。
+		 * <p><strong>注意：</strong>此方法与 {@link #uriBuilderFactory(UriBuilderFactory)} 互斥。如果同时使用，此处提供的 baseUrl 值将被忽略。
 		 * @see DefaultUriBuilderFactory#DefaultUriBuilderFactory(String)
 		 * @see #uriBuilderFactory(UriBuilderFactory)
 		 */
 		Builder baseUrl(String baseUrl);
 
 		/**
-		 * Configure default URL variable values to use when expanding URI
-		 * templates with a {@link Map}. Effectively a shortcut for:
+		 * 配置在使用 {@link Map} 展开 URI 模板时使用的默认 URL 变量值。实际上是以下代码的快捷方式：
 		 * <p>
 		 * <pre class="code">
 		 * Map&lt;String, ?&gt; defaultVars = ...;
@@ -196,18 +186,14 @@ public interface WebClient {
 		 * factory.setDefaultVariables(defaultVars);
 		 * WebClient client = WebClient.builder().uriBuilderFactory(factory).build();
 		 * </pre>
-		 * <p><strong>Note:</strong> this method is mutually exclusive with
-		 * {@link #uriBuilderFactory(UriBuilderFactory)}. If both are used, the
-		 * defaultUriVariables value provided here will be ignored.
+		 * <p><strong>注意：</strong>此方法与 {@link #uriBuilderFactory(UriBuilderFactory)} 互斥。如果同时使用，此处提供的 defaultUriVariables 值将被忽略。
 		 * @see DefaultUriBuilderFactory#setDefaultUriVariables(Map)
 		 * @see #uriBuilderFactory(UriBuilderFactory)
 		 */
 		Builder defaultUriVariables(Map<String, ?> defaultUriVariables);
 
 		/**
-		 * Provide a pre-configured {@link UriBuilderFactory} instance. This is
-		 * an alternative to, and effectively overrides the following shortcut
-		 * properties:
+		 * 提供预先配置的 {@link UriBuilderFactory} 实例。这是以下快捷属性的替代方案，并会实际覆盖它们：
 		 * <ul>
 		 * <li>{@link #baseUrl(String)}
 		 * <li>{@link #defaultUriVariables(Map)}.
@@ -219,161 +205,135 @@ public interface WebClient {
 		Builder uriBuilderFactory(UriBuilderFactory uriBuilderFactory);
 
 		/**
-		 * Global option to specify a header to be added to every request,
-		 * if the request does not already contain such a header.
+		 * 用于指定要添加到每个请求的头的全局选项（如果请求尚不包含此类头）。
 		 * @param header the header name
 		 * @param values the header values
 		 */
 		Builder defaultHeader(String header, String... values);
 
 		/**
-		 * Provides access to every {@link #defaultHeader(String, String...)}
-		 * declared so far with the possibility to add, replace, or remove.
+		 * 提供对目前声明的每个 {@link #defaultHeader(String, String...)} 的访问，并可以添加、替换或删除。
 		 * @param headersConsumer the consumer
 		 */
 		Builder defaultHeaders(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Global option to specify a cookie to be added to every request,
-		 * if the request does not already contain such a cookie.
+		 * 用于指定要添加到每个请求的 cookie 的全局选项（如果请求尚不包含此类 cookie）。
 		 * @param cookie the cookie name
 		 * @param values the cookie values
 		 */
 		Builder defaultCookie(String cookie, String... values);
 
 		/**
-		 * Provides access to every {@link #defaultCookie(String, String...)}
-		 * declared so far with the possibility to add, replace, or remove.
+		 * 提供对目前声明的每个 {@link #defaultCookie(String, String...)} 的访问，并可以添加、替换或删除。
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 */
 		Builder defaultCookies(Consumer<MultiValueMap<String, String>> cookiesConsumer);
 
 		/**
-		 * Provide a consumer to customize every request being built.
+		 * 提供用于自定义每个正在构建的请求的消费者。
 		 * @param defaultRequest the consumer to use for modifying requests
 		 * @since 5.1
 		 */
 		Builder defaultRequest(Consumer<RequestHeadersSpec<?>> defaultRequest);
 
 		/**
-		 * Add the given filter to the end of the filter chain.
+		 * 将给定过滤器添加到过滤器链的末尾。
 		 * @param filter the filter to be added to the chain
 		 */
 		Builder filter(ExchangeFilterFunction filter);
 
 		/**
-		 * Manipulate the filters with the given consumer. The list provided to
-		 * the consumer is "live", so that the consumer can be used to remove
-		 * filters, change ordering, etc.
+		 * 使用给定的消费者操作过滤器。提供给消费者的列表是“实时”的，因此消费者可用于删除过滤器、更改顺序等。
 		 * @param filtersConsumer a function that consumes the filter list
 		 * @return this builder
 		 */
 		Builder filters(Consumer<List<ExchangeFilterFunction>> filtersConsumer);
 
 		/**
-		 * Configure the {@link ClientHttpConnector} to use. This is useful for
-		 * plugging in and/or customizing options of the underlying HTTP client
-		 * library (e.g. SSL).
-		 * <p>By default this is set to
-		 * {@link org.springframework.http.client.reactive.ReactorClientHttpConnector
-		 * ReactorClientHttpConnector}.
+		 * 配置要使用的 {@link ClientHttpConnector}。这对于插入和/或自定义底层 HTTP 客户端库的选项（例如 SSL）很有用。
+		 * <p>默认设置为 {@link org.springframework.http.client.reactive.ReactorClientHttpConnector ReactorClientHttpConnector}。
 		 * @param connector the connector to use
 		 */
 		Builder clientConnector(ClientHttpConnector connector);
 
 		/**
-		 * Configure the codecs for the {@code WebClient} in the
-		 * {@link #exchangeStrategies(ExchangeStrategies) underlying}
-		 * {@code ExchangeStrategies}.
+		 * 在{@link #exchangeStrategies(ExchangeStrategies) 底层} {@code ExchangeStrategies} 中为 {@code WebClient} 配置编解码器。
 		 * @param configurer the configurer to apply
 		 * @since 5.1.13
 		 */
 		Builder codecs(Consumer<ClientCodecConfigurer> configurer);
 
 		/**
-		 * Configure the {@link ExchangeStrategies} to use.
-		 * <p>For most cases, prefer using {@link #codecs(Consumer)} which allows
-		 * customizing the codecs in the {@code ExchangeStrategies} rather than
-		 * replace them. That ensures multiple parties can contribute to codecs
-		 * configuration.
-		 * <p>By default this is set to {@link ExchangeStrategies#withDefaults()}.
+		 * 配置要使用的 {@link ExchangeStrategies}。
+		 * <p>在大多数情况下，优先使用 {@link #codecs(Consumer)}，它允许自定义 {@code ExchangeStrategies} 中的编解码器，而不是替换它们。这可确保多方都能参与编解码器配置。
+		 * <p>默认设置为 {@link ExchangeStrategies#withDefaults()}。
 		 * @param strategies the strategies to use
 		 */
 		Builder exchangeStrategies(ExchangeStrategies strategies);
 
 		/**
-		 * Customize the strategies configured via
-		 * {@link #exchangeStrategies(ExchangeStrategies)}. This method is
-		 * designed for use in scenarios where multiple parties wish to update
-		 * the {@code ExchangeStrategies}.
+		 * 自定义通过 {@link #exchangeStrategies(ExchangeStrategies)} 配置的策略。此方法适用于多方希望更新 {@code ExchangeStrategies} 的场景。
 		 * @deprecated as of 5.1.13 in favor of {@link #codecs(Consumer)}
 		 */
 		@Deprecated
 		Builder exchangeStrategies(Consumer<ExchangeStrategies.Builder> configurer);
 
 		/**
-		 * Provide an {@link ExchangeFunction} pre-configured with
-		 * {@link ClientHttpConnector} and {@link ExchangeStrategies}.
-		 * <p>This is an alternative to, and effectively overrides
-		 * {@link #clientConnector}, and
-		 * {@link #exchangeStrategies(ExchangeStrategies)}.
+		 * 提供预先配置了 {@link ClientHttpConnector} 和 {@link ExchangeStrategies} 的 {@link ExchangeFunction}。
+		 * <p>这是 {@link #clientConnector} 和 {@link #exchangeStrategies(ExchangeStrategies)} 的替代方案，并会实际覆盖它们。
 		 * @param exchangeFunction the exchange function to use
 		 */
 		Builder exchangeFunction(ExchangeFunction exchangeFunction);
 
 		/**
-		 * Apply the given {@code Consumer} to this builder instance.
-		 * <p>This can be useful for applying pre-packaged customizations.
+		 * 将给定 {@code Consumer} 应用于此构建器实例。
+		 * <p>这对于应用预先打包的自定义配置很有用。
 		 * @param builderConsumer the consumer to apply
 		 */
 		Builder apply(Consumer<Builder> builderConsumer);
 
 		/**
-		 * Clone this {@code WebClient.Builder}.
+		 * 克隆此 {@code WebClient.Builder}。
 		 */
 		Builder clone();
 
 		/**
-		 * Build the {@link WebClient} instance.
+		 * 构建 {@link WebClient} 实例。
 		 */
 		WebClient build();
 	}
 
 
 	/**
-	 * Contract for specifying the URI for a request.
+	 * 用于指定请求 URI 的契约。
 	 * @param <S> a self reference to the spec type
 	 */
 	interface UriSpec<S extends RequestHeadersSpec<?>> {
 
 		/**
-		 * Specify the URI using an absolute, fully constructed {@link URI}.
+		 * 使用绝对且完整构造的 {@link URI} 指定 URI。
 		 */
 		S uri(URI uri);
 
 		/**
-		 * Specify the URI for the request using a URI template and URI variables.
-		 * If a {@link UriBuilderFactory} was configured for the client (e.g.
-		 * with a base URI) it will be used to expand the URI template.
+		 * 使用 URI 模板和 URI 变量指定请求的 URI。如果为客户端配置了 {@link UriBuilderFactory}（例如带有基础 URI），则将使用它来展开 URI 模板。
 		 */
 		S uri(String uri, Object... uriVariables);
 
 		/**
-		 * Specify the URI for the request using a URI template and URI variables.
-		 * If a {@link UriBuilderFactory} was configured for the client (e.g.
-		 * with a base URI) it will be used to expand the URI template.
+		 * 使用 URI 模板和 URI 变量指定请求的 URI。如果为客户端配置了 {@link UriBuilderFactory}（例如带有基础 URI），则将使用它来展开 URI 模板。
 		 */
 		S uri(String uri, Map<String, ?> uriVariables);
 
 		/**
-		 * Specify the URI starting with a URI template and finishing off with a
-		 * {@link UriBuilder} created from the template.
+		 * 以 URI 模板开始，并以从该模板创建的 {@link UriBuilder} 结束来指定 URI。
 		 * @since 5.2
 		 */
 		S uri(String uri, Function<UriBuilder, URI> uriFunction);
 
 		/**
-		 * Specify the URI by through a {@link UriBuilder}.
+		 * 通过 {@link UriBuilder} 指定 URI。
 		 * @see #uri(String, Function)
 		 */
 		S uri(Function<UriBuilder, URI> uriFunction);
@@ -381,29 +341,27 @@ public interface WebClient {
 
 
 	/**
-	 * Contract for specifying request headers leading up to the exchange.
+	 * 用于指定交换前请求头的契约。
 	 * @param <S> a self reference to the spec type
 	 */
 	interface RequestHeadersSpec<S extends RequestHeadersSpec<S>> {
 
 		/**
-		 * Set the list of acceptable {@linkplain MediaType media types}, as
-		 * specified by the {@code Accept} header.
+		 * 设置可接受的{@linkplain MediaType 媒体类型}列表，由 {@code Accept} 头指定。
 		 * @param acceptableMediaTypes the acceptable media types
 		 * @return this builder
 		 */
 		S accept(MediaType... acceptableMediaTypes);
 
 		/**
-		 * Set the list of acceptable {@linkplain Charset charsets}, as specified
-		 * by the {@code Accept-Charset} header.
+		 * 设置可接受的{@linkplain Charset 字符集}列表，由 {@code Accept-Charset} 头指定。
 		 * @param acceptableCharsets the acceptable charsets
 		 * @return this builder
 		 */
 		S acceptCharset(Charset... acceptableCharsets);
 
 		/**
-		 * Add a cookie with the given name and value.
+		 * 添加具有给定名称和值的 cookie。
 		 * @param name the cookie name
 		 * @param value the cookie value
 		 * @return this builder
@@ -411,31 +369,29 @@ public interface WebClient {
 		S cookie(String name, String value);
 
 		/**
-		 * Provides access to every cookie declared so far with the possibility
-		 * to add, replace, or remove values.
+		 * 提供对目前声明的每个 cookie 的访问，并可以添加、替换或删除值。
 		 * @param cookiesConsumer the consumer to provide access to
 		 * @return this builder
 		 */
 		S cookies(Consumer<MultiValueMap<String, String>> cookiesConsumer);
 
 		/**
-		 * Set the value of the {@code If-Modified-Since} header.
-		 * <p>The date should be specified as the number of milliseconds since
-		 * January 1, 1970 GMT.
+		 * 设置 {@code If-Modified-Since} 头的值。
+		 * <p>日期应指定为自格林威治标准时间 1970 年 1 月 1 日以来的毫秒数。
 		 * @param ifModifiedSince the new value of the header
 		 * @return this builder
 		 */
 		S ifModifiedSince(ZonedDateTime ifModifiedSince);
 
 		/**
-		 * Set the values of the {@code If-None-Match} header.
+		 * 设置 {@code If-None-Match} 头的值。
 		 * @param ifNoneMatches the new value of the header
 		 * @return this builder
 		 */
 		S ifNoneMatch(String... ifNoneMatches);
 
 		/**
-		 * Add the given, single header value under the given name.
+		 * 在给定名称下添加给定的单个头值。
 		 * @param headerName  the header name
 		 * @param headerValues the header value(s)
 		 * @return this builder
@@ -443,15 +399,14 @@ public interface WebClient {
 		S header(String headerName, String... headerValues);
 
 		/**
-		 * Provides access to every header declared so far with the possibility
-		 * to add, replace, or remove values.
+		 * 提供对目前声明的每个头的访问，并可以添加、替换或删除值。
 		 * @param headersConsumer the consumer to provide access to
 		 * @return this builder
 		 */
 		S headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Set the attribute with the given name to the given value.
+		 * 将具有给定名称的属性设置为给定值。
 		 * @param name the name of the attribute to add
 		 * @param value the value of the attribute to add
 		 * @return this builder
@@ -459,15 +414,14 @@ public interface WebClient {
 		S attribute(String name, Object value);
 
 		/**
-		 * Provides access to every attribute declared so far with the
-		 * possibility to add, replace, or remove values.
+		 * 提供对目前声明的每个属性的访问，并可以添加、替换或删除值。
 		 * @param attributesConsumer the consumer to provide access to
 		 * @return this builder
 		 */
 		S attributes(Consumer<Map<String, Object>> attributesConsumer);
 
 		/**
-		 * Provide a function to populate the Reactor {@code Context}.
+		 * 提供用于填充 Reactor {@code Context} 的函数。
 		 * @param contextModifier the function to modify the context with
 		 * @since 5.3.1
 		 * @deprecated in 5.3.2 to be removed soon after; this method cannot
@@ -478,10 +432,7 @@ public interface WebClient {
 		S context(Function<Context, Context> contextModifier);
 
 		/**
-		 * Callback for access to the {@link ClientHttpRequest} that in turn
-		 * provides access to the native request of the underlying HTTP library.
-		 * This could be useful for setting advanced, per-request options that
-		 * exposed by the underlying library.
+		 * 用于访问 {@link ClientHttpRequest} 的回调，后者进而提供对底层 HTTP 库原生请求的访问。这对于设置底层库所暴露的高级按请求选项可能很有用。
 		 * @param requestConsumer a consumer to access the
 		 * {@code ClientHttpRequest} with
 		 * @return {@code ResponseSpec} to specify how to decode the body
@@ -490,8 +441,7 @@ public interface WebClient {
 		S httpRequest(Consumer<ClientHttpRequest> requestConsumer);
 
 		/**
-		 * Proceed to declare how to extract the response. For example to extract
-		 * a {@link ResponseEntity} with status, headers, and body:
+		 * 继续声明如何提取响应。例如，提取包含状态、头和正文的 {@link ResponseEntity}：
 		 * <p><pre>
 		 * Mono&lt;ResponseEntity&lt;Person&gt;&gt; entityMono = client.get()
 		 *     .uri("/persons/1")
@@ -499,7 +449,7 @@ public interface WebClient {
 		 *     .retrieve()
 		 *     .toEntity(Person.class);
 		 * </pre>
-		 * <p>Or if interested only in the body:
+		 * <p>或者如果只关心正文：
 		 * <p><pre>
 		 * Mono&lt;Person&gt; entityMono = client.get()
 		 *     .uri("/persons/1")
@@ -507,17 +457,12 @@ public interface WebClient {
 		 *     .retrieve()
 		 *     .bodyToMono(Person.class);
 		 * </pre>
-		 * <p>By default, 4xx and 5xx responses result in a
-		 * {@link WebClientResponseException}. To customize error handling, use
-		 * {@link ResponseSpec#onStatus(Predicate, Function) onStatus} handlers.
+		 * <p>默认情况下，4xx 和 5xx 响应会产生 {@link WebClientResponseException}。要自定义错误处理，请使用 {@link ResponseSpec#onStatus(Predicate, Function) onStatus} 处理器。
 		 */
 		ResponseSpec retrieve();
 
 		/**
-		 * An alternative to {@link #retrieve()} that provides more control via
-		 * access to the {@link ClientResponse}. This can be useful for advanced
-		 * scenarios, for example to decode the response differently depending
-		 * on the response status:
+		 * {@link #retrieve()} 的替代方案，通过访问 {@link ClientResponse} 提供更多控制。这对于高级场景很有用，例如根据响应状态以不同方式解码响应：
 		 * <p><pre>
 		 * Mono&lt;Person&gt; entityMono = client.get()
 		 *     .uri("/persons/1")
@@ -531,10 +476,7 @@ public interface WebClient {
 		 *         }
 		 *     });
 		 * </pre>
-		 * <p><strong>Note:</strong> After the returned {@code Mono} completes,
-		 * the response body is automatically released if it hasn't been consumed.
-		 * If the response content is needed, the provided function must declare
-		 * how to decode it.
+		 * <p><strong>注意：</strong>返回的 {@code Mono} 完成后，如果响应正文尚未被消费，它将自动释放。如果需要响应内容，所提供的函数必须声明如何解码它。
 		 * @param responseHandler the function to handle the response with
 		 * @param <V> the type of Object the response will be transformed to
 		 * @return a {@code Mono} produced from the response
@@ -543,10 +485,7 @@ public interface WebClient {
 		<V> Mono<V> exchangeToMono(Function<ClientResponse, ? extends Mono<V>> responseHandler);
 
 		/**
-		 * An alternative to {@link #retrieve()} that provides more control via
-		 * access to the {@link ClientResponse}. This can be useful for advanced
-		 * scenarios, for example to decode the response differently depending
-		 * on the response status:
+		 * {@link #retrieve()} 的替代方案，通过访问 {@link ClientResponse} 提供更多控制。这对于高级场景很有用，例如根据响应状态以不同方式解码响应：
 		 * <p><pre>
 		 * Flux&lt;Person&gt; entityMono = client.get()
 		 *     .uri("/persons")
@@ -560,10 +499,7 @@ public interface WebClient {
 		 *         }
 		 *     });
 		 * </pre>
-		 * <p><strong>Note:</strong> After the returned {@code Flux} completes,
-		 * the response body is automatically released if it hasn't been consumed.
-		 * If the response content is needed, the provided function must declare
-		 * how to decode it.
+		 * <p><strong>注意：</strong>返回的 {@code Flux} 完成后，如果响应正文尚未被消费，它将自动释放。如果需要响应内容，所提供的函数必须声明如何解码它。
 		 * @param responseHandler the function to handle the response with
 		 * @param <V> the type of Objects the response will be transformed to
 		 * @return a {@code Flux} of Objects produced from the response
@@ -572,9 +508,7 @@ public interface WebClient {
 		<V> Flux<V> exchangeToFlux(Function<ClientResponse, ? extends Flux<V>> responseHandler);
 
 		/**
-		 * Perform the HTTP request and return a {@link ClientResponse} with the
-		 * response status and headers. You can then use methods of the response
-		 * to consume the body:
+		 * 执行 HTTP 请求并返回包含响应状态和头的 {@link ClientResponse}。然后可以使用响应的方法来消费正文：
 		 * <p><pre>
 		 * Mono&lt;Person&gt; mono = client.get()
 		 *     .uri("/persons/1")
@@ -588,15 +522,7 @@ public interface WebClient {
 		 *     .exchange()
 		 *     .flatMapMany(response -&gt; response.bodyToFlux(Person.class));
 		 * </pre>
-		 * <p><strong>NOTE:</strong> Unlike {@link #retrieve()}, when using
-		 * {@code exchange()}, it is the responsibility of the application to
-		 * consume any response content regardless of the scenario (success,
-		 * error, unexpected data, etc). Not doing so can cause a memory leak.
-		 * See {@link ClientResponse} for a list of all the available options
-		 * for consuming the body. Generally prefer using {@link #retrieve()}
-		 * unless you have a good reason to use {@code exchange()} which does
-		 * allow to check the response status and headers before deciding how or
-		 * if to consume the response.
+		 * <p><strong>注意：</strong>与 {@link #retrieve()} 不同，使用 {@code exchange()} 时，应用有责任消费任何响应内容，无论场景如何（成功、错误、意外数据等）。否则可能导致内存泄漏。有关消费正文的所有可用选项，请参见 {@link ClientResponse}。通常优先使用 {@link #retrieve()}，除非你有充分理由使用 {@code exchange()}，它确实允许在决定如何消费响应或是否消费响应之前检查响应状态和头。
 		 * @return a {@code Mono} for the response
 		 * @see #retrieve()
 		 * @deprecated since 5.3 due to the possibility to leak memory and/or
@@ -612,13 +538,12 @@ public interface WebClient {
 
 
 	/**
-	 * Contract for specifying request headers and body leading up to the exchange.
+	 * 用于指定交换前请求头和正文的契约。
 	 */
 	interface RequestBodySpec extends RequestHeadersSpec<RequestBodySpec> {
 
 		/**
-		 * Set the length of the body in bytes, as specified by the
-		 * {@code Content-Length} header.
+		 * 设置正文的字节长度，由 {@code Content-Length} 头指定。
 		 * @param contentLength the content length
 		 * @return this builder
 		 * @see HttpHeaders#setContentLength(long)
@@ -626,8 +551,7 @@ public interface WebClient {
 		RequestBodySpec contentLength(long contentLength);
 
 		/**
-		 * Set the {@linkplain MediaType media type} of the body, as specified
-		 * by the {@code Content-Type} header.
+		 * 设置正文的{@linkplain MediaType 媒体类型}，由 {@code Content-Type} 头指定。
 		 * @param contentType the content type
 		 * @return this builder
 		 * @see HttpHeaders#setContentType(MediaType)
@@ -635,9 +559,7 @@ public interface WebClient {
 		RequestBodySpec contentType(MediaType contentType);
 
 		/**
-		 * Shortcut for {@link #body(BodyInserter)} with a
-		 * {@linkplain BodyInserters#fromValue value inserter}.
-		 * For example:
+		 * 使用{@linkplain BodyInserters#fromValue 值插入器}的 {@link #body(BodyInserter)} 快捷方法。例如：
 		 * <p><pre class="code">
 		 * Person person = ... ;
 		 *
@@ -648,10 +570,7 @@ public interface WebClient {
 		 *     .retrieve()
 		 *     .bodyToMono(Void.class);
 		 * </pre>
-		 * <p>For multipart requests consider providing
-		 * {@link org.springframework.util.MultiValueMap MultiValueMap} prepared
-		 * with {@link org.springframework.http.client.MultipartBodyBuilder
-		 * MultipartBodyBuilder}.
+		 * <p>对于 multipart 请求，可考虑提供使用 {@link org.springframework.http.client.MultipartBodyBuilder MultipartBodyBuilder} 准备的 {@link org.springframework.util.MultiValueMap MultiValueMap}。
 		 * @param body the value to write to the request body
 		 * @return this builder
 		 * @throws IllegalArgumentException if {@code body} is a
@@ -661,9 +580,7 @@ public interface WebClient {
 		RequestHeadersSpec<?> bodyValue(Object body);
 
 		/**
-		 * Shortcut for {@link #body(BodyInserter)} with a
-		 * {@linkplain BodyInserters#fromPublisher Publisher inserter}.
-		 * For example:
+		 * 使用{@linkplain BodyInserters#fromPublisher Publisher 插入器}的 {@link #body(BodyInserter)} 快捷方法。例如：
 		 * <p><pre>
 		 * Mono&lt;Person&gt; personMono = ... ;
 		 *
@@ -683,8 +600,7 @@ public interface WebClient {
 		<T, P extends Publisher<T>> RequestHeadersSpec<?> body(P publisher, Class<T> elementClass);
 
 		/**
-		 * Variant of {@link #body(Publisher, Class)} that allows providing
-		 * element type information with generics.
+		 * {@link #body(Publisher, Class)} 的变体，允许提供带泛型的元素类型信息。
 		 * @param publisher the {@code Publisher} to write to the request
 		 * @param elementTypeRef the type of elements published
 		 * @param <T> the type of the elements contained in the publisher
@@ -695,9 +611,7 @@ public interface WebClient {
 				ParameterizedTypeReference<T> elementTypeRef);
 
 		/**
-		 * Variant of {@link #body(Publisher, Class)} that allows using any
-		 * producer that can be resolved to {@link Publisher} via
-		 * {@link ReactiveAdapterRegistry}.
+		 * {@link #body(Publisher, Class)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
 		 * @param producer the producer to write to the request
 		 * @param elementClass the type of elements produced
 		 * @return this builder
@@ -706,9 +620,7 @@ public interface WebClient {
 		RequestHeadersSpec<?> body(Object producer, Class<?> elementClass);
 
 		/**
-		 * Variant of {@link #body(Publisher, ParameterizedTypeReference)} that
-		 * allows using any producer that can be resolved to {@link Publisher}
-		 * via {@link ReactiveAdapterRegistry}.
+		 * {@link #body(Publisher, ParameterizedTypeReference)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
 		 * @param producer the producer to write to the request
 		 * @param elementTypeRef the type of elements produced
 		 * @return this builder
@@ -717,8 +629,7 @@ public interface WebClient {
 		RequestHeadersSpec<?> body(Object producer, ParameterizedTypeReference<?> elementTypeRef);
 
 		/**
-		 * Set the body of the request using the given body inserter.
-		 * See {@link BodyInserters} for built-in {@link BodyInserter} implementations.
+		 * 使用给定的正文插入器设置请求正文。有关内置 {@link BodyInserter} 实现，请参见 {@link BodyInserters}。
 		 * @param inserter the body inserter to use for the request body
 		 * @return this builder
 		 * @see org.springframework.web.reactive.function.BodyInserters
@@ -726,9 +637,7 @@ public interface WebClient {
 		RequestHeadersSpec<?> body(BodyInserter<?, ? super ClientHttpRequest> inserter);
 
 		/**
-		 * Shortcut for {@link #body(BodyInserter)} with a
-		 * {@linkplain BodyInserters#fromValue value inserter}.
-		 * As of 5.2 this method delegates to {@link #bodyValue(Object)}.
+		 * 使用{@linkplain BodyInserters#fromValue 值插入器}的 {@link #body(BodyInserter)} 快捷方法。从 5.2 开始，此方法委托给 {@link #bodyValue(Object)}。
 		 * @deprecated as of Spring Framework 5.2 in favor of {@link #bodyValue(Object)}
 		 */
 		@Deprecated
@@ -737,23 +646,15 @@ public interface WebClient {
 
 
 	/**
-	 * Contract for specifying response operations following the exchange.
+	 * 用于指定交换后响应操作的契约。
 	 */
 	interface ResponseSpec {
 
 		/**
-		 * Provide a function to map specific error status codes to an error
-		 * signal to be propagated downstream instead of the response.
-		 * <p>By default, if there are no matching status handlers, responses
-		 * with status codes &gt;= 400 are mapped to
-		 * {@link WebClientResponseException} which is created with
-		 * {@link ClientResponse#createException()}.
-		 * <p>To suppress the treatment of a status code as an error and process
-		 * it as a normal response, return {@code Mono.empty()} from the function.
-		 * The response will then propagate downstream to be processed.
-		 * <p>To ignore an error response completely, and propagate neither
-		 * response nor error, use a {@link ExchangeFilterFunction filter}, or
-		 * add {@code onErrorResume} downstream, for example:
+		 * 提供用于将特定错误状态码映射为错误信号并向下游传播（而不是传播响应）的函数。
+		 * <p>默认情况下，如果没有匹配的状态处理器，状态码大于等于 400 的响应会映射为 {@link WebClientResponseException}，它由 {@link ClientResponse#createException()} 创建。
+		 * <p>要将某个状态码视为正常响应而不作为错误处理，请从函数返回 {@code Mono.empty()}。响应随后将向下游传播以供处理。
+		 * <p>要完全忽略错误响应，既不传播响应也不传播错误，请使用 {@link ExchangeFilterFunction 过滤器}，或在下游添加 {@code onErrorResume}，例如：
 		 * <pre class="code">
 		 * webClient.get()
 		 *     .uri("https://abc.com/account/123")
@@ -771,8 +672,7 @@ public interface WebClient {
 				Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction);
 
 		/**
-		 * Variant of {@link #onStatus(Predicate, Function)} that works with
-		 * raw status code values. This is useful for custom status codes.
+		 * {@link #onStatus(Predicate, Function)} 的变体，使用原始状态码值。这对于自定义状态码很有用。
 		 * @param statusCodePredicate to match responses with
 		 * @param exceptionFunction to map the response to an error signal
 		 * @return this builder
@@ -782,10 +682,7 @@ public interface WebClient {
 				Function<ClientResponse, Mono<? extends Throwable>> exceptionFunction);
 
 		/**
-		 * Decode the body to the given target type. For an error response (status
-		 * code of 4xx or 5xx), the {@code Mono} emits a {@link WebClientException}.
-		 * Use {@link #onStatus(Predicate, Function)} to customize error response
-		 * handling.
+		 * 将正文解码为给定的目标类型。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
 		 * @param elementClass the type to decode to
 		 * @param <T> the target body type
 		 * @return the decoded body
@@ -793,7 +690,7 @@ public interface WebClient {
 		<T> Mono<T> bodyToMono(Class<T> elementClass);
 
 		/**
-		 * Variant of {@link #bodyToMono(Class)} with a {@link ParameterizedTypeReference}.
+		 * 带 {@link ParameterizedTypeReference} 的 {@link #bodyToMono(Class)} 变体。
 		 * @param elementTypeRef the type to decode to
 		 * @param <T> the target body type
 		 * @return the decoded body
@@ -801,10 +698,7 @@ public interface WebClient {
 		<T> Mono<T> bodyToMono(ParameterizedTypeReference<T> elementTypeRef);
 
 		/**
-		 * Decode the body to a {@link Flux} with elements of the given type.
-		 * For an error response (status code of 4xx or 5xx), the {@code Mono}
-		 * emits a {@link WebClientException}. Use {@link #onStatus(Predicate, Function)}
-		 * to customize error response handling.
+		 * 将正文解码为包含给定类型元素的 {@link Flux}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
 		 * @param elementClass the type of element to decode to
 		 * @param <T> the body element type
 		 * @return the decoded body
@@ -812,7 +706,7 @@ public interface WebClient {
 		<T> Flux<T> bodyToFlux(Class<T> elementClass);
 
 		/**
-		 * Variant of {@link #bodyToMono(Class)} with a {@link ParameterizedTypeReference}.
+		 * 带 {@link ParameterizedTypeReference} 的 {@link #bodyToMono(Class)} 变体。
 		 * @param elementTypeRef the type of element to decode to
 		 * @param <T> the body element type
 		 * @return the decoded body
@@ -820,10 +714,7 @@ public interface WebClient {
 		<T> Flux<T> bodyToFlux(ParameterizedTypeReference<T> elementTypeRef);
 
 		/**
-		 * Return a {@code ResponseEntity} with the body decoded to an Object of
-		 * the given type. For an error response (status code of 4xx or 5xx), the
-		 * {@code Mono} emits a {@link WebClientException}. Use
-		 * {@link #onStatus(Predicate, Function)} to customize error response handling.
+		 * 返回 {@code ResponseEntity}，其正文解码为给定类型的对象。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
 		 * @param bodyClass the expected response body type
 		 * @param <T> response body type
 		 * @return the {@code ResponseEntity} with the decoded body
@@ -832,7 +723,7 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<T>> toEntity(Class<T> bodyClass);
 
 		/**
-		 * Variant of {@link #bodyToMono(Class)} with a {@link ParameterizedTypeReference}.
+		 * 带 {@link ParameterizedTypeReference} 的 {@link #bodyToMono(Class)} 变体。
 		 * @param bodyTypeReference the expected response body type
 		 * @param <T> the response body type
 		 * @return the {@code ResponseEntity} with the decoded body
@@ -841,11 +732,7 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<T>> toEntity(ParameterizedTypeReference<T> bodyTypeReference);
 
 		/**
-		 * Return a {@code ResponseEntity} with the body decoded to a {@code List}
-		 * of elements of the given type. For an error response (status code of
-		 * 4xx or 5xx), the {@code Mono} emits a {@link WebClientException}.
-		 * Use {@link #onStatus(Predicate, Function)} to customize error response
-		 * handling.
+		 * 返回 {@code ResponseEntity}，其正文解码为给定类型元素的 {@code List}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
 		 * @param elementClass the type of element to decode the target Flux to
 		 * @param <T> the body element type
 		 * @return the {@code ResponseEntity}
@@ -854,7 +741,7 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<List<T>>> toEntityList(Class<T> elementClass);
 
 		/**
-		 * Variant of {@link #toEntity(Class)} with a {@link ParameterizedTypeReference}.
+		 * 带 {@link ParameterizedTypeReference} 的 {@link #toEntity(Class)} 变体。
 		 * @param elementTypeRef the type of element to decode the target Flux to
 		 * @param <T> the body element type
 		 * @return the {@code ResponseEntity}
@@ -863,13 +750,8 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<List<T>>> toEntityList(ParameterizedTypeReference<T> elementTypeRef);
 
 		/**
-		 * Return a {@code ResponseEntity} with the body decoded to a {@code Flux}
-		 * of elements of the given type. For an error response (status code of
-		 * 4xx or 5xx), the {@code Mono} emits a {@link WebClientException}.
-		 * Use {@link #onStatus(Predicate, Function)} to customize error response
-		 * handling.
-		 * <p><strong>Note:</strong> The {@code Flux} representing the body must
-		 * be subscribed to or else associated resources will not be released.
+		 * 返回 {@code ResponseEntity}，其正文解码为给定类型元素的 {@code Flux}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
+		 * <p><strong>注意：</strong>表示正文的 {@code Flux} 必须被订阅，否则相关资源将不会被释放。
 		 * @param elementType the type of element to decode the target Flux to
 		 * @param <T> the body element type
 		 * @return the {@code ResponseEntity}
@@ -878,7 +760,7 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<Flux<T>>> toEntityFlux(Class<T> elementType);
 
 		/**
-		 * Variant of {@link #toEntityFlux(Class)} with a {@link ParameterizedTypeReference}.
+		 * 带 {@link ParameterizedTypeReference} 的 {@link #toEntityFlux(Class)} 变体。
 		 * @param elementTypeReference the type of element to decode the target Flux to
 		 * @param <T> the body element type
 		 * @return the {@code ResponseEntity}
@@ -887,7 +769,7 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<Flux<T>>> toEntityFlux(ParameterizedTypeReference<T> elementTypeReference);
 
 		/**
-		 * Variant of {@link #toEntityFlux(Class)} with a {@link BodyExtractor}.
+		 * 带 {@link BodyExtractor} 的 {@link #toEntityFlux(Class)} 变体。
 		 * @param bodyExtractor the {@code BodyExtractor} that reads from the response
 		 * @param <T> the body element type
 		 * @return the {@code ResponseEntity}
@@ -896,10 +778,7 @@ public interface WebClient {
 		<T> Mono<ResponseEntity<Flux<T>>> toEntityFlux(BodyExtractor<Flux<T>, ? super ClientHttpResponse> bodyExtractor);
 
 		/**
-		 * Return a {@code ResponseEntity} without a body. For an error response
-		 * (status code of 4xx or 5xx), the {@code Mono} emits a
-		 * {@link WebClientException}. Use {@link #onStatus(Predicate, Function)}
-		 * to customize error response handling.
+		 * 返回不带正文的 {@code ResponseEntity}。对于错误响应（4xx 或 5xx 状态码），{@code Mono} 会发出 {@link WebClientException}。使用 {@link #onStatus(Predicate, Function)} 自定义错误响应处理。
 		 * @return the {@code ResponseEntity}
 		 * @since 5.2
 		 */
@@ -908,7 +787,7 @@ public interface WebClient {
 
 
 	/**
-	 * Contract for specifying request headers and URI for a request.
+	 * 用于指定请求头和请求 URI 的契约。
 	 * @param <S> a self reference to the spec type
 	 */
 	interface RequestHeadersUriSpec<S extends RequestHeadersSpec<S>>
@@ -917,7 +796,7 @@ public interface WebClient {
 
 
 	/**
-	 * Contract for specifying request headers, body and URI for a request.
+	 * 用于指定请求头、正文和请求 URI 的契约。
 	 */
 	interface RequestBodyUriSpec extends RequestBodySpec, RequestHeadersUriSpec<RequestBodySpec> {
 	}

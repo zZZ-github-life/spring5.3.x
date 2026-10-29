@@ -56,11 +56,12 @@ import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses a
- * {@code resources} element to register a {@link ResourceHttpRequestHandler} and
- * register a {@link SimpleUrlHandlerMapping} for mapping resource requests, and a
- * {@link HttpRequestHandlerAdapter}. Will also create a resource handling chain with
- * {@link ResourceResolver ResourceResolvers} and {@link ResourceTransformer ResourceTransformers}.
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}，用于解析
+ * {@code resources} 元素并注册一个 {@link ResourceHttpRequestHandler}，
+ * 同时注册一个用于映射资源请求的 {@link SimpleUrlHandlerMapping}
+ * 和一个 {@link HttpRequestHandlerAdapter}。还会创建包含
+ * {@link ResourceResolver ResourceResolver} 和 {@link ResourceTransformer ResourceTransformer}
+ * 的资源处理链。
  *
  * @author Keith Donald
  * @author Jeremy Grelle

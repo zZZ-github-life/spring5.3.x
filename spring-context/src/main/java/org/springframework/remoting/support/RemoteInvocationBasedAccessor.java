@@ -21,11 +21,9 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for remote service accessors that are based
- * on serialization of {@link RemoteInvocation} objects.
+ * 基于 {@link RemoteInvocation} 对象序列化的远程服务访问器的抽象基类。
  *
- * Provides a "remoteInvocationFactory" property, with a
- * {@link DefaultRemoteInvocationFactory} as default strategy.
+ * 提供 "remoteInvocationFactory" 属性，默认策略为 {@link DefaultRemoteInvocationFactory}。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -40,10 +38,8 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 
 
 	/**
-	 * Set the RemoteInvocationFactory to use for this accessor.
-	 * Default is a {@link DefaultRemoteInvocationFactory}.
-	 * <p>A custom invocation factory can add further context information
-	 * to the invocation, for example user credentials.
+	 * 设置此访问器要使用的 RemoteInvocationFactory。默认为 {@link DefaultRemoteInvocationFactory}。
+	 * <p>自定义调用工厂可以为调用添加更多上下文信息，例如用户凭据。
 	 */
 	public void setRemoteInvocationFactory(RemoteInvocationFactory remoteInvocationFactory) {
 		this.remoteInvocationFactory =
@@ -51,20 +47,17 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 	}
 
 	/**
-	 * Return the RemoteInvocationFactory used by this accessor.
+	 * 返回此访问器使用的 RemoteInvocationFactory。
 	 */
 	public RemoteInvocationFactory getRemoteInvocationFactory() {
 		return this.remoteInvocationFactory;
 	}
 
 	/**
-	 * Create a new RemoteInvocation object for the given AOP method invocation.
-	 * <p>The default implementation delegates to the configured
-	 * {@link #setRemoteInvocationFactory RemoteInvocationFactory}.
-	 * This can be overridden in subclasses in order to provide custom RemoteInvocation
-	 * subclasses, containing additional invocation parameters (e.g. user credentials).
-	 * <p>Note that it is preferable to build a custom RemoteInvocationFactory
-	 * as a reusable strategy, instead of overriding this method.
+	 * 为给定的 AOP 方法调用创建一个新的 RemoteInvocation 对象。
+	 * <p>默认实现委托给已配置的 {@link #setRemoteInvocationFactory RemoteInvocationFactory}。可以在子
+	 * 类中覆盖此方法，以提供包含额外调用参数（例如用户凭据）的自定义 RemoteInvocation 子类。
+	 * <p>请注意，最好构建一个可复用的自定义 RemoteInvocationFactory 策略，而不是覆盖此方法。
 	 * @param methodInvocation the current AOP method invocation
 	 * @return the RemoteInvocation object
 	 * @see RemoteInvocationFactory#createRemoteInvocation
@@ -74,10 +67,9 @@ public abstract class RemoteInvocationBasedAccessor extends UrlBasedRemoteAccess
 	}
 
 	/**
-	 * Recreate the invocation result contained in the given RemoteInvocationResult object.
-	 * <p>The default implementation calls the default {@code recreate()} method.
-	 * This can be overridden in subclass to provide custom recreation, potentially
-	 * processing the returned result object.
+	 * 重建给定 RemoteInvocationResult 对象中包含的调用结果。
+	 * <p>默认实现调用默认的 {@code recreate()} 方法。可以在子类中覆盖此方法以提供自定义重建逻辑，可能
+	 * 还会处理返回的结果对象。
 	 * @param result the RemoteInvocationResult to recreate
 	 * @return a return value if the invocation result is a successful return
 	 * @throws Throwable if the invocation result is an exception

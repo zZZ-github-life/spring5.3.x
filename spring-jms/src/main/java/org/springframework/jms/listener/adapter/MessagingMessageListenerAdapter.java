@@ -32,20 +32,18 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.Assert;
 
 /**
- * A {@link javax.jms.MessageListener} adapter that invokes a configurable
- * {@link InvocableHandlerMethod}.
+ * {@link javax.jms.MessageListener} 适配器，调用可配置的
+ * {@link InvocableHandlerMethod}。
  *
- * <p>Wraps the incoming {@link javax.jms.Message} in Spring's {@link Message}
- * abstraction, copying the JMS standard headers using a configurable
- * {@link JmsHeaderMapper}.
+ * <p>将传入的 {@link javax.jms.Message} 包装到 Spring 的 {@link Message}
+ * 抽象中，并使用可配置的 {@link JmsHeaderMapper} 复制 JMS 标准消息头。
  *
- * <p>The original {@link javax.jms.Message} and the {@link javax.jms.Session}
- * are provided as additional arguments so that these can be injected as
- * method arguments if necessary.
+ * <p>原始的 {@link javax.jms.Message} 和 {@link javax.jms.Session}
+ * 作为额外参数提供，以便在需要时可以将它们注入为方法参数。
  *
- * <p>As of Spring Framework 5.3.26, {@code MessagingMessageListenerAdapter} implements
- * {@link SubscriptionNameProvider} in order to provide a meaningful default
- * subscription name. See {@link #getSubscriptionName()} for details.
+ * <p>从 Spring Framework 5.3.26 开始，{@code MessagingMessageListenerAdapter}
+ * 实现 {@link SubscriptionNameProvider}，以便提供有意义的默认订阅名称。
+ * 详情请参见 {@link #getSubscriptionName()}。
  *
  * @author Stephane Nicoll
  * @author Sam Brannen
@@ -62,8 +60,8 @@ public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageLis
 
 
 	/**
-	 * Set the {@link InvocableHandlerMethod} to use to invoke the method
-	 * processing an incoming {@link javax.jms.Message}.
+	 * 设置用于调用处理传入 {@link javax.jms.Message} 的方法的
+	 * {@link InvocableHandlerMethod}。
 	 */
 	public void setHandlerMethod(InvocableHandlerMethod handlerMethod) {
 		this.handlerMethod = handlerMethod;
@@ -100,8 +98,8 @@ public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageLis
 	}
 
 	/**
-	 * Invoke the handler, wrapping any exception in a {@link ListenerExecutionFailedException}
-	 * with a dedicated error message.
+	 * 调用处理器，将任何异常包装到带有专属错误消息的
+	 * {@link ListenerExecutionFailedException} 中。
 	 */
 	@Nullable
 	private Object invokeHandler(javax.jms.Message jmsMessage, @Nullable Session session, Message<?> message) {
@@ -140,15 +138,14 @@ public class MessagingMessageListenerAdapter extends AbstractAdaptableMessageLis
 	}
 
 	/**
-	 * Generate a subscription name for this {@code MessageListener} adapter based
-	 * on the following rules.
+	 * 根据以下规则为这个 {@code MessageListener} 适配器生成订阅名称。
 	 * <ul>
-	 * <li>If the {@link #setHandlerMethod(InvocableHandlerMethod) handlerMethod}
-	 * has been set, the generated subscription name takes the form of
-	 * {@code handlerMethod.getBeanType().getName() + "." + handlerMethod.getMethod().getName()}.</li>
-	 * <li>Otherwise, the generated subscription name is the result of invoking
-	 * {@code getClass().getName()}, which aligns with the default behavior of
-	 * {@link org.springframework.jms.listener.AbstractMessageListenerContainer}.</li>
+	 * <li>如果已设置 {@link #setHandlerMethod(InvocableHandlerMethod) handlerMethod}，
+	 * 生成的订阅名称形式为
+	 * {@code handlerMethod.getBeanType().getName() + "." + handlerMethod.getMethod().getName()}。</li>
+	 * <li>否则，生成的订阅名称是调用 {@code getClass().getName()} 的结果，
+	 * 这与 {@link org.springframework.jms.listener.AbstractMessageListenerContainer}
+	 * 的默认行为一致。</li>
 	 * </ul>
 	 * @since 5.3.26
 	 * @see SubscriptionNameProvider#getSubscriptionName()

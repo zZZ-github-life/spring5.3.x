@@ -20,9 +20,9 @@ import org.springframework.test.context.ContextLoader;
 import org.springframework.test.context.TestContextBootstrapper;
 
 /**
- * Default implementation of the {@link TestContextBootstrapper} SPI.
+ * {@link TestContextBootstrapper} SPI 的默认实现。
  *
- * <p>Uses {@link DelegatingSmartContextLoader} as the default {@link ContextLoader}.
+ * <p>使用 {@link DelegatingSmartContextLoader} 作为默认 {@link ContextLoader}。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -30,7 +30,7 @@ import org.springframework.test.context.TestContextBootstrapper;
 public class DefaultTestContextBootstrapper extends AbstractTestContextBootstrapper {
 
 	/**
-	 * Returns {@link DelegatingSmartContextLoader}.
+	 * 返回 {@link DelegatingSmartContextLoader}。
 	 */
 	@Override
 	protected Class<? extends ContextLoader> getDefaultContextLoaderClass(Class<?> testClass) {

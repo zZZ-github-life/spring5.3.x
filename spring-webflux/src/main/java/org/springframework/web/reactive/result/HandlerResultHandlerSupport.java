@@ -39,10 +39,7 @@ import org.springframework.web.reactive.accept.RequestedContentTypeResolver;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Base class for {@link org.springframework.web.reactive.HandlerResultHandler
- * HandlerResultHandler} with support for content negotiation and access to a
- * {@code ReactiveAdapter} registry.
- *
+ * {@link org.springframework.web.reactive.HandlerResultHandler HandlerResultHandler} 的基类，支持内容协商并可访问 {@code ReactiveAdapter} 注册表。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -72,23 +69,22 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 
 	/**
-	 * Return the configured {@link ReactiveAdapterRegistry}.
+	 * 返回配置的 {@link ReactiveAdapterRegistry}。
 	 */
 	public ReactiveAdapterRegistry getAdapterRegistry() {
 		return this.adapterRegistry;
 	}
 
 	/**
-	 * Return the configured {@link RequestedContentTypeResolver}.
+	 * 返回配置的 {@link RequestedContentTypeResolver}。
 	 */
 	public RequestedContentTypeResolver getContentTypeResolver() {
 		return this.contentTypeResolver;
 	}
 
 	/**
-	 * Set the order for this result handler relative to others.
-	 * <p>By default set to {@link Ordered#LOWEST_PRECEDENCE}, however see
-	 * Javadoc of subclasses which may change this default.
+	 * 设置此结果处理器相对于其他处理器的顺序。
+	 * <p>默认设置为 {@link Ordered#LOWEST_PRECEDENCE}，但请参阅可能更改此默认值的子类的 Javadoc。
 	 * @param order the order
 	 */
 	public void setOrder(int order) {
@@ -102,7 +98,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 
 
 	/**
-	 * Get a {@code ReactiveAdapter} for the top-level return value type.
+	 * 获取顶层返回值类型的 {@code ReactiveAdapter}。
 	 * @return the matching adapter, or {@code null} if none
 	 */
 	@Nullable
@@ -111,7 +107,7 @@ public abstract class HandlerResultHandlerSupport implements Ordered {
 	}
 
 	/**
-	 * Select the best media type for the current request through a content negotiation algorithm.
+	 * 通过内容协商算法为当前请求选择最佳媒体类型。
 	 * @param exchange the current request
 	 * @param producibleTypesSupplier the media types that can be produced for the current request
 	 * @return the selected media type, or {@code null} if none

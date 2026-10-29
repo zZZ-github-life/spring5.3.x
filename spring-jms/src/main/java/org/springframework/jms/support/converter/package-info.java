@@ -1,6 +1,5 @@
 /**
- * Provides a MessageConverter abstraction to convert
- * between Java objects and JMS messages.
+ * 提供 MessageConverter 抽象，用于在 Java 对象与 JMS 消息之间进行转换。
  */
 @NonNullApi
 @NonNullFields

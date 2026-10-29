@@ -27,13 +27,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@link org.springframework.web.client.AsyncRestTemplate}
- * and other HTTP accessing gateway helpers, defining common properties
- * such as the {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
- * to operate on.
+ * {@link org.springframework.web.client.AsyncRestTemplate}
+ * 和其他 HTTP 访问网关辅助类的基类，定义要操作的
+ * {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
+ * 等公共属性。
  *
- * <p>Not intended to be used directly. See
- * {@link org.springframework.web.client.AsyncRestTemplate}.
+ * <p>不打算直接使用。请参阅
+ * {@link org.springframework.web.client.AsyncRestTemplate}。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -43,7 +43,7 @@ import org.springframework.util.Assert;
 @Deprecated
 public class AsyncHttpAccessor {
 
-	/** Logger available to subclasses. */
+	/** 供子类使用的 Logger。 */
 	protected final Log logger = HttpLogging.forLogName(getClass());
 
 	@Nullable
@@ -51,8 +51,8 @@ public class AsyncHttpAccessor {
 
 
 	/**
-	 * Set the request factory that this accessor uses for obtaining {@link
-	 * org.springframework.http.client.ClientHttpRequest HttpRequests}.
+	 * 设置此访问器用于获取
+	 * {@link org.springframework.http.client.ClientHttpRequest HttpRequests} 的请求工厂。
 	 */
 	public void setAsyncRequestFactory(
 			org.springframework.http.client.AsyncClientHttpRequestFactory asyncRequestFactory) {
@@ -62,8 +62,8 @@ public class AsyncHttpAccessor {
 	}
 
 	/**
-	 * Return the request factory that this accessor uses for obtaining {@link
-	 * org.springframework.http.client.ClientHttpRequest HttpRequests}.
+	 * 返回此访问器用于获取
+	 * {@link org.springframework.http.client.ClientHttpRequest HttpRequests} 的请求工厂。
 	 */
 	public org.springframework.http.client.AsyncClientHttpRequestFactory getAsyncRequestFactory() {
 		Assert.state(this.asyncRequestFactory != null, "No AsyncClientHttpRequestFactory set");
@@ -71,8 +71,9 @@ public class AsyncHttpAccessor {
 	}
 
 	/**
-	 * Create a new {@link org.springframework.http.client.AsyncClientHttpRequest} via this template's
-	 * {@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
+	 * 通过此模板的
+	 * {@link org.springframework.http.client.AsyncClientHttpRequestFactory} 创建新的
+	 * {@link org.springframework.http.client.AsyncClientHttpRequest}。
 	 * @param url the URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc.)
 	 * @return the created request

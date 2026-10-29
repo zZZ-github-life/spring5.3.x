@@ -1,12 +1,12 @@
 /**
- * Provides standard View and ViewResolver implementations,
- * including abstract base classes for custom implementations.
+ * 提供标准的 View 和 ViewResolver 实现，
+ * 包括用于自定义实现的抽象基类。
  *
- * <p>Application developers don't usually need to implement views,
- * as the framework provides standard views for JSPs, FreeMarker,
- * XSLT, etc. However, the ability to implement custom views easily
- * by subclassing the AbstractView class in this package can be
- * very helpful if an application has unusual view requirements.
+ * <p>应用开发者通常无需实现视图，
+ * 因为框架已为 JSP、FreeMarker、
+ * XSLT 等提供了标准视图。不过，如果应用有特殊的视图需求，
+ * 通过继承此包中的 AbstractView 类来轻松实现自定义视图
+ * 可能非常有帮助。
  */
 @NonNullApi
 @NonNullFields

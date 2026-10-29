@@ -48,13 +48,12 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Handler for return values of type {@link ResponseBodyEmitter} and subclasses
- * such as {@link SseEmitter} including the same types wrapped with
- * {@link ResponseEntity}.
+ * 处理 {@link ResponseBodyEmitter} 及其子类
+ * （例如 {@link SseEmitter}）类型的返回值，包括使用
+ * {@link ResponseEntity} 包装的相同类型。
  *
- * <p>As of 5.0 also supports reactive return value types for any reactive
- * library with registered adapters in {@link ReactiveAdapterRegistry}.
- *
+ * <p>从 5.0 开始，还支持在 {@link ReactiveAdapterRegistry} 中
+ * 注册了适配器的任何响应式库的响应式返回值类型。
  * @author Rossen Stoyanchev
  * @since 4.2
  */
@@ -66,10 +65,10 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 
 
 	/**
-	 * Simple constructor with reactive type support based on a default instance of
-	 * {@link ReactiveAdapterRegistry},
-	 * {@link org.springframework.core.task.SyncTaskExecutor}, and
-	 * {@link ContentNegotiationManager} with an Accept header strategy.
+	 * 简单构造函数，基于 {@link ReactiveAdapterRegistry} 的默认实例、
+	 * {@link org.springframework.core.task.SyncTaskExecutor}
+	 * 以及采用 Accept 头策略的 {@link ContentNegotiationManager}
+	 * 提供响应式类型支持。
 	 */
 	public ResponseBodyEmitterReturnValueHandler(List<HttpMessageConverter<?>> messageConverters) {
 		Assert.notEmpty(messageConverters, "HttpMessageConverter List must not be empty");
@@ -78,7 +77,7 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 	}
 
 	/**
-	 * Complete constructor with pluggable "reactive" type support.
+	 * 包含可插拔“响应式”类型支持的完整构造函数。
 	 * @param messageConverters converters to write emitted objects with
 	 * @param registry for reactive return value type support
 	 * @param executor for blocking I/O writes of items emitted from reactive types
@@ -187,7 +186,7 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 
 
 	/**
-	 * ResponseBodyEmitter.Handler that writes with HttpMessageConverter's.
+	 * 使用 HttpMessageConverter 进行写出的 ResponseBodyEmitter.Handler。
 	 */
 	private class HttpMessageConvertingHandler implements ResponseBodyEmitter.Handler {
 
@@ -251,8 +250,8 @@ public class ResponseBodyEmitterReturnValueHandler implements HandlerMethodRetur
 
 
 	/**
-	 * Wrap to silently ignore header changes HttpMessageConverter's that would
-	 * otherwise cause HttpHeaders to raise exceptions.
+	 * 包装以静默忽略那些否则会导致 HttpHeaders 抛出异常的
+	 * 头更改 HttpMessageConverter。
 	 */
 	private static class StreamingServletServerHttpResponse extends DelegatingServerHttpResponse {
 

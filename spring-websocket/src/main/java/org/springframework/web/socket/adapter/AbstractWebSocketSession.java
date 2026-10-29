@@ -36,7 +36,7 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * An abstract base class for implementations of {@link WebSocketSession}.
+ * {@link WebSocketSession} 实现的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -56,7 +56,7 @@ public abstract class AbstractWebSocketSession<T> implements NativeWebSocketSess
 
 
 	/**
-	 * Create a new instance and associate the given attributes with it.
+	 * 创建一个新实例并将给定的属性与其关联。
 	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
 	 * session; the provided attributes are copied, the original map is not used.
 	 */

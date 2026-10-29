@@ -29,20 +29,17 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Standalone application context, accepting <em>component classes</em> as input &mdash;
- * in particular {@link Configuration @Configuration}-annotated classes, but also plain
- * {@link org.springframework.stereotype.Component @Component} types and JSR-330 compliant
- * classes using {@code javax.inject} annotations.
+ * 独立的应用上下文，接受<i>组件类</i>作为输入 &mdash; 特别是 {@link Configuration @Configuration}
+ * 注解的类，但也包括普通的 {@link org.springframework.stereotype.Component @Component} 类型以及使
+ * 用 {@code javax.inject} 注解的符合 JSR-330 的类。
  *
- * <p>Allows for registering classes one by one using {@link #register(Class...)}
- * as well as for classpath scanning using {@link #scan(String...)}.
+ * <p>既支持使用 {@link #register(Class...)} 逐个注册类，也支持使用 {@link #scan(String...)} 进行类
+ * 路径扫描。
  *
- * <p>In case of multiple {@code @Configuration} classes, {@link Bean @Bean} methods
- * defined in later classes will override those defined in earlier classes. This can
- * be leveraged to deliberately override certain bean definitions via an extra
- * {@code @Configuration} class.
+ * <p>在存在多个 {@code @Configuration} 类的情况下，后定义类中的 {@link Bean @Bean} 方法将覆盖先定
+ * 义类中的方法。可以利用这一点，通过额外的 {@code @Configuration} 类来有意覆盖某些 Bean 定义。
  *
- * <p>See {@link Configuration @Configuration}'s javadoc for usage examples.
+ * <p>用法示例请参见 {@link Configuration @Configuration} 的 javadoc。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -61,8 +58,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 
 	/**
-	 * Create a new AnnotationConfigApplicationContext that needs to be populated
-	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
+	 * 创建一个新的 AnnotationConfigApplicationContext，需要通过 {@link #register} 调用进行填充，然后手
+	 * 动 {@linkplain #refresh 刷新}。
 	 */
 	/*
 	* 这里创建spring容器的两大成员
@@ -82,7 +79,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	/**
-	 * Create a new AnnotationConfigApplicationContext with the given DefaultListableBeanFactory.
+	 * 使用给定的 DefaultListableBeanFactory 创建一个新的 AnnotationConfigApplicationContext。
 	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
 	 */
 	public AnnotationConfigApplicationContext(DefaultListableBeanFactory beanFactory) {
@@ -104,9 +101,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	/**
-	 * Create a new AnnotationConfigApplicationContext, scanning for components
-	 * in the given packages, registering bean definitions for those components,
-	 * and automatically refreshing the context.
+	 * 创建一个新的 AnnotationConfigApplicationContext，在给定包中扫描组件，为这些组件注册 Bean 定义，
+	 * 并自动刷新上下文。
 	 * @param basePackages the packages to scan for component classes
 	 */
 	public AnnotationConfigApplicationContext(String... basePackages) {
@@ -117,8 +113,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 
 	/**
-	 * Propagate the given custom {@code Environment} to the underlying
-	 * {@link AnnotatedBeanDefinitionReader} and {@link ClassPathBeanDefinitionScanner}.
+	 * 将给定的自定义 {@code Environment} 传播到底层的 {@link AnnotatedBeanDefinitionReader} 和
+	 * {@link ClassPathBeanDefinitionScanner}。
 	 */
 	@Override
 	public void setEnvironment(ConfigurableEnvironment environment) {
@@ -128,11 +124,13 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	/**
-	 * Provide a custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}, if any.
-	 * <p>Default is {@link AnnotationBeanNameGenerator}.
-	 * <p>Any call to this method must occur prior to calls to {@link #register(Class...)}
-	 * and/or {@link #scan(String...)}.
+	 * 提供自定义的 {@link BeanNameGenerator}，供 {@link AnnotatedBeanDefinitionReader} 和/或
+	 * {@link ClassPathBeanDefinitionScanner} 使用（如果有）。
+	 *
+	 * <p>默认为 {@link AnnotationBeanNameGenerator}。
+	 *
+	 * <p>对此方法的任何调用都必须在调用 {@link #register(Class...)} 和/或 {@link #scan(String...)} 之
+	 * 前进行。
 	 * @see AnnotatedBeanDefinitionReader#setBeanNameGenerator
 	 * @see ClassPathBeanDefinitionScanner#setBeanNameGenerator
 	 * @see AnnotationBeanNameGenerator
@@ -146,10 +144,12 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	/**
-	 * Set the {@link ScopeMetadataResolver} to use for registered component classes.
-	 * <p>The default is an {@link AnnotationScopeMetadataResolver}.
-	 * <p>Any call to this method must occur prior to calls to {@link #register(Class...)}
-	 * and/or {@link #scan(String...)}.
+	 * 设置用于已注册组件类的 {@link ScopeMetadataResolver}。
+	 *
+	 * <p>默认为 {@link AnnotationScopeMetadataResolver}。
+	 *
+	 * <p>对此方法的任何调用都必须在调用 {@link #register(Class...)} 和/或 {@link #scan(String...)} 之
+	 * 前进行。
 	 */
 	public void setScopeMetadataResolver(ScopeMetadataResolver scopeMetadataResolver) {
 		this.reader.setScopeMetadataResolver(scopeMetadataResolver);
@@ -162,9 +162,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	//---------------------------------------------------------------------
 
 	/**
-	 * Register one or more component classes to be processed.
-	 * <p>Note that {@link #refresh()} must be called in order for the context
-	 * to fully process the new classes.
+	 * 注册一个或多个要处理的组件类。
+	 *
+	 * <p>请注意，为了使上下文完全处理新类，必须调用 {@link #refresh()}。
 	 * @param componentClasses one or more component classes &mdash; for example,
 	 * {@link Configuration @Configuration} classes
 	 * @see #scan(String...)
@@ -180,9 +180,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	}
 
 	/**
-	 * Perform a scan within the specified base packages.
-	 * <p>Note that {@link #refresh()} must be called in order for the context
-	 * to fully process the new classes.
+	 * 在指定的基础包中执行扫描。
+	 *
+	 * <p>请注意，为了使上下文完全处理新类，必须调用 {@link #refresh()}。
 	 * @param basePackages the packages to scan for component classes
 	 * @see #register(Class...)
 	 * @see #refresh()

@@ -17,7 +17,7 @@
 package org.springframework.oxm;
 
 /**
- * Base class for exception thrown when a marshalling or unmarshalling error occurs.
+ * 在发生 marshalling 或 unmarshalling 错误时抛出的异常的基类。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -29,7 +29,7 @@ package org.springframework.oxm;
 public abstract class MarshallingException extends XmlMappingException {
 
 	/**
-	 * Construct a {@code MarshallingException} with the specified detail message.
+	 * 使用指定的详细消息构造一个 {@code MarshallingException}。
 	 * @param msg the detail message
 	 */
 	protected MarshallingException(String msg) {
@@ -37,8 +37,7 @@ public abstract class MarshallingException extends XmlMappingException {
 	}
 
 	/**
-	 * Construct a {@code MarshallingException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code MarshallingException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */

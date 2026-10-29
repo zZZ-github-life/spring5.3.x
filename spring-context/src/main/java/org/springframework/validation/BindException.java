@@ -25,14 +25,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Thrown when binding errors are considered fatal. Implements the
- * {@link BindingResult} interface (and its super-interface {@link Errors})
- * to allow for the direct analysis of binding errors.
+ * 当绑定错误被视为致命错误时抛出。实现 {@link BindingResult} 接口（及其父接口 {@link Errors}），以
+ * 便直接分析绑定错误。
  *
- * <p>As of Spring 2.0, this is a special-purpose class. Normally,
- * application code will work with the {@link BindingResult} interface,
- * or with a {@link DataBinder} that in turn exposes a BindingResult via
- * {@link org.springframework.validation.DataBinder#getBindingResult()}.
+ * <p>从 Spring 2.0 起，这是一个专用类。通常，应用代码会使用 {@link BindingResult} 接口，或使用
+ * {@link DataBinder}，后者又通过
+ * {@link org.springframework.validation.DataBinder#getBindingResult()} 暴露 BindingResult。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -48,7 +46,7 @@ public class BindException extends Exception implements BindingResult {
 
 
 	/**
-	 * Create a new BindException instance for a BindingResult.
+	 * 为 BindingResult 创建新的 BindException 实例。
 	 * @param bindingResult the BindingResult instance to wrap
 	 */
 	public BindException(BindingResult bindingResult) {
@@ -57,7 +55,7 @@ public class BindException extends Exception implements BindingResult {
 	}
 
 	/**
-	 * Create a new BindException instance for a target bean.
+	 * 为目标 Bean 创建新的 BindException 实例。
 	 * @param target the target bean to bind onto
 	 * @param objectName the name of the target object
 	 * @see BeanPropertyBindingResult
@@ -69,7 +67,7 @@ public class BindException extends Exception implements BindingResult {
 
 
 	/**
-	 * Return the BindingResult that this BindException wraps.
+	 * 返回此 BindException 所包装的 BindingResult。
 	 */
 	public final BindingResult getBindingResult() {
 		return this.bindingResult;
@@ -290,7 +288,7 @@ public class BindException extends Exception implements BindingResult {
 
 
 	/**
-	 * Returns diagnostic information about the errors held in this object.
+	 * 返回有关此对象中所持错误的诊断信息。
 	 */
 	@Override
 	public String getMessage() {

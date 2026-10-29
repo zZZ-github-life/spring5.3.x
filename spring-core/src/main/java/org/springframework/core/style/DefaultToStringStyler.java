@@ -22,10 +22,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Spring's default {@code toString()} styler.
+ * Spring 默认的 {@code toString()} 样式器。
  *
- * <p>This class is used by {@link ToStringCreator} to style {@code toString()}
- * output in a consistent manner according to Spring conventions.
+ * <p>此类由 {@link ToStringCreator} 使用，按照 Spring 约定以一致的方式为 {@code toString()} 输出设
+ * 置样式。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -37,7 +37,7 @@ public class DefaultToStringStyler implements ToStringStyler {
 
 
 	/**
-	 * Create a new DefaultToStringStyler.
+	 * 创建一个新的 DefaultToStringStyler。
 	 * @param valueStyler the ValueStyler to use
 	 */
 	public DefaultToStringStyler(ValueStyler valueStyler) {
@@ -46,7 +46,7 @@ public class DefaultToStringStyler implements ToStringStyler {
 	}
 
 	/**
-	 * Return the ValueStyler used by this ToStringStyler.
+	 * 返回此 ToStringStyler 所使用的 ValueStyler。
 	 */
 	protected final ValueStyler getValueStyler() {
 		return this.valueStyler;

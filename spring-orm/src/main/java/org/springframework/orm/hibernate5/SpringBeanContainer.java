@@ -34,13 +34,13 @@ import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * Spring's implementation of Hibernate 5.3's {@link BeanContainer} SPI,
- * delegating to a Spring {@link ConfigurableListableBeanFactory}.
+ * Hibernate 5.3 {@link BeanContainer} SPI 的 Spring 实现，
+ * 委托给 Spring {@link ConfigurableListableBeanFactory}。
  *
- * <p>Auto-configured by {@link LocalSessionFactoryBean#setBeanFactory},
- * programmatically supported via {@link LocalSessionFactoryBuilder#setBeanContainer},
- * and manually configurable through a "hibernate.resource.beans.container" entry
- * in JPA properties, e.g.:
+ * <p>由 {@link LocalSessionFactoryBean#setBeanFactory} 自动配置，
+ * 通过 {@link LocalSessionFactoryBuilder#setBeanContainer} 以编程方式支持，
+ * 也可以通过 JPA 属性中的 "hibernate.resource.beans.container" 条目
+ * 手动配置，例如：
  *
  * <pre class="code">
  * &lt;bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
@@ -54,18 +54,18 @@ import org.springframework.util.ConcurrentReferenceHashMap;
  *   &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * Or in Java-based JPA configuration:
+ * 或者在基于 Java 的 JPA 配置中：
  *
  * <pre class="code">
  * LocalContainerEntityManagerFactoryBean emfb = ...
  * emfb.getJpaPropertyMap().put(AvailableSettings.BEAN_CONTAINER, new SpringBeanContainer(beanFactory));
  * </pre>
  *
- * Please note that Spring's {@link LocalSessionFactoryBean} is an immediate alternative
- * to {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean} for common
- * JPA purposes: In particular with Hibernate 5.3/5.4, the Hibernate {@code SessionFactory}
- * will natively expose the JPA {@code EntityManagerFactory} interface as well, and
- * Hibernate {@code BeanContainer} integration will be registered out of the box.
+ * 请注意，对于常见的 JPA 用途，Spring 的 {@link LocalSessionFactoryBean}
+ * 可以直接替代 {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}：
+ * 特别是在 Hibernate 5.3/5.4 中，Hibernate {@code SessionFactory}
+ * 会原生暴露 JPA {@code EntityManagerFactory} 接口，并且
+ * 会自动注册 Hibernate {@code BeanContainer} 集成。
  *
  * @author Juergen Hoeller
  * @since 5.1
@@ -84,7 +84,7 @@ public final class SpringBeanContainer implements BeanContainer {
 
 
 	/**
-	 * Instantiate a new SpringBeanContainer for the given bean factory.
+	 * 为给定的 bean 工厂实例化一个新的 SpringBeanContainer。
 	 * @param beanFactory the Spring bean factory to delegate to
 	 */
 	public SpringBeanContainer(ConfigurableListableBeanFactory beanFactory) {

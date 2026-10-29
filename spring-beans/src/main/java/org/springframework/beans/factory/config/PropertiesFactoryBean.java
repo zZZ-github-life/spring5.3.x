@@ -25,17 +25,13 @@ import org.springframework.core.io.support.PropertiesLoaderSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * Allows for making a properties file from a classpath location available
- * as Properties instance in a bean factory. Can be used to populate
- * any bean property of type Properties via a bean reference.
+ * 允许将类路径位置中的属性文件作为 Properties 实例提供给 Bean 工厂。可用于通过 Bean 引用填充任何类
+ * 型为 Properties 的 Bean 属性。
  *
- * <p>Supports loading from a properties file and/or setting local properties
- * on this FactoryBean. The created Properties instance will be merged from
- * loaded and local values. If neither a location nor local properties are set,
- * an exception will be thrown on initialization.
+ * <p>支持从属性文件加载和/或在此 FactoryBean 上设置本地属性。创建的 Properties 实例将由加载的值和
+ * 本地值合并而成。如果既未设置位置也未设置本地属性，则在初始化时将抛出异常。
  *
- * <p>Can create a singleton or a new object on each request.
- * Default is a singleton.
+ * <p>可以创建单例，或在每次请求时创建新对象。默认为单例。
  *
  * @author Juergen Hoeller
  * @see #setLocation
@@ -53,9 +49,8 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 
 
 	/**
-	 * Set whether a shared 'singleton' Properties instance should be
-	 * created, or rather a new Properties instance on each request.
-	 * <p>Default is "true" (a shared singleton).
+	 * 设置是创建共享的“单例” Properties 实例，还是在每次请求时创建新的 Properties 实例。
+	 * <p>默认为 "true"（共享单例）。
 	 */
 	public final void setSingleton(boolean singleton) {
 		this.singleton = singleton;
@@ -92,11 +87,9 @@ public class PropertiesFactoryBean extends PropertiesLoaderSupport
 
 
 	/**
-	 * Template method that subclasses may override to construct the object
-	 * returned by this factory. The default implementation returns the
-	 * plain merged Properties instance.
-	 * <p>Invoked on initialization of this FactoryBean in case of a
-	 * shared singleton; else, on each {@link #getObject()} call.
+	 * 模板方法，子类可以重写它以构造此工厂返回的对象。默认实现返回普通的合并后的 Properties 实例。
+	 * <p>在共享单例的情况下，此方法在此 FactoryBean 初始化时调用；否则在每次 {@link #getObject()} 调用
+	 * 时调用。
 	 * @return the object returned by this factory
 	 * @throws IOException if an exception occurred during properties loading
 	 * @see #mergeProperties()

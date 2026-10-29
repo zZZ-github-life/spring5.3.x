@@ -22,11 +22,11 @@ import org.apache.tiles.preparer.ViewPreparer;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Tiles {@link org.apache.tiles.preparer.factory.PreparerFactory} implementation
- * that expects preparer bean names and obtains preparer beans from the
- * Spring ApplicationContext. The full bean creation process will be in
- * the control of the Spring application context in this case, allowing
- * for the use of scoped beans etc.
+ * Tiles {@link org.apache.tiles.preparer.factory.PreparerFactory} 实现，
+ * 它期望使用 preparer bean 名称，并从
+ * Spring ApplicationContext 中获取 preparer bean。在这种情况下，
+ * 完整的 bean 创建过程将由 Spring 应用上下文控制，
+ * 从而允许使用作用域 bean 等。
  *
  * @author Juergen Hoeller
  * @since 3.2

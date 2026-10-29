@@ -33,21 +33,15 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}
- * implementation that allows users to easily configure all the
- * infrastructure beans required to enable annotation-driven cache
- * demarcation.
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} 实现，允许用户轻松配置启用注
+ * 解驱动的缓存分界所需的所有基础设施 Bean。
  *
- * <p>By default, all proxies are created as JDK proxies. This may cause
- * some problems if you are injecting objects as concrete classes rather
- * than interfaces. To overcome this restriction you can set the
- * '{@code proxy-target-class}' attribute to '{@code true}', which will
- * result in class-based proxies being created.
+ * <p>默认情况下，所有代理都创建为 JDK 代理。如果你将对象作为具体类而不是接口注入，这可能会引起一些
+ * 问题。要克服此限制，可以将 '{@code proxy-target-class}' 属性设置为 '{@code true}'，这样将创建基
+ * 于类的代理。
  *
- * <p>If the JSR-107 API and Spring's JCache implementation are present,
- * the necessary infrastructure beans required to handle methods annotated
- * with {@code CacheResult}, {@code CachePut}, {@code CacheRemove} or
- * {@code CacheRemoveAll} are also registered.
+ * <p>如果存在 JSR-107 API 和 Spring 的 JCache 实现，则还会注册处理标注了 {@code CacheResult}、
+ * {@code CachePut}、{@code CacheRemove} 或 {@code CacheRemoveAll} 的方法所需的基础设施 Bean。
  *
  * @author Costin Leau
  * @author Stephane Nicoll
@@ -74,9 +68,8 @@ class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinitionParser 
 
 
 	/**
-	 * Parses the '{@code <cache:annotation-driven>}' tag. Will
-	 * {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary
-	 * register an AutoProxyCreator} with the container as necessary.
+	 * 解析 '{@code <cache:annotation-driven>}' 标签。将根据需要向容器
+	 * {@link AopNamespaceUtils#registerAutoProxyCreatorIfNecessary register an AutoProxyCreator}。
 	 */
 	@Override
 	@Nullable
@@ -110,9 +103,8 @@ class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinitionParser 
 	}
 
 	/**
-	 * Parse the cache resolution strategy to use. If a 'cache-resolver' attribute
-	 * is set, it is injected. Otherwise the 'cache-manager' is set. If {@code setBoth}
-	 * is {@code true}, both service are actually injected.
+	 * 解析要使用的缓存解析策略。如果设置了 'cache-resolver' 属性，则注入它。否则设置 'cache-manager'。
+	 * 如果 {@code setBoth} 为 {@code true}，则实际会注入这两个服务。
 	 */
 	private static void parseCacheResolution(Element element, BeanDefinition def, boolean setBoth) {
 		String name = element.getAttribute("cache-resolver");
@@ -135,7 +127,7 @@ class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinitionParser 
 
 
 	/**
-	 * Configure the necessary infrastructure to support the Spring's caching annotations.
+	 * 配置必要的基础设施，以支持 Spring 的缓存注解。
 	 */
 	private static class SpringCachingConfigurer {
 
@@ -179,7 +171,7 @@ class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinitionParser 
 		}
 
 		/**
-		 * Registers a cache aspect.
+		 * 注册一个缓存切面。
 		 * <pre class="code">
 		 * &lt;bean id="cacheAspect" class="org.springframework.cache.aspectj.AnnotationCacheAspect" factory-method="aspectOf"&gt;
 		 *   &lt;property name="cacheManager" ref="cacheManager"/&gt;
@@ -201,7 +193,7 @@ class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinitionParser 
 
 
 	/**
-	 * Configure the necessary infrastructure to support the standard JSR-107 caching annotations.
+	 * 配置必要的基础设施，以支持标准的 JSR-107 缓存注解。
 	 */
 	private static class JCacheCachingConfigurer {
 

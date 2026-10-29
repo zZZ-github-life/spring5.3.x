@@ -19,7 +19,7 @@ package org.springframework.r2dbc.connection.lookup;
 import io.r2dbc.spi.ConnectionFactory;
 
 /**
- * Strategy interface for looking up {@link ConnectionFactory} by name.
+ * 用于按名称查找 {@link ConnectionFactory} 的策略接口。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -28,7 +28,7 @@ import io.r2dbc.spi.ConnectionFactory;
 public interface ConnectionFactoryLookup {
 
 	/**
-	 * Retrieve the {@link ConnectionFactory} identified by the given name.
+	 * 获取由给定名称标识的 {@link ConnectionFactory}。
 	 * @param connectionFactoryName the name of the {@link ConnectionFactory}
 	 * @return the {@link ConnectionFactory} (never {@code null})
 	 * @throws ConnectionFactoryLookupFailureException if the lookup failed

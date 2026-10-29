@@ -1,5 +1,5 @@
 /**
- * Core domain types around DatabaseClient.
+ * 围绕 DatabaseClient 的核心领域类型。
  */
 @org.springframework.lang.NonNullApi
 @org.springframework.lang.NonNullFields

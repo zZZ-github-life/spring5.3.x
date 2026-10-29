@@ -1,6 +1,5 @@
 /**
- * Context metadata abstraction for the configuration and execution
- * of table inserts and stored procedure calls.
+ * 表插入和存储过程调用的配置与执行的上下文元数据抽象层。
  */
 @NonNullApi
 @NonNullFields

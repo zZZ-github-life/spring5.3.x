@@ -28,14 +28,14 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract ResultSetExtractor implementation that assumes streaming of LOB data.
- * Typically used as inner class, with access to surrounding method arguments.
+ * 假定对 LOB 数据进行流式处理的抽象 ResultSetExtractor 实现。
+ * 通常用作内部类，以便访问外围方法的参数。
  *
- * <p>Delegates to the {@code streamData} template method for streaming LOB
- * content to some OutputStream, typically using a LobHandler. Converts an
- * IOException thrown during streaming to a LobRetrievalFailureException.
+ * <p>委托给 {@code streamData} 模板方法将 LOB 内容流式传输到某个
+ * OutputStream（通常使用 LobHandler）。将流式处理过程中抛出的
+ * IOException 转换为 LobRetrievalFailureException。
  *
- * <p>A usage example with JdbcTemplate:
+ * <p>使用 JdbcTemplate 的示例：
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  * final LobHandler lobHandler = new DefaultLobHandler();  // reusable object
@@ -58,9 +58,9 @@ import org.springframework.lang.Nullable;
 public abstract class AbstractLobStreamingResultSetExtractor<T> implements ResultSetExtractor<T> {
 
 	/**
-	 * Delegates to handleNoRowFound, handleMultipleRowsFound and streamData,
-	 * according to the ResultSet state. Converts an IOException thrown by
-	 * streamData to a LobRetrievalFailureException.
+	 * 根据 ResultSet 的状态委托给 handleNoRowFound、handleMultipleRowsFound
+	 * 和 streamData。将 streamData 抛出的 IOException 转换为
+	 * LobRetrievalFailureException。
 	 * @see #handleNoRowFound
 	 * @see #handleMultipleRowsFound
 	 * @see #streamData
@@ -87,7 +87,7 @@ public abstract class AbstractLobStreamingResultSetExtractor<T> implements Resul
 	}
 
 	/**
-	 * Handle the case where the ResultSet does not contain a row.
+	 * 处理 ResultSet 不包含任何行的情况。
 	 * @throws DataAccessException a corresponding exception,
 	 * by default an EmptyResultDataAccessException
 	 * @see org.springframework.dao.EmptyResultDataAccessException
@@ -98,7 +98,7 @@ public abstract class AbstractLobStreamingResultSetExtractor<T> implements Resul
 	}
 
 	/**
-	 * Handle the case where the ResultSet contains multiple rows.
+	 * 处理 ResultSet 包含多行的情况。
 	 * @throws DataAccessException a corresponding exception,
 	 * by default an IncorrectResultSizeDataAccessException
 	 * @see org.springframework.dao.IncorrectResultSizeDataAccessException
@@ -109,9 +109,9 @@ public abstract class AbstractLobStreamingResultSetExtractor<T> implements Resul
 	}
 
 	/**
-	 * Stream LOB content from the given ResultSet to some OutputStream.
-	 * <p>Typically used as inner class, with access to surrounding method arguments
-	 * and to a LobHandler instance variable of the surrounding class.
+	 * 将给定 ResultSet 中的 LOB 内容流式传输到某个 OutputStream。
+	 * <p>通常用作内部类，以便访问外围方法的参数
+	 * 以及外围类的 LobHandler 实例变量。
 	 * @param rs the ResultSet to take the LOB content from
 	 * @throws SQLException if thrown by JDBC methods
 	 * @throws IOException if thrown by stream access methods

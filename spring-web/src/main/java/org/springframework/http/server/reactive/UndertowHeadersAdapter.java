@@ -34,7 +34,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code MultiValueMap} implementation for wrapping Undertow HTTP headers.
+ * 用于包装 Undertow HTTP 头的 {@code MultiValueMap} 实现。
  *
  * @author Brian Clozel
  * @author Sam Brannen

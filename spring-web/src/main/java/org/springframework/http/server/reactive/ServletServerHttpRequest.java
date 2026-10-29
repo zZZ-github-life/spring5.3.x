@@ -53,7 +53,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Adapt {@link ServerHttpRequest} to the Servlet {@link HttpServletRequest}.
+ * 将 {@link ServerHttpRequest} 适配到 Servlet 的 {@link HttpServletRequest}。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -223,18 +223,18 @@ class ServletServerHttpRequest extends AbstractServerHttpRequest {
 	}
 
 	/**
-	 * Return an {@link RequestAsyncListener} that completes the request body
-	 * Publisher when the Servlet container notifies that request input has ended.
-	 * The listener is not actually registered but is rather exposed for
-	 * {@link ServletHttpHandlerAdapter} to ensure events are delegated.
+	 * 返回一个 {@link RequestAsyncListener}，当 Servlet 容器通知请求输入已结束时，
+	 * 它会完成请求体 Publisher。
+	 * 该监听器实际上并未注册，而是公开出来供
+	 * {@link ServletHttpHandlerAdapter} 用来确保事件被委派。
 	 */
 	AsyncListener getAsyncListener() {
 		return this.asyncListener;
 	}
 
 	/**
-	 * Read from the request body InputStream and return a DataBuffer.
-	 * Invoked only when {@link ServletInputStream#isReady()} returns "true".
+	 * 从请求体 InputStream 读取并返回 DataBuffer。
+	 * 仅在 {@link ServletInputStream#isReady()} 返回 "true" 时调用。
 	 * @return a DataBuffer with data read, or
 	 * {@link AbstractListenerReadPublisher#EMPTY_BUFFER} if 0 bytes were read,
 	 * or {@link #EOF_BUFFER} if the input stream returned -1.

@@ -27,8 +27,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataRetrievalFailureException;
 
 /**
- * EIS operation object for access to COMMAREA records.
- * Subclass of the generic MappingRecordOperation class.
+ * 用于访问 COMMAREA 记录的 EIS 操作对象。
+ * 通用 MappingRecordOperation 类的子类。
  *
  * @author Thierry Templier
  * @since 1.2
@@ -39,7 +39,7 @@ import org.springframework.dao.DataRetrievalFailureException;
 public abstract class MappingCommAreaOperation extends MappingRecordOperation {
 
 	/**
-	 * Create a new MappingCommAreaQuery.
+	 * 创建新的 MappingCommAreaQuery。
 	 * @see #setConnectionFactory
 	 * @see #setInteractionSpec
 	 */
@@ -47,7 +47,7 @@ public abstract class MappingCommAreaOperation extends MappingRecordOperation {
 	}
 
 	/**
-	 * Create a new MappingCommAreaQuery.
+	 * 创建新的 MappingCommAreaQuery。
 	 * @param connectionFactory the ConnectionFactory to use to obtain connections
 	 * @param interactionSpec specification to configure the interaction
 	 */
@@ -80,7 +80,7 @@ public abstract class MappingCommAreaOperation extends MappingRecordOperation {
 
 
 	/**
-	 * Method used to convert an object into COMMAREA bytes.
+	 * 将对象转换为 COMMAREA 字节的方法。
 	 * @param inObject the input data
 	 * @return the COMMAREA's bytes
 	 * @throws IOException if thrown by I/O methods
@@ -89,7 +89,7 @@ public abstract class MappingCommAreaOperation extends MappingRecordOperation {
 	protected abstract byte[] objectToBytes(Object inObject) throws IOException, DataAccessException;
 
 	/**
-	 * Method used to convert the COMMAREA's bytes to an object.
+	 * 将 COMMAREA 字节转换为对象的方法。
 	 * @param bytes the COMMAREA's bytes
 	 * @return the output data
 	 * @throws IOException if thrown by I/O methods

@@ -19,8 +19,7 @@ package org.springframework.ui.context;
 import org.springframework.lang.Nullable;
 
 /**
- * Sub-interface of ThemeSource to be implemented by objects that
- * can resolve theme messages hierarchically.
+ * ThemeSource 的子接口，由能够按层次解析主题消息的对象实现。
  *
  * @author Jean-Pierre Pawlak
  * @author Juergen Hoeller
@@ -28,8 +27,7 @@ import org.springframework.lang.Nullable;
 public interface HierarchicalThemeSource extends ThemeSource {
 
 	/**
-	 * Set the parent that will be used to try to resolve theme messages
-	 * that this object can't resolve.
+	 * 设置父级，当此对象无法解析主题消息时，将尝试使用该父级来解析。
 	 * @param parent the parent ThemeSource that will be used to
 	 * resolve messages that this object can't resolve.
 	 * May be {@code null}, in which case no further resolution is possible.
@@ -37,7 +35,7 @@ public interface HierarchicalThemeSource extends ThemeSource {
 	void setParentThemeSource(@Nullable ThemeSource parent);
 
 	/**
-	 * Return the parent of this ThemeSource, or {@code null} if none.
+	 * 返回此 ThemeSource 的父级，如果没有则为 {@code null}。
 	 */
 	@Nullable
 	ThemeSource getParentThemeSource();

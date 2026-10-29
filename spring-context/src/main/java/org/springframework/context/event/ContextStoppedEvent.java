@@ -19,7 +19,7 @@ package org.springframework.context.event;
 import org.springframework.context.ApplicationContext;
 
 /**
- * Event raised when an {@code ApplicationContext} gets stopped.
+ * 当 {@code ApplicationContext} 停止时引发的事件。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -30,7 +30,7 @@ import org.springframework.context.ApplicationContext;
 public class ContextStoppedEvent extends ApplicationContextEvent {
 
 	/**
-	 * Create a new ContextStoppedEvent.
+	 * 创建一个新的 ContextStoppedEvent。
 	 * @param source the {@code ApplicationContext} that has been stopped
 	 * (must not be {@code null})
 	 */

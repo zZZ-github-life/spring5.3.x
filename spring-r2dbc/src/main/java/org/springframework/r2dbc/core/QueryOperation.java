@@ -19,10 +19,9 @@ package org.springframework.r2dbc.core;
 import java.util.function.Supplier;
 
 /**
- * Interface declaring a query operation that can be represented
- * with a query string. This interface is typically implemented
- * by classes representing an SQL operation such as {@code SELECT},
- * {@code INSERT}, and such.
+ * 声明可用查询字符串表示的查询操作的接口。
+ * 此接口通常由表示 SQL 操作（如 {@code SELECT}、{@code INSERT} 等）
+ * 的类实现。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -32,8 +31,7 @@ import java.util.function.Supplier;
 public interface QueryOperation extends Supplier<String> {
 
 	/**
-	 * Return the string-representation of this operation to
-	 * be used with {@link io.r2dbc.spi.Statement} creation.
+	 * 返回此操作的字符串表示，供创建 {@link io.r2dbc.spi.Statement} 时使用。
 	 * @return the operation as SQL string
 	 * @see io.r2dbc.spi.Connection#createStatement(String)
 	 */

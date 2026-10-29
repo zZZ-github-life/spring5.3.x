@@ -1,16 +1,12 @@
 /**
- * The classes in this package make R2DBC easier to use and
- * reduce the likelihood of common errors. In particular, they:
+ * 此包中的类使 R2DBC 更易于使用，并减少常见错误的发生。
+ * 具体而言，它们：
  * <ul>
- * <li>Simplify error handling, avoiding the need for resource management
- * blocks in application code.
- * <li>Present exceptions to application code in a generic hierarchy of
- * unchecked exceptions, enabling applications to catch data access
- * exceptions without being dependent on R2DBC, and to ignore fatal
- * exceptions there is no value in catching.
- * <li>Allow the implementation of error handling to be modified
- * to target different RDBMSes without introducing proprietary
- * dependencies into application code.
+ * <li>简化错误处理，避免应用程序代码中需要资源管理代码块。
+ * <li>以通用的非受检异常层次结构向应用程序代码呈现异常，使应用能够捕获数据访问
+ * 异常而不依赖于 R2DBC，并能忽略那些捕获也没有意义的致命异常。
+ * <li>允许修改错误处理的实现以针对不同的关系数据库，而无需在应用程序代码中
+ * 引入专有依赖。
  * </ul>
  */
 @NonNullApi

@@ -19,7 +19,7 @@ package org.springframework.aop.config;
 import org.springframework.beans.factory.parsing.ParseState;
 
 /**
- * {@link ParseState} entry representing an advisor.
+ * 表示 advisor 的 {@link ParseState} 条目。
  *
  * @author Mark Fisher
  * @since 2.0
@@ -30,7 +30,7 @@ public class AdvisorEntry implements ParseState.Entry {
 
 
 	/**
-	 * Create a new {@code AdvisorEntry} instance.
+	 * 创建一个新的 {@code AdvisorEntry} 实例。
 	 * @param name the bean name of the advisor
 	 */
 	public AdvisorEntry(String name) {

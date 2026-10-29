@@ -44,11 +44,10 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for factories that can create Spring AOP Advisors
- * given AspectJ classes from classes honoring the AspectJ 5 annotation syntax.
+ * 工厂的抽象基类，这些工厂能够根据遵循 AspectJ 5 注解语法的类中的 AspectJ 类创建 Spring AOP
+ * Advisor。
  *
- * <p>This class handles annotation parsing and validation functionality.
- * It does not actually generate Spring AOP Advisors, which is deferred to subclasses.
+ * <p>本类负责注解解析和校验功能。它并不实际生成 Spring AOP Advisor，该工作交由子类完成。
  *
  * @author Rod Johnson
  * @author Adrian Colyer
@@ -63,17 +62,16 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 			Pointcut.class, Around.class, Before.class, After.class, AfterReturning.class, AfterThrowing.class};
 
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	protected final ParameterNameDiscoverer parameterNameDiscoverer = new AspectJAnnotationParameterNameDiscoverer();
 
 
 	/**
-	 * We consider something to be an AspectJ aspect suitable for use by the Spring AOP system
-	 * if it has the @Aspect annotation, and was not compiled by ajc. The reason for this latter test
-	 * is that aspects written in the code-style (AspectJ language) also have the annotation present
-	 * when compiled by ajc with the -1.5 flag, yet they cannot be consumed by Spring AOP.
+	 * 如果某个对象带有 @Aspect 注解，且不是由 ajc 编译的，我们就认为它是适合 Spring AOP 系统使用的
+	 * AspectJ 切面。之所以要进行后一项检查，是因为以代码风格（AspectJ 语言）编写的切面在使用 ajc 加
+	 * -1.5 标志编译时也会带有该注解，但它们无法被 Spring AOP 使用。
 	 */
 	@Override
 	public boolean isAspect(Class<?> clazz) {
@@ -85,8 +83,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 	}
 
 	/**
-	 * We need to detect this as "code-style" AspectJ aspects should not be
-	 * interpreted by Spring AOP.
+	 * 我们需要检测出这种情况，因为“代码风格”的 AspectJ 切面不应由 Spring AOP 解释。
 	 */
 	private boolean compiledByAjc(Class<?> clazz) {
 		// The AJTypeSystem goes to great lengths to provide a uniform appearance between code-style and
@@ -125,8 +122,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 	}
 
 	/**
-	 * Find and return the first AspectJ annotation on the given method
-	 * (there <i>should</i> only be one anyway...).
+	 * 查找并返回给定方法上的第一个 AspectJ 注解（实际上<i>应该</i>只会有一个……）。
 	 */
 	@SuppressWarnings("unchecked")
 	@Nullable
@@ -153,7 +149,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 
 
 	/**
-	 * Enum for AspectJ annotation types.
+	 * AspectJ 注解类型的枚举。
 	 * @see AspectJAnnotation#getAnnotationType()
 	 */
 	protected enum AspectJAnnotationType {
@@ -163,8 +159,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 
 
 	/**
-	 * Class modelling an AspectJ annotation, exposing its type enumeration and
-	 * pointcut String.
+	 * 对 AspectJ 注解建模的类，对外暴露其类型枚举和切点字符串。
 	 * @param <A> the annotation type
 	 */
 	protected static class AspectJAnnotation<A extends Annotation> {
@@ -248,8 +243,7 @@ public abstract class AbstractAspectJAdvisorFactory implements AspectJAdvisorFac
 
 
 	/**
-	 * ParameterNameDiscoverer implementation that analyzes the arg names
-	 * specified at the AspectJ annotation level.
+	 * ParameterNameDiscoverer 实现，用于分析在 AspectJ 注解级别指定的参数名。
 	 */
 	private static class AspectJAnnotationParameterNameDiscoverer implements ParameterNameDiscoverer {
 

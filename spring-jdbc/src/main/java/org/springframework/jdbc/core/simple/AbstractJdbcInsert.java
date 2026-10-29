@@ -50,10 +50,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract class to provide base functionality for easy inserts
- * based on configuration options and database meta-data.
+ * 基于配置选项和数据库元数据，提供便捷插入操作基础功能的抽象类。
  *
- * <p>This class provides the base SPI for {@link SimpleJdbcInsert}.
+ * <p>该类为 {@link SimpleJdbcInsert} 提供基础 SPI。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -61,36 +60,36 @@ import org.springframework.util.Assert;
  */
 public abstract class AbstractJdbcInsert {
 
-	/** Logger available to subclasses. */
+	/** 子类可用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Lower-level class used to execute SQL. */
+	/** 用于执行 SQL 的底层类。 */
 	private final JdbcTemplate jdbcTemplate;
 
-	/** Context used to retrieve and manage database meta-data. */
+	/** 用于检索和管理数据库元数据的上下文。 */
 	private final TableMetaDataContext tableMetaDataContext = new TableMetaDataContext();
 
-	/** List of column names to be used in insert statement. */
+	/** 用于插入语句的列名列表。 */
 	private final List<String> declaredColumns = new ArrayList<>();
 
-	/** The names of the columns holding the generated key. */
+	/** 保存生成键的列的名称。 */
 	private String[] generatedKeyNames = new String[0];
 
 	/**
-	 * Has this operation been compiled? Compilation means at least checking
-	 * that a DataSource or JdbcTemplate has been provided.
+	 * 此操作是否已经编译？编译意味着至少检查
+	 * 是否已提供 DataSource 或 JdbcTemplate。
 	 */
 	private volatile boolean compiled;
 
-	/** The generated string used for insert statement. */
+	/** 用于插入语句的生成字符串。 */
 	private String insertString = "";
 
-	/** The SQL type information for the insert columns. */
+	/** 插入列的 SQL 类型信息。 */
 	private int[] insertTypes = new int[0];
 
 
 	/**
-	 * Constructor to be used when initializing using a {@link DataSource}.
+	 * 使用 {@link DataSource} 进行初始化时使用的构造器。
 	 * @param dataSource the DataSource to be used
 	 */
 	protected AbstractJdbcInsert(DataSource dataSource) {
@@ -98,7 +97,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Constructor to be used when initializing using a {@link JdbcTemplate}.
+	 * 使用 {@link JdbcTemplate} 进行初始化时使用的构造器。
 	 * @param jdbcTemplate the JdbcTemplate to use
 	 */
 	protected AbstractJdbcInsert(JdbcTemplate jdbcTemplate) {
@@ -112,14 +111,14 @@ public abstract class AbstractJdbcInsert {
 	//-------------------------------------------------------------------------
 
 	/**
-	 * Get the configured {@link JdbcTemplate}.
+	 * 获取配置的 {@link JdbcTemplate}。
 	 */
 	public JdbcTemplate getJdbcTemplate() {
 		return this.jdbcTemplate;
 	}
 
 	/**
-	 * Set the name of the table for this insert.
+	 * 设置此插入操作使用的表名。
 	 */
 	public void setTableName(@Nullable String tableName) {
 		checkIfConfigurationModificationIsAllowed();
@@ -127,7 +126,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Get the name of the table for this insert.
+	 * 获取此插入操作使用的表名。
 	 */
 	@Nullable
 	public String getTableName() {
@@ -135,7 +134,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Set the name of the schema for this insert.
+	 * 设置此插入操作使用的 schema 名称。
 	 */
 	public void setSchemaName(@Nullable String schemaName) {
 		checkIfConfigurationModificationIsAllowed();
@@ -143,7 +142,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Get the name of the schema for this insert.
+	 * 获取此插入操作使用的 schema 名称。
 	 */
 	@Nullable
 	public String getSchemaName() {
@@ -151,7 +150,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Set the name of the catalog for this insert.
+	 * 设置此插入操作使用的 catalog 名称。
 	 */
 	public void setCatalogName(@Nullable String catalogName) {
 		checkIfConfigurationModificationIsAllowed();
@@ -159,7 +158,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Get the name of the catalog for this insert.
+	 * 获取此插入操作使用的 catalog 名称。
 	 */
 	@Nullable
 	public String getCatalogName() {
@@ -167,7 +166,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Set the names of the columns to be used.
+	 * 设置要使用的列名。
 	 */
 	public void setColumnNames(List<String> columnNames) {
 		checkIfConfigurationModificationIsAllowed();
@@ -176,14 +175,14 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Get the names of the columns used.
+	 * 获取所使用的列名。
 	 */
 	public List<String> getColumnNames() {
 		return Collections.unmodifiableList(this.declaredColumns);
 	}
 
 	/**
-	 * Specify the name of a single generated key column.
+	 * 指定单个生成键列的名称。
 	 */
 	public void setGeneratedKeyName(String generatedKeyName) {
 		checkIfConfigurationModificationIsAllowed();
@@ -191,7 +190,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Set the names of any generated keys.
+	 * 设置所有生成键的名称。
 	 */
 	public void setGeneratedKeyNames(String... generatedKeyNames) {
 		checkIfConfigurationModificationIsAllowed();
@@ -199,37 +198,37 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Get the names of any generated keys.
+	 * 获取所有生成键的名称。
 	 */
 	public String[] getGeneratedKeyNames() {
 		return this.generatedKeyNames;
 	}
 
 	/**
-	 * Specify whether the parameter meta-data for the call should be used.
-	 * The default is {@code true}.
+	 * 指定是否应使用此调用的参数元数据。
+	 * 默认为 {@code true}。
 	 */
 	public void setAccessTableColumnMetaData(boolean accessTableColumnMetaData) {
 		this.tableMetaDataContext.setAccessTableColumnMetaData(accessTableColumnMetaData);
 	}
 
 	/**
-	 * Specify whether the default for including synonyms should be changed.
-	 * The default is {@code false}.
+	 * 指定是否应更改包含同义词的默认设置。
+	 * 默认为 {@code false}。
 	 */
 	public void setOverrideIncludeSynonymsDefault(boolean override) {
 		this.tableMetaDataContext.setOverrideIncludeSynonymsDefault(override);
 	}
 
 	/**
-	 * Get the insert string to be used.
+	 * 获取要使用的插入字符串。
 	 */
 	public String getInsertString() {
 		return this.insertString;
 	}
 
 	/**
-	 * Get the array of {@link java.sql.Types} to be used for insert.
+	 * 获取插入操作要使用的 {@link java.sql.Types} 数组。
 	 */
 	public int[] getInsertTypes() {
 		return this.insertTypes;
@@ -241,9 +240,9 @@ public abstract class AbstractJdbcInsert {
 	//-------------------------------------------------------------------------
 
 	/**
-	 * Compile this JdbcInsert using provided parameters and meta-data plus other settings.
-	 * This finalizes the configuration for this object and subsequent attempts to compile are
-	 * ignored. This will be implicitly called the first time an un-compiled insert is executed.
+	 * 使用提供的参数、元数据以及其他设置编译此 JdbcInsert。
+	 * 这会最终确定此对象的配置，后续的编译尝试将被忽略。
+	 * 首次执行未编译的插入操作时将隐式调用此方法。
 	 * @throws InvalidDataAccessApiUsageException if the object hasn't been correctly initialized,
 	 * for example if no DataSource has been provided
 	 */
@@ -267,9 +266,9 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method to perform the actual compilation.
-	 * <p>Subclasses can override this template method to perform  their own compilation.
-	 * Invoked after this base class's compilation is complete.
+	 * 执行实际编译的委托方法。
+	 * <p>子类可以覆盖此模板方法以执行自己的编译。
+	 * 在基类的编译完成之后调用。
 	 */
 	protected void compileInternal() {
 		DataSource dataSource = getJdbcTemplate().getDataSource();
@@ -284,14 +283,14 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Hook method that subclasses may override to react to compilation.
-	 * <p>This implementation is empty.
+	 * 子类可以覆盖此钩子方法以响应编译过程。
+	 * <p>此实现为空。
 	 */
 	protected void onCompileInternal() {
 	}
 
 	/**
-	 * Is this operation "compiled"?
+	 * 此操作是否已“编译”？
 	 * @return whether this operation is compiled and ready to use
 	 */
 	public boolean isCompiled() {
@@ -299,9 +298,9 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Check whether this operation has been compiled already;
-	 * lazily compile it if not already compiled.
-	 * <p>Automatically called by all {@code doExecute*(...)} methods.
+	 * 检查此操作是否已经编译；
+	 * 如果尚未编译，则延迟编译。
+	 * <p>由所有 {@code doExecute*(...)} 方法自动调用。
 	 */
 	protected void checkCompiled() {
 		if (!isCompiled()) {
@@ -311,8 +310,8 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Method to check whether we are allowed to make any configuration changes at this time.
-	 * <p>If the class has been compiled, then no further changes to the configuration are allowed.
+	 * 用于检查此时是否允许进行配置更改的方法。
+	 * <p>如果该类已经编译，则不允许再对配置进行任何更改。
 	 */
 	protected void checkIfConfigurationModificationIsAllowed() {
 		if (isCompiled()) {
@@ -327,7 +326,7 @@ public abstract class AbstractJdbcInsert {
 	//-------------------------------------------------------------------------
 
 	/**
-	 * Delegate method that executes the insert using the passed-in Map of parameters.
+	 * 使用传入的参数 Map 执行插入操作的委托方法。
 	 * @param args a Map with parameter names and values to be used in insert
 	 * @return the number of rows affected
 	 */
@@ -338,7 +337,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method that executes the insert using the passed-in {@link SqlParameterSource}.
+	 * 使用传入的 {@link SqlParameterSource} 执行插入操作的委托方法。
 	 * @param parameterSource parameter names and values to be used in insert
 	 * @return the number of rows affected
 	 */
@@ -349,7 +348,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method to execute the insert.
+	 * 执行插入操作的委托方法。
 	 */
 	private int executeInsertInternal(List<?> values) {
 		if (logger.isDebugEnabled()) {
@@ -359,8 +358,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Method that provides execution of the insert using the passed-in
-	 * Map of parameters and returning a generated key.
+	 * 使用传入的参数 Map 执行插入操作并返回生成键的方法。
 	 * @param args a Map with parameter names and values to be used in insert
 	 * @return the key generated by the insert
 	 */
@@ -371,8 +369,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Method that provides execution of the insert using the passed-in
-	 * {@link SqlParameterSource} and returning a generated key.
+	 * 使用传入的 {@link SqlParameterSource} 执行插入操作并返回生成键的方法。
 	 * @param parameterSource parameter names and values to be used in insert
 	 * @return the key generated by the insert
 	 */
@@ -383,8 +380,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Method that provides execution of the insert using the passed-in
-	 * Map of parameters and returning all generated keys.
+	 * 使用传入的参数 Map 执行插入操作并返回所有生成键的方法。
 	 * @param args a Map with parameter names and values to be used in insert
 	 * @return the KeyHolder containing keys generated by the insert
 	 */
@@ -395,8 +391,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Method that provides execution of the insert using the passed-in
-	 * {@link SqlParameterSource} and returning all generated keys.
+	 * 使用传入的 {@link SqlParameterSource} 执行插入操作并返回所有生成键的方法。
 	 * @param parameterSource parameter names and values to be used in insert
 	 * @return the KeyHolder containing keys generated by the insert
 	 */
@@ -407,7 +402,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method to execute the insert, generating a single key.
+	 * 执行插入操作并生成单个键的委托方法。
 	 */
 	private Number executeInsertAndReturnKeyInternal(final List<?> values) {
 		KeyHolder kh = executeInsertAndReturnKeyHolderInternal(values);
@@ -421,7 +416,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method to execute the insert, generating any number of keys.
+	 * 执行插入操作并生成任意数量键的委托方法。
 	 */
 	private KeyHolder executeInsertAndReturnKeyHolderInternal(final List<?> values) {
 		if (logger.isDebugEnabled()) {
@@ -508,7 +503,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Create a PreparedStatement to be used for an insert operation with generated keys.
+	 * 创建用于带生成键的插入操作的 PreparedStatement。
 	 * @param con the Connection to use
 	 * @return the PreparedStatement
 	 */
@@ -534,7 +529,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method that executes a batch insert using the passed-in Maps of parameters.
+	 * 使用传入的参数 Map 数组执行批量插入操作的委托方法。
 	 * @param batch array of Maps with parameter names and values to be used in batch insert
 	 * @return array of number of rows affected
 	 */
@@ -549,7 +544,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method that executes a batch insert using the passed-in {@link SqlParameterSource SqlParameterSources}.
+	 * 使用传入的 {@link SqlParameterSource SqlParameterSources} 执行批量插入操作的委托方法。
 	 * @param batch array of SqlParameterSource with parameter names and values to be used in insert
 	 * @return array of number of rows affected
 	 */
@@ -563,7 +558,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Delegate method to execute the batch insert.
+	 * 执行批量插入操作的委托方法。
 	 */
 	private int[] executeBatchInternal(final List<List<Object>> batchValues) {
 		if (logger.isDebugEnabled()) {
@@ -583,7 +578,7 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Internal implementation for setting parameter values.
+	 * 设置参数值的内部实现。
 	 * @param preparedStatement the PreparedStatement
 	 * @param values the values to be set
 	 */
@@ -603,8 +598,8 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Match the provided in parameter values with registered parameters and parameters
-	 * defined via meta-data processing.
+	 * 将提供的 in 参数值与已注册的参数以及
+	 * 通过元数据处理定义的参数进行匹配。
 	 * @param parameterSource the parameter values provided as a {@link SqlParameterSource}
 	 * @return a Map with parameter names and values
 	 */
@@ -613,8 +608,8 @@ public abstract class AbstractJdbcInsert {
 	}
 
 	/**
-	 * Match the provided in parameter values with registered parameters and parameters
-	 * defined via meta-data processing.
+	 * 将提供的 in 参数值与已注册的参数以及
+	 * 通过元数据处理定义的参数进行匹配。
 	 * @param args the parameter values provided in a Map
 	 * @return a Map with parameter names and values
 	 */

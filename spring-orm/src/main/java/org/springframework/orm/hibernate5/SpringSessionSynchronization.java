@@ -26,8 +26,8 @@ import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
- * Callback for resource cleanup at the end of a Spring-managed transaction
- * for a pre-bound Hibernate Session.
+ * 用于在 Spring 管理的事务结束时清理预先绑定的 Hibernate Session
+ * 资源的回调。
  *
  * @author Juergen Hoeller
  * @since 4.2

@@ -19,11 +19,9 @@ package org.springframework.web.bind;
 import org.springframework.core.MethodParameter;
 
 /**
- * {@link ServletRequestBindingException} subclass that indicates that a path
- * variable expected in the method parameters of an {@code @RequestMapping}
- * method is not present among the URI variables extracted from the URL.
- * Typically that means the URI template does not match the path variable name
- * declared on the method parameter.
+ * {@link ServletRequestBindingException} 的子类，表示 {@code @RequestMapping}
+ * 方法参数中所期望的路径变量在从 URL 中提取的 URI 变量中不存在。
+ * 通常这意味着 URI 模板与方法参数上声明的路径变量名称不匹配。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -38,7 +36,7 @@ public class MissingPathVariableException extends MissingRequestValueException {
 
 
 	/**
-	 * Constructor for MissingPathVariableException.
+	 * MissingPathVariableException 的构造函数。
 	 * @param variableName the name of the missing path variable
 	 * @param parameter the method parameter
 	 */
@@ -47,7 +45,7 @@ public class MissingPathVariableException extends MissingRequestValueException {
 	}
 
 	/**
-	 * Constructor for use when a value was present but converted to {@code null}.
+	 * 当值存在但被转换为 {@code null} 时使用的构造函数。
 	 * @param variableName the name of the missing path variable
 	 * @param parameter the method parameter
 	 * @param missingAfterConversion whether the value became null after conversion
@@ -70,14 +68,14 @@ public class MissingPathVariableException extends MissingRequestValueException {
 	}
 
 	/**
-	 * Return the expected name of the path variable.
+	 * 返回路径变量的预期名称。
 	 */
 	public final String getVariableName() {
 		return this.variableName;
 	}
 
 	/**
-	 * Return the method parameter bound to the path variable.
+	 * 返回绑定到该路径变量的方法参数。
 	 */
 	public final MethodParameter getParameter() {
 		return this.parameter;

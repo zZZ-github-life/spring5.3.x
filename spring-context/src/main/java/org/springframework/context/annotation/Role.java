@@ -25,19 +25,15 @@ import java.lang.annotation.Target;
 import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * Indicates the 'role' hint for a given bean.
+ * 指示给定 Bean 的“角色”提示。
  *
- * <p>May be used on any class directly or indirectly annotated with
- * {@link org.springframework.stereotype.Component} or on methods
- * annotated with {@link Bean}.
+ * <p>可用于任何直接或间接标注了 {@link org.springframework.stereotype.Component} 的类，或标注了
+ * {@link Bean} 的方法。
  *
- * <p>If this annotation is not present on a Component or Bean definition,
- * the default value of {@link BeanDefinition#ROLE_APPLICATION} will apply.
+ * <p>如果组件或 Bean 定义上不存在此注解，则将应用 {@link BeanDefinition#ROLE_APPLICATION} 的默认值。
  *
- * <p>If Role is present on a {@link Configuration @Configuration} class,
- * this indicates the role of the configuration class bean definition and
- * does not cascade to all @{@code Bean} methods defined within. This behavior
- * is different from the behavior of the @{@link Lazy} annotation, for example.
+ * <p>如果 {@link Configuration @Configuration} 类上存在 Role，则表示该配置类 Bean 定义的角色，且不
+ * 会级联到其中定义的所有 @{@code Bean} 方法。例如，此行为与 @{@link Lazy} 注解的行为不同。
  *
  * @author Chris Beams
  * @since 3.1
@@ -52,7 +48,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 public @interface Role {
 
 	/**
-	 * Set the role hint for the associated bean.
+	 * 设置关联 Bean 的角色提示。
 	 * @see BeanDefinition#ROLE_APPLICATION
 	 * @see BeanDefinition#ROLE_INFRASTRUCTURE
 	 * @see BeanDefinition#ROLE_SUPPORT

@@ -40,8 +40,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Abstract base class for a {@link MessageHandler} that broker messages to
- * registered subscribers.
+ * 将消息代理给已注册订阅者的 {@link MessageHandler} 抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -83,7 +82,7 @@ public abstract class AbstractBrokerMessageHandler
 
 
 	/**
-	 * Constructor with no destination prefixes (matches all destinations).
+	 * 不带目标前缀（匹配所有目标）的构造函数。
 	 * @param inboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
 	 * @param outboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
 	 * @param brokerChannel the channel for the application to send messages to the broker
@@ -95,7 +94,7 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Constructor with destination prefixes to match to destinations of messages.
+	 * 带目标前缀（用于匹配消息目标）的构造函数。
 	 * @param inboundChannel the channel for receiving messages from clients (e.g. WebSocket clients)
 	 * @param outboundChannel the channel for sending messages to clients (e.g. WebSocket clients)
 	 * @param brokerChannel the channel for the application to send messages to the broker
@@ -130,22 +129,20 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Return destination prefixes prefixes to use to filter messages to forward
-	 * to the broker. Messages that have a destination and where the destination
-	 * doesn't match are ignored.
-	 * <p>By default this is not set.
+	 * 返回用于过滤要转发到代理的消息的目标前缀。
+	 * 有目标但目标不匹配的消息会被忽略。
+	 * <p>默认不设置。
 	 */
 	public Collection<String> getDestinationPrefixes() {
 		return this.destinationPrefixes;
 	}
 
 	/**
-	 * Configure a Predicate to identify messages with a user destination. When
-	 * no {@link #getDestinationPrefixes() destination prefixes} are configured,
-	 * this helps to recognize and skip user destination messages that need to
-	 * be pre-processed by the
+	 * 配置一个 Predicate 以识别具有用户目标的消息。当未配置任何
+	 * {@link #getDestinationPrefixes() 目标前缀}时，这有助于识别并跳过那些
+	 * 需要在到达代理之前由
 	 * {@link org.springframework.messaging.simp.user.UserDestinationMessageHandler}
-	 * before they reach the broker.
+	 * 预处理的用户目标消息。
 	 * @param predicate the predicate to identify user messages with a non-null
 	 * destination as messages with a user destinations.
 	 * @since 5.3.4
@@ -155,14 +152,12 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Whether the client must receive messages in the order of publication.
-	 * <p>By default messages sent to the {@code "clientOutboundChannel"} may
-	 * not be processed in the same order because the channel is backed by a
-	 * ThreadPoolExecutor that in turn does not guarantee processing in order.
-	 * <p>When this flag is set to {@code true} messages within the same session
-	 * will be sent to the {@code "clientOutboundChannel"} one at a time in
-	 * order to preserve the order of publication. Enable this only if needed
-	 * since there is some performance overhead to keep messages in order.
+	 * 客户端是否必须按发布顺序接收消息。
+	 * <p>默认情况下，发送到 {@code "clientOutboundChannel"} 的消息可能不会按相同顺序处理，
+	 * 因为该通道由 ThreadPoolExecutor 支持，而 ThreadPoolExecutor 不保证按顺序处理。
+	 * <p>当此标志设置为 {@code true} 时，同一会话内的消息将逐个发送到
+	 * {@code "clientOutboundChannel"}，以保持发布顺序。仅在需要时启用此选项，
+	 * 因为保持消息顺序会带来一定的性能开销。
 	 * @param preservePublishOrder whether to publish in order
 	 * @since 5.1
 	 */
@@ -172,7 +167,7 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Whether to ensure messages are received in the order of publication.
+	 * 是否确保消息按发布顺序接收。
 	 * @since 5.1
 	 */
 	public boolean isPreservePublishOrder() {
@@ -244,10 +239,9 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Check whether this message handler is currently running.
-	 * <p>Note that even when this message handler is running the
-	 * {@link #isBrokerAvailable()} flag may still independently alternate between
-	 * being on and off depending on the concrete subclass implementation.
+	 * 检查此消息处理器当前是否正在运行。
+	 * <p>请注意，即使此消息处理器正在运行，根据具体子类实现，
+	 * {@link #isBrokerAvailable()} 标志仍可能独立地在开启和关闭之间交替。
 	 */
 	@Override
 	public final boolean isRunning() {
@@ -255,15 +249,13 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Whether the message broker is currently available and able to process messages.
-	 * <p>Note that this is in addition to the {@link #isRunning()} flag, which
-	 * indicates whether this message handler is running. In other words the message
-	 * handler must first be running and then the {@code #isBrokerAvailable()} flag
-	 * may still independently alternate between being on and off depending on the
-	 * concrete subclass implementation.
-	 * <p>Application components may implement
-	 * {@code org.springframework.context.ApplicationListener<BrokerAvailabilityEvent>}
-	 * to receive notifications when broker becomes available and unavailable.
+	 * 消息代理当前是否可用并能处理消息。
+	 * <p>请注意，这是对 {@link #isRunning()} 标志的补充，后者表示此消息处理器是否正在运行。
+	 * 换句话说，消息处理器必须首先处于运行状态，然后根据具体子类实现，
+	 * {@code #isBrokerAvailable()} 标志仍可能独立地在开启和关闭之间交替。
+	 * <p>应用程序组件可以实现
+	 * {@code org.springframework.context.ApplicationListener<BrokerAvailabilityEvent>}，
+	 * 以在代理变为可用和不可用时接收通知。
 	 */
 	public boolean isBrokerAvailable() {
 		return this.brokerAvailable.get();
@@ -285,15 +277,12 @@ public abstract class AbstractBrokerMessageHandler
 
 
 	/**
-	 * Whether a message with the given destination should be processed. This is
-	 * the case if one of the following conditions is true:
+	 * 是否应处理具有给定目标的消息。如果满足以下任一条件，则进行处理：
 	 * <ol>
-	 * <li>The destination starts with one of the configured
-	 * {@link #getDestinationPrefixes() destination prefixes}.
-	 * <li>No prefixes are configured and the destination isn't matched
-	 * by the {@link #setUserDestinationPredicate(Predicate)
-	 * userDestinationPredicate}.
-	 * <li>The message has no destination.
+	 * <li>目标以某个已配置的 {@link #getDestinationPrefixes() 目标前缀}开头。
+	 * <li>未配置前缀，且目标不匹配
+	 * {@link #setUserDestinationPredicate(Predicate) userDestinationPredicate}。
+	 * <li>消息没有目标。
 	 * </ol>
 	 * @param destination the destination to check
 	 * @return whether to process (true) or skip (false) the destination
@@ -338,8 +327,8 @@ public abstract class AbstractBrokerMessageHandler
 	}
 
 	/**
-	 * Get the MessageChannel to use for sending messages to clients, possibly
-	 * a per-session wrapper when {@code preservePublishOrder=true}.
+	 * 获取用于向客户端发送消息的 MessageChannel；当
+	 * {@code preservePublishOrder=true} 时，可能是按会话包装的通道。
 	 * @since 5.1
 	 */
 	protected MessageChannel getClientOutboundChannelForSession(String sessionId) {
@@ -349,7 +338,7 @@ public abstract class AbstractBrokerMessageHandler
 
 
 	/**
-	 * Detect unsent DISCONNECT messages and process them anyway.
+	 * 检测未发送的 DISCONNECT 消息并仍然处理它们。
 	 */
 	private class UnsentDisconnectChannelInterceptor implements ChannelInterceptor {
 

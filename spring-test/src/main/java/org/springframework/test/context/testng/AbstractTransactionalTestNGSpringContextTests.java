@@ -40,27 +40,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
- * Abstract {@linkplain Transactional transactional} extension of
- * {@link AbstractTestNGSpringContextTests} which adds convenience functionality
- * for JDBC access. Expects a {@link DataSource} bean and a
- * {@link PlatformTransactionManager} bean to be defined in the Spring
- * {@linkplain ApplicationContext application context}.
- *
- * <p>This class exposes a {@link JdbcTemplate} and provides an easy way to
- * {@linkplain #countRowsInTable count the number of rows in a table}
- * (potentially {@linkplain #countRowsInTableWhere with a WHERE clause}),
- * {@linkplain #deleteFromTables delete from tables},
- * {@linkplain #dropTables drop tables}, and
- * {@linkplain #executeSqlScript execute SQL scripts} within a transaction.
- *
- * <p>Concrete subclasses must fulfill the same requirements outlined in
- * {@link AbstractTestNGSpringContextTests}.
- *
- * <p>This class explicitly registers the following {@code TestExecutionListener}
- * implementations. If you want to switch to using the <em>default</em> set of
- * listeners, see the class-level Javadoc for
- * {@link TestExecutionListeners @TestExecutionListeners} for details.
- *
+ * {@link AbstractTestNGSpringContextTests} 的抽象{@linkplain Transactional 事务性}扩展，增加了 JDBC 访问的便捷功能。期望在 Spring {@linkplain ApplicationContext 应用程序上下文}中定义 {@link DataSource} bean 和 {@link PlatformTransactionManager} bean。
+ * <p>此类公开一个 {@link JdbcTemplate}，并提供在事务中{@linkplain #countRowsInTable 统计表中的行数}（可以{@linkplain #countRowsInTableWhere 使用 WHERE 子句}）、{@linkplain #deleteFromTables 从表中删除数据}、{@linkplain #dropTables 删除表}以及{@linkplain #executeSqlScript 执行 SQL 脚本}的简便方法。
+ * <p>具体子类必须满足 {@link AbstractTestNGSpringContextTests} 中所述的相同要求。
+ * <p>此类显式注册以下 {@code TestExecutionListener} 实现。如果希望切换到<em>默认</em>监听器集合，请参阅 {@link TestExecutionListeners @TestExecutionListeners} 的类级 Javadoc 以了解详情。
  * <ul>
  * <li>{@link org.springframework.test.context.web.ServletTestExecutionListener}
  * <li>{@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener}
@@ -96,7 +79,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractTransactionalTestNGSpringContextTests extends AbstractTestNGSpringContextTests {
 
 	/**
-	 * The {@code JdbcTemplate} that this base class manages, available to subclasses.
+	 * 此类管理的 {@code JdbcTemplate}，可供子类使用。
 	 * @since 3.2
 	 */
 	protected final JdbcTemplate jdbcTemplate = new JdbcTemplate();
@@ -106,8 +89,8 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 
 
 	/**
-	 * Set the {@code DataSource}, typically provided via Dependency Injection.
-	 * <p>This method also instantiates the {@link #jdbcTemplate} instance variable.
+	 * 设置 {@code DataSource}，通常通过依赖注入提供。
+	 * <p>此方法还会实例化 {@link #jdbcTemplate} 实例变量。
 	 */
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -115,7 +98,7 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Specify the encoding for SQL scripts, if different from the platform encoding.
+	 * 指定 SQL 脚本的编码（如果与平台编码不同）。
 	 * @see #executeSqlScript
 	 */
 	public void setSqlScriptEncoding(String sqlScriptEncoding) {
@@ -123,7 +106,7 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Convenience method for counting the rows in the given table.
+	 * 用于统计给定表中行数的便捷方法。
 	 * @param tableName table name to count rows in
 	 * @return the number of rows in the table
 	 * @see JdbcTestUtils#countRowsInTable
@@ -133,9 +116,8 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Convenience method for counting the rows in the given table, using the
-	 * provided {@code WHERE} clause.
-	 * <p>See the Javadoc for {@link JdbcTestUtils#countRowsInTableWhere} for details.
+	 * 使用提供的 {@code WHERE} 子句统计给定表中行数的便捷方法。
+	 * <p>有关详情，请参见 {@link JdbcTestUtils#countRowsInTableWhere} 的 Javadoc。
 	 * @param tableName the name of the table to count rows in
 	 * @param whereClause the {@code WHERE} clause to append to the query
 	 * @return the number of rows in the table that match the provided
@@ -148,8 +130,8 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Convenience method for deleting all rows from the specified tables.
-	 * <p>Use with caution outside of a transaction!
+	 * 从指定表中删除所有行的便捷方法。
+	 * <p>在事务外使用时请谨慎！
 	 * @param names the names of the tables from which to delete
 	 * @return the total number of rows deleted from all specified tables
 	 * @see JdbcTestUtils#deleteFromTables
@@ -159,10 +141,9 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Convenience method for deleting all rows from the given table, using the
-	 * provided {@code WHERE} clause.
-	 * <p>Use with caution outside of a transaction!
-	 * <p>See the Javadoc for {@link JdbcTestUtils#deleteFromTableWhere} for details.
+	 * 使用提供的 {@code WHERE} 子句从给定表中删除所有行的便捷方法。
+	 * <p>在事务外使用时请谨慎！
+	 * <p>有关详情，请参见 {@link JdbcTestUtils#deleteFromTableWhere} 的 Javadoc。
 	 * @param tableName the name of the table to delete rows from
 	 * @param whereClause the {@code WHERE} clause to append to the query
 	 * @param args arguments to bind to the query (leaving it to the {@code
@@ -179,8 +160,8 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Convenience method for dropping all the specified tables.
-	 * <p>Use with caution outside of a transaction!
+	 * 删除所有指定表的便捷方法。
+	 * <p>在事务外使用时请谨慎！
 	 * @param names the names of the tables to drop
 	 * @since 3.2
 	 * @see JdbcTestUtils#dropTables
@@ -190,10 +171,10 @@ public abstract class AbstractTransactionalTestNGSpringContextTests extends Abst
 	}
 
 	/**
-	 * Execute the given SQL script.
-	 * <p>Use with caution outside of a transaction!
-	 * <p>The script will normally be loaded by classpath.
-	 * <p><b>Do not use this method to execute DDL if you expect rollback.</b>
+	 * 执行给定的 SQL 脚本。
+	 * <p>在事务外使用时请谨慎！
+	 * <p>脚本通常会从类路径加载。
+	 * <p><b>如果期望回滚，请不要使用此方法执行 DDL。</b>
 	 * @param sqlResourcePath the Spring resource path for the SQL script
 	 * @param continueOnError whether to continue without throwing an
 	 * exception in the event of an error

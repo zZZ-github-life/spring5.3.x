@@ -27,9 +27,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Converts an array to a comma-delimited String. First adapts the source array
- * to a List, then delegates to {@link CollectionToStringConverter} to perform
- * the target String conversion.
+ * 将数组转换为以逗号分隔的 String。首先将源数组适配为 List，然后委托给
+ * {@link CollectionToStringConverter} 执行目标 String 转换。
  *
  * @author Keith Donald
  * @since 3.0

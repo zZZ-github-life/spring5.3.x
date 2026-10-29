@@ -1,0 +1,631 @@
+#### FILE result/method/annotation/AbstractMessageReaderArgumentResolver.java
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 1
+Abstract base class for argument resolvers that resolve method arguments
+by reading the request body with an {@link HttpMessageReader}.
+
+<p>Applies validation if the method argument is annotated with any
+{@linkplain org.springframework.validation.annotation.ValidationAnnotationUtils#determineValidationHints
+annotations that trigger validation}. Validation failure results in a
+{@link ServerWebInputException}.
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 2
+Constructor with {@link HttpMessageReader}'s and a {@link Validator}.
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 3
+Constructor that also accepts a {@link ReactiveAdapterRegistry}.
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 4
+Return the configured message converters.
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 5
+Read the body from a method argument with {@link HttpMessageReader}.
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 6
+Read the body from a method argument with {@link HttpMessageReader}.
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 7
+Check if the given MethodParameter requires validation and if so return
+a (possibly empty) Object[] with validation hints. A return value of
+{@code null} indicates that validation is not required.
+
+#### FILE result/method/annotation/AbstractMessageWriterResultHandler.java
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 1
+Abstract base class for result handlers that handle return values by writing
+to the response with {@link HttpMessageWriter}.
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 2
+Constructor with {@link HttpMessageWriter HttpMessageWriters} and a
+{@code RequestedContentTypeResolver}.
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 3
+Constructor with an additional {@link ReactiveAdapterRegistry}.
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 4
+Return the configured message converters.
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 5
+Write a given body to the response with {@link HttpMessageWriter}.
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 6
+Write a given body to the response with {@link HttpMessageWriter}.
+
+#### FILE result/method/annotation/AbstractNamedValueArgumentResolver.java
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 1
+Abstract base class for resolving method arguments from a named value.
+Request parameters, request headers, and path variables are examples of named
+values. Each may have a name, a required flag, and a default value.
+
+<p>Subclasses define how to do the following:
+<ul>
+<li>Obtain named value information for a method parameter
+<li>Resolve names into argument values
+<li>Handle missing argument values when argument values are required
+<li>Optionally handle a resolved value
+</ul>
+
+<p>A default value string can contain ${...} placeholders and Spring Expression
+Language #{...} expressions. For this to work a
+{@link ConfigurableBeanFactory} must be supplied to the class constructor.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 2
+Create a new {@link AbstractNamedValueArgumentResolver} instance.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 3
+Obtain the named value for the given method parameter.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 4
+Create the {@link NamedValueInfo} object for the given method parameter.
+Implementations typically retrieve the method annotation by means of
+{@link MethodParameter#getParameterAnnotation(Class)}.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 5
+Create a new NamedValueInfo based on the given NamedValueInfo with
+sanitized values.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 6
+Resolve the given annotation-specified value,
+potentially containing placeholders and expressions.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 7
+Resolve the given parameter type and value name into an argument value.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 8
+Apply type conversion if necessary.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 9
+Resolve the default value, if any.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 10
+Invoked when a named value is required, but
+{@link #resolveName(String, MethodParameter, ServerWebExchange)} returned
+{@code null} and there is no default value. Subclasses typically throw an
+exception in this case.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 11
+Invoked when a named value is required, but
+{@link #resolveName(String, MethodParameter, ServerWebExchange)} returned
+{@code null} and there is no default value. Subclasses typically throw an
+exception in this case.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 12
+A {@code null} results in a {@code false} value for {@code boolean}s or
+an exception for other primitives.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 13
+Invoked after a value is resolved.
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 14
+Represents the information about a named value, including name, whether
+it's required and a default value.
+
+#### FILE result/method/annotation/AbstractNamedValueSyncArgumentResolver.java
+@@ result/method/annotation/AbstractNamedValueSyncArgumentResolver.java :: 1
+An extension of {@link AbstractNamedValueArgumentResolver} for named value
+resolvers that are synchronous and yet non-blocking. Subclasses implement
+the synchronous {@link #resolveNamedValue} to which the asynchronous
+{@link #resolveName} delegates to by default.
+
+@@ result/method/annotation/AbstractNamedValueSyncArgumentResolver.java :: 2
+Create a new {@link AbstractNamedValueSyncArgumentResolver}.
+
+@@ result/method/annotation/AbstractNamedValueSyncArgumentResolver.java :: 3
+Actually resolve the value synchronously.
+
+#### FILE result/method/annotation/ArgumentResolverConfigurer.java
+@@ result/method/annotation/ArgumentResolverConfigurer.java :: 1
+Helps to configure resolvers for Controller method arguments.
+
+@@ result/method/annotation/ArgumentResolverConfigurer.java :: 2
+Configure resolvers for custom controller method arguments.
+
+#### FILE result/method/annotation/ContinuationHandlerMethodArgumentResolver.java
+@@ result/method/annotation/ContinuationHandlerMethodArgumentResolver.java :: 1
+No-op resolver for method arguments of type {@link kotlin.coroutines.Continuation}.
+
+#### FILE result/method/annotation/ControllerMethodResolver.java
+@@ result/method/annotation/ControllerMethodResolver.java :: 1
+Package-private class to assist {@link RequestMappingHandlerAdapter} with
+resolving, initializing, and caching annotated methods declared in
+{@code @Controller} and {@code @ControllerAdvice} components.
+
+<p>Assists with the following annotations:
+<ul>
+<li>{@code @InitBinder}
+<li>{@code @ModelAttribute}
+<li>{@code @RequestMapping}
+<li>{@code @ExceptionHandler}
+</ul>
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 2
+MethodFilter that matches {@link InitBinder @InitBinder} methods.
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 3
+MethodFilter that matches {@link ModelAttribute @ModelAttribute} methods.
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 4
+Return an {@link InvocableHandlerMethod} for the given
+{@code @RequestMapping} method initialized with argument resolvers.
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 5
+Find {@code @InitBinder} methods in {@code @ControllerAdvice} components
+or in the controller of the given {@code @RequestMapping} method.
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 6
+Find {@code @ModelAttribute} methods in {@code @ControllerAdvice}
+components or in the controller of the given {@code @RequestMapping} method.
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 7
+Find an {@code @ExceptionHandler} method in {@code @ControllerAdvice}
+components or in the controller of the given {@code @RequestMapping} method.
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 8
+Return the handler for the type-level {@code @SessionAttributes} annotation
+based on the given controller method.
+
+#### FILE result/method/annotation/CookieValueMethodArgumentResolver.java
+@@ result/method/annotation/CookieValueMethodArgumentResolver.java :: 1
+Resolve method arguments annotated with {@code @CookieValue}.
+
+<p>An {@code @CookieValue} is a named value that is resolved from a cookie.
+It has a required flag and a default value to fall back on when the cookie
+does not exist.
+
+@@ result/method/annotation/CookieValueMethodArgumentResolver.java :: 2
+Create a new {@link CookieValueMethodArgumentResolver} instance.
+
+#### FILE result/method/annotation/ErrorsMethodArgumentResolver.java
+@@ result/method/annotation/ErrorsMethodArgumentResolver.java :: 1
+Resolve {@link Errors} or {@link BindingResult} method arguments.
+
+<p>An {@code Errors} argument is expected to appear immediately after the
+model attribute in the method signature.
+
+#### FILE result/method/annotation/ExpressionValueMethodArgumentResolver.java
+@@ result/method/annotation/ExpressionValueMethodArgumentResolver.java :: 1
+Resolves method arguments annotated with {@code @Value}.
+
+<p>An {@code @Value} does not have a name but gets resolved from the default
+value string, which may contain ${...} placeholder or Spring Expression
+Language #{...} expressions.
+
+@@ result/method/annotation/ExpressionValueMethodArgumentResolver.java :: 2
+Create a new {@link ExpressionValueMethodArgumentResolver} instance.
+
+#### FILE result/method/annotation/HttpEntityMethodArgumentResolver.java
+@@ result/method/annotation/HttpEntityMethodArgumentResolver.java :: 1
+Resolves method arguments of type {@link HttpEntity} or {@link RequestEntity}
+by reading the body of the request through a compatible
+{@code HttpMessageReader}.
+
+#### FILE result/method/annotation/InitBinderBindingContext.java
+@@ result/method/annotation/InitBinderBindingContext.java :: 1
+Extends {@link BindingContext} with {@code @InitBinder} method initialization.
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 2
+Return the {@link SessionStatus} instance to use that can be used to
+signal that session processing is complete.
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 3
+Provide the context required to apply {@link #saveModel()} after the
+controller method has been invoked.
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 4
+Save model attributes in the session based on a type-level declarations
+in an {@code @SessionAttributes} annotation.
+
+#### FILE result/method/annotation/MatrixVariableMapMethodArgumentResolver.java
+@@ result/method/annotation/MatrixVariableMapMethodArgumentResolver.java :: 1
+Resolves arguments of type {@link Map} annotated with {@link MatrixVariable @MatrixVariable}
+where the annotation does not specify a name. In other words the purpose of this resolver
+is to provide access to multiple matrix variables, either all or associated with a specific
+path variable.
+
+<p>When a name is specified, an argument of type Map is considered to be a single attribute
+with a Map value, and is resolved by {@link MatrixVariableMethodArgumentResolver} instead.
+
+#### FILE result/method/annotation/MatrixVariableMethodArgumentResolver.java
+@@ result/method/annotation/MatrixVariableMethodArgumentResolver.java :: 1
+Resolves arguments annotated with {@link MatrixVariable @MatrixVariable}.
+
+<p>If the method parameter is of type {@link Map} it will be resolved by
+{@link MatrixVariableMapMethodArgumentResolver} instead unless the annotation
+specifies a name in which case it is considered to be a single attribute of
+type map (vs multiple attributes collected in a map).
+
+#### FILE result/method/annotation/ModelAttributeMethodArgumentResolver.java
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 1
+Resolve {@code @ModelAttribute} annotated method arguments.
+
+<p>Model attributes are sourced from the model, or created using a default
+constructor and then added to the model. Once created the attribute is
+populated via data binding to the request (form data, query params).
+Validation also may be applied if the argument is annotated with
+{@code @javax.validation.Valid} or Spring's own
+{@code @org.springframework.validation.annotation.Validated}.
+
+<p>When this handler is created with {@code useDefaultResolution=true}
+any non-simple type argument and return value is regarded as a model
+attribute with or without the presence of an {@code @ModelAttribute}.
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 2
+Class constructor with a default resolution mode flag.
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 3
+Determine if binding should be disabled for the supplied {@link MethodParameter},
+based on the {@link ModelAttribute#binding} annotation attribute.
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 4
+Extension point to bind the request to the target object.
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 5
+Protected method to obtain the values for data binding. By default this
+method delegates to {@link WebExchangeDataBinder#getValuesToBind}.
+
+#### FILE result/method/annotation/ModelInitializer.java
+@@ result/method/annotation/ModelInitializer.java :: 1
+Package-private class to assist {@link RequestMappingHandlerAdapter} with
+default model initialization through {@code @ModelAttribute} methods.
+
+@@ result/method/annotation/ModelInitializer.java :: 2
+Initialize the {@link org.springframework.ui.Model Model} based on a
+(type-level) {@code @SessionAttributes} annotation and
+{@code @ModelAttribute} methods.
+
+@@ result/method/annotation/ModelInitializer.java :: 4
+Derive the model attribute name for the given method parameter based on
+a {@code @ModelAttribute} parameter annotation (if present) or falling
+back on parameter type based conventions.
+
+#### FILE result/method/annotation/ModelMethodArgumentResolver.java
+@@ result/method/annotation/ModelMethodArgumentResolver.java :: 1
+Resolver for a controller method argument of type {@link Model} that can
+also be resolved as a {@link java.util.Map}.
+
+<p>A Map return value can be interpreted in more than one way depending
+on the presence of annotations like {@code @ModelAttribute} or
+{@code @ResponseBody}. As of 5.2 this resolver returns false if a
+parameter of type {@code Map} is also annotated.
+
+#### FILE result/method/annotation/PathVariableMapMethodArgumentResolver.java
+@@ result/method/annotation/PathVariableMapMethodArgumentResolver.java :: 1
+Resolver for {@link Map} method arguments also annotated with
+{@link PathVariable @PathVariable} where the annotation does not specify a
+path variable name. The resulting {@link Map} argument is a coyp of all URI
+template name-value pairs.
+
+#### FILE result/method/annotation/PathVariableMethodArgumentResolver.java
+@@ result/method/annotation/PathVariableMethodArgumentResolver.java :: 1
+Resolves method arguments annotated with @{@link PathVariable}.
+
+<p>An @{@link PathVariable} is a named value that gets resolved from a URI
+template variable. It is always required and does not have a default value
+to fall back on. See the base class
+{@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}
+for more information on how named values are processed.
+
+<p>If the method parameter type is {@link Map}, the name specified in the
+annotation is used to resolve the URI variable String value. The value is
+then converted to a {@link Map} via type conversion, assuming a suitable
+{@link Converter}.
+
+@@ result/method/annotation/PathVariableMethodArgumentResolver.java :: 2
+Create a new {@link PathVariableMethodArgumentResolver}.
+
+#### FILE result/method/annotation/PrincipalMethodArgumentResolver.java
+@@ result/method/annotation/PrincipalMethodArgumentResolver.java :: 1
+Resolves method argument value of type {@link java.security.Principal}.
+
+#### FILE result/method/annotation/RequestAttributeMethodArgumentResolver.java
+@@ result/method/annotation/RequestAttributeMethodArgumentResolver.java :: 1
+Resolves method arguments annotated with an @{@link RequestAttribute}.
+
+@@ result/method/annotation/RequestAttributeMethodArgumentResolver.java :: 2
+Create a new {@link RequestAttributeMethodArgumentResolver} instance.
+
+#### FILE result/method/annotation/RequestBodyMethodArgumentResolver.java
+@@ result/method/annotation/RequestBodyMethodArgumentResolver.java :: 1
+Resolves method arguments annotated with {@code @RequestBody} by reading the
+body of the request through a compatible {@code HttpMessageReader}.
+
+<p>An {@code @RequestBody} method argument is also validated if it is
+annotated with {@code @javax.validation.Valid} or
+{@link org.springframework.validation.annotation.Validated}. Validation
+failure results in an {@link ServerWebInputException}.
+
+#### FILE result/method/annotation/RequestHeaderMapMethodArgumentResolver.java
+@@ result/method/annotation/RequestHeaderMapMethodArgumentResolver.java :: 1
+Resolves {@link Map} method arguments annotated with {@code @RequestHeader}.
+For individual header values annotated with {@code @RequestHeader} see
+{@link RequestHeaderMethodArgumentResolver} instead.
+
+<p>The created {@link Map} contains all request header name/value pairs.
+The method parameter type may be a {@link MultiValueMap} to receive all
+values for a header, not only the first one.
+
+#### FILE result/method/annotation/RequestHeaderMethodArgumentResolver.java
+@@ result/method/annotation/RequestHeaderMethodArgumentResolver.java :: 1
+Resolves method arguments annotated with {@code @RequestHeader} except for
+{@link Map} arguments. See {@link RequestHeaderMapMethodArgumentResolver} for
+details on {@link Map} arguments annotated with {@code @RequestHeader}.
+
+<p>An {@code @RequestHeader} is a named value resolved from a request header.
+It has a required flag and a default value to fall back on when the request
+header does not exist.
+
+<p>A {@link ConversionService} is invoked to apply type conversion to resolved
+request header values that don't yet match the method parameter type.
+
+@@ result/method/annotation/RequestHeaderMethodArgumentResolver.java :: 2
+Create a new {@link RequestHeaderMethodArgumentResolver} instance.
+
+#### FILE result/method/annotation/RequestMappingHandlerAdapter.java
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 1
+Supports the invocation of
+{@link org.springframework.web.bind.annotation.RequestMapping @RequestMapping}
+handler methods.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 2
+Configure HTTP message readers to de-serialize the request body with.
+<p>By default this is set to {@link ServerCodecConfigurer}'s readers with defaults.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 3
+Return the configurer for HTTP message readers.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 4
+Provide a WebBindingInitializer with "global" initialization to apply
+to every DataBinder instance.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 5
+Return the configured WebBindingInitializer, or {@code null} if none.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 6
+Configure resolvers for controller method arguments.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 7
+Return the configured resolvers for controller method arguments.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 8
+Configure the registry for adapting various reactive types.
+<p>By default this is an instance of {@link ReactiveAdapterRegistry} with
+default settings.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 9
+Return the configured registry for adapting reactive types.
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 10
+A {@link ConfigurableApplicationContext} is expected for resolving
+expressions in method argument default values as well as for
+detecting {@code @ControllerAdvice} beans.
+
+#### FILE result/method/annotation/RequestMappingHandlerMapping.java
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 1
+An extension of {@link RequestMappingInfoHandlerMapping} that creates
+{@link RequestMappingInfo} instances from class-level and method-level
+{@link RequestMapping @RequestMapping} annotations.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 2
+Configure path prefixes to apply to controller methods.
+<p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
+method whose controller type is matched by a corresponding
+{@code Predicate} in the map. The prefix for the first matching predicate
+is used, assuming the input map has predictable order.
+<p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
+HandlerTypePredicate} to group controllers.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 3
+The configured path prefixes as a read-only, possibly empty map.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 4
+Set the {@link RequestedContentTypeResolver} to use to determine requested
+media types. If not set, the default constructor is used.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 5
+Return the configured {@link RequestedContentTypeResolver}.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 6
+{@inheritDoc}
+Expects a handler to have a type-level @{@link Controller} annotation.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 7
+Uses method and type-level @{@link RequestMapping} annotations to create
+the RequestMappingInfo.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 8
+Delegates to {@link #createRequestMappingInfo(RequestMapping, RequestCondition)},
+supplying the appropriate custom {@link RequestCondition} depending on whether
+the supplied {@code annotatedElement} is a class or method.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 9
+Provide a custom type-level request condition.
+The custom {@link RequestCondition} can be of any type so long as the
+same condition type is returned from all calls to this method in order
+to ensure custom request conditions can be combined and compared.
+<p>Consider extending
+{@link org.springframework.web.reactive.result.condition.AbstractRequestCondition
+AbstractRequestCondition} for custom condition types and using
+{@link org.springframework.web.reactive.result.condition.CompositeRequestCondition
+CompositeRequestCondition} to provide multiple custom conditions.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 10
+Provide a custom method-level request condition.
+The custom {@link RequestCondition} can be of any type so long as the
+same condition type is returned from all calls to this method in order
+to ensure custom request conditions can be combined and compared.
+<p>Consider extending
+{@link org.springframework.web.reactive.result.condition.AbstractRequestCondition
+AbstractRequestCondition} for custom condition types and using
+{@link org.springframework.web.reactive.result.condition.CompositeRequestCondition
+CompositeRequestCondition} to provide multiple custom conditions.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 11
+Create a {@link RequestMappingInfo} from the supplied
+{@link RequestMapping @RequestMapping} annotation, which is either
+a directly declared annotation, a meta-annotation, or the synthesized
+result of merging annotation attributes within an annotation hierarchy.
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 12
+Resolve placeholder values in the given array of patterns.
+
+#### FILE result/method/annotation/RequestParamMapMethodArgumentResolver.java
+@@ result/method/annotation/RequestParamMapMethodArgumentResolver.java :: 1
+Resolver for {@link Map} method arguments annotated with
+{@link RequestParam @RequestParam} where the annotation does not specify a
+request parameter name. See {@link RequestParamMethodArgumentResolver} for
+resolving {@link Map} method arguments with a request parameter name.
+
+<p>The created {@link Map} contains all request parameter name-value pairs.
+If the method parameter type is {@link MultiValueMap} instead, the created
+map contains all request parameters and all there values for cases where
+request parameters have multiple values.
+
+#### FILE result/method/annotation/RequestParamMethodArgumentResolver.java
+@@ result/method/annotation/RequestParamMethodArgumentResolver.java :: 1
+Resolver for method arguments annotated with @{@link RequestParam} from URI
+query string parameters.
+
+<p>This resolver can also be created in default resolution mode in which
+simple types (int, long, etc.) not annotated with @{@link RequestParam} are
+also treated as request parameters with the parameter name derived from the
+argument name.
+
+<p>If the method parameter type is {@link Map}, the name specified in the
+annotation is used to resolve the request parameter String value. The value is
+then converted to a {@link Map} via type conversion assuming a suitable
+{@link Converter} has been registered. Or if a request parameter name is not
+specified the {@link RequestParamMapMethodArgumentResolver} is used instead
+to provide access to all request parameters in the form of a map.
+
+@@ result/method/annotation/RequestParamMethodArgumentResolver.java :: 2
+Class constructor with a default resolution mode flag.
+
+#### FILE result/method/annotation/RequestPartMethodArgumentResolver.java
+@@ result/method/annotation/RequestPartMethodArgumentResolver.java :: 1
+Resolver for {@code @RequestPart} arguments where the named part is decoded
+much like an {@code @RequestBody} argument but based on the content of an
+individual part instead. The arguments may be wrapped with a reactive type
+for a single value (e.g. Reactor {@code Mono}, RxJava {@code Single}).
+
+<p>This resolver also supports arguments of type {@link Part} which may be
+wrapped with a reactive type for a single value or multiple values.
+
+#### FILE result/method/annotation/ResponseBodyResultHandler.java
+@@ result/method/annotation/ResponseBodyResultHandler.java :: 1
+{@code HandlerResultHandler} that handles return values from methods annotated
+with {@code @ResponseBody} writing to the body of the request or response with
+an {@link HttpMessageWriter}.
+
+<p>By default the order for this result handler is set to 100. As it detects
+the presence of {@code @ResponseBody} it should be ordered after result
+handlers that look for a specific return type. Note however that this handler
+does recognize and explicitly ignores the {@code ResponseEntity} return type.
+
+@@ result/method/annotation/ResponseBodyResultHandler.java :: 2
+Basic constructor with a default {@link ReactiveAdapterRegistry}.
+
+@@ result/method/annotation/ResponseBodyResultHandler.java :: 3
+Constructor with an {@link ReactiveAdapterRegistry} instance.
+
+#### FILE result/method/annotation/ResponseEntityResultHandler.java
+@@ result/method/annotation/ResponseEntityResultHandler.java :: 1
+Handles {@link HttpEntity} and {@link ResponseEntity} return values.
+
+<p>By default the order for this result handler is set to 0. It is generally
+safe to place it early in the order as it looks for a concrete return type.
+
+@@ result/method/annotation/ResponseEntityResultHandler.java :: 2
+Basic constructor with a default {@link ReactiveAdapterRegistry}.
+
+@@ result/method/annotation/ResponseEntityResultHandler.java :: 3
+Constructor with an {@link ReactiveAdapterRegistry} instance.
+
+#### FILE result/method/annotation/ServerWebExchangeMethodArgumentResolver.java
+@@ result/method/annotation/ServerWebExchangeMethodArgumentResolver.java :: 1
+Resolves ServerWebExchange-related method argument values of the following types:
+<ul>
+<li>{@link ServerWebExchange}
+<li>{@link ServerHttpRequest}
+<li>{@link ServerHttpResponse}
+<li>{@link HttpMethod}
+<li>{@link Locale}
+<li>{@link TimeZone}
+<li>{@link ZoneId}
+<li>{@link UriBuilder} or {@link UriComponentsBuilder} -- for building URL's
+relative to the current request
+</ul>
+
+<p>For the {@code WebSession} see {@link WebSessionMethodArgumentResolver}
+and for the {@code Principal} see {@link PrincipalMethodArgumentResolver}.
+
+#### FILE result/method/annotation/SessionAttributeMethodArgumentResolver.java
+@@ result/method/annotation/SessionAttributeMethodArgumentResolver.java :: 1
+Resolves method arguments annotated with an @{@link SessionAttribute}.
+
+#### FILE result/method/annotation/SessionAttributesHandler.java
+@@ result/method/annotation/SessionAttributesHandler.java :: 1
+Package-private class to assist {@link ModelInitializer} with managing model
+attributes in the {@link WebSession} based on model attribute names and types
+declared va {@link SessionAttributes @SessionAttributes}.
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 2
+Create a new session attributes handler. Session attribute names and types
+are extracted from the {@code @SessionAttributes} annotation, if present,
+on the given type.
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 3
+Whether the controller represented by this instance has declared any
+session attributes through an {@link SessionAttributes} annotation.
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 4
+Whether the attribute name or type match the names and types specified
+via {@code @SessionAttributes} on the underlying controller.
+<p>Attributes successfully resolved through this method are "remembered"
+and subsequently used in {@link #retrieveAttributes(WebSession)}
+and also {@link #cleanupAttributes(WebSession)}.
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 5
+Retrieve "known" attributes from the session, i.e. attributes listed
+by name in {@code @SessionAttributes} or attributes previously stored
+in the model that matched by type.
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 6
+Store a subset of the given attributes in the session. Attributes not
+declared as session attributes via {@code @SessionAttributes} are ignored.
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 7
+Remove "known" attributes from the session, i.e. attributes listed
+by name in {@code @SessionAttributes} or attributes previously stored
+in the model that matched by type.
+
+#### FILE result/method/annotation/SessionStatusMethodArgumentResolver.java
+@@ result/method/annotation/SessionStatusMethodArgumentResolver.java :: 1
+Resolver for a {@link SessionStatus} argument obtaining it from the
+{@link BindingContext}.
+
+#### FILE result/method/annotation/WebSessionMethodArgumentResolver.java
+@@ result/method/annotation/WebSessionMethodArgumentResolver.java :: 1
+Resolves method argument value of type {@link WebSession}.
+
+#### FILE result/method/annotation/package-info.java
+@@ result/method/annotation/package-info.java :: 1
+Infrastructure for annotation-based handler method processing.
+

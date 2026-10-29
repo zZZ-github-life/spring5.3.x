@@ -31,7 +31,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link AnnotationVisitor} to recursively visit annotations.
+ * 用于递归访问注解的 {@link AnnotationVisitor}。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

@@ -64,18 +64,18 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.support.StandardServletPartUtils;
 
 /**
- * Resolve {@code @ModelAttribute} annotated method arguments and handle
- * return values from {@code @ModelAttribute} annotated methods.
+ * 解析标注了 {@code @ModelAttribute} 的方法参数，并处理标注了
+ * {@code @ModelAttribute} 的方法的返回值。
  *
- * <p>Model attributes are obtained from the model or created with a default
- * constructor (and then added to the model). Once created the attribute is
- * populated via data binding to Servlet request parameters. Validation may be
- * applied if the argument is annotated with {@code @javax.validation.Valid}.
- * or Spring's own {@code @org.springframework.validation.annotation.Validated}.
+ * <p>模型属性从模型中获取，或使用默认构造函数创建（然后添加到模型中）。
+ * 创建后，通过数据绑定使用 Servlet 请求参数填充该属性。如果参数标注了
+ * {@code @javax.validation.Valid} 或 Spring 自身的
+ * {@code @org.springframework.validation.annotation.Validated}，
+ * 则可能应用校验。
  *
- * <p>When this handler is created with {@code annotationNotRequired=true}
- * any non-simple type argument and return value is regarded as a model
- * attribute with or without the presence of an {@code @ModelAttribute}.
+ * <p>当以 {@code annotationNotRequired=true} 创建此处理器时，
+ * 任何非简单类型的参数和返回值都被视为模型属性，
+ * 无论是否带有 {@code @ModelAttribute}。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -91,7 +91,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 
 	/**
-	 * Class constructor.
+	 * 类构造函数。
 	 * @param annotationNotRequired if "true", non-simple method arguments and
 	 * return values are considered model attributes with or without a
 	 * {@code @ModelAttribute} annotation
@@ -102,9 +102,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 
 	/**
-	 * Returns {@code true} if the parameter is annotated with
-	 * {@link ModelAttribute} or, if in default resolution mode, for any
-	 * method parameter that is not a simple type.
+	 * 如果参数标注了 {@link ModelAttribute}，或者在默认解析模式下
+	 * 对于任何非简单类型的方法参数，则返回 {@code true}。
 	 */
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
@@ -113,10 +112,9 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Resolve the argument from the model or if not found instantiate it with
-	 * its default if it is available. The model attribute is then populated
-	 * with request values via data binding and optionally validated
-	 * if {@code @java.validation.Valid} is present on the argument.
+	 * 从模型中解析参数；如果未找到，则在可用时使用默认值实例化它。
+	 * 随后通过数据绑定用请求值填充模型属性，并在参数上存在
+	 * {@code @java.validation.Valid} 时可选地进行校验。
 	 * @throws BindException if data binding and validation result in an error
 	 * and the next method parameter is not of type {@link Errors}
 	 * @throws Exception if WebDataBinder initialization fails
@@ -191,15 +189,14 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Extension point to create the model attribute if not found in the model,
-	 * with subsequent parameter binding through bean properties (unless suppressed).
-	 * <p>The default implementation typically uses the unique public no-arg constructor
-	 * if available but also handles a "primary constructor" approach for data classes:
-	 * It understands the JavaBeans {@code ConstructorProperties} annotation as well as
-	 * runtime-retained parameter names in the bytecode, associating request parameters
-	 * with constructor arguments by name. If no such constructor is found, the default
-	 * constructor will be used (even if not public), assuming subsequent bean property
-	 * bindings through setter methods.
+	 * 扩展点：如果模型中未找到模型属性则创建它，
+	 * 随后（除非被禁止）通过 Bean 属性进行参数绑定。
+	 * <p>默认实现通常使用唯一可用的公共无参构造函数（如果存在），
+	 * 但也支持针对数据类的“主构造函数”方式：
+	 * 它既理解 JavaBeans 的 {@code ConstructorProperties} 注解，
+	 * 也理解字节码中保留的运行时参数名，从而按名称将请求参数与构造函数参数关联起来。
+	 * 如果找不到这样的构造函数，则使用默认构造函数（即使不是公共的），
+	 * 假定随后通过 setter 方法进行 Bean 属性绑定。
 	 * @param attributeName the name of the attribute (never {@code null})
 	 * @param parameter the method parameter declaration
 	 * @param binderFactory for creating WebDataBinder instance
@@ -225,10 +222,10 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Construct a new attribute instance with the given constructor.
-	 * <p>Called from
+	 * 使用给定的构造函数构造新的属性实例。
+	 * <p>在构造函数解析之后由
 	 * {@link #createAttribute(String, MethodParameter, WebDataBinderFactory, NativeWebRequest)}
-	 * after constructor resolution.
+	 * 调用。
 	 * @param ctor the constructor to use
 	 * @param attributeName the name of the attribute (never {@code null})
 	 * @param binderFactory for creating WebDataBinder instance
@@ -333,7 +330,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Extension point to bind the request to the target object.
+	 * 扩展点：将请求绑定到目标对象。
 	 * @param binder the data binder instance to use for the binding
 	 * @param request the current request
 	 */
@@ -366,10 +363,10 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Validate the model attribute if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
-	 * Spring's {@link org.springframework.validation.annotation.Validated},
-	 * and custom annotations whose name starts with "Valid".
+	 * 在适用时校验模型属性。
+	 * <p>默认实现会检查 {@code @javax.validation.Valid}、
+	 * Spring 的 {@link org.springframework.validation.annotation.Validated}，
+	 * 以及名称以 "Valid" 开头的自定义注解。
 	 * @param binder the DataBinder to be used
 	 * @param parameter the method parameter declaration
 	 * @see WebDataBinder#validate(Object...)
@@ -386,10 +383,10 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Validate the specified candidate value if applicable.
-	 * <p>The default implementation checks for {@code @javax.validation.Valid},
-	 * Spring's {@link org.springframework.validation.annotation.Validated},
-	 * and custom annotations whose name starts with "Valid".
+	 * 在适用时校验指定的候选值。
+	 * <p>默认实现会检查 {@code @javax.validation.Valid}、
+	 * Spring 的 {@link org.springframework.validation.annotation.Validated}，
+	 * 以及名称以 "Valid" 开头的自定义注解。
 	 * @param binder the DataBinder to be used
 	 * @param parameter the method parameter declaration
 	 * @param targetType the target type
@@ -422,8 +419,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Whether to raise a fatal bind exception on validation errors.
-	 * <p>The default implementation delegates to {@link #isBindExceptionRequired(MethodParameter)}.
+	 * 是否在校验出错时抛出致命的数据绑定异常。
+	 * <p>默认实现委托给 {@link #isBindExceptionRequired(MethodParameter)}。
 	 * @param binder the data binder used to perform data binding
 	 * @param parameter the method parameter declaration
 	 * @return {@code true} if the next method parameter is not of type {@link Errors}
@@ -434,7 +431,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Whether to raise a fatal bind exception on validation errors.
+	 * 是否在校验出错时抛出致命的数据绑定异常。
 	 * @param parameter the method parameter declaration
 	 * @return {@code true} if the next method parameter is not of type {@link Errors}
 	 * @since 5.0
@@ -447,9 +444,8 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Return {@code true} if there is a method-level {@code @ModelAttribute}
-	 * or, in default resolution mode, for any return value type that is not
-	 * a simple type.
+	 * 如果存在方法级 {@code @ModelAttribute}，或者在默认解析模式下
+	 * 对于任何非简单类型的返回值，则返回 {@code true}。
 	 */
 	@Override
 	public boolean supportsReturnType(MethodParameter returnType) {
@@ -458,7 +454,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 	}
 
 	/**
-	 * Add non-null return values to the {@link ModelAndViewContainer}.
+	 * 将非空返回值添加到 {@link ModelAndViewContainer}。
 	 */
 	@Override
 	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
@@ -472,7 +468,7 @@ public class ModelAttributeMethodProcessor implements HandlerMethodArgumentResol
 
 
 	/**
-	 * {@link MethodParameter} subclass which detects field annotations as well.
+	 * {@link MethodParameter} 的子类，同时还能检测字段注解。
 	 * @since 5.1
 	 */
 	private static class FieldAwareConstructorParameter extends MethodParameter {

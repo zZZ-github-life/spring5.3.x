@@ -1,5 +1,5 @@
 /**
- * Annotations and support classes for declarative JMS listener endpoints.
+ * 用于声明式 JMS 监听器端点的注解和支撑类。
  */
 @NonNullApi
 @NonNullFields

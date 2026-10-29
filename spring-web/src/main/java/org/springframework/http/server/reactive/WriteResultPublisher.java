@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Publisher returned from {@link ServerHttpResponse#writeWith(Publisher)}.
+ * 从 {@link ServerHttpResponse#writeWith(Publisher)} 返回的 Publisher。
  *
  * @author Arjen Poutsma
  * @author Violeta Georgieva
@@ -39,7 +39,7 @@ import org.springframework.util.Assert;
 class WriteResultPublisher implements Publisher<Void> {
 
 	/**
-	 * Special logger for debugging Reactive Streams signals.
+	 * 用于调试 Reactive Streams 信号的专用日志记录器。
 	 * @see LogDelegateFactory#getHiddenLog(Class)
 	 * @see AbstractListenerReadPublisher#rsReadLogger
 	 * @see AbstractListenerWriteProcessor#rsWriteLogger
@@ -78,7 +78,7 @@ class WriteResultPublisher implements Publisher<Void> {
 	}
 
 	/**
-	 * Invoke this to delegate a completion signal to the subscriber.
+	 * 调用此方法可将完成信号委派给订阅者。
 	 */
 	public void publishComplete() {
 		State state = this.state.get();
@@ -89,7 +89,7 @@ class WriteResultPublisher implements Publisher<Void> {
 	}
 
 	/**
-	 * Invoke this to delegate an error signal to the subscriber.
+	 * 调用此方法可将错误信号委派给订阅者。
 	 */
 	public void publishError(Throwable t) {
 		State state = this.state.get();
@@ -105,8 +105,8 @@ class WriteResultPublisher implements Publisher<Void> {
 
 
 	/**
-	 * Subscription to receive and delegate request and cancel signals from the
-	 * subscriber to this publisher.
+	 * Subscription，用于接收来自订阅者的 request 和 cancel 信号，
+	 * 并将其委派给此发布者。
 	 */
 	private static final class WriteResultSubscription implements Subscription {
 
@@ -141,7 +141,7 @@ class WriteResultPublisher implements Publisher<Void> {
 
 
 	/**
-	 * Represents a state for the {@link Publisher} to be in.
+	 * 表示 {@link Publisher} 可能处于的状态。
 	 * <p><pre>
 	 *     UNSUBSCRIBED
 	 *          |

@@ -26,7 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Exception for errors that fit response status 406 (not acceptable).
+ * 适用于响应状态 406（不可接受）的异常。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -38,7 +38,7 @@ public class NotAcceptableStatusException extends ResponseStatusException {
 
 
 	/**
-	 * Constructor for when the requested Content-Type is invalid.
+	 * 当请求的 Content-Type 无效时使用的构造函数。
 	 */
 	public NotAcceptableStatusException(String reason) {
 		super(HttpStatus.NOT_ACCEPTABLE, reason);
@@ -46,7 +46,7 @@ public class NotAcceptableStatusException extends ResponseStatusException {
 	}
 
 	/**
-	 * Constructor for when the requested Content-Type is not supported.
+	 * 当请求的 Content-Type 不受支持时使用的构造函数。
 	 */
 	public NotAcceptableStatusException(List<MediaType> supportedMediaTypes) {
 		super(HttpStatus.NOT_ACCEPTABLE, "Could not find acceptable representation");
@@ -55,7 +55,7 @@ public class NotAcceptableStatusException extends ResponseStatusException {
 
 
 	/**
-	 * Return a Map with an "Accept" header.
+	 * 返回包含 "Accept" 头部的 Map。
 	 * @since 5.1.11
 	 */
 	@SuppressWarnings("deprecation")
@@ -65,7 +65,7 @@ public class NotAcceptableStatusException extends ResponseStatusException {
 	}
 
 	/**
-	 * Return HttpHeaders with an "Accept" header, or an empty instance.
+	 * 返回包含 "Accept" 头部的 HttpHeaders，或空实例。
 	 * @since 5.1.13
 	 */
 	@Override
@@ -79,8 +79,8 @@ public class NotAcceptableStatusException extends ResponseStatusException {
 	}
 
 	/**
-	 * Return the list of supported content types in cases when the Accept
-	 * header is parsed but not supported, or an empty list otherwise.
+	 * 返回受支持的内容类型列表：当 Accept 头部可以解析但不受支持时返回该列表，
+	 * 否则返回空列表。
 	 */
 	public List<MediaType> getSupportedMediaTypes() {
 		return this.supportedMediaTypes;

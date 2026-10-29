@@ -38,9 +38,9 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.util.Assert;
 
 /**
- * A default implementation of {@link SimpUserRegistry} that relies on
- * {@link AbstractSubProtocolEvent} application context events to keep
- * track of connected users and their subscriptions.
+ * {@link SimpUserRegistry} 的默认实现，它依赖
+ * {@link AbstractSubProtocolEvent} 应用上下文事件来跟踪已连接的用户
+ * 及其订阅。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -59,8 +59,8 @@ public class DefaultSimpUserRegistry implements SimpUserRegistry, SmartApplicati
 
 
 	/**
-	 * Specify the order value for this registry.
-	 * <p>Default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 * 指定此注册表的顺序值。
+	 * <p>默认为 {@link Ordered#LOWEST_PRECEDENCE}。
 	 * @since 5.0.8
 	 */
 	public void setOrder(int order) {

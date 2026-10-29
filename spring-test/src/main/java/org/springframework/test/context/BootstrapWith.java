@@ -24,18 +24,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @BootstrapWith} defines class-level metadata that is used to determine
- * how to bootstrap the <em>Spring TestContext Framework</em>.
+ * {@code @BootstrapWith} 定义类级元数据，用于确定
+ * 如何引导 <em>Spring TestContext Framework</em>。
  *
- * <p>This annotation may also be used as a <em>meta-annotation</em> to create
- * custom <em>composed annotations</em>. As of Spring Framework 5.1, a locally
- * declared {@code @BootstrapWith} annotation (i.e., one that is <em>directly
- * present</em> on the current test class) will override any meta-present
- * declarations of {@code @BootstrapWith}.
+ * <p>此注解还可用作<em>元注解</em>以创建
+ * 自定义的<em>组合注解</em>。从 Spring Framework 5.1 开始，本地
+ * 声明的 {@code @BootstrapWith} 注解（即<em>直接存在</em>于
+ * 当前测试类上的注解）将覆盖任何元存在的
+ * {@code @BootstrapWith} 声明。
  *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link NestedTestConfiguration @NestedTestConfiguration} for details.
+ * <p>从 Spring Framework 5.3 开始，此注解默认将从
+ * 外层测试类继承。详情请参见
+ * {@link NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -49,8 +49,8 @@ import java.lang.annotation.Target;
 public @interface BootstrapWith {
 
 	/**
-	 * The {@link TestContextBootstrapper} to use to bootstrap the <em>Spring
-	 * TestContext Framework</em>.
+	 * 用于引导 <em>Spring TestContext Framework</em> 的
+	 * {@link TestContextBootstrapper}。
 	 */
 	Class<? extends TestContextBootstrapper> value() default TestContextBootstrapper.class;
 

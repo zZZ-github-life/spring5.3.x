@@ -23,15 +23,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Container annotation that aggregates several {@link JmsListener} annotations.
+ * 聚合多个 {@link JmsListener} 注解的容器注解。
  *
- * <p>Can be used natively, declaring several nested {@link JmsListener} annotations.
- * Can also be used in conjunction with Java 8's support for repeatable annotations,
- * where {@link JmsListener} can simply be declared several times on the same method,
- * implicitly generating this container annotation.
+ * <p>可以原生使用，声明多个嵌套的 {@link JmsListener} 注解。
+ * 也可以结合 Java 8 对可重复注解的支持使用，此时只需在同一方法上
+ * 多次声明 {@link JmsListener}，就会隐式生成此容器注解。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>，以创建自定义的<em>组合注解</em>。
  *
  * @author Stephane Nicoll
  * @since 4.2

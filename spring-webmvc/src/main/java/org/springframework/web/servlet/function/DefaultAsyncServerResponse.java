@@ -47,7 +47,7 @@ import org.springframework.web.context.request.async.WebAsyncUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Default {@link AsyncServerResponse} implementation.
+ * 默认的 {@link AsyncServerResponse} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.3.2

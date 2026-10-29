@@ -1,5 +1,5 @@
 /**
- * Support for class instrumentation on BEA WebLogic 10+.
+ * 在 BEA WebLogic 10+ 上支持类插桩。
  */
 @NonNullApi
 @NonNullFields

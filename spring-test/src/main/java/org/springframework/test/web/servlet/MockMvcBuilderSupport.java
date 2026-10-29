@@ -28,13 +28,11 @@ import org.springframework.mock.web.MockServletConfig;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Base class for MockMvc builder implementations, providing the capability to
- * create a {@link MockMvc} instance.
+ * MockMvc 构建器实现的基类，提供创建 {@link MockMvc} 实例的能力。
  *
- * <p>{@link org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder},
- * which derives from this class, provides a concrete {@code build} method,
- * and delegates to abstract methods to obtain a {@link WebApplicationContext}.
- *
+ * <p>派生自此类的 {@link org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder}
+ * 提供具体的 {@code build} 方法，
+ * 并委托给抽象方法获取 {@link WebApplicationContext}。
  * @author Rossen Stoyanchev
  * @author Rob Winch
  * @author Stephane Nicoll
@@ -44,9 +42,9 @@ import org.springframework.web.context.WebApplicationContext;
 public abstract class MockMvcBuilderSupport {
 
 	/**
-	 * Delegates to {@link #createMockMvc(Filter[], MockServletConfig, WebApplicationContext, RequestBuilder, List, List, List)}
-	 * for creation of the {@link MockMvc} instance and configures that instance
-	 * with the supplied {@code defaultResponseCharacterEncoding}.
+	 * 委托给 {@link #createMockMvc(Filter[], MockServletConfig, WebApplicationContext, RequestBuilder, List, List, List)}
+	 * 创建 {@link MockMvc} 实例，并使用提供的 {@code defaultResponseCharacterEncoding}
+	 * 配置该实例。
 	 * @since 5.3.10
 	 */
 	protected final MockMvc createMockMvc(Filter[] filters, MockServletConfig servletConfig,

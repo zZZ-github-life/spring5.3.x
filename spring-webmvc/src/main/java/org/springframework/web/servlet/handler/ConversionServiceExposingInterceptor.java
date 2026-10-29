@@ -27,12 +27,12 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * Interceptor that places the configured {@link ConversionService} in request scope
- * so it's available during request processing. The request attribute name is
- * "org.springframework.core.convert.ConversionService", the value of
- * {@code ConversionService.class.getName()}.
+ * 拦截器，将所配置的 {@link ConversionService} 放入请求作用域，
+ * 使其在请求处理期间可用。请求属性名称为
+ * "org.springframework.core.convert.ConversionService"，即
+ * {@code ConversionService.class.getName()} 的值。
  *
- * <p>Mainly for use within JSP tags such as the spring:eval tag.
+ * <p>主要用于 JSP 标签（例如 spring:eval 标签）中。
  *
  * @author Keith Donald
  * @since 3.0.1
@@ -43,7 +43,7 @@ public class ConversionServiceExposingInterceptor implements HandlerInterceptor 
 
 
 	/**
-	 * Creates a new {@link ConversionServiceExposingInterceptor}.
+	 * 创建新的 {@link ConversionServiceExposingInterceptor}。
 	 * @param conversionService the conversion service to export to request scope when this interceptor is invoked
 	 */
 	public ConversionServiceExposingInterceptor(ConversionService conversionService) {

@@ -1,5 +1,5 @@
 /**
- * Support classes for annotation-driven tests.
+ * 注解驱动测试的支持类。
  */
 @NonNullApi
 @NonNullFields

@@ -34,10 +34,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenient adapter for programmatic registration of bean classes.
+ * 用于以编程方式注册 Bean 类的便捷适配器。
  *
- * <p>This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
- * the same resolution of annotations but for explicitly registered classes only.
+ * <p>这是 {@link ClassPathBeanDefinitionScanner} 的替代方案，应用相同的注解解析，但仅适用于显式注
+ * 册的类。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -58,10 +58,10 @@ public class AnnotatedBeanDefinitionReader {
 
 
 	/**
-	 * Create a new {@code AnnotatedBeanDefinitionReader} for the given registry.
-	 * <p>If the registry is {@link EnvironmentCapable}, e.g. is an {@code ApplicationContext},
-	 * the {@link Environment} will be inherited, otherwise a new
-	 * {@link StandardEnvironment} will be created and used.
+	 * 为给定注册表创建一个新的 {@code AnnotatedBeanDefinitionReader}。
+	 *
+	 * <p>如果注册表是 {@link EnvironmentCapable}，例如是一个 {@code ApplicationContext}，则会继承其
+	 * {@link Environment}，否则将创建并使用一个新的 {@link StandardEnvironment}。
 	 * @param registry the {@code BeanFactory} to load bean definitions into,
 	 * in the form of a {@code BeanDefinitionRegistry}
 	 * @see #AnnotatedBeanDefinitionReader(BeanDefinitionRegistry, Environment)
@@ -111,16 +111,16 @@ public class AnnotatedBeanDefinitionReader {
 
 
 	/**
-	 * Get the BeanDefinitionRegistry that this reader operates on.
+	 * 获取此读取器所操作的 BeanDefinitionRegistry。
 	 */
 	public final BeanDefinitionRegistry getRegistry() {
 		return this.registry;
 	}
 
 	/**
-	 * Set the {@code Environment} to use when evaluating whether
-	 * {@link Conditional @Conditional}-annotated component classes should be registered.
-	 * <p>The default is a {@link StandardEnvironment}.
+	 * 设置用于评估是否应注册 {@link Conditional @Conditional} 注解的组件类的 {@code Environment}。
+	 *
+	 * <p>默认为 {@link StandardEnvironment}。
 	 * @see #registerBean(Class, String, Class...)
 	 */
 	public void setEnvironment(Environment environment) {
@@ -128,8 +128,9 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Set the {@code BeanNameGenerator} to use for detected bean classes.
-	 * <p>The default is a {@link AnnotationBeanNameGenerator}.
+	 * 设置用于检测到的 Bean 类的 {@code BeanNameGenerator}。
+	 *
+	 * <p>默认为 {@link AnnotationBeanNameGenerator}。
 	 */
 	public void setBeanNameGenerator(@Nullable BeanNameGenerator beanNameGenerator) {
 		this.beanNameGenerator =
@@ -137,8 +138,9 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Set the {@code ScopeMetadataResolver} to use for registered component classes.
-	 * <p>The default is an {@link AnnotationScopeMetadataResolver}.
+	 * 设置用于已注册组件类的 {@code ScopeMetadataResolver}。
+	 *
+	 * <p>默认为 {@link AnnotationScopeMetadataResolver}。
 	 */
 	public void setScopeMetadataResolver(@Nullable ScopeMetadataResolver scopeMetadataResolver) {
 		this.scopeMetadataResolver =
@@ -147,9 +149,9 @@ public class AnnotatedBeanDefinitionReader {
 
 
 	/**
-	 * Register one or more component classes to be processed.
-	 * <p>Calls to {@code register} are idempotent; adding the same
-	 * component class more than once has no additional effect.
+	 * 注册一个或多个要处理的组件类。
+	 *
+	 * <p>对 {@code register} 的调用是幂等的；多次添加相同的组件类不会产生额外效果。
 	 * @param componentClasses one or more component classes,
 	 * e.g. {@link Configuration @Configuration} classes
 	 */
@@ -160,8 +162,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据。
 	 * @param beanClass the class of the bean
 	 */
 	public void registerBean(Class<?> beanClass) {
@@ -169,8 +170,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据。
 	 * @param beanClass the class of the bean
 	 * @param name an explicit name for the bean
 	 * (or {@code null} for generating a default bean name)
@@ -181,8 +181,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据。
 	 * @param beanClass the class of the bean
 	 * @param qualifiers specific qualifier annotations to consider,
 	 * in addition to qualifiers at the bean class level
@@ -193,8 +192,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据。
 	 * @param beanClass the class of the bean
 	 * @param name an explicit name for the bean
 	 * (or {@code null} for generating a default bean name)
@@ -209,9 +207,8 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations, using the given supplier for obtaining a new
-	 * instance (possibly declared as a lambda expression or method reference).
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据，使用给定的 supplier 获取新实例
+	 * （可以声明为 lambda 表达式或方法引用）。
 	 * @param beanClass the class of the bean
 	 * @param supplier a callback for creating an instance of the bean
 	 * (may be {@code null})
@@ -222,9 +219,8 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations, using the given supplier for obtaining a new
-	 * instance (possibly declared as a lambda expression or method reference).
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据，使用给定的 supplier 获取新实例
+	 * （可以声明为 lambda 表达式或方法引用）。
 	 * @param beanClass the class of the bean
 	 * @param name an explicit name for the bean
 	 * (or {@code null} for generating a default bean name)
@@ -237,8 +233,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据。
 	 * @param beanClass the class of the bean
 	 * @param name an explicit name for the bean
 	 * (or {@code null} for generating a default bean name)
@@ -255,8 +250,7 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
-	 * Register a bean from the given bean class, deriving its metadata from
-	 * class-declared annotations.
+	 * 从给定的 Bean 类注册一个 Bean，并从类声明的注解中派生其元数据。
 	 * @param beanClass the class of the bean
 	 * @param name an explicit name for the bean
 	 * @param qualifiers specific qualifier annotations to consider, if any,
@@ -342,8 +336,7 @@ public class AnnotatedBeanDefinitionReader {
 
 
 	/**
-	 * Get the Environment from the given registry if possible, otherwise return a new
-	 * StandardEnvironment.
+	 * 尽可能从给定注册表获取 Environment，否则返回一个新的 StandardEnvironment。
 	 */
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");

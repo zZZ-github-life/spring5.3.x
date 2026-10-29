@@ -20,7 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * Base class for events raised for an {@code ApplicationContext}.
+ * 为 {@code ApplicationContext} 引发的事件的基类。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -29,7 +29,7 @@ import org.springframework.context.ApplicationEvent;
 public abstract class ApplicationContextEvent extends ApplicationEvent {
 
 	/**
-	 * Create a new ContextStartedEvent.
+	 * 创建一个新的 ContextStartedEvent。
 	 * @param source the {@code ApplicationContext} that the event is raised for
 	 * (must not be {@code null})
 	 */
@@ -38,7 +38,7 @@ public abstract class ApplicationContextEvent extends ApplicationEvent {
 	}
 
 	/**
-	 * Get the {@code ApplicationContext} that the event was raised for.
+	 * 获取引发该事件的 {@code ApplicationContext}。
 	 */
 	public final ApplicationContext getApplicationContext() {
 		return (ApplicationContext) getSource();

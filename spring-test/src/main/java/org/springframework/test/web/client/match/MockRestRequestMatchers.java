@@ -37,13 +37,12 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.fail;
 
 /**
- * Static factory methods for {@link RequestMatcher} classes. Typically used to
- * provide input for {@link MockRestServiceServer#expect(RequestMatcher)}.
+ * 用于 {@link RequestMatcher} 类的静态工厂方法。通常用于
+ * 为 {@link MockRestServiceServer#expect(RequestMatcher)} 提供输入。
  *
- * <h3>Eclipse Users</h3>
- * <p>Consider adding this class as a Java editor favorite. To navigate to
- * this setting, open the Preferences and type "favorites".
- *
+ * <h3>Eclipse 用户</h3>
+ * <p>考虑将此类别添加为 Java 编辑器收藏项。要导航到
+ * 此设置，请打开“首选项”并输入“favorites”。
  * @author Craig Walls
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -53,14 +52,14 @@ import static org.springframework.test.util.AssertionErrors.fail;
 public abstract class MockRestRequestMatchers {
 
 	/**
-	 * Match to any request.
+	 * 匹配任意请求。
 	 */
 	public static RequestMatcher anything() {
 		return request -> {};
 	}
 
 	/**
-	 * Assert the {@link HttpMethod} of the request.
+	 * 断言请求的 {@link HttpMethod}。
 	 * @param method the HTTP method
 	 * @return the request matcher
 	 */
@@ -70,7 +69,7 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert the request URI string with the given Hamcrest matcher.
+	 * 使用给定的 Hamcrest 匹配器断言请求 URI 字符串。
 	 * @param matcher the String matcher for the expected URI
 	 * @return the request matcher
 	 */
@@ -80,7 +79,7 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert the request URI matches the given string.
+	 * 断言请求 URI 与给定字符串匹配。
 	 * @param expectedUri the expected URI
 	 * @return the request matcher
 	 */
@@ -90,9 +89,8 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Variant of {@link #requestTo(URI)} that prepares the URI from a URI
-	 * template plus optional variables via {@link UriComponentsBuilder}
-	 * including encoding.
+	 * 对 {@link #requestTo(URI)} 的变体，通过 {@link UriComponentsBuilder}
+	 * 从 URI 模板及可选变量准备 URI，包括编码。
 	 * @param expectedUri the expected URI template
 	 * @param uriVars zero or more URI variables to populate the expected URI
 	 * @return the request matcher
@@ -104,7 +102,7 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Expect a request to the given URI.
+	 * 预期对给定 URI 的请求。
 	 * @param uri the expected URI
 	 * @return the request matcher
 	 */
@@ -114,14 +112,13 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert request query parameter values with the given Hamcrest matcher,
-	 * matching on the entire {@link List} of values.
-	 * <p>For example, this can be used to check that the list of query parameter
-	 * values has at least one value matching a given Hamcrest matcher (such as
-	 * {@link org.hamcrest.Matchers#hasItem(Matcher)}), that every value in the list
-	 * matches common criteria (such as {@link org.hamcrest.Matchers#everyItem(Matcher)}),
-	 * that each value in the list matches corresponding dedicated criteria
-	 * (such as {@link org.hamcrest.Matchers#contains(Matcher[])}), etc.
+	 * 使用给定的 Hamcrest 匹配器断言请求查询参数值，
+	 * 匹配整个值 {@link List}。
+	 * <p>例如，可用于检查查询参数值列表是否至少有一个值与给定 Hamcrest 匹配器匹配（如
+	 * {@link org.hamcrest.Matchers#hasItem(Matcher)}），列表中的每个值是否
+	 * 都匹配通用条件（如 {@link org.hamcrest.Matchers#everyItem(Matcher)}），
+	 * 列表中的每个值是否都匹配相应的专用条件
+	 * （如 {@link org.hamcrest.Matchers#contains(Matcher[])}）等。
 	 * @param name the name of the query parameter whose value(s) will be asserted
 	 * @param matcher the Hamcrest matcher to apply to the entire list of values
 	 * for the given query parameter
@@ -141,15 +138,13 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert request query parameter values with the given Hamcrest matcher(s).
-	 * <p>If the query parameter value list is larger than the number of provided
-	 * {@code matchers}, no matchers will be applied to the extra query parameter
-	 * values, effectively ignoring the additional parameter values. If the number
-	 * of provided {@code matchers} exceeds the number of query parameter values,
-	 * an {@link AssertionError} will be thrown to signal the mismatch.
-	 * <p>See {@link #queryParamList(String, Matcher)} for a variant which accepts a
-	 * {@code Matcher} that applies to the entire list of values as opposed to
-	 * applying only to individual values.
+	 * 使用给定的 Hamcrest 匹配器断言请求查询参数值。
+	 * <p>如果查询参数值列表大于提供的
+	 * {@code matchers} 数量，则不会对多余的查询参数值应用任何匹配器，
+	 * 实际上会忽略额外的参数值。如果提供的 {@code matchers} 数量超过查询参数值的数量，
+	 * 将抛出 {@link AssertionError} 以表示不匹配。
+	 * <p>有关接受适用于整个值列表（而不是仅适用于单个值）的
+	 * {@code Matcher} 的变体，请参见 {@link #queryParamList(String, Matcher)}。
 	 * @param name the name of the query parameter whose value(s) will be asserted
 	 * @param matchers the Hamcrest matchers to apply to individual query parameter
 	 * values; the n<sup>th</sup> matcher is applied to the n<sup>th</sup> query
@@ -169,15 +164,13 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert request query parameter values.
-	 * <p>If the query parameter value list is larger than the number of
-	 * {@code expectedValues}, no assertions will be applied to the extra query
-	 * parameter values, effectively ignoring the additional parameter values. If
-	 * the number of {@code expectedValues} exceeds the number of query parameter
-	 * values, an {@link AssertionError} will be thrown to signal the mismatch.
-	 * <p>See {@link #queryParamList(String, Matcher)} for a variant which accepts a
-	 * Hamcrest {@code Matcher} that applies to the entire list of values as opposed
-	 * to asserting only individual values.
+	 * 断言请求查询参数值。
+	 * <p>如果查询参数值列表大于
+	 * {@code expectedValues} 的数量，将不会对多余的查询参数值应用任何断言，
+	 * 实际上会忽略额外的参数值。如果 {@code expectedValues} 的数量超过查询参数值的数量，
+	 * 将抛出 {@link AssertionError} 以表示不匹配。
+	 * <p>有关接受适用于整个值列表（而不是仅断言单个值）的
+	 * Hamcrest {@code Matcher} 的变体，请参见 {@link #queryParamList(String, Matcher)}。
 	 * @param name the name of the query parameter whose value(s) will be asserted
 	 * @param expectedValues the expected values of individual query parameter values;
 	 * the n<sup>th</sup> expected value is compared to the n<sup>th</sup> query
@@ -200,14 +193,13 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert request header values with the given Hamcrest matcher, matching on
-	 * the entire {@link List} of values.
-	 * <p>For example, this can be used to check that the list of header values
-	 * has at least one value matching a given Hamcrest matcher (such as
-	 * {@link org.hamcrest.Matchers#hasItem(Matcher)}), that every value in the list
-	 * matches common criteria (such as {@link org.hamcrest.Matchers#everyItem(Matcher)}),
-	 * that each value in the list matches corresponding dedicated criteria
-	 * (such as {@link org.hamcrest.Matchers#contains(Matcher[])}), etc.
+	 * 使用给定的 Hamcrest 匹配器断言请求头值，
+	 * 匹配整个值 {@link List}。
+	 * <p>例如，可用于检查请求头值列表是否至少有一个值与给定 Hamcrest 匹配器匹配（如
+	 * {@link org.hamcrest.Matchers#hasItem(Matcher)}），列表中的每个值是否
+	 * 都匹配通用条件（如 {@link org.hamcrest.Matchers#everyItem(Matcher)}），
+	 * 列表中的每个值是否都匹配相应的专用条件
+	 * （如 {@link org.hamcrest.Matchers#contains(Matcher[])}）等。
 	 * @param name the name of the header whose value(s) will be asserted
 	 * @param matcher the Hamcrest matcher to apply to the entire list of values
 	 * for the given header
@@ -226,15 +218,13 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert request header values with the given Hamcrest matcher(s).
-	 * <p>If the header value list is larger than the number of provided
-	 * {@code matchers}, no matchers will be applied to the extra header values,
-	 * effectively ignoring the additional header values. If the number of
-	 * provided {@code matchers} exceeds the number of header values, an
-	 * {@link AssertionError} will be thrown to signal the mismatch.
-	 * <p>See {@link #headerList(String, Matcher)} for a variant which accepts a
-	 * Hamcrest {@code Matcher} that applies to the entire list of values as
-	 * opposed to applying only to individual values.
+	 * 使用给定的 Hamcrest 匹配器断言请求头值。
+	 * <p>如果请求头值列表大于提供的
+	 * {@code matchers} 数量，则不会对多余的请求头值应用任何匹配器，
+	 * 实际上会忽略额外的请求头值。如果提供的 {@code matchers} 数量超过请求头值的数量，
+	 * 将抛出 {@link AssertionError} 以表示不匹配。
+	 * <p>有关接受适用于整个值列表（而不是仅适用于单个值）的
+	 * Hamcrest {@code Matcher} 的变体，请参见 {@link #headerList(String, Matcher)}。
 	 * @param name the name of the header whose value(s) will be asserted
 	 * @param matchers the Hamcrest matchers to apply to individual header values;
 	 * the n<sup>th</sup> matcher is applied to the n<sup>th</sup> header value
@@ -254,15 +244,14 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert request header values.
-	 * <p>If the header value list is larger than the number of {@code expectedValues},
-	 * no matchers will be applied to the extra header values, effectively ignoring the
-	 * additional header values. If the number of {@code expectedValues} exceeds the
-	 * number of header values, an {@link AssertionError} will be thrown to signal the
-	 * mismatch.
-	 * <p>See {@link #headerList(String, Matcher)} for a variant which accepts a
-	 * Hamcrest {@code Matcher} that applies to the entire list of values as
-	 * opposed to applying only to individual values.
+	 * 断言请求头值。
+	 * <p>如果请求头值列表大于 {@code expectedValues} 的数量，
+	 * 则不会对多余的请求头值应用任何匹配器，实际上会忽略
+	 * 额外的请求头值。如果 {@code expectedValues} 的数量超过请求头值的数量，
+	 * 将抛出 {@link AssertionError} 以表示
+	 * 不匹配。
+	 * <p>有关接受适用于整个值列表（而不是仅适用于单个值）的
+	 * Hamcrest {@code Matcher} 的变体，请参见 {@link #headerList(String, Matcher)}。
 	 * @param name the name of the header whose value(s) will be asserted
 	 * @param expectedValues the expected values of individual header values; the
 	 * n<sup>th</sup> expected value is compared to the n<sup>th</sup> header value
@@ -281,7 +270,7 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Assert that the given request header does not exist.
+	 * 断言给定请求头不存在。
 	 * @since 5.2
 	 */
 	public static RequestMatcher headerDoesNotExist(String name) {
@@ -295,18 +284,17 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Access to request body matchers.
+	 * 访问请求体匹配器。
 	 */
 	public static ContentRequestMatchers content() {
 		return new ContentRequestMatchers();
 	}
 
 	/**
-	 * Access to request body matchers using a
-	 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression to
-	 * inspect a specific subset of the body. The JSON path expression can be a
-	 * parameterized string using formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * 使用 <a href="https://github.com/jayway/JsonPath">JsonPath</a> 表达式
+	 * 访问请求体匹配器，以检查请求体的特定子集。JSON 路径表达式可以是
+	 * 使用 {@link String#format(String, Object...)} 中定义的格式说明符的
+	 * 参数化字符串。
 	 * @param expression the JSON path optionally parameterized with arguments
 	 * @param args arguments to parameterize the JSON path expression with
 	 */
@@ -315,10 +303,9 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Access to request body matchers using a
-	 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression to
-	 * inspect a specific subset of the body and a Hamcrest match for asserting
-	 * the value found at the JSON path.
+	 * 使用 <a href="https://github.com/jayway/JsonPath">JsonPath</a> 表达式
+	 * 和 Hamcrest 匹配器访问请求体匹配器，以检查请求体的特定子集
+	 * 并断言在 JSON 路径处找到的值。
 	 * @param expression the JSON path expression
 	 * @param matcher a matcher for the value expected at the JSON path
 	 */
@@ -327,10 +314,10 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Access to request body matchers using an XPath to inspect a specific
-	 * subset of the body. The XPath expression can be a parameterized string
-	 * using formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * 使用 XPath 访问请求体匹配器，以检查请求体的特定
+	 * 子集。XPath 表达式可以是使用
+	 * {@link String#format(String, Object...)} 中定义的格式说明符的
+	 * 参数化字符串。
 	 * @param expression the XPath optionally parameterized with arguments
 	 * @param args arguments to parameterize the XPath expression with
 	 */
@@ -339,10 +326,10 @@ public abstract class MockRestRequestMatchers {
 	}
 
 	/**
-	 * Access to response body matchers using an XPath to inspect a specific
-	 * subset of the body. The XPath expression can be a parameterized string
-	 * using formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * 使用 XPath 访问响应体匹配器，以检查响应体的特定
+	 * 子集。XPath 表达式可以是使用
+	 * {@link String#format(String, Object...)} 中定义的格式说明符的
+	 * 参数化字符串。
 	 * @param expression the XPath optionally parameterized with arguments
 	 * @param namespaces the namespaces referenced in the XPath expression
 	 * @param args arguments to parameterize the XPath expression with

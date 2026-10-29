@@ -33,7 +33,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Utility methods for handling BeanShell-scripted objects.
+ * 用于处理 BeanShell 脚本化对象的工具方法。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -42,9 +42,8 @@ import org.springframework.util.ReflectionUtils;
 public abstract class BshScriptUtils {
 
 	/**
-	 * Create a new BeanShell-scripted object from the given script source.
-	 * <p>With this {@code createBshObject} variant, the script needs to
-	 * declare a full class or return an actual instance of the scripted object.
+	 * 使用给定的脚本源创建一个新的 BeanShell 脚本化对象。
+	 * <p>使用此 {@code createBshObject} 变体时，脚本需要声明完整的类，或返回脚本化对象的实际实例。
 	 * @param scriptSource the script source text
 	 * @return the scripted Java object
 	 * @throws EvalError in case of BeanShell parsing failure
@@ -54,12 +53,9 @@ public abstract class BshScriptUtils {
 	}
 
 	/**
-	 * Create a new BeanShell-scripted object from the given script source,
-	 * using the default ClassLoader.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
-	 * generated (implementing the specified interfaces), or declare a full class
-	 * or return an actual instance of the scripted object (in which case the
-	 * specified interfaces, if any, need to be implemented by that class/instance).
+	 * 使用默认的 ClassLoader，从给定的脚本源创建一个新的 BeanShell 脚本化对象。
+	 * <p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚
+	 * 本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。
 	 * @param scriptSource the script source text
 	 * @param scriptInterfaces the interfaces that the scripted Java object is
 	 * supposed to implement (may be {@code null} or empty if the script itself
@@ -73,11 +69,9 @@ public abstract class BshScriptUtils {
 	}
 
 	/**
-	 * Create a new BeanShell-scripted object from the given script source.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
-	 * generated (implementing the specified interfaces), or declare a full class
-	 * or return an actual instance of the scripted object (in which case the
-	 * specified interfaces, if any, need to be implemented by that class/instance).
+	 * 从给定的脚本源创建一个新的 BeanShell 脚本化对象。
+	 * <p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚
+	 * 本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。
 	 * @param scriptSource the script source text
 	 * @param scriptInterfaces the interfaces that the scripted Java object is
 	 * supposed to implement (may be {@code null} or empty if the script itself
@@ -105,11 +99,9 @@ public abstract class BshScriptUtils {
 	}
 
 	/**
-	 * Evaluate the specified BeanShell script based on the given script source,
-	 * returning the Class defined by the script.
-	 * <p>The script may either declare a full class or return an actual instance of
-	 * the scripted object (in which case the Class of the object will be returned).
-	 * In any other case, the returned Class will be {@code null}.
+	 * 根据给定的脚本源评估指定的 BeanShell 脚本，返回该脚本定义的 Class。
+	 * <p>脚本既可以声明完整的类，也可以返回脚本化对象的实际实例（此时将返回该对象的 Class）。在其他任
+	 * 何情况下，返回的 Class 都将为 {@code null}。
 	 * @param scriptSource the script source text
 	 * @param classLoader the ClassLoader to use for evaluating the script
 	 * @return the scripted Java class, or {@code null} if none could be determined
@@ -135,12 +127,9 @@ public abstract class BshScriptUtils {
 	}
 
 	/**
-	 * Evaluate the specified BeanShell script based on the given script source,
-	 * keeping a returned script Class or script Object as-is.
-	 * <p>The script may either be a simple script that needs a corresponding proxy
-	 * generated (implementing the specified interfaces), or declare a full class
-	 * or return an actual instance of the scripted object (in which case the
-	 * specified interfaces, if any, need to be implemented by that class/instance).
+	 * 根据给定的脚本源评估指定的 BeanShell 脚本，将返回的脚本 Class 或脚本 Object 原样保留。
+	 * <p>脚本既可以是一个简单脚本（需要生成相应的代理，实现指定的接口），也可以声明完整的类，或返回脚
+	 * 本化对象的实际实例（此时，指定的接口（如有）需要由该类/实例实现）。
 	 * @param scriptSource the script source text
 	 * @param scriptInterfaces the interfaces that the scripted Java object is
 	 * supposed to implement (may be {@code null} or empty if the script itself
@@ -173,7 +162,7 @@ public abstract class BshScriptUtils {
 
 
 	/**
-	 * InvocationHandler that invokes a BeanShell script method.
+	 * 调用 BeanShell 脚本方法的 InvocationHandler。
 	 */
 	private static class BshObjectInvocationHandler implements InvocationHandler {
 
@@ -222,7 +211,7 @@ public abstract class BshScriptUtils {
 
 
 	/**
-	 * Exception to be thrown on script execution failure.
+	 * 脚本执行失败时抛出的异常。
 	 */
 	@SuppressWarnings("serial")
 	public static final class BshExecutionException extends NestedRuntimeException {

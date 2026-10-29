@@ -38,8 +38,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Class to manage context meta-data used for the configuration
- * and execution of operations on a database table.
+ * 管理数据库表操作的配置和执行所需的上下文元数据的类。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -81,14 +80,14 @@ public class TableMetaDataContext {
 
 
 	/**
-	 * Set the name of the table for this context.
+	 * 设置此上下文的表名。
 	 */
 	public void setTableName(@Nullable String tableName) {
 		this.tableName = tableName;
 	}
 
 	/**
-	 * Get the name of the table for this context.
+	 * 获取此上下文的表名。
 	 */
 	@Nullable
 	public String getTableName() {
@@ -96,14 +95,14 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Set the name of the catalog for this context.
+	 * 设置此上下文的目录（catalog）名称。
 	 */
 	public void setCatalogName(@Nullable String catalogName) {
 		this.catalogName = catalogName;
 	}
 
 	/**
-	 * Get the name of the catalog for this context.
+	 * 获取此上下文的目录（catalog）名称。
 	 */
 	@Nullable
 	public String getCatalogName() {
@@ -111,14 +110,14 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Set the name of the schema for this context.
+	 * 设置此上下文的模式（schema）名称。
 	 */
 	public void setSchemaName(@Nullable String schemaName) {
 		this.schemaName = schemaName;
 	}
 
 	/**
-	 * Get the name of the schema for this context.
+	 * 获取此上下文的模式（schema）名称。
 	 */
 	@Nullable
 	public String getSchemaName() {
@@ -126,14 +125,14 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Specify whether we should access table column meta-data.
+	 * 指定是否应访问表列元数据。
 	 */
 	public void setAccessTableColumnMetaData(boolean accessTableColumnMetaData) {
 		this.accessTableColumnMetaData = accessTableColumnMetaData;
 	}
 
 	/**
-	 * Are we accessing table meta-data?
+	 * 是否正在访问表元数据？
 	 */
 	public boolean isAccessTableColumnMetaData() {
 		return this.accessTableColumnMetaData;
@@ -141,21 +140,21 @@ public class TableMetaDataContext {
 
 
 	/**
-	 * Specify whether we should override default for accessing synonyms.
+	 * 指定是否应覆盖包含同义词的默认设置。
 	 */
 	public void setOverrideIncludeSynonymsDefault(boolean override) {
 		this.overrideIncludeSynonymsDefault = override;
 	}
 
 	/**
-	 * Are we overriding include synonyms default?
+	 * 是否正在覆盖包含同义词的默认设置？
 	 */
 	public boolean isOverrideIncludeSynonymsDefault() {
 		return this.overrideIncludeSynonymsDefault;
 	}
 
 	/**
-	 * Get a List of the table column names.
+	 * 获取表列名称列表。
 	 */
 	public List<String> getTableColumns() {
 		return this.tableColumns;
@@ -163,10 +162,10 @@ public class TableMetaDataContext {
 
 
 	/**
-	 * Process the current meta-data with the provided configuration options.
-	 * @param dataSource the DataSource being used
-	 * @param declaredColumns any columns that are declared
-	 * @param generatedKeyNames name of generated keys
+	 * 使用提供的配置选项处理当前元数据。
+	 * @param dataSource 正在使用的 DataSource
+	 * @param declaredColumns 已声明的列
+	 * @param generatedKeyNames 生成键的名称
 	 */
 	public void processMetaData(DataSource dataSource, List<String> declaredColumns, String[] generatedKeyNames) {
 		this.metaDataProvider = TableMetaDataProviderFactory.createMetaDataProvider(dataSource, this);
@@ -179,9 +178,9 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Compare columns created from meta-data with declared columns and return a reconciled list.
-	 * @param declaredColumns declared column names
-	 * @param generatedKeyNames names of generated key columns
+	 * 将从元数据创建的列与已声明的列进行比较，返回协调后的列表。
+	 * @param declaredColumns 已声明的列名
+	 * @param generatedKeyNames 生成键列的名称
 	 */
 	protected List<String> reconcileColumnsToUse(List<String> declaredColumns, String[] generatedKeyNames) {
 		if (generatedKeyNames.length > 0) {
@@ -204,8 +203,8 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Match the provided column names and values with the list of columns used.
-	 * @param parameterSource the parameter names and values
+	 * 将提供的列名和值与使用的列列表进行匹配。
+	 * @param parameterSource 参数名称和值
 	 */
 	public List<Object> matchInParameterValuesWithInsertColumns(SqlParameterSource parameterSource) {
 		List<Object> values = new ArrayList<>();
@@ -243,8 +242,8 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Match the provided column names and values with the list of columns used.
-	 * @param inParameters the parameter names and values
+	 * 将提供的列名和值与使用的列列表进行匹配。
+	 * @param inParameters 参数名称和值
 	 */
 	public List<Object> matchInParameterValuesWithInsertColumns(Map<String, ?> inParameters) {
 		List<Object> values = new ArrayList<>(inParameters.size());
@@ -268,8 +267,8 @@ public class TableMetaDataContext {
 
 
 	/**
-	 * Build the insert string based on configuration and meta-data information.
-	 * @return the insert string to be used
+	 * 根据配置和元数据信息构建插入字符串。
+	 * @return 要使用的插入字符串
 	 */
 	public String createInsertString(String... generatedKeyNames) {
 		Set<String> keys = new LinkedHashSet<>(generatedKeyNames.length);
@@ -318,8 +317,8 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Build the array of {@link java.sql.Types} based on configuration and meta-data information.
-	 * @return the array of types to be used
+	 * 根据配置和元数据信息构建 {@link java.sql.Types} 数组。
+	 * @return 要使用的类型数组
 	 */
 	public int[] createInsertTypes() {
 		int[] types = new int[getTableColumns().size()];
@@ -349,27 +348,25 @@ public class TableMetaDataContext {
 
 
 	/**
-	 * Does this database support the JDBC 3.0 feature of retrieving generated keys:
-	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}?
+	 * 此数据库是否支持 JDBC 3.0 的检索生成键功能：
+	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}？
 	 */
 	public boolean isGetGeneratedKeysSupported() {
 		return obtainMetaDataProvider().isGetGeneratedKeysSupported();
 	}
 
 	/**
-	 * Does this database support simple query to retrieve generated keys
-	 * when the JDBC 3.0 feature is not supported:
-	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}?
+	 * 当不支持 JDBC 3.0 功能时，此数据库是否支持通过简单查询检索生成键：
+	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}？
 	 */
 	public boolean isGetGeneratedKeysSimulated() {
 		return obtainMetaDataProvider().isGetGeneratedKeysSimulated();
 	}
 
 	/**
-	 * Does this database support a simple query to retrieve generated keys
-	 * when the JDBC 3.0 feature is not supported:
-	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}?
-	 * @deprecated as of 4.3.15, in favor of {@link #getSimpleQueryForGetGeneratedKey}
+	 * 当不支持 JDBC 3.0 功能时，此数据库是否支持通过简单查询检索生成键：
+	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}？
+	 * @deprecated 自 4.3.15 起，推荐使用 {@link #getSimpleQueryForGetGeneratedKey}
 	 */
 	@Deprecated
 	@Nullable
@@ -378,9 +375,8 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Does this database support a simple query to retrieve generated keys
-	 * when the JDBC 3.0 feature is not supported:
-	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}?
+	 * 当不支持 JDBC 3.0 功能时，此数据库是否支持通过简单查询检索生成键：
+	 * {@link java.sql.DatabaseMetaData#supportsGetGeneratedKeys()}？
 	 */
 	@Nullable
 	public String getSimpleQueryForGetGeneratedKey(String tableName, String keyColumnName) {
@@ -388,8 +384,8 @@ public class TableMetaDataContext {
 	}
 
 	/**
-	 * Is a column name String array for retrieving generated keys supported:
-	 * {@link java.sql.Connection#createStruct(String, Object[])}?
+	 * 是否支持用于检索生成键的列名 String 数组：
+	 * {@link java.sql.Connection#createStruct(String, Object[])}？
 	 */
 	public boolean isGeneratedKeysColumnNameArraySupported() {
 		return obtainMetaDataProvider().isGeneratedKeysColumnNameArraySupported();

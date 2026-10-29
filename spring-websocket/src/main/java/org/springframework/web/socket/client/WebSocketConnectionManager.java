@@ -29,9 +29,9 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator;
 
 /**
- * WebSocket {@link ConnectionManagerSupport connection manager} that connects
- * to the server via {@link WebSocketClient} and handles the session with a
- * {@link WebSocketHandler}.
+ * WebSocket {@link ConnectionManagerSupport 连接管理器}，通过
+ * {@link WebSocketClient} 连接到服务器，并使用
+ * {@link WebSocketHandler} 处理会话。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -58,31 +58,30 @@ public class WebSocketConnectionManager extends ConnectionManagerSupport {
 
 
 	/**
-	 * Set the sub-protocols to use. If configured, specified sub-protocols will be
-	 * requested in the handshake through the {@code Sec-WebSocket-Protocol} header. The
-	 * resulting WebSocket session will contain the protocol accepted by the server, if
-	 * any.
+	 * 设置要使用的子协议。如果进行了配置，指定的子协议将在握手时
+	 * 通过 {@code Sec-WebSocket-Protocol} 头请求。生成的 WebSocket
+	 * 会话将包含服务器接受的协议（如果有）。
 	 */
 	public void setSubProtocols(List<String> protocols) {
 		this.headers.setSecWebSocketProtocol(protocols);
 	}
 
 	/**
-	 * Return the configured sub-protocols to use.
+	 * 返回配置的要使用的子协议。
 	 */
 	public List<String> getSubProtocols() {
 		return this.headers.getSecWebSocketProtocol();
 	}
 
 	/**
-	 * Set the origin to use.
+	 * 设置要使用的源。
 	 */
 	public void setOrigin(@Nullable String origin) {
 		this.headers.setOrigin(origin);
 	}
 
 	/**
-	 * Return the configured origin.
+	 * 返回配置的源。
 	 */
 	@Nullable
 	public String getOrigin() {
@@ -90,7 +89,7 @@ public class WebSocketConnectionManager extends ConnectionManagerSupport {
 	}
 
 	/**
-	 * Provide default headers to add to the WebSocket handshake request.
+	 * 提供要添加到 WebSocket 握手请求中的默认头。
 	 */
 	public void setHeaders(HttpHeaders headers) {
 		this.headers.clear();
@@ -98,7 +97,7 @@ public class WebSocketConnectionManager extends ConnectionManagerSupport {
 	}
 
 	/**
-	 * Return the default headers for the WebSocket handshake request.
+	 * 返回 WebSocket 握手请求的默认头。
 	 */
 	public HttpHeaders getHeaders() {
 		return this.headers;
@@ -156,8 +155,8 @@ public class WebSocketConnectionManager extends ConnectionManagerSupport {
 	}
 
 	/**
-	 * Decorate the WebSocketHandler provided to the class constructor.
-	 * <p>By default {@link LoggingWebSocketHandlerDecorator} is added.
+	 * 装饰提供给类构造函数的 WebSocketHandler。
+	 * <p>默认添加 {@link LoggingWebSocketHandlerDecorator}。
 	 */
 	protected WebSocketHandler decorateWebSocketHandler(WebSocketHandler handler) {
 		return new LoggingWebSocketHandlerDecorator(handler);

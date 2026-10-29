@@ -1,6 +1,5 @@
 /**
- * Support classes for creating SockJS frames including the encoding and decoding
- * of SockJS message frames.
+ * 用于创建 SockJS 帧的支持类，包括 SockJS 消息帧的编码和解码。
  */
 @NonNullApi
 @NonNullFields

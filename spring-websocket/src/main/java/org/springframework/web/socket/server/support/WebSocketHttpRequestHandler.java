@@ -47,12 +47,12 @@ import org.springframework.web.socket.server.HandshakeHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 /**
- * A {@link HttpRequestHandler} for processing WebSocket handshake requests.
+ * 用于处理 WebSocket 握手请求的 {@link HttpRequestHandler}。
  *
- * <p>This is the main class to use when configuring a server WebSocket at a specific URL.
- * It is a very thin wrapper around a {@link WebSocketHandler} and a {@link HandshakeHandler},
- * also adapting the {@link HttpServletRequest} and {@link HttpServletResponse} to
- * {@link ServerHttpRequest} and {@link ServerHttpResponse}, respectively.
+ * <p>这是在特定 URL 上配置服务器 WebSocket 时应使用的主要类。
+ * 它是对 {@link WebSocketHandler} 和 {@link HandshakeHandler} 的非常薄的封装，
+ * 同时分别将 {@link HttpServletRequest} 和 {@link HttpServletResponse} 适配为
+ * {@link ServerHttpRequest} 和 {@link ServerHttpResponse}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -82,9 +82,9 @@ public class WebSocketHttpRequestHandler implements HttpRequestHandler, Lifecycl
 	}
 
 	/**
-	 * Decorate the {@code WebSocketHandler} passed into the constructor.
-	 * <p>By default, {@link LoggingWebSocketHandlerDecorator} and
-	 * {@link ExceptionWebSocketHandlerDecorator} are added.
+	 * 装饰传入构造函数的 {@code WebSocketHandler}。
+	 * <p>默认情况下，会添加 {@link LoggingWebSocketHandlerDecorator} 和
+	 * {@link ExceptionWebSocketHandlerDecorator}。
 	 * @since 5.2.2
 	 */
 	protected WebSocketHandler decorate(WebSocketHandler handler) {
@@ -93,21 +93,21 @@ public class WebSocketHttpRequestHandler implements HttpRequestHandler, Lifecycl
 
 
 	/**
-	 * Return the WebSocketHandler.
+	 * 返回 WebSocketHandler。
 	 */
 	public WebSocketHandler getWebSocketHandler() {
 		return this.wsHandler;
 	}
 
 	/**
-	 * Return the HandshakeHandler.
+	 * 返回 HandshakeHandler。
 	 */
 	public HandshakeHandler getHandshakeHandler() {
 		return this.handshakeHandler;
 	}
 
 	/**
-	 * Configure one or more WebSocket handshake request interceptors.
+	 * 配置一个或多个 WebSocket 握手请求拦截器。
 	 */
 	public void setHandshakeInterceptors(@Nullable List<HandshakeInterceptor> interceptors) {
 		this.interceptors.clear();
@@ -117,7 +117,7 @@ public class WebSocketHttpRequestHandler implements HttpRequestHandler, Lifecycl
 	}
 
 	/**
-	 * Return the configured WebSocket handshake request interceptors.
+	 * 返回配置的 WebSocket 握手请求拦截器。
 	 */
 	public List<HandshakeInterceptor> getHandshakeInterceptors() {
 		return this.interceptors;

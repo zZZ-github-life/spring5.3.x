@@ -30,8 +30,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.PatternMatchUtils;
 
 /**
- * Simple {@link CacheOperationSource} implementation that allows attributes to be matched
- * by registered name.
+ * 简单的 {@link CacheOperationSource} 实现，允许按注册的名称匹配属性。
  *
  * @author Costin Leau
  * @since 3.1
@@ -40,20 +39,20 @@ import org.springframework.util.PatternMatchUtils;
 public class NameMatchCacheOperationSource implements CacheOperationSource, Serializable {
 
 	/**
-	 * Logger available to subclasses.
-	 * <p>Static for optimal serialization.
+	 * 可供子类使用的日志记录器。
+	 *
+	 * <p>为获得最佳序列化效果而设为静态。
 	 */
 	protected static final Log logger = LogFactory.getLog(NameMatchCacheOperationSource.class);
 
 
-	/** Keys are method names; values are TransactionAttributes. */
+	/** 键为方法名；值为 TransactionAttributes。 */
 	private Map<String, Collection<CacheOperation>> nameMap = new LinkedHashMap<>();
 
 
 	/**
-	 * Set a name/attribute map, consisting of method names
-	 * (e.g. "myMethod") and CacheOperation instances
-	 * (or Strings to be converted to CacheOperation instances).
+	 * 设置名称/属性映射，由方法名（例如 "myMethod"）和 CacheOperation 实例
+	 * （或要转换为 CacheOperation 实例的 String）组成。
 	 * @see CacheOperation
 	 */
 	public void setNameMap(Map<String, Collection<CacheOperation>> nameMap) {
@@ -61,9 +60,10 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 	}
 
 	/**
-	 * Add an attribute for a cacheable method.
-	 * <p>Method names can be exact matches, or of the pattern "xxx*",
-	 * "*xxx" or "*xxx*" for matching multiple methods.
+	 * 为可缓存的方法添加属性。
+	 *
+	 * <p>方法名可以是精确匹配，也可以是 "xxx*"、
+	 * "*xxx" 或 "*xxx*" 模式，用于匹配多个方法。
 	 * @param methodName the name of the method
 	 * @param ops operation associated with the method
 	 */
@@ -97,9 +97,10 @@ public class NameMatchCacheOperationSource implements CacheOperationSource, Seri
 	}
 
 	/**
-	 * Return if the given method name matches the mapped name.
-	 * <p>The default implementation checks for "xxx*", "*xxx" and "*xxx*" matches,
-	 * as well as direct equality. Can be overridden in subclasses.
+	 * 返回给定的方法名是否与映射的名称匹配。
+	 *
+	 * <p>默认实现检查 "xxx*"、"*xxx" 和 "*xxx*" 匹配，
+	 * 以及直接相等。可以在子类中重写。
 	 * @param methodName the method name of the class
 	 * @param mappedName the name in the descriptor
 	 * @return if the names match

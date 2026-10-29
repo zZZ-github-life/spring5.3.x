@@ -1,5 +1,5 @@
 /**
- * Abstraction for handling fields of SQLXML data type.
+ * 用于处理 SQLXML 数据类型字段的抽象。
  */
 @NonNullApi
 @NonNullFields

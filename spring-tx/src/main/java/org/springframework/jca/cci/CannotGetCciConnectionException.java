@@ -21,7 +21,7 @@ import javax.resource.ResourceException;
 import org.springframework.dao.DataAccessResourceFailureException;
 
 /**
- * Fatal exception thrown when we can't connect to an EIS using CCI.
+ * 当无法通过 CCI 连接到 EIS 时抛出的致命异常。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -34,7 +34,7 @@ import org.springframework.dao.DataAccessResourceFailureException;
 public class CannotGetCciConnectionException extends DataAccessResourceFailureException {
 
 	/**
-	 * Constructor for CannotGetCciConnectionException.
+	 * CannotGetCciConnectionException 的构造器。
 	 * @param msg message
 	 * @param ex the root ResourceException cause
 	 */

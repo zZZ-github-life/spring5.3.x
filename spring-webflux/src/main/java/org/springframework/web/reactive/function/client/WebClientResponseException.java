@@ -27,8 +27,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * Exceptions that contain actual HTTP response data.
- *
+ * 包含实际 HTTP 响应数据的异常。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -53,7 +52,7 @@ public class WebClientResponseException extends WebClientException {
 
 
 	/**
-	 * Constructor with response data only, and a default message.
+	 * 仅使用响应数据和默认消息的构造函数。
 	 * @since 5.1
 	 */
 	public WebClientResponseException(int statusCode, String statusText,
@@ -63,7 +62,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Constructor with response data only, and a default message.
+	 * 仅使用响应数据和默认消息的构造函数。
 	 * @since 5.1.4
 	 */
 	public WebClientResponseException(int status, String reasonPhrase,
@@ -79,7 +78,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Constructor with a prepared message.
+	 * 使用预先准备的消息的构造函数。
 	 */
 	public WebClientResponseException(String message, int statusCode, String statusText,
 			@Nullable HttpHeaders headers, @Nullable byte[] responseBody, @Nullable Charset charset) {
@@ -87,7 +86,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Constructor with a prepared message.
+	 * 使用预先准备的消息的构造函数。
 	 * @since 5.1.4
 	 */
 	public WebClientResponseException(String message, int statusCode, String statusText,
@@ -105,8 +104,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Not all {@code HttpHeaders} implementations are serializable, so we
-	 * make a copy to ensure that {@code WebClientResponseException} is.
+	 * 并非所有 {@code HttpHeaders} 实现都可序列化，因此我们进行复制以确保 {@code WebClientResponseException} 可序列化。
 	 */
 	private static HttpHeaders copy(@Nullable HttpHeaders headers) {
 		if (headers == null) {
@@ -125,7 +123,7 @@ public class WebClientResponseException extends WebClientException {
 
 
 	/**
-	 * Return the HTTP status code value.
+	 * 返回 HTTP 状态码值。
 	 * @throws IllegalArgumentException in case of an unknown HTTP status code
 	 */
 	public HttpStatus getStatusCode() {
@@ -133,47 +131,42 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Return the raw HTTP status code value.
+	 * 返回原始 HTTP 状态码值。
 	 */
 	public int getRawStatusCode() {
 		return this.statusCode;
 	}
 
 	/**
-	 * Return the HTTP status text.
+	 * 返回 HTTP 状态文本。
 	 */
 	public String getStatusText() {
 		return this.statusText;
 	}
 
 	/**
-	 * Return the HTTP response headers.
+	 * 返回 HTTP 响应头。
 	 */
 	public HttpHeaders getHeaders() {
 		return this.headers;
 	}
 
 	/**
-	 * Return the response body as a byte array.
+	 * 将响应正文作为字节数组返回。
 	 */
 	public byte[] getResponseBodyAsByteArray() {
 		return this.responseBody;
 	}
 
 	/**
-	 * Return the response content as a String using the charset of media type
-	 * for the response, if available, or otherwise falling back on
-	 * {@literal ISO-8859-1}. Use {@link #getResponseBodyAsString(Charset)} if
-	 * you want to fall back on a different, default charset.
+	 * 使用响应的媒体类型字符集（如果可用）将响应内容作为 String 返回，否则回退到 {@literal ISO-8859-1}。如果希望回退到其他默认字符集，请使用 {@link #getResponseBodyAsString(Charset)}。
 	 */
 	public String getResponseBodyAsString() {
 		return getResponseBodyAsString(StandardCharsets.ISO_8859_1);
 	}
 
 	/**
-	 * Variant of {@link #getResponseBodyAsString()} that allows specifying the
-	 * charset to fall back on, if a charset is not available from the media
-	 * type for the response.
+	 * {@link #getResponseBodyAsString()} 的变体，允许指定在无法从响应的媒体类型获取字符集时回退使用的字符集。
 	 * @param defaultCharset the charset to use if the {@literal Content-Type}
 	 * of the response does not specify one.
 	 * @since 5.3.7
@@ -184,7 +177,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Return the corresponding request.
+	 * 返回对应的请求。
 	 * @since 5.1.4
 	 */
 	@Nullable
@@ -193,7 +186,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Create {@code WebClientResponseException} or an HTTP status specific subclass.
+	 * 创建 {@code WebClientResponseException} 或特定 HTTP 状态的子类。
 	 * @since 5.1
 	 */
 	public static WebClientResponseException create(
@@ -203,7 +196,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * Create {@code WebClientResponseException} or an HTTP status specific subclass.
+	 * 创建 {@code WebClientResponseException} 或特定 HTTP 状态的子类。
 	 * @since 5.1.4
 	 */
 	public static WebClientResponseException create(
@@ -255,7 +248,7 @@ public class WebClientResponseException extends WebClientException {
 	// Subclasses for specific, client-side, HTTP status codes
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 400 Bad Request.
+	 * 用于 HTTP 状态 400 Bad Request 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -269,7 +262,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 401 Unauthorized.
+	 * 用于 HTTP 状态 401 Unauthorized 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -282,7 +275,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 403 Forbidden.
+	 * 用于 HTTP 状态 403 Forbidden 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -295,7 +288,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 404 Not Found.
+	 * 用于 HTTP 状态 404 Not Found 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -308,7 +301,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 405 Method Not Allowed.
+	 * 用于 HTTP 状态 405 Method Not Allowed 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -322,7 +315,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 406 Not Acceptable.
+	 * 用于 HTTP 状态 406 Not Acceptable 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -335,7 +328,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 409 Conflict.
+	 * 用于 HTTP 状态 409 Conflict 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -348,7 +341,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 410 Gone.
+	 * 用于 HTTP 状态 410 Gone 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -361,7 +354,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 415 Unsupported Media Type.
+	 * 用于 HTTP 状态 415 Unsupported Media Type 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -376,7 +369,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 422 Unprocessable Entity.
+	 * 用于 HTTP 状态 422 Unprocessable Entity 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -390,7 +383,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 429 Too Many Requests.
+	 * 用于 HTTP 状态 429 Too Many Requests 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -408,7 +401,7 @@ public class WebClientResponseException extends WebClientException {
 	// Subclasses for specific, server-side, HTTP status codes
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 500 Internal Server Error.
+	 * 用于 HTTP 状态 500 Internal Server Error 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -422,7 +415,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 501 Not Implemented.
+	 * 用于 HTTP 状态 501 Not Implemented 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -435,7 +428,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for HTTP status 502 Bad Gateway.
+	 * 用于 HTTP 状态 502 Bad Gateway 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -448,7 +441,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 503 Service Unavailable.
+	 * 用于 HTTP 状态 503 Service Unavailable 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -462,7 +455,7 @@ public class WebClientResponseException extends WebClientException {
 	}
 
 	/**
-	 * {@link WebClientResponseException} for status HTTP 504 Gateway Timeout.
+	 * 用于 HTTP 状态 504 Gateway Timeout 的 {@link WebClientResponseException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")

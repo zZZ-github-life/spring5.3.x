@@ -36,22 +36,21 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.View;
 
 /**
- * A {@link org.springframework.web.servlet.ViewResolver} implementation that uses
- * bean definitions in a {@link ResourceBundle}, specified by the bundle basename.
+ * {@link org.springframework.web.servlet.ViewResolver} 的一种实现，
+ * 使用由 bundle 基名（basename）指定的 {@link ResourceBundle} 中的 bean 定义。
  *
- * <p>The bundle is typically defined in a properties file, located in the classpath.
- * The default bundle basename is "views".
+ * <p>bundle 通常定义在位于 classpath 中的 properties 文件里。
+ * 默认的 bundle 基名是 "views"。
  *
- * <p>This {@code ViewResolver} supports localized view definitions, using the
- * default support of {@link java.util.PropertyResourceBundle}. For example, the
- * basename "views" will be resolved as class path resources "views_de_AT.properties",
- * "views_de.properties", "views.properties" - for a given Locale "de_AT".
+ * <p>此 {@code ViewResolver} 利用 {@link java.util.PropertyResourceBundle} 的默认支持，
+ * 支持本地化的视图定义。例如，对于给定的 Locale "de_AT"，
+ * 基名 "views" 将被解析为 classpath 资源 "views_de_AT.properties"、
+ * "views_de.properties"、"views.properties"。
  *
- * <p>Note: This {@code ViewResolver} implements the {@link Ordered} interface
- * in order to allow for flexible participation in {@code ViewResolver} chaining.
- * For example, some special views could be defined via this {@code ViewResolver}
- * (giving it 0 as "order" value), while all remaining views could be resolved by
- * a {@link UrlBasedViewResolver}.
+ * <p>注意：此 {@code ViewResolver} 实现了 {@link Ordered} 接口，
+ * 以便灵活参与 {@code ViewResolver} 链。例如，可以通过此 {@code ViewResolver}
+ * 定义一些特殊视图（将其 "order" 值设为 0），而所有其余视图则可以由
+ * {@link UrlBasedViewResolver} 解析。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -66,7 +65,7 @@ import org.springframework.web.servlet.View;
 public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 		implements Ordered, InitializingBean, DisposableBean {
 
-	/** The default basename if no other basename is supplied. */
+	/** 如果未提供其他基名，则使用的默认基名。 */
 	public static final String DEFAULT_BASENAME = "views";
 
 
@@ -90,15 +89,15 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 
 	/**
-	 * Set a single basename, following {@link java.util.ResourceBundle} conventions.
-	 * The default is "views".
-	 * <p>{@code ResourceBundle} supports different locale suffixes. For example,
-	 * a base name of "views" might map to {@code ResourceBundle} files
-	 * "views", "views_en_au" and "views_de".
-	 * <p>Note that ResourceBundle names are effectively classpath locations: As a
-	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
-	 * This means that "test.theme" is effectively equivalent to "test/theme",
-	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
+	 * 设置单个基名，遵循 {@link java.util.ResourceBundle} 的约定。
+	 * 默认为 "views"。
+	 * <p>{@code ResourceBundle} 支持不同的 locale 后缀。例如，
+	 * 基名 "views" 可以映射到 {@code ResourceBundle} 文件
+	 * "views"、"views_en_au" 和 "views_de"。
+	 * <p>注意：ResourceBundle 名称实际上就是 classpath 位置：因此，
+	 * JDK 标准的 ResourceBundle 会将点号视为包分隔符。
+	 * 这意味着 "test.theme" 实际上等价于 "test/theme"，
+	 * 这与编程方式使用 {@code java.util.ResourceBundle} 时的情况相同。
 	 * @see #setBasenames
 	 * @see ResourceBundle#getBundle(String)
 	 * @see ResourceBundle#getBundle(String, Locale)
@@ -108,18 +107,18 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Set an array of basenames, each following {@link java.util.ResourceBundle}
-	 * conventions. The default is a single basename "views".
-	 * <p>{@code ResourceBundle} supports different locale suffixes. For example,
-	 * a base name of "views" might map to {@code ResourceBundle} files
-	 * "views", "views_en_au" and "views_de".
-	 * <p>The associated resource bundles will be checked sequentially when resolving
-	 * a message code. Note that message definitions in a <i>previous</i> resource
-	 * bundle will override ones in a later bundle, due to the sequential lookup.
-	 * <p>Note that ResourceBundle names are effectively classpath locations: As a
-	 * consequence, the JDK's standard ResourceBundle treats dots as package separators.
-	 * This means that "test.theme" is effectively equivalent to "test/theme",
-	 * just like it is for programmatic {@code java.util.ResourceBundle} usage.
+	 * 设置基名数组，每个基名都遵循 {@link java.util.ResourceBundle} 的约定。
+	 * 默认为单个基名 "views"。
+	 * <p>{@code ResourceBundle} 支持不同的 locale 后缀。例如，
+	 * 基名 "views" 可以映射到 {@code ResourceBundle} 文件
+	 * "views"、"views_en_au" 和 "views_de"。
+	 * <p>在解析消息代码时，将按顺序检查关联的资源 bundle。
+	 * 请注意，由于是按顺序查找，<i>前一个</i>资源 bundle 中的消息定义
+	 * 会覆盖后一个 bundle 中的定义。
+	 * <p>注意：ResourceBundle 名称实际上就是 classpath 位置：因此，
+	 * JDK 标准的 ResourceBundle 会将点号视为包分隔符。
+	 * 这意味着 "test.theme" 实际上等价于 "test/theme"，
+	 * 这与编程方式使用 {@code java.util.ResourceBundle} 时的情况相同。
 	 * @see #setBasename
 	 * @see ResourceBundle#getBundle(String)
 	 * @see ResourceBundle#getBundle(String, Locale)
@@ -129,51 +128,48 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Set the {@link ClassLoader} to load resource bundles with.
-	 * Default is the thread context {@code ClassLoader}.
+	 * 设置用于加载资源 bundle 的 {@link ClassLoader}。
+	 * 默认为线程上下文 {@code ClassLoader}。
 	 */
 	public void setBundleClassLoader(ClassLoader classLoader) {
 		this.bundleClassLoader = classLoader;
 	}
 
 	/**
-	 * Return the {@link ClassLoader} to load resource bundles with.
-	 * <p>Default is the specified bundle {@code ClassLoader},
-	 * usually the thread context {@code ClassLoader}.
+	 * 返回用于加载资源 bundle 的 {@link ClassLoader}。
+	 * <p>默认为指定的 bundle {@code ClassLoader}，
+	 * 通常是线程上下文 {@code ClassLoader}。
 	 */
 	protected ClassLoader getBundleClassLoader() {
 		return this.bundleClassLoader;
 	}
 
 	/**
-	 * Set the default parent for views defined in the {@code ResourceBundle}.
-	 * <p>This avoids repeated "yyy1.(parent)=xxx", "yyy2.(parent)=xxx" definitions
-	 * in the bundle, especially if all defined views share the same parent.
-	 * <p>The parent will typically define the view class and common attributes.
-	 * Concrete views might simply consist of a URL definition then:
-	 * a la "yyy1.url=/my.jsp", "yyy2.url=/your.jsp".
-	 * <p>View definitions that define their own parent or carry their own
-	 * class can still override this. Strictly speaking, the rule that a
-	 * default parent setting does not apply to a bean definition that
-	 * carries a class is there for backwards compatibility reasons.
-	 * It still matches the typical use case.
+	 * 设置 {@code ResourceBundle} 中所定义视图的默认父视图。
+	 * <p>这样可以避免在 bundle 中重复定义 "yyy1.(parent)=xxx"、"yyy2.(parent)=xxx"，
+	 * 尤其是在所有已定义视图共享同一父视图时。
+	 * <p>父视图通常会定义视图类和公共属性。
+	 * 具体视图随后可以仅由 URL 定义组成：
+	 * 例如 "yyy1.url=/my.jsp"、"yyy2.url=/your.jsp"。
+	 * <p>定义了自己的父视图或自带 class 的视图定义仍然可以覆盖此设置。
+	 * 严格来说，默认父视图设置不适用于自带 class 的 bean 定义，
+	 * 这条规则是出于向后兼容的考虑。不过它仍然符合典型的使用场景。
 	 */
 	public void setDefaultParentView(String defaultParentView) {
 		this.defaultParentView = defaultParentView;
 	}
 
 	/**
-	 * Specify Locales to initialize eagerly, rather than lazily when actually accessed.
-	 * <p>Allows for pre-initialization of common Locales, eagerly checking
-	 * the view configuration for those Locales.
+	 * 指定需要立即初始化的 Locale，而不是等到实际访问时才延迟初始化。
+	 * <p>这样可以预初始化常用的 Locale，提前检查这些 Locale 的视图配置。
 	 */
 	public void setLocalesToInitialize(Locale... localesToInitialize) {
 		this.localesToInitialize = localesToInitialize;
 	}
 
 	/**
-	 * Specify the order value for this ViewResolver bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * 指定此 ViewResolver bean 的 order 值。
+	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示不排序。
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -186,7 +182,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Eagerly initialize Locales if necessary.
+	 * 如有必要，立即初始化各 Locale。
 	 * @see #setLocalesToInitialize
 	 */
 	@Override
@@ -212,9 +208,8 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Initialize the View {@link BeanFactory} from the {@code ResourceBundle},
-	 * for the given {@link Locale locale}.
-	 * <p>Synchronized because of access by parallel threads.
+	 * 针对给定的 {@link Locale}，从 {@code ResourceBundle} 初始化视图 {@link BeanFactory}。
+	 * <p>由于会被并行线程访问，因此使用同步。
 	 * @param locale the target {@code Locale}
 	 * @return the View factory for the given Locale
 	 * @throws BeansException in case of initialization errors
@@ -270,7 +265,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 	}
 
 	/**
-	 * Obtain the resource bundle for the given basename and {@link Locale}.
+	 * 获取给定基名和 {@link Locale} 对应的资源 bundle。
 	 * @param basename the basename to look for
 	 * @param locale the {@code Locale} to look for
 	 * @return the corresponding {@code ResourceBundle}
@@ -283,7 +278,7 @@ public class ResourceBundleViewResolver extends AbstractCachingViewResolver
 
 
 	/**
-	 * Close the bundle View factories on context shutdown.
+	 * 在上下文关闭时关闭 bundle 视图工厂。
 	 */
 	@Override
 	public void destroy() throws BeansException {

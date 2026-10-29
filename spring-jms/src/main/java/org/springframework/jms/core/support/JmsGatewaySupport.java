@@ -27,12 +27,12 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.lang.Nullable;
 
 /**
- * Convenient superclass for application classes that need JMS access.
+ * 供需要 JMS 访问的应用类使用的便捷基类。
  *
- * <p>Requires a ConnectionFactory or a JmsTemplate instance to be set.
- * It will create its own JmsTemplate if a ConnectionFactory is passed in.
- * A custom JmsTemplate instance can be created for a given ConnectionFactory
- * through overriding the {@link #createJmsTemplate} method.
+ * <p>需要设置 ConnectionFactory 或 JmsTemplate 实例。如果传入的是
+ * ConnectionFactory，它将创建自己的 JmsTemplate。可以通过重写
+ * {@link #createJmsTemplate} 方法为给定的 ConnectionFactory 创建自定义的
+ * JmsTemplate 实例。
  *
  * @author Mark Pollack
  * @since 1.1.1
@@ -43,7 +43,7 @@ import org.springframework.lang.Nullable;
  */
 public abstract class JmsGatewaySupport implements InitializingBean {
 
-	/** Logger available to subclasses. */
+	/** 供子类使用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -51,8 +51,8 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 
 
 	/**
-	 * Set the JMS connection factory to be used by the gateway.
-	 * Will automatically create a JmsTemplate for the given ConnectionFactory.
+	 * 设置网关使用的 JMS 连接工厂。
+	 * 将自动为给定的 ConnectionFactory 创建 JmsTemplate。
 	 * @see #createJmsTemplate
 	 * @see #setConnectionFactory(javax.jms.ConnectionFactory)
 	 */
@@ -61,10 +61,9 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	}
 
 	/**
-	 * Create a JmsTemplate for the given ConnectionFactory.
-	 * Only invoked if populating the gateway with a ConnectionFactory reference.
-	 * <p>Can be overridden in subclasses to provide a JmsTemplate instance with
-	 * a different configuration.
+	 * 为给定的 ConnectionFactory 创建 JmsTemplate。
+	 * 仅在为网关填充 ConnectionFactory 引用时调用。
+	 * <p>可在子类中重写，以提供具有不同配置的 JmsTemplate 实例。
 	 * @param connectionFactory the JMS ConnectionFactory to create a JmsTemplate for
 	 * @return the new JmsTemplate instance
 	 * @see #setConnectionFactory
@@ -74,7 +73,7 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	}
 
 	/**
-	 * Return the JMS ConnectionFactory used by the gateway.
+	 * 返回网关使用的 JMS ConnectionFactory。
 	 */
 	@Nullable
 	public final ConnectionFactory getConnectionFactory() {
@@ -82,7 +81,7 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	}
 
 	/**
-	 * Set the JmsTemplate for the gateway.
+	 * 设置网关使用的 JmsTemplate。
 	 * @see #setConnectionFactory(javax.jms.ConnectionFactory)
 	 */
 	public final void setJmsTemplate(@Nullable JmsTemplate jmsTemplate) {
@@ -90,7 +89,7 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	}
 
 	/**
-	 * Return the JmsTemplate for the gateway.
+	 * 返回网关使用的 JmsTemplate。
 	 */
 	@Nullable
 	public final JmsTemplate getJmsTemplate() {
@@ -111,8 +110,8 @@ public abstract class JmsGatewaySupport implements InitializingBean {
 	}
 
 	/**
-	 * Subclasses can override this for custom initialization behavior.
-	 * Gets called after population of this instance's bean properties.
+	 * 子类可以重写此方法以实现自定义初始化行为。
+	 * 在填充此实例的 bean 属性之后调用。
 	 * @throws java.lang.Exception if initialization fails
 	 */
 	protected void initGateway() throws Exception {

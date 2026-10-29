@@ -27,20 +27,18 @@ import org.springframework.web.reactive.socket.server.WebSocketService;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@code HandlerAdapter} that allows
- * {@link org.springframework.web.reactive.DispatcherHandler} to support
- * handlers of type {@link WebSocketHandler} with such handlers mapped to
- * URL patterns via
- * {@link org.springframework.web.reactive.handler.SimpleUrlHandlerMapping}.
+ * {@code HandlerAdapter}，使
+ * {@link org.springframework.web.reactive.DispatcherHandler} 能够支持
+ * {@link WebSocketHandler} 类型的处理器，此类处理器可通过
+ * {@link org.springframework.web.reactive.handler.SimpleUrlHandlerMapping}
+ * 映射到 URL 模式。
  *
- * <p>Requests are handled by delegating to a
- * {@link WebSocketService}, by default {@link HandshakeWebSocketService},
- * which checks the WebSocket handshake request parameters, upgrades to a
- * WebSocket interaction, and uses the {@link WebSocketHandler} to handle it.
+ * <p>请求通过委托给 {@link WebSocketService}（默认是
+ * {@link HandshakeWebSocketService}）来处理，该服务会检查 WebSocket 握手请求参数，
+ * 升级为 WebSocket 交互，并使用 {@link WebSocketHandler} 进行处理。
  *
- * <p>As of 5.3 the WebFlux Java configuration, imported via
- * {@code @EnableWebFlux}, includes a declaration of this adapter and therefore
- * it no longer needs to be present in application configuration.
+ * <p>自 5.3 起，通过 {@code @EnableWebFlux} 导入的 WebFlux Java 配置已包含对此
+ * 适配器的声明，因此它不再需要出现在应用程序配置中。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -53,15 +51,14 @@ public class WebSocketHandlerAdapter implements HandlerAdapter, Ordered {
 
 
 	/**
-	 * Default constructor that creates and uses a
-	 * {@link HandshakeWebSocketService}.
+	 * 默认构造函数，创建并使用一个 {@link HandshakeWebSocketService}。
 	 */
 	public WebSocketHandlerAdapter() {
 		this(new HandshakeWebSocketService());
 	}
 
 	/**
-	 * Alternative constructor with the {@link WebSocketService} to use.
+	 * 指定要使用的 {@link WebSocketService} 的备用构造函数。
 	 */
 	public WebSocketHandlerAdapter(WebSocketService webSocketService) {
 		Assert.notNull(webSocketService, "'webSocketService' is required");
@@ -70,8 +67,8 @@ public class WebSocketHandlerAdapter implements HandlerAdapter, Ordered {
 
 
 	/**
-	 * Set the order value for this adapter.
-	 * <p>By default this is set to 2.
+	 * 设置此适配器的顺序值。
+	 * <p>默认设置为 2。
 	 * @param order the value to set to
 	 * @since 5.3
 	 */
@@ -80,7 +77,7 @@ public class WebSocketHandlerAdapter implements HandlerAdapter, Ordered {
 	}
 
 	/**
-	 * Return the {@link #setOrder(int) configured} order for this instance.
+	 * 返回此实例的 {@link #setOrder(int) 配置}顺序。
 	 * @since 5.3
 	 */
 	@Override
@@ -89,7 +86,7 @@ public class WebSocketHandlerAdapter implements HandlerAdapter, Ordered {
 	}
 
 	/**
-	 * Return the configured {@code WebSocketService} to handle requests.
+	 * 返回配置的用于处理请求的 {@code WebSocketService}。
 	 */
 	public WebSocketService getWebSocketService() {
 		return this.webSocketService;

@@ -35,16 +35,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.cors.CorsUtils;
 
 /**
- * A logical disjunction (' || ') request condition that matches a request
- * against a set of {@link RequestMethod RequestMethods}.
- *
+ * 逻辑析取（' || '）请求条件，用于将请求
+ * 与一组 {@link RequestMethod RequestMethods} 进行匹配。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @since 3.1
  */
 public final class RequestMethodsRequestCondition extends AbstractRequestCondition<RequestMethodsRequestCondition> {
 
-	/** Per HTTP method cache to return ready instances from getMatchingCondition. */
+	/** 按 HTTP 方法缓存，用于从 getMatchingCondition 返回现成的实例。 */
 	private static final Map<String, RequestMethodsRequestCondition> requestMethodConditionCache;
 
 	static {
@@ -59,7 +58,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 
 
 	/**
-	 * Create a new instance with the given request methods.
+	 * 使用给定的请求方法创建一个新实例。
 	 * @param requestMethods 0 or more HTTP request methods;
 	 * if, 0 the condition will match to every request
 	 */
@@ -69,7 +68,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Private constructor for internal use when combining conditions.
+	 * 用于组合条件时内部使用的私有构造函数。
 	 */
 	private RequestMethodsRequestCondition(Set<RequestMethod> methods) {
 		this.methods = methods;
@@ -77,7 +76,7 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 
 
 	/**
-	 * Returns all {@link RequestMethod RequestMethods} contained in this condition.
+	 * 返回此条件中包含的所有 {@link RequestMethod RequestMethods}。
 	 */
 	public Set<RequestMethod> getMethods() {
 		return this.methods;
@@ -94,8 +93,8 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Returns a new instance with a union of the HTTP request methods
-	 * from "this" and the "other" instance.
+	 * 返回一个新实例，其中包含 "this" 和 "other" 实例的
+	 * HTTP 请求方法的并集。
 	 */
 	@Override
 	public RequestMethodsRequestCondition combine(RequestMethodsRequestCondition other) {
@@ -114,8 +113,8 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Check if any of the HTTP request methods match the given request and
-	 * return an instance that contains the matching HTTP request method only.
+	 * 检查是否有任何 HTTP 请求方法匹配给定请求，
+	 * 并返回一个仅包含匹配的 HTTP 请求方法的实例。
 	 * @param request the current request
 	 * @return the same instance if the condition is empty (unless the request
 	 * method is HTTP OPTIONS), a new condition with the matched request method,
@@ -142,9 +141,9 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * On a pre-flight request match to the would-be, actual request.
-	 * Hence empty conditions is a match, otherwise try to match to the HTTP
-	 * method in the "Access-Control-Request-Method" header.
+	 * 对于预检请求，匹配实际将要发生的请求。
+	 * 因此，空条件即为匹配；否则尝试匹配
+	 * "Access-Control-Request-Method" 头中的 HTTP 方法。
 	 */
 	@Nullable
 	private RequestMethodsRequestCondition matchPreFlight(HttpServletRequest request) {
@@ -174,15 +173,15 @@ public final class RequestMethodsRequestCondition extends AbstractRequestConditi
 	}
 
 	/**
-	 * Returns:
+	 * 返回：
 	 * <ul>
-	 * <li>0 if the two conditions contain the same number of HTTP request methods
-	 * <li>Less than 0 if "this" instance has an HTTP request method but "other" doesn't
-	 * <li>Greater than 0 "other" has an HTTP request method but "this" doesn't
+	 * <li>如果两个条件包含的 HTTP 请求方法数量相同，则为 0
+	 * <li>如果 "this" 实例有 HTTP 请求方法而 "other" 没有，则小于 0
+	 * <li>如果 "other" 有 HTTP 请求方法而 "this" 没有，则大于 0
 	 * </ul>
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(HttpServletRequest)} and therefore each instance
-	 * contains the matching HTTP request method only or is otherwise empty.
+	 * <p>假定两个实例都是通过
+	 * {@link #getMatchingCondition(HttpServletRequest)} 获得的，因此每个实例
+	 * 仅包含匹配的 HTTP 请求方法，或者为空。
 	 */
 	@Override
 	public int compareTo(RequestMethodsRequestCondition other, HttpServletRequest request) {

@@ -1,6 +1,5 @@
 /**
- * Provides a strategy for MBeanInfo assembly. Used by MBeanExporter to
- * determine the attributes and operations to expose for Spring-managed beans.
+ * 提供用于装配 MBeanInfo 的策略。由 MBeanExporter 用来确定为 Spring 管理的 Bean 暴露哪些属性和操作。
  */
 @NonNullApi
 @NonNullFields

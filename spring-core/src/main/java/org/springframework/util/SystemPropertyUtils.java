@@ -19,11 +19,10 @@ package org.springframework.util;
 import org.springframework.lang.Nullable;
 
 /**
- * Helper class for resolving placeholders in texts. Usually applied to file paths.
+ * 用于解析文本中占位符的辅助类。通常应用于文件路径。
  *
- * <p>A text may contain {@code ${...}} placeholders, to be resolved as system properties:
- * e.g. {@code ${user.dir}}. Default values can be supplied using the ":" separator
- * between key and value.
+ * <p>文本中可能包含 {@code ${...}} 占位符，它们会被解析为系统属性：例如 {@code ${user.dir}}。可以
+ * 使用键和值之间的 ":" 分隔符来提供默认值。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -35,13 +34,13 @@ import org.springframework.lang.Nullable;
  */
 public abstract class SystemPropertyUtils {
 
-	/** Prefix for system property placeholders: "${". */
+	/** 系统属性占位符的前缀："${"。 */
 	public static final String PLACEHOLDER_PREFIX = "${";
 
-	/** Suffix for system property placeholders: "}". */
+	/** 系统属性占位符的后缀："}"。 */
 	public static final String PLACEHOLDER_SUFFIX = "}";
 
-	/** Value separator for system property placeholders: ":". */
+	/** 系统属性占位符的值分隔符：":"。 */
 	public static final String VALUE_SEPARATOR = ":";
 
 
@@ -53,8 +52,7 @@ public abstract class SystemPropertyUtils {
 
 
 	/**
-	 * Resolve {@code ${...}} placeholders in the given text, replacing them with
-	 * corresponding system property values.
+	 * 解析给定文本中的 {@code ${...}} 占位符，将其替换为相应的系统属性值。
 	 * @param text the String to resolve
 	 * @return the resolved String
 	 * @throws IllegalArgumentException if there is an unresolvable placeholder
@@ -66,9 +64,8 @@ public abstract class SystemPropertyUtils {
 	}
 
 	/**
-	 * Resolve {@code ${...}} placeholders in the given text, replacing them with
-	 * corresponding system property values. Unresolvable placeholders with no default
-	 * value are ignored and passed through unchanged if the flag is set to {@code true}.
+	 * 解析给定文本中的 {@code ${...}} 占位符，将其替换为相应的系统属性值。如果标志设置为 {@code true}，
+	 * 则没有默认值的无法解析的占位符会被忽略并原样传递。
 	 * @param text the String to resolve
 	 * @param ignoreUnresolvablePlaceholders whether unresolved placeholders are to be ignored
 	 * @return the resolved String
@@ -87,8 +84,7 @@ public abstract class SystemPropertyUtils {
 
 
 	/**
-	 * PlaceholderResolver implementation that resolves against system properties
-	 * and system environment variables.
+	 * PlaceholderResolver 实现，针对系统属性和系统环境变量进行解析。
 	 */
 	private static class SystemPropertyPlaceholderResolver implements PropertyPlaceholderHelper.PlaceholderResolver {
 

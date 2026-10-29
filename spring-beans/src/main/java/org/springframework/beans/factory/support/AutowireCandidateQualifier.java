@@ -20,9 +20,8 @@ import org.springframework.beans.BeanMetadataAttributeAccessor;
 import org.springframework.util.Assert;
 
 /**
- * Qualifier for resolving autowire candidates. A bean definition that
- * includes one or more such qualifiers enables fine-grained matching
- * against annotations on a field or parameter to be autowired.
+ * 用于解析自动装配候选者的限定符。包含一个或多个此类限定符的 Bean 定义可以对字段或参数上的注解进行
+ * 细粒度匹配，以便自动装配。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -33,7 +32,7 @@ import org.springframework.util.Assert;
 public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 
 	/**
-	 * The name of the key used to store the value.
+	 * 用于存储值的键的名称。
 	 */
 	public static final String VALUE_KEY = "value";
 
@@ -41,8 +40,7 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 
 
 	/**
-	 * Construct a qualifier to match against an annotation of the
-	 * given type.
+	 * 构造一个限定符，用于与给定类型的注解进行匹配。
 	 * @param type the annotation type
 	 */
 	public AutowireCandidateQualifier(Class<?> type) {
@@ -50,10 +48,8 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 	}
 
 	/**
-	 * Construct a qualifier to match against an annotation of the
-	 * given type name.
-	 * <p>The type name may match the fully-qualified class name of
-	 * the annotation or the short class name (without the package).
+	 * 构造一个限定符，用于与给定类型名称的注解进行匹配。<p>类型名称可以匹配注解的全限定类名或短类名
+	 * （不含包名）。
 	 * @param typeName the name of the annotation type
 	 */
 	public AutowireCandidateQualifier(String typeName) {
@@ -62,9 +58,7 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 	}
 
 	/**
-	 * Construct a qualifier to match against an annotation of the
-	 * given type whose {@code value} attribute also matches
-	 * the specified value.
+	 * 构造一个限定符，用于与给定类型的注解进行匹配，且该注解的 {@code value} 属性也与指定的值匹配。
 	 * @param type the annotation type
 	 * @param value the annotation value to match
 	 */
@@ -73,11 +67,8 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 	}
 
 	/**
-	 * Construct a qualifier to match against an annotation of the
-	 * given type name whose {@code value} attribute also matches
-	 * the specified value.
-	 * <p>The type name may match the fully-qualified class name of
-	 * the annotation or the short class name (without the package).
+	 * 构造一个限定符，用于与给定类型名称的注解进行匹配，且该注解的 {@code value} 属性也与指定的值匹配。
+	 * <p>类型名称可以匹配注解的全限定类名或短类名（不含包名）。
 	 * @param typeName the name of the annotation type
 	 * @param value the annotation value to match
 	 */
@@ -89,9 +80,8 @@ public class AutowireCandidateQualifier extends BeanMetadataAttributeAccessor {
 
 
 	/**
-	 * Retrieve the type name. This value will be the same as the
-	 * type name provided to the constructor or the fully-qualified
-	 * class name if a Class instance was provided to the constructor.
+	 * 检索类型名称。该值将与提供给构造函数的类型名称相同；如果向构造函数提供了 Class 实例，则为全限定
+	 * 类名。
 	 */
 	public String getTypeName() {
 		return this.typeName;

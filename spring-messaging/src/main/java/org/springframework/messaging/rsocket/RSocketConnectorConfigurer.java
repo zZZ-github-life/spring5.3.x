@@ -19,8 +19,8 @@ package org.springframework.messaging.rsocket;
 import io.rsocket.core.RSocketConnector;
 
 /**
- * Strategy to apply configuration to an {@code RSocketConnector}. For use with
- * {@link RSocketRequester.Builder#rsocketConnector RSocketRequester.Builder}.
+ * 将配置应用到 {@code RSocketConnector} 的策略。用于
+ * {@link RSocketRequester.Builder#rsocketConnector RSocketRequester.Builder}。
  *
  * @author Rossen Stoyanchev
  * @since 5.2.6
@@ -29,7 +29,7 @@ import io.rsocket.core.RSocketConnector;
 public interface RSocketConnectorConfigurer {
 
 	/**
-	 * Apply configuration to the given {@code RSocketConnector}.
+	 * 将配置应用到给定的 {@code RSocketConnector}。
 	 */
 	void configure(RSocketConnector connector);
 

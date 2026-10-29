@@ -28,8 +28,8 @@ import org.xml.sax.ext.LexicalHandler;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for SAX {@code XMLReader} implementations.
- * Contains properties as defined in {@link XMLReader}, and does not recognize any features.
+ * 用于 SAX {@code XMLReader} 实现的抽象基类。包含 {@link XMLReader} 中定义的属性，并且不识别任何特
+ * 性。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -108,9 +108,8 @@ abstract class AbstractXMLReader implements XMLReader {
 
 
 	/**
-	 * This implementation throws a {@code SAXNotRecognizedException} exception
-	 * for any feature outside the "http://xml.org/sax/features/" namespace
-	 * and returns {@code false} for any feature within.
+	 * 对于 "http://xml.org/sax/features/" 命名空间之外的任何特性，此实现抛出
+	 * {@code SAXNotRecognizedException} 异常；对于该命名空间内的任何特性，则返回 {@code false}。
 	 */
 	@Override
 	public boolean getFeature(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -123,9 +122,8 @@ abstract class AbstractXMLReader implements XMLReader {
 	}
 
 	/**
-	 * This implementation throws a {@code SAXNotRecognizedException} exception
-	 * for any feature outside the "http://xml.org/sax/features/" namespace
-	 * and accepts a {@code false} value for any feature within.
+	 * 对于 "http://xml.org/sax/features/" 命名空间之外的任何特性，此实现抛出
+	 * {@code SAXNotRecognizedException} 异常；对于该命名空间内的任何特性，则接受 {@code false} 值。
 	 */
 	@Override
 	public void setFeature(String name, boolean value) throws SAXNotRecognizedException, SAXNotSupportedException {
@@ -140,8 +138,8 @@ abstract class AbstractXMLReader implements XMLReader {
 	}
 
 	/**
-	 * Throws a {@code SAXNotRecognizedException} exception when the given property does not signify a lexical
-	 * handler. The property name for a lexical handler is {@code http://xml.org/sax/properties/lexical-handler}.
+	 * 当给定属性不表示词法处理器时，抛出 {@code SAXNotRecognizedException} 异常。词法处理器的属性名为
+	 * {@code http://xml.org/sax/properties/lexical-handler}。
 	 */
 	@Override
 	@Nullable
@@ -155,8 +153,8 @@ abstract class AbstractXMLReader implements XMLReader {
 	}
 
 	/**
-	 * Throws a {@code SAXNotRecognizedException} exception when the given property does not signify a lexical
-	 * handler. The property name for a lexical handler is {@code http://xml.org/sax/properties/lexical-handler}.
+	 * 当给定属性不表示词法处理器时，抛出 {@code SAXNotRecognizedException} 异常。词法处理器的属性名为
+	 * {@code http://xml.org/sax/properties/lexical-handler}。
 	 */
 	@Override
 	public void setProperty(String name, Object value) throws SAXNotRecognizedException, SAXNotSupportedException {

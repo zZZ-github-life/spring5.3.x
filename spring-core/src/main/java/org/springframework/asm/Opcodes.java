@@ -28,11 +28,10 @@
 package org.springframework.asm;
 
 /**
- * The JVM opcodes, access flags and array type codes. This interface does not define all the JVM
- * opcodes because some opcodes are automatically handled. For example, the xLOAD and xSTORE opcodes
- * are automatically replaced by xLOAD_n and xSTORE_n opcodes when possible. The xLOAD_n and
- * xSTORE_n opcodes are therefore not defined in this interface. Likewise for LDC, automatically
- * replaced by LDC_W or LDC2_W when necessary, WIDE, GOTO_W and JSR_W.
+ * JVM 操作码、访问标志和数组类型代码。此接口并未定义全部 JVM 操作码，因为部分操作码会被自动处理。
+ * 例如，xLOAD 和 xSTORE 操作码在可能时会自动替换为 xLOAD_n 和 xSTORE_n 操作码。因此，此接口中未定
+ * 义 xLOAD_n 和 xSTORE_n 操作码。LDC 也是如此，必要时会自动替换为 LDC_W 或 LDC2_W，WIDE、GOTO_W 和
+ * JSR_W 同理。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-6.html">JVMS 6</a>
  * @author Eric Bruneton
@@ -51,9 +50,9 @@ public interface Opcodes {
   int ASM9 = 9 << 16 | 0 << 8;
 
   /**
-   * <i>Experimental, use at your own risk. This field will be renamed when it becomes stable, this
-   * will break existing code using it. Only code compiled with --enable-preview can use this.</i>
-   * <p>SPRING PATCH: no preview mode check for ASM 10 experimental, enabling it by default.
+   * <i>实验性功能，使用风险自负。此字段在稳定后会被重命名，这会破坏使用它的现有代码。只有使用
+   * --enable-preview 编译的代码才能使用它。</i>
+   * <p>SPRING PATCH：对 ASM 10 实验性功能不做预览模式检查，默认启用。
    */
   int ASM10_EXPERIMENTAL = 1 << 24 | 10 << 16 | 0 << 8;
 
@@ -288,10 +287,9 @@ public interface Opcodes {
   int V21 = 0 << 16 | 65;
 
   /**
-   * Version flag indicating that the class is using 'preview' features.
+   * 版本标志，表示该类使用了 'preview' 特性。
    *
-   * <p>{@code version & V_PREVIEW == V_PREVIEW} tests if a version is flagged with {@code
-   * V_PREVIEW}.
+   * <p>{@code version & V_PREVIEW == V_PREVIEW} 用于测试某个版本是否被标记为 {@code V_PREVIEW}。
    */
   int V_PREVIEW = 0xFFFF0000;
 
@@ -360,32 +358,30 @@ public interface Opcodes {
 
   // ASM specific stack map frame types, used in {@link ClassVisitor#visitFrame}.
 
-  /** An expanded frame. See {@link ClassReader#EXPAND_FRAMES}. */
+  /** 一个扩展帧。参见 {@link ClassReader#EXPAND_FRAMES}。 */
   int F_NEW = -1;
 
-  /** A compressed frame with complete frame data. */
+  /** 包含完整帧数据的压缩帧。 */
   int F_FULL = 0;
 
   /**
-   * A compressed frame where locals are the same as the locals in the previous frame, except that
-   * additional 1-3 locals are defined, and with an empty stack.
+   * 一种压缩栈帧，其局部变量与上一栈帧的局部变量相同，只是额外定义了 1-3 个局部变量，
+   * 且操作数栈为空。
    */
   int F_APPEND = 1;
 
   /**
-   * A compressed frame where locals are the same as the locals in the previous frame, except that
-   * the last 1-3 locals are absent and with an empty stack.
+   * 一种压缩栈帧，其局部变量与上一栈帧的局部变量相同，只是缺少最后 1-3 个局部变量，且操作数栈为空。
    */
   int F_CHOP = 2;
 
   /**
-   * A compressed frame with exactly the same locals as the previous frame and with an empty stack.
+   * 一种压缩栈帧，其局部变量与上一栈帧完全相同，且操作数栈为空。
    */
   int F_SAME = 3;
 
   /**
-   * A compressed frame with exactly the same locals as the previous frame and with a single value
-   * on the stack.
+   * 一种压缩栈帧，其局部变量与上一栈帧完全相同，且操作数栈中只有一个值。
    */
   int F_SAME1 = 4;
 

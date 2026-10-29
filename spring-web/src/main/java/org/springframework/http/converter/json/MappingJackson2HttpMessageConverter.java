@@ -25,18 +25,19 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter} that can read and
- * write JSON using <a href="https://github.com/FasterXML/jackson">Jackson 2.x's</a> {@link ObjectMapper}.
+ * {@link org.springframework.http.converter.HttpMessageConverter} 的实现，
+ * 可使用 <a href="https://github.com/FasterXML/jackson">Jackson 2.x</a> 的
+ * {@link ObjectMapper} 读写 JSON。
  *
- * <p>This converter can be used to bind to typed beans, or untyped {@code HashMap} instances.
+ * <p>此转换器可用于绑定到类型化的 bean 或无类型的 {@code HashMap} 实例。
  *
- * <p>By default, this converter supports {@code application/json} and {@code application/*+json}
- * with {@code UTF-8} character set. This can be overridden by setting the
- * {@link #setSupportedMediaTypes supportedMediaTypes} property.
+ * <p>默认情况下，此转换器支持字符集为 {@code UTF-8} 的 {@code application/json}
+ * 和 {@code application/*+json}。可以通过设置
+ * {@link #setSupportedMediaTypes supportedMediaTypes} 属性来覆盖。
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * <p>默认构造函数使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Arjen Poutsma
  * @author Keith Donald
@@ -52,16 +53,17 @@ public class MappingJackson2HttpMessageConverter extends AbstractJackson2HttpMes
 
 
 	/**
-	 * Construct a new {@link MappingJackson2HttpMessageConverter} using default configuration
-	 * provided by {@link Jackson2ObjectMapperBuilder}.
+	 * 使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置
+	 * 构造一个新的 {@link MappingJackson2HttpMessageConverter}。
 	 */
 	public MappingJackson2HttpMessageConverter() {
 		this(Jackson2ObjectMapperBuilder.json().build());
 	}
 
 	/**
-	 * Construct a new {@link MappingJackson2HttpMessageConverter} with a custom {@link ObjectMapper}.
-	 * You can use {@link Jackson2ObjectMapperBuilder} to build it easily.
+	 * 使用自定义的 {@link ObjectMapper} 构造一个新的
+	 * {@link MappingJackson2HttpMessageConverter}。
+	 * 可以使用 {@link Jackson2ObjectMapperBuilder} 轻松构建它。
 	 * @see Jackson2ObjectMapperBuilder#json()
 	 */
 	public MappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
@@ -70,8 +72,8 @@ public class MappingJackson2HttpMessageConverter extends AbstractJackson2HttpMes
 
 
 	/**
-	 * Specify a custom prefix to use for this view's JSON output.
-	 * Default is none.
+	 * 指定用于此视图 JSON 输出的自定义前缀。
+	 * 默认为无。
 	 * @see #setPrefixJson
 	 */
 	public void setJsonPrefix(String jsonPrefix) {
@@ -79,10 +81,10 @@ public class MappingJackson2HttpMessageConverter extends AbstractJackson2HttpMes
 	}
 
 	/**
-	 * Indicate whether the JSON output by this view should be prefixed with ")]}', ". Default is {@code false}.
-	 * <p>Prefixing the JSON string in this manner is used to help prevent JSON Hijacking.
-	 * The prefix renders the string syntactically invalid as a script so that it cannot be hijacked.
-	 * This prefix should be stripped before parsing the string as JSON.
+	 * 指示此视图输出的 JSON 是否应以 ")]}', " 为前缀。默认为 {@code false}。
+	 * <p>以这种方式为 JSON 字符串添加前缀有助于防止 JSON 劫持。
+	 * 该前缀使字符串在语法上无法作为脚本，从而无法被劫持。
+	 * 在将字符串解析为 JSON 之前应去掉该前缀。
 	 * @see #setJsonPrefix
 	 */
 	public void setPrefixJson(boolean prefixJson) {

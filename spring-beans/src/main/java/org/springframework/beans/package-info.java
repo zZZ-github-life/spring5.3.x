@@ -1,13 +1,11 @@
 /**
- * This package contains interfaces and classes for manipulating Java beans.
- * It is used by most other Spring packages.
+ * 此包包含用于操作 Java Bean 的接口和类。它被大多数其他 Spring 包所使用。
  *
- * <p>A BeanWrapper object may be used to set and get bean properties,
- * singly or in bulk.
+ * <p>可以使用 BeanWrapper 对象单个或批量地设置和获取 Bean 属性。
  *
- * <p>The classes in this package are discussed in Chapter 11 of
- * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE Design and Development</a>
- * by Rod Johnson (Wrox, 2002).
+ * <p>此包中的类在 Rod Johnson 所著
+ * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE
+ * Design and Development</a>（Wrox，2002）第 11 章中讨论。
  */
 @NonNullApi
 @NonNullFields

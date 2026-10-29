@@ -29,8 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Exception thrown when a request handler does not support a
- * specific request method.
+ * 当请求处理器不支持某个特定请求方法时抛出该异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -45,7 +44,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 
 	/**
-	 * Create a new HttpRequestMethodNotSupportedException.
+	 * 创建一个新的 HttpRequestMethodNotSupportedException。
 	 * @param method the unsupported HTTP request method
 	 */
 	public HttpRequestMethodNotSupportedException(String method) {
@@ -53,7 +52,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 	}
 
 	/**
-	 * Create a new HttpRequestMethodNotSupportedException.
+	 * 创建一个新的 HttpRequestMethodNotSupportedException。
 	 * @param method the unsupported HTTP request method
 	 * @param msg the detail message
 	 */
@@ -62,7 +61,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 	}
 
 	/**
-	 * Create a new HttpRequestMethodNotSupportedException.
+	 * 创建一个新的 HttpRequestMethodNotSupportedException。
 	 * @param method the unsupported HTTP request method
 	 * @param supportedMethods the actually supported HTTP methods (may be {@code null})
 	 */
@@ -71,7 +70,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 	}
 
 	/**
-	 * Create a new HttpRequestMethodNotSupportedException.
+	 * 创建一个新的 HttpRequestMethodNotSupportedException。
 	 * @param method the unsupported HTTP request method
 	 * @param supportedMethods the actually supported HTTP methods (may be {@code null})
 	 */
@@ -80,7 +79,7 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 	}
 
 	/**
-	 * Create a new HttpRequestMethodNotSupportedException.
+	 * 创建一个新的 HttpRequestMethodNotSupportedException。
 	 * @param method the unsupported HTTP request method
 	 * @param supportedMethods the actually supported HTTP methods
 	 * @param msg the detail message
@@ -93,14 +92,14 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 
 
 	/**
-	 * Return the HTTP request method that caused the failure.
+	 * 返回导致失败的 HTTP 请求方法。
 	 */
 	public String getMethod() {
 		return this.method;
 	}
 
 	/**
-	 * Return the actually supported HTTP methods, or {@code null} if not known.
+	 * 返回实际支持的 HTTP 方法，如果未知则返回 {@code null}。
 	 */
 	@Nullable
 	public String[] getSupportedMethods() {
@@ -108,8 +107,8 @@ public class HttpRequestMethodNotSupportedException extends ServletException {
 	}
 
 	/**
-	 * Return the actually supported HTTP methods as {@link HttpMethod} instances,
-	 * or {@code null} if not known.
+	 * 以 {@link HttpMethod} 实例形式返回实际支持的 HTTP 方法，
+	 * 如果未知则返回 {@code null}。
 	 * @since 3.2
 	 */
 	@Nullable

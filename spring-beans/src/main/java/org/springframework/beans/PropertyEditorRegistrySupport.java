@@ -79,9 +79,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Base implementation of the {@link PropertyEditorRegistry} interface.
- * Provides management of default editors and custom editors.
- * Mainly serves as base class for {@link BeanWrapperImpl}.
+ * {@link PropertyEditorRegistry} 接口的基础实现。提供默认编辑器和自定义编辑器的管理。主要用作
+ * {@link BeanWrapperImpl} 的基类。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -94,9 +93,9 @@ import org.springframework.util.ClassUtils;
 public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring 忽略 XML，即不初始化与 XML 相关
+	 * 的基础设施。
+	 * <p>默认值为“false”。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 
@@ -125,15 +124,14 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 
 	/**
-	 * Specify a Spring 3.0 ConversionService to use for converting
-	 * property values, as an alternative to JavaBeans PropertyEditors.
+	 * 指定用于转换属性值的 Spring 3.0 ConversionService，作为 JavaBeans PropertyEditors 的替代方案。
 	 */
 	public void setConversionService(@Nullable ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}
 
 	/**
-	 * Return the associated ConversionService, if any.
+	 * 返回关联的 ConversionService（如果有）。
 	 */
 	@Nullable
 	public ConversionService getConversionService() {
@@ -146,29 +144,26 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Activate the default editors for this registry instance,
-	 * allowing for lazily registering default editors when needed.
+	 * 为此注册表实例激活默认编辑器，以便在需要时延迟注册默认编辑器。
 	 */
 	protected void registerDefaultEditors() {
 		this.defaultEditorsActive = true;
 	}
 
 	/**
-	 * Activate config value editors which are only intended for configuration purposes,
-	 * such as {@link org.springframework.beans.propertyeditors.StringArrayPropertyEditor}.
-	 * <p>Those editors are not registered by default simply because they are in
-	 * general inappropriate for data binding purposes. Of course, you may register
-	 * them individually in any case, through {@link #registerCustomEditor}.
+	 * 激活仅用于配置目的的配置值编辑器，例如
+	 * {@link org.springframework.beans.propertyeditors.StringArrayPropertyEditor}。
+	 * <p>这些编辑器默认不注册，只是因为它们通常不适合数据绑定用途。当然，在任何情况下，你都可以通过
+	 * {@link #registerCustomEditor} 单独注册它们。
 	 */
 	public void useConfigValueEditors() {
 		this.configValueEditorsActive = true;
 	}
 
 	/**
-	 * Override the default editor for the specified type with the given property editor.
-	 * <p>Note that this is different from registering a custom editor in that the editor
-	 * semantically still is a default editor. A ConversionService will override such a
-	 * default editor, whereas custom editors usually override the ConversionService.
+	 * 使用给定的属性编辑器覆盖指定类型的默认编辑器。
+	 * <p>请注意，这与注册自定义编辑器不同，因为该编辑器在语义上仍然是默认编辑器。ConversionService 会
+	 * 覆盖这样的默认编辑器，而自定义编辑器通常会覆盖 ConversionService。
 	 * @param requiredType the type of the property
 	 * @param propertyEditor the editor to register
 	 * @see #registerCustomEditor(Class, PropertyEditor)
@@ -181,8 +176,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Retrieve the default editor for the given property type, if any.
-	 * <p>Lazily registers the default editors, if they are active.
+	 * 检索给定属性类型的默认编辑器（如果有）。
+	 * <p>如果默认编辑器处于激活状态，则延迟注册它们。
 	 * @param requiredType type of the property
 	 * @return the default editor, or {@code null} if none found
 	 * @see #registerDefaultEditors
@@ -205,7 +200,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Actually register the default editors for this registry instance.
+	 * 实际为此注册表实例注册默认编辑器。
 	 */
 	private void createDefaultEditors() {
 		this.defaultEditors = new HashMap<>(64);
@@ -281,7 +276,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Copy the default editors registered in this instance to the given target registry.
+	 * 将此实例中注册的默认编辑器复制到给定的目标注册表。
 	 * @param target the target registry to copy to
 	 */
 	protected void copyDefaultEditorsTo(PropertyEditorRegistrySupport target) {
@@ -350,8 +345,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Determine whether this registry contains a custom editor
-	 * for the specified array/collection element.
+	 * 确定此注册表是否包含针对指定数组/集合元素的自定义编辑器。
 	 * @param elementType the target type of the element
 	 * (can be {@code null} if not known)
 	 * @param propertyPath the property path (typically of the array/collection;
@@ -372,12 +366,11 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Determine the property type for the given property path.
-	 * <p>Called by {@link #findCustomEditor} if no required type has been specified,
-	 * to be able to find a type-specific editor even if just given a property path.
-	 * <p>The default implementation always returns {@code null}.
-	 * BeanWrapperImpl overrides this with the standard {@code getPropertyType}
-	 * method as defined by the BeanWrapper interface.
+	 * 确定给定属性路径的属性类型。
+	 * <p>如果未指定必需类型，则由 {@link #findCustomEditor} 调用，以便即使只给定属性路径也能找到特定类
+	 * 型的编辑器。
+	 * <p>默认实现始终返回 {@code null}。BeanWrapperImpl 使用 BeanWrapper 接口定义的标准
+	 * {@code getPropertyType} 方法重写此方法。
 	 * @param propertyPath the property path to determine the type for
 	 * @return the type of the property, or {@code null} if not determinable
 	 * @see BeanWrapper#getPropertyType(String)
@@ -388,7 +381,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Get custom editor that has been registered for the given property.
+	 * 获取为给定属性注册的自定义编辑器。
 	 * @param propertyName the property path to look for
 	 * @param requiredType the type to look for
 	 * @return the custom editor, or {@code null} if none specific for this property
@@ -401,9 +394,8 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Get custom editor for the given type. If no direct match found,
-	 * try custom editor for superclass (which will in any case be able
-	 * to render a value as String via {@code getAsText}).
+	 * 获取给定类型的自定义编辑器。如果未找到直接匹配项，则尝试超类的自定义编辑器（无论如何，它都能通过
+	 * {@code getAsText} 将值渲染为 String）。
 	 * @param requiredType the type to look for
 	 * @return the custom editor, or {@code null} if none found for this type
 	 * @see java.beans.PropertyEditor#getAsText()
@@ -443,8 +435,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Guess the property type of the specified property from the registered
-	 * custom editors (provided that they were registered for a specific type).
+	 * 从已注册的自定义编辑器中推测指定属性的属性类型（前提是它们是为特定类型注册的）。
 	 * @param propertyName the name of the property
 	 * @return the property type, or {@code null} if not determinable
 	 */
@@ -468,7 +459,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 	}
 
 	/**
-	 * Copy the custom editors registered in this instance to the given target registry.
+	 * 将此实例中注册的自定义编辑器复制到给定的目标注册表。
 	 * @param target the target registry to copy to
 	 * @param nestedProperty the nested property path of the target registry, if any.
 	 * If this is non-null, only editors registered for a path below this nested property
@@ -503,8 +494,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 
 	/**
-	 * Add property paths with all variations of stripped keys and/or indexes.
-	 * Invokes itself recursively with nested paths.
+	 * 添加所有去除键和/或索引变体的属性路径。对嵌套路径递归调用自身。
 	 * @param strippedPaths the result list to add to
 	 * @param nestedPath the current nested path
 	 * @param propertyPath the property path to check for keys/indexes to strip
@@ -529,8 +519,7 @@ public class PropertyEditorRegistrySupport implements PropertyEditorRegistry {
 
 
 	/**
-	 * Holder for a registered custom editor with property name.
-	 * Keeps the PropertyEditor itself plus the type it was registered for.
+	 * 带有属性名的已注册自定义编辑器的持有者。保留 PropertyEditor 本身以及为其注册的类型。
 	 */
 	private static final class CustomEditorHolder {
 

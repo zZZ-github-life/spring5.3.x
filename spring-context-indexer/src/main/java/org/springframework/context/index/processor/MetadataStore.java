@@ -25,7 +25,7 @@ import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 
 /**
- * Store {@link CandidateComponentsMetadata} on the filesystem.
+ * 将 {@link CandidateComponentsMetadata} 存储到文件系统中。
  *
  * @author Stephane Nicoll
  * @since 5.0

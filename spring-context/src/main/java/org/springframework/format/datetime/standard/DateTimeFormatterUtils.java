@@ -22,7 +22,7 @@ import java.time.format.ResolverStyle;
 import org.springframework.util.StringUtils;
 
 /**
- * Internal {@link DateTimeFormatter} utilities.
+ * 内部的 {@link DateTimeFormatter} 工具。
  *
  * @author Juergen Hoeller
  * @since 5.3.5

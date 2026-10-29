@@ -22,12 +22,10 @@ import org.apache.commons.logging.Log;
 import org.springframework.util.Assert;
 
 /**
- * Simple AOP Alliance {@code MethodInterceptor} that can be introduced
- * in a chain to display verbose trace information about intercepted method
- * invocations, with method entry and method exit info.
+ * 简单的 AOP Alliance {@code MethodInterceptor}，可引入到链中以显示关于被拦截方法调用的详细跟踪信
+ * 息，包括方法进入和方法退出信息。
  *
- * <p>Consider using {@code CustomizableTraceInterceptor} for more
- * advanced needs.
+ * <p>如有更高级的需求，可考虑使用 {@code CustomizableTraceInterceptor}。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -38,14 +36,13 @@ import org.springframework.util.Assert;
 public class SimpleTraceInterceptor extends AbstractTraceInterceptor {
 
 	/**
-	 * Create a new SimpleTraceInterceptor with a static logger.
+	 * 使用静态日志器创建一个新的 SimpleTraceInterceptor。
 	 */
 	public SimpleTraceInterceptor() {
 	}
 
 	/**
-	 * Create a new SimpleTraceInterceptor with dynamic or static logger,
-	 * according to the given flag.
+	 * 根据给定标志，使用动态或静态日志器创建一个新的 SimpleTraceInterceptor。
 	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
 	 * @see #setUseDynamicLogger
 	 */
@@ -70,7 +67,7 @@ public class SimpleTraceInterceptor extends AbstractTraceInterceptor {
 	}
 
 	/**
-	 * Return a description for the given method invocation.
+	 * 返回给定方法调用的描述。
 	 * @param invocation the invocation to describe
 	 * @return the description
 	 */

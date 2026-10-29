@@ -23,7 +23,7 @@ import java.util.function.Predicate;
 import org.springframework.util.Assert;
 
 /**
- * Represents a function that filters a {@linkplain HandlerFunction handler function}.
+ * 表示过滤{@linkplain HandlerFunction 处理器函数}的函数。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -35,10 +35,10 @@ import org.springframework.util.Assert;
 public interface HandlerFilterFunction<T extends ServerResponse, R extends ServerResponse> {
 
 	/**
-	 * Apply this filter to the given handler function. The given
-	 * {@linkplain HandlerFunction handler function} represents the next entity in the chain,
-	 * and can be {@linkplain HandlerFunction#handle(ServerRequest) invoked} in order to
-	 * proceed to this entity, or not invoked to block the chain.
+	 * 将此过滤器应用于给定的处理器函数。给定的
+	 * {@linkplain HandlerFunction 处理器函数}表示链中的下一个实体，
+	 * 可以{@linkplain HandlerFunction#handle(ServerRequest) 调用}它以继续处理该实体，
+	 * 或者不调用它来阻断链。
 	 * @param request the request
 	 * @param next the next handler or filter function in the chain
 	 * @return the filtered response
@@ -46,8 +46,8 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 	R filter(ServerRequest request, HandlerFunction<T> next) throws Exception;
 
 	/**
-	 * Return a composed filter function that first applies this filter, and then applies the
-	 * {@code after} filter.
+	 * 返回一个组合过滤器函数，先应用此过滤器，然后应用
+	 * {@code after} 过滤器。
 	 * @param after the filter to apply after this filter is applied
 	 * @return a composed filter that first applies this function and then applies the
 	 * {@code after} function
@@ -61,7 +61,7 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 	}
 
 	/**
-	 * Apply this filter to the given handler function, resulting in a filtered handler function.
+	 * 将此过滤器应用于给定的处理器函数，得到一个经过过滤的处理器函数。
 	 * @param handler the handler function to filter
 	 * @return the filtered handler function
 	 */
@@ -71,8 +71,7 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 	}
 
 	/**
-	 * Adapt the given request processor function to a filter function that only operates
-	 * on the {@code ServerRequest}.
+	 * 将给定的请求处理函数适配为仅对 {@code ServerRequest} 操作的过滤器函数。
 	 * @param requestProcessor the request processor
 	 * @return the filter adaptation of the request processor
 	 */
@@ -84,8 +83,7 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 	}
 
 	/**
-	 * Adapt the given response processor function to a filter function that only operates
-	 * on the {@code ServerResponse}.
+	 * 将给定的响应处理函数适配为仅对 {@code ServerResponse} 操作的过滤器函数。
 	 * @param responseProcessor the response processor
 	 * @return the filter adaptation of the request processor
 	 */
@@ -97,8 +95,8 @@ public interface HandlerFilterFunction<T extends ServerResponse, R extends Serve
 	}
 
 	/**
-	 * Adapt the given predicate and response provider function to a filter function that returns
-	 * a {@code ServerResponse} on a given exception.
+	 * 将给定的谓词和响应提供函数适配为在给定异常时返回
+	 * {@code ServerResponse} 的过滤器函数。
 	 * @param predicate the predicate to match an exception
 	 * @param errorHandler the response provider
 	 * @return the filter adaption of the error handler

@@ -1,0 +1,40 @@
+@@ function/server/support/HandlerFunctionAdapter.java :: 1
+支持 {@link HandlerFunction HandlerFunctions} 的 {@code HandlerAdapter} 实现。
+@@ function/server/support/RouterFunctionMapping.java :: 1
+支持 {@link RouterFunction RouterFunctions} 的 {@code HandlerMapping} 实现。
+
+<p>如果在{@linkplain #RouterFunctionMapping(RouterFunction) 构造时}未提供 {@link RouterFunction}，此映射将检测应用上下文中的所有路由函数，并按{@linkplain org.springframework.core.annotation.Order 顺序}咨询它们。
+@@ function/server/support/RouterFunctionMapping.java :: 2
+创建空的 {@code RouterFunctionMapping}。
+<p>如果使用此构造函数，此映射将检测应用上下文中可用的所有 {@link RouterFunction} 实例。
+@@ function/server/support/RouterFunctionMapping.java :: 3
+使用给定的 {@link RouterFunction} 创建 {@code RouterFunctionMapping}。
+<p>如果使用此构造函数，则不会执行应用上下文检测。
+@@ function/server/support/RouterFunctionMapping.java :: 4
+返回配置的 {@link RouterFunction}。
+<p><strong>注意：</strong>当从 ApplicationContext 检测路由函数时，如果在 {@link #afterPropertiesSet()} 之前调用，此方法可能返回 {@code null}。
+@@ function/server/support/RouterFunctionMapping.java :: 5
+配置用于反序列化请求正文的 HTTP 消息读取器。
+<p>默认设置为 {@link ServerCodecConfigurer} 的默认值。
+@@ function/server/support/RouterFunctionMapping.java :: 6
+通过在应用上下文中检测路由函数来初始化它们。
+@@ function/server/support/ServerRequestWrapper.java :: 1
+可子类化以在{@link org.springframework.web.reactive.function.server.HandlerFilterFunction 处理器过滤器函数}中适配请求的 {@link ServerRequest} 接口实现。所有方法默认调用所包装的请求。
+@@ function/server/support/ServerRequestWrapper.java :: 2
+创建包装给定请求的新 {@code ServerRequestWrapper}。
+@@ function/server/support/ServerRequestWrapper.java :: 3
+返回被包装的请求。
+@@ function/server/support/ServerRequestWrapper.java :: 4
+可子类化以在{@link org.springframework.web.reactive.function.server.HandlerFilterFunction 处理器过滤器函数}中适配头的 {@code Headers} 接口实现。所有方法默认调用所包装的头。
+@@ function/server/support/ServerRequestWrapper.java :: 5
+创建包装给定请求的新 {@code HeadersWrapper}。
+@@ function/server/support/ServerResponseResultHandler.java :: 1
+支持 {@link ServerResponse ServerResponses} 的 {@code HandlerResultHandler} 实现。
+@@ function/server/support/ServerResponseResultHandler.java :: 2
+配置用于序列化请求正文的 HTTP 消息写出器。
+<p>默认设置为 {@link ServerCodecConfigurer} 的默认写出器。
+@@ function/server/support/ServerResponseResultHandler.java :: 3
+设置此结果处理器相对于其他处理器的顺序。
+<p>默认设置为 0。由于它会查找具体返回类型，通常可以安全地将其放在较靠前的位置。
+@@ function/server/support/package-info.java :: 1
+支持 {@code org.springframework.web.reactive.function.server} 包的类。包含支持 {@code HandlerFunction} 的 {@code HandlerAdapter}、支持 {@code ServerResponse} 的 {@code HandlerResultHandler}，以及用于适配请求的 {@code ServerRequest} 包装器。

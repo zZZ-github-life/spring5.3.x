@@ -22,8 +22,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Base class for exception thrown by the framework whenever it
- * encounters a problem related to JMS.
+ * 框架在遇到与 JMS 相关的问题时抛出的异常的基类。
  *
  * @author Mark Pollack
  * @author Juergen Hoeller
@@ -33,7 +32,7 @@ import org.springframework.lang.Nullable;
 public abstract class JmsException extends NestedRuntimeException {
 
 	/**
-	 * Constructor that takes a message.
+	 * 接受消息的构造函数。
 	 * @param msg the detail message
 	 */
 	public JmsException(String msg) {
@@ -41,7 +40,7 @@ public abstract class JmsException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor that takes a message and a root cause.
+	 * 接受消息和根本原因的构造函数。
 	 * @param msg the detail message
 	 * @param cause the cause of the exception. This argument is generally
 	 * expected to be a proper subclass of {@link javax.jms.JMSException},
@@ -52,8 +51,7 @@ public abstract class JmsException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor that takes a plain root cause, intended for
-	 * subclasses mirroring corresponding {@code javax.jms} exceptions.
+	 * 仅接受根本原因的构造函数，用于对应 {@code javax.jms} 异常的子类。
 	 * @param cause the cause of the exception. This argument is generally
 	 * expected to be a proper subclass of {@link javax.jms.JMSException}.
 	 */
@@ -63,8 +61,8 @@ public abstract class JmsException extends NestedRuntimeException {
 
 
 	/**
-	 * Convenience method to get the vendor specific error code if
-	 * the root cause was an instance of JMSException.
+	 * 便捷方法：如果根本原因是 JMSException 的实例，
+	 * 则获取厂商特定的错误代码。
 	 * @return a string specifying the vendor-specific error code if the
 	 * root cause is an instance of JMSException, or {@code null}
 	 */
@@ -78,8 +76,7 @@ public abstract class JmsException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Return the detail message, including the message from the linked exception
-	 * if there is one.
+	 * 返回详细信息，如果存在关联异常，则包含其消息。
 	 * @see javax.jms.JMSException#getLinkedException()
 	 */
 	@Override

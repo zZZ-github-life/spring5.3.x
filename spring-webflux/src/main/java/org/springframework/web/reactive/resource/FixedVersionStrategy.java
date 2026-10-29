@@ -21,13 +21,9 @@ import reactor.core.publisher.Mono;
 import org.springframework.core.io.Resource;
 
 /**
- * A {@code VersionStrategy} that relies on a fixed version applied as a request
- * path prefix, e.g. reduced SHA, version name, release date, etc.
+ * 依赖作为请求路径前缀应用的固定版本的 {@code VersionStrategy}，例如缩短的 SHA、版本名称、发布日期等。
  *
- * <p>This is useful for example when {@link ContentVersionStrategy} cannot be
- * used such as when using JavaScript module loaders which are in charge of
- * loading the JavaScript resources and need to know their relative paths.
- *
+ * <p>例如，当无法使用 {@link ContentVersionStrategy} 时（例如使用负责加载 JavaScript 资源并需要知道其相对路径的 JavaScript 模块加载器时），这很有用。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -39,7 +35,7 @@ public class FixedVersionStrategy extends AbstractPrefixVersionStrategy {
 
 
 	/**
-	 * Create a new FixedVersionStrategy with the given version string.
+	 * 使用给定版本字符串创建新的 FixedVersionStrategy。
 	 * @param version the fixed version string to use
 	 */
 	public FixedVersionStrategy(String version) {

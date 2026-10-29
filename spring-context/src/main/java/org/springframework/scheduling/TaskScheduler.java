@@ -25,22 +25,16 @@ import java.util.concurrent.ScheduledFuture;
 import org.springframework.lang.Nullable;
 
 /**
- * Task scheduler interface that abstracts the scheduling of
- * {@link Runnable Runnables} based on different kinds of triggers.
+ * 任务调度器接口，抽象了基于不同类型触发器对 {@link Runnable Runnables} 的调度。
  *
- * <p>This interface is separate from {@link SchedulingTaskExecutor} since it
- * usually represents for a different kind of backend, i.e. a thread pool with
- * different characteristics and capabilities. Implementations may implement
- * both interfaces if they can handle both kinds of execution characteristics.
+ * <p>此接口与 {@link SchedulingTaskExecutor} 分开，因为它通常代表另一种后端，即具有不同特征和能力
+ * 的线程池。如果实现能够处理这两种执行特征，则可以实现这两个接口。
  *
- * <p>The 'default' implementation is
- * {@link org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler},
- * wrapping a native {@link java.util.concurrent.ScheduledExecutorService}
- * and adding extended trigger capabilities.
+ * <p>“默认”实现是 {@link org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler}，它包
+ * 装了原生 {@link java.util.concurrent.ScheduledExecutorService}，并添加了扩展的触发器能力。
  *
- * <p>This interface is roughly equivalent to a JSR-236
- * {@code ManagedScheduledExecutorService} as supported in Java EE 7
- * environments but aligned with Spring's {@code TaskExecutor} model.
+ * <p>此接口大致相当于 Java EE 7 环境中所支持的 JSR-236 {@code ManagedScheduledExecutorService}，但
+ * 与 Spring 的 {@code TaskExecutor} 模型保持一致。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -51,7 +45,7 @@ import org.springframework.lang.Nullable;
 public interface TaskScheduler {
 
 	/**
-	 * Return the clock to use for scheduling purposes.
+	 * 返回用于调度目的的时钟。
 	 * @since 5.3
 	 * @see Clock#systemDefaultZone()
 	 */
@@ -60,10 +54,8 @@ public interface TaskScheduler {
 	}
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it whenever the trigger
-	 * indicates a next execution time.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，每当触发器指示下一个执行时间时就调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param trigger an implementation of the {@link Trigger} interface,
 	 * e.g. a {@link org.springframework.scheduling.support.CronTrigger} object
@@ -79,9 +71,8 @@ public interface TaskScheduler {
 	ScheduledFuture<?> schedule(Runnable task, Trigger trigger);
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it at the specified execution time.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，在指定的执行时间调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired execution time for the task
 	 * (if this is in the past, the task will be executed immediately, i.e. as soon as possible)
@@ -96,9 +87,8 @@ public interface TaskScheduler {
 	}
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it at the specified execution time.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，在指定的执行时间调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired execution time for the task
 	 * (if this is in the past, the task will be executed immediately, i.e. as soon as possible)
@@ -109,10 +99,8 @@ public interface TaskScheduler {
 	ScheduledFuture<?> schedule(Runnable task, Date startTime);
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
-	 * and subsequently with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的周期调用。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
 	 * (if this is in the past, the task will be executed immediately, i.e. as soon as possible)
@@ -128,10 +116,8 @@ public interface TaskScheduler {
 	}
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
-	 * and subsequently with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的周期调用。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
 	 * (if this is in the past, the task will be executed immediately, i.e. as soon as possible)
@@ -143,10 +129,8 @@ public interface TaskScheduler {
 	ScheduledFuture<?> scheduleAtFixedRate(Runnable task, Date startTime, long period);
 
 	/**
-	 * Schedule the given {@link Runnable}, starting as soon as possible and
-	 * invoking it with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，尽快启动并按给定的周期调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param period the interval between successive executions of the task
 	 * @return a {@link ScheduledFuture} representing pending completion of the task
@@ -160,10 +144,8 @@ public interface TaskScheduler {
 	}
 
 	/**
-	 * Schedule the given {@link Runnable}, starting as soon as possible and
-	 * invoking it with the given period.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，尽快启动并按给定的周期调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param period the interval between successive executions of the task (in milliseconds)
 	 * @return a {@link ScheduledFuture} representing pending completion of the task
@@ -173,11 +155,9 @@ public interface TaskScheduler {
 	ScheduledFuture<?> scheduleAtFixedRate(Runnable task, long period);
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
-	 * and subsequently with the given delay between the completion of one execution
-	 * and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的一次执行完成到下一次执行开始之
+	 * 间的延迟调用。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
 	 * (if this is in the past, the task will be executed immediately, i.e. as soon as possible)
@@ -193,11 +173,9 @@ public interface TaskScheduler {
 	}
 
 	/**
-	 * Schedule the given {@link Runnable}, invoking it at the specified execution time
-	 * and subsequently with the given delay between the completion of one execution
-	 * and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，在指定的执行时间调用它，随后按给定的一次执行完成到下一次执行开始之
+	 * 间的延迟调用。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param startTime the desired first execution time for the task
 	 * (if this is in the past, the task will be executed immediately, i.e. as soon as possible)
@@ -210,10 +188,8 @@ public interface TaskScheduler {
 	ScheduledFuture<?> scheduleWithFixedDelay(Runnable task, Date startTime, long delay);
 
 	/**
-	 * Schedule the given {@link Runnable}, starting as soon as possible and invoking it with
-	 * the given delay between the completion of one execution and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，尽快启动，并按给定的一次执行完成到下一次执行开始之间的延迟调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param delay the delay between the completion of one execution and the start of the next
 	 * @return a {@link ScheduledFuture} representing pending completion of the task
@@ -227,10 +203,8 @@ public interface TaskScheduler {
 	}
 
 	/**
-	 * Schedule the given {@link Runnable}, starting as soon as possible and invoking it with
-	 * the given delay between the completion of one execution and the start of the next.
-	 * <p>Execution will end once the scheduler shuts down or the returned
-	 * {@link ScheduledFuture} gets cancelled.
+	 * 调度给定的 {@link Runnable}，尽快启动，并按给定的一次执行完成到下一次执行开始之间的延迟调用它。
+	 * <p>一旦调度器关闭或返回的 {@link ScheduledFuture} 被取消，执行就会结束。
 	 * @param task the Runnable to execute whenever the trigger fires
 	 * @param delay the delay between the completion of one execution and the start of the next
 	 * (in milliseconds)

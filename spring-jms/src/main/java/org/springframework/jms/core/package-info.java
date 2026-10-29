@@ -1,6 +1,6 @@
 /**
- * Core package of the JMS support.
- * Provides a JmsTemplate class and various callback interfaces.
+ * JMS 支持的核心包。
+ * 提供 JmsTemplate 类以及各种回调接口。
  */
 @NonNullApi
 @NonNullFields

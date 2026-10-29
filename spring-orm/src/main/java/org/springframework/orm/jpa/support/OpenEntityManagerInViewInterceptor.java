@@ -35,19 +35,18 @@ import org.springframework.web.context.request.async.WebAsyncManager;
 import org.springframework.web.context.request.async.WebAsyncUtils;
 
 /**
- * Spring web request interceptor that binds a JPA EntityManager to the
- * thread for the entire processing of the request. Intended for the "Open
- * EntityManager in View" pattern, i.e. to allow for lazy loading in
- * web views despite the original transactions already being completed.
+ * Spring Web 请求拦截器，在整个请求处理过程中将 JPA EntityManager 绑定到当前线程。
+ * 适用于"Open EntityManager in View"模式，即允许在 Web 视图中进行延迟加载，
+ * 即使原始事务已经完成。
  *
- * <p>This interceptor makes JPA EntityManagers available via the current thread,
- * which will be autodetected by transaction managers. It is suitable for service
- * layer transactions via {@link org.springframework.orm.jpa.JpaTransactionManager}
- * or {@link org.springframework.transaction.jta.JtaTransactionManager} as well
- * as for non-transactional read-only execution.
+ * <p>此拦截器使 JPA EntityManager 可通过当前线程获取，
+ * 事务管理器会自动检测到它。它既适用于通过
+ * {@link org.springframework.orm.jpa.JpaTransactionManager}
+ * 或 {@link org.springframework.transaction.jta.JtaTransactionManager}
+ * 管理的服务层事务，也适用于非事务性的只读执行。
  *
- * <p>In contrast to {@link OpenEntityManagerInViewFilter}, this interceptor is set
- * up in a Spring application context and can thus take advantage of bean wiring.
+ * <p>与 {@link OpenEntityManagerInViewFilter} 不同，此拦截器在 Spring 应用上下文中
+ * 配置，因此可以利用 bean 装配的优势。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -59,9 +58,8 @@ import org.springframework.web.context.request.async.WebAsyncUtils;
 public class OpenEntityManagerInViewInterceptor extends EntityManagerFactoryAccessor implements AsyncWebRequestInterceptor {
 
 	/**
-	 * Suffix that gets appended to the EntityManagerFactory toString
-	 * representation for the "participate in existing entity manager
-	 * handling" request attribute.
+	 * 追加到 EntityManagerFactory 的 toString 表示之后的后缀，
+	 * 用于"参与现有 entity manager 处理"的请求属性。
 	 * @see #getParticipateAttributeName
 	 */
 	public static final String PARTICIPATE_SUFFIX = ".PARTICIPATE";
@@ -137,9 +135,9 @@ public class OpenEntityManagerInViewInterceptor extends EntityManagerFactoryAcce
 	}
 
 	/**
-	 * Return the name of the request attribute that identifies that a request is
-	 * already filtered. Default implementation takes the toString representation
-	 * of the EntityManagerFactory instance and appends ".FILTERED".
+	 * 返回用于标识请求已被过滤的请求属性名称。
+	 * 默认实现获取 EntityManagerFactory 实例的 toString 表示，
+	 * 并附加 ".FILTERED"。
 	 * @see #PARTICIPATE_SUFFIX
 	 */
 	protected String getParticipateAttributeName() {

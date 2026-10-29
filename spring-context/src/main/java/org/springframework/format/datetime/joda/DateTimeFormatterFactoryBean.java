@@ -23,8 +23,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link FactoryBean} that creates a Joda-Time {@link DateTimeFormatter}.
- * See the {@link DateTimeFormatterFactory base class} for configuration details.
+ * 创建 Joda-Time {@link DateTimeFormatter} 的 {@link FactoryBean}。有关配置细节，请参见
+ * {@link DateTimeFormatterFactory base class}。
  *
  * @author Phillip Webb
  * @author Sam Brannen

@@ -17,44 +17,38 @@
 package org.springframework.core.env;
 
 /**
- * Interface representing the environment in which the current application is running.
- * Models two key aspects of the application environment: <em>profiles</em> and
- * <em>properties</em>. Methods related to property access are exposed via the
- * {@link PropertyResolver} superinterface.
+ * 表示当前应用程序运行所处环境的接口。
+ * 对应用程序环境的两个关键方面进行建模：<em>profile</em> 和 <em>属性</em>。
+ * 与属性访问相关的方法通过 {@link PropertyResolver} 父接口暴露。
  *
- * <p>A <em>profile</em> is a named, logical group of bean definitions to be registered
- * with the container only if the given profile is <em>active</em>. Beans may be assigned
- * to a profile whether defined in XML or via annotations; see the spring-beans 3.1 schema
- * or the {@link org.springframework.context.annotation.Profile @Profile} annotation for
- * syntax details. The role of the {@code Environment} object with relation to profiles is
- * in determining which profiles (if any) are currently {@linkplain #getActiveProfiles
- * active}, and which profiles (if any) should be {@linkplain #getDefaultProfiles active
- * by default}.
+ * <p><em>profile</em> 是一组具名的 Bean 定义逻辑分组，仅当给定 profile 处于
+ * <em>活动</em>状态时才会注册到容器中。Bean 无论是以 XML 还是通过注解定义，
+ * 都可以被分配到 profile；有关语法细节，请参见 spring-beans 3.1 schema
+ * 或 {@link org.springframework.context.annotation.Profile @Profile} 注解。
+ * {@code Environment} 对象在 profile 方面的作用在于确定当前哪些 profile（如果有）
+ * 处于{@linkplain #getActiveProfiles 活动}状态，以及哪些 profile（如果有）
+ * 应默认{@linkplain #getDefaultProfiles 处于活动}状态。
  *
- * <p><em>Properties</em> play an important role in almost all applications, and may
- * originate from a variety of sources: properties files, JVM system properties, system
- * environment variables, JNDI, servlet context parameters, ad-hoc Properties objects,
- * Maps, and so on. The role of the {@code Environment} object with relation to properties
- * is to provide the user with a convenient service interface for configuring property
- * sources and resolving properties from them.
+ * <p><em>属性</em>在几乎所有应用程序中都扮演着重要角色，其来源多种多样：
+ * 属性文件、JVM 系统属性、系统环境变量、JNDI、Servlet 上下文参数、
+ * 临时的 Properties 对象、Map 等等。{@code Environment} 对象在属性方面的作用
+ * 是为用户提供一个便捷的服务接口，用于配置属性源并从中解析属性。
  *
- * <p>Beans managed within an {@code ApplicationContext} may register to be {@link
- * org.springframework.context.EnvironmentAware EnvironmentAware} or {@code @Inject} the
- * {@code Environment} in order to query profile state or resolve properties directly.
+ * <p>在 {@code ApplicationContext} 中管理的 Bean 可以注册为
+ * {@link org.springframework.context.EnvironmentAware EnvironmentAware}，
+ * 或者通过 {@code @Inject} 注入 {@code Environment}，以便查询 profile 状态或直接解析属性。
  *
- * <p>In most cases, however, application-level beans should not need to interact with the
- * {@code Environment} directly but instead may have to have {@code ${...}} property
- * values replaced by a property placeholder configurer such as
- * {@link org.springframework.context.support.PropertySourcesPlaceholderConfigurer
- * PropertySourcesPlaceholderConfigurer}, which itself is {@code EnvironmentAware} and
- * as of Spring 3.1 is registered by default when using
- * {@code <context:property-placeholder/>}.
+ * <p>不过在大多数情况下，应用级别的 Bean 不应需要直接与 {@code Environment} 交互，
+ * 而是可以让 {@code ${...}} 属性值由属性占位符配置器替换，例如
+ * {@link org.springframework.context.support.PropertySourcesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer}，
  *
- * <p>Configuration of the {@code Environment} object must be done through the
- * {@code ConfigurableEnvironment} interface, returned from all
- * {@code AbstractApplicationContext} subclass {@code getEnvironment()} methods. See
- * {@link ConfigurableEnvironment} Javadoc for usage examples demonstrating manipulation
- * of property sources prior to application context {@code refresh()}.
+ * 它本身实现了 {@code EnvironmentAware}，并且从 Spring 3.1 起在使用
+ * {@code <context:property-placeholder/>} 时默认注册。
+ *
+ * <p>{@code Environment} 对象的配置必须通过 {@code ConfigurableEnvironment} 接口完成，
+ * 该接口由所有 {@code AbstractApplicationContext} 子类的 {@code getEnvironment()} 方法返回。
+ * 有关在应用上下文 {@code refresh()} 之前操作属性源的用法示例，
+ * 请参见 {@link ConfigurableEnvironment} 的 Javadoc。
  *
  * @author Chris Beams
  * @since 3.1
@@ -71,14 +65,13 @@ package org.springframework.core.env;
 public interface Environment extends PropertyResolver {
 
 	/**
-	 * Return the set of profiles explicitly made active for this environment. Profiles
-	 * are used for creating logical groupings of bean definitions to be registered
-	 * conditionally, for example based on deployment environment. Profiles can be
-	 * activated by setting {@linkplain AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
-	 * "spring.profiles.active"} as a system property or by calling
-	 * {@link ConfigurableEnvironment#setActiveProfiles(String...)}.
-	 * <p>If no profiles have explicitly been specified as active, then any
-	 * {@linkplain #getDefaultProfiles() default profiles} will automatically be activated.
+	 * 返回为此环境显式激活的 profile 集合。profile 用于创建按条件注册的
+	 * Bean 定义的逻辑分组，例如基于部署环境。可以通过将
+	 * {@linkplain AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME "spring.profiles.active"}
+	 * 设置为系统属性，或调用 {@link ConfigurableEnvironment#setActiveProfiles(String...)}
+	 * 来激活 profile。
+	 * <p>如果未显式指定任何活动 profile，则会自动激活所有
+	 * {@linkplain #getDefaultProfiles() 默认 profile}。
 	 * @see #getDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles
 	 * @see AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
@@ -86,8 +79,7 @@ public interface Environment extends PropertyResolver {
 	String[] getActiveProfiles();
 
 	/**
-	 * Return the set of profiles to be active by default when no active profiles have
-	 * been set explicitly.
+	 * 返回在未显式设置任何活动 profile 时默认应处于活动状态的 profile 集合。
 	 * @see #getActiveProfiles
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
@@ -95,12 +87,11 @@ public interface Environment extends PropertyResolver {
 	String[] getDefaultProfiles();
 
 	/**
-	 * Return whether one or more of the given profiles is active or, in the case of no
-	 * explicit active profiles, whether one or more of the given profiles is included in
-	 * the set of default profiles. If a profile begins with '!' the logic is inverted,
-	 * i.e. the method will return {@code true} if the given profile is <em>not</em> active.
-	 * For example, {@code env.acceptsProfiles("p1", "!p2")} will return {@code true} if
-	 * profile 'p1' is active or 'p2' is not active.
+	 * 返回给定 profile 中的一个或多个是否处于活动状态；或者在没有显式活动 profile 的情况下，
+	 * 返回给定 profile 中的一个或多个是否包含在默认 profile 集合中。如果 profile 以 '!' 开头，
+	 * 则逻辑反转，即如果给定 profile <em>不</em>处于活动状态，该方法将返回 {@code true}。
+	 * 例如，如果 profile 'p1' 处于活动状态或 'p2' 不处于活动状态，
+	 * {@code env.acceptsProfiles("p1", "!p2")} 将返回 {@code true}。
 	 * @throws IllegalArgumentException if called with zero arguments
 	 * or if any profile is {@code null}, empty, or whitespace only
 	 * @see #getActiveProfiles
@@ -112,8 +103,7 @@ public interface Environment extends PropertyResolver {
 	boolean acceptsProfiles(String... profiles);
 
 	/**
-	 * Return whether the {@linkplain #getActiveProfiles() active profiles}
-	 * match the given {@link Profiles} predicate.
+	 * 返回{@linkplain #getActiveProfiles() 活动 profile}是否与给定的 {@link Profiles} 谓词匹配。
 	 */
 	boolean acceptsProfiles(Profiles profiles);
 

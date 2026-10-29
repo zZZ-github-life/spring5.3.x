@@ -27,25 +27,24 @@ import org.springframework.util.Assert;
 import org.springframework.web.util.JavaScriptUtils;
 
 /**
- * The {@code <escapeBody>} tag is used to escape its enclosed body content,
- * applying HTML escaping and/or JavaScript escaping.
+ * {@code <escapeBody>} 标签用于转义其所包围的正文内容，
+ * 可应用 HTML 转义和/或 JavaScript 转义。
  *
- * <p>Provides a "htmlEscape" property for explicitly specifying whether to
- * apply HTML escaping. If not set, a page-level default (e.g. from the
- * HtmlEscapeTag) or an application-wide default (the "defaultHtmlEscape"
- * context-param in web.xml) is used.
+ * <p>提供 "htmlEscape" 属性，用于显式指定是否应用 HTML 转义。
+ * 如果未设置，则使用页面级默认值（例如来自 HtmlEscapeTag）或
+ * 应用级默认值（web.xml 中的 "defaultHtmlEscape" 上下文参数）。
  *
- * <p>Provides a "javaScriptEscape" property for specifying whether to apply
- * JavaScript escaping. Can be combined with HTML escaping or used standalone.
+ * <p>提供 "javaScriptEscape" 属性，用于指定是否应用
+ * JavaScript 转义。可与 HTML 转义组合使用，也可单独使用。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -53,15 +52,15 @@ import org.springframework.web.util.JavaScriptUtils;
  * <td>htmlEscape</td>
  * <td>false</td>
  * <td>true</td>
- * <td>Set HTML escaping for this tag, as boolean value.
- * Overrides the default HTML escaping setting for the current page.</td>
+ * <td>以布尔值形式为该标签设置 HTML 转义。
+ * 覆盖当前页面的默认 HTML 转义设置。</td>
  * </tr>
  * <tr>
  * <td>javaScriptEscape</td>
  * <td>false</td>
  * <td>true</td>
- * <td>Set JavaScript escaping for this tag, as boolean value.
- * Default is {@code false}.</td>
+ * <td>以布尔值形式为该标签设置 JavaScript 转义。
+ * 默认为 {@code false}。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -81,8 +80,8 @@ public class EscapeBodyTag extends HtmlEscapingAwareTag implements BodyTag {
 
 
 	/**
-	 * Set JavaScript escaping for this tag, as boolean value.
-	 * Default is "false".
+	 * 以布尔值形式为该标签设置 JavaScript 转义。
+	 * 默认为 "false"。
 	 */
 	public void setJavaScriptEscape(boolean javaScriptEscape) throws JspException {
 		this.javaScriptEscape = javaScriptEscape;
@@ -121,7 +120,7 @@ public class EscapeBodyTag extends HtmlEscapingAwareTag implements BodyTag {
 	}
 
 	/**
-	 * Read the unescaped body content from the page.
+	 * 从页面读取未转义的正文内容。
 	 * @return the original content
 	 * @throws IOException if reading failed
 	 */
@@ -131,8 +130,8 @@ public class EscapeBodyTag extends HtmlEscapingAwareTag implements BodyTag {
 	}
 
 	/**
-	 * Write the escaped body content to the page.
-	 * <p>Can be overridden in subclasses, e.g. for testing purposes.
+	 * 将转义后的正文内容写入页面。
+	 * <p>可在子类中重写，例如用于测试目的。
 	 * @param content the content to write
 	 * @throws IOException if writing failed
 	 */

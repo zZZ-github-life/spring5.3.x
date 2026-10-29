@@ -1,0 +1,62 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/ResponseCookie.java
+@@BODY 27 29
+带有 "Set-Cookie" 响应头所允许的附加属性的 {@code HttpCookie} 子类。要构建实例，请使用 {@link #from} 静态方法。
+@@BODY 55 55
+私有构造函数。请参见 {@link #from(String, String)}。
+@@BODY 78 82
+以秒为单位返回 Cookie 的 "Max-Age" 属性。
+<p>正值表示 Cookie 相对于当前时间的过期时间。值为 0 表示 Cookie 应立即过期。负值表示没有 "Max-Age" 属性，此时 Cookie 会在浏览器关闭时被移除。
+@@BODY 89 89
+返回 Cookie 的 "Domain" 属性；如果未设置则返回 {@code null}。
+@@BODY 97 97
+返回 Cookie 的 "Path" 属性；如果未设置则返回 {@code null}。
+@@BODY 105 105
+如果 Cookie 具有 "Secure" 属性，则返回 {@code true}。
+@@BODY 112 112
+如果 Cookie 具有 "HttpOnly" 属性，则返回 {@code true}。
+@@BODY 120 122
+返回 Cookie 的 "SameSite" 属性；如果未设置则返回 {@code null}。
+<p>这会限制 Cookie 的作用范围：当值为 {@code "Strict"} 时仅附加到同站请求，当值为 {@code "Lax"} 时附加到跨站请求。
+@@BODY 184 185
+工厂方法，用于获取服务器端定义的 Cookie 的构建器；该 Cookie 以名称-值对开始，也可以包含属性。
+@@BODY 195 198
+工厂方法，用于获取服务器端定义的 Cookie 的构建器。与 {@link #from(String, String)} 不同，此选项假定输入来自远程服务器，因此可以更宽松地处理，例如忽略用双引号表示的空白域名。
+@@BODY 293 293
+用于构建带属性的服务器端定义 HttpCookie 的构建器。
+@@BODY 298 303
+设置 Cookie 的 "Max-Age" 属性。
+<p>正值表示 Cookie 应相对于当前时间过期的时间。值为 0 表示 Cookie 应立即过期。负值表示没有 "Max-Age" 属性，此时 Cookie 会在浏览器关闭时被移除。
+@@BODY 308 308
+接受以秒为单位值的 {@link #maxAge(Duration)} 变体。
+@@BODY 313 313
+设置 Cookie 的 "Path" 属性。
+@@BODY 318 318
+设置 Cookie 的 "Domain" 属性。
+@@BODY 323 323
+向 Cookie 添加 "Secure" 属性。
+@@BODY 328 328
+向 Cookie 添加 "HttpOnly" 属性。
+@@BODY 334 337
+向 Cookie 添加 "SameSite" 属性。
+<p>这会限制 Cookie 的作用范围：当值为 {@code "Strict"} 时仅附加到同站请求，当值为 {@code "Lax"} 时附加到跨站请求。
+@@BODY 344 344
+创建 HttpCookie。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/StreamingHttpOutputMessage.java
+@@BODY 23 24
+表示允许设置流式正文的 HTTP 输出消息。请注意，此类消息通常不支持 {@link #getBody()} 访问。
+@@BODY 33 33
+为此消息设置流式正文回调。
+@@BODY 40 42
+定义可直接写入 {@link OutputStream} 的正文的约定。适用于通过回调机制间接提供 {@link OutputStream} 访问的 HTTP 客户端库。
+@@BODY 48 48
+将此正文写入给定的 {@link OutputStream}。
+@@END
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/ZeroCopyHttpOutputMessage.java
+@@BODY 25 26
+支持 "零拷贝" 文件传输的 {@code ReactiveOutputMessage} 子接口。
+@@BODY 36 37
+使用给定的 {@link File} 将消息正文写入底层 HTTP 层。
+@@BODY 48 49
+使用给定的 {@link Path} 将消息正文写入底层 HTTP 层。
+@@END

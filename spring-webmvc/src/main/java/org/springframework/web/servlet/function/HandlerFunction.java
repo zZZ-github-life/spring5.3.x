@@ -17,7 +17,7 @@
 package org.springframework.web.servlet.function;
 
 /**
- * Represents a function that handles a {@linkplain ServerRequest request}.
+ * 表示处理{@linkplain ServerRequest 请求}的函数。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -28,7 +28,7 @@ package org.springframework.web.servlet.function;
 public interface HandlerFunction<T extends ServerResponse> {
 
 	/**
-	 * Handle the given request.
+	 * 处理给定的请求。
 	 * @param request the request to handle
 	 * @return the response
 	 */

@@ -27,14 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.LocaleContextResolver;
 
 /**
- * Abstract base class for {@link LocaleContextResolver} implementations.
- *
- * <p>Provides support for a {@linkplain #setDefaultLocale(Locale) default locale}
- * and a {@linkplain #setDefaultTimeZone(TimeZone) default time zone}.
- *
- * <p>Also provides pre-implemented versions of {@link #resolveLocale} and {@link #setLocale},
- * delegating to {@link #resolveLocaleContext} and {@link #setLocaleContext}.
- *
+ * 用于 {@link LocaleContextResolver} 实现的抽象基类。<p>提供对{@linkplain #setDefaultLocale(Locale) 默认区域设置}和{@linkplain #setDefaultTimeZone(TimeZone) 默认时区}的支持。<p>还提供 {@link #resolveLocale} 和 {@link #setLocale} 的预实现版本，分别委托给 {@link #resolveLocaleContext} 和 {@link #setLocaleContext}。
  * @author Juergen Hoeller
  * @since 4.0
  * @see #setDefaultLocale
@@ -47,16 +40,14 @@ public abstract class AbstractLocaleContextResolver extends AbstractLocaleResolv
 
 
 	/**
-	 * Set a default {@link TimeZone} that this resolver will return if no other
-	 * time zone is found.
+	 * 设置一个默认 {@link TimeZone}，如果未找到其他时区，此解析器将返回它。
 	 */
 	public void setDefaultTimeZone(@Nullable TimeZone defaultTimeZone) {
 		this.defaultTimeZone = defaultTimeZone;
 	}
 
 	/**
-	 * Get the default {@link TimeZone} that this resolver is supposed to fall
-	 * back to, if any.
+	 * 获取此解析器应回退到的默认 {@link TimeZone}（如果有）。
 	 */
 	@Nullable
 	public TimeZone getDefaultTimeZone() {

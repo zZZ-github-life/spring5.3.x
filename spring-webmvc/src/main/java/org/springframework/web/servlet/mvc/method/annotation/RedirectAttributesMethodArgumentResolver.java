@@ -32,15 +32,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 /**
- * Resolves method arguments of type {@link RedirectAttributes}.
+ * 解析 {@link RedirectAttributes} 类型的方法参数。
  *
- * <p>This resolver must be listed ahead of
- * {@link org.springframework.web.method.annotation.ModelMethodProcessor} and
- * {@link org.springframework.web.method.annotation.MapMethodProcessor},
- * which support {@link Map} and {@link Model} arguments both of which are
- * "super" types of {@code RedirectAttributes} and would also attempt to
- * resolve a {@code RedirectAttributes} argument.
- *
+ * <p>此解析器必须列在
+ * {@link org.springframework.web.method.annotation.ModelMethodProcessor} 和
+ * {@link org.springframework.web.method.annotation.MapMethodProcessor} 之前，
+ * 后者支持 {@link Map} 和 {@link Model} 参数，而这两者都是
+ * {@code RedirectAttributes} 的“父”类型，因此它们也会尝试
+ * 解析 {@code RedirectAttributes} 参数。
  * @author Rossen Stoyanchev
  * @since 3.1
  */

@@ -31,9 +31,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Resolves method parameters by delegating to a list of registered
- * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
- * Previously resolved method parameters are cached for faster lookups.
+ * 通过委托给一组已注册的
+ * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 来解析方法参数。
+ * 之前解析过的方法参数会被缓存，以加快查找速度。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -49,7 +49,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 
 
 	/**
-	 * Add the given {@link HandlerMethodArgumentResolver}.
+	 * 添加给定的 {@link HandlerMethodArgumentResolver}。
 	 */
 	public HandlerMethodArgumentResolverComposite addResolver(HandlerMethodArgumentResolver resolver) {
 		this.argumentResolvers.add(resolver);
@@ -57,7 +57,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
+	 * 添加给定的 {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}。
 	 */
 	public HandlerMethodArgumentResolverComposite addResolvers(@Nullable HandlerMethodArgumentResolver... resolvers) {
 		if (resolvers != null) {
@@ -67,7 +67,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
+	 * 添加给定的 {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}。
 	 */
 	public HandlerMethodArgumentResolverComposite addResolvers(
 			@Nullable List<? extends HandlerMethodArgumentResolver> resolvers) {
@@ -79,14 +79,14 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	}
 
 	/**
-	 * Return a read-only list with the contained resolvers, or an empty list.
+	 * 返回包含的解析器的只读列表，或空列表。
 	 */
 	public List<HandlerMethodArgumentResolver> getResolvers() {
 		return Collections.unmodifiableList(this.argumentResolvers);
 	}
 
 	/**
-	 * Clear the list of configured resolvers and the resolver cache.
+	 * 清除已配置的解析器列表和解析器缓存。
 	 */
 	public void clear() {
 		this.argumentResolvers.clear();
@@ -95,8 +95,8 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 
 
 	/**
-	 * Whether the given {@linkplain MethodParameter method parameter} is
-	 * supported by any registered {@link HandlerMethodArgumentResolver}.
+	 * 给定{@linkplain MethodParameter 方法参数}是否受任何已注册的
+	 * {@link HandlerMethodArgumentResolver} 支持。
 	 */
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
@@ -104,9 +104,9 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	}
 
 	/**
-	 * Iterate over registered
-	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} and
-	 * invoke the one that supports it.
+	 * 遍历已注册的
+	 * {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}，
+	 * 并调用支持该参数的那个。
 	 * @throws IllegalStateException if no suitable
 	 * {@link HandlerMethodArgumentResolver} is found.
 	 */
@@ -121,8 +121,7 @@ public class HandlerMethodArgumentResolverComposite implements HandlerMethodArgu
 	}
 
 	/**
-	 * Find a registered {@link HandlerMethodArgumentResolver} that supports
-	 * the given method parameter.
+	 * 查找支持给定方法参数的已注册 {@link HandlerMethodArgumentResolver}。
 	 */
 	@Nullable
 	public HandlerMethodArgumentResolver getArgumentResolver(MethodParameter parameter) {

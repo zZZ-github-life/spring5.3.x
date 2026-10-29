@@ -30,7 +30,7 @@ import org.springframework.scripting.ScriptEvaluator;
 import org.springframework.scripting.ScriptSource;
 
 /**
- * BeanShell-based implementation of Spring's {@link ScriptEvaluator} strategy interface.
+ * Spring 的 {@link ScriptEvaluator} 策略接口的 BeanShell 实现。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -43,13 +43,13 @@ public class BshScriptEvaluator implements ScriptEvaluator, BeanClassLoaderAware
 
 
 	/**
-	 * Construct a new BshScriptEvaluator.
+	 * 构造一个新的 BshScriptEvaluator。
 	 */
 	public BshScriptEvaluator() {
 	}
 
 	/**
-	 * Construct a new BshScriptEvaluator.
+	 * 构造一个新的 BshScriptEvaluator。
 	 * @param classLoader the ClassLoader to use for the {@link Interpreter}
 	 */
 	public BshScriptEvaluator(ClassLoader classLoader) {

@@ -29,9 +29,7 @@ import org.springframework.test.annotation.ProfileValueUtils;
 import org.springframework.util.Assert;
 
 /**
- * {@code ProfileValueChecker} is a custom JUnit {@link Statement} that checks
- * whether a test class or test method is enabled in the current environment
- * via Spring's {@link IfProfileValue @IfProfileValue} annotation.
+ * {@code ProfileValueChecker} 是一个自定义 JUnit {@link Statement}，用于通过 Spring 的 {@link IfProfileValue @IfProfileValue} 注解检查测试类或测试方法在当前环境中是否启用。
  *
  * @author Sam Brannen
  * @author Philippe Marschall
@@ -51,7 +49,7 @@ public class ProfileValueChecker extends Statement {
 
 
 	/**
-	 * Construct a new {@code ProfileValueChecker} statement.
+	 * 构造一个新的 {@code ProfileValueChecker} 语句。
 	 * @param next the next {@code Statement} in the execution chain;
 	 * never {@code null}
 	 * @param testClass the test class to check; never {@code null}
@@ -68,15 +66,9 @@ public class ProfileValueChecker extends Statement {
 
 
 	/**
-	 * Determine if the test specified by arguments to the
-	 * {@linkplain #ProfileValueChecker constructor} is <em>enabled</em> in
-	 * the current environment, as configured via the {@link IfProfileValue
-	 * &#064;IfProfileValue} annotation.
-	 * <p>If the test is not annotated with {@code @IfProfileValue} it is
-	 * considered enabled.
-	 * <p>If a test is not enabled, this method will abort further evaluation
-	 * of the execution chain with a failed assumption; otherwise, this method
-	 * will simply evaluate the next {@link Statement} in the execution chain.
+	 * 确定由 {@linkplain #ProfileValueChecker 构造函数}参数指定的测试在当前环境中是否<em>启用</em>（根据 {@link IfProfileValue &#064;IfProfileValue} 注解的配置）。
+	 * <p>如果测试未标注 {@code @IfProfileValue}，则视为已启用。
+	 * <p>如果测试未启用，此方法将通过失败的假设中止执行链的进一步评估；否则，此方法将仅评估执行链中的下一个 {@link Statement}。
 	 * @throws AssumptionViolatedException if the test is disabled
 	 * @throws Throwable if evaluation of the next statement fails
 	 * @see ProfileValueUtils#isTestEnabledInThisEnvironment(Class)

@@ -22,11 +22,9 @@ import java.util.Collections;
 import org.springframework.lang.Nullable;
 
 /**
- * A simple instance filter that checks if a given instance match based on
- * a collection of includes and excludes element.
+ * 一个简单的实例过滤器，根据 includes 和 excludes 元素集合检查给定实例是否匹配。
  *
- * <p>Subclasses may want to override {@link #match(Object, Object)} to provide
- * a custom matching algorithm.
+ * <p>子类可能希望重写 {@link #match(Object, Object)} 以提供自定义匹配算法。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -42,13 +40,15 @@ public class InstanceFilter<T> {
 
 
 	/**
-	 * Create a new instance based on includes/excludes collections.
-	 * <p>A particular element will match if it "matches" the one of the element in the
-	 * includes list and  does not match one of the element in the excludes list.
-	 * <p>Subclasses may redefine what matching means. By default, an element match with
-	 * another if it is equals according to {@link Object#equals(Object)}
-	 * <p>If both collections are empty, {@code matchIfEmpty} defines if
-	 * an element matches or not.
+	 * 基于 includes/excludes 集合创建一个新实例。
+	 *
+	 * <p>如果某个元素与 includes 列表中的某个元素"匹配"，并且不与 excludes 列表中的任何元素匹配，则该
+	 * 元素将匹配。
+	 *
+	 * <p>子类可以重新定义匹配的含义。默认情况下，如果一个元素根据 {@link Object#equals(Object)} 与另一
+	 * 个元素相等，则二者匹配。
+	 *
+	 * <p>如果两个集合都为空，则由 {@code matchIfEmpty} 决定元素是否匹配。
 	 * @param includes the collection of includes
 	 * @param excludes the collection of excludes
 	 * @param matchIfEmpty the matching result if both the includes and the excludes
@@ -64,7 +64,7 @@ public class InstanceFilter<T> {
 
 
 	/**
-	 * Determine if the specified {@code instance} matches this filter.
+	 * 确定指定的 {@code instance} 是否匹配此过滤器。
 	 */
 	public boolean match(T instance) {
 		Assert.notNull(instance, "Instance to match must not be null");
@@ -87,8 +87,7 @@ public class InstanceFilter<T> {
 	}
 
 	/**
-	 * Determine if the specified {@code instance} is equal to the
-	 * specified {@code candidate}.
+	 * 确定指定的 {@code instance} 是否等于指定的 {@code candidate}。
 	 * @param instance the instance to handle
 	 * @param candidate a candidate defined by this filter
 	 * @return {@code true} if the instance matches the candidate
@@ -98,8 +97,9 @@ public class InstanceFilter<T> {
 	}
 
 	/**
-	 * Determine if the specified {@code instance} matches one of the candidates.
-	 * <p>If the candidates collection is {@code null}, returns {@code false}.
+	 * 确定指定的 {@code instance} 是否匹配其中一个候选。
+	 *
+	 * <p>如果候选集合为 {@code null}，则返回 {@code false}。
 	 * @param instance the instance to check
 	 * @param candidates a list of candidates
 	 * @return {@code true} if the instance match or the candidates collection is null

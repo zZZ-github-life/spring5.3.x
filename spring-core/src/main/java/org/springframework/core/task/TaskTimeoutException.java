@@ -17,8 +17,7 @@
 package org.springframework.core.task;
 
 /**
- * Exception thrown when a {@link AsyncTaskExecutor} rejects to accept
- * a given task for execution because of the specified timeout.
+ * 当 {@link AsyncTaskExecutor} 由于指定的超时而拒绝接受给定任务执行时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -30,8 +29,7 @@ package org.springframework.core.task;
 public class TaskTimeoutException extends TaskRejectedException {
 
 	/**
-	 * Create a new {@code TaskTimeoutException}
-	 * with the specified detail message and no root cause.
+	 * 使用指定的详细消息创建新的 {@code TaskTimeoutException}，不包含根本原因。
 	 * @param msg the detail message
 	 */
 	public TaskTimeoutException(String msg) {
@@ -39,8 +37,7 @@ public class TaskTimeoutException extends TaskRejectedException {
 	}
 
 	/**
-	 * Create a new {@code TaskTimeoutException}
-	 * with the specified detail message and the given root cause.
+	 * 使用指定的详细消息和给定的根本原因创建新的 {@code TaskTimeoutException}。
 	 * @param msg the detail message
 	 * @param cause the root cause (usually from using an underlying
 	 * API such as the {@code java.util.concurrent} package)

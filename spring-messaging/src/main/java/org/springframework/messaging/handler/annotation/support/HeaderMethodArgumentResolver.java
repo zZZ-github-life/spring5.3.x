@@ -33,9 +33,8 @@ import org.springframework.messaging.support.NativeMessageHeaderAccessor;
 import org.springframework.util.Assert;
 
 /**
- * Resolver for {@link Header @Header} arguments. Headers are resolved from
- * either the top-level header map or the nested
- * {@link NativeMessageHeaderAccessor native} header map.
+ * {@link Header @Header} 参数的解析器。头从顶层头映射或嵌套的
+ * {@link NativeMessageHeaderAccessor native} 头映射中解析。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

@@ -24,9 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Stores registrations of extractors for metadata entries.
- * Each metadata entry is decoded based on its {@code MimeType} and a name
- * is assigned to the decoded value.
+ * 存储元数据条目提取器的注册信息。
+ * 每个元数据条目根据其 {@code MimeType} 进行解码，并为解码后的值分配一个名称。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -36,9 +35,8 @@ import org.springframework.util.MimeType;
 public interface MetadataExtractorRegistry {
 
 	/**
-	 * Decode metadata entries with the given {@link MimeType} to the specified
-	 * target class, and store the decoded value in the output map under the
-	 * given name.
+	 * 将给定 {@link MimeType} 的元数据条目解码为指定的目标类，并将解码后的值
+	 * 以给定名称存储在输出映射中。
 	 * @param mimeType the mime type of metadata entries to extract
 	 * @param targetType the target value type to decode to
 	 * @param name assign a name for the decoded value; if not provided, then
@@ -50,9 +48,9 @@ public interface MetadataExtractorRegistry {
 	}
 
 	/**
-	 * Variant of {@link #metadataToExtract(MimeType, Class, String)} that accepts
-	 * {@link ParameterizedTypeReference} instead of {@link Class} for
-	 * specifying a target type with generic parameters.
+	 * {@link #metadataToExtract(MimeType, Class, String)} 的变体，接受
+	 * {@link ParameterizedTypeReference} 而不是 {@link Class}，
+	 * 用于指定带泛型参数的目标类型。
 	 * @param mimeType the mime type of metadata entries to extract
 	 * @param targetType the target value type to decode to
 	 */
@@ -64,9 +62,8 @@ public interface MetadataExtractorRegistry {
 	}
 
 	/**
-	 * Variant of {@link #metadataToExtract(MimeType, Class, String)} that allows
-	 * custom logic to be used to map the decoded value to any number of values
-	 * in the output map.
+	 * {@link #metadataToExtract(MimeType, Class, String)} 的变体，允许使用
+	 * 自定义逻辑将解码后的值映射为输出映射中的任意数量的值。
 	 * @param mimeType the mime type of metadata entries to extract
 	 * @param targetType the target value type to decode to
 	 * @param mapper custom logic to add the decoded value to the output map
@@ -76,9 +73,9 @@ public interface MetadataExtractorRegistry {
 			MimeType mimeType, Class<T> targetType, BiConsumer<T, Map<String, Object>> mapper);
 
 	/**
-	 * Variant of {@link #metadataToExtract(MimeType, Class, BiConsumer)} that
-	 * accepts {@link ParameterizedTypeReference} instead of {@link Class} for
-	 * specifying a target type with generic parameters.
+	 * {@link #metadataToExtract(MimeType, Class, BiConsumer)} 的变体，接受
+	 * {@link ParameterizedTypeReference} 而不是 {@link Class}，
+	 * 用于指定带泛型参数的目标类型。
 	 * @param mimeType the mime type of metadata entries to extract
 	 * @param type the target value type to decode to
 	 * @param mapper custom logic to add the decoded value to the output map

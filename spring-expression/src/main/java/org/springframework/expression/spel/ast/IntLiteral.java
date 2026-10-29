@@ -22,7 +22,7 @@ import org.springframework.expression.spel.CodeFlow;
 import org.springframework.util.Assert;
 
 /**
- * Expression language AST node that represents an integer literal.
+ * 表示整数字面值的表达式语言 AST 节点。
  *
  * @author Andy Clement
  * @since 3.0

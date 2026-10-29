@@ -33,7 +33,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Decoder for {@link Resource Resources}.
+ * {@link Resource Resource} 的解码器。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -41,7 +41,7 @@ import org.springframework.util.MimeTypeUtils;
  */
 public class ResourceDecoder extends AbstractDataBufferDecoder<Resource> {
 
-	/** Name of hint with a filename for the resource(e.g. from "Content-Disposition" HTTP header). */
+	/** 带有资源文件名的提示名称（例如来自 "Content-Disposition" HTTP 头）。 */
 	public static String FILENAME_HINT = ResourceDecoder.class.getName() + ".filename";
 
 

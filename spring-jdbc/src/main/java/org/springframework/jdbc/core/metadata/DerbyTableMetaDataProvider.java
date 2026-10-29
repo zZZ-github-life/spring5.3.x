@@ -20,8 +20,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
 /**
- * The Derby specific implementation of {@link TableMetaDataProvider}.
- * Overrides the Derby meta-data info regarding retrieving generated keys.
+ * {@link TableMetaDataProvider} 的 Derby 特定实现。
+ * 覆盖 Derby 关于检索生成键的元数据信息。
  *
  * @author Thomas Risberg
  * @since 3.0

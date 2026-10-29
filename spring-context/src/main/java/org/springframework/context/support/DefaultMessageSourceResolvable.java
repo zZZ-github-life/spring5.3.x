@@ -24,9 +24,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Spring's default implementation of the {@link MessageSourceResolvable} interface.
- * Offers an easy way to store all the necessary values needed to resolve
- * a message via a {@link org.springframework.context.MessageSource}.
+ * Spring 对 {@link MessageSourceResolvable} 接口的默认实现。提供了一种简便方式，用于存储通过
+ * {@link org.springframework.context.MessageSource} 解析消息所需的所有必要值。
  *
  * @author Juergen Hoeller
  * @since 13.02.2004
@@ -46,7 +45,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 
 	/**
-	 * Create a new DefaultMessageSourceResolvable.
+	 * 创建一个新的 DefaultMessageSourceResolvable。
 	 * @param code the code to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(String code) {
@@ -54,7 +53,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * Create a new DefaultMessageSourceResolvable.
+	 * 创建一个新的 DefaultMessageSourceResolvable。
 	 * @param codes the codes to be used to resolve this message
 	 */
 	public DefaultMessageSourceResolvable(String[] codes) {
@@ -62,7 +61,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * Create a new DefaultMessageSourceResolvable.
+	 * 创建一个新的 DefaultMessageSourceResolvable。
 	 * @param codes the codes to be used to resolve this message
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
@@ -71,7 +70,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * Create a new DefaultMessageSourceResolvable.
+	 * 创建一个新的 DefaultMessageSourceResolvable。
 	 * @param codes the codes to be used to resolve this message
 	 * @param arguments the array of arguments to be used to resolve this message
 	 */
@@ -80,7 +79,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * Create a new DefaultMessageSourceResolvable.
+	 * 创建一个新的 DefaultMessageSourceResolvable。
 	 * @param codes the codes to be used to resolve this message
 	 * @param arguments the array of arguments to be used to resolve this message
 	 * @param defaultMessage the default message to be used to resolve this message
@@ -94,7 +93,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * Copy constructor: Create a new instance from another resolvable.
+	 * 复制构造函数：从另一个可解析对象创建新实例。
 	 * @param resolvable the resolvable to copy from
 	 */
 	public DefaultMessageSourceResolvable(MessageSourceResolvable resolvable) {
@@ -103,8 +102,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 
 	/**
-	 * Return the default code of this resolvable, that is,
-	 * the last one in the codes array.
+	 * 返回此可解析对象的默认代码，即 codes 数组中的最后一个。
 	 */
 	@Nullable
 	public String getCode() {
@@ -130,8 +128,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * Indicate whether the specified default message needs to be rendered for
-	 * substituting placeholders and/or {@link java.text.MessageFormat} escaping.
+	 * 指示指定的默认消息是否需要进行渲染，以替换占位符和/或进行 {@link java.text.MessageFormat} 转义。
 	 * @return {@code true} if the default message may contain argument placeholders;
 	 * {@code false} if it definitely does not contain placeholders or custom escaping
 	 * and can therefore be simply exposed as-is
@@ -146,8 +143,7 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 
 
 	/**
-	 * Build a default String representation for this MessageSourceResolvable:
-	 * including codes, arguments, and default message.
+	 * 为此 MessageSourceResolvable 构建默认的 String 表示形式：包括代码、参数和默认消息。
 	 */
 	protected final String resolvableToString() {
 		StringBuilder result = new StringBuilder(64);
@@ -158,9 +154,8 @@ public class DefaultMessageSourceResolvable implements MessageSourceResolvable, 
 	}
 
 	/**
-	 * The default implementation exposes the attributes of this MessageSourceResolvable.
-	 * <p>To be overridden in more specific subclasses, potentially including the
-	 * resolvable content through {@code resolvableToString()}.
+	 * 默认实现公开此 MessageSourceResolvable 的属性。<p>可在更具体的子类中覆盖，可能通过
+	 * {@code resolvableToString()} 包含可解析内容。
 	 * @see #resolvableToString()
 	 */
 	@Override

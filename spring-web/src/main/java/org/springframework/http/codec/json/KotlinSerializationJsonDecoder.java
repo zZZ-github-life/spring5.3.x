@@ -40,18 +40,18 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.MimeType;
 
 /**
- * Decode a byte stream into JSON and convert to Object's with
- * <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>.
+ * 将字节流解码为 JSON，并使用
+ * <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> 转换为 Object。
  *
- * <p>This decoder can be used to bind {@code @Serializable} Kotlin classes,
- * <a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#open-polymorphism">open polymorphic serialization</a>
- * is not supported.
- * It supports {@code application/json} and {@code application/*+json} with
- * various character sets, {@code UTF-8} being the default.
+ * <p>此解码器可用于绑定 {@code @Serializable} Kotlin 类，
+ * 但不支持
+ * <a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md#open-polymorphism">开放式多态序列化</a>。
+ * 它支持使用各种字符集的 {@code application/json} 和 {@code application/*+json}，
+ * 默认使用 {@code UTF-8}。
  *
- * <p>Decoding streams is not supported yet, see
+ * <p>尚不支持流式解码，请参阅
  * <a href="https://github.com/Kotlin/kotlinx.serialization/issues/1073">kotlinx.serialization/issues/1073</a>
- * related issue.
+ * 相关问题。
  *
  * @author Sebastien Deleuze
  * @since 5.3
@@ -76,14 +76,13 @@ public class KotlinSerializationJsonDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Configure a limit on the number of bytes that can be buffered whenever
-	 * the input stream needs to be aggregated. This can be a result of
-	 * decoding to a single {@code DataBuffer},
-	 * {@link java.nio.ByteBuffer ByteBuffer}, {@code byte[]},
-	 * {@link org.springframework.core.io.Resource Resource}, {@code String}, etc.
-	 * It can also occur when splitting the input stream, e.g. delimited text,
-	 * in which case the limit applies to data buffered between delimiters.
-	 * <p>By default this is set to 256K.
+	 * 配置当输入流需要聚合时可缓冲的字节数限制。这可能源于
+	 * 解码为单个 {@code DataBuffer}、
+	 * {@link java.nio.ByteBuffer ByteBuffer}、{@code byte[]}、
+	 * {@link org.springframework.core.io.Resource Resource}、{@code String} 等。
+	 * 在拆分输入流时（例如分隔文本）也可能发生，此时该限制
+	 * 适用于分隔符之间缓冲的数据。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 */
 	public void setMaxInMemorySize(int byteCount) {
@@ -91,7 +90,7 @@ public class KotlinSerializationJsonDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回{@link #setMaxInMemorySize 已配置}的字节数限制。
 	 */
 	public int getMaxInMemorySize() {
 		return this.stringDecoder.getMaxInMemorySize();
@@ -126,10 +125,10 @@ public class KotlinSerializationJsonDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Tries to find a serializer that can marshall or unmarshall instances of the given type
-	 * using kotlinx.serialization. If no serializer can be found, an exception is thrown.
-	 * <p>Resolved serializers are cached and cached results are returned on successive calls.
-	 * TODO Avoid relying on throwing exception when https://github.com/Kotlin/kotlinx.serialization/pull/1164 is fixed
+	 * 尝试查找可使用 kotlinx.serialization 对给定类型实例进行编组或
+	 * 反编组的序列化器。如果找不到序列化器，则抛出异常。
+	 * <p>已解析的序列化器会被缓存，后续调用会返回缓存的结果。
+	 * TODO 在 https://github.com/Kotlin/kotlinx.serialization/pull/1164 修复后，避免依赖抛出异常
 	 * @param type the type to find a serializer for
 	 * @return a resolved serializer for the given type
 	 * @throws RuntimeException if no serializer supporting the given type can be found

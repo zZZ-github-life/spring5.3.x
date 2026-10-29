@@ -26,8 +26,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods that are useful for bean definition reader implementations.
- * Mainly intended for internal use.
+ * 对 Bean 定义读取器实现有用的工具方法。主要供内部使用。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -38,15 +37,14 @@ import org.springframework.util.StringUtils;
 public abstract class BeanDefinitionReaderUtils {
 
 	/**
-	 * Separator for generated bean names. If a class name or parent name is not
-	 * unique, "#1", "#2" etc will be appended, until the name becomes unique.
+	 * 生成的 Bean 名称的分隔符。如果类名或父名称不唯一，将追加“#1”、“#2”等，直到名称变得唯一。
 	 */
 	public static final String GENERATED_BEAN_NAME_SEPARATOR = BeanFactoryUtils.GENERATED_BEAN_NAME_SEPARATOR;
 
 
 	/**
-	 * Create a new GenericBeanDefinition for the given parent name and class name,
-	 * eagerly loading the bean class if a ClassLoader has been specified.
+	 * 为给定父名称和类名创建一个新的 GenericBeanDefinition，如果指定了 ClassLoader，则急切加载 Bean 类。
+	 *
 	 * @param parentName the name of the parent bean, if any
 	 * @param className the name of the bean class, if any
 	 * @param classLoader the ClassLoader to use for loading bean classes
@@ -71,8 +69,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Generate a bean name for the given top-level bean definition,
-	 * unique within the given bean factory.
+	 * 为给定顶层 Bean 定义生成一个在给定 Bean 工厂内唯一的 Bean 名称。
 	 * @param beanDefinition the bean definition to generate a bean name for
 	 * @param registry the bean factory that the definition is going to be
 	 * registered with (to check for existing bean names)
@@ -88,8 +85,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Generate a bean name for the given bean definition, unique within the
-	 * given bean factory.
+	 * 为给定 Bean 定义生成一个在给定 Bean 工厂内唯一的 Bean 名称。
 	 * @param definition the bean definition to generate a bean name for
 	 * @param registry the bean factory that the definition is going to be
 	 * registered with (to check for existing bean names)
@@ -128,8 +124,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Turn the given bean name into a unique bean name for the given bean factory,
-	 * appending a unique counter as suffix if necessary.
+	 * 将给定 Bean 名称转换为给定 Bean 工厂中的唯一 Bean 名称，如有必要追加唯一计数器作为后缀。
 	 * @param beanName the original bean name
 	 * @param registry the bean factory that the definition is going to be
 	 * registered with (to check for existing bean names)
@@ -150,7 +145,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Register the given bean definition with the given bean factory.
+	 * 将给定 Bean 定义注册到给定 Bean 工厂。
 	 * @param definitionHolder the bean definition including name and aliases
 	 * @param registry the bean factory to register with
 	 * @throws BeanDefinitionStoreException if registration failed
@@ -173,8 +168,7 @@ public abstract class BeanDefinitionReaderUtils {
 	}
 
 	/**
-	 * Register the given bean definition with a generated name,
-	 * unique within the given bean factory.
+	 * 使用生成的名称将给定 Bean 定义注册到给定 Bean 工厂，该名称在给定 Bean 工厂内唯一。
 	 * @param definition the bean definition to generate a bean name for
 	 * @param registry the bean factory to register with
 	 * @return the generated bean name

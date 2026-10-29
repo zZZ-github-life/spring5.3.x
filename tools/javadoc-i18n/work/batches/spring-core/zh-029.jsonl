@@ -1,0 +1,147 @@
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::22::0", "zh": ["基于 {@code String} 的路径匹配策略接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::22::1", "zh": ["<p>供 {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}、{@link org.springframework.web.servlet.handler.AbstractUrlHandlerMapping} 和 {@link org.springframework.web.servlet.mvc.WebContentInterceptor} 使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::22::2", "zh": ["<p>默认实现是 {@link AntPathMatcher}，支持 Ant 风格的模式语法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::38::0", "zh": ["给定的 {@code path} 是否表示一个可由本接口实现进行匹配的模式？", "<p>如果返回值为 {@code false}，则无需使用 {@link #match} 方法，因为对静态路径字符串进行直接相等比较会得到相同的结果。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::49::0", "zh": ["根据此 PathMatcher 的匹配策略，将给定的 {@code path} 与给定的 {@code pattern} 进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::59::0", "zh": ["根据此 PathMatcher 的匹配策略，将给定的 {@code path} 与给定 {@code pattern} 的对应部分进行匹配。", "<p>判断模式至少在给定基础路径的范围内是否匹配，并假定完整路径随后也可能匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::71::0", "zh": ["给定模式与完整路径，确定由模式映射的部分。", "<p>此方法应找出路径中通过实际模式动态匹配的部分，即从给定的完整路径中剥离静态定义的前导路径，仅返回实际由模式匹配的部分。", "<p>例如：对于模式 \"myroot/*.html\" 和完整路径 \"myroot/myfile.html\"，此方法应返回 \"myfile.html\"。详细的判定规则由该 PathMatcher 的匹配策略规定。", "<p>简单的实现可以在模式为实际模式时原样返回给定的完整路径，并在模式不包含任何动态部分（即 {@code pattern} 参数是静态路径，不符合实际 {@link #isPattern pattern} 的条件）时返回空字符串。复杂的实现会区分给定路径模式中的静态部分和动态部分。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::93::0", "zh": ["给定模式与完整路径，提取 URI 模板变量。URI 模板变量通过花括号（'{' 和 '}'）表示。", "<p>例如：对于模式 \"/hotels/{hotel}\" 和路径 \"/hotels/1\"，此方法将返回包含 \"hotel\" &rarr; \"1\" 的映射。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::104::0", "zh": ["给定完整路径，返回一个适合按该路径的明确程度对模式排序的 {@link Comparator}。", "<p>所使用的完整算法取决于底层实现，但通常返回的 {@code Comparator} 会通过 {@linkplain java.util.List#sort(java.util.Comparator) sort} 对列表排序，使更具体的模式排在通用模式之前。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PathMatcher.java::116::0", "zh": ["将两个模式合并为一个返回的新模式。", "<p>用于合并两个模式的完整算法取决于底层实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java::21::0", "zh": ["用于简单模式匹配的实用方法，尤其适用于 Spring 典型的 \"xxx*\"、\"*xxx\" 和 \"*xxx*\" 模式风格。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java::30::0", "zh": ["将字符串与给定模式进行匹配，支持以下简单模式风格：\"xxx*\"、\"*xxx\"、\"*xxx*\" 和 \"xxx*yyy\" 匹配（模式部分数量任意），以及直接相等。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java::75::0", "zh": ["将字符串与给定模式进行匹配，支持以下简单模式风格：\"xxx*\"、\"*xxx\"、\"*xxx*\" 和 \"xxx*yyy\" 匹配（模式部分数量任意），以及直接相等。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::26::0", "zh": ["用于持久化 {@code java.util.Properties} 的策略接口，允许使用可插拔的解析策略。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::26::1", "zh": ["<p>默认实现是 DefaultPropertiesPersister，提供对 {@code java.util.Properties} 的原生解析，同时允许从任意 Reader 读取并写入任意 Writer（从而可以为 properties 文件指定编码）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::43::0", "zh": ["从给定的 InputStream 将属性加载到给定的 Properties 对象中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::53::0", "zh": ["从给定的 Reader 将属性加载到给定的 Properties 对象中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::62::0", "zh": ["将给定 Properties 对象的内容写入给定的 OutputStream。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::73::0", "zh": ["将给定 Properties 对象的内容写入给定的 Writer。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::83::0", "zh": ["从给定的 XML InputStream 将属性加载到给定的 Properties 对象中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::93::0", "zh": ["将给定 Properties 对象的内容写入给定的 XML OutputStream。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertiesPersister.java::104::0", "zh": ["将给定 Properties 对象的内容写入给定的 XML OutputStream。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::30::0", "zh": ["用于处理包含占位符值的字符串的工具类。占位符形式为 {@code ${name}}。使用 {@code PropertyPlaceholderHelper}，这些占位符可被替换为用户提供的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::30::1", "zh": ["<p>用于替换的值可以通过 {@link Properties} 实例或 {@link PlaceholderResolver} 提供。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::67::0", "zh": ["创建一个使用所提供前缀和后缀的新 {@code PropertyPlaceholderHelper}。无法解析的占位符将被忽略。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::77::0", "zh": ["创建一个使用所提供前缀和后缀的新 {@code PropertyPlaceholderHelper}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::105::0", "zh": ["将格式为 {@code ${name}} 的所有占位符替换为所提供的 {@link Properties} 中对应的属性值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::117::0", "zh": ["将格式为 {@code ${name}} 的所有占位符替换为所提供的 {@link PlaceholderResolver} 返回的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::217::0", "zh": ["用于解析字符串中所含占位符替换值的策略接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/PropertyPlaceholderHelper.java::223::0", "zh": ["将所提供的占位符名称解析为替换值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::32::0", "zh": ["用于操作反射 API 并处理反射异常的简单工具类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::32::1", "zh": ["<p>仅供内部使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::48::0", "zh": ["预构建的 {@link MethodFilter}，匹配所有非桥接、非合成的方法，且这些方法未在 {@code java.lang.Object} 上声明。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::56::0", "zh": ["预构建的 FieldFilter，匹配所有非静态、非 final 字段。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::63::0", "zh": ["CGLIB 重命名方法的命名前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::78::0", "zh": ["{@link Class#getDeclaredMethods()} 以及来自基于 Java 8 的接口的等效默认方法的缓存，便于快速迭代。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::84::0", "zh": ["{@link Class#getDeclaredFields()} 的缓存，便于快速迭代。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::92::0", "zh": ["处理给定的反射异常。", "<p>仅当目标方法不应抛出受检异常，或在访问方法或字段时发生错误时才应调用。", "<p>如果 InvocationTargetException 具有此类根因，则抛出底层的 RuntimeException 或 Error。否则抛出带有适当消息的 IllegalStateException 或 UndeclaredThrowableException。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::118::0", "zh": ["处理给定的调用目标异常。仅当目标方法不应抛出受检异常时才应调用。", "<p>如果存在此类根因，则抛出底层的 RuntimeException 或 Error。否则抛出 UndeclaredThrowableException。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::129::0", "zh": ["重新抛出给定的 {@link Throwable exception}，它大概是 {@link InvocationTargetException} 的 <em>target exception</em>。仅当目标方法不应抛出受检异常时才应调用。", "<p>如果合适，将底层异常强制转换为 {@link RuntimeException} 或 {@link Error} 后重新抛出；否则抛出 {@link UndeclaredThrowableException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::150::0", "zh": ["重新抛出给定的 {@link Throwable exception}，它大概是 {@link InvocationTargetException} 的 <em>target exception</em>。仅当目标方法不应抛出受检异常时才应调用。", "<p>如果合适，将底层异常强制转换为 {@link Exception} 或 {@link Error} 后重新抛出；否则抛出 {@link UndeclaredThrowableException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::174::0", "zh": ["为给定类和参数获取可访问的构造函数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::190::0", "zh": ["使给定的构造函数可访问，必要时显式将其设置为可访问。仅在确实需要时才调用 {@code setAccessible(true)} 方法，以避免与 JVM SecurityManager（若启用）产生不必要的冲突。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::209::0", "zh": ["尝试在所提供的类上查找具有所提供名称且无参数的 {@link Method}。会搜索直至 {@code Object} 的所有超类。", "<p>如果找不到 {@link Method}，则返回 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::222::0", "zh": ["尝试在所提供的类上查找具有所提供名称和参数类型的 {@link Method}。会搜索直至 {@code Object} 的所有超类。", "<p>如果找不到 {@link Method}，则返回 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::255::0", "zh": ["使用无参数在所提供的目标对象上调用指定的 {@link Method}。调用静态 {@link Method} 时目标对象可以为 {@code null}。", "<p>抛出的异常通过调用 {@link #handleReflectionException} 进行处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::269::0", "zh": ["使用所提供的参数在所提供的目标对象上调用指定的 {@link Method}。调用静态 {@link Method} 时目标对象可以为 {@code null}。", "<p>抛出的异常通过调用 {@link #handleReflectionException} 进行处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::290::0", "zh": ["判断给定方法是否显式声明了给定异常或其某个超类，这意味着该类型的异常可以在反射调用中按原样传播。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::310::0", "zh": ["对给定类的所有匹配方法执行给定的回调操作，这些方法是在该类本地声明的或其等效项（例如给定类所实现的基于 Java 8 的接口上的默认方法）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::332::0", "zh": ["对给定类及其超类的所有匹配方法执行给定的回调操作。", "<p>出现在子类和超类上的同名方法将出现两次，除非被 {@link MethodFilter} 排除。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::346::0", "zh": ["对给定类及其超类（或给定接口及其父接口）的所有匹配方法执行给定的回调操作。", "<p>出现在子类和超类上的同名方法将出现两次，除非被指定的 {@link MethodFilter} 排除。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::384::0", "zh": ["获取叶子类及所有超类上声明的全部方法。叶子类的方法优先包含。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::396::0", "zh": ["获取叶子类及所有超类上声明的唯一方法集合。叶子类的方法优先包含，并且在遍历超类层次结构时，任何签名与已包含方法匹配的方法都会被过滤掉。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::407::0", "zh": ["获取叶子类及所有超类上声明的唯一方法集合。叶子类的方法优先包含，并且在遍历超类层次结构时，任何签名与已包含方法匹配的方法都会被过滤掉。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::446::0", "zh": ["{@link Class#getDeclaredMethods()} 的变体，使用本地缓存以避免 JVM 的 SecurityManager 检查和创建新的 Method 实例。此外，它还包括本地实现的接口中的 Java 8 默认方法，因为这些方法实际上应被视为已声明的方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::507::0", "zh": ["判断给定方法是否为 \"equals\" 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::524::0", "zh": ["判断给定方法是否为 \"hashCode\" 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::532::0", "zh": ["判断给定方法是否为 \"toString\" 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::540::0", "zh": ["判断给定方法是否最初由 {@link java.lang.Object} 声明。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::548::0", "zh": ["判断给定方法是否为 CGLIB 的“重命名”方法，遵循 \"CGLIB$methodName$0\" 模式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::565::0", "zh": ["使给定的方法可访问，必要时显式将其设置为可访问。仅在确实需要时才调用 {@code setAccessible(true)} 方法，以避免与 JVM SecurityManager（若启用）产生不必要的冲突。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::584::0", "zh": ["尝试在所提供的 {@link Class} 上查找具有所提供 {@code name} 的 {@link Field field}。会搜索直至 {@link Object} 的所有超类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::596::0", "zh": ["尝试在所提供的 {@link Class} 上查找具有所提供 {@code name} 和/或 {@link Class type} 的 {@link Field field}。会搜索直至 {@link Object} 的所有超类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::623::0", "zh": ["将所提供 {@linkplain Field field object} 在指定 {@linkplain Object target object} 上表示的字段设置为指定的 {@code value}。", "<p>按照 {@link Field#set(Object, Object)} 语义，如果底层字段为基本类型，新值会自动拆箱。", "<p>此方法不支持设置 {@code static final} 字段。", "<p>抛出的异常通过调用 {@link #handleReflectionException(Exception)} 进行处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::644::0", "zh": ["获取所提供 {@link Field field object} 在指定 {@link Object target object} 上表示的字段。按照 {@link Field#get(Object)} 语义，如果底层字段为基本类型，返回的值会自动装箱。", "<p>抛出的异常通过调用 {@link #handleReflectionException(Exception)} 进行处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::666::0", "zh": ["对给定类中所有本地声明的字段调用给定的回调。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::685::0", "zh": ["对目标类中的所有字段调用给定的回调，沿类层次结构向上获取所有声明的字段。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::696::0", "zh": ["对目标类中的所有字段调用给定的回调，沿类层次结构向上获取所有声明的字段。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::725::0", "zh": ["此变体从本地缓存中获取 {@link Class#getDeclaredFields()}，以避免 JVM 的 SecurityManager 检查和防御性数组复制。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::749::0", "zh": ["给定源对象和目标对象（二者必须为同一个类或目标为源类的子类），复制所有字段，包括继承的字段。设计用于具有 public 无参构造函数的对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::769::0", "zh": ["判断给定字段是否为 \"public static final\" 常量。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::778::0", "zh": ["使给定的字段可访问，必要时显式将其设置为可访问。仅在确实需要时才调用 {@code setAccessible(true)} 方法，以避免与 JVM SecurityManager（若启用）产生不必要的冲突。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::798::0", "zh": ["清除内部的方法/字段缓存。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::808::0", "zh": ["要对每个方法执行的操作。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::814::0", "zh": ["使用给定方法执行一个操作。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::822::0", "zh": ["可选的回调，用于过滤要由方法回调操作的方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::828::0", "zh": ["判断给定方法是否匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::834::0", "zh": ["基于此过滤器 <em>和</em> 所提供的过滤器创建一个组合过滤器。", "<p>如果此过滤器不匹配，则不会应用下一个过滤器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::849::0", "zh": ["在层次结构中的每个字段上调用的回调接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::855::0", "zh": ["使用给定字段执行一个操作。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::863::0", "zh": ["可选的回调，用于过滤要由字段回调操作的字段。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::869::0", "zh": ["判断给定字段是否匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ReflectionUtils.java::875::0", "zh": ["基于此过滤器 <em>和</em> 所提供的过滤器创建一个组合过滤器。", "<p>如果此过滤器不匹配，则不会应用下一个过滤器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::21::0", "zh": ["{@link java.io.ByteArrayOutputStream} 的扩展，它："]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::21::1", "zh": ["<p>自 4.2 起，在不需要可赋值给 {@link ByteArrayOutputStream} 的 Spring 内部使用中，该类已被 {@link FastByteArrayOutputStream} 取代（因为 {@link FastByteArrayOutputStream} 在缓冲区扩容管理方面更高效，但不继承标准 {@link ByteArrayOutputStream}）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::46::0", "zh": ["创建一个新的 <code>ResizableByteArrayOutputStream</code>，默认初始容量为 256 字节。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::54::0", "zh": ["创建一个新的 <code>ResizableByteArrayOutputStream</code>，具有指定的初始容量。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::64::0", "zh": ["将内部缓冲区大小调整为指定的容量。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::78::0", "zh": ["增大内部缓冲区大小。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResizableByteArrayOutputStream.java::91::0", "zh": ["返回此流内部缓冲区的当前大小。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::29::0", "zh": ["用于将资源位置解析为文件系统中文件的实用方法。主要用于框架内部。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::29::1", "zh": ["<p>考虑使用 Spring 核心包中的 Resource 抽象，以统一方式处理各种文件资源。{@link org.springframework.core.io.ResourceLoader} 的 {@code getResource()} 方法可以将任意位置解析为 {@link org.springframework.core.io.Resource} 对象，进而可以通过其 {@code getFile()} 方法获取文件系统中的 {@code java.io.File}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::96::0", "zh": ["返回给定资源位置是否为 URL：特殊 \"classpath\" 伪 URL 或标准 URL。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::120::0", "zh": ["将给定的资源位置解析为 {@code java.net.URL}。", "<p>不检查 URL 是否实际存在；仅返回给定位置所对应的 URL。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::158::0", "zh": ["将给定的资源位置解析为 {@code java.io.File}，即文件系统中的文件。", "<p>不检查文件是否实际存在；仅返回给定位置所对应的 File。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::192::0", "zh": ["将给定的资源 URL 解析为 {@code java.io.File}，即文件系统中的文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::204::0", "zh": ["将给定的资源 URL 解析为 {@code java.io.File}，即文件系统中的文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::230::0", "zh": ["将给定的资源 URI 解析为 {@code java.io.File}，即文件系统中的文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::243::0", "zh": ["将给定的资源 URI 解析为 {@code java.io.File}，即文件系统中的文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::264::0", "zh": ["判断给定的 URL 是否指向文件系统中的资源，即协议为 \"file\"、\"vfsfile\" 或 \"vfs\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::276::0", "zh": ["判断给定的 URL 是否指向 jar 文件中的资源，即协议为 \"jar\"、\"war\"、\"zip\"、\"vfszip\" 或 \"wsjar\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::289::0", "zh": ["判断给定的 URL 是否指向 jar 文件本身，即协议为 \"file\" 且以 \".jar\" 扩展名结尾。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::301::0", "zh": ["从给定的 URL（可能指向 jar 文件中的资源，也可能指向 jar 文件本身）中提取实际 jar 文件的 URL。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::330::0", "zh": ["从给定的 jar/war URL（可能指向 jar 文件中的资源，也可能指向 jar 文件本身）中提取最外层归档文件的 URL。", "<p>对于嵌套在 war 文件中的 jar 文件，这将返回 war 文件的 URL，因为那是在文件系统中可解析的文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::361::0", "zh": ["为给定的 URL 创建 URI 实例，首先将空格替换为 \"%20\" URI 编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::373::0", "zh": ["为给定的位置字符串创建 URI 实例，首先将空格替换为 \"%20\" URI 编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ResourceUtils.java::384::0", "zh": ["在给定连接上设置 {@link URLConnection#setUseCaches \"useCaches\"} 标志，优先使用 {@code false}，但对于基于 JNLP 的资源将该标志保留为 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::24::0", "zh": ["将路由与模式匹配的契约。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::24::1", "zh": ["<p>相当于 {@link PathMatcher}，但在来自传入消息的路由需要持续与大量消息处理器模式进行匹配的场景中，出于效率考虑，允许使用路由和模式的已解析表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::38::0", "zh": ["返回给定路由的已解析表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::45::0", "zh": ["给定的 {@code route} 是否包含需要 {@link #match(String, Route)} 方法的模式语法，或者它是否是可直接与其他字符串比较的常规字符串。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::54::0", "zh": ["将两个模式合并为单个模式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::63::0", "zh": ["将给定的路由与给定的模式进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::71::0", "zh": ["将模式与路由进行匹配并提取模板变量。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::80::0", "zh": ["给定路由，返回一个适合按该路由的明确程度对模式排序的 {@link Comparator}，使更具体的模式排在更通用的模式之前。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::90::0", "zh": ["路由的已解析表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/RouteMatcher.java::95::0", "zh": ["原始路由值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SerializationUtils.java::27::0", "zh": ["用于通过 <a href=\"https://docs.oracle.com/javase/8/docs/technotes/guides/serialization/\" target=\"_blank\">Java Object Serialization</a> 进行序列化和反序列化的静态工具。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SerializationUtils.java::27::1", "zh": ["<p><strong>警告</strong>：使用这些工具应谨慎。详情请参见 <a href=\"https://www.oracle.com/java/technologies/javase/seccodeguide.html#8\" target=\"_blank\">Secure Coding Guidelines for the Java Programming Language</a>。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SerializationUtils.java::44::0", "zh": ["将给定对象序列化为字节数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SerializationUtils.java::65::0", "zh": ["将字节数组反序列化为对象。", "<p><strong>警告</strong>：此工具将在 Spring Framework 6.0 中弃用，因为它使用 Java Object Serialization，该机制允许运行任意代码，并已知是许多远程代码执行（RCE）漏洞的来源。建议使用外部工具（序列化为 JSON、XML 或任何其他格式），并定期检查更新以避免允许 RCE。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SimpleIdGenerator.java::22::0", "zh": ["一个简单的 {@link IdGenerator}，从 1 开始，递增至 {@link Long#MAX_VALUE}，然后回绕。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SimpleRouteMatcher.java::24::0", "zh": ["{@code RouteMatcher}，委托给 {@link PathMatcher}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SimpleRouteMatcher.java::24::1", "zh": ["<p><strong>注意：</strong>此实现效率不高，因为 {@code PathMatcher} 将路径和模式视为字符串。要获得更优性能，请使用 {@code spring-web} 中的 {@code PathPatternRouteMatcher}，它允许使用已解析的路由和模式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SimpleRouteMatcher.java::40::0", "zh": ["为给定的 {@link PathMatcher} 委托创建一个新的 {@code SimpleRouteMatcher}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SimpleRouteMatcher.java::49::0", "zh": ["返回底层的 {@link PathMatcher} 委托。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::28::0", "zh": ["用于处理网络套接字的简单实用方法 &mdash; 例如，用于在 {@code localhost} 上查找可用端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::28::1", "zh": ["<p>在此类中，TCP 端口是指 {@link ServerSocket} 的端口；而 UDP 端口是指 {@link DatagramSocket} 的端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::28::2", "zh": ["<p>{@code SocketUtils} 在 Spring Framework 4.0 中引入，主要为了协助编写在可用随机端口上启动外部服务器的集成测试。然而，这些工具并不保证给定端口在此后仍然可用，因此并不可靠。与其使用 {@code SocketUtils} 为服务器查找可用的本地端口，不如依赖服务器自身能够在其选择或由操作系统分配的随机端口上启动的能力。要与该服务器交互，应向服务器查询其当前使用的端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::56::0", "zh": ["查找可用套接字端口时所用端口范围的默认最小值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::62::0", "zh": ["查找可用套接字端口时所用端口范围的默认最大值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::72::0", "zh": ["尽管 {@code SocketUtils} 仅由静态工具方法组成，但此构造函数被有意设为 {@code public}。", "<h4>理由</h4>", "<p>此类中的静态方法可以在 XML 配置文件中使用 Spring Expression Language（SpEL）及以下语法进行调用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::72::1", "zh": ["如果此构造函数为 {@code private}，则每次使用时都需要为 SpEL 的 {@code T()} 函数提供完全限定的类名。因此，此构造函数为 {@code public} 这一事实允许你像以下示例所示那样减少 SpEL 的样板配置。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::92::0", "zh": ["从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 TCP 端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::102::0", "zh": ["从范围 [{@code minPort}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 TCP 端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::113::0", "zh": ["从范围 [{@code minPort}, {@code maxPort}] 中随机选择一个可用的 TCP 端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::125::0", "zh": ["查找所需数量的可用 TCP 端口，每个端口从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::136::0", "zh": ["查找所需数量的可用 TCP 端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::149::0", "zh": ["从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 UDP 端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::159::0", "zh": ["从范围 [{@code minPort}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 UDP 端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::170::0", "zh": ["从范围 [{@code minPort}, {@code maxPort}] 中随机选择一个可用的 UDP 端口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::182::0", "zh": ["查找所需数量的可用 UDP 端口，每个端口从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::193::0", "zh": ["查找所需数量的可用 UDP 端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::238::0", "zh": ["判断此 {@code SocketType} 的指定端口当前在 {@code localhost} 上是否可用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::244::0", "zh": ["在范围 [{@code minPort}, {@code maxPort}] 内查找一个伪随机端口号。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::256::0", "zh": ["为此 {@code SocketType} 查找一个可用端口，从范围 [{@code minPort}, {@code maxPort}] 中随机选择。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/SocketUtils.java::286::0", "zh": ["为此 {@code SocketType} 查找所需数量的可用端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。"]}

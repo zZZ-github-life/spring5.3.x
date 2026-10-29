@@ -23,9 +23,8 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 
 /**
- * Type filter that exposes a
- * {@link org.springframework.core.type.ClassMetadata} object
- * to subclasses, for class testing purposes.
+ * 类型过滤器，向子类暴露 {@link org.springframework.core.type.ClassMetadata} 对象，用于类测试目的。
+ *
  *
  * @author Rod Johnson
  * @author Costin Leau
@@ -43,7 +42,7 @@ public abstract class AbstractClassTestingTypeFilter implements TypeFilter {
 	}
 
 	/**
-	 * Determine a match based on the given ClassMetadata object.
+	 * 根据给定的 ClassMetadata 对象确定是否匹配。
 	 * @param metadata the ClassMetadata object
 	 * @return whether this filter matches on the specified type
 	 */

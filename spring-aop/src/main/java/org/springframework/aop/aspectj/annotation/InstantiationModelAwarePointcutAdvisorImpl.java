@@ -34,8 +34,7 @@ import org.springframework.aop.support.Pointcuts;
 import org.springframework.lang.Nullable;
 
 /**
- * Internal implementation of AspectJPointcutAdvisor.
- * Note that there will be one instance of this advisor for each target method.
+ * AspectJPointcutAdvisor 的内部实现。请注意，每个目标方法都会有一个此 Advisor 的实例。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -116,8 +115,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 
 
 	/**
-	 * The pointcut for Spring AOP to use.
-	 * Actual behaviour of the pointcut will change depending on the state of the advice.
+	 * 供 Spring AOP 使用的切点。切点的实际行为会根据通知的状态而变化。
 	 */
 	@Override
 	public Pointcut getPointcut() {
@@ -135,7 +133,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 	}
 
 	/**
-	 * Lazily instantiate advice if necessary.
+	 * 如有必要，延迟实例化通知。
 	 */
 	@Override
 	public synchronized Advice getAdvice() {
@@ -152,9 +150,8 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 	}
 
 	/**
-	 * This is only of interest for Spring AOP: AspectJ instantiation semantics
-	 * are much richer. In AspectJ terminology, all a return of {@code true}
-	 * means here is that the aspect is not a SINGLETON.
+	 * 这只对 Spring AOP 有意义：AspectJ 的实例化语义要丰富得多。用 AspectJ 的术语来说，此处返回
+	 * {@code true} 仅仅意味着该切面不是 SINGLETON。
 	 */
 	@Override
 	public boolean isPerInstance() {
@@ -162,7 +159,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 	}
 
 	/**
-	 * Return the AspectJ AspectMetadata for this advisor.
+	 * 返回此 Advisor 的 AspectJ AspectMetadata。
 	 */
 	public AspectMetadata getAspectMetadata() {
 		return this.aspectInstanceFactory.getAspectMetadata();
@@ -208,8 +205,7 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 	}
 
 	/**
-	 * Duplicates some logic from getAdvice, but importantly does not force
-	 * creation of the advice.
+	 * 重复了 getAdvice 中的部分逻辑，但重要的是它不会强制创建通知。
 	 */
 	private void determineAdviceType() {
 		AspectJAnnotation<?> aspectJAnnotation =
@@ -259,9 +255,8 @@ final class InstantiationModelAwarePointcutAdvisorImpl
 
 
 	/**
-	 * Pointcut implementation that changes its behaviour when the advice is instantiated.
-	 * Note that this is a <i>dynamic</i> pointcut; otherwise it might be optimized out
-	 * if it does not at first match statically.
+	 * 切点实现，在通知被实例化时会改变其行为。请注意，这是一个<i>动态</i>切点；否则如果它一开始不静态
+	 * 匹配，可能会被优化掉。
 	 */
 	private static final class PerTargetInstantiationModelPointcut extends DynamicMethodMatcherPointcut {
 

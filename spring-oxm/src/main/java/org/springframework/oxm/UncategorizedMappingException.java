@@ -17,7 +17,7 @@
 package org.springframework.oxm;
 
 /**
- * Exception that indicates that the cause cannot be distinguished further.
+ * 表明无法进一步区分原因的异常。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -26,8 +26,7 @@ package org.springframework.oxm;
 public class UncategorizedMappingException extends XmlMappingException {
 
 	/**
-	 * Construct an {@code UncategorizedMappingException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code UncategorizedMappingException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */

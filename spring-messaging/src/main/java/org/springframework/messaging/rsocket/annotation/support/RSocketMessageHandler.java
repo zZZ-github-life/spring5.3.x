@@ -59,29 +59,27 @@ import org.springframework.util.RouteMatcher;
 import org.springframework.util.StringUtils;
 
 /**
- * Extension of {@link MessageMappingMessageHandler} for handling RSocket
- * requests with {@link ConnectMapping @ConnectMapping} and
- * {@link MessageMapping @MessageMapping} methods.
+ * {@link MessageMappingMessageHandler} 的扩展，用于通过
+ * {@link ConnectMapping @ConnectMapping} 和
+ * {@link MessageMapping @MessageMapping} 方法处理 RSocket 请求。
  *
- * <p>For server scenarios this class can be declared as a bean in Spring
- * configuration and that would detect {@code @MessageMapping} methods in
- * {@code @Controller} beans. What beans are checked can be changed through a
- * {@link #setHandlerPredicate(Predicate) handlerPredicate}. Given an instance
- * of this class, you can then use {@link #responder()} to obtain a
- * {@link SocketAcceptor} adapter to register with the
- * {@link io.rsocket.core.RSocketServer}.
+ * <p>在服务器场景中，此类可以在 Spring 配置中声明为 bean，这样会检测
+ * {@code @Controller} bean 中的 {@code @MessageMapping} 方法。
+ * 可以通过 {@link #setHandlerPredicate(Predicate) handlerPredicate}
+ * 更改检查哪些 bean。给定此类的实例后，可以使用 {@link #responder()}
+ * 获取 {@link SocketAcceptor} 适配器，并注册到
+ * {@link io.rsocket.core.RSocketServer}。
  *
- * <p>For a client, possibly in the same process as a server, consider using the
- * static factory method {@link #responder(RSocketStrategies, Object...)} to
- * obtain a client responder to be registered via
+ * <p>对于客户端（可能与服务器在同一进程中），可以考虑使用静态工厂方法
+ * {@link #responder(RSocketStrategies, Object...)} 获取客户端响应方，
+ * 并通过
  * {@link org.springframework.messaging.rsocket.RSocketRequester.Builder#rsocketConnector
- * RSocketRequester.Builder}.
+ * RSocketRequester.Builder} 注册。
  *
- * <p>For {@code @MessageMapping} methods, this class automatically determines
- * the RSocket interaction type based on the input and output cardinality of the
- * method. See the
+ * <p>对于 {@code @MessageMapping} 方法，此类会根据方法的输入和输出基数
+ * 自动确定 RSocket 交互类型。详情请参阅 Spring Framework 参考文档中的
  * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#rsocket-annot-responders">
- * "Annotated Responders"</a> section of the Spring Framework reference for more details.
+ * "Annotated Responders"</a> 一节。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -105,14 +103,12 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 
 
 	/**
-	 * Configure the encoders to use for encoding handler method return values.
-	 * <p>When {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
-	 * is set, this property is re-initialized with the encoders in it, and
-	 * likewise when this property is set the {@code RSocketStrategies} are
-	 * mutated to change the encoders in it.
-	 * <p>By default this is set to the
-	 * {@linkplain org.springframework.messaging.rsocket.RSocketStrategies.Builder#encoder(Encoder[]) defaults}
-	 * from {@code RSocketStrategies}.
+	 * 配置用于编码处理器方法返回值的编码器。
+	 * <p>当设置了 {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
+	 * 时，此属性会使用其中的编码器重新初始化；同样，设置此属性时，
+	 * {@code RSocketStrategies} 也会被修改以更改其中的编码器。
+	 * <p>默认情况下，此项设置为 {@code RSocketStrategies} 中的
+	 * {@linkplain org.springframework.messaging.rsocket.RSocketStrategies.Builder#encoder(Encoder[]) defaults}。
 	 */
 	public void setEncoders(List<? extends Encoder<?>> encoders) {
 		this.encoders.clear();
@@ -126,7 +122,7 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Return the configured {@link #setEncoders(List) encoders}.
+	 * 返回配置的 {@link #setEncoders(List) encoders}。
 	 */
 	public List<? extends Encoder<?>> getEncoders() {
 		return this.encoders;
@@ -134,13 +130,11 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>When {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
-	 * is set, this property is re-initialized with the decoders in it, and
-	 * likewise when this property is set the {@code RSocketStrategies} are
-	 * mutated to change the decoders in them.
-	 * <p>By default this is set to the
-	 * {@linkplain org.springframework.messaging.rsocket.RSocketStrategies.Builder#decoder(Decoder[]) defaults}
-	 * from {@code RSocketStrategies}.
+	 * <p>当设置了 {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
+	 * 时，此属性会使用其中的解码器重新初始化；同样，设置此属性时，
+	 * {@code RSocketStrategies} 也会被修改以更改其中的解码器。
+	 * <p>默认情况下，此项设置为 {@code RSocketStrategies} 中的
+	 * {@linkplain org.springframework.messaging.rsocket.RSocketStrategies.Builder#decoder(Decoder[]) defaults}。
 	 */
 	@Override
 	public void setDecoders(List<? extends Decoder<?>> decoders) {
@@ -155,13 +149,11 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>When {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
-	 * is set, this property is re-initialized with the route matcher in it, and
-	 * likewise when this property is set the {@code RSocketStrategies} are
-	 * mutated to change the matcher in it.
-	 * <p>By default this is set to the
-	 * {@linkplain org.springframework.messaging.rsocket.RSocketStrategies.Builder#routeMatcher(RouteMatcher) defaults}
-	 * from {@code RSocketStrategies}.
+	 * <p>当设置了 {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
+	 * 时，此属性会使用其中的路由匹配器重新初始化；同样，设置此属性时，
+	 * {@code RSocketStrategies} 也会被修改以更改其中的匹配器。
+	 * <p>默认情况下，此项设置为 {@code RSocketStrategies} 中的
+	 * {@linkplain org.springframework.messaging.rsocket.RSocketStrategies.Builder#routeMatcher(RouteMatcher) defaults}。
 	 */
 	@Override
 	public void setRouteMatcher(@Nullable RouteMatcher routeMatcher) {
@@ -170,14 +162,12 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Configure the registry for adapting various reactive types.
-	 * <p>When {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
-	 * is set, this property is re-initialized with the registry in it, and
-	 * likewise when this property is set the {@code RSocketStrategies} are
-	 * mutated to change the registry in it.
-	 * <p>By default this is set to the
-	 * {@link org.springframework.messaging.rsocket.RSocketStrategies.Builder#reactiveAdapterStrategy(ReactiveAdapterRegistry) defaults}
-	 * from {@code RSocketStrategies}.
+	 * 配置用于适配各种响应式类型的注册表。
+	 * <p>当设置了 {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
+	 * 时，此属性会使用其中的注册表重新初始化；同样，设置此属性时，
+	 * {@code RSocketStrategies} 也会被修改以更改其中的注册表。
+	 * <p>默认情况下，此项设置为 {@code RSocketStrategies} 中的
+	 * {@link org.springframework.messaging.rsocket.RSocketStrategies.Builder#reactiveAdapterStrategy(ReactiveAdapterRegistry) defaults}。
 	 */
 	@Override
 	public void setReactiveAdapterRegistry(ReactiveAdapterRegistry registry) {
@@ -186,15 +176,12 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Configure a {@link MetadataExtractor} to extract the route along with
-	 * other metadata.
-	 * <p>When {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
-	 * is set, this property is re-initialized with the extractor in it, and
-	 * likewise when this property is set the {@code RSocketStrategies} are
-	 * mutated to change the extractor in it.
-	 * <p>By default this is set to the
-	 * {@link org.springframework.messaging.rsocket.RSocketStrategies.Builder#metadataExtractor(MetadataExtractor) defaults}
-	 * from {@code RSocketStrategies}.
+	 * 配置 {@link MetadataExtractor}，以提取路由以及其他元数据。
+	 * <p>当设置了 {@link #setRSocketStrategies(RSocketStrategies) rsocketStrategies}
+	 * 时，此属性会使用其中的提取器重新初始化；同样，设置此属性时，
+	 * {@code RSocketStrategies} 也会被修改以更改其中的提取器。
+	 * <p>默认情况下，此项设置为 {@code RSocketStrategies} 中的
+	 * {@link org.springframework.messaging.rsocket.RSocketStrategies.Builder#metadataExtractor(MetadataExtractor) defaults}。
 	 * @param extractor the extractor to use
 	 */
 	public void setMetadataExtractor(MetadataExtractor extractor) {
@@ -202,16 +189,16 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Return the configured {@link #setMetadataExtractor MetadataExtractor}.
+	 * 返回配置的 {@link #setMetadataExtractor MetadataExtractor}。
 	 */
 	public MetadataExtractor getMetadataExtractor() {
 		return this.strategies.metadataExtractor();
 	}
 
 	/**
-	 * Configure this handler through an {@link RSocketStrategies} instance which
-	 * can be re-used to initialize a client-side {@link RSocketRequester}.
-	 * <p>When this property is set, in turn it sets the following:
+	 * 通过 {@link RSocketStrategies} 实例配置此处理器，该实例可复用于初始化
+	 * 客户端 {@link RSocketRequester}。
+	 * <p>设置此属性时，会依次设置以下内容：
 	 * <ul>
 	 * <li>{@link #setDecoders(List)}
 	 * <li>{@link #setEncoders(List)}
@@ -219,8 +206,8 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	 * <li>{@link #setMetadataExtractor(MetadataExtractor)}
 	 * <li>{@link #setReactiveAdapterRegistry(ReactiveAdapterRegistry)}
 	 * </ul>
-	 * <p>By default this is set to {@link RSocketStrategies#create()} which in
-	 * turn sets default settings for all related properties.
+	 * <p>默认情况下设置为 {@link RSocketStrategies#create()}，它会依次为所有
+	 * 相关属性设置默认值。
 	 */
 	public void setRSocketStrategies(RSocketStrategies rsocketStrategies) {
 		this.strategies = rsocketStrategies;
@@ -232,16 +219,15 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Return the {@link #setRSocketStrategies configured} {@code RSocketStrategies}.
+	 * 返回 {@link #setRSocketStrategies configured} 的 {@code RSocketStrategies}。
 	 */
 	public RSocketStrategies getRSocketStrategies() {
 		return this.strategies;
 	}
 
 	/**
-	 * Configure the default content type to use for data payloads if the
-	 * {@code SETUP} frame did not specify one.
-	 * <p>By default this is not set.
+	 * 配置当 {@code SETUP} 帧未指定数据 MimeType 时用于数据负载的默认内容类型。
+	 * <p>默认情况下不设置此项。
 	 * @param mimeType the MimeType to use
 	 */
 	public void setDefaultDataMimeType(@Nullable MimeType mimeType) {
@@ -249,8 +235,8 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Return the configured
-	 * {@link #setDefaultDataMimeType defaultDataMimeType}, or {@code null}.
+	 * 返回配置的
+	 * {@link #setDefaultDataMimeType defaultDataMimeType}，或 {@code null}。
 	 */
 	@Nullable
 	public MimeType getDefaultDataMimeType() {
@@ -258,9 +244,8 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Configure the default {@code MimeType} for payload data if the
-	 * {@code SETUP} frame did not specify one.
-	 * <p>By default this is set to {@code "message/x.rsocket.composite-metadata.v0"}
+	 * 配置当 {@code SETUP} 帧未指定时用于负载数据的默认 {@code MimeType}。
+	 * <p>默认情况下此项设置为 {@code "message/x.rsocket.composite-metadata.v0"}
 	 * @param mimeType the MimeType to use
 	 */
 	public void setDefaultMetadataMimeType(MimeType mimeType) {
@@ -269,8 +254,8 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Return the configured
-	 * {@link #setDefaultMetadataMimeType defaultMetadataMimeType}.
+	 * 返回配置的
+	 * {@link #setDefaultMetadataMimeType defaultMetadataMimeType}。
 	 */
 	public MimeType getDefaultMetadataMimeType() {
 		return this.defaultMetadataMimeType;
@@ -391,18 +376,17 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Return an RSocket {@link SocketAcceptor} backed by this
-	 * {@code RSocketMessageHandler} instance that can be plugged in as a
-	 * {@link io.rsocket.core.RSocketConnector#acceptor(SocketAcceptor) client} or
-	 * {@link io.rsocket.core.RSocketServer#acceptor(SocketAcceptor) server}
-	 * RSocket responder.
-	 * <p>The initial {@link ConnectionSetupPayload} is handled through
-	 * {@link ConnectMapping @ConnectionMapping} methods that can be asynchronous
-	 * and return {@code Mono<Void>} with an error signal preventing the
-	 * connection. Such a method can also start requests to the client but that
-	 * must be done decoupled from handling and from the current thread.
-	 * <p>Subsequent requests on the connection can be handled with
-	 * {@link MessageMapping MessageMapping} methods.
+	 * 返回由本 {@code RSocketMessageHandler} 实例支持的 RSocket {@link SocketAcceptor}，
+	 * 它可以作为
+	 * {@link io.rsocket.core.RSocketConnector#acceptor(SocketAcceptor) 客户端}或
+	 * {@link io.rsocket.core.RSocketServer#acceptor(SocketAcceptor) 服务器}
+	 * RSocket 响应方接入。
+	 * <p>初始 {@link ConnectionSetupPayload} 通过
+	 * {@link ConnectMapping @ConnectionMapping} 方法处理，这些方法可以是异步的，
+	 * 并返回 {@code Mono<Void>}，通过错误信号可阻止连接建立。此类方法也可以
+	 * 向客户端发起请求，但必须与处理过程解耦，并且不能在当前线程上执行。
+	 * <p>连接上后续的请求可以通过
+	 * {@link MessageMapping MessageMapping} 方法处理。
 	 */
 	public SocketAcceptor responder() {
 		return (setupPayload, sendingRSocket) -> {
@@ -444,8 +428,8 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	}
 
 	/**
-	 * Static factory method to create an RSocket {@link SocketAcceptor}
-	 * backed by handlers with annotated methods. Effectively a shortcut for:
+	 * 静态工厂方法，用于创建由带注解方法的处理器支持的 RSocket {@link SocketAcceptor}。
+	 * 实际上是以下代码的快捷方式：
 	 * <pre class="code">
 	 * RSocketMessageHandler handler = new RSocketMessageHandler();
 	 * handler.setHandlers(handlers);
@@ -454,8 +438,7 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	 *
 	 * SocketAcceptor acceptor = handler.responder();
 	 * </pre>
-	 * <p>This is intended for programmatic creation and registration of a
-	 * client-side responder. For example:
+	 * <p>此方法旨在以编程方式创建和注册客户端响应方。例如：
 	 * <pre class="code">
 	 * SocketAcceptor responder =
 	 *         RSocketMessageHandler.responder(strategies, new ClientHandler());
@@ -465,12 +448,10 @@ public class RSocketMessageHandler extends MessageMappingMessageHandler {
 	 *         .connectTcp("localhost", server.address().getPort());
 	 * </pre>
 	 *
-	 * <p>Note that the given handlers do not need to have any stereotype
-	 * annotations such as {@code @Controller} which helps to avoid overlap with
-	 * server side handlers that may be used in the same application. However,
-	 * for more advanced scenarios, e.g. discovering handlers through a custom
-	 * stereotype annotation, consider declaring {@code RSocketMessageHandler}
-	 * as a bean, and then obtain the responder from it.
+	 * <p>请注意，给定的处理器不需要具有 {@code @Controller} 等构造型注解，
+	 * 这有助于避免与同一应用程序中可能使用的服务器端处理器发生重叠。
+	 * 不过，对于更高级的场景（例如通过自定义构造型注解发现处理器），
+	 * 请考虑将 {@code RSocketMessageHandler} 声明为 bean，然后从中获取响应方。
 	 * @param strategies the strategies to set on the created
 	 * {@code RSocketMessageHandler}
 	 * @param candidateHandlers a list of Objects and/or Classes with annotated

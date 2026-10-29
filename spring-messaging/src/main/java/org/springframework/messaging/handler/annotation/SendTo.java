@@ -25,15 +25,12 @@ import java.lang.annotation.Target;
 import org.springframework.messaging.Message;
 
 /**
- * Annotation that indicates a method's return value should be converted to
- * a {@link Message} if necessary and sent to the specified destination.
+ * 指示方法的返回值应在必要时转换为 {@link Message}，并发送到指定目标的注解。
  *
- * <p>In a typical request/reply scenario, the incoming {@link Message} may
- * convey the destination to use for the reply. In that case, that destination
- * should take precedence.
+ * <p>在典型的请求/应答场景中，传入的 {@link Message} 可能会约定用于应答的目标。
+ * 在这种情况下，该目标应优先。
  *
-* <p>This annotation may be placed class-level in which case it is inherited by
- * methods of the class.
+* <p>此注解可以放在类级别，此时会由该类的方法继承。
  *
  * @author Rossen Stoyanchev
  * @author Stephane Nicoll
@@ -45,7 +42,7 @@ import org.springframework.messaging.Message;
 public @interface SendTo {
 
 	/**
-	 * The destination for a message created from the return value of a method.
+	 * 根据方法返回值创建的消息的目标。
 	 */
 	String[] value() default {};
 

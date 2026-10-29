@@ -17,7 +17,7 @@
 package org.springframework.messaging;
 
 /**
- * Simple contract for handling a {@link Message}.
+ * 用于处理 {@link Message} 的简单契约。
  *
  * @author Mark Fisher
  * @author Iwein Fuld
@@ -28,7 +28,7 @@ package org.springframework.messaging;
 public interface MessageHandler {
 
 	/**
-	 * Handle the given message.
+	 * 处理给定消息。
 	 * @param message the message to be handled
 	 * @throws MessagingException if the handler failed to process the message
 	 */

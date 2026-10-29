@@ -21,9 +21,9 @@ import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.util.Assert;
 
 /**
- * An implementation of {@link ConnectionFactoryLookup} that
- * simply wraps a single given {@link ConnectionFactory}
- * returned for any connection factory name.
+ * {@link ConnectionFactoryLookup} 的一个实现，
+ * 它简单包装单个给定的 {@link ConnectionFactory}，
+ * 对任何连接工厂名称都返回该实例。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -34,7 +34,7 @@ public class SingleConnectionFactoryLookup implements ConnectionFactoryLookup {
 
 
 	/**
-	 * Create a new instance of the {@link SingleConnectionFactoryLookup} class.
+	 * 创建一个新的 {@link SingleConnectionFactoryLookup} 类实例。
 	 * @param connectionFactory the single {@link ConnectionFactory} to wrap
 	 */
 	public SingleConnectionFactoryLookup(ConnectionFactory connectionFactory) {

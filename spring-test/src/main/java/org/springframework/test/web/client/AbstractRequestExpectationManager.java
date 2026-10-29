@@ -37,13 +37,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@code RequestExpectationManager} implementations responsible
- * for storing expectations and actual requests, and checking for unsatisfied
- * expectations at the end.
+ * 负责存储预期与实际请求，并在结束时检查未满足预期的
+ * {@code RequestExpectationManager} 实现的基类。
  *
- * <p>Subclasses are responsible for validating each request by matching it to
- * expectations following the order of declaration or not.
- *
+ * <p>子类负责通过将每个请求与预期进行匹配来验证请求，
+ * 匹配可以遵循声明顺序，也可以不遵循。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 4.3
@@ -58,14 +56,14 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 
 
 	/**
-	 * Return a read-only list of the expectations.
+	 * 返回预期的只读列表。
 	 */
 	protected List<RequestExpectation> getExpectations() {
 		return Collections.unmodifiableList(this.expectations);
 	}
 
 	/**
-	 * Return a read-only list of requests executed so far.
+	 * 返回截至目前已执行请求的只读列表。
 	 */
 	protected List<ClientHttpRequest> getRequests() {
 		return Collections.unmodifiableList(this.requests);
@@ -109,15 +107,13 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	}
 
 	/**
-	 * Invoked at the time of the first actual request, which effectively means
-	 * the expectations declaration phase is over.
+	 * 在第一个实际请求到达时调用，这实际上意味着预期声明阶段已经结束。
 	 */
 	protected void afterExpectationsDeclared() {
 	}
 
 	/**
-	 * Subclasses must implement the actual validation of the request
-	 * matching to declared expectations.
+	 * 子类必须实现将请求与已声明预期进行匹配的实际验证逻辑。
 	 * @deprecated as of 5.0.3, subclasses should implement {@link #matchRequest(ClientHttpRequest)}
 	 * instead and return only the matched expectation, leaving the call to create the response
 	 * as a separate step (to be invoked by this class).
@@ -129,10 +125,9 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	}
 
 	/**
-	 * As of 5.0.3 subclasses should implement this method instead of
-	 * {@link #validateRequestInternal(ClientHttpRequest)} in order to match the
-	 * request to an expectation, leaving the call to create the response as a separate step
-	 * (to be invoked by this class).
+	 * 从 5.0.3 开始，子类应实现此方法而不是
+	 * {@link #validateRequestInternal(ClientHttpRequest)}，以便将请求与预期进行匹配，
+	 * 而将创建响应的调用留作单独的步骤（由此类调用）。
 	 * @param request the current request
 	 * @return the matched expectation with its request count updated via
 	 * {@link RequestExpectation#incrementAndValidate()}.
@@ -185,7 +180,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	}
 
 	/**
-	 * Return details of executed requests.
+	 * 返回已执行请求的详细信息。
 	 */
 	protected String getRequestDetails() {
 		StringBuilder sb = new StringBuilder();
@@ -203,8 +198,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 	}
 
 	/**
-	 * Return an {@code AssertionError} that a subclass can raise for an
-	 * unexpected request.
+	 * 返回一个 {@code AssertionError}，子类可在遇到意外请求时抛出。
 	 */
 	protected AssertionError createUnexpectedRequestError(ClientHttpRequest request) {
 		HttpMethod method = request.getMethod();
@@ -222,7 +216,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 
 
 	/**
-	 * Helper class to manage a group of remaining expectations.
+	 * 用于管理一组剩余预期的辅助类。
 	 */
 	protected static class RequestExpectationGroup {
 
@@ -237,7 +231,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 		}
 
 		/**
-		 * Return a matching expectation, or {@code null} if none match.
+		 * 返回匹配的预期，如果没有匹配则返回 {@code null}。
 		 */
 		@Nullable
 		public RequestExpectation findExpectation(ClientHttpRequest request) throws IOException {
@@ -254,9 +248,8 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 		}
 
 		/**
-		 * Invoke this for an expectation that has been matched.
-		 * <p>The count of the given expectation is incremented, then it is
-		 * either stored if remainingCount &gt; 0 or removed otherwise.
+		 * 为已匹配的预期调用此方法。
+		 * <p>给定预期的计数会先递增，如果 remainingCount &gt; 0 则保留，否则移除。
 		 */
 		public void update(RequestExpectation expectation) {
 			expectation.incrementAndValidate();
@@ -273,7 +266,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 		}
 
 		/**
-		 * Add expectations to this group.
+		 * 将预期添加到此组。
 		 * @deprecated as of 5.0.3, if favor of {@link #addAllExpectations}
 		 */
 		@Deprecated
@@ -282,7 +275,7 @@ public abstract class AbstractRequestExpectationManager implements RequestExpect
 		}
 
 		/**
-		 * Reset all expectations for this group.
+		 * 重置此组中的所有预期。
 		 */
 		public void reset() {
 			this.expectations.clear();

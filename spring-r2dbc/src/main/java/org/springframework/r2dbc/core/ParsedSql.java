@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Holds information about a parsed SQL statement.
+ * 保存已解析 SQL 语句的相关信息。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -42,7 +42,7 @@ class ParsedSql {
 
 
 	/**
-	 * Create a new instance of the {@link ParsedSql} class.
+	 * 创建一个新的 {@link ParsedSql} 类实例。
 	 * @param originalSql the SQL statement that is being (or is to be) parsed
 	 */
 	ParsedSql(String originalSql) {
@@ -50,7 +50,7 @@ class ParsedSql {
 	}
 
 	/**
-	 * Return the SQL statement that is being parsed.
+	 * 返回正在解析的 SQL 语句。
 	 */
 	String getOriginalSql() {
 		return this.originalSql;
@@ -58,7 +58,7 @@ class ParsedSql {
 
 
 	/**
-	 * Add a named parameter parsed from this SQL statement.
+	 * 添加从此 SQL 语句中解析出的命名参数。
 	 * @param parameterName the name of the parameter
 	 * @param startIndex the start index in the original SQL String
 	 * @param endIndex the end index in the original SQL String
@@ -69,15 +69,15 @@ class ParsedSql {
 	}
 
 	/**
-	 * Return all the parameters (bind variables) in the parsed SQL statement.
-	 * Repeated occurrences of the same parameter name are included here.
+	 * 返回已解析 SQL 语句中的所有参数（绑定变量）。
+	 * 同一参数名重复出现的情况也会包含在此处。
 	 */
 	List<String> getParameterNames() {
 		return this.parameterNames;
 	}
 
 	/**
-	 * Return the parameter indexes for the specified parameter.
+	 * 返回指定参数的参数索引。
 	 * @param parameterPosition the position of the parameter
 	 * (as index in the parameter names List)
 	 * @return the start index and end index, combined into
@@ -88,46 +88,46 @@ class ParsedSql {
 	}
 
 	/**
-	 * Set the count of named parameters in the SQL statement.
-	 * Each parameter name counts once; repeated occurrences do not count here.
+	 * 设置 SQL 语句中命名参数的数量。
+	 * 每个参数名只计一次；重复出现的情况在此不计数。
 	 */
 	void setNamedParameterCount(int namedParameterCount) {
 		this.namedParameterCount = namedParameterCount;
 	}
 
 	/**
-	 * Return the count of named parameters in the SQL statement.
-	 * Each parameter name counts once; repeated occurrences do not count here.
+	 * 返回 SQL 语句中命名参数的数量。
+	 * 每个参数名只计一次；重复出现的情况在此不计数。
 	 */
 	int getNamedParameterCount() {
 		return this.namedParameterCount;
 	}
 
 	/**
-	 * Set the count of all the unnamed parameters in the SQL statement.
+	 * 设置 SQL 语句中所有未命名参数的数量。
 	 */
 	void setUnnamedParameterCount(int unnamedParameterCount) {
 		this.unnamedParameterCount = unnamedParameterCount;
 	}
 
 	/**
-	 * Return the count of all the unnamed parameters in the SQL statement.
+	 * 返回 SQL 语句中所有未命名参数的数量。
 	 */
 	int getUnnamedParameterCount() {
 		return this.unnamedParameterCount;
 	}
 
 	/**
-	 * Set the total count of all the parameters in the SQL statement.
-	 * Repeated occurrences of the same parameter name do count here.
+	 * 设置 SQL 语句中所有参数的总数。
+	 * 同一参数名的重复出现在此计入。
 	 */
 	void setTotalParameterCount(int totalParameterCount) {
 		this.totalParameterCount = totalParameterCount;
 	}
 
 	/**
-	 * Return the total count of all the parameters in the SQL statement.
-	 * Repeated occurrences of the same parameter name do count here.
+	 * 返回 SQL 语句中所有参数的总数。
+	 * 同一参数名的重复出现在此计入。
 	 */
 	int getTotalParameterCount() {
 		return this.totalParameterCount;
@@ -135,7 +135,7 @@ class ParsedSql {
 
 
 	/**
-	 * Exposes the original SQL String.
+	 * 暴露原始 SQL 字符串。
 	 */
 	@Override
 	public String toString() {

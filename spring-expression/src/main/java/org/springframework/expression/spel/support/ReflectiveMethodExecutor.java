@@ -30,7 +30,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link MethodExecutor} that works via reflection.
+ * 通过反射工作的 {@link MethodExecutor}。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -54,7 +54,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 
 
 	/**
-	 * Create a new executor for the given method.
+	 * 为给定方法创建一个新的执行器。
 	 * @param method the method to invoke
 	 */
 	public ReflectiveMethodExecutor(Method method) {
@@ -62,7 +62,7 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 	}
 
 	/**
-	 * Create a new executor for the given method.
+	 * 为给定方法创建一个新的执行器。
 	 * @param method the method to invoke
 	 * @param targetClass the target class to invoke the method on
 	 * @since 5.3.16
@@ -80,19 +80,17 @@ public class ReflectiveMethodExecutor implements MethodExecutor {
 
 
 	/**
-	 * Return the original method that this executor has been configured for.
+	 * 返回此执行器所配置的原始方法。
 	 */
 	public final Method getMethod() {
 		return this.originalMethod;
 	}
 
 	/**
-	 * Find the first public class in the methods declaring class hierarchy that declares this method.
-	 * Sometimes the reflective method discovery logic finds a suitable method that can easily be
-	 * called via reflection but cannot be called from generated code when compiling the expression
-	 * because of visibility restrictions. For example if a non-public class overrides toString(),
-	 * this helper method will walk up the type hierarchy to find the first public type that declares
-	 * the method (if there is one!). For toString() it may walk as far as Object.
+	 * 在声明该方法的类层级中查找第一个声明该方法的公共类。有时反射方法发现逻辑会找到一个适合通过反射轻
+	 * 松调用的方法，但在编译表达式时因可见性限制而无法从生成的代码中调用。例如，如果某个非公共类重写了
+	 * toString()，此辅助方法会沿类型层级向上查找，以找到第一个声明该方法的公共类型（如果存在的话！）。
+	 * 对于 toString()，它可能一直向上找到 Object。
 	 */
 	@Nullable
 	public Class<?> getPublicDeclaringClass() {

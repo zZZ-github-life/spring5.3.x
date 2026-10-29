@@ -29,13 +29,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link org.springframework.http.converter.HttpMessageConverter}
- * that can read and write JSON using the
- * <a href="https://javaee.github.io/jsonb-spec/">JSON Binding API</a>.
+ * {@link org.springframework.http.converter.HttpMessageConverter} 的实现，
+ * 可使用 <a href="https://javaee.github.io/jsonb-spec/">JSON Binding API</a>
+ * 读写 JSON。
  *
- * <p>This converter can be used to bind to typed beans or untyped {@code HashMap}s.
- * By default, it supports {@code application/json} and {@code application/*+json} with
- * {@code UTF-8} character set.
+ * <p>此转换器可用于绑定到类型化的 bean 或无类型的 {@code HashMap}。
+ * 默认情况下，它支持字符集为 {@code UTF-8} 的 {@code application/json}
+ * 和 {@code application/*+json}。
  *
  * @author Juergen Hoeller
  * @since 5.0
@@ -49,14 +49,14 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 
 
 	/**
-	 * Construct a new {@code JsonbHttpMessageConverter} with default configuration.
+	 * 使用默认配置构造一个新的 {@code JsonbHttpMessageConverter}。
 	 */
 	public JsonbHttpMessageConverter() {
 		this(JsonbBuilder.create());
 	}
 
 	/**
-	 * Construct a new {@code JsonbHttpMessageConverter} with the given configuration.
+	 * 使用给定配置构造一个新的 {@code JsonbHttpMessageConverter}。
 	 * @param config the {@code JsonbConfig} for the underlying delegate
 	 */
 	public JsonbHttpMessageConverter(JsonbConfig config) {
@@ -64,7 +64,7 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 	}
 
 	/**
-	 * Construct a new {@code JsonbHttpMessageConverter} with the given delegate.
+	 * 使用给定的委托构造一个新的 {@code JsonbHttpMessageConverter}。
 	 * @param jsonb the Jsonb instance to use
 	 */
 	public JsonbHttpMessageConverter(Jsonb jsonb) {
@@ -74,10 +74,10 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 
 
 	/**
-	 * Set the {@code Jsonb} instance to use.
-	 * If not set, a default {@code Jsonb} instance will be created.
-	 * <p>Setting a custom-configured {@code Jsonb} is one way to take further
-	 * control of the JSON serialization process.
+	 * 设置要使用的 {@code Jsonb} 实例。
+	 * 如果未设置，将创建默认的 {@code Jsonb} 实例。
+	 * <p>设置自定义配置的 {@code Jsonb} 是进一步控制
+	 * JSON 序列化过程的一种方式。
 	 * @see #JsonbHttpMessageConverter(Jsonb)
 	 * @see #JsonbHttpMessageConverter(JsonbConfig)
 	 * @see JsonbBuilder
@@ -88,7 +88,7 @@ public class JsonbHttpMessageConverter extends AbstractJsonHttpMessageConverter 
 	}
 
 	/**
-	 * Return the configured {@code Jsonb} instance for this converter.
+	 * 返回此转换器已配置的 {@code Jsonb} 实例。
 	 */
 	public Jsonb getJsonb() {
 		return this.jsonb;

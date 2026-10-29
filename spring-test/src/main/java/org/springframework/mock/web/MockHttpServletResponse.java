@@ -51,9 +51,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Mock implementation of the {@link javax.servlet.http.HttpServletResponse} interface.
+ * {@link javax.servlet.http.HttpServletResponse} 接口的 mock 实现。
  *
- * <p>As of Spring 5.0, this set of mocks is designed on a Servlet 4.0 baseline.
+ * <p>从 Spring 5.0 开始，这组 mock 基于 Servlet 4.0 基线设计。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -85,9 +85,9 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	private String characterEncoding = this.defaultCharacterEncoding;
 
 	/**
-	 * {@code true} if the character encoding has been explicitly set through
-	 * {@link HttpServletResponse} methods or through a {@code charset} parameter
-	 * on the {@code Content-Type}.
+	 * 如果已通过 {@link HttpServletResponse} 方法或
+	 * {@code Content-Type} 上的 {@code charset} 参数
+	 * 显式设置字符编码，则为 {@code true}。
 	 */
 	private boolean characterEncodingSet = false;
 
@@ -139,43 +139,43 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	//---------------------------------------------------------------------
 
 	/**
-	 * Set whether {@link #getOutputStream()} access is allowed.
-	 * <p>Default is {@code true}.
+	 * 设置是否允许访问 {@link #getOutputStream()}。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setOutputStreamAccessAllowed(boolean outputStreamAccessAllowed) {
 		this.outputStreamAccessAllowed = outputStreamAccessAllowed;
 	}
 
 	/**
-	 * Return whether {@link #getOutputStream()} access is allowed.
+	 * 返回是否允许访问 {@link #getOutputStream()}。
 	 */
 	public boolean isOutputStreamAccessAllowed() {
 		return this.outputStreamAccessAllowed;
 	}
 
 	/**
-	 * Set whether {@link #getWriter()} access is allowed.
-	 * <p>Default is {@code true}.
+	 * 设置是否允许访问 {@link #getWriter()}。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setWriterAccessAllowed(boolean writerAccessAllowed) {
 		this.writerAccessAllowed = writerAccessAllowed;
 	}
 
 	/**
-	 * Return whether {@link #getOutputStream()} access is allowed.
+	 * 返回是否允许访问 {@link #getOutputStream()}。
 	 */
 	public boolean isWriterAccessAllowed() {
 		return this.writerAccessAllowed;
 	}
 
 	/**
-	 * Set the <em>default</em> character encoding for the response.
-	 * <p>If this method is not invoked, {@code ISO-8859-1} will be used as the
-	 * default character encoding.
-	 * <p>If the {@linkplain #getCharacterEncoding() character encoding} for the
-	 * response has not already been explicitly set via {@link #setCharacterEncoding(String)}
-	 * or {@link #setContentType(String)}, the character encoding for the response
-	 * will be set to the supplied default character encoding.
+	 * 设置响应的<em>默认</em>字符编码。
+	 * <p>如果未调用此方法，将使用 {@code ISO-8859-1} 作为
+	 * 默认字符编码。
+	 * <p>如果尚未通过 {@link #setCharacterEncoding(String)}
+	 * 或 {@link #setContentType(String)} 显式设置响应的
+	 * {@linkplain #getCharacterEncoding() 字符编码}，
+	 * 则响应的字符编码将设置为提供的默认字符编码。
 	 * @param characterEncoding the default character encoding
 	 * @since 5.3.10
 	 * @see #setCharacterEncoding(String)
@@ -190,11 +190,11 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Determine whether the character encoding has been explicitly set through
-	 * {@link HttpServletResponse} methods or through a {@code charset} parameter
-	 * on the {@code Content-Type}.
-	 * <p>If {@code false}, {@link #getCharacterEncoding()} will return the
-	 * {@linkplain #setDefaultCharacterEncoding(String) default character encoding}.
+	 * 确定字符编码是否已通过
+	 * {@link HttpServletResponse} 方法或 {@code Content-Type} 上的
+	 * {@code charset} 参数显式设置。
+	 * <p>如果为 {@code false}，{@link #getCharacterEncoding()} 将返回
+	 * {@linkplain #setDefaultCharacterEncoding(String) 默认字符编码}。
 	 */
 	public boolean isCharset() {
 		return this.characterEncodingSet;
@@ -249,12 +249,11 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Get the content of the response body as a {@code String}, using the charset
-	 * specified for the response by the application, either through
-	 * {@link HttpServletResponse} methods or through a charset parameter on the
-	 * {@code Content-Type}. If no charset has been explicitly defined, the
-	 * {@linkplain #setDefaultCharacterEncoding(String) default character encoding}
-	 * will be used.
+	 * 以 {@code String} 形式获取响应正文内容，使用应用程序为响应
+	 * 指定的字符集（通过
+	 * {@link HttpServletResponse} 方法或 {@code Content-Type} 上的
+	 * charset 参数）。如果未显式定义字符集，将使用
+	 * {@linkplain #setDefaultCharacterEncoding(String) 默认字符编码}。
 	 * @return the content as a {@code String}
 	 * @throws UnsupportedEncodingException if the character encoding is not supported
 	 * @see #getContentAsString(Charset)
@@ -266,11 +265,10 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Get the content of the response body as a {@code String}, using the provided
-	 * {@code fallbackCharset} if no charset has been explicitly defined and otherwise
-	 * using the charset specified for the response by the application, either
-	 * through {@link HttpServletResponse} methods or through a charset parameter on the
-	 * {@code Content-Type}.
+	 * 以 {@code String} 形式获取响应正文内容；如果未显式定义字符集，
+	 * 则使用提供的 {@code fallbackCharset}，否则
+	 * 使用应用程序为响应指定的字符集（通过
+	 * {@link HttpServletResponse} 方法或 {@code Content-Type} 上的 charset 参数）。
 	 * @return the content as a {@code String}
 	 * @throws UnsupportedEncodingException if the character encoding is not supported
 	 * @since 5.2
@@ -477,8 +475,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Return the names of all specified headers as a Set of Strings.
-	 * <p>As of Servlet 3.0, this method is also defined in {@link HttpServletResponse}.
+	 * 以字符串 Set 形式返回所有已指定头的名称。
+	 * <p>从 Servlet 3.0 开始，此方法也在 {@link HttpServletResponse} 中定义。
 	 * @return the {@code Set} of header name {@code Strings}, or an empty {@code Set} if none
 	 */
 	@Override
@@ -487,11 +485,11 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Return the primary value for the given header as a String, if any.
-	 * Will return the first value in case of multiple values.
-	 * <p>As of Servlet 3.0, this method is also defined in {@link HttpServletResponse}.
-	 * As of Spring 3.1, it returns a stringified value for Servlet 3.0 compatibility.
-	 * Consider using {@link #getHeaderValue(String)} for raw Object access.
+	 * 以 String 形式返回给定头的主值（如果有）。
+	 * 若有多个值，将返回第一个值。
+	 * <p>从 Servlet 3.0 开始，此方法也在 {@link HttpServletResponse} 中定义。
+	 * 从 Spring 3.1 开始，为兼容 Servlet 3.0，它返回字符串化后的值。
+	 * 如需原始 Object 访问，请考虑使用 {@link #getHeaderValue(String)}。
 	 * @param name the name of the header
 	 * @return the associated header value, or {@code null} if none
 	 */
@@ -503,10 +501,10 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Return all values for the given header as a List of Strings.
-	 * <p>As of Servlet 3.0, this method is also defined in {@link HttpServletResponse}.
-	 * As of Spring 3.1, it returns a List of stringified values for Servlet 3.0 compatibility.
-	 * Consider using {@link #getHeaderValues(String)} for raw Object access.
+	 * 以字符串 List 形式返回给定头的所有值。
+	 * <p>从 Servlet 3.0 开始，此方法也在 {@link HttpServletResponse} 中定义。
+	 * 从 Spring 3.1 开始，为兼容 Servlet 3.0，它返回字符串化值的 List。
+	 * 如需原始 Object 访问，请考虑使用 {@link #getHeaderValues(String)}。
 	 * @param name the name of the header
 	 * @return the associated header values, or an empty List if none
 	 */
@@ -522,8 +520,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Return the primary value for the given header, if any.
-	 * <p>Will return the first value in case of multiple values.
+	 * 返回给定头的主值（如果有）。
+	 * <p>若有多个值，将返回第一个值。
 	 * @param name the name of the header
 	 * @return the associated header value, or {@code null} if none
 	 */
@@ -534,7 +532,7 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Return all values for the given header as a List of value objects.
+	 * 以值对象 List 形式返回给定头的所有值。
 	 * @param name the name of the header
 	 * @return the associated header values, or an empty List if none
 	 */
@@ -549,8 +547,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * The default implementation returns the given URL String as-is.
-	 * <p>Can be overridden in subclasses, appending a session id or the like.
+	 * 默认实现按原样返回给定的 URL 字符串。
+	 * <p>可以在子类中覆写，以附加会话 id 等。
 	 */
 	@Override
 	public String encodeURL(String url) {
@@ -558,12 +556,11 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * The default implementation delegates to {@link #encodeURL},
-	 * returning the given URL String as-is.
-	 * <p>Can be overridden in subclasses, appending a session id or the like
-	 * in a redirect-specific fashion. For general URL encoding rules,
-	 * override the common {@link #encodeURL} method instead, applying
-	 * to redirect URLs as well as to general URLs.
+	 * 默认实现委托给 {@link #encodeURL}，
+	 * 按原样返回给定的 URL 字符串。
+	 * <p>可以在子类中覆写，以重定向特有的方式附加会话 id 等。
+	 * 对于通用 URL 编码规则，请改为覆写公共的 {@link #encodeURL} 方法，
+	 * 该方法同时适用于重定向 URL 和一般 URL。
 	 */
 	@Override
 	public String encodeRedirectURL(String url) {
@@ -736,8 +733,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 	}
 
 	/**
-	 * Set the {@code Set-Cookie} header to the supplied {@link Cookie},
-	 * overwriting any previous cookies.
+	 * 将 {@code Set-Cookie} 头设置为提供的 {@link Cookie}，
+	 * 覆盖之前的任何 Cookie。
 	 * @param cookie the {@code Cookie} to set
 	 * @since 5.1.10
 	 * @see #addCookie(Cookie)
@@ -815,8 +812,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 
 	/**
-	 * Inner class that adapts the ServletOutputStream to mark the
-	 * response as committed once the buffer size is exceeded.
+	 * 内部类，适配 ServletOutputStream，在超出缓冲区
+	 * 大小时将响应标记为已提交。
 	 */
 	private class ResponseServletOutputStream extends DelegatingServletOutputStream {
 
@@ -840,8 +837,8 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
 
 	/**
-	 * Inner class that adapts the PrintWriter to mark the
-	 * response as committed once the buffer size is exceeded.
+	 * 内部类，适配 PrintWriter，在超出缓冲区
+	 * 大小时将响应标记为已提交。
 	 */
 	private class ResponsePrintWriter extends PrintWriter {
 

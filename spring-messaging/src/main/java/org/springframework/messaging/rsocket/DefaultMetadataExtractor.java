@@ -43,11 +43,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Default {@link MetadataExtractor} implementation that relies on
- * {@link Decoder}s to deserialize the content of metadata entries.
- * <p>By default only {@code "message/x.rsocket.routing.v0"} is extracted and
- * saved under {@link MetadataExtractor#ROUTE_KEY}. Use {@code metadataToExtract}
- * methods to specify other metadata mime types of interest to extract.
+ * 默认的 {@link MetadataExtractor} 实现，依赖 {@link Decoder} 反序列化
+ * 元数据条目的内容。
+ * <p>默认情况下仅提取 {@code "message/x.rsocket.routing.v0"}，并将其
+ * 保存在 {@link MetadataExtractor#ROUTE_KEY} 下。可使用 {@code metadataToExtract}
+ * 方法指定其他需要提取的元数据 MimeType。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -63,14 +63,14 @@ public class DefaultMetadataExtractor implements MetadataExtractor, MetadataExtr
 
 
 	/**
-	 * Constructor with decoders for de-serializing metadata entries.
+	 * 使用用于反序列化元数据条目的解码器构造。
 	 */
 	public DefaultMetadataExtractor(Decoder<?>... decoders) {
 		this(Arrays.asList(decoders));
 	}
 
 	/**
-	 * Constructor with list of decoders for de-serializing metadata entries.
+	 * 使用用于反序列化元数据条目的解码器列表构造。
 	 */
 	public DefaultMetadataExtractor(List<Decoder<?>> decoders) {
 		this.decoders = Collections.unmodifiableList(new ArrayList<>(decoders));
@@ -78,7 +78,7 @@ public class DefaultMetadataExtractor implements MetadataExtractor, MetadataExtr
 
 
 	/**
-	 * Return a read-only list with the configured decoders.
+	 * 返回包含已配置解码器的只读列表。
 	 */
 	public List<? extends Decoder<?>> getDecoders() {
 		return this.decoders;

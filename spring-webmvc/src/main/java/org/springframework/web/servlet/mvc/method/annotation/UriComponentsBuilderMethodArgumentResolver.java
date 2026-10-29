@@ -30,11 +30,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 /**
- * Resolvers argument values of type {@link UriComponentsBuilder}.
+ * 解析 {@link UriComponentsBuilder} 类型的参数值。
  *
- * <p>The returned instance is initialized via
- * {@link ServletUriComponentsBuilder#fromServletMapping(HttpServletRequest)}.
- *
+ * <p>返回的实例通过
+ * {@link ServletUriComponentsBuilder#fromServletMapping(HttpServletRequest)} 初始化。
  * @author Rossen Stoyanchev
  * @since 3.1
  */

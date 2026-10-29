@@ -42,12 +42,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.CommonsLogWriter;
 
 /**
- * General stream-based protocol exporter for a Hessian endpoint.
+ * 用于 Hessian 端点的通用基于流的协议导出器。
  *
- * <p>Hessian is a slim, binary RPC protocol.
- * For information on Hessian, see the
- * <a href="http://hessian.caucho.com">Hessian website</a>.
- * <b>Note: As of Spring 4.0, this exporter requires Hessian 4.0 or above.</b>
+ * <p>Hessian 是一种轻量级二进制 RPC 协议。
+ * 有关 Hessian 的信息，请参阅
+ * <a href="http://hessian.caucho.com">Hessian 网站</a>。
+ * <b>注意：从 Spring 4.0 起，此导出器要求 Hessian 4.0 或更高版本。</b>
  *
  * @author Juergen Hoeller
  * @since 2.5.1
@@ -59,7 +59,7 @@ import org.springframework.util.CommonsLogWriter;
 public class HessianExporter extends RemoteExporter implements InitializingBean {
 
 	/**
-	 * The content type for hessian ({@code application/x-hessian}).
+	 * hessian 的内容类型（{@code application/x-hessian}）。
 	 */
 	public static final String CONTENT_TYPE_HESSIAN = "application/x-hessian";
 
@@ -77,42 +77,37 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 
 
 	/**
-	 * Specify the Hessian SerializerFactory to use.
-	 * <p>This will typically be passed in as an inner bean definition
-	 * of type {@code com.caucho.hessian.io.SerializerFactory},
-	 * with custom bean property values applied.
+	 * 指定要使用的 Hessian SerializerFactory。
+	 * <p>通常将其作为类型为 {@code com.caucho.hessian.io.SerializerFactory} 的内部 bean 定义传入，
+	 * 并应用自定义的 bean 属性值。
 	 */
 	public void setSerializerFactory(@Nullable SerializerFactory serializerFactory) {
 		this.serializerFactory = (serializerFactory != null ? serializerFactory : new SerializerFactory());
 	}
 
 	/**
-	 * Set whether to send the Java collection type for each serialized
-	 * collection. Default is "true".
+	 * 设置是否为每个被序列化的集合发送 Java 集合类型。默认为 "true"。
 	 */
 	public void setSendCollectionType(boolean sendCollectionType) {
 		this.serializerFactory.setSendCollectionType(sendCollectionType);
 	}
 
 	/**
-	 * Set whether to allow non-serializable types as Hessian arguments
-	 * and return values. Default is "true".
+	 * 设置是否允许将不可序列化的类型作为 Hessian 参数和返回值。默认为 "true"。
 	 */
 	public void setAllowNonSerializable(boolean allowNonSerializable) {
 		this.serializerFactory.setAllowNonSerializable(allowNonSerializable);
 	}
 
 	/**
-	 * Specify a custom HessianRemoteResolver to use for resolving remote
-	 * object references.
+	 * 指定用于解析远程对象引用的自定义 HessianRemoteResolver。
 	 */
 	public void setRemoteResolver(HessianRemoteResolver remoteResolver) {
 		this.remoteResolver = remoteResolver;
 	}
 
 	/**
-	 * Set whether Hessian's debug mode should be enabled, logging to
-	 * this exporter's Commons Logging log. Default is "false".
+	 * 设置是否启用 Hessian 的调试模式，并将日志输出到此导出器的 Commons Logging 日志。默认为 "false"。
 	 * @see com.caucho.hessian.client.HessianProxyFactory#setDebug
 	 */
 	public void setDebug(boolean debug) {
@@ -126,7 +121,7 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 	}
 
 	/**
-	 * Initialize this exporter.
+	 * 初始化此导出器。
 	 */
 	public void prepare() {
 		checkService();
@@ -136,7 +131,7 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 
 
 	/**
-	 * Perform an invocation on the exported object.
+	 * 对导出的对象执行调用。
 	 * @param inputStream the request stream
 	 * @param outputStream the response stream
 	 * @throws Throwable if invocation failed
@@ -147,7 +142,7 @@ public class HessianExporter extends RemoteExporter implements InitializingBean 
 	}
 
 	/**
-	 * Actually invoke the skeleton with the given streams.
+	 * 使用给定的流实际调用骨架（skeleton）。
 	 * @param skeleton the skeleton to invoke
 	 * @param inputStream the request stream
 	 * @param outputStream the response stream

@@ -26,22 +26,22 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.util.TagUtils;
 
 /**
- * The {@code <transform>} tag provides transformation for reference data values
- * from controllers and other objects inside a {@code spring:bind} tag (or a
- * data-bound form element tag from Spring's form tag library).
+ * {@code <transform>} 标签为 {@code spring:bind} 标签（或 Spring 表单
+ * 标签库中的数据绑定表单元素标签）内的控制器及其他对象
+ * 提供引用数据值的转换。
  *
- * <p>The BindTag has a PropertyEditor that it uses to transform properties of
- * a bean to a String, usable in HTML forms. This tag uses that PropertyEditor
- * to transform objects passed into this tag.
+ * <p>BindTag 持有一个 PropertyEditor，用于将 bean 的属性转换为
+ * 可在 HTML 表单中使用的 String。此标签使用该 PropertyEditor
+ * 来转换传入此标签的对象。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -49,32 +49,32 @@ import org.springframework.web.util.TagUtils;
  * <td>htmlEscape</td>
  * <td>false</td>
  * <td>true</td>
- * <td>Set HTML escaping for this tag, as boolean value. Overrides the default HTML
- * escaping setting for the current page.</td>
+ * <td>以布尔值形式为该标签设置 HTML 转义。覆盖当前页面的默认 HTML
+ * 转义设置。</td>
  * </tr>
  * <tr>
  * <td>scope</td>
  * <td>false</td>
  * <td>true</td>
- * <td>The scope to use when exported the result to a variable. This attribute
- * is only used when var is also set. Possible values are page, request, session
- * and application.</td>
+ * <td>将结果导出到变量时使用的作用域。此属性
+ * 仅在同时设置 var 时使用。可能的值为 page、request、session
+ * 和 application。</td>
  * </tr>
  * <tr>
  * <td>value</td>
  * <td>true</td>
  * <td>true</td>
- * <td>The value to transform. This is the actual object you want to have
- * transformed (for instance a Date). Using the PropertyEditor that is currently
- * in use by the 'spring:bind' tag.</td>
+ * <td>要转换的值。这是你希望进行转换的实际对象
+ * （例如一个 Date）。使用 'spring:bind' 标签当前
+ * 所用的 PropertyEditor。</td>
  * </tr>
  * <tr>
  * <td>var</td>
  * <td>false</td>
  * <td>true</td>
- * <td>The string to use when binding the result to the page, request, session
- * or application scope. If not specified, the result gets outputted to the
- * writer (i.e. typically directly to the JSP).</td>
+ * <td>将结果绑定到 page、request、session 或 application 作用域时
+ * 使用的字符串。如果未指定，结果将输出到
+ * writer（即通常直接输出到 JSP）。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -87,32 +87,32 @@ import org.springframework.web.util.TagUtils;
 @SuppressWarnings("serial")
 public class TransformTag extends HtmlEscapingAwareTag {
 
-	/** the value to transform using the appropriate property editor. */
+	/** 要使用相应属性编辑器进行转换的值。 */
 	@Nullable
 	private Object value;
 
-	/** the variable to put the result in. */
+	/** 用于存放结果的变量。 */
 	@Nullable
 	private String var;
 
-	/** the scope of the variable the result will be put in. */
+	/** 存放结果的变量所在的作用域。 */
 	private String scope = TagUtils.SCOPE_PAGE;
 
 
 	/**
-	 * Set the value to transform, using the appropriate PropertyEditor
-	 * from the enclosing BindTag.
-	 * <p>The value can either be a plain value to transform (a hard-coded String
-	 * value in a JSP or a JSP expression), or a JSP EL expression to be evaluated
-	 * (transforming the result of the expression).
+	 * 设置要转换的值，使用外层 BindTag 中相应的 PropertyEditor
+	 * 进行转换。
+	 * <p>该值既可以是要转换的普通值（JSP 中硬编码的 String
+	 * 值或 JSP 表达式），也可以是要执行的 JSP EL 表达式
+	 * （对表达式的结果进行转换）。
 	 */
 	public void setValue(Object value) {
 		this.value = value;
 	}
 
 	/**
-	 * Set PageContext attribute name under which to expose
-	 * a variable that contains the result of the transformation.
+	 * 设置 PageContext 属性名称，用于公开
+	 * 包含转换结果的变量。
 	 * @see #setScope
 	 * @see javax.servlet.jsp.PageContext#setAttribute
 	 */
@@ -121,8 +121,8 @@ public class TransformTag extends HtmlEscapingAwareTag {
 	}
 
 	/**
-	 * Set the scope to export the variable to.
-	 * Default is SCOPE_PAGE ("page").
+	 * 设置将变量导出到的作用域。
+	 * 默认为 SCOPE_PAGE（"page"）。
 	 * @see #setVar
 	 * @see org.springframework.web.util.TagUtils#SCOPE_PAGE
 	 * @see javax.servlet.jsp.PageContext#setAttribute

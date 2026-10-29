@@ -24,9 +24,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} for a specific port of a
- * JAX-WS service. Exposes a proxy for the port, to be used for bean references.
- * Inherits configuration properties from {@link JaxWsPortClientInterceptor}.
+ * 用于 JAX-WS 服务特定端口的 {@link org.springframework.beans.factory.FactoryBean}。
+ * 公开该端口的代理，以用于 bean 引用。
+ * 从 {@link JaxWsPortClientInterceptor} 继承配置属性。
  *
  * @author Juergen Hoeller
  * @since 2.5

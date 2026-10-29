@@ -25,22 +25,18 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A {@link org.springframework.beans.factory.FactoryBean} implementation that
- * returns a value which is an {@link org.springframework.beans.factory.ObjectFactory}
- * that in turn returns a bean sourced from a {@link org.springframework.beans.factory.BeanFactory}.
+ * 一个 {@link org.springframework.beans.factory.FactoryBean} 实现，它返回的值是一个
+ * {@link org.springframework.beans.factory.ObjectFactory}，后者又返回从
+ * {@link org.springframework.beans.factory.BeanFactory} 获取的 Bean。
  *
- * <p>As such, this may be used to avoid having a client object directly calling
- * {@link org.springframework.beans.factory.BeanFactory#getBean(String)} to get
- * a (typically prototype) bean from a
- * {@link org.springframework.beans.factory.BeanFactory}, which would be a
- * violation of the inversion of control principle. Instead, with the use
- * of this class, the client object can be fed an
- * {@link org.springframework.beans.factory.ObjectFactory} instance as a
- * property which directly returns only the one target bean (again, which is
- * typically a prototype bean).
+ * <p>因此，可以用它来避免客户端对象直接调用
+ * {@link org.springframework.beans.factory.BeanFactory#getBean(String)} 从
+ * {@link org.springframework.beans.factory.BeanFactory} 获取（通常是原型）Bean，因为那样会违反控制
+ * 反转原则。取而代之的是，借助此类，可以将一个
+ * {@link org.springframework.beans.factory.ObjectFactory} 实例作为属性提供给客户端对象，该实例只直
+ * 接返回那一个目标 Bean（同样，通常是一个原型 Bean）。
  *
- * <p>A sample config in an XML-based
- * {@link org.springframework.beans.factory.BeanFactory} might look as follows:
+ * <p>基于 XML 的 {@link org.springframework.beans.factory.BeanFactory} 中的示例配置可能如下所示：
  *
  * <pre class="code">&lt;beans&gt;
  *
@@ -58,8 +54,7 @@ import org.springframework.util.Assert;
  *
  *&lt;/beans&gt;</pre>
  *
- * <p>The attendant {@code MyClientBean} class implementation might look
- * something like this:
+ * <p>相应的 {@code MyClientBean} 类实现可能类似于以下内容：
  *
  * <pre class="code">package a.b.c;
  *
@@ -80,14 +75,10 @@ import org.springframework.util.Assert;
  *   }
  * }</pre>
  *
- * <p>An alternate approach to this application of an object creational pattern
- * would be to use the {@link ServiceLocatorFactoryBean}
- * to source (prototype) beans. The {@link ServiceLocatorFactoryBean} approach
- * has the advantage of the fact that one doesn't have to depend on any
- * Spring-specific interface such as {@link org.springframework.beans.factory.ObjectFactory},
- * but has the disadvantage of requiring runtime class generation. Please do
- * consult the {@link ServiceLocatorFactoryBean ServiceLocatorFactoryBean JavaDoc}
- * for a fuller discussion of this issue.
+ * <p>这种对象创建模式应用的另一种替代方案是使用 {@link ServiceLocatorFactoryBean} 来获取（原型）
+ * Bean。{@link ServiceLocatorFactoryBean} 方式的优点是不必依赖任何 Spring 特有的接口（例如
+ * {@link org.springframework.beans.factory.ObjectFactory}），但缺点是需要进行运行时类生成。关于此
+ * 问题的更完整讨论，请参阅 {@link ServiceLocatorFactoryBean ServiceLocatorFactoryBean JavaDoc}。
  *
  * @author Colin Sampaleanu
  * @author Juergen Hoeller
@@ -102,11 +93,9 @@ public class ObjectFactoryCreatingFactoryBean extends AbstractFactoryBean<Object
 
 
 	/**
-	 * Set the name of the target bean.
-	 * <p>The target does not <i>have</i> to be a non-singleton bean, but realistically
-	 * always will be (because if the target bean were a singleton, then said singleton
-	 * bean could simply be injected straight into the dependent object, thus obviating
-	 * the need for the extra level of indirection afforded by this factory approach).
+	 * 设置目标 Bean 的名称。
+	 * <p>目标<i>不必</i>是非单例 Bean，但实际上总是如此（因为如果目标 Bean 是单例，那么就可以将该单例
+	 * Bean 直接注入依赖对象，从而无需这种工厂方式提供的额外间接层）。
 	 */
 	public void setTargetBeanName(String targetBeanName) {
 		this.targetBeanName = targetBeanName;
@@ -134,7 +123,7 @@ public class ObjectFactoryCreatingFactoryBean extends AbstractFactoryBean<Object
 
 
 	/**
-	 * Independent inner class - for serialization purposes.
+	 * 独立的内部类，用于序列化目的。
 	 */
 	@SuppressWarnings("serial")
 	private static class TargetBeanObjectFactory implements ObjectFactory<Object>, Serializable {

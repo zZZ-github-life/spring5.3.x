@@ -35,59 +35,54 @@ import org.springframework.web.context.ContextLoader;
 
 /**
  * {@link org.springframework.web.context.WebApplicationContext WebApplicationContext}
- * implementation which accepts <em>component classes</em> as input &mdash; in particular
+ * 实现，接受<em>组件类</em>作为输入 &mdash; 特别是
  * {@link org.springframework.context.annotation.Configuration @Configuration}
- * classes, but also plain {@link org.springframework.stereotype.Component @Component}
- * classes as well as JSR-330 compliant classes using {@code javax.inject} annotations.
+ * 类，也包括普通的 {@link org.springframework.stereotype.Component @Component}
+ * 类，以及使用 {@code javax.inject} 注解的符合 JSR-330 的类。
  *
- * <p>Allows for registering classes one by one (specifying class names as config
- * locations) as well as via classpath scanning (specifying base packages as config
- * locations).
+ * <p>支持逐个注册类（将类名指定为配置位置），也支持通过类路径扫描注册（将基础包指定为配置位置）。
  *
- * <p>This is essentially the equivalent of
+ * <p>它本质上相当于 Web 环境中的
  * {@link org.springframework.context.annotation.AnnotationConfigApplicationContext
- * AnnotationConfigApplicationContext} for a web environment. However, in contrast to
- * {@code AnnotationConfigApplicationContext}, this class does not extend
+ * AnnotationConfigApplicationContext}。不过，与
+ * {@code AnnotationConfigApplicationContext} 不同，此类并不扩展
  * {@link org.springframework.context.support.GenericApplicationContext
- * GenericApplicationContext} and therefore does not provide some of the convenient
- * {@code registerBean(...)} methods available in a {@code GenericApplicationContext}.
- * If you wish to register annotated <em>component classes</em> with a
- * {@code GenericApplicationContext} in a web environment, you may use a
- * {@code GenericWebApplicationContext} with an
+ * GenericApplicationContext}，因此不提供 {@code GenericApplicationContext} 中
+ * 一些便捷的 {@code registerBean(...)} 方法。如果希望在 Web 环境中向
+ * {@code GenericApplicationContext} 注册带注解的<em>组件类</em>，可以使用
+ * {@code GenericWebApplicationContext} 配合
  * {@link org.springframework.context.annotation.AnnotatedBeanDefinitionReader
- * AnnotatedBeanDefinitionReader}. See the Javadoc for {@link GenericWebApplicationContext}
- * for details and an example.
+ * AnnotatedBeanDefinitionReader}。有关详细信息和示例，请参见
+ * {@link GenericWebApplicationContext} 的 Javadoc。
  *
- * <p>To make use of this application context, the
- * {@linkplain ContextLoader#CONTEXT_CLASS_PARAM "contextClass"} context-param for
- * ContextLoader and/or "contextClass" init-param for FrameworkServlet must be set to
- * the fully-qualified name of this class.
+ * <p>要使用此应用上下文，必须将 ContextLoader 的
+ * {@linkplain ContextLoader#CONTEXT_CLASS_PARAM "contextClass"} context-param 和/或
+ * FrameworkServlet 的 "contextClass" init-param 设置为此类的全限定名。
  *
- * <p>As of Spring 3.1, this class may also be directly instantiated and injected into
- * Spring's {@code DispatcherServlet} or {@code ContextLoaderListener} when using the
+ * <p>自 Spring 3.1 起，在使用
  * {@link org.springframework.web.WebApplicationInitializer WebApplicationInitializer}
- * code-based alternative to {@code web.xml}. See its Javadoc for details and usage examples.
+ * 作为 {@code web.xml} 的基于代码的替代方案时，也可以直接实例化此类并将其注入
+ * Spring 的 {@code DispatcherServlet} 或 {@code ContextLoaderListener}。
+ * 有关详细信息和用法示例，请参见其 Javadoc。
  *
- * <p>Unlike {@link XmlWebApplicationContext}, no default configuration class locations
- * are assumed. Rather, it is a requirement to set the
+ * <p>与 {@link XmlWebApplicationContext} 不同，这里不假定任何默认的配置类位置。
+ * 相反，必须设置 {@link ContextLoader} 的
  * {@linkplain ContextLoader#CONFIG_LOCATION_PARAM "contextConfigLocation"}
- * context-param for {@link ContextLoader} and/or "contextConfigLocation" init-param for
- * FrameworkServlet.  The param-value may contain both fully-qualified
- * class names and base packages to scan for components. See {@link #loadBeanDefinitions}
- * for exact details on how these locations are processed.
+ * context-param 和/或 FrameworkServlet 的 "contextConfigLocation" init-param。
+ * 参数值可以同时包含全限定类名和用于扫描组件的基础包。有关这些位置如何被处理的
+ * 确切细节，请参见 {@link #loadBeanDefinitions}。
  *
- * <p>As an alternative to setting the "contextConfigLocation" parameter, users may
- * implement an {@link org.springframework.context.ApplicationContextInitializer
- * ApplicationContextInitializer} and set the
+ * <p>作为设置 "contextConfigLocation" 参数的替代方案，用户可以实现一个
+ * {@link org.springframework.context.ApplicationContextInitializer
+ * ApplicationContextInitializer} 并设置
  * {@linkplain ContextLoader#CONTEXT_INITIALIZER_CLASSES_PARAM "contextInitializerClasses"}
- * context-param / init-param. In such cases, users should favor the {@link #refresh()}
- * and {@link #scan(String...)} methods over the {@link #setConfigLocation(String)}
- * method, which is primarily for use by {@code ContextLoader}.
+ * context-param / init-param。在这种情况下，用户应优先使用 {@link #refresh()}
+ * 和 {@link #scan(String...)} 方法，而不是主要供 {@code ContextLoader} 使用的
+ * {@link #setConfigLocation(String)} 方法。
  *
- * <p>Note: In case of multiple {@code @Configuration} classes, later {@code @Bean}
- * definitions will override ones defined in earlier loaded files. This can be leveraged
- * to deliberately override certain bean definitions via an extra {@code @Configuration}
- * class.
+ * <p>注意：在有多个 {@code @Configuration} 类的情况下，后定义的 {@code @Bean} 定义将覆盖先前加载
+ * 文件中定义的 bean。可以利用这一点，通过一个额外的 {@code @Configuration} 类来有意覆盖某些 bean
+ * 定义。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -111,9 +106,9 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 
 
 	/**
-	 * Set a custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}.
-	 * <p>Default is {@link org.springframework.context.annotation.AnnotationBeanNameGenerator}.
+	 * 为 {@link AnnotatedBeanDefinitionReader} 和/或
+	 * {@link ClassPathBeanDefinitionScanner} 设置自定义的 {@link BeanNameGenerator}。
+	 * <p>默认值为 {@link org.springframework.context.annotation.AnnotationBeanNameGenerator}。
 	 * @see AnnotatedBeanDefinitionReader#setBeanNameGenerator
 	 * @see ClassPathBeanDefinitionScanner#setBeanNameGenerator
 	 */
@@ -122,8 +117,8 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Return the custom {@link BeanNameGenerator} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}, if any.
+	 * 返回用于 {@link AnnotatedBeanDefinitionReader} 和/或 {@link ClassPathBeanDefinitionScanner} 的
+	 * 自定义 {@link BeanNameGenerator}（如果有）。
 	 */
 	@Nullable
 	protected BeanNameGenerator getBeanNameGenerator() {
@@ -131,9 +126,9 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Set a custom {@link ScopeMetadataResolver} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}.
-	 * <p>Default is an {@link org.springframework.context.annotation.AnnotationScopeMetadataResolver}.
+	 * 为 {@link AnnotatedBeanDefinitionReader} 和/或 {@link ClassPathBeanDefinitionScanner}
+	 * 设置自定义的 {@link ScopeMetadataResolver}。
+	 * <p>默认值为 {@link org.springframework.context.annotation.AnnotationScopeMetadataResolver}。
 	 * @see AnnotatedBeanDefinitionReader#setScopeMetadataResolver
 	 * @see ClassPathBeanDefinitionScanner#setScopeMetadataResolver
 	 */
@@ -142,8 +137,8 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Return the custom {@link ScopeMetadataResolver} for use with {@link AnnotatedBeanDefinitionReader}
-	 * and/or {@link ClassPathBeanDefinitionScanner}, if any.
+	 * 返回用于 {@link AnnotatedBeanDefinitionReader} 和/或 {@link ClassPathBeanDefinitionScanner} 的
+	 * 自定义 {@link ScopeMetadataResolver}（如果有）。
 	 */
 	@Nullable
 	protected ScopeMetadataResolver getScopeMetadataResolver() {
@@ -152,9 +147,8 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 
 
 	/**
-	 * Register one or more component classes to be processed.
-	 * <p>Note that {@link #refresh()} must be called in order for the context
-	 * to fully process the new classes.
+	 * 注册一个或多个要处理的组件类。
+	 * <p>注意，必须调用 {@link #refresh()} 才能让上下文完整处理新的类。
 	 * @param componentClasses one or more component classes,
 	 * e.g. {@link org.springframework.context.annotation.Configuration @Configuration} classes
 	 * @see #scan(String...)
@@ -169,9 +163,8 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Perform a scan within the specified base packages.
-	 * <p>Note that {@link #refresh()} must be called in order for the context
-	 * to fully process the new classes.
+	 * 在指定的基础包中执行扫描。
+	 * <p>注意，必须调用 {@link #refresh()} 才能让上下文完整处理新的类。
 	 * @param basePackages the packages to check for component classes
 	 * @see #loadBeanDefinitions(DefaultListableBeanFactory)
 	 * @see #register(Class...)
@@ -186,19 +179,17 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 
 
 	/**
-	 * Register a {@link org.springframework.beans.factory.config.BeanDefinition} for
-	 * any classes specified by {@link #register(Class...)} and scan any packages
-	 * specified by {@link #scan(String...)}.
-	 * <p>For any values specified by {@link #setConfigLocation(String)} or
-	 * {@link #setConfigLocations(String[])}, attempt first to load each location as a
-	 * class, registering a {@code BeanDefinition} if class loading is successful,
-	 * and if class loading fails (i.e. a {@code ClassNotFoundException} is raised),
-	 * assume the value is a package and attempt to scan it for component classes.
-	 * <p>Enables the default set of annotation configuration post processors, such that
-	 * {@code @Autowired}, {@code @Required}, and associated annotations can be used.
-	 * <p>Configuration class bean definitions are registered with generated bean
-	 * definition names unless the {@code value} attribute is provided to the stereotype
-	 * annotation.
+	 * 为 {@link #register(Class...)} 指定的任何类注册
+	 * {@link org.springframework.beans.factory.config.BeanDefinition}，
+	 * 并扫描 {@link #scan(String...)} 指定的任何包。
+	 * <p>对于 {@link #setConfigLocation(String)} 或
+	 * {@link #setConfigLocations(String[])} 指定的任何值，会首先尝试将每个位置作为类加载，
+	 * 如果类加载成功则注册一个 {@code BeanDefinition}；如果类加载失败（即抛出
+	 * {@code ClassNotFoundException}），则假定该值是一个包，并尝试在其中扫描组件类。
+	 * <p>启用默认的注解配置后处理器集合，从而可以使用 {@code @Autowired}、{@code @Required}
+	 * 及相关注解。
+	 * <p>除非在构造型注解中提供了 {@code value} 属性，否则配置类的 bean 定义会使用生成的
+	 * bean 定义名称注册。
 	 * @param beanFactory the bean factory to load bean definitions into
 	 * @see #register(Class...)
 	 * @see #scan(String...)
@@ -267,9 +258,9 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 
 
 	/**
-	 * Build an {@link AnnotatedBeanDefinitionReader} for the given bean factory.
-	 * <p>This should be pre-configured with the {@code Environment} (if desired)
-	 * but not with a {@code BeanNameGenerator} or {@code ScopeMetadataResolver} yet.
+	 * 为给定的 bean 工厂构建一个 {@link AnnotatedBeanDefinitionReader}。
+	 * <p>应使用 {@code Environment}（如果需要）对其预配置，但此时不要配置 {@code BeanNameGenerator}
+	 * 或 {@code ScopeMetadataResolver}。
 	 * @param beanFactory the bean factory to load bean definitions into
 	 * @since 4.1.9
 	 * @see #getEnvironment()
@@ -281,9 +272,9 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 	}
 
 	/**
-	 * Build a {@link ClassPathBeanDefinitionScanner} for the given bean factory.
-	 * <p>This should be pre-configured with the {@code Environment} (if desired)
-	 * but not with a {@code BeanNameGenerator} or {@code ScopeMetadataResolver} yet.
+	 * 为给定的 bean 工厂构建一个 {@link ClassPathBeanDefinitionScanner}。
+	 * <p>应使用 {@code Environment}（如果需要）对其预配置，但此时不要配置 {@code BeanNameGenerator}
+	 * 或 {@code ScopeMetadataResolver}。
 	 * @param beanFactory the bean factory to load bean definitions into
 	 * @since 4.1.9
 	 * @see #getEnvironment()

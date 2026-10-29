@@ -44,23 +44,22 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Helper class for populating a {@link javax.mail.internet.MimeMessage}.
+ * 用于填充 {@link javax.mail.internet.MimeMessage} 的帮助类。
  *
- * <p>Mirrors the simple setters of {@link org.springframework.mail.SimpleMailMessage},
- * directly applying the values to the underlying MimeMessage. Allows for defining
- * a character encoding for the entire message, automatically applied by all methods
- * of this helper class.
+ * <p>镜像 {@link org.springframework.mail.SimpleMailMessage} 的简单设置方法，
+ * 直接将值应用于底层的 MimeMessage。允许为整个消息定义字符编码，
+ * 由此帮助类的所有方法自动应用。
  *
- * <p>Offers support for HTML text content, inline elements such as images, and typical
- * mail attachments. Also supports personal names that accompany mail addresses. Note that
- * advanced settings can still be applied directly to the underlying MimeMessage object!
+ * <p>支持 HTML 文本内容、内联元素（如图片）以及典型的邮件附件。
+ * 还支持随邮件地址附带的个人名称。请注意，高级设置仍然可以直接
+ * 应用于底层的 MimeMessage 对象！
  *
- * <p>Typically used in {@link MimeMessagePreparator} implementations or
- * {@link JavaMailSender} client code: simply instantiating it as a MimeMessage wrapper,
- * invoking setters on the wrapper, using the underlying MimeMessage for mail sending.
- * Also used internally by {@link JavaMailSenderImpl}.
+ * <p>通常在 {@link MimeMessagePreparator} 实现或
+ * {@link JavaMailSender} 客户端代码中使用：简单地将其作为 MimeMessage 的
+ * 包装器实例化，在包装器上调用设置方法，使用底层 MimeMessage 进行邮件发送。
+ * 也在 {@link JavaMailSenderImpl} 内部使用。
  *
- * <p>Sample code for an HTML mail with an inline image and a PDF attachment:
+ * <p>包含内联图片和 PDF 附件的 HTML 邮件示例代码：
  *
  * <pre class="code">
  * mailSender.send(new MimeMessagePreparator() {
@@ -75,20 +74,17 @@ import org.springframework.util.Assert;
  *   }
  * });</pre>
  *
- * Consider using {@link MimeMailMessage} (which implements the common
- * {@link org.springframework.mail.MailMessage} interface, just like
- * {@link org.springframework.mail.SimpleMailMessage}) on top of this helper,
- * in order to let message population code interact with a simple message
- * or a MIME message through a common interface.
+ * 考虑在此帮助类之上使用 {@link MimeMailMessage}（它实现了通用的
+ * {@link org.springframework.mail.MailMessage} 接口，就像
+ * {@link org.springframework.mail.SimpleMailMessage} 一样），
+ * 使消息填充代码可以通过统一接口操作简单消息或 MIME 消息。
  *
- * <p><b>Warning regarding multipart mails:</b> Simple MIME messages that
- * just contain HTML text but no inline elements or attachments will work on
- * more or less any email client that is capable of HTML rendering. However,
- * inline elements and attachments are still a major compatibility issue
- * between email clients: It's virtually impossible to get inline elements
- * and attachments working across Microsoft Outlook, Lotus Notes and Mac Mail.
- * Consider choosing a specific multipart mode for your needs: The javadoc
- * on the MULTIPART_MODE constants contains more detailed information.
+ * <p><b>关于多部分邮件的警告：</b>仅包含 HTML 文本而没有内联元素或附件的
+ * 简单 MIME 消息可以在几乎任何支持 HTML 渲染的邮件客户端上正常工作。
+ * 然而，内联元素和附件在邮件客户端之间仍然存在重大的兼容性问题：
+ * 要让内联元素和附件在 Microsoft Outlook、Lotus Notes 和 Mac Mail 之间
+ * 都能正常工作几乎是不可能的。请根据需求选择特定的多部分模式：
+ * MULTIPART_MODE 常量的 javadoc 中包含更详细的信息。
  *
  * @author Juergen Hoeller
  * @since 19.01.2004
@@ -104,43 +100,40 @@ import org.springframework.util.Assert;
 public class MimeMessageHelper {
 
 	/**
-	 * Constant indicating a non-multipart message.
+	 * 表示非多部分消息的常量。
 	 */
 	public static final int MULTIPART_MODE_NO = 0;
 
 	/**
-	 * Constant indicating a multipart message with a single root multipart
-	 * element of type "mixed". Texts, inline elements and attachements
-	 * will all get added to that root element.
-	 * <p>This was Spring 1.0's default behavior. It is known to work properly
-	 * on Outlook. However, other mail clients tend to misinterpret inline
-	 * elements as attachments and/or show attachments inline as well.
+	 * 表示多部分消息的常量，具有单个类型为 "mixed" 的根多部分元素。
+	 * 文本、内联元素和附件都将被添加到该根元素中。
+	 * <p>这是 Spring 1.0 的默认行为。已知在 Outlook 上可以正常工作。
+	 * 然而，其他邮件客户端倾向于将内联元素误解为附件，和/或也会
+	 * 以内联方式显示附件。
 	 */
 	public static final int MULTIPART_MODE_MIXED = 1;
 
 	/**
-	 * Constant indicating a multipart message with a single root multipart
-	 * element of type "related". Texts, inline elements and attachements
-	 * will all get added to that root element.
-	 * <p>This was the default behavior from Spring 1.1 up to 1.2 final.
-	 * This is the "Microsoft multipart mode", as natively sent by Outlook.
-	 * It is known to work properly on Outlook, Outlook Express, Yahoo Mail, and
-	 * to a large degree also on Mac Mail (with an additional attachment listed
-	 * for an inline element, despite the inline element also shown inline).
-	 * Does not work properly on Lotus Notes (attachments won't be shown there).
+	 * 表示多部分消息的常量，具有单个类型为 "related" 的根多部分元素。
+	 * 文本、内联元素和附件都将被添加到该根元素中。
+	 * <p>这是 Spring 1.1 到 1.2 final 的默认行为。
+	 * 这是 "Microsoft 多部分模式"，由 Outlook 原生发送。
+	 * 已知在 Outlook、Outlook Express、Yahoo Mail 上可以正常工作，
+	 * 在 Mac Mail 上也能在很大程度上正常工作（内联元素会额外列为附件，
+	 * 尽管内联元素也已内联显示）。在 Lotus Notes 上不能正常工作
+	 *（附件不会在那里显示）。
 	 */
 	public static final int MULTIPART_MODE_RELATED = 2;
 
 	/**
-	 * Constant indicating a multipart message with a root multipart element
-	 * "mixed" plus a nested multipart element of type "related". Texts and
-	 * inline elements will get added to the nested "related" element,
-	 * while attachments will get added to the "mixed" root element.
-	 * <p>This is the default since Spring 1.2.1. This is arguably the most correct
-	 * MIME structure, according to the MIME spec: It is known to work properly
-	 * on Outlook, Outlook Express, Yahoo Mail, and Lotus Notes. Does not work
-	 * properly on Mac Mail. If you target Mac Mail or experience issues with
-	 * specific mails on Outlook, consider using MULTIPART_MODE_RELATED instead.
+	 * 表示多部分消息的常量，具有 "mixed" 类型的根多部分元素
+	 * 加上 "related" 类型的嵌套多部分元素。文本和内联元素将被添加到
+	 * 嵌套的 "related" 元素中，而附件将被添加到 "mixed" 根元素中。
+	 * <p>这是自 Spring 1.2.1 以来的默认值。根据 MIME 规范，这可以说是
+	 * 最正确的 MIME 结构：已知在 Outlook、Outlook Express、Yahoo Mail
+	 * 和 Lotus Notes 上可以正常工作。在 Mac Mail 上不能正常工作。
+	 * 如果目标是 Mac Mail或在 Outlook 上遇到特定邮件的问题，
+	 * 请考虑使用 {@code MULTIPART_MODE_RELATED}。
 	 */
 	public static final int MULTIPART_MODE_MIXED_RELATED = 3;
 
@@ -179,12 +172,11 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Create a new MimeMessageHelper for the given MimeMessage,
-	 * assuming a simple text message (no multipart content,
-	 * i.e. no alternative texts and no inline elements or attachments).
-	 * <p>The character encoding for the message will be taken from
-	 * the passed-in MimeMessage object, if carried there. Else,
-	 * JavaMail's default encoding will be used.
+	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
+	 * 假设为简单文本消息（无多部分内容，
+	 * 即无替代文本、无内联元素或附件）。
+	 * <p>消息的字符编码将从传入的 MimeMessage 对象中获取（如果有的话）。
+	 * 否则将使用 JavaMail 的默认编码。
 	 * @param mimeMessage the mime message to work on
 	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, boolean)
 	 * @see #getDefaultEncoding(javax.mail.internet.MimeMessage)
@@ -195,9 +187,9 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Create a new MimeMessageHelper for the given MimeMessage,
-	 * assuming a simple text message (no multipart content,
-	 * i.e. no alternative texts and no inline elements or attachments).
+	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
+	 * 假设为简单文本消息（无多部分内容，
+	 * 即无替代文本、无内联元素或附件）。
 	 * @param mimeMessage the mime message to work on
 	 * @param encoding the character encoding to use for the message
 	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, boolean)
@@ -209,15 +201,12 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Create a new MimeMessageHelper for the given MimeMessage,
-	 * in multipart mode (supporting alternative texts, inline
-	 * elements and attachments) if requested.
-	 * <p>Consider using the MimeMessageHelper constructor that
-	 * takes a multipartMode argument to choose a specific multipart
-	 * mode other than MULTIPART_MODE_MIXED_RELATED.
-	 * <p>The character encoding for the message will be taken from
-	 * the passed-in MimeMessage object, if carried there. Else,
-	 * JavaMail's default encoding will be used.
+	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
+	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
+	 * <p>考虑使用接受 multipartMode 参数的 MimeMessageHelper 构造方法
+	 * 来选择 MULTIPART_MODE_MIXED_RELATED 之外的特定多部分模式。
+	 * <p>消息的字符编码将从传入的 MimeMessage 对象中获取（如果有的话）。
+	 * 否则将使用 JavaMail 的默认编码。
 	 * @param mimeMessage the mime message to work on
 	 * @param multipart whether to create a multipart message that
 	 * supports alternative texts, inline elements and attachments
@@ -232,12 +221,10 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Create a new MimeMessageHelper for the given MimeMessage,
-	 * in multipart mode (supporting alternative texts, inline
-	 * elements and attachments) if requested.
-	 * <p>Consider using the MimeMessageHelper constructor that
-	 * takes a multipartMode argument to choose a specific multipart
-	 * mode other than MULTIPART_MODE_MIXED_RELATED.
+	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
+	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
+	 * <p>考虑使用接受 multipartMode 参数的 MimeMessageHelper 构造方法
+	 * 来选择 MULTIPART_MODE_MIXED_RELATED 之外的特定多部分模式。
 	 * @param mimeMessage the mime message to work on
 	 * @param multipart whether to create a multipart message that
 	 * supports alternative texts, inline elements and attachments
@@ -253,12 +240,10 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Create a new MimeMessageHelper for the given MimeMessage,
-	 * in multipart mode (supporting alternative texts, inline
-	 * elements and attachments) if requested.
-	 * <p>The character encoding for the message will be taken from
-	 * the passed-in MimeMessage object, if carried there. Else,
-	 * JavaMail's default encoding will be used.
+	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
+	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
+	 * <p>消息的字符编码将从传入的 MimeMessage 对象中获取（如果有的话）。
+	 * 否则将使用 JavaMail 的默认编码。
 	 * @param mimeMessage the mime message to work on
 	 * @param multipartMode which kind of multipart message to create
 	 * (MIXED, RELATED, MIXED_RELATED, or NO)
@@ -275,9 +260,8 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Create a new MimeMessageHelper for the given MimeMessage,
-	 * in multipart mode (supporting alternative texts, inline
-	 * elements and attachments) if requested.
+	 * 为给定的 MimeMessage 创建新的 MimeMessageHelper，
+	 * 如果请求则以多部分模式（支持替代文本、内联元素和附件）。
 	 * @param mimeMessage the mime message to work on
 	 * @param multipartMode which kind of multipart message to create
 	 * (MIXED, RELATED, MIXED_RELATED, or NO)
@@ -299,7 +283,7 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Return the underlying MimeMessage object.
+	 * 返回底层的 MimeMessage 对象。
 	 */
 	public final MimeMessage getMimeMessage() {
 		return this.mimeMessage;
@@ -307,17 +291,17 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Determine the MimeMultipart objects to use, which will be used
-	 * to store attachments on the one hand and text(s) and inline elements
-	 * on the other hand.
-	 * <p>Texts and inline elements can either be stored in the root element
-	 * itself (MULTIPART_MODE_MIXED, MULTIPART_MODE_RELATED) or in a nested element
-	 * rather than the root element directly (MULTIPART_MODE_MIXED_RELATED).
-	 * <p>By default, the root MimeMultipart element will be of type "mixed"
-	 * (MULTIPART_MODE_MIXED) or "related" (MULTIPART_MODE_RELATED).
-	 * The main multipart element will either be added as nested element of
-	 * type "related" (MULTIPART_MODE_MIXED_RELATED) or be identical to the root
-	 * element itself (MULTIPART_MODE_MIXED, MULTIPART_MODE_RELATED).
+	 * 确定要使用的 MimeMultipart 对象，一方面用于存储附件，
+	 * 另一方面用于存储文本和内联元素。
+	 * <p>文本和内联元素可以存储在根元素本身中
+	 *（MULTIPART_MODE_MIXED、MULTIPART_MODE_RELATED），
+	 * 或者存储在嵌套元素中而非直接存储在根元素中
+	 *（MULTIPART_MODE_MIXED_RELATED）。
+	 * <p>默认情况下，根 MimeMultipart 元素的类型为 "mixed"
+	 *（MULTIPART_MODE_MIXED）或 "related"（MULTIPART_MODE_RELATED）。
+	 * 主要的多部分元素将作为 "related" 类型的嵌套元素添加
+	 *（MULTIPART_MODE_MIXED_RELATED），或者与根元素本身相同
+	 *（MULTIPART_MODE_MIXED、MULTIPART_MODE_RELATED）。
 	 * @param mimeMessage the MimeMessage object to add the root MimeMultipart
 	 * object to
 	 * @param multipartMode the multipart mode, as passed into the constructor
@@ -359,7 +343,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set the given MimeMultipart objects for use by this MimeMessageHelper.
+	 * 设置供此 MimeMessageHelper 使用的给定 MimeMultipart 对象。
 	 * @param root the root MimeMultipart object, which attachments will be added to;
 	 * or {@code null} to indicate no multipart at all
 	 * @param main the main MimeMultipart object, which text(s) and inline elements
@@ -372,8 +356,8 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return whether this helper is in multipart mode,
-	 * i.e. whether it holds a multipart message.
+	 * 返回此帮助类是否处于多部分模式，
+	 * 即是否持有多部分消息。
 	 * @see #MimeMessageHelper(MimeMessage, boolean)
 	 */
 	public final boolean isMultipart() {
@@ -381,10 +365,9 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return the root MIME "multipart/mixed" object, if any.
-	 * Can be used to manually add attachments.
-	 * <p>This will be the direct content of the MimeMessage,
-	 * in case of a multipart mail.
+	 * 返回根 MIME "multipart/mixed" 对象（如果有）。
+	 * 可用于手动添加附件。
+	 * <p>在多部分邮件的情况下，这将是 MimeMessage 的直接内容。
 	 * @throws IllegalStateException if this helper is not in multipart mode
 	 * @see #isMultipart
 	 * @see #getMimeMessage
@@ -400,10 +383,9 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return the underlying MIME "multipart/related" object, if any.
-	 * Can be used to manually add body parts, inline elements, etc.
-	 * <p>This will be nested within the root MimeMultipart,
-	 * in case of a multipart mail.
+	 * 返回底层的 MIME "multipart/related" 对象（如果有）。
+	 * 可用于手动添加正文部分、内联元素等。
+	 * <p>在多部分邮件的情况下，这将嵌套在根 MimeMultipart 中。
 	 * @throws IllegalStateException if this helper is not in multipart mode
 	 * @see #isMultipart
 	 * @see #getRootMimeMultipart
@@ -420,7 +402,7 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Determine the default encoding for the given MimeMessage.
+	 * 确定给定 MimeMessage 的默认编码。
 	 * @param mimeMessage the passed-in MimeMessage
 	 * @return the default encoding associated with the MimeMessage,
 	 * or {@code null} if none found
@@ -434,7 +416,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return the specific character encoding used for this message, if any.
+	 * 返回此消息使用的特定字符编码（如果有）。
 	 */
 	@Nullable
 	public String getEncoding() {
@@ -442,7 +424,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Determine the default Java Activation FileTypeMap for the given MimeMessage.
+	 * 确定给定 MimeMessage 的默认 Java Activation FileTypeMap。
 	 * @param mimeMessage the passed-in MimeMessage
 	 * @return the default FileTypeMap associated with the MimeMessage,
 	 * or a default ConfigurableMimeFileTypeMap if none found for the message
@@ -461,12 +443,10 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set the Java Activation Framework {@code FileTypeMap} to use
-	 * for determining the content type of inline content and attachments
-	 * that get added to the message.
-	 * <p>The default is the {@code FileTypeMap} that the underlying
-	 * MimeMessage carries, if any, or the Activation Framework's default
-	 * {@code FileTypeMap} instance else.
+	 * 设置用于确定添加到消息中的内联内容和附件的内容类型的
+	 * Java Activation Framework {@code FileTypeMap}。
+	 * <p>默认为底层 MimeMessage 所携带的 {@code FileTypeMap}（如果有），
+	 * 否则为 Activation Framework 的默认 {@code FileTypeMap} 实例。
 	 * @see #addInline
 	 * @see #addAttachment
 	 * @see #getDefaultFileTypeMap(javax.mail.internet.MimeMessage)
@@ -479,7 +459,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return the {@code FileTypeMap} used by this MimeMessageHelper.
+	 * 返回此 MimeMessageHelper 使用的 {@code FileTypeMap}。
 	 * @see #setFileTypeMap
 	 */
 	public FileTypeMap getFileTypeMap() {
@@ -488,13 +468,12 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Set whether to encode attachment filenames passed to this helper's
-	 * {@code #addAttachment} methods.
-	 * <p>The default is {@code false} for standard MIME behavior; turn this to
-	 * {@code true} for compatibility with older email clients. On a related note,
-	 * check out JavaMail's {@code mail.mime.encodefilename} system property.
-	 * <p><b>NOTE:</b> The default changed to {@code false} in 5.3, in favor of
-	 * JavaMail's standard {@code mail.mime.encodefilename} system property.
+	 * 设置是否编码传递给此帮助类的 {@code #addAttachment} 方法的附件文件名。
+	 * <p>默认为 {@code false}，遵循标准 MIME 行为；将其设为 {@code true}
+	 * 以兼容旧版邮件客户端。与此相关的是，请查看 JavaMail 的
+	 * {@code mail.mime.encodefilename} 系统属性。
+	 * <p><b>注意：</b>在 5.3 中默认值改为 {@code false}，
+	 * 以支持 JavaMail 标准的 {@code mail.mime.encodefilename} 系统属性。
 	 * @since 5.2.9
 	 * @see #addAttachment(String, DataSource)
 	 * @see MimeBodyPart#setFileName(String)
@@ -504,8 +483,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return whether to encode attachment filenames passed to this helper's
-	 * {@code #addAttachment} methods.
+	 * 返回是否编码传递给此帮助类的 {@code #addAttachment} 方法的附件文件名。
 	 * @since 5.2.9
 	 * @see #setEncodeFilenames
 	 */
@@ -514,8 +492,8 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set whether to validate all addresses which get passed to this helper.
-	 * <p>The default is {@code false}.
+	 * 设置是否验证传递给此帮助类的所有地址。
+	 * <p>默认为 {@code false}。
 	 * @see #validateAddress
 	 */
 	public void setValidateAddresses(boolean validateAddresses) {
@@ -523,7 +501,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Return whether this helper will validate all addresses passed to it.
+	 * 返回此帮助类是否将验证传递给它的的所有地址。
 	 * @see #setValidateAddresses
 	 */
 	public boolean isValidateAddresses() {
@@ -531,10 +509,10 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Validate the given mail address.
-	 * Called by all of MimeMessageHelper's address setters and adders.
-	 * <p>The default implementation invokes {@link InternetAddress#validate()},
-	 * provided that address validation is activated for the helper instance.
+	 * 验证给定的邮件地址。
+	 * 由 MimeMessageHelper 的所有地址设置方法和添加方法调用。
+	 * <p>默认实现在地址验证已为此帮助类实例激活的情况下，
+	 * 调用 {@link InternetAddress#validate()}。
 	 * @param address the address to validate
 	 * @throws AddressException if validation failed
 	 * @see #isValidateAddresses()
@@ -547,9 +525,8 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Validate all given mail addresses.
-	 * <p>The default implementation simply delegates to {@link #validateAddress}
-	 * for each address.
+	 * 验证所有给定的邮件地址。
+	 * <p>默认实现简单地委托给 {@link #validateAddress} 处理每个地址。
 	 * @param addresses the addresses to validate
 	 * @throws AddressException if validation failed
 	 * @see #validateAddress(InternetAddress)
@@ -748,7 +725,7 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Set the priority ("X-Priority" header) of the message.
+	 * 设置消息的优先级（"X-Priority" 头）。
 	 * @param priority the priority value;
 	 * typically between 1 (highest) and 5 (lowest)
 	 * @throws MessagingException in case of errors
@@ -758,7 +735,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set the sent-date of the message.
+	 * 设置消息的发送日期。
 	 * @param sentDate the date to set (never {@code null})
 	 * @throws MessagingException in case of errors
 	 */
@@ -768,7 +745,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set the subject of the message, using the correct encoding.
+	 * 使用正确的编码设置消息的主题。
 	 * @param subject the subject text
 	 * @throws MessagingException in case of errors
 	 */
@@ -784,11 +761,11 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Set the given text directly as content in non-multipart mode
-	 * or as default body part in multipart mode.
-	 * Always applies the default content type "text/plain".
-	 * <p><b>NOTE:</b> Invoke {@link #addInline} <i>after</i> {@code setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 在非多部分模式下将给定文本直接设置为内容，
+	 * 或在多部分模式下设置为默认正文部分。
+	 * 始终应用默认的内容类型 "text/plain"。
+	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@link #addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param text the text for the message
 	 * @throws MessagingException in case of errors
 	 */
@@ -797,11 +774,11 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set the given text directly as content in non-multipart mode
-	 * or as default body part in multipart mode.
-	 * The "html" flag determines the content type to apply.
-	 * <p><b>NOTE:</b> Invoke {@link #addInline} <i>after</i> {@code setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 在非多部分模式下将给定文本直接设置为内容，
+	 * 或在多部分模式下设置为默认正文部分。
+	 * "html" 标志决定要应用的内容类型。
+	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@link #addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param text the text for the message
 	 * @param html whether to apply content type "text/html" for an
 	 * HTML mail, using default content type ("text/plain") else
@@ -825,10 +802,10 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Set the given plain text and HTML text as alternatives, offering
-	 * both options to the email client. Requires multipart mode.
-	 * <p><b>NOTE:</b> Invoke {@link #addInline} <i>after</i> {@code setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 将给定的纯文本和 HTML 文本设置为替代内容，
+	 * 向邮件客户端提供两种选项。需要多部分模式。
+	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@link #addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param plainText the plain text for the message
 	 * @param htmlText the HTML text for the message
 	 * @throws MessagingException in case of errors
@@ -888,13 +865,13 @@ public class MimeMessageHelper {
 
 
 	/**
-	 * Add an inline element to the MimeMessage, taking the content from a
-	 * {@code javax.activation.DataSource}.
-	 * <p>Note that the InputStream returned by the DataSource implementation
-	 * needs to be a <i>fresh one on each call</i>, as JavaMail will invoke
-	 * {@code getInputStream()} multiple times.
-	 * <p><b>NOTE:</b> Invoke {@code addInline} <i>after</i> {@link #setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 向 MimeMessage 添加内联元素，内容取自
+	 * {@code javax.activation.DataSource}。
+	 * <p>请注意，DataSource 实现返回的 InputStream
+	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
+	 * {@code getInputStream()}。
+	 * <p><b>注意：</b>请在 {@link #setText} <i>之后</i>调用 {@code addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param contentId the content ID to use. Will end up as "Content-ID" header
 	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
 	 * Can be referenced in HTML source via src="cid:myId" expressions.
@@ -915,13 +892,11 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an inline element to the MimeMessage, taking the content from a
-	 * {@code java.io.File}.
-	 * <p>The content type will be determined by the name of the given
-	 * content file. Do not use this for temporary files with arbitrary
-	 * filenames (possibly ending in ".tmp" or the like)!
-	 * <p><b>NOTE:</b> Invoke {@code addInline} <i>after</i> {@link #setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 向 MimeMessage 添加内联元素，内容取自 {@code java.io.File}。
+	 * <p>内容类型将根据给定内容文件的名称确定。
+	 * 不要将此用于具有任意文件名的临时文件（可能以 ".tmp" 结尾等）！
+	 * <p><b>注意：</b>请在 {@link #setText} <i>之后</i>调用 {@code addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param contentId the content ID to use. Will end up as "Content-ID" header
 	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
 	 * Can be referenced in HTML source via src="cid:myId" expressions.
@@ -939,16 +914,15 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an inline element to the MimeMessage, taking the content from a
-	 * {@code org.springframework.core.io.Resource}.
-	 * <p>The content type will be determined by the name of the given
-	 * content file. Do not use this for temporary files with arbitrary
-	 * filenames (possibly ending in ".tmp" or the like)!
-	 * <p>Note that the InputStream returned by the Resource implementation
-	 * needs to be a <i>fresh one on each call</i>, as JavaMail will invoke
-	 * {@code getInputStream()} multiple times.
-	 * <p><b>NOTE:</b> Invoke {@code addInline} <i>after</i> {@link #setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 向 MimeMessage 添加内联元素，内容取自
+	 * {@code org.springframework.core.io.Resource}。
+	 * <p>内容类型将根据给定内容文件的名称确定。
+	 * 不要将此用于具有任意文件名的临时文件（可能以 ".tmp" 结尾等）！
+	 * <p>请注意，Resource 实现返回的 InputStream
+	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
+	 * {@code getInputStream()}。
+	 * <p><b>注意：</b>请在 {@link #setText} <i>之后</i>调用 {@code addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param contentId the content ID to use. Will end up as "Content-ID" header
 	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
 	 * Can be referenced in HTML source via src="cid:myId" expressions.
@@ -965,16 +939,16 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an inline element to the MimeMessage, taking the content from an
-	 * {@code org.springframework.core.InputStreamResource}, and
-	 * specifying the content type explicitly.
-	 * <p>You can determine the content type for any given filename via a Java
-	 * Activation Framework's FileTypeMap, for example the one held by this helper.
-	 * <p>Note that the InputStream returned by the InputStreamSource implementation
-	 * needs to be a <i>fresh one on each call</i>, as JavaMail will invoke
-	 * {@code getInputStream()} multiple times.
-	 * <p><b>NOTE:</b> Invoke {@code addInline} <i>after</i> {@code setText};
-	 * else, mail readers might not be able to resolve inline references correctly.
+	 * 向 MimeMessage 添加内联元素，内容取自
+	 * {@code org.springframework.core.InputStreamResource}，
+	 * 并显式指定内容类型。
+	 * <p>可以通过 Java Activation Framework 的 FileTypeMap
+	 *（例如由此帮助类持有的）确定任何给定文件名的内容类型。
+	 * <p>请注意，InputStreamSource 实现返回的 InputStream
+	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
+	 * {@code getInputStream()}。
+	 * <p><b>注意：</b>请在 {@code setText} <i>之后</i>调用 {@code addInline}；
+	 * 否则邮件阅读器可能无法正确解析内联引用。
 	 * @param contentId the content ID to use. Will end up as "Content-ID" header
 	 * in the body part, surrounded by angle brackets: e.g. "myId" &rarr; "&lt;myId&gt;".
 	 * Can be referenced in HTML source via src="cid:myId" expressions.
@@ -1000,11 +974,11 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an attachment to the MimeMessage, taking the content from a
-	 * {@code javax.activation.DataSource}.
-	 * <p>Note that the InputStream returned by the DataSource implementation
-	 * needs to be a <i>fresh one on each call</i>, as JavaMail will invoke
-	 * {@code getInputStream()} multiple times.
+	 * 向 MimeMessage 添加附件，内容取自
+	 * {@code javax.activation.DataSource}。
+	 * <p>请注意，DataSource 实现返回的 InputStream
+	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
+	 * {@code getInputStream()}。
 	 * @param attachmentFilename the name of the attachment as it will
 	 * appear in the mail (the content type will be determined by this)
 	 * @param dataSource the {@code javax.activation.DataSource} to take
@@ -1030,11 +1004,9 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an attachment to the MimeMessage, taking the content from a
-	 * {@code java.io.File}.
-	 * <p>The content type will be determined by the name of the given
-	 * content file. Do not use this for temporary files with arbitrary
-	 * filenames (possibly ending in ".tmp" or the like)!
+	 * 向 MimeMessage 添加附件，内容取自 {@code java.io.File}。
+	 * <p>内容类型将根据给定内容文件的名称确定。
+	 * 不要将此用于具有任意文件名的临时文件（可能以 ".tmp" 结尾等）！
 	 * @param attachmentFilename the name of the attachment as it will
 	 * appear in the mail
 	 * @param file the File resource to take the content from
@@ -1050,14 +1022,13 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an attachment to the MimeMessage, taking the content from an
-	 * {@code org.springframework.core.io.InputStreamResource}.
-	 * <p>The content type will be determined by the given filename for
-	 * the attachment. Thus, any content source will be fine, including
-	 * temporary files with arbitrary filenames.
-	 * <p>Note that the InputStream returned by the InputStreamSource
-	 * implementation needs to be a <i>fresh one on each call</i>, as
-	 * JavaMail will invoke {@code getInputStream()} multiple times.
+	 * 向 MimeMessage 添加附件，内容取自
+	 * {@code org.springframework.core.io.InputStreamResource}。
+	 * <p>内容类型将根据给定的附件文件名确定。因此，任何内容源都可以，
+	 * 包括具有任意文件名的临时文件。
+	 * <p>请注意，InputStreamSource 实现返回的 InputStream
+	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
+	 * {@code getInputStream()}。
 	 * @param attachmentFilename the name of the attachment as it will
 	 * appear in the mail
 	 * @param inputStreamSource the resource to take the content from
@@ -1075,11 +1046,11 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Add an attachment to the MimeMessage, taking the content from an
-	 * {@code org.springframework.core.io.InputStreamResource}.
-	 * <p>Note that the InputStream returned by the InputStreamSource
-	 * implementation needs to be a <i>fresh one on each call</i>, as
-	 * JavaMail will invoke {@code getInputStream()} multiple times.
+	 * 向 MimeMessage 添加附件，内容取自
+	 * {@code org.springframework.core.io.InputStreamResource}。
+	 * <p>请注意，InputStreamSource 实现返回的 InputStream
+	 * 需要是<i>每次调用时的新流</i>，因为 JavaMail 会多次调用
+	 * {@code getInputStream()}。
 	 * @param attachmentFilename the name of the attachment as it will
 	 * appear in the mail
 	 * @param inputStreamSource the resource to take the content from
@@ -1105,7 +1076,7 @@ public class MimeMessageHelper {
 	}
 
 	/**
-	 * Create an Activation Framework DataSource for the given InputStreamSource.
+	 * 为给定的 InputStreamSource 创建 Activation Framework DataSource。
 	 * @param inputStreamSource the InputStreamSource (typically a Spring Resource)
 	 * @param contentType the content type
 	 * @param name the name of the DataSource

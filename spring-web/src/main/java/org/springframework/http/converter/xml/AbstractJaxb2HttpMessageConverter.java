@@ -27,8 +27,9 @@ import javax.xml.bind.Unmarshaller;
 import org.springframework.http.converter.HttpMessageConversionException;
 
 /**
- * Abstract base class for {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverters}
- * that use JAXB2. Creates {@link JAXBContext} object lazily.
+ * 使用 JAXB2 的
+ * {@link org.springframework.http.converter.HttpMessageConverter HttpMessageConverter}
+ * 抽象基类。延迟创建 {@link JAXBContext} 对象。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -41,7 +42,7 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 
 
 	/**
-	 * Create a new {@link Marshaller} for the given class.
+	 * 为给定的类创建新的 {@link Marshaller}。
 	 * @param clazz the class to create the marshaller for
 	 * @return the {@code Marshaller}
 	 * @throws HttpMessageConversionException in case of JAXB errors
@@ -60,8 +61,8 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 	}
 
 	/**
-	 * Customize the {@link Marshaller} created by this
-	 * message converter before using it to write the object to the output.
+	 * 在此消息转换器使用 {@link Marshaller} 将对象写入输出之前，
+	 * 自定义该 Marshaller。
 	 * @param marshaller the marshaller to customize
 	 * @since 4.0.3
 	 * @see #createMarshaller(Class)
@@ -70,7 +71,7 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 	}
 
 	/**
-	 * Create a new {@link Unmarshaller} for the given class.
+	 * 为给定的类创建新的 {@link Unmarshaller}。
 	 * @param clazz the class to create the unmarshaller for
 	 * @return the {@code Unmarshaller}
 	 * @throws HttpMessageConversionException in case of JAXB errors
@@ -89,8 +90,8 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 	}
 
 	/**
-	 * Customize the {@link Unmarshaller} created by this
-	 * message converter before using it to read the object from the input.
+	 * 在此消息转换器使用 {@link Unmarshaller} 从输入读取对象之前，
+	 * 自定义该 Unmarshaller。
 	 * @param unmarshaller the unmarshaller to customize
 	 * @since 4.0.3
 	 * @see #createUnmarshaller(Class)
@@ -99,7 +100,7 @@ public abstract class AbstractJaxb2HttpMessageConverter<T> extends AbstractXmlHt
 	}
 
 	/**
-	 * Return a {@link JAXBContext} for the given class.
+	 * 返回给定类的 {@link JAXBContext}。
 	 * @param clazz the class to return the context for
 	 * @return the {@code JAXBContext}
 	 * @throws HttpMessageConversionException in case of JAXB errors

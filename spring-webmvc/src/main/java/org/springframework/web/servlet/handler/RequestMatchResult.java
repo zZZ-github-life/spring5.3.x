@@ -25,9 +25,9 @@ import org.springframework.util.PathMatcher;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
- * Container for the result from request pattern matching via
- * {@link MatchableHandlerMapping} with a method to further extract
- * URI template variables from the pattern.
+ * 容器，用于保存通过 {@link MatchableHandlerMapping} 进行请求模式
+ * 匹配的结果，并提供一个从模式中进一步提取
+ * URI 模板变量的方法。
  *
  * @author Rossen Stoyanchev
  * @since 4.3.1
@@ -52,7 +52,7 @@ public class RequestMatchResult {
 
 
 	/**
-	 * Create an instance with the matched {@code PathPattern}.
+	 * 使用匹配的 {@code PathPattern} 创建实例。
 	 * @param pathPattern the pattern that was matched
 	 * @param lookupPath the mapping path
 	 * @since 5.3
@@ -71,7 +71,7 @@ public class RequestMatchResult {
 	}
 
 	/**
-	 * Create an instance with the matched String pattern.
+	 * 使用匹配的字符串模式创建实例。
 	 * @param pattern the pattern that was matched, possibly with a '/' appended
 	 * @param lookupPath the mapping path
 	 * @param pathMatcher the PathMatcher instance used for the match
@@ -90,8 +90,8 @@ public class RequestMatchResult {
 	}
 
 	/**
-	 * Extract URI template variables from the matching pattern as defined in
-	 * {@link PathMatcher#extractUriTemplateVariables}.
+	 * 从匹配的模式中提取 URI 模板变量，其定义方式如
+	 * {@link PathMatcher#extractUriTemplateVariables} 所述。
 	 * @return a map with URI template variables
 	 */
 	@SuppressWarnings("ConstantConditions")

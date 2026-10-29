@@ -47,7 +47,7 @@ import org.springframework.util.LinkedCaseInsensitiveMap;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ServerHttpRequest} implementation that is based on a {@link HttpServletRequest}.
+ * 基于 {@link HttpServletRequest} 的 {@link ServerHttpRequest} 实现。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -72,8 +72,8 @@ public class ServletServerHttpRequest implements ServerHttpRequest {
 
 
 	/**
-	 * Construct a new instance of the ServletServerHttpRequest based on the
-	 * given {@link HttpServletRequest}.
+	 * 基于给定的 {@link HttpServletRequest} 构造
+	 * ServletServerHttpRequest 的新实例。
 	 * @param servletRequest the servlet request
 	 */
 	public ServletServerHttpRequest(HttpServletRequest servletRequest) {
@@ -83,7 +83,7 @@ public class ServletServerHttpRequest implements ServerHttpRequest {
 
 
 	/**
-	 * Returns the {@code HttpServletRequest} this object is based on.
+	 * 返回此对象所基于的 {@code HttpServletRequest}。
 	 */
 	public HttpServletRequest getServletRequest() {
 		return this.servletRequest;
@@ -234,10 +234,10 @@ public class ServletServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * Use {@link javax.servlet.ServletRequest#getParameterMap()} to reconstruct the
-	 * body of a form 'POST' providing a predictable outcome as opposed to reading
-	 * from the body, which can fail if any other code has used the ServletRequest
-	 * to access a parameter, thus causing the input stream to be "consumed".
+	 * 使用 {@link javax.servlet.ServletRequest#getParameterMap()} 重建表单
+	 * 'POST' 的正文，从而提供可预期的结果，而不是从正文读取；
+	 * 如果任何其他代码已使用 ServletRequest 访问某个参数，
+	 * 从正文读取可能会失败，因为这会导致输入流被"消费"。
 	 */
 	private static InputStream getBodyFromServletRequestParameters(HttpServletRequest request) throws IOException {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(1024);

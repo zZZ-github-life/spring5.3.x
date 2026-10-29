@@ -28,12 +28,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract BeanFactory-based PointcutAdvisor that allows for any Advice
- * to be configured as reference to an Advice bean in a BeanFactory.
+ * 基于 BeanFactory 的抽象 PointcutAdvisor，允许将任意 Advice 配置为对 BeanFactory 中 Advice Bean
+ * 的引用。
  *
- * <p>Specifying the name of an advice bean instead of the advice object itself
- * (if running within a BeanFactory) increases loose coupling at initialization time,
- * in order to not initialize the advice object until the pointcut actually matches.
+ * <p>与直接指定通知对象本身相比，指定通知 Bean 的名称（如果在 BeanFactory 中运行）可提高初始化时的
+ * 松耦合程度，从而在切点实际匹配之前不初始化通知对象。
  *
  * @author Juergen Hoeller
  * @since 2.0.2
@@ -56,11 +55,9 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 
 
 	/**
-	 * Specify the name of the advice bean that this advisor should refer to.
-	 * <p>An instance of the specified bean will be obtained on first access
-	 * of this advisor's advice. This advisor will only ever obtain at most one
-	 * single instance of the advice bean, caching the instance for the lifetime
-	 * of the advisor.
+	 * 指定此通知器应引用的通知 Bean 的名称。
+	 * <p>在首次访问此通知器的通知时将获取指定 Bean 的实例。此通知器最多只会获取一个通知 Bean 实例，并
+	 * 在通知器的整个生命周期内缓存该实例。
 	 * @see #getAdvice()
 	 */
 	public void setAdviceBeanName(@Nullable String adviceBeanName) {
@@ -68,7 +65,7 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 	}
 
 	/**
-	 * Return the name of the advice bean that this advisor refers to, if any.
+	 * 返回此通知器所引用的通知 Bean 的名称（如果有）。
 	 */
 	@Nullable
 	public String getAdviceBeanName() {
@@ -91,8 +88,7 @@ public abstract class AbstractBeanFactoryPointcutAdvisor extends AbstractPointcu
 	}
 
 	/**
-	 * Specify a particular instance of the target advice directly,
-	 * avoiding lazy resolution in {@link #getAdvice()}.
+	 * 直接指定目标通知的特定实例，避免在 {@link #getAdvice()} 中进行延迟解析。
 	 * @since 3.1
 	 */
 	public void setAdvice(Advice advice) {

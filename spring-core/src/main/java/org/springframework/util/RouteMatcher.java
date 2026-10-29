@@ -22,12 +22,10 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
- * Contract for matching routes to patterns.
+ * 将路由与模式匹配的契约。
  *
- * <p>Equivalent to {@link PathMatcher}, but enables use of parsed representations
- * of routes and patterns for efficiency reasons in scenarios where routes from
- * incoming messages are continuously matched against a large number of message
- * handler patterns.
+ * <p>相当于 {@link PathMatcher}，但在来自传入消息的路由需要持续与大量消息处理器模式进行匹配的场景
+ * 中，出于效率考虑，允许使用路由和模式的已解析表示。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -36,23 +34,22 @@ import org.springframework.lang.Nullable;
 public interface RouteMatcher {
 
 	/**
-	 * Return a parsed representation of the given route.
+	 * 返回给定路由的已解析表示。
 	 * @param routeValue the route to parse
 	 * @return the parsed representation of the route
 	 */
 	Route parseRoute(String routeValue);
 
 	/**
-	 * Whether the given {@code route} contains pattern syntax which requires
-	 * the {@link #match(String, Route)} method, or if it is a regular String
-	 * that could be compared directly to others.
+	 * 给定的 {@code route} 是否包含需要 {@link #match(String, Route)} 方法的模式语法，或者它是否是可直
+	 * 接与其他字符串比较的常规字符串。
 	 * @param route the route to check
 	 * @return {@code true} if the given {@code route} represents a pattern
 	 */
 	boolean isPattern(String route);
 
 	/**
-	 * Combines two patterns into a single pattern.
+	 * 将两个模式合并为单个模式。
 	 * @param pattern1 the first pattern
 	 * @param pattern2 the second pattern
 	 * @return the combination of the two patterns
@@ -61,7 +58,7 @@ public interface RouteMatcher {
 	String combine(String pattern1, String pattern2);
 
 	/**
-	 * Match the given route against the given pattern.
+	 * 将给定的路由与给定的模式进行匹配。
 	 * @param pattern the pattern to try to match
 	 * @param route the route to test against
 	 * @return {@code true} if there is a match, {@code false} otherwise
@@ -69,7 +66,7 @@ public interface RouteMatcher {
 	boolean match(String pattern, Route route);
 
 	/**
-	 * Match the pattern to the route and extract template variables.
+	 * 将模式与路由进行匹配并提取模板变量。
 	 * @param pattern the pattern, possibly containing templates variables
 	 * @param route the route to extract template variables from
 	 * @return a map with template variables and values
@@ -78,9 +75,8 @@ public interface RouteMatcher {
 	Map<String, String> matchAndExtract(String pattern, Route route);
 
 	/**
-	 * Given a route, return a {@link Comparator} suitable for sorting patterns
-	 * in order of explicitness for that route, so that more specific patterns
-	 * come before more generic ones.
+	 * 给定路由，返回一个适合按该路由的明确程度对模式排序的 {@link Comparator}，使更具体的模式排在更通
+	 * 用的模式之前。
 	 * @param route the full path to use for comparison
 	 * @return a comparator capable of sorting patterns in order of explicitness
 	 */
@@ -88,12 +84,12 @@ public interface RouteMatcher {
 
 
 	/**
-	 * A parsed representation of a route.
+	 * 路由的已解析表示。
  	 */
 	interface Route {
 
 		/**
-		 * The original route value.
+		 * 原始路由值。
 		 */
 		String value();
 	}

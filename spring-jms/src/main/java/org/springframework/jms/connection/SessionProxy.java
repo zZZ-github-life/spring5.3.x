@@ -19,8 +19,8 @@ package org.springframework.jms.connection;
 import javax.jms.Session;
 
 /**
- * Subinterface of {@link javax.jms.Session} to be implemented by
- * Session proxies. Allows access to the underlying target Session.
+ * {@link javax.jms.Session} 的子接口，由 Session 代理实现。
+ * 允许访问底层的目标 Session。
  *
  * @author Juergen Hoeller
  * @since 2.0.4
@@ -31,9 +31,8 @@ import javax.jms.Session;
 public interface SessionProxy extends Session {
 
 	/**
-	 * Return the target Session of this proxy.
-	 * <p>This will typically be the native provider Session
-	 * or a wrapper from a session pool.
+	 * 返回此代理的目标 Session。
+	 * <p>这通常是原生提供者的 Session，或会话池中的包装器。
 	 * @return the underlying Session (never {@code null})
 	 */
 	Session getTargetSession();

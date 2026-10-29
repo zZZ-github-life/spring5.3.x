@@ -19,7 +19,7 @@ package org.springframework.ejb.access;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Exception that gets thrown when an EJB stub cannot be accessed properly.
+ * 当无法正确访问 EJB 存根时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -28,7 +28,7 @@ import org.springframework.core.NestedRuntimeException;
 public class EjbAccessException extends NestedRuntimeException {
 
 	/**
-	 * Constructor for EjbAccessException.
+	 * EjbAccessException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public EjbAccessException(String msg) {
@@ -36,7 +36,7 @@ public class EjbAccessException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for EjbAccessException.
+	 * EjbAccessException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for exceptions associated with specific HTTP response status codes.
+ * 与特定 HTTP 响应状态码相关联的异常的基类。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -43,7 +43,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 
 
 	/**
-	 * Constructor with a response status.
+	 * 带有响应状态的构造函数。
 	 * @param status the HTTP status (required)
 	 */
 	public ResponseStatusException(HttpStatus status) {
@@ -51,8 +51,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor with a response status and a reason to add to the exception
-	 * message as explanation.
+	 * 带有响应状态以及添加到异常消息中作为说明的原因的构造函数。
 	 * @param status the HTTP status (required)
 	 * @param reason the associated reason (optional)
 	 */
@@ -64,8 +63,8 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor with a response status and a reason to add to the exception
-	 * message as explanation, as well as a nested exception.
+	 * 带有响应状态、添加到异常消息中作为说明的原因，
+	 * 以及嵌套异常的构造函数。
 	 * @param status the HTTP status (required)
 	 * @param reason the associated reason (optional)
 	 * @param cause a nested exception (optional)
@@ -78,8 +77,8 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor with a response status and a reason to add to the exception
-	 * message as explanation, as well as a nested exception.
+	 * 带有响应状态、添加到异常消息中作为说明的原因，
+	 * 以及嵌套异常的构造函数。
 	 * @param rawStatusCode the HTTP status code value
 	 * @param reason the associated reason (optional)
 	 * @param cause a nested exception (optional)
@@ -93,7 +92,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 
 
 	/**
-	 * Return the HTTP status associated with this exception.
+	 * 返回与此异常关联的 HTTP 状态。
 	 * @throws IllegalArgumentException in case of an unknown HTTP status code
 	 * @since #getRawStatusCode()
 	 * @see HttpStatus#valueOf(int)
@@ -103,8 +102,8 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Return the HTTP status code (potentially non-standard and not resolvable
-	 * through the {@link HttpStatus} enum) as an integer.
+	 * 以整数形式返回 HTTP 状态码（可能是非标准状态码，
+	 * 无法通过 {@link HttpStatus} 枚举解析）。
 	 * @return the HTTP status as an integer value
 	 * @since 5.3
 	 * @see #getStatus()
@@ -115,9 +114,8 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Return headers associated with the exception that should be added to the
-	 * error response, e.g. "Allow", "Accept", etc.
-	 * <p>The default implementation in this class returns an empty map.
+	 * 返回与此异常关联、应添加到错误响应中的头部，例如 "Allow"、"Accept" 等。
+	 * <p>此类中的默认实现返回空 Map。
 	 * @since 5.1.11
 	 * @deprecated as of 5.1.13 in favor of {@link #getResponseHeaders()}
 	 */
@@ -127,9 +125,8 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Return headers associated with the exception that should be added to the
-	 * error response, e.g. "Allow", "Accept", etc.
-	 * <p>The default implementation in this class returns empty headers.
+	 * 返回与此异常关联、应添加到错误响应中的头部，例如 "Allow"、"Accept" 等。
+	 * <p>此类中的默认实现返回空的头部集合。
 	 * @since 5.1.13
 	 */
 	public HttpHeaders getResponseHeaders() {
@@ -143,7 +140,7 @@ public class ResponseStatusException extends NestedRuntimeException {
 	}
 
 	/**
-	 * The reason explaining the exception (potentially {@code null} or empty).
+	 * 解释此异常的原因（可能为 {@code null} 或空）。
 	 */
 	@Nullable
 	public String getReason() {

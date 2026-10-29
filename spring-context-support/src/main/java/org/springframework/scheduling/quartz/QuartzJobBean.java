@@ -26,24 +26,23 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyAccessorFactory;
 
 /**
- * Simple implementation of the Quartz Job interface, applying the
- * passed-in JobDataMap and also the SchedulerContext as bean property
- * values. This is appropriate because a new Job instance will be created
- * for each execution. JobDataMap entries will override SchedulerContext
- * entries with the same keys.
+ * Quartz Job 接口的简单实现，将传入的
+ * JobDataMap 以及 SchedulerContext 作为 bean 属性值
+ * 进行应用。这很合适，因为每次执行都会创建新的 Job 实例。
+ * JobDataMap 条目会覆盖 SchedulerContext 中相同键的条目。
  *
- * <p>For example, let's assume that the JobDataMap contains a key
- * "myParam" with value "5": The Job implementation can then expose
- * a bean property "myParam" of type int to receive such a value,
- * i.e. a method "setMyParam(int)". This will also work for complex
- * types like business objects etc.
+ * <p>例如，假设 JobDataMap 包含键
+ * "myParam"，值为 "5"：那么 Job 实现可以暴露
+ * 类型为 int 的 bean 属性 "myParam" 来接收这样的值，
+ * 即方法 "setMyParam(int)"。这也适用于复杂
+ * 类型，如业务对象等。
  *
- * <p><b>Note that the preferred way to apply dependency injection
- * to Job instances is via a JobFactory:</b> that is, to specify
- * {@link SpringBeanJobFactory} as Quartz JobFactory (typically via
- * {@link SchedulerFactoryBean#setJobFactory SchedulerFactoryBean's "jobFactory" property}).
- * This allows to implement dependency-injected Quartz Jobs without
- * a dependency on Spring base classes.
+ * <p><b>请注意，将依赖注入应用于 Job 实例的推荐方式
+ * 是通过 JobFactory：</b>即指定
+ * {@link SpringBeanJobFactory} 作为 Quartz JobFactory（通常通过
+ * {@link SchedulerFactoryBean#setJobFactory SchedulerFactoryBean 的 "jobFactory" 属性}）。
+ * 这允许实现依赖注入的 Quartz Job，
+ * 而不依赖于 Spring 基类。
  *
  * @author Juergen Hoeller
  * @since 18.02.2004
@@ -56,8 +55,8 @@ import org.springframework.beans.PropertyAccessorFactory;
 public abstract class QuartzJobBean implements Job {
 
 	/**
-	 * This implementation applies the passed-in job data map as bean property
-	 * values, and delegates to {@code executeInternal} afterwards.
+	 * 此实现将传入的 job 数据映射作为 bean 属性值
+	 * 进行应用，然后委托给 {@code executeInternal}。
 	 * @see #executeInternal
 	 */
 	@Override
@@ -76,9 +75,9 @@ public abstract class QuartzJobBean implements Job {
 	}
 
 	/**
-	 * Execute the actual job. The job data map will already have been
-	 * applied as bean property values by execute. The contract is
-	 * exactly the same as for the standard Quartz execute method.
+	 * 执行实际的 job。job 数据映射将已经被
+	 * execute 作为 bean 属性值进行应用。约定与
+	 * 标准 Quartz execute 方法完全相同。
 	 * @see #execute
 	 */
 	protected abstract void executeInternal(JobExecutionContext context) throws JobExecutionException;

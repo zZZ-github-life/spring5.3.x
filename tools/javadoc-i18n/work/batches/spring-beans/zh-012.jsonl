@@ -1,0 +1,150 @@
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::76::0", "zh": ["{@link org.springframework.beans.factory.BeanFactory} 实现的抽象基类，提供了 {@link org.springframework.beans.factory.config.ConfigurableBeanFactory} SPI 的全部能力。它<i>不</i>假定是一个可列举的 Bean 工厂：因此也可以作为从某个后端资源获取 Bean 定义的 Bean 工厂实现的基类（在后端资源中，访问 Bean 定义是开销较大的操作）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::76::1", "zh": ["<p>此类通过其基类 {@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry} 提供单例缓存、单例/原型判定、{@link org.springframework.beans.factory.FactoryBean} 处理、别名、子 Bean 定义的 Bean 定义合并，以及 Bean 销毁（{@link org.springframework.beans.factory.DisposableBean} 接口、自定义销毁方法）。此外，通过实现 {@link org.springframework.beans.factory.HierarchicalBeanFactory} 接口，它还可以管理 Bean 工厂层次结构（遇到未知 Bean 时委托给父工厂）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::76::2", "zh": ["<p>子类要实现的主要模板方法是 {@link #getBeanDefinition} 和 {@link #createBean}，前者为给定 Bean 名称检索 Bean 定义，后者为给定 Bean 定义创建 Bean 实例。这些操作的默认实现可以在 {@link DefaultListableBeanFactory} 和 {@link AbstractAutowireCapableBeanFactory} 中找到。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::175::0", "zh": ["创建一个新的 AbstractBeanFactory。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::181::0", "zh": ["使用给定的父工厂创建一个新的 AbstractBeanFactory。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::210::0", "zh": ["返回指定 Bean 的实例，该实例可能是共享的，也可能是独立的。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::225::0", "zh": ["返回指定 Bean 的实例，该实例可能是共享的，也可能是独立的。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::551::0", "zh": ["{@link #isTypeMatch(String, ResolvableType)} 的内部扩展变体，用于检查具有给定名称的 Bean 是否匹配指定的类型。允许施加额外约束，以确保 Bean 不会被过早创建。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::893::0", "zh": ["返回 PropertyEditorRegistrar 的集合。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::912::0", "zh": ["返回自定义编辑器的映射，以 Class 为键，以 PropertyEditor 类为值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::924::0", "zh": ["返回要使用的自定义 TypeConverter（如果有）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::986::0", "zh": ["添加新的 BeanPostProcessor，它们将应用于此工厂创建的 Bean。需在工厂配置期间调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1006::0", "zh": ["返回将应用于此工厂创建的 Bean 的 BeanPostProcessor 列表。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1014::0", "zh": ["返回经过预过滤的后处理器的内部缓存，必要时重新构建它。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1050::0", "zh": ["返回此工厂是否持有 InstantiationAwareBeanPostProcessor，它将在创建单例 Bean 时应用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1060::0", "zh": ["返回此工厂是否持有 DestructionAwareBeanPostProcessor，它将在关闭时应用于单例 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1102::0", "zh": ["设置此 Bean 工厂的安全上下文提供者。如果设置了安全管理器，与用户代码的交互将使用所提供安全上下文的特权来执行。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1122::0", "zh": ["将访问控制上下文的创建委托给 {@link #setSecurityContextProvider SecurityContextProvider}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1158::0", "zh": ["返回给定 Bean 名称的“合并”BeanDefinition，必要时将子 Bean 定义与其父定义合并。<p>此 {@code getMergedBeanDefinition} 也会考虑祖先中的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1200::0", "zh": ["返回指定的原型 Bean 当前是否正在创建中（在当前线程内）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1211::0", "zh": ["原型创建之前的回调。<p>默认实现将该原型注册为正在创建中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1235::0", "zh": ["原型创建之后的回调。<p>默认实现将该原型标记为不再处于创建中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1261::0", "zh": ["根据给定的 Bean 定义销毁给定的 Bean 实例（通常是从此工厂获取的原型实例）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1296::0", "zh": ["返回 Bean 名称，必要时去掉工厂解引用前缀，并将别名解析为规范名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1313::0", "zh": ["确定原始 Bean 名称，将本地定义的别名解析为规范名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1326::0", "zh": ["使用在此工厂中注册的自定义编辑器初始化给定的 BeanWrapper。将针对要创建并填充 Bean 实例的 BeanWrapper 调用。<p>默认实现委托给 {@link #registerCustomEditors}。可在子类中覆盖。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1339::0", "zh": ["使用已在此 BeanFactory 中注册的自定义编辑器初始化给定的 PropertyEditorRegistry。<p>将针对要创建并填充 Bean 实例的 BeanWrapper，以及用于构造函数参数和工厂方法类型转换的 SimpleTypeConverter 调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1382::0", "zh": ["返回合并后的 RootBeanDefinition，如果指定的 Bean 对应子 Bean 定义，则遍历其父 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1399::0", "zh": ["返回给定顶层 Bean 的 RootBeanDefinition，如果给定 Bean 的定义是子 Bean 定义，则与父定义合并。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1525::0", "zh": ["检查给定的合并 Bean 定义，可能会抛出校验异常。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1541::0", "zh": ["移除指定 Bean 的合并 Bean 定义，在下次访问时重新创建。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1553::0", "zh": ["清空合并 Bean 定义缓存，移除尚不具备完整元数据缓存资格的 Bean 条目。<p>通常在对原始 Bean 定义进行更改之后触发，例如应用 {@code BeanFactoryPostProcessor} 之后。请注意，此时已经创建的 Bean 的元数据会被保留。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1569::0", "zh": ["解析指定 Bean 定义的 Bean 类，必要时将 Bean 类名解析为 Class 引用，并将解析出的 Class 存储到 Bean 定义中以便后续使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1673::0", "zh": ["将给定 String 作为 Bean 定义中的内容进行求值，可能将其解析为表达式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1698::0", "zh": ["预测指定 Bean 最终（处理后的 Bean 实例）的 Bean 类型。由 {@link #getType} 和 {@link #isTypeMatch} 调用。无需专门处理 FactoryBean，因为它只应操作原始的 Bean 类型。<p>此实现比较简单，无法处理工厂方法和 InstantiationAwareBeanPostProcessor。它只能正确预测标准 Bean 的 Bean 类型。可在子类中覆盖，以应用更精细的类型检测。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1725::0", "zh": ["检查给定 Bean 是否定义为 {@link FactoryBean}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1745::0", "zh": ["尽可能确定给定 FactoryBean 定义的 Bean 类型。仅当目标 Bean 尚未注册单例实例时才会调用。如果 {@code allowInit} 为 {@code true} 且无法通过其他方式确定类型，实现可以实例化目标工厂 Bean；否则仅限于内省签名和相关元数据。<p>如果 Bean 定义上未设置 {@link FactoryBean#OBJECT_TYPE_ATTRIBUTE} 且 {@code allowInit} 为 {@code true}，默认实现将通过 {@code getBean} 创建 FactoryBean，以调用其 {@code getObjectType} 方法。鼓励子类对此进行优化，通常通过检查工厂 Bean 类的泛型签名或创建它的工厂方法的签名来实现。如果子类确实实例化了 FactoryBean，应考虑尝试调用 {@code getObjectType} 方法而不完全填充该 Bean。如果失败，则应使用此实现所执行的完整 FactoryBean 创建作为回退。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1797::0", "zh": ["通过检查 FactoryBean 的属性中的 {@link FactoryBean#OBJECT_TYPE_ATTRIBUTE} 值，确定该 FactoryBean 的 Bean 类型。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1816::0", "zh": ["尽可能确定给定 FactoryBean 定义的 Bean 类型。仅当目标 Bean 尚未注册单例实例时才会调用。<p>默认实现通过 {@code getBean} 创建 FactoryBean，以调用其 {@code getObjectType} 方法。鼓励子类对此进行优化，通常只需实例化 FactoryBean 而暂不填充它，尝试其 {@code getObjectType} 方法是否已返回类型。如果未找到类型，则应使用此实现所执行的完整 FactoryBean 创建作为回退。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1838::0", "zh": ["将指定 Bean 标记为已创建（或即将创建）。<p>这允许 Bean 工厂针对指定 Bean 的重复创建优化其缓存。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1857::0", "zh": ["在 Bean 创建失败后，对缓存的元数据执行适当的清理。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1867::0", "zh": ["确定指定 Bean 是否有资格缓存其 Bean 定义元数据。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1878::0", "zh": ["移除给定 Bean 名称的单例实例（如果有），但仅当它除了类型检查之外未被用于其他用途时。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1894::0", "zh": ["检查此工厂的 Bean 创建阶段是否已开始，即在此期间是否有任何 Bean 已被标记为已创建。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1904::0", "zh": ["获取给定 Bean 实例对应的对象，即 Bean 实例本身，或者在 FactoryBean 的情况下获取其创建的对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1957::0", "zh": ["确定给定 Bean 名称是否已在此工厂内使用，即是否存在以此名称注册的本地 Bean 或别名，或以此名称创建的内部 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1967::0", "zh": ["确定给定 Bean 是否需要在关闭时销毁。<p>默认实现会检查 DisposableBean 接口、指定的销毁方法以及已注册的 DestructionAwareBeanPostProcessor。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::1983::0", "zh": ["将给定 Bean 添加到本工厂的可销毁 Bean 列表中，注册其 DisposableBean 接口和/或给定的销毁方法，以便在工厂关闭时调用（如适用）。仅适用于单例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::2022::0", "zh": ["检查此 Bean 工厂是否包含具有给定名称的 Bean 定义。不考虑此工厂可能参与的层次结构。当未找到缓存的单例实例时由 {@code containsBean} 调用。<p>取决于具体 Bean 工厂实现的性质，此操作可能开销较大（例如，由于在外部注册表中进行目录查找）。不过，对于可列举的 Bean 工厂，这通常只相当于本地哈希查找：因此该操作是其公共接口的一部分。在这种情况下，同一个实现可以同时服务于该模板方法和公共接口方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::2039::0", "zh": ["返回给定 Bean 名称的 Bean 定义。子类通常应实现缓存，因为每次需要 Bean 定义元数据时此类都会调用此方法。<p>取决于具体 Bean 工厂实现的性质，此操作可能开销较大（例如，由于在外部注册表中进行目录查找）。不过，对于可列举的 Bean 工厂，这通常只相当于本地哈希查找：因此该操作是其公共接口的一部分。在这种情况下，同一个实现可以同时服务于该模板方法和公共接口方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::2060::0", "zh": ["为给定的合并 Bean 定义（及参数）创建 Bean 实例。如果是子定义，Bean 定义已与父定义合并。<p>所有 Bean 获取方法都会委托给此方法进行实际的 Bean 创建。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::2075::0", "zh": ["CopyOnWriteArrayList，在修改时重置 beanPostProcessorCache 字段。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AbstractBeanFactory.java::2171::0", "zh": ["经过预过滤的后处理器的内部缓存。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::22::0", "zh": ["用于解析自动装配候选者的限定符。包含一个或多个此类限定符的 Bean 定义可以对字段或参数上的注解进行细粒度匹配，以便自动装配。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::35::0", "zh": ["用于存储值的键的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::43::0", "zh": ["构造一个限定符，用于与给定类型的注解进行匹配。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::52::0", "zh": ["构造一个限定符，用于与给定类型名称的注解进行匹配。<p>类型名称可以匹配注解的全限定类名或短类名（不含包名）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::64::0", "zh": ["构造一个限定符，用于与给定类型的注解进行匹配，且该注解的 {@code value} 属性也与指定的值匹配。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::75::0", "zh": ["构造一个限定符，用于与给定类型名称的注解进行匹配，且该注解的 {@code value} 属性也与指定的值匹配。<p>类型名称可以匹配注解的全限定类名或短类名（不含包名）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateQualifier.java::91::0", "zh": ["检索类型名称。该值将与提供给构造函数的类型名称相同；如果向构造函数提供了 Class 实例，则为全限定类名。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::24::0", "zh": ["用于确定特定 Bean 定义是否符合特定依赖的自动装配候选条件的策略接口。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::34::0", "zh": ["确定给定 Bean 定义是否符合给定依赖的自动装配候选条件。<p>默认实现检查 {@link org.springframework.beans.factory.config.BeanDefinition#isAutowireCandidate()}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::48::0", "zh": ["确定给定描述符是否实际上是必需的。<p>默认实现检查 {@link DependencyDescriptor#isRequired()}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::61::0", "zh": ["确定给定描述符是否声明了类型之外的限定符（通常——但不一定——是特定类型的注解）。<p>默认实现返回 {@code false}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::75::0", "zh": ["确定是否为给定依赖建议了默认值。<p>默认实现直接返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::88::0", "zh": ["如果注入点要求，构建用于延迟解析实际依赖目标的代理。<p>默认实现直接返回 {@code null}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireCandidateResolver.java::103::0", "zh": ["如有必要，返回此解析器实例的克隆，保留其本地配置并允许克隆实例关联到新的 Bean 工厂；如果没有此类状态，则返回此原始实例。<p>默认实现通过默认类构造函数创建一个单独的实例，假定没有需要复制的特定配置状态。子类可以覆盖此方法，使用自定义配置状态处理或标准的 {@link Cloneable} 支持（如 Spring 自身的可配置 {@code AutowireCandidateResolver} 变体所实现的那样），或者直接返回 {@code this}（如 {@link SimpleAutowireCandidateResolver} 中那样）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::42::0", "zh": ["包含各种有助于实现支持自动装配的 Bean 工厂的方法的工具类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::60::0", "zh": ["对给定的构造函数排序，优先选择公共构造函数以及参数数量最多的“贪婪”构造函数。结果将包含公共构造函数在前（参数数量递减），然后是非公共构造函数（同样参数数量递减）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::71::0", "zh": ["对给定的工厂方法排序，优先选择公共方法以及参数数量最多的“贪婪”方法。结果将包含公共方法在前（参数数量递减），然后是非公共方法（同样参数数量递减）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::82::0", "zh": ["确定给定的 Bean 属性是否被排除在依赖检查之外。<p>此实现排除由 CGLIB 定义的属性。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::103::0", "zh": ["返回给定 Bean 属性的 setter 方法是否定义在任何给定接口中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::123::0", "zh": ["根据给定的必需类型解析给定的自动装配值，例如将 {@link ObjectFactory} 值解析为其实际对象结果。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::144::0", "zh": ["确定给定<em>泛型工厂方法</em>的泛型返回类型的目标类型，其中形式类型变量声明在该方法自身上。<p>例如，给定具有如下签名的工厂方法，如果对 {@code createProxy()} 的反射方法以及包含 {@code MyService.class} 的 {@code Object[]} 数组调用 {@code resolveReturnTypeForFactoryMethod()}，则 {@code resolveReturnTypeForFactoryMethod()} 将推断目标返回类型为 {@code MyService}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::144::1", "zh": ["<h4>可能的返回值</h4>"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/AutowireUtils.java::267::0", "zh": ["用于延迟访问当前目标对象的反射 {@link InvocationHandler}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::28::0", "zh": ["以编程方式使用构建器模式构造 {@link org.springframework.beans.factory.config.BeanDefinition BeanDefinitions} 的手段。主要用于实现 Spring 2.0 {@link org.springframework.beans.factory.xml.NamespaceHandler NamespaceHandlers} 时使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::41::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::48::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::58::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::68::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link GenericBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::81::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::89::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::101::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::109::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::121::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::134::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link RootBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::145::0", "zh": ["创建一个新的 {@code BeanDefinitionBuilder}，用于构造 {@link ChildBeanDefinition}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::154::0", "zh": ["我们正在创建的 {@code BeanDefinition} 实例。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::159::0", "zh": ["我们当前相对于构造函数参数的位置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::165::0", "zh": ["强制使用工厂方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::172::0", "zh": ["以原始（未校验）形式返回当前的 BeanDefinition 对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::180::0", "zh": ["校验并返回创建的 BeanDefinition 对象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::189::0", "zh": ["设置此 Bean 定义的父定义的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::197::0", "zh": ["设置要用于此定义的静态工厂方法的名称，该方法将在此 Bean 的类上调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::206::0", "zh": ["设置要用于此定义的非静态工厂方法的名称，包括要在其上调用该方法的工厂实例的 Bean 名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::219::0", "zh": ["添加带索引的构造函数参数值。当前索引在内部跟踪，所有添加都发生在当前位置。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::229::0", "zh": ["添加对指定名称 Bean 的引用作为构造函数参数。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::239::0", "zh": ["在给定属性名称下添加所提供的属性值。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::247::0", "zh": ["在指定属性下添加对指定 Bean 名称的引用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::257::0", "zh": ["为指定 Bean 上的指定属性添加自动装配标记。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::268::0", "zh": ["为此定义设置初始化方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::276::0", "zh": ["为此定义设置销毁方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::285::0", "zh": ["为此定义设置作用域。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::295::0", "zh": ["设置此定义是否为抽象。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::303::0", "zh": ["设置此定义的 Bean 是否应延迟初始化。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::311::0", "zh": ["为此定义设置自动装配模式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::319::0", "zh": ["为此定义设置依赖检查模式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::327::0", "zh": ["将指定 Bean 名称追加到此定义所依赖的 Bean 列表中。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::342::0", "zh": ["设置此 Bean 是否为首选自动装配候选者。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::351::0", "zh": ["设置此定义的角色。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::359::0", "zh": ["设置此 Bean 是否为“合成”的，即并非由应用自身定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionBuilder.java::369::0", "zh": ["将给定的定制器应用到基础 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::22::0", "zh": ["用于保存 {@code BeanDefinition} 属性默认值的简单持有者。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::46::0", "zh": ["设置 Bean 是否应默认延迟初始化。<p>如果为 {@code false}，执行单例急切初始化的 Bean 工厂将在启动时实例化该 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::56::0", "zh": ["返回 Bean 是否应默认延迟初始化，即不在启动时急切实例化。仅适用于单例 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::65::0", "zh": ["返回 Bean 是否应默认延迟初始化，即不在启动时急切实例化。仅适用于单例 Bean。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::76::0", "zh": ["设置自动装配模式。这决定是否发生 Bean 引用的自动检测和设置。默认值为 AUTOWIRE_NO，意味着不会进行基于约定的按名称或按类型自动装配（不过，仍可能存在显式的注解驱动自动装配）。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::89::0", "zh": ["返回默认的自动装配模式。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::96::0", "zh": ["设置依赖检查代码。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::106::0", "zh": ["返回默认的依赖检查代码。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::113::0", "zh": ["设置默认初始化方法的名称。<p>请注意，此方法并非强制应用于所有受影响的 Bean 定义，而是作为可选回调，仅在确实存在时才调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::124::0", "zh": ["返回默认初始化方法的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::132::0", "zh": ["设置默认销毁方法的名称。<p>请注意，此方法并非强制应用于所有受影响的 Bean 定义，而是作为可选回调，仅在确实存在时才调用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionDefaults.java::143::0", "zh": ["返回默认销毁方法的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionOverrideException.java::23::0", "zh": ["{@link BeanDefinitionStoreException} 的子类，表示无效的覆盖尝试：通常是在 {@link DefaultListableBeanFactory#isAllowBeanDefinitionOverriding()} 为 {@code false} 时为同一 Bean 名称注册新定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionOverrideException.java::41::0", "zh": ["为给定的新定义和现有定义创建一个新的 BeanDefinitionOverrideException。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionOverrideException.java::58::0", "zh": ["返回 Bean 定义来源资源的描述。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionOverrideException.java::67::0", "zh": ["返回 Bean 的名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionOverrideException.java::76::0", "zh": ["返回新注册的 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionOverrideException.java::84::0", "zh": ["返回同一名称的现有 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::24::0", "zh": ["Bean 定义读取器的简单接口，用于指定使用 {@link Resource} 和 {@link String} 位置参数的加载方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::24::1", "zh": ["<p>具体的 Bean 定义读取器当然可以针对其 Bean 定义格式添加额外的 Bean 定义加载和注册方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::24::2", "zh": ["<p>请注意，Bean 定义读取器不必实现此接口。它只是为想要遵循标准命名约定的 Bean 定义读取器提供的建议。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::42::0", "zh": ["返回用于注册 Bean 定义的 Bean 工厂。<p>该工厂以 {@link BeanDefinitionRegistry} 接口的形式暴露，封装了与 Bean 定义处理相关的方法。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::49::0", "zh": ["返回用于资源位置的 {@link ResourceLoader}。<p>可以检查其是否实现 {@code ResourcePatternResolver} 接口并相应地转换，以便为给定资源模式加载多个资源。<p>返回 {@code null} 表示此 Bean 定义读取器无法进行绝对资源加载。<p>这主要用于从 Bean 定义资源内部导入更多资源，例如通过 XML Bean 定义中的“import”标签。不过，建议将此类导入应用于定义资源相对的位置；只有显式的完整资源位置才会触发基于绝对路径的资源加载。<p>此外还提供了 {@code loadBeanDefinitions(String)} 方法，用于从资源位置（或位置模式）加载 Bean 定义。这是一种便利方式，可避免显式处理 {@code ResourceLoader}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::69::0", "zh": ["返回用于 Bean 类的类加载器。<p>{@code null} 表示不急切加载 Bean 类，而只是注册带类名的 Bean 定义，相应的类将在以后（或永不）解析。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::78::0", "zh": ["返回用于匿名 Bean（未指定显式 Bean 名称）的 {@link BeanNameGenerator}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::85::0", "zh": ["从指定资源加载 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::93::0", "zh": ["从指定的多个资源加载 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::101::0", "zh": ["从指定资源位置加载 Bean 定义。<p>该位置也可以是位置模式，前提是此 Bean 定义读取器的 {@link ResourceLoader} 是 {@code ResourcePatternResolver}。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReader.java::116::0", "zh": ["从指定的多个资源位置加载 Bean 定义。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::28::0", "zh": ["对 Bean 定义读取器实现有用的工具方法。主要供内部使用。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::40::0", "zh": ["生成的 Bean 名称的分隔符。如果类名或父名称不唯一，将追加“#1”、“#2”等，直到名称变得唯一。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::47::0", "zh": ["为给定父名称和类名创建一个新的 GenericBeanDefinition，如果指定了 ClassLoader，则急切加载 Bean 类。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::73::0", "zh": ["为给定顶层 Bean 定义生成一个在给定 Bean 工厂内唯一的 Bean 名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::90::0", "zh": ["为给定 Bean 定义生成一个在给定 Bean 工厂内唯一的 Bean 名称。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::130::0", "zh": ["将给定 Bean 名称转换为给定 Bean 工厂中的唯一 Bean 名称，如有必要追加唯一计数器作为后缀。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::152::0", "zh": ["将给定 Bean 定义注册到给定 Bean 工厂。"]}
+{"id": "spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionReaderUtils.java::175::0", "zh": ["使用生成的名称将给定 Bean 定义注册到给定 Bean 工厂，该名称在给定 Bean 工厂内唯一。"]}

@@ -23,9 +23,9 @@ import org.springframework.context.ApplicationContextException;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Abstract implementation of the {@link org.springframework.web.servlet.HandlerMapping}
- * interface, detecting URL mappings for handler beans through introspection of all
- * defined beans in the application context.
+ * {@link org.springframework.web.servlet.HandlerMapping} 接口的抽象实现，
+ * 通过内省应用程序上下文中所有已定义的 bean，
+ * 检测处理器 bean 的 URL 映射。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -37,12 +37,12 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 
 	/**
-	 * Set whether to detect handler beans in ancestor ApplicationContexts.
-	 * <p>Default is "false": Only handler beans in the current ApplicationContext
-	 * will be detected, i.e. only in the context that this HandlerMapping itself
-	 * is defined in (typically the current DispatcherServlet's context).
-	 * <p>Switch this flag on to detect handler beans in ancestor contexts
-	 * (typically the Spring root WebApplicationContext) as well.
+	 * 设置是否在祖先 ApplicationContext 中检测处理器 bean。
+	 * <p>默认值为 "false"：只检测当前 ApplicationContext 中的处理器 bean，
+	 * 即仅在此 HandlerMapping 本身所定义的上下文中检测
+	 * （通常是当前 DispatcherServlet 的上下文）。
+	 * <p>开启此标志还可以检测祖先上下文
+	 * （通常是 Spring 根 WebApplicationContext）中的处理器 bean。
 	 */
 	public void setDetectHandlersInAncestorContexts(boolean detectHandlersInAncestorContexts) {
 		this.detectHandlersInAncestorContexts = detectHandlersInAncestorContexts;
@@ -50,8 +50,7 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 
 	/**
-	 * Calls the {@link #detectHandlers()} method in addition to the
-	 * superclass's initialization.
+	 * 除父类的初始化之外，还会调用 {@link #detectHandlers()} 方法。
 	 */
 	@Override
 	public void initApplicationContext() throws ApplicationContextException {
@@ -60,10 +59,10 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 	}
 
 	/**
-	 * Register all handlers found in the current ApplicationContext.
-	 * <p>The actual URL determination for a handler is up to the concrete
-	 * {@link #determineUrlsForHandler(String)} implementation. A bean for
-	 * which no such URLs could be determined is simply not considered a handler.
+	 * 注册在当前 ApplicationContext 中找到的所有处理器。
+	 * <p>处理器的实际 URL 确定工作由具体的
+	 * {@link #determineUrlsForHandler(String)} 实现负责。对于
+	 * 无法确定此类 URL 的 bean，根本不会被视为处理器。
 	 * @throws org.springframework.beans.BeansException if the handler couldn't be registered
 	 * @see #determineUrlsForHandler(String)
 	 */
@@ -92,7 +91,7 @@ public abstract class AbstractDetectingUrlHandlerMapping extends AbstractUrlHand
 
 
 	/**
-	 * Determine the URLs for the given handler bean.
+	 * 确定给定处理器 bean 的 URL。
 	 * @param beanName the name of the candidate bean
 	 * @return the URLs determined for the bean, or an empty array if none
 	 */

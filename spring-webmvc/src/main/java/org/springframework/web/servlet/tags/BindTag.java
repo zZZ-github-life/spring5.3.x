@@ -27,30 +27,27 @@ import org.springframework.validation.Errors;
 import org.springframework.web.servlet.support.BindStatus;
 
 /**
- * The {@code <bind>} tag supports evaluation of binding errors for a certain
- * bean or bean property. Exposes a "status" variable of type
- * {@link org.springframework.web.servlet.support.BindStatus},
- * to both Java expressions and JSP EL expressions.
+ * {@code <bind>} 标签支持对某个 bean 或 bean 属性的绑定错误进行求值。
+ * 它向 Java 表达式和 JSP EL 表达式公开一个类型为
+ * {@link org.springframework.web.servlet.support.BindStatus} 的 "status" 变量。
  *
- * <p>Can be used to bind to any bean or bean property in the model.
- * The specified path determines whether the tag exposes the status of the
- * bean itself (showing object-level errors), a specific bean property
- * (showing field errors), or a matching set of bean properties
- * (showing all corresponding field errors).
+ * <p>可用于绑定到模型中的任意 bean 或 bean 属性。
+ * 指定的路径决定该标签公开的是 bean 本身的状态（显示对象级错误）、
+ * 特定 bean 属性的状态（显示字段错误），还是
+ * 一组匹配的 bean 属性的状态（显示所有对应的字段错误）。
  *
- * <p>The {@link org.springframework.validation.Errors} object that has
- * been bound using this tag is exposed to collaborating tags, as well
- * as the bean property that this errors object applies to. Nested tags
- * such as the {@link TransformTag} can access those exposed properties.
+ * <p>通过此标签绑定的 {@link org.springframework.validation.Errors} 对象
+ * 会公开给协作的标签，同时公开的还有该 errors 对象所适用的 bean 属性。
+ * 诸如 {@link TransformTag} 之类的嵌套标签可以访问这些公开的属性。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否支持运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -58,24 +55,24 @@ import org.springframework.web.servlet.support.BindStatus;
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Set HTML escaping for this tag, as boolean value. Overrides the default
- * HTML escaping setting for the current page.</p></td>
+ * <td><p>以布尔值形式为该标签设置 HTML 转义。覆盖当前页面的
+ * 默认 HTML 转义设置。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>ignoreNestedPath</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Set whether to ignore a nested path, if any.
- * Default is to not ignore.</p></td>
+ * <td><p>设置是否忽略嵌套路径（如果存在）。
+ * 默认不忽略。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>path</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>The path to the bean or bean property to bind status information for.
- * For instance account.name, company.address.zipCode or just employee. The status
- * object will exported to the page scope, specifically for this bean or bean
- * property</p></td>
+ * <td><p>要为其绑定状态信息的 bean 或 bean 属性的路径。
+ * 例如 account.name、company.address.zipCode，或仅 employee。状态对象
+ * 将被导出到页面作用域中，专门用于该 bean 或 bean
+ * 属性</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -88,7 +85,7 @@ import org.springframework.web.servlet.support.BindStatus;
 public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 
 	/**
-	 * Name of the exposed variable within the scope of this tag: "status".
+	 * 此标签所公开变量在本标签作用域内的名称："status"。
 	 */
 	public static final String STATUS_VARIABLE_NAME = "status";
 
@@ -108,11 +105,11 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 
 
 	/**
-	 * Set the path that this tag should apply. Can be a bean (e.g. "person")
-	 * to get global errors, or a bean property (e.g. "person.name") to get
-	 * field errors (also supporting nested fields and "person.na*" mappings).
-	 * "person.*" will return all errors for the specified bean, both global
-	 * and field errors.
+	 * 设置此标签所应用的路径。可以是 bean（如 "person"）以获取
+	 * 全局错误，也可以是 bean 属性（如 "person.name"）以获取
+	 * 字段错误（同样支持嵌套字段和 "person.na*" 形式的映射）。
+	 * "person.*" 将返回指定 bean 的所有错误，包括全局错误
+	 * 和字段错误。
 	 * @see org.springframework.validation.Errors#getGlobalErrors
 	 * @see org.springframework.validation.Errors#getFieldErrors
 	 */
@@ -121,22 +118,22 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 	}
 
 	/**
-	 * Return the path that this tag applies to.
+	 * 返回此标签所应用的路径。
 	 */
 	public String getPath() {
 		return this.path;
 	}
 
 	/**
-	 * Set whether to ignore a nested path, if any.
-	 * Default is to not ignore.
+	 * 设置是否忽略嵌套路径（如果存在）。
+	 * 默认不忽略。
 	 */
 	public void setIgnoreNestedPath(boolean ignoreNestedPath) {
 		this.ignoreNestedPath = ignoreNestedPath;
 	}
 
 	/**
-	 * Return whether to ignore a nested path, if any.
+	 * 返回是否忽略嵌套路径（如果存在）。
 	 */
 	public boolean isIgnoreNestedPath() {
 		return this.ignoreNestedPath;
@@ -192,7 +189,7 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 
 
 	/**
-	 * Return the current BindStatus.
+	 * 返回当前的 BindStatus。
 	 */
 	private BindStatus getStatus() {
 		Assert.state(this.status != null, "No current BindStatus");
@@ -200,9 +197,9 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 	}
 
 	/**
-	 * Retrieve the property that this tag is currently bound to,
-	 * or {@code null} if bound to an object rather than a specific property.
-	 * Intended for cooperating nesting tags.
+	 * 获取此标签当前所绑定的属性，如果绑定的是对象而非
+	 * 特定属性，则返回 {@code null}。
+	 * 供协作的嵌套标签使用。
 	 * @return the property that this tag is currently bound to,
 	 * or {@code null} if none
 	 */
@@ -212,8 +209,8 @@ public class BindTag extends HtmlEscapingAwareTag implements EditorAwareTag {
 	}
 
 	/**
-	 * Retrieve the Errors instance that this tag is currently bound to.
-	 * Intended for cooperating nesting tags.
+	 * 获取此标签当前所绑定的 Errors 实例。
+	 * 供协作的嵌套标签使用。
 	 * @return the current Errors instance, or {@code null} if none
 	 */
 	@Nullable

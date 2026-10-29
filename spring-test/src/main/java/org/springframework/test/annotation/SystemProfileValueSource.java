@@ -19,8 +19,7 @@ package org.springframework.test.annotation;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link ProfileValueSource} which uses system properties as
- * the underlying source.
+ * 使用系统属性作为底层来源的 {@link ProfileValueSource} 实现。
  *
  * @author Rod Johnson
  * @author Sam Brannen
@@ -32,7 +31,7 @@ public final class SystemProfileValueSource implements ProfileValueSource {
 
 
 	/**
-	 * Obtain the canonical instance of this ProfileValueSource.
+	 * 获取此 ProfileValueSource 的规范实例。
 	 */
 	public static final SystemProfileValueSource getInstance() {
 		return INSTANCE;
@@ -40,14 +39,14 @@ public final class SystemProfileValueSource implements ProfileValueSource {
 
 
 	/**
-	 * Private constructor, enforcing the singleton pattern.
+	 * 私有构造函数，强制实施单例模式。
 	 */
 	private SystemProfileValueSource() {
 	}
 
 	/**
-	 * Get the <em>profile value</em> indicated by the specified key from the
-	 * system properties.
+	 * 从系统属性中获取由指定键指示的
+	 * <em>配置值</em>。
 	 * @see System#getProperty(String)
 	 */
 	@Override

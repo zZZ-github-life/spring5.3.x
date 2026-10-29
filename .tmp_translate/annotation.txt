@@ -1,0 +1,429 @@
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 1
+参数解析器的抽象基类，通过 {@link HttpMessageReader} 读取请求正文来解析方法参数。
+
+<p>如果方法参数带有任何
+{@linkplain org.springframework.validation.annotation.ValidationAnnotationUtils#determineValidationHints
+触发校验的注解}，则应用校验。校验失败会导致 {@link ServerWebInputException}。
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 2
+使用 {@link HttpMessageReader} 和 {@link Validator} 的构造函数。
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 3
+还接受 {@link ReactiveAdapterRegistry} 的构造函数。
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 4
+返回配置的消息转换器。
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 5
+使用 {@link HttpMessageReader} 从方法参数读取正文。
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 6
+使用 {@link HttpMessageReader} 从方法参数读取正文。
+
+@@ result/method/annotation/AbstractMessageReaderArgumentResolver.java :: 7
+检查给定 MethodParameter 是否需要校验；如果需要，则返回包含校验提示的（可能为空的）Object[]。返回值为 {@code null} 表示不需要校验。
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 1
+结果处理器的抽象基类，通过 {@link HttpMessageWriter} 将返回值写入响应来进行处理。
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 2
+使用 {@link HttpMessageWriter HttpMessageWriters} 和 {@code RequestedContentTypeResolver} 的构造函数。
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 3
+附带 {@link ReactiveAdapterRegistry} 的构造函数。
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 4
+返回配置的消息转换器。
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 5
+使用 {@link HttpMessageWriter} 将给定正文写入响应。
+
+@@ result/method/annotation/AbstractMessageWriterResultHandler.java :: 6
+使用 {@link HttpMessageWriter} 将给定正文写入响应。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 1
+用于从命名值解析方法参数的抽象基类。请求参数、请求头和路径变量都是命名值的示例。每个命名值可以具有名称、必需标志和默认值。
+
+<p>子类定义如何执行以下操作：
+<ul>
+<li>获取方法参数的命名值信息
+<li>将名称解析为参数值
+<li>在需要参数值但值缺失时进行处理
+<li>可选地处理已解析的值
+</ul>
+
+<p>默认值字符串可以包含 ${...} 占位符和 Spring 表达式语言 #{...} 表达式。为此，必须向类构造函数提供 {@link ConfigurableBeanFactory}。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 2
+创建新的 {@link AbstractNamedValueArgumentResolver} 实例。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 3
+获取给定方法参数的命名值。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 4
+为给定方法参数创建 {@link NamedValueInfo} 对象。实现通常通过 {@link MethodParameter#getParameterAnnotation(Class)} 获取方法注解。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 5
+基于给定的 NamedValueInfo 创建具有净化值的新 NamedValueInfo。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 6
+解析给定的注解指定值，其中可能包含占位符和表达式。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 7
+将给定的参数类型和值名称解析为参数值。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 8
+如有必要，应用类型转换。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 9
+解析默认值（如果有）。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 10
+在需要命名值，但 {@link #resolveName(String, MethodParameter, ServerWebExchange)} 返回 {@code null} 且没有默认值时调用。子类通常在此情况下抛出异常。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 11
+在需要命名值，但 {@link #resolveName(String, MethodParameter, ServerWebExchange)} 返回 {@code null} 且没有默认值时调用。子类通常在此情况下抛出异常。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 12
+{@code null} 会导致 {@code boolean} 的值为 {@code false}，或对其他原始类型抛出异常。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 13
+在值解析后调用。
+
+@@ result/method/annotation/AbstractNamedValueArgumentResolver.java :: 14
+表示命名值的信息，包括名称、是否必需以及默认值。
+
+@@ result/method/annotation/AbstractNamedValueSyncArgumentResolver.java :: 1
+{@link AbstractNamedValueArgumentResolver} 的扩展，用于同步且非阻塞的命名值解析器。子类实现同步的 {@link #resolveNamedValue}，默认情况下异步的 {@link #resolveName} 会委托给它。
+
+@@ result/method/annotation/AbstractNamedValueSyncArgumentResolver.java :: 2
+创建新的 {@link AbstractNamedValueSyncArgumentResolver}。
+
+@@ result/method/annotation/AbstractNamedValueSyncArgumentResolver.java :: 3
+实际同步解析值。
+
+@@ result/method/annotation/ArgumentResolverConfigurer.java :: 1
+帮助为 Controller 方法参数配置解析器。
+
+@@ result/method/annotation/ArgumentResolverConfigurer.java :: 2
+为自定义控制器方法参数配置解析器。
+
+@@ result/method/annotation/ContinuationHandlerMethodArgumentResolver.java :: 1
+用于 {@link kotlin.coroutines.Continuation} 类型方法参数的空操作解析器。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 1
+包级私有类，协助 {@link RequestMappingHandlerAdapter} 解析、初始化和缓存 {@code @Controller} 和 {@code @ControllerAdvice} 组件中声明的注解方法。
+
+<p>协助处理以下注解：
+<ul>
+<li>{@code @InitBinder}
+<li>{@code @ModelAttribute}
+<li>{@code @RequestMapping}
+<li>{@code @ExceptionHandler}
+</ul>
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 2
+匹配 {@link InitBinder @InitBinder} 方法的 MethodFilter。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 3
+匹配 {@link ModelAttribute @ModelAttribute} 方法的 MethodFilter。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 4
+为给定的 {@code @RequestMapping} 方法返回使用参数解析器初始化的 {@link InvocableHandlerMethod}。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 5
+在 {@code @ControllerAdvice} 组件或给定 {@code @RequestMapping} 方法所属的控制器中查找 {@code @InitBinder} 方法。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 6
+在 {@code @ControllerAdvice} 组件或给定 {@code @RequestMapping} 方法所属的控制器中查找 {@code @ModelAttribute} 方法。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 7
+在 {@code @ControllerAdvice} 组件或给定 {@code @RequestMapping} 方法所属的控制器中查找 {@code @ExceptionHandler} 方法。
+
+@@ result/method/annotation/ControllerMethodResolver.java :: 8
+根据给定的控制器方法，返回类型级 {@code @SessionAttributes} 注解的处理器。
+
+@@ result/method/annotation/CookieValueMethodArgumentResolver.java :: 1
+解析带有 {@code @CookieValue} 注解的方法参数。
+
+<p>{@code @CookieValue} 是从 Cookie 解析的命名值。它具有必需标志和默认值，在 Cookie 不存在时作为回退。
+
+@@ result/method/annotation/CookieValueMethodArgumentResolver.java :: 2
+创建新的 {@link CookieValueMethodArgumentResolver} 实例。
+
+@@ result/method/annotation/ErrorsMethodArgumentResolver.java :: 1
+解析 {@link Errors} 或 {@link BindingResult} 方法参数。
+
+<p>在方法签名中，{@code Errors} 参数应紧跟在模型属性之后。
+
+@@ result/method/annotation/ExpressionValueMethodArgumentResolver.java :: 1
+解析带有 {@code @Value} 注解的方法参数。
+
+<p>{@code @Value} 没有名称，而是从默认值字符串解析，该字符串可以包含 ${...} 占位符或 Spring 表达式语言 #{...} 表达式。
+
+@@ result/method/annotation/ExpressionValueMethodArgumentResolver.java :: 2
+创建新的 {@link ExpressionValueMethodArgumentResolver} 实例。
+
+@@ result/method/annotation/HttpEntityMethodArgumentResolver.java :: 1
+通过兼容的 {@code HttpMessageReader} 读取请求正文，解析 {@link HttpEntity} 或 {@link RequestEntity} 类型的方法参数。
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 1
+扩展 {@link BindingContext}，支持 {@code @InitBinder} 方法初始化。
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 2
+返回要使用的 {@link SessionStatus} 实例，可用于表示会话处理已完成。
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 3
+提供在调用控制器方法后应用 {@link #saveModel()} 所需的上下文。
+
+@@ result/method/annotation/InitBinderBindingContext.java :: 4
+根据 {@code @SessionAttributes} 注解中的类型级声明，将会话中的模型属性保存。
+
+@@ result/method/annotation/MatrixVariableMapMethodArgumentResolver.java :: 1
+解析带有 {@link MatrixVariable @MatrixVariable} 注解且注解未指定名称的 {@link Map} 类型参数。换句话说，此解析器的目的是提供对多个矩阵变量的访问，可以是全部矩阵变量，也可以是与特定路径变量关联的矩阵变量。
+
+<p>当指定名称时，Map 类型参数会被视为具有 Map 值的单个属性，改由 {@link MatrixVariableMethodArgumentResolver} 解析。
+
+@@ result/method/annotation/MatrixVariableMethodArgumentResolver.java :: 1
+解析带有 {@link MatrixVariable @MatrixVariable} 注解的参数。
+
+<p>如果方法参数类型为 {@link Map}，则改由 {@link MatrixVariableMapMethodArgumentResolver} 解析，除非注解指定了名称，此时它被视为 Map 类型的单个属性（而不是收集到 Map 中的多个属性）。
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 1
+解析带有 {@code @ModelAttribute} 注解的方法参数。
+
+<p>模型属性来自模型，或使用默认构造函数创建后添加到模型。创建后，通过数据绑定将请求（表单数据、查询参数）填充到该属性。如果参数带有 {@code @javax.validation.Valid} 或 Spring 自有的 {@code @org.springframework.validation.annotation.Validated} 注解，还可能应用校验。
+
+<p>当使用 {@code useDefaultResolution=true} 创建此处理器时，任何非简单类型的参数和返回值都被视为模型属性，无论是否存在 {@code @ModelAttribute}。
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 2
+带默认解析模式标志的类构造函数。
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 3
+根据 {@link ModelAttribute#binding} 注解属性，确定是否应对提供的 {@link MethodParameter} 禁用绑定。
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 4
+用于将请求绑定到目标对象的扩展点。
+
+@@ result/method/annotation/ModelAttributeMethodArgumentResolver.java :: 5
+用于获取数据绑定值的受保护方法。默认情况下，此方法委托给 {@link WebExchangeDataBinder#getValuesToBind}。
+
+@@ result/method/annotation/ModelInitializer.java :: 1
+包级私有类，协助 {@link RequestMappingHandlerAdapter} 通过 {@code @ModelAttribute} 方法进行默认模型初始化。
+
+@@ result/method/annotation/ModelInitializer.java :: 2
+基于（类型级）{@code @SessionAttributes} 注解和 {@code @ModelAttribute} 方法初始化 {@link org.springframework.ui.Model Model}。
+
+@@ result/method/annotation/ModelInitializer.java :: 4
+根据 {@code @ModelAttribute} 参数注解（如果存在）或基于参数类型的约定，推导给定方法参数的模型属性名称。
+
+@@ result/method/annotation/ModelMethodArgumentResolver.java :: 1
+用于 {@link Model} 类型控制器方法参数的解析器，也可以解析为 {@link java.util.Map}。
+
+<p>Map 返回值可以根据 {@code @ModelAttribute} 或 {@code @ResponseBody} 等注解的存在以多种方式解释。从 5.2 开始，如果 {@code Map} 类型的参数还带有注解，此解析器返回 false。
+
+@@ result/method/annotation/PathVariableMapMethodArgumentResolver.java :: 1
+用于同时带有 {@link PathVariable @PathVariable} 注解的 {@link Map} 方法参数的解析器，其中注解未指定路径变量名称。生成的 {@link Map} 参数是所有 URI 模板名称-值对的副本。
+
+@@ result/method/annotation/PathVariableMethodArgumentResolver.java :: 1
+解析带有 @{@link PathVariable} 注解的方法参数。
+
+<p>@{@link PathVariable} 是从 URI 模板变量解析的命名值。它始终是必需的，并且没有可回退的默认值。有关命名值处理方式的更多信息，请参见基类 {@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}。
+
+<p>如果方法参数类型为 {@link Map}，则使用注解中指定的名称解析 URI 变量 String 值。然后假定存在合适的 {@link Converter}，通过类型转换将该值转换为 {@link Map}。
+
+@@ result/method/annotation/PathVariableMethodArgumentResolver.java :: 2
+创建新的 {@link PathVariableMethodArgumentResolver}。
+
+@@ result/method/annotation/PrincipalMethodArgumentResolver.java :: 1
+解析 {@link java.security.Principal} 类型的方法参数值。
+
+@@ result/method/annotation/RequestAttributeMethodArgumentResolver.java :: 1
+解析带有 @{@link RequestAttribute} 注解的方法参数。
+
+@@ result/method/annotation/RequestAttributeMethodArgumentResolver.java :: 2
+创建新的 {@link RequestAttributeMethodArgumentResolver} 实例。
+
+@@ result/method/annotation/RequestBodyMethodArgumentResolver.java :: 1
+通过兼容的 {@code HttpMessageReader} 读取请求正文，解析带有 {@code @RequestBody} 注解的方法参数。
+
+<p>如果 {@code @RequestBody} 方法参数带有 {@code @javax.validation.Valid} 或 {@link org.springframework.validation.annotation.Validated} 注解，也会进行校验。校验失败会导致 {@link ServerWebInputException}。
+
+@@ result/method/annotation/RequestHeaderMapMethodArgumentResolver.java :: 1
+解析带有 {@code @RequestHeader} 注解的 {@link Map} 方法参数。对于带有 {@code @RequestHeader} 注解的单个头值，请改为参见 {@link RequestHeaderMethodArgumentResolver}。
+
+<p>创建的 {@link Map} 包含所有请求头名称-值对。方法参数类型可以是 {@link MultiValueMap}，以接收某个头的所有值，而不仅仅是第一个值。
+
+@@ result/method/annotation/RequestHeaderMethodArgumentResolver.java :: 1
+解析带有 {@code @RequestHeader} 注解的方法参数，但 {@link Map} 参数除外。有关带有 {@code @RequestHeader} 注解的 {@link Map} 参数的详细信息，请参见 {@link RequestHeaderMapMethodArgumentResolver}。
+
+<p>{@code @RequestHeader} 是从请求头解析的命名值。它具有必需标志和默认值，在请求头不存在时作为回退。
+
+<p>会调用 {@link ConversionService} 对尚不匹配方法参数类型的已解析请求头值应用类型转换。
+
+@@ result/method/annotation/RequestHeaderMethodArgumentResolver.java :: 2
+创建新的 {@link RequestHeaderMethodArgumentResolver} 实例。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 1
+支持调用 {@link org.springframework.web.bind.annotation.RequestMapping @RequestMapping} 处理器方法。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 2
+配置 HTTP 消息读取器以反序列化请求正文。
+<p>默认情况下，这设置为 {@link ServerCodecConfigurer} 的默认读取器。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 3
+返回 HTTP 消息读取器的配置器。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 4
+提供具有“全局”初始化的 WebBindingInitializer，应用于每个 DataBinder 实例。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 5
+返回配置的 WebBindingInitializer；如果没有，则返回 {@code null}。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 6
+为控制器方法参数配置解析器。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 7
+返回为控制器方法参数配置的解析器。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 8
+配置用于适配各种响应式类型的注册表。
+<p>默认情况下，这是使用默认设置的 {@link ReactiveAdapterRegistry} 实例。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 9
+返回配置的用于适配响应式类型的注册表。
+
+@@ result/method/annotation/RequestMappingHandlerAdapter.java :: 10
+解析方法参数默认值中的表达式以及检测 {@code @ControllerAdvice} Bean 时，需要 {@link ConfigurableApplicationContext}。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 1
+{@link RequestMappingInfoHandlerMapping} 的扩展，根据类级和方法级 {@link RequestMapping @RequestMapping} 注解创建 {@link RequestMappingInfo} 实例。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 2
+配置要应用于控制器方法的路径前缀。
+<p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，这些方法的控制器类型与映射中对应的 {@code Predicate} 匹配。假定输入映射具有可预测的顺序，将使用第一个匹配谓词的前缀。
+<p>考虑使用 {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} 对控制器进行分组。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 3
+配置的路径前缀，为只读映射，可能为空。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 4
+设置用于确定请求媒体类型的 {@link RequestedContentTypeResolver}。如果未设置，则使用默认构造函数。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 5
+返回配置的 {@link RequestedContentTypeResolver}。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 6
+{@inheritDoc}
+期望处理器具有类型级 @{@link Controller} 注解。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 7
+使用方法级和类型级 @{@link RequestMapping} 注解创建 RequestMappingInfo。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 8
+委托给 {@link #createRequestMappingInfo(RequestMapping, RequestCondition)}，并根据提供的 {@code annotatedElement} 是类还是方法提供相应的自定义 {@link RequestCondition}。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 9
+提供自定义类型级请求条件。自定义 {@link RequestCondition} 可以是任何类型，只要对此方法的所有调用返回相同的条件类型，以确保自定义请求条件可以组合和比较。
+<p>考虑为自定义条件类型扩展 {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition AbstractRequestCondition}，并使用 {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition CompositeRequestCondition} 提供多个自定义条件。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 10
+提供自定义方法级请求条件。自定义 {@link RequestCondition} 可以是任何类型，只要对此方法的所有调用返回相同的条件类型，以确保自定义请求条件可以组合和比较。
+<p>考虑为自定义条件类型扩展 {@link org.springframework.web.reactive.result.condition.AbstractRequestCondition AbstractRequestCondition}，并使用 {@link org.springframework.web.reactive.result.condition.CompositeRequestCondition CompositeRequestCondition} 提供多个自定义条件。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 11
+根据提供的 {@link RequestMapping @RequestMapping} 注解创建 {@link RequestMappingInfo}，该注解可以是直接声明的注解、元注解，或注解层次结构中合并注解属性后的合成结果。
+
+@@ result/method/annotation/RequestMappingHandlerMapping.java :: 12
+解析给定模式数组中的占位符值。
+
+@@ result/method/annotation/RequestParamMapMethodArgumentResolver.java :: 1
+用于带有 {@link RequestParam @RequestParam} 注解且注解未指定请求参数名称的 {@link Map} 方法参数的解析器。有关解析带请求参数名称的 {@link Map} 方法参数，请参见 {@link RequestParamMethodArgumentResolver}。
+
+<p>创建的 {@link Map} 包含所有请求参数名称-值对。如果方法参数类型为 {@link MultiValueMap}，则创建的映射包含所有请求参数及其所有值，以应对请求参数具有多个值的情况。
+
+@@ result/method/annotation/RequestParamMethodArgumentResolver.java :: 1
+用于解析来自 URI 查询字符串参数、带有 @{@link RequestParam} 注解的方法参数的解析器。
+
+<p>此解析器也可以在默认解析模式下创建，此时未带 @{@link RequestParam} 注解的简单类型（int、long 等）也会被视为请求参数，参数名称从参数名派生。
+
+<p>如果方法参数类型为 {@link Map}，则使用注解中指定的名称解析请求参数 String 值。然后假定已注册合适的 {@link Converter}，通过类型转换将该值转换为 {@link Map}。如果未指定请求参数名称，则改为使用 {@link RequestParamMapMethodArgumentResolver}，以映射形式提供对所有请求参数的访问。
+
+@@ result/method/annotation/RequestParamMethodArgumentResolver.java :: 2
+带默认解析模式标志的类构造函数。
+
+@@ result/method/annotation/RequestPartMethodArgumentResolver.java :: 1
+用于 {@code @RequestPart} 参数的解析器，其中命名部分的解码方式与 {@code @RequestBody} 参数非常相似，但基于单个部分的内容。参数可以包装在用于单个值的响应式类型中（例如 Reactor {@code Mono}、RxJava {@code Single}）。
+
+<p>此解析器还支持 {@link Part} 类型的参数，这些参数可以包装在用于单个值或多个值的响应式类型中。
+
+@@ result/method/annotation/ResponseBodyResultHandler.java :: 1
+{@code HandlerResultHandler}，处理来自带有 {@code @ResponseBody} 注解的方法的返回值，并使用 {@link HttpMessageWriter} 将其写入请求或响应正文。
+
+<p>默认情况下，此结果处理器的顺序设置为 100。由于它会检测 {@code @ResponseBody} 是否存在，因此应排在查找特定返回类型的结果处理器之后。但请注意，此处理器确实会识别并显式忽略 {@code ResponseEntity} 返回类型。
+
+@@ result/method/annotation/ResponseBodyResultHandler.java :: 2
+使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
+
+@@ result/method/annotation/ResponseBodyResultHandler.java :: 3
+使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
+
+@@ result/method/annotation/ResponseEntityResultHandler.java :: 1
+处理 {@link HttpEntity} 和 {@link ResponseEntity} 返回值。
+
+<p>默认情况下，此结果处理器的顺序设置为 0。通常可以安全地将其放在靠前的位置，因为它查找具体的返回类型。
+
+@@ result/method/annotation/ResponseEntityResultHandler.java :: 2
+使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
+
+@@ result/method/annotation/ResponseEntityResultHandler.java :: 3
+使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
+
+@@ result/method/annotation/ServerWebExchangeMethodArgumentResolver.java :: 1
+解析以下类型的 ServerWebExchange 相关方法参数值：
+<ul>
+<li>{@link ServerWebExchange}
+<li>{@link ServerHttpRequest}
+<li>{@link ServerHttpResponse}
+<li>{@link HttpMethod}
+<li>{@link Locale}
+<li>{@link TimeZone}
+<li>{@link ZoneId}
+<li>{@link UriBuilder} 或 {@link UriComponentsBuilder} —— 用于构建相对于当前请求的 URL
+</ul>
+
+<p>关于 {@code WebSession}，请参见 {@link WebSessionMethodArgumentResolver}；关于 {@code Principal}，请参见 {@link PrincipalMethodArgumentResolver}。
+
+@@ result/method/annotation/SessionAttributeMethodArgumentResolver.java :: 1
+解析带有 @{@link SessionAttribute} 注解的方法参数。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 1
+包级私有类，协助 {@link ModelInitializer} 根据通过 {@link SessionAttributes @SessionAttributes} 声明的模型属性名称和类型，在 {@link WebSession} 中管理模型属性。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 2
+创建新的会话属性处理器。如果给定类型上存在 {@code @SessionAttributes} 注解，则从中提取会话属性名称和类型。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 3
+此实例所代表的控制器是否通过 {@link SessionAttributes} 注解声明了任何会话属性。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 4
+属性名称或类型是否匹配底层控制器上通过 {@code @SessionAttributes} 指定的名称和类型。
+<p>通过此方法成功解析的属性会被“记住”，随后用于 {@link #retrieveAttributes(WebSession)} 和 {@link #cleanupAttributes(WebSession)}。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 5
+从会话中检索“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，或之前存储在模型中且类型匹配的属性。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 6
+将给定属性的子集存储在会话中。未通过 {@code @SessionAttributes} 声明为会话属性的属性将被忽略。
+
+@@ result/method/annotation/SessionAttributesHandler.java :: 7
+从会话中移除“已知”属性，即在 {@code @SessionAttributes} 中按名称列出的属性，或之前存储在模型中且类型匹配的属性。
+
+@@ result/method/annotation/SessionStatusMethodArgumentResolver.java :: 1
+用于 {@link SessionStatus} 参数的解析器，从 {@link BindingContext} 中获取它。
+
+@@ result/method/annotation/WebSessionMethodArgumentResolver.java :: 1
+解析 {@link WebSession} 类型的方法参数值。
+
+@@ result/method/annotation/package-info.java :: 1
+基于注解的处理器方法处理的基础设施。

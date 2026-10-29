@@ -21,8 +21,7 @@ import java.lang.reflect.Method;
 import org.springframework.aop.MethodMatcher;
 
 /**
- * Convenient abstract superclass for static method matchers, which don't care
- * about arguments at runtime.
+ * 静态方法匹配器的便捷抽象父类，这类匹配器在运行时不关心参数。
  *
  * @author Rod Johnson
  */

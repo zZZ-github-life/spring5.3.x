@@ -19,7 +19,7 @@ package org.springframework.validation;
 import org.springframework.lang.Nullable;
 
 /**
- * A strategy interface for formatting message codes.
+ * 用于格式化消息代码的策略接口。
  *
  * @author Chris Beams
  * @since 3.2
@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
 public interface MessageCodeFormatter {
 
 	/**
-	 * Build and return a message code consisting of the given fields,
-	 * usually delimited by {@link DefaultMessageCodesResolver#CODE_SEPARATOR}.
+	 * 构建并返回由给定字段组成的消息代码，通常以 {@link DefaultMessageCodesResolver#CODE_SEPARATOR} 分
+	 * 隔。
 	 * @param errorCode e.g.: "typeMismatch"
 	 * @param objectName e.g.: "user"
 	 * @param field e.g. "age"

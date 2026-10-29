@@ -32,10 +32,10 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
- * Adapter that takes a JDK {@code java.util.concurrent.Executor} and
- * exposes a Spring {@link org.springframework.core.task.TaskExecutor} for it.
- * Also detects an extended {@code java.util.concurrent.ExecutorService}, adapting
- * the {@link org.springframework.core.task.AsyncTaskExecutor} interface accordingly.
+ * 接收 JDK {@code java.util.concurrent.Executor} 并为其暴露 Spring
+ * {@link org.springframework.core.task.TaskExecutor} 的适配器。还会检测扩展的
+ * {@code java.util.concurrent.ExecutorService}，并相应地适配
+ * {@link org.springframework.core.task.AsyncTaskExecutor} 接口。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -52,8 +52,7 @@ public class TaskExecutorAdapter implements AsyncListenableTaskExecutor {
 
 
 	/**
-	 * Create a new TaskExecutorAdapter,
-	 * using the given JDK concurrent executor.
+	 * 使用给定的 JDK 并发执行器创建一个新的 TaskExecutorAdapter。
 	 * @param concurrentExecutor the JDK concurrent executor to delegate to
 	 */
 	public TaskExecutorAdapter(Executor concurrentExecutor) {
@@ -63,18 +62,16 @@ public class TaskExecutorAdapter implements AsyncListenableTaskExecutor {
 
 
 	/**
-	 * Specify a custom {@link TaskDecorator} to be applied to any {@link Runnable}
-	 * about to be executed.
-	 * <p>Note that such a decorator is not necessarily being applied to the
-	 * user-supplied {@code Runnable}/{@code Callable} but rather to the actual
-	 * execution callback (which may be a wrapper around the user-supplied task).
-	 * <p>The primary use case is to set some execution context around the task's
-	 * invocation, or to provide some monitoring/statistics for task execution.
-	 * <p><b>NOTE:</b> Exception handling in {@code TaskDecorator} implementations
-	 * is limited to plain {@code Runnable} execution via {@code execute} calls.
-	 * In case of {@code #submit} calls, the exposed {@code Runnable} will be a
-	 * {@code FutureTask} which does not propagate any exceptions; you might
-	 * have to cast it and call {@code Future#get} to evaluate exceptions.
+	 * 指定一个自定义 {@link TaskDecorator}，将其应用于任何即将执行的 {@link Runnable}。
+	 *
+	 * <p>请注意，此类装饰器不一定应用于用户提供的 {@code Runnable}/{@code Callable}，而是应用于实际执
+	 * 行回调（该回调可能是对用户提供任务的包装）。
+	 *
+	 * <p>主要用例是在任务调用前后设置某些执行上下文，或者为任务执行提供某些监控/统计信息。
+	 *
+	 * <p><b>注意：</b>{@code TaskDecorator} 实现中的异常处理仅限于通过 {@code execute} 调用执行的普通
+	 * {@code Runnable}。对于 {@code #submit} 调用，暴露的 {@code Runnable} 将是一个 {@code FutureTask}，
+	 * 它不会传播任何异常；你可能需要对其进行强制类型转换并调用 {@code Future#get} 来获取异常。
 	 * @since 4.3
 	 */
 	public final void setTaskDecorator(TaskDecorator taskDecorator) {
@@ -83,7 +80,7 @@ public class TaskExecutorAdapter implements AsyncListenableTaskExecutor {
 
 
 	/**
-	 * Delegates to the specified JDK concurrent executor.
+	 * 委托给指定的 JDK 并发执行器。
 	 * @see java.util.concurrent.Executor#execute(Runnable)
 	 */
 	@Override
@@ -167,8 +164,8 @@ public class TaskExecutorAdapter implements AsyncListenableTaskExecutor {
 
 
 	/**
-	 * Actually execute the given {@code Runnable} (which may be a user-supplied task
-	 * or a wrapper around a user-supplied task) with the given executor.
+	 * 使用给定的执行器实际执行给定的 {@code Runnable}（它可能是用户提供的任务，也可能是对用户提供任务
+	 * 的包装）。
 	 * @param concurrentExecutor the underlying JDK concurrent executor to delegate to
 	 * @param taskDecorator the specified decorator to be applied, if any
 	 * @param runnable the runnable to execute

@@ -1,9 +1,9 @@
 /**
- * Simplification layer for table inserts and stored procedure calls.
+ * 表插入和存储过程调用的简化层。
  *
- * <p>{@code SimpleJdbcInsert} and {@code SimpleJdbcCall} take advantage of database
- * meta-data provided by the JDBC driver to simplify the application code. Much of the
- * parameter specification becomes unnecessary since it can be looked up in the meta-data.
+ * <p>{@code SimpleJdbcInsert} 和 {@code SimpleJdbcCall} 利用 JDBC 驱动提供的
+ * 数据库元数据来简化应用程序代码。大部分参数说明变得不再必要，
+ * 因为它们可以从元数据中查找获得。
  */
 @NonNullApi
 @NonNullFields

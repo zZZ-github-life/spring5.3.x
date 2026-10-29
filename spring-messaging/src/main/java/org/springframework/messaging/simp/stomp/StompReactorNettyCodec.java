@@ -23,7 +23,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.tcp.reactor.AbstractNioBufferReactorNettyCodec;
 
 /**
- * Simple delegation to StompDecoder and StompEncoder.
+ * 对 StompDecoder 和 StompEncoder 的简单委托。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

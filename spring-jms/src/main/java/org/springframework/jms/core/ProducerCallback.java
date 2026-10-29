@@ -23,14 +23,13 @@ import javax.jms.Session;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback for sending a message to a JMS destination.
+ * 用于向 JMS 目标发送消息的回调。
  *
- * <p>To be used with {@link JmsTemplate}'s callback methods that take a
- * {@link ProducerCallback} argument, often implemented as an anonymous
- * inner class or as a lambda expression.
+ * <p>与 {@link JmsTemplate} 中接受 {@link ProducerCallback} 参数的回调方法一起使用，
+ * 通常实现为匿名内部类或 lambda 表达式。
  *
- * <p>The typical implementation will perform multiple operations on the
- * supplied JMS {@link Session} and {@link MessageProducer}.
+ * <p>典型的实现会对所提供的 JMS {@link Session} 和 {@link MessageProducer}
+ * 执行多个操作。
  *
  * @author Mark Pollack
  * @since 1.1
@@ -43,9 +42,8 @@ import org.springframework.lang.Nullable;
 public interface ProducerCallback<T> {
 
 	/**
-	 * Perform operations on the given {@link Session} and {@link MessageProducer}.
-	 * <p>The message producer is not associated with any destination unless
-	 * when specified in the JmsTemplate call.
+	 * 对给定的 {@link Session} 和 {@link MessageProducer} 执行操作。
+	 * <p>除非在 JmsTemplate 调用中指定，否则消息生产者不与任何目标关联。
 	 * @param session the JMS {@code Session} object to use
 	 * @param producer the JMS {@code MessageProducer} object to use
 	 * @return a result object from working with the {@code Session}, if any

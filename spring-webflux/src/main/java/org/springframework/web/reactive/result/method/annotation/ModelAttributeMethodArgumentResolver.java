@@ -45,19 +45,11 @@ import org.springframework.web.reactive.result.method.HandlerMethodArgumentResol
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolve {@code @ModelAttribute} annotated method arguments.
+ * 解析带有 {@code @ModelAttribute} 注解的方法参数。
  *
- * <p>Model attributes are sourced from the model, or created using a default
- * constructor and then added to the model. Once created the attribute is
- * populated via data binding to the request (form data, query params).
- * Validation also may be applied if the argument is annotated with
- * {@code @javax.validation.Valid} or Spring's own
- * {@code @org.springframework.validation.annotation.Validated}.
+ * <p>模型属性来自模型，或使用默认构造函数创建后添加到模型。创建后，通过数据绑定将请求（表单数据、查询参数）填充到该属性。如果参数带有 {@code @javax.validation.Valid} 或 Spring 自有的 {@code @org.springframework.validation.annotation.Validated} 注解，还可能应用校验。
  *
- * <p>When this handler is created with {@code useDefaultResolution=true}
- * any non-simple type argument and return value is regarded as a model
- * attribute with or without the presence of an {@code @ModelAttribute}.
- *
+ * <p>当使用 {@code useDefaultResolution=true} 创建此处理器时，任何非简单类型的参数和返回值都被视为模型属性，无论是否存在 {@code @ModelAttribute}。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -69,7 +61,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 
 
 	/**
-	 * Class constructor with a default resolution mode flag.
+	 * 带默认解析模式标志的类构造函数。
 	 * @param adapterRegistry for adapting to other reactive types from and to Mono
 	 * @param useDefaultResolution if "true", non-simple method arguments and
 	 * return values are considered model attributes with or without a
@@ -145,8 +137,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 	}
 
 	/**
-	 * Determine if binding should be disabled for the supplied {@link MethodParameter},
-	 * based on the {@link ModelAttribute#binding} annotation attribute.
+	 * 根据 {@link ModelAttribute#binding} 注解属性，确定是否应对提供的 {@link MethodParameter} 禁用绑定。
 	 * @since 5.2.15
 	 */
 	private boolean bindingDisabled(MethodParameter parameter) {
@@ -155,7 +146,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 	}
 
 	/**
-	 * Extension point to bind the request to the target object.
+	 * 用于将请求绑定到目标对象的扩展点。
 	 * @param binder the data binder instance to use for the binding
 	 * @param exchange the current request
 	 * @since 5.2.6
@@ -261,8 +252,7 @@ public class ModelAttributeMethodArgumentResolver extends HandlerMethodArgumentR
 	}
 
 	/**
-	 * Protected method to obtain the values for data binding. By default this
-	 * method delegates to {@link WebExchangeDataBinder#getValuesToBind}.
+	 * 用于获取数据绑定值的受保护方法。默认情况下，此方法委托给 {@link WebExchangeDataBinder#getValuesToBind}。
 	 * @param binder the data binder in use
 	 * @param exchange the current exchange
 	 * @return a map of bind values

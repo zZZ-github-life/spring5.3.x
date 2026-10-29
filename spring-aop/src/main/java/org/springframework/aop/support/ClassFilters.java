@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Static utility methods for composing {@link ClassFilter ClassFilters}.
+ * 用于组合 {@link ClassFilter ClassFilters} 的静态工具方法。
  *
  * @author Rod Johnson
  * @author Rob Harrop
@@ -38,7 +38,7 @@ import org.springframework.util.ObjectUtils;
 public abstract class ClassFilters {
 
 	/**
-	 * Match all classes that <i>either</i> (or both) of the given ClassFilters matches.
+	 * 匹配给定 ClassFilters 中<i>任一</i>（或两者）都能匹配的所有类。
 	 * @param cf1 the first ClassFilter
 	 * @param cf2 the second ClassFilter
 	 * @return a distinct ClassFilter that matches all classes that either
@@ -51,7 +51,7 @@ public abstract class ClassFilters {
 	}
 
 	/**
-	 * Match all classes that <i>either</i> (or all) of the given ClassFilters matches.
+	 * 匹配给定 ClassFilters 中<i>任一</i>（或全部）都能匹配的所有类。
 	 * @param classFilters the ClassFilters to match
 	 * @return a distinct ClassFilter that matches all classes that either
 	 * of the given ClassFilter matches
@@ -62,7 +62,7 @@ public abstract class ClassFilters {
 	}
 
 	/**
-	 * Match all classes that <i>both</i> of the given ClassFilters match.
+	 * 匹配给定两个 ClassFilters 都匹配的所有类。
 	 * @param cf1 the first ClassFilter
 	 * @param cf2 the second ClassFilter
 	 * @return a distinct ClassFilter that matches all classes that both
@@ -75,7 +75,7 @@ public abstract class ClassFilters {
 	}
 
 	/**
-	 * Match all classes that <i>all</i> of the given ClassFilters match.
+	 * 匹配给定 ClassFilters 中<i>全部</i>都能匹配的所有类。
 	 * @param classFilters the ClassFilters to match
 	 * @return a distinct ClassFilter that matches all classes that both
 	 * of the given ClassFilter match
@@ -87,7 +87,7 @@ public abstract class ClassFilters {
 
 
 	/**
-	 * ClassFilter implementation for a union of the given ClassFilters.
+	 * 用于给定 ClassFilters 并集的 ClassFilter 实现。
 	 */
 	@SuppressWarnings("serial")
 	private static class UnionClassFilter implements ClassFilter, Serializable {
@@ -128,7 +128,7 @@ public abstract class ClassFilters {
 
 
 	/**
-	 * ClassFilter implementation for an intersection of the given ClassFilters.
+	 * 用于给定 ClassFilters 交集的 ClassFilter 实现。
 	 */
 	@SuppressWarnings("serial")
 	private static class IntersectionClassFilter implements ClassFilter, Serializable {

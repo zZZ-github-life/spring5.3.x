@@ -19,9 +19,8 @@ package org.springframework.r2dbc.core.binding;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 /**
- * Index-based bind marker. This implementation creates indexed bind
- * markers using a numeric index and an optional prefix for bind markers
- * to be represented within the query string.
+ * 基于索引的绑定标记。此实现使用数字索引和可选的绑定标记前缀
+ * 来创建基于索引的绑定标记，以便在查询字符串中表示。
  *
  * @author Mark Paluch
  * @author Jens Schauder
@@ -43,7 +42,7 @@ class IndexedBindMarkers implements BindMarkers {
 
 
 	/**
-	 * Create a new {@link IndexedBindMarker} instance given {@code prefix} and {@code beginWith}.
+	 * 根据 {@code prefix} 和 {@code beginWith} 创建一个新的 {@link IndexedBindMarker} 实例。
 	 * @param prefix bind parameter prefix
 	 * @param beginWith the first index to use
 	 */
@@ -62,7 +61,7 @@ class IndexedBindMarkers implements BindMarkers {
 
 
 	/**
-	 * A single indexed bind marker.
+	 * 单个基于索引的绑定标记。
 	 * @author Mark Paluch
 	 */
 	static class IndexedBindMarker implements BindMarker {

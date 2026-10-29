@@ -32,8 +32,8 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy for encoding a stream of objects of type {@code <T>} and writing
- * the encoded stream of bytes to an {@link ReactiveHttpOutputMessage}.
+ * 用于编码类型为 {@code <T>} 的对象流，并将编码后的字节流
+ * 写入 {@link ReactiveHttpOutputMessage} 的策略。
  *
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
@@ -44,21 +44,19 @@ import org.springframework.lang.Nullable;
 public interface HttpMessageWriter<T> {
 
 	/**
-	 * Return the list of media types supported by this Writer. The list may not
-	 * apply to every possible target element type and calls to this method should
-	 * typically be guarded via {@link #canWrite(ResolvableType, MediaType)
-	 * canWrite(elementType, null)}. The list may also exclude media types
-	 * supported only for a specific element type. Alternatively, use
-	 * {@link #getWritableMediaTypes(ResolvableType)} for a more precise list.
+	 * 返回此写入器支持的媒体类型列表。该列表未必适用于所有可能的
+	 * 目标元素类型，对此方法的调用通常应通过
+	 * {@link #canWrite(ResolvableType, MediaType) canWrite(elementType, null)}
+	 * 进行保护。该列表还可能不包含仅针对特定元素类型支持的媒体类型。
+	 * 或者，使用 {@link #getWritableMediaTypes(ResolvableType)} 获取更精确的列表。
 	 * @return the general list of supported media types
 	 */
 	List<MediaType> getWritableMediaTypes();
 
 	/**
-	 * Return the list of media types supported by this Writer for the given type
-	 * of element. This list may differ from {@link #getWritableMediaTypes()}
-	 * if the Writer doesn't support the element type, or if it supports it
-	 * only for a subset of media types.
+	 * 返回此写入器针对给定元素类型所支持的媒体类型列表。如果写入器
+	 * 不支持该元素类型，或仅支持其中的一部分媒体类型，此列表可能与
+	 * {@link #getWritableMediaTypes()} 不同。
 	 * @param elementType the type of element to encode
 	 * @return the list of media types supported for the given class
 	 * @since 5.3.4
@@ -68,7 +66,7 @@ public interface HttpMessageWriter<T> {
 	}
 
 	/**
-	 * Whether the given object type is supported by this writer.
+	 * 此写入器是否支持给定的对象类型。
 	 * @param elementType the type of object to check
 	 * @param mediaType the media type for the write (possibly {@code null})
 	 * @return {@code true} if writable, {@code false} otherwise
@@ -76,7 +74,7 @@ public interface HttpMessageWriter<T> {
 	boolean canWrite(ResolvableType elementType, @Nullable MediaType mediaType);
 
 	/**
-	 * Write a given stream of object to the output message.
+	 * 将给定的对象流写入输出消息。
 	 * @param inputStream the objects to write
 	 * @param elementType the type of objects in the stream which must have been
 	 * previously checked via {@link #canWrite(ResolvableType, MediaType)}
@@ -90,9 +88,9 @@ public interface HttpMessageWriter<T> {
 			@Nullable MediaType mediaType, ReactiveHttpOutputMessage message, Map<String, Object> hints);
 
 	/**
-	 * Server-side only alternative to
-	 * {@link #write(Publisher, ResolvableType, MediaType, ReactiveHttpOutputMessage, Map)}
-	 * with additional context available.
+	 * 仅限服务器端的替代方法，用于
+	 * {@link #write(Publisher, ResolvableType, MediaType, ReactiveHttpOutputMessage, Map)}，
+	 * 可提供额外的上下文。
 	 * @param actualType the actual return type of the method that returned the
 	 * value; for annotated controllers, the {@link MethodParameter} can be
 	 * accessed via {@link ResolvableType#getSource()}.

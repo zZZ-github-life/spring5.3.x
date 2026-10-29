@@ -25,12 +25,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * An extension of the {@link SimpleMessageConverter} that uses a
- * {@link ConversionService} to convert the payload of the message
- * to the requested type.
+ * 对 {@link SimpleMessageConverter} 的扩展，使用 {@link ConversionService}
+ * 将消息载荷转换为请求的类型。
  *
- * <p>Return {@code null} if the conversion service cannot convert
- * from the payload type to the requested type.
+ * <p>如果转换服务无法将载荷类型转换为请求的类型，则返回 {@code null}。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -42,14 +40,14 @@ public class GenericMessageConverter extends SimpleMessageConverter {
 
 
 	/**
-	 * Create a new instance with a default {@link ConversionService}.
+	 * 使用默认的 {@link ConversionService} 创建新实例。
 	 */
 	public GenericMessageConverter() {
 		this.conversionService = DefaultConversionService.getSharedInstance();
 	}
 
 	/**
-	 * Create a new instance with the given {@link ConversionService}.
+	 * 使用给定的 {@link ConversionService} 创建新实例。
 	 */
 	public GenericMessageConverter(ConversionService conversionService) {
 		Assert.notNull(conversionService, "ConversionService must not be null");

@@ -1,7 +1,6 @@
 /**
- * Support classes for setting up
- * <a href="https://freemarker.apache.org/">FreeMarker</a>
- * within a Spring application context.
+ * 在 Spring 应用程序上下文中设置
+ * <a href="https://freemarker.apache.org/">FreeMarker</a> 的支持类。
  */
 @NonNullApi
 @NonNullFields

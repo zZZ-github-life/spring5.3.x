@@ -26,9 +26,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 
 /**
- * Implementation of {@link RouterFunctions.Visitor} that creates a formatted
- * string representation of router functions.
- *
+ * 创建路由函数格式化字符串表示的 {@link RouterFunctions.Visitor} 实现。
  * @author Arjen Poutsma
  * @since 5.0
  */

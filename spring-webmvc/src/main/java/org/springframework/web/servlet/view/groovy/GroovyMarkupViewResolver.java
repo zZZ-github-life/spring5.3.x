@@ -22,16 +22,13 @@ import org.springframework.web.servlet.view.AbstractTemplateViewResolver;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
- * Convenience subclass of {@link AbstractTemplateViewResolver} that supports
- * {@link GroovyMarkupView} (i.e. Groovy XML/XHTML markup templates) and
- * custom subclasses of it.
+ * {@link AbstractTemplateViewResolver} 的便捷子类，支持
+ * {@link GroovyMarkupView}（即 Groovy XML/XHTML markup 模板）及其自定义子类。
  *
- * <p>The view class for all views created by this resolver can be specified
- * via {@link #setViewClass(Class)}.
+ * <p>此解析器创建的所有视图的视图类可以通过 {@link #setViewClass(Class)} 指定。
  *
- * <p><b>Note:</b> When chaining ViewResolvers this resolver will check for the
- * existence of the specified template resources and only return a non-null
- * {@code View} object if a template is actually found.
+ * <p><b>注意：</b>当链接多个 ViewResolver 时，此解析器会检查指定的模板资源是否存在，
+ * 只有当模板确实存在时才返回非 null 的 {@code View} 对象。
  *
  * @author Brian Clozel
  * @since 4.1
@@ -40,16 +37,16 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
 public class GroovyMarkupViewResolver extends AbstractTemplateViewResolver {
 
 	/**
-	 * Sets the default {@link #setViewClass view class} to {@link #requiredViewClass}:
-	 * by default {@link GroovyMarkupView}.
+	 * 将默认的 {@link #setViewClass 视图类} 设为 {@link #requiredViewClass}：
+	 * 默认为 {@link GroovyMarkupView}。
 	 */
 	public GroovyMarkupViewResolver() {
 		setViewClass(requiredViewClass());
 	}
 
 	/**
-	 * A convenience constructor that allows for specifying the {@link #setPrefix prefix}
-	 * and {@link #setSuffix suffix} as constructor arguments.
+	 * 一个便捷构造器，允许将 {@link #setPrefix 前缀}
+	 * 和 {@link #setSuffix 后缀} 作为构造器参数指定。
 	 * @param prefix the prefix that gets prepended to view names when building a URL
 	 * @param suffix the suffix that gets appended to view names when building a URL
 	 * @since 4.3
@@ -72,7 +69,7 @@ public class GroovyMarkupViewResolver extends AbstractTemplateViewResolver {
 	}
 
 	/**
-	 * This resolver supports i18n, so cache keys should contain the locale.
+	 * 此解析器支持 i18n，因此缓存键应包含 locale。
 	 */
 	@Override
 	protected Object getCacheKey(String viewName, Locale locale) {

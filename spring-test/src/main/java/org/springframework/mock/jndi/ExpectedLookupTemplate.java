@@ -24,9 +24,9 @@ import javax.naming.NamingException;
 import org.springframework.jndi.JndiTemplate;
 
 /**
- * Simple extension of the JndiTemplate class that always returns a given object.
+ * JndiTemplate 类的简单扩展，始终返回给定对象。
  *
- * <p>Very useful for testing. Effectively a mock object.
+ * <p>对测试非常有用。实际上是一个 mock 对象。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -40,16 +40,16 @@ public class ExpectedLookupTemplate extends JndiTemplate {
 
 
 	/**
-	 * Construct a new JndiTemplate that will always return given objects for
-	 * given names. To be populated through {@code addObject} calls.
+	 * 构造一个新的 JndiTemplate，它将针对给定名称始终返回给定对象。
+	 * 通过 {@code addObject} 调用填充。
 	 * @see #addObject(String, Object)
 	 */
 	public ExpectedLookupTemplate() {
 	}
 
 	/**
-	 * Construct a new JndiTemplate that will always return the given object,
-	 * but honour only requests for the given name.
+	 * 构造一个新的 JndiTemplate，它将始终返回给定对象，
+	 * 但仅响应对给定名称的请求。
 	 * @param name the name the client is expected to look up
 	 * @param object the object that will be returned
 	 */
@@ -59,7 +59,7 @@ public class ExpectedLookupTemplate extends JndiTemplate {
 
 
 	/**
-	 * Add the given object to the list of JNDI objects that this template will expose.
+	 * 将给定对象添加到此模板将暴露的 JNDI 对象列表中。
 	 * @param name the name the client is expected to look up
 	 * @param object the object that will be returned
 	 */
@@ -68,9 +68,9 @@ public class ExpectedLookupTemplate extends JndiTemplate {
 	}
 
 	/**
-	 * If the name is the expected name specified in the constructor, return the
-	 * object provided in the constructor. If the name is unexpected, a
-	 * respective NamingException gets thrown.
+	 * 如果名称是构造函数中指定的预期名称，则返回构造函数中
+	 * 提供的对象。如果名称不是预期的，则抛出
+	 * 相应的 NamingException。
 	 */
 	@Override
 	public Object lookup(String name) throws NamingException {

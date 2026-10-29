@@ -22,8 +22,7 @@ import org.springframework.aop.ClassFilter;
 import org.springframework.aop.Pointcut;
 
 /**
- * Convenient class for name-match method pointcuts that hold an Advice,
- * making them an Advisor.
+ * 用于名称匹配方法切点的便捷类，它持有一个 Advice，从而使其成为 Advisor。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -44,8 +43,7 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 
 
 	/**
-	 * Set the {@link ClassFilter} to use for this pointcut.
-	 * Default is {@link ClassFilter#TRUE}.
+	 * 设置用于此切点的 {@link ClassFilter}。默认值为 {@link ClassFilter#TRUE}。
 	 * @see NameMatchMethodPointcut#setClassFilter
 	 */
 	public void setClassFilter(ClassFilter classFilter) {
@@ -53,8 +51,8 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	}
 
 	/**
-	 * Convenience method when we have only a single method name to match.
-	 * Use either this method or {@code setMappedNames}, not both.
+	 * 当我们只有一个方法名需要匹配时使用的便捷方法。请使用此方法或 {@code setMappedNames}，不要同时使
+	 * 用两者。
 	 * @see #setMappedNames
 	 * @see NameMatchMethodPointcut#setMappedName
 	 */
@@ -63,9 +61,7 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	}
 
 	/**
-	 * Set the method names defining methods to match.
-	 * Matching will be the union of all these; if any match,
-	 * the pointcut matches.
+	 * 设置用于定义要匹配方法的方法名。匹配将是所有这些的并集；只要有一个匹配，切点就匹配。
 	 * @see NameMatchMethodPointcut#setMappedNames
 	 */
 	public void setMappedNames(String... mappedNames) {
@@ -73,9 +69,8 @@ public class NameMatchMethodPointcutAdvisor extends AbstractGenericPointcutAdvis
 	}
 
 	/**
-	 * Add another eligible method name, in addition to those already named.
-	 * Like the set methods, this method is for use when configuring proxies,
-	 * before a proxy is used.
+	 * 在已指定的方法名之外，再添加一个符合条件的方法名。与 set 方法一样，此方法用于配置代理时、在代理
+	 * 使用之前。
 	 * @param name the name of the additional method that will match
 	 * @return this pointcut to allow for multiple additions in one line
 	 * @see NameMatchMethodPointcut#addMethodName

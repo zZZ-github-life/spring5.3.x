@@ -48,7 +48,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Base class providing support methods for Jackson 2.9 encoding and decoding.
+ * 为 Jackson 2.9 编码和解码提供支持方法的基类。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -57,18 +57,18 @@ import org.springframework.util.ObjectUtils;
 public abstract class Jackson2CodecSupport {
 
 	/**
-	 * The key for the hint to specify a "JSON View" for encoding or decoding
-	 * with the value expected to be a {@link Class}.
+	 * 用于指定编码或解码时所用"JSON 视图"的提示键，
+	 * 其值应为 {@link Class}。
 	 * @see <a href="https://www.baeldung.com/jackson-json-view-annotation">Jackson JSON Views</a>
 	 */
 	public static final String JSON_VIEW_HINT = Jackson2CodecSupport.class.getName() + ".jsonView";
 
 	/**
-	 * The key for the hint to access the actual ResolvableType passed into
+	 * 用于访问传入
 	 * {@link org.springframework.http.codec.HttpMessageReader#read(ResolvableType, ResolvableType, ServerHttpRequest, ServerHttpResponse, Map)}
-	 * (server-side only). Currently set when the method argument has generics because
-	 * in case of reactive types, use of {@code ResolvableType.getGeneric()} means no
-	 * MethodParameter source and no knowledge of the containing class.
+	 * 的实际 ResolvableType 的提示键（仅限服务器端）。当前在方法参数带有泛型时设置，
+	 * 因为在响应式类型的情况下，使用 {@code ResolvableType.getGeneric()} 意味着
+	 * 没有 MethodParameter 来源，也无法获知所属类。
 	 */
 	static final String ACTUAL_TYPE_HINT = Jackson2CodecSupport.class.getName() + ".actualType";
 
@@ -93,7 +93,7 @@ public abstract class Jackson2CodecSupport {
 
 
 	/**
-	 * Constructor with a Jackson {@link ObjectMapper} to use.
+	 * 使用要采用的 Jackson {@link ObjectMapper} 的构造函数。
 	 */
 	protected Jackson2CodecSupport(ObjectMapper objectMapper, MimeType... mimeTypes) {
 		Assert.notNull(objectMapper, "ObjectMapper must not be null");
@@ -104,7 +104,7 @@ public abstract class Jackson2CodecSupport {
 
 
 	/**
-	 * Configure the default ObjectMapper instance to use.
+	 * 配置要使用的默认 ObjectMapper 实例。
 	 * @param objectMapper the ObjectMapper instance
 	 * @since 5.3.4
 	 */
@@ -114,23 +114,21 @@ public abstract class Jackson2CodecSupport {
 	}
 
 	/**
-	 * Return the {@link #setObjectMapper configured} default ObjectMapper.
+	 * 返回{@link #setObjectMapper 已配置}的默认 ObjectMapper。
 	 */
 	public ObjectMapper getObjectMapper() {
 		return this.defaultObjectMapper;
 	}
 
 	/**
-	 * Configure the {@link ObjectMapper} instances to use for the given
-	 * {@link Class}. This is useful when you want to deviate from the
-	 * {@link #getObjectMapper() default} ObjectMapper or have the
-	 * {@code ObjectMapper} vary by {@code MediaType}.
-	 * <p><strong>Note:</strong> Use of this method effectively turns off use of
-	 * the default {@link #getObjectMapper() ObjectMapper} and supported
-	 * {@link #getMimeTypes() MimeTypes} for the given class. Therefore it is
-	 * important for the mappings configured here to
-	 * {@link MediaType#includes(MediaType) include} every MediaType that must
-	 * be supported for the given class.
+	 * 为给定的 {@link Class} 配置要使用的 {@link ObjectMapper} 实例。
+	 * 当希望偏离{@link #getObjectMapper() 默认}的 ObjectMapper，
+	 * 或希望 {@code ObjectMapper} 随 {@code MediaType} 变化时，这很有用。
+	 * <p><strong>注意：</strong>使用此方法会实际关闭对给定类的默认
+	 * {@link #getObjectMapper() ObjectMapper} 和支持的
+	 * {@link #getMimeTypes() MimeTypes} 的使用。因此，此处配置的映射
+	 * 必须{@link MediaType#includes(MediaType) 包含}给定类必须支持的
+	 * 每一种 MediaType，这一点很重要。
 	 * @param clazz the type of Object to register ObjectMapper instances for
 	 * @param registrar a consumer to populate or otherwise update the
 	 * MediaType-to-ObjectMapper associations for the given Class
@@ -146,7 +144,7 @@ public abstract class Jackson2CodecSupport {
 	}
 
 	/**
-	 * Return ObjectMapper registrations for the given class, if any.
+	 * 返回给定类的 ObjectMapper 注册信息（如果有）。
 	 * @param clazz the class to look up for registrations for
 	 * @return a map with registered MediaType-to-ObjectMapper registrations,
 	 * or empty if in case of no registrations for the given class.
@@ -167,7 +165,7 @@ public abstract class Jackson2CodecSupport {
 	}
 
 	/**
-	 * Subclasses should expose this as "decodable" or "encodable" mime types.
+	 * 子类应将其公开为"可解码"或"可编码"的 MIME 类型。
 	 */
 	protected List<MimeType> getMimeTypes() {
 		return this.mimeTypes;
@@ -198,8 +196,8 @@ public abstract class Jackson2CodecSupport {
 	}
 
 	/**
-	 * Determine whether to log the given exception coming from a
-	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} check.
+	 * 确定是否记录来自
+	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} 检查的给定异常。
 	 * @param type the class that Jackson tested for (de-)serializability
 	 * @param cause the Jackson-thrown exception to evaluate
 	 * (typically a {@link JsonMappingException})
@@ -251,9 +249,9 @@ public abstract class Jackson2CodecSupport {
 	protected abstract <A extends Annotation> A getAnnotation(MethodParameter parameter, Class<A> annotType);
 
 	/**
-	 * Select an ObjectMapper to use, either the main ObjectMapper or another
-	 * if the handling for the given Class has been customized through
-	 * {@link #registerObjectMappersForType(Class, Consumer)}.
+	 * 选择要使用的 ObjectMapper，可以是主 ObjectMapper，或者在通过
+	 * {@link #registerObjectMappersForType(Class, Consumer)} 自定义了给定类的
+	 * 处理方式时使用另一个 ObjectMapper。
 	 * @since 5.3.4
 	 */
 	@Nullable

@@ -17,7 +17,7 @@
 package org.springframework.jmx.support;
 
 /**
- * Represents how the measurement values of a {@code ManagedMetric} will change over time.
+ * 表示 {@code ManagedMetric} 的度量值随时间的变化方式。
  *
  * @author Jennifer Hickey
  * @since 3.0
@@ -25,12 +25,12 @@ package org.springframework.jmx.support;
 public enum MetricType {
 
 	/**
-	 * The measurement values may go up or down over time.
+	 * 度量值可能随时间上升或下降。
 	 */
 	GAUGE,
 
 	/**
-	 * The measurement values will always increase.
+	 * 度量值将始终增加。
 	 */
 	COUNTER
 

@@ -23,8 +23,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 
 /**
- * A {@link StereotypesProvider} implementation that provides the
- * {@value #STEREOTYPE} stereotype for each package-info.
+ * {@link StereotypesProvider} 的实现，为每个 package-info 提供 {@value #STEREOTYPE} 构造型。
  *
  * @author Stephane Nicoll
  * @since 5.0

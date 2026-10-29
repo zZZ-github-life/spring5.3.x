@@ -30,7 +30,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Cookie-based {@link WebSessionIdResolver}.
+ * 基于 Cookie 的 {@link WebSessionIdResolver}。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -47,8 +47,8 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 
 
 	/**
-	 * Set the name of the cookie to use for the session ID.
-	 * <p>By default set to "SESSION".
+	 * 设置用于保存会话 ID 的 Cookie 名称。
+	 * <p>默认设置为 "SESSION"。
 	 * @param cookieName the cookie name
 	 */
 	public void setCookieName(String cookieName) {
@@ -57,17 +57,16 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 	}
 
 	/**
-	 * Get the configured cookie name.
+	 * 获取已配置的 Cookie 名称。
 	 */
 	public String getCookieName() {
 		return this.cookieName;
 	}
 
 	/**
-	 * Set the value for the "Max-Age" attribute of the cookie that holds the
-	 * session ID.
-	 * <p>For the range of values see {@link ResponseCookie#getMaxAge()}.
-	 * <p>By default set to -1.
+	 * 设置保存会话 ID 的 Cookie 的 "Max-Age" 属性值。
+	 * <p>取值范围参见 {@link ResponseCookie#getMaxAge()}。
+	 * <p>默认设置为 -1。
 	 * @param maxAge the maxAge duration value
 	 */
 	public void setCookieMaxAge(Duration maxAge) {
@@ -75,15 +74,15 @@ public class CookieWebSessionIdResolver implements WebSessionIdResolver {
 	}
 
 	/**
-	 * Get the configured "Max-Age" attribute value for the session cookie.
+	 * 获取会话 Cookie 已配置的 "Max-Age" 属性值。
 	 */
 	public Duration getCookieMaxAge() {
 		return this.cookieMaxAge;
 	}
 
 	/**
-	 * Add a {@link Consumer} for a {@code ResponseCookieBuilder} that will be invoked
-	 * for each cookie being built, just before the call to {@code build()}.
+	 * 为 {@code ResponseCookieBuilder} 添加一个 {@link Consumer}，它将在每个 Cookie
+	 * 构建过程中、调用 {@code build()} 之前被调用。
 	 * @param initializer consumer for a cookie builder
 	 * @since 5.1
 	 */

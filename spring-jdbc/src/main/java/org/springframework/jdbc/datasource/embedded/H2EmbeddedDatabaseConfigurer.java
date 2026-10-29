@@ -22,9 +22,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link EmbeddedDatabaseConfigurer} for an H2 embedded database instance.
+ * H2 嵌入式数据库实例的 {@link EmbeddedDatabaseConfigurer}。
  *
- * <p>Call {@link #getInstance()} to get the singleton instance of this class.
+ * <p>调用 {@link #getInstance()} 获取此类的单例实例。
  *
  * @author Oliver Gierke
  * @author Juergen Hoeller
@@ -40,7 +40,7 @@ final class H2EmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfigu
 
 
 	/**
-	 * Get the singleton {@code H2EmbeddedDatabaseConfigurer} instance.
+	 * 获取单例 {@code H2EmbeddedDatabaseConfigurer} 实例。
 	 * @return the configurer instance
 	 * @throws ClassNotFoundException if H2 is not on the classpath
 	 */

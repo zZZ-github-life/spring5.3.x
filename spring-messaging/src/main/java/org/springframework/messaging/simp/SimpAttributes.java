@@ -27,21 +27,20 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * A wrapper class for access to attributes associated with a SiMP session
- * (e.g. WebSocket session).
+ * 用于访问与 SiMP 会话（例如 WebSocket 会话）关联属性的包装类。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
  */
 public class SimpAttributes {
 
-	/** Key for the mutex session attribute. */
+	/** 互斥会话属性的键。 */
 	public static final String SESSION_MUTEX_NAME = SimpAttributes.class.getName() + ".MUTEX";
 
-	/** Key set after the session is completed. */
+	/** 会话完成后设置的键。 */
 	public static final String SESSION_COMPLETED_NAME = SimpAttributes.class.getName() + ".COMPLETED";
 
-	/** Prefix for the name of session attributes used to store destruction callbacks. */
+	/** 用于存储销毁回调的会话属性名称前缀。 */
 	public static final String DESTRUCTION_CALLBACK_NAME_PREFIX =
 			SimpAttributes.class.getName() + ".DESTRUCTION_CALLBACK.";
 
@@ -54,7 +53,7 @@ public class SimpAttributes {
 
 
 	/**
-	 * Constructor wrapping the given session attributes map.
+	 * 包装给定会话属性映射的构造函数。
 	 * @param sessionId the id of the associated session
 	 * @param attributes the attributes
 	 */
@@ -67,7 +66,7 @@ public class SimpAttributes {
 
 
 	/**
-	 * Return the value for the attribute of the given name, if any.
+	 * 返回给定名称属性的值（如果有）。
 	 * @param name the name of the attribute
 	 * @return the current attribute value, or {@code null} if not found
 	 */
@@ -77,7 +76,7 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Set the value with the given name replacing an existing value (if any).
+	 * 设置给定名称的值，并替换现有值（如果有）。
 	 * @param name the name of the attribute
 	 * @param value the value for the attribute
 	 */
@@ -86,11 +85,9 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Remove the attribute of the given name, if it exists.
-	 * <p>Also removes the registered destruction callback for the specified
-	 * attribute, if any. However it <i>does not</i> execute the callback.
-	 * It is assumed the removed object will continue to be used and destroyed
-	 * independently at the appropriate time.
+	 * 移除给定名称的属性（如果存在）。
+	 * <p>还会移除为指定属性注册的销毁回调（如果有）。但它<i>不会</i>执行该回调。
+	 * 这里假定被移除的对象仍将继续使用，并在适当的时候独立销毁。
 	 * @param name the name of the attribute
 	 */
 	public void removeAttribute(String name) {
@@ -99,7 +96,7 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Retrieve the names of all attributes.
+	 * 获取所有属性的名称。
 	 * @return the attribute names as String array, never {@code null}
 	 */
 	public String[] getAttributeNames() {
@@ -107,8 +104,7 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Register a callback to execute on destruction of the specified attribute.
-	 * The callback is executed when the session is closed.
+	 * 注册在指定属性销毁时执行的回调。会话关闭时会执行该回调。
 	 * @param name the name of the attribute to register the callback for
 	 * @param callback the destruction callback to be executed
 	 */
@@ -128,7 +124,7 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Return an id for the associated session.
+	 * 返回关联会话的 ID。
 	 * @return the session id as String (never {@code null})
 	 */
 	public String getSessionId() {
@@ -136,7 +132,7 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Expose the object to synchronize on for the underlying session.
+	 * 公开用于底层会话同步的对象。
 	 * @return the session mutex to use (never {@code null})
 	 */
 	public Object getSessionMutex() {
@@ -148,14 +144,14 @@ public class SimpAttributes {
 	}
 
 	/**
-	 * Whether the {@link #sessionCompleted()} was already invoked.
+	 * {@link #sessionCompleted()} 是否已被调用。
 	 */
 	public boolean isSessionCompleted() {
 		return (this.attributes.get(SESSION_COMPLETED_NAME) != null);
 	}
 
 	/**
-	 * Invoked when the session is completed. Executed completion callbacks.
+	 * 会话完成时调用。执行完成回调。
 	 */
 	public void sessionCompleted() {
 		synchronized (getSessionMutex()) {
@@ -181,8 +177,7 @@ public class SimpAttributes {
 
 
 	/**
-	 * Extract the SiMP session attributes from the given message and
-	 * wrap them in a {@link SimpAttributes} instance.
+	 * 从给定消息中提取 SiMP 会话属性，并将其包装在 {@link SimpAttributes} 实例中。
 	 * @param message the message to extract session attributes from
 	 */
 	public static SimpAttributes fromMessage(Message<?> message) {

@@ -24,8 +24,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 /**
- * Exception to be thrown when a method argument fails validation perhaps as a
- * result of {@code @Valid} style validation, or perhaps because it is required.
+ * 方法参数校验失败时抛出的异常，可能是 {@code @Valid} 风格校验的结果，
+ * 也可能是因为该参数是必需的。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -39,7 +39,7 @@ public class MethodArgumentNotValidException extends MethodArgumentResolutionExc
 
 
 	/**
-	 * Create a new instance with the invalid {@code MethodParameter}.
+	 * 使用无效的 {@code MethodParameter} 创建新实例。
 	 */
 	public MethodArgumentNotValidException(Message<?> message, MethodParameter parameter) {
 		super(message, parameter);
@@ -47,8 +47,8 @@ public class MethodArgumentNotValidException extends MethodArgumentResolutionExc
 	}
 
 	/**
-	 * Create a new instance with the invalid {@code MethodParameter} and a
-	 * {@link org.springframework.validation.BindingResult}.
+	 * 使用无效的 {@code MethodParameter} 和
+	 * {@link org.springframework.validation.BindingResult} 创建新实例。
 	 */
 	public MethodArgumentNotValidException(Message<?> message, MethodParameter parameter, BindingResult bindingResult) {
 		super(message, parameter, getValidationErrorMessage(bindingResult));
@@ -57,8 +57,7 @@ public class MethodArgumentNotValidException extends MethodArgumentResolutionExc
 
 
 	/**
-	 * Return the BindingResult if the failure is validation-related,
-	 * or {@code null} if none.
+	 * 如果失败与校验相关，则返回 BindingResult，否则返回 {@code null}。
 	 */
 	@Nullable
 	public final BindingResult getBindingResult() {

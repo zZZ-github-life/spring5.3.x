@@ -20,14 +20,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * A strategy for resolving a "user" destination by translating it to one or more
- * actual destinations one per active user session. When sending a message to a
- * user destination, the destination must contain the user name so it may be
- * extracted and used to look up the user sessions. When subscribing to a user
- * destination, the destination does not have to contain the user's own name.
- * We simply use the current session.
+ * 一种“用户”目标解析策略，将其转换为一个或多个实际目标，每个活跃用户会话对应一个。
+ * 向用户目标发送消息时，目标必须包含用户名，以便提取该用户名并用于查找用户会话。
+ * 订阅用户目标时，目标不必包含用户自己的名称，我们只需使用当前会话。
  *
- * <p>See implementation classes and the documentation for example destinations.
+ * <p>有关示例目标，请参阅实现类和文档。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -39,8 +36,8 @@ import org.springframework.messaging.Message;
 public interface UserDestinationResolver {
 
 	/**
-	 * Resolve the given message with a user destination to one or more messages
-	 * with actual destinations, one for each active user session.
+	 * 将带有用户目标的给定消息解析为一个或多个带有实际目标的消息，
+	 * 每个活跃用户会话对应一个。
 	 * @param message the message to try to resolve
 	 * @return 0 or more target messages (one for each active session), or
 	 * {@code null} if the source message does not contain a user destination.

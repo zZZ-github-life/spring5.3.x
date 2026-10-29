@@ -19,13 +19,11 @@ package org.springframework.test.web.reactive.server;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Contract that frameworks or applications can use to pre-package a set of
- * customizations to a {@link WebTestClient.MockServerSpec} and expose that
- * as a shortcut.
+ * 框架或应用程序可用于将一组自定义配置预打包到 {@link WebTestClient.MockServerSpec}
+ * 并作为快捷方式暴露的约定。
  *
- * <p>An implementation of this interface can be plugged in via
- * {@link WebTestClient.MockServerSpec#apply} where instances are likely obtained
- * via static methods, e.g.:
+ * <p>此接口的实现可以通过
+ * {@link WebTestClient.MockServerSpec#apply} 插入，实例通常通过静态方法获取，例如：
  *
  * <pre class="code">
  * import static org.example.ExampleSetup.securitySetup;
@@ -33,10 +31,9 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
  * // ...
  *
  * WebTestClient.bindToController(new TestController())
- *     .apply(securitySetup("foo","bar"))
- *     .build();
+ * .apply(securitySetup("foo","bar"))
+ * .build();
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see WebTestClientConfigurer
@@ -44,15 +41,15 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 public interface MockServerConfigurer {
 
 	/**
-	 * Invoked immediately, i.e. before this method returns.
+	 * 立即调用，即在此方法返回之前。
 	 * @param serverSpec the serverSpec to which the configurer is added
 	 */
 	default void afterConfigureAdded(WebTestClient.MockServerSpec<?> serverSpec) {
 	}
 
 	/**
-	 * Invoked just before the mock server is built. Use this hook to inspect
-	 * and/or modify application-declared filters and exception handlers.
+	 * 在构建模拟服务器之前调用。使用此钩子检查
+	 * 和/或修改应用程序声明的过滤器和异常处理器。
 	 * @param builder the builder for the {@code HttpHandler} that will handle
 	 * requests (i.e. the mock server)
 	 */

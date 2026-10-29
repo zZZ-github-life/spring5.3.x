@@ -1,5 +1,5 @@
 /**
- * Provides an HttpMessageConverter for the Smile data format ("binary JSON").
+ * 提供用于 Smile 数据格式（"二进制 JSON"）的 HttpMessageConverter。
  */
 @NonNullApi
 @NonNullFields

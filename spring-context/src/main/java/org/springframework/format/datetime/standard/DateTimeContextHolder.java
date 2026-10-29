@@ -23,7 +23,7 @@ import org.springframework.core.NamedThreadLocal;
 import org.springframework.lang.Nullable;
 
 /**
- * A holder for a thread-local user {@link DateTimeContext}.
+ * 用于线程本地用户 {@link DateTimeContext} 的持有者。
  *
  * @author Juergen Hoeller
  * @since 4.0
@@ -40,14 +40,14 @@ public final class DateTimeContextHolder {
 
 
 	/**
-	 * Reset the DateTimeContext for the current thread.
+	 * 重置当前线程的 DateTimeContext。
 	 */
 	public static void resetDateTimeContext() {
 		dateTimeContextHolder.remove();
 	}
 
 	/**
-	 * Associate the given DateTimeContext with the current thread.
+	 * 将给定的 DateTimeContext 与当前线程关联。
 	 * @param dateTimeContext the current DateTimeContext,
 	 * or {@code null} to reset the thread-bound context
 	 */
@@ -61,7 +61,7 @@ public final class DateTimeContextHolder {
 	}
 
 	/**
-	 * Return the DateTimeContext associated with the current thread, if any.
+	 * 返回与当前线程关联的 DateTimeContext（如果有）。
 	 * @return the current DateTimeContext, or {@code null} if none
 	 */
 	@Nullable
@@ -70,7 +70,7 @@ public final class DateTimeContextHolder {
 	}
 
 	/**
-	 * Obtain a DateTimeFormatter with user-specific settings applied to the given base formatter.
+	 * 获取将用户特定设置应用到给定基础格式化器后的 DateTimeFormatter。
 	 * @param formatter the base formatter that establishes default formatting rules
 	 * (generally user independent)
 	 * @param locale the current user locale (may be {@code null} if not known)

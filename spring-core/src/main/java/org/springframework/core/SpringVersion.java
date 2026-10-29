@@ -19,14 +19,10 @@ package org.springframework.core;
 import org.springframework.lang.Nullable;
 
 /**
- * Class that exposes the Spring version. Fetches the
- * "Implementation-Version" manifest attribute from the jar file.
+ * 用于暴露 Spring 版本的类。它从 jar 文件中获取 "Implementation-Version" 清单属性。
  *
- * <p>Note that some ClassLoaders do not expose the package metadata,
- * hence this class might not be able to determine the Spring version
- * in all environments. Consider using a reflection-based check instead &mdash;
- * for example, checking for the presence of a specific Spring 5.2
- * method that you intend to call.
+ * <p>请注意，某些 ClassLoader 不会暴露包元数据，因此此类可能无法在所有环境中确定 Spring 版本。请考
+ * 虑改用基于反射的检查 &mdash; 例如，检查你打算调用的某个 Spring 5.2 特定方法是否存在。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -38,8 +34,7 @@ public final class SpringVersion {
 
 
 	/**
-	 * Return the full version string of the present Spring codebase,
-	 * or {@code null} if it cannot be determined.
+	 * 返回当前 Spring 代码库的完整版本字符串，如果无法确定则返回 {@code null}。
 	 * @see Package#getImplementationVersion()
 	 */
 	@Nullable

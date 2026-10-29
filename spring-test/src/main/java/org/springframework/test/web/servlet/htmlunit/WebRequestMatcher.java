@@ -19,8 +19,7 @@ package org.springframework.test.web.servlet.htmlunit;
 import com.gargoylesoftware.htmlunit.WebRequest;
 
 /**
- * Strategy for matching on a {@link WebRequest}.
- *
+ * 用于匹配 {@link WebRequest} 的策略。
  * @author Rob Winch
  * @since 4.2
  * @see org.springframework.test.web.servlet.htmlunit.HostRequestMatcher
@@ -30,7 +29,7 @@ import com.gargoylesoftware.htmlunit.WebRequest;
 public interface WebRequestMatcher {
 
 	/**
-	 * Whether this matcher matches on the supplied web request.
+	 * 此匹配器是否匹配提供的 Web 请求。
 	 * @param request the {@link WebRequest} to attempt to match on
 	 * @return {@code true} if this matcher matches on the {@code WebRequest}
 	 */

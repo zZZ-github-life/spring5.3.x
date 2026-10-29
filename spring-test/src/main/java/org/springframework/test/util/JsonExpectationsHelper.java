@@ -19,10 +19,9 @@ package org.springframework.test.util;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 /**
- * A helper class for assertions on JSON content.
+ * 用于 JSON 内容断言的辅助类。
  *
- * <p>Use of this class requires the <a
- * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
+ * <p>使用此类需要 <a href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
  *
  * @author Sebastien Deleuze
  * @since 4.1
@@ -30,10 +29,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 public class JsonExpectationsHelper {
 
 	/**
-	 * Parse the expected and actual strings as JSON and assert the two
-	 * are "similar" - i.e. they contain the same attribute-value pairs
-	 * regardless of formatting with lenient checking (extensible content and
-	 * non-strict array ordering).
+	 * 将期望字符串和实际字符串解析为 JSON，并断言两者“相似” - 即无论格式如何，它们都包含相同的属性值对，且采用宽松检查（可扩展内容和非严格数组顺序）。
 	 * @param expected the expected JSON content
 	 * @param actual the actual JSON content
 	 * @since 4.1
@@ -44,13 +40,11 @@ public class JsonExpectationsHelper {
 	}
 
 	/**
-	 * Parse the expected and actual strings as JSON and assert the two
-	 * are "similar" - i.e. they contain the same attribute-value pairs
-	 * regardless of formatting.
-	 * <p>Can compare in two modes, depending on the {@code strict} parameter value:
+	 * 将期望字符串和实际字符串解析为 JSON，并断言两者“相似” - 即无论格式如何，它们都包含相同的属性值对。
+	 * <p>根据 {@code strict} 参数值，可以按两种模式进行比较：
 	 * <ul>
-	 * <li>{@code true}: strict checking. Not extensible and strict array ordering.</li>
-	 * <li>{@code false}: lenient checking. Extensible and non-strict array ordering.</li>
+	 * <li>{@code true}：严格检查。不可扩展且严格数组顺序。</li>
+	 * <li>{@code false}：宽松检查。可扩展且非严格数组顺序。</li>
 	 * </ul>
 	 * @param expected the expected JSON content
 	 * @param actual the actual JSON content
@@ -62,10 +56,7 @@ public class JsonExpectationsHelper {
 	}
 
 	/**
-	 * Parse the expected and actual strings as JSON and assert the two
-	 * are "not similar" - i.e. they contain different attribute-value pairs
-	 * regardless of formatting with a lenient checking (extensible, and non-strict
-	 * array ordering).
+	 * 将期望字符串和实际字符串解析为 JSON，并断言两者“不相似” - 即无论格式如何，它们都包含不同的属性值对，且采用宽松检查（可扩展，以及非严格数组顺序）。
 	 * @param expected the expected JSON content
 	 * @param actual the actual JSON content
 	 * @since 4.1
@@ -76,13 +67,11 @@ public class JsonExpectationsHelper {
 	}
 
 	/**
-	 * Parse the expected and actual strings as JSON and assert the two
-	 * are "not similar" - i.e. they contain different attribute-value pairs
-	 * regardless of formatting.
-	 * <p>Can compare in two modes, depending on {@code strict} parameter value:
+	 * 将期望字符串和实际字符串解析为 JSON，并断言两者“不相似” - 即无论格式如何，它们都包含不同的属性值对。
+	 * <p>根据 {@code strict} 参数值，可以按两种模式进行比较：
 	 * <ul>
-	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
-	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
+	 * <li>{@code true}：严格检查。不可扩展，且严格数组顺序。</li>
+	 * <li>{@code false}：宽松检查。可扩展，且非严格数组顺序。</li>
 	 * </ul>
 	 * @param expected the expected JSON content
 	 * @param actual the actual JSON content

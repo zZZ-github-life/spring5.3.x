@@ -53,7 +53,7 @@ import org.springframework.web.server.i18n.LocaleContextResolver;
 import org.springframework.web.server.session.WebSessionManager;
 
 /**
- * Default implementation of {@link ServerWebExchange}.
+ * {@link ServerWebExchange} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel

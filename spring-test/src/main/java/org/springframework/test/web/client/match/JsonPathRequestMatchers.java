@@ -28,13 +28,12 @@ import org.springframework.test.util.JsonPathExpectationsHelper;
 import org.springframework.test.web.client.RequestMatcher;
 
 /**
- * Factory for assertions on the request content using
- * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expressions.
+ * 使用 <a href="https://github.com/jayway/JsonPath">JsonPath</a> 表达式
+ * 对请求内容进行断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
- * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
- *
+ * <p>通常通过
+ * {@link MockRestRequestMatchers#jsonPath(String, Matcher)} 或
+ * {@link MockRestRequestMatchers#jsonPath(String, Object...)} 访问此类的实例。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 3.2
@@ -45,9 +44,9 @@ public class JsonPathRequestMatchers {
 
 
 	/**
-	 * Protected constructor.
-	 * <p>Use {@link MockRestRequestMatchers#jsonPath(String, Matcher)} or
-	 * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
+	 * 受保护的构造函数。
+	 * <p>请使用 {@link MockRestRequestMatchers#jsonPath(String, Matcher)} 或
+	 * {@link MockRestRequestMatchers#jsonPath(String, Object...)}。
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
 	 * @param args arguments to parameterize the {@code JsonPath} expression with,
 	 * using formatting specifiers defined in {@link String#format(String, Object...)}
@@ -58,8 +57,8 @@ public class JsonPathRequestMatchers {
 
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert the resulting value with the given Hamcrest {@link Matcher}.
+	 * 对请求内容求值 JSON 路径表达式，
+	 * 并使用给定的 Hamcrest {@link Matcher} 断言结果值。
 	 */
 	public <T> RequestMatcher value(Matcher<? super T> matcher) {
 		return new AbstractJsonPathRequestMatcher() {
@@ -71,11 +70,10 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * An overloaded variant of {@link #value(Matcher)} that also accepts a
-	 * target type for the resulting value that the matcher can work reliably
-	 * against.
-	 * <p>This can be useful for matching numbers reliably &mdash; for example,
-	 * to coerce an integer into a double.
+	 * 对 {@link #value(Matcher)} 的重载变体，还接受结果值的目标类型，
+	 * 使匹配器能够可靠地针对该类型工作。
+	 * <p>这对于可靠地匹配数字很有用 &mdash; 例如，
+	 * 将整数强制转换为 double。
 	 * @since 4.3.3
 	 */
 	public <T> RequestMatcher value(Matcher<? super T> matcher, Class<T> targetType) {
@@ -89,8 +87,7 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that the result is equal to the supplied value.
+	 * 对请求内容求值 JSON 路径表达式，并断言结果等于提供的值。
 	 */
 	public RequestMatcher value(Object expectedValue) {
 		return new AbstractJsonPathRequestMatcher() {
@@ -102,11 +99,11 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that a non-null value exists at the given path.
-	 * <p>If the JSON path expression is not {@linkplain JsonPath#isDefinite
-	 * definite}, this method asserts that the value at the given path is not
-	 * <em>empty</em>.
+	 * 对请求内容求值 JSON 路径表达式，
+	 * 并断言给定路径处存在非 null 值。
+	 * <p>如果 JSON 路径表达式不是 {@linkplain JsonPath#isDefinite
+	 * 确定的}，此方法断言给定路径处的值不为
+	 * <em>空</em>。
 	 */
 	public RequestMatcher exists() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -118,11 +115,11 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that a value does not exist at the given path.
-	 * <p>If the JSON path expression is not {@linkplain JsonPath#isDefinite
-	 * definite}, this method asserts that the value at the given path is
-	 * <em>empty</em>.
+	 * 对请求内容求值 JSON 路径表达式，
+	 * 并断言给定路径处不存在值。
+	 * <p>如果 JSON 路径表达式不是 {@linkplain JsonPath#isDefinite
+	 * 确定的}，此方法断言给定路径处的值
+	 * <em>为空</em>。
 	 */
 	public RequestMatcher doesNotExist() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -134,11 +131,11 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the response content
-	 * and assert that a value, possibly {@code null}, exists.
-	 * <p>If the JSON path expression is not
-	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
-	 * that the list of values at the given path is not <em>empty</em>.
+	 * 对响应内容求值 JSON 路径表达式，
+	 * 并断言存在值（可能为 {@code null}）。
+	 * <p>如果 JSON 路径表达式不是
+	 * {@linkplain JsonPath#isDefinite() 确定的}，此方法断言
+	 * 给定路径处的值列表不为 <em>空</em>。
 	 * @since 5.0.3
 	 * @see #exists()
 	 * @see #isNotEmpty()
@@ -153,12 +150,11 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the supplied {@code content}
-	 * and assert that a value, including {@code null} values, does not exist
-	 * at the given path.
-	 * <p>If the JSON path expression is not
-	 * {@linkplain JsonPath#isDefinite() definite}, this method asserts
-	 * that the list of values at the given path is <em>empty</em>.
+	 * 对提供的 {@code content} 求值 JSON 路径表达式，
+	 * 并断言给定路径处不存在值（包括 {@code null} 值）。
+	 * <p>如果 JSON 路径表达式不是
+	 * {@linkplain JsonPath#isDefinite() 确定的}，此方法断言
+	 * 给定路径处的值列表 <em>为空</em>。
 	 * @since 5.0.3
 	 * @see #doesNotExist()
 	 * @see #isEmpty()
@@ -173,10 +169,10 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that an empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
-	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
+	 * 对请求内容求值 JSON 路径表达式，
+	 * 并断言给定路径处存在空值。
+	 * <p>有关 <em>空</em> 的语义，请参阅
+	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)} 的 Javadoc。
 	 * @since 4.2.1
 	 * @see #isNotEmpty()
 	 * @see #exists()
@@ -192,10 +188,10 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that a non-empty value exists at the given path.
-	 * <p>For the semantics of <em>empty</em>, consult the Javadoc for
-	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)}.
+	 * 对请求内容求值 JSON 路径表达式，
+	 * 并断言给定路径处存在非空值。
+	 * <p>有关 <em>空</em> 的语义，请参阅
+	 * {@link org.springframework.util.ObjectUtils#isEmpty(Object)} 的 Javadoc。
 	 * @since 4.2.1
 	 * @see #isEmpty()
 	 * @see #exists()
@@ -211,8 +207,7 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that the result is a {@link String}.
+	 * 对请求内容求值 JSON 路径表达式，并断言结果为 {@link String}。
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isString() {
@@ -225,8 +220,7 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that the result is a {@link Boolean}.
+	 * 对请求内容求值 JSON 路径表达式，并断言结果为 {@link Boolean}。
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isBoolean() {
@@ -239,8 +233,7 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that the result is a {@link Number}.
+	 * 对请求内容求值 JSON 路径表达式，并断言结果为 {@link Number}。
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isNumber() {
@@ -253,8 +246,7 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that the result is an array.
+	 * 对请求内容求值 JSON 路径表达式，并断言结果为数组。
 	 */
 	public RequestMatcher isArray() {
 		return new AbstractJsonPathRequestMatcher() {
@@ -266,8 +258,7 @@ public class JsonPathRequestMatchers {
 	}
 
 	/**
-	 * Evaluate the JSON path expression against the request content and
-	 * assert that the result is a {@link java.util.Map}.
+	 * 对请求内容求值 JSON 路径表达式，并断言结果为 {@link java.util.Map}。
 	 * @since 4.2.1
 	 */
 	public RequestMatcher isMap() {
@@ -281,7 +272,7 @@ public class JsonPathRequestMatchers {
 
 
 	/**
-	 * Abstract base class for {@code JsonPath}-based {@link RequestMatcher RequestMatchers}.
+	 * 基于 {@code JsonPath} 的 {@link RequestMatcher RequestMatchers} 的抽象基类。
 	 * @see #matchInternal
 	 */
 	private abstract static class AbstractJsonPathRequestMatcher implements RequestMatcher {

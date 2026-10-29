@@ -23,23 +23,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.io.Resource;
 
 /**
- * A contract for invoking a chain of {@link ResourceTransformer ResourceTransformers} where each resolver
- * is given a reference to the chain allowing it to delegate when necessary.
- *
+ * 调用 {@link ResourceTransformer ResourceTransformers} 链的约定，其中每个解析器
+ * 都会获得对链的引用，以便在需要时进行委托。
  * @author Rossen Stoyanchev
  * @since 4.1
  */
 public interface ResourceTransformerChain {
 
 	/**
-	 * Return the {@code ResourceResolverChain} that was used to resolve the
-	 * {@code Resource} being transformed. This may be needed for resolving
-	 * related resources, e.g. links to other resources.
+	 * 返回用于解析被转换 {@code Resource} 的
+	 * {@code ResourceResolverChain}。解析相关资源时可能需要它，
+	 * 例如指向其他资源的链接。
 	 */
 	ResourceResolverChain getResolverChain();
 
 	/**
-	 * Transform the given resource.
+	 * 转换给定资源。
 	 * @param request the current request
 	 * @param resource the candidate resource to transform
 	 * @return the transformed or the same resource, never {@code null}

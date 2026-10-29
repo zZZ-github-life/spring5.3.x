@@ -19,8 +19,7 @@ package org.springframework.web.socket.sockjs.frame;
 import org.springframework.util.Assert;
 
 /**
- * A base class for SockJS message codec that provides an implementation of
- * {@link #encode(String[])}.
+ * 提供 {@link #encode(String[])} 实现的 SockJS 消息编解码器基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -46,12 +45,12 @@ public abstract class AbstractSockJsMessageCodec implements SockJsMessageCodec {
 	}
 
 	/**
-	 * Apply standard JSON string quoting (see https://www.json.org/).
+	 * 应用标准 JSON 字符串引用（参见 https://www.json.org/）。
 	 */
 	protected abstract char[] applyJsonQuoting(String content);
 
 	/**
-	 * See "JSON Unicode Encoding" section of SockJS protocol.
+	 * 参见 SockJS 协议的 "JSON Unicode Encoding" 部分。
 	 */
 	private String escapeSockJsSpecialChars(char[] characters) {
 		StringBuilder result = new StringBuilder();
@@ -72,7 +71,7 @@ public abstract class AbstractSockJsMessageCodec implements SockJsMessageCodec {
 	}
 
 	/**
-	 * See `escapable_by_server` variable in the SockJS protocol test suite.
+	 * 参见 SockJS 协议测试套件中的 `escapable_by_server` 变量。
 	 */
 	private boolean isSockJsSpecialChar(char ch) {
 		return (ch <= '\u001F') || (ch >= '\u200C' && ch <= '\u200F') ||

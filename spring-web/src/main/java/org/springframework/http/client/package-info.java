@@ -1,7 +1,8 @@
 /**
- * Contains an abstraction over client-side HTTP. This package
- * contains the {@code ClientHttpRequest} and {@code ClientHttpResponse},
- * as well as a basic implementation of these interfaces.
+ * 包含对客户端 HTTP 的抽象。此包
+ * 包含 {@code ClientHttpRequest} 和 {@code ClientHttpResponse}，
+ * 以及这些接口的基本实现。
+ *
  */
 @NonNullApi
 @NonNullFields

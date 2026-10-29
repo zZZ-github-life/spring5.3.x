@@ -22,7 +22,7 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
 
 /**
- * Main class for access to the {@link WebSession} for an HTTP request.
+ * 用于访问 HTTP 请求对应 {@link WebSession} 的主类。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -32,10 +32,9 @@ import org.springframework.web.server.WebSession;
 public interface WebSessionManager {
 
 	/**
-	 * Return the {@link WebSession} for the given exchange. Always guaranteed
-	 * to return an instance either matching to the session id requested by the
-	 * client, or a new session either because the client did not specify one
-	 * or because the underlying session expired.
+	 * 返回给定 exchange 对应的 {@link WebSession}。始终保证返回一个实例：
+	 * 要么与客户端请求的会话 ID 匹配，要么是新建的会话（因为客户端未指定
+	 * 会话 ID，或底层会话已过期）。
 	 * @param exchange the current exchange
 	 * @return promise for the WebSession
 	 */

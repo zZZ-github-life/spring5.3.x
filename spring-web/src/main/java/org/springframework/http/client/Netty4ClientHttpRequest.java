@@ -39,9 +39,9 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.SettableListenableFuture;
 
 /**
- * {@link ClientHttpRequest} implementation based on Netty 4.
+ * 基于 Netty 4 的 {@link ClientHttpRequest} 实现。
  *
- * <p>Created via the {@link Netty4ClientHttpRequestFactory}.
+ * <p>通过 {@link Netty4ClientHttpRequestFactory} 创建。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -163,7 +163,7 @@ class Netty4ClientHttpRequest extends AbstractAsyncClientHttpRequest implements 
 
 
 	/**
-	 * A SimpleChannelInboundHandler to update the given SettableListenableFuture.
+	 * 用于更新给定 SettableListenableFuture 的 SimpleChannelInboundHandler。
 	 */
 	private static class RequestExecuteHandler extends SimpleChannelInboundHandler<FullHttpResponse> {
 

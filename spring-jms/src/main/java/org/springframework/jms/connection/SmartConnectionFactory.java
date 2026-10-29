@@ -20,8 +20,8 @@ import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 
 /**
- * Extension of the {@code javax.jms.ConnectionFactory} interface,
- * indicating how to release Connections obtained from it.
+ * {@code javax.jms.ConnectionFactory} 接口的扩展，
+ * 用于指示如何释放从其中获取的 Connection。
  *
  * @author Juergen Hoeller
  * @since 2.0.2
@@ -29,7 +29,7 @@ import javax.jms.ConnectionFactory;
 public interface SmartConnectionFactory extends ConnectionFactory {
 
 	/**
-	 * Should we stop the Connection, obtained from this ConnectionFactory?
+	 * 是否应停止从此 ConnectionFactory 获取的 Connection？
 	 * @param con the Connection to check
 	 * @return whether a stop call is necessary
 	 * @see javax.jms.Connection#stop()

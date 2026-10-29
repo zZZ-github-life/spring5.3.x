@@ -19,8 +19,8 @@ package org.springframework.beans.factory.xml;
 import org.springframework.lang.Nullable;
 
 /**
- * Used by the {@link org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader} to
- * locate a {@link NamespaceHandler} implementation for a particular namespace URI.
+ * 由 {@link org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader} 使用，为特
+ * 定命名空间 URI 定位 {@link NamespaceHandler} 实现。
  *
  * @author Rob Harrop
  * @since 2.0
@@ -31,8 +31,7 @@ import org.springframework.lang.Nullable;
 public interface NamespaceHandlerResolver {
 
 	/**
-	 * Resolve the namespace URI and return the located {@link NamespaceHandler}
-	 * implementation.
+	 * 解析命名空间 URI 并返回定位到的 {@link NamespaceHandler} 实现。
 	 * @param namespaceUri the relevant namespace URI
 	 * @return the located {@link NamespaceHandler} (may be {@code null})
 	 */

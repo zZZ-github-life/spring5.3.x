@@ -23,18 +23,17 @@ import javax.servlet.jsp.JspException;
 import org.springframework.lang.Nullable;
 
 /**
- * The {@code <input>} tag renders an HTML 'input' tag with type 'text' using
- * the bound value.
+ * {@code <input>} 标签使用绑定值渲染 type 为 'text' 的 HTML 'input' 标签。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -42,189 +41,189 @@ import org.springframework.lang.Nullable;
  * <td><p>accesskey</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>alt</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>autocomplete</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Common Optional Attribute</p></td>
+ * <td><p>通用可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>cssErrorClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has errors.</p></td>
+ * <td><p>HTML 可选属性。当绑定字段存在错误时使用。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssStyle</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>dir</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to
- * 'true' will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性设置为
+ * 'true' 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>lang</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>maxlength</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onblur</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onchange</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>ondblclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onfocus</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeydown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onkeypress</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeyup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmousedown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmousemove</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseout</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmouseover</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onselect</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>path</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>Path to property for data binding</p></td>
+ * <td><p>用于数据绑定的属性路径</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>readonly</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to
- * 'true' will make the HTML element readonly.</p></td>
+ * <td><p>HTML 可选属性。将此属性设置为
+ * 'true' 将使该 HTML 元素变为只读。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>size</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>tabindex</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>title</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -265,15 +264,15 @@ public class InputTag extends AbstractHtmlInputElementTag {
 
 
 	/**
-	 * Set the value of the '{@code size}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code size}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setSize(String size) {
 		this.size = size;
 	}
 
 	/**
-	 * Get the value of the '{@code size}' attribute.
+	 * 获取 '{@code size}' 属性的值。
 	 */
 	@Nullable
 	protected String getSize() {
@@ -281,15 +280,15 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code maxlength}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code maxlength}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setMaxlength(String maxlength) {
 		this.maxlength = maxlength;
 	}
 
 	/**
-	 * Get the value of the '{@code maxlength}' attribute.
+	 * 获取 '{@code maxlength}' 属性的值。
 	 */
 	@Nullable
 	protected String getMaxlength() {
@@ -297,15 +296,15 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code alt}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code alt}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setAlt(String alt) {
 		this.alt = alt;
 	}
 
 	/**
-	 * Get the value of the '{@code alt}' attribute.
+	 * 获取 '{@code alt}' 属性的值。
 	 */
 	@Nullable
 	protected String getAlt() {
@@ -313,15 +312,15 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code onselect}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code onselect}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setOnselect(String onselect) {
 		this.onselect = onselect;
 	}
 
 	/**
-	 * Get the value of the '{@code onselect}' attribute.
+	 * 获取 '{@code onselect}' 属性的值。
 	 */
 	@Nullable
 	protected String getOnselect() {
@@ -329,15 +328,15 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code autocomplete}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code autocomplete}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setAutocomplete(String autocomplete) {
 		this.autocomplete = autocomplete;
 	}
 
 	/**
-	 * Get the value of the '{@code autocomplete}' attribute.
+	 * 获取 '{@code autocomplete}' 属性的值。
 	 */
 	@Nullable
 	protected String getAutocomplete() {
@@ -346,9 +345,9 @@ public class InputTag extends AbstractHtmlInputElementTag {
 
 
 	/**
-	 * Writes the '{@code input}' tag to the supplied {@link TagWriter}.
-	 * Uses the value returned by {@link #getType()} to determine which
-	 * type of '{@code input}' element to render.
+	 * 将 '{@code input}' 标签写入提供的 {@link TagWriter}。
+	 * 使用 {@link #getType()} 返回的值来确定
+	 * 要渲染的 '{@code input}' 元素类型。
 	 */
 	@Override
 	protected int writeTagContent(TagWriter tagWriter) throws JspException {
@@ -373,9 +372,9 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Writes the '{@code value}' attribute to the supplied {@link TagWriter}.
-	 * Subclasses may choose to override this implementation to control exactly
-	 * when the value is written.
+	 * 将 '{@code value}' 属性写入提供的 {@link TagWriter}。
+	 * 子类可以选择覆盖此实现，以精确控制
+	 * 写入值的时机。
 	 */
 	protected void writeValue(TagWriter tagWriter) throws JspException {
 		String value = getDisplayString(getBoundValue(), getPropertyEditor());
@@ -391,8 +390,8 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Flags {@code type="checkbox"} and {@code type="radio"} as illegal
-	 * dynamic attributes.
+	 * 将 {@code type="checkbox"} 和 {@code type="radio"} 标记为
+	 * 非法的动态属性。
 	 */
 	@Override
 	protected boolean isValidDynamicAttribute(String localName, Object value) {
@@ -400,9 +399,9 @@ public class InputTag extends AbstractHtmlInputElementTag {
 	}
 
 	/**
-	 * Get the value of the '{@code type}' attribute. Subclasses
-	 * can override this to change the type of '{@code input}' element
-	 * rendered. Default value is '{@code text}'.
+	 * 获取 '{@code type}' 属性的值。子类可以覆盖此方法
+	 * 以更改所渲染 '{@code input}' 元素的类型。
+	 * 默认值为 '{@code text}'。
 	 */
 	protected String getType() {
 		return "text";

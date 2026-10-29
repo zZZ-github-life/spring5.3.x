@@ -33,8 +33,8 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.util.WebUtils;
 
 /**
- * A common delegate for {@code HandlerMethodArgumentResolver} implementations
- * which need to resolve {@link MultipartFile} and {@link Part} arguments.
+ * {@code HandlerMethodArgumentResolver} 实现的公共委托类，
+ * 这些实现需要解析 {@link MultipartFile} 和 {@link Part} 参数。
  *
  * @author Juergen Hoeller
  * @since 4.3
@@ -42,7 +42,7 @@ import org.springframework.web.util.WebUtils;
 public final class MultipartResolutionDelegate {
 
 	/**
-	 * Indicates an unresolvable value.
+	 * 表示无法解析的值。
 	 */
 	public static final Object UNRESOLVABLE = new Object();
 

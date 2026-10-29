@@ -17,14 +17,14 @@
 package org.springframework.test.web.servlet;
 
 /**
- * A {@code ResultMatcher} matches the result of an executed request against
- * some expectation.
+ * {@code ResultMatcher} 将已执行请求的结果与
+ * 某种预期进行匹配。
  *
- * <p>See static factory methods in
+ * <p>请参见
  * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers
- * MockMvcResultMatchers}.
+ * MockMvcResultMatchers} 中的静态工厂方法。
  *
- * <h3>Example Using Status and Content Result Matchers</h3>
+ * <h3>使用状态和内容结果匹配器的示例</h3>
  *
  * <pre class="code">
  * import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -38,11 +38,10 @@ package org.springframework.test.web.servlet;
  * MockMvc mockMvc = webAppContextSetup(wac).build();
  *
  * mockMvc.perform(get("/form"))
- *   .andExpectAll(
- *       status().isOk(),
- *       content().mimeType(MediaType.APPLICATION_JSON));
+ * .andExpectAll(
+ * status().isOk(),
+ * content().mimeType(MediaType.APPLICATION_JSON));
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 3.2
@@ -51,7 +50,7 @@ package org.springframework.test.web.servlet;
 public interface ResultMatcher {
 
 	/**
-	 * Assert the result of an executed request.
+	 * 断言已执行请求的结果。
 	 * @param result the result of the executed request
 	 * @throws Exception if a failure occurs
 	 */
@@ -59,7 +58,7 @@ public interface ResultMatcher {
 
 
 	/**
-	 * Static method for matching with an array of result matchers.
+	 * 用于与结果匹配器数组进行匹配的静态方法。
 	 * @param matchers the matchers
 	 * @since 5.1
 	 * @deprecated as of Spring Framework 5.3.10, in favor of

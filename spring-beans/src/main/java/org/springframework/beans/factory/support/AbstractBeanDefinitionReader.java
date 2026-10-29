@@ -35,11 +35,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for bean definition readers which implement
- * the {@link BeanDefinitionReader} interface.
+ * 实现 {@link BeanDefinitionReader} 接口的 Bean 定义读取器的抽象基类。
  *
- * <p>Provides common properties like the bean factory to work on
- * and the class loader to use for loading bean classes.
+ * <p>提供常用属性，例如要操作的 Bean 工厂，以及用于加载 Bean 类的类加载器。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -48,7 +46,7 @@ import org.springframework.util.Assert;
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader, EnvironmentCapable {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private final BeanDefinitionRegistry registry;
@@ -65,17 +63,14 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
 
 	/**
-	 * Create a new AbstractBeanDefinitionReader for the given bean factory.
-	 * <p>If the passed-in bean factory does not only implement the BeanDefinitionRegistry
-	 * interface but also the ResourceLoader interface, it will be used as default
-	 * ResourceLoader as well. This will usually be the case for
-	 * {@link org.springframework.context.ApplicationContext} implementations.
-	 * <p>If given a plain BeanDefinitionRegistry, the default ResourceLoader will be a
-	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}.
-	 * <p>If the passed-in bean factory also implements {@link EnvironmentCapable} its
-	 * environment will be used by this reader.  Otherwise, the reader will initialize and
-	 * use a {@link StandardEnvironment}. All ApplicationContext implementations are
-	 * EnvironmentCapable, while normal BeanFactory implementations are not.
+	 * 为给定的 Bean 工厂创建一个新的 AbstractBeanDefinitionReader。<p>如果传入的 Bean 工厂不仅实现了
+	 * BeanDefinitionRegistry 接口，还实现了 ResourceLoader 接口，那么它也会被用作默认的 ResourceLoader。
+	 * {@link org.springframework.context.ApplicationContext} 实现通常就是这种情况。<p>如果给定的是普
+	 * 通的 BeanDefinitionRegistry，则默认的 ResourceLoader 将是
+	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}。<p>如果传入的
+	 * Bean 工厂还实现了 {@link EnvironmentCapable}，此读取器将使用其环境。否则，读取器将初始化并使用
+	 * {@link StandardEnvironment}。所有 ApplicationContext 实现都是 EnvironmentCapable，而普通的
+	 * BeanFactory 实现则不是。
 	 * @param registry the BeanFactory to load bean definitions into,
 	 * in the form of a BeanDefinitionRegistry
 	 * @see #setResourceLoader
@@ -104,9 +99,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
 
 	/**
-	 * Return the bean factory to register the bean definitions with.
-	 * <p>The factory is exposed through the BeanDefinitionRegistry interface,
-	 * encapsulating the methods that are relevant for bean definition handling.
+	 * 返回用于注册 Bean 定义的 Bean 工厂。<p>该工厂通过 BeanDefinitionRegistry 接口暴露，封装了与 Bean
+	 * 定义处理相关的方法。
 	 * @deprecated as of Spring Framework 5.3.15 in favor of {@link #getRegistry()},
 	 * to be removed in Spring Framework 6.0
 	 */
@@ -121,13 +115,10 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	}
 
 	/**
-	 * Set the ResourceLoader to use for resource locations.
-	 * If specifying a ResourcePatternResolver, the bean definition reader
-	 * will be capable of resolving resource patterns to Resource arrays.
-	 * <p>Default is PathMatchingResourcePatternResolver, also capable of
-	 * resource pattern resolving through the ResourcePatternResolver interface.
-	 * <p>Setting this to {@code null} suggests that absolute resource loading
-	 * is not available for this bean definition reader.
+	 * 设置用于资源位置的 ResourceLoader。如果指定的是 ResourcePatternResolver，则 Bean 定义读取器将能
+	 * 够把资源模式解析为 Resource 数组。<p>默认是 PathMatchingResourcePatternResolver，它也可以通过
+	 * ResourcePatternResolver 接口进行资源模式解析。<p>将其设置为 {@code null} 表示此 Bean 定义读取器
+	 * 无法进行绝对资源加载。
 	 * @see org.springframework.core.io.support.ResourcePatternResolver
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
 	 */
@@ -142,10 +133,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	}
 
 	/**
-	 * Set the ClassLoader to use for bean classes.
-	 * <p>Default is {@code null}, which suggests to not load bean classes
-	 * eagerly but rather to just register bean definitions with class names,
-	 * with the corresponding Classes to be resolved later (or never).
+	 * 设置用于 Bean 类的 ClassLoader。<p>默认值为 {@code null}，表示不预先加载 Bean 类，而只是注册带有
+	 * 类名的 Bean 定义，相应的 Class 将在稍后（或永远不）解析。
 	 * @see Thread#getContextClassLoader()
 	 */
 	public void setBeanClassLoader(@Nullable ClassLoader beanClassLoader) {
@@ -159,9 +148,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	}
 
 	/**
-	 * Set the Environment to use when reading bean definitions. Most often used
-	 * for evaluating profile information to determine which bean definitions
-	 * should be read and which should be omitted.
+	 * 设置读取 Bean 定义时要使用的 Environment。最常用于评估 profile 信息，以确定应读取哪些 Bean 定义、
+	 * 应省略哪些 Bean 定义。
 	 */
 	public void setEnvironment(Environment environment) {
 		Assert.notNull(environment, "Environment must not be null");
@@ -174,9 +162,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	}
 
 	/**
-	 * Set the BeanNameGenerator to use for anonymous beans
-	 * (without explicit bean name specified).
-	 * <p>Default is a {@link DefaultBeanNameGenerator}.
+	 * 设置用于匿名 Bean（未指定显式 Bean 名称）的 BeanNameGenerator。<p>默认是
+	 * {@link DefaultBeanNameGenerator}。
 	 */
 	public void setBeanNameGenerator(@Nullable BeanNameGenerator beanNameGenerator) {
 		this.beanNameGenerator = (beanNameGenerator != null ? beanNameGenerator : DefaultBeanNameGenerator.INSTANCE);
@@ -204,9 +191,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	}
 
 	/**
-	 * Load bean definitions from the specified resource location.
-	 * <p>The location can also be a location pattern, provided that the
-	 * ResourceLoader of this bean definition reader is a ResourcePatternResolver.
+	 * 从指定的资源位置加载 Bean 定义。<p>该位置也可以是位置模式，前提是此 Bean 定义读取器的
+	 * ResourceLoader 是一个 ResourcePatternResolver。
 	 * @param location the resource location, to be loaded with the ResourceLoader
 	 * (or ResourcePatternResolver) of this bean definition reader
 	 * @param actualResources a Set to be filled with the actual Resource objects

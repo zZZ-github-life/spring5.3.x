@@ -1,0 +1,148 @@
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::30::0", "zh": ["方法字节码中的一个位置。标签（label）用于跳转、goto 和 switch 指令，以及 try catch 块。标签所指定的是紧随其后的那条 <i>指令</i>。但请注意，标签与它所指定的指令之间可能存在其他元素（例如其他标签、栈映射帧、行号等）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::40::0", "zh": ["一个标志，表示某个标签仅用于调试属性。这样的标签不是基本块的开头，也不是跳转指令的目标或异常处理器。在控制流图分析算法中可以安全地忽略它（用于优化目的）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::47::0", "zh": ["一个标志，表示某个标签是跳转指令的目标，或者是异常处理器的开头。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::59::0", "zh": ["一个标志，表示与某个标签对应的基本块以子程序调用结束。按照 {@link MethodWriter#visitJumpInsn} 中的构造方式，设置了此标志的标签至少有两个出边："]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::76::0", "zh": ["一个标志，表示与某个标签对应的基本块是子程序的开头。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::84::0", "zh": ["当 {@link #otherLineNumbers} 数组需要调整大小以存储新的源代码行号时，要添加到该数组的元素个数。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::90::0", "zh": ["当 {@link #forwardReferences} 数组需要调整大小以存储新的前向引用时，要添加到该数组的元素个数。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::96::0", "zh": ["用于提取指向此标签的前向引用类型的位掩码。提取出的类型要么是 {@link #FORWARD_REFERENCE_TYPE_SHORT}，要么是 {@link #FORWARD_REFERENCE_TYPE_WIDE}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::104::0", "zh": ["在字节码中用两个字节存储的前向引用的类型。例如，来自 ifnull 指令的前向引用就属于这种情况。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::110::0", "zh": ["在字节码中用四个字节存储的前向引用的类型。例如，来自 lookupswitch 指令的前向引用就属于这种情况。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::116::0", "zh": ["用于提取指向此标签的前向引用“句柄”的位掩码。提取出的句柄是存储前向引用值的字节码偏移量（使用 2 个或 4 个字节，具体由 {@link #FORWARD_REFERENCE_TYPE_MASK} 指示）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::125::0", "zh": ["用作哨兵元素，指示标签列表的末尾。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::132::0", "zh": ["与此标签关联的用户管理状态。警告：该字段由 ASM tree 包使用。要在 ASM tree 包中使用它，必须在 MethodNode 中重写 getLabelNode 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::139::0", "zh": ["此标签或其对应基本块的类型和状态。必须是以下值的零个或多个组合：{@link #FLAG_DEBUG_ONLY}、{@link #FLAG_JUMP_TARGET}、{@link #FLAG_RESOLVED}、{@link #FLAG_REACHABLE}、{@link #FLAG_SUBROUTINE_CALLER}、{@link #FLAG_SUBROUTINE_START}、{@link #FLAG_SUBROUTINE_END}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::147::0", "zh": ["与此标签对应的源代码行号，或者 0。如果有多个源代码行号对应于此标签，第一个存储在该字段中，其余的存储在 {@link #otherLineNumbers} 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::154::0", "zh": ["与此标签对应的源代码行号（{@link #lineNumber} 之外的），或者为 null。该数组的第一个元素是它包含的源代码行号数量 n，这些行号存储在索引 1 到 n（含）之间。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::161::0", "zh": ["此标签在其方法的字节码中的偏移量，以字节为单位。当且仅当设置了 {@link #FLAG_RESOLVED} 标志时才设置该值。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::167::0", "zh": ["指向此标签的前向引用。第一个元素是前向引用的数量乘以 2（这对应于该数组中实际使用的最后一个元素的索引）。之后，每个前向引用用两个连续的整数来描述，分别记为 'sourceInsnBytecodeOffset' 和 'reference'："]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::167::1", "zh": ["<p>例如，对于字节码偏移量为 x 的 ifnull 指令，'sourceInsnBytecodeOffset' 等于 x，而 'reference' 的类型为 {@link #FORWARD_REFERENCE_TYPE_SHORT}，值为 x + 1（因为 ifnull 指令使用一个 2 字节的字节码偏移量操作数，它存储在指令本身开始之后一个字节处）。对于字节码偏移量为 x 的 lookupswitch 指令的 default 分支，'sourceInsnBytecodeOffset' 等于 x，而 'reference' 的类型为 {@link #FORWARD_REFERENCE_TYPE_WIDE}，值介于 x + 1 和 x + 4 之间（因为 lookupswitch 指令使用一个 4 字节的字节码偏移量操作数，它存储在指令本身开始之后一到四个字节处）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::216::0", "zh": ["与此标签对应的基本块的输入栈中的元素个数。该字段在 {@link MethodWriter#computeMaxStackAndLocal} 中计算。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::222::0", "zh": ["与此标签对应的基本块末尾处输出栈中的元素个数。该字段仅对以 RET 指令结束的基本块进行计算。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::228::0", "zh": ["与此标签对应的基本块中，输出栈相对于输入栈顶部所达到的最大高度。该最大值始终为正数或 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::235::0", "zh": ["此基本块所属子程序的 id，或者 0。如果该基本块属于多个子程序，则这里是包含它的“最外层”子程序的 id（约定是：调用另一个子程序的子程序比被调用者“更外层”）。如果方法包含 JSR 指令，该字段在 {@link MethodWriter#computeMaxStackAndLocal} 中计算。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::244::0", "zh": ["与此标签对应的基本块的输入和输出栈映射帧。仅当使用 {@link MethodWriter#COMPUTE_ALL_FRAMES} 或 {@link MethodWriter#COMPUTE_INSERTED_FRAMES} 选项时才使用该字段。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::251::0", "zh": ["此标签的后继标签，顺序与其在 {@link MethodVisitor#visitLabel} 中被访问的顺序一致。该链表不包含仅用于调试信息的标签。如果使用 {@link MethodWriter#COMPUTE_ALL_FRAMES} 或 {@link MethodWriter#COMPUTE_INSERTED_FRAMES} 选项，那么它也不包含表示相同字节码偏移量的连续标签（在这种情况下，只有第一个标签会出现在该列表中）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::260::0", "zh": ["与此标签对应的基本块在其方法的控制流图中的出边。这些边存储在 {@link Edge} 对象的链表中，各对象通过其 {@link Edge#nextEdge} 字段相互链接。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::267::0", "zh": ["此标签所属标签列表中的下一个元素；如果它不属于任何列表，则为 {@literal null}。所有标签列表都必须以 {@link #EMPTY_LIST} 哨兵结尾，以确保当且仅当此标签不属于任何标签列表时该字段为 null。注意，同一时刻可以存在多个标签列表，但一个标签同一时刻最多只能属于一个列表（除非某些列表共享公共尾部，但实际中并不这样做）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::267::1", "zh": ["<p>标签列表用于在 {@link MethodWriter#computeAllFrames} 和 {@link MethodWriter#computeMaxStackAndLocal} 中分别计算栈映射帧和最大栈大小，也用于在 {@link #markSubroutine} 和 {@link #addSubroutineRetSuccessors} 中计算属于子程序的基本块及其出边。在这些方法之外，该字段应为 null（此属性是这些方法的前置条件和后置条件）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::293::0", "zh": ["返回与此标签对应的字节码偏移量。该偏移量从方法字节码的起始位置算起。<i>此方法面向 {@link Attribute} 的子类，类生成器或适配器通常不需要使用它。</i>"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::308::0", "zh": ["返回与此标签的字节码偏移量对应的“规范”{@link Label} 实例（如果已知），否则返回标签本身。规范实例是（按 {@link MethodVisitor#visitLabel} 的访问顺序）对应于此字节码偏移量的第一个标签。对于尚未被访问的标签，无法得知该实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::308::1", "zh": ["<p><i>仅当使用 {@link MethodWriter#COMPUTE_ALL_FRAMES} 选项时才应使用此方法。</i>"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::329::0", "zh": ["添加与此标签对应的源代码行号。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::351::0", "zh": ["让给定的访问者访问此标签及其源代码行号（如果适用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::373::0", "zh": ["在方法的字节码中放入对此标签的引用。如果已知该标签的字节码偏移量，则计算标签与引用它的指令之间的相对字节码偏移量并直接写入。否则，写入一个 null 相对偏移量，并为该标签声明一个新的前向引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::403::0", "zh": ["添加指向此标签的前向引用。仅当是真正的前向引用时（即仅当此标签尚未解析时）才能调用此方法。对于后向引用，可以并且必须直接计算并存储该引用的相对字节码偏移量。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::431::0", "zh": ["将此标签的字节码偏移量设置为给定值，并解析指向此标签的前向引用（如果有）。当此标签被添加到方法的字节码中（即其字节码偏移量变为已知）时必须调用此方法。此方法会填补先前添加到该标签的每个前向引用在字节码中留下的空白。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::489::0", "zh": ["查找属于以与此标签对应的基本块开头的子程序的基本块，并将这些块标记为属于该子程序。此方法沿着控制流图查找所有从当前基本块可达的块，且不跟随任何 jsr 目标。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::489::1", "zh": ["<p>注意：此方法的前置条件和后置条件是所有标签的 {@link #nextListElement} 都必须为 null。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::523::0", "zh": ["查找以与此标签对应的基本块开头的子程序结尾的基本块，并为其中每个块添加一条指向给定子程序调用之后的基本块的出边。换言之，当此子程序从给定的调用方基本块被调用时，通过添加对应于该子程序返回的边来补全控制流图。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::523::1", "zh": ["<p>注意：此方法的前置条件和后置条件是所有标签的 {@link #nextListElement} 都必须为 null。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::581::0", "zh": ["将此标签在方法的控制流图中的后继（除去对应于 jsr 目标的后继，以及已经在某个标签列表中的后继）添加到给定的待处理块列表中，并返回新列表。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/Label.java::613::0", "zh": ["返回此标签的字符串表示。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodTooLargeException.java::30::0", "zh": ["当 {@link ClassWriter} 生成的方法的 Code 属性过大时抛出的异常。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodTooLargeException.java::44::0", "zh": ["构造一个新的 {@link MethodTooLargeException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodTooLargeException.java::64::0", "zh": ["返回所有者类的内部名称。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodTooLargeException.java::73::0", "zh": ["返回方法的名称。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodTooLargeException.java::82::0", "zh": ["返回方法的描述符。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodTooLargeException.java::91::0", "zh": ["返回方法 Code 属性的大小，以字节为单位。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::30::0", "zh": ["用于访问 Java 方法的访问者。该类的方法必须按以下顺序调用：( {@code visitParameter} )* [ {@code visitAnnotationDefault} ] ( {@code visitAnnotation} | {@code visitAnnotableParameterCount} | {@code visitParameterAnnotation} {@code visitTypeAnnotation} | {@code visitAttribute} )* [ {@code visitCode} ( {@code visitFrame} | {@code visit<i>X</i>Insn} | {@code visitLabel} | {@code visitInsnAnnotation} | {@code visitTryCatchBlock} | {@code visitTryCatchAnnotation} | {@code visitLocalVariable} | {@code visitLocalVariableAnnotation} | {@code visitLineNumber} )* {@code visitMaxs} ] {@code visitEnd}。此外，{@code visit<i>X</i>Insn} 和 {@code visitLabel} 方法必须按照被访问代码的字节码指令顺序依次调用，{@code visitInsnAnnotation} 必须在被注解的指令<i>之后</i>调用，{@code visitTryCatchBlock} 必须在作为参数传入的标签被访问<i>之前</i>调用，{@code visitTryCatchBlockAnnotation} 必须在相应的 try catch 块被访问<i>之后</i>调用，而 {@code visitLocalVariable}、{@code visitLocalVariableAnnotation} 和 {@code visitLineNumber} 方法必须在作为参数传入的标签被访问<i>之后</i>调用。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::53::0", "zh": ["此访问者实现的 ASM API 版本。该字段的值必须是 {@link Opcodes} 中的 {@code ASM}<i>x</i> 值之一。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::59::0", "zh": ["此访问者必须将方法调用委托给的方法访问者。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::64::0", "zh": ["构造一个新的 {@link MethodVisitor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::74::0", "zh": ["构造一个新的 {@link MethodVisitor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::97::0", "zh": ["此访问者必须将方法调用委托给的方法访问者。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::111::0", "zh": ["访问此方法的一个参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::127::0", "zh": ["访问此注解接口方法的默认值。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::142::0", "zh": ["访问此方法的一个注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::157::0", "zh": ["访问方法签名中某个类型上的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::184::0", "zh": ["访问可以带有注解的方法参数数量。默认情况下（即未调用此方法时），由方法描述符定义的所有方法参数都可以带有注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::204::0", "zh": ["访问此方法某个参数的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::226::0", "zh": ["访问此方法的非标准属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::244::0", "zh": ["访问局部变量和操作数栈元素的当前状态。对于跟在 GOTO 或 THROW 等无条件分支指令之后、作为跳转指令的目标、或者以异常处理器块开头的任何指令 <b>i</b>，都必须在它<i>之前</i>紧接着调用此方法。被访问的类型必须描述在执行 <b>i</b> <i>之前</i>那一时刻局部变量和操作数栈元素的值。<br>", "<br>", "(*) 仅对版本大于或等于 {@link Opcodes#V1_6} 的类，这是必需的。<br>", "<br>", "方法的帧必须以展开形式或压缩形式给出（所有帧必须使用相同的格式，即不得在单个方法中混用展开帧和压缩帧）："]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::244::1", "zh": ["</ul>"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::244::2", "zh": ["<br>", "这两种情况下，对应于方法参数和访问标志的第一个帧都是隐式的，且不能被访问。此外，为同一代码位置访问两个或更多帧是非法的（即两次 visitFrame 调用之间必须至少访问一条指令）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::318::0", "zh": ["访问一条零操作数指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::338::0", "zh": ["访问一条带单个 int 操作数的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::358::0", "zh": ["访问一条局部变量指令。局部变量指令是加载或存储局部变量值的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::373::0", "zh": ["访问一条类型指令。类型指令是接受类的内部名称作为参数的指令（参见 {@link Type#getInternalName()}）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::388::0", "zh": ["访问一条字段指令。字段指令是加载或存储对象字段值的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::405::0", "zh": ["访问一条方法指令。方法指令是调用方法的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::423::0", "zh": ["访问一条方法指令。方法指令是调用方法的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::452::0", "zh": ["访问一条 invokedynamic 指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::476::0", "zh": ["访问一条跳转指令。跳转指令是可以跳转到另一条指令的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::492::0", "zh": ["访问一个标签。标签所指定的是紧随其后将被访问的指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::507::0", "zh": ["访问一条 LDC 指令。注意，Java 虚拟机的未来版本可能会增加新的常量类型。为了便于检测新的常量类型，该方法的实现应检查意外的常量类型，如下所示："]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::564::0", "zh": ["访问一条 IINC 指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::576::0", "zh": ["访问一条 TABLESWITCH 指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::592::0", "zh": ["访问一条 LOOKUPSWITCH 指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::606::0", "zh": ["访问一条 MULTIANEWARRAY 指令。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::618::0", "zh": ["访问指令上的注解。此方法必须在被注解的指令<i>之后</i>紧接着调用。对于同一条指令，它可以被调用多次。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::652::0", "zh": ["访问一个 try catch 块。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::671::0", "zh": ["访问异常处理器类型上的注解。对于被注解的异常处理器，此方法必须在 {@link #visitTryCatchBlock} <i>之后</i>调用。对于同一个异常处理器，它可以被调用多次。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::697::0", "zh": ["访问一个局部变量声明。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::723::0", "zh": ["访问局部变量类型上的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::761::0", "zh": ["访问一个行号声明。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::776::0", "zh": ["访问方法的最大栈大小和最大局部变量数量。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodVisitor.java::788::0", "zh": ["访问方法的结尾。此方法是最后一个被调用的方法，用于通知访问者方法的所有注解和属性都已访问完毕。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::30::0", "zh": ["一个 {@link MethodVisitor}，用于生成与 Java 虚拟机规范（JVMS）中定义的 'method_info' 结构相对应的结构。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::44::0", "zh": ["指示必须从头开始计算最大栈大小和最大局部变量数量。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::50::0", "zh": ["指示必须根据现有的栈映射帧计算最大栈大小和最大局部变量数量。与 {@link #COMPUTE_MAX_STACK_AND_LOCAL} 所使用的控制流图算法相比，通过线性扫描字节码指令可以更高效地完成这一计算。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::58::0", "zh": ["指示必须计算类型为 F_INSERT 的栈映射帧。其他帧不计算。它们应全部为 F_NEW 类型，并且与 F_NEW 帧和 F_INSERT 帧之间的字节码指令一起，就应足以计算 F_INSERT 帧的内容——且无需了解类型层次结构（这是 F_INSERT 的定义）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::66::0", "zh": ["指示必须计算所有栈映射帧。在这种情况下，最大栈大小和最大局部变量数量也会被计算。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::75::0", "zh": ["每个 JVM 操作码对应的栈大小变化量。操作码 'o' 的栈大小变化量由索引为 'o' 的数组元素给出。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::292::0", "zh": ["method_info JVMS 结构的 access_flags 字段。该字段可以包含 ASM 特有的访问标志，例如 {@link Opcodes#ACC_DEPRECATED}，这些标志在生成 ClassFile 结构时会被移除。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::322::0", "zh": ["异常处理器列表中的第一个元素（用于生成 Code 属性的 exception_table）。后续元素可通过 {@link Handler#nextHandler} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::329::0", "zh": ["异常处理器列表中的最后一个元素（用于生成 Code 属性的 exception_table）。后续元素可通过 {@link Handler#nextHandler} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::345::0", "zh": ["LocalVariableTable 代码属性的 local_variable_table 数组，或者 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::353::0", "zh": ["LocalVariableTypeTable 代码属性的 local_variable_type_table 数组，或者 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::365::0", "zh": ["Code 属性的最后一个运行时可见类型注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::371::0", "zh": ["Code 属性的最后一个运行时不可见类型注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::377::0", "zh": ["Code 属性的第一个非标准属性。后续属性可通过 {@link Attribute#nextAttribute} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::377::1", "zh": ["<p><b>警告</b>：该列表按属性被访问顺序的<i>相反</i>顺序存储它们。firstAttribute 实际上是 {@link #visitAttribute} 中最后被访问的属性。{@link #putMethodInfo} 方法按此列表定义的顺序写出属性，即按用户指定的相反顺序。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::399::0", "zh": ["此方法的最后一个运行时可见注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::405::0", "zh": ["此方法的最后一个运行时不可见注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::414::0", "zh": ["此方法的运行时可见参数注解。每个数组元素包含某个参数的最后一个注解（该值可以为 {@literal null} —— 之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问）。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::424::0", "zh": ["此方法的运行时不可见参数注解。每个数组元素包含某个参数的最后一个注解（该值可以为 {@literal null} —— 之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问）。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::431::0", "zh": ["此方法的最后一个运行时可见类型注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::437::0", "zh": ["此方法的最后一个运行时不可见类型注解。之前的注解可通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::452::0", "zh": ["此方法的第一个非标准属性。后续属性可通过 {@link Attribute#nextAttribute} 字段访问。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::452::1", "zh": ["<p><b>警告</b>：该列表按属性被访问顺序的<i>相反</i>顺序存储它们。firstAttribute 实际上是 {@link #visitAttribute} 中最后被访问的属性。{@link #putMethodInfo} 方法按此列表定义的顺序写出属性，即按用户指定的相反顺序。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::467::0", "zh": ["指示必须计算什么。必须是 {@link #COMPUTE_ALL_FRAMES}、{@link #COMPUTE_INSERTED_FRAMES}、{@link COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES}、{@link #COMPUTE_MAX_STACK_AND_LOCAL} 或 {@link #COMPUTE_NOTHING} 之一。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::474::0", "zh": ["方法的第一个基本块。后续基本块（按字节码偏移量顺序）可用 {@link Label#nextBasicBlock} 字段访问。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::480::0", "zh": ["方法的最后一个基本块（按字节码偏移量顺序）。每次遇到基本块时都会更新该字段，用于将其追加到基本块列表末尾。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::486::0", "zh": ["当前基本块，即最后被访问的指令所在的基本块。当 {@link #compute} 等于 {@link #COMPUTE_MAX_STACK_AND_LOCAL} 或 {@link #COMPUTE_ALL_FRAMES} 时，对于不可达代码该字段为 {@literal null}。当 {@link #compute} 等于 {@link #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} 或 {@link #COMPUTE_INSERTED_FRAMES} 时，该字段在整个方法中保持不变（即整个代码被视为单个基本块；实际上，按照假设，已有的帧足以计算任何中间帧——以及最大栈大小——而无需使用任何控制流图）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::497::0", "zh": ["最后被访问的指令之后的相对栈大小。该大小相对于 {@link #currentBasicBlock} 的起始位置，即最后被访问的指令之后的真实栈大小等于当前基本块的 {@link Label#inputStackSize} 加上 {@link #relativeStackSize}。当 {@link #compute} 等于 {@link #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} 时，{@link #currentBasicBlock} 始终是方法的起始位置，因此该相对大小也等于最后被访问的指令之后的绝对栈大小。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::508::0", "zh": ["最后被访问的指令之后的最大相对栈大小。该大小相对于 {@link #currentBasicBlock} 的起始位置，即最后被访问的指令之后的真实最大栈大小等于当前基本块的 {@link Label#inputStackSize} 加上 {@link #maxRelativeStackSize}。当 {@link #compute} 等于 {@link #COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES} 时，{@link #currentBasicBlock} 始终是方法的起始位置，因此该相对大小也等于最后被访问的指令之后的绝对最大栈大小。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::525::0", "zh": ["最后写入 {@link #stackMapTableEntries} 的帧。该字段与 {@link #currentFrame} 具有相同的格式。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::531::0", "zh": ["当前栈映射帧。第一个元素包含该帧所对应指令的字节码偏移量，第二个元素是局部变量的数量，第三个元素是栈元素的数量。局部变量从索引 3 开始，其后是操作数栈元素。概括来说：frame[0] = offset，frame[1] = numLocal，frame[2] = numStack。局部变量和操作数栈条目包含抽象类型，如 {@link Frame} 中所定义，但仅限于 {@link Frame#CONSTANT_KIND}、{@link Frame#REFERENCE_KIND} 或 {@link Frame#UNINITIALIZED_KIND} 抽象类型。long 和 double 类型只使用一个数组条目。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::552::0", "zh": ["最后被访问的指令的起始偏移量。用于设置类型为 'offset_target' 的类型注解的 offset 字段（参见 <a href=\"https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.20.1\">JVMS 4.7.20.1</a>）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::560::0", "zh": ["{@link SymbolTable#getSource} 中此方法的 method_info（不包括其前 6 个字节）必须从中复制的字节偏移量，或者 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::566::0", "zh": ["{@link SymbolTable#getSource} 中必须复制的字节长度，以获取此方法的 method_info（不包括 access_flags、name_index 和 descriptor_index 的前 6 个字节）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::577::0", "zh": ["构造一个新的 {@link MethodWriter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1776::0", "zh": ["在控制流图中向 {@link #currentBasicBlock} 添加一个后继。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1786::0", "zh": ["结束当前基本块。在当前基本块没有任何后继的情况下必须使用此方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1786::1", "zh": ["<p>警告：此方法必须在当前被访问的指令已经放入 {@link #code} 之后调用（如果计算帧，此方法会插入一个新的 Label，以在当前指令之后开始新的基本块）。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1812::0", "zh": ["开始访问一个新的栈映射帧，它存储在 {@link #currentFrame} 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1831::0", "zh": ["在 {@link #currentFrame} 中设置一个抽象类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1841::0", "zh": ["通过将 {@link #currentFrame} 写入 StackMapTable 条目并更新 StackMapTable 的 number_of_entries，来结束对它的访问（当前帧是第一个帧的情况除外，该帧在 StackMapTable 中是隐式的）。然后将 {@link #currentFrame} 重置为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1951::0", "zh": ["将 {@link #currentFrame} 的某些抽象类型放入 {@link #stackMapTableEntries}，使用 StackMapTable 属性中采用的 JVMS verification_type_info 格式。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1964::0", "zh": ["将给定的公共 API 帧元素类型放入 {@link #stackMapTableEntries}，使用 StackMapTable 属性中采用的 JVMS verification_type_info 格式。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::1992::0", "zh": ["返回此方法的属性是否可以从给定方法的属性复制（假定给定的 ClassReader 与此 MethodWriter 之间没有方法访问者）。此方法只应在此 MethodWriter 创建之后、访问任何内容之前调用。如果与构造参数相对应的属性（至多包括 Signature、Exception、Deprecated 和 Synthetic 属性）与给定方法中相应的属性相同，则返回 true。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::2054::0", "zh": ["设置将从中复制此方法属性的源。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::2070::0", "zh": ["返回此 MethodWriter 生成的 method_info JVMS 结构的大小。同时将方法属性的名称添加到常量池中。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::2175::0", "zh": ["将此 MethodWriter 生成的 method_info JVMS 结构的内容放入给定的 ByteVector 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/MethodWriter.java::2385::0", "zh": ["将此方法的属性收集到给定的属性原型集合中。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::30::0", "zh": ["用于访问 Java 模块的访问者。该类的方法必须按以下顺序调用：( {@code visitMainClass} | ( {@code visitPackage} | {@code visitRequire} | {@code visitExport} | {@code visitOpen} | {@code visitUse} | {@code visitProvide} )* ) {@code visitEnd}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::39::0", "zh": ["此访问者实现的 ASM API 版本。其值必须是 {@link Opcodes#ASM6} 或 {@link Opcodes#ASM7} 之一。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::45::0", "zh": ["此访问者必须将方法调用委托给的模块访问者。可以为 {@literal null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::50::0", "zh": ["构造一个新的 {@link ModuleVisitor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::60::0", "zh": ["构造一个新的 {@link ModuleVisitor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::83::0", "zh": ["访问当前模块的主类。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::94::0", "zh": ["访问当前模块的一个包。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::105::0", "zh": ["访问当前模块的一个依赖。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::119::0", "zh": ["访问当前模块的一个导出包。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::134::0", "zh": ["访问当前模块的一个开放包。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::149::0", "zh": ["访问当前模块使用的一个服务。名称必须是接口或类的内部名称。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::161::0", "zh": ["访问一个服务的实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/asm/ModuleVisitor.java::174::0", "zh": ["访问模块的结尾。此方法是最后一个被调用的方法，用于通知访问者所有内容都已访问完毕。"]}

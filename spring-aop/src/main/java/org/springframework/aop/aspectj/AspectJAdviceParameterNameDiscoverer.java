@@ -34,84 +34,30 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link ParameterNameDiscoverer} implementation that tries to deduce parameter names
- * for an advice method from the pointcut expression, returning, and throwing clauses.
- * If an unambiguous interpretation is not available, it returns {@code null}.
+ * {@link ParameterNameDiscoverer} 实现，尝试从切点表达式、returning 和 throwing 子句中推断通知方法
+ * 的参数名称。如果无法获得无歧义的解释，则返回 {@code null}。
  *
- * <p>This class interprets arguments in the following way:
+ * <p>此类按以下方式解释参数：
  * <ol>
- * <li>If the first parameter of the method is of type {@link JoinPoint}
- * or {@link ProceedingJoinPoint}, it is assumed to be for passing
- * {@code thisJoinPoint} to the advice, and the parameter name will
- * be assigned the value {@code "thisJoinPoint"}.</li>
- * <li>If the first parameter of the method is of type
- * {@code JoinPoint.StaticPart}, it is assumed to be for passing
- * {@code "thisJoinPointStaticPart"} to the advice, and the parameter name
- * will be assigned the value {@code "thisJoinPointStaticPart"}.</li>
- * <li>If a {@link #setThrowingName(String) throwingName} has been set, and
- * there are no unbound arguments of type {@code Throwable+}, then an
- * {@link IllegalArgumentException} is raised. If there is more than one
- * unbound argument of type {@code Throwable+}, then an
- * {@link AmbiguousBindingException} is raised. If there is exactly one
- * unbound argument of type {@code Throwable+}, then the corresponding
- * parameter name is assigned the value &lt;throwingName&gt;.</li>
- * <li>If there remain unbound arguments, then the pointcut expression is
- * examined. Let {@code a} be the number of annotation-based pointcut
- * expressions (&#64;annotation, &#64;this, &#64;target, &#64;args,
- * &#64;within, &#64;withincode) that are used in binding form. Usage in
- * binding form has itself to be deduced: if the expression inside the
- * pointcut is a single string literal that meets Java variable name
- * conventions it is assumed to be a variable name. If {@code a} is
- * zero we proceed to the next stage. If {@code a} &gt; 1 then an
- * {@code AmbiguousBindingException} is raised. If {@code a} == 1,
- * and there are no unbound arguments of type {@code Annotation+},
- * then an {@code IllegalArgumentException} is raised. if there is
- * exactly one such argument, then the corresponding parameter name is
- * assigned the value from the pointcut expression.</li>
- * <li>If a returningName has been set, and there are no unbound arguments
- * then an {@code IllegalArgumentException} is raised. If there is
- * more than one unbound argument then an
- * {@code AmbiguousBindingException} is raised. If there is exactly
- * one unbound argument then the corresponding parameter name is assigned
- * the value &lt;returningName&gt;.</li>
- * <li>If there remain unbound arguments, then the pointcut expression is
- * examined once more for {@code this}, {@code target}, and
- * {@code args} pointcut expressions used in the binding form (binding
- * forms are deduced as described for the annotation based pointcuts). If
- * there remains more than one unbound argument of a primitive type (which
- * can only be bound in {@code args}) then an
- * {@code AmbiguousBindingException} is raised. If there is exactly
- * one argument of a primitive type, then if exactly one {@code args}
- * bound variable was found, we assign the corresponding parameter name
- * the variable name. If there were no {@code args} bound variables
- * found an {@code IllegalStateException} is raised. If there are
- * multiple {@code args} bound variables, an
- * {@code AmbiguousBindingException} is raised. At this point, if
- * there remains more than one unbound argument we raise an
- * {@code AmbiguousBindingException}. If there are no unbound arguments
- * remaining, we are done. If there is exactly one unbound argument
- * remaining, and only one candidate variable name unbound from
- * {@code this}, {@code target}, or {@code args}, it is
- * assigned as the corresponding parameter name. If there are multiple
- * possibilities, an {@code AmbiguousBindingException} is raised.</li>
+ * <li>如果方法的第一个参数类型为 {@link JoinPoint} 或 {@link ProceedingJoinPoint}，则假定该参数用于向通知传递 {@code thisJoinPoint}，其参数名将被赋值为 {@code "thisJoinPoint"}。</li>
+ * <li>如果方法的第一个参数类型为 {@code JoinPoint.StaticPart}，则假定该参数用于向通知传递 {@code "thisJoinPointStaticPart"}，其参数名将被赋值为 {@code "thisJoinPointStaticPart"}。</li>
+ * <li>如果已设置 {@link #setThrowingName(String) throwingName}，但不存在类型为 {@code Throwable+} 的未绑定参数，则抛出 {@link IllegalArgumentException}。如果存在多个类型为 {@code Throwable+} 的未绑定参数，则抛出 {@link AmbiguousBindingException}。如果恰好存在一个类型为 {@code Throwable+} 的未绑定参数，则相应参数名将被赋值为 &lt;throwingName&gt;。</li>
+ * <li>如果仍有未绑定参数，则检查切点表达式。设 {@code a} 为以绑定形式使用的基于注解的切点表达式（&#64;annotation、&#64;this、&#64;target、&#64;args、&#64;within、&#64;withincode）的数量。是否以绑定形式使用本身需要推断：如果切点内的表达式是符合 Java 变量命名约定的单个字符串字面量，则假定它是变量名。如果 {@code a} 为零，则进入下一阶段。如果 {@code a} &gt; 1，则抛出 {@code AmbiguousBindingException}。如果 {@code a} == 1，且不存在类型为 {@code Annotation+} 的未绑定参数，则抛出 {@code IllegalArgumentException}；如果恰好存在一个这样的参数，则相应参数名将被赋值为切点表达式中的值。</li>
+ * <li>如果已设置 returningName，但不存在未绑定参数，则抛出 {@code IllegalArgumentException}。如果存在多个未绑定参数，则抛出 {@code AmbiguousBindingException}。如果恰好存在一个未绑定参数，则相应参数名将被赋值为 &lt;returningName&gt;。</li>
+ * <li>如果仍有未绑定参数，则再次检查切点表达式，以查找以绑定形式使用的 {@code this}、{@code target} 和 {@code args} 切点表达式（绑定形式的推断方式与基于注解的切点相同）。如果仍存在多个基本类型的未绑定参数（这类参数只能在 {@code args} 中绑定），则抛出 {@code AmbiguousBindingException}。如果恰好存在一个基本类型参数，那么若恰好找到一个 {@code args} 绑定变量，就将该变量名赋给相应参数名；如果没有找到任何 {@code args} 绑定变量，则抛出 {@code IllegalStateException}；如果有多个 {@code args} 绑定变量，则抛出 {@code AmbiguousBindingException}。此时，如果仍存在多个未绑定参数，则抛出 {@code AmbiguousBindingException}。如果没有剩余未绑定参数，则处理完成。如果恰好剩余一个未绑定参数，且只有一个来自 {@code this}、{@code target} 或 {@code args} 的候选变量名未绑定，则将其赋给相应参数名。如果存在多种可能，则抛出 {@code AmbiguousBindingException}。</li>
  * </ol>
  *
- * <p>The behavior on raising an {@code IllegalArgumentException} or
- * {@code AmbiguousBindingException} is configurable to allow this discoverer
- * to be used as part of a chain-of-responsibility. By default the condition will
- * be logged and the {@code getParameterNames(..)} method will simply return
- * {@code null}. If the {@link #setRaiseExceptions(boolean) raiseExceptions}
- * property is set to {@code true}, the conditions will be thrown as
- * {@code IllegalArgumentException} and {@code AmbiguousBindingException},
- * respectively.
+ * <p>抛出 {@code IllegalArgumentException} 或 {@code AmbiguousBindingException} 时的行为是可配置的，
+ * 以便此发现器可作为责任链的一部分使用。默认情况下，该条件会被记录日志，并且
+ * {@code getParameterNames(..)} 方法只会返回 {@code null}。如果将
+ * {@link #setRaiseExceptions(boolean) raiseExceptions} 属性设置为 {@code true}，则这些条件将分别以
+ * {@code IllegalArgumentException} 和 {@code AmbiguousBindingException} 的形式抛出。
  *
- * <p>Was that perfectly clear? ;)
+ * <p>现在是不是完全清楚了？;)
  *
- * <p>Short version: If an unambiguous binding can be deduced, then it is.
- * If the advice requirements cannot possibly be satisfied, then {@code null}
- * is returned. By setting the {@link #setRaiseExceptions(boolean) raiseExceptions}
- * property to {@code true}, descriptive exceptions will be thrown instead of
- * returning {@code null} in the case that the parameter names cannot be discovered.
+ * <p>简而言之：如果可以推断出无歧义的绑定，那么就采用它。如果通知的要求根本不可能满足，则返回
+ * {@code null}。通过将 {@link #setRaiseExceptions(boolean) raiseExceptions} 属性设置为
+ * {@code true}，在无法发现参数名的情况下将抛出描述性的异常，而不是返回 {@code null}。
  *
  * @author Adrian Colyer
  * @author Juergen Hoeller
@@ -156,17 +102,17 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 
-	/** The pointcut expression associated with the advice, as a simple String. */
+	/** 与通知关联的切点表达式，以简单 String 表示。 */
 	@Nullable
 	private String pointcutExpression;
 
 	private boolean raiseExceptions;
 
-	/** If the advice is afterReturning, and binds the return value, this is the parameter name used. */
+	/** 如果通知是 afterReturning 并绑定返回值，则这是所使用的参数名。 */
 	@Nullable
 	private String returningName;
 
-	/** If the advice is afterThrowing, and binds the thrown value, this is the parameter name used. */
+	/** 如果通知是 afterThrowing 并绑定抛出的值，则这是所使用的参数名。 */
 	@Nullable
 	private String throwingName;
 
@@ -178,8 +124,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 
 	/**
-	 * Create a new discoverer that attempts to discover parameter names.
-	 * from the given pointcut expression.
+	 * 创建一个新的发现器，尝试从给定的切点表达式中发现参数名称。
 	 */
 	public AspectJAdviceParameterNameDiscoverer(@Nullable String pointcutExpression) {
 		this.pointcutExpression = pointcutExpression;
@@ -187,8 +132,8 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 
 	/**
-	 * Indicate whether {@link IllegalArgumentException} and {@link AmbiguousBindingException}
-	 * must be thrown as appropriate in the case of failing to deduce advice parameter names.
+	 * 指示在无法推断通知参数名的情况下，是否必须视情况抛出 {@link IllegalArgumentException} 和
+	 * {@link AmbiguousBindingException}。
 	 * @param raiseExceptions {@code true} if exceptions are to be thrown
 	 */
 	public void setRaiseExceptions(boolean raiseExceptions) {
@@ -196,8 +141,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * If {@code afterReturning} advice binds the return value, the
-	 * returning variable name must be specified.
+	 * 如果 {@code afterReturning} 通知绑定返回值，则必须指定 returning 变量名。
 	 * @param returningName the name of the returning variable
 	 */
 	public void setReturningName(@Nullable String returningName) {
@@ -205,8 +149,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * If {@code afterThrowing} advice binds the thrown value, the
-	 * throwing variable name must be specified.
+	 * 如果 {@code afterThrowing} 通知绑定抛出的值，则必须指定 throwing 变量名。
 	 * @param throwingName the name of the throwing variable
 	 */
 	public void setThrowingName(@Nullable String throwingName) {
@@ -215,9 +158,8 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 
 	/**
-	 * Deduce the parameter names for an advice method.
-	 * <p>See the {@link AspectJAdviceParameterNameDiscoverer class level javadoc}
-	 * for this class for details of the algorithm used.
+	 * 推断通知方法的参数名称。<p>有关所用算法的详细信息，请参见
+	 * {@link AspectJAdviceParameterNameDiscoverer class level javadoc}。
 	 * @param method the target {@link Method}
 	 * @return the parameter names
 	 */
@@ -297,7 +239,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * An advice method can never be a constructor in Spring.
+	 * 在 Spring 中，通知方法永远不可能是构造器。
 	 * @return {@code null}
 	 * @throws UnsupportedOperationException if
 	 * {@link #setRaiseExceptions(boolean) raiseExceptions} has been set to {@code true}
@@ -322,8 +264,8 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * If the first parameter is of type JoinPoint or ProceedingJoinPoint,bind "thisJoinPoint" as
-	 * parameter name and return true, else return false.
+	 * 如果第一个参数的类型为 JoinPoint 或 ProceedingJoinPoint，则绑定 "thisJoinPoint" 作为参数名并返回
+	 * true，否则返回 false。
 	 */
 	private boolean maybeBindThisJoinPoint() {
 		if ((this.argumentTypes[0] == JoinPoint.class) || (this.argumentTypes[0] == ProceedingJoinPoint.class)) {
@@ -342,8 +284,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * If a throwing name was specified and there is exactly one choice remaining
-	 * (argument that is a subtype of Throwable) then bind it.
+	 * 如果指定了 throwing 名称，并且恰好只剩下一个选择（即 Throwable 子类型的参数），则绑定它。
 	 */
 	private void maybeBindThrowingVariable() {
 		if (this.throwingName == null) {
@@ -376,7 +317,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * If a returning variable was specified and there is only one choice remaining, bind it.
+	 * 如果指定了 returning 变量，并且只剩下一个选择，则绑定它。
 	 */
 	private void maybeBindReturningVariable() {
 		if (this.numberOfRemainingUnboundArguments == 0) {
@@ -402,11 +343,9 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 
 	/**
-	 * Parse the string pointcut expression looking for:
-	 * &#64;this, &#64;target, &#64;args, &#64;within, &#64;withincode, &#64;annotation.
-	 * If we find one of these pointcut expressions, try and extract a candidate variable
-	 * name (or variable names, in the case of args).
-	 * <p>Some more support from AspectJ in doing this exercise would be nice... :)
+	 * 解析字符串切点表达式，查找：&#64;this、&#64;target、&#64;args、&#64;within、&#64;withincode、
+	 * &#64;annotation。如果找到其中某个切点表达式，则尝试提取候选变量名（对于 args 则是多个变量名）。
+	 * <p>如果 AspectJ 能在这一过程中提供更多支持就更好了…… :)
 	 */
 	private void maybeBindAnnotationsFromPointcutExpression() {
 		List<String> varNames = new ArrayList<>();
@@ -436,7 +375,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * Match the given list of extracted variable names to argument slots.
+	 * 将给定的已提取变量名列表与参数槽进行匹配。
 	 */
 	private void bindAnnotationsFromVarNames(List<String> varNames) {
 		if (!varNames.isEmpty()) {
@@ -477,8 +416,8 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * Given an args pointcut body (could be {@code args} or {@code at_args}),
-	 * add any candidate variable names to the given list.
+	 * 给定一个 args 切点主体（可以是 {@code args} 或 {@code at_args}），将任何候选变量名添加到给定列表
+	 * 中。
 	 */
 	private void maybeExtractVariableNamesFromArgs(@Nullable String argsSpec, List<String> varNames) {
 		if (argsSpec == null) {
@@ -495,8 +434,8 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * Parse the string pointcut expression looking for this(), target() and args() expressions.
-	 * If we find one, try and extract a candidate variable name and bind it.
+	 * 解析字符串切点表达式，查找 this()、target() 和 args() 表达式。如果找到，则尝试提取候选变量名并进
+	 * 行绑定。
 	 */
 	private void maybeBindThisOrTargetOrArgsFromPointcutExpression() {
 		if (this.numberOfRemainingUnboundArguments > 1) {
@@ -657,7 +596,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 	}
 
 	/**
-	 * Match up args against unbound arguments of primitive types.
+	 * 将 args 与基本类型中未绑定的参数进行匹配。
 	 */
 	private void maybeBindPrimitiveArgsFromPointcutExpression() {
 		int numUnboundPrimitives = countNumberOfUnboundPrimitiveArguments();
@@ -754,8 +693,7 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 
 	/**
-	 * Simple struct to hold the extracted text from a pointcut body, together
-	 * with the number of tokens consumed in extracting it.
+	 * 用于保存从切点主体提取的文本以及提取过程中消耗的 token 数量的简单结构体。
 	 */
 	private static class PointcutBody {
 
@@ -772,14 +710,13 @@ public class AspectJAdviceParameterNameDiscoverer implements ParameterNameDiscov
 
 
 	/**
-	 * Thrown in response to an ambiguous binding being detected when
-	 * trying to resolve a method's parameter names.
+	 * 在尝试解析方法的参数名时检测到歧义绑定时抛出。
 	 */
 	@SuppressWarnings("serial")
 	public static class AmbiguousBindingException extends RuntimeException {
 
 		/**
-		 * Construct a new AmbiguousBindingException with the specified message.
+		 * 使用指定消息构造一个新的 AmbiguousBindingException。
 		 * @param msg the detail message
 		 */
 		public AmbiguousBindingException(String msg) {

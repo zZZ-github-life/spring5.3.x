@@ -27,9 +27,8 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link ClientHttpRequestInterceptor} to apply a given HTTP Basic Authentication
- * username/password pair, unless a custom {@code Authorization} header has
- * already been set.
+ * {@link ClientHttpRequestInterceptor}，用于应用给定的 HTTP 基本身份验证
+ * 用户名/密码对，除非已设置自定义 {@code Authorization} 头部。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -43,8 +42,8 @@ public class BasicAuthenticationInterceptor implements ClientHttpRequestIntercep
 
 
 	/**
-	 * Create a new interceptor which adds Basic Authentication for the
-	 * given username and password.
+	 * 创建一个新的拦截器，为给定的用户名和密码
+	 * 添加基本身份验证。
 	 * @param username the username to use
 	 * @param password the password to use
 	 * @see HttpHeaders#setBasicAuth(String, String)
@@ -55,8 +54,8 @@ public class BasicAuthenticationInterceptor implements ClientHttpRequestIntercep
 	}
 
 	/**
-	 * Create a new interceptor which adds Basic Authentication for the
-	 * given username and password, encoded using the specified charset.
+	 * 创建一个新的拦截器，为给定的用户名和密码添加基本身份验证，
+	 * 并使用指定的字符集进行编码。
 	 * @param username the username to use
 	 * @param password the password to use
 	 * @param charset the charset to use

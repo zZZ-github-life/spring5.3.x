@@ -32,14 +32,13 @@ import javax.jms.TextMessage;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A simple message converter which is able to handle TextMessages, BytesMessages,
- * MapMessages, and ObjectMessages. Used as default conversion strategy
- * by {@link org.springframework.jms.core.JmsTemplate}, for
- * {@code convertAndSend} and {@code receiveAndConvert} operations.
+ * 一个简单的消息转换器，能够处理 TextMessage、BytesMessage、
+ * MapMessage 和 ObjectMessage。被 {@link org.springframework.jms.core.JmsTemplate}
+ * 用作 {@code convertAndSend} 和 {@code receiveAndConvert} 操作的默认转换策略。
  *
- * <p>Converts a String to a {@link javax.jms.TextMessage}, a byte array to a
- * {@link javax.jms.BytesMessage}, a Map to a {@link javax.jms.MapMessage}, and
- * a Serializable object to a {@link javax.jms.ObjectMessage} (or vice versa).
+ * <p>将 String 转换为 {@link javax.jms.TextMessage}，将字节数组转换为
+ * {@link javax.jms.BytesMessage}，将 Map 转换为 {@link javax.jms.MapMessage}，
+ * 将 Serializable 对象转换为 {@link javax.jms.ObjectMessage}（或反之）。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -49,9 +48,9 @@ import org.springframework.util.ObjectUtils;
 public class SimpleMessageConverter implements MessageConverter {
 
 	/**
-	 * This implementation creates a TextMessage for a String, a
-	 * BytesMessage for a byte array, a MapMessage for a Map,
-	 * and an ObjectMessage for a Serializable object.
+	 * 此实现为 String 创建 TextMessage，为字节数组创建
+	 * BytesMessage，为 Map 创建 MapMessage，
+	 * 为 Serializable 对象创建 ObjectMessage。
 	 * @see #createMessageForString
 	 * @see #createMessageForByteArray
 	 * @see #createMessageForMap
@@ -82,10 +81,10 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * This implementation converts a TextMessage back to a String, a
-	 * ByteMessage back to a byte array, a MapMessage back to a Map,
-	 * and an ObjectMessage back to a Serializable object. Returns
-	 * the plain Message object in case of an unknown message type.
+	 * 此实现将 TextMessage 转换回 String，将 BytesMessage 转换回
+	 * 字节数组，将 MapMessage 转换回 Map，
+	 * 将 ObjectMessage 转换回 Serializable 对象。
+	 * 对于未知的消息类型，返回原始的 Message 对象。
 	 * @see #extractStringFromMessage
 	 * @see #extractByteArrayFromMessage
 	 * @see #extractMapFromMessage
@@ -112,7 +111,7 @@ public class SimpleMessageConverter implements MessageConverter {
 
 
 	/**
-	 * Create a JMS TextMessage for the given String.
+	 * 为给定的 String 创建 JMS TextMessage。
 	 * @param text the String to convert
 	 * @param session current JMS session
 	 * @return the resulting message
@@ -124,7 +123,7 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * Create a JMS BytesMessage for the given byte array.
+	 * 为给定的字节数组创建 JMS BytesMessage。
 	 * @param bytes the byte array to convert
 	 * @param session current JMS session
 	 * @return the resulting message
@@ -138,7 +137,7 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * Create a JMS MapMessage for the given Map.
+	 * 为给定的 Map 创建 JMS MapMessage。
 	 * @param map the Map to convert
 	 * @param session current JMS session
 	 * @return the resulting message
@@ -159,7 +158,7 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * Create a JMS ObjectMessage for the given Serializable object.
+	 * 为给定的 Serializable 对象创建 JMS ObjectMessage。
 	 * @param object the Serializable object to convert
 	 * @param session current JMS session
 	 * @return the resulting message
@@ -172,7 +171,7 @@ public class SimpleMessageConverter implements MessageConverter {
 
 
 	/**
-	 * Extract a String from the given TextMessage.
+	 * 从给定的 TextMessage 中提取 String。
 	 * @param message the message to convert
 	 * @return the resulting String
 	 * @throws JMSException if thrown by JMS methods
@@ -182,7 +181,7 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * Extract a byte array from the given {@link BytesMessage}.
+	 * 从给定的 {@link BytesMessage} 中提取字节数组。
 	 * @param message the message to convert
 	 * @return the resulting byte array
 	 * @throws JMSException if thrown by JMS methods
@@ -194,7 +193,7 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * Extract a Map from the given {@link MapMessage}.
+	 * 从给定的 {@link MapMessage} 中提取 Map。
 	 * @param message the message to convert
 	 * @return the resulting Map
 	 * @throws JMSException if thrown by JMS methods
@@ -211,7 +210,7 @@ public class SimpleMessageConverter implements MessageConverter {
 	}
 
 	/**
-	 * Extract a Serializable object from the given {@link ObjectMessage}.
+	 * 从给定的 {@link ObjectMessage} 中提取 Serializable 对象。
 	 * @param message the message to convert
 	 * @return the resulting Serializable object
 	 * @throws JMSException if thrown by JMS methods

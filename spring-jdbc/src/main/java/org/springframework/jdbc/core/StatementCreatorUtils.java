@@ -43,12 +43,11 @@ import org.springframework.jdbc.support.SqlValue;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility methods for PreparedStatementSetter/Creator and CallableStatementCreator
- * implementations, providing sophisticated parameter management (including support
- * for LOB values).
+ * PreparedStatementSetter/Creator和CallableStatementCreator实现的工具方法，
+ * 提供复杂的参数管理（包括对LOB值的支持）。
  *
- * <p>Used by PreparedStatementCreatorFactory and CallableStatementCreatorFactory,
- * but also available for direct use in custom setter/creator implementations.
+ * <p>由PreparedStatementCreatorFactory和CallableStatementCreatorFactory使用，
+ * 但也可在自定义setter/creator实现中直接使用。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -65,15 +64,15 @@ import org.springframework.lang.Nullable;
 public abstract class StatementCreatorUtils {
 
 	/**
-	 * System property that instructs Spring to ignore {@link java.sql.ParameterMetaData#getParameterType}
-	 * completely, i.e. to never even attempt to retrieve {@link PreparedStatement#getParameterMetaData()}
-	 * for {@link StatementCreatorUtils#setNull} calls.
-	 * <p>The default is "false", trying {@code getParameterType} calls first and falling back to
-	 * {@link PreparedStatement#setNull} / {@link PreparedStatement#setObject} calls based on
-	 * well-known behavior of common databases.
-	 * <p>Consider switching this flag to "true" if you experience misbehavior at runtime,
-	 * e.g. with connection pool issues in case of an exception thrown from {@code getParameterType}
-	 * (as reported on JBoss AS 7) or in case of performance problems (as reported on PostgreSQL).
+	 * 系统属性，指示Spring完全忽略{@link java.sql.ParameterMetaData#getParameterType}，
+	 * 即甚至不为{@link StatementCreatorUtils#setNull}调用尝试检索
+	 * {@link PreparedStatement#getParameterMetaData()}。
+	 * <p>默认为"false"，首先尝试{@code getParameterType}调用，
+	 * 然后基于常见数据库的已知行为回退到{@link PreparedStatement#setNull}
+	 * / {@link PreparedStatement#setObject}调用。
+	 * <p>如果在运行时遇到错误行为，请考虑将此标志切换为"true"，
+	 * 例如在{@code getParameterType}抛出异常时出现连接池问题（如在JBoss AS 7上报告的），
+	 * 或在出现性能问题时（如在PostgreSQL上报告的）。
 	 */
 	public static final String IGNORE_GETPARAMETERTYPE_PROPERTY_NAME = "spring.jdbc.getParameterType.ignore";
 
@@ -113,7 +112,7 @@ public abstract class StatementCreatorUtils {
 
 
 	/**
-	 * Derive a default SQL type from the given Java type.
+	 * 从给定的Java类型推导默认的SQL类型。
 	 * @param javaType the Java type to translate
 	 * @return the corresponding SQL type, or {@link SqlTypeValue#TYPE_UNKNOWN} if none found
 	 */
@@ -138,8 +137,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Set the value for a parameter. The method used is based on the SQL type
-	 * of the parameter and we can handle complex types like arrays and LOBs.
+	 * 设置参数的值。使用的方法基于参数的SQL类型，
+	 * 我们可以处理复杂类型如数组和LOB。
 	 * @param ps the prepared statement or callable statement
 	 * @param paramIndex index of the parameter we are setting
 	 * @param param the parameter as it is declared including type
@@ -153,8 +152,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Set the value for a parameter. The method used is based on the SQL type
-	 * of the parameter and we can handle complex types like arrays and LOBs.
+	 * 设置参数的值。使用的方法基于参数的SQL类型，
+	 * 我们可以处理复杂类型如数组和LOB。
 	 * @param ps the prepared statement or callable statement
 	 * @param paramIndex index of the parameter we are setting
 	 * @param sqlType the SQL type of the parameter
@@ -169,8 +168,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Set the value for a parameter. The method used is based on the SQL type
-	 * of the parameter and we can handle complex types like arrays and LOBs.
+	 * 设置参数的值。使用的方法基于参数的SQL类型，
+	 * 我们可以处理复杂类型如数组和LOB。
 	 * @param ps the prepared statement or callable statement
 	 * @param paramIndex index of the parameter we are setting
 	 * @param sqlType the SQL type of the parameter
@@ -187,8 +186,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Set the value for a parameter. The method used is based on the SQL type
-	 * of the parameter and we can handle complex types like arrays and LOBs.
+	 * 设置参数的值。使用的方法基于参数的SQL类型，
+	 * 我们可以处理复杂类型如数组和LOB。
 	 * @param ps the prepared statement or callable statement
 	 * @param paramIndex index of the parameter we are setting
 	 * @param sqlType the SQL type of the parameter
@@ -239,8 +238,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Set the specified PreparedStatement parameter to null,
-	 * respecting database-specific peculiarities.
+	 * 将指定的PreparedStatement参数设置为null，
+	 * 尊重数据库特定的行为。
 	 */
 	private static void setNull(PreparedStatement ps, int paramIndex, int sqlType, @Nullable String typeName)
 			throws SQLException {
@@ -422,7 +421,7 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Check whether the given value can be treated as a String value.
+	 * 检查给定的值是否可以被视为String值。
 	 */
 	private static boolean isStringValue(Class<?> inValueType) {
 		// Consider any CharSequence (including StringBuffer and StringBuilder) as a String.
@@ -431,8 +430,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Check whether the given value is a {@code java.util.Date}
-	 * (but not one of the JDBC-specific subclasses).
+	 * 检查给定的值是否为{@code java.util.Date}
+	 * （但不是JDBC特定的子类之一）。
 	 */
 	private static boolean isDateValue(Class<?> inValueType) {
 		return (java.util.Date.class.isAssignableFrom(inValueType) &&
@@ -442,8 +441,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Clean up all resources held by parameter values which were passed to an
-	 * execute method. This is for example important for closing LOB values.
+	 * 清理传递给execute方法的参数值所持有的所有资源。
+	 * 例如，这对于关闭LOB值很重要。
 	 * @param paramValues parameter values supplied. May be {@code null}.
 	 * @see DisposableSqlTypeValue#cleanup()
 	 * @see org.springframework.jdbc.core.support.SqlLobValue#cleanup()
@@ -455,8 +454,8 @@ public abstract class StatementCreatorUtils {
 	}
 
 	/**
-	 * Clean up all resources held by parameter values which were passed to an
-	 * execute method. This is for example important for closing LOB values.
+	 * 清理传递给execute方法的参数值所持有的所有资源。
+	 * 例如，这对于关闭LOB值很重要。
 	 * @param paramValues parameter values supplied. May be {@code null}.
 	 * @see DisposableSqlTypeValue#cleanup()
 	 * @see org.springframework.jdbc.core.support.SqlLobValue#cleanup()

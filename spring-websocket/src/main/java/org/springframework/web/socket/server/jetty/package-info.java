@@ -1,5 +1,5 @@
 /**
- * Server-side support for the Jetty 9+ WebSocket API.
+ * Jetty 9+ WebSocket API 的服务器端支持。
  */
 @NonNullApi
 @NonNullFields

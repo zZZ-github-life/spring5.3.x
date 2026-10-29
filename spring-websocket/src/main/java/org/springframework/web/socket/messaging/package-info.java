@@ -1,5 +1,5 @@
 /**
- * WebSocket integration for Spring's messaging module.
+ * Spring 消息传递模块的 WebSocket 集成。
  */
 @NonNullApi
 @NonNullFields

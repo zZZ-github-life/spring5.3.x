@@ -24,8 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * This interface defines the multipart request access operations that are exposed
- * for actual multipart requests. It is extended by {@link MultipartHttpServletRequest}.
+ * 此接口定义了针对实际 multipart 请求所暴露的 multipart 请求访问操作。
+ * 由 {@link MultipartHttpServletRequest} 扩展。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -34,17 +34,14 @@ import org.springframework.util.MultiValueMap;
 public interface MultipartRequest {
 
 	/**
-	 * Return an {@link java.util.Iterator} of String objects containing the
-	 * parameter names of the multipart files contained in this request. These
-	 * are the field names of the form (like with normal parameters), not the
-	 * original file names.
+	 * 返回一个包含此请求中 multipart 文件参数名称的 String 迭代器。
+	 * 这些名称是表单的字段名（与普通参数类似），而不是原始文件名。
 	 * @return the names of the files
 	 */
 	Iterator<String> getFileNames();
 
 	/**
-	 * Return the contents plus description of an uploaded file in this request,
-	 * or {@code null} if it does not exist.
+	 * 返回此请求中某个上传文件的内容及描述，如果该文件不存在则返回 {@code null}。
 	 * @param name a String specifying the parameter name of the multipart file
 	 * @return the uploaded content in the form of a {@link MultipartFile} object
 	 */
@@ -52,8 +49,7 @@ public interface MultipartRequest {
 	MultipartFile getFile(String name);
 
 	/**
-	 * Return the contents plus description of uploaded files in this request,
-	 * or an empty list if it does not exist.
+	 * 返回此请求中多个上传文件的内容及描述，如果不存在则返回空列表。
 	 * @param name a String specifying the parameter name of the multipart file
 	 * @return the uploaded content in the form of a {@link MultipartFile} list
 	 * @since 3.0
@@ -61,14 +57,14 @@ public interface MultipartRequest {
 	List<MultipartFile> getFiles(String name);
 
 	/**
-	 * Return a {@link java.util.Map} of the multipart files contained in this request.
+	 * 返回此请求中所含 multipart 文件的 {@link java.util.Map}。
 	 * @return a map containing the parameter names as keys, and the
 	 * {@link MultipartFile} objects as values
 	 */
 	Map<String, MultipartFile> getFileMap();
 
 	/**
-	 * Return a {@link MultiValueMap} of the multipart files contained in this request.
+	 * 返回此请求中所含 multipart 文件的 {@link MultiValueMap}。
 	 * @return a map containing the parameter names as keys, and a list of
 	 * {@link MultipartFile} objects as values
 	 * @since 3.0
@@ -76,7 +72,7 @@ public interface MultipartRequest {
 	MultiValueMap<String, MultipartFile> getMultiFileMap();
 
 	/**
-	 * Determine the content type of the specified request part.
+	 * 确定指定请求部分（part）的内容类型。
 	 * @param paramOrFileName the name of the part
 	 * @return the associated content type, or {@code null} if not defined
 	 * @since 3.1

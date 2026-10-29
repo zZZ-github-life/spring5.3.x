@@ -25,12 +25,12 @@ import org.springframework.http.server.PathContainer.PathSegment;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * A regex path element. Used to represent any complicated element of the path.
+ * 正则表达式路径元素。用于表示路径中任何复杂的元素。
  *
- * <p>For example in '<code>/foo/&#42;_&#42;/&#42;_{foobar}</code>' both {@code *_*}
- * and <code>*_{foobar}</code> are {@link RegexPathElement regex path elements}.
+ * <p>例如在 '<code>/foo/&#42;_&#42;/&#42;_{foobar}</code>' 中，{@code *_*}
+ * 和 <code>*_{foobar}</code> 都是 {@link RegexPathElement 正则表达式路径元素}。
  *
- * <p>Derived from the general {@link org.springframework.util.AntPathMatcher} approach.
+ * <p>源自通用的 {@link org.springframework.util.AntPathMatcher} 实现方式。
  *
  * @author Andy Clement
  * @since 5.0

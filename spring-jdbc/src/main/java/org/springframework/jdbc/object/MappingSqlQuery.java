@@ -25,13 +25,12 @@ import javax.sql.DataSource;
 import org.springframework.lang.Nullable;
 
 /**
- * Reusable query in which concrete subclasses must implement the abstract
- * mapRow(ResultSet, int) method to convert each row of the JDBC ResultSet
- * into an object.
+ * 可重用的查询，具体子类必须实现抽象的 mapRow(ResultSet, int) 方法，
+ * 将 JDBC ResultSet 的每一行转换为对象。
  *
- * <p>Simplifies MappingSqlQueryWithParameters API by dropping parameters and
- * context. Most subclasses won't care about parameters. If you don't use
- * contextual information, subclass this instead of MappingSqlQueryWithParameters.
+ * <p>通过去除参数和上下文简化了 MappingSqlQueryWithParameters 的 API。
+ * 大多数子类并不关心参数。如果不使用上下文信息，请继承本类而不是
+ * MappingSqlQueryWithParameters。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -42,13 +41,13 @@ import org.springframework.lang.Nullable;
 public abstract class MappingSqlQuery<T> extends MappingSqlQueryWithParameters<T> {
 
 	/**
-	 * Constructor that allows use as a JavaBean.
+	 * 允许作为 JavaBean 使用的构造函数。
 	 */
 	public MappingSqlQuery() {
 	}
 
 	/**
-	 * Convenient constructor with DataSource and SQL string.
+	 * 使用 DataSource 和 SQL 字符串的便捷构造函数。
 	 * @param ds the DataSource to use to obtain connections
 	 * @param sql the SQL to run
 	 */
@@ -58,8 +57,7 @@ public abstract class MappingSqlQuery<T> extends MappingSqlQueryWithParameters<T
 
 
 	/**
-	 * This method is implemented to invoke the simpler mapRow
-	 * template method, ignoring parameters.
+	 * 实现此方法以调用更简单的 mapRow 模板方法，并忽略参数。
 	 * @see #mapRow(ResultSet, int)
 	 */
 	@Override
@@ -71,11 +69,9 @@ public abstract class MappingSqlQuery<T> extends MappingSqlQueryWithParameters<T
 	}
 
 	/**
-	 * Subclasses must implement this method to convert each row of the
-	 * ResultSet into an object of the result type.
-	 * <p>Subclasses of this class, as opposed to direct subclasses of
-	 * MappingSqlQueryWithParameters, don't need to concern themselves
-	 * with the parameters to the execute method of the query object.
+	 * 子类必须实现此方法，将 ResultSet 的每一行转换为结果类型的对象。
+	 * <p>与 MappingSqlQueryWithParameters 的直接子类不同，本类的子类
+	 * 无需关心查询对象 execute 方法的参数。
 	 * @param rs the ResultSet we're working through
 	 * @param rowNum row number (from 0) we're up to
 	 * @return an object of the result type

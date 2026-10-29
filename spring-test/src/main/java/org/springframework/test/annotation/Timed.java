@@ -23,18 +23,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Test annotation for use with JUnit 4 to indicate that a test method has to finish
- * execution in a {@linkplain #millis() specified time period}.
+ * 用于 JUnit 4 的测试注解，指示测试方法必须在
+ * {@linkplain #millis() 指定的时间段}内完成执行。
  *
- * <p>If the text execution takes longer than the specified time period, then
- * the test is considered to have failed.
+ * <p>如果测试执行时间超过指定的时间段，则
+ * 测试被视为失败。
  *
- * <p>Note that the time period includes execution of the test method itself,
- * any {@linkplain Repeat repetitions} of the test, and any <em>set up</em> or
- * <em>tear down</em> of the test fixture.
+ * <p>请注意，该时间段包括测试方法本身的执行、
+ * 测试的任何 {@linkplain Repeat 重复}以及测试夹具的任何<em>设置</em>或
+ * <em>清理</em>。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
  * @author Rod Johnson
  * @author Sam Brannen
@@ -50,8 +50,8 @@ import java.lang.annotation.Target;
 public @interface Timed {
 
 	/**
-	 * The maximum amount of time (in milliseconds) that a test execution can
-	 * take without being marked as failed due to taking too long.
+	 * 测试执行在不因耗时过长而被标记为失败的情况下
+	 * 可以花费的最长时间（以毫秒为单位）。
 	 */
 	long millis();
 

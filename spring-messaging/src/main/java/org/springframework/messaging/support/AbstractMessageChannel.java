@@ -33,7 +33,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Abstract base class for {@link MessageChannel} implementations.
+ * {@link MessageChannel} 实现的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -53,7 +53,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 
 
 	/**
-	 * Set an alternative logger to use than the one based on the class name.
+	 * 设置一个替代日志记录器，而不是基于类名的日志记录器。
 	 * @param logger the logger to use
 	 * @since 5.1
 	 */
@@ -62,7 +62,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 	}
 
 	/**
-	 * Return the currently configured Logger.
+	 * 返回当前配置的 Logger。
 	 * @since 5.1
 	 */
 	public Log getLogger() {
@@ -70,7 +70,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 	}
 
 	/**
-	 * A message channel uses the bean name primarily for logging purposes.
+	 * 消息通道主要将 bean 名称用于日志记录目的。
 	 */
 	@Override
 	public void setBeanName(String name) {
@@ -78,7 +78,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 	}
 
 	/**
-	 * Return the bean name for this message channel.
+	 * 返回此消息通道的 bean 名称。
 	 */
 	public String getBeanName() {
 		return this.beanName;
@@ -166,7 +166,7 @@ public abstract class AbstractMessageChannel implements MessageChannel, Intercep
 
 
 	/**
-	 * Assists with the invocation of the configured channel interceptors.
+	 * 协助调用已配置的通道拦截器。
 	 */
 	protected class ChannelInterceptorChain {
 

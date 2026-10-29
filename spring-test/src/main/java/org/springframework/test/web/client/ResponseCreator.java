@@ -24,9 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.test.web.client.response.MockRestResponseCreators;
 
 /**
- * A contract for creating a {@link ClientHttpResponse}.
- * Implementations can be obtained via {@link MockRestResponseCreators}.
- *
+ * 用于创建 {@link ClientHttpResponse} 的约定。
+ * 实现可通过 {@link MockRestResponseCreators} 获取。
  * @author Craig Walls
  * @since 3.2
  */
@@ -34,7 +33,7 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 public interface ResponseCreator {
 
 	/**
-	 * Create a response for the given request.
+	 * 为给定请求创建响应。
 	 * @param request the request
 	 */
 	ClientHttpResponse createResponse(@Nullable ClientHttpRequest request) throws IOException;

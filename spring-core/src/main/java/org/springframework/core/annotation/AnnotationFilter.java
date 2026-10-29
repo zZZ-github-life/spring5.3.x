@@ -19,12 +19,11 @@ package org.springframework.core.annotation;
 import java.lang.annotation.Annotation;
 
 /**
- * Callback interface that can be used to filter specific annotation types.
+ * 可用于过滤特定注解类型的回调接口。
  *
- * <p>Note that the {@link MergedAnnotations} model (which this interface has been
- * designed for) always ignores lang annotations according to the {@link #PLAIN}
- * filter (for efficiency reasons). Any additional filters and even custom filter
- * implementations apply within this boundary and may only narrow further from here.
+ * <p>请注意，{@link MergedAnnotations} 模型（本接口正是为此而设计）始终根据 {@link #PLAIN} 过滤器
+ * 忽略 lang 注解（出于效率原因）。任何附加过滤器乃至自定义过滤器实现都在此边界内生效，并且只能在此
+ * 基础上进一步收窄。
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
@@ -35,22 +34,19 @@ import java.lang.annotation.Annotation;
 public interface AnnotationFilter {
 
 	/**
-	 * {@link AnnotationFilter} that matches annotations in the
-	 * {@code java.lang} and {@code org.springframework.lang} packages
-	 * and their subpackages.
-	 * <p>This is the default filter in the {@link MergedAnnotations} model.
+	 * 匹配 {@code java.lang} 和 {@code org.springframework.lang} 包及其子包中注解的
+	 * {@link AnnotationFilter}。
+	 * <p>这是 {@link MergedAnnotations} 模型中的默认过滤器。
 	 */
 	AnnotationFilter PLAIN = packages("java.lang", "org.springframework.lang");
 
 	/**
-	 * {@link AnnotationFilter} that matches annotations in the
-	 * {@code java} and {@code javax} packages and their subpackages.
+	 * 匹配 {@code java} 和 {@code javax} 包及其子包中注解的 {@link AnnotationFilter}。
 	 */
 	AnnotationFilter JAVA = packages("java", "javax");
 
 	/**
-	 * {@link AnnotationFilter} that always matches and can be used when no
-	 * relevant annotation types are expected to be present at all.
+	 * 始终匹配的 {@link AnnotationFilter}，可在完全不预期存在相关注解类型时使用。
 	 */
 	AnnotationFilter ALL = new AnnotationFilter() {
 		@Override
@@ -72,8 +68,7 @@ public interface AnnotationFilter {
 	};
 
 	/**
-	 * {@link AnnotationFilter} that never matches and can be used when no
-	 * filtering is needed (allowing for any annotation types to be present).
+	 * 从不匹配的 {@link AnnotationFilter}，可在不需要过滤时使用（允许存在任何注解类型）。
 	 * @see #PLAIN
 	 * @deprecated as of 5.2.6 since the {@link MergedAnnotations} model
 	 * always ignores lang annotations according to the {@link #PLAIN} filter
@@ -101,7 +96,7 @@ public interface AnnotationFilter {
 
 
 	/**
-	 * Test if the given annotation matches the filter.
+	 * 测试给定注解是否匹配该过滤器。
 	 * @param annotation the annotation to test
 	 * @return {@code true} if the annotation matches
 	 */
@@ -110,7 +105,7 @@ public interface AnnotationFilter {
 	}
 
 	/**
-	 * Test if the given type matches the filter.
+	 * 测试给定类型是否匹配该过滤器。
 	 * @param type the annotation type to test
 	 * @return {@code true} if the annotation matches
 	 */
@@ -119,7 +114,7 @@ public interface AnnotationFilter {
 	}
 
 	/**
-	 * Test if the given type name matches the filter.
+	 * 测试给定类型名称是否匹配该过滤器。
 	 * @param typeName the fully qualified class name of the annotation type to test
 	 * @return {@code true} if the annotation matches
 	 */
@@ -127,8 +122,7 @@ public interface AnnotationFilter {
 
 
 	/**
-	 * Create a new {@link AnnotationFilter} that matches annotations in the
-	 * specified packages.
+	 * 创建一个新的 {@link AnnotationFilter}，用于匹配指定包中的注解。
 	 * @param packages the annotation packages that should match
 	 * @return a new {@link AnnotationFilter} instance
 	 */

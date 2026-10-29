@@ -40,18 +40,13 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Simple template superclass for {@link FactoryBean} implementations that
- * creates a singleton or a prototype object, depending on a flag.
+ * {@link FactoryBean} 实现的简单模板超类，根据标志创建单例或原型对象。
  *
- * <p>If the "singleton" flag is {@code true} (the default),
- * this class will create the object that it creates exactly once
- * on initialization and subsequently return said singleton instance
- * on all calls to the {@link #getObject()} method.
+ * <p>如果 "singleton" 标志为 {@code true}（默认值），此类将只创建一次它所创建的对象，并在初始化时
+ * 创建，随后在所有对 {@link #getObject()} 方法的调用中返回该单例实例。
  *
- * <p>Else, this class will create a new instance every time the
- * {@link #getObject()} method is invoked. Subclasses are responsible
- * for implementing the abstract {@link #createInstance()} template
- * method to actually create the object(s) to expose.
+ * <p>否则，此类将在每次调用 {@link #getObject()} 方法时创建一个新实例。子类负责实现抽象的
+ * {@link #createInstance()} 模板方法，以实际创建要暴露的对象。
  *
  * @author Juergen Hoeller
  * @author Keith Donald
@@ -63,7 +58,7 @@ import org.springframework.util.ReflectionUtils;
 public abstract class AbstractFactoryBean<T>
 		implements FactoryBean<T>, BeanClassLoaderAware, BeanFactoryAware, InitializingBean, DisposableBean {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private boolean singleton = true;
@@ -84,8 +79,7 @@ public abstract class AbstractFactoryBean<T>
 
 
 	/**
-	 * Set if a singleton should be created, or a new object on each request
-	 * otherwise. Default is {@code true} (a singleton).
+	 * 设置是应创建单例，还是每次请求时创建新对象。默认为 {@code true}（单例）。
 	 */
 	public void setSingleton(boolean singleton) {
 		this.singleton = singleton;
@@ -107,7 +101,7 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Return the BeanFactory that this bean runs in.
+	 * 返回此 Bean 运行所在的 BeanFactory。
 	 */
 	@Nullable
 	protected BeanFactory getBeanFactory() {
@@ -115,10 +109,9 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Obtain a bean type converter from the BeanFactory that this bean
-	 * runs in. This is typically a fresh instance for each call,
-	 * since TypeConverters are usually <i>not</i> thread-safe.
-	 * <p>Falls back to a SimpleTypeConverter when not running in a BeanFactory.
+	 * 从此外运行所在的 BeanFactory 获取 Bean 类型转换器。通常每次调用都是一个新实例，因为
+	 * TypeConverter 通常<i>不是</i>线程安全的。<p>当不在 BeanFactory 中运行时，回退到
+	 * SimpleTypeConverter。
 	 * @see ConfigurableBeanFactory#getTypeConverter()
 	 * @see org.springframework.beans.SimpleTypeConverter
 	 */
@@ -133,7 +126,7 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Eagerly create the singleton instance, if necessary.
+	 * 如有必要，提前创建单例实例。
 	 */
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -146,7 +139,7 @@ public abstract class AbstractFactoryBean<T>
 
 
 	/**
-	 * Expose the singleton instance or create a new prototype instance.
+	 * 暴露单例实例或创建新的原型实例。
 	 * @see #createInstance()
 	 * @see #getEarlySingletonInterfaces()
 	 */
@@ -161,8 +154,7 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Determine an 'early singleton' instance, exposed in case of a
-	 * circular reference. Not called in a non-circular scenario.
+	 * 确定一个 'early singleton'（早期单例）实例，在出现循环引用时暴露。在非循环场景中不会被调用。
 	 */
 	@SuppressWarnings("unchecked")
 	private T getEarlySingletonInstance() throws Exception {
@@ -179,7 +171,7 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Expose the singleton instance (for access through the 'early singleton' proxy).
+	 * 暴露单例实例（以便通过 'early singleton' 代理访问）。
 	 * @return the singleton instance that this FactoryBean holds
 	 * @throws IllegalStateException if the singleton instance is not initialized
 	 */
@@ -190,7 +182,7 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Destroy the singleton instance, if any.
+	 * 销毁单例实例（如果有）。
 	 * @see #destroyInstance(Object)
 	 */
 	@Override
@@ -202,8 +194,7 @@ public abstract class AbstractFactoryBean<T>
 
 
 	/**
-	 * This abstract method declaration mirrors the method in the FactoryBean
-	 * interface, for a consistent offering of abstract template methods.
+	 * 此抽象方法声明镜像了 FactoryBean 接口中的方法，以提供一致的抽象模板方法。
 	 * @see org.springframework.beans.factory.FactoryBean#getObjectType()
 	 */
 	@Override
@@ -211,10 +202,8 @@ public abstract class AbstractFactoryBean<T>
 	public abstract Class<?> getObjectType();
 
 	/**
-	 * Template method that subclasses must override to construct
-	 * the object returned by this factory.
-	 * <p>Invoked on initialization of this FactoryBean in case of
-	 * a singleton; else, on each {@link #getObject()} call.
+	 * 子类必须重写的模板方法，用于构造此工厂返回的对象。<p>在单例的情况下，在此 FactoryBean 初始化时调
+	 * 用；否则在每次 {@link #getObject()} 调用时调用。
 	 * @return the object returned by this factory
 	 * @throws Exception if an exception occurred during object creation
 	 * @see #getObject()
@@ -222,13 +211,9 @@ public abstract class AbstractFactoryBean<T>
 	protected abstract T createInstance() throws Exception;
 
 	/**
-	 * Return an array of interfaces that a singleton object exposed by this
-	 * FactoryBean is supposed to implement, for use with an 'early singleton
-	 * proxy' that will be exposed in case of a circular reference.
-	 * <p>The default implementation returns this FactoryBean's object type,
-	 * provided that it is an interface, or {@code null} otherwise. The latter
-	 * indicates that early singleton access is not supported by this FactoryBean.
-	 * This will lead to a FactoryBeanNotInitializedException getting thrown.
+	 * 返回此 FactoryBean 所暴露的单例对象应实现的接口数组，用于在出现循环引用时暴露的 'early singleton
+	 * 代理'。<p>默认实现返回此 FactoryBean 的对象类型（前提是它是一个接口），否则返回 {@code null}。后
+	 * 者表示此 FactoryBean 不支持早期单例访问。这将导致抛出 FactoryBeanNotInitializedException。
 	 * @return the interfaces to use for 'early singletons',
 	 * or {@code null} to indicate a FactoryBeanNotInitializedException
 	 * @see org.springframework.beans.factory.FactoryBeanNotInitializedException
@@ -240,9 +225,7 @@ public abstract class AbstractFactoryBean<T>
 	}
 
 	/**
-	 * Callback for destroying a singleton instance. Subclasses may
-	 * override this to destroy the previously created instance.
-	 * <p>The default implementation is empty.
+	 * 用于销毁单例实例的回调。子类可以重写此方法以销毁先前创建的实例。<p>默认实现为空。
 	 * @param instance the singleton instance, as returned by
 	 * {@link #createInstance()}
 	 * @throws Exception in case of shutdown errors
@@ -253,7 +236,7 @@ public abstract class AbstractFactoryBean<T>
 
 
 	/**
-	 * Reflective InvocationHandler for lazy access to the actual singleton object.
+	 * 用于延迟访问实际单例对象的反射 InvocationHandler。
 	 */
 	private class EarlySingletonInvocationHandler implements InvocationHandler {
 

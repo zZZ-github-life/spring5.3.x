@@ -38,7 +38,7 @@ import org.springframework.web.socket.sockjs.frame.SockJsFrame;
 import org.springframework.web.socket.sockjs.transport.TransportType;
 
 /**
- * Abstract base class for XHR transport implementations to extend.
+ * 供 XHR 传输实现扩展的抽象基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -66,21 +66,21 @@ public abstract class AbstractXhrTransport implements XhrTransport {
 	}
 
 	/**
-	 * An {@code XhrTransport} can support both the "xhr_streaming" and "xhr"
-	 * SockJS server transports. From a client perspective there is no
-	 * implementation difference.
-	 * <p>Typically an {@code XhrTransport} is used as "XHR streaming" first and
-	 * then, if that fails, as "XHR". In some cases however it may be helpful to
-	 * suppress XHR streaming so that only XHR is attempted.
-	 * <p>By default this property is set to {@code false} which means both
-	 * "XHR streaming" and "XHR" apply.
+	 * 一个 {@code XhrTransport} 可以同时支持 "xhr_streaming" 和 "xhr"
+	 * SockJS 服务器传输。从客户端的角度来看，实现上没有
+	 * 区别。
+	 * <p>通常 {@code XhrTransport} 首先用作 "XHR streaming"，
+	 * 如果失败，然后用作 "XHR"。不过，在某些情况下，
+	 * 抑制 XHR 流式传输以便仅尝试 XHR 可能会有帮助。
+	 * <p>默认情况下，此属性设置为 {@code false}，这意味着同时应用
+	 * "XHR streaming" 和 "XHR"。
 	 */
 	public void setXhrStreamingDisabled(boolean disabled) {
 		this.xhrStreamingDisabled = disabled;
 	}
 
 	/**
-	 * Whether XHR streaming is disabled or not.
+	 * 是否禁用了 XHR 流式传输。
 	 */
 	@Override
 	public boolean isXhrStreamingDisabled() {

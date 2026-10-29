@@ -24,8 +24,7 @@ import org.reactivestreams.Publisher;
 import org.springframework.core.ReactiveAdapterRegistry;
 
 /**
- * Asynchronous subtype of {@link ServerResponse} that exposes the future
- * response.
+ * {@link ServerResponse} 的异步子类型，暴露未来的响应。
  *
  * @author Arjen Poutsma
  * @since 5.3.2
@@ -34,7 +33,7 @@ import org.springframework.core.ReactiveAdapterRegistry;
 public interface AsyncServerResponse extends ServerResponse {
 
 	/**
-	 * Blocks indefinitely until the future response is obtained.
+	 * 无限期阻塞，直到获得未来的响应。
 	 */
 	ServerResponse block();
 
@@ -42,12 +41,11 @@ public interface AsyncServerResponse extends ServerResponse {
 	// Static creation methods
 
 	/**
-	 * Create a {@code AsyncServerResponse} with the given asynchronous response.
-	 * Parameter {@code asyncResponse} can be a
-	 * {@link CompletableFuture CompletableFuture&lt;ServerResponse&gt;} or
-	 * {@link Publisher Publisher&lt;ServerResponse&gt;} (or any
-	 * asynchronous producer of a single {@code ServerResponse} that can be
-	 * adapted via the {@link ReactiveAdapterRegistry}).
+	 * 使用给定的异步响应创建 {@code AsyncServerResponse}。
+	 * 参数 {@code asyncResponse} 可以是
+	 * {@link CompletableFuture CompletableFuture&lt;ServerResponse&gt;} 或
+	 * {@link Publisher Publisher&lt;ServerResponse&gt;}（或任何可通过
+	 * {@link ReactiveAdapterRegistry} 适配的单个 {@code ServerResponse} 异步生产者）。
 	 * @param asyncResponse a {@code CompletableFuture<ServerResponse>} or
 	 * {@code Publisher<ServerResponse>}
 	 * @return the asynchronous response
@@ -57,12 +55,11 @@ public interface AsyncServerResponse extends ServerResponse {
 	}
 
 	/**
-	 * Create a (built) response with the given asynchronous response.
-	 * Parameter {@code asyncResponse} can be a
-	 * {@link CompletableFuture CompletableFuture&lt;ServerResponse&gt;} or
-	 * {@link Publisher Publisher&lt;ServerResponse&gt;} (or any
-	 * asynchronous producer of a single {@code ServerResponse} that can be
-	 * adapted via the {@link ReactiveAdapterRegistry}).
+	 * 使用给定的异步响应创建（已构建的）响应。
+	 * 参数 {@code asyncResponse} 可以是
+	 * {@link CompletableFuture CompletableFuture&lt;ServerResponse&gt;} 或
+	 * {@link Publisher Publisher&lt;ServerResponse&gt;}（或任何可通过
+	 * {@link ReactiveAdapterRegistry} 适配的单个 {@code ServerResponse} 异步生产者）。
 	 * @param asyncResponse a {@code CompletableFuture<ServerResponse>} or
 	 * {@code Publisher<ServerResponse>}
 	 * @param timeout maximum time period to wait for before timing out

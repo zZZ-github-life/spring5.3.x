@@ -28,8 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for classes that are accessing a CommonJ {@link commonj.timers.TimerManager}
- * Defines common configuration settings and common lifecycle handling.
+ * 访问 CommonJ {@link commonj.timers.TimerManager} 的基类。
+ * 定义了通用的配置设置和通用的生命周期处理。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -51,11 +51,11 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 
 
 	/**
-	 * Specify the CommonJ TimerManager to delegate to.
-	 * <p>Note that the given TimerManager's lifecycle will be managed
-	 * by this FactoryBean.
-	 * <p>Alternatively (and typically), you can specify the JNDI name
-	 * of the target TimerManager.
+	 * 指定要委托的 CommonJ TimerManager。
+	 * <p>请注意，给定 TimerManager 的生命周期将由
+	 * 此 FactoryBean 管理。
+	 * <p>另外（通常的做法），您可以指定目标
+	 * TimerManager 的 JNDI 名称。
 	 * @see #setTimerManagerName
 	 */
 	public void setTimerManager(TimerManager timerManager) {
@@ -63,9 +63,9 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Set the JNDI name of the CommonJ TimerManager.
-	 * <p>This can either be a fully qualified JNDI name, or the JNDI name relative
-	 * to the current environment naming context if "resourceRef" is set to "true".
+	 * 设置 CommonJ TimerManager 的 JNDI 名称。
+	 * <p>这可以是完全限定的 JNDI 名称，也可以是相对于
+	 * 当前环境命名上下文的 JNDI 名称（如果 "resourceRef" 设置为 "true"）。
 	 * @see #setTimerManager
 	 * @see #setResourceRef
 	 */
@@ -74,24 +74,24 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Specify whether the TimerManager obtained by this FactoryBean
-	 * is a shared instance ("true") or an independent instance ("false").
-	 * The lifecycle of the former is supposed to be managed by the application
-	 * server, while the lifecycle of the latter is up to the application.
-	 * <p>Default is "false", i.e. managing an independent TimerManager instance.
-	 * This is what the CommonJ specification suggests that application servers
-	 * are supposed to offer via JNDI lookups, typically declared as a
-	 * {@code resource-ref} of type {@code commonj.timers.TimerManager}
-	 * in {@code web.xml}, with {@code res-sharing-scope} set to 'Unshareable'.
-	 * <p>Switch this flag to "true" if you are obtaining a shared TimerManager,
-	 * typically through specifying the JNDI location of a TimerManager that
-	 * has been explicitly declared as 'Shareable'. Note that WebLogic's
-	 * cluster-aware Job Scheduler is a shared TimerManager too.
-	 * <p>The sole difference between this FactoryBean being in shared or
-	 * non-shared mode is that it will only attempt to suspend / resume / stop
-	 * the underlying TimerManager in case of an independent (non-shared) instance.
-	 * This only affects the {@link org.springframework.context.Lifecycle} support
-	 * as well as application context shutdown.
+	 * 指定此 FactoryBean 获取的 TimerManager
+	 * 是共享实例（"true"）还是独立实例（"false"）。
+	 * 前者的生命周期应由应用服务器
+	 * 管理，后者的生命周期由应用程序自行管理。
+	 * <p>默认为 "false"，即管理一个独立的 TimerManager 实例。
+	 * 这也是 CommonJ 规范建议应用服务器
+	 * 通过 JNDI 查找提供的方式，通常在
+	 * {@code web.xml} 中声明为类型为 {@code commonj.timers.TimerManager}
+	 * 的 {@code resource-ref}，并将 {@code res-sharing-scope} 设置为 'Unshareable'。
+	 * <p>如果您获取的是共享 TimerManager，请将此标志切换为 "true"，
+	 * 通常通过指定已明确声明为 'Shareable' 的
+	 * TimerManager 的 JNDI 位置。请注意，WebLogic 的
+	 * 集群感知作业调度器也是共享的 TimerManager。
+	 * <p>此 FactoryBean 处于共享模式或非共享模式的
+	 * 唯一区别在于，只有在独立（非共享）实例的情况下，
+	 * 它才会尝试暂停/恢复/停止底层的 TimerManager。
+	 * 这只影响 {@link org.springframework.context.Lifecycle} 的支持
+	 * 以及应用上下文的关闭。
 	 * @see #stop()
 	 * @see #start()
 	 * @see #destroy()
@@ -113,7 +113,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Return the configured TimerManager, if any.
+	 * 返回已配置的 TimerManager（如果有）。
 	 * @return the TimerManager, or {@code null} if not available
 	 */
 	@Nullable
@@ -122,7 +122,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Obtain the TimerManager for actual use.
+	 * 获取实际使用的 TimerManager。
 	 * @return the TimerManager (never {@code null})
 	 * @throws IllegalStateException in case of no TimerManager set
 	 * @since 5.0
@@ -138,7 +138,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	//---------------------------------------------------------------------
 
 	/**
-	 * Resumes the underlying TimerManager (if not shared).
+	 * 恢复底层的 TimerManager（如果不是共享的）。
 	 * @see commonj.timers.TimerManager#resume()
 	 */
 	@Override
@@ -149,7 +149,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Suspends the underlying TimerManager (if not shared).
+	 * 暂停底层的 TimerManager（如果不是共享的）。
 	 * @see commonj.timers.TimerManager#suspend()
 	 */
 	@Override
@@ -160,8 +160,8 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	}
 
 	/**
-	 * Considers the underlying TimerManager as running if it is
-	 * neither suspending nor stopping.
+	 * 如果底层的 TimerManager 既没有在暂停也没有在停止，
+	 * 则认为其正在运行。
 	 * @see commonj.timers.TimerManager#isSuspending()
 	 * @see commonj.timers.TimerManager#isStopping()
 	 */
@@ -177,7 +177,7 @@ public abstract class TimerManagerAccessor extends JndiLocatorSupport
 	//---------------------------------------------------------------------
 
 	/**
-	 * Stops the underlying TimerManager (if not shared).
+	 * 停止底层的 TimerManager（如果不是共享的）。
 	 * @see commonj.timers.TimerManager#stop()
 	 */
 	@Override

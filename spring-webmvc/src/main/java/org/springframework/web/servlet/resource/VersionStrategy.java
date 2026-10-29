@@ -19,18 +19,17 @@ package org.springframework.web.servlet.resource;
 import org.springframework.core.io.Resource;
 
 /**
- * An extension of {@link VersionPathStrategy} that adds a method
- * to determine the actual version of a {@link Resource}.
- *
+ * {@link VersionPathStrategy} 的扩展，新增了一个用于确定
+ * {@link Resource} 实际版本的方法。
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @since 4.1
  * @see VersionResourceResolver
-*/
+ */
 public interface VersionStrategy extends VersionPathStrategy {
 
 	/**
-	 * Determine the version for the given resource.
+	 * 确定给定资源的版本。
 	 * @param resource the resource to check
 	 * @return the version (never {@code null})
 	 */

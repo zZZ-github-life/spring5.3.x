@@ -23,12 +23,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Abstract base class for classes that export a remote service.
- * Provides "service" and "serviceInterface" bean properties.
+ * 导出远程服务的类的抽象基类。提供 "service" 和 "serviceInterface" Bean 属性。
  *
- * <p>Note that the service interface being used will show some signs of
- * remotability, like the granularity of method calls that it offers.
- * Furthermore, it has to have serializable arguments etc.
+ * <p>请注意，所使用的服务接口会体现出一些可远程化的特征，例如它所提供的方法调用的粒度。此外，它必
+ * 须具有可序列化的参数等。
  *
  * @author Juergen Hoeller
  * @since 26.12.2003
@@ -45,23 +43,21 @@ public abstract class RemoteExporter extends RemotingSupport {
 
 
 	/**
-	 * Set the service to export.
-	 * Typically populated via a bean reference.
+	 * 设置要导出的服务。通常通过 Bean 引用填充。
 	 */
 	public void setService(Object service) {
 		this.service = service;
 	}
 
 	/**
-	 * Return the service to export.
+	 * 返回要导出的服务。
 	 */
 	public Object getService() {
 		return this.service;
 	}
 
 	/**
-	 * Set the interface of the service to export.
-	 * The interface must be suitable for the particular service and remoting strategy.
+	 * 设置要导出的服务的接口。该接口必须适合特定的服务和远程处理策略。
 	 */
 	public void setServiceInterface(Class<?> serviceInterface) {
 		Assert.notNull(serviceInterface, "'serviceInterface' must not be null");
@@ -70,20 +66,18 @@ public abstract class RemoteExporter extends RemotingSupport {
 	}
 
 	/**
-	 * Return the interface of the service to export.
+	 * 返回要导出的服务的接口。
 	 */
 	public Class<?> getServiceInterface() {
 		return this.serviceInterface;
 	}
 
 	/**
-	 * Set whether to register a RemoteInvocationTraceInterceptor for exported
-	 * services. Only applied when a subclass uses {@code getProxyForService}
-	 * for creating the proxy to expose.
-	 * <p>Default is "true". RemoteInvocationTraceInterceptor's most important value
-	 * is that it logs exception stacktraces on the server, before propagating an
-	 * exception to the client. Note that RemoteInvocationTraceInterceptor will <i>not</i>
-	 * be registered by default if the "interceptors" property has been specified.
+	 * 设置是否为所导出的服务注册 RemoteInvocationTraceInterceptor。仅当子类使用
+	 * {@code getProxyForService} 创建要暴露的代理时才会应用。
+	 * <p>默认为 "true"。RemoteInvocationTraceInterceptor 最重要的价值在于，它会在将异常传播给客户端之
+	 * 前，在服务器上记录异常堆栈跟踪。请注意，如果已经指定了 "interceptors" 属性，则默认<i>不会</i>注
+	 * 册 RemoteInvocationTraceInterceptor。
 	 * @see #setInterceptors
 	 * @see #getProxyForService
 	 * @see RemoteInvocationTraceInterceptor
@@ -93,10 +87,8 @@ public abstract class RemoteExporter extends RemotingSupport {
 	}
 
 	/**
-	 * Set additional interceptors (or advisors) to be applied before the
-	 * remote endpoint, e.g. a PerformanceMonitorInterceptor.
-	 * <p>You may specify any AOP Alliance MethodInterceptors or other
-	 * Spring AOP Advices, as well as Spring AOP Advisors.
+	 * 设置要应用于远程端点之前的其他拦截器（或通知器），例如 PerformanceMonitorInterceptor。
+	 * <p>可以指定任何 AOP Alliance MethodInterceptor 或其他 Spring AOP Advice，以及 Spring AOP Advisor。
 	 * @see #getProxyForService
 	 * @see org.springframework.aop.interceptor.PerformanceMonitorInterceptor
 	 */
@@ -106,7 +98,7 @@ public abstract class RemoteExporter extends RemotingSupport {
 
 
 	/**
-	 * Check whether the service reference has been set.
+	 * 检查是否已设置服务引用。
 	 * @see #setService
 	 */
 	protected void checkService() throws IllegalArgumentException {
@@ -114,8 +106,7 @@ public abstract class RemoteExporter extends RemotingSupport {
 	}
 
 	/**
-	 * Check whether a service reference has been set,
-	 * and whether it matches the specified service.
+	 * 检查是否已设置服务引用，以及它是否与指定的服务匹配。
 	 * @see #setServiceInterface
 	 * @see #setService
 	 */
@@ -137,11 +128,9 @@ public abstract class RemoteExporter extends RemotingSupport {
 	}
 
 	/**
-	 * Get a proxy for the given service object, implementing the specified
-	 * service interface.
-	 * <p>Used to export a proxy that does not expose any internals but just
-	 * a specific interface intended for remote access. Furthermore, a
-	 * {@link RemoteInvocationTraceInterceptor} will be registered (by default).
+	 * 获取给定服务对象的代理，该代理实现指定的服务接口。
+	 * <p>用于导出一个不暴露任何内部细节、只暴露专供远程访问的特定接口的代理。此外，（默认情况下）会注
+	 * 册一个 {@link RemoteInvocationTraceInterceptor}。
 	 * @return the proxy
 	 * @see #setServiceInterface
 	 * @see #setRegisterTraceInterceptor
@@ -171,10 +160,8 @@ public abstract class RemoteExporter extends RemotingSupport {
 	}
 
 	/**
-	 * Return a short name for this exporter.
-	 * Used for tracing of remote invocations.
-	 * <p>Default is the unqualified class name (without package).
-	 * Can be overridden in subclasses.
+	 * 返回此导出器的简短名称。用于跟踪远程调用。
+	 * <p>默认为不带包名的类名。可以在子类中重写。
 	 * @see #getProxyForService
 	 * @see RemoteInvocationTraceInterceptor
 	 * @see org.springframework.util.ClassUtils#getShortName

@@ -34,14 +34,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.server.HandshakeFailureException;
 
 /**
- * WebSphere support for upgrading an {@link HttpServletRequest} during a
- * WebSocket handshake. To modify properties of the underlying
- * {@link javax.websocket.server.ServerContainer} you can use
- * {@link ServletServerContainerFactoryBean} in XML configuration or, when using
- * Java configuration, access the container instance through the
- * "javax.websocket.server.ServerContainer" ServletContext attribute.
+ * WebSphere 对在 WebSocket 握手期间升级 {@link HttpServletRequest} 的支持。
+ * 要修改底层
+ * {@link javax.websocket.server.ServerContainer} 的属性，可以在 XML 配置中使用
+ * {@link ServletServerContainerFactoryBean}，或者在使用 Java 配置时，
+ * 通过 "javax.websocket.server.ServerContainer" ServletContext 属性
+ * 访问容器实例。
  *
- * <p>Tested with WAS Liberty beta (August 2015) for the upcoming 8.5.5.7 release.
+ * <p>已针对 WAS Liberty beta（2015 年 8 月）进行测试，
+ * 用于即将发布的 8.5.5.7 版本。
  *
  * @author Rossen Stoyanchev
  * @since 4.2.1

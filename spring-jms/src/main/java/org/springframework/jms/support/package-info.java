@@ -1,6 +1,6 @@
 /**
- * This package provides generic JMS support classes,
- * to be used by higher-level classes like JmsTemplate.
+ * 此包提供通用的 JMS 支持类，
+ * 供 JmsTemplate 等更高层次的类使用。
  */
 @NonNullApi
 @NonNullFields

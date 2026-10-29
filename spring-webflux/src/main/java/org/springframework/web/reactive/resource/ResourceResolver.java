@@ -26,20 +26,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A strategy for resolving a request to a server-side resource.
+ * 将请求解析为服务器端资源的策略。
  *
- * <p>Provides mechanisms for resolving an incoming request to an actual
- * {@link Resource} and for obtaining the
- * public URL path that clients should use when requesting the resource.
- *
+ * <p>提供将传入请求解析为实际 {@link Resource} 的机制，以及获取客户端在请求资源时应使用的公共 URL 路径的机制。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public interface ResourceResolver {
 
 	/**
-	 * Resolve the supplied request and request path to a {@link Resource} that
-	 * exists under one of the given resource locations.
+	 * 将提供的请求和请求路径解析为存在于给定资源位置之一下的 {@link Resource}。
 	 * @param exchange the current exchange
 	 * @param requestPath the portion of the request path to use. This is
 	 * expected to be the encoded path, i.e. {@link RequestPath#value()}.
@@ -51,10 +47,8 @@ public interface ResourceResolver {
 			List<? extends Resource> locations, ResourceResolverChain chain);
 
 	/**
-	 * Resolve the externally facing <em>public</em> URL path for clients to use
-	 * to access the resource that is located at the given <em>internal</em>
-	 * resource path.
-	 * <p>This is useful when rendering URL links to clients.
+	 * 为客户端解析对外公开的<em>公共</em> URL 路径，以访问位于给定<em>内部</em>资源路径的资源。
+	 * <p>这在向客户端渲染 URL 链接时很有用。
 	 * @param resourcePath the "internal" resource path to resolve a path for
 	 * public use. This is expected to be the encoded path.
 	 * @param locations the locations to search in when looking up resources

@@ -1,0 +1,148 @@
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::25::0", "zh": ["辅助类，允许以声明方式指定要调用的方法，无论是静态方法还是非静态方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::25::1", "zh": ["<p>用法：指定 \"targetClass\"/\"targetMethod\" 或 \"targetObject\"/\"targetMethod\"，可选地指定参数，然后准备调用器。之后，你可以任意多次调用该方法，并获得调用结果。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::64::0", "zh": ["设置要在其上调用目标方法的目标类。仅当目标方法是静态方法时才需要；否则无论如何都需要指定目标对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::75::0", "zh": ["返回要在其上调用目标方法的目标类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::83::0", "zh": ["设置要在其上调用目标方法的目标对象。仅当目标方法不是静态方法时才需要；否则指定目标类就足够了。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::97::0", "zh": ["返回要在其上调用目标方法的目标对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::105::0", "zh": ["设置要调用的方法的名称。取决于是否设置了目标对象，可以指静态方法或非静态方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::116::0", "zh": ["返回要调用的方法的名称。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::124::0", "zh": ["设置要调用的完全限定静态方法名，例如 \"example.MyExampleClass.myExampleMethod\"。这是指定 targetClass 和 targetMethod 的便捷替代方式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::135::0", "zh": ["设置方法调用的参数。如果未设置此属性，或 Object 数组长度为 0，则假定方法没有参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::143::0", "zh": ["返回方法调用的参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::151::0", "zh": ["准备指定的方法。", "之后可以任意多次调用该方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::195::0", "zh": ["将给定的类名解析为 Class。", "<p>默认实现使用 {@code ClassUtils.forName}，并使用线程上下文类加载器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::207::0", "zh": ["查找与指定参数匹配的、具有指定名称的方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::242::0", "zh": ["返回将要调用的已准备 Method 对象。", "<p>例如可用于确定返回类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::257::0", "zh": ["返回此调用器是否已经准备好，即是否已经允许访问 {@link #getPreparedMethod()}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::265::0", "zh": ["调用指定的方法。", "<p>调用器必须事先已经准备好。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MethodInvoker.java::287::0", "zh": ["用于判断候选方法的声明参数类型与该方法预期被调用时所用的具体参数列表之间匹配程度的算法。", "<p>确定一个权重，表示类型与参数之间的类层次结构差异。直接匹配，即类型 Integer &rarr; 类 Integer 的参数，不会增加结果——所有直接匹配意味着权重为 0。类型 Object 与类 Integer 的参数匹配会使权重增加 2，因为层次结构中向上 2 步的父类（即 Object）是最后一个仍然匹配所需类型 Object 的类。类型 Number 与类 Integer 相应会使权重增加 1，因为层次结构中向上 1 步的父类（即 Number）仍然匹配所需类型 Number。因此，对于类型为 Integer 的参数，构造函数 (Integer) 优先于构造函数 (Number)，而后者又优先于构造函数 (Object)。所有参数权重都会被累加。", "<p>注意：这是 MethodInvoker 自身使用的算法，也是 Spring 的 Bean 容器中用于选择构造函数和工厂方法的算法（在宽松构造函数解析的情况下，这也是常规 Bean 定义的默认方式）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::36::0", "zh": ["表示 MIME 类型，最初定义于 RFC 2046，随后用于包括 HTTP 在内的其他 Internet 协议。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::36::1", "zh": ["<p>不过，此类不包含对 HTTP 内容协商中使用的 q 参数的支持。这些支持可以在 {@code spring-web} 模块的子类 {@code org.springframework.http.MediaType} 中找到。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::36::2", "zh": ["<p>由 {@linkplain #getType() type} 和 {@linkplain #getSubtype() subtype} 组成。还具有使用 {@link #valueOf(String)} 从 {@code String} 解析 MIME 类型值的功能。有关更多解析选项，请参见 {@link MimeTypeUtils}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::115::0", "zh": ["为给定的主类型创建一个新的 {@code MimeType}。", "<p>{@linkplain #getSubtype() subtype} 被设置为 <code>\"&#42;\"</code>，并且参数为空。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::126::0", "zh": ["为给定的主类型和子类型创建一个新的 {@code MimeType}。", "<p>参数为空。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::137::0", "zh": ["为给定的类型、子类型和字符集创建一个新的 {@code MimeType}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::149::0", "zh": ["复制构造函数，复制给定 {@code MimeType} 的类型、子类型和参数，并允许设置指定的字符集。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::162::0", "zh": ["复制构造函数，复制给定 {@code MimeType} 的类型和子类型，并允许使用不同的参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::173::0", "zh": ["为给定的类型、子类型和参数创建一个新的 {@code MimeType}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::200::0", "zh": ["复制构造函数，复制给定 {@code MimeType} 的类型、子类型和参数，跳过其他构造函数中执行的检查。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::214::0", "zh": ["检查给定 token 字符串中是否有 RFC 2616 第 2.2 节所定义的非法字符。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::256::0", "zh": ["指示 {@linkplain #getType() type} 是否为通配符 <code>&#42;</code>。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::264::0", "zh": ["指示 {@linkplain #getSubtype() subtype} 是通配符 <code>&#42;</code>，还是通配符后跟后缀（例如 <code>&#42;+xml</code>）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::274::0", "zh": ["指示此 MIME 类型是否为具体类型，即类型和子类型都不是通配符 <code>&#42;</code>。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::283::0", "zh": ["返回主类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::290::0", "zh": ["返回子类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::297::0", "zh": ["返回 RFC 6839 中定义的子类型后缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::310::0", "zh": ["返回由 {@code charset} 参数指示的字符集（如果有）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::320::0", "zh": ["根据给定的参数名返回通用的参数值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::330::0", "zh": ["返回所有通用参数值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::338::0", "zh": ["指示此 MIME 类型是否包含给定的 MIME 类型。", "<p>例如，{@code text/*} 包含 {@code text/plain} 和 {@code text/html}，{@code application/*+xml} 包含 {@code application/soap+xml}，等等。", "此方法<b>不是</b>对称的。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::382::0", "zh": ["指示此 MIME 类型是否与给定的 MIME 类型兼容。", "<p>例如，{@code text/*} 与 {@code text/plain}、{@code text/html} 兼容，反之亦然。", "实际上，此方法类似于 {@link #includes}，不同之处在于它<b>是</b>对称的。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::419::0", "zh": ["类似于 {@link #equals(Object)}，但仅基于类型和子类型，即忽略参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::433::0", "zh": ["与依赖 {@link MimeType#equals(Object)} 的 {@link Collection#contains(Object)} 不同，此方法只检查类型和子类型，其他方面忽略参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::465::0", "zh": ["确定此 {@code MimeType} 中的参数与提供的 {@code MimeType} 中的参数是否相等，对 {@link Charset Charsets} 执行不区分大小写的比较。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::530::0", "zh": ["按字母顺序将此 MIME 类型与另一个进行比较。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::608::0", "zh": ["将给定的 String 值解析为 {@code MimeType} 对象，此方法名遵循 'valueOf' 命名约定（由 {@link org.springframework.core.convert.ConversionService} 支持）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeType.java::625::0", "zh": ["用于按具体程度对 {@link MimeType MimeTypes} 排序的比较器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::35::0", "zh": ["各种 {@link MimeType} 工具方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::53::0", "zh": ["由 {@link #sortBySpecificity(List)} 使用的比较器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::58::0", "zh": ["包含所有媒体范围的公共常量 MIME 类型（即 \"&#42;/&#42;\"）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::63::0", "zh": ["{@link MimeTypeUtils#ALL} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::68::0", "zh": ["{@code application/graphql+json} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::75::0", "zh": ["{@link MimeTypeUtils#APPLICATION_GRAPHQL} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::81::0", "zh": ["{@code application/json} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::86::0", "zh": ["{@link MimeTypeUtils#APPLICATION_JSON} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::91::0", "zh": ["{@code application/octet-stream} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::96::0", "zh": ["{@link MimeTypeUtils#APPLICATION_OCTET_STREAM} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::101::0", "zh": ["{@code application/xml} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::106::0", "zh": ["{@link MimeTypeUtils#APPLICATION_XML} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::111::0", "zh": ["{@code image/gif} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::116::0", "zh": ["{@link MimeTypeUtils#IMAGE_GIF} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::121::0", "zh": ["{@code image/jpeg} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::126::0", "zh": ["{@link MimeTypeUtils#IMAGE_JPEG} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::131::0", "zh": ["{@code image/png} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::136::0", "zh": ["{@link MimeTypeUtils#IMAGE_PNG} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::141::0", "zh": ["{@code text/html} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::146::0", "zh": ["{@link MimeTypeUtils#TEXT_HTML} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::151::0", "zh": ["{@code text/plain} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::156::0", "zh": ["{@link MimeTypeUtils#TEXT_PLAIN} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::161::0", "zh": ["{@code text/xml} 的公共常量 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::166::0", "zh": ["{@link MimeTypeUtils#TEXT_XML} 的 String 等价形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::194::0", "zh": ["将给定的 String 解析为单个 {@code MimeType}。", "最近解析过的 {@code MimeType} 会被缓存以便后续获取。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::279::0", "zh": ["将以逗号分隔的字符串解析为 {@code MimeType} 对象的列表。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::295::0", "zh": ["将给定的逗号分隔的 {@code MimeType} 对象字符串切分为 {@code List<String>}。与按 \",\" 进行简单切分不同，此方法会考虑带引号的参数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::332::0", "zh": ["返回给定 {@code MimeType} 对象列表的字符串表示形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::350::0", "zh": ["按具体程度对给定的 {@code MimeType} 对象列表进行排序。", "<p>给定两个 MIME 类型："]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::350::1", "zh": ["<p>例如：<blockquote>audio/basic &lt; audio/* &lt; *&#047;*</blockquote> <blockquote>audio/basic;level=1 &lt; audio/basic</blockquote> <blockquote>audio/basic == text/html</blockquote> <blockquote>audio/basic == audio/wave</blockquote>"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::382::0", "zh": ["为 {@link #generateMultipartBoundary()} 延迟初始化 {@link SecureRandom}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::399::0", "zh": ["以字节形式生成随机 MIME 边界，常用于多部分 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MimeTypeUtils.java::411::0", "zh": ["以 String 形式生成随机 MIME 边界，常用于多部分 MIME 类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::24::0", "zh": ["{@code Map} 接口的扩展，用于存储多个值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::34::0", "zh": ["返回给定键的第一个值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::42::0", "zh": ["将给定的单个值添加到给定键的当前值列表中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::49::0", "zh": ["将给定列表中的所有值添加到给定键的当前值列表中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::57::0", "zh": ["将给定 {@code MultiValueMap} 的所有值添加到当前值中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::64::0", "zh": ["仅当映射未 {@link #containsKey(Object) contain} 给定键时，才 {@link #add(Object, Object) Add} 给定值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::77::0", "zh": ["在给定键下设置给定的单个值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::84::0", "zh": ["设置给定的各个值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMap.java::90::0", "zh": ["返回一个 {@code Map}，其中包含此 {@code MultiValueMap} 中的各个第一个值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMapAdapter.java::28::0", "zh": ["将给定的 {@link Map} 适配为 {@link MultiValueMap} 约定。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/MultiValueMapAdapter.java::45::0", "zh": ["将给定的目标 {@link Map} 包装为 {@link MultiValueMap} 适配器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::30::0", "zh": ["用于数字转换和解析的各种工具方法。", "<p>主要用于框架内部；如需更全面的数字工具套件，可考虑 Apache 的 Commons Lang。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::45::0", "zh": ["标准数字类型（均不可变）：", "Byte、Short、Integer、Long、BigInteger、Float、Double、BigDecimal。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::65::0", "zh": ["将给定的数字转换为给定目标类的实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::143::0", "zh": ["在以 long 值返回给定数字之前，检查 {@code BigInteger}/{@code BigDecimal} 的 long 溢出。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::167::0", "zh": ["针对给定数字和目标类抛出<em>溢出</em>异常。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::178::0", "zh": ["将给定的 {@code text} 解析为给定目标类的 {@link Number} 实例，使用相应的 {@code decode} / {@code valueOf} 方法。", "<p>在尝试解析数字之前，去除输入 {@code String} 中的所有空白（前导、尾随以及字符之间的空白）。", "<p>也支持十六进制格式的数字（带有前导 \"0x\"、\"0X\" 或 \"#\"）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::234::0", "zh": ["将给定的 {@code text} 解析为给定目标类的 {@link Number} 实例，使用提供的 {@link NumberFormat}。", "<p>在尝试解析数字之前，去除输入 {@code String} 的空白。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::282::0", "zh": ["确定给定的 {@code value} String 是否表示十六进制数字，即是否需要传入 {@code Integer.decode} 而不是 {@code Integer.valueOf}，等等。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/NumberUtils.java::292::0", "zh": ["从提供的 {@link String} 值中解码 {@link java.math.BigInteger}。", "<p>支持十进制、十六进制和八进制表示法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::33::0", "zh": ["各种对象工具方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::33::1", "zh": ["<p>主要用于框架内部。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::33::2", "zh": ["<p>感谢 Alex Ruiz 为本类贡献了若干改进！"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::65::0", "zh": ["返回给定的 throwable 是否为受检异常：", "即既不是 RuntimeException 也不是 Error。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::78::0", "zh": ["检查给定异常是否与指定的异常类型兼容，如 throws 子句中所声明的那样。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::99::0", "zh": ["判断给定对象是否为数组：", "即 Object 数组或基本类型数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::108::0", "zh": ["判断给定数组是否为空：", "即 {@code null} 或长度为零。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::118::0", "zh": ["判断给定对象是否为空。", "<p>此方法支持以下对象类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::118::1", "zh": ["<p>如果给定对象非 null 且不属于上述受支持的类型，此方法返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::164::0", "zh": ["解包给定对象，它可能是一个 {@link java.util.Optional}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::185::0", "zh": ["检查给定数组是否包含给定元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::204::0", "zh": ["检查给定的枚举常量数组是否包含具有给定名称的常量，在确定匹配时忽略大小写。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::215::0", "zh": ["检查给定的枚举常量数组是否包含具有给定名称的常量。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::232::0", "zh": ["{@link Enum#valueOf(Class, String)} 的不区分大小写的替代方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::250::0", "zh": ["将给定对象追加到给定数组，返回一个新数组，", "其中包含输入数组的内容加上给定对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::275::0", "zh": ["将给定数组（可能是基本类型数组）转换为对象数组（如有必要，转换为基本类型包装对象）。", "<p>{@code null} 源值将被转换为空的 Object 数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::311::0", "zh": ["判断给定对象是否相等，如果两者都为 {@code null} 则返回 {@code true}，如果只有一个为 {@code null} 则返回 {@code false}。", "<p>使用 {@code Arrays.equals} 比较数组，基于数组元素而不是数组引用执行相等性检查。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::338::0", "zh": ["使用 {@code Arrays.equals} 比较给定数组，基于数组元素而不是数组引用执行相等性检查。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::378::0", "zh": ["返回给定对象的哈希码；通常是 {@code Object#hashCode()}} 的值。如果对象是数组，此方法将委托给此类中用于数组的任意 {@code nullSafeHashCode} 方法。如果对象为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::431::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::446::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::461::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::476::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::491::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::506::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::521::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::536::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::551::0", "zh": ["返回基于指定数组内容的哈希码。", "如果 {@code array} 为 {@code null}，此方法返回 0。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::566::0", "zh": ["返回与 {@link Boolean#hashCode(boolean)}} 相同的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::575::0", "zh": ["返回与 {@link Double#hashCode(double)}} 相同的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::584::0", "zh": ["返回与 {@link Float#hashCode(float)}} 相同的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::593::0", "zh": ["返回与 {@link Long#hashCode(long)}} 相同的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::607::0", "zh": ["返回对象整体标识的 String 表示形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::620::0", "zh": ["返回对象标识哈希码的十六进制 String 形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::629::0", "zh": ["如果 {@code obj} 不为 {@code null}，则返回基于内容的 String 表示形式；否则返回空 String。", "<p>与 {@link #nullSafeToString(Object)} 的区别在于，对于 {@code null} 值，它返回空 String 而不是 \"null\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::645::0", "zh": ["确定给定对象的类名。", "<p>如果 {@code obj} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::655::0", "zh": ["返回指定 Object 的 String 表示形式。", "<p>如果对象是数组，则构建其内容的 String 表示形式。", "如果 {@code obj} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::701::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::725::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::749::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::773::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::797::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::821::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::845::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::869::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::893::0", "zh": ["返回指定数组内容的 String 表示形式。 <p>该 String 表示形式由数组元素的列表组成，这些元素括在花括号（{@code \"{}\"}）中。相邻元素由字符 {@code \", \"}（逗号后跟一个空格）分隔。 如果 {@code array} 为 {@code null}，则返回 {@code \"null\"} String。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::917::0", "zh": ["生成所提供对象的 null 安全且简洁的字符串表示形式，如下所述。", "<p>当你需要限制生成的字符串长度时，优先使用此方法而不是 {@link #nullSafeToString(Object)}。", "<p>返回："]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::917::1", "zh": ["<p>在此方法的上下文中，<em>简单类型</em>是以下任意一种：基本类型包装器（不包括 {@link Void}）、{@link Enum}、{@link Number}、{@link Date}、{@link Temporal}、{@link URI}、{@link URL} 或 {@link Locale}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ObjectUtils.java::963::0", "zh": ["{@link org.springframework.beans.BeanUtils#isSimpleValueType(Class)} 的副本。", "<p>检查给定类型是否表示 \"简单\" 值类型：基本类型或基本类型包装器、枚举、String 或其他 CharSequence、Number、Date、Temporal、URI、URL、Locale 或 Class。", "<p>{@code Void} 和 {@code void} 不被视为简单值类型。"]}

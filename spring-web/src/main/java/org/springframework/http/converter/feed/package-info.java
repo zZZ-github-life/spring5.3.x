@@ -1,6 +1,6 @@
 /**
- * Provides HttpMessageConverter implementations for handling Atom and RSS feeds.
- * Based on the <a href="https://github.com/rometools/rome">ROME tools</a> project.
+ * 提供用于处理 Atom 和 RSS feed 的 HttpMessageConverter 实现。
+ * 基于 <a href="https://github.com/rometools/rome">ROME tools</a> 项目。
  */
 @NonNullApi
 @NonNullFields

@@ -21,13 +21,12 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Contract for customizing a {@code ConfigurableMockMvcBuilder} in some
- * specific way, e.g. a 3rd party library that wants to provide shortcuts for
- * setting up a MockMvc.
+ * 用于以某种特定方式自定义 {@code ConfigurableMockMvcBuilder} 的契约，
+ * 例如希望为设置 MockMvc 提供快捷方式的第三方库。
  *
- * <p>An implementation of this interface can be plugged in via
- * {@link ConfigurableMockMvcBuilder#apply} with instances of this type likely
- * created via static methods, e.g.:
+ * <p>此接口的实现可以通过
+ * {@link ConfigurableMockMvcBuilder#apply} 插入，此类型的实例通常
+ * 通过静态方法创建，例如：
  *
  * <pre class="code">
  * import static org.example.ExampleSetup.mySetup;
@@ -36,7 +35,6 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * MockMvcBuilders.webAppContextSetup(context).apply(mySetup("foo","bar")).build();
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @since 4.1
  * @see org.springframework.test.web.servlet.setup.MockMvcConfigurerAdapter
@@ -44,17 +42,15 @@ import org.springframework.web.context.WebApplicationContext;
 public interface MockMvcConfigurer {
 
 	/**
-	 * Invoked immediately when this {@code MockMvcConfigurer} is added via
-	 * {@link ConfigurableMockMvcBuilder#apply}.
+	 * 当通过 {@link ConfigurableMockMvcBuilder#apply} 添加此 {@code MockMvcConfigurer} 时立即调用。
 	 * @param builder the builder for the MockMvc
 	 */
 	default void afterConfigurerAdded(ConfigurableMockMvcBuilder<?> builder) {
 	}
 
 	/**
-	 * Invoked when the MockMvc instance is about to be created with the MockMvc
-	 * builder and the Spring WebApplicationContext that will be passed to the
-	 * {@code DispatcherServlet}.
+	 * 当即将使用 MockMvc 构建器以及将传递给 {@code DispatcherServlet} 的
+	 * Spring WebApplicationContext 创建 MockMvc 实例时调用。
 	 * @param builder the builder for the MockMvc
 	 * @param context the Spring configuration
 	 * @return a post processor to be applied to every request performed

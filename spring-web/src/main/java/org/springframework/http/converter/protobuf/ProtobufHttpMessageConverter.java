@@ -53,26 +53,29 @@ import static org.springframework.http.MediaType.TEXT_HTML;
 import static org.springframework.http.MediaType.TEXT_PLAIN;
 
 /**
- * An {@code HttpMessageConverter} that reads and writes
- * {@link com.google.protobuf.Message com.google.protobuf.Messages} using
- * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
+ * {@code HttpMessageConverter}，使用
+ * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>
+ * 读写 {@link com.google.protobuf.Message com.google.protobuf.Message}。
  *
- * <p>To generate {@code Message} Java classes, you need to install the {@code protoc} binary.
+ * <p>要生成 {@code Message} Java 类，需要安装 {@code protoc} 二进制文件。
  *
- * <p>This converter supports by default {@code "application/x-protobuf"} and {@code "text/plain"}
- * with the official {@code "com.google.protobuf:protobuf-java"} library. Other formats can be
- * supported with one of the following additional libraries on the classpath:
+ * <p>使用官方的 {@code "com.google.protobuf:protobuf-java"} 库时，
+ * 此转换器默认支持 {@code "application/x-protobuf"} 和 {@code "text/plain"}。
+ * 在类路径上提供以下任一附加库即可支持其他格式：
  * <ul>
- * <li>{@code "application/json"}, {@code "application/xml"}, and {@code "text/html"} (write-only)
- * with the {@code "com.googlecode.protobuf-java-format:protobuf-java-format"} third-party library
- * <li>{@code "application/json"} with the official {@code "com.google.protobuf:protobuf-java-util"}
- * for Protobuf 3 (see {@link ProtobufJsonFormatHttpMessageConverter} for a configurable variant)
+ * <li>使用第三方的 {@code "com.googlecode.protobuf-java-format:protobuf-java-format"} 库
+ * 支持 {@code "application/json"}、{@code "application/xml"} 和
+ * {@code "text/html"}（只写）
+ * <li>对于 Protobuf 3，使用官方的 {@code "com.google.protobuf:protobuf-java-util"}
+ * 支持 {@code "application/json"}（可配置的变体请参阅
+ * {@link ProtobufJsonFormatHttpMessageConverter}）
  * </ul>
  *
- * <p>Requires Protobuf 2.6 or higher (and Protobuf Java Format 1.4 or higher for formatting).
- * This converter will auto-adapt to Protobuf 3 and its default {@code protobuf-java-util} JSON
- * format if the Protobuf 2 based {@code protobuf-java-format} isn't present; however, for more
- * explicit JSON setup on Protobuf 3, consider {@link ProtobufJsonFormatHttpMessageConverter}.
+ * <p>要求 Protobuf 2.6 或更高版本（格式化功能要求 Protobuf Java Format 1.4 或更高版本）。
+ * 如果不存在基于 Protobuf 2 的 {@code protobuf-java-format}，此转换器将自动适配
+ * Protobuf 3 及其默认的 {@code protobuf-java-util} JSON 格式；不过，
+ * 如果需要在 Protobuf 3 上进行更明确的 JSON 配置，请考虑使用
+ * {@link ProtobufJsonFormatHttpMessageConverter}。
  *
  * @author Alex Antonov
  * @author Brian Clozel
@@ -86,22 +89,22 @@ import static org.springframework.http.MediaType.TEXT_PLAIN;
 public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<Message> {
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
 	/**
-	 * The media-type for protobuf {@code application/x-protobuf}.
+	 * protobuf 的媒体类型 {@code application/x-protobuf}。
 	 */
 	public static final MediaType PROTOBUF = new MediaType("application", "x-protobuf", DEFAULT_CHARSET);
 
 	/**
-	 * The HTTP header containing the protobuf schema.
+	 * 包含 protobuf schema 的 HTTP 头。
 	 */
 	public static final String X_PROTOBUF_SCHEMA_HEADER = "X-Protobuf-Schema";
 
 	/**
-	 * The HTTP header containing the protobuf message.
+	 * 包含 protobuf 消息的 HTTP 头。
 	 */
 	public static final String X_PROTOBUF_MESSAGE_HEADER = "X-Protobuf-Message";
 
@@ -115,15 +118,15 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 
 
 	/**
-	 * Construct a new {@code ProtobufHttpMessageConverter}.
+	 * 构造一个新的 {@code ProtobufHttpMessageConverter}。
 	 */
 	public ProtobufHttpMessageConverter() {
 		this(null, null);
 	}
 
 	/**
-	 * Construct a new {@code ProtobufHttpMessageConverter} with an
-	 * initializer that allows the registration of message extensions.
+	 * 构造一个新的 {@code ProtobufHttpMessageConverter}，
+	 * 并提供一个允许注册消息扩展的初始化器。
 	 * @param registryInitializer an initializer for message extensions
 	 * @deprecated as of Spring Framework 5.1, use {@link #ProtobufHttpMessageConverter(ExtensionRegistry)} instead
 	 */
@@ -136,8 +139,8 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 	}
 
 	/**
-	 * Construct a new {@code ProtobufHttpMessageConverter} with a registry that specifies
-	 * protocol message extensions.
+	 * 构造一个新的 {@code ProtobufHttpMessageConverter}，
+	 * 并提供一个指定 Protocol Message 扩展的注册表。
 	 * @param extensionRegistry the registry to populate
 	 */
 	public ProtobufHttpMessageConverter(ExtensionRegistry extensionRegistry) {
@@ -206,8 +209,8 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 	}
 
 	/**
-	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentReferenceHashMap for caching method lookups.
+	 * 为给定的类创建新的 {@code Message.Builder} 实例。
+	 * <p>此方法使用 ConcurrentReferenceHashMap 缓存方法查找。
 	 */
 	private Message.Builder getMessageBuilder(Class<? extends Message> clazz) {
 		try {
@@ -265,10 +268,10 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 	}
 
 	/**
-	 * Set the "X-Protobuf-*" HTTP headers when responding with a message of
-	 * content type "application/x-protobuf"
-	 * <p><b>Note:</b> <code>outputMessage.getBody()</code> should not have been called
-	 * before because it writes HTTP headers (making them read only).</p>
+	 * 在以 "application/x-protobuf" 内容类型响应消息时设置
+	 * "X-Protobuf-*" HTTP 头
+	 * <p><b>注意：</b>之前不应调用 <code>outputMessage.getBody()</code>，
+	 * 因为它会写入 HTTP 头（使其变为只读）。</p>
 	 */
 	private void setProtoHeader(HttpOutputMessage response, Message message) {
 		response.getHeaders().set(X_PROTOBUF_SCHEMA_HEADER, message.getDescriptorForType().getFile().getName());
@@ -277,7 +280,7 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 
 
 	/**
-	 * Protobuf format support.
+	 * Protobuf 格式支持。
 	 */
 	interface ProtobufFormatSupport {
 
@@ -295,8 +298,8 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 
 
 	/**
-	 * {@link ProtobufFormatSupport} implementation used when
-	 * {@code com.googlecode.protobuf.format.FormatFactory} is available.
+	 * 当 {@code com.googlecode.protobuf.format.FormatFactory} 可用时使用的
+	 * {@link ProtobufFormatSupport} 实现。
 	 */
 	static class ProtobufJavaFormatSupport implements ProtobufFormatSupport {
 
@@ -362,8 +365,8 @@ public class ProtobufHttpMessageConverter extends AbstractHttpMessageConverter<M
 
 
 	/**
-	 * {@link ProtobufFormatSupport} implementation used when
-	 * {@code com.google.protobuf.util.JsonFormat} is available.
+	 * 当 {@code com.google.protobuf.util.JsonFormat} 可用时使用的
+	 * {@link ProtobufFormatSupport} 实现。
 	 */
 	static class ProtobufJavaUtilSupport implements ProtobufFormatSupport {
 

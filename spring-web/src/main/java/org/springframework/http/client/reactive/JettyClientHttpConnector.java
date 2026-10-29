@@ -34,7 +34,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link ClientHttpConnector} for the Jetty Reactive Streams HttpClient.
+ * 用于 Jetty Reactive Streams HttpClient 的 {@link ClientHttpConnector}。
  *
  * @author Sebastien Deleuze
  * @since 5.1
@@ -48,22 +48,22 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Default constructor that creates a new instance of {@link HttpClient}.
+	 * 默认构造函数，创建新的 {@link HttpClient} 实例。
 	 */
 	public JettyClientHttpConnector() {
 		this(new HttpClient());
 	}
 
 	/**
-	 * Constructor with an initialized {@link HttpClient}.
+	 * 使用已初始化的 {@link HttpClient} 的构造函数。
 	 */
 	public JettyClientHttpConnector(HttpClient httpClient) {
 		this(httpClient, null);
 	}
 
 	/**
-	 * Constructor with an initialized {@link HttpClient} and configures it
-	 * with the given {@link JettyResourceFactory}.
+	 * 使用已初始化的 {@link HttpClient} 的构造函数，并使用
+	 * 给定的 {@link JettyResourceFactory} 对其进行配置。
 	 * @param httpClient the {@link HttpClient} to use
 	 * @param resourceFactory the {@link JettyResourceFactory} to use
 	 * @since 5.2
@@ -79,7 +79,7 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 	}
 
 	/**
-	 * Constructor with an {@link JettyResourceFactory} that will manage shared resources.
+	 * 使用将管理共享资源的 {@link JettyResourceFactory} 的构造函数。
 	 * @param resourceFactory the {@link JettyResourceFactory} to use
 	 * @param customizer the lambda used to customize the {@link HttpClient}
 	 * @deprecated as of 5.2, in favor of
@@ -95,7 +95,7 @@ public class JettyClientHttpConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Set the buffer factory to use.
+	 * 设置要使用的缓冲区工厂。
 	 */
 	public void setBufferFactory(DataBufferFactory bufferFactory) {
 		this.bufferFactory = bufferFactory;

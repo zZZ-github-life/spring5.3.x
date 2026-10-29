@@ -23,11 +23,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Simple implementation of {@link MultiValueMap} that wraps a {@link LinkedHashMap},
- * storing multiple values in an {@link ArrayList}.
+ * {@link MultiValueMap} 的简单实现，它包装一个 {@link LinkedHashMap}，将多个值存储在
+ * {@link ArrayList} 中。
  *
- * <p>This Map implementation is generally not thread-safe. It is primarily designed
- * for data structures exposed from request objects, for use in a single thread only.
+ * <p>此 Map 实现通常不是线程安全的。它主要设计用于从请求对象中暴露的数据结构，仅限单线程使用。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -42,16 +41,15 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 
 
 	/**
-	 * Create a new LinkedMultiValueMap that wraps a {@link LinkedHashMap}.
+	 * 创建一个包装 {@link LinkedHashMap} 的新 LinkedMultiValueMap。
 	 */
 	public LinkedMultiValueMap() {
 		super(new LinkedHashMap<>());
 	}
 
 	/**
-	 * Create a new LinkedMultiValueMap that wraps a {@link LinkedHashMap}
-	 * with an initial capacity that can accommodate the specified number of
-	 * elements without any immediate resize/rehash operations to be expected.
+	 * 创建一个新的 LinkedMultiValueMap，它包装一个 {@link LinkedHashMap}，其初始容量可容纳指定数量的元
+	 * 素，预计不会立即发生调整大小/重新哈希操作。
 	 * @param expectedSize the expected number of elements (with a corresponding
 	 * capacity to be derived so that no resize/rehash operations are needed)
 	 * @see CollectionUtils#newLinkedHashMap(int)
@@ -61,9 +59,8 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 	}
 
 	/**
-	 * Copy constructor: Create a new LinkedMultiValueMap with the same mappings as
-	 * the specified Map. Note that this will be a shallow copy; its value-holding
-	 * List entries will get reused and therefore cannot get modified independently.
+	 * 复制构造函数：创建一个与指定 Map 具有相同映射的新 LinkedMultiValueMap。注意，这是浅拷贝；其持有
+	 * 值的 List 条目将被复用，因此无法独立修改。
 	 * @param otherMap the Map whose mappings are to be placed in this Map
 	 * @see #clone()
 	 * @see #deepCopy()
@@ -74,7 +71,7 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 
 
 	/**
-	 * Create a deep copy of this Map.
+	 * 创建此 Map 的深拷贝。
 	 * @return a copy of this Map, including a copy of each value-holding List entry
 	 * (consistently using an independent modifiable {@link ArrayList} for each entry)
 	 * along the lines of {@code MultiValueMap.addAll} semantics
@@ -89,7 +86,7 @@ public class LinkedMultiValueMap<K, V> extends MultiValueMapAdapter<K, V>  // ne
 	}
 
 	/**
-	 * Create a regular copy of this Map.
+	 * 创建此 Map 的常规拷贝。
 	 * @return a shallow copy of this Map, reusing this Map's value-holding List entries
 	 * (even if some entries are shared or unmodifiable) along the lines of standard
 	 * {@code Map.put} semantics

@@ -44,27 +44,27 @@ import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequ
 import org.springframework.web.util.WebUtils;
 
 /**
- * Servlet-based {@link MultipartResolver} implementation for
+ * 基于 Servlet 的 {@link MultipartResolver} 实现，底层使用
  * <a href="https://commons.apache.org/proper/commons-fileupload">Apache Commons FileUpload</a>
- * 1.2 or above. This resolver variant delegates to a local FileUpload library
- * within the application, providing maximum portability across Servlet containers.
+ * 1.2 或更高版本。此解析器变体委托给应用本地的 FileUpload 库，
+ * 从而在各类 Servlet 容器之间提供最大的可移植性。
  *
- * <p>Commons FileUpload traditionally parses POST requests with any "multipart/" type.
- * Supported HTTP methods may be customized through {@link #setSupportedMethods}.
+ * <p>Commons FileUpload 传统上会解析任何 "multipart/" 类型的 POST 请求。
+ * 可以通过 {@link #setSupportedMethods} 自定义受支持的 HTTP 方法。
  *
- * <p>Provides "maxUploadSize", "maxInMemorySize" and "defaultEncoding" settings as
- * bean properties (inherited from {@link CommonsFileUploadSupport}). See corresponding
- * ServletFileUpload / DiskFileItemFactory properties ("sizeMax", "sizeThreshold",
- * "headerEncoding") for details in terms of defaults and accepted values.
+ * <p>以 Bean 属性的形式提供 "maxUploadSize"、"maxInMemorySize" 和 "defaultEncoding"
+ * 设置（继承自 {@link CommonsFileUploadSupport}）。有关默认值和可接受值的详细信息，
+ * 请参阅对应的 ServletFileUpload / DiskFileItemFactory 属性
+ * （"sizeMax"、"sizeThreshold"、"headerEncoding"）。
  *
- * <p>Saves temporary files to the servlet container's temporary directory.
- * Needs to be initialized <i>either</i> by an application context <i>or</i>
- * via the constructor that takes a ServletContext (for standalone usage).
+ * <p>将临时文件保存到 Servlet 容器的临时目录。
+ * 需要通过应用上下文<i>或</i>通过接受 ServletContext 的构造函数
+ * （用于独立使用）进行初始化。
  *
- * <p>Note: The common alternative is
- * {@link org.springframework.web.multipart.support.StandardServletMultipartResolver},
- * delegating to the Servlet container's own multipart parser, with configuration to
- * happen at the container level and potentially with container-specific limitations.
+ * <p>注意：常见的替代方案是
+ * {@link org.springframework.web.multipart.support.StandardServletMultipartResolver}，
+ * 它委托给 Servlet 容器自身的 multipart 解析器，配置在容器层面进行，
+ * 并可能存在容器特定的限制。
  *
  * @author Trevor D. Cook
  * @author Juergen Hoeller
@@ -86,9 +86,9 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 
 
 	/**
-	 * Constructor for use as bean. Determines the servlet container's
-	 * temporary directory via the ServletContext passed in as through the
-	 * ServletContextAware interface (typically by a WebApplicationContext).
+	 * 供作为 Bean 使用时调用的构造函数。通过 ServletContextAware 接口
+	 * 传入的 ServletContext（通常由 WebApplicationContext 提供）
+	 * 确定 Servlet 容器的临时目录。
 	 * @see #setServletContext
 	 * @see org.springframework.web.context.ServletContextAware
 	 * @see org.springframework.web.context.WebApplicationContext
@@ -98,8 +98,8 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	}
 
 	/**
-	 * Constructor for standalone usage. Determines the servlet container's
-	 * temporary directory via the given ServletContext.
+	 * 供独立使用时调用的构造函数。通过给定的 ServletContext
+	 * 确定 Servlet 容器的临时目录。
 	 * @param servletContext the ServletContext to use
 	 */
 	public CommonsMultipartResolver(ServletContext servletContext) {
@@ -109,22 +109,19 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 
 
 	/**
-	 * Set whether to resolve the multipart request lazily at the time of
-	 * file or parameter access.
-	 * <p>Default is "false", resolving the multipart elements immediately, throwing
-	 * corresponding exceptions at the time of the {@link #resolveMultipart} call.
-	 * Switch this to "true" for lazy multipart parsing, throwing parse exceptions
-	 * once the application attempts to obtain multipart files or parameters.
+	 * 设置是否在访问文件或参数时才延迟解析 multipart 请求。
+	 * <p>默认值为 "false"，即立即解析 multipart 元素，在调用 {@link #resolveMultipart}
+	 * 时抛出相应的异常。将其设置为 "true" 可启用延迟 multipart 解析，
+	 * 在应用尝试获取 multipart 文件或参数时才抛出解析异常。
 	 */
 	public void setResolveLazily(boolean resolveLazily) {
 		this.resolveLazily = resolveLazily;
 	}
 
 	/**
-	 * Specify supported methods as an array of HTTP method names.
-	 * The traditional Commons FileUpload default is "POST" only.
-	 * <p>When configured as a Spring property value,
-	 * this can be a comma-separated String: e.g. "POST,PUT".
+	 * 以 HTTP 方法名称数组的形式指定受支持的方法。
+	 * Commons FileUpload 的传统默认值仅为 "POST"。
+	 * <p>当作为 Spring 属性值配置时，可以使用逗号分隔的字符串，例如 "POST,PUT"。
 	 * @since 5.3.9
 	 */
 	public void setSupportedMethods(String... supportedMethods) {
@@ -132,8 +129,8 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	}
 
 	/**
-	 * Initialize the underlying {@code org.apache.commons.fileupload.servlet.ServletFileUpload}
-	 * instance. Can be overridden to use a custom subclass, e.g. for testing purposes.
+	 * 初始化底层的 {@code org.apache.commons.fileupload.servlet.ServletFileUpload}
+	 * 实例。可以重写以使用自定义子类，例如用于测试目的。
 	 * @param fileItemFactory the Commons FileItemFactory to use
 	 * @return the new ServletFileUpload instance
 	 */
@@ -180,7 +177,7 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	}
 
 	/**
-	 * Parse the given servlet request, resolving its multipart elements.
+	 * 解析给定的 Servlet 请求，解析其中的 multipart 元素。
 	 * @param request the request to parse
 	 * @return the parsing result
 	 * @throws MultipartException if multipart resolution failed.
@@ -204,10 +201,9 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 	}
 
 	/**
-	 * Determine the encoding for the given request.
-	 * Can be overridden in subclasses.
-	 * <p>The default implementation checks the request encoding,
-	 * falling back to the default encoding specified for this resolver.
+	 * 确定给定请求的编码。可以在子类中重写。
+	 * <p>默认实现检查请求的编码，
+	 * 若不存在则回退到为此解析器指定的默认编码。
 	 * @param request current HTTP request
 	 * @return the encoding for the request (never {@code null})
 	 * @see javax.servlet.ServletRequest#getCharacterEncoding

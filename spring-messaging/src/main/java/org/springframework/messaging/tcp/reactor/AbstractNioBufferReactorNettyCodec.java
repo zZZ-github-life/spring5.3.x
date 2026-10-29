@@ -25,8 +25,8 @@ import io.netty.buffer.ByteBuf;
 import org.springframework.messaging.Message;
 
 /**
- * Convenient base class for {@link ReactorNettyCodec} implementations that need
- * to work with NIO {@link ByteBuffer ByteBuffers}.
+ * 供需要处理 NIO {@link ByteBuffer ByteBuffers} 的 {@link ReactorNettyCodec}
+ * 实现使用的便捷基类。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

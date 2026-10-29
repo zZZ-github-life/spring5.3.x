@@ -28,8 +28,7 @@
 package org.springframework.asm;
 
 /**
- * Defines additional JVM opcodes, access flags and constants which are not part of the ASM public
- * API.
+ * 定义不属于 ASM 公共 API 的额外 JVM 操作码、访问标志和常量。
  *
  * @see <a href="https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-6.html">JVMS 6</a>
  * @author Eric Bruneton
@@ -80,12 +79,9 @@ final class Constants {
   // ASM specific stack map frame types, used in {@link ClassVisitor#visitFrame}.
 
   /**
-   * A frame inserted between already existing frames. This internal stack map frame type (in
-   * addition to the ones declared in {@link Opcodes}) can only be used if the frame content can be
-   * computed from the previous existing frame and from the instructions between this existing frame
-   * and the inserted one, without any knowledge of the type hierarchy. This kind of frame is only
-   * used when an unconditional jump is inserted in a method while expanding an ASM specific
-   * instruction. Keep in sync with Opcodes.java.
+   * 插入在已有帧之间的帧。这种内部栈映射帧类型（在 {@link Opcodes} 中声明的类型之外）只有在帧内容能
+   * 够从之前已有的帧以及该已有帧与所插入帧之间的指令计算得出、且无需了解类型层次结构时才能使用。仅当
+   * 在展开 ASM 特有指令时向方法中插入无条件跳转时，才会使用这种帧。与 Opcodes.java 保持同步。
    */
   static final int F_INSERT = 256;
 

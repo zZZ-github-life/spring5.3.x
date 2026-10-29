@@ -22,12 +22,12 @@ import javax.servlet.jsp.PageContext;
 import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
 
 /**
- * Mock implementation of the JSP 2.0 {@link javax.servlet.jsp.el.ExpressionEvaluator}
- * interface, delegating to the Apache JSTL {@link ExpressionEvaluatorManager}.
- * Only necessary for testing applications when testing custom JSP tags.
+ * JSP 2.0 {@link javax.servlet.jsp.el.ExpressionEvaluator} 接口的 mock 实现，
+ * 委托给 Apache JSTL 的 {@link ExpressionEvaluatorManager}。
+ * 仅在测试自定义 JSP 标签时需要用于测试应用程序。
  *
- * <p>Note that the Apache JSTL implementation (jstl.jar, standard.jar) has to be
- * available on the classpath to use this expression evaluator.
+ * <p>请注意，要使用此表达式求值器，类路径上必须存在
+ * Apache JSTL 实现（jstl.jar、standard.jar）。
  *
  * @author Juergen Hoeller
  * @since 1.1.5
@@ -40,7 +40,7 @@ public class MockExpressionEvaluator extends javax.servlet.jsp.el.ExpressionEval
 
 
 	/**
-	 * Create a new MockExpressionEvaluator for the given PageContext.
+	 * 为给定 PageContext 创建一个新的 MockExpressionEvaluator。
 	 * @param pageContext the JSP PageContext to run in
 	 */
 	public MockExpressionEvaluator(PageContext pageContext) {

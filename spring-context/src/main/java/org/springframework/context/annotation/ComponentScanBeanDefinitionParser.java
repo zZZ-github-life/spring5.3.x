@@ -45,7 +45,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the {@code <context:component-scan/>} element.
+ * 用于 {@code <context:component-scan/>} 元素的解析器。
  *
  * @author Mark Fisher
  * @author Ramnivas Laddad

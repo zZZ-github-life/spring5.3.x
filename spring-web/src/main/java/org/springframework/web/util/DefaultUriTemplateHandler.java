@@ -22,14 +22,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Default implementation of {@link UriTemplateHandler} based on the use of
- * {@link UriComponentsBuilder} for expanding and encoding variables.
+ * {@link UriTemplateHandler} 的默认实现，使用
+ * {@link UriComponentsBuilder} 展开和编码变量。
  *
- * <p>There are also several properties to customize how URI template handling
- * is performed, including a {@link #setBaseUrl baseUrl} to be used as a prefix
- * for all URI templates and a couple of encoding related options &mdash;
- * {@link #setParsePath parsePath} and {@link #setStrictEncoding strictEncoding}
- * respectively.
+ * <p>还有若干属性可用于自定义 URI 模板的处理方式，包括用作所有
+ * URI 模板前缀的 {@link #setBaseUrl baseUrl}，以及两个与编码相关的
+ * 选项：{@link #setParsePath parsePath} 和
+ * {@link #setStrictEncoding strictEncoding}。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -47,13 +46,12 @@ public class DefaultUriTemplateHandler extends AbstractUriTemplateHandler {
 
 
 	/**
-	 * Whether to parse the path of a URI template string into path segments.
-	 * <p>If set to {@code true} the URI template path is immediately decomposed
-	 * into path segments any URI variables expanded into it are then subject to
-	 * path segment encoding rules. In effect URI variables in the path have any
-	 * "/" characters percent encoded.
-	 * <p>By default this is set to {@code false} in which case the path is kept
-	 * as a full path and expanded URI variables will preserve "/" characters.
+	 * 是否将 URI 模板字符串的路径解析为路径段。
+	 * <p>如果设置为 {@code true}，URI 模板路径会立即分解为路径段，
+	 * 展开到其中的任何 URI 变量都会遵循路径段编码规则。实际上，
+	 * 路径中的 URI 变量中的任何 "/" 字符都会被百分号编码。
+	 * <p>默认设置为 {@code false}，此时路径保持为完整路径，
+	 * 展开的 URI 变量会保留 "/" 字符。
 	 * @param parsePath whether to parse the path into path segments
 	 */
 	public void setParsePath(boolean parsePath) {
@@ -61,24 +59,23 @@ public class DefaultUriTemplateHandler extends AbstractUriTemplateHandler {
 	}
 
 	/**
-	 * Whether the handler is configured to parse the path into path segments.
+	 * 处理器是否配置为将路径解析为路径段。
 	 */
 	public boolean shouldParsePath() {
 		return this.parsePath;
 	}
 
 	/**
-	 * Whether to encode characters outside the unreserved set as defined in
-	 * <a href="https://tools.ietf.org/html/rfc3986#section-2">RFC 3986 Section 2</a>.
-	 * This ensures a URI variable value will not contain any characters with a
-	 * reserved purpose.
-	 * <p>By default this is set to {@code false} in which case only characters
-	 * illegal for the given URI component are encoded. For example when expanding
-	 * a URI variable into a path segment the "/" character is illegal and
-	 * encoded. The ";" character however is legal and not encoded even though
-	 * it has a reserved purpose.
-	 * <p><strong>Note:</strong> this property supersedes the need to also set
-	 * the {@link #setParsePath parsePath} property.
+	 * 是否对
+	 * <a href="https://tools.ietf.org/html/rfc3986#section-2">RFC 3986 第 2 节</a>
+	 * 所定义的非保留字符集之外的字符进行编码。
+	 * 这可确保 URI 变量值不包含任何具有保留用途的字符。
+	 * <p>默认设置为 {@code false}，此时仅对给定 URI 组件非法的字符
+	 * 进行编码。例如，将 URI 变量展开到路径段时，"/" 字符是非法的，
+	 * 会被编码。而 ";" 字符虽然是保留用途，但它是合法的，
+	 * 因此不会被编码。
+	 * <p><strong>注意：</strong>此属性取代了同时设置
+	 * {@link #setParsePath parsePath} 属性的需要。
 	 * @param strictEncoding whether to perform strict encoding
 	 * @since 4.3
 	 */
@@ -87,7 +84,7 @@ public class DefaultUriTemplateHandler extends AbstractUriTemplateHandler {
 	}
 
 	/**
-	 * Whether to strictly encode any character outside the unreserved set.
+	 * 是否对非保留字符集之外的任何字符进行严格编码。
 	 */
 	public boolean isStrictEncoding() {
 		return this.strictEncoding;
@@ -109,9 +106,9 @@ public class DefaultUriTemplateHandler extends AbstractUriTemplateHandler {
 	}
 
 	/**
-	 * Create a {@code UriComponentsBuilder} from the URI template string.
-	 * This implementation also breaks up the path into path segments depending
-	 * on whether {@link #setParsePath parsePath} is enabled.
+	 * 根据 URI 模板字符串创建一个 {@code UriComponentsBuilder}。
+	 * 此实现还会根据是否启用 {@link #setParsePath parsePath}
+	 * 将路径拆分为路径段。
 	 */
 	protected UriComponentsBuilder initUriComponentsBuilder(String uriTemplate) {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(uriTemplate);

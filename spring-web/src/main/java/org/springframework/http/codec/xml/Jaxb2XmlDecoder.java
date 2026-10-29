@@ -62,8 +62,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.xml.StaxUtils;
 
 /**
- * Decode from a bytes stream containing XML elements to a stream of
- * {@code Object}s (POJOs).
+ * 从包含 XML 元素的字节流解码为 {@code Object}（POJO）流。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -73,7 +72,7 @@ import org.springframework.util.xml.StaxUtils;
 public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 	/**
-	 * The default value for JAXB annotations.
+	 * JAXB 注解的默认值。
 	 * @see XmlRootElement#name()
 	 * @see XmlRootElement#namespace()
 	 * @see XmlType#name()
@@ -98,7 +97,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Create a {@code Jaxb2XmlDecoder} with the specified MIME types.
+	 * 使用指定的 MIME 类型创建 {@code Jaxb2XmlDecoder}。
 	 * @param supportedMimeTypes supported MIME types
 	 * @since 5.1.9
 	 */
@@ -108,7 +107,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 
 
 	/**
-	 * Configure a processor function to customize Unmarshaller instances.
+	 * 配置用于自定义 Unmarshaller 实例的处理器函数。
 	 * @param processor the function to use
 	 * @since 5.1.3
 	 */
@@ -117,7 +116,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Return the configured processor for customizing Unmarshaller instances.
+	 * 返回用于自定义 Unmarshaller 实例的已配置处理器。
 	 * @since 5.1.3
 	 */
 	public Function<Unmarshaller, Unmarshaller> getUnmarshallerProcessor() {
@@ -125,11 +124,11 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Set the max number of bytes that can be buffered by this decoder.
-	 * This is either the size of the entire input when decoding as a whole, or when
-	 * using async parsing with Aalto XML, it is the size of one top-level XML tree.
-	 * When the limit is exceeded, {@link DataBufferLimitException} is raised.
-	 * <p>By default this is set to 256K.
+	 * 设置此解码器可缓冲的最大字节数。
+	 * 这可以是整体解码时整个输入的大小，或者在使用 Aalto XML
+	 * 进行异步解析时，一个顶层 XML 树的大小。
+	 * 超过限制时会抛出 {@link DataBufferLimitException}。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 * @since 5.1.11
 	 */
@@ -139,7 +138,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回{@link #setMaxInMemorySize 已配置}的字节数限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxInMemorySize() {
@@ -252,8 +251,7 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Returns the qualified name for the given class, according to the mapping rules
-	 * in the JAXB specification.
+	 * 根据 JAXB 规范中的映射规则，返回给定类的限定名称。
 	 */
 	QName toQName(Class<?> outputClass) {
 		String localPart;
@@ -291,20 +289,19 @@ public class Jaxb2XmlDecoder extends AbstractDecoder<Object> {
 	}
 
 	/**
-	 * Split a flux of {@link XMLEvent XMLEvents} into a flux of XMLEvent lists, one list
-	 * for each branch of the tree that starts with the given qualified name.
-	 * That is, given the XMLEvents shown {@linkplain XmlEventDecoder here},
-	 * and the {@code desiredName} "{@code child}", this method returns a flux
-	 * of two lists, each of which containing the events of a particular branch
-	 * of the tree that starts with "{@code child}".
+	 * 将 {@link XMLEvent XMLEvent} 的 Flux 拆分为 XMLEvent 列表的 Flux，
+	 * 每个列表对应以给定限定名称开头的树的一个分支。
+	 * 也就是说，给定{@linkplain XmlEventDecoder 此处}所示的 XMLEvent，
+	 * 以及 {@code desiredName} 为 "{@code child}"，此方法返回包含两个列表的 Flux，
+	 * 每个列表包含以 "{@code child}" 开头的树中某个特定分支的事件。
 	 * <ol>
-	 * <li>The first list, dealing with the first branch of the tree:
+	 * <li>第一个列表，处理树的第一个分支：
 	 * <ol>
 	 * <li>{@link javax.xml.stream.events.StartElement} {@code child}</li>
 	 * <li>{@link javax.xml.stream.events.Characters} {@code foo}</li>
 	 * <li>{@link javax.xml.stream.events.EndElement} {@code child}</li>
 	 * </ol>
-	 * <li>The second list, dealing with the second branch of the tree:
+	 * <li>第二个列表，处理树的第二个分支：
 	 * <ol>
 	 * <li>{@link javax.xml.stream.events.StartElement} {@code child}</li>
 	 * <li>{@link javax.xml.stream.events.Characters} {@code bar}</li>

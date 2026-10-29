@@ -39,18 +39,16 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Creates the necessary {@link MessageListenerContainer} instances for the
- * registered {@linkplain JmsListenerEndpoint endpoints}. Also manages the
- * lifecycle of the listener containers, in particular within the lifecycle
- * of the application context.
+ * 为已注册的 {@linkplain JmsListenerEndpoint 端点}创建必要的
+ * {@link MessageListenerContainer} 实例。还管理监听器容器的生命周期，
+ * 特别是在应用上下文的生命周期内。
  *
- * <p>Contrary to {@link MessageListenerContainer MessageListenerContainers}
- * created manually, listener containers managed by registry are not beans
- * in the application context and are not candidates for autowiring.
- * Use {@link #getListenerContainers()} if you need to access this registry's
- * listener containers for management purposes. If you need to access to a
- * specific message listener container, use {@link #getListenerContainer(String)}
- * with the id of the endpoint.
+ * <p>与手动创建的 {@link MessageListenerContainer MessageListenerContainers}
+ * 不同，由注册表管理的监听器容器不是应用上下文中的 bean，
+ * 也不会成为自动装配的候选对象。
+ * 如需出于管理目的访问此注册表的监听器容器，请使用
+ * {@link #getListenerContainers()}。如需访问特定的消息监听器容器，
+ * 请使用 {@link #getListenerContainer(String)} 并提供端点的 id。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -89,8 +87,8 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 
 
 	/**
-	 * Return the {@link MessageListenerContainer} with the specified id or
-	 * {@code null} if no such container exists.
+	 * 返回具有指定 id 的 {@link MessageListenerContainer}，
+	 * 如果不存在此类容器则返回 {@code null}。
 	 * @param id the id of the container
 	 * @return the container or {@code null} if no container with that id exists
 	 * @see JmsListenerEndpoint#getId()
@@ -103,7 +101,7 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	}
 
 	/**
-	 * Return the ids of the managed {@link MessageListenerContainer} instance(s).
+	 * 返回所管理的 {@link MessageListenerContainer} 实例的 id。
 	 * @since 4.2.3
 	 * @see #getListenerContainer(String)
 	 */
@@ -112,18 +110,16 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	}
 
 	/**
-	 * Return the managed {@link MessageListenerContainer} instance(s).
+	 * 返回所管理的 {@link MessageListenerContainer} 实例。
 	 */
 	public Collection<MessageListenerContainer> getListenerContainers() {
 		return Collections.unmodifiableCollection(this.listenerContainers.values());
 	}
 
 	/**
-	 * Create a message listener container for the given {@link JmsListenerEndpoint}.
-	 * <p>This create the necessary infrastructure to honor that endpoint
-	 * with regard to its configuration.
-	 * <p>The {@code startImmediately} flag determines if the container should be
-	 * started immediately.
+	 * 为给定的 {@link JmsListenerEndpoint} 创建消息监听器容器。
+	 * <p>这会创建必要的基础设施，以根据其配置来落实该端点。
+	 * <p>{@code startImmediately} 标志决定容器是否应立即启动。
 	 * @param endpoint the endpoint to add
 	 * @param factory the listener factory to use
 	 * @param startImmediately start the container immediately if necessary
@@ -151,9 +147,8 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	}
 
 	/**
-	 * Create a message listener container for the given {@link JmsListenerEndpoint}.
-	 * <p>This create the necessary infrastructure to honor that endpoint
-	 * with regard to its configuration.
+	 * 为给定的 {@link JmsListenerEndpoint} 创建消息监听器容器。
+	 * <p>这会创建必要的基础设施，以根据其配置来落实该端点。
 	 * @param endpoint the endpoint to add
 	 * @param factory the listener factory to use
 	 * @see #registerListenerContainer(JmsListenerEndpoint, JmsListenerContainerFactory, boolean)
@@ -163,7 +158,7 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	}
 
 	/**
-	 * Create and start a new container using the specified factory.
+	 * 使用指定的工厂创建并启动一个新容器。
 	 */
 	protected MessageListenerContainer createListenerContainer(JmsListenerEndpoint endpoint,
 			JmsListenerContainerFactory<?> factory) {
@@ -233,8 +228,8 @@ public class JmsListenerEndpointRegistry implements DisposableBean, SmartLifecyc
 	}
 
 	/**
-	 * Start the specified {@link MessageListenerContainer} if it should be started
-	 * on startup or when start is called explicitly after startup.
+	 * 如果指定的 {@link MessageListenerContainer} 应在启动时启动，
+	 * 或在启动后显式调用 start 时启动，则启动它。
 	 * @see MessageListenerContainer#isAutoStartup()
 	 */
 	private void startIfNecessary(MessageListenerContainer listenerContainer) {

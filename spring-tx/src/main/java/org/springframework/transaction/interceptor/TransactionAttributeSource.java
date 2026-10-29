@@ -21,10 +21,9 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface used by {@link TransactionInterceptor} for metadata retrieval.
+ * {@link TransactionInterceptor}用于元数据检索的策略接口。
  *
- * <p>Implementations know how to source transaction attributes, whether from configuration,
- * metadata attributes at source level (such as annotations), or anywhere else.
+ * <p>实现类知道如何获取事务属性, 无论是从配置、源码级别的元数据属性(如注解)还是其他任何地方。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -36,13 +35,9 @@ import org.springframework.lang.Nullable;
 public interface TransactionAttributeSource {
 
 	/**
-	 * Determine whether the given class is a candidate for transaction attributes
-	 * in the metadata format of this {@code TransactionAttributeSource}.
-	 * <p>If this method returns {@code false}, the methods on the given class
-	 * will not get traversed for {@link #getTransactionAttribute} introspection.
-	 * Returning {@code false} is therefore an optimization for non-affected
-	 * classes, whereas {@code true} simply means that the class needs to get
-	 * fully introspected for each method on the given class individually.
+	 * 确定给定类是否是此{@code TransactionAttributeSource}元数据格式的事务属性候选类。
+	 * <p>如果此方法返回{@code false}, 则不会遍历给定类上的方法进行{@link #getTransactionAttribute}内省。
+	 * 因此, 返回{@code false}是对不受影响类的优化, 而{@code true}仅意味着需要对该给定类上的每个方法进行完整的内省。
 	 * @param targetClass the class to introspect
 	 * @return {@code false} if the class is known to have no transaction
 	 * attributes at class or method level; {@code true} otherwise. The default
@@ -54,8 +49,7 @@ public interface TransactionAttributeSource {
 	}
 
 	/**
-	 * Return the transaction attribute for the given method,
-	 * or {@code null} if the method is non-transactional.
+	 * 返回给定方法的事务属性, 如果方法是非事务性的则返回{@code null}。
 	 * @param method the method to introspect
 	 * @param targetClass the target class (may be {@code null},
 	 * in which case the declaring class of the method must be used)

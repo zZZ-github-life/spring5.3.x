@@ -24,10 +24,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link DestinationResolver} implementation that proxies a target DestinationResolver,
- * caching its {@link #resolveDestination} results. Such caching is particularly useful
- * if the destination resolving process is expensive (e.g. the destination has to be
- * resolved through an external system) and the resolution results are stable anyway.
+ * 一个 {@link DestinationResolver} 实现，它代理目标 DestinationResolver 并缓存其
+ * {@link #resolveDestination} 结果。如果目标解析过程开销较大
+ * （例如必须通过外部系统解析目标）且解析结果稳定，这种缓存特别有用。
  *
  * @author Agim Emruli
  * @author Juergen Hoeller
@@ -44,15 +43,15 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 
 
 	/**
-	 * Create a new CachingDestinationResolverProxy, setting the target DestinationResolver
-	 * through the {@link #setTargetDestinationResolver} bean property.
+	 * 创建新的 CachingDestinationResolverProxy，并通过
+	 * {@link #setTargetDestinationResolver} Bean 属性设置目标 DestinationResolver。
 	 */
 	public CachingDestinationResolverProxy() {
 	}
 
 	/**
-	 * Create a new CachingDestinationResolverProxy using the given target
-	 * DestinationResolver to actually resolve destinations.
+	 * 使用给定的目标 DestinationResolver 创建新的 CachingDestinationResolverProxy，
+	 * 以实际解析目标。
 	 * @param targetDestinationResolver the target DestinationResolver to delegate to
 	 */
 	public CachingDestinationResolverProxy(DestinationResolver<D> targetDestinationResolver) {
@@ -62,7 +61,7 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 
 
 	/**
-	 * Set the target DestinationResolver to delegate to.
+	 * 设置要委托的目标 DestinationResolver。
 	 */
 	public void setTargetDestinationResolver(DestinationResolver<D> targetDestinationResolver) {
 		this.targetDestinationResolver = targetDestinationResolver;
@@ -77,8 +76,7 @@ public class CachingDestinationResolverProxy<D> implements DestinationResolver<D
 
 
 	/**
-	 * Resolves and caches destinations if successfully resolved by the target
-	 * DestinationResolver implementation.
+	 * 如果目标 DestinationResolver 实现成功解析目标，则解析并缓存目标。
 	 * @param name the destination name to be resolved
 	 * @return the currently resolved destination or an already cached destination
 	 * @throws DestinationResolutionException if the target DestinationResolver

@@ -19,8 +19,7 @@ package org.springframework.aop.aspectj;
 import org.springframework.core.Ordered;
 
 /**
- * Interface to be implemented by types that can supply the information
- * needed to sort advice/advisors by AspectJ's precedence rules.
+ * 由能够提供按 AspectJ 优先级规则排序通知/Advisor 所需信息的类型实现的接口。
  *
  * @author Adrian Colyer
  * @since 2.0
@@ -36,22 +35,22 @@ public interface AspectJPrecedenceInformation extends Ordered {
 	// its advice for aspects with non-singleton instantiation models.
 
 	/**
-	 * Return the name of the aspect (bean) in which the advice was declared.
+	 * 返回声明该通知的切面（Bean）的名称。
 	 */
 	String getAspectName();
 
 	/**
-	 * Return the declaration order of the advice member within the aspect.
+	 * 返回通知成员在切面中的声明顺序。
 	 */
 	int getDeclarationOrder();
 
 	/**
-	 * Return whether this is a before advice.
+	 * 返回这是否为前置通知。
 	 */
 	boolean isBeforeAdvice();
 
 	/**
-	 * Return whether this is an after advice.
+	 * 返回这是否为后置通知。
 	 */
 	boolean isAfterAdvice();
 

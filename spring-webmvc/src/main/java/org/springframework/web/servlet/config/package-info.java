@@ -1,5 +1,5 @@
 /**
- * Defines the XML configuration namespace for Spring MVC.
+ * 定义 Spring MVC 的 XML 配置命名空间。
  */
 @NonNullApi
 @NonNullFields

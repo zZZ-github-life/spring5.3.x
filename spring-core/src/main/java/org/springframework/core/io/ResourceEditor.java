@@ -26,17 +26,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link java.beans.PropertyEditor Editor} for {@link Resource}
- * descriptors, to automatically convert {@code String} locations
- * e.g. {@code file:C:/myfile.txt} or {@code classpath:myfile.txt} to
- * {@code Resource} properties instead of using a {@code String} location property.
+ * 用于 {@link Resource} 描述符的 {@link java.beans.PropertyEditor Editor}，可自动将 {@code String}
+ * 位置（例如 {@code file:C:/myfile.txt} 或 {@code classpath:myfile.txt}）转换为 {@code Resource}
+ * 属性，而不是使用 {@code String} 位置属性。
  *
- * <p>The path may contain {@code ${...}} placeholders, to be
- * resolved as {@link org.springframework.core.env.Environment} properties:
- * e.g. {@code ${user.dir}}. Unresolvable placeholders are ignored by default.
+ * <p>路径中可包含 {@code ${...}} 占位符，它们将被解析为
+ * {@link org.springframework.core.env.Environment} 属性：例如 {@code ${user.dir}}。默认情况下会忽
+ * 略无法解析的占位符。
  *
- * <p>Delegates to a {@link ResourceLoader} to do the heavy lifting,
- * by default using a {@link DefaultResourceLoader}.
+ * <p>委托给 {@link ResourceLoader} 完成主要工作，默认使用 {@link DefaultResourceLoader}。
  *
  * @author Juergen Hoeller
  * @author Dave Syer
@@ -58,16 +56,16 @@ public class ResourceEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new instance of the {@link ResourceEditor} class
-	 * using a {@link DefaultResourceLoader} and {@link StandardEnvironment}.
+	 * 使用 {@link DefaultResourceLoader} 和 {@link StandardEnvironment} 创建 {@link ResourceEditor} 类
+	 * 的新实例。
 	 */
 	public ResourceEditor() {
 		this(new DefaultResourceLoader(), null);
 	}
 
 	/**
-	 * Create a new instance of the {@link ResourceEditor} class
-	 * using the given {@link ResourceLoader} and {@link PropertyResolver}.
+	 * 使用给定的 {@link ResourceLoader} 和 {@link PropertyResolver} 创建 {@link ResourceEditor} 类的新
+	 * 实例。
 	 * @param resourceLoader the {@code ResourceLoader} to use
 	 * @param propertyResolver the {@code PropertyResolver} to use
 	 */
@@ -76,8 +74,7 @@ public class ResourceEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new instance of the {@link ResourceEditor} class
-	 * using the given {@link ResourceLoader}.
+	 * 使用给定的 {@link ResourceLoader} 创建 {@link ResourceEditor} 类的新实例。
 	 * @param resourceLoader the {@code ResourceLoader} to use
 	 * @param propertyResolver the {@code PropertyResolver} to use
 	 * @param ignoreUnresolvablePlaceholders whether to ignore unresolvable placeholders
@@ -105,8 +102,7 @@ public class ResourceEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Resolve the given path, replacing placeholders with corresponding
-	 * property values from the {@code environment} if necessary.
+	 * 解析给定路径，如有必要，用来自 {@code environment} 的相应属性值替换占位符。
 	 * @param path the original file path
 	 * @return the resolved file path
 	 * @see PropertyResolver#resolvePlaceholders

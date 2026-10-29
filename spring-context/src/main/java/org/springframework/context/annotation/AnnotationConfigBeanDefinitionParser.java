@@ -29,7 +29,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.lang.Nullable;
 
 /**
- * Parser for the &lt;context:annotation-config/&gt; element.
+ * 用于 &lt;context:annotation-config/&gt; 元素的解析器。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller

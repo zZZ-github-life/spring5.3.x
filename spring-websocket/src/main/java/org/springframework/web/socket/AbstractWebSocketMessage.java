@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A message that can be handled or sent on a WebSocket connection.
+ * 可以在 WebSocket 连接上处理或发送的消息。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -35,7 +35,7 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 
 
 	/**
-	 * Create a new WebSocket message with the given payload.
+	 * 使用给定的负载创建一个新的 WebSocket 消息。
 	 * @param payload the non-null payload
 	 */
 	AbstractWebSocketMessage(T payload) {
@@ -43,10 +43,10 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 	}
 
 	/**
-	 * Create a new WebSocket message given payload representing the full or partial
-	 * message content. When the {@code isLast} boolean flag is set to {@code false}
-	 * the message is sent as partial content and more partial messages will be
-	 * expected until the boolean flag is set to {@code true}.
+	 * 使用表示完整或部分消息内容的负载创建一个新的 WebSocket 消息。
+	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
+	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
+	 * 直到该布尔标志设置为 {@code true} 为止。
 	 * @param payload the non-null payload
 	 * @param isLast if the message is the last of a series of partial messages
 	 */
@@ -58,7 +58,7 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 
 
 	/**
-	 * Return the message payload (never {@code null}).
+	 * 返回消息负载（永远不为 {@code null}）。
 	 */
 	@Override
 	public T getPayload() {
@@ -66,7 +66,7 @@ public abstract class AbstractWebSocketMessage<T> implements WebSocketMessage<T>
 	}
 
 	/**
-	 * Whether this is the last part of a message sent as a series of partial messages.
+	 * 判断这是否是以一系列部分消息形式发送的消息的最后一部分。
 	 */
 	@Override
 	public boolean isLast() {

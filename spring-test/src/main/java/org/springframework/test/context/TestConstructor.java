@@ -29,33 +29,33 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * {@code @TestConstructor} is a type-level annotation that is used to configure
- * how the parameters of a test class constructor are autowired from components
- * in the test's {@link org.springframework.context.ApplicationContext
- * ApplicationContext}.
+ * {@code @TestConstructor} 是一个类型级注解，用于配置
+ * 测试类构造函数的参数如何从测试的
+ * {@link org.springframework.context.ApplicationContext
+ * ApplicationContext} 中的组件自动装配。
  *
- * <p>If {@code @TestConstructor} is not <em>present</em> or <em>meta-present</em>
- * on a test class, the default <em>test constructor autowire mode</em> will be
- * used. See {@link #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME} for details on
- * how to change the default mode. Note, however, that a local declaration of
- * {@link org.springframework.beans.factory.annotation.Autowired @Autowired} on
- * a constructor takes precedence over both {@code @TestConstructor} and the default
- * mode.
+ * <p>如果测试类上未<em>存在</em>或<em>元存在</em> {@code @TestConstructor}，
+ * 将使用默认的<em>测试构造函数自动装配模式</em>。
+ * 有关如何更改默认模式的详细信息，请参见 {@link #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}。
+ * 但请注意，在构造函数上本地声明
+ * {@link org.springframework.beans.factory.annotation.Autowired @Autowired} 优先于
+ * {@code @TestConstructor} 和默认
+ * 模式。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
- * <p>As of Spring Framework 5.2, this annotation is only supported in conjunction
- * with the {@link org.springframework.test.context.junit.jupiter.SpringExtension
- * SpringExtension} for use with JUnit Jupiter. Note that the {@code SpringExtension} is
- * often automatically registered for you &mdash; for example, when using annotations such as
- * {@link org.springframework.test.context.junit.jupiter.SpringJUnitConfig @SpringJUnitConfig} and
+ * <p>从 Spring Framework 5.2 开始，此注解仅支持与
+ * 用于 JUnit Jupiter 的 {@link org.springframework.test.context.junit.jupiter.SpringExtension
+ * SpringExtension} 结合使用。请注意，{@code SpringExtension}
+ * 通常会为你自动注册 —— 例如，在使用
+ * {@link org.springframework.test.context.junit.jupiter.SpringJUnitConfig @SpringJUnitConfig} 和
  * {@link org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig @SpringJUnitWebConfig}
- * or various test-related annotations from Spring Boot Test.
+ * 或 Spring Boot Test 中各种测试相关注解时。
  *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link NestedTestConfiguration @NestedTestConfiguration} for details.
+ * <p>从 Spring Framework 5.3 开始，此注解默认将从
+ * 外层测试类继承。详情请参见
+ * {@link NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 5.2
@@ -75,32 +75,32 @@ import org.springframework.lang.Nullable;
 public @interface TestConstructor {
 
 	/**
-	 * JVM system property used to change the default <em>test constructor
-	 * autowire mode</em>: {@value #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}.
-	 * <p>Acceptable values include enum constants defined in {@link AutowireMode},
-	 * ignoring case. For example, the default may be changed to {@link AutowireMode#ALL}
-	 * by supplying the following JVM system property via the command line.
+	 * 用于更改默认<em>测试构造函数
+	 * 自动装配模式</em>的 JVM 系统属性：{@value #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}。
+	 * <p>可接受的值包括 {@link AutowireMode} 中定义的枚举常量，
+	 * 忽略大小写。例如，可以通过命令行提供
+	 * 以下 JVM 系统属性，将默认值更改为 {@link AutowireMode#ALL}。
 	 * <pre style="code">-Dspring.test.constructor.autowire.mode=all</pre>
-	 * <p>If the property is not set to {@code ALL}, parameters for test class
-	 * constructors will be autowired according to {@link AutowireMode#ANNOTATED}
-	 * semantics by default.
-	 * <p>May alternatively be configured via the
+	 * <p>如果该属性未设置为 {@code ALL}，则测试类
+	 * 构造函数的参数默认将按照 {@link AutowireMode#ANNOTATED}
+	 * 语义自动装配。
+	 * <p>也可以通过
 	 * {@link org.springframework.core.SpringProperties SpringProperties}
-	 * mechanism.
-	 * <p>As of Spring Framework 5.3, this property may also be configured as a
+	 * 机制配置。
+	 * <p>从 Spring Framework 5.3 开始，此属性还可以配置为
 	 * <a href="https://junit.org/junit5/docs/current/user-guide/#running-tests-config-params">JUnit
-	 * Platform configuration parameter</a>.
+	 * Platform 配置参数</a>。
 	 * @see #autowireMode
 	 */
 	String TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME = "spring.test.constructor.autowire.mode";
 
 
 	/**
-	 * Flag for setting the <em>test constructor {@linkplain AutowireMode autowire
-	 * mode}</em> for the current test class.
-	 * <p>Setting this flag overrides the global default. See
-	 * {@link #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME} for details on how
-	 * to change the global default.
+	 * 用于设置当前测试类的<em>测试构造函数 {@linkplain AutowireMode 自动装配
+	 * 模式}</em>的标志。
+	 * <p>设置此标志将覆盖全局默认值。有关
+	 * 如何更改全局默认值的详细信息，请参见
+	 * {@link #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME}。
 	 * @return an {@link AutowireMode} to take precedence over the global default
 	 * @see #TEST_CONSTRUCTOR_AUTOWIRE_MODE_PROPERTY_NAME
 	 * @see org.springframework.beans.factory.annotation.Autowired @Autowired
@@ -111,35 +111,35 @@ public @interface TestConstructor {
 
 
 	/**
-	 * Defines autowiring modes for parameters in a test constructor.
+	 * 定义测试构造函数中参数的自动装配模式。
 	 * @see #ALL
 	 * @see #ANNOTATED
 	 */
 	enum AutowireMode {
 
 		/**
-		 * All test constructor parameters will be autowired as if the constructor
-		 * itself were annotated with
-		 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired}.
+		 * 所有测试构造函数参数都将被自动装配，就像构造函数
+		 * 本身使用
+		 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired} 注解一样。
 		 * @see #ANNOTATED
 		 */
 		ALL,
 
 		/**
-		 * Each individual test constructor parameter will only be autowired if it
-		 * is annotated with
-		 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired},
-		 * {@link org.springframework.beans.factory.annotation.Qualifier @Qualifier},
-		 * or {@link org.springframework.beans.factory.annotation.Value @Value},
-		 * or if the constructor itself is annotated with {@code @Autowired}.
+		 * 每个单独的测试构造函数参数仅在使用
+		 * {@link org.springframework.beans.factory.annotation.Autowired @Autowired}、
+		 * {@link org.springframework.beans.factory.annotation.Qualifier @Qualifier}
+		 * 或 {@link org.springframework.beans.factory.annotation.Value @Value} 注解时，
+		 * 或构造函数本身使用 {@code @Autowired} 注解时，才会
+		 * 被自动装配。
 		 * @see #ALL
 		 */
 		ANNOTATED;
 
 
 		/**
-		 * Get the {@code AutowireMode} enum constant with the supplied name,
-		 * ignoring case.
+		 * 获取具有提供名称的 {@code AutowireMode} 枚举常量，
+		 * 忽略大小写。
 		 * @param name the name of the enum constant to retrieve
 		 * @return the corresponding enum constant or {@code null} if not found
 		 * @since 5.3

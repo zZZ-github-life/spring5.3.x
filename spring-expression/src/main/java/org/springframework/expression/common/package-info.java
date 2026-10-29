@@ -1,5 +1,5 @@
 /**
- * Common utility classes behind the <em>Spring Expression Language</em>.
+ * 用于 <em>Spring Expression Language</em> 的通用工具类。
  */
 @NonNullApi
 @NonNullFields

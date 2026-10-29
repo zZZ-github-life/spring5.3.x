@@ -25,10 +25,10 @@ import javax.servlet.WriteListener;
 import org.springframework.util.Assert;
 
 /**
- * Delegating implementation of {@link javax.servlet.ServletOutputStream}.
+ * {@link javax.servlet.ServletOutputStream} 的委托实现。
  *
- * <p>Used by {@link MockHttpServletResponse}; typically not directly
- * used for testing application controllers.
+ * <p>由 {@link MockHttpServletResponse} 使用；通常不直接
+ * 用于测试应用程序控制器。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -40,7 +40,7 @@ public class DelegatingServletOutputStream extends ServletOutputStream {
 
 
 	/**
-	 * Create a DelegatingServletOutputStream for the given target stream.
+	 * 为给定的目标流创建一个 DelegatingServletOutputStream。
 	 * @param targetStream the target stream (never {@code null})
 	 */
 	public DelegatingServletOutputStream(OutputStream targetStream) {
@@ -49,7 +49,7 @@ public class DelegatingServletOutputStream extends ServletOutputStream {
 	}
 
 	/**
-	 * Return the underlying target stream (never {@code null}).
+	 * 返回底层的目标流（永不为 {@code null}）。
 	 */
 	public final OutputStream getTargetStream() {
 		return this.targetStream;

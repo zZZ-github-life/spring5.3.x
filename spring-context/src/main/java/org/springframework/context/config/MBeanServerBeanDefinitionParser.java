@@ -31,11 +31,10 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the &lt;context:mbean-server/&gt; element.
+ * 用于 &lt;context:mbean-server/&gt; 元素的解析器。
  *
- * <p>Registers an instance of
- * {@link org.springframework.jmx.export.annotation.AnnotationMBeanExporter}
- * within the context.
+ * <p>在上下文中注册 {@link org.springframework.jmx.export.annotation.AnnotationMBeanExporter} 的一
+ * 个实例。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller

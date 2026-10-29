@@ -22,10 +22,10 @@ import javax.sql.DataSource;
 import org.springframework.jndi.JndiLocatorSupport;
 
 /**
- * JNDI-based {@link DataSourceLookup} implementation.
+ * 基于 JNDI 的 {@link DataSourceLookup} 实现。
  *
- * <p>For specific JNDI configuration, it is recommended to configure
- * the "jndiEnvironment"/"jndiTemplate" properties.
+ * <p>对于特定的 JNDI 配置，建议配置
+ * "jndiEnvironment"/"jndiTemplate" 属性。
  *
  * @author Costin Leau
  * @author Juergen Hoeller

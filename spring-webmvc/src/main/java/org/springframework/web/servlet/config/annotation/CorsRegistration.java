@@ -22,8 +22,7 @@ import java.util.List;
 import org.springframework.web.cors.CorsConfiguration;
 
 /**
- * Assists with the creation of a {@link CorsConfiguration} instance for a given
- * URL path pattern.
+ * 辅助为给定的 URL 路径模式创建 {@link CorsConfiguration} 实例。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -47,13 +46,12 @@ public class CorsRegistration {
 
 
 	/**
-	 * Set the origins for which cross-origin requests are allowed from a browser.
-	 * Please, refer to {@link CorsConfiguration#setAllowedOrigins(List)} for
-	 * format details and other considerations.
+	 * 设置允许浏览器发起跨域请求的来源。关于格式细节及其他注意事项，
+	 * 请参阅 {@link CorsConfiguration#setAllowedOrigins(List)}。
 	 *
-	 * <p>By default, all origins are allowed, but if
-	 * {@link #allowedOriginPatterns(String...) allowedOriginPatterns} is also
-	 * set, then that takes precedence.
+	 * <p>默认允许所有来源，但如果同时设置了
+	 * {@link #allowedOriginPatterns(String...) allowedOriginPatterns}，
+	 * 则以该设置为准。
 	 * @see #allowedOriginPatterns(String...)
 	 */
 	public CorsRegistration allowedOrigins(String... origins) {
@@ -62,12 +60,10 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Alternative to {@link #allowedOrigins(String...)} that supports more
-	 * flexible patterns for specifying the origins for which cross-origin
-	 * requests are allowed from a browser. Please, refer to
-	 * {@link CorsConfiguration#setAllowedOriginPatterns(List)} for format
-	 * details and other considerations.
-	 * <p>By default this is not set.
+	 * {@link #allowedOrigins(String...)} 的替代方案，支持更灵活的模式来指定
+	 * 允许浏览器发起跨域请求的来源。关于格式细节及其他注意事项，
+	 * 请参阅 {@link CorsConfiguration#setAllowedOriginPatterns(List)}。
+	 * <p>默认未设置。
 	 * @since 5.3
 	 */
 	public CorsRegistration allowedOriginPatterns(String... patterns) {
@@ -76,10 +72,9 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Set the HTTP methods to allow, e.g. {@code "GET"}, {@code "POST"}, etc.
-	 * <p>The special value {@code "*"} allows all methods.
-	 * <p>By default "simple" methods {@code GET}, {@code HEAD}, and {@code POST}
-	 * are allowed.
+	 * 设置允许的 HTTP 方法，例如 {@code "GET"}、{@code "POST"} 等。
+	 * <p>特殊值 {@code "*"} 允许所有方法。
+	 * <p>默认允许"简单"方法：{@code GET}、{@code HEAD} 和 {@code POST}。
 	 */
 	public CorsRegistration allowedMethods(String... methods) {
 		this.config.setAllowedMethods(Arrays.asList(methods));
@@ -87,13 +82,12 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Set the list of headers that a pre-flight request can list as allowed
-	 * for use during an actual request.
-	 * <p>The special value {@code "*"} may be used to allow all headers.
-	 * <p>A header name is not required to be listed if it is one of:
-	 * {@code Cache-Control}, {@code Content-Language}, {@code Expires},
-	 * {@code Last-Modified}, or {@code Pragma} as per the CORS spec.
-	 * <p>By default all headers are allowed.
+	 * 设置预检请求可以列为在实际请求期间允许使用的标头列表。
+	 * <p>可以使用特殊值 {@code "*"} 允许所有标头。
+	 * <p>根据 CORS 规范，如果标头是以下之一，则无需列出：
+	 * {@code Cache-Control}、{@code Content-Language}、{@code Expires}、
+	 * {@code Last-Modified} 或 {@code Pragma}。
+	 * <p>默认允许所有标头。
 	 */
 	public CorsRegistration allowedHeaders(String... headers) {
 		this.config.setAllowedHeaders(Arrays.asList(headers));
@@ -101,13 +95,11 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Set the list of response headers other than "simple" headers, i.e.
-	 * {@code Cache-Control}, {@code Content-Language}, {@code Content-Type},
-	 * {@code Expires}, {@code Last-Modified}, or {@code Pragma}, that an
-	 * actual response might have and can be exposed.
-	 * <p>The special value {@code "*"} allows all headers to be exposed for
-	 * non-credentialed requests.
-	 * <p>By default this is not set.
+	 * 设置除"简单"标头（即 {@code Cache-Control}、{@code Content-Language}、
+	 * {@code Content-Type}、{@code Expires}、{@code Last-Modified} 或 {@code Pragma}）之外，
+	 * 实际响应可能具有且可以暴露的响应标头列表。
+	 * <p>特殊值 {@code "*"} 允许为非凭证请求暴露所有标头。
+	 * <p>默认未设置。
 	 */
 	public CorsRegistration exposedHeaders(String... headers) {
 		this.config.setExposedHeaders(Arrays.asList(headers));
@@ -115,17 +107,14 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Whether the browser should send credentials, such as cookies along with
-	 * cross domain requests, to the annotated endpoint. The configured value is
-	 * set on the {@code Access-Control-Allow-Credentials} response header of
-	 * preflight requests.
-	 * <p><strong>NOTE:</strong> Be aware that this option establishes a high
-	 * level of trust with the configured domains and also increases the surface
-	 * attack of the web application by exposing sensitive user-specific
-	 * information such as cookies and CSRF tokens.
-	 * <p>By default this is not set in which case the
-	 * {@code Access-Control-Allow-Credentials} header is also not set and
-	 * credentials are therefore not allowed.
+	 * 浏览器是否应随跨域请求一起向注解端点发送凭证（例如 cookie）。配置的值会设置到
+	 * 预检请求的 {@code Access-Control-Allow-Credentials} 响应标头上。
+	 * <p><strong>注意：</strong>请注意，此选项会与配置的域建立高度信任关系，
+	 * 并且通过暴露 cookie 和 CSRF 令牌等敏感的用户特定信息，
+	 * 还会扩大 Web 应用受攻击面。
+	 * <p>默认未设置，此时也不会设置
+	 * {@code Access-Control-Allow-Credentials} 标头，
+	 * 因此不允许凭证。
 	 */
 	public CorsRegistration allowCredentials(boolean allowCredentials) {
 		this.config.setAllowCredentials(allowCredentials);
@@ -133,9 +122,8 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Configure how long in seconds the response from a pre-flight request
-	 * can be cached by clients.
-	 * <p>By default this is set to 1800 seconds (30 minutes).
+	 * 配置客户端可以缓存预检请求响应的时长（以秒为单位）。
+	 * <p>默认设置为 1800 秒（30 分钟）。
 	 */
 	public CorsRegistration maxAge(long maxAge) {
 		this.config.setMaxAge(maxAge);
@@ -143,9 +131,9 @@ public class CorsRegistration {
 	}
 
 	/**
-	 * Apply the given {@code CorsConfiguration} to the one being configured via
-	 * {@link CorsConfiguration#combine(CorsConfiguration)} which in turn has been
-	 * initialized with {@link CorsConfiguration#applyPermitDefaultValues()}.
+	 * 通过 {@link CorsConfiguration#combine(CorsConfiguration)} 将给定的
+	 * {@code CorsConfiguration} 应用到当前正在配置的配置上，而后者已通过
+	 * {@link CorsConfiguration#applyPermitDefaultValues()} 初始化。
 	 * @param other the configuration to apply
 	 * @since 5.3
 	 */

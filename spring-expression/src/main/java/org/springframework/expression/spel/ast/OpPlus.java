@@ -34,15 +34,14 @@ import org.springframework.util.Assert;
 import org.springframework.util.NumberUtils;
 
 /**
- * The plus operator will:
+ * 加号运算符将：
  * <ul>
- * <li>add numbers
- * <li>concatenate strings
+ * <li>相加数字
+ * <li>拼接字符串
  * </ul>
  *
- * <p>It can be used as a unary operator for numbers.
- * The standard promotions are performed when the operand types vary (double+int=double).
- * For other options it defers to the registered overloader.
+ * <p>可将它用作数字的一元运算符。当操作数类型不同时（double+int=double），会执行标准提升。对于其他
+ * 情况，它交由已注册的重载器处理。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -54,7 +53,7 @@ import org.springframework.util.NumberUtils;
 public class OpPlus extends Operator {
 
 	/**
-	 * Maximum number of characters permitted in a concatenated string.
+	 * 拼接字符串中允许的最大字符数。
 	 * @since 5.2.24
 	 */
 	private static final int MAX_CONCATENATED_STRING_LENGTH = 100_000;
@@ -189,8 +188,7 @@ public class OpPlus extends Operator {
 	}
 
 	/**
-	 * Convert operand value to string using registered converter or using
-	 * {@code toString} method.
+	 * 使用已注册的转换器或 {@code toString} 方法将操作数值转换为字符串。
 	 * @param value typed value to be converted
 	 * @param state expression state
 	 * @return {@code TypedValue} instance converted to {@code String}
@@ -219,8 +217,7 @@ public class OpPlus extends Operator {
 	}
 
 	/**
-	 * Walk through a possible tree of nodes that combine strings and append
-	 * them all to the same (on stack) StringBuilder.
+	 * 遍历由字符串组合而成的可能节点树，并将它们全部追加到同一个（栈上的）StringBuilder 中。
 	 */
 	private void walk(MethodVisitor mv, CodeFlow cf, @Nullable SpelNodeImpl operand) {
 		if (operand instanceof OpPlus) {

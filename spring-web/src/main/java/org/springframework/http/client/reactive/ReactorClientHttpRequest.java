@@ -36,7 +36,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ZeroCopyHttpOutputMessage;
 
 /**
- * {@link ClientHttpRequest} implementation for the Reactor-Netty HTTP client.
+ * 用于 Reactor-Netty HTTP 客户端的 {@link ClientHttpRequest} 实现。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev

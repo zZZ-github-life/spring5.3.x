@@ -59,8 +59,7 @@ import org.springframework.web.server.WebSession;
 import org.springframework.web.util.UriUtils;
 
 /**
- * Default {@link ServerRequest.Builder} implementation.
- *
+ * {@link ServerRequest.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @author Sam Brannen
  * @since 5.1

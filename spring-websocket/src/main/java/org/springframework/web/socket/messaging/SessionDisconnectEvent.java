@@ -24,11 +24,11 @@ import org.springframework.util.Assert;
 import org.springframework.web.socket.CloseStatus;
 
 /**
- * Event raised when the session of a WebSocket client using a Simple Messaging
- * Protocol (e.g. STOMP) as the WebSocket sub-protocol is closed.
+ * 当使用简单消息传递协议（例如 STOMP）作为 WebSocket 子协议的 WebSocket
+ * 客户端会话关闭时引发的事件。
  *
- * <p>Note that this event may be raised more than once for a single session and
- * therefore event consumers should be idempotent and ignore a duplicate event.
+ * <p>请注意，单个会话可能会多次引发此事件，因此事件消费者应当是幂等的，
+ * 并忽略重复的事件。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.3
@@ -42,7 +42,7 @@ public class SessionDisconnectEvent extends AbstractSubProtocolEvent {
 
 
 	/**
-	 * Create a new SessionDisconnectEvent.
+	 * 创建一个新的 SessionDisconnectEvent。
 	 * @param source the component that published the event (never {@code null})
 	 * @param message the message (never {@code null})
 	 * @param sessionId the disconnect message
@@ -55,7 +55,7 @@ public class SessionDisconnectEvent extends AbstractSubProtocolEvent {
 	}
 
 	/**
-	 * Create a new SessionDisconnectEvent.
+	 * 创建一个新的 SessionDisconnectEvent。
 	 * @param source the component that published the event (never {@code null})
 	 * @param message the message (never {@code null})
 	 * @param sessionId the disconnect message
@@ -73,14 +73,14 @@ public class SessionDisconnectEvent extends AbstractSubProtocolEvent {
 
 
 	/**
-	 * Return the session id.
+	 * 返回会话 ID。
 	 */
 	public String getSessionId() {
 		return this.sessionId;
 	}
 
 	/**
-	 * Return the status with which the session was closed.
+	 * 返回会话关闭时的状态。
 	 */
 	public CloseStatus getCloseStatus() {
 		return this.status;

@@ -22,8 +22,8 @@ import java.util.List;
 import org.springframework.util.CollectionUtils;
 
 /**
- * The HTTP accessor that extends the base {@link AsyncHttpAccessor} with
- * request intercepting functionality.
+ * 基于 {@link AsyncHttpAccessor} 并添加请求拦截功能的
+ * HTTP 访问器。
  *
  * @author Jakub Narloch
  * @author Rossen Stoyanchev
@@ -38,7 +38,7 @@ public abstract class InterceptingAsyncHttpAccessor extends AsyncHttpAccessor {
 
 
 	/**
-	 * Set the request interceptors that this accessor should use.
+	 * 设置此访问器应使用的请求拦截器。
 	 * @param interceptors the list of interceptors
 	 */
 	public void setInterceptors(List<org.springframework.http.client.AsyncClientHttpRequestInterceptor> interceptors) {
@@ -46,7 +46,7 @@ public abstract class InterceptingAsyncHttpAccessor extends AsyncHttpAccessor {
 	}
 
 	/**
-	 * Return the request interceptor that this accessor uses.
+	 * 返回此访问器使用的请求拦截器。
 	 */
 	public List<org.springframework.http.client.AsyncClientHttpRequestInterceptor> getInterceptors() {
 		return this.interceptors;

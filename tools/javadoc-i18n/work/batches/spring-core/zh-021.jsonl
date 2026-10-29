@@ -1,0 +1,65 @@
+{"id": "spring-core/src/main/java/org/springframework/core/metrics/package-info.java::1::0", "zh": ["用于在应用启动期间记录指标的支撑包。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/metrics/jfr/FlightRecorderApplicationStartup.java::26::0", "zh": ["{@link ApplicationStartup} 的 Java Flight Recorder 实现。", "<p>此变体将 {@link StartupStep} 记录为 Flight Recorder 事件。由于此类事件仅支持基本类型，{@link org.springframework.core.metrics.StartupStep.Tags} 会被序列化为单个 String 属性。", "<p>在应用上下文上完成配置后，便可以通过在启用记录的情况下启动应用来记录数据：{@code java -XX:StartFlightRecording:filename=recording.jfr,duration=10s -jar app.jar}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/metrics/jfr/FlightRecorderStartupEvent.java::24::0", "zh": ["{@link Event} 的扩展，用于在 Java Flight Recorder 中记录 {@link FlightRecorderStartupStep}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/metrics/jfr/FlightRecorderStartupEvent.java::24::1", "zh": ["<p>{@link org.springframework.core.metrics.StartupStep.Tags} 会被序列化为单个 {@code String}，因为 Flight Recorder 事件不支持复杂类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/metrics/jfr/FlightRecorderStartupStep.java::26::0", "zh": ["{@link StartupStep} 的 Java Flight Recorder 实现。", "<p>此变体委托给 {@link FlightRecorderStartupEvent JFR event extension}，以便在 Java Flight Recorder 中收集并记录数据。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/metrics/jfr/package-info.java::1::0", "zh": ["用于使用 Java Flight Recorder 记录启动指标的支撑包。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/DefaultDeserializer.java::26::0", "zh": ["默认的 {@link Deserializer} 实现，使用 Java 序列化读取输入流。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/DefaultDeserializer.java::42::0", "zh": ["使用默认的 {@link ObjectInputStream} 配置创建一个 {@code DefaultDeserializer}，并采用“最新的用户定义 ClassLoader”。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/DefaultDeserializer.java::50::0", "zh": ["创建一个 {@code DefaultDeserializer}，使用给定 {@code ClassLoader} 的 {@link ObjectInputStream}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/DefaultDeserializer.java::61::0", "zh": ["从提供的 {@code InputStream} 读取内容，并将其反序列化为一个对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/DefaultSerializer.java::24::0", "zh": ["{@link Serializer} 实现，使用 Java 序列化将对象写入输出流。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/DefaultSerializer.java::34::0", "zh": ["使用 Java 序列化将源对象写入输出流。源对象必须实现 {@link Serializable}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/Deserializer.java::23::0", "zh": ["用于将 InputStream 中的数据转换为 Object 的策略接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/Deserializer.java::36::0", "zh": ["从给定的 InputStream 中读取（组装）类型为 T 的对象。", "<p>注意：实现不应关闭给定的 InputStream（或该 InputStream 的任何装饰器），而应将此留给调用者处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/Deserializer.java::47::0", "zh": ["从给定的字节数组中读取（组装）类型为 T 的对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/Serializer.java::23::0", "zh": ["用于将对象流式写入 OutputStream 的策略接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/Serializer.java::36::0", "zh": ["将类型为 T 的对象写入给定的 OutputStream。", "<p>注意：实现不应关闭给定的 OutputStream（或该 OutputStream 的任何装饰器），而应将此留给调用者处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/Serializer.java::47::0", "zh": ["将类型为 T 的对象转换为序列化的字节数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/package-info.java::1::0", "zh": ["Spring 序列化器接口和实现的根包。", "为各种序列化技术提供抽象。", "包含用于序列化和反序列化失败的异常。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/DeserializingConverter.java::26::0", "zh": ["一个 {@link Converter}，委托给 {@link org.springframework.core.serializer.Deserializer}，将字节数组中的数据转换为对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/DeserializingConverter.java::41::0", "zh": ["使用默认的 {@link java.io.ObjectInputStream} 配置创建一个 {@code DeserializingConverter}，并采用“最新的用户定义 ClassLoader”。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/DeserializingConverter.java::50::0", "zh": ["创建一个 {@code DeserializingConverter}，使用给定 {@code ClassLoader} 的 {@link java.io.ObjectInputStream}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/DeserializingConverter.java::60::0", "zh": ["创建一个委托给所提供 {@link Deserializer} 的 {@code DeserializingConverter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializationDelegate.java::29::0", "zh": ["为常见序列化需求预先配置好状态的便捷委托类。它本身实现了 {@link Serializer} 和 {@link Deserializer}，因此也可以传入此类更具体的回调方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializationDelegate.java::44::0", "zh": ["为给定的 {@code ClassLoader} 创建一个带有默认序列化器/反序列化器的 {@code SerializationDelegate}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializationDelegate.java::55::0", "zh": ["使用给定的序列化器/反序列化器创建一个 {@code SerializationDelegate}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializationFailedException.java::21::0", "zh": ["当 {@link org.springframework.core.serializer.Serializer} 或 {@link org.springframework.core.serializer.Deserializer} 失败时，对原生 IOException（或类似异常）的包装。由 {@link SerializingConverter} 和 {@link DeserializingConverter} 抛出。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializationFailedException.java::34::0", "zh": ["使用指定的详细消息构造一个 {@code SerializationException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializationFailedException.java::42::0", "zh": ["使用指定的详细消息和嵌套异常构造一个 {@code SerializationException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializingConverter.java::24::0", "zh": ["一个 {@link Converter}，委托给 {@link org.springframework.core.serializer.Serializer}，将对象转换为字节数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializingConverter.java::38::0", "zh": ["创建一个使用标准 Java 序列化的默认 {@code SerializingConverter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializingConverter.java::45::0", "zh": ["创建一个委托给所提供 {@link Serializer} 的 {@code SerializingConverter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/SerializingConverter.java::54::0", "zh": ["序列化源对象并返回字节数组结果。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/serializer/support/package-info.java::1::0", "zh": ["Spring 序列化器抽象的支撑类。", "包含到 Converter SPI 的适配器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/DefaultToStringStyler.java::24::0", "zh": ["Spring 默认的 {@code toString()} 样式器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/DefaultToStringStyler.java::24::1", "zh": ["<p>此类由 {@link ToStringCreator} 使用，按照 Spring 约定以一致的方式为 {@code toString()} 输出设置样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/DefaultToStringStyler.java::39::0", "zh": ["创建一个新的 DefaultToStringStyler。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/DefaultToStringStyler.java::48::0", "zh": ["返回此 ToStringStyler 所使用的 ValueStyler。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/DefaultValueStyler.java::30::0", "zh": ["使用 Spring 的 {@code toString} 样式约定将对象转换为 String 形式，通常用于调试目的。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/DefaultValueStyler.java::30::1", "zh": ["<p>底层使用反射式访问者模式，优雅地封装针对每种样式化对象的样式算法。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/StylerUtils.java::19::0", "zh": ["简单的工具类，便于访问值样式化逻辑，主要用于支持描述性的日志消息。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/StylerUtils.java::19::1", "zh": ["<p>对于更复杂的需求，请直接使用 {@link ValueStyler} 抽象。此类底层只是使用一个共享的 {@link DefaultValueStyler} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/StylerUtils.java::34::0", "zh": ["供 {@code style} 方法使用的默认 ValueStyler 实例。也可供此包中的 {@link ToStringCreator} 类使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/StylerUtils.java::40::0", "zh": ["按照默认约定为指定的值设置样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::22::0", "zh": ["用于构建美观输出的 {@code toString()} 方法的工具类，支持可插拔的样式约定。默认情况下，ToStringCreator 遵循 Spring 的 {@code toString()} 样式约定。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::33::0", "zh": ["此 ToStringCreator 所使用的默认 ToStringStyler 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::49::0", "zh": ["为给定的对象创建一个 ToStringCreator。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::57::0", "zh": ["为给定的对象创建一个 ToStringCreator，并使用所提供的样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::66::0", "zh": ["为给定的对象创建一个 ToStringCreator，并使用所提供的样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::79::0", "zh": ["追加一个 byte 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::89::0", "zh": ["追加一个 short 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::99::0", "zh": ["追加一个 int 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::109::0", "zh": ["追加一个 long 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::119::0", "zh": ["追加一个 float 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::129::0", "zh": ["追加一个 double 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::139::0", "zh": ["追加一个 boolean 字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::149::0", "zh": ["追加一个字段值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::170::0", "zh": ["追加所提供的值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringCreator.java::181::0", "zh": ["返回此 ToStringCreator 构建的 String 表示形式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringStyler.java::21::0", "zh": ["用于美观输出 {@code toString()} 方法的策略接口。封装打印算法；工作流应由诸如构建器之类的其他对象提供。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringStyler.java::31::0", "zh": ["在样式化其字段之前，为已调用 {@code toString()} 的对象设置样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringStyler.java::38::0", "zh": ["在其字段被样式化之后，为已调用 {@code toString()} 的对象设置样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringStyler.java::45::0", "zh": ["将字段值样式化为字符串。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringStyler.java::53::0", "zh": ["为给定的值设置样式。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/style/ToStringStyler.java::60::0", "zh": ["为字段分隔符设置样式。"]}

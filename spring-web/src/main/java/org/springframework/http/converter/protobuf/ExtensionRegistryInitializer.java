@@ -19,10 +19,10 @@ package org.springframework.http.converter.protobuf;
 import com.google.protobuf.ExtensionRegistry;
 
 /**
- * Google Protocol Messages can contain message extensions that can be parsed if
- * the appropriate configuration has been registered in the {@code ExtensionRegistry}.
+ * Google Protocol Message 可以包含消息扩展，前提是在
+ * {@code ExtensionRegistry} 中注册了适当的配置。
  *
- * <p>This interface provides a facility to populate the {@code ExtensionRegistry}.
+ * <p>此接口提供了一种填充 {@code ExtensionRegistry} 的机制。
  *
  * @author Alex Antonov
  * @author Sebastien Deleuze
@@ -35,7 +35,7 @@ import com.google.protobuf.ExtensionRegistry;
 public interface ExtensionRegistryInitializer {
 
 	/**
-	 * Initializes the {@code ExtensionRegistry} with Protocol Message extensions.
+	 * 使用 Protocol Message 扩展初始化 {@code ExtensionRegistry}。
 	 * @param registry the registry to populate
 	 */
 	void initializeExtensionRegistry(ExtensionRegistry registry);

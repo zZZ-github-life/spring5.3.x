@@ -27,19 +27,16 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * Resolve method arguments annotated with {@code @CookieValue}.
+ * 解析带有 {@code @CookieValue} 注解的方法参数。
  *
- * <p>An {@code @CookieValue} is a named value that is resolved from a cookie.
- * It has a required flag and a default value to fall back on when the cookie
- * does not exist.
- *
+ * <p>{@code @CookieValue} 是从 Cookie 解析的命名值。它具有必需标志和默认值，在 Cookie 不存在时作为回退。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public class CookieValueMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
-	 * Create a new {@link CookieValueMethodArgumentResolver} instance.
+	 * 创建新的 {@link CookieValueMethodArgumentResolver} 实例。
 	 * @param factory a bean factory to use for resolving {@code ${...}}
 	 * placeholder and {@code #{...}} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to contain expressions

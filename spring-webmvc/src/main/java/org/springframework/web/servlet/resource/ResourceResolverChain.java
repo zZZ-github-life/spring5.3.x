@@ -24,9 +24,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * A contract for invoking a chain of {@link ResourceResolver ResourceResolvers} where each resolver
- * is given a reference to the chain allowing it to delegate when necessary.
- *
+ * 调用 {@link ResourceResolver ResourceResolvers} 链的约定，其中每个解析器
+ * 都会获得对链的引用，以便在需要时进行委托。
  * @author Jeremy Grelle
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -35,8 +34,8 @@ import org.springframework.lang.Nullable;
 public interface ResourceResolverChain {
 
 	/**
-	 * Resolve the supplied request and request path to a {@link Resource} that
-	 * exists under one of the given resource locations.
+	 * 将所提供的请求和请求路径解析为存在于
+	 * 给定资源位置之一的 {@link Resource}。
 	 * @param request the current request
 	 * @param requestPath the portion of the request path to use
 	 * @param locations the locations to search in when looking up resources
@@ -47,10 +46,9 @@ public interface ResourceResolverChain {
 			@Nullable HttpServletRequest request, String requestPath, List<? extends Resource> locations);
 
 	/**
-	 * Resolve the externally facing <em>public</em> URL path for clients to use
-	 * to access the resource that is located at the given <em>internal</em>
-	 * resource path.
-	 * <p>This is useful when rendering URL links to clients.
+	 * 为客户端解析面向外部的<em>公共</em> URL 路径，以便访问位于
+	 * 给定<em>内部</em>资源路径的资源。
+	 * <p>这在向客户端渲染 URL 链接时很有用。
 	 * @param resourcePath the internal resource path
 	 * @param locations the locations to search in when looking up resources
 	 * @return the resolved public URL path, or {@code null} if unresolved

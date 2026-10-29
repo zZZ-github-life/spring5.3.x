@@ -36,7 +36,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Encode from a {@code CharSequence} stream to a bytes stream.
+ * 将 {@code CharSequence} 流编码为字节流。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -47,7 +47,7 @@ import org.springframework.util.MimeTypeUtils;
 public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 
 	/**
-	 * The default charset used by the encoder.
+	 * 编码器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -122,14 +122,14 @@ public final class CharSequenceEncoder extends AbstractEncoder<CharSequence> {
 
 
 	/**
-	 * Create a {@code CharSequenceEncoder} that supports only "text/plain".
+	 * 创建一个仅支持 "text/plain" 的 {@code CharSequenceEncoder}。
 	 */
 	public static CharSequenceEncoder textPlainOnly() {
 		return new CharSequenceEncoder(new MimeType("text", "plain", DEFAULT_CHARSET));
 	}
 
 	/**
-	 * Create a {@code CharSequenceEncoder} that supports all MIME types.
+	 * 创建一个支持所有 MIME 类型的 {@code CharSequenceEncoder}。
 	 */
 	public static CharSequenceEncoder allMimeTypes() {
 		return new CharSequenceEncoder(new MimeType("text", "plain", DEFAULT_CHARSET), MimeTypeUtils.ALL);

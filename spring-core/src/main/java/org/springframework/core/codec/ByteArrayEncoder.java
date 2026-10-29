@@ -29,7 +29,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Encoder for {@code byte} arrays.
+ * 用于 {@code byte} 数组的编码器。
  *
  * @author Arjen Poutsma
  * @since 5.0

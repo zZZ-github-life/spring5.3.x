@@ -1,6 +1,7 @@
 /**
- * This package provides generic HTTP support classes,
- * to be used by higher-level classes like RestTemplate.
+ * 此包提供通用 HTTP 支持类，
+ * 供 RestTemplate 等更高级别的类使用。
+ *
  */
 @NonNullApi
 @NonNullFields

@@ -1,5 +1,5 @@
 /**
- * Server-side abstractions for WebSocket interactions.
+ * WebSocket 交互的服务器端抽象。
  */
 @NonNullApi
 @NonNullFields

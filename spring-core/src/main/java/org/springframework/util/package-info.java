@@ -1,6 +1,5 @@
 /**
- * Miscellaneous utility classes, such as utilities for working with strings,
- * classes, collections, reflection, etc.
+ * 杂项实用类，例如用于处理字符串、类、集合、反射等的工具。
  */
 @NonNullApi
 @NonNullFields

@@ -20,7 +20,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * Support for {@link ListenableFuture} as a return value type.
+ * 支持将 {@link ListenableFuture} 作为返回值类型。
  *
  * @author Sebastien Deleuze
  * @since 4.2

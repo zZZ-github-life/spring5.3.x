@@ -22,7 +22,7 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.scripting.support.ScriptFactoryPostProcessor;
 
 /**
- * Utilities for use with {@link LangNamespaceHandler}.
+ * 与 {@link LangNamespaceHandler} 配合使用的工具类。
  *
  * @author Rob Harrop
  * @author Mark Fisher
@@ -31,17 +31,16 @@ import org.springframework.scripting.support.ScriptFactoryPostProcessor;
 public abstract class LangNamespaceUtils {
 
 	/**
-	 * The unique name under which the internally managed {@link ScriptFactoryPostProcessor} is
-	 * registered in the {@link BeanDefinitionRegistry}.
+	 * 内部管理的 {@link ScriptFactoryPostProcessor} 在 {@link BeanDefinitionRegistry} 中注册时使用的唯
+	 * 一名称。
 	 */
 	private static final String SCRIPT_FACTORY_POST_PROCESSOR_BEAN_NAME =
 			"org.springframework.scripting.config.scriptFactoryPostProcessor";
 
 
 	/**
-	 * Register a {@link ScriptFactoryPostProcessor} bean definition in the supplied
-	 * {@link BeanDefinitionRegistry} if the {@link ScriptFactoryPostProcessor} hasn't
-	 * already been registered.
+	 * 如果尚未注册 {@link ScriptFactoryPostProcessor}，则在提供的 {@link BeanDefinitionRegistry} 中注
+	 * 册其 Bean 定义。
 	 * @param registry the {@link BeanDefinitionRegistry} to register the script processor with
 	 * @return the {@link ScriptFactoryPostProcessor} bean definition (new or already registered)
 	 */

@@ -31,8 +31,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Wraps another {@link ServerHttpResponse} and delegates all methods to it.
- * Subclasses can override specific methods selectively.
+ * 包装另一个 {@link ServerHttpResponse} 并将所有方法委托给它。
+ * 子类可以选择性地重写特定方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -122,8 +122,8 @@ public class ServerHttpResponseDecorator implements ServerHttpResponse {
 
 
 	/**
-	 * Return the native response of the underlying server API, if possible,
-	 * also unwrapping {@link ServerHttpResponseDecorator} if necessary.
+	 * 返回底层服务器 API 的原生响应（如果可能），
+	 * 必要时还会解包 {@link ServerHttpResponseDecorator}。
 	 * @param response the response to check
 	 * @param <T> the expected native response type
 	 * @throws IllegalArgumentException if the native response can't be obtained

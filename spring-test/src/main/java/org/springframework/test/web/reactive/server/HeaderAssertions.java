@@ -38,8 +38,7 @@ import static org.springframework.test.util.AssertionErrors.assertNotNull;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 /**
- * Assertions on headers of the response.
- *
+ * 对响应头的断言。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @author Sam Brannen
@@ -60,14 +59,14 @@ public class HeaderAssertions {
 
 
 	/**
-	 * Expect a header with the given name to match the specified values.
+	 * 预期具有给定名称的请求头与指定值匹配。
 	 */
 	public WebTestClient.ResponseSpec valueEquals(String headerName, String... values) {
 		return assertHeader(headerName, Arrays.asList(values), getHeaders().getOrEmpty(headerName));
 	}
 
 	/**
-	 * Expect a header with the given name to match the given long value.
+	 * 预期具有给定名称的请求头与给定 long 值匹配。
 	 * @since 5.3
 	 */
 	public WebTestClient.ResponseSpec valueEquals(String headerName, long value) {
@@ -78,11 +77,10 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Expect a header with the given name to match the specified long value
-	 * parsed into a date using the preferred date format described in RFC 7231.
-	 * <p>An {@link AssertionError} is thrown if the response does not contain
-	 * the specified header, or if the supplied {@code value} does not match the
-	 * primary header value.
+	 * 预期具有给定名称的请求头与指定的 long 值匹配，
+	 * 该值使用 RFC 7231 中描述的首选日期格式解析为日期。
+	 * <p>如果响应不包含指定请求头，或者提供的 {@code value} 与
+	 * 主请求头值不匹配，则抛出 {@link AssertionError}。
 	 * @since 5.3
 	 */
 	public WebTestClient.ResponseSpec valueEqualsDate(String headerName, long value) {
@@ -102,7 +100,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Match the first value of the response header with a regex.
+	 * 使用正则表达式匹配响应头的第一个值。
 	 * @param name the header name
 	 * @param pattern the regex pattern
 	 */
@@ -114,10 +112,9 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Match all values of the response header with the given regex
-	 * patterns which are applied to the values of the header in the
-	 * same order. Note that the number of patterns must match the
-	 * number of actual values.
+	 * 使用给定的正则表达式模式匹配响应头的所有值，
+	 * 这些模式按相同顺序应用于请求头的各个值。请注意，模式数量必须
+	 * 与实际值数量匹配。
 	 * @param name the header name
 	 * @param patterns one or more regex patterns, one per expected value
 	 * @since 5.3
@@ -141,7 +138,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Assert the first value of the response header with a Hamcrest {@link Matcher}.
+	 * 使用 Hamcrest {@link Matcher} 断言响应头的第一个值。
 	 * @param name the header name
 	 * @param matcher the matcher to use
 	 * @since 5.1
@@ -156,7 +153,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Assert all values of the response header with a Hamcrest {@link Matcher}.
+	 * 使用 Hamcrest {@link Matcher} 断言响应头的所有值。
 	 * @param name the header name
 	 * @param matcher the matcher to use
 	 * @since 5.3
@@ -171,7 +168,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Consume the first value of the named response header.
+	 * 消费指定响应头的第一个值。
 	 * @param name the header name
 	 * @param consumer the consumer to use
 	 * @since 5.1
@@ -183,7 +180,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Consume all values of the named response header.
+	 * 消费指定响应头的所有值。
 	 * @param name the header name
 	 * @param consumer the consumer to use
 	 * @since 5.3
@@ -208,7 +205,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Expect that the header with the given name is present.
+	 * 预期具有给定名称的请求头存在。
 	 * @since 5.0.3
 	 */
 	public WebTestClient.ResponseSpec exists(String name) {
@@ -220,7 +217,7 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Expect that the header with the given name is not present.
+	 * 预期具有给定名称的请求头不存在。
 	 */
 	public WebTestClient.ResponseSpec doesNotExist(String name) {
 		if (getHeaders().containsKey(name)) {
@@ -231,42 +228,42 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Expect a "Cache-Control" header with the given value.
+	 * 预期具有给定值的“Cache-Control”请求头。
 	 */
 	public WebTestClient.ResponseSpec cacheControl(CacheControl cacheControl) {
 		return assertHeader("Cache-Control", cacheControl.getHeaderValue(), getHeaders().getCacheControl());
 	}
 
 	/**
-	 * Expect a "Content-Disposition" header with the given value.
+	 * 预期具有给定值的“Content-Disposition”请求头。
 	 */
 	public WebTestClient.ResponseSpec contentDisposition(ContentDisposition contentDisposition) {
 		return assertHeader("Content-Disposition", contentDisposition, getHeaders().getContentDisposition());
 	}
 
 	/**
-	 * Expect a "Content-Length" header with the given value.
+	 * 预期具有给定值的“Content-Length”请求头。
 	 */
 	public WebTestClient.ResponseSpec contentLength(long contentLength) {
 		return assertHeader("Content-Length", contentLength, getHeaders().getContentLength());
 	}
 
 	/**
-	 * Expect a "Content-Type" header with the given value.
+	 * 预期具有给定值的“Content-Type”请求头。
 	 */
 	public WebTestClient.ResponseSpec contentType(MediaType mediaType) {
 		return assertHeader("Content-Type", mediaType, getHeaders().getContentType());
 	}
 
 	/**
-	 * Expect a "Content-Type" header with the given value.
+	 * 预期具有给定值的“Content-Type”请求头。
 	 */
 	public WebTestClient.ResponseSpec contentType(String mediaType) {
 		return contentType(MediaType.parseMediaType(mediaType));
 	}
 
 	/**
-	 * Expect a "Content-Type" header compatible with the given value.
+	 * 预期与给定值兼容的“Content-Type”请求头。
 	 */
 	public WebTestClient.ResponseSpec contentTypeCompatibleWith(MediaType mediaType) {
 		MediaType actual = getHeaders().getContentType();
@@ -277,28 +274,28 @@ public class HeaderAssertions {
 	}
 
 	/**
-	 * Expect a "Content-Type" header compatible with the given value.
+	 * 预期与给定值兼容的“Content-Type”请求头。
 	 */
 	public WebTestClient.ResponseSpec contentTypeCompatibleWith(String mediaType) {
 		return contentTypeCompatibleWith(MediaType.parseMediaType(mediaType));
 	}
 
 	/**
-	 * Expect an "Expires" header with the given value.
+	 * 预期具有给定值的“Expires”请求头。
 	 */
 	public WebTestClient.ResponseSpec expires(long expires) {
 		return assertHeader("Expires", expires, getHeaders().getExpires());
 	}
 
 	/**
-	 * Expect a "Last-Modified" header with the given value.
+	 * 预期具有给定值的“Last-Modified”请求头。
 	 */
 	public WebTestClient.ResponseSpec lastModified(long lastModified) {
 		return assertHeader("Last-Modified", lastModified, getHeaders().getLastModified());
 	}
 
 	/**
-	 * Expect a "Location" header with the given value.
+	 * 预期具有给定值的“Location”请求头。
 	 * @since 5.3
 	 */
 	public WebTestClient.ResponseSpec location(String location) {

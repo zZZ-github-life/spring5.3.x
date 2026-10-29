@@ -32,18 +32,14 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.lang.Nullable;
 
 /**
- * Helper class for preparing JSTL views,
- * in particular for exposing a JSTL localization context.
- *
+ * 用于准备 JSTL 视图的辅助类，特别是用于暴露 JSTL 本地化上下文。
  * @author Juergen Hoeller
  * @since 20.08.2003
  */
 public abstract class JstlUtils {
 
 	/**
-	 * Checks JSTL's "javax.servlet.jsp.jstl.fmt.localizationContext"
-	 * context-param and creates a corresponding child message source,
-	 * with the provided Spring-defined MessageSource as parent.
+	 * 检查 JSTL 的 "javax.servlet.jsp.jstl.fmt.localizationContext" context-param，并创建相应的子消息源，以提供的 Spring 定义的 MessageSource 作为父级。
 	 * @param servletContext the ServletContext we're running in
 	 * (to check JSTL-related context-params in {@code web.xml})
 	 * @param messageSource the MessageSource to expose, typically
@@ -71,9 +67,7 @@ public abstract class JstlUtils {
 	}
 
 	/**
-	 * Exposes JSTL-specific request attributes specifying locale
-	 * and resource bundle for JSTL's formatting and message tags,
-	 * using Spring's locale and MessageSource.
+	 * 暴露 JSTL 特定的请求属性，为 JSTL 的格式化标签和消息标签指定区域设置和资源包，使用 Spring 的区域设置和 MessageSource。
 	 * @param request the current HTTP request
 	 * @param messageSource the MessageSource to expose,
 	 * typically the current ApplicationContext (may be {@code null})
@@ -93,9 +87,7 @@ public abstract class JstlUtils {
 	}
 
 	/**
-	 * Exposes JSTL-specific request attributes specifying locale
-	 * and resource bundle for JSTL's formatting and message tags,
-	 * using Spring's locale and MessageSource.
+	 * 暴露 JSTL 特定的请求属性，为 JSTL 的格式化标签和消息标签指定区域设置和资源包，使用 Spring 的区域设置和 MessageSource。
 	 * @param requestContext the context for the current HTTP request,
 	 * including the ApplicationContext to expose as MessageSource
 	 */
@@ -113,8 +105,7 @@ public abstract class JstlUtils {
 
 
 	/**
-	 * Spring-specific LocalizationContext adapter that merges session-scoped
-	 * JSTL LocalizationContext/Locale attributes with the local Spring request context.
+	 * Spring 特定的 LocalizationContext 适配器，将会话作用域的 JSTL LocalizationContext/Locale 属性与本地 Spring 请求上下文合并。
 	 */
 	private static class SpringLocalizationContext extends LocalizationContext {
 

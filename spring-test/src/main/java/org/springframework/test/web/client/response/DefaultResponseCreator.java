@@ -32,8 +32,7 @@ import org.springframework.test.web.client.ResponseCreator;
 import org.springframework.util.Assert;
 
 /**
- * A {@code ResponseCreator} with builder-style methods for adding response details.
- *
+ * 带有构建器风格方法的 {@code ResponseCreator}，用于添加响应细节。
  * @author Rossen Stoyanchev
  * @since 3.2
  */
@@ -50,8 +49,8 @@ public class DefaultResponseCreator implements ResponseCreator {
 
 
 	/**
-	 * Protected constructor.
-	 * Use static factory methods in {@link MockRestResponseCreators}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockRestResponseCreators} 中的静态工厂方法。
 	 */
 	protected DefaultResponseCreator(HttpStatus statusCode) {
 		Assert.notNull(statusCode, "HttpStatus must not be null");
@@ -59,8 +58,8 @@ public class DefaultResponseCreator implements ResponseCreator {
 	}
 
 	/**
-	 * Protected constructor.
-	 * Use static factory methods in {@link MockRestResponseCreators}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockRestResponseCreators} 中的静态工厂方法。
 	 * @since 5.3.17
 	 */
 	protected DefaultResponseCreator(int statusCode) {
@@ -69,7 +68,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 
 
 	/**
-	 * Set the body as a UTF-8 String.
+	 * 将正文设置为 UTF-8 String。
 	 */
 	public DefaultResponseCreator body(String content) {
 		this.content = content.getBytes(StandardCharsets.UTF_8);
@@ -77,7 +76,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 	}
 
 	/**
-	 * Set the body as a byte array.
+	 * 将正文设置为字节数组。
 	 */
 	public DefaultResponseCreator body(byte[] content) {
 		this.content = content;
@@ -85,7 +84,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 	}
 
 	/**
-	 * Set the body as a {@link Resource}.
+	 * 将正文设置为 {@link Resource}。
 	 */
 	public DefaultResponseCreator body(Resource resource) {
 		this.contentResource = resource;
@@ -93,7 +92,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 	}
 
 	/**
-	 * Set the {@code Content-Type} header.
+	 * 设置 {@code Content-Type} 头。
 	 */
 	public DefaultResponseCreator contentType(MediaType mediaType) {
 		this.headers.setContentType(mediaType);
@@ -101,7 +100,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 	}
 
 	/**
-	 * Set the {@code Location} header.
+	 * 设置 {@code Location} 头。
 	 */
 	public DefaultResponseCreator location(URI location) {
 		this.headers.setLocation(location);
@@ -109,7 +108,7 @@ public class DefaultResponseCreator implements ResponseCreator {
 	}
 
 	/**
-	 * Copy all given headers.
+	 * 复制所有给定的头。
 	 */
 	public DefaultResponseCreator headers(HttpHeaders headers) {
 		this.headers.putAll(headers);

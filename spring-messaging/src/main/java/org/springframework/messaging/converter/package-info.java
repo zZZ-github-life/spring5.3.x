@@ -1,5 +1,5 @@
 /**
- * Provides support for message conversion.
+ * 提供消息转换支持。
  */
 @NonNullApi
 @NonNullFields

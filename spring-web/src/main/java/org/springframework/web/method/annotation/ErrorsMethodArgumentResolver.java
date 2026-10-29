@@ -29,12 +29,11 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * Resolves {@link Errors} method arguments.
+ * 解析 {@link Errors} 方法参数。
  *
- * <p>An {@code Errors} method argument is expected to appear immediately after
- * the model attribute in the method signature. It is resolved by expecting the
- * last two attributes added to the model to be the model attribute and its
- * {@link BindingResult}.
+ * <p>{@code Errors} 方法参数应紧跟在方法签名中的模型属性之后。
+ * 它通过期望添加到模型中的最后两个属性是模型属性及其
+ * {@link BindingResult} 来解析。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

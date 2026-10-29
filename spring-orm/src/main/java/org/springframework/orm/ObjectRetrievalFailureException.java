@@ -20,8 +20,8 @@ import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown if a mapped object could not be retrieved via its identifier.
- * Provides information about the persistent class and the identifier.
+ * 当无法通过标识符检索到映射对象时抛出的异常。
+ * 提供有关持久化类和标识符的信息。
  *
  * @author Juergen Hoeller
  * @since 13.10.2003
@@ -37,8 +37,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 
 
 	/**
-	 * Create a general ObjectRetrievalFailureException with the given message,
-	 * without any information on the affected object.
+	 * 使用给定消息创建一个通用的 ObjectRetrievalFailureException，
+	 * 不包含任何受影响对象的信息。
 	 * @param msg the detail message
 	 * @param cause the source exception
 	 */
@@ -49,8 +49,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	}
 
 	/**
-	 * Create a new ObjectRetrievalFailureException for the given object,
-	 * with the default "not found" message.
+	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
+	 * 使用默认的 "not found" 消息。
 	 * @param persistentClass the persistent class
 	 * @param identifier the ID of the object that should have been retrieved
 	 */
@@ -61,8 +61,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	}
 
 	/**
-	 * Create a new ObjectRetrievalFailureException for the given object,
-	 * with the given explicit message and exception.
+	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
+	 * 使用给定的显式消息和异常。
 	 * @param persistentClass the persistent class
 	 * @param identifier the ID of the object that should have been retrieved
 	 * @param msg the detail message
@@ -77,8 +77,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	}
 
 	/**
-	 * Create a new ObjectRetrievalFailureException for the given object,
-	 * with the default "not found" message.
+	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
+	 * 使用默认的 "not found" 消息。
 	 * @param persistentClassName the name of the persistent class
 	 * @param identifier the ID of the object that should have been retrieved
 	 */
@@ -89,8 +89,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	}
 
 	/**
-	 * Create a new ObjectRetrievalFailureException for the given object,
-	 * with the given explicit message and exception.
+	 * 为给定对象创建一个新的 ObjectRetrievalFailureException，
+	 * 使用给定的显式消息和异常。
 	 * @param persistentClassName the name of the persistent class
 	 * @param identifier the ID of the object that should have been retrieved
 	 * @param msg the detail message
@@ -106,8 +106,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 
 
 	/**
-	 * Return the persistent class of the object that was not found.
-	 * If no Class was specified, this method returns null.
+	 * 返回未找到对象所属的持久化类。
+	 * 如果未指定 Class，则此方法返回 null。
 	 */
 	@Nullable
 	public Class<?> getPersistentClass() {
@@ -115,8 +115,8 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	}
 
 	/**
-	 * Return the name of the persistent class of the object that was not found.
-	 * Will work for both Class objects and String names.
+	 * 返回未找到对象所属的持久化类的名称。
+	 * 适用于 Class 对象和 String 名称两种形式。
 	 */
 	@Nullable
 	public String getPersistentClassName() {
@@ -127,7 +127,7 @@ public class ObjectRetrievalFailureException extends DataRetrievalFailureExcepti
 	}
 
 	/**
-	 * Return the identifier of the object that was not found.
+	 * 返回未找到对象的标识符。
 	 */
 	@Nullable
 	public Object getIdentifier() {

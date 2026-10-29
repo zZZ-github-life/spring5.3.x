@@ -24,8 +24,7 @@ import org.joda.time.MonthDay;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a Joda-Time {@link MonthDay},
- * following Joda-Time's parsing rules for a MonthDay.
+ * 用于 Joda-Time {@link MonthDay} 的 {@link Formatter} 实现，遵循 Joda-Time 对 MonthDay 的解析规则。
  *
  * @author Juergen Hoeller
  * @since 4.2.4

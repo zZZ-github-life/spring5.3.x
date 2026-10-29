@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * A strategy interface for converting from data in an InputStream to an Object.
+ * 用于将 InputStream 中的数据转换为 Object 的策略接口。
  *
  * @author Gary Russell
  * @author Mark Fisher
@@ -34,10 +34,9 @@ import java.io.InputStream;
 public interface Deserializer<T> {
 
 	/**
-	 * Read (assemble) an object of type T from the given InputStream.
-	 * <p>Note: Implementations should not close the given InputStream
-	 * (or any decorators of that InputStream) but rather leave this up
-	 * to the caller.
+	 * 从给定的 InputStream 中读取（组装）类型为 T 的对象。
+	 * <p>注意：实现不应关闭给定的 InputStream（或该 InputStream 的任何装饰器），而应将此留给调用者处理。
+	 *
 	 * @param inputStream the input stream
 	 * @return the deserialized object
 	 * @throws IOException in case of errors reading from the stream
@@ -45,7 +44,7 @@ public interface Deserializer<T> {
 	T deserialize(InputStream inputStream) throws IOException;
 
 	/**
-	 * Read (assemble) an object of type T from the given byte array.
+	 * 从给定的字节数组中读取（组装）类型为 T 的对象。
 	 * @param serialized the byte array
 	 * @return the deserialized object
 	 * @throws IOException in case of deserialization failure

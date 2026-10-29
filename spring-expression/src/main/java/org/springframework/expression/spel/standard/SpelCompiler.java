@@ -39,28 +39,20 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A SpelCompiler will take a regular parsed expression and create (and load) a class
- * containing byte code that does the same thing as that expression. The compiled form of
- * an expression will evaluate far faster than the interpreted form.
+ * SpelCompiler 会接收一个常规的已解析表达式，并创建（并加载）一个包含字节码的类，该类执行与该表达
+ * 式相同的操作。表达式的编译形式求值速度远快于解释形式。
  *
- * <p>The SpelCompiler is not currently handling all expression types but covers many of
- * the common cases. The framework is extensible to cover more cases in the future. For
- * absolute maximum speed there is *no checking* in the compiled code. The compiled
- * version of the expression uses information learned during interpreted runs of the
- * expression when it generates the byte code. For example if it knows that a particular
- * property dereference always seems to return a Map then it will generate byte code that
- * expects the result of the property dereference to be a Map. This ensures maximal
- * performance but should the dereference result in something other than a map, the
- * compiled expression will fail - like a ClassCastException would occur if passing data
- * of an unexpected type in a regular Java program.
+ * <p>SpelCompiler 目前并不处理所有表达式类型，但覆盖了许多常见情况。该框架是可扩展的，以便将来覆盖
+ * 更多情况。为了达到绝对最高的速度，编译后的代码中*不做任何检查*。表达式的编译版本在生成字节码时会
+ * 使用在解释执行该表达式过程中获知的信息。例如，如果它知道某个属性解引用似乎总是返回 Map，那么它就
+ * 会生成期望该属性解引用结果为 Map 的字节码。这确保了最高性能，但如果解引用结果不是 Map，编译后的
+ * 表达式就会失败——就像在常规 Java 程序中传入意外类型的数据时会发生 ClassCastException 一样。
  *
- * <p>Due to the lack of checking there are likely some expressions that should never be
- * compiled, for example if an expression is continuously dealing with different types of
- * data. Due to these cases the compiler is something that must be selectively turned on
- * for an associated SpelExpressionParser (through the {@link SpelParserConfiguration}
- * object), it is not on by default.
+ * <p>由于缺乏检查，很可能有些表达式永远不应被编译，例如某个表达式持续处理不同类型的数据。鉴于这些
+ * 情况，编译器必须针对关联的 SpelExpressionParser（通过 {@link SpelParserConfiguration} 对象）选择
+ * 性地开启，默认情况下并不开启。
  *
- * <p>Individual expressions can be compiled by calling {@code SpelCompiler.compile(expression)}.
+ * <p>可以通过调用 {@code SpelCompiler.compile(expression)} 来编译单个表达式。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -90,10 +82,8 @@ public final class SpelCompiler implements Opcodes {
 
 
 	/**
-	 * Attempt compilation of the supplied expression. A check is made to see
-	 * if it is compilable before compilation proceeds. The check involves
-	 * visiting all the nodes in the expression AST and ensuring enough state
-	 * is known about them that bytecode can be generated for them.
+	 * 尝试编译所提供的表达式。在编译继续之前，会检查它是否可编译。该检查包括遍历表达式 AST 中的所有节
+	 * 点，并确保已掌握足够的状态信息以便为它们生成字节码。
 	 * @param expression the expression to compile
 	 * @return an instance of the class implementing the compiled expression,
 	 * or {@code null} if compilation is not possible
@@ -127,8 +117,7 @@ public final class SpelCompiler implements Opcodes {
 	}
 
 	/**
-	 * Generate the class that encapsulates the compiled expression and define it.
-	 * The generated class will be a subtype of CompiledExpression.
+	 * 生成封装编译后表达式的类并定义它。生成的类将是 CompiledExpression 的子类型。
 	 * @param expressionToCompile the expression to be compiled
 	 * @return the expression call, or {@code null} if the decision was to opt out of
 	 * compilation during code generation
@@ -190,10 +179,8 @@ public final class SpelCompiler implements Opcodes {
 	}
 
 	/**
-	 * Load a compiled expression class. Makes sure the classloaders aren't used too much
-	 * because they anchor compiled classes in memory and prevent GC. If you have expressions
-	 * continually recompiling over time then by replacing the classloader periodically
-	 * at least some of the older variants can be garbage collected.
+	 * 加载编译后的表达式类。需确保不滥用类加载器，因为它们会在内存中锚定编译后的类并阻止 GC。如果你有
+	 * 表达式随时间不断重新编译，那么通过定期替换类加载器，至少可以让部分较旧的变体被垃圾回收。
 	 * @param name the name of the class
 	 * @param bytes the bytecode for the class
 	 * @return the Class object for the compiled expression
@@ -220,9 +207,8 @@ public final class SpelCompiler implements Opcodes {
 
 
 	/**
-	 * Factory method for compiler instances. The returned SpelCompiler will
-	 * attach a class loader as the child of the given class loader and this
-	 * child will be used to load compiled expressions.
+	 * 编译器实例的工厂方法。返回的 SpelCompiler 会将一个类加载器作为给定类加载器的子级附加，该子级将用
+	 * 于加载编译后的表达式。
 	 * @param classLoader the ClassLoader to use as the basis for compilation
 	 * @return a corresponding SpelCompiler instance
 	 */
@@ -244,9 +230,8 @@ public final class SpelCompiler implements Opcodes {
 	}
 
 	/**
-	 * Request that an attempt is made to compile the specified expression.
-	 * It may fail if components of the expression are not suitable for compilation
-	 * or the data types involved are not suitable for compilation. Used for testing.
+	 * 请求尝试编译指定的表达式。如果表达式的各组件不适合编译，或涉及的数据类型不适合编译，则可能失败。
+	 * 用于测试。
 	 * @param expression the expression to compile
 	 * @return {@code true} if the expression was successfully compiled,
 	 * {@code false} otherwise
@@ -256,8 +241,7 @@ public final class SpelCompiler implements Opcodes {
 	}
 
 	/**
-	 * Request to revert to the interpreter for expression evaluation.
-	 * Any compiled form is discarded but can be recreated by later recompiling again.
+	 * 请求回退到解释器进行表达式求值。任何编译形式都会被丢弃，但可以通过之后的再次重新编译重新创建。
 	 * @param expression the expression
 	 */
 	public static void revertToInterpreted(Expression expression) {
@@ -268,7 +252,7 @@ public final class SpelCompiler implements Opcodes {
 
 
 	/**
-	 * A ChildClassLoader will load the generated compiled expression classes.
+	 * ChildClassLoader 将加载生成的编译后表达式类。
 	 */
 	private static class ChildClassLoader extends URLClassLoader {
 
@@ -293,7 +277,7 @@ public final class SpelCompiler implements Opcodes {
 
 
 	/**
-	 * An ASM ClassWriter extension bound to the SpelCompiler's ClassLoader.
+	 * 绑定到 SpelCompiler 的 ClassLoader 的 ASM ClassWriter 扩展。
 	 */
 	private class ExpressionClassWriter extends ClassWriter {
 

@@ -32,7 +32,7 @@ import org.springframework.jmx.support.JmxUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Internal helper class for managing a JMX connector.
+ * 用于管理 JMX 连接器的内部辅助类。
  *
  * @author Juergen Hoeller
  * @since 2.5.2
@@ -46,8 +46,8 @@ class ConnectorDelegate {
 
 
 	/**
-	 * Connects to the remote {@code MBeanServer} using the configured {@code JMXServiceURL}:
-	 * to the specified JMX service, or to a local MBeanServer if no service URL specified.
+	 * 使用配置的 {@code JMXServiceURL} 连接到远程 {@code MBeanServer}：连接到指定的 JMX 服务；如果未指
+	 * 定服务 URL，则连接到本地 MBeanServer。
 	 * @param serviceUrl the JMX service URL to connect to (may be {@code null})
 	 * @param environment the JMX environment for the connector (may be {@code null})
 	 * @param agentId the local JMX MBeanServer's agent id (may be {@code null})
@@ -74,7 +74,7 @@ class ConnectorDelegate {
 	}
 
 	/**
-	 * Closes any {@code JMXConnector} that may be managed by this interceptor.
+	 * 关闭此拦截器可能管理的任何 {@code JMXConnector}。
 	 */
 	public void close() {
 		if (this.connector != null) {

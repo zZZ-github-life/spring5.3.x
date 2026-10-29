@@ -33,7 +33,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Default implementation of {@link PathContainer}.
+ * {@link PathContainer} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -237,7 +237,7 @@ final class DefaultPathContainer implements PathContainer {
 		private final MultiValueMap<String, String> parameters;
 
 		/**
-		 * Factory for segments without decoding and parsing.
+		 * 用于无需解码和解析的段的工厂。
 		 */
 		static DefaultPathSegment from(String value, DefaultSeparator separator) {
 			String valueToMatch = value.contains(separator.encodedSequence()) ?
@@ -246,14 +246,14 @@ final class DefaultPathContainer implements PathContainer {
 		}
 
 		/**
-		 * Factory for decoded and parsed segments.
+		 * 用于已解码并解析的段的工厂。
 		 */
 		static DefaultPathSegment from(String value, String valueToMatch) {
 			return new DefaultPathSegment(value, valueToMatch, EMPTY_PARAMS);
 		}
 
 		/**
-		 * Factory for decoded and parsed segments.
+		 * 用于已解码并解析的段的工厂。
 		 */
 		static DefaultPathSegment from(String value, String valueToMatch, MultiValueMap<String, String> params) {
 			return new DefaultPathSegment(value, valueToMatch, CollectionUtils.unmodifiableMultiValueMap(params));

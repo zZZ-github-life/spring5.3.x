@@ -25,10 +25,9 @@ import java.util.function.IntPredicate;
 import org.springframework.util.Assert;
 
 /**
- * Provides a convenient implementation of the {@link DataBuffer} interface
- * that can be overridden to adapt the delegate.
+ * 提供 {@link DataBuffer} 接口的便捷实现，可通过重写来适配委托对象。
  *
- * <p>These methods default to calling through to the wrapped delegate object.
+ * <p>这些方法默认调用被包装的委托对象。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -39,7 +38,7 @@ public class DataBufferWrapper implements DataBuffer {
 
 
 	/**
-	 * Create a new {@code DataBufferWrapper} that wraps the given buffer.
+	 * 创建一个新的 {@code DataBufferWrapper}，包装给定的缓冲区。
 	 * @param delegate the buffer to wrap
 	 */
 	public DataBufferWrapper(DataBuffer delegate) {
@@ -48,7 +47,7 @@ public class DataBufferWrapper implements DataBuffer {
 	}
 
 	/**
-	 * Return the wrapped delegate.
+	 * 返回被包装的委托对象。
 	 */
 	public DataBuffer dataBuffer() {
 		return this.delegate;

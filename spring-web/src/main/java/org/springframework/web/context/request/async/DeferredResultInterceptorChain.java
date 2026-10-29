@@ -24,7 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Assists with the invocation of {@link DeferredResultProcessingInterceptor}'s.
+ * 协助调用 {@link DeferredResultProcessingInterceptor}。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -83,7 +83,7 @@ class DeferredResultInterceptorChain {
 	}
 
 	/**
-	 * Determine if further error handling should be bypassed.
+	 * 确定是否应跳过后续的错误处理。
 	 * @return {@code true} to continue error handling, or false to bypass any further
 	 * error handling
 	 */

@@ -27,10 +27,7 @@ import org.springframework.util.Assert;
 import static org.springframework.test.context.TestContextAnnotationUtils.findAnnotationDescriptor;
 
 /**
- * Default implementation of the {@link ActiveProfilesResolver} strategy that
- * resolves <em>active bean definition profiles</em> based solely on profiles
- * configured declaratively via {@link ActiveProfiles#profiles} or
- * {@link ActiveProfiles#value}.
+ * {@link ActiveProfilesResolver} 策略的默认实现，仅根据通过 {@link ActiveProfiles#profiles} 或 {@link ActiveProfiles#value} 以声明方式配置的配置文件来解析<em>活动 Bean 定义配置文件</em>。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -45,9 +42,7 @@ public class DefaultActiveProfilesResolver implements ActiveProfilesResolver {
 
 
 	/**
-	 * Resolve the <em>bean definition profiles</em> for the given {@linkplain
-	 * Class test class} based on profiles configured declaratively via
-	 * {@link ActiveProfiles#profiles} or {@link ActiveProfiles#value}.
+	 * 根据通过 {@link ActiveProfiles#profiles} 或 {@link ActiveProfiles#value} 以声明方式配置的配置文件，为给定的 {@linkplain Class 测试类}解析<em>Bean 定义配置文件</em>。
 	 * @param testClass the test class for which the profiles should be resolved;
 	 * never {@code null}
 	 * @return the list of bean definition profiles to use when loading the

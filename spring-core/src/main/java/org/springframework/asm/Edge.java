@@ -28,11 +28,9 @@
 package org.springframework.asm;
 
 /**
- * An edge in the control flow graph of a method. Each node of this graph is a basic block,
- * represented with the Label corresponding to its first instruction. Each edge goes from one node
- * to another, i.e. from one basic block to another (called the predecessor and successor blocks,
- * respectively). An edge corresponds either to a jump or ret instruction or to an exception
- * handler.
+ * 方法控制流图中的一条边。该图的每个节点都是一个基本块，用与其第一条指令对应的 Label 表示。每条边
+ * 从一个节点指向另一个节点，即从一个基本块指向另一个基本块（分别称为前驱块和后继块）。一条边对应于
+ * 跳转或 ret 指令，或者对应于异常处理器。
  *
  * @see Label
  * @author Eric Bruneton
@@ -40,44 +38,35 @@ package org.springframework.asm;
 final class Edge {
 
   /**
-   * A control flow graph edge corresponding to a jump or ret instruction. Only used with {@link
-   * ClassWriter#COMPUTE_FRAMES}.
+   * 对应于跳转或 ret 指令的控制流图边。仅与 {@link ClassWriter#COMPUTE_FRAMES} 一起使用。
    */
   static final int JUMP = 0;
 
   /**
-   * A control flow graph edge corresponding to an exception handler. Only used with {@link
-   * ClassWriter#COMPUTE_MAXS}.
+   * 对应于异常处理器的控制流图边。仅与 {@link ClassWriter#COMPUTE_MAXS} 一起使用。
    */
   static final int EXCEPTION = 0x7FFFFFFF;
 
   /**
-   * Information about this control flow graph edge.
+   * 关于此控制流图边的信息。
    *
    * <ul>
-   *   <li>If {@link ClassWriter#COMPUTE_MAXS} is used, this field contains either a stack size
-   *       delta (for an edge corresponding to a jump instruction), or the value EXCEPTION (for an
-   *       edge corresponding to an exception handler). The stack size delta is the stack size just
-   *       after the jump instruction, minus the stack size at the beginning of the predecessor
-   *       basic block, i.e. the one containing the jump instruction.
-   *   <li>If {@link ClassWriter#COMPUTE_FRAMES} is used, this field contains either the value JUMP
-   *       (for an edge corresponding to a jump instruction), or the index, in the {@link
-   *       ClassWriter} type table, of the exception type that is handled (for an edge corresponding
-   *       to an exception handler).
+   * <li>如果使用 {@link ClassWriter#COMPUTE_MAXS}，此字段包含栈大小增量（对于与跳转指令对应的边），或者值 EXCEPTION（对于与异常处理器对应的边）。栈大小增量是指跳转指令执行后的栈大小减去前驱基本块（即包含该跳转指令的基本块）开始处的栈大小。
+   * <li>如果使用 {@link ClassWriter#COMPUTE_FRAMES}，此字段包含值 JUMP（对于与跳转指令对应的边），或者所处理异常类型在 {@link ClassWriter} 类型表中的索引（对于与异常处理器对应的边）。
    * </ul>
    */
   final int info;
 
-  /** The successor block of this control flow graph edge. */
+  /** 此控制流图边的后继块。 */
   final Label successor;
 
   /**
-   * The next edge in the list of outgoing edges of a basic block. See {@link Label#outgoingEdges}.
+   * 基本块出边列表中的下一条边。参见 {@link Label#outgoingEdges}。
    */
   Edge nextEdge;
 
   /**
-   * Constructs a new Edge.
+   * 构造一个新的 Edge。
    *
    * @param info see {@link #info}.
    * @param successor see {@link #successor}.

@@ -33,7 +33,7 @@ import org.springframework.expression.TypeConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * A constructor resolver that uses reflection to locate the constructor that should be invoked.
+ * 使用反射定位应调用哪个构造器的构造器解析器。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -42,12 +42,11 @@ import org.springframework.lang.Nullable;
 public class ReflectiveConstructorResolver implements ConstructorResolver {
 
 	/**
-	 * Locate a constructor on the type. There are three kinds of match that might occur:
+	 * 在类型上定位构造器。可能发生三种匹配：
 	 * <ol>
-	 * <li>An exact match where the types of the arguments match the types of the constructor
-	 * <li>An in-exact match where the types we are looking for are subtypes of those defined on the constructor
-	 * <li>A match where we are able to convert the arguments into those expected by the constructor, according to the
-	 * registered type converter.
+	 * <li>精确匹配：参数类型与构造器类型匹配
+	 * <li>非精确匹配：我们要查找的类型是构造器上定义的类型的子类型
+	 * <li>能够根据已注册的类型转换器将参数转换为构造器期望的类型的匹配。
 	 * </ol>
 	 */
 	@Override

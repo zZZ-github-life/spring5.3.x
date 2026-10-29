@@ -30,9 +30,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@code javax.xml.namespace.NamespaceContext} implementation.
- * Follows the standard {@code NamespaceContext} contract, and is loadable
- * via a {@code java.util.Map} or {@code java.util.Properties} object
+ * 简单的 {@code javax.xml.namespace.NamespaceContext} 实现。遵循标准的 {@code NamespaceContext} 约
+ * 定，并可通过 {@code java.util.Map} 或 {@code java.util.Properties} 对象加载。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -96,15 +95,14 @@ public class SimpleNamespaceContext implements NamespaceContext {
 
 
 	/**
-	 * Set the bindings for this namespace context.
-	 * The supplied map must consist of string key value pairs.
+	 * 设置此命名空间上下文的绑定。提供的映射必须由字符串键值对组成。
 	 */
 	public void setBindings(Map<String, String> bindings) {
 		bindings.forEach(this::bindNamespaceUri);
 	}
 
 	/**
-	 * Bind the given namespace as default namespace.
+	 * 将给定命名空间绑定为默认命名空间。
 	 * @param namespaceUri the namespace uri
 	 */
 	public void bindDefaultNamespaceUri(String namespaceUri) {
@@ -112,7 +110,7 @@ public class SimpleNamespaceContext implements NamespaceContext {
 	}
 
 	/**
-	 * Bind the given prefix to the given namespace.
+	 * 将给定前缀绑定到给定命名空间。
 	 * @param prefix the namespace prefix
 	 * @param namespaceUri the namespace uri
 	 */
@@ -131,7 +129,7 @@ public class SimpleNamespaceContext implements NamespaceContext {
 	}
 
 	/**
-	 * Remove the given prefix from this context.
+	 * 从此上下文中移除给定前缀。
 	 * @param prefix the prefix to be removed
 	 */
 	public void removeBinding(@Nullable String prefix) {
@@ -153,7 +151,7 @@ public class SimpleNamespaceContext implements NamespaceContext {
 	}
 
 	/**
-	 * Remove all declared prefixes.
+	 * 移除所有已声明的前缀。
 	 */
 	public void clear() {
 		this.prefixToNamespaceUri.clear();
@@ -161,7 +159,7 @@ public class SimpleNamespaceContext implements NamespaceContext {
 	}
 
 	/**
-	 * Return all declared prefixes.
+	 * 返回所有已声明的前缀。
 	 */
 	public Iterator<String> getBoundPrefixes() {
 		return this.prefixToNamespaceUri.keySet().iterator();

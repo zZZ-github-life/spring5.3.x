@@ -30,11 +30,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link SqlParameterSource} implementation that obtains parameter values
- * from bean properties of a given JavaBean object. The names of the bean
- * properties have to match the parameter names.
+ * {@link SqlParameterSource} 实现，从给定 JavaBean 对象的 Bean 属性中获取参数值。
+ * Bean 属性的名称必须与参数名称匹配。
  *
- * <p>Uses a Spring BeanWrapper for bean property access underneath.
+ * <p>底层使用 Spring 的 BeanWrapper 进行 Bean 属性访问。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -51,8 +50,8 @@ public class BeanPropertySqlParameterSource extends AbstractSqlParameterSource {
 
 
 	/**
-	 * Create a new BeanPropertySqlParameterSource for the given bean.
-	 * @param object the bean instance to wrap
+	 * 为给定的 Bean 创建新的 BeanPropertySqlParameterSource。
+	 * @param object 要包装的 Bean 实例
 	 */
 	public BeanPropertySqlParameterSource(Object object) {
 		this.beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(object);
@@ -76,7 +75,7 @@ public class BeanPropertySqlParameterSource extends AbstractSqlParameterSource {
 	}
 
 	/**
-	 * Derives a default SQL type from the corresponding property type.
+	 * 从相应的属性类型推导默认的 SQL 类型。
 	 * @see org.springframework.jdbc.core.StatementCreatorUtils#javaTypeToSqlParameterType
 	 */
 	@Override
@@ -96,9 +95,9 @@ public class BeanPropertySqlParameterSource extends AbstractSqlParameterSource {
 	}
 
 	/**
-	 * Provide access to the property names of the wrapped bean.
-	 * Uses support provided in the {@link PropertyAccessor} interface.
-	 * @return an array containing all the known property names
+	 * 提供对所包装 Bean 的属性名称的访问。
+	 * 使用 {@link PropertyAccessor} 接口提供的支持。
+	 * @return 包含所有已知属性名称的数组
 	 */
 	public String[] getReadablePropertyNames() {
 		if (this.propertyNames == null) {

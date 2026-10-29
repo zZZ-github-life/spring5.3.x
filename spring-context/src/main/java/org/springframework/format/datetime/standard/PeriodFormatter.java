@@ -23,8 +23,7 @@ import java.util.Locale;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a JSR-310 {@link Period},
- * following JSR-310's parsing rules for a Period.
+ * 用于 JSR-310 {@link Period} 的 {@link Formatter} 实现，遵循 JSR-310 对 Period 的解析规则。
  *
  * @author Juergen Hoeller
  * @since 4.2.4

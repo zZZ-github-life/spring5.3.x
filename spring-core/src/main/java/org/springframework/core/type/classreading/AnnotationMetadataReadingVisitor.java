@@ -38,9 +38,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * ASM class visitor which looks for the class name and implemented types as
- * well as for the annotations defined on the class, exposing them through
- * the {@link org.springframework.core.type.AnnotationMetadata} interface.
+ * ASM 类访问器，用于查找类名和实现的类型以及定义在类上的注解，并通过
+ * {@link org.springframework.core.type.AnnotationMetadata} 接口暴露它们。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -64,8 +63,7 @@ public class AnnotationMetadataReadingVisitor extends ClassMetadataReadingVisito
 	protected final Map<String, Set<String>> metaAnnotationMap = new LinkedHashMap<>(4);
 
 	/**
-	 * Declared as a {@link LinkedMultiValueMap} instead of a {@link MultiValueMap}
-	 * to ensure that the hierarchical ordering of the entries is preserved.
+	 * 声明为 {@link LinkedMultiValueMap} 而非 {@link MultiValueMap}，以确保保留条目的层次顺序。
 	 * @see AnnotationReadingVisitorUtils#getMergedAnnotationAttributes
 	 */
 	protected final LinkedMultiValueMap<String, AnnotationAttributes> attributesMap = new LinkedMultiValueMap<>(3);

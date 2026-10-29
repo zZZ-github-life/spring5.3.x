@@ -26,8 +26,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * An implementation of {@link Message} with a generic payload.
- * Once created, a GenericMessage is immutable.
+ * 带有泛型负载的 {@link Message} 实现。一旦创建，GenericMessage 就是不可变的。
  *
  * @author Mark Fisher
  * @since 4.0
@@ -45,7 +44,7 @@ public class GenericMessage<T> implements Message<T>, Serializable {
 
 
 	/**
-	 * Create a new message with the given payload.
+	 * 使用给定负载创建新的消息。
 	 * @param payload the message payload (never {@code null})
 	 */
 	public GenericMessage(T payload) {
@@ -53,8 +52,7 @@ public class GenericMessage<T> implements Message<T>, Serializable {
 	}
 
 	/**
-	 * Create a new message with the given payload and headers.
-	 * The content of the given header map is copied.
+	 * 使用给定负载和头部创建新的消息。将复制给定头部映射的内容。
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers to use for initialization
 	 */
@@ -63,9 +61,9 @@ public class GenericMessage<T> implements Message<T>, Serializable {
 	}
 
 	/**
-	 * A constructor with the {@link MessageHeaders} instance to use.
-	 * <p><strong>Note:</strong> the given {@code MessageHeaders} instance is used
-	 * directly in the new message, i.e. it is not copied.
+	 * 使用给定的 {@link MessageHeaders} 实例构造。
+	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
+	 * 新消息中，即不会被复制。
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers
 	 */

@@ -33,8 +33,7 @@ import org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver;
 import org.springframework.web.server.i18n.LocaleContextResolver;
 
 /**
- * Default implementation of {@link HandlerStrategies.Builder}.
- *
+ * {@link HandlerStrategies.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @since 5.0
  */

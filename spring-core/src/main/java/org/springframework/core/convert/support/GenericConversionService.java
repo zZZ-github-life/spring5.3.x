@@ -50,9 +50,8 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Base {@link ConversionService} implementation suitable for use in most environments.
- * Indirectly implements {@link ConverterRegistry} as registration API through the
- * {@link ConfigurableConversionService} interface.
+ * 基础的 {@link ConversionService} 实现，适用于大多数环境。
+ * 通过 {@link ConfigurableConversionService} 接口间接实现 {@link ConverterRegistry} 注册 API。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -64,13 +63,13 @@ import org.springframework.util.StringUtils;
 public class GenericConversionService implements ConfigurableConversionService {
 
 	/**
-	 * General NO-OP converter used when conversion is not required.
+	 * 当不需要转换时使用的通用空操作转换器。
 	 */
 	private static final GenericConverter NO_OP_CONVERTER = new NoOpConverter("NO_OP");
 
 	/**
-	 * Used as a cache entry when no converter is available.
-	 * This converter is never returned.
+	 * 当没有可用转换器时用作缓存条目。
+	 * 此转换器永远不会被返回。
 	 */
 	private static final GenericConverter NO_MATCH = new NoOpConverter("NO_MATCH");
 
@@ -148,9 +147,9 @@ public class GenericConversionService implements ConfigurableConversionService {
 	}
 
 	/**
-	 * Return whether conversion between the source type and the target type can be bypassed.
-	 * <p>More precisely, this method will return true if objects of sourceType can be
-	 * converted to the target type by returning the source object unchanged.
+	 * 返回源类型与目标类型之间的转换是否可以绕过。
+	 * <p>更准确地说，如果源类型的对象可以通过直接返回源对象而不做任何更改来转换为目标类型，
+	 * 则此方法返回 true。
 	 * @param sourceType context about the source type to convert from
 	 * (may be {@code null} if source is {@code null})
 	 * @param targetType context about the target type to convert to (required)
@@ -196,11 +195,10 @@ public class GenericConversionService implements ConfigurableConversionService {
 	}
 
 	/**
-	 * Convenience operation for converting a source object to the specified targetType,
-	 * where the target type is a descriptor that provides additional conversion context.
-	 * Simply delegates to {@link #convert(Object, TypeDescriptor, TypeDescriptor)} and
-	 * encapsulates the construction of the source type descriptor using
-	 * {@link TypeDescriptor#forObject(Object)}.
+	 * 将源对象转换为目标类型的便捷操作，
+	 * 其中目标类型是一个提供额外转换上下文的描述符。
+	 * 简单地委托给 {@link #convert(Object, TypeDescriptor, TypeDescriptor)}，
+	 * 并通过 {@link TypeDescriptor#forObject(Object)} 封装源类型描述符的构建。
 	 * @param source the source object
 	 * @param targetType the target type
 	 * @return the converted value
@@ -222,11 +220,10 @@ public class GenericConversionService implements ConfigurableConversionService {
 	// Protected template methods
 
 	/**
-	 * Template method to convert a {@code null} source.
-	 * <p>The default implementation returns {@code null} or the Java 8
-	 * {@link java.util.Optional#empty()} instance if the target type is
-	 * {@code java.util.Optional}. Subclasses may override this to return
-	 * custom {@code null} objects for specific target types.
+	 * 转换 {@code null} 源的模板方法。
+	 * <p>默认实现返回 {@code null}，或者当目标类型为
+	 * {@code java.util.Optional} 时返回 {@link java.util.Optional#empty()} 实例。
+	 * 子类可以覆盖此方法以针对特定目标类型返回自定义的 {@code null} 对象。
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the converted null object
@@ -240,10 +237,10 @@ public class GenericConversionService implements ConfigurableConversionService {
 	}
 
 	/**
-	 * Hook method to look up the converter for a given sourceType/targetType pair.
-	 * First queries this ConversionService's converter cache.
-	 * On a cache miss, then performs an exhaustive search for a matching converter.
-	 * If no converter matches, returns the default converter.
+	 * 查找给定源类型/目标类型对的转换器的钩子方法。
+	 * 首先查询此 ConversionService 的转换器缓存。
+	 * 若缓存未命中，则对匹配的转换器进行穷举搜索。
+	 * 如果没有匹配的转换器，则返回默认转换器。
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the generic converter that will perform the conversion,
@@ -273,9 +270,9 @@ public class GenericConversionService implements ConfigurableConversionService {
 	}
 
 	/**
-	 * Return the default converter if no converter is found for the given sourceType/targetType pair.
-	 * <p>Returns a NO_OP Converter if the source type is assignable to the target type.
-	 * Returns {@code null} otherwise, indicating no suitable converter could be found.
+	 * 当未找到给定源类型/目标类型对的转换器时，返回默认转换器。
+	 * <p>如果源类型可赋值给目标类型，则返回一个 NO_OP 转换器。
+	 * 否则返回 {@code null}，表示未找到合适的转换器。
 	 * @param sourceType the source type to convert from
 	 * @param targetType the target type to convert to
 	 * @return the default generic converter that will perform the conversion
@@ -339,7 +336,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
-	 * Adapts a {@link Converter} to a {@link GenericConverter}.
+	 * 将 {@link Converter} 适配为 {@link GenericConverter}。
 	 */
 	@SuppressWarnings("unchecked")
 	private final class ConverterAdapter implements ConditionalGenericConverter {
@@ -394,7 +391,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
-	 * Adapts a {@link ConverterFactory} to a {@link GenericConverter}.
+	 * 将 {@link ConverterFactory} 适配为 {@link GenericConverter}。
 	 */
 	@SuppressWarnings("unchecked")
 	private final class ConverterFactoryAdapter implements ConditionalGenericConverter {
@@ -445,7 +442,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
-	 * Key for use with the converter cache.
+	 * 用于转换器缓存的键。
 	 */
 	private static final class ConverterCacheKey implements Comparable<ConverterCacheKey> {
 
@@ -496,7 +493,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
-	 * Manages all converters registered with the service.
+	 * 管理注册到此服务中的所有转换器。
 	 */
 	private static class Converters {
 
@@ -527,9 +524,8 @@ public class GenericConversionService implements ConfigurableConversionService {
 		}
 
 		/**
-		 * Find a {@link GenericConverter} given a source and target type.
-		 * <p>This method will attempt to match all possible converters by working
-		 * through the class and interface hierarchy of the types.
+		 * 根据源类型和目标类型查找 {@link GenericConverter}。
+		 * <p>此方法将遍历类型的类和接口层次结构，尝试匹配所有可能的转换器。
 		 * @param sourceType the source type
 		 * @param targetType the target type
 		 * @return a matching {@link GenericConverter}, or {@code null} if none found
@@ -573,7 +569,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 		}
 
 		/**
-		 * Returns an ordered class hierarchy for the given type.
+		 * 返回给定类型的有序类层次结构。
 		 * @param type the type
 		 * @return an ordered list of all classes that the given type extends or implements
 		 */
@@ -647,7 +643,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
-	 * Manages converters registered with a specific {@link ConvertiblePair}.
+	 * 管理与特定 {@link ConvertiblePair} 注册的转换器。
 	 */
 	private static class ConvertersForPair {
 
@@ -676,7 +672,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 
 	/**
-	 * Internal converter that performs no operation.
+	 * 执行空操作的内部转换器。
 	 */
 	private static class NoOpConverter implements GenericConverter {
 

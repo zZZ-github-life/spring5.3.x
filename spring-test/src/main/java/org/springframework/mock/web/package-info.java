@@ -1,8 +1,8 @@
 /**
- * A comprehensive set of Servlet API 4.0 mock objects, targeted at usage with
- * Spring's Web MVC framework.
+ * 一套全面的 Servlet API 4.0 mock 对象，面向与
+ * Spring Web MVC 框架配合使用。
  *
- * <p>Useful for testing web contexts and controllers.
+ * <p>适用于测试 Web 上下文和控制器。
  */
 @NonNullApi
 @NonNullFields

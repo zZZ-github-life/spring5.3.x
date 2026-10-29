@@ -62,9 +62,7 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Implementations of {@link RequestPredicate} that implement various useful
- * request matching operations, such as matching based on path, HTTP method, etc.
- *
+ * 实现各种有用请求匹配操作（例如基于路径、HTTP 方法等匹配）的 {@link RequestPredicate} 实现。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -73,7 +71,7 @@ public abstract class RequestPredicates {
 	private static final Log logger = LogFactory.getLog(RequestPredicates.class);
 
 	/**
-	 * Return a {@code RequestPredicate} that always matches.
+	 * 返回始终匹配的 {@code RequestPredicate}。
 	 * @return a predicate that always matches
 	 */
 	public static RequestPredicate all() {
@@ -81,8 +79,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if the request's
-	 * HTTP method is equal to the given method.
+	 * 返回当请求的 HTTP 方法等于给定方法时匹配的 {@code RequestPredicate}。
 	 * @param httpMethod the HTTP method to match against
 	 * @return a predicate that tests against the given HTTP method
 	 */
@@ -91,8 +88,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if the request's
-	 * HTTP method is equal to one the of the given methods.
+	 * 返回当请求的 HTTP 方法等于给定方法之一时匹配的 {@code RequestPredicate}。
 	 * @param httpMethods the HTTP methods to match against
 	 * @return a predicate that tests against the given HTTP methods
 	 * @since 5.1
@@ -102,8 +98,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that tests the request path
-	 * against the given path pattern.
+	 * 返回根据给定路径模式测试请求路径的 {@code RequestPredicate}。
 	 * @param pattern the pattern to match to
 	 * @return a predicate that tests against the given path pattern
 	 */
@@ -116,10 +111,8 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a function that creates new path-matching {@code RequestPredicates}
-	 * from pattern Strings using the given {@link PathPatternParser}.
-	 * <p>This method can be used to specify a non-default, customized
-	 * {@code PathPatternParser} when resolving path patterns.
+	 * 返回使用给定 {@link PathPatternParser} 从模式字符串创建新的路径匹配 {@code RequestPredicates} 的函数。
+	 * <p>此方法可用于在解析路径模式时指定非默认的自定义 {@code PathPatternParser}。
 	 * @param patternParser the parser used to parse patterns given to the returned function
 	 * @return a function that resolves a pattern String into a path-matching
 	 * {@code RequestPredicates} instance
@@ -130,8 +123,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that tests the request's headers
-	 * against the given headers predicate.
+	 * 返回根据给定头谓词测试请求头的 {@code RequestPredicate}。
 	 * @param headersPredicate a predicate that tests against the request headers
 	 * @return a predicate that tests against the given header predicate
 	 */
@@ -140,9 +132,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that tests if the request's
-	 * {@linkplain ServerRequest.Headers#contentType() content type} is
-	 * {@linkplain MediaType#includes(MediaType) included} by any of the given media types.
+	 * 返回测试请求的{@linkplain ServerRequest.Headers#contentType() 内容类型}是否被给定媒体类型中的任何一个{@linkplain MediaType#includes(MediaType) 包含}的 {@code RequestPredicate}。
 	 * @param mediaTypes the media types to match the request's content type against
 	 * @return a predicate that tests the request's content type against the given media types
 	 */
@@ -152,9 +142,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that tests if the request's
-	 * {@linkplain ServerRequest.Headers#accept() accept} header is
-	 * {@linkplain MediaType#isCompatibleWith(MediaType) compatible} with any of the given media types.
+	 * 返回测试请求的{@linkplain ServerRequest.Headers#accept() accept}头是否与给定媒体类型中的任何一个{@linkplain MediaType#isCompatibleWith(MediaType) 兼容}的 {@code RequestPredicate}。
 	 * @param mediaTypes the media types to match the request's accept header against
 	 * @return a predicate that tests the request's accept header against the given media types
 	 */
@@ -164,8 +152,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code GET}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code GET} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is GET and if the given pattern
 	 * matches against the request path
@@ -175,8 +162,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code HEAD}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code HEAD} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is HEAD and if the given pattern
 	 * matches against the request path
@@ -186,8 +172,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code POST}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code POST} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is POST and if the given pattern
 	 * matches against the request path
@@ -197,8 +182,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code PUT}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code PUT} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is PUT and if the given pattern
 	 * matches against the request path
@@ -208,8 +192,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code PATCH}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code PATCH} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is PATCH and if the given pattern
 	 * matches against the request path
@@ -219,8 +202,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code DELETE}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code DELETE} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is DELETE and if the given pattern
 	 * matches against the request path
@@ -230,8 +212,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if request's HTTP method is {@code OPTIONS}
-	 * and the given {@code pattern} matches against the request path.
+	 * 返回当请求的 HTTP 方法为 {@code OPTIONS} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
 	 * @param pattern the path pattern to match against
 	 * @return a predicate that matches if the request method is OPTIONS and if the given pattern
 	 * matches against the request path
@@ -241,7 +222,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if the request's path has the given extension.
+	 * 返回当请求路径具有给定扩展名时匹配的 {@code RequestPredicate}。
 	 * @param extension the path extension to match against, ignoring case
 	 * @return a predicate that matches if the request's path has the given file extension
 	 */
@@ -251,8 +232,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if the request's path matches the given
-	 * predicate.
+	 * 返回当请求路径与给定谓词匹配时匹配的 {@code RequestPredicate}。
 	 * @param extensionPredicate the predicate to test against the request path extension
 	 * @return a predicate that matches if the given predicate matches against the request's path
 	 * file extension
@@ -262,8 +242,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that matches if the request's query parameter of the given name
-	 * has the given value.
+	 * 返回当请求中给定名称的查询参数具有给定值时匹配的 {@code RequestPredicate}。
 	 * @param name the name of the query parameter to test against
 	 * @param value the value of the query parameter to test against
 	 * @return a predicate that matches if the query parameter has the given value
@@ -275,8 +254,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * Return a {@code RequestPredicate} that tests the request's query parameter of the given name
-	 * against the given predicate.
+	 * 返回根据给定谓词测试请求中给定名称的查询参数的 {@code RequestPredicate}。
 	 * @param name the name of the query parameter to test against
 	 * @param predicate the predicate to test against the query parameter value
 	 * @return a predicate that matches the given predicate against the query parameter of the given name
@@ -324,33 +302,33 @@ public abstract class RequestPredicates {
 
 
 	/**
-	 * Receives notifications from the logical structure of request predicates.
+	 * 接收来自请求谓词逻辑结构的通知。
 	 */
 	public interface Visitor {
 
 		/**
-		 * Receive notification of an HTTP method predicate.
+		 * 接收 HTTP 方法谓词的通知。
 		 * @param methods the HTTP methods that make up the predicate
 		 * @see RequestPredicates#method(HttpMethod)
 		 */
 		void method(Set<HttpMethod> methods);
 
 		/**
-		 * Receive notification of a path predicate.
+		 * 接收路径谓词的通知。
 		 * @param pattern the path pattern that makes up the predicate
 		 * @see RequestPredicates#path(String)
 		 */
 		void path(String pattern);
 
 		/**
-		 * Receive notification of a path extension predicate.
+		 * 接收路径扩展名谓词的通知。
 		 * @param extension the path extension that makes up the predicate
 		 * @see RequestPredicates#pathExtension(String)
 		 */
 		void pathExtension(String extension);
 
 		/**
-		 * Receive notification of an HTTP header predicate.
+		 * 接收 HTTP 头谓词的通知。
 		 * @param name the name of the HTTP header to check
 		 * @param value the desired value of the HTTP header
 		 * @see RequestPredicates#headers(Predicate)
@@ -360,7 +338,7 @@ public abstract class RequestPredicates {
 		void header(String name, String value);
 
 		/**
-		 * Receive notification of a query parameter predicate.
+		 * 接收查询参数谓词的通知。
 		 * @param name the name of the query parameter
 		 * @param value the desired value of the parameter
 		 * @see RequestPredicates#queryParam(String, String)
@@ -368,63 +346,55 @@ public abstract class RequestPredicates {
 		void queryParam(String name, String value);
 
 		/**
-		 * Receive first notification of a logical AND predicate.
-		 * The first subsequent notification will contain the left-hand side of the AND-predicate;
-		 * followed by {@link #and()}, followed by the right-hand side, followed by {@link #endAnd()}.
+		 * 接收逻辑 AND 谓词的第一个通知。后续第一个通知将包含 AND 谓词的左侧；然后是 {@link #and()}，然后是右侧，最后是 {@link #endAnd()}。
 		 * @see RequestPredicate#and(RequestPredicate)
 		 */
 		void startAnd();
 
 		/**
-		 * Receive "middle" notification of a logical AND predicate.
-		 * The following notification contains the right-hand side, followed by {@link #endAnd()}.
+		 * 接收逻辑 AND 谓词的“中间”通知。后续通知包含右侧，然后是 {@link #endAnd()}。
 		 * @see RequestPredicate#and(RequestPredicate)
 		 */
 		void and();
 
 		/**
-		 * Receive last notification of a logical AND predicate.
+		 * 接收逻辑 AND 谓词的最后一个通知。
 		 * @see RequestPredicate#and(RequestPredicate)
 		 */
 		void endAnd();
 
 		/**
-		 * Receive first notification of a logical OR predicate.
-		 * The first subsequent notification will contain the left-hand side of the OR-predicate;
-		 * the second notification contains the right-hand side, followed by {@link #endOr()}.
+		 * 接收逻辑 OR 谓词的第一个通知。后续第一个通知将包含 OR 谓词的左侧；第二个通知包含右侧，然后是 {@link #endOr()}。
 		 * @see RequestPredicate#or(RequestPredicate)
 		 */
 		void startOr();
 
 		/**
-		 * Receive "middle" notification of a logical OR predicate.
-		 * The following notification contains the right-hand side, followed by {@link #endOr()}.
+		 * 接收逻辑 OR 谓词的“中间”通知。后续通知包含右侧，然后是 {@link #endOr()}。
 		 * @see RequestPredicate#or(RequestPredicate)
 		 */
 		void or();
 
 		/**
-		 * Receive last notification of a logical OR predicate.
+		 * 接收逻辑 OR 谓词的最后一个通知。
 		 * @see RequestPredicate#or(RequestPredicate)
 		 */
 		void endOr();
 
 		/**
-		 * Receive first notification of a negated predicate.
-		 * The first subsequent notification will contain the negated predicated, followed
-		 * by {@link #endNegate()}.
+		 * 接收取反谓词的第一个通知。后续第一个通知将包含取反的谓词，然后是 {@link #endNegate()}。
 		 * @see RequestPredicate#negate()
 		 */
 		void startNegate();
 
 		/**
-		 * Receive last notification of a negated predicate.
+		 * 接收取反谓词的最后一个通知。
 		 * @see RequestPredicate#negate()
 		 */
 		void endNegate();
 
 		/**
-		 * Receive first notification of an unknown predicate.
+		 * 接收未知谓词的第一个通知。
 		 */
 		void unknown(RequestPredicate predicate);
 	}
@@ -752,8 +722,7 @@ public abstract class RequestPredicates {
 
 
 	/**
-	 * {@link RequestPredicate} for where both {@code left} and {@code right} predicates
-	 * must match.
+	 * 要求 {@code left} 和 {@code right} 谓词都匹配的 {@link RequestPredicate}。
 	 */
 	static class AndRequestPredicate implements RequestPredicate, ChangePathPatternParserVisitor.Target {
 
@@ -810,7 +779,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * {@link RequestPredicate} that negates a delegate predicate.
+	 * 对委托谓词取反的 {@link RequestPredicate}。
 	 */
 	static class NegateRequestPredicate implements RequestPredicate, ChangePathPatternParserVisitor.Target {
 
@@ -852,8 +821,7 @@ public abstract class RequestPredicates {
 	}
 
 	/**
-	 * {@link RequestPredicate} where either {@code left} or {@code right} predicates
-	 * may match.
+	 * 允许 {@code left} 或 {@code right} 谓词匹配的 {@link RequestPredicate}。
 	 */
 	static class OrRequestPredicate implements RequestPredicate, ChangePathPatternParserVisitor.Target {
 

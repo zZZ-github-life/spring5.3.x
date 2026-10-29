@@ -46,20 +46,21 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriTemplateHandler;
 
 /**
- * <strong>Spring's central class for asynchronous client-side HTTP access.</strong>
- * Exposes similar methods as {@link RestTemplate}, but returns {@link ListenableFuture}
- * wrappers as opposed to concrete results.
+ * <strong>Spring 用于异步客户端 HTTP 访问的核心类。</strong>
+ * 提供与 {@link RestTemplate} 类似的方法，但返回的是 {@link ListenableFuture}
+ * 包装对象，而不是具体的结果。
  *
- * <p>The {@code AsyncRestTemplate} exposes a synchronous {@link RestTemplate} via the
- * {@link #getRestOperations()} method and shares its {@linkplain #setErrorHandler error handler}
- * and {@linkplain #setMessageConverters message converters} with that {@code RestTemplate}.
+ * <p>{@code AsyncRestTemplate} 通过 {@link #getRestOperations()} 方法暴露一个同步的
+ * {@link RestTemplate}，并与该 {@code RestTemplate} 共享
+ * {@linkplain #setErrorHandler 错误处理器}和
+ * {@linkplain #setMessageConverters 消息转换器}。
  *
- * <p><strong>Note:</strong> by default {@code AsyncRestTemplate} relies on
- * standard JDK facilities to establish HTTP connections. You can switch to use
- * a different HTTP library such as Apache HttpComponents, Netty, and OkHttp by
- * using a constructor accepting an {@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
+ * <p><strong>注意：</strong>默认情况下，{@code AsyncRestTemplate} 依赖
+ * 标准 JDK 设施来建立 HTTP 连接。你可以通过使用接受
+ * {@link org.springframework.http.client.AsyncClientHttpRequestFactory} 的构造函数，
+ * 切换到其他 HTTP 库，例如 Apache HttpComponents、Netty 和 OkHttp。
  *
- * <p>For more information, please refer to the {@link RestTemplate} API documentation.
+ * <p>更多信息请参考 {@link RestTemplate} API 文档。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -74,19 +75,18 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 
 	/**
-	 * Create a new instance of the {@code AsyncRestTemplate} using default settings.
-	 * <p>This constructor uses a {@link SimpleClientHttpRequestFactory} in combination
-	 * with a {@link SimpleAsyncTaskExecutor} for asynchronous execution.
+	 * 使用默认设置创建一个新的 {@code AsyncRestTemplate} 实例。
+	 * <p>此构造函数结合使用 {@link SimpleClientHttpRequestFactory} 和
+	 * {@link SimpleAsyncTaskExecutor} 进行异步执行。
 	 */
 	public AsyncRestTemplate() {
 		this(new SimpleAsyncTaskExecutor());
 	}
 
 	/**
-	 * Create a new instance of the {@code AsyncRestTemplate} using the given
-	 * {@link AsyncTaskExecutor}.
-	 * <p>This constructor uses a {@link SimpleClientHttpRequestFactory} in combination
-	 * with the given {@code AsyncTaskExecutor} for asynchronous execution.
+	 * 使用给定的 {@link AsyncTaskExecutor} 创建一个新的 {@code AsyncRestTemplate} 实例。
+	 * <p>此构造函数结合使用 {@link SimpleClientHttpRequestFactory} 和给定的
+	 * {@code AsyncTaskExecutor} 进行异步执行。
 	 */
 	public AsyncRestTemplate(AsyncListenableTaskExecutor taskExecutor) {
 		Assert.notNull(taskExecutor, "AsyncTaskExecutor must not be null");
@@ -97,21 +97,20 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * Create a new instance of the {@code AsyncRestTemplate} using the given
-	 * {@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
-	 * <p>This constructor will cast the given asynchronous
-	 * {@code AsyncClientHttpRequestFactory} to a {@link ClientHttpRequestFactory}. Since
-	 * all implementations of {@code ClientHttpRequestFactory} provided in Spring also
-	 * implement {@code AsyncClientHttpRequestFactory}, this should not result in a
-	 * {@code ClassCastException}.
+	 * 使用给定的 {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
+	 * 创建一个新的 {@code AsyncRestTemplate} 实例。
+	 * <p>此构造函数会将给定的异步 {@code AsyncClientHttpRequestFactory}
+	 * 强制转换为 {@link ClientHttpRequestFactory}。由于 Spring 中提供的所有
+	 * {@code ClientHttpRequestFactory} 实现同时也实现了
+	 * {@code AsyncClientHttpRequestFactory}，因此不应导致
+	 * {@code ClassCastException}。
 	 */
 	public AsyncRestTemplate(org.springframework.http.client.AsyncClientHttpRequestFactory asyncRequestFactory) {
 		this(asyncRequestFactory, (ClientHttpRequestFactory) asyncRequestFactory);
 	}
 
 	/**
-	 * Creates a new instance of the {@code AsyncRestTemplate} using the given
-	 * asynchronous and synchronous request factories.
+	 * 使用给定的异步和同步请求工厂创建一个新的 {@code AsyncRestTemplate} 实例。
 	 * @param asyncRequestFactory the asynchronous request factory
 	 * @param syncRequestFactory the synchronous request factory
 	 */
@@ -122,8 +121,8 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * Create a new instance of the {@code AsyncRestTemplate} using the given
-	 * {@link org.springframework.http.client.AsyncClientHttpRequestFactory} and synchronous {@link RestTemplate}.
+	 * 使用给定的 {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
+	 * 和同步 {@link RestTemplate} 创建一个新的 {@code AsyncRestTemplate} 实例。
 	 * @param requestFactory the asynchronous request factory to use
 	 * @param restTemplate the synchronous template to use
 	 */
@@ -137,23 +136,23 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 
 	/**
-	 * Set the error handler.
-	 * <p>By default, AsyncRestTemplate uses a
-	 * {@link org.springframework.web.client.DefaultResponseErrorHandler}.
+	 * 设置错误处理器。
+	 * <p>默认情况下，AsyncRestTemplate 使用
+	 * {@link org.springframework.web.client.DefaultResponseErrorHandler}。
 	 */
 	public void setErrorHandler(ResponseErrorHandler errorHandler) {
 		this.syncTemplate.setErrorHandler(errorHandler);
 	}
 
 	/**
-	 * Return the error handler.
+	 * 返回错误处理器。
 	 */
 	public ResponseErrorHandler getErrorHandler() {
 		return this.syncTemplate.getErrorHandler();
 	}
 
 	/**
-	 * Configure default URI variable values. This is a shortcut for:
+	 * 配置默认 URI 变量值。这是以下代码的快捷方式：
 	 * <pre class="code">
 	 * DefaultUriTemplateHandler handler = new DefaultUriTemplateHandler();
 	 * handler.setDefaultUriVariables(...);
@@ -181,9 +180,8 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * This property has the same purpose as the corresponding property on the
-	 * {@code RestTemplate}. For more details see
-	 * {@link RestTemplate#setUriTemplateHandler}.
+	 * 此属性与 {@code RestTemplate} 上的对应属性具有相同的用途。
+	 * 更多详情请参见 {@link RestTemplate#setUriTemplateHandler}。
 	 * @param handler the URI template handler to use
 	 */
 	public void setUriTemplateHandler(UriTemplateHandler handler) {
@@ -191,7 +189,7 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * Return the configured URI template handler.
+	 * 返回配置的 URI 模板处理器。
 	 */
 	public UriTemplateHandler getUriTemplateHandler() {
 		return this.syncTemplate.getUriTemplateHandler();
@@ -203,15 +201,15 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * Set the message body converters to use.
-	 * <p>These converters are used to convert from and to HTTP requests and responses.
+	 * 设置要使用的消息主体转换器。
+	 * <p>这些转换器用于在 HTTP 请求和响应之间进行转换。
 	 */
 	public void setMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		this.syncTemplate.setMessageConverters(messageConverters);
 	}
 
 	/**
-	 * Return the message body converters.
+	 * 返回消息主体转换器。
 	 */
 	public List<HttpMessageConverter<?>> getMessageConverters() {
 		return this.syncTemplate.getMessageConverters();
@@ -515,10 +513,10 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * Execute the given method on the provided URI. The
+	 * 在给定的 URI 上执行指定的方法。
 	 * {@link org.springframework.http.client.ClientHttpRequest}
-	 * is processed using the {@link RequestCallback}; the response with
-	 * the {@link ResponseExtractor}.
+	 * 使用 {@link RequestCallback} 进行处理；响应则使用
+	 * {@link ResponseExtractor} 进行处理。
 	 * @param url the fully-expanded URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc.)
 	 * @param requestCallback object that prepares the request (can be {@code null})
@@ -572,39 +570,37 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 	}
 
 	/**
-	 * Returns a request callback implementation that prepares the request {@code Accept}
-	 * headers based on the given response type and configured {@linkplain
-	 * #getMessageConverters() message converters}.
+	 * 返回一个请求回调实现，它根据给定的响应类型和配置的
+	 * {@linkplain #getMessageConverters() 消息转换器}准备请求的
+	 * {@code Accept} 头。
 	 */
 	protected <T> AsyncRequestCallback acceptHeaderRequestCallback(Class<T> responseType) {
 		return new AsyncRequestCallbackAdapter(this.syncTemplate.acceptHeaderRequestCallback(responseType));
 	}
 
 	/**
-	 * Returns a request callback implementation that writes the given object to the
-	 * request stream.
+	 * 返回一个请求回调实现，用于将给定对象写入请求流。
 	 */
 	protected <T> AsyncRequestCallback httpEntityCallback(@Nullable HttpEntity<T> requestBody) {
 		return new AsyncRequestCallbackAdapter(this.syncTemplate.httpEntityCallback(requestBody));
 	}
 
 	/**
-	 * Returns a request callback implementation that writes the given object to the
-	 * request stream.
+	 * 返回一个请求回调实现，用于将给定对象写入请求流。
 	 */
 	protected <T> AsyncRequestCallback httpEntityCallback(@Nullable HttpEntity<T> request, Type responseType) {
 		return new AsyncRequestCallbackAdapter(this.syncTemplate.httpEntityCallback(request, responseType));
 	}
 
 	/**
-	 * Returns a response extractor for {@link ResponseEntity}.
+	 * 返回用于 {@link ResponseEntity} 的响应提取器。
 	 */
 	protected <T> ResponseExtractor<ResponseEntity<T>> responseEntityExtractor(Type responseType) {
 		return this.syncTemplate.responseEntityExtractor(responseType);
 	}
 
 	/**
-	 * Returns a response extractor for {@link HttpHeaders}.
+	 * 返回用于 {@link HttpHeaders} 的响应提取器。
 	 */
 	protected ResponseExtractor<HttpHeaders> headersExtractor() {
 		return this.syncTemplate.headersExtractor();
@@ -612,8 +608,8 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 
 	/**
-	 * Future returned from
-	 * {@link #doExecute(URI, HttpMethod, AsyncRequestCallback, ResponseExtractor)}.
+	 * 从
+	 * {@link #doExecute(URI, HttpMethod, AsyncRequestCallback, ResponseExtractor)} 返回的 Future。
 	 */
 	private class ResponseExtractorFuture<T> extends ListenableFutureAdapter<T, ClientHttpResponse> {
 
@@ -662,15 +658,15 @@ public class AsyncRestTemplate extends org.springframework.http.client.support.I
 
 
 	/**
-	 * Adapts a {@link RequestCallback} to the {@link AsyncRequestCallback} interface.
+	 * 将 {@link RequestCallback} 适配到 {@link AsyncRequestCallback} 接口。
 	 */
 	private static class AsyncRequestCallbackAdapter implements AsyncRequestCallback {
 
 		private final RequestCallback adaptee;
 
 		/**
-		 * Create a new {@code AsyncRequestCallbackAdapter} from the given
-		 * {@link RequestCallback}.
+		 * 根据给定的 {@link RequestCallback} 创建一个新的
+		 * {@code AsyncRequestCallbackAdapter}。
 		 * @param requestCallback the callback to base this adapter on
 		 */
 		public AsyncRequestCallbackAdapter(RequestCallback requestCallback) {

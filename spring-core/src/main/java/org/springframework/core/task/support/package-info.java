@@ -1,6 +1,5 @@
 /**
- * Support classes for Spring's TaskExecutor abstraction.
- * Includes an adapter for the standard ExecutorService interface.
+ * Spring TaskExecutor 抽象的支持类。包含标准 ExecutorService 接口的适配器。
  */
 @NonNullApi
 @NonNullFields

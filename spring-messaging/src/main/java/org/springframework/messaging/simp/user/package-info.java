@@ -1,10 +1,9 @@
 /**
- * Support for handling messages to "user" destinations (i.e. destinations that are
- * unique to a user's sessions), primarily translating the destinations and then
- * forwarding the updated message to the broker.
+ * 支持处理发送到“用户”目标（即对用户会话唯一的目标）的消息，
+ * 主要工作是转换目标，然后将更新后的消息转发到代理。
  *
- * <p>Also included is {@link org.springframework.messaging.simp.user.SimpUserRegistry}
- * for keeping track of connected user sessions.
+ * <p>还包括用于跟踪已连接用户会话的
+ * {@link org.springframework.messaging.simp.user.SimpUserRegistry}。
  */
 @NonNullApi
 @NonNullFields

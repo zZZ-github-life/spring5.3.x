@@ -64,14 +64,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Spring {@link org.springframework.aop.Pointcut} implementation
- * that uses the AspectJ weaver to evaluate a pointcut expression.
+ * 使用 AspectJ 织入器来评估切点表达式的 Spring {@link org.springframework.aop.Pointcut} 实现。
  *
- * <p>The pointcut expression value is an AspectJ expression. This can
- * reference other pointcuts and use composition and other operations.
+ * <p>切点表达式值是 AspectJ 表达式。它可以引用其他切点，并使用组合及其他操作。
  *
- * <p>Naturally, as this is to be processed by Spring AOP's proxy-based model,
- * only method execution pointcuts are supported.
+ * <p>当然，由于这要由 Spring AOP 基于代理的模型处理，因此仅支持方法执行切点。
  *
  * @author Rob Harrop
  * @author Adrian Colyer
@@ -123,13 +120,13 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Create a new default AspectJExpressionPointcut.
+	 * 创建一个新的默认 AspectJExpressionPointcut。
 	 */
 	public AspectJExpressionPointcut() {
 	}
 
 	/**
-	 * Create a new AspectJExpressionPointcut with the given settings.
+	 * 使用给定设置创建一个新的 AspectJExpressionPointcut。
 	 * @param declarationScope the declaration scope for the pointcut
 	 * @param paramNames the parameter names for the pointcut
 	 * @param paramTypes the parameter types for the pointcut
@@ -146,21 +143,21 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Set the declaration scope for the pointcut.
+	 * 设置切点的声明作用域。
 	 */
 	public void setPointcutDeclarationScope(Class<?> pointcutDeclarationScope) {
 		this.pointcutDeclarationScope = pointcutDeclarationScope;
 	}
 
 	/**
-	 * Set the parameter names for the pointcut.
+	 * 设置切点的参数名称。
 	 */
 	public void setParameterNames(String... names) {
 		this.pointcutParameterNames = names;
 	}
 
 	/**
-	 * Set the parameter types for the pointcut.
+	 * 设置切点的参数类型。
 	 */
 	public void setParameterTypes(Class<?>... types) {
 		this.pointcutParameterTypes = types;
@@ -186,8 +183,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Check whether this pointcut is ready to match,
-	 * lazily building the underlying AspectJ pointcut expression.
+	 * 检查此切点是否已准备好进行匹配，并按需延迟构建底层 AspectJ 切点表达式。
 	 */
 	private PointcutExpression obtainPointcutExpression() {
 		if (getExpression() == null) {
@@ -201,7 +197,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 	}
 
 	/**
-	 * Determine the ClassLoader to use for pointcut evaluation.
+	 * 确定用于切点评估的 ClassLoader。
 	 */
 	@Nullable
 	private ClassLoader determinePointcutClassLoader() {
@@ -215,7 +211,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 	}
 
 	/**
-	 * Build the underlying AspectJ pointcut expression.
+	 * 构建底层 AspectJ 切点表达式。
 	 */
 	private PointcutExpression buildPointcutExpression(@Nullable ClassLoader classLoader) {
 		PointcutParser parser = initializePointcutParser(classLoader);
@@ -235,7 +231,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 	}
 
 	/**
-	 * Initialize the underlying AspectJ pointcut parser.
+	 * 初始化底层 AspectJ 切点解析器。
 	 */
 	private PointcutParser initializePointcutParser(@Nullable ClassLoader classLoader) {
 		PointcutParser parser = PointcutParser
@@ -247,10 +243,9 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * If a pointcut expression has been specified in XML, the user cannot
-	 * write {@code and} as "&&" (though &amp;&amp; will work).
-	 * We also allow {@code and} between two pointcut sub-expressions.
-	 * <p>This method converts back to {@code &&} for the AspectJ pointcut parser.
+	 * 如果在 XML 中指定了切点表达式，用户不能将 {@code and} 写成 "&&"（不过 &amp;&amp; 是可以的）。我
+	 * 们也允许在两个切点子表达式之间使用 {@code and}。
+	 * <p>此方法会将其转换回 {@code &&}，供 AspectJ 切点解析器使用。
 	 */
 	private String replaceBooleanOperators(String pcExpr) {
 		String result = StringUtils.replace(pcExpr, " and ", " && ");
@@ -261,7 +256,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Return the underlying AspectJ pointcut expression.
+	 * 返回底层 AspectJ 切点表达式。
 	 */
 	public PointcutExpression getPointcutExpression() {
 		return obtainPointcutExpression();
@@ -392,7 +387,7 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Get a new pointcut expression based on a target class's loader rather than the default.
+	 * 基于目标类的类加载器（而非默认加载器）获取新的切点表达式。
 	 */
 	@Nullable
 	private PointcutExpression getFallbackPointcutExpression(Class<?> targetClass) {
@@ -578,12 +573,9 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Handler for the Spring-specific {@code bean()} pointcut designator
-	 * extension to AspectJ.
-	 * <p>This handler must be added to each pointcut object that needs to
-	 * handle the {@code bean()} PCD. Matching context is obtained
-	 * automatically by examining a thread local variable and therefore a matching
-	 * context need not be set on the pointcut.
+	 * 处理 Spring 特有的 {@code bean()} 切点指示符（AspectJ 的扩展）的处理器。
+	 * <p>对于每个需要处理 {@code bean()} PCD 的切点对象，都必须添加此处理器。匹配上下文通过检查线程局
+	 * 部变量自动获得，因此无需在切点上设置匹配上下文。
 	 */
 	private class BeanPointcutDesignatorHandler implements PointcutDesignatorHandler {
 
@@ -602,11 +594,9 @@ public class AspectJExpressionPointcut extends AbstractExpressionPointcut
 
 
 	/**
-	 * Matcher class for the BeanNamePointcutDesignatorHandler.
-	 * <p>Dynamic match tests for this matcher always return true,
-	 * since the matching decision is made at the proxy creation time.
-	 * For static match tests, this matcher abstains to allow the overall
-	 * pointcut to match even when negation is used with the bean() pointcut.
+	 * BeanNamePointcutDesignatorHandler 的匹配器类。
+	 * <p>对此匹配器的动态匹配测试始终返回 true，因为匹配决策是在创建代理时做出的。对于静态匹配测试，此
+	 * 匹配器会弃权，以便即使对 bean() 切点使用了否定，整体切点仍能匹配。
 	 */
 	private class BeanContextMatcher implements ContextBasedMatcher {
 

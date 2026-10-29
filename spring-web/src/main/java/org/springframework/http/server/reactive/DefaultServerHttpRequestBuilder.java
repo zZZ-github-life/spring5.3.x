@@ -34,7 +34,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * Package-private default implementation of {@link ServerHttpRequest.Builder}.
+ * {@link ServerHttpRequest.Builder} 的包私有默认实现。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze

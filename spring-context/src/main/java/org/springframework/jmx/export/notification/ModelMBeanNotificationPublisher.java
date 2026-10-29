@@ -26,10 +26,9 @@ import javax.management.modelmbean.ModelMBeanNotificationBroadcaster;
 import org.springframework.util.Assert;
 
 /**
- * {@link NotificationPublisher} implementation that uses the infrastructure
- * provided by the {@link ModelMBean} interface to track
- * {@link javax.management.NotificationListener javax.management.NotificationListeners}
- * and send {@link Notification Notifications} to those listeners.
+ * {@link NotificationPublisher} 实现，它使用 {@link ModelMBean} 接口提供的基础设施来跟踪
+ * {@link javax.management.NotificationListener javax.management.NotificationListeners}，并将
+ * {@link Notification Notifications} 发送给这些监听器。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -41,26 +40,24 @@ import org.springframework.util.Assert;
 public class ModelMBeanNotificationPublisher implements NotificationPublisher {
 
 	/**
-	 * The {@link ModelMBean} instance wrapping the managed resource into which this
-	 * {@code NotificationPublisher} will be injected.
+	 * 包装受管资源的 {@link ModelMBean} 实例，此 {@code NotificationPublisher} 将被注入其中。
 	 */
 	private final ModelMBeanNotificationBroadcaster modelMBean;
 
 	/**
-	 * The {@link ObjectName} associated with the {@link ModelMBean modelMBean}.
+	 * 与 {@link ModelMBean modelMBean} 关联的 {@link ObjectName}。
 	 */
 	private final ObjectName objectName;
 
 	/**
-	 * The managed resource associated with the {@link ModelMBean modelMBean}.
+	 * 与 {@link ModelMBean modelMBean} 关联的受管资源。
 	 */
 	private final Object managedResource;
 
 
 	/**
-	 * Create a new instance of the {@link ModelMBeanNotificationPublisher} class
-	 * that will publish all {@link javax.management.Notification Notifications}
-	 * to the supplied {@link ModelMBean}.
+	 * 创建 {@link ModelMBeanNotificationPublisher} 类的新实例，它会将所有
+	 * {@link javax.management.Notification Notifications} 发布到提供的 {@link ModelMBean}。
 	 * @param modelMBean the target {@link ModelMBean}; must not be {@code null}
 	 * @param objectName the {@link ObjectName} of the source {@link ModelMBean}
 	 * @param managedResource the managed resource exposed by the supplied {@link ModelMBean}
@@ -79,8 +76,7 @@ public class ModelMBeanNotificationPublisher implements NotificationPublisher {
 
 
 	/**
-	 * Send the supplied {@link Notification} using the wrapped
-	 * {@link ModelMBean} instance.
+	 * 使用包装的 {@link ModelMBean} 实例发送提供的 {@link Notification}。
 	 * @param notification the {@link Notification} to be sent
 	 * @throws IllegalArgumentException if the supplied {@code notification} is {@code null}
 	 * @throws UnableToSendNotificationException if the supplied {@code notification} could not be sent
@@ -103,10 +99,8 @@ public class ModelMBeanNotificationPublisher implements NotificationPublisher {
 	}
 
 	/**
-	 * Replaces the notification source if necessary to do so.
-	 * From the {@link Notification javadoc}:
-	 * <i>"It is strongly recommended that notification senders use the object name
-	 * rather than a reference to the MBean object as the source."</i>
+	 * 必要时替换通知源。摘自 {@link Notification javadoc}：<i>“强烈建议通知发送者使用对象名称而不是
+	 * MBean 对象的引用作为源。”</i>
 	 * @param notification the {@link Notification} whose
 	 * {@link javax.management.Notification#getSource()} might need massaging
 	 */

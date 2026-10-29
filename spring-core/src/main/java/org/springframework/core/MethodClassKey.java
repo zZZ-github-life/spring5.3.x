@@ -22,9 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * A common key class for a method against a specific target class,
- * including {@link #toString()} representation and {@link Comparable}
- * support (as suggested for custom {@code HashMap} keys as of Java 8).
+ * 针对特定目标类的方法的通用键类，包含 {@link #toString()} 表示以及 {@link Comparable} 支持（如
+ * Java 8 起对自定义 {@code HashMap} 键所建议的那样）。
  *
  * @author Juergen Hoeller
  * @since 4.3
@@ -38,7 +37,7 @@ public final class MethodClassKey implements Comparable<MethodClassKey> {
 
 
 	/**
-	 * Create a key object for the given method and target class.
+	 * 为给定的方法和目标类创建一个键对象。
 	 * @param method the method to wrap (must not be {@code null})
 	 * @param targetClass the target class that the method will be invoked
 	 * on (may be {@code null} if identical to the declaring class)

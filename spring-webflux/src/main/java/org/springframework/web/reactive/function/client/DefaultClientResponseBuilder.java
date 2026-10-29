@@ -38,8 +38,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Default implementation of {@link ClientResponse.Builder}.
- *
+ * {@link ClientResponse.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @since 5.0.5
  */

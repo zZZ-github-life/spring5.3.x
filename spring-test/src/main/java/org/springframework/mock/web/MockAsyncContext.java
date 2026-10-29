@@ -36,7 +36,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.util.WebUtils;
 
 /**
- * Mock implementation of the {@link AsyncContext} interface.
+ * {@link AsyncContext} 接口的 mock 实现。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -156,13 +156,13 @@ public class MockAsyncContext implements AsyncContext {
 	}
 
 	/**
-	 * By default this is set to 10000 (10 seconds) even though the Servlet API
-	 * specifies a default async request timeout of 30 seconds. Keep in mind the
-	 * timeout could further be impacted by global configuration through the MVC
-	 * Java config or the XML namespace, as well as be overridden per request on
+	 * 默认情况下，此值设置为 10000（10 秒），尽管 Servlet API
+	 * 指定的默认异步请求超时为 30 秒。请记住，该超时
+	 * 还可能受到通过 MVC Java 配置或 XML 命名空间进行的全局
+	 * 配置的影响，并且可以在每个请求上通过
 	 * {@link org.springframework.web.context.request.async.DeferredResult DeferredResult}
-	 * or on
-	 * {@link org.springframework.web.servlet.mvc.method.annotation.SseEmitter SseEmitter}.
+	 * 或
+	 * {@link org.springframework.web.servlet.mvc.method.annotation.SseEmitter SseEmitter} 覆盖。
 	 * @param timeout the timeout value to use.
 	 * @see AsyncContext#setTimeout(long)
 	 */

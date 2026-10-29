@@ -28,12 +28,10 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts an array to a Collection.
+ * 将一个数组转换为 Collection。
  *
- * <p>First, creates a new Collection of the requested target type.
- * Then adds each array element to the target collection.
- * Will perform an element conversion from the source component type
- * to the collection's parameterized type if necessary.
+ * <p>首先，创建所需目标类型的新 Collection。然后将每个数组元素添加到目标集合中。如有必要，将执行从
+ * 源组件类型到集合参数化类型的元素转换。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

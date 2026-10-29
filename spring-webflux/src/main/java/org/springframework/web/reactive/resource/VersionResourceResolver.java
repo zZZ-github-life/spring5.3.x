@@ -40,25 +40,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves request paths containing a version string that can be used as part
- * of an HTTP caching strategy in which a resource is cached with a date in the
- * distant future (e.g. 1 year) and cached until the version, and therefore the
- * URL, is changed.
+ * 解析包含版本字符串的请求路径，可用作 HTTP 缓存策略的一部分：资源以较远未来的日期（例如 1 年）缓存，并一直缓存到版本（因而 URL）更改。
  *
- * <p>Different versioning strategies exist, and this resolver must be configured
- * with one or more such strategies along with path mappings to indicate which
- * strategy applies to which resources.
+ * <p>存在不同的版本策略，此解析器必须配置一个或多个此类策略以及路径映射，以指示哪种策略适用于哪些资源。
  *
- * <p>{@code ContentVersionStrategy} is a good default choice except in cases
- * where it cannot be used. Most notably the {@code ContentVersionStrategy}
- * cannot be combined with JavaScript module loaders. For such cases the
- * {@code FixedVersionStrategy} is a better choice.
+ * <p>{@code ContentVersionStrategy} 是一个良好的默认选择，除非无法使用。最值得注意的是 {@code ContentVersionStrategy} 不能与 JavaScript 模块加载器结合使用。对于这种情况，{@code FixedVersionStrategy} 是更好的选择。
  *
- * <p>Note that using this resolver to serve CSS files means that the
- * {@link CssLinkResourceTransformer} should also be used in order to modify
- * links within CSS files to also contain the appropriate versions generated
- * by this resolver.
- *
+ * <p>请注意，使用此解析器提供 CSS 文件意味着还应使用 {@link CssLinkResourceTransformer}，以便修改 CSS 文件内的链接，使其也包含此解析器生成的适当版本。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -68,14 +56,13 @@ public class VersionResourceResolver extends AbstractResourceResolver {
 
 	private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
-	/** Map from path pattern -> VersionStrategy. */
+	/** 从路径模式到 VersionStrategy 的 Map。 */
 	private final Map<String, VersionStrategy> versionStrategyMap = new LinkedHashMap<>();
 
 
 	/**
-	 * Set a Map with URL paths as keys and {@code VersionStrategy} as values.
-	 * <p>Supports direct URL matches and Ant-style pattern matches. For syntax
-	 * details, see the {@link AntPathMatcher} javadoc.
+	 * 设置以 URL 路径为键、以 {@code VersionStrategy} 为值的 Map。
+	 * <p>支持直接 URL 匹配和 Ant 风格模式匹配。语法详情请参见 {@link AntPathMatcher} 的 javadoc。
 	 * @param map a map with URLs as keys and version strategies as values
 	 */
 	public void setStrategyMap(Map<String, VersionStrategy> map) {
@@ -84,19 +71,14 @@ public class VersionResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Return the map with version strategies keyed by path pattern.
+	 * 返回以路径模式为键的版本策略映射。
 	 */
 	public Map<String, VersionStrategy> getStrategyMap() {
 		return this.versionStrategyMap;
 	}
 
 	/**
-	 * Insert a content-based version in resource URLs that match the given path
-	 * patterns. The version is computed from the content of the file, e.g.
-	 * {@code "css/main-e36d2e05253c6c7085a91522ce43a0b4.css"}. This is a good
-	 * default strategy to use except when it cannot be, for example when using
-	 * JavaScript module loaders, use {@link #addFixedVersionStrategy} instead
-	 * for serving JavaScript files.
+	 * 在匹配给定路径模式的资源 URL 中插入基于内容的版本。版本根据文件内容计算，例如 {@code "css/main-e36d2e05253c6c7085a91522ce43a0b4.css"}。这是一个良好的默认策略，除非无法使用，例如使用 JavaScript 模块加载器时，请改用 {@link #addFixedVersionStrategy} 来提供 JavaScript 文件。
 	 * @param pathPatterns one or more resource URL path patterns,
 	 * relative to the pattern configured with the resource handler
 	 * @return the current instance for chained method invocation
@@ -108,17 +90,9 @@ public class VersionResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Insert a fixed, prefix-based version in resource URLs that match the given
-	 * path patterns, for example: <code>"{version}/js/main.js"</code>. This is useful (vs.
-	 * content-based versions) when using JavaScript module loaders.
-	 * <p>The version may be a random number, the current date, or a value
-	 * fetched from a git commit sha, a property file, or environment variable
-	 * and set with SpEL expressions in the configuration (e.g. see {@code @Value}
-	 * in Java config).
-	 * <p>If not done already, variants of the given {@code pathPatterns}, prefixed with
-	 * the {@code version} will be also configured. For example, adding a {@code "/js/**"} path pattern
-	 * will also configure automatically a {@code "/v1.0.0/js/**"} with {@code "v1.0.0"} the
-	 * {@code version} String given as an argument.
+	 * 在匹配给定路径模式的资源 URL 中插入固定的、基于前缀的版本，例如：<code>"{version}/js/main.js"</code>。在使用 JavaScript 模块加载器时，这比基于内容的版本更有用。
+	 * <p>版本可以是随机数、当前日期，或从 git 提交 sha、属性文件或环境变量获取的值，并在配置中使用 SpEL 表达式设置（例如参见 Java 配置中的 {@code @Value}）。
+	 * <p>如果尚未这样做，还会配置以 {@code version} 为前缀的给定 {@code pathPatterns} 的变体。例如，添加 {@code "/js/**"} 路径模式还会自动配置 {@code "/v1.0.0/js/**"}，其中 {@code "v1.0.0"} 是作为参数给定的 {@code version} 字符串。
 	 * @param version a version string
 	 * @param pathPatterns one or more resource URL path patterns,
 	 * relative to the pattern configured with the resource handler
@@ -139,8 +113,7 @@ public class VersionResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Register a custom VersionStrategy to apply to resource URLs that match the
-	 * given path patterns.
+	 * 注册自定义 VersionStrategy，以应用于匹配给定路径模式的资源 URL。
 	 * @param strategy the custom strategy
 	 * @param pathPatterns one or more resource URL path patterns,
 	 * relative to the pattern configured with the resource handler
@@ -216,7 +189,7 @@ public class VersionResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Find a {@code VersionStrategy} for the request path of the requested resource.
+	 * 为所请求资源的请求路径查找 {@code VersionStrategy}。
 	 * @return an instance of a {@code VersionStrategy} or null if none matches that request path
 	 */
 	@Nullable

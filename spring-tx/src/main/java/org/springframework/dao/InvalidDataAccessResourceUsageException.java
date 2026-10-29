@@ -17,9 +17,9 @@
 package org.springframework.dao;
 
 /**
- * Root for exceptions thrown when we use a data access resource incorrectly.
- * Thrown for example on specifying bad SQL when using a RDBMS.
- * Resource-specific subclasses are supplied by concrete data access packages.
+ * 当我们错误地使用数据访问资源时抛出的异常根类。
+ * 例如，在使用 RDBMS 时指定了错误的 SQL。
+ * 特定资源的子类由具体的数据访问包提供。
  *
  * @author Rod Johnson
  */
@@ -27,7 +27,7 @@ package org.springframework.dao;
 public class InvalidDataAccessResourceUsageException extends NonTransientDataAccessException {
 
 	/**
-	 * Constructor for InvalidDataAccessResourceUsageException.
+	 * InvalidDataAccessResourceUsageException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public InvalidDataAccessResourceUsageException(String msg) {
@@ -35,7 +35,7 @@ public class InvalidDataAccessResourceUsageException extends NonTransientDataAcc
 	}
 
 	/**
-	 * Constructor for InvalidDataAccessResourceUsageException.
+	 * InvalidDataAccessResourceUsageException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

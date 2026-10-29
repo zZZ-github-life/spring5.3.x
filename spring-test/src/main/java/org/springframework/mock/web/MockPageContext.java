@@ -41,12 +41,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Mock implementation of the {@link javax.servlet.jsp.PageContext} interface.
- * Only necessary for testing applications when testing custom JSP tags.
+ * {@link javax.servlet.jsp.PageContext} 接口的 mock 实现。
+ * 仅在测试自定义 JSP 标签时需要用于测试应用程序。
  *
- * <p>Note: Expects initialization via the constructor rather than via the
- * {@code PageContext.initialize} method. Does not support writing to a
- * JspWriter, request dispatching, or {@code handlePageException} calls.
+ * <p>注意：期望通过构造函数而不是通过
+ * {@code PageContext.initialize} 方法进行初始化。不支持写入
+ * JspWriter、请求分派或 {@code handlePageException} 调用。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -68,17 +68,17 @@ public class MockPageContext extends PageContext {
 
 
 	/**
-	 * Create new MockPageContext with a default {@link MockServletContext},
-	 * {@link MockHttpServletRequest}, {@link MockHttpServletResponse},
-	 * {@link MockServletConfig}.
+	 * 使用默认的 {@link MockServletContext}、
+	 * {@link MockHttpServletRequest}、{@link MockHttpServletResponse} 和
+	 * {@link MockServletConfig} 创建新的 MockPageContext。
 	 */
 	public MockPageContext() {
 		this(null, null, null, null);
 	}
 
 	/**
-	 * Create new MockPageContext with a default {@link MockHttpServletRequest},
-	 * {@link MockHttpServletResponse}, {@link MockServletConfig}.
+	 * 使用默认的 {@link MockHttpServletRequest}、
+	 * {@link MockHttpServletResponse} 和 {@link MockServletConfig} 创建新的 MockPageContext。
 	 * @param servletContext the ServletContext that the JSP page runs in
 	 * (only necessary when actually accessing the ServletContext)
 	 */
@@ -87,8 +87,8 @@ public class MockPageContext extends PageContext {
 	}
 
 	/**
-	 * Create new MockPageContext with a MockHttpServletResponse,
-	 * MockServletConfig.
+	 * 使用 MockHttpServletResponse 和
+	 * MockServletConfig 创建新的 MockPageContext。
 	 * @param servletContext the ServletContext that the JSP page runs in
 	 * @param request the current HttpServletRequest
 	 * (only necessary when actually accessing the request)
@@ -98,7 +98,7 @@ public class MockPageContext extends PageContext {
 	}
 
 	/**
-	 * Create new MockPageContext with a MockServletConfig.
+	 * 使用 MockServletConfig 创建新的 MockPageContext。
 	 * @param servletContext the ServletContext that the JSP page runs in
 	 * @param request the current HttpServletRequest
 	 * @param response the current HttpServletResponse
@@ -111,7 +111,7 @@ public class MockPageContext extends PageContext {
 	}
 
 	/**
-	 * Create new MockServletConfig.
+	 * 创建新的 MockServletConfig。
 	 * @param servletContext the ServletContext that the JSP page runs in
 	 * @param request the current HttpServletRequest
 	 * @param response the current HttpServletResponse

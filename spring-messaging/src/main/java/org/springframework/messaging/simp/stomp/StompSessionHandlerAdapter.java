@@ -21,9 +21,9 @@ import java.lang.reflect.Type;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract adapter class for {@link StompSessionHandler} with mostly empty
- * implementation methods except for {@link #getPayloadType} which returns String
- * as the default Object type expected for STOMP ERROR frame payloads.
+ * {@link StompSessionHandler} 的抽象适配器类，其实现方法大多为空，
+ * 但 {@link #getPayloadType} 除外，它返回 String，
+ * 作为 STOMP ERROR 帧载荷预期的默认 Object 类型。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -31,8 +31,7 @@ import org.springframework.lang.Nullable;
 public abstract class StompSessionHandlerAdapter implements StompSessionHandler {
 
 	/**
-	 * This implementation returns String as the expected payload type
-	 * for STOMP ERROR frames.
+	 * 此实现返回 String，作为 STOMP ERROR 帧的预期载荷类型。
 	 */
 	@Override
 	public Type getPayloadType(StompHeaders headers) {
@@ -40,21 +39,21 @@ public abstract class StompSessionHandlerAdapter implements StompSessionHandler 
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public void handleFrame(StompHeaders headers, @Nullable Object payload) {
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public void handleException(StompSession session, @Nullable StompCommand command,
@@ -62,7 +61,7 @@ public abstract class StompSessionHandlerAdapter implements StompSessionHandler 
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public void handleTransportError(StompSession session, Throwable exception) {

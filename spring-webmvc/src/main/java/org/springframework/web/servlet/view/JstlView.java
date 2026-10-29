@@ -25,15 +25,15 @@ import org.springframework.web.servlet.support.JstlUtils;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
- * Specialization of {@link InternalResourceView} for JSTL pages,
- * i.e. JSP pages that use the JSP Standard Tag Library.
+ * {@link InternalResourceView} 针对 JSTL 页面（即使用 JSP 标准标签库
+ * 的 JSP 页面）的专用化实现。
  *
- * <p>Exposes JSTL-specific request attributes specifying locale
- * and resource bundle for JSTL's formatting and message tags,
- * using Spring's locale and {@link org.springframework.context.MessageSource}.
+ * <p>公开 JSTL 特有的请求属性，为 JSTL 的格式化标签和消息标签
+ * 指定区域设置和资源束，
+ * 使用 Spring 的区域设置和 {@link org.springframework.context.MessageSource}。
  *
- * <p>Typical usage with {@link InternalResourceViewResolver} would look as follows,
- * from the perspective of the DispatcherServlet context definition:
+ * <p>从 DispatcherServlet 上下文定义的角度来看，
+ * 与 {@link InternalResourceViewResolver} 配合使用的典型用法如下：
  *
  * <pre class="code">
  * &lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
@@ -46,27 +46,26 @@ import org.springframework.web.servlet.support.RequestContext;
  *   &lt;property name="basename" value="messages"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * Every view name returned from a handler will be translated to a JSP
- * resource (for example: "myView" &rarr; "/WEB-INF/jsp/myView.jsp"), using
- * this view class to enable explicit JSTL support.
+ * 处理器返回的每个视图名称都将被转换为 JSP 资源
+ * （例如："myView" &rarr; "/WEB-INF/jsp/myView.jsp"），
+ * 使用此视图类以启用显式的 JSTL 支持。
  *
- * <p>The specified MessageSource loads messages from "messages.properties" etc
- * files in the class path. This will automatically be exposed to views as
- * JSTL localization context, which the JSTL fmt tags (message etc) will use.
- * Consider using Spring's ReloadableResourceBundleMessageSource instead of
- * the standard ResourceBundleMessageSource for more sophistication.
- * Of course, any other Spring components can share the same MessageSource.
+ * <p>所指定的 MessageSource 从类路径中的 "messages.properties" 等文件
+ * 加载消息。这些消息将自动作为 JSTL 本地化上下文公开给视图，
+ * JSTL fmt 标签（message 等）将使用它。
+ * 考虑使用 Spring 的 ReloadableResourceBundleMessageSource 代替
+ * 标准的 ResourceBundleMessageSource 以获得更强的能力。
+ * 当然，任何其他 Spring 组件都可以共享同一个 MessageSource。
  *
- * <p>This is a separate class mainly to avoid JSTL dependencies in
- * {@link InternalResourceView} itself. JSTL has not been part of standard
- * J2EE up until J2EE 1.4, so we can't assume the JSTL API jar to be
- * available on the class path.
+ * <p>将其作为单独的类，主要是为了避免 {@link InternalResourceView} 本身
+ * 对 JSTL 产生依赖。直到 J2EE 1.4，JSTL 才成为标准 J2EE 的一部分，
+ * 因此我们不能假定类路径上一定存在 JSTL API jar。
  *
- * <p>Hint: Set the {@link #setExposeContextBeansAsAttributes} flag to "true"
- * in order to make all Spring beans in the application context accessible
- * within JSTL expressions (e.g. in a {@code c:out} value expression).
- * This will also make all such beans accessible in plain {@code ${...}}
- * expressions in a JSP 2.0 page.
+ * <p>提示：将 {@link #setExposeContextBeansAsAttributes} 标志设为 "true"，
+ * 即可使应用上下文中的所有 Spring bean 可在 JSTL 表达式中访问
+ * （例如在 {@code c:out} 值表达式中）。
+ * 这也会使所有此类 bean 可在 JSP 2.0 页面的普通 {@code ${...}}
+ * 表达式中访问。
  *
  * @author Juergen Hoeller
  * @since 27.02.2003
@@ -82,14 +81,14 @@ public class JstlView extends InternalResourceView {
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 作为 bean 使用的构造函数。
 	 * @see #setUrl
 	 */
 	public JstlView() {
 	}
 
 	/**
-	 * Create a new JstlView with the given URL.
+	 * 使用给定 URL 创建一个新的 JstlView。
 	 * @param url the URL to forward to
 	 */
 	public JstlView(String url) {
@@ -97,7 +96,7 @@ public class JstlView extends InternalResourceView {
 	}
 
 	/**
-	 * Create a new JstlView with the given URL.
+	 * 使用给定 URL 创建一个新的 JstlView。
 	 * @param url the URL to forward to
 	 * @param messageSource the MessageSource to expose to JSTL tags
 	 * (will be wrapped with a JSTL-aware MessageSource that is aware of JSTL's
@@ -111,9 +110,9 @@ public class JstlView extends InternalResourceView {
 
 
 	/**
-	 * Wraps the MessageSource with a JSTL-aware MessageSource that is aware
-	 * of JSTL's {@code javax.servlet.jsp.jstl.fmt.localizationContext}
-	 * context-param.
+	 * 使用能识别 JSTL 的 MessageSource 包装 MessageSource，
+	 * 该包装器了解 JSTL 的 {@code javax.servlet.jsp.jstl.fmt.localizationContext}
+	 * 上下文参数。
 	 * @see JstlUtils#getJstlAwareMessageSource
 	 */
 	@Override
@@ -125,7 +124,7 @@ public class JstlView extends InternalResourceView {
 	}
 
 	/**
-	 * Exposes a JSTL LocalizationContext for Spring's locale and MessageSource.
+	 * 为 Spring 的区域设置和 MessageSource 公开一个 JSTL LocalizationContext。
 	 * @see JstlUtils#exposeLocalizationContext
 	 */
 	@Override

@@ -37,7 +37,7 @@ import org.springframework.util.JdkIdGenerator;
 import org.springframework.web.server.WebSession;
 
 /**
- * Simple Map-based storage for {@link WebSession} instances.
+ * 基于 Map 的简单 {@link WebSession} 存储实现。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch
@@ -58,10 +58,9 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 
 
 	/**
-	 * Set the maximum number of sessions that can be stored. Once the limit is
-	 * reached, any attempt to store an additional session will result in an
-	 * {@link IllegalStateException}.
-	 * <p>By default set to 10000.
+	 * 设置可存储的最大会话数。一旦达到该限制，任何再存储会话的尝试都会导致
+	 * {@link IllegalStateException}。
+	 * <p>默认设置为 10000。
 	 * @param maxSessions the maximum number of sessions
 	 * @since 5.0.8
 	 */
@@ -70,7 +69,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	}
 
 	/**
-	 * Return the maximum number of sessions that can be stored.
+	 * 返回可存储的最大会话数。
 	 * @since 5.0.8
 	 */
 	public int getMaxSessions() {
@@ -78,12 +77,11 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	}
 
 	/**
-	 * Configure the {@link Clock} to use to set lastAccessTime on every created
-	 * session and to calculate if it is expired.
-	 * <p>This may be useful to align to different timezone or to set the clock
-	 * back in a test, e.g. {@code Clock.offset(clock, Duration.ofMinutes(-31))}
-	 * in order to simulate session expiration.
-	 * <p>By default this is {@code Clock.system(ZoneId.of("GMT"))}.
+	 * 配置用于为每个创建的会话设置 lastAccessTime 并计算其是否过期的
+	 * {@link Clock}。
+	 * <p>这在需要对齐不同时区或在测试中回拨时钟时可能很有用，例如使用
+	 * {@code Clock.offset(clock, Duration.ofMinutes(-31))} 来模拟会话过期。
+	 * <p>默认值为 {@code Clock.system(ZoneId.of("GMT"))}。
 	 * @param clock the clock to use
 	 */
 	public void setClock(Clock clock) {
@@ -93,16 +91,15 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	}
 
 	/**
-	 * Return the configured clock for session lastAccessTime calculations.
+	 * 返回用于计算会话 lastAccessTime 的已配置时钟。
 	 */
 	public Clock getClock() {
 		return this.clock;
 	}
 
 	/**
-	 * Return the map of sessions with an {@link Collections#unmodifiableMap
-	 * unmodifiable} wrapper. This could be used for management purposes, to
-	 * list active sessions, invalidate expired ones, etc.
+	 * 返回带有 {@link Collections#unmodifiableMap 不可修改}包装的会话 Map。
+	 * 这可用于管理目的，例如列出活动会话、使过期会话失效等。
 	 * @since 5.0.8
 	 */
 	public Map<String, WebSession> getSessions() {
@@ -156,10 +153,9 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 	}
 
 	/**
-	 * Check for expired sessions and remove them. Typically such checks are
-	 * kicked off lazily during calls to {@link #createWebSession() create} or
-	 * {@link #retrieveSession retrieve}, no less than 60 seconds apart.
-	 * This method can be called to force a check at a specific time.
+	 * 检查并移除已过期的会话。通常此类检查会在调用 {@link #createWebSession() create}
+	 * 或 {@link #retrieveSession retrieve} 时延迟触发，且间隔不少于 60 秒。
+	 * 可以调用此方法在特定时间强制执行一次检查。
 	 * @since 5.0.8
 	 */
 	public void removeExpiredSessions() {
@@ -307,7 +303,7 @@ public class InMemoryWebSessionStore implements WebSessionStore {
 
 	private class ExpiredSessionChecker {
 
-		/** Max time between expiration checks. */
+		/** 过期检查之间的最大时间间隔。 */
 		private static final int CHECK_PERIOD = 60 * 1000;
 
 

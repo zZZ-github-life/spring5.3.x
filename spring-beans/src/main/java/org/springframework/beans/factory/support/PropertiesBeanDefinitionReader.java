@@ -41,12 +41,12 @@ import org.springframework.util.PropertiesPersister;
 import org.springframework.util.StringUtils;
 
 /**
- * Bean definition reader for a simple properties format.
+ * 用于简单 properties 格式的 Bean 定义读取器。
  *
- * <p>Provides bean definition registration methods for Map/Properties and
- * ResourceBundle. Typically applied to a DefaultListableBeanFactory.
+ * <p>为 Map/Properties 和 ResourceBundle 提供 Bean 定义注册方法。通常应用于
+ * DefaultListableBeanFactory。
  *
- * <p><b>Example:</b>
+ * <p><b>示例：</b>
  *
  * <pre class="code">
  * employee.(class)=MyClass       // bean is of class MyClass
@@ -81,66 +81,58 @@ import org.springframework.util.StringUtils;
 public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
-	 * Value of a T/F attribute that represents true.
-	 * Anything else represents false. Case seNsItive.
+	 * 表示 true 的 T/F 属性值。其他任何值表示 false。区分大小写。
 	 */
 	public static final String TRUE_VALUE = "true";
 
 	/**
-	 * Separator between bean name and property name.
-	 * We follow normal Java conventions.
+	 * Bean 名称与属性名称之间的分隔符。我们遵循常规的 Java 约定。
 	 */
 	public static final String SEPARATOR = ".";
 
 	/**
-	 * Special key to distinguish {@code owner.(class)=com.myapp.MyClass}.
+	 * 用于区分 {@code owner.(class)=com.myapp.MyClass} 的特殊键。
 	 */
 	public static final String CLASS_KEY = "(class)";
 
 	/**
-	 * Special key to distinguish {@code owner.(parent)=parentBeanName}.
+	 * 用于区分 {@code owner.(parent)=parentBeanName} 的特殊键。
 	 */
 	public static final String PARENT_KEY = "(parent)";
 
 	/**
-	 * Special key to distinguish {@code owner.(scope)=prototype}.
-	 * Default is "true".
+	 * 用于区分 {@code owner.(scope)=prototype} 的特殊键。默认为 "true"。
 	 */
 	public static final String SCOPE_KEY = "(scope)";
 
 	/**
-	 * Special key to distinguish {@code owner.(singleton)=false}.
-	 * Default is "true".
+	 * 用于区分 {@code owner.(singleton)=false} 的特殊键。默认为 "true"。
 	 */
 	public static final String SINGLETON_KEY = "(singleton)";
 
 	/**
-	 * Special key to distinguish {@code owner.(abstract)=true}
-	 * Default is "false".
+	 * 用于区分 {@code owner.(abstract)=true} 的特殊键。默认为 "false"。
 	 */
 	public static final String ABSTRACT_KEY = "(abstract)";
 
 	/**
-	 * Special key to distinguish {@code owner.(lazy-init)=true}
-	 * Default is "false".
+	 * 用于区分 {@code owner.(lazy-init)=true} 的特殊键。默认为 "false"。
 	 */
 	public static final String LAZY_INIT_KEY = "(lazy-init)";
 
 	/**
-	 * Property suffix for references to other beans in the current
-	 * BeanFactory: e.g. {@code owner.dog(ref)=fido}.
-	 * Whether this is a reference to a singleton or a prototype
-	 * will depend on the definition of the target bean.
+	 * 当前 BeanFactory 中对其他 Bean 的引用所使用的属性后缀：例如 {@code owner.dog(ref)=fido}。这是对
+	 * 单例还是原型的引用，取决于目标 Bean 的定义。
 	 */
 	public static final String REF_SUFFIX = "(ref)";
 
 	/**
-	 * Prefix before values referencing other beans.
+	 * 引用其他 Bean 的值前面的前缀。
 	 */
 	public static final String REF_PREFIX = "*";
 
 	/**
-	 * Prefix used to denote a constructor argument definition.
+	 * 用于表示构造器参数定义的前缀。
 	 */
 	public static final String CONSTRUCTOR_ARG_PREFIX = "$";
 
@@ -152,7 +144,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 
 	/**
-	 * Create new PropertiesBeanDefinitionReader for the given bean factory.
+	 * 为给定 Bean 工厂创建新的 PropertiesBeanDefinitionReader。
 	 * @param registry the BeanFactory to load bean definitions into,
 	 * in the form of a BeanDefinitionRegistry
 	 */
@@ -162,23 +154,19 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 
 	/**
-	 * Set the default parent bean for this bean factory.
-	 * If a child bean definition handled by this factory provides neither
-	 * a parent nor a class attribute, this default value gets used.
-	 * <p>Can be used e.g. for view definition files, to define a parent
-	 * with a default view class and common attributes for all views.
-	 * View definitions that define their own parent or carry their own
-	 * class can still override this.
-	 * <p>Strictly speaking, the rule that a default parent setting does
-	 * not apply to a bean definition that carries a class is there for
-	 * backwards compatibility reasons. It still matches the typical use case.
+	 * 为此 Bean 工厂设置默认父 Bean。如果此工厂处理的子 Bean 定义既未提供 parent 属性也未提供 class 属
+	 * 性，则使用此默认值。
+	 * <p>例如，可用于视图定义文件，定义一个具有默认视图类和所有视图公共属性的父。定义了自己的父或带有
+	 * 自己的类的视图定义仍可覆盖此项。
+	 * <p>严格来说，默认父设置不适用于带有类的 Bean 定义这条规则是出于向后兼容的原因，它仍然符合典型的
+	 * 使用场景。
 	 */
 	public void setDefaultParentBean(@Nullable String defaultParentBean) {
 		this.defaultParentBean = defaultParentBean;
 	}
 
 	/**
-	 * Return the default parent bean for this bean factory.
+	 * 返回此 Bean 工厂的默认父 Bean。
 	 */
 	@Nullable
 	public String getDefaultParentBean() {
@@ -186,8 +174,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Set the PropertiesPersister to use for parsing properties files.
-	 * The default is ResourcePropertiesPersister.
+	 * 设置用于解析 properties 文件的 PropertiesPersister。默认为 ResourcePropertiesPersister。
 	 * @see ResourcePropertiesPersister#INSTANCE
 	 */
 	public void setPropertiesPersister(@Nullable PropertiesPersister propertiesPersister) {
@@ -196,7 +183,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Return the PropertiesPersister to use for parsing properties files.
+	 * 返回用于解析 properties 文件的 PropertiesPersister。
 	 */
 	public PropertiesPersister getPropertiesPersister() {
 		return this.propertiesPersister;
@@ -204,8 +191,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 
 	/**
-	 * Load bean definitions from the specified properties file,
-	 * using all property keys (i.e. not filtering by prefix).
+	 * 从指定的 properties 文件加载 Bean 定义，使用所有属性键（即不按前缀过滤）。
 	 * @param resource the resource descriptor for the properties file
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
@@ -217,7 +203,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Load bean definitions from the specified properties file.
+	 * 从指定的 properties 文件加载 Bean 定义。
 	 * @param resource the resource descriptor for the properties file
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
 	 * (can be empty or {@code null})
@@ -229,7 +215,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Load bean definitions from the specified properties file.
+	 * 从指定的 properties 文件加载 Bean 定义。
 	 * @param encodedResource the resource descriptor for the properties file,
 	 * allowing to specify an encoding to use for parsing the file
 	 * @return the number of bean definitions found
@@ -240,7 +226,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Load bean definitions from the specified properties file.
+	 * 从指定的 properties 文件加载 Bean 定义。
 	 * @param encodedResource the resource descriptor for the properties file,
 	 * allowing to specify an encoding to use for parsing the file
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
@@ -278,8 +264,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Register bean definitions contained in a resource bundle,
-	 * using all property keys (i.e. not filtering by prefix).
+	 * 注册资源包中包含的 Bean 定义，使用所有属性键（即不按前缀过滤）。
 	 * @param rb the ResourceBundle to load from
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
@@ -290,9 +275,8 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Register bean definitions contained in a ResourceBundle.
-	 * <p>Similar syntax as for a Map. This method is useful to enable
-	 * standard Java internationalization support.
+	 * 注册 ResourceBundle 中包含的 Bean 定义。
+	 * <p>语法与 Map 类似。此方法有助于启用标准 Java 国际化支持。
 	 * @param rb the ResourceBundle to load from
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.'
 	 * (can be empty or {@code null})
@@ -312,8 +296,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 
 	/**
-	 * Register bean definitions contained in a Map, using all property keys (i.e. not
-	 * filtering by prefix).
+	 * 注册 Map 中包含的 Bean 定义，使用所有属性键（即不按前缀过滤）。
 	 * @param map a map of {@code name} to {@code property} (String or Object). Property
 	 * values will be strings if coming from a Properties file etc. Property names
 	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
@@ -326,8 +309,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Register bean definitions contained in a Map.
-	 * Ignore ineligible properties.
+	 * 注册 Map 中包含的 Bean 定义。忽略不合格的属性。
 	 * @param map a map of {@code name} to {@code property} (String or Object). Property
 	 * values will be strings if coming from a Properties file etc. Property names
 	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
@@ -341,8 +323,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Register bean definitions contained in a Map.
-	 * Ignore ineligible properties.
+	 * 注册 Map 中包含的 Bean 定义。忽略不合格的属性。
 	 * @param map a map of {@code name} to {@code property} (String or Object). Property
 	 * values will be strings if coming from a Properties file etc. Property names
 	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
@@ -404,8 +385,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Get all property values, given a prefix (which will be stripped)
-	 * and add the bean they define to the factory with the given name.
+	 * 获取所有属性值（给定前缀将被去除），并将它们定义的 Bean 以给定名称添加到工厂中。
 	 * @param beanName name of the bean to define
 	 * @param map a Map containing string pairs
 	 * @param prefix prefix of each entry, which will be stripped
@@ -514,8 +494,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	}
 
 	/**
-	 * Reads the value of the entry. Correctly interprets bean references for
-	 * values that are prefixed with an asterisk.
+	 * 读取条目的值。对于以星号开头的值，会正确解释为 Bean 引用。
 	 */
 	private Object readValue(Map.Entry<?, ?> entry) {
 		Object val = entry.getValue();

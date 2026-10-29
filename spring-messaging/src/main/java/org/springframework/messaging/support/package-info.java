@@ -1,8 +1,7 @@
 /**
- * Provides implementations of {@link org.springframework.messaging.Message} along with
- * a MessageBuilder and MessageHeaderAccessor for building and working with messages and
- * message headers, as well as various {@link org.springframework.messaging.MessageChannel}
- * implementations and channel interceptor support.
+ * 提供 {@link org.springframework.messaging.Message} 的实现，以及用于构建和处理
+ * 消息及消息头部的 MessageBuilder 和 MessageHeaderAccessor，并提供各种
+ * {@link org.springframework.messaging.MessageChannel} 实现和通道拦截器支持。
  */
 @NonNullApi
 @NonNullFields

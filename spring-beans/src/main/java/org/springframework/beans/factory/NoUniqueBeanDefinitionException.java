@@ -24,8 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Exception thrown when a {@code BeanFactory} is asked for a bean instance for which
- * multiple matching candidates have been found when only one matching bean was expected.
+ * 当向 {@code BeanFactory} 请求某个 Bean 实例，而预期只有一个匹配的 Bean 却找到多个匹配候选时，抛
+ * 出该异常。
  *
  * @author Juergen Hoeller
  * @since 3.2.1
@@ -41,7 +41,7 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 
 	/**
-	 * Create a new {@code NoUniqueBeanDefinitionException}.
+	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
 	 * @param type required type of the non-unique bean
 	 * @param numberOfBeansFound the number of matching beans
 	 * @param message detailed message describing the problem
@@ -53,7 +53,7 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	}
 
 	/**
-	 * Create a new {@code NoUniqueBeanDefinitionException}.
+	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
 	 * @param type required type of the non-unique bean
 	 * @param beanNamesFound the names of all matching beans (as a Collection)
 	 */
@@ -65,7 +65,7 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	}
 
 	/**
-	 * Create a new {@code NoUniqueBeanDefinitionException}.
+	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
 	 * @param type required type of the non-unique bean
 	 * @param beanNamesFound the names of all matching beans (as an array)
 	 */
@@ -74,7 +74,7 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	}
 
 	/**
-	 * Create a new {@code NoUniqueBeanDefinitionException}.
+	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
 	 * @param type required type of the non-unique bean
 	 * @param beanNamesFound the names of all matching beans (as a Collection)
 	 * @since 5.1
@@ -87,7 +87,7 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	}
 
 	/**
-	 * Create a new {@code NoUniqueBeanDefinitionException}.
+	 * 创建一个新的 {@code NoUniqueBeanDefinitionException}。
 	 * @param type required type of the non-unique bean
 	 * @param beanNamesFound the names of all matching beans (as an array)
 	 * @since 5.1
@@ -98,8 +98,8 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 
 	/**
-	 * Return the number of beans found when only one matching bean was expected.
-	 * For a NoUniqueBeanDefinitionException, this will usually be higher than 1.
+	 * 返回在预期只有一个匹配 Bean 时找到的 Bean 数量。对于 NoUniqueBeanDefinitionException，该值通常大
+	 * 于 1。
 	 * @see #getBeanType()
 	 */
 	@Override
@@ -108,8 +108,8 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	}
 
 	/**
-	 * Return the names of all beans found when only one matching bean was expected.
-	 * Note that this may be {@code null} if not specified at construction time.
+	 * 返回在预期只有一个匹配 Bean 时找到的所有 Bean 的名称。注意，如果在构造时未指定，该值可能为
+	 * {@code null}。
 	 * @since 4.3
 	 * @see #getBeanType()
 	 */

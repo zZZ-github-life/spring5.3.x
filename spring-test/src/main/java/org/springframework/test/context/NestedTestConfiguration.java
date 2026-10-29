@@ -29,43 +29,40 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * {@code @NestedTestConfiguration} is a type-level annotation that is used to
- * configure how Spring test configuration annotations are processed within
- * enclosing class hierarchies (i.e., for <em>inner</em> test classes).
+ * {@code @NestedTestConfiguration} 是一个类型级注解，用于
+ * 配置在封闭类层次结构中（即对于<em>内部</em>测试类）如何处理
+ * Spring 测试配置注解。
  *
- * <p>If {@code @NestedTestConfiguration} is not <em>present</em> or
- * <em>meta-present</em> on a test class, in its supertype hierarchy, or in its
- * enclosing class hierarchy, the default <em>enclosing configuration inheritance
- * mode</em> will be used. A {@code @NestedTestConfiguration} declaration on an
- * enclosing class for a nested interface will be ignored when searching for the
- * annotation on classes that implement the interface. See
- * {@link #ENCLOSING_CONFIGURATION_PROPERTY_NAME} for details on how to change
- * the default mode.
+ * <p>如果 {@code @NestedTestConfiguration} 未<em>存在</em>或
+ * <em>元存在</em>于测试类、其超类型层次结构或其
+ * 封闭类层次结构中，则将使用默认的<em>封闭配置继承
+ * 模式</em>。在封闭类上为嵌套接口声明的 {@code @NestedTestConfiguration}
+ * 在实现该接口的类上搜索该注解时将被忽略。
+ * 有关如何更改默认模式的详细信息，请参见
+ * {@link #ENCLOSING_CONFIGURATION_PROPERTY_NAME}。
  *
- * <p>When the {@link EnclosingConfiguration#INHERIT INHERIT} mode is in use,
- * configuration from an enclosing test class will be inherited by inner test
- * classes, analogous to the semantics within a test class inheritance hierarchy.
- * When the {@link EnclosingConfiguration#OVERRIDE OVERRIDE} mode is in use,
- * inner test classes will have to declare their own Spring test configuration
- * annotations. If you wish to explicitly configure the mode, annotate either
- * the inner test class or one of its enclosing classes with
- * {@code @NestedTestConfiguration(...)}. Note that a
- * {@code @NestedTestConfiguration(...)} declaration is inherited within the
- * superclass hierarchy as well as within the enclosing class hierarchy. Thus,
- * there is no need to redeclare the annotation unless you wish to switch the
- * mode.
+ * <p>当使用 {@link EnclosingConfiguration#INHERIT INHERIT} 模式时，
+ * 内部测试类将从封闭测试类继承配置，
+ * 类似于测试类继承层次结构中的语义。
+ * 当使用 {@link EnclosingConfiguration#OVERRIDE OVERRIDE} 模式时，
+ * 内部测试类必须声明自己的 Spring 测试配置
+ * 注解。如果希望显式配置模式，请使用
+ * {@code @NestedTestConfiguration(...)} 注解内部测试类或其某个封闭类。
+ * 请注意，{@code @NestedTestConfiguration(...)} 声明会在
+ * 超类层次结构以及封闭类层次结构中继承。因此，
+ * 除非希望切换模式，否则无需重新声明该注解。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
- * <p>As of Spring Framework 5.3, the use of this annotation typically only makes
- * sense in conjunction with {@link org.junit.jupiter.api.Nested @Nested} test
- * classes in JUnit Jupiter; however, there may be other testing frameworks with
- * support for nested test classes that could also make use of this annotation.
+ * <p>从 Spring Framework 5.3 开始，此注解通常只在
+ * JUnit Jupiter 中与 {@link org.junit.jupiter.api.Nested @Nested} 测试
+ * 类结合使用时才有意义；不过，其他支持嵌套测试类的
+ * 测试框架也可能使用此注解。
  *
- * <h3>Supported Annotations</h3>
- * <p>The <em>Spring TestContext Framework</em> honors {@code @NestedTestConfiguration}
- * semantics for the following annotations.
+ * <h3>支持的注解</h3>
+ * <p><em>Spring TestContext Framework</em> 对以下注解遵循 {@code @NestedTestConfiguration}
+ * 语义。
  * <ul>
  * <li>{@link BootstrapWith @BootstrapWith}</li>
  * <li>{@link TestExecutionListeners @TestExecutionListeners}</li>
@@ -97,26 +94,25 @@ import org.springframework.lang.Nullable;
 public @interface NestedTestConfiguration {
 
 	/**
-	 * JVM system property used to change the default <em>enclosing configuration
-	 * inheritance mode</em>: {@value #ENCLOSING_CONFIGURATION_PROPERTY_NAME}.
-	 * <p>Supported values include enum constants defined in
-	 * {@link EnclosingConfiguration}, ignoring case. For example, the default
-	 * may be changed to {@link EnclosingConfiguration#OVERRIDE} by supplying
-	 * the following JVM system property via the command line.
+	 * 用于更改默认<em>封闭配置
+	 * 继承模式</em>的 JVM 系统属性：{@value #ENCLOSING_CONFIGURATION_PROPERTY_NAME}。
+	 * <p>支持的值包括 {@link EnclosingConfiguration} 中定义的枚举常量，
+	 * 忽略大小写。例如，可以通过命令行提供
+	 * 以下 JVM 系统属性，将默认值更改为 {@link EnclosingConfiguration#OVERRIDE}。
 	 * <pre style="code">-Dspring.test.enclosing.configuration=override</pre>
-	 * <p>If the property is not set to {@code OVERRIDE}, test configuration for
-	 * an inner test class will be <em>inherited</em> according to
-	 * {@link EnclosingConfiguration#INHERIT} semantics by default.
-	 * <p>May alternatively be configured via the
+	 * <p>如果该属性未设置为 {@code OVERRIDE}，则内部测试类的测试配置
+	 * 默认将按照
+	 * {@link EnclosingConfiguration#INHERIT} 语义<em>继承</em>。
+	 * <p>也可以通过
 	 * {@link org.springframework.core.SpringProperties SpringProperties}
-	 * mechanism.
+	 * 机制配置。
 	 * @see #value
 	 */
 	String ENCLOSING_CONFIGURATION_PROPERTY_NAME = "spring.test.enclosing.configuration";
 
 
 	/**
-	 * Configures the {@link EnclosingConfiguration} mode.
+	 * 配置 {@link EnclosingConfiguration} 模式。
 	 * @see EnclosingConfiguration#INHERIT
 	 * @see EnclosingConfiguration#OVERRIDE
 	 */
@@ -124,31 +120,31 @@ public @interface NestedTestConfiguration {
 
 
 	/**
-	 * Enumeration of <em>modes</em> that dictate how test configuration from
-	 * enclosing classes is processed for inner test classes.
+	 * 枚举<em>模式</em>，决定内部测试类如何处理来自
+	 * 封闭类的测试配置。
 	 * @see #INHERIT
 	 * @see #OVERRIDE
 	 */
 	enum EnclosingConfiguration {
 
 		/**
-		 * Indicates that test configuration for an inner test class should be
-		 * <em>inherited</em> from its {@linkplain Class#getEnclosingClass()
-		 * enclosing class}, as if the enclosing class were a superclass.
+		 * 指示内部测试类的测试配置应从其
+		 * {@linkplain Class#getEnclosingClass() 封闭类}<em>继承</em>，
+		 * 就像封闭类是超类一样。
 		 */
 		INHERIT,
 
 		/**
-		 * Indicates that test configuration for an inner test class should
-		 * <em>override</em> configuration from its
-		 * {@linkplain Class#getEnclosingClass() enclosing class}.
+		 * 指示内部测试类的测试配置应
+		 * <em>覆盖</em>其
+		 * {@linkplain Class#getEnclosingClass() 封闭类}的配置。
 		 */
 		OVERRIDE;
 
 
 		/**
-		 * Get the {@code EnclosingConfiguration} enum constant with the supplied
-		 * name, ignoring case.
+		 * 获取具有提供名称的 {@code EnclosingConfiguration} 枚举常量，
+		 * 忽略大小写。
 		 * @param name the name of the enum constant to retrieve
 		 * @return the corresponding enum constant or {@code null} if not found
 		 * @see EnclosingConfiguration#valueOf(String)

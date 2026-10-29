@@ -28,9 +28,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Simple adapter that implements the {@code java.lang.instrument.ClassFileTransformer}
- * interface based on a JPA {@code ClassTransformer} which a JPA PersistenceProvider
- * asks the {@code PersistenceUnitInfo} to install in the current runtime.
+ * 简单的适配器，基于 JPA {@code ClassTransformer} 实现
+ * {@code java.lang.instrument.ClassFileTransformer} 接口，
+ * 该 {@code ClassTransformer} 是 JPA PersistenceProvider 要求
+ * {@code PersistenceUnitInfo} 在当前运行时中安装的。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller

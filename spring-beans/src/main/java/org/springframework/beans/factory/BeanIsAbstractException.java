@@ -17,8 +17,7 @@
 package org.springframework.beans.factory;
 
 /**
- * Exception thrown when a bean instance has been requested for
- * a bean definition which has been marked as abstract.
+ * 当为标记为抽象的 Bean 定义请求 Bean 实例时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -28,7 +27,7 @@ package org.springframework.beans.factory;
 public class BeanIsAbstractException extends BeanCreationException {
 
 	/**
-	 * Create a new BeanIsAbstractException.
+	 * 创建一个新的 BeanIsAbstractException。
 	 * @param beanName the name of the bean requested
 	 */
 	public BeanIsAbstractException(String beanName) {

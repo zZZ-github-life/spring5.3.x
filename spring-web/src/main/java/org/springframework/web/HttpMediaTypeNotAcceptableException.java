@@ -21,7 +21,7 @@ import java.util.List;
 import org.springframework.http.MediaType;
 
 /**
- * Exception thrown when the request handler cannot generate a response that is acceptable by the client.
+ * 当请求处理器无法生成客户端可接受的响应时抛出该异常。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -30,7 +30,7 @@ import org.springframework.http.MediaType;
 public class HttpMediaTypeNotAcceptableException extends HttpMediaTypeException {
 
 	/**
-	 * Create a new HttpMediaTypeNotAcceptableException.
+	 * 创建一个新的 HttpMediaTypeNotAcceptableException。
 	 * @param message the exception message
 	 */
 	public HttpMediaTypeNotAcceptableException(String message) {
@@ -38,7 +38,7 @@ public class HttpMediaTypeNotAcceptableException extends HttpMediaTypeException 
 	}
 
 	/**
-	 * Create a new HttpMediaTypeNotSupportedException.
+	 * 创建一个新的 HttpMediaTypeNotSupportedException。
 	 * @param supportedMediaTypes the list of supported media types
 	 */
 	public HttpMediaTypeNotAcceptableException(List<MediaType> supportedMediaTypes) {

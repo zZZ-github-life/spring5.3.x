@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 import org.springframework.lang.Nullable;
 
 /**
- * A text WebSocket message.
+ * 文本 WebSocket 消息。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -33,7 +33,7 @@ public final class TextMessage extends AbstractWebSocketMessage<String> {
 
 
 	/**
-	 * Create a new text WebSocket message from the given CharSequence payload.
+	 * 使用给定的 CharSequence 负载创建一个新的文本 WebSocket 消息。
 	 * @param payload the non-null payload
 	 */
 	public TextMessage(CharSequence payload) {
@@ -42,8 +42,8 @@ public final class TextMessage extends AbstractWebSocketMessage<String> {
 	}
 
 	/**
-	 * Create a new text WebSocket message from the given byte[]. It is assumed
-	 * the byte array can be encoded into an UTF-8 String.
+	 * 使用给定的 byte[] 创建一个新的文本 WebSocket 消息。假定
+	 * 该字节数组可以编码为 UTF-8 字符串。
 	 * @param payload the non-null payload
 	 */
 	public TextMessage(byte[] payload) {
@@ -52,10 +52,10 @@ public final class TextMessage extends AbstractWebSocketMessage<String> {
 	}
 
 	/**
-	 * Create a new text WebSocket message with the given payload representing the
-	 * full or partial message content. When the {@code isLast} boolean flag is set
-	 * to {@code false} the message is sent as partial content and more partial
-	 * messages will be expected until the boolean flag is set to {@code true}.
+	 * 使用表示完整或部分消息内容的给定负载创建一个新的文本 WebSocket 消息。
+	 * 当 {@code isLast} 布尔标志设置为 {@code false} 时，
+	 * 该消息将作为部分内容发送，并且会预期收到更多部分消息，
+	 * 直到该布尔标志设置为 {@code true} 为止。
 	 * @param payload the non-null payload
 	 * @param isLast whether this the last part of a series of partial messages
 	 */

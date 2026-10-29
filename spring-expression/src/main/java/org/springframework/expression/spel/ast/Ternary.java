@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Represents a ternary expression, for example: "someCheck()?true:false".
+ * 表示三元表达式，例如："someCheck()?true:false"。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -43,8 +43,7 @@ public class Ternary extends SpelNodeImpl {
 
 
 	/**
-	 * Evaluate the condition and if true evaluate the first alternative, otherwise
-	 * evaluate the second alternative.
+	 * 对条件求值，如果为真则对第一个备选分支求值，否则对第二个备选分支求值。
 	 * @param state the expression state
 	 * @throws EvaluationException if the condition does not evaluate correctly to
 	 * a boolean or there is a problem executing the chosen alternative

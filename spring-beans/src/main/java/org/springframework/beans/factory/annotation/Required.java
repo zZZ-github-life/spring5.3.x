@@ -22,11 +22,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a method (typically a JavaBean setter method) as being 'required': that is,
- * the setter method must be configured to be dependency-injected with a value.
+ * 将某个方法（通常是 JavaBean setter 方法）标记为 'required'：也就是说，必须将该 setter 方法配置为
+ * 通过依赖注入获得值。
  *
- * <p>Please do consult the javadoc for the {@link RequiredAnnotationBeanPostProcessor}
- * class (which, by default, checks for the presence of this annotation).
+ * <p>请务必查阅 {@link RequiredAnnotationBeanPostProcessor} 类的 javadoc（默认情况下，该类会检查此
+ * 注解是否存在）。
  *
  * @author Rob Harrop
  * @since 2.0

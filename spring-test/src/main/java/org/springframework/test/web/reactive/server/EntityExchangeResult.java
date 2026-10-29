@@ -19,9 +19,8 @@ package org.springframework.test.web.reactive.server;
 import org.springframework.lang.Nullable;
 
 /**
- * {@code ExchangeResult} sub-class that exposes the response body fully
- * extracted to a representation of type {@code <T>}.
- *
+ * 将完整提取的响应体暴露为 {@code <T>} 类型表示的
+ * {@code ExchangeResult} 子类。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @param <T> the response body type
@@ -40,7 +39,7 @@ public class EntityExchangeResult<T> extends ExchangeResult {
 
 
 	/**
-	 * Return the entity extracted from the response body.
+	 * 返回从响应体中提取的实体。
 	 */
 	@Nullable
 	public T getResponseBody() {

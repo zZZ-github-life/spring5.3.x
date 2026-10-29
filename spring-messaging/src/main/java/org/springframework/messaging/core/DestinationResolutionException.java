@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Thrown by a {@link DestinationResolver} when it cannot resolve a destination.
+ * 当 {@link DestinationResolver} 无法解析目标时抛出。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev

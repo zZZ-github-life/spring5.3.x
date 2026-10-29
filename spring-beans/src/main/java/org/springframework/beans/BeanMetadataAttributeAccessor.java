@@ -20,9 +20,8 @@ import org.springframework.core.AttributeAccessorSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of {@link org.springframework.core.AttributeAccessorSupport},
- * holding attributes as {@link BeanMetadataAttribute} objects in order
- * to keep track of the definition source.
+ * {@link org.springframework.core.AttributeAccessorSupport} 的扩展，以
+ * {@link BeanMetadataAttribute} 对象的形式持有属性，以便跟踪定义来源。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -35,8 +34,7 @@ public class BeanMetadataAttributeAccessor extends AttributeAccessorSupport impl
 
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置源 {@code Object}。<p>对象的确切类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
@@ -50,7 +48,7 @@ public class BeanMetadataAttributeAccessor extends AttributeAccessorSupport impl
 
 
 	/**
-	 * Add the given BeanMetadataAttribute to this accessor's set of attributes.
+	 * 将给定的 BeanMetadataAttribute 添加到此访问器的属性集合中。
 	 * @param attribute the BeanMetadataAttribute object to register
 	 */
 	public void addMetadataAttribute(BeanMetadataAttribute attribute) {
@@ -58,7 +56,7 @@ public class BeanMetadataAttributeAccessor extends AttributeAccessorSupport impl
 	}
 
 	/**
-	 * Look up the given BeanMetadataAttribute in this accessor's set of attributes.
+	 * 在此访问器的属性集合中查找给定的 BeanMetadataAttribute。
 	 * @param name the name of the attribute
 	 * @return the corresponding BeanMetadataAttribute object,
 	 * or {@code null} if no such attribute defined

@@ -20,15 +20,13 @@ import org.springframework.core.Ordered;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a Spring-managed bean with cross-cutting functionality to be
- * applied to one or more Spring beans with annotation-based message
- * handling methods.
+ * 表示一个 Spring 管理的 Bean，其横切功能将应用于一个或多个带有基于注解的
+ * 消息处理方法的 Spring Bean。
  *
- * <p>Component stereotypes such as
- * {@link org.springframework.stereotype.Controller @Controller} with annotation
- * handler methods often need cross-cutting functionality across all or a subset
- * of such annotated components. A primary example of this is the need for "global"
- * annotated exception handler methods but the concept applies more generally.
+ * <p>带有注解处理器方法的组件构造型（例如
+ * {@link org.springframework.stereotype.Controller @Controller}）
+ * 通常需要在所有此类注解组件或其中的一部分上提供横切功能。
+ * 一个主要示例是对“全局”注解异常处理器方法的需求，但这一概念的应用范围更广。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -36,21 +34,19 @@ import org.springframework.lang.Nullable;
 public interface MessagingAdviceBean extends Ordered {
 
 	/**
-	 * Return the type of the contained advice bean.
-	 * <p>If the bean type is a CGLIB-generated class, the original user-defined
-	 * class is returned.
+	 * 返回所包含通知 Bean 的类型。
+	 * <p>如果 Bean 类型是由 CGLIB 生成的类，则返回原始的用户定义类。
 	 */
 	@Nullable
 	Class<?> getBeanType();
 
 	/**
-	 * Return the advice bean instance, if necessary resolving a bean specified
-	 * by name through the BeanFactory.
+	 * 返回通知 Bean 实例，如有必要，通过 BeanFactory 解析按名称指定的 Bean。
 	 */
 	Object resolveBean();
 
 	/**
-	 * Whether this {@link MessagingAdviceBean} applies to the given bean type.
+	 * 此 {@link MessagingAdviceBean} 是否适用于给定 Bean 类型。
 	 * @param beanType the type of the bean to check
 	 */
 	boolean isApplicableToBeanType(Class<?> beanType);

@@ -29,27 +29,25 @@ import java.util.function.IntPredicate;
 import org.springframework.util.Assert;
 
 /**
- * Basic abstraction over byte buffers.
+ * 对字节缓冲区的基本抽象。
  *
- * <p>{@code DataBuffer}s has a separate {@linkplain #readPosition() read} and
- * {@linkplain #writePosition() write} position, as opposed to {@code ByteBuffer}'s
- * single {@linkplain ByteBuffer#position() position}. As such, the {@code DataBuffer}
- * does not require a {@linkplain ByteBuffer#flip() flip} to read after writing. In general,
- * the following invariant holds for the read and write positions, and the capacity:
+ * <p>{@code DataBuffer} 具有独立的 {@linkplain #readPosition() read} 位置和
+ * {@linkplain #writePosition() write} 位置，而 {@code ByteBuffer} 只有一个
+ * {@linkplain ByteBuffer#position() position}。因此，{@code DataBuffer} 在写入后读取时不需要
+ * {@linkplain ByteBuffer#flip() flip}。通常，读位置、写位置和容量满足以下不变式：
  *
  * <blockquote>
- *     {@code 0} {@code <=}
- *     <i>readPosition</i> {@code <=}
- *     <i>writePosition</i> {@code <=}
- *     <i>capacity</i>
+ * {@code 0} {@code <=}
+ * <i>readPosition</i> {@code <=}
+ * <i>writePosition</i> {@code <=}
+ * <i>capacity</i>
  * </blockquote>
  *
- * <p>The {@linkplain #capacity() capacity} of a {@code DataBuffer} is expanded on demand,
- * similar to {@code StringBuilder}.
+ * <p>{@code DataBuffer} 的 {@linkplain #capacity() capacity} 会按需扩展，类似于
+ * {@code StringBuilder}。
  *
- * <p>The main purpose of the {@code DataBuffer} abstraction is to provide a convenient wrapper
- * around {@link ByteBuffer} which is similar to Netty's {@link io.netty.buffer.ByteBuf} but
- * can also be used on non-Netty platforms (i.e. Servlet containers).
+ * <p>{@code DataBuffer} 抽象的主要目的是为 {@link ByteBuffer} 提供一个便捷的包装，类似于 Netty 的
+ * {@link io.netty.buffer.ByteBuf}，但也可用于非 Netty 平台（即 Servlet 容器）。
  *
  * @author Arjen Poutsma
  * @author Brian Clozel
@@ -59,14 +57,13 @@ import org.springframework.util.Assert;
 public interface DataBuffer {
 
 	/**
-	 * Return the {@link DataBufferFactory} that created this buffer.
+	 * 返回创建此缓冲区的 {@link DataBufferFactory}。
 	 * @return the creating buffer factory
 	 */
 	DataBufferFactory factory();
 
 	/**
-	 * Return the index of the first byte in this buffer that matches
-	 * the given predicate.
+	 * 返回此缓冲区中匹配给定谓词的第一个字节的索引。
 	 * @param predicate the predicate to match
 	 * @param fromIndex the index to start the search from
 	 * @return the index of the first byte that matches {@code predicate};
@@ -75,8 +72,7 @@ public interface DataBuffer {
 	int indexOf(IntPredicate predicate, int fromIndex);
 
 	/**
-	 * Return the index of the last byte in this buffer that matches
-	 * the given predicate.
+	 * 返回此缓冲区中匹配给定谓词的最后一个字节的索引。
 	 * @param predicate the predicate to match
 	 * @param fromIndex the index to start the search from
 	 * @return the index of the last byte that matches {@code predicate};
@@ -85,39 +81,36 @@ public interface DataBuffer {
 	int lastIndexOf(IntPredicate predicate, int fromIndex);
 
 	/**
-	 * Return the number of bytes that can be read from this data buffer.
+	 * 返回可从此数据缓冲区读取的字节数。
 	 * @return the readable byte count
 	 */
 	int readableByteCount();
 
 	/**
-	 * Return the number of bytes that can be written to this data buffer.
+	 * 返回可写入此数据缓冲区的字节数。
 	 * @return the writable byte count
 	 * @since 5.0.1
 	 */
 	int writableByteCount();
 
 	/**
-	 * Return the number of bytes that this buffer can contain.
+	 * 返回此缓冲区可容纳的字节数。
 	 * @return the capacity
 	 * @since 5.0.1
 	 */
 	int capacity();
 
 	/**
-	 * Set the number of bytes that this buffer can contain.
-	 * <p>If the new capacity is lower than the current capacity, the contents
-	 * of this buffer will be truncated. If the new capacity is higher than
-	 * the current capacity, it will be expanded.
+	 * 设置此缓冲区可容纳的字节数。
+	 * <p>如果新容量小于当前容量，此缓冲区的内容将被截断。如果新容量大于当前容量，则会进行扩展。
 	 * @param capacity the new capacity
 	 * @return this buffer
 	 */
 	DataBuffer capacity(int capacity);
 
 	/**
-	 * Ensure that the current buffer has enough {@link #writableByteCount()}
-	 * to write the amount of data given as an argument. If not, the missing
-	 * capacity will be added to the buffer.
+	 * 确保当前缓冲区具有足够的 {@link #writableByteCount()} 来写入作为参数给出的数据量。如果不足，缺少
+	 * 的容量将被添加到缓冲区中。
 	 * @param capacity the writable capacity to check for
 	 * @return this buffer
 	 * @since 5.1.4
@@ -127,14 +120,14 @@ public interface DataBuffer {
 	}
 
 	/**
-	 * Return the position from which this buffer will read.
+	 * 返回此缓冲区将从中读取的位置。
 	 * @return the read position
 	 * @since 5.0.1
 	 */
 	int readPosition();
 
 	/**
-	 * Set the position from which this buffer will read.
+	 * 设置此缓冲区将从中读取的位置。
 	 * @param readPosition the new read position
 	 * @return this buffer
 	 * @throws IndexOutOfBoundsException if {@code readPosition} is smaller than 0
@@ -144,14 +137,14 @@ public interface DataBuffer {
 	DataBuffer readPosition(int readPosition);
 
 	/**
-	 * Return the position to which this buffer will write.
+	 * 返回此缓冲区将写入到的位置。
 	 * @return the write position
 	 * @since 5.0.1
 	 */
 	int writePosition();
 
 	/**
-	 * Set the position to which this buffer will write.
+	 * 设置此缓冲区将写入到的位置。
 	 * @param writePosition the new write position
 	 * @return this buffer
 	 * @throws IndexOutOfBoundsException if {@code writePosition} is smaller than
@@ -161,7 +154,7 @@ public interface DataBuffer {
 	DataBuffer writePosition(int writePosition);
 
 	/**
-	 * Read a single byte at the given index from this data buffer.
+	 * 从此数据缓冲区的给定索引处读取单个字节。
 	 * @param index the index at which the byte will be read
 	 * @return the byte at the given index
 	 * @throws IndexOutOfBoundsException when {@code index} is out of bounds
@@ -170,22 +163,20 @@ public interface DataBuffer {
 	byte getByte(int index);
 
 	/**
-	 * Read a single byte from the current reading position from this data buffer.
+	 * 从此数据缓冲区的当前读取位置读取单个字节。
 	 * @return the byte at this buffer's current reading position
 	 */
 	byte read();
 
 	/**
-	 * Read this buffer's data into the specified destination, starting at the current
-	 * reading position of this buffer.
+	 * 将此缓冲区的数据读入指定目标，从此缓冲区的当前读取位置开始。
 	 * @param destination the array into which the bytes are to be written
 	 * @return this buffer
 	 */
 	DataBuffer read(byte[] destination);
 
 	/**
-	 * Read at most {@code length} bytes of this buffer into the specified destination,
-	 * starting at the current reading position of this buffer.
+	 * 将此缓冲区最多 {@code length} 个字节读入指定目标，从此缓冲区的当前读取位置开始。
 	 * @param destination the array into which the bytes are to be written
 	 * @param offset the index within {@code destination} of the first byte to be written
 	 * @param length the maximum number of bytes to be written in {@code destination}
@@ -194,23 +185,21 @@ public interface DataBuffer {
 	DataBuffer read(byte[] destination, int offset, int length);
 
 	/**
-	 * Write a single byte into this buffer at the current writing position.
+	 * 在当前写入位置向此缓冲区写入单个字节。
 	 * @param b the byte to be written
 	 * @return this buffer
 	 */
 	DataBuffer write(byte b);
 
 	/**
-	 * Write the given source into this buffer, starting at the current writing position
-	 * of this buffer.
+	 * 将给定源写入此缓冲区，从此缓冲区的当前写入位置开始。
 	 * @param source the bytes to be written into this buffer
 	 * @return this buffer
 	 */
 	DataBuffer write(byte[] source);
 
 	/**
-	 * Write at most {@code length} bytes of the given source into this buffer, starting
-	 * at the current writing position of this buffer.
+	 * 将给定源最多 {@code length} 个字节写入此缓冲区，从此缓冲区的当前写入位置开始。
 	 * @param source the bytes to be written into this buffer
 	 * @param offset the index within {@code source} to start writing from
 	 * @param length the maximum number of bytes to be written from {@code source}
@@ -219,25 +208,22 @@ public interface DataBuffer {
 	DataBuffer write(byte[] source, int offset, int length);
 
 	/**
-	 * Write one or more {@code DataBuffer}s to this buffer, starting at the current
-	 * writing position. It is the responsibility of the caller to
-	 * {@linkplain DataBufferUtils#release(DataBuffer) release} the given data buffers.
+	 * 将一个或多个 {@code DataBuffer} 写入此缓冲区，从当前写入位置开始。调用方负责
+	 * {@linkplain DataBufferUtils#release(DataBuffer) release} 给定的数据缓冲区。
 	 * @param buffers the byte buffers to write into this buffer
 	 * @return this buffer
 	 */
 	DataBuffer write(DataBuffer... buffers);
 
 	/**
-	 * Write one or more {@link ByteBuffer} to this buffer, starting at the current
-	 * writing position.
+	 * 将一个或多个 {@link ByteBuffer} 写入此缓冲区，从当前写入位置开始。
 	 * @param buffers the byte buffers to write into this buffer
 	 * @return this buffer
 	 */
 	DataBuffer write(ByteBuffer... buffers);
 
 	/**
-	 * Write the given {@code CharSequence} using the given {@code Charset},
-	 * starting at the current writing position.
+	 * 使用给定 {@code Charset} 写入给定 {@code CharSequence}，从当前写入位置开始。
 	 * @param charSequence the char sequence to write into this buffer
 	 * @param charset the charset to encode the char sequence with
 	 * @return this buffer
@@ -276,13 +262,10 @@ public interface DataBuffer {
 	}
 
 	/**
-	 * Create a new {@code DataBuffer} whose contents is a shared subsequence of this
-	 * data buffer's content.  Data between this data buffer and the returned buffer is
-	 * shared; though changes in the returned buffer's position will not be reflected
-	 * in the reading nor writing position of this data buffer.
-	 * <p><strong>Note</strong> that this method will <strong>not</strong> call
-	 * {@link DataBufferUtils#retain(DataBuffer)} on the resulting slice: the reference
-	 * count will not be increased.
+	 * 创建一个新的 {@code DataBuffer}，其内容为此数据缓冲区内容的共享子序列。此数据缓冲区与返回缓冲区
+	 * 之间的数据是共享的；不过返回缓冲区位置的变化不会反映在此数据缓冲区的读位置或写位置中。
+	 * <p>请注意，此方法<strong>不会</strong>对生成的切片调用
+	 * {@link DataBufferUtils#retain(DataBuffer)}：引用计数不会增加。
 	 * @param index the index at which to start the slice
 	 * @param length the length of the slice
 	 * @return the specified slice of this data buffer
@@ -290,13 +273,10 @@ public interface DataBuffer {
 	DataBuffer slice(int index, int length);
 
 	/**
-	 * Create a new {@code DataBuffer} whose contents is a shared, retained subsequence of this
-	 * data buffer's content.  Data between this data buffer and the returned buffer is
-	 * shared; though changes in the returned buffer's position will not be reflected
-	 * in the reading nor writing position of this data buffer.
-	 * <p><strong>Note</strong> that unlike {@link #slice(int, int)}, this method
-	 * <strong>will</strong> call {@link DataBufferUtils#retain(DataBuffer)} (or equivalent) on the
-	 * resulting slice.
+	 * 创建一个新的 {@code DataBuffer}，其内容为此数据缓冲区内容的共享、保留子序列。此数据缓冲区与返回
+	 * 缓冲区之间的数据是共享的；不过返回缓冲区位置的变化不会反映在此数据缓冲区的读位置或写位置中。
+	 * <p>请注意，与 {@link #slice(int, int)} 不同，此方法<strong>会</strong>对生成的切片调用
+	 * {@link DataBufferUtils#retain(DataBuffer)}（或等效方法）。
 	 * @param index the index at which to start the slice
 	 * @param length the length of the slice
 	 * @return the specified, retained slice of this data buffer
@@ -307,19 +287,17 @@ public interface DataBuffer {
 	}
 
 	/**
-	 * Expose this buffer's bytes as a {@link ByteBuffer}. Data between this
-	 * {@code DataBuffer} and the returned {@code ByteBuffer} is shared; though
-	 * changes in the returned buffer's {@linkplain ByteBuffer#position() position}
-	 * will not be reflected in the reading nor writing position of this data buffer.
+	 * 将此缓冲区的字节暴露为 {@link ByteBuffer}。此 {@code DataBuffer} 与返回的 {@code ByteBuffer} 之
+	 * 间的数据是共享的；不过返回缓冲区 {@linkplain ByteBuffer#position() position} 的变化不会反映在此
+	 * 数据缓冲区的读位置或写位置中。
 	 * @return this data buffer as a byte buffer
 	 */
 	ByteBuffer asByteBuffer();
 
 	/**
-	 * Expose a subsequence of this buffer's bytes as a {@link ByteBuffer}. Data between
-	 * this {@code DataBuffer} and the returned {@code ByteBuffer} is shared; though
-	 * changes in the returned buffer's {@linkplain ByteBuffer#position() position}
-	 * will not be reflected in the reading nor writing position of this data buffer.
+	 * 将此缓冲区字节的子序列暴露为 {@link ByteBuffer}。此 {@code DataBuffer} 与返回的
+	 * {@code ByteBuffer} 之间的数据是共享的；不过返回缓冲区
+	 * {@linkplain ByteBuffer#position() position} 的变化不会反映在此数据缓冲区的读位置或写位置中。
 	 * @param index the index at which to start the byte buffer
 	 * @param length the length of the returned byte buffer
 	 * @return this data buffer as a byte buffer
@@ -328,18 +306,16 @@ public interface DataBuffer {
 	ByteBuffer asByteBuffer(int index, int length);
 
 	/**
-	 * Expose this buffer's data as an {@link InputStream}. Both data and read position are
-	 * shared between the returned stream and this data buffer. The underlying buffer will
-	 * <strong>not</strong> be {@linkplain DataBufferUtils#release(DataBuffer) released}
-	 * when the input stream is {@linkplain InputStream#close() closed}.
+	 * 将此缓冲区的数据暴露为 {@link InputStream}。数据与读位置在返回的流与此数据缓冲区之间共享。当输入
+	 * 流被 {@linkplain InputStream#close() closed} 时，底层缓冲区<strong>不会</strong>被
+	 * {@linkplain DataBufferUtils#release(DataBuffer) released}。
 	 * @return this data buffer as an input stream
 	 * @see #asInputStream(boolean)
 	 */
 	InputStream asInputStream();
 
 	/**
-	 * Expose this buffer's data as an {@link InputStream}. Both data and read position are
-	 * shared between the returned stream and this data buffer.
+	 * 将此缓冲区的数据暴露为 {@link InputStream}。数据与读位置在返回的流与此数据缓冲区之间共享。
 	 * @param releaseOnClose whether the underlying buffer will be
 	 * {@linkplain DataBufferUtils#release(DataBuffer) released} when the input stream is
 	 * {@linkplain InputStream#close() closed}.
@@ -349,15 +325,14 @@ public interface DataBuffer {
 	InputStream asInputStream(boolean releaseOnClose);
 
 	/**
-	 * Expose this buffer's data as an {@link OutputStream}. Both data and write position are
-	 * shared between the returned stream and this data buffer.
+	 * 将此缓冲区的数据暴露为 {@link OutputStream}。数据与写位置在返回的流与此数据缓冲区之间共享。
 	 * @return this data buffer as an output stream
 	 */
 	OutputStream asOutputStream();
 
 	/**
-	 * Return this buffer's data a String using the specified charset. Default implementation
-	 * delegates to {@code toString(readPosition(), readableByteCount(), charset)}.
+	 * 使用指定字符集将此缓冲区的数据作为 String 返回。默认实现委托给
+	 * {@code toString(readPosition(), readableByteCount(), charset)}。
 	 * @param charset the character set to use
 	 * @return a string representation of all this buffers data
 	 * @since 5.2
@@ -368,7 +343,7 @@ public interface DataBuffer {
 	}
 
 	/**
-	 * Return a part of this buffer's data as a String using the specified charset.
+	 * 使用指定字符集将此缓冲区数据的一部分作为 String 返回。
 	 * @param index the index at which to start the string
 	 * @param length the number of bytes to use for the string
 	 * @param charset the charset to use

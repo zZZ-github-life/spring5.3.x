@@ -39,11 +39,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Resource holder wrapping a JMS {@link Connection} and a JMS {@link Session}.
- * {@link JmsTransactionManager} binds instances of this class to the thread,
- * for a given JMS {@link ConnectionFactory}.
+ * 包装 JMS {@link Connection} 和 JMS {@link Session} 的资源持有器。
+ * {@link JmsTransactionManager} 为给定的 JMS {@link ConnectionFactory}，
+ * 将此类的实例绑定到线程。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不供应用直接使用。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -67,7 +67,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Create a new JmsResourceHolder that is open for resources to be added.
+	 * 创建一个新的 JmsResourceHolder，可随时向其添加资源。
 	 * @see #addConnection
 	 * @see #addSession
 	 */
@@ -75,7 +75,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new JmsResourceHolder that is open for resources to be added.
+	 * 创建一个新的 JmsResourceHolder，可随时向其添加资源。
 	 * @param connectionFactory the JMS ConnectionFactory that this
 	 * resource holder is associated with (may be {@code null})
 	 */
@@ -84,7 +84,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new JmsResourceHolder for the given JMS Session.
+	 * 为给定的 JMS Session 创建一个新的 JmsResourceHolder。
 	 * @param session the JMS Session
 	 */
 	public JmsResourceHolder(Session session) {
@@ -93,7 +93,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new JmsResourceHolder for the given JMS resources.
+	 * 为给定的 JMS 资源创建一个新的 JmsResourceHolder。
 	 * @param connection the JMS Connection
 	 * @param session the JMS Session
 	 */
@@ -104,7 +104,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new JmsResourceHolder for the given JMS resources.
+	 * 为给定的 JMS 资源创建一个新的 JmsResourceHolder。
 	 * @param connectionFactory the JMS ConnectionFactory that this
 	 * resource holder is associated with (may be {@code null})
 	 * @param connection the JMS Connection
@@ -119,8 +119,8 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Return whether this resource holder is frozen, i.e. does not
-	 * allow for adding further Connections and Sessions to it.
+	 * 返回此资源持有器是否已冻结，即是否不允许再向其添加
+	 * Connection 和 Session。
 	 * @see #addConnection
 	 * @see #addSession
 	 */
@@ -129,7 +129,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Add the given Connection to this resource holder.
+	 * 将给定的 Connection 添加到此资源持有器。
 	 */
 	public final void addConnection(Connection connection) {
 		Assert.isTrue(!this.frozen, "Cannot add Connection because JmsResourceHolder is frozen");
@@ -140,15 +140,14 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Add the given Session to this resource holder.
+	 * 将给定的 Session 添加到此资源持有器。
 	 */
 	public final void addSession(Session session) {
 		addSession(session, null);
 	}
 
 	/**
-	 * Add the given Session to this resource holder,
-	 * registered for a specific Connection.
+	 * 将给定的 Session 添加到此资源持有器，并注册到特定的 Connection。
 	 */
 	public final void addSession(Session session, @Nullable Connection connection) {
 		Assert.isTrue(!this.frozen, "Cannot add Session because JmsResourceHolder is frozen");
@@ -164,8 +163,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Determine whether the given Session is registered
-	 * with this resource holder.
+	 * 判断给定的 Session 是否已注册到此资源持有器。
 	 */
 	public boolean containsSession(Session session) {
 		return this.sessions.contains(session);
@@ -173,8 +171,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Return this resource holder's default Connection,
-	 * or {@code null} if none.
+	 * 返回此资源持有器的默认 Connection，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public Connection getConnection() {
@@ -182,8 +179,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return this resource holder's Connection of the given type,
-	 * or {@code null} if none.
+	 * 返回此资源持有器中给定类型的 Connection，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public <C extends Connection> C getConnection(Class<C> connectionType) {
@@ -191,9 +187,9 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return an existing original Session, if any.
-	 * <p>In contrast to {@link #getSession()}, this must not lazily initialize
-	 * a new Session, not even in {@link JmsResourceHolder} subclasses.
+	 * 返回现有的原始 Session（如果有）。
+	 * <p>与 {@link #getSession()} 不同，此方法不得延迟初始化新的 Session，
+	 * 即使在 {@link JmsResourceHolder} 子类中也不行。
 	 */
 	@Nullable
 	Session getOriginalSession() {
@@ -201,8 +197,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return this resource holder's default Session,
-	 * or {@code null} if none.
+	 * 返回此资源持有器的默认 Session，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public Session getSession() {
@@ -210,8 +205,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return this resource holder's Session of the given type,
-	 * or {@code null} if none.
+	 * 返回此资源持有器中给定类型的 Session，如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public <S extends Session> S getSession(Class<S> sessionType) {
@@ -219,8 +213,8 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return this resource holder's Session of the given type
-	 * for the given connection, or {@code null} if none.
+	 * 返回此资源持有器中针对给定连接的给定类型 Session，
+	 * 如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public <S extends Session> S getSession(Class<S> sessionType, @Nullable Connection connection) {
@@ -231,7 +225,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Commit all of this resource holder's Sessions.
+	 * 提交此资源持有器的所有 Session。
 	 * @throws JMSException if thrown from a Session commit attempt
 	 * @see Session#commit()
 	 */
@@ -277,7 +271,7 @@ public class JmsResourceHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Close all of this resource holder's Sessions and clear its state.
+	 * 关闭此资源持有器的所有 Session 并清除其状态。
 	 * @see Session#close()
 	 */
 	public void closeAll() {

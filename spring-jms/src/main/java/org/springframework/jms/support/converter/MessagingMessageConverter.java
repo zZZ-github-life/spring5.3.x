@@ -32,10 +32,10 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.Assert;
 
 /**
- * Convert a {@link Message} from the messaging abstraction to and from a
- * {@link javax.jms.Message} using an underlying {@link MessageConverter}
- * for the payload and a {@link org.springframework.jms.support.JmsHeaderMapper}
- * to map the JMS headers to and from standard message headers.
+ * 使用底层的 {@link MessageConverter} 转换负载，并使用
+ * {@link org.springframework.jms.support.JmsHeaderMapper} 在 JMS 消息头
+ * 与标准消息头之间进行映射，从而在消息传递抽象中的 {@link Message}
+ * 与 {@link javax.jms.Message} 之间进行转换。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -48,7 +48,7 @@ public class MessagingMessageConverter implements MessageConverter, Initializing
 
 
 	/**
-	 * Create an instance with a default payload converter.
+	 * 使用默认的负载转换器创建实例。
 	 * @see org.springframework.jms.support.converter.SimpleMessageConverter
 	 * @see org.springframework.jms.support.SimpleJmsHeaderMapper
 	 */
@@ -57,7 +57,7 @@ public class MessagingMessageConverter implements MessageConverter, Initializing
 	}
 
 	/**
-	 * Create an instance with the specific payload converter.
+	 * 使用指定的负载转换器创建实例。
 	 * @param payloadConverter the payload converter to use
 	 * @since 4.3.12
 	 */
@@ -66,8 +66,7 @@ public class MessagingMessageConverter implements MessageConverter, Initializing
 	}
 
 	/**
-	 * Create an instance with the specified payload converter and
-	 * header mapper.
+	 * 使用指定的负载转换器和消息头映射器创建实例。
 	 */
 	public MessagingMessageConverter(MessageConverter payloadConverter, JmsHeaderMapper headerMapper) {
 		Assert.notNull(payloadConverter, "PayloadConverter must not be null");
@@ -78,15 +77,14 @@ public class MessagingMessageConverter implements MessageConverter, Initializing
 
 
 	/**
-	 * Set the {@link MessageConverter} to use to convert the payload.
+	 * 设置用于转换负载的 {@link MessageConverter}。
 	 */
 	public void setPayloadConverter(MessageConverter payloadConverter) {
 		this.payloadConverter = payloadConverter;
 	}
 
 	/**
-	 * Set the {@link JmsHeaderMapper} to use to map JMS headers to and from
-	 * standard message headers.
+	 * 设置用于在 JMS 消息头与标准消息头之间进行映射的 {@link JmsHeaderMapper}。
 	 */
 	public void setHeaderMapper(JmsHeaderMapper headerMapper) {
 		this.headerMapper = headerMapper;
@@ -125,16 +123,16 @@ public class MessagingMessageConverter implements MessageConverter, Initializing
 	}
 
 	/**
-	 * Extract the payload of the specified {@link javax.jms.Message}.
+	 * 提取指定 {@link javax.jms.Message} 的负载。
 	 */
 	protected Object extractPayload(javax.jms.Message message) throws JMSException {
 		return this.payloadConverter.fromMessage(message);
 	}
 
 	/**
-	 * Create a JMS message for the specified payload and conversionHint.
-	 * The conversion hint is an extra object passed to the {@link MessageConverter},
-	 * e.g. the associated {@code MethodParameter} (may be {@code null}}.
+	 * 为指定的负载和 conversionHint 创建 JMS 消息。
+	 * conversionHint 是传递给 {@link MessageConverter} 的额外对象，
+	 * 例如关联的 {@code MethodParameter}（可能为 {@code null}}）。
 	 * @since 4.3
 	 * @see MessageConverter#toMessage(Object, Session)
 	 */

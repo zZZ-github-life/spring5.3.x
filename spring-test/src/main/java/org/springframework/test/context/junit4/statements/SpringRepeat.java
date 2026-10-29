@@ -25,9 +25,7 @@ import org.junit.runners.model.Statement;
 import org.springframework.test.annotation.TestAnnotationUtils;
 
 /**
- * {@code SpringRepeat} is a custom JUnit {@link Statement} which adds support
- * for Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
- * annotation by repeating the test the specified number of times.
+ * {@code SpringRepeat} 是一个自定义 JUnit {@link Statement}，它通过按指定次数重复测试，为 Spring 的 {@link org.springframework.test.annotation.Repeat @Repeat} 注解提供支持。
  *
  * @author Sam Brannen
  * @since 3.0
@@ -45,9 +43,7 @@ public class SpringRepeat extends Statement {
 
 
 	/**
-	 * Construct a new {@code SpringRepeat} statement for the supplied
-	 * {@code testMethod}, retrieving the configured repeat count from the
-	 * {@code @Repeat} annotation on the supplied method.
+	 * 为所提供的 {@code testMethod} 构造一个新的 {@code SpringRepeat} 语句，并从所提供方法上的 {@code @Repeat} 注解获取配置的重复次数。
 	 * @param next the next {@code Statement} in the execution chain
 	 * @param testMethod the current test method
 	 * @see TestAnnotationUtils#getRepeatCount(Method)
@@ -57,8 +53,7 @@ public class SpringRepeat extends Statement {
 	}
 
 	/**
-	 * Construct a new {@code SpringRepeat} statement for the supplied
-	 * {@code testMethod} and {@code repeat} count.
+	 * 为所提供的 {@code testMethod} 和 {@code repeat} 次数构造一个新的 {@code SpringRepeat} 语句。
 	 * @param next the next {@code Statement} in the execution chain
 	 * @param testMethod the current test method
 	 * @param repeat the configured repeat count for the current test method
@@ -71,8 +66,7 @@ public class SpringRepeat extends Statement {
 
 
 	/**
-	 * Evaluate the next {@link Statement statement} in the execution chain
-	 * repeatedly, using the specified repeat count.
+	 * 使用指定的重复次数，反复评估执行链中的下一个 {@link Statement statement}。
 	 */
 	@Override
 	public void evaluate() throws Throwable {

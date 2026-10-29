@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * A common delegate for detecting Kotlin's presence and for identifying Kotlin types.
+ * 用于检测 Kotlin 是否存在以及识别 Kotlin 类型的通用委托。
  *
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -53,14 +53,14 @@ public abstract class KotlinDetector {
 
 
 	/**
-	 * Determine whether Kotlin is present in general.
+	 * 判断通常意义上是否存在 Kotlin。
 	 */
 	public static boolean isKotlinPresent() {
 		return (kotlinMetadata != null);
 	}
 
 	/**
-	 * Determine whether Kotlin reflection is present.
+	 * 判断是否存在 Kotlin 反射。
 	 * @since 5.1
 	 */
 	public static boolean isKotlinReflectPresent() {
@@ -68,15 +68,14 @@ public abstract class KotlinDetector {
 	}
 
 	/**
-	 * Determine whether the given {@code Class} is a Kotlin type
-	 * (with Kotlin metadata present on it).
+	 * 判断给定的 {@code Class} 是否为 Kotlin 类型（其上存在 Kotlin 元数据）。
 	 */
 	public static boolean isKotlinType(Class<?> clazz) {
 		return (kotlinMetadata != null && clazz.getDeclaredAnnotation(kotlinMetadata) != null);
 	}
 
 	/**
-	 * Return {@code true} if the method is a suspending function.
+	 * 如果该方法是挂起函数，则返回 {@code true}。
 	 * @since 5.3
 	 */
 	public static boolean isSuspendingFunction(Method method) {

@@ -17,15 +17,11 @@
 package org.springframework.expression;
 
 /**
- * MethodExecutors are built by the resolvers and can be cached by the infrastructure to
- * repeat an operation quickly without going back to the resolvers. For example, the
- * particular method to run on an object may be discovered by the reflection method
- * resolver - it will then build a MethodExecutor that executes that method and the
- * MethodExecutor can be reused without needing to go back to the resolver to discover
- * the method again.
+ * MethodExecutor 由解析器构建，并可被基础设施缓存，以便快速重复某项操作，而无需再次回到解析器。例
+ * 如，要在某个对象上运行的特定方法可能由反射方法解析器发现——随后它会构建一个执行该方法的
+ * MethodExecutor，并且该 MethodExecutor 可以被复用，无需再回到解析器重新发现该方法。
  *
- * <p>They can become stale, and in that case should throw an AccessException:
- * This will cause the infrastructure to go back to the resolvers to ask for a new one.
+ * <p>它们可能变得陈旧，此时应抛出 AccessException：这将促使基础设施回到解析器请求一个新的执行器。
  *
  * @author Andy Clement
  * @since 3.0
@@ -33,7 +29,7 @@ package org.springframework.expression;
 public interface MethodExecutor {
 
 	/**
-	 * Execute a command using the specified arguments, and using the specified expression state.
+	 * 使用指定的参数并基于指定的表达式状态执行命令。
 	 * @param context the evaluation context in which the command is being executed
 	 * @param target the target object of the call - null for static methods
 	 * @param arguments the arguments to the executor, should match (in terms of number

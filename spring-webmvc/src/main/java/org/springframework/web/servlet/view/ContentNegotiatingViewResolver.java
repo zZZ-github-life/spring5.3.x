@@ -52,31 +52,31 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
 /**
- * Implementation of {@link ViewResolver} that resolves a view based on the request file name
- * or {@code Accept} header.
+ * {@link ViewResolver} 的实现，根据请求的文件名
+ * 或 {@code Accept} 标头解析视图。
  *
- * <p>The {@code ContentNegotiatingViewResolver} does not resolve views itself, but delegates to
- * other {@link ViewResolver ViewResolvers}. By default, these other view resolvers are picked up automatically
- * from the application context, though they can also be set explicitly by using the
- * {@link #setViewResolvers viewResolvers} property. <strong>Note</strong> that in order for this
- * view resolver to work properly, the {@link #setOrder order} property needs to be set to a higher
- * precedence than the others (the default is {@link Ordered#HIGHEST_PRECEDENCE}).
+ * <p>{@code ContentNegotiatingViewResolver} 本身不解析视图，而是委托给
+ * 其他 {@link ViewResolver ViewResolvers}。默认情况下，这些其他视图解析器会从应用上下文中
+ * 自动获取，不过也可以通过
+ * {@link #setViewResolvers viewResolvers} 属性显式设置。<strong>注意</strong>，为使此
+ * 视图解析器正常工作，需要将 {@link #setOrder order} 属性设置为比其他视图解析器
+ * 更高的优先级（默认为 {@link Ordered#HIGHEST_PRECEDENCE}）。
  *
- * <p>This view resolver uses the requested {@linkplain MediaType media type} to select a suitable
- * {@link View} for a request. The requested media type is determined through the configured
- * {@link ContentNegotiationManager}. Once the requested media type has been determined, this resolver
- * queries each delegate view resolver for a {@link View} and determines if the requested media type
- * is {@linkplain MediaType#includes(MediaType) compatible} with the view's
- * {@linkplain View#getContentType() content type}). The most compatible view is returned.
+ * <p>此视图解析器使用请求的{@linkplain MediaType 媒体类型}为请求选择合适的
+ * {@link View}。请求的媒体类型通过所配置的
+ * {@link ContentNegotiationManager} 确定。一旦确定了请求的媒体类型，此解析器
+ * 就会向每个委托视图解析器查询 {@link View}，并判断请求的媒体类型
+ * 是否与视图的{@linkplain View#getContentType() 内容类型}
+ * {@linkplain MediaType#includes(MediaType) 兼容}。将返回最兼容的视图。
  *
- * <p>Additionally, this view resolver exposes the {@link #setDefaultViews(List) defaultViews} property,
- * allowing you to override the views provided by the view resolvers. Note that these default views are
- * offered as candidates, and still need have the content type requested (via file extension, parameter,
- * or {@code Accept} header, described above).
+ * <p>此外，此视图解析器还公开了 {@link #setDefaultViews(List) defaultViews} 属性，
+ * 允许你覆盖由各视图解析器提供的视图。请注意，这些默认视图作为候选项提供，
+ * 仍然需要匹配所请求的内容类型（通过上文所述的文件扩展名、参数
+ * 或 {@code Accept} 标头）。
  *
- * <p>For example, if the request path is {@code /view.html}, this view resolver will look for a view
- * that has the {@code text/html} content type (based on the {@code html} file extension). A request
- * for {@code /view} with a {@code text/html} request {@code Accept} header has the same result.
+ * <p>例如，如果请求路径为 {@code /view.html}，此视图解析器将查找
+ * 具有 {@code text/html} 内容类型的视图（基于 {@code html} 文件扩展名）。带有 {@code text/html} 请求 {@code Accept} 标头的
+ * {@code /view} 请求会得到相同的结果。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -106,9 +106,9 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 
 
 	/**
-	 * Set the {@link ContentNegotiationManager} to use to determine requested media types.
-	 * <p>If not set, ContentNegotiationManager's default constructor will be used,
-	 * applying a {@link org.springframework.web.accept.HeaderContentNegotiationStrategy}.
+	 * 设置用于确定请求媒体类型的 {@link ContentNegotiationManager}。
+	 * <p>如果未设置，将使用 ContentNegotiationManager 的默认构造函数，
+	 * 从而应用 {@link org.springframework.web.accept.HeaderContentNegotiationStrategy}。
 	 * @see ContentNegotiationManager#ContentNegotiationManager()
 	 */
 	public void setContentNegotiationManager(@Nullable ContentNegotiationManager contentNegotiationManager) {
@@ -116,7 +116,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the {@link ContentNegotiationManager} to use to determine requested media types.
+	 * 返回用于确定请求媒体类型的 {@link ContentNegotiationManager}。
 	 * @since 4.1.9
 	 */
 	@Nullable
@@ -125,28 +125,29 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Indicate whether a {@link HttpServletResponse#SC_NOT_ACCEPTABLE 406 Not Acceptable}
-	 * status code should be returned if no suitable view can be found.
-	 * <p>Default is {@code false}, meaning that this view resolver returns {@code null} for
-	 * {@link #resolveViewName(String, Locale)} when an acceptable view cannot be found.
-	 * This will allow for view resolvers chaining. When this property is set to {@code true},
-	 * {@link #resolveViewName(String, Locale)} will respond with a view that sets the
-	 * response status to {@code 406 Not Acceptable} instead.
+	 * 指示在找不到合适视图时是否应返回
+	 * {@link HttpServletResponse#SC_NOT_ACCEPTABLE 406 Not Acceptable} 状态码。
+	 * <p>默认值为 {@code false}，这意味着当找不到可接受的视图时，此视图解析器
+	 * 对 {@link #resolveViewName(String, Locale)} 返回 {@code null}。
+	 * 这将允许视图解析器链。当此属性设为 {@code true} 时，
+	 * {@link #resolveViewName(String, Locale)} 将改为返回一个将响应状态设为
+	 * {@code 406 Not Acceptable} 的视图。
 	 */
 	public void setUseNotAcceptableStatusCode(boolean useNotAcceptableStatusCode) {
 		this.useNotAcceptableStatusCode = useNotAcceptableStatusCode;
 	}
 
 	/**
-	 * Whether to return HTTP Status 406 if no suitable is found.
+	 * 在无法从 {@link ViewResolver} 链获得更具体的视图时，
+	 * 是否返回 HTTP 406 状态码。
 	 */
 	public boolean isUseNotAcceptableStatusCode() {
 		return this.useNotAcceptableStatusCode;
 	}
 
 	/**
-	 * Set the default views to use when a more specific view can not be obtained
-	 * from the {@link ViewResolver} chain.
+	 * 设置当无法从 {@link ViewResolver} 链获得更具体的视图时
+	 * 要使用的默认视图。
 	 */
 	public void setDefaultViews(List<View> defaultViews) {
 		this.defaultViews = defaultViews;
@@ -158,8 +159,8 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Sets the view resolvers to be wrapped by this view resolver.
-	 * <p>If this property is not set, view resolvers will be detected automatically.
+	 * 设置要由此视图解析器包装的视图解析器。
+	 * <p>如果未设置此属性，视图解析器将被自动检测。
 	 */
 	public void setViewResolvers(List<ViewResolver> viewResolvers) {
 		this.viewResolvers = viewResolvers;
@@ -248,7 +249,7 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Determines the list of {@link MediaType} for the given {@link HttpServletRequest}.
+	 * 确定给定 {@link HttpServletRequest} 的 {@link MediaType} 列表。
 	 * @param request the current servlet request
 	 * @return the list of media types requested, if any
 	 */
@@ -292,8 +293,8 @@ public class ContentNegotiatingViewResolver extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the more specific of the acceptable and the producible media types
-	 * with the q-value of the former.
+	 * 返回可接受媒体类型与可生成媒体类型中更具体的那个，
+	 * 并采用前者的 q 值。
 	 */
 	private MediaType getMostSpecificMediaType(MediaType acceptType, MediaType produceType) {
 		produceType = produceType.copyQualityValue(acceptType);

@@ -1,0 +1,66 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/ContentDisposition.java
+@@BODY 40 40
+按照 RFC 6266 定义的 Content-Disposition 类型和参数的表示形式。
+@@BODY 84 84
+私有构造函数。请参见此类中的静态工厂方法。
+@@BODY 102 102
+返回 {@link #getType() type} 是否为 {@literal "attachment"}。
+@@BODY 110 110
+返回 {@link #getType() type} 是否为 {@literal "form-data"}。
+@@BODY 118 118
+返回 {@link #getType() type} 是否为 {@literal "inline"}。
+@@BODY 126 126
+返回处置类型。
+@@BODY 137 137
+返回 {@literal name} 参数的值；如果未定义则返回 {@code null}。
+@@BODY 145 147
+返回 {@literal filename} 参数的值（可能已根据 RFC 2047 从 BASE64 编码解码），或 {@literal filename*} 参数的值（可能已按 RFC 5987 中的定义解码）。
+@@BODY 155 155
+返回 {@literal filename*} 参数中定义的字符集；如果未定义则返回 {@code null}。
+@@BODY 163 163
+返回 {@literal size} 参数的值；如果未定义则返回 {@code null}。
+@@BODY 175 175
+返回 {@literal creation-date} 参数的值；如果未定义则返回 {@code null}。
+@@BODY 187 187
+返回 {@literal modification-date} 参数的值；如果未定义则返回 {@code null}。
+@@BODY 199 199
+返回 {@literal read-date} 参数的值；如果未定义则返回 {@code null}。
+@@BODY 243 243
+返回此内容处置按 RFC 6266 定义的头值。
+@@BODY 290 290
+返回类型为 {@literal "attachment"} 的 {@code ContentDisposition} 构建器。
+@@BODY 298 298
+返回类型为 {@literal "form-data"} 的 {@code ContentDisposition} 构建器。
+@@BODY 306 306
+返回类型为 {@literal "inline"} 的 {@code ContentDisposition} 构建器。
+@@BODY 314 314
+返回 {@code ContentDisposition} 的构建器。
+@@BODY 324 324
+返回空的内容处置。
+@@BODY 331 331
+解析按 RFC 2183 定义的 {@literal Content-Disposition} 头值。
+@@BODY 460 461
+按照 RFC 5987 的描述解码给定的头字段参数。
+<p>仅支持 US-ASCII、UTF-8 和 ISO-8859-1 字符集。
+@@BODY 527 528
+按照 RFC 5987 的描述编码给定的头字段参数。
+@@BODY 562 562
+用于 {@code ContentDisposition} 的可变构建器。
+@@BODY 567 567
+设置 {@literal name} 参数的值。
+@@BODY 572 576
+设置 {@literal filename} 参数的值。给定的文件名将格式化为 RFC 2616 第 2.2 节定义的带引号字符串，文件名值中的任何引号字符都会用反斜杠转义，例如 {@code "foo\"bar.txt"} 会变成 {@code "foo\\\"bar.txt"}。
+@@BODY 581 587
+设置 {@code filename} 的值，该值将按 RFC 5987 的定义进行编码。仅支持 US-ASCII、UTF-8 和 ISO-8859-1 字符集。
+<p><strong>注意：</strong>请勿将其用于 {@code "multipart/form-data"} 请求，因为 <a href="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a> 以及 RFC 5987 都提到它不适用于 multipart 请求。
+@@BODY 592 592
+设置 {@literal size} 参数的值。
+@@BODY 601 601
+设置 {@literal creation-date} 参数的值。
+@@BODY 610 610
+设置 {@literal modification-date} 参数的值。
+@@BODY 619 619
+设置 {@literal read-date} 参数的值。
+@@BODY 628 628
+构建内容处置。
+@@END

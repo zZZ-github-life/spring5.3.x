@@ -32,11 +32,11 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 /**
- * An interceptor to copy information from the HTTP session to the "handshake
- * attributes" map to made available via{@link WebSocketSession#getAttributes()}.
+ * 一个拦截器，用于将信息从 HTTP 会话复制到“握手属性”映射中，
+ * 以便通过 {@link WebSocketSession#getAttributes()} 获取。
  *
- * <p>Copies a subset or all HTTP session attributes and/or the HTTP session id
- * under the key {@link #HTTP_SESSION_ID_ATTR_NAME}.
+ * <p>在键 {@link #HTTP_SESSION_ID_ATTR_NAME} 下复制部分或全部 HTTP 会话属性
+ * 和/或 HTTP 会话 ID。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -44,8 +44,8 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 
 	/**
-	 * The name of the attribute under which the HTTP session id is exposed when
-	 * {@link #setCopyHttpSessionId(boolean) copyHttpSessionId} is "true".
+	 * 当 {@link #setCopyHttpSessionId(boolean) copyHttpSessionId} 为 "true" 时，
+	 * 暴露 HTTP 会话 ID 的属性名称。
 	 */
 	public static final String HTTP_SESSION_ID_ATTR_NAME = "HTTP.SESSION.ID";
 
@@ -60,8 +60,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 
 
 	/**
-	 * Default constructor for copying all HTTP session attributes and the HTTP
-	 * session id.
+	 * 用于复制所有 HTTP 会话属性及 HTTP 会话 ID 的默认构造函数。
 	 * @see #setCopyAllAttributes
 	 * @see #setCopyHttpSessionId
 	 */
@@ -71,8 +70,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Constructor for copying specific HTTP session attributes and the HTTP
-	 * session id.
+	 * 用于复制特定 HTTP 会话属性及 HTTP 会话 ID 的构造函数。
 	 * @param attributeNames session attributes to copy
 	 * @see #setCopyAllAttributes
 	 * @see #setCopyHttpSessionId
@@ -84,17 +82,17 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 
 
 	/**
-	 * Return the configured attribute names to copy (read-only).
+	 * 返回配置的要复制的属性名称（只读）。
 	 */
 	public Collection<String> getAttributeNames() {
 		return this.attributeNames;
 	}
 
 	/**
-	 * Whether to copy all attributes from the HTTP session. If set to "true",
-	 * any explicitly configured attribute names are ignored.
-	 * <p>By default this is set to either "true" or "false" depending on which
-	 * constructor was used (default or with attribute names respectively).
+	 * 是否复制 HTTP 会话中的所有属性。如果设置为 "true"，
+	 * 则忽略任何显式配置的属性名称。
+	 * <p>默认情况下，此值根据所使用的构造函数（分别为默认构造函数或带属性名称的构造函数）
+	 * 设置为 "true" 或 "false"。
 	 * @param copyAllAttributes whether to copy all attributes
 	 */
 	public void setCopyAllAttributes(boolean copyAllAttributes) {
@@ -102,16 +100,16 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Whether to copy all HTTP session attributes.
+	 * 是否复制所有 HTTP 会话属性。
 	 */
 	public boolean isCopyAllAttributes() {
 		return this.copyAllAttributes;
 	}
 
 	/**
-	 * Whether the HTTP session id should be copied to the handshake attributes
-	 * under the key {@link #HTTP_SESSION_ID_ATTR_NAME}.
-	 * <p>By default this is "true".
+	 * 是否应将 HTTP 会话 ID 复制到握手属性中
+	 * 键 {@link #HTTP_SESSION_ID_ATTR_NAME} 下。
+	 * <p>默认情况下为 "true"。
 	 * @param copyHttpSessionId whether to copy the HTTP session id.
 	 */
 	public void setCopyHttpSessionId(boolean copyHttpSessionId) {
@@ -119,15 +117,15 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Whether to copy the HTTP session id to the handshake attributes.
+	 * 是否将 HTTP 会话 ID 复制到握手属性中。
 	 */
 	public boolean isCopyHttpSessionId() {
 		return this.copyHttpSessionId;
 	}
 
 	/**
-	 * Whether to allow the HTTP session to be created while accessing it.
-	 * <p>By default set to {@code false}.
+	 * 是否允许在访问 HTTP 会话时创建它。
+	 * <p>默认设置为 {@code false}。
 	 * @see javax.servlet.http.HttpServletRequest#getSession(boolean)
 	 */
 	public void setCreateSession(boolean createSession) {
@@ -135,7 +133,7 @@ public class HttpSessionHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Whether the HTTP session is allowed to be created.
+	 * 是否允许创建 HTTP 会话。
 	 */
 	public boolean isCreateSession() {
 		return this.createSession;

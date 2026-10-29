@@ -19,23 +19,22 @@ package org.springframework.web.servlet.tags.form;
 import javax.servlet.jsp.JspException;
 
 /**
- * The {@code <hidden>} tag renders an HTML 'input' tag with type 'hidden' using
- * the bound value.
+ * {@code <hidden>} 标签使用绑定值渲染 type 为 'hidden' 的 HTML 'input' 标签。
  *
- * <p>Example (binding to 'name' property of form backing object):
+ * <p>示例（绑定到表单支持对象的 'name' 属性）：
  * <pre class="code">
  * &lt;form:hidden path=&quot;name&quot;/&gt;
  * </pre>
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -43,19 +42,19 @@ import javax.servlet.jsp.JspException;
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>path</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>Path to property for data binding</p></td>
+ * <td><p>用于数据绑定的属性路径</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -69,7 +68,7 @@ import javax.servlet.jsp.JspException;
 public class HiddenInputTag extends AbstractHtmlElementTag {
 
 	/**
-	 * The name of the '{@code disabled}' attribute.
+	 * '{@code disabled}' 属性的名称。
 	 */
 	public static final String DISABLED_ATTRIBUTE = "disabled";
 
@@ -77,15 +76,15 @@ public class HiddenInputTag extends AbstractHtmlElementTag {
 
 
 	/**
-	 * Set the value of the '{@code disabled}' attribute.
-	 * May be a runtime expression.
+	 * 设置 '{@code disabled}' 属性的值。
+	 * 可以是运行时表达式。
 	 */
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
 
 	/**
-	 * Get the value of the '{@code disabled}' attribute.
+	 * 获取 '{@code disabled}' 属性的值。
 	 */
 	public boolean isDisabled() {
 		return this.disabled;
@@ -93,7 +92,7 @@ public class HiddenInputTag extends AbstractHtmlElementTag {
 
 
 	/**
-	 * Flags "type" as an illegal dynamic attribute.
+	 * 将 "type" 标记为非法的动态属性。
 	 */
 	@Override
 	protected boolean isValidDynamicAttribute(String localName, Object value) {
@@ -101,8 +100,7 @@ public class HiddenInputTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Writes the HTML '{@code input}' tag to the supplied {@link TagWriter} including the
-	 * databound value.
+	 * 将 HTML '{@code input}' 标签（包括数据绑定值）写入提供的 {@link TagWriter}。
 	 * @see #writeDefaultAttributes(TagWriter)
 	 * @see #getBoundValue()
 	 */

@@ -23,18 +23,15 @@ import javax.resource.cci.RecordFactory;
 import org.springframework.dao.DataAccessException;
 
 /**
- * Callback interface for creating a CCI Record instance,
- * usually based on the passed-in CCI RecordFactory.
+ * 用于创建 CCI Record 实例的回调接口，通常基于传入的 CCI RecordFactory。
  *
- * <p>Used for input Record creation in CciTemplate. Alternatively,
- * Record instances can be passed into CciTemplate's corresponding
- * {@code execute} methods directly, either instantiated manually
- * or created through CciTemplate's Record factory methods.
+ * <p>用于 CciTemplate 中输入 Record 的创建。或者，也可以将 Record 实例
+ * 直接传入 CciTemplate 的相应 {@code execute} 方法，无论是手动实例化的
+ * 还是通过 CciTemplate 的 Record 工厂方法创建的。
  *
- * <P>Also used for creating default output Records in CciTemplate.
- * This is useful when the JCA connector needs an explicit output Record
- * instance, but no output Records should be passed into CciTemplate's
- * {@code execute} methods.
+ * <P>还用于在 CciTemplate 中创建默认输出 Record。
+ * 当 JCA 连接器需要显式的输出 Record 实例，但不应将输出 Record 传入
+ * CciTemplate 的 {@code execute} 方法时，这很有用。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -52,10 +49,10 @@ import org.springframework.dao.DataAccessException;
 public interface RecordCreator {
 
 	/**
-	 * Create a CCI Record instance, usually based on the passed-in CCI RecordFactory.
-	 * <p>For use as <i>input</i> creator with CciTemplate's {@code execute} methods,
-	 * this method should create a <i>populated</i> Record instance. For use as
-	 * <i>output</i> Record creator, it should return an <i>empty</i> Record instance.
+	 * 创建 CCI Record 实例，通常基于传入的 CCI RecordFactory。
+	 * <p>用作 CciTemplate 的 {@code execute} 方法的<i>输入</i>创建器时，
+	 * 此方法应创建<i>已填充</i>的 Record 实例。用作<i>输出</i> Record 创建器时，
+	 * 应返回<i>空</i>的 Record 实例。
 	 * @param recordFactory the CCI RecordFactory (never {@code null}, but not guaranteed to be
 	 * supported by the connector: its create methods might throw NotSupportedException)
 	 * @return the Record instance

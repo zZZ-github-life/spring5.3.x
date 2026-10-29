@@ -36,19 +36,16 @@ import org.springframework.util.Assert;
 import org.springframework.validation.Validator;
 
 /**
- * The default {@link MessageHandlerMethodFactory} implementation creating an
- * {@link InvocableHandlerMethod} with the necessary
- * {@link HandlerMethodArgumentResolver} instances to detect and process
- * most of the use cases defined by
- * {@link org.springframework.messaging.handler.annotation.MessageMapping MessageMapping}.
+ * 默认的 {@link MessageHandlerMethodFactory} 实现，创建 {@link InvocableHandlerMethod}
+ * 并配有必要 {@link HandlerMethodArgumentResolver} 实例，以检测和处理
+ * {@link org.springframework.messaging.handler.annotation.MessageMapping MessageMapping}
+ * 定义的大多数用例。
  *
- * <p>Extra method argument resolvers can be added to customize the method
- * signature that can be handled.
+ * <p>可以添加额外的方法参数解析器，以自定义可处理的方法签名。
  *
- * <p>By default, the validation process redirects to a no-op implementation, see
- * {@link #setValidator(Validator)} to customize it. The {@link ConversionService}
- * can be customized in a similar manner to tune how the message payload
- * can be converted
+ * <p>默认情况下，校验过程会重定向到空操作实现，参见
+ * {@link #setValidator(Validator)} 进行自定义。可以采用类似方式自定义
+ * {@link ConversionService}，以调整消息载荷的转换方式。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -79,8 +76,7 @@ public class DefaultMessageHandlerMethodFactory
 
 
 	/**
-	 * Set the {@link ConversionService} to use to convert the original
-	 * message payload or headers.
+	 * 设置用于转换原始消息载荷或头的 {@link ConversionService}。
 	 * @see HeaderMethodArgumentResolver
 	 * @see GenericMessageConverter
 	 */
@@ -89,8 +85,7 @@ public class DefaultMessageHandlerMethodFactory
 	}
 
 	/**
-	 * Set the {@link MessageConverter} to use. By default a {@link GenericMessageConverter}
-	 * is used.
+	 * 设置要使用的 {@link MessageConverter}。默认使用 {@link GenericMessageConverter}。
 	 * @see GenericMessageConverter
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -98,7 +93,7 @@ public class DefaultMessageHandlerMethodFactory
 	}
 
 	/**
-	 * Set the Validator instance used for validating {@code @Payload} arguments.
+	 * 设置用于校验 {@code @Payload} 参数的 Validator 实例。
 	 * @see org.springframework.validation.annotation.Validated
 	 * @see PayloadMethodArgumentResolver
 	 */
@@ -107,8 +102,8 @@ public class DefaultMessageHandlerMethodFactory
 	}
 
 	/**
-	 * Set the list of custom {@code HandlerMethodArgumentResolver}s that will be used
-	 * after resolvers for supported argument type.
+	 * 设置自定义 {@code HandlerMethodArgumentResolver} 列表，
+	 * 这些解析器将在受支持参数类型的解析器之后使用。
 	 * @param customArgumentResolvers the list of resolvers (never {@code null})
 	 */
 	public void setCustomArgumentResolvers(List<HandlerMethodArgumentResolver> customArgumentResolvers) {
@@ -116,9 +111,9 @@ public class DefaultMessageHandlerMethodFactory
 	}
 
 	/**
-	 * Configure the complete list of supported argument types effectively overriding
-	 * the ones configured by default. This is an advanced option. For most use cases
-	 * it should be sufficient to use {@link #setCustomArgumentResolvers(java.util.List)}.
+	 * 配置受支持参数类型的完整列表，实际上会覆盖默认配置的列表。
+	 * 这是一个高级选项。对于大多数用例，使用
+	 * {@link #setCustomArgumentResolvers(java.util.List)} 就足够了。
 	 */
 	public void setArgumentResolvers(@Nullable List<HandlerMethodArgumentResolver> argumentResolvers) {
 		if (argumentResolvers == null) {
@@ -129,8 +124,8 @@ public class DefaultMessageHandlerMethodFactory
 	}
 
 	/**
-	 * A {@link BeanFactory} only needs to be available for placeholder resolution
-	 * in handler method arguments; it's optional otherwise.
+	 * {@link BeanFactory} 仅需用于处理器方法参数中的占位符解析；
+	 * 在其他情况下是可选的。
 	 */
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) {

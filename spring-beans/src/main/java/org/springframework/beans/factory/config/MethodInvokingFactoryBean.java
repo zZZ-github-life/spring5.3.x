@@ -21,47 +21,35 @@ import org.springframework.beans.factory.FactoryBeanNotInitializedException;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link FactoryBean} which returns a value which is the result of a static or instance
- * method invocation. For most use cases it is better to just use the container's
- * built-in factory method support for the same purpose, since that is smarter at
- * converting arguments. This factory bean is still useful though when you need to
- * call a method which doesn't return any value (for example, a static class method
- * to force some sort of initialization to happen). This use case is not supported
- * by factory methods, since a return value is needed to obtain the bean instance.
+ * {@link FactoryBean}，返回静态或实例方法调用的结果值。在大多数场景下，针对同一目的最好直接使用容
+ * 器内置的工厂方法支持，因为它在参数转换方面更智能。不过，当需要调用不返回任何值的方法时（例如为了
+ * 触发某种初始化而调用的静态类方法），此工厂 Bean 仍然很有用。工厂方法不支持这一场景，因为获取
+ * Bean 实例需要返回值。
  *
- * <p>Note that as it is expected to be used mostly for accessing factory methods,
- * this factory by default operates in a <b>singleton</b> fashion. The first request
- * to {@link #getObject} by the owning bean factory will cause a method invocation,
- * whose return value will be cached for subsequent requests. An internal
- * {@link #setSingleton singleton} property may be set to "false", to cause this
- * factory to invoke the target method each time it is asked for an object.
+ * <p>请注意，由于预计主要用于访问工厂方法，此工厂默认以<b>单例</b>方式运行。拥有它的 Bean 工厂第一
+ * 次请求 {@link #getObject} 时会触发一次方法调用，其返回值将被缓存以供后续请求使用。可以将内部的
+ * {@link #setSingleton singleton} 属性设置为 "false"，使此工厂在每次被请求对象时都调用目标方法。
  *
- * <p><b>NOTE: If your target method does not produce a result to expose, consider
- * {@link MethodInvokingBean} instead, which avoids the type determination and
- * lifecycle limitations that this {@link MethodInvokingFactoryBean} comes with.</b>
+ * <p><b>NOTE: 如果目标方法不产生可供暴露的结果，请考虑改用 {@link MethodInvokingBean}，它避免了
+ * {@link MethodInvokingFactoryBean} 所带来的类型确定和生命周期方面的限制。</b>
  *
- * <p>This invoker supports any kind of target method. A static method may be specified
- * by setting the {@link #setTargetMethod targetMethod} property to a String representing
- * the static method name, with {@link #setTargetClass targetClass} specifying the Class
- * that the static method is defined on. Alternatively, a target instance method may be
- * specified, by setting the {@link #setTargetObject targetObject} property as the target
- * object, and the {@link #setTargetMethod targetMethod} property as the name of the
- * method to call on that target object. Arguments for the method invocation may be
- * specified by setting the {@link #setArguments arguments} property.
+ * <p>此调用器支持任意类型的目标方法。可以通过将 {@link #setTargetMethod targetMethod} 属性设置为表
+ * 示静态方法名称的 String 来指定静态方法，并通过 {@link #setTargetClass targetClass} 指定定义该静
+ * 态方法的 Class。或者，也可以指定目标实例方法：将 {@link #setTargetObject targetObject} 属性设置
+ * 为目标对象，并将 {@link #setTargetMethod targetMethod} 属性设置为要在该目标对象上调用的方法名称。
+ * 方法的调用参数可以通过设置 {@link #setArguments arguments} 属性来指定。
  *
- * <p>This class depends on {@link #afterPropertiesSet()} being called once
- * all properties have been set, as per the InitializingBean contract.
+ * <p>按照 InitializingBean 的约定，此类依赖于在所有属性设置完成后调用一次
+ * {@link #afterPropertiesSet()}。
  *
- * <p>An example (in an XML based bean factory definition) of a bean definition
- * which uses this class to call a static factory method:
+ * <p>以下示例（在基于 XML 的 Bean 工厂定义中）展示了一个使用此类调用静态工厂方法的 Bean 定义：
  *
  * <pre class="code">
  * &lt;bean id="myObject" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"&gt;
  *   &lt;property name="staticMethod" value="com.whatever.MyClassFactory.getInstance"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>An example of calling a static method then an instance method to get at a
- * Java system property. Somewhat verbose, but it works.
+ * <p>以下示例先调用静态方法，再调用实例方法，以获取某个 Java 系统属性。略显冗长，但确实有效。
  *
  * <pre class="code">
  * &lt;bean id="sysProps" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean"&gt;
@@ -87,14 +75,13 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 
 	private boolean initialized = false;
 
-	/** Method call result in the singleton case. */
+	/** 单例情况下的方法调用结果。 */
 	@Nullable
 	private Object singletonObject;
 
 
 	/**
-	 * Set if a singleton should be created, or a new object on each
-	 * {@link #getObject()} request otherwise. Default is "true".
+	 * 设置是创建单例，还是在每次 {@link #getObject()} 请求时创建新对象。默认为 "true"。
 	 */
 	public void setSingleton(boolean singleton) {
 		this.singleton = singleton;
@@ -111,9 +98,7 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 
 
 	/**
-	 * Returns the same value each time if the singleton property is set
-	 * to "true", otherwise returns the value returned from invoking the
-	 * specified method on the fly.
+	 * 如果 singleton 属性设置为 "true"，则每次都返回相同的值；否则返回即时调用所指定方法得到的值。
 	 */
 	@Override
 	@Nullable
@@ -132,8 +117,7 @@ public class MethodInvokingFactoryBean extends MethodInvokingBean implements Fac
 	}
 
 	/**
-	 * Return the type of object that this FactoryBean creates,
-	 * or {@code null} if not known in advance.
+	 * 返回此 FactoryBean 所创建对象的类型，如果无法预先确定则返回 {@code null}。
 	 */
 	@Override
 	public Class<?> getObjectType() {

@@ -1,7 +1,6 @@
 /**
- * Implementations to adapt to the underlying
- * {@code org.springframework.http.client.reactive} reactive HTTP adapter
- * and {@link org.springframework.http.server.reactive.HttpHandler}.
+ * 用于适配底层 {@code org.springframework.http.client.reactive} 响应式 HTTP 适配器
+ * 和 {@link org.springframework.http.server.reactive.HttpHandler} 的实现。
  */
 @NonNullApi
 @NonNullFields

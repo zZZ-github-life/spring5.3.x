@@ -21,17 +21,16 @@ import javax.jms.Message;
 import javax.jms.Session;
 
 /**
- * Variant of the standard JMS {@link javax.jms.MessageListener} interface,
- * offering not only the received Message but also the underlying
- * JMS Session object. The latter can be used to send reply messages,
- * without the need to access an external Connection/Session,
- * i.e. without the need to access the underlying ConnectionFactory.
+ * 标准 JMS {@link javax.jms.MessageListener} 接口的变体，
+ * 不仅提供接收到的 Message，还提供底层的 JMS Session 对象。
+ * 后者可用于发送回复消息，而无需访问外部的 Connection/Session，
+ * 即无需访问底层的 ConnectionFactory。
  *
- * <p>Supported by Spring's {@link DefaultMessageListenerContainer}
- * and {@link SimpleMessageListenerContainer},
- * as direct alternative to the standard JMS MessageListener interface.
- * Typically <i>not</i> supported by JCA-based listener containers:
- * For maximum compatibility, implement a standard JMS MessageListener instead.
+ * <p>由 Spring 的 {@link DefaultMessageListenerContainer}
+ * 和 {@link SimpleMessageListenerContainer} 支持，
+ * 作为标准 JMS MessageListener 接口的直接替代方案。
+ * 基于 JCA 的监听器容器通常<i>不</i>支持它：
+ * 为获得最大兼容性，请实现标准 JMS MessageListener。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -46,9 +45,9 @@ import javax.jms.Session;
 public interface SessionAwareMessageListener<M extends Message> {
 
 	/**
-	 * Callback for processing a received JMS message.
-	 * <p>Implementors are supposed to process the given Message,
-	 * typically sending reply messages through the given Session.
+	 * 处理接收到的 JMS 消息的回调。
+	 * <p>实现者应处理给定的 Message，
+	 * 通常通过给定的 Session 发送回复消息。
 	 * @param message the received JMS message (never {@code null})
 	 * @param session the underlying JMS Session (never {@code null})
 	 * @throws JMSException if thrown by JMS methods

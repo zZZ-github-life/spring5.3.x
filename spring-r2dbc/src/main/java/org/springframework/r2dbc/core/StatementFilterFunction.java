@@ -23,13 +23,13 @@ import org.reactivestreams.Publisher;
 import org.springframework.util.Assert;
 
 /**
- * Represents a function that filters an {@link ExecuteFunction execute function}.
+ * 表示一个用于过滤 {@link ExecuteFunction 执行函数}的函数。
  *
- * <p>The filter is executed when a {@link org.reactivestreams.Subscriber} subscribes
- * to the {@link Publisher} returned by the {@link DatabaseClient}.
+ * <p>当 {@link org.reactivestreams.Subscriber} 订阅 {@link DatabaseClient}
+ * 返回的 {@link Publisher} 时，该过滤器会被执行。
  *
- * <p>StatementFilterFunctions are typically used to specify additional details on
- * the Statement objects such as {@code fetchSize} or key generation.
+ * <p>StatementFilterFunction 通常用于指定 Statement 对象上的附加细节，
+ * 例如 {@code fetchSize} 或键生成。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -40,16 +40,16 @@ import org.springframework.util.Assert;
 public interface StatementFilterFunction {
 
 	/**
-	 * An empty {@link StatementFilterFunction} that delegates to {@link ExecuteFunction}.
+	 * 一个空的 {@link StatementFilterFunction}，委托给 {@link ExecuteFunction}。
 	 */
 	StatementFilterFunction EMPTY_FILTER = (statement, next) -> next.execute(statement);
 
 
 	/**
-	 * Apply this filter to the given {@link Statement} and {@link ExecuteFunction}.
-	 * <p>The given {@link ExecuteFunction} represents the next entity in the chain,
-	 * to be invoked via {@link ExecuteFunction#execute(Statement)} in
-	 * order to proceed with the execution, or not invoked to shortcut the chain.
+	 * 将此过滤器应用于给定的 {@link Statement} 和 {@link ExecuteFunction}。
+	 * <p>给定的 {@link ExecuteFunction} 表示链中的下一个实体，
+	 * 应通过 {@link ExecuteFunction#execute(Statement)} 调用它
+	 * 以继续执行，或者不调用它来短路该链。
 	 * @param statement the current {@link Statement}
 	 * @param next the next execute function in the chain
 	 * @return the filtered {@link Result}s.
@@ -57,8 +57,8 @@ public interface StatementFilterFunction {
 	Publisher<? extends Result> filter(Statement statement, ExecuteFunction next);
 
 	/**
-	 * Return a composed filter function that first applies this filter, and then
-	 * applies the given {@code "after"} filter.
+	 * 返回一个组合过滤器函数，它先应用此过滤器，
+	 * 然后应用给定的 {@code "after"} 过滤器。
 	 * @param afterFilter the filter to apply after this filter
 	 * @return the composed filter.
 	 */

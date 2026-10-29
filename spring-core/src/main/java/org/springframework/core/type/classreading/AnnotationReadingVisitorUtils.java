@@ -33,7 +33,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Internal utility class used when reading annotations via ASM.
+ * 通过 ASM 读取注解时使用的内部工具类。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -107,11 +107,10 @@ abstract class AnnotationReadingVisitorUtils {
 	}
 
 	/**
-	 * Retrieve the merged attributes of the annotation of the given type,
-	 * if any, from the supplied {@code attributesMap}.
-	 * <p>Annotation attribute values appearing <em>lower</em> in the annotation
-	 * hierarchy (i.e., closer to the declaring class) will override those
-	 * defined <em>higher</em> in the annotation hierarchy.
+	 * 从提供的 {@code attributesMap} 中获取给定类型注解的合并属性（如果有）。
+	 *
+	 * <p>在注解层次结构中位于 <em>较低</em> 位置的注解属性值（即更接近声明类）将覆盖在注解层次结构中位
+	 * 于 <em>较高</em> 位置定义的值。
 	 * @param attributesMap the map of annotation attribute lists, keyed by
 	 * annotation type name
 	 * @param metaAnnotationMap the map of meta annotation relationships,

@@ -31,8 +31,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Wraps another {@link ServerHttpRequest} and delegates all methods to it.
- * Subclasses can override specific methods selectively.
+ * 包装另一个 {@link ServerHttpRequest} 并将所有方法委托给它。
+ * 子类可以选择性地重写特定方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -121,8 +121,8 @@ public class ServerHttpRequestDecorator implements ServerHttpRequest {
 
 
 	/**
-	 * Return the native request of the underlying server API, if possible,
-	 * also unwrapping {@link ServerHttpRequestDecorator} if necessary.
+	 * 返回底层服务器 API 的原生请求（如果可能），
+	 * 必要时还会解包 {@link ServerHttpRequestDecorator}。
 	 * @param request the request to check
 	 * @param <T> the expected native request type
 	 * @throws IllegalArgumentException if the native request can't be obtained

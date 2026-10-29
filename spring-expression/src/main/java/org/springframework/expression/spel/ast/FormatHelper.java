@@ -24,14 +24,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Utility methods (formatters etc) used during parsing and evaluation.
+ * 解析和求值期间使用的工具方法（格式化器等）。
  *
  * @author Andy Clement
  */
 abstract class FormatHelper {
 
 	/**
-	 * Produce a readable representation for a given method name with specified arguments.
+	 * 为带指定参数的给定方法名生成可读的表示形式。
 	 * @param name the name of the method
 	 * @param argumentTypes the types of the arguments to the method
 	 * @return a nicely formatted representation, e.g. {@code foo(String,int)}
@@ -50,8 +50,8 @@ abstract class FormatHelper {
 	}
 
 	/**
-	 * Determine a readable name for a given Class object.
-	 * <p>A String array will have the formatted name "java.lang.String[]".
+	 * 确定给定 Class 对象的可读名称。
+	 * <p>String 数组的格式化名称为 "java.lang.String[]"。
 	 * @param clazz the Class whose name is to be formatted
 	 * @return a formatted String suitable for message inclusion
 	 * @see ClassUtils#getQualifiedName(Class)

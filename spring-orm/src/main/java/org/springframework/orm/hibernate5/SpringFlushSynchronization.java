@@ -22,8 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.support.TransactionSynchronization;
 
 /**
- * Simple synchronization adapter that propagates a {@code flush()} call
- * to the underlying Hibernate Session. Used in combination with JTA.
+ * 简单的同步适配器，将 {@code flush()} 调用传播到
+ * 底层的 Hibernate Session。与 JTA 结合使用。
  *
  * @author Juergen Hoeller
  * @since 4.2

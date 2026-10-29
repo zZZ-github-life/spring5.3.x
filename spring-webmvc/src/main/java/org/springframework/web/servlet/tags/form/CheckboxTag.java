@@ -23,31 +23,30 @@ import javax.servlet.jsp.JspException;
 import org.springframework.web.bind.WebDataBinder;
 
 /**
- * The {@code <checkbox>} tag renders an HTML 'input' tag with type 'checkbox'.
- * May be used in one of three different approaches depending on the
- * type of the {@link #getValue bound value}.
+ * {@code <checkbox>} 标签渲染 type 为 'checkbox' 的 HTML 'input' 标签。
+ * 根据 {@link #getValue 绑定值}的类型，可以采用以下三种不同的使用方式之一。
  *
- * <h3>Approach One</h3>
- * When the bound value is of type {@link Boolean} then the '{@code input(checkbox)}'
- * is marked as 'checked' if the bound value is {@code true}. The '{@code value}'
- * attribute corresponds to the resolved value of the {@link #setValue(Object) value} property.
- * <h3>Approach Two</h3>
- * When the bound value is of type {@link Collection} then the '{@code input(checkbox)}'
- * is marked as 'checked' if the configured {@link #setValue(Object) value} is present in
- * the bound {@link Collection}.
- * <h3>Approach Three</h3>
- * For any other bound value type, the '{@code input(checkbox)}' is marked as 'checked'
- * if the configured {@link #setValue(Object) value} is equal to the bound value.
+ * <h3>方式一</h3>
+ * 当绑定值的类型为 {@link Boolean} 时，如果绑定值为 {@code true}，
+ * 则将 '{@code input(checkbox)}' 标记为 'checked'。'{@code value}'
+ * 属性对应于 {@link #setValue(Object) value} 属性的解析值。
+ * <h3>方式二</h3>
+ * 当绑定值的类型为 {@link Collection} 时，如果配置的
+ * {@link #setValue(Object) value} 存在于绑定的 {@link Collection} 中，
+ * 则将 '{@code input(checkbox)}' 标记为 'checked'。
+ * <h3>方式三</h3>
+ * 对于任何其他绑定值类型，如果配置的 {@link #setValue(Object) value}
+ * 等于绑定值，则将 '{@code input(checkbox)}' 标记为 'checked'。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -55,164 +54,164 @@ import org.springframework.web.bind.WebDataBinder;
  * <td><p>accesskey</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>cssErrorClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has errors.</p></td>
+ * <td><p>HTML 可选属性。当绑定字段存在错误时使用。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssStyle</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>dir</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
- * will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性设置为 'true'
+ * 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>label</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Value to be displayed as part of the tag</p></td>
+ * <td><p>作为标签的一部分显示的值</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>lang</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onblur</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onchange</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>ondblclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onfocus</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeydown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onkeypress</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeyup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmousedown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmousemove</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseout</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmouseover</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>path</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>Path to property for data binding</p></td>
+ * <td><p>用于数据绑定的属性路径</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>tabindex</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>title</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>value</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * </tbody>
  * </table>

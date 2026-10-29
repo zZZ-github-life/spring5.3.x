@@ -26,15 +26,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@link SQLExceptionTranslator} implementations that allow for
- * fallback to some other {@link SQLExceptionTranslator}.
+ * {@link SQLExceptionTranslator} 实现的基类，允许回退到其他
+ * {@link SQLExceptionTranslator}。
  *
  * @author Juergen Hoeller
  * @since 2.5.6
  */
 public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExceptionTranslator {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Nullable
@@ -42,15 +42,15 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 
 
 	/**
-	 * Override the default SQL state fallback translator
-	 * (typically a {@link SQLStateSQLExceptionTranslator}).
+	 * 覆盖默认的 SQL 状态回退转换器
+	 * （通常是 {@link SQLStateSQLExceptionTranslator}）。
 	 */
 	public void setFallbackTranslator(@Nullable SQLExceptionTranslator fallback) {
 		this.fallbackTranslator = fallback;
 	}
 
 	/**
-	 * Return the fallback exception translator, if any.
+	 * 返回回退异常转换器（如果有）。
 	 */
 	@Nullable
 	public SQLExceptionTranslator getFallbackTranslator() {
@@ -59,8 +59,8 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 
 
 	/**
-	 * Pre-checks the arguments, calls {@link #doTranslate}, and invokes the
-	 * {@link #getFallbackTranslator() fallback translator} if necessary.
+	 * 先对参数进行预检查，调用 {@link #doTranslate}，并在必要时调用
+	 * {@link #getFallbackTranslator() 回退转换器}。
 	 */
 	@Override
 	@Nullable
@@ -83,10 +83,9 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 	}
 
 	/**
-	 * Template method for actually translating the given exception.
-	 * <p>The passed-in arguments will have been pre-checked. Furthermore, this method
-	 * is allowed to return {@code null} to indicate that no exception match has
-	 * been found and that fallback translation should kick in.
+	 * 用于实际转换给定异常的模板方法。
+	 * <p>传入的参数已经过预检查。此外，此方法允许返回 {@code null}，
+	 * 表示未找到匹配的异常，应启用回退转换。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL query or update that caused the problem (if known)
 	 * @param ex the offending {@code SQLException}
@@ -98,9 +97,9 @@ public abstract class AbstractFallbackSQLExceptionTranslator implements SQLExcep
 
 
 	/**
-	 * Build a message {@code String} for the given {@link java.sql.SQLException}.
-	 * <p>To be called by translator subclasses when creating an instance of a generic
-	 * {@link org.springframework.dao.DataAccessException} class.
+	 * 为给定的 {@link java.sql.SQLException} 构建消息 {@code String}。
+	 * <p>由转换器子类在创建通用 {@link org.springframework.dao.DataAccessException}
+	 * 类的实例时调用。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL statement that caused the problem
 	 * @param ex the offending {@code SQLException}

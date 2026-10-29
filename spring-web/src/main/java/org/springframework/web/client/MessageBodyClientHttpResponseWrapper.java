@@ -26,9 +26,8 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.lang.Nullable;
 
 /**
- * Implementation of {@link ClientHttpResponse} that can not only check if
- * the response has a message body, but also if its length is 0 (i.e. empty)
- * by actually reading the input stream.
+ * {@link ClientHttpResponse} 的实现，不仅能够检查响应是否具有消息体，
+ * 还能通过实际读取输入流来检查其长度是否为 0（即为空）。
  *
  * @author Brian Clozel
  * @since 4.1.5
@@ -48,11 +47,11 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 
 
 	/**
-	 * Indicates whether the response has a message body.
-	 * <p>Implementation returns {@code false} for:
+	 * 指示响应是否具有消息体。
+	 * <p>实现对于以下情况返回 {@code false}：
 	 * <ul>
-	 * <li>a response status of {@code 1XX}, {@code 204} or {@code 304}</li>
-	 * <li>a {@code Content-Length} header of {@code 0}</li>
+	 * <li>响应状态为 {@code 1XX}、{@code 204} 或 {@code 304}</li>
+	 * <li>{@code Content-Length} 头为 {@code 0}</li>
 	 * </ul>
 	 * @return {@code true} if the response has a message body, {@code false} otherwise
 	 * @throws IOException in case of I/O errors
@@ -70,11 +69,11 @@ class MessageBodyClientHttpResponseWrapper implements ClientHttpResponse {
 	}
 
 	/**
-	 * Indicates whether the response has an empty message body.
-	 * <p>Implementation tries to read the first bytes of the response stream:
+	 * 指示响应是否具有空消息体。
+	 * <p>实现会尝试读取响应流的前几个字节：
 	 * <ul>
-	 * <li>if no bytes are available, the message body is empty</li>
-	 * <li>otherwise it is not empty and the stream is reset to its start for further reading</li>
+	 * <li>如果无可用字节，则消息体为空</li>
+	 * <li>否则消息体不为空，并将流重置到起始位置以便后续读取</li>
 	 * </ul>
 	 * @return {@code true} if the response has a zero-length message body, {@code false} otherwise
 	 * @throws IOException in case of I/O errors

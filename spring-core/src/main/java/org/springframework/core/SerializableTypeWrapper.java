@@ -36,18 +36,17 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Internal utility class that can be used to obtain wrapped {@link Serializable}
- * variants of {@link java.lang.reflect.Type java.lang.reflect.Types}.
+ * 内部工具类，可用于获取 {@link java.lang.reflect.Type java.lang.reflect.Types} 的包装
+ * {@link Serializable} 变体。
  *
- * <p>{@link #forField(Field) Fields} or {@link #forMethodParameter(MethodParameter)
- * MethodParameters} can be used as the root source for a serializable type.
- * Alternatively, a regular {@link Class} can also be used as source.
+ * <p>{@link #forField(Field) Fields} 或
+ * {@link #forMethodParameter(MethodParameter) MethodParameters} 可用作可序列化类型的根源。另外，普
+ * 通的 {@link Class} 也可以用作来源。
  *
- * <p>The returned type will either be a {@link Class} or a serializable proxy of
- * {@link GenericArrayType}, {@link ParameterizedType}, {@link TypeVariable} or
- * {@link WildcardType}. With the exception of {@link Class} (which is final) calls
- * to methods that return further {@link Type Types} (for example
- * {@link GenericArrayType#getGenericComponentType()}) will be automatically wrapped.
+ * <p>返回的类型要么是 {@link Class}，要么是 {@link GenericArrayType}、{@link ParameterizedType}、
+ * {@link TypeVariable} 或 {@link WildcardType} 的可序列化代理。除 {@link Class}（它是 final 的）之
+ * 外，对返回其他 {@link Type Types} 的方法调用（例如
+ * {@link GenericArrayType#getGenericComponentType()}）都会被自动包装。
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
@@ -67,7 +66,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
-	 * Return a {@link Serializable} variant of {@link Field#getGenericType()}.
+	 * 返回 {@link Field#getGenericType()} 的 {@link Serializable} 变体。
 	 */
 	@Nullable
 	public static Type forField(Field field) {
@@ -75,8 +74,7 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
-	 * Return a {@link Serializable} variant of
-	 * {@link MethodParameter#getGenericParameterType()}.
+	 * 返回 {@link MethodParameter#getGenericParameterType()} 的 {@link Serializable} 变体。
 	 */
 	@Nullable
 	public static Type forMethodParameter(MethodParameter methodParameter) {
@@ -84,7 +82,7 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
-	 * Unwrap the given type, effectively returning the original non-serializable type.
+	 * 解包给定类型，实际上返回原始的非序列化类型。
 	 * @param type the type to unwrap
 	 * @return the original non-serializable type
 	 */
@@ -98,9 +96,8 @@ final class SerializableTypeWrapper {
 	}
 
 	/**
-	 * Return a {@link Serializable} {@link Type} backed by a {@link TypeProvider} .
-	 * <p>If type artifacts are generally not serializable in the current runtime
-	 * environment, this delegate will simply return the original {@code Type} as-is.
+	 * 返回由 {@link TypeProvider} 作为后盾的 {@link Serializable} {@link Type}。<p>如果类型构件在当前
+	 * 运行时环境中通常不可序列化，此委托将直接原样返回原始的 {@code Type}。
 	 */
 	@Nullable
 	static Type forTypeProvider(TypeProvider provider) {
@@ -135,32 +132,31 @@ final class SerializableTypeWrapper {
 
 
 	/**
-	 * Additional interface implemented by the type proxy.
+	 * 类型代理实现的附加接口。
 	 */
 	interface SerializableTypeProxy {
 
 		/**
-		 * Return the underlying type provider.
+		 * 返回底层类型提供者。
 		 */
 		TypeProvider getTypeProvider();
 	}
 
 
 	/**
-	 * A {@link Serializable} interface providing access to a {@link Type}.
+	 * 提供对 {@link Type} 访问的 {@link Serializable} 接口。
 	 */
 	@SuppressWarnings("serial")
 	interface TypeProvider extends Serializable {
 
 		/**
-		 * Return the (possibly non {@link Serializable}) {@link Type}.
+		 * 返回（可能不可 {@link Serializable} 的）{@link Type}。
 		 */
 		@Nullable
 		Type getType();
 
 		/**
-		 * Return the source of the type, or {@code null} if not known.
-		 * <p>The default implementations returns {@code null}.
+		 * 返回该类型的来源；如果未知，则返回 {@code null}。<p>默认实现返回 {@code null}。
 		 */
 		@Nullable
 		default Object getSource() {
@@ -170,9 +166,8 @@ final class SerializableTypeWrapper {
 
 
 	/**
-	 * {@link Serializable} {@link InvocationHandler} used by the proxied {@link Type}.
-	 * Provides serialization support and enhances any methods that return {@code Type}
-	 * or {@code Type[]}.
+	 * 被代理的 {@link Type} 所使用的 {@link Serializable} {@link InvocationHandler}。提供序列化支持，
+	 * 并增强任何返回 {@code Type} 或 {@code Type[]} 的方法。
 	 */
 	@SuppressWarnings("serial")
 	private static class TypeProxyInvocationHandler implements InvocationHandler, Serializable {
@@ -222,7 +217,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
-	 * {@link TypeProvider} for {@link Type Types} obtained from a {@link Field}.
+	 * 用于从 {@link Field} 获取的 {@link Type Types} 的 {@link TypeProvider}。
 	 */
 	@SuppressWarnings("serial")
 	static class FieldTypeProvider implements TypeProvider {
@@ -262,7 +257,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
-	 * {@link TypeProvider} for {@link Type Types} obtained from a {@link MethodParameter}.
+	 * 用于从 {@link MethodParameter} 获取的 {@link Type Types} 的 {@link TypeProvider}。
 	 */
 	@SuppressWarnings("serial")
 	static class MethodParameterTypeProvider implements TypeProvider {
@@ -316,7 +311,7 @@ final class SerializableTypeWrapper {
 
 
 	/**
-	 * {@link TypeProvider} for {@link Type Types} obtained by invoking a no-arg method.
+	 * 用于通过调用无参方法获取的 {@link Type Types} 的 {@link TypeProvider}。
 	 */
 	@SuppressWarnings("serial")
 	static class MethodInvokeTypeProvider implements TypeProvider {

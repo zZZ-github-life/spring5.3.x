@@ -1,7 +1,6 @@
 /**
- * Support classes for Spring's web MVC framework.
- * Provides easy evaluation of the request context in views,
- * and miscellaneous HandlerInterceptor implementations.
+ * Spring Web MVC 框架的支持类。
+ * 提供在视图中方便地评估请求上下文的功能，以及各种 HandlerInterceptor 实现。
  */
 @NonNullApi
 @NonNullFields

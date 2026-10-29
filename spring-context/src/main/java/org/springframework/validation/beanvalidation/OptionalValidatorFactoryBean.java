@@ -21,13 +21,11 @@ import javax.validation.ValidationException;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * {@link LocalValidatorFactoryBean} subclass that simply turns
- * {@link org.springframework.validation.Validator} calls into no-ops
- * in case of no Bean Validation provider being available.
+ * {@link LocalValidatorFactoryBean} 的子类，在无可用 Bean Validation 提供者的情况下，仅将
+ * {@link org.springframework.validation.Validator} 调用变为空操作。
  *
- * <p>This is the actual class used by Spring's MVC configuration namespace,
- * in case of the {@code javax.validation} API being present but no explicit
- * Validator having been configured.
+ * <p>这是 Spring MVC 配置命名空间实际使用的类，用于 {@code javax.validation} API 存在但未配置显式
+ * Validator 的情况。
  *
  * @author Juergen Hoeller
  * @since 4.0.1

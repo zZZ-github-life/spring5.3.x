@@ -39,7 +39,7 @@ import org.springframework.messaging.core.MessagePostProcessor;
 import org.springframework.util.Assert;
 
 /**
- * An implementation of {@link JmsMessageOperations}.
+ * {@link JmsMessageOperations} 的实现。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -60,15 +60,15 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 
 
 	/**
-	 * Constructor for use with bean properties.
-	 * Requires {@link #setConnectionFactory} or {@link #setJmsTemplate} to be called.
+	 * 供 bean 属性使用的构造函数。
+	 * 需要调用 {@link #setConnectionFactory} 或 {@link #setJmsTemplate}。
 	 */
 	public JmsMessagingTemplate() {
 	}
 
 	/**
-	 * Create a {@code JmsMessagingTemplate} instance with the JMS {@link ConnectionFactory}
-	 * to use, implicitly building a {@link JmsTemplate} based on it.
+	 * 使用要使用的 JMS {@link ConnectionFactory} 创建一个 {@code JmsMessagingTemplate} 实例，
+	 * 并基于它隐式构建一个 {@link JmsTemplate}。
 	 * @since 4.1.2
 	 */
 	public JmsMessagingTemplate(ConnectionFactory connectionFactory) {
@@ -76,7 +76,7 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 	}
 
 	/**
-	 * Create a {@code JmsMessagingTemplate} instance with the {@link JmsTemplate} to use.
+	 * 使用要使用的 {@link JmsTemplate} 创建一个 {@code JmsMessagingTemplate} 实例。
 	 */
 	public JmsMessagingTemplate(JmsTemplate jmsTemplate) {
 		Assert.notNull(jmsTemplate, "JmsTemplate must not be null");
@@ -85,7 +85,7 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 
 
 	/**
-	 * Set the ConnectionFactory to use for the underlying {@link JmsTemplate}.
+	 * 设置供底层 {@link JmsTemplate} 使用的 ConnectionFactory。
 	 * @since 4.1.2
 	 */
 	public void setConnectionFactory(ConnectionFactory connectionFactory) {
@@ -98,7 +98,7 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 	}
 
 	/**
-	 * Return the ConnectionFactory that the underlying {@link JmsTemplate} uses.
+	 * 返回底层 {@link JmsTemplate} 使用的 ConnectionFactory。
 	 * @since 4.1.2
 	 */
 	@Nullable
@@ -107,14 +107,14 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 	}
 
 	/**
-	 * Set the {@link JmsTemplate} to use.
+	 * 设置要使用的 {@link JmsTemplate}。
 	 */
 	public void setJmsTemplate(@Nullable JmsTemplate jmsTemplate) {
 		this.jmsTemplate = jmsTemplate;
 	}
 
 	/**
-	 * Return the configured {@link JmsTemplate}.
+	 * 返回已配置的 {@link JmsTemplate}。
 	 */
 	@Nullable
 	public JmsTemplate getJmsTemplate() {
@@ -122,13 +122,12 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 	}
 
 	/**
-	 * Set the {@link MessageConverter} to use to convert a {@link Message} from
-	 * the messaging to and from a {@link javax.jms.Message}. By default, a
-	 * {@link MessagingMessageConverter} is defined using a {@link SimpleMessageConverter}
-	 * to convert the payload of the message.
-	 * <p>Consider configuring a {@link MessagingMessageConverter} with a different
-	 * {@link MessagingMessageConverter#setPayloadConverter(MessageConverter) payload converter}
-	 * for more advanced scenarios.
+	 * 设置用于在消息传递 {@link Message} 与 {@link javax.jms.Message}
+	 * 之间进行转换的 {@link MessageConverter}。默认情况下，使用
+	 * {@link MessagingMessageConverter} 并借助 {@link SimpleMessageConverter}
+	 * 转换消息的负载。
+	 * <p>对于更高级的场景，可以考虑为 {@link MessagingMessageConverter} 配置不同的
+	 * {@link MessagingMessageConverter#setPayloadConverter(MessageConverter) 负载转换器}。
 	 * @see org.springframework.jms.support.converter.MessagingMessageConverter
 	 */
 	public void setJmsMessageConverter(MessageConverter jmsMessageConverter) {
@@ -138,17 +137,16 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 	}
 
 	/**
-	 * Return the {@link MessageConverter} to use to convert a {@link Message}
-	 * from the messaging to and from a {@link javax.jms.Message}.
+	 * 返回用于在消息传递 {@link Message} 与 {@link javax.jms.Message}
+	 * 之间进行转换的 {@link MessageConverter}。
 	 */
 	public MessageConverter getJmsMessageConverter() {
 		return this.jmsMessageConverter;
 	}
 
 	/**
-	 * Configure the default destination name to use in send methods that don't have
-	 * a destination argument. If a default destination is not configured, send methods
-	 * without a destination argument will raise an exception if invoked.
+	 * 配置在没有目标参数的 send 方法中使用的默认目标名称。
+	 * 如果未配置默认目标，调用不带目标参数的 send 方法将引发异常。
 	 * @see #setDefaultDestination(Object)
 	 */
 	public void setDefaultDestinationName(@Nullable String defaultDestinationName) {
@@ -156,7 +154,7 @@ public class JmsMessagingTemplate extends AbstractMessagingTemplate<Destination>
 	}
 
 	/**
-	 * Return the configured default destination name.
+	 * 返回已配置的默认目标名称。
 	 */
 	@Nullable
 	public String getDefaultDestinationName() {

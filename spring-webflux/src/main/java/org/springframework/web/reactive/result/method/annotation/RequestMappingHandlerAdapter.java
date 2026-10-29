@@ -45,10 +45,7 @@ import org.springframework.web.reactive.result.method.InvocableHandlerMethod;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Supports the invocation of
- * {@link org.springframework.web.bind.annotation.RequestMapping @RequestMapping}
- * handler methods.
- *
+ * 支持调用 {@link org.springframework.web.bind.annotation.RequestMapping @RequestMapping} 处理器方法。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -79,8 +76,8 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 
 
 	/**
-	 * Configure HTTP message readers to de-serialize the request body with.
-	 * <p>By default this is set to {@link ServerCodecConfigurer}'s readers with defaults.
+	 * 配置 HTTP 消息读取器以反序列化请求正文。
+	 * <p>默认情况下，这设置为 {@link ServerCodecConfigurer} 的默认读取器。
 	 */
 	public void setMessageReaders(List<HttpMessageReader<?>> messageReaders) {
 		Assert.notNull(messageReaders, "'messageReaders' must not be null");
@@ -88,22 +85,21 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 	}
 
 	/**
-	 * Return the configurer for HTTP message readers.
+	 * 返回 HTTP 消息读取器的配置器。
 	 */
 	public List<HttpMessageReader<?>> getMessageReaders() {
 		return this.messageReaders;
 	}
 
 	/**
-	 * Provide a WebBindingInitializer with "global" initialization to apply
-	 * to every DataBinder instance.
+	 * 提供具有“全局”初始化的 WebBindingInitializer，应用于每个 DataBinder 实例。
 	 */
 	public void setWebBindingInitializer(@Nullable WebBindingInitializer webBindingInitializer) {
 		this.webBindingInitializer = webBindingInitializer;
 	}
 
 	/**
-	 * Return the configured WebBindingInitializer, or {@code null} if none.
+	 * 返回配置的 WebBindingInitializer；如果没有，则返回 {@code null}。
 	 */
 	@Nullable
 	public WebBindingInitializer getWebBindingInitializer() {
@@ -111,14 +107,14 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 	}
 
 	/**
-	 * Configure resolvers for controller method arguments.
+	 * 为控制器方法参数配置解析器。
 	 */
 	public void setArgumentResolverConfigurer(@Nullable ArgumentResolverConfigurer configurer) {
 		this.argumentResolverConfigurer = configurer;
 	}
 
 	/**
-	 * Return the configured resolvers for controller method arguments.
+	 * 返回为控制器方法参数配置的解析器。
 	 */
 	@Nullable
 	public ArgumentResolverConfigurer getArgumentResolverConfigurer() {
@@ -126,16 +122,15 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 	}
 
 	/**
-	 * Configure the registry for adapting various reactive types.
-	 * <p>By default this is an instance of {@link ReactiveAdapterRegistry} with
-	 * default settings.
+	 * 配置用于适配各种响应式类型的注册表。
+	 * <p>默认情况下，这是使用默认设置的 {@link ReactiveAdapterRegistry} 实例。
 	 */
 	public void setReactiveAdapterRegistry(@Nullable ReactiveAdapterRegistry registry) {
 		this.reactiveAdapterRegistry = registry;
 	}
 
 	/**
-	 * Return the configured registry for adapting reactive types.
+	 * 返回配置的用于适配响应式类型的注册表。
 	 */
 	@Nullable
 	public ReactiveAdapterRegistry getReactiveAdapterRegistry() {
@@ -143,9 +138,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter, Application
 	}
 
 	/**
-	 * A {@link ConfigurableApplicationContext} is expected for resolving
-	 * expressions in method argument default values as well as for
-	 * detecting {@code @ControllerAdvice} beans.
+	 * 解析方法参数默认值中的表达式以及检测 {@code @ControllerAdvice} Bean 时，需要 {@link ConfigurableApplicationContext}。
 	 */
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {

@@ -1,5 +1,5 @@
 /**
- * Provides an HttpMessageConverter abstraction to convert between Java objects and HTTP input/output messages.
+ * 提供用于在 Java 对象与 HTTP 输入/输出消息之间进行转换的 HttpMessageConverter 抽象。
  */
 @NonNullApi
 @NonNullFields

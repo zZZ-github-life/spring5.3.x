@@ -23,9 +23,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Enables support for handling components marked with AspectJ's {@code @Aspect} annotation,
- * similar to functionality found in Spring's {@code <aop:aspectj-autoproxy>} XML element.
- * To be used on @{@link Configuration} classes as follows:
+ * 启用对带有 AspectJ {@code @Aspect} 注解的组件的处理支持，其功能类似于 Spring 的
+ * {@code <aop:aspectj-autoproxy>} XML 元素。需用在 @{@link Configuration} 类上，如下所示：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -43,8 +42,7 @@ import java.lang.annotation.Target;
  *     }
  * }</pre>
  *
- * Where {@code FooService} is a typical POJO component and {@code MyAspect} is an
- * {@code @Aspect}-style aspect:
+ * 其中 {@code FooService} 是典型的 POJO 组件，{@code MyAspect} 是 {@code @Aspect} 风格的切面：
  *
  * <pre class="code">
  * public class FooService {
@@ -62,13 +60,11 @@ import java.lang.annotation.Target;
  *     }
  * }</pre>
  *
- * In the scenario above, {@code @EnableAspectJAutoProxy} ensures that {@code MyAspect}
- * will be properly processed and that {@code FooService} will be proxied mixing in the
- * advice that it contributes.
+ * 在上述场景中，{@code @EnableAspectJAutoProxy} 确保 {@code MyAspect} 得到正确处理，并确保
+ * {@code FooService} 被代理并混入其提供的通知。
  *
- * <p>Users can control the type of proxy that gets created for {@code FooService} using
- * the {@link #proxyTargetClass()} attribute. The following enables CGLIB-style 'subclass'
- * proxies as opposed to the default interface-based JDK proxy approach.
+ * <p>用户可以通过 {@link #proxyTargetClass()} 属性控制为 {@code FooService} 创建的代理类型。以下配
+ * 置启用 CGLIB 风格的“子类”代理，而非默认基于接口的 JDK 代理方式。
  *
  * <pre class="code">
  * &#064;Configuration
@@ -77,8 +73,8 @@ import java.lang.annotation.Target;
  *     // ...
  * }</pre>
  *
- * <p>Note that {@code @Aspect} beans may be component-scanned like any other.
- * Simply mark the aspect with both {@code @Aspect} and {@code @Component}:
+ * <p>请注意，{@code @Aspect} Bean 可以像其他任何 Bean 一样被组件扫描。只需同时用 {@code @Aspect}
+ * 和 {@code @Component} 标记该切面：
  *
  * <pre class="code">
  * package com.foo;
@@ -90,7 +86,7 @@ import java.lang.annotation.Target;
  * &#064;Component
  * public class MyAspect { ... }</pre>
  *
- * Then use the @{@link ComponentScan} annotation to pick both up:
+ * 然后使用 @{@link ComponentScan} 注解将两者都扫描进来：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -101,15 +97,13 @@ import java.lang.annotation.Target;
  *     // no explicit &#064;Bean definitions required
  * }</pre>
  *
- * <b>Note: {@code @EnableAspectJAutoProxy} applies to its local application context only,
- * allowing for selective proxying of beans at different levels.</b> Please redeclare
- * {@code @EnableAspectJAutoProxy} in each individual context, e.g. the common root web
- * application context and any separate {@code DispatcherServlet} application contexts,
- * if you need to apply its behavior at multiple levels.
+ * <b>注意：{@code @EnableAspectJAutoProxy} 仅适用于其本地应用上下文，从而允许在不同层级有选择地代
+ * 理 Bean。</b> 如果需要在多个层级应用该行为，请在每个独立上下文中重新声明
+ * {@code @EnableAspectJAutoProxy}，例如公共的根 Web 应用上下文以及任何独立的
+ * {@code DispatcherServlet} 应用上下文。
  *
- * <p>This feature requires the presence of {@code aspectjweaver} on the classpath.
- * While that dependency is optional for {@code spring-aop} in general, it is required
- * for {@code @EnableAspectJAutoProxy} and its underlying facilities.
+ * <p>此功能要求类路径上存在 {@code aspectjweaver}。虽然该依赖对于 {@code spring-aop} 总体而言是可
+ * 选的，但对于 {@code @EnableAspectJAutoProxy} 及其底层设施则是必需的。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -123,15 +117,14 @@ import java.lang.annotation.Target;
 public @interface EnableAspectJAutoProxy {
 
 	/**
-	 * Indicate whether subclass-based (CGLIB) proxies are to be created as opposed
-	 * to standard Java interface-based proxies. The default is {@code false}.
+	 * 指示是否创建基于子类的（CGLIB）代理，而非标准的基于 Java 接口的代理。默认值为 {@code false}。
 	 */
 	boolean proxyTargetClass() default false;
 
 	/**
-	 * Indicate that the proxy should be exposed by the AOP framework as a {@code ThreadLocal}
-	 * for retrieval via the {@link org.springframework.aop.framework.AopContext} class.
-	 * Off by default, i.e. no guarantees that {@code AopContext} access will work.
+	 * 指示 AOP 框架应将该代理作为 {@code ThreadLocal} 暴露，以便通过
+	 * {@link org.springframework.aop.framework.AopContext} 类获取。默认关闭，即不保证
+	 * {@code AopContext} 访问可用。
 	 * @since 4.3.1
 	 */
 	boolean exposeProxy() default false;

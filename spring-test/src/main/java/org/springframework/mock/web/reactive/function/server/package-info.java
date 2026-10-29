@@ -1,8 +1,7 @@
 /**
- * Mock objects for the functional web framework.
+ * 函数式 Web 框架的 mock 对象。
  *
- * <p>Useful for testing router and handler functions.
- *
+ * <p>适用于测试路由和处理函数。
  */
 @NonNullApi
 @NonNullFields

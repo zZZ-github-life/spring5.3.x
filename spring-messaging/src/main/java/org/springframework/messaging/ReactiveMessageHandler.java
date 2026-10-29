@@ -19,7 +19,7 @@ package org.springframework.messaging;
 import reactor.core.publisher.Mono;
 
 /**
- * Reactive contract for handling a {@link Message}.
+ * 用于处理 {@link Message} 的响应式契约。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -29,7 +29,7 @@ import reactor.core.publisher.Mono;
 public interface ReactiveMessageHandler {
 
 	/**
-	 * Handle the given message.
+	 * 处理给定消息。
 	 * @param message the message to be handled
 	 * @return a completion {@link Mono} for the result of the message handling
 	 */

@@ -21,7 +21,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.Assert;
 
 /**
- * A registration class for customizing the properties of {@link ThreadPoolTaskExecutor}.
+ * 用于自定义 {@link ThreadPoolTaskExecutor} 属性的注册类。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -45,8 +45,7 @@ public class TaskExecutorRegistration {
 
 
 	/**
-	 * Create a new {@code TaskExecutorRegistration} for a default
-	 * {@link ThreadPoolTaskExecutor}.
+	 * 为默认的 {@link ThreadPoolTaskExecutor} 创建一个新的 {@code TaskExecutorRegistration}。
 	 */
 	public TaskExecutorRegistration() {
 		this.taskExecutor = new ThreadPoolTaskExecutor();
@@ -55,8 +54,7 @@ public class TaskExecutorRegistration {
 	}
 
 	/**
-	 * Create a new {@code TaskExecutorRegistration} for a given
-	 * {@link ThreadPoolTaskExecutor}.
+	 * 为给定的 {@link ThreadPoolTaskExecutor} 创建一个新的 {@code TaskExecutorRegistration}。
 	 * @param taskExecutor the executor to use
 	 */
 	public TaskExecutorRegistration(ThreadPoolTaskExecutor taskExecutor) {
@@ -66,16 +64,15 @@ public class TaskExecutorRegistration {
 
 
 	/**
-	 * Set the core pool size of the ThreadPoolExecutor.
-	 * <p><strong>NOTE:</strong> The core pool size is effectively the max pool size
-	 * when an unbounded {@link #queueCapacity(int) queueCapacity} is configured
-	 * (the default). This is essentially the "Unbounded queues" strategy as explained
-	 * in {@link java.util.concurrent.ThreadPoolExecutor ThreadPoolExecutor}. When
-	 * this strategy is used, the {@link #maxPoolSize(int) maxPoolSize} is ignored.
-	 * <p>By default this is set to twice the value of
-	 * {@link Runtime#availableProcessors()}. In an application where tasks do not
-	 * block frequently, the number should be closer to or equal to the number of
-	 * available CPUs/cores.
+	 * 设置 ThreadPoolExecutor 的核心池大小。
+	 * <p><strong>注意：</strong>当配置了无界的 {@link #queueCapacity(int) queueCapacity}
+	 * （默认情况）时，核心池大小实际上就是最大池大小。这本质上就是
+	 * {@link java.util.concurrent.ThreadPoolExecutor ThreadPoolExecutor} 中
+	 * 所述的 "Unbounded queues" 策略。使用该策略时，
+	 * {@link #maxPoolSize(int) maxPoolSize} 会被忽略。
+	 * <p>默认情况下此项设置为
+	 * {@link Runtime#availableProcessors()} 值的两倍。对于任务不会频繁阻塞的应用程序，
+	 * 该数值应接近或等于可用 CPU/核心数。
 	 */
 	public TaskExecutorRegistration corePoolSize(int corePoolSize) {
 		this.corePoolSize = corePoolSize;
@@ -83,13 +80,13 @@ public class TaskExecutorRegistration {
 	}
 
 	/**
-	 * Set the max pool size of the ThreadPoolExecutor.
-	 * <p><strong>NOTE:</strong> When an unbounded
-	 * {@link #queueCapacity(int) queueCapacity} is configured (the default), the
-	 * max pool size is effectively ignored. See the "Unbounded queues" strategy
-	 * in {@link java.util.concurrent.ThreadPoolExecutor ThreadPoolExecutor} for
-	 * more details.
-	 * <p>By default this is set to {@code Integer.MAX_VALUE}.
+	 * 设置 ThreadPoolExecutor 的最大池大小。
+	 * <p><strong>注意：</strong>当配置了无界的
+	 * {@link #queueCapacity(int) queueCapacity}（默认情况）时，最大池大小实际上
+	 * 会被忽略。有关更多详细信息，请参阅
+	 * {@link java.util.concurrent.ThreadPoolExecutor ThreadPoolExecutor} 中的
+	 * "Unbounded queues" 策略。
+	 * <p>默认情况下此项设置为 {@code Integer.MAX_VALUE}。
 	 */
 	public TaskExecutorRegistration maxPoolSize(int maxPoolSize) {
 		this.maxPoolSize = maxPoolSize;
@@ -97,11 +94,10 @@ public class TaskExecutorRegistration {
 	}
 
 	/**
-	 * Set the time limit for which threads may remain idle before being terminated.
-	 * If there are more than the core number of threads currently in the pool,
-	 * after waiting this amount of time without processing a task, excess threads
-	 * will be terminated. This overrides any value set in the constructor.
-	 * <p>By default this is set to 60.
+	 * 设置线程在被终止之前可以保持空闲的时间限制。
+	 * 如果当前池中的线程数超过核心线程数，那么在等待这段时间且未处理任务后，
+	 * 多余的线程将被终止。此设置会覆盖构造函数中设置的任何值。
+	 * <p>默认情况下此项设置为 60。
 	 */
 	public TaskExecutorRegistration keepAliveSeconds(int keepAliveSeconds) {
 		this.keepAliveSeconds = keepAliveSeconds;
@@ -109,13 +105,13 @@ public class TaskExecutorRegistration {
 	}
 
 	/**
-	 * Set the queue capacity for the ThreadPoolExecutor.
-	 * <p><strong>NOTE:</strong> when an unbounded {@code queueCapacity} is configured
-	 * (the default), the core pool size is effectively the max pool size. This is
-	 * essentially the "Unbounded queues" strategy as explained in
-	 * {@link java.util.concurrent.ThreadPoolExecutor ThreadPoolExecutor}. When
-	 * this strategy is used, the {@link #maxPoolSize(int) maxPoolSize} is ignored.
-	 * <p>By default this is set to {@code Integer.MAX_VALUE}.
+	 * 设置 ThreadPoolExecutor 的队列容量。
+	 * <p><strong>注意：</strong>当配置了无界的 {@code queueCapacity}
+	 * （默认情况）时，核心池大小实际上就是最大池大小。这本质上就是
+	 * {@link java.util.concurrent.ThreadPoolExecutor ThreadPoolExecutor} 中
+	 * 所述的 "Unbounded queues" 策略。使用该策略时，
+	 * {@link #maxPoolSize(int) maxPoolSize} 会被忽略。
+	 * <p>默认情况下此项设置为 {@code Integer.MAX_VALUE}。
 	 */
 	public TaskExecutorRegistration queueCapacity(int queueCapacity) {
 		this.queueCapacity = queueCapacity;

@@ -23,13 +23,12 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator;
 
 /**
- * The main entry point for processing HTTP requests from SockJS clients.
+ * 处理来自 SockJS 客户端的 HTTP 请求的主要入口点。
  *
- * <p>In a Servlet 3+ container, {@link org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler}
- * can be used to invoke this service. The processing servlet, as well as all filters involved,
- * must have asynchronous support enabled through the ServletContext API or by adding an
- * <code>&lt;async-support&gt;true&lt;/async-support&gt;</code> element to servlet and filter declarations
- * in web.xml.
+ * <p>在 Servlet 3+ 容器中，可以使用 {@link org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler}
+ * 调用此服务。处理请求的 servlet 以及所有涉及的过滤器必须通过 ServletContext API
+ * 或通过在 web.xml 中为 servlet 和过滤器声明添加
+ * <code>&lt;async-support&gt;true&lt;/async-support&gt;</code> 元素来启用异步支持。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -38,10 +37,10 @@ import org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator
 public interface SockJsService {
 
 	/**
-	 * Process a SockJS HTTP request.
-	 * <p>See the "Base URL", "Static URLs", and "Session URLs" sections of the <a
+	 * 处理 SockJS HTTP 请求。
+	 * <p>有关所需 URL 类型的详细信息，请参阅 <a
 	 * href="https://sockjs.github.io/sockjs-protocol/sockjs-protocol-0.3.3.html">SockJS
-	 * protocol</a> for details on the types of URLs expected.
+	 * 协议</a>中的 "Base URL"、"Static URLs" 和 "Session URLs" 部分。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param sockJsPath the remainder of the path within the SockJS service prefix

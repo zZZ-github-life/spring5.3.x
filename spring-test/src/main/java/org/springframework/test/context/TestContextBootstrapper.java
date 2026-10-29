@@ -19,36 +19,35 @@ package org.springframework.test.context;
 import java.util.List;
 
 /**
- * {@code TestContextBootstrapper} defines the SPI for bootstrapping the
- * <em>Spring TestContext Framework</em>.
+ * {@code TestContextBootstrapper} 定义用于引导
+ * <em>Spring TestContext Framework</em> 的 SPI。
  *
- * <p>A {@code TestContextBootstrapper} is used by the {@link TestContextManager} to
- * {@linkplain #getTestExecutionListeners get the TestExecutionListeners} for the
- * current test and to {@linkplain #buildTestContext build the TestContext} that
- * it manages.
+ * <p>{@link TestContextManager} 使用 {@code TestContextBootstrapper}
+ * 为当前测试{@linkplain #getTestExecutionListeners 获取 TestExecutionListeners}，
+ * 并{@linkplain #buildTestContext 构建其管理的 TestContext}。
  *
- * <h3>Configuration</h3>
+ * <h3>配置</h3>
  *
- * <p>A custom bootstrapping strategy can be configured for a test class (or
- * test class hierarchy) via {@link BootstrapWith @BootstrapWith}, either
- * directly or as a meta-annotation.
+ * <p>可以通过 {@link BootstrapWith @BootstrapWith}（直接或作为元注解）
+ * 为测试类（或测试类层次结构）配置自定义引导策略。
  *
- * <p>If a bootstrapper is not explicitly configured via {@code @BootstrapWith},
- * either the {@link org.springframework.test.context.support.DefaultTestContextBootstrapper
- * DefaultTestContextBootstrapper} or the
+ * <p>如果未通过 {@code @BootstrapWith} 显式配置引导器，
+ * 将根据是否存在
+ * {@link org.springframework.test.context.web.WebAppConfiguration @WebAppConfiguration}，
+ * 使用 {@link org.springframework.test.context.support.DefaultTestContextBootstrapper
+ * DefaultTestContextBootstrapper} 或
  * {@link org.springframework.test.context.web.WebTestContextBootstrapper
- * WebTestContextBootstrapper} will be used, depending on the presence of
- * {@link org.springframework.test.context.web.WebAppConfiguration @WebAppConfiguration}.
+ * WebTestContextBootstrapper}。
  *
- * <h3>Implementation Notes</h3>
+ * <h3>实现说明</h3>
  *
- * <p>Concrete implementations must provide a {@code public} no-args constructor.
+ * <p>具体实现必须提供 {@code public} 无参构造函数。
  *
- * <p><strong>WARNING</strong>: this SPI will likely change in the future in
- * order to accommodate new requirements. Implementers are therefore strongly encouraged
- * <strong>not</strong> to implement this interface directly but rather to <em>extend</em>
+ * <p><strong>警告</strong>：此 SPI 未来可能会更改
+ * 以适应新需求。因此，强烈建议实现者
+ * <strong>不要</strong>直接实现此接口，而是<em>扩展</em>
  * {@link org.springframework.test.context.support.AbstractTestContextBootstrapper
- * AbstractTestContextBootstrapper} or one of its concrete subclasses instead.
+ * AbstractTestContextBootstrapper} 或其具体子类之一。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -58,18 +57,18 @@ import java.util.List;
 public interface TestContextBootstrapper {
 
 	/**
-	 * Set the {@link BootstrapContext} to be used by this bootstrapper.
+	 * 设置此引导器要使用的 {@link BootstrapContext}。
 	 */
 	void setBootstrapContext(BootstrapContext bootstrapContext);
 
 	/**
-	 * Get the {@link BootstrapContext} associated with this bootstrapper.
+	 * 获取与此引导器关联的 {@link BootstrapContext}。
 	 */
 	BootstrapContext getBootstrapContext();
 
 	/**
-	 * Build the {@link TestContext} for the {@link BootstrapContext}
-	 * associated with this bootstrapper.
+	 * 为此引导器关联的 {@link BootstrapContext}
+	 * 构建 {@link TestContext}。
 	 * @return a new {@link TestContext}, never {@code null}
 	 * @since 4.2
 	 * @see #buildMergedContextConfiguration()
@@ -77,30 +76,25 @@ public interface TestContextBootstrapper {
 	TestContext buildTestContext();
 
 	/**
-	 * Build the {@linkplain MergedContextConfiguration merged context configuration}
-	 * for the test class in the {@link BootstrapContext} associated with this
-	 * bootstrapper.
-	 * <p>Implementations must take the following into account when building the
-	 * merged configuration:
+	 * 为此引导器关联的 {@link BootstrapContext} 中的测试类构建
+	 * {@linkplain MergedContextConfiguration 合并上下文配置}。
+	 * <p>实现构建合并配置时必须考虑以下内容：
 	 * <ul>
-	 * <li>Context hierarchies declared via {@link ContextHierarchy @ContextHierarchy}
-	 * and {@link ContextConfiguration @ContextConfiguration}</li>
-	 * <li>Active bean definition profiles declared via {@link ActiveProfiles @ActiveProfiles}</li>
-	 * <li>{@linkplain org.springframework.context.ApplicationContextInitializer
-	 * Context initializers} declared via {@link ContextConfiguration#initializers}</li>
-	 * <li>Test property sources declared via {@link TestPropertySource @TestPropertySource}</li>
+	 * <li>通过 {@link ContextHierarchy @ContextHierarchy} 和 {@link ContextConfiguration @ContextConfiguration} 声明的上下文层次结构</li>
+	 * <li>通过 {@link ActiveProfiles @ActiveProfiles} 声明的活动 Bean 定义配置</li>
+	 * <li>通过 {@link ContextConfiguration#initializers} 声明的{@linkplain org.springframework.context.ApplicationContextInitializer 上下文初始化器}</li>
+	 * <li>通过 {@link TestPropertySource @TestPropertySource} 声明的测试属性源</li>
 	 * </ul>
-	 * <p>Consult the Javadoc for the aforementioned annotations for details on
-	 * the required semantics.
-	 * <p>Note that the implementation of {@link #buildTestContext()} should
-	 * typically delegate to this method when constructing the {@code TestContext}.
-	 * <p>When determining which {@link ContextLoader} to use for a given test
-	 * class, the following algorithm should be used:
+	 * <p>有关所需语义的详细信息，请参阅上述注解的 Javadoc。
+	 * <p>请注意，{@link #buildTestContext()} 的实现通常在构建 {@code TestContext} 时应
+	 * 委托给此方法。
+	 * <p>在确定为给定测试类使用哪个 {@link ContextLoader} 时，
+	 * 应使用以下算法：
 	 * <ol>
-	 * <li>If a {@code ContextLoader} class has been explicitly declared via
-	 * {@link ContextConfiguration#loader}, use it.</li>
-	 * <li>Otherwise, concrete implementations are free to determine which
-	 * {@code ContextLoader} class to use as a default.</li>
+	 * <li>如果已通过 {@link ContextConfiguration#loader} 显式声明
+	 * {@code ContextLoader} 类，则使用它。</li>
+	 * <li>否则，具体实现可以自由确定默认使用哪个
+	 * {@code ContextLoader} 类。</li>
 	 * </ol>
 	 * @return the merged context configuration, never {@code null}
 	 * @see #buildTestContext()
@@ -108,26 +102,25 @@ public interface TestContextBootstrapper {
 	MergedContextConfiguration buildMergedContextConfiguration();
 
 	/**
-	 * Get a list of newly instantiated {@link TestExecutionListener TestExecutionListeners}
-	 * for the test class in the {@link BootstrapContext} associated with this bootstrapper.
-	 * <p>If {@link TestExecutionListeners @TestExecutionListeners} is not
-	 * <em>present</em> on the test class in the {@code BootstrapContext},
-	 * <em>default</em> listeners should be returned. Furthermore, default
-	 * listeners must be sorted using
+	 * 为此引导器关联的 {@link BootstrapContext} 中的测试类获取新实例化的
+	 * {@link TestExecutionListener TestExecutionListener} 列表。
+	 * <p>如果 {@code BootstrapContext} 中的测试类上未<em>存在</em>
+	 * {@link TestExecutionListeners @TestExecutionListeners}，
+	 * 则应返回<em>默认</em>监听器。此外，默认
+	 * 监听器必须使用
 	 * {@link org.springframework.core.annotation.AnnotationAwareOrderComparator
-	 * AnnotationAwareOrderComparator}.
-	 * <p>Concrete implementations are free to determine what comprises the
-	 * set of default listeners. However, by default, the Spring TestContext
-	 * Framework will use the
+	 * AnnotationAwareOrderComparator} 进行排序。
+	 * <p>具体实现可以自由确定默认监听器集合的组成。
+	 * 不过，默认情况下，Spring TestContext
+	 * Framework 将使用
 	 * {@link org.springframework.core.io.support.SpringFactoriesLoader SpringFactoriesLoader}
-	 * mechanism to look up all {@code TestExecutionListener} class names
-	 * configured in all {@code META-INF/spring.factories} files on the classpath.
-	 * <p>The {@link TestExecutionListeners#inheritListeners() inheritListeners}
-	 * flag of {@link TestExecutionListeners @TestExecutionListeners} must be
-	 * taken into consideration. Specifically, if the {@code inheritListeners}
-	 * flag is set to {@code true}, listeners declared for a given test class must
-	 * be appended to the end of the list of listeners declared in superclasses
-	 * or enclosing classes.
+	 * 机制查找类路径上所有 {@code META-INF/spring.factories} 文件中配置的
+	 * 所有 {@code TestExecutionListener} 类名。
+	 * <p>必须考虑 {@link TestExecutionListeners @TestExecutionListeners} 的
+	 * {@link TestExecutionListeners#inheritListeners() inheritListeners}
+	 * 标志。具体而言，如果 {@code inheritListeners}
+	 * 标志设置为 {@code true}，则必须将为给定测试类声明的监听器
+	 * 追加到超类或封闭类中声明的监听器列表的末尾。
 	 * @return a list of {@code TestExecutionListener} instances
 	 */
 	List<TestExecutionListener> getTestExecutionListeners();

@@ -24,17 +24,17 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
- * Adapter implementation of the ResultSetExtractor interface that delegates
- * to a RowMapper which is supposed to create an object for each row.
- * Each object is added to the results List of this ResultSetExtractor.
+ * ResultSetExtractor接口的适配器实现，委托给一个RowMapper，
+ * 该RowMapper负责为每行创建一个对象。
+ * 每个对象都被添加到此ResultSetExtractor的结果List中。
  *
- * <p>Useful for the typical case of one object per row in the database table.
- * The number of entries in the results list will match the number of rows.
+ * <p>适用于数据库表中每行一个对象的典型情况。
+ * 结果列表中的条目数将与行数匹配。
  *
- * <p>Note that a RowMapper object is typically stateless and thus reusable;
- * just the RowMapperResultSetExtractor adapter is stateful.
+ * <p>请注意，RowMapper对象通常是无状态的，因此可以重复使用；
+ * 只有RowMapperResultSetExtractor适配器是有状态的。
  *
- * <p>A usage example with JdbcTemplate:
+ * <p>与JdbcTemplate一起使用的示例：
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  * RowMapper rowMapper = new UserRowMapper();  // reusable object
@@ -47,9 +47,9 @@ import org.springframework.util.Assert;
  *     "select * from user where id=?", new Object[] {id},
  *     new RowMapperResultSetExtractor(rowMapper, 1));</pre>
  *
- * <p>Alternatively, consider subclassing MappingSqlQuery from the {@code jdbc.object}
- * package: Instead of working with separate JdbcTemplate and RowMapper objects,
- * you can have executable query objects (containing row-mapping logic) there.
+ * <p>或者，可以考虑从{@code jdbc.object}包中继承MappingSqlQuery：
+ * 无需使用单独的JdbcTemplate和RowMapper对象，
+ * 你可以在那里拥有可执行的查询对象（包含行映射逻辑）。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -66,7 +66,7 @@ public class RowMapperResultSetExtractor<T> implements ResultSetExtractor<List<T
 
 
 	/**
-	 * Create a new RowMapperResultSetExtractor.
+	 * 创建新的RowMapperResultSetExtractor。
 	 * @param rowMapper the RowMapper which creates an object for each row
 	 */
 	public RowMapperResultSetExtractor(RowMapper<T> rowMapper) {
@@ -74,7 +74,7 @@ public class RowMapperResultSetExtractor<T> implements ResultSetExtractor<List<T
 	}
 
 	/**
-	 * Create a new RowMapperResultSetExtractor.
+	 * 创建新的RowMapperResultSetExtractor。
 	 * @param rowMapper the RowMapper which creates an object for each row
 	 * @param rowsExpected the number of expected rows
 	 * (just used for optimized collection handling)

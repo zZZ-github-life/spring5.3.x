@@ -1,15 +1,6 @@
 /**
- * This package contains the <em>Spring TestContext Framework</em> which
- * provides annotation-driven unit and integration testing support that is
- * agnostic of the actual testing framework in use. The same techniques and
- * annotation-based configuration used in, for example, a JUnit environment
- * can also be applied to tests written with TestNG, etc.
- *
- * <p>In addition to providing generic and extensible testing infrastructure,
- * the Spring TestContext Framework provides out-of-the-box support for
- * Spring-specific integration testing functionality such as context management
- * and caching, dependency injection of test fixtures, and transactional test
- * management with default rollback semantics.
+ * 此包包含 <em>Spring TestContext Framework</em>（Spring 测试上下文框架），它提供注解驱动的单元测试和集成测试支持，并且与所使用的实际测试框架无关。例如，在 JUnit 环境中使用的相同技术和基于注解的配置也可以应用于使用 TestNG 等编写的测试。
+ * <p>除了提供通用且可扩展的测试基础设施之外，Spring TestContext Framework 还提供对 Spring 特有集成测试功能的开箱即用支持，例如上下文管理和缓存、测试夹具的依赖注入，以及具有默认回滚语义的事务性测试管理。
  */
 @NonNullApi
 @NonNullFields

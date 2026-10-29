@@ -48,9 +48,8 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 /**
- * Factory for request content {@code RequestMatcher}'s. An instance of this
- * class is typically accessed via {@link MockRestRequestMatchers#content()}.
- *
+ * 用于请求内容 {@code RequestMatcher} 的工厂。通常通过
+ * {@link MockRestRequestMatchers#content()} 访问此类的实例。
  * @author Rossen Stoyanchev
  * @since 3.2
  */
@@ -63,8 +62,8 @@ public class ContentRequestMatchers {
 
 
 	/**
-	 * Class constructor, not for direct instantiation.
-	 * Use {@link MockRestRequestMatchers#content()}.
+	 * 类构造函数，不用于直接实例化。
+	 * 请使用 {@link MockRestRequestMatchers#content()}。
 	 */
 	protected ContentRequestMatchers() {
 		this.xmlHelper = new XmlExpectationsHelper();
@@ -73,14 +72,14 @@ public class ContentRequestMatchers {
 
 
 	/**
-	 * Assert the request content type as a String.
+	 * 以 String 形式断言请求内容类型。
 	 */
 	public RequestMatcher contentType(String expectedContentType) {
 		return contentType(MediaType.parseMediaType(expectedContentType));
 	}
 
 	/**
-	 * Assert the request content type as a {@link MediaType}.
+	 * 以 {@link MediaType} 形式断言请求内容类型。
 	 */
 	public RequestMatcher contentType(MediaType expectedContentType) {
 		return request -> {
@@ -91,16 +90,16 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Assert the request content type is compatible with the given
-	 * content type as defined by {@link MediaType#isCompatibleWith(MediaType)}.
+	 * 断言请求内容类型与给定内容类型兼容，
+	 * 兼容性按 {@link MediaType#isCompatibleWith(MediaType)} 定义。
 	 */
 	public RequestMatcher contentTypeCompatibleWith(String contentType) {
 		return contentTypeCompatibleWith(MediaType.parseMediaType(contentType));
 	}
 
 	/**
-	 * Assert the request content type is compatible with the given
-	 * content type as defined by {@link MediaType#isCompatibleWith(MediaType)}.
+	 * 断言请求内容类型与给定内容类型兼容，
+	 * 兼容性按 {@link MediaType#isCompatibleWith(MediaType)} 定义。
 	 */
 	public RequestMatcher contentTypeCompatibleWith(MediaType contentType) {
 		return request -> {
@@ -114,7 +113,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Get the body of the request as a UTF-8 string and apply the given {@link Matcher}.
+	 * 以 UTF-8 字符串形式获取请求体，并应用给定的 {@link Matcher}。
 	 */
 	public RequestMatcher string(Matcher<? super String> matcher) {
 		return request -> {
@@ -124,7 +123,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Get the body of the request as a UTF-8 string and compare it to the given String.
+	 * 以 UTF-8 字符串形式获取请求体，并与给定 String 进行比较。
 	 */
 	public RequestMatcher string(String expectedContent) {
 		return request -> {
@@ -134,7 +133,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Compare the body of the request to the given byte array.
+	 * 将请求体与给定字节数组进行比较。
 	 */
 	public RequestMatcher bytes(byte[] expectedContent) {
 		return request -> {
@@ -144,7 +143,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the body as form data and compare to the given {@code MultiValueMap}.
+	 * 将请求体解析为表单数据，并与给定 {@code MultiValueMap} 进行比较。
 	 * @since 4.3
 	 */
 	public RequestMatcher formData(MultiValueMap<String, String> expected) {
@@ -152,8 +151,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Variant of {@link #formData(MultiValueMap)} that matches the given subset
-	 * of expected form parameters.
+	 * 对 {@link #formData(MultiValueMap)} 的变体，仅匹配给定子集的预期表单参数。
 	 * @since 5.3
 	 */
 	public RequestMatcher formDataContains(Map<String, String> expected) {
@@ -187,15 +185,15 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the body as multipart data and assert it contains exactly the
-	 * values from the given {@code MultiValueMap}. Values may be of type:
+	 * 将请求体解析为 multipart 数据，并断言它恰好包含
+	 * 给定 {@code MultiValueMap} 中的值。值可以是以下类型：
 	 * <ul>
-	 * <li>{@code String} - form field
-	 * <li>{@link Resource} - content from a file
-	 * <li>{@code byte[]} - other raw content
+	 * <li>{@code String} - 表单字段
+	 * <li>{@link Resource} - 文件内容
+	 * <li>{@code byte[]} - 其他原始内容
 	 * </ul>
-	 * <p><strong>Note:</strong> This method uses the Apache Commons FileUpload
-	 * library to parse the multipart data and it must be on the test classpath.
+	 * <p><strong>注意：</strong>此方法使用 Apache Commons FileUpload
+	 * 库解析 multipart 数据，该库必须在测试类路径上。
 	 * @param expectedMap the expected multipart values
 	 * @since 5.3
 	 */
@@ -204,8 +202,8 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Variant of {@link #multipartData(MultiValueMap)} that does the same but
-	 * only for a subset of the actual values.
+	 * 对 {@link #multipartData(MultiValueMap)} 的变体，功能相同，
+	 * 但仅针对实际值的一个子集。
 	 * @param expectedMap the expected multipart values
 	 * @since 5.3
 	 */
@@ -252,11 +250,10 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the request body and the given String as XML and assert that the
-	 * two are "similar" - i.e. they contain the same elements and attributes
-	 * regardless of order.
-	 * <p>Use of this matcher assumes the
-	 * <a href="https://www.xmlunit.org/">XMLUnit</a> library is available.
+	 * 将请求体和给定 String 解析为 XML，并断言二者“相似”——即它们包含相同的元素和属性，
+	 * 与顺序无关。
+	 * <p>使用此匹配器假定
+	 * <a href="https://www.xmlunit.org/">XMLUnit</a> 库可用。
 	 * @param expectedXmlContent the expected XML content
 	 */
 	public RequestMatcher xml(String expectedXmlContent) {
@@ -269,7 +266,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the request content as {@link Node} and apply the given {@link Matcher}.
+	 * 将请求内容解析为 {@link Node}，并应用给定的 {@link Matcher}。
 	 */
 	public RequestMatcher node(Matcher<? super Node> matcher) {
 		return new AbstractXmlRequestMatcher() {
@@ -281,7 +278,7 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the request content as {@link DOMSource} and apply the given {@link Matcher}.
+	 * 将请求内容解析为 {@link DOMSource}，并应用给定的 {@link Matcher}。
 	 * @see <a href="https://code.google.com/p/xml-matchers/">https://code.google.com/p/xml-matchers/</a>
 	 */
 	public RequestMatcher source(Matcher<? super Source> matcher) {
@@ -294,12 +291,10 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the expected and actual strings as JSON and assert the two
-	 * are "similar" - i.e. they contain the same attribute-value pairs
-	 * regardless of formatting with a lenient checking (extensible, and non-strict array
-	 * ordering).
-	 * <p>Use of this matcher requires the <a
-	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
+	 * 将预期字符串和实际字符串解析为 JSON，并断言二者“相似”——即它们包含相同的属性值对，
+	 * 与格式无关，并进行宽松检查（可扩展，且数组顺序不严格）。
+	 * <p>使用此匹配器需要 <a
+	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
 	 * @param expectedJsonContent the expected JSON content
 	 * @since 5.0.5
 	 */
@@ -308,16 +303,15 @@ public class ContentRequestMatchers {
 	}
 
 	/**
-	 * Parse the request body and the given string as JSON and assert the two
-	 * are "similar" - i.e. they contain the same attribute-value pairs
-	 * regardless of formatting.
-	 * <p>Can compare in two modes, depending on {@code strict} parameter value:
+	 * 将请求体和给定字符串解析为 JSON，并断言二者“相似”——即它们包含相同的属性值对，
+	 * 与格式无关。
+	 * <p>可根据 {@code strict} 参数值以两种模式进行比较：
 	 * <ul>
-	 * <li>{@code true}: strict checking. Not extensible, and strict array ordering.</li>
-	 * <li>{@code false}: lenient checking. Extensible, and non-strict array ordering.</li>
+	 * <li>{@code true}：严格检查。不可扩展，且数组顺序严格。</li>
+	 * <li>{@code false}：宽松检查。可扩展，且数组顺序不严格。</li>
 	 * </ul>
-	 * <p>Use of this matcher requires the <a
-	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> library.
+	 * <p>使用此匹配器需要 <a
+	 * href="https://jsonassert.skyscreamer.org/">JSONassert</a> 库。
 	 * @param expectedJsonContent the expected JSON content
 	 * @param strict enables strict checking
 	 * @since 5.0.5
@@ -336,7 +330,7 @@ public class ContentRequestMatchers {
 
 
 	/**
-	 * Abstract base class for XML {@link RequestMatcher}'s.
+	 * XML {@link RequestMatcher} 的抽象基类。
 	 */
 	private abstract static class AbstractXmlRequestMatcher implements RequestMatcher {
 

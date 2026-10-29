@@ -1,7 +1,6 @@
 /**
- * Support classes for Spring's scripting package.
- * Provides a ScriptFactoryPostProcessor for turning ScriptFactory
- * definitions into scripted objects.
+ * Spring scripting 包的支持类。提供 ScriptFactoryPostProcessor，用于将 ScriptFactory 定义转换为脚
+ * 本化对象。
  */
 @NonNullApi
 @NonNullFields

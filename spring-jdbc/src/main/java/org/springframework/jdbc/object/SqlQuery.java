@@ -30,23 +30,19 @@ import org.springframework.jdbc.core.namedparam.ParsedSql;
 import org.springframework.lang.Nullable;
 
 /**
- * Reusable operation object representing an SQL query.
+ * 表示 SQL 查询的可重用操作对象。
  *
- * <p>Subclasses must implement the {@link #newRowMapper} method to provide
- * an object that can extract the results of iterating over the
- * {@code ResultSet} created during the execution of the query.
+ * <p>子类必须实现 {@link #newRowMapper} 方法，提供一个能够提取遍历
+ * 查询执行期间创建的 {@code ResultSet} 结果的对象。
  *
- * <p>This class provides a number of public {@code execute} methods that are
- * analogous to the different convenient JDO query execute methods. Subclasses
- * can either rely on one of these inherited methods, or can add their own
- * custom execution methods, with meaningful names and typed parameters
- * (definitely a best practice). Each custom query method will invoke one of
- * this class's untyped query methods.
+ * <p>本类提供了许多公共的 {@code execute} 方法，类似于各种便捷的 JDO
+ * 查询执行方法。子类既可以依赖这些继承的方法之一，也可以添加自己的
+ * 自定义执行方法，并使用有意义的名称和类型化的参数（这绝对是最佳实践）。
+ * 每个自定义查询方法都会调用本类的某个无类型查询方法。
  *
- * <p>Like all {@code RdbmsOperation} classes that ship with the Spring
- * Framework, {@code SqlQuery} instances are thread-safe after their
- * initialization is complete. That is, after they are constructed and configured
- * via their setter methods, they can be used safely from multiple threads.
+ * <p>与 Spring Framework 自带的所有 {@code RdbmsOperation} 类一样，
+ * {@code SqlQuery} 实例在初始化完成后是线程安全的。也就是说，在通过
+ * setter 方法构造并配置之后，它们可以安全地在多个线程中使用。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -56,20 +52,19 @@ import org.springframework.lang.Nullable;
  */
 public abstract class SqlQuery<T> extends SqlOperation {
 
-	/** The number of rows to expect; if 0, unknown. */
+	/** 预期行数；如果为 0，则表示未知。 */
 	private int rowsExpected = 0;
 
 
 	/**
-	 * Constructor to allow use as a JavaBean.
-	 * <p>The {@code DataSource} and SQL must be supplied before
-	 * compilation and use.
+	 * 允许作为 JavaBean 使用的构造函数。
+	 * <p>在编译和使用之前，必须提供 {@code DataSource} 和 SQL。
 	 */
 	public SqlQuery() {
 	}
 
 	/**
-	 * Convenient constructor with a {@code DataSource} and SQL string.
+	 * 使用 {@code DataSource} 和 SQL 字符串的便捷构造函数。
 	 * @param ds the {@code DataSource} to use to get connections
 	 * @param sql the SQL to execute; SQL can also be supplied at runtime
 	 * by overriding the {@link #getSql()} method.
@@ -81,16 +76,15 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 
 	/**
-	 * Set the number of rows expected.
-	 * <p>This can be used to ensure efficient storage of results. The
-	 * default behavior is not to expect any specific number of rows.
+	 * 设置预期行数。
+	 * <p>这可用于确保结果的高效存储。默认行为是不期望任何特定的行数。
 	 */
 	public void setRowsExpected(int rowsExpected) {
 		this.rowsExpected = rowsExpected;
 	}
 
 	/**
-	 * Get the number of rows expected.
+	 * 获取预期行数。
 	 */
 	public int getRowsExpected() {
 		return this.rowsExpected;
@@ -98,7 +92,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 
 	/**
-	 * Central execution method. All un-named parameter execution goes through this method.
+	 * 核心执行方法。所有未命名参数的执行都经过此方法。
 	 * @param params parameters, similar to JDO query parameters.
 	 * Primitive parameters must be represented by their Object wrapper type.
 	 * The ordering of parameters is significant.
@@ -115,7 +109,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute without context.
+	 * 不带上下文执行的便捷方法。
 	 * @param params parameters for the query. Primitive parameters must
 	 * be represented by their Object wrapper type. The ordering of parameters is
 	 * significant.
@@ -125,7 +119,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute without parameters.
+	 * 不带参数执行的便捷方法。
 	 * @param context the contextual information for object creation
 	 */
 	public List<T> execute(Map<?, ?> context) throws DataAccessException {
@@ -133,14 +127,14 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute without parameters nor context.
+	 * 既不带参数也不带上下文执行的便捷方法。
 	 */
 	public List<T> execute() throws DataAccessException {
 		return execute((Object[]) null, null);
 	}
 
 	/**
-	 * Convenient method to execute with a single int parameter and context.
+	 * 使用单个 int 参数和上下文执行的便捷方法。
 	 * @param p1 single int parameter
 	 * @param context the contextual information for object creation
 	 */
@@ -149,7 +143,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with a single int parameter.
+	 * 使用单个 int 参数执行的便捷方法。
 	 * @param p1 single int parameter
 	 */
 	public List<T> execute(int p1) throws DataAccessException {
@@ -157,7 +151,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with two int parameters and context.
+	 * 使用两个 int 参数和上下文执行的便捷方法。
 	 * @param p1 first int parameter
 	 * @param p2 second int parameter
 	 * @param context the contextual information for object creation
@@ -167,7 +161,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with two int parameters.
+	 * 使用两个 int 参数执行的便捷方法。
 	 * @param p1 first int parameter
 	 * @param p2 second int parameter
 	 */
@@ -176,7 +170,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with a single long parameter and context.
+	 * 使用单个 long 参数和上下文执行的便捷方法。
 	 * @param p1 single long parameter
 	 * @param context the contextual information for object creation
 	 */
@@ -185,7 +179,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with a single long parameter.
+	 * 使用单个 long 参数执行的便捷方法。
 	 * @param p1 single long parameter
 	 */
 	public List<T> execute(long p1) throws DataAccessException {
@@ -193,7 +187,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with a single String parameter and context.
+	 * 使用单个 String 参数和上下文执行的便捷方法。
 	 * @param p1 single String parameter
 	 * @param context the contextual information for object creation
 	 */
@@ -202,7 +196,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute with a single String parameter.
+	 * 使用单个 String 参数执行的便捷方法。
 	 * @param p1 single String parameter
 	 */
 	public List<T> execute(String p1) throws DataAccessException {
@@ -210,7 +204,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Central execution method. All named parameter execution goes through this method.
+	 * 核心执行方法。所有命名参数的执行都经过此方法。
 	 * @param paramMap parameters associated with the name specified while declaring
 	 * the SqlParameters. Primitive parameters must be represented by their Object wrapper
 	 * type. The ordering of parameters is not significant since they are supplied in a
@@ -232,7 +226,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute without context.
+	 * 不带上下文执行的便捷方法。
 	 * @param paramMap parameters associated with the name specified while declaring
 	 * the SqlParameters. Primitive parameters must be represented by their Object wrapper
 	 * type. The ordering of parameters is not significant.
@@ -243,9 +237,9 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 
 	/**
-	 * Generic object finder method, used by all other {@code findObject} methods.
-	 * Object finder methods are like EJB entity bean finders, in that it is
-	 * considered an error if they return more than one result.
+	 * 通用对象查找方法，被所有其他 {@code findObject} 方法使用。
+	 * 对象查找方法类似于 EJB 实体 bean 的查找器，如果返回多个结果，
+	 * 则被视为错误。
 	 * @return the result object, or {@code null} if not found. Subclasses may
 	 * choose to treat this as an error and throw an exception.
 	 * @see org.springframework.dao.support.DataAccessUtils#singleResult
@@ -257,7 +251,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object without context.
+	 * 不带上下文查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(Object... params) throws DataAccessException {
@@ -265,8 +259,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given a single int parameter
-	 * and a context.
+	 * 在给定单个 int 参数和上下文的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(int p1, @Nullable Map<?, ?> context) throws DataAccessException {
@@ -274,7 +267,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given a single int parameter.
+	 * 在给定单个 int 参数的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(int p1) throws DataAccessException {
@@ -282,8 +275,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given two int parameters
-	 * and a context.
+	 * 在给定两个 int 参数和上下文的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(int p1, int p2, @Nullable Map<?, ?> context) throws DataAccessException {
@@ -291,7 +283,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given two int parameters.
+	 * 在给定两个 int 参数的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(int p1, int p2) throws DataAccessException {
@@ -299,8 +291,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given a single long parameter
-	 * and a context.
+	 * 在给定单个 long 参数和上下文的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(long p1, @Nullable Map<?, ?> context) throws DataAccessException {
@@ -308,7 +299,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given a single long parameter.
+	 * 在给定单个 long 参数的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(long p1) throws DataAccessException {
@@ -316,8 +307,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given a single String parameter
-	 * and a context.
+	 * 在给定单个 String 参数和上下文的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(String p1, @Nullable Map<?, ?> context) throws DataAccessException {
@@ -325,7 +315,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to find a single object given a single String parameter.
+	 * 在给定单个 String 参数的情况下查找单个对象的便捷方法。
 	 */
 	@Nullable
 	public T findObject(String p1) throws DataAccessException {
@@ -333,7 +323,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Generic object finder method for named parameters.
+	 * 针对命名参数的通用对象查找方法。
 	 * @param paramMap a Map of parameter name to parameter object,
 	 * matching named parameters specified in the SQL statement.
 	 * Ordering is not significant.
@@ -350,7 +340,7 @@ public abstract class SqlQuery<T> extends SqlOperation {
 	}
 
 	/**
-	 * Convenient method to execute without context.
+	 * 不带上下文执行的便捷方法。
 	 * @param paramMap a Map of parameter name to parameter object,
 	 * matching named parameters specified in the SQL statement.
 	 * Ordering is not significant.
@@ -362,8 +352,8 @@ public abstract class SqlQuery<T> extends SqlOperation {
 
 
 	/**
-	 * Subclasses must implement this method to extract an object per row, to be
-	 * returned by the {@code execute} method as an aggregated {@link List}.
+	 * 子类必须实现此方法以提取每行的对象，由 {@code execute} 方法以聚合的
+	 * {@link List} 形式返回。
 	 * @param parameters the parameters to the {@code execute()} method,
 	 * in case subclass is interested; may be {@code null} if there
 	 * were no parameters.

@@ -22,9 +22,9 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.InterruptibleBatchPreparedStatementSetter;
 
 /**
- * Abstract implementation of the {@link InterruptibleBatchPreparedStatementSetter}
- * interface, combining the check for available values and setting of those
- * into a single callback method {@link #setValuesIfAvailable}.
+ * {@link InterruptibleBatchPreparedStatementSetter} 接口的抽象实现，
+ * 将对可用值的检查和对这些值的设置合并到单个回调方法
+ * {@link #setValuesIfAvailable} 中。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -37,8 +37,8 @@ public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 
 
 	/**
-	 * This implementation calls {@link #setValuesIfAvailable}
-	 * and sets this instance's exhaustion flag accordingly.
+	 * 此实现调用 {@link #setValuesIfAvailable}
+	 * 并相应地设置此实例的耗尽标志。
 	 */
 	@Override
 	public final void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -46,7 +46,7 @@ public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 	}
 
 	/**
-	 * This implementation return this instance's current exhaustion flag.
+	 * 此实现返回此实例当前的耗尽标志。
 	 */
 	@Override
 	public final boolean isBatchExhausted(int i) {
@@ -54,8 +54,8 @@ public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 	}
 
 	/**
-	 * This implementation returns {@code Integer.MAX_VALUE}.
-	 * Can be overridden in subclasses to lower the maximum batch size.
+	 * 此实现返回 {@code Integer.MAX_VALUE}。
+	 * 可以在子类中覆盖以降低最大批量大小。
 	 */
 	@Override
 	public int getBatchSize() {
@@ -64,8 +64,8 @@ public abstract class AbstractInterruptibleBatchPreparedStatementSetter
 
 
 	/**
-	 * Check for available values and set them on the given PreparedStatement.
-	 * If no values are available anymore, return {@code false}.
+	 * 检查可用值并将其设置到给定的 PreparedStatement 上。
+	 * 如果不再有可用值，则返回 {@code false}。
 	 * @param ps the PreparedStatement we'll invoke setter methods on
 	 * @param i index of the statement we're issuing in the batch, starting from 0
 	 * @return whether there were values to apply (that is, whether the applied

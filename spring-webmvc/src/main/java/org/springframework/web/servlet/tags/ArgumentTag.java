@@ -22,19 +22,19 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * The {@code <argument>} tag is based on the JSTL {@code fmt:param} tag.
- * The purpose is to support arguments inside the message and theme tags.
+ * {@code <argument>} 标签基于 JSTL 的 {@code fmt:param} 标签。
+ * 其目的在于支持 message 标签和 theme 标签中的参数。
  *
- * <p>This tag must be nested under an argument aware tag.
+ * <p>此标签必须嵌套在支持参数的标签内部。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
  * <td>value</td>
  * <td>false</td>
  * <td>true</td>
- * <td>The value of the argument.</td>
+ * <td>参数的值。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -62,8 +62,8 @@ public class ArgumentTag extends BodyTagSupport {
 
 
 	/**
-	 * Set the value of the argument (optional).
-	 * If not set, the tag's body content will get evaluated.
+	 * 设置参数的值（可选）。
+	 * 如果未设置，则会对标签的正文内容求值。
 	 * @param value the parameter value
 	 */
 	public void setValue(Object value) {

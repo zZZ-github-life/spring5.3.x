@@ -37,40 +37,35 @@ import org.springframework.web.context.ConfigurableWebEnvironment;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * Subclass of {@link GenericApplicationContext}, suitable for web environments.
+ * {@link GenericApplicationContext} 的子类，适用于 Web 环境。
  *
- * <p>Implements {@link ConfigurableWebApplicationContext}, but is not intended for
- * declarative setup in {@code web.xml}. Instead, it is designed for programmatic setup,
- * for example for building nested contexts or for use within
- * {@link org.springframework.web.WebApplicationInitializer WebApplicationInitializers}.
+ * <p>实现了 {@link ConfigurableWebApplicationContext}，但不适用于在 {@code web.xml}
+ * 中进行声明式配置。相反，它面向编程式配置，例如用于构建嵌套上下文，或用于
+ * {@link org.springframework.web.WebApplicationInitializer WebApplicationInitializers} 中。
  *
- * <p>Interprets resource paths as servlet context resources, i.e. as paths beneath
- * the web application root. Absolute paths &mdash; for example, for files outside
- * the web app root &mdash; can be accessed via {@code file:} URLs, as implemented
- * by {@code AbstractApplicationContext}.
+ * <p>将资源路径解释为 Servlet 上下文资源，即 Web 应用根路径下的路径。绝对路径
+ * &mdash; 例如 Web 应用根路径之外的文件 &mdash; 可以通过 {@code file:} URL 访问，
+ * 具体由 {@code AbstractApplicationContext} 实现。
  *
- * <p>In addition to the special beans detected by
- * {@link org.springframework.context.support.AbstractApplicationContext AbstractApplicationContext},
- * this class detects a {@link ThemeSource} bean in the context, with the name "themeSource".
+ * <p>除了
+ * {@link org.springframework.context.support.AbstractApplicationContext AbstractApplicationContext}
+ * 检测的特殊 bean 之外，此类还会检测上下文中名称为 "themeSource" 的 {@link ThemeSource} bean。
  *
- * <p>If you wish to register annotated <em>component classes</em> with a
- * {@code GenericWebApplicationContext}, you can use an
- * {@link org.springframework.context.annotation.AnnotatedBeanDefinitionReader
- * AnnotatedBeanDefinitionReader}, as demonstrated in the following example.
- * Component classes include in particular
+ * <p>如果希望向 {@code GenericWebApplicationContext} 注册带注解的<em>组件类</em>，
+ * 可以使用 {@link org.springframework.context.annotation.AnnotatedBeanDefinitionReader
+ * AnnotatedBeanDefinitionReader}，如下例所示。组件类特别包括
  * {@link org.springframework.context.annotation.Configuration @Configuration}
- * classes but also plain {@link org.springframework.stereotype.Component @Component}
- * classes as well as JSR-330 compliant classes using {@code javax.inject} annotations.
+ * 类，也包括普通的 {@link org.springframework.stereotype.Component @Component}
+ * 类，以及使用 {@code javax.inject} 注解的符合 JSR-330 的类。
  *
  * <pre class="code">
  * GenericWebApplicationContext context = new GenericWebApplicationContext();
  * AnnotatedBeanDefinitionReader reader = new AnnotatedBeanDefinitionReader(context);
  * reader.register(AppConfig.class, UserController.class, UserRepository.class);</pre>
  *
- * <p>If you intend to implement a {@code WebApplicationContext} that reads bean definitions
- * from configuration files, consider deriving from {@link AbstractRefreshableWebApplicationContext},
- * reading the bean definitions in an implementation of the {@code loadBeanDefinitions}
- * method.
+ * <p>如果打算实现一个从配置文件读取 bean 定义的 {@code WebApplicationContext}，可考虑继承
+ * {@link AbstractRefreshableWebApplicationContext}，并在 {@code loadBeanDefinitions} 方法的实现
+ * 中读取 bean 定义。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -88,7 +83,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 
 	/**
-	 * Create a new {@code GenericWebApplicationContext}.
+	 * 创建一个新的 {@code GenericWebApplicationContext}。
 	 * @see #setServletContext
 	 * @see #registerBeanDefinition
 	 * @see #refresh
@@ -98,7 +93,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * Create a new {@code GenericWebApplicationContext} for the given {@link ServletContext}.
+	 * 为给定的 {@link ServletContext} 创建一个新的 {@code GenericWebApplicationContext}。
 	 * @param servletContext the {@code ServletContext} to run in
 	 * @see #registerBeanDefinition
 	 * @see #refresh
@@ -108,7 +103,8 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * Create a new {@code GenericWebApplicationContext} with the given {@link DefaultListableBeanFactory}.
+	 * 使用给定的 {@link DefaultListableBeanFactory} 创建一个新的
+	 * {@code GenericWebApplicationContext}。
 	 * @param beanFactory the {@code DefaultListableBeanFactory} instance to use for this context
 	 * @see #setServletContext
 	 * @see #registerBeanDefinition
@@ -119,8 +115,8 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * Create a new {@code GenericWebApplicationContext} with the given {@link DefaultListableBeanFactory}
-	 * and {@link ServletContext}.
+	 * 使用给定的 {@link DefaultListableBeanFactory} 和 {@link ServletContext}
+	 * 创建一个新的 {@code GenericWebApplicationContext}。
 	 * @param beanFactory the {@code DefaultListableBeanFactory} instance to use for this context
 	 * @param servletContext the {@code ServletContext} to run in
 	 * @see #registerBeanDefinition
@@ -133,7 +129,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 
 	/**
-	 * Set the {@link ServletContext} that this {@code WebApplicationContext} runs in.
+	 * 设置此 {@code WebApplicationContext} 运行所在的 {@link ServletContext}。
 	 */
 	@Override
 	public void setServletContext(@Nullable ServletContext servletContext) {
@@ -152,7 +148,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * Create and return a new {@link StandardServletEnvironment}.
+	 * 创建并返回一个新的 {@link StandardServletEnvironment}。
 	 */
 	@Override
 	protected ConfigurableEnvironment createEnvironment() {
@@ -160,7 +156,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * Register request/session scopes, environment beans, a {@link ServletContextAwareProcessor}, etc.
+	 * 注册请求/会话作用域、环境 bean、{@link ServletContextAwareProcessor} 等。
 	 */
 	@Override
 	protected void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
@@ -173,7 +169,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * This implementation supports file paths beneath the root of the {@link ServletContext}.
+	 * 此实现支持 {@link ServletContext} 根路径下的文件路径。
 	 * @see ServletContextResource
 	 */
 	@Override
@@ -183,7 +179,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * This implementation supports pattern matching in unexpanded WARs too.
+	 * 此实现也支持未展开 WAR 中的模式匹配。
 	 * @see ServletContextResourcePatternResolver
 	 */
 	@Override
@@ -192,7 +188,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 	}
 
 	/**
-	 * Initialize the theme capability.
+	 * 初始化主题（theme）能力。
 	 */
 	@Override
 	protected void onRefresh() {
@@ -201,7 +197,7 @@ public class GenericWebApplicationContext extends GenericApplicationContext
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Replace {@code Servlet}-related property sources.
+	 * <p>替换与 {@code Servlet} 相关的属性源。
 	 */
 	@Override
 	protected void initPropertySources() {

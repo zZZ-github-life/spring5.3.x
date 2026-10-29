@@ -21,7 +21,7 @@ import org.springframework.expression.spel.CodeFlow;
 import org.springframework.expression.spel.support.BooleanTypedValue;
 
 /**
- * Represents the literal values {@code TRUE} and {@code FALSE}.
+ * 表示字面值 {@code TRUE} 和 {@code FALSE}。
  *
  * @author Andy Clement
  * @since 3.0

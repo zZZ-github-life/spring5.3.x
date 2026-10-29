@@ -1,5 +1,6 @@
 /**
- * WebSocket support classes for the <em>Spring TestContext Framework</em>.
+ * Spring TestContext Framework 的 WebSocket 支持类。
+ *
  */
 @NonNullApi
 @NonNullFields

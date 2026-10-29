@@ -54,7 +54,7 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Default implementation of {@link RSocketRequester.Builder}.
+ * {@link RSocketRequester.Builder} 的默认实现。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev

@@ -30,15 +30,16 @@ import org.eclipse.persistence.jpa.JpaEntityManager;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.orm.jpa.JpaVendorAdapter} implementation for Eclipse
- * Persistence Services (EclipseLink). Developed and tested against EclipseLink 2.7;
- * backwards-compatible with EclipseLink 2.5 and 2.6 at runtime.
+ * 适用于 Eclipse Persistence Services（EclipseLink）的
+ * {@link org.springframework.orm.jpa.JpaVendorAdapter} 实现。
+ * 基于 EclipseLink 2.7 开发并测试；在运行时向后兼容
+ * EclipseLink 2.5 和 2.6。
  *
- * <p>Exposes EclipseLink's persistence provider and EntityManager extension interface,
- * and adapts {@link AbstractJpaVendorAdapter}'s common configuration settings.
- * No support for the detection of annotated packages (through
- * {@link org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo#getManagedPackages()})
- * since EclipseLink doesn't use package-level metadata.
+ * <p>暴露 EclipseLink 的持久化提供者和 EntityManager 扩展接口，
+ * 并适配 {@link AbstractJpaVendorAdapter} 的通用配置设置。
+ * 不支持带注解包的检测（通过
+ * {@link org.springframework.orm.jpa.persistenceunit.SmartPersistenceUnitInfo#getManagedPackages()}），
+ * 因为 EclipseLink 不使用包级元数据。
  *
  * @author Juergen Hoeller
  * @author Thomas Risberg
@@ -89,7 +90,7 @@ public class EclipseLinkJpaVendorAdapter extends AbstractJpaVendorAdapter {
 	}
 
 	/**
-	 * Determine the EclipseLink target database name for the given database.
+	 * 确定给定数据库对应的 EclipseLink 目标数据库名称。
 	 * @param database the specified database
 	 * @return the EclipseLink target database name, or {@code null} if none found
 	 */

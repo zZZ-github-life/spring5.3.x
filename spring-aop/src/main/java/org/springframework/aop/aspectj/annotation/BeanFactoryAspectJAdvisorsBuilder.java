@@ -31,8 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Helper for retrieving @AspectJ beans from a BeanFactory and building
- * Spring Advisors based on them, for use with auto-proxying.
+ * 辅助类，用于从 BeanFactory 中获取 @AspectJ Bean 并基于它们构建 Spring Advisor，以供自动代理使用。
  *
  * @author Juergen Hoeller
  * @since 2.0.2
@@ -53,7 +52,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 
 
 	/**
-	 * Create a new BeanFactoryAspectJAdvisorsBuilder for the given BeanFactory.
+	 * 为给定的 BeanFactory 创建一个新的 BeanFactoryAspectJAdvisorsBuilder。
 	 * @param beanFactory the ListableBeanFactory to scan
 	 */
 	public BeanFactoryAspectJAdvisorsBuilder(ListableBeanFactory beanFactory) {
@@ -61,7 +60,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 	}
 
 	/**
-	 * Create a new BeanFactoryAspectJAdvisorsBuilder for the given BeanFactory.
+	 * 为给定的 BeanFactory 创建一个新的 BeanFactoryAspectJAdvisorsBuilder。
 	 * @param beanFactory the ListableBeanFactory to scan
 	 * @param advisorFactory the AspectJAdvisorFactory to build each Advisor with
 	 */
@@ -74,9 +73,8 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 
 
 	/**
-	 * Look for AspectJ-annotated aspect beans in the current bean factory,
-	 * and return to a list of Spring AOP Advisors representing them.
-	 * <p>Creates a Spring Advisor for each AspectJ advice method.
+	 * 在当前 Bean 工厂中查找带 AspectJ 注解的切面 Bean，并返回表示它们的 Spring AOP Advisor 列表。<p>
+	 * 为每个 AspectJ 通知方法创建一个 Spring Advisor。
 	 * @return the list of {@link org.springframework.aop.Advisor} beans
 	 * @see #isEligibleBean
 	 */
@@ -153,7 +151,7 @@ public class BeanFactoryAspectJAdvisorsBuilder {
 	}
 
 	/**
-	 * Return whether the aspect bean with the given name is eligible.
+	 * 返回具有给定名称的切面 Bean 是否符合条件。
 	 * @param beanName the name of the aspect bean
 	 * @return whether the bean is eligible
 	 */

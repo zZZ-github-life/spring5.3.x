@@ -42,8 +42,8 @@ import org.springframework.expression.spel.SpelMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * Reflection-based {@link MethodResolver} used by default in {@link StandardEvaluationContext}
- * unless explicit method resolvers have been specified.
+ * 基于反射的 {@link MethodResolver}，除非已指定显式的方法解析器，否则在
+ * {@link StandardEvaluationContext} 中默认使用。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -67,12 +67,9 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	}
 
 	/**
-	 * This constructor allows the ReflectiveMethodResolver to be configured such that it
-	 * will use a distance computation to check which is the better of two close matches
-	 * (when there are multiple matches). Using the distance computation is intended to
-	 * ensure matches are more closely representative of what a Java compiler would do
-	 * when taking into account boxing/unboxing and whether the method candidates are
-	 * declared to handle a supertype of the type (of the argument) being passed in.
+	 * 此构造器允许对 ReflectiveMethodResolver 进行配置，使其使用距离计算来检查两个接近的匹配中哪个更合
+	 * 适（当存在多个匹配时）。使用距离计算旨在确保匹配结果更接近 Java 编译器在考虑装箱/拆箱以及方法候
+	 * 选是否声明为处理所传入（参数）类型的超类型时的行为。
 	 * @param useDistance {@code true} if distance computation should be used when
 	 * calculating matches; {@code false} otherwise
 	 */
@@ -82,7 +79,7 @@ public class ReflectiveMethodResolver implements MethodResolver {
 
 
 	/**
-	 * Register a filter for methods on the given type.
+	 * 为给定类型上的方法注册过滤器。
 	 * @param type the type to filter on
 	 * @param filter the corresponding method filter,
 	 * or {@code null} to clear any filter for the given type
@@ -100,12 +97,11 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	}
 
 	/**
-	 * Locate a method on a type. There are three kinds of match that might occur:
+	 * 在类型上定位方法。可能发生三种匹配：
 	 * <ol>
-	 * <li>an exact match where the types of the arguments match the types of the constructor
-	 * <li>an in-exact match where the types we are looking for are subtypes of those defined on the constructor
-	 * <li>a match where we are able to convert the arguments into those expected by the constructor,
-	 * according to the registered type converter
+	 * <li>精确匹配：参数类型与方法类型匹配
+	 * <li>非精确匹配：我们要查找的类型是方法上定义的类型的子类型
+	 * <li>能够根据已注册的类型转换器将参数转换为方法期望的类型的匹配
 	 * </ol>
 	 */
 	@Override
@@ -265,10 +261,8 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	}
 
 	/**
-	 * Return the set of methods for this type. The default implementation returns the
-	 * result of {@link Class#getMethods()} for the given {@code type}, but subclasses
-	 * may override in order to alter the results, e.g. specifying static methods
-	 * declared elsewhere.
+	 * 返回此类型的方法集合。默认实现返回给定 {@code type} 的 {@link Class#getMethods()} 结果，但子类可
+	 * 以重写以改变结果，例如指定在其他位置声明的静态方法。
 	 * @param type the class for which to return the methods
 	 * @since 3.1.1
 	 */
@@ -277,10 +271,8 @@ public class ReflectiveMethodResolver implements MethodResolver {
 	}
 
 	/**
-	 * Determine whether the given {@code Method} is a candidate for method resolution
-	 * on an instance of the given target class.
-	 * <p>The default implementation considers any method as a candidate, even for
-	 * static methods and non-user-declared methods on the {@link Object} base class.
+	 * 判断给定的 {@code Method} 是否为在给定目标类实例上进行方法解析的候选方法。<p>默认实现将任何方法
+	 * 都视为候选方法，即使是静态方法以及 {@link Object} 基类上非用户声明的方法。
 	 * @param method the Method to evaluate
 	 * @param targetClass the concrete target class that is being introspected
 	 * @since 4.3.15

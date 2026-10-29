@@ -19,10 +19,9 @@ package org.springframework.jdbc.support.incrementer;
 import javax.sql.DataSource;
 
 /**
- * {@link DataFieldMaxValueIncrementer} that retrieves the next value
- * of a given PostgreSQL sequence.
+ * {@link DataFieldMaxValueIncrementer}，用于获取给定 PostgreSQL 序列的下一个值。
  *
- * <p>Thanks to Tomislav Urban for the suggestion!
+ * <p>感谢 Tomislav Urban 的建议！
  *
  * @author Juergen Hoeller
  * @deprecated in favor of the differently named {@link PostgresSequenceMaxValueIncrementer}
@@ -31,7 +30,7 @@ import javax.sql.DataSource;
 public class PostgreSQLSequenceMaxValueIncrementer extends PostgresSequenceMaxValueIncrementer {
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 */
@@ -39,7 +38,7 @@ public class PostgreSQLSequenceMaxValueIncrementer extends PostgresSequenceMaxVa
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence/table to use
 	 */

@@ -24,30 +24,30 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Test annotation for use with JUnit 4 to indicate whether a test is enabled or
- * disabled for a specific testing profile.
+ * 用于 JUnit 4 的测试注解，指示测试在
+ * 特定测试配置下是启用还是禁用。
  *
- * <p>In the context of this annotation, the term <em>profile</em> refers to
- * a Java system property by default; however, the semantics can be changed
- * by implementing a custom {@link ProfileValueSource}. If the configured
- * {@code ProfileValueSource} returns a matching {@link #value} for the
- * declared {@link #name}, the test will be enabled. Otherwise, the test
- * will be disabled and effectively <em>ignored</em>.
+ * <p>在此注解的上下文中，术语<em>配置</em>默认指
+ * Java 系统属性；不过，可以通过实现自定义的 {@link ProfileValueSource}
+ * 来更改其语义。如果配置的
+ * {@code ProfileValueSource} 为声明的 {@link #name} 返回匹配的 {@link #value}，
+ * 则测试将被启用。否则，测试
+ * 将被禁用，并实际上被<em>忽略</em>。
  *
- * <p>{@code @IfProfileValue} can be applied at the class level, the method
- * level, or both. Class-level usage of {@code @IfProfileValue} takes
- * precedence over method-level usage for any methods within that class or
- * its subclasses. Specifically, a test is enabled if it is enabled both at
- * the class level <em>and</em> at the method level; the absence of
- * {@code @IfProfileValue} means the test is implicitly enabled. This is
- * analogous to the semantics of JUnit's {@link org.junit.Ignore @Ignore}
- * annotation, except that the presence of {@code @Ignore} always disables
- * a test.
+ * <p>{@code @IfProfileValue} 可以应用于类级别、方法
+ * 级别，或两者兼用。对于该类或其子类中的任何方法，
+ * 类级使用 {@code @IfProfileValue} 优先于方法级使用。具体而言，
+ * 只有当测试在类级别<em>和</em>方法级别
+ * 都启用时，它才会被启用；缺少
+ * {@code @IfProfileValue} 意味着测试隐式启用。这
+ * 类似于 JUnit 的 {@link org.junit.Ignore @Ignore}
+ * 注解的语义，不同之处在于 {@code @Ignore} 的存在总是会禁用
+ * 测试。
  *
- * <h3>Example</h3>
- * When using {@link SystemProfileValueSource} as the {@code ProfileValueSource}
- * implementation (which is configured by default), you can configure a test
- * method to run only on Java VMs from Oracle as follows:
+ * <h3>示例</h3>
+ * 使用 {@link SystemProfileValueSource} 作为 {@code ProfileValueSource}
+ * 实现（这是默认配置）时，可以按如下方式配置测试
+ * 方法，使其仅在 Oracle 的 Java VM 上运行：
  *
  * <pre class="code">
  * &#064;IfProfileValue(name = &quot;java.vendor&quot;, value = &quot;Oracle Corporation&quot;)
@@ -55,14 +55,14 @@ import java.lang.annotation.Target;
  *     // ...
  * }</pre>
  *
- * <h3>'OR' Semantics</h3>
- * <p>You can alternatively configure {@code @IfProfileValue} with <em>OR</em>
- * semantics for multiple {@link #values}. The following test will be enabled
- * if a {@code ProfileValueSource} has been appropriately configured for the
- * {@code "test-groups"} profile with a value of either {@code unit-tests}
- * <em>or</em> {@code integration-tests}. This functionality is similar to
- * TestNG's support for test <em>groups</em> and JUnit's experimental support
- * for test <em>categories</em>.
+ * <h3>'OR' 语义</h3>
+ * <p>或者，可以为多个 {@link #values} 配置具有<em>或</em>
+ * 语义的 {@code @IfProfileValue}。如果
+ * 为 {@code "test-groups"} 配置项适当配置了 {@code ProfileValueSource}，
+ * 其值为 {@code unit-tests}
+ * <em>或</em> {@code integration-tests}，则以下测试将被启用。此功能类似于
+ * TestNG 对测试<em>组</em>的支持以及 JUnit 对测试
+ * <em>类别</em>的实验性支持。
  *
  * <pre class="code">
  * &#064;IfProfileValue(name = &quot;test-groups&quot;, values = { &quot;unit-tests&quot;, &quot;integration-tests&quot; })
@@ -70,17 +70,17 @@ import java.lang.annotation.Target;
  *     // ...
  * }</pre>
  *
- * <h3>{@code @IfProfileValue} vs. {@code @Profile}</h3>
- * <p>Although the {@code @IfProfileValue} and
- * {@link org.springframework.context.annotation.Profile @Profile} annotations
- * both involve <em>profiles</em>, they are not directly related. {@code @Profile}
- * involves bean definition profiles configured in the
- * {@link org.springframework.core.env.Environment Environment}; whereas,
- * {@code @IfProfileValue} is used to enable or disable tests.
+ * <h3>{@code @IfProfileValue} 与 {@code @Profile} 的对比</h3>
+ * <p>尽管 {@code @IfProfileValue} 和
+ * {@link org.springframework.context.annotation.Profile @Profile} 注解
+ * 都涉及<em>配置</em>（profiles），但它们并不直接相关。{@code @Profile}
+ * 涉及在
+ * {@link org.springframework.core.env.Environment Environment} 中配置的 Bean 定义配置；而
+ * {@code @IfProfileValue} 用于启用或禁用测试。
  *
- * <h3>Meta-annotation Support</h3>
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em>.
+ * <h3>元注解支持</h3>
+ * <p>此注解可用作<em>元注解</em>以创建自定义的
+ * <em>组合注解</em>。
  *
  * @author Rod Johnson
  * @author Sam Brannen
@@ -102,23 +102,22 @@ import java.lang.annotation.Target;
 public @interface IfProfileValue {
 
 	/**
-	 * The {@code name} of the <em>profile value</em> against which to test.
+	 * 要针对其进行测试的<em>配置值</em>的 {@code name}。
 	 */
 	String name();
 
 	/**
-	 * A single, permissible {@code value} of the <em>profile value</em>
-	 * for the given {@link #name}.
-	 * <p>Note: Assigning values to both {@code #value} and {@link #values}
-	 * will lead to a configuration conflict.
+	 * 给定 {@link #name} 的<em>配置值</em>的单个允许 {@code value}。
+	 * <p>注意：同时为 {@code #value} 和 {@link #values}
+	 * 赋值将导致配置冲突。
 	 */
 	String value() default "";
 
 	/**
-	 * A list of all permissible {@code values} of the <em>profile value</em>
-	 * for the given {@link #name}.
-	 * <p>Note: Assigning values to both {@link #value} and {@code #values}
-	 * will lead to a configuration conflict.
+	 * 给定 {@link #name} 的<em>配置值</em>的所有允许 {@code values}
+	 * 的列表。
+	 * <p>注意：同时为 {@link #value} 和 {@code #values}
+	 * 赋值将导致配置冲突。
 	 */
 	String[] values() default {};
 

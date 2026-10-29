@@ -17,8 +17,8 @@
 package org.springframework.mail;
 
 /**
- * Exception to be thrown by user code if a mail cannot be prepared properly,
- * for example when a FreeMarker template cannot be rendered for the mail text.
+ * 当邮件无法正确准备时由用户代码抛出的异常，
+ * 例如 FreeMarker 模板无法渲染为邮件文本时。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -28,7 +28,7 @@ package org.springframework.mail;
 public class MailPreparationException extends MailException {
 
 	/**
-	 * Constructor for MailPreparationException.
+	 * MailPreparationException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public MailPreparationException(String msg) {
@@ -36,7 +36,7 @@ public class MailPreparationException extends MailException {
 	}
 
 	/**
-	 * Constructor for MailPreparationException.
+	 * MailPreparationException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the mail API in use
 	 */

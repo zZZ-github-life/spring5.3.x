@@ -23,23 +23,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * A builder for creating "Cache-Control" HTTP response headers.
- *
- * <p>Adding Cache-Control directives to HTTP responses can significantly improve the client
- * experience when interacting with a web application. This builder creates opinionated
- * "Cache-Control" headers with response directives only, with several use cases in mind.
- *
+ * 用于创建 "Cache-Control" HTTP 响应头的构建器。
+ * <p>向 HTTP 响应中添加 Cache-Control 指令可以显著改善客户端与 Web 应用交互时的体验。此构建器仅使用响应指令创建带有明确倾向的 "Cache-Control" 头，并考虑了若干使用场景。
  * <ul>
- * <li>Caching HTTP responses with {@code CacheControl cc = CacheControl.maxAge(1, TimeUnit.HOURS)}
- * will result in {@code Cache-Control: "max-age=3600"}</li>
- * <li>Preventing cache with {@code CacheControl cc = CacheControl.noStore()}
- * will result in {@code Cache-Control: "no-store"}</li>
- * <li>Advanced cases like {@code CacheControl cc = CacheControl.maxAge(1, TimeUnit.HOURS).noTransform().cachePublic()}
- * will result in {@code Cache-Control: "max-age=3600, no-transform, public"}</li>
+ * <li>使用 {@code CacheControl cc = CacheControl.maxAge(1, TimeUnit.HOURS)} 缓存 HTTP 响应将得到 {@code Cache-Control: "max-age=3600"}</li>
+ * <li>使用 {@code CacheControl cc = CacheControl.noStore()} 禁用缓存将得到 {@code Cache-Control: "no-store"}</li>
+ * <li>诸如 {@code CacheControl cc = CacheControl.maxAge(1, TimeUnit.HOURS).noTransform().cachePublic()} 等高级场景将得到 {@code Cache-Control: "max-age=3600, no-transform, public"}</li>
  * </ul>
- *
- * <p>Note that to be efficient, Cache-Control headers should be written along HTTP validators
- * such as "Last-Modified" or "ETag" headers.
+ * <p>请注意，为了保持高效，Cache-Control 头应与 "Last-Modified" 或 "ETag" 等 HTTP 验证器一起写入。
  *
  * @author Brian Clozel
  * @author Juergen Hoeller
@@ -79,7 +70,7 @@ public class CacheControl {
 
 
 	/**
-	 * Create an empty CacheControl instance.
+	 * 创建一个空的 CacheControl 实例。
 	 * @see #empty()
 	 */
 	protected CacheControl() {
@@ -87,9 +78,8 @@ public class CacheControl {
 
 
 	/**
-	 * Return an empty directive.
-	 * <p>This is well suited for using other optional directives without "max-age",
-	 * "no-cache" or "no-store".
+	 * 返回一个空指令。
+	 * <p>这非常适合在不使用 "max-age"、"no-cache" 或 "no-store" 的情况下使用其他可选指令。
 	 * @return {@code this}, to facilitate method chaining
 	 */
 	public static CacheControl empty() {
@@ -97,14 +87,9 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "max-age=" directive.
-	 * <p>This directive is well suited for publicly caching resources, knowing that
-	 * they won't change within the configured amount of time. Additional directives
-	 * can be also used, in case resources shouldn't be cached ({@link #cachePrivate()})
-	 * or transformed ({@link #noTransform()}) by shared caches.
-	 * <p>In order to prevent caches to reuse the cached response even when it has
-	 * become stale (i.e. the "max-age" delay is passed), the "must-revalidate"
-	 * directive should be set ({@link #mustRevalidate()}
+	 * 添加 "max-age=" 指令。
+	 * <p>该指令非常适合公开缓存资源，前提是这些资源在配置的时间段内不会发生变化。如果资源不应被共享缓存缓存（{@link #cachePrivate()}）或转换（{@link #noTransform()}），还可以同时使用其他指令。
+	 * <p>为了防止缓存在响应已过期（即已超过 "max-age" 延迟）时仍复用缓存的响应，应设置 "must-revalidate" 指令（{@link #mustRevalidate()}
 	 * @param maxAge the maximum time the response should be cached
 	 * @param unit the time unit of the {@code maxAge} argument
 	 * @return {@code this}, to facilitate method chaining
@@ -116,14 +101,9 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "max-age=" directive.
-	 * <p>This directive is well suited for publicly caching resources, knowing that
-	 * they won't change within the configured amount of time. Additional directives
-	 * can be also used, in case resources shouldn't be cached ({@link #cachePrivate()})
-	 * or transformed ({@link #noTransform()}) by shared caches.
-	 * <p>In order to prevent caches to reuse the cached response even when it has
-	 * become stale (i.e. the "max-age" delay is passed), the "must-revalidate"
-	 * directive should be set ({@link #mustRevalidate()}
+	 * 添加 "max-age=" 指令。
+	 * <p>该指令非常适合公开缓存资源，前提是这些资源在配置的时间段内不会发生变化。如果资源不应被共享缓存缓存（{@link #cachePrivate()}）或转换（{@link #noTransform()}），还可以同时使用其他指令。
+	 * <p>为了防止缓存在响应已过期（即已超过 "max-age" 延迟）时仍复用缓存的响应，应设置 "must-revalidate" 指令（{@link #mustRevalidate()}
 	 * @param maxAge the maximum time the response should be cached
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 5.2
@@ -136,14 +116,9 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "no-cache" directive.
-	 * <p>This directive is well suited for telling caches that the response
-	 * can be reused only if the client revalidates it with the server.
-	 * This directive won't disable cache altogether and may result with clients
-	 * sending conditional requests (with "ETag", "If-Modified-Since" headers)
-	 * and the server responding with "304 - Not Modified" status.
-	 * <p>In order to disable caching and minimize requests/responses exchanges,
-	 * the {@link #noStore()} directive should be used instead of {@code #noCache()}.
+	 * 添加 "no-cache" 指令。
+	 * <p>该指令适合告知缓存：只有当客户端向服务器重新验证响应之后，该响应才可以被复用。此指令不会完全禁用缓存，客户端可能会发送条件请求（带有 "ETag"、"If-Modified-Since" 头），服务器则以 "304 - Not Modified" 状态响应。
+	 * <p>为了禁用缓存并尽量减少请求/响应交换，应使用 {@link #noStore()} 指令而不是 {@code #noCache()}。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.2">rfc7234 section 5.2.2.2</a>
 	 */
@@ -154,9 +129,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "no-store" directive.
-	 * <p>This directive is well suited for preventing caches (browsers and proxies)
-	 * to cache the content of responses.
+	 * 添加 "no-store" 指令。
+	 * <p>该指令适合阻止缓存（浏览器和代理）缓存响应内容。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.3">rfc7234 section 5.2.2.3</a>
 	 */
@@ -168,10 +142,8 @@ public class CacheControl {
 
 
 	/**
-	 * Add a "must-revalidate" directive.
-	 * <p>This directive indicates that once it has become stale, a cache MUST NOT
-	 * use the response to satisfy subsequent requests without successful validation
-	 * on the origin server.
+	 * 添加 "must-revalidate" 指令。
+	 * <p>该指令表示，一旦响应过期，缓存在未对源服务器成功验证之前，不得使用该响应来满足后续请求。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.1">rfc7234 section 5.2.2.1</a>
 	 */
@@ -181,10 +153,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "no-transform" directive.
-	 * <p>This directive indicates that intermediaries (caches and others) should
-	 * not transform the response content. This can be useful to force caches and
-	 * CDNs not to automatically gzip or optimize the response content.
+	 * 添加 "no-transform" 指令。
+	 * <p>该指令表示中间层（缓存及其他组件）不应转换响应内容。这可用于强制缓存和 CDN 不要自动对响应内容进行 gzip 压缩或优化。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.4">rfc7234 section 5.2.2.4</a>
 	 */
@@ -194,10 +164,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "public" directive.
-	 * <p>This directive indicates that any cache MAY store the response,
-	 * even if the response would normally be non-cacheable or cacheable
-	 * only within a private cache.
+	 * 添加 "public" 指令。
+	 * <p>该指令表示任何缓存都可以存储该响应，即使该响应通常不可缓存，或只能在私有缓存中缓存。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.5">rfc7234 section 5.2.2.5</a>
 	 */
@@ -207,9 +175,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "private" directive.
-	 * <p>This directive indicates that the response message is intended
-	 * for a single user and MUST NOT be stored by a shared cache.
+	 * 添加 "private" 指令。
+	 * <p>该指令表示该响应消息仅面向单个用户，不得由共享缓存存储。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.6">rfc7234 section 5.2.2.6</a>
 	 */
@@ -219,9 +186,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "proxy-revalidate" directive.
-	 * <p>This directive has the same meaning as the "must-revalidate" directive,
-	 * except that it does not apply to private caches (i.e. browsers, HTTP clients).
+	 * 添加 "proxy-revalidate" 指令。
+	 * <p>该指令与 "must-revalidate" 指令含义相同，区别在于它不适用于私有缓存（即浏览器、HTTP 客户端）。
 	 * @return {@code this}, to facilitate method chaining
 	 * @see <a href="https://tools.ietf.org/html/rfc7234#section-5.2.2.7">rfc7234 section 5.2.2.7</a>
 	 */
@@ -231,9 +197,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add an "s-maxage" directive.
-	 * <p>This directive indicates that, in shared caches, the maximum age specified
-	 * by this directive overrides the maximum age specified by other directives.
+	 * 添加 "s-maxage" 指令。
+	 * <p>该指令表示在共享缓存中，此指令指定的最大年龄会覆盖其他指令指定的最大年龄。
 	 * @param sMaxAge the maximum time the response should be cached
 	 * @param unit the time unit of the {@code sMaxAge} argument
 	 * @return {@code this}, to facilitate method chaining
@@ -245,9 +210,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add an "s-maxage" directive.
-	 * <p>This directive indicates that, in shared caches, the maximum age specified
-	 * by this directive overrides the maximum age specified by other directives.
+	 * 添加 "s-maxage" 指令。
+	 * <p>该指令表示在共享缓存中，此指令指定的最大年龄会覆盖其他指令指定的最大年龄。
 	 * @param sMaxAge the maximum time the response should be cached
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 5.2
@@ -259,12 +223,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "stale-while-revalidate" directive.
-	 * <p>This directive indicates that caches MAY serve the response in which it
-	 * appears after it becomes stale, up to the indicated number of seconds.
-	 * If a cached response is served stale due to the presence of this extension,
-	 * the cache SHOULD attempt to revalidate it while still serving stale responses
-	 * (i.e. without blocking).
+	 * 添加 "stale-while-revalidate" 指令。
+	 * <p>该指令表示缓存可以在响应过期后继续提供该响应，最长不超过指定的秒数。如果由于此扩展的存在而以过期状态提供缓存响应，缓存应尝试在继续提供过期响应的同时重新验证它（即不阻塞）。
 	 * @param staleWhileRevalidate the maximum time the response should be used while being revalidated
 	 * @param unit the time unit of the {@code staleWhileRevalidate} argument
 	 * @return {@code this}, to facilitate method chaining
@@ -276,12 +236,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "stale-while-revalidate" directive.
-	 * <p>This directive indicates that caches MAY serve the response in which it
-	 * appears after it becomes stale, up to the indicated number of seconds.
-	 * If a cached response is served stale due to the presence of this extension,
-	 * the cache SHOULD attempt to revalidate it while still serving stale responses
-	 * (i.e. without blocking).
+	 * 添加 "stale-while-revalidate" 指令。
+	 * <p>该指令表示缓存可以在响应过期后继续提供该响应，最长不超过指定的秒数。如果由于此扩展的存在而以过期状态提供缓存响应，缓存应尝试在继续提供过期响应的同时重新验证它（即不阻塞）。
 	 * @param staleWhileRevalidate the maximum time the response should be used while being revalidated
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 5.2
@@ -293,9 +249,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "stale-if-error" directive.
-	 * <p>This directive indicates that when an error is encountered, a cached stale response
-	 * MAY be used to satisfy the request, regardless of other freshness information.
+	 * 添加 "stale-if-error" 指令。
+	 * <p>该指令表示当遇到错误时，可以使用缓存的过期响应来满足请求，而不考虑其他新鲜度信息。
 	 * @param staleIfError the maximum time the response should be used when errors are encountered
 	 * @param unit the time unit of the {@code staleIfError} argument
 	 * @return {@code this}, to facilitate method chaining
@@ -307,9 +262,8 @@ public class CacheControl {
 	}
 
 	/**
-	 * Add a "stale-if-error" directive.
-	 * <p>This directive indicates that when an error is encountered, a cached stale response
-	 * MAY be used to satisfy the request, regardless of other freshness information.
+	 * 添加 "stale-if-error" 指令。
+	 * <p>该指令表示当遇到错误时，可以使用缓存的过期响应来满足请求，而不考虑其他新鲜度信息。
 	 * @param staleIfError the maximum time the response should be used when errors are encountered
 	 * @return {@code this}, to facilitate method chaining
 	 * @since 5.2
@@ -321,7 +275,7 @@ public class CacheControl {
 	}
 
 	/**
-	 * Return the "Cache-Control" header value, if any.
+	 * 返回 "Cache-Control" 头值（如果有）。
 	 * @return the header value, or {@code null} if no directive was added
 	 */
 	@Nullable
@@ -331,7 +285,7 @@ public class CacheControl {
 	}
 
 	/**
-	 * Return the "Cache-Control" header value.
+	 * 返回 "Cache-Control" 头值。
 	 * @return the header value (potentially empty)
 	 */
 	private String toHeaderValue() {

@@ -23,9 +23,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link AspectInstanceFactory} that is backed by a
- * specified singleton object, returning the same instance for every
- * {@link #getAspectInstance()} call.
+ * {@link AspectInstanceFactory} 的实现，由指定的单例对象支持，每次调用
+ * {@link #getAspectInstance()} 都返回同一个实例。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -39,7 +38,7 @@ public class SingletonAspectInstanceFactory implements AspectInstanceFactory, Se
 
 
 	/**
-	 * Create a new SingletonAspectInstanceFactory for the given aspect instance.
+	 * 为给定的切面实例创建一个新的 SingletonAspectInstanceFactory。
 	 * @param aspectInstance the singleton aspect instance
 	 */
 	public SingletonAspectInstanceFactory(Object aspectInstance) {
@@ -60,10 +59,8 @@ public class SingletonAspectInstanceFactory implements AspectInstanceFactory, Se
 	}
 
 	/**
-	 * Determine the order for this factory's aspect instance,
-	 * either an instance-specific order expressed through implementing
-	 * the {@link org.springframework.core.Ordered} interface,
-	 * or a fallback order.
+	 * 确定此工厂的切面实例的顺序：要么是通过实现 {@link org.springframework.core.Ordered} 接口表达的实
+	 * 例特定顺序，要么是回退顺序。
 	 * @see org.springframework.core.Ordered
 	 * @see #getOrderForAspectClass
 	 */
@@ -76,10 +73,9 @@ public class SingletonAspectInstanceFactory implements AspectInstanceFactory, Se
 	}
 
 	/**
-	 * Determine a fallback order for the case that the aspect instance
-	 * does not express an instance-specific order through implementing
-	 * the {@link org.springframework.core.Ordered} interface.
-	 * <p>The default implementation simply returns {@code Ordered.LOWEST_PRECEDENCE}.
+	 * 确定当切面实例未通过实现 {@link org.springframework.core.Ordered} 接口来表达实例特定顺序时所使用
+	 * 的回退顺序。
+	 * <p>默认实现仅返回 {@code Ordered.LOWEST_PRECEDENCE}。
 	 * @param aspectClass the aspect class
 	 */
 	protected int getOrderForAspectClass(Class<?> aspectClass) {

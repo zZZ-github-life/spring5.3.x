@@ -31,11 +31,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * Implementation of {@link HttpMessageConverter} that can read/write {@link Resource Resources}
- * and supports byte range requests.
+ * 可读写 {@link Resource Resource} 并支持字节范围请求的
+ * {@link HttpMessageConverter} 实现。
  *
- * <p>By default, this converter can read all media types. The {@link MediaTypeFactory} is used
- * to determine the {@code Content-Type} of written resources.
+ * <p>默认情况下，此转换器可以读取所有媒体类型。{@link MediaTypeFactory}
+ * 用于确定所写入资源的 {@code Content-Type}。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -48,9 +48,9 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 
 
 	/**
-	 * Create a new instance of the {@code ResourceHttpMessageConverter}
-	 * that supports read streaming, i.e. can convert an
-	 * {@code HttpInputMessage} to {@code InputStreamResource}.
+	 * 创建 {@code ResourceHttpMessageConverter} 的新实例，
+	 * 支持读取流式处理，即可将
+	 * {@code HttpInputMessage} 转换为 {@code InputStreamResource}。
 	 */
 	public ResourceHttpMessageConverter() {
 		super(MediaType.ALL);
@@ -58,7 +58,7 @@ public class ResourceHttpMessageConverter extends AbstractHttpMessageConverter<R
 	}
 
 	/**
-	 * Create a new instance of the {@code ResourceHttpMessageConverter}.
+	 * 创建 {@code ResourceHttpMessageConverter} 的新实例。
 	 * @param supportsReadStreaming whether the converter should support
 	 * read streaming, i.e. convert to {@code InputStreamResource}
 	 * @since 5.0

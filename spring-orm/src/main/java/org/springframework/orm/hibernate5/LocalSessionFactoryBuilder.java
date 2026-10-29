@@ -69,24 +69,23 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * A Spring-provided extension of the standard Hibernate {@link Configuration} class,
- * adding {@link SpringSessionContext} as a default and providing convenient ways
- * to specify a JDBC {@link DataSource} and an application class loader.
+ * Spring 提供的标准 Hibernate {@link Configuration} 类扩展，
+ * 默认添加 {@link SpringSessionContext}，并提供便捷方式来
+ * 指定 JDBC {@link DataSource} 和应用程序类加载器。
  *
- * <p>This is designed for programmatic use, e.g. in {@code @Bean} factory methods;
- * consider using {@link LocalSessionFactoryBean} for XML bean definition files.
- * Typically combined with {@link HibernateTransactionManager} for declarative
- * transactions against the {@code SessionFactory} and its JDBC {@code DataSource}.
+ * <p>此设计用于编程式使用，例如在 {@code @Bean} 工厂方法中；
+ * 对于 XML bean 定义文件，请考虑使用 {@link LocalSessionFactoryBean}。
+ * 通常与 {@link HibernateTransactionManager} 结合使用，以便针对
+ * {@code SessionFactory} 及其 JDBC {@code DataSource} 进行声明式事务管理。
  *
- * <p>Compatible with Hibernate 5.2/5.3/5.4, as of Spring 5.3.
- * This Hibernate-specific factory builder can also be a convenient way to set up
- * a JPA {@code EntityManagerFactory} since the Hibernate {@code SessionFactory}
- * natively exposes the JPA {@code EntityManagerFactory} interface as well now.
+ * <p>自 Spring 5.3 起，兼容 Hibernate 5.2/5.3/5.4。
+ * 这个 Hibernate 专用的工厂构建器也是设置 JPA {@code EntityManagerFactory}
+ * 的便捷方式，因为 Hibernate {@code SessionFactory} 现在也原生暴露了
+ * JPA {@code EntityManagerFactory} 接口。
  *
- * <p>This builder supports Hibernate 5.3/5.4 {@code BeanContainer} integration,
- * {@link MetadataSources} from custom {@link BootstrapServiceRegistryBuilder}
- * setup, as well as other advanced Hibernate configuration options beyond the
- * standard JPA bootstrap contract.
+ * <p>此构建器支持 Hibernate 5.3/5.4 {@code BeanContainer} 集成、
+ * 来自自定义 {@link BootstrapServiceRegistryBuilder} 配置的 {@link MetadataSources}，
+ * 以及超出标准 JPA 引导契约的其他高级 Hibernate 配置选项。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -118,7 +117,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 
 	/**
-	 * Create a new LocalSessionFactoryBuilder for the given DataSource.
+	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
 	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
 	 * (may be {@code null})
 	 */
@@ -127,7 +126,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Create a new LocalSessionFactoryBuilder for the given DataSource.
+	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
 	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
 	 * (may be {@code null})
 	 * @param classLoader the ClassLoader to load application classes from
@@ -137,7 +136,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Create a new LocalSessionFactoryBuilder for the given DataSource.
+	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
 	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
 	 * (may be {@code null})
 	 * @param resourceLoader the ResourceLoader to load application classes from
@@ -148,7 +147,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Create a new LocalSessionFactoryBuilder for the given DataSource.
+	 * 为给定的 DataSource 创建一个新的 LocalSessionFactoryBuilder。
 	 * @param dataSource the JDBC DataSource that the resulting Hibernate SessionFactory should be using
 	 * (may be {@code null})
 	 * @param resourceLoader the ResourceLoader to load application classes from
@@ -173,15 +172,15 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 
 	/**
-	 * Set the Spring {@link JtaTransactionManager} or the JTA {@link TransactionManager}
-	 * to be used with Hibernate, if any. Allows for using a Spring-managed transaction
-	 * manager for Hibernate 5's session and cache synchronization, with the
-	 * "hibernate.transaction.jta.platform" automatically set to it.
-	 * <p>A passed-in Spring {@link JtaTransactionManager} needs to contain a JTA
-	 * {@link TransactionManager} reference to be usable here, except for the WebSphere
-	 * case where we'll automatically set {@code WebSphereExtendedJtaPlatform} accordingly.
-	 * <p>Note: If this is set, the Hibernate settings should not contain a JTA platform
-	 * setting to avoid meaningless double configuration.
+	 * 设置要与 Hibernate 一起使用的 Spring {@link JtaTransactionManager}
+	 * 或 JTA {@link TransactionManager}（如果有）。允许为 Hibernate 5 的
+	 * 会话和缓存同步使用 Spring 管理的事务管理器，
+	 * 并自动将 "hibernate.transaction.jta.platform" 设置为它。
+	 * <p>传入的 Spring {@link JtaTransactionManager} 需要包含 JTA
+	 * {@link TransactionManager} 引用才能在此使用，但 WebSphere
+	 * 情况除外，此时我们会相应地自动设置 {@code WebSphereExtendedJtaPlatform}。
+	 * <p>注意：如果设置了此项，Hibernate 设置中就不应包含 JTA 平台
+	 * 设置，以避免无意义的重复配置。
 	 */
 	public LocalSessionFactoryBuilder setJtaTransactionManager(Object jtaTransactionManager) {
 		Assert.notNull(jtaTransactionManager, "Transaction manager reference must not be null");
@@ -220,10 +219,10 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Set a Hibernate {@link org.hibernate.resource.beans.container.spi.BeanContainer}
-	 * for the given Spring {@link ConfigurableListableBeanFactory}.
-	 * <p>Note: Bean container integration requires Hibernate 5.3 or higher.
-	 * It enables autowiring of Hibernate attribute converters and entity listeners.
+	 * 为给定的 Spring {@link ConfigurableListableBeanFactory} 设置
+	 * Hibernate {@link org.hibernate.resource.beans.container.spi.BeanContainer}。
+	 * <p>注意：Bean 容器集成要求 Hibernate 5.3 或更高版本。
+	 * 它支持 Hibernate 属性转换器和实体监听器的自动装配。
 	 * @since 5.1
 	 * @see SpringBeanContainer
 	 * @see AvailableSettings#BEAN_CONTAINER
@@ -234,10 +233,10 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Set the Hibernate {@link RegionFactory} to use for the SessionFactory.
-	 * Allows for using a Spring-managed {@code RegionFactory} instance.
-	 * <p>Note: If this is set, the Hibernate settings should not define a
-	 * cache provider to avoid meaningless double configuration.
+	 * 设置 SessionFactory 要使用的 Hibernate {@link RegionFactory}。
+	 * 允许使用 Spring 管理的 {@code RegionFactory} 实例。
+	 * <p>注意：如果设置了此项，Hibernate 设置中就不应再定义
+	 * 缓存提供器，以避免无意义的重复配置。
 	 * @since 5.1
 	 * @see AvailableSettings#CACHE_REGION_FACTORY
 	 */
@@ -247,7 +246,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Set a {@link MultiTenantConnectionProvider} to be passed on to the SessionFactory.
+	 * 设置要传递给 SessionFactory 的 {@link MultiTenantConnectionProvider}。
 	 * @since 4.3
 	 * @see AvailableSettings#MULTI_TENANT_CONNECTION_PROVIDER
 	 */
@@ -257,7 +256,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Overridden to reliably pass a {@link CurrentTenantIdentifierResolver} to the SessionFactory.
+	 * 重写以确保将 {@link CurrentTenantIdentifierResolver} 可靠地传递给 SessionFactory。
 	 * @since 4.3.2
 	 * @see AvailableSettings#MULTI_TENANT_IDENTIFIER_RESOLVER
 	 */
@@ -268,10 +267,10 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Specify custom type filters for Spring-based scanning for entity classes.
-	 * <p>Default is to search all specified packages for classes annotated with
-	 * {@code @javax.persistence.Entity}, {@code @javax.persistence.Embeddable}
-	 * or {@code @javax.persistence.MappedSuperclass}.
+	 * 为基于 Spring 的实体类扫描指定自定义类型过滤器。
+	 * <p>默认会在所有指定的包中搜索使用
+	 * {@code @javax.persistence.Entity}、{@code @javax.persistence.Embeddable}
+	 * 或 {@code @javax.persistence.MappedSuperclass} 注解的类。
 	 * @see #scanPackages
 	 */
 	public LocalSessionFactoryBuilder setEntityTypeFilters(TypeFilter... entityTypeFilters) {
@@ -280,7 +279,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Add the given annotated classes in a batch.
+	 * 批量添加给定的注解类。
 	 * @see #addAnnotatedClass
 	 * @see #scanPackages
 	 */
@@ -292,7 +291,7 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Add the given annotated packages in a batch.
+	 * 批量添加给定的注解包。
 	 * @see #addPackage
 	 * @see #scanPackages
 	 */
@@ -304,8 +303,8 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Perform Spring-based scanning for entity classes, registering them
-	 * as annotated classes with this {@code Configuration}.
+	 * 执行基于 Spring 的实体类扫描，将它们作为注解类
+	 * 注册到此 {@code Configuration}。
 	 * @param packagesToScan one or more Java package names
 	 * @throws HibernateException if scanning fails for any reason
 	 */
@@ -362,8 +361,8 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Check whether any of the configured entity type filters matches
-	 * the current class descriptor contained in the metadata reader.
+	 * 检查配置的任何实体类型过滤器是否匹配
+	 * 元数据读取器中包含的当前类描述符。
 	 */
 	private boolean matchesEntityTypeFilter(MetadataReader reader, MetadataReaderFactory readerFactory) throws IOException {
 		if (this.entityTypeFilters != null) {
@@ -377,16 +376,16 @@ public class LocalSessionFactoryBuilder extends Configuration {
 	}
 
 	/**
-	 * Build the Hibernate {@code SessionFactory} through background bootstrapping,
-	 * using the given executor for a parallel initialization phase
-	 * (e.g. a {@link org.springframework.core.task.SimpleAsyncTaskExecutor}).
-	 * <p>{@code SessionFactory} initialization will then switch into background
-	 * bootstrap mode, with a {@code SessionFactory} proxy immediately returned for
-	 * injection purposes instead of waiting for Hibernate's bootstrapping to complete.
-	 * However, note that the first actual call to a {@code SessionFactory} method will
-	 * then block until Hibernate's bootstrapping completed, if not ready by then.
-	 * For maximum benefit, make sure to avoid early {@code SessionFactory} calls
-	 * in init methods of related beans, even for metadata introspection purposes.
+	 * 通过后台引导构建 Hibernate {@code SessionFactory}，
+	 * 使用给定执行器进行并行初始化阶段
+	 * （例如 {@link org.springframework.core.task.SimpleAsyncTaskExecutor}）。
+	 * <p>{@code SessionFactory} 初始化随后将切换到后台
+	 * 引导模式，立即返回 {@code SessionFactory} 代理用于
+	 * 注入目的，而不是等待 Hibernate 的引导完成。
+	 * 但请注意，对 {@code SessionFactory} 方法的第一次实际调用
+	 * 届时会阻塞，直到 Hibernate 引导完成（如果那时尚未就绪）。
+	 * 为获得最大收益，请确保避免在相关 bean 的初始化方法中
+	 * 提前调用 {@code SessionFactory}，即使只是为了元数据内省。
 	 * @since 4.3
 	 * @see #buildSessionFactory()
 	 */
@@ -399,8 +398,8 @@ public class LocalSessionFactoryBuilder extends Configuration {
 
 
 	/**
-	 * Proxy invocation handler for background bootstrapping, only enforcing
-	 * a fully initialized target {@code SessionFactory} when actually needed.
+	 * 用于后台引导的代理调用处理器，仅在确实需要时
+	 * 才强制要求目标 {@code SessionFactory} 完全初始化。
 	 * @since 4.3
 	 */
 	private class BootstrapSessionFactoryInvocationHandler implements InvocationHandler {

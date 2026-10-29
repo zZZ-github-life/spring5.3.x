@@ -25,8 +25,8 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple adapter for {@link PreparedStatementSetter} that applies
- * given arrays of arguments and JDBC argument types.
+ * {@link PreparedStatementSetter}的简单适配器，应用
+ * 给定的参数数组和JDBC参数类型数组。
  *
  * @author Juergen Hoeller
  * @since 3.2.3
@@ -41,7 +41,7 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 
 
 	/**
-	 * Create a new ArgTypePreparedStatementSetter for the given arguments.
+	 * 为给定参数创建新的ArgTypePreparedStatementSetter。
 	 * @param args the arguments to set
 	 * @param argTypes the corresponding SQL types of the arguments
 	 */
@@ -86,8 +86,8 @@ public class ArgumentTypePreparedStatementSetter implements PreparedStatementSet
 	}
 
 	/**
-	 * Set the value for the prepared statement's specified parameter position using the passed in
-	 * value and type. This method can be overridden by subclasses if needed.
+	 * 使用传入的值和类型为PreparedStatement的指定参数位置设置值。
+	 * 子类可以根据需要重写此方法。
 	 * @param ps the PreparedStatement
 	 * @param parameterPosition index of the parameter position
 	 * @param argType the argument type

@@ -58,12 +58,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Reads a given fully-populated set of ConfigurationClass instances, registering bean
- * definitions with the given {@link BeanDefinitionRegistry} based on its contents.
+ * 读取一组已完全填充的 ConfigurationClass 实例，并根据其内容将 Bean 定义注册到给定的
+ * {@link BeanDefinitionRegistry} 中。
  *
- * <p>This class was modeled after the {@link BeanDefinitionReader} hierarchy, but does
- * not implement/extend any of its artifacts as a set of configuration classes is not a
- * {@link Resource}.
+ * <p>此类仿照 {@link BeanDefinitionReader} 层次结构设计，但不实现/继承其中的任何构件，因为一组配置
+ * 类并不是 {@link Resource}。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -80,9 +79,9 @@ class ConfigurationClassBeanDefinitionReader {
 	private static final ScopeMetadataResolver scopeMetadataResolver = new AnnotationScopeMetadataResolver();
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring 忽略 XML，即不初始化与 XML 相关
+	 * 的基础设施。
+	 * <p>默认值为 "false"。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 
@@ -102,8 +101,8 @@ class ConfigurationClassBeanDefinitionReader {
 
 
 	/**
-	 * Create a new {@link ConfigurationClassBeanDefinitionReader} instance
-	 * that will be used to populate the given {@link BeanDefinitionRegistry}.
+	 * 创建一个新的 {@link ConfigurationClassBeanDefinitionReader} 实例，用于填充给定的
+	 * {@link BeanDefinitionRegistry}。
 	 */
 	ConfigurationClassBeanDefinitionReader(BeanDefinitionRegistry registry, SourceExtractor sourceExtractor,
 			ResourceLoader resourceLoader, Environment environment, BeanNameGenerator importBeanNameGenerator,
@@ -120,8 +119,7 @@ class ConfigurationClassBeanDefinitionReader {
 
 
 	/**
-	 * Read {@code configurationModel}, registering bean definitions
-	 * with the registry based on its contents.
+	 * 读取 {@code configurationModel}，并根据其内容向注册表注册 Bean 定义。
 	 */
 	public void loadBeanDefinitions(Set<ConfigurationClass> configurationModel) {
 		TrackedConditionEvaluator trackedConditionEvaluator = new TrackedConditionEvaluator();
@@ -131,8 +129,7 @@ class ConfigurationClassBeanDefinitionReader {
 	}
 
 	/**
-	 * Read a particular {@link ConfigurationClass}, registering bean definitions
-	 * for the class itself and all of its {@link Bean} methods.
+	 * 读取特定的 {@link ConfigurationClass}，为该类本身及其所有 {@link Bean} 方法注册 Bean 定义。
 	 */
 	private void loadBeanDefinitionsForConfigurationClass(
 			ConfigurationClass configClass, TrackedConditionEvaluator trackedConditionEvaluator) {
@@ -158,7 +155,7 @@ class ConfigurationClassBeanDefinitionReader {
 	}
 
 	/**
-	 * Register the {@link Configuration} class itself as a bean definition.
+	 * 将 {@link Configuration} 类本身注册为 Bean 定义。
 	 */
 	private void registerBeanDefinitionForImportedConfigurationClass(ConfigurationClass configClass) {
 		AnnotationMetadata metadata = configClass.getMetadata();
@@ -180,8 +177,7 @@ class ConfigurationClassBeanDefinitionReader {
 	}
 
 	/**
-	 * Read the given {@link BeanMethod}, registering bean definitions
-	 * with the BeanDefinitionRegistry based on its contents.
+	 * 读取给定的 {@link BeanMethod}，并根据其内容向 BeanDefinitionRegistry 注册 Bean 定义。
 	 */
 	@SuppressWarnings("deprecation")  // for RequiredAnnotationBeanPostProcessor.SKIP_REQUIRED_CHECK_ATTRIBUTE
 	private void loadBeanDefinitionsForBeanMethod(BeanMethod beanMethod) {
@@ -398,10 +394,8 @@ class ConfigurationClassBeanDefinitionReader {
 
 
 	/**
-	 * {@link RootBeanDefinition} marker subclass used to signify that a bean definition
-	 * was created from a configuration class as opposed to any other configuration source.
-	 * Used in bean overriding cases where it's necessary to determine whether the bean
-	 * definition was created externally.
+	 * {@link RootBeanDefinition} 的标记子类，用于表明某个 Bean 定义是由配置类创建的，而不是来自其他配
+	 * 置来源。用于 Bean 覆盖的场景，此时需要判断该 Bean 定义是否由外部创建。
 	 */
 	@SuppressWarnings("serial")
 	private static class ConfigurationClassBeanDefinition extends RootBeanDefinition implements AnnotatedBeanDefinition {
@@ -462,8 +456,7 @@ class ConfigurationClassBeanDefinitionReader {
 
 
 	/**
-	 * Evaluate {@code @Conditional} annotations, tracking results and taking into
-	 * account 'imported by'.
+	 * 评估 {@code @Conditional} 注解，跟踪结果并考虑“imported by”。
 	 */
 	private class TrackedConditionEvaluator {
 

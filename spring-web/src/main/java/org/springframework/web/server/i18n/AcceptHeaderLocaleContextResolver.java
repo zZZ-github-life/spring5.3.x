@@ -29,12 +29,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@link LocaleContextResolver} implementation that simply uses the primary locale
- * specified in the "Accept-Language" header of the HTTP request (that is,
- * the locale sent by the client browser, normally that of the client's OS).
+ * {@link LocaleContextResolver} 实现，仅使用 HTTP 请求 "Accept-Language" 头部中
+ * 指定的首选区域设置（即客户端浏览器发送的区域设置，通常是客户端操作系统的区域设置）。
  *
- * <p>Note: Does not support {@link #setLocaleContext}, since the accept header
- * can only be changed through changing the client's locale settings.
+ * <p>注意：不支持 {@link #setLocaleContext}，因为 Accept 头部只能通过
+ * 更改客户端的区域设置来改变。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -50,8 +49,8 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 
 
 	/**
-	 * Configure supported locales to check against the requested locales
-	 * determined via {@link HttpHeaders#getAcceptLanguageAsLocales()}.
+	 * 配置受支持的区域设置，用于与通过
+	 * {@link HttpHeaders#getAcceptLanguageAsLocales()} 确定的请求区域设置进行匹配。
 	 * @param locales the supported locales
 	 */
 	public void setSupportedLocales(List<Locale> locales) {
@@ -60,15 +59,15 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 	}
 
 	/**
-	 * Return the configured list of supported locales.
+	 * 返回已配置的受支持区域设置列表。
 	 */
 	public List<Locale> getSupportedLocales() {
 		return this.supportedLocales;
 	}
 
 	/**
-	 * Configure a fixed default locale to fall back on if the request does not
-	 * have an "Accept-Language" header (not set by default).
+	 * 配置一个固定的默认区域设置，当请求没有 "Accept-Language" 头部时作为后备
+	 * （默认不设置）。
 	 * @param defaultLocale the default locale to use
 	 */
 	public void setDefaultLocale(@Nullable Locale defaultLocale) {
@@ -76,8 +75,8 @@ public class AcceptHeaderLocaleContextResolver implements LocaleContextResolver 
 	}
 
 	/**
-	 * The configured default locale, if any.
-	 * <p>This method may be overridden in subclasses.
+	 * 已配置的默认区域设置（如果有）。
+	 * <p>此方法可以在子类中重写。
 	 */
 	@Nullable
 	public Locale getDefaultLocale() {

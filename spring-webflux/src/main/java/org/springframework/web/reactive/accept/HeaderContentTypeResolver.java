@@ -25,8 +25,7 @@ import org.springframework.web.server.NotAcceptableStatusException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolver that looks at the 'Accept' header of the request.
- *
+ * 查看请求的 'Accept' 头的解析器。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

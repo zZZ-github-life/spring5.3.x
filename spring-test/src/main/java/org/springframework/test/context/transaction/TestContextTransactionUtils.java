@@ -39,10 +39,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods for working with transactions and data access related beans
- * within the <em>Spring TestContext Framework</em>.
- *
- * <p>Mainly for internal use within the framework.
+ * 用于在 <em>Spring TestContext Framework</em> 中处理事务和数据访问相关 bean 的工具方法。
+ * <p>主要用于框架内部。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -51,13 +49,12 @@ import org.springframework.util.StringUtils;
 public abstract class TestContextTransactionUtils {
 
 	/**
-	 * Default bean name for a {@link DataSource}: {@code "dataSource"}.
+	 * {@link DataSource} 的默认 bean 名称：{@code "dataSource"}。
 	 */
 	public static final String DEFAULT_DATA_SOURCE_NAME = "dataSource";
 
 	/**
-	 * Default bean name for a {@link PlatformTransactionManager}:
-	 * {@code "transactionManager"}.
+	 * {@link PlatformTransactionManager} 的默认 bean 名称：{@code "transactionManager"}。
 	 */
 	public static final String DEFAULT_TRANSACTION_MANAGER_NAME = "transactionManager";
 
@@ -66,19 +63,13 @@ public abstract class TestContextTransactionUtils {
 
 
 	/**
-	 * Retrieve the {@link DataSource} to use for the supplied {@linkplain TestContext
-	 * test context}.
-	 * <p>The following algorithm is used to retrieve the {@code DataSource} from
-	 * the {@link org.springframework.context.ApplicationContext ApplicationContext}
-	 * of the supplied test context:
+	 * 获取要用于所提供的{@linkplain TestContext 测试上下文}的 {@link DataSource}。
+	 * <p>使用以下算法从所提供测试上下文的 {@link org.springframework.context.ApplicationContext ApplicationContext} 中获取 {@code DataSource}：
 	 * <ol>
-	 * <li>Look up the {@code DataSource} by type and name, if the supplied
-	 * {@code name} is non-empty, throwing a {@link BeansException} if the named
-	 * {@code DataSource} does not exist.
-	 * <li>Attempt to look up the single {@code DataSource} by type.
-	 * <li>Attempt to look up the <em>primary</em> {@code DataSource} by type.
-	 * <li>Attempt to look up the {@code DataSource} by type and the
-	 * {@linkplain #DEFAULT_DATA_SOURCE_NAME default data source name}.
+	 * <li>如果提供的 {@code name} 非空，则按类型和名称查找 {@code DataSource}；如果指定名称的 {@code DataSource} 不存在，则抛出 {@link BeansException}。
+	 * <li>尝试按类型查找单个 {@code DataSource}。
+	 * <li>尝试按类型查找<em>主</em> {@code DataSource}。
+	 * <li>尝试按类型和{@linkplain #DEFAULT_DATA_SOURCE_NAME 默认数据源名称}查找 {@code DataSource}。
 	 * </ol>
 	 * @param testContext the test context for which the {@code DataSource}
 	 * should be retrieved; never {@code null}
@@ -135,22 +126,14 @@ public abstract class TestContextTransactionUtils {
 	}
 
 	/**
-	 * Retrieve the {@linkplain PlatformTransactionManager transaction manager}
-	 * to use for the supplied {@linkplain TestContext test context}.
-	 * <p>The following algorithm is used to retrieve the transaction manager
-	 * from the {@link org.springframework.context.ApplicationContext ApplicationContext}
-	 * of the supplied test context:
+	 * 获取要用于所提供的{@linkplain TestContext 测试上下文}的{@linkplain PlatformTransactionManager 事务管理器}。
+	 * <p>使用以下算法从所提供测试上下文的 {@link org.springframework.context.ApplicationContext ApplicationContext} 中获取事务管理器：
 	 * <ol>
-	 * <li>Look up the transaction manager by type and explicit name, if the supplied
-	 * {@code name} is non-empty, throwing a {@link BeansException} if the named
-	 * transaction manager does not exist.
-	 * <li>Attempt to look up the transaction manager via a
-	 * {@link TransactionManagementConfigurer}, if present.
-	 * <li>Attempt to look up the single transaction manager by type.
-	 * <li>Attempt to look up the <em>primary</em> transaction manager by type.
-	 * <li>Attempt to look up the transaction manager by type and the
-	 * {@linkplain #DEFAULT_TRANSACTION_MANAGER_NAME default transaction manager
-	 * name}.
+	 * <li>如果提供的 {@code name} 非空，则按类型和显式名称查找事务管理器；如果指定名称的事务管理器不存在，则抛出 {@link BeansException}。
+	 * <li>如果存在 {@link TransactionManagementConfigurer}，则尝试通过它查找事务管理器。
+	 * <li>尝试按类型查找单个事务管理器。
+	 * <li>尝试按类型查找<em>主</em>事务管理器。
+	 * <li>尝试按类型和{@linkplain #DEFAULT_TRANSACTION_MANAGER_NAME 默认事务管理器名称}查找事务管理器。
 	 * </ol>
 	 * @param testContext the test context for which the transaction manager
 	 * should be retrieved; never {@code null}
@@ -229,9 +212,7 @@ public abstract class TestContextTransactionUtils {
 	}
 
 	/**
-	 * Create a delegating {@link TransactionAttribute} for the supplied target
-	 * {@link TransactionAttribute} and {@link TestContext}, using the names of
-	 * the test class and test method to build the name of the transaction.
+	 * 为所提供的目标 {@link TransactionAttribute} 和 {@link TestContext} 创建一个委托 {@link TransactionAttribute}，并使用测试类和测试方法的名称构建事务名称。
 	 * @param testContext the {@code TestContext} upon which to base the name
 	 * @param targetAttribute the {@code TransactionAttribute} to delegate to
 	 * @return the delegating {@code TransactionAttribute}

@@ -21,9 +21,8 @@ import org.springframework.web.server.WebHandler;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Simple extension of {@link AbstractMockServerSpec} that is given a target
- * {@link WebHandler}.
- *
+ * {@link AbstractMockServerSpec} 的简单扩展，接收目标
+ * {@link WebHandler}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */

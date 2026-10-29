@@ -1,0 +1,125 @@
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::30::0", "zh": ["用于创建通知器的便捷方法，这些通知器可在自动代理由 Spring IoC 容器创建的 Bean 时使用，并将 Bean 名称绑定到当前调用。可以与 AspectJ 配合支持 {@code bean()} 切点指示符。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::30::1", "zh": ["<p>通常用于 Spring 自动代理场景，此时 Bean 名称在创建代理时即已确定。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::45::0", "zh": ["用于在当前被调用的 Bean 上绑定 Bean 名称，该名称存放在 ReflectiveMethodInvocation 的 userAttributes Map 中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::52::0", "zh": ["查找当前调用的 Bean 名称。假定拦截器链中已包含 ExposeBeanNameAdvisor，并且调用已通过 ExposeInvocationInterceptor 暴露。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::63::0", "zh": ["查找给定调用的 Bean 名称。假定拦截器链中已包含 ExposeBeanNameAdvisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::82::0", "zh": ["创建一个新的通知器，用于暴露给定的 Bean 名称，且不包含引入。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::91::0", "zh": ["创建一个新的通知器，用于暴露给定的 Bean 名称，并引入 NamedBean 接口，使 Bean 名称可被访问，而无需让目标对象感知这一 Spring IoC 概念。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::102::0", "zh": ["将指定的 Bean 名称作为调用属性暴露出来的拦截器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeBeanNameAdvisors.java::126::0", "zh": ["将指定的 Bean 名称作为调用属性暴露出来的引入。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::30::0", "zh": ["将当前 {@link org.aopalliance.intercept.MethodInvocation} 作为线程局部对象暴露出来的拦截器。我们偶尔需要这样做；例如，当切点（如 AspectJ 表达式切点）需要了解完整的调用上下文时。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::30::1", "zh": ["<p>除非确实必要，否则不要使用此拦截器。目标对象通常不应了解 Spring AOP，因为这会形成对 Spring API 的依赖。目标对象应尽可能保持为普通 POJO。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::30::2", "zh": ["<p>如果使用，此拦截器通常是拦截器链中的第一个。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::50::0", "zh": ["此类的单例通知器。使用 Spring AOP 时优先使用它而不是 INSTANCE，因为这样可避免为包装该实例而创建新的 Advisor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::65::0", "zh": ["返回与当前调用关联的 AOP Alliance MethodInvocation 对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::85::0", "zh": ["确保只能创建规范实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/ExposeInvocationInterceptor.java::109::0", "zh": ["支持序列化所必需。反序列化时会替换为规范实例，从而保护单例模式。", "<p>这是重写 {@code equals} 方法的替代方案。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::27::0", "zh": ["使用 <b>JAMon</b> 库对被拦截方法进行性能测量并输出统计信息的性能监控拦截器。此外，它还会跟踪/统计被拦截方法抛出的异常。堆栈信息可在 JAMon Web 应用中查看。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::27::1", "zh": ["<p>此代码受 Thierry Templier 的博客启发。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::49::0", "zh": ["使用静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::55::0", "zh": ["根据给定标志，使用动态或静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::65::0", "zh": ["根据给定标志，使用动态或静态日志器创建一个新的 JamonPerformanceMonitorInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::79::0", "zh": ["设置是跟踪经过此拦截器的所有调用，还是仅跟踪启用了跟踪日志的调用。", "<p>默认值为 “false”：仅监控启用了跟踪日志的调用。指定为 “true” 可让 JAMon 跟踪所有调用，即使禁用了跟踪日志也会收集统计数据。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::91::0", "zh": ["如果已设置 “trackAllInvocations” 标志，则始终应用该拦截器；否则仅在日志启用时才生效。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::102::0", "zh": ["用 JAMon Monitor 包装调用，并将当前性能统计信息写入日志（如果已启用）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/JamonPerformanceMonitorInterceptor.java::129::0", "zh": ["统计抛出的异常，并将堆栈信息放入键的明细部分。这样便可在 JAMon Web 应用中查看堆栈信息。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/PerformanceMonitorInterceptor.java::24::0", "zh": ["用于性能监控的简单 AOP Alliance {@code MethodInterceptor}。此拦截器对被拦截的方法调用没有影响。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/PerformanceMonitorInterceptor.java::24::1", "zh": ["<p>使用 {@code StopWatch} 进行实际的性能测量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/PerformanceMonitorInterceptor.java::39::0", "zh": ["使用静态日志器创建一个新的 PerformanceMonitorInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/PerformanceMonitorInterceptor.java::45::0", "zh": ["根据给定标志，使用动态或静态日志器创建一个新的 PerformanceMonitorInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/SimpleAsyncUncaughtExceptionHandler.java::24::0", "zh": ["默认的 {@link AsyncUncaughtExceptionHandler}，仅记录异常。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/SimpleTraceInterceptor.java::24::0", "zh": ["简单的 AOP Alliance {@code MethodInterceptor}，可引入到链中以显示关于被拦截方法调用的详细跟踪信息，包括方法进入和方法退出信息。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/SimpleTraceInterceptor.java::24::1", "zh": ["<p>如有更高级的需求，可考虑使用 {@code CustomizableTraceInterceptor}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/SimpleTraceInterceptor.java::40::0", "zh": ["使用静态日志器创建一个新的 SimpleTraceInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/SimpleTraceInterceptor.java::46::0", "zh": ["根据给定标志，使用动态或静态日志器创建一个新的 SimpleTraceInterceptor。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/SimpleTraceInterceptor.java::72::0", "zh": ["返回给定方法调用的描述。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/interceptor/package-info.java::1::0", "zh": ["提供各种拦截器实现。更具体的拦截器可在相应的功能包中找到，例如 “transaction” 和 “orm”。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/DefaultScopedObject.java::24::0", "zh": ["{@link ScopedObject} 接口的默认实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/DefaultScopedObject.java::24::1", "zh": ["<p>仅将调用委托给底层的 {@link ConfigurableBeanFactory bean factory}（{@link ConfigurableBeanFactory#getBean(String)}/{@link ConfigurableBeanFactory#destroyScopedBean(String)}）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/DefaultScopedObject.java::45::0", "zh": ["创建 {@link DefaultScopedObject} 类的新实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedObject.java::21::0", "zh": ["用于作用域对象的 AOP 引入接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedObject.java::21::1", "zh": ["<p>由 {@link ScopedProxyFactoryBean} 创建的对象可以转换为该接口，从而能够访问原始目标对象并以编程方式移除目标对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedObject.java::35::0", "zh": ["返回此作用域对象代理背后的当前目标对象，即其原始形式（与存储在目标作用域中的形式一致）。", "<p>例如，可将原始目标对象传递给无法处理作用域代理对象的持久化提供者。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedObject.java::44::0", "zh": ["从目标作用域中移除此对象，例如从后备会话中移除。", "<p>请注意，此后不应再对该作用域对象进行任何调用（至少在当前线程内，即使用目标作用域中完全相同的目标对象时）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyFactoryBean.java::35::0", "zh": ["用于作用域对象的便捷代理工厂 Bean。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyFactoryBean.java::35::1", "zh": ["<p>使用此工厂 Bean 创建的代理是线程安全的单例，可以注入到共享对象中，并具有透明的作用域行为。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyFactoryBean.java::35::2", "zh": ["<p>此类返回的代理实现了 {@link ScopedObject} 接口。目前这允许从作用域中移除相应的对象，并在下次访问时无缝地在作用域中创建新实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyFactoryBean.java::35::3", "zh": ["<p>请注意，此工厂创建的代理默认是<i>基于类的</i>代理。可以通过将 “proxyTargetClass” 属性切换为 “false” 来自定义。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyFactoryBean.java::70::0", "zh": ["创建一个新的 ScopedProxyFactoryBean 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyFactoryBean.java::78::0", "zh": ["设置要应用作用域的 Bean 的名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyUtils.java::28::0", "zh": ["用于创建作用域代理的工具类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyUtils.java::28::1", "zh": ["<p>由 ScopedProxyBeanDefinitionDecorator 和 ClassPathBeanDefinitionScanner 使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyUtils.java::46::0", "zh": ["为提供的目标 Bean 生成作用域代理，以内部名称注册该目标 Bean，并在作用域代理上设置 'targetBeanName'。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyUtils.java::99::0", "zh": ["生成在作用域代理内部用于引用目标 Bean 的 Bean 名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyUtils.java::109::0", "zh": ["获取所提供 {@linkplain #getTargetBeanName target bean name} 对应的原始 Bean 名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/ScopedProxyUtils.java::126::0", "zh": ["判断 {@code beanName} 是否为在作用域代理中引用目标 Bean 的 Bean 的名称。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/scope/package-info.java::1::0", "zh": ["支持基于 AOP 的目标对象作用域管理，并具有可配置的后端。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractBeanFactoryPointcutAdvisor.java::30::0", "zh": ["基于 BeanFactory 的抽象 PointcutAdvisor，允许将任意 Advice 配置为对 BeanFactory 中 Advice Bean 的引用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractBeanFactoryPointcutAdvisor.java::30::1", "zh": ["<p>与直接指定通知对象本身相比，指定通知 Bean 的名称（如果在 BeanFactory 中运行）可提高初始化时的松耦合程度，从而在切点实际匹配之前不初始化通知对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractBeanFactoryPointcutAdvisor.java::58::0", "zh": ["指定此通知器应引用的通知 Bean 的名称。", "<p>在首次访问此通知器的通知时将获取指定 Bean 的实例。此通知器最多只会获取一个通知 Bean 实例，并在通知器的整个生命周期内缓存该实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractBeanFactoryPointcutAdvisor.java::70::0", "zh": ["返回此通知器所引用的通知 Bean 的名称（如果有）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractBeanFactoryPointcutAdvisor.java::93::0", "zh": ["直接指定目标通知的特定实例，避免在 {@link #getAdvice()} 中进行延迟解析。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractExpressionPointcut.java::23::0", "zh": ["表达式切点的抽象超类，提供位置和表达式属性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractExpressionPointcut.java::43::0", "zh": ["设置用于调试的位置。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractExpressionPointcut.java::50::0", "zh": ["返回有关切点表达式的可用位置信息。这在调试时很有用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractExpressionPointcut.java::77::0", "zh": ["设置新的切点表达式时调用。此时应尽可能解析该表达式。", "<p>此实现为空。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractExpressionPointcut.java::88::0", "zh": ["返回此切点的表达式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractGenericPointcutAdvisor.java::21::0", "zh": ["抽象的通用 {@link org.springframework.aop.PointcutAdvisor}，允许配置任意 {@link Advice}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractGenericPointcutAdvisor.java::36::0", "zh": ["指定此通知器应应用的通知。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractPointcutAdvisor.java::28::0", "zh": ["{@link org.springframework.aop.PointcutAdvisor} 实现的抽象基类。可对其进行子类化，以返回特定的切点/通知或可自由配置的切点/通知。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::29::0", "zh": ["抽象的正则表达式切点基类 Bean。JavaBean 属性包括："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::29::1", "zh": ["<p>注意：正则表达式必须构成匹配。例如，{@code .*get.*} 将匹配 com.mycom.Foo.getBar()，而 {@code get.*} 则不会。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::29::2", "zh": ["<p>此基类可序列化。子类应将所有字段声明为 transient；反序列化时将再次调用 {@link #initPatternRepresentation} 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::55::0", "zh": ["要匹配的正则表达式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::60::0", "zh": ["用于<strong>不</strong>匹配的正则表达式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::66::0", "zh": ["只有一个模式时使用的便捷方法。请使用此方法或 {@link #setPatterns} 之一，不要同时使用两者。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::75::0", "zh": ["设置用于定义要匹配的方法的正则表达式。匹配结果是所有这些表达式的并集；只要其中任一表达式匹配，该切点就匹配。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::89::0", "zh": ["返回用于方法匹配的正则表达式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::96::0", "zh": ["只有一个排除模式时使用的便捷方法。请使用此方法或 {@link #setExcludedPatterns} 之一，不要同时使用两者。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::105::0", "zh": ["设置用于定义要排除匹配的方法的正则表达式。匹配结果是所有这些表达式的并集；只要其中任一表达式匹配，该切点就匹配。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::119::0", "zh": ["返回用于排除匹配的正则表达式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::127::0", "zh": ["尝试将正则表达式与目标类的完全限定名以及方法声明类加方法名进行匹配。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::139::0", "zh": ["将指定的候选对象与已配置的模式进行匹配。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::161::0", "zh": ["子类必须实现此方法以初始化正则表达式切点。可被多次调用。", "<p>此方法将从 {@link #setPatterns} 方法中调用，也会在反序列化时调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::171::0", "zh": ["子类必须实现此方法以初始化正则表达式切点。可被多次调用。", "<p>此方法将从 {@link #setExcludedPatterns} 方法中调用，也会在反序列化时调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::181::0", "zh": ["给定索引处的模式是否匹配给定的 String？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AbstractRegexpMethodPointcut.java::189::0", "zh": ["给定索引处的排除模式是否匹配给定的 String？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::44::0", "zh": ["用于 AOP 支持代码的工具方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::44::1", "zh": ["<p>主要供 Spring 的 AOP 支持内部使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::44::2", "zh": ["<p>有关依赖 Spring AOP 框架实现内部细节的框架特定 AOP 工具方法集合，请参见 {@link org.springframework.aop.framework.AopProxyUtils}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::60::0", "zh": ["检查给定对象是 JDK 动态代理还是 CGLIB 代理。", "<p>此方法还会检查给定对象是否为 {@link SpringProxy} 的实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::73::0", "zh": ["检查给定对象是否为 JDK 动态代理。", "<p>此方法超出了 {@link Proxy#isProxyClass(Class)} 的实现，还会检查给定对象是否为 {@link SpringProxy} 的实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::85::0", "zh": ["检查给定对象是否为 CGLIB 代理。", "<p>此方法超出了 {@link ClassUtils#isCglibProxy(Object)} 的实现，还会检查给定对象是否为 {@link SpringProxy} 的实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::98::0", "zh": ["确定给定 Bean 实例的目标类，该实例可能是 AOP 代理。", "<p>如果该实例是 AOP 代理，则返回目标类，否则返回其普通类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::119::0", "zh": ["在目标类型上选择可调用的方法：如果给定方法确实暴露在目标类型上，则使用该方法本身；否则使用目标类型的某个接口上或目标类型本身上的对应方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::146::0", "zh": ["判断给定方法是否为 “equals” 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::154::0", "zh": ["判断给定方法是否为 “hashCode” 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::162::0", "zh": ["判断给定方法是否为 “toString” 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::170::0", "zh": ["判断给定方法是否为 “finalize” 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::179::0", "zh": ["给定一个方法（可能来自接口）以及当前 AOP 调用中使用的目标类，查找对应的目标方法（如果存在）。例如，该方法可能是 {@code IFoo.bar()}，目标类可能是 {@code DefaultFoo}。此时该方法可能是 {@code DefaultFoo.bar()}。这样便能找到该方法上的属性。", "<p><b>NOTE:</b> 与 {@link org.springframework.util.ClassUtils#getMostSpecificMethod} 不同，此方法会解析桥接方法，以便从<i>原始</i>方法定义中获取属性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::202::0", "zh": ["给定的切点是否能在给定类上应用？", "<p>这是一项重要的检查，因为它可用于优化掉某个类的切点。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::214::0", "zh": ["给定的切点是否能在给定类上应用？", "<p>这是一项重要的检查，因为它可用于优化掉某个类的切点。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::261::0", "zh": ["给定的通知器是否能在给定类上应用？这是一项重要的检查，因为它可用于优化掉某个类的通知器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::273::0", "zh": ["给定的通知器是否能在给定类上应用？", "<p>这是一项重要的检查，因为它可用于优化掉某个类的通知器。此版本还会考虑引入（针对 IntroductionAwareMethodMatchers）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::297::0", "zh": ["确定 {@code candidateAdvisors} 列表中适用于给定类的子列表。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/AopUtils.java::328::0", "zh": ["作为 AOP 方法调用的一部分，通过反射调用给定目标。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::27::0", "zh": ["用于组合 {@link ClassFilter ClassFilters} 的静态工具方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::40::0", "zh": ["匹配给定 ClassFilters 中<i>任一</i>（或两者）都能匹配的所有类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::53::0", "zh": ["匹配给定 ClassFilters 中<i>任一</i>（或全部）都能匹配的所有类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::64::0", "zh": ["匹配给定两个 ClassFilters 都匹配的所有类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::77::0", "zh": ["匹配给定 ClassFilters 中<i>全部</i>都能匹配的所有类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::89::0", "zh": ["用于给定 ClassFilters 并集的 ClassFilter 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ClassFilters.java::130::0", "zh": ["用于给定 ClassFilters 交集的 ClassFilter 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::27::0", "zh": ["用于构建切点的便捷类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::27::1", "zh": ["<p>所有方法都返回 {@code ComposablePointcut}，因此我们可以使用如下示例中的简洁写法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::54::0", "zh": ["创建一个默认的 ComposablePointcut，使用 {@code ClassFilter.TRUE} 和 {@code MethodMatcher.TRUE}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::63::0", "zh": ["基于给定 Pointcut 创建一个 ComposablePointcut。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::73::0", "zh": ["为给定 ClassFilter 创建一个 ComposablePointcut，并使用 {@code MethodMatcher.TRUE}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::84::0", "zh": ["为给定 MethodMatcher 创建一个 ComposablePointcut，并使用 {@code ClassFilter.TRUE}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::95::0", "zh": ["为给定 ClassFilter 和 MethodMatcher 创建一个 ComposablePointcut。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::108::0", "zh": ["与给定 ClassFilter 应用并集。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::118::0", "zh": ["与给定 ClassFilter 应用交集。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::128::0", "zh": ["与给定 MethodMatcher 应用并集。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::138::0", "zh": ["与给定 MethodMatcher 应用交集。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::148::0", "zh": ["与给定 Pointcut 应用并集。", "<p>请注意，对于 Pointcut 并集，方法只有在其原始 ClassFilter（来自原始 Pointcut）也匹配时才会匹配。不同 Pointcut 的 MethodMatchers 和 ClassFilters 绝不会相互交织。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/support/ComposablePointcut.java::164::0", "zh": ["与给定 Pointcut 应用交集。"]}

@@ -26,7 +26,7 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 
 /**
- * Parser for the JMS {@code <jca-listener-container>} element.
+ * JMS {@code <jca-listener-container>} 元素的解析器。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll

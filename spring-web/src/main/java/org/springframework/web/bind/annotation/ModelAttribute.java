@@ -26,37 +26,28 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.ui.Model;
 
 /**
- * Annotation that binds a method parameter or method return value
- * to a named model attribute, exposed to a web view. Supported
- * for controller classes with {@link RequestMapping @RequestMapping}
- * methods.
+ * 将方法参数或方法返回值绑定到具名模型属性并暴露给 Web 视图的注解。
+ * 支持用于带有 {@link RequestMapping @RequestMapping} 方法的控制器类。
  *
- * <p><strong>WARNING</strong>: Data binding can lead to security issues by exposing
- * parts of the object graph that are not meant to be accessed or modified by
- * external clients. Therefore the design and use of data binding should be considered
- * carefully with regard to security. For more details, please refer to the dedicated
- * sections on data binding for
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> and
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>
- * in the reference manual.
+ * <p><strong>警告</strong>：数据绑定可能会暴露不应被外部客户端访问或修改的
+ * 对象图部分，从而带来安全问题。因此，应仔细考虑数据绑定的设计与使用对安全性的影响。
+ * 更多详情请参阅参考手册中关于数据绑定的专门章节：
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a>
+ * 和 <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>。
  *
- * <p>{@code @ModelAttribute} can be used to expose command objects to a web view,
- * using specific attribute names, by annotating corresponding parameters of an
- * {@link RequestMapping @RequestMapping} method.
+ * <p>{@code @ModelAttribute} 可用于通过为 {@link RequestMapping @RequestMapping}
+ * 方法的相应参数添加注解，以特定属性名称将命令对象暴露给 Web 视图。
  *
- * <p>{@code @ModelAttribute} can also be used to expose reference data to a web
- * view by annotating accessor methods in a controller class with
- * {@link RequestMapping @RequestMapping} methods. Such accessor
- * methods are allowed to have any arguments that
- * {@link RequestMapping @RequestMapping} methods support, returning
- * the model attribute value to expose.
+ * <p>{@code @ModelAttribute} 也可用于通过为带有
+ * {@link RequestMapping @RequestMapping} 方法的控制器类中的访问器方法添加注解，
+ * 将参考数据暴露给 Web 视图。此类访问器方法允许具有
+ * {@link RequestMapping @RequestMapping} 方法支持的任何参数，
+ * 并返回要暴露的模型属性值。
  *
- * <p>Note however that reference data and all other model content are
- * not available to web views when request processing results in an
- * {@code Exception} since the exception could be raised at any time
- * making the content of the model unreliable. For this reason
- * {@link ExceptionHandler @ExceptionHandler} methods do not provide
- * access to a {@link Model} argument.
+ * <p>但请注意，当请求处理导致 {@code Exception} 时，参考数据和所有其他模型内容
+ * 对 Web 视图不可用，因为异常可能在任何时刻抛出，从而使模型内容不可靠。
+ * 因此，{@link ExceptionHandler @ExceptionHandler} 方法不提供对
+ * {@link Model} 参数的访问。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -69,29 +60,26 @@ import org.springframework.ui.Model;
 public @interface ModelAttribute {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the model attribute to bind to.
-	 * <p>The default model attribute name is inferred from the declared
-	 * attribute type (i.e. the method parameter type or method return type),
-	 * based on the non-qualified class name:
-	 * e.g. "orderAddress" for class "mypackage.OrderAddress",
-	 * or "orderAddressList" for "List&lt;mypackage.OrderAddress&gt;".
+	 * 要绑定到的模型属性名称。
+	 * <p>默认模型属性名称根据声明的属性类型（即方法参数类型或方法返回类型）
+	 * 的非限定类名推断：例如类 "mypackage.OrderAddress" 对应 "orderAddress"，
+	 * 或者 "List&lt;mypackage.OrderAddress&gt;" 对应 "orderAddressList"。
 	 * @since 4.3
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Allows data binding to be disabled directly on an {@code @ModelAttribute}
-	 * method parameter or on the attribute returned from an {@code @ModelAttribute}
-	 * method, both of which would prevent data binding for that attribute.
-	 * <p>By default this is set to {@code true} in which case data binding applies.
-	 * Set this to {@code false} to disable data binding.
+	 * 允许直接在 {@code @ModelAttribute} 方法参数上或 {@code @ModelAttribute}
+	 * 方法返回的属性上禁用数据绑定，两者都会阻止对该属性进行数据绑定。
+	 * <p>默认设置为 {@code true}，此时会应用数据绑定。
+	 * 将其设置为 {@code false} 可禁用数据绑定。
 	 * @since 4.3
 	 */
 	boolean binding() default true;

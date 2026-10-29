@@ -30,12 +30,9 @@ import org.springframework.test.context.ContextConfigurationAttributes;
 import org.springframework.util.Assert;
 
 /**
- * Utility methods for working with
- * {@link ApplicationContextInitializer ApplicationContextInitializers}.
+ * 用于处理 {@link ApplicationContextInitializer ApplicationContextInitializers} 的工具方法。
  *
- * <p>Although {@code ApplicationContextInitializerUtils} was first introduced
- * in Spring Framework 4.1, the initial implementations of methods in this class
- * were based on the existing code base in {@code ContextLoaderUtils}.
+ * <p>尽管 {@code ApplicationContextInitializerUtils} 首次引入于 Spring Framework 4.1，但此类中方法的初始实现基于 {@code ContextLoaderUtils} 中的现有代码库。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -47,15 +44,8 @@ abstract class ApplicationContextInitializerUtils {
 
 
 	/**
-	 * Resolve the set of merged {@code ApplicationContextInitializer} classes for the
-	 * supplied list of {@code ContextConfigurationAttributes}.
-	 * <p>Note that the {@link ContextConfiguration#inheritInitializers inheritInitializers}
-	 * flag of {@link ContextConfiguration @ContextConfiguration} will be taken into
-	 * consideration. Specifically, if the {@code inheritInitializers} flag is set to
-	 * {@code true} for a given level in the class hierarchy and enclosing class
-	 * hierarchy represented by the provided configuration attributes, context
-	 * initializer classes defined at the given level will be merged with those
-	 * defined in higher levels of the class hierarchy or enclosing class hierarchy.
+	 * 为所提供的 {@code ContextConfigurationAttributes} 列表解析合并后的 {@code ApplicationContextInitializer} 类集合。
+	 * <p>请注意，将考虑 {@link ContextConfiguration @ContextConfiguration} 的 {@link ContextConfiguration#inheritInitializers inheritInitializers} 标志。具体而言，如果对于所提供的配置属性所表示的类层次结构和外围类层次结构中的给定层级，{@code inheritInitializers} 标志设置为 {@code true}，则在该层级定义的上下文初始化器类将与类层次结构或外围类层次结构中更高层级定义的初始化器类合并。
 	 * @param configAttributesList the list of configuration attributes to process; must
 	 * not be {@code null} or <em>empty</em>; must be ordered <em>bottom-up</em>
 	 * (i.e., as if we were traversing up the class hierarchy or enclosing class hierarchy)

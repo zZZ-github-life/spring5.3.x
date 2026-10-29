@@ -21,11 +21,10 @@ import java.net.URI;
 import org.springframework.lang.Nullable;
 
 /**
- * Specialization of {@link PathContainer} that subdivides the path into a
- * {@link #contextPath()} and the remaining {@link #pathWithinApplication()}.
- * The lattery is typically used for request mapping within the application
- * while the former is useful when preparing external links that point back to
- * the application.
+ * {@link PathContainer} 的特化，将路径细分为
+ * {@link #contextPath()} 和其余的 {@link #pathWithinApplication()}。
+ * 后者通常用于应用程序内的请求映射，
+ * 而前者在准备指向该应用程序的外部链接时很有用。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -33,26 +32,25 @@ import org.springframework.lang.Nullable;
 public interface RequestPath extends PathContainer {
 
 	/**
-	 * Returns the portion of the URL path that represents the application.
-	 * The context path is always at the beginning of the path and starts but
-	 * does not end with "/". It is shared for URLs of the same application.
-	 * <p>The context path may come from the underlying runtime API such as
-	 * when deploying as a WAR to a Servlet container or it may be assigned in
-	 * a WebFlux application through the use of
+	 * 返回 URL 路径中表示应用程序的部分。
+	 * 上下文路径始终位于路径开头，以 "/" 开始但不以 "/" 结尾。
+	 * 同一应用程序的 URL 共享该上下文路径。
+	 * <p>上下文路径可能来自底层运行时 API（例如作为 WAR 部署到
+	 * Servlet 容器时），也可能在 WebFlux 应用程序中通过
 	 * {@link org.springframework.http.server.reactive.ContextPathCompositeHandler
-	 * ContextPathCompositeHandler}.
+	 * ContextPathCompositeHandler} 指定。
 	 */
 	PathContainer contextPath();
 
 	/**
-	 * The portion of the request path after the context path which is typically
-	 * used for request mapping within the application .
+	 * 请求路径中上下文路径之后的部分，通常用于应用程序内的
+	 * 请求映射。
 	 */
 	PathContainer pathWithinApplication();
 
 	/**
-	 * Return a new {@code RequestPath} instance with a modified context path.
-	 * The new context path must match 0 or more path segments at the start.
+	 * 返回修改了上下文路径的新 {@code RequestPath} 实例。
+	 * 新的上下文路径必须匹配开头处 0 个或多个路径段。
 	 * @param contextPath the new context path
 	 * @return a new {@code RequestPath} instance
 	 */
@@ -60,7 +58,7 @@ public interface RequestPath extends PathContainer {
 
 
 	/**
-	 * Parse the URI for a request into a {@code RequestPath}.
+	 * 将请求的 URI 解析为 {@code RequestPath}。
 	 * @param uri the URI of the request
 	 * @param contextPath the contextPath portion of the URI path
 	 */
@@ -69,8 +67,8 @@ public interface RequestPath extends PathContainer {
 	}
 
 	/**
-	 * Variant of {@link #parse(URI, String)} with the encoded
-	 * {@link URI#getRawPath() raw path}.
+	 * {@link #parse(URI, String)} 的变体，使用编码后的
+	 * {@link URI#getRawPath() 原始路径}。
 	 * @param rawPath the path
 	 * @param contextPath the contextPath portion of the URI path
 	 * @since 5.3

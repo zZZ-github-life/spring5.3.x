@@ -1,6 +1,6 @@
 /**
- * Support package for declarative messaging configuration,
- * with Java configuration and XML schema support.
+ * 声明式消息配置的支撑包，
+ * 提供 Java 配置和 XML schema 支持。
  */
 @NonNullApi
 @NonNullFields

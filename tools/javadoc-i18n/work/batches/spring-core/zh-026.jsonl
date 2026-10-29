@@ -1,0 +1,123 @@
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::45::0", "zh": ["杂项 {@code java.lang.Class} 工具方法。主要供框架内部使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::87::0", "zh": ["Map，键为基本类型包装器类型，值为对应的基本类型，例如：Integer.class -> int.class。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::93::0", "zh": ["Map，键为基本类型，值为对应的包装器类型，例如：int.class -> Integer.class。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::99::0", "zh": ["Map，键为基本类型名称，值为对应的基本类型，例如：\"int\" -> \"int.class\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::105::0", "zh": ["Map，键为常见的 Java 语言类名，值为对应的 Class。主要用于远程调用的高效反序列化。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::111::0", "zh": ["在查找“primary”用户级接口时应被忽略的常见 Java 语言接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::117::0", "zh": ["用于声明类所实现接口上等价方法的缓存。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::164::0", "zh": ["将给定的常见类注册到 ClassUtils 缓存中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::173::0", "zh": ["返回要使用的默认 ClassLoader：如果可用，通常是线程上下文 ClassLoader；否则回退到加载 ClassUtils 类的 ClassLoader。", "<p>如果你打算在明确希望使用非 null 的 ClassLoader 引用的场景中使用线程上下文 ClassLoader，请调用此方法：例如用于类路径资源加载（但不一定适用于 {@code Class.forName}，它也接受 {@code null} 的 ClassLoader 引用）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::212::0", "zh": ["如有必要，用环境的 Bean ClassLoader 覆盖线程上下文 ClassLoader，即当 Bean ClassLoader 已经与线程上下文 ClassLoader 不等价时。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::232::0", "zh": ["对 {@code Class.forName()} 的替代实现，它还能为基本类型（如 \"int\"）和数组类名（如 \"String[]\"）返回 Class 实例。此外，它还能解析 Java 源码风格的嵌套类名（如 \"java.lang.Thread.State\" 而不是 \"java.lang.Thread$State\"）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::302::0", "zh": ["将给定的类名解析为 Class 实例。支持基本类型（如 \"int\"）和数组类名（如 \"String[]\"）。", "<p>这在效果上等同于参数相同的 {@code forName} 方法，唯一区别在于类加载失败时抛出的异常。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::338::0", "zh": ["判断由给定名称标识的 {@link Class} 是否存在且可被加载。如果该类或其某个依赖不存在或无法加载，将返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::367::0", "zh": ["检查给定类在给定 ClassLoader 中是否可见。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::390::0", "zh": ["检查给定类在给定上下文中是否可以安全缓存，即它是否由给定 ClassLoader 或其父 ClassLoader 加载。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::433::0", "zh": ["检查给定类在给定 ClassLoader 中是否可加载。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::450::0", "zh": ["如适用，按 JVM 对基本类型的命名规则，将给定类名解析为基本类型类。", "<p>还支持 JVM 用于基本类型数组的内部类名。<i>不</i>支持基本类型数组的 \"[]\" 后缀写法；该写法仅由 {@link #forName(String, ClassLoader)} 支持。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::472::0", "zh": ["检查给定类是否表示基本类型包装器，即 Boolean、Byte、Character、Short、Integer、Long、Float、Double 或 Void。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::484::0", "zh": ["检查给定类是否表示基本类型（即 boolean、byte、char、short、int、long、float 或 double）、{@code void}，或这些类型的包装器（即 Boolean、Byte、Character、Short、Integer、Long、Float、Double 或 Void）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::498::0", "zh": ["检查给定类是否表示基本类型数组，即 boolean、byte、char、short、int、long、float 或 double 的数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::509::0", "zh": ["检查给定类是否表示基本类型包装器数组，即 Boolean、Byte、Character、Short、Integer、Long、Float 或 Double 的数组。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::520::0", "zh": ["如果给定类是基本类型类，则解析它并改为返回对应的基本类型包装器类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::531::0", "zh": ["检查在假定通过反射赋值的情况下，右侧类型是否可赋值给左侧类型。将基本类型包装器类视为可赋值给对应的基本类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::556::0", "zh": ["在假定通过反射赋值的情况下，判断给定类型是否可从给定值赋值。将基本类型包装器类视为可赋值给对应的基本类型。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::569::0", "zh": ["将以 \"/\" 为基础的资源路径转换为以 \".\" 为基础的全限定类名。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::579::0", "zh": ["将以 \".\" 为基础的全限定类名转换为以 \"/\" 为基础的资源路径。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::589::0", "zh": ["返回适合与 {@code ClassLoader.getResource} 一起使用的路径（在返回值前加上斜杠（'/'）后，也适合与 {@code Class.getResource} 一起使用）。其构建方式是：取指定类文件的包，将所有点（'.'）转换为斜杠（'/'），必要时添加末尾斜杠，然后在此基础上拼接指定的资源名。", "<br/>因此，该函数可用于构建适合加载与类文件处于同一包中的资源文件的路径，不过 {@link org.springframework.core.io.ClassPathResource} 通常更为方便。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::613::0", "zh": ["给定一个输入类对象，返回由该类包名构成路径名的字符串，即所有点（'.'）都被替换为斜杠（'/'）。既不会添加前导斜杠，也不会添加末尾斜杠。结果可以与一个斜杠和资源名拼接，直接传给 {@code ClassLoader.getResource()}。若要改为传给 {@code Class.getResource}，还需在返回值前加上前导斜杠。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::640::0", "zh": ["构建一个由给定数组中各类/接口名称组成的 String。", "<p>大体上类似于 {@code AbstractCollection.toString()}，但会去掉每个类名前的 \"class \"/\"interface \" 前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::653::0", "zh": ["构建一个由给定集合中各类/接口名称组成的 String。", "<p>大体上类似于 {@code AbstractCollection.toString()}，但会去掉每个类名前的 \"class \"/\"interface \" 前缀。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::673::0", "zh": ["将给定的 {@code Collection} 复制到 {@code Class} 数组中。", "<p>该 {@code Collection} 只能包含 {@code Class} 元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::685::0", "zh": ["以数组形式返回给定实例所实现的所有接口，包括由超类实现的接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::696::0", "zh": ["以数组形式返回给定类所实现的所有接口，包括由超类实现的接口。", "<p>如果该类本身是接口，则将它作为唯一的接口返回。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::707::0", "zh": ["以数组形式返回给定类所实现的所有接口，包括由超类实现的接口。", "<p>如果该类本身是接口，则将它作为唯一的接口返回。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::720::0", "zh": ["以 Set 形式返回给定实例所实现的所有接口，包括由超类实现的接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::731::0", "zh": ["以 Set 形式返回给定类所实现的所有接口，包括由超类实现的接口。", "<p>如果该类本身是接口，则将它作为唯一的接口返回。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::742::0", "zh": ["以 Set 形式返回给定类所实现的所有接口，包括由超类实现的接口。", "<p>如果该类本身是接口，则将它作为唯一的接口返回。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::770::0", "zh": ["为给定接口创建组合接口 Class，在单个 Class 中实现给定的这些接口。", "<p>该实现会为给定接口构建一个 JDK 代理类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::787::0", "zh": ["确定给定类的共同祖先（如果有）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::821::0", "zh": ["判断给定接口是否为常见的 Java 语言接口：{@link Serializable}、{@link Externalizable}、{@link Closeable}、{@link AutoCloseable}、{@link Cloneable}、{@link Comparable}——在查找“primary”用户级接口时，这些接口都可以被忽略。共同特征：没有服务级操作，没有 Bean 属性方法，没有默认方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::834::0", "zh": ["判断所提供的类是否为<em>内部类</em>，即外围类的非静态成员。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::845::0", "zh": ["判断所提供的 {@link Class} 是否为 JVM 为 lambda 表达式或方法引用生成的实现类。", "<p>此方法基于在现代主流 JVM 上有效的检查，尽力做出判断。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::859::0", "zh": ["检查给定对象是否为 CGLIB 代理。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::871::0", "zh": ["检查指定类是否为 CGLIB 生成的类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::882::0", "zh": ["检查指定类名是否为 CGLIB 生成的类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::892::0", "zh": ["返回给定实例的用户定义类：通常就是该实例的类，但如果是 CGLIB 生成的子类，则返回原始类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::904::0", "zh": ["返回给定类的用户定义类：通常就是给定的类，但如果是 CGLIB 生成的子类，则返回原始类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::920::0", "zh": ["返回给定对象类型的描述性名称：通常就是类名，但数组为组件类型类名 + \"[]\"，而 JDK 代理还会追加所实现接口的列表。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::946::0", "zh": ["检查给定类是否与用户指定的类型名匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::956::0", "zh": ["获取不含限定包名的类名。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::974::0", "zh": ["获取不含限定包名的类名。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::983::0", "zh": ["以首字母小写的 JavaBeans 属性格式返回 Java 类的短字符串名称。如果是嵌套类，会去掉外层类名。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::997::0", "zh": ["确定类文件的名称，相对于其所在包：例如 \"String.class\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1010::0", "zh": ["确定给定类的包名，例如对于 {@code java.lang.String} 类为 \"java.lang\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1022::0", "zh": ["确定给定全限定类名的包名，例如对于 {@code java.lang.String} 类名为 \"java.lang\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1035::0", "zh": ["返回给定类的限定名：通常就是类名，但数组为组件类型类名 + \"[]\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1046::0", "zh": ["返回给定方法的限定名，由全限定的接口/类名 + \".\" + 方法名组成。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1056::0", "zh": ["返回给定方法的限定名，由全限定的接口/类名 + \".\" + 方法名组成。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1070::0", "zh": ["判断给定类是否具有给定签名的 public 构造方法。", "<p>本质上是将 {@code NoSuchMethodException} 转换为 \"false\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1082::0", "zh": ["判断给定类是否具有给定签名的 public 构造方法，若有则返回它（否则返回 {@code null}）。", "<p>本质上是将 {@code NoSuchMethodException} 转换为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1102::0", "zh": ["判断给定类是否具有给定签名的 public 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1120::0", "zh": ["判断给定类是否具有给定签名的 public 方法。", "<p>本质上是将 {@code NoSuchMethodException} 转换为 \"false\"。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1133::0", "zh": ["判断给定类是否具有给定签名的 public 方法，若有则返回它（否则抛出 {@code IllegalStateException}）。", "<p>在指定了签名的情况下，仅当存在唯一候选（即具有指定名称的单个 public 方法）时才返回该方法。", "<p>本质上是将 {@code NoSuchMethodException} 转换为 {@code IllegalStateException}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1172::0", "zh": ["判断给定类是否具有给定签名的 public 方法，若有则返回它（否则返回 {@code null}）。", "<p>在指定了签名的情况下，仅当存在唯一候选（即具有指定名称的单个 public 方法）时才返回该方法。", "<p>本质上是将 {@code NoSuchMethodException} 转换为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1201::0", "zh": ["返回给定类和/或其超类中具有给定名称（参数类型不限）的方法数量。包括非 public 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1228::0", "zh": ["给定类或其某个超类是否至少有一个或多个具有所提供名称（参数类型不限）的方法？包括非 public 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1254::0", "zh": ["给定一个方法（可能来自接口）以及当前反射调用中使用的目标类，如果存在对应的目标方法，则找出它。例如，该方法可能是 {@code IFoo.bar()}，目标类可能是 {@code DefaultFoo}。在这种情况下，方法可能是 {@code DefaultFoo.bar()}。这样可以找到该方法上的属性。", "<p><b>NOTE:</b> 与 {@link org.springframework.aop.support.AopUtils#getMostSpecificMethod} 不同，此方法<i>不会</i>自动解析桥接方法。如果需要解析桥接方法（例如要从原始方法定义中获取元数据），请调用 {@link org.springframework.core.BridgeMethodResolver#findBridgedMethod}。", "<p><b>NOTE:</b> 自 Spring 3.1.1 起，如果 Java 安全设置不允许反射访问（例如调用 {@code Class#getDeclaredMethods} 等），此实现将回退为返回最初提供的方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1299::0", "zh": ["如果可能，为给定方法句柄确定对应的接口方法。", "<p>这对于在 Jigsaw 上获得可进行反射调用且不会产生非法访问警告的 public 导出类型尤为有用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1313::0", "zh": ["如果可能，为给定方法句柄确定对应的接口方法。", "<p>这对于在 Jigsaw 上获得可进行反射调用且不会产生非法访问警告的 public 导出类型尤为有用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1356::0", "zh": ["判断给定方法是由用户声明的，还是至少指向用户声明的方法。", "<p>既检查 {@link Method#isSynthetic()}（用于实现方法），也检查 {@code GroovyObject} 接口（用于接口方法；在实现类上，{@code GroovyObject} 方法的实现无论如何都会被标记为 synthetic）。注意，桥接方法（{@link Method#isBridge()}）尽管是 synthetic，仍被视为用户级方法，因为它们最终指向用户声明的泛型方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1376::0", "zh": ["判断给定方法在给定目标类中是否可覆写。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ClassUtils.java::1392::0", "zh": ["返回类的 public static 方法。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::35::0", "zh": ["杂项集合工具方法。主要供框架内部使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::46::0", "zh": ["用于 {@link HashMap}/{@link LinkedHashMap} 变体的默认负载因子。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::54::0", "zh": ["如果所提供的 Collection 为 {@code null} 或为空，则返回 {@code true}。否则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::64::0", "zh": ["如果所提供的 Map 为 {@code null} 或为空，则返回 {@code true}。否则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::74::0", "zh": ["创建一个具有初始容量的新 {@link HashMap}，该容量可容纳指定数量的元素，而不会立即触发扩容/重新哈希操作。", "<p>这与常规的 {@link HashMap} 构造方法不同，后者接受的是相对于负载因子的初始容量，但在效果上与 JDK 的 {@link java.util.concurrent.ConcurrentHashMap#ConcurrentHashMap(int)} 保持一致。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::91::0", "zh": ["创建一个具有初始容量的新 {@link LinkedHashMap}，该容量可容纳指定数量的元素，而不会立即触发扩容/重新哈希操作。", "<p>这与常规的 {@link LinkedHashMap} 构造方法不同，后者接受相对于负载因子的初始容量，但从 5.3 起与 Spring 自身的 {@link LinkedCaseInsensitiveMap} 和 {@link LinkedMultiValueMap} 构造方法语义保持一致。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::112::0", "zh": ["将所提供的数组转换为 List。基本类型数组会被转换为相应包装器类型的 List。", "<p><b>NOTE:</b> 通常应优先使用标准的 {@link Arrays#asList} 方法。这里的 {@code arrayToList} 方法只是用于处理运行时可能是 {@code Object[]} 或基本类型数组的传入 Object 值。", "<p>{@code null} 源值将被转换为空 List。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::128::0", "zh": ["将给定数组合并到给定 Collection 中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::141::0", "zh": ["将给定的 Properties 实例合并到给定 Map 中，复制所有属性（键值对）。", "<p>使用 {@code Properties.propertyNames()}，以便也能捕获链接到原始 Properties 实例中的默认属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::165::0", "zh": ["检查给定 Iterator 是否包含给定元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::183::0", "zh": ["检查给定 Enumeration 是否包含给定元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::201::0", "zh": ["检查给定 Collection 是否包含给定的元素实例。", "<p>强制要求存在的是给定实例，而不是对相等的元素也返回 {@code true}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::220::0", "zh": ["如果 '{@code candidates}' 中的任一元素包含在 '{@code source}' 中，则返回 {@code true}；否则返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::231::0", "zh": ["返回 '{@code candidates}' 中第一个包含在 '{@code source}' 中的元素。如果 '{@code candidates}' 中没有元素存在于 '{@code source}' 中，则返回 {@code null}。迭代顺序取决于 {@link Collection} 的具体实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::254::0", "zh": ["在给定 Collection 中查找给定类型的单个值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::280::0", "zh": ["在给定 Collection 中查找给定类型之一的单个值：先在 Collection 中搜索第一个类型的值，再搜索第二个类型的值，依此类推。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::303::0", "zh": ["判断给定 Collection 是否只包含一个唯一的对象。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::327::0", "zh": ["查找给定 Collection 的公共元素类型（如果有）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::352::0", "zh": ["检索给定 Set 的第一个元素，使用 {@link SortedSet#first()}，否则使用迭代器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::379::0", "zh": ["检索给定 List 的第一个元素，即访问索引 0 处的元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::393::0", "zh": ["检索给定 Set 的最后一个元素，使用 {@link SortedSet#last()}，否则遍历所有元素（假定是链式 Set）。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::421::0", "zh": ["检索给定 List 的最后一个元素，即访问最大索引处的元素。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::435::0", "zh": ["将给定枚举中的元素编组为给定类型的数组。枚举元素必须可赋值给给定数组的类型。返回的数组将是与给定数组不同的实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::448::0", "zh": ["将 {@link Enumeration} 适配为 {@link Iterator}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::457::0", "zh": ["将 {@code Map<K, List<V>>} 适配为 {@code MultiValueMap<K, V>}。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::467::0", "zh": ["返回指定多值映射的不可修改视图。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CollectionUtils.java::488::0", "zh": ["包装 Enumeration 的 Iterator。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CommonsLogWriter.java::23::0", "zh": ["用于 Commons Logging {@code Log} 的 {@code java.io.Writer} 适配器。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CommonsLogWriter.java::36::0", "zh": ["为给定的 Commons Logging 日志器创建一个新的 CommonsLogWriter。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CompositeIterator.java::24::0", "zh": ["组合迭代器，将经由 {@link #add(Iterator)} 注册的多个其他迭代器组合在一起。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CompositeIterator.java::24::1", "zh": ["<p>该实现维护一个迭代器链式集合，这些迭代器按顺序调用，直到所有迭代器都耗尽。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/CompositeIterator.java::43::0", "zh": ["将给定迭代器添加到此组合中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::26::0", "zh": ["用于限制对特定资源的并发访问的支持类。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::26::1", "zh": ["<p>设计为用作基类，由子类在其工作流的适当位置调用 {@link #beforeAccess()} 和 {@link #afterAccess()} 方法。注意，{@code afterAccess} 通常应在 {@code finally} 块中调用！"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::26::2", "zh": ["<p>该支持类的默认并发限制为 -1（“无界并发”）。子类可以覆盖此默认值；请查看你所使用的具体类的 javadoc。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::49::0", "zh": ["允许任意数量的并发调用：即不限制并发。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::54::0", "zh": ["关闭并发：即不允许任何并发调用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::70::0", "zh": ["设置允许的最大并发访问尝试次数。-1 表示无界并发。", "<p>原则上，该限制可以在运行时更改，但通常设计为在配置时设置。", "<p>NOTE: 不要在运行时在 -1 和任何具体限制之间切换，因为这会导致并发计数不一致：限制为 -1 实际上会完全关闭并发计数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::83::0", "zh": ["返回允许的最大并发访问尝试次数。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::90::0", "zh": ["返回此节流器当前是否处于活动状态。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::100::0", "zh": ["在具体子类的主执行逻辑之前调用。", "<p>此实现会应用并发节流。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrencyThrottleSupport.java::140::0", "zh": ["在具体子类的主执行逻辑之后调用。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::25::0", "zh": ["简单的 LRU（最近最少使用）缓存，受指定的缓存上限约束。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::25::1", "zh": ["<p>此实现使用 {@code ConcurrentHashMap} 存储缓存值，并使用 {@code ConcurrentLinkedDeque} 对键进行排序，在缓存达到容量上限时选择最近最少使用的键。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::54::0", "zh": ["使用给定的上限和生成函数创建一个新的缓存实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::68::0", "zh": ["从缓存中检索条目，可能会触发值的生成。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::124::0", "zh": ["判断给定键是否存在于该缓存中。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::134::0", "zh": ["立即移除给定键及其关联的任何值。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::153::0", "zh": ["立即移除该缓存中的所有条目。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::168::0", "zh": ["返回缓存的当前大小。"]}
+{"id": "spring-core/src/main/java/org/springframework/util/ConcurrentLruCache.java::176::0", "zh": ["返回缓存中条目的最大数量（0 表示不缓存，始终生成新值）。"]}

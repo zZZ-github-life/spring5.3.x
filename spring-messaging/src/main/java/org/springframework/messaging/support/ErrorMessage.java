@@ -23,17 +23,16 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 
 /**
- * A {@link GenericMessage} with a {@link Throwable} payload.
+ * 带有 {@link Throwable} 负载的 {@link GenericMessage}。
  *
- * <p>The payload is typically a {@link org.springframework.messaging.MessagingException}
- * with the message at the point of failure in its {@code failedMessage} property.
- * An optional {@code originalMessage} may be provided, which represents the message
- * that existed at the point in the stack where the error message is created.
+ * <p>负载通常是 {@link org.springframework.messaging.MessagingException}，
+ * 其 {@code failedMessage} 属性中包含故障发生点处的消息。
+ * 还可以提供可选的 {@code originalMessage}，它表示在创建错误消息的堆栈位置
+ * 处存在的消息。
  *
- * <p>Consider some code that starts with a message, invokes some process that performs
- * transformation on that message and then fails for some reason, throwing the exception.
- * The exception is caught and an error message produced that contains both the original
- * message, and the transformed message that failed.
+ * <p>考虑这样一些代码：它从一条消息开始，调用某个对该消息执行转换的处理过程，
+ * 然后由于某种原因失败并抛出异常。该异常被捕获，并生成一条错误消息，
+ * 其中同时包含原始消息和失败时转换后的消息。
  *
  * @author Mark Fisher
  * @author Oleg Zhurakousky
@@ -50,7 +49,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 
 	/**
-	 * Create a new message with the given payload.
+	 * 使用给定负载创建新的消息。
 	 * @param payload the message payload (never {@code null})
 	 */
 	public ErrorMessage(Throwable payload) {
@@ -59,8 +58,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	}
 
 	/**
-	 * Create a new message with the given payload and headers.
-	 * The content of the given header map is copied.
+	 * 使用给定负载和头部创建新的消息。将复制给定头部映射的内容。
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers to use for initialization
 	 */
@@ -70,9 +68,9 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	}
 
 	/**
-	 * A constructor with the {@link MessageHeaders} instance to use.
-	 * <p><strong>Note:</strong> the given {@code MessageHeaders} instance
-	 * is used directly in the new message, i.e. it is not copied.
+	 * 使用给定的 {@link MessageHeaders} 实例构造。
+	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
+	 * 新消息中，即不会被复制。
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers
 	 */
@@ -82,7 +80,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	}
 
 	/**
-	 * Create a new message with the given payload and original message.
+	 * 使用给定负载和原始消息创建新的消息。
 	 * @param payload the message payload (never {@code null})
 	 * @param originalMessage the original message (if present) at the point
 	 * in the stack where the ErrorMessage was created
@@ -94,8 +92,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	}
 
 	/**
-	 * Create a new message with the given payload, headers and original message.
-	 * The content of the given header map is copied.
+	 * 使用给定负载、头部和原始消息创建新的消息。将复制给定头部映射的内容。
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers to use for initialization
 	 * @param originalMessage the original message (if present) at the point
@@ -108,9 +105,9 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 	}
 
 	/**
-	 * Create a new message with the payload, {@link MessageHeaders} and original message.
-	 * <p><strong>Note:</strong> the given {@code MessageHeaders} instance
-	 * is used directly in the new message, i.e. it is not copied.
+	 * 使用负载、{@link MessageHeaders} 和原始消息创建新的消息。
+	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
+	 * 新消息中，即不会被复制。
 	 * @param payload the message payload (never {@code null})
 	 * @param headers message headers
 	 * @param originalMessage the original message (if present) at the point
@@ -124,8 +121,7 @@ public class ErrorMessage extends GenericMessage<Throwable> {
 
 
 	/**
-	 * Return the original message (if available) at the point in the stack
-	 * where the ErrorMessage was created.
+	 * 返回在创建 ErrorMessage 的堆栈位置处（如果可用）的原始消息。
 	 * @since 5.0
 	 */
 	@Nullable

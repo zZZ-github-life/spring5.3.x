@@ -19,7 +19,7 @@ package org.springframework.messaging.simp.stomp;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Raised after a failure to encode or decode a STOMP message.
+ * 编码或解码 STOMP 消息失败后抛出。
  *
  * @author Gary Russell
  * @since 4.0

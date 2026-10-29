@@ -33,34 +33,32 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility class to assist with preparation and access to the lookup path for
- * request mapping purposes. This can be the parsed {@link RequestPath}
- * representation of the path when use of
- * {@link org.springframework.web.util.pattern.PathPattern  parsed patterns}
- * is enabled or a String path for use with a
- * {@link org.springframework.util.PathMatcher} otherwise.
+ * 用于协助为请求映射准备和访问查找路径的实用工具类。启用
+ * {@link org.springframework.web.util.pattern.PathPattern  解析模式}时，
+ * 它可以是路径的已解析 {@link RequestPath} 表示；否则可以是用于
+ * {@link org.springframework.util.PathMatcher} 的 String 路径。
  *
  * @author Rossen Stoyanchev
  * @since 5.3
  */
 public abstract class ServletRequestPathUtils {
 
-	/** Name of Servlet request attribute that holds the parsed {@link RequestPath}. */
+	/** 保存已解析 {@link RequestPath} 的 Servlet 请求属性名称。 */
 	public static final String PATH_ATTRIBUTE = ServletRequestPathUtils.class.getName() + ".PATH";
 
 
 	/**
-	 * Parse the {@link HttpServletRequest#getRequestURI() requestURI} to a
-	 * {@link RequestPath} and save it in the request attribute
-	 * {@link #PATH_ATTRIBUTE} for subsequent use with
-	 * {@link org.springframework.web.util.pattern.PathPattern parsed patterns}.
-	 * <p>The returned {@code RequestPath} will have both the contextPath and any
-	 * servletPath prefix omitted from the {@link RequestPath#pathWithinApplication()
-	 * pathWithinApplication} it exposes.
-	 * <p>This method is typically called by the {@code DispatcherServlet} to determine
-	 * if any {@code HandlerMapping} indicates that it uses parsed patterns.
-	 * After that the pre-parsed and cached {@code RequestPath} can be accessed
-	 * through {@link #getParsedRequestPath(ServletRequest)}.
+	 * 将{@link HttpServletRequest#getRequestURI() requestURI}解析为
+	 * {@link RequestPath}，并将其保存到请求属性
+	 * {@link #PATH_ATTRIBUTE} 中，供后续与
+	 * {@link org.springframework.web.util.pattern.PathPattern 解析模式}一起使用。
+	 * <p>返回的 {@code RequestPath} 在其公开的
+	 * {@link RequestPath#pathWithinApplication() pathWithinApplication}
+	 * 中将省略 contextPath 和任何 servletPath 前缀。
+	 * <p>此方法通常由 {@code DispatcherServlet} 调用，以确定是否有任何
+	 * {@code HandlerMapping} 表明其使用解析模式。之后可以通过
+	 * {@link #getParsedRequestPath(ServletRequest)} 访问预解析并缓存的
+	 * {@code RequestPath}。
 	 */
 	public static RequestPath parseAndCache(HttpServletRequest request) {
 		RequestPath requestPath = ServletRequestPath.parse(request);
@@ -69,7 +67,7 @@ public abstract class ServletRequestPathUtils {
 	}
 
 	/**
-	 * Return a {@link #parseAndCache  previously} parsed and cached {@code RequestPath}.
+	 * 返回{@link #parseAndCache 先前}解析并缓存的 {@code RequestPath}。
 	 * @throws IllegalArgumentException if not found
 	 */
 	public static RequestPath getParsedRequestPath(ServletRequest request) {
@@ -79,7 +77,7 @@ public abstract class ServletRequestPathUtils {
 	}
 
 	/**
-	 * Set the cached, parsed {@code RequestPath} to the given value.
+	 * 将缓存、已解析的 {@code RequestPath} 设置为给定值。
 	 * @param requestPath the value to set to, or if {@code null} the cache
 	 * value is cleared.
 	 * @param request the current request
@@ -95,15 +93,15 @@ public abstract class ServletRequestPathUtils {
 	}
 
 	/**
-	 * Check for a {@link #parseAndCache  previously} parsed and cached {@code RequestPath}.
+	 * 检查是否存在{@link #parseAndCache 先前}解析并缓存的 {@code RequestPath}。
 	 */
 	public static boolean hasParsedRequestPath(ServletRequest request) {
 		return (request.getAttribute(PATH_ATTRIBUTE) != null);
 	}
 
 	/**
-	 * Remove the request attribute {@link #PATH_ATTRIBUTE} that holds a
-	 * {@link #parseAndCache  previously} parsed and cached {@code RequestPath}.
+	 * 移除保存{@link #parseAndCache 先前}解析并缓存的
+	 * {@code RequestPath} 的请求属性 {@link #PATH_ATTRIBUTE}。
 	 */
 	public static void clearParsedRequestPath(ServletRequest request) {
 		request.removeAttribute(PATH_ATTRIBUTE);
@@ -113,16 +111,16 @@ public abstract class ServletRequestPathUtils {
 	// Methods to select either parsed RequestPath or resolved String lookupPath
 
 	/**
-	 * Return the {@link UrlPathHelper#resolveAndCacheLookupPath pre-resolved}
-	 * String lookupPath or the {@link #parseAndCache(HttpServletRequest)
-	 * pre-parsed} {@code RequestPath}.
-	 * <p>In Spring MVC, when at least one {@code HandlerMapping} has parsed
-	 * {@code PathPatterns} enabled, the {@code DispatcherServlet} eagerly parses
-	 * and caches the {@code RequestPath} and the same can be also done earlier with
+	 * 返回{@link UrlPathHelper#resolveAndCacheLookupPath 预先解析}的
+	 * String lookupPath，或{@link #parseAndCache(HttpServletRequest)
+	 * 预先解析}的 {@code RequestPath}。
+	 * <p>在 Spring MVC 中，当至少有一个 {@code HandlerMapping} 启用了
+	 * 已解析的 {@code PathPatterns} 时，{@code DispatcherServlet} 会主动
+	 * 解析并缓存 {@code RequestPath}，也可以更早地通过
 	 * {@link org.springframework.web.filter.ServletRequestPathFilter
-	 * ServletRequestPathFilter}. In other cases where {@code HandlerMapping}s
-	 * use String pattern matching with {@code PathMatcher}, the String
-	 * lookupPath is resolved separately by each {@code HandlerMapping}.
+	 * ServletRequestPathFilter} 完成同样的操作。在其他 {@code HandlerMapping}
+	 * 使用 {@code PathMatcher} 进行 String 模式匹配的情况下，String
+	 * lookupPath 由每个 {@code HandlerMapping} 分别解析。
 	 * @param request the current request
 	 * @return a String lookupPath or a {@code RequestPath}
 	 * @throws IllegalArgumentException if neither is available
@@ -146,14 +144,14 @@ public abstract class ServletRequestPathUtils {
 	}
 
 	/**
-	 * Variant of {@link #getCachedPath(ServletRequest)} that returns the path
-	 * for request mapping as a String.
-	 * <p>If the cached path is a {@link #parseAndCache(HttpServletRequest)
-	 * pre-parsed} {@code RequestPath} then the returned String path value is
-	 * encoded and with path parameters removed.
-	 * <p>If the cached path is a {@link UrlPathHelper#resolveAndCacheLookupPath
-	 * pre-resolved} String lookupPath, then the returned String path value
-	 * depends on how {@link UrlPathHelper} that resolved is configured.
+	 * {@link #getCachedPath(ServletRequest)} 的变体，以 String 形式返回
+	 * 用于请求映射的路径。
+	 * <p>如果缓存的路径是{@link #parseAndCache(HttpServletRequest)
+	 * 预先解析}的 {@code RequestPath}，则返回的 String 路径值经过编码，
+	 * 并移除了路径参数。
+	 * <p>如果缓存的路径是 {@link UrlPathHelper#resolveAndCacheLookupPath
+	 * 预先解析}的 String lookupPath，则返回的 String 路径值取决于
+	 * 解析它的 {@link UrlPathHelper} 的配置。
 	 * @param request the current request
 	 * @return the full request mapping path as a String
 	 */
@@ -167,9 +165,8 @@ public abstract class ServletRequestPathUtils {
 	}
 
 	/**
-	 * Check for a previously {@link UrlPathHelper#resolveAndCacheLookupPath
-	 * resolved} String lookupPath or a previously {@link #parseAndCache parsed}
-	 * {@code RequestPath}.
+	 * 检查是否存在先前 {@link UrlPathHelper#resolveAndCacheLookupPath 解析}的
+	 * String lookupPath 或先前 {@link #parseAndCache 解析}的 {@code RequestPath}。
 	 * @param request the current request
 	 * @return whether a pre-resolved or pre-parsed path is available
 	 */
@@ -180,9 +177,8 @@ public abstract class ServletRequestPathUtils {
 
 
 	/**
-	 * Simple wrapper around the default {@link RequestPath} implementation that
-	 * supports a servletPath as an additional prefix to be omitted from
-	 * {@link #pathWithinApplication()}.
+	 * 默认 {@link RequestPath} 实现的简单包装器，支持将 servletPath
+	 * 作为额外前缀从 {@link #pathWithinApplication()} 中省略。
 	 */
 	private static final class ServletRequestPath implements RequestPath {
 
@@ -261,8 +257,8 @@ public abstract class ServletRequestPathUtils {
 
 
 	/**
-	 * Inner class to avoid a hard dependency on Servlet 4 {@link HttpServletMapping}
-	 * and {@link MappingMatch} at runtime.
+	 * 内部类，用于避免在运行时对 Servlet 4 {@link HttpServletMapping}
+	 * 和 {@link MappingMatch} 产生硬依赖。
 	 */
 	private static class Servlet4Delegate {
 

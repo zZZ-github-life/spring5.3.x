@@ -17,11 +17,11 @@
 package org.apache.commons.logging.impl;
 
 /**
- * Originally a simple Commons Logging provider configured by system properties.
- * Deprecated in {@code spring-jcl}, effectively equivalent to {@link NoOpLog}.
+ * 最初是一个由系统属性配置的简单 Commons Logging 提供者。在 {@code spring-jcl} 中已废弃，实际上等
+ * 价于 {@link NoOpLog}。
  *
- * <p>Instead of instantiating this directly, call {@code LogFactory#getLog(Class/String)}
- * which will fall back to {@code java.util.logging} if neither Log4j nor SLF4J are present.
+ * <p>不要直接实例化它，而应调用 {@code LogFactory#getLog(Class/String)}；当 Log4j 和 SLF4J 都不存
+ * 在时，它会回退到 {@code java.util.logging}。
  *
  * @author Juergen Hoeller (for the {@code spring-jcl} variant)
  * @since 5.0

@@ -25,14 +25,13 @@ import org.springframework.util.Assert;
 
 
 /**
- * Resource holder wrapping a R2DBC {@link Connection}.
- * {@link R2dbcTransactionManager} binds instances of this class to the subscription,
- * for a specific {@link ConnectionFactory}.
+ * 包装 R2DBC {@link Connection} 的资源持有器。
+ * {@link R2dbcTransactionManager} 会将此类的实例绑定到订阅，
+ * 并关联到特定的 {@link ConnectionFactory}。
  *
- * <p>Inherits rollback-only support for nested R2DBC transactions and reference
- * count functionality from the base class.
+ * <p>继承基类对嵌套 R2DBC 事务的仅回滚（rollback-only）支持以及引用计数功能。
  *
- * <p>Note: This is an SPI class, not intended to be used by applications.
+ * <p>注意：这是一个 SPI 类，不打算供应用程序使用。
  *
  * @author Mark Paluch
  * @author Christoph Strobl
@@ -49,8 +48,8 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Create a new ConnectionHolder for the given R2DBC {@link Connection},
-	 * assuming that there is no ongoing transaction.
+	 * 为给定的 R2DBC {@link Connection} 创建一个新的 ConnectionHolder，
+	 * 假定当前没有正在进行的事务。
 	 * @param connection the R2DBC {@link Connection} to hold
 	 * @see #ConnectionHolder(Connection, boolean)
 	 */
@@ -59,7 +58,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Create a new ConnectionHolder for the given R2DBC {@link Connection}.
+	 * 为给定的 R2DBC {@link Connection} 创建一个新的 ConnectionHolder。
 	 * @param connection the R2DBC {@link Connection} to hold
 	 * @param transactionActive whether the given {@link Connection} is involved
 	 * in an ongoing transaction
@@ -71,14 +70,14 @@ public class ConnectionHolder extends ResourceHolderSupport {
 
 
 	/**
-	 * Return whether this holder currently has a {@link Connection}.
+	 * 返回此持有器当前是否持有一个 {@link Connection}。
 	 */
 	protected boolean hasConnection() {
 		return (this.currentConnection != null);
 	}
 
 	/**
-	 * Set whether this holder represents an active, R2DBC-managed transaction.
+	 * 设置此持有器是否表示一个活动的、由 R2DBC 管理的事务。
 	 * @see R2dbcTransactionManager
 	 */
 	protected void setTransactionActive(boolean transactionActive) {
@@ -86,26 +85,26 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Return whether this holder represents an active, R2DBC-managed transaction.
+	 * 返回此持有器是否表示一个活动的、由 R2DBC 管理的事务。
 	 */
 	protected boolean isTransactionActive() {
 		return this.transactionActive;
 	}
 
 	/**
-	 * Override the existing Connection with the given {@link Connection}.
-	 * <p>Used for releasing the {@link Connection} on suspend
-	 * (with a {@code null} argument) and setting a fresh {@link Connection} on resume.
+	 * 用给定的 {@link Connection} 覆盖现有的 Connection。
+	 * <p>用于在挂起时释放 {@link Connection}（传入 {@code null} 参数），
+	 * 以及在恢复时设置新的 {@link Connection}。
 	 */
 	protected void setConnection(@Nullable Connection connection) {
 		this.currentConnection = connection;
 	}
 
 	/**
-	 * Return the current {@link Connection} held by this {@link ConnectionHolder}.
-	 * <p>This will be the same {@link Connection} until {@code released} gets called
-	 * on the {@link ConnectionHolder}, which will reset the held {@link Connection},
-	 * fetching a new {@link Connection} on demand.
+	 * 返回此 {@link ConnectionHolder} 当前持有的 {@link Connection}。
+	 * <p>在 {@link ConnectionHolder} 上调用 {@code released} 之前，这里始终是同一个
+	 * {@link Connection}；调用之后将重置所持有的 {@link Connection}，
+	 * 并按需获取新的 {@link Connection}。
 	 * @see #released()
 	 */
 	public Connection getConnection() {
@@ -114,7 +113,7 @@ public class ConnectionHolder extends ResourceHolderSupport {
 	}
 
 	/**
-	 * Releases the current {@link Connection}.
+	 * 释放当前的 {@link Connection}。
 	 */
 	@Override
 	public void released() {

@@ -22,11 +22,10 @@ import javax.servlet.http.MappingMatch;
 import org.springframework.lang.Nullable;
 
 /**
- * Mock implementation of {@link HttpServletMapping}.
+ * {@link HttpServletMapping} 的 mock 实现。
  *
- * <p>Currently not exposed in {@link MockHttpServletRequest} as a setter to
- * avoid issues for Maven builds in applications with a Servlet 3.1 runtime
- * requirement.
+ * <p>目前在 {@link MockHttpServletRequest} 中未作为 setter 暴露，
+ * 以避免在要求 Servlet 3.1 运行时的应用程序中给 Maven 构建带来问题。
  *
  * @author Rossen Stoyanchev
  * @since 5.3.4

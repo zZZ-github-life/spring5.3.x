@@ -26,8 +26,8 @@ import org.springframework.messaging.handler.AbstractMessageCondition;
 import org.springframework.util.Assert;
 
 /**
- * {@code MessageCondition} that matches by the message type obtained via
- * {@link SimpMessageHeaderAccessor#getMessageType(Map)}.
+ * 通过 {@link SimpMessageHeaderAccessor#getMessageType(Map)} 获取的消息类型
+ * 进行匹配的 {@code MessageCondition}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -45,7 +45,7 @@ public class SimpMessageTypeMessageCondition extends AbstractMessageCondition<Si
 
 
 	/**
-	 * A constructor accepting a message type.
+	 * 接受消息类型的构造函数。
 	 * @param messageType the message type to match messages to
 	 */
 	public SimpMessageTypeMessageCondition(SimpMessageType messageType) {

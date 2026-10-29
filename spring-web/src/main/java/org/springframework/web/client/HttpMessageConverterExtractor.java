@@ -34,8 +34,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.FileCopyUtils;
 
 /**
- * Response extractor that uses the given {@linkplain HttpMessageConverter entity converters}
- * to convert the response into a type {@code T}.
+ * 响应提取器，使用给定的 {@linkplain HttpMessageConverter 实体转换器}
+ * 将响应转换为类型 {@code T}。
  *
  * @author Arjen Poutsma
  * @author Sam Brannen
@@ -56,16 +56,16 @@ public class HttpMessageConverterExtractor<T> implements ResponseExtractor<T> {
 
 
 	/**
-	 * Create a new instance of the {@code HttpMessageConverterExtractor} with the given response
-	 * type and message converters. The given converters must support the response type.
+	 * 使用给定的响应类型和消息转换器创建 {@code HttpMessageConverterExtractor} 的新实例。
+	 * 给定的转换器必须支持该响应类型。
 	 */
 	public HttpMessageConverterExtractor(Class<T> responseType, List<HttpMessageConverter<?>> messageConverters) {
 		this((Type) responseType, messageConverters);
 	}
 
 	/**
-	 * Creates a new instance of the {@code HttpMessageConverterExtractor} with the given response
-	 * type and message converters. The given converters must support the response type.
+	 * 使用给定的响应类型和消息转换器创建 {@code HttpMessageConverterExtractor} 的新实例。
+	 * 给定的转换器必须支持该响应类型。
 	 */
 	public HttpMessageConverterExtractor(Type responseType, List<HttpMessageConverter<?>> messageConverters) {
 		this(responseType, messageConverters, LogFactory.getLog(HttpMessageConverterExtractor.class));
@@ -127,8 +127,8 @@ public class HttpMessageConverterExtractor<T> implements ResponseExtractor<T> {
 	}
 
 	/**
-	 * Determine the Content-Type of the response based on the "Content-Type"
-	 * header or otherwise default to {@link MediaType#APPLICATION_OCTET_STREAM}.
+	 * 基于 "Content-Type" 头确定响应的 Content-Type，否则默认为
+	 * {@link MediaType#APPLICATION_OCTET_STREAM}。
 	 * @param response the response
 	 * @return the MediaType, or "application/octet-stream"
 	 */

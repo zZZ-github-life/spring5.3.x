@@ -21,9 +21,9 @@ import java.time.Duration;
 import org.springframework.lang.Nullable;
 
 /**
- * Representation for a Server-Sent Event for use with Spring's reactive Web support.
- * {@code Flux<ServerSentEvent>} or {@code Observable<ServerSentEvent>} is the
- * reactive equivalent to Spring MVC's {@code SseEmitter}.
+ * 表示用于 Spring 响应式 Web 支持的 Server-Sent Event。
+ * {@code Flux<ServerSentEvent>} 或 {@code Observable<ServerSentEvent>}
+ * 相当于 Spring MVC 的 {@code SseEmitter} 的响应式版本。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -62,7 +62,7 @@ public final class ServerSentEvent<T> {
 
 
 	/**
-	 * Return the {@code id} field of this event, if available.
+	 * 返回此事件的 {@code id} 字段（如果可用）。
 	 */
 	@Nullable
 	public String id() {
@@ -70,7 +70,7 @@ public final class ServerSentEvent<T> {
 	}
 
 	/**
-	 * Return the {@code event} field of this event, if available.
+	 * 返回此事件的 {@code event} 字段（如果可用）。
 	 */
 	@Nullable
 	public String event() {
@@ -78,7 +78,7 @@ public final class ServerSentEvent<T> {
 	}
 
 	/**
-	 * Return the {@code retry} field of this event, if available.
+	 * 返回此事件的 {@code retry} 字段（如果可用）。
 	 */
 	@Nullable
 	public Duration retry() {
@@ -86,7 +86,7 @@ public final class ServerSentEvent<T> {
 	}
 
 	/**
-	 * Return the comment of this event, if available.
+	 * 返回此事件的注释（如果可用）。
 	 */
 	@Nullable
 	public String comment() {
@@ -94,7 +94,7 @@ public final class ServerSentEvent<T> {
 	}
 
 	/**
-	 * Return the {@code data} field of this event, if available.
+	 * 返回此事件的 {@code data} 字段（如果可用）。
 	 */
 	@Nullable
 	public T data() {
@@ -110,7 +110,7 @@ public final class ServerSentEvent<T> {
 
 
 	/**
-	 * Return a builder for a {@code SseEvent}.
+	 * 返回 {@code SseEvent} 的构建器。
 	 * @param <T> the type of data that this event contains
 	 * @return the builder
 	 */
@@ -119,7 +119,7 @@ public final class ServerSentEvent<T> {
 	}
 
 	/**
-	 * Return a builder for a {@code SseEvent}, populated with the given {@linkplain #data() data}.
+	 * 返回 {@code SseEvent} 的构建器，并使用给定的{@linkplain #data() 数据}填充。
 	 * @param <T> the type of data that this event contains
 	 * @return the builder
 	 */
@@ -129,53 +129,53 @@ public final class ServerSentEvent<T> {
 
 
 	/**
-	 * A mutable builder for a {@code SseEvent}.
+	 * {@code SseEvent} 的可变构建器。
 	 *
 	 * @param <T> the type of data that this event contains
 	 */
 	public interface Builder<T> {
 
 		/**
-		 * Set the value of the {@code id} field.
+		 * 设置 {@code id} 字段的值。
 		 * @param id the value of the id field
 		 * @return {@code this} builder
 		 */
 		Builder<T> id(String id);
 
 		/**
-		 * Set the value of the {@code event} field.
+		 * 设置 {@code event} 字段的值。
 		 * @param event the value of the event field
 		 * @return {@code this} builder
 		 */
 		Builder<T> event(String event);
 
 		/**
-		 * Set the value of the {@code retry} field.
+		 * 设置 {@code retry} 字段的值。
 		 * @param retry the value of the retry field
 		 * @return {@code this} builder
 		 */
 		Builder<T> retry(Duration retry);
 
 		/**
-		 * Set SSE comment. If a multi-line comment is provided, it will be turned into multiple
-		 * SSE comment lines as defined in Server-Sent Events W3C recommendation.
+		 * 设置 SSE 注释。如果提供的是多行注释，将按照
+		 * Server-Sent Events W3C 建议转换为多行 SSE 注释。
 		 * @param comment the comment to set
 		 * @return {@code this} builder
 		 */
 		Builder<T> comment(String comment);
 
 		/**
-		 * Set the value of the {@code data} field. If the {@code data} argument is a multi-line
-		 * {@code String}, it will be turned into multiple {@code data} field lines as defined
-		 * in the Server-Sent Events W3C recommendation. If {@code data} is not a String, it will
-		 * be {@linkplain org.springframework.http.codec.json.Jackson2JsonEncoder encoded} into JSON.
+		 * 设置 {@code data} 字段的值。如果 {@code data} 参数是多行
+		 * {@code String}，将按照 Server-Sent Events W3C 建议转换为
+		 * 多行 {@code data} 字段。如果 {@code data} 不是 String，
+		 * 将被{@linkplain org.springframework.http.codec.json.Jackson2JsonEncoder 编码}为 JSON。
 		 * @param data the value of the data field
 		 * @return {@code this} builder
 		 */
 		Builder<T> data(@Nullable T data);
 
 		/**
-		 * Builds the event.
+		 * 构建事件。
 		 * @return the built event
 		 */
 		ServerSentEvent<T> build();

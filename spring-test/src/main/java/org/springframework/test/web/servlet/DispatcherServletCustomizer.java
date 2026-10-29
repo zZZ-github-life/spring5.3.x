@@ -19,9 +19,7 @@ package org.springframework.test.web.servlet;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * Strategy interface for customizing {@link DispatcherServlet} instances that are
- * managed by {@link MockMvc}.
- *
+ * 用于自定义由 {@link MockMvc} 管理的 {@link DispatcherServlet} 实例的策略接口。
  * @author Stephane Nicoll
  * @since 4.3.4
  */
@@ -29,8 +27,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public interface DispatcherServletCustomizer {
 
 	/**
-	 * Customize the supplied {@link DispatcherServlet} <em>before</em> it is
-	 * initialized.
+	 * 在提供的 {@link DispatcherServlet} 初始化<em>之前</em>对其进行自定义。
 	 * @param dispatcherServlet the dispatcher servlet to customize
 	 */
 	void customize(DispatcherServlet dispatcherServlet);

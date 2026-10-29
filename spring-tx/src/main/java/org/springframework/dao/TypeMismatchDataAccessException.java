@@ -17,9 +17,8 @@
 package org.springframework.dao;
 
 /**
- * Exception thrown on mismatch between Java type and database type:
- * for example on an attempt to set an object of the wrong type
- * in an RDBMS column.
+ * 当 Java 类型与数据库类型不匹配时抛出的异常，
+ * 例如，尝试在 RDBMS 列中设置错误类型的对象。
  *
  * @author Rod Johnson
  */
@@ -27,7 +26,7 @@ package org.springframework.dao;
 public class TypeMismatchDataAccessException extends InvalidDataAccessResourceUsageException {
 
 	/**
-	 * Constructor for TypeMismatchDataAccessException.
+	 * TypeMismatchDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public TypeMismatchDataAccessException(String msg) {
@@ -35,7 +34,7 @@ public class TypeMismatchDataAccessException extends InvalidDataAccessResourceUs
 	}
 
 	/**
-	 * Constructor for TypeMismatchDataAccessException.
+	 * TypeMismatchDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

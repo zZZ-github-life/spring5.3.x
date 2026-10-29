@@ -26,8 +26,7 @@ import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.core.annotation.MergedAnnotations.SearchStrategy;
 
 /**
- * Interface that defines abstract access to the annotations of a specific
- * class, in a form that does not require that class to be loaded yet.
+ * 定义对特定类注解的抽象访问的接口，其形式不要求该类已被加载。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -41,8 +40,7 @@ import org.springframework.core.annotation.MergedAnnotations.SearchStrategy;
 public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata {
 
 	/**
-	 * Get the fully qualified class names of all annotation types that
-	 * are <em>present</em> on the underlying class.
+	 * 获取底层类上<em>存在</em>的所有注解类型的完全限定类名。
 	 * @return the annotation type names
 	 */
 	default Set<String> getAnnotationTypes() {
@@ -53,8 +51,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	}
 
 	/**
-	 * Get the fully qualified class names of all meta-annotation types that
-	 * are <em>present</em> on the given annotation type on the underlying class.
+	 * 获取底层类上给定注解类型中<em>存在</em>的所有元注解类型的完全限定类名。
 	 * @param annotationName the fully qualified class name of the meta-annotation
 	 * type to look for
 	 * @return the meta-annotation type names, or an empty set if none found
@@ -70,8 +67,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	}
 
 	/**
-	 * Determine whether an annotation of the given type is <em>present</em> on
-	 * the underlying class.
+	 * 确定底层类上是否<em>存在</em>给定类型的注解。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 * @return {@code true} if a matching annotation is present
@@ -81,8 +77,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	}
 
 	/**
-	 * Determine whether the underlying class has an annotation that is itself
-	 * annotated with the meta-annotation of the given type.
+	 * 确定底层类是否具有本身被给定类型的元注解所标注的注解。
 	 * @param metaAnnotationName the fully qualified class name of the
 	 * meta-annotation type to look for
 	 * @return {@code true} if a matching meta-annotation is present
@@ -93,8 +88,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	}
 
 	/**
-	 * Determine whether the underlying class has any methods that are
-	 * annotated (or meta-annotated) with the given annotation type.
+	 * 确定底层类是否具有任何被给定注解类型标注（或元标注）的方法。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 */
@@ -103,10 +97,8 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 	}
 
 	/**
-	 * Retrieve the method metadata for all methods that are annotated
-	 * (or meta-annotated) with the given annotation type.
-	 * <p>For any returned method, {@link MethodMetadata#isAnnotated} will
-	 * return {@code true} for the given annotation type.
+	 * 检索所有被给定注解类型标注（或元标注）的方法的方法元数据。
+	 * <p>对于任何返回的方法，{@link MethodMetadata#isAnnotated} 对给定注解类型都将返回 {@code true}。
 	 * @param annotationName the fully qualified class name of the annotation
 	 * type to look for
 	 * @return a set of {@link MethodMetadata} for methods that have a matching
@@ -117,8 +109,7 @@ public interface AnnotationMetadata extends ClassMetadata, AnnotatedTypeMetadata
 
 
 	/**
-	 * Factory method to create a new {@link AnnotationMetadata} instance
-	 * for the given class using standard reflection.
+	 * 使用标准反射为给定类创建新的 {@link AnnotationMetadata} 实例的工厂方法。
 	 * @param type the class to introspect
 	 * @return a new {@link AnnotationMetadata} instance
 	 * @since 5.2

@@ -27,8 +27,7 @@ import org.springframework.aop.framework.AopConfigException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface for factories that can create Spring AOP Advisors from classes
- * annotated with AspectJ annotation syntax.
+ * 工厂接口，这些工厂可以从使用 AspectJ 注解语法的类创建 Spring AOP Advisor。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -39,20 +38,17 @@ import org.springframework.lang.Nullable;
 public interface AspectJAdvisorFactory {
 
 	/**
-	 * Determine whether the given class is an aspect, as reported
-	 * by AspectJ's {@link org.aspectj.lang.reflect.AjTypeSystem}.
-	 * <p>Will simply return {@code false} if the supposed aspect is
-	 * invalid (such as an extension of a concrete aspect class).
-	 * Will return true for some aspects that Spring AOP cannot process,
-	 * such as those with unsupported instantiation models.
-	 * Use the {@link #validate} method to handle these cases if necessary.
+	 * 判断给定的类是否为切面，判断依据来自 AspectJ 的 {@link org.aspectj.lang.reflect.AjTypeSystem}。
+	 * <p>如果假定的切面无效（例如具体切面类的扩展），将直接返回 {@code false}。对于 Spring AOP 无法处
+	 * 理的某些切面（例如使用不受支持的实例化模型的切面），将返回 true。如有必要，可使用
+	 * {@link #validate} 方法来处理这些情况。
 	 * @param clazz the supposed annotation-style AspectJ class
 	 * @return whether this class is recognized by AspectJ as an aspect class
 	 */
 	boolean isAspect(Class<?> clazz);
 
 	/**
-	 * Is the given class a valid AspectJ aspect class?
+	 * 给定的类是否为有效的 AspectJ 切面类？
 	 * @param aspectClass the supposed AspectJ annotation-style class to validate
 	 * @throws AopConfigException if the class is an invalid aspect
 	 * (which can never be legal)
@@ -62,8 +58,7 @@ public interface AspectJAdvisorFactory {
 	void validate(Class<?> aspectClass) throws AopConfigException;
 
 	/**
-	 * Build Spring AOP Advisors for all annotated At-AspectJ methods
-	 * on the specified aspect instance.
+	 * 为指定的切面实例上所有带注解的 At-AspectJ 方法构建 Spring AOP Advisor。
 	 * @param aspectInstanceFactory the aspect instance factory
 	 * (not the aspect instance itself in order to avoid eager instantiation)
 	 * @return a list of advisors for this class
@@ -71,7 +66,7 @@ public interface AspectJAdvisorFactory {
 	List<Advisor> getAdvisors(MetadataAwareAspectInstanceFactory aspectInstanceFactory);
 
 	/**
-	 * Build a Spring AOP Advisor for the given AspectJ advice method.
+	 * 为给定的 AspectJ 通知方法构建 Spring AOP Advisor。
 	 * @param candidateAdviceMethod the candidate advice method
 	 * @param aspectInstanceFactory the aspect instance factory
 	 * @param declarationOrder the declaration order within the aspect
@@ -85,7 +80,7 @@ public interface AspectJAdvisorFactory {
 			int declarationOrder, String aspectName);
 
 	/**
-	 * Build a Spring AOP Advice for the given AspectJ advice method.
+	 * 为给定的 AspectJ 通知方法构建 Spring AOP Advice。
 	 * @param candidateAdviceMethod the candidate advice method
 	 * @param expressionPointcut the AspectJ expression pointcut
 	 * @param aspectInstanceFactory the aspect instance factory

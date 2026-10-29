@@ -59,13 +59,13 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Abstract base class for {@link org.springframework.web.servlet.HandlerMapping}
- * implementations. Supports ordering, a default handler, handler interceptors,
- * including handler interceptors mapped by path patterns.
+ * {@link org.springframework.web.servlet.HandlerMapping} 实现的抽象基类。
+ * 支持排序、默认处理器、处理器拦截器，
+ * 包括按路径模式映射的处理器拦截器。
  *
- * <p>Note: This base class does <i>not</i> support exposure of the
- * {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}. Support for this attribute
- * is up to concrete subclasses, typically based on request URL mappings.
+ * <p>注意：此基类<i>不</i>支持暴露
+ * {@link #PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE}。对此属性的支持
+ * 由具体子类负责，通常基于请求 URL 映射。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -78,7 +78,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
 public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 		implements HandlerMapping, Ordered, BeanNameAware {
 
-	/** Dedicated "hidden" logger for request mappings. */
+	/** 用于请求映射的专用“隐藏”日志记录器。 */
 	protected final Log mappingsLogger =
 			LogDelegateFactory.getHiddenLog(HandlerMapping.class.getName() + ".Mappings");
 
@@ -109,17 +109,17 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 
 	/**
-	 * Set the default handler for this handler mapping.
-	 * This handler will be returned if no specific mapping was found.
-	 * <p>Default is {@code null}, indicating no default handler.
+	 * 为此处理器映射设置默认处理器。
+	 * 如果未找到特定映射，将返回此处理器。
+	 * <p>默认值为 {@code null}，表示没有默认处理器。
 	 */
 	public void setDefaultHandler(@Nullable Object defaultHandler) {
 		this.defaultHandler = defaultHandler;
 	}
 
 	/**
-	 * Return the default handler for this handler mapping,
-	 * or {@code null} if none.
+	 * 返回此处理器映射的默认处理器，
+	 * 如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	public Object getDefaultHandler() {
@@ -127,33 +127,33 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Enable use of pre-parsed {@link PathPattern}s as an alternative to
-	 * String pattern matching with {@link AntPathMatcher}. The syntax is
-	 * largely the same but the {@code PathPattern} syntax is more tailored for
-	 * web applications, and its implementation is more efficient.
-	 * <p>This property is mutually exclusive with the following others which
-	 * are effectively ignored when this is set:
+	 * 启用预先解析的 {@link PathPattern}，作为
+	 * 使用 {@link AntPathMatcher} 进行字符串模式匹配的替代方案。两者语法
+	 * 大致相同，但 {@code PathPattern} 语法更针对
+	 * Web 应用程序定制，其实现也更高效。
+	 * <p>此属性与以下其他属性互斥，设置此属性后
+	 * 这些属性实际上会被忽略：
 	 * <ul>
-	 * <li>{@link #setAlwaysUseFullPath} -- {@code PathPatterns} always use the
-	 * full path and ignore the servletPath/pathInfo which are decoded and
-	 * partially normalized and therefore not comparable against the
-	 * {@link HttpServletRequest#getRequestURI() requestURI}.
-	 * <li>{@link #setRemoveSemicolonContent} -- {@code PathPatterns} always
-	 * ignore semicolon content for path matching purposes, but path parameters
-	 * remain available for use in controllers via {@code @MatrixVariable}.
-	 * <li>{@link #setUrlDecode} -- {@code PathPatterns} match one decoded path
-	 * segment at a time and never need the full decoded path which can cause
-	 * issues due to decoded reserved characters.
-	 * <li>{@link #setUrlPathHelper} -- the request path is pre-parsed globally
-	 * by the {@link org.springframework.web.servlet.DispatcherServlet
-	 * DispatcherServlet} or by
+	 * <li>{@link #setAlwaysUseFullPath} -- {@code PathPatterns} 始终使用
+	 * 完整路径，并忽略 servletPath/pathInfo，因为它们经过解码和
+	 * 部分规范化，因此无法与
+	 * {@link HttpServletRequest#getRequestURI() requestURI} 进行比较。
+	 * <li>{@link #setRemoveSemicolonContent} -- 出于路径匹配目的，
+	 * {@code PathPatterns} 始终忽略分号内容，但路径参数
+	 * 仍可在控制器中通过 {@code @MatrixVariable} 使用。
+	 * <li>{@link #setUrlDecode} -- {@code PathPatterns} 一次匹配一个已解码的路径
+	 * 段，永远不需要完整的已解码路径，而完整解码路径可能
+	 * 因解码后的保留字符而引发问题。
+	 * <li>{@link #setUrlPathHelper} -- 请求路径由
+	 * {@link org.springframework.web.servlet.DispatcherServlet
+	 * DispatcherServlet} 或
 	 * {@link org.springframework.web.filter.ServletRequestPathFilter
-	 * ServletRequestPathFilter} using {@link ServletRequestPathUtils} and saved
-	 * in a request attribute for re-use.
-	 * <li>{@link #setPathMatcher} -- patterns are parsed to {@code PathPatterns}
-	 * and used instead of String matching with {@code PathMatcher}.
+	 * ServletRequestPathFilter} 使用 {@link ServletRequestPathUtils} 在全局范围内
+	 * 预先解析，并保存在请求属性中以供重复使用。
+	 * <li>{@link #setPathMatcher} -- 模式会被解析为 {@code PathPatterns}
+	 * 并使用它们，而不是使用 {@code PathMatcher} 进行字符串匹配。
 	 * </ul>
-	 * <p>By default this is not set.
+	 * <p>默认情况下不设置此属性。
 	 * @param patternParser the parser to use
 	 * @since 5.3
 	 */
@@ -162,8 +162,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the {@link #setPatternParser(PathPatternParser) configured}
-	 * {@code PathPatternParser}, or {@code null}.
+	 * 返回{@link #setPatternParser(PathPatternParser) 配置}的
+	 * {@code PathPatternParser}，如果没有则为 {@code null}。
 	 * @since 5.3
 	 */
 	@Nullable
@@ -172,9 +172,9 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Shortcut to same property on the configured {@code UrlPathHelper}.
-	 * <p><strong>Note:</strong> This property is mutually exclusive with and
-	 * ignored when {@link #setPatternParser(PathPatternParser)} is set.
+	 * 所配置的 {@code UrlPathHelper} 上同一属性的快捷方式。
+	 * <p><strong>注意：</strong>此属性与
+	 * {@link #setPatternParser(PathPatternParser)} 互斥，设置后者时此属性会被忽略。
 	 * @see org.springframework.web.util.UrlPathHelper#setAlwaysUseFullPath(boolean)
 	 */
 	@SuppressWarnings("deprecation")
@@ -186,9 +186,9 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Shortcut to same property on the underlying {@code UrlPathHelper}.
-	 * <p><strong>Note:</strong> This property is mutually exclusive with and
-	 * ignored when {@link #setPatternParser(PathPatternParser)} is set.
+	 * 底层 {@code UrlPathHelper} 上同一属性的快捷方式。
+	 * <p><strong>注意：</strong>此属性与
+	 * {@link #setPatternParser(PathPatternParser)} 互斥，设置后者时此属性会被忽略。
 	 * @see org.springframework.web.util.UrlPathHelper#setUrlDecode(boolean)
 	 */
 	@SuppressWarnings("deprecation")
@@ -200,9 +200,9 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Shortcut to same property on the underlying {@code UrlPathHelper}.
-	 * <p><strong>Note:</strong> This property is mutually exclusive with and
-	 * ignored when {@link #setPatternParser(PathPatternParser)} is set.
+	 * 底层 {@code UrlPathHelper} 上同一属性的快捷方式。
+	 * <p><strong>注意：</strong>此属性与
+	 * {@link #setPatternParser(PathPatternParser)} 互斥，设置后者时此属性会被忽略。
 	 * @see org.springframework.web.util.UrlPathHelper#setRemoveSemicolonContent(boolean)
 	 */
 	@SuppressWarnings("deprecation")
@@ -214,9 +214,9 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Configure the UrlPathHelper to use for resolution of lookup paths.
-	 * <p><strong>Note:</strong> This property is mutually exclusive with and
-	 * ignored when {@link #setPatternParser(PathPatternParser)} is set.
+	 * 配置用于解析查找路径的 UrlPathHelper。
+	 * <p><strong>注意：</strong>此属性与
+	 * {@link #setPatternParser(PathPatternParser)} 互斥，设置后者时此属性会被忽略。
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
 		Assert.notNull(urlPathHelper, "UrlPathHelper must not be null");
@@ -227,17 +227,17 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the {@link #setUrlPathHelper configured} {@code UrlPathHelper}.
+	 * 返回{@link #setUrlPathHelper 配置}的 {@code UrlPathHelper}。
 	 */
 	public UrlPathHelper getUrlPathHelper() {
 		return this.urlPathHelper;
 	}
 
 	/**
-	 * Configure the PathMatcher to use.
-	 * <p><strong>Note:</strong> This property is mutually exclusive with and
-	 * ignored when {@link #setPatternParser(PathPatternParser)} is set.
-	 * <p>By default this is {@link AntPathMatcher}.
+	 * 配置要使用的 PathMatcher。
+	 * <p><strong>注意：</strong>此属性与
+	 * {@link #setPatternParser(PathPatternParser)} 互斥，设置后者时此属性会被忽略。
+	 * <p>默认情况下为 {@link AntPathMatcher}。
 	 * @see org.springframework.util.AntPathMatcher
 	 */
 	public void setPathMatcher(PathMatcher pathMatcher) {
@@ -249,18 +249,18 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the {@link #setPathMatcher configured} {@code PathMatcher}.
+	 * 返回{@link #setPathMatcher 配置}的 {@code PathMatcher}。
 	 */
 	public PathMatcher getPathMatcher() {
 		return this.pathMatcher;
 	}
 
 	/**
-	 * Set the interceptors to apply for all handlers mapped by this handler mapping.
-	 * <p>Supported interceptor types are {@link HandlerInterceptor},
-	 * {@link WebRequestInterceptor}, and {@link MappedInterceptor}.
-	 * Mapped interceptors apply only to request URLs that match its path patterns.
-	 * Mapped interceptor beans are also detected by type during initialization.
+	 * 设置要应用于此处理器映射所映射的所有处理器的拦截器。
+	 * <p>支持的拦截器类型为 {@link HandlerInterceptor}、
+	 * {@link WebRequestInterceptor} 和 {@link MappedInterceptor}。
+	 * 映射拦截器仅应用于其路径模式匹配的请求 URL。
+	 * 在初始化期间还会按类型检测映射拦截器 bean。
 	 * @param interceptors array of handler interceptors
 	 * @see #adaptInterceptor
 	 * @see org.springframework.web.servlet.HandlerInterceptor
@@ -272,12 +272,12 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Set "global" CORS configuration mappings. The first matching URL pattern
-	 * determines the {@code CorsConfiguration} to use which is then further
-	 * {@link CorsConfiguration#combine(CorsConfiguration) combined} with the
-	 * {@code CorsConfiguration} for the selected handler.
-	 * <p>This is mutually exclusive with
-	 * {@link #setCorsConfigurationSource(CorsConfigurationSource)}.
+	 * 设置“全局”CORS 配置映射。第一个匹配的 URL 模式
+	 * 决定要使用的 {@code CorsConfiguration}，然后将其与
+	 * 所选处理器的 {@code CorsConfiguration}
+	 * {@link CorsConfiguration#combine(CorsConfiguration) 合并}。
+	 * <p>此属性与
+	 * {@link #setCorsConfigurationSource(CorsConfigurationSource)} 互斥。
 	 * @since 4.2
 	 * @see #setCorsProcessor(CorsProcessor)
 	 */
@@ -301,11 +301,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Set a {@code CorsConfigurationSource} for "global" CORS config. The
-	 * {@code CorsConfiguration} determined by the source is
-	 * {@link CorsConfiguration#combine(CorsConfiguration) combined} with the
-	 * {@code CorsConfiguration} for the selected handler.
-	 * <p>This is mutually exclusive with {@link #setCorsConfigurations(Map)}.
+	 * 为“全局”CORS 配置设置一个 {@code CorsConfigurationSource}。由该源
+	 * 确定的 {@code CorsConfiguration} 会与
+	 * 所选处理器的 {@code CorsConfiguration}
+	 * {@link CorsConfiguration#combine(CorsConfiguration) 合并}。
+	 * <p>此属性与 {@link #setCorsConfigurations(Map)} 互斥。
 	 * @since 5.1
 	 * @see #setCorsProcessor(CorsProcessor)
 	 */
@@ -318,8 +318,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the {@link #setCorsConfigurationSource(CorsConfigurationSource)
-	 * configured} {@code CorsConfigurationSource}, if any.
+	 * 返回{@link #setCorsConfigurationSource(CorsConfigurationSource)
+	 * 配置}的 {@code CorsConfigurationSource}（如果有）。
 	 * @since 5.3
 	 */
 	@Nullable
@@ -328,9 +328,9 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Configure a custom {@link CorsProcessor} to use to apply the matched
-	 * {@link CorsConfiguration} for a request.
-	 * <p>By default {@link DefaultCorsProcessor} is used.
+	 * 配置自定义 {@link CorsProcessor}，用于为请求应用匹配的
+	 * {@link CorsConfiguration}。
+	 * <p>默认使用 {@link DefaultCorsProcessor}。
 	 * @since 4.2
 	 */
 	public void setCorsProcessor(CorsProcessor corsProcessor) {
@@ -339,15 +339,15 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the configured {@link CorsProcessor}.
+	 * 返回所配置的 {@link CorsProcessor}。
 	 */
 	public CorsProcessor getCorsProcessor() {
 		return this.corsProcessor;
 	}
 
 	/**
-	 * Specify the order value for this HandlerMapping bean.
-	 * <p>The default value is {@code Ordered.LOWEST_PRECEDENCE}, meaning non-ordered.
+	 * 指定此 HandlerMapping bean 的排序值。
+	 * <p>默认值为 {@code Ordered.LOWEST_PRECEDENCE}，表示不排序。
 	 * @see org.springframework.core.Ordered#getOrder()
 	 */
 	public void setOrder(int order) {
@@ -370,7 +370,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 
 	/**
-	 * Initializes the interceptors.
+	 * 初始化拦截器。
 	 * @see #extendInterceptors(java.util.List)
 	 * @see #initInterceptors()
 	 */
@@ -382,11 +382,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Extension hook that subclasses can override to register additional interceptors,
-	 * given the configured interceptors (see {@link #setInterceptors}).
-	 * <p>Will be invoked before {@link #initInterceptors()} adapts the specified
-	 * interceptors into {@link HandlerInterceptor} instances.
-	 * <p>The default implementation is empty.
+	 * 扩展钩子，子类可以重写它以在给定已配置拦截器（参见
+	 * {@link #setInterceptors}）的基础上注册额外的拦截器。
+	 * <p>将在 {@link #initInterceptors()} 将指定拦截器适配为
+	 * {@link HandlerInterceptor} 实例之前调用。
+	 * <p>默认实现为空。
 	 * @param interceptors the configured interceptor List (never {@code null}), allowing
 	 * to add further interceptors before as well as after the existing interceptors
 	 */
@@ -394,12 +394,12 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Detect beans of type {@link MappedInterceptor} and add them to the list
-	 * of mapped interceptors.
-	 * <p>This is called in addition to any {@link MappedInterceptor}s that may
-	 * have been provided via {@link #setInterceptors}, by default adding all
-	 * beans of type {@link MappedInterceptor} from the current context and its
-	 * ancestors. Subclasses can override and refine this policy.
+	 * 检测 {@link MappedInterceptor} 类型的 bean，并将其添加到
+	 * 映射拦截器列表中。
+	 * <p>除了可能通过 {@link #setInterceptors} 提供的任何
+	 * {@link MappedInterceptor} 之外，还会调用此方法，默认情况下会添加来自当前上下文及其
+	 * 祖先上下文的所有 {@link MappedInterceptor} 类型的 bean。
+	 * 子类可以重写并细化此策略。
 	 * @param mappedInterceptors an empty list to add to
 	 */
 	protected void detectMappedInterceptors(List<HandlerInterceptor> mappedInterceptors) {
@@ -408,8 +408,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Initialize the specified interceptors adapting
-	 * {@link WebRequestInterceptor}s to {@link HandlerInterceptor}.
+	 * 初始化指定的拦截器，将
+	 * {@link WebRequestInterceptor} 适配为 {@link HandlerInterceptor}。
 	 * @see #setInterceptors
 	 * @see #adaptInterceptor
 	 */
@@ -426,11 +426,11 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Adapt the given interceptor object to {@link HandlerInterceptor}.
-	 * <p>By default, the supported interceptor types are
-	 * {@link HandlerInterceptor} and {@link WebRequestInterceptor}. Each given
-	 * {@link WebRequestInterceptor} is wrapped with
-	 * {@link WebRequestHandlerInterceptorAdapter}.
+	 * 将给定拦截器对象适配为 {@link HandlerInterceptor}。
+	 * <p>默认情况下，支持的拦截器类型为
+	 * {@link HandlerInterceptor} 和 {@link WebRequestInterceptor}。每个给定的
+	 * {@link WebRequestInterceptor} 都会使用
+	 * {@link WebRequestHandlerInterceptorAdapter} 包装。
 	 * @param interceptor the interceptor
 	 * @return the interceptor downcast or adapted to HandlerInterceptor
 	 * @see org.springframework.web.servlet.HandlerInterceptor
@@ -450,7 +450,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return the adapted interceptors as {@link HandlerInterceptor} array.
+	 * 以 {@link HandlerInterceptor} 数组形式返回适配后的拦截器。
 	 * @return the array of {@link HandlerInterceptor HandlerInterceptor}s,
 	 * or {@code null} if none
 	 */
@@ -461,7 +461,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return all configured {@link MappedInterceptor}s as an array.
+	 * 以数组形式返回所有已配置的 {@link MappedInterceptor}。
 	 * @return the array of {@link MappedInterceptor}s, or {@code null} if none
 	 */
 	@Nullable
@@ -477,8 +477,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 
 	/**
-	 * Return "true" if this {@code HandlerMapping} has been
-	 * {@link #setPatternParser enabled} to use parsed {@code PathPattern}s.
+	 * 如果此 {@code HandlerMapping} 已{@link #setPatternParser 启用}
+	 * 使用解析后的 {@code PathPattern}，则返回 "true"。
 	 */
 	@Override
 	public boolean usesPathPatterns() {
@@ -486,8 +486,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Look up a handler for the given request, falling back to the default
-	 * handler if no specific one is found.
+	 * 查找给定请求的处理器，如果未找到特定处理器，
+	 * 则回退到默认处理器。
 	 * @param request current HTTP request
 	 * @return the corresponding handler instance, or the default handler
 	 * @see #getHandlerInternal
@@ -538,17 +538,17 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Look up a handler for the given request, returning {@code null} if no
-	 * specific one is found. This method is called by {@link #getHandler};
-	 * a {@code null} return value will lead to the default handler, if one is set.
-	 * <p>On CORS pre-flight requests this method should return a match not for
-	 * the pre-flight request but for the expected actual request based on the URL
-	 * path, the HTTP methods from the "Access-Control-Request-Method" header, and
-	 * the headers from the "Access-Control-Request-Headers" header thus allowing
-	 * the CORS configuration to be obtained via {@link #getCorsConfiguration(Object, HttpServletRequest)},
-	 * <p>Note: This method may also return a pre-built {@link HandlerExecutionChain},
-	 * combining a handler object with dynamically determined interceptors.
-	 * Statically specified interceptors will get merged into such an existing chain.
+	 * 查找给定请求的处理器，如果未找到特定处理器，
+	 * 则返回 {@code null}。此方法由 {@link #getHandler} 调用；
+	 * 返回 {@code null} 将导致使用默认处理器（如果已设置）。
+	 * <p>对于 CORS 预检请求，此方法不应返回针对预检请求本身的匹配，
+	 * 而应基于 URL 路径、"Access-Control-Request-Method" 请求头中的
+	 * HTTP 方法以及 "Access-Control-Request-Headers" 请求头中的请求头，
+	 * 返回针对预期实际请求的匹配，从而允许
+	 * 通过 {@link #getCorsConfiguration(Object, HttpServletRequest)} 获取 CORS 配置，
+	 * <p>注意：此方法也可以返回预先构建的 {@link HandlerExecutionChain}，
+	 * 将处理器对象与动态确定的拦截器组合在一起。
+	 * 静态指定的拦截器将合并到此类现有链中。
 	 * @param request current HTTP request
 	 * @return the corresponding handler instance, or {@code null} if none found
 	 * @throws Exception if there is an internal error
@@ -557,15 +557,16 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	protected abstract Object getHandlerInternal(HttpServletRequest request) throws Exception;
 
 	/**
-	 * Initialize the path to use for request mapping.
-	 * <p>When parsed patterns are {@link #usesPathPatterns() enabled} a parsed
-	 * {@code RequestPath} is expected to have been
-	 * {@link ServletRequestPathUtils#parseAndCache(HttpServletRequest) parsed}
-	 * externally by the {@link org.springframework.web.servlet.DispatcherServlet}
-	 * or {@link org.springframework.web.filter.ServletRequestPathFilter}.
-	 * <p>Otherwise for String pattern matching via {@code PathMatcher} the
-	 * path is {@link UrlPathHelper#resolveAndCacheLookupPath resolved} by this
-	 * method.
+	 * 初始化用于请求映射的路径。
+	 * <p>当解析模式 {@link #usesPathPatterns() 启用}时，预期已解析的
+	 * {@code RequestPath} 已由
+	 * {@link org.springframework.web.servlet.DispatcherServlet}
+	 * 或 {@link org.springframework.web.filter.ServletRequestPathFilter}
+	 * 在外部
+	 * {@link ServletRequestPathUtils#parseAndCache(HttpServletRequest) 解析}。
+	 * <p>否则，对于通过 {@code PathMatcher} 进行的字符串模式匹配，
+	 * 路径由本方法
+	 * {@link UrlPathHelper#resolveAndCacheLookupPath 解析}。
 	 * @since 5.3
 	 */
 	protected String initLookupPath(HttpServletRequest request) {
@@ -581,20 +582,20 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Build a {@link HandlerExecutionChain} for the given handler, including
-	 * applicable interceptors.
-	 * <p>The default implementation builds a standard {@link HandlerExecutionChain}
-	 * with the given handler, the common interceptors of the handler mapping, and any
-	 * {@link MappedInterceptor MappedInterceptors} matching to the current request URL. Interceptors
-	 * are added in the order they were registered. Subclasses may override this
-	 * in order to extend/rearrange the list of interceptors.
-	 * <p><b>NOTE:</b> The passed-in handler object may be a raw handler or a
-	 * pre-built {@link HandlerExecutionChain}. This method should handle those
-	 * two cases explicitly, either building a new {@link HandlerExecutionChain}
-	 * or extending the existing chain.
-	 * <p>For simply adding an interceptor in a custom subclass, consider calling
-	 * {@code super.getHandlerExecutionChain(handler, request)} and invoking
-	 * {@link HandlerExecutionChain#addInterceptor} on the returned chain object.
+	 * 为给定处理器构建 {@link HandlerExecutionChain}，包括
+	 * 适用的拦截器。
+	 * <p>默认实现使用给定处理器、处理器映射的公共拦截器以及任何
+	 * 匹配当前请求 URL 的 {@link MappedInterceptor MappedInterceptors}
+	 * 构建标准的 {@link HandlerExecutionChain}。拦截器
+	 * 按注册顺序添加。子类可以重写此方法
+	 * 以扩展/重新排列拦截器列表。
+	 * <p><b>注意：</b>传入的处理器对象可以是原始处理器，
+	 * 也可以是预先构建的 {@link HandlerExecutionChain}。此方法应显式
+	 * 处理这两种情况：要么构建新的 {@link HandlerExecutionChain}，
+	 * 要么扩展现有链。
+	 * <p>如果只想在自定义子类中添加一个拦截器，可以考虑调用
+	 * {@code super.getHandlerExecutionChain(handler, request)}，并在返回的链对象上
+	 * 调用 {@link HandlerExecutionChain#addInterceptor}。
 	 * @param handler the resolved handler instance (never {@code null})
 	 * @param request current HTTP request
 	 * @return the HandlerExecutionChain (never {@code null})
@@ -619,7 +620,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Return {@code true} if there is a {@link CorsConfigurationSource} for this handler.
+	 * 如果此处理器存在 {@link CorsConfigurationSource}，则返回 {@code true}。
 	 * @since 5.2
 	 */
 	protected boolean hasCorsConfigurationSource(Object handler) {
@@ -630,7 +631,7 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Retrieve the CORS configuration for the given handler.
+	 * 获取给定处理器的 CORS 配置。
 	 * @param handler the handler to check (never {@code null}).
 	 * @param request the current request.
 	 * @return the CORS configuration for the handler, or {@code null} if none
@@ -649,12 +650,12 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 	}
 
 	/**
-	 * Update the HandlerExecutionChain for CORS-related handling.
-	 * <p>For pre-flight requests, the default implementation replaces the selected
-	 * handler with a simple HttpRequestHandler that invokes the configured
-	 * {@link #setCorsProcessor}.
-	 * <p>For actual requests, the default implementation inserts a
-	 * HandlerInterceptor that makes CORS-related checks and adds CORS headers.
+	 * 更新 HandlerExecutionChain 以进行 CORS 相关处理。
+	 * <p>对于预检请求，默认实现会将所选处理器替换为简单的
+	 * HttpRequestHandler，该处理器会调用所配置的
+	 * {@link #setCorsProcessor}。
+	 * <p>对于实际请求，默认实现会插入一个
+	 * HandlerInterceptor，由它执行 CORS 相关检查并添加 CORS 响应头。
 	 * @param request the current request
 	 * @param chain the handler chain
 	 * @param config the applicable CORS configuration (possibly {@code null})

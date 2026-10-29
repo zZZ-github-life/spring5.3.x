@@ -25,17 +25,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback interface for extracting a result object from a CCI Record instance.
+ * 用于从 CCI Record 实例中提取结果对象的回调接口。
  *
- * <p>Used for output object creation in CciTemplate. Alternatively, output
- * Records can also be returned to client code as-is. In case of a CCI ResultSet
- * as execution result, you will almost always want to implement a RecordExtractor,
- * to be able to read the ResultSet in a managed fashion, with the CCI Connection
- * still open while reading the ResultSet.
+ * <p>用于 CciTemplate 中输出对象的创建。或者，输出 Record 也可以原样返回给客户端代码。
+ * 如果执行结果是 CCI ResultSet，你几乎总是需要实现 RecordExtractor，
+ * 以便以受管理的方式读取 ResultSet，在读取 ResultSet 时 CCI Connection 仍然打开。
  *
- * <p>Implementations of this interface perform the actual work of extracting
- * results, but don't need to worry about exception handling. ResourceExceptions
- * will be caught and handled correctly by the CciTemplate class.
+ * <p>此接口的实现执行实际的结果提取工作，但不需要担心异常处理。
+ * ResourceException 将由 CciTemplate 类正确捕获和处理。
  *
  * @author Thierry Templier
  * @author Juergen Hoeller
@@ -52,7 +49,7 @@ import org.springframework.lang.Nullable;
 public interface RecordExtractor<T> {
 
 	/**
-	 * Process the data in the given Record, creating a corresponding result object.
+	 * 处理给定 Record 中的数据，创建相应的结果对象。
 	 * @param record the Record to extract data from
 	 * (possibly a CCI ResultSet)
 	 * @return an arbitrary result object, or {@code null} if none

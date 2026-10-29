@@ -32,7 +32,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.StreamUtils;
 
 /**
- * Encoder for {@link Resource Resources}.
+ * {@link Resource Resource} 的编码器。
  *
  * @author Arjen Poutsma
  * @since 5.0
@@ -40,7 +40,7 @@ import org.springframework.util.StreamUtils;
 public class ResourceEncoder extends AbstractSingleValueEncoder<Resource> {
 
 	/**
-	 * The default buffer size used by the encoder.
+	 * 编码器使用的默认缓冲区大小。
 	 */
 	public static final int DEFAULT_BUFFER_SIZE = StreamUtils.BUFFER_SIZE;
 

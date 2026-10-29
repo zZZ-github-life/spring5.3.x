@@ -17,8 +17,7 @@
 package org.springframework.jms.support.destination;
 
 /**
- * Extension of the DestinationResolver interface,
- * exposing methods for clearing the cache.
+ * DestinationResolver 接口的扩展，公开了用于清空缓存的方法。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -26,17 +25,15 @@ package org.springframework.jms.support.destination;
 public interface CachingDestinationResolver extends DestinationResolver {
 
 	/**
-	 * Remove the destination with the given name from the cache
-	 * (if cached by this resolver in the first place).
-	 * <p>To be called if access to the specified destination failed,
-	 * assuming that the JMS Destination object might have become invalid.
+	 * 从缓存中移除具有给定名称的目的地（如果此解析器曾对其进行缓存）。
+	 * <p>在对指定目的地的访问失败时调用，假定该 JMS Destination 对象可能已失效。
 	 * @param destinationName the name of the destination
 	 */
 	void removeFromCache(String destinationName);
 
 	/**
-	 * Clear the entire destination cache.
-	 * <p>To be called in case of general JMS provider failure.
+	 * 清空整个目的地缓存。
+	 * <p>在 JMS 提供者整体发生故障时调用。
 	 */
 	void clearCache();
 

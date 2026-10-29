@@ -24,8 +24,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Decode a byte stream into Smile and convert to Object's with Jackson 2.9,
- * leveraging non-blocking parsing.
+ * 将字节流解码为 Smile，并使用 Jackson 2.9 转换为 Object，
+ * 利用非阻塞解析。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev

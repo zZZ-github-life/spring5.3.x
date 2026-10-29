@@ -35,13 +35,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.server.HandshakeFailureException;
 
 /**
- * A WebSocket {@code RequestUpgradeStrategy} for Apache Tomcat. Compatible with
- * all versions of Tomcat that support JSR-356, i.e. Tomcat 7.0.47+ and higher.
+ * 用于 Apache Tomcat 的 WebSocket {@code RequestUpgradeStrategy}。与所有支持
+ * JSR-356 的 Tomcat 版本兼容，即 Tomcat 7.0.47+ 及更高版本。
  *
- * <p>To modify properties of the underlying {@link javax.websocket.server.ServerContainer}
- * you can use {@link ServletServerContainerFactoryBean} in XML configuration or,
- * when using Java configuration, access the container instance through the
- * "javax.websocket.server.ServerContainer" ServletContext attribute.
+ * <p>要修改底层 {@link javax.websocket.server.ServerContainer} 的属性，
+ * 可以在 XML 配置中使用 {@link ServletServerContainerFactoryBean}，
+ * 或者在使用 Java 配置时，通过
+ * "javax.websocket.server.ServerContainer" ServletContext 属性
+ * 访问容器实例。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

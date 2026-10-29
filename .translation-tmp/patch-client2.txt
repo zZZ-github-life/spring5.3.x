@@ -1,0 +1,167 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractAsyncClientHttpRequest.java
+@@BODY 78 78
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractBufferingAsyncClientHttpRequest.java
+@@BODY 57 57
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractBufferingClientHttpRequest.java
+@@BODY 54 54
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpRequest.java
+@@BODY 88 88
+将给定头部和内容写入 HTTP 请求的抽象模板方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpRequestFactoryWrapper.java
+@@BODY 58 60
+通过传入的请求工厂为指定的 URI 和 HTTP 方法
+创建新的 {@link ClientHttpRequest}。
+<p>由 {@link #createRequest(URI, HttpMethod)} 调用。
+===FILE spring-web/src/main/java/org/springframework/http/client/AbstractClientHttpResponse.java
+@@BODY 24 24
+用于 {@link ClientHttpResponse} 的抽象基类。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequest.java
+@@BODY 41 42
+异步执行此请求，返回可读取的 {@link ClientHttpResponse} 的 Future 句柄。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestExecution.java
+@@BODY 41 42
+通过调用链中的下一个拦截器或向远程服务执行请求
+来恢复请求执行。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestFactory.java
+@@BODY 36 39
+为指定的 URI 和 HTTP 方法创建新的异步 {@link AsyncClientHttpRequest}。
+<p>返回的请求可以写入，然后通过调用
+{@link AsyncClientHttpRequest#executeAsync()} 执行。
+===FILE spring-web/src/main/java/org/springframework/http/client/AsyncClientHttpRequestInterceptor.java
+@@BODY 60 62
+<li>可选地借助 {@link org.springframework.util.concurrent.ListenableFutureAdapter ListenableFutureAdapter}
+调整响应以过滤 HTTP 属性。</li>
+===FILE spring-web/src/main/java/org/springframework/http/client/BufferingClientHttpRequestFactory.java
+@@BODY 59 62
+指示给定 URI 和方法的请求/响应交换是否应在内存中缓冲。
+<p>默认实现对所有 URI 和方法返回 {@code true}。
+子类可以覆盖此方法以更改此行为。
+===FILE spring-web/src/main/java/org/springframework/http/client/BufferingClientHttpRequestWrapper.java
+@@BODY 28 28
+包装另一个请求的 {@link ClientHttpRequest} 简单实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/BufferingClientHttpResponseWrapper.java
+@@BODY 29 30
+读取响应正文到内存的 {@link ClientHttpResponse} 简单实现，
+从而允许多次调用 {@link #getBody()}。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequest.java
+@@BODY 39 39
+执行此请求，返回可读取的 {@link ClientHttpResponse}。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestExecution.java
+@@BODY 37 38
+使用给定的请求属性和正文执行请求，
+并返回响应。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestFactory.java
+@@BODY 35 37
+为指定的 URI 和 HTTP 方法创建新的 {@link ClientHttpRequest}。
+<p>返回的请求可以写入，然后通过调用
+{@link ClientHttpRequest#execute()} 执行。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestInitializer.java
+@@BODY 40 40
+初始化给定的客户端 HTTP 请求。
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpRequestInterceptor.java
+@@BODY 56 56
+<li>可选地包装响应以过滤 HTTP 属性。</li>
+===FILE spring-web/src/main/java/org/springframework/http/client/ClientHttpResponse.java
+@@BODY 69 69
+关闭此响应，释放所创建的所有资源。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpRequest.java
+@@BODY 45 45
+<p>通过 {@link HttpComponentsClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpRequestFactory.java
+@@BODY 145 146
+返回用于
+{@linkplain #createAsyncRequest(URI, HttpMethod) 异步执行}的 {@code CloseableHttpAsyncClient}。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsAsyncClientHttpResponse.java
+@@BODY 34 34
+<p>通过 {@link HttpComponentsAsyncClientHttpRequest} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpRequest.java
+@@BODY 93 93
+将给定头部添加到给定的 HTTP 请求。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpRequestFactory.java
+@@BODY 335 339
+{@link org.apache.http.client.methods.HttpDelete} 的替代方案，它
+扩展 {@link org.apache.http.client.methods.HttpEntityEnclosingRequestBase}
+而不是 {@link org.apache.http.client.methods.HttpRequestBase}，
+因此允许带请求正文的 HTTP DELETE。用于 RestTemplate
+的 exchange 方法，这些方法允许将 HTTP DELETE 与实体组合使用。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsClientHttpResponse.java
+@@BODY 36 36
+<p>通过 {@link HttpComponentsClientHttpRequest} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/HttpComponentsStreamingClientHttpRequest.java
+@@BODY 42 42
+<p>通过 {@link HttpComponentsClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingAsyncClientHttpRequest.java
+@@BODY 53 53
+创建 {@link InterceptingAsyncClientHttpRequest} 的新实例。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingAsyncClientHttpRequestFactory.java
+@@BODY 44 45
+使用委托请求工厂和拦截器列表
+创建 {@link InterceptingAsyncClientHttpRequestFactory} 的新实例。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingClientHttpRequest.java
+@@BODY 32 33
+用于 {@link ClientHttpRequest} 的包装器，支持 {@link ClientHttpRequestInterceptor
+ClientHttpRequestInterceptors}。
+===FILE spring-web/src/main/java/org/springframework/http/client/InterceptingClientHttpRequestFactory.java
+@@BODY 41 41
+使用给定参数创建 {@code InterceptingClientHttpRequestFactory} 的新实例。
+===FILE spring-web/src/main/java/org/springframework/http/client/MultipartBodyBuilder.java
+@@BODY 381 381
+返回 {@code Publisher} 正文的元素类型。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequest.java
+@@BODY 166 166
+用于更新给定 SettableListenableFuture 的 SimpleChannelInboundHandler。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequestFactory.java
+@@BODY 224 225
+用于更改给定 {@link SocketChannelConfig} 属性的模板方法。
+<p>默认实现根据所设置的属性设置连接超时。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpResponse.java
+@@BODY 32 32
+基于 Netty 4 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3AsyncClientHttpRequest.java
+@@BODY 36 36
+<p>通过 {@link OkHttp3ClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequest.java
+@@BODY 31 31
+<p>通过 {@link OkHttp3ClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequestFactory.java
+@@BODY 94 95
+设置底层连接超时（以毫秒为单位）。
+值 0 表示无限超时。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpResponse.java
+@@BODY 31 31
+基于 OkHttp 3.x 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingAsyncClientHttpRequest.java
+@@BODY 31 33
+使用标准 JDK 设施执行缓冲请求的
+{@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingClientHttpRequest.java
+@@BODY 89 89
+将给定头部添加到给定的 HTTP 连接。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpRequestFactory.java
+@@BODY 196 197
+用于准备给定 {@link HttpURLConnection} 的模板方法。
+<p>默认实现为输入和输出准备连接，并设置 HTTP 方法。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpResponse.java
+@@BODY 29 31
+使用标准 JDK 设施的 {@link ClientHttpResponse} 实现。
+通过 {@link SimpleBufferingClientHttpRequest#execute()} 和
+{@link SimpleStreamingClientHttpRequest#execute()} 获得。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingAsyncClientHttpRequest.java
+@@BODY 32 34
+使用标准 Java 设施执行流式请求的
+{@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingClientHttpRequest.java
+@@BODY 31 32
+使用标准 JDK 设施执行流式请求的
+{@link ClientHttpRequest} 实现。通过 {@link SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/package-info.java
+@@BODY 2 4
+包含对客户端 HTTP 的抽象。此包
+包含 {@code ClientHttpRequest} 和 {@code ClientHttpResponse}，
+以及这些接口的基本实现。
+

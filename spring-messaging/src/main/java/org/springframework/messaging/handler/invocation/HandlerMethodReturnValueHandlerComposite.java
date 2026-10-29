@@ -29,14 +29,14 @@ import org.springframework.messaging.Message;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * A HandlerMethodReturnValueHandler that wraps and delegates to others.
+ * 一个包装并委托给其他处理器的 HandlerMethodReturnValueHandler。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
  */
 public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMethodReturnValueHandler {
 
-	/** Public for wrapping with fallback logger. */
+	/** 公开以便使用回退日志记录器进行包装。 */
 	public static final Log defaultLogger = LogFactory.getLog(HandlerMethodReturnValueHandlerComposite.class);
 
 
@@ -46,7 +46,7 @@ public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMet
 
 
 	/**
-	 * Set an alternative logger to use than the one based on the class name.
+	 * 设置替代日志记录器，以代替基于类名的日志记录器。
 	 * @param logger the logger to use
 	 * @since 5.1
 	 */
@@ -55,7 +55,7 @@ public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMet
 	}
 
 	/**
-	 * Return the currently configured Logger.
+	 * 返回当前配置的 Logger。
 	 * @since 5.1
 	 */
 	public Log getLogger() {
@@ -63,21 +63,21 @@ public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMet
 	}
 
 	/**
-	 * Return a read-only list with the configured handlers.
+	 * 返回包含已配置处理器的只读列表。
 	 */
 	public List<HandlerMethodReturnValueHandler> getReturnValueHandlers() {
 		return Collections.unmodifiableList(this.returnValueHandlers);
 	}
 
 	/**
-	 * Clear the list of configured handlers.
+	 * 清除已配置处理器的列表。
 	 */
 	public void clear() {
 		this.returnValueHandlers.clear();
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodReturnValueHandler}.
+	 * 添加给定的 {@link HandlerMethodReturnValueHandler}。
 	 */
 	public HandlerMethodReturnValueHandlerComposite addHandler(HandlerMethodReturnValueHandler returnValueHandler) {
 		this.returnValueHandlers.add(returnValueHandler);
@@ -85,7 +85,7 @@ public class HandlerMethodReturnValueHandlerComposite implements AsyncHandlerMet
 	}
 
 	/**
-	 * Add the given {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}.
+	 * 添加给定的 {@link HandlerMethodReturnValueHandler HandlerMethodReturnValueHandlers}。
 	 */
 	public HandlerMethodReturnValueHandlerComposite addHandlers(
 			@Nullable List<? extends HandlerMethodReturnValueHandler> handlers) {

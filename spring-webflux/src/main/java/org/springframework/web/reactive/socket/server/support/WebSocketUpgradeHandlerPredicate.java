@@ -22,11 +22,7 @@ import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A predicate for use with
- * {@link org.springframework.web.reactive.handler.AbstractUrlHandlerMapping#setHandlerPredicate}
- * to ensure only WebSocket handshake requests are matched to handlers of type
- * {@link WebSocketHandler}.
- *
+ * 与 {@link org.springframework.web.reactive.handler.AbstractUrlHandlerMapping#setHandlerPredicate} 一起使用的谓词，用于确保只有 WebSocket 握手请求会匹配到类型为 {@link WebSocketHandler} 的处理器。
  * @author Rossen Stoyanchev
  * @since 5.3.5
  */

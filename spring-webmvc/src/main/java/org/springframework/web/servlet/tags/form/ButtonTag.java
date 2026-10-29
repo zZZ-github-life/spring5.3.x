@@ -23,19 +23,19 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.support.RequestDataValueProcessor;
 
 /**
- * The {@code <button>} tag renders a form field label in an HTML 'button' tag.
- * It is provided for completeness if the application relies on a
- * {@link RequestDataValueProcessor}.
+ * {@code <button>} 标签在 HTML 'button' 标签中渲染表单字段标签。
+ * 如果应用依赖于 {@link RequestDataValueProcessor}，
+ * 则提供此标签以保证完整性。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -43,26 +43,26 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
- * will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性设置为 'true'
+ * 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>name</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>The name attribute for the HTML button tag</p></td>
+ * <td><p>HTML button 标签的 name 属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>value</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>The name attribute for the HTML button tag</p></td>
+ * <td><p>HTML button 标签的 name 属性</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -74,7 +74,7 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
 public class ButtonTag extends AbstractHtmlElementTag {
 
 	/**
-	 * The name of the '{@code disabled}' attribute.
+	 * '{@code disabled}' 属性的名称。
 	 */
 	public static final String DISABLED_ATTRIBUTE = "disabled";
 
@@ -92,14 +92,14 @@ public class ButtonTag extends AbstractHtmlElementTag {
 
 
 	/**
-	 * Get the value of the '{@code name}' attribute.
+	 * 获取 '{@code name}' 属性的值。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Set the value of the '{@code name}' attribute.
+	 * 设置 '{@code name}' 属性的值。
 	 */
 	@Override
 	@Nullable
@@ -108,14 +108,14 @@ public class ButtonTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code value}' attribute.
+	 * 设置 '{@code value}' 属性的值。
 	 */
 	public void setValue(@Nullable String value) {
 		this.value = value;
 	}
 
 	/**
-	 * Get the value of the '{@code value}' attribute.
+	 * 获取 '{@code value}' 属性的值。
 	 */
 	@Nullable
 	public String getValue() {
@@ -123,14 +123,14 @@ public class ButtonTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Set the value of the '{@code disabled}' attribute.
+	 * 设置 '{@code disabled}' 属性的值。
 	 */
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
 
 	/**
-	 * Get the value of the '{@code disabled}' attribute.
+	 * 获取 '{@code disabled}' 属性的值。
 	 */
 	public boolean isDisabled() {
 		return this.disabled;
@@ -152,9 +152,9 @@ public class ButtonTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Writes the '{@code value}' attribute to the supplied {@link TagWriter}.
-	 * Subclasses may choose to override this implementation to control exactly
-	 * when the value is written.
+	 * 将 '{@code value}' 属性写入提供的 {@link TagWriter}。
+	 * 子类可以选择覆盖此实现，以精确控制
+	 * 写入值的时机。
 	 */
 	protected void writeValue(TagWriter tagWriter) throws JspException {
 		String valueToUse = (getValue() != null ? getValue() : getDefaultValue());
@@ -162,7 +162,7 @@ public class ButtonTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Return the default value.
+	 * 返回默认值。
 	 * @return the default value if none supplied
 	 */
 	protected String getDefaultValue() {
@@ -170,16 +170,16 @@ public class ButtonTag extends AbstractHtmlElementTag {
 	}
 
 	/**
-	 * Get the value of the '{@code type}' attribute. Subclasses
-	 * can override this to change the type of '{@code input}' element
-	 * rendered. Default value is '{@code submit}'.
+	 * 获取 '{@code type}' 属性的值。子类可以覆盖此方法
+	 * 以更改所渲染 '{@code input}' 元素的类型。
+	 * 默认值为 '{@code submit}'。
 	 */
 	protected String getType() {
 		return "submit";
 	}
 
 	/**
-	 * Closes the '{@code button}' block tag.
+	 * 关闭 '{@code button}' 块标签。
 	 */
 	@Override
 	public int doEndTag() throws JspException {

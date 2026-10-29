@@ -39,39 +39,37 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that creates a JPA
- * {@link javax.persistence.EntityManagerFactory} according to JPA's standard
- * <i>container</i> bootstrap contract. This is the most powerful way to set
- * up a shared JPA EntityManagerFactory in a Spring application context;
- * the EntityManagerFactory can then be passed to JPA-based DAOs via
- * dependency injection. Note that switching to a JNDI lookup or to a
- * {@link LocalEntityManagerFactoryBean} definition is just a matter of
- * configuration!
+ * 按照 JPA 标准<i>容器</i>引导契约创建 JPA
+ * {@link javax.persistence.EntityManagerFactory} 的
+ * {@link org.springframework.beans.factory.FactoryBean}。
+ * 这是在 Spring 应用上下文中设置共享 JPA EntityManagerFactory 最强大的方式；
+ * 然后可以通过依赖注入将 EntityManagerFactory 传递给基于 JPA 的 DAO。
+ * 请注意，切换到 JNDI 查找或 {@link LocalEntityManagerFactoryBean} 定义
+ * 只是配置上的变化！
  *
- * <p>As with {@link LocalEntityManagerFactoryBean}, configuration settings
- * are usually read in from a {@code META-INF/persistence.xml} config file,
- * residing in the class path, according to the general JPA configuration contract.
- * However, this FactoryBean is more flexible in that you can override the location
- * of the {@code persistence.xml} file, specify the JDBC DataSources to link to,
- * etc. Furthermore, it allows for pluggable class instrumentation through Spring's
- * {@link org.springframework.instrument.classloading.LoadTimeWeaver} abstraction,
- * instead of being tied to a special VM agent specified on JVM startup.
+ * <p>与 {@link LocalEntityManagerFactoryBean} 一样，配置设置通常
+ * 按照通用 JPA 配置契约从位于类路径中的 {@code META-INF/persistence.xml}
+ * 配置文件读取。不过，此 FactoryBean 更加灵活：
+ * 你可以覆盖 {@code persistence.xml} 文件的位置、指定要链接的 JDBC DataSource 等。
+ * 此外，它还允许通过 Spring 的
+ * {@link org.springframework.instrument.classloading.LoadTimeWeaver} 抽象
+ * 插入可插拔的类插桩，而不必绑定到 JVM 启动时指定的特殊 VM agent。
  *
- * <p>Internally, this FactoryBean parses the {@code persistence.xml} file
- * itself and creates a corresponding {@link javax.persistence.spi.PersistenceUnitInfo}
- * object (with further configuration merged in, such as JDBC DataSources and the
- * Spring LoadTimeWeaver), to be passed to the chosen JPA
- * {@link javax.persistence.spi.PersistenceProvider}. This corresponds to a
- * local JPA container with full support for the standard JPA container contract.
+ * <p>在内部，此 FactoryBean 会自行解析 {@code persistence.xml} 文件，
+ * 并创建相应的 {@link javax.persistence.spi.PersistenceUnitInfo} 对象
+ * （并合并进一步配置，例如 JDBC DataSource 和 Spring LoadTimeWeaver），
+ * 然后将该对象传递给所选的 JPA
+ * {@link javax.persistence.spi.PersistenceProvider}。
+ * 这相当于一个完整支持标准 JPA 容器契约的本地 JPA 容器。
  *
- * <p>The exposed EntityManagerFactory object will implement all the interfaces of
- * the underlying native EntityManagerFactory returned by the PersistenceProvider,
- * plus the {@link EntityManagerFactoryInfo} interface which exposes additional
- * metadata as assembled by this FactoryBean.
+ * <p>所暴露的 EntityManagerFactory 对象将实现 PersistenceProvider 返回的
+ * 底层原生 EntityManagerFactory 的所有接口，以及
+ * {@link EntityManagerFactoryInfo} 接口，后者暴露此 FactoryBean
+ * 所汇总的额外元数据。
  *
- * <p><b>NOTE: Spring's JPA support requires JPA 2.1 or higher, as of Spring 5.0.</b>
- * JPA 1.0/2.0 based applications are still supported; however, a JPA 2.1 compliant
- * persistence provider is needed at runtime.
+ * <p><b>注意：自 Spring 5.0 起，Spring 的 JPA 支持要求 JPA 2.1 或更高版本。</b>
+ * 基于 JPA 1.0/2.0 的应用程序仍然受支持；不过，运行时需要符合 JPA 2.1 的
+ * 持久化提供者。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -100,16 +98,15 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 
 
 	/**
-	 * Set the PersistenceUnitManager to use for obtaining the JPA persistence unit
-	 * that this FactoryBean is supposed to build an EntityManagerFactory for.
-	 * <p>The default is to rely on the local settings specified on this FactoryBean,
-	 * such as "persistenceXmlLocation", "dataSource" and "loadTimeWeaver".
-	 * <p>For reuse of existing persistence unit configuration or more advanced forms
-	 * of custom persistence unit handling, consider defining a separate
-	 * PersistenceUnitManager bean (typically a DefaultPersistenceUnitManager instance)
-	 * and linking it in here. {@code persistence.xml} location, DataSource
-	 * configuration and LoadTimeWeaver will be defined on that separate
-	 * DefaultPersistenceUnitManager bean in such a scenario.
+	 * 设置用于获取 JPA 持久化单元的 PersistenceUnitManager，
+	 * 此 FactoryBean 将为其构建 EntityManagerFactory。
+	 * <p>默认情况下，依赖此 FactoryBean 上指定的本地设置，
+	 * 例如 "persistenceXmlLocation"、"dataSource" 和 "loadTimeWeaver"。
+	 * <p>如需复用现有的持久化单元配置或采用更高级的自定义持久化单元处理方式，
+	 * 可考虑定义一个单独的 PersistenceUnitManager bean
+	 * （通常是 DefaultPersistenceUnitManager 实例）并在此处链接它。
+	 * 在这种场景下，{@code persistence.xml} 位置、DataSource 配置和
+	 * LoadTimeWeaver 将在该单独的 DefaultPersistenceUnitManager bean 上定义。
 	 * @see #setPersistenceXmlLocation
 	 * @see #setDataSource
 	 * @see #setLoadTimeWeaver
@@ -120,10 +117,10 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Set the location of the {@code persistence.xml} file
-	 * we want to use. This is a Spring resource location.
-	 * <p>Default is "classpath:META-INF/persistence.xml".
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 设置我们要使用的 {@code persistence.xml} 文件的位置。
+	 * 这是一个 Spring 资源位置。
+	 * <p>默认值为 "classpath:META-INF/persistence.xml"。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @param persistenceXmlLocation a Spring resource String
 	 * identifying the location of the {@code persistence.xml} file
 	 * that this LocalContainerEntityManagerFactoryBean should parse
@@ -134,9 +131,8 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Uses the specified persistence unit name as the name of the default
-	 * persistence unit, if applicable.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 如果适用，将指定的持久化单元名称用作默认持久化单元的名称。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @see DefaultPersistenceUnitManager#setDefaultPersistenceUnitName
 	 */
 	@Override
@@ -148,11 +144,10 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Set a persistence unit root location for the default persistence unit.
-	 * <p>Default is "classpath:", that is, the root of the current classpath
-	 * (nearest root directory). To be overridden if unit-specific resolution
-	 * does not work and the classpath root is not appropriate either.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 为默认持久化单元设置持久化单元根位置。
+	 * <p>默认值为 "classpath:"，即当前类路径的根（最近的根目录）。
+	 * 如果单元特定的解析不起作用且类路径根也不合适，可以覆盖此设置。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @since 4.3.3
 	 * @see DefaultPersistenceUnitManager#setDefaultPersistenceUnitRootLocation
 	 */
@@ -161,25 +156,25 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Set whether to use Spring-based scanning for entity classes in the classpath
-	 * instead of using JPA's standard scanning of jar files with {@code persistence.xml}
-	 * markers in them. In case of Spring-based scanning, no {@code persistence.xml}
-	 * is necessary; all you need to do is to specify base packages to search here.
-	 * <p>Default is none. Specify packages to search for autodetection of your entity
-	 * classes in the classpath. This is analogous to Spring's component-scan feature
-	 * ({@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
-	 * <p><b>Note: There may be limitations in comparison to regular JPA scanning.</b>
-	 * In particular, JPA providers may pick up annotated packages for provider-specific
-	 * annotations only when driven by {@code persistence.xml}. As of 4.1, Spring's
-	 * scan can detect annotated packages as well if supported by the given
-	 * {@link JpaVendorAdapter} (e.g. for Hibernate).
-	 * <p>If no explicit {@link #setMappingResources mapping resources} have been
-	 * specified in addition to these packages, Spring's setup looks for a default
-	 * {@code META-INF/orm.xml} file in the classpath, registering it as a mapping
-	 * resource for the default unit if the mapping file is not co-located with a
-	 * {@code persistence.xml} file (in which case we assume it is only meant to be
-	 * used with the persistence units defined there, like in standard JPA).
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 设置是否使用基于 Spring 的类路径实体类扫描，
+	 * 而不使用 JPA 标准的基于 jar 文件中 {@code persistence.xml} 标记的扫描。
+	 * 在基于 Spring 的扫描情况下，无需 {@code persistence.xml}；
+	 * 你只需在此处指定要搜索的基础包。
+	 * <p>默认不指定。指定包以自动检测类路径中的实体类。
+	 * 这类似于 Spring 的组件扫描特性
+	 * （{@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}）。
+	 * <p><b>注意：与常规 JPA 扫描相比可能存在限制。</b>
+	 * 特别是，JPA 提供者可能仅在由 {@code persistence.xml} 驱动时
+	 * 才会识别带有提供者特定注解的包。自 4.1 起，
+	 * 如果给定的 {@link JpaVendorAdapter} 支持（例如对于 Hibernate），
+	 * Spring 的扫描也可以检测带注解的包。
+	 * <p>如果除了这些包之外没有指定显式的
+	 * {@link #setMappingResources 映射资源}，Spring 的设置会在类路径中
+	 * 查找默认的 {@code META-INF/orm.xml} 文件；如果该映射文件
+	 * 没有与 {@code persistence.xml} 文件位于同一位置（在这种情况下，
+	 * 我们假定它仅用于在那里定义的持久化单元，如同标准 JPA 那样），
+	 * 则将其注册为默认单元的映射资源。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @param packagesToScan one or more base packages to search, analogous to
 	 * Spring's component-scan configuration for regular Spring components
 	 * @see #setPersistenceUnitManager
@@ -190,24 +185,24 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Specify one or more mapping resources (equivalent to {@code <mapping-file>}
-	 * entries in {@code persistence.xml}) for the default persistence unit.
-	 * Can be used on its own or in combination with entity scanning in the classpath,
-	 * in both cases avoiding {@code persistence.xml}.
-	 * <p>Note that mapping resources must be relative to the classpath root,
-	 * e.g. "META-INF/mappings.xml" or "com/mycompany/repository/mappings.xml",
-	 * so that they can be loaded through {@code ClassLoader.getResource}.
-	 * <p>If no explicit mapping resources have been specified next to
-	 * {@link #setPackagesToScan packages to scan}, Spring's setup looks for a default
-	 * {@code META-INF/orm.xml} file in the classpath, registering it as a mapping
-	 * resource for the default unit if the mapping file is not co-located with a
-	 * {@code persistence.xml} file (in which case we assume it is only meant to be
-	 * used with the persistence units defined there, like in standard JPA).
-	 * <p>Note that specifying an empty array/list here suppresses the default
-	 * {@code META-INF/orm.xml} check. On the other hand, explicitly specifying
-	 * {@code META-INF/orm.xml} here will register that file even if it happens
-	 * to be co-located with a {@code persistence.xml} file.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 为默认持久化单元指定一个或多个映射资源
+	 * （相当于 {@code persistence.xml} 中的 {@code <mapping-file>} 条目）。
+	 * 可以单独使用，也可以与类路径中的实体扫描结合使用，
+	 * 两者都可以避免使用 {@code persistence.xml}。
+	 * <p>请注意，映射资源必须相对于类路径根，
+	 * 例如 "META-INF/mappings.xml" 或 "com/mycompany/repository/mappings.xml"，
+	 * 这样才能通过 {@code ClassLoader.getResource} 加载。
+	 * <p>如果在 {@link #setPackagesToScan 要扫描的包} 之外
+	 * 没有指定显式的映射资源，Spring 的设置会在类路径中查找默认的
+	 * {@code META-INF/orm.xml} 文件；如果该映射文件没有与
+	 * {@code persistence.xml} 文件位于同一位置（在这种情况下，
+	 * 我们假定它仅用于在那里定义的持久化单元，如同标准 JPA 那样），
+	 * 则将其注册为默认单元的映射资源。
+	 * <p>请注意，在此处指定空数组/空列表会抑制对默认
+	 * {@code META-INF/orm.xml} 的检查。相反，在此处显式指定
+	 * {@code META-INF/orm.xml} 将注册该文件，即使它恰好与
+	 * {@code persistence.xml} 文件位于同一位置。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @see #setPersistenceUnitManager
 	 * @see DefaultPersistenceUnitManager#setMappingResources
 	 */
@@ -216,9 +211,9 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Specify the JPA 2.0 shared cache mode for this persistence unit,
-	 * overriding a value in {@code persistence.xml} if set.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 为此持久化单元指定 JPA 2.0 共享缓存模式，
+	 * 如果已设置则覆盖 {@code persistence.xml} 中的值。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @since 4.0
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getSharedCacheMode()
 	 * @see #setPersistenceUnitManager
@@ -228,9 +223,9 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Specify the JPA 2.0 validation mode for this persistence unit,
-	 * overriding a value in {@code persistence.xml} if set.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 为此持久化单元指定 JPA 2.0 验证模式，
+	 * 如果已设置则覆盖 {@code persistence.xml} 中的值。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @since 4.0
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getValidationMode()
 	 * @see #setPersistenceUnitManager
@@ -240,16 +235,15 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Specify the JDBC DataSource that the JPA persistence provider is supposed
-	 * to use for accessing the database. This is an alternative to keeping the
-	 * JDBC configuration in {@code persistence.xml}, passing in a Spring-managed
-	 * DataSource instead.
-	 * <p>In JPA speak, a DataSource passed in here will be used as "nonJtaDataSource"
-	 * on the PersistenceUnitInfo passed to the PersistenceProvider, as well as
-	 * overriding data source configuration in {@code persistence.xml} (if any).
-	 * Note that this variant typically works for JTA transaction management as well;
-	 * if it does not, consider using the explicit {@link #setJtaDataSource} instead.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 指定 JPA 持久化提供者应用于访问数据库的 JDBC DataSource。
+	 * 这是将 JDBC 配置保留在 {@code persistence.xml} 中并改为传入
+	 * Spring 管理的 DataSource 的替代方式。
+	 * <p>用 JPA 的话来说，此处传入的 DataSource 将作为传递给
+	 * PersistenceProvider 的 PersistenceUnitInfo 上的 "nonJtaDataSource"，
+	 * 并会覆盖 {@code persistence.xml} 中的数据源配置（如果有）。
+	 * 请注意，此变体通常也适用于 JTA 事务管理；
+	 * 如果不适用，请考虑改用显式的 {@link #setJtaDataSource}。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getNonJtaDataSource()
 	 * @see #setPersistenceUnitManager
 	 */
@@ -259,14 +253,13 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Specify the JDBC DataSource that the JPA persistence provider is supposed
-	 * to use for accessing the database. This is an alternative to keeping the
-	 * JDBC configuration in {@code persistence.xml}, passing in a Spring-managed
-	 * DataSource instead.
-	 * <p>In JPA speak, a DataSource passed in here will be used as "jtaDataSource"
-	 * on the PersistenceUnitInfo passed to the PersistenceProvider, as well as
-	 * overriding data source configuration in {@code persistence.xml} (if any).
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 指定 JPA 持久化提供者应用于访问数据库的 JDBC DataSource。
+	 * 这是将 JDBC 配置保留在 {@code persistence.xml} 中并改为传入
+	 * Spring 管理的 DataSource 的替代方式。
+	 * <p>用 JPA 的话来说，此处传入的 DataSource 将作为传递给
+	 * PersistenceProvider 的 PersistenceUnitInfo 上的 "jtaDataSource"，
+	 * 并会覆盖 {@code persistence.xml} 中的数据源配置（如果有）。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getJtaDataSource()
 	 * @see #setPersistenceUnitManager
 	 */
@@ -276,12 +269,11 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Set the PersistenceUnitPostProcessors to be applied to the
-	 * PersistenceUnitInfo used for creating this EntityManagerFactory.
-	 * <p>Such post-processors can, for example, register further entity
-	 * classes and jar files, in addition to the metadata read from
-	 * {@code persistence.xml}.
-	 * <p><b>NOTE: Only applied if no external PersistenceUnitManager specified.</b>
+	 * 设置要应用于用于创建此 EntityManagerFactory 的 PersistenceUnitInfo
+	 * 的 PersistenceUnitPostProcessor。
+	 * <p>例如，此类后处理器可以在从 {@code persistence.xml}
+	 * 读取的元数据之外，注册更多的实体类和 jar 文件。
+	 * <p><b>注意：仅在未指定外部 PersistenceUnitManager 时生效。</b>
 	 * @see #setPersistenceUnitManager
 	 */
 	public void setPersistenceUnitPostProcessors(PersistenceUnitPostProcessor... postProcessors) {
@@ -289,24 +281,21 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Specify the Spring LoadTimeWeaver to use for class instrumentation according
-	 * to the JPA class transformer contract.
-	 * <p>It is a not required to specify a LoadTimeWeaver: Most providers will be
-	 * able to provide a subset of their functionality without class instrumentation
-	 * as well, or operate with their VM agent specified on JVM startup.
-	 * <p>In terms of Spring-provided weaving options, the most important ones are
-	 * InstrumentationLoadTimeWeaver, which requires a Spring-specific (but very general)
-	 * VM agent specified on JVM startup, and ReflectiveLoadTimeWeaver, which interacts
-	 * with an underlying ClassLoader based on specific extended methods being available
-	 * on it.
-	 * <p><b>NOTE:</b> As of Spring 2.5, the context's default LoadTimeWeaver (defined
-	 * as bean with name "loadTimeWeaver") will be picked up automatically, if available,
-	 * removing the need for LoadTimeWeaver configuration on each affected target bean.
-	 * Consider using the {@code context:load-time-weaver} XML tag for creating
-	 * such a shared LoadTimeWeaver (autodetecting the environment by default).
-	 * <p><b>NOTE:</b> Only applied if no external PersistenceUnitManager specified.
-	 * Otherwise, the external {@link #setPersistenceUnitManager PersistenceUnitManager}
-	 * is responsible for the weaving configuration.
+	 * 指定用于按照 JPA 类转换器契约进行类插桩的 Spring LoadTimeWeaver。
+	 * <p>并非必须指定 LoadTimeWeaver：大多数提供者即使没有类插桩
+	 * 也能提供其部分功能，或者可以使用在 JVM 启动时指定的 VM agent 运行。
+	 * <p>就 Spring 提供的织入选项而言，最重要的两个是
+	 * InstrumentationLoadTimeWeaver（它需要在 JVM 启动时指定一个 Spring 特定的、
+	 * 但非常通用的 VM agent）和 ReflectiveLoadTimeWeaver（它基于底层
+	 * ClassLoader 上可用的特定扩展方法与 ClassLoader 交互）。
+	 * <p><b>注意：</b>自 Spring 2.5 起，如果可用，
+	 * 上下文的默认 LoadTimeWeaver（定义为名为 "loadTimeWeaver" 的 bean）
+	 * 将被自动获取，从而无需在每个受影响的 target bean 上配置 LoadTimeWeaver。
+	 * 考虑使用 {@code context:load-time-weaver} XML 标签来创建这样一个共享的
+	 * LoadTimeWeaver（默认自动检测环境）。
+	 * <p><b>注意：</b>仅在未指定外部 PersistenceUnitManager 时生效。
+	 * 否则，由外部 {@link #setPersistenceUnitManager PersistenceUnitManager}
+	 * 负责织入配置。
 	 * @see org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
 	 * @see org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver
 	 */
@@ -370,12 +359,10 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 
 
 	/**
-	 * Determine the PersistenceUnitInfo to use for the EntityManagerFactory
-	 * created by this bean.
-	 * <p>The default implementation reads in all persistence unit infos from
-	 * {@code persistence.xml}, as defined in the JPA specification.
-	 * If no entity manager name was specified, it takes the first info in the
-	 * array as returned by the reader. Otherwise, it checks for a matching name.
+	 * 确定要用于此 bean 创建的 EntityManagerFactory 的 PersistenceUnitInfo。
+	 * <p>默认实现从 {@code persistence.xml} 中读取所有持久化单元信息，
+	 * 如 JPA 规范所定义。如果未指定实体管理器名称，
+	 * 则取读取器返回的数组中的第一个信息。否则，检查是否有匹配的名称。
 	 * @param persistenceUnitManager the PersistenceUnitManager to obtain from
 	 * @return the chosen PersistenceUnitInfo
 	 */
@@ -389,9 +376,9 @@ public class LocalContainerEntityManagerFactoryBean extends AbstractEntityManage
 	}
 
 	/**
-	 * Hook method allowing subclasses to customize the EntityManagerFactory
-	 * after its creation via the PersistenceProvider.
-	 * <p>The default implementation is empty.
+	 * 钩子方法，允许子类在通过 PersistenceProvider 创建 EntityManagerFactory
+	 * 之后对其进行定制。
+	 * <p>默认实现为空。
 	 * @param emf the newly created EntityManagerFactory we are working with
 	 * @param pui the PersistenceUnitInfo used to configure the EntityManagerFactory
 	 * @see javax.persistence.spi.PersistenceProvider#createContainerEntityManagerFactory

@@ -30,10 +30,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class to provide common methods for implementing
- * databinding-aware JSP tags for rendering <i>multiple</i>
- * HTML '{@code input}' elements with a '{@code type}'
- * of '{@code checkbox}' or '{@code radio}'.
+ * 抽象基类，提供用于实现数据绑定感知 JSP 标签的通用方法，
+ * 这些标签用于渲染 '{@code type}' 为 '{@code checkbox}' 或 '{@code radio}' 的
+ * <i>多个</i> HTML '{@code input}' 元素。
  *
  * @author Juergen Hoeller
  * @author Scott Andrews
@@ -43,47 +42,47 @@ import org.springframework.util.StringUtils;
 public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElementTag {
 
 	/**
-	 * The HTML '{@code span}' tag.
+	 * HTML '{@code span}' 标签。
 	 */
 	private static final String SPAN_TAG = "span";
 
 
 	/**
-	 * The {@link java.util.Collection}, {@link java.util.Map} or array of objects
-	 * used to generate the '{@code input type="checkbox/radio"}' tags.
+	 * 用于生成 '{@code input type="checkbox/radio"}' 标签的
+	 * {@link java.util.Collection}、{@link java.util.Map} 或对象数组。
 	 */
 	@Nullable
 	private Object items;
 
 	/**
-	 * The name of the property mapped to the '{@code value}' attribute
-	 * of the '{@code input type="checkbox/radio"}' tag.
+	 * 映射到 '{@code input type="checkbox/radio"}' 标签的
+	 * '{@code value}' 属性的属性名称。
 	 */
 	@Nullable
 	private String itemValue;
 
 	/**
-	 * The value to be displayed as part of the '{@code input type="checkbox/radio"}' tag.
+	 * 作为 '{@code input type="checkbox/radio"}' 标签的一部分显示的值。
 	 */
 	@Nullable
 	private String itemLabel;
 
 	/**
-	 * The HTML element used to enclose the '{@code input type="checkbox/radio"}' tag.
+	 * 用于包围 '{@code input type="checkbox/radio"}' 标签的 HTML 元素。
 	 */
 	private String element = SPAN_TAG;
 
 	/**
-	 * Delimiter to use between each '{@code input type="checkbox/radio"}' tags.
+	 * 在每个 '{@code input type="checkbox/radio"}' 标签之间使用的分隔符。
 	 */
 	@Nullable
 	private String delimiter;
 
 
 	/**
-	 * Set the {@link java.util.Collection}, {@link java.util.Map} or array of objects
-	 * used to generate the '{@code input type="checkbox/radio"}' tags.
-	 * <p>Typically a runtime expression.
+	 * 设置用于生成 '{@code input type="checkbox/radio"}' 标签的
+	 * {@link java.util.Collection}、{@link java.util.Map} 或对象数组。
+	 * <p>通常是运行时表达式。
 	 * @param items said items
 	 */
 	public void setItems(Object items) {
@@ -92,8 +91,8 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Get the {@link java.util.Collection}, {@link java.util.Map} or array of objects
-	 * used to generate the '{@code input type="checkbox/radio"}' tags.
+	 * 获取用于生成 '{@code input type="checkbox/radio"}' 标签的
+	 * {@link java.util.Collection}、{@link java.util.Map} 或对象数组。
 	 */
 	@Nullable
 	protected Object getItems() {
@@ -101,9 +100,9 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Set the name of the property mapped to the '{@code value}' attribute
-	 * of the '{@code input type="checkbox/radio"}' tag.
-	 * <p>May be a runtime expression.
+	 * 设置映射到 '{@code input type="checkbox/radio"}' 标签的
+	 * '{@code value}' 属性的属性名称。
+	 * <p>可以是运行时表达式。
 	 */
 	public void setItemValue(String itemValue) {
 		Assert.hasText(itemValue, "'itemValue' must not be empty");
@@ -111,8 +110,8 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Get the name of the property mapped to the '{@code value}' attribute
-	 * of the '{@code input type="checkbox/radio"}' tag.
+	 * 获取映射到 '{@code input type="checkbox/radio"}' 标签的
+	 * '{@code value}' 属性的属性名称。
 	 */
 	@Nullable
 	protected String getItemValue() {
@@ -120,9 +119,9 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Set the value to be displayed as part of the
-	 * '{@code input type="checkbox/radio"}' tag.
-	 * <p>May be a runtime expression.
+	 * 设置作为 '{@code input type="checkbox/radio"}' 标签的一部分
+	 * 显示的值。
+	 * <p>可以是运行时表达式。
 	 */
 	public void setItemLabel(String itemLabel) {
 		Assert.hasText(itemLabel, "'itemLabel' must not be empty");
@@ -130,8 +129,8 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Get the value to be displayed as part of the
-	 * '{@code input type="checkbox/radio"}' tag.
+	 * 获取作为 '{@code input type="checkbox/radio"}' 标签的一部分
+	 * 显示的值。
 	 */
 	@Nullable
 	protected String getItemLabel() {
@@ -139,17 +138,16 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Set the delimiter to be used between each
-	 * '{@code input type="checkbox/radio"}' tag.
-	 * <p>By default, there is <em>no</em> delimiter.
+	 * 设置在每个 '{@code input type="checkbox/radio"}' 标签之间
+	 * 使用的分隔符。
+	 * <p>默认情况下<em>没有</em>分隔符。
 	 */
 	public void setDelimiter(String delimiter) {
 		this.delimiter = delimiter;
 	}
 
 	/**
-	 * Return the delimiter to be used between each
-	 * '{@code input type="radio"}' tag.
+	 * 返回在每个 '{@code input type="radio"}' 标签之间使用的分隔符。
 	 */
 	@Nullable
 	public String getDelimiter() {
@@ -157,9 +155,9 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Set the HTML element used to enclose the
-	 * '{@code input type="checkbox/radio"}' tag.
-	 * <p>Defaults to an HTML '{@code <span/>}' tag.
+	 * 设置用于包围 '{@code input type="checkbox/radio"}' 标签的
+	 * HTML 元素。
+	 * <p>默认为 HTML '{@code <span/>}' 标签。
 	 */
 	public void setElement(String element) {
 		Assert.hasText(element, "'element' cannot be null or blank");
@@ -167,8 +165,7 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Get the HTML element used to enclose
-	 * '{@code input type="checkbox/radio"}' tag.
+	 * 获取用于包围 '{@code input type="checkbox/radio"}' 标签的 HTML 元素。
 	 */
 	public String getElement() {
 		return this.element;
@@ -176,8 +173,8 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 
 
 	/**
-	 * Appends a counter to a specified id as well,
-	 * since we're dealing with multiple HTML elements.
+	 * 同时向指定 id 追加一个计数器，
+	 * 因为我们处理的是多个 HTML 元素。
 	 */
 	@Override
 	protected String resolveId() throws JspException {
@@ -190,9 +187,8 @@ public abstract class AbstractMultiCheckedElementTag extends AbstractCheckedElem
 	}
 
 	/**
-	 * Renders the '{@code input type="radio"}' element with the configured
-	 * {@link #setItems(Object)} values. Marks the element as checked if the
-	 * value matches the bound value.
+	 * 使用配置的 {@link #setItems(Object)} 值渲染 '{@code input type="radio"}' 元素。
+	 * 如果值与绑定值匹配，则将元素标记为 checked。
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")

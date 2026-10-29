@@ -30,17 +30,11 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * Resolves method arguments annotated with {@code @RequestHeader} except for
- * {@link Map} arguments. See {@link RequestHeaderMapMethodArgumentResolver} for
- * details on {@link Map} arguments annotated with {@code @RequestHeader}.
+ * 解析带有 {@code @RequestHeader} 注解的方法参数，但 {@link Map} 参数除外。有关带有 {@code @RequestHeader} 注解的 {@link Map} 参数的详细信息，请参见 {@link RequestHeaderMapMethodArgumentResolver}。
  *
- * <p>An {@code @RequestHeader} is a named value resolved from a request header.
- * It has a required flag and a default value to fall back on when the request
- * header does not exist.
+ * <p>{@code @RequestHeader} 是从请求头解析的命名值。它具有必需标志和默认值，在请求头不存在时作为回退。
  *
- * <p>A {@link ConversionService} is invoked to apply type conversion to resolved
- * request header values that don't yet match the method parameter type.
- *
+ * <p>会调用 {@link ConversionService} 对尚不匹配方法参数类型的已解析请求头值应用类型转换。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see RequestHeaderMapMethodArgumentResolver
@@ -48,7 +42,7 @@ import org.springframework.web.server.ServerWebInputException;
 public class RequestHeaderMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
-	 * Create a new {@link RequestHeaderMethodArgumentResolver} instance.
+	 * 创建新的 {@link RequestHeaderMethodArgumentResolver} 实例。
 	 * @param factory a bean factory to use for resolving {@code ${...}}
 	 * placeholder and {@code #{...}} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to have expressions

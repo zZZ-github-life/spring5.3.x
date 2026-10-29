@@ -17,8 +17,7 @@
 package org.springframework.expression;
 
 /**
- * Supported operations that an {@link OperatorOverloader} can implement for any pair of
- * operands.
+ * {@link OperatorOverloader} 可针对任意一对操作数实现的受支持运算。
  *
  * @author Andy Clement
  * @since 3.0
@@ -26,32 +25,32 @@ package org.springframework.expression;
 public enum Operation {
 
 	/**
-	 * Add operation.
+	 * 加法运算。
 	 */
 	ADD,
 
 	/**
-	 * Subtract operation.
+	 * 减法运算。
 	 */
 	SUBTRACT,
 
 	/**
-	 * Divide operation.
+	 * 除法运算。
 	 */
 	DIVIDE,
 
 	/**
-	 * Multiply operation.
+	 * 乘法运算。
 	 */
 	MULTIPLY,
 
 	/**
-	 * Modulus operation.
+	 * 取模运算。
 	 */
 	MODULUS,
 
 	/**
-	 * Power operation.
+	 * 乘方运算。
 	 */
 	POWER
 

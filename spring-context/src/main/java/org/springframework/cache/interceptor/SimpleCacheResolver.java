@@ -23,9 +23,9 @@ import org.springframework.cache.CacheManager;
 import org.springframework.lang.Nullable;
 
 /**
- * A simple {@link CacheResolver} that resolves the {@link Cache} instance(s)
- * based on a configurable {@link CacheManager} and the name of the
- * cache(s) as provided by {@link BasicOperation#getCacheNames() getCacheNames()}.
+ * 一个简单的 {@link CacheResolver}，根据可配置的 {@link CacheManager} 以及
+ * {@link BasicOperation#getCacheNames() getCacheNames()} 提供的缓存名称，
+ * 解析 {@link Cache} 实例。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -35,14 +35,14 @@ import org.springframework.lang.Nullable;
 public class SimpleCacheResolver extends AbstractCacheResolver {
 
 	/**
-	 * Construct a new {@code SimpleCacheResolver}.
+	 * 构造一个新的 {@code SimpleCacheResolver}。
 	 * @see #setCacheManager
 	 */
 	public SimpleCacheResolver() {
 	}
 
 	/**
-	 * Construct a new {@code SimpleCacheResolver} for the given {@link CacheManager}.
+	 * 为给定的 {@link CacheManager} 构造一个新的 {@code SimpleCacheResolver}。
 	 * @param cacheManager the CacheManager to use
 	 */
 	public SimpleCacheResolver(CacheManager cacheManager) {
@@ -57,7 +57,7 @@ public class SimpleCacheResolver extends AbstractCacheResolver {
 
 
 	/**
-	 * Return a {@code SimpleCacheResolver} for the given {@link CacheManager}.
+	 * 为给定的 {@link CacheManager} 返回一个 {@code SimpleCacheResolver}。
 	 * @param cacheManager the CacheManager (potentially {@code null})
 	 * @return the SimpleCacheResolver ({@code null} if the CacheManager was {@code null})
 	 * @since 5.1

@@ -26,9 +26,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A base class for a {@code ResourceTransformer} with an optional helper method
- * for resolving public links within a transformed resource.
- *
+ * 用于 {@code ResourceTransformer} 的基类，提供用于解析被转换资源中公共链接的可选辅助方法。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -40,10 +38,7 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 
 
 	/**
-	 * Configure a {@link ResourceUrlProvider} to use when resolving the public
-	 * URL of links in a transformed resource (e.g. import links in a CSS file).
-	 * This is required only for links expressed as full paths and not for
-	 * relative links.
+	 * 配置在解析被转换资源中链接的公共 URL（例如 CSS 文件中的 import 链接）时要使用的 {@link ResourceUrlProvider}。仅对于以完整路径表示的链接需要此配置，相对链接不需要。
 	 * @param resourceUrlProvider the URL provider to use
 	 */
 	public void setResourceUrlProvider(@Nullable ResourceUrlProvider resourceUrlProvider) {
@@ -51,7 +46,7 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 	}
 
 	/**
-	 * Return the configured {@code ResourceUrlProvider}.
+	 * 返回配置的 {@code ResourceUrlProvider}。
 	 */
 	@Nullable
 	public ResourceUrlProvider getResourceUrlProvider() {
@@ -60,10 +55,7 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 
 
 	/**
-	 * A transformer can use this method when a resource being transformed
-	 * contains links to other resources. Such links need to be replaced with the
-	 * public facing link as determined by the resource resolver chain (e.g. the
-	 * public URL may have a version inserted).
+	 * 当被转换的资源包含指向其他资源的链接时，转换器可以使用此方法。此类链接需要替换为资源解析器链确定的对外公共链接（例如公共 URL 中可能插入了版本）。
 	 * @param resourcePath the path to a resource that needs to be re-written
 	 * @param exchange the current exchange
 	 * @param resource the resource being transformed
@@ -86,9 +78,7 @@ public abstract class ResourceTransformerSupport implements ResourceTransformer 
 	}
 
 	/**
-	 * Transform the given relative request path to an absolute path,
-	 * taking the path of the given request as a point of reference.
-	 * The resulting path is also cleaned from sequences like "path/..".
+	 * 将给定的相对请求路径转换为绝对路径，并以给定请求的路径作为参考点。结果路径还会清除 "path/.." 之类的序列。
 	 * @param path the relative path to transform
 	 * @param exchange the current exchange
 	 * @return the absolute request path for the given resource path

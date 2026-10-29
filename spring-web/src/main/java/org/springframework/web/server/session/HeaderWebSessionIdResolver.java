@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Request and response header-based {@link WebSessionIdResolver}.
+ * 基于请求头和响应头的 {@link WebSessionIdResolver}。
  *
  * @author Greg Turnquist
  * @author Rob Winch
@@ -32,7 +32,7 @@ import org.springframework.web.server.ServerWebExchange;
  */
 public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 
-	/** Default value for {@link #setHeaderName(String)}. */
+	/** {@link #setHeaderName(String)} 的默认值。 */
 	public static final String DEFAULT_HEADER_NAME = "SESSION";
 
 
@@ -40,10 +40,9 @@ public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 
 
 	/**
-	 * Set the name of the session header to use for the session ID.
-	 * <p>The name is used to extract the session ID from the request headers as
-	 * well to set the session ID on the response headers.
-	 * <p>By default set to {@code DEFAULT_HEADER_NAME}
+	 * 设置用于保存会话 ID 的会话头名称。
+	 * <p>该名称既用于从请求头中提取会话 ID，也用于在响应头中设置会话 ID。
+	 * <p>默认设置为 {@code DEFAULT_HEADER_NAME}
 	 * @param headerName the header name
 	 */
 	public void setHeaderName(String headerName) {
@@ -52,7 +51,7 @@ public class HeaderWebSessionIdResolver implements WebSessionIdResolver {
 	}
 
 	/**
-	 * Get the configured header name.
+	 * 获取已配置的头名称。
 	 * @return the configured header name
 	 */
 	public String getHeaderName() {

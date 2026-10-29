@@ -25,13 +25,12 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * {@code MockMvcWebClientBuilder} simplifies the creation of an HtmlUnit
- * {@link WebClient} that delegates to a {@link MockMvc} instance.
+ * {@code MockMvcWebClientBuilder} 简化了创建委托给 {@link MockMvc} 实例的 HtmlUnit
+ * {@link WebClient} 的过程。
  *
- * <p>The {@code MockMvc} instance used by the builder may be
- * {@linkplain #mockMvcSetup supplied directly} or created transparently
- * from a {@link #webAppContextSetup WebApplicationContext}.
- *
+ * <p>构建器使用的 {@code MockMvc} 实例可以通过
+ * {@linkplain #mockMvcSetup 直接提供}，也可以从
+ * {@link #webAppContextSetup WebApplicationContext} 透明地创建。
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
@@ -61,8 +60,7 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 
 
 	/**
-	 * Create a new {@code MockMvcWebClientBuilder} based on the supplied
-	 * {@link MockMvc} instance.
+	 * 基于提供的 {@link MockMvc} 实例创建新的 {@code MockMvcWebClientBuilder}。
 	 * @param mockMvc the {@code MockMvc} instance to use; never {@code null}
 	 * @return the MockMvcWebClientBuilder to customize
 	 */
@@ -72,8 +70,7 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	}
 
 	/**
-	 * Create a new {@code MockMvcWebClientBuilder} based on the supplied
-	 * {@link WebApplicationContext}.
+	 * 基于提供的 {@link WebApplicationContext} 创建新的 {@code MockMvcWebClientBuilder}。
 	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
 	 * instance from; never {@code null}
 	 * @return the MockMvcWebClientBuilder to customize
@@ -84,8 +81,8 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	}
 
 	/**
-	 * Create a new {@code MockMvcWebClientBuilder} based on the supplied
-	 * {@link WebApplicationContext} and {@link MockMvcConfigurer}.
+	 * 基于提供的 {@link WebApplicationContext} 和 {@link MockMvcConfigurer} 创建新的
+	 * {@code MockMvcWebClientBuilder}。
 	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
 	 * instance from; never {@code null}
 	 * @param configurer the {@code MockMvcConfigurer} to apply; never {@code null}
@@ -98,9 +95,9 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	}
 
 	/**
-	 * Supply the {@code WebClient} that the client {@linkplain #build built}
-	 * by this builder should delegate to when processing
-	 * non-{@linkplain WebRequestMatcher matching} requests.
+	 * 提供此构建器 {@linkplain #build 构建} 的客户端在处理
+	 * 非{@linkplain WebRequestMatcher 匹配}请求时应委托给
+	 * 的 {@code WebClient}。
 	 * @param webClient the {@code WebClient} to delegate to for requests
 	 * that do not match; never {@code null}
 	 * @return this builder for further customization
@@ -114,13 +111,13 @@ public class MockMvcWebClientBuilder extends MockMvcWebConnectionBuilderSupport<
 	}
 
 	/**
-	 * Build the {@link WebClient} configured via this builder.
-	 * <p>The returned client will use the configured {@link MockMvc} instance
-	 * for processing any {@linkplain WebRequestMatcher matching} requests
-	 * and a delegate {@code WebClient} for all other requests.
-	 * <p>If a {@linkplain #withDelegate delegate} has been explicitly configured,
-	 * it will be used; otherwise, a default {@code WebClient} will be configured
-	 * as the delegate.
+	 * 构建通过此构建器配置的 {@link WebClient}。
+	 * <p>返回的客户端将使用配置的 {@link MockMvc} 实例
+	 * 处理任何 {@linkplain WebRequestMatcher 匹配}请求，
+	 * 并对所有其他请求使用委托的 {@code WebClient}。
+	 * <p>如果已显式配置{@linkplain #withDelegate 委托}，
+	 * 则使用该委托；否则，将配置默认的 {@code WebClient}
+	 * 作为委托。
 	 * @return the {@code WebClient} to use
 	 * @see #withDelegate(WebClient)
 	 */

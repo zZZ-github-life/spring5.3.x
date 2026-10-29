@@ -20,14 +20,13 @@ import java.util.Comparator;
 import java.util.Map;
 
 /**
- * Strategy interface for {@code String}-based path matching.
+ * 基于 {@code String} 的路径匹配策略接口。
  *
- * <p>Used by {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},
- * {@link org.springframework.web.servlet.handler.AbstractUrlHandlerMapping},
- * and {@link org.springframework.web.servlet.mvc.WebContentInterceptor}.
+ * <p>供 {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}、
+ * {@link org.springframework.web.servlet.handler.AbstractUrlHandlerMapping} 和
+ * {@link org.springframework.web.servlet.mvc.WebContentInterceptor} 使用。
  *
- * <p>The default implementation is {@link AntPathMatcher}, supporting the
- * Ant-style pattern syntax.
+ * <p>默认实现是 {@link AntPathMatcher}，支持 Ant 风格的模式语法。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -36,19 +35,16 @@ import java.util.Map;
 public interface PathMatcher {
 
 	/**
-	 * Does the given {@code path} represent a pattern that can be matched
-	 * by an implementation of this interface?
-	 * <p>If the return value is {@code false}, then the {@link #match}
-	 * method does not have to be used because direct equality comparisons
-	 * on the static path Strings will lead to the same result.
+	 * 给定的 {@code path} 是否表示一个可由本接口实现进行匹配的模式？
+	 * <p>如果返回值为 {@code false}，则无需使用 {@link #match} 方法，因为对静态路径字符串进行直接相等
+	 * 比较会得到相同的结果。
 	 * @param path the path to check
 	 * @return {@code true} if the given {@code path} represents a pattern
 	 */
 	boolean isPattern(String path);
 
 	/**
-	 * Match the given {@code path} against the given {@code pattern},
-	 * according to this PathMatcher's matching strategy.
+	 * 根据此 PathMatcher 的匹配策略，将给定的 {@code path} 与给定的 {@code pattern} 进行匹配。
 	 * @param pattern the pattern to match against
 	 * @param path the path to test
 	 * @return {@code true} if the supplied {@code path} matched,
@@ -57,10 +53,8 @@ public interface PathMatcher {
 	boolean match(String pattern, String path);
 
 	/**
-	 * Match the given {@code path} against the corresponding part of the given
-	 * {@code pattern}, according to this PathMatcher's matching strategy.
-	 * <p>Determines whether the pattern at least matches as far as the given base
-	 * path goes, assuming that a full path may then match as well.
+	 * 根据此 PathMatcher 的匹配策略，将给定的 {@code path} 与给定 {@code pattern} 的对应部分进行匹配。
+	 * <p>判断模式至少在给定基础路径的范围内是否匹配，并假定完整路径随后也可能匹配。
 	 * @param pattern the pattern to match against
 	 * @param path the path to test
 	 * @return {@code true} if the supplied {@code path} matched,
@@ -69,20 +63,14 @@ public interface PathMatcher {
 	boolean matchStart(String pattern, String path);
 
 	/**
-	 * Given a pattern and a full path, determine the pattern-mapped part.
-	 * <p>This method is supposed to find out which part of the path is matched
-	 * dynamically through an actual pattern, that is, it strips off a statically
-	 * defined leading path from the given full path, returning only the actually
-	 * pattern-matched part of the path.
-	 * <p>For example: For "myroot/*.html" as pattern and "myroot/myfile.html"
-	 * as full path, this method should return "myfile.html". The detailed
-	 * determination rules are specified to this PathMatcher's matching strategy.
-	 * <p>A simple implementation may return the given full path as-is in case
-	 * of an actual pattern, and the empty String in case of the pattern not
-	 * containing any dynamic parts (i.e. the {@code pattern} parameter being
-	 * a static path that wouldn't qualify as an actual {@link #isPattern pattern}).
-	 * A sophisticated implementation will differentiate between the static parts
-	 * and the dynamic parts of the given path pattern.
+	 * 给定模式与完整路径，确定由模式映射的部分。
+	 * <p>此方法应找出路径中通过实际模式动态匹配的部分，即从给定的完整路径中剥离静态定义的前导路径，仅
+	 * 返回实际由模式匹配的部分。
+	 * <p>例如：对于模式 "myroot/*.html" 和完整路径 "myroot/myfile.html"，此方法应返回 "myfile.html"。
+	 * 详细的判定规则由该 PathMatcher 的匹配策略规定。
+	 * <p>简单的实现可以在模式为实际模式时原样返回给定的完整路径，并在模式不包含任何动态部分（即
+	 * {@code pattern} 参数是静态路径，不符合实际 {@link #isPattern pattern} 的条件）时返回空字符串。复
+	 * 杂的实现会区分给定路径模式中的静态部分和动态部分。
 	 * @param pattern the path pattern
 	 * @param path the full path to introspect
 	 * @return the pattern-mapped part of the given {@code path}
@@ -91,10 +79,9 @@ public interface PathMatcher {
 	String extractPathWithinPattern(String pattern, String path);
 
 	/**
-	 * Given a pattern and a full path, extract the URI template variables. URI template
-	 * variables are expressed through curly brackets ('{' and '}').
-	 * <p>For example: For pattern "/hotels/{hotel}" and path "/hotels/1", this method will
-	 * return a map containing "hotel" &rarr; "1".
+	 * 给定模式与完整路径，提取 URI 模板变量。URI 模板变量通过花括号（'{' 和 '}'）表示。
+	 * <p>例如：对于模式 "/hotels/{hotel}" 和路径 "/hotels/1"，此方法将返回包含 "hotel" &rarr; "1" 的映
+	 * 射。
 	 * @param pattern the path pattern, possibly containing URI templates
 	 * @param path the full path to extract template variables from
 	 * @return a map, containing variable names as keys; variables values as values
@@ -102,20 +89,18 @@ public interface PathMatcher {
 	Map<String, String> extractUriTemplateVariables(String pattern, String path);
 
 	/**
-	 * Given a full path, returns a {@link Comparator} suitable for sorting patterns
-	 * in order of explicitness for that path.
-	 * <p>The full algorithm used depends on the underlying implementation,
-	 * but generally, the returned {@code Comparator} will
-	 * {@linkplain java.util.List#sort(java.util.Comparator) sort}
-	 * a list so that more specific patterns come before generic patterns.
+	 * 给定完整路径，返回一个适合按该路径的明确程度对模式排序的 {@link Comparator}。
+	 * <p>所使用的完整算法取决于底层实现，但通常返回的 {@code Comparator} 会通过
+	 * {@linkplain java.util.List#sort(java.util.Comparator) sort} 对列表排序，使更具体的模式排在通用模
+	 * 式之前。
 	 * @param path the full path to use for comparison
 	 * @return a comparator capable of sorting patterns in order of explicitness
 	 */
 	Comparator<String> getPatternComparator(String path);
 
 	/**
-	 * Combines two patterns into a new pattern that is returned.
-	 * <p>The full algorithm used for combining the two pattern depends on the underlying implementation.
+	 * 将两个模式合并为一个返回的新模式。
+	 * <p>用于合并两个模式的完整算法取决于底层实现。
 	 * @param pattern1 the first pattern
 	 * @param pattern2 the second pattern
 	 * @return the combination of the two patterns

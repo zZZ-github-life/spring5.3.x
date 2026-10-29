@@ -25,23 +25,19 @@ import java.lang.annotation.Target;
 import io.rsocket.ConnectionSetupPayload;
 
 /**
- * Annotation to map the initial {@link ConnectionSetupPayload} and subsequent
- * metadata pushes onto a handler method.
+ * 用于将初始 {@link ConnectionSetupPayload} 以及后续的元数据推送映射到处理器方法的注解。
  *
- * <p>This is a method-level annotation that can be combined with a type-level
+ * <p>这是一个方法级注解，可以与类型级的
  * {@link org.springframework.messaging.handler.annotation.MessageMapping @MessageMapping}
- * for a combined route pattern. It supports the same arguments as
- * {@code @MessageMapping} but the return value must be {@code void}. On a
- * server, handling can be asynchronous (e.g. {@code Mono<Void>}), in which
- * case the connection is accepted if and when the {@code Mono<Void>} completes.
- * On the client side this method is only a callback and does not affect the
- * establishment of the connection.
+ * 结合使用，形成组合路由模式。它支持与 {@code @MessageMapping} 相同的参数，
+ * 但返回值必须为 {@code void}。在服务器端，处理可以是异步的（例如
+ * {@code Mono<Void>}），此时仅当 {@code Mono<Void>} 完成时才接受连接。
+ * 在客户端，此方法只是一个回调，不影响连接的建立。
  *
- * <p><strong>Note:</strong> an {@code @ConnectMapping} method may start
- * requests to the remote through an
+ * <p><strong>注意：</strong>{@code @ConnectMapping} 方法可以通过
  * {@link org.springframework.messaging.rsocket.RSocketRequester RSocketRequester}
- * method argument, but it must do so independent of the handling thread (e.g.
- * via subscribing on a different thread).
+ * 方法参数向远程发起请求，但必须独立于处理线程进行（例如
+ * 在不同线程上订阅）。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -52,15 +48,14 @@ import io.rsocket.ConnectionSetupPayload;
 public @interface ConnectMapping {
 
 	/**
-	 * Mappings expressed by this annotation to match to the route from the
-	 * metadata of the initial {@link ConnectionSetupPayload} or in
-	 * subsequent metadata pushes.
-	 * <p>Depending on the configured
-	 * {@link org.springframework.util.RouteMatcher RouteMatcher}, the pattern may be
-	 * {@link org.springframework.util.AntPathMatcher AntPathMatcher} or
-	 * {@link org.springframework.web.util.pattern.PathPattern PathPattern} based.
-	 * <p>By default this is an empty array in which case it matches all
-	 * {@link ConnectionSetupPayload} and metadata pushes.
+	 * 此注解所表达、用于与初始 {@link ConnectionSetupPayload} 的元数据中
+	 * 或后续元数据推送中的路由进行匹配的映射。
+	 * <p>根据配置的
+	 * {@link org.springframework.util.RouteMatcher RouteMatcher}，模式可以基于
+	 * {@link org.springframework.util.AntPathMatcher AntPathMatcher} 或
+	 * {@link org.springframework.web.util.pattern.PathPattern PathPattern}。
+	 * <p>默认情况下这是一个空数组，此时匹配所有
+	 * {@link ConnectionSetupPayload} 和元数据推送。
 	 */
 	String[] value() default {};
 

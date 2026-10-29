@@ -20,8 +20,7 @@ import org.springframework.beans.FatalBeanException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when the BeanFactory cannot load the specified class
- * of a given bean.
+ * 当 BeanFactory 无法加载给定 Bean 的指定类时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -39,7 +38,7 @@ public class CannotLoadBeanClassException extends FatalBeanException {
 
 
 	/**
-	 * Create a new CannotLoadBeanClassException.
+	 * 创建一个新的 CannotLoadBeanClassException。
 	 * @param resourceDescription description of the resource
 	 * that the bean definition came from
 	 * @param beanName the name of the bean requested
@@ -57,7 +56,7 @@ public class CannotLoadBeanClassException extends FatalBeanException {
 	}
 
 	/**
-	 * Create a new CannotLoadBeanClassException.
+	 * 创建一个新的 CannotLoadBeanClassException。
 	 * @param resourceDescription description of the resource
 	 * that the bean definition came from
 	 * @param beanName the name of the bean requested
@@ -77,8 +76,7 @@ public class CannotLoadBeanClassException extends FatalBeanException {
 
 
 	/**
-	 * Return the description of the resource that the bean
-	 * definition came from.
+	 * 返回 Bean 定义来源资源的描述。
 	 */
 	@Nullable
 	public String getResourceDescription() {
@@ -86,14 +84,14 @@ public class CannotLoadBeanClassException extends FatalBeanException {
 	}
 
 	/**
-	 * Return the name of the bean requested.
+	 * 返回所请求的 Bean 的名称。
 	 */
 	public String getBeanName() {
 		return this.beanName;
 	}
 
 	/**
-	 * Return the name of the class we were trying to load.
+	 * 返回我们尝试加载的类的名称。
 	 */
 	@Nullable
 	public String getBeanClassName() {

@@ -24,9 +24,7 @@ import org.springframework.web.reactive.BindingContext;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * An extension of {@link HandlerMethodArgumentResolver} for implementations
- * that are synchronous in nature and do not block to resolve values.
- *
+ * {@link HandlerMethodArgumentResolver} 的扩展，用于本质上是同步且不会阻塞解析值的实现。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -34,8 +32,7 @@ public interface SyncHandlerMethodArgumentResolver extends HandlerMethodArgument
 
 	/**
 	 * {@inheritDoc}
-	 * <p>By default this simply delegates to {@link #resolveArgumentValue} for
-	 * synchronous resolution.
+	 * <p>默认情况下，这仅委托给 {@link #resolveArgumentValue} 进行同步解析。
 	 */
 	@Override
 	default Mono<Object> resolveArgument(
@@ -45,7 +42,7 @@ public interface SyncHandlerMethodArgumentResolver extends HandlerMethodArgument
 	}
 
 	/**
-	 * Resolve the value for the method parameter synchronously.
+	 * 同步解析方法参数的值。
 	 * @param parameter the method parameter
 	 * @param bindingContext the binding context to use
 	 * @param exchange the current exchange

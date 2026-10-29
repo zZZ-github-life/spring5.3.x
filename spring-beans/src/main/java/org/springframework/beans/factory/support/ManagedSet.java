@@ -25,8 +25,7 @@ import org.springframework.beans.Mergeable;
 import org.springframework.lang.Nullable;
 
 /**
- * Tag collection class used to hold managed Set values, which may
- * include runtime bean references (to be resolved into bean objects).
+ * 用于保存受管 Set 值的标记集合类，其中可能包含运行时 Bean 引用（将被解析为 Bean 对象）。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -56,7 +55,7 @@ public class ManagedSet<E> extends LinkedHashSet<E> implements Mergeable, BeanMe
 
 
 	/**
-	 * Create a new instance containing an arbitrary number of elements.
+	 * 创建一个包含任意数量元素的新实例。
 	 * @param elements the elements to be contained in the set
 	 * @param <E> the {@code Set}'s element type
 	 * @return a {@code ManagedSet} containing the specified elements
@@ -70,8 +69,8 @@ public class ManagedSet<E> extends LinkedHashSet<E> implements Mergeable, BeanMe
 	}
 
 	/**
-	 * Set the configuration source {@code Object} for this metadata element.
-	 * <p>The exact type of the object will depend on the configuration mechanism used.
+	 * 为此元数据元素设置配置源 {@code Object}。
+	 * <p>对象的具体类型取决于所使用的配置机制。
 	 */
 	public void setSource(@Nullable Object source) {
 		this.source = source;
@@ -84,14 +83,14 @@ public class ManagedSet<E> extends LinkedHashSet<E> implements Mergeable, BeanMe
 	}
 
 	/**
-	 * Set the default element type name (class name) to be used for this set.
+	 * 设置此 set 要使用的默认元素类型名（类名）。
 	 */
 	public void setElementTypeName(@Nullable String elementTypeName) {
 		this.elementTypeName = elementTypeName;
 	}
 
 	/**
-	 * Return the default element type name (class name) to be used for this set.
+	 * 返回此 set 要使用的默认元素类型名（类名）。
 	 */
 	@Nullable
 	public String getElementTypeName() {
@@ -99,8 +98,7 @@ public class ManagedSet<E> extends LinkedHashSet<E> implements Mergeable, BeanMe
 	}
 
 	/**
-	 * Set whether merging should be enabled for this collection,
-	 * in case of a 'parent' collection value being present.
+	 * 设置当存在 'parent' 集合值时，是否为此集合启用合并。
 	 */
 	public void setMergeEnabled(boolean mergeEnabled) {
 		this.mergeEnabled = mergeEnabled;

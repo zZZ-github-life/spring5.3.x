@@ -17,8 +17,7 @@
 package org.springframework.util.backoff;
 
 /**
- * A simple {@link BackOff} implementation that provides a fixed interval
- * between two attempts and a maximum number of retries.
+ * 一个简单的 {@link BackOff} 实现，在两次尝试之间提供固定间隔，并限制最大重试次数。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -26,12 +25,12 @@ package org.springframework.util.backoff;
 public class FixedBackOff implements BackOff {
 
 	/**
-	 * The default recovery interval: 5000 ms = 5 seconds.
+	 * 默认恢复间隔：5000 ms = 5 秒。
 	 */
 	public static final long DEFAULT_INTERVAL = 5000;
 
 	/**
-	 * Constant value indicating an unlimited number of attempts.
+	 * 表示尝试次数无限的常量值。
 	 */
 	public static final long UNLIMITED_ATTEMPTS = Long.MAX_VALUE;
 
@@ -41,14 +40,13 @@ public class FixedBackOff implements BackOff {
 
 
 	/**
-	 * Create an instance with an interval of {@value #DEFAULT_INTERVAL}
-	 * ms and an unlimited number of attempts.
+	 * 创建一个实例，其间隔为 {@value #DEFAULT_INTERVAL} ms，尝试次数不限。
 	 */
 	public FixedBackOff() {
 	}
 
 	/**
-	 * Create an instance.
+	 * 创建一个实例。
 	 * @param interval the interval between two attempts
 	 * @param maxAttempts the maximum number of attempts
 	 */
@@ -59,28 +57,28 @@ public class FixedBackOff implements BackOff {
 
 
 	/**
-	 * Set the interval between two attempts in milliseconds.
+	 * 设置两次尝试之间的间隔，单位为毫秒。
 	 */
 	public void setInterval(long interval) {
 		this.interval = interval;
 	}
 
 	/**
-	 * Return the interval between two attempts in milliseconds.
+	 * 返回两次尝试之间的间隔，单位为毫秒。
 	 */
 	public long getInterval() {
 		return this.interval;
 	}
 
 	/**
-	 * Set the maximum number of attempts in milliseconds.
+	 * 设置最大尝试次数，单位为毫秒。
 	 */
 	public void setMaxAttempts(long maxAttempts) {
 		this.maxAttempts = maxAttempts;
 	}
 
 	/**
-	 * Return the maximum number of attempts in milliseconds.
+	 * 返回最大尝试次数，单位为毫秒。
 	 */
 	public long getMaxAttempts() {
 		return this.maxAttempts;

@@ -1,11 +1,11 @@
 /**
- * This package contains mock implementations of the
- * {@link org.springframework.core.env.Environment Environment} and
+ * 本包包含 Spring 3.1 中引入的
+ * {@link org.springframework.core.env.Environment Environment} 和
  * {@link org.springframework.core.env.PropertySource PropertySource}
- * abstractions introduced in Spring 3.1.
+ * 抽象的 mock 实现。
  *
- * <p>These <em>mocks</em> are useful for developing <em>out-of-container</em>
- * unit tests for code that depends on environment-specific properties.
+ * <p>这些 <em>mock</em> 对于为依赖特定环境属性的代码开发 <em>容器外</em>
+ * 单元测试非常有用。
  */
 @NonNullApi
 @NonNullFields

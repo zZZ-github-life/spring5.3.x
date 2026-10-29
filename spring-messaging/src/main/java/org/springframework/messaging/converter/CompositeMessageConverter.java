@@ -26,11 +26,11 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.util.Assert;
 
 /**
- * A {@link MessageConverter} that delegates to a list of registered converters
- * to be invoked until one of them returns a non-null result.
+ * 一个 {@link MessageConverter}，它将转换委托给一组已注册的转换器，
+ * 依次调用直到其中之一返回非 null 结果。
  *
- * <p>As of 4.2.1, this composite converter implements {@link SmartMessageConverter}
- * in order to support the delegation of conversion hints.
+ * <p>从 4.2.1 开始，此组合转换器实现 {@link SmartMessageConverter}，
+ * 以支持转换提示的委托。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -42,7 +42,7 @@ public class CompositeMessageConverter implements SmartMessageConverter {
 
 
 	/**
-	 * Create an instance with the given converters.
+	 * 使用给定的转换器创建实例。
 	 */
 	public CompositeMessageConverter(Collection<MessageConverter> converters) {
 		Assert.notEmpty(converters, "Converters must not be empty");
@@ -104,7 +104,7 @@ public class CompositeMessageConverter implements SmartMessageConverter {
 
 
 	/**
-	 * Return the underlying list of delegate converters.
+	 * 返回底层委托转换器列表。
 	 */
 	public List<MessageConverter> getConverters() {
 		return this.converters;

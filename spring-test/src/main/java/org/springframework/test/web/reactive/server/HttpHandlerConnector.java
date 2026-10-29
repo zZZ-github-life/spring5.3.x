@@ -46,13 +46,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Connector that handles requests by invoking an {@link HttpHandler} rather
- * than making actual requests to a network socket.
+ * 通过调用 {@link HttpHandler} 而不是向网络套接字发出实际请求来处理请求的连接器。
  *
- * <p>Internally the connector uses and adapts<br>
- * {@link MockClientHttpRequest} and {@link MockClientHttpResponse} to<br>
- * {@link MockServerHttpRequest} and {@link MockServerHttpResponse}.
- *
+ * <p>在内部，连接器使用并适配<br>
+ * {@link MockClientHttpRequest} 和 {@link MockClientHttpResponse} 为<br>
+ * {@link MockServerHttpRequest} 和 {@link MockServerHttpResponse}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -64,7 +62,7 @@ public class HttpHandlerConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Constructor with the {@link HttpHandler} to handle requests with.
+	 * 使用用于处理请求的 {@link HttpHandler} 的构造函数。
 	 */
 	public HttpHandlerConnector(HttpHandler handler) {
 		Assert.notNull(handler, "HttpHandler is required");
@@ -152,14 +150,11 @@ public class HttpHandlerConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Indicates that an error occurred after the server response was completed,
-	 * via {@link ServerHttpResponse#writeWith} or {@link ServerHttpResponse#setComplete()},
-	 * and can no longer be changed. This exception wraps the error and also
-	 * provides {@link #getCompletedResponse() access} to the response.
-	 * <p>What happens on an actual running server depends on when the server
-	 * commits the response and the error may or may not change the response.
-	 * Therefore in tests without a server the exception is wrapped and allowed
-	 * to propagate so the application is alerted.
+	 * 指示在服务器响应完成之后发生了错误，错误是通过 {@link ServerHttpResponse#writeWith}
+	 * 或 {@link ServerHttpResponse#setComplete()} 发生的，此后响应无法再更改。此异常包装该错误，并提供对响应的
+	 * {@link #getCompletedResponse() 访问}。
+	 * <p>在实际运行的服务器上会发生什么取决于服务器何时提交响应，错误可能会也可能不会更改响应。
+	 * 因此，在没有服务器的测试中，该异常会被包装并允许传播，以便应用程序收到警报。
 	 * @since 5.2.2
 	 */
 	@SuppressWarnings("serial")

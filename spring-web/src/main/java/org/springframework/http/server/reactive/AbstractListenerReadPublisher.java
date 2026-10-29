@@ -33,13 +33,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for {@code Publisher} implementations that bridge between
- * event-listener read APIs and Reactive Streams.
+ * {@code Publisher} 实现的抽象基类，用于在事件监听式读取 API
+ * 与 Reactive Streams 之间进行桥接。
  *
- * <p>Specifically a base class for reading from the HTTP request body with
- * Servlet 3.1 non-blocking I/O and Undertow XNIO as well as handling incoming
- * WebSocket messages with standard Java WebSocket (JSR-356), Jetty, and
- * Undertow.
+ * <p>具体而言，是用于通过 Servlet 3.1 非阻塞 I/O 和 Undertow XNIO 从 HTTP
+ * 请求体读取数据，以及通过标准 Java WebSocket（JSR-356）、Jetty 和 Undertow
+ * 处理传入 WebSocket 消息的基类。
  *
  * @author Arjen Poutsma
  * @author Violeta Georgieva
@@ -50,7 +49,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 	/**
-	 * Special logger for debugging Reactive Streams signals.
+	 * 用于调试 Reactive Streams 信号的专用日志记录器。
 	 * @see LogDelegateFactory#getHiddenLog(Class)
 	 * @see AbstractListenerWriteProcessor#rsWriteLogger
 	 * @see AbstractListenerWriteFlushProcessor#rsWriteFlushLogger
@@ -85,7 +84,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	}
 
 	/**
-	 * Create an instance with the given log prefix.
+	 * 使用给定日志前缀创建实例。
 	 * @since 5.1
 	 */
 	public AbstractListenerReadPublisher(String logPrefix) {
@@ -94,7 +93,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 
 	/**
-	 * Return the configured log message prefix.
+	 * 返回已配置的日志消息前缀。
 	 * @since 5.1
 	 */
 	public String getLogPrefix() {
@@ -113,9 +112,8 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	// Async I/O notification methods...
 
 	/**
-	 * Invoked when reading is possible, either in the same thread after a check
-	 * via {@link #checkOnDataAvailable()}, or as a callback from the underlying
-	 * container.
+	 * 在可以读取时调用，可能是在通过 {@link #checkOnDataAvailable()}
+	 * 检查后的同一线程中，也可能是来自底层容器的回调。
 	 */
 	public final void onDataAvailable() {
 		rsReadLogger.trace(getLogPrefix() + "onDataAvailable");
@@ -123,8 +121,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	}
 
 	/**
-	 * Subclasses can call this method to delegate a contain notification when
-	 * all data has been read.
+	 * 子类可以调用此方法，在所有数据读取完毕后委派容器通知。
 	 */
 	public void onAllDataRead() {
 		State state = this.state.get();
@@ -135,7 +132,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	}
 
 	/**
-	 * Subclasses can call this to delegate container error notifications.
+	 * 子类可以调用此方法，委派容器错误通知。
 	 */
 	public final void onError(Throwable ex) {
 		State state = this.state.get();
@@ -149,32 +146,31 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	// Read API methods to be implemented or template methods to override...
 
 	/**
-	 * Check if data is available and either call {@link #onDataAvailable()}
-	 * immediately or schedule a notification.
+	 * 检查数据是否可用，并立即调用 {@link #onDataAvailable()}
+	 * 或安排通知。
 	 */
 	protected abstract void checkOnDataAvailable();
 
 	/**
-	 * Read once from the input, if possible.
+	 * 如果可能，从输入中读取一次。
 	 * @return the item that was read; or {@code null}
 	 */
 	@Nullable
 	protected abstract T read() throws IOException;
 
 	/**
-	 * Invoked when reading is paused due to a lack of demand.
-	 * <p><strong>Note:</strong> This method is guaranteed not to compete with
-	 * {@link #checkOnDataAvailable()} so it can be used to safely suspend
-	 * reading, if the underlying API supports it, i.e. without competing with
-	 * an implicit call to resume via {@code checkOnDataAvailable()}.
+	 * 由于需求不足而暂停读取时调用。
+	 * <p><strong>注意：</strong>此方法保证不会与
+	 * {@link #checkOnDataAvailable()} 竞争，因此可以在底层 API 支持的情况下
+	 * 安全地暂停读取，即不会与通过 {@code checkOnDataAvailable()}
+	 * 隐式恢复的调用发生竞争。
 	 * @since 5.0.2
 	 */
 	protected abstract void readingPaused();
 
 	/**
-	 * Invoked after an I/O read error from the underlying server or after a
-	 * cancellation signal from the downstream consumer to allow subclasses
-	 * to discard any current cached data they might have.
+	 * 在底层服务器发生 I/O 读取错误之后，或在下游消费者发出取消信号之后调用，
+	 * 以便子类丢弃它们可能持有的任何现有缓存数据。
 	 * @since 5.0.11
 	 */
 	protected abstract void discardData();
@@ -183,8 +179,8 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 	// Private methods for use in State...
 
 	/**
-	 * Read and publish data one at a time until there is no more data, no more
-	 * demand, or perhaps we completed meanwhile.
+	 * 一次读取并发布一条数据，直到没有更多数据、没有更多需求，
+	 * 或者在此期间已经完成。
 	 * @return {@code true} if there is more demand; {@code false} if there is
 	 * no more demand or we have completed.
 	 */
@@ -263,7 +259,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 
 	/**
-	 * Subscription that delegates signals to State.
+	 * 将信号委托给 State 的 Subscription。
 	 */
 	private final class ReadSubscription implements Subscription {
 
@@ -288,7 +284,7 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 
 
 	/**
-	 * Represents a state for the {@link Publisher} to be in.
+	 * 表示 {@link Publisher} 可能处于的状态。
 	 * <p><pre>
 	 *        UNSUBSCRIBED
 	 *             |
@@ -339,8 +335,8 @@ public abstract class AbstractListenerReadPublisher<T> implements Publisher<T> {
 		},
 
 		/**
-		 * Very brief state where we know we have a Subscriber but must not
-		 * send onComplete and onError until we after onSubscribe.
+		 * 一个非常短暂的状态：此时已知有 Subscriber，但必须等到
+		 * onSubscribe 之后才能发送 onComplete 和 onError。
 		 */
 		SUBSCRIBING {
 			@Override

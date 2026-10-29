@@ -30,13 +30,11 @@ import org.springframework.core.convert.converter.ConverterRegistry;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 
 /**
- * Installs lower-level type converters required to integrate
- * JSR-310 support into Spring's field formatting system.
+ * 安装将 JSR-310 支持集成到 Spring 字段格式化系统所需的底层类型转换器。
  *
- * <p>Note: {@link DateTimeFormatterRegistrar} installs these converters but
- * does not rely on them for its formatters. They are just being registered
- * for custom conversion scenarios between different JSR-310 value types
- * and also between {@link java.util.Calendar} and JSR-310 value types.
+ * <p>注意：{@link DateTimeFormatterRegistrar} 会安装这些转换器，但其格式化器并不依赖它们。它们只是
+ * 被注册，用于不同 JSR-310 值类型之间以及 {@link java.util.Calendar} 与 JSR-310 值类型之间的自定义
+ * 转换场景。
  *
  * @author Juergen Hoeller
  * @since 4.0.1
@@ -48,7 +46,7 @@ final class DateTimeConverters {
 
 
 	/**
-	 * Install the converters into the converter registry.
+	 * 将转换器安装到转换器注册表中。
 	 * @param registry the converter registry
 	 */
 	public static void registerConverters(ConverterRegistry registry) {

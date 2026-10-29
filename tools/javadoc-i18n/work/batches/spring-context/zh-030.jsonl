@@ -1,0 +1,120 @@
+{"id": "spring-context/src/main/java/org/springframework/scripting/groovy/package-info.java::1::0", "zh": ["提供将 <a href=\"https://www.groovy-lang.org/\">Groovy</a> 集成到 Spring 脚本基础设施中的包。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/RefreshableScriptTargetSource.java::25::0", "zh": ["{@link BeanFactoryRefreshableTargetSource} 的子类，通过给定的 {@link ScriptFactory} 判断是否需要进行刷新。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/RefreshableScriptTargetSource.java::43::0", "zh": ["创建一个新的 RefreshableScriptTargetSource。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/RefreshableScriptTargetSource.java::64::0", "zh": ["通过调用 ScriptFactory 的 {@code requiresScriptedObjectRefresh} 方法判断是否需要进行刷新。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/RefreshableScriptTargetSource.java::74::0", "zh": ["获取一个新的目标对象，必要时从 FactoryBean 中获取。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ResourceScriptSource.java::33::0", "zh": ["{@link org.springframework.scripting.ScriptSource} 实现，基于 Spring 的 {@link org.springframework.core.io.Resource} 抽象。从底层 Resource 的 {@link org.springframework.core.io.Resource#getFile() File} 或 {@link org.springframework.core.io.Resource#getInputStream() InputStream} 加载脚本文本，并跟踪文件的最后修改时间戳（如果可能）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ResourceScriptSource.java::60::0", "zh": ["为给定的资源创建一个新的 ResourceScriptSource。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ResourceScriptSource.java::69::0", "zh": ["为给定的资源创建一个新的 ResourceScriptSource。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ResourceScriptSource.java::79::0", "zh": ["返回用于加载脚本的 {@link org.springframework.core.io.Resource}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ResourceScriptSource.java::87::0", "zh": ["设置用于读取脚本资源的编码。", "", "<p>常规 Resource 的默认值为 \"UTF-8\"。{@code null} 值表示使用平台默认值。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ResourceScriptSource.java::113::0", "zh": ["获取底层资源当前的最后修改时间戳。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::62::0", "zh": ["{@link org.springframework.beans.factory.config.BeanPostProcessor}，用于处理 {@link org.springframework.scripting.ScriptFactory} 定义，将每个工厂替换为由其生成的实际脚本化 Java 对象。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::62::1", "zh": ["<p>这与 {@link org.springframework.beans.factory.FactoryBean} 机制类似，但它专为脚本量身定制，并非内置于 Spring 核心容器本身，而是作为扩展实现。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::62::2", "zh": ["<p><b>NOTE:</b> 该后处理器最重要的特点是：构造器参数应用于 {@link org.springframework.scripting.ScriptFactory} 实例，而 Bean 属性值应用于生成的脚本化对象。通常，构造器参数包括脚本源定位符以及可能的脚本接口，而 Bean 属性值包括要注入到脚本化对象本身的引用和配置值。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::62::3", "zh": ["<p>以下 {@link ScriptFactoryPostProcessor} 将自动应用于下面两个 {@link org.springframework.scripting.ScriptFactory} 定义。在运行时，将为 \"bshMessenger\" 和 \"groovyMessenger\" 暴露实际的脚本化对象，而不是 {@link org.springframework.scripting.ScriptFactory} 实例。这两者都应能转换为示例中的 {@code Messenger} 接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::62::4", "zh": ["<p><b>NOTE:</b> 请注意，上面这段摘自 Spring XML Bean 定义文件的内容只使用了 &lt;bean/&gt; 风格的语法（目的是演示使用 {@link ScriptFactoryPostProcessor} 本身）。实际上，你永远不会为 {@link ScriptFactoryPostProcessor} 显式创建 &lt;bean/&gt; 定义；相反，你会从 {@code 'lang'} 命名空间导入标签，并直接使用该命名空间中的标签创建脚本化 Bean……在此过程中，会为你隐式创建一个 {@link ScriptFactoryPostProcessor}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::62::5", "zh": ["<p>Spring 参考文档中包含大量使用 {@code 'lang'} 命名空间中标签的示例；作为示例，下面给出一个使用 {@code 'lang:groovy'} 标签定义的 Groovy 支持的 Bean。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::143::0", "zh": ["{@link org.springframework.core.io.Resource} 风格的、用于表示内联脚本的前缀。", "", "<p>内联脚本是直接定义在（通常是 XML）配置中的脚本，而不是定义在外部文件中的脚本。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::151::0", "zh": ["{@code refreshCheckDelay} 属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::157::0", "zh": ["{@code proxyTargetClass} 属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::163::0", "zh": ["{@code language} 属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::195::0", "zh": ["设置刷新检查之间的延迟，以毫秒为单位。默认值为 -1，表示完全不进行刷新检查。", "", "<p>请注意，只有 {@link org.springframework.scripting.ScriptSource} 指示其已被修改时，才会实际执行刷新。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::207::0", "zh": ["用于表示应创建可刷新代理、以代理目标类而非其接口的标志。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::357::0", "zh": ["在此后处理器所使用的内部 BeanFactory 中准备脚本 Bean。每个原始 Bean 定义都将被拆分为一个 ScriptFactory 定义和一个脚本化对象定义。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::396::0", "zh": ["获取给定 {@link ScriptFactory} {@link BeanDefinition} 的刷新检查延迟。如果该 {@link BeanDefinition} 在键 {@link #REFRESH_CHECK_DELAY_ATTRIBUTE} 下有一个类型为有效 {@link Number} 的 {@link org.springframework.core.AttributeAccessor metadata attribute}，则使用该值。否则使用 {@link #defaultRefreshCheckDelay} 值。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::440::0", "zh": ["根据给定的脚本定义创建一个 ScriptFactory Bean 定义，仅提取与 ScriptFactory 相关的定义数据（即仅 Bean 类和构造器参数）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::455::0", "zh": ["获取给定 Bean 的 ScriptSource，如果尚未缓存则延迟创建它。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::468::0", "zh": ["将给定的脚本源定位符转换为 ScriptSource 实例。", "", "<p>默认情况下，支持的定位符包括 Spring 资源位置（如 \"file:C:/myScript.bsh\" 或 \"classpath:myPackage/myScript.bsh\"）以及内联脚本（\"inline:myScriptText...\"）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::489::0", "zh": ["为给定的 Bean 定义创建一个配置接口，为已定义的属性值定义 setter 方法，并定义 init 方法和 destroy 方法（如果已定义）。", "", "<p>此实现通过 CGLIB 的 InterfaceMaker 创建接口，并尽可能从给定接口中确定属性类型。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::524::0", "zh": ["为给定接口创建一个组合接口 Class，在单个 Class 中实现给定接口。", "", "<p>默认实现为给定接口构建一个 JDK 代理类。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::537::0", "zh": ["根据给定的脚本定义创建脚本化对象的 Bean 定义，提取与脚本化对象相关的定义数据（即除 Bean 类和构造器参数之外的所有内容）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::560::0", "zh": ["为给定的 AOP TargetSource 创建一个可刷新的代理。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/ScriptFactoryPostProcessor.java::595::0", "zh": ["在关闭时销毁内部 Bean 工厂（用于脚本）。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvalException.java::21::0", "zh": ["用于装饰 JSR-223 脚本求值过程中抛出的 {@link javax.script.ScriptException} 的异常，即 {@link javax.script.ScriptEngine#eval} 调用或 {@link javax.script.Invocable#invokeMethod} / {@link javax.script.Invocable#invokeFunction} 调用。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvalException.java::21::1", "zh": ["<p>此异常不打印 Java 堆栈跟踪，因为 JSR-223 的 {@link ScriptException} 会导致相当复杂的文本输出。从这个角度看，此异常主要是作为传入外部异常的 {@link ScriptException} 根因的装饰器。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvalException.java::42::0", "zh": ["使用指定的原始异常构造一个新的脚本求值异常。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::36::0", "zh": ["Spring {@link ScriptEvaluator} 策略接口的 {@code javax.script}（JSR-223）实现。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::57::0", "zh": ["构造一个新的 {@code StandardScriptEvaluator}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::63::0", "zh": ["为给定的类加载器构造一个新的 {@code StandardScriptEvaluator}。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::71::0", "zh": ["为给定的 JSR-223 {@link ScriptEngineManager} 构造一个新的 {@code StandardScriptEvaluator}，以从中获取脚本引擎。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::82::0", "zh": ["设置用于求值脚本的语言名称（例如 \"Groovy\"）。", "", "<p>这实际上是 {@link #setEngineName \"engineName\"} 的别名，可能会（但目前尚未）提供某些语言在 JSR-223 脚本引擎工厂所暴露内容之外的常见缩写。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::93::0", "zh": ["设置用于求值脚本的脚本引擎名称（例如 \"Groovy\"），该名称由 JSR-223 脚本引擎工厂暴露。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::103::0", "zh": ["在底层脚本引擎管理器上设置全局作用域的绑定，供所有脚本共享，作为脚本参数绑定的一种替代方案。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptEvaluator.java::161::0", "zh": ["获取用于给定脚本的 JSR-223 ScriptEngine。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::37::0", "zh": ["{@link org.springframework.scripting.ScriptFactory} 实现，基于（Java 中内置的）JSR-223 脚本引擎抽象。支持 JavaScript、Groovy、JRuby 以及其他符合 JSR-223 的引擎。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::37::1", "zh": ["<p>通常与 {@link org.springframework.scripting.support.ScriptFactoryPostProcessor} 结合使用；有关配置示例，请参阅后者的 Javadoc。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::67::0", "zh": ["为给定的脚本源创建一个新的 StandardScriptFactory。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::76::0", "zh": ["为给定的脚本源创建一个新的 StandardScriptFactory。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::87::0", "zh": ["为给定的脚本源创建一个新的 StandardScriptFactory。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::98::0", "zh": ["为给定的脚本源创建一个新的 StandardScriptFactory。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptFactory.java::139::0", "zh": ["通过 JSR-223 的 ScriptEngine 加载并解析脚本。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptUtils.java::31::0", "zh": ["处理 JSR-223 {@link ScriptEngine} 的常用操作。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StandardScriptUtils.java::39::0", "zh": ["按名称从给定的 {@link ScriptEngineManager} 中获取 {@link ScriptEngine}，将操作委托给 {@link ScriptEngineManager#getEngineByName}，但如果未找到或初始化失败，则抛出描述性异常。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StaticScriptSource.java::23::0", "zh": ["{@link org.springframework.scripting.ScriptSource} 接口的静态实现，封装包含脚本文本的给定 String。支持以编程方式更新脚本文本字符串。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StaticScriptSource.java::43::0", "zh": ["为给定的脚本创建一个新的 StaticScriptSource。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StaticScriptSource.java::51::0", "zh": ["为给定的脚本创建一个新的 StaticScriptSource。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/StaticScriptSource.java::62::0", "zh": ["设置新的脚本文本字符串，覆盖之前的脚本。"]}
+{"id": "spring-context/src/main/java/org/springframework/scripting/support/package-info.java::1::0", "zh": ["Spring scripting 包的支持类。提供 ScriptFactoryPostProcessor，用于将 ScriptFactory 定义转换为脚本化对象。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Component.java::25::0", "zh": ["表示被注解的类是一个“组件”。在使用基于注解的配置和类路径扫描时，此类类被视为自动检测的候选者。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Component.java::25::1", "zh": ["<p>其他类级别注解也可能被视为标识一个组件，通常是某种特殊类型的组件：例如 {@link Repository @Repository} 注解或 AspectJ 的 {@link org.aspectj.lang.annotation.Aspect @Aspect} 注解。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Component.java::48::0", "zh": ["该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Controller.java::27::0", "zh": ["表示被注解的类是一个“控制器”（例如 Web 控制器）。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Controller.java::27::1", "zh": ["<p>此注解是 {@link Component @Component} 的特化，允许通过类路径扫描自动检测实现类。它通常与基于 {@link org.springframework.web.bind.annotation.RequestMapping} 注解的带注解处理方法结合使用。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Controller.java::48::0", "zh": ["该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::0", "zh": ["表示被注解的元素代表用于索引的构造型。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::1", "zh": ["<p>{@code CandidateComponentsIndex} 是类路径扫描的一种替代方案，它使用在编译时生成的元数据文件。该索引允许根据构造型检索候选组件（即全限定名）。此注解指示生成器为存在被注解元素的元素建立索引，或者为被注解元素所实现或继承的元素建立索引。构造型是被注解元素的全限定名。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::2", "zh": ["<p>考虑默认的 {@link Component} 注解，它本身带有此注解作为元注解。如果某个组件标注了 {@link Component}，则该组件的条目将使用 {@code org.springframework.stereotype.Component} 构造型添加到索引中。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::3", "zh": ["<p>此注解在元注解上同样有效。考虑下面这个自定义注解："]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::4", "zh": ["如果上述注解出现在某个类型上，则该类型将使用两个构造型建立索引：{@code org.springframework.stereotype.Component} 和 {@code com.example.PrivilegedService}。虽然 {@link Service} 没有直接标注 {@code Indexed}，但它带有 {@link Component} 元注解。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::5", "zh": ["<p>还可以通过在接口或类上添加 {@code @Indexed}，为某个接口的所有实现或某个类的所有子类建立索引。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::6", "zh": ["考虑下面这个基础接口："]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::7", "zh": ["现在，考虑某个位置存在此 {@code AdminService} 的实现："]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Indexed.java::25::8", "zh": ["由于此类实现了已建立索引的接口，因此它会自动以 {@code com.example.AdminService} 构造型被包含。如果层次结构中还有更多 {@code @Indexed} 接口和/或超类，则该类会映射到它们的全部构造型。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Repository.java::27::0", "zh": ["表示被注解的类是一个“Repository”，该术语最初由领域驱动设计（Evans，2003）定义为“一种封装存储、检索和搜索行为并模拟对象集合的机制”。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Repository.java::27::1", "zh": ["<p>实现“Data Access Object”等传统 Java EE 模式的团队也可以将此构造型应用于 DAO 类，但在这样做之前，应注意理解 Data Access Object 与 DDD 风格 Repository 之间的区别。此注解是一种通用构造型，各个团队可以酌情收窄其语义和用法。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Repository.java::27::2", "zh": ["<p>如此注解的类在与 {@link org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor PersistenceExceptionTranslationPostProcessor} 结合使用时，有资格获得 Spring 的 {@link org.springframework.dao.DataAccessException DataAccessException} 转换。出于工具、切面等目的，被注解类在整体应用架构中的角色也会得到明确。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Repository.java::27::3", "zh": ["<p>从 Spring 2.5 开始，此注解还充当 {@link Component @Component} 的特化，允许通过类路径扫描自动检测实现类。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Repository.java::64::0", "zh": ["该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Service.java::27::0", "zh": ["表示被注解的类是一个“Service”，该术语最初由领域驱动设计（Evans，2003）定义为“以接口形式提供、在模型中独立存在且不封装状态的操作”。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Service.java::27::1", "zh": ["<p>也可以表示某个类是“Business Service Facade”（按照 Core J2EE 模式的含义）或类似角色。此注解是一种通用构造型，各个团队可以酌情收窄其语义和用法。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Service.java::27::2", "zh": ["<p>此注解充当 {@link Component @Component} 的特化，允许通过类路径扫描自动检测实现类。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/Service.java::50::0", "zh": ["该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/package-info.java::1::0", "zh": ["用于表示类型或方法在整体架构中（概念层面而非实现层面）角色的注解。"]}
+{"id": "spring-context/src/main/java/org/springframework/stereotype/package-info.java::1::1", "zh": ["<p>旨在供工具和切面使用（是切点的理想目标）。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::27::0", "zh": ["基于 {@link ConcurrentHashMap} 的 {@link Model} 接口实现，适用于并发场景。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::27::1", "zh": ["<p>由 Spring WebFlux 暴露给处理方法，通常通过声明 {@link Model} 接口来实现。通常无需在用户代码中创建它。如有必要，处理方法可以返回一个常规的 {@code java.util.Map}（很可能是 {@code java.util.ConcurrentMap}），以提供预先确定的模型。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::42::0", "zh": ["构造一个新的空 {@code ConcurrentModel}。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::48::0", "zh": ["构造一个新的 {@code ModelMap}，其中包含以给定名称提供的属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::57::0", "zh": ["构造一个新的 {@code ModelMap}，其中包含提供的属性。使用属性名生成方式为提供的模型对象生成键。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::86::0", "zh": ["在给定名称下添加提供的属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::99::0", "zh": ["使用 {@link org.springframework.core.Conventions#getVariableName generated name} 将提供的属性添加到此 {@code Map}。", "", "<p><i>注意：使用此方法时，空的 {@link Collection Collections} 不会被添加到模型中，因为我们无法正确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样做了。</i>"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::117::0", "zh": ["将提供的 {@code Collection} 中的所有属性复制到此 {@code Map}，并对每个元素使用属性名生成方式。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::132::0", "zh": ["将提供的 {@code Map} 中的所有属性复制到此 {@code Map}。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::144::0", "zh": ["将提供的 {@code Map} 中的所有属性复制到此 {@code Map}，同名对象以现有对象优先（即不会被替换）。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ConcurrentModel.java::161::0", "zh": ["此模型是否包含给定名称的属性？"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ExtendedModelMap.java::24::0", "zh": ["{@link ModelMap} 的子类，实现了 {@link Model} 接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ExtendedModelMap.java::24::1", "zh": ["<p>这是一个由 Spring MVC 暴露给处理方法的实现类，通常通过声明 {@link org.springframework.ui.Model} 接口来实现。无需在用户代码中构建它；普通的 {@link org.springframework.ui.ModelMap}，甚至只是一个使用 String 键的常规 {@link Map}，就足以返回用户模型。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::24::0", "zh": ["定义模型属性持有者的接口。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::24::1", "zh": ["<p>主要设计用于向模型添加属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::24::2", "zh": ["<p>允许以 {@code java.util.Map} 的形式访问整个模型。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::36::0", "zh": ["在给定名称下添加提供的属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::43::0", "zh": ["使用 {@link org.springframework.core.Conventions#getVariableName generated name} 将提供的属性添加到此 {@code Map}。", "", "<p><i>注意：使用此方法时，空的 {@link java.util.Collection Collections} 不会被添加到模型中，因为我们无法正确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样做了。</i>"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::54::0", "zh": ["将提供的 {@code Collection} 中的所有属性复制到此 {@code Map}，并对每个元素使用属性名生成方式。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::61::0", "zh": ["将提供的 {@code Map} 中的所有属性复制到此 {@code Map}。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::67::0", "zh": ["将提供的 {@code Map} 中的所有属性复制到此 {@code Map}，同名对象以现有对象优先（即不会被替换）。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::74::0", "zh": ["此模型是否包含给定名称的属性？"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::81::0", "zh": ["返回给定名称的属性值（如果有）。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/Model.java::90::0", "zh": ["以 Map 形式返回当前的一组模型属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::27::0", "zh": ["{@link java.util.Map} 的实现，用于为 UI 工具构建模型数据。支持链式调用以及模型属性名称的生成。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::27::1", "zh": ["<p>此类用作 Servlet MVC 的通用模型持有者，但并不与 Servlet MVC 绑定。请查看 {@link Model} 接口以了解接口形式的变体。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::43::0", "zh": ["构造一个新的空 {@code ModelMap}。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::49::0", "zh": ["构造一个新的 {@code ModelMap}，其中包含以给定名称提供的属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::58::0", "zh": ["构造一个新的 {@code ModelMap}，其中包含提供的属性。使用属性名生成方式为提供的模型对象生成键。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::69::0", "zh": ["在给定名称下添加提供的属性。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::80::0", "zh": ["使用 {@link org.springframework.core.Conventions#getVariableName generated name} 将提供的属性添加到此 {@code Map}。", "", "<p><i>注意：使用此方法时，空的 {@link Collection Collections} 不会被添加到模型中，因为我们无法正确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样做了。</i>"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::97::0", "zh": ["将提供的 {@code Collection} 中的所有属性复制到此 {@code Map}，并对每个元素使用属性名生成方式。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::111::0", "zh": ["将提供的 {@code Map} 中的所有属性复制到此 {@code Map}。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::122::0", "zh": ["将提供的 {@code Map} 中的所有属性复制到此 {@code Map}，同名对象以现有对象优先（即不会被替换）。"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::138::0", "zh": ["此模型是否包含给定名称的属性？"]}
+{"id": "spring-context/src/main/java/org/springframework/ui/ModelMap.java::147::0", "zh": ["返回给定名称的属性值（如果有）。"]}

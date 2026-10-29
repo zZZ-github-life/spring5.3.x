@@ -37,7 +37,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME;
 
 /**
- * Representation of the Content-Disposition type and parameters as defined in RFC 6266.
+ * 按照 RFC 6266 定义的 Content-Disposition 类型和参数的表示形式。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -81,7 +81,7 @@ public final class ContentDisposition {
 
 
 	/**
-	 * Private constructor. See static factory methods in this class.
+	 * 私有构造函数。请参见此类中的静态工厂方法。
 	 */
 	private ContentDisposition(@Nullable String type, @Nullable String name, @Nullable String filename,
 			@Nullable Charset charset, @Nullable Long size, @Nullable ZonedDateTime creationDate,
@@ -99,7 +99,7 @@ public final class ContentDisposition {
 
 
 	/**
-	 * Return whether the {@link #getType() type} is {@literal "attachment"}.
+	 * 返回 {@link #getType() type} 是否为 {@literal "attachment"}。
 	 * @since 5.3
 	 */
 	public boolean isAttachment() {
@@ -107,7 +107,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return whether the {@link #getType() type} is {@literal "form-data"}.
+	 * 返回 {@link #getType() type} 是否为 {@literal "form-data"}。
 	 * @since 5.3
 	 */
 	public boolean isFormData() {
@@ -115,7 +115,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return whether the {@link #getType() type} is {@literal "inline"}.
+	 * 返回 {@link #getType() type} 是否为 {@literal "inline"}。
 	 * @since 5.3
 	 */
 	public boolean isInline() {
@@ -123,7 +123,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the disposition type.
+	 * 返回处置类型。
 	 * @see #isAttachment()
 	 * @see #isFormData()
 	 * @see #isInline()
@@ -134,7 +134,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the value of the {@literal name} parameter, or {@code null} if not defined.
+	 * 返回 {@literal name} 参数的值；如果未定义则返回 {@code null}。
 	 */
 	@Nullable
 	public String getName() {
@@ -142,9 +142,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the value of the {@literal filename} parameter, possibly decoded
-	 * from BASE64 encoding based on RFC 2047, or of the {@literal filename*}
-	 * parameter, possibly decoded as defined in the RFC 5987.
+	 * 返回 {@literal filename} 参数的值（可能已根据 RFC 2047 从 BASE64 编码解码），或 {@literal filename*} 参数的值（可能已按 RFC 5987 中的定义解码）。
 	 */
 	@Nullable
 	public String getFilename() {
@@ -152,7 +150,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the charset defined in {@literal filename*} parameter, or {@code null} if not defined.
+	 * 返回 {@literal filename*} 参数中定义的字符集；如果未定义则返回 {@code null}。
 	 */
 	@Nullable
 	public Charset getCharset() {
@@ -160,7 +158,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the value of the {@literal size} parameter, or {@code null} if not defined.
+	 * 返回 {@literal size} 参数的值；如果未定义则返回 {@code null}。
 	 * @deprecated since 5.2.3 as per
 	 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 	 * to be removed in a future release.
@@ -172,7 +170,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the value of the {@literal creation-date} parameter, or {@code null} if not defined.
+	 * 返回 {@literal creation-date} 参数的值；如果未定义则返回 {@code null}。
 	 * @deprecated since 5.2.3 as per
 	 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 	 * to be removed in a future release.
@@ -184,7 +182,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the value of the {@literal modification-date} parameter, or {@code null} if not defined.
+	 * 返回 {@literal modification-date} 参数的值；如果未定义则返回 {@code null}。
 	 * @deprecated since 5.2.3 as per
 	 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 	 * to be removed in a future release.
@@ -196,7 +194,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the value of the {@literal read-date} parameter, or {@code null} if not defined.
+	 * 返回 {@literal read-date} 参数的值；如果未定义则返回 {@code null}。
 	 * @deprecated since 5.2.3 as per
 	 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 	 * to be removed in a future release.
@@ -240,7 +238,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return the header value for this content disposition as defined in RFC 6266.
+	 * 返回此内容处置按 RFC 6266 定义的头值。
 	 * @see #parse(String)
 	 */
 	@Override
@@ -287,7 +285,7 @@ public final class ContentDisposition {
 
 
 	/**
-	 * Return a builder for a {@code ContentDisposition} of type {@literal "attachment"}.
+	 * 返回类型为 {@literal "attachment"} 的 {@code ContentDisposition} 构建器。
 	 * @since 5.3
 	 */
 	public static Builder attachment() {
@@ -295,7 +293,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return a builder for a {@code ContentDisposition} of type {@literal "form-data"}.
+	 * 返回类型为 {@literal "form-data"} 的 {@code ContentDisposition} 构建器。
 	 * @since 5.3
 	 */
 	public static Builder formData() {
@@ -303,7 +301,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return a builder for a {@code ContentDisposition} of type {@literal "inline"}.
+	 * 返回类型为 {@literal "inline"} 的 {@code ContentDisposition} 构建器。
 	 * @since 5.3
 	 */
 	public static Builder inline() {
@@ -311,7 +309,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return a builder for a {@code ContentDisposition}.
+	 * 返回 {@code ContentDisposition} 的构建器。
 	 * @param type the disposition type like for example {@literal inline},
 	 * {@literal attachment}, or {@literal form-data}
 	 * @return the builder
@@ -321,14 +319,14 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Return an empty content disposition.
+	 * 返回空的内容处置。
 	 */
 	public static ContentDisposition empty() {
 		return new ContentDisposition("", null, null, null, null, null, null, null);
 	}
 
 	/**
-	 * Parse a {@literal Content-Disposition} header value as defined in RFC 2183.
+	 * 解析按 RFC 2183 定义的 {@literal Content-Disposition} 头值。
 	 * @param contentDisposition the {@literal Content-Disposition} header value
 	 * @return the parsed content disposition
 	 * @see #toString()
@@ -457,8 +455,8 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Decode the given header field param as described in RFC 5987.
-	 * <p>Only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported.
+	 * 按照 RFC 5987 的描述解码给定的头字段参数。
+	 * <p>仅支持 US-ASCII、UTF-8 和 ISO-8859-1 字符集。
 	 * @param filename the filename
 	 * @param charset the charset for the filename
 	 * @return the encoded header field param
@@ -524,7 +522,7 @@ public final class ContentDisposition {
 	}
 
 	/**
-	 * Encode the given header field param as describe in RFC 5987.
+	 * 按照 RFC 5987 的描述编码给定的头字段参数。
 	 * @param input the header field param
 	 * @param charset the charset of the header field param string,
 	 * only the US-ASCII, UTF-8 and ISO-8859-1 charsets are supported
@@ -559,37 +557,28 @@ public final class ContentDisposition {
 
 
 	/**
-	 * A mutable builder for {@code ContentDisposition}.
+	 * 用于 {@code ContentDisposition} 的可变构建器。
 	 */
 	public interface Builder {
 
 		/**
-		 * Set the value of the {@literal name} parameter.
+		 * 设置 {@literal name} 参数的值。
 		 */
 		Builder name(String name);
 
 		/**
-		 * Set the value of the {@literal filename} parameter. The given
-		 * filename will be formatted as quoted-string, as defined in RFC 2616,
-		 * section 2.2, and any quote characters within the filename value will
-		 * be escaped with a backslash, e.g. {@code "foo\"bar.txt"} becomes
-		 * {@code "foo\\\"bar.txt"}.
+		 * 设置 {@literal filename} 参数的值。给定的文件名将格式化为 RFC 2616 第 2.2 节定义的带引号字符串，文件名值中的任何引号字符都会用反斜杠转义，例如 {@code "foo\"bar.txt"} 会变成 {@code "foo\\\"bar.txt"}。
 		 */
 		Builder filename(String filename);
 
 		/**
-		 * Set the value of the {@code filename} that will be encoded as
-		 * defined in RFC 5987. Only the US-ASCII, UTF-8, and ISO-8859-1
-		 * charsets are supported.
-		 * <p><strong>Note:</strong> Do not use this for a
-		 * {@code "multipart/form-data"} request since
-		 * <a href="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a>
-		 * and also RFC 5987 mention it does not apply to multipart requests.
+		 * 设置 {@code filename} 的值，该值将按 RFC 5987 的定义进行编码。仅支持 US-ASCII、UTF-8 和 ISO-8859-1 字符集。
+		 * <p><strong>注意：</strong>请勿将其用于 {@code "multipart/form-data"} 请求，因为 <a href="https://tools.ietf.org/html/rfc7578#section-4.2">RFC 7578, Section 4.2</a> 以及 RFC 5987 都提到它不适用于 multipart 请求。
 		 */
 		Builder filename(String filename, Charset charset);
 
 		/**
-		 * Set the value of the {@literal size} parameter.
+		 * 设置 {@literal size} 参数的值。
 		 * @deprecated since 5.2.3 as per
 		 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 		 * to be removed in a future release.
@@ -598,7 +587,7 @@ public final class ContentDisposition {
 		Builder size(Long size);
 
 		/**
-		 * Set the value of the {@literal creation-date} parameter.
+		 * 设置 {@literal creation-date} 参数的值。
 		 * @deprecated since 5.2.3 as per
 		 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 		 * to be removed in a future release.
@@ -607,7 +596,7 @@ public final class ContentDisposition {
 		Builder creationDate(ZonedDateTime creationDate);
 
 		/**
-		 * Set the value of the {@literal modification-date} parameter.
+		 * 设置 {@literal modification-date} 参数的值。
 		 * @deprecated since 5.2.3 as per
 		 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 		 * to be removed in a future release.
@@ -616,7 +605,7 @@ public final class ContentDisposition {
 		Builder modificationDate(ZonedDateTime modificationDate);
 
 		/**
-		 * Set the value of the {@literal read-date} parameter.
+		 * 设置 {@literal read-date} 参数的值。
 		 * @deprecated since 5.2.3 as per
 		 * <a href="https://tools.ietf.org/html/rfc6266#appendix-B">RFC 6266, Appendix B</a>,
 		 * to be removed in a future release.
@@ -625,7 +614,7 @@ public final class ContentDisposition {
 		Builder readDate(ZonedDateTime readDate);
 
 		/**
-		 * Build the content disposition.
+		 * 构建内容处置。
 		 */
 		ContentDisposition build();
 	}

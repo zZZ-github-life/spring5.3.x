@@ -23,12 +23,10 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 
 /**
- * TransactionAttribute implementation that works out whether a given exception
- * should cause transaction rollback by applying a number of rollback rules,
- * both positive and negative. If no custom rollback rules apply, this attribute
- * behaves like DefaultTransactionAttribute (rolling back on runtime exceptions).
+ * TransactionAttribute实现, 通过应用一系列正向和负向的回滚规则来确定给定异常是否应导致事务回滚。
+ * 如果没有自定义回滚规则适用, 此属性的行为与DefaultTransactionAttribute相同(在运行时异常时回滚)。
  *
- * <p>{@link TransactionAttributeEditor} creates objects of this class.
+ * <p>{@link TransactionAttributeEditor}创建此类的对象。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -38,10 +36,10 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute implements Serializable {
 
-	/** Prefix for rollback-on-exception rules in description strings. */
+	/** 描述字符串中异常回滚规则的前缀。 */
 	public static final String PREFIX_ROLLBACK_RULE = "-";
 
-	/** Prefix for commit-on-exception rules in description strings. */
+	/** 描述字符串中异常提交规则的前缀。 */
 	public static final String PREFIX_COMMIT_RULE = "+";
 
 
@@ -50,8 +48,8 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 
 
 	/**
-	 * Create a new RuleBasedTransactionAttribute, with default settings.
-	 * Can be modified through bean property setters.
+	 * 创建一个新的RuleBasedTransactionAttribute, 使用默认设置。
+	 * 可以通过bean属性setter进行修改。
 	 * @see #setPropagationBehavior
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
@@ -64,7 +62,7 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 	}
 
 	/**
-	 * Copy constructor. Definition can be modified through bean property setters.
+	 * 拷贝构造器。可以通过bean属性setter修改定义。
 	 * @see #setPropagationBehavior
 	 * @see #setIsolationLevel
 	 * @see #setTimeout
@@ -78,8 +76,8 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 	}
 
 	/**
-	 * Create a new DefaultTransactionAttribute with the given
-	 * propagation behavior. Can be modified through bean property setters.
+	 * 使用给定的传播行为创建一个新的DefaultTransactionAttribute。
+	 * 可以通过bean属性setter进行修改。
 	 * @param propagationBehavior one of the propagation constants in the
 	 * TransactionDefinition interface
 	 * @param rollbackRules the list of RollbackRuleAttributes to apply
@@ -94,8 +92,7 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 
 
 	/**
-	 * Set the list of {@code RollbackRuleAttribute} objects
-	 * (and/or {@code NoRollbackRuleAttribute} objects) to apply.
+	 * 设置要应用的{@code RollbackRuleAttribute}对象(和/或{@code NoRollbackRuleAttribute}对象)列表。
 	 * @see RollbackRuleAttribute
 	 * @see NoRollbackRuleAttribute
 	 */
@@ -104,8 +101,7 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 	}
 
 	/**
-	 * Return the list of {@code RollbackRuleAttribute} objects
-	 * (never {@code null}).
+	 * 返回{@code RollbackRuleAttribute}对象列表(永不为{@code null})。
 	 */
 	public List<RollbackRuleAttribute> getRollbackRules() {
 		if (this.rollbackRules == null) {
@@ -116,9 +112,8 @@ public class RuleBasedTransactionAttribute extends DefaultTransactionAttribute i
 
 
 	/**
-	 * Winning rule is the shallowest rule (that is, the closest in the
-	 * inheritance hierarchy to the exception). If no rule applies (-1),
-	 * return false.
+	 * 获胜的规则是最浅的规则(即在继承层次结构中离异常最近的规则)。
+	 * 如果没有规则适用(-1), 则返回false。
 	 * @see TransactionAttribute#rollbackOn(java.lang.Throwable)
 	 */
 	@Override

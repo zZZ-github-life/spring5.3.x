@@ -17,7 +17,7 @@
 package org.springframework.messaging.simp.user;
 
 /**
- * A strategy for matching subscriptions.
+ * 用于匹配订阅的策略。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -26,7 +26,7 @@ package org.springframework.messaging.simp.user;
 public interface SimpSubscriptionMatcher {
 
 	/**
-	 * Match the given subscription.
+	 * 匹配给定订阅。
 	 * @param subscription the subscription to match
 	 * @return {@code true} in case of a match, {@code false} otherwise
 	 */

@@ -1,14 +1,13 @@
 /**
- * JdbcTemplate variant with named parameter support.
+ * 支持命名参数的 JdbcTemplate 变体。
  *
- * <p>NamedParameterJdbcTemplate is a wrapper around JdbcTemplate that adds
- * support for named parameter parsing. It does not implement the JdbcOperations
- * interface or extend JdbcTemplate, but implements the dedicated
- * NamedParameterJdbcOperations interface.
+ * <p>NamedParameterJdbcTemplate 是 JdbcTemplate 的包装器，增加了对命名参数
+ * 解析的支持。它没有实现 JdbcOperations 接口，也没有继承 JdbcTemplate，
+ * 而是实现了专用的 NamedParameterJdbcOperations 接口。
  *
- * <P>If you need the full power of Spring JDBC for less common operations, use
- * the {@code getJdbcOperations()} method of NamedParameterJdbcTemplate and
- * work with the returned classic template, or use a JdbcTemplate instance directly.
+ * <P>如果你需要 Spring JDBC 的全部能力来处理不太常见的操作，可以使用
+ * NamedParameterJdbcTemplate 的 {@code getJdbcOperations()} 方法，
+ * 并基于返回的经典模板进行操作，或者直接使用 JdbcTemplate 实例。
  */
 @NonNullApi
 @NonNullFields

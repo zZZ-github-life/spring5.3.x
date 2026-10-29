@@ -29,10 +29,10 @@ import org.springframework.web.server.session.DefaultWebSessionManager;
 import org.springframework.web.server.session.WebSessionManager;
 
 /**
- * Extension of {@link DefaultServerWebExchange} for use in tests, along with
- * {@link MockServerHttpRequest} and {@link MockServerHttpResponse}.
+ * {@link DefaultServerWebExchange} 的扩展，与
+ * {@link MockServerHttpRequest} 和 {@link MockServerHttpResponse} 一起用于测试。
  *
- * <p>See static factory methods to create an instance.
+ * <p>创建实例请参见静态工厂方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -52,7 +52,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 
 	/**
-	 * Create a {@link MockServerWebExchange} from the given mock request.
+	 * 根据给定的 mock 请求创建一个 {@link MockServerWebExchange}。
 	 * @param request the request to use.
 	 * @return the exchange
 	 */
@@ -61,7 +61,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 	}
 
 	/**
-	 * Variant of {@link #from(MockServerHttpRequest)} with a mock request builder.
+	 * {@link #from(MockServerHttpRequest)} 的变体，使用 mock 请求构建器。
 	 * @param requestBuilder the builder for the mock request.
 	 * @return the exchange
 	 */
@@ -70,7 +70,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 	}
 
 	/**
-	 * Create a {@link Builder} starting with the given mock request.
+	 * 从给定的 mock 请求开始创建一个 {@link Builder}。
 	 * @param request the request to use.
 	 * @return the exchange builder
 	 * @since 5.1
@@ -80,7 +80,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 	}
 
 	/**
-	 * Variant of {@link #builder(MockServerHttpRequest)} with a mock request builder.
+	 * {@link #builder(MockServerHttpRequest)} 的变体，使用 mock 请求构建器。
 	 * @param requestBuilder the builder for the mock request.
 	 * @return the exchange builder
 	 * @since 5.1
@@ -91,7 +91,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 
 
 	/**
-	 * Builder for a {@link MockServerWebExchange}.
+	 * {@link MockServerWebExchange} 的构建器。
 	 * @since 5.1
 	 */
 	public static class Builder {
@@ -106,9 +106,9 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 		}
 
 		/**
-		 * Set the session to use for the exchange.
-		 * <p>This method is mutually exclusive with
-		 * {@link #sessionManager(WebSessionManager)}.
+		 * 设置用于该交换的会话。
+		 * <p>此方法与
+		 * {@link #sessionManager(WebSessionManager)} 互斥。
 		 * @param session the session to use
 		 * @see MockWebSession
 		 */
@@ -118,8 +118,8 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 		}
 
 		/**
-		 * Provide a {@code WebSessionManager} instance to use with the exchange.
-		 * <p>This is mutually exclusive with {@link #session(WebSession)}.
+		 * 提供用于该交换的 {@code WebSessionManager} 实例。
+		 * <p>此方法与 {@link #session(WebSession)} 互斥。
 		 * @param sessionManager the session manager to use
 		 */
 		public Builder sessionManager(WebSessionManager sessionManager) {
@@ -128,7 +128,7 @@ public final class MockServerWebExchange extends DefaultServerWebExchange {
 		}
 
 		/**
-		 * Build the {@code MockServerWebExchange} instance.
+		 * 构建 {@code MockServerWebExchange} 实例。
 		 */
 		public MockServerWebExchange build() {
 			return new MockServerWebExchange(this.request,

@@ -19,8 +19,7 @@ package org.springframework.jmx.export.metadata;
 import org.springframework.lang.Nullable;
 
 /**
- * Metadata that indicates to expose a given bean property as JMX attribute.
- * Only valid when used on a JavaBean getter or setter.
+ * 指示将给定 Bean 属性作为 JMX 属性暴露的元数据。仅在对 JavaBean 的 getter 或 setter 使用时有效。
  *
  * @author Rob Harrop
  * @since 1.2
@@ -30,7 +29,7 @@ import org.springframework.lang.Nullable;
 public class ManagedAttribute extends AbstractJmxAttribute {
 
 	/**
-	 * Empty attributes.
+	 * 空的属性。
 	 */
 	public static final ManagedAttribute EMPTY = new ManagedAttribute();
 
@@ -45,14 +44,14 @@ public class ManagedAttribute extends AbstractJmxAttribute {
 
 
 	/**
-	 * Set the default value of this attribute.
+	 * 设置此属性的默认值。
 	 */
 	public void setDefaultValue(@Nullable Object defaultValue) {
 		this.defaultValue = defaultValue;
 	}
 
 	/**
-	 * Return the default value of this attribute.
+	 * 返回此属性的默认值。
 	 */
 	@Nullable
 	public Object getDefaultValue() {

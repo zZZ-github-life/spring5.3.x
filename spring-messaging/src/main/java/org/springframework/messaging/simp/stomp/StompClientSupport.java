@@ -26,16 +26,16 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.util.Assert;
 
 /**
- * Base class for STOMP client implementations.
+ * STOMP 客户端实现的基类。
  *
- * <p>Subclasses can connect over WebSocket or TCP using any library. When creating
- * a new connection, a subclass can create an instance of {@link DefaultStompSession}
- * which implements {@link org.springframework.messaging.tcp.TcpConnectionHandler}
- * whose lifecycle methods the subclass must then invoke.
+ * <p>子类可以使用任何库通过 WebSocket 或 TCP 进行连接。创建新连接时，
+ * 子类可以创建 {@link DefaultStompSession} 实例，该实例实现了
+ * {@link org.springframework.messaging.tcp.TcpConnectionHandler}，
+ * 子类随后必须调用其生命周期方法。
  *
- * <p>In effect, {@code TcpConnectionHandler} and {@code TcpConnection} are the
- * contracts that any subclass must adapt to while using {@link StompEncoder}
- * and {@link StompDecoder} to encode and decode STOMP messages.
+ * <p>实际上，{@code TcpConnectionHandler} 和 {@code TcpConnection} 是任何子类
+ * 在使用 {@link StompEncoder} 和 {@link StompDecoder} 编解码 STOMP 消息时
+ * 必须适配的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -53,10 +53,10 @@ public abstract class StompClientSupport {
 
 
 	/**
-	 * Set the {@link MessageConverter} to use to convert the payload of incoming
-	 * and outgoing messages to and from {@code byte[]} based on object type
-	 * and the "content-type" header.
-	 * <p>By default, {@link SimpleMessageConverter} is configured.
+	 * 设置用于根据对象类型和 "content-type" 头，
+	 * 在传入和传出消息的载荷与 {@code byte[]} 之间进行转换的
+	 * {@link MessageConverter}。
+	 * <p>默认配置 {@link SimpleMessageConverter}。
 	 * @param messageConverter the message converter to use
 	 */
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -65,25 +65,24 @@ public abstract class StompClientSupport {
 	}
 
 	/**
-	 * Return the configured {@link MessageConverter}.
+	 * 返回已配置的 {@link MessageConverter}。
 	 */
 	public MessageConverter getMessageConverter() {
 		return this.messageConverter;
 	}
 
 	/**
-	 * Configure a scheduler to use for heartbeats and for receipt tracking.
-	 * <p><strong>Note:</strong> Some transports have built-in support to work
-	 * with heartbeats and therefore do not require a TaskScheduler.
-	 * Receipts however, if needed, do require a TaskScheduler to be configured.
-	 * <p>By default, this is not set.
+	 * 配置用于心跳和回执跟踪的调度器。
+	 * <p><strong>注意：</strong>某些传输内置支持心跳，因此不需要 TaskScheduler。
+	 * 不过，如果需要回执，则确实需要配置 TaskScheduler。
+	 * <p>默认不设置。
 	 */
 	public void setTaskScheduler(@Nullable TaskScheduler taskScheduler) {
 		this.taskScheduler = taskScheduler;
 	}
 
 	/**
-	 * The configured TaskScheduler.
+	 * 已配置的 TaskScheduler。
 	 */
 	@Nullable
 	public TaskScheduler getTaskScheduler() {
@@ -91,21 +90,16 @@ public abstract class StompClientSupport {
 	}
 
 	/**
-	 * Configure the default value for the "heart-beat" header of the STOMP
-	 * CONNECT frame. The first number represents how often the client will write
-	 * or send a heart-beat. The second is how often the server should write.
-	 * A value of 0 means no heart-beats.
-	 * <p>By default this is set to "10000,10000" but subclasses may override
-	 * that default and for example set it to "0,0" if they require a
-	 * TaskScheduler to be configured first.
-	 * <p><strong>Note:</strong> that a heartbeat is sent only in case of
-	 * inactivity, i.e. when no other messages are sent. This can present a
-	 * challenge when using an external broker since messages with a non-broker
-	 * destination represent activity but aren't actually forwarded to the broker.
-	 * In that case you can configure a `TaskScheduler` through the
+	 * 配置 STOMP CONNECT 帧 "heart-beat" 头的默认值。第一个数字表示客户端写入或发送心跳的频率。
+	 * 第二个数字表示服务器应写入的频率。值为 0 表示不发送心跳。
+	 * <p>默认设置为 "10000,10000"，但子类可以覆盖该默认值，
+	 * 例如在需要先配置 TaskScheduler 时将其设置为 "0,0"。
+	 * <p><strong>注意：</strong>只有在不活跃时（即没有发送其他消息时）才会发送心跳。
+	 * 在使用外部代理时，这可能会带来挑战，因为具有非代理目标的消息表示有活动，
+	 * 但实际上并不会转发到代理。在这种情况下，可以通过
 	 * {@link org.springframework.messaging.simp.config.StompBrokerRelayRegistration}
-	 * which ensures a heartbeat is forwarded to the broker also when only
-	 * messages with a non-broker destination are sent.
+	 * 配置 `TaskScheduler`，以确保即使只发送具有非代理目标的消息，
+	 * 也会向代理转发心跳。
 	 * @param heartbeat the value for the CONNECT "heart-beat" header
 	 * @see <a href="https://stomp.github.io/stomp-specification-1.2.html#Heart-beating">
 	 * https://stomp.github.io/stomp-specification-1.2.html#Heart-beating</a>
@@ -118,16 +112,16 @@ public abstract class StompClientSupport {
 	}
 
 	/**
-	 * Return the configured default heart-beat value (never {@code null}).
+	 * 返回已配置的默认心跳值（永不为 {@code null}）。
 	 */
 	public long[] getDefaultHeartbeat() {
 		return this.defaultHeartbeat;
 	}
 
 	/**
-	 * Determine whether heartbeats are enabled.
-	 * <p>Returns {@code false} if {@link #setDefaultHeartbeat defaultHeartbeat}
-	 * is set to "0,0", and {@code true} otherwise.
+	 * 确定是否启用心跳。
+	 * <p>如果 {@link #setDefaultHeartbeat defaultHeartbeat} 设置为 "0,0"，则返回
+	 * {@code false}，否则返回 {@code true}。
 	 */
 	public boolean isDefaultHeartbeatEnabled() {
 		long[] heartbeat = getDefaultHeartbeat();
@@ -135,8 +129,8 @@ public abstract class StompClientSupport {
 	}
 
 	/**
-	 * Configure the number of milliseconds before a receipt is considered expired.
-	 * <p>By default set to 15,000 (15 seconds).
+	 * 配置回执被视为过期之前的毫秒数。
+	 * <p>默认设置为 15,000（15 秒）。
 	 */
 	public void setReceiptTimeLimit(long receiptTimeLimit) {
 		Assert.isTrue(receiptTimeLimit > 0, "Receipt time limit must be larger than zero");
@@ -144,7 +138,7 @@ public abstract class StompClientSupport {
 	}
 
 	/**
-	 * Return the configured receipt time limit.
+	 * 返回已配置的回执时间限制。
 	 */
 	public long getReceiptTimeLimit() {
 		return this.receiptTimeLimit;
@@ -152,7 +146,7 @@ public abstract class StompClientSupport {
 
 
 	/**
-	 * Factory method for create and configure a new session.
+	 * 用于创建并配置新会话的工厂方法。
 	 * @param connectHeaders headers for the STOMP CONNECT frame
 	 * @param handler the handler for the STOMP session
 	 * @return the created session
@@ -169,8 +163,7 @@ public abstract class StompClientSupport {
 	}
 
 	/**
-	 * Further initialize the StompHeaders, for example setting the heart-beat
-	 * header if necessary.
+	 * 进一步初始化 StompHeaders，例如在必要时设置 heart-beat 头。
 	 * @param connectHeaders the headers to modify
 	 * @return the modified headers
 	 */

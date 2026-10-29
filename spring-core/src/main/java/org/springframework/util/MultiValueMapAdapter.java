@@ -26,7 +26,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
- * Adapts a given {@link Map} to the {@link MultiValueMap} contract.
+ * 将给定的 {@link Map} 适配为 {@link MultiValueMap} 约定。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -43,7 +43,7 @@ public class MultiValueMapAdapter<K, V> implements MultiValueMap<K, V>, Serializ
 
 
 	/**
-	 * Wrap the given target {@link Map} as a {@link MultiValueMap} adapter.
+	 * 将给定的目标 {@link Map} 包装为 {@link MultiValueMap} 适配器。
 	 * @param targetMap the plain target {@code Map}
 	 */
 	public MultiValueMapAdapter(Map<K, List<V>> targetMap) {

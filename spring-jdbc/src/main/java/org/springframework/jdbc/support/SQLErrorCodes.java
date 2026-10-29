@@ -21,12 +21,12 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * JavaBean for holding JDBC error codes for a particular database.
- * Instances of this class are normally loaded through a bean factory.
+ * 用于保存特定数据库的 JDBC 错误码的 JavaBean。
+ * 此类的实例通常通过 bean 工厂加载。
  *
- * <p>Used by Spring's {@link SQLErrorCodeSQLExceptionTranslator}.
- * The file "sql-error-codes.xml" in this package contains default
- * {@code SQLErrorCodes} instances for various databases.
+ * <p>由 Spring 的 {@link SQLErrorCodeSQLExceptionTranslator} 使用。
+ * 本包中的 "sql-error-codes.xml" 文件包含各种数据库的默认
+ * {@code SQLErrorCodes} 实例。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -68,8 +68,8 @@ public class SQLErrorCodes {
 
 
 	/**
-	 * Set this property if the database name contains spaces,
-	 * in which case we can not use the bean name for lookup.
+	 * 如果数据库名称包含空格（此时无法使用 bean 名称进行查找），
+	 * 请设置此属性。
 	 */
 	public void setDatabaseProductName(@Nullable String databaseProductName) {
 		this.databaseProductNames = new String[] {databaseProductName};
@@ -82,8 +82,8 @@ public class SQLErrorCodes {
 	}
 
 	/**
-	 * Set this property to specify multiple database names that contains spaces,
-	 * in which case we can not use bean names for lookup.
+	 * 设置此属性以指定多个包含空格的数据库名称
+	 * （此时无法使用 bean 名称进行查找）。
 	 */
 	public void setDatabaseProductNames(@Nullable String... databaseProductNames) {
 		this.databaseProductNames = databaseProductNames;
@@ -95,8 +95,8 @@ public class SQLErrorCodes {
 	}
 
 	/**
-	 * Set this property to true for databases that do not provide an error code
-	 * but that do provide SQL State (this includes PostgreSQL).
+	 * 对于不提供错误码但提供 SQL State 的数据库（包括 PostgreSQL），
+	 * 请将此属性设置为 true。
 	 */
 	public void setUseSqlStateForTranslation(boolean useStateCodeForTranslation) {
 		this.useSqlStateForTranslation = useStateCodeForTranslation;

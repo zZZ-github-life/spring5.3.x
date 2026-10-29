@@ -42,21 +42,19 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Resolves method arguments annotated with an @{@link PathVariable}.
+ * 解析带有 @{@link PathVariable} 注解的方法参数。
  *
- * <p>An @{@link PathVariable} is a named value that gets resolved from a URI template variable.
- * It is always required and does not have a default value to fall back on. See the base class
- * {@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}
- * for more information on how named values are processed.
+ * <p>@{@link PathVariable} 是一个具名值，从 URI 模板变量中解析得到。
+ * 它始终是必需的，且没有可供回退的默认值。有关具名值如何处理的更多信息，
+ * 请参见基类
+ * {@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}。
  *
- * <p>If the method parameter type is {@link Map}, the name specified in the annotation is used
- * to resolve the URI variable String value. The value is then converted to a {@link Map} via
- * type conversion, assuming a suitable {@link Converter} or {@link PropertyEditor} has been
- * registered.
+ * <p>如果方法参数类型为 {@link Map}，则使用注解中指定的名称
+ * 来解析 URI 变量字符串值。随后假定已注册了合适的 {@link Converter} 或 {@link PropertyEditor}，
+ * 该值会通过类型转换转换为 {@link Map}。
  *
- * <p>A {@link WebDataBinder} is invoked to apply type conversion to resolved path variable
- * values that don't yet match the method parameter type.
- *
+ * <p>会调用 {@link WebDataBinder} 对尚不匹配方法参数类型的已解析路径变量值
+ * 应用类型转换。
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
  * @author Juergen Hoeller

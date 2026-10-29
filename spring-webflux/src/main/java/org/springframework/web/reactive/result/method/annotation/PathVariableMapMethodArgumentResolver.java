@@ -30,11 +30,7 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolver for {@link Map} method arguments also annotated with
- * {@link PathVariable @PathVariable} where the annotation does not specify a
- * path variable name. The resulting {@link Map} argument is a coyp of all URI
- * template name-value pairs.
- *
+ * 用于同时带有 {@link PathVariable @PathVariable} 注解的 {@link Map} 方法参数的解析器，其中注解未指定路径变量名称。生成的 {@link Map} 参数是所有 URI 模板名称-值对的副本。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see PathVariableMethodArgumentResolver

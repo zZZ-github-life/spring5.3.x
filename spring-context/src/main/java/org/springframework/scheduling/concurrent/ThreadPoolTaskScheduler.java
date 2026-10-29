@@ -45,8 +45,8 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureTask;
 
 /**
- * Implementation of Spring's {@link TaskScheduler} interface, wrapping
- * a native {@link java.util.concurrent.ScheduledThreadPoolExecutor}.
+ * Spring {@link TaskScheduler} 接口的实现，包装了一个原生
+ * {@link java.util.concurrent.ScheduledThreadPoolExecutor}。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -84,9 +84,8 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 
 
 	/**
-	 * Set the ScheduledExecutorService's pool size.
-	 * Default is 1.
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * 设置 ScheduledExecutorService 的池大小。默认值为 1。
+	 * <p><b>此设置可在运行时修改，例如通过 JMX。</b>
 	 */
 	public void setPoolSize(int poolSize) {
 		Assert.isTrue(poolSize > 0, "'poolSize' must be 1 or higher");
@@ -97,10 +96,9 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Set the remove-on-cancel mode on {@link ScheduledThreadPoolExecutor}.
-	 * <p>Default is {@code false}. If set to {@code true}, the target executor will be
-	 * switched into remove-on-cancel mode (if possible).
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * 设置 {@link ScheduledThreadPoolExecutor} 的取消时移除模式。
+	 * <p>默认值为 {@code false}。如果设为 {@code true}，目标执行器将切换为取消时移除模式（如果可能）。
+	 * <p><b>此设置可在运行时修改，例如通过 JMX。</b>
 	 * @see ScheduledThreadPoolExecutor#setRemoveOnCancelPolicy
 	 */
 	public void setRemoveOnCancelPolicy(boolean flag) {
@@ -111,10 +109,9 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Set whether to continue existing periodic tasks even when this executor has been shutdown.
-	 * <p>Default is {@code false}. If set to {@code true}, the target executor will be
-	 * switched into continuing periodic tasks (if possible).
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * 设置即使此执行器已关闭，是否仍继续现有的周期性任务。
+	 * <p>默认值为 {@code false}。如果设为 {@code true}，目标执行器将切换为继续周期性任务（如果可能）。
+	 * <p><b>此设置可在运行时修改，例如通过 JMX。</b>
 	 * @since 5.3.9
 	 * @see ScheduledThreadPoolExecutor#setContinueExistingPeriodicTasksAfterShutdownPolicy
 	 */
@@ -126,10 +123,9 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Set whether to execute existing delayed tasks even when this executor has been shutdown.
-	 * <p>Default is {@code true}. If set to {@code false}, the target executor will be
-	 * switched into dropping remaining tasks (if possible).
-	 * <p><b>This setting can be modified at runtime, for example through JMX.</b>
+	 * 设置即使此执行器已关闭，是否仍执行现有的延迟任务。
+	 * <p>默认值为 {@code true}。如果设为 {@code false}，目标执行器将切换为丢弃剩余任务（如果可能）。
+	 * <p><b>此设置可在运行时修改，例如通过 JMX。</b>
 	 * @since 5.3.9
 	 * @see ScheduledThreadPoolExecutor#setExecuteExistingDelayedTasksAfterShutdownPolicy
 	 */
@@ -141,15 +137,15 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Set a custom {@link ErrorHandler} strategy.
+	 * 设置自定义的 {@link ErrorHandler} 策略。
 	 */
 	public void setErrorHandler(ErrorHandler errorHandler) {
 		this.errorHandler = errorHandler;
 	}
 
 	/**
-	 * Set the clock to use for scheduling purposes.
-	 * <p>The default clock is the system clock for the default time zone.
+	 * 设置用于调度目的的时钟。
+	 * <p>默认时钟为默认时区的系统时钟。
 	 * @since 5.3
 	 * @see Clock#systemDefaultZone()
 	 */
@@ -186,9 +182,9 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Create a new {@link ScheduledExecutorService} instance.
-	 * <p>The default implementation creates a {@link ScheduledThreadPoolExecutor}.
-	 * Can be overridden in subclasses to provide custom {@link ScheduledExecutorService} instances.
+	 * 创建一个新的 {@link ScheduledExecutorService} 实例。
+	 * <p>默认实现创建一个 {@link ScheduledThreadPoolExecutor}。可在子类中重写，以提供自定义的
+	 * {@link ScheduledExecutorService} 实例。
 	 * @param poolSize the specified pool size
 	 * @param threadFactory the ThreadFactory to use
 	 * @param rejectedExecutionHandler the RejectedExecutionHandler to use
@@ -203,7 +199,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Return the underlying ScheduledExecutorService for native access.
+	 * 返回底层的 ScheduledExecutorService，以便进行原生访问。
 	 * @return the underlying ScheduledExecutorService (never {@code null})
 	 * @throws IllegalStateException if the ThreadPoolTaskScheduler hasn't been initialized yet
 	 */
@@ -213,7 +209,7 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Return the underlying ScheduledThreadPoolExecutor, if available.
+	 * 返回底层的 ScheduledThreadPoolExecutor（如果可用）。
 	 * @return the underlying ScheduledExecutorService (never {@code null})
 	 * @throws IllegalStateException if the ThreadPoolTaskScheduler hasn't been initialized yet
 	 * or if the underlying ScheduledExecutorService isn't a ScheduledThreadPoolExecutor
@@ -226,8 +222,8 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Return the current pool size.
-	 * <p>Requires an underlying {@link ScheduledThreadPoolExecutor}.
+	 * 返回当前池大小。
+	 * <p>需要底层存在 {@link ScheduledThreadPoolExecutor}。
 	 * @see #getScheduledThreadPoolExecutor()
 	 * @see java.util.concurrent.ScheduledThreadPoolExecutor#getPoolSize()
 	 */
@@ -240,8 +236,8 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Return the number of currently active threads.
-	 * <p>Requires an underlying {@link ScheduledThreadPoolExecutor}.
+	 * 返回当前活动线程数。
+	 * <p>需要底层存在 {@link ScheduledThreadPoolExecutor}。
 	 * @see #getScheduledThreadPoolExecutor()
 	 * @see java.util.concurrent.ScheduledThreadPoolExecutor#getActiveCount()
 	 */
@@ -254,8 +250,8 @@ public class ThreadPoolTaskScheduler extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Return the current setting for the remove-on-cancel mode.
-	 * <p>Requires an underlying {@link ScheduledThreadPoolExecutor}.
+	 * 返回取消时移除模式的当前设置。
+	 * <p>需要底层存在 {@link ScheduledThreadPoolExecutor}。
 	 * @deprecated as of 5.3.9, in favor of direct
 	 * {@link #getScheduledThreadPoolExecutor()} access
 	 */

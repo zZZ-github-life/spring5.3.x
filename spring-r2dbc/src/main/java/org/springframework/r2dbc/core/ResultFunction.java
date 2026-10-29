@@ -29,11 +29,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link ConnectionFunction} that produces a {@code Flux} of {@link Result} and that
- * defers generation of the SQL until the function has been applied.
- * Beforehand, the {@code getSql()} method simply returns {@code null}. The sql String is
- * also memoized during application, so that subsequent calls to {@link #getSql()} return
- * the same {@code String} without further calls to the {@code Supplier}.
+ * 一个 {@link ConnectionFunction}，生成 {@link Result} 的 {@code Flux}，
+ * 并将 SQL 的生成延迟到该函数被应用之后。在此之前，{@code getSql()}
+ * 方法只返回 {@code null}。SQL 字符串在应用过程中也会被记忆，
+ * 因此后续调用 {@link #getSql()} 会返回相同的 {@code String}，
+ * 而不会再次调用 {@code Supplier}。
  *
  * @author Mark Paluch
  * @author Simon Baslé

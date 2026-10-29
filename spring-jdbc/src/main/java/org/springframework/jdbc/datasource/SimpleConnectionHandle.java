@@ -21,8 +21,8 @@ import java.sql.Connection;
 import org.springframework.util.Assert;
 
 /**
- * Simple implementation of the {@link ConnectionHandle} interface,
- * containing a given JDBC Connection.
+ * {@link ConnectionHandle} 接口的简单实现，
+ * 包含给定的 JDBC Connection。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -33,7 +33,7 @@ public class SimpleConnectionHandle implements ConnectionHandle {
 
 
 	/**
-	 * Create a new SimpleConnectionHandle for the given Connection.
+	 * 为给定的 Connection 创建一个新的 SimpleConnectionHandle。
 	 * @param connection the JDBC Connection
 	 */
 	public SimpleConnectionHandle(Connection connection) {
@@ -42,7 +42,7 @@ public class SimpleConnectionHandle implements ConnectionHandle {
 	}
 
 	/**
-	 * Return the specified Connection as-is.
+	 * 原样返回指定的 Connection。
 	 */
 	@Override
 	public Connection getConnection() {

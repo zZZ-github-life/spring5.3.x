@@ -32,9 +32,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * The default implementation of the {@link PropertyValues} interface.
- * Allows simple manipulation of properties, and provides constructors
- * to support deep copy and construction from a Map.
+ * {@link PropertyValues} 接口的默认实现。允许对属性进行简单的操作，并提供支持深拷贝和从 Map 构造的
+ * 构造函数。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -53,8 +52,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 
 	/**
-	 * Creates a new empty MutablePropertyValues object.
-	 * <p>Property values can be added with the {@code add} method.
+	 * 创建一个新的空 MutablePropertyValues 对象。
+	 * <p>可以使用 {@code add} 方法添加属性值。
 	 * @see #add(String, Object)
 	 */
 	public MutablePropertyValues() {
@@ -62,9 +61,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Deep copy constructor. Guarantees PropertyValue references
-	 * are independent, although it can't deep copy objects currently
-	 * referenced by individual PropertyValue objects.
+	 * 深拷贝构造函数。保证 PropertyValue 引用相互独立，但不能深拷贝各个 PropertyValue 对象当前引用的对
+	 * 象。
 	 * @param original the PropertyValues to copy
 	 * @see #addPropertyValues(PropertyValues)
 	 */
@@ -84,7 +82,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Construct a new MutablePropertyValues object from a Map.
+	 * 从 Map 构造一个新的 MutablePropertyValues 对象。
 	 * @param original a Map with property values keyed by property name Strings
 	 * @see #addPropertyValues(Map)
 	 */
@@ -102,10 +100,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Construct a new MutablePropertyValues object using the given List of
-	 * PropertyValue objects as-is.
-	 * <p>This is a constructor for advanced usage scenarios.
-	 * It is not intended for typical programmatic use.
+	 * 使用给定的 PropertyValue 对象 List 按原样构造一个新的 MutablePropertyValues 对象。
+	 * <p>此构造函数适用于高级使用场景，不适用于典型的编程用途。
 	 * @param propertyValueList a List of PropertyValue objects
 	 */
 	public MutablePropertyValues(@Nullable List<PropertyValue> propertyValueList) {
@@ -115,26 +111,23 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 
 	/**
-	 * Return the underlying List of PropertyValue objects in its raw form.
-	 * The returned List can be modified directly, although this is not recommended.
-	 * <p>This is an accessor for optimized access to all PropertyValue objects.
-	 * It is not intended for typical programmatic use.
+	 * 以原始形式返回底层的 PropertyValue 对象 List。可以直接修改返回的 List，但不推荐这样做。
+	 * <p>这是一个用于优化访问所有 PropertyValue 对象的访问器，不适用于典型的编程用途。
 	 */
 	public List<PropertyValue> getPropertyValueList() {
 		return this.propertyValueList;
 	}
 
 	/**
-	 * Return the number of PropertyValue entries in the list.
+	 * 返回列表中 PropertyValue 条目的数量。
 	 */
 	public int size() {
 		return this.propertyValueList.size();
 	}
 
 	/**
-	 * Copy all given PropertyValues into this object. Guarantees PropertyValue
-	 * references are independent, although it can't deep copy objects currently
-	 * referenced by individual PropertyValue objects.
+	 * 将所有给定的 PropertyValues 复制到此对象中。保证 PropertyValue 引用相互独立，但不能深拷贝各个
+	 * PropertyValue 对象当前引用的对象。
 	 * @param other the PropertyValues to copy
 	 * @return this in order to allow for adding multiple property values in a chain
 	 */
@@ -149,7 +142,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Add all property values from the given Map.
+	 * 添加给定 Map 中的所有属性值。
 	 * @param other a Map with property values keyed by property name,
 	 * which must be a String
 	 * @return this in order to allow for adding multiple property values in a chain
@@ -163,8 +156,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Add a PropertyValue object, replacing any existing one for the
-	 * corresponding property or getting merged with it (if applicable).
+	 * 添加一个 PropertyValue 对象，替换对应属性的任何现有对象，或与之合并（如果适用）。
 	 * @param pv the PropertyValue object to add
 	 * @return this in order to allow for adding multiple property values in a chain
 	 */
@@ -182,10 +174,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Overloaded version of {@code addPropertyValue} that takes
-	 * a property name and a property value.
-	 * <p>Note: As of Spring 3.0, we recommend using the more concise
-	 * and chaining-capable variant {@link #add}.
+	 * {@code addPropertyValue} 的重载版本，接受属性名和属性值。
+	 * <p>注意：从 Spring 3.0 开始，建议使用更简洁且支持链式调用的变体 {@link #add}。
 	 * @param propertyName name of the property
 	 * @param propertyValue value of the property
 	 * @see #addPropertyValue(PropertyValue)
@@ -195,8 +185,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Add a PropertyValue object, replacing any existing one for the
-	 * corresponding property or getting merged with it (if applicable).
+	 * 添加一个 PropertyValue 对象，替换对应属性的任何现有对象，或与之合并（如果适用）。
 	 * @param propertyName name of the property
 	 * @param propertyValue value of the property
 	 * @return this in order to allow for adding multiple property values in a chain
@@ -207,16 +196,15 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Modify a PropertyValue object held in this object.
-	 * Indexed from 0.
+	 * 修改此对象中持有的 PropertyValue 对象。索引从 0 开始。
 	 */
 	public void setPropertyValueAt(PropertyValue pv, int i) {
 		this.propertyValueList.set(i, pv);
 	}
 
 	/**
-	 * Merges the value of the supplied 'new' {@link PropertyValue} with that of
-	 * the current {@link PropertyValue} if merging is supported and enabled.
+	 * 如果支持并启用了合并，则将所提供的“新”{@link PropertyValue} 的值与当前 {@link PropertyValue} 的
+	 * 值合并。
 	 * @see Mergeable
 	 */
 	private PropertyValue mergeIfRequired(PropertyValue newPv, PropertyValue currentPv) {
@@ -232,7 +220,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Remove the given PropertyValue, if contained.
+	 * 如果包含给定的 PropertyValue，则将其移除。
 	 * @param pv the PropertyValue to remove
 	 */
 	public void removePropertyValue(PropertyValue pv) {
@@ -240,7 +228,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Overloaded version of {@code removePropertyValue} that takes a property name.
+	 * {@code removePropertyValue} 的重载版本，接受属性名。
 	 * @param propertyName name of the property
 	 * @see #removePropertyValue(PropertyValue)
 	 */
@@ -281,7 +269,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Get the raw property value, if any.
+	 * 获取原始属性值（如果有）。
 	 * @param propertyName the name to search for
 	 * @return the raw property value, or {@code null} if none found
 	 * @since 4.0
@@ -325,11 +313,8 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 
 
 	/**
-	 * Register the specified property as "processed" in the sense
-	 * of some processor calling the corresponding setter method
-	 * outside the PropertyValue(s) mechanism.
-	 * <p>This will lead to {@code true} being returned from
-	 * a {@link #contains} call for the specified property.
+	 * 将指定属性注册为“已处理”，即某个处理器在 PropertyValue(s) 机制之外调用了对应的 setter 方法。
+	 * <p>这将导致对指定属性调用 {@link #contains} 时返回 {@code true}。
 	 * @param propertyName the name of the property.
 	 */
 	public void registerProcessedProperty(String propertyName) {
@@ -340,7 +325,7 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Clear the "processed" registration of the given property, if any.
+	 * 清除给定属性的“已处理”注册（如果有）。
 	 * @since 3.2.13
 	 */
 	public void clearProcessedProperty(String propertyName) {
@@ -350,16 +335,14 @@ public class MutablePropertyValues implements PropertyValues, Serializable {
 	}
 
 	/**
-	 * Mark this holder as containing converted values only
-	 * (i.e. no runtime resolution needed anymore).
+	 * 将此持有者标记为仅包含已转换的值（即不再需要运行时解析）。
 	 */
 	public void setConverted() {
 		this.converted = true;
 	}
 
 	/**
-	 * Return whether this holder contains converted values only ({@code true}),
-	 * or whether the values still need to be converted ({@code false}).
+	 * 返回此持有者是仅包含已转换的值（{@code true}），还是这些值仍需要转换（{@code false}）。
 	 */
 	public boolean isConverted() {
 		return this.converted;

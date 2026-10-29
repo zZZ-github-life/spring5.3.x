@@ -19,8 +19,7 @@ package org.springframework.expression;
 import org.springframework.lang.Nullable;
 
 /**
- * Instances of a type comparator should be able to compare pairs of objects for equality.
- * The specification of the return value is the same as for {@link java.lang.Comparable}.
+ * 类型比较器的实例应能够比较对象对是否相等。返回值的规范与 {@link java.lang.Comparable} 相同。
  *
  * @author Andy Clement
  * @since 3.0
@@ -29,7 +28,7 @@ import org.springframework.lang.Nullable;
 public interface TypeComparator {
 
 	/**
-	 * Return {@code true} if the comparator can compare these two objects.
+	 * 如果比较器可以比较这两个对象，则返回 {@code true}。
 	 * @param firstObject the first object
 	 * @param secondObject the second object
 	 * @return {@code true} if the comparator can compare these objects
@@ -37,7 +36,7 @@ public interface TypeComparator {
 	boolean canCompare(@Nullable Object firstObject, @Nullable Object secondObject);
 
 	/**
-	 * Compare two given objects.
+	 * 比较两个给定的对象。
 	 * @param firstObject the first object
 	 * @param secondObject the second object
 	 * @return 0 if they are equal, a negative integer if the first is smaller than

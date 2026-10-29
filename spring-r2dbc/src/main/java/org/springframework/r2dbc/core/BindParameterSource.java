@@ -19,16 +19,13 @@ package org.springframework.r2dbc.core;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface that defines common functionality for objects
- * that can offer parameter values for named bind parameters,
- * serving as argument for {@link NamedParameterExpander} operations.
+ * 定义通用功能的接口，供能够为命名绑定参数提供参数值的对象实现，
+ * 可作为 {@link NamedParameterExpander} 操作的参数。
  *
- * <p>This interface allows for the specification of the type in
- * addition to parameter values. All parameter values and types are
- * identified by specifying the name of the parameter.
+ * <p>此接口除了参数值之外还允许指定类型。所有参数值和类型
+ * 都通过指定参数名称来标识。
  *
- * <p>Intended to wrap various implementations like a {@link java.util.Map}
- * with a consistent interface.
+ * <p>旨在以一致的接口包装各种实现，例如 {@link java.util.Map}。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -37,14 +34,14 @@ import org.springframework.lang.Nullable;
 interface BindParameterSource {
 
 	/**
-	 * Determine whether there is a value for the specified named parameter.
+	 * 判断指定的命名参数是否有值。
 	 * @param paramName the name of the parameter
 	 * @return {@code true} if there is a value defined; {@code false} otherwise
 	 */
 	boolean hasValue(String paramName);
 
 	/**
-	 * Return the parameter value for the requested named parameter.
+	 * 返回所请求的命名参数的参数值。
 	 * @param paramName the name of the parameter
 	 * @return the value of the specified parameter (can be {@code null})
 	 * @throws IllegalArgumentException if there is no value
@@ -54,7 +51,7 @@ interface BindParameterSource {
 	Object getValue(String paramName) throws IllegalArgumentException;
 
 	/**
-	 * Determine the type for the specified named parameter.
+	 * 确定指定的命名参数的类型。
 	 * @param paramName the name of the parameter
 	 * @return the type of the specified parameter, or
 	 * {@link Object#getClass()} if not known.
@@ -64,7 +61,7 @@ interface BindParameterSource {
 	}
 
 	/**
-	 * Return the parameter names of the underlying parameter source.
+	 * 返回底层参数源的参数名称。
 	 * @return an iterator over the parameter names
 	 */
 	Iterable<String> getParameterNames();

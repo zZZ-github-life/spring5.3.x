@@ -25,11 +25,10 @@ import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.util.Assert;
 
 /**
- * Simple {@link ConnectionFactoryLookup} implementation that relies
- * on a map for doing lookups.
+ * 简单的 {@link ConnectionFactoryLookup} 实现，依赖映射完成查找。
  *
- * <p>Useful for testing environments or applications that need to match
- * arbitrary {@link String} names to target {@link ConnectionFactory} objects.
+ * <p>适用于测试环境，或需要将任意 {@link String} 名称
+ * 与目标 {@link ConnectionFactory} 对象进行匹配的应用程序。
  *
  * @author Mark Paluch
  * @author Jens Schauder
@@ -41,12 +40,12 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 
 
 	/**
-	 * Create a new instance of the {@link MapConnectionFactoryLookup} class.
+	 * 创建一个新的 {@link MapConnectionFactoryLookup} 类实例。
 	 */
 	public MapConnectionFactoryLookup() {}
 
 	/**
-	 * Create a new instance of the {@link MapConnectionFactoryLookup} class.
+	 * 创建一个新的 {@link MapConnectionFactoryLookup} 类实例。
 	 * @param connectionFactories the {@link Map} of {@link ConnectionFactory}.
 	 * The keys are {@link String Strings}, the values are actual {@link ConnectionFactory} instances.
 	 */
@@ -55,7 +54,7 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 	}
 
 	/**
-	 * Create a new instance of the {@link MapConnectionFactoryLookup} class.
+	 * 创建一个新的 {@link MapConnectionFactoryLookup} 类实例。
 	 * @param connectionFactoryName the name under which the supplied {@link ConnectionFactory} is to be added
 	 * @param connectionFactory the {@link ConnectionFactory} to be added
 	 */
@@ -65,9 +64,9 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 
 
 	/**
-	 * Set the {@link Map} of {@link ConnectionFactory ConnectionFactories}.
-	 * The keys are {@link String Strings}, the values are actual {@link ConnectionFactory} instances.
-	 * <p>If the supplied {@link Map} is {@code null}, then this method call effectively has no effect.
+	 * 设置 {@link ConnectionFactory ConnectionFactory} 的 {@link Map}。
+	 * 键为 {@link String 字符串}，值为实际的 {@link ConnectionFactory} 实例。
+	 * <p>如果所提供的 {@link Map} 为 {@code null}，则此方法调用实际上不产生任何效果。
 	 * @param connectionFactories said {@link Map} of {@link ConnectionFactory connectionFactories}
 	 */
 	public void setConnectionFactories(Map<String, ConnectionFactory> connectionFactories) {
@@ -76,8 +75,8 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 	}
 
 	/**
-	 * Get the {@link Map} of {@link ConnectionFactory ConnectionFactories} maintained by this object.
-	 * <p>The returned {@link Map} is {@link Collections#unmodifiableMap(Map) unmodifiable}.
+	 * 获取此对象维护的 {@link ConnectionFactory ConnectionFactory} {@link Map}。
+	 * <p>返回的 {@link Map} 是 {@link Collections#unmodifiableMap(Map) 不可修改的}。
 	 * @return {@link Map} of {@link ConnectionFactory connectionFactory} (never {@code null})
 	 */
 	public Map<String, ConnectionFactory> getConnectionFactories() {
@@ -85,8 +84,8 @@ public class MapConnectionFactoryLookup implements ConnectionFactoryLookup {
 	}
 
 	/**
-	 * Add the supplied {@link ConnectionFactory} to the map of
-	 * {@link ConnectionFactory ConnectionFactory} instances maintained by this object.
+	 * 将所提供的 {@link ConnectionFactory} 添加到此对象维护的
+	 * {@link ConnectionFactory ConnectionFactory} 实例映射中。
 	 * @param connectionFactoryName the name under which the supplied {@link ConnectionFactory} is to be added
 	 * @param connectionFactory the {@link ConnectionFactory} to be so added
 	 */

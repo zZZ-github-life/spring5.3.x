@@ -22,9 +22,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link EmbeddedDatabaseConfigurer} for an HSQL embedded database instance.
+ * HSQL 嵌入式数据库实例的 {@link EmbeddedDatabaseConfigurer}。
  *
- * <p>Call {@link #getInstance()} to get the singleton instance of this class.
+ * <p>调用 {@link #getInstance()} 获取此类的单例实例。
  *
  * @author Keith Donald
  * @author Oliver Gierke
@@ -39,7 +39,7 @@ final class HsqlEmbeddedDatabaseConfigurer extends AbstractEmbeddedDatabaseConfi
 
 
 	/**
-	 * Get the singleton {@link HsqlEmbeddedDatabaseConfigurer} instance.
+	 * 获取单例 {@link HsqlEmbeddedDatabaseConfigurer} 实例。
 	 * @return the configurer instance
 	 * @throws ClassNotFoundException if HSQL is not on the classpath
 	 */

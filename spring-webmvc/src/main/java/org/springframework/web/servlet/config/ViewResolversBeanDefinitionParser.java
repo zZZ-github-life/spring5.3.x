@@ -40,17 +40,15 @@ import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 /**
- * Parse the {@code view-resolvers} MVC namespace element and register
- * {@link org.springframework.web.servlet.ViewResolver} bean definitions.
+ * 解析 {@code view-resolvers} MVC 命名空间元素，
+ * 并注册 {@link org.springframework.web.servlet.ViewResolver} bean 定义。
  *
- * <p>All registered resolvers are wrapped in a single (composite) ViewResolver
- * with its order property set to 0 so that other external resolvers may be ordered
- * before or after it.
+ * <p>所有已注册的解析器都被包装在单个（复合）ViewResolver 中，
+ * 其 order 属性设置为 0，以便其他外部解析器可以排在其前面或后面。
  *
- * <p>When content negotiation is enabled the order property is set to highest priority
- * instead with the ContentNegotiatingViewResolver encapsulating all other registered
- * view resolver instances. That way the resolvers registered through the MVC namespace
- * form self-encapsulated resolver chain.
+ * <p>启用内容协商时，order 属性会被设置为最高优先级，
+ * 此时由 ContentNegotiatingViewResolver 封装所有其他已注册的视图解析器实例。
+ * 这样，通过 MVC 命名空间注册的解析器就形成了一个自封装的解析器链。
  *
  * @author Sivaprasad Valluru
  * @author Sebastien Deleuze
@@ -64,7 +62,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 public class ViewResolversBeanDefinitionParser implements BeanDefinitionParser {
 
 	/**
-	 * The bean name used for the {@code ViewResolverComposite}.
+	 * 用于 {@code ViewResolverComposite} 的 bean 名称。
 	 */
 	public static final String VIEW_RESOLVER_BEAN_NAME = "mvcViewResolver";
 

@@ -19,8 +19,7 @@ package org.springframework.web.context.support;
 import org.springframework.lang.Nullable;
 
 /**
- * Servlet-specific subclass of RequestHandledEvent,
- * adding servlet-specific context information.
+ * RequestHandledEvent 的 Servlet 特定子类，增加了 Servlet 特定的上下文信息。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -30,24 +29,24 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class ServletRequestHandledEvent extends RequestHandledEvent {
 
-	/** URL that triggered the request. */
+	/** 触发该请求的 URL。 */
 	private final String requestUrl;
 
-	/** IP address that the request came from. */
+	/** 请求来源的 IP 地址。 */
 	private final String clientAddress;
 
-	/** Usually GET or POST. */
+	/** 通常是 GET 或 POST。 */
 	private final String method;
 
-	/** Name of the servlet that handled the request. */
+	/** 处理该请求的 Servlet 名称。 */
 	private final String servletName;
 
-	/** HTTP status code of the response. */
+	/** 响应的 HTTP 状态码。 */
 	private final int statusCode;
 
 
 	/**
-	 * Create a new ServletRequestHandledEvent.
+	 * 创建一个新的 ServletRequestHandledEvent。
 	 * @param source the component that published the event
 	 * @param requestUrl the URL of the request
 	 * @param clientAddress the IP address that the request came from
@@ -71,7 +70,7 @@ public class ServletRequestHandledEvent extends RequestHandledEvent {
 	}
 
 	/**
-	 * Create a new ServletRequestHandledEvent.
+	 * 创建一个新的 ServletRequestHandledEvent。
 	 * @param source the component that published the event
 	 * @param requestUrl the URL of the request
 	 * @param clientAddress the IP address that the request came from
@@ -96,7 +95,7 @@ public class ServletRequestHandledEvent extends RequestHandledEvent {
 	}
 
 	/**
-	 * Create a new ServletRequestHandledEvent.
+	 * 创建一个新的 ServletRequestHandledEvent。
 	 * @param source the component that published the event
 	 * @param requestUrl the URL of the request
 	 * @param clientAddress the IP address that the request came from
@@ -123,36 +122,35 @@ public class ServletRequestHandledEvent extends RequestHandledEvent {
 
 
 	/**
-	 * Return the URL of the request.
+	 * 返回请求的 URL。
 	 */
 	public String getRequestUrl() {
 		return this.requestUrl;
 	}
 
 	/**
-	 * Return the IP address that the request came from.
+	 * 返回请求来源的 IP 地址。
 	 */
 	public String getClientAddress() {
 		return this.clientAddress;
 	}
 
 	/**
-	 * Return the HTTP method of the request (usually GET or POST).
+	 * 返回请求的 HTTP 方法（通常是 GET 或 POST）。
 	 */
 	public String getMethod() {
 		return this.method;
 	}
 
 	/**
-	 * Return the name of the servlet that handled the request.
+	 * 返回处理该请求的 Servlet 名称。
 	 */
 	public String getServletName() {
 		return this.servletName;
 	}
 
 	/**
-	 * Return the HTTP status code of the response or -1 if the status
-	 * code is not available.
+	 * 返回响应的 HTTP 状态码；如果状态码不可用则返回 -1。
 	 * @since 4.1
 	 */
 	public int getStatusCode() {

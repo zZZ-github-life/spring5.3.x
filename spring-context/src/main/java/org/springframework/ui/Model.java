@@ -22,11 +22,11 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface that defines a holder for model attributes.
+ * 定义模型属性持有者的接口。
  *
- * <p>Primarily designed for adding attributes to the model.
+ * <p>主要设计用于向模型添加属性。
  *
- * <p>Allows for accessing the overall model as a {@code java.util.Map}.
+ * <p>允许以 {@code java.util.Map} 的形式访问整个模型。
  *
  * @author Juergen Hoeller
  * @since 2.5.1
@@ -34,52 +34,49 @@ import org.springframework.lang.Nullable;
 public interface Model {
 
 	/**
-	 * Add the supplied attribute under the supplied name.
+	 * 在给定名称下添加提供的属性。
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @param attributeValue the model attribute value (can be {@code null})
 	 */
 	Model addAttribute(String attributeName, @Nullable Object attributeValue);
 
 	/**
-	 * Add the supplied attribute to this {@code Map} using a
-	 * {@link org.springframework.core.Conventions#getVariableName generated name}.
-	 * <p><i>Note: Empty {@link java.util.Collection Collections} are not added to
-	 * the model when using this method because we cannot correctly determine
-	 * the true convention name. View code should check for {@code null} rather
-	 * than for empty collections as is already done by JSTL tags.</i>
+	 * 使用 {@link org.springframework.core.Conventions#getVariableName generated name} 将提供的属性添
+	 * 加到此 {@code Map}。
+	 *
+	 * <p><i>注意：使用此方法时，空的 {@link java.util.Collection Collections} 不会被添加到模型中，因为
+	 * 我们无法正确确定真正的约定名称。视图代码应检查 {@code null}，而不是检查空集合，JSTL 标签已经这样
+	 * 做了。</i>
 	 * @param attributeValue the model attribute value (never {@code null})
 	 */
 	Model addAttribute(Object attributeValue);
 
 	/**
-	 * Copy all attributes in the supplied {@code Collection} into this
-	 * {@code Map}, using attribute name generation for each element.
+	 * 将提供的 {@code Collection} 中的所有属性复制到此 {@code Map}，并对每个元素使用属性名生成方式。
 	 * @see #addAttribute(Object)
 	 */
 	Model addAllAttributes(Collection<?> attributeValues);
 
 	/**
-	 * Copy all attributes in the supplied {@code Map} into this {@code Map}.
+	 * 将提供的 {@code Map} 中的所有属性复制到此 {@code Map}。
 	 * @see #addAttribute(String, Object)
 	 */
 	Model addAllAttributes(Map<String, ?> attributes);
 
 	/**
-	 * Copy all attributes in the supplied {@code Map} into this {@code Map},
-	 * with existing objects of the same name taking precedence (i.e. not getting
-	 * replaced).
+	 * 将提供的 {@code Map} 中的所有属性复制到此 {@code Map}，同名对象以现有对象优先（即不会被替换）。
 	 */
 	Model mergeAttributes(Map<String, ?> attributes);
 
 	/**
-	 * Does this model contain an attribute of the given name?
+	 * 此模型是否包含给定名称的属性？
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @return whether this model contains a corresponding attribute
 	 */
 	boolean containsAttribute(String attributeName);
 
 	/**
-	 * Return the attribute value for the given name, if any.
+	 * 返回给定名称的属性值（如果有）。
 	 * @param attributeName the name of the model attribute (never {@code null})
 	 * @return the corresponding attribute value, or {@code null} if none
 	 * @since 5.2
@@ -88,7 +85,7 @@ public interface Model {
 	Object getAttribute(String attributeName);
 
 	/**
-	 * Return the current set of model attributes as a Map.
+	 * 以 Map 形式返回当前的一组模型属性。
 	 */
 	Map<String, Object> asMap();
 

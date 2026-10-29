@@ -25,14 +25,13 @@ import java.io.ObjectOutputStream;
 import org.springframework.lang.Nullable;
 
 /**
- * Static utilities for serialization and deserialization using
- * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/serialization/"
- * target="_blank">Java Object Serialization</a>.
+ * 用于通过
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/serialization/" target="_blank">
+ * Java 对象序列化</a> 进行序列化和反序列化的静态工具。
  *
- * <p><strong>WARNING</strong>: These utilities should be used with caution. See
- * <a href="https://www.oracle.com/java/technologies/javase/seccodeguide.html#8"
- * target="_blank">Secure Coding Guidelines for the Java Programming Language</a>
- * for details.
+ * <p><strong>警告</strong>：使用这些工具应谨慎。详情请参见
+ * <a href="https://www.oracle.com/java/technologies/javase/seccodeguide.html#8" target="_blank">
+ * Java 编程语言安全编码指南</a>。
  *
  * @author Dave Syer
  * @author Loïc Ledoyen
@@ -42,7 +41,7 @@ import org.springframework.lang.Nullable;
 public abstract class SerializationUtils {
 
 	/**
-	 * Serialize the given object to a byte array.
+	 * 将给定对象序列化为字节数组。
 	 * @param object the object to serialize
 	 * @return an array of bytes representing the object in a portable fashion
 	 */
@@ -63,13 +62,10 @@ public abstract class SerializationUtils {
 	}
 
 	/**
-	 * Deserialize the byte array into an object.
-	 * <p><strong>WARNING</strong>: This utility will be deprecated in Spring
-	 * Framework 6.0 since it uses Java Object Serialization, which allows arbitrary
-	 * code to be run and is known for being the source of many Remote Code Execution
-	 * (RCE) vulnerabilities. Prefer the use of an external tool (that serializes
-	 * to JSON, XML, or any other format) which is regularly checked and updated
-	 * for not allowing RCE.
+	 * 将字节数组反序列化为对象。
+	 * <p><strong>警告</strong>：此工具将在 Spring Framework 6.0 中弃用，因为它使用 Java Object
+	 * Serialization，该机制允许运行任意代码，并已知是许多远程代码执行（RCE）漏洞的来源。建议使用外部工
+	 * 具（序列化为 JSON、XML 或任何其他格式），并定期检查更新以避免允许 RCE。
 	 * @param bytes a serialized object
 	 * @return the result of deserializing the bytes
 	 */

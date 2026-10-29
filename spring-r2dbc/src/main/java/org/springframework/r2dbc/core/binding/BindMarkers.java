@@ -17,13 +17,12 @@
 package org.springframework.r2dbc.core.binding;
 
 /**
- * Bind markers represent placeholders in SQL queries for substitution
- * for an actual parameter. Using bind markers allows creating safe queries
- * so query strings are not required to contain escaped values but rather
- * the driver encodes parameter in the appropriate representation.
+ * 绑定标记表示 SQL 查询中用于替换实际参数的占位符。
+ * 使用绑定标记可以创建安全的查询，这样查询字符串就无需包含转义值，
+ * 而是由驱动程序以适当的表示形式对参数进行编码。
  *
- * <p>{@link BindMarkers} is stateful and can be only used for a single binding
- * pass of one or more parameters. It maintains bind indexes/bind parameter names.
+ * <p>{@link BindMarkers} 是有状态的，只能用于一个或多个参数的
+ * 单次绑定过程。它维护绑定索引/绑定参数名称。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -35,14 +34,14 @@ package org.springframework.r2dbc.core.binding;
 public interface BindMarkers {
 
 	/**
-	 * Create a new {@link BindMarker}.
+	 * 创建一个新的 {@link BindMarker}。
 	 */
 	BindMarker next();
 
 	/**
-	 * Create a new {@link BindMarker} that accepts a {@code hint}.
-	 * Implementations are allowed to consider/ignore/filter
-	 * the name hint to create more expressive bind markers.
+	 * 创建一个接受 {@code hint} 的新的 {@link BindMarker}。
+	 * 允许实现考虑、忽略或过滤名称提示，
+	 * 以创建更具表现力的绑定标记。
 	 * @param hint an optional name hint that can be used as part of the bind marker
 	 * @return a new {@link BindMarker}
 	 */

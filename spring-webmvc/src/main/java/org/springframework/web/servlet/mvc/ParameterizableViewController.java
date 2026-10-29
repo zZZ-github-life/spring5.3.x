@@ -27,10 +27,8 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * Trivial controller that always returns a pre-configured view and optionally
- * sets the response status code. The view and status can be configured using
- * the provided configuration properties.
- *
+ * 简单的控制器，始终返回预先配置的视图，并可选地设置响应状态码。
+ * 视图和状态可通过提供的配置属性进行配置。
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Keith Donald
@@ -53,17 +51,15 @@ public class ParameterizableViewController extends AbstractController {
 	}
 
 	/**
-	 * Set a view name for the ModelAndView to return, to be resolved by the
-	 * DispatcherServlet via a ViewResolver. Will override any pre-existing
-	 * view name or View.
+	 * 设置要由 ModelAndView 返回的视图名称，将由 DispatcherServlet
+	 * 通过 ViewResolver 解析。将覆盖任何已存在的视图名称或 View。
 	 */
 	public void setViewName(@Nullable String viewName) {
 		this.view = viewName;
 	}
 
 	/**
-	 * Return the name of the view to delegate to, or {@code null} if using a
-	 * View instance.
+	 * 返回要委托的视图名称；如果使用的是 View 实例，则返回 {@code null}。
 	 */
 	@Nullable
 	public String getViewName() {
@@ -80,8 +76,8 @@ public class ParameterizableViewController extends AbstractController {
 	}
 
 	/**
-	 * Set a View object for the ModelAndView to return.
-	 * Will override any pre-existing view name or View.
+	 * 设置要由 ModelAndView 返回的 View 对象。
+	 * 将覆盖任何已存在的视图名称或 View。
 	 * @since 4.1
 	 */
 	public void setView(View view) {
@@ -89,8 +85,8 @@ public class ParameterizableViewController extends AbstractController {
 	}
 
 	/**
-	 * Return the View object, or {@code null} if we are using a view name
-	 * to be resolved by the DispatcherServlet via a ViewResolver.
+	 * 返回 View 对象；如果我们使用的是由 DispatcherServlet 通过
+	 * ViewResolver 解析的视图名称，则返回 {@code null}。
 	 * @since 4.1
 	 */
 	@Nullable
@@ -99,14 +95,12 @@ public class ParameterizableViewController extends AbstractController {
 	}
 
 	/**
-	 * Configure the HTTP status code that this controller should set on the
-	 * response.
-	 * <p>When a "redirect:" prefixed view name is configured, there is no need
-	 * to set this property since RedirectView will do that. However this property
-	 * may still be used to override the 3xx status code of {@code RedirectView}.
-	 * For full control over redirecting provide a {@code RedirectView} instance.
-	 * <p>If the status code is 204 and no view is configured, the request is
-	 * fully handled within the controller.
+	 * 配置此控制器应在响应上设置的 HTTP 状态码。
+	 * <p>当配置了以 "redirect:" 为前缀的视图名称时，无需设置此属性，
+	 * 因为 RedirectView 会完成该操作。不过此属性仍可用于覆盖
+	 * {@code RedirectView} 的 3xx 状态码。若需完全控制重定向，
+	 * 请提供 {@code RedirectView} 实例。
+	 * <p>如果状态码为 204 且未配置视图，则请求将完全在控制器内部处理。
 	 * @since 4.1
 	 */
 	public void setStatusCode(@Nullable HttpStatus statusCode) {
@@ -114,7 +108,7 @@ public class ParameterizableViewController extends AbstractController {
 	}
 
 	/**
-	 * Return the configured HTTP status code or {@code null}.
+	 * 返回配置的 HTTP 状态码，或 {@code null}。
 	 * @since 4.1
 	 */
 	@Nullable
@@ -124,10 +118,9 @@ public class ParameterizableViewController extends AbstractController {
 
 
 	/**
-	 * The property can be used to indicate the request is considered fully
-	 * handled within the controller and that no view should be used for rendering.
-	 * Useful in combination with {@link #setStatusCode}.
-	 * <p>By default this is set to {@code false}.
+	 * 该属性可用于指示请求被视为已在控制器内部完全处理，
+	 * 不应使用任何视图进行渲染。与 {@link #setStatusCode} 结合使用时很有用。
+	 * <p>默认值为 {@code false}。
 	 * @since 4.1
 	 */
 	public void setStatusOnly(boolean statusOnly) {
@@ -135,7 +128,7 @@ public class ParameterizableViewController extends AbstractController {
 	}
 
 	/**
-	 * Whether the request is fully handled within the controller.
+	 * 请求是否在控制器内部完全处理。
 	 */
 	public boolean isStatusOnly() {
 		return this.statusOnly;
@@ -143,9 +136,9 @@ public class ParameterizableViewController extends AbstractController {
 
 
 	/**
-	 * Return a ModelAndView object with the specified view name.
-	 * <p>The content of the {@link RequestContextUtils#getInputFlashMap
-	 * "input" FlashMap} is also added to the model.
+	 * 返回带有指定视图名称的 ModelAndView 对象。
+	 * <p>{@link RequestContextUtils#getInputFlashMap
+	 * "input" FlashMap} 的内容也会添加到模型中。
 	 * @see #getViewName()
 	 */
 	@Override

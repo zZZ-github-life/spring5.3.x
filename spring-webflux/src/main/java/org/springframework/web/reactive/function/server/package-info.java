@@ -1,5 +1,5 @@
 /**
- * Provides the types that make up Spring's functional web framework for Reactive environments.
+ * 提供构成 Spring 响应式环境函数式 Web 框架的类型。
  */
 @NonNullApi
 @NonNullFields

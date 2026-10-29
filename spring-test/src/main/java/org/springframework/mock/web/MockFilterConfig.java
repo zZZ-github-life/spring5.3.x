@@ -28,10 +28,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Mock implementation of the {@link javax.servlet.FilterConfig} interface.
+ * {@link javax.servlet.FilterConfig} 接口的 mock 实现。
  *
- * <p>Used for testing the web framework; also useful for testing
- * custom {@link javax.servlet.Filter} implementations.
+ * <p>用于测试 Web 框架；也适用于测试
+ * 自定义的 {@link javax.servlet.Filter} 实现。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -48,14 +48,14 @@ public class MockFilterConfig implements FilterConfig {
 
 
 	/**
-	 * Create a new MockFilterConfig with a default {@link MockServletContext}.
+	 * 使用默认的 {@link MockServletContext} 创建一个新的 MockFilterConfig。
 	 */
 	public MockFilterConfig() {
 		this(null, "");
 	}
 
 	/**
-	 * Create a new MockFilterConfig with a default {@link MockServletContext}.
+	 * 使用默认的 {@link MockServletContext} 创建一个新的 MockFilterConfig。
 	 * @param filterName the name of the filter
 	 */
 	public MockFilterConfig(String filterName) {
@@ -63,7 +63,7 @@ public class MockFilterConfig implements FilterConfig {
 	}
 
 	/**
-	 * Create a new MockFilterConfig.
+	 * 创建一个新的 MockFilterConfig。
 	 * @param servletContext the ServletContext that the servlet runs in
 	 */
 	public MockFilterConfig(@Nullable ServletContext servletContext) {
@@ -71,7 +71,7 @@ public class MockFilterConfig implements FilterConfig {
 	}
 
 	/**
-	 * Create a new MockFilterConfig.
+	 * 创建一个新的 MockFilterConfig。
 	 * @param servletContext the ServletContext that the servlet runs in
 	 * @param filterName the name of the filter
 	 */

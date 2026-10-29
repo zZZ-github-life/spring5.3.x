@@ -41,12 +41,11 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Adapter that implements the {@link DisposableBean} and {@link Runnable}
- * interfaces performing various destruction steps on a given bean instance:
+ * 适配器，实现 {@link DisposableBean} 和 {@link Runnable} 接口，对给定 Bean 实例执行各种销毁步骤：
  * <ul>
- * <li>DestructionAwareBeanPostProcessors;
- * <li>the bean implementing DisposableBean itself;
- * <li>a custom destroy method specified on the bean definition.
+ * <li>DestructionAwareBeanPostProcessors；
+ * <li>实现 DisposableBean 的 Bean 本身；
+ * <li>在 Bean 定义上指定的自定义销毁方法。
  * </ul>
  *
  * @author Juergen Hoeller
@@ -95,7 +94,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 
 	/**
-	 * Create a new DisposableBeanAdapter for the given bean.
+	 * 为给定 Bean 创建一个新的 DisposableBeanAdapter。
 	 * @param bean the bean instance (never {@code null})
 	 * @param beanName the name of the bean
 	 * @param beanDefinition the merged bean definition
@@ -150,7 +149,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	}
 
 	/**
-	 * Create a new DisposableBeanAdapter for the given bean.
+	 * 为给定 Bean 创建一个新的 DisposableBeanAdapter。
 	 * @param bean the bean instance (never {@code null})
 	 * @param postProcessors the List of BeanPostProcessors
 	 * (potentially DestructionAwareBeanPostProcessor), if any
@@ -168,7 +167,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	}
 
 	/**
-	 * Create a new DisposableBeanAdapter for the given bean.
+	 * 为给定 Bean 创建一个新的 DisposableBeanAdapter。
 	 */
 	private DisposableBeanAdapter(Object bean, String beanName, boolean nonPublicAccessAllowed,
 			boolean invokeDisposableBean, boolean invokeAutoCloseable, @Nullable String destroyMethodName,
@@ -291,10 +290,9 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	}
 
 	/**
-	 * Invoke the specified custom destroy method on the given bean.
-	 * <p>This implementation invokes a no-arg method if found, else checking
-	 * for a method with a single boolean argument (passing in "true",
-	 * assuming a "force" parameter), else logging an error.
+	 * 在给定 Bean 上调用指定的自定义销毁方法。
+	 * <p>如果找到无参方法，此实现会调用该方法；否则检查带单个 boolean 参数的方法（传入 "true"，假定存
+	 * 在 "force" 参数）；再否则记录错误日志。
 	 */
 	private void invokeCustomDestroyMethod(final Method destroyMethod) {
 		int paramCount = destroyMethod.getParameterCount();
@@ -348,8 +346,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 
 	/**
-	 * Serializes a copy of the state of this class,
-	 * filtering out non-serializable BeanPostProcessors.
+	 * 序列化此类状态的副本，并过滤掉不可序列化的 BeanPostProcessor。
 	 */
 	protected Object writeReplace() {
 		List<DestructionAwareBeanPostProcessor> serializablePostProcessors = null;
@@ -368,7 +365,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 
 	/**
-	 * Check whether the given bean has any kind of destroy method to call.
+	 * 检查给定 Bean 是否有任何类型的销毁方法可供调用。
 	 * @param bean the bean instance
 	 * @param beanDefinition the corresponding bean definition
 	 */
@@ -378,17 +375,14 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 
 
 	/**
-	 * If the current value of the given beanDefinition's "destroyMethodName" property is
-	 * {@link AbstractBeanDefinition#INFER_METHOD}, then attempt to infer a destroy method.
-	 * Candidate methods are currently limited to public, no-arg methods named "close" or
-	 * "shutdown" (whether declared locally or inherited). The given BeanDefinition's
-	 * "destroyMethodName" is updated to be null if no such method is found, otherwise set
-	 * to the name of the inferred method. This constant serves as the default for the
-	 * {@code @Bean#destroyMethod} attribute and the value of the constant may also be
-	 * used in XML within the {@code <bean destroy-method="">} or {@code
-	 * <beans default-destroy-method="">} attributes.
-	 * <p>Also processes the {@link java.io.Closeable} and {@link java.lang.AutoCloseable}
-	 * interfaces, reflectively calling the "close" method on implementing beans as well.
+	 * 如果给定 beanDefinition 的 "destroyMethodName" 属性当前值为
+	 * {@link AbstractBeanDefinition#INFER_METHOD}，则尝试推断销毁方法。候选方法目前限于名为 "close" 或
+	 * "shutdown" 的 public 无参方法（无论是本地声明还是继承而来）。如果找不到此类方法，给定
+	 * BeanDefinition 的 "destroyMethodName" 会被更新为 null，否则被设置为推断出的方法名。此常量是
+	 * {@code @Bean#destroyMethod} 属性的默认值，该常量的值也可用于 XML 中的
+	 * {@code <bean destroy-method="">} 或 {@code <beans default-destroy-method="">} 属性。
+	 * <p>此外还会处理 {@link java.io.Closeable} 和 {@link java.lang.AutoCloseable} 接口，对实现这些接
+	 * 口的 Bean 也以反射方式调用 "close" 方法。
 	 */
 	@Nullable
 	private static String inferDestroyMethodIfNecessary(Object bean, RootBeanDefinition beanDefinition) {
@@ -426,7 +420,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	}
 
 	/**
-	 * Check whether the given bean has destruction-aware post-processors applying to it.
+	 * 检查给定 Bean 是否有适用于它的、感知销毁的后处理器。
 	 * @param bean the bean instance
 	 * @param postProcessors the post-processor candidates
 	 */
@@ -442,7 +436,7 @@ class DisposableBeanAdapter implements DisposableBean, Runnable, Serializable {
 	}
 
 	/**
-	 * Search for all DestructionAwareBeanPostProcessors in the List.
+	 * 在 List 中查找所有 DestructionAwareBeanPostProcessor。
 	 * @param processors the List to search
 	 * @return the filtered List of DestructionAwareBeanPostProcessors
 	 */

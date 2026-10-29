@@ -25,16 +25,14 @@ import reactor.core.publisher.Mono;
 import org.springframework.dao.DataAccessException;
 
 /**
- * Interface declaring methods that accept callback {@link Function}
- * to operate within the scope of a {@link Connection}.
- * Callback functions operate on a provided connection and must not
- * close the connection as the connections may be pooled or be
- * subject to other kinds of resource management.
+ * 声明接受回调 {@link Function}、在 {@link Connection} 作用域内
+ * 进行操作的方法的接口。回调函数在所提供的连接上操作，
+ * 且不得关闭该连接，因为连接可能来自连接池，
+ * 或者会受到其他形式的资源管理。
  *
- * <p> Callback functions are responsible for creating a
- * {@link org.reactivestreams.Publisher} that defines the scope of how
- * long the allocated {@link Connection} is valid. Connections are
- * released after the publisher terminates.
+ * <p> 回调函数负责创建一个 {@link org.reactivestreams.Publisher}，
+ * 它定义了所分配的 {@link Connection} 的有效时长。
+ * 连接在 publisher 终止后释放。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -42,22 +40,20 @@ import org.springframework.dao.DataAccessException;
 public interface ConnectionAccessor {
 
 	/**
-	 * Execute a callback {@link Function} within a {@link Connection} scope.
-	 * The function is responsible for creating a {@link Mono}. The connection
-	 * is released after the {@link Mono} terminates (or the subscription
-	 * is cancelled). Connection resources must not be passed outside the
-	 * {@link Function} closure, otherwise resources may get defunct.
+	 * 在 {@link Connection} 作用域内执行回调 {@link Function}。
+	 * 该函数负责创建一个 {@link Mono}。连接在 {@link Mono} 终止
+	 * （或订阅被取消）后释放。连接资源不得传递到
+	 * {@link Function} 闭包之外，否则资源可能会失效。
 	 * @param action the callback object that specifies the connection action
 	 * @return the resulting {@link Mono}
 	 */
 	<T> Mono<T> inConnection(Function<Connection, Mono<T>> action) throws DataAccessException;
 
 	/**
-	 * Execute a callback {@link Function} within a {@link Connection} scope.
-	 * The function is responsible for creating a {@link Flux}. The connection
-	 * is released after the {@link Flux} terminates (or the subscription
-	 * is cancelled). Connection resources must not be passed outside the
-	 * {@link Function} closure, otherwise resources may get defunct.
+	 * 在 {@link Connection} 作用域内执行回调 {@link Function}。
+	 * 该函数负责创建一个 {@link Flux}。连接在 {@link Flux} 终止
+	 * （或订阅被取消）后释放。连接资源不得传递到
+	 * {@link Function} 闭包之外，否则资源可能会失效。
 	 * @param action the callback object that specifies the connection action
 	 * @return the resulting {@link Flux}
 	 */

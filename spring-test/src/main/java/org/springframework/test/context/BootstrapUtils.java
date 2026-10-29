@@ -32,8 +32,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code BootstrapUtils} is a collection of utility methods to assist with
- * bootstrapping the <em>Spring TestContext Framework</em>.
+ * {@code BootstrapUtils} 是一组用于协助引导
+ * <em>Spring TestContext Framework</em> 的工具方法。
  *
  * @author Sam Brannen
  * @author Phillip Webb
@@ -65,13 +65,12 @@ abstract class BootstrapUtils {
 
 
 	/**
-	 * Create the {@code BootstrapContext} for the specified {@linkplain Class test class}.
-	 * <p>Uses reflection to create a {@link org.springframework.test.context.support.DefaultBootstrapContext}
-	 * that uses a default {@link CacheAwareContextLoaderDelegate} &mdash; configured
-	 * via the {@link CacheAwareContextLoaderDelegate#DEFAULT_CACHE_AWARE_CONTEXT_LOADER_DELEGATE_PROPERTY_NAME}
-	 * system property or falling back to the
-	 * {@link org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate}
-	 * if the system property is not defined.
+	 * 为指定的 {@linkplain Class 测试类}创建 {@code BootstrapContext}。
+	 * <p>使用反射创建一个 {@link org.springframework.test.context.support.DefaultBootstrapContext}，
+	 * 它使用默认的 {@link CacheAwareContextLoaderDelegate} —— 该委托通过
+	 * {@link CacheAwareContextLoaderDelegate#DEFAULT_CACHE_AWARE_CONTEXT_LOADER_DELEGATE_PROPERTY_NAME}
+	 * 系统属性配置，如果该系统属性未定义，则回退到
+	 * {@link org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate}。
 	 * @param testClass the test class for which the bootstrap context should be created
 	 * @return a new {@code BootstrapContext}; never {@code null}
 	 */
@@ -115,18 +114,19 @@ abstract class BootstrapUtils {
 	}
 
 	/**
-	 * Resolve the {@link TestContextBootstrapper} type for the test class in the
-	 * supplied {@link BootstrapContext}, instantiate it, and provide it a reference
-	 * to the {@link BootstrapContext}.
-	 * <p>If the {@link BootstrapWith @BootstrapWith} annotation is present on
-	 * the test class, either directly or as a meta-annotation, then its
-	 * {@link BootstrapWith#value value} will be used as the bootstrapper type.
-	 * Otherwise, either the
+	 * 解析提供的 {@link BootstrapContext} 中测试类的 {@link TestContextBootstrapper} 类型，
+	 * 实例化它，并向其提供对
+	 * {@link BootstrapContext} 的引用。
+	 * <p>如果测试类上存在 {@link BootstrapWith @BootstrapWith} 注解
+	 * （直接存在或作为元注解存在），则将其
+	 * {@link BootstrapWith#value value} 用作引导器类型。
+	 * 否则，将根据是否存在
+	 * {@link org.springframework.test.context.web.WebAppConfiguration @WebAppConfiguration}，
+	 * 使用
 	 * {@link org.springframework.test.context.support.DefaultTestContextBootstrapper
-	 * DefaultTestContextBootstrapper} or the
+	 * DefaultTestContextBootstrapper} 或
 	 * {@link org.springframework.test.context.web.WebTestContextBootstrapper
-	 * WebTestContextBootstrapper} will be used, depending on the presence of
-	 * {@link org.springframework.test.context.web.WebAppConfiguration @WebAppConfiguration}.
+	 * WebTestContextBootstrapper}。
 	 * @param bootstrapContext the bootstrap context to use
 	 * @return a fully configured {@code TestContextBootstrapper}
 	 */

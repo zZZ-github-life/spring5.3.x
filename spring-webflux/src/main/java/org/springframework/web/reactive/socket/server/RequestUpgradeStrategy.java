@@ -28,13 +28,11 @@ import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A strategy for upgrading an HTTP request to a WebSocket session depending
- * on the underlying network runtime.
+ * 根据底层网络运行时，将 HTTP 请求升级为 WebSocket 会话的策略。
  *
- * <p>Typically there is one such strategy for every {@link ServerHttpRequest}
- * and {@link ServerHttpResponse} type except in the case of Servlet containers
- * for which the standard Java WebSocket API JSR-356 does not define a way to
- * upgrade a request so a custom strategy is needed for every Servlet container.
+ * <p>通常每种 {@link ServerHttpRequest} 和 {@link ServerHttpResponse} 类型都有
+ * 一个这样的策略，但 Servlet 容器除外：标准 Java WebSocket API JSR-356 未定义
+ * 升级请求的方式，因此每个 Servlet 容器都需要自定义策略。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -42,7 +40,7 @@ import org.springframework.web.server.ServerWebExchange;
 public interface RequestUpgradeStrategy {
 
 	/**
-	 * Upgrade to a WebSocket session and handle it with the given handler.
+	 * 升级为 WebSocket 会话并使用给定处理器处理它。
 	 * @param exchange the current exchange
 	 * @param webSocketHandler handler for the WebSocket session
 	 * @param subProtocol the selected sub-protocol got the handler
@@ -59,7 +57,7 @@ public interface RequestUpgradeStrategy {
 	}
 
 	/**
-	 * Upgrade to a WebSocket session and handle it with the given handler.
+	 * 升级为 WebSocket 会话并使用给定处理器处理它。
 	 * @param exchange the current exchange
 	 * @param webSocketHandler handler for the WebSocket session
 	 * @param subProtocol the selected sub-protocol got the handler

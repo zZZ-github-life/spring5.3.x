@@ -17,7 +17,7 @@
 package org.springframework.r2dbc.core;
 
 /**
- * Union type for fetching results.
+ * 用于获取结果的联合类型。
  *
  * @author Mark Paluch
  * @since 5.3

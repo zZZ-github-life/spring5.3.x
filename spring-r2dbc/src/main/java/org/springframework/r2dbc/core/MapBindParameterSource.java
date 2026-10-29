@@ -22,11 +22,11 @@ import java.util.Map;
 import org.springframework.util.Assert;
 
 /**
- * {@link BindParameterSource} implementation that holds a given {@link Map} of parameters
- * encapsulated as {@link Parameter}.
+ * {@link BindParameterSource} 实现，其中保存着封装为 {@link Parameter} 的
+ * 给定参数 {@link Map}。
  *
- * <p>This class is intended for passing in a simple Map of parameter values to the methods
- * of the {@code NamedParameterExpander} class.
+ * <p>此类旨在将简单的参数值 Map 传递给 {@code NamedParameterExpander}
+ * 类的各个方法。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -37,14 +37,14 @@ class MapBindParameterSource implements BindParameterSource {
 
 
 	/**
-	 * Create a new empty {@link MapBindParameterSource}.
+	 * 创建一个新的空 {@link MapBindParameterSource}。
 	 */
 	MapBindParameterSource() {
 		this.values = new LinkedHashMap<>();
 	}
 
 	/**
-	 * Creates a new {@link MapBindParameterSource} given {@link Map} of {@link Parameter}.
+	 * 根据给定的 {@link Parameter} {@link Map} 创建一个新的 {@link MapBindParameterSource}。
 	 * @param values the parameter mapping
 	 */
 	MapBindParameterSource(Map<String, Parameter> values) {
@@ -54,7 +54,7 @@ class MapBindParameterSource implements BindParameterSource {
 
 
 	/**
-	 * Add a key-value pair to the {@link MapBindParameterSource}.
+	 * 向 {@link MapBindParameterSource} 添加一个键值对。
 	 * @param paramName the name of the parameter
 	 * @param value the parameter value to add (must not be {@code null})
 	 */

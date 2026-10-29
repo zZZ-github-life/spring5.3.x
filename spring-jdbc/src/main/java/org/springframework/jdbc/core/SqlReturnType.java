@@ -22,14 +22,13 @@ import java.sql.SQLException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to be implemented for retrieving values for more complex database-specific
- * types not supported by the standard {@code CallableStatement.getObject} method.
+ * 为获取标准{@code CallableStatement.getObject}方法不支持的
+ * 更复杂的数据库特定类型的值而实现的接口。
  *
- * <p>Implementations perform the actual work of getting the actual values. They must
- * implement the callback method {@code getTypeValue} which can throw SQLExceptions
- * that will be caught and translated by the calling code. This callback method has
- * access to the underlying Connection via the given CallableStatement object, if that
- * should be needed to create any database-specific objects.
+ * <p>实现负责获取实际值的实际工作。它们必须实现回调方法{@code getTypeValue}，
+ * 该方法可以抛出SQLException，由调用代码捕获并转换。
+ * 此回调方法可以通过给定的CallableStatement对象访问底层的Connection，
+ * 如果需要创建任何数据库特定对象的话。
  *
  * @author Thomas Risberg
  * @since 1.1
@@ -40,9 +39,8 @@ import org.springframework.lang.Nullable;
 public interface SqlReturnType {
 
 	/**
-	 * Constant that indicates an unknown (or unspecified) SQL type.
-	 * Passed into setTypeValue if the original operation method does
-	 * not specify an SQL type.
+	 * 表示未知（或未指定）SQL类型的常量。
+	 * 如果原始操作方法未指定SQL类型，则传入setTypeValue。
 	 * @see java.sql.Types
 	 * @see JdbcOperations#update(String, Object[])
 	 */
@@ -50,7 +48,7 @@ public interface SqlReturnType {
 
 
 	/**
-	 * Get the type value from the specific object.
+	 * 从特定对象获取类型值。
 	 * @param cs the CallableStatement to operate on
 	 * @param paramIndex the index of the parameter for which we need to set the value
 	 * @param sqlType the SQL type of the parameter we are setting

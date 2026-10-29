@@ -1,6 +1,5 @@
 /**
- * Base classes enabling auto-proxying based on AspectJ.
- * Support for AspectJ annotation aspects resides in the "aspectj.annotation" package.
+ * 支持基于 AspectJ 进行自动代理的基类。对 AspectJ 注解切面的支持位于 "aspectj.annotation" 包中。
  */
 @NonNullApi
 @NonNullFields

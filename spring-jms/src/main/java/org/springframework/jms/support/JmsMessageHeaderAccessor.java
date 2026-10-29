@@ -26,8 +26,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.NativeMessageHeaderAccessor;
 
 /**
- * A {@link org.springframework.messaging.support.MessageHeaderAccessor}
- * implementation giving access to JMS-specific headers.
+ * {@link org.springframework.messaging.support.MessageHeaderAccessor} 实现，
+ * 提供对 JMS 特定消息头的访问。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -44,7 +44,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 
 
 	/**
-	 * Return the {@link JmsHeaders#CORRELATION_ID correlationId}.
+	 * 返回 {@link JmsHeaders#CORRELATION_ID correlationId}。
 	 * @see JmsHeaders#CORRELATION_ID
 	 */
 	@Nullable
@@ -53,7 +53,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#DESTINATION destination}.
+	 * 返回 {@link JmsHeaders#DESTINATION 目的地}。
 	 * @see JmsHeaders#DESTINATION
 	 */
 	@Nullable
@@ -62,7 +62,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#DELIVERY_MODE delivery mode}.
+	 * 返回 {@link JmsHeaders#DELIVERY_MODE 投递模式}。
 	 * @see JmsHeaders#DELIVERY_MODE
 	 */
 	@Nullable
@@ -71,7 +71,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the message {@link JmsHeaders#EXPIRATION expiration}.
+	 * 返回消息的{@link JmsHeaders#EXPIRATION 过期时间}。
 	 * @see JmsHeaders#EXPIRATION
 	 */
 	@Nullable
@@ -80,7 +80,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#MESSAGE_ID message id}.
+	 * 返回 {@link JmsHeaders#MESSAGE_ID 消息 ID}。
 	 * @see JmsHeaders#MESSAGE_ID
 	 */
 	@Nullable
@@ -89,7 +89,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#PRIORITY priority}.
+	 * 返回 {@link JmsHeaders#PRIORITY 优先级}。
 	 * @see JmsHeaders#PRIORITY
 	 */
 	@Nullable
@@ -98,7 +98,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#REPLY_TO reply to}.
+	 * 返回 {@link JmsHeaders#REPLY_TO 回复地址}。
 	 * @see JmsHeaders#REPLY_TO
 	 */
 	@Nullable
@@ -107,7 +107,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#REDELIVERED redelivered} flag.
+	 * 返回 {@link JmsHeaders#REDELIVERED 重新投递}标志。
 	 * @see JmsHeaders#REDELIVERED
 	 */
 	@Nullable
@@ -116,7 +116,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#TYPE type}.
+	 * 返回 {@link JmsHeaders#TYPE 类型}。
 	 * @see JmsHeaders#TYPE
 	 */
 	@Nullable
@@ -125,7 +125,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	}
 
 	/**
-	 * Return the {@link JmsHeaders#TIMESTAMP timestamp}.
+	 * 返回 {@link JmsHeaders#TIMESTAMP 时间戳}。
 	 * @see JmsHeaders#TIMESTAMP
 	 */
 	@Override
@@ -138,7 +138,7 @@ public class JmsMessageHeaderAccessor extends NativeMessageHeaderAccessor {
 	// Static factory method
 
 	/**
-	 * Create a {@link JmsMessageHeaderAccessor} from the headers of an existing message.
+	 * 从现有消息的消息头创建 {@link JmsMessageHeaderAccessor}。
 	 */
 	public static JmsMessageHeaderAccessor wrap(Message<?> message) {
 		return new JmsMessageHeaderAccessor(message);

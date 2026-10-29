@@ -39,7 +39,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.StreamUtils;
 
 /**
- * Encoder for {@link ResourceRegion ResourceRegions}.
+ * {@link ResourceRegion ResourceRegion} 的编码器。
  *
  * @author Brian Clozel
  * @since 5.0
@@ -47,12 +47,12 @@ import org.springframework.util.StreamUtils;
 public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 
 	/**
-	 * The default buffer size used by the encoder.
+	 * 编码器使用的默认缓冲区大小。
 	 */
 	public static final int DEFAULT_BUFFER_SIZE = StreamUtils.BUFFER_SIZE;
 
 	/**
-	 * The hint key that contains the boundary string.
+	 * 包含边界字符串的提示键。
 	 */
 	public static final String BOUNDARY_STRING_HINT = ResourceRegionEncoder.class.getName() + ".boundaryString";
 
@@ -159,7 +159,7 @@ public class ResourceRegionEncoder extends AbstractEncoder<ResourceRegion> {
 	}
 
 	/**
-	 * Determine, if possible, the contentLength of the given resource without reading it.
+	 * 尽可能在不读取内容的情况下确定给定资源的 contentLength。
 	 * @param resource the resource instance
 	 * @return the contentLength of the resource
 	 */

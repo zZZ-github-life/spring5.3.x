@@ -33,16 +33,16 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
 /**
- * Special JSF {@code ELResolver} that exposes the Spring {@code WebApplicationContext}
- * instance under a variable named "webApplicationContext".
+ * 特殊的 JSF {@code ELResolver}，在名为 "webApplicationContext" 的变量下
+ * 暴露 Spring {@code WebApplicationContext} 实例。
  *
- * <p>In contrast to {@link SpringBeanFacesELResolver}, this ELResolver variant
- * does <i>not</i> resolve JSF variable names as Spring bean names. It rather
- * exposes Spring's root WebApplicationContext <i>itself</i> under a special name,
- * and is able to resolve "webApplicationContext.mySpringManagedBusinessObject"
- * dereferences to Spring-defined beans in that application context.
+ * <p>与 {@link SpringBeanFacesELResolver} 不同，此 ELResolver 变体<i>不会</i>
+ * 将 JSF 变量名解析为 Spring Bean 名称。它而是在一个特殊名称下暴露 Spring 的根
+ * WebApplicationContext <i>本身</i>，并且能够将
+ * "webApplicationContext.mySpringManagedBusinessObject" 解引用解析为该应用上下文中
+ * Spring 定义的 Bean。
  *
- * <p>Configure this resolver in your {@code faces-config.xml} file as follows:
+ * <p>在 {@code faces-config.xml} 文件中按如下方式配置此解析器：
  *
  * <pre class="code">
  * &lt;application&gt;
@@ -58,12 +58,12 @@ import org.springframework.web.jsf.FacesContextUtils;
 public class WebApplicationContextFacesELResolver extends ELResolver {
 
 	/**
-	 * Name of the exposed WebApplicationContext variable: "webApplicationContext".
+	 * 所暴露的 WebApplicationContext 变量名称："webApplicationContext"。
 	 */
 	public static final String WEB_APPLICATION_CONTEXT_VARIABLE_NAME = "webApplicationContext";
 
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的 Logger。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
 
@@ -169,9 +169,9 @@ public class WebApplicationContextFacesELResolver extends ELResolver {
 
 
 	/**
-	 * Retrieve the {@link WebApplicationContext} reference to expose.
-	 * <p>The default implementation delegates to {@link FacesContextUtils},
-	 * returning {@code null} if no {@code WebApplicationContext} found.
+	 * 获取要暴露的 {@link WebApplicationContext} 引用。
+	 * <p>默认实现委托给 {@link FacesContextUtils}，
+	 * 如果未找到 {@code WebApplicationContext} 则返回 {@code null}。
 	 * @param elContext the current JSF ELContext
 	 * @return the Spring web application context
 	 * @see org.springframework.web.jsf.FacesContextUtils#getWebApplicationContext

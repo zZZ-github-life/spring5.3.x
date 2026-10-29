@@ -26,9 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Special ObjectInputStream subclass that resolves class names
- * against a specific ClassLoader. Serves as base class for
- * {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream}.
+ * 特殊的 ObjectInputStream 子类，它针对特定的 ClassLoader 解析类名。
+ * 作为 {@link org.springframework.remoting.rmi.CodebaseAwareObjectInputStream} 的基类。
  *
  * @author Juergen Hoeller
  * @since 2.5.5
@@ -42,7 +41,7 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 
 
 	/**
-	 * Create a new ConfigurableObjectInputStream for the given InputStream and ClassLoader.
+	 * 为给定的 InputStream 和 ClassLoader 创建新的 ConfigurableObjectInputStream。
 	 * @param in the InputStream to read from
 	 * @param classLoader the ClassLoader to use for loading local classes
 	 * @see java.io.ObjectInputStream#ObjectInputStream(java.io.InputStream)
@@ -52,7 +51,7 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 	}
 
 	/**
-	 * Create a new ConfigurableObjectInputStream for the given InputStream and ClassLoader.
+	 * 为给定的 InputStream 和 ClassLoader 创建新的 ConfigurableObjectInputStream。
 	 * @param in the InputStream to read from
 	 * @param classLoader the ClassLoader to use for loading local classes
 	 * @param acceptProxyClasses whether to accept deserialization of proxy classes
@@ -125,9 +124,8 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 
 
 	/**
-	 * Resolve the given class name against a fallback class loader.
-	 * <p>The default implementation simply rethrows the original exception,
-	 * since there is no fallback available.
+	 * 针对回退类加载器解析给定的类名。
+	 * <p>默认实现只是重新抛出原始异常，因为没有可用的回退方案。
 	 * @param className the class name to resolve
 	 * @param ex the original exception thrown when attempting to load the class
 	 * @return the newly resolved class (never {@code null})
@@ -139,10 +137,9 @@ public class ConfigurableObjectInputStream extends ObjectInputStream {
 	}
 
 	/**
-	 * Return the fallback ClassLoader to use when no ClassLoader was specified
-	 * and ObjectInputStream's own default class loader failed.
-	 * <p>The default implementation simply returns {@code null}, indicating
-	 * that no specific fallback is available.
+	 * 返回在未指定 ClassLoader 且 ObjectInputStream 自身的默认类加载器失败时要使用的回退
+	 * ClassLoader。
+	 * <p>默认实现只是返回 {@code null}，表示没有可用的特定回退方案。
 	 */
 	@Nullable
 	protected ClassLoader getFallbackClassLoader() throws IOException {

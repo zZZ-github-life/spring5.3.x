@@ -20,11 +20,9 @@ import javax.management.JMException;
 import javax.management.modelmbean.ModelMBeanInfo;
 
 /**
- * Interface to be implemented by all classes that can
- * create management interface metadata for a managed resource.
+ * 所有能为受管理资源创建管理接口元数据的类都应实现的接口。
  *
- * <p>Used by the {@code MBeanExporter} to generate the management
- * interface for any bean that is not an MBean.
+ * <p>由 {@code MBeanExporter} 用于为任何不是 MBean 的 Bean 生成管理接口。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -34,7 +32,7 @@ import javax.management.modelmbean.ModelMBeanInfo;
 public interface MBeanInfoAssembler {
 
 	/**
-	 * Create the ModelMBeanInfo for the given managed resource.
+	 * 为给定受管理资源创建 ModelMBeanInfo。
 	 * @param managedBean the bean that will be exposed (might be an AOP proxy)
 	 * @param beanKey the key associated with the managed bean
 	 * @return the ModelMBeanInfo metadata object

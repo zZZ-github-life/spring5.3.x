@@ -31,15 +31,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.support.RestGatewaySupport;
 
 /**
- * <strong>Main entry point for client-side REST testing</strong>. Used for tests
- * that involve direct or indirect use of the {@link RestTemplate}. Provides a
- * way to set up expected requests that will be performed through the
- * {@code RestTemplate} as well as mock responses to send back thus removing the
- * need for an actual server.
+ * <strong>客户端 REST 测试的主要入口点</strong>。用于涉及直接或间接使用 {@link RestTemplate} 的测试。提供了一种设置将通过 {@code RestTemplate} 执行的预期请求以及要发回的模拟响应的方式，从而无需实际服务器。
  *
- * <p>Below is an example that assumes static imports from
- * {@code MockRestRequestMatchers}, {@code MockRestResponseCreators},
- * and {@code ExpectedCount}:
+ * <p>下面是一个示例，假设已静态导入
+ * {@code MockRestRequestMatchers}、{@code MockRestResponseCreators}
+ * 和 {@code ExpectedCount}：
  *
  * <pre class="code">
  * RestTemplate restTemplate = new RestTemplate()
@@ -55,11 +51,9 @@ import org.springframework.web.client.support.RestGatewaySupport;
  * server.verify();
  * </pre>
  *
- * <p>Note that as an alternative to the above you can also set the
- * {@link MockMvcClientHttpRequestFactory} on a {@code RestTemplate} which
- * allows executing requests against an instance of
- * {@link org.springframework.test.web.servlet.MockMvc MockMvc}.
- *
+ * <p>请注意，作为上述方式的替代，您还可以在 {@code RestTemplate} 上设置
+ * {@link MockMvcClientHttpRequestFactory}，从而能够针对
+ * {@link org.springframework.test.web.servlet.MockMvc MockMvc} 实例执行请求。
  * @author Craig Walls
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -71,8 +65,8 @@ public final class MockRestServiceServer {
 
 
 	/**
-	 * Private constructor with {@code RequestExpectationManager}.
-	 * See static builder methods and {@code createServer} shortcut methods.
+	 * 使用 {@code RequestExpectationManager} 的私有构造函数。
+	 * 请参见静态构建器方法和 {@code createServer} 快捷方法。
 	 */
 	private MockRestServiceServer(RequestExpectationManager expectationManager) {
 		this.expectationManager = expectationManager;
@@ -80,12 +74,10 @@ public final class MockRestServiceServer {
 
 
 	/**
-	 * Set up an expectation for a single HTTP request. The returned
-	 * {@link ResponseActions} can be used to set up further expectations as
-	 * well as to define the response.
-	 * <p>This method may be invoked any number times before starting to make
-	 * request through the underlying {@code RestTemplate} in order to set up
-	 * all expected requests.
+	 * 为单个 HTTP 请求设置预期。返回的
+	 * {@link ResponseActions} 可用于设置更多预期以及定义响应。
+	 * <p>在开始通过底层 {@code RestTemplate} 发出请求之前，可以多次调用此方法，
+	 * 以设置所有预期请求。
 	 * @param matcher request matcher
 	 * @return a representation of the expectation
 	 */
@@ -94,11 +86,9 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * An alternative to {@link #expect(RequestMatcher)} that also indicates how
-	 * many times the request is expected to be executed.
-	 * <p>When request expectations have an expected count greater than one, only
-	 * the first execution is expected to match the order of declaration. Subsequent
-	 * request executions may be inserted anywhere thereafter.
+	 * 对 {@link #expect(RequestMatcher)} 的替代方法，同时指示预期请求的执行次数。
+	 * <p>当请求预期的预期次数大于一时，只有第一次执行需要遵循声明顺序。后续
+	 * 请求执行可以插入到其后的任意位置。
 	 * @param count the expected count
 	 * @param matcher request matcher
 	 * @return a representation of the expectation
@@ -109,8 +99,7 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * Verify that all expected requests set up via
-	 * {@link #expect(RequestMatcher)} were indeed performed.
+	 * 验证通过 {@link #expect(RequestMatcher)} 设置的所有预期请求确实都已执行。
 	 * @throws AssertionError if not all expectations are met
 	 */
 	public void verify() {
@@ -118,9 +107,8 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * Variant of {@link #verify()} that waits for up to the specified time for
-	 * all expectations to be fulfilled. This can be useful for tests that
-	 * involve asynchronous requests.
+	 * {@link #verify()} 的变体，最多等待指定时间直到所有预期都得到满足。
+	 * 这对于涉及异步请求的测试很有用。
 	 * @param timeout how long to wait for all expectations to be met
 	 * @throws AssertionError if not all expectations are met by the specified
 	 * timeout, or if any expectation fails at any time before that.
@@ -131,7 +119,7 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * Reset the internal state removing all expectations and recorded requests.
+	 * 重置内部状态，移除所有预期和已记录的请求。
 	 */
 	public void reset() {
 		this.expectationManager.reset();
@@ -139,8 +127,7 @@ public final class MockRestServiceServer {
 
 
 	/**
-	 * Return a builder for a {@code MockRestServiceServer} that should be used
-	 * to reply to the given {@code RestTemplate}.
+	 * 返回一个用于应答给定 {@code RestTemplate} 的 {@code MockRestServiceServer} 构建器。
 	 * @since 4.3
 	 */
 	public static MockRestServiceServerBuilder bindTo(RestTemplate restTemplate) {
@@ -148,8 +135,7 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * Return a builder for a {@code MockRestServiceServer} that should be used
-	 * to reply to the given {@code AsyncRestTemplate}.
+	 * 返回一个用于应答给定 {@code AsyncRestTemplate} 的 {@code MockRestServiceServer} 构建器。
 	 * @since 4.3
 	 * @deprecated see deprecation notice on
 	 * {@link org.springframework.web.client.AsyncRestTemplate} itself
@@ -160,8 +146,7 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * Return a builder for a {@code MockRestServiceServer} that should be used
-	 * to reply to the given {@code RestGatewaySupport}.
+	 * 返回一个用于应答给定 {@code RestGatewaySupport} 的 {@code MockRestServiceServer} 构建器。
 	 * @since 4.3
 	 */
 	public static MockRestServiceServerBuilder bindTo(RestGatewaySupport restGatewaySupport) {
@@ -171,7 +156,7 @@ public final class MockRestServiceServer {
 
 
 	/**
-	 * A shortcut for {@code bindTo(restTemplate).build()}.
+	 * {@code bindTo(restTemplate).build()} 的快捷方式。
 	 * @param restTemplate the RestTemplate to set up for mock testing
 	 * @return the mock server
 	 */
@@ -180,7 +165,7 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * A shortcut for {@code bindTo(asyncRestTemplate).build()}.
+	 * {@code bindTo(asyncRestTemplate).build()} 的快捷方式。
 	 * @param asyncRestTemplate the AsyncRestTemplate to set up for mock testing
 	 * @return the created mock server
 	 * @deprecated see deprecation notice on
@@ -192,7 +177,7 @@ public final class MockRestServiceServer {
 	}
 
 	/**
-	 * A shortcut for {@code bindTo(restGateway).build()}.
+	 * {@code bindTo(restGateway).build()} 的快捷方式。
 	 * @param restGateway the REST gateway to set up for mock testing
 	 * @return the created mock server
 	 */
@@ -202,38 +187,35 @@ public final class MockRestServiceServer {
 
 
 	/**
-	 * Builder to create a {@code MockRestServiceServer}.
+	 * 用于创建 {@code MockRestServiceServer} 的构建器。
 	 */
 	public interface MockRestServiceServerBuilder {
 
 		/**
-		 * Whether to allow expected requests to be executed in any order not
-		 * necessarily matching the order of declaration.
-		 * <p>Effectively a shortcut for:<br>
-		 * {@code builder.build(new UnorderedRequestExpectationManager)}.
-		 * <p>By default this is set to {@code false}
+		 * 是否允许预期请求按任意顺序执行，而不必与声明顺序一致。
+		 * <p>实际上是以下代码的快捷方式：<br>
+		 * {@code builder.build(new UnorderedRequestExpectationManager)}。
+		 * <p>默认设置为 {@code false}。
 		 * @param ignoreExpectOrder whether to ignore the order of expectations
 		 */
 		MockRestServiceServerBuilder ignoreExpectOrder(boolean ignoreExpectOrder);
 
 		/**
-		 * Use the {@link BufferingClientHttpRequestFactory} wrapper to buffer
-		 * the input and output streams, and for example, allow multiple reads
-		 * of the response body.
+		 * 使用 {@link BufferingClientHttpRequestFactory} 包装器缓冲输入流和输出流，
+		 * 例如允许多次读取响应体。
 		 * @since 5.0.5
 		 */
 		MockRestServiceServerBuilder bufferContent();
 
 		/**
-		 * Build the {@code MockRestServiceServer} and set up the underlying
-		 * {@code RestTemplate} or {@code AsyncRestTemplate} with a
-		 * {@link ClientHttpRequestFactory} that creates mock requests.
+		 * 构建 {@code MockRestServiceServer}，并使用创建模拟请求的
+		 * {@link ClientHttpRequestFactory} 设置底层
+		 * {@code RestTemplate} 或 {@code AsyncRestTemplate}。
 		 */
 		MockRestServiceServer build();
 
 		/**
-		 * An overloaded build alternative that accepts a custom
-		 * {@link RequestExpectationManager}.
+		 * 接受自定义 {@link RequestExpectationManager} 的重载构建方法。
 		 */
 		MockRestServiceServer build(RequestExpectationManager manager);
 	}
@@ -307,8 +289,7 @@ public final class MockRestServiceServer {
 
 
 	/**
-	 * Mock ClientHttpRequestFactory that creates requests by iterating
-	 * over the list of expected {@link DefaultRequestExpectation}'s.
+	 * 模拟 ClientHttpRequestFactory，通过遍历预期 {@link DefaultRequestExpectation} 列表来创建请求。
 	 */
 	private class MockClientHttpRequestFactory implements ClientHttpRequestFactory,
 			org.springframework.http.client.AsyncClientHttpRequestFactory {

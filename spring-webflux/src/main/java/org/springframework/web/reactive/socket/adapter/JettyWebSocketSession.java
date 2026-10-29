@@ -36,9 +36,7 @@ import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 /**
- * Spring {@link WebSocketSession} implementation that adapts to a Jetty
- * WebSocket {@link org.eclipse.jetty.websocket.api.Session}.
- *
+ * 适配 Jetty WebSocket {@link org.eclipse.jetty.websocket.api.Session} 的 Spring {@link WebSocketSession} 实现。
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
  * @since 5.0

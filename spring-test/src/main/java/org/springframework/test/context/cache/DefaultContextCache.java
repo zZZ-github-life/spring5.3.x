@@ -38,15 +38,9 @@ import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of the {@link ContextCache} API.
- *
- * <p>Uses a synchronized {@link Map} configured with a maximum size
- * and a <em>least recently used</em> (LRU) eviction policy to cache
- * {@link ApplicationContext} instances.
- *
- * <p>The maximum size may be supplied as a {@linkplain #DefaultContextCache(int)
- * constructor argument} or set via a system property or Spring property named
- * {@code spring.test.context.cache.maxSize}.
+ * {@link ContextCache} API 的默认实现。
+ * <p>使用一个同步 {@link Map} 来缓存 {@link ApplicationContext} 实例，该映射配置了最大大小和<em>最近最少使用</em>（LRU）驱逐策略。
+ * <p>最大大小可以通过 {@linkplain #DefaultContextCache(int) 构造函数参数}提供，也可以通过名为 {@code spring.test.context.cache.maxSize} 的系统属性或 Spring 属性设置。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -58,16 +52,13 @@ public class DefaultContextCache implements ContextCache {
 	private static final Log statsLogger = LogFactory.getLog(CONTEXT_CACHE_LOGGING_CATEGORY);
 
 	/**
-	 * Map of context keys to Spring {@code ApplicationContext} instances.
+	 * 从上下文键到 Spring {@code ApplicationContext} 实例的映射。
 	 */
 	private final Map<MergedContextConfiguration, ApplicationContext> contextMap =
 			Collections.synchronizedMap(new LruCache(32, 0.75f));
 
 	/**
-	 * Map of parent keys to sets of children keys, representing a top-down <em>tree</em>
-	 * of context hierarchies. This information is used for determining which subtrees
-	 * need to be recursively removed and closed when removing a context that is a parent
-	 * of other contexts.
+	 * 从父键到子键集合的映射，表示上下文层次结构的自顶向下<em>树</em>。此信息用于确定在移除作为其他上下文父级的上下文时，需要递归移除并关闭哪些子树。
 	 */
 	private final Map<MergedContextConfiguration, Set<MergedContextConfiguration>> hierarchyMap =
 			new ConcurrentHashMap<>(32);
@@ -80,8 +71,7 @@ public class DefaultContextCache implements ContextCache {
 
 
 	/**
-	 * Create a new {@code DefaultContextCache} using the maximum cache size
-	 * obtained via {@link ContextCacheUtils#retrieveMaxCacheSize()}.
+	 * 使用通过 {@link ContextCacheUtils#retrieveMaxCacheSize()} 获得的最大缓存大小创建一个新的 {@code DefaultContextCache}。
 	 * @since 4.3
 	 * @see #DefaultContextCache(int)
 	 * @see ContextCacheUtils#retrieveMaxCacheSize()
@@ -91,8 +81,7 @@ public class DefaultContextCache implements ContextCache {
 	}
 
 	/**
-	 * Create a new {@code DefaultContextCache} using the supplied maximum
-	 * cache size.
+	 * 使用提供的最大缓存大小创建一个新的 {@code DefaultContextCache}。
 	 * @param maxSize the maximum cache size
 	 * @throws IllegalArgumentException if the supplied {@code maxSize} value
 	 * is not positive
@@ -218,7 +207,7 @@ public class DefaultContextCache implements ContextCache {
 	}
 
 	/**
-	 * Get the maximum size of this cache.
+	 * 获取此缓存的最大大小。
 	 */
 	public int getMaxSize() {
 		return this.maxSize;
@@ -292,10 +281,8 @@ public class DefaultContextCache implements ContextCache {
 	}
 
 	/**
-	 * Generate a text string containing the implementation type of this
-	 * cache and its statistics.
-	 * <p>The string returned by this method contains all information
-	 * required for compliance with the contract for {@link #logStatistics()}.
+	 * 生成包含此缓存实现类型及其统计信息的文本字符串。
+	 * <p>此方法返回的字符串包含满足 {@link #logStatistics()} 契约所需的所有信息。
 	 * @return a string representation of this cache, including statistics
 	 */
 	@Override
@@ -311,17 +298,14 @@ public class DefaultContextCache implements ContextCache {
 
 
 	/**
-	 * Simple cache implementation based on {@link LinkedHashMap} with a maximum
-	 * size and a <em>least recently used</em> (LRU) eviction policy that
-	 * properly closes application contexts.
+	 * 基于 {@link LinkedHashMap} 的简单缓存实现，具有最大大小和<em>最近最少使用</em>（LRU）驱逐策略，并能正确关闭应用程序上下文。
 	 * @since 4.3
 	 */
 	@SuppressWarnings("serial")
 	private class LruCache extends LinkedHashMap<MergedContextConfiguration, ApplicationContext> {
 
 		/**
-		 * Create a new {@code LruCache} with the supplied initial capacity
-		 * and load factor.
+		 * 使用提供的初始容量和负载因子创建一个新的 {@code LruCache}。
 		 * @param initialCapacity the initial capacity
 		 * @param loadFactor the load factor
 		 */

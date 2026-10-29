@@ -1,5 +1,5 @@
 /**
- * Provides a comprehensive HttpMessageConverter variant for form handling.
+ * 提供用于表单处理的综合性 HttpMessageConverter 变体。
  */
 @NonNullApi
 @NonNullFields

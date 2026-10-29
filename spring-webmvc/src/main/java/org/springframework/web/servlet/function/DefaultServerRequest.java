@@ -67,7 +67,7 @@ import org.springframework.web.util.ServletRequestPathUtils;
 import org.springframework.web.util.UriBuilder;
 
 /**
- * {@code ServerRequest} implementation based on a {@link HttpServletRequest}.
+ * 基于 {@link HttpServletRequest} 的 {@code ServerRequest} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.2
@@ -295,7 +295,7 @@ class DefaultServerRequest implements ServerRequest {
 
 
 	/**
-	 * Default implementation of {@link Headers}.
+	 * {@link Headers} 的默认实现。
 	 */
 	static class DefaultRequestHeaders implements Headers {
 
@@ -465,10 +465,10 @@ class DefaultServerRequest implements ServerRequest {
 
 
 	/**
-	 * Simple implementation of {@link HttpServletResponse} used by
-	 * {@link #checkNotModified(HttpServletRequest, Instant, String)} to record status and headers set by
-	 * {@link ServletWebRequest#checkNotModified(String, long)}. Throws an {@code UnsupportedOperationException}
-	 * for other methods.
+	 * 供 {@link #checkNotModified(HttpServletRequest, Instant, String)} 使用的
+	 * {@link HttpServletResponse} 简单实现，用于记录由
+	 * {@link ServletWebRequest#checkNotModified(String, long)} 设置的状态和标头。
+	 * 对于其他方法，抛出 {@code UnsupportedOperationException}。
 	 */
 	private static final class CheckNotModifiedResponse implements HttpServletResponse {
 

@@ -17,14 +17,10 @@
 package org.springframework.beans.factory;
 
 /**
- * Interface to be implemented by beans that want to be aware of their
- * bean name in a bean factory. Note that it is not usually recommended
- * that an object depends on its bean name, as this represents a potentially
- * brittle dependence on external configuration, as well as a possibly
- * unnecessary dependence on a Spring API.
+ * 由希望感知其在 Bean 工厂中 Bean 名称的 Bean 实现的接口。请注意，通常不建议对象依赖于其 Bean 名称，
+ * 因为这代表了对可能脆弱的外部配置的依赖，以及对 Spring API 可能不必要的依赖。
  *
- * <p>For a list of all bean lifecycle methods, see the
- * {@link BeanFactory BeanFactory javadocs}.
+ * <p>有关所有 Bean 生命周期方法的列表，请参见 {@link BeanFactory BeanFactory javadocs}。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -36,10 +32,8 @@ package org.springframework.beans.factory;
 public interface BeanNameAware extends Aware {
 
 	/**
-	 * Set the name of the bean in the bean factory that created this bean.
-	 * <p>Invoked after population of normal bean properties but before an
-	 * init callback such as {@link InitializingBean#afterPropertiesSet()}
-	 * or a custom init-method.
+	 * 设置该 Bean 在创建它的 Bean 工厂中的名称。<p>在填充普通 Bean 属性之后、在诸如
+	 * {@link InitializingBean#afterPropertiesSet()} 之类的初始化回调或自定义 init-method 之前调用。
 	 * @param name the name of the bean in the factory.
 	 * Note that this name is the actual bean name used in the factory, which may
 	 * differ from the originally specified name: in particular for inner bean

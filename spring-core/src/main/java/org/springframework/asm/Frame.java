@@ -28,29 +28,21 @@
 package org.springframework.asm;
 
 /**
- * The input and output stack map frames of a basic block.
+ * 基本块的输入和输出栈映射帧。
  *
- * <p>Stack map frames are computed in two steps:
+ * <p>栈映射帧分两步计算：
  *
  * <ul>
- *   <li>During the visit of each instruction in MethodWriter, the state of the frame at the end of
- *       the current basic block is updated by simulating the action of the instruction on the
- *       previous state of this so called "output frame".
- *   <li>After all instructions have been visited, a fix point algorithm is used in MethodWriter to
- *       compute the "input frame" of each basic block (i.e. the stack map frame at the beginning of
- *       the basic block). See {@link MethodWriter#computeAllFrames}.
+ * <li>在 MethodWriter 访问每条指令的过程中，通过模拟指令对所谓“输出帧”先前状态的作用，更新当前基本块结束处的帧状态。
+ * <li>所有指令访问完成后，在 MethodWriter 中使用不动点算法计算每个基本块的“输入帧”（即基本块开始处的栈映射帧）。参见 {@link MethodWriter#computeAllFrames}。
  * </ul>
  *
- * <p>Output stack map frames are computed relatively to the input frame of the basic block, which
- * is not yet known when output frames are computed. It is therefore necessary to be able to
- * represent abstract types such as "the type at position x in the input frame locals" or "the type
- * at position x from the top of the input frame stack" or even "the type at position x in the input
- * frame, with y more (or less) array dimensions". This explains the rather complicated type format
- * used in this class, explained below.
+ * <p>输出栈映射帧是相对于基本块的输入帧计算的，而在计算输出帧时该输入帧尚不可知。因此，必须能够表
+ * 示抽象类型，例如“输入帧局部变量中位置 x 处的类型”或“距输入帧栈顶 x 处的类型”，甚至是“输入帧中位
+ * 置 x 处、数组维度多（或少）y 的类型”。这就解释了此类中使用的相当复杂的类型格式，下文将予以说明。
  *
- * <p>The local variables and the operand stack of input and output frames contain values called
- * "abstract types" hereafter. An abstract type is represented with 4 fields named DIM, KIND, FLAGS
- * and VALUE, packed in a single int value for better performance and memory efficiency:
+ * <p>输入帧和输出帧的局部变量与操作数栈包含以下称为“抽象类型”的值。抽象类型由名为 DIM、KIND、FLAGS
+ * 和 VALUE 的 4 个字段表示，为了获得更好的性能和内存效率，它们被打包在单个 int 值中：
  *
  * <pre>
  *   =====================================
@@ -59,44 +51,27 @@ package org.springframework.asm;
  * </pre>
  *
  * <ul>
- *   <li>the DIM field, stored in the 6 most significant bits, is a signed number of array
- *       dimensions (from -32 to 31, included). It can be retrieved with {@link #DIM_MASK} and a
- *       right shift of {@link #DIM_SHIFT}.
- *   <li>the KIND field, stored in 4 bits, indicates the kind of VALUE used. These 4 bits can be
- *       retrieved with {@link #KIND_MASK} and, without any shift, must be equal to {@link
- *       #CONSTANT_KIND}, {@link #REFERENCE_KIND}, {@link #UNINITIALIZED_KIND}, {@link #LOCAL_KIND}
- *       or {@link #STACK_KIND}.
- *   <li>the FLAGS field, stored in 2 bits, contains up to 2 boolean flags. Currently only one flag
- *       is defined, namely {@link #TOP_IF_LONG_OR_DOUBLE_FLAG}.
- *   <li>the VALUE field, stored in the remaining 20 bits, contains either
- *       <ul>
- *         <li>one of the constants {@link #ITEM_TOP}, {@link #ITEM_ASM_BOOLEAN}, {@link
- *             #ITEM_ASM_BYTE}, {@link #ITEM_ASM_CHAR} or {@link #ITEM_ASM_SHORT}, {@link
- *             #ITEM_INTEGER}, {@link #ITEM_FLOAT}, {@link #ITEM_LONG}, {@link #ITEM_DOUBLE}, {@link
- *             #ITEM_NULL} or {@link #ITEM_UNINITIALIZED_THIS}, if KIND is equal to {@link
- *             #CONSTANT_KIND}.
- *         <li>the index of a {@link Symbol#TYPE_TAG} {@link Symbol} in the type table of a {@link
- *             SymbolTable}, if KIND is equal to {@link #REFERENCE_KIND}.
- *         <li>the index of an {@link Symbol#UNINITIALIZED_TYPE_TAG} {@link Symbol} in the type
- *             table of a SymbolTable, if KIND is equal to {@link #UNINITIALIZED_KIND}.
- *         <li>the index of a local variable in the input stack frame, if KIND is equal to {@link
- *             #LOCAL_KIND}.
- *         <li>a position relatively to the top of the stack of the input stack frame, if KIND is
- *             equal to {@link #STACK_KIND},
+ * <li>DIM 字段存储于最高 6 位，是表示数组维度的有符号数（范围为 -32 到 31，含两端）。可以通过 {@link #DIM_MASK} 和 {@link #DIM_SHIFT} 右移来获取它。
+ * <li>KIND 字段存储于 4 位，表示所用 VALUE 的种类。这 4 位可以通过 {@link #KIND_MASK} 获取，且无需任何移位，其值必须等于 {@link #CONSTANT_KIND}、{@link #REFERENCE_KIND}、{@link #UNINITIALIZED_KIND}、{@link #LOCAL_KIND} 或 {@link #STACK_KIND}。
+ * <li>FLAGS 字段存储于 2 位，最多包含 2 个布尔标志。目前只定义了一个标志，即 {@link #TOP_IF_LONG_OR_DOUBLE_FLAG}。
+ * <li>VALUE 字段存储于其余 20 位，包含以下之一：
+ * <ul>
+ * <li>如果 KIND 等于 {@link #CONSTANT_KIND}，则为以下常量之一：{@link #ITEM_TOP}、{@link #ITEM_ASM_BOOLEAN}、{@link #ITEM_ASM_BYTE}、{@link #ITEM_ASM_CHAR}、{@link #ITEM_ASM_SHORT}、{@link #ITEM_INTEGER}、{@link #ITEM_FLOAT}、{@link #ITEM_LONG}、{@link #ITEM_DOUBLE}、{@link #ITEM_NULL} 或 {@link #ITEM_UNINITIALIZED_THIS}。
+ * <li>如果 KIND 等于 {@link #REFERENCE_KIND}，则为 {@link Symbol#TYPE_TAG} {@link Symbol} 在 {@link SymbolTable} 类型表中的索引。
+ * <li>如果 KIND 等于 {@link #UNINITIALIZED_KIND}，则为 {@link Symbol#UNINITIALIZED_TYPE_TAG} {@link Symbol} 在 SymbolTable 类型表中的索引。
+ * <li>如果 KIND 等于 {@link #LOCAL_KIND}，则为输入栈帧中局部变量的索引。
+ * <li>如果 KIND 等于 {@link #STACK_KIND}，则为相对于输入栈帧栈顶的位置，
  *       </ul>
  * </ul>
  *
- * <p>Output frames can contain abstract types of any kind and with a positive or negative array
- * dimension (and even unassigned types, represented by 0 - which does not correspond to any valid
- * abstract type value). Input frames can only contain CONSTANT_KIND, REFERENCE_KIND or
- * UNINITIALIZED_KIND abstract types of positive or {@literal null} array dimension. In all cases
- * the type table contains only internal type names (array type descriptors are forbidden - array
- * dimensions must be represented through the DIM field).
+ * <p>输出帧可以包含任意种类以及数组维度为正或为负的抽象类型（甚至可以是未赋值的类型，用 0 表示——它
+ * 不对应任何有效的抽象类型值）。输入帧只能包含数组维度为正或为 {@literal null} 的 CONSTANT_KIND、
+ * REFERENCE_KIND 或 UNINITIALIZED_KIND 抽象类型。在所有情况下，类型表都只包含内部类型名（禁止使用
+ * 数组类型描述符——数组维度必须通过 DIM 字段表示）。
  *
- * <p>The LONG and DOUBLE types are always represented by using two slots (LONG + TOP or DOUBLE +
- * TOP), for local variables as well as in the operand stack. This is necessary to be able to
- * simulate DUPx_y instructions, whose effect would be dependent on the concrete types represented
- * by the abstract types in the stack (which are not always known).
+ * <p>LONG 和 DOUBLE 类型始终使用两个槽位表示（LONG + TOP 或 DOUBLE + TOP），无论是局部变量还是操作
+ * 数栈中都是如此。这对于模拟 DUPx_y 指令是必要的，因为其效果取决于栈中抽象类型所表示的具体类型（而
+ * 这些具体类型并不总是已知）。
  *
  * @author Eric Bruneton
  */
@@ -148,10 +123,10 @@ class Frame {
 
   // Constants to manipulate the DIM field of an abstract type.
 
-  /** The constant to be added to an abstract type to get one with one more array dimension. */
+  /** 加到抽象类型上以得到数组维度加一类型的常量。 */
   private static final int ARRAY_OF = +1 << DIM_SHIFT;
 
-  /** The constant to be added to an abstract type to get one with one less array dimension. */
+  /** 加到抽象类型上以得到数组维度减一类型的常量。 */
   private static final int ELEMENT_OF = -1 << DIM_SHIFT;
 
   // Possible values for the KIND field of an abstract type.
@@ -165,9 +140,8 @@ class Frame {
   // Possible flags for the FLAGS field of an abstract type.
 
   /**
-   * A flag used for LOCAL_KIND and STACK_KIND abstract types, indicating that if the resolved,
-   * concrete type is LONG or DOUBLE, TOP should be used instead (because the value has been
-   * partially overridden with an xSTORE instruction).
+   * 用于 LOCAL_KIND 和 STACK_KIND 抽象类型的标志，表示如果解析出的具体类型是 LONG 或 DOUBLE，则应改
+   * 用 TOP（因为该值已被 xSTORE 指令部分覆盖）。
    */
   private static final int TOP_IF_LONG_OR_DOUBLE_FLAG = 1 << FLAGS_SHIFT;
 
@@ -189,44 +163,40 @@ class Frame {
   // Instance fields
   // -----------------------------------------------------------------------------------------------
 
-  /** The basic block to which these input and output stack map frames correspond. */
+  /** 这些输入和输出栈映射帧对应的基本块。 */
   Label owner;
 
-  /** The input stack map frame locals. This is an array of abstract types. */
+  /** 输入栈映射帧的局部变量。这是一个抽象类型数组。 */
   private int[] inputLocals;
 
-  /** The input stack map frame stack. This is an array of abstract types. */
+  /** 输入栈映射帧的栈。这是一个抽象类型数组。 */
   private int[] inputStack;
 
-  /** The output stack map frame locals. This is an array of abstract types. */
+  /** 输出栈映射帧的局部变量。这是一个抽象类型数组。 */
   private int[] outputLocals;
 
-  /** The output stack map frame stack. This is an array of abstract types. */
+  /** 输出栈映射帧的栈。这是一个抽象类型数组。 */
   private int[] outputStack;
 
   /**
-   * The start of the output stack, relatively to the input stack. This offset is always negative or
-   * null. A null offset means that the output stack must be appended to the input stack. A -n
-   * offset means that the first n output stack elements must replace the top n input stack
-   * elements, and that the other elements must be appended to the input stack.
+   * 输出栈的起始位置，相对于输入栈。此偏移量始终为负或 null。null 偏移量表示输出栈必须追加到输入栈之
+   * 后。-n 偏移量表示输出栈的前 n 个元素必须替换输入栈顶部的 n 个元素，而其余元素必须追加到输入栈之
+   * 后。
    */
   private short outputStackStart;
 
-  /** The index of the top stack element in {@link #outputStack}. */
+  /** 栈顶元素在 {@link #outputStack} 中的索引。 */
   private short outputStackTop;
 
-  /** The number of types that are initialized in the basic block. See {@link #initializations}. */
+  /** 基本块中已初始化的类型数量。参见 {@link #initializations}。 */
   private int initializationCount;
 
   /**
-   * The abstract types that are initialized in the basic block. A constructor invocation on an
-   * UNINITIALIZED or UNINITIALIZED_THIS abstract type must replace <i>every occurrence</i> of this
-   * type in the local variables and in the operand stack. This cannot be done during the first step
-   * of the algorithm since, during this step, the local variables and the operand stack types are
-   * still abstract. It is therefore necessary to store the abstract types of the constructors which
-   * are invoked in the basic block, in order to do this replacement during the second step of the
-   * algorithm, where the frames are fully computed. Note that this array can contain abstract types
-   * that are relative to the input locals or to the input stack.
+   * 在基本块中被初始化的抽象类型。对 UNINITIALIZED 或 UNINITIALIZED_THIS 抽象类型调用构造函数时，必
+   * 须替换局部变量和操作数栈中该类型的<i>每一次出现</i>。这无法在算法的第一步中完成，因为在这一步中
+   * 局部变量和操作数栈的类型仍是抽象的。因此，必须存储在基本块中被调用的构造函数的抽象类型，以便在算
+   * 法的第二步（此时帧已完全计算）中执行此替换。请注意，此数组可能包含相对于输入局部变量或输入栈的抽
+   * 象类型。
    */
   private int[] initializations;
 
@@ -235,7 +205,7 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Constructs a new Frame.
+   * 构造一个新的 Frame。
    *
    * @param owner the basic block to which these input and output stack map frames correspond.
    */
@@ -244,10 +214,9 @@ class Frame {
   }
 
   /**
-   * Sets this frame to the value of the given frame.
+   * 将此帧设置为给定帧的值。
    *
-   * <p>WARNING: after this method is called the two frames share the same data structures. It is
-   * recommended to discard the given frame to avoid unexpected side effects.
+   * <p>警告：调用此方法后，两个帧共享相同的数据结构。建议丢弃给定的帧以避免意外的副作用。
    *
    * @param frame The new frame value.
    */
@@ -267,7 +236,7 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the abstract type corresponding to the given public API frame element type.
+   * 返回与给定公共 API 帧元素类型相对应的抽象类型。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param type a frame element type described using the same format as in {@link
@@ -290,7 +259,7 @@ class Frame {
   }
 
   /**
-   * Returns the abstract type corresponding to the internal name of a class.
+   * 返回与类内部名称相对应的抽象类型。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param internalName the internal name of a class. This must <i>not</i> be an array type
@@ -303,7 +272,7 @@ class Frame {
   }
 
   /**
-   * Returns the abstract type corresponding to the given type descriptor.
+   * 返回与给定类型描述符相对应的抽象类型。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param buffer a string ending with a type descriptor.
@@ -381,9 +350,8 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Sets the input frame from the given method description. This method is used to initialize the
-   * first frame of a method, which is implicit (i.e. not stored explicitly in the StackMapTable
-   * attribute).
+   * 根据给定的方法描述设置输入帧。此方法用于初始化方法的第一个帧，该帧是隐式的（即不显式存储在
+   * StackMapTable 属性中）。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param access the method's access flags.
@@ -420,7 +388,7 @@ class Frame {
   }
 
   /**
-   * Sets the input frame from the given public API frame description.
+   * 根据给定的公共 API 帧描述设置输入帧。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param numLocal the number of local variables.
@@ -473,7 +441,7 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Returns the abstract type stored at the given local variable index in the output frame.
+   * 返回输出帧中给定局部变量索引处存储的抽象类型。
    *
    * @param localIndex the index of the local variable whose value must be returned.
    * @return the abstract type stored at the given local variable index in the output frame.
@@ -495,7 +463,7 @@ class Frame {
   }
 
   /**
-   * Replaces the abstract type stored at the given local variable index in the output frame.
+   * 替换输出帧中给定局部变量索引处存储的抽象类型。
    *
    * @param localIndex the index of the output frame local variable that must be set.
    * @param abstractType the value that must be set.
@@ -516,7 +484,7 @@ class Frame {
   }
 
   /**
-   * Pushes the given abstract type on the output frame stack.
+   * 将给定的抽象类型压入输出帧栈。
    *
    * @param abstractType an abstract type.
    */
@@ -542,7 +510,7 @@ class Frame {
   }
 
   /**
-   * Pushes the abstract type corresponding to the given descriptor on the output frame stack.
+   * 将与给定描述符相对应的抽象类型压入输出帧栈。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param descriptor a type or method descriptor (in which case its return type is pushed).
@@ -560,7 +528,7 @@ class Frame {
   }
 
   /**
-   * Pops an abstract type from the output frame stack and returns its value.
+   * 从输出帧栈中弹出一个抽象类型并返回其值。
    *
    * @return the abstract type that has been popped from the output frame stack.
    */
@@ -574,7 +542,7 @@ class Frame {
   }
 
   /**
-   * Pops the given number of abstract types from the output frame stack.
+   * 从输出帧栈中弹出给定数量的抽象类型。
    *
    * @param elements the number of abstract types that must be popped.
    */
@@ -590,7 +558,7 @@ class Frame {
   }
 
   /**
-   * Pops as many abstract types from the output frame stack as described by the given descriptor.
+   * 从输出帧栈中弹出与给定描述符所描述的相同数量的抽象类型。
    *
    * @param descriptor a type or method descriptor (in which case its argument types are popped).
    */
@@ -610,8 +578,7 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Adds an abstract type to the list of types on which a constructor is invoked in the basic
-   * block.
+   * 将一个抽象类型添加到基本块中调用了构造函数的类型列表中。
    *
    * @param abstractType an abstract type on a which a constructor is invoked.
    */
@@ -632,7 +599,7 @@ class Frame {
   }
 
   /**
-   * Returns the "initialized" abstract type corresponding to the given abstract type.
+   * 返回与给定抽象类型相对应的“已初始化”抽象类型。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param abstractType an abstract type.
@@ -671,7 +638,7 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Simulates the action of the given instruction on the output stack frame.
+   * 在输出栈帧上模拟给定指令的动作。
    *
    * @param opcode the opcode of the instruction.
    * @param arg the numeric operand of the instruction, if any.
@@ -1113,7 +1080,7 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Computes the concrete output type corresponding to a given abstract output type.
+   * 计算与给定抽象输出类型相对应的具体输出类型。
    *
    * @param abstractOutputType an abstract output type.
    * @param numStack the size of the input stack, used to resolve abstract output types of
@@ -1149,9 +1116,8 @@ class Frame {
   }
 
   /**
-   * Merges the input frame of the given {@link Frame} with the input and output frames of this
-   * {@link Frame}. Returns {@literal true} if the given frame has been changed by this operation
-   * (the input and output frames of this {@link Frame} are never changed).
+   * 将给定 {@link Frame} 的输入帧与此 {@link Frame} 的输入帧和输出帧合并。如果给定帧被此操作更改，则
+   * 返回 {@literal true}（此 {@link Frame} 的输入帧和输出帧永远不会被更改）。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param dstFrame the {@link Frame} whose input frame must be updated. This should be the frame
@@ -1248,8 +1214,8 @@ class Frame {
   }
 
   /**
-   * Merges the type at the given index in the given abstract type array with the given type.
-   * Returns {@literal true} if the type array has been modified by this operation.
+   * 将给定抽象类型数组中给定索引处的类型与给定类型合并。如果该类型数组被此操作修改，则返回
+   * {@literal true}。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param sourceType the abstract type with which the abstract type array element must be merged.
@@ -1344,9 +1310,9 @@ class Frame {
   // -----------------------------------------------------------------------------------------------
 
   /**
-   * Makes the given {@link MethodWriter} visit the input frame of this {@link Frame}. The visit is
-   * done with the {@link MethodWriter#visitFrameStart}, {@link MethodWriter#visitAbstractType} and
-   * {@link MethodWriter#visitFrameEnd} methods.
+   * 让给定的 {@link MethodWriter} 访问此 {@link Frame} 的输入帧。访问通过
+   * {@link MethodWriter#visitFrameStart}、{@link MethodWriter#visitAbstractType} 和
+   * {@link MethodWriter#visitFrameEnd} 方法完成。
    *
    * @param methodWriter the {@link MethodWriter} that should visit the input frame of this {@link
    *     Frame}.
@@ -1395,8 +1361,8 @@ class Frame {
   }
 
   /**
-   * Put the given abstract type in the given ByteVector, using the JVMS verification_type_info
-   * format used in StackMapTable attributes.
+   * 使用 StackMapTable 属性中所用的 JVMS verification_type_info 格式，将给定的抽象类型放入给定的
+   * ByteVector 中。
    *
    * @param symbolTable the type table to use to lookup and store type {@link Symbol}.
    * @param abstractType an abstract type, restricted to {@link Frame#CONSTANT_KIND}, {@link

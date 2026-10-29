@@ -25,7 +25,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * A Spring {@link FactoryBean} that builds and exposes a preconfigured {@link ForkJoinPool}.
+ * 一个 Spring {@link FactoryBean}，用于构建并暴露预先配置好的 {@link ForkJoinPool}。
  *
  * @author Juergen Hoeller
  * @since 3.1
@@ -50,15 +50,14 @@ public class ForkJoinPoolFactoryBean implements FactoryBean<ForkJoinPool>, Initi
 
 
 	/**
-	 * Set whether to expose JDK 8's 'common' {@link ForkJoinPool}.
-	 * <p>Default is "false", creating a local {@link ForkJoinPool} instance based on the
-	 * {@link #setParallelism "parallelism"}, {@link #setThreadFactory "threadFactory"},
-	 * {@link #setUncaughtExceptionHandler "uncaughtExceptionHandler"} and
-	 * {@link #setAsyncMode "asyncMode"} properties on this FactoryBean.
-	 * <p><b>NOTE:</b> Setting this flag to "true" effectively ignores all other
-	 * properties on this FactoryBean, reusing the shared common JDK {@link ForkJoinPool}
-	 * instead. This is a fine choice on JDK 8 but does remove the application's ability
-	 * to customize ForkJoinPool behavior, in particular the use of custom threads.
+	 * 设置是否暴露 JDK 8 的 'common' {@link ForkJoinPool}。
+	 * <p>默认值为 "false"，即基于此 FactoryBean 上的 {@link #setParallelism "parallelism"}、
+	 * {@link #setThreadFactory "threadFactory"}、
+	 * {@link #setUncaughtExceptionHandler "uncaughtExceptionHandler"} 和
+	 * {@link #setAsyncMode "asyncMode"} 属性创建一个本地 {@link ForkJoinPool} 实例。
+	 * <p><b>NOTE:</b> 将此标志设为 "true" 会实际忽略此 FactoryBean 上的所有其他属性，转而复用共享的
+	 * JDK 公共 {@link ForkJoinPool}。这在 JDK 8 上是个不错的选择，但会使应用无法自定义 ForkJoinPool 的
+	 * 行为，特别是无法使用自定义线程。
 	 * @since 3.2
 	 * @see java.util.concurrent.ForkJoinPool#commonPool()
 	 */
@@ -67,52 +66,44 @@ public class ForkJoinPoolFactoryBean implements FactoryBean<ForkJoinPool>, Initi
 	}
 
 	/**
-	 * Specify the parallelism level. Default is {@link Runtime#availableProcessors()}.
+	 * 指定并行度级别。默认值为 {@link Runtime#availableProcessors()}。
 	 */
 	public void setParallelism(int parallelism) {
 		this.parallelism = parallelism;
 	}
 
 	/**
-	 * Set the factory for creating new ForkJoinWorkerThreads.
-	 * Default is {@link ForkJoinPool#defaultForkJoinWorkerThreadFactory}.
+	 * 设置用于创建新 ForkJoinWorkerThread 的工厂。默认值为
+	 * {@link ForkJoinPool#defaultForkJoinWorkerThreadFactory}。
 	 */
 	public void setThreadFactory(ForkJoinPool.ForkJoinWorkerThreadFactory threadFactory) {
 		this.threadFactory = threadFactory;
 	}
 
 	/**
-	 * Set the handler for internal worker threads that terminate due to unrecoverable errors
-	 * encountered while executing tasks. Default is none.
+	 * 设置内部工作线程的处理器，这些线程因执行任务时遇到无法恢复的错误而终止。默认无。
 	 */
 	public void setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler uncaughtExceptionHandler) {
 		this.uncaughtExceptionHandler = uncaughtExceptionHandler;
 	}
 
 	/**
-	 * Specify whether to establish a local first-in-first-out scheduling mode for forked tasks
-	 * that are never joined. This mode (asyncMode = {@code true}) may be more appropriate
-	 * than the default locally stack-based mode in applications in which worker threads only
-	 * process event-style asynchronous tasks. Default is {@code false}.
+	 * 指定是否为那些从不被 join 的分叉任务建立本地的先进先出调度模式。在工作线程只处理事件式异步任务的
+	 * 应用中，此模式（asyncMode = {@code true}）可能比默认的本地基于栈的模式更合适。默认值为
+	 * {@code false}。
 	 */
 	public void setAsyncMode(boolean asyncMode) {
 		this.asyncMode = asyncMode;
 	}
 
 	/**
-	 * Set the maximum number of seconds that this ForkJoinPool is supposed to block
-	 * on shutdown in order to wait for remaining tasks to complete their execution
-	 * before the rest of the container continues to shut down. This is particularly
-	 * useful if your remaining tasks are likely to need access to other resources
-	 * that are also managed by the container.
-	 * <p>By default, this ForkJoinPool won't wait for the termination of tasks at all.
-	 * It will continue to fully execute all ongoing tasks as well as all remaining
-	 * tasks in the queue, in parallel to the rest of the container shutting down.
-	 * In contrast, if you specify an await-termination period using this property,
-	 * this executor will wait for the given time (max) for the termination of tasks.
-	 * <p>Note that this feature works for the {@link #setCommonPool "commonPool"}
-	 * mode as well. The underlying ForkJoinPool won't actually terminate in that
-	 * case but will wait for all tasks to terminate.
+	 * 设置此 ForkJoinPool 在关闭时最多应阻塞多少秒，以等待剩余任务完成执行，然后容器其余部分才继续关闭。
+	 * 如果剩余任务可能需要访问同样由容器管理的其他资源，这一点尤其有用。
+	 * <p>默认情况下，此 ForkJoinPool 根本不会等待任务终止。它会在容器其余部分关闭的同时，继续完整执行
+	 * 所有正在执行的任务以及队列中的所有剩余任务。相反，如果你通过此属性指定了等待终止的期限，此执行器
+	 * 将最多等待给定的时间，以等待任务终止。
+	 * <p>请注意，此特性对 {@link #setCommonPool "commonPool"} 模式同样有效。在这种情况下，底层
+	 * ForkJoinPool 实际上不会终止，但会等待所有任务终止。
 	 * @see java.util.concurrent.ForkJoinPool#shutdown()
 	 * @see java.util.concurrent.ForkJoinPool#awaitTermination
 	 */

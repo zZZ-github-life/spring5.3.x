@@ -26,22 +26,17 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.Nullable;
 
 /**
- * Reusable RDBMS query in which concrete subclasses must implement
- * the abstract mapRow(ResultSet, int) method to map each row of
- * the JDBC ResultSet into an object.
+ * 可重用的 RDBMS 查询，具体子类必须实现抽象的 mapRow(ResultSet, int) 方法，
+ * 将 JDBC ResultSet 的每一行映射为对象。
  *
- * <p>Such manual mapping is usually preferable to "automatic"
- * mapping using reflection, which can become complex in non-trivial
- * cases. For example, the present class allows different objects
- * to be used for different rows (for example, if a subclass is indicated).
- * It allows computed fields to be set. And there's no need for
- * ResultSet columns to have the same names as bean properties.
- * The Pareto Principle in action: going the extra mile to automate
- * the extraction process makes the framework much more complex
- * and delivers little real benefit.
+ * <p>在非简单的场景下，这种手动映射通常优于使用反射的“自动”映射，
+ * 因为后者可能变得十分复杂。例如，当前类允许为不同的行使用不同的对象
+ * （比如通过子类指示时），允许设置计算字段，并且无需让 ResultSet 的列名
+ * 与 bean 属性名保持一致。这正是帕累托原则的体现：为进一步自动化提取过程
+ * 而付出额外努力，会让框架复杂得多，却几乎没有实际收益。
  *
- * <p>Subclasses can be constructed providing SQL, parameter types
- * and a DataSource. SQL will often vary between subclasses.
+ * <p>子类在构造时可以传入 SQL、参数类型和 DataSource。SQL 往往因
+ * 子类而异。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -53,13 +48,13 @@ import org.springframework.lang.Nullable;
 public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 
 	/**
-	 * Constructor to allow use as a JavaBean.
+	 * 允许作为 JavaBean 使用的构造函数。
 	 */
 	public MappingSqlQueryWithParameters() {
 	}
 
 	/**
-	 * Convenient constructor with DataSource and SQL string.
+	 * 使用 DataSource 和 SQL 字符串的便捷构造函数。
 	 * @param ds the DataSource to use to get connections
 	 * @param sql the SQL to run
 	 */
@@ -69,8 +64,7 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 
 
 	/**
-	 * Implementation of protected abstract method. This invokes the subclass's
-	 * implementation of the mapRow() method.
+	 * 受保护抽象方法的实现。这会调用子类的 mapRow() 方法实现。
 	 */
 	@Override
 	protected RowMapper<T> newRowMapper(@Nullable Object[] parameters, @Nullable Map<?, ?> context) {
@@ -78,8 +72,7 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 	}
 
 	/**
-	 * Subclasses must implement this method to convert each row
-	 * of the ResultSet into an object of the result type.
+	 * 子类必须实现此方法，将 ResultSet 的每一行转换为结果类型的对象。
 	 * @param rs the ResultSet we're working through
 	 * @param rowNum row number (from 0) we're up to
 	 * @param parameters to the query (passed to the execute() method).
@@ -98,8 +91,7 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 
 
 	/**
-	 * Implementation of RowMapper that calls the enclosing
-	 * class's {@code mapRow} method for each row.
+	 * RowMapper 的实现，对每一行调用外部类的 {@code mapRow} 方法。
 	 */
 	protected class RowMapperImpl implements RowMapper<T> {
 
@@ -110,7 +102,7 @@ public abstract class MappingSqlQueryWithParameters<T> extends SqlQuery<T> {
 		private final Map<?, ?> context;
 
 		/**
-		 * Use an array results. More efficient if we know how many results to expect.
+		 * 使用数组结果。如果已知预期结果的数量，这种方式效率更高。
 		 */
 		public RowMapperImpl(@Nullable Object[] parameters, @Nullable Map<?, ?> context) {
 			this.params = parameters;

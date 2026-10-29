@@ -36,22 +36,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * JDK-based {@link AopProxy} implementation for the Spring AOP framework,
- * based on JDK {@link java.lang.reflect.Proxy dynamic proxies}.
+ * Spring AOP 框架的基于 JDK 的 {@link AopProxy} 实现，基于 JDK
+ * {@link java.lang.reflect.Proxy dynamic proxies}。
  *
- * <p>Creates a dynamic proxy, implementing the interfaces exposed by
- * the AopProxy. Dynamic proxies <i>cannot</i> be used to proxy methods
- * defined in classes, rather than interfaces.
+ * <p>创建动态代理，实现 AopProxy 所暴露的接口。动态代理<i>不能</i>用于代理类（而不是接口）中定义的
+ * 方法。
  *
- * <p>Objects of this type should be obtained through proxy factories,
- * configured by an {@link AdvisedSupport} class. This class is internal
- * to Spring's AOP framework and need not be used directly by client code.
+ * <p>此类型的对象应通过代理工厂获取，并由 {@link AdvisedSupport} 类进行配置。此类是 Spring 的 AOP
+ * 框架内部使用的，客户端代码无需直接使用。
  *
- * <p>Proxies created using this class will be thread-safe if the
- * underlying (target) class is thread-safe.
+ * <p>如果底层（目标）类是线程安全的，那么使用此类创建的代理将是线程安全的。
  *
- * <p>Proxies are serializable so long as all Advisors (including Advices
- * and Pointcuts) and the TargetSource are serializable.
+ * <p>只要所有 Advisor（包括 Advice 和 Pointcut）以及 TargetSource 都可序列化，代理就是可序列化的。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -64,7 +60,7 @@ import org.springframework.util.ClassUtils;
  */
 final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializable {
 
-	/** use serialVersionUID from Spring 1.2 for interoperability. */
+	/** 使用 Spring 1.2 的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = 5531744639992436476L;
 
 
@@ -77,27 +73,27 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 	 * This way, we can also more easily take advantage of minor optimizations in each class.
 	 */
 
-	/** We use a static Log to avoid serialization issues. */
+	/** 我们使用静态 Log 来避免序列化问题。 */
 	private static final Log logger = LogFactory.getLog(JdkDynamicAopProxy.class);
 
-	/** Config used to configure this proxy. */
+	/** 用于配置此代理的配置。 */
 	private final AdvisedSupport advised;
 
 	private final Class<?>[] proxiedInterfaces;
 
 	/**
-	 * Is the {@link #equals} method defined on the proxied interfaces?
+	 * {@link #equals} 方法是否在被代理的接口中定义？
 	 */
 	private boolean equalsDefined;
 
 	/**
-	 * Is the {@link #hashCode} method defined on the proxied interfaces?
+	 * {@link #hashCode} 方法是否在被代理的接口中定义？
 	 */
 	private boolean hashCodeDefined;
 
 
 	/**
-	 * Construct a new JdkDynamicAopProxy for the given AOP configuration.
+	 * 为给定的 AOP 配置构造新的 JdkDynamicAopProxy。
 	 * @param config the AOP configuration as AdvisedSupport object
 	 * @throws AopConfigException if the config is invalid. We try to throw an informative
 	 * exception in this case, rather than let a mysterious failure happen later.
@@ -132,8 +128,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 	}
 
 	/**
-	 * Finds any {@link #equals} or {@link #hashCode} method that may be defined
-	 * on the supplied set of interfaces.
+	 * 查找所提供的接口集合中可能定义的任何 {@link #equals} 或 {@link #hashCode} 方法。
 	 * @param proxiedInterfaces the interfaces to introspect
 	 */
 	private void findDefinedEqualsAndHashCodeMethods(Class<?>[] proxiedInterfaces) {
@@ -155,9 +150,8 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 
 	/**
-	 * Implementation of {@code InvocationHandler.invoke}.
-	 * <p>Callers will see exactly the exception thrown by the target,
-	 * unless a hook method throws an exception.
+	 * {@code InvocationHandler.invoke} 的实现。
+	 * <p>除非某个钩子方法抛出异常，否则调用方看到的正是目标所抛出的异常。
 	 */
 	@Override
 	@Nullable
@@ -250,9 +244,9 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 
 
 	/**
-	 * Equality means interfaces, advisors and TargetSource are equal.
-	 * <p>The compared object may be a JdkDynamicAopProxy instance itself
-	 * or a dynamic proxy wrapping a JdkDynamicAopProxy instance.
+	 * 相等意味着接口、advisor 和 TargetSource 都相等。
+	 * <p>被比较的对象可以是 JdkDynamicAopProxy 实例本身，也可以是包装了 JdkDynamicAopProxy 实例的动态
+	 * 代理。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {
@@ -284,7 +278,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 	}
 
 	/**
-	 * Proxy uses the hash code of the TargetSource.
+	 * 代理使用 TargetSource 的哈希码。
 	 */
 	@Override
 	public int hashCode() {

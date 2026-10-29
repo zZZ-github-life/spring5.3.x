@@ -21,7 +21,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Operations for receiving messages from a destination.
+ * 用于从目标接收消息的操作。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -32,7 +32,7 @@ import org.springframework.messaging.MessagingException;
 public interface MessageReceivingOperations<D> {
 
 	/**
-	 * Receive a message from a default destination.
+	 * 从默认目标接收消息。
 	 * @return the received message, possibly {@code null} if the message could not
 	 * be received, for example due to a timeout
 	 */
@@ -40,7 +40,7 @@ public interface MessageReceivingOperations<D> {
 	Message<?> receive() throws MessagingException;
 
 	/**
-	 * Receive a message from the given destination.
+	 * 从给定目标接收消息。
 	 * @param destination the target destination
 	 * @return the received message, possibly {@code null} if the message could not
 	 * be received, for example due to a timeout
@@ -49,8 +49,7 @@ public interface MessageReceivingOperations<D> {
 	Message<?> receive(D destination) throws MessagingException;
 
 	/**
-	 * Receive a message from a default destination and convert its payload to the
-	 * specified target class.
+	 * 从默认目标接收消息，并将其载荷转换为指定目标类。
 	 * @param targetClass the target class to convert the payload to
 	 * @return the converted payload of the reply message, possibly {@code null} if
 	 * the message could not be received, for example due to a timeout
@@ -59,8 +58,7 @@ public interface MessageReceivingOperations<D> {
 	<T> T receiveAndConvert(Class<T> targetClass) throws MessagingException;
 
 	/**
-	 * Receive a message from the given destination and convert its payload to the
-	 * specified target class.
+	 * 从给定目标接收消息，并将其载荷转换为指定目标类。
 	 * @param destination the target destination
 	 * @param targetClass the target class to convert the payload to
 	 * @return the converted payload of the reply message, possibly {@code null} if

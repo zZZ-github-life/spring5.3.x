@@ -38,8 +38,7 @@ import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * A base class for {@link FlashMapManager} implementations.
- *
+ * {@link FlashMapManager} 实现的基类。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -58,23 +57,22 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 
 
 	/**
-	 * Set the amount of time in seconds after a {@link FlashMap} is saved
-	 * (at request completion) and before it expires.
-	 * <p>The default value is 180 seconds.
+	 * 设置 {@link FlashMap} 保存后（在请求完成时）到过期之前的秒数。
+	 * <p>默认值为 180 秒。
 	 */
 	public void setFlashMapTimeout(int flashMapTimeout) {
 		this.flashMapTimeout = flashMapTimeout;
 	}
 
 	/**
-	 * Return the amount of time in seconds before a FlashMap expires.
+	 * 返回 FlashMap 过期前的秒数。
 	 */
 	public int getFlashMapTimeout() {
 		return this.flashMapTimeout;
 	}
 
 	/**
-	 * Set the UrlPathHelper to use to match FlashMap instances to requests.
+	 * 设置用于将 FlashMap 实例与请求进行匹配的 UrlPathHelper。
 	 */
 	public void setUrlPathHelper(UrlPathHelper urlPathHelper) {
 		Assert.notNull(urlPathHelper, "UrlPathHelper must not be null");
@@ -82,7 +80,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	}
 
 	/**
-	 * Return the UrlPathHelper implementation to use.
+	 * 返回要使用的 UrlPathHelper 实现。
 	 */
 	public UrlPathHelper getUrlPathHelper() {
 		return this.urlPathHelper;
@@ -124,7 +122,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	}
 
 	/**
-	 * Return a list of expired FlashMap instances contained in the given list.
+	 * 返回给定列表中包含的已过期 FlashMap 实例列表。
 	 */
 	private List<FlashMap> getExpiredFlashMaps(List<FlashMap> allMaps) {
 		List<FlashMap> result = new ArrayList<>();
@@ -137,7 +135,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	}
 
 	/**
-	 * Return a FlashMap contained in the given list that matches the request.
+	 * 返回给定列表中与请求匹配的 FlashMap。
 	 * @return a matching FlashMap or {@code null}
 	 */
 	@Nullable
@@ -159,8 +157,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	}
 
 	/**
-	 * Whether the given FlashMap matches the current request.
-	 * Uses the expected request path and query parameters saved in the FlashMap.
+	 * 给定的 FlashMap 是否与当前请求匹配。使用保存在 FlashMap 中的预期请求路径和查询参数进行判断。
 	 */
 	protected boolean isFlashMapForRequest(FlashMap flashMap, HttpServletRequest request) {
 		String expectedPath = flashMap.getTargetRequestPath();
@@ -233,7 +230,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	}
 
 	/**
-	 * Retrieve saved FlashMap instances from the underlying storage.
+	 * 从底层存储中获取已保存的 FlashMap 实例。
 	 * @param request the current request
 	 * @return a List with FlashMap instances, or {@code null} if none found
 	 */
@@ -241,7 +238,7 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 	protected abstract List<FlashMap> retrieveFlashMaps(HttpServletRequest request);
 
 	/**
-	 * Update the FlashMap instances in the underlying storage.
+	 * 更新底层存储中的 FlashMap 实例。
 	 * @param flashMaps a (potentially empty) list of FlashMap instances to save
 	 * @param request the current request
 	 * @param response the current response
@@ -250,11 +247,8 @@ public abstract class AbstractFlashMapManager implements FlashMapManager {
 			List<FlashMap> flashMaps, HttpServletRequest request, HttpServletResponse response);
 
 	/**
-	 * Obtain a mutex for modifying the FlashMap List as handled by
-	 * {@link #retrieveFlashMaps} and {@link #updateFlashMaps},
-	 * <p>The default implementation returns a shared static mutex.
-	 * Subclasses are encouraged to return a more specific mutex, or
-	 * {@code null} to indicate that no synchronization is necessary.
+	 * 获取用于修改由 {@link #retrieveFlashMaps} 和 {@link #updateFlashMaps} 处理的 FlashMap 列表的互斥锁，
+	 * <p>默认实现返回共享的静态互斥锁。鼓励子类返回更具体的互斥锁，或返回 {@code null} 表示不需要同步。
 	 * @param request the current request
 	 * @return the mutex to use (may be {@code null} if none applicable)
 	 * @since 4.0.3

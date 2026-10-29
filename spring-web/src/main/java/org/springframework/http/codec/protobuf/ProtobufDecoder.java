@@ -44,28 +44,26 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.MimeType;
 
 /**
- * A {@code Decoder} that reads {@link com.google.protobuf.Message}s using
- * <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.
+ * 使用 <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>
+ * 读取 {@link com.google.protobuf.Message} 的 {@code Decoder}。
  *
- * <p>Flux deserialized via
- * {@link #decode(Publisher, ResolvableType, MimeType, Map)} are expected to use
+ * <p>通过
+ * {@link #decode(Publisher, ResolvableType, MimeType, Map)} 反序列化的 Flux 应使用
  * <a href="https://developers.google.com/protocol-buffers/docs/techniques?hl=en#streaming">
- * delimited Protobuf messages</a> with the size of each message specified before
- * the message itself. Single values deserialized via
- * {@link #decodeToMono(Publisher, ResolvableType, MimeType, Map)} are expected
- * to use regular Protobuf message format (without the size prepended before
- * the message).
+ * 带分隔符的 Protobuf 消息</a>，每条消息的大小需在消息本身之前指定。通过
+ * {@link #decodeToMono(Publisher, ResolvableType, MimeType, Map)} 反序列化的单个值
+ * 应使用常规的 Protobuf 消息格式（不在消息前附加大小）。
  *
- * <p>Notice that default instance of Protobuf message produces empty byte
- * array, so {@code Mono.just(Msg.getDefaultInstance())} sent over the network
- * will be deserialized as an empty {@link Mono}.
+ * <p>请注意，Protobuf 消息的默认实例会产生空字节数组，
+ * 因此通过网络发送的 {@code Mono.just(Msg.getDefaultInstance())}
+ * 将被反序列化为空的 {@link Mono}。
  *
- * <p>To generate {@code Message} Java classes, you need to install the
- * {@code protoc} binary.
+ * <p>要生成 {@code Message} Java 类，需要安装
+ * {@code protoc} 二进制文件。
  *
- * <p>This decoder requires Protobuf 3 or higher, and supports
- * {@code "application/x-protobuf"} and {@code "application/octet-stream"} with
- * the official {@code "com.google.protobuf:protobuf-java"} library.
+ * <p>此解码器要求 Protobuf 3 或更高版本，并支持
+ * {@code "application/x-protobuf"} 和 {@code "application/octet-stream"}，
+ * 需使用官方的 {@code "com.google.protobuf:protobuf-java"} 库。
  *
  * @author Sebastien Deleuze
  * @since 5.1
@@ -73,7 +71,7 @@ import org.springframework.util.MimeType;
  */
 public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Message> {
 
-	/** The default max size for aggregating messages. */
+	/** 聚合消息的默认最大大小。 */
 	protected static final int DEFAULT_MESSAGE_MAX_SIZE = 256 * 1024;
 
 	private static final ConcurrentMap<Class<?>, Method> methodCache = new ConcurrentReferenceHashMap<>();
@@ -85,15 +83,15 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 
 
 	/**
-	 * Construct a new {@code ProtobufDecoder}.
+	 * 构造一个新的 {@code ProtobufDecoder}。
 	 */
 	public ProtobufDecoder() {
 		this(ExtensionRegistry.newInstance());
 	}
 
 	/**
-	 * Construct a new {@code ProtobufDecoder} with an initializer that allows the
-	 * registration of message extensions.
+	 * 构造一个新的 {@code ProtobufDecoder}，并提供一个允许
+	 * 注册消息扩展的初始化器。
 	 * @param extensionRegistry a message extension registry
 	 */
 	public ProtobufDecoder(ExtensionRegistry extensionRegistry) {
@@ -103,8 +101,8 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 
 
 	/**
-	 * The max size allowed per message.
-	 * <p>By default, this is set to 256K.
+	 * 每条消息允许的最大大小。
+	 * <p>默认设置为 256K。
 	 * @param maxMessageSize the max size per message, or -1 for unlimited
 	 */
 	public void setMaxMessageSize(int maxMessageSize) {
@@ -112,7 +110,7 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 	}
 
 	/**
-	 * Return the {@link #setMaxMessageSize configured} message size limit.
+	 * 返回{@link #setMaxMessageSize 已配置}的消息大小限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxMessageSize() {
@@ -168,8 +166,8 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 
 
 	/**
-	 * Create a new {@code Message.Builder} instance for the given class.
-	 * <p>This method uses a ConcurrentHashMap for caching method lookups.
+	 * 为给定的类创建新的 {@code Message.Builder} 实例。
+	 * <p>此方法使用 ConcurrentHashMap 缓存方法查找。
 	 */
 	private static Message.Builder getMessageBuilder(Class<?> clazz) throws Exception {
 		Method method = methodCache.get(clazz);
@@ -262,9 +260,9 @@ public class ProtobufDecoder extends ProtobufCodecSupport implements Decoder<Mes
 		}
 
 		/**
-		 * Parse message size as a varint from the input stream, updating {@code messageBytesToRead} and
-		 * {@code offset} fields if needed to allow processing of upcoming chunks.
-		 * Inspired from {@link CodedInputStream#readRawVarint32(int, java.io.InputStream)}
+		 * 从输入流中解析 varint 形式的消息大小，必要时更新 {@code messageBytesToRead} 和
+		 * {@code offset} 字段，以便处理后续的数据块。
+		 * 灵感来自 {@link CodedInputStream#readRawVarint32(int, java.io.InputStream)}
 		 * @return {@code true} when the message size is parsed successfully, {@code false} when the message size is
 		 * truncated
 		 * @see <a href="https://developers.google.com/protocol-buffers/docs/encoding#varints">Base 128 Varints</a>

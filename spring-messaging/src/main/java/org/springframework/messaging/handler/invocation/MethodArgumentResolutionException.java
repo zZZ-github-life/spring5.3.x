@@ -22,8 +22,9 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Common exception resulting from the invocation of
- * {@link org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolver}.
+ * 调用
+ * {@link org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolver}
+ * 时产生的通用异常。
  *
  * @author Juergen Hoeller
  * @since 4.3.6
@@ -36,7 +37,7 @@ public class MethodArgumentResolutionException extends MessagingException {
 
 
 	/**
-	 * Create a new instance providing the invalid {@code MethodParameter}.
+	 * 创建一个提供无效 {@code MethodParameter} 的新实例。
 	 */
 	public MethodArgumentResolutionException(Message<?> message, MethodParameter parameter) {
 		super(message, getMethodParameterMessage(parameter));
@@ -44,8 +45,7 @@ public class MethodArgumentResolutionException extends MessagingException {
 	}
 
 	/**
-	 * Create a new instance providing the invalid {@code MethodParameter} and
-	 * a prepared description.
+	 * 创建一个提供无效 {@code MethodParameter} 和预准备描述的新实例。
 	 */
 	public MethodArgumentResolutionException(Message<?> message, MethodParameter parameter, String description) {
 		super(message, getMethodParameterMessage(parameter) + ": " + description);
@@ -53,8 +53,7 @@ public class MethodArgumentResolutionException extends MessagingException {
 	}
 
 	/**
-	 * Create a new instance providing the invalid {@code MethodParameter},
-	 * prepared description, and a cause.
+	 * 创建一个提供无效 {@code MethodParameter}、预准备描述和原因的新实例。
 	 */
 	public MethodArgumentResolutionException(
 			Message<?> message, MethodParameter parameter, String description, @Nullable Throwable cause) {
@@ -65,7 +64,7 @@ public class MethodArgumentResolutionException extends MessagingException {
 
 
 	/**
-	 * Return the MethodParameter that was rejected.
+	 * 返回被拒绝的 MethodParameter。
 	 */
 	public final MethodParameter getMethodParameter() {
 		return this.parameter;

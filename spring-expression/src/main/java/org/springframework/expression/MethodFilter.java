@@ -20,12 +20,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * MethodFilter instances allow SpEL users to fine tune the behaviour of the method
- * resolution process. Method resolution (which translates from a method name in an
- * expression to a real method to invoke) will normally retrieve candidate methods for
- * invocation via a simple call to 'Class.getMethods()' and will choose the first one that
- * is suitable for the input parameters. By registering a MethodFilter the user can
- * receive a callback and change the methods that will be considered suitable.
+ * MethodFilter 实例允许 SpEL 用户微调方法解析过程的行为。方法解析（将表达式中的方法名转换为要调用
+ * 的真实方法）通常会通过简单调用 'Class.getMethods()' 获取候选方法，并选择第一个适合输入参数的方法。
+ * 通过注册 MethodFilter，用户可以接收回调并更改被视为合适的方法。
  *
  * @author Andy Clement
  * @since 3.0.1
@@ -34,11 +31,8 @@ import java.util.List;
 public interface MethodFilter {
 
 	/**
-	 * Called by the method resolver to allow the SpEL user to organize the list of
-	 * candidate methods that may be invoked. The filter can remove methods that should
-	 * not be considered candidates and it may sort the results. The resolver will then
-	 * search through the methods as returned from the filter when looking for a suitable
-	 * candidate to invoke.
+	 * 由方法解析器调用，以便 SpEL 用户整理可能被调用的候选方法列表。该过滤器可以移除不应被视为候选的方
+	 * 法，并可以对结果排序。随后，解析器在寻找合适的候选方法时会按照过滤器返回的方法顺序进行搜索。
 	 * @param methods the full list of methods the resolver was going to choose from
 	 * @return a possible subset of input methods that may be sorted by order of relevance
 	 */

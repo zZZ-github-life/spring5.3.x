@@ -1,14 +1,12 @@
 /**
- * <strong>Deprecated</strong> as of Spring Framework 5.2 in favor of complete
- * solutions from third parties such as
- * <a href="https://github.com/h-thurow/Simple-JNDI">Simple-JNDI</a>.
+ * 自 Spring Framework 5.2 起<strong>已废弃</strong>，请改用第三方完整解决方案，
+ * 例如 <a href="https://github.com/h-thurow/Simple-JNDI">Simple-JNDI</a>。
  *
- * <p>The simplest implementation of the JNDI SPI that could possibly work.
+ * <p>可能可行的最简 JNDI SPI 实现。
  *
- * <p>Useful for setting up a simple JNDI environment for test suites
- * or stand-alone applications. If, for example, JDBC DataSources get bound to the
- * same JNDI names as within a Java EE container, both application code and
- * configuration can be reused without changes.
+ * <p>可用于为测试套件或独立应用程序设置简单的 JNDI 环境。
+ * 例如，如果将 JDBC DataSource 绑定到与 Java EE 容器中相同的
+ * JNDI 名称，则应用程序代码和配置都可以原样复用，无需更改。
  */
 @NonNullApi
 @NonNullFields

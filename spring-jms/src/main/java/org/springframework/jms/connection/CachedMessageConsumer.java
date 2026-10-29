@@ -28,8 +28,7 @@ import javax.jms.TopicSubscriber;
 import org.springframework.lang.Nullable;
 
 /**
- * JMS MessageConsumer decorator that adapts all calls
- * to a shared MessageConsumer instance underneath.
+ * JMS MessageConsumer 装饰器，将所有调用适配到其下共享的 MessageConsumer 实例。
  *
  * @author Juergen Hoeller
  * @since 2.5.6

@@ -46,13 +46,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Helper class for use in bean factory implementations,
- * resolving values contained in bean definition objects
- * into the actual values applied to the target bean instance.
+ * 用于 Bean 工厂实现的辅助类，将 Bean 定义对象中包含的值解析为应用于目标 Bean 实例的实际值。
  *
- * <p>Operates on an {@link AbstractBeanFactory} and a plain
- * {@link org.springframework.beans.factory.config.BeanDefinition} object.
- * Used by {@link AbstractAutowireCapableBeanFactory}.
+ * <p>作用于一个 {@link AbstractBeanFactory} 和一个普通的
+ * {@link org.springframework.beans.factory.config.BeanDefinition} 对象。由
+ * {@link AbstractAutowireCapableBeanFactory} 使用。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -70,7 +68,7 @@ class BeanDefinitionValueResolver {
 
 
 	/**
-	 * Create a BeanDefinitionValueResolver for the given BeanFactory and BeanDefinition.
+	 * 为给定的 BeanFactory 和 BeanDefinition 创建一个 BeanDefinitionValueResolver。
 	 * @param beanFactory the BeanFactory to resolve against
 	 * @param beanName the name of the bean that we work on
 	 * @param beanDefinition the BeanDefinition of the bean that we work on
@@ -87,19 +85,12 @@ class BeanDefinitionValueResolver {
 
 
 	/**
-	 * Given a PropertyValue, return a value, resolving any references to other
-	 * beans in the factory if necessary. The value could be:
-	 * <li>A BeanDefinition, which leads to the creation of a corresponding
-	 * new bean instance. Singleton flags and names of such "inner beans"
-	 * are always ignored: Inner beans are anonymous prototypes.
-	 * <li>A RuntimeBeanReference, which must be resolved.
-	 * <li>A ManagedList. This is a special collection that may contain
-	 * RuntimeBeanReferences or Collections that will need to be resolved.
-	 * <li>A ManagedSet. May also contain RuntimeBeanReferences or
-	 * Collections that will need to be resolved.
-	 * <li>A ManagedMap. In this case the value may be a RuntimeBeanReference
-	 * or Collection that will need to be resolved.
-	 * <li>An ordinary object or {@code null}, in which case it's left alone.
+	 * 给定一个 PropertyValue，返回其值，必要时解析对工厂中其他 bean 的引用。该值可能是：<li>一个
+	 * BeanDefinition，这会创建相应的新 bean 实例。这类“内部 bean”的单例标志和名称总会被忽略：内部 bean
+	 * 是匿名原型。<li>一个 RuntimeBeanReference，必须被解析。<li>一个 ManagedList。这是一个特殊集合，
+	 * 可能包含需要解析的 RuntimeBeanReference 或 Collection。<li>一个 ManagedSet。同样可能包含需要解析
+	 * 的 RuntimeBeanReference 或 Collection。<li>一个 ManagedMap。此时值可能是需要解析的
+	 * RuntimeBeanReference 或 Collection。<li>一个普通对象或 {@code null}，此时保持原样。
 	 * @param argName the name of the argument that the value is defined for
 	 * @param value the value object to resolve
 	 * @return the resolved object
@@ -228,7 +219,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Evaluate the given value as an expression, if necessary.
+	 * 如有必要，将给定值作为表达式求值。
 	 * @param value the candidate value (may be an expression)
 	 * @return the resolved value
 	 */
@@ -242,7 +233,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Evaluate the given value as an expression, if necessary.
+	 * 如有必要，将给定值作为表达式求值。
 	 * @param value the original value (may be an expression)
 	 * @return the resolved value if necessary, or the original value
 	 */
@@ -271,7 +262,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Evaluate the given String value as an expression, if necessary.
+	 * 如有必要，将给定的 String 值作为表达式求值。
 	 * @param value the original value (may be an expression)
 	 * @return the resolved value if necessary, or the original String value
 	 */
@@ -281,7 +272,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Resolve the target type in the given TypedStringValue.
+	 * 解析给定 TypedStringValue 中的目标类型。
 	 * @param value the TypedStringValue to resolve
 	 * @return the resolved target type (or {@code null} if none specified)
 	 * @throws ClassNotFoundException if the specified type cannot be resolved
@@ -296,7 +287,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Resolve a reference to another bean in the factory.
+	 * 解析对工厂中另一个 bean 的引用。
 	 */
 	@Nullable
 	private Object resolveReference(Object argName, RuntimeBeanReference ref) {
@@ -344,7 +335,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Resolve an inner bean definition.
+	 * 解析内部 Bean 定义。
 	 * @param argName the name of the argument that the inner bean is defined for
 	 * @param innerBeanName the name of the inner bean
 	 * @param innerBd the bean definition for the inner bean
@@ -392,8 +383,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * Checks the given bean name whether it is unique. If not already unique,
-	 * a counter is added, increasing the counter until the name is unique.
+	 * 检查给定 bean 名称是否唯一。如果尚不唯一，则添加一个计数器，递增计数器直到名称唯一。
 	 * @param innerBeanName the original name for the inner bean
 	 * @return the adapted name for the inner bean
 	 */
@@ -409,7 +399,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * For each element in the managed array, resolve reference if necessary.
+	 * 对托管数组中的每个元素，如有必要则解析引用。
 	 */
 	private Object resolveManagedArray(Object argName, List<?> ml, Class<?> elementType) {
 		Object resolved = Array.newInstance(elementType, ml.size());
@@ -420,7 +410,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * For each element in the managed list, resolve reference if necessary.
+	 * 对托管列表中的每个元素，如有必要则解析引用。
 	 */
 	private List<?> resolveManagedList(Object argName, List<?> ml) {
 		List<Object> resolved = new ArrayList<>(ml.size());
@@ -431,7 +421,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * For each element in the managed set, resolve reference if necessary.
+	 * 对托管集合中的每个元素，如有必要则解析引用。
 	 */
 	private Set<?> resolveManagedSet(Object argName, Set<?> ms) {
 		Set<Object> resolved = new LinkedHashSet<>(ms.size());
@@ -444,7 +434,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
-	 * For each element in the managed map, resolve reference if necessary.
+	 * 对托管映射中的每个元素，如有必要则解析引用。
 	 */
 	private Map<?, ?> resolveManagedMap(Object argName, Map<?, ?> mm) {
 		Map<Object, Object> resolved = CollectionUtils.newLinkedHashMap(mm.size());
@@ -458,7 +448,7 @@ class BeanDefinitionValueResolver {
 
 
 	/**
-	 * Holder class used for delayed toString building.
+	 * 用于延迟构建 toString 的持有者类。
 	 */
 	private static class KeyedArgName {
 

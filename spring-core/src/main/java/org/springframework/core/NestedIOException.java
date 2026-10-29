@@ -21,15 +21,13 @@ import java.io.IOException;
 import org.springframework.lang.Nullable;
 
 /**
- * Subclass of {@link IOException} that properly handles a root cause,
- * exposing the root cause just like NestedChecked/RuntimeException does.
+ * {@link IOException} 的子类，能够正确处理根因，像 NestedChecked/RuntimeException 那样暴露根因。
  *
- * <p>Proper root cause handling was added to the standard {@code IOException} in
- * Java 6, which is why Spring originally introduced {@code NestedIOException}
- * for compatibility with versions prior to Java 6.
+ * <p>Java 6 为标准 {@code IOException} 添加了正确的根因处理，这也是 Spring 最初引入
+ * {@code NestedIOException} 以兼容 Java 6 之前版本的原因。
  *
- * <p>The similarity between this class and the NestedChecked/RuntimeException
- * class is unavoidable, as this class needs to derive from IOException.
+ * <p>此类与 NestedChecked/RuntimeException 类之间的相似性不可避免，因为此类需要派生自 IOException
+ * 。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -51,7 +49,7 @@ public class NestedIOException extends IOException {
 
 
 	/**
-	 * Construct a {@code NestedIOException} with the specified detail message.
+	 * 使用指定的详细消息构造一个 {@code NestedIOException}。
 	 * @param msg the detail message
 	 */
 	public NestedIOException(String msg) {
@@ -59,8 +57,7 @@ public class NestedIOException extends IOException {
 	}
 
 	/**
-	 * Construct a {@code NestedIOException} with the specified detail message
-	 * and nested exception.
+	 * 使用指定的详细消息和嵌套异常构造一个 {@code NestedIOException}。
 	 * @param msg the detail message
 	 * @param cause the nested exception
 	 */
@@ -70,8 +67,7 @@ public class NestedIOException extends IOException {
 
 
 	/**
-	 * Return the detail message, including the message from the nested exception
-	 * if there is one.
+	 * 返回详细消息，其中包括来自嵌套异常的消息（如果有）。
 	 */
 	@Override
 	@Nullable

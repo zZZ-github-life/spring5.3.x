@@ -33,8 +33,7 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
 import org.springframework.web.reactive.socket.server.WebSocketService;
 
 /**
- * A {@link WebFluxConfigurer} that delegates to one or more others.
- *
+ * 委托给一个或多个其他 {@link WebFluxConfigurer} 的 {@link WebFluxConfigurer}。
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @since 5.0

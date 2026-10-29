@@ -23,13 +23,11 @@ import javax.transaction.Transaction;
 import org.springframework.lang.Nullable;
 
 /**
- * Strategy interface for creating JTA {@link javax.transaction.Transaction}
- * objects based on specified transactional characteristics.
+ * 基于指定的事务特征创建JTA {@link javax.transaction.Transaction}对象的策略接口。
  *
- * <p>The default implementation, {@link SimpleTransactionFactory}, simply
- * wraps a standard JTA {@link javax.transaction.TransactionManager}.
- * This strategy interface allows for more sophisticated implementations
- * that adapt to vendor-specific JTA extensions.
+ * <p>默认实现{@link SimpleTransactionFactory}简单地包装标准的JTA
+ * {@link javax.transaction.TransactionManager}。此策略接口允许更复杂的实现,
+ * 以适配厂商特定的JTA扩展。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -40,7 +38,7 @@ import org.springframework.lang.Nullable;
 public interface TransactionFactory {
 
 	/**
-	 * Create an active Transaction object based on the given name and timeout.
+	 * 基于给定的名称和超时时间创建一个活动的Transaction对象。
 	 * @param name the transaction name (may be {@code null})
 	 * @param timeout the transaction timeout (may be -1 for the default timeout)
 	 * @return the active Transaction object (never {@code null})
@@ -52,12 +50,11 @@ public interface TransactionFactory {
 	Transaction createTransaction(@Nullable String name, int timeout) throws NotSupportedException, SystemException;
 
 	/**
-	 * Determine whether the underlying transaction manager supports XA transactions
-	 * managed by a resource adapter (i.e. without explicit XA resource enlistment).
-	 * <p>Typically {@code false}. Checked by
-	 * {@link org.springframework.jca.endpoint.AbstractMessageEndpointFactory}
-	 * in order to differentiate between invalid configuration and valid
-	 * ResourceAdapter-managed transactions.
+	 * 确定底层事务管理器是否支持由资源适配器管理的XA事务
+	 * (即无需显式的XA资源登记)。
+	 * <p>通常为{@code false}。由
+	 * {@link org.springframework.jca.endpoint.AbstractMessageEndpointFactory}检查,
+	 * 以区分无效配置和有效的ResourceAdapter管理事务。
 	 * @see javax.resource.spi.ResourceAdapter#endpointActivation
 	 * @see javax.resource.spi.endpoint.MessageEndpointFactory#isDeliveryTransacted
 	 */

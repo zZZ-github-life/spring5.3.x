@@ -1,10 +1,9 @@
 /**
- * Support package for declarative JSR-107 caching configuration. Used
- * by the regular Spring's caching configuration when it detects the
- * JSR-107 API and Spring's JCache implementation.
+ * 声明式 JSR-107 缓存配置的支持包。
+ * 当 Spring 的常规缓存配置检测到 JSR-107 API 和 Spring 的 JCache 实现时使用。
  *
- * <p>Provide an extension of the {@code CachingConfigurer} that exposes
- * the exception cache resolver to use, see {@code JCacheConfigurer}.
+ * <p>提供 {@code CachingConfigurer} 的扩展，暴露所使用的异常缓存解析器，
+ * 参见 {@code JCacheConfigurer}。
  */
 @NonNullApi
 @NonNullFields

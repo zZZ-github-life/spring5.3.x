@@ -1,6 +1,5 @@
 /**
- * Common infrastructure for invoking message handler methods with non-blocking,
- * and reactive contracts.
+ * 用于以非阻塞、响应式契约调用消息处理方法的通用基础设施。
  */
 @NonNullApi
 @NonNullFields

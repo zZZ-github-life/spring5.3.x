@@ -19,7 +19,7 @@ package org.springframework.aop.config;
 import org.springframework.beans.factory.parsing.ParseState;
 
 /**
- * {@link ParseState} entry representing an advice element.
+ * 表示通知元素的 {@link ParseState} 条目。
  *
  * @author Mark Fisher
  * @since 2.0
@@ -30,7 +30,7 @@ public class AdviceEntry implements ParseState.Entry {
 
 
 	/**
-	 * Create a new {@code AdviceEntry} instance.
+	 * 创建一个新的 {@code AdviceEntry} 实例。
 	 * @param kind the kind of advice represented by this entry (before, after, around)
 	 */
 	public AdviceEntry(String kind) {

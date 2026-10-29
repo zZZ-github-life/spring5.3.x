@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link AnnotationVisitor} to recursively visit annotation arrays.
+ * 用于递归访问注解数组的 {@link AnnotationVisitor}。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

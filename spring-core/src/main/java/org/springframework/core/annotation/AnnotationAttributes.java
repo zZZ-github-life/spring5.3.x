@@ -27,14 +27,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link LinkedHashMap} subclass representing annotation attribute
- * <em>key-value</em> pairs as read by {@link AnnotationUtils},
- * {@link AnnotatedElementUtils}, and Spring's reflection- and ASM-based
- * {@link org.springframework.core.type.AnnotationMetadata} implementations.
+ * {@link LinkedHashMap} 子类，表示由 {@link AnnotationUtils}、{@link AnnotatedElementUtils} 以及
+ * Spring 基于反射和 ASM 的 {@link org.springframework.core.type.AnnotationMetadata} 实现所读取的注
+ * 解属性<em>键值</em>对。
  *
- * <p>Provides 'pseudo-reification' to avoid noisy Map generics in the calling
- * code as well as convenience methods for looking up annotation attributes
- * in a type-safe fashion.
+ * <p>提供“伪具体化”，以避免调用代码中出现喧杂的 Map 泛型，同时提供以类型安全方式查找注解属性的便捷
+ * 方法。
  *
  * @author Chris Beams
  * @author Sam Brannen
@@ -57,7 +55,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 
 	/**
-	 * Create a new, empty {@link AnnotationAttributes} instance.
+	 * 创建一个新的空 {@link AnnotationAttributes} 实例。
 	 */
 	public AnnotationAttributes() {
 		this.annotationType = null;
@@ -65,8 +63,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a new, empty {@link AnnotationAttributes} instance with the
-	 * given initial capacity to optimize performance.
+	 * 使用给定的初始容量创建一个新的空 {@link AnnotationAttributes} 实例，以优化性能。
 	 * @param initialCapacity initial size of the underlying map
 	 */
 	public AnnotationAttributes(int initialCapacity) {
@@ -76,8 +73,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a new {@link AnnotationAttributes} instance, wrapping the provided
-	 * map and all its <em>key-value</em> pairs.
+	 * 创建一个新的 {@link AnnotationAttributes} 实例，包装所提供的 Map 及其所有<em>键值</em>对。
 	 * @param map original source of annotation attribute <em>key-value</em> pairs
 	 * @see #fromMap(Map)
 	 */
@@ -88,8 +84,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a new {@link AnnotationAttributes} instance, wrapping the provided
-	 * map and all its <em>key-value</em> pairs.
+	 * 创建一个新的 {@link AnnotationAttributes} 实例，包装所提供的 Map 及其所有<em>键值</em>对。
 	 * @param other original source of annotation attribute <em>key-value</em> pairs
 	 * @see #fromMap(Map)
 	 */
@@ -101,8 +96,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a new, empty {@link AnnotationAttributes} instance for the
-	 * specified {@code annotationType}.
+	 * 为指定的 {@code annotationType} 创建一个新的空 {@link AnnotationAttributes} 实例。
 	 * @param annotationType the type of annotation represented by this
 	 * {@code AnnotationAttributes} instance; never {@code null}
 	 * @since 4.2
@@ -114,9 +108,8 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a possibly already validated new, empty
-	 * {@link AnnotationAttributes} instance for the specified
-	 * {@code annotationType}.
+	 * 为指定的 {@code annotationType} 创建一个可能已经过校验的新的空 {@link AnnotationAttributes} 实例。
+	 *
 	 * @param annotationType the type of annotation represented by this
 	 * {@code AnnotationAttributes} instance; never {@code null}
 	 * @param validated if the attributes are considered already validated
@@ -130,8 +123,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Create a new, empty {@link AnnotationAttributes} instance for the
-	 * specified {@code annotationType}.
+	 * 为指定的 {@code annotationType} 创建一个新的空 {@link AnnotationAttributes} 实例。
 	 * @param annotationType the annotation type name represented by this
 	 * {@code AnnotationAttributes} instance; never {@code null}
 	 * @param classLoader the ClassLoader to try to load the annotation type on,
@@ -160,7 +152,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 
 	/**
-	 * Get the type of annotation represented by this {@code AnnotationAttributes}.
+	 * 获取此 {@code AnnotationAttributes} 所表示的注解类型。
 	 * @return the annotation type, or {@code null} if unknown
 	 * @since 4.2
 	 */
@@ -170,7 +162,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as a string.
+	 * 以字符串形式获取存储在指定 {@code attributeName} 下的值。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -182,11 +174,8 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as an
-	 * array of strings.
-	 * <p>If the value stored under the specified {@code attributeName} is
-	 * a string, it will be wrapped in a single-element array before
-	 * returning it.
+	 * 以字符串数组形式获取存储在指定 {@code attributeName} 下的值。
+	 * <p>如果存储在指定 {@code attributeName} 下的值是字符串，则在返回之前会将其包装为单元素数组。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -198,7 +187,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as a boolean.
+	 * 以布尔值形式获取存储在指定 {@code attributeName} 下的值。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -210,7 +199,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as a number.
+	 * 以数字形式获取存储在指定 {@code attributeName} 下的值。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -223,7 +212,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as an enum.
+	 * 以枚举形式获取存储在指定 {@code attributeName} 下的值。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -236,7 +225,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as a class.
+	 * 以类形式获取存储在指定 {@code attributeName} 下的值。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -249,10 +238,8 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName} as an
-	 * array of classes.
-	 * <p>If the value stored under the specified {@code attributeName} is a class,
-	 * it will be wrapped in a single-element array before returning it.
+	 * 以类数组形式获取存储在指定 {@code attributeName} 下的值。
+	 * <p>如果存储在指定 {@code attributeName} 下的值是类，则在返回之前会将其包装为单元素数组。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the value
@@ -264,10 +251,8 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the {@link AnnotationAttributes} stored under the specified
-	 * {@code attributeName}.
-	 * <p>Note: if you expect an actual annotation, invoke
-	 * {@link #getAnnotation(String, Class)} instead.
+	 * 获取存储在指定 {@code attributeName} 下的 {@link AnnotationAttributes}。
+	 * <p>注意：如果期望获取实际的注解，请改为调用 {@link #getAnnotation(String, Class)}。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the {@code AnnotationAttributes}
@@ -279,8 +264,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the annotation of type {@code annotationType} stored under the
-	 * specified {@code attributeName}.
+	 * 获取存储在指定 {@code attributeName} 下的 {@code annotationType} 类型的注解。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @param annotationType the expected annotation type; never {@code null}
@@ -294,13 +278,10 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the array of {@link AnnotationAttributes} stored under the specified
-	 * {@code attributeName}.
-	 * <p>If the value stored under the specified {@code attributeName} is
-	 * an instance of {@code AnnotationAttributes}, it will be wrapped in
-	 * a single-element array before returning it.
-	 * <p>Note: if you expect an actual array of annotations, invoke
-	 * {@link #getAnnotationArray(String, Class)} instead.
+	 * 获取存储在指定 {@code attributeName} 下的 {@link AnnotationAttributes} 数组。
+	 * <p>如果存储在指定 {@code attributeName} 下的值是 {@code AnnotationAttributes} 的实例，则在返回之
+	 * 前会将其包装为单元素数组。
+	 * <p>注意：如果期望获取实际的注解数组，请改为调用 {@link #getAnnotationArray(String, Class)}。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @return the array of {@code AnnotationAttributes}
@@ -312,11 +293,9 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the array of type {@code annotationType} stored under the specified
-	 * {@code attributeName}.
-	 * <p>If the value stored under the specified {@code attributeName} is
-	 * an {@code Annotation}, it will be wrapped in a single-element array
-	 * before returning it.
+	 * 获取存储在指定 {@code attributeName} 下的 {@code annotationType} 类型的数组。
+	 * <p>如果存储在指定 {@code attributeName} 下的值是 {@code Annotation}，则在返回之前会将其包装为单
+	 * 元素数组。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @param annotationType the expected annotation type; never {@code null}
@@ -332,13 +311,9 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 	}
 
 	/**
-	 * Get the value stored under the specified {@code attributeName},
-	 * ensuring that the value is of the {@code expectedType}.
-	 * <p>If the {@code expectedType} is an array and the value stored
-	 * under the specified {@code attributeName} is a single element of the
-	 * component type of the expected array type, the single element will be
-	 * wrapped in a single-element array of the appropriate type before
-	 * returning it.
+	 * 获取存储在指定 {@code attributeName} 下的值，并确保该值为 {@code expectedType}。
+	 * <p>如果 {@code expectedType} 是数组，而存储在指定 {@code attributeName} 下的值是预期数组类型的组
+	 * 件类型的单个元素，则在返回之前会将该单个元素包装为相应类型的单元素数组。
 	 * @param attributeName the name of the attribute to get;
 	 * never {@code null} or empty
 	 * @param expectedType the expected type; never {@code null}
@@ -414,11 +389,9 @@ public class AnnotationAttributes extends LinkedHashMap<String, Object> {
 
 
 	/**
-	 * Return an {@link AnnotationAttributes} instance based on the given map.
-	 * <p>If the map is already an {@code AnnotationAttributes} instance, it
-	 * will be cast and returned immediately without creating a new instance.
-	 * Otherwise a new instance will be created by passing the supplied map
-	 * to the {@link #AnnotationAttributes(Map)} constructor.
+	 * 根据给定 Map 返回一个 {@link AnnotationAttributes} 实例。
+	 * <p>如果该 Map 已经是 {@code AnnotationAttributes} 实例，则会直接强制转换并返回，不会创建新实例。
+	 * 否则，将把所提供的 Map 传递给 {@link #AnnotationAttributes(Map)} 构造函数来创建新实例。
 	 * @param map original source of annotation attribute <em>key-value</em> pairs
 	 */
 	@Nullable

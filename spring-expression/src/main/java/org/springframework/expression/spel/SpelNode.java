@@ -21,7 +21,7 @@ import org.springframework.expression.TypedValue;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a node in the AST for a parsed expression.
+ * 表示已解析表达式 AST 中的节点。
  *
  * @author Andy Clement
  * @since 3.0
@@ -29,8 +29,7 @@ import org.springframework.lang.Nullable;
 public interface SpelNode {
 
 	/**
-	 * Evaluate the expression node in the context of the supplied expression state
-	 * and return the value.
+	 * 在提供的表达式状态的上下文中求值该表达式节点，并返回值。
 	 * @param expressionState the current expression state (includes the context)
 	 * @return the value of this node evaluated against the specified state
 	 */
@@ -38,15 +37,14 @@ public interface SpelNode {
 	Object getValue(ExpressionState expressionState) throws EvaluationException;
 
 	/**
-	 * Evaluate the expression node in the context of the supplied expression state
-	 * and return the typed value.
+	 * 在提供的表达式状态的上下文中求值该表达式节点，并返回带类型的值。
 	 * @param expressionState the current expression state (includes the context)
 	 * @return the type value of this node evaluated against the specified state
 	 */
 	TypedValue getTypedValue(ExpressionState expressionState) throws EvaluationException;
 
 	/**
-	 * Determine if this expression node will support a setValue() call.
+	 * 判断此表达式节点是否支持 setValue() 调用。
 	 * @param expressionState the current expression state (includes the context)
 	 * @return true if the expression node will allow setValue()
 	 * @throws EvaluationException if something went wrong trying to determine
@@ -55,9 +53,8 @@ public interface SpelNode {
 	boolean isWritable(ExpressionState expressionState) throws EvaluationException;
 
 	/**
-	 * Evaluate the expression to a node and then set the new value on that node.
-	 * For example, if the expression evaluates to a property reference, then the
-	 * property will be set to the new value.
+	 * 将表达式求值为一个节点，然后在该节点上设置新值。例如，如果表达式求值结果为属性引用，则会将该属性
+	 * 设置为新值。
 	 * @param expressionState the current expression state (includes the context)
 	 * @param newValue the new value
 	 * @throws EvaluationException if any problem occurs evaluating the expression or
@@ -66,25 +63,25 @@ public interface SpelNode {
 	void setValue(ExpressionState expressionState, @Nullable Object newValue) throws EvaluationException;
 
 	/**
-	 * Return the string form of this AST node.
+	 * 返回此 AST 节点的字符串形式。
 	 * @return the string form
 	 */
 	String toStringAST();
 
 	/**
-	 * Return the number of children under this node.
+	 * 返回此节点下的子节点数量。
 	 * @return the child count
 	 */
 	int getChildCount();
 
 	/**
-	 * Helper method that returns a SpelNode rather than an Antlr Tree node.
+	 * 返回 SpelNode 而非 Antlr Tree 节点的辅助方法。
 	 * @return the child node cast to a SpelNode
 	 */
 	SpelNode getChild(int index);
 
 	/**
-	 * Determine the class of the object passed in, unless it is already a class object.
+	 * 确定传入对象的类，除非它本身已经是 Class 对象。
 	 * @param obj the object that the caller wants the class of
 	 * @return the class of the object if it is not already a class object,
 	 * or {@code null} if the object is {@code null}
@@ -93,13 +90,13 @@ public interface SpelNode {
 	Class<?> getObjectClass(@Nullable Object obj);
 
 	/**
-	 * Return the start position of this AST node in the expression string.
+	 * 返回此 AST 节点在表达式字符串中的起始位置。
 	 * @return the start position
 	 */
 	int getStartPosition();
 
 	/**
-	 * Return the end position of this AST node in the expression string.
+	 * 返回此 AST 节点在表达式字符串中的结束位置。
 	 * @return the end position
 	 */
 	int getEndPosition();

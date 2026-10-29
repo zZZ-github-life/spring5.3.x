@@ -21,10 +21,10 @@ import java.io.IOException;
 import org.springframework.http.HttpRequest;
 
 /**
- * Represents the context of a client-side HTTP request execution.
+ * 表示客户端 HTTP 请求执行的上下文。
  *
- * <p>Used to invoke the next interceptor in the interceptor chain,
- * or - if the calling interceptor is last - execute the request itself.
+ * <p>用于调用拦截器链中的下一个拦截器，
+ * 或者如果当前拦截器是最后一个，则执行请求本身。
  *
  * @author Arjen Poutsma
  * @since 3.1
@@ -34,8 +34,8 @@ import org.springframework.http.HttpRequest;
 public interface ClientHttpRequestExecution {
 
 	/**
-	 * Execute the request with the given request attributes and body,
-	 * and return the response.
+	 * 使用给定的请求属性和正文执行请求，
+	 * 并返回响应。
 	 * @param request the request, containing method, URI, and headers
 	 * @param body the body of the request to execute
 	 * @return the response

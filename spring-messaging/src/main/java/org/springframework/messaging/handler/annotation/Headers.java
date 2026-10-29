@@ -23,9 +23,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation which indicates that a method parameter should be bound to the headers of a
- * message. The annotated parameter must be assignable to {@link java.util.Map} with
- * String keys and Object values.
+ * 指示方法参数应绑定到消息头的注解。带注解的参数必须可赋值给
+ * 键为 String、值为 Object 的 {@link java.util.Map}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

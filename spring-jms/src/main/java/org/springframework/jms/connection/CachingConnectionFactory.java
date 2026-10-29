@@ -49,45 +49,37 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@link SingleConnectionFactory} subclass that adds {@link Session} caching as well as
- * {@link MessageProducer} and {@link MessageConsumer} caching. This ConnectionFactory
- * also switches the {@link #setReconnectOnException "reconnectOnException" property}
- * to "true" by default, allowing for automatic recovery of the underlying Connection.
+ * {@link SingleConnectionFactory} 的子类，增加了 {@link Session} 缓存以及
+ * {@link MessageProducer} 和 {@link MessageConsumer} 缓存。此 ConnectionFactory
+ * 还将 {@link #setReconnectOnException "reconnectOnException" 属性}
+ * 默认切换为 "true"，从而允许底层 Connection 自动恢复。
  *
- * <p>By default, only one single Session will be cached, with further requested
- * Sessions being created and disposed on demand. Consider raising the
- * {@link #setSessionCacheSize "sessionCacheSize" value} in case of a
- * high-concurrency environment.
+ * <p>默认情况下只缓存一个 Session，进一步请求的 Session 将按需创建和销毁。
+ * 在高并发环境中，请考虑提高
+ * {@link #setSessionCacheSize "sessionCacheSize" 值}。
  *
- * <p>When using the JMS 1.0.2 API, this ConnectionFactory will switch
- * into queue/topic mode according to the JMS API methods used at runtime:
- * {@code createQueueConnection} and {@code createTopicConnection} will
- * lead to queue/topic mode, respectively; generic {@code createConnection}
- * calls will lead to a JMS 1.1 connection which is able to serve both modes.
+ * <p>使用 JMS 1.0.2 API 时，此 ConnectionFactory 会根据运行时使用的 JMS API 方法
+ * 切换到队列/主题模式：{@code createQueueConnection} 和 {@code createTopicConnection}
+ * 分别对应队列模式和主题模式；通用的 {@code createConnection} 调用会得到一个
+ * 能够同时服务两种模式的 JMS 1.1 连接。
  *
- * <p>As of Spring Framework 5, this class supports JMS 2.0 {@code JMSContext}
- * calls and therefore requires the JMS 2.0 API to be present at runtime.
- * It may nevertheless run against a JMS 1.1 driver (bound to the JMS 2.0 API)
- * as long as no actual JMS 2.0 calls are triggered by the application's setup.
+ * <p>从 Spring Framework 5 开始，此类支持 JMS 2.0 {@code JMSContext} 调用，
+ * 因此要求运行时存在 JMS 2.0 API。不过，只要应用设置不触发实际的 JMS 2.0 调用，
+ * 它仍然可以运行在 JMS 1.1 驱动之上（绑定到 JMS 2.0 API）。
  *
- * <p><b>NOTE: This ConnectionFactory requires explicit closing of all Sessions
- * obtained from its shared Connection.</b> This is the usual recommendation for
- * native JMS access code anyway. However, with this ConnectionFactory, its use
- * is mandatory in order to actually allow for Session reuse.
+ * <p><b>注意：此 ConnectionFactory 要求显式关闭从其共享 Connection 获取的所有
+ * Session。</b>无论如何，这都是使用原生 JMS 访问代码时的常见建议。
+ * 但是，使用此 ConnectionFactory 时，为了真正实现 Session 复用，必须这样做。
  *
- * <p>Note also that MessageConsumers obtained from a cached Session won't get
- * closed until the Session will eventually be removed from the pool. This may
- * lead to semantic side effects in some cases. For a durable subscriber, the
- * logical {@code Session.close()} call will also close the subscription.
- * Re-registering a durable consumer for the same subscription on the same
- * Session handle is not supported; close and reobtain a cached Session first.
+ * <p>另请注意，从缓存 Session 获取的 MessageConsumer 在 Session 最终从池中移除之前
+ * 不会被关闭。这在某些情况下可能导致语义上的副作用。对于持久订阅者，
+ * 逻辑上的 {@code Session.close()} 调用也会关闭订阅。不支持在同一个 Session
+ * 句柄上为同一订阅重新注册持久消费者；请先关闭并重新获取一个缓存的 Session。
  *
- * <p>Last but not least, MessageProducers and MessageConsumers for temporary
- * queues and topics (TemporaryQueue/TemporaryTopic) will never be cached.
- * Unfortunately, WebLogic JMS happens to implement the temporary queue/topic
- * interfaces on its regular destination implementation, mis-indicating that
- * none of its destinations can be cached. Please use a different connection
- * pool/cache on WebLogic, or customize this class for WebLogic purposes.
+ * <p>最后，临时队列和临时主题（TemporaryQueue/TemporaryTopic）的 MessageProducer
+ * 和 MessageConsumer 永远不会被缓存。不幸的是，WebLogic JMS 恰好在其常规目标实现上
+ * 实现了临时队列/主题接口，错误地表明其所有目标都无法缓存。在 WebLogic 上请使用
+ * 不同的连接池/缓存，或为此目的自定义此类。
  *
  * @author Juergen Hoeller
  * @since 2.5.3
@@ -110,7 +102,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 
 	/**
-	 * Create a new CachingConnectionFactory for bean-style usage.
+	 * 创建一个用于 bean 风格用法的新 CachingConnectionFactory。
 	 * @see #setTargetConnectionFactory
 	 */
 	public CachingConnectionFactory() {
@@ -119,8 +111,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 	}
 
 	/**
-	 * Create a new CachingConnectionFactory for the given target
-	 * ConnectionFactory.
+	 * 为给定的目标 ConnectionFactory 创建一个新的 CachingConnectionFactory。
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public CachingConnectionFactory(ConnectionFactory targetConnectionFactory) {
@@ -130,15 +121,13 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 
 	/**
-	 * Specify the desired size for the JMS Session cache (per JMS Session type).
-	 * <p>This cache size is the maximum limit for the number of cached Sessions
-	 * per session acknowledgement type (auto, client, dups_ok, transacted).
-	 * As a consequence, the actual number of cached Sessions may be up to
-	 * four times as high as the specified value - in the unlikely case
-	 * of mixing and matching different acknowledgement types.
-	 * <p>Default is 1: caching a single Session, (re-)creating further ones on
-	 * demand. Specify a number like 10 if you'd like to raise the number of cached
-	 * Sessions; that said, 1 may be sufficient for low-concurrency scenarios.
+	 * 指定 JMS Session 缓存所需的容量（每种 JMS Session 类型）。
+	 * <p>此缓存大小是每种会话确认类型（auto、client、dups_ok、transacted）
+	 * 可缓存 Session 数量的最大上限。因此，在混合使用不同确认类型的罕见情况下，
+	 * 实际缓存的 Session 数量可能高达指定值的四倍。
+	 * <p>默认值为 1：缓存单个 Session，并（重新）按需创建更多 Session。
+	 * 如果希望提高缓存的 Session 数量，可指定诸如 10 之类的数值；
+	 * 不过，对于低并发场景，1 可能已经足够。
 	 * @see #setCacheProducers
 	 */
 	public void setSessionCacheSize(int sessionCacheSize) {
@@ -147,43 +136,40 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 	}
 
 	/**
-	 * Return the desired size for the JMS Session cache (per JMS Session type).
+	 * 返回 JMS Session 缓存所需的容量（每种 JMS Session 类型）。
 	 */
 	public int getSessionCacheSize() {
 		return this.sessionCacheSize;
 	}
 
 	/**
-	 * Specify whether to cache JMS MessageProducers per JMS Session instance
-	 * (more specifically: one MessageProducer per Destination and Session).
-	 * <p>Default is "true". Switch this to "false" in order to always
-	 * recreate MessageProducers on demand.
+	 * 指定是否按 JMS Session 实例缓存 JMS MessageProducer
+	 * （更具体地说：每个 Destination 和 Session 一个 MessageProducer）。
+	 * <p>默认值为 "true"。将其切换为 "false" 可始终按需重新创建 MessageProducer。
 	 */
 	public void setCacheProducers(boolean cacheProducers) {
 		this.cacheProducers = cacheProducers;
 	}
 
 	/**
-	 * Return whether to cache JMS MessageProducers per JMS Session instance.
+	 * 返回是否按 JMS Session 实例缓存 JMS MessageProducer。
 	 */
 	public boolean isCacheProducers() {
 		return this.cacheProducers;
 	}
 
 	/**
-	 * Specify whether to cache JMS MessageConsumers per JMS Session instance
-	 * (more specifically: one MessageConsumer per Destination, selector String
-	 * and Session). Note that durable subscribers will only be cached until
-	 * logical closing of the Session handle.
-	 * <p>Default is "true". Switch this to "false" in order to always
-	 * recreate MessageConsumers on demand.
+	 * 指定是否按 JMS Session 实例缓存 JMS MessageConsumer
+	 * （更具体地说：每个 Destination、选择器字符串和 Session 一个 MessageConsumer）。
+	 * 请注意，持久订阅者只会被缓存到 Session 句柄逻辑关闭为止。
+	 * <p>默认值为 "true"。将其切换为 "false" 可始终按需重新创建 MessageConsumer。
 	 */
 	public void setCacheConsumers(boolean cacheConsumers) {
 		this.cacheConsumers = cacheConsumers;
 	}
 
 	/**
-	 * Return whether to cache JMS MessageConsumers per JMS Session instance.
+	 * 返回是否按 JMS Session 实例缓存 JMS MessageConsumer。
 	 */
 	public boolean isCacheConsumers() {
 		return this.cacheConsumers;
@@ -191,8 +177,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 
 	/**
-	 * Return a current session count, indicating the number of sessions currently
-	 * cached by this connection factory.
+	 * 返回当前会话数量，表示此连接工厂当前缓存的会话数。
 	 * @since 5.3.7
 	 */
 	public int getCachedSessionCount() {
@@ -208,7 +193,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 	}
 
 	/**
-	 * Resets the Session cache as well.
+	 * 同时重置 Session 缓存。
 	 */
 	@Override
 	public void resetConnection() {
@@ -237,7 +222,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 	}
 
 	/**
-	 * Checks for a cached Session for the given mode.
+	 * 检查给定模式下是否有缓存的 Session。
 	 */
 	@Override
 	protected Session getSession(Connection con, Integer mode) throws JMSException {
@@ -269,9 +254,9 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 	}
 
 	/**
-	 * Wrap the given Session with a proxy that delegates every method call to it
-	 * but adapts close calls. This is useful for allowing application code to
-	 * handle a special framework Session just like an ordinary Session.
+	 * 用代理包装给定的 Session，该代理将每个方法调用都委托给它，
+	 * 但会适配 close 调用。这对于允许应用代码像处理普通 Session 一样
+	 * 处理特殊的框架 Session 很有用。
 	 * @param target the original Session to wrap
 	 * @param sessionList the List of cached Sessions that the given Session belongs to
 	 * @return the wrapped Session
@@ -291,7 +276,7 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 
 	/**
-	 * Invocation handler for a cached JMS Session proxy.
+	 * 缓存的 JMS Session 代理的调用处理器。
 	 */
 	private class CachedSessionInvocationHandler implements InvocationHandler {
 
@@ -521,8 +506,8 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 
 	/**
-	 * Simple wrapper class around a Destination reference.
-	 * Used as the cache key when caching MessageProducer objects.
+	 * 围绕 Destination 引用的简单包装类。
+	 * 在缓存 MessageProducer 对象时用作缓存键。
 	 */
 	private static class DestinationCacheKey implements Comparable<DestinationCacheKey> {
 
@@ -578,8 +563,8 @@ public class CachingConnectionFactory extends SingleConnectionFactory {
 
 
 	/**
-	 * Simple wrapper class around a Destination and other consumer attributes.
-	 * Used as the cache key when caching MessageConsumer objects.
+	 * 围绕 Destination 及其他消费者属性的简单包装类。
+	 * 在缓存 MessageConsumer 对象时用作缓存键。
 	 */
 	private static class ConsumerCacheKey extends DestinationCacheKey {
 

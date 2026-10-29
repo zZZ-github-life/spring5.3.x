@@ -21,8 +21,7 @@ import java.io.Serializable;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple serializable class that serves as a {@code null} replacement
- * for cache stores which otherwise do not support {@code null} values.
+ * 简单的可序列化类，用作不支持 {@code null} 值的缓存存储的 {@code null} 替代值。
  *
  * @author Juergen Hoeller
  * @since 4.2.2
@@ -31,9 +30,8 @@ import org.springframework.lang.Nullable;
 public final class NullValue implements Serializable {
 
 	/**
-	 * The canonical representation of a {@code null} replacement, as used by the
-	 * default implementation of {@link AbstractValueAdaptingCache#toStoreValue}/
-	 * {@link AbstractValueAdaptingCache#fromStoreValue}.
+	 * {@code null} 替代值的规范表示，由 {@link AbstractValueAdaptingCache#toStoreValue}/
+	 * {@link AbstractValueAdaptingCache#fromStoreValue} 的默认实现使用。
 	 * @since 4.3.10
 	 */
 	public static final Object INSTANCE = new NullValue();

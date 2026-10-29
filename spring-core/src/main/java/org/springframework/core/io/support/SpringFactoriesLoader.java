@@ -40,19 +40,18 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * General purpose factory loading mechanism for internal use within the framework.
+ * 供框架内部使用的通用工厂加载机制。
  *
- * <p>{@code SpringFactoriesLoader} {@linkplain #loadFactories loads} and instantiates
- * factories of a given type from {@value #FACTORIES_RESOURCE_LOCATION} files which
- * may be present in multiple JAR files in the classpath. The {@code spring.factories}
- * file must be in {@link Properties} format, where the key is the fully qualified
- * name of the interface or abstract class, and the value is a comma-separated list of
- * implementation class names. For example:
+ * <p>{@code SpringFactoriesLoader} 会从 {@value #FACTORIES_RESOURCE_LOCATION} 文件中
+ * {@linkplain #loadFactories 加载}并实例化给定类型的工厂，这些文件
+ * 可能存在于类路径中的多个 JAR 文件中。{@code spring.factories}
+ * 文件必须采用 {@link Properties} 格式，其中键是接口或抽象类的全限定名，
+ * 值是以逗号分隔的实现类名列表。例如：
  *
  * <pre class="code">example.MyService=example.MyServiceImpl1,example.MyServiceImpl2</pre>
  *
- * where {@code example.MyService} is the name of the interface, and {@code MyServiceImpl1}
- * and {@code MyServiceImpl2} are two implementations.
+ * 其中 {@code example.MyService} 是接口的名称，
+ * {@code MyServiceImpl1} 和 {@code MyServiceImpl2} 是两个实现。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -62,8 +61,8 @@ import org.springframework.util.StringUtils;
 public final class SpringFactoriesLoader {
 
 	/**
-	 * The location to look for factories.
-	 * <p>Can be present in multiple JAR files.
+	 * 查找工厂的位置。
+	 * <p>可以存在于多个 JAR 文件中。
 	 */
 	public static final String FACTORIES_RESOURCE_LOCATION = "META-INF/spring.factories";
 
@@ -78,14 +77,14 @@ public final class SpringFactoriesLoader {
 
 
 	/**
-	 * Load and instantiate the factory implementations of the given type from
-	 * {@value #FACTORIES_RESOURCE_LOCATION}, using the given class loader.
-	 * <p>The returned factories are sorted through {@link AnnotationAwareOrderComparator}.
-	 * <p>If a custom instantiation strategy is required, use {@link #loadFactoryNames}
-	 * to obtain all registered factory names.
-	 * <p>As of Spring Framework 5.3, if duplicate implementation class names are
-	 * discovered for a given factory type, only one instance of the duplicated
-	 * implementation type will be instantiated.
+	 * 使用给定的类加载器，从 {@value #FACTORIES_RESOURCE_LOCATION} 中
+	 * 加载并实例化给定类型的工厂实现。
+	 * <p>返回的工厂会通过 {@link AnnotationAwareOrderComparator} 排序。
+	 * <p>如果需要自定义实例化策略，请使用 {@link #loadFactoryNames}
+	 * 获取所有已注册的工厂名称。
+	 * <p>从 Spring Framework 5.3 开始，如果为给定工厂类型
+	 * 发现重复的实现类名，则只会实例化
+	 * 重复实现类型的一个实例。
 	 * @param factoryType the interface or abstract class representing the factory
 	 * @param classLoader the ClassLoader to use for loading (can be {@code null} to use the default)
 	 * @throws IllegalArgumentException if any factory implementation class cannot
@@ -111,12 +110,11 @@ public final class SpringFactoriesLoader {
 	}
 
 	/**
-	 * Load the fully qualified class names of factory implementations of the
-	 * given type from {@value #FACTORIES_RESOURCE_LOCATION}, using the given
-	 * class loader.
-	 * <p>As of Spring Framework 5.3, if a particular implementation class name
-	 * is discovered more than once for the given factory type, duplicates will
-	 * be ignored.
+	 * 使用给定的类加载器，从 {@value #FACTORIES_RESOURCE_LOCATION} 中
+	 * 加载给定类型的工厂实现的全限定类名。
+	 * <p>从 Spring Framework 5.3 开始，如果为给定工厂类型多次
+	 * 发现某个特定的实现类名，
+	 * 则会忽略重复项。
 	 * @param factoryType the interface or abstract class representing the factory
 	 * @param classLoader the ClassLoader to use for loading resources; can be
 	 * {@code null} to use the default

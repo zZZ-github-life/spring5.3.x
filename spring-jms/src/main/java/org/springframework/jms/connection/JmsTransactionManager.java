@@ -37,51 +37,45 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * for a single JMS {@link javax.jms.ConnectionFactory}. Binds a JMS
- * Connection/Session pair from the specified ConnectionFactory to the thread,
- * potentially allowing for one thread-bound Session per ConnectionFactory.
+ * 用于单个 JMS {@link javax.jms.ConnectionFactory} 的
+ * {@link org.springframework.transaction.PlatformTransactionManager} 实现。
+ * 将从指定 ConnectionFactory 获取的 JMS Connection/Session 对绑定到线程，
+ * 从而每个 ConnectionFactory 最多允许一个线程绑定的 Session。
  *
- * <p>This local strategy is an alternative to executing JMS operations within
- * JTA transactions. Its advantage is that it is able to work in any environment,
- * for example a standalone application or a test suite, with any message broker
- * as target. However, this strategy is <i>not</i> able to provide XA transactions,
- * for example in order to share transactions between messaging and database access.
- * A full JTA/XA setup is required for XA transactions, typically using Spring's
- * {@link org.springframework.transaction.jta.JtaTransactionManager} as strategy.
+ * <p>这种本地策略是在 JTA 事务中执行 JMS 操作的一种替代方案。其优点是能够
+ * 在任何环境中工作，例如独立应用或测试套件，并以任意消息代理作为目标。
+ * 但是，此策略<i>不能</i>提供 XA 事务，例如无法在消息传递和数据库访问之间
+ * 共享事务。XA 事务需要完整的 JTA/XA 设置，通常以 Spring 的
+ * {@link org.springframework.transaction.jta.JtaTransactionManager} 作为策略。
  *
- * <p>Application code is required to retrieve the transactional JMS Session via
- * {@link ConnectionFactoryUtils#getTransactionalSession} instead of a standard
- * Java EE-style {@link ConnectionFactory#createConnection()} call with subsequent
- * Session creation. Spring's {@link org.springframework.jms.core.JmsTemplate}
- * will autodetect a thread-bound Session and automatically participate in it.
+ * <p>应用代码需要通过 {@link ConnectionFactoryUtils#getTransactionalSession}
+ * 获取事务性 JMS Session，而不是使用标准的 Java EE 风格
+ * {@link ConnectionFactory#createConnection()} 调用再创建 Session。
+ * Spring 的 {@link org.springframework.jms.core.JmsTemplate} 会自动检测
+ * 线程绑定的 Session 并自动参与其中。
  *
- * <p>Alternatively, you can allow application code to work with the standard
- * Java EE-style lookup pattern on a ConnectionFactory, for example for legacy code
- * that is not aware of Spring at all. In that case, define a
- * {@link TransactionAwareConnectionFactoryProxy} for your target ConnectionFactory,
- * which will automatically participate in Spring-managed transactions.
+ * <p>或者，你也可以允许应用代码在 ConnectionFactory 上使用标准的
+ * Java EE 风格查找模式，例如对于完全不感知 Spring 的遗留代码。
+ * 在这种情况下，请为目标 ConnectionFactory 定义一个
+ * {@link TransactionAwareConnectionFactoryProxy}，它将自动参与
+ * Spring 管理的事务。
  *
- * <p><b>The use of {@link CachingConnectionFactory} as a target for this
- * transaction manager is strongly recommended.</b> CachingConnectionFactory
- * uses a single JMS Connection for all JMS access in order to avoid the overhead
- * of repeated Connection creation, as well as maintaining a cache of Sessions.
- * Each transaction will then share the same JMS Connection, while still using
- * its own individual JMS Session.
+ * <p><b>强烈建议使用 {@link CachingConnectionFactory} 作为此事务管理器的目标。</b>
+ * CachingConnectionFactory 对所有 JMS 访问使用单个 JMS Connection，
+ * 以避免重复创建 Connection 的开销，并维护 Session 缓存。
+ * 这样每个事务将共享同一个 JMS Connection，同时仍使用各自独立的 JMS Session。
  *
- * <p>The use of a <i>raw</i> target ConnectionFactory would not only be inefficient
- * because of the lack of resource reuse. It might also lead to strange effects
- * when your JMS driver doesn't accept {@code MessageProducer.close()} calls
- * and/or {@code MessageConsumer.close()} calls before {@code Session.commit()},
- * with the latter supposed to commit all the messages that have been sent through the
- * producer handle and received through the consumer handle. As a safe general solution,
- * always pass in a {@link CachingConnectionFactory} into this transaction manager's
- * {@link #setConnectionFactory "connectionFactory"} property.
+ * <p>使用<i>原始</i>目标 ConnectionFactory 不仅会因为缺乏资源复用而效率低下，
+ * 还可能产生奇怪的效果：当你的 JMS 驱动不接受在 {@code Session.commit()}
+ * 之前调用 {@code MessageProducer.close()} 和/或 {@code MessageConsumer.close()}
+ * 时（后者本应提交通过生产者句柄发送、通过消费者句柄接收的所有消息）。
+ * 作为安全的通用解决方案，请始终向此事务管理器的
+ * {@link #setConnectionFactory "connectionFactory"} 属性传入
+ * {@link CachingConnectionFactory}。
  *
- * <p>Transaction synchronization is turned off by default, as this manager might
- * be used alongside a datastore-based Spring transaction manager such as the
- * JDBC {@link org.springframework.jdbc.datasource.DataSourceTransactionManager},
- * which has stronger needs for synchronization.
+ * <p>事务同步默认关闭，因为此管理器可能与基于数据存储的 Spring 事务管理器
+ * （如 JDBC {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}）
+ * 一起使用，后者对同步有更强的需求。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -100,14 +94,13 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Create a new JmsTransactionManager for bean-style usage.
-	 * <p>Note: The ConnectionFactory has to be set before using the instance.
-	 * This constructor can be used to prepare a JmsTemplate via a BeanFactory,
-	 * typically setting the ConnectionFactory via setConnectionFactory.
-	 * <p>Turns off transaction synchronization by default, as this manager might
-	 * be used alongside a datastore-based Spring transaction manager like
-	 * DataSourceTransactionManager, which has stronger needs for synchronization.
-	 * Only one manager is allowed to drive synchronization at any point of time.
+	 * 创建一个用于 bean 风格用法的新 JmsTransactionManager。
+	 * <p>注意：在使用实例之前必须设置 ConnectionFactory。
+	 * 此构造函数可用于通过 BeanFactory 准备 JmsTemplate，
+	 * 通常通过 setConnectionFactory 设置 ConnectionFactory。
+	 * <p>默认关闭事务同步，因为此管理器可能与基于数据存储的 Spring
+	 * 事务管理器（如 DataSourceTransactionManager）一起使用，
+	 * 后者对同步有更强的需求。在任何时间点只允许一个管理器驱动同步。
 	 * @see #setConnectionFactory
 	 * @see #setTransactionSynchronization
 	 */
@@ -116,7 +109,7 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a new JmsTransactionManager, given a ConnectionFactory.
+	 * 根据给定的 ConnectionFactory 创建一个新的 JmsTransactionManager。
 	 * @param connectionFactory the ConnectionFactory to obtain connections from
 	 */
 	public JmsTransactionManager(ConnectionFactory connectionFactory) {
@@ -127,7 +120,7 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Set the JMS ConnectionFactory that this instance should manage transactions for.
+	 * 设置此实例应为其管理事务的 JMS ConnectionFactory。
 	 */
 	public void setConnectionFactory(@Nullable ConnectionFactory cf) {
 		if (cf instanceof TransactionAwareConnectionFactoryProxy) {
@@ -142,7 +135,7 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JMS ConnectionFactory that this instance should manage transactions for.
+	 * 返回此实例应为其管理事务的 JMS ConnectionFactory。
 	 */
 	@Nullable
 	public ConnectionFactory getConnectionFactory() {
@@ -150,7 +143,7 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Obtain the ConnectionFactory for actual use.
+	 * 获取实际使用的 ConnectionFactory。
 	 * @return the ConnectionFactory (never {@code null})
 	 * @throws IllegalStateException in case of no ConnectionFactory set
 	 * @since 5.0
@@ -162,10 +155,9 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Specify whether this transaction manager should lazily retrieve a JMS
-	 * Connection and Session on access within a transaction ({@code true}).
-	 * By default, it will eagerly create a JMS Connection and Session at
-	 * transaction begin ({@code false}).
+	 * 指定此事务管理器是否应在事务中访问时延迟获取 JMS Connection 和 Session
+	 * （{@code true}）。默认情况下，它会在事务开始时立即创建 JMS Connection
+	 * 和 Session（{@code false}）。
 	 * @since 5.1.6
 	 * @see JmsResourceHolder#getConnection()
 	 * @see JmsResourceHolder#getSession()
@@ -175,7 +167,7 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Make sure the ConnectionFactory has been set.
+	 * 确保已设置 ConnectionFactory。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -321,8 +313,8 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Create a JMS Connection via this template's ConnectionFactory.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 通过此模板的 ConnectionFactory 创建 JMS Connection。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @return the new JMS Connection
 	 * @throws javax.jms.JMSException if thrown by JMS API methods
 	 */
@@ -331,8 +323,8 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a JMS Session for the given Connection.
-	 * <p>This implementation uses JMS 1.1 API.
+	 * 为给定的 Connection 创建 JMS Session。
+	 * <p>此实现使用 JMS 1.1 API。
 	 * @param con the JMS Connection to create a Session for
 	 * @return the new JMS Session
 	 * @throws javax.jms.JMSException if thrown by JMS API methods
@@ -343,8 +335,8 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Lazily initializing variant of {@link JmsResourceHolder},
-	 * initializing a JMS Connection and Session on user access.
+	 * {@link JmsResourceHolder} 的延迟初始化变体，
+	 * 在用户访问时初始化 JMS Connection 和 Session。
 	 */
 	private class LazyJmsResourceHolder extends JmsResourceHolder {
 
@@ -422,8 +414,8 @@ public class JmsTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * JMS transaction object, representing a JmsResourceHolder.
-	 * Used as transaction object by JmsTransactionManager.
+	 * JMS 事务对象，表示一个 JmsResourceHolder。
+	 * 由 JmsTransactionManager 用作事务对象。
 	 * @see JmsResourceHolder
 	 */
 	private static class JmsTransactionObject implements SmartTransactionObject {

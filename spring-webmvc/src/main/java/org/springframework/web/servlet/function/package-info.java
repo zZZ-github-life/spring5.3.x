@@ -1,5 +1,5 @@
 /**
- * Provides the types that make up Spring's functional web framework for Servlet environments.
+ * 提供构成 Spring 面向 Servlet 环境的函数式 Web 框架的各种类型。
  */
 @NonNullApi
 @NonNullFields

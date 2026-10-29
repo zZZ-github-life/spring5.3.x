@@ -29,8 +29,8 @@ import com.google.gson.JsonSerializer;
 import org.springframework.util.Base64Utils;
 
 /**
- * A simple utility class for obtaining a Google Gson 2.x {@link GsonBuilder}
- * which Base64-encodes {@code byte[]} properties when reading and writing JSON.
+ * 一个简单的工具类，用于获取 Google Gson 2.x 的 {@link GsonBuilder}，
+ * 该构建器在读写 JSON 时对 {@code byte[]} 属性进行 Base64 编码。
  *
  * @author Juergen Hoeller
  * @author Roy Clarkson
@@ -41,12 +41,11 @@ import org.springframework.util.Base64Utils;
 public abstract class GsonBuilderUtils {
 
 	/**
-	 * Obtain a {@link GsonBuilder} which Base64-encodes {@code byte[]}
-	 * properties when reading and writing JSON.
-	 * <p>A custom {@link com.google.gson.TypeAdapter} will be registered via
-	 * {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)} which
-	 * serializes a {@code byte[]} property to and from a Base64-encoded String
-	 * instead of a JSON array.
+	 * 获取一个 {@link GsonBuilder}，在读写 JSON 时对 {@code byte[]}
+	 * 属性进行 Base64 编码。
+	 * <p>将通过 {@link GsonBuilder#registerTypeHierarchyAdapter(Class, Object)}
+	 * 注册自定义的 {@link com.google.gson.TypeAdapter}，以 Base64 编码的字符串
+	 * （而非 JSON 数组）序列化和反序列化 {@code byte[]} 属性。
 	 */
 	public static GsonBuilder gsonBuilderWithBase64EncodedByteArrays() {
 		GsonBuilder builder = new GsonBuilder();

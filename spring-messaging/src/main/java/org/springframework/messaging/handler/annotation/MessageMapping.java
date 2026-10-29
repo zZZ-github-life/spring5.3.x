@@ -25,78 +25,68 @@ import java.lang.annotation.Target;
 import org.springframework.messaging.Message;
 
 /**
- * Annotation for mapping a {@link Message} onto a message-handling method by
- * matching the declared {@link #value() patterns} to a destination extracted
- * from the message. The annotation is supported at the type-level too, as a
- * way of declaring a pattern prefix (or prefixes) across all class methods.
+ * 通过将声明的 {@link #value() 模式}与从消息中提取的目标进行匹配，
+ * 将 {@link Message} 映射到消息处理方法的注解。该注解也支持在类型级别使用，
+ * 以便在所有类方法上声明模式前缀。
  *
- * <p>{@code @MessageMapping} methods support the following arguments:
+ * <p>{@code @MessageMapping} 方法支持以下参数：
  * <ul>
- * <li>{@link Payload @Payload} method argument to extract the payload of a
- * message and have it de-serialized to the declared target type.
- * {@code @Payload} arguments may also be annotated with Validation annotations
- * such as {@link org.springframework.validation.annotation.Validated @Validated}
- * and will then have JSR-303 validation applied. Keep in mind the annotation
- * is not required to be present as it is assumed by default for arguments not
- * handled otherwise. </li>
- * <li>{@link DestinationVariable @DestinationVariable} method argument for
- * access to template variable values extracted from the message destination,
- * e.g. {@code /hotels/{hotel}}. Variable values may also be converted from
- * String to the declared method argument type, if needed.</li>
- * <li>{@link Header @Header} method argument to extract a specific message
- * header value and have a
+ * <li>{@link Payload @Payload} 方法参数，用于提取消息的载荷并将其反序列化为
+ * 声明的目标类型。{@code @Payload} 参数还可以使用诸如
+ * {@link org.springframework.validation.annotation.Validated @Validated}
+ * 的校验注解进行标注，此时将应用 JSR-303 校验。请注意，该注解并非必须存在，
+ * 因为对于未以其他方式处理的参数，默认会假定使用它。</li>
+ * <li>{@link DestinationVariable @DestinationVariable} 方法参数，用于访问从消息目标
+ * 中提取的模板变量值，例如 {@code /hotels/{hotel}}。如有必要，变量值还可以从 String
+ * 转换为声明的方法参数类型。</li>
+ * <li>{@link Header @Header} 方法参数，用于提取特定的消息头值，并对其应用
  * {@link org.springframework.core.convert.converter.Converter Converter}
- * applied to it to convert the value to the declared target type.</li>
- * <li>{@link Headers @Headers} method argument that is also assignable to
- * {@link java.util.Map} for access to all headers.</li>
+ * 将值转换为声明的目标类型。</li>
+ * <li>{@link Headers @Headers} 方法参数，该参数还可以赋值给 {@link java.util.Map}，
+ * 用于访问所有头。</li>
  * <li>{@link org.springframework.messaging.MessageHeaders MessageHeaders}
- * method argument for access to all headers.</li>
+ * 方法参数，用于访问所有头。</li>
  * <li>{@link org.springframework.messaging.support.MessageHeaderAccessor
- * MessageHeaderAccessor} method argument for access to all headers.
- * In some processing scenarios, like STOMP over WebSocket, this may also be
- * a specialization such as
+ * MessageHeaderAccessor} 方法参数，用于访问所有头。在某些处理场景中，
+ * 例如基于 WebSocket 的 STOMP，它也可能是诸如
  * {@link org.springframework.messaging.simp.SimpMessageHeaderAccessor
- * SimpMessageHeaderAccessor}.</li>
- * <li>{@link Message Message&lt;T&gt;} for access to body and headers with the body
- * de-serialized if necessary to match the declared type.</li>
- * <li>{@link java.security.Principal} method arguments are supported in
- * some processing scenarios such as STOMP over WebSocket. It reflects the
- * authenticated user.</li>
+ * SimpMessageHeaderAccessor} 的特化类型。</li>
+ * <li>{@link Message Message&lt;T&gt;}，用于访问正文和头，如有必要会将正文
+ * 反序列化以匹配声明类型。</li>
+ * <li>在某些处理场景（例如基于 WebSocket 的 STOMP）中支持
+ * {@link java.security.Principal} 方法参数。它反映已认证的用户。</li>
  * </ul>
  *
- * <p>Return value handling depends on the processing scenario:
+ * <p>返回值的处理取决于处理场景：
  * <ul>
- * <li>STOMP over WebSocket -- the value is turned into a message and sent to a
- * default response destination or to a custom destination specified with an
- * {@link SendTo @SendTo} or
+ * <li>基于 WebSocket 的 STOMP —— 值会被转换为消息，并发送到默认响应目标
+ * 或通过 {@link SendTo @SendTo} 或
  * {@link org.springframework.messaging.simp.annotation.SendToUser @SendToUser}
- * annotation.
- * <li>RSocket -- the response is used to reply to the stream request.
+ * 注解指定的自定义目标。
+ * <li>RSocket —— 响应用于回复流请求。
  * </ul>
  *
- * <p>Specializations of this annotation include
+ * <p>此注解的特化形式包括
  * {@link org.springframework.messaging.simp.annotation.SubscribeMapping @SubscribeMapping}
- * (e.g. STOMP subscriptions) and
+ * （例如 STOMP 订阅）和
  * {@link org.springframework.messaging.rsocket.annotation.ConnectMapping @ConnectMapping}
- * (e.g. RSocket connections). Both narrow the primary mapping further and also match
- * against the message type. Both can be combined with a type-level
- * {@code @MessageMapping} that declares a common pattern prefix (or prefixes).
+ * （例如 RSocket 连接）。两者都会进一步缩小主映射的范围，并且还会匹配消息类型。
+ * 两者都可以与声明公共模式前缀的类型级 {@code @MessageMapping} 组合使用。
  *
- * <p>For further details on the use of this annotation in different contexts,
- * see the following sections of the Spring Framework reference:
+ * <p>有关此注解在不同上下文中使用的更多详细信息，
+ * 请参阅 Spring Framework 参考文档的以下章节：
  * <ul>
- * <li>STOMP over WebSocket
+ * <li>基于 WebSocket 的 STOMP
  * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#websocket-stomp-handle-annotations">
- * "Annotated Controllers"</a>.
+ * “带注解的控制器”</a>。
  * <li>RSocket
  * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#rsocket-annot-responders">
- * "Annotated Responders"</a>.
+ * “带注解的响应器”</a>。
  * </ul>
  *
- * <p><b>NOTE:</b> When using controller interfaces (e.g. for AOP proxying),
- * make sure to consistently put <i>all</i> your mapping annotations - such as
- * {@code @MessageMapping} and {@code @SubscribeMapping} - on
- * the controller <i>interface</i> rather than on the implementation class.
+ * <p><b>注意：</b>使用控制器接口时（例如用于 AOP 代理），
+ * 请确保将<i>所有</i>映射注解（例如 {@code @MessageMapping} 和 {@code @SubscribeMapping}）
+ * 一致地放在控制器<i>接口</i>上，而不是实现类上。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -109,16 +99,15 @@ import org.springframework.messaging.Message;
 public @interface MessageMapping {
 
 	/**
-	 * Destination-based mapping expressed by this annotation.
-	 * <p>For STOMP over WebSocket messages this is
-	 * {@link org.springframework.util.AntPathMatcher AntPathMatcher}-style
-	 * patterns matched against the STOMP destination of the message.
-	 * <p>for RSocket this is either
-	 * {@link org.springframework.util.AntPathMatcher AntPathMatcher} or
+	 * 此注解表示的目标映射。
+	 * <p>对于基于 WebSocket 的 STOMP 消息，这是
+	 * {@link org.springframework.util.AntPathMatcher AntPathMatcher} 风格的模式，
+	 * 与消息的 STOMP 目标进行匹配。
+	 * <p>对于 RSocket，这可以是基于
+	 * {@link org.springframework.util.AntPathMatcher AntPathMatcher} 或
 	 * {@link org.springframework.web.util.pattern.PathPattern PathPattern}
-	 * based pattern, depending on which is configured, matched to the route of
-	 * the stream request.
-	 * <p>If no patterns are configured, the mapping matches all destinations.
+	 * 的模式（取决于配置），与流请求的路由进行匹配。
+	 * <p>如果未配置模式，则映射匹配所有目标。
 	 */
 	String[] value() default {};
 

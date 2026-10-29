@@ -24,7 +24,7 @@ import org.springframework.aop.BeforeAdvice;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility methods for dealing with AspectJ advisors.
+ * 用于处理 AspectJ Advisor 的工具方法。
  *
  * @author Adrian Colyer
  * @author Juergen Hoeller
@@ -33,7 +33,7 @@ import org.springframework.lang.Nullable;
 public abstract class AspectJAopUtils {
 
 	/**
-	 * Return {@code true} if the advisor is a form of before advice.
+	 * 如果该 Advisor 是某种形式的前置通知，则返回 {@code true}。
 	 */
 	public static boolean isBeforeAdvice(Advisor anAdvisor) {
 		AspectJPrecedenceInformation precedenceInfo = getAspectJPrecedenceInformationFor(anAdvisor);
@@ -44,7 +44,7 @@ public abstract class AspectJAopUtils {
 	}
 
 	/**
-	 * Return {@code true} if the advisor is a form of after advice.
+	 * 如果该 Advisor 是某种形式的后置通知，则返回 {@code true}。
 	 */
 	public static boolean isAfterAdvice(Advisor anAdvisor) {
 		AspectJPrecedenceInformation precedenceInfo = getAspectJPrecedenceInformationFor(anAdvisor);
@@ -55,9 +55,8 @@ public abstract class AspectJAopUtils {
 	}
 
 	/**
-	 * Return the AspectJPrecedenceInformation provided by this advisor or its advice.
-	 * If neither the advisor nor the advice have precedence information, this method
-	 * will return {@code null}.
+	 * 返回此 Advisor 或其通知所提供的 AspectJPrecedenceInformation。如果 Advisor 和通知都不含优先级信
+	 * 息，则此方法返回 {@code null}。
 	 */
 	@Nullable
 	public static AspectJPrecedenceInformation getAspectJPrecedenceInformationFor(Advisor anAdvisor) {

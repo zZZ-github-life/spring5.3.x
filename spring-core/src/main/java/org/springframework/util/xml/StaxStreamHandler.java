@@ -29,8 +29,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.ext.LexicalHandler;
 
 /**
- * SAX {@link org.xml.sax.ContentHandler} and {@link LexicalHandler}
- * that writes to an {@link XMLStreamWriter}.
+ * 写入到 {@link XMLStreamWriter} 的
+ * SAX {@link org.xml.sax.ContentHandler} 和 {@link LexicalHandler}。
  *
  * @author Arjen Poutsma
  * @since 4.0.3

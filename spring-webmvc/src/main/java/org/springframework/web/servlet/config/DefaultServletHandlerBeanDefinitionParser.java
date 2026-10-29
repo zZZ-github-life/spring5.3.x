@@ -33,10 +33,10 @@ import org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 
 /**
- * {@link BeanDefinitionParser} that parses a {@code default-servlet-handler} element to
- * register a {@link DefaultServletHttpRequestHandler}.  Will also register a
- * {@link SimpleUrlHandlerMapping} for mapping resource requests, and a
- * {@link HttpRequestHandlerAdapter}.
+ * {@link BeanDefinitionParser}，用于解析 {@code default-servlet-handler} 元素
+ * 并注册一个 {@link DefaultServletHttpRequestHandler}。同时还会注册一个
+ * 用于映射资源请求的 {@link SimpleUrlHandlerMapping}，
+ * 以及一个 {@link HttpRequestHandlerAdapter}。
  *
  * @author Jeremy Grelle
  * @author Rossen Stoyanchev

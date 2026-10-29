@@ -75,10 +75,9 @@ import org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver;
 import org.springframework.web.server.i18n.LocaleContextResolver;
 
 /**
- * The main class for Spring WebFlux configuration.
+ * Spring WebFlux 配置的主类。
  *
- * <p>Import directly or extend and override protected methods to customize.
- *
+ * <p>可直接导入，或继承并重写受保护方法以进行自定义。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -155,7 +154,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to plug a subclass of {@link RequestMappingHandlerMapping}.
+	 * 重写以插入 {@link RequestMappingHandlerMapping} 的子类。
 	 */
 	protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
 		return new RequestMappingHandlerMapping();
@@ -169,14 +168,13 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to configure how the requested content type is resolved.
+	 * 重写以配置如何解析所请求的内容类型。
 	 */
 	protected void configureContentTypeResolver(RequestedContentTypeResolverBuilder builder) {
 	}
 
 	/**
-	 * Callback for building the global CORS configuration. This method is final.
-	 * Use {@link #addCorsMappings(CorsRegistry)} to customize the CORS config.
+	 * 用于构建全局 CORS 配置的回调。此方法为 final。请使用 {@link #addCorsMappings(CorsRegistry)} 自定义 CORS 配置。
 	 */
 	protected final Map<String, CorsConfiguration> getCorsConfigurations() {
 		if (this.corsConfigurations == null) {
@@ -188,15 +186,14 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override this method to configure cross-origin requests processing.
+	 * 重写此方法以配置跨源请求处理。
 	 * @see CorsRegistry
 	 */
 	protected void addCorsMappings(CorsRegistry registry) {
 	}
 
 	/**
-	 * Callback for building the {@link PathMatchConfigurer}. This method is
-	 * final, use {@link #configurePathMatching} to customize path matching.
+	 * 用于构建 {@link PathMatchConfigurer} 的回调。此方法为 final，请使用 {@link #configurePathMatching} 自定义路径匹配。
 	 */
 	protected final PathMatchConfigurer getPathMatchConfigurer() {
 		if (this.pathMatchConfigurer == null) {
@@ -207,7 +204,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to configure path matching options.
+	 * 重写以配置路径匹配选项。
 	 */
 	public void configurePathMatching(PathMatchConfigurer configurer) {
 	}
@@ -222,16 +219,14 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to plug a subclass of {@link RouterFunctionMapping}.
+	 * 重写以插入 {@link RouterFunctionMapping} 的子类。
 	 */
 	protected RouterFunctionMapping createRouterFunctionMapping() {
 		return new RouterFunctionMapping();
 	}
 
 	/**
-	 * Return a handler mapping ordered at Integer.MAX_VALUE-1 with mapped
-	 * resource handlers. To configure resource handling, override
-	 * {@link #addResourceHandlers}.
+	 * 返回顺序为 Integer.MAX_VALUE-1 并包含所映射资源处理器的处理器映射。要配置资源处理，请重写 {@link #addResourceHandlers}。
 	 */
 	@Bean
 	public HandlerMapping resourceHandlerMapping(ResourceUrlProvider resourceUrlProvider) {
@@ -259,7 +254,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override this method to add resource handlers for serving static resources.
+	 * 重写此方法以添加用于提供静态资源的资源处理器。
 	 * @see ResourceHandlerRegistry
 	 */
 	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -285,22 +280,21 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to plug a subclass of {@link RequestMappingHandlerAdapter}.
+	 * 重写以插入 {@link RequestMappingHandlerAdapter} 的子类。
 	 */
 	protected RequestMappingHandlerAdapter createRequestMappingHandlerAdapter() {
 		return new RequestMappingHandlerAdapter();
 	}
 
 	/**
-	 * Configure resolvers for custom controller method arguments.
+	 * 为自定义控制器方法参数配置解析器。
 	 */
 	protected void configureArgumentResolvers(ArgumentResolverConfigurer configurer) {
 	}
 
 	/**
-	 * Return the configurer for HTTP message readers and writers.
-	 * <p>Use {@link #configureHttpMessageCodecs(ServerCodecConfigurer)} to
-	 * configure the readers and writers.
+	 * 返回 HTTP 消息读写器的配置器。
+	 * <p>使用 {@link #configureHttpMessageCodecs(ServerCodecConfigurer)} 配置读写器。
 	 */
 	@Bean
 	public ServerCodecConfigurer serverCodecConfigurer() {
@@ -310,7 +304,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to plug a subclass of {@link LocaleContextResolver}.
+	 * 重写以插入 {@link LocaleContextResolver} 的子类。
 	 */
 	protected LocaleContextResolver createLocaleContextResolver() {
 		return new AcceptHeaderLocaleContextResolver();
@@ -322,14 +316,13 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override to configure the HTTP message readers and writers to use.
+	 * 重写以配置要使用的 HTTP 消息读写器。
 	 */
 	protected void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
 	}
 
 	/**
-	 * Return the {@link ConfigurableWebBindingInitializer} to use for
-	 * initializing all {@link WebDataBinder} instances.
+	 * 返回用于初始化所有 {@link WebDataBinder} 实例的 {@link ConfigurableWebBindingInitializer}。
 	 */
 	protected ConfigurableWebBindingInitializer getConfigurableWebBindingInitializer(
 			FormattingConversionService webFluxConversionService, Validator webFluxValidator) {
@@ -345,8 +338,8 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Return a {@link FormattingConversionService} for use with annotated controllers.
-	 * <p>See {@link #addFormatters} as an alternative to overriding this method.
+	 * 返回供注解式控制器使用的 {@link FormattingConversionService}。
+	 * <p>作为重写此方法的替代方案，请参见 {@link #addFormatters}。
 	 */
 	@Bean
 	public FormattingConversionService webFluxConversionService() {
@@ -356,15 +349,14 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override this method to add custom {@link Converter} and/or {@link Formatter}
-	 * delegates to the common {@link FormattingConversionService}.
+	 * 重写此方法以向公共的 {@link FormattingConversionService} 添加自定义 {@link Converter} 和/或 {@link Formatter} 委托。
 	 * @see #webFluxConversionService()
 	 */
 	protected void addFormatters(FormatterRegistry registry) {
 	}
 
 	/**
-	 * Return a {@link ReactiveAdapterRegistry} to adapting reactive types.
+	 * 返回用于适配响应式类型的 {@link ReactiveAdapterRegistry}。
 	 */
 	@Bean
 	public ReactiveAdapterRegistry webFluxAdapterRegistry() {
@@ -372,12 +364,8 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Return a global {@link Validator} instance for example for validating
-	 * {@code @RequestBody} method arguments.
-	 * <p>Delegates to {@link #getValidator()} first. If that returns {@code null}
-	 * checks the classpath for the presence of a JSR-303 implementations
-	 * before creating a {@code OptionalValidatorFactoryBean}. If a JSR-303
-	 * implementation is not available, a "no-op" {@link Validator} is returned.
+	 * 返回全局 {@link Validator} 实例，例如用于校验 {@code @RequestBody} 方法参数。
+	 * <p>首先委托给 {@link #getValidator()}。如果该方法返回 {@code null}，则在创建 {@code OptionalValidatorFactoryBean} 之前检查类路径上是否存在 JSR-303 实现。如果 JSR-303 实现不可用，则返回“无操作”的 {@link Validator}。
 	 */
 	@Bean
 	public Validator webFluxValidator() {
@@ -402,7 +390,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override this method to provide a custom {@link Validator}.
+	 * 重写此方法以提供自定义 {@link Validator}。
 	 */
 	@Nullable
 	protected Validator getValidator() {
@@ -410,7 +398,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Override this method to provide a custom {@link MessageCodesResolver}.
+	 * 重写此方法以提供自定义 {@link MessageCodesResolver}。
 	 */
 	@Nullable
 	protected MessageCodesResolver getMessageCodesResolver() {
@@ -501,8 +489,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Callback for building the {@link ViewResolverRegistry}. This method is final,
-	 * use {@link #configureViewResolvers} to customize view resolvers.
+	 * 用于构建 {@link ViewResolverRegistry} 的回调。此方法为 final，请使用 {@link #configureViewResolvers} 自定义视图解析器。
 	 */
 	protected final ViewResolverRegistry getViewResolverRegistry() {
 		if (this.viewResolverRegistry == null) {
@@ -513,7 +500,7 @@ public class WebFluxConfigurationSupport implements ApplicationContextAware {
 	}
 
 	/**
-	 * Configure view resolution for supporting template engines.
+	 * 配置视图解析以支持模板引擎。
 	 * @see ViewResolverRegistry
 	 */
 	protected void configureViewResolvers(ViewResolverRegistry registry) {

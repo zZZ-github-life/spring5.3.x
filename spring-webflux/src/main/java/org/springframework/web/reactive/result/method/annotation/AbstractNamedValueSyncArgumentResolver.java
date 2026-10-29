@@ -27,11 +27,7 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * An extension of {@link AbstractNamedValueArgumentResolver} for named value
- * resolvers that are synchronous and yet non-blocking. Subclasses implement
- * the synchronous {@link #resolveNamedValue} to which the asynchronous
- * {@link #resolveName} delegates to by default.
- *
+ * {@link AbstractNamedValueArgumentResolver} 的扩展，用于同步且非阻塞的命名值解析器。子类实现同步的 {@link #resolveNamedValue}，默认情况下异步的 {@link #resolveName} 会委托给它。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -39,7 +35,7 @@ public abstract class AbstractNamedValueSyncArgumentResolver extends AbstractNam
 		implements SyncHandlerMethodArgumentResolver {
 
 	/**
-	 * Create a new {@link AbstractNamedValueSyncArgumentResolver}.
+	 * 创建新的 {@link AbstractNamedValueSyncArgumentResolver}。
 	 * @param factory a bean factory to use for resolving {@code ${...}}
 	 * placeholder and {@code #{...}} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to have expressions
@@ -78,7 +74,7 @@ public abstract class AbstractNamedValueSyncArgumentResolver extends AbstractNam
 	}
 
 	/**
-	 * Actually resolve the value synchronously.
+	 * 实际同步解析值。
 	 */
 	@Nullable
 	protected abstract Object resolveNamedValue(String name, MethodParameter param, ServerWebExchange exchange);

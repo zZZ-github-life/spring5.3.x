@@ -42,30 +42,29 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.MethodInvoker;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that exposes a
- * {@link org.quartz.JobDetail} object which delegates job execution to a
- * specified (static or non-static) method. Avoids the need for implementing
- * a one-line Quartz Job that just invokes an existing service method on a
- * Spring-managed target bean.
+ * {@link org.springframework.beans.factory.FactoryBean}，暴露一个
+ * {@link org.quartz.JobDetail} 对象，将 job 执行委托给
+ * 指定的（静态或非静态）方法。避免了实现
+ * 仅调用 Spring 管理的目标 bean 上现有服务方法
+ * 的单行 Quartz Job 的需要。
  *
- * <p>Inherits common configuration properties from the {@link MethodInvoker}
- * base class, such as {@link #setTargetObject "targetObject"} and
- * {@link #setTargetMethod "targetMethod"}, adding support for lookup of the target
- * bean by name through the {@link #setTargetBeanName "targetBeanName"} property
- * (as alternative to specifying a "targetObject" directly, allowing for
- * non-singleton target objects).
+ * <p>从 {@link MethodInvoker} 基类继承通用配置属性，
+ * 如 {@link #setTargetObject "targetObject"} 和
+ * {@link #setTargetMethod "targetMethod"}，并通过
+ * {@link #setTargetBeanName "targetBeanName"} 属性
+ * 支持按名称查找目标 bean（作为直接指定 "targetObject" 的替代方案，
+ * 允许使用非单例目标对象）。
  *
- * <p>Supports both concurrently running jobs and non-currently running
- * jobs through the "concurrent" property. Jobs created by this
- * MethodInvokingJobDetailFactoryBean are by default volatile and durable
- * (according to Quartz terminology).
+ * <p>通过 "concurrent" 属性支持并发运行和 non-currently 运行的 job。
+ * 由此 MethodInvokingJobDetailFactoryBean 创建的 job 默认为
+ * 易失性和持久性的（根据 Quartz 术语）。
  *
- * <p><b>NOTE: JobDetails created via this FactoryBean are <i>not</i>
- * serializable and thus not suitable for persistent job stores.</b>
- * You need to implement your own Quartz Job as a thin wrapper for each case
- * where you want a persistent job to delegate to a specific service method.
+ * <p><b>注意：通过此 FactoryBean 创建的 JobDetail <i>不</i>
+ * 可序列化，因此不适合持久化 job store。</b>
+ * 对于希望持久化 job 委托给特定服务方法的每种情况，
+ * 您需要实现自己的 Quartz Job 作为薄包装器。
  *
- * <p>Compatible with Quartz 2.1.4 and higher, as of Spring 4.1.
+ * <p>从 Spring 4.1 开始，兼容 Quartz 2.1.4 及更高版本。
  *
  * @author Juergen Hoeller
  * @author Alef Arendsen
@@ -102,16 +101,16 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 
 
 	/**
-	 * Set the name of the job.
-	 * <p>Default is the bean name of this FactoryBean.
+	 * 设置 job 的名称。
+	 * <p>默认为此 FactoryBean 的 bean 名称。
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Set the group of the job.
-	 * <p>Default is the default group of the Scheduler.
+	 * 设置 job 的组。
+	 * <p>默认为 Scheduler 的默认组。
 	 * @see org.quartz.Scheduler#DEFAULT_GROUP
 	 */
 	public void setGroup(String group) {
@@ -119,25 +118,25 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 	}
 
 	/**
-	 * Specify whether multiple jobs should be run in a concurrent fashion.
-	 * The behavior when one does not want concurrent jobs to be executed is
-	 * realized through adding the {@code @PersistJobDataAfterExecution} and
-	 * {@code @DisallowConcurrentExecution} markers.
-	 * More information on stateful versus stateless jobs can be found
-	 * <a href="https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/tutorial-lesson-03.html">here</a>.
-	 * <p>The default setting is to run jobs concurrently.
+	 * 指定多个 job 是否应以并发方式运行。
+	 * 不希望并发执行 job 时的行为通过添加
+	 * {@code @PersistJobDataAfterExecution} 和
+	 * {@code @DisallowConcurrentExecution} 标记来实现。
+	 * 有关有状态与无状态 job 的更多信息，可以
+	 * <a href="https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/tutorial-lesson-03.html">在此处</a>找到。
+	 * <p>默认设置为并发运行 job。
 	 */
 	public void setConcurrent(boolean concurrent) {
 		this.concurrent = concurrent;
 	}
 
 	/**
-	 * Set the name of the target bean in the Spring BeanFactory.
-	 * <p>This is an alternative to specifying {@link #setTargetObject "targetObject"},
-	 * allowing for non-singleton beans to be invoked. Note that specified
-	 * "targetObject" and {@link #setTargetClass "targetClass"} values will
-	 * override the corresponding effect of this "targetBeanName" setting
-	 * (i.e. statically pre-define the bean type or even the bean object).
+	 * 设置 Spring BeanFactory 中目标 bean 的名称。
+	 * <p>这是指定 {@link #setTargetObject "targetObject"} 的替代方案，
+	 * 允许调用非单例 bean。请注意，指定的
+	 * "targetObject" 和 {@link #setTargetClass "targetClass"} 值
+	 * 将覆盖此 "targetBeanName" 设置的相应效果
+	 * （即静态预定义 bean 类型甚至 bean 对象）。
 	 */
 	public void setTargetBeanName(String targetBeanName) {
 		this.targetBeanName = targetBeanName;
@@ -187,8 +186,8 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 	}
 
 	/**
-	 * Callback for post-processing the JobDetail to be exposed by this FactoryBean.
-	 * <p>The default implementation is empty. Can be overridden in subclasses.
+	 * 对此 FactoryBean 要暴露的 JobDetail 进行后处理的回调。
+	 * <p>默认实现为空。可以在子类中重写。
 	 * @param jobDetail the JobDetail prepared by this FactoryBean
 	 */
 	protected void postProcessJobDetail(JobDetail jobDetail) {
@@ -196,7 +195,7 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 
 
 	/**
-	 * Overridden to support the {@link #setTargetBeanName "targetBeanName"} feature.
+	 * 重写以支持 {@link #setTargetBeanName "targetBeanName"} 特性。
 	 */
 	@Override
 	public Class<?> getTargetClass() {
@@ -209,7 +208,7 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 	}
 
 	/**
-	 * Overridden to support the {@link #setTargetBeanName "targetBeanName"} feature.
+	 * 重写以支持 {@link #setTargetBeanName "targetBeanName"} 特性。
 	 */
 	@Override
 	public Object getTargetObject() {
@@ -240,8 +239,8 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 
 
 	/**
-	 * Quartz Job implementation that invokes a specified method.
-	 * Automatically applied by MethodInvokingJobDetailFactoryBean.
+	 * Quartz Job 实现，调用指定方法。
+	 * 由 MethodInvokingJobDetailFactoryBean 自动应用。
 	 */
 	public static class MethodInvokingJob extends QuartzJobBean {
 
@@ -251,14 +250,14 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 		private MethodInvoker methodInvoker;
 
 		/**
-		 * Set the MethodInvoker to use.
+		 * 设置要使用的 MethodInvoker。
 		 */
 		public void setMethodInvoker(MethodInvoker methodInvoker) {
 			this.methodInvoker = methodInvoker;
 		}
 
 		/**
-		 * Invoke the method via the MethodInvoker.
+		 * 通过 MethodInvoker 调用方法。
 		 */
 		@Override
 		protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
@@ -285,9 +284,9 @@ public class MethodInvokingJobDetailFactoryBean extends ArgumentConvertingMethod
 
 
 	/**
-	 * Extension of the MethodInvokingJob, implementing the StatefulJob interface.
-	 * Quartz checks whether jobs are stateful and if so,
-	 * won't let jobs interfere with each other.
+	 * MethodInvokingJob 的扩展，实现 StatefulJob 接口。
+	 * Quartz 会检查 job 是否有状态，如果有，
+	 * 则不允许 job 相互干扰。
 	 */
 	@PersistJobDataAfterExecution
 	@DisallowConcurrentExecution

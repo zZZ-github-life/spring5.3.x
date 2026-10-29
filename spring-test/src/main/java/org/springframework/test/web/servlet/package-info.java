@@ -1,5 +1,5 @@
 /**
- * Contains server-side support for testing Spring MVC applications.
+ * 包含用于测试 Spring MVC 应用程序的服务器端支持。
  * @see org.springframework.test.web.servlet.MockMvc
  */
 @NonNullApi

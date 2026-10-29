@@ -1,5 +1,5 @@
 /**
- * Useful delegates for Spring's logging conventions.
+ * Spring 日志约定的实用委托。
  */
 @NonNullApi
 @NonNullFields

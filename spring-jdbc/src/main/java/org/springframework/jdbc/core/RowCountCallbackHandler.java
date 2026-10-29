@@ -24,15 +24,14 @@ import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.lang.Nullable;
 
 /**
- * Implementation of RowCallbackHandler. Convenient superclass for callback handlers.
- * An instance can only be used once.
+ * RowCallbackHandler的实现。回调处理器的便利超类。
+ * 一个实例只能使用一次。
  *
- * <p>We can either use this on its own (for example, in a test case, to ensure
- * that our result sets have valid dimensions), or use it as a superclass
- * for callback handlers that actually do something, and will benefit
- * from the dimension information it provides.
+ * <p>我们可以单独使用它（例如，在测试用例中，确保我们的结果集具有有效的维度），
+ * 也可以将其作为实际执行某些操作的回调处理器的超类使用，
+ * 并将从其提供的维度信息中受益。
  *
- * <p>A usage example with JdbcTemplate:
+ * <p>与JdbcTemplate一起使用的示例：
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  *
@@ -45,31 +44,30 @@ import org.springframework.lang.Nullable;
  */
 public class RowCountCallbackHandler implements RowCallbackHandler {
 
-	/** Rows we've seen so far. */
+	/** 到目前为止我们看到的行数。 */
 	private int rowCount;
 
-	/** Columns we've seen so far. */
+	/** 到目前为止我们看到的列数。 */
 	private int columnCount;
 
 	/**
-	 * Indexed from 0. Type (as in java.sql.Types) for the columns
-	 * as returned by ResultSetMetaData object.
+	 * 从0开始索引。由ResultSetMetaData对象返回的列类型（如java.sql.Types）。
 	 */
 	@Nullable
 	private int[] columnTypes;
 
 	/**
-	 * Indexed from 0. Column name as returned by ResultSetMetaData object.
+	 * 从0开始索引。由ResultSetMetaData对象返回的列名。
 	 */
 	@Nullable
 	private String[] columnNames;
 
 
 	/**
-	 * Implementation of ResultSetCallbackHandler.
-	 * Work out column size if this is the first row, otherwise just count rows.
-	 * <p>Subclasses can perform custom extraction or processing
-	 * by overriding the {@code processRow(ResultSet, int)} method.
+	 * ResultSetCallbackHandler的实现。
+	 * 如果是第一行则计算列数，否则只计算行数。
+	 * <p>子类可以通过重写{@code processRow(ResultSet, int)}方法
+	 * 执行自定义的提取或处理。
 	 * @see #processRow(java.sql.ResultSet, int)
 	 */
 	@Override
@@ -89,8 +87,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	}
 
 	/**
-	 * Subclasses may override this to perform custom extraction
-	 * or processing. This class's implementation does nothing.
+	 * 子类可以重写此方法以执行自定义的提取或处理。
+	 * 此类的实现什么都不做。
 	 * @param rs the ResultSet to extract data from. This method is
 	 * invoked for each row
 	 * @param rowNum number of the current row (starting from 0)
@@ -100,8 +98,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 
 
 	/**
-	 * Return the types of the columns as java.sql.Types constants
-	 * Valid after processRow is invoked the first time.
+	 * 返回列的类型，以java.sql.Types常量表示。
+	 * 在第一次调用processRow后有效。
 	 * @return the types of the columns as java.sql.Types constants.
 	 * <b>Indexed from 0 to n-1.</b>
 	 */
@@ -111,8 +109,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	}
 
 	/**
-	 * Return the names of the columns.
-	 * Valid after processRow is invoked the first time.
+	 * 返回列的名称。
+	 * 在第一次调用processRow后有效。
 	 * @return the names of the columns.
 	 * <b>Indexed from 0 to n-1.</b>
 	 */
@@ -122,8 +120,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	}
 
 	/**
-	 * Return the row count of this ResultSet.
-	 * Only valid after processing is complete
+	 * 返回此ResultSet的行数。
+	 * 仅在处理完成后有效。
 	 * @return the number of rows in this ResultSet
 	 */
 	public final int getRowCount() {
@@ -131,9 +129,8 @@ public class RowCountCallbackHandler implements RowCallbackHandler {
 	}
 
 	/**
-	 * Return the number of columns in this result set.
-	 * Valid once we've seen the first row,
-	 * so subclasses can use it during processing
+	 * 返回此结果集中的列数。
+	 * 在看到第一行后有效，因此子类可以在处理期间使用。
 	 * @return the number of columns in this result set
 	 */
 	public final int getColumnCount() {

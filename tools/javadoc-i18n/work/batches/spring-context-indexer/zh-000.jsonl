@@ -1,0 +1,24 @@
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/CandidateComponentsIndexer.java::38::0", "zh": ["注解 {@link Processor}，用于为 Spring 组件写入 {@link CandidateComponentsMetadata} 文件。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/CandidateComponentsMetadata.java::23::0", "zh": ["候选组件的元数据。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/IndexedStereotypesProvider.java::27::0", "zh": ["{@link StereotypesProvider} 的实现，用于提取由 {@value #INDEXED_ANNOTATION} 注解标记的构造型。此实现支持以这种方式在元注解上定义的构造型。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/ItemMetadata.java::22::0", "zh": ["表示索引中的一项。类型定义了目标候选者的标识（通常是全限定名），构造型是用于检索候选者的“标记”。一个典型用例是候选者上存在某个特定注解。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/MetadataCollector.java::29::0", "zh": ["由 {@link CandidateComponentsIndexer} 用于收集 {@link CandidateComponentsMetadata}。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/MetadataCollector.java::48::0", "zh": ["创建一个新的 {@code MetadataProcessor} 实例。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/MetadataStore.java::27::0", "zh": ["将 {@link CandidateComponentsMetadata} 存储到文件系统中。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/PackageInfoStereotypesProvider.java::25::0", "zh": ["{@link StereotypesProvider} 的实现，为每个 package-info 提供 {@value #STEREOTYPE} 构造型。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/PropertiesMarshaller.java::27::0", "zh": ["用于以 properties 形式写入 {@link CandidateComponentsMetadata} 的编组器。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::33::0", "zh": ["{@link Properties} 的特化，根据键按字母数字顺序对属性进行排序。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::33::1", "zh": ["<p>这在将 {@link Properties} 实例存储到 properties 文件时很有用，因为它允许以可重复且属性顺序一致的方式生成此类文件。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::33::2", "zh": ["<p>生成 properties 文件中的注释也可以选择性地省略。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::60::0", "zh": ["构造一个新的 {@code SortedProperties} 实例，遵循所提供的 {@code omitComments} 标志。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::70::0", "zh": ["构造一个新的 {@code SortedProperties} 实例，其属性填充自所提供的 {@link Properties} 对象，并遵循所提供的 {@code omitComments} 标志。<p>所提供的 {@code Properties} 对象中的默认属性不会被复制。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::121::0", "zh": ["返回此 {@link Properties} 对象中键的排序枚举。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::130::0", "zh": ["返回此 {@link Properties} 对象中键的排序集合。<p>如有必要，将使用 {@link String#valueOf(Object)} 将键转换为字符串，并按照字符串的自然顺序进行字母数字排序。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/SortedProperties.java::143::0", "zh": ["返回此 {@link Properties} 对象中条目的排序集合。<p>条目将基于其键进行排序，如有必要，将使用 {@link String#valueOf(Object)} 将键转换为字符串，并按照字符串的自然顺序进行字母数字比较。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/StandardStereotypesProvider.java::26::0", "zh": ["一个 {@link StereotypesProvider}，为类或接口上<i>存在</i>的每个 {@code javax.*} 注解提取构造型。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/StereotypesProvider.java::23::0", "zh": ["提供与某个 {@link Element} 匹配的构造型列表。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/StereotypesProvider.java::23::1", "zh": ["<p>如果一个元素有一个或多个构造型，则它会被引用到候选组件索引中，并且每个构造型都可以单独查询。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/StereotypesProvider.java::34::0", "zh": ["返回给定 {@link Element} 上存在的构造型。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/TypeHelper.java::32::0", "zh": ["类型工具。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/TypeHelper.java::83::0", "zh": ["返回指定 {@link Element} 的父类；如果此 {@code element} 表示 {@link Object}，则返回 null。"]}
+{"id": "spring-context-indexer/src/main/java/org/springframework/context/index/processor/TypeHelper.java::95::0", "zh": ["返回由指定 {@link Element} <strong>直接</strong>实现的接口；若此 {@code element} 未实现任何接口则返回空列表。"]}

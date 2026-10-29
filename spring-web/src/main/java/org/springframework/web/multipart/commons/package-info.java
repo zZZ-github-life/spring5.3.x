@@ -1,6 +1,7 @@
 /**
- * MultipartResolver implementation for
- * <a href="https://commons.apache.org/proper/commons-fileupload">Apache Commons FileUpload</a>.
+ * 基于
+ * <a href="https://commons.apache.org/proper/commons-fileupload">Apache Commons FileUpload</a>
+ * 的 MultipartResolver 实现。
  */
 @NonNullApi
 @NonNullFields

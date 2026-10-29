@@ -29,8 +29,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StreamUtils;
 
 /**
- * Wrapper for a {@link ClientHttpRequest} that has support for {@link ClientHttpRequestInterceptor
- * ClientHttpRequestInterceptors}.
+ * 用于 {@link ClientHttpRequest} 的包装器，支持 {@link ClientHttpRequestInterceptor
+ * ClientHttpRequestInterceptors}。
  *
  * @author Arjen Poutsma
  * @since 3.1

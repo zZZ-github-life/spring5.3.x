@@ -29,29 +29,27 @@
 package org.springframework.asm;
 
 /**
- * The path to a type argument, wildcard bound, array element type, or static inner type within an
- * enclosing type.
+ * 指向外层类型中的类型参数、通配符边界、数组元素类型或静态内部类型的路径。
  *
  * @author Eric Bruneton
  */
 public final class TypePath {
 
-  /** A type path step that steps into the element type of an array type. See {@link #getStep}. */
+  /** 进入数组类型元素类型的类型路径步骤。参见 {@link #getStep}。 */
   public static final int ARRAY_ELEMENT = 0;
 
-  /** A type path step that steps into the nested type of a class type. See {@link #getStep}. */
+  /** 进入类类型嵌套类型的类型路径步骤。参见 {@link #getStep}。 */
   public static final int INNER_TYPE = 1;
 
-  /** A type path step that steps into the bound of a wildcard type. See {@link #getStep}. */
+  /** 进入通配符类型边界的类型路径步骤。参见 {@link #getStep}。 */
   public static final int WILDCARD_BOUND = 2;
 
-  /** A type path step that steps into a type argument of a generic type. See {@link #getStep}. */
+  /** 进入泛型类型类型参数的类型路径步骤。参见 {@link #getStep}。 */
   public static final int TYPE_ARGUMENT = 3;
 
   /**
-   * The byte array where the 'type_path' structure - as defined in the Java Virtual Machine
-   * Specification (JVMS) - corresponding to this TypePath is stored. The first byte of the
-   * structure in this array is given by {@link #typePathOffset}.
+   * 存储此 TypePath 对应的 'type_path' 结构（定义见 Java 虚拟机规范，JVMS）的字节数组。该结构在此数
+   * 组中的第一个字节由 {@link #typePathOffset} 给出。
    *
    * @see <a
    *     href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.7.20.2">JVMS
@@ -59,11 +57,11 @@ public final class TypePath {
    */
   private final byte[] typePathContainer;
 
-  /** The offset of the first byte of the type_path JVMS structure in {@link #typePathContainer}. */
+  /** type_path JVMS 结构首字节在 {@link #typePathContainer} 中的偏移量。 */
   private final int typePathOffset;
 
   /**
-   * Constructs a new TypePath.
+   * 构造一个新的 TypePath。
    *
    * @param typePathContainer a byte array containing a type_path JVMS structure.
    * @param typePathOffset the offset of the first byte of the type_path structure in
@@ -75,7 +73,7 @@ public final class TypePath {
   }
 
   /**
-   * Returns the length of this path, i.e. its number of steps.
+   * 返回此路径的长度，即其步数。
    *
    * @return the length of this path.
    */
@@ -85,7 +83,7 @@ public final class TypePath {
   }
 
   /**
-   * Returns the value of the given step of this path.
+   * 返回此路径中给定步骤的值。
    *
    * @param index an index between 0 and {@link #getLength()}, exclusive.
    * @return one of {@link #ARRAY_ELEMENT}, {@link #INNER_TYPE}, {@link #WILDCARD_BOUND}, or {@link
@@ -97,8 +95,7 @@ public final class TypePath {
   }
 
   /**
-   * Returns the index of the type argument that the given step is stepping into. This method should
-   * only be used for steps whose value is {@link #TYPE_ARGUMENT}.
+   * 返回给定步骤所进入的类型参数的索引。此方法只能用于值为 {@link #TYPE_ARGUMENT} 的步骤。
    *
    * @param index an index between 0 and {@link #getLength()}, exclusive.
    * @return the index of the type argument that the given step is stepping into.
@@ -109,8 +106,7 @@ public final class TypePath {
   }
 
   /**
-   * Converts a type path in string form, in the format used by {@link #toString()}, into a TypePath
-   * object.
+   * 将字符串形式的类型路径（格式与 {@link #toString()} 所用格式相同）转换为 TypePath 对象。
    *
    * @param typePath a type path in string form, in the format used by {@link #toString()}. May be
    *     {@literal null} or empty.
@@ -154,9 +150,9 @@ public final class TypePath {
   }
 
   /**
-   * Returns a string representation of this type path. {@link #ARRAY_ELEMENT} steps are represented
-   * with '[', {@link #INNER_TYPE} steps with '.', {@link #WILDCARD_BOUND} steps with '*' and {@link
-   * #TYPE_ARGUMENT} steps with their type argument index in decimal form followed by ';'.
+   * 返回此类型路径的字符串表示形式。{@link #ARRAY_ELEMENT} 步骤用 '[' 表示，{@link #INNER_TYPE} 步骤
+   * 用 '.' 表示，{@link #WILDCARD_BOUND} 步骤用 '*' 表示，{@link #TYPE_ARGUMENT} 步骤用其类型参数索
+   * 引的十进制形式后跟 ';' 表示。
    */
   @Override
   public String toString() {
@@ -184,8 +180,7 @@ public final class TypePath {
   }
 
   /**
-   * Puts the type_path JVMS structure corresponding to the given TypePath into the given
-   * ByteVector.
+   * 将给定 TypePath 对应的 type_path JVMS 结构放入给定的 ByteVector。
    *
    * @param typePath a TypePath instance, or {@literal null} for empty paths.
    * @param output where the type path must be put.

@@ -23,8 +23,8 @@ import java.util.Properties;
 import org.springframework.core.convert.converter.Converter;
 
 /**
- * Converts a String to a Properties by calling Properties#load(java.io.InputStream).
- * Uses ISO-8559-1 encoding required by Properties.
+ * 通过调用 Properties#load(java.io.InputStream) 将 String 转换为 Properties。使用 Properties 要求
+ * 的 ISO-8559-1 编码。
  *
  * @author Keith Donald
  * @since 3.0

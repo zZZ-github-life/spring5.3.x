@@ -27,15 +27,14 @@ import org.springframework.web.server.WebFilterChain;
 
 
 /**
- * {@link WebFilter} that handles CORS preflight requests and intercepts
- * CORS simple and actual requests thanks to a {@link CorsProcessor} implementation
- * ({@link DefaultCorsProcessor} by default) in order to add the relevant CORS
- * response headers (like {@code Access-Control-Allow-Origin}) using the provided
- * {@link CorsConfigurationSource} (for example an {@link UrlBasedCorsConfigurationSource}
- * instance.
+ * 负责处理 CORS 预检请求，并借助 {@link CorsProcessor} 实现
+ * （默认为 {@link DefaultCorsProcessor}）拦截 CORS 简单请求和实际请求的
+ * {@link WebFilter}，从而使用所提供的 {@link CorsConfigurationSource}
+ * （例如 {@link UrlBasedCorsConfigurationSource} 实例）添加相关的 CORS 响应头
+ * （如 {@code Access-Control-Allow-Origin}）。
  *
- * <p>This is an alternative to Spring WebFlux Java config CORS configuration,
- * mostly useful for applications using the functional API.
+ * <p>这是 Spring WebFlux Java 配置 CORS 的一种替代方案，
+ * 主要适用于使用函数式 API 的应用程序。
  *
  * @author Sebastien Deleuze
  * @since 5.0
@@ -49,8 +48,8 @@ public class CorsWebFilter implements WebFilter {
 
 
 	/**
-	 * Constructor accepting a {@link CorsConfigurationSource} used by the filter
-	 * to find the {@link CorsConfiguration} to use for each incoming request.
+	 * 构造函数，接受过滤器用来为每个传入请求查找要使用的
+	 * {@link CorsConfiguration} 的 {@link CorsConfigurationSource}。
 	 * @see UrlBasedCorsConfigurationSource
 	 */
 	public CorsWebFilter(CorsConfigurationSource configSource) {
@@ -58,10 +57,10 @@ public class CorsWebFilter implements WebFilter {
 	}
 
 	/**
-	 * Constructor accepting a {@link CorsConfigurationSource} used by the filter
-	 * to find the {@link CorsConfiguration} to use for each incoming request and a
-	 * custom {@link CorsProcessor} to use to apply the matched
-	 * {@link CorsConfiguration} for a request.
+	 * 构造函数，接受过滤器用来为每个传入请求查找要使用的
+	 * {@link CorsConfiguration} 的 {@link CorsConfigurationSource}，
+	 * 以及用于对请求应用匹配到的 {@link CorsConfiguration} 的自定义
+	 * {@link CorsProcessor}。
 	 * @see UrlBasedCorsConfigurationSource
 	 */
 	public CorsWebFilter(CorsConfigurationSource configSource, CorsProcessor processor) {

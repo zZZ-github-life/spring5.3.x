@@ -25,12 +25,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Return type of any JMS listener method used to indicate the actual response
- * destination alongside the response itself. Typically used when said destination
- * needs to be computed at runtime.
+ * 任何 JMS 监听器方法的返回类型，用于在返回响应的同时指明实际的响应目的地。
+ * 通常用于需要在运行时计算该目的地的情况。
  *
- * <p>The example below sends a response with the content of the {@code result}
- * argument to the {@code queueOut Queue}:
+ * <p>下面的示例将内容为 {@code result} 参数的响应发送到 {@code queueOut Queue}：
  *
  * <pre class="code">
  * package com.acme.foo;
@@ -43,9 +41,8 @@ import org.springframework.util.Assert;
  *     }
  * }</pre>
  *
- * If the destination does not need to be computed at runtime,
- * {@link org.springframework.messaging.handler.annotation.SendTo @SendTo}
- * is the recommended declarative approach.
+ * 如果目的地不需要在运行时计算，推荐使用声明式的
+ * {@link org.springframework.messaging.handler.annotation.SendTo @SendTo}。
  *
  * @author Stephane Nicoll
  * @since 4.2
@@ -61,7 +58,7 @@ public class JmsResponse<T> {
 
 
 	/**
-	 * Create a new {@link JmsResponse} instance.
+	 * 创建一个新的 {@link JmsResponse} 实例。
 	 * @param response the content of the result
 	 * @param destination the destination
 	 */
@@ -73,15 +70,15 @@ public class JmsResponse<T> {
 
 
 	/**
-	 * Return the content of the response.
+	 * 返回响应的内容。
 	 */
 	public T getResponse() {
 		return this.response;
 	}
 
 	/**
-	 * Resolve the {@link Destination} to use for this instance. The {@link DestinationResolver}
-	 * and {@link Session} can be used to resolve a destination at runtime.
+	 * 解析此实例要使用的 {@link Destination}。
+	 * 可以在运行时使用 {@link DestinationResolver} 和 {@link Session} 解析目的地。
 	 * @param destinationResolver the destination resolver to use if necessary
 	 * @param session the session to use, if necessary
 	 * @return the {@link Destination} to use
@@ -109,7 +106,7 @@ public class JmsResponse<T> {
 
 
 	/**
-	 * Create a {@link JmsResponse} targeting the queue with the specified name.
+	 * 创建针对具有指定名称的队列的 {@link JmsResponse}。
 	 */
 	public static <T> JmsResponse<T> forQueue(T result, String queueName) {
 		Assert.notNull(queueName, "Queue name must not be null");
@@ -117,7 +114,7 @@ public class JmsResponse<T> {
 	}
 
 	/**
-	 * Create a {@link JmsResponse} targeting the topic with the specified name.
+	 * 创建针对具有指定名称的主题的 {@link JmsResponse}。
 	 */
 	public static <T> JmsResponse<T> forTopic(T result, String topicName) {
 		Assert.notNull(topicName, "Topic name must not be null");
@@ -125,7 +122,7 @@ public class JmsResponse<T> {
 	}
 
 	/**
-	 * Create a {@link JmsResponse} targeting the specified {@link Destination}.
+	 * 创建针对指定 {@link Destination} 的 {@link JmsResponse}。
 	 */
 	public static <T> JmsResponse<T> forDestination(T result, Destination destination) {
 		Assert.notNull(destination, "Destination must not be null");
@@ -134,8 +131,7 @@ public class JmsResponse<T> {
 
 
 	/**
-	 * Internal class combining a destination name
-	 * and its target destination type (queue or topic).
+	 * 内部类，组合目的地名称及其目标目的地类型（队列或主题）。
 	 */
 	private static class DestinationNameHolder {
 

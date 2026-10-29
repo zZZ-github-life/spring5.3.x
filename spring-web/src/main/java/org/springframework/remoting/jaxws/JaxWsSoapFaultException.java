@@ -23,8 +23,8 @@ import javax.xml.ws.soap.SOAPFaultException;
 import org.springframework.remoting.soap.SoapFaultException;
 
 /**
- * Spring SoapFaultException adapter for the JAX-WS
- * {@link javax.xml.ws.soap.SOAPFaultException} class.
+ * 用于 JAX-WS {@link javax.xml.ws.soap.SOAPFaultException} 类的
+ * Spring SoapFaultException 适配器。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -33,7 +33,7 @@ import org.springframework.remoting.soap.SoapFaultException;
 public class JaxWsSoapFaultException extends SoapFaultException {
 
 	/**
-	 * Constructor for JaxWsSoapFaultException.
+	 * JaxWsSoapFaultException 的构造函数。
 	 * @param original the original JAX-WS SOAPFaultException to wrap
 	 */
 	public JaxWsSoapFaultException(SOAPFaultException original) {
@@ -41,7 +41,7 @@ public class JaxWsSoapFaultException extends SoapFaultException {
 	}
 
 	/**
-	 * Return the wrapped JAX-WS SOAPFault.
+	 * 返回包装的 JAX-WS SOAPFault。
 	 */
 	public final SOAPFault getFault() {
 		return ((SOAPFaultException) getCause()).getFault();

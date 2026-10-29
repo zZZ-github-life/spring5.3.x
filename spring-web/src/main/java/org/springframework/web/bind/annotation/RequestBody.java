@@ -25,12 +25,11 @@ import java.lang.annotation.Target;
 import org.springframework.http.converter.HttpMessageConverter;
 
 /**
- * Annotation indicating a method parameter should be bound to the body of the web request.
- * The body of the request is passed through an {@link HttpMessageConverter} to resolve the
- * method argument depending on the content type of the request. Optionally, automatic
- * validation can be applied by annotating the argument with {@code @Valid}.
+ * 指示方法参数应绑定到 Web 请求体的注解。
+ * 请求体会通过 {@link HttpMessageConverter} 传递，以根据请求的内容类型
+ * 解析方法参数。此外，可以通过为参数添加 {@code @Valid} 注解来应用自动校验。
  *
- * <p>Supported for annotated handler methods.
+ * <p>支持用于注解处理方法。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -44,10 +43,10 @@ import org.springframework.http.converter.HttpMessageConverter;
 public @interface RequestBody {
 
 	/**
-	 * Whether body content is required.
-	 * <p>Default is {@code true}, leading to an exception thrown in case
-	 * there is no body content. Switch this to {@code false} if you prefer
-	 * {@code null} to be passed when the body content is {@code null}.
+	 * 请求体内容是否为必需。
+	 * <p>默认为 {@code true}，如果请求体内容为空则抛出异常。
+	 * 如果希望在请求体内容为 {@code null} 时传入 {@code null}，
+	 * 请将其改为 {@code false}。
 	 * @since 3.2
 	 */
 	boolean required() default true;

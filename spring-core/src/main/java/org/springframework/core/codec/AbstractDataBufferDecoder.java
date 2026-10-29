@@ -29,17 +29,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Abstract base class for {@code Decoder} implementations that can decode
- * a {@code DataBuffer} directly to the target element type.
+ * 抽象基类，适用于可以直接将 {@code DataBuffer} 解码为目标元素类型的 {@code Decoder} 实现。
  *
- * <p>Sub-classes must implement {@link #decodeDataBuffer} to provide a way to
- * transform a {@code DataBuffer} to the target data type. The default
- * {@link #decode} implementation transforms each individual data buffer while
- * {@link #decodeToMono} applies "reduce" and transforms the aggregated buffer.
+ * <p>子类必须实现 {@link #decodeDataBuffer}，以提供将 {@code DataBuffer} 转换为目标数据类型的方法。
+ * 默认的 {@link #decode} 实现会逐个转换各个数据缓冲区，而 {@link #decodeToMono} 会应用“reduce”并
+ * 转换聚合后的缓冲区。
  *
- * <p>Sub-classes can override {@link #decode} in order to split the input stream
- * along different boundaries (e.g. on new line characters for {@code String})
- * or always reduce to a single data buffer (e.g. {@code Resource}).
+ * <p>子类可以重写 {@link #decode}，以便沿不同的边界拆分输入流（例如对 {@code String} 按换行符拆分），
+ * 或者始终归约为单个数据缓冲区（例如 {@code Resource}）。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -57,14 +54,11 @@ public abstract class AbstractDataBufferDecoder<T> extends AbstractDecoder<T> {
 
 
 	/**
-	 * Configure a limit on the number of bytes that can be buffered whenever
-	 * the input stream needs to be aggregated. This can be a result of
-	 * decoding to a single {@code DataBuffer},
-	 * {@link java.nio.ByteBuffer ByteBuffer}, {@code byte[]},
-	 * {@link org.springframework.core.io.Resource Resource}, {@code String}, etc.
-	 * It can also occur when splitting the input stream, e.g. delimited text,
-	 * in which case the limit applies to data buffered between delimiters.
-	 * <p>By default this is set to 256K.
+	 * 配置输入流需要聚合时可缓冲的最大字节数限制。这可能是由于解码为单个 {@code DataBuffer}、
+	 * {@link java.nio.ByteBuffer ByteBuffer}、{@code byte[]}、
+	 * {@link org.springframework.core.io.Resource Resource}、{@code String} 等而产生的。在拆分输入流时
+	 * （例如分隔文本）也可能出现这种情况，此时该限制适用于分隔符之间缓冲的数据。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 * @since 5.1.11
 	 */
@@ -73,7 +67,7 @@ public abstract class AbstractDataBufferDecoder<T> extends AbstractDecoder<T> {
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回 {@link #setMaxInMemorySize configured} 的字节数限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxInMemorySize() {
@@ -97,7 +91,7 @@ public abstract class AbstractDataBufferDecoder<T> extends AbstractDecoder<T> {
 	}
 
 	/**
-	 * How to decode a {@code DataBuffer} to the target element type.
+	 * 如何将 {@code DataBuffer} 解码为目标元素类型。
 	 * @deprecated as of 5.2, please implement
 	 * {@link #decode(DataBuffer, ResolvableType, MimeType, Map)} instead
 	 */

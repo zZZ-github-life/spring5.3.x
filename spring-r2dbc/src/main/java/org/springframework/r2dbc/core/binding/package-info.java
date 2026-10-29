@@ -1,5 +1,5 @@
 /**
- * Classes providing an abstraction over SQL bind markers.
+ * 提供 SQL 绑定标记（bind marker）抽象的相关类。
  */
 @NonNullApi
 @NonNullFields

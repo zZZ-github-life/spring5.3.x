@@ -23,8 +23,8 @@ import io.r2dbc.spi.Statement;
 import org.springframework.util.Assert;
 
 /**
- * Mutable extension to {@link Bindings} for Value and {@code null} bindings
- * for a {@link Statement} using {@link BindMarkers}.
+ * {@link Bindings} 的可变扩展，用于使用 {@link BindMarkers} 为 {@link Statement}
+ * 提供值绑定和 {@code null} 绑定。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -35,7 +35,7 @@ public class MutableBindings extends Bindings {
 
 
 	/**
-	 * Create new {@link MutableBindings}.
+	 * 创建新的 {@link MutableBindings}。
 	 * @param markers the {@link BindMarkers} to wrap
 	 */
 	public MutableBindings(BindMarkers markers) {
@@ -46,8 +46,8 @@ public class MutableBindings extends Bindings {
 
 
 	/**
-	 * Obtain the next {@link BindMarker}.
-	 * Increments {@link BindMarkers} state
+	 * 获取下一个 {@link BindMarker}。
+	 * 递增 {@link BindMarkers} 的状态
 	 * @return the next {@link BindMarker}
 	 */
 	public BindMarker nextMarker() {
@@ -55,8 +55,8 @@ public class MutableBindings extends Bindings {
 	}
 
 	/**
-	 * Obtain the next {@link BindMarker} with a name {@code hint}.
-	 * Increments {@link BindMarkers} state.
+	 * 获取带名称 {@code hint} 的下一个 {@link BindMarker}。
+	 * 递增 {@link BindMarkers} 的状态。
 	 * @param hint name hint
 	 * @return the next {@link BindMarker}
 	 */
@@ -65,7 +65,7 @@ public class MutableBindings extends Bindings {
 	}
 
 	/**
-	 * Bind a value to {@link BindMarker}.
+	 * 将值绑定到 {@link BindMarker}。
 	 * @param marker the {@link BindMarker} to bind to
 	 * @param value the value to bind
 	 */
@@ -77,8 +77,8 @@ public class MutableBindings extends Bindings {
 	}
 
 	/**
-	 * Bind a value and return the related {@link BindMarker}.
-	 * Increments {@link BindMarkers} state.
+	 * 绑定一个值并返回相关的 {@link BindMarker}。
+	 * 递增 {@link BindMarkers} 的状态。
 	 * @param value the value to bind
 	 */
 	public BindMarker bind(Object value) {
@@ -89,7 +89,7 @@ public class MutableBindings extends Bindings {
 	}
 
 	/**
-	 * Bind a {@code NULL} value to {@link BindMarker}.
+	 * 将 {@code NULL} 值绑定到 {@link BindMarker}。
 	 * @param marker the {@link BindMarker} to bind to
 	 * @param valueType the value type
 	 */
@@ -101,8 +101,8 @@ public class MutableBindings extends Bindings {
 	}
 
 	/**
-	 * Bind a {@code NULL} value and return the related {@link BindMarker}.
-	 * Increments {@link BindMarkers} state.
+	 * 绑定一个 {@code NULL} 值并返回相关的 {@link BindMarker}。
+	 * 递增 {@link BindMarkers} 的状态。
 	 * @param valueType the value type
 	 */
 	public BindMarker bindNull(Class<?> valueType) {

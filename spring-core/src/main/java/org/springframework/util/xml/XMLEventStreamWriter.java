@@ -31,8 +31,8 @@ import javax.xml.stream.events.Namespace;
 import javax.xml.stream.events.StartElement;
 
 /**
- * Implementation of the {@link javax.xml.stream.XMLStreamWriter} interface
- * that wraps an {@link XMLEventWriter}.
+ * 包装 {@link XMLEventWriter} 的 {@link javax.xml.stream.XMLStreamWriter}
+ * 接口实现。
  *
  * @author Arjen Poutsma
  * @since 3.0.5

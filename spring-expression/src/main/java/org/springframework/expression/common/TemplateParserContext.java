@@ -19,8 +19,7 @@ package org.springframework.expression.common;
 import org.springframework.expression.ParserContext;
 
 /**
- * Configurable {@link ParserContext} implementation for template parsing. Expects the
- * expression prefix and suffix as constructor arguments.
+ * 用于模板解析的可配置 {@link ParserContext} 实现。需要将表达式前缀和后缀作为构造参数传入。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -33,14 +32,14 @@ public class TemplateParserContext implements ParserContext {
 
 
 	/**
-	 * Create a new TemplateParserContext with the default "#{" prefix and "}" suffix.
+	 * 使用默认的 "#{" 前缀和 "}" 后缀创建新的 TemplateParserContext。
 	 */
 	public TemplateParserContext() {
 		this("#{", "}");
 	}
 
 	/**
-	 * Create a new TemplateParserContext for the given prefix and suffix.
+	 * 为给定前缀和后缀创建新的 TemplateParserContext。
 	 * @param expressionPrefix the expression prefix to use
 	 * @param expressionSuffix the expression suffix to use
 	 */

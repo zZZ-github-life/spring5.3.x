@@ -33,8 +33,8 @@ import org.springframework.web.socket.server.support.WebSocketHandlerMapping;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * {@link WebSocketHandlerRegistry} with Spring MVC handler mappings for the
- * handshake requests.
+ * 带有用于握手请求的 Spring MVC 处理器映射的
+ * {@link WebSocketHandlerRegistry}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -62,9 +62,9 @@ public class ServletWebSocketHandlerRegistry implements WebSocketHandlerRegistry
 	}
 
 	/**
-	 * Set the order for the resulting {@link SimpleUrlHandlerMapping} relative to
-	 * other handler mappings configured in Spring MVC.
-	 * <p>The default value is 1.
+	 * 设置生成的 {@link SimpleUrlHandlerMapping} 相对于 Spring MVC 中配置的
+	 * 其他处理器映射的顺序。
+	 * <p>默认值为 1。
 	 */
 	public void setOrder(int order) {
 		this.order = order;
@@ -75,8 +75,8 @@ public class ServletWebSocketHandlerRegistry implements WebSocketHandlerRegistry
 	}
 
 	/**
-	 * Set the UrlPathHelper to configure on the {@code SimpleUrlHandlerMapping}
-	 * used to map handshake requests.
+	 * 设置用于映射握手请求的 {@code SimpleUrlHandlerMapping} 上要配置的
+	 * UrlPathHelper。
 	 */
 	public void setUrlPathHelper(@Nullable UrlPathHelper urlPathHelper) {
 		this.urlPathHelper = urlPathHelper;
@@ -89,9 +89,9 @@ public class ServletWebSocketHandlerRegistry implements WebSocketHandlerRegistry
 
 
 	/**
-	 * Whether there are any endpoint SockJS registrations without a TaskScheduler.
-	 * This method should be invoked just before {@link #getHandlerMapping()} to
-	 * allow for registrations to be made first.
+	 * 是否存在任何没有 TaskScheduler 的端点 SockJS 注册。
+	 * 应在 {@link #getHandlerMapping()} 之前立即调用此方法，
+	 * 以便先完成注册。
 	 */
 	protected boolean requiresTaskScheduler() {
 		return this.registrations.stream()
@@ -100,9 +100,8 @@ public class ServletWebSocketHandlerRegistry implements WebSocketHandlerRegistry
 	}
 
 	/**
-	 * Provide the TaskScheduler to use for SockJS endpoints for which a task
-	 * scheduler has not been explicitly registered. This method must be called
-	 * prior to {@link #getHandlerMapping()}.
+	 * 为未显式注册任务调度器的 SockJS 端点提供要使用的 TaskScheduler。
+	 * 必须在 {@link #getHandlerMapping()} 之前调用此方法。
 	 */
 	protected void setTaskScheduler(TaskScheduler scheduler) {
 		this.registrations.stream()

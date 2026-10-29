@@ -40,13 +40,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
 
 /**
- * View that redirects to an absolute or context relative URL. The URL may be a
- * URI template in which case the URI template variables will be replaced with
- * values from the model or with URI variables from the current request.
+ * 重定向到绝对 URL 或相对于上下文的 URL 的视图。该 URL 可以是 URI 模板，此时 URI 模板变量将替换为模型中的值或当前请求中的 URI 变量。
  *
- * <p>By default {@link HttpStatus#SEE_OTHER} is used but alternate status codes
- * may be supplied via constructor or setters arguments.
- *
+ * <p>默认使用 {@link HttpStatus#SEE_OTHER}，但可以通过构造函数或 setter 参数提供其他状态代码。
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -67,23 +63,21 @@ public class RedirectView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 用作 Bean 的构造函数。
 	 */
 	public RedirectView() {
 	}
 
 	/**
-	 * Create a new {@code RedirectView} with the given redirect URL.
-	 * <p>Status code {@link HttpStatus#SEE_OTHER} is used by default.
+	 * 使用给定重定向 URL 创建新的 {@code RedirectView}。
+	 * <p>默认使用状态代码 {@link HttpStatus#SEE_OTHER}。
 	 */
 	public RedirectView(String redirectUrl) {
 		super(redirectUrl);
 	}
 
 	/**
-	 * Create a new {@code RedirectView} with the given URL and an alternate
-	 * redirect status code such as {@link HttpStatus#TEMPORARY_REDIRECT} or
-	 * {@link HttpStatus#PERMANENT_REDIRECT}.
+	 * 使用给定 URL 和替代重定向状态代码（例如 {@link HttpStatus#TEMPORARY_REDIRECT} 或 {@link HttpStatus#PERMANENT_REDIRECT}）创建新的 {@code RedirectView}。
 	 */
 	public RedirectView(String redirectUrl, HttpStatus statusCode) {
 		super(redirectUrl);
@@ -92,9 +86,7 @@ public class RedirectView extends AbstractUrlBasedView {
 
 
 	/**
-	 * Set an alternate redirect status code such as
-	 * {@link HttpStatus#TEMPORARY_REDIRECT} or
-	 * {@link HttpStatus#PERMANENT_REDIRECT}.
+	 * 设置替代重定向状态代码，例如 {@link HttpStatus#TEMPORARY_REDIRECT} 或 {@link HttpStatus#PERMANENT_REDIRECT}。
 	 */
 	public void setStatusCode(HttpStatus statusCode) {
 		Assert.isTrue(statusCode.is3xxRedirection(), () -> "Not a redirect status code: " + statusCode);
@@ -102,49 +94,45 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Get the redirect status code to use.
+	 * 获取要使用的重定向状态代码。
 	 */
 	public HttpStatus getStatusCode() {
 		return this.statusCode;
 	}
 
 	/**
-	 * Whether to interpret a given redirect URL that starts with a slash ("/")
-	 * as relative to the current context path ({@code true}, the default) or
-	 * relative to the web server root ({@code false}).
+	 * 是否将以斜杠（"/"）开头的重定向 URL 解释为相对于当前上下文路径（{@code true}，默认值）还是相对于 Web 服务器根路径（{@code false}）。
 	 */
 	public void setContextRelative(boolean contextRelative) {
 		this.contextRelative = contextRelative;
 	}
 
 	/**
-	 * Whether to interpret URLs as relative to the current context path.
+	 * 是否将 URL 解释为相对于当前上下文路径。
 	 */
 	public boolean isContextRelative() {
 		return this.contextRelative;
 	}
 
 	/**
-	 * Whether to append the query string of the current URL to the redirect URL
-	 * ({@code true}) or not ({@code false}, the default).
+	 * 是否将当前 URL 的查询字符串追加到重定向 URL（{@code true}），或不追加（{@code false}，默认值）。
 	 */
 	public void setPropagateQuery(boolean propagateQuery) {
 		this.propagateQuery = propagateQuery;
 	}
 
 	/**
-	 * Whether the query string of the current URL is appended to the redirect URL.
+	 * 当前 URL 的查询字符串是否追加到重定向 URL。
 	 */
 	public boolean isPropagateQuery() {
 		return this.propagateQuery;
 	}
 
 	/**
-	 * Configure one or more hosts associated with the application.
-	 * <p>All other hosts will be considered external hosts.
-	 * <p>In effect this provides a way turn off encoding for URLs that
-	 * have a host and that host is not listed as a known host.
-	 * <p>If not set (the default) all redirect URLs are encoded.
+	 * 配置与应用程序关联的一个或多个主机。
+	 * <p>所有其他主机将被视为外部主机。
+	 * <p>实际上，这提供了一种方式：对于具有主机且该主机未列为已知主机的 URL，关闭编码。
+	 * <p>如果未设置（默认），则对所有重定向 URL 进行编码。
 	 * @param hosts one or more application hosts
 	 */
 	public void setHosts(@Nullable String... hosts) {
@@ -152,7 +140,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Return the configured application hosts.
+	 * 返回配置的应用程序主机。
 	 */
 	@Nullable
 	public String[] getHosts() {
@@ -177,7 +165,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Convert model to request parameters and redirect to the given URL.
+	 * 将模型转换为请求参数并重定向到给定 URL。
 	 */
 	@Override
 	protected Mono<Void> renderInternal(
@@ -188,10 +176,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Create the target URL and, if necessary, pre-pend the contextPath, expand
-	 * URI template variables, append the current request query, and apply the
-	 * configured {@link #getRequestDataValueProcessor()
-	 * RequestDataValueProcessor}.
+	 * 创建目标 URL，并在必要时在前面加上 contextPath、展开 URI 模板变量、追加当前请求查询，并应用配置的 {@link #getRequestDataValueProcessor() RequestDataValueProcessor}。
 	 */
 	protected final String createTargetUrl(Map<String, Object> model, ServerWebExchange exchange) {
 		String url = getUrl();
@@ -226,9 +211,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Expand URI template variables in the target URL with either model
-	 * attribute values or as a fallback with URI variable values from the
-	 * current request. Values are encoded.
+	 * 使用模型属性值或当前请求中的 URI 变量值（作为回退）展开目标 URL 中的 URI 模板变量。值会被编码。
 	 */
 	protected StringBuilder expandTargetUrlTemplate(String targetUrl,
 			Map<String, Object> model, Map<String, String> uriVariables) {
@@ -259,7 +242,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Append the query of the current request to the target redirect URL.
+	 * 将当前请求的查询追加到目标重定向 URL。
 	 */
 	protected StringBuilder appendCurrentRequestQuery(String targetUrl, ServerHttpRequest request) {
 		String query = request.getURI().getRawQuery();
@@ -282,7 +265,7 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Send a redirect back to the HTTP client.
+	 * 向 HTTP 客户端发送重定向。
 	 * @param targetUrl the target URL to redirect to
 	 * @param exchange current exchange
 	 */
@@ -295,10 +278,8 @@ public class RedirectView extends AbstractUrlBasedView {
 	}
 
 	/**
-	 * Whether the given targetUrl has a host that is a "foreign" system in which
-	 * case {@link javax.servlet.http.HttpServletResponse#encodeRedirectURL} will not be applied.
-	 * <p>This method returns {@code true} if the {@link #setHosts(String[])}
-	 * property is configured and the target URL has a host that does not match.
+	 * 给定 targetUrl 是否具有“外部”系统主机，在这种情况下不会应用 {@link javax.servlet.http.HttpServletResponse#encodeRedirectURL}。
+	 * <p>如果配置了 {@link #setHosts(String[])} 属性且目标 URL 的主机不匹配，则此方法返回 {@code true}。
 	 * @param targetUrl the target redirect URL
 	 * @return {@code true} if the target URL has a remote host, {@code false} if
 	 * the URL does not have a host or the "host" property is not configured

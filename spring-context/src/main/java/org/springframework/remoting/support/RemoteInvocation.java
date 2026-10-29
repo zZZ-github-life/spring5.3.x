@@ -28,14 +28,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Encapsulates a remote invocation, providing core method invocation properties
- * in a serializable fashion. Used for RMI and HTTP-based serialization invokers.
+ * 封装一次远程调用，以可序列化的方式提供核心的方法调用属性。用于 RMI 和基于 HTTP 的序列化调用器。
  *
- * <p>This is an SPI class, typically not used directly by applications.
- * Can be subclassed for additional invocation parameters.
+ * <p>这是一个 SPI 类，通常不由应用程序直接使用。可以派生子类以添加额外的调用参数。
  *
- * <p>Both {@link RemoteInvocation} and {@link RemoteInvocationResult} are designed
- * for use with standard Java serialization as well as JavaBean-style serialization.
+ * <p>{@link RemoteInvocation} 和 {@link RemoteInvocationResult} 都设计为既可用于标准 Java 序列化，
+ * 也可用于 JavaBean 风格的序列化。
  *
  * @author Juergen Hoeller
  * @since 25.02.2004
@@ -49,7 +47,7 @@ import org.springframework.util.ClassUtils;
  */
 public class RemoteInvocation implements Serializable {
 
-	/** use serialVersionUID from Spring 1.1 for interoperability. */
+	/** 使用 Spring 1.1 的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = 6876024250231820554L;
 
 
@@ -63,7 +61,7 @@ public class RemoteInvocation implements Serializable {
 
 
 	/**
-	 * Create a new RemoteInvocation for the given AOP method invocation.
+	 * 为给定的 AOP 方法调用创建一个新的 RemoteInvocation。
 	 * @param methodInvocation the AOP invocation to convert
 	 */
 	public RemoteInvocation(MethodInvocation methodInvocation) {
@@ -73,7 +71,7 @@ public class RemoteInvocation implements Serializable {
 	}
 
 	/**
-	 * Create a new RemoteInvocation for the given parameters.
+	 * 为给定的参数创建一个新的 RemoteInvocation。
 	 * @param methodName the name of the method to invoke
 	 * @param parameterTypes the parameter types of the method
 	 * @param arguments the arguments for the invocation
@@ -85,53 +83,52 @@ public class RemoteInvocation implements Serializable {
 	}
 
 	/**
-	 * Create a new RemoteInvocation for JavaBean-style deserialization
-	 * (e.g. with Jackson).
+	 * 创建一个新的 RemoteInvocation，用于 JavaBean 风格的反序列化（例如使用 Jackson）。
 	 */
 	public RemoteInvocation() {
 	}
 
 
 	/**
-	 * Set the name of the target method.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * 设置目标方法的名称。
+	 * <p>此 setter 用于 JavaBean 风格的反序列化。
 	 */
 	public void setMethodName(String methodName) {
 		this.methodName = methodName;
 	}
 
 	/**
-	 * Return the name of the target method.
+	 * 返回目标方法的名称。
 	 */
 	public String getMethodName() {
 		return this.methodName;
 	}
 
 	/**
-	 * Set the parameter types of the target method.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * 设置目标方法的参数类型。
+	 * <p>此 setter 用于 JavaBean 风格的反序列化。
 	 */
 	public void setParameterTypes(Class<?>[] parameterTypes) {
 		this.parameterTypes = parameterTypes;
 	}
 
 	/**
-	 * Return the parameter types of the target method.
+	 * 返回目标方法的参数类型。
 	 */
 	public Class<?>[] getParameterTypes() {
 		return this.parameterTypes;
 	}
 
 	/**
-	 * Set the arguments for the target method call.
-	 * <p>This setter is intended for JavaBean-style deserialization.
+	 * 设置目标方法调用的参数。
+	 * <p>此 setter 用于 JavaBean 风格的反序列化。
 	 */
 	public void setArguments(Object[] arguments) {
 		this.arguments = arguments;
 	}
 
 	/**
-	 * Return the arguments for the target method call.
+	 * 返回目标方法调用的参数。
 	 */
 	public Object[] getArguments() {
 		return this.arguments;
@@ -139,12 +136,9 @@ public class RemoteInvocation implements Serializable {
 
 
 	/**
-	 * Add an additional invocation attribute. Useful to add additional
-	 * invocation context without having to subclass RemoteInvocation.
-	 * <p>Attribute keys have to be unique, and no overriding of existing
-	 * attributes is allowed.
-	 * <p>The implementation avoids to unnecessarily create the attributes
-	 * Map, to minimize serialization size.
+	 * 添加一个额外的调用属性。可用于在不进行 RemoteInvocation 子类化的情况下添加额外的调用上下文。
+	 * <p>属性键必须唯一，且不允许覆盖已有的属性。
+	 * <p>该实现会避免不必要地创建属性 Map，以尽量减小序列化体积。
 	 * @param key the attribute key
 	 * @param value the attribute value
 	 * @throws IllegalStateException if the key is already bound
@@ -160,9 +154,8 @@ public class RemoteInvocation implements Serializable {
 	}
 
 	/**
-	 * Retrieve the attribute for the given key, if any.
-	 * <p>The implementation avoids to unnecessarily create the attributes
-	 * Map, to minimize serialization size.
+	 * 获取给定键对应的属性（如果有）。
+	 * <p>该实现会避免不必要地创建属性 Map，以尽量减小序列化体积。
 	 * @param key the attribute key
 	 * @return the attribute value, or {@code null} if not defined
 	 */
@@ -175,8 +168,7 @@ public class RemoteInvocation implements Serializable {
 	}
 
 	/**
-	 * Set the attributes Map. Only here for special purposes:
-	 * Preferably, use {@link #addAttribute} and {@link #getAttribute}.
+	 * 设置属性 Map。仅用于特殊目的：最好使用 {@link #addAttribute} 和 {@link #getAttribute}。
 	 * @param attributes the attributes Map
 	 * @see #addAttribute
 	 * @see #getAttribute
@@ -186,8 +178,7 @@ public class RemoteInvocation implements Serializable {
 	}
 
 	/**
-	 * Return the attributes Map. Mainly here for debugging purposes:
-	 * Preferably, use {@link #addAttribute} and {@link #getAttribute}.
+	 * 返回属性 Map。主要用于调试目的：最好使用 {@link #addAttribute} 和 {@link #getAttribute}。
 	 * @return the attributes Map, or {@code null} if none created
 	 * @see #addAttribute
 	 * @see #getAttribute
@@ -199,8 +190,7 @@ public class RemoteInvocation implements Serializable {
 
 
 	/**
-	 * Perform this invocation on the given target object.
-	 * Typically called when a RemoteInvocation is received on the server.
+	 * 在给定的目标对象上执行此调用。通常当服务器收到 RemoteInvocation 时调用。
 	 * @param targetObject the target object to apply the invocation to
 	 * @return the invocation result
 	 * @throws NoSuchMethodException if the method name could not be resolved

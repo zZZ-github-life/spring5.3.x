@@ -33,14 +33,14 @@ import org.springframework.transaction.support.SmartTransactionObject;
 import org.springframework.util.Assert;
 
 /**
- * Convenient base class for JDBC-aware transaction objects. Can contain a
- * {@link ConnectionHolder} with a JDBC {@code Connection}, and implements the
- * {@link SavepointManager} interface based on that {@code ConnectionHolder}.
+ * JDBC 感知事务对象的便捷基类。可以包含一个带有 JDBC {@code Connection}
+ * 的 {@link ConnectionHolder}，并基于该 {@code ConnectionHolder}
+ * 实现 {@link SavepointManager} 接口。
  *
- * <p>Allows for programmatic management of JDBC {@link java.sql.Savepoint Savepoints}.
- * Spring's {@link org.springframework.transaction.support.DefaultTransactionStatus}
- * automatically delegates to this, as it autodetects transaction objects which
- * implement the {@link SavepointManager} interface.
+ * <p>允许以编程方式管理 JDBC {@link java.sql.Savepoint Savepoint}。
+ * Spring 的 {@link org.springframework.transaction.support.DefaultTransactionStatus}
+ * 会自动委托给它，因为它会自动检测实现了 {@link SavepointManager} 接口
+ * 的事务对象。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -63,14 +63,14 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 
 
 	/**
-	 * Set the ConnectionHolder for this transaction object.
+	 * 为此事务对象设置 ConnectionHolder。
 	 */
 	public void setConnectionHolder(@Nullable ConnectionHolder connectionHolder) {
 		this.connectionHolder = connectionHolder;
 	}
 
 	/**
-	 * Return the ConnectionHolder for this transaction object.
+	 * 返回此事务对象的 ConnectionHolder。
 	 */
 	public ConnectionHolder getConnectionHolder() {
 		Assert.state(this.connectionHolder != null, "No ConnectionHolder available");
@@ -78,21 +78,21 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
-	 * Check whether this transaction object has a ConnectionHolder.
+	 * 检查此事务对象是否拥有 ConnectionHolder。
 	 */
 	public boolean hasConnectionHolder() {
 		return (this.connectionHolder != null);
 	}
 
 	/**
-	 * Set the previous isolation level to retain, if any.
+	 * 设置要保留的先前隔离级别（如果有）。
 	 */
 	public void setPreviousIsolationLevel(@Nullable Integer previousIsolationLevel) {
 		this.previousIsolationLevel = previousIsolationLevel;
 	}
 
 	/**
-	 * Return the retained previous isolation level, if any.
+	 * 返回所保留的先前隔离级别（如果有）。
 	 */
 	@Nullable
 	public Integer getPreviousIsolationLevel() {
@@ -100,8 +100,8 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
-	 * Set the read-only status of this transaction.
-	 * The default is {@code false}.
+	 * 设置此事务的只读状态。
+	 * 默认值为 {@code false}。
 	 * @since 5.2.1
 	 */
 	public void setReadOnly(boolean readOnly) {
@@ -109,7 +109,7 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
-	 * Return the read-only status of this transaction.
+	 * 返回此事务的只读状态。
 	 * @since 5.2.1
 	 */
 	public boolean isReadOnly() {
@@ -117,15 +117,15 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
-	 * Set whether savepoints are allowed within this transaction.
-	 * The default is {@code false}.
+	 * 设置此事务内是否允许保存点（Savepoint）。
+	 * 默认值为 {@code false}。
 	 */
 	public void setSavepointAllowed(boolean savepointAllowed) {
 		this.savepointAllowed = savepointAllowed;
 	}
 
 	/**
-	 * Return whether savepoints are allowed within this transaction.
+	 * 返回此事务内是否允许保存点（Savepoint）。
 	 */
 	public boolean isSavepointAllowed() {
 		return this.savepointAllowed;
@@ -142,7 +142,7 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	//---------------------------------------------------------------------
 
 	/**
-	 * This implementation creates a JDBC 3.0 Savepoint and returns it.
+	 * 此实现创建一个 JDBC 3.0 保存点（Savepoint）并将其返回。
 	 * @see java.sql.Connection#setSavepoint
 	 */
 	@Override
@@ -165,7 +165,7 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
-	 * This implementation rolls back to the given JDBC 3.0 Savepoint.
+	 * 此实现回滚到给定的 JDBC 3.0 保存点（Savepoint）。
 	 * @see java.sql.Connection#rollback(java.sql.Savepoint)
 	 */
 	@Override
@@ -181,7 +181,7 @@ public abstract class JdbcTransactionObjectSupport implements SavepointManager, 
 	}
 
 	/**
-	 * This implementation releases the given JDBC 3.0 Savepoint.
+	 * 此实现释放给定的 JDBC 3.0 保存点（Savepoint）。
 	 * @see java.sql.Connection#releaseSavepoint
 	 */
 	@Override

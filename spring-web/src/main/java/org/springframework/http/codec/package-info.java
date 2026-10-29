@@ -1,11 +1,10 @@
 /**
- * Provides implementations of {@link org.springframework.core.codec.Encoder}
- * and {@link org.springframework.core.codec.Decoder} for web use.
+ * 提供用于 Web 场景的 {@link org.springframework.core.codec.Encoder}
+ * 和 {@link org.springframework.core.codec.Decoder} 实现。
  *
- * <p>Also declares a high-level
- * {@link org.springframework.http.codec.HttpMessageReader} and
- * {@link org.springframework.http.codec.HttpMessageWriter} for reading and
- * writing the body of HTTP requests and responses.
+ * <p>还声明了用于读写 HTTP 请求和响应体的高层
+ * {@link org.springframework.http.codec.HttpMessageReader} 和
+ * {@link org.springframework.http.codec.HttpMessageWriter}。
  */
 @NonNullApi
 @NonNullFields

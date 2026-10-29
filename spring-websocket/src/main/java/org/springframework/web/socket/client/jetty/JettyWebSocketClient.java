@@ -52,13 +52,12 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Initiates WebSocket requests to a WebSocket server programmatically
- * through the Jetty WebSocket API.
+ * 通过 Jetty WebSocket API 以编程方式向 WebSocket 服务器发起 WebSocket 请求。
  *
- * <p>As of 4.1 this class implements {@link Lifecycle} rather than
- * {@link org.springframework.context.SmartLifecycle}. Use
+ * <p>从 4.1 起，此类实现 {@link Lifecycle} 而不是
+ * {@link org.springframework.context.SmartLifecycle}。请改用
  * {@link org.springframework.web.socket.client.WebSocketConnectionManager
- * WebSocketConnectionManager} instead to auto-start a WebSocket connection.
+ * WebSocketConnectionManager} 来自动启动 WebSocket 连接。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -93,16 +92,16 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 
 
 	/**
-	 * Default constructor that creates an instance of
-	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient}.
+	 * 默认构造函数，用于创建
+	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient} 的实例。
 	 */
 	public JettyWebSocketClient() {
 		this.client = new org.eclipse.jetty.websocket.client.WebSocketClient();
 	}
 
 	/**
-	 * Constructor that accepts an existing
-	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient} instance.
+	 * 接受现有
+	 * {@link org.eclipse.jetty.websocket.client.WebSocketClient} 实例的构造函数。
 	 */
 	public JettyWebSocketClient(WebSocketClient client) {
 		this.client = client;
@@ -110,17 +109,17 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 
 
 	/**
-	 * Set an {@link AsyncListenableTaskExecutor} to use when opening connections.
-	 * If this property is set to {@code null}, calls to any of the
-	 * {@code doHandshake} methods will block until the connection is established.
-	 * <p>By default an instance of {@code SimpleAsyncTaskExecutor} is used.
+	 * 设置用于打开连接的 {@link AsyncListenableTaskExecutor}。
+	 * 如果此属性设置为 {@code null}，则对任何
+	 * {@code doHandshake} 方法的调用都会阻塞，直到连接建立。
+	 * <p>默认情况下使用 {@code SimpleAsyncTaskExecutor} 的实例。
 	 */
 	public void setTaskExecutor(@Nullable AsyncListenableTaskExecutor taskExecutor) {
 		this.taskExecutor = taskExecutor;
 	}
 
 	/**
-	 * Return the configured {@link TaskExecutor}.
+	 * 返回配置的 {@link TaskExecutor}。
 	 */
 	@Nullable
 	public AsyncListenableTaskExecutor getTaskExecutor() {
@@ -198,8 +197,8 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 	}
 
 	/**
-	 * Return the user to make available through {@link WebSocketSession#getPrincipal()}.
-	 * By default, this method returns {@code null}
+	 * 返回通过 {@link WebSocketSession#getPrincipal()} 提供的用户。
+	 * 默认情况下，此方法返回 {@code null}
 	 */
 	@Nullable
 	protected Principal getUser() {
@@ -208,7 +207,7 @@ public class JettyWebSocketClient extends AbstractWebSocketClient implements Lif
 
 
 	/**
-	 * Encapsulate incompatible changes between Jetty 9.4 and 10.
+	 * 封装 Jetty 9.4 与 10 之间的不兼容变更。
 	 */
 	private interface UpgradeHelper {
 

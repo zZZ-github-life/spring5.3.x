@@ -22,9 +22,9 @@ import org.springframework.core.OverridingClassLoader;
 import org.springframework.lang.Nullable;
 
 /**
- * Simplistic implementation of an instrumentable {@code ClassLoader}.
+ * 可插桩的 {@code ClassLoader} 的简化实现。
  *
- * <p>Usable in tests and standalone environments.
+ * <p>可用于测试和独立环境。
  *
  * @author Rod Johnson
  * @author Costin Leau
@@ -41,7 +41,7 @@ public class SimpleInstrumentableClassLoader extends OverridingClassLoader {
 
 
 	/**
-	 * Create a new SimpleInstrumentableClassLoader for the given ClassLoader.
+	 * 为给定的 ClassLoader 创建一个新的 SimpleInstrumentableClassLoader。
 	 * @param parent the ClassLoader to build an instrumentable ClassLoader for
 	 */
 	public SimpleInstrumentableClassLoader(@Nullable ClassLoader parent) {
@@ -51,7 +51,7 @@ public class SimpleInstrumentableClassLoader extends OverridingClassLoader {
 
 
 	/**
-	 * Add a {@link ClassFileTransformer} to be applied by this ClassLoader.
+	 * 添加一个由该 ClassLoader 应用的 {@link ClassFileTransformer}。
 	 * @param transformer the {@link ClassFileTransformer} to register
 	 */
 	public void addTransformer(ClassFileTransformer transformer) {

@@ -22,10 +22,10 @@ import io.r2dbc.spi.Connection;
 
 
 /**
- * Union type combining {@link Function} and {@link SqlProvider} to expose the SQL that is
- * related to the underlying action. The SqlProvider can support lazy / generate once semantics,
- * in which case {@link #getSql()} can be {@code null} until the {@code #apply(Connection)}
- * method is invoked.
+ * 联合类型，结合 {@link Function} 和 {@link SqlProvider} 以暴露与底层操作
+ * 相关的 SQL。SqlProvider 可以支持延迟 / 仅生成一次语义，
+ * 在这种情况下，在调用 {@code #apply(Connection)} 方法之前，
+ * {@link #getSql()} 可能为 {@code null}。
  *
  * @author Mark Paluch
  * @author Simon Baslé

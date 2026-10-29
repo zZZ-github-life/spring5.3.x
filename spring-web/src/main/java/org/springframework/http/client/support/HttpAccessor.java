@@ -33,13 +33,13 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@link org.springframework.web.client.RestTemplate}
- * and other HTTP accessing gateway helpers, defining common properties
- * such as the {@link ClientHttpRequestFactory} to operate on.
+ * {@link org.springframework.web.client.RestTemplate}
+ * 和其他 HTTP 访问网关辅助类的基类，定义要操作的
+ * {@link ClientHttpRequestFactory} 等公共属性。
  *
- * <p>Not intended to be used directly.
+ * <p>不打算直接使用。
  *
- * <p>See {@link org.springframework.web.client.RestTemplate} for an entry point.
+ * <p>有关入口点，请参阅 {@link org.springframework.web.client.RestTemplate}。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -50,7 +50,7 @@ import org.springframework.util.Assert;
  */
 public abstract class HttpAccessor {
 
-	/** Logger available to subclasses. */
+	/** 供子类使用的 Logger。 */
 	protected final Log logger = HttpLogging.forLogName(getClass());
 
 	private ClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
@@ -59,11 +59,11 @@ public abstract class HttpAccessor {
 
 
 	/**
-	 * Set the request factory that this accessor uses for obtaining client request handles.
-	 * <p>The default is a {@link SimpleClientHttpRequestFactory} based on the JDK's own
-	 * HTTP libraries ({@link java.net.HttpURLConnection}).
-	 * <p><b>Note that the standard JDK HTTP library does not support the HTTP PATCH method.
-	 * Configure the Apache HttpComponents or OkHttp request factory to enable PATCH.</b>
+	 * 设置此访问器用于获取客户端请求句柄的请求工厂。
+	 * <p>默认是基于 JDK 自带 HTTP 库（{@link java.net.HttpURLConnection}）的
+	 * {@link SimpleClientHttpRequestFactory}。
+	 * <p><b>请注意，标准 JDK HTTP 库不支持 HTTP PATCH 方法。
+	 * 请配置 Apache HttpComponents 或 OkHttp 请求工厂以启用 PATCH。</b>
 	 * @see #createRequest(URI, HttpMethod)
 	 * @see SimpleClientHttpRequestFactory
 	 * @see org.springframework.http.client.HttpComponentsAsyncClientHttpRequestFactory
@@ -75,7 +75,7 @@ public abstract class HttpAccessor {
 	}
 
 	/**
-	 * Return the request factory that this accessor uses for obtaining client request handles.
+	 * 返回此访问器用于获取客户端请求句柄的请求工厂。
 	 */
 	public ClientHttpRequestFactory getRequestFactory() {
 		return this.requestFactory;
@@ -83,9 +83,9 @@ public abstract class HttpAccessor {
 
 
 	/**
-	 * Set the request initializers that this accessor should use.
-	 * <p>The initializers will get immediately sorted according to their
-	 * {@linkplain AnnotationAwareOrderComparator#sort(List) order}.
+	 * 设置此访问器应使用的请求初始化器。
+	 * <p>初始化器将立即根据其
+	 * {@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}进行排序。
 	 * @since 5.2
 	 */
 	public void setClientHttpRequestInitializers(
@@ -99,11 +99,11 @@ public abstract class HttpAccessor {
 	}
 
 	/**
-	 * Get the request initializers that this accessor uses.
-	 * <p>The returned {@link List} is active and may be modified. Note,
-	 * however, that the initializers will not be resorted according to their
-	 * {@linkplain AnnotationAwareOrderComparator#sort(List) order} before the
-	 * {@link ClientHttpRequest} is initialized.
+	 * 获取此访问器使用的请求初始化器。
+	 * <p>返回的 {@link List} 是活动的，可以修改。但请注意，
+	 * 在初始化 {@link ClientHttpRequest} 之前，初始化器
+	 * 不会根据其
+	 * {@linkplain AnnotationAwareOrderComparator#sort(List) 顺序}重新排序。
 	 * @since 5.2
 	 * @see #setClientHttpRequestInitializers(List)
 	 */
@@ -112,7 +112,7 @@ public abstract class HttpAccessor {
 	}
 
 	/**
-	 * Create a new {@link ClientHttpRequest} via this template's {@link ClientHttpRequestFactory}.
+	 * 通过此模板的 {@link ClientHttpRequestFactory} 创建新的 {@link ClientHttpRequest}。
 	 * @param url the URL to connect to
 	 * @param method the HTTP method to execute (GET, POST, etc)
 	 * @return the created request

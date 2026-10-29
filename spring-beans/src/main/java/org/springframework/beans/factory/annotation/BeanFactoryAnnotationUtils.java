@@ -37,8 +37,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenience methods performing bean lookups related to Spring-specific annotations,
- * for example Spring's {@link Qualifier @Qualifier} annotation.
+ * 执行与 Spring 特定注解相关的 Bean 查找的便捷方法，例如 Spring 的 {@link Qualifier @Qualifier} 注
+ * 解。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -48,9 +48,8 @@ import org.springframework.util.Assert;
 public abstract class BeanFactoryAnnotationUtils {
 
 	/**
-	 * Retrieve all bean of type {@code T} from the given {@code BeanFactory} declaring a
-	 * qualifier (e.g. via {@code <qualifier>} or {@code @Qualifier}) matching the given
-	 * qualifier, or having a bean name matching the given qualifier.
+	 * 从给定的 {@code BeanFactory} 中检索所有类型为 {@code T} 且声明了与给定限定符匹配的限定符（例如通
+	 * 过 {@code <qualifier>} 或 {@code @Qualifier}），或者 Bean 名称与给定限定符匹配的 Bean。
 	 * @param beanFactory the factory to get the target beans from (also searching ancestors)
 	 * @param beanType the type of beans to retrieve
 	 * @param qualifier the qualifier for selecting among all type matches
@@ -73,9 +72,8 @@ public abstract class BeanFactoryAnnotationUtils {
 	}
 
 	/**
-	 * Obtain a bean of type {@code T} from the given {@code BeanFactory} declaring a
-	 * qualifier (e.g. via {@code <qualifier>} or {@code @Qualifier}) matching the given
-	 * qualifier, or having a bean name matching the given qualifier.
+	 * 从给定的 {@code BeanFactory} 中获取一个类型为 {@code T} 且声明了与给定限定符匹配的限定符（例如通
+	 * 过 {@code <qualifier>} 或 {@code @Qualifier}），或者 Bean 名称与给定限定符匹配的 Bean。
 	 * @param beanFactory the factory to get the target bean from (also searching ancestors)
 	 * @param beanType the type of bean to retrieve
 	 * @param qualifier the qualifier for selecting between multiple bean matches
@@ -107,8 +105,8 @@ public abstract class BeanFactoryAnnotationUtils {
 	}
 
 	/**
-	 * Obtain a bean of type {@code T} from the given {@code BeanFactory} declaring a qualifier
-	 * (e.g. {@code <qualifier>} or {@code @Qualifier}) matching the given qualifier).
+	 * 从给定的 {@code BeanFactory} 中获取一个类型为 {@code T} 且声明了与给定限定符匹配的限定符（例如
+	 * {@code <qualifier>} 或 {@code @Qualifier}）的 Bean。
 	 * @param bf the factory to get the target bean from
 	 * @param beanType the type of bean to retrieve
 	 * @param qualifier the qualifier for selecting between multiple bean matches
@@ -139,7 +137,7 @@ public abstract class BeanFactoryAnnotationUtils {
 	}
 
 	/**
-	 * Check whether the named bean declares a qualifier of the given name.
+	 * 检查指定名称的 Bean 是否声明了给定名称的限定符。
 	 * @param qualifier the qualifier to match
 	 * @param beanName the name of the candidate bean
 	 * @param beanFactory the factory from which to retrieve the named bean

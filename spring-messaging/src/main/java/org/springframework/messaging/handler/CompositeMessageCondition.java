@@ -26,10 +26,10 @@ import org.springframework.messaging.Message;
 import org.springframework.util.Assert;
 
 /**
- * Composite {@link MessageCondition} that delegates to other message conditions.
+ * 组合式 {@link MessageCondition}，将处理委托给其他消息条件。
  *
- * <p>For {@link #combine} and {@link #compareTo} it is expected that the "other"
- * composite contains the same number, type, and order of message conditions.
+ * <p>对于 {@link #combine} 和 {@link #compareTo}，要求“other”组合条件包含
+ * 相同数量、类型和顺序的消息条件。
  *
  * @author Rossen Stoyanchev
  * @since 5.2

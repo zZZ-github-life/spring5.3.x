@@ -25,10 +25,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of the {@link TransactionFactory} strategy interface,
- * simply wrapping a standard JTA {@link javax.transaction.TransactionManager}.
+ * {@link TransactionFactory}策略接口的默认实现, 简单地包装标准的JTA
+ * {@link javax.transaction.TransactionManager}。
  *
- * <p>Does not support transaction names; simply ignores any specified name.
+ * <p>不支持事务名称; 简单地忽略任何指定的名称。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -42,7 +42,7 @@ public class SimpleTransactionFactory implements TransactionFactory {
 
 
 	/**
-	 * Create a new SimpleTransactionFactory for the given TransactionManager.
+	 * 为给定的TransactionManager创建一个新的SimpleTransactionFactory。
 	 * @param transactionManager the JTA TransactionManager to wrap
 	 */
 	public SimpleTransactionFactory(TransactionManager transactionManager) {

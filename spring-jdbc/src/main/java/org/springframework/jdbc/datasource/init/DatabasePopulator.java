@@ -20,7 +20,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Strategy used to populate, initialize, or clean up a database.
+ * 用于填充、初始化或清理数据库的策略。
  *
  * @author Keith Donald
  * @author Sam Brannen
@@ -33,15 +33,13 @@ import java.sql.SQLException;
 public interface DatabasePopulator {
 
 	/**
-	 * Populate, initialize, or clean up the database using the provided JDBC
-	 * connection.
-	 * <p><strong>Warning</strong>: Concrete implementations should not close
-	 * the provided {@link Connection}.
-	 * <p>Concrete implementations <em>may</em> throw an {@link SQLException} if
-	 * an error is encountered but are <em>strongly encouraged</em> to throw a
-	 * specific {@link ScriptException} instead. For example, Spring's
-	 * {@link ResourceDatabasePopulator} and {@link DatabasePopulatorUtils} wrap
-	 * all {@code SQLExceptions} in {@code ScriptExceptions}.
+	 * 使用提供的 JDBC 连接填充、初始化或清理数据库。
+	 * <p><strong>警告</strong>：具体实现不应关闭所提供的 {@link Connection}。
+	 * <p>如果遇到错误，具体实现<em>可以</em>抛出 {@link SQLException}，
+	 * 但<em>强烈建议</em>改为抛出特定的 {@link ScriptException}。
+	 * 例如，Spring 的 {@link ResourceDatabasePopulator} 和
+	 * {@link DatabasePopulatorUtils} 会将所有 {@code SQLException}
+	 * 包装为 {@code ScriptException}。
 	 * @param connection the JDBC connection to use; already configured and
 	 * ready to use; never {@code null}
 	 * @throws SQLException if an unrecoverable data access exception occurs

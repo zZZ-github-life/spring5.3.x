@@ -53,22 +53,22 @@ import org.springframework.web.util.ServletRequestPathUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Helper class to get information from the {@code HandlerMapping} that would
- * serve a specific request.
+ * 辅助类，用于从将为特定请求提供服务的 {@code HandlerMapping}
+ * 获取信息。
  *
- * <p>Provides the following methods:
+ * <p>提供以下方法：
  * <ul>
- * <li>{@link #getMatchableHandlerMapping} &mdash; obtain a {@code HandlerMapping}
- * to check request-matching criteria against.
- * <li>{@link #getCorsConfiguration} &mdash; obtain the CORS configuration for the
- * request.
+ * <li>{@link #getMatchableHandlerMapping} &mdash; 获取一个 {@code HandlerMapping}
+ * 以对照检查请求匹配条件。
+ * <li>{@link #getCorsConfiguration} &mdash; 获取该请求的
+ * CORS 配置。
  * </ul>
  *
- * <p><strong>Note:</strong> This is primarily an SPI to allow Spring Security
- * to align its pattern matching with the same pattern matching that would be
- * used in Spring MVC for a given request, in order to avoid security issues.
- * Use of this introspector should be avoided for other purposes because it
- * incurs the overhead of resolving the handler for a request.
+ * <p><strong>注意：</strong>这主要是一个 SPI，用于让 Spring Security
+ * 将其模式匹配与 Spring MVC 对给定请求所用的模式匹配
+ * 对齐，从而避免安全问题。
+ * 应避免出于其他目的使用此内省器，因为它会带来
+ * 为请求解析处理器的开销。
  *
  * @author Rossen Stoyanchev
  * @since 4.3.1
@@ -86,16 +86,16 @@ public class HandlerMappingIntrospector
 
 
 	/**
-	 * Constructor for use with {@link ApplicationContextAware}.
+	 * 供 {@link ApplicationContextAware} 使用的构造函数。
 	 */
 	public HandlerMappingIntrospector() {
 	}
 
 	/**
-	 * Constructor that detects the configured {@code HandlerMapping}s in the
-	 * given {@code ApplicationContext} or falls back on
-	 * "DispatcherServlet.properties" like the {@code DispatcherServlet}.
-	 * @deprecated as of 4.3.12, in favor of {@link #setApplicationContext}
+	 * 构造函数，在给定 {@code ApplicationContext} 中检测所配置的
+	 * {@code HandlerMapping}，或者像 {@code DispatcherServlet} 那样
+	 * 回退到 "DispatcherServlet.properties"。
+	 * @deprecated 自 4.3.12 起，建议使用 {@link #setApplicationContext}
 	 */
 	@Deprecated
 	public HandlerMappingIntrospector(ApplicationContext context) {
@@ -163,7 +163,7 @@ public class HandlerMappingIntrospector
 
 
 	/**
-	 * Return the configured or detected {@code HandlerMapping}s.
+	 * 返回所配置或检测到的 {@code HandlerMapping}。
 	 */
 	public List<HandlerMapping> getHandlerMappings() {
 		return (this.handlerMappings != null ? this.handlerMappings : Collections.emptyList());
@@ -171,8 +171,8 @@ public class HandlerMappingIntrospector
 
 
 	/**
-	 * Find the {@link HandlerMapping} that would handle the given request and
-	 * return a {@link MatchableHandlerMapping} to use for path matching.
+	 * 查找将处理给定请求的 {@link HandlerMapping}，
+	 * 并返回一个用于路径匹配的 {@link MatchableHandlerMapping}。
 	 * @param request the current request
 	 * @return the resolved {@code MatchableHandlerMapping}, or {@code null}
 	 * @throws IllegalStateException if the matching HandlerMapping is not an
@@ -268,8 +268,8 @@ public class HandlerMappingIntrospector
 
 
 	/**
-	 * Request wrapper that buffers request attributes in order protect the
-	 * underlying request from attribute changes.
+	 * 请求包装器，用于缓冲请求属性，以保护
+	 * 底层请求免受属性更改的影响。
 	 */
 	private static class AttributesPreservingRequest extends HttpServletRequestWrapper {
 

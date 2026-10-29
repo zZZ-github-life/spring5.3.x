@@ -29,8 +29,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
 
 /**
- * Parse the <code>&lt;mvc:freemarker-configurer&gt;</code> MVC namespace element and
- * register {@code FreeMarkerConfigurer} bean.
+ * 解析 <code>&lt;mvc:freemarker-configurer&gt;</code> MVC 命名空间元素，
+ * 并注册 {@code FreeMarkerConfigurer} bean。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -38,7 +38,7 @@ import org.springframework.util.xml.DomUtils;
 public class FreeMarkerConfigurerBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
 	/**
-	 * The bean name used for the {@code FreeMarkerConfigurer}.
+	 * 用于 {@code FreeMarkerConfigurer} 的 bean 名称。
 	 */
 	public static final String BEAN_NAME = "mvcFreeMarkerConfigurer";
 

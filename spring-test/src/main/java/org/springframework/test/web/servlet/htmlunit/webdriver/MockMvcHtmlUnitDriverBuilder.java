@@ -29,14 +29,12 @@ import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * {@code MockMvcHtmlUnitDriverBuilder} simplifies the building of an
- * {@link HtmlUnitDriver} that delegates to {@link MockMvc} and optionally
- * delegates to an actual connection for specific requests.
+ * {@code MockMvcHtmlUnitDriverBuilder} 简化了构建委托给 {@link MockMvc} 并可针对特定请求
+ * 委托给实际连接的 {@link HtmlUnitDriver} 的过程。
  *
- * <p>By default, the driver will delegate to {@code MockMvc} to handle
- * requests to {@code localhost} and to a {@link WebClient} to handle any
- * other URL (i.e. to perform an actual HTTP request).
- *
+ * <p>默认情况下，驱动程序将委托给 {@code MockMvc} 处理
+ * 对 {@code localhost} 的请求，并委托给 {@link WebClient} 处理任何
+ * 其他 URL（即执行实际的 HTTP 请求）。
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2
@@ -69,8 +67,7 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 
 
 	/**
-	 * Create a new {@code MockMvcHtmlUnitDriverBuilder} based on the supplied
-	 * {@link MockMvc} instance.
+	 * 基于提供的 {@link MockMvc} 实例创建新的 {@code MockMvcHtmlUnitDriverBuilder}。
 	 * @param mockMvc the {@code MockMvc} instance to use (never {@code null})
 	 * @return the MockMvcHtmlUnitDriverBuilder to customize
 	 */
@@ -80,8 +77,7 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	}
 
 	/**
-	 * Create a new {@code MockMvcHtmlUnitDriverBuilder} based on the supplied
-	 * {@link WebApplicationContext}.
+	 * 基于提供的 {@link WebApplicationContext} 创建新的 {@code MockMvcHtmlUnitDriverBuilder}。
 	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
 	 * instance from (never {@code null})
 	 * @return the MockMvcHtmlUnitDriverBuilder to customize
@@ -92,8 +88,8 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	}
 
 	/**
-	 * Create a new {@code MockMvcHtmlUnitDriverBuilder} based on the supplied
-	 * {@link WebApplicationContext} and {@link MockMvcConfigurer}.
+	 * 基于提供的 {@link WebApplicationContext} 和 {@link MockMvcConfigurer} 创建新的
+	 * {@code MockMvcHtmlUnitDriverBuilder}。
 	 * @param context the {@code WebApplicationContext} to create a {@link MockMvc}
 	 * instance from (never {@code null})
 	 * @param configurer the {@code MockMvcConfigurer} to apply (never {@code null})
@@ -108,8 +104,8 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	}
 
 	/**
-	 * Specify whether JavaScript should be enabled.
-	 * <p>Default is {@code true}.
+	 * 指定是否应启用 JavaScript。
+	 * <p>默认为 {@code true}。
 	 * @param javascriptEnabled {@code true} if JavaScript should be enabled
 	 * @return this builder for further customizations
 	 * @see #build()
@@ -120,9 +116,9 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	}
 
 	/**
-	 * Supply the {@code WebConnectionHtmlUnitDriver} that the driver
-	 * {@linkplain #build built} by this builder should delegate to when
-	 * processing non-{@linkplain WebRequestMatcher matching} requests.
+	 * 提供此构建器 {@linkplain #build 构建} 的驱动程序在处理
+	 * 非{@linkplain WebRequestMatcher 匹配}请求时应委托给
+	 * 的 {@code WebConnectionHtmlUnitDriver}。
 	 * @param driver the {@code WebConnectionHtmlUnitDriver} to delegate to
 	 * for requests that do not match (never {@code null})
 	 * @return this builder for further customizations
@@ -137,14 +133,14 @@ public class MockMvcHtmlUnitDriverBuilder extends MockMvcWebConnectionBuilderSup
 	}
 
 	/**
-	 * Build the {@link HtmlUnitDriver} configured via this builder.
-	 * <p>The returned driver will use the configured {@link MockMvc} instance
-	 * for processing any {@linkplain WebRequestMatcher matching} requests
-	 * and a delegate {@code HtmlUnitDriver} for all other requests.
-	 * <p>If a {@linkplain #withDelegate delegate} has been explicitly configured,
-	 * it will be used; otherwise, a default {@code WebConnectionHtmlUnitDriver}
-	 * with the {@link BrowserVersion} set to {@link BrowserVersion#CHROME CHROME}
-	 * will be configured as the delegate.
+	 * 构建通过此构建器配置的 {@link HtmlUnitDriver}。
+	 * <p>返回的驱动程序将使用配置的 {@link MockMvc} 实例
+	 * 处理任何 {@linkplain WebRequestMatcher 匹配}请求，
+	 * 并对所有其他请求使用委托的 {@code HtmlUnitDriver}。
+	 * <p>如果已显式配置{@linkplain #withDelegate 委托}，
+	 * 则使用该委托；否则，将配置一个将 {@link BrowserVersion} 设置为
+	 * {@link BrowserVersion#CHROME CHROME} 的默认 {@code WebConnectionHtmlUnitDriver}
+	 * 作为委托。
 	 * @return the {@code HtmlUnitDriver} to use
 	 * @see #withDelegate(WebConnectionHtmlUnitDriver)
 	 */

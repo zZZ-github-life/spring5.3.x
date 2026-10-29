@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.xml.SimpleNamespaceContext;
 
 /**
- * A helper class for applying assertions via XPath expressions.
+ * 用于通过 XPath 表达式应用断言的辅助类。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -57,7 +57,7 @@ public class XpathExpectationsHelper {
 
 
 	/**
-	 * XpathExpectationsHelper constructor.
+	 * XpathExpectationsHelper 构造函数。
 	 * @param expression the XPath expression
 	 * @param namespaces the XML namespaces referenced in the XPath expression, or {@code null}
 	 * @param args arguments to parameterize the XPath expression with using the
@@ -84,7 +84,7 @@ public class XpathExpectationsHelper {
 
 
 	/**
-	 * Return the compiled XPath expression.
+	 * 返回编译后的 XPath 表达式。
 	 */
 	protected XPathExpression getXpathExpression() {
 		return this.xpathExpression;
@@ -92,8 +92,7 @@ public class XpathExpectationsHelper {
 
 
 	/**
-	 * Parse the content, evaluate the XPath expression as a {@link Node},
-	 * and assert it with the given {@code Matcher<Node>}.
+	 * 解析内容，将 XPath 表达式求值为 {@link Node}，并使用给定的 {@code Matcher<Node>} 对其进行断言。
 	 */
 	public void assertNode(byte[] content, @Nullable String encoding, Matcher<? super Node> matcher)
 			throws Exception {
@@ -103,8 +102,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Parse the content, evaluate the XPath expression as a {@link NodeList},
-	 * and assert it with the given {@code Matcher<NodeList>}.
+	 * 解析内容，将 XPath 表达式求值为 {@link NodeList}，并使用给定的 {@code Matcher<NodeList>} 对其进行断言。
 	 * @since 5.2.2
 	 */
 	public void assertNodeList(byte[] content, @Nullable String encoding, Matcher<? super NodeList> matcher)
@@ -116,7 +114,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content exists.
+	 * 应用 XPath 表达式并断言结果内容存在。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void exists(byte[] content, @Nullable String encoding) throws Exception {
@@ -125,7 +123,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content does not exist.
+	 * 应用 XPath 表达式并断言结果内容不存在。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void doesNotExist(byte[] content, @Nullable String encoding) throws Exception {
@@ -134,8 +132,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content with the
-	 * given Hamcrest matcher.
+	 * 应用 XPath 表达式，并使用给定的 Hamcrest 匹配器断言结果内容。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertNodeCount(byte[] content, @Nullable String encoding, Matcher<? super Integer> matcher)
@@ -147,7 +144,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content as an integer.
+	 * 应用 XPath 表达式，并将结果内容作为整数进行断言。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertNodeCount(byte[] content, @Nullable String encoding, int expectedCount) throws Exception {
@@ -157,8 +154,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content with the
-	 * given Hamcrest matcher.
+	 * 应用 XPath 表达式，并使用给定的 Hamcrest 匹配器断言结果内容。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertString(byte[] content, @Nullable String encoding, Matcher<? super String> matcher)
@@ -169,7 +165,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content as a String.
+	 * 应用 XPath 表达式，并将结果内容作为 String 进行断言。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertString(byte[] content, @Nullable String encoding, String expectedValue) throws Exception {
@@ -178,8 +174,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content with the
-	 * given Hamcrest matcher.
+	 * 应用 XPath 表达式，并使用给定的 Hamcrest 匹配器断言结果内容。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertNumber(byte[] content, @Nullable String encoding, Matcher<? super Double> matcher) throws Exception {
@@ -188,7 +183,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content as a Double.
+	 * 应用 XPath 表达式，并将结果内容作为 Double 进行断言。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertNumber(byte[] content, @Nullable String encoding, Double expectedValue) throws Exception {
@@ -197,7 +192,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression and assert the resulting content as a Boolean.
+	 * 应用 XPath 表达式，并将结果内容作为 Boolean 进行断言。
 	 * @throws Exception if content parsing or expression evaluation fails
 	 */
 	public void assertBoolean(byte[] content, @Nullable String encoding, boolean expectedValue) throws Exception {
@@ -206,7 +201,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Evaluate the XPath and return the resulting value.
+	 * 求值 XPath 并返回结果值。
 	 * @param content the content to evaluate against
 	 * @param encoding the encoding to use (optionally)
 	 * @param targetClass the target class, one of Number, String, Boolean,
@@ -221,7 +216,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Parse the given XML content to a {@link Document}.
+	 * 将给定的 XML 内容解析为 {@link Document}。
 	 * @param xml the content to parse
 	 * @param encoding optional content encoding, if provided as metadata (e.g. in HTTP headers)
 	 * @return the parsed document
@@ -238,7 +233,7 @@ public class XpathExpectationsHelper {
 	}
 
 	/**
-	 * Apply the XPath expression to given document.
+	 * 将 XPath 表达式应用于给定文档。
 	 * @throws XPathExpressionException if expression evaluation failed
 	 */
 	@SuppressWarnings("unchecked")

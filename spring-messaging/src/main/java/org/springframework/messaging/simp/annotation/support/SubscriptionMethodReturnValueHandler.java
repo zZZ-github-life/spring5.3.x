@@ -35,22 +35,17 @@ import org.springframework.messaging.support.MessageHeaderInitializer;
 import org.springframework.util.Assert;
 
 /**
- * {@code HandlerMethodReturnValueHandler} for replying directly to a
- * subscription. It is supported on methods annotated with
+ * 用于直接回复订阅的 {@code HandlerMethodReturnValueHandler}。支持在使用
  * {@link org.springframework.messaging.simp.annotation.SubscribeMapping
- * SubscribeMapping} such that the return value is treated as a response to be
- * sent directly back on the session. This allows a client to implement
- * a request-response pattern and use it for example to obtain some data upon
- * initialization.
+ * SubscribeMapping} 注解的方法上使用，此时返回值会被视为要直接在会话上
+ * 发回的响应。这使客户端能够实现请求-响应模式，例如在初始化时获取一些数据。
  *
- * <p>The value returned from the method is converted and turned into a
- * {@link Message} that is then enriched with the sessionId, subscriptionId, and
- * destination of the input message.
+ * <p>方法返回的值会被转换并转换为 {@link Message}，
+ * 然后使用输入消息的 sessionId、subscriptionId 和目标进行丰富。
  *
- * <p><strong>Note:</strong> this default behavior for interpreting the return
- * value from an {@code @SubscribeMapping} method can be overridden through use
- * of the {@link SendTo} or {@link SendToUser} annotations in which case a
- * message is prepared and sent to the broker instead.
+ * <p><strong>注意：</strong>可以通过使用 {@link SendTo} 或 {@link SendToUser}
+ * 注解覆盖 {@code @SubscribeMapping} 方法返回值的这种默认解释行为，
+ * 此时会准备消息并发送到代理。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -68,7 +63,7 @@ public class SubscriptionMethodReturnValueHandler implements HandlerMethodReturn
 
 
 	/**
-	 * Construct a new SubscriptionMethodReturnValueHandler.
+	 * 构造新的 SubscriptionMethodReturnValueHandler。
 	 * @param template a messaging template to send messages to,
 	 * most likely the "clientOutboundChannel" (must not be {@code null})
 	 */
@@ -79,16 +74,16 @@ public class SubscriptionMethodReturnValueHandler implements HandlerMethodReturn
 
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
-	 * messages sent to the client outbound channel.
-	 * <p>By default this property is not set.
+	 * 配置要应用于发送到客户端出站通道的所有消息头的
+	 * {@link MessageHeaderInitializer}。
+	 * <p>默认情况下，不设置此属性。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {

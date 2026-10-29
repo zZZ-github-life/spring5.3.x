@@ -21,11 +21,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Encapsulates an object error, that is, a global reason for rejecting
- * an object.
+ * 封装对象错误，即拒绝某个对象的全局理由。
  *
- * <p>See the {@link DefaultMessageCodesResolver} javadoc for details on
- * how a message code list is built for an {@code ObjectError}.
+ * <p>有关如何为 {@code ObjectError} 构建消息代码列表的详情，请参见
+ * {@link DefaultMessageCodesResolver} 的 javadoc。
  *
  * @author Juergen Hoeller
  * @since 10.03.2003
@@ -42,7 +41,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 
 
 	/**
-	 * Create a new instance of the ObjectError class.
+	 * 创建一个新的 ObjectError 类实例。
 	 * @param objectName the name of the affected object
 	 * @param defaultMessage the default message to be used to resolve this message
 	 */
@@ -51,7 +50,7 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	}
 
 	/**
-	 * Create a new instance of the ObjectError class.
+	 * 创建一个新的 ObjectError 类实例。
 	 * @param objectName the name of the affected object
 	 * @param codes the codes to be used to resolve this message
 	 * @param arguments	the array of arguments to be used to resolve this message
@@ -67,18 +66,18 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 
 
 	/**
-	 * Return the name of the affected object.
+	 * 返回受影响对象的名称。
 	 */
 	public String getObjectName() {
 		return this.objectName;
 	}
 
 	/**
-	 * Preserve the source behind this error: possibly an {@link Exception}
-	 * (typically {@link org.springframework.beans.PropertyAccessException})
-	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
-	 * <p>Note that any such source object is being stored as transient:
-	 * that is, it won't be part of a serialized error representation.
+	 * 保留此错误背后的源：可能是一个 {@link Exception}（通常是
+	 * {@link org.springframework.beans.PropertyAccessException}），或者是 Bean Validation 的
+	 * {@link javax.validation.ConstraintViolation}。
+	 *
+	 * <p>请注意，任何此类源对象都以 transient 方式存储：也就是说，它不会成为序列化错误表示的一部分。
 	 * @param source the source object
 	 * @since 5.0.4
 	 */
@@ -90,12 +89,12 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	}
 
 	/**
-	 * Unwrap the source behind this error: possibly an {@link Exception}
-	 * (typically {@link org.springframework.beans.PropertyAccessException})
-	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
-	 * <p>The cause of the outermost exception will be introspected as well,
-	 * e.g. the underlying conversion exception or exception thrown from a setter
-	 * (instead of having to unwrap the {@code PropertyAccessException} in turn).
+	 * 解开此错误背后的源：可能是一个 {@link Exception}（通常是
+	 * {@link org.springframework.beans.PropertyAccessException}），或者是 Bean Validation 的
+	 * {@link javax.validation.ConstraintViolation}。
+	 *
+	 * <p>还会对最外层异常的原因进行内省，例如底层的转换异常或从 setter 抛出的异常（而不必再反过来解开
+	 * {@code PropertyAccessException}）。
 	 * @return the source object of the given type
 	 * @throws IllegalArgumentException if no such source object is available
 	 * (i.e. none specified or not available anymore after deserialization)
@@ -115,12 +114,12 @@ public class ObjectError extends DefaultMessageSourceResolvable {
 	}
 
 	/**
-	 * Check the source behind this error: possibly an {@link Exception}
-	 * (typically {@link org.springframework.beans.PropertyAccessException})
-	 * or a Bean Validation {@link javax.validation.ConstraintViolation}.
-	 * <p>The cause of the outermost exception will be introspected as well,
-	 * e.g. the underlying conversion exception or exception thrown from a setter
-	 * (instead of having to unwrap the {@code PropertyAccessException} in turn).
+	 * 检查此错误背后的源：可能是一个 {@link Exception}（通常是
+	 * {@link org.springframework.beans.PropertyAccessException}），或者是 Bean Validation 的
+	 * {@link javax.validation.ConstraintViolation}。
+	 *
+	 * <p>还会对最外层异常的原因进行内省，例如底层的转换异常或从 setter 抛出的异常（而不必再反过来解开
+	 * {@code PropertyAccessException}）。
 	 * @return whether this error has been caused by a source object of the given type
 	 * @since 5.0.4
 	 */

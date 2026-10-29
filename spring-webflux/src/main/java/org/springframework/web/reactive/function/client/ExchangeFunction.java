@@ -19,10 +19,9 @@ package org.springframework.web.reactive.function.client;
 import reactor.core.publisher.Mono;
 
 /**
- * Represents a function that exchanges a {@linkplain ClientRequest request} for a (delayed)
- * {@linkplain ClientResponse}. Can be used as an alternative to {@link WebClient}.
+ * 表示将{@linkplain ClientRequest 请求}交换为（延迟的）{@linkplain ClientResponse 响应}的函数。可作为 {@link WebClient} 的替代方案。
  *
- * <p>For example:
+ * <p>例如：
  * <pre class="code">
  * ExchangeFunction exchangeFunction =
  *         ExchangeFunctions.create(new ReactorClientHttpConnector());
@@ -34,7 +33,6 @@ import reactor.core.publisher.Mono;
  *     .exchange(request)
  *     .flatMap(response -&gt; response.bodyToMono(String.class));
  * </pre>
- *
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -42,22 +40,16 @@ import reactor.core.publisher.Mono;
 public interface ExchangeFunction {
 
 	/**
-	 * Exchange the given request for a {@link ClientResponse} promise.
+	 * 将给定请求交换为 {@link ClientResponse} 的 promise。
 	 *
-	 * <p><strong>Note:</strong> When calling this method from an
-	 * {@link ExchangeFilterFunction} that handles the response in some way,
-	 * extra care must be taken to always consume its content or otherwise
-	 * propagate it downstream for further handling, for example by the
-	 * {@link WebClient}. Please, see the reference documentation for more
-	 * details on this.
+	 * <p><strong>注意：</strong>当从以某种方式处理响应的 {@link ExchangeFilterFunction} 中调用此方法时，必须格外小心，始终消费其内容，或以其他方式将其向下游传播以供进一步处理（例如由 {@link WebClient} 处理）。详情请参阅参考文档。
 	 * @param request the request to exchange
 	 * @return the delayed response
 	 */
 	Mono<ClientResponse> exchange(ClientRequest request);
 
 	/**
-	 * Filter the exchange function with the given {@code ExchangeFilterFunction},
-	 * resulting in a filtered {@code ExchangeFunction}.
+	 * 使用给定的 {@code ExchangeFilterFunction} 过滤交换函数，生成过滤后的 {@code ExchangeFunction}。
 	 * @param filter the filter to apply to this exchange
 	 * @return the filtered exchange
 	 * @see ExchangeFilterFunction#apply(ExchangeFunction)

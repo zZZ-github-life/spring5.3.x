@@ -22,8 +22,8 @@ import java.util.concurrent.Future;
 import org.springframework.util.Assert;
 
 /**
- * Extension of {@link CompletableFuture} which allows for cancelling
- * a delegate along with the {@link CompletableFuture} itself.
+ * {@link CompletableFuture} 的扩展，允许在取消 {@link CompletableFuture} 本身的同时取消一个委托对
+ * 象。
  *
  * @author Juergen Hoeller
  * @since 5.0

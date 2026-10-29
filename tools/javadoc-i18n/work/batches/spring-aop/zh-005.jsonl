@@ -1,0 +1,146 @@
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::45::0", "zh": ["AOP 代理配置管理器的基类。这些管理器本身并不是 AOP 代理，但此类的子类通常是工厂，可直接从中获取 AOP 代理实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::45::1", "zh": ["<p>此类让子类无需操心 Advice 和 Advisor 的日常管理工作，但它并不实际实现代理创建方法，这些方法由子类提供。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::45::2", "zh": ["<p>此类可序列化；子类则不必可序列化。此类用于保存代理的快照。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::67::0", "zh": ["没有目标时使用的规范 TargetSource，此时行为由各 advisor 提供。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::86::0", "zh": ["代理需要实现的接口。保存在 List 中以维持注册顺序，从而按指定的接口顺序创建 JDK 代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::92::0", "zh": ["Advisor 列表。如果添加的是 Advice，则会先将其包装成 Advisor，再添加到该列表中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::99::0", "zh": ["无参构造方法，供按 JavaBean 方式使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::106::0", "zh": ["使用给定参数创建 AdvisedSupport 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::116::0", "zh": ["将给定的对象设置为目标。将为该对象创建一个 SingletonTargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::136::0", "zh": ["设置要代理的目标类，表示该代理应当可以强制转换为给定的类。", "<p>在内部，将为给定的目标类使用 {@link org.springframework.aop.target.EmptyTargetSource}。所需代理的类型将在实际创建代理时确定。", "<p>这是对设置 \"targetSource\" 或 \"target\" 的替代方案，适用于我们希望基于目标类（可以是接口或具体类）创建代理，而又没有完全可用的 TargetSource 的情况。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::169::0", "zh": ["设置要使用的 advisor 链工厂。", "<p>默认为 {@link DefaultAdvisorChainFactory}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::178::0", "zh": ["返回要使用的 advisor 链工厂（永不为 {@code null}）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::186::0", "zh": ["设置要代理的接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::197::0", "zh": ["添加一个新的被代理接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::212::0", "zh": ["移除被代理的接口。", "<p>如果给定的接口未被代理，则不做任何操作。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::316::0", "zh": ["将给定的所有 advisor 添加到此代理配置中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::324::0", "zh": ["将给定的所有 advisor 添加到此代理配置中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::366::0", "zh": ["允许不受限制地访问 {@link List}，即 {@link Advisor Advisors} 列表。", "<p>请谨慎使用，并在做任何修改时记得 {@link #adviceChanged() fire advice changed events}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::381::0", "zh": ["除非通知实现了 IntroductionInfo，否则无法通过这种方式添加引介。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::425::0", "zh": ["给定的通知是否包含在此代理配置中的任一 advisor 内？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::441::0", "zh": ["统计给定类的通知数量。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::459::0", "zh": ["根据此配置，为给定的方法确定一组 {@link org.aopalliance.intercept.MethodInterceptor} 对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::477::0", "zh": ["在通知发生变更时调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::484::0", "zh": ["在通过无参构造方法创建的新实例上调用此方法，以根据给定的对象创建配置的独立副本。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::493::0", "zh": ["从给定的 AdvisedSupport 对象复制 AOP 配置，但允许替换为新的 TargetSource 和给定的拦截器链。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::515::0", "zh": ["构建此 AdvisedSupport 的仅含配置的副本，并替换其 TargetSource。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::547::0", "zh": ["用于调试/诊断。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupport.java::563::0", "zh": ["围绕 Method 的简单包装类。在缓存方法时用作键，以便高效地进行 equals 和 hashCode 比较。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupportListener.java::19::0", "zh": ["要注册到 {@link ProxyCreatorSupport} 对象上的监听器，用于接收激活以及通知变更时的回调。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupportListener.java::29::0", "zh": ["在创建第一个代理时调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisedSupportListener.java::35::0", "zh": ["在创建代理之后通知发生变更时调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisorChainFactory.java::24::0", "zh": ["advisor 链的工厂接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AdvisorChainFactory.java::32::0", "zh": ["为给定的 advisor 链配置确定一组 {@link org.aopalliance.intercept.MethodInterceptor} 对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopConfigException.java::21::0", "zh": ["在 AOP 配置参数非法时抛出的异常。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopConfigException.java::30::0", "zh": ["AopConfigException 的构造方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopConfigException.java::38::0", "zh": ["AopConfigException 的构造方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::22::0", "zh": ["包含用于获取当前 AOP 调用相关信息的静态方法的类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::22::1", "zh": ["<p>如果 AOP 框架配置为暴露当前代理（这不是默认设置），则可以使用 {@code currentProxy()} 方法。它返回正在使用的 AOP 代理。目标对象或通知可以用它来发起被通知的调用，就像在 EJB 中可以使用 {@code getEJBObject()} 一样。它们也可以用它来查找通知配置。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::22::2", "zh": ["<p>Spring 的 AOP 框架默认不暴露代理，因为这样做会有性能开销。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::22::3", "zh": ["<p>需要访问调用过程中资源的目标对象可能会使用此类中的功能。然而，在有合理替代方案时不应采用这种做法，因为它会使应用代码依赖于在 AOP 下使用，尤其是依赖于 Spring AOP 框架。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::44::0", "zh": ["与此线程关联的 AOP 代理的 ThreadLocal 持有者。除非控制该代理的配置上的 \"exposeProxy\" 属性已被设置为 \"true\"，否则其中将包含 {@code null}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::57::0", "zh": ["尝试返回当前的 AOP 代理。仅当调用方法通过 AOP 调用，并且 AOP 框架已设置为暴露代理时，此方法才可用。否则，此方法将抛出 IllegalStateException。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopContext.java::76::0", "zh": ["使给定的代理可通过 {@code currentProxy()} 方法获取。", "<p>请注意，调用方应小心，酌情保留旧值。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopInfrastructureBean.java::19::0", "zh": ["标记接口，表示某个 Bean 是 Spring 的 AOP 基础设施的一部分。特别地，这意味着任何此类 Bean 都不会被自动代理，即使某个切点会匹配它。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxy.java::21::0", "zh": ["已配置的 AOP 代理的委托接口，允许创建实际的代理对象。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxy.java::21::1", "zh": ["<p>开箱即用的实现可用于 JDK 动态代理和 CGLIB 代理，正如 {@link DefaultAopProxyFactory} 所应用的那样。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxy.java::34::0", "zh": ["创建一个新的代理对象。", "<p>使用 AopProxy 的默认类加载器（如果代理创建需要）：通常是线程上下文类加载器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxy.java::43::0", "zh": ["创建一个新的代理对象。", "<p>使用给定的类加载器（如果代理创建需要）。{@code null} 会被直接向下传递，从而采用底层代理设施的默认值，这通常不同于 AopProxy 实现的 {@link #getProxy()} 方法所选择的默认值。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyFactory.java::19::0", "zh": ["由能够基于 {@link AdvisedSupport} 配置对象创建 AOP 代理的工厂实现的接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyFactory.java::19::1", "zh": ["<p>代理应遵守以下约定："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyFactory.java::19::2", "zh": ["<p>代理可能允许也可能不允许更改通知。如果代理不允许更改通知（例如因为配置已被冻结），那么在尝试更改通知时应抛出 {@link AopConfigException}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyFactory.java::46::0", "zh": ["为给定的 AOP 配置创建 {@link AopProxy}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::38::0", "zh": ["AOP 代理工厂的工具方法。主要供 AOP 框架内部使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::38::1", "zh": ["<p>有关不依赖 AOP 框架内部实现的通用 AOP 工具方法集合，请参见 {@link org.springframework.aop.support.AopUtils}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::57::0", "zh": ["获取给定代理背后的单例目标对象（如果有）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::77::0", "zh": ["确定给定 Bean 实例的最终目标类，不仅会遍历顶层代理，还会遍历任意数量的嵌套代理 &mdash; 只要不产生副作用就尽可能深入，也就是说，仅针对单例目标。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::101::0", "zh": ["为给定的 AOP 配置确定要代理的完整接口集合。", "<p>此方法始终会添加 {@link Advised} 接口，除非 AdvisedSupport 的 {@link AdvisedSupport#setOpaque \"opaque\"} 标志已开启。并且始终添加 {@link org.springframework.aop.SpringProxy} 标记接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::115::0", "zh": ["为给定的 AOP 配置确定要代理的完整接口集合。", "<p>此方法始终会添加 {@link Advised} 接口，除非 AdvisedSupport 的 {@link AdvisedSupport#setOpaque \"opaque\"} 标志已开启。并且始终添加 {@link org.springframework.aop.SpringProxy} 标记接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::162::0", "zh": ["提取给定代理所实现的用户指定接口，即该代理实现的所有非 Advised 接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::187::0", "zh": ["检查给定 AdvisedSupport 对象背后的代理是否相等。这不同于 AdvisedSupport 对象本身的相等性：这里比较的是接口、advisor 和目标源的相等性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::197::0", "zh": ["检查给定 AdvisedSupport 对象背后被代理接口的相等性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::204::0", "zh": ["检查给定 AdvisedSupport 对象背后 advisor 的相等性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/AopProxyUtils.java::212::0", "zh": ["如有必要，将给定参数适配为给定方法中的目标签名：特别是当给定的可变参数数组与方法中声明的可变参数的数组类型不匹配时。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::60::0", "zh": ["Spring AOP 框架的基于 CGLIB 的 {@link AopProxy} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::60::1", "zh": ["<p>此类型的对象应通过代理工厂获取，并由 {@link AdvisedSupport} 对象进行配置。此类是 Spring 的 AOP 框架内部使用的，客户端代码无需直接使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::60::2", "zh": ["<p>{@link DefaultAopProxyFactory} 会在必要时自动创建基于 CGLIB 的代理，例如代理目标类的情况（详情请参见 {@link DefaultAopProxyFactory attendant javadoc}）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::60::3", "zh": ["<p>如果底层（目标）类是线程安全的，那么使用此类创建的代理也是线程安全的。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::121::0", "zh": ["为给定的 AOP 配置创建新的 CglibAopProxy。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::136::0", "zh": ["设置创建代理时使用的构造方法参数。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::227::0", "zh": ["创建 CGLIB {@link Enhancer}。子类可能希望重写此方法以返回自定义的 {@link Enhancer} 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::235::0", "zh": ["检查所提供的 {@code Class} 是否已经过校验，若尚未校验则对其进行校验。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::251::0", "zh": ["检查给定的 {@code Class} 中的 final 方法，以及跨 ClassLoader 可见的包级方法，并为发现的每一个方法向日志写入警告。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::366::0", "zh": ["检查给定的方法是否在给定的任一接口中声明。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::378::0", "zh": ["如果可能，使用 CGLIB MethodProxy 调用给定的方法；在快速类生成失败的情况下，则回退为普通的反射调用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::394::0", "zh": ["处理返回值。如有必要，将返回的 {@code this} 包装为 {@code proxy}，同时校验不会以基本类型的形式返回 {@code null}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::418::0", "zh": ["CGLIB NoOp 接口的可序列化替代实现。声明为 public 以便在框架的其他地方使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::426::0", "zh": ["用于没有通知链的静态目标的方法拦截器。调用会直接回传给目标。当需要暴露代理，且无法确定该方法不会返回 {@code this} 时使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::450::0", "zh": ["用于没有通知链的静态目标的方法拦截器，适用于需要暴露代理的场景。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::479::0", "zh": ["用于调用动态目标的拦截器，无需创建方法调用或计算通知链。（我们知道此方法没有通知。）"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::509::0", "zh": ["用于未被通知的动态目标的拦截器，适用于需要暴露代理的场景。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::540::0", "zh": ["静态目标的分发器。分发器比拦截器快得多。只要能够确定某个方法肯定不会返回 \"this\"，就会使用它。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::562::0", "zh": ["用于 Advised 类中声明的任何方法的分发器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::580::0", "zh": ["{@code equals} 方法的分发器。确保该方法调用始终由此类处理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::613::0", "zh": ["{@code hashCode} 方法的分发器。确保该方法调用始终由此类处理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::632::0", "zh": ["专门用于已冻结的静态代理上被通知方法的拦截器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::666::0", "zh": ["通用的 AOP 回调。在目标是动态的或代理未被冻结时使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::731::0", "zh": ["CGLIB 用它来驱动代理创建。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::741::0", "zh": ["此 AOP 代理所使用的 AOP Alliance MethodInvocation 实现。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::785::0", "zh": ["在调用 public 方法时，与使用反射调用目标相比可带来少量的性能提升。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::816::0", "zh": ["用于为方法分配 Callback 的 CallbackFilter。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/CglibAopProxy.java::835::0", "zh": ["实现 CallbackFilter.accept()，返回所需回调的索引。", "<p>每个代理的回调由两部分组成：一组用于通用目的的固定回调，以及一组针对特定方法、用于具有固定通知链的静态目标的回调。", "<p>所使用的回调按如下方式确定："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/DefaultAdvisorChainFactory.java::37::0", "zh": ["在给定 {@link Advised} 对象的情况下，为某个 Method 算出通知链的一种简单而确定的方式。每次都会重新构建通知链；缓存可由子类提供。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/DefaultAdvisorChainFactory.java::109::0", "zh": ["确定各 Advisor 是否包含匹配的引介。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/DefaultAopProxyFactory.java::26::0", "zh": ["默认的 {@link AopProxyFactory} 实现，创建 CGLIB 代理或 JDK 动态代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/DefaultAopProxyFactory.java::26::1", "zh": ["<p>如果给定的 {@link AdvisedSupport} 实例满足以下任一条件，则创建 CGLIB 代理："]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/DefaultAopProxyFactory.java::26::2", "zh": ["<p>通常，指定 {@code proxyTargetClass} 以强制使用 CGLIB 代理，或者指定一个或多个接口以使用 JDK 动态代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/DefaultAopProxyFactory.java::74::0", "zh": ["确定所提供的 {@link AdvisedSupport} 是否只指定了 {@link org.springframework.aop.SpringProxy} 接口（或者根本没有指定任何代理接口）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/InterceptorAndDynamicMethodMatcher.java::23::0", "zh": ["框架内部类，将 MethodInterceptor 实例与 MethodMatcher 组合在一起，作为 advisor 链中的元素使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::38::0", "zh": ["Spring AOP 框架的基于 JDK 的 {@link AopProxy} 实现，基于 JDK {@link java.lang.reflect.Proxy dynamic proxies}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::38::1", "zh": ["<p>创建动态代理，实现 AopProxy 所暴露的接口。动态代理<i>不能</i>用于代理类（而不是接口）中定义的方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::38::2", "zh": ["<p>此类型的对象应通过代理工厂获取，并由 {@link AdvisedSupport} 类进行配置。此类是 Spring 的 AOP 框架内部使用的，客户端代码无需直接使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::38::3", "zh": ["<p>如果底层（目标）类是线程安全的，那么使用此类创建的代理将是线程安全的。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::38::4", "zh": ["<p>只要所有 Advisor（包括 Advice 和 Pointcut）以及 TargetSource 都可序列化，代理就是可序列化的。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::88::0", "zh": ["{@link #equals} 方法是否在被代理的接口中定义？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::93::0", "zh": ["{@link #hashCode} 方法是否在被代理的接口中定义？"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::99::0", "zh": ["为给定的 AOP 配置构造新的 JdkDynamicAopProxy。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::134::0", "zh": ["查找所提供的接口集合中可能定义的任何 {@link #equals} 或 {@link #hashCode} 方法。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::157::0", "zh": ["{@code InvocationHandler.invoke} 的实现。", "<p>除非某个钩子方法抛出异常，否则调用方看到的正是目标所抛出的异常。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::252::0", "zh": ["相等意味着接口、advisor 和 TargetSource 都相等。", "<p>被比较的对象可以是 JdkDynamicAopProxy 实例本身，也可以是包装了 JdkDynamicAopProxy 实例的动态代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/JdkDynamicAopProxy.java::286::0", "zh": ["代理使用 TargetSource 的哈希码。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ObjenesisCglibAopProxy.java::30::0", "zh": ["基于 Objenesis 的 {@link CglibAopProxy} 扩展，用于在不调用类构造方法的情况下创建代理实例。从 Spring 4 开始默认使用。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ObjenesisCglibAopProxy.java::46::0", "zh": ["为给定的 AOP 配置创建新的 ObjenesisCglibAopProxy。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::23::0", "zh": ["用于创建代理的配置的便捷超类，可确保所有代理创建者拥有一致的属性。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::48::0", "zh": ["设置是否直接代理目标类，而不是仅代理特定的接口。默认值为 \"false\"。", "<p>将其设置为 \"true\" 可强制代理 TargetSource 所暴露的目标类。如果该目标类是接口，则将为给定接口创建 JDK 代理。如果该目标类是其他任何类，则将为给定类创建 CGLIB 代理。", "<p>注意：取决于具体代理工厂的配置，如果未指定任何接口（且未激活接口自动检测），也会应用 proxy-target-class 行为。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::64::0", "zh": ["返回是否除了任何接口之外还直接代理目标类。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::71::0", "zh": ["设置代理是否应执行积极的优化。\"aggressive optimizations\" 的确切含义因代理而异，不过通常需要做出某种权衡。默认值为 \"false\"。", "<p>在当前 Spring 的代理选项下，此标志实际上会强制使用 CGLIB 代理（类似于 {@link #setProxyTargetClass}），但不做任何类校验检查（例如针对 final 方法）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::84::0", "zh": ["返回代理是否应执行积极的优化。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::91::0", "zh": ["设置是否应阻止由此配置创建的代理被强制转换为 {@link Advised} 以查询代理状态。", "<p>默认值为 \"false\"，表示任何 AOP 代理都可以强制转换为 {@link Advised}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::101::0", "zh": ["返回是否应阻止由此配置创建的代理被强制转换为 {@link Advised}。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::109::0", "zh": ["设置 AOP 框架是否应将代理解析为 ThreadLocal 暴露，以便通过 AopContext 类获取。当被通知的对象需要在自身上调用另一个被通知的方法时，这很有用。（如果它使用 {@code this}，该调用不会被通知。）", "<p>默认值为 \"false\"，以避免不必要的额外拦截。这意味着不保证在被通知对象的任何方法内 AopContext 访问都能一致地工作。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::122::0", "zh": ["返回 AOP 代理是否会在每次调用时暴露该 AOP 代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::130::0", "zh": ["设置此配置是否应被冻结。", "<p>配置被冻结后，就无法再更改通知。这有助于优化，也适用于我们不希望调用方在强制转换为 Advised 后还能操纵配置的情况。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::140::0", "zh": ["返回配置是否已冻结、是否已不能再更改通知。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyConfig.java::148::0", "zh": ["从另一个配置对象复制配置。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::24::0", "zh": ["代理工厂的基类。提供对可配置 AopProxyFactory 的便捷访问。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::43::0", "zh": ["创建一个新的 ProxyCreatorSupport 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::50::0", "zh": ["创建一个新的 ProxyCreatorSupport 实例。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::60::0", "zh": ["自定义 AopProxyFactory，从而可以在不更改核心框架的情况下换入不同的策略。", "<p>默认为 {@link DefaultAopProxyFactory}，会根据需求使用动态 JDK 代理或 CGLIB 代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::71::0", "zh": ["返回此 ProxyConfig 使用的 AopProxyFactory。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::78::0", "zh": ["将给定的 AdvisedSupportListener 添加到此代理配置中。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::87::0", "zh": ["从该代理配置中移除给定的 AdvisedSupportListener。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::97::0", "zh": ["子类应调用此方法来获取新的 AOP 代理。它们<b>不应</b>以 {@code this} 作为参数创建 AOP 代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::108::0", "zh": ["激活此代理配置。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::119::0", "zh": ["将通知变更事件传播给所有 AdvisedSupportListener。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyCreatorSupport.java::135::0", "zh": ["子类可以调用此方法来检查是否已经创建了任何 AOP 代理。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::25::0", "zh": ["用于以编程方式（而不是通过 Bean 工厂中的声明式配置）使用 AOP 代理的工厂。此类提供了一种在自定义用户代码中获取和配置 AOP 代理实例的简单方式。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::38::0", "zh": ["创建一个新的 ProxyFactory。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::44::0", "zh": ["创建一个新的 ProxyFactory。", "<p>将代理给定目标所实现的所有接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::54::0", "zh": ["创建一个新的 ProxyFactory。", "<p>没有目标，只有接口。必须添加拦截器。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::63::0", "zh": ["为给定的接口和拦截器创建新的 ProxyFactory。", "<p>用于为单个拦截器创建代理的便捷方法，假定该拦截器自己处理所有调用而不委托给目标，就像远程代理的情况那样。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::76::0", "zh": ["为指定的 {@code TargetSource} 创建 ProxyFactory，使代理实现指定的接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::88::0", "zh": ["根据此工厂中的设置创建新的代理。", "<p>可以重复调用。如果添加或移除了接口，效果会有所不同。可以添加和移除拦截器。", "<p>使用默认类加载器：通常为线程上下文类加载器（如果代理创建需要）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::100::0", "zh": ["根据此工厂中的设置创建新的代理。", "<p>可以重复调用。如果添加或移除了接口，效果会有所不同。可以添加和移除拦截器。", "<p>使用给定的类加载器（如果代理创建需要）。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::114::0", "zh": ["为给定的接口和拦截器创建新的代理。", "<p>用于为单个拦截器创建代理的便捷方法，假定该拦截器自己处理所有调用而不委托给目标，就像远程代理的情况那样。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::129::0", "zh": ["为指定的 {@code TargetSource} 创建代理，实现指定的接口。"]}
+{"id": "spring-aop/src/main/java/org/springframework/aop/framework/ProxyFactory.java::142::0", "zh": ["为指定的 {@code TargetSource} 创建代理，该代理扩展 {@code TargetSource} 的目标类。"]}

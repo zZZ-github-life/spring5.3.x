@@ -29,9 +29,8 @@ import static org.springframework.beans.factory.xml.BeanDefinitionParserDelegate
 import static org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.TRUE_VALUE;
 
 /**
- * Abstract base class for BeanDefinitionParsers which build
- * JNDI-locating beans, supporting an optional "jndiEnvironment"
- * bean property, populated from an "environment" XML sub-element.
+ * 用于构建 JNDI 定位 Bean 的 BeanDefinitionParser 的抽象基类，支持可选的 "jndiEnvironment" Bean 属
+ * 性，该属性由 "environment" XML 子元素填充。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller

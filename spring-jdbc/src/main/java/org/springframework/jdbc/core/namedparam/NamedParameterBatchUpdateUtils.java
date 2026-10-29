@@ -23,13 +23,13 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcOperations;
 
 /**
- * Generic utility methods for working with JDBC batch statements using named parameters.
- * Mainly for internal use within the framework.
+ * 使用命名参数的 JDBC 批量语句处理的通用工具方法。
+ * 主要供框架内部使用。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
  * @since 3.0
- * @deprecated as of 5.1.3, not used by {@link NamedParameterJdbcTemplate} anymore
+ * @deprecated 自 5.1.3 起，{@link NamedParameterJdbcTemplate} 不再使用此类
  */
 @Deprecated
 public abstract class NamedParameterBatchUpdateUtils extends org.springframework.jdbc.core.BatchUpdateUtils {

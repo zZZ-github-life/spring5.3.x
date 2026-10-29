@@ -22,30 +22,27 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface to be implemented by objects that define a mapping between
- * requests and handler objects.
+ * 由定义请求与处理器对象之间映射关系的对象实现的接口。
  *
- * <p>This class can be implemented by application developers, although this is not
- * necessary, as {@link org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping}
- * and {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}
- * are included in the framework. The former is the default if no
- * HandlerMapping bean is registered in the application context.
+ * <p>应用开发者可以实现该类，但并非必须，因为框架中已包含
+ * {@link org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping}
+ * 和 {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}。
+ * 如果应用上下文中没有注册任何 HandlerMapping bean，则前者是默认实现。
  *
- * <p>HandlerMapping implementations can support mapped interceptors but do not
- * have to. A handler will always be wrapped in a {@link HandlerExecutionChain}
- * instance, optionally accompanied by some {@link HandlerInterceptor} instances.
- * The DispatcherServlet will first call each HandlerInterceptor's
- * {@code preHandle} method in the given order, finally invoking the handler
- * itself if all {@code preHandle} methods have returned {@code true}.
+ * <p>HandlerMapping 实现可以支持（但并非必须支持）映射的拦截器。
+ * 处理器始终会被包装在一个 {@link HandlerExecutionChain} 实例中，
+ * 并可附带一些 {@link HandlerInterceptor} 实例。
+ * DispatcherServlet 会先按给定顺序调用每个 HandlerInterceptor 的
+ * {@code preHandle} 方法，如果所有 {@code preHandle} 方法都返回 {@code true}，
+ * 最后才会调用处理器本身。
  *
- * <p>The ability to parameterize this mapping is a powerful and unusual
- * capability of this MVC framework. For example, it is possible to write
- * a custom mapping based on session state, cookie state or many other
- * variables. No other MVC framework seems to be equally flexible.
+ * <p>能够对此映射进行参数化是该 MVC 框架一项强大而独特的能力。
+ * 例如，可以编写基于会话状态、Cookie 状态或许多其他变量的自定义映射。
+ * 似乎没有其他 MVC 框架能具备同等的灵活性。
  *
- * <p>Note: Implementations can implement the {@link org.springframework.core.Ordered}
- * interface to be able to specify a sorting order and thus a priority for getting
- * applied by DispatcherServlet. Non-Ordered instances get treated as the lowest priority.
+ * <p>注意：实现类可以实现 {@link org.springframework.core.Ordered} 接口，
+ * 以便指定排序顺序，从而决定被 DispatcherServlet 应用的优先级。
+ * 未实现 Ordered 的实例会被视为最低优先级。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -57,17 +54,15 @@ import org.springframework.lang.Nullable;
 public interface HandlerMapping {
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the mapped
-	 * handler for the best matching pattern.
+	 * {@link HttpServletRequest} 属性的名称，该属性包含最佳匹配模式所映射的处理器。
 	 * @since 4.3.21
 	 */
 	String BEST_MATCHING_HANDLER_ATTRIBUTE = HandlerMapping.class.getName() + ".bestMatchingHandler";
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the path
-	 * used to look up the matching handler, which depending on the configured
-	 * {@link org.springframework.web.util.UrlPathHelper} could be the full path
-	 * or without the context path, decoded or not, etc.
+	 * {@link HttpServletRequest} 属性的名称，该属性包含用于查找匹配处理器的路径，
+	 * 根据所配置的 {@link org.springframework.web.util.UrlPathHelper}，
+	 * 它可能是完整路径或不含上下文路径的路径、已解码或未解码的路径等。
 	 * @since 5.2
 	 * @deprecated as of 5.3 in favor of
 	 * {@link org.springframework.web.util.UrlPathHelper#PATH_ATTRIBUTE} and
@@ -79,73 +74,63 @@ public interface HandlerMapping {
 	String LOOKUP_PATH = HandlerMapping.class.getName() + ".lookupPath";
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the path
-	 * within the handler mapping, in case of a pattern match, or the full
-	 * relevant URI (typically within the DispatcherServlet's mapping) else.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. URL-based HandlerMappings will
-	 * typically support it, but handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * {@link HttpServletRequest} 属性的名称，该属性包含处理器映射内的路径，
+	 * 在模式匹配的情况下为该模式，否则为完整的相关 URI
+	 * （通常在 DispatcherServlet 的映射范围内）。
+	 * <p>注意：并非所有 HandlerMapping 实现都必须支持该属性。
+	 * 基于 URL 的 HandlerMapping 通常会支持它，但处理器不应期望
+	 * 该请求属性在所有场景下都存在。
 	 */
 	String PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE = HandlerMapping.class.getName() + ".pathWithinHandlerMapping";
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the
-	 * best matching pattern within the handler mapping.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. URL-based HandlerMappings will
-	 * typically support it, but handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * {@link HttpServletRequest} 属性的名称，该属性包含处理器映射内的最佳匹配模式。
+	 * <p>注意：并非所有 HandlerMapping 实现都必须支持该属性。
+	 * 基于 URL 的 HandlerMapping 通常会支持它，但处理器不应期望
+	 * 该请求属性在所有场景下都存在。
 	 */
 	String BEST_MATCHING_PATTERN_ATTRIBUTE = HandlerMapping.class.getName() + ".bestMatchingPattern";
 
 	/**
-	 * Name of the boolean {@link HttpServletRequest} attribute that indicates
-	 * whether type-level mappings should be inspected.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations.
+	 * 布尔型 {@link HttpServletRequest} 属性的名称，该属性指示是否应检查类型级映射。
+	 * <p>注意：并非所有 HandlerMapping 实现都必须支持该属性。
 	 */
 	String INTROSPECT_TYPE_LEVEL_MAPPING = HandlerMapping.class.getName() + ".introspectTypeLevelMapping";
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the URI
-	 * templates map, mapping variable names to values.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. URL-based HandlerMappings will
-	 * typically support it, but handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * {@link HttpServletRequest} 属性的名称，该属性包含 URI 模板映射，
+	 * 即变量名称到值的映射。
+	 * <p>注意：并非所有 HandlerMapping 实现都必须支持该属性。
+	 * 基于 URL 的 HandlerMapping 通常会支持它，但处理器不应期望
+	 * 该请求属性在所有场景下都存在。
 	 */
 	String URI_TEMPLATE_VARIABLES_ATTRIBUTE = HandlerMapping.class.getName() + ".uriTemplateVariables";
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains a map with
-	 * URI variable names and a corresponding MultiValueMap of URI matrix
-	 * variables for each.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations and may also not be present depending on
-	 * whether the HandlerMapping is configured to keep matrix variable content
+	 * {@link HttpServletRequest} 属性的名称，该属性包含一个映射，
+	 * 其键为 URI 变量名称，值为每个变量对应的 URI 矩阵变量的 MultiValueMap。
+	 * <p>注意：并非所有 HandlerMapping 实现都必须支持该属性，
+	 * 并且取决于 HandlerMapping 是否配置为保留矩阵变量内容，该属性也可能不存在。
 	 */
 	String MATRIX_VARIABLES_ATTRIBUTE = HandlerMapping.class.getName() + ".matrixVariables";
 
 	/**
-	 * Name of the {@link HttpServletRequest} attribute that contains the set of
-	 * producible MediaTypes applicable to the mapped handler.
-	 * <p>Note: This attribute is not required to be supported by all
-	 * HandlerMapping implementations. Handlers should not necessarily expect
-	 * this request attribute to be present in all scenarios.
+	 * {@link HttpServletRequest} 属性的名称，该属性包含适用于所映射处理器的
+	 * 可生成 MediaType 集合。
+	 * <p>注意：并非所有 HandlerMapping 实现都必须支持该属性。
+	 * 处理器不应期望该请求属性在所有场景下都存在。
 	 */
 	String PRODUCIBLE_MEDIA_TYPES_ATTRIBUTE = HandlerMapping.class.getName() + ".producibleMediaTypes";
 
 
 	/**
-	 * Whether this {@code HandlerMapping} instance has been enabled to use parsed
-	 * {@link org.springframework.web.util.pattern.PathPattern}s in which case
-	 * the {@link DispatcherServlet} automatically
-	 * {@link org.springframework.web.util.ServletRequestPathUtils#parseAndCache parses}
-	 * the {@code RequestPath} to make it available for
-	 * {@link org.springframework.web.util.ServletRequestPathUtils#getParsedRequestPath
-	 * access} in {@code HandlerMapping}s, {@code HandlerInterceptor}s, and
-	 * other components.
+	 * 此 {@code HandlerMapping} 实例是否已启用解析后的
+	 * {@link org.springframework.web.util.pattern.PathPattern}，
+	 * 若启用，则 {@link DispatcherServlet} 会自动
+	 * {@link org.springframework.web.util.ServletRequestPathUtils#parseAndCache 解析}
+	 * {@code RequestPath}，使其可在 {@code HandlerMapping}、
+	 * {@code HandlerInterceptor} 及其他组件中
+	 * {@link org.springframework.web.util.ServletRequestPathUtils#getParsedRequestPath 访问}。
 	 * @since 5.3
 	 */
 	default boolean usesPathPatterns() {
@@ -153,15 +138,14 @@ public interface HandlerMapping {
 	}
 
 	/**
-	 * Return a handler and any interceptors for this request. The choice may be made
-	 * on request URL, session state, or any factor the implementing class chooses.
-	 * <p>The returned HandlerExecutionChain contains a handler Object, rather than
-	 * even a tag interface, so that handlers are not constrained in any way.
-	 * For example, a HandlerAdapter could be written to allow another framework's
-	 * handler objects to be used.
-	 * <p>Returns {@code null} if no match was found. This is not an error.
-	 * The DispatcherServlet will query all registered HandlerMapping beans to find
-	 * a match, and only decide there is an error if none can find a handler.
+	 * 为此请求返回一个处理器及任意拦截器。选择可以基于请求 URL、会话状态，
+	 * 或实现类所选择的任何因素。
+	 * <p>返回的 HandlerExecutionChain 包含一个处理器 Object，甚至不需要标记接口，
+	 * 因此处理器完全不受约束。例如，可以编写一个 HandlerAdapter
+	 * 来使用其他框架的处理器对象。
+	 * <p>如果未找到匹配项则返回 {@code null}。这并非错误。
+	 * DispatcherServlet 会查询所有已注册的 HandlerMapping bean 以寻找匹配项，
+	 * 只有所有 bean 都找不到处理器时才会认定为错误。
 	 * @param request current HTTP request
 	 * @return a HandlerExecutionChain instance containing handler object and
 	 * any interceptors, or {@code null} if no mapping found

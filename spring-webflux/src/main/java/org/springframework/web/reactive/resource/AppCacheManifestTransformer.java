@@ -44,23 +44,15 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link ResourceTransformer} HTML5 AppCache manifests.
+ * 用于 HTML5 AppCache 清单的 {@link ResourceTransformer}。
  *
- * <p>This transformer:
+ * <p>此转换器：
  * <ul>
- * <li>modifies links to match the public URL paths that should be exposed to
- * clients, using configured {@code ResourceResolver} strategies
- * <li>appends a comment in the manifest, containing a Hash
- * (e.g. "# Hash: 9de0f09ed7caf84e885f1f0f11c7e326"), thus changing the content
- * of the manifest in order to trigger an appcache reload in the browser.
+ * <li>修改链接，使其与应向客户端公开的公共 URL 路径匹配，使用所配置的 {@code ResourceResolver} 策略
+ * <li>在清单中追加包含哈希的注释（例如 "# Hash: 9de0f09ed7caf84e885f1f0f11c7e326"），从而更改清单内容以触发浏览器重新加载 appcache。
  * </ul>
  *
- * <p>All files with an ".appcache" file extension (or the extension given
- * to the constructor) will be transformed by this class. The hash is computed
- * using the content of the appcache manifest so that changes in the manifest
- * should invalidate the browser cache. This should also work with changes in
- * referenced resources whose links are also versioned.
- *
+ * <p>所有扩展名为 ".appcache"（或构造函数中给定扩展名）的文件都将由此类转换。哈希使用 appcache 清单的内容计算，因此清单的更改应使浏览器缓存失效。这也应适用于被引用资源（其链接也带版本）的更改。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -86,15 +78,14 @@ public class AppCacheManifestTransformer extends ResourceTransformerSupport {
 
 
 	/**
-	 * Create an AppCacheResourceTransformer that transforms files with extension ".appcache".
+	 * 创建用于转换扩展名为 ".appcache" 的文件的 AppCacheResourceTransformer。
 	 */
 	public AppCacheManifestTransformer() {
 		this("appcache");
 	}
 
 	/**
-	 * Create an AppCacheResourceTransformer that transforms files with the extension
-	 * given as a parameter.
+	 * 创建用于转换给定扩展名的文件的 AppCacheResourceTransformer。
 	 */
 	public AppCacheManifestTransformer(String fileExtension) {
 		this.fileExtension = fileExtension;

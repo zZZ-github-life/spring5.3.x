@@ -19,7 +19,7 @@ package org.springframework.web.server;
 import reactor.core.publisher.Mono;
 
 /**
- * Contract to allow a {@link WebFilter} to delegate to the next in the chain.
+ * 允许 {@link WebFilter} 委托给链中下一个过滤器的契约。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -27,7 +27,7 @@ import reactor.core.publisher.Mono;
 public interface WebFilterChain {
 
 	/**
-	 * Delegate to the next {@code WebFilter} in the chain.
+	 * 委托给链中的下一个 {@code WebFilter}。
 	 * @param exchange the current server exchange
 	 * @return {@code Mono<Void>} to indicate when request handling is complete
 	 */

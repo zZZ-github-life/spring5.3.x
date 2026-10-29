@@ -1,0 +1,30 @@
+===FILE D:/a-project/source-code/spring-framework/spring-web/src/main/java/org/springframework/http/HttpRange.java
+@@RAW 47 47
+	/** 每个请求允许的最大范围数。 */
+@@BODY 36 36
+表示可用于 HTTP {@code "Range"} 头的 HTTP（字节）范围。
+@@BODY 54 55
+使用当前 {@code HttpRange} 中包含的范围信息将 {@code Resource} 转换为 {@link ResourceRegion}。
+@@BODY 73 73
+在给定表示形式总长度的情况下，返回范围的起始位置。
+@@BODY 80 80
+在给定表示形式总长度的情况下，返回范围的结束位置（包含）。
+@@BODY 88 88
+创建从给定位置到末尾的 {@code HttpRange}。
+@@BODY 98 98
+创建从给定的第一个位置到最后一个位置的 {@code HttpRange}。
+@@BODY 109 109
+创建一个覆盖最后给定字节数的 {@code HttpRange}。
+@@BODY 119 120
+将给定的逗号分隔字符串解析为 {@code HttpRange} 对象列表。
+<p>此方法可用于解析 {@code Range} 头。
+@@BODY 169 170
+将每个 {@code HttpRange} 转换为 {@code ResourceRegion}，利用 HTTP Range 信息选择给定 {@code Resource} 的相应片段。
+@@BODY 211 212
+返回给定 {@code HttpRange} 对象列表的字符串表示形式。
+<p>此方法可用于生成 {@code Range} 头。
+@@BODY 227 227
+表示 HTTP/1.1 字节范围，包含第一个位置和可选的最后一个位置。
+@@BODY 303 303
+表示 HTTP/1.1 后缀字节范围，包含若干后缀字节。
+@@END

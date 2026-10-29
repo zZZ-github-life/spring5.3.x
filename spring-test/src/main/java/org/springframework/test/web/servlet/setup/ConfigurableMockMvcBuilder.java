@@ -27,8 +27,7 @@ import org.springframework.test.web.servlet.ResultHandler;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 /**
- * Defines common methods for building a {@code MockMvc}.
- *
+ * 定义用于构建 {@code MockMvc} 的通用方法。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 4.1
@@ -37,58 +36,56 @@ import org.springframework.test.web.servlet.ResultMatcher;
 public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder<B>> extends MockMvcBuilder {
 
 	/**
-	 * Add filters mapped to any request (i.e. "/*"). For example:
+	 * 添加映射到任意请求（即 “/*”）的过滤器。例如：
 	 * <pre class="code">
 	 * mockMvcBuilder.addFilters(springSecurityFilterChain);
 	 * </pre>
-	 * <p>It is the equivalent of the following web.xml configuration:
+	 * <p>它等效于以下 web.xml 配置：
 	 * <pre class="code">
 	 * &lt;filter-mapping&gt;
 	 *     &lt;filter-name&gt;springSecurityFilterChain&lt;/filter-name&gt;
 	 *     &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
-	 * <p>Filters will be invoked in the order in which they are provided.
+	 * <p>过滤器将按提供它们的顺序被调用。
 	 * @param filters the filters to add
 	 */
 	<T extends B> T addFilters(Filter... filters);
 
 	/**
-	 * Add a filter mapped to a specific set of patterns. For example:
+	 * 添加映射到特定模式集的过滤器。例如：
 	 * <pre class="code">
 	 * mockMvcBuilder.addFilter(myResourceFilter, "/resources/*");
 	 * </pre>
-	 * <p>It is the equivalent of:
+	 * <p>它等效于：
 	 * <pre class="code">
 	 * &lt;filter-mapping&gt;
 	 *     &lt;filter-name&gt;myResourceFilter&lt;/filter-name&gt;
 	 *     &lt;url-pattern&gt;/resources/*&lt;/url-pattern&gt;
 	 * &lt;/filter-mapping&gt;
 	 * </pre>
-	 * <p>Filters will be invoked in the order in which they are provided.
+	 * <p>过滤器将按提供它们的顺序被调用。
 	 * @param filter the filter to add
 	 * @param urlPatterns the URL patterns to map to; if empty, "/*" is used by default
 	 */
 	<T extends B> T addFilter(Filter filter, String... urlPatterns);
 
 	/**
-	 * Define default request properties that should be merged into all
-	 * performed requests. In effect this provides a mechanism for defining
-	 * common initialization for all requests such as the content type, request
-	 * parameters, session attributes, and any other request property.
+	 * 定义应合并到所有已执行请求中的默认请求属性。
+	 * 实际上，这提供了一种为所有请求定义通用初始化的机制，
+	 * 例如内容类型、请求参数、会话属性以及任何其他请求属性。
 	 *
-	 * <p>Properties specified at the time of performing a request override the
-	 * default properties defined here.
+	 * <p>执行请求时指定的属性会覆盖此处定义的默认属性。
 	 * @param requestBuilder a RequestBuilder; see static factory methods in
 	 * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}
 	 */
 	<T extends B> T defaultRequest(RequestBuilder requestBuilder);
 
 	/**
-	 * Define the default character encoding to be applied to every response.
-	 * <p>The default implementation of this method throws an
-	 * {@link UnsupportedOperationException}. Concrete implementations are therefore
-	 * encouraged to override this method.
+	 * 定义应用于每个响应的默认字符编码。
+	 * <p>此方法的默认实现会抛出
+	 * {@link UnsupportedOperationException}。因此，鼓励具体实现
+	 * 重写此方法。
 	 * @param defaultResponseCharacterEncoding the default response character encoding
 	 * @since 5.3.10
 	 */
@@ -97,45 +94,42 @@ public interface ConfigurableMockMvcBuilder<B extends ConfigurableMockMvcBuilder
 	}
 
 	/**
-	 * Define a global expectation that should <em>always</em> be applied to
-	 * every response. For example, status code 200 (OK), content type
-	 * {@code "application/json"}, etc.
+	 * 定义一个应<em>始终</em>应用于每个响应的全局预期。
+	 * 例如，状态码 200（OK）、内容类型
+	 * {@code "application/json"} 等。
 	 * @param resultMatcher a ResultMatcher; see static factory methods in
 	 * {@link org.springframework.test.web.servlet.result.MockMvcResultMatchers}
 	 */
 	<T extends B> T alwaysExpect(ResultMatcher resultMatcher);
 
 	/**
-	 * Define a global action that should <em>always</em> be applied to every
-	 * response. For example, writing detailed information about the performed
-	 * request and resulting response to {@code System.out}.
+	 * 定义一个应<em>始终</em>应用于每个响应的全局操作。
+	 * 例如，将已执行请求和结果响应的详细信息写入 {@code System.out}。
 	 * @param resultHandler a ResultHandler; see static factory methods in
 	 * {@link org.springframework.test.web.servlet.result.MockMvcResultHandlers}
 	 */
 	<T extends B> T alwaysDo(ResultHandler resultHandler);
 
 	/**
-	 * Whether to enable the DispatcherServlet property
-	 * {@link org.springframework.web.servlet.DispatcherServlet#setDispatchOptionsRequest
-	 * dispatchOptionsRequest} which allows processing of HTTP OPTIONS requests.
+	 * 是否启用 DispatcherServlet 属性
+	 * {@link org.springframework.web.servlet.DispatcherServlet#setDispatchOptionsRequest dispatchOptionsRequest}，
+	 * 该属性允许处理 HTTP OPTIONS 请求。
 	 */
 	<T extends B> T dispatchOptions(boolean dispatchOptions);
 
 	/**
-	 * A more advanced variant of {@link #dispatchOptions(boolean)} that allows
-	 * customizing any {@link org.springframework.web.servlet.DispatcherServlet}
-	 * property.
+	 * {@link #dispatchOptions(boolean)} 的更高级变体，
+	 * 允许自定义任何 {@link org.springframework.web.servlet.DispatcherServlet} 属性。
 	 * @since 5.3
 	 */
 	<T extends B> T addDispatcherServletCustomizer(DispatcherServletCustomizer customizer);
 
 	/**
-	 * Add a {@code MockMvcConfigurer} that automates MockMvc setup and
-	 * configures it for some specific purpose (e.g. security).
-	 * <p>There is a built-in {@link SharedHttpSessionConfigurer} that can be
-	 * used to re-use the HTTP session across requests. 3rd party frameworks
-	 * like Spring Security also use this mechanism to provide configuration
-	 * shortcuts.
+	 * 添加一个 {@code MockMvcConfigurer}，用于自动化 MockMvc 设置，
+	 * 并针对某些特定用途（如安全）对其进行配置。
+	 * <p>有一个内置的 {@link SharedHttpSessionConfigurer}，
+	 * 可用于跨请求重用 HTTP 会话。像 Spring Security 这样的第三方框架
+	 * 也使用此机制来提供配置快捷方式。
 	 * @see SharedHttpSessionConfigurer
 	 */
 	<T extends B> T apply(MockMvcConfigurer configurer);

@@ -27,12 +27,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Base class for {@link org.springframework.jms.core.JmsTemplate} and other
- * JMS-accessing gateway helpers, adding destination-related properties to
- * {@link JmsAccessor JmsAccessor's} common properties.
+ * {@link org.springframework.jms.core.JmsTemplate} 及其他 JMS 访问网关辅助类的基类，
+ * 在 {@link JmsAccessor JmsAccessor} 的公共属性之上添加了与目的地相关的属性。
  *
- * <p>Not intended to be used directly.
- * See {@link org.springframework.jms.core.JmsTemplate}.
+ * <p>不打算直接使用。
+ * 请参见 {@link org.springframework.jms.core.JmsTemplate}。
  *
  * @author Juergen Hoeller
  * @since 1.2.5
@@ -42,14 +41,13 @@ import org.springframework.util.Assert;
 public abstract class JmsDestinationAccessor extends JmsAccessor {
 
 	/**
-	 * Timeout value indicating that a receive operation should
-	 * check if a message is immediately available without blocking.
+	 * 超时值，表示接收操作应在不阻塞的情况下检查消息是否立即可用。
 	 * @since 4.3
 	 */
 	public static final long RECEIVE_TIMEOUT_NO_WAIT = -1;
 
 	/**
-	 * Timeout value indicating a blocking receive without timeout.
+	 * 超时值，表示无超时的阻塞接收。
 	 * @since 4.3
 	 */
 	public static final long RECEIVE_TIMEOUT_INDEFINITE_WAIT = 0;
@@ -61,10 +59,10 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 
 
 	/**
-	 * Set the {@link DestinationResolver} that is to be used to resolve
-	 * {@link javax.jms.Destination} references for this accessor.
-	 * <p>The default resolver is a DynamicDestinationResolver. Specify a
-	 * JndiDestinationResolver for resolving destination names as JNDI locations.
+	 * 设置用于为此访问器解析 {@link javax.jms.Destination} 引用的
+	 * {@link DestinationResolver}。
+	 * <p>默认解析器是 DynamicDestinationResolver。如果需要将目的地名称作为
+	 * JNDI 位置解析，请指定 JndiDestinationResolver。
 	 * @see org.springframework.jms.support.destination.DynamicDestinationResolver
 	 * @see org.springframework.jms.support.destination.JndiDestinationResolver
 	 */
@@ -74,17 +72,16 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 	}
 
 	/**
-	 * Return the DestinationResolver for this accessor (never {@code null}).
+	 * 返回此访问器的 DestinationResolver（永不为 {@code null}）。
 	 */
 	public DestinationResolver getDestinationResolver() {
 		return this.destinationResolver;
 	}
 
 	/**
-	 * Configure the destination accessor with knowledge of the JMS domain used.
-	 * Default is Point-to-Point (Queues).
-	 * <p>This setting primarily indicates what type of destination to resolve
-	 * if dynamic destinations are enabled.
+	 * 配置目的地访问器，使其了解所使用的 JMS 域。
+	 * 默认是点对点（队列）。
+	 * <p>如果启用了动态目的地，此设置主要指示要解析的目的地类型。
 	 * @param pubSubDomain "true" for the Publish/Subscribe domain ({@link javax.jms.Topic Topics}),
 	 * "false" for the Point-to-Point domain ({@link javax.jms.Queue Queues})
 	 * @see #setDestinationResolver
@@ -94,8 +91,8 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 	}
 
 	/**
-	 * Return whether the Publish/Subscribe domain ({@link javax.jms.Topic Topics}) is used.
-	 * Otherwise, the Point-to-Point domain ({@link javax.jms.Queue Queues}) is used.
+	 * 返回是否使用发布-订阅域（{@link javax.jms.Topic Topic}）。
+	 * 否则使用点对点域（{@link javax.jms.Queue Queue}）。
 	 */
 	public boolean isPubSubDomain() {
 		return this.pubSubDomain;
@@ -103,8 +100,8 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 
 
 	/**
-	 * Resolve the given destination name into a JMS {@link Destination},
-	 * via this accessor's {@link DestinationResolver}.
+	 * 通过此访问器的 {@link DestinationResolver} 将给定的目的地名称解析为
+	 * JMS {@link Destination}。
 	 * @param session the current JMS {@link Session}
 	 * @param destinationName the name of the destination
 	 * @return the located {@link Destination}
@@ -116,7 +113,7 @@ public abstract class JmsDestinationAccessor extends JmsAccessor {
 	}
 
 	/**
-	 * Actually receive a message from the given consumer.
+	 * 实际从给定的消费者接收一条消息。
 	 * @param consumer the JMS MessageConsumer to receive with
 	 * @param timeout the receive timeout (a negative value indicates
 	 * a no-wait receive; 0 indicates an indefinite wait attempt)

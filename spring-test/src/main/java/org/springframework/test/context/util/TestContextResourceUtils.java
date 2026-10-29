@@ -30,8 +30,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Utility methods for working with resources within the <em>Spring TestContext
- * Framework</em>. Mainly for internal use within the framework.
+ * 用于在 <em>Spring TestContext Framework</em> 中处理资源的工具方法。主要用于框架内部。
  *
  * @author Sam Brannen
  * @author Tadaya Tsuyukubo
@@ -51,9 +50,8 @@ public abstract class TestContextResourceUtils {
 
 
 	/**
-	 * Convert the supplied paths to classpath resource paths.
-	 * <p>Delegates to {@link #convertToClasspathResourcePaths(Class, boolean, String...)}
-	 * with {@code false} supplied for the {@code preservePlaceholders} flag.
+	 * 将提供的路径转换为类路径资源路径。
+	 * <p>委托给 {@link #convertToClasspathResourcePaths(Class, boolean, String...)}，并将 {@code preservePlaceholders} 标志提供为 {@code false}。
 	 * @param clazz the class with which the paths are associated
 	 * @param paths the paths to be converted
 	 * @return a new array of converted resource paths
@@ -64,24 +62,14 @@ public abstract class TestContextResourceUtils {
 	}
 
 	/**
-	 * Convert the supplied paths to classpath resource paths.
-	 *
-	 * <p>For each of the supplied paths:
+	 * 将提供的路径转换为类路径资源路径。
+	 * <p>对于提供的每个路径：
 	 * <ul>
-	 * <li>A plain path &mdash; for example, {@code "context.xml"} &mdash; will
-	 * be treated as a classpath resource that is relative to the package in
-	 * which the specified class is defined. Such a path will be prepended with
-	 * the {@code classpath:} prefix and the path to the package for the class.
-	 * <li>A path starting with a slash will be treated as an absolute path
-	 * within the classpath, for example: {@code "/org/example/schema.sql"}.
-	 * Such a path will be prepended with the {@code classpath:} prefix.
-	 * <li>A path which is already prefixed with a URL protocol (e.g.,
-	 * {@code classpath:}, {@code file:}, {@code http:}, etc.) will not have its
-	 * protocol modified.
+	 * <li>普通路径——例如 {@code "context.xml"}——将被视为相对于指定类所在包的类路径资源。此类路径将添加 {@code classpath:} 前缀以及该类的包路径。
+	 * <li>以斜杠开头的路径将被视为类路径中的绝对路径，例如：{@code "/org/example/schema.sql"}。此类路径将添加 {@code classpath:} 前缀。
+	 * <li>已带有 URL 协议前缀的路径（例如 {@code classpath:}、{@code file:}、{@code http:} 等）将不会修改其协议。
 	 * </ul>
-	 * <p>Each path will then be {@linkplain StringUtils#cleanPath cleaned},
-	 * unless the {@code preservePlaceholders} flag is {@code true} and the path
-	 * contains one or more placeholders in the form <code>${placeholder.name}</code>.
+	 * <p>然后，除非 {@code preservePlaceholders} 标志为 {@code true} 且路径包含一个或多个 <code>${placeholder.name}</code> 形式的占位符，否则每个路径都会被{@linkplain StringUtils#cleanPath 清理}。
 	 * @param clazz the class with which the paths are associated
 	 * @param preservePlaceholders {@code true} if placeholders should be preserved
 	 * @param paths the paths to be converted
@@ -118,8 +106,7 @@ public abstract class TestContextResourceUtils {
 	}
 
 	/**
-	 * Convert the supplied paths to an array of {@link Resource} handles using
-	 * the given {@link ResourceLoader}.
+	 * 使用给定的 {@link ResourceLoader} 将提供的路径转换为 {@link Resource} 句柄数组。
 	 * @param resourceLoader the {@code ResourceLoader} to use to convert the paths
 	 * @param paths the paths to be converted
 	 * @return a new array of resources
@@ -131,8 +118,7 @@ public abstract class TestContextResourceUtils {
 	}
 
 	/**
-	 * Convert the supplied paths to a list of {@link Resource} handles using
-	 * the given {@link ResourceLoader}.
+	 * 使用给定的 {@link ResourceLoader} 将提供的路径转换为 {@link Resource} 句柄列表。
 	 * @param resourceLoader the {@code ResourceLoader} to use to convert the paths
 	 * @param paths the paths to be converted
 	 * @return a new list of resources

@@ -19,12 +19,10 @@ package org.springframework.web.socket.sockjs;
 import java.util.List;
 
 /**
- * An exception thrown when a message frame was successfully received over an HTTP POST
- * and parsed but one or more of the messages it contained could not be delivered to the
- * WebSocketHandler either because the handler failed or because the connection got
- * closed.
+ * 当消息帧通过 HTTP POST 成功接收并解析，但其中包含的一条或多条消息
+ * 由于处理器失败或连接关闭而无法传递给 WebSocketHandler 时抛出的异常。
  *
- * <p>The SockJS session is not automatically closed after this exception.
+ * <p>此异常发生后，SockJS 会话不会自动关闭。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

@@ -25,7 +25,7 @@ import org.springframework.expression.spel.SpelMessage;
 import org.springframework.expression.spel.SpelParseException;
 
 /**
- * Lex some input data into a stream of tokens that can then be parsed.
+ * 将输入数据切分为可供后续解析的记号流。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -505,7 +505,7 @@ class Tokenizer {
 	}
 
 	/**
-	 * Check if this might be a two character token.
+	 * 检查这里是否可能是双字符记号。
 	 */
 	private boolean isTwoCharToken(TokenKind kind) {
 		return (kind.tokenChars.length == 2 &&
@@ -514,7 +514,7 @@ class Tokenizer {
 	}
 
 	/**
-	 * Push a token of just one character in length.
+	 * 压入一个长度为单个字符的记号。
 	 */
 	private void pushCharToken(TokenKind kind) {
 		this.tokens.add(new Token(kind, this.pos, this.pos + 1));
@@ -522,7 +522,7 @@ class Tokenizer {
 	}
 
 	/**
-	 * Push a token of two characters in length.
+	 * 压入一个长度为两个字符的记号。
 	 */
 	private void pushPairToken(TokenKind kind) {
 		this.tokens.add(new Token(kind, this.pos, this.pos + 2));

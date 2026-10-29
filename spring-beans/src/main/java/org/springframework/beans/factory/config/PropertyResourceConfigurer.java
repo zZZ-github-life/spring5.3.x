@@ -28,21 +28,17 @@ import org.springframework.core.io.support.PropertiesLoaderSupport;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Allows for configuration of individual bean property values from a property resource,
- * i.e. a properties file. Useful for custom config files targeted at system
- * administrators that override bean properties configured in the application context.
+ * 允许从属性资源（即 properties 文件）配置各个 Bean 属性值。适用于面向系统管理员、用于覆盖应用上下
+ * 文中配置的 Bean 属性的自定义配置文件。
  *
- * <p>Two concrete implementations are provided in the distribution:
+ * <p>发行包中提供了两个具体实现：
  * <ul>
- * <li>{@link PropertyOverrideConfigurer} for "beanName.property=value" style overriding
- * (<i>pushing</i> values from a properties file into bean definitions)
- * <li>{@link PropertyPlaceholderConfigurer} for replacing "${...}" placeholders
- * (<i>pulling</i> values from a properties file into bean definitions)
+ * <li>{@link PropertyOverrideConfigurer} 用于 "beanName.property=value" 风格的覆盖（将属性文件中的值<i>推入</i> Bean 定义）
+ * <li>{@link PropertyPlaceholderConfigurer} 用于替换 "${...}" 占位符（将属性文件中的值<i>拉取</i>到 Bean 定义中）
  * </ul>
  *
- * <p>Property values can be converted after reading them in, through overriding
- * the {@link #convertPropertyValue} method. For example, encrypted values
- * can be detected and decrypted accordingly before processing them.
+ * <p>属性值读入后可以通过覆盖 {@link #convertPropertyValue} 方法进行转换。例如，可以在处理之前检测
+ * 加密值并相应解密。
  *
  * @author Juergen Hoeller
  * @since 02.10.2003
@@ -56,7 +52,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 
 
 	/**
-	 * Set the order value of this object for sorting purposes.
+	 * 设置此对象的顺序值，用于排序。
 	 * @see PriorityOrdered
 	 */
 	public void setOrder(int order) {
@@ -70,8 +66,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 
 
 	/**
-	 * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and
-	 * {@linkplain #processProperties process} properties against the given bean factory.
+	 * 针对给定的 Bean 工厂{@linkplain #mergeProperties Merge}、{@linkplain #convertProperties convert}
+	 * 和 {@linkplain #processProperties process} 属性。
 	 * @throws BeanInitializationException if any properties cannot be loaded
 	 */
 	@Override
@@ -91,10 +87,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	}
 
 	/**
-	 * Convert the given merged properties, converting property values
-	 * if necessary. The result will then be processed.
-	 * <p>The default implementation will invoke {@link #convertPropertyValue}
-	 * for each property value, replacing the original with the converted value.
+	 * 转换给定的已合并属性，必要时转换属性值。随后将处理结果。
+	 * <p>默认实现会为每个属性值调用 {@link #convertPropertyValue}，用转换后的值替换原值。
 	 * @param props the Properties to convert
 	 * @see #processProperties
 	 */
@@ -111,9 +105,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	}
 
 	/**
-	 * Convert the given property from the properties source to the value
-	 * which should be applied.
-	 * <p>The default implementation calls {@link #convertPropertyValue(String)}.
+	 * 将属性源中的给定属性转换为应当应用的值。
+	 * <p>默认实现会调用 {@link #convertPropertyValue(String)}。
 	 * @param propertyName the name of the property that the value is defined for
 	 * @param propertyValue the original value from the properties source
 	 * @return the converted value, to be used for processing
@@ -124,11 +117,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	}
 
 	/**
-	 * Convert the given property value from the properties source to the value
-	 * which should be applied.
-	 * <p>The default implementation simply returns the original value.
-	 * Can be overridden in subclasses, for example to detect
-	 * encrypted values and decrypt them accordingly.
+	 * 将属性源中的给定属性值转换为应当应用的值。
+	 * <p>默认实现仅返回原值。可以在子类中覆盖，例如用于检测加密值并相应解密。
 	 * @param originalValue the original value from the properties source
 	 * (properties file or local "properties")
 	 * @return the converted value, to be used for processing
@@ -143,7 +133,7 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 
 
 	/**
-	 * Apply the given Properties to the given BeanFactory.
+	 * 将给定的 Properties 应用到给定的 BeanFactory。
 	 * @param beanFactory the BeanFactory used by the application context
 	 * @param props the Properties to apply
 	 * @throws org.springframework.beans.BeansException in case of errors

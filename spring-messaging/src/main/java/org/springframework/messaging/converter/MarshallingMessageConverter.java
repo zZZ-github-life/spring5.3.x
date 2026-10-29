@@ -37,12 +37,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Implementation of {@link MessageConverter} that can read and write XML using Spring's
- * {@link Marshaller} and {@link Unmarshaller} abstractions.
+ * 使用 Spring 的 {@link Marshaller} 和 {@link Unmarshaller} 抽象读写 XML 的
+ * {@link MessageConverter} 实现。
  *
- * <p>This converter requires a {@code Marshaller} and {@code Unmarshaller} before it can
- * be used. These can be injected by the {@linkplain #MarshallingMessageConverter(Marshaller)
- * constructor} or {@linkplain #setMarshaller(Marshaller) bean properties}.
+ * <p>此转换器在使用前需要 {@code Marshaller} 和 {@code Unmarshaller}。
+ * 可以通过 {@linkplain #MarshallingMessageConverter(Marshaller) 构造函数}
+ * 或 {@linkplain #setMarshaller(Marshaller) Bean 属性}注入它们。
  *
  * @author Arjen Poutsma
  * @since 4.2
@@ -59,8 +59,8 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 
 
 	/**
-	 * Default construct allowing for {@link #setMarshaller(Marshaller)} and/or
-	 * {@link #setUnmarshaller(Unmarshaller)} to be invoked separately.
+	 * 默认构造函数，允许分别调用 {@link #setMarshaller(Marshaller)} 和/或
+	 * {@link #setUnmarshaller(Unmarshaller)}。
 	 */
 	public MarshallingMessageConverter() {
 		this(new MimeType("application", "xml"), new MimeType("text", "xml"),
@@ -68,7 +68,7 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Constructor with a given list of MIME types to support.
+	 * 使用给定的受支持 MIME 类型列表的构造函数。
 	 * @param supportedMimeTypes the MIME types
 	 */
 	public MarshallingMessageConverter(MimeType... supportedMimeTypes) {
@@ -76,10 +76,10 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Constructor with {@link Marshaller}. If the given {@link Marshaller} also
-	 * implements {@link Unmarshaller}, it is also used for unmarshalling.
-	 * <p>Note that all {@code Marshaller} implementations in Spring also implement
-	 * {@code Unmarshaller} so that you can safely use this constructor.
+	 * 使用 {@link Marshaller} 的构造函数。如果给定的 {@link Marshaller} 同时
+	 * 实现了 {@link Unmarshaller}，则它也会用于解组。
+	 * <p>注意，Spring 中的所有 {@code Marshaller} 实现也都实现了
+	 * {@code Unmarshaller}，因此可以安全地使用此构造函数。
 	 * @param marshaller object used as marshaller and unmarshaller
 	 */
 	public MarshallingMessageConverter(Marshaller marshaller) {
@@ -93,14 +93,14 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 
 
 	/**
-	 * Set the {@link Marshaller} to be used by this message converter.
+	 * 设置此消息转换器要使用的 {@link Marshaller}。
 	 */
 	public void setMarshaller(@Nullable Marshaller marshaller) {
 		this.marshaller = marshaller;
 	}
 
 	/**
-	 * Return the configured Marshaller.
+	 * 返回已配置的 Marshaller。
 	 */
 	@Nullable
 	public Marshaller getMarshaller() {
@@ -108,14 +108,14 @@ public class MarshallingMessageConverter extends AbstractMessageConverter {
 	}
 
 	/**
-	 * Set the {@link Unmarshaller} to be used by this message converter.
+	 * 设置此消息转换器要使用的 {@link Unmarshaller}。
 	 */
 	public void setUnmarshaller(@Nullable Unmarshaller unmarshaller) {
 		this.unmarshaller = unmarshaller;
 	}
 
 	/**
-	 * Return the configured unmarshaller.
+	 * 返回已配置的 Unmarshaller。
 	 */
 	@Nullable
 	public Unmarshaller getUnmarshaller() {

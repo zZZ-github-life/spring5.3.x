@@ -17,7 +17,7 @@
 package org.springframework.mail;
 
 /**
- * Exception thrown on failed authentication.
+ * 认证失败时抛出的异常。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -26,7 +26,7 @@ package org.springframework.mail;
 public class MailAuthenticationException extends MailException {
 
 	/**
-	 * Constructor for MailAuthenticationException.
+	 * MailAuthenticationException 的构造函数。
 	 * @param msg message
 	 */
 	public MailAuthenticationException(String msg) {
@@ -34,7 +34,7 @@ public class MailAuthenticationException extends MailException {
 	}
 
 	/**
-	 * Constructor for MailAuthenticationException.
+	 * MailAuthenticationException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the mail API in use
 	 */
@@ -43,7 +43,7 @@ public class MailAuthenticationException extends MailException {
 	}
 
 	/**
-	 * Constructor for MailAuthenticationException.
+	 * MailAuthenticationException 的构造函数。
 	 * @param cause the root cause from the mail API in use
 	 */
 	public MailAuthenticationException(Throwable cause) {

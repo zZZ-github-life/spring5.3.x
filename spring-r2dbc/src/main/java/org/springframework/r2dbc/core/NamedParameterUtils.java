@@ -35,14 +35,13 @@ import org.springframework.r2dbc.core.binding.BindTarget;
 import org.springframework.util.Assert;
 
 /**
- * Helper methods for named parameter parsing.
+ * 用于命名参数解析的辅助方法。
  *
- * <p>Only intended for internal use within Spring's R2DBC framework.
+ * <p>仅供 Spring 的 R2DBC 框架内部使用。
  *
- * <p>References to the same parameter name are substituted with
- * the same bind marker placeholder if a {@link BindMarkersFactory} uses
- * {@link BindMarkersFactory#identifiablePlaceholders() identifiable}
- * placeholders.
+ * <p>如果 {@link BindMarkersFactory} 使用
+ * {@link BindMarkersFactory#identifiablePlaceholders() 可标识的}占位符，
+ * 则对同一参数名的引用会被替换为相同的绑定标记占位符。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -52,24 +51,24 @@ import org.springframework.util.Assert;
 abstract class NamedParameterUtils {
 
 	/**
-	 * Set of characters that qualify as comment or quotes starting characters.
+	 * 可作为注释或引号起始字符的字符集合。
 	 */
 	private static final String[] START_SKIP = new String[] {"'", "\"", "--", "/*"};
 
 	/**
-	 * Set of characters that at are the corresponding comment or quotes ending characters.
+	 * 作为相应注释或引号结束字符的字符集合。
 	 */
 	private static final String[] STOP_SKIP = new String[] {"'", "\"", "\n", "*/"};
 
 	/**
-	 * Set of characters that qualify as parameter separators,
-	 * indicating that a parameter name in an SQL String has ended.
+	 * 可作为参数分隔符的字符集合，
+	 * 表示 SQL 字符串中的参数名已结束。
 	 */
 	private static final String PARAMETER_SEPARATORS = "\"':&,;()|=+-*%/\\<>^";
 
 	/**
-	 * An index with separator flags per character code.
-	 * Technically only needed between 34 and 124 at this point.
+	 * 按字符编码记录分隔符标志的索引。
+	 * 目前技术上只需要 34 到 124 之间的范围。
 	 */
 	private static final boolean[] separatorIndex = new boolean[128];
 
@@ -85,8 +84,8 @@ abstract class NamedParameterUtils {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Parse the SQL statement and locate any placeholders or named parameters.
-	 * Named parameters are substituted for a R2DBC placeholder.
+	 * 解析 SQL 语句并定位任何占位符或命名参数。
+	 * 命名参数会被替换为 R2DBC 占位符。
 	 * @param sql the SQL statement
 	 * @return the parsed statement, represented as {@link ParsedSql} instance
 	 */
@@ -206,7 +205,7 @@ abstract class NamedParameterUtils {
 	}
 
 	/**
-	 * Skip over comments and quoted names present in an SQL statement.
+	 * 跳过 SQL 语句中出现的注释和带引号的名称。
 	 * @param statement character array containing SQL statement
 	 * @param position current position of statement
 	 * @return next position to process after any comments or quotes are skipped
@@ -253,16 +252,14 @@ abstract class NamedParameterUtils {
 	}
 
 	/**
-	 * Parse the SQL statement and locate any placeholders or named parameters. Named
-	 * parameters are substituted for a R2DBC placeholder, and any select list is expanded
-	 * to the required number of placeholders. Select lists may contain an array of objects,
-	 * and in that case the placeholders will be grouped and enclosed with parentheses.
-	 * This allows for the use of "expression lists" in the SQL statement like:
+	 * 解析 SQL 语句并定位任何占位符或命名参数。命名参数会被替换为 R2DBC 占位符，
+	 * 任何选择列表都会被展开为所需数量的占位符。选择列表可能包含对象数组，
+	 * 在这种情况下，占位符将被分组并用括号括起来。
+	 * 这样便可在 SQL 语句中使用"表达式列表"，例如：
 	 * {@code select id, name, state from table where (name, age) in (('John', 35), ('Ann', 50))}
-	 * <p>The parameter values passed in are used to determine the number of placeholders to
-	 * be used for a select list. Select lists should be limited to 100 or fewer elements.
-	 * A larger number of elements is not guaranteed to be supported by the database and
-	 * is strictly vendor-dependent.
+	 * <p>传入的参数值用于确定选择列表要使用的占位符数量。
+	 * 选择列表应限制为 100 个或更少的元素。数据库不保证支持更多元素，
+	 * 并且这严格取决于数据库供应商。
 	 * @param parsedSql the parsed representation of the SQL statement
 	 * @param bindMarkersFactory the bind marker factory.
 	 * @param paramSource the source for named parameters
@@ -334,8 +331,8 @@ abstract class NamedParameterUtils {
 	}
 
 	/**
-	 * Determine whether a parameter name ends at the current position,
-	 * that is, whether the given character qualifies as a separator.
+	 * 判断参数名是否在当前位置结束，
+	 * 即给定字符是否符合分隔符的条件。
 	 */
 	private static boolean isParameterSeparator(char c) {
 		return (c < 128 && separatorIndex[c]) || Character.isWhitespace(c);
@@ -347,9 +344,9 @@ abstract class NamedParameterUtils {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Parse the SQL statement and locate any placeholders or named parameters.
-	 * Named parameters are substituted for a native placeholder and any
-	 * select list is expanded to the required number of placeholders.
+	 * 解析 SQL 语句并定位任何占位符或命名参数。
+	 * 命名参数会被替换为原生占位符，任何选择列表都会被展开为
+	 * 所需数量的占位符。
 	 * @param sql the SQL statement
 	 * @param bindMarkersFactory the bind marker factory
 	 * @param paramSource the source for named parameters
@@ -411,7 +408,7 @@ abstract class NamedParameterUtils {
 
 
 	/**
-	 * Holder for bind markers progress.
+	 * 绑定标记进度的持有者。
 	 */
 	static class NamedParameters {
 
@@ -427,8 +424,8 @@ abstract class NamedParameterUtils {
 		}
 
 		/**
-		 * Get the {@link NamedParameter} identified by {@code namedParameter}.
-		 * Parameter objects get created if they do not yet exist.
+		 * 获取由 {@code namedParameter} 标识的 {@link NamedParameter}。
+		 * 如果参数对象尚不存在，则会创建它们。
 		 * @param namedParameter the parameter name
 		 * @return the named parameter
 		 */
@@ -465,8 +462,8 @@ abstract class NamedParameterUtils {
 			}
 
 			/**
-			 * Create a placeholder to translate a single value into a bindable parameter.
-			 * <p>Can be called multiple times to create placeholders for array/collections.
+			 * 创建一个占位符，用于将单个值转换为可绑定的参数。
+			 * <p>可以多次调用以为数组/集合创建占位符。
 			 * @return the placeholder to be used in the SQL statement
 			 */
 			String addPlaceholder() {
@@ -490,8 +487,8 @@ abstract class NamedParameterUtils {
 
 
 	/**
-	 * Expanded query that allows binding of parameters using parameter names that were
-	 * used to expand the query. Binding unrolls {@link Collection}s and nested arrays.
+	 * 已展开的查询，允许使用展开查询时所用的参数名来绑定参数。
+	 * 绑定操作会展开 {@link Collection} 和嵌套数组。
 	 */
 	private static class ExpandedQuery implements PreparedOperation<String> {
 

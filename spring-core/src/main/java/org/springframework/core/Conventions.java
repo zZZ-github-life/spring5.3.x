@@ -26,8 +26,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Provides methods to support various naming and other conventions used
- * throughout the framework. Mainly for internal use within the framework.
+ * 提供用于支持框架中各种命名及其他约定的方法。主要供框架内部使用。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -37,7 +36,7 @@ import org.springframework.util.ClassUtils;
 public final class Conventions {
 
 	/**
-	 * Suffix added to names when using arrays.
+	 * 使用数组时添加到名称上的后缀。
 	 */
 	private static final String PLURAL_SUFFIX = "List";
 
@@ -47,17 +46,14 @@ public final class Conventions {
 
 
 	/**
-	 * Determine the conventional variable name for the supplied {@code Object}
-	 * based on its concrete type. The convention used is to return the
-	 * un-capitalized short name of the {@code Class}, according to JavaBeans
-	 * property naming rules.
-	 * <p>For example:<br>
-	 * {@code com.myapp.Product} becomes {@code "product"}<br>
-	 * {@code com.myapp.MyProduct} becomes {@code "myProduct"}<br>
-	 * {@code com.myapp.UKProduct} becomes {@code "UKProduct"}<br>
-	 * <p>For arrays the pluralized version of the array component type is used.
-	 * For {@code Collection}s an attempt is made to 'peek ahead' to determine
-	 * the component type and return its pluralized version.
+	 * 根据提供的 {@code Object} 的具体类型，确定其常规变量名。所采用的约定是：
+	 * 按照 JavaBeans 属性命名规则，返回 {@code Class} 首字母小写的短名称。
+	 * <p>例如：<br>
+	 * {@code com.myapp.Product} 变为 {@code "product"}<br>
+	 * {@code com.myapp.MyProduct} 变为 {@code "myProduct"}<br>
+	 * {@code com.myapp.UKProduct} 变为 {@code "UKProduct"}<br>
+	 * <p>对于数组，使用数组组件类型的复数形式。对于 {@code Collection}，
+	 * 会尝试“向前查看”以确定组件类型，并返回其复数形式。
 	 * @param value the value to generate a variable name for
 	 * @return the generated variable name
 	 */
@@ -89,12 +85,11 @@ public final class Conventions {
 	}
 
 	/**
-	 * Determine the conventional variable name for the given parameter taking
-	 * the generic collection type, if any, into account.
-	 * <p>As of 5.0 this method supports reactive types:<br>
-	 * {@code Mono<com.myapp.Product>} becomes {@code "productMono"}<br>
-	 * {@code Flux<com.myapp.MyProduct>} becomes {@code "myProductFlux"}<br>
-	 * {@code Observable<com.myapp.MyProduct>} becomes {@code "myProductObservable"}<br>
+	 * 确定给定参数的常规变量名，并考虑泛型集合类型（如果有）。
+	 * <p>从 5.0 开始，此方法支持响应式类型：<br>
+	 * {@code Mono<com.myapp.Product>} 变为 {@code "productMono"}<br>
+	 * {@code Flux<com.myapp.MyProduct>} 变为 {@code "myProductFlux"}<br>
+	 * {@code Observable<com.myapp.MyProduct>} 变为 {@code "myProductObservable"}<br>
 	 * @param parameter the method or constructor parameter
 	 * @return the generated variable name
 	 */
@@ -130,8 +125,7 @@ public final class Conventions {
 	}
 
 	/**
-	 * Determine the conventional variable name for the return type of the
-	 * given method, taking the generic collection type, if any, into account.
+	 * 确定给定方法返回类型的常规变量名，并考虑泛型集合类型（如果有）。
 	 * @param method the method to generate a variable name for
 	 * @return the generated variable name
 	 */
@@ -140,10 +134,9 @@ public final class Conventions {
 	}
 
 	/**
-	 * Determine the conventional variable name for the return type of the given
-	 * method, taking the generic collection type, if any, into account, falling
-	 * back on the given actual return value if the method declaration is not
-	 * specific enough, e.g. {@code Object} return type or untyped collection.
+	 * 确定给定方法返回类型的常规变量名，并考虑泛型集合类型（如果有）；
+	 * 如果方法声明不够具体（例如返回类型为 {@code Object} 或未指定类型的集合），
+	 * 则回退使用给定的实际返回值。
 	 * @param method the method to generate a variable name for
 	 * @param value the return value (may be {@code null} if not available)
 	 * @return the generated variable name
@@ -153,14 +146,13 @@ public final class Conventions {
 	}
 
 	/**
-	 * Determine the conventional variable name for the return type of the given
-	 * method, taking the generic collection type, if any, into account, falling
-	 * back on the given return value if the method declaration is not specific
-	 * enough, e.g. {@code Object} return type or untyped collection.
-	 * <p>As of 5.0 this method supports reactive types:<br>
-	 * {@code Mono<com.myapp.Product>} becomes {@code "productMono"}<br>
-	 * {@code Flux<com.myapp.MyProduct>} becomes {@code "myProductFlux"}<br>
-	 * {@code Observable<com.myapp.MyProduct>} becomes {@code "myProductObservable"}<br>
+	 * 确定给定方法返回类型的常规变量名，并考虑泛型集合类型（如果有）；
+	 * 如果方法声明不够具体（例如返回类型为 {@code Object} 或未指定类型的集合），
+	 * 则回退使用给定的返回值。
+	 * <p>从 5.0 开始，此方法支持响应式类型：<br>
+	 * {@code Mono<com.myapp.Product>} 变为 {@code "productMono"}<br>
+	 * {@code Flux<com.myapp.MyProduct>} 变为 {@code "myProductFlux"}<br>
+	 * {@code Observable<com.myapp.MyProduct>} 变为 {@code "myProductObservable"}<br>
 	 * @param method the method to generate a variable name for
 	 * @param resolvedType the resolved return type of the method
 	 * @param value the return value (may be {@code null} if not available)
@@ -216,9 +208,9 @@ public final class Conventions {
 	}
 
 	/**
-	 * Convert {@code String}s in attribute name format (e.g. lowercase, hyphens
-	 * separating words) into property name format (camel-case). For example
-	 * {@code transaction-manager} becomes {@code "transactionManager"}.
+	 * 将属性名称格式的 {@code String}（例如小写、
+	 * 用连字符分隔单词）转换为属性名格式（驼峰式）。
+	 * 例如 {@code transaction-manager} 变为 {@code "transactionManager"}。
 	 */
 	public static String attributeNameToPropertyName(String attributeName) {
 		Assert.notNull(attributeName, "'attributeName' must not be null");
@@ -245,9 +237,9 @@ public final class Conventions {
 	}
 
 	/**
-	 * Return an attribute name qualified by the given enclosing {@link Class}.
-	 * For example the attribute name '{@code foo}' qualified by {@link Class}
-	 * '{@code com.myapp.SomeClass}' would be '{@code com.myapp.SomeClass.foo}'
+	 * 返回由给定外围 {@link Class} 限定的属性名。例如，
+	 * 属性名 '{@code foo}' 由 {@link Class} '{@code com.myapp.SomeClass}' 限定后为
+	 * '{@code com.myapp.SomeClass.foo}'。
 	 */
 	public static String getQualifiedAttributeName(Class<?> enclosingClass, String attributeName) {
 		Assert.notNull(enclosingClass, "'enclosingClass' must not be null");
@@ -257,10 +249,8 @@ public final class Conventions {
 
 
 	/**
-	 * Determine the class to use for naming a variable containing the given value.
-	 * <p>Will return the class of the given value, except when encountering a
-	 * JDK proxy, in which case it will determine the 'primary' interface
-	 * implemented by that proxy.
+	 * 确定用于为包含给定值的变量命名的类。
+	 * <p>将返回给定值的类，但在遇到 JDK 代理时除外；此时它确定该代理所实现的“主要”接口。
 	 * @param value the value to check
 	 * @return the class to use for naming a variable
 	 */
@@ -283,16 +273,15 @@ public final class Conventions {
 	}
 
 	/**
-	 * Pluralize the given name.
+	 * 将给定名称转为复数形式。
 	 */
 	private static String pluralize(String name) {
 		return name + PLURAL_SUFFIX;
 	}
 
 	/**
-	 * Retrieve the {@code Class} of an element in the {@code Collection}.
-	 * The exact element for which the {@code Class} is retrieved will depend
-	 * on the concrete {@code Collection} implementation.
+	 * 获取 {@code Collection} 中某个元素的 {@code Class}。具体获取哪个元素的 {@code Class}，
+	 * 取决于 {@code Collection} 的具体实现。
 	 */
 	private static <E> E peekAhead(Collection<E> collection) {
 		Iterator<E> it = collection.iterator();

@@ -30,10 +30,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * {@link ClientHttpResponse} implementation based on
- * Apache HttpComponents HttpClient.
+ * 基于 Apache HttpComponents HttpClient 的
+ * {@link ClientHttpResponse} 实现。
  *
- * <p>Created via the {@link HttpComponentsClientHttpRequest}.
+ * <p>通过 {@link HttpComponentsClientHttpRequest} 创建。
  *
  * @author Oleg Kalnichevski
  * @author Arjen Poutsma

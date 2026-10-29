@@ -1,9 +1,9 @@
 /**
- * Support classes for integrating a JSF web layer with a Spring service layer
- * which is hosted in a Spring root WebApplicationContext.
+ * 用于将 JSF Web 层与托管在 Spring 根 WebApplicationContext 中的
+ * Spring 服务层集成的支持类。
  *
- * <p>Supports easy access to beans in the Spring root WebApplicationContext
- * from JSF EL expressions, for example in property values of JSF-managed beans.
+ * <p>支持从 JSF EL 表达式中方便地访问 Spring 根 WebApplicationContext 中的 Bean，
+ * 例如在 JSF 托管 Bean 的属性值中。
  */
 @NonNullApi
 @NonNullFields

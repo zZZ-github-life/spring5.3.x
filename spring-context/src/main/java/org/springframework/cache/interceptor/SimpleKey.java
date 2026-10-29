@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * A simple key as returned from the {@link SimpleKeyGenerator}.
+ * 由 {@link SimpleKeyGenerator} 返回的简单键。
  *
  * @author Phillip Webb
  * @author Juergen Hoeller
@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
 public class SimpleKey implements Serializable {
 
 	/**
-	 * An empty key.
+	 * 空键。
 	 */
 	public static final SimpleKey EMPTY = new SimpleKey();
 
@@ -49,7 +49,7 @@ public class SimpleKey implements Serializable {
 
 
 	/**
-	 * Create a new {@link SimpleKey} instance.
+	 * 创建新的 {@link SimpleKey} 实例。
 	 * @param elements the elements of the key
 	 */
 	public SimpleKey(Object... elements) {

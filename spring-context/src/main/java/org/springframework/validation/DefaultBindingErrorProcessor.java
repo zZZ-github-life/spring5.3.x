@@ -23,14 +23,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Default {@link BindingErrorProcessor} implementation.
+ * 默认的 {@link BindingErrorProcessor} 实现。
  *
- * <p>Uses the "required" error code and the field name to resolve message codes
- * for a missing field error.
+ * <p>使用 "required" 错误代码和字段名来解析缺失字段错误的消息代码。
  *
- * <p>Creates a {@code FieldError} for each {@code PropertyAccessException}
- * given, using the {@code PropertyAccessException}'s error code ("typeMismatch",
- * "methodInvocation") for resolving message codes.
+ * <p>为给定的每个 {@code PropertyAccessException} 创建 {@code FieldError}，并使用
+ * {@code PropertyAccessException} 的错误代码（"typeMismatch"、"methodInvocation"）来解析消息代码。
  *
  * @author Alef Arendsen
  * @author Juergen Hoeller
@@ -46,9 +44,7 @@ import org.springframework.util.StringUtils;
 public class DefaultBindingErrorProcessor implements BindingErrorProcessor {
 
 	/**
-	 * Error code that a missing field error (i.e. a required field not
-	 * found in the list of property values) will be registered with:
-	 * "required".
+	 * 缺失字段错误（即在属性值列表中未找到的必填字段）注册时使用的错误代码："required"。
 	 */
 	public static final String MISSING_FIELD_ERROR_CODE = "required";
 
@@ -82,10 +78,9 @@ public class DefaultBindingErrorProcessor implements BindingErrorProcessor {
 	}
 
 	/**
-	 * Return FieldError arguments for a binding error on the given field.
-	 * Invoked for each missing required field and each type mismatch.
-	 * <p>The default implementation returns a single argument indicating the field name
-	 * (of type DefaultMessageSourceResolvable, with "objectName.field" and "field" as codes).
+	 * 返回给定字段上绑定错误的 FieldError 参数。对每个缺失的必填字段和每个类型不匹配调用。<p>默认实现
+	 * 返回一个表示字段名的参数（类型为 DefaultMessageSourceResolvable，以 "objectName.field" 和
+	 * "field" 作为代码）。
 	 * @param objectName the name of the target object
 	 * @param field the field that caused the binding error
 	 * @return the Object array that represents the FieldError arguments

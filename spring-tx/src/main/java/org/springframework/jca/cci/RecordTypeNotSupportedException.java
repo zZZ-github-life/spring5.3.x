@@ -21,8 +21,7 @@ import javax.resource.ResourceException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 
 /**
- * Exception thrown when the creating of a CCI Record failed because
- * the connector doesn't support the desired CCI Record type.
+ * 当由于连接器不支持所需的 CCI Record 类型而导致 CCI Record 创建失败时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -34,7 +33,7 @@ import org.springframework.dao.InvalidDataAccessResourceUsageException;
 public class RecordTypeNotSupportedException extends InvalidDataAccessResourceUsageException {
 
 	/**
-	 * Constructor for RecordTypeNotSupportedException.
+	 * RecordTypeNotSupportedException 的构造器。
 	 * @param msg message
 	 * @param ex the root ResourceException cause
 	 */

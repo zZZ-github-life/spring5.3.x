@@ -22,8 +22,8 @@ import java.util.Currency;
 import org.springframework.util.StringUtils;
 
 /**
- * Editor for {@code java.util.Currency}, translating currency codes into Currency
- * objects. Exposes the currency code as text representation of a Currency object.
+ * 用于 {@code java.util.Currency} 的编辑器，可将货币代码转换为 Currency 对象。将货币代码作为
+ * Currency 对象的文本表示形式公开。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen

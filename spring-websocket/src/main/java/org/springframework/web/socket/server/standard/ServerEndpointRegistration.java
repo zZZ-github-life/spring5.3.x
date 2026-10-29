@@ -36,18 +36,18 @@ import org.springframework.util.Assert;
 import org.springframework.web.socket.handler.BeanCreatingHandlerProvider;
 
 /**
- * An implementation of {@link javax.websocket.server.ServerEndpointConfig} for use in
- * Spring-based applications. A {@link ServerEndpointRegistration} bean is detected by
- * {@link ServerEndpointExporter} and registered with a Java WebSocket runtime at startup.
+ * 用于基于 Spring 的应用程序的 {@link javax.websocket.server.ServerEndpointConfig}
+ * 实现。{@link ServerEndpointRegistration} Bean 会被
+ * {@link ServerEndpointExporter} 检测到，并在启动时注册到 Java WebSocket 运行时。
  *
- * <p>Class constructors accept a singleton {@link javax.websocket.Endpoint} instance
- * or an Endpoint specified by type {@link Class}. When specified by type, the endpoint
- * will be instantiated and initialized through the Spring ApplicationContext before
- * each client WebSocket connection.
+ * <p>类构造函数接受单例 {@link javax.websocket.Endpoint} 实例
+ * 或由 {@link Class} 类型指定的 Endpoint。当通过类型指定时，
+ * 端点将在每个客户端 WebSocket 连接之前通过 Spring ApplicationContext
+ * 进行实例化和初始化。
  *
- * <p>This class also extends
- * {@link javax.websocket.server.ServerEndpointConfig.Configurator} to make it easier
- * to override methods for customizing the handshake process.
+ * <p>此类还扩展了
+ * {@link javax.websocket.server.ServerEndpointConfig.Configurator}，
+ * 以便更容易地覆盖方法来定制握手过程。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -77,8 +77,8 @@ public class ServerEndpointRegistration extends ServerEndpointConfig.Configurato
 
 
 	/**
-	 * Create a new {@link ServerEndpointRegistration} instance from an
-	 * {@code javax.websocket.Endpoint} instance.
+	 * 从 {@code javax.websocket.Endpoint} 实例创建一个新的
+	 * {@link ServerEndpointRegistration} 实例。
 	 * @param path the endpoint path
 	 * @param endpoint the endpoint instance
 	 */
@@ -91,8 +91,8 @@ public class ServerEndpointRegistration extends ServerEndpointConfig.Configurato
 	}
 
 	/**
-	 * Create a new {@link ServerEndpointRegistration} instance from an
-	 * {@code javax.websocket.Endpoint} class.
+	 * 从 {@code javax.websocket.Endpoint} 类创建一个新的
+	 * {@link ServerEndpointRegistration} 实例。
 	 * @param path the endpoint path
 	 * @param endpointClass the endpoint class
 	 */

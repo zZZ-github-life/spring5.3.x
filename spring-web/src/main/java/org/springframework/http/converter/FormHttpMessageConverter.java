@@ -48,38 +48,37 @@ import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Implementation of {@link HttpMessageConverter} to read and write 'normal' HTML
- * forms and also to write (but not read) multipart data (e.g. file uploads).
+ * {@link HttpMessageConverter} 的实现，用于读写"普通"HTML 表单，
+ * 也用于写入（但不读取）multipart 数据（例如文件上传）。
  *
- * <p>In other words, this converter can read and write the
- * {@code "application/x-www-form-urlencoded"} media type as
- * {@link MultiValueMap MultiValueMap&lt;String, String&gt;}, and it can also
- * write (but not read) the {@code "multipart/form-data"} and
- * {@code "multipart/mixed"} media types as
- * {@link MultiValueMap MultiValueMap&lt;String, Object&gt;}.
+ * <p>换言之，此转换器可以将
+ * {@code "application/x-www-form-urlencoded"} 媒体类型读写为
+ * {@link MultiValueMap MultiValueMap&lt;String, String&gt;}，也可以将
+ * {@code "multipart/form-data"} 和 {@code "multipart/mixed"} 媒体类型
+ * 写入（但不读取）为
+ * {@link MultiValueMap MultiValueMap&lt;String, Object&gt;}。
  *
- * <h3>Multipart Data</h3>
+ * <h3>Multipart 数据</h3>
  *
- * <p>By default, {@code "multipart/form-data"} is used as the content type when
- * {@linkplain #write writing} multipart data. As of Spring Framework 5.2 it is
- * also possible to write multipart data using other multipart subtypes such as
- * {@code "multipart/mixed"} and {@code "multipart/related"}, as long as the
- * multipart subtype is registered as a {@linkplain #getSupportedMediaTypes
- * supported media type} <em>and</em> the desired multipart subtype is specified
- * as the content type when {@linkplain #write writing} the multipart data. Note
- * that {@code "multipart/mixed"} is registered as a supported media type by
- * default.
+ * <p>默认情况下，{@linkplain #write 写入} multipart 数据时使用
+ * {@code "multipart/form-data"} 作为内容类型。从 Spring Framework 5.2 起，
+ * 也可以使用其他 multipart 子类型（如 {@code "multipart/mixed"} 和
+ * {@code "multipart/related"}）写入 multipart 数据，前提是该 multipart
+ * 子类型已注册为{@linkplain #getSupportedMediaTypes 受支持的媒体类型}，
+ * <em>并且</em>在{@linkplain #write 写入} multipart 数据时将要使用的
+ * multipart 子类型指定为内容类型。请注意，{@code "multipart/mixed"}
+ * 默认已注册为受支持的媒体类型。
  *
- * <p>When writing multipart data, this converter uses other
- * {@link HttpMessageConverter HttpMessageConverters} to write the respective
- * MIME parts. By default, basic converters are registered for byte array,
- * {@code String}, and {@code Resource}. These can be overridden via
- * {@link #setPartConverters} or augmented via {@link #addPartConverter}.
+ * <p>写入 multipart 数据时，此转换器使用其他
+ * {@link HttpMessageConverter HttpMessageConverter} 来写入各个 MIME 部分。
+ * 默认注册了用于字节数组、{@code String} 和 {@code Resource} 的基本转换器。
+ * 可以通过 {@link #setPartConverters} 覆盖，或通过
+ * {@link #addPartConverter} 扩充。
  *
- * <h3>Examples</h3>
+ * <h3>示例</h3>
  *
- * <p>The following snippet shows how to submit an HTML form using the
- * {@code "multipart/form-data"} content type.
+ * <p>以下代码片段展示了如何使用 {@code "multipart/form-data"}
+ * 内容类型提交 HTML 表单。
  *
  * <pre class="code">
  * RestTemplate restTemplate = new RestTemplate();
@@ -93,8 +92,8 @@ import org.springframework.util.StringUtils;
  *
  * restTemplate.postForLocation("https://example.com/myForm", form);</pre>
  *
- * <p>The following snippet shows how to do a file upload using the
- * {@code "multipart/form-data"} content type.
+ * <p>以下代码片段展示了如何使用 {@code "multipart/form-data"}
+ * 内容类型执行文件上传。
  *
  * <pre class="code">
  * MultiValueMap&lt;String, Object&gt; parts = new LinkedMultiValueMap&lt;&gt;();
@@ -103,8 +102,8 @@ import org.springframework.util.StringUtils;
  *
  * restTemplate.postForLocation("https://example.com/myFileUpload", parts);</pre>
  *
- * <p>The following snippet shows how to do a file upload using the
- * {@code "multipart/mixed"} content type.
+ * <p>以下代码片段展示了如何使用 {@code "multipart/mixed"}
+ * 内容类型执行文件上传。
  *
  * <pre class="code">
  * MultiValueMap&lt;String, Object&gt; parts = new LinkedMultiValueMap&lt;&gt;();
@@ -117,8 +116,8 @@ import org.springframework.util.StringUtils;
  * restTemplate.postForLocation("https://example.com/myFileUpload",
  *     new HttpEntity&lt;&gt;(parts, requestHeaders));</pre>
  *
- * <p>The following snippet shows how to do a file upload using the
- * {@code "multipart/related"} content type.
+ * <p>以下代码片段展示了如何使用 {@code "multipart/related"}
+ * 内容类型执行文件上传。
  *
  * <pre class="code">
  * MediaType multipartRelated = new MediaType("multipart", "related");
@@ -140,10 +139,10 @@ import org.springframework.util.StringUtils;
  * restTemplate.postForLocation("https://example.com/myFileUpload",
  *     new HttpEntity&lt;&gt;(parts, requestHeaders));</pre>
  *
- * <h3>Miscellaneous</h3>
+ * <h3>其他</h3>
  *
- * <p>Some methods in this class were inspired by
- * {@code org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity}.
+ * <p>此类中的一些方法受
+ * {@code org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity} 启发。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -156,7 +155,7 @@ import org.springframework.util.StringUtils;
 public class FormHttpMessageConverter implements HttpMessageConverter<MultiValueMap<String, ?>> {
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -188,7 +187,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 
 
 	/**
-	 * Set the list of {@link MediaType} objects supported by this converter.
+	 * 设置此转换器支持的 {@link MediaType} 对象列表。
 	 * @see #addSupportedMediaTypes(MediaType...)
 	 * @see #getSupportedMediaTypes()
 	 */
@@ -199,9 +198,9 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Add {@link MediaType} objects to be supported by this converter.
-	 * <p>The supplied {@code MediaType} objects will be appended to the list
-	 * of {@linkplain #getSupportedMediaTypes() supported MediaType objects}.
+	 * 添加此转换器要支持的 {@link MediaType} 对象。
+	 * <p>所提供的 {@code MediaType} 对象将被追加到
+	 * {@linkplain #getSupportedMediaTypes() 受支持的 MediaType 对象}列表中。
 	 * @param supportedMediaTypes a var-args list of {@code MediaType} objects to add
 	 * @since 5.2
 	 * @see #setSupportedMediaTypes(List)
@@ -223,8 +222,8 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Set the message body converters to use. These converters are used to
-	 * convert objects to MIME parts.
+	 * 设置要使用的消息体转换器。这些转换器用于
+	 * 将对象转换为 MIME 部分。
 	 */
 	public void setPartConverters(List<HttpMessageConverter<?>> partConverters) {
 		Assert.notEmpty(partConverters, "'partConverters' must not be empty");
@@ -232,8 +231,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Return the {@linkplain #setPartConverters configured converters} for MIME
-	 * parts.
+	 * 返回为 MIME 部分{@linkplain #setPartConverters 配置的转换器}。
 	 * @since 5.3
 	 */
 	public List<HttpMessageConverter<?>> getPartConverters() {
@@ -241,8 +239,8 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Add a message body converter. Such a converter is used to convert objects
-	 * to MIME parts.
+	 * 添加一个消息体转换器。此类转换器用于将对象
+	 * 转换为 MIME 部分。
 	 */
 	public void addPartConverter(HttpMessageConverter<?> partConverter) {
 		Assert.notNull(partConverter, "'partConverter' must not be null");
@@ -250,17 +248,16 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Set the default character set to use for reading and writing form data when
-	 * the request or response {@code Content-Type} header does not explicitly
-	 * specify it.
-	 * <p>As of 4.3, this is also used as the default charset for the conversion
-	 * of text bodies in a multipart request.
-	 * <p>As of 5.0, this is also used for part headers including
-	 * {@code Content-Disposition} (and its filename parameter) unless (the mutually
-	 * exclusive) {@link #setMultipartCharset multipartCharset} is also set, in
-	 * which case part headers are encoded as ASCII and <i>filename</i> is encoded
-	 * with the {@code encoded-word} syntax from RFC 2047.
-	 * <p>By default this is set to "UTF-8".
+	 * 设置当请求或响应的 {@code Content-Type} 头未明确指定时，
+	 * 读写表单数据所使用的默认字符集。
+	 * <p>从 4.3 起，它还用作 multipart 请求中文本正文转换的
+	 * 默认字符集。
+	 * <p>从 5.0 起，它还用于部件头，包括
+	 * {@code Content-Disposition}（及其 filename 参数），
+	 * 除非同时设置了（互斥的）{@link #setMultipartCharset multipartCharset}，
+	 * 在这种情况下部件头将以 ASCII 编码，而 <i>filename</i> 使用
+	 * RFC 2047 中的 {@code encoded-word} 语法编码。
+	 * <p>默认设置为 "UTF-8"。
 	 */
 	public void setCharset(@Nullable Charset charset) {
 		if (charset != this.charset) {
@@ -270,7 +267,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Apply the configured charset as a default to registered part converters.
+	 * 将配置的字符集作为默认值应用于已注册的部件转换器。
 	 */
 	private void applyDefaultCharset() {
 		for (HttpMessageConverter<?> candidate : this.partConverters) {
@@ -285,12 +282,12 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Set the character set to use when writing multipart data to encode file
-	 * names. Encoding is based on the {@code encoded-word} syntax defined in
-	 * RFC 2047 and relies on {@code MimeUtility} from {@code javax.mail}.
-	 * <p>As of 5.0 by default part headers, including {@code Content-Disposition}
-	 * (and its filename parameter) will be encoded based on the setting of
-	 * {@link #setCharset(Charset)} or {@code UTF-8} by default.
+	 * 设置写入 multipart 数据时用于编码文件名的字符集。
+	 * 编码基于 RFC 2047 中定义的 {@code encoded-word} 语法，
+	 * 并依赖 {@code javax.mail} 中的 {@code MimeUtility}。
+	 * <p>从 5.0 起，默认情况下部件头（包括 {@code Content-Disposition}
+	 * 及其 filename 参数）将根据 {@link #setCharset(Charset)} 的设置进行编码，
+	 * 默认使用 {@code UTF-8}。
 	 * @since 4.1.1
 	 * @see <a href="https://en.wikipedia.org/wiki/MIME#Encoded-Word">Encoded-Word</a>
 	 */
@@ -410,12 +407,12 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Return the content type used to write forms, given the preferred content type.
-	 * By default, this method returns the given content type, but adds the
-	 * {@linkplain #setCharset(Charset) charset} if it does not have one.
-	 * If {@code contentType} is {@code null},
-	 * {@code application/x-www-form-urlencoded; charset=UTF-8} is returned.
-	 * <p>Subclasses can override this method to change this behavior.
+	 * 根据首选的内容类型返回用于写入表单的内容类型。
+	 * 默认情况下，此方法返回给定的内容类型，但会添加
+	 * {@linkplain #setCharset(Charset) 字符集}（如果其中没有）。
+	 * 如果 {@code contentType} 为 {@code null}，
+	 * 则返回 {@code application/x-www-form-urlencoded; charset=UTF-8}。
+	 * <p>子类可以重写此方法以改变此行为。
 	 * @param contentType the preferred content type (can be {@code null})
 	 * @return the content type to be used
 	 * @since 5.2.2
@@ -500,9 +497,9 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * When {@link #setMultipartCharset(Charset)} is configured (i.e. RFC 2047,
-	 * {@code encoded-word} syntax) we need to use ASCII for part headers, or
-	 * otherwise we encode directly using the configured {@link #setCharset(Charset)}.
+	 * 当配置了 {@link #setMultipartCharset(Charset)}（即 RFC 2047
+	 * 的 {@code encoded-word} 语法）时，部件头需要使用 ASCII 编码，
+	 * 否则直接使用配置的 {@link #setCharset(Charset)} 进行编码。
 	 */
 	private boolean isFilenameCharsetSet() {
 		return (this.multipartCharset != null);
@@ -547,16 +544,16 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Generate a multipart boundary.
-	 * <p>This implementation delegates to
-	 * {@link MimeTypeUtils#generateMultipartBoundary()}.
+	 * 生成 multipart 边界。
+	 * <p>此实现委托给
+	 * {@link MimeTypeUtils#generateMultipartBoundary()}。
 	 */
 	protected byte[] generateMultipartBoundary() {
 		return MimeTypeUtils.generateMultipartBoundary();
 	}
 
 	/**
-	 * Return an {@link HttpEntity} for the given part Object.
+	 * 返回给定部件对象的 {@link HttpEntity}。
 	 * @param part the part to return an {@link HttpEntity} for
 	 * @return the part Object itself it is an {@link HttpEntity},
 	 * or a newly built {@link HttpEntity} wrapper for that part
@@ -566,10 +563,11 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 	}
 
 	/**
-	 * Return the filename of the given multipart part. This value will be used for the
-	 * {@code Content-Disposition} header.
-	 * <p>The default implementation returns {@link Resource#getFilename()} if the part is a
-	 * {@code Resource}, and {@code null} in other cases. Can be overridden in subclasses.
+	 * 返回给定 multipart 部件的文件名。此值将用于
+	 * {@code Content-Disposition} 头。
+	 * <p>默认实现会在部件为 {@code Resource} 时返回
+	 * {@link Resource#getFilename()}，其他情况下返回 {@code null}。
+	 * 可在子类中重写。
 	 * @param part the part to determine the file name for
 	 * @return the filename, or {@code null} if not known
 	 */
@@ -612,8 +610,8 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 
 
 	/**
-	 * Implementation of {@link org.springframework.http.HttpOutputMessage} used
-	 * to write a MIME multipart.
+	 * 用于写入 MIME multipart 的 {@link org.springframework.http.HttpOutputMessage}
+	 * 实现。
 	 */
 	private static class MultipartHttpOutputMessage implements HttpOutputMessage {
 
@@ -666,7 +664,7 @@ public class FormHttpMessageConverter implements HttpMessageConverter<MultiValue
 
 
 	/**
-	 * Inner class to avoid a hard dependency on the JavaMail API.
+	 * 内部类，用于避免对 JavaMail API 的硬依赖。
 	 */
 	private static class MimeDelegate {
 

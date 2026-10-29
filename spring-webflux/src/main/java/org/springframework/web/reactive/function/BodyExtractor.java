@@ -25,8 +25,7 @@ import org.springframework.http.codec.HttpMessageReader;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 
 /**
- * A function that can extract data from a {@link ReactiveHttpInputMessage} body.
- *
+ * 可从 {@link ReactiveHttpInputMessage} 正文中提取数据的函数。
  * @author Arjen Poutsma
  * @since 5.0
  * @param <T> the type of data to extract
@@ -37,7 +36,7 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 public interface BodyExtractor<T, M extends ReactiveHttpInputMessage> {
 
 	/**
-	 * Extract from the given input message.
+	 * 从给定的输入消息中提取。
 	 * @param inputMessage the request to extract from
 	 * @param context the configuration to use
 	 * @return the extracted data
@@ -46,23 +45,23 @@ public interface BodyExtractor<T, M extends ReactiveHttpInputMessage> {
 
 
 	/**
-	 * Defines the context used during the extraction.
+	 * 定义提取过程中使用的上下文。
 	 */
 	interface Context {
 
 		/**
-		 * Return the {@link HttpMessageReader HttpMessageReaders} to be used for body extraction.
+		 * 返回用于正文提取的 {@link HttpMessageReader HttpMessageReaders}。
 		 * @return the stream of message readers
 		 */
 		List<HttpMessageReader<?>> messageReaders();
 
 		/**
-		 * Optionally return the {@link ServerHttpResponse}, if present.
+		 * 可选地返回 {@link ServerHttpResponse}（如果存在）。
 		 */
 		Optional<ServerHttpResponse> serverResponse();
 
 		/**
-		 * Return the map of hints to use to customize body extraction.
+		 * 返回用于自定义正文提取的提示映射。
 		 */
 		Map<String, Object> hints();
 	}

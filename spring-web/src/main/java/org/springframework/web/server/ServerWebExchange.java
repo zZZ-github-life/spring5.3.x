@@ -34,9 +34,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Contract for an HTTP request-response interaction. Provides access to the HTTP
- * request and response and also exposes additional server-side processing
- * related properties and features such as request attributes.
+ * HTTP 请求-响应交互的契约。提供对 HTTP 请求和响应的访问，
+ * 同时还暴露与服务器端处理相关的其他属性和特性，例如请求属性。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -44,9 +43,8 @@ import org.springframework.util.MultiValueMap;
 public interface ServerWebExchange {
 
 	/**
-	 * Name of {@link #getAttributes() attribute} whose value can be used to
-	 * correlate log messages for this exchange. Use {@link #getLogPrefix()} to
-	 * obtain a consistently formatted prefix based on this attribute.
+	 * {@link #getAttributes() 属性}的名称，其值可用于关联此交换的日志消息。
+	 * 使用 {@link #getLogPrefix()} 可基于该属性获取格式一致的前缀。
 	 * @since 5.1
 	 * @see #getLogPrefix()
 	 */
@@ -54,22 +52,22 @@ public interface ServerWebExchange {
 
 
 	/**
-	 * Return the current HTTP request.
+	 * 返回当前的 HTTP 请求。
 	 */
 	ServerHttpRequest getRequest();
 
 	/**
-	 * Return the current HTTP response.
+	 * 返回当前的 HTTP 响应。
 	 */
 	ServerHttpResponse getResponse();
 
 	/**
-	 * Return a mutable map of request attributes for the current exchange.
+	 * 返回当前交换的可变请求属性 Map。
 	 */
 	Map<String, Object> getAttributes();
 
 	/**
-	 * Return the request attribute value if present.
+	 * 如果存在，返回请求属性值。
 	 * @param name the attribute name
 	 * @param <T> the attribute type
 	 * @return the attribute value
@@ -81,8 +79,8 @@ public interface ServerWebExchange {
 	}
 
 	/**
-	 * Return the request attribute value or if not present raise an
-	 * {@link IllegalArgumentException}.
+	 * 返回请求属性值，如果不存在则抛出
+	 * {@link IllegalArgumentException}。
 	 * @param name the attribute name
 	 * @param <T> the attribute type
 	 * @return the attribute value
@@ -95,7 +93,7 @@ public interface ServerWebExchange {
 	}
 
 	/**
-	 * Return the request attribute value, or a default, fallback value.
+	 * 返回请求属性值，或返回一个默认的后备值。
 	 * @param name the attribute name
 	 * @param defaultValue a default value to return instead
 	 * @param <T> the attribute type
@@ -107,50 +105,46 @@ public interface ServerWebExchange {
 	}
 
 	/**
-	 * Return the web session for the current request. Always guaranteed  to
-	 * return an instance either matching to the session id requested by the
-	 * client, or with a new session id either because the client did not
-	 * specify one or because the underlying session had expired. Use of this
-	 * method does not automatically create a session. See {@link WebSession}
-	 * for more details.
+	 * 返回当前请求的 Web 会话。始终保证返回一个实例：要么与客户端请求的
+	 * 会话 id 相匹配，要么使用新的会话 id（因为客户端未指定会话 id，
+	 * 或者底层会话已过期）。使用此方法不会自动创建会话。
+	 * 更多详情请参阅 {@link WebSession}。
 	 */
 	Mono<WebSession> getSession();
 
 	/**
-	 * Return the authenticated user for the request, if any.
+	 * 返回请求的已认证用户（如果有）。
 	 */
 	<T extends Principal> Mono<T> getPrincipal();
 
 	/**
-	 * Return the form data from the body of the request if the Content-Type is
-	 * {@code "application/x-www-form-urlencoded"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
-	 * be read and parsed in full and the resulting {@code MultiValueMap} is
-	 * cached so that this method is safe to call more than once.
+	 * 如果 Content-Type 为 {@code "application/x-www-form-urlencoded"}，
+	 * 则返回请求体中的表单数据，否则返回空 Map。
+	 * <p><strong>注意：</strong>调用此方法会导致请求体被完整读取和解析，
+	 * 并且生成的 {@code MultiValueMap} 会被缓存，因此可以安全地多次调用此方法。
 	 */
 	Mono<MultiValueMap<String, String>> getFormData();
 
 	/**
-	 * Return the parts of a multipart request if the Content-Type is
-	 * {@code "multipart/form-data"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
-	 * be read and parsed in full and the resulting {@code MultiValueMap} is
-	 * cached so that this method is safe to call more than once.
-	 * <p><strong>Note:</strong>the {@linkplain Part#content() contents} of each
-	 * part is not cached, and can only be read once.
+	 * 如果 Content-Type 为 {@code "multipart/form-data"}，
+	 * 则返回 multipart 请求的各个部分，否则返回空 Map。
+	 * <p><strong>注意：</strong>调用此方法会导致请求体被完整读取和解析，
+	 * 并且生成的 {@code MultiValueMap} 会被缓存，因此可以安全地多次调用此方法。
+	 * <p><strong>注意：</strong>每个部分的 {@linkplain Part#content() 内容}不会被缓存，
+	 * 并且只能读取一次。
 	 */
 	Mono<MultiValueMap<String, Part>> getMultipartData();
 
 	/**
-	 * Return the {@link LocaleContext} using the configured
-	 * {@link org.springframework.web.server.i18n.LocaleContextResolver}.
+	 * 使用已配置的 {@link org.springframework.web.server.i18n.LocaleContextResolver}
+	 * 返回 {@link LocaleContext}。
 	 */
 	LocaleContext getLocaleContext();
 
 	/**
-	 * Return the {@link ApplicationContext} associated with the web application,
-	 * if it was initialized with one via
-	 * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext(ApplicationContext)}.
+	 * 返回与 Web 应用关联的 {@link ApplicationContext}（如果已通过
+	 * {@link org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext(ApplicationContext)}
+	 * 使用某个应用上下文进行了初始化）。
 	 * @since 5.0.3
 	 * @see org.springframework.web.server.adapter.WebHttpHandlerBuilder#applicationContext(ApplicationContext)
 	 */
@@ -158,38 +152,35 @@ public interface ServerWebExchange {
 	ApplicationContext getApplicationContext();
 
 	/**
-	 * Returns {@code true} if the one of the {@code checkNotModified} methods
-	 * in this contract were used and they returned true.
+	 * 如果使用了此契约中的某个 {@code checkNotModified} 方法并且它们返回了 true，
+	 * 则返回 {@code true}。
 	 */
 	boolean isNotModified();
 
 	/**
-	 * An overloaded variant of {@link #checkNotModified(String, Instant)} with
-	 * a last-modified timestamp only.
+	 * {@link #checkNotModified(String, Instant)} 的重载变体，仅带有
+	 * 最后修改时间戳。
 	 * @param lastModified the last-modified time
 	 * @return whether the request qualifies as not modified
 	 */
 	boolean checkNotModified(Instant lastModified);
 
 	/**
-	 * An overloaded variant of {@link #checkNotModified(String, Instant)} with
-	 * an {@code ETag} (entity tag) value only.
+	 * {@link #checkNotModified(String, Instant)} 的重载变体，仅带有
+	 * {@code ETag}（实体标记）值。
 	 * @param etag the entity tag for the underlying resource.
 	 * @return true if the request does not require further processing.
 	 */
 	boolean checkNotModified(String etag);
 
 	/**
-	 * Check whether the requested resource has been modified given the supplied
-	 * {@code ETag} (entity tag) and last-modified timestamp as determined by
-	 * the application. Also transparently prepares the response, setting HTTP
-	 * status, and adding "ETag" and "Last-Modified" headers when applicable.
-	 * This method works with conditional GET/HEAD requests as well as with
-	 * conditional POST/PUT/DELETE requests.
-	 * <p><strong>Note:</strong> The HTTP specification recommends setting both
-	 * ETag and Last-Modified values, but you can also use
-	 * {@code #checkNotModified(String)} or
-	 * {@link #checkNotModified(Instant)}.
+	 * 根据应用确定的 {@code ETag}（实体标记）和最后修改时间戳，
+	 * 检查所请求的资源是否已被修改。同时还会透明地准备响应：
+	 * 设置 HTTP 状态，并在适用时添加 "ETag" 和 "Last-Modified" 头部。
+	 * 此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
+	 * <p><strong>注意：</strong>HTTP 规范建议同时设置 ETag 和 Last-Modified 值，
+	 * 但你也可以使用 {@code #checkNotModified(String)} 或
+	 * {@link #checkNotModified(Instant)}。
 	 * @param etag the entity tag that the application determined for the
 	 * underlying resource. This parameter will be padded with quotes (")
 	 * if necessary.
@@ -200,28 +191,26 @@ public interface ServerWebExchange {
 	boolean checkNotModified(@Nullable String etag, Instant lastModified);
 
 	/**
-	 * Transform the given url according to the registered transformation function(s).
-	 * By default, this method returns the given {@code url}, though additional
-	 * transformation functions can be registered with {@link #addUrlTransformer}
+	 * 根据已注册的转换函数转换给定的 url。
+	 * 默认情况下，此方法返回给定的 {@code url}，
+	 * 不过可以通过 {@link #addUrlTransformer} 注册额外的转换函数。
 	 * @param url the URL to transform
 	 * @return the transformed URL
 	 */
 	String transformUrl(String url);
 
 	/**
-	 * Register an additional URL transformation function for use with {@link #transformUrl}.
-	 * The given function can be used to insert an id for authentication, a nonce for CSRF
-	 * protection, etc.
-	 * <p>Note that the given function is applied after any previously registered functions.
+	 * 注册一个供 {@link #transformUrl} 使用的额外 URL 转换函数。
+	 * 给定的函数可用于插入用于认证的 id、用于 CSRF 防护的 nonce 等。
+	 * <p>请注意，给定的函数会在所有先前注册的函数之后应用。
 	 * @param transformer a URL transformation function to add
 	 */
 	void addUrlTransformer(Function<String, String> transformer);
 
 	/**
-	 * Return a log message prefix to use to correlate messages for this exchange.
-	 * The prefix is based on the value of the attribute {@link #LOG_ID_ATTRIBUTE}
-	 * along with some extra formatting so that the prefix can be conveniently
-	 * prepended with no further formatting no separators required.
+	 * 返回用于关联此交换的消息的日志消息前缀。
+	 * 该前缀基于属性 {@link #LOG_ID_ATTRIBUTE} 的值，并附加一些额外的格式，
+	 * 以便可以方便地直接前置该前缀，无需进一步格式化或分隔符。
 	 * @return the log message prefix or an empty String if the
 	 * {@link #LOG_ID_ATTRIBUTE} is not set.
 	 * @since 5.1
@@ -229,9 +218,8 @@ public interface ServerWebExchange {
 	String getLogPrefix();
 
 	/**
-	 * Return a builder to mutate properties of this exchange by wrapping it
-	 * with {@link ServerWebExchangeDecorator} and returning either mutated
-	 * values or delegating back to this instance.
+	 * 返回一个构建器，用于通过将交换包装为 {@link ServerWebExchangeDecorator}
+	 * 来变更其属性，并返回变更后的值或委托回此实例。
 	 */
 	default Builder mutate() {
 		return new DefaultServerWebExchangeBuilder(this);
@@ -239,14 +227,14 @@ public interface ServerWebExchange {
 
 
 	/**
-	 * Builder for mutating an existing {@link ServerWebExchange}.
-	 * Removes the need
+	 * 用于变更现有 {@link ServerWebExchange} 的构建器。
+	 * 省去了相应的需要。
 	 */
 	interface Builder {
 
 		/**
-		 * Configure a consumer to modify the current request using a builder.
-		 * <p>Effectively this:
+		 * 配置一个消费者，使用构建器修改当前请求。
+		 * <p>其效果等同于：
 		 * <pre>
 		 * exchange.mutate().request(builder -&gt; builder.method(HttpMethod.PUT));
 		 *
@@ -263,26 +251,25 @@ public interface ServerWebExchange {
 		Builder request(Consumer<ServerHttpRequest.Builder> requestBuilderConsumer);
 
 		/**
-		 * Set the request to use especially when there is a need to override
-		 * {@link ServerHttpRequest} methods. To simply mutate request properties
-		 * see {@link #request(Consumer)} instead.
+		 * 设置要使用的请求，特别是在需要覆盖 {@link ServerHttpRequest} 方法时。
+		 * 如果只是想变更请求属性，请改用 {@link #request(Consumer)}。
 		 * @see org.springframework.http.server.reactive.ServerHttpRequestDecorator
 		 */
 		Builder request(ServerHttpRequest request);
 
 		/**
-		 * Set the response to use.
+		 * 设置要使用的响应。
 		 * @see org.springframework.http.server.reactive.ServerHttpResponseDecorator
 		 */
 		Builder response(ServerHttpResponse response);
 
 		/**
-		 * Set the {@code Mono<Principal>} to return for this exchange.
+		 * 设置此交换要返回的 {@code Mono<Principal>}。
 		 */
 		Builder principal(Mono<Principal> principalMono);
 
 		/**
-		 * Build a {@link ServerWebExchange} decorator with the mutated properties.
+		 * 构建一个带有变更属性的 {@link ServerWebExchange} 装饰器。
 		 */
 		ServerWebExchange build();
 	}

@@ -33,13 +33,9 @@ import org.springframework.test.context.TestContextAnnotationUtils;
 import org.springframework.util.Assert;
 
 /**
- * Abstract base class for {@code TestExecutionListener} implementations that
- * provide support for marking the {@code ApplicationContext} associated with
- * a test as <em>dirty</em> for both test classes and test methods annotated
- * with the {@link DirtiesContext @DirtiesContext} annotation.
+ * 用于 {@code TestExecutionListener} 实现的抽象基类，为带有 {@link DirtiesContext @DirtiesContext} 注解的测试类和测试方法提供将测试关联的 {@code ApplicationContext} 标记为<em>脏</em>的支持。
  *
- * <p>The core functionality for this class was extracted from
- * {@link DirtiesContextTestExecutionListener} in Spring Framework 4.2.
+ * <p>此类的核心功能在 Spring Framework 4.2 中从 {@link DirtiesContextTestExecutionListener} 中提取而来。
  *
  * @author Sam Brannen
  * @author Juergen Hoeller
@@ -55,11 +51,7 @@ public abstract class AbstractDirtiesContextTestExecutionListener extends Abstra
 	public abstract int getOrder();
 
 	/**
-	 * Mark the {@linkplain ApplicationContext application context} of the supplied
-	 * {@linkplain TestContext test context} as
-	 * {@linkplain TestContext#markApplicationContextDirty(DirtiesContext.HierarchyMode) dirty}
-	 * and set {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE
-	 * REINJECT_DEPENDENCIES_ATTRIBUTE} in the test context to {@code true}.
+	 * 将所提供的 {@linkplain TestContext 测试上下文}的{@linkplain ApplicationContext 应用上下文}标记为{@linkplain TestContext#markApplicationContextDirty(DirtiesContext.HierarchyMode) 脏}，并将测试上下文中的 {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE REINJECT_DEPENDENCIES_ATTRIBUTE} 设置为 {@code true}。
 	 * @param testContext the test context whose application context should
 	 * be marked as dirty
 	 * @param hierarchyMode the context cache clearing mode to be applied if the
@@ -72,8 +64,7 @@ public abstract class AbstractDirtiesContextTestExecutionListener extends Abstra
 	}
 
 	/**
-	 * Perform the actual work for {@link #beforeTestMethod} and {@link #afterTestMethod}
-	 * by dirtying the context if appropriate (i.e., according to the required modes).
+	 * 通过按需（即根据所需的模式）将上下文标记为脏，执行 {@link #beforeTestMethod} 和 {@link #afterTestMethod} 的实际工作。
 	 * @param testContext the test context whose application context should
 	 * potentially be marked as dirty; never {@code null}
 	 * @param requiredMethodMode the method mode required for a context to
@@ -117,8 +108,7 @@ public abstract class AbstractDirtiesContextTestExecutionListener extends Abstra
 	}
 
 	/**
-	 * Perform the actual work for {@link #beforeTestClass} and {@link #afterTestClass}
-	 * by dirtying the context if appropriate (i.e., according to the required mode).
+	 * 通过按需（即根据所需的模式）将上下文标记为脏，执行 {@link #beforeTestClass} 和 {@link #afterTestClass} 的实际工作。
 	 * @param testContext the test context whose application context should
 	 * potentially be marked as dirty; never {@code null}
 	 * @param requiredClassMode the class mode required for a context to

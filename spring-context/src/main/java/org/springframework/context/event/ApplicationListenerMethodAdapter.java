@@ -53,14 +53,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * {@link GenericApplicationListener} adapter that delegates the processing of
- * an event to an {@link EventListener} annotated method.
+ * 将事件处理委托给 {@link EventListener} 注解方法的 {@link GenericApplicationListener} 适配器。
  *
- * <p>Delegates to {@link #processEvent(ApplicationEvent)} to give subclasses
- * a chance to deviate from the default. Unwraps the content of a
- * {@link PayloadApplicationEvent} if necessary to allow a method declaration
- * to define any arbitrary event type. If a condition is defined, it is
- * evaluated prior to invoking the underlying method.
+ * <p>委托给 {@link #processEvent(ApplicationEvent)}，使子类有机会偏离默认行为。必要时会解包
+ * {@link PayloadApplicationEvent} 的内容，以便方法声明可以定义任意事件类型。如果定义了条件，则会在
+ * 调用底层方法之前对其求值。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -101,7 +98,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 
 	/**
-	 * Construct a new ApplicationListenerMethodAdapter.
+	 * 构造一个新的 ApplicationListenerMethodAdapter。
 	 * @param beanName the name of the bean to invoke the listener method on
 	 * @param targetClass the target class that the method is declared on
 	 * @param method the listener method to invoke
@@ -153,7 +150,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 
 	/**
-	 * Initialize this instance.
+	 * 初始化此实例。
 	 */
 	void init(ApplicationContext applicationContext, @Nullable EventExpressionEvaluator evaluator) {
 		this.applicationContext = applicationContext;
@@ -203,9 +200,8 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Determine the default id for the target listener, to be applied in case of
-	 * no {@link EventListener#id() annotation-specified id value}.
-	 * <p>The default implementation builds a method name with parameter types.
+	 * 确定目标监听器的默认 id，在没有 {@link EventListener#id() annotation-specified id value} 时应用。
+	 * <p>默认实现会构建带参数类型的方法名。
 	 * @since 5.3.5
 	 * @see #getListenerId()
 	 */
@@ -220,8 +216,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 
 
 	/**
-	 * Process the specified {@link ApplicationEvent}, checking if the condition
-	 * matches and handling a non-null result, if any.
+	 * 处理指定的 {@link ApplicationEvent}，检查条件是否匹配，并处理非空结果（如果有）。
 	 */
 	public void processEvent(ApplicationEvent event) {
 		Object[] args = resolveArguments(event);
@@ -237,10 +232,8 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Resolve the method arguments to use for the specified {@link ApplicationEvent}.
-	 * <p>These arguments will be used to invoke the method handled by this instance.
-	 * Can return {@code null} to indicate that no suitable arguments could be resolved
-	 * and therefore the method should not be invoked at all for the specified event.
+	 * 解析用于指定 {@link ApplicationEvent} 的方法参数。<p>这些参数将用于调用由此实例处理的方法。可以
+	 * 返回 {@code null} 表示无法解析出合适的参数，因此对于指定的事件根本不应调用该方法。
 	 */
 	@Nullable
 	protected Object[] resolveArguments(ApplicationEvent event) {
@@ -329,7 +322,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Invoke the event listener method with the given argument values.
+	 * 使用给定的参数值调用事件监听器方法。
 	 */
 	@Nullable
 	protected Object doInvoke(Object... args) {
@@ -364,7 +357,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Return the target bean instance to use.
+	 * 返回要使用的目标 Bean 实例。
 	 */
 	protected Object getTargetBean() {
 		Assert.notNull(this.applicationContext, "ApplicationContext must no be null");
@@ -372,7 +365,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Return the target listener method.
+	 * 返回目标监听器方法。
 	 * @since 5.3
 	 */
 	protected Method getTargetMethod() {
@@ -380,10 +373,8 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Return the condition to use.
-	 * <p>Matches the {@code condition} attribute of the {@link EventListener}
-	 * annotation or any matching attribute on a composed annotation that
-	 * is meta-annotated with {@code @EventListener}.
+	 * 返回要使用的条件。<p>匹配 {@link EventListener} 注解的 {@code condition} 属性，或匹配以
+	 * {@code @EventListener} 进行元注解的组合注解上的任何对应属性。
 	 */
 	@Nullable
 	protected String getCondition() {
@@ -391,8 +382,7 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Add additional details such as the bean type and method signature to
-	 * the given error message.
+	 * 向给定错误消息添加额外细节，如 Bean 类型和方法签名。
 	 * @param message error message to append the HandlerMethod details to
 	 */
 	protected String getDetailedErrorMessage(Object bean, String message) {
@@ -404,11 +394,8 @@ public class ApplicationListenerMethodAdapter implements GenericApplicationListe
 	}
 
 	/**
-	 * Assert that the target bean class is an instance of the class where the given
-	 * method is declared. In some cases the actual bean instance at event-
-	 * processing time may be a JDK dynamic proxy (lazy initialization, prototype
-	 * beans, and others). Event listener beans that require proxying should prefer
-	 * class-based proxy mechanisms.
+	 * 断言目标 Bean 类是声明给定方法的类的实例。在某些情况下，事件处理时的实际 Bean 实例可能是 JDK 动
+	 * 态代理（延迟初始化、原型 Bean 等）。需要代理的事件监听器 Bean 应优先使用基于类的代理机制。
 	 */
 	private void assertTargetBean(Method method, Object targetBean, Object[] args) {
 		Class<?> methodDeclaringClass = method.getDeclaringClass();

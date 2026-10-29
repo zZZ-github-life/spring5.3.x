@@ -34,8 +34,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * ClassLoader decorator that shadows an enclosing ClassLoader,
- * applying registered transformers to all affected classes.
+ * ClassLoader 装饰器，遮蔽外层的 ClassLoader，并将已注册的转换器应用于所有受影响的类。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -46,7 +45,7 @@ import org.springframework.util.StringUtils;
  */
 public class ShadowingClassLoader extends DecoratingClassLoader {
 
-	/** Packages that are excluded by default. */
+	/** 默认排除的包。 */
 	public static final String[] DEFAULT_EXCLUDED_PACKAGES =
 			new String[] {"java.", "javax.", "jdk.", "sun.", "oracle.", "com.sun.", "com.ibm.", "COM.ibm.",
 					"org.w3c.", "org.xml.", "org.dom4j.", "org.eclipse", "org.aspectj.", "net.sf.cglib",
@@ -61,8 +60,8 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 
 	/**
-	 * Create a new ShadowingClassLoader, decorating the given ClassLoader,
-	 * applying {@link #DEFAULT_EXCLUDED_PACKAGES}.
+	 * 创建一个新的 ShadowingClassLoader，装饰给定的 ClassLoader，并应用
+	 * {@link #DEFAULT_EXCLUDED_PACKAGES}。
 	 * @param enclosingClassLoader the ClassLoader to decorate
 	 * @see #ShadowingClassLoader(ClassLoader, boolean)
 	 */
@@ -71,7 +70,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Create a new ShadowingClassLoader, decorating the given ClassLoader.
+	 * 创建一个新的 ShadowingClassLoader，装饰给定的 ClassLoader。
 	 * @param enclosingClassLoader the ClassLoader to decorate
 	 * @param defaultExcludes whether to apply {@link #DEFAULT_EXCLUDED_PACKAGES}
 	 * @since 4.3.8
@@ -88,8 +87,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 
 
 	/**
-	 * Add the given ClassFileTransformer to the list of transformers that this
-	 * ClassLoader will apply.
+	 * 将给定的 ClassFileTransformer 添加到此 ClassLoader 要应用的转换器列表中。
 	 * @param transformer the ClassFileTransformer
 	 */
 	public void addTransformer(ClassFileTransformer transformer) {
@@ -98,8 +96,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Copy all ClassFileTransformers from the given ClassLoader to the list of
-	 * transformers that this ClassLoader will apply.
+	 * 将给定 ClassLoader 中的所有 ClassFileTransformer 复制到此 ClassLoader 要应用的转换器列表中。
 	 * @param other the ClassLoader to copy from
 	 */
 	public void copyTransformers(ShadowingClassLoader other) {
@@ -123,7 +120,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Determine whether the given class should be excluded from shadowing.
+	 * 确定给定类是否应排除在遮蔽之外。
 	 * @param className the name of the class
 	 * @return whether the specified class should be shadowed
 	 */
@@ -133,8 +130,7 @@ public class ShadowingClassLoader extends DecoratingClassLoader {
 	}
 
 	/**
-	 * Determine whether the specified class is eligible for shadowing
-	 * by this class loader.
+	 * 确定指定的类是否适合由此类加载器进行遮蔽。
 	 * @param className the class name to check
 	 * @return whether the specified class is eligible
 	 * @see #isExcluded

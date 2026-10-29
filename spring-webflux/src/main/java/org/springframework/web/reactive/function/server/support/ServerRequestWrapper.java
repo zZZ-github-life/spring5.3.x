@@ -49,11 +49,7 @@ import org.springframework.web.server.WebSession;
 import org.springframework.web.util.UriBuilder;
 
 /**
- * Implementation of the {@link ServerRequest} interface that can be subclassed
- * to adapt the request in a
- * {@link org.springframework.web.reactive.function.server.HandlerFilterFunction handler filter function}.
- * All methods default to calling through to the wrapped request.
- *
+ * 可子类化以在{@link org.springframework.web.reactive.function.server.HandlerFilterFunction 处理器过滤器函数}中适配请求的 {@link ServerRequest} 接口实现。所有方法默认调用所包装的请求。
  * @author Arjen Poutsma
  * @since 5.0
  */
@@ -63,7 +59,7 @@ public class ServerRequestWrapper implements ServerRequest {
 
 
 	/**
-	 * Create a new {@code ServerRequestWrapper} that wraps the given request.
+	 * 创建包装给定请求的新 {@code ServerRequestWrapper}。
 	 * @param delegate the request to wrap
 	 */
 	public ServerRequestWrapper(ServerRequest delegate) {
@@ -73,7 +69,7 @@ public class ServerRequestWrapper implements ServerRequest {
 
 
 	/**
-	 * Return the wrapped request.
+	 * 返回被包装的请求。
 	 */
 	public ServerRequest request() {
 		return this.delegate;
@@ -226,17 +222,14 @@ public class ServerRequestWrapper implements ServerRequest {
 	}
 
 	/**
-	 * Implementation of the {@code Headers} interface that can be subclassed
-	 * to adapt the headers in a
-	 * {@link org.springframework.web.reactive.function.server.HandlerFilterFunction handler filter function}.
-	 * All methods default to calling through to the wrapped headers.
+	 * 可子类化以在{@link org.springframework.web.reactive.function.server.HandlerFilterFunction 处理器过滤器函数}中适配头的 {@code Headers} 接口实现。所有方法默认调用所包装的头。
 	 */
 	public static class HeadersWrapper implements ServerRequest.Headers {
 
 		private final Headers headers;
 
 		/**
-		 * Create a new {@code HeadersWrapper} that wraps the given request.
+		 * 创建包装给定请求的新 {@code HeadersWrapper}。
 		 * @param headers the headers to wrap
 		 */
 		public HeadersWrapper(Headers headers) {

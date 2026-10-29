@@ -54,57 +54,46 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link org.springframework.transaction.PlatformTransactionManager} implementation
- * for JTA, delegating to a backend JTA provider. This is typically used to delegate
- * to a Java EE server's transaction coordinator, but may also be configured with a
- * local JTA provider which is embedded within the application.
+ * 用于JTA的{@link org.springframework.transaction.PlatformTransactionManager}实现,
+ * 委托给后端JTA提供者。通常用于委托给Java EE服务器的事务协调器,
+ * 但也可以配置嵌入在应用程序中的本地JTA提供者。
  *
- * <p>This transaction manager is appropriate for handling distributed transactions,
- * i.e. transactions that span multiple resources, and for controlling transactions on
- * application server resources (e.g. JDBC DataSources available in JNDI) in general.
- * For a single JDBC DataSource, DataSourceTransactionManager is perfectly sufficient,
- * and for accessing a single resource with Hibernate (including transactional cache),
- * HibernateTransactionManager is appropriate, for example.
+ * <p>此事务管理器适用于处理分布式事务, 即跨越多个资源的事务,
+ * 以及通常用于控制应用服务器资源(例如JNDI中可用的JDBC DataSource)上的事务。
+ * 对于单个JDBC DataSource, DataSourceTransactionManager完全足够;
+ * 例如, 对于使用Hibernate访问单个资源(包括事务缓存), HibernateTransactionManager是合适的。
  *
- * <p><b>For typical JTA transactions (REQUIRED, SUPPORTS, MANDATORY, NEVER), a plain
- * JtaTransactionManager definition is all you need, portable across all Java EE servers.</b>
- * This corresponds to the functionality of the JTA UserTransaction, for which Java EE
- * specifies a standard JNDI name ("java:comp/UserTransaction"). There is no need to
- * configure a server-specific TransactionManager lookup for this kind of JTA usage.
+ * <p><b>对于典型的JTA事务(REQUIRED、SUPPORTS、MANDATORY、NEVER), 一个简单的
+ * JtaTransactionManager定义就是你所需要的, 可在所有Java EE服务器之间移植。</b>
+ * 这对应于JTA UserTransaction的功能, Java EE为其指定了标准JNDI名称
+ * ("java:comp/UserTransaction")。对于此类JTA用法, 无需配置服务器特定的TransactionManager查找。
  *
- * <p><b>Transaction suspension (REQUIRES_NEW, NOT_SUPPORTED) is just available with a
- * JTA TransactionManager being registered.</b> Common TransactionManager locations are
- * autodetected by JtaTransactionManager, provided that the "autodetectTransactionManager"
- * flag is set to "true" (which it is by default).
+ * <p><b>事务挂起(REQUIRES_NEW、NOT_SUPPORTED)仅在注册了JTA TransactionManager时可用。</b>
+ * 常见的TransactionManager位置由JtaTransactionManager自动检测, 前提是
+ * "autodetectTransactionManager"标志设置为"true"(默认情况下如此)。
  *
- * <p>Note: Support for the JTA TransactionManager interface is not required by Java EE.
- * Almost all Java EE servers expose it, but do so as extension to EE. There might be some
- * issues with compatibility, despite the TransactionManager interface being part of JTA.
- * As a consequence, Spring provides various vendor-specific PlatformTransactionManagers,
- * which are recommended to be used if appropriate: {@link WebLogicJtaTransactionManager}
- * and {@link WebSphereUowTransactionManager}. For all other Java EE servers, the
- * standard JtaTransactionManager is sufficient.
+ * <p>注意: Java EE不要求支持JTA TransactionManager接口。几乎所有Java EE服务器都暴露它,
+ * 但作为EE的扩展。尽管TransactionManager接口是JTA的一部分, 但可能存在一些兼容性问题。
+ * 因此, Spring提供了各种厂商特定的PlatformTransactionManager,
+ * 在适当时建议使用: {@link WebLogicJtaTransactionManager}和{@link WebSphereUowTransactionManager}。
+ * 对于所有其他Java EE服务器, 标准的JtaTransactionManager就足够了。
  *
- * <p>This pure JtaTransactionManager class supports timeouts but not per-transaction
- * isolation levels. Custom subclasses may override the {@link #doJtaBegin} method for
- * specific JTA extensions in order to provide this functionality; Spring includes a
- * corresponding {@link WebLogicJtaTransactionManager} class for WebLogic Server. Such
- * adapters for specific Java EE transaction coordinators may also expose transaction
- * names for monitoring; with standard JTA, transaction names will simply be ignored.
+ * <p>这个纯JtaTransactionManager类支持超时但不支持每事务隔离级别。
+ * 自定义子类可以重写{@link #doJtaBegin}方法以提供特定JTA扩展来实现此功能;
+ * Spring为WebLogic Server包含了一个相应的{@link WebLogicJtaTransactionManager}类。
+ * 此类特定Java EE事务协调器的适配器也可以暴露事务名称用于监控;
+ * 对于标准JTA, 事务名称将被简单地忽略。
  *
- * <p><b>Consider using Spring's {@code tx:jta-transaction-manager} configuration
- * element for automatically picking the appropriate JTA platform transaction manager
- * (automatically detecting WebLogic and WebSphere).</b>
+ * <p><b>考虑使用Spring的{@code tx:jta-transaction-manager}配置元素来自动选择适当的
+ * JTA平台事务管理器(自动检测WebLogic和WebSphere)。</b>
  *
- * <p>JTA 1.1 adds the TransactionSynchronizationRegistry facility, as public Java EE 5
- * API in addition to the standard JTA UserTransaction handle. As of Spring 2.5, this
- * JtaTransactionManager autodetects the TransactionSynchronizationRegistry and uses
- * it for registering Spring-managed synchronizations when participating in an existing
- * JTA transaction (e.g. controlled by EJB CMT). If no TransactionSynchronizationRegistry
- * is available, then such synchronizations will be registered via the (non-EE) JTA
- * TransactionManager handle.
+ * <p>JTA 1.1添加了TransactionSynchronizationRegistry功能, 作为标准JTA UserTransaction句柄
+ * 之外的公共Java EE 5 API。从Spring 2.5开始, 此JtaTransactionManager自动检测
+ * TransactionSynchronizationRegistry, 并在参与现有JTA事务(例如由EJB CMT控制)时
+ * 使用它来注册Spring管理的同步。如果没有可用的TransactionSynchronizationRegistry,
+ * 则此类同步将通过(非EE)JTA TransactionManager句柄进行注册。
  *
- * <p>This class is serializable. However, active synchronizations do not survive serialization.
+ * <p>此类是可序列化的。但是, 活动同步在序列化后不会保留。
  *
  * @author Juergen Hoeller
  * @since 24.03.2003
@@ -122,17 +111,15 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 		implements TransactionFactory, InitializingBean, Serializable {
 
 	/**
-	 * Default JNDI location for the JTA UserTransaction. Many Java EE servers
-	 * also provide support for the JTA TransactionManager interface there.
+	 * JTA UserTransaction的默认JNDI位置。许多Java EE服务器也在此处提供对JTA TransactionManager接口的支持。
 	 * @see #setUserTransactionName
 	 * @see #setAutodetectTransactionManager
 	 */
 	public static final String DEFAULT_USER_TRANSACTION_NAME = "java:comp/UserTransaction";
 
 	/**
-	 * Fallback JNDI locations for the JTA TransactionManager. Applied if
-	 * the JTA UserTransaction does not implement the JTA TransactionManager
-	 * interface, provided that the "autodetectTransactionManager" flag is "true".
+	 * JTA TransactionManager的回退JNDI位置。如果JTA UserTransaction没有实现JTA TransactionManager接口,
+	 * 且"autodetectTransactionManager"标志为"true", 则应用此位置。
 	 * @see #setTransactionManagerName
 	 * @see #setAutodetectTransactionManager
 	 */
@@ -141,8 +128,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 					"java:pm/TransactionManager", "java:/TransactionManager"};
 
 	/**
-	 * Standard Java EE 5 JNDI location for the JTA TransactionSynchronizationRegistry.
-	 * Autodetected when available.
+	 * JTA TransactionSynchronizationRegistry的标准Java EE 5 JNDI位置。
+	 * 可用时自动检测。
 	 */
 	public static final String DEFAULT_TRANSACTION_SYNCHRONIZATION_REGISTRY_NAME =
 			"java:comp/TransactionSynchronizationRegistry";
@@ -182,8 +169,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Create a new JtaTransactionManager instance, to be configured as bean.
-	 * Invoke {@code afterPropertiesSet} to activate the configuration.
+	 * 创建一个新的JtaTransactionManager实例, 作为bean进行配置。
+	 * 调用{@code afterPropertiesSet}以激活配置。
 	 * @see #setUserTransactionName
 	 * @see #setUserTransaction
 	 * @see #setTransactionManagerName
@@ -195,7 +182,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a new JtaTransactionManager instance.
+	 * 创建一个新的JtaTransactionManager实例。
 	 * @param userTransaction the JTA UserTransaction to use as direct reference
 	 */
 	public JtaTransactionManager(UserTransaction userTransaction) {
@@ -205,7 +192,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a new JtaTransactionManager instance.
+	 * 创建一个新的JtaTransactionManager实例。
 	 * @param userTransaction the JTA UserTransaction to use as direct reference
 	 * @param transactionManager the JTA TransactionManager to use as direct reference
 	 */
@@ -218,7 +205,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Create a new JtaTransactionManager instance.
+	 * 创建一个新的JtaTransactionManager实例。
 	 * @param transactionManager the JTA TransactionManager to use as direct reference
 	 */
 	public JtaTransactionManager(TransactionManager transactionManager) {
@@ -230,8 +217,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Set the JndiTemplate to use for JNDI lookups.
-	 * A default one is used if not set.
+	 * 设置用于JNDI查找的JndiTemplate。如果未设置, 则使用默认值。
 	 */
 	public void setJndiTemplate(JndiTemplate jndiTemplate) {
 		Assert.notNull(jndiTemplate, "JndiTemplate must not be null");
@@ -239,15 +225,14 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JndiTemplate used for JNDI lookups.
+	 * 返回用于JNDI查找的JndiTemplate。
 	 */
 	public JndiTemplate getJndiTemplate() {
 		return this.jndiTemplate;
 	}
 
 	/**
-	 * Set the JNDI environment to use for JNDI lookups.
-	 * Creates a JndiTemplate with the given environment settings.
+	 * 设置用于JNDI查找的JNDI环境。使用给定的环境设置创建JndiTemplate。
 	 * @see #setJndiTemplate
 	 */
 	public void setJndiEnvironment(@Nullable Properties jndiEnvironment) {
@@ -255,7 +240,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JNDI environment to use for JNDI lookups.
+	 * 返回用于JNDI查找的JNDI环境。
 	 */
 	@Nullable
 	public Properties getJndiEnvironment() {
@@ -264,9 +249,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Set the JTA UserTransaction to use as direct reference.
-	 * <p>Typically just used for local JTA setups; in a Java EE environment,
-	 * the UserTransaction will always be fetched from JNDI.
+	 * 设置要用作直接引用的JTA UserTransaction。
+	 * <p>通常仅用于本地JTA设置; 在Java EE环境中, UserTransaction将始终从JNDI获取。
 	 * @see #setUserTransactionName
 	 * @see #setAutodetectUserTransaction
 	 */
@@ -275,7 +259,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JTA UserTransaction that this transaction manager uses.
+	 * 返回此事务管理器使用的JTA UserTransaction。
 	 */
 	@Nullable
 	public UserTransaction getUserTransaction() {
@@ -283,9 +267,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the JNDI name of the JTA UserTransaction.
-	 * <p>Note that the UserTransaction will be autodetected at the Java EE
-	 * default location "java:comp/UserTransaction" if not specified explicitly.
+	 * 设置JTA UserTransaction的JNDI名称。
+	 * <p>请注意, 如果未显式指定, UserTransaction将在Java EE默认位置
+	 * "java:comp/UserTransaction"自动检测。
 	 * @see #DEFAULT_USER_TRANSACTION_NAME
 	 * @see #setUserTransaction
 	 * @see #setAutodetectUserTransaction
@@ -295,13 +279,11 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set whether to autodetect the JTA UserTransaction at its default
-	 * JNDI location "java:comp/UserTransaction", as specified by Java EE.
-	 * Will proceed without UserTransaction if none found.
-	 * <p>Default is "true", autodetecting the UserTransaction unless
-	 * it has been specified explicitly. Turn this flag off to allow for
-	 * JtaTransactionManager operating against the TransactionManager only,
-	 * despite a default UserTransaction being available.
+	 * 设置是否在Java EE指定的默认JNDI位置"java:comp/UserTransaction"自动检测JTA UserTransaction。
+	 * 如果未找到, 将在没有UserTransaction的情况下继续。
+	 * <p>默认为"true", 自动检测UserTransaction, 除非已显式指定。
+	 * 关闭此标志以允许JtaTransactionManager仅针对TransactionManager运行,
+	 * 即使默认的UserTransaction可用。
 	 * @see #DEFAULT_USER_TRANSACTION_NAME
 	 */
 	public void setAutodetectUserTransaction(boolean autodetectUserTransaction) {
@@ -309,15 +291,12 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set whether to cache the JTA UserTransaction object fetched from JNDI.
-	 * <p>Default is "true": UserTransaction lookup will only happen at startup,
-	 * reusing the same UserTransaction handle for all transactions of all threads.
-	 * This is the most efficient choice for all application servers that provide
-	 * a shared UserTransaction object (the typical case).
-	 * <p>Turn this flag off to enforce a fresh lookup of the UserTransaction
-	 * for every transaction. This is only necessary for application servers
-	 * that return a new UserTransaction for every transaction, keeping state
-	 * tied to the UserTransaction object itself rather than the current thread.
+	 * 设置是否缓存从JNDI获取的JTA UserTransaction对象。
+	 * <p>默认为"true": UserTransaction查找仅在启动时发生, 对所有线程的所有事务重用相同的UserTransaction句柄。
+	 * 对于提供共享UserTransaction对象(典型情况)的所有应用服务器, 这是最有效的选择。
+	 * <p>关闭此标志以强制为每个事务重新查找UserTransaction。
+	 * 这仅对于为每个事务返回新UserTransaction的应用服务器是必要的,
+	 * 这些服务器将状态绑定到UserTransaction对象本身而不是当前线程。
 	 * @see #setUserTransactionName
 	 */
 	public void setCacheUserTransaction(boolean cacheUserTransaction) {
@@ -325,12 +304,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the JTA TransactionManager to use as direct reference.
-	 * <p>A TransactionManager is necessary for suspending and resuming transactions,
-	 * as this not supported by the UserTransaction interface.
-	 * <p>Note that the TransactionManager will be autodetected if the JTA
-	 * UserTransaction object implements the JTA TransactionManager interface too,
-	 * as well as autodetected at various well-known fallback JNDI locations.
+	 * 设置要用作直接引用的JTA TransactionManager。
+	 * <p>TransactionManager对于挂起和恢复事务是必需的, 因为UserTransaction接口不支持此功能。
+	 * <p>请注意, 如果JTA UserTransaction对象也实现了JTA TransactionManager接口,
+	 * 则TransactionManager将被自动检测, 以及在各已知的回退JNDI位置自动检测。
 	 * @see #setTransactionManagerName
 	 * @see #setAutodetectTransactionManager
 	 */
@@ -339,7 +316,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JTA TransactionManager that this transaction manager uses, if any.
+	 * 返回此事务管理器使用的JTA TransactionManager(如果有)。
 	 */
 	@Nullable
 	public TransactionManager getTransactionManager() {
@@ -347,12 +324,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the JNDI name of the JTA TransactionManager.
-	 * <p>A TransactionManager is necessary for suspending and resuming transactions,
-	 * as this not supported by the UserTransaction interface.
-	 * <p>Note that the TransactionManager will be autodetected if the JTA
-	 * UserTransaction object implements the JTA TransactionManager interface too,
-	 * as well as autodetected at various well-known fallback JNDI locations.
+	 * 设置JTA TransactionManager的JNDI名称。
+	 * <p>TransactionManager对于挂起和恢复事务是必需的, 因为UserTransaction接口不支持此功能。
+	 * <p>请注意, 如果JTA UserTransaction对象也实现了JTA TransactionManager接口,
+	 * 则TransactionManager将被自动检测, 以及在各已知的回退JNDI位置自动检测。
 	 * @see #setTransactionManager
 	 * @see #setAutodetectTransactionManager
 	 */
@@ -361,15 +336,13 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set whether to autodetect a JTA UserTransaction object that implements
-	 * the JTA TransactionManager interface too (i.e. the JNDI location for the
-	 * TransactionManager is "java:comp/UserTransaction", same as for the UserTransaction).
-	 * Also checks the fallback JNDI locations "java:comp/TransactionManager" and
-	 * "java:/TransactionManager". Will proceed without TransactionManager if none found.
-	 * <p>Default is "true", autodetecting the TransactionManager unless it has been
-	 * specified explicitly. Can be turned off to deliberately ignore an available
-	 * TransactionManager, for example when there are known issues with suspend/resume
-	 * and any attempt to use REQUIRES_NEW or NOT_SUPPORTED should fail fast.
+	 * 设置是否自动检测同时实现了JTA TransactionManager接口的JTA UserTransaction对象
+	 * (即TransactionManager的JNDI位置与UserTransaction相同, 为"java:comp/UserTransaction")。
+	 * 还会检查回退JNDI位置"java:comp/TransactionManager"和"java:/TransactionManager"。
+	 * 如果未找到, 将在没有TransactionManager的情况下继续。
+	 * <p>默认为"true", 自动检测TransactionManager, 除非已显式指定。
+	 * 可以关闭此标志以故意忽略可用的TransactionManager, 例如当挂起/恢复存在已知问题
+	 * 且任何使用REQUIRES_NEW或NOT_SUPPORTED的尝试都应快速失败时。
 	 * @see #FALLBACK_TRANSACTION_MANAGER_NAMES
 	 */
 	public void setAutodetectTransactionManager(boolean autodetectTransactionManager) {
@@ -377,13 +350,12 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the JTA 1.1 TransactionSynchronizationRegistry to use as direct reference.
-	 * <p>A TransactionSynchronizationRegistry allows for interposed registration
-	 * of transaction synchronizations, as an alternative to the regular registration
-	 * methods on the JTA TransactionManager API. Also, it is an official part of the
-	 * Java EE 5 platform, in contrast to the JTA TransactionManager itself.
-	 * <p>Note that the TransactionSynchronizationRegistry will be autodetected in JNDI and
-	 * also from the UserTransaction/TransactionManager object if implemented there as well.
+	 * 设置要用作直接引用的JTA 1.1 TransactionSynchronizationRegistry。
+	 * <p>TransactionSynchronizationRegistry允许交错注册事务同步,
+	 * 作为JTA TransactionManager API上常规注册方法的替代方案。
+	 * 此外, 与JTA TransactionManager本身不同, 它是Java EE 5平台的正式组成部分。
+	 * <p>请注意, TransactionSynchronizationRegistry将在JNDI中自动检测,
+	 * 如果在UserTransaction/TransactionManager对象中也实现了该接口, 也会从那里自动检测。
 	 * @see #setTransactionSynchronizationRegistryName
 	 * @see #setAutodetectTransactionSynchronizationRegistry
 	 */
@@ -392,7 +364,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Return the JTA 1.1 TransactionSynchronizationRegistry that this transaction manager uses, if any.
+	 * 返回此事务管理器使用的JTA 1.1 TransactionSynchronizationRegistry(如果有)。
 	 */
 	@Nullable
 	public TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
@@ -400,10 +372,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set the JNDI name of the JTA 1.1 TransactionSynchronizationRegistry.
-	 * <p>Note that the TransactionSynchronizationRegistry will be autodetected
-	 * at the Java EE 5 default location "java:comp/TransactionSynchronizationRegistry"
-	 * if not specified explicitly.
+	 * 设置JTA 1.1 TransactionSynchronizationRegistry的JNDI名称。
+	 * <p>请注意, 如果未显式指定, TransactionSynchronizationRegistry将在Java EE 5默认位置
+	 * "java:comp/TransactionSynchronizationRegistry"自动检测。
 	 * @see #DEFAULT_TRANSACTION_SYNCHRONIZATION_REGISTRY_NAME
 	 */
 	public void setTransactionSynchronizationRegistryName(String transactionSynchronizationRegistryName) {
@@ -411,25 +382,21 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Set whether to autodetect a JTA 1.1 TransactionSynchronizationRegistry object
-	 * at its default JDNI location ("java:comp/TransactionSynchronizationRegistry")
-	 * if the UserTransaction has also been obtained from JNDI, and also whether
-	 * to fall back to checking whether the JTA UserTransaction/TransactionManager
-	 * object implements the JTA TransactionSynchronizationRegistry interface too.
-	 * <p>Default is "true", autodetecting the TransactionSynchronizationRegistry
-	 * unless it has been specified explicitly. Can be turned off to delegate
-	 * synchronization registration to the regular JTA TransactionManager API.
+	 * 设置是否在默认JNDI位置("java:comp/TransactionSynchronizationRegistry")
+	 * 自动检测JTA 1.1 TransactionSynchronizationRegistry对象(如果UserTransaction也是从JNDI获取的),
+	 * 以及是否回退检查JTA UserTransaction/TransactionManager对象是否也实现了JTA TransactionSynchronizationRegistry接口。
+	 * <p>默认为"true", 自动检测TransactionSynchronizationRegistry, 除非已显式指定。
+	 * 可以关闭此标志以将同步注册委托给常规的JTA TransactionManager API。
 	 */
 	public void setAutodetectTransactionSynchronizationRegistry(boolean autodetectTransactionSynchronizationRegistry) {
 		this.autodetectTransactionSynchronizationRegistry = autodetectTransactionSynchronizationRegistry;
 	}
 
 	/**
-	 * Set whether to allow custom isolation levels to be specified.
-	 * <p>Default is "false", throwing an exception if a non-default isolation level
-	 * is specified for a transaction. Turn this flag on if affected resource adapters
-	 * check the thread-bound transaction context and apply the specified isolation
-	 * levels individually (e.g. through an IsolationLevelDataSourceAdapter).
+	 * 设置是否允许指定自定义隔离级别。
+	 * <p>默认为"false", 如果为事务指定了非默认隔离级别则抛出异常。
+	 * 如果受影响的资源适配器检查线程绑定的事务上下文并单独应用指定的隔离级别
+	 * (例如通过IsolationLevelDataSourceAdapter), 则打开此标志。
 	 * @see org.springframework.jdbc.datasource.IsolationLevelDataSourceAdapter
 	 * @see org.springframework.jdbc.datasource.lookup.IsolationLevelDataSourceRouter
 	 */
@@ -439,7 +406,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Initialize the UserTransaction as well as the TransactionManager handle.
+	 * 初始化UserTransaction以及TransactionManager句柄。
 	 * @see #initUserTransactionAndTransactionManager()
 	 */
 	@Override
@@ -450,7 +417,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Initialize the UserTransaction as well as the TransactionManager handle.
+	 * 初始化UserTransaction以及TransactionManager句柄。
 	 * @throws TransactionSystemException if initialization failed
 	 */
 	protected void initUserTransactionAndTransactionManager() throws TransactionSystemException {
@@ -491,8 +458,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Check the UserTransaction as well as the TransactionManager handle,
-	 * assuming standard JTA requirements.
+	 * 检查UserTransaction以及TransactionManager句柄, 假定标准JTA要求。
 	 * @throws IllegalStateException if no sufficient handles are available
 	 */
 	protected void checkUserTransactionAndTransactionManager() throws IllegalStateException {
@@ -519,9 +485,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Initialize the JTA 1.1 TransactionSynchronizationRegistry, if available.
-	 * <p>To be called after {@link #initUserTransactionAndTransactionManager()},
-	 * since it may check the UserTransaction and TransactionManager handles.
+	 * 初始化JTA 1.1 TransactionSynchronizationRegistry(如果可用)。
+	 * <p>应在{@link #initUserTransactionAndTransactionManager()}之后调用,
+	 * 因为它可能会检查UserTransaction和TransactionManager句柄。
 	 * @throws TransactionSystemException if initialization failed
 	 */
 	protected void initTransactionSynchronizationRegistry() {
@@ -551,7 +517,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * Build a UserTransaction handle based on the given TransactionManager.
+	 * 基于给定的TransactionManager构建UserTransaction句柄。
 	 * @param transactionManager the TransactionManager
 	 * @return a corresponding UserTransaction handle
 	 */
@@ -565,9 +531,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Look up the JTA UserTransaction in JNDI via the configured name.
-	 * <p>Called by {@code afterPropertiesSet} if no direct UserTransaction reference was set.
-	 * Can be overridden in subclasses to provide a different UserTransaction object.
+	 * 通过配置的名称在JNDI中查找JTA UserTransaction。
+	 * <p>如果未设置直接的UserTransaction引用, 则由{@code afterPropertiesSet}调用。
+	 * 子类可以重写此方法以提供不同的UserTransaction对象。
 	 * @param userTransactionName the JNDI name of the UserTransaction
 	 * @return the UserTransaction object
 	 * @throws TransactionSystemException if the JNDI lookup failed
@@ -589,9 +555,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Look up the JTA TransactionManager in JNDI via the configured name.
-	 * <p>Called by {@code afterPropertiesSet} if no direct TransactionManager reference was set.
-	 * Can be overridden in subclasses to provide a different TransactionManager object.
+	 * 通过配置的名称在JNDI中查找JTA TransactionManager。
+	 * <p>如果未设置直接的TransactionManager引用, 则由{@code afterPropertiesSet}调用。
+	 * 子类可以重写此方法以提供不同的TransactionManager对象。
 	 * @param transactionManagerName the JNDI name of the TransactionManager
 	 * @return the UserTransaction object
 	 * @throws TransactionSystemException if the JNDI lookup failed
@@ -613,8 +579,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Look up the JTA 1.1 TransactionSynchronizationRegistry in JNDI via the configured name.
-	 * <p>Can be overridden in subclasses to provide a different TransactionManager object.
+	 * 通过配置的名称在JNDI中查找JTA 1.1 TransactionSynchronizationRegistry。
+	 * <p>子类可以重写此方法以提供不同的TransactionManager对象。
 	 * @param registryName the JNDI name of the
 	 * TransactionSynchronizationRegistry
 	 * @return the TransactionSynchronizationRegistry object
@@ -636,9 +602,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Allows subclasses to retrieve the JTA UserTransaction in a vendor-specific manner.
-	 * Only called if no "userTransaction" or "userTransactionName" specified.
-	 * <p>The default implementation simply returns {@code null}.
+	 * 允许子类以厂商特定的方式检索JTA UserTransaction。
+	 * 仅在未指定"userTransaction"或"userTransactionName"时调用。
+	 * <p>默认实现简单地返回{@code null}。
 	 * @return the JTA UserTransaction handle to use, or {@code null} if none found
 	 * @throws TransactionSystemException in case of errors
 	 * @see #setUserTransaction
@@ -650,9 +616,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Allows subclasses to retrieve the JTA TransactionManager in a vendor-specific manner.
-	 * Only called if no "transactionManager" or "transactionManagerName" specified.
-	 * <p>The default implementation simply returns {@code null}.
+	 * 允许子类以厂商特定的方式检索JTA TransactionManager。
+	 * 仅在未指定"transactionManager"或"transactionManagerName"时调用。
+	 * <p>默认实现简单地返回{@code null}。
 	 * @return the JTA TransactionManager handle to use, or {@code null} if none found
 	 * @throws TransactionSystemException in case of errors
 	 * @see #setTransactionManager
@@ -664,9 +630,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Allows subclasses to retrieve the JTA 1.1 TransactionSynchronizationRegistry
-	 * in a vendor-specific manner.
-	 * <p>The default implementation simply returns {@code null}.
+	 * 允许子类以厂商特定的方式检索JTA 1.1 TransactionSynchronizationRegistry。
+	 * <p>默认实现简单地返回{@code null}。
 	 * @return the JTA TransactionSynchronizationRegistry handle to use,
 	 * or {@code null} if none found
 	 * @throws TransactionSystemException in case of errors
@@ -677,8 +642,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Find the JTA UserTransaction through a default JNDI lookup:
-	 * "java:comp/UserTransaction".
+	 * 通过默认JNDI查找"java:comp/UserTransaction"来查找JTA UserTransaction。
 	 * @return the JTA UserTransaction reference, or {@code null} if not found
 	 * @see #DEFAULT_USER_TRANSACTION_NAME
 	 */
@@ -702,9 +666,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Find the JTA TransactionManager through autodetection: checking whether the
-	 * UserTransaction object implements the TransactionManager, and checking the
-	 * fallback JNDI locations.
+	 * 通过自动检测查找JTA TransactionManager: 检查UserTransaction对象是否实现了TransactionManager,
+	 * 并检查回退JNDI位置。
 	 * @param ut the JTA UserTransaction object
 	 * @return the JTA TransactionManager reference, or {@code null} if not found
 	 * @see #FALLBACK_TRANSACTION_MANAGER_NAMES
@@ -739,10 +702,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Find the JTA 1.1 TransactionSynchronizationRegistry through autodetection:
-	 * checking whether the UserTransaction object or TransactionManager object
-	 * implements it, and checking Java EE 5's standard JNDI location.
-	 * <p>The default implementation simply returns {@code null}.
+	 * 通过自动检测查找JTA 1.1 TransactionSynchronizationRegistry:
+	 * 检查UserTransaction对象或TransactionManager对象是否实现了它,
+	 * 并检查Java EE 5的标准JNDI位置。
+	 * <p>默认实现简单地返回{@code null}。
 	 * @param ut the JTA UserTransaction object
 	 * @param tm the JTA TransactionManager object
 	 * @return the JTA TransactionSynchronizationRegistry handle to use,
@@ -783,13 +746,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * This implementation returns a JtaTransactionObject instance for the
-	 * JTA UserTransaction.
-	 * <p>The UserTransaction object will either be looked up freshly for the
-	 * current transaction, or the cached one looked up at startup will be used.
-	 * The latter is the default: Most application servers use a shared singleton
-	 * UserTransaction that can be cached. Turn off the "cacheUserTransaction"
-	 * flag to enforce a fresh lookup for every transaction.
+	 * 此实现为JTA UserTransaction返回一个JtaTransactionObject实例。
+	 * <p>UserTransaction对象将为当前事务进行全新查找, 或者使用启动时查找的缓存对象。
+	 * 后者是默认行为: 大多数应用服务器使用可缓存的共享单例UserTransaction。
+	 * 关闭"cacheUserTransaction"标志以强制为每个事务进行全新查找。
 	 * @see #setCacheUserTransaction
 	 */
 	@Override
@@ -807,9 +767,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Get a JTA transaction object for the given current UserTransaction.
-	 * <p>Subclasses can override this to provide a JtaTransactionObject
-	 * subclass, for example holding some additional JTA handle needed.
+	 * 为给定的当前UserTransaction获取JTA事务对象。
+	 * <p>子类可以重写此方法以提供JtaTransactionObject子类,
+	 * 例如持有某些所需的额外JTA句柄。
 	 * @param ut the UserTransaction handle to use for the current transaction
 	 * @return the JtaTransactionObject holding the UserTransaction
 	 */
@@ -829,10 +789,9 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * This implementation returns false to cause a further invocation
-	 * of doBegin despite an already existing transaction.
-	 * <p>JTA implementations might support nested transactions via further
-	 * {@code UserTransaction.begin()} invocations, but never support savepoints.
+	 * 此实现返回false, 以便在已存在事务的情况下进一步调用doBegin。
+	 * <p>JTA实现可能通过进一步的{@code UserTransaction.begin()}调用来支持嵌套事务,
+	 * 但从不支持保存点。
 	 * @see #doBegin
 	 * @see javax.transaction.UserTransaction#begin()
 	 */
@@ -858,12 +817,10 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Perform a JTA begin on the JTA UserTransaction or TransactionManager.
-	 * <p>This implementation only supports standard JTA functionality:
-	 * that is, no per-transaction isolation levels and no transaction names.
-	 * Can be overridden in subclasses, for specific JTA implementations.
-	 * <p>Calls {@code applyIsolationLevel} and {@code applyTimeout}
-	 * before invoking the UserTransaction's {@code begin} method.
+	 * 在JTA UserTransaction或TransactionManager上执行JTA begin操作。
+	 * <p>此实现仅支持标准JTA功能: 即不支持每事务隔离级别和事务名称。
+	 * 子类可以针对特定的JTA实现重写此方法。
+	 * <p>在调用UserTransaction的{@code begin}方法之前调用{@code applyIsolationLevel}和{@code applyTimeout}。
 	 * @param txObject the JtaTransactionObject containing the UserTransaction
 	 * @param definition the TransactionDefinition instance, describing propagation
 	 * behavior, isolation level, read-only flag, timeout, and transaction name
@@ -887,10 +844,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Apply the given transaction isolation level. The default implementation
-	 * will throw an exception for any level other than ISOLATION_DEFAULT.
-	 * <p>To be overridden in subclasses for specific JTA implementations,
-	 * as alternative to overriding the full {@link #doJtaBegin} method.
+	 * 应用给定的事务隔离级别。默认实现对于ISOLATION_DEFAULT以外的任何级别都将抛出异常。
+	 * <p>子类可以针对特定的JTA实现重写此方法, 作为重写完整{@link #doJtaBegin}方法的替代方案。
 	 * @param txObject the JtaTransactionObject containing the UserTransaction
 	 * @param isolationLevel isolation level taken from transaction definition
 	 * @throws InvalidIsolationLevelException if the given isolation level
@@ -911,8 +866,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Apply the given transaction timeout. The default implementation will call
-	 * {@code UserTransaction.setTransactionTimeout} for a non-default timeout value.
+	 * 应用给定的事务超时。默认实现对于非默认超时值将调用{@code UserTransaction.setTransactionTimeout}。
 	 * @param txObject the JtaTransactionObject containing the UserTransaction
 	 * @param timeout the timeout value taken from transaction definition
 	 * @throws SystemException if thrown by the JTA implementation
@@ -942,8 +896,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Perform a JTA suspend on the JTA TransactionManager.
-	 * <p>Can be overridden in subclasses, for specific JTA implementations.
+	 * 在JTA TransactionManager上执行JTA suspend操作。
+	 * <p>子类可以针对特定的JTA实现重写此方法。
 	 * @param txObject the JtaTransactionObject containing the UserTransaction
 	 * @return the suspended JTA Transaction object
 	 * @throws SystemException if thrown by JTA methods
@@ -977,8 +931,8 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Perform a JTA resume on the JTA TransactionManager.
-	 * <p>Can be overridden in subclasses, for specific JTA implementations.
+	 * 在JTA TransactionManager上执行JTA resume操作。
+	 * <p>子类可以针对特定的JTA实现重写此方法。
 	 * @param txObject the JtaTransactionObject containing the UserTransaction
 	 * @param suspendedTransaction the suspended JTA Transaction object
 	 * @throws InvalidTransactionException if thrown by JTA methods
@@ -999,8 +953,7 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 
 
 	/**
-	 * This implementation returns "true": a JTA commit will properly handle
-	 * transactions that have been marked rollback-only at a global level.
+	 * 此实现返回"true": JTA提交将正确处理在全局级别被标记为rollback-only的事务。
 	 */
 	@Override
 	protected boolean shouldCommitOnGlobalRollbackOnly() {
@@ -1132,13 +1085,12 @@ public class JtaTransactionManager extends AbstractPlatformTransactionManager
 	}
 
 	/**
-	 * Register a JTA synchronization on the JTA TransactionManager, for calling
-	 * {@code afterCompletion} on the given Spring TransactionSynchronizations.
-	 * <p>The default implementation registers the synchronizations on the
-	 * JTA 1.1 TransactionSynchronizationRegistry, if available, or on the
-	 * JTA TransactionManager's current Transaction - again, if available.
-	 * If none of the two is available, a warning will be logged.
-	 * <p>Can be overridden in subclasses, for specific JTA implementations.
+	 * 在JTA TransactionManager上注册JTA同步, 用于在给定的Spring TransactionSynchronization上
+	 * 调用{@code afterCompletion}。
+	 * <p>默认实现在JTA 1.1 TransactionSynchronizationRegistry(如果可用)上注册同步,
+	 * 或者在JTA TransactionManager的当前Transaction上注册(同样, 如果可用)。
+	 * 如果两者都不可用, 将记录警告日志。
+	 * <p>子类可以针对特定的JTA实现重写此方法。
 	 * @param txObject the current transaction object
 	 * @param synchronizations a List of TransactionSynchronization objects
 	 * @throws RollbackException if thrown by JTA methods

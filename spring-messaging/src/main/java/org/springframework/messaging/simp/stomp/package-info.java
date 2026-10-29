@@ -1,5 +1,5 @@
 /**
- * Generic support for simple messaging protocols (like STOMP).
+ * 对简单消息传递协议（如 STOMP）的通用支持。
  */
 @NonNullApi
 @NonNullFields

@@ -19,7 +19,7 @@ package org.springframework.expression;
 import org.springframework.lang.Nullable;
 
 /**
- * Superclass for exceptions that can occur whilst processing expressions.
+ * 处理表达式时可能发生的异常的父类。
  *
  * @author Andy Clement
  * @author Phillip Webb
@@ -35,7 +35,7 @@ public class ExpressionException extends RuntimeException {
 
 
 	/**
-	 * Construct a new expression exception.
+	 * 构造一个新的表达式异常。
 	 * @param message a descriptive message
 	 */
 	public ExpressionException(String message) {
@@ -45,7 +45,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Construct a new expression exception.
+	 * 构造一个新的表达式异常。
 	 * @param message a descriptive message
 	 * @param cause the underlying cause of this exception
 	 */
@@ -56,7 +56,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Construct a new expression exception.
+	 * 构造一个新的表达式异常。
 	 * @param expressionString the expression string
 	 * @param message a descriptive message
 	 */
@@ -67,7 +67,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Construct a new expression exception.
+	 * 构造一个新的表达式异常。
 	 * @param expressionString the expression string
 	 * @param position the position in the expression string where the problem occurred
 	 * @param message a descriptive message
@@ -79,7 +79,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Construct a new expression exception.
+	 * 构造一个新的表达式异常。
 	 * @param position the position in the expression string where the problem occurred
 	 * @param message a descriptive message
 	 */
@@ -90,7 +90,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Construct a new expression exception.
+	 * 构造一个新的表达式异常。
 	 * @param position the position in the expression string where the problem occurred
 	 * @param message a descriptive message
 	 * @param cause the underlying cause of this exception
@@ -103,7 +103,7 @@ public class ExpressionException extends RuntimeException {
 
 
 	/**
-	 * Return the expression string.
+	 * 返回表达式字符串。
 	 */
 	@Nullable
 	public final String getExpressionString() {
@@ -111,15 +111,14 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Return the position in the expression string where the problem occurred.
+	 * 返回问题在表达式字符串中发生的位置。
 	 */
 	public final int getPosition() {
 		return this.position;
 	}
 
 	/**
-	 * Return the exception message.
-	 * As of Spring 4.0, this method returns the same result as {@link #toDetailedString()}.
+	 * 返回异常消息。从 Spring 4.0 开始，此方法返回的结果与 {@link #toDetailedString()} 相同。
 	 * @see #getSimpleMessage()
 	 * @see java.lang.Throwable#getMessage()
 	 */
@@ -129,8 +128,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Return a detailed description of this exception, including the expression
-	 * String and position (if available) as well as the actual exception message.
+	 * 返回此异常的详细描述，包括表达式字符串和位置（如果可用）以及实际的异常消息。
 	 */
 	public String toDetailedString() {
 		if (this.expressionString != null) {
@@ -152,8 +150,7 @@ public class ExpressionException extends RuntimeException {
 	}
 
 	/**
-	 * Return the exception simple message without including the expression
-	 * that caused the failure.
+	 * 返回异常的简单消息，不包括导致失败的表达式。
 	 * @since 4.0
 	 */
 	public String getSimpleMessage() {

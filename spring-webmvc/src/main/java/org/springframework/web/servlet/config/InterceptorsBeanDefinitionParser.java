@@ -33,8 +33,8 @@ import org.springframework.util.xml.DomUtils;
 import org.springframework.web.servlet.handler.MappedInterceptor;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses a
- * {@code interceptors} element to register a set of {@link MappedInterceptor} definitions.
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}，用于解析
+ * {@code interceptors} 元素并注册一组 {@link MappedInterceptor} 定义。
  *
  * @author Keith Donald
  * @since 3.0

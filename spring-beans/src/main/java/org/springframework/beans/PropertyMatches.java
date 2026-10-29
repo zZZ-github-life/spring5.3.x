@@ -26,11 +26,10 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Helper class for calculating property matches, according to a configurable
- * distance. Provide the list of potential matches and an easy way to generate
- * an error message. Works for both java bean properties and fields.
+ * 用于根据可配置的距离计算属性匹配的辅助类。提供潜在匹配的列表以及生成错误消息的简便方式。既适用于
+ * Java Bean 属性，也适用于字段。
  *
- * <p>Mainly for use within the framework and in particular the binding facility.
+ * <p>主要供框架内部使用，特别是绑定设施。
  *
  * @author Alef Arendsen
  * @author Arjen Poutsma
@@ -42,14 +41,14 @@ import org.springframework.util.StringUtils;
  */
 public abstract class PropertyMatches {
 
-	/** Default maximum property distance: 2. */
+	/** 默认最大属性距离：2。 */
 	public static final int DEFAULT_MAX_DISTANCE = 2;
 
 
 	// Static factory methods
 
 	/**
-	 * Create PropertyMatches for the given bean property.
+	 * 为给定的 Bean 属性创建 PropertyMatches。
 	 * @param propertyName the name of the property to find possible matches for
 	 * @param beanClass the bean class to search for matches
 	 */
@@ -58,7 +57,7 @@ public abstract class PropertyMatches {
 	}
 
 	/**
-	 * Create PropertyMatches for the given bean property.
+	 * 为给定的 Bean 属性创建 PropertyMatches。
 	 * @param propertyName the name of the property to find possible matches for
 	 * @param beanClass the bean class to search for matches
 	 * @param maxDistance the maximum property distance allowed for matches
@@ -68,7 +67,7 @@ public abstract class PropertyMatches {
 	}
 
 	/**
-	 * Create PropertyMatches for the given field property.
+	 * 为给定的字段属性创建 PropertyMatches。
 	 * @param propertyName the name of the field to find possible matches for
 	 * @param beanClass the bean class to search for matches
 	 */
@@ -77,7 +76,7 @@ public abstract class PropertyMatches {
 	}
 
 	/**
-	 * Create PropertyMatches for the given field property.
+	 * 为给定的字段属性创建 PropertyMatches。
 	 * @param propertyName the name of the field to find possible matches for
 	 * @param beanClass the bean class to search for matches
 	 * @param maxDistance the maximum property distance allowed for matches
@@ -95,7 +94,7 @@ public abstract class PropertyMatches {
 
 
 	/**
-	 * Create a new PropertyMatches instance for the given property and possible matches.
+	 * 为给定的属性及可能的匹配创建新的 PropertyMatches 实例。
 	 */
 	private PropertyMatches(String propertyName, String[] possibleMatches) {
 		this.propertyName = propertyName;
@@ -104,22 +103,21 @@ public abstract class PropertyMatches {
 
 
 	/**
-	 * Return the name of the requested property.
+	 * 返回所请求属性的名称。
 	 */
 	public String getPropertyName() {
 		return this.propertyName;
 	}
 
 	/**
-	 * Return the calculated possible matches.
+	 * 返回计算出的可能匹配。
 	 */
 	public String[] getPossibleMatches() {
 		return this.possibleMatches;
 	}
 
 	/**
-	 * Build an error message for the given invalid property name,
-	 * indicating the possible property matches.
+	 * 为给定的无效属性名构建错误消息，并指出可能的属性匹配。
 	 */
 	public abstract String buildErrorMessage();
 
@@ -142,8 +140,7 @@ public abstract class PropertyMatches {
 	}
 
 	/**
-	 * Calculate the distance between the given two Strings
-	 * according to the Levenshtein algorithm.
+	 * 根据 Levenshtein 算法计算给定的两个字符串之间的距离。
 	 * @param s1 the first String
 	 * @param s2 the second String
 	 * @return the distance value
@@ -193,9 +190,8 @@ public abstract class PropertyMatches {
 		}
 
 		/**
-		 * Generate possible property alternatives for the given property and class.
-		 * Internally uses the {@code getStringDistance} method, which in turn uses
-		 * the Levenshtein algorithm to determine the distance between two Strings.
+		 * 为给定的属性和类生成可能的属性备选名称。内部使用 {@code getStringDistance} 方法，该方法进而使用
+		 * Levenshtein 算法确定两个字符串之间的距离。
 		 * @param descriptors the JavaBeans property descriptors to search
 		 * @param maxDistance the maximum distance to accept
 		 */

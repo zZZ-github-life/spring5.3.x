@@ -24,7 +24,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MimeType;
 
 /**
- * Base class providing support methods for Protobuf encoding and decoding.
+ * 为 Protobuf 编码和解码提供支持方法的基类。
  *
  * @author Sebastien Deleuze
  * @since 5.1

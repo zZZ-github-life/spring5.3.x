@@ -38,8 +38,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 import org.springframework.web.util.WebUtils;
 
 /**
- * An interceptor to check request {@code Origin} header value against a
- * collection of allowed origins.
+ * 一个拦截器，用于根据允许的来源集合检查请求的 {@code Origin} 头值。
  *
  * @author Sebastien Deleuze
  * @since 4.1.2
@@ -52,13 +51,13 @@ public class OriginHandshakeInterceptor implements HandshakeInterceptor {
 
 
 	/**
-	 * Default constructor with only same origin requests allowed.
+	 * 仅允许同源请求的默认构造函数。
 	 */
 	public OriginHandshakeInterceptor() {
 	}
 
 	/**
-	 * Constructor using the specified allowed origin values.
+	 * 使用指定的允许来源值构造。
 	 * @see #setAllowedOrigins(Collection)
 	 */
 	public OriginHandshakeInterceptor(Collection<String> allowedOrigins) {
@@ -67,21 +66,18 @@ public class OriginHandshakeInterceptor implements HandshakeInterceptor {
 
 
 	/**
-	 * Set the origins for which cross-origin requests are allowed from a browser.
-	 * Please, refer to {@link CorsConfiguration#setAllowedOrigins(List)} for
-	 * format details and considerations, and keep in mind that the CORS spec
-	 * does not allow use of {@code "*"} with {@code allowCredentials=true}.
-	 * For more flexible origin patterns use {@link #setAllowedOriginPatterns}
-	 * instead.
+	 * 设置允许浏览器发起跨域请求的来源。
+	 * 有关格式细节和注意事项，请参阅 {@link CorsConfiguration#setAllowedOrigins(List)}，
+	 * 并记住 CORS 规范不允许在 {@code allowCredentials=true} 时使用 {@code "*"}。
+	 * 如需更灵活的来源模式，请改用 {@link #setAllowedOriginPatterns}。
 	 *
-	 * <p>By default, no origins are allowed. When
-	 * {@link #setAllowedOriginPatterns(Collection) allowedOriginPatterns} is also
-	 * set, then that takes precedence over this property.
+	 * <p>默认情况下，不允许任何来源。当同时设置了
+	 * {@link #setAllowedOriginPatterns(Collection) allowedOriginPatterns} 时，
+	 * 该属性优先于此属性。
 	 *
-	 * <p>Note when SockJS is enabled and origins are restricted, transport types
-	 * that do not allow to check request origin (Iframe based transports) are
-	 * disabled. As a consequence, IE 6 to 9 are not supported when origins are
-	 * restricted.
+	 * <p>请注意，当启用 SockJS 且限制了来源时，不允许检查请求来源的
+	 * 传输类型（基于 Iframe 的传输）将被禁用。因此，在限制来源时
+	 * 不支持 IE 6 到 9。
 	 * @see #setAllowedOriginPatterns(Collection)
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
 	 */
@@ -91,7 +87,7 @@ public class OriginHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Return the {@link #setAllowedOriginPatterns(Collection) configured} allowed origins.
+	 * 返回 {@link #setAllowedOriginPatterns(Collection) 已配置的}允许来源。
 	 * @since 4.1.5
 	 */
 	public Collection<String> getAllowedOrigins() {
@@ -101,12 +97,10 @@ public class OriginHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Alternative to {@link #setAllowedOrigins(Collection)} that supports more
-	 * flexible patterns for specifying the origins for which cross-origin
-	 * requests are allowed from a browser. Please, refer to
-	 * {@link CorsConfiguration#setAllowedOriginPatterns(List)} for format
-	 * details and other considerations.
-	 * <p>By default this is not set.
+	 * {@link #setAllowedOrigins(Collection)} 的替代方案，支持更灵活的模式
+	 * 来指定允许浏览器发起跨域请求的来源。有关格式细节和其他注意事项，
+	 * 请参阅 {@link CorsConfiguration#setAllowedOriginPatterns(List)}。
+	 * <p>默认情况下未设置。
 	 * @since 5.3.2
 	 */
 	public void setAllowedOriginPatterns(Collection<String> allowedOriginPatterns) {
@@ -115,7 +109,7 @@ public class OriginHandshakeInterceptor implements HandshakeInterceptor {
 	}
 
 	/**
-	 * Return the {@link #setAllowedOriginPatterns(Collection) configured} allowed origin patterns.
+	 * 返回 {@link #setAllowedOriginPatterns(Collection) 已配置的}允许来源模式。
 	 * @since 5.3.2
 	 */
 	public Collection<String> getAllowedOriginPatterns() {

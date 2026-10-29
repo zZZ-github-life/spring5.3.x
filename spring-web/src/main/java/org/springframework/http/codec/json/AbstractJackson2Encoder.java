@@ -58,9 +58,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.MimeType;
 
 /**
- * Base class providing support methods for Jackson 2.9 encoding. For non-streaming use
- * cases, {@link Flux} elements are collected into a {@link List} before serialization for
- * performance reason.
+ * 为 Jackson 2.9 编码提供支持方法的基类。对于非流式使用场景，
+ * 出于性能考虑，{@link Flux} 元素会在序列化前收集到 {@link List} 中。
  *
  * @author Sebastien Deleuze
  * @author Arjen Poutsma
@@ -85,7 +84,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 
 
 	/**
-	 * Constructor with a Jackson {@link ObjectMapper} to use.
+	 * 使用要采用的 Jackson {@link ObjectMapper} 的构造函数。
 	 */
 	protected AbstractJackson2Encoder(ObjectMapper mapper, MimeType... mimeTypes) {
 		super(mapper, mimeTypes);
@@ -93,8 +92,8 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 
 
 	/**
-	 * Configure "streaming" media types for which flushing should be performed
-	 * automatically vs at the end of the stream.
+	 * 配置"流式"媒体类型，对于这些类型应自动执行刷新，
+	 * 而不是在流结束时刷新。
 	 */
 	public void setStreamingMediaTypes(List<MediaType> mediaTypes) {
 		this.streamingMediaTypes.clear();
@@ -320,10 +319,10 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 	}
 
 	/**
-	 * Return the separator to use for the given mime type.
-	 * <p>By default, this method returns new line {@code "\n"} if the given
-	 * mime type is one of the configured {@link #setStreamingMediaTypes(List)
-	 * streaming} mime types.
+	 * 返回用于给定 MIME 类型的分隔符。
+	 * <p>默认情况下，如果给定的 MIME 类型是所配置的
+	 * {@link #setStreamingMediaTypes(List) 流式} MIME 类型之一，
+	 * 此方法返回换行符 {@code "\n"}。
 	 * @since 5.3
 	 */
 	@Nullable
@@ -337,7 +336,7 @@ public abstract class AbstractJackson2Encoder extends Jackson2CodecSupport imple
 	}
 
 	/**
-	 * Determine the JSON encoding to use for the given mime type.
+	 * 确定用于给定 MIME 类型的 JSON 编码。
 	 * @param mimeType the mime type as requested by the caller
 	 * @return the JSON encoding to use (never {@code null})
 	 * @since 5.0.5

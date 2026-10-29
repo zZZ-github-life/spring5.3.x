@@ -24,21 +24,17 @@ import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.lang.Nullable;
 
 /**
- * Base interface used by the {@link DefaultBeanDefinitionDocumentReader}
- * for handling custom namespaces in a Spring XML configuration file.
+ * 由 {@link DefaultBeanDefinitionDocumentReader} 使用的基础接口，用于处理 Spring XML 配置文件中的
+ * 自定义命名空间。
  *
- * <p>Implementations are expected to return implementations of the
- * {@link BeanDefinitionParser} interface for custom top-level tags and
- * implementations of the {@link BeanDefinitionDecorator} interface for
- * custom nested tags.
+ * <p>实现类应为自定义顶层标签返回 {@link BeanDefinitionParser} 接口的实现，为自定义嵌套标签返回
+ * {@link BeanDefinitionDecorator} 接口的实现。
  *
- * <p>The parser will call {@link #parse} when it encounters a custom tag
- * directly under the {@code <beans>} tags and {@link #decorate} when
- * it encounters a custom tag directly under a {@code <bean>} tag.
+ * <p>解析器在遇到位于 {@code <beans>} 标签正下方的自定义标签时会调用 {@link #parse}，在遇到位于
+ * {@code <bean>} 标签正下方的自定义标签时会调用 {@link #decorate}。
  *
- * <p>Developers writing their own custom element extensions typically will
- * not implement this interface directly, but rather make use of the provided
- * {@link NamespaceHandlerSupport} class.
+ * <p>编写自己自定义元素扩展的开发者通常不会直接实现此接口，而是使用所提供的
+ * {@link NamespaceHandlerSupport} 类。
  *
  * @author Rob Harrop
  * @author Erik Wiersma
@@ -49,22 +45,17 @@ import org.springframework.lang.Nullable;
 public interface NamespaceHandler {
 
 	/**
-	 * Invoked by the {@link DefaultBeanDefinitionDocumentReader} after
-	 * construction but before any custom elements are parsed.
+	 * 由 {@link DefaultBeanDefinitionDocumentReader} 在构造之后、解析任何自定义元素之前调用。
 	 * @see NamespaceHandlerSupport#registerBeanDefinitionParser(String, BeanDefinitionParser)
 	 */
 	void init();
 
 	/**
-	 * Parse the specified {@link Element} and register any resulting
-	 * {@link BeanDefinition BeanDefinitions} with the
-	 * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
-	 * that is embedded in the supplied {@link ParserContext}.
-	 * <p>Implementations should return the primary {@code BeanDefinition}
-	 * that results from the parse phase if they wish to be used nested
-	 * inside (for example) a {@code <property>} tag.
-	 * <p>Implementations may return {@code null} if they will
-	 * <strong>not</strong> be used in a nested scenario.
+	 * 解析指定的 {@link Element}，并将任何产生的 {@link BeanDefinition BeanDefinitions} 注册到嵌入在所
+	 * 提供 {@link ParserContext} 中的
+	 * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}。<p>如果实现希望被嵌套
+	 * 使用（例如）在 {@code <property>} 标签内，则应返回解析阶段产生的主 {@code BeanDefinition}。<p>如
+	 * 果实现<strong>不会</strong>用于嵌套场景，则可以返回 {@code null}。
 	 * @param element the element that is to be parsed into one or more {@code BeanDefinitions}
 	 * @param parserContext the object encapsulating the current state of the parsing process
 	 * @return the primary {@code BeanDefinition} (can be {@code null} as explained above)
@@ -73,16 +64,11 @@ public interface NamespaceHandler {
 	BeanDefinition parse(Element element, ParserContext parserContext);
 
 	/**
-	 * Parse the specified {@link Node} and decorate the supplied
-	 * {@link BeanDefinitionHolder}, returning the decorated definition.
-	 * <p>The {@link Node} may be either an {@link org.w3c.dom.Attr} or an
-	 * {@link Element}, depending on whether a custom attribute or element
-	 * is being parsed.
-	 * <p>Implementations may choose to return a completely new definition,
-	 * which will replace the original definition in the resulting
-	 * {@link org.springframework.beans.factory.BeanFactory}.
-	 * <p>The supplied {@link ParserContext} can be used to register any
-	 * additional beans needed to support the main definition.
+	 * 解析指定的 {@link Node} 并装饰所提供的 {@link BeanDefinitionHolder}，返回装饰后的定义。<p>根据正
+	 * 在解析的是自定义属性还是元素，{@link Node} 可以是 {@link org.w3c.dom.Attr} 或 {@link Element}。
+	 * <p>实现可以选择返回一个全新的定义，它将替换
+	 * {@link org.springframework.beans.factory.BeanFactory} 中的原始定义。<p>所提供的
+	 * {@link ParserContext} 可用于注册支持主定义所需的任何附加 bean。
 	 * @param source the source element or attribute that is to be parsed
 	 * @param definition the current bean definition
 	 * @param parserContext the object encapsulating the current state of the parsing process

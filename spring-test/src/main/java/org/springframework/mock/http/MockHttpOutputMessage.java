@@ -27,7 +27,7 @@ import org.springframework.http.HttpOutputMessage;
 import org.springframework.util.StreamUtils;
 
 /**
- * Mock implementation of {@link HttpOutputMessage}.
+ * {@link HttpOutputMessage} 的模拟实现。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -42,7 +42,7 @@ public class MockHttpOutputMessage implements HttpOutputMessage {
 
 
 	/**
-	 * Return the headers.
+	 * 返回头信息。
 	 */
 	@Override
 	public HttpHeaders getHeaders() {
@@ -50,7 +50,7 @@ public class MockHttpOutputMessage implements HttpOutputMessage {
 	}
 
 	/**
-	 * Return the body content.
+	 * 返回正文内容。
 	 */
 	@Override
 	public OutputStream getBody() throws IOException {
@@ -58,21 +58,21 @@ public class MockHttpOutputMessage implements HttpOutputMessage {
 	}
 
 	/**
-	 * Return body content as a byte array.
+	 * 以字节数组形式返回正文内容。
 	 */
 	public byte[] getBodyAsBytes() {
 		return this.body.toByteArray();
 	}
 
 	/**
-	 * Return the body content interpreted as a UTF-8 string.
+	 * 将正文内容按 UTF-8 字符串解释后返回。
 	 */
 	public String getBodyAsString() {
 		return getBodyAsString(DEFAULT_CHARSET);
 	}
 
 	/**
-	 * Return the body content as a string.
+	 * 以字符串形式返回正文内容。
 	 * @param charset the charset to use to turn the body content to a String
 	 */
 	public String getBodyAsString(Charset charset) {

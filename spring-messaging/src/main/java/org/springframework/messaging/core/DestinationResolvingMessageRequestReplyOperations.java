@@ -23,8 +23,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Extends {@link MessageRequestReplyOperations} and adds operations for sending and
- * receiving messages to and from a destination specified as a (resolvable) String name.
+ * 扩展 {@link MessageRequestReplyOperations}，增加了向以（可解析的）String 名称
+ * 指定的目标发送消息以及从该目标接收消息的操作。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -35,8 +35,7 @@ import org.springframework.messaging.MessagingException;
 public interface DestinationResolvingMessageRequestReplyOperations<D> extends MessageRequestReplyOperations<D> {
 
 	/**
-	 * Resolve the given destination name to a destination and send the given message,
-	 * receive a reply and return it.
+	 * 将给定目标名称解析为目标并发送给定消息，接收应答并返回。
 	 * @param destinationName the name of the target destination
 	 * @param requestMessage the message to send
 	 * @return the received message, possibly {@code null} if the message could not
@@ -46,11 +45,9 @@ public interface DestinationResolvingMessageRequestReplyOperations<D> extends Me
 	Message<?> sendAndReceive(String destinationName, Message<?> requestMessage) throws MessagingException;
 
 	/**
-	 * Resolve the given destination name, convert the payload request Object
-	 * to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message and send it to the resolved destination, receive a reply
-	 * and convert its body to the specified target class.
+	 * 解析给定目标名称，将请求载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为消息并发送到解析后的目标，接收应答并将其正文转换为指定目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request the payload for the request message to send
 	 * @param targetClass the target class to convert the payload of the reply to
@@ -62,11 +59,10 @@ public interface DestinationResolvingMessageRequestReplyOperations<D> extends Me
 			throws MessagingException;
 
 	/**
-	 * Resolve the given destination name, convert the payload request Object
-	 * to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers and send it to the resolved destination,
-	 * receive a reply and convert its body to the specified target class.
+	 * 解析给定目标名称，将请求载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为带有给定头的消息并发送到解析后的目标，
+	 * 接收应答并将其正文转换为指定目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request the payload for the request message to send
 	 * @param headers the headers for the request message to send
@@ -79,12 +75,10 @@ public interface DestinationResolvingMessageRequestReplyOperations<D> extends Me
 			@Nullable Map<String, Object> headers, Class<T> targetClass) throws MessagingException;
 
 	/**
-	 * Resolve the given destination name, convert the payload request Object
-	 * to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message, apply the given post process, and send the resulting
-	 * message to the resolved destination, then receive a reply and convert its
-	 * body to the specified target class.
+	 * 解析给定目标名称，将请求载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为消息，应用给定的后处理，并将结果消息发送到解析后的目标，
+	 * 然后接收应答并将其正文转换为指定目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request the payload for the request message to send
 	 * @param targetClass the target class to convert the payload of the reply to
@@ -97,12 +91,10 @@ public interface DestinationResolvingMessageRequestReplyOperations<D> extends Me
 			@Nullable MessagePostProcessor requestPostProcessor) throws MessagingException;
 
 	/**
-	 * Resolve the given destination name, convert the payload request Object
-	 * to serialized form, possibly using a
-	 * {@link org.springframework.messaging.converter.MessageConverter},
-	 * wrap it as a message with the given headers, apply the given post process,
-	 * and send the resulting message to the resolved destination, then receive
-	 * a reply and convert its body to the specified target class.
+	 * 解析给定目标名称，将请求载荷 Object 转换为序列化形式
+	 * （可能使用 {@link org.springframework.messaging.converter.MessageConverter}），
+	 * 将其包装为带有给定头的消息，应用给定的后处理，并将结果消息发送到解析后的目标，
+	 * 然后接收应答并将其正文转换为指定目标类。
 	 * @param destinationName the name of the target destination
 	 * @param request the payload for the request message to send
 	 * @param headers the headers for the request message to send

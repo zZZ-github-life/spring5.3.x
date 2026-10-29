@@ -20,8 +20,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.reactive.result.view.UrlBasedViewResolver;
 
 /**
- * Assist with configuring properties of a {@link UrlBasedViewResolver}.
- *
+ * 用于协助配置 {@link UrlBasedViewResolver} 的属性。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -37,7 +36,7 @@ public class UrlBasedViewResolverRegistration {
 
 
 	/**
-	 * Set the prefix that gets prepended to view names when building a URL.
+	 * 设置构建 URL 时添加到视图名称前面的前缀。
 	 * @see UrlBasedViewResolver#setPrefix
 	 */
 	public UrlBasedViewResolverRegistration prefix(String prefix) {
@@ -46,7 +45,7 @@ public class UrlBasedViewResolverRegistration {
 	}
 
 	/**
-	 * Set the suffix that gets appended to view names when building a URL.
+	 * 设置构建 URL 时追加到视图名称后面的后缀。
 	 * @see UrlBasedViewResolver#setSuffix
 	 */
 	public UrlBasedViewResolverRegistration suffix(String suffix) {
@@ -55,7 +54,7 @@ public class UrlBasedViewResolverRegistration {
 	}
 
 	/**
-	 * Set the view class that should be used to create views.
+	 * 设置应用于创建视图的视图类。
 	 * @see UrlBasedViewResolver#setViewClass
 	 */
 	public UrlBasedViewResolverRegistration viewClass(Class<?> viewClass) {
@@ -64,9 +63,7 @@ public class UrlBasedViewResolverRegistration {
 	}
 
 	/**
-	 * Set the view names (or name patterns) that can be handled by this view
-	 * resolver. View names can contain simple wildcards such that 'my*', '*Report'
-	 * and '*Repo*' will all match the view name 'myReport'.
+	 * 设置此视图解析器可以处理的视图名称（或名称模式）。视图名称可以包含简单的通配符，例如 'my*'、'*Report' 和 '*Repo*' 都将匹配视图名称 'myReport'。
 	 * @see UrlBasedViewResolver#setViewNames
 	 */
 	public UrlBasedViewResolverRegistration viewNames(String... viewNames) {

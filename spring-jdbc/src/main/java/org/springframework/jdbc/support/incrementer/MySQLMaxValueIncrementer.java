@@ -29,33 +29,29 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
 
 /**
- * {@link DataFieldMaxValueIncrementer} that increments the maximum value of a given MySQL table
- * with the equivalent of an auto-increment column. Note: If you use this class, your MySQL
- * key column should <i>NOT</i> be auto-increment, as the sequence table does the job.
+ * {@link DataFieldMaxValueIncrementer}，通过相当于自增列的方式递增给定 MySQL 表的最大值。
+ * 注意：如果使用此类，你的 MySQL 键列应 <i>不</i> 为自增列，因为序列表会完成这项工作。
  *
- * <p>The sequence is kept in a table; there should be one sequence table per
- * table that needs an auto-generated key. The storage engine used by the sequence table
- * can be MYISAM or INNODB since the sequences are allocated using a separate connection
- * without being affected by any other transactions that might be in progress.
+ * <p>序列保存在一张表中；每个需要自动生成键的表都应有一张对应的序列表。
+ * 序列表使用的存储引擎可以是 MYISAM 或 INNODB，因为序列是使用单独的连接分配的，
+ * 不会受任何其他可能正在进行的事务影响。
  *
- * <p>Example:
+ * <p>示例：
  *
  * <pre class="code">
  * create table tab (id int unsigned not null primary key, text varchar(100));
  * create table tab_sequence (value int not null);
  * insert into tab_sequence values(0);</pre>
  *
- * <p>If {@code cacheSize} is set, the intermediate values are served without querying the
- * database. If the server or your application is stopped or crashes or a transaction
- * is rolled back, the unused values will never be served. The maximum hole size in
- * numbering is consequently the value of {@code cacheSize}.
+ * <p>如果设置了 {@code cacheSize}，中间值将直接从缓存提供，而无需查询数据库。
+ * 如果服务器或应用停止、崩溃，或者事务回滚，未使用的值将永远不会被提供。
+ * 因此编号中的最大空洞大小即为 {@code cacheSize} 的值。
  *
- * <p>It is possible to avoid acquiring a new connection for the incrementer by setting the
- * "useNewConnection" property to false. In this case you <i>MUST</i> use a non-transactional
- * storage engine like MYISAM when defining the incrementer table.
+ * <p>通过将 "useNewConnection" 属性设置为 false，可以为递增器避免获取新连接。
+ * 在这种情况下，定义递增器表时你 <i>必须</i> 使用像 MYISAM 这样的非事务性存储引擎。
  *
- * <p>As of Spring Framework 5.3.7, {@code MySQLMaxValueIncrementer} is compatible with
- * <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-tips.html#safe-updates">MySQL safe updates mode</a>.
+ * <p>从 Spring Framework 5.3.7 开始，{@code MySQLMaxValueIncrementer} 兼容
+ * <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-tips.html#safe-updates">MySQL safe updates mode</a>。
  *
  * @author Jean-Pierre Pawlak
  * @author Thomas Risberg
@@ -64,21 +60,21 @@ import org.springframework.jdbc.support.JdbcUtils;
  */
 public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer {
 
-	/** The SQL string for retrieving the new sequence value. */
+	/** 用于获取新序列值的 SQL 字符串。 */
 	private static final String VALUE_SQL = "select last_insert_id()";
 
-	/** The next id to serve. */
+	/** 下一个要提供的 ID。 */
 	private long nextId = 0;
 
-	/** The max id to serve. */
+	/** 要提供的最大 ID。 */
 	private long maxId = 0;
 
-	/** Whether to use a new connection for the incrementer. */
+	/** 是否为此递增器使用新连接。 */
 	private boolean useNewConnection = true;
 
 
 	/**
-	 * Default constructor for bean property style usage.
+	 * 用于 bean 属性风格用法的默认构造函数。
 	 * @see #setDataSource
 	 * @see #setIncrementerName
 	 * @see #setColumnName
@@ -87,7 +83,7 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 	}
 
 	/**
-	 * Convenience constructor.
+	 * 便捷构造函数。
 	 * @param dataSource the DataSource to use
 	 * @param incrementerName the name of the sequence table to use
 	 * @param columnName the name of the column in the sequence table to use
@@ -98,13 +94,12 @@ public class MySQLMaxValueIncrementer extends AbstractColumnMaxValueIncrementer 
 
 
 	/**
-	 * Set whether to use a new connection for the incrementer.
-	 * <p>{@code true} is necessary to support transactional storage engines,
-	 * using an isolated separate transaction for the increment operation.
-	 * {@code false} is sufficient if the storage engine of the sequence table
-	 * is non-transactional (like MYISAM), avoiding the effort of acquiring an
-	 * extra {@code Connection} for the increment operation.
-	 * <p>Default is {@code true} since Spring Framework 5.0.
+	 * 设置是否为此递增器使用新连接。
+	 * <p>{@code true} 对于支持事务性存储引擎是必需的，
+	 * 此时递增操作使用一个隔离的独立事务。
+	 * 如果序列表的存储引擎是非事务性的（如 MYISAM），则 {@code false} 就足够了，
+	 * 这样可以避免为递增操作额外获取一个 {@code Connection}。
+	 * <p>自 Spring Framework 5.0 起，默认值为 {@code true}。
 	 * @since 4.3.6
 	 * @see DataSource#getConnection()
 	 */

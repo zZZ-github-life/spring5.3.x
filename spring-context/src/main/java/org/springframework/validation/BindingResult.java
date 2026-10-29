@@ -23,15 +23,11 @@ import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.lang.Nullable;
 
 /**
- * General interface that represents binding results. Extends the
- * {@link Errors interface} for error registration capabilities,
- * allowing for a {@link Validator} to be applied, and adds
- * binding-specific analysis and model building.
+ * 表示绑定结果的通用接口。扩展了 {@link Errors interface} 以提供错误注册能力，允许应用
+ * {@link Validator}，并增加了特定于绑定的分析和模型构建功能。
  *
- * <p>Serves as result holder for a {@link DataBinder}, obtained via
- * the {@link DataBinder#getBindingResult()} method. BindingResult
- * implementations can also be used directly, for example to invoke
- * a {@link Validator} on it (e.g. as part of a unit test).
+ * <p>作为 {@link DataBinder} 的结果持有者，可通过 {@link DataBinder#getBindingResult()} 方法获得。
+ * BindingResult 实现也可以直接使用，例如在其上调用 {@link Validator}（例如作为单元测试的一部分）。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -45,32 +41,26 @@ import org.springframework.lang.Nullable;
 public interface BindingResult extends Errors {
 
 	/**
-	 * Prefix for the name of the BindingResult instance in a model,
-	 * followed by the object name.
+	 * 模型中 BindingResult 实例名称的前缀，其后跟随对象名称。
 	 */
 	String MODEL_KEY_PREFIX = BindingResult.class.getName() + ".";
 
 
 	/**
-	 * Return the wrapped target object, which may be a bean, an object with
-	 * public fields, a Map - depending on the concrete binding strategy.
+	 * 返回被包装的目标对象，它可能是一个 Bean、一个带有公共字段的对象或一个 Map——具体取决于具体的绑定
+	 * 策略。
 	 */
 	@Nullable
 	Object getTarget();
 
 	/**
-	 * Return a model Map for the obtained state, exposing a BindingResult
-	 * instance as '{@link #MODEL_KEY_PREFIX MODEL_KEY_PREFIX} + objectName'
-	 * and the object itself as 'objectName'.
-	 * <p>Note that the Map is constructed every time you're calling this method.
-	 * Adding things to the map and then re-calling this method will not work.
-	 * <p>The attributes in the model Map returned by this method are usually
-	 * included in the {@link org.springframework.web.servlet.ModelAndView}
-	 * for a form view that uses Spring's {@code bind} tag in a JSP,
-	 * which needs access to the BindingResult instance. Spring's pre-built
-	 * form controllers will do this for you when rendering a form view.
-	 * When building the ModelAndView instance yourself, you need to include
-	 * the attributes from the model Map returned by this method.
+	 * 为所获得的状态返回一个模型 Map，将 BindingResult 实例暴露为 '
+	 * {@link #MODEL_KEY_PREFIX MODEL_KEY_PREFIX} + objectName'，并将对象本身暴露为 'objectName'。<p>请
+	 * 注意，每次调用此方法都会构造该 Map。向 Map 中添加内容后再重新调用此方法将不起作用。<p>此方法返回
+	 * 的模型 Map 中的属性通常会被包含在 {@link org.springframework.web.servlet.ModelAndView} 中，用于
+	 * 在 JSP 中使用 Spring 的 {@code bind} 标签的表单视图，该视图需要访问 BindingResult 实例。Spring
+	 * 预置的表单控制器在渲染表单视图时会为您完成这些工作。当您自行构建 ModelAndView 实例时，需要包含此
+	 * 方法返回的模型 Map 中的属性。
 	 * @see #getObjectName()
 	 * @see #MODEL_KEY_PREFIX
 	 * @see org.springframework.web.servlet.ModelAndView
@@ -79,8 +69,7 @@ public interface BindingResult extends Errors {
 	Map<String, Object> getModel();
 
 	/**
-	 * Extract the raw field value for the given field.
-	 * Typically used for comparison purposes.
+	 * 提取给定字段的原始字段值。通常用于比较目的。
 	 * @param field the field to check
 	 * @return the current value of the field in its raw form, or {@code null} if not known
 	 */
@@ -88,7 +77,7 @@ public interface BindingResult extends Errors {
 	Object getRawFieldValue(String field);
 
 	/**
-	 * Find a custom property editor for the given type and property.
+	 * 查找给定类型和属性的自定义属性编辑器。
 	 * @param field the path of the property (name or nested path), or
 	 * {@code null} if looking for an editor for all properties of the given type
 	 * @param valueType the type of the property (can be {@code null} if a property
@@ -99,7 +88,7 @@ public interface BindingResult extends Errors {
 	PropertyEditor findEditor(@Nullable String field, @Nullable Class<?> valueType);
 
 	/**
-	 * Return the underlying PropertyEditorRegistry.
+	 * 返回底层的 PropertyEditorRegistry。
 	 * @return the PropertyEditorRegistry, or {@code null} if none
 	 * available for this BindingResult
 	 */
@@ -107,16 +96,14 @@ public interface BindingResult extends Errors {
 	PropertyEditorRegistry getPropertyEditorRegistry();
 
 	/**
-	 * Resolve the given error code into message codes.
-	 * <p>Calls the configured {@link MessageCodesResolver} with appropriate parameters.
+	 * 将给定错误代码解析为消息代码。<p>使用适当的参数调用已配置的 {@link MessageCodesResolver}。
 	 * @param errorCode the error code to resolve into message codes
 	 * @return the resolved message codes
 	 */
 	String[] resolveMessageCodes(String errorCode);
 
 	/**
-	 * Resolve the given error code into message codes for the given field.
-	 * <p>Calls the configured {@link MessageCodesResolver} with appropriate parameters.
+	 * 将给定字段的错误代码解析为消息代码。<p>使用适当的参数调用已配置的 {@link MessageCodesResolver}。
 	 * @param errorCode the error code to resolve into message codes
 	 * @param field the field to resolve message codes for
 	 * @return the resolved message codes
@@ -124,8 +111,8 @@ public interface BindingResult extends Errors {
 	String[] resolveMessageCodes(String errorCode, String field);
 
 	/**
-	 * Add a custom {@link ObjectError} or {@link FieldError} to the errors list.
-	 * <p>Intended to be used by cooperating strategies such as {@link BindingErrorProcessor}.
+	 * 向错误列表添加自定义的 {@link ObjectError} 或 {@link FieldError}。<p>旨在由诸如
+	 * {@link BindingErrorProcessor} 之类的协作策略使用。
 	 * @see ObjectError
 	 * @see FieldError
 	 * @see BindingErrorProcessor
@@ -133,11 +120,8 @@ public interface BindingResult extends Errors {
 	void addError(ObjectError error);
 
 	/**
-	 * Record the given value for the specified field.
-	 * <p>To be used when a target object cannot be constructed, making
-	 * the original field values available through {@link #getFieldValue}.
-	 * In case of a registered error, the rejected value will be exposed
-	 * for each affected field.
+	 * 记录指定字段的给定值。<p>用于无法构造目标对象的情况，使原始字段值可通过 {@link #getFieldValue}
+	 * 获得。如果注册了错误，则对于每个受影响的字段将暴露被拒绝的值。
 	 * @param field the field to record the value for
 	 * @param type the type of the field
 	 * @param value the original value
@@ -147,18 +131,14 @@ public interface BindingResult extends Errors {
 	}
 
 	/**
-	 * Mark the specified disallowed field as suppressed.
-	 * <p>The data binder invokes this for each field value that was
-	 * detected to target a disallowed field.
+	 * 将指定的不允许字段标记为已抑制。<p>数据绑定器会针对每个被检测到指向不允许字段的字段值调用此方法。
 	 * @see DataBinder#setAllowedFields
 	 */
 	default void recordSuppressedField(String field) {
 	}
 
 	/**
-	 * Return the list of fields that were suppressed during the bind process.
-	 * <p>Can be used to determine whether any field values were targeting
-	 * disallowed fields.
+	 * 返回在绑定过程中被抑制的字段列表。<p>可用于确定是否有任何字段值指向了不允许的字段。
 	 * @see DataBinder#setAllowedFields
 	 */
 	default String[] getSuppressedFields() {

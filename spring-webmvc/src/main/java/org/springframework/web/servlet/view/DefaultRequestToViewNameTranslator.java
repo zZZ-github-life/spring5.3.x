@@ -26,23 +26,24 @@ import org.springframework.web.util.ServletRequestPathUtils;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * {@link RequestToViewNameTranslator} that simply transforms the URI of
- * the incoming request into a view name.
+ * {@link RequestToViewNameTranslator}，直接将传入请求的 URI
+ * 转换为视图名称。
  *
- * <p>Can be explicitly defined as the {@code viewNameTranslator} bean in a
- * {@link org.springframework.web.servlet.DispatcherServlet} context.
- * Otherwise, a plain default instance will be used.
+ * <p>可以显式定义为
+ * {@link org.springframework.web.servlet.DispatcherServlet} 上下文中的 {@code viewNameTranslator} bean。
+ * 否则，将使用一个普通的默认实例。
  *
- * <p>The default transformation simply strips leading and trailing slashes
- * as well as the file extension of the URI, and returns the result as the
- * view name with the configured {@link #setPrefix prefix} and a
- * {@link #setSuffix suffix} added as appropriate.
+ * <p>默认转换会去除 URI 的前导斜杠、尾随斜杠
+ * 以及文件扩展名，并将结果作为视图名称返回，
+ * 同时按需添加所配置的 {@link #setPrefix prefix} 和
+ * {@link #setSuffix suffix}。
  *
- * <p>The stripping of the leading slash and file extension can be disabled
- * using the {@link #setStripLeadingSlash stripLeadingSlash} and
- * {@link #setStripExtension stripExtension} properties, respectively.
+ * <p>可以分别通过
+ * {@link #setStripLeadingSlash stripLeadingSlash} 和
+ * {@link #setStripExtension stripExtension} 属性来禁用
+ * 去除前导斜杠和文件扩展名。
  *
- * <p>Find below some examples of request to view name translation.
+ * <p>下面列出一些请求到视图名称转换的示例。
  * <ul>
  * <li>{@code http://localhost:8080/gamecast/display.html} &raquo; {@code display}</li>
  * <li>{@code http://localhost:8080/gamecast/displayShoppingCart.html} &raquo; {@code displayShoppingCart}</li>
@@ -74,7 +75,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 
 
 	/**
-	 * Set the prefix to prepend to generated view names.
+	 * 设置要前置到生成的视图名称之前的前缀。
 	 * @param prefix the prefix to prepend to generated view names
 	 */
 	public void setPrefix(@Nullable String prefix) {
@@ -82,7 +83,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Set the suffix to append to generated view names.
+	 * 设置要追加到生成的视图名称之后的 suffix。
 	 * @param suffix the suffix to append to generated view names
 	 */
 	public void setSuffix(@Nullable String suffix) {
@@ -90,40 +91,39 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Set the value that will replace '{@code /}' as the separator
-	 * in the view name. The default behavior simply leaves '{@code /}'
-	 * as the separator.
+	 * 设置用于替换视图名称中分隔符 '{@code /}' 的值。
+	 * 默认行为是仍然将 '{@code /}' 作为分隔符。
 	 */
 	public void setSeparator(String separator) {
 		this.separator = separator;
 	}
 
 	/**
-	 * Set whether leading slashes should be stripped from the URI when
-	 * generating the view name. Default is "true".
+	 * 设置生成视图名称时是否应从 URI 中去除前导斜杠。
+	 * 默认为 "true"。
 	 */
 	public void setStripLeadingSlash(boolean stripLeadingSlash) {
 		this.stripLeadingSlash = stripLeadingSlash;
 	}
 
 	/**
-	 * Set whether trailing slashes should be stripped from the URI when
-	 * generating the view name. Default is "true".
+	 * 设置生成视图名称时是否应从 URI 中去除尾随斜杠。
+	 * 默认为 "true"。
 	 */
 	public void setStripTrailingSlash(boolean stripTrailingSlash) {
 		this.stripTrailingSlash = stripTrailingSlash;
 	}
 
 	/**
-	 * Set whether file extensions should be stripped from the URI when
-	 * generating the view name. Default is "true".
+	 * 设置生成视图名称时是否应从 URI 中去除文件扩展名。
+	 * 默认为 "true"。
 	 */
 	public void setStripExtension(boolean stripExtension) {
 		this.stripExtension = stripExtension;
 	}
 
 	/**
-	 * Shortcut to same property on underlying {@link #setUrlPathHelper UrlPathHelper}.
+	 * 底层 {@link #setUrlPathHelper UrlPathHelper} 上同名属性的快捷方式。
 	 * @see org.springframework.web.util.UrlPathHelper#setAlwaysUseFullPath
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
@@ -133,7 +133,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Shortcut to same property on underlying {@link #setUrlPathHelper UrlPathHelper}.
+	 * 底层 {@link #setUrlPathHelper UrlPathHelper} 上同名属性的快捷方式。
 	 * @see org.springframework.web.util.UrlPathHelper#setUrlDecode
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
@@ -143,7 +143,7 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Set if ";" (semicolon) content should be stripped from the request URI.
+	 * 设置是否应从请求 URI 中去除 ";"（分号）内容。
 	 * @see org.springframework.web.util.UrlPathHelper#setRemoveSemicolonContent(boolean)
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
@@ -153,10 +153,9 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Set the {@link org.springframework.web.util.UrlPathHelper} to use for
-	 * the resolution of lookup paths.
-	 * <p>Use this to override the default UrlPathHelper with a custom subclass,
-	 * or to share common UrlPathHelper settings across multiple web components.
+	 * 设置用于解析查找路径的 {@link org.springframework.web.util.UrlPathHelper}。
+	 * <p>可使用此属性以自定义子类覆盖默认的 UrlPathHelper，
+	 * 或在多个 Web 组件之间共享公共的 UrlPathHelper 设置。
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
 	 */
@@ -166,8 +165,8 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 
 
 	/**
-	 * Translates the request URI of the incoming {@link HttpServletRequest}
-	 * into the view name based on the configured parameters.
+	 * 根据所配置的参数，将传入的 {@link HttpServletRequest} 的请求 URI
+	 * 转换为视图名称。
 	 * @throws IllegalArgumentException if neither a parsed RequestPath, nor a
 	 * String lookupPath have been resolved and cached as a request attribute.
 	 * @see ServletRequestPathUtils#getCachedPath(ServletRequest)
@@ -180,8 +179,8 @@ public class DefaultRequestToViewNameTranslator implements RequestToViewNameTran
 	}
 
 	/**
-	 * Transform the request URI (in the context of the webapp) stripping
-	 * slashes and extensions, and replacing the separator as required.
+	 * 转换请求 URI（在 Web 应用上下文中），去除
+	 * 斜杠和扩展名，并按需替换分隔符。
 	 * @param lookupPath the lookup path for the current request,
 	 * as determined by the UrlPathHelper
 	 * @return the transformed path, with slashes and extensions stripped

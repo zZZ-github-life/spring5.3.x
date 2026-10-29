@@ -34,19 +34,11 @@ import org.springframework.web.server.ServerErrorException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves method arguments annotated with @{@link PathVariable}.
+ * 解析带有 @{@link PathVariable} 注解的方法参数。
  *
- * <p>An @{@link PathVariable} is a named value that gets resolved from a URI
- * template variable. It is always required and does not have a default value
- * to fall back on. See the base class
- * {@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}
- * for more information on how named values are processed.
+ * <p>@{@link PathVariable} 是从 URI 模板变量解析的命名值。它始终是必需的，并且没有可回退的默认值。有关命名值处理方式的更多信息，请参见基类 {@link org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver}。
  *
- * <p>If the method parameter type is {@link Map}, the name specified in the
- * annotation is used to resolve the URI variable String value. The value is
- * then converted to a {@link Map} via type conversion, assuming a suitable
- * {@link Converter}.
- *
+ * <p>如果方法参数类型为 {@link Map}，则使用注解中指定的名称解析 URI 变量 String 值。然后假定存在合适的 {@link Converter}，通过类型转换将该值转换为 {@link Map}。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @since 5.0
@@ -55,7 +47,7 @@ import org.springframework.web.server.ServerWebExchange;
 public class PathVariableMethodArgumentResolver extends AbstractNamedValueSyncArgumentResolver {
 
 	/**
-	 * Create a new {@link PathVariableMethodArgumentResolver}.
+	 * 创建新的 {@link PathVariableMethodArgumentResolver}。
 	 * @param factory a bean factory to use for resolving {@code ${...}}
 	 * placeholder and {@code #{...}} SpEL expressions in default values;
 	 * or {@code null} if default values are not expected to contain expressions

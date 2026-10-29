@@ -22,7 +22,7 @@ import org.springframework.messaging.Message;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * A contract for sending messages and managing a TCP connection.
+ * 用于发送消息和管理 TCP 连接的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -31,7 +31,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface TcpConnection<P> extends Closeable {
 
 	/**
-	 * Send the given message.
+	 * 发送给定的消息。
 	 * @param message the message
 	 * @return a ListenableFuture that can be used to determine when and if the
 	 * message was successfully sent
@@ -39,21 +39,21 @@ public interface TcpConnection<P> extends Closeable {
 	ListenableFuture<Void> send(Message<P> message);
 
 	/**
-	 * Register a task to invoke after a period of read inactivity.
+	 * 注册一个在读取空闲一段时间后调用的任务。
 	 * @param runnable the task to invoke
 	 * @param duration the amount of inactive time in milliseconds
 	 */
 	void onReadInactivity(Runnable runnable, long duration);
 
 	/**
-	 * Register a task to invoke after a period of write inactivity.
+	 * 注册一个在写入空闲一段时间后调用的任务。
 	 * @param runnable the task to invoke
 	 * @param duration the amount of inactive time in milliseconds
 	 */
 	void onWriteInactivity(Runnable runnable, long duration);
 
 	/**
-	 * Close the connection.
+	 * 关闭连接。
 	 */
 	@Override
 	void close();

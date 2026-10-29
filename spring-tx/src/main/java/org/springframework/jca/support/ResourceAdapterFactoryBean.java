@@ -29,16 +29,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that bootstraps
- * the specified JCA 1.7 {@link javax.resource.spi.ResourceAdapter},
- * starting it with a local {@link javax.resource.spi.BootstrapContext}
- * and exposing it for bean references. It will also stop the ResourceAdapter
- * on context shutdown. This corresponds to 'non-managed' bootstrap in a
- * local environment, according to the JCA 1.7 specification.
+ * {@link org.springframework.beans.factory.FactoryBean}，引导指定的 JCA 1.7
+ * {@link javax.resource.spi.ResourceAdapter}，使用本地
+ * {@link javax.resource.spi.BootstrapContext} 启动它，并将其暴露给 bean 引用。
+ * 它还会在上下文关闭时停止 ResourceAdapter。这对应于 JCA 1.7 规范中
+ * 本地环境下的 "非管理" 引导。
  *
- * <p>This is essentially an adapter for bean-style bootstrapping of a
- * JCA ResourceAdapter, allowing the BootstrapContext or its elements
- * (such as the JCA WorkManager) to be specified through bean properties.
+ * <p>这本质上是一个适配器，用于以 bean 风格引导 JCA ResourceAdapter，
+ * 允许通过 bean 属性指定 BootstrapContext 或其元素（如 JCA WorkManager）。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -64,10 +62,8 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 
 	/**
-	 * Specify the target JCA ResourceAdapter as class, to be instantiated
-	 * with its default configuration.
-	 * <p>Alternatively, specify a pre-configured ResourceAdapter instance
-	 * through the "resourceAdapter" property.
+	 * 将目标 JCA ResourceAdapter 指定为类，使用其默认配置进行实例化。
+	 * <p>或者，通过 "resourceAdapter" 属性指定预配置的 ResourceAdapter 实例。
 	 * @see #setResourceAdapter
 	 */
 	public void setResourceAdapterClass(Class<? extends ResourceAdapter> resourceAdapterClass) {
@@ -75,19 +71,16 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	}
 
 	/**
-	 * Specify the target JCA ResourceAdapter, passed in as configured instance
-	 * which hasn't been started yet. This will typically happen as an
-	 * inner bean definition, configuring the ResourceAdapter instance
-	 * through its vendor-specific bean properties.
+	 * 指定目标 JCA ResourceAdapter，以已配置但尚未启动的实例形式传入。
+	 * 这通常作为内部 bean 定义发生，通过供应商特定的 bean 属性配置 ResourceAdapter 实例。
 	 */
 	public void setResourceAdapter(ResourceAdapter resourceAdapter) {
 		this.resourceAdapter = resourceAdapter;
 	}
 
 	/**
-	 * Specify the JCA BootstrapContext to use for starting the ResourceAdapter.
-	 * <p>Alternatively, you can specify the individual parts (such as the
-	 * JCA WorkManager) as individual references.
+	 * 指定用于启动 ResourceAdapter 的 JCA BootstrapContext。
+	 * <p>或者，你可以将各个部分（如 JCA WorkManager）指定为单独的引用。
 	 * @see #setWorkManager
 	 * @see #setXaTerminator
 	 */
@@ -96,7 +89,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	}
 
 	/**
-	 * Specify the JCA WorkManager to use for bootstrapping the ResourceAdapter.
+	 * 指定用于引导 ResourceAdapter 的 JCA WorkManager。
 	 * @see #setBootstrapContext
 	 */
 	public void setWorkManager(WorkManager workManager) {
@@ -104,7 +97,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 	}
 
 	/**
-	 * Specify the JCA XATerminator to use for bootstrapping the ResourceAdapter.
+	 * 指定用于引导 ResourceAdapter 的 JCA XATerminator。
 	 * @see #setBootstrapContext
 	 */
 	public void setXaTerminator(XATerminator xaTerminator) {
@@ -113,7 +106,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 
 	/**
-	 * Builds the BootstrapContext and starts the ResourceAdapter with it.
+	 * 构建 BootstrapContext 并使用它启动 ResourceAdapter。
 	 * @see javax.resource.spi.ResourceAdapter#start(javax.resource.spi.BootstrapContext)
 	 */
 	@Override
@@ -146,7 +139,7 @@ public class ResourceAdapterFactoryBean implements FactoryBean<ResourceAdapter>,
 
 
 	/**
-	 * Stops the ResourceAdapter.
+	 * 停止 ResourceAdapter。
 	 * @see javax.resource.spi.ResourceAdapter#stop()
 	 */
 	@Override

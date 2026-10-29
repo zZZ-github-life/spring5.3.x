@@ -26,8 +26,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * A simple ConstructorExecutor implementation that runs a constructor using reflective
- * invocation.
+ * 一个简单的 ConstructorExecutor 实现，通过反射调用运行构造器。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

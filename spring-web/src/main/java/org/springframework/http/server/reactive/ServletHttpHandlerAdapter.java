@@ -47,8 +47,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link HttpHandler} to an {@link HttpServlet} using Servlet Async support
- * and Servlet 3.1 non-blocking I/O.
+ * 使用 Servlet 异步支持和 Servlet 3.1 非阻塞 I/O，
+ * 将 {@link HttpHandler} 适配到 {@link HttpServlet}。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -81,8 +81,8 @@ public class ServletHttpHandlerAdapter implements Servlet {
 
 
 	/**
-	 * Set the size of the input buffer used for reading in bytes.
-	 * <p>By default this is set to 8192.
+	 * 设置用于读取的输入缓冲区大小（字节）。
+	 * <p>默认设置为 8192。
 	 */
 	public void setBufferSize(int bufferSize) {
 		Assert.isTrue(bufferSize > 0, "Buffer size must be larger than zero");
@@ -90,15 +90,15 @@ public class ServletHttpHandlerAdapter implements Servlet {
 	}
 
 	/**
-	 * Return the configured input buffer size.
+	 * 返回已配置的输入缓冲区大小。
 	 */
 	public int getBufferSize() {
 		return this.bufferSize;
 	}
 
 	/**
-	 * Return the Servlet path under which the Servlet is deployed by checking
-	 * the Servlet registration from {@link #init(ServletConfig)}.
+	 * 通过从 {@link #init(ServletConfig)} 检查 Servlet 注册信息，
+	 * 返回部署该 Servlet 的 Servlet 路径。
 	 * @return the path, or an empty string if the Servlet is deployed without
 	 * a prefix (i.e. "/" or "/*"), or {@code null} if this method is invoked
 	 * before the {@link #init(ServletConfig)} Servlet container callback.
@@ -244,13 +244,13 @@ public class ServletHttpHandlerAdapter implements Servlet {
 
 
 	/**
-	 * AsyncListener to complete the {@link AsyncContext} in case of error or
-	 * timeout notifications from the container
-	 * <p>Additional {@link AsyncListener}s are registered in
-	 * {@link ServletServerHttpRequest} to signal onError/onComplete to the
-	 * request body Subscriber, and in {@link ServletServerHttpResponse} to
-	 * cancel the write Publisher and signal onError/onComplete downstream to
-	 * the writing result Subscriber.
+	 * 用于在容器发出错误或超时通知时完成 {@link AsyncContext} 的
+	 * AsyncListener。
+	 * <p>其他 {@link AsyncListener} 在
+	 * {@link ServletServerHttpRequest} 中注册，以向请求体 Subscriber
+	 * 发出 onError/onComplete 信号；并在 {@link ServletServerHttpResponse} 中注册，
+	 * 以取消写入 Publisher 并向下游写入结果 Subscriber
+	 * 发出 onError/onComplete 信号。
 	 */
 	private static class HttpHandlerAsyncListener implements AsyncListener {
 

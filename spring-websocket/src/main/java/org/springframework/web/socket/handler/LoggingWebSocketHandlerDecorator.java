@@ -25,7 +25,7 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 /**
- * A {@link WebSocketHandlerDecorator} that adds logging to WebSocket lifecycle events.
+ * 为 WebSocket 生命周期事件添加日志记录的 {@link WebSocketHandlerDecorator}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

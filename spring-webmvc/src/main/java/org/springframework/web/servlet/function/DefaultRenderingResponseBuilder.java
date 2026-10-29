@@ -37,7 +37,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Default {@link RenderingResponse.Builder} implementation.
+ * 默认的 {@link RenderingResponse.Builder} 实现。
  *
  * @author Arjen Poutsma
  * @since 5.1

@@ -20,8 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Represents an HTTP output message that allows for setting a streaming body.
- * Note that such messages typically do not support {@link #getBody()} access.
+ * 表示允许设置流式正文的 HTTP 输出消息。请注意，此类消息通常不支持 {@link #getBody()} 访问。
  *
  * @author Arjen Poutsma
  * @since 4.0
@@ -30,22 +29,20 @@ import java.io.OutputStream;
 public interface StreamingHttpOutputMessage extends HttpOutputMessage {
 
 	/**
-	 * Set the streaming body callback for this message.
+	 * 为此消息设置流式正文回调。
 	 * @param body the streaming body callback
 	 */
 	void setBody(Body body);
 
 
 	/**
-	 * Defines the contract for bodies that can be written directly to an
-	 * {@link OutputStream}. Useful with HTTP client libraries that provide
-	 * indirect access to an {@link OutputStream} via a callback mechanism.
+	 * 定义可直接写入 {@link OutputStream} 的正文的约定。适用于通过回调机制间接提供 {@link OutputStream} 访问的 HTTP 客户端库。
 	 */
 	@FunctionalInterface
 	interface Body {
 
 		/**
-		 * Write this body to the given {@link OutputStream}.
+		 * 将此正文写入给定的 {@link OutputStream}。
 		 * @param outputStream the output stream to write to
 		 * @throws IOException in case of I/O errors
 		 */

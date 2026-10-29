@@ -39,19 +39,19 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link FactoryBean} that creates a named EhCache {@link net.sf.ehcache.Cache} instance
- * (or a decorator that implements the {@link net.sf.ehcache.Ehcache} interface),
- * representing a cache region within an EhCache {@link net.sf.ehcache.CacheManager}.
+ * {@link FactoryBean}，创建一个命名的 EhCache {@link net.sf.ehcache.Cache} 实例
+ * （或实现 {@link net.sf.ehcache.Ehcache} 接口的装饰器），
+ * 表示 EhCache {@link net.sf.ehcache.CacheManager} 中的一个缓存区域。
  *
- * <p>If the specified named cache is not configured in the cache configuration descriptor,
- * this FactoryBean will construct an instance of a Cache with the provided name and the
- * specified cache properties and add it to the CacheManager for later retrieval. If some
- * or all properties are not set at configuration time, this FactoryBean will use defaults.
+ * <p>如果在缓存配置描述符中未配置指定的命名缓存，
+ * 此 FactoryBean 将使用提供的名称和指定的缓存属性构建一个 Cache 实例，
+ * 并将其添加到 CacheManager 中以供后续检索。如果在配置时未设置部分或全部属性，
+ * 此 FactoryBean 将使用默认值。
  *
- * <p>Note: If the named Cache instance is found, the properties will be ignored and the
- * Cache instance will be retrieved from the CacheManager.
+ * <p>注意：如果找到了命名的 Cache 实例，属性将被忽略，
+ * 将从 CacheManager 中检索该 Cache 实例。
  *
- * <p>Note: As of Spring 5.0, Spring's EhCache support requires EhCache 2.10 or higher.
+ * <p>注意：从 Spring 5.0 开始，Spring 的 EhCache 支持需要 EhCache 2.10 或更高版本。
  *
  * @author Juergen Hoeller
  * @author Dmitriy Kopylenko
@@ -96,13 +96,11 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 
 
 	/**
-	 * Set a CacheManager from which to retrieve a named Cache instance.
-	 * By default, {@code CacheManager.getInstance()} will be called.
-	 * <p>Note that in particular for persistent caches, it is advisable to
-	 * properly handle the shutdown of the CacheManager: Set up a separate
-	 * EhCacheManagerFactoryBean and pass a reference to this bean property.
-	 * <p>A separate EhCacheManagerFactoryBean is also necessary for loading
-	 * EhCache configuration from a non-default config location.
+	 * 设置一个 CacheManager，从中获取命名的 Cache 实例。
+	 * 默认情况下，将调用 {@code CacheManager.getInstance()}。
+	 * <p>注意，特别是对于持久化缓存，建议正确处理 CacheManager 的关闭：
+	 * 设置一个单独的 EhCacheManagerFactoryBean 并将引用传递到此 bean 属性。
+	 * <p>从非默认配置位置加载 EhCache 配置时，也需要单独的 EhCacheManagerFactoryBean。
 	 * @see EhCacheManagerFactoryBean
 	 * @see net.sf.ehcache.CacheManager#getInstance
 	 */
@@ -111,15 +109,15 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Set a name for which to retrieve or create a cache instance.
-	 * Default is the bean name of this EhCacheFactoryBean.
+	 * 设置要检索或创建缓存实例的名称。
+	 * 默认为此 EhCacheFactoryBean 的 bean 名称。
 	 */
 	public void setCacheName(String cacheName) {
 		setName(cacheName);
 	}
 
 	/**
-	 * Set the time to live.
+	 * 设置存活时间（time to live）。
 	 * @see #setTimeToLiveSeconds(long)
 	 */
 	public void setTimeToLive(int timeToLive) {
@@ -127,7 +125,7 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Set the time to idle.
+	 * 设置空闲时间（time to idle）。
 	 * @see #setTimeToIdleSeconds(long)
 	 */
 	public void setTimeToIdle(int timeToIdle) {
@@ -135,7 +133,7 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Set the disk spool buffer size (in MB).
+	 * 设置磁盘缓冲池大小（以 MB 为单位）。
 	 * @see #setDiskSpoolBufferSizeMB(int)
 	 */
 	public void setDiskSpoolBufferSize(int diskSpoolBufferSize) {
@@ -143,10 +141,9 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Set whether to use a blocking cache that lets read attempts block
-	 * until the requested element is created.
-	 * <p>If you intend to build a self-populating blocking cache,
-	 * consider specifying a {@link #setCacheEntryFactory CacheEntryFactory}.
+	 * 设置是否使用阻塞缓存，让读请求阻塞直到所请求的元素被创建。
+	 * <p>如果你打算构建一个自填充的阻塞缓存，
+	 * 考虑指定 {@link #setCacheEntryFactory CacheEntryFactory}。
 	 * @see net.sf.ehcache.constructs.blocking.BlockingCache
 	 * @see #setCacheEntryFactory
 	 */
@@ -155,15 +152,14 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Set an EhCache {@link net.sf.ehcache.constructs.blocking.CacheEntryFactory}
-	 * to use for a self-populating cache. If such a factory is specified,
-	 * the cache will be decorated with EhCache's
-	 * {@link net.sf.ehcache.constructs.blocking.SelfPopulatingCache}.
-	 * <p>The specified factory can be of type
-	 * {@link net.sf.ehcache.constructs.blocking.UpdatingCacheEntryFactory},
-	 * which will lead to the use of an
-	 * {@link net.sf.ehcache.constructs.blocking.UpdatingSelfPopulatingCache}.
-	 * <p>Note: Any such self-populating cache is automatically a blocking cache.
+	 * 设置用于自填充缓存的 EhCache {@link net.sf.ehcache.constructs.blocking.CacheEntryFactory}。
+	 * 如果指定了此类工厂，缓存将被装饰为 EhCache 的
+	 * {@link net.sf.ehcache.constructs.blocking.SelfPopulatingCache}。
+	 * <p>指定的工厂可以是
+	 * {@link net.sf.ehcache.constructs.blocking.UpdatingCacheEntryFactory} 类型，
+	 * 这将导致使用
+	 * {@link net.sf.ehcache.constructs.blocking.UpdatingSelfPopulatingCache}。
+	 * <p>注意：任何此类自填充缓存都自动是阻塞缓存。
 	 * @see net.sf.ehcache.constructs.blocking.SelfPopulatingCache
 	 * @see net.sf.ehcache.constructs.blocking.UpdatingSelfPopulatingCache
 	 * @see net.sf.ehcache.constructs.blocking.UpdatingCacheEntryFactory
@@ -173,23 +169,21 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Set an EhCache {@link net.sf.ehcache.bootstrap.BootstrapCacheLoader}
-	 * for this cache, if any.
+	 * 设置此缓存的 EhCache {@link net.sf.ehcache.bootstrap.BootstrapCacheLoader}（如果有）。
 	 */
 	public void setBootstrapCacheLoader(BootstrapCacheLoader bootstrapCacheLoader) {
 		this.bootstrapCacheLoader = bootstrapCacheLoader;
 	}
 
 	/**
-	 * Specify EhCache {@link net.sf.ehcache.event.CacheEventListener cache event listeners}
-	 * to registered with this cache.
+	 * 指定要注册到此缓存中的 EhCache {@link net.sf.ehcache.event.CacheEventListener 缓存事件监听器}。
 	 */
 	public void setCacheEventListeners(Set<CacheEventListener> cacheEventListeners) {
 		this.cacheEventListeners = cacheEventListeners;
 	}
 
 	/**
-	 * Set whether this cache should be marked as disabled.
+	 * 设置此缓存是否应被标记为禁用。
 	 * @see net.sf.ehcache.Cache#setDisabled
 	 */
 	public void setDisabled(boolean disabled) {
@@ -264,14 +258,14 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Create a raw Cache object based on the configuration of this FactoryBean.
+	 * 基于此 FactoryBean 的配置创建一个原始的 Cache 对象。
 	 */
 	protected Cache createCache() {
 		return new Cache(this);
 	}
 
 	/**
-	 * Decorate the given Cache, if necessary.
+	 * 如有必要，装饰给定的 Cache。
 	 * @param cache the raw Cache object, based on the configuration of this FactoryBean
 	 * @return the (potentially decorated) cache object to be registered with the CacheManager
 	 */
@@ -298,9 +292,9 @@ public class EhCacheFactoryBean extends CacheConfiguration implements FactoryBea
 	}
 
 	/**
-	 * Predict the particular {@code Ehcache} implementation that will be returned from
-	 * {@link #getObject()} based on logic in {@link #createCache()} and
-	 * {@link #decorateCache(Ehcache)} as orchestrated by {@link #afterPropertiesSet()}.
+	 * 预测将从 {@link #getObject()} 返回的具体 {@code Ehcache} 实现，
+	 * 基于 {@link #createCache()} 和 {@link #decorateCache(Ehcache)} 中的逻辑，
+	 * 由 {@link #afterPropertiesSet()} 编排。
 	 */
 	@Override
 	public Class<? extends Ehcache> getObjectType() {

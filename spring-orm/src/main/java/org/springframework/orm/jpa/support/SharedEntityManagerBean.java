@@ -28,19 +28,20 @@ import org.springframework.orm.jpa.SharedEntityManagerCreator;
 import org.springframework.util.Assert;
 
 /**
- * {@link FactoryBean} that exposes a shared JPA {@link javax.persistence.EntityManager}
- * reference for a given EntityManagerFactory. Typically used for an EntityManagerFactory
- * created by {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean},
- * as direct alternative to a JNDI lookup for a Java EE server's EntityManager reference.
+ * {@link FactoryBean}，为给定的 EntityManagerFactory 暴露共享的 JPA
+ * {@link javax.persistence.EntityManager} 引用。通常用于由
+ * {@link org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean}
+ * 创建的 EntityManagerFactory，作为通过 JNDI 查找 Java EE 服务器
+ * EntityManager 引用的直接替代方案。
  *
- * <p>The shared EntityManager will behave just like an EntityManager fetched from an
- * application server's JNDI environment, as defined by the JPA specification.
- * It will delegate all calls to the current transactional EntityManager, if any;
- * otherwise, it will fall back to a newly created EntityManager per operation.
+ * <p>共享的 EntityManager 的行为与从应用服务器 JNDI 环境获取的
+ * EntityManager 完全一致（符合 JPA 规范）。它会将所有调用委托给当前的
+ * 事务性 EntityManager（如果有）；否则，它将在每次操作时回退到
+ * 新创建的 EntityManager。
  *
- * <p>Can be passed to DAOs that expect a shared EntityManager reference rather than an
- * EntityManagerFactory. Note that Spring's {@link org.springframework.orm.jpa.JpaTransactionManager}
- * always needs an EntityManagerFactory in order to create new transactional EntityManager instances.
+ * <p>可以传递给期望共享 EntityManager 引用而非 EntityManagerFactory 的 DAO。
+ * 请注意，Spring 的 {@link org.springframework.orm.jpa.JpaTransactionManager}
+ * 始终需要 EntityManagerFactory 才能创建新的事务性 EntityManager 实例。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -62,10 +63,9 @@ public class SharedEntityManagerBean extends EntityManagerFactoryAccessor
 
 
 	/**
-	 * Specify the EntityManager interface to expose.
-	 * <p>Default is the EntityManager interface as defined by the
-	 * EntityManagerFactoryInfo, if available. Else, the standard
-	 * {@code javax.persistence.EntityManager} interface will be used.
+	 * 指定要暴露的 EntityManager 接口。
+	 * <p>默认为 EntityManagerFactoryInfo 所定义的 EntityManager 接口（如果可用）。
+	 * 否则，将使用标准的 {@code javax.persistence.EntityManager} 接口。
 	 * @see org.springframework.orm.jpa.EntityManagerFactoryInfo#getEntityManagerInterface()
 	 * @see javax.persistence.EntityManager
 	 */
@@ -75,8 +75,8 @@ public class SharedEntityManagerBean extends EntityManagerFactoryAccessor
 	}
 
 	/**
-	 * Set whether to automatically join ongoing transactions (according
-	 * to the JPA 2.1 SynchronizationType rules). Default is "true".
+	 * 设置是否自动加入正在进行的事务（依据 JPA 2.1 SynchronizationType 规则）。
+	 * 默认值为 "true"。
 	 */
 	public void setSynchronizedWithTransaction(boolean synchronizedWithTransaction) {
 		this.synchronizedWithTransaction = synchronizedWithTransaction;

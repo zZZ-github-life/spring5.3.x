@@ -25,8 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Read-only EL property accessor that knows how to retrieve keys
- * of a Spring {@link Environment} instance.
+ * 只读 EL 属性访问器，能获取 Spring {@link Environment} 实例的键。
  *
  * @author Chris Beams
  * @since 3.1
@@ -39,7 +38,7 @@ public class EnvironmentAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Can read any {@link Environment}, thus always returns true.
+	 * 可以读取任何 {@link Environment}，因此始终返回 true。
 	 * @return true
 	 */
 	@Override
@@ -48,8 +47,7 @@ public class EnvironmentAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Access the given target object by resolving the given property name against the given target
-	 * environment.
+	 * 针对给定的目标环境解析给定的属性名，从而访问给定的目标对象。
 	 */
 	@Override
 	public TypedValue read(EvaluationContext context, @Nullable Object target, String name) throws AccessException {
@@ -58,7 +56,7 @@ public class EnvironmentAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Read-only: returns {@code false}.
+	 * 只读：返回 {@code false}。
 	 */
 	@Override
 	public boolean canWrite(EvaluationContext context, @Nullable Object target, String name) throws AccessException {
@@ -66,7 +64,7 @@ public class EnvironmentAccessor implements PropertyAccessor {
 	}
 
 	/**
-	 * Read-only: no-op.
+	 * 只读：无操作。
 	 */
 	@Override
 	public void write(EvaluationContext context, @Nullable Object target, String name, @Nullable Object newValue)

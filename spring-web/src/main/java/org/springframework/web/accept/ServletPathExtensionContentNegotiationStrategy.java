@@ -29,8 +29,8 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Extends {@code PathExtensionContentNegotiationStrategy} that also uses
- * {@link ServletContext#getMimeType(String)} to resolve file extensions.
+ * 扩展 {@code PathExtensionContentNegotiationStrategy}，同时还使用
+ * {@link ServletContext#getMimeType(String)} 来解析文件扩展名。
  *
  * @author Rossen Stoyanchev
  * @since 3.2
@@ -45,17 +45,17 @@ public class ServletPathExtensionContentNegotiationStrategy extends PathExtensio
 
 
 	/**
-	 * Create an instance without any mappings to start with. Mappings may be
-	 * added later when extensions are resolved through
-	 * {@link ServletContext#getMimeType(String)} or via
-	 * {@link org.springframework.http.MediaTypeFactory}.
+	 * 创建一个不带任何初始映射的实例。之后当通过
+	 * {@link ServletContext#getMimeType(String)} 或
+	 * {@link org.springframework.http.MediaTypeFactory} 解析扩展名时，
+	 * 可以添加映射。
 	 */
 	public ServletPathExtensionContentNegotiationStrategy(ServletContext context) {
 		this(context, null);
 	}
 
 	/**
-	 * Create an instance with the given extension-to-MediaType lookup.
+	 * 使用给定的扩展名到 MediaType 查找映射创建实例。
 	 */
 	public ServletPathExtensionContentNegotiationStrategy(
 			ServletContext servletContext, @Nullable Map<String, MediaType> mediaTypes) {
@@ -67,9 +67,9 @@ public class ServletPathExtensionContentNegotiationStrategy extends PathExtensio
 
 
 	/**
-	 * Resolve file extension via {@link ServletContext#getMimeType(String)}
-	 * and also delegate to base class for a potential
-	 * {@link org.springframework.http.MediaTypeFactory} lookup.
+	 * 通过 {@link ServletContext#getMimeType(String)} 解析文件扩展名，
+	 * 并委托给基类进行可能的
+	 * {@link org.springframework.http.MediaTypeFactory} 查找。
 	 */
 	@Override
 	@Nullable
@@ -91,9 +91,9 @@ public class ServletPathExtensionContentNegotiationStrategy extends PathExtensio
 	}
 
 	/**
-	 * Extends the base class
-	 * {@link PathExtensionContentNegotiationStrategy#getMediaTypeForResource}
-	 * with the ability to also look up through the ServletContext.
+	 * 扩展基类
+	 * {@link PathExtensionContentNegotiationStrategy#getMediaTypeForResource}，
+	 * 使其还能通过 ServletContext 进行查找。
 	 * @param resource the resource to look up
 	 * @return the MediaType for the extension, or {@code null} if none found
 	 * @since 4.3

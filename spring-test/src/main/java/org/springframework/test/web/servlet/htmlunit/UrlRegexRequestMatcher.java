@@ -21,16 +21,15 @@ import java.util.regex.Pattern;
 import com.gargoylesoftware.htmlunit.WebRequest;
 
 /**
- * A {@link WebRequestMatcher} that allows matching on
- * {@code WebRequest#getUrl().toExternalForm()} using a regular expression.
+ * 一个 {@link WebRequestMatcher}，允许使用正则表达式匹配
+ * {@code WebRequest#getUrl().toExternalForm()}。
  *
- * <p>For example, if you would like to match on the domain {@code code.jquery.com},
- * you might want to use the following.
+ * <p>例如，如果您希望匹配域 {@code code.jquery.com}，
+ * 可以使用以下配置。
  *
  * <pre class="code">
  * WebRequestMatcher cdnMatcher = new UrlRegexRequestMatcher(".*?//code.jquery.com/.*");
  * </pre>
- *
  * @author Rob Winch
  * @author Sam Brannen
  * @since 4.2

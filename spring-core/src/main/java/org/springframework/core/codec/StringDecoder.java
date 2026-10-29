@@ -44,12 +44,9 @@ import org.springframework.util.MimeType;
 import org.springframework.util.MimeTypeUtils;
 
 /**
- * Decode from a data buffer stream to a {@code String} stream, either splitting
- * or aggregating incoming data chunks to realign along newlines delimiters
- * and produce a stream of strings. This is useful for streaming but is also
- * necessary to ensure that that multibyte characters can be decoded correctly,
- * avoiding split-character issues. The default delimiters used by default are
- * {@code \n} and {@code \r\n} but that can be customized.
+ * 将数据缓冲流解码为 {@code String} 流，可以拆分或聚合传入的数据块，以便按换行分隔符重新对齐并生成
+ * 字符串流。这对于流式处理很有用，同时也是确保多字节字符能够被正确解码、避免字符被拆分问题的必要手
+ * 段。默认使用的分隔符是 {@code \n} 和 {@code \r\n}，但可以自定义。
  *
  * @author Sebastien Deleuze
  * @author Brian Clozel
@@ -60,10 +57,10 @@ import org.springframework.util.MimeTypeUtils;
  */
 public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 
-	/** The default charset to use, i.e. "UTF-8". */
+	/** 要使用的默认字符集，即 "UTF-8"。 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-	/** The default delimiter strings to use, i.e. {@code \r\n} and {@code \n}. */
+	/** 要使用的默认分隔符字符串，即 {@code \r\n} 和 {@code \n}。 */
 	public static final List<String> DEFAULT_DELIMITERS = Arrays.asList("\r\n", "\n");
 
 
@@ -85,8 +82,8 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 
 
 	/**
-	 * Set the default character set to fall back on if the MimeType does not specify any.
-	 * <p>By default this is {@code UTF-8}.
+	 * 设置当 MimeType 未指定字符集时回退使用的默认字符集。
+	 * <p>默认值为 {@code UTF-8}。
 	 * @param defaultCharset the charset to fall back on
 	 * @since 5.2.9
 	 */
@@ -95,7 +92,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	/**
-	 * Return the configured {@link #setDefaultCharset(Charset) defaultCharset}.
+	 * 返回配置的 {@link #setDefaultCharset(Charset) defaultCharset}。
 	 * @since 5.2.9
 	 */
 	public Charset getDefaultCharset() {
@@ -208,7 +205,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	/**
-	 * Create a {@code StringDecoder} for {@code "text/plain"}.
+	 * 为 {@code "text/plain"} 创建一个 {@code StringDecoder}。
 	 * @param stripDelimiter this flag is ignored
 	 * @deprecated as of Spring 5.0.4, in favor of {@link #textPlainOnly()} or
 	 * {@link #textPlainOnly(List, boolean)}
@@ -219,14 +216,14 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	/**
-	 * Create a {@code StringDecoder} for {@code "text/plain"}.
+	 * 为 {@code "text/plain"} 创建一个 {@code StringDecoder}。
 	 */
 	public static StringDecoder textPlainOnly() {
 		return textPlainOnly(DEFAULT_DELIMITERS, true);
 	}
 
 	/**
-	 * Create a {@code StringDecoder} for {@code "text/plain"}.
+	 * 为 {@code "text/plain"} 创建一个 {@code StringDecoder}。
 	 * @param delimiters delimiter strings to use to split the input stream
 	 * @param stripDelimiter whether to remove delimiters from the resulting
 	 * input strings
@@ -236,7 +233,7 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	/**
-	 * Create a {@code StringDecoder} that supports all MIME types.
+	 * 创建一个支持所有 MIME 类型的 {@code StringDecoder}。
 	 * @param stripDelimiter this flag is ignored
 	 * @deprecated as of Spring 5.0.4, in favor of {@link #allMimeTypes()} or
 	 * {@link #allMimeTypes(List, boolean)}
@@ -247,14 +244,14 @@ public final class StringDecoder extends AbstractDataBufferDecoder<String> {
 	}
 
 	/**
-	 * Create a {@code StringDecoder} that supports all MIME types.
+	 * 创建一个支持所有 MIME 类型的 {@code StringDecoder}。
 	 */
 	public static StringDecoder allMimeTypes() {
 		return allMimeTypes(DEFAULT_DELIMITERS, true);
 	}
 
 	/**
-	 * Create a {@code StringDecoder} that supports all MIME types.
+	 * 创建一个支持所有 MIME 类型的 {@code StringDecoder}。
 	 * @param delimiters delimiter strings to use to split the input stream
 	 * @param stripDelimiter whether to remove delimiters from the resulting
 	 * input strings

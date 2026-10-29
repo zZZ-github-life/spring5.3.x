@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * {@link ServerHttpResponse} implementation that is based on a {@link HttpServletResponse}.
+ * 基于 {@link HttpServletResponse} 的 {@link ServerHttpResponse} 实现。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -53,7 +53,7 @@ public class ServletServerHttpResponse implements ServerHttpResponse {
 
 
 	/**
-	 * Construct a new instance of the ServletServerHttpResponse based on the given {@link HttpServletResponse}.
+	 * 基于给定的 {@link HttpServletResponse} 构造 ServletServerHttpResponse 的新实例。
 	 * @param servletResponse the servlet response
 	 */
 	public ServletServerHttpResponse(HttpServletResponse servletResponse) {
@@ -64,7 +64,7 @@ public class ServletServerHttpResponse implements ServerHttpResponse {
 
 
 	/**
-	 * Return the {@code HttpServletResponse} this object is based on.
+	 * 返回此对象所基于的 {@code HttpServletResponse}。
 	 */
 	public HttpServletResponse getServletResponse() {
 		return this.servletResponse;
@@ -135,13 +135,13 @@ public class ServletServerHttpResponse implements ServerHttpResponse {
 
 
 	/**
-	 * Extends HttpHeaders with the ability to look up headers already present in
-	 * the underlying HttpServletResponse.
+	 * 扩展 HttpHeaders，使其能够查找底层 HttpServletResponse 中
+	 * 已存在的头。
 	 *
-	 * <p>The intent is merely to expose what is available through the HttpServletResponse
-	 * i.e. the ability to look up specific header values by name. All other
-	 * map-related operations (e.g. iteration, removal, etc) apply only to values
-	 * added directly through HttpHeaders methods.
+	 * <p>其目的仅是公开通过 HttpServletResponse 可用的信息，
+	 * 即按名称查找特定头值的能力。所有其他与映射相关的操作
+	 * （例如迭代、删除等）仅适用于通过 HttpHeaders 方法
+	 * 直接添加的值。
 	 *
 	 * @since 4.0.3
 	 */

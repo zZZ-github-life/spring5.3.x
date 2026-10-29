@@ -48,8 +48,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link ServletHttpHandlerAdapter} extension that uses Tomcat APIs for reading
- * from the request and writing to the response with {@link ByteBuffer}.
+ * {@link ServletHttpHandlerAdapter} 的扩展，使用 Tomcat API
+ * 从请求读取并通过 {@link ByteBuffer} 写入响应。
  *
  * @author Violeta Georgieva
  * @author Brian Clozel

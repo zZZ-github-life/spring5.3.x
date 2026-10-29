@@ -25,16 +25,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor for {@code java.util.Date},
- * supporting a custom {@code java.text.DateFormat}.
+ * 用于 {@code java.util.Date} 的属性编辑器，支持自定义的 {@code java.text.DateFormat}。
  *
- * <p>This is not meant to be used as system PropertyEditor but rather
- * as locale-specific date editor within custom controller code,
- * parsing user-entered number strings into Date properties of beans
- * and rendering them in the UI form.
+ * <p>它并非用作系统 PropertyEditor，而是在自定义控制器代码中用作区域特定的日期编辑器，用于将用户输
+ * 入的数字字符串解析为 Bean 的 Date 属性，并在 UI 表单中渲染它们。
  *
- * <p>In web MVC code, this editor will typically be registered with
- * {@code binder.registerCustomEditor}.
+ * <p>在 Web MVC 代码中，通常会通过 {@code binder.registerCustomEditor} 注册此编辑器。
  *
  * @author Juergen Hoeller
  * @since 28.04.2003
@@ -52,11 +48,8 @@ public class CustomDateEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new CustomDateEditor instance, using the given DateFormat
-	 * for parsing and rendering.
-	 * <p>The "allowEmpty" parameter states if an empty String should
-	 * be allowed for parsing, i.e. get interpreted as null value.
-	 * Otherwise, an IllegalArgumentException gets thrown in that case.
+	 * 使用给定的 DateFormat 进行解析和渲染，创建新的 CustomDateEditor 实例。<p>"allowEmpty" 参数表明解
+	 * 析时是否应允许空 String，即将其解释为 null 值。否则，在这种情况下将抛出 IllegalArgumentException。
 	 * @param dateFormat the DateFormat to use for parsing and rendering
 	 * @param allowEmpty if empty strings should be allowed
 	 */
@@ -67,19 +60,13 @@ public class CustomDateEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Create a new CustomDateEditor instance, using the given DateFormat
-	 * for parsing and rendering.
-	 * <p>The "allowEmpty" parameter states if an empty String should
-	 * be allowed for parsing, i.e. get interpreted as null value.
-	 * Otherwise, an IllegalArgumentException gets thrown in that case.
-	 * <p>The "exactDateLength" parameter states that IllegalArgumentException gets
-	 * thrown if the String does not exactly match the length specified. This is useful
-	 * because SimpleDateFormat does not enforce strict parsing of the year part,
-	 * not even with {@code setLenient(false)}. Without an "exactDateLength"
-	 * specified, the "01/01/05" would get parsed to "01/01/0005". However, even
-	 * with an "exactDateLength" specified, prepended zeros in the day or month
-	 * part may still allow for a shorter year part, so consider this as just
-	 * one more assertion that gets you closer to the intended date format.
+	 * 使用给定的 DateFormat 进行解析和渲染，创建新的 CustomDateEditor 实例。<p>"allowEmpty" 参数表明解
+	 * 析时是否应允许空 String，即将其解释为 null 值。否则，在这种情况下将抛出 IllegalArgumentException。
+	 * <p>"exactDateLength" 参数表明，如果 String 的长度与指定的长度不完全匹配，将抛出
+	 * IllegalArgumentException。这很有用，因为 SimpleDateFormat 不会对年份部分强制执行严格解析，即使使
+	 * 用 {@code setLenient(false)} 也是如此。如果未指定 "exactDateLength"，"01/01/05" 会被解析为
+	 * "01/01/0005"。然而，即使指定了 "exactDateLength"，日期或月份部分的前导零仍可能允许较短的年份部分，
+	 * 因此请将其视为只是让您更接近预期日期格式的又一项断言。
 	 * @param dateFormat the DateFormat to use for parsing and rendering
 	 * @param allowEmpty if empty strings should be allowed
 	 * @param exactDateLength the exact expected length of the date String
@@ -92,7 +79,7 @@ public class CustomDateEditor extends PropertyEditorSupport {
 
 
 	/**
-	 * Parse the Date from the given text, using the specified DateFormat.
+	 * 使用指定的 DateFormat 从给定文本中解析 Date。
 	 */
 	@Override
 	public void setAsText(@Nullable String text) throws IllegalArgumentException {
@@ -115,7 +102,7 @@ public class CustomDateEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Format the Date as String, using the specified DateFormat.
+	 * 使用指定的 DateFormat 将 Date 格式化为 String。
 	 */
 	@Override
 	public String getAsText() {

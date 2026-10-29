@@ -28,7 +28,7 @@ import org.springframework.expression.spel.support.BooleanTypedValue;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents the boolean AND operation.
+ * 表示布尔 AND 运算。
  *
  * @author Andy Clement
  * @author Mark Fisher

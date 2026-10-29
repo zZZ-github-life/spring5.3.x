@@ -22,10 +22,9 @@ import org.springframework.expression.spel.ExpressionState;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a dot separated sequence of strings that indicate a package qualified type
- * reference.
+ * 表示由点分隔的字符串序列，用于指示包限定的类型引用。
  *
- * <p>Example: "java.lang.String" as in the expression "new java.lang.String('hello')"
+ * <p>示例："java.lang.String"，如同表达式 "new java.lang.String('hello')" 中那样
  *
  * @author Andy Clement
  * @since 3.0

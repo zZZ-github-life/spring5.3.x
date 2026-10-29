@@ -37,17 +37,16 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link javax.servlet.http.HttpServletRequest} wrapper that caches all content read from
- * the {@linkplain #getInputStream() input stream} and {@linkplain #getReader() reader},
- * and allows this content to be retrieved via a {@link #getContentAsByteArray() byte array}.
+ * {@link javax.servlet.http.HttpServletRequest} 的包装器，缓存从
+ * {@linkplain #getInputStream() 输入流}和 {@linkplain #getReader() reader}读取的
+ * 所有内容，并允许通过 {@link #getContentAsByteArray() 字节数组}获取这些内容。
  *
- * <p>This class acts as an interceptor that only caches content as it is being
- * read but otherwise does not cause content to be read. That means if the request
- * content is not consumed, then the content is not cached, and cannot be
- * retrieved via {@link #getContentAsByteArray()}.
+ * <p>此类充当拦截器，仅在内容被读取时进行缓存，除此之外不会导致内容被读取。
+ * 这意味着如果请求内容未被消费，则不会被缓存，也无法通过
+ * {@link #getContentAsByteArray()} 获取。
  *
- * <p>Used e.g. by {@link org.springframework.web.filter.AbstractRequestLoggingFilter}.
- * Note: As of Spring Framework 5.0, this wrapper is built on the Servlet 3.1 API.
+ * <p>例如由 {@link org.springframework.web.filter.AbstractRequestLoggingFilter} 使用。
+ * 注意：自 Spring Framework 5.0 起，此包装器基于 Servlet 3.1 API 构建。
  *
  * @author Juergen Hoeller
  * @author Brian Clozel
@@ -69,7 +68,7 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 
 
 	/**
-	 * Create a new ContentCachingRequestWrapper for the given servlet request.
+	 * 为给定的 Servlet 请求创建一个新的 ContentCachingRequestWrapper。
 	 * @param request the original servlet request
 	 */
 	public ContentCachingRequestWrapper(HttpServletRequest request) {
@@ -80,7 +79,7 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 	}
 
 	/**
-	 * Create a new ContentCachingRequestWrapper for the given servlet request.
+	 * 为给定 servlet 请求创建一个新的 ContentCachingRequestWrapper。
 	 * @param request the original servlet request
 	 * @param contentCacheLimit the maximum number of bytes to cache per request
 	 * @since 4.3.6
@@ -185,12 +184,10 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 	}
 
 	/**
-	 * Return the cached request content as a byte array.
-	 * <p>The returned array will never be larger than the content cache limit.
-	 * <p><strong>Note:</strong> The byte array returned from this method
-	 * reflects the amount of content that has has been read at the time when it
-	 * is called. If the application does not read the content, this method
-	 * returns an empty array.
+	 * 以字节数组形式返回缓存的请求内容。
+	 * <p>返回的数组绝不会大于内容缓存限制。
+	 * <p><strong>注意：</strong>此方法返回的字节数组反映调用时已读取的内容量。
+	 * 如果应用未读取内容，此方法返回空数组。
 	 * @see #ContentCachingRequestWrapper(HttpServletRequest, int)
 	 */
 	public byte[] getContentAsByteArray() {
@@ -198,10 +195,9 @@ public class ContentCachingRequestWrapper extends HttpServletRequestWrapper {
 	}
 
 	/**
-	 * Template method for handling a content overflow: specifically, a request
-	 * body being read that exceeds the specified content cache limit.
-	 * <p>The default implementation is empty. Subclasses may override this to
-	 * throw a payload-too-large exception or the like.
+	 * 用于处理内容溢出的模板方法：具体而言，即读取的请求体超出
+	 * 指定的内容缓存限制。
+	 * <p>默认实现为空。子类可以重写此方法以抛出载荷过大异常等。
 	 * @param contentCacheLimit the maximum number of bytes to cache per request
 	 * which has just been exceeded
 	 * @since 4.3.6

@@ -36,17 +36,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link Resource} implementation for {@link java.nio.file.Path} handles,
- * performing all operations and transformations via the {@code Path} API.
- * Supports resolution as a {@link File} and also as a {@link URL}.
- * Implements the extended {@link WritableResource} interface.
+ * 用于 {@link java.nio.file.Path} 句柄的 {@link Resource} 实现，所有操作和转换都通过 {@code Path}
+ * API 执行。支持解析为 {@link File}，也支持解析为 {@link URL}。实现了扩展的
+ * {@link WritableResource} 接口。
  *
- * <p>Note: As of 5.1, {@link java.nio.file.Path} support is also available
- * in {@link FileSystemResource#FileSystemResource(Path) FileSystemResource},
- * applying Spring's standard String-based path transformations but
- * performing all operations via the {@link java.nio.file.Files} API.
- * This {@code PathResource} is effectively a pure {@code java.nio.path.Path}
- * based alternative with different {@code createRelative} behavior.
+ * <p>注意：从 5.1 开始，{@link FileSystemResource#FileSystemResource(Path) FileSystemResource} 中
+ * 也提供了 {@link java.nio.file.Path} 支持，它应用 Spring 标准的基于 String 的路径转换，但所有操作
+ * 都通过 {@link java.nio.file.Files} API 执行。这个 {@code PathResource} 实际上是一个纯粹的基于
+ * {@code java.nio.path.Path} 的替代方案，其 {@code createRelative} 行为有所不同。
  *
  * @author Philippe Marschall
  * @author Juergen Hoeller
@@ -61,10 +58,10 @@ public class PathResource extends AbstractResource implements WritableResource {
 
 
 	/**
-	 * Create a new PathResource from a Path handle.
-	 * <p>Note: Unlike {@link FileSystemResource}, when building relative resources
-	 * via {@link #createRelative}, the relative path will be built <i>underneath</i>
-	 * the given root: e.g. Paths.get("C:/dir1/"), relative path "dir2" &rarr; "C:/dir1/dir2"!
+	 * 从 Path 句柄创建一个新的 PathResource。
+	 * <p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路
+	 * 径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr;
+	 * “C:/dir1/dir2”！
 	 * @param path a Path handle
 	 */
 	public PathResource(Path path) {
@@ -73,10 +70,10 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * Create a new PathResource from a Path handle.
-	 * <p>Note: Unlike {@link FileSystemResource}, when building relative resources
-	 * via {@link #createRelative}, the relative path will be built <i>underneath</i>
-	 * the given root: e.g. Paths.get("C:/dir1/"), relative path "dir2" &rarr; "C:/dir1/dir2"!
+	 * 从 Path 句柄创建一个新的 PathResource。
+	 * <p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路
+	 * 径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr;
+	 * “C:/dir1/dir2”！
 	 * @param path a path
 	 * @see java.nio.file.Paths#get(String, String...)
 	 */
@@ -86,10 +83,10 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * Create a new PathResource from a Path handle.
-	 * <p>Note: Unlike {@link FileSystemResource}, when building relative resources
-	 * via {@link #createRelative}, the relative path will be built <i>underneath</i>
-	 * the given root: e.g. Paths.get("C:/dir1/"), relative path "dir2" &rarr; "C:/dir1/dir2"!
+	 * 从 Path 句柄创建一个新的 PathResource。
+	 * <p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路
+	 * 径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr;
+	 * “C:/dir1/dir2”！
 	 * @param uri a path URI
 	 * @see java.nio.file.Paths#get(URI)
 	 */
@@ -100,14 +97,14 @@ public class PathResource extends AbstractResource implements WritableResource {
 
 
 	/**
-	 * Return the file path for this resource.
+	 * 返回此资源的文件路径。
 	 */
 	public final String getPath() {
 		return this.path.toString();
 	}
 
 	/**
-	 * This implementation returns whether the underlying file exists.
+	 * 此实现返回底层文件是否存在。
 	 * @see java.nio.file.Files#exists(Path, java.nio.file.LinkOption...)
 	 */
 	@Override
@@ -116,8 +113,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation checks whether the underlying file is marked as readable
-	 * (and corresponds to an actual file with content, not to a directory).
+	 * 此实现检查底层文件是否标记为可读（并且对应的是有内容的实际文件，而不是目录）。
 	 * @see java.nio.file.Files#isReadable(Path)
 	 * @see java.nio.file.Files#isDirectory(Path, java.nio.file.LinkOption...)
 	 */
@@ -127,7 +123,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation opens a InputStream for the underlying file.
+	 * 此实现为底层文件打开一个 InputStream。
 	 * @see java.nio.file.spi.FileSystemProvider#newInputStream(Path, OpenOption...)
 	 */
 	@Override
@@ -142,8 +138,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation checks whether the underlying file is marked as writable
-	 * (and corresponds to an actual file with content, not to a directory).
+	 * 此实现检查底层文件是否标记为可写（并且对应的是有内容的实际文件，而不是目录）。
 	 * @see java.nio.file.Files#isWritable(Path)
 	 * @see java.nio.file.Files#isDirectory(Path, java.nio.file.LinkOption...)
 	 */
@@ -153,7 +148,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation opens a OutputStream for the underlying file.
+	 * 此实现为底层文件打开一个 OutputStream。
 	 * @see java.nio.file.spi.FileSystemProvider#newOutputStream(Path, OpenOption...)
 	 */
 	@Override
@@ -165,7 +160,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns a URL for the underlying file.
+	 * 此实现返回底层文件的 URL。
 	 * @see java.nio.file.Path#toUri()
 	 * @see java.net.URI#toURL()
 	 */
@@ -175,7 +170,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns a URI for the underlying file.
+	 * 此实现返回底层文件的 URI。
 	 * @see java.nio.file.Path#toUri()
 	 */
 	@Override
@@ -184,7 +179,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation always indicates a file.
+	 * 此实现始终指示为文件。
 	 */
 	@Override
 	public boolean isFile() {
@@ -192,7 +187,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns the underlying File reference.
+	 * 此实现返回底层 File 引用。
 	 */
 	@Override
 	public File getFile() throws IOException {
@@ -207,7 +202,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation opens a Channel for the underlying file.
+	 * 此实现为底层文件打开一个 Channel。
 	 * @see Files#newByteChannel(Path, OpenOption...)
 	 */
 	@Override
@@ -221,7 +216,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation opens a Channel for the underlying file.
+	 * 此实现为底层文件打开一个 Channel。
 	 * @see Files#newByteChannel(Path, OpenOption...)
 	 */
 	@Override
@@ -230,7 +225,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns the underlying file's length.
+	 * 此实现返回底层文件的长度。
 	 */
 	@Override
 	public long contentLength() throws IOException {
@@ -238,7 +233,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns the underlying File's timestamp.
+	 * 此实现返回底层 File 的时间戳。
 	 * @see java.nio.file.Files#getLastModifiedTime(Path, java.nio.file.LinkOption...)
 	 */
 	@Override
@@ -249,8 +244,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation creates a PathResource, applying the given path
-	 * relative to the path of the underlying file of this resource descriptor.
+	 * 此实现创建一个 PathResource，并将给定路径应用于此资源描述符底层文件的路径。
 	 * @see java.nio.file.Path#resolve(String)
 	 */
 	@Override
@@ -259,7 +253,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns the name of the file.
+	 * 此实现返回文件的名称。
 	 * @see java.nio.file.Path#getFileName()
 	 */
 	@Override
@@ -274,7 +268,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 
 
 	/**
-	 * This implementation compares the underlying Path references.
+	 * 此实现比较底层 Path 引用。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {
@@ -283,7 +277,7 @@ public class PathResource extends AbstractResource implements WritableResource {
 	}
 
 	/**
-	 * This implementation returns the hash code of the underlying Path reference.
+	 * 此实现返回底层 Path 引用的哈希码。
 	 */
 	@Override
 	public int hashCode() {

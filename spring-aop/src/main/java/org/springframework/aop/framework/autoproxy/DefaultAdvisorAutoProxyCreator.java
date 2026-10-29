@@ -20,17 +20,13 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.lang.Nullable;
 
 /**
- * {@code BeanPostProcessor} implementation that creates AOP proxies based on all
- * candidate {@code Advisor}s in the current {@code BeanFactory}. This class is
- * completely generic; it contains no special code to handle any particular aspects,
- * such as pooling aspects.
+ * {@code BeanPostProcessor} 实现，基于当前 {@code BeanFactory} 中所有候选的 {@code Advisor} 创建
+ * AOP 代理。此类完全通用；它不包含处理任何特定切面（例如池化切面）的特殊代码。
  *
- * <p>It's possible to filter out advisors - for example, to use multiple post processors
- * of this type in the same factory - by setting the {@code usePrefix} property to true,
- * in which case only advisors beginning with the DefaultAdvisorAutoProxyCreator's bean
- * name followed by a dot (like "aapc.") will be used. This default prefix can be changed
- * from the bean name by setting the {@code advisorBeanNamePrefix} property.
- * The separator (.) will also be used in this case.
+ * <p>可以过滤 Advisor——例如，为了在同一工厂中使用多个此类型的后处理器——方法是将 {@code usePrefix}
+ * 属性设为 true，此时只会使用以 DefaultAdvisorAutoProxyCreator 的 Bean 名称加一个点（例如 "aapc."）
+ * 开头的 Advisor。可以通过设置 {@code advisorBeanNamePrefix} 属性来更改这个取自 Bean 名称的默认
+ * 前缀。在这种情况下也会使用分隔符 (.)。
  *
  * @author Rod Johnson
  * @author Rob Harrop
@@ -38,7 +34,7 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCreator implements BeanNameAware {
 
-	/** Separator between prefix and remainder of bean name. */
+	/** bean 名称前缀与其余部分之间的分隔符。 */
 	public static final String SEPARATOR = ".";
 
 
@@ -49,8 +45,8 @@ public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCrea
 
 
 	/**
-	 * Set whether to only include advisors with a certain prefix in the bean name.
-	 * <p>Default is {@code false}, including all beans of type {@code Advisor}.
+	 * 设置是否只包含 Bean 名称中带有特定前缀的 Advisor。
+	 * <p>默认值为 {@code false}，即包含所有 {@code Advisor} 类型的 Bean。
 	 * @see #setAdvisorBeanNamePrefix
 	 */
 	public void setUsePrefix(boolean usePrefix) {
@@ -58,16 +54,15 @@ public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCrea
 	}
 
 	/**
-	 * Return whether to only include advisors with a certain prefix in the bean name.
+	 * 返回是否只包含 Bean 名称中带有特定前缀的 Advisor。
 	 */
 	public boolean isUsePrefix() {
 		return this.usePrefix;
 	}
 
 	/**
-	 * Set the prefix for bean names that will cause them to be included for
-	 * auto-proxying by this object. This prefix should be set to avoid circular
-	 * references. Default value is the bean name of this object + a dot.
+	 * 设置 Bean 名称的前缀，带有该前缀的 Bean 将被此对象纳入自动代理。应设置该前缀以避免循环引用。默认
+	 * 值为本对象的 Bean 名称加一个点。
 	 * @param advisorBeanNamePrefix the exclusion prefix
 	 */
 	public void setAdvisorBeanNamePrefix(@Nullable String advisorBeanNamePrefix) {
@@ -75,8 +70,7 @@ public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCrea
 	}
 
 	/**
-	 * Return the prefix for bean names that will cause them to be included
-	 * for auto-proxying by this object.
+	 * 返回 Bean 名称的前缀，带有该前缀的 Bean 将被此对象纳入自动代理。
 	 */
 	@Nullable
 	public String getAdvisorBeanNamePrefix() {
@@ -93,7 +87,7 @@ public class DefaultAdvisorAutoProxyCreator extends AbstractAdvisorAutoProxyCrea
 
 
 	/**
-	 * Consider {@code Advisor} beans with the specified prefix as eligible, if activated.
+	 * 如果启用，则将具有指定前缀的 {@code Advisor} Bean 视为合格。
 	 * @see #setUsePrefix
 	 * @see #setAdvisorBeanNamePrefix
 	 */

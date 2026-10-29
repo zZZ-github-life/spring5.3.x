@@ -26,20 +26,15 @@ import java.util.TreeSet;
 import javax.net.ServerSocketFactory;
 
 /**
- * Simple utility methods for working with network sockets &mdash; for example,
- * for finding available ports on {@code localhost}.
+ * 用于处理网络套接字的简单实用方法 &mdash; 例如，用于在 {@code localhost} 上查找可用端口。
  *
- * <p>Within this class, a TCP port refers to a port for a {@link ServerSocket};
- * whereas, a UDP port refers to a port for a {@link DatagramSocket}.
+ * <p>在此类中，TCP 端口是指 {@link ServerSocket} 的端口；而 UDP 端口是指 {@link DatagramSocket} 的
+ * 端口。
  *
- * <p>{@code SocketUtils} was introduced in Spring Framework 4.0, primarily to
- * assist in writing integration tests which start an external server on an
- * available random port. However, these utilities make no guarantee about the
- * subsequent availability of a given port and are therefore unreliable. Instead
- * of using {@code SocketUtils} to find an available local port for a server, it
- * is recommended that you rely on a server's ability to start on a random port
- * that it selects or is assigned by the operating system. To interact with that
- * server, you should query the server for the port it is currently using.
+ * <p>{@code SocketUtils} 在 Spring Framework 4.0 中引入，主要为了协助编写在可用随机端口上启动外部
+ * 服务器的集成测试。然而，这些工具并不保证给定端口在此后仍然可用，因此并不可靠。与其使用
+ * {@code SocketUtils} 为服务器查找可用的本地端口，不如依赖服务器自身能够在其选择或由操作系统分配的
+ * 随机端口上启动的能力。要与该服务器交互，应向服务器查询其当前使用的端口。
  *
  * @author Sam Brannen
  * @author Ben Hale
@@ -54,14 +49,12 @@ import javax.net.ServerSocketFactory;
 public class SocketUtils {
 
 	/**
-	 * The default minimum value for port ranges used when finding an available
-	 * socket port.
+	 * 查找可用套接字端口时所用端口范围的默认最小值。
 	 */
 	public static final int PORT_RANGE_MIN = 1024;
 
 	/**
-	 * The default maximum value for port ranges used when finding an available
-	 * socket port.
+	 * 查找可用套接字端口时所用端口范围的默认最大值。
 	 */
 	public static final int PORT_RANGE_MAX = 65535;
 
@@ -70,17 +63,13 @@ public class SocketUtils {
 
 
 	/**
-	 * Although {@code SocketUtils} consists solely of static utility methods,
-	 * this constructor is intentionally {@code public}.
-	 * <h4>Rationale</h4>
-	 * <p>Static methods from this class may be invoked from within XML
-	 * configuration files using the Spring Expression Language (SpEL) and the
-	 * following syntax.
+	 * 尽管 {@code SocketUtils} 仅由静态工具方法组成，但此构造函数被有意设为 {@code public}。
+	 * <h4>理由</h4>
+	 * <p>此类中的静态方法可以在 XML 配置文件中使用 Spring Expression Language（SpEL）及以下语法进行调
+	 * 用。
 	 * <pre><code>&lt;bean id="bean1" ... p:port="#{T(org.springframework.util.SocketUtils).findAvailableTcpPort(12000)}" /&gt;</code></pre>
-	 * If this constructor were {@code private}, you would be required to supply
-	 * the fully qualified class name to SpEL's {@code T()} function for each usage.
-	 * Thus, the fact that this constructor is {@code public} allows you to reduce
-	 * boilerplate configuration with SpEL as can be seen in the following example.
+	 * 如果此构造函数为 {@code private}，则每次使用时都需要为 SpEL 的 {@code T()} 函数提供完全限定的类
+	 * 名。因此，此构造函数为 {@code public} 这一事实允许你像以下示例所示那样减少 SpEL 的样板配置。
 	 * <pre><code>&lt;bean id="socketUtils" class="org.springframework.util.SocketUtils" /&gt;
 	 * &lt;bean id="bean1" ... p:port="#{socketUtils.findAvailableTcpPort(12000)}" /&gt;
 	 * &lt;bean id="bean2" ... p:port="#{socketUtils.findAvailableTcpPort(30000)}" /&gt;</code></pre>
@@ -90,8 +79,7 @@ public class SocketUtils {
 
 
 	/**
-	 * Find an available TCP port randomly selected from the range
-	 * [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}].
+	 * 从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 TCP 端口。
 	 * @return an available TCP port number
 	 * @throws IllegalStateException if no available port could be found
 	 */
@@ -100,8 +88,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find an available TCP port randomly selected from the range
-	 * [{@code minPort}, {@value #PORT_RANGE_MAX}].
+	 * 从范围 [{@code minPort}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 TCP 端口。
 	 * @param minPort the minimum port number
 	 * @return an available TCP port number
 	 * @throws IllegalStateException if no available port could be found
@@ -111,8 +98,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find an available TCP port randomly selected from the range
-	 * [{@code minPort}, {@code maxPort}].
+	 * 从范围 [{@code minPort}, {@code maxPort}] 中随机选择一个可用的 TCP 端口。
 	 * @param minPort the minimum port number
 	 * @param maxPort the maximum port number
 	 * @return an available TCP port number
@@ -123,8 +109,8 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find the requested number of available TCP ports, each randomly selected
-	 * from the range [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}].
+	 * 查找所需数量的可用 TCP 端口，每个端口从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}]
+	 * 中随机选择。
 	 * @param numRequested the number of available ports to find
 	 * @return a sorted set of available TCP port numbers
 	 * @throws IllegalStateException if the requested number of available ports could not be found
@@ -134,8 +120,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find the requested number of available TCP ports, each randomly selected
-	 * from the range [{@code minPort}, {@code maxPort}].
+	 * 查找所需数量的可用 TCP 端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。
 	 * @param numRequested the number of available ports to find
 	 * @param minPort the minimum port number
 	 * @param maxPort the maximum port number
@@ -147,8 +132,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find an available UDP port randomly selected from the range
-	 * [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}].
+	 * 从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 UDP 端口。
 	 * @return an available UDP port number
 	 * @throws IllegalStateException if no available port could be found
 	 */
@@ -157,8 +141,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find an available UDP port randomly selected from the range
-	 * [{@code minPort}, {@value #PORT_RANGE_MAX}].
+	 * 从范围 [{@code minPort}, {@value #PORT_RANGE_MAX}] 中随机选择一个可用的 UDP 端口。
 	 * @param minPort the minimum port number
 	 * @return an available UDP port number
 	 * @throws IllegalStateException if no available port could be found
@@ -168,8 +151,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find an available UDP port randomly selected from the range
-	 * [{@code minPort}, {@code maxPort}].
+	 * 从范围 [{@code minPort}, {@code maxPort}] 中随机选择一个可用的 UDP 端口。
 	 * @param minPort the minimum port number
 	 * @param maxPort the maximum port number
 	 * @return an available UDP port number
@@ -180,8 +162,8 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find the requested number of available UDP ports, each randomly selected
-	 * from the range [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}].
+	 * 查找所需数量的可用 UDP 端口，每个端口从范围 [{@value #PORT_RANGE_MIN}, {@value #PORT_RANGE_MAX}]
+	 * 中随机选择。
 	 * @param numRequested the number of available ports to find
 	 * @return a sorted set of available UDP port numbers
 	 * @throws IllegalStateException if the requested number of available ports could not be found
@@ -191,8 +173,7 @@ public class SocketUtils {
 	}
 
 	/**
-	 * Find the requested number of available UDP ports, each randomly selected
-	 * from the range [{@code minPort}, {@code maxPort}].
+	 * 查找所需数量的可用 UDP 端口，每个端口从范围 [{@code minPort}, {@code maxPort}] 中随机选择。
 	 * @param numRequested the number of available ports to find
 	 * @param minPort the minimum port number
 	 * @param maxPort the maximum port number
@@ -236,14 +217,12 @@ public class SocketUtils {
 		};
 
 		/**
-		 * Determine if the specified port for this {@code SocketType} is
-		 * currently available on {@code localhost}.
+		 * 判断此 {@code SocketType} 的指定端口当前在 {@code localhost} 上是否可用。
 		 */
 		protected abstract boolean isPortAvailable(int port);
 
 		/**
-		 * Find a pseudo-random port number within the range
-		 * [{@code minPort}, {@code maxPort}].
+		 * 在范围 [{@code minPort}, {@code maxPort}] 内查找一个伪随机端口号。
 		 * @param minPort the minimum port number
 		 * @param maxPort the maximum port number
 		 * @return a random port number within the specified range
@@ -254,8 +233,7 @@ public class SocketUtils {
 		}
 
 		/**
-		 * Find an available port for this {@code SocketType}, randomly selected
-		 * from the range [{@code minPort}, {@code maxPort}].
+		 * 为此 {@code SocketType} 查找一个可用端口，从范围 [{@code minPort}, {@code maxPort}] 中随机选择。
 		 * @param minPort the minimum port number
 		 * @param maxPort the maximum port number
 		 * @return an available port number for this socket type
@@ -284,8 +262,8 @@ public class SocketUtils {
 		}
 
 		/**
-		 * Find the requested number of available ports for this {@code SocketType},
-		 * each randomly selected from the range [{@code minPort}, {@code maxPort}].
+		 * 为此 {@code SocketType} 查找所需数量的可用端口，每个端口从范围 [{@code minPort}, {@code maxPort}
+		 * ] 中随机选择。
 		 * @param numRequested the number of available ports to find
 		 * @param minPort the minimum port number
 		 * @param maxPort the maximum port number

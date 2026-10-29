@@ -29,8 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of the {@link TypeConverter} interface,
- * delegating to a core Spring {@link ConversionService}.
+ * {@link TypeConverter} 接口的默认实现，委托给 Spring 核心的 {@link ConversionService}。
  *
  * @author Juergen Hoeller
  * @author Andy Clement
@@ -43,7 +42,7 @@ public class StandardTypeConverter implements TypeConverter {
 
 
 	/**
-	 * Create a StandardTypeConverter for the default ConversionService.
+	 * 为默认的 ConversionService 创建一个 StandardTypeConverter。
 	 * @see DefaultConversionService#getSharedInstance()
 	 */
 	public StandardTypeConverter() {
@@ -51,7 +50,7 @@ public class StandardTypeConverter implements TypeConverter {
 	}
 
 	/**
-	 * Create a StandardTypeConverter for the given ConversionService.
+	 * 为给定的 ConversionService 创建一个 StandardTypeConverter。
 	 * @param conversionService the ConversionService to delegate to
 	 */
 	public StandardTypeConverter(ConversionService conversionService) {
@@ -60,7 +59,7 @@ public class StandardTypeConverter implements TypeConverter {
 	}
 
 	/**
-	 * Create a StandardTypeConverter for the given ConversionService.
+	 * 为给定的 ConversionService 创建一个 StandardTypeConverter。
 	 * @param conversionService a Supplier for the ConversionService to delegate to
 	 * @since 5.3.11
 	 */

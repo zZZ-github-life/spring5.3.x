@@ -17,19 +17,17 @@
 package org.springframework.context;
 
 /**
- * Callback interface for initializing a Spring {@link ConfigurableApplicationContext}
- * prior to being {@linkplain ConfigurableApplicationContext#refresh() refreshed}.
+ * 用于在 Spring {@link ConfigurableApplicationContext} 被
+ * {@linkplain ConfigurableApplicationContext#refresh() 刷新} 之前对其进行初始化的回调接口。
  *
- * <p>Typically used within web applications that require some programmatic initialization
- * of the application context. For example, registering property sources or activating
- * profiles against the {@linkplain ConfigurableApplicationContext#getEnvironment()
- * context's environment}. See {@code ContextLoader} and {@code FrameworkServlet} support
- * for declaring a "contextInitializerClasses" context-param and init-param, respectively.
+ * <p>通常用于需要对应用上下文进行某种编程式初始化的 Web 应用。例如，针对
+ * {@linkplain ConfigurableApplicationContext#getEnvironment() 上下文的 Environment} 注册属性源或激
+ * 活 profile。有关分别声明“contextInitializerClasses” context-param 和 init-param 的支持，请参见
+ * {@code ContextLoader} 和 {@code FrameworkServlet}。
  *
- * <p>{@code ApplicationContextInitializer} processors are encouraged to detect
- * whether Spring's {@link org.springframework.core.Ordered Ordered} interface has been
- * implemented or if the {@link org.springframework.core.annotation.Order @Order}
- * annotation is present and to sort instances accordingly if so prior to invocation.
+ * <p>鼓励 {@code ApplicationContextInitializer} 处理器检测是否实现了 Spring 的
+ * {@link org.springframework.core.Ordered Ordered} 接口，或者是否存在
+ * {@link org.springframework.core.annotation.Order @Order} 注解，并据此在调用之前对实例进行排序。
  *
  * @author Chris Beams
  * @since 3.1
@@ -43,7 +41,7 @@ package org.springframework.context;
 public interface ApplicationContextInitializer<C extends ConfigurableApplicationContext> {
 
 	/**
-	 * Initialize the given application context.
+	 * 初始化给定的应用上下文。
 	 * @param applicationContext the application to configure
 	 */
 	void initialize(C applicationContext);

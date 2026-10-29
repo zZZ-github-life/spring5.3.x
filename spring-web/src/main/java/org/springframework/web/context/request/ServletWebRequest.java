@@ -43,7 +43,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
 
 /**
- * {@link WebRequest} adapter for an {@link javax.servlet.http.HttpServletRequest}.
+ * 用于 {@link javax.servlet.http.HttpServletRequest} 的 {@link WebRequest} 适配器。
  *
  * @author Juergen Hoeller
  * @author Brian Clozel
@@ -55,13 +55,13 @@ public class ServletWebRequest extends ServletRequestAttributes implements Nativ
 	private static final List<String> SAFE_METHODS = Arrays.asList("GET", "HEAD");
 
 	/**
-	 * Pattern matching ETag multiple field values in headers such as "If-Match", "If-None-Match".
+	 * 用于匹配“If-Match”、“If-None-Match”等头中多个 ETag 字段值的模式。
 	 * @see <a href="https://tools.ietf.org/html/rfc7232#section-2.3">Section 2.3 of RFC 7232</a>
 	 */
 	private static final Pattern ETAG_HEADER_VALUE_PATTERN = Pattern.compile("\\*|\\s*((W\\/)?(\"[^\"]*\"))\\s*,?");
 
 	/**
-	 * Date formats as specified in the HTTP RFC.
+	 * HTTP RFC 中规定的日期格式。
 	 * @see <a href="https://tools.ietf.org/html/rfc7231#section-7.1.1.1">Section 7.1.1.1 of RFC 7231</a>
 	 */
 	private static final String[] DATE_FORMATS = new String[] {
@@ -76,7 +76,7 @@ public class ServletWebRequest extends ServletRequestAttributes implements Nativ
 
 
 	/**
-	 * Create a new ServletWebRequest instance for the given request.
+	 * 为给定的请求创建一个新的 ServletWebRequest 实例。
 	 * @param request current HTTP request
 	 */
 	public ServletWebRequest(HttpServletRequest request) {
@@ -84,7 +84,7 @@ public class ServletWebRequest extends ServletRequestAttributes implements Nativ
 	}
 
 	/**
-	 * Create a new ServletWebRequest instance for the given request/response pair.
+	 * 为给定的请求/响应对创建一个新的 ServletWebRequest 实例。
 	 * @param request current HTTP request
 	 * @param response current HTTP response (for automatic last-modified handling)
 	 */
@@ -115,7 +115,7 @@ public class ServletWebRequest extends ServletRequestAttributes implements Nativ
 	}
 
 	/**
-	 * Return the HTTP method of the request.
+	 * 返回请求的 HTTP 方法。
 	 * @since 4.0.2
 	 */
 	@Nullable

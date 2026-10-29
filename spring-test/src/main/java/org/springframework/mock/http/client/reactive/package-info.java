@@ -1,5 +1,5 @@
 /**
- * Mock implementations of reactive HTTP client contracts.
+ * 响应式 HTTP 客户端契约的 mock 实现。
  */
 @NonNullApi
 @NonNullFields

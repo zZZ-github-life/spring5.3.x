@@ -1,5 +1,5 @@
 /**
- * Provides HttpMessageConverter implementations for handling JSON.
+ * 提供用于处理 JSON 的 HttpMessageConverter 实现。
  */
 @NonNullApi
 @NonNullFields

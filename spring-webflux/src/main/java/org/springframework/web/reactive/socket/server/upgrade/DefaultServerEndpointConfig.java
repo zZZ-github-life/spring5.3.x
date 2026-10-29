@@ -30,8 +30,8 @@ import javax.websocket.server.ServerEndpointConfig;
 import org.springframework.util.Assert;
 
 /**
- * Default implementation of {@link javax.websocket.server.ServerEndpointConfig}
- * for use in {@code RequestUpgradeStrategy} implementations.
+ * {@link javax.websocket.server.ServerEndpointConfig} 的默认实现，
+ * 供 {@code RequestUpgradeStrategy} 实现使用。
  *
  * @author Violeta Georgieva
  * @author Rossen Stoyanchev
@@ -48,7 +48,7 @@ class DefaultServerEndpointConfig extends ServerEndpointConfig.Configurator
 
 
 	/**
-	 * Constructor with a path and an {@code javax.websocket.Endpoint}.
+	 * 使用路径和 {@code javax.websocket.Endpoint} 构造。
 	 * @param path the endpoint path
 	 * @param endpoint the endpoint instance
 	 */

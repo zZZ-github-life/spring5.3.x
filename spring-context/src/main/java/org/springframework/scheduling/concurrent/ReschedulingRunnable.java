@@ -33,12 +33,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ErrorHandler;
 
 /**
- * Internal adapter that reschedules an underlying {@link Runnable} according
- * to the next execution time suggested by a given {@link Trigger}.
+ * 内部适配器，根据给定的 {@link Trigger} 建议的下次执行时间，重新调度底层的 {@link Runnable}。
  *
- * <p>Necessary because a native {@link ScheduledExecutorService} supports
- * delay-driven execution only. The flexibility of the {@link Trigger} interface
- * will be translated onto a delay for the next execution time (repeatedly).
+ * <p>这是必要的，因为原生 {@link ScheduledExecutorService} 仅支持由延迟驱动的执行。{@link Trigger}
+ * 接口的灵活性会被转换为下一次执行时间的延迟（重复进行）。
  *
  * @author Juergen Hoeller
  * @author Mark Fisher

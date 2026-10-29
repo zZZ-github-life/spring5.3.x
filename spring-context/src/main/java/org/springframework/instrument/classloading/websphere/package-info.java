@@ -1,5 +1,5 @@
 /**
- * Support for class instrumentation on IBM WebSphere Application Server 7+.
+ * 在 IBM WebSphere Application Server 7+ 上支持类插桩。
  */
 @NonNullApi
 @NonNullFields

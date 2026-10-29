@@ -28,51 +28,40 @@ import org.springframework.web.reactive.HandlerResult;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Contract to render {@link HandlerResult} to the HTTP response.
+ * 将 {@link HandlerResult} 渲染到 HTTP 响应的契约。
  *
- * <p>In contrast to an {@link org.springframework.core.codec.Encoder Encoder}
- * which is a singleton and encodes any object of a given type, a {@code View}
- * is typically selected by name and resolved using a {@link ViewResolver}
- * which may for example match it to an HTML template. Furthermore a {@code View}
- * may render based on multiple attributes contained in the model.
+ * <p>与 {@link org.springframework.core.codec.Encoder Encoder}（它是单例并编码给定类型的任何对象）不同，{@code View} 通常按名称选择，并使用 {@link ViewResolver} 解析，例如可以将名称匹配到 HTML 模板。此外，{@code View} 可以基于模型中包含的多个属性进行渲染。
  *
- * <p>A {@code View} can also choose to select an attribute from the model use
- * any existing {@code Encoder} to render alternate media types.
- *
+ * <p>{@code View} 还可以选择从模型中选择一个属性，并使用任何现有的 {@code Encoder} 渲染替代媒体类型。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public interface View {
 
 	/**
-	 * The name of the exchange attribute that contains the
-	 * {@link org.springframework.web.reactive.BindingContext BindingContext}
-	 * for the request which can be used to create
-	 * {@link org.springframework.validation.BindingResult BindingResult}
-	 * instances for objects in to the model.
-	 * <p>Note: This attribute is not required and may not be present.
+	 * 包含请求的 {@link org.springframework.web.reactive.BindingContext BindingContext} 的交换属性名称，可用于为模型中的对象创建 {@link org.springframework.validation.BindingResult BindingResult} 实例。
+	 * <p>注意：此属性不是必需的，可能不存在。
 	 * @since 5.1.8
 	 */
 	String BINDING_CONTEXT_ATTRIBUTE = View.class.getName() + ".bindingContext";
 
 
 	/**
-	 * Return the list of media types this View supports, or an empty list.
+	 * 返回此 View 支持的媒体类型列表，或空列表。
 	 */
 	default List<MediaType> getSupportedMediaTypes() {
 		return Collections.emptyList();
 	}
 
 	/**
-	 * Whether this View does render by performing a redirect.
+	 * 此 View 是否通过执行重定向进行渲染。
 	 */
 	default boolean isRedirectView() {
 		return false;
 	}
 
 	/**
-	 * Render the view based on the given {@link HandlerResult}. Implementations
-	 * can access and use the model or only a specific attribute in it.
+	 * 基于给定 {@link HandlerResult} 渲染视图。实现可以访问并使用模型，或仅使用其中的特定属性。
 	 * @param model a Map with name Strings as keys and corresponding model
 	 * objects as values (Map can also be {@code null} in case of empty model)
 	 * @param contentType the content type selected to render with which should

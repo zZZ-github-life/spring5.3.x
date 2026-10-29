@@ -1,8 +1,8 @@
 /**
- * Contains built-in {@link org.springframework.test.web.client.ResponseCreator}
- * implementations. Use
+ * 包含内置的 {@link org.springframework.test.web.client.ResponseCreator}
+ * 实现。使用
  * {@link org.springframework.test.web.client.response.MockRestResponseCreators}
- * to gain access to instances of those implementations.
+ * 获取这些实现的实例。
  */
 @NonNullApi
 @NonNullFields

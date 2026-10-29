@@ -1,6 +1,6 @@
 /**
- * Support classes for XSLT,
- * providing a View implementation for XSLT stylesheets.
+ * XSLT 的支持类，
+ * 提供 XSLT 样式表的 View 实现。
  */
 @NonNullApi
 @NonNullFields

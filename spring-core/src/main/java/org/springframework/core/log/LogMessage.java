@@ -22,10 +22,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * A simple log message type for use with Commons Logging, allowing for convenient
- * lazy resolution of a given {@link Supplier} instance (typically bound to a lambda
- * expression) or a printf-style format string ({@link String#format}) in its
- * {@link #toString()}.
+ * 用于 Commons Logging 的简单日志消息类型，允许在
+ * 其 {@link #toString()} 中便捷地延迟解析给定的 {@link Supplier} 实例
+ * （通常绑定到 lambda 表达式）或 printf 风格的格式字符串（{@link String#format}）。
  *
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -62,8 +61,8 @@ public abstract class LogMessage implements CharSequence {
 	}
 
 	/**
-	 * This will be called by the logging provider, potentially once
-	 * per log target (therefore locally caching the result here).
+	 * 这将由日志记录提供程序调用，可能对每个
+	 * 日志目标调用一次（因此在此处本地缓存结果）。
 	 */
 	@Override
 	public String toString() {
@@ -77,7 +76,7 @@ public abstract class LogMessage implements CharSequence {
 
 
 	/**
-	 * Build a lazily resolving message from the given supplier.
+	 * 根据给定的 supplier 构建一条延迟解析的消息。
 	 * @param supplier the supplier (typically bound to a lambda expression)
 	 * @see #toString()
 	 */
@@ -86,7 +85,7 @@ public abstract class LogMessage implements CharSequence {
 	}
 
 	/**
-	 * Build a lazily formatted message from the given format string and argument.
+	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param arg1 the argument (can be {@code null})
 	 * @see String#format(String, Object...)
@@ -96,7 +95,7 @@ public abstract class LogMessage implements CharSequence {
 	}
 
 	/**
-	 * Build a lazily formatted message from the given format string and arguments.
+	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param arg1 the first argument (can be {@code null})
 	 * @param arg2 the second argument (can be {@code null})
@@ -107,7 +106,7 @@ public abstract class LogMessage implements CharSequence {
 	}
 
 	/**
-	 * Build a lazily formatted message from the given format string and arguments.
+	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param arg1 the first argument (can be {@code null})
 	 * @param arg2 the second argument (can be {@code null})
@@ -119,7 +118,7 @@ public abstract class LogMessage implements CharSequence {
 	}
 
 	/**
-	 * Build a lazily formatted message from the given format string and arguments.
+	 * 根据给定的格式字符串和参数构建一条延迟格式化的消息。
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param arg1 the first argument (can be {@code null})
 	 * @param arg2 the second argument (can be {@code null})
@@ -133,10 +132,10 @@ public abstract class LogMessage implements CharSequence {
 	}
 
 	/**
-	 * Build a lazily formatted message from the given format string and varargs.
-	 * <p>This varargs {@code format()} variant may be costly. You should therefore
-	 * use the individual argument variants whenever possible:
-	 * {@link #format(String, Object)}, {@link #format(String, Object, Object)}, etc.
+	 * 根据给定的格式字符串和可变参数构建一条延迟格式化的消息。
+	 * <p>这个可变参数形式的 {@code format()} 可能开销较大。因此，
+	 * 应尽可能使用单独的参数变体：
+	 * {@link #format(String, Object)}、{@link #format(String, Object, Object)} 等。
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param args the varargs array (can be {@code null} and can contain {@code null}
 	 * elements)

@@ -36,10 +36,10 @@ import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link ClientHttpRequest} implementation based on
- * Apache HttpComponents HttpClient in streaming mode.
+ * 基于 Apache HttpComponents HttpClient 流式模式的
+ * {@link ClientHttpRequest} 实现。
  *
- * <p>Created via the {@link HttpComponentsClientHttpRequestFactory}.
+ * <p>通过 {@link HttpComponentsClientHttpRequestFactory} 创建。
  *
  * @author Arjen Poutsma
  * @since 4.0

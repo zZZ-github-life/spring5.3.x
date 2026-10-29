@@ -22,8 +22,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for URL-based views. Provides a consistent way of
- * holding the URL that a View wraps, in the form of a "url" bean property.
+ * 基于 URL 的视图的抽象基类。以 "url" bean 属性的形式，
+ * 提供了一种保持一致的方式来保存视图所包装的 URL。
  *
  * @author Juergen Hoeller
  * @since 13.12.2003
@@ -35,13 +35,13 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 
 	/**
-	 * Constructor for use as a bean.
+	 * 作为 bean 使用的构造函数。
 	 */
 	protected AbstractUrlBasedView() {
 	}
 
 	/**
-	 * Create a new AbstractUrlBasedView with the given URL.
+	 * 使用给定的 URL 创建一个新的 AbstractUrlBasedView。
 	 * @param url the URL to forward to
 	 */
 	protected AbstractUrlBasedView(String url) {
@@ -50,15 +50,15 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 
 
 	/**
-	 * Set the URL of the resource that this view wraps.
-	 * The URL must be appropriate for the concrete View implementation.
+	 * 设置此视图所包装资源的 URL。
+	 * 该 URL 必须适合具体的 View 实现。
 	 */
 	public void setUrl(@Nullable String url) {
 		this.url = url;
 	}
 
 	/**
-	 * Return the URL of the resource that this view wraps.
+	 * 返回此视图所包装资源的 URL。
 	 */
 	@Nullable
 	public String getUrl() {
@@ -73,17 +73,17 @@ public abstract class AbstractUrlBasedView extends AbstractView implements Initi
 	}
 
 	/**
-	 * Return whether the 'url' property is required.
-	 * <p>The default implementation returns {@code true}.
-	 * This can be overridden in subclasses.
+	 * 返回 'url' 属性是否为必需。
+	 * <p>默认实现返回 {@code true}。
+	 * 可在子类中重写。
 	 */
 	protected boolean isUrlRequired() {
 		return true;
 	}
 
 	/**
-	 * Check whether the underlying resource that the configured URL points to
-	 * actually exists.
+	 * 检查所配置的 URL 指向的底层资源是否
+	 * 实际存在。
 	 * @param locale the desired Locale that we're looking for
 	 * @return {@code true} if the resource exists (or is assumed to exist);
 	 * {@code false} if we know that it does not exist

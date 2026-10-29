@@ -28,19 +28,19 @@ import org.springframework.jms.support.destination.DestinationResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * Extension of the generic JCA 1.5
- * {@link org.springframework.jca.endpoint.GenericMessageEndpointManager},
- * adding JMS-specific support for ActivationSpec configuration.
+ * 通用 JCA 1.5
+ * {@link org.springframework.jca.endpoint.GenericMessageEndpointManager} 的扩展，
+ * 增加了对 ActivationSpec 配置的 JMS 特定支持。
  *
- * <p>Allows for defining a common {@link JmsActivationSpecConfig} object
- * that gets converted into a provider-specific JCA 1.5 ActivationSpec
- * object for activating the endpoint.
+ * <p>允许定义一个通用的 {@link JmsActivationSpecConfig} 对象，
+ * 该对象会被转换为特定于提供者的 JCA 1.5 ActivationSpec 对象，
+ * 用于激活端点。
  *
- * <p><b>NOTE:</b> This JCA-based endpoint manager supports standard JMS
- * {@link javax.jms.MessageListener} endpoints only. It does <i>not</i> support
- * Spring's {@link org.springframework.jms.listener.SessionAwareMessageListener}
- * variant, simply because the JCA endpoint management contract does not allow
- * for obtaining the current JMS {@link javax.jms.Session}.
+ * <p><b>注意：</b>这个基于 JCA 的端点管理器仅支持标准 JMS
+ * {@link javax.jms.MessageListener} 端点。它<i>不</i>支持
+ * Spring 的 {@link org.springframework.jms.listener.SessionAwareMessageListener}
+ * 变体，原因很简单：JCA 端点管理契约不允许获取当前的 JMS
+ * {@link javax.jms.Session}。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -65,8 +65,8 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 
 
 	/**
-	 * Set the JMS MessageListener for this endpoint.
-	 * <p>This is a shortcut for configuring a dedicated JmsMessageEndpointFactory.
+	 * 设置此端点的 JMS MessageListener。
+	 * <p>这是配置专用 JmsMessageEndpointFactory 的快捷方式。
 	 * @see JmsMessageEndpointFactory#setMessageListener
 	 */
 	public void setMessageListener(MessageListener messageListener) {
@@ -75,23 +75,22 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	}
 
 	/**
-	 * Return the JMS MessageListener for this endpoint.
+	 * 返回此端点的 JMS MessageListener。
 	 */
 	public MessageListener getMessageListener() {
 		return this.endpointFactory.getMessageListener();
 	}
 
 	/**
-	 * Set the XA transaction manager to use for wrapping endpoint
-	 * invocations, enlisting the endpoint resource in each such transaction.
-	 * <p>The passed-in object may be a transaction manager which implements
-	 * Spring's {@link org.springframework.transaction.jta.TransactionFactory}
-	 * interface, or a plain {@link javax.transaction.TransactionManager}.
-	 * <p>If no transaction manager is specified, the endpoint invocation
-	 * will simply not be wrapped in an XA transaction. Consult your
-	 * resource provider's ActivationSpec documentation for the local
-	 * transaction options of your particular provider.
-	 * <p>This is a shortcut for configuring a dedicated JmsMessageEndpointFactory.
+	 * 设置用于包装端点调用的 XA 事务管理器，
+	 * 在每次此类事务中登记端点资源。
+	 * <p>传入的对象可以是实现了 Spring 的
+	 * {@link org.springframework.transaction.jta.TransactionFactory} 接口的事务管理器，
+	 * 也可以是普通的 {@link javax.transaction.TransactionManager}。
+	 * <p>如果未指定事务管理器，端点调用将不会被包装在 XA 事务中。
+	 * 有关特定提供者的本地事务选项，请查阅资源提供者的
+	 * ActivationSpec 文档。
+	 * <p>这是配置专用 JmsMessageEndpointFactory 的快捷方式。
 	 * @see JmsMessageEndpointFactory#setTransactionManager
 	 */
 	public void setTransactionManager(Object transactionManager) {
@@ -99,15 +98,13 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	}
 
 	/**
-	 * Set the factory for concrete JCA 1.5 ActivationSpec objects,
-	 * creating JCA ActivationSpecs based on
-	 * {@link #setActivationSpecConfig JmsActivationSpecConfig} objects.
-	 * <p>This factory is dependent on the concrete JMS provider, e.g. on ActiveMQ.
-	 * The default implementation simply guesses the ActivationSpec class name
-	 * from the provider's class name (e.g. "ActiveMQResourceAdapter" &rarr;
-	 * "ActiveMQActivationSpec" in the same package), and populates the
-	 * ActivationSpec properties as suggested by the JCA 1.5 specification
-	 * (plus a couple of autodetected vendor-specific properties).
+	 * 设置用于创建具体 JCA 1.5 ActivationSpec 对象的工厂，
+	 * 基于 {@link #setActivationSpecConfig JmsActivationSpecConfig} 对象创建 JCA ActivationSpec。
+	 * <p>此工厂依赖于具体的 JMS 提供者，例如 ActiveMQ。
+	 * 默认实现只是根据提供者的类名猜测 ActivationSpec 类名
+	 * （例如同一包中的 "ActiveMQResourceAdapter" &rarr;
+	 * "ActiveMQActivationSpec"），并按照 JCA 1.5 规范的建议
+	 * 填充 ActivationSpec 属性（外加几个自动检测到的特定于厂商的属性）。
 	 * @see DefaultJmsActivationSpecFactory
 	 */
 	public void setActivationSpecFactory(@Nullable JmsActivationSpecFactory activationSpecFactory) {
@@ -116,14 +113,14 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	}
 
 	/**
-	 * Set the DestinationResolver to use for resolving destination names
-	 * into the JCA 1.5 ActivationSpec "destination" property.
-	 * <p>If not specified, destination names will simply be passed in as Strings.
-	 * If specified, destination names will be resolved into Destination objects first.
-	 * <p>Note that a DestinationResolver is usually specified on the JmsActivationSpecFactory
-	 * (see {@link StandardJmsActivationSpecFactory#setDestinationResolver}). This is simply
-	 * a shortcut for parameterizing the default JmsActivationSpecFactory; it will replace
-	 * any custom JmsActivationSpecFactory that might have been set before.
+	 * 设置用于将目的地名称解析到 JCA 1.5 ActivationSpec
+	 * "destination" 属性的 DestinationResolver。
+	 * <p>如果未指定，目的地名称将直接作为字符串传入。
+	 * 如果指定，目的地名称会先被解析为 Destination 对象。
+	 * <p>请注意，DestinationResolver 通常是在 JmsActivationSpecFactory 上指定的
+	 * （参见 {@link StandardJmsActivationSpecFactory#setDestinationResolver}）。
+	 * 这里只是为默认 JmsActivationSpecFactory 提供参数的快捷方式；
+	 * 它会替换之前可能设置的任何自定义 JmsActivationSpecFactory。
 	 * @see StandardJmsActivationSpecFactory#setDestinationResolver
 	 */
 	public void setDestinationResolver(DestinationResolver destinationResolver) {
@@ -133,18 +130,18 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	}
 
 	/**
-	 * Specify the {@link JmsActivationSpecConfig} object that this endpoint manager
-	 * should use for activating its listener.
-	 * <p>This config object will be turned into a concrete JCA 1.5 ActivationSpec
-	 * object through a {@link #setActivationSpecFactory JmsActivationSpecFactory}.
+	 * 指定此端点管理器应用于激活其监听器的
+	 * {@link JmsActivationSpecConfig} 对象。
+	 * <p>此配置对象将通过 {@link #setActivationSpecFactory JmsActivationSpecFactory}
+	 * 转换为具体的 JCA 1.5 ActivationSpec 对象。
 	 */
 	public void setActivationSpecConfig(@Nullable JmsActivationSpecConfig activationSpecConfig) {
 		this.activationSpecConfig = activationSpecConfig;
 	}
 
 	/**
-	 * Return the {@link JmsActivationSpecConfig} object that this endpoint manager
-	 * should use for activating its listener. Return {@code null} if none is set.
+	 * 返回此端点管理器应用于激活其监听器的
+	 * {@link JmsActivationSpecConfig} 对象。如果未设置，则返回 {@code null}。
 	 */
 	@Nullable
 	public JmsActivationSpecConfig getActivationSpecConfig() {
@@ -152,8 +149,8 @@ public class JmsMessageEndpointManager extends GenericMessageEndpointManager
 	}
 
 	/**
-	 * Set the name of this message endpoint. Populated with the bean name
-	 * automatically when defined within Spring's bean factory.
+	 * 设置此消息端点的名称。当在 Spring 的 Bean 工厂中定义时，
+	 * 会自动填充为 Bean 名称。
 	 */
 	@Override
 	public void setBeanName(String beanName) {

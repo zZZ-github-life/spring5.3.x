@@ -39,11 +39,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code MessageHandler} with support for "user" destinations.
+ * 支持“用户”目标的 {@code MessageHandler}。
  *
- * <p>Listens for messages with "user" destinations, translates their destination
- * to actual target destinations unique to the active session(s) of a user, and
- * then sends the resolved messages to the broker channel to be delivered.
+ * <p>监听带有“用户”目标的消息，将其目标转换为对应用户活跃会话唯一的实际目标，
+ * 然后将解析后的消息发送到代理通道进行投递。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -73,9 +72,8 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 
 
 	/**
-	 * Create an instance with the given client and broker channels subscribing
-	 * to handle messages from each and then sending any resolved messages to the
-	 * broker channel.
+	 * 使用给定的客户端通道和代理通道创建实例，订阅并处理来自各通道的消息，
+	 * 然后将任何已解析的消息发送到代理通道。
 	 * @param clientInboundChannel messages received from clients.
 	 * @param brokerChannel messages sent to the broker.
 	 * @param resolver the resolver for "user" destinations.
@@ -95,17 +93,16 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 
 
 	/**
-	 * Return the configured {@link UserDestinationResolver}.
+	 * 返回已配置的 {@link UserDestinationResolver}。
 	 */
 	public UserDestinationResolver getUserDestinationResolver() {
 		return this.destinationResolver;
 	}
 
 	/**
-	 * Set a destination to broadcast messages to that remain unresolved because
-	 * the user is not connected. In a multi-application server scenario this
-	 * gives other application servers a chance to try.
-	 * <p>By default this is not set.
+	 * 设置一个目标，用于广播因用户未连接而仍未解析的消息。在多应用服务器场景中，
+	 * 这为其他应用服务器提供了尝试处理的机会。
+	 * <p>默认不设置。
 	 * @param destination the target destination.
 	 */
 	public void setBroadcastDestination(@Nullable String destination) {
@@ -114,7 +111,7 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	}
 
 	/**
-	 * Return the configured destination for unresolved messages.
+	 * 返回已配置的未解析消息目标。
 	 */
 	@Nullable
 	public String getBroadcastDestination() {
@@ -122,24 +119,22 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 	}
 
 	/**
-	 * Return the messaging template used to send resolved messages to the
-	 * broker channel.
+	 * 返回用于将已解析消息发送到代理通道的消息模板。
 	 */
 	public MessageSendingOperations<String> getBrokerMessagingTemplate() {
 		return this.messagingTemplate;
 	}
 
 	/**
-	 * Configure a custom {@link MessageHeaderInitializer} to initialize the
-	 * headers of resolved target messages.
-	 * <p>By default this is not set.
+	 * 配置自定义 {@link MessageHeaderInitializer}，以初始化已解析目标消息的头。
+	 * <p>默认不设置。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {
@@ -231,8 +226,7 @@ public class UserDestinationMessageHandler implements MessageHandler, SmartLifec
 
 
 	/**
-	 * A handler that broadcasts locally unresolved messages to the broker and
-	 * also handles similar broadcasts received from the broker.
+	 * 一个处理器，将本地未解析的消息广播到代理，并处理从代理收到的类似广播。
 	 */
 	private static class BroadcastHandler {
 

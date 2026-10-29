@@ -21,14 +21,13 @@ import java.util.function.Function;
 import org.springframework.util.Assert;
 
 /**
- * This class creates new {@link BindMarkers} instances to bind
- * parameter to a specific {@link io.r2dbc.spi.Statement}.
+ * 此类创建新的 {@link BindMarkers} 实例，用于将参数绑定到
+ * 特定的 {@link io.r2dbc.spi.Statement}。
  *
- * <p>Bind markers can be typically represented as placeholder and identifier.
- * Placeholders are used within the query to execute so the underlying database
- * system can substitute the placeholder with the actual value. Identifiers
- * are used in R2DBC drivers to bind a value to a bind marker. Identifiers are
- * typically a part of an entire bind marker when using indexed or named bind markers.
+ * <p>绑定标记通常可表示为占位符和标识符。占位符用于要执行的查询中，
+ * 以便底层数据库系统可以用实际值替换占位符。标识符在 R2DBC 驱动程序中
+ * 用于将值绑定到绑定标记。当使用基于索引或命名的绑定标记时，
+ * 标识符通常是整个绑定标记的一部分。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -39,14 +38,14 @@ import org.springframework.util.Assert;
 public interface BindMarkersFactory {
 
 	/**
-	 * Create a new {@link BindMarkers} instance.
+	 * 创建一个新的 {@link BindMarkers} 实例。
 	 */
 	BindMarkers create();
 
 	/**
-	 * Return whether the {@link BindMarkersFactory} uses identifiable placeholders:
-	 * {@code false} if multiple placeholders cannot be distinguished by just the
-	 * {@link BindMarker#getPlaceholder() placeholder} identifier.
+	 * 返回 {@link BindMarkersFactory} 是否使用可标识的占位符：
+	 * 如果仅凭 {@link BindMarker#getPlaceholder() 占位符}标识符
+	 * 无法区分多个占位符，则返回 {@code false}。
 	 */
 	default boolean identifiablePlaceholders() {
 		return true;
@@ -56,9 +55,9 @@ public interface BindMarkersFactory {
 	// Static factory methods
 
 	/**
-	 * Create index-based {@link BindMarkers} using indexes to bind parameters.
-	 * Allows customization of the bind marker placeholder {@code prefix} to
-	 * represent the bind marker as placeholder within the query.
+	 * 创建基于索引的 {@link BindMarkers}，使用索引来绑定参数。
+	 * 允许自定义绑定标记占位符 {@code prefix}，
+	 * 以在查询中将绑定标记表示为占位符。
 	 * @param prefix bind parameter prefix that is included in
 	 * {@link BindMarker#getPlaceholder()} but not the actual identifier
 	 * @param beginWith the first index to use
@@ -72,10 +71,9 @@ public interface BindMarkersFactory {
 	}
 
 	/**
-	 * Create anonymous, index-based bind marker using a static placeholder.
-	 * Instances are bound by the ordinal position ordered by the appearance
-	 * of the placeholder. This implementation creates indexed bind markers
-	 * using an anonymous placeholder that correlates with an index.
+	 * 使用静态占位符创建匿名的、基于索引的绑定标记。
+	 * 实例按占位符出现的顺序以序号位置进行绑定。
+	 * 此实现使用与索引相关联的匿名占位符来创建基于索引的绑定标记。
 	 * @param placeholder parameter placeholder
 	 * @return a {@link BindMarkersFactory} using {@code placeholder}
 	 * @see io.r2dbc.spi.Statement#bindNull(int, Class)
@@ -96,13 +94,12 @@ public interface BindMarkersFactory {
 	}
 
 	/**
-	 * Create named {@link BindMarkers} using identifiers to bind parameters.
-	 * Named bind markers can support {@link BindMarkers#next(String) name hints}.
-	 * If no {@link BindMarkers#next(String) hint} is given, named bind markers can
-	 * use a counter or a random value source to generate unique bind markers.
-	 * Allows customization of the bind marker placeholder {@code prefix} and
-	 * {@code namePrefix} to represent the bind marker as placeholder within
-	 * the query.
+	 * 使用标识符创建命名的 {@link BindMarkers} 以绑定参数。
+	 * 命名绑定标记可以支持 {@link BindMarkers#next(String) 名称提示}。
+	 * 如果未提供 {@link BindMarkers#next(String) 提示}，命名绑定标记可以
+	 * 使用计数器或随机值源来生成唯一的绑定标记。
+	 * 允许自定义绑定标记占位符 {@code prefix} 和 {@code namePrefix}，
+	 * 以在查询中将绑定标记表示为占位符。
 	 * @param prefix bind parameter prefix that is included in
 	 * {@link BindMarker#getPlaceholder()} but not the actual identifier
 	 * @param namePrefix prefix for bind marker name that is included in
@@ -117,10 +114,10 @@ public interface BindMarkersFactory {
 	}
 
 	/**
-	 * Create named {@link BindMarkers} using identifiers to bind parameters.
-	 * Named bind markers support {@link BindMarkers#next(String) name hints}.
-	 * If no {@link BindMarkers#next(String) hint} is given, named bind markers
-	 * can use a counter or a random value source to generate unique bind markers.
+	 * 使用标识符创建命名的 {@link BindMarkers} 以绑定参数。
+	 * 命名绑定标记支持 {@link BindMarkers#next(String) 名称提示}。
+	 * 如果未提供 {@link BindMarkers#next(String) 提示}，命名绑定标记可以
+	 * 使用计数器或随机值源来生成唯一的绑定标记。
 	 * @param prefix bind parameter prefix that is included in
 	 * {@link BindMarker#getPlaceholder()} but not the actual identifier
 	 * @param namePrefix prefix for bind marker name that is included in

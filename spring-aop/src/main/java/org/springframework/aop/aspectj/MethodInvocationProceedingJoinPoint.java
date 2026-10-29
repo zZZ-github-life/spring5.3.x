@@ -33,15 +33,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * An implementation of the AspectJ {@link ProceedingJoinPoint} interface
- * wrapping an AOP Alliance {@link org.aopalliance.intercept.MethodInvocation}.
+ * AspectJ {@link ProceedingJoinPoint} 接口的实现，包装了一个 AOP Alliance
+ * {@link org.aopalliance.intercept.MethodInvocation}。
  *
- * <p><b>Note</b>: The {@code getThis()} method returns the current Spring AOP proxy.
- * The {@code getTarget()} method returns the current Spring AOP target (which may be
- * {@code null} if there is no target instance) as a plain POJO without any advice.
- * <b>If you want to call the object and have the advice take effect, use {@code getThis()}.</b>
- * A common example is casting the object to an introduced interface in the implementation of
- * an introduction. There is no such distinction between target and proxy in AspectJ itself.
+ * <p><b>注意</b>：{@code getThis()} 方法返回当前的 Spring AOP 代理。{@code getTarget()} 方法以不含
+ * 任何通知的普通 POJO 形式返回当前的 Spring AOP 目标（如果没有目标实例，则可能为 {@code null}）。
+ * <b>如果要调用对象并让通知生效，请使用 {@code getThis()}。</b>一个常见的例子是在引入的实现中将对
+ * 象强制转换为被引入的接口。AspectJ 本身并不区分目标和代理。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -58,18 +56,17 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 	@Nullable
 	private Object[] args;
 
-	/** Lazily initialized signature object. */
+	/** 延迟初始化的签名对象。 */
 	@Nullable
 	private Signature signature;
 
-	/** Lazily initialized source location object. */
+	/** 延迟初始化的源位置对象。 */
 	@Nullable
 	private SourceLocation sourceLocation;
 
 
 	/**
-	 * Create a new MethodInvocationProceedingJoinPoint, wrapping the given
-	 * Spring ProxyMethodInvocation object.
+	 * 创建一个新的 MethodInvocationProceedingJoinPoint，包装给定的 Spring ProxyMethodInvocation 对象。
 	 * @param methodInvocation the Spring ProxyMethodInvocation object
 	 */
 	public MethodInvocationProceedingJoinPoint(ProxyMethodInvocation methodInvocation) {
@@ -103,7 +100,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 	}
 
 	/**
-	 * Returns the Spring AOP proxy. Cannot be {@code null}.
+	 * 返回 Spring AOP 代理。不能为 {@code null}。
 	 */
 	@Override
 	public Object getThis() {
@@ -111,7 +108,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 	}
 
 	/**
-	 * Returns the Spring AOP target. May be {@code null} if there is no target.
+	 * 返回 Spring AOP 目标。如果没有目标，则可能为 {@code null}。
 	 */
 	@Override
 	@Nullable
@@ -176,7 +173,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 
 
 	/**
-	 * Lazily initialized MethodSignature.
+	 * 延迟初始化的 MethodSignature。
 	 */
 	private class MethodSignatureImpl implements MethodSignature {
 
@@ -302,7 +299,7 @@ public class MethodInvocationProceedingJoinPoint implements ProceedingJoinPoint,
 
 
 	/**
-	 * Lazily initialized SourceLocation.
+	 * 延迟初始化的 SourceLocation。
 	 */
 	private class SourceLocationImpl implements SourceLocation {
 

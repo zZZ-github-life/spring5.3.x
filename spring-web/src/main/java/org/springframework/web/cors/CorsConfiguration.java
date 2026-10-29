@@ -35,14 +35,13 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A container for CORS configuration along with methods to check against the
- * actual origin, HTTP methods, and headers of a given request.
+ * CORS 配置的容器，同时提供了针对给定请求的实际 origin、HTTP 方法和请求头
+ * 进行校验的方法。
  *
- * <p>By default a newly created {@code CorsConfiguration} does not permit any
- * cross-origin requests and must be configured explicitly to indicate what
- * should be allowed. Use {@link #applyPermitDefaultValues()} to flip the
- * initialization model to start with open defaults that permit all cross-origin
- * requests for GET, HEAD, and POST requests.
+ * <p>默认情况下，新建的 {@code CorsConfiguration} 不允许任何跨源请求，
+ * 必须显式进行配置以指明允许的内容。可使用
+ * {@link #applyPermitDefaultValues()} 将初始化模型切换为开放的默认值，
+ * 即允许 GET、HEAD 和 POST 请求的所有跨源请求。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -54,7 +53,7 @@ import org.springframework.util.StringUtils;
  */
 public class CorsConfiguration {
 
-	/** Wildcard representing <em>all</em> origins, methods, or headers. */
+	/** 表示<em>所有</em> origin、方法或请求头的通配符。 */
 	public static final String ALL = "*";
 
 	private static final List<String> ALL_LIST = Collections.singletonList(ALL);
@@ -98,16 +97,15 @@ public class CorsConfiguration {
 
 
 	/**
-	 * Construct a new {@code CorsConfiguration} instance with no cross-origin
-	 * requests allowed for any origin by default.
+	 * 构造一个新的 {@code CorsConfiguration} 实例，默认不允许任何 origin 的跨源请求。
 	 * @see #applyPermitDefaultValues()
 	 */
 	public CorsConfiguration() {
 	}
 
 	/**
-	 * Construct a new {@code CorsConfiguration} instance by copying all
-	 * values from the supplied {@code CorsConfiguration}.
+	 * 通过复制所提供的 {@code CorsConfiguration} 中的所有值，
+	 * 构造一个新的 {@code CorsConfiguration} 实例。
 	 */
 	public CorsConfiguration(CorsConfiguration other) {
 		this.allowedOrigins = other.allowedOrigins;
@@ -122,19 +120,17 @@ public class CorsConfiguration {
 
 
 	/**
-	 * A list of origins for which cross-origin requests are allowed. Values may
-	 * be a specific domain, e.g. {@code "https://domain1.com"}, or the CORS
-	 * defined special value {@code "*"} for all origins.
-	 * <p>For matched pre-flight and actual requests the
-	 * {@code Access-Control-Allow-Origin} response header is set either to the
-	 * matched domain value or to {@code "*"}. Keep in mind however that the
-	 * CORS spec does not allow {@code "*"} when {@link #setAllowCredentials
-	 * allowCredentials} is set to {@code true} and as of 5.3 that combination
-	 * is rejected in favor of using {@link #setAllowedOriginPatterns
-	 * allowedOriginPatterns} instead.
-	 * <p>By default this is not set which means that no origins are allowed.
-	 * However, an instance of this class is often initialized further, e.g. for
-	 * {@code @CrossOrigin}, via {@link #applyPermitDefaultValues()}.
+	 * 允许跨源请求的 origin 列表。值可以是具体域名，例如
+	 * {@code "https://domain1.com"}，也可以是 CORS 定义的特殊值 {@code "*"}，
+	 * 表示所有 origin。
+	 * <p>对于匹配的预检请求和实际请求，{@code Access-Control-Allow-Origin}
+	 * 响应头会被设置为匹配的域名值或 {@code "*"}。但请注意，当
+	 * {@link #setAllowCredentials allowCredentials} 设置为 {@code true} 时，
+	 * CORS 规范不允许使用 {@code "*"}，并且从 5.3 开始，这种组合会被拒绝，
+	 * 应改用 {@link #setAllowedOriginPatterns allowedOriginPatterns}。
+	 * <p>默认情况下不设置此属性，意味着不允许任何 origin。
+	 * 不过，此类的实例通常会被进一步初始化，例如对于 {@code @CrossOrigin}，
+	 * 会通过 {@link #applyPermitDefaultValues()} 进行初始化。
 	 */
 	public void setAllowedOrigins(@Nullable List<String> origins) {
 		this.allowedOrigins = (origins == null ? null :
@@ -146,7 +142,7 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Return the configured origins to allow, or {@code null} if none.
+	 * 返回配置的允许 origin，如果没有则为 {@code null}。
 	 */
 	@Nullable
 	public List<String> getAllowedOrigins() {
@@ -154,7 +150,7 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Variant of {@link #setAllowedOrigins} for adding one origin at a time.
+	 * {@link #setAllowedOrigins} 的变体，用于一次添加一个 origin。
 	 */
 	public void addAllowedOrigin(@Nullable String origin) {
 		if (origin == null) {
@@ -171,23 +167,22 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Alternative to {@link #setAllowedOrigins} that supports more flexible
-	 * origins patterns with "*" anywhere in the host name in addition to port
-	 * lists. Examples:
+	 * {@link #setAllowedOrigins} 的替代方案，支持更灵活的 origin 模式，
+	 * 可在主机名中的任意位置使用 "*"，此外还支持端口列表。示例：
 	 * <ul>
-	 * <li>{@literal https://*.domain1.com} -- domains ending with domain1.com
-	 * <li>{@literal https://*.domain1.com:[8080,8081]} -- domains ending with
-	 * domain1.com on port 8080 or port 8081
-	 * <li>{@literal https://*.domain1.com:[*]} -- domains ending with
-	 * domain1.com on any port, including the default port
+	 * <li>{@literal https://*.domain1.com} -- 以 domain1.com 结尾的域名
+	 * <li>{@literal https://*.domain1.com:[8080,8081]} -- 以
+	 * domain1.com 结尾、端口为 8080 或 8081 的域名
+	 * <li>{@literal https://*.domain1.com:[*]} -- 以 domain1.com 结尾、
+	 * 使用任意端口（包括默认端口）的域名
 	 * </ul>
-	 * <p>In contrast to {@link #setAllowedOrigins(List) allowedOrigins} which
-	 * only supports "*" and cannot be used with {@code allowCredentials}, when
-	 * an allowedOriginPattern is matched, the {@code Access-Control-Allow-Origin}
-	 * response header is set to the matched origin and not to {@code "*"} nor
-	 * to the pattern. Therefore allowedOriginPatterns can be used in combination
-	 * with {@link #setAllowCredentials} set to {@code true}.
-	 * <p>By default this is not set.
+	 * <p>与仅支持 "*" 且不能与 {@code allowCredentials} 一起使用的
+	 * {@link #setAllowedOrigins(List) allowedOrigins} 不同，当匹配到
+	 * allowedOriginPattern 时，{@code Access-Control-Allow-Origin}
+	 * 响应头会被设置为匹配的 origin，而不是 {@code "*"}，也不是该模式本身。
+	 * 因此，allowedOriginPatterns 可以与设置为 {@code true} 的
+	 * {@link #setAllowCredentials} 组合使用。
+	 * <p>默认情况下不设置此属性。
 	 * @since 5.3
 	 */
 	public CorsConfiguration setAllowedOriginPatterns(@Nullable List<String> allowedOriginPatterns) {
@@ -204,7 +199,7 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Return the configured origins patterns to allow, or {@code null} if none.
+	 * 返回配置的允许 origin 模式，如果没有则为 {@code null}。
 	 * @since 5.3
 	 */
 	@Nullable
@@ -218,7 +213,7 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Variant of {@link #setAllowedOriginPatterns} for adding one origin at a time.
+	 * {@link #setAllowedOriginPatterns} 的变体，用于一次添加一个 origin。
 	 * @since 5.3
 	 */
 	public void addAllowedOriginPattern(@Nullable String originPattern) {
@@ -236,18 +231,17 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Set the HTTP methods to allow, e.g. {@code "GET"}, {@code "POST"},
-	 * {@code "PUT"}, etc.
-	 * <p>The special value {@code "*"} allows all methods.
-	 * <p>If not set, only {@code "GET"} and {@code "HEAD"} are allowed.
-	 * <p>By default this is not set.
-	 * <p><strong>Note:</strong> CORS checks use values from "Forwarded"
-	 * (<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>),
-	 * "X-Forwarded-Host", "X-Forwarded-Port", and "X-Forwarded-Proto" headers,
-	 * if present, in order to reflect the client-originated address.
-	 * Consider using the {@code ForwardedHeaderFilter} in order to choose from a
-	 * central place whether to extract and use, or to discard such headers.
-	 * See the Spring Framework reference for more on this filter.
+	 * 设置允许的 HTTP 方法，例如 {@code "GET"}、{@code "POST"}、
+	 * {@code "PUT"} 等。
+	 * <p>特殊值 {@code "*"} 表示允许所有方法。
+	 * <p>如果未设置，则只允许 {@code "GET"} 和 {@code "HEAD"}。
+	 * <p>默认情况下不设置此属性。
+	 * <p><strong>注意：</strong>CORS 检查会使用 "Forwarded"
+	 * （<a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>）、
+	 * "X-Forwarded-Host"、"X-Forwarded-Port" 和 "X-Forwarded-Proto" 头中的值
+	 * （如果存在），以反映客户端发起的地址。可以考虑使用
+	 * {@code ForwardedHeaderFilter}，以便在一个集中位置选择是提取并使用
+	 * 还是丢弃此类头。有关此过滤器的更多信息，请参阅 Spring Framework 参考文档。
 	 */
 	public void setAllowedMethods(@Nullable List<String> allowedMethods) {
 		this.allowedMethods = (allowedMethods != null ? new ArrayList<>(allowedMethods) : null);
@@ -267,8 +261,8 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Return the allowed HTTP methods, or {@code null} in which case
-	 * only {@code "GET"} and {@code "HEAD"} allowed.
+	 * 返回允许的 HTTP 方法；如果为 {@code null}，则只允许
+	 * {@code "GET"} 和 {@code "HEAD"}。
 	 * @see #addAllowedMethod(HttpMethod)
 	 * @see #addAllowedMethod(String)
 	 * @see #setAllowedMethods(List)
@@ -279,14 +273,14 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Add an HTTP method to allow.
+	 * 添加允许的 HTTP 方法。
 	 */
 	public void addAllowedMethod(HttpMethod method) {
 		addAllowedMethod(method.name());
 	}
 
 	/**
-	 * Add an HTTP method to allow.
+	 * 添加允许的 HTTP 方法。
 	 */
 	public void addAllowedMethod(String method) {
 		if (StringUtils.hasText(method)) {
@@ -308,21 +302,19 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Set the list of headers that a pre-flight request can list as allowed
-	 * for use during an actual request.
-	 * <p>The special value {@code "*"} allows actual requests to send any
-	 * header.
-	 * <p>A header name is not required to be listed if it is one of:
-	 * {@code Cache-Control}, {@code Content-Language}, {@code Expires},
-	 * {@code Last-Modified}, or {@code Pragma}.
-	 * <p>By default this is not set.
+	 * 设置预检请求可以列为允许在实际请求期间使用的请求头列表。
+	 * <p>特殊值 {@code "*"} 允许实际请求发送任意请求头。
+	 * <p>如果请求头属于以下之一，则无需列出：
+	 * {@code Cache-Control}、{@code Content-Language}、{@code Expires}、
+	 * {@code Last-Modified} 或 {@code Pragma}。
+	 * <p>默认情况下不设置此属性。
 	 */
 	public void setAllowedHeaders(@Nullable List<String> allowedHeaders) {
 		this.allowedHeaders = (allowedHeaders != null ? new ArrayList<>(allowedHeaders) : null);
 	}
 
 	/**
-	 * Return the allowed actual request headers, or {@code null} if none.
+	 * 返回允许的实际请求头，如果没有则为 {@code null}。
 	 * @see #addAllowedHeader(String)
 	 * @see #setAllowedHeaders(List)
 	 */
@@ -332,7 +324,7 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Add an actual request header to allow.
+	 * 添加允许的实际请求头。
 	 */
 	public void addAllowedHeader(String allowedHeader) {
 		if (this.allowedHeaders == null) {
@@ -345,20 +337,19 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Set the list of response headers other than simple headers (i.e.
-	 * {@code Cache-Control}, {@code Content-Language}, {@code Content-Type},
-	 * {@code Expires}, {@code Last-Modified}, or {@code Pragma}) that an
-	 * actual response might have and can be exposed.
-	 * <p>The special value {@code "*"} allows all headers to be exposed for
-	 * non-credentialed requests.
-	 * <p>By default this is not set.
+	 * 设置可暴露的响应头列表，即除简单头（{@code Cache-Control}、
+	 * {@code Content-Language}、{@code Content-Type}、{@code Expires}、
+	 * {@code Last-Modified} 或 {@code Pragma}）之外，实际响应可能具有
+	 * 并可以被暴露的响应头。
+	 * <p>特殊值 {@code "*"} 允许对非凭据请求暴露所有响应头。
+	 * <p>默认情况下不设置此属性。
 	 */
 	public void setExposedHeaders(@Nullable List<String> exposedHeaders) {
 		this.exposedHeaders = (exposedHeaders != null ? new ArrayList<>(exposedHeaders) : null);
 	}
 
 	/**
-	 * Return the configured response headers to expose, or {@code null} if none.
+	 * 返回配置的待暴露响应头，如果没有则为 {@code null}。
 	 * @see #addExposedHeader(String)
 	 * @see #setExposedHeaders(List)
 	 */
@@ -368,9 +359,8 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Add a response header to expose.
-	 * <p>The special value {@code "*"} allows all headers to be exposed for
-	 * non-credentialed requests.
+	 * 添加要暴露的响应头。
+	 * <p>特殊值 {@code "*"} 允许对非凭据请求暴露所有响应头。
 	 */
 	public void addExposedHeader(String exposedHeader) {
 		if (this.exposedHeaders == null) {
@@ -380,15 +370,15 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Whether user credentials are supported.
-	 * <p>By default this is not set (i.e. user credentials are not supported).
+	 * 是否支持用户凭据。
+	 * <p>默认情况下不设置此属性（即不支持用户凭据）。
 	 */
 	public void setAllowCredentials(@Nullable Boolean allowCredentials) {
 		this.allowCredentials = allowCredentials;
 	}
 
 	/**
-	 * Return the configured {@code allowCredentials} flag, or {@code null} if none.
+	 * 返回配置的 {@code allowCredentials} 标志，如果没有则为 {@code null}。
 	 * @see #setAllowCredentials(Boolean)
 	 */
 	@Nullable
@@ -397,8 +387,7 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Configure how long, as a duration, the response from a pre-flight request
-	 * can be cached by clients.
+	 * 以时长形式配置客户端可以缓存预检请求响应的时长。
 	 * @since 5.2
 	 * @see #setMaxAge(Long)
 	 */
@@ -407,16 +396,15 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Configure how long, in seconds, the response from a pre-flight request
-	 * can be cached by clients.
-	 * <p>By default this is not set.
+	 * 以秒为单位配置客户端可以缓存预检请求响应的时长。
+	 * <p>默认情况下不设置此属性。
 	 */
 	public void setMaxAge(@Nullable Long maxAge) {
 		this.maxAge = maxAge;
 	}
 
 	/**
-	 * Return the configured {@code maxAge} value, or {@code null} if none.
+	 * 返回配置的 {@code maxAge} 值，如果没有则为 {@code null}。
 	 * @see #setMaxAge(Long)
 	 */
 	@Nullable
@@ -426,18 +414,17 @@ public class CorsConfiguration {
 
 
 	/**
-	 * By default {@code CorsConfiguration} does not permit any cross-origin
-	 * requests and must be configured explicitly. Use this method to switch to
-	 * defaults that permit all cross-origin requests for GET, HEAD, and POST,
-	 * but not overriding any values that have already been set.
-	 * <p>The following defaults are applied for values that are not set:
+	 * 默认情况下 {@code CorsConfiguration} 不允许任何跨源请求，必须显式配置。
+	 * 使用此方法可切换到默认值，即允许 GET、HEAD 和 POST 的所有跨源请求，
+	 * 但不会覆盖已经设置的值。
+	 * <p>对于未设置的值，会应用以下默认值：
 	 * <ul>
-	 * <li>Allow all origins with the special value {@code "*"} defined in the
-	 * CORS spec. This is set only if neither {@link #setAllowedOrigins origins}
-	 * nor {@link #setAllowedOriginPatterns originPatterns} are already set.</li>
-	 * <li>Allow "simple" methods {@code GET}, {@code HEAD} and {@code POST}.</li>
-	 * <li>Allow all headers.</li>
-	 * <li>Set max age to 1800 seconds (30 minutes).</li>
+	 * <li>使用 CORS 规范中定义的特殊值 {@code "*"} 允许所有 origin。
+	 * 仅当既未设置 {@link #setAllowedOrigins origins}，也未设置
+	 * {@link #setAllowedOriginPatterns originPatterns} 时才会应用。</li>
+	 * <li>允许“简单”方法 {@code GET}、{@code HEAD} 和 {@code POST}。</li>
+	 * <li>允许所有请求头。</li>
+	 * <li>将最大缓存时长设置为 1800 秒（30 分钟）。</li>
 	 * </ul>
 	 */
 	public CorsConfiguration applyPermitDefaultValues() {
@@ -459,10 +446,9 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Validate that when {@link #setAllowCredentials allowCredentials} is {@code true},
-	 * {@link #setAllowedOrigins allowedOrigins} does not contain the special
-	 * value {@code "*"} since in that case the "Access-Control-Allow-Origin"
-	 * cannot be set to {@code "*"}.
+	 * 校验当 {@link #setAllowCredentials allowCredentials} 为 {@code true} 时，
+	 * {@link #setAllowedOrigins allowedOrigins} 不包含特殊值 {@code "*"}，
+	 * 因为在这种情况下 "Access-Control-Allow-Origin" 无法设置为 {@code "*"}。
 	 * @throws IllegalArgumentException if the validation fails
 	 * @since 5.3
 	 */
@@ -479,19 +465,15 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Combine the non-null properties of the supplied
-	 * {@code CorsConfiguration} with this one.
-	 * <p>When combining single values like {@code allowCredentials} or
-	 * {@code maxAge}, {@code this} properties are overridden by non-null
-	 * {@code other} properties if any.
-	 * <p>Combining lists like {@code allowedOrigins}, {@code allowedMethods},
-	 * {@code allowedHeaders} or {@code exposedHeaders} is done in an additive
-	 * way. For example, combining {@code ["GET", "POST"]} with
-	 * {@code ["PATCH"]} results in {@code ["GET", "POST", "PATCH"]}. However,
-	 * combining {@code ["GET", "POST"]} with {@code ["*"]} results in
-	 * {@code ["*"]}. Note also that default permit values set by
-	 * {@link CorsConfiguration#applyPermitDefaultValues()} are overridden by
-	 * any explicitly defined values.
+	 * 将所提供的 {@code CorsConfiguration} 的非 null 属性与此配置合并。
+	 * <p>在合并 {@code allowCredentials} 或 {@code maxAge} 等单值属性时，
+	 * 如果 {@code other} 中的属性非 null，则会覆盖 {@code this} 中的属性。
+	 * <p>合并 {@code allowedOrigins}、{@code allowedMethods}、
+	 * {@code allowedHeaders} 或 {@code exposedHeaders} 等列表时采用累加方式。
+	 * 例如，将 {@code ["GET", "POST"]} 与 {@code ["PATCH"]} 合并会得到
+	 * {@code ["GET", "POST", "PATCH"]}。不过，将 {@code ["GET", "POST"]}
+	 * 与 {@code ["*"]} 合并会得到 {@code ["*"]}。另请注意，任何显式定义的值
+	 * 都会覆盖 {@link CorsConfiguration#applyPermitDefaultValues()} 设置的默认许可值。
 	 * @return the combined {@code CorsConfiguration}, or {@code this}
 	 * configuration if the supplied configuration is {@code null}
 	 */
@@ -561,7 +543,7 @@ public class CorsConfiguration {
 
 
 	/**
-	 * Check the origin of the request against the configured allowed origins.
+	 * 根据配置的允许 origin 检查请求的 origin。
 	 * @param origin the origin to check
 	 * @return the origin to use for the response, or {@code null} which
 	 * means the request origin is not allowed
@@ -594,9 +576,8 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Check the HTTP request method (or the method from the
-	 * {@code Access-Control-Request-Method} header on a pre-flight request)
-	 * against the configured allowed methods.
+	 * 根据配置的允许方法检查 HTTP 请求方法（对于预检请求，则为
+	 * {@code Access-Control-Request-Method} 头中的方法）。
 	 * @param requestMethod the HTTP request method to check
 	 * @return the list of HTTP methods to list in the response of a pre-flight
 	 * request, or {@code null} if the supplied {@code requestMethod} is not allowed
@@ -613,9 +594,8 @@ public class CorsConfiguration {
 	}
 
 	/**
-	 * Check the supplied request headers (or the headers listed in the
-	 * {@code Access-Control-Request-Headers} of a pre-flight request) against
-	 * the configured allowed headers.
+	 * 根据配置的允许请求头检查所提供的请求头（或预检请求的
+	 * {@code Access-Control-Request-Headers} 中列出的请求头）。
 	 * @param requestHeaders the request headers to check
 	 * @return the list of allowed headers to list in the response of a pre-flight
 	 * request, or {@code null} if none of the supplied request headers is allowed
@@ -655,8 +635,8 @@ public class CorsConfiguration {
 
 
 	/**
-	 * Contains both the user-declared pattern (e.g. "https://*.domain.com") and
-	 * the regex {@link Pattern} derived from it.
+	 * 同时包含用户声明的模式（例如 "https://*.domain.com"）以及
+	 * 由该模式派生得到的正则表达式 {@link Pattern}。
 	 */
 	private static class OriginPattern {
 

@@ -24,13 +24,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * {@link java.beans.PropertyEditor} implementation for standard JDK
- * {@link java.util.ResourceBundle ResourceBundles}.
+ * 用于标准 JDK {@link java.util.ResourceBundle ResourceBundles} 的
+ * {@link java.beans.PropertyEditor} 实现。
  *
- * <p>Only supports conversion <i>from</i> a String, but not <i>to</i> a String.
+ * <p>仅支持<i>从</i> String 转换，不支持<i>到</i> String 的转换。
  *
- * Find below some examples of using this class in a (properly configured)
- * Spring container using XML-based metadata:
+ * 下面给出一些在（正确配置的）使用基于 XML 元数据的 Spring 容器中使用此类的示例：
  *
  * <pre class="code"> &lt;bean id="errorDialog" class="..."&gt;
  *    &lt;!--
@@ -47,9 +46,9 @@ import org.springframework.util.StringUtils;
  *    &lt;property name="messages" value="com/messages/DialogMessages"/&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>A 'properly configured' Spring {@link org.springframework.context.ApplicationContext container}
- * might contain a {@link org.springframework.beans.factory.config.CustomEditorConfigurer}
- * definition such that the conversion can be effected transparently:
+ * <p>一个“正确配置的” Spring {@link org.springframework.context.ApplicationContext container}可能
+ * 包含 {@link org.springframework.beans.factory.config.CustomEditorConfigurer} 定义，从而使转换可
+ * 以透明地完成：
  *
  * <pre class="code"> &lt;bean class="org.springframework.beans.factory.config.CustomEditorConfigurer"&gt;
  *    &lt;property name="customEditors"&gt;
@@ -61,10 +60,9 @@ import org.springframework.util.StringUtils;
  *    &lt;/property&gt;
  * &lt;/bean&gt;</pre>
  *
- * <p>Please note that this {@link java.beans.PropertyEditor} is <b>not</b>
- * registered by default with any of the Spring infrastructure.
+ * <p>请注意，此 {@link java.beans.PropertyEditor} <b>不会</b>默认向任何 Spring 基础设施注册。
  *
- * <p>Thanks to David Leal Valmana for the suggestion and initial prototype.
+ * <p>感谢 David Leal Valmana 提出的建议和初始原型。
  *
  * @author Rick Evans
  * @author Juergen Hoeller
@@ -73,8 +71,8 @@ import org.springframework.util.StringUtils;
 public class ResourceBundleEditor extends PropertyEditorSupport {
 
 	/**
-	 * The separator used to distinguish between the base name and the locale
-	 * (if any) when {@link #setAsText(String) converting from a String}.
+	 * 用于区分基名和区域设置（如果有）的分隔符，在 {@link #setAsText(String) converting from a String}
+	 * 时使用。
 	 */
 	public static final String BASE_NAME_SEPARATOR = "_";
 

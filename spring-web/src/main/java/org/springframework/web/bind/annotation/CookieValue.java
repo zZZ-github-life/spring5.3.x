@@ -25,15 +25,14 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation to indicate that a method parameter is bound to an HTTP cookie.
+ * 指示方法参数绑定到某个 HTTP Cookie 的注解。
  *
- * <p>The method parameter may be declared as type {@link javax.servlet.http.Cookie}
- * or as cookie value type (String, int, etc.).
+ * <p>方法参数可以声明为 {@link javax.servlet.http.Cookie} 类型，
+ * 也可以声明为 Cookie 值类型（String、int 等）。
  *
- * <p>Note that with spring-webmvc 5.3.x and earlier, the cookie value is URL
- * decoded. This will be changed in 6.0 but in the meantime, applications can
- * also declare parameters of type {@link javax.servlet.http.Cookie} to access
- * the raw value.
+ * <p>请注意，在 spring-webmvc 5.3.x 及更早版本中，Cookie 值会进行 URL 解码。
+ * 这将在 6.0 中改变，但在此之前，应用也可以声明
+ * {@link javax.servlet.http.Cookie} 类型的参数以访问原始值。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -49,33 +48,30 @@ import org.springframework.core.annotation.AliasFor;
 public @interface CookieValue {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the cookie to bind to.
+	 * 要绑定到的 Cookie 名称。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Whether the cookie is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown
-	 * if the cookie is missing in the request. Switch this to
-	 * {@code false} if you prefer a {@code null} value if the cookie is
-	 * not present in the request.
-	 * <p>Alternatively, provide a {@link #defaultValue}, which implicitly
-	 * sets this flag to {@code false}.
+	 * Cookie 是否为必需。
+	 * <p>默认为 {@code true}，如果请求中缺少该 Cookie 将抛出异常。
+	 * 如果希望在请求中不存在该 Cookie 时得到 {@code null} 值，
+	 * 请将其改为 {@code false}。
+	 * <p>另外，提供 {@link #defaultValue} 会隐式地将此标志设置为 {@code false}。
 	 */
 	boolean required() default true;
 
 	/**
-	 * The default value to use as a fallback.
-	 * <p>Supplying a default value implicitly sets {@link #required} to
-	 * {@code false}.
+	 * 用作回退的默认值。
+	 * <p>提供默认值会隐式地将 {@link #required} 设置为 {@code false}。
 	 */
 	String defaultValue() default ValueConstants.DEFAULT_NONE;
 

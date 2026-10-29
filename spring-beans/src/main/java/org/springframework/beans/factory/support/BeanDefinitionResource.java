@@ -26,8 +26,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Descriptive {@link org.springframework.core.io.Resource} wrapper for
- * a {@link org.springframework.beans.factory.config.BeanDefinition}.
+ * 用于 {@link org.springframework.beans.factory.config.BeanDefinition} 的描述性
+ * {@link org.springframework.core.io.Resource} 包装器。
  *
  * @author Juergen Hoeller
  * @since 2.5.2
@@ -39,7 +39,7 @@ class BeanDefinitionResource extends AbstractResource {
 
 
 	/**
-	 * Create a new BeanDefinitionResource.
+	 * 创建一个新的 BeanDefinitionResource。
 	 * @param beanDefinition the BeanDefinition object to wrap
 	 */
 	public BeanDefinitionResource(BeanDefinition beanDefinition) {
@@ -48,7 +48,7 @@ class BeanDefinitionResource extends AbstractResource {
 	}
 
 	/**
-	 * Return the wrapped BeanDefinition object.
+	 * 返回被包装的 BeanDefinition 对象。
 	 */
 	public final BeanDefinition getBeanDefinition() {
 		return this.beanDefinition;
@@ -78,7 +78,7 @@ class BeanDefinitionResource extends AbstractResource {
 
 
 	/**
-	 * This implementation compares the underlying BeanDefinition.
+	 * 此实现比较底层 BeanDefinition。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {
@@ -87,7 +87,7 @@ class BeanDefinitionResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns the hash code of the underlying BeanDefinition.
+	 * 此实现返回底层 BeanDefinition 的哈希码。
 	 */
 	@Override
 	public int hashCode() {

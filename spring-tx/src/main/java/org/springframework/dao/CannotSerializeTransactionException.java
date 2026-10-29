@@ -17,11 +17,10 @@
 package org.springframework.dao;
 
 /**
- * Exception thrown on failure to complete a transaction in serialized mode
- * due to update conflicts.
+ * 由于更新冲突，在序列化模式下无法完成事务时抛出的异常。
  *
- * <p>Consider handling the general {@link PessimisticLockingFailureException}
- * instead, semantically including a wider range of locking-related failures.
+ * <p>建议考虑处理更通用的 {@link PessimisticLockingFailureException}，
+ * 它在语义上涵盖了更广泛的锁相关故障。
  *
  * @author Rod Johnson
  */
@@ -29,7 +28,7 @@ package org.springframework.dao;
 public class CannotSerializeTransactionException extends PessimisticLockingFailureException {
 
 	/**
-	 * Constructor for CannotSerializeTransactionException.
+	 * CannotSerializeTransactionException 的构造方法。
 	 * @param msg the detail message
 	 */
 	public CannotSerializeTransactionException(String msg) {
@@ -37,7 +36,7 @@ public class CannotSerializeTransactionException extends PessimisticLockingFailu
 	}
 
 	/**
-	 * Constructor for CannotSerializeTransactionException.
+	 * CannotSerializeTransactionException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

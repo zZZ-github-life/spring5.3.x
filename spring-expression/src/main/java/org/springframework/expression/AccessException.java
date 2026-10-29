@@ -17,7 +17,7 @@
 package org.springframework.expression;
 
 /**
- * An AccessException is thrown by an accessor if it has an unexpected problem.
+ * 当访问器遇到意外问题时，会抛出 AccessException。
  *
  * @author Andy Clement
  * @since 3.0
@@ -26,7 +26,7 @@ package org.springframework.expression;
 public class AccessException extends Exception {
 
 	/**
-	 * Create an AccessException with a specific message.
+	 * 使用指定的消息创建 AccessException。
 	 * @param message the message
 	 */
 	public AccessException(String message) {
@@ -34,7 +34,7 @@ public class AccessException extends Exception {
 	}
 
 	/**
-	 * Create an AccessException with a specific message and cause.
+	 * 使用指定的消息和原因创建 AccessException。
 	 * @param message the message
 	 * @param cause the cause
 	 */

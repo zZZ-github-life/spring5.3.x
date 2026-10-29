@@ -1,7 +1,6 @@
 /**
- * {@link org.springframework.core.codec.Encoder} and
- * {@link org.springframework.core.codec.Decoder} abstractions to convert
- * between a reactive stream of bytes and Java objects.
+ * 用于在响应式字节流与 Java 对象之间进行转换的 {@link org.springframework.core.codec.Encoder} 和
+ * {@link org.springframework.core.codec.Decoder} 抽象。
  */
 @NonNullApi
 @NonNullFields

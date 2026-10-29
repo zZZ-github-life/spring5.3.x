@@ -23,8 +23,8 @@ import io.r2dbc.spi.Connection;
 import org.springframework.lang.Nullable;
 
 /**
- * A {@link ConnectionFunction} that delegates to a {@code SqlProvider} and a plain
- * {@code Function}.
+ * 一个 {@link ConnectionFunction}，将操作委托给 {@code SqlProvider}
+ * 和普通的 {@code Function}。
  *
  * @author Simon Baslé
  * @since 5.3.26

@@ -1,5 +1,5 @@
 /**
- * Support classes for adapting to specific JPA vendors.
+ * 用于适配特定 JPA 厂商的支撑类。
  */
 @NonNullApi
 @NonNullFields

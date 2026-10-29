@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
- * Canonical MethodMatcher instance that matches all methods.
+ * 匹配所有方法的规范 MethodMatcher 实例。
  *
  * @author Rod Johnson
  */
@@ -31,7 +31,7 @@ final class TrueMethodMatcher implements MethodMatcher, Serializable {
 
 
 	/**
-	 * Enforce Singleton pattern.
+	 * 强制实施单例模式。
 	 */
 	private TrueMethodMatcher() {
 	}
@@ -60,9 +60,8 @@ final class TrueMethodMatcher implements MethodMatcher, Serializable {
 	}
 
 	/**
-	 * Required to support serialization. Replaces with canonical
-	 * instance on deserialization, protecting Singleton pattern.
-	 * Alternative to overriding {@code equals()}.
+	 * 为支持序列化所需。反序列化时替换为规范实例，以保护单例模式。这是重写 {@code equals()} 的替代方案。
+	 *
 	 */
 	private Object readResolve() {
 		return INSTANCE;

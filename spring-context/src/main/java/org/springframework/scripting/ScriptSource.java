@@ -21,8 +21,7 @@ import java.io.IOException;
 import org.springframework.lang.Nullable;
 
 /**
- * Interface that defines the source of a script.
- * Tracks whether the underlying script has been modified.
+ * 定义脚本源的接口。跟踪底层脚本是否已被修改。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -31,22 +30,21 @@ import org.springframework.lang.Nullable;
 public interface ScriptSource {
 
 	/**
-	 * Retrieve the current script source text as String.
+	 * 检索当前的脚本源文本，以 String 形式返回。
 	 * @return the script text
 	 * @throws IOException if script retrieval failed
 	 */
 	String getScriptAsString() throws IOException;
 
 	/**
-	 * Indicate whether the underlying script data has been modified since
-	 * the last time {@link #getScriptAsString()} was called.
-	 * Returns {@code true} if the script has not been read yet.
+	 * 指示自上次调用 {@link #getScriptAsString()} 以来底层脚本数据是否已被修改。如果尚未读取脚本，则返
+	 * 回 {@code true}。
 	 * @return whether the script data has been modified
 	 */
 	boolean isModified();
 
 	/**
-	 * Determine a class name for the underlying script.
+	 * 确定底层脚本的类名。
 	 * @return the suggested class name, or {@code null} if none available
 	 */
 	@Nullable

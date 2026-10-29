@@ -30,10 +30,10 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.FileCopyUtils;
 
 /**
- * Implementation of {@link MessageConverter} that can read and write JSON
- * using <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>.
+ * 使用 <a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a>
+ * 读写 JSON 的 {@link MessageConverter} 实现。
  *
- * <p>This converter can be used to bind {@code @Serializable} Kotlin classes.
+ * <p>此转换器可用于绑定 {@code @Serializable} Kotlin 类。
  *
  * @author Sebastien Deleuze
  * @since 5.3
@@ -46,14 +46,14 @@ public class KotlinSerializationJsonMessageConverter extends AbstractJsonMessage
 
 
 	/**
-	 * Construct a new {@code KotlinSerializationJsonMessageConverter} with default configuration.
+	 * 使用默认配置构造新的 {@code KotlinSerializationJsonMessageConverter}。
 	 */
 	public KotlinSerializationJsonMessageConverter() {
 		this(Json.Default);
 	}
 
 	/**
-	 * Construct a new {@code KotlinSerializationJsonMessageConverter} with the given delegate.
+	 * 使用给定的委托构造新的 {@code KotlinSerializationJsonMessageConverter}。
 	 * @param json the Json instance to use
 	 */
 	public KotlinSerializationJsonMessageConverter(Json json) {
@@ -91,10 +91,10 @@ public class KotlinSerializationJsonMessageConverter extends AbstractJsonMessage
 	}
 
 	/**
-	 * Tries to find a serializer that can marshall or unmarshall instances of the given type
-	 * using kotlinx.serialization. If no serializer can be found, an exception is thrown.
-	 * <p>Resolved serializers are cached and cached results are returned on successive calls.
-	 * TODO Avoid relying on throwing exception when https://github.com/Kotlin/kotlinx.serialization/pull/1164 is fixed
+	 * 尝试查找能够使用 kotlinx.serialization 编组或解组给定类型实例的序列化器。
+	 * 如果找不到序列化器，则抛出异常。
+	 * <p>已解析的序列化器会被缓存，后续调用将返回缓存结果。
+	 * TODO 避免在 https://github.com/Kotlin/kotlinx.serialization/pull/1164 修复之前依赖抛出异常
 	 * @param type the type to find a serializer for
 	 * @return a resolved serializer for the given type
 	 * @throws RuntimeException if no serializer supporting the given type can be found

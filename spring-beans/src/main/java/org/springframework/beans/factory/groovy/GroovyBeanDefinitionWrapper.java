@@ -33,8 +33,8 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Internal wrapper for a Spring BeanDefinition, allowing for Groovy-style
- * property access within a {@link GroovyBeanDefinitionReader} closure.
+ * Spring BeanDefinition 的内部包装器，允许在 {@link GroovyBeanDefinitionReader} 闭包中以 Groovy 风
+ * 格访问属性。
  *
  * @author Jeff Brown
  * @author Juergen Hoeller

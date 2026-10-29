@@ -19,8 +19,7 @@ package org.springframework.util;
 import org.springframework.lang.Nullable;
 
 /**
- * Utility methods for simple pattern matching, in particular for
- * Spring's typical "xxx*", "*xxx" and "*xxx*" pattern styles.
+ * 用于简单模式匹配的实用方法，尤其适用于 Spring 典型的 "xxx*"、"*xxx" 和 "*xxx*" 模式风格。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -28,9 +27,8 @@ import org.springframework.lang.Nullable;
 public abstract class PatternMatchUtils {
 
 	/**
-	 * Match a String against the given pattern, supporting the following simple
-	 * pattern styles: "xxx*", "*xxx", "*xxx*" and "xxx*yyy" matches (with an
-	 * arbitrary number of pattern parts), as well as direct equality.
+	 * 将字符串与给定模式进行匹配，支持以下简单模式风格："xxx*"、"*xxx"、"*xxx*" 和 "xxx*yyy" 匹配（模
+	 * 式部分数量任意），以及直接相等。
 	 * @param pattern the pattern to match against
 	 * @param str the String to match
 	 * @return whether the String matches the given pattern
@@ -73,9 +71,8 @@ public abstract class PatternMatchUtils {
 	}
 
 	/**
-	 * Match a String against the given patterns, supporting the following simple
-	 * pattern styles: "xxx*", "*xxx", "*xxx*" and "xxx*yyy" matches (with an
-	 * arbitrary number of pattern parts), as well as direct equality.
+	 * 将字符串与给定模式进行匹配，支持以下简单模式风格："xxx*"、"*xxx"、"*xxx*" 和 "xxx*yyy" 匹配（模
+	 * 式部分数量任意），以及直接相等。
 	 * @param patterns the patterns to match against
 	 * @param str the String to match
 	 * @return whether the String matches any of the given patterns

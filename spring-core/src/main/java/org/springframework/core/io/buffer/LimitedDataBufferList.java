@@ -24,18 +24,15 @@ import java.util.function.Predicate;
 import reactor.core.publisher.Flux;
 
 /**
- * Custom {@link List} to collect data buffers with and enforce a
- * limit on the total number of bytes buffered. For use with "collect" or
- * other buffering operators in declarative APIs, e.g. {@link Flux}.
+ * 自定义 {@link List}，用于收集数据缓冲区并对缓冲的总字节数施加限制。用于声明式 API（例如
+ * {@link Flux}）中的 "collect" 或其他缓冲操作符。
  *
- * <p>Adding elements increases the byte count and if the limit is exceeded,
- * {@link DataBufferLimitException} is raised.  {@link #clear()} resets the
- * count. Remove and set are not supported.
+ * <p>添加元素会增加字节计数，如果超过限制，将抛出 {@link DataBufferLimitException}。
+ * {@link #clear()} 会重置计数。不支持 remove 和 set 操作。
  *
- * <p><strong>Note:</strong> This class does not automatically release the
- * buffers it contains. It is usually preferable to use hooks such as
- * {@link Flux#doOnDiscard} that also take care of cancel and error signals,
- * or otherwise {@link #releaseAndClear()} can be used.
+ * <p><strong>注意：</strong>此类不会自动释放它所包含的缓冲区。通常更可取的是使用诸如
+ * {@link Flux#doOnDiscard} 之类的钩子，它们也会处理取消和错误信号，或者也可以使用
+ * {@link #releaseAndClear()}。
  *
  * @author Rossen Stoyanchev
  * @since 5.1.11
@@ -137,8 +134,8 @@ public class LimitedDataBufferList extends ArrayList<DataBuffer> {
 	}
 
 	/**
-	 * Shortcut to {@link DataBufferUtils#release release} all data buffers and
-	 * then {@link #clear()}.
+	 * 先对所有数据缓冲区执行 {@link DataBufferUtils#release release}，然后执行 {@link #clear()} 的快捷
+	 * 方式。
 	 */
 	public void releaseAndClear() {
 		forEach(buf -> {

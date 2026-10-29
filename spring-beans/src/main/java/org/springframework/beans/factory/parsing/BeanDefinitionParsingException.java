@@ -19,8 +19,7 @@ package org.springframework.beans.factory.parsing;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 
 /**
- * Exception thrown when a bean definition reader encounters an error
- * during the parsing process.
+ * 当 Bean 定义读取器在解析过程中遇到错误时抛出的异常。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -30,7 +29,7 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
 public class BeanDefinitionParsingException extends BeanDefinitionStoreException {
 
 	/**
-	 * Create a new BeanDefinitionParsingException.
+	 * 创建一个新的 BeanDefinitionParsingException。
 	 * @param problem the configuration problem that was detected during the parsing process
 	 */
 	public BeanDefinitionParsingException(Problem problem) {

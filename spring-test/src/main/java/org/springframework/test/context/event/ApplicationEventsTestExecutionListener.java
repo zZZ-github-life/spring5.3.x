@@ -29,17 +29,9 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
 import org.springframework.util.Assert;
 
 /**
- * {@code TestExecutionListener} which provides support for {@link ApplicationEvents}.
- *
- * <p>This listener manages the registration of {@code ApplicationEvents} for the
- * current thread at various points within the test execution lifecycle and makes
- * the current instance of {@code ApplicationEvents} available to tests via an
- * {@link org.springframework.beans.factory.annotation.Autowired @Autowired}
- * field in the test class.
- *
- * <p>If the test class is not annotated or meta-annotated with
- * {@link RecordApplicationEvents @RecordApplicationEvents}, this listener
- * effectively does nothing.
+ * {@code TestExecutionListener}，为 {@link ApplicationEvents} 提供支持。
+ * <p>此监听器在测试执行生命周期的各个点管理当前线程的 {@code ApplicationEvents} 注册，并通过测试类中的 {@link org.springframework.beans.factory.annotation.Autowired @Autowired} 字段将当前的 {@code ApplicationEvents} 实例提供给测试使用。
+ * <p>如果测试类未标注或元标注 {@link RecordApplicationEvents @RecordApplicationEvents}，则此监听器实际上不做任何事。
  *
  * @author Sam Brannen
  * @since 5.3.3
@@ -49,10 +41,8 @@ import org.springframework.util.Assert;
 public class ApplicationEventsTestExecutionListener extends AbstractTestExecutionListener {
 
 	/**
-	 * Attribute name for a {@link TestContext} attribute which indicates
-	 * whether the test class for the given test context is annotated with
-	 * {@link RecordApplicationEvents @RecordApplicationEvents}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * 用于 {@link TestContext} 属性的属性名，指示给定测试上下文的测试类是否标注了 {@link RecordApplicationEvents @RecordApplicationEvents}。
+	 * <p>允许的值包括 {@link Boolean#TRUE} 和 {@link Boolean#FALSE}。
 	 */
 	private static final String RECORD_APPLICATION_EVENTS = Conventions.getQualifiedAttributeName(
 			ApplicationEventsTestExecutionListener.class, "recordApplicationEvents");
@@ -61,7 +51,7 @@ public class ApplicationEventsTestExecutionListener extends AbstractTestExecutio
 
 
 	/**
-	 * Returns {@code 1800}.
+	 * 返回 {@code 1800}。
 	 */
 	@Override
 	public final int getOrder() {
@@ -119,7 +109,7 @@ public class ApplicationEventsTestExecutionListener extends AbstractTestExecutio
 	}
 
 	/**
-	 * Factory that exposes the current {@link ApplicationEvents} object on demand.
+	 * 按需公开当前 {@link ApplicationEvents} 对象的工厂。
 	 */
 	@SuppressWarnings("serial")
 	private static class ApplicationEventsObjectFactory implements ObjectFactory<ApplicationEvents>, Serializable {

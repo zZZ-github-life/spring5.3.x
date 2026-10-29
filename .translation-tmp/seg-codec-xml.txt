@@ -1,0 +1,87 @@
+===FILE spring-web/src/main/java/org/springframework/http/codec/xml/Jaxb2XmlDecoder.java
+@@BODY 65 66
+Decode from a bytes stream containing XML elements to a stream of
+{@code Object}s (POJOs).
+@@BODY 76 76
+The default value for JAXB annotations.
+@@BODY 101 101
+Create a {@code Jaxb2XmlDecoder} with the specified MIME types.
+@@BODY 111 111
+Configure a processor function to customize Unmarshaller instances.
+@@BODY 120 120
+Return the configured processor for customizing Unmarshaller instances.
+@@BODY 128 132
+Set the max number of bytes that can be buffered by this decoder.
+This is either the size of the entire input when decoding as a whole, or when
+using async parsing with Aalto XML, it is the size of one top-level XML tree.
+When the limit is exceeded, {@link DataBufferLimitException} is raised.
+<p>By default this is set to 256K.
+@@BODY 142 142
+Return the {@link #setMaxInMemorySize configured} byte count limit.
+@@BODY 255 256
+Returns the qualified name for the given class, according to the mapping rules
+in the JAXB specification.
+@@BODY 294 299
+Split a flux of {@link XMLEvent XMLEvents} into a flux of XMLEvent lists, one list
+for each branch of the tree that starts with the given qualified name.
+That is, given the XMLEvents shown {@linkplain XmlEventDecoder here},
+and the {@code desiredName} "{@code child}", this method returns a flux
+of two lists, each of which containing the events of a particular branch
+of the tree that starts with "{@code child}".
+@@BODY 301 301
+<li>The first list, dealing with the first branch of the tree:
+@@BODY 303 305
+<li>{@link javax.xml.stream.events.StartElement} {@code child}</li>
+<li>{@link javax.xml.stream.events.Characters} {@code foo}</li>
+<li>{@link javax.xml.stream.events.EndElement} {@code child}</li>
+@@BODY 307 307
+<li>The second list, dealing with the second branch of the tree:
+@@BODY 309 311
+<li>{@link javax.xml.stream.events.StartElement} {@code child}</li>
+<li>{@link javax.xml.stream.events.Characters} {@code bar}</li>
+<li>{@link javax.xml.stream.events.EndElement} {@code child}</li>
+===FILE spring-web/src/main/java/org/springframework/http/codec/xml/Jaxb2XmlEncoder.java
+@@BODY 49 49
+Encode from single value to a byte stream containing XML elements.
+@@BODY 51 53
+<p>{@link javax.xml.bind.annotation.XmlElements @XmlElements} and
+{@link javax.xml.bind.annotation.XmlElement @XmlElement} can be used
+to specify how collections should be marshalled.
+@@BODY 73 73
+Configure a processor function to customize Marshaller instances.
+@@BODY 82 82
+Return the configured processor for customizing Marshaller instances.
+===FILE spring-web/src/main/java/org/springframework/http/codec/xml/JaxbContextContainer.java
+@@BODY 30 30
+Holder for {@link JAXBContext} instances.
+===FILE spring-web/src/main/java/org/springframework/http/codec/xml/XmlEventDecoder.java
+@@BODY 53 53
+Decodes a {@link DataBuffer} stream into a stream of {@link XMLEvent XMLEvents}.
+@@BODY 55 55
+<p>Given the following XML:
+@@BODY 64 64
+this decoder will produce a {@link Flux} with the following events:
+@@BODY 67 75
+<li>{@link javax.xml.stream.events.StartDocument}</li>
+<li>{@link javax.xml.stream.events.StartElement} {@code root}</li>
+<li>{@link javax.xml.stream.events.StartElement} {@code child}</li>
+<li>{@link javax.xml.stream.events.Characters} {@code foo}</li>
+<li>{@link javax.xml.stream.events.EndElement} {@code child}</li>
+<li>{@link javax.xml.stream.events.StartElement} {@code child}</li>
+<li>{@link javax.xml.stream.events.Characters} {@code bar}</li>
+<li>{@link javax.xml.stream.events.EndElement} {@code child}</li>
+<li>{@link javax.xml.stream.events.EndElement} {@code root}</li>
+@@BODY 78 79
+<p>Note that this decoder is not registered by default but is used internally
+by other decoders which are registered by default.
+@@BODY 103 107
+Set the max number of bytes that can be buffered by this decoder. This
+is either the size the entire input when decoding as a whole, or when
+using async parsing via Aalto XML, it is size one top-level XML tree.
+When the limit is exceeded, {@link DataBufferLimitException} is raised.
+<p>By default this is set to 256K.
+@@BODY 116 116
+Return the {@link #setMaxInMemorySize configured} byte count limit.
+===FILE spring-web/src/main/java/org/springframework/http/codec/xml/package-info.java
+@@BODY 2 2
+XML encoder and decoder support.

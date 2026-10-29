@@ -36,8 +36,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * The common supertype of all AST nodes in a parsed Spring Expression Language
- * format expression.
+ * 解析后的 Spring Expression Language 格式表达式中所有 AST 节点的公共超类型。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -59,13 +58,10 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	private SpelNodeImpl parent;
 
 	/**
-	 * Indicates the type descriptor for the result of this expression node.
-	 * This is set as soon as it is known. For a literal node it is known immediately.
-	 * For a property access or method invocation it is known after one evaluation of
-	 * that node.
-	 * <p>The descriptor is like the bytecode form but is slightly easier to work with.
-	 * It does not include the trailing semicolon (for non array reference types).
-	 * Some examples: Ljava/lang/String, I, [I
+	 * 指示此表达式节点结果的类型描述符。它在已知时即被设置。对于字面量节点，它立即可知。对于属性访问或
+	 * 方法调用，它在对该节点进行一次求值后才可知。
+	 * <p>该描述符类似于字节码形式，但更易于使用。它不包含末尾的分号（对于非数组引用类型）。一些示例：
+	 * Ljava/lang/String、I、[I
 	 */
 	@Nullable
 	protected volatile String exitTypeDescriptor;
@@ -85,7 +81,7 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 
 
 	/**
-	 * Return {@code true} if the next child is one of the specified classes.
+	 * 如果下一个子节点是所列出的类之一，则返回 {@code true}。
 	 */
 	protected boolean nextChildIs(Class<?>... classes) {
 		if (this.parent != null) {
@@ -131,15 +127,11 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	}
 
 	/**
-	 * Evaluate the expression to a node and then set the new value created by the
-	 * specified {@link Supplier} on that node.
-	 * <p>For example, if the expression evaluates to a property reference, then the
-	 * property will be set to the new value.
-	 * <p>Favor this method over {@link #setValue(ExpressionState, Object)} when
-	 * the value should be lazily computed.
-	 * <p>By default, this method throws a {@link SpelEvaluationException},
-	 * effectively disabling this feature. Subclasses may override this method to
-	 * provide an actual implementation.
+	 * 对表达式求值得到一个节点，然后将指定的 {@link Supplier} 创建的新值设置到该节点上。
+	 * <p>例如，如果表达式求值结果为属性引用，那么该属性将被设置为新值。
+	 * <p>当值应当延迟计算时，优先使用此方法而不是 {@link #setValue(ExpressionState, Object)}。
+	 * <p>默认情况下，此方法抛出 {@link SpelEvaluationException}，实际上禁用了此特性。子类可以重写此方
+	 * 法以提供实际的实现。
 	 * @param expressionState the current expression state (includes the context)
 	 * @param valueSupplier a supplier of the new value
 	 * @throws EvaluationException if any problem occurs evaluating the expression or
@@ -182,9 +174,8 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	}
 
 	/**
-	 * Check whether a node can be compiled to bytecode. The reasoning in each node may
-	 * be different but will typically involve checking whether the exit type descriptor
-	 * of the node is known and any relevant child nodes are compilable.
+	 * 检查节点能否编译为字节码。各节点的判断理由可能不同，但通常涉及检查节点的出口类型描述符是否已知，
+	 * 以及所有相关子节点是否可编译。
 	 * @return {@code true} if this node can be compiled to bytecode
 	 */
 	public boolean isCompilable() {
@@ -192,9 +183,8 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	}
 
 	/**
-	 * Generate the bytecode for this node into the supplied visitor. Context info about
-	 * the current expression being compiled is available in the codeflow object, e.g.
-	 * including information about the type of the object currently on the stack.
+	 * 为此节点生成字节码并写入所提供的 visitor。有关当前正在编译的表达式的上下文信息可在 codeflow 对象
+	 * 中获取，例如包括当前位于栈上的对象类型的信息。
 	 * @param mv the ASM MethodVisitor into which code should be generated
 	 * @param cf a context object with info about what is on the stack
 	 */
@@ -220,9 +210,8 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 
 
 	/**
-	 * Generate code that handles building the argument values for the specified method.
-	 * This method will take account of whether the invoked method is a varargs method
-	 * and if it is then the argument values will be appropriately packaged into an array.
+	 * 生成用于构建指定方法的参数值的代码。此方法会考虑被调用的方法是否为可变参数方法，如果是，则参数值
+	 * 会被适当地打包为数组。
 	 * @param mv the method visitor where code should be generated
 	 * @param cf the current codeflow
 	 * @param member the method or constructor for which arguments are being setup
@@ -283,8 +272,7 @@ public abstract class SpelNodeImpl implements SpelNode, Opcodes {
 	}
 
 	/**
-	 * Ask an argument to generate its bytecode and then follow it up
-	 * with any boxing/unboxing/checkcasting to ensure it matches the expected parameter descriptor.
+	 * 请求参数生成其字节码，然后追加相应的装箱/拆箱/检查转换，以确保其与期望的参数描述符匹配。
 	 */
 	protected static void generateCodeForArgument(MethodVisitor mv, CodeFlow cf, SpelNodeImpl argument, String paramDesc) {
 		cf.enterCompilationScope();

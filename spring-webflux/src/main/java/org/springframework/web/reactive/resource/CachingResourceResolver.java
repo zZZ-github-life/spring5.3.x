@@ -33,9 +33,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link ResourceResolver} that resolves resources from a {@link Cache} or
- * otherwise delegates to the resolver chain and caches the result.
- *
+ * 从 {@link Cache} 解析资源，否则委托给解析器链并缓存结果的 {@link ResourceResolver}。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -43,12 +41,12 @@ import org.springframework.web.server.ServerWebExchange;
 public class CachingResourceResolver extends AbstractResourceResolver {
 
 	/**
-	 * The prefix used for resolved resource cache keys.
+	 * 已解析资源缓存键使用的前缀。
 	 */
 	public static final String RESOLVED_RESOURCE_CACHE_KEY_PREFIX = "resolvedResource:";
 
 	/**
-	 * The prefix used for resolved URL path cache keys.
+	 * 已解析 URL 路径缓存键使用的前缀。
 	 */
 	public static final String RESOLVED_URL_PATH_CACHE_KEY_PREFIX = "resolvedUrlPath:";
 
@@ -73,19 +71,16 @@ public class CachingResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * Return the configured {@code Cache}.
+	 * 返回配置的 {@code Cache}。
 	 */
 	public Cache getCache() {
 		return this.cache;
 	}
 
 	/**
-	 * Configure the supported content codings from the
-	 * {@literal "Accept-Encoding"} header for which to cache resource variations.
-	 * <p>The codings configured here are generally expected to match those
-	 * configured on {@link EncodedResourceResolver#setContentCodings(List)}.
-	 * <p>By default this property is set to {@literal ["br", "gzip"]} based on
-	 * the value of {@link EncodedResourceResolver#DEFAULT_CODINGS}.
+	 * 配置来自 {@literal "Accept-Encoding"} 头的受支持内容编码，以便缓存资源变体。
+	 * <p>此处配置的编码通常应与 {@link EncodedResourceResolver#setContentCodings(List)} 上配置的编码相匹配。
+	 * <p>默认情况下，此属性基于 {@link EncodedResourceResolver#DEFAULT_CODINGS} 的值设置为 {@literal ["br", "gzip"]}。
 	 * @param codings one or more supported content codings
 	 * @since 5.1
 	 */
@@ -96,7 +91,7 @@ public class CachingResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Return a read-only list with the supported content codings.
+	 * 返回受支持内容编码的只读列表。
 	 * @since 5.1
 	 */
 	public List<String> getContentCodings() {

@@ -27,9 +27,8 @@ import javax.persistence.spi.PersistenceUnitInfo;
 import org.springframework.lang.Nullable;
 
 /**
- * SPI interface that allows to plug in vendor-specific behavior
- * into Spring's EntityManagerFactory creators. Serves as single
- * configuration point for all vendor-specific properties.
+ * SPI 接口，允许将供应商特定的行为插入 Spring 的 EntityManagerFactory 创建器。
+ * 作为所有供应商特定属性的单一配置点。
  *
  * @author Juergen Hoeller
  * @author Rod Johnson
@@ -39,14 +38,13 @@ import org.springframework.lang.Nullable;
 public interface JpaVendorAdapter {
 
 	/**
-	 * Return the vendor-specific persistence provider.
+	 * 返回供应商特定的持久化提供者。
 	 */
 	PersistenceProvider getPersistenceProvider();
 
 	/**
-	 * Return the name of the persistence provider's root package
-	 * (e.g. "oracle.toplink.essentials"). Will be used for
-	 * excluding provider classes from temporary class overriding.
+	 * 返回持久化提供者根包的名称（例如 "oracle.toplink.essentials"）。
+	 * 用于在临时类覆盖时排除提供者类。
 	 * @since 2.5.2
 	 */
 	@Nullable
@@ -55,21 +53,18 @@ public interface JpaVendorAdapter {
 	}
 
 	/**
-	 * Return a Map of vendor-specific JPA properties for the given persistence
-	 * unit, typically based on settings in this JpaVendorAdapter instance.
-	 * <p>Note that there might be further JPA properties defined on the
-	 * EntityManagerFactory bean, which might potentially override individual
-	 * JPA property values specified here.
-	 * <p>This implementation delegates to {@link #getJpaPropertyMap()} for
-	 * non-unit-dependent properties. Effectively, this PersistenceUnitInfo-based
-	 * variant only needs to be implemented if there is an actual need to react
-	 * to unit-specific characteristics such as the transaction type.
-	 * <p><b>NOTE:</b> This variant will only be invoked in case of Java EE style
-	 * container bootstrapping where a {@link PersistenceUnitInfo} is present
-	 * (i.e. {@link LocalContainerEntityManagerFactoryBean}). In case of simple
-	 * Java SE style bootstrapping via {@link javax.persistence.Persistence}
-	 * (i.e. {@link LocalEntityManagerFactoryBean}), the parameter-less
-	 * {@link #getJpaPropertyMap()} variant will be called directly.
+	 * 返回给定持久化单元的供应商特定 JPA 属性 Map，
+	 * 通常基于此 JpaVendorAdapter 实例中的设置。
+	 * <p>请注意，EntityManagerFactory bean 上可能还定义了其他 JPA 属性，
+	 * 这些属性可能会覆盖此处指定的个别 JPA 属性值。
+	 * <p>此实现将非单元相关的属性委托给 {@link #getJpaPropertyMap()}。
+	 * 实际上，只有在确实需要针对单元特定特征（例如事务类型）做出反应时，
+	 * 才需要实现此基于 PersistenceUnitInfo 的变体。
+	 * <p><b>注意：</b>仅在存在 {@link PersistenceUnitInfo} 的
+	 * Java EE 风格容器引导场景（即 {@link LocalContainerEntityManagerFactoryBean}）中
+	 * 才会调用此变体。在通过 {@link javax.persistence.Persistence}
+	 * 进行简单 Java SE 风格引导的场景（即 {@link LocalEntityManagerFactoryBean}）中，
+	 * 将直接调用无参数的 {@link #getJpaPropertyMap()} 变体。
 	 * @param pui the PersistenceUnitInfo for the current persistence unit
 	 * @return a Map of JPA properties, as accepted by the standard JPA bootstrap
 	 * facilities, or an empty Map if there are no properties to expose
@@ -82,11 +77,10 @@ public interface JpaVendorAdapter {
 	}
 
 	/**
-	 * Return a Map of vendor-specific JPA properties,
-	 * typically based on settings in this JpaVendorAdapter instance.
-	 * <p>Note that there might be further JPA properties defined on the
-	 * EntityManagerFactory bean, which might potentially override individual
-	 * JPA property values specified here.
+	 * 返回供应商特定的 JPA 属性 Map，
+	 * 通常基于此 JpaVendorAdapter 实例中的设置。
+	 * <p>请注意，EntityManagerFactory bean 上可能还定义了其他 JPA 属性，
+	 * 这些属性可能会覆盖此处指定的个别 JPA 属性值。
 	 * @return a Map of JPA properties, as accepted by the standard JPA bootstrap
 	 * facilities, or an empty Map if there are no properties to expose
 	 * @see javax.persistence.Persistence#createEntityManagerFactory(String, Map)
@@ -96,8 +90,8 @@ public interface JpaVendorAdapter {
 	}
 
 	/**
-	 * Return the vendor-specific JpaDialect implementation for this
-	 * provider, or {@code null} if there is none.
+	 * 返回此提供者的供应商特定 JpaDialect 实现，
+	 * 如果没有则返回 {@code null}。
 	 */
 	@Nullable
 	default JpaDialect getJpaDialect() {
@@ -105,11 +99,10 @@ public interface JpaVendorAdapter {
 	}
 
 	/**
-	 * Return the vendor-specific EntityManagerFactory interface
-	 * that the EntityManagerFactory proxy is supposed to implement.
-	 * <p>If the provider does not offer any EntityManagerFactory extensions,
-	 * the adapter should simply return the standard
-	 * {@link javax.persistence.EntityManagerFactory} class here.
+	 * 返回 EntityManagerFactory 代理应实现的供应商特定 EntityManagerFactory 接口。
+	 * <p>如果提供者不提供任何 EntityManagerFactory 扩展，
+	 * 适配器只需在此处返回标准的
+	 * {@link javax.persistence.EntityManagerFactory} 类。
 	 * @since 2.5.2
 	 */
 	default Class<? extends EntityManagerFactory> getEntityManagerFactoryInterface() {
@@ -117,31 +110,28 @@ public interface JpaVendorAdapter {
 	}
 
 	/**
-	 * Return the vendor-specific EntityManager interface
-	 * that this provider's EntityManagers will implement.
-	 * <p>If the provider does not offer any EntityManager extensions,
-	 * the adapter should simply return the standard
-	 * {@link javax.persistence.EntityManager} class here.
+	 * 返回此提供者的 EntityManager 将实现的供应商特定 EntityManager 接口。
+	 * <p>如果提供者不提供任何 EntityManager 扩展，
+	 * 适配器只需在此处返回标准的
+	 * {@link javax.persistence.EntityManager} 类。
 	 */
 	default Class<? extends EntityManager> getEntityManagerInterface() {
 		return EntityManager.class;
 	}
 
 	/**
-	 * Optional callback for post-processing the native EntityManagerFactory
-	 * before active use.
-	 * <p>This can be used for triggering vendor-specific initialization processes.
-	 * While this is not expected to be used for most providers, it is included
-	 * here as a general extension hook.
+	 * 可选回调，用于在激活使用之前对原生 EntityManagerFactory 进行后处理。
+	 * <p>可用于触发供应商特定的初始化过程。
+	 * 虽然预计大多数提供者不会使用此回调，
+	 * 但它作为通用的扩展钩子包含在此处。
 	 */
 	default void postProcessEntityManagerFactory(EntityManagerFactory emf) {
 	}
 
 	/**
-	 * Optional callback for post-processing the native EntityManager
-	 * before active use.
-	 * <p>This can be used for setting vendor-specific parameters, e.g.
-	 * Hibernate filters, on every new EntityManager.
+	 * 可选回调，用于在激活使用之前对原生 EntityManager 进行后处理。
+	 * <p>可用于在每个新的 EntityManager 上设置供应商特定的参数，
+	 * 例如 Hibernate 过滤器。
 	 * @since 5.3
 	 */
 	default void postProcessEntityManager(EntityManager em) {

@@ -24,16 +24,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Abstract base class for property resource configurers that resolve placeholders
- * in bean definition property values. Implementations <em>pull</em> values from a
- * properties file or other {@linkplain org.springframework.core.env.PropertySource
- * property source} into bean definitions.
+ * 属性资源配置器的抽象基类，用于解析 Bean 定义属性值中的占位符。实现会从属性文件或其他
+ * {@linkplain org.springframework.core.env.PropertySource property source} 中<em>拉取</em>值并放入
+ * Bean 定义。
  *
- * <p>The default placeholder syntax follows the Ant / Log4J / JSP EL style:
+ * <p>默认的占位符语法遵循 Ant / Log4J / JSP EL 风格：
  *
  * <pre class="code">${...}</pre>
  *
- * Example XML bean definition:
+ * 示例 XML Bean 定义：
  *
  * <pre class="code">
  * &lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
@@ -42,41 +41,35 @@ import org.springframework.util.StringValueResolver;
  * &lt;/bean&gt;
  * </pre>
  *
- * Example properties file:
+ * 示例属性文件：
  *
  * <pre class="code">
  * driver=com.mysql.jdbc.Driver
  * dbname=mysql:mydb</pre>
  *
- * Annotated bean definitions may take advantage of property replacement using
- * the {@link org.springframework.beans.factory.annotation.Value @Value} annotation:
+ * 注解式 Bean 定义可以利用属性替换，使用
+ * {@link org.springframework.beans.factory.annotation.Value @Value} 注解：
  *
  * <pre class="code">@Value("${person.age}")</pre>
  *
- * Implementations check simple property values, lists, maps, props, and bean names
- * in bean references. Furthermore, placeholder values can also cross-reference
- * other placeholders, like:
+ * 实现会检查简单属性值、列表、映射、props 以及 Bean 引用中的 Bean 名称。此外，占位符值还可以交叉引
+ * 用其他占位符，例如：
  *
  * <pre class="code">
  * rootPath=myrootdir
  * subPath=${rootPath}/subdir</pre>
  *
- * In contrast to {@link PropertyOverrideConfigurer}, subclasses of this type allow
- * filling in of explicit placeholders in bean definitions.
+ * 与 {@link PropertyOverrideConfigurer} 不同，此类型的子类允许在 Bean 定义中填充显式占位符。
  *
- * <p>If a configurer cannot resolve a placeholder, a {@link BeanDefinitionStoreException}
- * will be thrown. If you want to check against multiple properties files, specify multiple
- * resources via the {@link #setLocations locations} property. You can also define multiple
- * configurers, each with its <em>own</em> placeholder syntax. Use {@link
- * #ignoreUnresolvablePlaceholders} to intentionally suppress throwing an exception if a
- * placeholder cannot be resolved.
+ * <p>如果配置器无法解析某个占位符，将抛出 {@link BeanDefinitionStoreException}。如果希望针对多个属
+ * 性文件进行检查，可以通过 {@link #setLocations locations} 属性指定多个资源。也可以定义多个配置器，
+ * 每个配置器使用其<em>自己的</em>占位符语法。使用 {@link #ignoreUnresolvablePlaceholders} 可以有
+ * 意抑制在无法解析占位符时抛出异常。
  *
- * <p>Default property values can be defined globally for each configurer instance
- * via the {@link #setProperties properties} property, or on a property-by-property basis
- * using the value separator which is {@code ":"} by default and customizable via
- * {@link #setValueSeparator(String)}.
+ * <p>可以通过 {@link #setProperties properties} 属性为每个配置器实例全局定义默认属性值，也可以按属
+ * 性逐个定义，使用值分隔符（默认为 {@code ":"}，可通过 {@link #setValueSeparator(String)} 定制）。
  *
- * <p>Example XML property with default value:
+ * <p>带默认值的 XML 属性示例：
  *
  * <pre class="code">
  *   &lt;property name="url" value="jdbc:${dbname:defaultdb}" /&gt;
@@ -91,23 +84,23 @@ import org.springframework.util.StringValueResolver;
 public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfigurer
 		implements BeanNameAware, BeanFactoryAware {
 
-	/** Default placeholder prefix: {@value}. */
+	/** 默认占位符前缀：{@value}。 */
 	public static final String DEFAULT_PLACEHOLDER_PREFIX = "${";
 
-	/** Default placeholder suffix: {@value}. */
+	/** 默认占位符后缀：{@value}。 */
 	public static final String DEFAULT_PLACEHOLDER_SUFFIX = "}";
 
-	/** Default value separator: {@value}. */
+	/** 默认值分隔符：{@value}。 */
 	public static final String DEFAULT_VALUE_SEPARATOR = ":";
 
 
-	/** Defaults to {@value #DEFAULT_PLACEHOLDER_PREFIX}. */
+	/** 默认为 {@value #DEFAULT_PLACEHOLDER_PREFIX}。 */
 	protected String placeholderPrefix = DEFAULT_PLACEHOLDER_PREFIX;
 
-	/** Defaults to {@value #DEFAULT_PLACEHOLDER_SUFFIX}. */
+	/** 默认为 {@value #DEFAULT_PLACEHOLDER_SUFFIX}。 */
 	protected String placeholderSuffix = DEFAULT_PLACEHOLDER_SUFFIX;
 
-	/** Defaults to {@value #DEFAULT_VALUE_SEPARATOR}. */
+	/** 默认为 {@value #DEFAULT_VALUE_SEPARATOR}。 */
 	@Nullable
 	protected String valueSeparator = DEFAULT_VALUE_SEPARATOR;
 
@@ -126,35 +119,30 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 
 
 	/**
-	 * Set the prefix that a placeholder string starts with.
-	 * The default is {@value #DEFAULT_PLACEHOLDER_PREFIX}.
+	 * 设置占位符字符串的起始前缀。默认为 {@value #DEFAULT_PLACEHOLDER_PREFIX}。
 	 */
 	public void setPlaceholderPrefix(String placeholderPrefix) {
 		this.placeholderPrefix = placeholderPrefix;
 	}
 
 	/**
-	 * Set the suffix that a placeholder string ends with.
-	 * The default is {@value #DEFAULT_PLACEHOLDER_SUFFIX}.
+	 * 设置占位符字符串的结束后缀。默认为 {@value #DEFAULT_PLACEHOLDER_SUFFIX}。
 	 */
 	public void setPlaceholderSuffix(String placeholderSuffix) {
 		this.placeholderSuffix = placeholderSuffix;
 	}
 
 	/**
-	 * Specify the separating character between the placeholder variable
-	 * and the associated default value, or {@code null} if no such
-	 * special character should be processed as a value separator.
-	 * The default is {@value #DEFAULT_VALUE_SEPARATOR}.
+	 * 指定占位符变量与其关联默认值之间的分隔字符；如果不应将任何此类特殊字符作为值分隔符处理，则为
+	 * {@code null}。默认为 {@value #DEFAULT_VALUE_SEPARATOR}。
 	 */
 	public void setValueSeparator(@Nullable String valueSeparator) {
 		this.valueSeparator = valueSeparator;
 	}
 
 	/**
-	 * Specify whether to trim resolved values before applying them,
-	 * removing superfluous whitespace from the beginning and end.
-	 * <p>Default is {@code false}.
+	 * 指定在应用解析后的值之前是否对其进行修剪，去除开头和结尾的多余空白。
+	 * <p>默认为 {@code false}。
 	 * @since 4.3
 	 */
 	public void setTrimValues(boolean trimValues) {
@@ -162,34 +150,27 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 	}
 
 	/**
-	 * Set a value that should be treated as {@code null} when resolved
-	 * as a placeholder value: e.g. "" (empty String) or "null".
-	 * <p>Note that this will only apply to full property values,
-	 * not to parts of concatenated values.
-	 * <p>By default, no such null value is defined. This means that
-	 * there is no way to express {@code null} as a property value
-	 * unless you explicitly map a corresponding value here.
+	 * 设置一个值，当它被解析为占位符值时应被视为 {@code null}：例如 ""（空 String）或 "null"。
+	 * <p>请注意，这只适用于完整的属性值，而不适用于拼接值的各个部分。
+	 * <p>默认情况下未定义此类 null 值。这意味着，除非在此处显式映射一个对应的值，否则无法将
+	 * {@code null} 表示为属性值。
 	 */
 	public void setNullValue(String nullValue) {
 		this.nullValue = nullValue;
 	}
 
 	/**
-	 * Set whether to ignore unresolvable placeholders.
-	 * <p>Default is "false": An exception will be thrown if a placeholder fails
-	 * to resolve. Switch this flag to "true" in order to preserve the placeholder
-	 * String as-is in such a case, leaving it up to other placeholder configurers
-	 * to resolve it.
+	 * 设置是否忽略无法解析的占位符。
+	 * <p>默认为 "false"：如果占位符解析失败，将抛出异常。将此标志切换为 "true"，以便在这种情况下原样保
+	 * 留占位符 String，交由其他占位符配置器来解析。
 	 */
 	public void setIgnoreUnresolvablePlaceholders(boolean ignoreUnresolvablePlaceholders) {
 		this.ignoreUnresolvablePlaceholders = ignoreUnresolvablePlaceholders;
 	}
 
 	/**
-	 * Only necessary to check that we're not parsing our own bean definition,
-	 * to avoid failing on unresolvable placeholders in properties file locations.
-	 * The latter case can happen with placeholders for system properties in
-	 * resource locations.
+	 * 仅用于检查我们不是在解析自己的 Bean 定义，以避免因属性文件位置中不可解析的占位符而失败。后一种情
+	 * 况可能发生在资源位置中使用系统属性占位符时。
 	 * @see #setLocations
 	 * @see org.springframework.core.io.ResourceEditor
 	 */
@@ -199,10 +180,8 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 	}
 
 	/**
-	 * Only necessary to check that we're not parsing our own bean definition,
-	 * to avoid failing on unresolvable placeholders in properties file locations.
-	 * The latter case can happen with placeholders for system properties in
-	 * resource locations.
+	 * 仅用于检查我们不是在解析自己的 Bean 定义，以避免因属性文件位置中不可解析的占位符而失败。后一种情
+	 * 况可能发生在资源位置中使用系统属性占位符时。
 	 * @see #setLocations
 	 * @see org.springframework.core.io.ResourceEditor
 	 */

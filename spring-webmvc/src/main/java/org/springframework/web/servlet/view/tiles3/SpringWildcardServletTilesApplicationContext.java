@@ -37,7 +37,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.support.ServletContextResourcePatternResolver;
 
 /**
- * Spring-specific subclass of the Tiles ServletApplicationContext.
+ * Tiles ServletApplicationContext 的 Spring 专用子类。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

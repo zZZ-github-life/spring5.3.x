@@ -40,7 +40,7 @@ import org.springframework.util.MimeType;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * Mock implementation of {@link ClientHttpRequest}.
+ * {@link ClientHttpRequest} 的模拟实现。
  *
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -74,11 +74,10 @@ public class MockClientHttpRequest extends AbstractClientHttpRequest {
 
 
 	/**
-	 * Configure a custom handler for writing the request body.
+	 * 配置用于写入请求体的自定义处理器。
 	 *
-	 * <p>The default write handler consumes and caches the request body so it
-	 * may be accessed subsequently, e.g. in test assertions. Use this property
-	 * when the request body is an infinite stream.
+	 * <p>默认写入处理器会消费并缓存请求体，以便后续访问，
+	 * 例如在测试断言中。当请求体是无限流时，可使用此属性。
 	 * @param writeHandler the write handler to use returning {@code Mono<Void>}
 	 * when the body has been "written" (i.e. consumed).
 	 */
@@ -136,16 +135,16 @@ public class MockClientHttpRequest extends AbstractClientHttpRequest {
 
 
 	/**
-	 * Return the request body, or an error stream if the body was never set
-	 * or when {@link #setWriteHandler} is configured.
+	 * 返回请求体；如果从未设置请求体或配置了 {@link #setWriteHandler}，
+	 * 则返回一个错误流。
 	 */
 	public Flux<DataBuffer> getBody() {
 		return this.body;
 	}
 
 	/**
-	 * Aggregate response data and convert to a String using the "Content-Type"
-	 * charset or "UTF-8" by default.
+	 * 聚合响应数据，并使用 "Content-Type" 的字符集
+	 * （默认为 "UTF-8"）将其转换为 String。
 	 */
 	public Mono<String> getBodyAsString() {
 

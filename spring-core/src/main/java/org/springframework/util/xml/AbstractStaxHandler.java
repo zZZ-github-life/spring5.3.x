@@ -33,10 +33,9 @@ import org.xml.sax.ext.LexicalHandler;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract base class for SAX {@code ContentHandler} and {@code LexicalHandler}
- * implementations that use StAX as a basis. All methods delegate to internal template
- * methods, capable of throwing a {@code XMLStreamException}. Additionally, a namespace
- * context stack is used to keep track of declared namespaces.
+ * 用于以 StAX 为基础的 SAX {@code ContentHandler} 和 {@code LexicalHandler} 实现的抽象基类。所有方
+ * 法都委托给内部的模板方法，这些方法能够抛出 {@code XMLStreamException}。此外，还使用命名空间上下
+ * 文栈来跟踪已声明的命名空间。
  *
  * @author Arjen Poutsma
  * @since 4.0.3
@@ -205,8 +204,8 @@ abstract class AbstractStaxHandler implements ContentHandler, LexicalHandler {
 	}
 
 	/**
-	 * Convert a namespace URI and DOM or SAX qualified name to a {@code QName}. The
-	 * qualified name can have the form {@code prefix:localname} or {@code localName}.
+	 * 将命名空间 URI 以及 DOM 或 SAX 限定名转换为 {@code QName}。限定名的形式可以是
+	 * {@code prefix:localname} 或 {@code localName}。
 	 * @param namespaceUri the namespace URI
 	 * @param qualifiedName the qualified name
 	 * @return a QName

@@ -22,10 +22,9 @@ import org.apache.commons.logging.Log;
 import org.springframework.util.StopWatch;
 
 /**
- * Simple AOP Alliance {@code MethodInterceptor} for performance monitoring.
- * This interceptor has no effect on the intercepted method call.
+ * 用于性能监控的简单 AOP Alliance {@code MethodInterceptor}。此拦截器对被拦截的方法调用没有影响。
  *
- * <p>Uses a {@code StopWatch} for the actual performance measuring.
+ * <p>使用 {@code StopWatch} 进行实际的性能测量。
  *
  * @author Rod Johnson
  * @author Dmitriy Kopylenko
@@ -37,14 +36,13 @@ import org.springframework.util.StopWatch;
 public class PerformanceMonitorInterceptor extends AbstractMonitoringInterceptor {
 
 	/**
-	 * Create a new PerformanceMonitorInterceptor with a static logger.
+	 * 使用静态日志器创建一个新的 PerformanceMonitorInterceptor。
 	 */
 	public PerformanceMonitorInterceptor() {
 	}
 
 	/**
-	 * Create a new PerformanceMonitorInterceptor with a dynamic or static logger,
-	 * according to the given flag.
+	 * 根据给定标志，使用动态或静态日志器创建一个新的 PerformanceMonitorInterceptor。
 	 * @param useDynamicLogger whether to use a dynamic logger or a static logger
 	 * @see #setUseDynamicLogger
 	 */

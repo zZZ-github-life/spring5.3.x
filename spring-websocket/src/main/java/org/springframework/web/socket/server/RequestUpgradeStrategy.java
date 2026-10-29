@@ -27,7 +27,7 @@ import org.springframework.web.socket.WebSocketExtension;
 import org.springframework.web.socket.WebSocketHandler;
 
 /**
- * A server-specific strategy for performing the actual upgrade to a WebSocket exchange.
+ * 用于执行实际升级到 WebSocket 交换的服务器特定策略。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -35,18 +35,17 @@ import org.springframework.web.socket.WebSocketHandler;
 public interface RequestUpgradeStrategy {
 
 	/**
-	 * Return the supported WebSocket protocol versions.
+	 * 返回支持的 WebSocket 协议版本。
 	 */
 	String[] getSupportedVersions();
 
 	/**
-	 * Return the WebSocket protocol extensions supported by the underlying WebSocket server.
+	 * 返回底层 WebSocket 服务器支持的 WebSocket 协议扩展。
 	 */
 	List<WebSocketExtension> getSupportedExtensions(ServerHttpRequest request);
 
 	/**
-	 * Perform runtime specific steps to complete the upgrade. Invoked after successful
-	 * negotiation of the handshake request.
+	 * 执行运行时特定的步骤以完成升级。在握手请求成功协商后调用。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param selectedProtocol the selected sub-protocol, if any

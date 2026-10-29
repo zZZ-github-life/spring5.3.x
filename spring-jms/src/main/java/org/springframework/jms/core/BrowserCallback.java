@@ -23,11 +23,10 @@ import javax.jms.Session;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback for browsing the messages in a JMS queue.
+ * 用于浏览 JMS 队列中消息的回调。
  *
- * <p>To be used with {@link JmsTemplate}'s callback methods that take a
- * {@link BrowserCallback} argument, often implemented as an anonymous
- * inner class or as a lambda expression.
+ * <p>与 {@link JmsTemplate} 中接受 {@link BrowserCallback} 参数的回调方法一起使用，
+ * 通常实现为匿名内部类或 lambda 表达式。
  *
  * @author Juergen Hoeller
  * @since 2.5.1
@@ -39,8 +38,7 @@ import org.springframework.lang.Nullable;
 public interface BrowserCallback<T> {
 
 	/**
-	 * Perform operations on the given {@link javax.jms.Session} and
-	 * {@link javax.jms.QueueBrowser}.
+	 * 对给定的 {@link javax.jms.Session} 和 {@link javax.jms.QueueBrowser} 执行操作。
 	 * @param session the JMS {@code Session} object to use
 	 * @param browser the JMS {@code QueueBrowser} object to use
 	 * @return a result object from working with the {@code Session}, if any

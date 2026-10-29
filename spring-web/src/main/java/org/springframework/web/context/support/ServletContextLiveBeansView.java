@@ -26,9 +26,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.Assert;
 
 /**
- * {@link org.springframework.context.support.LiveBeansView} subclass
- * which looks for all ApplicationContexts in the web application,
- * as exposed in ServletContext attributes.
+ * {@link org.springframework.context.support.LiveBeansView} 的子类，用于查找 Web 应用中的所有
+ * ApplicationContext，它们以 ServletContext 属性的形式暴露。
  *
  * @author Juergen Hoeller
  * @since 3.2
@@ -40,7 +39,7 @@ public class ServletContextLiveBeansView extends org.springframework.context.sup
 	private final ServletContext servletContext;
 
 	/**
-	 * Create a new LiveBeansView for the given ServletContext.
+	 * 为给定的 ServletContext 创建一个新的 LiveBeansView。
 	 * @param servletContext current ServletContext
 	 */
 	public ServletContextLiveBeansView(ServletContext servletContext) {

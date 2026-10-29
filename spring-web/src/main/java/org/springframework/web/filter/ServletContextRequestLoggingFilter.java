@@ -19,8 +19,8 @@ package org.springframework.web.filter;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Simple request logging filter that writes the request URI
- * (and optionally the query string) to the ServletContext log.
+ * 简单的请求日志过滤器，将请求 URI（以及可选的查询字符串）写入
+ * ServletContext 日志。
  *
  * @author Juergen Hoeller
  * @since 1.2.5
@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ServletContextRequestLoggingFilter extends AbstractRequestLoggingFilter {
 
 	/**
-	 * Writes a log message before the request is processed.
+	 * 在处理请求之前写入一条日志消息。
 	 */
 	@Override
 	protected void beforeRequest(HttpServletRequest request, String message) {
@@ -42,7 +42,7 @@ public class ServletContextRequestLoggingFilter extends AbstractRequestLoggingFi
 	}
 
 	/**
-	 * Writes a log message after the request is processed.
+	 * 在处理请求之后写入一条日志消息。
 	 */
 	@Override
 	protected void afterRequest(HttpServletRequest request, String message) {

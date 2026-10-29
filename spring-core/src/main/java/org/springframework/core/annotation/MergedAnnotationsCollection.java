@@ -30,8 +30,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link MergedAnnotations} implementation backed by a {@link Collection} of
- * {@link MergedAnnotation} instances that represent direct annotations.
+ * 由表示直接注解的 {@link MergedAnnotation} 实例的 {@link Collection} 支持的
+ * {@link MergedAnnotations} 实现。
  *
  * @author Phillip Webb
  * @since 5.2

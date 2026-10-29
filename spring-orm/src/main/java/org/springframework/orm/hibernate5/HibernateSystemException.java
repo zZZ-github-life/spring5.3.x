@@ -22,9 +22,9 @@ import org.springframework.dao.UncategorizedDataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Hibernate-specific subclass of UncategorizedDataAccessException,
- * for Hibernate system errors that do not match any concrete
- * {@code org.springframework.dao} exceptions.
+ * UncategorizedDataAccessException 的 Hibernate 专用子类，
+ * 用于不匹配任何具体 {@code org.springframework.dao} 异常的
+ * Hibernate 系统错误。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -34,8 +34,8 @@ import org.springframework.lang.Nullable;
 public class HibernateSystemException extends UncategorizedDataAccessException {
 
 	/**
-	 * Create a new HibernateSystemException,
-	 * wrapping an arbitrary HibernateException.
+	 * 创建一个新的 HibernateSystemException，
+	 * 包装任意 HibernateException。
 	 * @param cause the HibernateException thrown
 	 */
 	public HibernateSystemException(@Nullable HibernateException cause) {

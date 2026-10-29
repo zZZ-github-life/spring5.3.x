@@ -24,35 +24,32 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code @Rollback} is a test annotation that is used to indicate whether
- * a <em>test-managed transaction</em> should be <em>rolled back</em> after
- * the test method has completed.
+ * {@code @Rollback} 是一个测试注解，用于指示
+ * <em>测试管理的事务</em>在测试方法完成后是否应<em>回滚</em>。
  *
- * <p>Consult the class-level Javadoc for
+ * <p>有关<em>测试管理的事务</em>的说明，请参阅
  * {@link org.springframework.test.context.transaction.TransactionalTestExecutionListener}
- * for an explanation of <em>test-managed transactions</em>.
+ * 的类级 Javadoc。
  *
- * <p>When declared as a class-level annotation, {@code @Rollback} defines
- * the default rollback semantics for all test methods within the test class
- * hierarchy or nested class hierarchy. When declared as a method-level annotation,
- * {@code @Rollback} defines rollback semantics for the specific test method,
- * potentially overriding class-level default commit or rollback semantics.
+ * <p>当声明为类级注解时，{@code @Rollback} 为测试类
+ * 层次结构或嵌套类层次结构中的所有测试方法定义默认的回滚语义。当声明为方法级注解时，
+ * {@code @Rollback} 为特定测试方法定义回滚语义，
+ * 可能覆盖类级默认的提交或回滚语义。
  *
- * <p>As of Spring Framework 4.2, {@code @Commit} can be used as direct
- * replacement for {@code @Rollback(false)}.
+ * <p>从 Spring Framework 4.2 开始，{@code @Commit} 可直接
+ * 替代 {@code @Rollback(false)}。
  *
- * <p><strong>Warning</strong>: Declaring {@code @Commit} and {@code @Rollback}
- * on the same test method or on the same test class is unsupported and may
- * lead to unpredictable results.
+ * <p><strong>警告</strong>：在同一测试方法或同一测试类上同时声明
+ * {@code @Commit} 和 {@code @Rollback} 是不受支持的，
+ * 可能导致不可预测的结果。
  *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create
- * custom <em>composed annotations</em>. Consult the source code for
- * {@link Commit @Commit} for a concrete example.
+ * <p>此注解可用作<em>元注解</em>以创建
+ * 自定义的<em>组合注解</em>。具体示例请参阅
+ * {@link Commit @Commit} 的源代码。
  *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * <p>从 Spring Framework 5.3 开始，此注解默认将从
+ * 外层测试类继承。详情请参见
+ * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 2.5
@@ -66,11 +63,10 @@ import java.lang.annotation.Target;
 public @interface Rollback {
 
 	/**
-	 * Whether the <em>test-managed transaction</em> should be rolled back
-	 * after the test method has completed.
-	 * <p>If {@code true}, the transaction will be rolled back; otherwise,
-	 * the transaction will be committed.
-	 * <p>Defaults to {@code true}.
+	 * 测试方法完成后是否应回滚<em>测试管理的事务</em>。
+	 * <p>如果为 {@code true}，事务将被回滚；否则，
+	 * 事务将被提交。
+	 * <p>默认为 {@code true}。
 	 */
 	boolean value() default true;
 

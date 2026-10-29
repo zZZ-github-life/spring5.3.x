@@ -24,19 +24,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.FlashMap;
 
 /**
- * A specialization of the {@link Model} interface that controllers can use to
- * select attributes for a redirect scenario. Since the intent of adding
- * redirect attributes is very explicit --  i.e. to be used for a redirect URL,
- * attribute values may be formatted as Strings and stored that way to make
- * them eligible to be appended to the query string or expanded as URI
- * variables in {@code org.springframework.web.servlet.view.RedirectView}.
+ * {@link Model} 接口的专门化，控制器可用它来选择
+ * 重定向场景所需的属性。由于添加重定向属性的意图非常明确
+ * ——即用于重定向 URL，属性值可以格式化为 String 并按该形式存储，
+ * 以便能够附加到查询字符串，或在
+ * {@code org.springframework.web.servlet.view.RedirectView} 中作为 URI 变量展开。
  *
- * <p>This interface also provides a way to add flash attributes. For a
- * general overview of flash attributes see {@link FlashMap}. You can use
- * {@link RedirectAttributes} to store flash attributes and they will be
- * automatically propagated to the "output" FlashMap of the current request.
+ * <p>此接口还提供了添加 flash 属性的方式。有关
+ * flash 属性的总体概述，请参见 {@link FlashMap}。你可以使用
+ * {@link RedirectAttributes} 存储 flash 属性，它们会自动
+ * 传播到当前请求的 "output" FlashMap 中。
  *
- * <p>Example usage in an {@code @Controller}:
+ * <p>在 {@code @Controller} 中的示例用法：
  * <pre class="code">
  * &#064;RequestMapping(value = "/accounts", method = RequestMethod.POST)
  * public String handle(Account account, BindingResult result, RedirectAttributes redirectAttrs) {
@@ -49,12 +48,12 @@ import org.springframework.web.servlet.FlashMap;
  * }
  * </pre>
  *
- * <p>A RedirectAttributes model is empty when the method is called and is never
- * used unless the method returns a redirect view name or a RedirectView.
+ * <p>方法被调用时 RedirectAttributes 模型为空，且除非该方法
+ * 返回重定向视图名称或 RedirectView，否则永远不会
+ * 被使用。
  *
- * <p>After the redirect, flash attributes are automatically added to the model
- * of the controller that serves the target URL.
- *
+ * <p>重定向之后，flash 属性会自动添加到为目标 URL
+ * 提供服务的控制器的模型中。
  * @author Rossen Stoyanchev
  * @since 3.1
  */
@@ -73,21 +72,21 @@ public interface RedirectAttributes extends Model {
 	RedirectAttributes mergeAttributes(Map<String, ?> attributes);
 
 	/**
-	 * Add the given flash attribute.
+	 * 添加给定的 flash 属性。
 	 * @param attributeName the attribute name; never {@code null}
 	 * @param attributeValue the attribute value; may be {@code null}
 	 */
 	RedirectAttributes addFlashAttribute(String attributeName, @Nullable Object attributeValue);
 
 	/**
-	 * Add the given flash storage using a
-	 * {@link org.springframework.core.Conventions#getVariableName generated name}.
+	 * 使用
+	 * {@link org.springframework.core.Conventions#getVariableName generated name} 添加给定的 flash 存储。
 	 * @param attributeValue the flash attribute value; never {@code null}
 	 */
 	RedirectAttributes addFlashAttribute(Object attributeValue);
 
 	/**
-	 * Return the attributes candidate for flash storage or an empty Map.
+	 * 返回可用于 flash 存储的候选属性，或返回空 Map。
 	 */
 	Map<String, ?> getFlashAttributes();
 }

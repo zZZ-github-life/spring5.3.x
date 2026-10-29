@@ -17,12 +17,10 @@
 package org.springframework.expression;
 
 /**
- * Implementers of this interface are expected to be able to locate types.
- * They may use a custom {@link ClassLoader} and/or deal with common
- * package prefixes (e.g. {@code java.lang}) however they wish.
+ * 此接口的实现者应能够定位类型。它们可以按自己的方式使用自定义的 {@link ClassLoader} 和/或处理常见
+ * 的包前缀（例如 {@code java.lang}）。
  *
- * <p>See {@link org.springframework.expression.spel.support.StandardTypeLocator}
- * for an example implementation.
+ * 有关示例实现，请参见 {@link org.springframework.expression.spel.support.StandardTypeLocator}。
  *
  * @author Andy Clement
  * @since 3.0
@@ -31,8 +29,7 @@ package org.springframework.expression;
 public interface TypeLocator {
 
 	/**
-	 * Find a type by name. The name may or may not be fully qualified
-	 * (e.g. {@code String} or {@code java.lang.String}).
+	 * 按名称查找类型。名称可以带完整限定，也可以不带（例如 {@code String} 或 {@code java.lang.String}）。
 	 * @param typeName the type to be located
 	 * @return the {@code Class} object representing that type
 	 * @throws EvaluationException if there is a problem finding the type

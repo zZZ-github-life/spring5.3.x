@@ -1,0 +1,103 @@
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/standard/Tokenizer.java::27::0", "zh": ["将输入数据切分为可供后续解析的记号流。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/standard/Tokenizer.java::507::0", "zh": ["检查这里是否可能是双字符记号。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/standard/Tokenizer.java::516::0", "zh": ["压入一个长度为单个字符的记号。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/standard/Tokenizer.java::524::0", "zh": ["压入一个长度为两个字符的记号。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/standard/package-info.java::1::0", "zh": ["SpEL 的标准解析器实现。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/BooleanTypedValue.java::21::0", "zh": ["用于布尔值的 {@link TypedValue}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/BooleanTypedValue.java::29::0", "zh": ["真。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/BooleanTypedValue.java::34::0", "zh": ["假。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingMethodResolver.java::29::0", "zh": ["用于数据绑定目的的 {@link org.springframework.expression.MethodResolver} 变体，通过反射访问给定目标对象上的实例方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingMethodResolver.java::29::1", "zh": ["<p>该访问器不解析静态方法，也不解析 {@code java.lang.Object} 或 {@code java.lang.Class} 上的技术性方法。如需不受限制的解析，请改用 {@link ReflectiveMethodResolver}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingMethodResolver.java::69::0", "zh": ["创建一个新的数据绑定方法解析器，用于实例方法解析。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingPropertyAccessor.java::21::0", "zh": ["用于数据绑定目的的 {@link org.springframework.expression.PropertyAccessor} 变体，通过反射读取属性，也可能写入属性。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingPropertyAccessor.java::21::1", "zh": ["<p>属性可以通过公共 getter 方法（读取时）或公共 setter 方法（写入时）引用，也可以作为公共字段引用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingPropertyAccessor.java::21::2", "zh": ["<p>该访问器专为用户声明的属性而设计，不解析 {@code java.lang.Object} 或 {@code java.lang.Class} 上的技术性属性。如需不受限制的解析，请改用 {@link ReflectivePropertyAccessor}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingPropertyAccessor.java::42::0", "zh": ["创建一个新的属性访问器，用于读取，也可能用于写入。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingPropertyAccessor.java::58::0", "zh": ["创建一个新的数据绑定属性访问器，用于只读操作。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/DataBindingPropertyAccessor.java::65::0", "zh": ["创建一个新的数据绑定属性访问器，用于读写操作。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::36::0", "zh": ["反射解析器代码使用的工具方法，用于发现表达式中应使用的适当方法/构造器和字段。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::47::0", "zh": ["比较参数数组，并返回它们是否匹配的信息。所提供的类型转换器和 conversionAllowed 标志使匹配过程能够考虑类型可能被转换器转换为另一种类型的情况。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::91::0", "zh": ["基于 {@link MethodInvoker#getTypeDifferenceWeight(Class[], Object[])}，但作用于 TypeDescriptor。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::134::0", "zh": ["比较参数数组，并返回它们是否匹配的信息。所提供的类型转换器和 conversionAllowed 标志使匹配过程能够考虑类型可能被转换器转换为另一种类型的情况。compareArguments 的这个变体还支持可变参数匹配。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::235::0", "zh": ["将提供的一组参数转换为所请求的类型。如果 parameterTypes 与可变参数方法相关，那么 parameterTypes 数组的最后一项本身就是一个数组，其组件类型应作为多余参数的转换目标。（例如，如果 parameterTypes 为 {Integer, String[]}，输入参数为 {Integer, boolean, float}，则 boolean 和 float 都必须转换为字符串。）此方法*不会*将参数重新打包为适合可变参数调用的形式——后续对 setupArgumentsForVarargsInvocation 的调用负责处理这一点。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::255::0", "zh": ["接收一组输入参数值，并将其转换为所需参数类型所指定的类型。参数会在输入数组中就地转换。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::333::0", "zh": ["检查所提供的值是否为 possibleArray 值所表示数组中的第一个元素。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::352::0", "zh": ["打包参数，使其正确匹配 requiredParameterTypes 中的预期形式。<p>例如，如果 requiredParameterTypes 为 {@code (int, String[])}，因为第二个参数声明为 {@code String...}，而 arguments 为 {@code [1,\"a\",\"b\"]}，则必须重新打包为 {@code [1,new String[]{\"a\",\"b\"}]} 才能匹配预期类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::395::0", "zh": ["参数匹配的种类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectionHelper.java::411::0", "zh": ["ArgumentsMatchInfo 的实例描述了在两组参数之间达成的匹配种类——一组是方法/构造器所期望的参数，另一组是调用时提供的参数。如果该种类表明某些参数需要转换，那么需要转换的参数会列在 argsRequiringConversion 数组中。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveConstructorExecutor.java::28::0", "zh": ["一个简单的 ConstructorExecutor 实现，通过反射调用运行构造器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveConstructorResolver.java::35::0", "zh": ["使用反射定位应调用哪个构造器的构造器解析器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveConstructorResolver.java::44::0", "zh": ["在类型上定位构造器。可能发生三种匹配："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodExecutor.java::32::0", "zh": ["通过反射工作的 {@link MethodExecutor}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodExecutor.java::56::0", "zh": ["为给定方法创建一个新的执行器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodExecutor.java::64::0", "zh": ["为给定方法创建一个新的执行器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodExecutor.java::82::0", "zh": ["返回此执行器所配置的原始方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodExecutor.java::89::0", "zh": ["在声明该方法的类层级中查找第一个声明该方法的公共类。有时反射方法发现逻辑会找到一个适合通过反射轻松调用的方法，但在编译表达式时因可见性限制而无法从生成的代码中调用。例如，如果某个非公共类重写了 toString()，此辅助方法会沿类型层级向上查找，以找到第一个声明该方法的公共类型（如果存在的话！）。对于 toString()，它可能一直向上找到 Object。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodResolver.java::44::0", "zh": ["基于反射的 {@link MethodResolver}，除非已指定显式的方法解析器，否则在 {@link StandardEvaluationContext} 中默认使用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodResolver.java::69::0", "zh": ["此构造器允许对 ReflectiveMethodResolver 进行配置，使其使用距离计算来检查两个接近的匹配中哪个更合适（当存在多个匹配时）。使用距离计算旨在确保匹配结果更接近 Java 编译器在考虑装箱/拆箱以及方法候选是否声明为处理所传入（参数）类型的超类型时的行为。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodResolver.java::84::0", "zh": ["为给定类型上的方法注册过滤器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodResolver.java::102::0", "zh": ["在类型上定位方法。可能发生三种匹配："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodResolver.java::267::0", "zh": ["返回此类型的方法集合。默认实现返回给定 {@code type} 的 {@link Class#getMethods()} 结果，但子类可以重写以改变结果，例如指定在其他位置声明的静态方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectiveMethodResolver.java::279::0", "zh": ["判断给定的 {@code Method} 是否为在给定目标类实例上进行方法解析的候选方法。<p>默认实现将任何方法都视为候选方法，即使是静态方法以及 {@link Object} 基类上非用户声明的方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::48::0", "zh": ["一个功能强大的 {@link PropertyAccessor}，通过反射在目标实例上读取属性，也可能写入属性。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::48::1", "zh": ["<p>属性可以通过公共 getter 方法（读取时）或公共 setter 方法（写入时）引用，也可以作为公共字段引用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::92::0", "zh": ["创建一个新的属性访问器，用于读取和写入。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::100::0", "zh": ["创建一个新的属性访问器，用于读取，也可能用于写入。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::111::0", "zh": ["返回 {@code null}，表示这是一个通用访问器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::335::0", "zh": ["获取最近一次读取的调用器对。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::388::0", "zh": ["查找指定属性的 getter 方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::407::0", "zh": ["查找指定属性的 setter 方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::434::0", "zh": ["返回类的方法，其中非桥接方法排在前面。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::445::0", "zh": ["判断给定的 {@code Method} 是否为在给定目标类实例上进行属性访问的候选方法。<p>默认实现将任何方法都视为候选方法，即使是 {@link Object} 基类上非用户声明的属性。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::458::0", "zh": ["返回给定属性名的方法后缀。默认实现使用 JavaBean 约定，并额外支持形如 'xY' 的属性，此时优先使用方法 'getXY()'，而不是 JavaBean 约定的 'getxY()'。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::472::0", "zh": ["返回给定属性名的方法后缀。默认实现使用 JavaBean 约定。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::492::0", "zh": ["在指定类上查找具有特定名称的字段。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::520::0", "zh": ["尝试为特定类上的特定属性创建定制的优化属性访问器。通用的 ReflectivePropertyAccessor 总是可用，但由于每次调用 read() 时都需要查找要使用的反射成员（方法/字段），因此并非最优。如果无法构建更优的访问器，此方法只会返回 ReflectivePropertyAccessor 实例。<p>注意：优化访问器目前仅可用于读取操作。如果需要读写访问器，请不要调用此方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::580::0", "zh": ["封装用于通过反射调用以访问属性值的成员（方法/字段），以及该反射调用所返回值的类型描述符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::646::0", "zh": ["PropertyAccessor 的一种优化形式，它使用反射，但只知道如何访问特定类上的特定属性。这与通用的 ReflectivePropertyResolver 不同，后者管理着可在不同类上调用以访问不同属性的方法和字段缓存。之所以存在这种优化访问器，是因为每次读取时按类/名称查找相应的反射对象并不便宜。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/ReflectivePropertyAccessor.java::656::0", "zh": ["被访问的成员。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::42::0", "zh": ["{@link EvaluationContext} 的基本实现，聚焦于 SpEL 核心特性和定制选项的一个子集，面向简单的条件求值，尤其是数据绑定场景。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::42::1", "zh": ["<p>在许多情况下，并不需要 SpEL 语言的全部能力，而应有意义地加以限制。示例包括但不限于数据绑定表达式、基于属性的过滤器等。为此，{@code SimpleEvaluationContext} 仅支持 SpEL 语言语法的一个子集，例如排除对 Java 类型、构造器和 Bean 引用的引用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::42::2", "zh": ["<p>创建 {@code SimpleEvaluationContext} 时，需要选择 SpEL 表达式中属性访问所需的支持级别："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::42::3", "zh": ["<p>方便的是，{@link SimpleEvaluationContext#forReadOnlyDataBinding()} 可通过 {@link DataBindingPropertyAccessor} 启用对属性的读访问；当还需要写访问时，{@link SimpleEvaluationContext#forReadWriteDataBinding()} 同样如此。或者，通过 {@link SimpleEvaluationContext#forPropertyAccessors} 配置自定义访问器，并可通过构建器启用方法解析和/或类型转换器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::42::4", "zh": ["<p>请注意，{@code SimpleEvaluationContext} 通常不配置默认根对象。相反，它旨在创建一次，然后通过对预编译的 {@link org.springframework.expression.Expression} 反复调用 {@code getValue} 来重复使用，调用时同时传入 {@code EvaluationContext} 和根对象作为参数：{@link org.springframework.expression.Expression#getValue(EvaluationContext, Object)}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::42::5", "zh": ["<p>如需更强大的功能和灵活性，特别是在内部配置场景中，请考虑改用 {@link StandardEvaluationContext}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::123::0", "zh": ["返回指定的根对象（如果有）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::131::0", "zh": ["返回指定的 {@link PropertyAccessor} 委托（如果有）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::140::0", "zh": ["始终返回空列表，因为此上下文不支持使用类型引用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::149::0", "zh": ["返回指定的 {@link MethodResolver} 委托（如果有）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::158::0", "zh": ["{@code SimpleEvaluationContext} 不支持使用 Bean 引用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::168::0", "zh": ["{@code SimpleEvaluationContext} 不支持使用类型引用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::178::0", "zh": ["所配置的 {@link TypeConverter}。<p>默认情况下为 {@link StandardTypeConverter}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::189::0", "zh": ["返回 {@link StandardTypeComparator} 的实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::197::0", "zh": ["返回 {@link StandardOperatorOverloader} 的实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::205::0", "zh": ["{@code SimpleEvaluationContext} 不支持在表达式中进行变量赋值。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::228::0", "zh": ["为指定的 {@link PropertyAccessor} 委托创建一个 {@code SimpleEvaluationContext}：通常是针对某个用例的自定义 {@code PropertyAccessor}（例如在自定义数据结构中解析属性），如果还需要属性解引用，也可以与 {@link DataBindingPropertyAccessor} 组合使用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::247::0", "zh": ["创建一个 {@code SimpleEvaluationContext}，通过 {@link DataBindingPropertyAccessor} 以只读方式访问公共属性。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::257::0", "zh": ["创建一个 {@code SimpleEvaluationContext}，通过 {@link DataBindingPropertyAccessor} 以读写方式访问公共属性。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::268::0", "zh": ["{@code SimpleEvaluationContext} 的构建器。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::287::0", "zh": ["注册指定的 {@link MethodResolver} 委托，以组合属性访问和方法解析。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::305::0", "zh": ["在指定属性访问器之外，再注册一个用于实例方法调用的 {@link DataBindingMethodResolver}（即不支持静态方法），通常与 {@link DataBindingPropertyAccessor} 组合使用。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::319::0", "zh": ["注册自定义的 {@link ConversionService}。<p>默认使用由 {@link org.springframework.core.convert.support.DefaultConversionService} 支持的 {@link StandardTypeConverter}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::330::0", "zh": ["注册自定义的 {@link TypeConverter}。<p>默认使用由 {@link org.springframework.core.convert.support.DefaultConversionService} 支持的 {@link StandardTypeConverter}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::342::0", "zh": ["指定用于解析的默认根对象。<p>默认没有，求值时需要传入对象参数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/SimpleEvaluationContext.java::353::0", "zh": ["指定用于解析的带类型根对象。<p>默认没有，求值时需要传入对象参数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardEvaluationContext.java::40::0", "zh": ["一个功能强大且高度可配置的 {@link EvaluationContext} 实现。此上下文对所有适用的策略使用标准实现，这些实现基于反射来解析属性、方法和字段。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardEvaluationContext.java::40::1", "zh": ["<p>如需用于数据绑定的更简单的构建器风格上下文变体，请考虑改用 {@link SimpleEvaluationContext}，它允许根据具体求值场景的需要选择启用若干 SpEL 特性。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardEvaluationContext.java::94::0", "zh": ["创建一个根对象为 null 的 {@code StandardEvaluationContext}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardEvaluationContext.java::101::0", "zh": ["创建一个使用给定根对象的 {@code StandardEvaluationContext}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardEvaluationContext.java::260::0", "zh": ["注册一个 {@code MethodFilter}，它将在指定类型的方法解析过程中被调用。<p>{@code MethodFilter} 可以移除方法和/或对方法排序，随后 SpEL 会将这些方法用作查找匹配的候选方法。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardOperatorOverloader.java::24::0", "zh": ["{@link OperatorOverloader} 的标准实现。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeComparator.java::28::0", "zh": ["{@link TypeComparator} 的基本实现：支持比较 {@link Number} 类型以及实现 {@link Comparable} 的类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeConverter.java::31::0", "zh": ["{@link TypeConverter} 接口的默认实现，委托给 Spring 核心的 {@link ConversionService}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeConverter.java::45::0", "zh": ["为默认的 ConversionService 创建一个 StandardTypeConverter。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeConverter.java::53::0", "zh": ["为给定的 ConversionService 创建一个 StandardTypeConverter。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeConverter.java::62::0", "zh": ["为给定的 ConversionService 创建一个 StandardTypeConverter。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::30::0", "zh": ["{@link TypeLocator} 的简单实现，使用上下文 ClassLoader（或在其上设置的任意 ClassLoader）。它支持“众所周知”的包：因此，如果无法找到某个类型，它会尝试通过已注册的导入来定位它。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::47::0", "zh": ["为默认 ClassLoader（通常是线程上下文 ClassLoader）创建一个 StandardTypeLocator。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::55::0", "zh": ["为给定的 ClassLoader 创建一个 StandardTypeLocator。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::66::0", "zh": ["注册一个新的导入前缀，用于搜索未限定类型。预期格式类似于“java.lang”。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::75::0", "zh": ["从该定位器的导入列表中移除指定的前缀。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::83::0", "zh": ["返回在此 StandardTypeLocator 中注册的所有导入前缀的列表。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/StandardTypeLocator.java::92::0", "zh": ["查找（可能未限定的）类型引用——先按原样使用类型名，如果找不到该类型名，再尝试任何已注册的前缀。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/support/package-info.java::1::0", "zh": ["SpEL 对各种核心抽象的默认实现。"]}

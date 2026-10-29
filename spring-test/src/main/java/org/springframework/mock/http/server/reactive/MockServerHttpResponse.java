@@ -38,12 +38,12 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Mock extension of {@link AbstractServerHttpResponse} for use in tests without
- * an actual server.
+ * {@link AbstractServerHttpResponse} 的 mock 扩展，用于在没有
+ * 实际服务器的情况下进行测试。
  *
- * <p>By default response content is consumed in full upon writing and cached
- * for subsequent access, however it is also possible to set a custom
- * {@link #setWriteHandler(Function) writeHandler}.
+ * <p>默认情况下，响应内容在写入时会被完整消费并缓存
+ * 以供后续访问，不过也可以设置自定义的
+ * {@link #setWriteHandler(Function) writeHandler}。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -73,10 +73,10 @@ public class MockServerHttpResponse extends AbstractServerHttpResponse {
 
 
 	/**
-	 * Configure a custom handler to consume the response body.
-	 * <p>By default, response body content is consumed in full and cached for
-	 * subsequent access in tests. Use this option to take control over how the
-	 * response body is consumed.
+	 * 配置用于消费响应体的自定义处理器。
+	 * <p>默认情况下，响应正文内容会被完整消费并缓存，
+	 * 以便在测试中后续访问。使用此选项可以控制
+	 * 响应体的消费方式。
 	 * @param writeHandler the write handler to use returning {@code Mono<Void>}
 	 * when the body has been "written" (i.e. consumed).
 	 */
@@ -127,15 +127,15 @@ public class MockServerHttpResponse extends AbstractServerHttpResponse {
 	}
 
 	/**
-	 * Return the response body or an error stream if the body was not set.
+	 * 返回响应体；如果未设置正文，则返回错误流。
 	 */
 	public Flux<DataBuffer> getBody() {
 		return this.body;
 	}
 
 	/**
-	 * Aggregate response data and convert to a String using the "Content-Type"
-	 * charset or "UTF-8" by default.
+	 * 聚合响应数据，并使用 "Content-Type" 的字符集
+	 * （默认为 "UTF-8"）将其转换为 String。
 	 */
 	public Mono<String> getBodyAsString() {
 

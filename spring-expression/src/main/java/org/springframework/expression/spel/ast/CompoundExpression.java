@@ -27,8 +27,7 @@ import org.springframework.expression.spel.ExpressionState;
 import org.springframework.expression.spel.SpelEvaluationException;
 
 /**
- * Represents a DOT separated expression sequence, such as
- * {@code 'property1.property2.methodOne()'}.
+ * 表示以点号（DOT）分隔的表达式序列，例如 {@code 'property1.property2.methodOne()'}。
  *
  * @author Andy Clement
  * @author Sam Brannen
@@ -82,8 +81,7 @@ public class CompoundExpression extends SpelNodeImpl {
 	}
 
 	/**
-	 * Evaluates a compound expression. This involves evaluating each piece in turn and the
-	 * return value from each piece is the active context object for the subsequent piece.
+	 * 对复合表达式求值。这涉及依次对每个部分求值，每个部分的返回值即为下一部分的活动上下文对象。
 	 * @param state the state in which the expression is being evaluated
 	 * @return the final value from the last piece of the compound expression
 	 */

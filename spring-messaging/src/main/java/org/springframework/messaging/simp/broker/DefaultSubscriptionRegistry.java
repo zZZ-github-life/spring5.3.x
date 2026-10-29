@@ -49,13 +49,12 @@ import org.springframework.util.PathMatcher;
 import org.springframework.util.StringUtils;
 
 /**
- * Implementation of {@link SubscriptionRegistry} that stores subscriptions
- * in memory and uses a {@link org.springframework.util.PathMatcher PathMatcher}
- * for matching destinations.
+ * {@link SubscriptionRegistry} 的实现，将订阅存储在内存中，并使用
+ * {@link org.springframework.util.PathMatcher PathMatcher} 匹配目标。
  *
- * <p>As of 4.2, this class supports a {@link #setSelectorHeaderName selector}
- * header on subscription messages with Spring EL expressions evaluated against
- * the headers to filter out messages in addition to destination matching.
+ * <p>从 4.2 开始，此类支持订阅消息上的
+ * {@link #setSelectorHeaderName selector} 头，其中 Spring EL 表达式
+ * 会根据头进行求值，以便在目标匹配之外进一步过滤消息。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -64,10 +63,10 @@ import org.springframework.util.StringUtils;
  */
 public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 
-	/** Default maximum number of entries for the destination cache: 1024. */
+	/** 目标缓存的默认最大条目数：1024。 */
 	public static final int DEFAULT_CACHE_LIMIT = 1024;
 
-	/** Static evaluation context to reuse. */
+	/** 可重用的静态求值上下文。 */
 	private static final EvaluationContext messageEvalContext =
 			SimpleEvaluationContext.forPropertyAccessors(new SimpMessageHeaderPropertyAccessor()).build();
 
@@ -89,22 +88,21 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 
 
 	/**
-	 * Specify the {@link PathMatcher} to use.
+	 * 指定要使用的 {@link PathMatcher}。
 	 */
 	public void setPathMatcher(PathMatcher pathMatcher) {
 		this.pathMatcher = pathMatcher;
 	}
 
 	/**
-	 * Return the configured {@link PathMatcher}.
+	 * 返回已配置的 {@link PathMatcher}。
 	 */
 	public PathMatcher getPathMatcher() {
 		return this.pathMatcher;
 	}
 
 	/**
-	 * Specify the maximum number of entries for the resolved destination cache.
-	 * Default is 1024.
+	 * 指定已解析目标缓存的最大条目数。默认值为 1024。
 	 */
 	public void setCacheLimit(int cacheLimit) {
 		this.cacheLimit = cacheLimit;
@@ -112,23 +110,21 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	}
 
 	/**
-	 * Return the maximum number of entries for the resolved destination cache.
+	 * 返回已解析目标缓存的最大条目数。
 	 */
 	public int getCacheLimit() {
 		return this.cacheLimit;
 	}
 
 	/**
-	 * Configure the name of a header that a subscription message can have for
-	 * the purpose of filtering messages matched to the subscription. The header
-	 * value is expected to be a Spring EL boolean expression to be applied to
-	 * the headers of messages matched to the subscription.
-	 * <p>For example:
+	 * 配置订阅消息可以带有的头名称，用于过滤与订阅匹配的消息。
+	 * 该头值应为 Spring EL 布尔表达式，应用于与订阅匹配的消息头。
+	 * <p>例如：
 	 * <pre>
 	 * headers.foo == 'bar'
 	 * </pre>
-	 * <p>By default this is set to "selector". You can set it to a different
-	 * name, or to {@code null} to turn off support for a selector header.
+	 * <p>默认设置为 "selector"。可以将其设置为其他名称，或设置为 {@code null}
+	 * 以关闭对选择器头的支持。
 	 * @param selectorHeaderName the name to use for a selector header
 	 * @since 4.2
 	 */
@@ -137,7 +133,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	}
 
 	/**
-	 * Return the name for the selector header name.
+	 * 返回选择器头的名称。
 	 * @since 4.2
 	 */
 	@Nullable
@@ -245,8 +241,9 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 
 
 	/**
-	 * Cache for destinations resolved previously via
-	 * {@link DefaultSubscriptionRegistry#findSubscriptionsInternal(String, Message)}.
+	 * 缓存之前通过
+	 * {@link DefaultSubscriptionRegistry#findSubscriptionsInternal(String, Message)}
+	 * 解析出的目标。
 	 */
 	private final class DestinationCache {
 
@@ -378,7 +375,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	}
 
 	/**
-	 * Registry for all session and their subscriptions.
+	 * 所有会话及其订阅的注册表。
 	 */
 	private static final class SessionRegistry {
 
@@ -406,7 +403,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	}
 
 	/**
-	 * Container for the subscriptions of a session.
+	 * 会话订阅的容器。
 	 */
 	private static final class SessionInfo {
 
@@ -433,7 +430,7 @@ public class DefaultSubscriptionRegistry extends AbstractSubscriptionRegistry {
 	}
 
 	/**
-	 * Represents a subscription.
+	 * 表示一个订阅。
 	 */
 	private static final class Subscription {
 

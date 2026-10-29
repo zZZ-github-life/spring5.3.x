@@ -22,7 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Default implementation of {@link RequestPath}.
+ * {@link RequestPath} 的默认实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

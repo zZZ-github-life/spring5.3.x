@@ -21,7 +21,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 
 /**
- * A registry of currently connected users.
+ * 当前已连接用户的注册表。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 public interface SimpUserRegistry {
 
 	/**
-	 * Get the user for the given name.
+	 * 获取给定名称的用户。
 	 * @param userName the name of the user to look up
 	 * @return the user, or {@code null} if not connected
 	 */
@@ -37,21 +37,21 @@ public interface SimpUserRegistry {
 	SimpUser getUser(String userName);
 
 	/**
-	 * Return a snapshot of all connected users.
-	 * <p>The returned set is a copy and will not reflect further changes.
+	 * 返回所有已连接用户的快照。
+	 * <p>返回的集合是副本，不会反映后续更改。
 	 * @return the connected users, or an empty set if none
 	 */
 	Set<SimpUser> getUsers();
 
 	/**
-	 * Return the count of all connected users.
+	 * 返回所有已连接用户的数量。
 	 * @return the number of connected users
 	 * @since 4.3.5
 	 */
 	int getUserCount();
 
 	/**
-	 * Find subscriptions with the given matcher.
+	 * 使用给定匹配器查找订阅。
 	 * @param matcher the matcher to use
 	 * @return a set of matching subscriptions, or an empty set if none
 	 */

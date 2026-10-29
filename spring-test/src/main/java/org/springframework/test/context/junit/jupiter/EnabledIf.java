@@ -27,19 +27,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * {@code @EnabledIf} is used to signal that the annotated test class or test
- * method is <em>enabled</em> and should be executed if the supplied
- * {@link #expression} evaluates to {@code true}.
- *
- * <p>When applied at the class level, all test methods within that class
- * are automatically enabled by default as well.
- *
- * <p>For basic examples, see the Javadoc for {@link #expression}.
- *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create
- * custom <em>composed annotations</em>. For example, a custom
- * {@code @EnabledOnMac} annotation can be created as follows.
- *
+ * {@code @EnabledIf} 用于表示如果所提供的 {@link #expression} 求值为 {@code true}，则标注的测试类或测试方法处于<em>启用</em>状态，应当执行。
+ * <p>当应用于类级别时，该类中的所有测试方法默认也会自动启用。
+ * <p>有关基本示例，请参见 {@link #expression} 的 Javadoc。
+ * <p>此注解可用作<em>元注解</em>以创建自定义<em>组合注解</em>。例如，可以按如下方式创建自定义 {@code @EnabledOnMac} 注解。
  * <pre style="code">
  * {@literal @}Target({ElementType.TYPE, ElementType.METHOD})
  * {@literal @}Retention(RetentionPolicy.RUNTIME)
@@ -49,16 +40,8 @@ import org.springframework.core.annotation.AliasFor;
  * )
  * public {@literal @}interface EnabledOnMac {}
  * </pre>
- *
- * <p>Please note that {@code @EnabledOnMac} is meant only as an example of what
- * is possible. If you have that exact use case, please use the built-in
- * {@link org.junit.jupiter.api.condition.EnabledOnOs @EnabledOnOs(MAC)} support
- * in JUnit Jupiter.
- *
- * <p>Since JUnit 5.7, JUnit Jupiter also has a condition annotation named
- * {@link org.junit.jupiter.api.condition.EnabledIf @EnabledIf}. Thus, if you
- * wish to use Spring's {@code @EnabledIf} support make sure you import the
- * annotation type from the correct package.
+ * <p>请注意，{@code @EnabledOnMac} 仅作为可能性示例。如果您恰好有这种用例，请使用 JUnit Jupiter 中内置的 {@link org.junit.jupiter.api.condition.EnabledOnOs @EnabledOnOs(MAC)} 支持。
+ * <p>从 JUnit 5.7 开始，JUnit Jupiter 也提供了名为 {@link org.junit.jupiter.api.condition.EnabledIf @EnabledIf} 的条件注解。因此，如果希望使用 Spring 的 {@code @EnabledIf} 支持，请确保从正确的包中导入该注解类型。
  *
  * @author Sam Brannen
  * @since 5.0
@@ -74,8 +57,7 @@ import org.springframework.core.annotation.AliasFor;
 public @interface EnabledIf {
 
 	/**
-	 * Alias for {@link #expression}; only intended to be used if {@link #reason}
-	 * and {@link #loadContext} are not specified.
+	 * 作为 {@link #expression} 的别名；仅当未指定 {@link #reason} 和 {@link #loadContext} 时才打算使用。
 	 *
 	 * @see #expression
 	 */
@@ -83,28 +65,18 @@ public @interface EnabledIf {
 	String value() default "";
 
 	/**
-	 * The expression that will be evaluated to determine if the annotated test
-	 * class or test method is <em>enabled</em>.
-	 *
-	 * <p>If the expression evaluates to {@link Boolean#TRUE} or a {@link String}
-	 * equal to {@code "true"} (ignoring case), the test will be enabled.
-	 *
-	 * <p>Expressions can be any of the following.
-	 *
+	 * 将对其求值以确定标注的测试类或测试方法是否<em>启用</em>的表达式。
+	 * <p>如果表达式求值为 {@link Boolean#TRUE} 或等于 {@code "true"} 的 {@link String}（忽略大小写），则测试将被启用。
+	 * <p>表达式可以是以下任意一种。
 	 * <ul>
-	 * <li>Spring Expression Language (SpEL) expression &mdash; for example:
+	 * <li>Spring 表达式语言（SpEL）表达式——例如：
 	 * <pre style="code">@EnabledIf("#{systemProperties['os.name'].toLowerCase().contains('mac')}")</pre>
-	 * <li>Placeholder for a property available in the Spring
-	 * {@link org.springframework.core.env.Environment Environment} &mdash; for example:
+	 * <li>Spring {@link org.springframework.core.env.Environment Environment} 中可用属性的占位符——例如：
 	 * <pre style="code">@EnabledIf("${smoke.tests.enabled}")</pre>
-	 * <li>Text literal &mdash; for example:
+	 * <li>文本字面量——例如：
 	 * <pre style="code">@EnabledIf("true")</pre>
 	 * </ul>
-	 *
-	 * <p>Note, however, that a <em>text literal</em> which is not the result of
-	 * dynamic resolution of a property placeholder is of zero practical value
-	 * since {@code @EnabledIf("false")} is equivalent to {@code @Disabled}
-	 * and {@code @EnabledIf("true")} is logically meaningless.
+	 * <p>但请注意，不是属性占位符动态解析结果的<em>文本字面量</em>没有任何实际价值，因为 {@code @EnabledIf("false")} 等价于 {@code @Disabled}，而 {@code @EnabledIf("true")} 在逻辑上没有意义。
 	 *
 	 * @see #reason
 	 * @see #loadContext
@@ -114,22 +86,15 @@ public @interface EnabledIf {
 	String expression() default "";
 
 	/**
-	 * The reason this test is enabled.
+	 * 此测试被启用的原因。
 	 *
 	 * @see #expression
 	 */
 	String reason() default "";
 
 	/**
-	 * Whether the {@code ApplicationContext} associated with the current test
-	 * should be eagerly loaded in order to evaluate the {@link #expression}.
-	 *
-	 * <p>Defaults to {@code false} so that test application contexts are not
-	 * eagerly loaded unnecessarily. If an expression is based solely on system
-	 * properties or environment variables or does not interact with beans in
-	 * the test's application context, there is no need to load the context
-	 * prematurely since doing so would be a waste of time if the test ends up
-	 * being disabled.
+	 * 是否应急切加载与当前测试关联的 {@code ApplicationContext} 以评估 {@link #expression}。
+	 * <p>默认为 {@code false}，以避免不必要地急切加载测试应用程序上下文。如果表达式仅基于系统属性或环境变量，或者不与测试应用程序上下文中的 bean 交互，则无需过早加载上下文，因为如果测试最终被禁用，这样做会浪费时间。
 	 *
 	 * @see #expression
 	 */

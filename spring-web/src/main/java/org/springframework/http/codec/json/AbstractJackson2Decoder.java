@@ -51,9 +51,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Abstract base class for Jackson 2.9 decoding, leveraging non-blocking parsing.
+ * Jackson 2.9 解码的抽象基类，利用非阻塞解析。
  *
- * <p>Compatible with Jackson 2.9.7 and higher.
+ * <p>兼容 Jackson 2.9.7 及更高版本。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -67,7 +67,7 @@ public abstract class AbstractJackson2Decoder extends Jackson2CodecSupport imple
 
 
 	/**
-	 * Constructor with a Jackson {@link ObjectMapper} to use.
+	 * 使用要采用的 Jackson {@link ObjectMapper} 的构造函数。
 	 */
 	protected AbstractJackson2Decoder(ObjectMapper mapper, MimeType... mimeTypes) {
 		super(mapper, mimeTypes);
@@ -75,11 +75,10 @@ public abstract class AbstractJackson2Decoder extends Jackson2CodecSupport imple
 
 
 	/**
-	 * Set the max number of bytes that can be buffered by this decoder. This
-	 * is either the size of the entire input when decoding as a whole, or the
-	 * size of one top-level JSON object within a JSON stream. When the limit
-	 * is exceeded, {@link DataBufferLimitException} is raised.
-	 * <p>By default this is set to 256K.
+	 * 设置此解码器可缓冲的最大字节数。这可以是整体解码时整个
+	 * 输入的大小，也可以是 JSON 流中单个顶层 JSON 对象的大小。
+	 * 超过限制时会抛出 {@link DataBufferLimitException}。
+	 * <p>默认设置为 256K。
 	 * @param byteCount the max number of bytes to buffer, or -1 for unlimited
 	 * @since 5.1.11
 	 */
@@ -88,7 +87,7 @@ public abstract class AbstractJackson2Decoder extends Jackson2CodecSupport imple
 	}
 
 	/**
-	 * Return the {@link #setMaxInMemorySize configured} byte count limit.
+	 * 返回{@link #setMaxInMemorySize 已配置}的字节数限制。
 	 * @since 5.1.11
 	 */
 	public int getMaxInMemorySize() {
@@ -155,9 +154,9 @@ public abstract class AbstractJackson2Decoder extends Jackson2CodecSupport imple
 	}
 
 	/**
-	 * Process the input publisher into a flux. Default implementation returns
-	 * {@link Flux#from(Publisher)}, but subclasses can choose to customize
-	 * this behavior.
+	 * 将输入的发布者处理为 Flux。默认实现返回
+	 * {@link Flux#from(Publisher)}，但子类可以选择自定义
+	 * 此行为。
 	 * @param input the {@code DataBuffer} input stream to process
 	 * @param elementType the expected type of elements in the output stream
 	 * @param mimeType the MIME type associated with the input stream (optional)

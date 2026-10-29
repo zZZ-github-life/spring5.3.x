@@ -29,13 +29,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link EntityResolver} implementation for the Spring beans DTD,
- * to load the DTD from the Spring class path (or JAR file).
+ * 用于 Spring beans DTD 的 {@link EntityResolver} 实现，从 Spring 类路径（或 JAR 文件）加载 DTD。
  *
- * <p>Fetches "spring-beans.dtd" from the class path resource
- * "/org/springframework/beans/factory/xml/spring-beans.dtd",
- * no matter whether specified as some local URL that includes "spring-beans"
- * in the DTD name or as "https://www.springframework.org/dtd/spring-beans-2.0.dtd".
+ * <p>从类路径资源 “/org/springframework/beans/factory/xml/spring-beans.dtd” 获取
+ * “spring-beans.dtd”，无论它是以包含 “spring-beans” 的某个本地 URL 形式指定，还是以
+ * “https://www.springframework.org/dtd/spring-beans-2.0.dtd” 形式指定。
  *
  * @author Juergen Hoeller
  * @author Colin Sampaleanu

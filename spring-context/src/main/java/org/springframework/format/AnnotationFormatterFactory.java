@@ -20,11 +20,10 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 
 /**
- * A factory that creates formatters to format values of fields annotated with a particular
- * {@link Annotation}.
+ * 创建格式化器的工厂，用于格式化标注了特定 {@link Annotation} 的字段值。
  *
- * <p>For example, a {@code DateTimeFormatAnnotationFormatterFactory} might create a formatter
- * that formats {@code Date} values set on fields annotated with {@code @DateTimeFormat}.
+ * <p>例如，{@code DateTimeFormatAnnotationFormatterFactory} 可以创建格式化器，用于格式化标注了
+ * {@code @DateTimeFormat} 的字段上设置的 {@code Date} 值。
  *
  * @author Keith Donald
  * @since 3.0
@@ -33,15 +32,14 @@ import java.util.Set;
 public interface AnnotationFormatterFactory<A extends Annotation> {
 
 	/**
-	 * The types of fields that may be annotated with the &lt;A&gt; annotation.
+	 * 可以使用 &lt;A&gt; 注解标注的字段类型。
 	 */
 	Set<Class<?>> getFieldTypes();
 
 	/**
-	 * Get the Printer to print the value of a field of {@code fieldType} annotated with
-	 * {@code annotation}.
-	 * <p>If the type T the printer accepts is not assignable to {@code fieldType}, a
-	 * coercion from {@code fieldType} to T will be attempted before the Printer is invoked.
+	 * 获取 Printer，用于打印标注了 {@code annotation} 的 {@code fieldType} 类型字段的值。
+	 * <p>如果 Printer 接受的类型 T 不能赋值给 {@code fieldType}，则在调用 Printer 之前会尝试将
+	 * {@code fieldType} 强制转换为 T。
 	 * @param annotation the annotation instance
 	 * @param fieldType the type of field that was annotated
 	 * @return the printer
@@ -49,10 +47,9 @@ public interface AnnotationFormatterFactory<A extends Annotation> {
 	Printer<?> getPrinter(A annotation, Class<?> fieldType);
 
 	/**
-	 * Get the Parser to parse a submitted value for a field of {@code fieldType}
-	 * annotated with {@code annotation}.
-	 * <p>If the object the parser returns is not assignable to {@code fieldType},
-	 * a coercion to {@code fieldType} will be attempted before the field is set.
+	 * 获取 Parser，用于解析标注了 {@code annotation} 的 {@code fieldType} 类型字段的提交值。
+	 * <p>如果解析器返回的对象不能赋值给 {@code fieldType}，则在设置字段之前会尝试强制转换为
+	 * {@code fieldType}。
 	 * @param annotation the annotation instance
 	 * @param fieldType the type of field that was annotated
 	 * @return the parser

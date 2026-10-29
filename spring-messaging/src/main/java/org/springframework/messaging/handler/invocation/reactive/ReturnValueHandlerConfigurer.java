@@ -23,8 +23,8 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
- * Assist with configuration for handler method return value handlers.
- * At present, it supports only providing a list of custom handlers.
+ * 协助配置处理器方法返回值处理器。
+ * 目前仅支持提供自定义处理器列表。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -35,7 +35,7 @@ public class ReturnValueHandlerConfigurer {
 
 
 	/**
-	 * Configure custom return value handlers for handler methods.
+	 * 为处理器方法配置自定义返回值处理器。
 	 * @param handlers the handlers to add
 	 */
 	public void addCustomHandler(HandlerMethodReturnValueHandler... handlers) {

@@ -17,8 +17,7 @@
 package org.springframework.aop.framework.adapter;
 
 /**
- * Exception thrown when an attempt is made to use an unsupported
- * Advisor or Advice type.
+ * 尝试使用不受支持的 Advisor 或 Advice 类型时抛出的异常。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -29,9 +28,8 @@ package org.springframework.aop.framework.adapter;
 public class UnknownAdviceTypeException extends IllegalArgumentException {
 
 	/**
-	 * Create a new UnknownAdviceTypeException for the given advice object.
-	 * Will create a message text that says that the object is neither a
-	 * subinterface of Advice nor an Advisor.
+	 * 为给定 advice 对象创建一个新的 UnknownAdviceTypeException。将创建一条消息文本，说明该对象既不是
+	 * Advice 的子接口，也不是 Advisor。
 	 * @param advice the advice object of unknown type
 	 */
 	public UnknownAdviceTypeException(Object advice) {
@@ -40,7 +38,7 @@ public class UnknownAdviceTypeException extends IllegalArgumentException {
 	}
 
 	/**
-	 * Create a new UnknownAdviceTypeException with the given message.
+	 * 使用给定消息创建一个新的 UnknownAdviceTypeException。
 	 * @param message the message text
 	 */
 	public UnknownAdviceTypeException(String message) {

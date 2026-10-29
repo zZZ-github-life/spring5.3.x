@@ -33,8 +33,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Convenience methods for working with the DOM API,
- * in particular for working with DOM Nodes and DOM Elements.
+ * 用于操作 DOM API 的便捷方法，特别是用于操作 DOM Node 和 DOM Element。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -48,9 +47,8 @@ import org.springframework.util.Assert;
 public abstract class DomUtils {
 
 	/**
-	 * Retrieves all child elements of the given DOM element that match any of the given element names.
-	 * Only looks at the direct child level of the given element; do not go into further depth
-	 * (in contrast to the DOM API's {@code getElementsByTagName} method).
+	 * 检索给定 DOM 元素中与任一给定元素名匹配的所有子元素。只查看给定元素的直接子级，不会进一步深入
+	 * （与 DOM API 的 {@code getElementsByTagName} 方法相反）。
 	 * @param ele the DOM element to analyze
 	 * @param childEleNames the child element names to look for
 	 * @return a List of child {@code org.w3c.dom.Element} instances
@@ -73,9 +71,8 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Retrieves all child elements of the given DOM element that match the given element name.
-	 * Only look at the direct child level of the given element; do not go into further depth
-	 * (in contrast to the DOM API's {@code getElementsByTagName} method).
+	 * 检索给定 DOM 元素中与给定元素名匹配的所有子元素。只查看给定元素的直接子级，不会进一步深入（与
+	 * DOM API 的 {@code getElementsByTagName} 方法相反）。
 	 * @param ele the DOM element to analyze
 	 * @param childEleName the child element name to look for
 	 * @return a List of child {@code org.w3c.dom.Element} instances
@@ -87,7 +84,7 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Utility method that returns the first child element identified by its name.
+	 * 返回按名称标识的第一个子元素的工具方法。
 	 * @param ele the DOM element to analyze
 	 * @param childEleName the child element name to look for
 	 * @return the {@code org.w3c.dom.Element} instance, or {@code null} if none found
@@ -107,7 +104,7 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Utility method that returns the first child element value identified by its name.
+	 * 返回按名称标识的第一个子元素值的工具方法。
 	 * @param ele the DOM element to analyze
 	 * @param childEleName the child element name to look for
 	 * @return the extracted text value, or {@code null} if no child element found
@@ -119,7 +116,7 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Retrieves all child elements of the given DOM element.
+	 * 检索给定 DOM 元素的所有子元素。
 	 * @param ele the DOM element to analyze
 	 * @return a List of child {@code org.w3c.dom.Element} instances
 	 */
@@ -137,10 +134,9 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Extracts the text value from the given DOM element, ignoring XML comments.
-	 * <p>Appends all CharacterData nodes and EntityReference nodes into a single
-	 * String value, excluding Comment nodes. Only exposes actual user-specified
-	 * text, no default values of any kind.
+	 * 从给定 DOM 元素中提取文本值，忽略 XML 注释。
+	 * <p>将所有 CharacterData 节点和 EntityReference 节点追加到单个 String 值中，不包括 Comment 节点。
+	 * 只暴露用户实际指定的文本，不包含任何类型的默认值。
 	 * @see CharacterData
 	 * @see EntityReference
 	 * @see Comment
@@ -159,9 +155,8 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Namespace-aware equals comparison. Returns {@code true} if either
-	 * {@link Node#getLocalName} or {@link Node#getNodeName} equals
-	 * {@code desiredName}, otherwise returns {@code false}.
+	 * 命名空间感知的相等比较。如果 {@link Node#getLocalName} 或 {@link Node#getNodeName} 等于
+	 * {@code desiredName}，则返回 {@code true}，否则返回 {@code false}。
 	 */
 	public static boolean nodeNameEquals(Node node, String desiredName) {
 		Assert.notNull(node, "Node must not be null");
@@ -170,7 +165,7 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Returns a SAX {@code ContentHandler} that transforms callback calls to DOM {@code Node}s.
+	 * 返回一个将回调调用转换为 DOM {@code Node} 的 SAX {@code ContentHandler}。
 	 * @param node the node to publish events to
 	 * @return the content handler
 	 */
@@ -179,14 +174,14 @@ public abstract class DomUtils {
 	}
 
 	/**
-	 * Matches the given node's name and local name against the given desired name.
+	 * 将给定节点的名称和本地名称与给定的目标名称进行匹配。
 	 */
 	private static boolean nodeNameMatch(Node node, String desiredName) {
 		return (desiredName.equals(node.getNodeName()) || desiredName.equals(node.getLocalName()));
 	}
 
 	/**
-	 * Matches the given node's name and local name against the given desired names.
+	 * 将给定节点的名称和本地名称与给定的多个目标名称进行匹配。
 	 */
 	private static boolean nodeNameMatch(Node node, Collection<?> desiredNames) {
 		return (desiredNames.contains(node.getNodeName()) || desiredNames.contains(node.getLocalName()));

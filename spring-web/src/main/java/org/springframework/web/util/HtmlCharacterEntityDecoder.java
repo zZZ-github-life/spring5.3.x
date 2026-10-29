@@ -17,8 +17,7 @@
 package org.springframework.web.util;
 
 /**
- * Helper for decoding HTML Strings by replacing character
- * entity references with the referred character.
+ * 通过将字符实体引用替换为所引用的字符来解码 HTML 字符串的辅助类。
  *
  * @author Juergen Hoeller
  * @author Martin Kersten

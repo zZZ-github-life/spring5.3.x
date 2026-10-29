@@ -21,9 +21,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A strategy to apply CORS validation checks and updates to a
- * {@link ServerWebExchange}, either rejecting through the response or adding
- * CORS related headers, based on a pre-selected {@link CorsConfiguration}.
+ * 基于预先选定的 {@link CorsConfiguration}，对
+ * {@link ServerWebExchange} 应用 CORS 校验检查并执行更新的策略，
+ * 既可以通过响应拒绝请求，也可以添加与 CORS 相关的头。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -33,7 +33,7 @@ import org.springframework.web.server.ServerWebExchange;
 public interface CorsProcessor {
 
 	/**
-	 * Process a request using the given {@code CorsConfiguration}.
+	 * 使用给定的 {@code CorsConfiguration} 处理请求。
 	 * @param configuration the CORS configuration to use; possibly {@code null}
 	 * in which case pre-flight requests are rejected, but all others allowed.
 	 * @param exchange the current exchange

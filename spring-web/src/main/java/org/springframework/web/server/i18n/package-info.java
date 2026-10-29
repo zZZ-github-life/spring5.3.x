@@ -1,6 +1,6 @@
 /**
- * Locale related support classes.
- * Provides standard LocaleContextResolver implementations.
+ * 与区域设置（Locale）相关的支撑类。
+ * 提供标准的 LocaleContextResolver 实现。
  */
 @NonNullApi
 @NonNullFields

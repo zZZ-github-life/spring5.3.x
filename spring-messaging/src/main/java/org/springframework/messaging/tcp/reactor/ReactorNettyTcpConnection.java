@@ -28,7 +28,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.MonoToListenableFutureAdapter;
 
 /**
- * Reactor Netty based implementation of {@link TcpConnection}.
+ * 基于 Reactor Netty 的 {@link TcpConnection} 实现。
  *
  * @author Rossen Stoyanchev
  * @since 5.0

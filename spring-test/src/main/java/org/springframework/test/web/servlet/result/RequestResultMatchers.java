@@ -37,11 +37,9 @@ import static org.springframework.test.util.AssertionErrors.assertNull;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 /**
- * Factory for assertions on the request.
+ * 请求断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockMvcResultMatchers#request}.
- *
+ * <p>此类的实例通常通过 {@link MockMvcResultMatchers#request} 访问。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @since 3.2
@@ -49,22 +47,21 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 public class RequestResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * <p>Use {@link MockMvcResultMatchers#request()}.
+	 * 受保护的构造函数。
+	 * <p>请使用 {@link MockMvcResultMatchers#request()}。
 	 */
 	protected RequestResultMatchers() {
 	}
 
 
 	/**
-	 * Assert whether asynchronous processing started, usually as a result of a
-	 * controller method returning {@link Callable} or {@link DeferredResult}.
-	 * <p>The test will await the completion of a {@code Callable} so that
-	 * {@link #asyncResult(Matcher)} or {@link #asyncResult(Object)} can be used
-	 * to assert the resulting value.
-	 * <p>Neither a {@code Callable} nor a {@code DeferredResult} will complete
-	 * processing all the way since a {@link MockHttpServletRequest} does not
-	 * perform asynchronous dispatches.
+	 * 断言异步处理已启动，通常是由于控制器方法返回
+	 * {@link Callable} 或 {@link DeferredResult}。
+	 * <p>测试将等待 {@code Callable} 完成，以便可以使用
+	 * {@link #asyncResult(Matcher)} 或 {@link #asyncResult(Object)}
+	 * 断言结果值。
+	 * <p>由于 {@link MockHttpServletRequest} 不执行异步分派，
+	 * {@code Callable} 和 {@code DeferredResult} 都不会完成整个处理过程。
 	 * @see #asyncNotStarted()
 	 */
 	public ResultMatcher asyncStarted() {
@@ -72,7 +69,7 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert that asynchronous processing was not started.
+	 * 断言异步处理未启动。
 	 * @see #asyncStarted()
 	 */
 	public ResultMatcher asyncNotStarted() {
@@ -80,9 +77,9 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert the result from asynchronous processing with the given matcher.
-	 * <p>This method can be used when a controller method returns {@link Callable}
-	 * or {@link WebAsyncTask}.
+	 * 使用给定匹配器断言异步处理的结果。
+	 * <p>当控制器方法返回 {@link Callable} 或 {@link WebAsyncTask} 时，
+	 * 可以使用此方法。
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> ResultMatcher asyncResult(Matcher<? super T> matcher) {
@@ -94,10 +91,9 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert the result from asynchronous processing.
-	 * <p>This method can be used when a controller method returns {@link Callable}
-	 * or {@link WebAsyncTask}. The value matched is the value returned from the
-	 * {@code Callable} or the exception raised.
+	 * 断言异步处理的结果。
+	 * <p>当控制器方法返回 {@link Callable} 或 {@link WebAsyncTask} 时，
+	 * 可以使用此方法。匹配的值是 {@code Callable} 返回的值或引发的异常。
 	 */
 	public ResultMatcher asyncResult(@Nullable Object expectedResult) {
 		return result -> {
@@ -108,7 +104,7 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert a request attribute value with the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言请求属性值。
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> ResultMatcher attribute(String name, Matcher<? super T> matcher) {
@@ -119,7 +115,7 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert a request attribute value.
+	 * 断言请求属性值。
 	 */
 	public ResultMatcher attribute(String name, @Nullable Object expectedValue) {
 		return result ->
@@ -127,7 +123,7 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert a session attribute value with the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言会话属性值。
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> ResultMatcher sessionAttribute(String name, Matcher<? super T> matcher) {
@@ -140,7 +136,7 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert a session attribute value.
+	 * 断言会话属性值。
 	 */
 	public ResultMatcher sessionAttribute(String name, @Nullable Object value) {
 		return result -> {
@@ -151,7 +147,7 @@ public class RequestResultMatchers {
 	}
 
 	/**
-	 * Assert the given session attributes do not exist.
+	 * 断言给定会话属性不存在。
 	 * @since 5.2.1
 	 */
 	public ResultMatcher sessionAttributeDoesNotExist(String... names) {

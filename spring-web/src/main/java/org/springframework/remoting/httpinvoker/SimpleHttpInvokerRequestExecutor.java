@@ -30,13 +30,13 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.remoting.support.RemoteInvocationResult;
 
 /**
- * {@link org.springframework.remoting.httpinvoker.HttpInvokerRequestExecutor} implementation
- * that uses standard Java facilities to execute POST requests, without support for HTTP
- * authentication or advanced configuration options.
+ * {@link org.springframework.remoting.httpinvoker.HttpInvokerRequestExecutor} 实现，
+ * 使用标准 Java 设施执行 POST 请求，不支持 HTTP 身份验证
+ * 或高级配置选项。
  *
- * <p>Designed for easy subclassing, customizing specific template methods. However,
- * consider {@code HttpComponentsHttpInvokerRequestExecutor} for more sophisticated needs:
- * The standard {@link HttpURLConnection} class is rather limited in its capabilities.
+ * <p>设计上易于子类化和自定义特定的模板方法。不过，对于更复杂的需求，
+ * 请考虑 {@code HttpComponentsHttpInvokerRequestExecutor}：
+ * 标准的 {@link HttpURLConnection} 类在功能上相当有限。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -52,9 +52,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 
 	/**
-	 * Set the underlying URLConnection's connect timeout (in milliseconds).
-	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * 设置底层 URLConnection 的连接超时时间（毫秒）。
+	 * 超时值为 0 表示无限超时。
+	 * <p>默认为系统的默认超时时间。
 	 * @see URLConnection#setConnectTimeout(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -62,9 +62,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Set the underlying URLConnection's read timeout (in milliseconds).
-	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * 设置底层 URLConnection 的读取超时时间（毫秒）。
+	 * 超时值为 0 表示无限超时。
+	 * <p>默认为系统的默认超时时间。
 	 * @see URLConnection#setReadTimeout(int)
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -73,9 +73,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 
 
 	/**
-	 * Execute the given request through a standard {@link HttpURLConnection}.
-	 * <p>This method implements the basic processing workflow:
-	 * The actual work happens in this class's template methods.
+	 * 通过标准 {@link HttpURLConnection} 执行给定的请求。
+	 * <p>此方法实现了基本的处理流程：
+	 * 实际工作发生在此类的模板方法中。
 	 * @see #openConnection
 	 * @see #prepareConnection
 	 * @see #writeRequestBody
@@ -97,7 +97,7 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Open an {@link HttpURLConnection} for the given remote invocation request.
+	 * 为给定的远程调用请求打开一个 {@link HttpURLConnection}。
 	 * @param config the HTTP invoker configuration that specifies the
 	 * target service
 	 * @return the HttpURLConnection for the given request
@@ -114,10 +114,10 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Prepare the given HTTP connection.
-	 * <p>The default implementation specifies POST as method,
-	 * "application/x-java-serialized-object" as "Content-Type" header,
-	 * and the given content length as "Content-Length" header.
+	 * 准备给定的 HTTP 连接。
+	 * <p>默认实现将方法指定为 POST，
+	 * 将 "application/x-java-serialized-object" 作为 "Content-Type" 头，
+	 * 并将给定的内容长度作为 "Content-Length" 头。
 	 * @param connection the HTTP connection to prepare
 	 * @param contentLength the length of the content to send
 	 * @throws IOException if thrown by HttpURLConnection methods
@@ -151,10 +151,10 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Set the given serialized remote invocation as request body.
-	 * <p>The default implementation simply write the serialized invocation to the
-	 * HttpURLConnection's OutputStream. This can be overridden, for example, to write
-	 * a specific encoding and potentially set appropriate HTTP request headers.
+	 * 将给定的已序列化远程调用设置为请求体。
+	 * <p>默认实现仅将已序列化的调用写入
+	 * HttpURLConnection 的 OutputStream。可重写此方法，例如以特定编码写入，
+	 * 并可能设置适当的 HTTP 请求头。
 	 * @param config the HTTP invoker configuration that specifies the target service
 	 * @param con the HttpURLConnection to write the request body to
 	 * @param baos the ByteArrayOutputStream that contains the serialized
@@ -171,10 +171,10 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Validate the given response as contained in the {@link HttpURLConnection} object,
-	 * throwing an exception if it does not correspond to a successful HTTP response.
-	 * <p>Default implementation rejects any HTTP status code beyond 2xx, to avoid
-	 * parsing the response body and trying to deserialize from a corrupted stream.
+	 * 验证 {@link HttpURLConnection} 对象中包含的给定响应，
+	 * 如果响应不对应于成功的 HTTP 响应，则抛出异常。
+	 * <p>默认实现拒绝 2xx 之外的任何 HTTP 状态码，以避免
+	 * 解析响应体并尝试从损坏的流中反序列化。
 	 * @param config the HTTP invoker configuration that specifies the target service
 	 * @param con the HttpURLConnection to validate
 	 * @throws IOException if validation failed
@@ -191,11 +191,10 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Extract the response body from the given executed remote invocation
-	 * request.
-	 * <p>The default implementation simply reads the serialized invocation
-	 * from the HttpURLConnection's InputStream. If the response is recognized
-	 * as GZIP response, the InputStream will get wrapped in a GZIPInputStream.
+	 * 从给定的已执行远程调用请求中提取响应体。
+	 * <p>默认实现仅从 HttpURLConnection 的 InputStream 读取
+	 * 已序列化的调用。如果响应被识别为 GZIP 响应，
+	 * 则会将 InputStream 包装在 GZIPInputStream 中。
 	 * @param config the HTTP invoker configuration that specifies the target service
 	 * @param con the HttpURLConnection to read the response body from
 	 * @return an InputStream for the response body
@@ -220,9 +219,9 @@ public class SimpleHttpInvokerRequestExecutor extends AbstractHttpInvokerRequest
 	}
 
 	/**
-	 * Determine whether the given response is a GZIP response.
-	 * <p>Default implementation checks whether the HTTP "Content-Encoding"
-	 * header contains "gzip" (in any casing).
+	 * 确定给定的响应是否为 GZIP 响应。
+	 * <p>默认实现检查 HTTP "Content-Encoding"
+	 * 头是否包含 "gzip"（不区分大小写）。
 	 * @param con the HttpURLConnection to check
 	 */
 	protected boolean isGzipResponse(HttpURLConnection con) {

@@ -21,9 +21,9 @@ import javax.jms.Message;
 import org.springframework.messaging.support.HeaderMapper;
 
 /**
- * Strategy interface for mapping {@link org.springframework.messaging.Message}
- * headers to an outbound JMS {@link javax.jms.Message} (e.g. to configure JMS
- * properties) or extracting messaging header values from an inbound JMS Message.
+ * 策略接口，用于将 {@link org.springframework.messaging.Message} 消息头映射到出站
+ * JMS {@link javax.jms.Message}（例如配置 JMS 属性），或从入站 JMS Message 中
+ * 提取消息头值。
  *
  * @author Mark Fisher
  * @author Oleg Zhurakousky
@@ -33,7 +33,7 @@ import org.springframework.messaging.support.HeaderMapper;
 public interface JmsHeaderMapper extends HeaderMapper<Message> {
 
 	/**
-	 * The JMS-compliant {@code content_type} property.
+	 * 符合 JMS 规范的 {@code content_type} 属性。
 	 */
 	String CONTENT_TYPE_PROPERTY = "content_type";
 

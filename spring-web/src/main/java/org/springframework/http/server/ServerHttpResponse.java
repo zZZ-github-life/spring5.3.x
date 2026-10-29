@@ -24,7 +24,7 @@ import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.HttpStatus;
 
 /**
- * Represents a server-side HTTP response.
+ * 表示服务器端 HTTP 响应。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -32,21 +32,21 @@ import org.springframework.http.HttpStatus;
 public interface ServerHttpResponse extends HttpOutputMessage, Flushable, Closeable {
 
 	/**
-	 * Set the HTTP status code of the response.
+	 * 设置响应的 HTTP 状态码。
 	 * @param status the HTTP status as an HttpStatus enum value
 	 */
 	void setStatusCode(HttpStatus status);
 
 	/**
-	 * Ensure that the headers and the content of the response are written out.
-	 * <p>After the first flush, headers can no longer be changed.
-	 * Only further content writing and content flushing is possible.
+	 * 确保响应的头和内容都被写出。
+	 * <p>首次刷新之后，头将无法再更改。
+	 * 只能继续写入内容和刷新内容。
 	 */
 	@Override
 	void flush() throws IOException;
 
 	/**
-	 * Close this response, freeing any resources created.
+	 * 关闭此响应，释放所创建的资源。
 	 */
 	@Override
 	void close();

@@ -23,9 +23,8 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that exposes the
- * 'primary' service for the configured service class, obtained through
- * the JDK 1.6 {@link java.util.ServiceLoader} facility.
+ * 一个 {@link org.springframework.beans.factory.FactoryBean}，它通过 JDK 1.6
+ * {@link java.util.ServiceLoader} 设施为配置的服务类暴露“主要”服务。
  *
  * @author Juergen Hoeller
  * @since 2.5

@@ -21,9 +21,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Encapsulates an object and a {@link TypeDescriptor} that describes it.
- * The type descriptor can contain generic declarations that would not
- * be accessible through a simple {@code getClass()} call on the object.
+ * 封装一个对象以及描述它的 {@link TypeDescriptor}。类型描述符可以包含无法通过对象上的简单
+ * {@code getClass()} 调用访问的泛型声明。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -32,7 +31,7 @@ import org.springframework.util.ObjectUtils;
 public class TypedValue {
 
 	/**
-	 * {@link TypedValue} for {@code null}.
+	 * {@code null} 对应的 {@link TypedValue}。
 	 */
 	public static final TypedValue NULL = new TypedValue(null);
 
@@ -45,8 +44,7 @@ public class TypedValue {
 
 
 	/**
-	 * Create a {@link TypedValue} for a simple object. The {@link TypeDescriptor}
-	 * is inferred from the object, so no generic declarations are preserved.
+	 * 为简单对象创建 {@link TypedValue}。{@link TypeDescriptor} 从该对象推断而来，因此不会保留泛型声明。
 	 * @param value the object value
 	 */
 	public TypedValue(@Nullable Object value) {
@@ -55,8 +53,8 @@ public class TypedValue {
 	}
 
 	/**
-	 * Create a {@link TypedValue} for a particular value with a particular
-	 * {@link TypeDescriptor} which may contain additional generic declarations.
+	 * 为特定值创建带有特定 {@link TypeDescriptor} 的 {@link TypedValue}，该描述符可以包含额外的泛型声
+	 * 明。
 	 * @param value the object value
 	 * @param typeDescriptor a type descriptor describing the type of the value
 	 */

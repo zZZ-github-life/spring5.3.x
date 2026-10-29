@@ -26,17 +26,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.meta.TypeQualifierNickname;
 
 /**
- * A common Spring annotation to declare that annotated elements cannot be {@code null}.
+ * 一个常用的 Spring 注解，用于声明被注解的元素不能为 {@code null}。
  *
- * <p>Leverages JSR-305 meta-annotations to indicate nullability in Java to common
- * tools with JSR-305 support and used by Kotlin to infer nullability of Spring API.
+ * <p>借助 JSR-305 元注解，向支持 JSR-305 的常用工具表明 Java 中的可空性，并由 Kotlin 用于推断
+ * Spring API 的可空性。
  *
- * <p>Should be used at parameter, return value, and field level. Method overrides should
- * repeat parent {@code @NonNull} annotations unless they behave differently.
+ * <p>应在参数、返回值和字段级别使用。方法重写应重复父级的 {@code @NonNull} 注解，除非其行为有所不
+ * 同。
  *
- * <p>Use {@code @NonNullApi} (scope = parameters + return values) and/or {@code @NonNullFields}
- * (scope = fields) to set the default behavior to non-nullable in order to avoid annotating
- * your whole codebase with {@code @NonNull}.
+ * <p>使用 {@code @NonNullApi}（作用域 = 参数 + 返回值）和/或 {@code @NonNullFields}（作用域 = 字段）
+ * 将默认行为设置为非空，从而避免为整个代码库标注 {@code @NonNull}。
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller

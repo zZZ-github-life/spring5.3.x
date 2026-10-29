@@ -29,8 +29,7 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Provides a quick way to access the attribute methods of an {@link Annotation}
- * with consistent ordering as well as a few useful utility methods.
+ * 提供一种快速访问 {@link Annotation} 属性方法的方式，具有一致的顺序以及一些有用的工具方法。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -88,8 +87,8 @@ final class AttributeMethods {
 
 
 	/**
-	 * Determine if values from the given annotation can be safely accessed without
-	 * causing any {@link TypeNotPresentException TypeNotPresentExceptions}.
+	 * 判断是否可以安全地访问给定注解中的值而不会引发任何
+	 * {@link TypeNotPresentException TypeNotPresentExceptions}。
 	 * @param annotation the annotation to check
 	 * @return {@code true} if all values are present
 	 * @see #validate(Annotation)
@@ -110,11 +109,10 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Check if values from the given annotation can be safely accessed without causing
-	 * any {@link TypeNotPresentException TypeNotPresentExceptions}. In particular,
-	 * this method is designed to cover Google App Engine's late arrival of such
-	 * exceptions for {@code Class} values (instead of the more typical early
-	 * {@code Class.getAnnotations() failure}).
+	 * 检查是否可以安全地访问给定注解中的值而不会引发任何
+	 * {@link TypeNotPresentException TypeNotPresentExceptions}。特别是，此方法旨在涵盖 Google App
+	 * Engine 针对 {@code Class} 值延迟抛出此类异常的情况（而不是更典型的早期
+	 * {@code Class.getAnnotations() failure}）。
 	 * @param annotation the annotation to validate
 	 * @throws IllegalStateException if a declared {@code Class} attribute could not be read
 	 * @see #isValid(Annotation)
@@ -142,8 +140,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Get the attribute with the specified name or {@code null} if no
-	 * matching attribute exists.
+	 * 获取具有指定名称的属性，如果不存在匹配的属性则返回 {@code null}。
 	 * @param name the attribute name to find
 	 * @return the attribute method or {@code null}
 	 */
@@ -154,7 +151,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Get the attribute at the specified index.
+	 * 获取指定索引处的属性。
 	 * @param index the index of the attribute to return
 	 * @return the attribute method
 	 * @throws IndexOutOfBoundsException if the index is out of range
@@ -165,8 +162,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Determine if the attribute at the specified index could throw a
-	 * {@link TypeNotPresentException} when accessed.
+	 * 判断指定索引处的属性在被访问时是否可能抛出 {@link TypeNotPresentException}。
 	 * @param index the index of the attribute to check
 	 * @return {@code true} if the attribute can throw a
 	 * {@link TypeNotPresentException}
@@ -176,8 +172,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Get the index of the attribute with the specified name, or {@code -1}
-	 * if there is no attribute with the name.
+	 * 获取具有指定名称的属性的索引，如果不存在该名称的属性则返回 {@code -1}。
 	 * @param name the name to find
 	 * @return the index of the attribute, or {@code -1}
 	 */
@@ -191,8 +186,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Get the index of the specified attribute, or {@code -1} if the
-	 * attribute is not in this collection.
+	 * 获取指定属性的索引，如果该属性不在此集合中则返回 {@code -1}。
 	 * @param attribute the attribute to find
 	 * @return the index of the attribute, or {@code -1}
 	 */
@@ -206,7 +200,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Get the number of attributes in this collection.
+	 * 获取此集合中属性的数量。
 	 * @return the number of attributes
 	 */
 	int size() {
@@ -214,7 +208,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Determine if at least one of the attribute methods has a default value.
+	 * 判断是否至少有一个属性方法具有默认值。
 	 * @return {@code true} if there is at least one attribute method with a default value
 	 */
 	boolean hasDefaultValueMethod() {
@@ -222,7 +216,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Determine if at least one of the attribute methods is a nested annotation.
+	 * 判断是否至少有一个属性方法是嵌套注解。
 	 * @return {@code true} if there is at least one attribute method with a nested
 	 * annotation type
 	 */
@@ -232,7 +226,7 @@ final class AttributeMethods {
 
 
 	/**
-	 * Get the attribute methods for the given annotation type.
+	 * 获取给定注解类型的属性方法。
 	 * @param annotationType the annotation type
 	 * @return the attribute methods for the annotation type
 	 */
@@ -270,8 +264,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Create a description for the given attribute method suitable to use in
-	 * exception messages and logs.
+	 * 为给定属性方法创建适合在异常消息和日志中使用的描述。
 	 * @param attribute the attribute to describe
 	 * @return a description of the attribute
 	 */
@@ -283,8 +276,7 @@ final class AttributeMethods {
 	}
 
 	/**
-	 * Create a description for the given attribute method suitable to use in
-	 * exception messages and logs.
+	 * 为给定属性方法创建适合在异常消息和日志中使用的描述。
 	 * @param annotationType the annotation type
 	 * @param attributeName the attribute name
 	 * @return a description of the attribute

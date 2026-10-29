@@ -42,8 +42,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link ServletHttpHandlerAdapter} extension that uses Jetty APIs for writing
- * to the response with {@link ByteBuffer}.
+ * {@link ServletHttpHandlerAdapter} 的扩展，使用 Jetty API
+ * 通过 {@link ByteBuffer} 写入响应。
  *
  * @author Violeta Georgieva
  * @author Brian Clozel

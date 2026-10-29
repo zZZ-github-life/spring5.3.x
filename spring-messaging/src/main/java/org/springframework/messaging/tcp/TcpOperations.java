@@ -19,7 +19,7 @@ package org.springframework.messaging.tcp;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * A contract for establishing TCP connections.
+ * 用于建立 TCP 连接的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -28,7 +28,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface TcpOperations<P> {
 
 	/**
-	 * Open a new connection.
+	 * 打开一个新连接。
 	 * @param connectionHandler a handler to manage the connection
 	 * @return a ListenableFuture that can be used to determine when and if the
 	 * connection is successfully established
@@ -36,7 +36,7 @@ public interface TcpOperations<P> {
 	ListenableFuture<Void> connect(TcpConnectionHandler<P> connectionHandler);
 
 	/**
-	 * Open a new connection and a strategy for reconnecting if the connection fails.
+	 * 打开一个新连接，并提供连接失败时的重连策略。
 	 * @param connectionHandler a handler to manage the connection
 	 * @param reconnectStrategy a strategy for reconnecting
 	 * @return a ListenableFuture that can be used to determine when and if the
@@ -45,7 +45,7 @@ public interface TcpOperations<P> {
 	ListenableFuture<Void> connect(TcpConnectionHandler<P> connectionHandler, ReconnectStrategy reconnectStrategy);
 
 	/**
-	 * Shut down and close any open connections.
+	 * 关闭并停止任何已打开的连接。
 	 * @return a ListenableFuture that can be used to determine when and if the
 	 * connection is successfully closed
 	 */

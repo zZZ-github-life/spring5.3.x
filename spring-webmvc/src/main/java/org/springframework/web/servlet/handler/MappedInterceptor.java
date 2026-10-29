@@ -37,22 +37,22 @@ import org.springframework.web.util.pattern.PathPatternParser;
 import org.springframework.web.util.pattern.PatternParseException;
 
 /**
- * Wraps a {@link HandlerInterceptor} and uses URL patterns to determine whether
- * it applies to a given request.
+ * 包装一个 {@link HandlerInterceptor}，并使用 URL 模式来确定
+ * 它是否适用于给定请求。
  *
- * <p>Pattern matching can be done with {@link PathMatcher} or with parsed
- * {@link PathPattern}. The syntax is largely the same with the latter being more
- * tailored for web usage and more efficient. The choice is driven by the
- * presence of a {@link UrlPathHelper#resolveAndCacheLookupPath resolved}
- * {@code String} lookupPath or a {@link ServletRequestPathUtils#parseAndCache
- * parsed} {@code RequestPath} which in turn depends on the
- * {@link HandlerMapping} that matched the current request.
+ * <p>模式匹配可以使用 {@link PathMatcher} 或解析后的
+ * {@link PathPattern} 完成。两者语法大致相同，后者更
+ * 针对 Web 用途定制且更高效。选择取决于是否存在
+ * {@link UrlPathHelper#resolveAndCacheLookupPath 已解析}的
+ * {@code String} lookupPath，或者
+ * {@link ServletRequestPathUtils#parseAndCache 已解析}的 {@code RequestPath}，
+ * 这又取决于匹配当前请求的 {@link HandlerMapping}。
  *
- * <p>{@code MappedInterceptor} is supported by subclasses of
+ * <p>{@code MappedInterceptor} 由
  * {@link org.springframework.web.servlet.handler.AbstractHandlerMethodMapping
- * AbstractHandlerMethodMapping} which detect beans of type
- * {@code MappedInterceptor} and also check if interceptors directly registered
- * with it are of this type.
+ * AbstractHandlerMethodMapping} 的子类支持，这些子类会检测
+ * {@code MappedInterceptor} 类型的 bean，并检查直接注册到其中的
+ * 拦截器是否属于此类型。
  *
  * @author Keith Donald
  * @author Rossen Stoyanchev
@@ -76,8 +76,8 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Create an instance with the given include and exclude patterns along with
-	 * the target interceptor for the mappings.
+	 * 使用给定的包含和排除模式以及用于映射的目标拦截器
+	 * 创建实例。
 	 * @param includePatterns patterns to which requests must match, or null to
 	 * match all paths
 	 * @param excludePatterns patterns to which requests must not match
@@ -96,18 +96,16 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Variant of
 	 * {@link #MappedInterceptor(String[], String[], HandlerInterceptor, PathPatternParser)}
-	 * with include patterns only.
+	 * 的变体，仅使用包含模式。
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, HandlerInterceptor interceptor) {
 		this(includePatterns, null, interceptor);
 	}
 
 	/**
-	 * Variant of
 	 * {@link #MappedInterceptor(String[], String[], HandlerInterceptor, PathPatternParser)}
-	 * without a provided parser.
+	 * 的变体，未提供解析器。
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, @Nullable String[] excludePatterns,
 			HandlerInterceptor interceptor) {
@@ -116,18 +114,16 @@ public final class MappedInterceptor implements HandlerInterceptor {
 	}
 
 	/**
-	 * Variant of
 	 * {@link #MappedInterceptor(String[], String[], HandlerInterceptor, PathPatternParser)}
-	 * with a {@link WebRequestInterceptor} as the target.
+	 * 的变体，以 {@link WebRequestInterceptor} 为目标。
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, WebRequestInterceptor interceptor) {
 		this(includePatterns, null, interceptor);
 	}
 
 	/**
-	 * Variant of
 	 * {@link #MappedInterceptor(String[], String[], HandlerInterceptor, PathPatternParser)}
-	 * with a {@link WebRequestInterceptor} as the target.
+	 * 的变体，以 {@link WebRequestInterceptor} 为目标。
 	 */
 	public MappedInterceptor(@Nullable String[] includePatterns, @Nullable String[] excludePatterns,
 			WebRequestInterceptor interceptor) {
@@ -137,7 +133,7 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Return the patterns this interceptor is mapped to.
+	 * 返回此拦截器所映射的模式。
 	 */
 	@Nullable
 	public String[] getPathPatterns() {
@@ -147,29 +143,28 @@ public final class MappedInterceptor implements HandlerInterceptor {
 	}
 
 	/**
-	 * The target {@link HandlerInterceptor} to invoke in case of a match.
+	 * 匹配时要调用的目标 {@link HandlerInterceptor}。
 	 */
 	public HandlerInterceptor getInterceptor() {
 		return this.interceptor;
 	}
 
 	/**
-	 * Configure the PathMatcher to use to match URL paths with against include
-	 * and exclude patterns.
-	 * <p>This is an advanced property that should be used only when a
-	 * customized {@link AntPathMatcher} or a custom PathMatcher is required.
-	 * <p>By default this is {@link AntPathMatcher}.
-	 * <p><strong>Note:</strong> Setting {@code PathMatcher} enforces use of
-	 * String pattern matching even when a
-	 * {@link ServletRequestPathUtils#parseAndCache parsed} {@code RequestPath}
-	 * is available.
+	 * 配置用于将 URL 路径与包含和排除模式进行匹配的 PathMatcher。
+	 * <p>这是一个高级属性，仅在需要
+	 * 自定义 {@link AntPathMatcher} 或自定义 PathMatcher 时才应使用。
+	 * <p>默认情况下为 {@link AntPathMatcher}。
+	 * <p><strong>注意：</strong>设置 {@code PathMatcher} 会强制使用
+	 * 字符串模式匹配，即使有
+	 * {@link ServletRequestPathUtils#parseAndCache 已解析}的 {@code RequestPath}
+	 * 可用也是如此。
 	 */
 	public void setPathMatcher(PathMatcher pathMatcher) {
 		this.pathMatcher = pathMatcher;
 	}
 
 	/**
-	 * The {@link #setPathMatcher(PathMatcher) configured} PathMatcher.
+	 * 通过 {@link #setPathMatcher(PathMatcher) 配置}的 PathMatcher。
 	 */
 	public PathMatcher getPathMatcher() {
 		return this.pathMatcher;
@@ -177,9 +172,9 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Check whether this interceptor is mapped to the request.
-	 * <p>The request mapping path is expected to have been resolved externally.
-	 * See also class-level Javadoc.
+	 * 检查此拦截器是否映射到该请求。
+	 * <p>预期请求映射路径已在外部解析。
+	 * 另请参阅类级 Javadoc。
 	 * @param request the request to match to
 	 * @return {@code true} if the interceptor should be applied to the request
 	 */
@@ -208,11 +203,11 @@ public final class MappedInterceptor implements HandlerInterceptor {
 	}
 
 	/**
-	 * Determine a match for the given lookup path.
+	 * 确定给定查找路径的匹配结果。
 	 * @param lookupPath the current request path
 	 * @param pathMatcher a path matcher for path pattern matching
 	 * @return {@code true} if the interceptor applies to the given request path
-	 * @deprecated as of 5.3 in favor of {@link #matches(HttpServletRequest)}
+	 * @deprecated 自 5.3 起，建议使用 {@link #matches(HttpServletRequest)}
 	 */
 	@Deprecated
 	public boolean matches(String lookupPath, PathMatcher pathMatcher) {
@@ -261,10 +256,10 @@ public final class MappedInterceptor implements HandlerInterceptor {
 
 
 	/**
-	 * Contains both the parsed {@link PathPattern} and the raw String pattern,
-	 * and uses the former when the cached path is {@link PathContainer} or the
-	 * latter otherwise. If the pattern cannot be parsed due to unsupported
-	 * syntax, then {@link PathMatcher} is used for all requests.
+	 * 同时包含解析后的 {@link PathPattern} 和原始字符串模式，
+	 * 当缓存的路径为 {@link PathContainer} 时使用前者，否则使用
+	 * 后者。如果由于不支持的语法而无法解析模式，
+	 * 则对所有请求都使用 {@link PathMatcher}。
 	 * @since 5.3.6
 	 */
 	private static class PatternAdapter {

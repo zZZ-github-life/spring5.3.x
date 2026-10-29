@@ -1,23 +1,16 @@
 /**
- * This package contains classes that allow easy access to EJBs.
- * The basis are AOP interceptors run before and after the EJB invocation.
- * In particular, the classes in this package allow transparent access
- * to stateless session beans (SLSBs) with local interfaces, avoiding
- * the need for application code using them to use EJB-specific APIs
- * and JNDI lookups, and work with business interfaces that could be
- * implemented without using EJB. This provides a valuable decoupling
- * of client (such as web components) and business objects (which may
- * or may not be EJBs). This gives us the choice of introducing EJB
- * into an application (or removing EJB from an application) without
- * affecting code using business objects.
+ * 此包包含便于访问 EJB 的类。其基础是在 EJB 调用前后运行的 AOP 拦截器。具体而言，此包中的类允许通
+ * 过本地接口透明地访问无状态会话 Bean（SLSB），从而避免使用它们的应用代码依赖 EJB 专有 API 和 JNDI
+ * 查找，并可基于无需使用 EJB 即可实现的业务接口工作。这实现了客户端（如 Web 组件）与业务对象（可能
+ * 是也可能不是 EJB）之间宝贵的解耦。这样我们就能够在不影响使用业务对象的代码的情况下，选择在应用中
+ * 引入 EJB（或将 EJB 从应用中移除）。
  *
- * <p>The motivation for the classes in this package is discussed in Chapter 11 of
- * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE Design and Development</a>
- * by Rod Johnson (Wrox, 2002).
+ * <p>此包中类的设计动机在第 11 章中讨论，参见 Rod Johnson 所著
+ * <a href="https://www.amazon.com/exec/obidos/tg/detail/-/0764543857/">Expert One-On-One J2EE
+ * Design and Development</a>（Wrox，2002 年）。
  *
- * <p>However, the implementation and naming of classes in this package has changed.
- * It now uses FactoryBeans and AOP, rather than the custom bean definitions described in
- * <i>Expert One-on-One J2EE</i>.
+ * <p>不过，此包中类的实现和命名已发生变化。它现在使用 FactoryBeans 和 AOP，而不是 <i>Expert
+ * One-on-One J2EE</i> 中描述的自定义 Bean 定义。
  */
 @NonNullApi
 @NonNullFields

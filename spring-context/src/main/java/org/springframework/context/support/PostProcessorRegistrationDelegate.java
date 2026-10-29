@@ -44,7 +44,7 @@ import org.springframework.core.metrics.StartupStep;
 import org.springframework.lang.Nullable;
 
 /**
- * Delegate for AbstractApplicationContext's post-processor handling.
+ * AbstractApplicationContext 后处理器处理的委托者。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -394,7 +394,7 @@ final class PostProcessorRegistrationDelegate {
 	}
 
 	/**
-	 * Invoke the given BeanFactoryPostProcessor beans.
+	 * 调用给定的 BeanFactoryPostProcessor Bean。
 	 */
 	private static void invokeBeanFactoryPostProcessors(
 			Collection<? extends BeanFactoryPostProcessor> postProcessors, ConfigurableListableBeanFactory beanFactory) {
@@ -408,7 +408,7 @@ final class PostProcessorRegistrationDelegate {
 	}
 
 	/**
-	 * Register the given BeanPostProcessor beans.
+	 * 注册给定的 BeanPostProcessor Bean。
 	 */
 	private static void registerBeanPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanPostProcessor> postProcessors) {
@@ -426,9 +426,8 @@ final class PostProcessorRegistrationDelegate {
 
 
 	/**
-	 * BeanPostProcessor that logs an info message when a bean is created during
-	 * BeanPostProcessor instantiation, i.e. when a bean is not eligible for
-	 * getting processed by all BeanPostProcessors.
+	 * 一个 BeanPostProcessor，当在 BeanPostProcessor 实例化期间（即某个 Bean 不符合被所有
+	 * BeanPostProcessor 处理的条件）创建 Bean 时记录一条 info 消息。
 	 */
 	private static final class BeanPostProcessorChecker implements BeanPostProcessor {
 

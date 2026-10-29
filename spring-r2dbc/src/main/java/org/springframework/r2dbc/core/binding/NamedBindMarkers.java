@@ -22,7 +22,7 @@ import java.util.function.Function;
 import org.springframework.util.Assert;
 
 /**
- * Name-based bind markers.
+ * 基于名称的绑定标记。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -79,7 +79,7 @@ class NamedBindMarkers implements BindMarkers {
 
 
 	/**
-	 * A single named bind marker.
+	 * 单个命名的绑定标记。
 	 */
 	static class NamedBindMarker implements BindMarker {
 

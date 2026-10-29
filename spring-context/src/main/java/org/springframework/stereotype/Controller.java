@@ -25,12 +25,10 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Indicates that an annotated class is a "Controller" (e.g. a web controller).
+ * 表示被注解的类是一个“控制器”（例如 Web 控制器）。
  *
- * <p>This annotation serves as a specialization of {@link Component @Component},
- * allowing for implementation classes to be autodetected through classpath scanning.
- * It is typically used in combination with annotated handler methods based on the
- * {@link org.springframework.web.bind.annotation.RequestMapping} annotation.
+ * <p>此注解是 {@link Component @Component} 的特化，允许通过类路径扫描自动检测实现类。它通常与基于
+ * {@link org.springframework.web.bind.annotation.RequestMapping} 注解的带注解处理方法结合使用。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -46,8 +44,7 @@ import org.springframework.core.annotation.AliasFor;
 public @interface Controller {
 
 	/**
-	 * The value may indicate a suggestion for a logical component name,
-	 * to be turned into a Spring bean in case of an autodetected component.
+	 * 该值可以表示逻辑组件名称的建议，以便在自动检测到组件时将其转换为 Spring Bean。
 	 * @return the suggested component name, if any (or empty String otherwise)
 	 */
 	@AliasFor(annotation = Component.class)

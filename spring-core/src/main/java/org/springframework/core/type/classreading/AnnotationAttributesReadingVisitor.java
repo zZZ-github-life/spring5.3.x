@@ -30,11 +30,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.ObjectUtils;
 
 /**
- * ASM visitor which looks for annotations defined on a class or method,
- * including meta-annotations.
+ * ASM 访问器，用于查找定义在类或方法上的注解，包括元注解。
  *
- * <p>This visitor is fully recursive, taking into account any nested
- * annotations or nested annotation arrays.
+ * <p>此访问器是完全递归的，会考虑任何嵌套注解或嵌套注解数组。
  *
  * @author Juergen Hoeller
  * @author Chris Beams

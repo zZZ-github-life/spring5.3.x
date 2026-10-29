@@ -21,10 +21,10 @@ import java.sql.ResultSet;
 import org.springframework.lang.Nullable;
 
 /**
- * Subclass of {@link SqlParameter} to represent an output parameter.
- * No additional properties: instanceof will be used to check for such types.
+ * {@link SqlParameter}的子类，表示输出参数。
+ * 没有额外属性：将使用instanceof来检查此类类型。
  *
- * <p>Output parameters - like all stored procedure parameters - must have names.
+ * <p>输出参数 - 与所有存储过程参数一样 - 必须有名称。
  *
  * @author Rod Johnson
  * @author Thomas Risberg
@@ -39,7 +39,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 */
@@ -48,7 +48,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param scale the number of digits after the decimal point
@@ -59,7 +59,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param typeName the type name of the parameter (optional)
@@ -69,7 +69,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param typeName the type name of the parameter (optional)
@@ -81,7 +81,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param rse the {@link ResultSetExtractor} to use for parsing the {@link ResultSet}
@@ -91,7 +91,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param rch the {@link RowCallbackHandler} to use for parsing the {@link ResultSet}
@@ -101,7 +101,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Create a new SqlOutParameter.
+	 * 创建新的SqlOutParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param rm the {@link RowMapper} to use for parsing the {@link ResultSet}
@@ -112,7 +112,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 
 
 	/**
-	 * Return the custom return type, if any.
+	 * 返回自定义返回类型（如果有）。
 	 */
 	@Nullable
 	public SqlReturnType getSqlReturnType() {
@@ -120,7 +120,7 @@ public class SqlOutParameter extends ResultSetSupportingSqlParameter {
 	}
 
 	/**
-	 * Return whether this parameter holds a custom return type.
+	 * 返回此参数是否持有自定义返回类型。
 	 */
 	public boolean isReturnTypeSupported() {
 		return (this.sqlReturnType != null);

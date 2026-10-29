@@ -23,13 +23,12 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.util.Assert;
 
 /**
- * JSR-303 {@link ConstraintValidatorFactory} implementation that delegates to a
- * Spring BeanFactory for creating autowired {@link ConstraintValidator} instances.
+ * JSR-303 {@link ConstraintValidatorFactory} 实现，委托给 Spring BeanFactory 以创建自动装配的
+ * {@link ConstraintValidator} 实例。
  *
- * <p>Note that this class is meant for programmatic use, not for declarative use
- * in a standard {@code validation.xml} file. Consider
- * {@link org.springframework.web.bind.support.SpringWebConstraintValidatorFactory}
- * for declarative use in a web application, e.g. with JAX-RS or JAX-WS.
+ * <p>请注意，此类供编程方式使用，而非用于标准 {@code validation.xml} 文件中的声明式使用。对于 Web
+ * 应用中的声明式使用（例如配合 JAX-RS 或 JAX-WS），请考虑
+ * {@link org.springframework.web.bind.support.SpringWebConstraintValidatorFactory}。
  *
  * @author Juergen Hoeller
  * @since 3.0
@@ -42,7 +41,7 @@ public class SpringConstraintValidatorFactory implements ConstraintValidatorFact
 
 
 	/**
-	 * Create a new SpringConstraintValidatorFactory for the given BeanFactory.
+	 * 为给定的 BeanFactory 创建一个新的 SpringConstraintValidatorFactory。
 	 * @param beanFactory the target BeanFactory
 	 */
 	public SpringConstraintValidatorFactory(AutowireCapableBeanFactory beanFactory) {

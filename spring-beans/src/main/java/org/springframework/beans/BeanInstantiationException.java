@@ -22,8 +22,7 @@ import java.lang.reflect.Method;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when instantiation of a bean failed.
- * Carries the offending bean class.
+ * Bean 实例化失败时抛出的异常。携带出错的 Bean 类。
  *
  * @author Juergen Hoeller
  * @since 1.2.8
@@ -41,7 +40,7 @@ public class BeanInstantiationException extends FatalBeanException {
 
 
 	/**
-	 * Create a new BeanInstantiationException.
+	 * 创建一个新的 BeanInstantiationException。
 	 * @param beanClass the offending bean class
 	 * @param msg the detail message
 	 */
@@ -50,7 +49,7 @@ public class BeanInstantiationException extends FatalBeanException {
 	}
 
 	/**
-	 * Create a new BeanInstantiationException.
+	 * 创建一个新的 BeanInstantiationException。
 	 * @param beanClass the offending bean class
 	 * @param msg the detail message
 	 * @param cause the root cause
@@ -63,7 +62,7 @@ public class BeanInstantiationException extends FatalBeanException {
 	}
 
 	/**
-	 * Create a new BeanInstantiationException.
+	 * 创建一个新的 BeanInstantiationException。
 	 * @param constructor the offending constructor
 	 * @param msg the detail message
 	 * @param cause the root cause
@@ -77,7 +76,7 @@ public class BeanInstantiationException extends FatalBeanException {
 	}
 
 	/**
-	 * Create a new BeanInstantiationException.
+	 * 创建一个新的 BeanInstantiationException。
 	 * @param constructingMethod the delegate for bean construction purposes
 	 * (typically, but not necessarily, a static factory method)
 	 * @param msg the detail message
@@ -93,7 +92,7 @@ public class BeanInstantiationException extends FatalBeanException {
 
 
 	/**
-	 * Return the offending bean class (never {@code null}).
+	 * 返回出错的 Bean 类（永不为 {@code null}）。
 	 * @return the class that was to be instantiated
 	 */
 	public Class<?> getBeanClass() {
@@ -101,7 +100,7 @@ public class BeanInstantiationException extends FatalBeanException {
 	}
 
 	/**
-	 * Return the offending constructor, if known.
+	 * 返回出错的构造方法（如果已知）。
 	 * @return the constructor in use, or {@code null} in case of a
 	 * factory method or in case of default instantiation
 	 * @since 4.3
@@ -112,7 +111,7 @@ public class BeanInstantiationException extends FatalBeanException {
 	}
 
 	/**
-	 * Return the delegate for bean construction purposes, if known.
+	 * 返回用于 Bean 构造的委托对象（如果已知）。
 	 * @return the method in use (typically a static factory method),
 	 * or {@code null} in case of constructor-based instantiation
 	 * @since 4.3

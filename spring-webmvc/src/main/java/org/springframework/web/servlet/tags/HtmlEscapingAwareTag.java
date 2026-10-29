@@ -22,12 +22,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * Superclass for tags that output content that might get HTML-escaped.
+ * 用于输出可能需要进行 HTML 转义内容的标签的超类。
  *
- * <p>Provides a "htmlEscape" property for explicitly specifying whether to
- * apply HTML escaping. If not set, a page-level default (e.g. from the
- * HtmlEscapeTag) or an application-wide default (the "defaultHtmlEscape"
- * context-param in {@code web.xml}) is used.
+ * <p>提供 "htmlEscape" 属性，用于显式指定是否应用 HTML 转义。
+ * 如果未设置，则使用页面级默认值（例如来自 HtmlEscapeTag）或
+ * 应用级默认值（{@code web.xml} 中的 "defaultHtmlEscape" 上下文参数）。
  *
  * @author Juergen Hoeller
  * @author Brian Clozel
@@ -46,8 +45,8 @@ public abstract class HtmlEscapingAwareTag extends RequestContextAwareTag {
 
 
 	/**
-	 * Set HTML escaping for this tag, as boolean value.
-	 * Overrides the default HTML escaping setting for the current page.
+	 * 以布尔值形式为该标签设置 HTML 转义。
+	 * 覆盖当前页面的默认 HTML 转义设置。
 	 * @see HtmlEscapeTag#setDefaultHtmlEscape
 	 */
 	public void setHtmlEscape(boolean htmlEscape) throws JspException {
@@ -55,8 +54,8 @@ public abstract class HtmlEscapingAwareTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Return the HTML escaping setting for this tag,
-	 * or the default setting if not overridden.
+	 * 返回此标签的 HTML 转义设置，
+	 * 如果未覆盖则返回默认设置。
 	 * @see #isDefaultHtmlEscape()
 	 */
 	protected boolean isHtmlEscape() {
@@ -69,9 +68,9 @@ public abstract class HtmlEscapingAwareTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Return the applicable default HTML escape setting for this tag.
-	 * <p>The default implementation checks the RequestContext's setting,
-	 * falling back to {@code false} in case of no explicit default given.
+	 * 返回此标签适用的默认 HTML 转义设置。
+	 * <p>默认实现会检查 RequestContext 的设置，
+	 * 如果未给出显式默认值，则回退到 {@code false}。
 	 * @see #getRequestContext()
 	 */
 	protected boolean isDefaultHtmlEscape() {
@@ -79,10 +78,10 @@ public abstract class HtmlEscapingAwareTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Return the applicable default for the use of response encoding with
-	 * HTML escaping for this tag.
-	 * <p>The default implementation checks the RequestContext's setting,
-	 * falling back to {@code false} in case of no explicit default given.
+	 * 返回此标签在使用 HTML 转义时是否使用响应编码的
+	 * 适用默认值。
+	 * <p>默认实现会检查 RequestContext 的设置，
+	 * 如果未给出显式默认值，则回退到 {@code false}。
 	 * @since 4.1.2
 	 * @see #getRequestContext()
 	 */
@@ -91,9 +90,9 @@ public abstract class HtmlEscapingAwareTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * HTML-encodes the given String, only if the "htmlEscape" setting is enabled.
-	 * <p>The response encoding will be taken into account if the
-	 * "responseEncodedHtmlEscape" setting is enabled as well.
+	 * 对给定的 String 进行 HTML 编码，仅在启用 "htmlEscape" 设置时才执行。
+	 * <p>如果同时启用了 "responseEncodedHtmlEscape" 设置，
+	 * 则会考虑响应编码。
 	 * @param content the String to escape
 	 * @return the escaped String
 	 * @since 4.1.2

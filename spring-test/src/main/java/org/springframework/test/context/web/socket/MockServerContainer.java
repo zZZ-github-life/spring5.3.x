@@ -30,7 +30,7 @@ import javax.websocket.server.ServerContainer;
 import javax.websocket.server.ServerEndpointConfig;
 
 /**
- * Mock implementation of the {@link javax.websocket.server.ServerContainer} interface.
+ * {@link javax.websocket.server.ServerContainer} 接口的 Mock 实现。
  *
  * @author Sam Brannen
  * @since 4.3.1

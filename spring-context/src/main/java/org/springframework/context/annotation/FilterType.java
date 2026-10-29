@@ -17,8 +17,7 @@
 package org.springframework.context.annotation;
 
 /**
- * Enumeration of the type filters that may be used in conjunction with
- * {@link ComponentScan @ComponentScan}.
+ * 可与 {@link ComponentScan @ComponentScan} 结合使用的类型过滤器枚举。
  *
  * @author Mark Fisher
  * @author Juergen Hoeller
@@ -32,31 +31,31 @@ package org.springframework.context.annotation;
 public enum FilterType {
 
 	/**
-	 * Filter candidates marked with a given annotation.
+	 * 筛选标注了给定注解的候选组件。
 	 * @see org.springframework.core.type.filter.AnnotationTypeFilter
 	 */
 	ANNOTATION,
 
 	/**
-	 * Filter candidates assignable to a given type.
+	 * 筛选可赋值给给定类型的候选组件。
 	 * @see org.springframework.core.type.filter.AssignableTypeFilter
 	 */
 	ASSIGNABLE_TYPE,
 
 	/**
-	 * Filter candidates matching a given AspectJ type pattern expression.
+	 * 筛选匹配给定 AspectJ 类型模式表达式的候选组件。
 	 * @see org.springframework.core.type.filter.AspectJTypeFilter
 	 */
 	ASPECTJ,
 
 	/**
-	 * Filter candidates matching a given regex pattern.
+	 * 筛选匹配给定正则表达式的候选组件。
 	 * @see org.springframework.core.type.filter.RegexPatternTypeFilter
 	 */
 	REGEX,
 
-	/** Filter candidates using a given custom
-	 * {@link org.springframework.core.type.filter.TypeFilter} implementation.
+	/** 使用给定的自定义
+	 * {@link org.springframework.core.type.filter.TypeFilter} 筛选候选组件。
 	 */
 	CUSTOM
 

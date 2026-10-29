@@ -19,14 +19,13 @@ package org.springframework.web.socket.server;
 import org.springframework.core.NestedRuntimeException;
 
 /**
- * Thrown when handshake processing failed to complete due to an internal, unrecoverable
- * error. This implies a server error (HTTP status code 500) as opposed to a failure in
- * the handshake negotiation.
+ * 当握手处理由于内部不可恢复的错误而未能完成时抛出。这意味着服务器错误
+ * （HTTP 状态码 500），而不是握手协商失败。
  *
- * <p>By contrast, when handshake negotiation fails, the response status code will be 200
- * and the response headers and body will have been updated to reflect the cause for the
- * failure. A {@link HandshakeHandler} implementation will have protected methods to
- * customize updates to the response in those cases.
+ * <p>相比之下，当握手协商失败时，响应状态码将为 200，
+ * 并且响应头和响应体将被更新以反映失败原因。
+ * 在这些情况下，{@link HandshakeHandler} 实现会提供受保护的方法
+ * 来定制对响应的更新。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@code HttpHeaders} object that can only be read, not written to.
+ * 只能读取、不能写入的 {@code HttpHeaders} 对象。
  *
  * @author Brian Clozel
  * @author Sam Brannen

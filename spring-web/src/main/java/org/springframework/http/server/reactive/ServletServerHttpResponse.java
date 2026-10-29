@@ -42,7 +42,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link ServerHttpResponse} to the Servlet {@link HttpServletResponse}.
+ * 将 {@link ServerHttpResponse} 适配到 Servlet 的 {@link HttpServletResponse}。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -169,10 +169,9 @@ class ServletServerHttpResponse extends AbstractListenerServerHttpResponse {
 	}
 
 	/**
-	 * Return an {@link ResponseAsyncListener} that notifies the response
-	 * body Publisher and Subscriber of Servlet container events. The listener
-	 * is not actually registered but is rather exposed for
-	 * {@link ServletHttpHandlerAdapter} to ensure events are delegated.
+	 * 返回一个 {@link ResponseAsyncListener}，用于向响应体 Publisher 和
+	 * Subscriber 通知 Servlet 容器事件。该监听器实际上并未注册，
+	 * 而是公开出来供 {@link ServletHttpHandlerAdapter} 用来确保事件被委派。
 	 */
 	AsyncListener getAsyncListener() {
 		return this.asyncListener;
@@ -186,9 +185,9 @@ class ServletServerHttpResponse extends AbstractListenerServerHttpResponse {
 	}
 
 	/**
-	 * Write the DataBuffer to the response body OutputStream.
-	 * Invoked only when {@link ServletOutputStream#isReady()} returns "true"
-	 * and the readable bytes in the DataBuffer is greater than 0.
+	 * 将 DataBuffer 写入响应体 OutputStream。
+	 * 仅在 {@link ServletOutputStream#isReady()} 返回 "true"
+	 * 且 DataBuffer 中的可读字节数大于 0 时调用。
 	 * @return the number of bytes written
 	 */
 	protected int writeToOutputStream(DataBuffer dataBuffer) throws IOException {

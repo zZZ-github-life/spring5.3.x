@@ -25,8 +25,8 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.util.Assert;
 
 /**
- * A builder for creating a {@link GenericMessage}
- * (or {@link ErrorMessage} if the payload is of type {@link Throwable}).
+ * 用于创建 {@link GenericMessage} 的构建器（如果负载类型为 {@link Throwable}，
+ * 则创建 {@link ErrorMessage}）。
  *
  * @author Arjen Poutsma
  * @author Mark Fisher
@@ -63,7 +63,7 @@ public final class MessageBuilder<T> {
 
 
 	/**
-	 * Set the message headers to use by providing a {@code MessageHeaderAccessor}.
+	 * 通过提供 {@code MessageHeaderAccessor} 来设置要使用的消息头部。
 	 * @param accessor the headers to use
 	 */
 	public MessageBuilder<T> setHeaders(MessageHeaderAccessor accessor) {
@@ -73,8 +73,7 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Set the value for the given header name. If the provided value is {@code null},
-	 * the header will be removed.
+	 * 设置给定头部名称的值。如果提供的值为 {@code null}，则将移除该头部。
 	 */
 	public MessageBuilder<T> setHeader(String headerName, @Nullable Object headerValue) {
 		this.headerAccessor.setHeader(headerName, headerValue);
@@ -82,8 +81,7 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Set the value for the given header name only if the header name is not already
-	 * associated with a value.
+	 * 仅当给定头部名称尚未关联值时，才设置该头部名称的值。
 	 */
 	public MessageBuilder<T> setHeaderIfAbsent(String headerName, Object headerValue) {
 		this.headerAccessor.setHeaderIfAbsent(headerName, headerValue);
@@ -91,9 +89,9 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Removes all headers provided via array of 'headerPatterns'. As the name suggests
-	 * the array may contain simple matching patterns for header names. Supported pattern
-	 * styles are: "xxx*", "*xxx", "*xxx*" and "xxx*yyy".
+	 * 移除通过 'headerPatterns' 数组提供的所有头部。顾名思义，该数组可以包含
+	 * 头部名称的简单匹配模式。支持的样式包括："xxx*"、"*xxx"、"*xxx*" 和
+	 * "xxx*yyy"。
 	 */
 	public MessageBuilder<T> removeHeaders(String... headerPatterns) {
 		this.headerAccessor.removeHeaders(headerPatterns);
@@ -101,7 +99,7 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Remove the value for the given header name.
+	 * 移除给定头部名称的值。
 	 */
 	public MessageBuilder<T> removeHeader(String headerName) {
 		this.headerAccessor.removeHeader(headerName);
@@ -109,9 +107,9 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Copy the name-value pairs from the provided Map. This operation will overwrite any
-	 * existing values. Use {@link #copyHeadersIfAbsent(Map)} to avoid overwriting
-	 * values. Note that the 'id' and 'timestamp' header values will never be overwritten.
+	 * 从提供的 Map 复制名称-值对。此操作将覆盖任何现有值。可使用
+	 * {@link #copyHeadersIfAbsent(Map)} 避免覆盖值。请注意，'id' 和 'timestamp'
+	 * 头部值永远不会被覆盖。
 	 */
 	public MessageBuilder<T> copyHeaders(@Nullable Map<String, ?> headersToCopy) {
 		this.headerAccessor.copyHeaders(headersToCopy);
@@ -119,8 +117,7 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Copy the name-value pairs from the provided Map. This operation will <em>not</em>
-	 * overwrite any existing values.
+	 * 从提供的 Map 复制名称-值对。此操作<em>不会</em>覆盖任何现有值。
 	 */
 	public MessageBuilder<T> copyHeadersIfAbsent(@Nullable Map<String, ?> headersToCopy) {
 		this.headerAccessor.copyHeadersIfAbsent(headersToCopy);
@@ -169,12 +166,10 @@ public final class MessageBuilder<T> {
 
 
 	/**
-	 * Create a builder for a new {@link Message} instance pre-populated with all the
-	 * headers copied from the provided message. The payload of the provided Message will
-	 * also be used as the payload for the new message.
-	 * <p>If the provided message is an {@link ErrorMessage}, the
-	 * {@link ErrorMessage#getOriginalMessage() originalMessage} it contains, will be
-	 * passed on to new instance.
+	 * 为新的 {@link Message} 实例创建构建器，并预先填充从所提供消息复制的所有头部。
+	 * 所提供 Message 的负载也将用作新消息的负载。
+	 * <p>如果提供的消息是 {@link ErrorMessage}，则其中包含的
+	 * {@link ErrorMessage#getOriginalMessage() originalMessage} 将传递给新实例。
 	 * @param message the Message from which the payload and all headers will be copied
 	 */
 	public static <T> MessageBuilder<T> fromMessage(Message<T> message) {
@@ -182,7 +177,7 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * Create a new builder for a message with the given payload.
+	 * 使用给定负载为消息创建新的构建器。
 	 * @param payload the payload
 	 */
 	public static <T> MessageBuilder<T> withPayload(T payload) {
@@ -190,10 +185,9 @@ public final class MessageBuilder<T> {
 	}
 
 	/**
-	 * A shortcut factory method for creating a message with the given payload
-	 * and {@code MessageHeaders}.
-	 * <p><strong>Note:</strong> the given {@code MessageHeaders} instance is used
-	 * directly in the new message, i.e. it is not copied.
+	 * 使用给定负载和 {@code MessageHeaders} 创建消息的快捷工厂方法。
+	 * <p><strong>注意：</strong>给定的 {@code MessageHeaders} 实例会直接用于
+	 * 新消息中，即不会被复制。
 	 * @param payload the payload to use (never {@code null})
 	 * @param messageHeaders the headers to use (never {@code null})
 	 * @return the created message

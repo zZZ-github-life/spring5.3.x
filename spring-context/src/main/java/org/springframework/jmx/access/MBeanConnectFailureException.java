@@ -19,8 +19,7 @@ package org.springframework.jmx.access;
 import org.springframework.jmx.JmxException;
 
 /**
- * Thrown when an invocation failed because of an I/O problem on the
- * MBeanServerConnection.
+ * 当调用因 MBeanServerConnection 上的 I/O 问题而失败时抛出。
  *
  * @author Juergen Hoeller
  * @since 2.5.6
@@ -30,8 +29,7 @@ import org.springframework.jmx.JmxException;
 public class MBeanConnectFailureException extends JmxException {
 
 	/**
-	 * Create a new {@code MBeanConnectFailureException}
-	 * with the specified error message and root cause.
+	 * 使用指定的错误消息和根本原因创建新的 {@code MBeanConnectFailureException}。
 	 * @param msg the detail message
 	 * @param cause the root cause
 	 */

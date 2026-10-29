@@ -24,7 +24,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.PayloadApplicationEvent;
 
 /**
- * Default implementation of {@link ApplicationEvents}.
+ * {@link ApplicationEvents} 的默认实现。
  *
  * @author Oliver Drotbohm
  * @author Sam Brannen

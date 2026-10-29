@@ -35,13 +35,12 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * A logical disjunction (' || ') request condition that matches a request
- * against a set of URL path patterns.
+ * 逻辑析取（' || '）请求条件，用于将请求
+ * 与一组 URL 路径模式进行匹配。
  *
- * <p>In contrast to {@link PatternsRequestCondition}, this condition uses
- * parsed {@link PathPattern}s instead of String pattern matching with
- * {@link org.springframework.util.AntPathMatcher AntPathMatcher}.
- *
+ * <p>与 {@link PatternsRequestCondition} 不同，此条件使用
+ * 解析后的 {@link PathPattern}，而不是通过
+ * {@link org.springframework.util.AntPathMatcher AntPathMatcher} 进行字符串模式匹配。
  * @author Rossen Stoyanchev
  * @since 5.3
  */
@@ -57,14 +56,14 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 
 
 	/**
-	 * Default constructor resulting in an {@code ""} (empty path) mapping.
+	 * 默认构造函数，结果为 {@code ""}（空路径）映射。
 	 */
 	public PathPatternsRequestCondition() {
 		this(EMPTY_PATH_PATTERN);
 	}
 
 	/**
-	 * Constructor with patterns to use.
+	 * 使用指定模式的构造函数。
 	 */
 	public PathPatternsRequestCondition(PathPatternParser parser, String... patterns) {
 		this(parse(parser, patterns));
@@ -89,8 +88,8 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	}
 
 	/**
-	 * Return the patterns in this condition. If only the first (top) pattern
-	 * is needed use {@link #getFirstPattern()}.
+	 * 返回此条件中的模式。如果只需要第一个（最上面的）模式，
+	 * 请使用 {@link #getFirstPattern()}。
 	 */
 	public Set<PathPattern> getPatterns() {
 		return this.patterns;
@@ -107,21 +106,21 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	}
 
 	/**
-	 * Return the first pattern.
+	 * 返回第一个模式。
 	 */
 	public PathPattern getFirstPattern() {
 		return this.patterns.first();
 	}
 
 	/**
-	 * Whether the condition is the "" (empty path) mapping.
+	 * 此条件是否为 ""（空路径）映射。
 	 */
 	public boolean isEmptyPathMapping() {
 		return this.patterns == EMPTY_PATH_PATTERN;
 	}
 
 	/**
-	 * Return the mapping paths that are not patterns.
+	 * 返回不是模式的映射路径。
 	 */
 	public Set<String> getDirectPaths() {
 		if (isEmptyPathMapping()) {
@@ -138,7 +137,7 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	}
 
 	/**
-	 * Return the {@link #getPatterns()} mapped to Strings.
+	 * 返回映射为字符串的 {@link #getPatterns()}。
 	 */
 	public Set<String> getPatternValues() {
 		return (isEmptyPathMapping() ? EMPTY_PATH :
@@ -146,14 +145,14 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	}
 
 	/**
-	 * Returns a new instance with URL patterns from the current instance
-	 * ("this") and the "other" instance as follows:
+	 * 返回一个新实例，其中包含当前实例（"this"）和 "other" 实例的
+	 * URL 模式，规则如下：
 	 * <ul>
-	 * <li>If there are patterns in both instances, combine the patterns in
-	 * "this" with the patterns in "other" using
-	 * {@link PathPattern#combine(PathPattern)}.
-	 * <li>If only one instance has patterns, use them.
-	 * <li>If neither instance has patterns, use an empty String (i.e. "").
+	 * <li>如果两个实例都有模式，则使用
+	 * {@link PathPattern#combine(PathPattern)} 将 "this" 中的模式与
+	 * "other" 中的模式组合起来。
+	 * <li>如果只有一个实例有模式，则使用该实例的模式。
+	 * <li>如果两个实例都没有模式，则使用空字符串（即 ""）。
 	 * </ul>
 	 */
 	@Override
@@ -179,8 +178,8 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	}
 
 	/**
-	 * Checks if any of the patterns match the given request and returns an
-	 * instance that is guaranteed to contain matching patterns, sorted.
+	 * 检查是否有任何模式匹配给定请求，并返回一个
+	 * 保证包含匹配模式且已排序的实例。
 	 * @param request the current request
 	 * @return the same instance if the condition contains no patterns;
 	 * or a new condition with sorted matching patterns;
@@ -207,14 +206,14 @@ public final class PathPatternsRequestCondition extends AbstractRequestCondition
 	}
 
 	/**
-	 * Compare the two conditions based on the URL patterns they contain.
-	 * Patterns are compared one at a time, from top to bottom. If all compared
-	 * patterns match equally, but one instance has more patterns, it is
-	 * considered a closer match.
-	 * <p>It is assumed that both instances have been obtained via
-	 * {@link #getMatchingCondition(HttpServletRequest)} to ensure they
-	 * contain only patterns that match the request and are sorted with
-	 * the best matches on top.
+	 * 基于两个条件包含的 URL 模式进行比较。
+	 * 模式从上到下逐一比较。如果所有比较的模式
+	 * 都相同地匹配，但其中一个实例拥有更多模式，则认为
+	 * 它更匹配。
+	 * <p>假定两个实例都是通过
+	 * {@link #getMatchingCondition(HttpServletRequest)} 获得的，以确保它们
+	 * 只包含匹配请求的模式，并按最匹配的排在前面
+	 * 进行排序。
 	 */
 	@Override
 	public int compareTo(PathPatternsRequestCondition other, HttpServletRequest request) {

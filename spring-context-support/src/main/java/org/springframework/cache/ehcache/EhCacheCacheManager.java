@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * CacheManager backed by an EhCache {@link net.sf.ehcache.CacheManager}.
+ * 由 EhCache {@link net.sf.ehcache.CacheManager} 提供支持的 CacheManager。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -43,14 +43,14 @@ public class EhCacheCacheManager extends AbstractTransactionSupportingCacheManag
 
 
 	/**
-	 * Create a new EhCacheCacheManager, setting the target EhCache CacheManager
-	 * through the {@link #setCacheManager} bean property.
+	 * 创建一个新的 EhCacheCacheManager，通过 {@link #setCacheManager} bean 属性
+	 * 设置目标 EhCache CacheManager。
 	 */
 	public EhCacheCacheManager() {
 	}
 
 	/**
-	 * Create a new EhCacheCacheManager for the given backing EhCache CacheManager.
+	 * 为给定的底层 EhCache CacheManager 创建一个新的 EhCacheCacheManager。
 	 * @param cacheManager the backing EhCache {@link net.sf.ehcache.CacheManager}
 	 */
 	public EhCacheCacheManager(net.sf.ehcache.CacheManager cacheManager) {
@@ -59,14 +59,14 @@ public class EhCacheCacheManager extends AbstractTransactionSupportingCacheManag
 
 
 	/**
-	 * Set the backing EhCache {@link net.sf.ehcache.CacheManager}.
+	 * 设置底层 EhCache {@link net.sf.ehcache.CacheManager}。
 	 */
 	public void setCacheManager(@Nullable net.sf.ehcache.CacheManager cacheManager) {
 		this.cacheManager = cacheManager;
 	}
 
 	/**
-	 * Return the backing EhCache {@link net.sf.ehcache.CacheManager}.
+	 * 返回底层 EhCache {@link net.sf.ehcache.CacheManager}。
 	 */
 	@Nullable
 	public net.sf.ehcache.CacheManager getCacheManager() {

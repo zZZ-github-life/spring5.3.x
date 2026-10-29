@@ -21,8 +21,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 
 /**
- * A {@link ChannelInterceptor} base class with empty method implementations
- * as a convenience.
+ * 提供空方法实现的 {@link ChannelInterceptor} 基类，以方便使用。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev

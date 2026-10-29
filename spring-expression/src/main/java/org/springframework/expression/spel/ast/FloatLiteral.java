@@ -21,7 +21,7 @@ import org.springframework.expression.TypedValue;
 import org.springframework.expression.spel.CodeFlow;
 
 /**
- * Expression language AST node that represents a float literal.
+ * 表示 float 字面值的表达式语言 AST 节点。
  *
  * @author Satyapal Reddy
  * @author Andy Clement

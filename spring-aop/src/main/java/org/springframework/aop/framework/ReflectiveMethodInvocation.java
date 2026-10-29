@@ -31,24 +31,18 @@ import org.springframework.core.BridgeMethodResolver;
 import org.springframework.lang.Nullable;
 
 /**
- * Spring's implementation of the AOP Alliance
- * {@link org.aopalliance.intercept.MethodInvocation} interface,
- * implementing the extended
- * {@link org.springframework.aop.ProxyMethodInvocation} interface.
+ * Spring 对 AOP Alliance {@link org.aopalliance.intercept.MethodInvocation} 接口的实现，并实现了扩
+ * 展的 {@link org.springframework.aop.ProxyMethodInvocation} 接口。
  *
- * <p>Invokes the target object using reflection. Subclasses can override the
- * {@link #invokeJoinpoint()} method to change this behavior, so this is also
- * a useful base class for more specialized MethodInvocation implementations.
+ * <p>使用反射调用目标对象。子类可以覆盖 {@link #invokeJoinpoint()} 方法以改变此行为，因此它也是更
+ * 专用的 MethodInvocation 实现的有用基类。
  *
- * <p>It is possible to clone an invocation, to invoke {@link #proceed()}
- * repeatedly (once per clone), using the {@link #invocableClone()} method.
- * It is also possible to attach custom attributes to the invocation,
- * using the {@link #setUserAttribute} / {@link #getUserAttribute} methods.
+ * <p>可以克隆一次调用，并使用 {@link #invocableClone()} 方法反复调用 {@link #proceed()}（每个克隆
+ * 一次）。还可以使用 {@link #setUserAttribute} / {@link #getUserAttribute} 方法为调用附加自定义属
+ * 性。
  *
- * <p><b>NOTE:</b> This class is considered internal and should not be
- * directly accessed. The sole reason for it being public is compatibility
- * with existing framework integrations (e.g. Pitchfork). For any other
- * purposes, use the {@link ProxyMethodInvocation} interface instead.
+ * <p><b>注意：</b>此类被视为内部类，不应直接访问。它之所以是 public，唯一原因是为了与现有框架集成
+ * （例如 Pitchfork）保持兼容。对于其他任何用途，请改用 {@link ProxyMethodInvocation} 接口。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -74,26 +68,24 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	private final Class<?> targetClass;
 
 	/**
-	 * Lazily initialized map of user-specific attributes for this invocation.
+	 * 此调用中用户特定属性的延迟初始化映射。
 	 */
 	@Nullable
 	private Map<String, Object> userAttributes;
 
 	/**
-	 * List of MethodInterceptor and InterceptorAndDynamicMethodMatcher
-	 * that need dynamic checks.
+	 * 需要进行动态检查的 MethodInterceptor 和 InterceptorAndDynamicMethodMatcher 列表。
 	 */
 	protected final List<?> interceptorsAndDynamicMethodMatchers;
 
 	/**
-	 * Index from 0 of the current interceptor we're invoking.
-	 * -1 until we invoke: then the current interceptor.
+	 * 我们正在调用的当前拦截器的索引，从 0 开始。-1 表示尚未调用：调用后即为当前拦截器。
 	 */
 	private int currentInterceptorIndex = -1;
 
 
 	/**
-	 * Construct a new ReflectiveMethodInvocation with the given arguments.
+	 * 使用给定参数构造一个新的 ReflectiveMethodInvocation。
 	 * @param proxy the proxy object that the invocation was made on
 	 * @param target the target object to invoke
 	 * @param method the method to invoke
@@ -135,9 +127,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	}
 
 	/**
-	 * Return the method invoked on the proxied interface.
-	 * May or may not correspond with a method invoked on an underlying
-	 * implementation of that interface.
+	 * 返回在代理接口上被调用的方法。它可能与在该接口的底层实现上被调用的方法并不一致。
 	 */
 	@Override
 	public final Method getMethod() {
@@ -188,8 +178,7 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	}
 
 	/**
-	 * Invoke the joinpoint using reflection.
-	 * Subclasses can override this to use custom invocation.
+	 * 使用反射调用连接点。子类可以覆盖此方法以使用自定义调用方式。
 	 * @return the return value of the joinpoint
 	 * @throws Throwable if invoking the joinpoint resulted in an exception
 	 */
@@ -200,11 +189,8 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 
 
 	/**
-	 * This implementation returns a shallow copy of this invocation object,
-	 * including an independent copy of the original arguments array.
-	 * <p>We want a shallow copy in this case: We want to use the same interceptor
-	 * chain and other object references, but we want an independent value for the
-	 * current interceptor index.
+	 * 此实现返回此调用对象的浅拷贝，包括原始参数数组的独立副本。
+	 * <p>此处我们需要浅拷贝：我们希望使用相同的拦截器链和其他对象引用，但当前拦截器索引需要独立的值。
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
@@ -218,11 +204,8 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	}
 
 	/**
-	 * This implementation returns a shallow copy of this invocation object,
-	 * using the given arguments array for the clone.
-	 * <p>We want a shallow copy in this case: We want to use the same interceptor
-	 * chain and other object references, but we want an independent value for the
-	 * current interceptor index.
+	 * 此实现返回此调用对象的浅拷贝，并使用给定参数数组作为克隆的参数。
+	 * <p>此处我们需要浅拷贝：我们希望使用相同的拦截器链和其他对象引用，但当前拦截器索引需要独立的值。
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
@@ -268,9 +251,8 @@ public class ReflectiveMethodInvocation implements ProxyMethodInvocation, Clonea
 	}
 
 	/**
-	 * Return user attributes associated with this invocation.
-	 * This method provides an invocation-bound alternative to a ThreadLocal.
-	 * <p>This map is initialized lazily and is not used in the AOP framework itself.
+	 * 返回与此调用关联的用户属性。此方法提供了绑定到调用的 ThreadLocal 替代方案。
+	 * <p>此映射采用延迟初始化，AOP 框架本身并不使用它。
 	 * @return any user attributes associated with this invocation
 	 * (never {@code null})
 	 */

@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link ClientHttpResponse} implementation based on Netty 4.
+ * 基于 Netty 4 的 {@link ClientHttpResponse} 实现。
  *
  * @author Arjen Poutsma
  * @since 4.1.2

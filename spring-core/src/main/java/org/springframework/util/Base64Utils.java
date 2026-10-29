@@ -21,9 +21,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
- * A simple utility class for Base64 encoding and decoding.
+ * 用于 Base64 编码和解码的简单工具类。
  *
- * <p>Adapts to Java 8's {@link java.util.Base64} in a convenience fashion.
+ * <p>以便捷的方式适配 Java 8 的 {@link java.util.Base64}。
  *
  * @author Juergen Hoeller
  * @author Gary Russell
@@ -36,7 +36,7 @@ public abstract class Base64Utils {
 
 
 	/**
-	 * Base64-encode the given byte array.
+	 * 对给定的字节数组进行 Base64 编码。
 	 * @param src the original byte array
 	 * @return the encoded byte array
 	 */
@@ -48,7 +48,7 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-decode the given byte array.
+	 * 对给定的字节数组进行 Base64 解码。
 	 * @param src the encoded byte array
 	 * @return the original byte array
 	 */
@@ -60,8 +60,7 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-encode the given byte array using the RFC 4648
-	 * "URL and Filename Safe Alphabet".
+	 * 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 对给定的字节数组进行 Base64 编码。
 	 * @param src the original byte array
 	 * @return the encoded byte array
 	 * @since 4.2.4
@@ -74,8 +73,7 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-decode the given byte array using the RFC 4648
-	 * "URL and Filename Safe Alphabet".
+	 * 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 对给定的字节数组进行 Base64 解码。
 	 * @param src the encoded byte array
 	 * @return the original byte array
 	 * @since 4.2.4
@@ -88,7 +86,7 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-encode the given byte array to a String.
+	 * 将给定的字节数组进行 Base64 编码为 String。
 	 * @param src the original byte array
 	 * @return the encoded byte array as a UTF-8 String
 	 */
@@ -100,7 +98,7 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-decode the given byte array from an UTF-8 String.
+	 * 从 UTF-8 String 对给定的字节数组进行 Base64 解码。
 	 * @param src the encoded UTF-8 String
 	 * @return the original byte array
 	 */
@@ -112,8 +110,7 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-encode the given byte array to a String using the RFC 4648
-	 * "URL and Filename Safe Alphabet".
+	 * 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 将给定的字节数组进行 Base64 编码为 String。
 	 * @param src the original byte array
 	 * @return the encoded byte array as a UTF-8 String
 	 */
@@ -122,8 +119,8 @@ public abstract class Base64Utils {
 	}
 
 	/**
-	 * Base64-decode the given byte array from an UTF-8 String using the RFC 4648
-	 * "URL and Filename Safe Alphabet".
+	 * 从 UTF-8 String 使用 RFC 4648 的 "URL and Filename Safe Alphabet" 对给定的字节数组进行 Base64 解
+	 * 码。
 	 * @param src the encoded UTF-8 String
 	 * @return the original byte array
 	 */

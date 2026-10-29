@@ -27,12 +27,10 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Type filter that is aware of traversing over hierarchy.
+ * 能够感知层次结构遍历的类型过滤器。
  *
- * <p>This filter is useful when matching needs to be made based on potentially the
- * whole class/interface hierarchy. The algorithm employed uses a succeed-fast
- * strategy: if at any time a match is declared, no further processing is
- * carried out.
+ * <p>当需要基于潜在的整个类/接口层次结构进行匹配时，此过滤器很有用。所采用的算法使用快速成功策略：
+ * 一旦声明匹配，就不再执行后续处理。
  *
  * @author Ramnivas Laddad
  * @author Mark Fisher
@@ -128,23 +126,21 @@ public abstract class AbstractTypeHierarchyTraversingFilter implements TypeFilte
 	}
 
 	/**
-	 * Override this to match self characteristics alone. Typically,
-	 * the implementation will use a visitor to extract information
-	 * to perform matching.
+	 * 重写此方法以仅匹配自身特征。通常，实现类会使用访问者来提取信息以执行匹配。
 	 */
 	protected boolean matchSelf(MetadataReader metadataReader) {
 		return false;
 	}
 
 	/**
-	 * Override this to match on type name.
+	 * 重写此方法以按类型名称进行匹配。
 	 */
 	protected boolean matchClassName(String className) {
 		return false;
 	}
 
 	/**
-	 * Override this to match on supertype name.
+	 * 重写此方法以按超类型名称进行匹配。
 	 */
 	@Nullable
 	protected Boolean matchSuperClass(String superClassName) {
@@ -152,7 +148,7 @@ public abstract class AbstractTypeHierarchyTraversingFilter implements TypeFilte
 	}
 
 	/**
-	 * Override this to match on interface type name.
+	 * 重写此方法以按接口类型名称进行匹配。
 	 */
 	@Nullable
 	protected Boolean matchInterface(String interfaceName) {

@@ -1,5 +1,5 @@
 /**
- * Common MVC logic for matching incoming requests based on conditions.
+ * 用于基于条件匹配传入请求的通用 MVC 逻辑。
  */
 @NonNullApi
 @NonNullFields

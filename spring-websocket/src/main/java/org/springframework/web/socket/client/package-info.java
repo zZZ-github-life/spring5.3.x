@@ -1,5 +1,5 @@
 /**
- * Client-side abstractions for WebSocket applications.
+ * WebSocket 应用程序的客户端抽象。
  */
 @NonNullApi
 @NonNullFields

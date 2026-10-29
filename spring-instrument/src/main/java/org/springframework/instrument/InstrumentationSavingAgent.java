@@ -19,8 +19,7 @@ package org.springframework.instrument;
 import java.lang.instrument.Instrumentation;
 
 /**
- * Java agent that saves the {@link Instrumentation} interface from the JVM
- * for later use.
+ * Java agent，用于保存来自 JVM 的 {@link Instrumentation} 接口，以供后续使用。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -37,27 +36,25 @@ public final class InstrumentationSavingAgent {
 
 
 	/**
-	 * Save the {@link Instrumentation} interface exposed by the JVM.
+	 * 保存 JVM 暴露的 {@link Instrumentation} 接口。
 	 */
 	public static void premain(String agentArgs, Instrumentation inst) {
 		instrumentation = inst;
 	}
 
 	/**
-	 * Save the {@link Instrumentation} interface exposed by the JVM.
-	 * This method is required to dynamically load this Agent with the Attach API.
+	 * 保存 JVM 暴露的 {@link Instrumentation} 接口。使用 Attach API 动态加载此 Agent 时需要此方法。
 	 */
 	public static void agentmain(String agentArgs, Instrumentation inst) {
 		instrumentation = inst;
 	}
 
 	/**
-	 * Return the {@link Instrumentation} interface exposed by the JVM.
-	 * <p>Note that this agent class will typically not be available in the classpath
-	 * unless the agent is actually specified on JVM startup. If you intend to do
-	 * conditional checking with respect to agent availability, consider using
-	 * {@link org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver#getInstrumentation()}
-	 * instead - which will work without the agent class in the classpath as well.
+	 * 返回 JVM 暴露的 {@link Instrumentation} 接口。
+	 * <p>请注意，除非在 JVM 启动时实际指定了该 agent，否则此类通常不会出现在 classpath 中。如果希望根
+	 * 据 agent 是否可用进行条件检查，请考虑改用
+	 * {@link org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver#getInstrumentation()}，
+	 * 它在 classpath 中没有 agent 类时同样可以工作。
 	 * @return the {@code Instrumentation} instance previously saved when
 	 * the {@link #premain} or {@link #agentmain} methods was called by the JVM;
 	 * will be {@code null} if this class was not used as Java agent when this

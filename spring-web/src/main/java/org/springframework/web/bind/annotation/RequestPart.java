@@ -30,27 +30,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartResolver;
 
 /**
- * Annotation that can be used to associate the part of a "multipart/form-data" request
- * with a method argument.
+ * 可用于将 "multipart/form-data" 请求的部件与方法参数关联的注解。
  *
- * <p>Supported method argument types include {@link MultipartFile} in conjunction with
- * Spring's {@link MultipartResolver} abstraction, {@code javax.servlet.http.Part} in
- * conjunction with Servlet 3.0 multipart requests, or otherwise for any other method
- * argument, the content of the part is passed through an {@link HttpMessageConverter}
- * taking into consideration the 'Content-Type' header of the request part. This is
- * analogous to what @{@link RequestBody} does to resolve an argument based on the
- * content of a non-multipart regular request.
+ * <p>支持的方法参数类型包括：与 Spring 的 {@link MultipartResolver} 抽象结合使用的
+ * {@link MultipartFile}、与 Servlet 3.0 multipart 请求结合使用的
+ * {@code javax.servlet.http.Part}，或者对于其他任何方法参数，部件内容会通过
+ * {@link HttpMessageConverter} 传递，并考虑请求部件的 'Content-Type' 头。
+ * 这类似于 @{@link RequestBody} 基于非 multipart 常规请求的内容来解析参数的方式。
  *
- * <p>Note that @{@link RequestParam} annotation can also be used to associate the part
- * of a "multipart/form-data" request with a method argument supporting the same method
- * argument types. The main difference is that when the method argument is not a String
- * or raw {@code MultipartFile} / {@code Part}, {@code @RequestParam} relies on type
- * conversion via a registered {@link Converter} or {@link PropertyEditor} while
- * {@link RequestPart} relies on {@link HttpMessageConverter HttpMessageConverters}
- * taking into consideration the 'Content-Type' header of the request part.
- * {@link RequestParam} is likely to be used with name-value form fields while
- * {@link RequestPart} is likely to be used with parts containing more complex content
- * e.g. JSON, XML).
+ * <p>请注意，@{@link RequestParam} 注解也可用于将 "multipart/form-data" 请求的部件
+ * 与方法参数关联，并支持相同的方法参数类型。主要区别在于，当方法参数不是 String
+ * 或原始的 {@code MultipartFile} / {@code Part} 时，{@code @RequestParam} 依赖
+ * 通过已注册的 {@link Converter} 或 {@link PropertyEditor} 进行类型转换，
+ * 而 {@link RequestPart} 依赖 {@link HttpMessageConverter HttpMessageConverters}
+ * 并考虑请求部件的 'Content-Type' 头。
+ * {@link RequestParam} 通常用于名称-值形式的表单字段，
+ * 而 {@link RequestPart} 通常用于包含更复杂内容（例如 JSON、XML）的部件。
  *
  * @author Rossen Stoyanchev
  * @author Arjen Poutsma
@@ -65,24 +60,22 @@ import org.springframework.web.multipart.MultipartResolver;
 public @interface RequestPart {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the part in the {@code "multipart/form-data"} request to bind to.
+	 * 要绑定到的 {@code "multipart/form-data"} 请求中的部件名称。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Whether the part is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown
-	 * if the part is missing in the request. Switch this to
-	 * {@code false} if you prefer a {@code null} value if the part is
-	 * not present in the request.
+	 * 部件是否为必需。
+	 * <p>默认为 {@code true}，如果请求中缺少该部件将抛出异常。
+	 * 如果希望在请求中不存在该部件时得到 {@code null} 值，请将其改为 {@code false}。
 	 */
 	boolean required() default true;
 

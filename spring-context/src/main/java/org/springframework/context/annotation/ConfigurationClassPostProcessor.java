@@ -70,17 +70,13 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link BeanFactoryPostProcessor} used for bootstrapping processing of
- * {@link Configuration @Configuration} classes.
+ * 用于引导处理 {@link Configuration @Configuration} 类的 {@link BeanFactoryPostProcessor}。
  *
- * <p>Registered by default when using {@code <context:annotation-config/>} or
- * {@code <context:component-scan/>}. Otherwise, may be declared manually as
- * with any other {@link BeanFactoryPostProcessor}.
+ * <p>在使用 {@code <context:annotation-config/>} 或 {@code <context:component-scan/>} 时默认注册。
+ * 否则，可以像任何其他 {@link BeanFactoryPostProcessor} 一样手动声明。
  *
- * <p>This post processor is priority-ordered as it is important that any
- * {@link Bean @Bean} methods declared in {@code @Configuration} classes have
- * their corresponding bean definitions registered before any other
- * {@code BeanFactoryPostProcessor} executes.
+ * <p>此处理器按优先级排序，因为在任何其他 {@code BeanFactoryPostProcessor} 执行之前，必须先注册
+ * {@code @Configuration} 类中声明的所有 {@link Bean @Bean} 方法所对应的 Bean 定义，这一点很重要。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -92,11 +88,10 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		PriorityOrdered, ResourceLoaderAware, ApplicationStartupAware, BeanClassLoaderAware, EnvironmentAware {
 
 	/**
-	 * A {@code BeanNameGenerator} using fully qualified class names as default bean names.
-	 * <p>This default for configuration-level import purposes may be overridden through
-	 * {@link #setBeanNameGenerator}. Note that the default for component scanning purposes
-	 * is a plain {@link AnnotationBeanNameGenerator#INSTANCE}, unless overridden through
-	 * {@link #setBeanNameGenerator} with a unified user-level bean name generator.
+	 * 一个使用完全限定类名作为默认 Bean 名称的 {@code BeanNameGenerator}。
+	 * <p>可通过 {@link #setBeanNameGenerator} 覆盖这个用于配置级导入目的的默认值。请注意，用于组件扫描
+	 * 目的的默认值是普通的 {@link AnnotationBeanNameGenerator#INSTANCE}，除非通过
+	 * {@link #setBeanNameGenerator} 以统一的用户级 Bean 名称生成器覆盖。
 	 * @since 5.2
 	 * @see #setBeanNameGenerator
 	 */
@@ -149,27 +144,25 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Set the {@link SourceExtractor} to use for generated bean definitions
-	 * that correspond to {@link Bean} factory methods.
+	 * 设置用于与 {@link Bean} 工厂方法对应的生成 Bean 定义的 {@link SourceExtractor}。
 	 */
 	public void setSourceExtractor(@Nullable SourceExtractor sourceExtractor) {
 		this.sourceExtractor = (sourceExtractor != null ? sourceExtractor : new PassThroughSourceExtractor());
 	}
 
 	/**
-	 * Set the {@link ProblemReporter} to use.
-	 * <p>Used to register any problems detected with {@link Configuration} or {@link Bean}
-	 * declarations. For instance, an @Bean method marked as {@code final} is illegal
-	 * and would be reported as a problem. Defaults to {@link FailFastProblemReporter}.
+	 * 设置要使用的 {@link ProblemReporter}。
+	 * <p>用于注册在 {@link Configuration} 或 {@link Bean} 声明中检测到的任何问题。例如，标注为
+	 * {@code final} 的 @Bean 方法是非法的，会被报告为问题。默认值为 {@link FailFastProblemReporter}。
 	 */
 	public void setProblemReporter(@Nullable ProblemReporter problemReporter) {
 		this.problemReporter = (problemReporter != null ? problemReporter : new FailFastProblemReporter());
 	}
 
 	/**
-	 * Set the {@link MetadataReaderFactory} to use.
-	 * <p>Default is a {@link CachingMetadataReaderFactory} for the specified
-	 * {@linkplain #setBeanClassLoader bean class loader}.
+	 * 设置要使用的 {@link MetadataReaderFactory}。
+	 * <p>默认值为针对所指定的 {@linkplain #setBeanClassLoader Bean 类加载器} 的
+	 * {@link CachingMetadataReaderFactory}。
 	 */
 	public void setMetadataReaderFactory(MetadataReaderFactory metadataReaderFactory) {
 		Assert.notNull(metadataReaderFactory, "MetadataReaderFactory must not be null");
@@ -178,17 +171,14 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Set the {@link BeanNameGenerator} to be used when triggering component scanning
-	 * from {@link Configuration} classes and when registering {@link Import}'ed
-	 * configuration classes. The default is a standard {@link AnnotationBeanNameGenerator}
-	 * for scanned components (compatible with the default in {@link ClassPathBeanDefinitionScanner})
-	 * and a variant thereof for imported configuration classes (using unique fully-qualified
-	 * class names instead of standard component overriding).
-	 * <p>Note that this strategy does <em>not</em> apply to {@link Bean} methods.
-	 * <p>This setter is typically only appropriate when configuring the post-processor as a
-	 * standalone bean definition in XML, e.g. not using the dedicated {@code AnnotationConfig*}
-	 * application contexts or the {@code <context:annotation-config>} element. Any bean name
-	 * generator specified against the application context will take precedence over any set here.
+	 * 设置从 {@link Configuration} 类触发组件扫描时以及注册被 {@link Import} 的配置类时要使用的
+	 * {@link BeanNameGenerator}。默认情况下，对于被扫描的组件使用标准的
+	 * {@link AnnotationBeanNameGenerator}（与 {@link ClassPathBeanDefinitionScanner} 中的默认值兼容），
+	 * 对于被导入的配置类则使用其变体（使用唯一的完全限定类名，而不是标准的组件覆盖）。
+	 * <p>请注意，此策略<em>不</em>适用于 {@link Bean} 方法。
+	 * <p>此 setter 通常仅在将后处理器作为独立的 Bean 定义在 XML 中配置时才适用，例如不使用专用的
+	 * {@code AnnotationConfig*} 应用上下文或 {@code <context:annotation-config>} 元素时。任何针对应用
+	 * 上下文指定的 Bean 名称生成器都将优先于此处设置的生成器。
 	 * @since 3.1.1
 	 * @see AnnotationConfigApplicationContext#setBeanNameGenerator(BeanNameGenerator)
 	 * @see AnnotationConfigUtils#CONFIGURATION_BEAN_NAME_GENERATOR
@@ -229,7 +219,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Derive further bean definitions from the configuration classes in the registry.
+	 * 从注册表中的配置类派生更多 Bean 定义。
 	 * spring容器内部的配置类的后置处理器回调
 	 */
 	@Override
@@ -250,8 +240,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Prepare the Configuration classes for servicing bean requests at runtime
-	 * by replacing them with CGLIB-enhanced subclasses.
+	 * 通过将 Configuration 类替换为经 CGLIB 增强的子类，为在运行时处理 Bean 请求做好准备。
 	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) {
@@ -278,8 +267,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 	/**
 	 * 真正的配置类的后置处理器的回调
-	 * Build and validate a configuration model based on the registry of
-	 * {@link Configuration} classes.
+	 * 基于 {@link Configuration} 类的注册表构建并验证配置模型。
 	 */
 	public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 
@@ -419,9 +407,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 	}
 
 	/**
-	 * Post-processes a BeanFactory in search of Configuration class BeanDefinitions;
-	 * any candidates are then enhanced by a {@link ConfigurationClassEnhancer}.
-	 * Candidate status is determined by BeanDefinition attribute metadata.
+	 * 对 BeanFactory 进行后处理以查找 Configuration 类 BeanDefinition；随后任何候选者都会由
+	 * {@link ConfigurationClassEnhancer} 增强。候选状态由 BeanDefinition 属性元数据确定。
 	 * @see ConfigurationClassEnhancer
 	 */
 	public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFactory) {

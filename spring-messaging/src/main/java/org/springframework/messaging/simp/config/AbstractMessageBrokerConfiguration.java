@@ -70,12 +70,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * Provides essential configuration for handling messages with simple messaging
- * protocols such as STOMP.
+ * 为处理基于简单消息协议（如 STOMP）的消息提供基本配置。
  *
- * <p>{@link #clientInboundChannel} and {@link #clientOutboundChannel} deliver
- * messages to and from remote clients to several message handlers such as the
- * following.
+ * <p>{@link #clientInboundChannel} 和 {@link #clientOutboundChannel} 负责在远程客户端
+ * 与多个消息处理器之间传递消息，这些处理器如下所示。
  * <ul>
  * <li>{@link #simpAnnotationMethodMessageHandler}</li>
  * <li>{@link #simpleBrokerMessageHandler}</li>
@@ -83,12 +81,11 @@ import org.springframework.validation.Validator;
  * <li>{@link #userDestinationMessageHandler}</li>
  * </ul>
  *
- * <p>{@link #brokerChannel} delivers messages from within the application to the
- * respective message handlers. {@link #brokerMessagingTemplate} can be injected
- * into any application component to send messages.
+ * <p>{@link #brokerChannel} 在应用程序内部向相应的消息处理器传递消息。
+ * {@link #brokerMessagingTemplate} 可以注入到任何应用程序组件中用于发送消息。
  *
- * <p>Subclasses are responsible for the parts of the configuration that feed messages
- * to and from the client inbound/outbound channels (e.g. STOMP over WebSocket).
+ * <p>子类负责配置中向客户端入站/出站通道提供消息以及从这些通道接收消息的部分
+ * （例如基于 WebSocket 的 STOMP）。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel
@@ -132,7 +129,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 
 
 	/**
-	 * Protected constructor.
+	 * 受保护的构造函数。
 	 */
 	protected AbstractMessageBrokerConfiguration() {
 	}
@@ -181,8 +178,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * A hook for subclasses to customize the message channel for inbound messages
-	 * from WebSocket clients.
+	 * 供子类自定义 WebSocket 客户端入站消息所用消息通道的钩子。
 	 */
 	protected void configureClientInboundChannel(ChannelRegistration registration) {
 	}
@@ -219,8 +215,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * A hook for subclasses to customize the message channel for messages from
-	 * the application or message broker to WebSocket clients.
+	 * 供子类自定义从应用程序或消息代理发往 WebSocket 客户端的消息所用消息通道的钩子。
 	 */
 	protected void configureClientOutboundChannel(ChannelRegistration registration) {
 	}
@@ -262,8 +257,8 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * An accessor for the {@link MessageBrokerRegistry} that ensures its one-time creation
-	 * and initialization through {@link #configureMessageBroker(MessageBrokerRegistry)}.
+	 * 用于访问 {@link MessageBrokerRegistry} 的访问器，确保通过
+	 * {@link #configureMessageBroker(MessageBrokerRegistry)} 一次性创建并初始化它。
 	 */
 	protected final MessageBrokerRegistry getBrokerRegistry(
 			AbstractSubscribableChannel clientInboundChannel, AbstractSubscribableChannel clientOutboundChannel) {
@@ -277,15 +272,13 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * A hook for subclasses to customize message broker configuration through the
-	 * provided {@link MessageBrokerRegistry} instance.
+	 * 供子类通过提供的 {@link MessageBrokerRegistry} 实例自定义消息代理配置的钩子。
 	 */
 	protected void configureMessageBroker(MessageBrokerRegistry registry) {
 	}
 
 	/**
-	 * Provide access to the configured PatchMatcher for access from other
-	 * configuration classes.
+	 * 提供对已配置的 PathMatcher 的访问，以便其他配置类使用。
 	 */
 	@Nullable
 	public final PathMatcher getPathMatcher(
@@ -323,9 +316,9 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * Protected method for plugging in a custom subclass of
+	 * 用于插入自定义
 	 * {@link org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler
-	 * SimpAnnotationMethodMessageHandler}.
+	 * SimpAnnotationMethodMessageHandler} 子类的受保护方法。
 	 * @since 5.3.2
 	 */
 	protected SimpAnnotationMethodMessageHandler createAnnotationMethodMessageHandler(
@@ -486,7 +479,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * Override this method to add custom message converters.
+	 * 重写此方法以添加自定义消息转换器。
 	 * @param messageConverters the list to add converters to, initially empty
 	 * @return {@code true} if default message converters should be added to list,
 	 * {@code false} if no more converters should be added
@@ -524,7 +517,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * Create the user registry that provides access to local users.
+	 * 创建提供本地用户访问的用户注册表。
 	 * @deprecated as of 5.1 in favor of {@link #createLocalUserRegistry(Integer)}
 	 */
 	@Deprecated
@@ -534,23 +527,23 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * Create the user registry that provides access to local users.
+	 * 创建提供本地用户访问的用户注册表。
 	 * @param order the order to use as a {@link SmartApplicationListener}.
 	 * @since 5.1
 	 */
 	protected abstract SimpUserRegistry createLocalUserRegistry(@Nullable Integer order);
 
 	/**
-	 * Return an {@link org.springframework.validation.Validator} instance for
-	 * validating {@code @Payload} method arguments.
-	 * <p>In order, this method tries to get a Validator instance:
+	 * 返回用于校验 {@code @Payload} 方法参数的
+	 * {@link org.springframework.validation.Validator} 实例。
+	 * <p>此方法按以下顺序尝试获取 Validator 实例：
 	 * <ul>
-	 * <li>delegating to getValidator() first</li>
-	 * <li>if none returned, getting an existing instance with its well-known name "mvcValidator",
-	 * created by an MVC configuration</li>
-	 * <li>if none returned, checking the classpath for the presence of a JSR-303 implementation
-	 * before creating a {@code OptionalValidatorFactoryBean}</li>
-	 * <li>returning a no-op Validator instance</li>
+	 * <li>首先委托给 getValidator()</li>
+	 * <li>如果没有返回，则获取名称为 "mvcValidator" 的现有实例，
+	 * 该实例由 MVC 配置创建</li>
+	 * <li>如果没有返回，则在创建 {@code OptionalValidatorFactoryBean} 之前
+	 * 检查类路径中是否存在 JSR-303 实现</li>
+	 * <li>返回一个空操作的 Validator 实例</li>
 	 * </ul>
 	 */
 	protected Validator simpValidator() {
@@ -586,7 +579,7 @@ public abstract class AbstractMessageBrokerConfiguration implements ApplicationC
 	}
 
 	/**
-	 * Override this method to provide a custom {@link Validator}.
+	 * 重写此方法以提供自定义的 {@link Validator}。
 	 * @since 4.0.1
 	 */
 	@Nullable

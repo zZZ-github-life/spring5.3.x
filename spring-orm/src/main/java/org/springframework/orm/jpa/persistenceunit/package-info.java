@@ -1,5 +1,5 @@
 /**
- * Internal support for managing JPA persistence units.
+ * 用于管理 JPA 持久化单元的内部支持。
  */
 @NonNullApi
 @NonNullFields

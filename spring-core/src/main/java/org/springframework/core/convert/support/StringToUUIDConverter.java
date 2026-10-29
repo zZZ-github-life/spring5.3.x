@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Converts from a String to a {@link java.util.UUID}.
+ * 将 String 转换为 {@link java.util.UUID}。
  *
  * @author Phillip Webb
  * @since 3.2

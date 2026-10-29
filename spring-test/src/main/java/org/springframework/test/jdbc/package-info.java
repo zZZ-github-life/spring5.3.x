@@ -1,5 +1,5 @@
 /**
- * Support classes for tests based on JDBC.
+ * 用于基于 JDBC 的测试的支持类。
  */
 @NonNullApi
 @NonNullFields

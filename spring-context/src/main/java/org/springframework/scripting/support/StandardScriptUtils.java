@@ -29,7 +29,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.SimpleBindings;
 
 /**
- * Common operations for dealing with a JSR-223 {@link ScriptEngine}.
+ * 处理 JSR-223 {@link ScriptEngine} 的常用操作。
  *
  * @author Juergen Hoeller
  * @since 4.2.2
@@ -37,9 +37,8 @@ import javax.script.SimpleBindings;
 public abstract class StandardScriptUtils {
 
 	/**
-	 * Retrieve a {@link ScriptEngine} from the given {@link ScriptEngineManager}
-	 * by name, delegating to {@link ScriptEngineManager#getEngineByName} but
-	 * throwing a descriptive exception if not found or if initialization failed.
+	 * 按名称从给定的 {@link ScriptEngineManager} 中获取 {@link ScriptEngine}，将操作委托给
+	 * {@link ScriptEngineManager#getEngineByName}，但如果未找到或初始化失败，则抛出描述性异常。
 	 * @param scriptEngineManager the ScriptEngineManager to use
 	 * @param engineName the name of the engine
 	 * @return a corresponding ScriptEngine (never {@code null})

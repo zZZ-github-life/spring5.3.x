@@ -1,0 +1,436 @@
+#### FILE result/condition/AbstractMediaTypeExpression.java
+@@ result/condition/AbstractMediaTypeExpression.java :: 1
+Supports media type expressions as described in:
+{@link RequestMapping#consumes()} and {@link RequestMapping#produces()}.
+
+#### FILE result/condition/AbstractNameValueExpression.java
+@@ result/condition/AbstractNameValueExpression.java :: 1
+Supports "name=value" style expressions as described in:
+{@link org.springframework.web.bind.annotation.RequestMapping#params()} and
+{@link org.springframework.web.bind.annotation.RequestMapping#headers()}.
+
+#### FILE result/condition/AbstractRequestCondition.java
+@@ result/condition/AbstractRequestCondition.java :: 1
+A base class for {@link RequestCondition} types providing implementations of
+{@link #equals(Object)}, {@link #hashCode()}, and {@link #toString()}.
+
+@@ result/condition/AbstractRequestCondition.java :: 2
+Indicates whether this condition is empty, i.e. whether it
+contains any discrete items.
+
+@@ result/condition/AbstractRequestCondition.java :: 3
+Return the discrete items a request condition is composed of.
+<p>For example URL patterns, HTTP request methods, param expressions, etc.
+
+@@ result/condition/AbstractRequestCondition.java :: 4
+The notation to use when printing discrete items of content.
+<p>For example {@code " || "} for URL patterns or {@code " && "}
+for param expressions.
+
+#### FILE result/condition/CompositeRequestCondition.java
+@@ result/condition/CompositeRequestCondition.java :: 1
+Implements the {@link RequestCondition} contract by delegating to multiple
+{@code RequestCondition} types and using a logical conjunction ({@code ' && '}) to
+ensure all conditions match a given request.
+
+<p>When {@code CompositeRequestCondition} instances are combined or compared
+is expected that (a) they contain the same number of conditions and (b)
+conditions at the same index are of the same type. It is acceptable to
+provide {@code null} conditions or no conditions at all to the constructor.
+
+@@ result/condition/CompositeRequestCondition.java :: 2
+Create an instance with 0 or more {@code RequestCondition} types. It is
+important to create {@code CompositeRequestCondition} instances with the
+same number of conditions so they may be compared and combined.
+It is acceptable to provide {@code null} conditions.
+
+@@ result/condition/CompositeRequestCondition.java :: 3
+Whether this instance contains 0 conditions or not.
+
+@@ result/condition/CompositeRequestCondition.java :: 4
+Return the underlying conditions, possibly empty but never {@code null}.
+
+@@ result/condition/CompositeRequestCondition.java :: 5
+If one instance is empty, return the other.
+<p>If both instances have conditions, combine the individual conditions
+after ensuring they are of the same type and number.
+
+@@ result/condition/CompositeRequestCondition.java :: 6
+Delegate to <em>all</em> contained conditions to match the request and return the
+resulting "matching" condition instances.
+<p>An empty {@code CompositeRequestCondition} matches to all requests.
+
+@@ result/condition/CompositeRequestCondition.java :: 7
+If one instance is empty, the other "wins". If both instances have
+conditions, compare them in the order in which they were provided.
+
+#### FILE result/condition/ConsumesRequestCondition.java
+@@ result/condition/ConsumesRequestCondition.java :: 1
+A logical disjunction (' || ') request condition to match a request's
+'Content-Type' header to a list of media type expressions. Two kinds of
+media type expressions are supported, which are described in
+{@link RequestMapping#consumes()} and {@link RequestMapping#headers()}
+where the header name is 'Content-Type'. Regardless of which syntax is
+used, the semantics are the same.
+
+@@ result/condition/ConsumesRequestCondition.java :: 2
+Creates a new instance from 0 or more "consumes" expressions.
+
+@@ result/condition/ConsumesRequestCondition.java :: 3
+Creates a new instance with "consumes" and "header" expressions.
+"Header" expressions where the header name is not 'Content-Type' or have
+no header value defined are ignored. If 0 expressions are provided in
+total, the condition will match to every request
+
+@@ result/condition/ConsumesRequestCondition.java :: 4
+Private constructor for internal when creating matching conditions.
+
+@@ result/condition/ConsumesRequestCondition.java :: 5
+Return the contained MediaType expressions.
+
+@@ result/condition/ConsumesRequestCondition.java :: 6
+Returns the media types for this condition excluding negated expressions.
+
+@@ result/condition/ConsumesRequestCondition.java :: 7
+Whether the condition has any media type expressions.
+
+@@ result/condition/ConsumesRequestCondition.java :: 8
+Whether this condition should expect requests to have a body.
+<p>By default this is set to {@code true} in which case it is assumed a
+request body is required and this condition matches to the "Content-Type"
+header or falls back on "Content-Type: application/octet-stream".
+<p>If set to {@code false}, and the request does not have a body, then this
+condition matches automatically, i.e. without checking expressions.
+
+@@ result/condition/ConsumesRequestCondition.java :: 9
+Return the setting for {@link #setBodyRequired(boolean)}.
+
+@@ result/condition/ConsumesRequestCondition.java :: 10
+Returns the "other" instance if it has any expressions; returns "this"
+instance otherwise. Practically that means a method-level "consumes"
+overrides a type-level "consumes" condition.
+
+@@ result/condition/ConsumesRequestCondition.java :: 11
+Checks if any of the contained media type expressions match the given
+request 'Content-Type' header and returns an instance that is guaranteed
+to contain matching expressions only. The match is performed via
+{@link MediaType#includes(MediaType)}.
+
+@@ result/condition/ConsumesRequestCondition.java :: 12
+Returns:
+<ul>
+<li>0 if the two conditions have the same number of expressions
+<li>Less than 0 if "this" has more or more specific media type expressions
+<li>Greater than 0 if "other" has more or more specific media type expressions
+</ul>
+<p>It is assumed that both instances have been obtained via
+{@link #getMatchingCondition(ServerWebExchange)} and each instance contains
+the matching consumable media type expression only or is otherwise empty.
+
+@@ result/condition/ConsumesRequestCondition.java :: 13
+Parses and matches a single media type expression to a request's 'Content-Type' header.
+
+#### FILE result/condition/HeadersRequestCondition.java
+@@ result/condition/HeadersRequestCondition.java :: 1
+A logical conjunction ({@code ' && '}) request condition that matches a request against
+a set of header expressions with syntax defined in {@link RequestMapping#headers()}.
+
+<p>Expressions passed to the constructor with header names 'Accept' or
+'Content-Type' are ignored. See {@link ConsumesRequestCondition} and
+{@link ProducesRequestCondition} for those.
+
+@@ result/condition/HeadersRequestCondition.java :: 2
+Create a new instance from the given header expressions. Expressions with
+header names 'Accept' or 'Content-Type' are ignored. See {@link ConsumesRequestCondition}
+and {@link ProducesRequestCondition} for those.
+
+@@ result/condition/HeadersRequestCondition.java :: 3
+Return the contained request header expressions.
+
+@@ result/condition/HeadersRequestCondition.java :: 4
+Returns a new instance with the union of the header expressions
+from "this" and the "other" instance.
+
+@@ result/condition/HeadersRequestCondition.java :: 5
+Returns "this" instance if the request matches all expressions;
+or {@code null} otherwise.
+
+@@ result/condition/HeadersRequestCondition.java :: 6
+Compare to another condition based on header expressions. A condition
+is considered to be a more specific match, if it has:
+<ol>
+<li>A greater number of expressions.
+<li>A greater number of non-negated expressions with a concrete value.
+</ol>
+<p>It is assumed that both instances have been obtained via
+{@link #getMatchingCondition(ServerWebExchange)} and each instance
+contains the matching header expression only or is otherwise empty.
+
+@@ result/condition/HeadersRequestCondition.java :: 7
+Parses and matches a single header expression to a request.
+
+#### FILE result/condition/MediaTypeExpression.java
+@@ result/condition/MediaTypeExpression.java :: 1
+A contract for media type expressions (e.g. "text/plain", "!text/plain") as
+defined in the {@code @RequestMapping} annotation for "consumes" and
+"produces" conditions.
+
+#### FILE result/condition/NameValueExpression.java
+@@ result/condition/NameValueExpression.java :: 1
+A contract for {@code "name!=value"} style expression used to specify request
+parameters and request header conditions in {@code @RequestMapping}.
+
+#### FILE result/condition/ParamsRequestCondition.java
+@@ result/condition/ParamsRequestCondition.java :: 1
+A logical conjunction ({@code ' && '}) request condition that matches a request against
+a set parameter expressions with syntax defined in {@link RequestMapping#params()}.
+
+@@ result/condition/ParamsRequestCondition.java :: 2
+Create a new instance from the given param expressions.
+
+@@ result/condition/ParamsRequestCondition.java :: 3
+Return the contained request parameter expressions.
+
+@@ result/condition/ParamsRequestCondition.java :: 4
+Returns a new instance with the union of the param expressions
+from "this" and the "other" instance.
+
+@@ result/condition/ParamsRequestCondition.java :: 5
+Returns "this" instance if the request matches all param expressions;
+or {@code null} otherwise.
+
+@@ result/condition/ParamsRequestCondition.java :: 6
+Compare to another condition based on parameter expressions. A condition
+is considered to be a more specific match, if it has:
+<ol>
+<li>A greater number of expressions.
+<li>A greater number of non-negated expressions with a concrete value.
+</ol>
+<p>It is assumed that both instances have been obtained via
+{@link #getMatchingCondition(ServerWebExchange)} and each instance
+contains the matching parameter expressions only or is otherwise empty.
+
+@@ result/condition/ParamsRequestCondition.java :: 7
+Parses and matches a single param expression to a request.
+
+#### FILE result/condition/PatternsRequestCondition.java
+@@ result/condition/PatternsRequestCondition.java :: 1
+A logical disjunction (' || ') request condition that matches a request
+against a set of URL path patterns.
+
+@@ result/condition/PatternsRequestCondition.java :: 2
+Creates a new instance with the given URL patterns.
+
+@@ result/condition/PatternsRequestCondition.java :: 3
+Creates a new instance with the given URL patterns.
+
+@@ result/condition/PatternsRequestCondition.java :: 4
+Return the mapping paths that are not patterns.
+
+@@ result/condition/PatternsRequestCondition.java :: 5
+Returns a new instance with URL patterns from the current instance ("this") and
+the "other" instance as follows:
+<ul>
+<li>If there are patterns in both instances, combine the patterns in "this" with
+the patterns in "other" using {@link PathPattern#combine(PathPattern)}.
+<li>If only one instance has patterns, use them.
+<li>If neither instance has patterns, use an empty String (i.e. "").
+</ul>
+
+@@ result/condition/PatternsRequestCondition.java :: 6
+Checks if any of the patterns match the given request and returns an instance
+that is guaranteed to contain matching patterns, sorted.
+
+@@ result/condition/PatternsRequestCondition.java :: 7
+Compare the two conditions based on the URL patterns they contain.
+Patterns are compared one at a time, from top to bottom. If all compared
+patterns match equally, but one instance has more patterns, it is
+considered a closer match.
+<p>It is assumed that both instances have been obtained via
+{@link #getMatchingCondition(ServerWebExchange)} to ensure they
+contain only patterns that match the request and are sorted with
+the best matches on top.
+
+#### FILE result/condition/ProducesRequestCondition.java
+@@ result/condition/ProducesRequestCondition.java :: 1
+A logical disjunction (' || ') request condition to match a request's 'Accept' header
+to a list of media type expressions. Two kinds of media type expressions are
+supported, which are described in {@link RequestMapping#produces()} and
+{@link RequestMapping#headers()} where the header name is 'Accept'.
+Regardless of which syntax is used, the semantics are the same.
+
+@@ result/condition/ProducesRequestCondition.java :: 2
+Creates a new instance from "produces" expressions. If 0 expressions
+are provided in total, this condition will match to any request.
+
+@@ result/condition/ProducesRequestCondition.java :: 3
+Creates a new instance with "produces" and "header" expressions. "Header"
+expressions where the header name is not 'Accept' or have no header value
+defined are ignored. If 0 expressions are provided in total, this condition
+will match to any request.
+
+@@ result/condition/ProducesRequestCondition.java :: 4
+Same as {@link #ProducesRequestCondition(String[], String[])} but also
+accepting a {@link ContentNegotiationManager}.
+
+@@ result/condition/ProducesRequestCondition.java :: 5
+Private constructor for internal use to create matching conditions.
+Note the expressions List is neither sorted, nor deep copied.
+
+@@ result/condition/ProducesRequestCondition.java :: 6
+Return the contained "produces" expressions.
+
+@@ result/condition/ProducesRequestCondition.java :: 7
+Return the contained producible media types excluding negated expressions.
+
+@@ result/condition/ProducesRequestCondition.java :: 8
+Whether the condition has any media type expressions.
+
+@@ result/condition/ProducesRequestCondition.java :: 9
+Returns the "other" instance if it has any expressions; returns "this"
+instance otherwise. Practically that means a method-level "produces"
+overrides a type-level "produces" condition.
+
+@@ result/condition/ProducesRequestCondition.java :: 10
+Checks if any of the contained media type expressions match the given
+request 'Content-Type' header and returns an instance that is guaranteed
+to contain matching expressions only. The match is performed via
+{@link MediaType#isCompatibleWith(MediaType)}.
+
+@@ result/condition/ProducesRequestCondition.java :: 11
+Compares this and another "produces" condition as follows:
+<ol>
+<li>Sort 'Accept' header media types by quality value via
+{@link MediaType#sortByQualityValue(List)} and iterate the list.
+<li>Get the first index of matching media types in each "produces"
+condition first matching with {@link MediaType#equals(Object)} and
+then with {@link MediaType#includes(MediaType)}.
+<li>If a lower index is found, the condition at that index wins.
+<li>If both indexes are equal, the media types at the index are
+compared further with {@link MediaType#SPECIFICITY_COMPARATOR}.
+</ol>
+<p>It is assumed that both instances have been obtained via
+{@link #getMatchingCondition(ServerWebExchange)} and each instance
+contains the matching producible media type expression only or
+is otherwise empty.
+
+@@ result/condition/ProducesRequestCondition.java :: 12
+Return the contained "produces" expressions or if that's empty, a list
+with a {@value MediaType#ALL_VALUE} expression.
+
+@@ result/condition/ProducesRequestCondition.java :: 13
+Use this to clear {@link #MEDIA_TYPES_ATTRIBUTE} that contains the parsed,
+requested media types.
+
+@@ result/condition/ProducesRequestCondition.java :: 14
+Parses and matches a single media type expression to a request's 'Accept' header.
+
+#### FILE result/condition/RequestCondition.java
+@@ result/condition/RequestCondition.java :: 1
+Contract for request mapping conditions.
+
+<p>Request conditions can be combined via {@link #combine(Object)}, matched to
+a request via {@link #getMatchingCondition(ServerWebExchange)}, and compared
+to each other via {@link #compareTo(Object, ServerWebExchange)} to determine
+which is a closer match for a given request.
+
+@@ result/condition/RequestCondition.java :: 2
+Combine this condition with another such as conditions from a
+type-level and method-level {@code @RequestMapping} annotation.
+
+@@ result/condition/RequestCondition.java :: 3
+Check if the condition matches the request returning a potentially new
+instance created for the current request. For example a condition with
+multiple URL patterns may return a new instance only with those patterns
+that match the request.
+<p>For CORS pre-flight requests, conditions should match to the would-be,
+actual request (e.g. URL pattern, query parameters, and the HTTP method
+from the "Access-Control-Request-Method" header). If a condition cannot
+be matched to a pre-flight request it should return an instance with
+empty content thus not causing a failure to match.
+
+@@ result/condition/RequestCondition.java :: 4
+Compare this condition to another condition in the context of
+a specific request. This method assumes both instances have
+been obtained via {@link #getMatchingCondition(ServerWebExchange)}
+to ensure they have content relevant to current request only.
+
+#### FILE result/condition/RequestConditionHolder.java
+@@ result/condition/RequestConditionHolder.java :: 1
+A holder for a {@link RequestCondition} useful when the type of the request
+condition is not known ahead of time, e.g. custom condition. Since this
+class is also an implementation of {@code RequestCondition}, effectively it
+decorates the held request condition and allows it to be combined and compared
+with other request conditions in a type and null safe way.
+
+<p>When two {@code RequestConditionHolder} instances are combined or compared
+with each other, it is expected the conditions they hold are of the same type.
+If they are not, a {@link ClassCastException} is raised.
+
+@@ result/condition/RequestConditionHolder.java :: 2
+Create a new holder to wrap the given request condition.
+
+@@ result/condition/RequestConditionHolder.java :: 3
+Return the held request condition, or {@code null} if not holding one.
+
+@@ result/condition/RequestConditionHolder.java :: 4
+Combine the request conditions held by the two RequestConditionHolder
+instances after making sure the conditions are of the same type.
+Or if one holder is empty, the other holder is returned.
+
+@@ result/condition/RequestConditionHolder.java :: 5
+Get the matching condition for the held request condition wrap it in a
+new RequestConditionHolder instance. Or otherwise if this is an empty
+holder, return the same holder instance.
+
+@@ result/condition/RequestConditionHolder.java :: 6
+Compare the request conditions held by the two RequestConditionHolder
+instances after making sure the conditions are of the same type.
+Or if one holder is empty, the other holder is preferred.
+
+@@ result/condition/RequestConditionHolder.java :: 7
+Ensure the held request conditions are of the same type.
+
+#### FILE result/condition/RequestMethodsRequestCondition.java
+@@ result/condition/RequestMethodsRequestCondition.java :: 1
+A logical disjunction (' || ') request condition that matches a request
+against a set of {@link RequestMethod RequestMethods}.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 3
+Create a new instance with the given request methods.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 4
+Private constructor for internal use when combining conditions.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 5
+Returns all {@link RequestMethod RequestMethods} contained in this condition.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 6
+Returns a new instance with a union of the HTTP request methods
+from "this" and the "other" instance.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 7
+Check if any of the HTTP request methods match the given request and
+return an instance that contains the matching HTTP request method only.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 8
+On a pre-flight request match to the would-be, actual request.
+Hence empty conditions is a match, otherwise try to match to the HTTP
+method in the "Access-Control-Request-Method" header.
+
+@@ result/condition/RequestMethodsRequestCondition.java :: 9
+Returns:
+<ul>
+<li>0 if the two conditions contain the same number of HTTP request methods
+<li>Less than 0 if "this" instance has an HTTP request method but "other" doesn't
+<li>Greater than 0 "other" has an HTTP request method but "this" doesn't
+</ul>
+<p>It is assumed that both instances have been obtained via
+{@link #getMatchingCondition(ServerWebExchange)} and therefore each instance
+contains the matching HTTP request method only or is otherwise empty.
+
+#### FILE result/condition/package-info.java
+@@ result/condition/package-info.java :: 1
+{@link org.springframework.web.reactive.result.condition.RequestCondition}
+and implementations for matching requests based on different criteria.
+

@@ -1,5 +1,5 @@
 /**
- * Provides extensible support for initializing databases through scripts.
+ * 为通过脚本初始化数据库提供可扩展的支持。
  */
 @NonNullApi
 @NonNullFields

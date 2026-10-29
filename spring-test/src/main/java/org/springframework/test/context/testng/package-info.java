@@ -1,6 +1,5 @@
 /**
- * Support classes for integrating the <em>Spring TestContext Framework</em>
- * with TestNG.
+ * 用于将 <em>Spring TestContext Framework</em> 与 TestNG 集成的支持类。
  */
 @NonNullApi
 @NonNullFields

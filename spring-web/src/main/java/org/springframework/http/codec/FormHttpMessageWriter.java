@@ -39,19 +39,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link HttpMessageWriter} for writing a {@code MultiValueMap<String, String>}
- * as HTML form data, i.e. {@code "application/x-www-form-urlencoded"}, to the
- * body of a request.
+ * {@link HttpMessageWriter}，用于将 {@code MultiValueMap<String, String>}
+ * 作为 HTML 表单数据（即 {@code "application/x-www-form-urlencoded"}）
+ * 写入请求体。
  *
- * <p>Note that unless the media type is explicitly set to
- * {@link MediaType#APPLICATION_FORM_URLENCODED}, the {@link #canWrite} method
- * will need generic type information to confirm the target map has String values.
- * This is because a MultiValueMap with non-String values can be used to write
- * multipart requests.
+ * <p>请注意，除非明确将媒体类型设置为
+ * {@link MediaType#APPLICATION_FORM_URLENCODED}，否则 {@link #canWrite} 方法
+ * 将需要泛型类型信息来确认目标 Map 的值为 String。
+ * 这是因为值非 String 的 MultiValueMap 可用于写入 multipart 请求。
  *
- * <p>To support both form data and multipart requests, consider using
- * {@link org.springframework.http.codec.multipart.MultipartHttpMessageWriter}
- * configured with this writer as the fallback for writing plain form data.
+ * <p>如需同时支持表单数据和 multipart 请求，可考虑使用
+ * {@link org.springframework.http.codec.multipart.MultipartHttpMessageWriter}，
+ * 并将此写入器配置为写入纯表单数据时的后备方案。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -62,7 +61,7 @@ public class FormHttpMessageWriter extends LoggingCodecSupport
 		implements HttpMessageWriter<MultiValueMap<String, String>> {
 
 	/**
-	 * The default charset used by the writer.
+	 * 写入器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -80,9 +79,9 @@ public class FormHttpMessageWriter extends LoggingCodecSupport
 
 
 	/**
-	 * Set the default character set to use for writing form data when the response
-	 * Content-Type header does not explicitly specify it.
-	 * <p>By default this is set to "UTF-8".
+	 * 设置当响应的 Content-Type 头未明确指定时，写入表单数据所使用的
+	 * 默认字符集。
+	 * <p>默认设置为 "UTF-8"。
 	 */
 	public void setDefaultCharset(Charset charset) {
 		Assert.notNull(charset, "Charset must not be null");
@@ -90,7 +89,7 @@ public class FormHttpMessageWriter extends LoggingCodecSupport
 	}
 
 	/**
-	 * Return the configured default charset.
+	 * 返回已配置的默认字符集。
 	 */
 	public Charset getDefaultCharset() {
 		return this.defaultCharset;

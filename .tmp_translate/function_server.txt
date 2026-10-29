@@ -1,0 +1,886 @@
+@@ function/server/ChangePathPatternParserVisitor.java :: 1
+更改路径相关请求谓词（即 {@link RequestPredicates.PathPatternPredicate}）上 {@link PathPatternParser} 的 {@link RouterFunctions.Visitor} 实现。
+@@ function/server/ChangePathPatternParserVisitor.java :: 2
+由可以更改解析器的谓词实现的接口。
+@@ function/server/DefaultEntityResponseBuilder.java :: 1
+{@link EntityResponse.Builder} 的默认实现。
+@@ function/server/DefaultHandlerStrategiesBuilder.java :: 1
+{@link HandlerStrategies.Builder} 的默认实现。
+@@ function/server/DefaultRenderingResponseBuilder.java :: 1
+{@link RenderingResponse.Builder} 的默认实现。
+@@ function/server/DefaultServerRequest.java :: 1
+基于 {@link ServerWebExchange} 的 {@code ServerRequest} 实现。
+@@ function/server/DefaultServerRequestBuilder.java :: 1
+{@link ServerRequest.Builder} 的默认实现。
+@@ function/server/DefaultServerResponseBuilder.java :: 1
+{@link ServerResponse.BodyBuilder} 的默认实现。
+@@ function/server/DefaultServerResponseBuilder.java :: 2
+{@link ServerResponse} 实现的抽象基类。
+@@ function/server/EntityResponse.java :: 1
+公开实体数据的 {@link ServerResponse} 实体专用子类型。
+@@ function/server/EntityResponse.java :: 2
+返回构成此响应的实体。
+@@ function/server/EntityResponse.java :: 3
+返回将实体写入输出流的 {@code BodyInserter}。
+@@ function/server/EntityResponse.java :: 4
+使用给定对象创建构建器。
+@@ function/server/EntityResponse.java :: 5
+使用给定生产者创建构建器。
+@@ function/server/EntityResponse.java :: 6
+使用给定生产者创建构建器。
+@@ function/server/EntityResponse.java :: 7
+使用给定发布者创建构建器。
+@@ function/server/EntityResponse.java :: 8
+使用给定发布者创建构建器。
+@@ function/server/EntityResponse.java :: 9
+定义 {@code EntityResponse} 的构建器。
+@@ function/server/EntityResponse.java :: 10
+在给定名称下添加给定的头值。
+@@ function/server/EntityResponse.java :: 11
+将给定的头复制到实体的头映射中。
+@@ function/server/EntityResponse.java :: 12
+设置 HTTP 状态。
+@@ function/server/EntityResponse.java :: 13
+设置 HTTP 状态。
+@@ function/server/EntityResponse.java :: 14
+将给定 cookie 添加到响应中。
+@@ function/server/EntityResponse.java :: 15
+使用给定的消费者操作此响应的 cookie。提供给消费者的 cookie 是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
+@@ function/server/EntityResponse.java :: 16
+设置允许的 {@link HttpMethod HTTP 方法}集合，由 {@code Allow} 头指定。
+@@ function/server/EntityResponse.java :: 17
+设置允许的 {@link HttpMethod HTTP 方法}集合，由 {@code Allow} 头指定。
+@@ function/server/EntityResponse.java :: 18
+设置正文的实体标签，由 {@code ETag} 头指定。
+@@ function/server/EntityResponse.java :: 19
+设置资源的最后修改时间，由 {@code Last-Modified} 头指定。
+<p>日期应指定为自格林威治标准时间 1970 年 1 月 1 日以来的毫秒数。
+@@ function/server/EntityResponse.java :: 20
+设置资源的最后修改时间，由 {@code Last-Modified} 头指定。
+<p>日期应指定为自格林威治标准时间 1970 年 1 月 1 日以来的毫秒数。
+@@ function/server/EntityResponse.java :: 21
+设置资源的位置，由 {@code Location} 头指定。
+@@ function/server/EntityResponse.java :: 22
+设置资源的缓存指令，由 HTTP 1.1 的 {@code Cache-Control} 头指定。
+<p>{@code CacheControl} 实例可以这样构建：{@code CacheControl.maxAge(3600).cachePublic().noTransform()}。
+@@ function/server/EntityResponse.java :: 23
+配置一个或多个请求头名称（例如 "Accept-Language"），将其添加到 "Vary" 响应头，以告知客户端响应会受到内容协商影响，并会因给定请求头的值而变化。仅当响应 "Vary" 头中尚不存在时，才会添加所配置的请求头名称。
+@@ function/server/EntityResponse.java :: 24
+设置正文的字节长度，由 {@code Content-Length} 头指定。
+@@ function/server/EntityResponse.java :: 25
+设置正文的{@linkplain MediaType 媒体类型}，由 {@code Content-Type} 头指定。
+@@ function/server/EntityResponse.java :: 26
+添加序列化提示（例如 {@link Jackson2CodecSupport#JSON_VIEW_HINT}）以自定义正文的序列化方式。
+@@ function/server/EntityResponse.java :: 27
+使用给定的消费者自定义序列化提示。
+@@ function/server/EntityResponse.java :: 28
+构建响应。
+@@ function/server/HandlerFilterFunction.java :: 1
+表示过滤{@linkplain HandlerFunction 处理函数}的函数。
+@@ function/server/HandlerFilterFunction.java :: 2
+将此过滤器应用于给定的处理函数。给定的{@linkplain HandlerFunction 处理函数}表示链中的下一个实体，可以{@linkplain HandlerFunction#handle(ServerRequest) 调用}它以继续处理该实体，或不调用它以阻断链。
+@@ function/server/HandlerFilterFunction.java :: 3
+返回组合过滤器函数，先应用此过滤器，然后应用 {@code after} 过滤器。
+@@ function/server/HandlerFilterFunction.java :: 4
+将此过滤器应用于给定的处理函数，生成过滤后的处理函数。
+@@ function/server/HandlerFilterFunction.java :: 5
+将给定的请求处理器函数适配为仅对 {@code ServerRequest} 操作的过滤器函数。
+@@ function/server/HandlerFilterFunction.java :: 6
+将给定的响应处理器函数适配为仅对 {@code ServerResponse} 操作的过滤器函数。
+@@ function/server/HandlerFunction.java :: 1
+表示处理{@linkplain ServerRequest 请求}的函数。
+@@ function/server/HandlerFunction.java :: 2
+处理给定的请求。
+@@ function/server/HandlerStrategies.java :: 1
+定义用于处理 {@link HandlerFunction HandlerFunctions} 的策略。
+
+<p>此类的实例是不可变的。实例通常通过可变的 {@link Builder} 创建：使用 {@link #builder()} 设置默认策略，或使用 {@link #empty()} 从零开始。
+@@ function/server/HandlerStrategies.java :: 2
+返回用于请求正文转换的 {@link HttpMessageReader HttpMessageReaders}。
+@@ function/server/HandlerStrategies.java :: 3
+返回用于响应正文转换的 {@link HttpMessageWriter HttpMessageWriters}。
+@@ function/server/HandlerStrategies.java :: 4
+返回用于视图名称解析的 {@link ViewResolver ViewResolvers}。
+@@ function/server/HandlerStrategies.java :: 5
+返回用于过滤请求和响应的 {@link WebFilter WebFilters}。
+@@ function/server/HandlerStrategies.java :: 6
+返回用于处理异常的 {@link WebExceptionHandler WebExceptionHandlers}。
+@@ function/server/HandlerStrategies.java :: 7
+返回用于解析区域上下文的 {@link LocaleContextResolver}。
+@@ function/server/HandlerStrategies.java :: 8
+返回具有默认初始化的新 {@code HandlerStrategies}。
+@@ function/server/HandlerStrategies.java :: 9
+返回具有默认初始化的 {@code HandlerStrategies} 可变构建器。
+@@ function/server/HandlerStrategies.java :: 10
+返回 {@code HandlerStrategies} 的可变空构建器。
+@@ function/server/HandlerStrategies.java :: 11
+用于 {@link HandlerStrategies} 的可变构建器。
+@@ function/server/HandlerStrategies.java :: 12
+自定义服务器端 HTTP 消息读写器列表。
+@@ function/server/HandlerStrategies.java :: 13
+将给定视图解析器添加到此构建器。
+@@ function/server/HandlerStrategies.java :: 14
+将给定 Web 过滤器添加到此构建器。
+@@ function/server/HandlerStrategies.java :: 15
+将给定异常处理器添加到此构建器。
+@@ function/server/HandlerStrategies.java :: 16
+将给定区域上下文解析器添加到此构建器。
+@@ function/server/HandlerStrategies.java :: 17
+构建 {@link HandlerStrategies}。
+@@ function/server/PathResourceLookupFunction.java :: 1
+由 {@link RouterFunctions#resources(String, Resource)} 使用的查找函数。
+@@ function/server/RenderingResponse.java :: 1
+公开模型和模板数据的 {@link ServerResponse} 渲染专用子类型。
+@@ function/server/RenderingResponse.java :: 2
+返回要渲染的模板名称。
+@@ function/server/RenderingResponse.java :: 3
+返回不可修改的模型映射。
+@@ function/server/RenderingResponse.java :: 4
+使用给定响应的模板名称、状态码、头和模型创建构建器。
+@@ function/server/RenderingResponse.java :: 5
+使用给定模板名称创建构建器。
+@@ function/server/RenderingResponse.java :: 6
+定义 {@code RenderingResponse} 的构建器。
+@@ function/server/RenderingResponse.java :: 7
+使用{@linkplain org.springframework.core.Conventions#getVariableName 生成的名称}将提供的属性添加到模型中。
+<p><em>注意：使用此方法时，空的 {@link Collection Collections} 不会添加到模型中，因为我们无法正确确定真实的约定名称。视图代码应检查 {@code null}，而不是检查空集合。</em>
+@@ function/server/RenderingResponse.java :: 8
+在提供的名称下添加提供的属性值。
+@@ function/server/RenderingResponse.java :: 9
+将提供的数组中的所有属性复制到模型中，并为每个元素使用属性名生成。
+@@ function/server/RenderingResponse.java :: 10
+将提供的 {@code Collection} 中的所有属性复制到模型中，并为每个元素使用属性名生成。
+@@ function/server/RenderingResponse.java :: 11
+将提供的 {@code Map} 中的所有属性复制到模型中。
+@@ function/server/RenderingResponse.java :: 12
+在给定名称下添加给定的头值。
+@@ function/server/RenderingResponse.java :: 13
+将给定的头复制到实体的头映射中。
+@@ function/server/RenderingResponse.java :: 14
+设置 HTTP 状态。
+@@ function/server/RenderingResponse.java :: 15
+设置 HTTP 状态。
+@@ function/server/RenderingResponse.java :: 16
+将给定 cookie 添加到响应中。
+@@ function/server/RenderingResponse.java :: 17
+使用给定的消费者操作此响应的 cookie。提供给消费者的 cookie 是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
+@@ function/server/RenderingResponse.java :: 18
+构建响应。
+@@ function/server/RequestPredicate.java :: 1
+表示对给定 {@link ServerRequest} 求值的函数。可在 {@link RequestPredicates} 中找到对常见请求属性求值的此函数实例。
+@@ function/server/RequestPredicate.java :: 2
+对给定请求求值此谓词。
+@@ function/server/RequestPredicate.java :: 3
+返回组合请求谓词，对此谓词和 {@code other} 谓词都进行测试（AND）。求值组合谓词时，如果此谓词为 {@code false}，则不会对 {@code other} 谓词求值。
+@@ function/server/RequestPredicate.java :: 4
+返回表示此谓词逻辑取反的谓词。
+@@ function/server/RequestPredicate.java :: 5
+返回组合请求谓词，对此谓词或 {@code other} 谓词进行测试（OR）。求值组合谓词时，如果此谓词为 {@code true}，则不会对 {@code other} 谓词求值。
+@@ function/server/RequestPredicate.java :: 6
+将给定请求转换为用于嵌套路由的请求。例如，基于路径的谓词可以返回匹配后剩余路径的 {@code ServerRequest}。
+<p>默认实现会在 {@link #test(ServerRequest)} 求值为 {@code true} 时返回包装给定请求的 {@code Optional}；如果求值为 {@code false}，则返回 {@link Optional#empty()}。
+@@ function/server/RequestPredicate.java :: 7
+接受给定的访问者。默认实现调用 {@link RequestPredicates.Visitor#unknown(RequestPredicate)}；组合式 {@code RequestPredicate} 实现应为构成此请求谓词的所有组件调用 {@code accept}。
+@@ function/server/RequestPredicates.java :: 1
+实现各种有用请求匹配操作（例如基于路径、HTTP 方法等匹配）的 {@link RequestPredicate} 实现。
+@@ function/server/RequestPredicates.java :: 2
+返回始终匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 3
+返回当请求的 HTTP 方法等于给定方法时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 4
+返回当请求的 HTTP 方法等于给定方法之一时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 5
+返回根据给定路径模式测试请求路径的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 6
+返回使用给定 {@link PathPatternParser} 从模式字符串创建新的路径匹配 {@code RequestPredicates} 的函数。
+<p>此方法可用于在解析路径模式时指定非默认的自定义 {@code PathPatternParser}。
+@@ function/server/RequestPredicates.java :: 7
+返回根据给定头谓词测试请求头的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 8
+返回测试请求的{@linkplain ServerRequest.Headers#contentType() 内容类型}是否被给定媒体类型中的任何一个{@linkplain MediaType#includes(MediaType) 包含}的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 9
+返回测试请求的{@linkplain ServerRequest.Headers#accept() accept}头是否与给定媒体类型中的任何一个{@linkplain MediaType#isCompatibleWith(MediaType) 兼容}的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 10
+返回当请求的 HTTP 方法为 {@code GET} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 11
+返回当请求的 HTTP 方法为 {@code HEAD} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 12
+返回当请求的 HTTP 方法为 {@code POST} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 13
+返回当请求的 HTTP 方法为 {@code PUT} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 14
+返回当请求的 HTTP 方法为 {@code PATCH} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 15
+返回当请求的 HTTP 方法为 {@code DELETE} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 16
+返回当请求的 HTTP 方法为 {@code OPTIONS} 且给定 {@code pattern} 与请求路径匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 17
+返回当请求路径具有给定扩展名时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 18
+返回当请求路径与给定谓词匹配时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 19
+返回当请求中给定名称的查询参数具有给定值时匹配的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 20
+返回根据给定谓词测试请求中给定名称的查询参数的 {@code RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 21
+接收来自请求谓词逻辑结构的通知。
+@@ function/server/RequestPredicates.java :: 22
+接收 HTTP 方法谓词的通知。
+@@ function/server/RequestPredicates.java :: 23
+接收路径谓词的通知。
+@@ function/server/RequestPredicates.java :: 24
+接收路径扩展名谓词的通知。
+@@ function/server/RequestPredicates.java :: 25
+接收 HTTP 头谓词的通知。
+@@ function/server/RequestPredicates.java :: 26
+接收查询参数谓词的通知。
+@@ function/server/RequestPredicates.java :: 27
+接收逻辑 AND 谓词的第一个通知。后续第一个通知将包含 AND 谓词的左侧；然后是 {@link #and()}，然后是右侧，最后是 {@link #endAnd()}。
+@@ function/server/RequestPredicates.java :: 28
+接收逻辑 AND 谓词的“中间”通知。后续通知包含右侧，然后是 {@link #endAnd()}。
+@@ function/server/RequestPredicates.java :: 29
+接收逻辑 AND 谓词的最后一个通知。
+@@ function/server/RequestPredicates.java :: 30
+接收逻辑 OR 谓词的第一个通知。后续第一个通知将包含 OR 谓词的左侧；第二个通知包含右侧，然后是 {@link #endOr()}。
+@@ function/server/RequestPredicates.java :: 31
+接收逻辑 OR 谓词的“中间”通知。后续通知包含右侧，然后是 {@link #endOr()}。
+@@ function/server/RequestPredicates.java :: 32
+接收逻辑 OR 谓词的最后一个通知。
+@@ function/server/RequestPredicates.java :: 33
+接收取反谓词的第一个通知。后续第一个通知将包含取反的谓词，然后是 {@link #endNegate()}。
+@@ function/server/RequestPredicates.java :: 34
+接收取反谓词的最后一个通知。
+@@ function/server/RequestPredicates.java :: 35
+接收未知谓词的第一个通知。
+@@ function/server/RequestPredicates.java :: 36
+要求 {@code left} 和 {@code right} 谓词都匹配的 {@link RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 37
+对委托谓词取反的 {@link RequestPredicate}。
+@@ function/server/RequestPredicates.java :: 38
+允许 {@code left} 或 {@code right} 谓词匹配的 {@link RequestPredicate}。
+@@ function/server/ResourceHandlerFunction.java :: 1
+基于资源的 {@link HandlerFunction} 实现。
+@@ function/server/RouterFunction.java :: 1
+表示路由到{@linkplain HandlerFunction 处理函数}的函数。
+@@ function/server/RouterFunction.java :: 2
+返回与给定请求匹配的{@linkplain HandlerFunction 处理函数}。
+@@ function/server/RouterFunction.java :: 3
+返回组合路由函数，先调用此函数，如果此路由{@linkplain Mono#empty() 没有结果}，则调用 {@code other} 函数（相同响应类型 {@code T}）。
+@@ function/server/RouterFunction.java :: 4
+返回组合路由函数，先调用此函数，如果此路由{@linkplain Mono#empty() 没有结果}，则调用 {@code other} 函数（不同响应类型）。
+@@ function/server/RouterFunction.java :: 5
+返回组合路由函数：如果此路由不匹配且给定请求谓词适用，则路由到给定处理函数。此方法是 {@link #and(RouterFunction)} 和 {@link RouterFunctions#route(RequestPredicate, HandlerFunction)} 的便捷组合。
+@@ function/server/RouterFunction.java :: 6
+返回组合路由函数：如果此路由不匹配且给定请求谓词适用，则路由到给定路由函数。此方法是 {@link #and(RouterFunction)} 和 {@link RouterFunctions#nest(RequestPredicate, RouterFunction)} 的便捷组合。
+@@ function/server/RouterFunction.java :: 7
+使用给定的{@linkplain HandlerFilterFunction 过滤器函数}过滤此函数路由的所有{@linkplain HandlerFunction 处理函数}。
+@@ function/server/RouterFunction.java :: 8
+接受给定的访问者。默认实现调用 {@link RouterFunctions.Visitor#unknown(RouterFunction)}；组合式 {@code RouterFunction} 实现应为构成此路由函数的所有组件调用 {@code accept}。
+@@ function/server/RouterFunction.java :: 9
+返回带有给定属性的新路由函数。
+@@ function/server/RouterFunction.java :: 10
+返回使用给定消费者操作属性的新路由函数。
+<p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain Map#put(Object, Object) 覆盖}现有属性、{@linkplain Map#remove(Object) 删除}属性，或使用任何其他 {@link Map} 方法。
+@@ function/server/RouterFunctionBuilder.java :: 1
+{@link RouterFunctions.Builder} 的默认实现。
+@@ function/server/RouterFunctionBuilder.java :: 2
+由 {@link #build()} 返回的路由函数，它仅遍历已注册的路由。
+@@ function/server/RouterFunctions.java :: 1
+<strong>Spring 函数式 Web 框架的中央入口点。</strong>公开路由功能，例如使用可发现的构建器风格 API {@linkplain #route() 创建} {@code RouterFunction}，在给定 {@code RequestPredicate} 和 {@code HandlerFunction} 的情况下{@linkplain #route(RequestPredicate, HandlerFunction) 创建} {@code RouterFunction}，以及对现有路由函数进行进一步的{@linkplain #nest(RequestPredicate, RouterFunction) 子路由}。
+
+<p>此外，此类还可以将 {@code RouterFunction} {@linkplain #toHttpHandler(RouterFunction) 转换}为 {@code HttpHandler}，后者可在 Servlet 3.1+、Reactor 或 Undertow 中运行。
+@@ function/server/RouterFunctions.java :: 2
+包含 {@link ServerRequest} 的 {@link ServerWebExchange} 属性名称。
+@@ function/server/RouterFunctions.java :: 3
+包含 URI 模板映射（将变量名映射到值）的 {@link ServerWebExchange} 属性名称。
+@@ function/server/RouterFunctions.java :: 4
+包含匹配模式（类型为 {@link org.springframework.web.util.pattern.PathPattern}）的 {@link ServerWebExchange#getAttributes() 属性}名称。
+@@ function/server/RouterFunctions.java :: 5
+提供一种可通过构建器风格接口发现的方式来创建路由函数。
+@@ function/server/RouterFunctions.java :: 6
+如果给定请求谓词适用，则路由到给定处理函数。
+<p>例如，以下示例将 "/user" 的 GET 请求路由到 {@code userController} 中的 {@code listUsers} 方法：
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+    RouterFunctions.route(RequestPredicates.GET("/user"), userController::listUsers);
+</pre>
+@@ function/server/RouterFunctions.java :: 7
+如果给定请求谓词适用，则路由到给定路由函数。此方法可用于创建<strong>嵌套路由</strong>，其中一组路由共享公共路径（前缀）、头或其他请求谓词。
+<p>例如，以下示例首先创建一个组合路由，对于 GET 解析到 {@code listUsers}，对于 POST 解析到 {@code createUser}。然后，该组合路由与 "/user" 路径谓词嵌套，因此 "/user" 的 GET 请求将列出用户，而 "/user" 的 POST 请求将创建新用户。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; userRoutes =
+  RouterFunctions.route(RequestPredicates.method(HttpMethod.GET), this::listUsers)
+    .andRoute(RequestPredicates.method(HttpMethod.POST), this::createUser);
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.nest(RequestPredicates.path("/user"), userRoutes);
+</pre>
+@@ function/server/RouterFunctions.java :: 8
+将与给定模式匹配的请求路由到相对于给定根位置的资源。例如
+<pre class="code">
+Resource location = new FileSystemResource("public-resources/");
+RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources("/resources/**", location);
+</pre>
+@@ function/server/RouterFunctions.java :: 9
+返回由 {@link #resources(String, Resource)} 使用的资源查找函数。返回的函数可以{@linkplain Function#andThen(Function) 组合}，例如在查找函数不匹配时返回默认资源：
+<pre class="code">
+Mono&lt;Resource&gt; defaultResource = Mono.just(new ClassPathResource("index.html"));
+Function&lt;ServerRequest, Mono&lt;Resource&gt;&gt; lookupFunction =
+  RouterFunctions.resourceLookupFunction("/resources/**", new FileSystemResource("public-resources/"))
+    .andThen(resourceMono -&gt; resourceMono.switchIfEmpty(defaultResource));
+RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources(lookupFunction);
+</pre>
+@@ function/server/RouterFunctions.java :: 10
+使用提供的查找函数路由到资源。如果查找函数为给定请求提供 {@link Resource}，则将通过处理 GET、HEAD 和 OPTIONS 请求的 {@link HandlerFunction} 暴露该资源。
+@@ function/server/RouterFunctions.java :: 11
+将给定的{@linkplain RouterFunction 路由函数}转换为 {@link HttpHandler}。此转换使用{@linkplain HandlerStrategies#builder() 默认策略}。
+<p>返回的处理器可适配为在以下环境中运行：
+<ul>
+<li>Servlet 3.1+，使用 {@link org.springframework.http.server.reactive.ServletHttpHandlerAdapter}，</li>
+<li>Reactor，使用 {@link org.springframework.http.server.reactive.ReactorHttpHandlerAdapter}，</li>
+<li>Undertow，使用 {@link org.springframework.http.server.reactive.UndertowHttpHandlerAdapter}。</li>
+</ul>
+<p>请注意，{@code HttpWebHandlerAdapter} 还实现了 {@link WebHandler}，允许通过 {@link WebHttpHandlerBuilder} 注册额外的过滤器和异常处理器。
+@@ function/server/RouterFunctions.java :: 12
+使用给定策略将给定的{@linkplain RouterFunction 路由函数}转换为 {@link HttpHandler}。
+<p>返回的 {@code HttpHandler} 可适配为在以下环境中运行：
+<ul>
+<li>Servlet 3.1+，使用 {@link org.springframework.http.server.reactive.ServletHttpHandlerAdapter}，</li>
+<li>Reactor，使用 {@link org.springframework.http.server.reactive.ReactorHttpHandlerAdapter}，</li>
+<li>Undertow，使用 {@link org.springframework.http.server.reactive.UndertowHttpHandlerAdapter}。</li>
+</ul>
+@@ function/server/RouterFunctions.java :: 13
+将给定的{@linkplain RouterFunction 路由函数}转换为 {@link WebHandler}。此转换使用{@linkplain HandlerStrategies#builder() 默认策略}。
+@@ function/server/RouterFunctions.java :: 14
+使用给定策略将给定的{@linkplain RouterFunction 路由函数}转换为 {@link WebHandler}。
+@@ function/server/RouterFunctions.java :: 15
+更改给定{@linkplain RouterFunction 路由函数}上的 {@link PathPatternParser}。此方法可用于更改 {@code PathPatternParser} 的默认属性，例如更改{@linkplain PathPatternParser#setCaseSensitive(boolean) 大小写敏感性}。
+@@ function/server/RouterFunctions.java :: 16
+表示可发现的路由函数构建器。通过 {@link RouterFunctions#route()} 获取。
+@@ function/server/RouterFunctions.java :: 17
+添加一个路由，将 HTTP {@code GET} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 18
+添加一个路由，将所有匹配给定模式的 HTTP {@code GET} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 19
+添加一个路由，将所有匹配给定谓词的 HTTP {@code GET} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 20
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code GET} 请求交给给定处理函数处理。
+<p>例如，以下示例将接受 JSON 的 "/user" GET 请求路由到 {@code userController} 中的 {@code listUsers} 方法：
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .GET("/user", RequestPredicates.accept(MediaType.APPLICATION_JSON), userController::listUsers)
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 21
+添加一个路由，将 HTTP {@code HEAD} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 22
+添加一个路由，将所有匹配给定模式的 HTTP {@code HEAD} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 23
+添加一个路由，将所有匹配给定谓词的 HTTP {@code HEAD} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 24
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code HEAD} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 25
+添加一个路由，将 HTTP {@code POST} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 26
+添加一个路由，将所有匹配给定模式的 HTTP {@code POST} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 27
+添加一个路由，将所有匹配给定谓词的 HTTP {@code POST} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 28
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code POST} 请求交给给定处理函数处理。
+<p>例如，以下示例将包含 JSON 的 "/user" POST 请求路由到 {@code userController} 中的 {@code addUser} 方法：
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .POST("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::addUser)
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 29
+添加一个路由，将 HTTP {@code PUT} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 30
+添加一个路由，将所有匹配给定模式的 HTTP {@code PUT} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 31
+添加一个路由，将所有匹配给定谓词的 HTTP {@code PUT} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 32
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code PUT} 请求交给给定处理函数处理。
+<p>例如，以下示例将包含 JSON 的 "/user" PUT 请求路由到 {@code userController} 中的 {@code editUser} 方法：
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .PUT("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::editUser)
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 33
+添加一个路由，将 HTTP {@code PATCH} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 34
+添加一个路由，将所有匹配给定模式的 HTTP {@code PATCH} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 35
+添加一个路由，将所有匹配给定谓词的 HTTP {@code PATCH} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 36
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code PATCH} 请求交给给定处理函数处理。
+<p>例如，以下示例将包含 JSON 的 "/user" PATCH 请求路由到 {@code userController} 中的 {@code editUser} 方法：
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .PATCH("/user", RequestPredicates.contentType(MediaType.APPLICATION_JSON), userController::editUser)
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 37
+添加一个路由，将 HTTP {@code DELETE} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 38
+添加一个路由，将所有匹配给定模式的 HTTP {@code DELETE} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 39
+添加一个路由，将所有匹配给定谓词的 HTTP {@code DELETE} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 40
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code DELETE} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 41
+添加一个路由，将 HTTP {@code OPTIONS} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 42
+添加一个路由，将所有匹配给定模式的 HTTP {@code OPTIONS} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 43
+添加一个路由，将所有匹配给定谓词的 HTTP {@code OPTIONS} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 44
+添加一个路由，将所有同时匹配给定模式和谓词的 HTTP {@code OPTIONS} 请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 45
+添加一个路由，将所有匹配给定谓词的请求交给给定处理函数处理。
+@@ function/server/RouterFunctions.java :: 46
+将给定路由添加到此构建器。可用于将外部定义的路由函数合并到此构建器中，也可以与 {@link RouterFunctions#route(RequestPredicate, HandlerFunction)} 结合使用，以实现更灵活的谓词匹配。
+<p>例如，以下示例将从 {@code OrderController.routerFunction()} 返回的路由函数添加到 {@code userController} 的 {@code changeUser} 方法：
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; route =
+  RouterFunctions.route()
+    .GET("/users", userController::listUsers)
+    .add(orderController.routerFunction());
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 47
+将与给定模式匹配的请求路由到相对于给定根位置的资源。例如
+<pre class="code">
+Resource location = new FileSystemResource("public-resources/");
+RouterFunction&lt;ServerResponse&gt; resources = RouterFunctions.resources("/resources/**", location);
+</pre>
+@@ function/server/RouterFunctions.java :: 48
+使用提供的查找函数路由到资源。如果查找函数为给定请求提供 {@link Resource}，则将通过处理 GET、HEAD 和 OPTIONS 请求的 {@link HandlerFunction} 暴露该资源。
+@@ function/server/RouterFunctions.java :: 49
+如果给定请求谓词适用，则路由到提供的路由函数。此方法可用于创建<strong>嵌套路由</strong>，其中一组路由共享公共路径（前缀）、头或其他请求谓词。
+<p>例如，以下示例创建带有 "/user" 路径谓词的嵌套路由，使 "/user" 的 GET 请求列出用户，而 "/user" 的 POST 请求创建新用户。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .nest(RequestPredicates.path("/user"), () -&gt;
+      RouterFunctions.route()
+        .GET(this::listUsers)
+        .POST(this::createUser)
+        .build())
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 50
+如果给定请求谓词适用，则路由到已构建的路由函数。此方法可用于创建<strong>嵌套路由</strong>，其中一组路由共享公共路径（前缀）、头或其他请求谓词。
+<p>例如，以下示例创建带有 "/user" 路径谓词的嵌套路由，使 "/user" 的 GET 请求列出用户，而 "/user" 的 POST 请求创建新用户。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .nest(RequestPredicates.path("/user"), builder -&gt;
+      builder.GET(this::listUsers)
+             .POST(this::createUser))
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 51
+如果给定路径前缀模式适用，则路由到提供的路由函数。此方法可用于创建<strong>嵌套路由</strong>，其中一组路由共享公共路径前缀。具体而言，此方法可用于将外部定义的路由函数合并到某个路径前缀下。
+<p>例如，以下示例创建带有 "/user" 路径谓词的嵌套路由，委托给 {@code userController} 中定义的路由函数，并使用 "/order" 路径委托给 {@code orderController}。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .path("/user", userController::routerFunction)
+    .path("/order", orderController::routerFunction)
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 52
+如果给定路径前缀模式适用，则路由到已构建的路由函数。此方法可用于创建<strong>嵌套路由</strong>，其中一组路由共享公共路径前缀。
+<p>例如，以下示例创建带有 "/user" 路径谓词的嵌套路由，使 "/user" 的 GET 请求列出用户，而 "/user" 的 POST 请求创建新用户。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; nestedRoute =
+  RouterFunctions.route()
+    .path("/user", builder -&gt;
+      builder.GET(this::listUsers)
+             .POST(this::createUser))
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 53
+使用给定过滤器函数过滤此构建器创建的所有路由。过滤器函数通常用于处理横切关注点，例如日志记录、安全性等。
+<p>例如，以下示例创建一个过滤器，在请求不包含必要的认证头时返回 401 Unauthorized 响应。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .filter((request, next) -&gt; {
+      // check for authentication headers
+      if (isAuthenticated(request)) {
+        return next.handle(request);
+      }
+      else {
+        return ServerResponse.status(HttpStatus.UNAUTHORIZED).build();
+      }
+    })
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 54
+使用给定请求处理函数过滤此构建器创建的所有路由的请求对象。过滤器通常用于处理横切关注点，例如日志记录、安全性等。
+<p>例如，以下示例创建一个在处理器函数执行前记录请求的过滤器。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .before(request -&gt; {
+      log(request);
+      return request;
+    })
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 55
+使用给定响应处理函数过滤此构建器创建的所有路由的响应对象。过滤器通常用于处理横切关注点，例如日志记录、安全性等。
+<p>例如，以下示例创建一个在处理器函数执行后记录响应的过滤器。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .after((request, response) -&gt; {
+      log(response);
+      return response;
+    })
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 56
+通过应用给定响应提供者函数，过滤所有匹配谓词的异常。
+<p>例如，以下示例创建一个在发生 {@code IllegalStateException} 时返回 500 响应状态的过滤器。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .onError(e -&gt; e instanceof IllegalStateException,
+      (e, request) -&gt; ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build())
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 57
+通过应用给定响应提供者函数，过滤给定类型的所有异常。
+<p>例如，以下示例创建一个在发生 {@code IllegalStateException} 时返回 500 响应状态的过滤器。
+<pre class="code">
+RouterFunction&lt;ServerResponse&gt; filteredRoute =
+  RouterFunctions.route()
+    .GET("/user", this::listUsers)
+    .onError(IllegalStateException.class,
+      (e, request) -&gt; ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build())
+    .build();
+</pre>
+@@ function/server/RouterFunctions.java :: 58
+将具有给定名称和值的属性添加到使用此构建器构建的最后一个路由。
+@@ function/server/RouterFunctions.java :: 59
+使用给定消费者操作最后一个构建路由的属性。
+<p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain Map#put(Object, Object) 覆盖}现有属性、{@linkplain Map#remove(Object) 删除}属性，或使用任何其他 {@link Map} 方法。
+@@ function/server/RouterFunctions.java :: 60
+构建 {@code RouterFunction}。所有创建的路由彼此{@linkplain RouterFunction#and(RouterFunction) 组合}，如果有过滤器，则将其应用到结果。
+@@ function/server/RouterFunctions.java :: 61
+接收来自路由函数逻辑结构的通知。
+@@ function/server/RouterFunctions.java :: 62
+接收嵌套路由函数开始的通知。
+@@ function/server/RouterFunctions.java :: 63
+接收嵌套路由函数结束的通知。
+@@ function/server/RouterFunctions.java :: 64
+接收标准谓词路由到处理函数的通知。
+@@ function/server/RouterFunctions.java :: 65
+接收资源路由函数的通知。
+@@ function/server/RouterFunctions.java :: 66
+接收带有属性的路由函数的通知。给定属性适用于紧随此通知之后的路由通知。
+@@ function/server/RouterFunctions.java :: 67
+接收未知路由函数的通知。对于不是通过各种 {@link RouterFunctions} 方法创建的路由函数，将调用此方法。
+@@ function/server/RouterFunctions.java :: 68
+组合路由函数，先调用一个函数，如果此路由{@linkplain Mono#empty() 没有结果}，则调用另一个函数（相同响应类型 {@code T}）。
+@@ function/server/RouterFunctions.java :: 69
+组合路由函数，先调用一个函数，如果此路由{@linkplain Mono#empty() 没有结果}，则调用另一个函数（不同响应类型）。
+@@ function/server/RouterFunctions.java :: 70
+使用给定的{@linkplain HandlerFilterFunction 过滤器函数}过滤指定的{@linkplain HandlerFunction 处理函数}。
+@@ function/server/ServerRequest.java :: 1
+表示由 {@code HandlerFunction} 处理的服务器端 HTTP 请求。
+
+<p>对头和正文的访问分别由 {@link Headers} 和 {@link #body(BodyExtractor)} 提供。
+@@ function/server/ServerRequest.java :: 2
+获取 HTTP 方法。
+@@ function/server/ServerRequest.java :: 3
+获取 HTTP 方法的名称。
+@@ function/server/ServerRequest.java :: 4
+获取请求 URI。
+@@ function/server/ServerRequest.java :: 5
+从此 {@code ServerRequest} 关联的 URI 获取 {@code UriBuilderComponents}。
+<p><strong>注意：</strong>从 5.1 开始，此方法忽略指定客户端原始地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可考虑使用 {@code ForwardedHeaderFilter} 提取并使用这些头，或将其丢弃。
+@@ function/server/ServerRequest.java :: 6
+获取请求路径。
+@@ function/server/ServerRequest.java :: 7
+将请求路径作为 {@code PathContainer} 获取。
+@@ function/server/ServerRequest.java :: 8
+将请求路径作为 {@code PathContainer} 获取。
+@@ function/server/ServerRequest.java :: 9
+获取此请求的头。
+@@ function/server/ServerRequest.java :: 10
+获取此请求的 cookie。
+@@ function/server/ServerRequest.java :: 11
+获取此请求所连接的远程地址（如果可用）。
+@@ function/server/ServerRequest.java :: 12
+获取此请求所连接的本地地址（如果可用）。
+@@ function/server/ServerRequest.java :: 13
+获取用于转换此请求正文的读取器。
+@@ function/server/ServerRequest.java :: 14
+使用给定的 {@code BodyExtractor} 提取正文。
+@@ function/server/ServerRequest.java :: 15
+使用给定的 {@code BodyExtractor} 和提示提取正文。
+@@ function/server/ServerRequest.java :: 16
+将正文提取为 {@code Mono}。
+@@ function/server/ServerRequest.java :: 17
+将正文提取为 {@code Mono}。
+@@ function/server/ServerRequest.java :: 18
+将正文提取为 {@code Flux}。
+@@ function/server/ServerRequest.java :: 19
+将正文提取为 {@code Flux}。
+@@ function/server/ServerRequest.java :: 20
+如果存在，获取请求属性值。
+@@ function/server/ServerRequest.java :: 21
+获取请求属性的可变映射。
+@@ function/server/ServerRequest.java :: 22
+如果存在，获取具有给定名称的第一个查询参数。
+@@ function/server/ServerRequest.java :: 23
+获取此请求的所有查询参数。
+@@ function/server/ServerRequest.java :: 24
+如果存在，获取具有给定名称的路径变量。
+@@ function/server/ServerRequest.java :: 25
+获取此请求的所有路径变量。
+@@ function/server/ServerRequest.java :: 26
+获取此请求的 Web 会话。
+<p>始终保证返回一个实例：要么与客户端请求的会话 id 匹配，要么使用新的会话 id（因为客户端未指定会话 id，或者底层会话已过期）。
+<p>使用此方法不会自动创建会话。
+@@ function/server/ServerRequest.java :: 27
+获取请求的已认证用户（如果有）。
+@@ function/server/ServerRequest.java :: 28
+如果 Content-Type 为 {@code "application/x-www-form-urlencoded"}，则从请求正文获取表单数据，否则返回空映射。
+<p><strong>注意：</strong>调用此方法会导致完整读取和解析请求正文，并缓存生成的 {@code MultiValueMap}，因此可以安全地多次调用此方法。
+@@ function/server/ServerRequest.java :: 29
+如果 Content-Type 为 {@code "multipart/form-data"}，则获取 multipart 请求的各部分，否则返回空映射。
+<p><strong>注意：</strong>调用此方法会导致完整读取和解析请求正文，并缓存生成的 {@code MultiValueMap}，因此可以安全地多次调用此方法。
+@@ function/server/ServerRequest.java :: 30
+获取此请求所基于的 Web 交换。
+<p>注意：直接操作 exchange（而不是使用 {@code ServerRequest} 和 {@code ServerResponse} 提供的方法）可能导致异常结果。
+@@ function/server/ServerRequest.java :: 31
+根据提供的最后修改时间戳（由应用确定），检查所请求的资源是否已修改。
+<p>如果未修改，此方法返回具有相应状态码和头的响应，否则返回空结果。
+<p>典型用法：
+<pre class="code">
+public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
+  Instant lastModified = // application-specific calculation
+	 return request.checkNotModified(lastModified)
+	   .switchIfEmpty(Mono.defer(() -&gt; {
+	     // further request processing, actually building content
+		 return ServerResponse.ok().body(...);
+	   }));
+}</pre>
+<p>此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
+<p><strong>注意：</strong>可以使用此 {@code #checkNotModified(Instant)} 方法，或 {@link #checkNotModified(String)}。如果希望同时强制使用强实体标签和 Last-Modified 值（如 HTTP 规范所建议），则应使用 {@link #checkNotModified(Instant, String)}。
+@@ function/server/ServerRequest.java :: 32
+根据提供的 {@code ETag}（实体标签，由应用确定），检查所请求的资源是否已修改。
+<p>如果未修改，此方法返回具有相应状态码和头的响应，否则返回空结果。
+<p>典型用法：
+<pre class="code">
+public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
+  String eTag = // application-specific calculation
+	 return request.checkNotModified(eTag)
+	   .switchIfEmpty(Mono.defer(() -&gt; {
+	     // further request processing, actually building content
+		 return ServerResponse.ok().body(...);
+	   }));
+}</pre>
+<p>此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
+<p><strong>注意：</strong>可以使用此 {@link #checkNotModified(Instant)} 方法，或 {@code #checkNotModified(String)}。如果希望同时强制使用强实体标签和 Last-Modified 值（如 HTTP 规范所建议），则应使用 {@link #checkNotModified(Instant, String)}。
+@@ function/server/ServerRequest.java :: 33
+根据提供的 {@code ETag}（实体标签）和最后修改时间戳（由应用确定），检查所请求的资源是否已修改。
+<p>如果未修改，此方法返回具有相应状态码和头的响应，否则返回空结果。
+<p>典型用法：
+<pre class="code">
+public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
+  Instant lastModified = // application-specific calculation
+  String eTag = // application-specific calculation
+	 return request.checkNotModified(lastModified, eTag)
+	   .switchIfEmpty(Mono.defer(() -&gt; {
+	     // further request processing, actually building content
+		 return ServerResponse.ok().body(...);
+	   }));
+}</pre>
+<p>此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
+@@ function/server/ServerRequest.java :: 34
+基于给定的 {@code ServerWebExchange} 和消息读取器创建新的 {@code ServerRequest}。
+@@ function/server/ServerRequest.java :: 35
+使用给定请求的{@linkplain HttpMessageReader 消息读取器}、方法名、URI、头、cookie 和属性创建构建器。
+@@ function/server/ServerRequest.java :: 36
+表示 HTTP 请求的头。
+@@ function/server/ServerRequest.java :: 37
+获取可接受的媒体类型列表，由 {@code Accept} 头指定。
+<p>如果未指定可接受的媒体类型，则返回空列表。
+@@ function/server/ServerRequest.java :: 38
+获取可接受的字符集列表，由 {@code Accept-Charset} 头指定。
+@@ function/server/ServerRequest.java :: 39
+获取可接受的语言列表，由 {@code Accept-Language} 头指定。
+@@ function/server/ServerRequest.java :: 40
+获取正文的字节长度，由 {@code Content-Length} 头指定。
+@@ function/server/ServerRequest.java :: 41
+获取正文的媒体类型，由 {@code Content-Type} 头指定。
+@@ function/server/ServerRequest.java :: 42
+获取 {@code Host} 头的值（如果可用）。
+<p>如果头值不包含端口，返回地址中的{@linkplain InetSocketAddress#getPort() 端口}将为 {@code 0}。
+@@ function/server/ServerRequest.java :: 43
+获取 {@code Range} 头的值。
+<p>当范围未知时返回空列表。
+@@ function/server/ServerRequest.java :: 44
+获取具有给定名称的头的头值（如果有）。
+<p>如果未找到头值，则返回空列表。
+@@ function/server/ServerRequest.java :: 45
+获取具有给定名称的头的第一个头值（如果有）。
+<p>如果未找到头值，则返回 {@code null}。
+@@ function/server/ServerRequest.java :: 46
+将头作为 {@link HttpHeaders} 的实例获取。
+@@ function/server/ServerRequest.java :: 47
+定义请求的构建器。
+@@ function/server/ServerRequest.java :: 48
+设置请求的方法。
+@@ function/server/ServerRequest.java :: 49
+设置请求的 URI。
+@@ function/server/ServerRequest.java :: 50
+设置请求的上下文路径。
+@@ function/server/ServerRequest.java :: 51
+在给定名称下添加给定的头值。
+@@ function/server/ServerRequest.java :: 52
+使用给定的消费者操作此请求的头。
+<p>提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
+@@ function/server/ServerRequest.java :: 53
+添加具有给定名称和值的 cookie。
+@@ function/server/ServerRequest.java :: 54
+使用给定的消费者操作此请求的 cookie。
+<p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
+@@ function/server/ServerRequest.java :: 55
+设置请求正文。
+<p>调用此方法将{@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}构建器中现有的正文。
+@@ function/server/ServerRequest.java :: 56
+将请求正文设置为给定字符串的 UTF-8 编码字节。
+<p>调用此方法将{@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}构建器中现有的正文。
+@@ function/server/ServerRequest.java :: 57
+添加具有给定名称和值的属性。
+@@ function/server/ServerRequest.java :: 58
+使用给定的消费者操作此请求的属性。
+<p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain Map#put(Object, Object) 覆盖}现有属性、{@linkplain Map#remove(Object) 删除}属性，或使用任何其他 {@link Map} 方法。
+@@ function/server/ServerRequest.java :: 59
+构建请求。
+@@ function/server/ServerResponse.java :: 1
+表示类型化的服务器端 HTTP 响应，由{@linkplain HandlerFunction 处理函数}或{@linkplain HandlerFilterFunction 过滤器函数}返回。
+@@ function/server/ServerResponse.java :: 2
+返回此响应的状态码。
+@@ function/server/ServerResponse.java :: 3
+返回此响应的（可能非标准的）状态码。
+@@ function/server/ServerResponse.java :: 4
+返回此响应的头。
+@@ function/server/ServerResponse.java :: 5
+返回此响应的 cookie。
+@@ function/server/ServerResponse.java :: 6
+将此响应写入给定的 Web 交换。
+@@ function/server/ServerResponse.java :: 7
+使用给定响应的状态码和头创建构建器。
+@@ function/server/ServerResponse.java :: 8
+使用给定 HTTP 状态创建构建器。
+@@ function/server/ServerResponse.java :: 9
+使用给定 HTTP 状态创建构建器。
+@@ function/server/ServerResponse.java :: 10
+创建状态设置为 {@linkplain HttpStatus#OK 200 OK} 的构建器。
+@@ function/server/ServerResponse.java :: 11
+创建新构建器，状态为 {@linkplain HttpStatus#CREATED 201 Created}，并将 location 头设置为给定 URI。
+@@ function/server/ServerResponse.java :: 12
+创建状态为 {@linkplain HttpStatus#ACCEPTED 202 Accepted} 的构建器。
+@@ function/server/ServerResponse.java :: 13
+创建状态为 {@linkplain HttpStatus#NO_CONTENT 204 No Content} 的构建器。
+@@ function/server/ServerResponse.java :: 14
+创建状态为 {@linkplain HttpStatus#SEE_OTHER 303 See Other} 且 location 头设置为给定 URI 的构建器。
+@@ function/server/ServerResponse.java :: 15
+创建状态为 {@linkplain HttpStatus#TEMPORARY_REDIRECT 307 Temporary Redirect} 且 location 头设置为给定 URI 的构建器。
+@@ function/server/ServerResponse.java :: 16
+创建状态为 {@linkplain HttpStatus#PERMANENT_REDIRECT 308 Permanent Redirect} 且 location 头设置为给定 URI 的构建器。
+@@ function/server/ServerResponse.java :: 17
+创建状态为 {@linkplain HttpStatus#BAD_REQUEST 400 Bad Request} 的构建器。
+@@ function/server/ServerResponse.java :: 18
+创建状态为 {@linkplain HttpStatus#NOT_FOUND 404 Not Found} 的构建器。
+@@ function/server/ServerResponse.java :: 19
+创建状态为 {@linkplain HttpStatus#UNPROCESSABLE_ENTITY 422 Unprocessable Entity} 的构建器。
+@@ function/server/ServerResponse.java :: 20
+定义用于向响应添加头的构建器。
+@@ function/server/ServerResponse.java :: 21
+在给定名称下添加给定的头值。
+@@ function/server/ServerResponse.java :: 22
+使用给定的消费者操作此响应的头。提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
+@@ function/server/ServerResponse.java :: 23
+将给定 cookie 添加到响应中。
+@@ function/server/ServerResponse.java :: 24
+使用给定的消费者操作此响应的 cookie。提供给消费者的 cookie 是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
+@@ function/server/ServerResponse.java :: 25
+设置允许的 {@link HttpMethod HTTP 方法}集合，由 {@code Allow} 头指定。
+@@ function/server/ServerResponse.java :: 26
+设置允许的 {@link HttpMethod HTTP 方法}集合，由 {@code Allow} 头指定。
+@@ function/server/ServerResponse.java :: 27
+设置正文的实体标签，由 {@code ETag} 头指定。
+@@ function/server/ServerResponse.java :: 28
+设置资源的最后修改时间，由 {@code Last-Modified} 头指定。
+@@ function/server/ServerResponse.java :: 29
+设置资源的最后修改时间，由 {@code Last-Modified} 头指定。
+@@ function/server/ServerResponse.java :: 30
+设置资源的位置，由 {@code Location} 头指定。
+@@ function/server/ServerResponse.java :: 31
+设置资源的缓存指令，由 HTTP 1.1 的 {@code Cache-Control} 头指定。
+<p>{@code CacheControl} 实例可以这样构建：{@code CacheControl.maxAge(3600).cachePublic().noTransform()}。
+@@ function/server/ServerResponse.java :: 32
+配置一个或多个请求头名称（例如 "Accept-Language"），将其添加到 "Vary" 响应头，以告知客户端响应会受到内容协商影响，并会因给定请求头的值而变化。仅当响应 "Vary" 头中尚不存在时，才会添加所配置的请求头名称。
+@@ function/server/ServerResponse.java :: 33
+构建不带正文的响应实体。
+@@ function/server/ServerResponse.java :: 34
+构建不带正文的响应实体。
+<p>当给定的 {@code voidPublisher} 完成时，响应将被提交。
+@@ function/server/ServerResponse.java :: 35
+使用自定义写出函数构建响应实体。
+@@ function/server/ServerResponse.java :: 36
+定义用于向响应添加正文的构建器。
+@@ function/server/ServerResponse.java :: 37
+设置正文的字节长度，由 {@code Content-Length} 头指定。
+@@ function/server/ServerResponse.java :: 38
+设置正文的{@linkplain MediaType 媒体类型}，由 {@code Content-Type} 头指定。
+@@ function/server/ServerResponse.java :: 39
+添加序列化提示（例如 {@link Jackson2CodecSupport#JSON_VIEW_HINT}）以自定义正文的序列化方式。
+@@ function/server/ServerResponse.java :: 40
+使用给定的消费者自定义序列化提示。
+@@ function/server/ServerResponse.java :: 41
+将响应正文设置为给定 {@code Object} 并返回构建器。这是使用 {@link #body(BodyInserter)} 和{@linkplain BodyInserters#fromValue 值插入器}的快捷方式。
+@@ function/server/ServerResponse.java :: 42
+从给定 {@code Publisher} 设置正文。这是使用 {@link #body(BodyInserter)} 和{@linkplain BodyInserters#fromPublisher Publisher 插入器}的快捷方式。
+@@ function/server/ServerResponse.java :: 43
+{@link #body(Publisher, Class)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
+@@ function/server/ServerResponse.java :: 44
+{@link #body(Publisher, Class)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
+@@ function/server/ServerResponse.java :: 45
+{@link #body(Publisher, ParameterizedTypeReference)} 的变体，允许使用可通过 {@link ReactiveAdapterRegistry} 解析为 {@link Publisher} 的任何生产者。
+@@ function/server/ServerResponse.java :: 46
+将响应正文设置为给定 {@code BodyInserter} 并返回构建器。
+@@ function/server/ServerResponse.java :: 47
+将响应正文设置为给定 {@code Object} 并返回构建器。从 5.2 开始，此方法委托给 {@link #bodyValue(Object)}。
+@@ function/server/ServerResponse.java :: 48
+使用给定的 {@code modelAttributes} 渲染具有给定 {@code name} 的模板。模型属性以{@linkplain org.springframework.core.Conventions#getVariableName 生成的名称}映射。
+<p><em>注意：使用此方法时，空的 {@link Collection Collections} 不会添加到模型中，因为我们无法正确确定真实的约定名称。</em>
+@@ function/server/ServerResponse.java :: 49
+使用给定 {@code model} 渲染具有给定 {@code name} 的模板。
+@@ function/server/ServerResponse.java :: 50
+定义在 {@link #writeTo(ServerWebExchange, Context)} 期间使用的上下文。
+@@ function/server/ServerResponse.java :: 51
+返回用于响应正文转换的 {@link HttpMessageWriter HttpMessageWriters}。
+@@ function/server/ServerResponse.java :: 52
+返回用于视图名称解析的 {@link ViewResolver ViewResolvers}。
+@@ function/server/ToStringVisitor.java :: 1
+创建路由函数格式化字符串表示的 {@link RouterFunctions.Visitor} 实现。
+@@ function/server/package-info.java :: 1
+提供构成 Spring 响应式环境函数式 Web 框架的类型。

@@ -68,11 +68,11 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Helper class featuring methods for Hibernate Session handling.
- * Also provides support for exception translation.
+ * 提供 Hibernate Session 处理方法的辅助类。
+ * 还提供异常转换支持。
  *
- * <p>Used internally by {@link HibernateTransactionManager}.
- * Can also be used directly in application code.
+ * <p>供 {@link HibernateTransactionManager} 内部使用。
+ * 也可以直接在应用程序代码中使用。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -82,9 +82,9 @@ import org.springframework.util.ReflectionUtils;
 public abstract class SessionFactoryUtils {
 
 	/**
-	 * Order value for TransactionSynchronization objects that clean up Hibernate Sessions.
-	 * Returns {@code DataSourceUtils.CONNECTION_SYNCHRONIZATION_ORDER - 100}
-	 * to execute Session cleanup before JDBC Connection cleanup, if any.
+	 * 用于清理 Hibernate Session 的 TransactionSynchronization 对象的顺序值。
+	 * 返回 {@code DataSourceUtils.CONNECTION_SYNCHRONIZATION_ORDER - 100}，
+	 * 以便在 JDBC Connection 清理（如有）之前执行 Session 清理。
 	 * @see DataSourceUtils#CONNECTION_SYNCHRONIZATION_ORDER
 	 */
 	public static final int SESSION_SYNCHRONIZATION_ORDER =
@@ -94,9 +94,9 @@ public abstract class SessionFactoryUtils {
 
 
 	/**
-	 * Trigger a flush on the given Hibernate Session, converting regular
-	 * {@link HibernateException} instances as well as Hibernate 5.2's
-	 * {@link PersistenceException} wrappers accordingly.
+	 * 在给定的 Hibernate Session 上触发刷新，并相应地转换常规的
+	 * {@link HibernateException} 实例以及 Hibernate 5.2 的
+	 * {@link PersistenceException} 包装器。
 	 * @param session the Hibernate Session to flush
 	 * @param synch whether this flush is triggered by transaction synchronization
 	 * @throws DataAccessException in case of flush failures
@@ -125,8 +125,8 @@ public abstract class SessionFactoryUtils {
 	}
 
 	/**
-	 * Perform actual closing of the Hibernate Session,
-	 * catching and logging any cleanup exceptions thrown.
+	 * 执行 Hibernate Session 的实际关闭，
+	 * 捕获并记录抛出的任何清理异常。
 	 * @param session the Hibernate Session to close (may be {@code null})
 	 * @see Session#close()
 	 */
@@ -144,7 +144,7 @@ public abstract class SessionFactoryUtils {
 	}
 
 	/**
-	 * Determine the DataSource of the given SessionFactory.
+	 * 确定给定 SessionFactory 的 DataSource。
 	 * @param sessionFactory the SessionFactory to check
 	 * @return the DataSource, or {@code null} if none found
 	 * @see ConnectionProvider
@@ -179,8 +179,8 @@ public abstract class SessionFactoryUtils {
 	}
 
 	/**
-	 * Convert the given HibernateException to an appropriate exception
-	 * from the {@code org.springframework.dao} hierarchy.
+	 * 将给定的 HibernateException 转换为 {@code org.springframework.dao} 层次结构中
+	 * 相应的异常。
 	 * @param ex the HibernateException that occurred
 	 * @return the corresponding DataAccessException instance
 	 * @see HibernateExceptionTranslator#convertHibernateAccessException

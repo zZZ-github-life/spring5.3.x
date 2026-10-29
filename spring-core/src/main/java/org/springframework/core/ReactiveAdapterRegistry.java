@@ -39,16 +39,14 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * A registry of adapters to adapt Reactive Streams {@link Publisher} to/from
- * various async/reactive types such as {@code CompletableFuture}, RxJava
- * {@code Flowable}, and others.
+ * 适配器注册表，用于在各种异步/响应式类型（如 {@code CompletableFuture}、RxJava {@code Flowable}
+ * 等）与 Reactive Streams {@link Publisher} 之间进行适配。
  *
- * <p>By default, depending on classpath availability, adapters are registered
- * for Reactor, RxJava 3, {@link CompletableFuture}, {@code Flow.Publisher},
- * and Kotlin Coroutines' {@code Deferred} and {@code Flow}.
+ * <p>默认情况下，根据类路径的可用性，会为 Reactor、RxJava 3、{@link CompletableFuture}、
+ * {@code Flow.Publisher} 以及 Kotlin Coroutines 的 {@code Deferred} 和 {@code Flow} 注册适配器。
  *
- * <p><strong>Note:</strong> As of Spring Framework 5.3.11, support for
- * RxJava 1.x and 2.x is deprecated in favor of RxJava 3.
+ * <p><strong>注意：</strong>从 Spring Framework 5.3.11 起，对 RxJava 1.x 和 2.x 的支持已弃用，建议
+ * 改用 RxJava 3。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -89,7 +87,7 @@ public class ReactiveAdapterRegistry {
 
 
 	/**
-	 * Create a registry and auto-register default adapters.
+	 * 创建一个注册表并自动注册默认适配器。
 	 * @see #getSharedInstance()
 	 */
 	public ReactiveAdapterRegistry() {
@@ -126,16 +124,15 @@ public class ReactiveAdapterRegistry {
 
 
 	/**
-	 * Whether the registry has any adapters.
+	 * 该注册表是否有任何适配器。
 	 */
 	public boolean hasAdapters() {
 		return !this.adapters.isEmpty();
 	}
 
 	/**
-	 * Register a reactive type along with functions to adapt to and from a
-	 * Reactive Streams {@link Publisher}. The function arguments assume that
-	 * their input is neither {@code null} nor {@link Optional}.
+	 * 注册一个响应式类型，以及用于与 Reactive Streams {@link Publisher} 相互适配的函数。这些函数的参数
+	 * 假定其输入既不是 {@code null}，也不是 {@link Optional}。
 	 */
 	public void registerReactiveType(ReactiveTypeDescriptor descriptor,
 			Function<Object, Publisher<?>> toAdapter, Function<Publisher<?>, Object> fromAdapter) {
@@ -149,7 +146,7 @@ public class ReactiveAdapterRegistry {
 	}
 
 	/**
-	 * Get the adapter for the given reactive type.
+	 * 获取给定响应式类型的适配器。
 	 * @return the corresponding adapter, or {@code null} if none available
 	 */
 	@Nullable
@@ -158,8 +155,7 @@ public class ReactiveAdapterRegistry {
 	}
 
 	/**
-	 * Get the adapter for the given reactive type. Or if a "source" object is
-	 * provided, its actual type is used instead.
+	 * 获取给定响应式类型的适配器。或者，如果提供了“源”对象，则改用其实际类型。
 	 * @param reactiveType the reactive type
 	 * (may be {@code null} if a concrete source object is given)
 	 * @param source an instance of the reactive type
@@ -192,12 +188,9 @@ public class ReactiveAdapterRegistry {
 
 
 	/**
-	 * Return a shared default {@code ReactiveAdapterRegistry} instance,
-	 * lazily building it once needed.
-	 * <p><b>NOTE:</b> We highly recommend passing a long-lived, pre-configured
-	 * {@code ReactiveAdapterRegistry} instance for customization purposes.
-	 * This accessor is only meant as a fallback for code paths that want to
-	 * fall back on a default instance if one isn't provided.
+	 * 返回一个共享的默认 {@code ReactiveAdapterRegistry} 实例，在需要时延迟构建。<p><b>注意：</b>为了
+	 * 自定义目的，我们强烈建议传入一个长期存在且预先配置好的 {@code ReactiveAdapterRegistry} 实例。此
+	 * 访问器仅作为回退方案，供那些希望在未提供实例时回退到默认实例的代码路径使用。
 	 * @return the shared {@code ReactiveAdapterRegistry} instance
 	 * @since 5.0.2
 	 */
@@ -217,10 +210,9 @@ public class ReactiveAdapterRegistry {
 
 
 	/**
-	 * ReactiveAdapter variant that wraps adapted Publishers as {@link Flux} or
-	 * {@link Mono} depending on {@link ReactiveTypeDescriptor#isMultiValue()}.
-	 * This is important in places where only the stream and stream element type
-	 * information is available like encoders and decoders.
+	 * ReactiveAdapter 的变体，会根据 {@link ReactiveTypeDescriptor#isMultiValue()} 将适配后的
+	 * Publisher 包装为 {@link Flux} 或 {@link Mono}。在仅能获得流及流元素类型信息的地方（如编码器和解
+	 * 码器）这一点很重要。
 	 */
 	private static class ReactorAdapter extends ReactiveAdapter {
 
@@ -435,11 +427,10 @@ public class ReactiveAdapterRegistry {
 
 
 	/**
-	 * {@code BlockHoundIntegration} for spring-core classes.
-	 * <p>Explicitly allow the following:
+	 * spring-core 类的 {@code BlockHoundIntegration}。<p>显式允许以下操作：
 	 * <ul>
-	 * <li>Reading class info via {@link LocalVariableTableParameterNameDiscoverer}.
-	 * <li>Locking within {@link ConcurrentReferenceHashMap}.
+	 * <li>通过 {@link LocalVariableTableParameterNameDiscoverer} 读取类信息。
+	 * <li>在 {@link ConcurrentReferenceHashMap} 内部加锁。
 	 * </ul>
 	 * @since 5.2.4
 	 */

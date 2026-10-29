@@ -33,8 +33,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.MimeType;
 
 /**
- * Strategy for decoding a {@link DataBuffer} input stream into an output stream
- * of elements of type {@code <T>}.
+ * 将 {@link DataBuffer} 输入流解码为 {@code <T>} 类型元素输出流的策略。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -44,8 +43,7 @@ import org.springframework.util.MimeType;
 public interface Decoder<T> {
 
 	/**
-	 * Whether the decoder supports the given target element type and the MIME
-	 * type of the source stream.
+	 * 此解码器是否支持给定的目标元素类型以及源流的 MIME 类型。
 	 * @param elementType the target element type for the output stream
 	 * @param mimeType the mime type associated with the stream to decode
 	 * (can be {@code null} if not specified)
@@ -54,7 +52,7 @@ public interface Decoder<T> {
 	boolean canDecode(ResolvableType elementType, @Nullable MimeType mimeType);
 
 	/**
-	 * Decode a {@link DataBuffer} input stream into a Flux of {@code T}.
+	 * 将 {@link DataBuffer} 输入流解码为由 {@code T} 组成的 Flux。
 	 * @param inputStream the {@code DataBuffer} input stream to decode
 	 * @param elementType the expected type of elements in the output stream;
 	 * this type must have been previously passed to the {@link #canDecode}
@@ -67,7 +65,7 @@ public interface Decoder<T> {
 			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
 
 	/**
-	 * Decode a {@link DataBuffer} input stream into a Mono of {@code T}.
+	 * 将 {@link DataBuffer} 输入流解码为由 {@code T} 组成的 Mono。
 	 * @param inputStream the {@code DataBuffer} input stream to decode
 	 * @param elementType the expected type of elements in the output stream;
 	 * this type must have been previously passed to the {@link #canDecode}
@@ -80,9 +78,8 @@ public interface Decoder<T> {
 			@Nullable MimeType mimeType, @Nullable Map<String, Object> hints);
 
 	/**
-	 * Decode a data buffer to an Object of type T. This is useful for scenarios,
-	 * that distinct messages (or events) are decoded and handled individually,
-	 * in fully aggregated form.
+	 * 将数据缓冲区解码为类型 T 的对象。这适用于需要将独立的消息（或事件）以完全聚合的形式逐个解码并处
+	 * 理的场景。
 	 * @param buffer the {@code DataBuffer} to decode
 	 * @param targetType the expected output type
 	 * @param mimeType the MIME type associated with the data
@@ -112,21 +109,17 @@ public interface Decoder<T> {
 	}
 
 	/**
-	 * Return the list of MIME types supported by this Decoder. The list may not
-	 * apply to every possible target element type and calls to this method
-	 * should typically be guarded via {@link #canDecode(ResolvableType, MimeType)
-	 * canDecode(elementType, null)}. The list may also exclude MIME types
-	 * supported only for a specific element type. Alternatively, use
-	 * {@link #getDecodableMimeTypes(ResolvableType)} for a more precise list.
+	 * 返回此 Decoder 支持的 MIME 类型列表。该列表可能并不适用于所有可能的目标元素类型，调用此方法时通
+	 * 常应通过 {@link #canDecode(ResolvableType, MimeType) canDecode(elementType, null)} 加以防护。该
+	 * 列表也可能不包含仅对特定元素类型提供支持的 MIME 类型。或者，可使用
+	 * {@link #getDecodableMimeTypes(ResolvableType)} 获取更精确的列表。
 	 * @return the list of supported MIME types
 	 */
 	List<MimeType> getDecodableMimeTypes();
 
 	/**
-	 * Return the list of MIME types supported by this Decoder for the given type
-	 * of element. This list may differ from {@link #getDecodableMimeTypes()}
-	 * if the Decoder doesn't support the given element type or if it supports
-	 * it only for a subset of MIME types.
+	 * 返回此 Decoder 针对给定元素类型支持的 MIME 类型列表。如果 Decoder 不支持给定的元素类型，或者仅对
+	 * 部分 MIME 类型提供支持，则该列表可能与 {@link #getDecodableMimeTypes()} 不同。
 	 * @param targetType the type of element to check for decoding
 	 * @return the list of MIME types supported for the given target type
 	 * @since 5.3.4

@@ -35,9 +35,9 @@ import org.springframework.http.codec.HttpMessageWriter;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link HttpMessageWriter} for writing with {@link Part}. This can be useful
- * on the server side to write a {@code Flux<Part>} received from a client to
- * some remote service.
+ * 用于写入 {@link Part} 的 {@link HttpMessageWriter}。在服务器端
+ * 将客户端接收到的 {@code Flux<Part>} 写入某个远程服务时，
+ * 这可能很有用。
  *
  * @author Rossen Stoyanchev
  * @since 5.3

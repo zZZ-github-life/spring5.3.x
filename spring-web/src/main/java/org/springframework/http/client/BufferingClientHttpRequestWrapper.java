@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * Simple implementation of {@link ClientHttpRequest} that wraps another request.
+ * 包装另一个请求的 {@link ClientHttpRequest} 简单实现。
  *
  * @author Arjen Poutsma
  * @since 3.1

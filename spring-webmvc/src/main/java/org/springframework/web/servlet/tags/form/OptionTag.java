@@ -25,33 +25,29 @@ import org.springframework.web.servlet.support.BindStatus;
 import org.springframework.web.util.TagUtils;
 
 /**
- * The {@code <option>} tag renders a single HTML 'option'. Sets 'selected' as
- * appropriate based on bound value.
+ * {@code <option>} 标签渲染单个 HTML 'option'。它根据绑定的值适当地设置 'selected'。
  *
- * <p><b>Must be used nested inside a {@link SelectTag}.</b>
+ * <p><b>必须嵌套在 {@link SelectTag} 内部使用。</b>
  *
- * <p>Provides full support for databinding by marking an
- * '{@code option}' as 'selected' if the {@link #setValue value}
- * matches the value bound to the out {@link SelectTag}.
+ * <p>如果 {@link #setValue value} 与外部 {@link SelectTag} 所绑定的值匹配，
+ * 则将 '{@code option}' 标记为 'selected'，从而提供完整的数据绑定支持。
  *
- * <p>The {@link #setValue value} property is required and corresponds to
- * the '{@code value}' attribute of the rendered '{@code option}'.
+ * <p>{@link #setValue value} 属性是必需的，它对应于所渲染的 '{@code option}'
+ * 的 '{@code value}' 属性。
  *
- * <p>An optional {@link #setLabel label} property can be specified, the
- * value of which corresponds to inner text of the rendered
- * '{@code option}' tag. If no {@link #setLabel label} is specified
- * then the {@link #setValue value} property will be used when rendering
- * the inner text.
+ * <p>可以指定可选的 {@link #setLabel label} 属性，其值对应于所渲染
+ * '{@code option}' 标签的内部文本。如果未指定 {@link #setLabel label}，
+ * 则在渲染内部文本时使用 {@link #setValue value} 属性。
  *
  * <p>
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th class="colFirst">Attribute</th>
- * <th class="colOne">Required?</th>
- * <th class="colOne">Runtime Expression?</th>
- * <th class="colLast">Description</th>
+ * <th class="colFirst">属性</th>
+ * <th class="colOne">是否必需？</th>
+ * <th class="colOne">是否运行时表达式？</th>
+ * <th class="colLast">描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -59,135 +55,134 @@ import org.springframework.web.util.TagUtils;
  * <td><p>cssClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>cssErrorClass</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Used when the bound field has
- * errors.</p></td>
+ * <td><p>HTML 可选属性。当绑定的字段存在错误时使用。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>cssStyle</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>dir</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>disabled</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute. Setting the value of this attribute to 'true'
- * will disable the HTML element.</p></td>
+ * <td><p>HTML 可选属性。将此属性设置为 'true'
+ * 将禁用该 HTML 元素。</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>htmlEscape</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>Enable/disable HTML escaping of rendered values.</p></td>
+ * <td><p>启用/禁用对渲染值的 HTML 转义。</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>id</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>label</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>lang</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>ondblclick</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeydown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onkeypress</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onkeyup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmousedown</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmousemove</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseout</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>onmouseover</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>onmouseup</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Event Attribute</p></td>
+ * <td><p>HTML 事件属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>tabindex</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="altColor">
  * <td><p>title</p></td>
  * <td><p>false</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Standard Attribute</p></td>
+ * <td><p>HTML 标准属性</p></td>
  * </tr>
  * <tr class="rowColor">
  * <td><p>value</p></td>
  * <td><p>true</p></td>
  * <td><p>true</p></td>
- * <td><p>HTML Optional Attribute</p></td>
+ * <td><p>HTML 可选属性</p></td>
  * </tr>
  * </tbody>
  * </table>
@@ -200,39 +195,39 @@ import org.springframework.web.util.TagUtils;
 public class OptionTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 	/**
-	 * The name of the JSP variable used to expose the value for this tag.
+	 * 用于暴露此标签的值的 JSP 变量名。
 	 */
 	public static final String VALUE_VARIABLE_NAME = "value";
 
 	/**
-	 * The name of the JSP variable used to expose the display value for this tag.
+	 * 用于暴露此标签的显示值的 JSP 变量名。
 	 */
 	public static final String DISPLAY_VALUE_VARIABLE_NAME = "displayValue";
 
 	/**
-	 * The name of the '{@code selected}' attribute.
+	 * '{@code selected}' 属性的名称。
 	 */
 	private static final String SELECTED_ATTRIBUTE = "selected";
 
 	/**
-	 * The name of the '{@code value}' attribute.
+	 * '{@code value}' 属性的名称。
 	 */
 	private static final String VALUE_ATTRIBUTE = VALUE_VARIABLE_NAME;
 
 	/**
-	 * The name of the '{@code disabled}' attribute.
+	 * '{@code disabled}' 属性的名称。
 	 */
 	private static final String DISABLED_ATTRIBUTE = "disabled";
 
 
 	/**
-	 * The 'value' attribute of the rendered HTML {@code <option>} tag.
+	 * 所渲染的 HTML {@code <option>} 标签的 'value' 属性。
 	 */
 	@Nullable
 	private Object value;
 
 	/**
-	 * The text body of the rendered HTML {@code <option>} tag.
+	 * 所渲染的 HTML {@code <option>} 标签的文本正文。
 	 */
 	@Nullable
 	private String label;
@@ -247,14 +242,14 @@ public class OptionTag extends AbstractHtmlElementBodyTag implements BodyTag {
 
 
 	/**
-	 * Set the 'value' attribute of the rendered HTML {@code <option>} tag.
+	 * 设置所渲染的 HTML {@code <option>} 标签的 'value' 属性。
 	 */
 	public void setValue(Object value) {
 		this.value = value;
 	}
 
 	/**
-	 * Get the 'value' attribute of the rendered HTML {@code <option>} tag.
+	 * 获取所渲染的 HTML {@code <option>} 标签的 'value' 属性。
 	 */
 	@Nullable
 	protected Object getValue() {
@@ -262,29 +257,29 @@ public class OptionTag extends AbstractHtmlElementBodyTag implements BodyTag {
 	}
 
 	/**
-	 * Set the value of the '{@code disabled}' attribute.
+	 * 设置 '{@code disabled}' 属性的值。
 	 */
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
 
 	/**
-	 * Get the value of the '{@code disabled}' attribute.
+	 * 获取 '{@code disabled}' 属性的值。
 	 */
 	protected boolean isDisabled() {
 		return this.disabled;
 	}
 
 	/**
-	 * Set the text body of the rendered HTML {@code <option>} tag.
-	 * <p>May be a runtime expression.
+	 * 设置所渲染的 HTML {@code <option>} 标签的文本正文。
+	 * <p>可以是运行时表达式。
 	 */
 	public void setLabel(String label) {
 		this.label = label;
 	}
 
 	/**
-	 * Get the text body of the rendered HTML {@code <option>} tag.
+	 * 获取所渲染的 HTML {@code <option>} 标签的文本正文。
 	 */
 	@Nullable
 	protected String getLabel() {
@@ -307,7 +302,7 @@ public class OptionTag extends AbstractHtmlElementBodyTag implements BodyTag {
 	}
 
 	/**
-	 * Make sure we are under a '{@code select}' tag before proceeding.
+	 * 确保在执行后续操作前处于 '{@code select}' 标签之内。
 	 */
 	@Override
 	protected void onWriteTagContent() {
@@ -370,10 +365,9 @@ public class OptionTag extends AbstractHtmlElementBodyTag implements BodyTag {
 	}
 
 	/**
-	 * Return the value of the label for this '{@code option}' element.
-	 * <p>If the {@link #setLabel label} property is set then the resolved value
-	 * of that property is used, otherwise the value of the {@code resolvedValue}
-	 * argument is used.
+	 * 返回此 '{@code option}' 元素的标签值。
+	 * <p>如果设置了 {@link #setLabel label} 属性，则使用该属性的解析值，
+	 * 否则使用 {@code resolvedValue} 参数的值。
 	 */
 	private String getLabelValue(Object resolvedValue) throws JspException {
 		String label = getLabel();

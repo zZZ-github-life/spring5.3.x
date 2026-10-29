@@ -28,9 +28,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Abstract base class for implementations of {@link SubscriptionRegistry} that
- * looks up information in messages but delegates to abstract methods for the
- * actual storage and retrieval.
+ * {@link SubscriptionRegistry} 实现的抽象基类，它从消息中查找信息，
+ * 但将实际存储和检索委托给抽象方法。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

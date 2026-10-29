@@ -33,12 +33,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Internal class for managing injection metadata.
- * Not intended for direct use in applications.
+ * 用于管理注入元数据的内部类。不打算在应用中直接使用。
  *
- * <p>Used by {@link AutowiredAnnotationBeanPostProcessor},
- * {@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor} and
- * {@link org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor}.
+ * <p>由 {@link AutowiredAnnotationBeanPostProcessor}、
+ * {@link org.springframework.context.annotation.CommonAnnotationBeanPostProcessor} 和
+ * {@link org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor} 使用。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -46,7 +45,7 @@ import org.springframework.util.ReflectionUtils;
 public class InjectionMetadata {
 
 	/**
-	 * An empty {@code InjectionMetadata} instance with no-op callbacks.
+	 * 一个空的 {@code InjectionMetadata} 实例，其回调为空操作。
 	 * @since 5.2
 	 */
 	public static final InjectionMetadata EMPTY = new InjectionMetadata(Object.class, Collections.emptyList()) {
@@ -75,9 +74,8 @@ public class InjectionMetadata {
 
 
 	/**
-	 * Create a new {@code InjectionMetadata instance}.
-	 * <p>Preferably use {@link #forElements} for reusing the {@link #EMPTY}
-	 * instance in case of no elements.
+	 * 创建一个新的 {@code InjectionMetadata instance}。
+	 * <p>在没有元素的情况下，最好使用 {@link #forElements} 复用 {@link #EMPTY} 实例。
 	 * @param targetClass the target class
 	 * @param elements the associated elements to inject
 	 * @see #forElements
@@ -89,7 +87,7 @@ public class InjectionMetadata {
 
 
 	/**
-	 * Determine whether this metadata instance needs to be refreshed.
+	 * 确定此元数据实例是否需要刷新。
 	 * @param clazz the current target class
 	 * @return {@code true} indicating a refresh, {@code false} otherwise
 	 * @since 5.2.4
@@ -122,7 +120,7 @@ public class InjectionMetadata {
 	}
 
 	/**
-	 * Clear property skipping for the contained elements.
+	 * 清除所含元素的属性跳过状态。
 	 * @since 3.2.13
 	 */
 	public void clear(@Nullable PropertyValues pvs) {
@@ -138,7 +136,7 @@ public class InjectionMetadata {
 
 
 	/**
-	 * Return an {@code InjectionMetadata} instance, possibly for empty elements.
+	 * 返回一个 {@code InjectionMetadata} 实例，可能用于空元素。
 	 * @param elements the elements to inject (possibly empty)
 	 * @param clazz the target class
 	 * @return a new {@link #InjectionMetadata(Class, Collection)} instance
@@ -150,7 +148,7 @@ public class InjectionMetadata {
 	}
 
 	/**
-	 * Check whether the given injection metadata needs to be refreshed.
+	 * 检查给定的注入元数据是否需要刷新。
 	 * @param metadata the existing metadata instance
 	 * @param clazz the current target class
 	 * @return {@code true} indicating a refresh, {@code false} otherwise
@@ -162,7 +160,7 @@ public class InjectionMetadata {
 
 
 	/**
-	 * A single injected element.
+	 * 单个注入元素。
 	 */
 	public abstract static class InjectedElement {
 
@@ -217,7 +215,7 @@ public class InjectionMetadata {
 		}
 
 		/**
-		 * Either this or {@link #getResourceToInject} needs to be overridden.
+		 * 需要重写此方法或 {@link #getResourceToInject}。
 		 */
 		protected void inject(Object target, @Nullable String requestingBeanName, @Nullable PropertyValues pvs)
 				throws Throwable {
@@ -243,9 +241,8 @@ public class InjectionMetadata {
 		}
 
 		/**
-		 * Check whether this injector's property needs to be skipped due to
-		 * an explicit property value having been specified. Also marks the
-		 * affected property as processed for other processors to ignore it.
+		 * 检查此注入器的属性是否因已指定显式属性值而需要跳过。同时将受影响的属性标记为已处理，以便其他处理
+		 * 器忽略它。
 		 */
 		protected boolean checkPropertySkipping(@Nullable PropertyValues pvs) {
 			Boolean skip = this.skip;
@@ -277,7 +274,7 @@ public class InjectionMetadata {
 		}
 
 		/**
-		 * Clear property skipping for this element.
+		 * 清除此元素的属性跳过状态。
 		 * @since 3.2.13
 		 */
 		protected void clearPropertySkipping(@Nullable PropertyValues pvs) {
@@ -292,7 +289,7 @@ public class InjectionMetadata {
 		}
 
 		/**
-		 * Either this or {@link #inject} needs to be overridden.
+		 * 需要重写此方法或 {@link #inject}。
 		 */
 		@Nullable
 		protected Object getResourceToInject(Object target, @Nullable String requestingBeanName) {

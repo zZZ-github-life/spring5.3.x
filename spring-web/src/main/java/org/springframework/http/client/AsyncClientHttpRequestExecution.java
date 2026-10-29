@@ -22,10 +22,10 @@ import org.springframework.http.HttpRequest;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * Represents the context of a client-side HTTP request execution.
+ * 表示客户端 HTTP 请求执行的上下文。
  *
- * <p>Used to invoke the next interceptor in the interceptor chain, or -
- * if the calling interceptor is last - execute the request itself.
+ * <p>用于调用拦截器链中的下一个拦截器，或者
+ * 如果当前拦截器是最后一个，则执行请求本身。
  *
  * @author Jakub Narloch
  * @author Rossen Stoyanchev
@@ -38,8 +38,8 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface AsyncClientHttpRequestExecution {
 
 	/**
-	 * Resume the request execution by invoking the next interceptor in the chain
-	 * or executing the request to the remote service.
+	 * 通过调用链中的下一个拦截器或向远程服务执行请求
+	 * 来恢复请求执行。
 	 * @param request the HTTP request, containing the HTTP method and headers
 	 * @param body the body of the request
 	 * @return a corresponding future handle

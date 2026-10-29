@@ -17,9 +17,7 @@
 package org.springframework.transaction;
 
 /**
- * Exception thrown when the existence or non-existence of a transaction
- * amounts to an illegal state according to the transaction propagation
- * behavior that applies.
+ * 当事务的存在或不存在根据适用的事务传播行为构成非法状态时，抛出此异常。
  *
  * @author Juergen Hoeller
  * @since 21.01.2004
@@ -28,7 +26,7 @@ package org.springframework.transaction;
 public class IllegalTransactionStateException extends TransactionUsageException {
 
 	/**
-	 * Constructor for IllegalTransactionStateException.
+	 * IllegalTransactionStateException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public IllegalTransactionStateException(String msg) {
@@ -36,7 +34,7 @@ public class IllegalTransactionStateException extends TransactionUsageException 
 	}
 
 	/**
-	 * Constructor for IllegalTransactionStateException.
+	 * IllegalTransactionStateException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */

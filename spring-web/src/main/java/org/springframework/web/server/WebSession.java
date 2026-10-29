@@ -26,13 +26,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Main contract for using a server-side session that provides access to session
- * attributes across HTTP requests.
+ * 使用服务器端会话的主要契约，可跨 HTTP 请求访问会话属性。
  *
- * <p>The creation of a {@code WebSession} instance does not automatically start
- * a session thus causing the session id to be sent to the client (typically via
- * a cookie). A session starts implicitly when session attributes are added.
- * A session may also be created explicitly via {@link #start()}.
+ * <p>创建 {@code WebSession} 实例并不会自动启动会话，
+ * 因此也不会将会话 id 发送给客户端（通常通过 Cookie）。
+ * 会话会在添加会话属性时隐式启动。
+ * 也可以通过 {@link #start()} 显式创建会话。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -40,17 +39,17 @@ import org.springframework.util.Assert;
 public interface WebSession {
 
 	/**
-	 * Return a unique session identifier.
+	 * 返回唯一的会话标识符。
 	 */
 	String getId();
 
 	/**
-	 * Return a map that holds session attributes.
+	 * 返回保存会话属性的 Map。
 	 */
 	Map<String, Object> getAttributes();
 
 	/**
-	 * Return the session attribute value if present.
+	 * 如果存在，返回会话属性值。
 	 * @param name the attribute name
 	 * @param <T> the attribute type
 	 * @return the attribute value
@@ -62,8 +61,8 @@ public interface WebSession {
 	}
 
 	/**
-	 * Return the session attribute value or if not present raise an
-	 * {@link IllegalArgumentException}.
+	 * 返回会话属性值，如果不存在则抛出
+	 * {@link IllegalArgumentException}。
 	 * @param name the attribute name
 	 * @param <T> the attribute type
 	 * @return the attribute value
@@ -76,7 +75,7 @@ public interface WebSession {
 	}
 
 	/**
-	 * Return the session attribute value, or a default, fallback value.
+	 * 返回会话属性值，或返回一个默认的后备值。
 	 * @param name the attribute name
 	 * @param defaultValue a default value to return instead
 	 * @param <T> the attribute type
@@ -88,84 +87,77 @@ public interface WebSession {
 	}
 
 	/**
-	 * Force the creation of a session causing the session id to be sent when
-	 * {@link #save()} is called.
+	 * 强制创建会话，使得在调用 {@link #save()} 时发送会话 id。
 	 */
 	void start();
 
 	/**
-	 * Whether a session with the client has been started explicitly via
-	 * {@link #start()} or implicitly by adding session attributes.
-	 * If "false" then the session id is not sent to the client and the
-	 * {@link #save()} method is essentially a no-op.
+	 * 与客户端之间的会话是否已通过 {@link #start()} 显式启动，
+	 * 或通过添加会话属性隐式启动。
+	 * 如果为 "false"，则不会将会话 id 发送给客户端，
+	 * 并且 {@link #save()} 方法实际上是一个空操作。
 	 */
 	boolean isStarted();
 
 	/**
-	 * Generate a new id for the session and update the underlying session
-	 * storage to reflect the new id. After a successful call {@link #getId()}
-	 * reflects the new session id.
+	 * 为会话生成新的 id，并更新底层会话存储以反映新的 id。
+	 * 调用成功后，{@link #getId()} 将反映新的会话 id。
 	 * @return completion notification (success or error)
 	 */
 	Mono<Void> changeSessionId();
 
 	/**
-	 * Invalidate the current session and clear session storage.
+	 * 使当前会话失效并清除会话存储。
 	 * @return completion notification (success or error)
 	 */
 	Mono<Void> invalidate();
 
 	/**
-	 * Save the session through the {@code WebSessionStore} as follows:
+	 * 按如下方式通过 {@code WebSessionStore} 保存会话：
 	 * <ul>
-	 * <li>If the session is new (i.e. created but never persisted), it must have
-	 * been started explicitly via {@link #start()} or implicitly by adding
-	 * attributes, or otherwise this method should have no effect.
-	 * <li>If the session was retrieved through the {@code WebSessionStore},
-	 * the implementation for this method must check whether the session was
-	 * {@link #invalidate() invalidated} and if so return an error.
+	 * <li>如果会话是新的（即已创建但从未持久化），则必须已通过 {@link #start()}
+	 * 显式启动，或通过添加属性隐式启动，否则此方法不应产生任何效果。
+	 * <li>如果会话是通过 {@code WebSessionStore} 检索到的，
+	 * 则此方法的实现必须检查会话是否已被 {@link #invalidate() 失效}，
+	 * 若是则返回错误。
 	 * </ul>
-	 * <p>Note that this method is not intended for direct use by applications.
-	 * Instead it is automatically invoked just before the response is
-	 * committed.
+	 * <p>请注意，此方法不打算供应用直接使用。
+	 * 相反，它会在响应提交之前被自动调用。
 	 * @return {@code Mono} to indicate completion with success or error
 	 */
 	Mono<Void> save();
 
 	/**
-	 * Return {@code true} if the session expired after {@link #getMaxIdleTime()
-	 * maxIdleTime} elapsed.
-	 * <p>Typically expiration checks should be automatically made when a session
-	 * is accessed, a new {@code WebSession} instance created if necessary, at
-	 * the start of request processing so that applications don't have to worry
-	 * about expired session by default.
+	 * 如果会话在 {@link #getMaxIdleTime() maxIdleTime} 过后已过期，
+	 * 则返回 {@code true}。
+	 * <p>通常应在处理请求开始时自动进行过期检查：访问会话时会自动检查，
+	 * 必要时创建新的 {@code WebSession} 实例，这样应用默认就不必担心
+	 * 会话过期的问题。
 	 */
 	boolean isExpired();
 
 	/**
-	 * Return the time when the session was created.
+	 * 返回会话创建的时间。
 	 */
 	Instant getCreationTime();
 
 	/**
-	 * Return the last time of session access as a result of user activity such
-	 * as an HTTP request. Together with {@link #getMaxIdleTime()
-	 * maxIdleTimeInSeconds} this helps to determine when a session is
-	 * {@link #isExpired() expired}.
+	 * 返回因用户活动（例如 HTTP 请求）而导致会话最后一次被访问的时间。
+	 * 与 {@link #getMaxIdleTime() maxIdleTimeInSeconds} 结合使用，
+	 * 有助于确定会话何时{@link #isExpired() 过期}。
 	 */
 	Instant getLastAccessTime();
 
 	/**
-	 * Configure the max amount of time that may elapse after the
-	 * {@link #getLastAccessTime() lastAccessTime} before a session is considered
-	 * expired. A negative value indicates the session should not expire.
+	 * 配置会话被视为过期之前，在
+	 * {@link #getLastAccessTime() lastAccessTime} 之后可能经过的最长时间。
+	 * 负值表示会话不应过期。
 	 */
 	void setMaxIdleTime(Duration maxIdleTime);
 
 	/**
-	 * Return the maximum time after the {@link #getLastAccessTime()
-	 * lastAccessTime} before a session expires. A negative time indicates the
-	 * session doesn't expire.
+	 * 返回在 {@link #getLastAccessTime() lastAccessTime} 之后、
+	 * 会话过期之前的最长时间。负值表示会话不会过期。
 	 */
 	Duration getMaxIdleTime();
 

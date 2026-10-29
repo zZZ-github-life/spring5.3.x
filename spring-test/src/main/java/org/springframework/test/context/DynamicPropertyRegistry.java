@@ -19,9 +19,9 @@ package org.springframework.test.context;
 import java.util.function.Supplier;
 
 /**
- * Registry used with {@link DynamicPropertySource @DynamicPropertySource}
- * methods so that they can add properties to the {@code Environment} that have
- * dynamically resolved values.
+ * 与 {@link DynamicPropertySource @DynamicPropertySource} 方法一起使用的注册表，
+ * 使这些方法能够向 {@code Environment} 添加具有
+ * 动态解析值的属性。
  *
  * @author Phillip Webb
  * @author Sam Brannen
@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 public interface DynamicPropertyRegistry {
 
 	/**
-	 * Add a {@link Supplier} for the given property name to this registry.
+	 * 为此注册表中的给定属性名添加一个 {@link Supplier}。
 	 * @param name the name of the property for which the supplier should be added
 	 * @param valueSupplier a supplier that will provide the property value on demand
 	 */

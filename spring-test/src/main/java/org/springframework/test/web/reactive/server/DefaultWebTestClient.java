@@ -61,8 +61,7 @@ import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriBuilderFactory;
 
 /**
- * Default implementation of {@link WebTestClient}.
- *
+ * {@link WebTestClient} 的默认实现。
  * @author Rossen Stoyanchev
  * @author Sam Brannen
  * @author Michał Rowicki

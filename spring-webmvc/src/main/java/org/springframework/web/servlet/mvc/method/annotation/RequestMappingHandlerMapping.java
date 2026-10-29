@@ -55,19 +55,18 @@ import org.springframework.web.util.UrlPathHelper;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Creates {@link RequestMappingInfo} instances from type and method-level
- * {@link RequestMapping @RequestMapping} annotations in
- * {@link Controller @Controller} classes.
+ * 从 {@link Controller @Controller} 类中的类型级别和方法级别
+ * {@link RequestMapping @RequestMapping} 注解创建
+ * {@link RequestMappingInfo} 实例。
  *
- * <p><strong>Deprecation Note:</strong></p> In 5.2.4,
- * {@link #setUseSuffixPatternMatch(boolean) useSuffixPatternMatch} and
+ * <p><strong>弃用说明：</strong></p>在 5.2.4 中，
+ * {@link #setUseSuffixPatternMatch(boolean) useSuffixPatternMatch} 和
  * {@link #setUseRegisteredSuffixPatternMatch(boolean) useRegisteredSuffixPatternMatch}
- * were deprecated in order to discourage use of path extensions for request
- * mapping and for content negotiation (with similar deprecations in
- * {@link org.springframework.web.accept.ContentNegotiationManagerFactoryBean
- * ContentNegotiationManagerFactoryBean}). For further context, please read issue
- * <a href="https://github.com/spring-projects/spring-framework/issues/24179">#24179</a>.
- *
+ * 被弃用，以不鼓励在请求映射和内容协商中使用路径扩展名
+ * （{@link org.springframework.web.accept.ContentNegotiationManagerFactoryBean
+ * ContentNegotiationManagerFactoryBean} 中也有类似的弃用）。
+ * 如需进一步了解背景，请阅读 issue
+ * <a href="https://github.com/spring-projects/spring-framework/issues/24179">#24179</a>。
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -93,13 +92,13 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 
 	/**
-	 * Whether to use suffix pattern match (".*") when matching patterns to
-	 * requests. If enabled a method mapped to "/users" also matches to "/users.*".
-	 * <p>By default value this is set to {@code false}.
-	 * <p>Also see {@link #setUseRegisteredSuffixPatternMatch(boolean)} for
-	 * more fine-grained control over specific suffixes to allow.
-	 * <p><strong>Note:</strong> This property is ignored when
-	 * {@link #setPatternParser(PathPatternParser)} is configured.
+	 * 在将模式与请求匹配时是否使用后缀模式匹配（".*"）。
+	 * 如果启用，映射到 "/users" 的方法也将匹配 "/users.*"。
+	 * <p>默认情况下此值设置为 {@code false}。
+	 * <p>另请参见 {@link #setUseRegisteredSuffixPatternMatch(boolean)}，
+	 * 以更细粒度地控制允许的特定后缀。
+	 * <p><strong>注意：</strong>当配置了
+	 * {@link #setPatternParser(PathPatternParser)} 时，此属性会被忽略。
 	 * @deprecated as of 5.2.4. See class level note on the deprecation of
 	 * path extension config options. As there is no replacement for this method,
 	 * in 5.2.x it is necessary to set it to {@code false}. In 5.3 the default
@@ -111,13 +110,12 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Whether suffix pattern matching should work only against path extensions
-	 * explicitly registered with the {@link ContentNegotiationManager}. This
-	 * is generally recommended to reduce ambiguity and to avoid issues such as
-	 * when a "." appears in the path for other reasons.
-	 * <p>By default this is set to "false".
-	 * <p><strong>Note:</strong> This property is ignored when
-	 * {@link #setPatternParser(PathPatternParser)} is configured.
+	 * 后缀模式匹配是否只针对显式注册到
+	 * {@link ContentNegotiationManager} 的路径扩展名生效。通常建议这样做，
+	 * 以减少歧义并避免诸如路径中因其他原因出现 "." 时的问题。
+	 * <p>默认情况下此值设置为 "false"。
+	 * <p><strong>注意：</strong>当配置了
+	 * {@link #setPatternParser(PathPatternParser)} 时，此属性会被忽略。
 	 * @deprecated as of 5.2.4. See class level note on the deprecation of
 	 * path extension config options.
 	 */
@@ -128,9 +126,9 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Whether to match to URLs irrespective of the presence of a trailing slash.
-	 * If enabled a method mapped to "/users" also matches to "/users/".
-	 * <p>The default value is {@code true}.
+	 * 是否忽略尾部斜杠的存在而匹配 URL。
+	 * 如果启用，映射到 "/users" 的方法也将匹配 "/users/"。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setUseTrailingSlashMatch(boolean useTrailingSlashMatch) {
 		this.useTrailingSlashMatch = useTrailingSlashMatch;
@@ -140,12 +138,12 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Configure path prefixes to apply to controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
-	 * method whose controller type is matched by the corresponding
-	 * {@code Predicate}. The prefix for the first matching predicate is used.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
-	 * HandlerTypePredicate} to group controllers.
+	 * 配置要应用到控制器方法的路径前缀。
+	 * <p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，
+	 * 这些方法的控制器类型由相应的
+	 * {@code Predicate} 匹配。将使用第一个匹配的谓词对应的前缀。
+	 * <p>可考虑使用 {@link org.springframework.web.method.HandlerTypePredicate
+	 * HandlerTypePredicate} 对控制器进行分组。
 	 * @param prefixes a map with path prefixes as key
 	 * @since 5.1
 	 */
@@ -156,7 +154,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * The configured path prefixes as a read-only, possibly empty map.
+	 * 已配置的路径前缀，为只读的、可能为空的 map。
 	 * @since 5.1
 	 */
 	public Map<String, Predicate<Class<?>>> getPathPrefixes() {
@@ -164,8 +162,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Set the {@link ContentNegotiationManager} to use to determine requested media types.
-	 * If not set, the default constructor is used.
+	 * 设置用于确定所请求媒体类型的 {@link ContentNegotiationManager}。
+	 * 如果未设置，则使用默认构造函数创建的实例。
 	 */
 	public void setContentNegotiationManager(ContentNegotiationManager contentNegotiationManager) {
 		Assert.notNull(contentNegotiationManager, "ContentNegotiationManager must not be null");
@@ -173,7 +171,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Return the configured {@link ContentNegotiationManager}.
+	 * 返回已配置的 {@link ContentNegotiationManager}。
 	 */
 	public ContentNegotiationManager getContentNegotiationManager() {
 		return this.contentNegotiationManager;
@@ -207,7 +205,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 
 	/**
-	 * Whether to use registered suffixes for pattern matching.
+	 * 是否使用已注册的后缀进行模式匹配。
 	 * @deprecated as of 5.2.4. See deprecation notice on
 	 * {@link #setUseSuffixPatternMatch(boolean)}.
 	 */
@@ -217,7 +215,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Whether to use registered suffixes for pattern matching.
+	 * 是否使用已注册的后缀进行模式匹配。
 	 * @deprecated as of 5.2.4. See deprecation notice on
 	 * {@link #setUseRegisteredSuffixPatternMatch(boolean)}.
 	 */
@@ -227,14 +225,14 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Whether to match to URLs irrespective of the presence of a trailing slash.
+	 * 是否忽略尾部斜杠的存在而匹配 URL。
 	 */
 	public boolean useTrailingSlashMatch() {
 		return this.useTrailingSlashMatch;
 	}
 
 	/**
-	 * Return the file extensions to use for suffix pattern matching.
+	 * 返回用于后缀模式匹配的文件扩展名。
 	 * @deprecated as of 5.2.4. See class-level note on the deprecation of path
 	 * extension config options.
 	 */
@@ -246,11 +244,11 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Obtain a {@link RequestMappingInfo.BuilderConfiguration} that can reflects
-	 * the internal configuration of this {@code HandlerMapping} and can be used
-	 * to set {@link RequestMappingInfo.Builder#options(RequestMappingInfo.BuilderConfiguration)}.
-	 * <p>This is useful for programmatic registration of request mappings via
-	 * {@link #registerHandlerMethod(Object, Method, RequestMappingInfo)}.
+	 * 获取一个 {@link RequestMappingInfo.BuilderConfiguration}，它能够反映
+	 * 此 {@code HandlerMapping} 的内部配置，并可用于
+	 * 设置 {@link RequestMappingInfo.Builder#options(RequestMappingInfo.BuilderConfiguration)}。
+	 * <p>这对于通过
+	 * {@link #registerHandlerMethod(Object, Method, RequestMappingInfo)} 以编程方式注册请求映射很有用。
 	 * @return the builder configuration that reflects the internal state
 	 * @since 5.3.14
 	 */
@@ -261,8 +259,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Expects a handler to have either a type-level @{@link Controller}
-	 * annotation or a type-level @{@link RequestMapping} annotation.
+	 * <p>要求处理器具有类型级别的 @{@link Controller}
+	 * 注解或类型级别的 @{@link RequestMapping} 注解。
 	 */
 	@Override
 	protected boolean isHandler(Class<?> beanType) {
@@ -271,8 +269,8 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Uses method and type-level @{@link RequestMapping} annotations to create
-	 * the RequestMappingInfo.
+	 * 使用方法和类型级别的 @{@link RequestMapping} 注解创建
+	 * RequestMappingInfo。
 	 * @return the created RequestMappingInfo, or {@code null} if the method
 	 * does not have a {@code @RequestMapping} annotation.
 	 * @see #getCustomMethodCondition(Method)
@@ -310,9 +308,9 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Delegates to {@link #createRequestMappingInfo(RequestMapping, RequestCondition)},
-	 * supplying the appropriate custom {@link RequestCondition} depending on whether
-	 * the supplied {@code annotatedElement} is a class or method.
+	 * 委托给 {@link #createRequestMappingInfo(RequestMapping, RequestCondition)}，
+	 * 并根据所提供的 {@code annotatedElement} 是类还是方法，
+	 * 提供相应的自定义 {@link RequestCondition}。
 	 * @see #getCustomTypeCondition(Class)
 	 * @see #getCustomMethodCondition(Method)
 	 */
@@ -325,13 +323,13 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Provide a custom type-level request condition.
-	 * The custom {@link RequestCondition} can be of any type so long as the
-	 * same condition type is returned from all calls to this method in order
-	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending {@link AbstractRequestCondition} for custom
-	 * condition types and using {@link CompositeRequestCondition} to provide
-	 * multiple custom conditions.
+	 * 提供自定义的类型级别请求条件。
+	 * 自定义 {@link RequestCondition} 可以是任何类型，只要
+	 * 对此方法的所有调用都返回相同的条件类型，
+	 * 以确保自定义请求条件能够组合和比较。
+	 * <p>可考虑为自定义条件类型扩展 {@link AbstractRequestCondition}，
+	 * 并使用 {@link CompositeRequestCondition} 提供
+	 * 多个自定义条件。
 	 * @param handlerType the handler type for which to create the condition
 	 * @return the condition, or {@code null}
 	 */
@@ -341,13 +339,13 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Provide a custom method-level request condition.
-	 * The custom {@link RequestCondition} can be of any type so long as the
-	 * same condition type is returned from all calls to this method in order
-	 * to ensure custom request conditions can be combined and compared.
-	 * <p>Consider extending {@link AbstractRequestCondition} for custom
-	 * condition types and using {@link CompositeRequestCondition} to provide
-	 * multiple custom conditions.
+	 * 提供自定义的方法级别请求条件。
+	 * 自定义 {@link RequestCondition} 可以是任何类型，只要
+	 * 对此方法的所有调用都返回相同的条件类型，
+	 * 以确保自定义请求条件能够组合和比较。
+	 * <p>可考虑为自定义条件类型扩展 {@link AbstractRequestCondition}，
+	 * 并使用 {@link CompositeRequestCondition} 提供
+	 * 多个自定义条件。
 	 * @param method the handler method for which to create the condition
 	 * @return the condition, or {@code null}
 	 */
@@ -357,10 +355,10 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Create a {@link RequestMappingInfo} from the supplied
-	 * {@link RequestMapping @RequestMapping} annotation, which is either
-	 * a directly declared annotation, a meta-annotation, or the synthesized
-	 * result of merging annotation attributes within an annotation hierarchy.
+	 * 根据所提供的 {@link RequestMapping @RequestMapping} 注解创建
+	 * {@link RequestMappingInfo}，该注解可以是直接声明的注解、
+	 * 元注解，或者是注解层次结构中注解属性合并后的
+	 * 合成结果。
 	 */
 	protected RequestMappingInfo createRequestMappingInfo(
 			RequestMapping requestMapping, @Nullable RequestCondition<?> customCondition) {
@@ -380,7 +378,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 	}
 
 	/**
-	 * Resolve placeholder values in the given array of patterns.
+	 * 解析给定模式数组中的占位符值。
 	 * @return a new array with updated patterns
 	 */
 	protected String[] resolveEmbeddedValuesInPatterns(String[] patterns) {
@@ -404,13 +402,13 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 
 	/**
 	 * {@inheritDoc}
-	 * <p><strong>Note:</strong> To create the {@link RequestMappingInfo},
-	 * please use {@link #getBuilderConfiguration()} and set the options on
+	 * <p><strong>注意：</strong>要创建 {@link RequestMappingInfo}，
+	 * 请使用 {@link #getBuilderConfiguration()} 并在
 	 * {@link RequestMappingInfo.Builder#options(RequestMappingInfo.BuilderConfiguration)}
-	 * to match how this {@code HandlerMapping} is configured. This
-	 * is important for example to ensure use of
-	 * {@link org.springframework.web.util.pattern.PathPattern} or
-	 * {@link org.springframework.util.PathMatcher} based matching.
+	 * 上设置选项，使其与此 {@code HandlerMapping} 的配置方式一致。这
+	 * 很重要，例如可以确保使用
+	 * {@link org.springframework.web.util.pattern.PathPattern} 还是
+	 * {@link org.springframework.util.PathMatcher} 进行匹配。
 	 * @param handler the bean name of the handler or the handler instance
 	 * @param method the method to register
 	 * @param mapping the mapping conditions associated with the handler method

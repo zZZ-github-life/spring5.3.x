@@ -20,12 +20,11 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 
 /**
- * A simpler interceptor that calls {@link MessageHeaderAccessor#setImmutable()}
- * on the headers of messages passed through the preSend method.
+ * 一个较简单的拦截器，它对经过 preSend 方法的消息头部调用
+ * {@link MessageHeaderAccessor#setImmutable()}。
  *
- * <p>When configured as the last interceptor in a chain, it allows the component
- * sending the message to leave headers mutable for interceptors to modify prior
- * to the message actually being sent and exposed to concurrent access.
+ * <p>当配置为拦截器链中的最后一个拦截器时，它允许发送消息的组件在消息实际
+ * 发送并暴露于并发访问之前，保持头部可变以便拦截器进行修改。
  *
  * @author Rossen Stoyanchev
  * @since 4.1.2

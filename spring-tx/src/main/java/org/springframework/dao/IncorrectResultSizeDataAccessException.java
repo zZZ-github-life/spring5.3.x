@@ -17,8 +17,8 @@
 package org.springframework.dao;
 
 /**
- * Data access exception thrown when a result was not of the expected size,
- * for example when expecting a single row but getting 0 or more than 1 rows.
+ * 当结果大小不符合预期时抛出的数据访问异常，
+ * 例如，期望单行但实际得到 0 行或多于 1 行。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -34,7 +34,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 
 	/**
-	 * Constructor for IncorrectResultSizeDataAccessException.
+	 * IncorrectResultSizeDataAccessException 的构造方法。
 	 * @param expectedSize the expected result size
 	 */
 	public IncorrectResultSizeDataAccessException(int expectedSize) {
@@ -44,7 +44,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 	}
 
 	/**
-	 * Constructor for IncorrectResultSizeDataAccessException.
+	 * IncorrectResultSizeDataAccessException 的构造方法。
 	 * @param expectedSize the expected result size
 	 * @param actualSize the actual result size (or -1 if unknown)
 	 */
@@ -55,7 +55,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 	}
 
 	/**
-	 * Constructor for IncorrectResultSizeDataAccessException.
+	 * IncorrectResultSizeDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param expectedSize the expected result size
 	 */
@@ -66,7 +66,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 	}
 
 	/**
-	 * Constructor for IncorrectResultSizeDataAccessException.
+	 * IncorrectResultSizeDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param expectedSize the expected result size
 	 * @param ex the wrapped exception
@@ -78,7 +78,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 	}
 
 	/**
-	 * Constructor for IncorrectResultSizeDataAccessException.
+	 * IncorrectResultSizeDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param expectedSize the expected result size
 	 * @param actualSize the actual result size (or -1 if unknown)
@@ -90,7 +90,7 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 	}
 
 	/**
-	 * Constructor for IncorrectResultSizeDataAccessException.
+	 * IncorrectResultSizeDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param expectedSize the expected result size
 	 * @param actualSize the actual result size (or -1 if unknown)
@@ -104,14 +104,14 @@ public class IncorrectResultSizeDataAccessException extends DataRetrievalFailure
 
 
 	/**
-	 * Return the expected result size.
+	 * 返回预期的结果大小。
 	 */
 	public int getExpectedSize() {
 		return this.expectedSize;
 	}
 
 	/**
-	 * Return the actual result size (or -1 if unknown).
+	 * 返回实际的结果大小（如果未知则返回 -1）。
 	 */
 	public int getActualSize() {
 		return this.actualSize;

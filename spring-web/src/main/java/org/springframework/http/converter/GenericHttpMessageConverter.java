@@ -25,9 +25,8 @@ import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 
 /**
- * A specialization of {@link HttpMessageConverter} that can convert an HTTP request
- * into a target object of a specified generic type and a source object of a specified
- * generic type into an HTTP response.
+ * {@link HttpMessageConverter} 的特化，可以将 HTTP 请求转换为
+ * 指定泛型类型的目标对象，并将指定泛型类型的源对象转换为 HTTP 响应。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -39,10 +38,10 @@ import org.springframework.lang.Nullable;
 public interface GenericHttpMessageConverter<T> extends HttpMessageConverter<T> {
 
 	/**
-	 * Indicates whether the given type can be read by this converter.
-	 * This method should perform the same checks as
-	 * {@link HttpMessageConverter#canRead(Class, MediaType)} with additional ones
-	 * related to the generic type.
+	 * 指示此转换器是否可以读取给定类型。
+	 * 此方法应执行与
+	 * {@link HttpMessageConverter#canRead(Class, MediaType)} 相同的检查，
+	 * 并额外执行与泛型类型相关的检查。
 	 * @param type the (potentially generic) type to test for readability
 	 * @param contextClass a context class for the target type, for example a class
 	 * in which the target type appears in a method signature (can be {@code null})
@@ -53,7 +52,7 @@ public interface GenericHttpMessageConverter<T> extends HttpMessageConverter<T> 
 	boolean canRead(Type type, @Nullable Class<?> contextClass, @Nullable MediaType mediaType);
 
 	/**
-	 * Read an object of the given type form the given input message, and returns it.
+	 * 从给定的输入消息中读取给定类型的对象，并返回它。
 	 * @param type the (potentially generic) type of object to return. This type must have
 	 * previously been passed to the {@link #canRead canRead} method of this interface,
 	 * which must have returned {@code true}.
@@ -68,10 +67,10 @@ public interface GenericHttpMessageConverter<T> extends HttpMessageConverter<T> 
 			throws IOException, HttpMessageNotReadableException;
 
 	/**
-	 * Indicates whether the given class can be written by this converter.
-	 * <p>This method should perform the same checks as
-	 * {@link HttpMessageConverter#canWrite(Class, MediaType)} with additional ones
-	 * related to the generic type.
+	 * 指示此转换器是否可以写入给定类。
+	 * <p>此方法应执行与
+	 * {@link HttpMessageConverter#canWrite(Class, MediaType)} 相同的检查，
+	 * 并额外执行与泛型类型相关的检查。
 	 * @param type the (potentially generic) type to test for writability
 	 * (can be {@code null} if not specified)
 	 * @param clazz the source object class to test for writability
@@ -83,7 +82,7 @@ public interface GenericHttpMessageConverter<T> extends HttpMessageConverter<T> 
 	boolean canWrite(@Nullable Type type, Class<?> clazz, @Nullable MediaType mediaType);
 
 	/**
-	 * Write a given object to the given output message.
+	 * 将给定对象写入给定的输出消息。
 	 * @param t the object to write to the output message. The type of this object must
 	 * have previously been passed to the {@link #canWrite canWrite} method of this
 	 * interface, which must have returned {@code true}.

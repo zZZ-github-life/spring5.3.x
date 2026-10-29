@@ -23,8 +23,7 @@ import org.springframework.beans.propertyeditors.PropertiesEditor;
 import org.springframework.lang.Nullable;
 
 /**
- * Properties editor for JndiTemplate objects. Allows properties of type
- * JndiTemplate to be populated with a properties-format string.
+ * JndiTemplate 对象的属性编辑器。允许用 properties 格式的字符串填充 JndiTemplate 类型的属性。
  *
  * @author Rod Johnson
  * @since 09.05.2003

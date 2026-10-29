@@ -40,25 +40,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletWebRequest;
 
 /**
- * {@code TestExecutionListener} which provides mock Servlet API support to
- * {@link WebApplicationContext WebApplicationContexts} loaded by the <em>Spring
- * TestContext Framework</em>.
- *
- * <p>Specifically, {@code ServletTestExecutionListener} sets up thread-local
- * state via Spring Web's {@link RequestContextHolder} during {@linkplain
- * #prepareTestInstance(TestContext) test instance preparation} and {@linkplain
- * #beforeTestMethod(TestContext) before each test method} and creates a {@link
- * MockHttpServletRequest}, {@link MockHttpServletResponse}, and
- * {@link ServletWebRequest} based on the {@link MockServletContext} present in
- * the {@code WebApplicationContext}. This listener also ensures that the
- * {@code MockHttpServletResponse} and {@code ServletWebRequest} can be injected
- * into the test instance, and once the test is complete this listener {@linkplain
- * #afterTestMethod(TestContext) cleans up} thread-local state.
- *
- * <p>Note that {@code ServletTestExecutionListener} is enabled by default but
- * generally takes no action if the {@linkplain TestContext#getTestClass() test
- * class} is not annotated with {@link WebAppConfiguration @WebAppConfiguration}.
- * See the javadocs for individual methods in this class for details.
+ * {@code TestExecutionListener}，为 <em>Spring TestContext Framework</em> 加载的 {@link WebApplicationContext WebApplicationContexts} 提供 mock Servlet API 支持。
+ * <p>具体而言，{@code ServletTestExecutionListener} 在{@linkplain #prepareTestInstance(TestContext) 测试实例准备}期间和{@linkplain #beforeTestMethod(TestContext) 每个测试方法之前}，通过 Spring Web 的 {@link RequestContextHolder} 设置线程本地状态，并基于 {@code WebApplicationContext} 中存在的 {@link MockServletContext} 创建 {@link MockHttpServletRequest}、{@link MockHttpServletResponse} 和 {@link ServletWebRequest}。此监听器还确保 {@code MockHttpServletResponse} 和 {@code ServletWebRequest} 可以注入到测试实例中，并且在测试完成后，此监听器会{@linkplain #afterTestMethod(TestContext) 清理}线程本地状态。
+ * <p>请注意，{@code ServletTestExecutionListener} 默认启用，但如果{@linkplain TestContext#getTestClass() 测试类}未标注 {@link WebAppConfiguration @WebAppConfiguration}，则通常不执行任何操作。有关详情，请参见此类中各个方法的 javadoc。
  *
  * @author Sam Brannen
  * @author Phillip Webb
@@ -67,41 +51,30 @@ import org.springframework.web.context.request.ServletWebRequest;
 public class ServletTestExecutionListener extends AbstractTestExecutionListener {
 
 	/**
-	 * Attribute name for a {@link TestContext} attribute which indicates
-	 * whether the {@code ServletTestExecutionListener} should {@linkplain
-	 * RequestContextHolder#resetRequestAttributes() reset} Spring Web's
-	 * {@code RequestContextHolder} in {@link #afterTestMethod(TestContext)}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * 用于 {@link TestContext} 属性的属性名，指示 {@code ServletTestExecutionListener} 是否应在 {@link #afterTestMethod(TestContext)} 中{@linkplain RequestContextHolder#resetRequestAttributes() 重置} Spring Web 的 {@code RequestContextHolder}。
+	 * <p>允许的值包括 {@link Boolean#TRUE} 和 {@link Boolean#FALSE}。
 	 */
 	public static final String RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE = Conventions.getQualifiedAttributeName(
 			ServletTestExecutionListener.class, "resetRequestContextHolder");
 
 	/**
-	 * Attribute name for a {@link TestContext} attribute which indicates that
-	 * {@code ServletTestExecutionListener} has already populated Spring Web's
-	 * {@code RequestContextHolder}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * 用于 {@link TestContext} 属性的属性名，指示 {@code ServletTestExecutionListener} 已填充 Spring Web 的 {@code RequestContextHolder}。
+	 * <p>允许的值包括 {@link Boolean#TRUE} 和 {@link Boolean#FALSE}。
 	 */
 	public static final String POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE = Conventions.getQualifiedAttributeName(
 			ServletTestExecutionListener.class, "populatedRequestContextHolder");
 
 	/**
-	 * Attribute name for a request attribute which indicates that the
-	 * {@link MockHttpServletRequest} stored in the {@link RequestAttributes}
-	 * in Spring Web's {@link RequestContextHolder} was created by the TestContext
-	 * framework.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * 用于请求属性的属性名，指示 Spring Web 的 {@link RequestContextHolder} 中 {@link RequestAttributes} 内存储的 {@link MockHttpServletRequest} 是由 TestContext 框架创建的。
+	 * <p>允许的值包括 {@link Boolean#TRUE} 和 {@link Boolean#FALSE}。
 	 * @since 4.2
 	 */
 	public static final String CREATED_BY_THE_TESTCONTEXT_FRAMEWORK = Conventions.getQualifiedAttributeName(
 			ServletTestExecutionListener.class, "createdByTheTestContextFramework");
 
 	/**
-	 * Attribute name for a {@link TestContext} attribute which indicates that the
-	 * {@code ServletTestExecutionListener} should be activated. When not set to
-	 * {@code true}, activation occurs when the {@linkplain TestContext#getTestClass()
-	 * test class} is annotated with {@link WebAppConfiguration @WebAppConfiguration}.
-	 * <p>Permissible values include {@link Boolean#TRUE} and {@link Boolean#FALSE}.
+	 * 用于 {@link TestContext} 属性的属性名，指示应激活 {@code ServletTestExecutionListener}。当未设置为 {@code true} 时，在{@linkplain TestContext#getTestClass() 测试类}标注了 {@link WebAppConfiguration @WebAppConfiguration} 的情况下会激活。
+	 * <p>允许的值包括 {@link Boolean#TRUE} 和 {@link Boolean#FALSE}。
 	 * @since 4.3
 	 */
 	public static final String ACTIVATE_LISTENER = Conventions.getQualifiedAttributeName(
@@ -112,7 +85,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 
 
 	/**
-	 * Returns {@code 1000}.
+	 * 返回 {@code 1000}。
 	 */
 	@Override
 	public final int getOrder() {
@@ -120,10 +93,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	}
 
 	/**
-	 * Sets up thread-local state during the <em>test instance preparation</em>
-	 * callback phase via Spring Web's {@link RequestContextHolder}, but only if
-	 * the {@linkplain TestContext#getTestClass() test class} is annotated with
-	 * {@link WebAppConfiguration @WebAppConfiguration}.
+	 * 在<em>测试实例准备</em>回调阶段通过 Spring Web 的 {@link RequestContextHolder} 设置线程本地状态，但仅当{@linkplain TestContext#getTestClass() 测试类}标注了 {@link WebAppConfiguration @WebAppConfiguration} 时才执行。
 	 * @see TestExecutionListener#prepareTestInstance(TestContext)
 	 * @see #setUpRequestContextIfNecessary(TestContext)
 	 */
@@ -133,10 +103,7 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	}
 
 	/**
-	 * Sets up thread-local state before each test method via Spring Web's
-	 * {@link RequestContextHolder}, but only if the
-	 * {@linkplain TestContext#getTestClass() test class} is annotated with
-	 * {@link WebAppConfiguration @WebAppConfiguration}.
+	 * 在每个测试方法之前通过 Spring Web 的 {@link RequestContextHolder} 设置线程本地状态，但仅当{@linkplain TestContext#getTestClass() 测试类}标注了 {@link WebAppConfiguration @WebAppConfiguration} 时才执行。
 	 * @see TestExecutionListener#beforeTestMethod(TestContext)
 	 * @see #setUpRequestContextIfNecessary(TestContext)
 	 */
@@ -146,17 +113,8 @@ public class ServletTestExecutionListener extends AbstractTestExecutionListener 
 	}
 
 	/**
-	 * If the {@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} in the supplied
-	 * {@code TestContext} has a value of {@link Boolean#TRUE}, this method will
-	 * (1) clean up thread-local state after each test method by {@linkplain
-	 * RequestContextHolder#resetRequestAttributes() resetting} Spring Web's
-	 * {@code RequestContextHolder} and (2) ensure that new mocks are injected
-	 * into the test instance for subsequent tests by setting the
-	 * {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE}
-	 * in the test context to {@code true}.
-	 * <p>The {@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} and
-	 * {@link #POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} will be subsequently
-	 * removed from the test context, regardless of their values.
+	 * 如果所提供的 {@code TestContext} 中的 {@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} 值为 {@link Boolean#TRUE}，则此方法将 (1) 通过{@linkplain RequestContextHolder#resetRequestAttributes() 重置} Spring Web 的 {@code RequestContextHolder} 在每个测试方法之后清理线程本地状态，并 (2) 通过将测试上下文中的 {@link DependencyInjectionTestExecutionListener#REINJECT_DEPENDENCIES_ATTRIBUTE} 设置为 {@code true}，确保为后续测试将新的 mock 对象注入到测试实例中。
+	 * <p>无论其值如何，{@link #RESET_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} 和 {@link #POPULATED_REQUEST_CONTEXT_HOLDER_ATTRIBUTE} 随后都将从测试上下文中移除。
 	 * @see TestExecutionListener#afterTestMethod(TestContext)
 	 */
 	@Override

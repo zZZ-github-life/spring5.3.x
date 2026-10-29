@@ -24,11 +24,9 @@ import org.springframework.http.codec.HttpMessageReader;
 import org.springframework.http.codec.HttpMessageWriter;
 
 /**
- * Provides strategies for use in an {@link ExchangeFunction}.
+ * 提供在 {@link ExchangeFunction} 中使用的策略。
  *
- * <p>To create an instance, see the static methods {@link #withDefaults()},
- * {@link #builder()}, and {@link #empty()}.
- *
+ * <p>要创建实例，请参见静态方法 {@link #withDefaults()}、{@link #builder()} 和 {@link #empty()}。
  * @author Brian Clozel
  * @author Arjen Poutsma
  * @since 5.0
@@ -36,20 +34,19 @@ import org.springframework.http.codec.HttpMessageWriter;
 public interface ExchangeStrategies {
 
 	/**
-	 * Return {@link HttpMessageReader HttpMessageReaders} to read and decode the response body with.
+	 * 返回用于读取和解码响应正文的 {@link HttpMessageReader HttpMessageReaders}。
 	 * @return the message readers
 	 */
 	List<HttpMessageReader<?>> messageReaders();
 
 	/**
-	 * Return {@link HttpMessageWriter HttpMessageWriters} to write and encode the request body with.
+	 * 返回用于写入和编码请求正文的 {@link HttpMessageWriter HttpMessageWriters}。
 	 * @return the message writers
 	 */
 	List<HttpMessageWriter<?>> messageWriters();
 
 	/**
-	 * Return a builder to create a new {@link ExchangeStrategies} instance
-	 * replicated from the current instance.
+	 * 返回用于创建从当前实例复制的新的 {@link ExchangeStrategies} 实例的构建器。
 	 * @since 5.1.12
 	 */
 	default Builder mutate() {
@@ -60,17 +57,14 @@ public interface ExchangeStrategies {
 	// Static builder methods
 
 	/**
-	 * Return an {@code ExchangeStrategies} instance with default configuration
-	 * provided by {@link ClientCodecConfigurer}.
+	 * 返回使用 {@link ClientCodecConfigurer} 提供的默认配置的 {@code ExchangeStrategies} 实例。
 	 */
 	static ExchangeStrategies withDefaults() {
 		return DefaultExchangeStrategiesBuilder.DEFAULT_EXCHANGE_STRATEGIES;
 	}
 
 	/**
-	 * Return a builder pre-configured with default configuration to start.
-	 * This is the same as {@link #withDefaults()} but returns a mutable builder
-	 * for further customizations.
+	 * 返回预先配置了默认配置的构建器作为起点。这与 {@link #withDefaults()} 相同，但返回可变构建器以便进一步自定义。
 	 */
 	static Builder builder() {
 		DefaultExchangeStrategiesBuilder builder = new DefaultExchangeStrategiesBuilder();
@@ -79,7 +73,7 @@ public interface ExchangeStrategies {
 	}
 
 	/**
-	 * Return a builder with empty configuration to start.
+	 * 返回以空配置开始的构建器。
 	 */
 	static Builder empty() {
 		return new DefaultExchangeStrategiesBuilder();
@@ -87,19 +81,19 @@ public interface ExchangeStrategies {
 
 
 	/**
-	 * A mutable builder for an {@link ExchangeStrategies}.
+	 * 用于 {@link ExchangeStrategies} 的可变构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Customize the list of client-side HTTP message readers and writers.
+		 * 自定义客户端 HTTP 消息读写器列表。
 		 * @param consumer the consumer to customize the codecs
 		 * @return this builder
 		 */
 		Builder codecs(Consumer<ClientCodecConfigurer> consumer);
 
 		/**
-		 * Builds the {@link ExchangeStrategies}.
+		 * 构建 {@link ExchangeStrategies}。
 		 * @return the built strategies
 		 */
 		ExchangeStrategies build();

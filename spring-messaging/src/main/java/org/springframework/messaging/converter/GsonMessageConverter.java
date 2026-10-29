@@ -26,8 +26,8 @@ import com.google.gson.Gson;
 import org.springframework.util.Assert;
 
 /**
- * Implementation of {@link MessageConverter} that can read and write JSON
- * using <a href="https://code.google.com/p/google-gson/">Google Gson</a>.
+ * 使用 <a href="https://code.google.com/p/google-gson/">Google Gson</a>
+ * 读写 JSON 的 {@link MessageConverter} 实现。
  *
  * @author Juergen Hoeller
  * @since 5.3
@@ -41,14 +41,14 @@ public class GsonMessageConverter extends AbstractJsonMessageConverter {
 
 
 	/**
-	 * Construct a new {@code GsonMessageConverter} with default configuration.
+	 * 使用默认配置构造新的 {@code GsonMessageConverter}。
 	 */
 	public GsonMessageConverter() {
 		this.gson = new Gson();
 	}
 
 	/**
-	 * Construct a new {@code GsonMessageConverter} with the given delegate.
+	 * 使用给定的委托构造新的 {@code GsonMessageConverter}。
 	 * @param gson the Gson instance to use
 	 */
 	public GsonMessageConverter(Gson gson) {
@@ -58,10 +58,9 @@ public class GsonMessageConverter extends AbstractJsonMessageConverter {
 
 
 	/**
-	 * Set the {@code Gson} instance to use.
-	 * If not set, a default {@link Gson#Gson() Gson} instance will be used.
-	 * <p>Setting a custom-configured {@code Gson} is one way to take further
-	 * control of the JSON serialization process.
+	 * 设置要使用的 {@code Gson} 实例。
+	 * 如果未设置，将使用默认的 {@link Gson#Gson() Gson} 实例。
+	 * <p>设置自定义配置的 {@code Gson} 是进一步控制 JSON 序列化过程的一种方式。
 	 * @see #GsonMessageConverter(Gson)
 	 */
 	public void setGson(Gson gson) {
@@ -70,7 +69,7 @@ public class GsonMessageConverter extends AbstractJsonMessageConverter {
 	}
 
 	/**
-	 * Return the configured {@code Gson} instance for this converter.
+	 * 返回此转换器已配置的 {@code Gson} 实例。
 	 */
 	public Gson getGson() {
 		return this.gson;

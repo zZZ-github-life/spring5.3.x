@@ -20,13 +20,8 @@ import org.junit.jupiter.api.extension.ConditionEvaluationResult;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * {@code EnabledIfCondition} is an {@link org.junit.jupiter.api.extension.ExecutionCondition}
- * that supports the {@link EnabledIf @EnabledIf} annotation when using the <em>Spring
- * TestContext Framework</em> in conjunction with JUnit 5's <em>Jupiter</em> programming model.
- *
- * <p>Any attempt to use the {@code EnabledIfCondition} without the presence of
- * {@link EnabledIf @EnabledIf} will result in an <em>enabled</em>
- * {@link ConditionEvaluationResult}.
+ * {@code EnabledIfCondition} 是一个 {@link org.junit.jupiter.api.extension.ExecutionCondition}，在将 <em>Spring TestContext Framework</em> 与 JUnit 5 的 <em>Jupiter</em> 编程模型结合使用时支持 {@link EnabledIf @EnabledIf} 注解。
+ * <p>如果在不存在 {@link EnabledIf @EnabledIf} 的情况下尝试使用 {@code EnabledIfCondition}，将得到<em>已启用</em>的 {@link ConditionEvaluationResult}。
  *
  * @author Sam Brannen
  * @since 5.0
@@ -37,9 +32,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 public class EnabledIfCondition extends AbstractExpressionEvaluatingCondition {
 
 	/**
-	 * Containers and tests are enabled if {@code @EnabledIf} is present on the
-	 * corresponding test class or test method and the configured expression
-	 * evaluates to {@code true}.
+	 * 如果相应测试类或测试方法上存在 {@code @EnabledIf} 且配置的表达式求值为 {@code true}，则容器和测试将被启用。
 	 */
 	@Override
 	public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context) {

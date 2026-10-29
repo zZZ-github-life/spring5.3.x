@@ -17,12 +17,12 @@
 package org.springframework.web.util;
 
 /**
- * Utility class for JavaScript escaping.
- * Escapes based on the JavaScript 1.5 recommendation.
+ * 用于 JavaScript 转义的实用工具类。
+ * 基于 JavaScript 1.5 建议进行转义。
  *
- * <p>Reference:
+ * <p>参考：
  * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#string_literals">
- * JavaScript Guide</a> on Mozilla Developer Network.
+ * Mozilla Developer Network 上的 JavaScript 指南</a>。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -32,7 +32,7 @@ package org.springframework.web.util;
 public abstract class JavaScriptUtils {
 
 	/**
-	 * Turn JavaScript special characters into escaped characters.
+	 * 将 JavaScript 特殊字符转换为转义字符。
 	 * @param input the input string
 	 * @return the string with escaped characters
 	 */

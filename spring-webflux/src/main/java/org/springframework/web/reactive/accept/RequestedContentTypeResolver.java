@@ -24,27 +24,23 @@ import org.springframework.web.server.NotAcceptableStatusException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Strategy to resolve the requested media types for a {@code ServerWebExchange}.
+ * 为 {@code ServerWebExchange} 解析所请求媒体类型的策略。
  *
- * <p>See {@link RequestedContentTypeResolverBuilder} to create a sequence of
- * strategies.
- *
+ * <p>请参见 {@link RequestedContentTypeResolverBuilder} 以创建一系列策略。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
 public interface RequestedContentTypeResolver {
 
 	/**
-	 * A singleton list with {@link MediaType#ALL} that is returned from
-	 * {@link #resolveMediaTypes} when no specific media types are requested.
+	 * 包含 {@link MediaType#ALL} 的单元素列表，在未请求特定媒体类型时由 {@link #resolveMediaTypes} 返回。
 	 * @since 5.0.5
 	 */
 	List<MediaType> MEDIA_TYPE_ALL_LIST = Collections.singletonList(MediaType.ALL);
 
 
 	/**
-	 * Resolve the given request to a list of requested media types. The returned
-	 * list is ordered by specificity first and by quality parameter second.
+	 * 将给定请求解析为所请求媒体类型的列表。返回的列表首先按特异性排序，其次按质量参数排序。
 	 * @param exchange the current exchange
 	 * @return the requested media types, or {@link #MEDIA_TYPE_ALL_LIST} if none
 	 * were requested.

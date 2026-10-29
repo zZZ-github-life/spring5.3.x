@@ -46,13 +46,12 @@ import org.springframework.util.PropertyPlaceholderHelper.PlaceholderResolver;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link HandlerMethodReturnValueHandler} for sending to destinations specified in a
- * {@link SendTo} or {@link SendToUser} method-level annotations.
+ * 用于发送到 {@link SendTo} 或 {@link SendToUser} 方法级注解中指定目标的
+ * {@link HandlerMethodReturnValueHandler}。
  *
- * <p>The value returned from the method is converted, and turned to a {@link Message} and
- * sent through the provided {@link MessageChannel}. The message is then enriched with the
- * session id of the input message as well as the destination from the annotation(s).
- * If multiple destinations are specified, a copy of the message is sent to each destination.
+ * <p>方法返回的值会被转换，并转换为 {@link Message}，
+ * 然后通过提供的 {@link MessageChannel} 发送。随后，消息会使用输入消息的会话 ID
+ * 以及注解中的目标进行丰富。如果指定了多个目标，则向每个目标发送消息副本。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -82,17 +81,16 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 
 
 	/**
-	 * Configure a default prefix to add to message destinations in cases where a method
-	 * is not annotated with {@link SendTo @SendTo} or does not specify any destinations
-	 * through the annotation's value attribute.
-	 * <p>By default, the prefix is set to "/topic".
+	 * 配置在方法未使用 {@link SendTo @SendTo} 注解
+	 * 或未通过注解的 value 属性指定任何目标时，添加到消息目标的默认前缀。
+	 * <p>默认情况下，前缀设置为 "/topic"。
 	 */
 	public void setDefaultDestinationPrefix(String defaultDestinationPrefix) {
 		this.defaultDestinationPrefix = defaultDestinationPrefix;
 	}
 
 	/**
-	 * Return the configured default destination prefix.
+	 * 返回已配置的默认目标前缀。
 	 * @see #setDefaultDestinationPrefix(String)
 	 */
 	public String getDefaultDestinationPrefix() {
@@ -100,17 +98,16 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 	}
 
 	/**
-	 * Configure a default prefix to add to message destinations in cases where a
-	 * method is annotated with {@link SendToUser @SendToUser} but does not specify
-	 * any destinations through the annotation's value attribute.
-	 * <p>By default, the prefix is set to "/queue".
+	 * 配置在方法使用 {@link SendToUser @SendToUser} 注解
+	 * 但未通过注解的 value 属性指定任何目标时，添加到消息目标的默认前缀。
+	 * <p>默认情况下，前缀设置为 "/queue"。
 	 */
 	public void setDefaultUserDestinationPrefix(String prefix) {
 		this.defaultUserDestinationPrefix = prefix;
 	}
 
 	/**
-	 * Return the configured default user destination prefix.
+	 * 返回已配置的默认用户目标前缀。
 	 * @see #setDefaultUserDestinationPrefix(String)
 	 */
 	public String getDefaultUserDestinationPrefix() {
@@ -118,16 +115,16 @@ public class SendToMethodReturnValueHandler implements HandlerMethodReturnValueH
 	}
 
 	/**
-	 * Configure a {@link MessageHeaderInitializer} to apply to the headers of all
-	 * messages sent to the client outbound channel.
-	 * <p>By default this property is not set.
+	 * 配置要应用于发送到客户端出站通道的所有消息头的
+	 * {@link MessageHeaderInitializer}。
+	 * <p>默认情况下，不设置此属性。
 	 */
 	public void setHeaderInitializer(@Nullable MessageHeaderInitializer headerInitializer) {
 		this.headerInitializer = headerInitializer;
 	}
 
 	/**
-	 * Return the configured header initializer.
+	 * 返回已配置的头初始化器。
 	 */
 	@Nullable
 	public MessageHeaderInitializer getHeaderInitializer() {

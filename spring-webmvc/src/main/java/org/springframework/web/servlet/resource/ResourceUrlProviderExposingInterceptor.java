@@ -24,16 +24,14 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * An interceptor that exposes the {@link ResourceUrlProvider} instance it
- * is configured with as a request attribute.
- *
+ * 将所配置的 {@link ResourceUrlProvider} 实例作为请求属性暴露的拦截器。
  * @author Rossen Stoyanchev
  * @since 4.1
  */
 public class ResourceUrlProviderExposingInterceptor implements HandlerInterceptor {
 
 	/**
-	 * Name of the request attribute that holds the {@link ResourceUrlProvider}.
+	 * 保存 {@link ResourceUrlProvider} 的请求属性名称。
 	 */
 	public static final String RESOURCE_URL_PROVIDER_ATTR = ResourceUrlProvider.class.getName();
 

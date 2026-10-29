@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Represents a SockJS frame. Provides factory methods to create SockJS frames.
+ * 表示一个 SockJS 帧。提供用于创建 SockJS 帧的工厂方法。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -32,7 +32,7 @@ import org.springframework.util.StringUtils;
 public class SockJsFrame {
 
 	/**
-	 * The charset used by SockJS.
+	 * SockJS 使用的字符集。
 	 */
 	public static final Charset CHARSET = StandardCharsets.UTF_8;
 
@@ -52,7 +52,7 @@ public class SockJsFrame {
 
 
 	/**
-	 * Create a new instance frame with the given frame content.
+	 * 使用给定帧内容创建新的实例帧。
 	 * @param content the content (must be a non-empty and represent a valid SockJS frame)
 	 */
 	public SockJsFrame(String content) {
@@ -84,30 +84,29 @@ public class SockJsFrame {
 
 
 	/**
-	 * Return the SockJS frame type.
+	 * 返回 SockJS 帧类型。
 	 */
 	public SockJsFrameType getType() {
 		return this.type;
 	}
 
 	/**
-	 * Return the SockJS frame content (never {@code null}).
+	 * 返回 SockJS 帧内容（永不为 {@code null}）。
 	 */
 	public String getContent() {
 		return this.content;
 	}
 
 	/**
-	 * Return the SockJS frame content as a byte array.
+	 * 以字节数组形式返回 SockJS 帧内容。
 	 */
 	public byte[] getContentBytes() {
 		return this.content.getBytes(CHARSET);
 	}
 
 	/**
-	 * Return data contained in a SockJS "message" and "close" frames. Otherwise
-	 * for SockJS "open" and "close" frames, which do not contain data, return
-	 * {@code null}.
+	 * 返回 SockJS "message" 和 "close" 帧中包含的数据。否则，对于不包含数据的
+	 * SockJS "open" 和 "close" 帧，返回 {@code null}。
 	 */
 	@Nullable
 	public String getFrameData() {

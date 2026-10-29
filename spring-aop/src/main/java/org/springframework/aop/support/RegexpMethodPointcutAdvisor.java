@@ -25,16 +25,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Convenient class for regexp method pointcuts that hold an Advice,
- * making them an {@link org.springframework.aop.Advisor}.
+ * 用于正则表达式方法切点的便捷类，它持有一个 Advice，从而使其成为
+ * {@link org.springframework.aop.Advisor}。
  *
- * <p>Configure this class using the "pattern" and "patterns"
- * pass-through properties. These are analogous to the pattern
- * and patterns properties of {@link AbstractRegexpMethodPointcut}.
+ * <p>使用 "pattern" 和 "patterns" 这两个透传属性配置此类。它们类似于
+ * {@link AbstractRegexpMethodPointcut} 的 pattern 和 patterns 属性。
  *
- * <p>Can delegate to any {@link AbstractRegexpMethodPointcut} subclass.
- * By default, {@link JdkRegexpMethodPointcut} will be used. To choose
- * a specific one, override the {@link #createPointcut} method.
+ * <p>可以委托给任何 {@link AbstractRegexpMethodPointcut} 子类。默认情况下将使用
+ * {@link JdkRegexpMethodPointcut}。要选择特定的实现，请覆盖 {@link #createPointcut} 方法。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -55,7 +53,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 
 	/**
-	 * Create an empty RegexpMethodPointcutAdvisor.
+	 * 创建一个空的 RegexpMethodPointcutAdvisor。
 	 * @see #setPattern
 	 * @see #setPatterns
 	 * @see #setAdvice
@@ -64,8 +62,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	}
 
 	/**
-	 * Create a RegexpMethodPointcutAdvisor for the given advice.
-	 * The pattern still needs to be specified afterwards.
+	 * 为给定的通知创建一个 RegexpMethodPointcutAdvisor。之后仍需指定模式。
 	 * @param advice the advice to use
 	 * @see #setPattern
 	 * @see #setPatterns
@@ -75,7 +72,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	}
 
 	/**
-	 * Create a RegexpMethodPointcutAdvisor for the given advice.
+	 * 为给定的通知创建一个 RegexpMethodPointcutAdvisor。
 	 * @param pattern the pattern to use
 	 * @param advice the advice to use
 	 */
@@ -85,7 +82,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	}
 
 	/**
-	 * Create a RegexpMethodPointcutAdvisor for the given advice.
+	 * 为给定的通知创建一个 RegexpMethodPointcutAdvisor。
 	 * @param patterns the patterns to use
 	 * @param advice the advice to use
 	 */
@@ -96,8 +93,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 
 	/**
-	 * Set the regular expression defining methods to match.
-	 * <p>Use either this method or {@link #setPatterns}, not both.
+	 * 设置用于定义要匹配方法的正则表达式。<p>请使用此方法或 {@link #setPatterns}，不要同时使用两者。
 	 * @see #setPatterns
 	 */
 	public void setPattern(String pattern) {
@@ -105,10 +101,8 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	}
 
 	/**
-	 * Set the regular expressions defining methods to match.
-	 * To be passed through to the pointcut implementation.
-	 * <p>Matching will be the union of all these; if any of the
-	 * patterns matches, the pointcut matches.
+	 * 设置用于定义要匹配方法的正则表达式。这些表达式将透传给切点实现。<p>匹配将是所有这些模式的并集；
+	 * 只要有任一模式匹配，切点就匹配。
 	 * @see AbstractRegexpMethodPointcut#setPatterns
 	 */
 	public void setPatterns(String... patterns) {
@@ -117,7 +111,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 
 	/**
-	 * Initialize the singleton Pointcut held within this Advisor.
+	 * 初始化此 Advisor 中持有的单例切点。
 	 */
 	@Override
 	public Pointcut getPointcut() {
@@ -133,8 +127,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 	}
 
 	/**
-	 * Create the actual pointcut: By default, a {@link JdkRegexpMethodPointcut}
-	 * will be used.
+	 * 创建实际的切点：默认情况下将使用 {@link JdkRegexpMethodPointcut}。
 	 * @return the Pointcut instance (never {@code null})
 	 */
 	protected AbstractRegexpMethodPointcut createPointcut() {
@@ -149,7 +142,7 @@ public class RegexpMethodPointcutAdvisor extends AbstractGenericPointcutAdvisor 
 
 
 	/**
-	 * Empty class used for a serializable monitor object.
+	 * 用于可序列化监视器对象的空类。
 	 */
 	private static class SerializableMonitor implements Serializable {
 	}

@@ -25,9 +25,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * Abstract implementation of the Tiles {@link org.apache.tiles.preparer.factory.PreparerFactory}
- * interface, obtaining the current Spring WebApplicationContext and delegating to
- * {@link #getPreparer(String, org.springframework.web.context.WebApplicationContext)}.
+ * Tiles {@link org.apache.tiles.preparer.factory.PreparerFactory} 接口的抽象实现，
+ * 它获取当前的 Spring WebApplicationContext 并委托给
+ * {@link #getPreparer(String, org.springframework.web.context.WebApplicationContext)}。
  *
  * @author Juergen Hoeller
  * @since 3.2
@@ -52,8 +52,8 @@ public abstract class AbstractSpringPreparerFactory implements PreparerFactory {
 	}
 
 	/**
-	 * Obtain a preparer instance for the given preparer name,
-	 * based on the given Spring WebApplicationContext.
+	 * 基于给定的 Spring WebApplicationContext，为给定的 preparer 名称
+	 * 获取 preparer 实例。
 	 * @param name the name of the preparer
 	 * @param context the current Spring WebApplicationContext
 	 * @return the preparer instance

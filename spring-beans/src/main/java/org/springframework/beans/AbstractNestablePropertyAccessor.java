@@ -46,15 +46,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A basic {@link ConfigurablePropertyAccessor} that provides the necessary
- * infrastructure for all typical use cases.
+ * 一个基本的 {@link ConfigurablePropertyAccessor}，为所有典型用例提供所需的基础设施。
  *
- * <p>This accessor will convert collection and array values to the corresponding
- * target collections or arrays, if necessary. Custom property editors that deal
- * with collections or arrays can either be written via PropertyEditor's
- * {@code setValue}, or against a comma-delimited String via {@code setAsText},
- * as String arrays are converted in such a format if the array itself is not
- * assignable.
+ * <p>该访问器会在必要时将集合和数组值转换为对应的目标集合或数组。处理集合或数组的自定义属性编辑器，
+ * 既可以通过 PropertyEditor 的 {@code setValue} 编写，也可以针对逗号分隔的 String 通过
+ * {@code setAsText} 编写，因为当数组本身不可赋值时，String 数组会按这种格式进行转换。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -72,7 +68,7 @@ import org.springframework.util.StringUtils;
 public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyAccessor {
 
 	/**
-	 * We'll create a lot of these objects, so we don't want a new logger every time.
+	 * 我们会创建大量此类对象，因此不希望每次都新建一个 logger。
 	 */
 	private static final Log logger = LogFactory.getLog(AbstractNestablePropertyAccessor.class);
 
@@ -86,14 +82,13 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	@Nullable
 	Object rootObject;
 
-	/** Map with cached nested Accessors: nested path -> Accessor instance. */
+	/** 缓存嵌套 Accessor 的 Map：嵌套路径 -> Accessor 实例。 */
 	@Nullable
 	private Map<String, AbstractNestablePropertyAccessor> nestedPropertyAccessors;
 
 
 	/**
-	 * Create a new empty accessor. Wrapped instance needs to be set afterwards.
-	 * Registers default editors.
+	 * 创建一个新的空访问器。之后需要设置被包装的实例。会注册默认编辑器。
 	 * @see #setWrappedInstance
 	 */
 	protected AbstractNestablePropertyAccessor() {
@@ -101,7 +96,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new empty accessor. Wrapped instance needs to be set afterwards.
+	 * 创建一个新的空访问器。之后需要设置被包装的实例。
 	 * @param registerDefaultEditors whether to register default editors
 	 * (can be suppressed if the accessor won't need any type conversion)
 	 * @see #setWrappedInstance
@@ -114,7 +109,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new accessor for the given object.
+	 * 为给定对象创建一个新的访问器。
 	 * @param object the object wrapped by this accessor
 	 */
 	protected AbstractNestablePropertyAccessor(Object object) {
@@ -123,7 +118,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new accessor, wrapping a new instance of the specified class.
+	 * 创建一个新的访问器，包装指定类的新实例。
 	 * @param clazz class to instantiate and wrap
 	 */
 	protected AbstractNestablePropertyAccessor(Class<?> clazz) {
@@ -132,8 +127,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new accessor for the given object,
-	 * registering a nested path that the object is in.
+	 * 为给定对象创建一个新的访问器，并注册该对象所处的嵌套路径。
 	 * @param object the object wrapped by this accessor
 	 * @param nestedPath the nested path of the object
 	 * @param rootObject the root object at the top of the path
@@ -144,8 +138,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Create a new accessor for the given object,
-	 * registering a nested path that the object is in.
+	 * 为给定对象创建一个新的访问器，并注册该对象所处的嵌套路径。
 	 * @param object the object wrapped by this accessor
 	 * @param nestedPath the nested path of the object
 	 * @param parent the containing accessor (must not be {@code null})
@@ -160,23 +153,21 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 
 	/**
-	 * Specify a limit for array and collection auto-growing.
-	 * <p>Default is unlimited on a plain accessor.
+	 * 指定数组和集合自动增长的限值。<p>在普通访问器上默认不限制。
 	 */
 	public void setAutoGrowCollectionLimit(int autoGrowCollectionLimit) {
 		this.autoGrowCollectionLimit = autoGrowCollectionLimit;
 	}
 
 	/**
-	 * Return the limit for array and collection auto-growing.
+	 * 返回数组和集合自动增长的限值。
 	 */
 	public int getAutoGrowCollectionLimit() {
 		return this.autoGrowCollectionLimit;
 	}
 
 	/**
-	 * Switch the target object, replacing the cached introspection results only
-	 * if the class of the new object is different to that of the replaced object.
+	 * 切换目标对象，仅当新对象的类与被替换对象的类不同时，才替换缓存的内省结果。
 	 * @param object the new target object
 	 */
 	public void setWrappedInstance(Object object) {
@@ -184,8 +175,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Switch the target object, replacing the cached introspection results only
-	 * if the class of the new object is different to that of the replaced object.
+	 * 切换目标对象，仅当新对象的类与被替换对象的类不同时，才替换缓存的内省结果。
 	 * @param object the new target object
 	 * @param nestedPath the nested path of the object
 	 * @param rootObject the root object at the top of the path
@@ -209,14 +199,14 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Return the nested path of the object wrapped by this accessor.
+	 * 返回此访问器所包装对象的嵌套路径。
 	 */
 	public final String getNestedPath() {
 		return this.nestedPath;
 	}
 
 	/**
-	 * Return the root object at the top of the path of this accessor.
+	 * 返回此访问器路径顶部的根对象。
 	 * @see #getNestedPath
 	 */
 	public final Object getRootInstance() {
@@ -225,7 +215,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Return the class of the root object at the top of the path of this accessor.
+	 * 返回此访问器路径顶部根对象的类。
 	 * @see #getNestedPath
 	 */
 	public final Class<?> getRootClass() {
@@ -716,8 +706,8 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 
 	/**
-	 * Return the {@link PropertyHandler} for the specified {@code propertyName}, navigating
-	 * if necessary. Return {@code null} if not found rather than throwing an exception.
+	 * 返回指定 {@code propertyName} 的 {@link PropertyHandler}，必要时进行导航。如果未找到则返回
+	 * {@code null}，而不是抛出异常。
 	 * @param propertyName the property to obtain the descriptor for
 	 * @return the property descriptor for the specified property,
 	 * or {@code null} if not found
@@ -731,8 +721,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Return a {@link PropertyHandler} for the specified local {@code propertyName}.
-	 * Only used to reach a property available in the current context.
+	 * 返回指定本地 {@code propertyName} 的 {@link PropertyHandler}。仅用于访问当前上下文中可用的属性。
 	 * @param propertyName the name of a local property
 	 * @return the handler for that property, or {@code null} if it has not been found
 	 */
@@ -740,8 +729,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	protected abstract PropertyHandler getLocalPropertyHandler(String propertyName);
 
 	/**
-	 * Create a new nested property accessor instance.
-	 * Can be overridden in subclasses to create a PropertyAccessor subclass.
+	 * 创建一个新的嵌套属性访问器实例。可在子类中覆盖，以创建 PropertyAccessor 的子类。
 	 * @param object the object wrapped by this PropertyAccessor
 	 * @param nestedPath the nested path of the object
 	 * @return the nested PropertyAccessor instance
@@ -749,7 +737,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	protected abstract AbstractNestablePropertyAccessor newNestedPropertyAccessor(Object object, String nestedPath);
 
 	/**
-	 * Create a {@link NotWritablePropertyException} for the specified property.
+	 * 为指定属性创建一个 {@link NotWritablePropertyException}。
 	 */
 	protected abstract NotWritablePropertyException createNotWritablePropertyException(String propertyName);
 
@@ -794,7 +782,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Get the last component of the path. Also works if not nested.
+	 * 获取路径的最后一个组成部分。即使不是嵌套的也适用。
 	 * @param pa property accessor to work on
 	 * @param nestedPath property path we know is nested
 	 * @return last component of the path (the property on the target bean)
@@ -807,7 +795,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Recursively navigate to return a property accessor for the nested property path.
+	 * 递归导航，返回嵌套属性路径的属性访问器。
 	 * @param propertyPath property path, which may be nested
 	 * @return a property accessor for the target bean
 	 */
@@ -826,10 +814,8 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Retrieve a Property accessor for the given nested property.
-	 * Create a new one if not found in the cache.
-	 * <p>Note: Caching nested PropertyAccessors is necessary now,
-	 * to keep registered custom editors for nested properties.
+	 * 获取给定嵌套属性的 Property 访问器。如果缓存中未找到，则创建一个新的。<p>注意：现在必须缓存嵌套
+	 * 的 PropertyAccessor，以保留为嵌套属性注册的自定义编辑器。
 	 * @param nestedProperty property to create the PropertyAccessor for
 	 * @return the PropertyAccessor instance, either cached or newly created
 	 */
@@ -925,7 +911,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 	}
 
 	/**
-	 * Parse the given property name into the corresponding property name tokens.
+	 * 将给定属性名解析为相应的属性名标记。
 	 * @param propertyName the property name to parse
 	 * @return representation of the parsed property tokens
 	 */
@@ -1000,7 +986,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 
 	/**
-	 * A handler for a specific property.
+	 * 特定属性的处理器。
 	 */
 	protected abstract static class PropertyHandler {
 
@@ -1058,7 +1044,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 
 
 	/**
-	 * Holder class used to store property tokens.
+	 * 用于存储属性标记的持有者类。
 	 */
 	protected static class PropertyTokenHolder {
 

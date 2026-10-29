@@ -17,9 +17,9 @@
 package org.springframework.util.backoff;
 
 /**
- * Represent a particular back-off execution.
+ * 表示一次特定的退避执行。
  *
- * <p>Implementations do not need to be thread safe.
+ * <p>实现无需是线程安全的。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -29,15 +29,13 @@ package org.springframework.util.backoff;
 public interface BackOffExecution {
 
 	/**
-	 * Return value of {@link #nextBackOff()} that indicates that the operation
-	 * should not be retried.
+	 * 返回 {@link #nextBackOff()} 的值，该值表示不应重试该操作。
 	 */
 	long STOP = -1;
 
 	/**
-	 * Return the number of milliseconds to wait before retrying the operation
-	 * or {@link #STOP} ({@value #STOP}) to indicate that no further attempt
-	 * should be made for the operation.
+	 * 返回重试操作前需要等待的毫秒数，或返回 {@link #STOP}（{@value #STOP}）以表示不应再对该操作进行尝
+	 * 试。
 	 */
 	long nextBackOff();
 

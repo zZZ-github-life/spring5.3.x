@@ -22,10 +22,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.LocaleResolver;
 
 /**
- * Abstract base class for {@link LocaleResolver} implementations.
- *
- * <p>Provides support for a {@linkplain #setDefaultLocale(Locale) default locale}.
- *
+ * 用于 {@link LocaleResolver} 实现的抽象基类。<p>提供对{@linkplain #setDefaultLocale(Locale) 默认区域设置}的支持。
  * @author Juergen Hoeller
  * @since 1.2.9
  * @see #setDefaultLocale
@@ -37,16 +34,14 @@ public abstract class AbstractLocaleResolver implements LocaleResolver {
 
 
 	/**
-	 * Set a default {@link Locale} that this resolver will return if no other
-	 * locale is found.
+	 * 设置一个默认 {@link Locale}，如果未找到其他区域设置，此解析器将返回它。
 	 */
 	public void setDefaultLocale(@Nullable Locale defaultLocale) {
 		this.defaultLocale = defaultLocale;
 	}
 
 	/**
-	 * Get the default {@link Locale} that this resolver is supposed to fall back
-	 * to, if any.
+	 * 获取此解析器应回退到的默认 {@link Locale}（如果有）。
 	 */
 	@Nullable
 	protected Locale getDefaultLocale() {

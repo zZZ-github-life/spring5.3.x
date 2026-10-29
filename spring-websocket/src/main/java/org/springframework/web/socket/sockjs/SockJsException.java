@@ -20,7 +20,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * Base class for exceptions raised while processing SockJS HTTP requests.
+ * 处理 SockJS HTTP 请求时引发的异常的基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -33,7 +33,7 @@ public class SockJsException extends NestedRuntimeException {
 
 
 	/**
-	 * Constructor for SockJsException.
+	 * SockJsException 的构造函数。
 	 * @param message the exception message
 	 * @param cause the root cause
 	 */
@@ -42,7 +42,7 @@ public class SockJsException extends NestedRuntimeException {
 	}
 
 	/**
-	 * Constructor for SockJsException.
+	 * SockJsException 的构造函数。
 	 * @param message the exception message
 	 * @param sessionId the SockJS session id
 	 * @param cause the root cause
@@ -54,7 +54,7 @@ public class SockJsException extends NestedRuntimeException {
 
 
 	/**
-	 * Return the SockJS session id.
+	 * 返回 SockJS 会话 ID。
 	 */
 	@Nullable
 	public String getSockJsSessionId() {

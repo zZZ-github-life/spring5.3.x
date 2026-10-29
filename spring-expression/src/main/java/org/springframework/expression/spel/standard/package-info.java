@@ -1,5 +1,5 @@
 /**
- * SpEL's standard parser implementation.
+ * SpEL 的标准解析器实现。
  */
 @NonNullApi
 @NonNullFields

@@ -24,13 +24,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 
 /**
- * Exposes information, typically to {@link Transport} and
- * {@link AbstractClientSockJsSession session} implementations, about a request
- * to connect to a SockJS server endpoint over a given transport.
+ * 通常向 {@link Transport} 和
+ * {@link AbstractClientSockJsSession session} 实现公开有关通过给定传输
+ * 连接到 SockJS 服务器端点的请求的信息。
  *
- * <p>Note that a single request to connect via {@link SockJsClient} may result
- * in multiple instances of {@link TransportRequest}, one for each transport
- * before a connection is successfully established.
+ * <p>请注意，通过 {@link SockJsClient} 进行的单个连接请求可能会产生
+ * 多个 {@link TransportRequest} 实例，在连接成功建立之前
+ * 每个传输对应一个实例。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -38,42 +38,42 @@ import org.springframework.web.socket.sockjs.frame.SockJsMessageCodec;
 public interface TransportRequest {
 
 	/**
-	 * Return information about the SockJS URL including server and session ID.
+	 * 返回有关 SockJS URL 的信息，包括服务器和会话 ID。
 	 */
 	SockJsUrlInfo getSockJsUrlInfo();
 
 	/**
-	 * Return the headers to send with the connect request.
+	 * 返回随连接请求发送的头。
 	 */
 	HttpHeaders getHandshakeHeaders();
 
 	/**
-	 * Return the headers to add to all other HTTP requests besides the handshake
-	 * request such as XHR receive and send requests.
+	 * 返回除握手请求之外要添加到所有其他 HTTP 请求（例如 XHR 接收和发送请求）
+	 * 的头。
 	 * @since 4.2
 	 */
 	HttpHeaders getHttpRequestHeaders();
 
 	/**
-	 * Return the transport URL for the given transport.
-	 * <p>For an {@link XhrTransport} this is the URL for receiving messages.
+	 * 返回给定传输的传输 URL。
+	 * <p>对于 {@link XhrTransport}，这是用于接收消息的 URL。
 	 */
 	URI getTransportUrl();
 
 	/**
-	 * Return the user associated with the request, if any.
+	 * 返回与请求关联的用户（如果有）。
 	 */
 	@Nullable
 	Principal getUser();
 
 	/**
-	 * Return the message codec to use for encoding SockJS messages.
+	 * 返回用于编码 SockJS 消息的消息编解码器。
 	 */
 	SockJsMessageCodec getMessageCodec();
 
 	/**
-	 * Register a timeout cleanup task to invoke if the SockJS session is not
-	 * fully established within the calculated retransmission timeout period.
+	 * 注册一个超时清理任务，如果在计算的重新传输超时期限内
+	 * SockJS 会话未完全建立，则调用该任务。
 	 */
 	void addTimeoutTask(Runnable runnable);
 

@@ -20,8 +20,8 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link org.springframework.beans.factory.xml.NamespaceHandler} for Spring WebSocket
- * configuration namespace.
+ * Spring WebSocket 配置命名空间的
+ * {@link org.springframework.beans.factory.xml.NamespaceHandler}。
  *
  * @author Brian Clozel
  * @since 4.0

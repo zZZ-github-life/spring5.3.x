@@ -24,8 +24,7 @@ import org.springframework.core.ConfigurableObjectInputStream;
 import org.springframework.lang.Nullable;
 
 /**
- * A default {@link Deserializer} implementation that reads an input stream
- * using Java serialization.
+ * 默认的 {@link Deserializer} 实现，使用 Java 序列化读取输入流。
  *
  * @author Gary Russell
  * @author Mark Fisher
@@ -40,16 +39,16 @@ public class DefaultDeserializer implements Deserializer<Object> {
 
 
 	/**
-	 * Create a {@code DefaultDeserializer} with default {@link ObjectInputStream}
-	 * configuration, using the "latest user-defined ClassLoader".
+	 * 使用默认的 {@link ObjectInputStream} 配置创建一个 {@code DefaultDeserializer}，并采用“最新的用户
+	 * 定义 ClassLoader”。
 	 */
 	public DefaultDeserializer() {
 		this.classLoader = null;
 	}
 
 	/**
-	 * Create a {@code DefaultDeserializer} for using an {@link ObjectInputStream}
-	 * with the given {@code ClassLoader}.
+	 * 创建一个 {@code DefaultDeserializer}，使用给定 {@code ClassLoader} 的 {@link ObjectInputStream}。
+	 *
 	 * @since 4.2.1
 	 * @see ConfigurableObjectInputStream#ConfigurableObjectInputStream(InputStream, ClassLoader)
 	 */
@@ -59,8 +58,7 @@ public class DefaultDeserializer implements Deserializer<Object> {
 
 
 	/**
-	 * Read from the supplied {@code InputStream} and deserialize the contents
-	 * into an object.
+	 * 从提供的 {@code InputStream} 读取内容，并将其反序列化为一个对象。
 	 * @see ObjectInputStream#readObject()
 	 */
 	@Override

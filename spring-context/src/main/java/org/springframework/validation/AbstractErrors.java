@@ -28,9 +28,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract implementation of the {@link Errors} interface. Provides common
- * access to evaluated errors; however, does not define concrete management
- * of {@link ObjectError ObjectErrors} and {@link FieldError FieldErrors}.
+ * {@link Errors} 接口的抽象实现。提供对已评估错误的通用访问；但不定义
+ * {@link ObjectError ObjectErrors} 和 {@link FieldError FieldErrors} 的具体管理。
  *
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
@@ -73,8 +72,7 @@ public abstract class AbstractErrors implements Errors, Serializable {
 	}
 
 	/**
-	 * Actually set the nested path.
-	 * Delegated to by setNestedPath and pushNestedPath.
+	 * 实际设置嵌套路径。由 setNestedPath 和 pushNestedPath 委托调用。
 	 */
 	protected void doSetNestedPath(@Nullable String nestedPath) {
 		if (nestedPath == null) {
@@ -88,8 +86,7 @@ public abstract class AbstractErrors implements Errors, Serializable {
 	}
 
 	/**
-	 * Transform the given field into its full path,
-	 * regarding the nested path of this instance.
+	 * 根据此实例的嵌套路径，将给定字段转换为其完整路径。
 	 */
 	protected String fixedField(@Nullable String field) {
 		if (StringUtils.hasLength(field)) {
@@ -103,8 +100,7 @@ public abstract class AbstractErrors implements Errors, Serializable {
 	}
 
 	/**
-	 * Determine the canonical field name for the given field.
-	 * <p>The default implementation simply returns the field name as-is.
+	 * 确定给定字段的规范字段名。<p>默认实现直接原样返回字段名。
 	 * @param field the original field name
 	 * @return the canonical field name
 	 */
@@ -224,7 +220,7 @@ public abstract class AbstractErrors implements Errors, Serializable {
 	}
 
 	/**
-	 * Check whether the given FieldError matches the given field.
+	 * 检查给定的 FieldError 是否与给定字段匹配。
 	 * @param field the field that we are looking up FieldErrors for
 	 * @param fieldError the candidate FieldError
 	 * @return whether the FieldError matches the given field

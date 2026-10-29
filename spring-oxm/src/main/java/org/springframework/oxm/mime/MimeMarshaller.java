@@ -25,8 +25,8 @@ import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.XmlMappingException;
 
 /**
- * Subinterface of {@link Marshaller} that can use MIME attachments to optimize
- * storage of binary data. Attachments can be added as MTOM, XOP, or SwA.
+ * {@link Marshaller} 的子接口，可利用 MIME 附件来优化二进制数据的存储。
+ * 附件可以以 MTOM、XOP 或 SwA 的形式添加。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -36,8 +36,8 @@ import org.springframework.oxm.XmlMappingException;
 public interface MimeMarshaller extends Marshaller {
 
 	/**
-	 * Marshals the object graph with the given root into the provided {@link Result},
-	 * writing binary data to a {@link MimeContainer}.
+	 * 将给定根对象的对象图 marshal 到所提供的 {@link Result} 中，
+	 * 并将二进制数据写入 {@link MimeContainer}。
 	 * @param graph the root of the object graph to marshal
 	 * @param result the result to marshal to
 	 * @param mimeContainer the MIME container to write extracted binary content to

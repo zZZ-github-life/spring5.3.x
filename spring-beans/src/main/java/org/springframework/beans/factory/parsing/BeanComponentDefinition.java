@@ -27,8 +27,8 @@ import org.springframework.beans.factory.config.BeanReference;
 import org.springframework.lang.Nullable;
 
 /**
- * ComponentDefinition based on a standard BeanDefinition, exposing the given bean
- * definition as well as inner bean definitions and bean references for the given bean.
+ * 基于标准 BeanDefinition 的 ComponentDefinition，暴露给定的 Bean 定义以及该 Bean 的内部 Bean 定义
+ * 和 Bean 引用。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -42,7 +42,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 
 	/**
-	 * Create a new BeanComponentDefinition for the given bean.
+	 * 为给定的 Bean 创建一个新的 BeanComponentDefinition。
 	 * @param beanDefinition the BeanDefinition
 	 * @param beanName the name of the bean
 	 */
@@ -51,7 +51,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 	}
 
 	/**
-	 * Create a new BeanComponentDefinition for the given bean.
+	 * 为给定的 Bean 创建一个新的 BeanComponentDefinition。
 	 * @param beanDefinition the BeanDefinition
 	 * @param beanName the name of the bean
 	 * @param aliases alias names for the bean, or {@code null} if none
@@ -61,7 +61,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 	}
 
 	/**
-	 * Create a new BeanComponentDefinition for the given bean.
+	 * 为给定的 Bean 创建一个新的 BeanComponentDefinition。
 	 * @param beanDefinitionHolder the BeanDefinitionHolder encapsulating
 	 * the bean definition as well as the name of the bean
 	 */
@@ -115,7 +115,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 
 
 	/**
-	 * This implementation returns this ComponentDefinition's description.
+	 * 此实现返回该 ComponentDefinition 的描述。
 	 * @see #getDescription()
 	 */
 	@Override
@@ -124,8 +124,7 @@ public class BeanComponentDefinition extends BeanDefinitionHolder implements Com
 	}
 
 	/**
-	 * This implementation expects the other object to be of type BeanComponentDefinition
-	 * as well, in addition to the superclass's equality requirements.
+	 * 除了父类的相等性要求之外，此实现还要求另一个对象也是 BeanComponentDefinition 类型。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {

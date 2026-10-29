@@ -17,14 +17,14 @@
 package org.springframework.orm.jpa.vendor;
 
 /**
- * Enumeration for common database platforms. Allows strong typing of database type
- * and portable configuration between JpaVendorDialect implementations.
+ * 常见数据库平台的枚举。可对数据库类型进行强类型定义，
+ * 并在不同 JpaVendorDialect 实现之间实现可移植的配置。
  *
- * <p>If a given PersistenceProvider supports a database not listed here,
- * the strategy class can still be specified using the fully-qualified class name.
- * This enumeration is merely a convenience. The database products listed here
- * are the same as those explicitly supported for Spring JDBC exception translation
- * in {@code sql-error-codes.xml}.
+ * <p>如果某个 PersistenceProvider 支持此处未列出的数据库，
+ * 仍可使用全限定类名指定策略类。
+ * 此枚举仅提供便利。此处列出的数据库产品
+ * 与 {@code sql-error-codes.xml} 中为 Spring JDBC 异常转换
+ * 显式支持的产品相同。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller

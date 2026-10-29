@@ -36,13 +36,9 @@ import org.springframework.web.reactive.result.view.script.ScriptTemplateConfigu
 import org.springframework.web.reactive.result.view.script.ScriptTemplateViewResolver;
 
 /**
- * Assist with the configuration of a chain of {@link ViewResolver}'s supporting
- * different template mechanisms.
+ * 用于协助配置支持不同模板机制的 {@link ViewResolver} 链。
  *
- * <p>In addition, you can also configure {@link #defaultViews(View...)
- * defaultViews} for rendering according to the requested content type, e.g.
- * JSON, XML, etc.
- *
+ * <p>此外，还可以配置 {@link #defaultViews(View...) defaultViews}，以便根据所请求的内容类型（例如 JSON、XML 等）进行渲染。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0
@@ -66,9 +62,8 @@ public class ViewResolverRegistry {
 
 
 	/**
-	 * Register a {@code FreeMarkerViewResolver} with a ".ftl" suffix.
-	 * <p><strong>Note</strong> that you must also configure FreeMarker by
-	 * adding a {@link FreeMarkerConfigurer} bean.
+	 * 注册一个后缀为 ".ftl" 的 {@code FreeMarkerViewResolver}。
+	 * <p><strong>注意</strong>：还必须通过添加 {@link FreeMarkerConfigurer} bean 来配置 FreeMarker。
 	 */
 	public UrlBasedViewResolverRegistration freeMarker() {
 		if (!checkBeanOfType(FreeMarkerConfigurer.class)) {
@@ -87,9 +82,8 @@ public class ViewResolverRegistry {
 	}
 
 	/**
-	 * Register a script template view resolver with an empty default view name prefix and suffix.
-	 * <p><strong>Note</strong> that you must also configure script templating by
-	 * adding a {@link ScriptTemplateConfigurer} bean.
+	 * 注册一个使用空前缀和后缀的脚本模板视图解析器。
+	 * <p><strong>注意</strong>：还必须通过添加 {@link ScriptTemplateConfigurer} bean 来配置脚本模板。
 	 * @since 5.0.4
 	 */
 	public UrlBasedViewResolverRegistration scriptTemplate() {
@@ -109,39 +103,30 @@ public class ViewResolverRegistry {
 	}
 
 	/**
-	 * Register a {@link ViewResolver} bean instance. This may be useful to
-	 * configure a 3rd party resolver implementation or as an alternative to
-	 * other registration methods in this class when they don't expose some
-	 * more advanced property that needs to be set.
+	 * 注册 {@link ViewResolver} bean 实例。这对于配置第三方解析器实现很有用，或者当本类中的其他注册方法未暴露某些需要设置的高级属性时，可作为它们的替代方案。
 	 */
 	public void viewResolver(ViewResolver viewResolver) {
 		this.viewResolvers.add(viewResolver);
 	}
 
 	/**
-	 * Set default views associated with any view name and selected based on the
-	 * best match for the requested content type.
-	 * <p>Use {@link HttpMessageWriterView
-	 * HttpMessageWriterView} to adapt and use any existing
-	 * {@code HttpMessageWriter} (e.g. JSON, XML) as a {@code View}.
+	 * 设置与任意视图名称关联的默认视图，并根据所请求内容类型的最佳匹配进行选择。
+	 * <p>使用 {@link HttpMessageWriterView HttpMessageWriterView} 适配并将任何现有的 {@code HttpMessageWriter}（例如 JSON、XML）用作 {@code View}。
 	 */
 	public void defaultViews(View... defaultViews) {
 		this.defaultViews.addAll(Arrays.asList(defaultViews));
 	}
 
 	/**
-	 * Whether any view resolvers have been registered.
+	 * 是否已注册任何视图解析器。
 	 */
 	public boolean hasRegistrations() {
 		return (!this.viewResolvers.isEmpty());
 	}
 
 	/**
-	 * Set the order for the
-	 * {@link org.springframework.web.reactive.result.view.ViewResolutionResultHandler
-	 * ViewResolutionResultHandler}.
-	 * <p>By default this property is not set, which means the result handler is
-	 * ordered at {@link Ordered#LOWEST_PRECEDENCE}.
+	 * 设置 {@link org.springframework.web.reactive.result.view.ViewResolutionResultHandler ViewResolutionResultHandler} 的顺序。
+	 * <p>默认不设置此属性，这意味着结果处理器的顺序为 {@link Ordered#LOWEST_PRECEDENCE}。
 	 */
 	public void order(int order) {
 		this.order = order;

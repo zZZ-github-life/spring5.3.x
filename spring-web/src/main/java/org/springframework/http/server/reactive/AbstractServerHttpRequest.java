@@ -33,7 +33,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Common base class for {@link ServerHttpRequest} implementations.
+ * {@link ServerHttpRequest} 实现的公共基类。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -66,7 +66,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 
 
 	/**
-	 * Constructor with the URI and headers for the request.
+	 * 使用请求的 URI 和头构造。
 	 * @param uri the URI for the request
 	 * @param contextPath the context path for the request
 	 * @param headers the headers for the request (as {@link MultiValueMap})
@@ -79,7 +79,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * Constructor with the URI and headers for the request.
+	 * 使用请求的 URI 和头构造。
 	 * @param uri the URI for the request
 	 * @param contextPath the context path for the request
 	 * @param headers the headers for the request (as {@link HttpHeaders})
@@ -103,8 +103,8 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * Obtain the request id to use, or {@code null} in which case the Object
-	 * identity of this request instance is used.
+	 * 获取要使用的请求 id，如果返回 {@code null}，则使用此请求实例的
+	 * 对象标识。
 	 * @since 5.1
 	 */
 	@Nullable
@@ -136,11 +136,10 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * A method for parsing of the query into name-value pairs. The return
-	 * value is turned into an immutable map and cached.
-	 * <p>Note that this method is invoked lazily on first access to
-	 * {@link #getQueryParams()}. The invocation is not synchronized but the
-	 * parsing is thread-safe nevertheless.
+	 * 将查询解析为名称-值对的方法。返回值会被转换为不可变 Map
+	 * 并缓存。
+	 * <p>请注意，此方法在首次访问 {@link #getQueryParams()} 时延迟调用。
+	 * 该调用不是同步的，但解析过程仍然是线程安全的。
 	 */
 	protected MultiValueMap<String, String> initQueryParams() {
 		MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
@@ -178,13 +177,11 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * Obtain the cookies from the underlying "native" request and adapt those to
-	 * an {@link HttpCookie} map. The return value is turned into an immutable
-	 * map and cached.
-	 * <p>Note that this method is invoked lazily on access to
-	 * {@link #getCookies()}. Subclasses should synchronize cookie
-	 * initialization if the underlying "native" request does not provide
-	 * thread-safe access to cookie data.
+	 * 从底层"原生"请求获取 cookie，并将其适配为
+	 * {@link HttpCookie} Map。返回值会被转换为不可变 Map 并缓存。
+	 * <p>请注意，此方法在访问 {@link #getCookies()} 时延迟调用。
+	 * 如果底层"原生"请求不提供对 cookie 数据的线程安全访问，
+	 * 子类应同步 cookie 的初始化。
 	 */
 	protected abstract MultiValueMap<String, HttpCookie> initCookies();
 
@@ -198,7 +195,7 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * Obtain SSL session information from the underlying "native" request.
+	 * 从底层"原生"请求获取 SSL 会话信息。
 	 * @return the session information, or {@code null} if none available
 	 * @since 5.0.2
 	 */
@@ -206,14 +203,14 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	protected abstract SslInfo initSslInfo();
 
 	/**
-	 * Return the underlying server response.
-	 * <p><strong>Note:</strong> This is exposed mainly for internal framework
-	 * use such as WebSocket upgrades in the spring-webflux module.
+	 * 返回底层的服务器响应。
+	 * <p><strong>注意：</strong>主要公开此方法供框架内部使用，
+	 * 例如 spring-webflux 模块中的 WebSocket 升级。
 	 */
 	public abstract <T> T getNativeRequest();
 
 	/**
-	 * For internal use in logging at the HTTP adapter layer.
+	 * 供 HTTP 适配器层记录日志时内部使用。
 	 * @since 5.1
 	 */
 	String getLogPrefix() {
@@ -224,8 +221,8 @@ public abstract class AbstractServerHttpRequest implements ServerHttpRequest {
 	}
 
 	/**
-	 * Subclasses can override this to provide the prefix to use for log messages.
-	 * <p>By default, this is {@link #getId()}.
+	 * 子类可以重写此方法，以提供日志消息使用的前缀。
+	 * <p>默认情况下，该前缀为 {@link #getId()}。
 	 * @since 5.3.15
 	 */
 	protected String initLogPrefix() {

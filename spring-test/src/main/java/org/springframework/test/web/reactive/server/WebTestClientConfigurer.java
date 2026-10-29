@@ -21,10 +21,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
 /**
- * Contract that frameworks or applications can use to pre-package a set of
- * customizations to a {@link WebTestClient.Builder} and expose that
- * as a shortcut.
- *
+ * 框架或应用程序可用于将一组自定义配置预打包到 {@link WebTestClient.Builder}
+ * 并作为快捷方式暴露的约定。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see MockServerConfigurer
@@ -32,7 +30,7 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 public interface WebTestClientConfigurer {
 
 	/**
-	 * Invoked once only, immediately (i.e. before this method returns).
+	 * 仅调用一次，且立即调用（即在此方法返回之前）。
 	 * @param builder the WebTestClient builder to make changes to
 	 * @param httpHandlerBuilder the builder for the "mock server" HttpHandler
 	 * this client was configured for "mock server" testing

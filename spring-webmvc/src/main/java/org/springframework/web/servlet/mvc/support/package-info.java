@@ -1,6 +1,6 @@
 /**
- * Support package for MVC controllers.
- * Contains a special HandlerMapping for controller conventions.
+ * MVC 控制器的支持包。
+ * 包含用于控制器约定的特殊 HandlerMapping。
  */
 @NonNullApi
 @NonNullFields

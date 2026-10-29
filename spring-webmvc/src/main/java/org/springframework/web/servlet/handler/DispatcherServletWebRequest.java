@@ -25,10 +25,10 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
- * {@link ServletWebRequest} subclass that is aware of
- * {@link org.springframework.web.servlet.DispatcherServlet}'s
- * request context, such as the Locale determined by the configured
- * {@link org.springframework.web.servlet.LocaleResolver}.
+ * {@link ServletWebRequest} 的子类，可感知
+ * {@link org.springframework.web.servlet.DispatcherServlet} 的
+ * 请求上下文，例如由所配置的
+ * {@link org.springframework.web.servlet.LocaleResolver} 确定的 Locale。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -38,7 +38,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 public class DispatcherServletWebRequest extends ServletWebRequest {
 
 	/**
-	 * Create a new DispatcherServletWebRequest instance for the given request.
+	 * 为给定请求创建新的 DispatcherServletWebRequest 实例。
 	 * @param request current HTTP request
 	 */
 	public DispatcherServletWebRequest(HttpServletRequest request) {
@@ -46,7 +46,7 @@ public class DispatcherServletWebRequest extends ServletWebRequest {
 	}
 
 	/**
-	 * Create a new DispatcherServletWebRequest instance for the given request and response.
+	 * 为给定请求和响应创建新的 DispatcherServletWebRequest 实例。
 	 * @param request current HTTP request
 	 * @param response current HTTP response
 	 */

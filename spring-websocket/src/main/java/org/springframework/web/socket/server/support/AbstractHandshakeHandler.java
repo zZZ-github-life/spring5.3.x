@@ -49,17 +49,16 @@ import org.springframework.web.socket.server.HandshakeHandler;
 import org.springframework.web.socket.server.RequestUpgradeStrategy;
 
 /**
- * A base class for {@link HandshakeHandler} implementations, independent of the Servlet API.
+ * {@link HandshakeHandler} 实现的基类，与 Servlet API 无关。
  *
- * <p>Performs initial validation of the WebSocket handshake request - possibly rejecting it
- * through the appropriate HTTP status code - while also allowing its subclasses to override
- * various parts of the negotiation process (e.g. origin validation, sub-protocol negotiation,
- * extensions negotiation, etc).
+ * <p>执行 WebSocket 握手请求的初始校验——可能通过适当的 HTTP 状态码拒绝请求——
+ * 同时允许其子类覆盖协商过程的各个部分（例如来源校验、子协议协商、
+ * 扩展协商等）。
  *
- * <p>If the negotiation succeeds, the actual upgrade is delegated to a server-specific
- * {@link org.springframework.web.socket.server.RequestUpgradeStrategy}, which will update
- * the response as necessary and initialize the WebSocket. Currently, supported servers are
- * Jetty 9.0-9.3, Tomcat 7.0.47+ and 8.x, Undertow 1.0-1.3, GlassFish 4.1+, WebLogic 12.1.3+.
+ * <p>如果协商成功，实际的升级操作将委托给特定于服务器的
+ * {@link org.springframework.web.socket.server.RequestUpgradeStrategy}，由其根据需要更新
+ * 响应并初始化 WebSocket。目前支持的服务器包括
+ * Jetty 9.0-9.3、Tomcat 7.0.47+ 和 8.x、Undertow 1.0-1.3、GlassFish 4.1+、WebLogic 12.1.3+。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -115,8 +114,8 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 
 
 	/**
-	 * Default constructor that auto-detects and instantiates a
-	 * {@link RequestUpgradeStrategy} suitable for the runtime container.
+	 * 默认构造函数，自动检测并实例化适合当前运行时容器的
+	 * {@link RequestUpgradeStrategy}。
 	 * @throws IllegalStateException if no {@link RequestUpgradeStrategy} can be found.
 	 */
 	protected AbstractHandshakeHandler() {
@@ -124,7 +123,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	}
 
 	/**
-	 * A constructor that accepts a runtime-specific {@link RequestUpgradeStrategy}.
+	 * 接受运行时特定 {@link RequestUpgradeStrategy} 的构造函数。
 	 * @param requestUpgradeStrategy the upgrade strategy to use
 	 */
 	protected AbstractHandshakeHandler(RequestUpgradeStrategy requestUpgradeStrategy) {
@@ -172,22 +171,22 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 
 
 	/**
-	 * Return the {@link RequestUpgradeStrategy} for WebSocket requests.
+	 * 返回用于 WebSocket 请求的 {@link RequestUpgradeStrategy}。
 	 */
 	public RequestUpgradeStrategy getRequestUpgradeStrategy() {
 		return this.requestUpgradeStrategy;
 	}
 
 	/**
-	 * Use this property to configure the list of supported sub-protocols.
-	 * The first configured sub-protocol that matches a client-requested sub-protocol
-	 * is accepted. If there are no matches the response will not contain a
-	 * {@literal Sec-WebSocket-Protocol} header.
-	 * <p>Note that if the WebSocketHandler passed in at runtime is an instance of
-	 * {@link SubProtocolCapable} then there is no need to explicitly configure
-	 * this property. That is certainly the case with the built-in STOMP over
-	 * WebSocket support. Therefore, this property should be configured explicitly
-	 * only if the WebSocketHandler does not implement {@code SubProtocolCapable}.
+	 * 使用此属性配置受支持的子协议列表。
+	 * 第一个与客户端请求的子协议匹配的已配置子协议将被接受。
+	 * 如果没有匹配项，响应中将不包含
+	 * {@literal Sec-WebSocket-Protocol} 头。
+	 * <p>请注意，如果运行时传入的 WebSocketHandler 是
+	 * {@link SubProtocolCapable} 的实例，则无需显式配置
+	 * 此属性。内置的 STOMP over WebSocket 支持正是如此。
+	 * 因此，仅当 WebSocketHandler 未实现 {@code SubProtocolCapable} 时，
+	 * 才应显式配置此属性。
 	 */
 	public void setSupportedProtocols(String... protocols) {
 		this.supportedProtocols.clear();
@@ -197,7 +196,7 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	}
 
 	/**
-	 * Return the list of supported sub-protocols.
+	 * 返回受支持的子协议列表。
 	 */
 	public String[] getSupportedProtocols() {
 		return StringUtils.toStringArray(this.supportedProtocols);
@@ -344,20 +343,19 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	}
 
 	/**
-	 * Return whether the request {@code Origin} header value is valid or not.
-	 * By default, all origins as considered as valid. Consider using an
-	 * {@link OriginHandshakeInterceptor} for filtering origins if needed.
+	 * 返回请求的 {@code Origin} 头值是否有效。
+	 * 默认情况下，所有来源都被视为有效。如有需要，可考虑使用
+	 * {@link OriginHandshakeInterceptor} 过滤来源。
 	 */
 	protected boolean isValidOrigin(ServerHttpRequest request) {
 		return true;
 	}
 
 	/**
-	 * Perform the sub-protocol negotiation based on requested and supported sub-protocols.
-	 * For the list of supported sub-protocols, this method first checks if the target
-	 * WebSocketHandler is a {@link SubProtocolCapable} and then also checks if any
-	 * sub-protocols have been explicitly configured with
-	 * {@link #setSupportedProtocols(String...)}.
+	 * 基于请求的子协议和受支持的子协议执行子协议协商。
+	 * 对于受支持的子协议列表，此方法首先检查目标
+	 * WebSocketHandler 是否为 {@link SubProtocolCapable}，然后检查是否已通过
+	 * {@link #setSupportedProtocols(String...)} 显式配置了任何子协议。
 	 * @param requestedProtocols the requested sub-protocols
 	 * @param webSocketHandler the WebSocketHandler that will be used
 	 * @return the selected protocols or {@code null}
@@ -378,8 +376,8 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	}
 
 	/**
-	 * Determine the sub-protocols supported by the given WebSocketHandler by
-	 * checking whether it is an instance of {@link SubProtocolCapable}.
+	 * 通过检查给定 WebSocketHandler 是否为 {@link SubProtocolCapable} 的实例，
+	 * 确定其支持的子协议。
 	 * @param handler the handler to check
 	 * @return a list of supported protocols, or an empty list if none available
 	 */
@@ -393,9 +391,9 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	}
 
 	/**
-	 * Filter the list of requested WebSocket extensions.
-	 * <p>As of 4.1, the default implementation of this method filters the list to
-	 * leave only extensions that are both requested and supported.
+	 * 过滤请求的 WebSocket 扩展列表。
+	 * <p>自 4.1 起，此方法的默认实现会过滤列表，
+	 * 仅保留既被请求又受支持的扩展。
 	 * @param request the current request
 	 * @param requestedExtensions the list of extensions requested by the client
 	 * @param supportedExtensions the list of extensions supported by the server
@@ -414,11 +412,10 @@ public abstract class AbstractHandshakeHandler implements HandshakeHandler, Life
 	}
 
 	/**
-	 * A method that can be used to associate a user with the WebSocket session
-	 * in the process of being established. The default implementation calls
-	 * {@link ServerHttpRequest#getPrincipal()}
-	 * <p>Subclasses can provide custom logic for associating a user with a session,
-	 * for example for assigning a name to anonymous users (i.e. not fully authenticated).
+	 * 可用于在 WebSocket 会话建立过程中将用户与会话关联的方法。
+	 * 默认实现调用 {@link ServerHttpRequest#getPrincipal()}。
+	 * <p>子类可以提供自定义逻辑来将用户与会话关联，
+	 * 例如为匿名用户（即未完全通过身份验证的用户）分配名称。
 	 * @param request the handshake request
 	 * @param wsHandler the WebSocket handler that will handle messages
 	 * @param attributes handshake attributes to pass to the WebSocket session

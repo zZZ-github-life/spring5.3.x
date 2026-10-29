@@ -22,7 +22,7 @@ import java.security.AccessController;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link SecurityContextProvider} implementation.
+ * 简单的 {@link SecurityContextProvider} 实现。
  *
  * @author Costin Leau
  * @since 3.0
@@ -34,18 +34,16 @@ public class SimpleSecurityContextProvider implements SecurityContextProvider {
 
 
 	/**
-	 * Construct a new {@code SimpleSecurityContextProvider} instance.
-	 * <p>The security context will be retrieved on each call from the current
-	 * thread.
+	 * 构造一个新的 {@code SimpleSecurityContextProvider} 实例。<p>每次调用时都会从当前线程获取安全上下
+	 * 文。
 	 */
 	public SimpleSecurityContextProvider() {
 		this(null);
 	}
 
 	/**
-	 * Construct a new {@code SimpleSecurityContextProvider} instance.
-	 * <p>If the given control context is null, the security context will be
-	 * retrieved on each call from the current thread.
+	 * 构造一个新的 {@code SimpleSecurityContextProvider} 实例。<p>如果给定的控制上下文为 null，则每次
+	 * 调用时都会从当前线程获取安全上下文。
 	 * @param acc access control context (can be {@code null})
 	 * @see AccessController#getContext()
 	 */

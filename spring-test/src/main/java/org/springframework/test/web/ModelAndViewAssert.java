@@ -29,12 +29,9 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.util.AssertionErrors.fail;
 
 /**
- * A collection of assertions intended to simplify testing scenarios dealing
- * with Spring Web MVC {@link org.springframework.web.servlet.ModelAndView
- * ModelAndView} objects.
+ * 一组断言，旨在简化处理 Spring Web MVC {@link org.springframework.web.servlet.ModelAndView ModelAndView} 对象的测试场景。
  *
- * <p>Intended for use with JUnit 4 and TestNG. All {@code assert*()} methods
- * throw {@link AssertionError AssertionErrors}.
+ * <p>适用于 JUnit 4 和 TestNG。所有 {@code assert*()} 方法都会抛出 {@link AssertionError AssertionErrors}。
  *
  * @author Sam Brannen
  * @author Alef Arendsen
@@ -45,9 +42,7 @@ import static org.springframework.test.util.AssertionErrors.fail;
 public abstract class ModelAndViewAssert {
 
 	/**
-	 * Checks whether the model value under the given {@code modelName}
-	 * exists and checks its type, based on the {@code expectedType}. If the
-	 * model entry exists and the type matches, the model value is returned.
+	 * 检查给定 {@code modelName} 下的模型值是否存在，并根据 {@code expectedType} 检查其类型。如果模型条目存在且类型匹配，则返回该模型值。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param modelName name of the object to add to the model (never {@code null})
 	 * @param expectedType expected type of the model value
@@ -66,7 +61,7 @@ public abstract class ModelAndViewAssert {
 	}
 
 	/**
-	 * Compare each individual entry in a list, without first sorting the lists.
+	 * 逐个比较列表中的每个条目，而不先对列表排序。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param modelName name of the object to add to the model (never {@code null})
 	 * @param expectedList the expected list
@@ -81,7 +76,7 @@ public abstract class ModelAndViewAssert {
 	}
 
 	/**
-	 * Assert whether a model attribute is available.
+	 * 断言模型属性是否可用。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param modelName name of the object to add to the model (never {@code null})
 	 */
@@ -91,8 +86,7 @@ public abstract class ModelAndViewAssert {
 	}
 
 	/**
-	 * Compare a given {@code expectedValue} to the value from the model
-	 * bound under the given {@code modelName}.
+	 * 将给定的 {@code expectedValue} 与绑定在给定 {@code modelName} 下的模型值进行比较。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param modelName name of the object to add to the model (never {@code null})
 	 * @param expectedValue the model value
@@ -104,8 +98,7 @@ public abstract class ModelAndViewAssert {
 	}
 
 	/**
-	 * Inspect the {@code expectedModel} to see if all elements in the
-	 * model appear and are equal.
+	 * 检查 {@code expectedModel}，看模型中的所有元素是否都出现且相等。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param expectedModel the expected model
 	 */
@@ -134,8 +127,7 @@ public abstract class ModelAndViewAssert {
 	}
 
 	/**
-	 * Compare each individual entry in a list after having sorted both lists
-	 * (optionally using a comparator).
+	 * 在分别对两个列表排序后（可选地使用比较器），逐个比较列表中的每个条目。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param modelName name of the object to add to the model (never {@code null})
 	 * @param expectedList the expected list
@@ -158,8 +150,7 @@ public abstract class ModelAndViewAssert {
 	}
 
 	/**
-	 * Check to see if the view name in the ModelAndView matches the given
-	 * {@code expectedName}.
+	 * 检查 ModelAndView 中的视图名是否与给定的 {@code expectedName} 匹配。
 	 * @param mav the ModelAndView to test against (never {@code null})
 	 * @param expectedName the name of the model value
 	 */

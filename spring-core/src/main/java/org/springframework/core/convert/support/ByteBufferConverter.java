@@ -28,8 +28,8 @@ import org.springframework.core.convert.converter.ConditionalGenericConverter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts a {@link ByteBuffer} directly to and from {@code byte[] ByteBuffer} directly to and from {@code byte[]s} and indirectly
- * to any type that the {@link ConversionService} support via {@code byte[]}.
+ * 将 {@link ByteBuffer} 直接与 {@code byte[] ByteBuffer} 相互转换、直接与 {@code byte[]s} 相互转换，
+ * 并通过 {@code byte[]} 间接转换为 {@link ConversionService} 支持的任何类型。
  *
  * @author Phillip Webb
  * @author Juergen Hoeller

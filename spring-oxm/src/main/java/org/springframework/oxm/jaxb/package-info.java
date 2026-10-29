@@ -1,6 +1,5 @@
 /**
- * Package providing integration of <a href="https://java.sun.com/webservices/jaxb/">JAXB</a>
- * with Spring's O/X Mapping support.
+ * 提供 <a href="https://java.sun.com/webservices/jaxb/">JAXB</a> 与 Spring O/X 映射支持的集成。
  */
 @NonNullApi
 @NonNullFields

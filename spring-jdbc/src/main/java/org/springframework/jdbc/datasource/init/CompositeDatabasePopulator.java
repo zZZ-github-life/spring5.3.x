@@ -26,8 +26,8 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
- * Composite {@link DatabasePopulator} that delegates to a list of given
- * {@code DatabasePopulator} implementations, executing all scripts.
+ * 组合式 {@link DatabasePopulator}，将调用委托给一组给定的
+ * {@code DatabasePopulator} 实现，并执行所有脚本。
  *
  * @author Dave Syer
  * @author Juergen Hoeller
@@ -41,7 +41,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 
 	/**
-	 * Create an empty {@code CompositeDatabasePopulator}.
+	 * 创建一个空的 {@code CompositeDatabasePopulator}。
 	 * @see #setPopulators
 	 * @see #addPopulators
 	 */
@@ -49,7 +49,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 	}
 
 	/**
-	 * Create a {@code CompositeDatabasePopulator} with the given populators.
+	 * 使用给定的填充器创建一个 {@code CompositeDatabasePopulator}。
 	 * @param populators one or more populators to delegate to
 	 * @since 4.3
 	 */
@@ -59,7 +59,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 	}
 
 	/**
-	 * Create a {@code CompositeDatabasePopulator} with the given populators.
+	 * 使用给定的填充器创建一个 {@code CompositeDatabasePopulator}。
 	 * @param populators one or more populators to delegate to
 	 * @since 4.3
 	 */
@@ -70,7 +70,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 
 
 	/**
-	 * Specify one or more populators to delegate to.
+	 * 指定要委托给的一个或多个填充器。
 	 */
 	public void setPopulators(DatabasePopulator... populators) {
 		Assert.notNull(populators, "DatabasePopulators must not be null");
@@ -79,7 +79,7 @@ public class CompositeDatabasePopulator implements DatabasePopulator {
 	}
 
 	/**
-	 * Add one or more populators to the list of delegates.
+	 * 向委托列表中添加一个或多个填充器。
 	 */
 	public void addPopulators(DatabasePopulator... populators) {
 		Assert.notNull(populators, "DatabasePopulators must not be null");

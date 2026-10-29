@@ -28,8 +28,8 @@ import org.springframework.objenesis.SpringObjenesis;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Objenesis-based extension of {@link CglibAopProxy} to create proxy instances
- * without invoking the constructor of the class. Used by default as of Spring 4.
+ * 基于 Objenesis 的 {@link CglibAopProxy} 扩展，用于在不调用类构造方法的情况下创建代理实例。从
+ * Spring 4 开始默认使用。
  *
  * @author Oliver Gierke
  * @author Juergen Hoeller
@@ -44,7 +44,7 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 
 
 	/**
-	 * Create a new ObjenesisCglibAopProxy for the given AOP configuration.
+	 * 为给定的 AOP 配置创建新的 ObjenesisCglibAopProxy。
 	 * @param config the AOP configuration as AdvisedSupport object
 	 */
 	public ObjenesisCglibAopProxy(AdvisedSupport config) {

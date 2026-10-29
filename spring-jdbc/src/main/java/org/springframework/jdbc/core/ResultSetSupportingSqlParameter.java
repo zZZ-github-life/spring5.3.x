@@ -21,8 +21,8 @@ import java.sql.ResultSet;
 import org.springframework.lang.Nullable;
 
 /**
- * Common base class for ResultSet-supporting SqlParameters like
- * {@link SqlOutParameter} and {@link SqlReturnResultSet}.
+ * 支持ResultSet的SqlParameter的公共基类，如
+ * {@link SqlOutParameter}和{@link SqlReturnResultSet}。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -40,7 +40,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 
 	/**
-	 * Create a new ResultSetSupportingSqlParameter.
+	 * 创建新的ResultSetSupportingSqlParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 */
@@ -49,7 +49,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Create a new ResultSetSupportingSqlParameter.
+	 * 创建新的ResultSetSupportingSqlParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param scale the number of digits after the decimal point
@@ -60,7 +60,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Create a new ResultSetSupportingSqlParameter.
+	 * 创建新的ResultSetSupportingSqlParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param typeName the type name of the parameter (optional)
@@ -70,7 +70,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Create a new ResultSetSupportingSqlParameter.
+	 * 创建新的ResultSetSupportingSqlParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param rse the {@link ResultSetExtractor} to use for parsing the {@link ResultSet}
@@ -81,7 +81,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Create a new ResultSetSupportingSqlParameter.
+	 * 创建新的ResultSetSupportingSqlParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param rch the {@link RowCallbackHandler} to use for parsing the {@link ResultSet}
@@ -92,7 +92,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Create a new ResultSetSupportingSqlParameter.
+	 * 创建新的ResultSetSupportingSqlParameter。
 	 * @param name the name of the parameter, as used in input and output maps
 	 * @param sqlType the parameter SQL type according to {@code java.sql.Types}
 	 * @param rm the {@link RowMapper} to use for parsing the {@link ResultSet}
@@ -104,15 +104,14 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 
 	/**
-	 * Does this parameter support a ResultSet, i.e. does it hold a
-	 * ResultSetExtractor, RowCallbackHandler or RowMapper?
+	 * 此参数是否支持ResultSet，即是否持有ResultSetExtractor、RowCallbackHandler或RowMapper？
 	 */
 	public boolean isResultSetSupported() {
 		return (this.resultSetExtractor != null || this.rowCallbackHandler != null || this.rowMapper != null);
 	}
 
 	/**
-	 * Return the ResultSetExtractor held by this parameter, if any.
+	 * 返回此参数持有的ResultSetExtractor（如果有）。
 	 */
 	@Nullable
 	public ResultSetExtractor<?> getResultSetExtractor() {
@@ -120,7 +119,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Return the RowCallbackHandler held by this parameter, if any.
+	 * 返回此参数持有的RowCallbackHandler（如果有）。
 	 */
 	@Nullable
 	public RowCallbackHandler getRowCallbackHandler() {
@@ -128,7 +127,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 	}
 
 	/**
-	 * Return the RowMapper held by this parameter, if any.
+	 * 返回此参数持有的RowMapper（如果有）。
 	 */
 	@Nullable
 	public RowMapper<?> getRowMapper() {
@@ -137,7 +136,7 @@ public class ResultSetSupportingSqlParameter extends SqlParameter {
 
 
 	/**
-	 * This implementation always returns {@code false}.
+	 * 此实现始终返回{@code false}。
 	 */
 	@Override
 	public boolean isInputValueProvided() {

@@ -21,14 +21,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * {@code ExceptionCollector} is a test utility for executing code blocks,
- * collecting exceptions, and generating a single {@link AssertionError}
- * containing any exceptions encountered as {@linkplain Throwable#getSuppressed()
- * suppressed exceptions}.
+ * {@code ExceptionCollector} 是一个测试实用工具，用于执行代码块、收集异常，并生成单个 {@link AssertionError}，其中包含遇到的所有异常，这些异常作为{@linkplain Throwable#getSuppressed() 抑制异常}。
  *
- * <p>This utility is intended to support <em>soft assertion</em> use cases
- * similar to the {@code SoftAssertions} support in AssertJ and the
- * {@code assertAll()} support in JUnit Jupiter.
+ * <p>此实用工具旨在支持<em>软断言</em>用例，类似于 AssertJ 中的 {@code SoftAssertions} 支持和 JUnit Jupiter 中的 {@code assertAll()} 支持。
  *
  * @author Sam Brannen
  * @since 5.3.10
@@ -39,7 +34,7 @@ public class ExceptionCollector {
 
 
 	/**
-	 * Execute the supplied {@link Executable} and track any exception thrown.
+	 * 执行所提供的 {@link Executable} 并跟踪抛出的任何异常。
 	 * @param executable the {@code Executable} to execute
 	 * @see #getExceptions()
 	 * @see #assertEmpty()
@@ -54,7 +49,7 @@ public class ExceptionCollector {
 	}
 
 	/**
-	 * Get the list of exceptions encountered in {@link #execute(Executable)}.
+	 * 获取在 {@link #execute(Executable)} 中遇到的异常列表。
 	 * @return an unmodifiable copy of the list of exceptions, potentially empty
 	 * @see #assertEmpty()
 	 */
@@ -63,20 +58,11 @@ public class ExceptionCollector {
 	}
 
 	/**
-	 * Assert that this {@code ExceptionCollector} does not contain any
-	 * {@linkplain #getExceptions() exceptions}.
-	 * <p>If this collector is empty, this method is effectively a no-op.
-	 * <p>If this collector contains a single {@link Error} or {@link Exception},
-	 * this method rethrows the error or exception.
-	 * <p>If this collector contains a single {@link Throwable}, this method throws
-	 * an {@link AssertionError} with the error message of the {@code Throwable}
-	 * and with the {@code Throwable} as the {@linkplain Throwable#getCause() cause}.
-	 * <p>If this collector contains multiple exceptions, this method throws an
-	 * {@code AssertionError} whose message is "Multiple Exceptions (#):"
-	 * followed by a new line with the error message of each exception separated
-	 * by a new line, with {@code #} replaced with the number of exceptions present.
-	 * In addition, each exception will be added to the {@code AssertionError} as
-	 * a {@link Throwable#addSuppressed(Throwable) suppressed exception}.
+	 * 断言此 {@code ExceptionCollector} 不包含任何{@linkplain #getExceptions() 异常}。
+	 * <p>如果此收集器为空，则此方法实际上是无操作。
+	 * <p>如果此收集器包含单个 {@link Error} 或 {@link Exception}，则此方法会重新抛出该错误或异常。
+	 * <p>如果此收集器包含单个 {@link Throwable}，则此方法会抛出一个 {@link AssertionError}，其错误消息为该 {@code Throwable} 的错误消息，且该 {@code Throwable} 作为{@linkplain Throwable#getCause() 原因}。
+	 * <p>如果此收集器包含多个异常，则此方法会抛出一个 {@code AssertionError}，其消息为 &quot;Multiple Exceptions (#):&quot;，后跟一个换行符以及由换行符分隔的每个异常的错误消息，其中 {@code #} 替换为存在的异常数量。此外，每个异常都将作为{@link Throwable#addSuppressed(Throwable) 抑制异常}添加到该 {@code AssertionError} 中。
 	 * @see #execute(Executable)
 	 * @see #getExceptions()
 	 */
@@ -111,11 +97,9 @@ public class ExceptionCollector {
 
 
 	/**
-	 * {@code Executable} is a functional interface that can be used to implement
-	 * any generic block of code that potentially throws a {@link Throwable}.
+	 * {@code Executable} 是一个函数式接口，可用于实现任何可能抛出 {@link Throwable} 的通用代码块。
 	 *
-	 * <p>The {@code Executable} interface is similar to {@link java.lang.Runnable},
-	 * except that an {@code Executable} can throw any kind of exception.
+	 * <p>{@code Executable} 接口类似于 {@link java.lang.Runnable}，不同之处在于 {@code Executable} 可以抛出任何类型的异常。
 	 */
 	@FunctionalInterface
 	public interface Executable {

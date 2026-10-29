@@ -19,18 +19,15 @@ package org.springframework.util;
 import java.io.ByteArrayOutputStream;
 
 /**
- * An extension of {@link java.io.ByteArrayOutputStream} that:
+ * {@link java.io.ByteArrayOutputStream} 的扩展，它：
  * <ul>
- * <li>has public {@link org.springframework.util.ResizableByteArrayOutputStream#grow(int)}
- * and {@link org.springframework.util.ResizableByteArrayOutputStream#resize(int)} methods
- * to get more control over the size of the internal buffer</li>
- * <li>has a higher initial capacity (256) by default</li>
+ * <li>提供公有的 {@link org.springframework.util.ResizableByteArrayOutputStream#grow(int)} 和 {@link org.springframework.util.ResizableByteArrayOutputStream#resize(int)} 方法，以便更精细地控制内部缓冲区的大小</li>
+ * <li>默认初始容量更大（256）</li>
  * </ul>
  *
- * <p>As of 4.2, this class has been superseded by {@link FastByteArrayOutputStream}
- * for Spring's internal use where no assignability to {@link ByteArrayOutputStream}
- * is needed (since {@link FastByteArrayOutputStream} is more efficient with buffer
- * resize management but doesn't extend the standard {@link ByteArrayOutputStream}).
+ * <p>自 4.2 起，在不需要可赋值给 {@link ByteArrayOutputStream} 的 Spring 内部使用中，该类已被
+ * {@link FastByteArrayOutputStream} 取代（因为 {@link FastByteArrayOutputStream} 在缓冲区扩容管理
+ * 方面更高效，但不继承标准 {@link ByteArrayOutputStream}）。
  *
  * @author Brian Clozel
  * @author Juergen Hoeller
@@ -44,16 +41,14 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 
 
 	/**
-	 * Create a new <code>ResizableByteArrayOutputStream</code>
-	 * with the default initial capacity of 256 bytes.
+	 * 创建一个新的 <code>ResizableByteArrayOutputStream</code>，默认初始容量为 256 字节。
 	 */
 	public ResizableByteArrayOutputStream() {
 		super(DEFAULT_INITIAL_CAPACITY);
 	}
 
 	/**
-	 * Create a new <code>ResizableByteArrayOutputStream</code>
-	 * with the specified initial capacity.
+	 * 创建一个新的 <code>ResizableByteArrayOutputStream</code>，具有指定的初始容量。
 	 * @param initialCapacity the initial buffer size in bytes
 	 */
 	public ResizableByteArrayOutputStream(int initialCapacity) {
@@ -62,7 +57,7 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 
 
 	/**
-	 * Resize the internal buffer size to a specified capacity.
+	 * 将内部缓冲区大小调整为指定的容量。
 	 * @param targetCapacity the desired size of the buffer
 	 * @throws IllegalArgumentException if the given capacity is smaller than
 	 * the actual size of the content stored in the buffer already
@@ -76,7 +71,7 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 	}
 
 	/**
-	 * Grow the internal buffer size.
+	 * 增大内部缓冲区大小。
 	 * @param additionalCapacity the number of bytes to add to the current buffer size
 	 * @see ResizableByteArrayOutputStream#size()
 	 */
@@ -89,7 +84,7 @@ public class ResizableByteArrayOutputStream extends ByteArrayOutputStream {
 	}
 
 	/**
-	 * Return the current size of this stream's internal buffer.
+	 * 返回此流内部缓冲区的当前大小。
 	 */
 	public synchronized int capacity() {
 		return this.buf.length;

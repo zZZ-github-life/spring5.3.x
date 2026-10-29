@@ -1,5 +1,5 @@
 /**
- * Provides an HttpMessageConverter for the CBOR data format.
+ * 提供用于 CBOR 数据格式的 HttpMessageConverter。
  */
 @NonNullApi
 @NonNullFields

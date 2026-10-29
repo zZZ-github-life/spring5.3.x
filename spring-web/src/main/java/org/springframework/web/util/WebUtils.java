@@ -47,9 +47,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Miscellaneous utilities for web applications.
- * Used by various framework classes.
- *
+ * Web 应用的各种工具方法。供多个框架类使用。
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Sebastien Deleuze
@@ -57,176 +55,129 @@ import org.springframework.util.StringUtils;
 public abstract class WebUtils {
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for include request URI.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating request. Its own request URI is exposed as a request attribute.
+	 * 标准 Servlet 2.3+ 规范中用于包含请求 URI 的请求属性。<p>如果通过 {@code RequestDispatcher} 包含，则当前资源将看到发起方的请求。其自身的请求 URI 作为请求属性公开。
 	 */
 	public static final String INCLUDE_REQUEST_URI_ATTRIBUTE = "javax.servlet.include.request_uri";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for include context path.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating context path. Its own context path is exposed as a request attribute.
+	 * 标准 Servlet 2.3+ 规范中用于包含上下文路径的请求属性。<p>如果通过 {@code RequestDispatcher} 包含，则当前资源将看到发起方的上下文路径。其自身的上下文路径作为请求属性公开。
 	 */
 	public static final String INCLUDE_CONTEXT_PATH_ATTRIBUTE = "javax.servlet.include.context_path";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for include servlet path.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating servlet path. Its own servlet path is exposed as a request attribute.
+	 * 标准 Servlet 2.3+ 规范中用于包含 servlet 路径的请求属性。<p>如果通过 {@code RequestDispatcher} 包含，则当前资源将看到发起方的 servlet 路径。其自身的 servlet 路径作为请求属性公开。
 	 */
 	public static final String INCLUDE_SERVLET_PATH_ATTRIBUTE = "javax.servlet.include.servlet_path";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for include path info.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating path info. Its own path info is exposed as a request attribute.
+	 * 标准 Servlet 2.3+ 规范中用于包含路径信息的请求属性。<p>如果通过 {@code RequestDispatcher} 包含，则当前资源将看到发起方的路径信息。其自身的路径信息作为请求属性公开。
 	 */
 	public static final String INCLUDE_PATH_INFO_ATTRIBUTE = "javax.servlet.include.path_info";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for include query string.
-	 * <p>If included via a {@code RequestDispatcher}, the current resource will see the
-	 * originating query string. Its own query string is exposed as a request attribute.
+	 * 标准 Servlet 2.3+ 规范中用于包含查询字符串的请求属性。<p>如果通过 {@code RequestDispatcher} 包含，则当前资源将看到发起方的查询字符串。其自身的查询字符串作为请求属性公开。
 	 */
 	public static final String INCLUDE_QUERY_STRING_ATTRIBUTE = "javax.servlet.include.query_string";
 
 	/**
-	 * Standard Servlet 2.4+ spec request attribute for forward request URI.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
-	 * own request URI. The originating request URI is exposed as a request attribute.
+	 * 标准 Servlet 2.4+ 规范中用于转发请求 URI 的请求属性。<p>如果通过 RequestDispatcher 转发到，则当前资源将看到自己的请求 URI。发起方的请求 URI 作为请求属性公开。
 	 */
 	public static final String FORWARD_REQUEST_URI_ATTRIBUTE = "javax.servlet.forward.request_uri";
 
 	/**
-	 * Standard Servlet 2.4+ spec request attribute for forward context path.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
-	 * own context path. The originating context path is exposed as a request attribute.
+	 * 标准 Servlet 2.4+ 规范中用于转发上下文路径的请求属性。<p>如果通过 RequestDispatcher 转发到，则当前资源将看到自己的上下文路径。发起方的上下文路径作为请求属性公开。
 	 */
 	public static final String FORWARD_CONTEXT_PATH_ATTRIBUTE = "javax.servlet.forward.context_path";
 
 	/**
-	 * Standard Servlet 2.4+ spec request attribute for forward servlet path.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
-	 * own servlet path. The originating servlet path is exposed as a request attribute.
+	 * 标准 Servlet 2.4+ 规范中用于转发 servlet 路径的请求属性。<p>如果通过 RequestDispatcher 转发到，则当前资源将看到自己的 servlet 路径。发起方的 servlet 路径作为请求属性公开。
 	 */
 	public static final String FORWARD_SERVLET_PATH_ATTRIBUTE = "javax.servlet.forward.servlet_path";
 
 	/**
-	 * Standard Servlet 2.4+ spec request attribute for forward path info.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
-	 * own path ingo. The originating path info is exposed as a request attribute.
+	 * 标准 Servlet 2.4+ 规范中用于转发路径信息的请求属性。<p>如果通过 RequestDispatcher 转发到，则当前资源将看到自己的路径信息。发起方的路径信息作为请求属性公开。
 	 */
 	public static final String FORWARD_PATH_INFO_ATTRIBUTE = "javax.servlet.forward.path_info";
 
 	/**
-	 * Standard Servlet 2.4+ spec request attribute for forward query string.
-	 * <p>If forwarded to via a RequestDispatcher, the current resource will see its
-	 * own query string. The originating query string is exposed as a request attribute.
+	 * 标准 Servlet 2.4+ 规范中用于转发查询字符串的请求属性。<p>如果通过 RequestDispatcher 转发到，则当前资源将看到自己的查询字符串。发起方的查询字符串作为请求属性公开。
 	 */
 	public static final String FORWARD_QUERY_STRING_ATTRIBUTE = "javax.servlet.forward.query_string";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for error page status code.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
-	 * to them directly rather than through the servlet container's error page
-	 * resolution mechanism.
+	 * 标准 Servlet 2.3+ 规范中用于错误页状态码的请求属性。<p>当直接转发到标记为错误页的 JSP 而不是通过 Servlet 容器的错误页解析机制时，将其公开给这些 JSP。
 	 */
 	public static final String ERROR_STATUS_CODE_ATTRIBUTE = "javax.servlet.error.status_code";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for error page exception type.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
-	 * to them directly rather than through the servlet container's error page
-	 * resolution mechanism.
+	 * 标准 Servlet 2.3+ 规范中用于错误页异常类型的请求属性。<p>当直接转发到标记为错误页的 JSP 而不是通过 Servlet 容器的错误页解析机制时，将其公开给这些 JSP。
 	 */
 	public static final String ERROR_EXCEPTION_TYPE_ATTRIBUTE = "javax.servlet.error.exception_type";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for error page message.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
-	 * to them directly rather than through the servlet container's error page
-	 * resolution mechanism.
+	 * 标准 Servlet 2.3+ 规范中用于错误页消息的请求属性。<p>当直接转发到标记为错误页的 JSP 而不是通过 Servlet 容器的错误页解析机制时，将其公开给这些 JSP。
 	 */
 	public static final String ERROR_MESSAGE_ATTRIBUTE = "javax.servlet.error.message";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for error page exception.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
-	 * to them directly rather than through the servlet container's error page
-	 * resolution mechanism.
+	 * 标准 Servlet 2.3+ 规范中用于错误页异常的请求属性。<p>当直接转发到标记为错误页的 JSP 而不是通过 Servlet 容器的错误页解析机制时，将其公开给这些 JSP。
 	 */
 	public static final String ERROR_EXCEPTION_ATTRIBUTE = "javax.servlet.error.exception";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for error page request URI.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
-	 * to them directly rather than through the servlet container's error page
-	 * resolution mechanism.
+	 * 标准 Servlet 2.3+ 规范中用于错误页请求 URI 的请求属性。<p>当直接转发到标记为错误页的 JSP 而不是通过 Servlet 容器的错误页解析机制时，将其公开给这些 JSP。
 	 */
 	public static final String ERROR_REQUEST_URI_ATTRIBUTE = "javax.servlet.error.request_uri";
 
 	/**
-	 * Standard Servlet 2.3+ spec request attribute for error page servlet name.
-	 * <p>To be exposed to JSPs that are marked as error pages, when forwarding
-	 * to them directly rather than through the servlet container's error page
-	 * resolution mechanism.
+	 * 标准 Servlet 2.3+ 规范中用于错误页 servlet 名称的请求属性。<p>当直接转发到标记为错误页的 JSP 而不是通过 Servlet 容器的错误页解析机制时，将其公开给这些 JSP。
 	 */
 	public static final String ERROR_SERVLET_NAME_ATTRIBUTE = "javax.servlet.error.servlet_name";
 
 	/**
-	 * Prefix of the charset clause in a content type String: ";charset=".
+	 * 内容类型 String 中字符集子句的前缀：";charset="。
 	 */
 	public static final String CONTENT_TYPE_CHARSET_PREFIX = ";charset=";
 
 	/**
-	 * Default character encoding to use when {@code request.getCharacterEncoding}
-	 * returns {@code null}, according to the Servlet spec.
+	 * 根据 Servlet 规范，当 {@code request.getCharacterEncoding} 返回 {@code null} 时使用的默认字符编码。
 	 * @see ServletRequest#getCharacterEncoding
 	 */
 	public static final String DEFAULT_CHARACTER_ENCODING = "ISO-8859-1";
 
 	/**
-	 * Standard Servlet spec context attribute that specifies a temporary
-	 * directory for the current web application, of type {@code java.io.File}.
+	 * 标准 Servlet 规范上下文属性，用于指定当前 Web 应用的临时目录，类型为 {@code java.io.File}。
 	 */
 	public static final String TEMP_DIR_CONTEXT_ATTRIBUTE = "javax.servlet.context.tempdir";
 
 	/**
-	 * HTML escape parameter at the servlet context level
-	 * (i.e. a context-param in {@code web.xml}): "defaultHtmlEscape".
+	 * servlet 上下文级别的 HTML 转义参数（即 {@code web.xml} 中的 context-param）："defaultHtmlEscape"。
 	 */
 	public static final String HTML_ESCAPE_CONTEXT_PARAM = "defaultHtmlEscape";
 
 	/**
-	 * Use of response encoding for HTML escaping parameter at the servlet context level
-	 * (i.e. a context-param in {@code web.xml}): "responseEncodedHtmlEscape".
+	 * 在 servlet 上下文级别（即 {@code web.xml} 中的 context-param）使用响应编码进行 HTML 转义的参数："responseEncodedHtmlEscape"。
 	 * @since 4.1.2
 	 */
 	public static final String RESPONSE_ENCODED_HTML_ESCAPE_CONTEXT_PARAM = "responseEncodedHtmlEscape";
 
 	/**
-	 * Web app root key parameter at the servlet context level
-	 * (i.e. a context-param in {@code web.xml}): "webAppRootKey".
+	 * servlet 上下文级别（即 {@code web.xml} 中的 context-param）的 Web 应用根键参数："webAppRootKey"。
 	 */
 	public static final String WEB_APP_ROOT_KEY_PARAM = "webAppRootKey";
 
-	/** Default web app root key: "webapp.root". */
+	/** 默认 Web 应用根键："webapp.root"。 */
 	public static final String DEFAULT_WEB_APP_ROOT_KEY = "webapp.root";
 
-	/** Name suffixes in case of image buttons. */
+	/** 图像按钮情况下的名称后缀。 */
 	public static final String[] SUBMIT_IMAGE_SUFFIXES = {".x", ".y"};
 
-	/** Key for the mutex session attribute. */
+	/** 互斥会话属性的键。 */
 	public static final String SESSION_MUTEX_ATTRIBUTE = WebUtils.class.getName() + ".MUTEX";
 
 
 	/**
-	 * Set a system property to the web application root directory.
-	 * The key of the system property can be defined with the "webAppRootKey"
-	 * context-param in {@code web.xml}. Default is "webapp.root".
-	 * <p>Can be used for tools that support substitution with {@code System.getProperty}
-	 * values, like log4j's "${key}" syntax within log file locations.
+	 * 将系统属性设置为 Web 应用根目录。系统属性的键可以通过 {@code web.xml} 中的 "webAppRootKey" context-param 定义。默认为 "webapp.root"。<p>可用于支持以 {@code System.getProperty} 值进行替换的工具，例如 log4j 在日志文件位置中的 "${key}" 语法。
 	 * @param servletContext the servlet context of the web application
 	 * @throws IllegalStateException if the system property is already set,
 	 * or if the WAR file is not expanded
@@ -254,8 +205,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Remove the system property that points to the web app root directory.
-	 * To be called on shutdown of the web application.
+	 * 移除指向 Web 应用根目录的系统属性。应在 Web 应用关闭时调用。
 	 * @param servletContext the servlet context of the web application
 	 * @see #setWebAppRootSystemProperty
 	 */
@@ -267,12 +217,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return whether default HTML escaping is enabled for the web application,
-	 * i.e. the value of the "defaultHtmlEscape" context-param in {@code web.xml}
-	 * (if any).
-	 * <p>This method differentiates between no param specified at all and
-	 * an actual boolean value specified, allowing to have a context-specific
-	 * default in case of no setting at the global level.
+	 * 返回是否为 Web 应用启用了默认 HTML 转义，即 {@code web.xml} 中 "defaultHtmlEscape" context-param 的值（如果有）。<p>此方法区分完全未指定参数和指定了实际布尔值的情况，从而允许在全局级别未设置时使用上下文特定的默认值。
 	 * @param servletContext the servlet context of the web application
 	 * @return whether default HTML escaping is enabled for the given application
 	 * ({@code null} = no explicit default)
@@ -287,14 +232,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return whether response encoding should be used when HTML escaping characters,
-	 * thus only escaping XML markup significant characters with UTF-* encodings.
-	 * This option is enabled for the web application with a ServletContext param,
-	 * i.e. the value of the "responseEncodedHtmlEscape" context-param in {@code web.xml}
-	 * (if any).
-	 * <p>This method differentiates between no param specified at all and
-	 * an actual boolean value specified, allowing to have a context-specific
-	 * default in case of no setting at the global level.
+	 * 返回在 HTML 转义字符时是否应使用响应编码，即在使用 UTF-* 编码时仅转义对 XML 标记有重要意义的字符。此选项通过 ServletContext 参数为 Web 应用启用，即 {@code web.xml} 中 "responseEncodedHtmlEscape" context-param 的值（如果有）。<p>此方法区分完全未指定参数和指定了实际布尔值的情况，从而允许在全局级别未设置时使用上下文特定的默认值。
 	 * @param servletContext the servlet context of the web application
 	 * @return whether response encoding is to be used for HTML escaping
 	 * ({@code null} = no explicit default)
@@ -310,8 +248,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return the temporary directory for the current web application,
-	 * as provided by the servlet container.
+	 * 返回当前 Web 应用的临时目录，由 servlet 容器提供。
 	 * @param servletContext the servlet context of the web application
 	 * @return the File representing the temporary directory
 	 */
@@ -321,12 +258,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return the real path of the given path within the web application,
-	 * as provided by the servlet container.
-	 * <p>Prepends a slash if the path does not already start with a slash,
-	 * and throws a FileNotFoundException if the path cannot be resolved to
-	 * a resource (in contrast to ServletContext's {@code getRealPath},
-	 * which returns null).
+	 * 返回 Web 应用中给定路径的真实路径，由 servlet 容器提供。<p>如果路径尚未以斜杠开头，则前置一个斜杠；如果无法将路径解析为资源（与 ServletContext 的 {@code getRealPath} 相对，后者返回 null），则抛出 FileNotFoundException。
 	 * @param servletContext the servlet context of the web application
 	 * @param path the path within the web application
 	 * @return the corresponding real path
@@ -349,7 +281,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Determine the session id of the given request, if any.
+	 * 确定给定请求的会话 id（如果有）。
 	 * @param request current HTTP request
 	 * @return the session id, or {@code null} if none
 	 */
@@ -361,9 +293,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Check the given request for a session attribute of the given name.
-	 * Returns null if there is no session or if the session has no such attribute.
-	 * Does not create a new session if none has existed before!
+	 * 检查给定请求是否具有给定名称的会话属性。如果没有会话或会话没有此属性，则返回 null。如果之前不存在会话，则不会创建新会话！
 	 * @param request current HTTP request
 	 * @param name the name of the session attribute
 	 * @return the value of the session attribute, or {@code null} if not found
@@ -376,9 +306,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Check the given request for a session attribute of the given name.
-	 * Throws an exception if there is no session or if the session has no such
-	 * attribute. Does not create a new session if none has existed before!
+	 * 检查给定请求是否具有给定名称的会话属性。如果没有会话或会话没有此属性，则抛出异常。如果之前不存在会话，则不会创建新会话！
 	 * @param request current HTTP request
 	 * @param name the name of the session attribute
 	 * @return the value of the session attribute, or {@code null} if not found
@@ -395,9 +323,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Set the session attribute with the given name to the given value.
-	 * Removes the session attribute if value is null, if a session existed at all.
-	 * Does not create a new session if not necessary!
+	 * 将给定名称的会话属性设置为给定值。如果值为 null，则移除该会话属性（如果存在会话的话）。如无必要，不会创建新会话！
 	 * @param request current HTTP request
 	 * @param name the name of the session attribute
 	 * @param value the value of the session attribute
@@ -416,20 +342,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return the best available mutex for the given session:
-	 * that is, an object to synchronize on for the given session.
-	 * <p>Returns the session mutex attribute if available; usually,
-	 * this means that the HttpSessionMutexListener needs to be defined
-	 * in {@code web.xml}. Falls back to the HttpSession itself
-	 * if no mutex attribute found.
-	 * <p>The session mutex is guaranteed to be the same object during
-	 * the entire lifetime of the session, available under the key defined
-	 * by the {@code SESSION_MUTEX_ATTRIBUTE} constant. It serves as a
-	 * safe reference to synchronize on for locking on the current session.
-	 * <p>In many cases, the HttpSession reference itself is a safe mutex
-	 * as well, since it will always be the same object reference for the
-	 * same active logical session. However, this is not guaranteed across
-	 * different servlet containers; the only 100% safe way is a session mutex.
+	 * 返回给定会话可用的最佳互斥对象：即用于对给定会话进行同步的对象。<p>如果可用，返回会话互斥属性；通常这意味着需要在 {@code web.xml} 中定义 HttpSessionMutexListener。如果未找到互斥属性，则回退到 HttpSession 本身。<p>会话互斥对象在整个会话生命周期内保证是同一个对象，可通过 {@code SESSION_MUTEX_ATTRIBUTE} 常量定义的键获取。它可作为对当前会话加锁时进行同步的安全引用。<p>在许多情况下，HttpSession 引用本身也是安全的互斥对象，因为对于同一个活动逻辑会话，它始终是相同的对象引用。不过，这在不同的 servlet 容器之间并无保证；唯一 100% 安全的方式是使用会话互斥对象。
 	 * @param session the HttpSession to find a mutex for
 	 * @return the mutex object (never {@code null})
 	 * @see #SESSION_MUTEX_ATTRIBUTE
@@ -446,8 +359,7 @@ public abstract class WebUtils {
 
 
 	/**
-	 * Return an appropriate request object of the specified type, if available,
-	 * unwrapping the given request as far as necessary.
+	 * 如果可用，返回指定类型的适当请求对象，必要时对给定请求进行尽可能的解包。
 	 * @param request the servlet request to introspect
 	 * @param requiredType the desired type of request object
 	 * @return the matching request object, or {@code null} if none
@@ -468,8 +380,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return an appropriate response object of the specified type, if available,
-	 * unwrapping the given response as far as necessary.
+	 * 如果可用，返回指定类型的适当响应对象，必要时对给定响应进行尽可能的解包。
 	 * @param response the servlet response to introspect
 	 * @param requiredType the desired type of response object
 	 * @return the matching response object, or {@code null} if none
@@ -490,11 +401,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Determine whether the given request is an include request,
-	 * that is, not a top-level HTTP request coming in from the outside.
-	 * <p>Checks the presence of the "javax.servlet.include.request_uri"
-	 * request attribute. Could check any request attribute that is only
-	 * present in an include request.
+	 * 确定给定请求是否为包含请求，即不是来自外部的顶层 HTTP 请求。<p>检查 "javax.servlet.include.request_uri" 请求属性是否存在。也可以检查任何仅在包含请求中存在的请求属性。
 	 * @param request current servlet request
 	 * @return whether the given request is an include request
 	 */
@@ -503,19 +410,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Expose the Servlet spec's error attributes as {@link javax.servlet.http.HttpServletRequest}
-	 * attributes under the keys defined in the Servlet 2.3 specification, for error pages that
-	 * are rendered directly rather than through the Servlet container's error page resolution:
-	 * {@code javax.servlet.error.status_code},
-	 * {@code javax.servlet.error.exception_type},
-	 * {@code javax.servlet.error.message},
-	 * {@code javax.servlet.error.exception},
-	 * {@code javax.servlet.error.request_uri},
-	 * {@code javax.servlet.error.servlet_name}.
-	 * <p>Does not override values if already present, to respect attribute values
-	 * that have been exposed explicitly before.
-	 * <p>Exposes status code 200 by default. Set the "javax.servlet.error.status_code"
-	 * attribute explicitly (before or after) in order to expose a different status code.
+	 * 按照 Servlet 2.3 规范定义的键，将 Servlet 规范的错误属性作为 {@link javax.servlet.http.HttpServletRequest} 属性公开，用于直接渲染的错误页，而不是通过 Servlet 容器的错误页解析机制：{@code javax.servlet.error.status_code}、{@code javax.servlet.error.exception_type}、{@code javax.servlet.error.message}、{@code javax.servlet.error.exception}、{@code javax.servlet.error.request_uri}、{@code javax.servlet.error.servlet_name}。<p>如果值已存在则不覆盖，以尊重之前显式公开的属性值。<p>默认公开状态码 200。可在（之前或之后）显式设置 "javax.servlet.error.status_code" 属性，以公开不同的状态码。
 	 * @param request current servlet request
 	 * @param ex the exception encountered
 	 * @param servletName the name of the offending servlet
@@ -534,7 +429,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Expose the specified request attribute if not already present.
+	 * 如果指定请求属性尚不存在，则将其公开。
 	 * @param request current servlet request
 	 * @param name the name of the attribute
 	 * @param value the suggested value of the attribute
@@ -546,14 +441,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Clear the Servlet spec's error attributes as {@link javax.servlet.http.HttpServletRequest}
-	 * attributes under the keys defined in the Servlet 2.3 specification:
-	 * {@code javax.servlet.error.status_code},
-	 * {@code javax.servlet.error.exception_type},
-	 * {@code javax.servlet.error.message},
-	 * {@code javax.servlet.error.exception},
-	 * {@code javax.servlet.error.request_uri},
-	 * {@code javax.servlet.error.servlet_name}.
+	 * 按照 Servlet 2.3 规范定义的键，清除 Servlet 规范的错误属性：{@code javax.servlet.error.status_code}、{@code javax.servlet.error.exception_type}、{@code javax.servlet.error.message}、{@code javax.servlet.error.exception}、{@code javax.servlet.error.request_uri}、{@code javax.servlet.error.servlet_name}。
 	 * @param request current servlet request
 	 */
 	public static void clearErrorRequestAttributes(HttpServletRequest request) {
@@ -566,8 +454,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Retrieve the first cookie with the given name. Note that multiple
-	 * cookies can have the same name but different paths or domains.
+	 * 获取具有给定名称的第一个 cookie。请注意，多个 cookie 可以具有相同的名称但不同的路径或域。
 	 * @param request current servlet request
 	 * @param name cookie name
 	 * @return the first cookie with the given name, or {@code null} if none is found
@@ -587,9 +474,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Check if a specific input type="submit" parameter was sent in the request,
-	 * either via a button (directly with name) or via an image (name + ".x" or
-	 * name + ".y").
+	 * 检查请求中是否发送了特定的 input type="submit" 参数，无论是通过按钮（直接使用名称）还是通过图像（名称 + ".x" 或名称 + ".y"）。
 	 * @param request current HTTP request
 	 * @param name the name of the parameter
 	 * @return if the parameter was sent
@@ -609,9 +494,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Obtain a named parameter from the given request parameters.
-	 * <p>See {@link #findParameterValue(java.util.Map, String)}
-	 * for a description of the lookup algorithm.
+	 * 从给定请求参数中获取指定名称的参数。<p>查找算法的说明请参见 {@link #findParameterValue(java.util.Map, String)}。
 	 * @param request current HTTP request
 	 * @param name the <i>logical</i> name of the request parameter
 	 * @return the value of the parameter, or {@code null}
@@ -623,23 +506,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Obtain a named parameter from the given request parameters.
-	 * <p>This method will try to obtain a parameter value using the
-	 * following algorithm:
-	 * <ol>
-	 * <li>Try to get the parameter value using just the given <i>logical</i> name.
-	 * This handles parameters of the form {@code logicalName = value}. For normal
-	 * parameters, e.g. submitted using a hidden HTML form field, this will return
-	 * the requested value.</li>
-	 * <li>Try to obtain the parameter value from the parameter name, where the
-	 * parameter name in the request is of the form {@code logicalName_value = xyz}
-	 * with "_" being the configured delimiter. This deals with parameter values
-	 * submitted using an HTML form submit button.</li>
-	 * <li>If the value obtained in the previous step has a ".x" or ".y" suffix,
-	 * remove that. This handles cases where the value was submitted using an
-	 * HTML form image button. In this case the parameter in the request would
-	 * actually be of the form {@code logicalName_value.x = 123}.</li>
-	 * </ol>
+	 * 从给定请求参数中获取指定名称的参数。<p>此方法将尝试使用以下算法获取参数值：<ol> <li>尝试仅使用给定的<i>逻辑</i>名称获取参数值。这处理 {@code logicalName = value} 形式的参数。对于普通参数（例如通过隐藏 HTML 表单字段提交），这将返回所请求的值。</li> <li>尝试从参数名中获取参数值，其中请求中的参数名形式为 {@code logicalName_value = xyz}，"_" 为配置的分隔符。这处理通过 HTML 表单提交按钮提交的参数值。</li> <li>如果上一步获得的值带有 ".x" 或 ".y" 后缀，则将其移除。这处理通过 HTML 表单图像按钮提交值的情况。此时请求中的参数实际上形式为 {@code logicalName_value.x = 123}。</li> </ol>
 	 * @param parameters the available parameter map
 	 * @param name the <i>logical</i> name of the request parameter
 	 * @return the value of the parameter, or {@code null}
@@ -674,10 +541,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Return a map containing all parameters with the given prefix.
-	 * Maps single values to String and multiple values to String array.
-	 * <p>For example, with a prefix of "spring_", "spring_param1" and
-	 * "spring_param2" result in a Map with "param1" and "param2" as keys.
+	 * 返回包含所有具有给定前缀的参数的 Map。单个值映射为 String，多个值映射为 String 数组。<p>例如，前缀为 "spring_" 时，"spring_param1" 和 "spring_param2" 会得到以 "param1" 和 "param2" 为键的 Map。
 	 * @param request the HTTP request in which to look for parameters
 	 * @param prefix the beginning of parameter names
 	 * (if this is null or the empty string, all parameters will match)
@@ -714,10 +578,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Parse the given string with matrix variables. An example string would look
-	 * like this {@code "q1=a;q1=b;q2=a,b,c"}. The resulting map would contain
-	 * keys {@code "q1"} and {@code "q2"} with values {@code ["a","b"]} and
-	 * {@code ["a","b","c"]} respectively.
+	 * 解析带矩阵变量的给定字符串。示例字符串如 {@code "q1=a;q1=b;q2=a,b,c"}。结果 Map 将包含键 {@code "q1"} 和 {@code "q2"}，值分别为 {@code ["a","b"]} 和 {@code ["a","b","c"]}。
 	 * @param matrixVariables the unparsed matrix variables string
 	 * @return a map with matrix variable names and values (never {@code null})
 	 * @since 3.2
@@ -749,14 +610,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Check the given request origin against a list of allowed origins.
-	 * A list containing "*" means that all origins are allowed.
-	 * An empty list means only same origin is allowed.
-	 *
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores
-	 * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
-	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
-	 * to extract and use, or to discard such headers.
+	 * 根据允许的来源列表检查给定请求来源。包含 "*" 的列表表示允许所有来源。空列表表示仅允许同源。<p><strong>注意：</strong>自 5.1 起，此方法忽略指定客户端发起地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可考虑使用 {@code ForwardedHeaderFilter} 提取并使用这些头，或将其丢弃。
 	 * @return {@code true} if the request origin is valid, {@code false} otherwise
 	 * @since 4.1.5
 	 * @see <a href="https://tools.ietf.org/html/rfc6454">RFC 6454: The Web Origin Concept</a>
@@ -778,14 +632,7 @@ public abstract class WebUtils {
 	}
 
 	/**
-	 * Check if the request is a same-origin one, based on {@code Origin}, {@code Host},
-	 * {@code Forwarded}, {@code X-Forwarded-Proto}, {@code X-Forwarded-Host} and
-	 * {@code X-Forwarded-Port} headers.
-	 *
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores
-	 * {@code "Forwarded"} and {@code "X-Forwarded-*"} headers that specify the
-	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
-	 * to extract and use, or to discard such headers.
+	 * 基于 {@code Origin}、{@code Host}、{@code Forwarded}、{@code X-Forwarded-Proto}、{@code X-Forwarded-Host} 和 {@code X-Forwarded-Port} 头，检查请求是否为同源请求。<p><strong>注意：</strong>自 5.1 起，此方法忽略指定客户端发起地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可考虑使用 {@code ForwardedHeaderFilter} 提取并使用这些头，或将其丢弃。
 
 	 * @return {@code true} if the request is a same-origin one, {@code false} in case
 	 * of cross-origin request

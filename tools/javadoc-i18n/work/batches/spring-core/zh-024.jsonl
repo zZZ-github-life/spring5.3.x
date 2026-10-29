@@ -1,0 +1,52 @@
+{"id": "spring-core/src/main/java/org/springframework/core/type/classreading/SimpleMethodMetadataReadingVisitor.java::31::0", "zh": ["创建 {@link SimpleMethodMetadata} 的 ASM 方法访问器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/classreading/SimpleMethodMetadataReadingVisitor.java::100::0", "zh": ["{@link MergedAnnotation} 来源。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/classreading/package-info.java::1::0", "zh": ["用于读取注解和类级元数据的支持类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractClassTestingTypeFilter.java::25::0", "zh": ["类型过滤器，向子类暴露 {@link org.springframework.core.type.ClassMetadata} 对象，用于类测试目的。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractClassTestingTypeFilter.java::45::0", "zh": ["根据给定的 ClassMetadata 对象确定是否匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractTypeHierarchyTraversingFilter.java::29::0", "zh": ["能够感知层次结构遍历的类型过滤器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractTypeHierarchyTraversingFilter.java::29::1", "zh": ["<p>当需要基于潜在的整个类/接口层次结构进行匹配时，此过滤器很有用。所采用的算法使用快速成功策略：一旦声明匹配，就不再执行后续处理。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractTypeHierarchyTraversingFilter.java::130::0", "zh": ["重写此方法以仅匹配自身特征。通常，实现类会使用访问者来提取信息以执行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractTypeHierarchyTraversingFilter.java::139::0", "zh": ["重写此方法以按类型名称进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractTypeHierarchyTraversingFilter.java::146::0", "zh": ["重写此方法以按超类型名称进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AbstractTypeHierarchyTraversingFilter.java::154::0", "zh": ["重写此方法以按接口类型名称进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AnnotationTypeFilter.java::28::0", "zh": ["一个简单的 {@link TypeFilter}，它匹配带有给定注解的类，同时还会检查继承的注解。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AnnotationTypeFilter.java::28::1", "zh": ["<p>默认情况下，匹配逻辑与 {@link AnnotationUtils#getAnnotation(java.lang.reflect.AnnotatedElement, Class)} 一致，支持单层元注解上<em>存在</em>或<em>元存在</em>的注解。可以禁用对元注解的搜索。同样，也可以选择启用对接口上注解的搜索。详情请参阅本类中的各个构造函数。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AnnotationTypeFilter.java::52::0", "zh": ["为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。", "<p>该过滤器还会匹配元注解。要禁用元注解匹配，请使用接受 '{@code considerMetaAnnotations}' 参数的构造函数。", "<p>该过滤器不会匹配接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AnnotationTypeFilter.java::64::0", "zh": ["为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。", "<p>该过滤器不会匹配接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AnnotationTypeFilter.java::74::0", "zh": ["为给定的注解类型创建一个新的 {@code AnnotationTypeFilter}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AnnotationTypeFilter.java::88::0", "zh": ["返回此实例用于筛选候选对象的 {@link Annotation}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AspectJTypeFilter.java::36::0", "zh": ["使用 AspectJ 类型模式进行匹配的类型过滤器。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AspectJTypeFilter.java::36::1", "zh": ["<p>此类型过滤器的一个关键实现细节是：它不会加载所检查的类来与类型模式进行匹配。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AssignableTypeFilter.java::22::0", "zh": ["一个简单的过滤器，用于匹配可赋值给给定类型的类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AssignableTypeFilter.java::35::0", "zh": ["为给定类型创建一个新的 AssignableTypeFilter。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/AssignableTypeFilter.java::44::0", "zh": ["返回此实例用于筛选候选对象的 {@code type}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/RegexPatternTypeFilter.java::24::0", "zh": ["一个简单的过滤器，用于使用正则 {@link Pattern} 匹配全限定类名。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/TypeFilter.java::24::0", "zh": ["使用 {@link org.springframework.core.type.classreading.MetadataReader} 的类型过滤器的基础接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/TypeFilter.java::36::0", "zh": ["确定此过滤器是否匹配给定元数据所描述的类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/type/filter/package-info.java::1::0", "zh": ["类型过滤（例如用于类路径扫描）的核心支持包。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNull.java::28::0", "zh": ["一个常用的 Spring 注解，用于声明被注解的元素不能为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNull.java::28::1", "zh": ["<p>借助 JSR-305 元注解，向支持 JSR-305 的常用工具表明 Java 中的可空性，并由 Kotlin 用于推断 Spring API 的可空性。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNull.java::28::2", "zh": ["<p>应在参数、返回值和字段级别使用。方法重写应重复父级的 {@code @NonNull} 注解，除非其行为有所不同。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNull.java::28::3", "zh": ["<p>使用 {@code @NonNullApi}（作用域 = 参数 + 返回值）和/或 {@code @NonNullFields}（作用域 = 字段）将默认行为设置为非空，从而避免为整个代码库标注 {@code @NonNull}。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNullApi.java::28::0", "zh": ["一个常用的 Spring 注解，用于声明对于给定包，参数和返回值默认应视为非空。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNullApi.java::28::1", "zh": ["<p>借助 JSR-305 元注解，向支持 JSR-305 的常用工具表明 Java 中的可空性，并由 Kotlin 用于推断 Spring API 的可空性。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNullApi.java::28::2", "zh": ["<p>应在包级别使用，并与参数和返回值级别的 {@link Nullable} 注解配合使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNullFields.java::28::0", "zh": ["一个常用的 Spring 注解，用于声明对于给定包，字段默认应视为非空。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNullFields.java::28::1", "zh": ["<p>借助 JSR-305 元注解，向支持 JSR-305 的常用工具表明 Java 中的可空性，并由 Kotlin 用于推断 Spring API 的可空性。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/NonNullFields.java::28::2", "zh": ["<p>应在包级别使用，并与字段级别的 {@link Nullable} 注解配合使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/Nullable.java::29::0", "zh": ["一个常用的 Spring 注解，用于声明被注解的元素在某些情况下可以为 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/Nullable.java::29::1", "zh": ["<p>借助 JSR-305 元注解，向支持 JSR-305 的常用工具表明 Java 中的可空性，并由 Kotlin 用于推断 Spring API 的可空性。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/Nullable.java::29::2", "zh": ["<p>应在参数、返回值和字段级别使用。方法重写应重复父级的 {@code @Nullable} 注解，除非其行为有所不同。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/Nullable.java::29::3", "zh": ["<p>可与 {@code @NonNullApi} 或 {@code @NonNullFields} 配合使用，将默认的非空语义覆盖为可空。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/UsesJava7.java::25::0", "zh": ["表示被注解的元素使用了 Java 7 特有的 API 构造，但并不意味着它严格要求 Java 7。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/UsesJava8.java::25::0", "zh": ["表示被注解的元素使用了 Java 8 特有的 API 构造，但并不意味着它严格要求 Java 8。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/UsesSunHttpServer.java::25::0", "zh": ["表示被注解的元素使用了 {@code com.sun.*} 类中提供的 Http Server，该服务器仅在 Sun/Oracle JVM 上可用。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/UsesSunMisc.java::25::0", "zh": ["表示被注解的元素使用了 {@code sun.misc} 包中的 API。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/package-info.java::1::0", "zh": ["具有语言级语义的常用注解：可空性以及 JDK API 指示。这些注解位于 Spring 包依赖安排中的最低层级，甚至低于 {@code org.springframework.util}，且不隐含任何 Spring 特有的概念。"]}
+{"id": "spring-core/src/main/java/org/springframework/lang/package-info.java::1::1", "zh": ["<p>在框架代码库中用于描述性目的。可由构建时工具（例如 FindBugs 或 Animal Sniffer）、替代 JVM 语言（例如 Kotlin）以及 IDE（例如 IntelliJ IDEA 或进行了相应项目配置的 Eclipse）进行校验。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/SpringObjenesis.java::25::0", "zh": ["{@link ObjenesisStd} / {@link ObjenesisBase} 的 Spring 特有变体，提供基于 {@code Class} 键而非类名的缓存，并允许有选择地使用该缓存。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/SpringObjenesis.java::37::0", "zh": ["系统属性，指示 Spring 忽略 Objenesis，甚至不尝试使用它。将此标志设置为 \"true\" 相当于让 Spring 发现 Objenesis 在运行时无法工作，并立即触发回退代码路径：最重要的是，这意味着所有 CGLIB AOP 代理都将通过默认构造函数以常规实例化方式创建。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/SpringObjenesis.java::55::0", "zh": ["使用标准实例化器策略创建一个新的 {@code SpringObjenesis} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/SpringObjenesis.java::63::0", "zh": ["使用给定的标准实例化器策略创建一个新的 {@code SpringObjenesis} 实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/SpringObjenesis.java::78::0", "zh": ["返回此 Objenesis 实例是否值得尝试用于实例创建，即它是否尚未被使用或已知可用。", "<p>如果已确定所配置的 Objenesis 实例化器策略在当前 JVM 上完全无法工作，或者 \"spring.objenesis.ignore\" 属性已被设置为 \"true\"，则此方法返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/objenesis/SpringObjenesis.java::89::0", "zh": ["通过 Objenesis 创建给定类的新实例。"]}

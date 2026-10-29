@@ -44,7 +44,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.adapter.AbstractWebSocketSession;
 
 /**
- * A {@link WebSocketSession} for use with the standard WebSocket for Java API.
+ * 用于标准 Java WebSocket API 的 {@link WebSocketSession}。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -75,7 +75,7 @@ public class StandardWebSocketSession extends AbstractWebSocketSession<Session> 
 
 
 	/**
-	 * Constructor for a standard WebSocket session.
+	 * 标准 WebSocket 会话的构造函数。
 	 * @param headers the headers of the handshake request
 	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket
 	 * session; the provided attributes are copied, the original map is not used.
@@ -89,7 +89,7 @@ public class StandardWebSocketSession extends AbstractWebSocketSession<Session> 
 	}
 
 	/**
-	 * Constructor that associates a user with the WebSocket session.
+	 * 将用户与 WebSocket 会话关联的构造函数。
 	 * @param headers the headers of the handshake request
 	 * @param attributes the attributes from the HTTP handshake to associate with the WebSocket session
 	 * @param localAddress the address on which the request was received

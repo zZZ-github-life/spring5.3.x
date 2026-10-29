@@ -27,8 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Subclass of ShadowingClassLoader that overrides attempts to
- * locate certain files.
+ * ShadowingClassLoader 的子类，用于覆盖对特定文件的定位尝试。
  *
  * @author Rod Johnson
  * @author Adrian Colyer
@@ -49,14 +48,13 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 
 
 	/**
-	 * Key is asked for value: value is actual value.
+	 * 以键请求值：值是实际值。
 	 */
 	private Map<String, String> overrides = new HashMap<>();
 
 
 	/**
-	 * Create a new ResourceOverridingShadowingClassLoader,
-	 * decorating the given ClassLoader.
+	 * 创建一个新的 ResourceOverridingShadowingClassLoader，装饰给定的 ClassLoader。
 	 * @param enclosingClassLoader the ClassLoader to decorate
 	 */
 	public ResourceOverridingShadowingClassLoader(ClassLoader enclosingClassLoader) {
@@ -65,8 +63,7 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 
 
 	/**
-	 * Return the resource (if any) at the new path
-	 * on an attempt to locate a resource at the old path.
+	 * 在尝试定位旧路径上的资源时，返回新路径上的资源（如果有）。
 	 * @param oldPath the path requested
 	 * @param newPath the actual path to be looked up
 	 */
@@ -75,7 +72,7 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 	}
 
 	/**
-	 * Ensure that a resource with the given path is not found.
+	 * 确保找不到具有给定路径的资源。
 	 * @param oldPath the path of the resource to hide even if
 	 * it exists in the parent ClassLoader
 	 */
@@ -84,7 +81,7 @@ public class ResourceOverridingShadowingClassLoader extends ShadowingClassLoader
 	}
 
 	/**
-	 * Copy all overrides from the given ClassLoader.
+	 * 从给定的 ClassLoader 复制所有覆盖项。
 	 * @param other the other ClassLoader to copy from
 	 */
 	public void copyOverrides(ResourceOverridingShadowingClassLoader other) {

@@ -24,8 +24,7 @@ import org.joda.time.Duration;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a Joda-Time {@link Duration},
- * following Joda-Time's parsing rules for a Duration.
+ * 用于 Joda-Time {@link Duration} 的 {@link Formatter} 实现，遵循 Joda-Time 对 Duration 的解析规则。
  *
  * @author Juergen Hoeller
  * @since 4.2.4

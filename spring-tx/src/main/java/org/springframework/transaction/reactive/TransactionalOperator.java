@@ -24,24 +24,22 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
 
 /**
- * Operator class that simplifies programmatic transaction demarcation and
- * transaction exception handling.
+ * 简化编程式事务界定和事务异常处理的操作器类。
  *
- * <p>The central method is {@link #transactional}, supporting transactional wrapping
- * of functional sequences code that. This operator handles the transaction lifecycle
- * and possible exceptions such that neither the ReactiveTransactionCallback
- * implementation nor the calling code needs to explicitly handle transactions.
+ * <p>核心方法是{@link #transactional}，支持对函数式序列代码进行
+ * 事务包装。此操作器处理事务生命周期和可能的异常，
+ * 使得ReactiveTransactionCallback实现和调用代码都不需要
+ * 显式处理事务。
  *
- * <p>Typical usage: Allows for writing low-level data access objects that use
- * resources such as database connections but are not transaction-aware themselves.
- * Instead, they can implicitly participate in transactions handled by higher-level
- * application services utilizing this class, making calls to the low-level
- * services via an inner-class callback object.
+ * <p>典型用法：允许编写使用数据库连接等资源的
+ * 底层数据访问对象，而这些对象本身不具备事务感知能力。
+ * 相反，它们可以隐式参与由使用此类的高层应用程序服务
+ * 处理的事务，通过内部类回调对象调用底层服务。
  *
- * <p><strong>Note:</strong> Transactional Publishers should avoid Subscription
- * cancellation. See the
- * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#tx-prog-operator-cancel">Cancel Signals</a>
- * section of the Spring Framework reference for more details.
+ * <p><strong>注意：</strong>事务性Publisher应避免Subscription取消。
+ * 请参阅Spring Framework参考文档的
+ * <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#tx-prog-operator-cancel">取消信号</a>
+ * 章节了解更多详情。
  *
  * @author Mark Paluch
  * @author Juergen Hoeller
@@ -52,7 +50,7 @@ import org.springframework.transaction.TransactionException;
 public interface TransactionalOperator {
 
 	/**
-	 * Wrap the functional sequence specified by the given Flux within a transaction.
+	 * 将给定Flux指定的函数式序列包装在事务中。
 	 * @param flux the Flux that should be executed within the transaction
 	 * @return a result publisher returned by the callback, or {@code null} if none
 	 * @throws TransactionException in case of initialization, rollback, or system errors
@@ -63,7 +61,7 @@ public interface TransactionalOperator {
 	}
 
 	/**
-	 * Wrap the functional sequence specified by the given Mono within a transaction.
+	 * 将给定Mono指定的函数式序列包装在事务中。
 	 * @param mono the Mono that should be executed within the transaction
 	 * @return a result publisher returned by the callback
 	 * @throws TransactionException in case of initialization, rollback, or system errors
@@ -72,11 +70,11 @@ public interface TransactionalOperator {
 	<T> Mono<T> transactional(Mono<T> mono);
 
 	/**
-	 * Execute the action specified by the given callback object within a transaction.
-	 * <p>Allows for returning a result object created within the transaction, that is,
-	 * a domain object or a collection of domain objects. A RuntimeException thrown
-	 * by the callback is treated as a fatal exception that enforces a rollback.
-	 * Such an exception gets propagated to the caller of the template.
+	 * 在事务中执行给定回调对象指定的操作。
+	 * <p>允许返回在事务中创建的结果对象，即
+	 * 领域对象或领域对象的集合。回调抛出的RuntimeException
+	 * 被视为强制回滚的致命异常。
+	 * 此类异常将传播到模板的调用者。
 	 * @param action the callback object that specifies the transactional action
 	 * @return a result object returned by the callback
 	 * @throws TransactionException in case of initialization, rollback, or system errors
@@ -88,8 +86,8 @@ public interface TransactionalOperator {
 	// Static builder methods
 
 	/**
-	 * Create a new {@link TransactionalOperator} using {@link ReactiveTransactionManager},
-	 * using a default transaction.
+	 * 使用{@link ReactiveTransactionManager}创建一个新的{@link TransactionalOperator}，
+	 * 使用默认事务。
 	 * @param transactionManager the transaction management strategy to be used
 	 * @return the transactional operator
 	 */
@@ -98,8 +96,8 @@ public interface TransactionalOperator {
 	}
 
 	/**
-	 * Create a new {@link TransactionalOperator} using {@link ReactiveTransactionManager}
-	 * and {@link TransactionDefinition}.
+	 * 使用{@link ReactiveTransactionManager}和{@link TransactionDefinition}
+	 * 创建一个新的{@link TransactionalOperator}。
 	 * @param transactionManager the transaction management strategy to be used
 	 * @param transactionDefinition the transaction definition to apply
 	 * @return the transactional operator

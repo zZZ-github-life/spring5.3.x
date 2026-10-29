@@ -23,12 +23,10 @@ import java.util.Locale;
 import org.springframework.lang.Nullable;
 
 /**
- * A general-purpose number formatter using NumberFormat's number style.
+ * 使用 NumberFormat 数字样式的通用数字格式化器。
  *
- * <p>Delegates to {@link java.text.NumberFormat#getInstance(Locale)}.
- * Configures BigDecimal parsing so there is no loss in precision.
- * Allows configuration over the decimal number pattern.
- * The {@link #parse(String, Locale)} routine always returns a BigDecimal.
+ * <p>委托给 {@link java.text.NumberFormat#getInstance(Locale)}。配置 BigDecimal 解析，因此不会损失
+ * 精度。允许对十进制数字模式进行配置。{@link #parse(String, Locale)} 方法始终返回 BigDecimal。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -43,13 +41,13 @@ public class NumberStyleFormatter extends AbstractNumberFormatter {
 
 
 	/**
-	 * Create a new NumberStyleFormatter without a pattern.
+	 * 创建一个不带模式的 NumberStyleFormatter。
 	 */
 	public NumberStyleFormatter() {
 	}
 
 	/**
-	 * Create a new NumberStyleFormatter with the specified pattern.
+	 * 创建一个使用指定模式的 NumberStyleFormatter。
 	 * @param pattern the format pattern
 	 * @see #setPattern
 	 */
@@ -59,8 +57,7 @@ public class NumberStyleFormatter extends AbstractNumberFormatter {
 
 
 	/**
-	 * Specify the pattern to use to format number values.
-	 * If not specified, the default DecimalFormat pattern is used.
+	 * 指定用于格式化数值的模式。如果未指定，则使用默认的 DecimalFormat 模式。
 	 * @see java.text.DecimalFormat#applyPattern(String)
 	 */
 	public void setPattern(String pattern) {

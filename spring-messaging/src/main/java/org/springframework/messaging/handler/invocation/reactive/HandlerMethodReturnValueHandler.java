@@ -23,21 +23,19 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Handle the return value from the invocation of an annotated {@link Message}
- * handling method.
+ * 处理调用带注解的 {@link Message} 处理方法所返回的值。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
  */
 public interface HandlerMethodReturnValueHandler {
 
-	/** Header containing a DataBufferFactory for use in return value handling. */
+	/** 包含用于返回值处理的 DataBufferFactory 的头。 */
 	String DATA_BUFFER_FACTORY_HEADER = "dataBufferFactory";
 
 
 	/**
-	 * Whether the given {@linkplain MethodParameter method return type} is
-	 * supported by this handler.
+	 * 给定{@linkplain MethodParameter 方法返回类型}是否受此处理器支持。
 	 * @param returnType the method return type to check
 	 * @return {@code true} if this handler supports the supplied return type;
 	 * {@code false} otherwise
@@ -45,7 +43,7 @@ public interface HandlerMethodReturnValueHandler {
 	boolean supportsReturnType(MethodParameter returnType);
 
 	/**
-	 * Handle the given return value.
+	 * 处理给定返回值。
 	 * @param returnValue the value returned from the handler method
 	 * @param returnType the type of the return value. This type must have previously
 	 * been passed to {@link #supportsReturnType(MethodParameter)}

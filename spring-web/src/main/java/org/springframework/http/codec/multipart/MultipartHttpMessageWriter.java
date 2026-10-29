@@ -53,20 +53,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.MultiValueMap;
 
 /**
- * {@link HttpMessageWriter} for writing a {@code MultiValueMap<String, ?>}
- * as multipart form data, i.e. {@code "multipart/form-data"}, to the body
- * of a request.
+ * {@link HttpMessageWriter}，用于将 {@code MultiValueMap<String, ?>}
+ * 作为 multipart 表单数据（即 {@code "multipart/form-data"}）
+ * 写入请求体。
  *
- * <p>The serialization of individual parts is delegated to other writers.
- * By default only {@link String} and {@link Resource} parts are supported but
- * you can configure others through a constructor argument.
+ * <p>各部分的序列化委托给其他写入器。默认仅支持 {@link String}
+ * 和 {@link Resource} 部件，但可以通过构造函数参数配置其他写入器。
  *
- * <p>This writer can be configured with a {@link FormHttpMessageWriter} to
- * delegate to. It is the preferred way of supporting both form data and
- * multipart data (as opposed to registering each writer separately) so that
- * when the {@link MediaType} is not specified and generics are not present on
- * the target element type, we can inspect the values in the actual map and
- * decide whether to write plain form data (String values only) or otherwise.
+ * <p>可以将此写入器配置为委托给一个 {@link FormHttpMessageWriter}。
+ * 这是同时支持表单数据和 multipart 数据的首选方式（相比分别注册每个写入器），
+ * 这样当未指定 {@link MediaType} 且目标元素类型上不存在泛型信息时，
+ * 我们可以检查实际 Map 中的值，从而决定是写入纯表单数据（仅 String 值）
+ * 还是采用其他方式。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -76,7 +74,7 @@ import org.springframework.util.MultiValueMap;
 public class MultipartHttpMessageWriter extends MultipartWriterSupport
 		implements HttpMessageWriter<MultiValueMap<String, ?>> {
 
-	/** Suppress logging from individual part writers (full map logged at this level). */
+	/** 抑制各部件写入器的日志记录（在此级别记录完整的 Map）。 */
 	private static final Map<String, Object> DEFAULT_HINTS = Hints.from(Hints.SUPPRESS_LOGGING_HINT, true);
 
 
@@ -87,7 +85,7 @@ public class MultipartHttpMessageWriter extends MultipartWriterSupport
 
 
 	/**
-	 * Constructor with a default list of part writers (String and Resource).
+	 * 使用默认的部件写入器列表（String 和 Resource）的构造函数。
 	 */
 	public MultipartHttpMessageWriter() {
 		this(Arrays.asList(
@@ -97,16 +95,15 @@ public class MultipartHttpMessageWriter extends MultipartWriterSupport
 	}
 
 	/**
-	 * Constructor with explicit list of writers for serializing parts.
+	 * 使用显式的部件序列化写入器列表的构造函数。
 	 */
 	public MultipartHttpMessageWriter(List<HttpMessageWriter<?>> partWriters) {
 		this(partWriters, new FormHttpMessageWriter());
 	}
 
 	/**
-	 * Constructor with explicit list of writers for serializing parts and a
-	 * writer for plain form data to fall back when no media type is specified
-	 * and the actual map consists of String values only.
+	 * 使用显式的部件序列化写入器列表以及纯表单数据写入器的构造函数，
+	 * 后者在未指定媒体类型且实际 Map 仅包含 String 值时作为后备。
 	 * @param partWriters the writers for serializing parts
 	 * @param formWriter the fallback writer for form data, {@code null} by default
 	 */
@@ -128,7 +125,7 @@ public class MultipartHttpMessageWriter extends MultipartWriterSupport
 
 
 	/**
-	 * Return the configured part writers.
+	 * 返回已配置的部件写入器。
 	 * @since 5.0.7
 	 */
 	public List<HttpMessageWriter<?>> getPartWriters() {
@@ -137,7 +134,7 @@ public class MultipartHttpMessageWriter extends MultipartWriterSupport
 
 
 	/**
-	 * Return the configured form writer.
+	 * 返回已配置的表单写入器。
 	 * @since 5.1.13
 	 */
 	@Nullable

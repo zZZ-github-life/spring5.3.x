@@ -28,9 +28,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentReferenceHashMap;
 
 /**
- * Cache exception handling method mappings and provide options to look up a method
- * that should handle an exception. If multiple methods match, they are sorted using
- * {@link ExceptionDepthComparator} and the top match is returned.
+ * 缓存异常处理方法映射，并提供查找应处理某个异常的方法的选项。
+ * 如果匹配到多个方法，则使用 {@link ExceptionDepthComparator} 排序并返回最佳匹配。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -58,7 +57,7 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 
 
 	/**
-	 * Protected constructor accepting exception-to-method mappings.
+	 * 受保护的构造函数，接受异常到方法的映射。
 	 */
 	protected AbstractExceptionHandlerMethodResolver(Map<Class<? extends Throwable>, Method> mappedMethods) {
 		Assert.notNull(mappedMethods, "Mapped Methods must not be null");
@@ -66,9 +65,8 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Extract the exceptions this method handles. This implementation looks for
-	 * subclasses of Throwable in the method signature.
-	 * <p>The method is static to ensure safe use from subclass constructors.
+	 * 提取此方法处理的异常。此实现会在方法签名中查找 Throwable 的子类。
+	 * <p>该方法为静态方法，以确保从子类构造函数中安全使用。
 	 */
 	@SuppressWarnings("unchecked")
 	protected static List<Class<? extends Throwable>> getExceptionsFromMethodSignature(Method method) {
@@ -86,15 +84,15 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 
 
 	/**
-	 * Whether the contained type has any exception mappings.
+	 * 所包含的类型是否有任何异常映射。
 	 */
 	public boolean hasExceptionMappings() {
 		return !this.mappedMethods.isEmpty();
 	}
 
 	/**
-	 * Find a {@link Method} to handle the given exception.
-	 * <p>Uses {@link ExceptionDepthComparator} if more than one match is found.
+	 * 查找用于处理给定异常的 {@link Method}。
+	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator}。
 	 * @param exception the exception
 	 * @return a Method to handle the exception, or {@code null} if none found
 	 */
@@ -111,9 +109,9 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Find a {@link Method} to handle the given exception type. This can be
-	 * useful if an {@link Exception} instance is not available (e.g. for tools).
-	 * <p>Uses {@link ExceptionDepthComparator} if more than one match is found.
+	 * 查找用于处理给定异常类型的 {@link Method}。当 {@link Exception} 实例不可用时
+	 * （例如对于工具），这可能很有用。
+	 * <p>如果找到多个匹配项，则使用 {@link ExceptionDepthComparator}。
 	 * @param exceptionType the exception type
 	 * @return a Method to handle the exception, or {@code null} if none found
 	 * @since 4.3.1
@@ -129,8 +127,8 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * Return the {@link Method} mapped to the given exception type, or
-	 * {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} if none.
+	 * 返回映射到给定异常类型的 {@link Method}，
+	 * 如果没有则返回 {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD}。
 	 */
 	@Nullable
 	private Method getMappedMethod(Class<? extends Throwable> exceptionType) {
@@ -152,7 +150,7 @@ public abstract class AbstractExceptionHandlerMethodResolver {
 	}
 
 	/**
-	 * For the {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} constant.
+	 * 用于 {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} 常量。
 	 */
 	@SuppressWarnings("unused")
 	private void noMatchingExceptionHandler() {

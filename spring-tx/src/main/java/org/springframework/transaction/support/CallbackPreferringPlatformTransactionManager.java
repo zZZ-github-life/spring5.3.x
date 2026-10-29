@@ -22,18 +22,16 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
 
 /**
- * Extension of the {@link org.springframework.transaction.PlatformTransactionManager}
- * interface, exposing a method for executing a given callback within a transaction.
+ * {@link org.springframework.transaction.PlatformTransactionManager} 接口的扩展，
+ * 暴露一个在事务中执行给定回调的方法。
  *
- * <p>Implementors of this interface automatically express a preference for
- * callbacks over programmatic {@code getTransaction}, {@code commit}
- * and {@code rollback} calls. Calling code may check whether a given
- * transaction manager implements this interface to choose to prepare a
- * callback instead of explicit transaction demarcation control.
+ * <p>此接口的实现者自动表达了对回调的偏好，而非编程式的 {@code getTransaction}、
+ * {@code commit} 和 {@code rollback} 调用。调用代码可以检查给定事务管理器是否实现了此接口，
+ * 以选择准备回调而非显式事务划分控制。
  *
- * <p>Spring's {@link TransactionTemplate} and
+ * <p>Spring 的 {@link TransactionTemplate} 和
  * {@link org.springframework.transaction.interceptor.TransactionInterceptor}
- * detect and use this PlatformTransactionManager variant automatically.
+ * 会自动检测并使用此 PlatformTransactionManager 变体。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -43,16 +41,15 @@ import org.springframework.transaction.TransactionException;
 public interface CallbackPreferringPlatformTransactionManager extends PlatformTransactionManager {
 
 	/**
-	 * Execute the action specified by the given callback object within a transaction.
-	 * <p>Allows for returning a result object created within the transaction, that is,
-	 * a domain object or a collection of domain objects. A RuntimeException thrown
-	 * by the callback is treated as a fatal exception that enforces a rollback.
-	 * Such an exception gets propagated to the caller of the template.
-	 * @param definition the definition for the transaction to wrap the callback in
-	 * @param callback the callback object that specifies the transactional action
-	 * @return a result object returned by the callback, or {@code null} if none
-	 * @throws TransactionException in case of initialization, rollback, or system errors
-	 * @throws RuntimeException if thrown by the TransactionCallback
+	 * 在事务中执行给定回调对象指定的操作。
+	 * <p>允许返回在事务中创建的结果对象，即领域对象或领域对象集合。
+	 * 回调抛出的 RuntimeException 被视为强制回滚的致命异常。
+	 * 此类异常将传播到模板的调用者。
+	 * @param definition 用于包装回调的事务定义
+	 * @param callback 指定事务操作的回调对象
+	 * @return 回调返回的结果对象，如果没有则为 {@code null}
+	 * @throws TransactionException 如果初始化、回滚或系统出错
+	 * @throws RuntimeException 如果由 TransactionCallback 抛出
 	 */
 	@Nullable
 	<T> T execute(@Nullable TransactionDefinition definition, TransactionCallback<T> callback)

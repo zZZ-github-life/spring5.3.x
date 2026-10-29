@@ -25,10 +25,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Provides a convenient implementation of the {@link HttpRequest} interface
- * that can be overridden to adapt the request.
+ * 提供 {@link HttpRequest} 接口的便捷实现，
+ * 可以覆盖该实现以适应请求。
  *
- * <p>These methods default to calling through to the wrapped request object.
+ * <p>这些方法默认调用被包装的请求对象。
  *
  * @author Arjen Poutsma
  * @since 3.1
@@ -39,7 +39,7 @@ public class HttpRequestWrapper implements HttpRequest {
 
 
 	/**
-	 * Create a new {@code HttpRequest} wrapping the given request object.
+	 * 创建一个包装给定请求对象的 {@code HttpRequest}。
 	 * @param request the request object to be wrapped
 	 */
 	public HttpRequestWrapper(HttpRequest request) {
@@ -49,14 +49,14 @@ public class HttpRequestWrapper implements HttpRequest {
 
 
 	/**
-	 * Return the wrapped request.
+	 * 返回被包装的请求。
 	 */
 	public HttpRequest getRequest() {
 		return this.request;
 	}
 
 	/**
-	 * Return the method of the wrapped request.
+	 * 返回被包装请求的方法。
 	 */
 	@Override
 	@Nullable
@@ -65,7 +65,7 @@ public class HttpRequestWrapper implements HttpRequest {
 	}
 
 	/**
-	 * Return the method value of the wrapped request.
+	 * 返回被包装请求的方法值。
 	 */
 	@Override
 	public String getMethodValue() {
@@ -73,7 +73,7 @@ public class HttpRequestWrapper implements HttpRequest {
 	}
 
 	/**
-	 * Return the URI of the wrapped request.
+	 * 返回被包装请求的 URI。
 	 */
 	@Override
 	public URI getURI() {
@@ -81,7 +81,7 @@ public class HttpRequestWrapper implements HttpRequest {
 	}
 
 	/**
-	 * Return the headers of the wrapped request.
+	 * 返回被包装请求的头部。
 	 */
 	@Override
 	public HttpHeaders getHeaders() {

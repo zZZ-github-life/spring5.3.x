@@ -24,8 +24,8 @@ import org.apache.commons.logging.impl.NoOpLog;
 
 
 /**
- * Implementation of {@link Log} that wraps a list of loggers and delegates
- * to the first one for which logging is enabled at the given level.
+ * {@link Log} 的实现，包装一个日志记录器列表，并
+ * 委托给其中第一个在给定级别启用了日志的记录器。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -40,7 +40,7 @@ final class CompositeLog implements Log {
 
 
 	/**
-	 * Package-private constructor with list of loggers.
+	 * 带有日志记录器列表的包级私有构造器。
 	 * @param loggers the loggers to use
 	 */
 	CompositeLog(List<Log> loggers) {

@@ -28,25 +28,23 @@
 package org.springframework.asm;
 
 /**
- * A visitor to visit a Java field. The methods of this class must be called in the following order:
- * ( {@code visitAnnotation} | {@code visitTypeAnnotation} | {@code visitAttribute} )* {@code
- * visitEnd}.
+ * 用于访问 Java 字段的访问器。此类的方法必须按以下顺序调用：( {@code visitAnnotation} |
+ * {@code visitTypeAnnotation} | {@code visitAttribute} )* {@code visitEnd}。
  *
  * @author Eric Bruneton
  */
 public abstract class FieldVisitor {
 
   /**
-   * The ASM API version implemented by this visitor. The value of this field must be one of the
-   * {@code ASM}<i>x</i> values in {@link Opcodes}.
+   * 此访问器实现的 ASM API 版本。此字段的值必须是 {@link Opcodes} 中 {@code ASM}<i>x</i> 值之一。
    */
   protected final int api;
 
-  /** The field visitor to which this visitor must delegate method calls. May be {@literal null}. */
+  /** 此访问器必须将方法调用委托给的字段访问器。可能为 {@literal null}。 */
   protected FieldVisitor fv;
 
   /**
-   * Constructs a new {@link FieldVisitor}.
+   * 构造一个新的 {@link FieldVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of the {@code
    *     ASM}<i>x</i> values in {@link Opcodes}.
@@ -56,7 +54,7 @@ public abstract class FieldVisitor {
   }
 
   /**
-   * Constructs a new {@link FieldVisitor}.
+   * 构造一个新的 {@link FieldVisitor}。
    *
    * @param api the ASM API version implemented by this visitor. Must be one of the {@code
    *     ASM}<i>x</i> values in {@link Opcodes}.
@@ -79,7 +77,7 @@ public abstract class FieldVisitor {
   }
 
   /**
-   * The field visitor to which this visitor must delegate method calls. May be {@literal null}.
+   * 此访问器必须将方法调用委托给该字段访问器。可能为 {@literal null}。
    *
    * @return the field visitor to which this visitor must delegate method calls, or {@literal null}.
    */
@@ -88,7 +86,7 @@ public abstract class FieldVisitor {
   }
 
   /**
-   * Visits an annotation of the field.
+   * 访问字段的一个注解。
    *
    * @param descriptor the class descriptor of the annotation class.
    * @param visible {@literal true} if the annotation is visible at runtime.
@@ -103,7 +101,7 @@ public abstract class FieldVisitor {
   }
 
   /**
-   * Visits an annotation on the type of the field.
+   * 访问字段类型上的一个注解。
    *
    * @param typeRef a reference to the annotated type. The sort of this type reference must be
    *     {@link TypeReference#FIELD}. See {@link TypeReference}.
@@ -127,7 +125,7 @@ public abstract class FieldVisitor {
   }
 
   /**
-   * Visits a non standard attribute of the field.
+   * 访问字段的一个非标准属性。
    *
    * @param attribute an attribute.
    */
@@ -138,8 +136,7 @@ public abstract class FieldVisitor {
   }
 
   /**
-   * Visits the end of the field. This method, which is the last one to be called, is used to inform
-   * the visitor that all the annotations and attributes of the field have been visited.
+   * 访问字段的结束。此方法是最后一个被调用的方法，用于通知访问器该字段的所有注解和属性都已访问完毕。
    */
   public void visitEnd() {
     if (fv != null) {

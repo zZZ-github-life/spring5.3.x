@@ -23,9 +23,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link ComponentDefinition} implementation that holds one or more nested
- * {@link ComponentDefinition} instances, aggregating them into a named group
- * of components.
+ * {@link ComponentDefinition} 的一种实现，持有零个或多个嵌套的 {@link ComponentDefinition} 实例，
+ * 并将它们聚合为一个命名的组件组。
  *
  * @author Juergen Hoeller
  * @since 2.0.1
@@ -42,7 +41,7 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 
 
 	/**
-	 * Create a new CompositeComponentDefinition.
+	 * 创建一个新的 CompositeComponentDefinition。
 	 * @param name the name of the composite component
 	 * @param source the source element that defines the root of the composite component
 	 */
@@ -66,7 +65,7 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 
 
 	/**
-	 * Add the given component as nested element of this composite component.
+	 * 将给定组件添加为此复合组件的嵌套元素。
 	 * @param component the nested component to add
 	 */
 	public void addNestedComponent(ComponentDefinition component) {
@@ -75,7 +74,7 @@ public class CompositeComponentDefinition extends AbstractComponentDefinition {
 	}
 
 	/**
-	 * Return the nested components that this composite component holds.
+	 * 返回此复合组件所持有的嵌套组件。
 	 * @return the array of nested components, or an empty array if none
 	 */
 	public ComponentDefinition[] getNestedComponents() {

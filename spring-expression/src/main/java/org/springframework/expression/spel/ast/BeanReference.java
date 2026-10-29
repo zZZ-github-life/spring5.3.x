@@ -25,8 +25,8 @@ import org.springframework.expression.spel.SpelEvaluationException;
 import org.springframework.expression.spel.SpelMessage;
 
 /**
- * Represents a bean reference to a type, for example {@code @foo} or {@code @'foo.bar'}.
- * For a FactoryBean the syntax {@code &foo} can be used to access the factory itself.
+ * 表示对某个类型的 Bean 引用，例如 {@code @foo} 或 {@code @'foo.bar'}。对于 FactoryBean，可以使用
+ * {@code &foo} 语法访问工厂本身。
  *
  * @author Andy Clement
  */

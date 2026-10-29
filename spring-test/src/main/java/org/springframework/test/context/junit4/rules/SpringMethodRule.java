@@ -33,60 +33,29 @@ import org.springframework.test.context.junit4.statements.SpringFailOnTimeout;
 import org.springframework.test.context.junit4.statements.SpringRepeat;
 
 /**
- * {@code SpringMethodRule} is a custom JUnit 4 {@link MethodRule} that
- * supports instance-level and method-level features of the
- * <em>Spring TestContext Framework</em> in standard JUnit tests by means
- * of the {@link TestContextManager} and associated support classes and
- * annotations.
- *
- * <p>In contrast to the {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner
- * SpringJUnit4ClassRunner}, Spring's rule-based JUnit support has the advantage
- * that it is independent of any {@link org.junit.runner.Runner Runner} and
- * can therefore be combined with existing alternative runners like JUnit's
- * {@code Parameterized} or third-party runners such as the {@code MockitoJUnitRunner}.
- *
- * <p>In order to achieve the same functionality as the {@code SpringJUnit4ClassRunner},
- * however, a {@code SpringMethodRule} must be combined with a {@link SpringClassRule},
- * since {@code SpringMethodRule} only supports the instance-level and method-level
- * features of the {@code SpringJUnit4ClassRunner}.
- *
- * <h3>Example Usage</h3>
+ * {@code SpringMethodRule} 是一个自定义 JUnit 4 {@link MethodRule}，通过 {@link TestContextManager} 及相关支持类和注解，在标准 JUnit 测试中支持 <em>Spring TestContext Framework</em> 的实例级和方法级功能。
+ * <p>与 {@link org.springframework.test.context.junit4.SpringJUnit4ClassRunner SpringJUnit4ClassRunner} 相比，Spring 基于规则的 JUnit 支持的优势在于它独立于任何 {@link org.junit.runner.Runner Runner}，因此可以与现有的替代运行器（如 JUnit 的 {@code Parameterized} 或第三方运行器如 {@code MockitoJUnitRunner}）结合使用。
+ * <p>然而，为了实现与 {@code SpringJUnit4ClassRunner} 相同的功能，必须将 {@code SpringMethodRule} 与 {@link SpringClassRule} 结合使用，因为 {@code SpringMethodRule} 仅支持 {@code SpringJUnit4ClassRunner} 的实例级和方法级功能。
+ * <h3>示例用法</h3>
  * <pre><code> public class ExampleSpringIntegrationTest {
  *
- *    &#064;ClassRule
- *    public static final SpringClassRule springClassRule = new SpringClassRule();
+ * &#064;ClassRule
+ * public static final SpringClassRule springClassRule = new SpringClassRule();
  *
- *    &#064;Rule
- *    public final SpringMethodRule springMethodRule = new SpringMethodRule();
+ * &#064;Rule
+ * public final SpringMethodRule springMethodRule = new SpringMethodRule();
  *
- *    // ...
+ * // ...
  * }</code></pre>
- *
- * <p>The following list constitutes all annotations currently supported directly
- * or indirectly by {@code SpringMethodRule}. <em>(Note that additional annotations
- * may be supported by various
- * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} or
- * {@link org.springframework.test.context.TestContextBootstrapper TestContextBootstrapper}
- * implementations.)</em>
- *
+ * <p>以下列表列出了 {@code SpringMethodRule} 当前直接或间接支持的所有注解。<em>（请注意，各种 {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} 或 {@link org.springframework.test.context.TestContextBootstrapper TestContextBootstrapper} 实现可能支持其他注解。）</em>
  * <ul>
  * <li>{@link org.springframework.test.annotation.Timed @Timed}</li>
  * <li>{@link org.springframework.test.annotation.Repeat @Repeat}</li>
  * <li>{@link org.springframework.test.annotation.ProfileValueSourceConfiguration @ProfileValueSourceConfiguration}</li>
  * <li>{@link org.springframework.test.annotation.IfProfileValue @IfProfileValue}</li>
  * </ul>
- *
- * <p><strong>NOTE:</strong> As of Spring Framework 4.3, this class requires JUnit 4.12 or higher.
- *
- * <p><strong>WARNING:</strong> Due to the shortcomings of JUnit rules, the
- * {@code SpringMethodRule}
- * {@linkplain org.springframework.test.context.TestExecutionListener#prepareTestInstance
- * prepares the test instance} before {@code @Before} lifecycle methods instead of
- * immediately after instantiation of the test class. In addition, the
- * {@code SpringMethodRule} does <strong>not</strong> support the
- * {@code beforeTestExecution()} and {@code afterTestExecution()} callbacks of the
- * {@link org.springframework.test.context.TestExecutionListener TestExecutionListener}
- * API.
+ * <p><strong>注意：</strong>从 Spring Framework 4.3 开始，此类要求 JUnit 4.12 或更高版本。
+ * <p><strong>警告：</strong>由于 JUnit 规则的局限性，{@code SpringMethodRule} 在 {@code @Before} 生命周期方法之前{@linkplain org.springframework.test.context.TestExecutionListener#prepareTestInstance 准备测试实例}，而不是在测试类实例化之后立即准备。此外，{@code SpringMethodRule} <strong>不</strong>支持 {@link org.springframework.test.context.TestExecutionListener TestExecutionListener} API 的 {@code beforeTestExecution()} 和 {@code afterTestExecution()} 回调。
  *
  * @author Sam Brannen
  * @author Philippe Marschall
@@ -102,20 +71,9 @@ public class SpringMethodRule implements MethodRule {
 
 
 	/**
-	 * Apply <em>instance-level</em> and <em>method-level</em> features of
-	 * the <em>Spring TestContext Framework</em> to the supplied {@code base}
-	 * statement.
-	 * <p>Specifically, this method invokes the
-	 * {@link TestContextManager#prepareTestInstance prepareTestInstance()},
-	 * {@link TestContextManager#beforeTestMethod beforeTestMethod()}, and
-	 * {@link TestContextManager#afterTestMethod afterTestMethod()} methods
-	 * on the {@code TestContextManager}, potentially with Spring timeouts
-	 * and repetitions.
-	 * <p>In addition, this method checks whether the test is enabled in
-	 * the current execution environment. This prevents methods with a
-	 * non-matching {@code @IfProfileValue} annotation from running altogether,
-	 * even skipping the execution of {@code prepareTestInstance()} methods
-	 * in {@code TestExecutionListeners}.
+	 * 将 <em>Spring TestContext Framework</em> 的<em>实例级</em>和<em>方法级</em>功能应用于所提供的 {@code base} 语句。
+	 * <p>具体而言，此方法在 {@code TestContextManager} 上调用 {@link TestContextManager#prepareTestInstance prepareTestInstance()}、{@link TestContextManager#beforeTestMethod beforeTestMethod()} 和 {@link TestContextManager#afterTestMethod afterTestMethod()} 方法，并可能应用 Spring 超时和重复。
+	 * <p>此外，此方法会检查测试在当前执行环境中是否启用。这可防止带有不匹配的 {@code @IfProfileValue} 注解的方法完全运行，甚至跳过 {@code TestExecutionListeners} 中 {@code prepareTestInstance()} 方法的执行。
 	 * @param base the base {@code Statement} that this rule should be applied to
 	 * @param frameworkMethod the method which is about to be invoked on the test instance
 	 * @param testInstance the current test instance
@@ -148,7 +106,7 @@ public class SpringMethodRule implements MethodRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunBeforeTestMethodCallbacks} statement.
+	 * 用 {@code RunBeforeTestMethodCallbacks} 语句包装所提供的 {@link Statement}。
 	 * @see RunBeforeTestMethodCallbacks
 	 */
 	private Statement withBeforeTestMethodCallbacks(Statement next, Method testMethod,
@@ -159,7 +117,7 @@ public class SpringMethodRule implements MethodRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunAfterTestMethodCallbacks} statement.
+	 * 用 {@code RunAfterTestMethodCallbacks} 语句包装所提供的 {@link Statement}。
 	 * @see RunAfterTestMethodCallbacks
 	 */
 	private Statement withAfterTestMethodCallbacks(Statement next, Method testMethod,
@@ -170,7 +128,7 @@ public class SpringMethodRule implements MethodRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code RunPrepareTestInstanceCallbacks} statement.
+	 * 用 {@code RunPrepareTestInstanceCallbacks} 语句包装所提供的 {@link Statement}。
 	 * @see RunPrepareTestInstanceCallbacks
 	 */
 	private Statement withTestInstancePreparation(
@@ -180,9 +138,8 @@ public class SpringMethodRule implements MethodRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code SpringRepeat} statement.
-	 * <p>Supports Spring's {@link org.springframework.test.annotation.Repeat @Repeat}
-	 * annotation.
+	 * 用 {@code SpringRepeat} 语句包装所提供的 {@link Statement}。
+	 * <p>支持 Spring 的 {@link org.springframework.test.annotation.Repeat @Repeat} 注解。
 	 * @see SpringRepeat
 	 */
 	private Statement withPotentialRepeat(Statement next, Method testMethod, Object testInstance) {
@@ -190,9 +147,8 @@ public class SpringMethodRule implements MethodRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code SpringFailOnTimeout} statement.
-	 * <p>Supports Spring's {@link org.springframework.test.annotation.Timed @Timed}
-	 * annotation.
+	 * 用 {@code SpringFailOnTimeout} 语句包装所提供的 {@link Statement}。
+	 * <p>支持 Spring 的 {@link org.springframework.test.annotation.Timed @Timed} 注解。
 	 * @see SpringFailOnTimeout
 	 */
 	private Statement withPotentialTimeout(Statement next, Method testMethod, Object testInstance) {
@@ -200,7 +156,7 @@ public class SpringMethodRule implements MethodRule {
 	}
 
 	/**
-	 * Wrap the supplied {@link Statement} with a {@code ProfileValueChecker} statement.
+	 * 用 {@code ProfileValueChecker} 语句包装所提供的 {@link Statement}。
 	 * @see ProfileValueChecker
 	 */
 	private Statement withProfileValueCheck(Statement next, Method testMethod, Object testInstance) {

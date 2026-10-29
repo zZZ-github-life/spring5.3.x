@@ -24,9 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Instantiates a target handler through a Spring {@link BeanFactory} and also provides
- * an equivalent destroy method. Mainly for internal use to assist with initializing and
- * destroying handlers with per-connection lifecycle.
+ * 通过 Spring {@link BeanFactory} 实例化目标处理器，并提供等效的销毁方法。
+ * 主要用于内部使用，以协助初始化和销毁具有每连接生命周期的处理器。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

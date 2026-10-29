@@ -40,7 +40,7 @@ import org.springframework.http.ZeroCopyHttpOutputMessage;
 import org.springframework.util.Assert;
 
 /**
- * Adapt {@link ServerHttpResponse} to the {@link HttpServerResponse}.
+ * 将 {@link ServerHttpResponse} 适配到 {@link HttpServerResponse}。
  *
  * @author Stephane Maldini
  * @author Rossen Stoyanchev

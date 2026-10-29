@@ -20,7 +20,7 @@ import org.springframework.web.socket.messaging.StompSubProtocolErrorHandler;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * A contract for registering STOMP over WebSocket endpoints.
+ * 用于注册基于 WebSocket 的 STOMP 端点的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -28,25 +28,26 @@ import org.springframework.web.util.UrlPathHelper;
 public interface StompEndpointRegistry {
 
 	/**
-	 * Register a STOMP over WebSocket endpoint at the given mapping path.
+	 * 在给定的映射路径上注册一个基于 WebSocket 的 STOMP 端点。
 	 */
 	StompWebSocketEndpointRegistration addEndpoint(String... paths);
 
 	/**
-	 * Set the order of the {@link org.springframework.web.servlet.HandlerMapping}
-	 * used for STOMP endpoints relative to other Spring MVC handler mappings.
-	 * <p>By default this is set to 1.
+	 * 设置用于 STOMP 端点的 {@link org.springframework.web.servlet.HandlerMapping}
+	 * 相对于其他 Spring MVC 处理器映射的顺序。
+	 * <p>默认情况下设置为 1。
 	 */
 	void setOrder(int order);
 
 	/**
-	 * Configure a customized {@link UrlPathHelper} for the STOMP endpoint
-	 * {@link org.springframework.web.servlet.HandlerMapping HandlerMapping}.
+	 * 为 STOMP 端点的
+	 * {@link org.springframework.web.servlet.HandlerMapping HandlerMapping}
+	 * 配置自定义的 {@link UrlPathHelper}。
 	 */
 	void setUrlPathHelper(UrlPathHelper urlPathHelper);
 
 	/**
-	 * Configure a handler for customizing or handling STOMP ERROR frames to clients.
+	 * 配置一个处理器，用于定制或处理发送给客户端的 STOMP ERROR 帧。
 	 * @param errorHandler the error handler
 	 * @since 4.2
 	 */

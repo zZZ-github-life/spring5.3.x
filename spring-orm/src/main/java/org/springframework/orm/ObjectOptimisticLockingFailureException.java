@@ -20,8 +20,8 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown on an optimistic locking violation for a mapped object.
- * Provides information about the persistent class and the identifier.
+ * 当映射对象发生乐观锁冲突时抛出的异常。
+ * 提供有关持久化类和标识符的信息。
  *
  * @author Juergen Hoeller
  * @since 13.10.2003
@@ -37,8 +37,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 
 
 	/**
-	 * Create a general ObjectOptimisticLockingFailureException with the given message,
-	 * without any information on the affected object.
+	 * 使用给定消息创建一个通用的 ObjectOptimisticLockingFailureException，
+	 * 不包含任何受影响对象的信息。
 	 * @param msg the detail message
 	 * @param cause the source exception
 	 */
@@ -49,8 +49,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Create a new ObjectOptimisticLockingFailureException for the given object,
-	 * with the default "optimistic locking failed" message.
+	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
+	 * 使用默认的 "optimistic locking failed" 消息。
 	 * @param persistentClass the persistent class
 	 * @param identifier the ID of the object for which the locking failed
 	 */
@@ -59,8 +59,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Create a new ObjectOptimisticLockingFailureException for the given object,
-	 * with the default "optimistic locking failed" message.
+	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
+	 * 使用默认的 "optimistic locking failed" 消息。
 	 * @param persistentClass the persistent class
 	 * @param identifier the ID of the object for which the locking failed
 	 * @param cause the source exception
@@ -74,8 +74,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Create a new ObjectOptimisticLockingFailureException for the given object,
-	 * with the given explicit message.
+	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
+	 * 使用给定的显式消息。
 	 * @param persistentClass the persistent class
 	 * @param identifier the ID of the object for which the locking failed
 	 * @param msg the detail message
@@ -90,8 +90,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Create a new ObjectOptimisticLockingFailureException for the given object,
-	 * with the default "optimistic locking failed" message.
+	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
+	 * 使用默认的 "optimistic locking failed" 消息。
 	 * @param persistentClassName the name of the persistent class
 	 * @param identifier the ID of the object for which the locking failed
 	 */
@@ -100,8 +100,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Create a new ObjectOptimisticLockingFailureException for the given object,
-	 * with the default "optimistic locking failed" message.
+	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
+	 * 使用默认的 "optimistic locking failed" 消息。
 	 * @param persistentClassName the name of the persistent class
 	 * @param identifier the ID of the object for which the locking failed
 	 * @param cause the source exception
@@ -115,8 +115,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Create a new ObjectOptimisticLockingFailureException for the given object,
-	 * with the given explicit message.
+	 * 为给定对象创建一个新的 ObjectOptimisticLockingFailureException，
+	 * 使用给定的显式消息。
 	 * @param persistentClassName the name of the persistent class
 	 * @param identifier the ID of the object for which the locking failed
 	 * @param msg the detail message
@@ -132,8 +132,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 
 
 	/**
-	 * Return the persistent class of the object for which the locking failed.
-	 * If no Class was specified, this method returns null.
+	 * 返回锁定失败对象所属的持久化类。
+	 * 如果未指定 Class，则此方法返回 null。
 	 */
 	@Nullable
 	public Class<?> getPersistentClass() {
@@ -141,8 +141,8 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Return the name of the persistent class of the object for which the locking failed.
-	 * Will work for both Class objects and String names.
+	 * 返回锁定失败对象所属的持久化类的名称。
+	 * 适用于 Class 对象和 String 名称两种形式。
 	 */
 	@Nullable
 	public String getPersistentClassName() {
@@ -153,7 +153,7 @@ public class ObjectOptimisticLockingFailureException extends OptimisticLockingFa
 	}
 
 	/**
-	 * Return the identifier of the object for which the locking failed.
+	 * 返回锁定失败对象的标识符。
 	 */
 	@Nullable
 	public Object getIdentifier() {

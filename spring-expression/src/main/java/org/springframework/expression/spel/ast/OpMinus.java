@@ -29,16 +29,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.NumberUtils;
 
 /**
- * The minus operator supports:
+ * 减号运算符支持：
  * <ul>
- * <li>subtraction of numbers
- * <li>subtraction of an int from a string of one character
- * (effectively decreasing that character), so 'd'-3='a'
+ * <li>数字相减
+ * <li>从单个字符的字符串中减去一个 int
+ * （实际上就是将该字符减小），因此 'd'-3='a'
  * </ul>
  *
- * <p>It can be used as a unary operator for numbers.
- * The standard promotions are performed when the operand types vary (double-int=double).
- * For other options it defers to the registered overloader.
+ * <p>可将它用作数字的一元运算符。当操作数类型不同时（double-int=double），会执行标准提升。对于其他
+ * 情况，它交由已注册的重载器处理。
  *
  * @author Andy Clement
  * @author Juergen Hoeller

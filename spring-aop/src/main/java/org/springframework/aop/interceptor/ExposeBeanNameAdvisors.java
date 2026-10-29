@@ -28,12 +28,10 @@ import org.springframework.beans.factory.NamedBean;
 import org.springframework.lang.Nullable;
 
 /**
- * Convenient methods for creating advisors that may be used when autoproxying beans
- * created with the Spring IoC container, binding the bean name to the current
- * invocation. May support a {@code bean()} pointcut designator with AspectJ.
+ * 用于创建通知器的便捷方法，这些通知器可在自动代理由 Spring IoC 容器创建的 Bean 时使用，并将 Bean
+ * 名称绑定到当前调用。可以与 AspectJ 配合支持 {@code bean()} 切点指示符。
  *
- * <p>Typically used in Spring auto-proxying, where the bean name is known
- * at proxy creation time.
+ * <p>通常用于 Spring 自动代理场景，此时 Bean 名称在创建代理时即已确定。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -43,16 +41,15 @@ import org.springframework.lang.Nullable;
 public abstract class ExposeBeanNameAdvisors {
 
 	/**
-	 * Binding for the bean name of the bean which is currently being invoked
-	 * in the ReflectiveMethodInvocation userAttributes Map.
+	 * 用于在当前被调用的 Bean 上绑定 Bean 名称，该名称存放在 ReflectiveMethodInvocation 的
+	 * userAttributes Map 中。
 	 */
 	private static final String BEAN_NAME_ATTRIBUTE = ExposeBeanNameAdvisors.class.getName() + ".BEAN_NAME";
 
 
 	/**
-	 * Find the bean name for the current invocation. Assumes that an ExposeBeanNameAdvisor
-	 * has been included in the interceptor chain, and that the invocation is exposed
-	 * with ExposeInvocationInterceptor.
+	 * 查找当前调用的 Bean 名称。假定拦截器链中已包含 ExposeBeanNameAdvisor，并且调用已通过
+	 * ExposeInvocationInterceptor 暴露。
 	 * @return the bean name (never {@code null})
 	 * @throws IllegalStateException if the bean name has not been exposed
 	 */
@@ -61,8 +58,7 @@ public abstract class ExposeBeanNameAdvisors {
 	}
 
 	/**
-	 * Find the bean name for the given invocation. Assumes that an ExposeBeanNameAdvisor
-	 * has been included in the interceptor chain.
+	 * 查找给定调用的 Bean 名称。假定拦截器链中已包含 ExposeBeanNameAdvisor。
 	 * @param mi the MethodInvocation that should contain the bean name as an attribute
 	 * @return the bean name (never {@code null})
 	 * @throws IllegalStateException if the bean name has not been exposed
@@ -80,8 +76,7 @@ public abstract class ExposeBeanNameAdvisors {
 	}
 
 	/**
-	 * Create a new advisor that will expose the given bean name,
-	 * with no introduction.
+	 * 创建一个新的通知器，用于暴露给定的 Bean 名称，且不包含引入。
 	 * @param beanName bean name to expose
 	 */
 	public static Advisor createAdvisorWithoutIntroduction(String beanName) {
@@ -89,9 +84,8 @@ public abstract class ExposeBeanNameAdvisors {
 	}
 
 	/**
-	 * Create a new advisor that will expose the given bean name, introducing
-	 * the NamedBean interface to make the bean name accessible without forcing
-	 * the target object to be aware of this Spring IoC concept.
+	 * 创建一个新的通知器，用于暴露给定的 Bean 名称，并引入 NamedBean 接口，使 Bean 名称可被访问，而无
+	 * 需让目标对象感知这一 Spring IoC 概念。
 	 * @param beanName the bean name to expose
 	 */
 	public static Advisor createAdvisorIntroducingNamedBean(String beanName) {
@@ -100,7 +94,7 @@ public abstract class ExposeBeanNameAdvisors {
 
 
 	/**
-	 * Interceptor that exposes the specified bean name as invocation attribute.
+	 * 将指定的 Bean 名称作为调用属性暴露出来的拦截器。
 	 */
 	private static class ExposeBeanNameInterceptor implements MethodInterceptor {
 
@@ -124,7 +118,7 @@ public abstract class ExposeBeanNameAdvisors {
 
 
 	/**
-	 * Introduction that exposes the specified bean name as invocation attribute.
+	 * 将指定的 Bean 名称作为调用属性暴露出来的引入。
 	 */
 	@SuppressWarnings("serial")
 	private static class ExposeBeanNameIntroduction extends DelegatingIntroductionInterceptor implements NamedBean {

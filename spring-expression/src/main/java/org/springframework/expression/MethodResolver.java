@@ -22,9 +22,8 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.lang.Nullable;
 
 /**
- * A method resolver attempts to locate a method and returns a command executor that can be
- * used to invoke that method. The command executor will be cached, but if it 'goes stale'
- * the resolvers will be called again.
+ * 方法解析器尝试定位一个方法，并返回可用于调用该方法的命令执行器。命令执行器会被缓存，但如果它“变
+ * 得陈旧”，解析器将再次被调用。
  *
  * @author Andy Clement
  * @since 3.0
@@ -32,9 +31,8 @@ import org.springframework.lang.Nullable;
 public interface MethodResolver {
 
 	/**
-	 * Within the supplied context determine a suitable method on the supplied object that
-	 * can handle the specified arguments. Return a {@link MethodExecutor} that can be used
-	 * to invoke that method, or {@code null} if no method could be found.
+	 * 在提供的上下文中，在提供的对象上确定一个能够处理指定参数的合适方法。返回一个可用于调用该方法的
+	 * {@link MethodExecutor}，如果找不到方法则返回 {@code null}。
 	 * @param context the current evaluation context
 	 * @param targetObject the object upon which the method is being called
 	 * @param argumentTypes the arguments that the constructor must be able to handle

@@ -1,0 +1,40 @@
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpAnd.java::30::0", "zh": ["表示布尔 AND 运算。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpDec.java::30::0", "zh": ["递减运算符。可用于前缀或后缀形式。如果相关操作数不支持递减，将抛出适当的异常。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpDivide.java::32::0", "zh": ["实现除法运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpEQ.java::26::0", "zh": ["实现相等运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpGE.java::29::0", "zh": ["实现大于等于运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpGT.java::29::0", "zh": ["实现大于运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpInc.java::30::0", "zh": ["递增运算符。可用于前缀或后缀形式。如果相关操作数不支持递增，将抛出适当的异常。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpLE.java::29::0", "zh": ["实现小于等于运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpLT.java::29::0", "zh": ["实现小于运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMinus.java::31::0", "zh": ["减号运算符支持："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMinus.java::31::1", "zh": ["<p>可将它用作数字的一元运算符。当操作数类型不同时（double-int=double），会执行标准提升。对于其他情况，它交由已注册的重载器处理。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpModulus.java::31::0", "zh": ["实现取模运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMultiply.java::33::0", "zh": ["实现 {@code multiply} 运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMultiply.java::33::1", "zh": ["<p>类型转换和提升按照 <a href=\"https://java.sun.com/docs/books/jls/third_edition/html/conversions.html\">Java 语言规范第 5.6.2 节</a> 中的定义处理，此外还增加了 {@code BigDecimal}/{@code BigInteger} 管理："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMultiply.java::33::2", "zh": ["<p>如果任一操作数为引用类型，则执行拆箱转换（第 5.1.8 节）。然后：<br>如果任一操作数的类型为 {@code BigDecimal}，则将另一个转换为 {@code BigDecimal}。<br>如果任一操作数为 double 类型，则将另一个转换为 double。<br>否则，如果任一操作数为 float 类型，则将另一个转换为 float。<br>如果任一操作数为 {@code BigInteger} 类型，则将另一个转换为 {@code BigInteger}。<br>否则，如果任一操作数为 long 类型，则将另一个转换为 long。<br>否则，两个操作数都转换为 int 类型。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMultiply.java::57::0", "zh": ["重复文本中允许的最大字符数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpMultiply.java::69::0", "zh": ["对于某些支持的操作数类型，直接在此处实现 {@code multiply} 运算符；对于此处不支持的类型，则委托给任何已注册的重载器处理。", "<p>支持的操作数类型："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpNE.java::27::0", "zh": ["实现不等运算符。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpOr.java::29::0", "zh": ["表示布尔 OR 运算。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpPlus.java::36::0", "zh": ["加号运算符将："]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpPlus.java::36::1", "zh": ["<p>可将它用作数字的一元运算符。当操作数类型不同时（double+int=double），会执行标准提升。对于其他情况，它交由已注册的重载器处理。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpPlus.java::56::0", "zh": ["拼接字符串中允许的最大字符数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpPlus.java::191::0", "zh": ["使用已注册的转换器或 {@code toString} 方法将操作数值转换为字符串。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OpPlus.java::221::0", "zh": ["遍历由字符串组合而成的可能节点树，并将它们全部追加到同一个（栈上的）StringBuilder 中。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Operator.java::31::0", "zh": ["可对一个或两个操作数进行运算的运算符的通用超类型。对于乘法或除法，会有两个操作数；但对于一元加号或减号，只有一个操作数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Operator.java::75::0", "zh": ["所有运算符的字符串格式都相同：{@code '(' [operand] [operator] [operand] ')'}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Operator.java::107::0", "zh": ["数值比较运算符生成的代码非常相似，仅两条比较指令不同。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Operator.java::254::0", "zh": ["对给定的操作数值执行相等性检查。", "<p>此方法不仅用于子类中的反射比较，也用于编译后的表达式代码，因此需要在此处声明为 {@code public static}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Operator.java::325::0", "zh": ["描述符比较封装了比较两个操作数描述符的结果，并描述了它们在何种级别上兼容。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/Operator.java::347::0", "zh": ["返回一个对象，指示输入描述符是否兼容。", "<p>声明的描述符是可以在静态上确定的内容（例如通过查看属性访问器方法的返回值），而实际描述符是所返回实际对象的类型，两者可能不同。", "<p>对于带有未绑定类型变量的泛型类型，发现的声明描述符可能是 'Object'，但从实际描述符可以观察到这些对象实际上是数值（例如 int）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorBetween.java::28::0", "zh": ["表示 between 运算符。between 的左操作数必须是单个值，右操作数必须是列表 —— 如果左操作数位于（使用已注册的比较器）列表中两个元素之间，则该运算符返回 true。between 的包含性定义遵循 SQL BETWEEN 的定义。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorBetween.java::44::0", "zh": ["根据某个值是否在表达的范围之内返回布尔值。第一个操作数是任意值，而第二个操作数是包含两个值的列表 —— 这两个值就是第一个操作数所允许的边界（包含边界）。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorInstanceof.java::31::0", "zh": ["'instanceof' 运算符检查对象是否为右操作数中指定的类的实例，其方式与 Java 中的 {@code instanceof} 相同。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorInstanceof.java::49::0", "zh": ["比较左操作数，以查看它是否为右操作数所指定类型的实例。右操作数必须是一个类。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorMatches.java::31::0", "zh": ["实现 matches 运算符。Matches 接受两个操作数：第一个是 String，第二个是 Java 正则表达式。调用 {@link #getValue} 时，如果第一个操作数与正则表达式匹配，将返回 {@code true}。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorMatches.java::46::0", "zh": ["正则表达式中允许的最大字符数。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorMatches.java::55::0", "zh": ["创建一个新的 {@link OperatorMatches} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorMatches.java::66::0", "zh": ["创建具有共享模式缓存的新 {@link OperatorMatches} 实例。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorMatches.java::75::0", "zh": ["检查第一个操作数是否与作为第二个操作数指定的正则表达式匹配。"]}
+{"id": "spring-expression/src/main/java/org/springframework/expression/spel/ast/OperatorNot.java::28::0", "zh": ["表示 NOT 运算。"]}

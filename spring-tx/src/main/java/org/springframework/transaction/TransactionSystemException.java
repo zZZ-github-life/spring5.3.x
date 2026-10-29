@@ -20,8 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Exception thrown when a general transaction system error is encountered,
- * like on commit or rollback.
+ * 当遇到一般事务系统错误时抛出此异常，例如在提交或回滚时。
  *
  * @author Juergen Hoeller
  * @since 24.03.2003
@@ -34,7 +33,7 @@ public class TransactionSystemException extends TransactionException {
 
 
 	/**
-	 * Constructor for TransactionSystemException.
+	 * TransactionSystemException 的构造函数。
 	 * @param msg the detail message
 	 */
 	public TransactionSystemException(String msg) {
@@ -42,7 +41,7 @@ public class TransactionSystemException extends TransactionException {
 	}
 
 	/**
-	 * Constructor for TransactionSystemException.
+	 * TransactionSystemException 的构造函数。
 	 * @param msg the detail message
 	 * @param cause the root cause from the transaction API in use
 	 */
@@ -52,8 +51,8 @@ public class TransactionSystemException extends TransactionException {
 
 
 	/**
-	 * Set an application exception that was thrown before this transaction exception,
-	 * preserving the original exception despite the overriding TransactionSystemException.
+	 * 设置在此事务异常之前抛出的应用程序异常，
+	 * 尽管有覆盖性的 TransactionSystemException，仍保留原始异常。
 	 * @param ex the application exception
 	 * @throws IllegalStateException if this TransactionSystemException already holds an
 	 * application exception
@@ -67,8 +66,7 @@ public class TransactionSystemException extends TransactionException {
 	}
 
 	/**
-	 * Return the application exception that was thrown before this transaction exception,
-	 * if any.
+	 * 返回在此事务异常之前抛出的应用程序异常（如果有）。
 	 * @return the application exception, or {@code null} if none set
 	 */
 	@Nullable
@@ -77,8 +75,8 @@ public class TransactionSystemException extends TransactionException {
 	}
 
 	/**
-	 * Return the exception that was the first to be thrown within the failed transaction:
-	 * i.e. the application exception, if any, or the TransactionSystemException's own cause.
+	 * 返回在失败的事务中第一个被抛出的异常：
+	 * 即应用程序异常（如果有），或 TransactionSystemException 本身的根原因。
 	 * @return the original exception, or {@code null} if there was none
 	 */
 	@Nullable

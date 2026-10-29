@@ -43,7 +43,7 @@ import org.springframework.web.socket.server.HandshakeFailureException;
 import org.springframework.web.socket.server.RequestUpgradeStrategy;
 
 /**
- * A {@link RequestUpgradeStrategy} for Jetty 10.
+ * 用于 Jetty 10 的 {@link RequestUpgradeStrategy}。
  *
  * @author Rossen Stoyanchev
  * @since 5.3.4

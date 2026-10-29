@@ -23,8 +23,7 @@ import java.util.function.Predicate;
 import org.springframework.lang.Nullable;
 
 /**
- * Assist with configuring {@code HandlerMapping}'s with path matching options.
- *
+ * 用于协助为 {@code HandlerMapping} 配置路径匹配选项。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -43,9 +42,8 @@ public class PathMatchConfigurer {
 
 
 	/**
-	 * Whether to match to URLs irrespective of their case.
-	 * If enabled a method mapped to "/users" won't match to "/Users/".
-	 * <p>The default value is {@code false}.
+	 * 是否在匹配 URL 时忽略大小写。如果启用，映射到 "/users" 的方法将不会匹配 "/Users/"。
+	 * <p>默认值为 {@code false}。
 	 */
 	public PathMatchConfigurer setUseCaseSensitiveMatch(Boolean caseSensitiveMatch) {
 		this.caseSensitiveMatch = caseSensitiveMatch;
@@ -53,9 +51,8 @@ public class PathMatchConfigurer {
 	}
 
 	/**
-	 * Whether to match to URLs irrespective of the presence of a trailing slash.
-	 * If enabled a method mapped to "/users" also matches to "/users/".
-	 * <p>The default value is {@code true}.
+	 * 是否在匹配 URL 时忽略末尾斜杠。如果启用，映射到 "/users" 的方法也会匹配 "/users/"。
+	 * <p>默认值为 {@code true}。
 	 */
 	public PathMatchConfigurer setUseTrailingSlashMatch(Boolean trailingSlashMatch) {
 		this.trailingSlashMatch = trailingSlashMatch;
@@ -63,12 +60,9 @@ public class PathMatchConfigurer {
 	}
 
 	/**
-	 * Configure a path prefix to apply to matching controller methods.
-	 * <p>Prefixes are used to enrich the mappings of every {@code @RequestMapping}
-	 * method whose controller type is matched by the corresponding
-	 * {@code Predicate}. The prefix for the first matching predicate is used.
-	 * <p>Consider using {@link org.springframework.web.method.HandlerTypePredicate
-	 * HandlerTypePredicate} to group controllers.
+	 * 配置要应用到匹配的控制器方法上的路径前缀。
+	 * <p>前缀用于丰富每个 {@code @RequestMapping} 方法的映射，这些方法的控制器类型需与相应的 {@code Predicate} 匹配。将使用第一个匹配的谓词对应的前缀。
+	 * <p>可考虑使用 {@link org.springframework.web.method.HandlerTypePredicate HandlerTypePredicate} 对控制器进行分组。
 	 * @param prefix the path prefix to apply
 	 * @param predicate a predicate for matching controller types
 	 * @since 5.1

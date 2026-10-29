@@ -17,13 +17,11 @@
 package org.springframework.aop;
 
 /**
- * Interface supplying the information necessary to describe an introduction.
+ * 提供描述引入所需信息的接口。
  *
- * <p>{@link IntroductionAdvisor IntroductionAdvisors} must implement this
- * interface. If an {@link org.aopalliance.aop.Advice} implements this,
- * it may be used as an introduction without an {@link IntroductionAdvisor}.
- * In this case, the advice is self-describing, providing not only the
- * necessary behavior, but describing the interfaces it introduces.
+ * <p>{@link IntroductionAdvisor IntroductionAdvisors} 必须实现此接口。如果某个
+ * {@link org.aopalliance.aop.Advice} 实现了此接口，那么它可以在没有 {@link IntroductionAdvisor} 的
+ * 情况下用作引入。在这种情况下，通知是自描述的，它不仅提供必要的行为，还描述它所引入的接口。
  *
  * @author Rod Johnson
  * @since 1.1.1
@@ -31,7 +29,7 @@ package org.springframework.aop;
 public interface IntroductionInfo {
 
 	/**
-	 * Return the additional interfaces introduced by this Advisor or Advice.
+	 * 返回此 Advisor 或 Advice 所引入的附加接口。
 	 * @return the introduced interfaces
 	 */
 	Class<?>[] getInterfaces();

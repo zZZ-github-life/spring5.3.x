@@ -32,47 +32,46 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 /**
- * A condition to assist with mapping onto handler methods based on the RSocket
- * frame type. This helps to separate the handling of connection-level frame
- * types, i.e. {@code SETUP} and {@code METADATA_PUSH}, from the handling of
- * stream requests.
+ * 用于协助基于 RSocket 帧类型映射到处理器方法的条件。这有助于将
+ * 连接级帧类型（即 {@code SETUP} 和 {@code METADATA_PUSH}）的处理与
+ * 流请求的处理区分开来。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
  */
 public class RSocketFrameTypeMessageCondition extends AbstractMessageCondition<RSocketFrameTypeMessageCondition> {
 
-	/** The name of the header that contains the RSocket frame type being processed. */
+	/** 包含正在处理的 RSocket 帧类型的头部名称。 */
 	public static final String FRAME_TYPE_HEADER = "rsocketFrameType";
 
 
-	/** Match connection-level frames "SETUP" or "METADATA_PUSH". */
+	/** 匹配连接级帧 "SETUP" 或 "METADATA_PUSH"。 */
 	public static final RSocketFrameTypeMessageCondition CONNECT_CONDITION =
 			new RSocketFrameTypeMessageCondition(FrameType.SETUP, FrameType.METADATA_PUSH);
 
-	/** Match RSocket frames "REQUEST_FNF" or "REQUEST_RESPONSE". */
+	/** 匹配 RSocket 帧 "REQUEST_FNF" 或 "REQUEST_RESPONSE"。 */
 	public static final RSocketFrameTypeMessageCondition REQUEST_FNF_OR_RESPONSE_CONDITION =
 			new RSocketFrameTypeMessageCondition(FrameType.REQUEST_FNF, FrameType.REQUEST_RESPONSE);
 
-	/** Match RSocket frame "REQUEST_RESPONSE". */
+	/** 匹配 RSocket 帧 "REQUEST_RESPONSE"。 */
 	public static final RSocketFrameTypeMessageCondition REQUEST_RESPONSE_CONDITION =
 			new RSocketFrameTypeMessageCondition(FrameType.REQUEST_RESPONSE);
 
-	/** Match RSocket frame "REQUEST_STREAM". */
+	/** 匹配 RSocket 帧 "REQUEST_STREAM"。 */
 	public static final RSocketFrameTypeMessageCondition REQUEST_STREAM_CONDITION =
 			new RSocketFrameTypeMessageCondition(FrameType.REQUEST_STREAM);
 
-	/** Match RSocket frame "REQUEST_CHANNEL". */
+	/** 匹配 RSocket 帧 "REQUEST_CHANNEL"。 */
 	public static final RSocketFrameTypeMessageCondition REQUEST_CHANNEL_CONDITION =
 			new RSocketFrameTypeMessageCondition(FrameType.REQUEST_CHANNEL);
 
-	/** Empty condition that does not match to any RSocket frames (e.g. for type-level mappings) */
+	/** 不匹配任何 RSocket 帧的空条件（例如用于类型级映射）。 */
 	public static final RSocketFrameTypeMessageCondition EMPTY_CONDITION = new RSocketFrameTypeMessageCondition();
 
 
 	/**
-	 * Condition to match "REQUEST_FNF", "REQUEST_RESPONSE", "REQUEST_STREAM",
-	 * and "REQUEST_CHANNEL".
+	 * 用于匹配 "REQUEST_FNF"、"REQUEST_RESPONSE"、"REQUEST_STREAM"
+	 * 和 "REQUEST_CHANNEL" 的条件。
 	 * @deprecated as of 5.2.2 because matching to all interaction types is too
 	 * flexible. Please use one of the other constants in this class that match
 	 * to specific frames.
@@ -85,7 +84,7 @@ public class RSocketFrameTypeMessageCondition extends AbstractMessageCondition<R
 					FrameType.REQUEST_STREAM,
 					FrameType.REQUEST_CHANNEL);
 
-	/** Per FrameType cache to return ready instances from getMatchingCondition. */
+	/** 按 FrameType 缓存，以便从 getMatchingCondition 返回现成的实例。 */
 	private static final Map<String, RSocketFrameTypeMessageCondition> frameTypeConditionCache;
 
 	static {
@@ -128,7 +127,7 @@ public class RSocketFrameTypeMessageCondition extends AbstractMessageCondition<R
 	}
 
 	/**
-	 * Find the RSocket frame type in the message headers.
+	 * 在消息头部中查找 RSocket 帧类型。
 	 * @param message the current message
 	 * @return the frame type or {@code null} if not found
 	 */
@@ -168,15 +167,14 @@ public class RSocketFrameTypeMessageCondition extends AbstractMessageCondition<R
 
 
 	/**
-	 * Return a condition for matching the RSocket request interaction type with
-	 * that is selected based on the declared request and response cardinality
-	 * of some handler method.
-	 * <p>The table below shows the selections made:
+	 * 返回一个条件，用于匹配根据某个处理器方法声明所推断出的请求和响应
+	 * 基数（cardinality）而选择的 RSocket 请求交互类型。
+	 * <p>下表列出了所做的选择：
 	 * <table>
 	 * <tr>
-	 * <th>Request Cardinality</th>
-	 * <th>Response Cardinality</th>
-	 * <th>Interaction Types</th>
+	 * <th>请求基数</th>
+	 * <th>响应基数</th>
+	 * <th>交互类型</th>
 	 * </tr>
 	 * <tr>
 	 * <td>0,1</td>

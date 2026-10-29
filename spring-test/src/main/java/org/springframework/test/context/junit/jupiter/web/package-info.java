@@ -1,6 +1,6 @@
 /**
- * Web support for integrating the <em>Spring TestContext Framework</em>
- * with the JUnit Jupiter extension model in JUnit 5.
+ * 将 <em>Spring TestContext Framework</em> 与 JUnit 5 中 JUnit Jupiter 扩展模型集成的 Web 支持。
+ *
  */
 @NonNullApi
 @NonNullFields

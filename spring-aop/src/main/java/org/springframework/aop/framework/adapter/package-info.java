@@ -1,13 +1,12 @@
 /**
- * SPI package allowing Spring AOP framework to handle arbitrary advice types.
+ * SPI 包，允许 Spring AOP 框架处理任意 advice 类型。
  *
- * <p>Users who want merely to <i>use</i> the Spring AOP framework, rather than extend
- * its capabilities, don't need to concern themselves with this package.
+ * <p>只想<i>使用</i> Spring AOP 框架而不想扩展其功能的用户无需关注此包。
  *
- * <p>You may wish to use these adapters to wrap Spring-specific advices, such as MethodBeforeAdvice,
- * in MethodInterceptor, to allow their use in another AOP framework supporting the AOP Alliance interfaces.
+ * <p>您可能希望使用这些适配器将 Spring 特有的 advice（如 MethodBeforeAdvice）包装到
+ * MethodInterceptor 中，以便在另一个支持 AOP Alliance 接口的 AOP 框架中使用它们。
  *
- * <p>These adapters do not depend on any other Spring framework classes to allow such usage.
+ * <p>这些适配器不依赖任何其他 Spring 框架类，即可实现此类用法。
  */
 @NonNullApi
 @NonNullFields

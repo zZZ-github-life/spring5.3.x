@@ -42,16 +42,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@link ResourceTransformer} implementation that modifies links in a CSS
- * file to match the public URL paths that should be exposed to clients (e.g.
- * with an MD5 content-based hash inserted in the URL).
+ * 修改 CSS 文件中的链接，使其与应向客户端公开的公共 URL 路径匹配（例如在 URL 中插入基于 MD5 内容的哈希）的 {@link ResourceTransformer} 实现。
  *
- * <p>The implementation looks for links in CSS {@code @import} statements and
- * also inside CSS {@code url()} functions. All links are then passed through the
- * {@link ResourceResolverChain} and resolved relative to the location of the
- * containing CSS file. If successfully resolved, the link is modified, otherwise
- * the original link is preserved.
- *
+ * <p>该实现会查找 CSS {@code @import} 语句中以及 CSS {@code url()} 函数内的链接。然后所有链接都会经过 {@link ResourceResolverChain}，并相对于包含该链接的 CSS 文件位置进行解析。如果解析成功，则修改链接，否则保留原始链接。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -152,7 +145,7 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 
 
 	/**
-	 * Extract content chunks that represent links.
+	 * 提取表示链接的内容块。
 	 */
 	@FunctionalInterface
 	protected interface LinkParser {
@@ -163,11 +156,11 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 
 
 	/**
-	 * Abstract base class for {@link LinkParser} implementations.
+	 * 用于 {@link LinkParser} 实现的抽象基类。
 	 */
 	protected abstract static class AbstractLinkParser implements LinkParser {
 
-		/** Return the keyword to use to search for links, e.g. "@import", "url(" */
+		/** 返回用于搜索链接的关键字，例如 "@import"、"url(" */
 		protected abstract String getKeyword();
 
 		@Override
@@ -202,8 +195,7 @@ public class CssLinkResourceTransformer extends ResourceTransformerSupport {
 		}
 
 		/**
-		 * Invoked after a keyword match, after whitespace has been removed, and when
-		 * the next char is neither a single nor double quote.
+		 * 在关键字匹配后、移除空白后，且下一个字符既不是单引号也不是双引号时调用。
 		 */
 		protected abstract int extractUnquotedLink(int position, String content,
 				Set<ContentChunkInfo> linksToAdd);

@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link ClientHttpRequestFactory} implementation that uses standard JDK facilities.
+ * 使用标准 JDK 设施的 {@link ClientHttpRequestFactory} 实现。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -61,22 +61,22 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 
 	/**
-	 * Set the {@link Proxy} to use for this request factory.
+	 * 设置用于此请求工厂的 {@link Proxy}。
 	 */
 	public void setProxy(Proxy proxy) {
 		this.proxy = proxy;
 	}
 
 	/**
-	 * Indicate whether this request factory should buffer the
-	 * {@linkplain ClientHttpRequest#getBody() request body} internally.
-	 * <p>Default is {@code true}. When sending large amounts of data via POST or PUT,
-	 * it is recommended to change this property to {@code false}, so as not to run
-	 * out of memory. This will result in a {@link ClientHttpRequest} that either
-	 * streams directly to the underlying {@link HttpURLConnection} (if the
+	 * 指示此请求工厂是否应在内部缓冲
+	 * {@linkplain ClientHttpRequest#getBody() 请求正文}。
+	 * <p>默认值为 {@code true}。通过 POST 或 PUT 发送大量数据时，
+	 * 建议将此属性更改为 {@code false}，以免
+	 * 耗尽内存。这将导致 {@link ClientHttpRequest} 要么直接
+	 * 流式传输到底层 {@link HttpURLConnection}（如果
 	 * {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
-	 * is known in advance), or that will use "Chunked transfer encoding"
-	 * (if the {@code Content-Length} is not known in advance).
+	 * 提前已知），要么使用"分块传输编码"
+	 * （如果 {@code Content-Length} 提前未知）。
 	 * @see #setChunkSize(int)
 	 * @see HttpURLConnection#setFixedLengthStreamingMode(int)
 	 */
@@ -85,12 +85,12 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set the number of bytes to write in each chunk when not buffering request
-	 * bodies locally.
-	 * <p>Note that this parameter is only used when
-	 * {@link #setBufferRequestBody(boolean) bufferRequestBody} is set to {@code false},
-	 * and the {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
-	 * is not known in advance.
+	 * 设置不在本地缓冲请求正文时
+	 * 每个块写入的字节数。
+	 * <p>请注意，仅当
+	 * {@link #setBufferRequestBody(boolean) bufferRequestBody} 设置为 {@code false}，
+	 * 且 {@link org.springframework.http.HttpHeaders#getContentLength() Content-Length}
+	 * 提前未知时，才使用此参数。
 	 * @see #setBufferRequestBody(boolean)
 	 */
 	public void setChunkSize(int chunkSize) {
@@ -98,9 +98,9 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set the underlying URLConnection's connect timeout (in milliseconds).
-	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * 设置底层 URLConnection 的连接超时（以毫秒为单位）。
+	 * 超时值 0 表示无限超时。
+	 * <p>默认值为系统的默认超时。
 	 * @see URLConnection#setConnectTimeout(int)
 	 */
 	public void setConnectTimeout(int connectTimeout) {
@@ -108,9 +108,9 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set the underlying URLConnection's read timeout (in milliseconds).
-	 * A timeout value of 0 specifies an infinite timeout.
-	 * <p>Default is the system's default timeout.
+	 * 设置底层 URLConnection 的读取超时（以毫秒为单位）。
+	 * 超时值 0 表示无限超时。
+	 * <p>默认值为系统的默认超时。
 	 * @see URLConnection#setReadTimeout(int)
 	 */
 	public void setReadTimeout(int readTimeout) {
@@ -118,12 +118,12 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set if the underlying URLConnection can be set to 'output streaming' mode.
-	 * Default is {@code true}.
-	 * <p>When output streaming is enabled, authentication and redirection cannot be handled automatically.
-	 * If output streaming is disabled, the {@link HttpURLConnection#setFixedLengthStreamingMode} and
-	 * {@link HttpURLConnection#setChunkedStreamingMode} methods of the underlying connection will never
-	 * be called.
+	 * 设置底层 URLConnection 是否可以设置为"输出流式"模式。
+	 * 默认值为 {@code true}。
+	 * <p>启用输出流式传输时，无法自动处理身份验证和重定向。
+	 * 如果禁用输出流式传输，则底层连接的
+	 * {@link HttpURLConnection#setFixedLengthStreamingMode} 和
+	 * {@link HttpURLConnection#setChunkedStreamingMode} 方法将永远不会被调用。
 	 * @param outputStreaming if output streaming is enabled
 	 */
 	public void setOutputStreaming(boolean outputStreaming) {
@@ -131,8 +131,8 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Set the task executor for this request factory. Setting this property is required
-	 * for {@linkplain #createAsyncRequest(URI, HttpMethod) creating asynchronous requests}.
+	 * 设置此请求工厂的任务执行器。要为
+	 * {@linkplain #createAsyncRequest(URI, HttpMethod) 创建异步请求}，必须设置此属性。
 	 * @param taskExecutor the task executor
 	 */
 	public void setTaskExecutor(AsyncListenableTaskExecutor taskExecutor) {
@@ -155,7 +155,7 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 
 	/**
 	 * {@inheritDoc}
-	 * <p>Setting the {@link #setTaskExecutor taskExecutor} property is required before calling this method.
+	 * <p>在调用此方法之前，需要设置 {@link #setTaskExecutor taskExecutor} 属性。
 	 */
 	@Override
 	public AsyncClientHttpRequest createAsyncRequest(URI uri, HttpMethod httpMethod) throws IOException {
@@ -175,9 +175,9 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Opens and returns a connection to the given URL.
-	 * <p>The default implementation uses the given {@linkplain #setProxy(java.net.Proxy) proxy} -
-	 * if any - to open a connection.
+	 * 打开并返回到给定 URL 的连接。
+	 * <p>默认实现使用给定的 {@linkplain #setProxy(java.net.Proxy) 代理}
+	 * （如果有）来打开连接。
 	 * @param url the URL to open a connection to
 	 * @param proxy the proxy to use, may be {@code null}
 	 * @return the opened connection
@@ -193,8 +193,9 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 	}
 
 	/**
-	 * Template method for preparing the given {@link HttpURLConnection}.
-	 * <p>The default implementation prepares the connection for input and output, and sets the HTTP method.
+	 * 用于准备给定 {@link HttpURLConnection} 的模板方法。
+	 * <p>默认实现为输入和输出准备连接，并设置 HTTP 方法。
+	 *
 	 * @param connection the connection to prepare
 	 * @param httpMethod the HTTP request method ({@code GET}, {@code POST}, etc.)
 	 * @throws IOException in case of I/O errors

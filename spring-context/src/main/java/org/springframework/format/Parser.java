@@ -20,7 +20,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 /**
- * Parses text strings to produce instances of T.
+ * 解析文本字符串以产生 T 的实例。
  *
  * @author Keith Donald
  * @since 3.0
@@ -30,7 +30,7 @@ import java.util.Locale;
 public interface Parser<T> {
 
 	/**
-	 * Parse a text String to produce a T.
+	 * 解析文本字符串以产生一个 T。
 	 * @param text the text string
 	 * @param locale the current user locale
 	 * @return an instance of T

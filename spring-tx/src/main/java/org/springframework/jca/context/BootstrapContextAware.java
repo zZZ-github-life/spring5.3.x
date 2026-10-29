@@ -21,9 +21,9 @@ import javax.resource.spi.BootstrapContext;
 import org.springframework.beans.factory.Aware;
 
 /**
- * Interface to be implemented by any object that wishes to be
- * notified of the BootstrapContext (typically determined by the
- * {@link ResourceAdapterApplicationContext}) that it runs in.
+ * 任何希望被通知其运行所在的 BootstrapContext
+ * （通常由 {@link ResourceAdapterApplicationContext} 确定）
+ * 的对象都应实现此接口。
  *
  * @author Juergen Hoeller
  * @author Chris Beams
@@ -33,11 +33,10 @@ import org.springframework.beans.factory.Aware;
 public interface BootstrapContextAware extends Aware {
 
 	/**
-	 * Set the BootstrapContext that this object runs in.
-	 * <p>Invoked after population of normal bean properties but before an init
-	 * callback like InitializingBean's {@code afterPropertiesSet} or a
-	 * custom init-method. Invoked after ApplicationContextAware's
-	 * {@code setApplicationContext}.
+	 * 设置此对象运行的 BootstrapContext。
+	 * <p>在常规 bean 属性填充之后调用，但在初始化回调（如 InitializingBean 的
+	 * {@code afterPropertiesSet} 或自定义 init 方法）之前调用。
+	 * 在 ApplicationContextAware 的 {@code setApplicationContext} 之后调用。
 	 * @param bootstrapContext the BootstrapContext object to be used by this object
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
 	 * @see org.springframework.context.ApplicationContextAware#setApplicationContext

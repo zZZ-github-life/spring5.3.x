@@ -47,19 +47,17 @@ import org.springframework.util.Assert;
 import org.springframework.util.ConcurrentLruCache;
 
 /**
- * Template class with a basic set of JDBC operations, allowing the use
- * of named parameters rather than traditional '?' placeholders.
+ * 模板类，提供一组基本的 JDBC 操作，允许使用命名参数
+ * 而不是传统的 '?' 占位符。
  *
- * <p>This class delegates to a wrapped {@link #getJdbcOperations() JdbcTemplate}
- * once the substitution from named parameters to JDBC style '?' placeholders is
- * done at execution time. It also allows for expanding a {@link java.util.List}
- * of values to the appropriate number of placeholders.
+ * <p>此类在执行时将命名参数替换为 JDBC 风格的 '?' 占位符后，
+ * 委托给包装的 {@link #getJdbcOperations() JdbcTemplate}。
+ * 它还支持将 {@link java.util.List} 值展开为适当数量的占位符。
  *
- * <p>The underlying {@link org.springframework.jdbc.core.JdbcTemplate} is
- * exposed to allow for convenient access to the traditional
- * {@link org.springframework.jdbc.core.JdbcTemplate} methods.
+ * <p>底层的 {@link org.springframework.jdbc.core.JdbcTemplate} 被暴露出来，
+ * 以便方便地访问传统的 {@link org.springframework.jdbc.core.JdbcTemplate} 方法。
  *
- * <p><b>NOTE: An instance of this class is thread-safe once configured.</b>
+ * <p><b>注意：一旦配置完成，此类的实例是线程安全的。</b>
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -69,21 +67,21 @@ import org.springframework.util.ConcurrentLruCache;
  */
 public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations {
 
-	/** Default maximum number of entries for this template's SQL cache: 256. */
+	/** 此模板 SQL 缓存的默认最大条目数：256。 */
 	public static final int DEFAULT_CACHE_LIMIT = 256;
 
 
-	/** The JdbcTemplate we are wrapping. */
+	/** 我们要包装的 JdbcTemplate。 */
 	private final JdbcOperations classicJdbcTemplate;
 
-	/** Cache of original SQL String to ParsedSql representation. */
+	/** 原始 SQL 字符串到 ParsedSql 表示的缓存。 */
 	private volatile ConcurrentLruCache<String, ParsedSql> parsedSqlCache =
 			new ConcurrentLruCache<>(DEFAULT_CACHE_LIMIT, NamedParameterUtils::parseSqlStatement);
 
 
 	/**
-	 * Create a new NamedParameterJdbcTemplate for the given {@link DataSource}.
-	 * <p>Creates a classic Spring {@link org.springframework.jdbc.core.JdbcTemplate} and wraps it.
+	 * 为给定的 {@link DataSource} 创建一个新的 NamedParameterJdbcTemplate。
+	 * <p>创建经典的 Spring {@link org.springframework.jdbc.core.JdbcTemplate} 并包装它。
 	 * @param dataSource the JDBC DataSource to access
 	 */
 	public NamedParameterJdbcTemplate(DataSource dataSource) {
@@ -92,8 +90,8 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	}
 
 	/**
-	 * Create a new NamedParameterJdbcTemplate for the given classic
-	 * Spring {@link org.springframework.jdbc.core.JdbcTemplate}.
+	 * 为给定的经典 Spring {@link org.springframework.jdbc.core.JdbcTemplate}
+	 * 创建一个新的 NamedParameterJdbcTemplate。
 	 * @param classicJdbcTemplate the classic Spring JdbcTemplate to wrap
 	 */
 	public NamedParameterJdbcTemplate(JdbcOperations classicJdbcTemplate) {
@@ -103,8 +101,8 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 
 	/**
-	 * Expose the classic Spring JdbcTemplate operations to allow invocation
-	 * of less commonly used methods.
+	 * 暴露经典的 Spring JdbcTemplate 操作，以便调用
+	 * 不太常用的方法。
 	 */
 	@Override
 	public JdbcOperations getJdbcOperations() {
@@ -112,10 +110,10 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	}
 
 	/**
-	 * Expose the classic Spring {@link JdbcTemplate} itself, if available,
-	 * in particular for passing it on to other {@code JdbcTemplate} consumers.
-	 * <p>If sufficient for the purposes at hand, {@link #getJdbcOperations()}
-	 * is recommended over this variant.
+	 * 暴露经典的 Spring {@link JdbcTemplate} 本身（如果可用），
+	 * 特别是为了将其传递给其他 {@code JdbcTemplate} 使用方。
+	 * <p>如果就当前目的而言已经足够，推荐使用 {@link #getJdbcOperations()}
+	 * 而不是此变体。
 	 * @since 5.0.3
 	 */
 	public JdbcTemplate getJdbcTemplate() {
@@ -124,15 +122,15 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	}
 
 	/**
-	 * Specify the maximum number of entries for this template's SQL cache.
-	 * Default is 256. 0 indicates no caching, always parsing each statement.
+	 * 指定此模板 SQL 缓存的最大条目数。
+	 * 默认为 256。0 表示不缓存，每次都解析语句。
 	 */
 	public void setCacheLimit(int cacheLimit) {
 		this.parsedSqlCache = new ConcurrentLruCache<>(cacheLimit, NamedParameterUtils::parseSqlStatement);
 	}
 
 	/**
-	 * Return the maximum number of entries for this template's SQL cache.
+	 * 返回此模板 SQL 缓存的最大条目数。
 	 */
 	public int getCacheLimit() {
 		return this.parsedSqlCache.sizeLimit();
@@ -387,9 +385,9 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 
 
 	/**
-	 * Build a {@link PreparedStatementCreator} based on the given SQL and named parameters.
-	 * <p>Note: Directly called from all {@code query} variants. Delegates to the common
-	 * {@link #getPreparedStatementCreator(String, SqlParameterSource, Consumer)} method.
+	 * 基于给定的 SQL 和命名参数构建 {@link PreparedStatementCreator}。
+	 * <p>注意：由所有 {@code query} 变体直接调用。委托给通用的
+	 * {@link #getPreparedStatementCreator(String, SqlParameterSource, Consumer)} 方法。
 	 * @param sql the SQL statement to execute
 	 * @param paramSource container of arguments to bind
 	 * @return the corresponding {@link PreparedStatementCreator}
@@ -400,9 +398,9 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	}
 
 	/**
-	 * Build a {@link PreparedStatementCreator} based on the given SQL and named parameters.
-	 * <p>Note: Used for the {@code update} variant with generated key handling, and also
-	 * delegated from {@link #getPreparedStatementCreator(String, SqlParameterSource)}.
+	 * 基于给定的 SQL 和命名参数构建 {@link PreparedStatementCreator}。
+	 * <p>注意：用于带生成键处理的 {@code update} 变体，同时也
+	 * 由 {@link #getPreparedStatementCreator(String, SqlParameterSource)} 委托调用。
 	 * @param sql the SQL statement to execute
 	 * @param paramSource container of arguments to bind
 	 * @param customizer callback for setting further properties on the
@@ -427,8 +425,8 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	}
 
 	/**
-	 * Obtain a parsed representation of the given SQL statement.
-	 * <p>The default implementation uses an LRU cache with an upper limit of 256 entries.
+	 * 获取给定 SQL 语句的已解析表示。
+	 * <p>默认实现使用上限为 256 个条目的 LRU 缓存。
 	 * @param sql the original SQL statement
 	 * @return a representation of the parsed SQL statement
 	 */
@@ -437,7 +435,7 @@ public class NamedParameterJdbcTemplate implements NamedParameterJdbcOperations 
 	}
 
 	/**
-	 * Build a {@link PreparedStatementCreatorFactory} based on the given SQL and named parameters.
+	 * 基于给定的 SQL 和命名参数构建 {@link PreparedStatementCreatorFactory}。
 	 * @param parsedSql parsed representation of the given SQL statement
 	 * @param paramSource container of arguments to bind
 	 * @return the corresponding {@link PreparedStatementCreatorFactory}

@@ -27,36 +27,13 @@ import java.lang.annotation.Target;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * {@code @Sql} is used to annotate a test class or test method to configure
- * SQL {@link #scripts} and {@link #statements} to be executed against a given
- * database during integration tests.
- *
- * <p>Method-level declarations override class-level declarations by default,
- * but this behavior can be configured via {@link SqlMergeMode @SqlMergeMode}.
- *
- * <p>Script execution is performed by the {@link SqlScriptsTestExecutionListener},
- * which is enabled by default.
- *
- * <p>The configuration options provided by this annotation and
- * {@link SqlConfig @SqlConfig} are equivalent to those supported by
- * {@link org.springframework.jdbc.datasource.init.ScriptUtils ScriptUtils} and
- * {@link org.springframework.jdbc.datasource.init.ResourceDatabasePopulator ResourceDatabasePopulator}
- * but are a superset of those provided by the {@code <jdbc:initialize-database/>}
- * XML namespace element. Consult the javadocs of individual attributes in this
- * annotation and {@link SqlConfig @SqlConfig} for details.
- *
- * <p>Beginning with Java 8, {@code @Sql} can be used as a
- * <em>{@linkplain Repeatable repeatable}</em> annotation. Otherwise,
- * {@link SqlGroup @SqlGroup} can be used as an explicit container for declaring
- * multiple instances of {@code @Sql}.
- *
- * <p>This annotation may be used as a <em>meta-annotation</em> to create custom
- * <em>composed annotations</em> with attribute overrides.
- *
- * <p>As of Spring Framework 5.3, this annotation will be inherited from an
- * enclosing test class by default. See
- * {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}
- * for details.
+ * {@code @Sql} 用于标注测试类或测试方法，以配置在集成测试期间针对给定数据库执行的 SQL {@link #scripts} 和 {@link #statements}。
+ * <p>默认情况下，方法级声明会覆盖类级声明，但可以通过 {@link SqlMergeMode @SqlMergeMode} 配置此行为。
+ * <p>脚本执行由 {@link SqlScriptsTestExecutionListener} 执行，该监听器默认启用。
+ * <p>此注解和 {@link SqlConfig @SqlConfig} 提供的配置选项与 {@link org.springframework.jdbc.datasource.init.ScriptUtils ScriptUtils} 和 {@link org.springframework.jdbc.datasource.init.ResourceDatabasePopulator ResourceDatabasePopulator} 支持的选项相同，但比 {@code <jdbc:initialize-database/>} XML 命名空间元素提供的选项更多。有关详情，请查阅此注解和 {@link SqlConfig @SqlConfig} 中各个属性的 javadoc。
+ * <p>从 Java 8 开始，{@code @Sql} 可用作<em>{@linkplain Repeatable 可重复}</em>注解。否则，可以使用 {@link SqlGroup @SqlGroup} 作为显式容器来声明多个 {@code @Sql} 实例。
+ * <p>此注解可用作<em>元注解</em>以创建带属性覆盖的自定义<em>组合注解</em>。
+ * <p>从 Spring Framework 5.3 开始，此注解默认会从封闭测试类继承。有关详情，请参见 {@link org.springframework.test.context.NestedTestConfiguration @NestedTestConfiguration}。
  *
  * @author Sam Brannen
  * @since 4.1
@@ -77,9 +54,8 @@ import org.springframework.core.annotation.AliasFor;
 public @interface Sql {
 
 	/**
-	 * Alias for {@link #scripts}.
-	 * <p>This attribute may <strong>not</strong> be used in conjunction with
-	 * {@link #scripts}, but it may be used instead of {@link #scripts}.
+	 * 作为 {@link #scripts} 的别名。
+	 * <p>此属性<strong>不得</strong>与 {@link #scripts} 一起使用，但可以代替 {@link #scripts} 使用。
 	 * @see #scripts
 	 * @see #statements
 	 */
@@ -87,36 +63,15 @@ public @interface Sql {
 	String[] value() default {};
 
 	/**
-	 * The paths to the SQL scripts to execute.
-	 * <p>This attribute may <strong>not</strong> be used in conjunction with
-	 * {@link #value}, but it may be used instead of {@link #value}. Similarly,
-	 * this attribute may be used in conjunction with or instead of
-	 * {@link #statements}.
-	 * <h3>Path Resource Semantics</h3>
-	 * <p>Each path will be interpreted as a Spring
-	 * {@link org.springframework.core.io.Resource Resource}. A plain path
-	 * &mdash; for example, {@code "schema.sql"} &mdash; will be treated as a
-	 * classpath resource that is <em>relative</em> to the package in which the
-	 * test class is defined. A path starting with a slash will be treated as an
-	 * <em>absolute</em> classpath resource, for example:
-	 * {@code "/org/example/schema.sql"}. A path which references a
-	 * URL (e.g., a path prefixed with
-	 * {@link org.springframework.util.ResourceUtils#CLASSPATH_URL_PREFIX classpath:},
-	 * {@link org.springframework.util.ResourceUtils#FILE_URL_PREFIX file:},
-	 * {@code http:}, etc.) will be loaded using the specified resource protocol.
-	 * <h3>Default Script Detection</h3>
-	 * <p>If no SQL scripts or {@link #statements} are specified, an attempt will
-	 * be made to detect a <em>default</em> script depending on where this
-	 * annotation is declared. If a default cannot be detected, an
-	 * {@link IllegalStateException} will be thrown.
+	 * 要执行的 SQL 脚本的路径。
+	 * <p>此属性<strong>不得</strong>与 {@link #value} 一起使用，但可以代替 {@link #value} 使用。同样，此属性可以与 {@link #statements} 结合使用或代替 {@link #statements} 使用。
+	 * <h3>路径资源语义</h3>
+	 * <p>每个路径都将被解释为 Spring 的 {@link org.springframework.core.io.Resource Resource}。普通路径——例如 {@code "schema.sql"}——将被视为相对于定义该测试类所在包的类路径资源。以斜杠开头的路径将被视为<em>绝对</em>类路径资源，例如：{@code "/org/example/schema.sql"}。引用 URL 的路径（例如以 {@link org.springframework.util.ResourceUtils#CLASSPATH_URL_PREFIX classpath:}、{@link org.springframework.util.ResourceUtils#FILE_URL_PREFIX file:}、{@code http:} 等为前缀的路径）将使用指定的资源协议加载。
+	 * <h3>默认脚本检测</h3>
+	 * <p>如果未指定 SQL 脚本或 {@link #statements}，将根据声明此注解的位置尝试检测<em>默认</em>脚本。如果无法检测到默认值，将抛出 {@link IllegalStateException}。
 	 * <ul>
-	 * <li><strong>class-level declaration</strong>: if the annotated test class
-	 * is {@code com.example.MyTest}, the corresponding default script is
-	 * {@code "classpath:com/example/MyTest.sql"}.</li>
-	 * <li><strong>method-level declaration</strong>: if the annotated test
-	 * method is named {@code testMethod()} and is defined in the class
-	 * {@code com.example.MyTest}, the corresponding default script is
-	 * {@code "classpath:com/example/MyTest.testMethod.sql"}.</li>
+	 * <li><strong>类级声明</strong>：如果带注解的测试类是 {@code com.example.MyTest}，则对应的默认脚本为 {@code "classpath:com/example/MyTest.sql"}。</li>
+	 * <li><strong>方法级声明</strong>：如果带注解的测试方法名为 {@code testMethod()} 并且定义在类 {@code com.example.MyTest} 中，则对应的默认脚本为 {@code "classpath:com/example/MyTest.testMethod.sql"}。</li>
 	 * </ul>
 	 * @see #value
 	 * @see #statements
@@ -125,49 +80,41 @@ public @interface Sql {
 	String[] scripts() default {};
 
 	/**
-	 * <em>Inlined SQL statements</em> to execute.
-	 * <p>This attribute may be used in conjunction with or instead of
-	 * {@link #scripts}.
-	 * <h3>Ordering</h3>
-	 * <p>Statements declared via this attribute will be executed after
-	 * statements loaded from resource {@link #scripts}. If you wish to have
-	 * inlined statements executed before scripts, simply declare multiple
-	 * instances of {@code @Sql} on the same class or method.
+	 * 要执行的<em>内联 SQL 语句</em>。
+	 * <p>此属性可以与 {@link #scripts} 结合使用，也可以代替 {@link #scripts} 使用。
+	 * <h3>顺序</h3>
+	 * <p>通过此属性声明的语句将在从资源 {@link #scripts} 加载的语句之后执行。如果希望内联语句在脚本之前执行，只需在同一类或方法上声明多个 {@code @Sql} 实例。
 	 * @since 4.2
 	 * @see #scripts
 	 */
 	String[] statements() default {};
 
 	/**
-	 * When the SQL scripts and statements should be executed.
-	 * <p>Defaults to {@link ExecutionPhase#BEFORE_TEST_METHOD BEFORE_TEST_METHOD}.
+	 * 何时应执行 SQL 脚本和语句。
+	 * <p>默认为 {@link ExecutionPhase#BEFORE_TEST_METHOD BEFORE_TEST_METHOD}。
 	 */
 	ExecutionPhase executionPhase() default ExecutionPhase.BEFORE_TEST_METHOD;
 
 	/**
-	 * Local configuration for the SQL scripts and statements declared within
-	 * this {@code @Sql} annotation.
-	 * <p>See the class-level javadocs for {@link SqlConfig} for explanations of
-	 * local vs. global configuration, inheritance, overrides, etc.
-	 * <p>Defaults to an empty {@link SqlConfig @SqlConfig} instance.
+	 * 为此 {@code @Sql} 注解中声明的 SQL 脚本和语句提供的本地配置。
+	 * <p>有关本地配置与全局配置、继承、覆盖等说明，请参见 {@link SqlConfig} 的类级 javadoc。
+	 * <p>默认为空的 {@link SqlConfig @SqlConfig} 实例。
 	 */
 	SqlConfig config() default @SqlConfig;
 
 
 	/**
-	 * Enumeration of <em>phases</em> that dictate when SQL scripts are executed.
+	 * 枚举<em>阶段</em>，用于规定何时执行 SQL 脚本。
 	 */
 	enum ExecutionPhase {
 
 		/**
-		 * The configured SQL scripts and statements will be executed
-		 * <em>before</em> the corresponding test method.
+		 * 配置的 SQL 脚本和语句将在相应测试方法<em>之前</em>执行。
 		 */
 		BEFORE_TEST_METHOD,
 
 		/**
-		 * The configured SQL scripts and statements will be executed
-		 * <em>after</em> the corresponding test method.
+		 * 配置的 SQL 脚本和语句将在相应测试方法<em>之后</em>执行。
 		 */
 		AFTER_TEST_METHOD
 	}

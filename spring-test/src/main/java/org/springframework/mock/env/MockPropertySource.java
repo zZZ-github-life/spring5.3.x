@@ -22,12 +22,12 @@ import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 
 /**
- * Simple {@link PropertySource} implementation for use in testing. Accepts
- * a user-provided {@link Properties} object, or if omitted during construction,
- * the implementation will initialize its own.
+ * 用于测试的简单 {@link PropertySource} 实现。接受
+ * 用户提供的 {@link Properties} 对象；如果在构造时省略，
+ * 该实现将自行初始化一个。
  *
- * The {@link #setProperty} and {@link #withProperty} methods are exposed for
- * convenience, for example:
+ * 为方便起见，暴露了 {@link #setProperty} 和 {@link #withProperty} 方法，
+ * 例如：
  * <pre class="code">
  * {@code
  *   PropertySource<?> source = new MockPropertySource().withProperty("foo", "bar");
@@ -41,24 +41,24 @@ import org.springframework.core.env.PropertySource;
 public class MockPropertySource extends PropertiesPropertySource {
 
 	/**
-	 * {@value} is the default name for {@link MockPropertySource} instances not
-	 * otherwise given an explicit name.
+	 * {@value} 是未另行显式指定名称的 {@link MockPropertySource}
+	 * 实例的默认名称。
 	 * @see #MockPropertySource()
 	 * @see #MockPropertySource(String)
 	 */
 	public static final String MOCK_PROPERTIES_PROPERTY_SOURCE_NAME = "mockProperties";
 
 	/**
-	 * Create a new {@code MockPropertySource} named {@value #MOCK_PROPERTIES_PROPERTY_SOURCE_NAME}
-	 * that will maintain its own internal {@link Properties} instance.
+	 * 创建一个名为 {@value #MOCK_PROPERTIES_PROPERTY_SOURCE_NAME} 的新 {@code MockPropertySource}，
+	 * 它将维护自己内部的 {@link Properties} 实例。
 	 */
 	public MockPropertySource() {
 		this(new Properties());
 	}
 
 	/**
-	 * Create a new {@code MockPropertySource} with the given name that will
-	 * maintain its own internal {@link Properties} instance.
+	 * 使用给定名称创建一个新的 {@code MockPropertySource}，
+	 * 它将维护自己内部的 {@link Properties} 实例。
 	 * @param name the {@linkplain #getName() name} of the property source
 	 */
 	public MockPropertySource(String name) {
@@ -66,8 +66,8 @@ public class MockPropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Create a new {@code MockPropertySource} named {@value #MOCK_PROPERTIES_PROPERTY_SOURCE_NAME}
-	 * and backed by the given {@link Properties} object.
+	 * 创建一个名为 {@value #MOCK_PROPERTIES_PROPERTY_SOURCE_NAME} 的新 {@code MockPropertySource}，
+	 * 并由给定的 {@link Properties} 对象提供支持。
 	 * @param properties the properties to use
 	 */
 	public MockPropertySource(Properties properties) {
@@ -75,8 +75,8 @@ public class MockPropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Create a new {@code MockPropertySource} with the given name and backed by the given
-	 * {@link Properties} object.
+	 * 使用给定名称创建一个新的 {@code MockPropertySource}，并由给定的
+	 * {@link Properties} 对象提供支持。
 	 * @param name the {@linkplain #getName() name} of the property source
 	 * @param properties the properties to use
 	 */
@@ -85,15 +85,15 @@ public class MockPropertySource extends PropertiesPropertySource {
 	}
 
 	/**
-	 * Set the given property on the underlying {@link Properties} object.
+	 * 在底层 {@link Properties} 对象上设置给定属性。
 	 */
 	public void setProperty(String name, Object value) {
 		this.source.put(name, value);
 	}
 
 	/**
-	 * Convenient synonym for {@link #setProperty} that returns the current instance.
-	 * Useful for method chaining and fluent-style use.
+	 * {@link #setProperty} 的便捷同义词，返回当前实例。
+	 * 适用于方法链和流式风格的使用。
 	 * @return this {@link MockPropertySource} instance
 	 */
 	public MockPropertySource withProperty(String name, Object value) {

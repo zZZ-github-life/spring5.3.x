@@ -1,5 +1,5 @@
 /**
- * Adapter classes for the Jetty WebSocket API.
+ * 用于 Jetty WebSocket API 的适配器类。
  */
 @NonNullApi
 @NonNullFields

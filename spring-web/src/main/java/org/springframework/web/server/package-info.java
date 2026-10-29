@@ -1,8 +1,7 @@
 /**
- * Core interfaces and classes for Spring's generic, reactive web support.
- * Builds on top of the {@code org.springframework.http.client.reactive}
- * reactive HTTP adapter layer, providing additional constructs such as
- * WebHandler, WebFilter, WebSession among others.
+ * Spring 通用响应式 Web 支持的核心接口与类。
+ * 构建于 {@code org.springframework.http.client.reactive} 响应式 HTTP 适配层之上，
+ * 提供诸如 WebHandler、WebFilter、WebSession 等附加构造。
  */
 @NonNullApi
 @NonNullFields

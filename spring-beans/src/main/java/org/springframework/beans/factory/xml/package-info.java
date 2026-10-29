@@ -1,6 +1,5 @@
 /**
- * Contains an abstract XML-based {@code BeanFactory} implementation,
- * including a standard "spring-beans" XSD.
+ * 包含基于 XML 的抽象 {@code BeanFactory} 实现，其中包括标准的 "spring-beans" XSD。
  */
 @NonNullApi
 @NonNullFields

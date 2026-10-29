@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * Constants and convenience methods for working with hints.
+ * 用于处理提示的常量和便捷方法。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -36,20 +36,19 @@ import org.springframework.util.CollectionUtils;
 public abstract class Hints {
 
 	/**
-	 * Name of hint exposing a prefix to use for correlating log messages.
+	 * 提示的名称，用于暴露关联日志消息时所使用的前缀。
 	 */
 	public static final String LOG_PREFIX_HINT = Log.class.getName() + ".PREFIX";
 
 	/**
-	 * Name of boolean hint whether to avoid logging data either because it's
-	 * potentially sensitive, or because it has been logged by a composite
-	 * encoder, e.g. for multipart requests.
+	 * 布尔提示的名称，用于指示是否避免记录数据，原因可能是数据具有潜在敏感性，或者数据已由复合编码器记
+	 * 录过，例如对于 multipart 请求。
 	 */
 	public static final String SUPPRESS_LOGGING_HINT = Log.class.getName() + ".SUPPRESS_LOGGING";
 
 
 	/**
-	 * Create a map wit a single hint via {@link Collections#singletonMap}.
+	 * 通过 {@link Collections#singletonMap} 创建仅包含单个提示的映射。
 	 * @param hintName the hint name
 	 * @param value the hint value
 	 * @return the created map
@@ -59,7 +58,7 @@ public abstract class Hints {
 	}
 
 	/**
-	 * Return an empty map of hints via {@link Collections#emptyMap()}.
+	 * 通过 {@link Collections#emptyMap()} 返回空的提示映射。
 	 * @return the empty map
 	 */
 	public static Map<String, Object> none() {
@@ -67,7 +66,7 @@ public abstract class Hints {
 	}
 
 	/**
-	 * Obtain the value for a required hint.
+	 * 获取必需提示的值。
 	 * @param hints the hints map
 	 * @param hintName the required hint name
 	 * @param <T> the hint type to cast to
@@ -87,7 +86,7 @@ public abstract class Hints {
 	}
 
 	/**
-	 * Obtain the hint {@link #LOG_PREFIX_HINT}, if present, or an empty String.
+	 * 获取提示 {@link #LOG_PREFIX_HINT}（如果存在），否则返回空 String。
 	 * @param hints the hints passed to the encode method
 	 * @return the log prefix
 	 */
@@ -96,7 +95,7 @@ public abstract class Hints {
 	}
 
 	/**
-	 * Whether to suppress logging based on the hint {@link #SUPPRESS_LOGGING_HINT}.
+	 * 是否根据提示 {@link #SUPPRESS_LOGGING_HINT} 抑制日志记录。
 	 * @param hints the hints map
 	 * @return whether logging of data is allowed
 	 */
@@ -105,8 +104,8 @@ public abstract class Hints {
 	}
 
 	/**
-	 * Merge two maps of hints, creating and copying into a new map if both have
-	 * values, or returning the non-empty map, or an empty map if both are empty.
+	 * 合并两个提示映射：如果两者都有值，则创建新映射并将它们复制进去；如果只有一个非空，则返回该非空映
+	 * 射；如果两者都为空，则返回空映射。
 	 * @param hints1 1st map of hints
 	 * @param hints2 2nd map of hints
 	 * @return a single map with hints from both
@@ -130,9 +129,8 @@ public abstract class Hints {
 	}
 
 	/**
-	 * Merge a single hint into a map of hints, possibly creating and copying
-	 * all hints into a new map, or otherwise if the map of hints is empty,
-	 * creating a new single entry map.
+	 * 将单个提示合并到提示映射中：可能需要创建新映射并将所有提示复制进去，或者如果提示映射为空，则创建
+	 * 一个仅含单个条目的新映射。
 	 * @param hints a map of hints to be merged
 	 * @param hintName the hint name to merge
 	 * @param hintValue the hint value to merge
@@ -151,9 +149,8 @@ public abstract class Hints {
 	}
 
 	/**
-	 * If the hints contain a {@link #LOG_PREFIX_HINT} and the given logger has
-	 * DEBUG level enabled, apply the log prefix as a hint to the given buffer
-	 * via {@link DataBufferUtils#touch(DataBuffer, Object)}.
+	 * 如果提示中包含 {@link #LOG_PREFIX_HINT}，并且给定的 logger 已启用 DEBUG 级别，则通过
+	 * {@link DataBufferUtils#touch(DataBuffer, Object)} 将日志前缀作为提示应用到给定缓冲区。
 	 * @param buffer the buffer to touch
 	 * @param hints the hints map to check for a log prefix
 	 * @param logger the logger whose level to check

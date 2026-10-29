@@ -20,10 +20,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
 /**
- * A callback interface used by the JdbcUtils class. Implementations of this
- * interface perform the actual work of extracting database meta-data, but
- * don't need to worry about exception handling. SQLExceptions will be caught
- * and handled correctly by the JdbcUtils class.
+ * JdbcUtils 类使用的回调接口。该接口的实现负责提取数据库元数据的实际工作，
+ * 但无需关心异常处理。SQLException 将由 JdbcUtils 类捕获并正确处理。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -34,8 +32,8 @@ import java.sql.SQLException;
 public interface DatabaseMetaDataCallback<T> {
 
 	/**
-	 * Implementations must implement this method to process the meta-data
-	 * passed in. Exactly what the implementation chooses to do is up to it.
+	 * 实现类必须实现此方法以处理传入的元数据。
+	 * 具体选择做什么由实现类自行决定。
 	 * @param dbmd the DatabaseMetaData to process
 	 * @return a result object extracted from the meta-data
 	 * (can be an arbitrary object, as needed by the implementation)

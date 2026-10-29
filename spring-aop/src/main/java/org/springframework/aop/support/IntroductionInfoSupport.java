@@ -31,11 +31,9 @@ import org.springframework.aop.IntroductionInfo;
 import org.springframework.util.ClassUtils;
 
 /**
- * Support for implementations of {@link org.springframework.aop.IntroductionInfo}.
+ * 为 {@link org.springframework.aop.IntroductionInfo} 的实现提供支持。
  *
- * <p>Allows subclasses to conveniently add all interfaces from a given object,
- * and to suppress interfaces that should not be added. Also allows for querying
- * all introduced interfaces.
+ * <p>允许子类方便地添加给定对象的所有接口，并抑制不应添加的接口。还允许查询所有已引入的接口。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -49,10 +47,8 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 
 
 	/**
-	 * Suppress the specified interface, which may have been autodetected
-	 * due to the delegate implementing it. Call this method to exclude
-	 * internal interfaces from being visible at the proxy level.
-	 * <p>Does nothing if the interface is not implemented by the delegate.
+	 * 抑制指定的接口，该接口可能因委托实现了它而被自动检测到。调用此方法可将内部接口排除在代理层可见范
+	 * 围之外。<p>如果委托未实现该接口，则此方法不执行任何操作。
 	 * @param ifc the interface to suppress
 	 */
 	public void suppressInterface(Class<?> ifc) {
@@ -65,7 +61,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	}
 
 	/**
-	 * Check whether the specified interfaces is a published introduction interface.
+	 * 检查指定的接口是否为已发布的引入接口。
 	 * @param ifc the interface to check
 	 * @return whether the interface is part of this introduction
 	 */
@@ -79,7 +75,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	}
 
 	/**
-	 * Publish all interfaces that the given delegate implements at the proxy level.
+	 * 在代理层发布给定委托所实现的所有接口。
 	 * @param delegate the delegate object
 	 */
 	protected void implementInterfacesOnObject(Object delegate) {
@@ -87,7 +83,7 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	}
 
 	/**
-	 * Is this method on an introduced interface?
+	 * 此方法是否位于已引入的接口上？
 	 * @param mi the method invocation
 	 * @return whether the invoked method is on an introduced interface
 	 */
@@ -110,9 +106,8 @@ public class IntroductionInfoSupport implements IntroductionInfo, Serializable {
 	//---------------------------------------------------------------------
 
 	/**
-	 * This method is implemented only to restore the logger.
-	 * We don't make the logger static as that would mean that subclasses
-	 * would use this class's log category.
+	 * 实现此方法仅是为了恢复 logger。我们没有将 logger 设为静态，因为那样意味着子类将使用此类的日志类
+	 * 别。
 	 */
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		// Rely on default serialization; just initialize state after deserialization.

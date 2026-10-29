@@ -56,10 +56,10 @@ import org.springframework.web.socket.server.HandshakeFailureException;
 import static org.glassfish.tyrus.spi.WebSocketEngine.UpgradeStatus.SUCCESS;
 
 /**
- * A base class for {@code RequestUpgradeStrategy} implementations on top of
- * JSR-356 based servers which include Tyrus as their WebSocket engine.
+ * 基于 JSR-356 服务器（以 Tyrus 作为其 WebSocket 引擎）的
+ * {@code RequestUpgradeStrategy} 实现的基类。
  *
- * <p>Works with Tyrus 1.11 (WebLogic 12.2.1) and Tyrus 1.12 (GlassFish 4.1.1).
+ * <p>可与 Tyrus 1.11（WebLogic 12.2.1）和 Tyrus 1.12（GlassFish 4.1.1）配合使用。
  *
  * @author Rossen Stoyanchev
  * @author Brian Clozel

@@ -23,8 +23,7 @@ import java.util.Locale;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a JSR-310 {@link Year},
- * following JSR-310's parsing rules for a Year.
+ * 用于 JSR-310 {@link Year} 的 {@link Formatter} 实现，遵循 JSR-310 对 Year 的解析规则。
  *
  * @author Juergen Hoeller
  * @since 5.0.4

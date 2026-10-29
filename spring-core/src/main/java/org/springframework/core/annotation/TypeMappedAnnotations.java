@@ -32,8 +32,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.lang.Nullable;
 
 /**
- * {@link MergedAnnotations} implementation that searches for and adapts
- * annotations and meta-annotations using {@link AnnotationTypeMappings}.
+ * {@link MergedAnnotations} 实现，使用 {@link AnnotationTypeMappings} 搜索并适配注解和元注解。
  *
  * @author Phillip Webb
  * @since 5.2
@@ -41,7 +40,7 @@ import org.springframework.lang.Nullable;
 final class TypeMappedAnnotations implements MergedAnnotations {
 
 	/**
-	 * Shared instance that can be used when there are no annotations.
+	 * 在没有注解时可使用的共享实例。
 	 */
 	static final MergedAnnotations NONE = new TypeMappedAnnotations(
 			null, new Annotation[0], RepeatableContainers.none(), AnnotationFilter.ALL);
@@ -273,14 +272,12 @@ final class TypeMappedAnnotations implements MergedAnnotations {
 
 
 	/**
-	 * {@link AnnotationsProcessor} used to detect if an annotation is directly
-	 * present or meta-present.
+	 * 用于检测注解是直接存在还是元存在的 {@link AnnotationsProcessor}。
 	 */
 	private static final class IsPresent implements AnnotationsProcessor<Object, Boolean> {
 
 		/**
-		 * Shared instances that save us needing to create a new processor for
-		 * the common combinations.
+		 * 共享实例，使我们无需为常见组合创建新的处理器。
 		 */
 		private static final IsPresent[] SHARED;
 		static {
@@ -359,7 +356,7 @@ final class TypeMappedAnnotations implements MergedAnnotations {
 
 
 	/**
-	 * {@link AnnotationsProcessor} that finds a single {@link MergedAnnotation}.
+	 * 查找单个 {@link MergedAnnotation} 的 {@link AnnotationsProcessor}。
 	 */
 	private class MergedAnnotationFinder<A extends Annotation>
 			implements AnnotationsProcessor<Object, MergedAnnotation<A>> {
@@ -444,7 +441,7 @@ final class TypeMappedAnnotations implements MergedAnnotations {
 
 
 	/**
-	 * {@link AnnotationsProcessor} that collects {@link Aggregate} instances.
+	 * 收集 {@link Aggregate} 实例的 {@link AnnotationsProcessor}。
 	 */
 	private class AggregatesCollector implements AnnotationsProcessor<Object, List<Aggregate>> {
 
@@ -538,8 +535,7 @@ final class TypeMappedAnnotations implements MergedAnnotations {
 
 
 	/**
-	 * {@link Spliterator} used to consume merged annotations from the
-	 * aggregates in distance fist order.
+	 * 用于按距离优先顺序消费聚合中的合并注解的 {@link Spliterator}。
 	 */
 	private class AggregatesSpliterator<A extends Annotation> implements Spliterator<MergedAnnotation<A>> {
 

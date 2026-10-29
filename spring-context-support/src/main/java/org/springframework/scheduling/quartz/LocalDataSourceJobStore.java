@@ -36,25 +36,24 @@ import org.springframework.jdbc.support.MetaDataAccessException;
 import org.springframework.lang.Nullable;
 
 /**
- * Subclass of Quartz's {@link JobStoreCMT} class that delegates to a Spring-managed
- * {@link DataSource} instead of using a Quartz-managed JDBC connection pool.
- * This JobStore will be used if SchedulerFactoryBean's "dataSource" property is set.
- * You may also configure it explicitly, possibly as a custom subclass of this
- * {@code LocalDataSourceJobStore} or as an equivalent {@code JobStoreCMT} variant.
+ * Quartz {@link JobStoreCMT} 类的子类，委托给 Spring 管理的
+ * {@link DataSource}，而不是使用 Quartz 管理的 JDBC 连接池。
+ * 当设置了 SchedulerFactoryBean 的 "dataSource" 属性时，将使用此 JobStore。
+ * 您也可以显式配置它，可能作为此
+ * {@code LocalDataSourceJobStore} 的自定义子类或等价的 {@code JobStoreCMT} 变体。
  *
- * <p>Supports both transactional and non-transactional DataSource access.
- * With a non-XA DataSource and local Spring transactions, a single DataSource
- * argument is sufficient. In case of an XA DataSource and global JTA transactions,
- * SchedulerFactoryBean's "nonTransactionalDataSource" property should be set,
- * passing in a non-XA DataSource that will not participate in global transactions.
+ * <p>支持事务性和非事务性的 DataSource 访问。
+ * 使用非 XA DataSource 和本地 Spring 事务时，单个 DataSource
+ * 参数即可满足需求。对于 XA DataSource 和全局 JTA 事务，
+ * 应设置 SchedulerFactoryBean 的 "nonTransactionalDataSource" 属性，
+ * 传入一个不参与全局事务的非 XA DataSource。
  *
- * <p>Operations performed by this JobStore will properly participate in any
- * kind of Spring-managed transaction, as it uses Spring's DataSourceUtils
- * connection handling methods that are aware of a current transaction.
+ * <p>此 JobStore 执行的操作将正确参与任何类型的
+ * Spring 管理的事务，因为它使用 Spring 的 DataSourceUtils
+ * 连接处理方法，这些方法能感知当前事务。
  *
- * <p>Note that all Quartz Scheduler operations that affect the persistent
- * job store should usually be performed within active transactions,
- * as they assume to get proper locks etc.
+ * <p>请注意，所有影响持久化 job store 的 Quartz Scheduler 操作
+ * 通常应在活跃事务中执行，因为它们需要正确的锁等。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -69,16 +68,16 @@ import org.springframework.lang.Nullable;
 public class LocalDataSourceJobStore extends JobStoreCMT {
 
 	/**
-	 * Name used for the transactional ConnectionProvider for Quartz.
-	 * This provider will delegate to the local Spring-managed DataSource.
+	 * 用于 Quartz 事务性 ConnectionProvider 的名称。
+	 * 此提供者将委托给本地 Spring 管理的 DataSource。
 	 * @see org.quartz.utils.DBConnectionManager#addConnectionProvider
 	 * @see SchedulerFactoryBean#setDataSource
 	 */
 	public static final String TX_DATA_SOURCE_PREFIX = "springTxDataSource.";
 
 	/**
-	 * Name used for the non-transactional ConnectionProvider for Quartz.
-	 * This provider will delegate to the local Spring-managed DataSource.
+	 * 用于 Quartz 非事务性 ConnectionProvider 的名称。
+	 * 此提供者将委托给本地 Spring 管理的 DataSource。
 	 * @see org.quartz.utils.DBConnectionManager#addConnectionProvider
 	 * @see SchedulerFactoryBean#setDataSource
 	 */

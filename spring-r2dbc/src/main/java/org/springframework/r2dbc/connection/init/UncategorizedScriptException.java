@@ -17,9 +17,8 @@
 package org.springframework.r2dbc.connection.init;
 
 /**
- * Thrown when we cannot determine anything more specific than "something went wrong
- * while processing an SQL script": for example, an {@link io.r2dbc.spi.R2dbcException}
- * from R2DBC that we cannot pinpoint more precisely.
+ * 当无法确定比"处理 SQL 脚本时出现了问题"更具体的原因时抛出：
+ * 例如，来自 R2DBC 的 {@link io.r2dbc.spi.R2dbcException} 无法更精确地定位。
  *
  * @author Sam Brannen
  * @author Mark Paluch
@@ -29,7 +28,7 @@ package org.springframework.r2dbc.connection.init;
 public class UncategorizedScriptException extends ScriptException {
 
 	/**
-	 * Create a new {@code UncategorizedScriptException}.
+	 * 创建一个新的 {@code UncategorizedScriptException}。
 	 * @param message detailed message
 	 */
 	public UncategorizedScriptException(String message) {
@@ -37,7 +36,7 @@ public class UncategorizedScriptException extends ScriptException {
 	}
 
 	/**
-	 * Create a new {@code UncategorizedScriptException}.
+	 * 创建一个新的 {@code UncategorizedScriptException}。
 	 * @param message detailed message
 	 * @param cause the root cause
 	 */

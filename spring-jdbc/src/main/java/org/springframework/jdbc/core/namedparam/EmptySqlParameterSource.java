@@ -19,7 +19,7 @@ package org.springframework.jdbc.core.namedparam;
 import org.springframework.lang.Nullable;
 
 /**
- * A simple empty implementation of the {@link SqlParameterSource} interface.
+ * {@link SqlParameterSource} 接口的简单空实现。
  *
  * @author Juergen Hoeller
  * @since 3.2.2
@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 public class EmptySqlParameterSource implements SqlParameterSource {
 
 	/**
-	 * A shared instance of {@link EmptySqlParameterSource}.
+	 * {@link EmptySqlParameterSource} 的共享实例。
 	 */
 	public static final EmptySqlParameterSource INSTANCE = new EmptySqlParameterSource();
 

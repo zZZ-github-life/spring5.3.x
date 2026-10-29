@@ -22,19 +22,19 @@ import org.springframework.remoting.support.RemoteInvocation;
 import org.springframework.remoting.support.RemoteInvocationResult;
 
 /**
- * Strategy interface for actual execution of an HTTP invoker request.
- * Used by HttpInvokerClientInterceptor and its subclass
- * HttpInvokerProxyFactoryBean.
+ * 用于实际执行 HTTP invoker 请求的策略接口。
+ * 由 HttpInvokerClientInterceptor 及其子类
+ * HttpInvokerProxyFactoryBean 使用。
  *
- * <p>Two implementations are provided out of the box:
+ * <p>开箱即用地提供了两个实现：
  * <ul>
- * <li><b>{@code SimpleHttpInvokerRequestExecutor}:</b>
- * Uses JDK facilities to execute POST requests, without support
- * for HTTP authentication or advanced configuration options.
- * <li><b>{@code HttpComponentsHttpInvokerRequestExecutor}:</b>
- * Uses Apache's Commons HttpClient to execute POST requests,
- * allowing to use a preconfigured HttpClient instance
- * (potentially with authentication, HTTP connection pooling, etc).
+ * <li><b>{@code SimpleHttpInvokerRequestExecutor}：</b>
+ * 使用 JDK 设施执行 POST 请求，不支持
+ * HTTP 身份验证或高级配置选项。
+ * <li><b>{@code HttpComponentsHttpInvokerRequestExecutor}：</b>
+ * 使用 Apache 的 Commons HttpClient 执行 POST 请求，
+ * 允许使用预先配置的 HttpClient 实例
+ * （可能带有身份验证、HTTP 连接池等）。
  * </ul>
  *
  * @author Juergen Hoeller
@@ -47,7 +47,7 @@ import org.springframework.remoting.support.RemoteInvocationResult;
 public interface HttpInvokerRequestExecutor {
 
 	/**
-	 * Execute a request to send the given remote invocation.
+	 * 执行请求以发送给定的远程调用。
 	 * @param config the HTTP invoker configuration that specifies the
 	 * target service
 	 * @param invocation the RemoteInvocation to execute

@@ -26,17 +26,17 @@ import com.rometools.rome.feed.atom.Entry;
 import com.rometools.rome.feed.atom.Feed;
 
 /**
- * Abstract superclass for Atom Feed views, using the
- * <a href="https://github.com/rometools/rome">ROME</a> package.
+ * Atom Feed 视图的抽象超类，使用
+ * <a href="https://github.com/rometools/rome">ROME</a> 包。
  *
- * <p><b>NOTE: As of Spring 4.1, this is based on the {@code com.rometools}
- * variant of ROME, version 1.5. Please upgrade your build dependency.</b>
+ * <p><b>注意：从 Spring 4.1 开始，此实现基于 ROME 的 {@code com.rometools}
+ * 变体，版本为 1.5。请升级你的构建依赖。</b>
  *
- * <p>Application-specific view classes will extend this class.
- * The view will be held in the subclass itself, not in a template.
- * Main entry points are the {@link #buildFeedMetadata} and {@link #buildFeedEntries}.
+ * <p>应用特有的视图类将扩展此类。
+ * 视图内容保存在子类中，而不是保存在模板中。
+ * 主要入口点是 {@link #buildFeedMetadata} 和 {@link #buildFeedEntries}。
  *
- * <p>Thanks to Jettro Coenradie and Sergio Bossa for the original feed view prototype!
+ * <p>感谢 Jettro Coenradie 和 Sergio Bossa 提供原始的 feed 视图原型！
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -48,7 +48,7 @@ import com.rometools.rome.feed.atom.Feed;
 public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 
 	/**
-	 * The default feed type used.
+	 * 所使用的默认 feed 类型。
 	 */
 	public static final String DEFAULT_FEED_TYPE = "atom_1.0";
 
@@ -60,8 +60,8 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 	}
 
 	/**
-	 * Set the Rome feed type to use.
-	 * <p>Defaults to Atom 1.0.
+	 * 设置要使用的 Rome feed 类型。
+	 * <p>默认为 Atom 1.0。
 	 * @see Feed#setFeedType(String)
 	 * @see #DEFAULT_FEED_TYPE
 	 */
@@ -70,8 +70,8 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 	}
 
 	/**
-	 * Create a new Feed instance to hold the entries.
-	 * <p>By default returns an Atom 1.0 feed, but the subclass can specify any Feed.
+	 * 创建一个新的 Feed 实例以承载条目。
+	 * <p>默认返回 Atom 1.0 feed，但子类可以指定任意 Feed。
 	 * @see #setFeedType(String)
 	 */
 	@Override
@@ -80,8 +80,8 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 	}
 
 	/**
-	 * Invokes {@link #buildFeedEntries(Map, HttpServletRequest, HttpServletResponse)}
-	 * to get a list of feed entries.
+	 * 调用 {@link #buildFeedEntries(Map, HttpServletRequest, HttpServletResponse)}
+	 * 以获取 feed 条目列表。
 	 */
 	@Override
 	protected final void buildFeedEntries(Map<String, Object> model, Feed feed,
@@ -92,10 +92,9 @@ public abstract class AbstractAtomFeedView extends AbstractFeedView<Feed> {
 	}
 
 	/**
-	 * Subclasses must implement this method to build feed entries, given the model.
-	 * <p>Note that the passed-in HTTP response is just supposed to be used for
-	 * setting cookies or other HTTP headers. The built feed itself will automatically
-	 * get written to the response after this method returns.
+	 * 子类必须实现此方法，以便根据 model 构建 feed 条目。
+	 * <p>注意，传入的 HTTP response 仅应用于设置 cookie 或其他 HTTP 头。
+	 * 构建好的 feed 本身将在该方法返回后自动写入 response。
 	 * @param model	the model Map
 	 * @param request in case we need locale etc. Shouldn't look at attributes.
 	 * @param response in case we need to set cookies. Shouldn't write to it.

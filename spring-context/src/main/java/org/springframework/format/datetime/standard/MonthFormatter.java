@@ -23,8 +23,8 @@ import java.util.Locale;
 import org.springframework.format.Formatter;
 
 /**
- * {@link Formatter} implementation for a JSR-310 {@link Month},
- * resolving a given String against the Month enum values (ignoring case).
+ * 用于 JSR-310 {@link Month} 的 {@link Formatter} 实现，按 Month 枚举值解析给定的 String（忽略大小
+ * 写）。
  *
  * @author Juergen Hoeller
  * @since 5.0.4

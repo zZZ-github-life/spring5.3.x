@@ -17,20 +17,18 @@
 package org.springframework.core.env;
 
 /**
- * Parses a {@code String[]} of command line arguments in order to populate a
- * {@link CommandLineArgs} object.
+ * 解析命令行参数的 {@code String[]}，以便填充 {@link CommandLineArgs} 对象。
  *
- * <h3>Working with option arguments</h3>
- * <p>Option arguments must adhere to the exact syntax:
+ * <h3>处理选项参数</h3>
+ * <p>选项参数必须遵循以下确切语法：
  *
  * <pre class="code">--optName[=optValue]</pre>
  *
- * <p>That is, options must be prefixed with "{@code --}" and may or may not
- * specify a value. If a value is specified, the name and value must be separated
- * <em>without spaces</em> by an equals sign ("="). The value may optionally be
- * an empty string.
+ * <p>也就是说，选项必须以 "{@code --}" 为前缀，并且可以指定值，也可以不指定。
+ * 如果指定了值，名称和值必须通过等号（"="）分隔，且<em>不能有空格</em>。
+ * 值可选地可以是空字符串。
  *
- * <h4>Valid examples of option arguments</h4>
+ * <h4>选项参数的有效示例</h4>
  * <pre class="code">
  * --foo
  * --foo=
@@ -39,17 +37,16 @@ package org.springframework.core.env;
  * --foo="bar then baz"
  * --foo=bar,baz,biz</pre>
  *
- * <h4>Invalid examples of option arguments</h4>
+ * <h4>选项参数的无效示例</h4>
  * <pre class="code">
  * -foo
  * --foo bar
  * --foo = bar
  * --foo=bar --foo=baz --foo=biz</pre>
  *
- * <h3>Working with non-option arguments</h3>
- * <p>Any and all arguments specified at the command line without the "{@code --}"
- * option prefix will be considered as "non-option arguments" and made available
- * through the {@link CommandLineArgs#getNonOptionArgs()} method.
+ * <h3>处理非选项参数</h3>
+ * <p>在命令行中指定但未带 "{@code --}" 选项前缀的任何及所有参数
+ * 都将被视为“非选项参数”，并可通过 {@link CommandLineArgs#getNonOptionArgs()} 方法获取。
  *
  * @author Chris Beams
  * @author Sam Brannen
@@ -58,9 +55,8 @@ package org.springframework.core.env;
 class SimpleCommandLineArgsParser {
 
 	/**
-	 * Parse the given {@code String} array based on the rules described {@linkplain
-	 * SimpleCommandLineArgsParser above}, returning a fully-populated
-	 * {@link CommandLineArgs} object.
+	 * 根据 {@linkplain SimpleCommandLineArgsParser 上文}描述的规则解析给定的 {@code String} 数组，
+	 * 并返回一个完整填充的 {@link CommandLineArgs} 对象。
 	 * @param args command line arguments, typically from a {@code main()} method
 	 */
 	public CommandLineArgs parse(String... args) {

@@ -19,8 +19,7 @@ package org.springframework.beans.factory.support;
 import org.springframework.beans.factory.BeanCreationException;
 
 /**
- * A subclass of {@link BeanCreationException} which indicates that the target scope
- * is not active, e.g. in case of request or session scope.
+ * {@link BeanCreationException} 的子类，表示目标作用域未激活，例如请求作用域或会话作用域的情况。
  *
  * @author Juergen Hoeller
  * @since 5.3
@@ -32,7 +31,7 @@ import org.springframework.beans.factory.BeanCreationException;
 public class ScopeNotActiveException extends BeanCreationException {
 
 	/**
-	 * Create a new ScopeNotActiveException.
+	 * 创建一个新的 ScopeNotActiveException。
 	 * @param beanName the name of the bean requested
 	 * @param scopeName the name of the target scope
 	 * @param cause the root cause, typically from {@link org.springframework.beans.factory.config.Scope#get}

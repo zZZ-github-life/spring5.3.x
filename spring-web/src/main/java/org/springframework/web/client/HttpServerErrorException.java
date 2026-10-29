@@ -23,7 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 
 /**
- * Exception thrown when an HTTP 5xx is received.
+ * 收到 HTTP 5xx 时抛出的异常。
  *
  * @author Arjen Poutsma
  * @since 3.0
@@ -35,21 +35,21 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 
 
 	/**
-	 * Constructor with a status code only.
+	 * 仅包含状态码的构造函数。
 	 */
 	public HttpServerErrorException(HttpStatus statusCode) {
 		super(statusCode);
 	}
 
 	/**
-	 * Constructor with a status code and status text.
+	 * 包含状态码和状态文本的构造函数。
 	 */
 	public HttpServerErrorException(HttpStatus statusCode, String statusText) {
 		super(statusCode, statusText);
 	}
 
 	/**
-	 * Constructor with a status code and status text, and content.
+	 * 包含状态码、状态文本和内容的构造函数。
 	 */
 	public HttpServerErrorException(
 			HttpStatus statusCode, String statusText, @Nullable byte[] body, @Nullable Charset charset) {
@@ -58,7 +58,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Constructor with a status code and status text, headers, and content.
+	 * 包含状态码、状态文本、头和内容的构造函数。
 	 */
 	public HttpServerErrorException(HttpStatus statusCode, String statusText,
 			@Nullable HttpHeaders headers, @Nullable byte[] body, @Nullable Charset charset) {
@@ -67,8 +67,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Constructor with a status code and status text, headers, content, and a
-	 * prepared message.
+	 * 包含状态码、状态文本、头、内容以及预先准备的消息的构造函数。
 	 * @since 5.2.2
 	 */
 	public HttpServerErrorException(String message, HttpStatus statusCode, String statusText,
@@ -78,7 +77,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Create an {@code HttpServerErrorException} or an HTTP status specific subclass.
+	 * 创建 {@code HttpServerErrorException} 或特定于 HTTP 状态的子类。
 	 * @since 5.1
 	 */
 	public static HttpServerErrorException create(HttpStatus statusCode,
@@ -88,8 +87,8 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * Variant of {@link #create(String, HttpStatus, String, HttpHeaders, byte[], Charset)}
-	 * with an optional prepared message.
+	 * {@link #create(String, HttpStatus, String, HttpHeaders, byte[], Charset)} 的变体，
+	 * 带有可选的预先准备的消息。
 	 * @since 5.2.2.
 	 */
 	public static HttpServerErrorException create(@Nullable String message, HttpStatus statusCode,
@@ -127,7 +126,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	// Subclasses for specific HTTP status codes
 
 	/**
-	 * {@link HttpServerErrorException} for status HTTP 500 Internal Server Error.
+	 * 用于状态 HTTP 500 Internal Server Error 的 {@link HttpServerErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -145,7 +144,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpServerErrorException} for status HTTP 501 Not Implemented.
+	 * 用于状态 HTTP 501 Not Implemented 的 {@link HttpServerErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -163,7 +162,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpServerErrorException} for HTTP status 502 Bad Gateway.
+	 * 用于 HTTP 状态 502 Bad Gateway 的 {@link HttpServerErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -181,7 +180,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpServerErrorException} for status HTTP 503 Service Unavailable.
+	 * 用于状态 HTTP 503 Service Unavailable 的 {@link HttpServerErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")
@@ -199,7 +198,7 @@ public class HttpServerErrorException extends HttpStatusCodeException {
 	}
 
 	/**
-	 * {@link HttpServerErrorException} for status HTTP 504 Gateway Timeout.
+	 * 用于状态 HTTP 504 Gateway Timeout 的 {@link HttpServerErrorException}。
 	 * @since 5.1
 	 */
 	@SuppressWarnings("serial")

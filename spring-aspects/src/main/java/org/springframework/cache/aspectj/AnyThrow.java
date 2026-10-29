@@ -17,8 +17,7 @@
 package org.springframework.cache.aspectj;
 
 /**
- * Utility to trick the compiler to throw a valid checked
- * exceptions within the interceptor.
+ * 用于欺骗编译器，以便在拦截器内抛出合法的受检异常的实用工具。
  *
  * @author Stephane Nicoll
  */

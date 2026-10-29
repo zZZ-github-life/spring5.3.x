@@ -26,29 +26,24 @@ import java.util.Map;
 import org.springframework.core.annotation.AliasFor;
 
 /**
- * Annotation which indicates that a method parameter should be bound to a web
- * request parameter.
+ * 指示方法参数应绑定到 Web 请求参数的注解。
  *
- * <p>Supported for annotated handler methods in Spring MVC and Spring WebFlux
- * as follows:
+ * <p>在 Spring MVC 和 Spring WebFlux 中支持用于注解处理方法，具体如下：
  * <ul>
- * <li>In Spring MVC, "request parameters" map to query parameters, form data,
- * and parts in multipart requests. This is because the Servlet API combines
- * query parameters and form data into a single map called "parameters", and
- * that includes automatic parsing of the request body.
- * <li>In Spring WebFlux, "request parameters" map to query parameters only.
- * To work with all 3, query, form data, and multipart data, you can use data
- * binding to a command object annotated with {@link ModelAttribute}.
+ * <li>在 Spring MVC 中，"请求参数"映射到查询参数、表单数据以及 multipart
+ * 请求中的部件。这是因为 Servlet API 将查询参数和表单数据合并为一个名为
+ * "parameters" 的 Map，其中包含对请求体的自动解析。
+ * <li>在 Spring WebFlux 中，"请求参数"仅映射到查询参数。
+ * 若要处理查询参数、表单数据和 multipart 数据这三种情况，
+ * 可以使用数据绑定到标注了 {@link ModelAttribute} 的命令对象。
  * </ul>
  *
- * <p>If the method parameter type is {@link Map} and a request parameter name
- * is specified, then the request parameter value is converted to a {@link Map}
- * assuming an appropriate conversion strategy is available.
+ * <p>如果方法参数类型为 {@link Map} 并指定了请求参数名称，则在有合适的转换策略
+ * 可用时，请求参数值会被转换为 {@link Map}。
  *
- * <p>If the method parameter is {@link java.util.Map Map&lt;String, String&gt;} or
+ * <p>如果方法参数为 {@link java.util.Map Map&lt;String, String&gt;} 或
  * {@link org.springframework.util.MultiValueMap MultiValueMap&lt;String, String&gt;}
- * and a parameter name is not specified, then the map parameter is populated
- * with all request parameter names and values.
+ * 且未指定参数名称，则 Map 参数将填充所有请求参数名称和值。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -64,34 +59,29 @@ import org.springframework.core.annotation.AliasFor;
 public @interface RequestParam {
 
 	/**
-	 * Alias for {@link #name}.
+	 * {@link #name} 的别名。
 	 */
 	@AliasFor("name")
 	String value() default "";
 
 	/**
-	 * The name of the request parameter to bind to.
+	 * 要绑定到的请求参数名称。
 	 * @since 4.2
 	 */
 	@AliasFor("value")
 	String name() default "";
 
 	/**
-	 * Whether the parameter is required.
-	 * <p>Defaults to {@code true}, leading to an exception being thrown
-	 * if the parameter is missing in the request. Switch this to
-	 * {@code false} if you prefer a {@code null} value if the parameter is
-	 * not present in the request.
-	 * <p>Alternatively, provide a {@link #defaultValue}, which implicitly
-	 * sets this flag to {@code false}.
+	 * 参数是否为必需。
+	 * <p>默认为 {@code true}，如果请求中缺少该参数将抛出异常。
+	 * 如果希望在请求中不存在该参数时得到 {@code null} 值，请将其改为 {@code false}。
+	 * <p>另外，提供 {@link #defaultValue} 会隐式地将此标志设置为 {@code false}。
 	 */
 	boolean required() default true;
 
 	/**
-	 * The default value to use as a fallback when the request parameter is
-	 * not provided or has an empty value.
-	 * <p>Supplying a default value implicitly sets {@link #required} to
-	 * {@code false}.
+	 * 当未提供请求参数或其值为空时用作回退的默认值。
+	 * <p>提供默认值会隐式地将 {@link #required} 设置为 {@code false}。
 	 */
 	String defaultValue() default ValueConstants.DEFAULT_NONE;
 

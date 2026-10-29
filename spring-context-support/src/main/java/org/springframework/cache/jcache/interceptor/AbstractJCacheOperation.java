@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ExceptionTypeFilter;
 
 /**
- * A base {@link JCacheOperation} implementation.
+ * 一个 {@link JCacheOperation} 的基础实现。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -51,7 +51,7 @@ abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOp
 
 
 	/**
-	 * Construct a new {@code AbstractJCacheOperation}.
+	 * 构造一个新的 {@code AbstractJCacheOperation}。
 	 * @param methodDetails the {@link CacheMethodDetails} related to the cached method
 	 * @param cacheResolver the cache resolver to resolve regular caches
 	 */
@@ -119,14 +119,13 @@ abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOp
 
 
 	/**
-	 * Return the {@link ExceptionTypeFilter} to use to filter exceptions thrown while
-	 * invoking the method.
+	 * 返回用于过滤调用方法时抛出的异常的 {@link ExceptionTypeFilter}。
 	 * @see #createExceptionTypeFilter
 	 */
 	public abstract ExceptionTypeFilter getExceptionTypeFilter();
 
 	/**
-	 * Convenience method for subclasses to create a specific {@code ExceptionTypeFilter}.
+	 * 供子类创建特定 {@code ExceptionTypeFilter} 的便捷方法。
 	 * @see #getExceptionTypeFilter()
 	 */
 	protected ExceptionTypeFilter createExceptionTypeFilter(
@@ -142,8 +141,8 @@ abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOp
 	}
 
 	/**
-	 * Return an identifying description for this caching operation.
-	 * <p>Available to subclasses, for inclusion in their {@code toString()} result.
+	 * 返回此缓存操作的可识别描述。
+	 * <p>供子类使用，以便将其纳入 {@code toString()} 结果中。
 	 */
 	protected StringBuilder getOperationDescription() {
 		StringBuilder result = new StringBuilder();
@@ -155,7 +154,7 @@ abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOp
 
 
 	/**
-	 * Details for a single cache parameter.
+	 * 单个缓存参数的详情。
 	 */
 	protected static class CacheParameterDetail {
 
@@ -207,7 +206,7 @@ abstract class AbstractJCacheOperation<A extends Annotation> implements JCacheOp
 
 
 	/**
-	 * A single cache invocation parameter.
+	 * 单个缓存调用参数。
 	 */
 	protected static class CacheInvocationParameterImpl implements CacheInvocationParameter {
 

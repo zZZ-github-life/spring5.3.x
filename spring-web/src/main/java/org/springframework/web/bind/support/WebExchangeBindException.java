@@ -32,10 +32,9 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.server.ServerWebInputException;
 
 /**
- * A specialization of {@link ServerWebInputException} thrown when after data
- * binding and validation failure. Implements {@link BindingResult} (and its
- * super-interface {@link Errors}) to allow for direct analysis of binding and
- * validation errors.
+ * {@link ServerWebInputException} 的特化，在数据绑定和校验失败之后抛出。
+ * 实现 {@link BindingResult}（及其父接口 {@link Errors}），
+ * 以便直接分析绑定和校验错误。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -53,8 +52,8 @@ public class WebExchangeBindException extends ServerWebInputException implements
 
 
 	/**
-	 * Return the BindingResult that this BindException wraps.
-	 * Will typically be a BeanPropertyBindingResult.
+	 * 返回此 BindException 所包装的 BindingResult。
+	 * 通常为 BeanPropertyBindingResult。
 	 * @see BeanPropertyBindingResult
 	 */
 	public final BindingResult getBindingResult() {
@@ -278,7 +277,7 @@ public class WebExchangeBindException extends ServerWebInputException implements
 
 
 	/**
-	 * Returns diagnostic information about the errors held in this object.
+	 * 返回有关此对象中所持有的错误的诊断信息。
 	 */
 	@Override
 	public String getMessage() {

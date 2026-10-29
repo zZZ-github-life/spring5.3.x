@@ -40,18 +40,18 @@ import org.springframework.web.util.JavaScriptUtils;
 import org.springframework.web.util.TagUtils;
 
 /**
- * The {@code <eval>} tag evaluates a Spring expression (SpEL) and either prints
- * the result or assigns it to a variable. Supports the standard JSP evaluation
- * context consisting of implicit variables and scoped attributes.
+ * {@code <eval>} 标签会求值一个 Spring 表达式（SpEL），并打印结果
+ * 或将其赋值给变量。它支持由隐式变量和作用域属性构成的标准
+ * JSP 求值上下文。
  *
  * <table>
- * <caption>Attribute Summary</caption>
+ * <caption>属性摘要</caption>
  * <thead>
  * <tr>
- * <th>Attribute</th>
- * <th>Required?</th>
- * <th>Runtime Expression?</th>
- * <th>Description</th>
+ * <th>属性</th>
+ * <th>是否必需？</th>
+ * <th>是否支持运行时表达式？</th>
+ * <th>描述</th>
  * </tr>
  * </thead>
  * <tbody>
@@ -59,37 +59,37 @@ import org.springframework.web.util.TagUtils;
  * <td>expression</td>
  * <td>true</td>
  * <td>true</td>
- * <td>The expression to evaluate.</td>
+ * <td>要执行的求值表达式。</td>
  * </tr>
  * <tr>
  * <td>htmlEscape</td>
  * <td>false</td>
  * <td>true</td>
- * <td>Set HTML escaping for this tag, as a boolean value.
- * Overrides the default HTML escaping setting for the current page.</td>
+ * <td>以布尔值形式为该标签设置 HTML 转义。
+ * 覆盖当前页面的默认 HTML 转义设置。</td>
  * </tr>
  * <tr>
  * <td>javaScriptEscape</td>
  * <td>false</td>
  * <td>true</td>
- * <td>Set JavaScript escaping for this tag, as a boolean value.
- * Default is {@code false}.</td>
+ * <td>以布尔值形式为该标签设置 JavaScript 转义。
+ * 默认为 {@code false}。</td>
  * </tr>
  * <tr>
  * <td>scope</td>
  * <td>false</td>
  * <td>true</td>
- * <td>The scope for the var. 'application', 'session', 'request' and 'page'
- * scopes are supported. Defaults to page scope. This attribute has no effect
- * unless the var attribute is also defined.</td>
+ * <td>var 的作用域。支持 'application'、'session'、'request' 和 'page'
+ * 作用域。默认为 page 作用域。除非同时定义了 var 属性，
+ * 否则此属性无效。</td>
  * </tr>
  * <tr>
  * <td>var</td>
  * <td>false</td>
  * <td>true</td>
- * <td>The name of the variable to export the evaluation result to.
- * If not specified the evaluation result is converted to a String and written
- * as output.</td>
+ * <td>用于导出求值结果的变量名称。
+ * 如果未指定，求值结果将被转换为 String 并作为输出
+ * 写出。</td>
  * </tr>
  * </tbody>
  * </table>
@@ -102,8 +102,8 @@ import org.springframework.web.util.TagUtils;
 public class EvalTag extends HtmlEscapingAwareTag {
 
 	/**
-	 * {@link javax.servlet.jsp.PageContext} attribute for the
-	 * page-level {@link EvaluationContext} instance.
+	 * 页面级 {@link EvaluationContext} 实例所对应的
+	 * {@link javax.servlet.jsp.PageContext} 属性。
 	 */
 	private static final String EVALUATION_CONTEXT_PAGE_ATTRIBUTE =
 			"org.springframework.web.servlet.tags.EVALUATION_CONTEXT";
@@ -123,31 +123,31 @@ public class EvalTag extends HtmlEscapingAwareTag {
 
 
 	/**
-	 * Set the expression to evaluate.
+	 * 设置要执行的求值表达式。
 	 */
 	public void setExpression(String expression) {
 		this.expression = this.expressionParser.parseExpression(expression);
 	}
 
 	/**
-	 * Set the variable name to expose the evaluation result under.
-	 * Defaults to rendering the result to the current JspWriter.
+	 * 设置用于公开求值结果的变量名称。
+	 * 默认将结果渲染到当前的 JspWriter。
 	 */
 	public void setVar(String var) {
 		this.var = var;
 	}
 
 	/**
-	 * Set the scope to export the evaluation result to.
-	 * This attribute has no meaning unless var is also defined.
+	 * 设置用于导出求值结果的作用域。
+	 * 除非同时定义了 var，否则此属性没有意义。
 	 */
 	public void setScope(String scope) {
 		this.scope = TagUtils.getScope(scope);
 	}
 
 	/**
-	 * Set JavaScript escaping for this tag, as boolean value.
-	 * Default is "false".
+	 * 以布尔值形式为该标签设置 JavaScript 转义。
+	 * 默认为 "false"。
 	 */
 	public void setJavaScriptEscape(boolean javaScriptEscape) throws JspException {
 		this.javaScriptEscape = javaScriptEscape;

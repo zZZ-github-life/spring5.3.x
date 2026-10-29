@@ -1,5 +1,5 @@
 /**
- * Contains support for TCP messaging based on Reactor.
+ * 包含基于 Reactor 的 TCP 消息传递支持。
  */
 @NonNullApi
 @NonNullFields

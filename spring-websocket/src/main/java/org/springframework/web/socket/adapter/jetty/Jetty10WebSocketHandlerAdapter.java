@@ -34,9 +34,9 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator;
 
 /**
- * Identical to {@link JettyWebSocketHandlerAdapter}, only excluding the
- * {@code onWebSocketFrame} method, since the {@link Frame} argument has moved
- * to a different package in Jetty 10.
+ * 与 {@link JettyWebSocketHandlerAdapter} 相同，只是不包含
+ * {@code onWebSocketFrame} 方法，因为在 Jetty 10 中 {@link Frame} 参数
+ * 已移至不同的包。
  *
  * @author Rossen Stoyanchev
  * @since 5.3.4

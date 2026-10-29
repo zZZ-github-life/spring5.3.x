@@ -69,8 +69,8 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Default implementation of {@link CodecConfigurer.DefaultCodecs} that serves
- * as a base for client and server specific variants.
+ * {@link CodecConfigurer.DefaultCodecs} 的默认实现，作为
+ * 客户端和服务器特定变体的基类。
  *
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
@@ -78,9 +78,9 @@ import org.springframework.util.ObjectUtils;
 class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigurer.DefaultCodecConfig {
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring
+	 * 忽略 XML，即不初始化与 XML 相关的基础设施。
+	 * <p>默认为 "false"。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 
@@ -170,7 +170,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Reset and initialize typed readers and object readers.
+	 * 重置并初始化类型化读取器和对象读取器。
 	 * @since 5.3.3
 	 */
 	protected void initReaders() {
@@ -179,7 +179,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Reset and initialize typed writers and object writers.
+	 * 重置并初始化类型化写入器和对象写入器。
 	 * @since 5.3.3
 	 */
 	protected void initWriters() {
@@ -188,7 +188,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Create a deep copy of the given {@link BaseDefaultCodecs}.
+	 * 创建给定 {@link BaseDefaultCodecs} 的深拷贝。
 	 */
 	protected BaseDefaultCodecs(BaseDefaultCodecs other) {
 		this.jackson2JsonDecoder = other.jackson2JsonDecoder;
@@ -311,7 +311,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Delegate method used from {@link BaseCodecConfigurer#registerDefaults}.
+	 * 由 {@link BaseCodecConfigurer#registerDefaults} 使用的委托方法。
 	 */
 	void registerDefaults(boolean registerDefaults) {
 		if (this.registerDefaults != registerDefaults) {
@@ -323,14 +323,14 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 
 
 	/**
-	 * Return readers that support specific types.
+	 * 返回支持特定类型的读取器。
 	 */
 	final List<HttpMessageReader<?>> getTypedReaders() {
 		return this.typedReaders;
 	}
 
 	/**
-	 * Reset and initialize typed readers.
+	 * 重置并初始化类型化读取器。
 	 * @since 5.3.3
 	 */
 	protected void initTypedReaders() {
@@ -357,7 +357,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Initialize a codec and add it to the List.
+	 * 初始化编解码器并将其添加到 List 中。
 	 * @since 5.1.13
 	 */
 	protected <T> void addCodec(List<T> codecs, T codec) {
@@ -366,9 +366,8 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Apply {@link #maxInMemorySize()} and {@link #enableLoggingRequestDetails},
-	 * if configured by the application, to the given codec , including any
-	 * codec it contains.
+	 * 如果应用程序进行了配置，则将 {@link #maxInMemorySize()} 和 {@link #enableLoggingRequestDetails}
+	 * 应用于给定的编解码器，包括其中包含的任何编解码器。
 	 */
 	@SuppressWarnings("rawtypes")
 	private void initCodec(@Nullable Object codec) {
@@ -468,20 +467,20 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Hook for client or server specific typed readers.
+	 * 用于客户端或服务器特定类型化读取器的钩子。
 	 */
 	protected void extendTypedReaders(List<HttpMessageReader<?>> typedReaders) {
 	}
 
 	/**
-	 * Return Object readers (JSON, XML, SSE).
+	 * 返回 Object 读取器（JSON、XML、SSE）。
 	 */
 	final List<HttpMessageReader<?>> getObjectReaders() {
 		return this.objectReaders;
 	}
 
 	/**
-	 * Reset and initialize object readers.
+	 * 重置并初始化对象读取器。
 	 * @since 5.3.3
 	 */
 	protected void initObjectReaders() {
@@ -509,13 +508,13 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Hook for client or server specific Object readers.
+	 * 用于客户端或服务器特定 Object 读取器的钩子。
 	 */
 	protected void extendObjectReaders(List<HttpMessageReader<?>> objectReaders) {
 	}
 
 	/**
-	 * Return readers that need to be at the end, after all others.
+	 * 返回需要放在最后（位于所有其他读取器之后）的读取器。
 	 */
 	final List<HttpMessageReader<?>> getCatchAllReaders() {
 		if (!this.registerDefaults) {
@@ -527,7 +526,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Return all writers that support specific types.
+	 * 返回所有支持特定类型的写入器。
 	 */
 	@SuppressWarnings({"rawtypes" })
 	final List<HttpMessageWriter<?>> getTypedWriters() {
@@ -535,7 +534,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Reset and initialize typed writers.
+	 * 重置并初始化类型化写入器。
 	 * @since 5.3.3
 	 */
 	protected void initTypedWriters() {
@@ -548,7 +547,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Return "base" typed writers only, i.e. common to client and server.
+	 * 仅返回"基础"类型化写入器，即客户端和服务器共用的写入器。
 	 */
 	final List<HttpMessageWriter<?>> getBaseTypedWriters() {
 		if (!this.registerDefaults) {
@@ -571,20 +570,20 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Hook for client or server specific typed writers.
+	 * 用于客户端或服务器特定类型化写入器的钩子。
 	 */
 	protected void extendTypedWriters(List<HttpMessageWriter<?>> typedWriters) {
 	}
 
 	/**
-	 * Return Object writers (JSON, XML, SSE).
+	 * 返回 Object 写入器（JSON、XML、SSE）。
 	 */
 	final List<HttpMessageWriter<?>> getObjectWriters() {
 		return this.objectWriters;
 	}
 
 	/**
-	 * Reset and initialize object writers.
+	 * 重置并初始化对象写入器。
 	 * @since 5.3.3
 	 */
 	protected void initObjectWriters() {
@@ -597,7 +596,7 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Return "base" object writers only, i.e. common to client and server.
+	 * 仅返回"基础"对象写入器，即客户端和服务器共用的写入器。
 	 */
 	final List<HttpMessageWriter<?>> getBaseObjectWriters() {
 		List<HttpMessageWriter<?>> writers = new ArrayList<>();
@@ -619,13 +618,13 @@ class BaseDefaultCodecs implements CodecConfigurer.DefaultCodecs, CodecConfigure
 	}
 
 	/**
-	 * Hook for client or server specific Object writers.
+	 * 用于客户端或服务器特定 Object 写入器的钩子。
 	 */
 	protected void extendObjectWriters(List<HttpMessageWriter<?>> objectWriters) {
 	}
 
 	/**
-	 * Return writers that need to be at the end, after all others.
+	 * 返回需要放在最后（位于所有其他写入器之后）的写入器。
 	 */
 	List<HttpMessageWriter<?>> getCatchAllWriters() {
 		if (!this.registerDefaults) {

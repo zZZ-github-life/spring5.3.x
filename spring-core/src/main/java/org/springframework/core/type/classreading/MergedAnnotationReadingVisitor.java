@@ -33,8 +33,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * {@link AnnotationVisitor} that can be used to construct a
- * {@link MergedAnnotation}.
+ * 可用于构造 {@link MergedAnnotation} 的 {@link AnnotationVisitor}。
  *
  * @author Phillip Webb
  * @since 5.2
@@ -143,7 +142,7 @@ class MergedAnnotationReadingVisitor<A extends Annotation> extends AnnotationVis
 
 
 	/**
-	 * {@link AnnotationVisitor} to deal with array attributes.
+	 * 用于处理数组属性的 {@link AnnotationVisitor}。
 	 */
 	private class ArrayVisitor extends AnnotationVisitor {
 

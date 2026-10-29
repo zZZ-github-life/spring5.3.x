@@ -26,14 +26,12 @@ import java.util.Properties;
 import org.springframework.lang.Nullable;
 
 /**
- * Custom {@link java.beans.PropertyEditor} for {@link Properties} objects.
+ * 用于 {@link Properties} 对象的自定义 {@link java.beans.PropertyEditor}。
  *
- * <p>Handles conversion from content {@link String} to {@code Properties} object.
- * Also handles {@link Map} to {@code Properties} conversion, for populating
- * a {@code Properties} object via XML "map" entries.
+ * <p>处理从内容 {@link String} 到 {@code Properties} 对象的转换。还处理从 {@link Map} 到
+ * {@code Properties} 的转换，以便通过 XML 的 "map" 条目填充 {@code Properties} 对象。
  *
- * <p>The required format is defined in the standard {@code Properties}
- * documentation. Each property must be on a new line.
+ * <p>所需格式在标准 {@code Properties} 文档中定义。每个属性必须单独占一行。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -42,8 +40,7 @@ import org.springframework.lang.Nullable;
 public class PropertiesEditor extends PropertyEditorSupport {
 
 	/**
-	 * Convert {@link String} into {@link Properties}, considering it as
-	 * properties content.
+	 * 将 {@link String} 转换为 {@link Properties}，将其视为属性内容。
 	 * @param text the text to be so converted
 	 */
 	@Override
@@ -64,7 +61,7 @@ public class PropertiesEditor extends PropertyEditorSupport {
 	}
 
 	/**
-	 * Take {@link Properties} as-is; convert {@link Map} into {@code Properties}.
+	 * 原样接受 {@link Properties}；将 {@link Map} 转换为 {@code Properties}。
 	 */
 	@Override
 	public void setValue(Object value) {

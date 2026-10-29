@@ -22,10 +22,10 @@ import javax.jms.Session;
 import org.springframework.lang.Nullable;
 
 /**
- * Callback for executing any number of operations on a provided {@link Session}.
+ * 用于在提供的 {@link Session} 上执行任意数量操作的回调。
  *
- * <p>To be used with the {@link JmsTemplate#execute(SessionCallback)} method,
- * often implemented as an anonymous inner class or as a lambda expression.
+ * <p>与 {@link JmsTemplate#execute(SessionCallback)} 方法一起使用，
+ * 通常实现为匿名内部类或 lambda 表达式。
  *
  * @author Mark Pollack
  * @since 1.1
@@ -36,8 +36,7 @@ import org.springframework.lang.Nullable;
 public interface SessionCallback<T> {
 
 	/**
-	 * Execute any number of operations against the supplied JMS {@link Session},
-	 * possibly returning a result.
+	 * 对所提供的 JMS {@link Session} 执行任意数量的操作，并可能返回结果。
 	 * @param session the JMS {@code Session}
 	 * @return a result object from working with the {@code Session}, if any
 	 * (or {@code null} if none)

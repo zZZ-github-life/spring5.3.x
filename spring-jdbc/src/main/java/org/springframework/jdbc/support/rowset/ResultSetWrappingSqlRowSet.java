@@ -32,28 +32,27 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
 
 /**
- * The default implementation of Spring's {@link SqlRowSet} interface, wrapping a
- * {@link java.sql.ResultSet}, catching any {@link SQLException SQLExceptions} and
- * translating them to a corresponding Spring {@link InvalidResultSetAccessException}.
+ * Spring {@link SqlRowSet} 接口的默认实现，它包装一个 {@link java.sql.ResultSet}，
+ * 捕获所有 {@link SQLException SQLExceptions}，
+ * 并将其转换为相应的 Spring {@link InvalidResultSetAccessException}。
  *
- * <p>The passed-in ResultSet should already be disconnected if the SqlRowSet is supposed
- * to be usable in a disconnected fashion. This means that you will usually pass in a
- * {@code javax.sql.rowset.CachedRowSet}, which implements the ResultSet interface.
+ * <p>如果希望 SqlRowSet 能以断开连接的方式使用，传入的 ResultSet 应已断开连接。
+ * 这意味着通常你会传入一个实现了 ResultSet 接口的
+ * {@code javax.sql.rowset.CachedRowSet}。
  *
- * <p>Note: Since JDBC 4.0, it has been clarified that any methods using a String to identify
- * the column should be using the column label. The column label is assigned using the ALIAS
- * keyword in the SQL query string. When the query doesn't use an ALIAS, the default label is
- * the column name. Most JDBC ResultSet implementations follow this new pattern but there are
- * exceptions such as the {@code com.sun.rowset.CachedRowSetImpl} class which only uses
- * the column name, ignoring any column labels. As of Spring 3.0.5, ResultSetWrappingSqlRowSet
- * will translate column labels to the correct column index to provide better support for the
- * {@code com.sun.rowset.CachedRowSetImpl} which is the default implementation used by
- * {@link org.springframework.jdbc.core.JdbcTemplate} when working with RowSets.
+ * <p>注意：自 JDBC 4.0 起已明确，任何使用 String 标识列的方法都应使用列标签。
+ * 列标签通过 SQL 查询字符串中的 ALIAS 关键字指定。
+ * 当查询未使用 ALIAS 时，默认标签为列名。
+ * 大多数 JDBC ResultSet 实现遵循这一新模式，但也存在例外，
+ * 例如 {@code com.sun.rowset.CachedRowSetImpl} 类只使用列名，忽略任何列标签。
+ * 从 Spring 3.0.5 起，ResultSetWrappingSqlRowSet 会将列标签转换为正确的列索引，
+ * 以便为 {@code com.sun.rowset.CachedRowSetImpl} 提供更好的支持，
+ * 后者是 {@link org.springframework.jdbc.core.JdbcTemplate}
+ * 在处理 RowSet 时使用的默认实现。
  *
- * <p>Note: This class implements the {@code java.io.Serializable} marker interface
- * through the SqlRowSet interface, but is only actually serializable if the disconnected
- * ResultSet/RowSet contained in it is serializable. Most CachedRowSet implementations
- * are actually serializable, so this should usually work out.
+ * <p>注意：此类通过 SqlRowSet 接口实现了 {@code java.io.Serializable} 标记接口，
+ * 但仅当其中包含的已断开连接的 ResultSet/RowSet 可序列化时，它才真正可序列化。
+ * 大多数 CachedRowSet 实现实际上是可序列化的，因此通常不会出现问题。
  *
  * @author Thomas Risberg
  * @author Juergen Hoeller
@@ -64,7 +63,7 @@ import org.springframework.util.CollectionUtils;
  */
 public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
-	/** use serialVersionUID from Spring 1.2 for interoperability. */
+	/** 使用 Spring 1.2 的 serialVersionUID 以实现互操作性。 */
 	private static final long serialVersionUID = -4688694393146734764L;
 
 
@@ -76,7 +75,7 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
 
 	/**
-	 * Create a new ResultSetWrappingSqlRowSet for the given ResultSet.
+	 * 为给定 ResultSet 创建一个新的 ResultSetWrappingSqlRowSet。
 	 * @param resultSet a disconnected ResultSet to wrap
 	 * (usually a {@code javax.sql.rowset.CachedRowSet})
 	 * @throws InvalidResultSetAccessException if extracting
@@ -119,8 +118,8 @@ public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
 
 	/**
-	 * Return the underlying ResultSet
-	 * (usually a {@code javax.sql.rowset.CachedRowSet}).
+	 * 返回底层的 ResultSet
+	 * （通常是 {@code javax.sql.rowset.CachedRowSet}）。
 	 * @see javax.sql.rowset.CachedRowSet
 	 */
 	public final ResultSet getResultSet() {

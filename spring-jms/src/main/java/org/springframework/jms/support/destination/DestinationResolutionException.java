@@ -20,7 +20,7 @@ import org.springframework.jms.JmsException;
 import org.springframework.lang.Nullable;
 
 /**
- * Thrown by a DestinationResolver when it cannot resolve a destination name.
+ * 当 DestinationResolver 无法解析目的地名称时抛出。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 public class DestinationResolutionException extends JmsException {
 
 	/**
-	 * Create a new DestinationResolutionException.
+	 * 创建一个新的 DestinationResolutionException。
 	 * @param msg the detail message
 	 */
 	public DestinationResolutionException(String msg) {
@@ -38,7 +38,7 @@ public class DestinationResolutionException extends JmsException {
 	}
 
 	/**
-	 * Create a new DestinationResolutionException.
+	 * 创建一个新的 DestinationResolutionException。
 	 * @param msg the detail message
 	 * @param cause the root cause (if any)
 	 */

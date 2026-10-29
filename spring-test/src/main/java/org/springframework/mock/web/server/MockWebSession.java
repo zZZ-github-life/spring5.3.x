@@ -29,13 +29,13 @@ import org.springframework.web.server.WebSession;
 import org.springframework.web.server.session.InMemoryWebSessionStore;
 
 /**
- * Implementation of {@code WebSession} that delegates to a session instance
- * obtained via {@link InMemoryWebSessionStore}.
+ * {@code WebSession} 的实现，委托给通过
+ * {@link InMemoryWebSessionStore} 获取的会话实例。
  *
- * <p>This is intended for use with the
+ * <p>它适用于
  * {@link MockServerWebExchange.Builder#session(WebSession) session(WebSession)}
- * method of the {@code MockServerWebExchange} builder, eliminating the need
- * to use {@code WebSessionManager} or {@code WebSessionStore} altogether.
+ * 方法（{@code MockServerWebExchange} 构建器的），从而完全无需
+ * 使用 {@code WebSessionManager} 或 {@code WebSessionStore}。
  *
  * @author Rossen Stoyanchev
  * @since 5.1

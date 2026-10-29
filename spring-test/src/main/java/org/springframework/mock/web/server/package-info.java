@@ -1,5 +1,5 @@
 /**
- * Mock implementations of Spring's reactive server web API abstractions.
+ * Spring 响应式服务器 Web API 抽象的 mock 实现。
  */
 @NonNullApi
 @NonNullFields

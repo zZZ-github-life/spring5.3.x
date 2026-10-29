@@ -29,20 +29,20 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Simple {@code FactoryBean} that exposes the underlying {@link SessionFactory}
- * behind a Hibernate-backed JPA {@link EntityManagerFactory}.
+ * 简单的 {@code FactoryBean}，用于暴露由 Hibernate 支撑的 JPA
+ * {@link EntityManagerFactory} 背后的 {@link SessionFactory}。
  *
- * <p>Primarily available for resolving a SessionFactory by JPA persistence unit name
- * via the {@link #setPersistenceUnitName "persistenceUnitName"} bean property.
+ * <p>主要用于通过 {@link #setPersistenceUnitName "persistenceUnitName"}
+ * bean 属性按 JPA 持久化单元名称解析 SessionFactory。
  *
- * <p>Note that, for straightforward cases, you could also simply declare a factory method:
+ * <p>请注意，对于简单场景，你也可以直接声明一个工厂方法：
  *
  * <pre class="code">
  * &lt;bean id="sessionFactory" factory-bean="entityManagerFactory" factory-method="getSessionFactory"/&gt;
  * </pre>
  *
- * <p>And as of JPA 2.1, {@link EntityManagerFactory#unwrap} provides a nice approach as well,
- * in particular within configuration class arrangements:
+ * <p>从 JPA 2.1 开始，{@link EntityManagerFactory#unwrap} 也提供了一种不错的方式，
+ * 特别是在配置类安排中：
  *
  * <pre class="code">
  * &#064;Bean
@@ -51,10 +51,10 @@ import org.springframework.util.ReflectionUtils;
  * }
  * </pre>
  *
- * Please note: Since Hibernate 5.2 changed its {@code SessionFactory} interface to extend JPA's
- * {@code EntityManagerFactory}, you may get conflicts when injecting by type, with both the
- * original factory and your custom {@code SessionFactory} matching {@code EntityManagerFactory}.
- * An explicit qualifier for the original factory (as indicated above) is recommended here.
+ * 请注意：自 Hibernate 5.2 起，其 {@code SessionFactory} 接口改为扩展 JPA 的
+ * {@code EntityManagerFactory}，因此按类型注入时可能会发生冲突，
+ * 原始工厂和自定义的 {@code SessionFactory} 都会匹配 {@code EntityManagerFactory}。
+ * 此时建议为原始工厂显式指定限定符（如上所示）。
  *
  * @author Juergen Hoeller
  * @since 3.1

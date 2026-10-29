@@ -17,8 +17,7 @@
 package org.springframework.beans;
 
 /**
- * Exception thrown on an attempt to get the value of a property
- * that isn't readable, because there's no getter method.
+ * 当尝试获取不可读属性（因为没有 getter 方法）的值时抛出的异常。
  *
  * @author Juergen Hoeller
  * @since 1.0.2
@@ -27,7 +26,7 @@ package org.springframework.beans;
 public class NotReadablePropertyException extends InvalidPropertyException {
 
 	/**
-	 * Create a new NotReadablePropertyException.
+	 * 创建一个新的 NotReadablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property
 	 */
@@ -38,7 +37,7 @@ public class NotReadablePropertyException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NotReadablePropertyException.
+	 * 创建一个新的 NotReadablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property
 	 * @param msg the detail message
@@ -48,7 +47,7 @@ public class NotReadablePropertyException extends InvalidPropertyException {
 	}
 
 	/**
-	 * Create a new NotReadablePropertyException.
+	 * 创建一个新的 NotReadablePropertyException。
 	 * @param beanClass the offending bean class
 	 * @param propertyName the offending property
 	 * @param msg the detail message

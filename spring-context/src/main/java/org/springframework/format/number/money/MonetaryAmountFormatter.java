@@ -26,9 +26,9 @@ import org.springframework.format.Formatter;
 import org.springframework.lang.Nullable;
 
 /**
- * Formatter for JSR-354 {@link javax.money.MonetaryAmount} values,
- * delegating to {@link javax.money.format.MonetaryAmountFormat#format}
- * and {@link javax.money.format.MonetaryAmountFormat#parse}.
+ * 用于 JSR-354 {@link javax.money.MonetaryAmount} 值的格式化器，委托给
+ * {@link javax.money.format.MonetaryAmountFormat#format} 和
+ * {@link javax.money.format.MonetaryAmountFormat#parse}。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -41,13 +41,13 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 
 
 	/**
-	 * Create a locale-driven MonetaryAmountFormatter.
+	 * 创建一个由区域设置驱动的 MonetaryAmountFormatter。
 	 */
 	public MonetaryAmountFormatter() {
 	}
 
 	/**
-	 * Create a new MonetaryAmountFormatter for the given format name.
+	 * 为给定的格式名称创建一个新的 MonetaryAmountFormatter。
 	 * @param formatName the format name, to be resolved by the JSR-354
 	 * provider at runtime
 	 */
@@ -57,10 +57,8 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 
 
 	/**
-	 * Specify the format name, to be resolved by the JSR-354 provider
-	 * at runtime.
-	 * <p>Default is none, obtaining a {@link MonetaryAmountFormat}
-	 * based on the current locale.
+	 * 指定格式名称，由 JSR-354 提供者在运行时解析。
+	 * <p>默认值为无，此时基于当前区域设置获取 {@link MonetaryAmountFormat}。
 	 */
 	public void setFormatName(String formatName) {
 		this.formatName = formatName;
@@ -79,10 +77,9 @@ public class MonetaryAmountFormatter implements Formatter<MonetaryAmount> {
 
 
 	/**
-	 * Obtain a MonetaryAmountFormat for the given locale.
-	 * <p>The default implementation simply calls
-	 * {@link javax.money.format.MonetaryFormats#getAmountFormat}
-	 * with either the configured format name or the given locale.
+	 * 获取给定区域设置的 MonetaryAmountFormat。
+	 * <p>默认实现仅使用所配置的格式名称或给定区域设置调用
+	 * {@link javax.money.format.MonetaryFormats#getAmountFormat}。
 	 * @param locale the current locale
 	 * @return the MonetaryAmountFormat (never {@code null})
 	 * @see #setFormatName

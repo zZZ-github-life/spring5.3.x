@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Mock implementation of the {@link javax.servlet.ServletConfig} interface.
+ * {@link javax.servlet.ServletConfig} 接口的 mock 实现。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -44,14 +44,14 @@ public class MockServletConfig implements ServletConfig {
 
 
 	/**
-	 * Create a new MockServletConfig with a default {@link MockServletContext}.
+	 * 使用默认的 {@link MockServletContext} 创建一个新的 MockServletConfig。
 	 */
 	public MockServletConfig() {
 		this(null, "");
 	}
 
 	/**
-	 * Create a new MockServletConfig with a default {@link MockServletContext}.
+	 * 使用默认的 {@link MockServletContext} 创建一个新的 MockServletConfig。
 	 * @param servletName the name of the servlet
 	 */
 	public MockServletConfig(String servletName) {
@@ -59,7 +59,7 @@ public class MockServletConfig implements ServletConfig {
 	}
 
 	/**
-	 * Create a new MockServletConfig.
+	 * 创建一个新的 MockServletConfig。
 	 * @param servletContext the ServletContext that the servlet runs in
 	 */
 	public MockServletConfig(@Nullable ServletContext servletContext) {
@@ -67,7 +67,7 @@ public class MockServletConfig implements ServletConfig {
 	}
 
 	/**
-	 * Create a new MockServletConfig.
+	 * 创建一个新的 MockServletConfig。
 	 * @param servletContext the ServletContext that the servlet runs in
 	 * @param servletName the name of the servlet
 	 */

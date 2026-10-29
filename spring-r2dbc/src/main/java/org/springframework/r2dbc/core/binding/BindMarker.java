@@ -19,9 +19,9 @@ package org.springframework.r2dbc.core.binding;
 import io.r2dbc.spi.Statement;
 
 /**
- * A bind marker represents a single bindable parameter within a query.
- * Bind markers are dialect-specific and provide a
- * {@link #getPlaceholder() placeholder} that is used in the actual query.
+ * 绑定标记表示查询中的单个可绑定参数。
+ * 绑定标记与方言相关，并提供一个用于实际查询中的
+ * {@link #getPlaceholder() 占位符}。
  *
  * @author Mark Paluch
  * @since 5.3
@@ -32,12 +32,12 @@ import io.r2dbc.spi.Statement;
 public interface BindMarker {
 
 	/**
-	 * Return the database-specific placeholder for a given substitution.
+	 * 返回给定替换项对应的数据库特定占位符。
 	 */
 	String getPlaceholder();
 
 	/**
-	 * Bind the given {@code value} to the {@link Statement} using the underlying binding strategy.
+	 * 使用底层绑定策略将给定的 {@code value} 绑定到 {@link Statement}。
 	 * @param bindTarget the target to bind the value to
 	 * @param value the actual value (must not be {@code null};
 	 * use {@link #bindNull(BindTarget, Class)} for {@code null} values)
@@ -46,7 +46,7 @@ public interface BindMarker {
 	void bind(BindTarget bindTarget, Object value);
 
 	/**
-	 * Bind a {@code null} value to the {@link Statement} using the underlying binding strategy.
+	 * 使用底层绑定策略将 {@code null} 值绑定到 {@link Statement}。
 	 * @param bindTarget the target to bind the value to
 	 * @param valueType the value type (must not be {@code null})
 	 * @see Statement#bindNull

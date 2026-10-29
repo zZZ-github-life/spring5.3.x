@@ -20,7 +20,7 @@ import org.springframework.core.SpringProperties;
 import org.springframework.util.StringUtils;
 
 /**
- * Collection of utilities for working with {@link ContextCache ContextCaches}.
+ * 用于操作 {@link ContextCache ContextCaches} 的工具集合。
  *
  * @author Sam Brannen
  * @since 4.3
@@ -28,11 +28,9 @@ import org.springframework.util.StringUtils;
 public abstract class ContextCacheUtils {
 
 	/**
-	 * Retrieve the maximum size of the {@link ContextCache}.
-	 * <p>Uses {@link SpringProperties} to retrieve a system property or Spring
-	 * property named {@code spring.test.context.cache.maxSize}.
-	 * <p>Falls back to the value of the {@link ContextCache#DEFAULT_MAX_CONTEXT_CACHE_SIZE}
-	 * if no such property has been set or if the property is not an integer.
+	 * 获取 {@link ContextCache} 的最大大小。
+	 * <p>使用 {@link SpringProperties} 获取名为 {@code spring.test.context.cache.maxSize} 的系统属性或 Spring 属性。
+	 * <p>如果未设置此类属性或该属性不是整数，则回退到 {@link ContextCache#DEFAULT_MAX_CONTEXT_CACHE_SIZE} 的值。
 	 * @return the maximum size of the context cache
 	 * @see ContextCache#MAX_CONTEXT_CACHE_SIZE_PROPERTY_NAME
 	 */

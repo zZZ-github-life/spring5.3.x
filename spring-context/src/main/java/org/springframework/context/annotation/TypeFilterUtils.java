@@ -33,8 +33,8 @@ import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.util.Assert;
 
 /**
- * Collection of utilities for working with {@link ComponentScan @ComponentScan}
- * {@linkplain ComponentScan.Filter type filters}.
+ * 用于处理 {@link ComponentScan @ComponentScan} {@linkplain ComponentScan.Filter type filters} 的
+ * 工具集合。
  *
  * @author Chris Beams
  * @author Juergen Hoeller
@@ -46,13 +46,12 @@ import org.springframework.util.Assert;
 public abstract class TypeFilterUtils {
 
 	/**
-	 * Create {@linkplain TypeFilter type filters} from the supplied
-	 * {@link AnnotationAttributes}, such as those sourced from
-	 * {@link ComponentScan#includeFilters()} or {@link ComponentScan#excludeFilters()}.
-	 * <p>Each {@link TypeFilter} will be instantiated using an appropriate
-	 * constructor, with {@code BeanClassLoaderAware}, {@code BeanFactoryAware},
-	 * {@code EnvironmentAware}, and {@code ResourceLoaderAware} contracts
-	 * invoked if they are implemented by the type filter.
+	 * 从提供的 {@link AnnotationAttributes} 创建 {@linkplain TypeFilter type filters}，例如来自
+	 * {@link ComponentScan#includeFilters()} 或 {@link ComponentScan#excludeFilters()} 的那些。
+	 *
+	 * <p>每个 {@link TypeFilter} 都将使用适当的构造函数实例化，如果该类型过滤器实现了
+	 * {@code BeanClassLoaderAware}、{@code BeanFactoryAware}、{@code EnvironmentAware} 和
+	 * {@code ResourceLoaderAware} 契约，则会调用这些契约。
 	 * @param filterAttributes {@code AnnotationAttributes} for a
 	 * {@link ComponentScan.Filter @Filter} declaration
 	 * @param environment the {@code Environment} to make available to filters

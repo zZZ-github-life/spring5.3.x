@@ -26,13 +26,13 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.util.Assert;
 
 /**
- * Abstract {@link PreparedStatementCallback} implementation that manages a {@link LobCreator}.
- * Typically used as inner class, with access to surrounding method arguments.
+ * 管理 {@link LobCreator} 的抽象 {@link PreparedStatementCallback} 实现。
+ * 通常用作内部类，以便访问外围方法的参数。
  *
- * <p>Delegates to the {@code setValues} template method for setting values
- * on the PreparedStatement, using a given LobCreator for BLOB/CLOB arguments.
+ * <p>对于 BLOB/CLOB 参数，使用给定的 LobCreator 委托给 {@code setValues}
+ * 模板方法在 PreparedStatement 上设置值。
  *
- * <p>A usage example with {@link org.springframework.jdbc.core.JdbcTemplate}:
+ * <p>使用 {@link org.springframework.jdbc.core.JdbcTemplate} 的示例：
  *
  * <pre class="code">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  // reusable object
  * LobHandler lobHandler = new DefaultLobHandler();  // reusable object
@@ -58,8 +58,8 @@ public abstract class AbstractLobCreatingPreparedStatementCallback implements Pr
 
 
 	/**
-	 * Create a new AbstractLobCreatingPreparedStatementCallback for the
-	 * given LobHandler.
+	 * 为给定的 LobHandler 创建一个新的
+	 * AbstractLobCreatingPreparedStatementCallback。
 	 * @param lobHandler the LobHandler to create LobCreators with
 	 */
 	public AbstractLobCreatingPreparedStatementCallback(LobHandler lobHandler) {
@@ -77,8 +77,8 @@ public abstract class AbstractLobCreatingPreparedStatementCallback implements Pr
 	}
 
 	/**
-	 * Set values on the given PreparedStatement, using the given
-	 * LobCreator for BLOB/CLOB arguments.
+	 * 使用给定的 LobCreator 在给定的 PreparedStatement 上
+	 * 为 BLOB/CLOB 参数设置值。
 	 * @param ps the PreparedStatement to use
 	 * @param lobCreator the LobCreator to use
 	 * @throws SQLException if thrown by JDBC methods

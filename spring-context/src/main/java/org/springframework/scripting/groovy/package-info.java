@@ -1,7 +1,5 @@
 /**
- * Package providing integration of
- * <a href="https://www.groovy-lang.org/">Groovy</a>
- * into Spring's scripting infrastructure.
+ * 提供将 <a href="https://www.groovy-lang.org/">Groovy</a> 集成到 Spring 脚本基础设施中的包。
  */
 @NonNullApi
 @NonNullFields

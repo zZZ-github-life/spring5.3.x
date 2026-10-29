@@ -24,9 +24,8 @@ import java.util.Map;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstract implementation of the {@link PropertyAccessor} interface.
- * Provides base implementations of all convenience methods, with the
- * implementation of actual property access left to subclasses.
+ * {@link PropertyAccessor} 接口的抽象实现。提供所有便捷方法的基础实现，而实际属性访问的实现留给子
+ * 类。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -145,7 +144,7 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 	}
 
 	/**
-	 * Actually get the value of a property.
+	 * 实际获取属性的值。
 	 * @param propertyName name of the property to get the value of
 	 * @return the value of the property
 	 * @throws InvalidPropertyException if there is no such property or
@@ -158,7 +157,7 @@ public abstract class AbstractPropertyAccessor extends TypeConverterSupport impl
 	public abstract Object getPropertyValue(String propertyName) throws BeansException;
 
 	/**
-	 * Actually set a property value.
+	 * 实际设置属性值。
 	 * @param propertyName name of the property to set value of
 	 * @param value the new value
 	 * @throws InvalidPropertyException if there is no such property or

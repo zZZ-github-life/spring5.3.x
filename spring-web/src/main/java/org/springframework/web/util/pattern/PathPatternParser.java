@@ -19,15 +19,14 @@ package org.springframework.web.util.pattern;
 import org.springframework.http.server.PathContainer;
 
 /**
- * Parser for URI path patterns producing {@link PathPattern} instances that can
- * then be matched to requests.
+ * 用于 URI 路径模式的解析器，生成随后可与请求匹配的
+ * {@link PathPattern} 实例。
  *
- * <p>The {@link PathPatternParser} and {@link PathPattern} are specifically
- * designed for use with HTTP URL paths in web applications where a large number
- * of URI path patterns, continuously matched against incoming requests,
- * motivates the need for efficient matching.
+ * <p>{@link PathPatternParser} 和 {@link PathPattern} 专为 Web 应用中的
+ * HTTP URL 路径而设计；在这类应用中，大量 URI 路径模式会持续与传入请求
+ * 匹配，因此需要高效匹配。
  *
- * <p>For details of the path pattern syntax see {@link PathPattern}.
+ * <p>有关路径模式语法的详细信息，请参见 {@link PathPattern}。
  *
  * @author Andy Clement
  * @since 5.0
@@ -42,45 +41,44 @@ public class PathPatternParser {
 
 
 	/**
-	 * Whether a {@link PathPattern} produced by this parser should
-	 * automatically match request paths with a trailing slash.
-	 * <p>If set to {@code true} a {@code PathPattern} without a trailing slash
-	 * will also match request paths with a trailing slash. If set to
-	 * {@code false} a {@code PathPattern} will only match request paths with
-	 * a trailing slash.
-	 * <p>The default is {@code true}.
+	 * 此解析器生成的 {@link PathPattern} 是否应自动匹配带末尾斜杠的
+	 * 请求路径。
+	 * <p>如果设置为 {@code true}，不带末尾斜杠的 {@code PathPattern}
+	 * 也将匹配带末尾斜杠的请求路径。如果设置为
+	 * {@code false}，{@code PathPattern} 将只匹配带末尾斜杠的请求路径。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setMatchOptionalTrailingSeparator(boolean matchOptionalTrailingSeparator) {
 		this.matchOptionalTrailingSeparator = matchOptionalTrailingSeparator;
 	}
 
 	/**
-	 * Whether optional trailing slashing match is enabled.
+	 * 是否启用了可选的末尾斜杠匹配。
 	 */
 	public boolean isMatchOptionalTrailingSeparator() {
 		return this.matchOptionalTrailingSeparator;
 	}
 
 	/**
-	 * Whether path pattern matching should be case-sensitive.
-	 * <p>The default is {@code true}.
+	 * 路径模式匹配是否应区分大小写。
+	 * <p>默认值为 {@code true}。
 	 */
 	public void setCaseSensitive(boolean caseSensitive) {
 		this.caseSensitive = caseSensitive;
 	}
 
 	/**
-	 * Whether case-sensitive pattern matching is enabled.
+	 * 是否启用了区分大小写的模式匹配。
 	 */
 	public boolean isCaseSensitive() {
 		return this.caseSensitive;
 	}
 
 	/**
-	 * Set options for parsing patterns. These should be the same as the
-	 * options used to parse input paths.
-	 * <p>{@link org.springframework.http.server.PathContainer.Options#HTTP_PATH}
-	 * is used by default.
+	 * 设置解析模式时使用的选项。这些选项应与解析输入路径时使用的
+	 * 选项相同。
+	 * <p>默认使用
+	 * {@link org.springframework.http.server.PathContainer.Options#HTTP_PATH}。
 	 * @since 5.2
 	 */
 	public void setPathOptions(PathContainer.Options pathOptions) {
@@ -88,7 +86,7 @@ public class PathPatternParser {
 	}
 
 	/**
-	 * Return the {@link #setPathOptions configured} pattern parsing options.
+	 * 返回{@link #setPathOptions 已配置}的模式解析选项。
 	 * @since 5.2
 	 */
 	public PathContainer.Options getPathOptions() {
@@ -97,11 +95,10 @@ public class PathPatternParser {
 
 
 	/**
-	 * Process the path pattern content, a character at a time, breaking it into
-	 * path elements around separator boundaries and verifying the structure at each
-	 * stage. Produces a PathPattern object that can be used for fast matching
-	 * against paths. Each invocation of this method delegates to a new instance of
-	 * the {@link InternalPathPatternParser} because that class is not thread-safe.
+	 * 逐个字符地处理路径模式内容，在分隔符边界处将其拆分为路径元素，
+	 * 并在每个阶段验证结构。生成一个可用于快速匹配路径的 PathPattern
+	 * 对象。每次调用此方法都会委托给一个新的
+	 * {@link InternalPathPatternParser} 实例，因为该类不是线程安全的。
 	 * @param pathPattern the input path pattern, e.g. /project/{name}
 	 * @return a PathPattern for quickly matching paths against request paths
 	 * @throws PatternParseException in case of parse errors
@@ -112,7 +109,7 @@ public class PathPatternParser {
 
 
 	/**
-	 * Shared, read-only instance of {@code PathPatternParser}. Uses default settings:
+	 * 共享的只读 {@code PathPatternParser} 实例。使用默认设置：
 	 * <ul>
 	 * <li>{@code matchOptionalTrailingSeparator=true}
 	 * <li>{@code caseSensitivetrue}

@@ -22,7 +22,7 @@ import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.lang.Nullable;
 
 /**
- * Fatal exception thrown when we can't connect to an RDBMS using JDBC.
+ * 当无法通过JDBC连接到RDBMS时抛出的致命异常。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -31,7 +31,7 @@ import org.springframework.lang.Nullable;
 public class CannotGetJdbcConnectionException extends DataAccessResourceFailureException {
 
 	/**
-	 * Constructor for {@code CannotGetJdbcConnectionException}.
+	 * 创建{@code CannotGetJdbcConnectionException}实例。
 	 * @param msg the detail message
 	 * @since 5.0
 	 */
@@ -40,7 +40,7 @@ public class CannotGetJdbcConnectionException extends DataAccessResourceFailureE
 	}
 
 	/**
-	 * Constructor for {@code CannotGetJdbcConnectionException}.
+	 * 创建{@code CannotGetJdbcConnectionException}实例。
 	 * @param msg the detail message
 	 * @param ex the root cause SQLException
 	 */
@@ -49,7 +49,7 @@ public class CannotGetJdbcConnectionException extends DataAccessResourceFailureE
 	}
 
 	/**
-	 * Constructor for {@code CannotGetJdbcConnectionException}.
+	 * 创建{@code CannotGetJdbcConnectionException}实例。
 	 * @param msg the detail message
 	 * @param ex the root cause IllegalStateException
 	 * @since 5.3.22

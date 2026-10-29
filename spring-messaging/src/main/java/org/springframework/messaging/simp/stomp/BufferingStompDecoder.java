@@ -29,18 +29,15 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
- * An extension of {@link org.springframework.messaging.simp.stomp.StompDecoder}
- * that buffers content remaining in the input ByteBuffer after the parent
- * class has read all (complete) STOMP frames from it. The remaining content
- * represents an incomplete STOMP frame. When called repeatedly with additional
- * data, the decode method returns one or more messages or, if there is not
- * enough data still, continues to buffer.
+ * {@link org.springframework.messaging.simp.stomp.StompDecoder} 的扩展，
+ * 在父类从中读取所有（完整的）STOMP 帧后，缓冲输入 ByteBuffer 中剩余的内容。
+ * 剩余内容表示一个不完整的 STOMP 帧。当使用额外数据反复调用时，
+ * decode 方法会返回一个或多个消息，或者如果数据仍不足，则继续缓冲。
  *
- * <p>A single instance of this decoder can be invoked repeatedly to read all
- * messages from a single stream (e.g. WebSocket session) as long as decoding
- * does not fail. If there is an exception, StompDecoder instance should not
- * be used any more as its internal state is not guaranteed to be consistent.
- * It is expected that the underlying session is closed at that point.
+ * <p>只要解码不失败，就可以重复调用此解码器的单个实例来读取单个流
+ * （例如 WebSocket 会话）中的所有消息。如果发生异常，则不应再使用
+ * StompDecoder 实例，因为无法保证其内部状态一致。
+ * 此时预期底层会话已关闭。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.3
@@ -59,7 +56,7 @@ public class BufferingStompDecoder {
 
 
 	/**
-	 * Create a new {@code BufferingStompDecoder} wrapping the given {@code StompDecoder}.
+	 * 创建一个包装给定 {@code StompDecoder} 的新 {@code BufferingStompDecoder}。
 	 * @param stompDecoder the target decoder to wrap
 	 * @param bufferSizeLimit the buffer size limit
 	 */
@@ -72,14 +69,14 @@ public class BufferingStompDecoder {
 
 
 	/**
-	 * Return the wrapped {@link StompDecoder}.
+	 * 返回被包装的 {@link StompDecoder}。
 	 */
 	public final StompDecoder getStompDecoder() {
 		return this.stompDecoder;
 	}
 
 	/**
-	 * Return the configured buffer size limit.
+	 * 返回已配置的缓冲区大小限制。
 	 */
 	public final int getBufferSizeLimit() {
 		return this.bufferSizeLimit;
@@ -87,15 +84,13 @@ public class BufferingStompDecoder {
 
 
 	/**
-	 * Decodes one or more STOMP frames from the given {@code ByteBuffer} into a
-	 * list of {@link Message Messages}.
-	 * <p>If there was enough data to parse a "content-length" header, then the
-	 * value is used to determine how much more data is needed before a new
-	 * attempt to decode is made.
-	 * <p>If there was not enough data to parse the "content-length", or if there
-	 * is "content-length" header, every subsequent call to decode attempts to
-	 * parse again with all available data. Therefore the presence of a "content-length"
-	 * header helps to optimize the decoding of large messages.
+	 * 将给定 {@code ByteBuffer} 中的一个或多个 STOMP 帧解码为
+	 * {@link Message Messages} 列表。
+	 * <p>如果有足够的数据解析 "content-length" 头，则使用该值确定
+	 * 在再次尝试解码之前还需要多少数据。
+	 * <p>如果没有足够的数据解析 "content-length"，或者不存在 "content-length" 头，
+	 * 则后续每次 decode 调用都会尝试使用所有可用数据再次解析。
+	 * 因此，"content-length" 头的存在有助于优化大消息的解码。
 	 * @param newBuffer a buffer containing new data to decode
 	 * @return decoded messages or an empty list
 	 * @throws StompConversionException raised in case of decoding issues
@@ -152,7 +147,7 @@ public class BufferingStompDecoder {
 	}
 
 	/**
-	 * Calculate the current buffer size.
+	 * 计算当前缓冲区大小。
 	 */
 	public int getBufferSize() {
 		int size = 0;
@@ -163,7 +158,7 @@ public class BufferingStompDecoder {
 	}
 
 	/**
-	 * Get the expected content length of the currently buffered, incomplete STOMP frame.
+	 * 获取当前缓冲的不完整 STOMP 帧的预期内容长度。
 	 */
 	@Nullable
 	public Integer getExpectedContentLength() {

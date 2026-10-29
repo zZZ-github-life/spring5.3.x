@@ -19,7 +19,7 @@ package org.springframework.web.util.pattern;
 import java.text.MessageFormat;
 
 /**
- * Exception that is thrown when there is a problem with the pattern being parsed.
+ * 解析模式出现问题时抛出的异常。
  *
  * @author Andy Clement
  * @since 5.0
@@ -54,7 +54,7 @@ public class PatternParseException extends IllegalArgumentException {
 
 
 	/**
-	 * Return a formatted message with inserts applied.
+	 * 返回应用了插入内容后的格式化消息。
 	 */
 	@Override
 	public String getMessage() {
@@ -62,8 +62,8 @@ public class PatternParseException extends IllegalArgumentException {
 	}
 
 	/**
-	 * Return a detailed message that includes the original pattern text
-	 * with a pointer to the error position, as well as the error message.
+	 * 返回详细消息，其中包含原始模式文本、指向错误位置的
+	 * 指针以及错误消息。
 	 */
 	public String toDetailedString() {
 		StringBuilder sb = new StringBuilder();
@@ -90,7 +90,7 @@ public class PatternParseException extends IllegalArgumentException {
 
 
 	/**
-	 * The messages that can be included in a {@link PatternParseException} when there is a parse failure.
+	 * 解析失败时可包含在 {@link PatternParseException} 中的消息。
 	 */
 	public enum PatternMessage {
 

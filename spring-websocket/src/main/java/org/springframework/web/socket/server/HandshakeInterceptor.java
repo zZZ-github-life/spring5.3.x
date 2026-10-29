@@ -24,9 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.socket.WebSocketHandler;
 
 /**
- * Interceptor for WebSocket handshake requests. Can be used to inspect the
- * handshake request and response as well as to pass attributes to the target
- * {@link WebSocketHandler}.
+ * WebSocket 握手请求的拦截器。可用于检查握手请求和响应，
+ * 以及向目标 {@link WebSocketHandler} 传递属性。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -36,7 +35,7 @@ import org.springframework.web.socket.WebSocketHandler;
 public interface HandshakeInterceptor {
 
 	/**
-	 * Invoked before the handshake is processed.
+	 * 在处理握手之前调用。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param wsHandler the target WebSocket handler
@@ -48,8 +47,8 @@ public interface HandshakeInterceptor {
 			WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception;
 
 	/**
-	 * Invoked after the handshake is done. The response status and headers indicate
-	 * the results of the handshake, i.e. whether it was successful or not.
+	 * 在握手完成之后调用。响应状态和头表示握手的结果，
+	 * 即握手是否成功。
 	 * @param request the current request
 	 * @param response the current response
 	 * @param wsHandler the target WebSocket handler

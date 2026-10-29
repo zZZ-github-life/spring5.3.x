@@ -42,7 +42,7 @@ import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 import org.springframework.web.util.UrlPathHelper;
 
 /**
- * Convenience methods for use in MVC namespace BeanDefinitionParsers.
+ * 供 MVC 命名空间 BeanDefinitionParser 使用的便捷方法。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
@@ -82,8 +82,8 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Adds an alias to an existing well-known name or registers a new instance of a {@link UrlPathHelper}
-	 * under that well-known name, unless already registered.
+	 * 为现有的众所周知名称添加别名，或者在该众所周知名称下注册一个新的
+	 * {@link UrlPathHelper} 实例（如果尚未注册）。
 	 * @return a RuntimeBeanReference to this {@link UrlPathHelper} instance
 	 */
 	public static RuntimeBeanReference registerUrlPathHelper(
@@ -107,8 +107,8 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Adds an alias to an existing well-known name or registers a new instance of a {@link PathMatcher}
-	 * under that well-known name, unless already registered.
+	 * 为现有的众所周知名称添加别名，或者在该众所周知名称下注册一个新的
+	 * {@link PathMatcher} 实例（如果尚未注册）。
 	 * @return a RuntimeBeanReference to this {@link PathMatcher} instance
 	 */
 	public static RuntimeBeanReference registerPathMatcher(@Nullable RuntimeBeanReference pathMatcherRef,
@@ -132,8 +132,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers  an {@link HttpRequestHandlerAdapter} under a well-known
-	 * name unless already registered.
+	 * 在众所周知名称下注册一个 {@link HttpRequestHandlerAdapter}（如果尚未注册）。
 	 */
 	private static void registerBeanNameUrlHandlerMapping(ParserContext context, @Nullable Object source) {
 		if (!context.getRegistry().containsBeanDefinition(BEAN_NAME_URL_HANDLER_MAPPING_BEAN_NAME)) {
@@ -149,8 +148,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers  an {@link HttpRequestHandlerAdapter} under a well-known
-	 * name unless already registered.
+	 * 在众所周知名称下注册一个 {@link HttpRequestHandlerAdapter}（如果尚未注册）。
 	 */
 	private static void registerHttpRequestHandlerAdapter(ParserContext context, @Nullable Object source) {
 		if (!context.getRegistry().containsBeanDefinition(HTTP_REQUEST_HANDLER_ADAPTER_BEAN_NAME)) {
@@ -163,8 +161,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers a {@link SimpleControllerHandlerAdapter} under a well-known
-	 * name unless already registered.
+	 * 在众所周知名称下注册一个 {@link SimpleControllerHandlerAdapter}（如果尚未注册）。
 	 */
 	private static void registerSimpleControllerHandlerAdapter(ParserContext context, @Nullable Object source) {
 		if (!context.getRegistry().containsBeanDefinition(SIMPLE_CONTROLLER_HANDLER_ADAPTER_BEAN_NAME)) {
@@ -177,9 +174,9 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers a {@code Map<String, CorsConfiguration>} (mapped {@code CorsConfiguration}s)
-	 * under a well-known name unless already registered. The bean definition may be updated
-	 * if a non-null CORS configuration is provided.
+	 * 在众所周知名称下注册一个 {@code Map<String, CorsConfiguration>}（映射后的
+	 * {@code CorsConfiguration}）（如果尚未注册）。如果提供了非空的 CORS 配置，
+	 * 则可能更新该 bean 定义。
 	 * @return a RuntimeBeanReference to this {@code Map<String, CorsConfiguration>} instance
 	 */
 	public static RuntimeBeanReference registerCorsConfigurations(
@@ -204,8 +201,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers  an {@link HandlerMappingIntrospector} under a well-known name
-	 * unless already registered.
+	 * 在众所周知名称下注册一个 {@link HandlerMappingIntrospector}（如果尚未注册）。
 	 */
 	private static void registerHandlerMappingIntrospector(ParserContext context, @Nullable Object source) {
 		if (!context.getRegistry().containsBeanDefinition(HANDLER_MAPPING_INTROSPECTOR_BEAN_NAME)) {
@@ -219,8 +215,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers an {@link AcceptHeaderLocaleResolver} under a well-known name
-	 * unless already registered.
+	 * 在众所周知名称下注册一个 {@link AcceptHeaderLocaleResolver}（如果尚未注册）。
 	 */
 	private static void registerLocaleResolver(ParserContext context, @Nullable Object source) {
 		if (!containsBeanInHierarchy(context, DispatcherServlet.LOCALE_RESOLVER_BEAN_NAME)) {
@@ -233,8 +228,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers an {@link FixedThemeResolver} under a well-known name
-	 * unless already registered.
+	 * 在众所周知名称下注册一个 {@link FixedThemeResolver}（如果尚未注册）。
 	 */
 	private static void registerThemeResolver(ParserContext context, @Nullable Object source) {
 		if (!containsBeanInHierarchy(context, DispatcherServlet.THEME_RESOLVER_BEAN_NAME)) {
@@ -247,8 +241,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers an {@link DefaultRequestToViewNameTranslator} under a well-known name
-	 * unless already registered.
+	 * 在众所周知名称下注册一个 {@link DefaultRequestToViewNameTranslator}（如果尚未注册）。
 	 */
 	private static void registerViewNameTranslator(ParserContext context, @Nullable Object source) {
 		if (!containsBeanInHierarchy(context, DispatcherServlet.REQUEST_TO_VIEW_NAME_TRANSLATOR_BEAN_NAME)) {
@@ -263,8 +256,7 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Registers an {@link SessionFlashMapManager} under a well-known name
-	 * unless already registered.
+	 * 在众所周知名称下注册一个 {@link SessionFlashMapManager}（如果尚未注册）。
 	 */
 	private static void registerFlashMapManager(ParserContext context, @Nullable Object source) {
 		if (!containsBeanInHierarchy(context, DispatcherServlet.FLASH_MAP_MANAGER_BEAN_NAME)) {
@@ -277,8 +269,8 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Find the {@code ContentNegotiationManager} bean created by or registered
-	 * with the {@code annotation-driven} element.
+	 * 查找由 {@code annotation-driven} 元素创建或与之注册的
+	 * {@code ContentNegotiationManager} bean。
 	 * @return a bean definition, bean reference, or {@code null} if none defined
 	 */
 	@Nullable
@@ -296,10 +288,9 @@ public abstract class MvcNamespaceUtils {
 	}
 
 	/**
-	 * Check for an existing bean of the given name, ideally in the entire
-	 * context hierarchy (through a {@code containsBean} call) since this
-	 * is also what {@code DispatcherServlet} does, or otherwise just in
-	 * the local context (through {@code containsBeanDefinition}).
+	 * 检查是否存在具有给定名称的 bean，理想情况下是在整个上下文层次结构中检查
+	 * （通过 {@code containsBean} 调用），因为这也是 {@code DispatcherServlet} 的做法；
+	 * 否则仅在本地上下文中检查（通过 {@code containsBeanDefinition}）。
 	 */
 	private static boolean containsBeanInHierarchy(ParserContext context, String beanName) {
 		BeanDefinitionRegistry registry = context.getRegistry();

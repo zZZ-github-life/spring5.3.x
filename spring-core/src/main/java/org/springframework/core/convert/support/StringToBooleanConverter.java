@@ -23,7 +23,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 
 /**
- * Converts String to a Boolean.
+ * 将 String 转换为 Boolean。
  *
  * @author Keith Donald
  * @author Juergen Hoeller

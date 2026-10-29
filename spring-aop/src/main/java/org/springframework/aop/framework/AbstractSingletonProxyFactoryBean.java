@@ -28,12 +28,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
 /**
- * Convenient superclass for {@link FactoryBean} types that produce singleton-scoped
- * proxy objects.
+ * 用于生成单例作用域代理对象的 {@link FactoryBean} 类型的便捷超类。
  *
- * <p>Manages pre- and post-interceptors (references, rather than
- * interceptor names, as in {@link ProxyFactoryBean}) and provides
- * consistent interface management.
+ * <p>管理前置和后置拦截器（与 {@link ProxyFactoryBean} 中一样是引用，而不是拦截器名称），并提供一
+ * 致的接口管理。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -54,7 +52,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	@Nullable
 	private Object[] postInterceptors;
 
-	/** Default is global AdvisorAdapterRegistry. */
+	/** 默认为全局 AdvisorAdapterRegistry。 */
 	private AdvisorAdapterRegistry advisorAdapterRegistry = GlobalAdvisorAdapterRegistry.getInstance();
 
 	@Nullable
@@ -65,10 +63,9 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 
 	/**
-	 * Set the target object, that is, the bean to be wrapped with a transactional proxy.
-	 * <p>The target may be any object, in which case a SingletonTargetSource will
-	 * be created. If it is a TargetSource, no wrapper TargetSource is created:
-	 * This enables the use of a pooling or prototype TargetSource etc.
+	 * 设置目标对象，即要用事务代理包装的 Bean。
+	 * <p>目标可以是任何对象，此时会创建一个 SingletonTargetSource。如果它是一个 TargetSource，则不会创
+	 * 建包装用的 TargetSource：这允许使用池化或原型 TargetSource 等。
 	 * @see org.springframework.aop.TargetSource
 	 * @see org.springframework.aop.target.SingletonTargetSource
 	 * @see org.springframework.aop.target.LazyInitTargetSource
@@ -80,20 +77,17 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	}
 
 	/**
-	 * Specify the set of interfaces being proxied.
-	 * <p>If not specified (the default), the AOP infrastructure works
-	 * out which interfaces need proxying by analyzing the target,
-	 * proxying all the interfaces that the target object implements.
+	 * 指定要代理的接口集。
+	 * <p>如果未指定（默认情况），AOP 基础设施会通过分析目标来确定需要代理哪些接口，并代理目标对象实现
+	 * 的所有接口。
 	 */
 	public void setProxyInterfaces(Class<?>[] proxyInterfaces) {
 		this.proxyInterfaces = proxyInterfaces;
 	}
 
 	/**
-	 * Set additional interceptors (or advisors) to be applied before the
-	 * implicit transaction interceptor, e.g. a PerformanceMonitorInterceptor.
-	 * <p>You may specify any AOP Alliance MethodInterceptors or other
-	 * Spring AOP Advices, as well as Spring AOP Advisors.
+	 * 设置要在隐式事务拦截器之前应用的附加拦截器（或 advisor），例如 PerformanceMonitorInterceptor。
+	 * <p>可以指定任何 AOP Alliance MethodInterceptor 或其他 Spring AOP Advice，以及 Spring AOP Advisor。
 	 * @see org.springframework.aop.interceptor.PerformanceMonitorInterceptor
 	 */
 	public void setPreInterceptors(Object[] preInterceptors) {
@@ -101,18 +95,15 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	}
 
 	/**
-	 * Set additional interceptors (or advisors) to be applied after the
-	 * implicit transaction interceptor.
-	 * <p>You may specify any AOP Alliance MethodInterceptors or other
-	 * Spring AOP Advices, as well as Spring AOP Advisors.
+	 * 设置要在隐式事务拦截器之后应用的附加拦截器（或 advisor）。
+	 * <p>可以指定任何 AOP Alliance MethodInterceptor 或其他 Spring AOP Advice，以及 Spring AOP Advisor。
 	 */
 	public void setPostInterceptors(Object[] postInterceptors) {
 		this.postInterceptors = postInterceptors;
 	}
 
 	/**
-	 * Specify the AdvisorAdapterRegistry to use.
-	 * Default is the global AdvisorAdapterRegistry.
+	 * 指定要使用的 AdvisorAdapterRegistry。默认是全局 AdvisorAdapterRegistry。
 	 * @see org.springframework.aop.framework.adapter.GlobalAdvisorAdapterRegistry
 	 */
 	public void setAdvisorAdapterRegistry(AdvisorAdapterRegistry advisorAdapterRegistry) {
@@ -120,10 +111,9 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	}
 
 	/**
-	 * Set the ClassLoader to generate the proxy class in.
-	 * <p>Default is the bean ClassLoader, i.e. the ClassLoader used by the
-	 * containing BeanFactory for loading all bean classes. This can be
-	 * overridden here for specific proxies.
+	 * 设置用于生成代理类的 ClassLoader。
+	 * <p>默认是 Bean 的 ClassLoader，即包含它的 BeanFactory 用来加载所有 Bean 类的 ClassLoader。可以在
+	 * 此针对特定的代理进行覆盖。
 	 */
 	public void setProxyClassLoader(ClassLoader classLoader) {
 		this.proxyClassLoader = classLoader;
@@ -188,7 +178,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	}
 
 	/**
-	 * Determine a TargetSource for the given target (or TargetSource).
+	 * 为给定的目标（或 TargetSource）确定一个 TargetSource。
 	 * @param target the target. If this is an implementation of TargetSource it is
 	 * used as our TargetSource; otherwise it is wrapped in a SingletonTargetSource.
 	 * @return a TargetSource for this object
@@ -203,8 +193,7 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 	}
 
 	/**
-	 * A hook for subclasses to post-process the {@link ProxyFactory}
-	 * before creating the proxy instance with it.
+	 * 供子类在使用 {@link ProxyFactory} 创建代理实例之前对其进行后处理的钩子。
 	 * @param proxyFactory the AOP ProxyFactory about to be used
 	 * @since 4.2
 	 */
@@ -245,10 +234,8 @@ public abstract class AbstractSingletonProxyFactoryBean extends ProxyConfig
 
 
 	/**
-	 * Create the "main" interceptor for this proxy factory bean.
-	 * Typically an Advisor, but can also be any type of Advice.
-	 * <p>Pre-interceptors will be applied before, post-interceptors
-	 * will be applied after this interceptor.
+	 * 为此代理工厂 Bean 创建“主”拦截器。通常是 Advisor，但也可以是任何类型的 Advice。
+	 * <p>前置拦截器将在此拦截器之前应用，后置拦截器将在此拦截器之后应用。
 	 */
 	protected abstract Object createMainInterceptor();
 

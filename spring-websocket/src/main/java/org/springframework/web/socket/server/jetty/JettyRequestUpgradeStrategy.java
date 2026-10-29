@@ -54,8 +54,8 @@ import org.springframework.web.socket.server.HandshakeFailureException;
 import org.springframework.web.socket.server.RequestUpgradeStrategy;
 
 /**
- * A {@link RequestUpgradeStrategy} for use with Jetty 9.4. Based on Jetty's
- * internal {@code org.eclipse.jetty.websocket.server.WebSocketHandler} class.
+ * 用于 Jetty 9.4 的 {@link RequestUpgradeStrategy}。基于 Jetty 内部的
+ * {@code org.eclipse.jetty.websocket.server.WebSocketHandler} 类。
  *
  * @author Phillip Webb
  * @author Rossen Stoyanchev
@@ -84,16 +84,16 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 
 
 	/**
-	 * Default constructor that creates {@link WebSocketServerFactory} through
-	 * its default constructor thus using a default {@link WebSocketPolicy}.
+	 * 默认构造函数，通过其默认构造函数创建 {@link WebSocketServerFactory}，
+	 * 从而使用默认的 {@link WebSocketPolicy}。
 	 */
 	public JettyRequestUpgradeStrategy() {
 		this.policy = WebSocketPolicy.newServerPolicy();
 	}
 
 	/**
-	 * A constructor accepting a {@link WebSocketPolicy} to be used when
-	 * creating the {@link WebSocketServerFactory} instance.
+	 * 接受 {@link WebSocketPolicy} 的构造函数，在创建
+	 * {@link WebSocketServerFactory} 实例时使用。
 	 * @param policy the policy to use
 	 * @since 4.3.5
 	 */
@@ -103,7 +103,7 @@ public class JettyRequestUpgradeStrategy implements RequestUpgradeStrategy, Serv
 	}
 
 	/**
-	 * A constructor accepting a {@link WebSocketServerFactory}.
+	 * 接受 {@link WebSocketServerFactory} 的构造函数。
 	 * @param factory the pre-configured factory to use
 	 */
 	public JettyRequestUpgradeStrategy(WebSocketServerFactory factory) {

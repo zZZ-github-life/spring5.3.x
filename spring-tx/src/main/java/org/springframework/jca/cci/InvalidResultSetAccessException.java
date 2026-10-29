@@ -21,11 +21,10 @@ import java.sql.SQLException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 
 /**
- * Exception thrown when a ResultSet has been accessed in an invalid fashion.
- * Such exceptions always have a {@code java.sql.SQLException} root cause.
+ * 当以无效方式访问 ResultSet 时抛出的异常。
+ * 此类异常始终具有 {@code java.sql.SQLException} 根原因。
  *
- * <p>This typically happens when an invalid ResultSet column index or name
- * has been specified.
+ * <p>通常发生在指定了无效的 ResultSet 列索引或列名时。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -38,7 +37,7 @@ import org.springframework.dao.InvalidDataAccessResourceUsageException;
 public class InvalidResultSetAccessException extends InvalidDataAccessResourceUsageException {
 
 	/**
-	 * Constructor for InvalidResultSetAccessException.
+	 * InvalidResultSetAccessException 的构造器。
 	 * @param msg message
 	 * @param ex the root cause
 	 */

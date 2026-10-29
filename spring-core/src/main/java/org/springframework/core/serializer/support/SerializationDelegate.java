@@ -27,9 +27,8 @@ import org.springframework.core.serializer.Serializer;
 import org.springframework.util.Assert;
 
 /**
- * A convenient delegate with pre-arranged configuration state for common
- * serialization needs. Implements {@link Serializer} and {@link Deserializer}
- * itself, so can also be passed into such more specific callback methods.
+ * 为常见序列化需求预先配置好状态的便捷委托类。它本身实现了 {@link Serializer} 和
+ * {@link Deserializer}，因此也可以传入此类更具体的回调方法。
  *
  * @author Juergen Hoeller
  * @since 4.3
@@ -42,8 +41,8 @@ public class SerializationDelegate implements Serializer<Object>, Deserializer<O
 
 
 	/**
-	 * Create a {@code SerializationDelegate} with a default serializer/deserializer
-	 * for the given {@code ClassLoader}.
+	 * 为给定的 {@code ClassLoader} 创建一个带有默认序列化器/反序列化器的 {@code SerializationDelegate}。
+	 *
 	 * @see DefaultDeserializer
 	 * @see DefaultDeserializer#DefaultDeserializer(ClassLoader)
 	 */
@@ -53,7 +52,7 @@ public class SerializationDelegate implements Serializer<Object>, Deserializer<O
 	}
 
 	/**
-	 * Create a {@code SerializationDelegate} with the given serializer/deserializer.
+	 * 使用给定的序列化器/反序列化器创建一个 {@code SerializationDelegate}。
 	 * @param serializer the {@link Serializer} to use (never {@code null)}
 	 * @param deserializer the {@link Deserializer} to use (never {@code null)}
 	 */

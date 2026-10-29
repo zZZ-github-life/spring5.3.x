@@ -17,13 +17,10 @@
 package org.springframework.web.bind.support;
 
 /**
- * Simple interface that can be injected into handler methods, allowing them to
- * signal that their session processing is complete. The handler invoker may
- * then follow up with appropriate cleanup, e.g. of session attributes which
- * have been implicitly created during this handler's processing (according to
- * the
- * {@link org.springframework.web.bind.annotation.SessionAttributes @SessionAttributes}
- * annotation).
+ * 一个简单的接口，可注入到处理器方法中，使处理器能够发出信号表明其会话处理已完成。
+ * 处理器调用方随后可以执行适当的清理，例如清理在此处理器处理过程中
+ * 根据 {@link org.springframework.web.bind.annotation.SessionAttributes @SessionAttributes}
+ * 注解隐式创建的会话属性。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -33,14 +30,12 @@ package org.springframework.web.bind.support;
 public interface SessionStatus {
 
 	/**
-	 * Mark the current handler's session processing as complete, allowing for
-	 * cleanup of session attributes.
+	 * 将当前处理器的会话处理标记为完成，以便清理会话属性。
 	 */
 	void setComplete();
 
 	/**
-	 * Return whether the current handler's session processing has been marked
-	 * as complete.
+	 * 返回当前处理器的会话处理是否已被标记为完成。
 	 */
 	boolean isComplete();
 

@@ -54,30 +54,21 @@ import org.springframework.web.server.NotAcceptableStatusException;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * {@code HandlerResultHandler} that encapsulates the view resolution algorithm
- * supporting the following return types:
+ * {@code HandlerResultHandler}，封装视图解析算法，支持以下返回类型：
  * <ul>
- * <li>{@link Void} or no value -- default view name</li>
- * <li>{@link String} -- view name unless {@code @ModelAttribute}-annotated
- * <li>{@link View} -- View to render with
- * <li>{@link Model} -- attributes to add to the model
- * <li>{@link Map} -- attributes to add to the model
- * <li>{@link Rendering} -- use case driven API for view resolution</li>
- * <li>{@link ModelAttribute @ModelAttribute} -- attribute for the model
- * <li>Non-simple value -- attribute for the model
+ * <li>{@link Void} 或无值 —— 默认视图名称</li>
+ * <li>{@link String} —— 视图名称，除非带有 {@code @ModelAttribute} 注解
+ * <li>{@link View} —— 用于渲染的 View
+ * <li>{@link Model} —— 要添加到模型的属性
+ * <li>{@link Map} —— 要添加到模型的属性
+ * <li>{@link Rendering} —— 用例驱动的视图解析 API</li>
+ * <li>{@link ModelAttribute @ModelAttribute} —— 模型的属性
+ * <li>非简单值 —— 模型的属性
  * </ul>
  *
- * <p>A String-based view name is resolved through the configured
- * {@link ViewResolver} instances into a {@link View} to use for rendering.
- * If a view is left unspecified (e.g. by returning {@code null} or a
- * model-related return value), a default view name is selected.
+ * <p>基于 String 的视图名称通过配置的 {@link ViewResolver} 实例解析为用于渲染的 {@link View}。如果未指定视图（例如返回 {@code null} 或与模型相关的返回值），则选择默认视图名称。
  *
- * <p>By default this resolver is ordered at {@link Ordered#LOWEST_PRECEDENCE}
- * and generally needs to be late in the order since it interprets any String
- * return value as a view name or any non-simple value type as a model attribute
- * while other result handlers may interpret the same otherwise based on the
- * presence of annotations, e.g. for {@code @ResponseBody}.
- *
+ * <p>默认情况下，此解析器在 {@link Ordered#LOWEST_PRECEDENCE} 排序，通常需要较晚执行，因为它将任何 String 返回值解释为视图名称，或将任何非简单值类型解释为模型属性，而其他结果处理器可能根据注解的存在对相同值做出不同解释，例如 {@code @ResponseBody}。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -94,7 +85,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 
 
 	/**
-	 * Basic constructor with a default {@link ReactiveAdapterRegistry}.
+	 * 使用默认 {@link ReactiveAdapterRegistry} 的基本构造函数。
 	 * @param viewResolvers the resolver to use
 	 * @param contentTypeResolver to determine the requested content type
 	 */
@@ -105,7 +96,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 	}
 
 	/**
-	 * Constructor with an {@link ReactiveAdapterRegistry} instance.
+	 * 使用 {@link ReactiveAdapterRegistry} 实例的构造函数。
 	 * @param viewResolvers the view resolver to use
 	 * @param contentTypeResolver to determine the requested content type
 	 * @param registry for adaptation to reactive types
@@ -120,15 +111,14 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 
 
 	/**
-	 * Return a read-only list of view resolvers.
+	 * 返回视图解析器的只读列表。
 	 */
 	public List<ViewResolver> getViewResolvers() {
 		return Collections.unmodifiableList(this.viewResolvers);
 	}
 
 	/**
-	 * Set the default views to consider always when resolving view names and
-	 * trying to satisfy the best matching content type.
+	 * 设置解析视图名称并尝试满足最佳匹配内容类型时始终考虑的默认视图。
 	 */
 	public void setDefaultViews(@Nullable List<View> defaultViews) {
 		this.defaultViews.clear();
@@ -138,7 +128,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 	}
 
 	/**
-	 * Return the configured default {@code View}'s.
+	 * 返回配置的默认 {@code View}。
 	 */
 	public List<View> getDefaultViews() {
 		return this.defaultViews;
@@ -255,8 +245,7 @@ public class ViewResolutionResultHandler extends HandlerResultHandlerSupport imp
 	}
 
 	/**
-	 * Select a default view name when a controller did not specify it.
-	 * Use the request path the leading and trailing slash stripped.
+	 * 当控制器未指定视图时选择默认视图名称。使用去掉前导和尾部斜杠的请求路径。
 	 */
 	private String getDefaultViewName(ServerWebExchange exchange) {
 		String path = exchange.getRequest().getPath().pathWithinApplication().value();

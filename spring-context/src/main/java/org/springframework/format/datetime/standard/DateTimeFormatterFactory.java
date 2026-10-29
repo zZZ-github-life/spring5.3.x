@@ -26,10 +26,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Factory that creates a JSR-310 {@link java.time.format.DateTimeFormatter}.
+ * 创建 JSR-310 {@link java.time.format.DateTimeFormatter} 的工厂。
  *
- * <p>Formatters will be created using the defined {@link #setPattern pattern},
- * {@link #setIso ISO}, and <code>xxxStyle</code> methods (considered in that order).
+ * <p>将使用已定义的 {@link #setPattern pattern}、{@link #setIso ISO} 和 <code>xxxStyle</code> 方法
+ * 创建格式化器（按此顺序考虑）。
  *
  * @author Juergen Hoeller
  * @author Phillip Webb
@@ -63,13 +63,13 @@ public class DateTimeFormatterFactory {
 
 
 	/**
-	 * Create a new {@code DateTimeFormatterFactory} instance.
+	 * 创建一个新的 {@code DateTimeFormatterFactory} 实例。
 	 */
 	public DateTimeFormatterFactory() {
 	}
 
 	/**
-	 * Create a new {@code DateTimeFormatterFactory} instance.
+	 * 创建一个新的 {@code DateTimeFormatterFactory} 实例。
 	 * @param pattern the pattern to use to format date values
 	 */
 	public DateTimeFormatterFactory(String pattern) {
@@ -78,7 +78,7 @@ public class DateTimeFormatterFactory {
 
 
 	/**
-	 * Set the pattern to use to format date values.
+	 * 设置用于格式化日期值的模式。
 	 * @param pattern the format pattern
 	 */
 	public void setPattern(String pattern) {
@@ -86,7 +86,7 @@ public class DateTimeFormatterFactory {
 	}
 
 	/**
-	 * Set the ISO format used to format date values.
+	 * 设置用于格式化日期值的 ISO 格式。
 	 * @param iso the ISO format
 	 */
 	public void setIso(ISO iso) {
@@ -94,21 +94,21 @@ public class DateTimeFormatterFactory {
 	}
 
 	/**
-	 * Set the style to use for date types.
+	 * 设置用于日期类型的样式。
 	 */
 	public void setDateStyle(FormatStyle dateStyle) {
 		this.dateStyle = dateStyle;
 	}
 
 	/**
-	 * Set the style to use for time types.
+	 * 设置用于时间类型的样式。
 	 */
 	public void setTimeStyle(FormatStyle timeStyle) {
 		this.timeStyle = timeStyle;
 	}
 
 	/**
-	 * Set the style to use for date and time types.
+	 * 设置用于日期和时间类型的样式。
 	 */
 	public void setDateTimeStyle(FormatStyle dateTimeStyle) {
 		this.dateStyle = dateTimeStyle;
@@ -116,9 +116,8 @@ public class DateTimeFormatterFactory {
 	}
 
 	/**
-	 * Set the two characters to use to format date values, in Joda-Time style.
-	 * <p>The first character is used for the date style; the second is for
-	 * the time style. Supported characters are:
+	 * 设置用于格式化日期值的两个字符，采用 Joda-Time 风格。
+	 * <p>第一个字符用于日期样式；第二个字符用于时间样式。支持的字符包括：
 	 * <ul>
 	 * <li>'S' = Small</li>
 	 * <li>'M' = Medium</li>
@@ -126,9 +125,9 @@ public class DateTimeFormatterFactory {
 	 * <li>'F' = Full</li>
 	 * <li>'-' = Omitted</li>
 	 * </ul>
-	 * <p>This method mimics the styles supported by Joda-Time. Note that
-	 * JSR-310 natively favors {@link java.time.format.FormatStyle} as used for
-	 * {@link #setDateStyle}, {@link #setTimeStyle} and {@link #setDateTimeStyle}.
+	 * <p>此方法模拟 Joda-Time 支持的样式。请注意，JSR-310 原生更倾向于使用
+	 * {@link java.time.format.FormatStyle}，如同 {@link #setDateStyle}、{@link #setTimeStyle} 和
+	 * {@link #setDateTimeStyle} 中所用。
 	 * @param style two characters from the set {"S", "M", "L", "F", "-"}
 	 */
 	public void setStylePattern(String style) {
@@ -150,7 +149,7 @@ public class DateTimeFormatterFactory {
 	}
 
 	/**
-	 * Set the {@code TimeZone} to normalize the date values into, if any.
+	 * 设置要将日期值归一化到的 {@code TimeZone}（如果有）。
 	 * @param timeZone the time zone
 	 */
 	public void setTimeZone(TimeZone timeZone) {
@@ -159,9 +158,8 @@ public class DateTimeFormatterFactory {
 
 
 	/**
-	 * Create a new {@code DateTimeFormatter} using this factory.
-	 * <p>If no specific pattern or style has been defined,
-	 * {@link FormatStyle#MEDIUM medium date time format} will be used.
+	 * 使用此工厂创建一个新的 {@code DateTimeFormatter}。
+	 * <p>如果未定义特定的模式或样式，将使用 {@link FormatStyle#MEDIUM medium date time format}。
 	 * @return a new date time formatter
 	 * @see #createDateTimeFormatter(DateTimeFormatter)
 	 */
@@ -170,9 +168,8 @@ public class DateTimeFormatterFactory {
 	}
 
 	/**
-	 * Create a new {@code DateTimeFormatter} using this factory.
-	 * <p>If no specific pattern or style has been defined,
-	 * the supplied {@code fallbackFormatter} will be used.
+	 * 使用此工厂创建一个新的 {@code DateTimeFormatter}。
+	 * <p>如果未定义特定的模式或样式，将使用提供的 {@code fallbackFormatter}。
 	 * @param fallbackFormatter the fall-back formatter to use
 	 * when no specific factory properties have been set
 	 * @return a new date time formatter

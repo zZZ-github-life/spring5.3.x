@@ -1,8 +1,5 @@
 /**
- * Classes supporting the {@code org.springframework.web.reactive.function.server} package.
- * Contains a {@code HandlerAdapter} that supports {@code HandlerFunction}s,
- * a {@code HandlerResultHandler} that supports {@code ServerResponse}s, and
- * a {@code ServerRequest} wrapper to adapt a request.
+ * 支持 {@code org.springframework.web.reactive.function.server} 包的类。包含支持 {@code HandlerFunction} 的 {@code HandlerAdapter}、支持 {@code ServerResponse} 的 {@code HandlerResultHandler}，以及用于适配请求的 {@code ServerRequest} 包装器。
  */
 @NonNullApi
 @NonNullFields

@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Test assertions that are independent of any third-party assertion library.
+ * 独立于任何第三方断言库的测试断言。
  *
  * @author Lukas Krecan
  * @author Arjen Poutsma
@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
 public abstract class AssertionErrors {
 
 	/**
-	 * Fail a test with the given message.
+	 * 使用给定消息使测试失败。
 	 * @param message a message that describes the reason for the failure
 	 */
 	public static void fail(String message) {
@@ -38,16 +38,15 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Fail a test with the given message passing along expected and actual
-	 * values to be appended to the message.
-	 * <p>For example given:
+	 * 使用给定消息使测试失败，并同时传入要追加到消息中的期望值和实际值。
+	 * <p>例如，给定：
 	 * <pre class="code">
 	 * String name = "Accept";
 	 * String expected = "application/json";
 	 * String actual = "text/plain";
 	 * fail("Response header [" + name + "]", expected, actual);
 	 * </pre>
-	 * <p>The resulting message is:
+	 * <p>生成的消息为：
 	 * <pre class="code">
 	 * Response header [Accept] expected:&lt;application/json&gt; but was:&lt;text/plain&gt;
 	 * </pre>
@@ -60,8 +59,7 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Assert the given condition is {@code true} and raise an
-	 * {@link AssertionError} otherwise.
+	 * 断言给定条件为 {@code true}，否则抛出 {@link AssertionError}。
 	 * @param message a message that describes the reason for the failure
 	 * @param condition the condition to test for
 	 */
@@ -72,8 +70,7 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Assert the given condition is {@code false} and raise an
-	 * {@link AssertionError} otherwise.
+	 * 断言给定条件为 {@code false}，否则抛出 {@link AssertionError}。
 	 * @param message a message that describes the reason for the failure
 	 * @param condition the condition to test for
 	 * @since 5.2.1
@@ -85,8 +82,7 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Assert that the given object is {@code null} and raise an
-	 * {@link AssertionError} otherwise.
+	 * 断言给定对象为 {@code null}，否则抛出 {@link AssertionError}。
 	 * @param message a message that describes the reason for the failure
 	 * @param object the object to check
 	 * @since 5.2.1
@@ -96,8 +92,7 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Assert that the given object is not {@code null} and raise an
-	 * {@link AssertionError} otherwise.
+	 * 断言给定对象不为 {@code null}，否则抛出 {@link AssertionError}。
 	 * @param message a message that describes the reason for the failure
 	 * @param object the object to check
 	 * @since 5.1.8
@@ -107,8 +102,8 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Assert two objects are equal and raise an {@link AssertionError} otherwise.
-	 * <p>For example:
+	 * 断言两个对象相等，否则抛出 {@link AssertionError}。
+	 * <p>例如：
 	 * <pre class="code">
 	 * assertEquals("Response header [" + name + "]", expected, actual);
 	 * </pre>
@@ -124,8 +119,8 @@ public abstract class AssertionErrors {
 	}
 
 	/**
-	 * Assert two objects are not equal and raise an {@link AssertionError} otherwise.
-	 * <p>For example:
+	 * 断言两个对象不相等，否则抛出 {@link AssertionError}。
+	 * <p>例如：
 	 * <pre class="code">
 	 * assertNotEquals("Response header [" + name + "]", expected, actual);
 	 * </pre>

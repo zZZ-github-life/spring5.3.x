@@ -17,7 +17,7 @@
 package org.springframework.messaging.tcp;
 
 /**
- * A simple strategy for making reconnect attempts at a fixed interval.
+ * 以固定间隔尝试重连的简单策略。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -28,7 +28,7 @@ public class FixedIntervalReconnectStrategy implements ReconnectStrategy {
 
 
 	/**
-	 * Create a new {@link FixedIntervalReconnectStrategy} instance.
+	 * 创建一个新的 {@link FixedIntervalReconnectStrategy} 实例。
 	 * @param interval the frequency, in millisecond, at which to try to reconnect
 	 */
 	public FixedIntervalReconnectStrategy(long interval) {

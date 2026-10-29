@@ -28,9 +28,8 @@ import java.util.List;
 import org.springframework.util.Assert;
 
 /**
- * Reflective wrapper around a WebSphere 7+ class loader. Used to
- * encapsulate the classloader-specific methods (discovered and
- * called through reflection) from the load-time weaver.
+ * 围绕 WebSphere 7+ 类加载器的反射包装器。用于将特定于该加载器的方法（通过反射发现并调用）从加载时
+ * 织入器中封装起来。
  *
  * @author Costin Leau
  * @author Juergen Hoeller

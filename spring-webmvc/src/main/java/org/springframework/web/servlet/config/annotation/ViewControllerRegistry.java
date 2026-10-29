@@ -29,8 +29,7 @@ import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
- * Assists with the registration of simple automated controllers pre-configured
- * with status code and/or a view.
+ * 辅助注册预先配置了状态码和/或视图的简单自动化控制器。
  *
  * @author Rossen Stoyanchev
  * @author Keith Donald
@@ -49,7 +48,7 @@ public class ViewControllerRegistry {
 
 
 	/**
-	 * Class constructor with {@link ApplicationContext}.
+	 * 带有 {@link ApplicationContext} 的类构造函数。
 	 * @since 4.3.12
 	 */
 	public ViewControllerRegistry(@Nullable ApplicationContext applicationContext) {
@@ -58,17 +57,15 @@ public class ViewControllerRegistry {
 
 
 	/**
-	 * Map a URL path or pattern to a view controller to render a response with
-	 * the configured status code and view.
-	 * <p>Patterns such as {@code "/admin/**"} or {@code "/articles/{articlename:\\w+}"}
-	 * are supported. For pattern syntax see {@link PathPattern} when parsed
-	 * patterns are {@link PathMatchConfigurer#setPatternParser enabled} or
-	 * {@link AntPathMatcher} otherwise. The syntax is largely the same with
-	 * {@link PathPattern} more tailored for web usage and more efficient.
-	 * <p><strong>Note:</strong> If an {@code @RequestMapping} method is mapped
-	 * to a URL for any HTTP method then a view controller cannot handle the
-	 * same URL. For this reason it is recommended to avoid splitting URL
-	 * handling across an annotated controller and a view controller.
+	 * 将 URL 路径或模式映射到视图控制器，以使用配置的状态码和视图渲染响应。
+	 * <p>支持诸如 {@code "/admin/**"} 或 {@code "/articles/{articlename:\\w+}"} 之类的模式。
+	 * 关于模式语法，当解析模式被
+	 * {@link PathMatchConfigurer#setPatternParser 启用}时请参见 {@link PathPattern}，
+	 * 否则请参见 {@link AntPathMatcher}。两者语法大体相同，
+	 * 但 {@link PathPattern} 更贴合 Web 用途且更高效。
+	 * <p><strong>注意：</strong>如果某个 {@code @RequestMapping} 方法映射到了某个 URL
+	 * （无论何种 HTTP 方法），则视图控制器无法处理同一个 URL。
+	 * 因此建议避免将 URL 处理拆分到注解控制器和视图控制器中。
 	 */
 	public ViewControllerRegistration addViewController(String urlPathOrPattern) {
 		ViewControllerRegistration registration = new ViewControllerRegistration(urlPathOrPattern);
@@ -78,14 +75,13 @@ public class ViewControllerRegistry {
 	}
 
 	/**
-	 * Map a view controller to the given URL path or pattern in order to redirect
-	 * to another URL.
-	 * <p>For pattern syntax see {@link PathPattern} when parsed patterns
-	 * are {@link PathMatchConfigurer#setPatternParser enabled} or
-	 * {@link AntPathMatcher} otherwise. The syntax is largely the same with
-	 * {@link PathPattern} more tailored for web usage and more efficient.
-	 * <p>By default the redirect URL is expected to be relative to the current
-	 * ServletContext, i.e. as relative to the web application root.
+	 * 将视图控制器映射到给定的 URL 路径或模式，以便重定向到另一个 URL。
+	 * <p>关于模式语法，当解析模式被
+	 * {@link PathMatchConfigurer#setPatternParser 启用}时请参见 {@link PathPattern}，
+	 * 否则请参见 {@link AntPathMatcher}。两者语法大体相同，
+	 * 但 {@link PathPattern} 更贴合 Web 用途且更高效。
+	 * <p>默认情况下，重定向 URL 应相对于当前 ServletContext，
+	 * 即相对于 Web 应用根目录。
 	 * @since 4.1
 	 */
 	public RedirectViewControllerRegistration addRedirectViewController(String urlPath, String redirectUrl) {
@@ -96,12 +92,12 @@ public class ViewControllerRegistry {
 	}
 
 	/**
-	 * Map a simple controller to the given URL path (or pattern) in order to
-	 * set the response status to the given code without rendering a body.
-	 * <p>For pattern syntax see {@link PathPattern} when parsed patterns
-	 * are {@link PathMatchConfigurer#setPatternParser enabled} or
-	 * {@link AntPathMatcher} otherwise. The syntax is largely the same with
-	 * {@link PathPattern} more tailored for web usage and more efficient.
+	 * 将简单控制器映射到给定的 URL 路径（或模式），以便在不渲染响应体的情况下
+	 * 将响应状态设置为给定的状态码。
+	 * <p>关于模式语法，当解析模式被
+	 * {@link PathMatchConfigurer#setPatternParser 启用}时请参见 {@link PathPattern}，
+	 * 否则请参见 {@link AntPathMatcher}。两者语法大体相同，
+	 * 但 {@link PathPattern} 更贴合 Web 用途且更高效。
 	 * @since 4.1
 	 */
 	public void addStatusController(String urlPath, HttpStatus statusCode) {
@@ -113,10 +109,9 @@ public class ViewControllerRegistry {
 	}
 
 	/**
-	 * Specify the order to use for the {@code HandlerMapping} used to map view
-	 * controllers relative to other handler mappings configured in Spring MVC.
-	 * <p>By default this is set to 1, i.e. right after annotated controllers,
-	 * which are ordered at 0.
+	 * 指定用于映射视图控制器的 {@code HandlerMapping} 相对于 Spring MVC 中配置的
+	 * 其他处理器映射的排序。
+	 * <p>默认设置为 1，即紧跟在排序为 0 的注解控制器之后。
 	 */
 	public void setOrder(int order) {
 		this.order = order;
@@ -124,8 +119,7 @@ public class ViewControllerRegistry {
 
 
 	/**
-	 * Return the {@code HandlerMapping} that contains the registered view
-	 * controller mappings, or {@code null} for no registrations.
+	 * 返回包含已注册视图控制器映射的 {@code HandlerMapping}，如果没有注册则返回 {@code null}。
 	 * @since 4.3.12
 	 */
 	@Nullable

@@ -26,11 +26,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.StreamUtils;
 
 /**
- * Implementation of {@link HttpMessageConverter} that can read and write byte arrays.
+ * 可读写字节数组的 {@link HttpMessageConverter} 实现。
  *
- * <p>By default, this converter supports all media types (<code>&#42;/&#42;</code>), and
- * writes with a {@code Content-Type} of {@code application/octet-stream}. This can be
- * overridden by setting the {@link #setSupportedMediaTypes supportedMediaTypes} property.
+ * <p>默认情况下，此转换器支持所有媒体类型（<code>&#42;/&#42;</code>），
+ * 并使用 {@code application/octet-stream} 作为 {@code Content-Type} 进行写入。
+ * 可以通过设置 {@link #setSupportedMediaTypes supportedMediaTypes} 属性来覆盖。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -39,7 +39,7 @@ import org.springframework.util.StreamUtils;
 public class ByteArrayHttpMessageConverter extends AbstractHttpMessageConverter<byte[]> {
 
 	/**
-	 * Create a new instance of the {@code ByteArrayHttpMessageConverter}.
+	 * 创建 {@code ByteArrayHttpMessageConverter} 的新实例。
 	 */
 	public ByteArrayHttpMessageConverter() {
 		super(MediaType.APPLICATION_OCTET_STREAM, MediaType.ALL);

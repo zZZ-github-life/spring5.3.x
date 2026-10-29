@@ -24,42 +24,42 @@ import java.sql.SQLException;
 import org.springframework.lang.Nullable;
 
 /**
- * Abstraction for handling large binary fields and large text fields in
- * specific databases, no matter if represented as simple types or Large OBjects.
+ * 对特定数据库中大型二进制字段和大型文本字段的处理抽象，
+ * 无论这些字段是以简单类型还是大型对象（LOB）形式表示。
  *
- * <p>Provides accessor methods for BLOBs and CLOBs, and acts as factory for
- * LobCreator instances, to be used as sessions for creating BLOBs or CLOBs.
- * LobCreators are typically instantiated for each statement execution or for
- * each transaction; they are not thread-safe because they might track
- * allocated database resources in order to free them after execution.
+ * <p>提供 BLOB 和 CLOB 的访问方法，并充当 LobCreator 实例的工厂，
+ * LobCreator 实例用作创建 BLOB 或 CLOB 的会话。
+ * LobCreator 通常为每次语句执行或每个事务实例化；
+ * 它们不是线程安全的，因为它们可能会跟踪已分配的数据库资源，
+ * 以便在执行后释放这些资源。
  *
- * <p>Most databases/drivers should be able to work with {@link DefaultLobHandler},
- * which by default delegates to JDBC's direct accessor methods, avoiding the
- * {@code java.sql.Blob} and {@code java.sql.Clob} API completely.
- * {@link DefaultLobHandler} can also be configured to access LOBs using
- * {@code PreparedStatement.setBlob/setClob} (e.g. for PostgreSQL), through
- * setting the {@link DefaultLobHandler#setWrapAsLob "wrapAsLob"} property.
+ * <p>大多数数据库/驱动都应能配合 {@link DefaultLobHandler} 工作，
+ * 它默认委托给 JDBC 的直接访问方法，完全避免使用
+ * {@code java.sql.Blob} 和 {@code java.sql.Clob} API。
+ * 通过设置 {@link DefaultLobHandler#setWrapAsLob "wrapAsLob"} 属性，
+ * {@link DefaultLobHandler} 还可以配置为使用
+ * {@code PreparedStatement.setBlob/setClob} 访问 LOB（例如用于 PostgreSQL）。
  *
- * <p>Of course, you need to declare different field types for each database.
- * In Oracle, any binary content needs to go into a BLOB, and all character content
- * beyond 4000 bytes needs to go into a CLOB. In MySQL, there is no notion of a
- * CLOB type but rather a LONGTEXT type that behaves like a VARCHAR. For complete
- * portability, use a LobHandler for fields that might typically require LOBs on
- * some database because of the field size (take Oracle's numbers as a guideline).
+ * <p>当然，你需要为每种数据库声明不同的字段类型。
+ * 在 Oracle 中，任何二进制内容都需要放入 BLOB，所有超过 4000 字节的字符内容
+ * 都需要放入 CLOB。在 MySQL 中没有 CLOB 类型的概念，
+ * 而是一种行为类似 VARCHAR 的 LONGTEXT 类型。
+ * 为了实现完全的移植性，对于某些数据库中通常因字段大小而可能需要 LOB 的字段，
+ * 请使用 LobHandler（可以 Oracle 的数值作为参考）。
  *
- * <p><b>Summarizing the recommended options (for actual LOB fields):</b>
+ * <p><b>推荐选项总结（针对实际的 LOB 字段）：</b>
  * <ul>
- * <li><b>JDBC 4.0 driver (including Oracle 11g driver):</b> Use {@link DefaultLobHandler},
- * potentially with {@code streamAsLob=true} if your database driver requires that
- * hint when populating a LOB field. Fall back to {@code createTemporaryLob=true}
- * if you happen to run into LOB size limitations with your (Oracle) database setup.
- * <li><b>Oracle 10g driver:</b> Use {@link DefaultLobHandler} with standard setup.
- * On Oracle 10.1, set the "SetBigStringTryClob" connection property; as of Oracle 10.2,
- * DefaultLobHandler should work with standard setup out of the box.
- * <li><b>PostgreSQL:</b> Configure {@link DefaultLobHandler} with {@code wrapAsLob=true},
- * and use that LobHandler to access OID columns (but not BYTEA) in your database tables.
- * <li>For all other database drivers (and for non-LOB fields that might potentially
- * turn into LOBs on some databases): Simply use a plain {@link DefaultLobHandler}.
+ * <li><b>JDBC 4.0 驱动（包括 Oracle 11g 驱动）：</b> 使用 {@link DefaultLobHandler}，
+ * 如果你的数据库驱动在填充 LOB 字段时需要相应提示，可配合 {@code streamAsLob=true}。
+ * 如果你使用的（Oracle）数据库配置遇到 LOB 大小限制，
+ * 可以回退到 {@code createTemporaryLob=true}。
+ * <li><b>Oracle 10g 驱动：</b> 使用标准配置的 {@link DefaultLobHandler}。
+ * 在 Oracle 10.1 上，设置 "SetBigStringTryClob" 连接属性；从 Oracle 10.2 起，
+ * DefaultLobHandler 使用标准配置开箱即用。
+ * <li><b>PostgreSQL：</b> 将 {@link DefaultLobHandler} 配置为 {@code wrapAsLob=true}，
+ * 并使用该 LobHandler 访问数据库表中的 OID 列（而不是 BYTEA 列）。
+ * <li>对于所有其他数据库驱动（以及某些数据库中可能变成 LOB 的非 LOB 字段）：
+ * 直接使用普通的 {@link DefaultLobHandler} 即可。
  * </ul>
  *
  * @author Juergen Hoeller
@@ -76,9 +76,9 @@ import org.springframework.lang.Nullable;
 public interface LobHandler {
 
 	/**
-	 * Retrieve the given column as bytes from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getBytes} or work with
-	 * {@code ResultSet.getBlob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以字节形式返回。
+	 * 可能只是调用 {@code ResultSet.getBytes}，也可能使用
+	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as byte array, or {@code null} in case of SQL NULL
@@ -89,9 +89,9 @@ public interface LobHandler {
 	byte[] getBlobAsBytes(ResultSet rs, String columnName) throws SQLException;
 
 	/**
-	 * Retrieve the given column as bytes from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getBytes} or work with
-	 * {@code ResultSet.getBlob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以字节形式返回。
+	 * 可能只是调用 {@code ResultSet.getBytes}，也可能使用
+	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as byte array, or {@code null} in case of SQL NULL
@@ -102,9 +102,9 @@ public interface LobHandler {
 	byte[] getBlobAsBytes(ResultSet rs, int columnIndex) throws SQLException;
 
 	/**
-	 * Retrieve the given column as binary stream from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getBinaryStream} or work with
-	 * {@code ResultSet.getBlob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以二进制流形式返回。
+	 * 可能只是调用 {@code ResultSet.getBinaryStream}，也可能使用
+	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as binary stream, or {@code null} in case of SQL NULL
@@ -115,9 +115,9 @@ public interface LobHandler {
 	InputStream getBlobAsBinaryStream(ResultSet rs, String columnName) throws SQLException;
 
 	/**
-	 * Retrieve the given column as binary stream from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getBinaryStream} or work with
-	 * {@code ResultSet.getBlob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以二进制流形式返回。
+	 * 可能只是调用 {@code ResultSet.getBinaryStream}，也可能使用
+	 * {@code ResultSet.getBlob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as binary stream, or {@code null} in case of SQL NULL
@@ -128,9 +128,9 @@ public interface LobHandler {
 	InputStream getBlobAsBinaryStream(ResultSet rs, int columnIndex) throws SQLException;
 
 	/**
-	 * Retrieve the given column as String from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getString} or work with
-	 * {@code ResultSet.getClob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以 String 形式返回。
+	 * 可能只是调用 {@code ResultSet.getString}，也可能使用
+	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as String, or {@code null} in case of SQL NULL
@@ -141,9 +141,9 @@ public interface LobHandler {
 	String getClobAsString(ResultSet rs, String columnName) throws SQLException;
 
 	/**
-	 * Retrieve the given column as String from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getString} or work with
-	 * {@code ResultSet.getClob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以 String 形式返回。
+	 * 可能只是调用 {@code ResultSet.getString}，也可能使用
+	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as String, or {@code null} in case of SQL NULL
@@ -154,9 +154,9 @@ public interface LobHandler {
 	String getClobAsString(ResultSet rs, int columnIndex) throws SQLException;
 
 	/**
-	 * Retrieve the given column as ASCII stream from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getAsciiStream} or work with
-	 * {@code ResultSet.getClob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以 ASCII 流形式返回。
+	 * 可能只是调用 {@code ResultSet.getAsciiStream}，也可能使用
+	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as ASCII stream, or {@code null} in case of SQL NULL
@@ -167,9 +167,9 @@ public interface LobHandler {
 	InputStream getClobAsAsciiStream(ResultSet rs, String columnName) throws SQLException;
 
 	/**
-	 * Retrieve the given column as ASCII stream from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getAsciiStream} or work with
-	 * {@code ResultSet.getClob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以 ASCII 流形式返回。
+	 * 可能只是调用 {@code ResultSet.getAsciiStream}，也可能使用
+	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as ASCII stream, or {@code null} in case of SQL NULL
@@ -180,9 +180,9 @@ public interface LobHandler {
 	InputStream getClobAsAsciiStream(ResultSet rs, int columnIndex) throws SQLException;
 
 	/**
-	 * Retrieve the given column as character stream from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getCharacterStream} or work with
-	 * {@code ResultSet.getClob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以字符流形式返回。
+	 * 可能只是调用 {@code ResultSet.getCharacterStream}，也可能使用
+	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnName the column name to use
 	 * @return the content as character stream
@@ -192,9 +192,9 @@ public interface LobHandler {
 	Reader getClobAsCharacterStream(ResultSet rs, String columnName) throws SQLException;
 
 	/**
-	 * Retrieve the given column as character stream from the given ResultSet.
-	 * Might simply invoke {@code ResultSet.getCharacterStream} or work with
-	 * {@code ResultSet.getClob}, depending on the database and driver.
+	 * 从给定 ResultSet 中检索给定列，以字符流形式返回。
+	 * 可能只是调用 {@code ResultSet.getCharacterStream}，也可能使用
+	 * {@code ResultSet.getClob}，具体取决于数据库和驱动。
 	 * @param rs the ResultSet to retrieve the content from
 	 * @param columnIndex the column index to use
 	 * @return the content as character stream
@@ -204,9 +204,9 @@ public interface LobHandler {
 	Reader getClobAsCharacterStream(ResultSet rs, int columnIndex) throws SQLException;
 
 	/**
-	 * Create a new {@link LobCreator} instance, i.e. a session for creating BLOBs
-	 * and CLOBs. Needs to be closed after the created LOBs are not needed anymore -
-	 * typically after statement execution or transaction completion.
+	 * 创建一个新的 {@link LobCreator} 实例，即一个用于创建 BLOB 和 CLOB 的会话。
+	 * 在创建的 LOB 不再需要之后需要关闭它，
+	 * 通常是在语句执行或事务完成之后。
 	 * @return the new LobCreator instance
 	 * @see LobCreator#close()
 	 */

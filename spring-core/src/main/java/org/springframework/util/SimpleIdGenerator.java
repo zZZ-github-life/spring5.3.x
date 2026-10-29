@@ -20,8 +20,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * A simple {@link IdGenerator} that starts at 1, increments up to
- * {@link Long#MAX_VALUE}, and then rolls over.
+ * 一个简单的 {@link IdGenerator}，从 1 开始，递增至 {@link Long#MAX_VALUE}，然后回绕。
  *
  * @author Rossen Stoyanchev
  * @since 4.1.5

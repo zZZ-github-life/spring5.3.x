@@ -19,8 +19,7 @@ package org.springframework.jmx.export.metadata;
 import org.springframework.jmx.JmxException;
 
 /**
- * Thrown by the {@code JmxAttributeSource} when it encounters
- * incorrect metadata on a managed resource or one of its methods.
+ * 当 {@code JmxAttributeSource} 在受管资源或其某个方法上遇到不正确的元数据时抛出。
  *
  * @author Rob Harrop
  * @since 1.2
@@ -31,8 +30,7 @@ import org.springframework.jmx.JmxException;
 public class InvalidMetadataException extends JmxException {
 
 	/**
-	 * Create a new {@code InvalidMetadataException} with the supplied
-	 * error message.
+	 * 使用提供的错误消息创建一个新的 {@code InvalidMetadataException}。
 	 * @param msg the detail message
 	 */
 	public InvalidMetadataException(String msg) {

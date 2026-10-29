@@ -20,8 +20,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
 /**
- * {@link ApplicationListener} that listens to all events and adds them to the
- * current {@link ApplicationEvents} instance if registered for the current thread.
+ * {@link ApplicationListener}，监听所有事件，并在为当前线程注册时将其添加到当前 {@link ApplicationEvents} 实例中。
  *
  * @author Sam Brannen
  * @author Oliver Drotbohm

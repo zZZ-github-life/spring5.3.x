@@ -23,7 +23,7 @@ import org.springframework.cache.interceptor.CacheResolver;
 import org.springframework.util.ExceptionTypeFilter;
 
 /**
- * The {@link JCacheOperation} implementation for a {@link CacheRemoveAll} operation.
+ * {@link CacheRemoveAll} 操作的 {@link JCacheOperation} 实现。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -47,8 +47,7 @@ class CacheRemoveAllOperation extends AbstractJCacheOperation<CacheRemoveAll> {
 	}
 
 	/**
-	 * Specify if the cache should be cleared before invoking the method. By default, the
-	 * cache is cleared after the method invocation.
+	 * 指定是否应在调用方法之前清空缓存。默认情况下，缓存会在方法调用之后清空。
 	 * @see javax.cache.annotation.CacheRemoveAll#afterInvocation()
 	 */
 	public boolean isEarlyRemove() {

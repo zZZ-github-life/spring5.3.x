@@ -32,8 +32,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Builder used internally to create {@link WebResponse WebResponses}.
- *
+ * 内部使用的构建器，用于创建 {@link WebResponse WebResponses}。
  * @author Rob Winch
  * @author Sam Brannen
  * @author Rossen Stoyanchev

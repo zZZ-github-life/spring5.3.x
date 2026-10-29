@@ -17,11 +17,10 @@
 package org.springframework.dao;
 
 /**
- * Generic exception thrown when the current process was
- * a deadlock loser, and its transaction rolled back.
+ * 当当前进程在死锁中成为失败者，其事务被回滚时抛出的通用异常。
  *
- * <p>Consider handling the general {@link PessimisticLockingFailureException}
- * instead, semantically including a wider range of locking-related failures.
+ * <p>建议考虑处理更通用的 {@link PessimisticLockingFailureException}，
+ * 它在语义上涵盖了更广泛的锁相关故障。
  *
  * @author Rod Johnson
  */
@@ -29,7 +28,7 @@ package org.springframework.dao;
 public class DeadlockLoserDataAccessException extends PessimisticLockingFailureException {
 
 	/**
-	 * Constructor for DeadlockLoserDataAccessException.
+	 * DeadlockLoserDataAccessException 的构造方法。
 	 * @param msg the detail message
 	 * @param cause the root cause from the data access API in use
 	 */

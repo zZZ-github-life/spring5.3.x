@@ -31,12 +31,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.lang.Nullable;
 
 /**
- * A {@code ResourceResolver} that delegates to the chain to locate a resource
- * and then attempts to find a variation with the ".gz" extension.
+ * {@code ResourceResolver}，它委托给链以定位资源，
+ * 然后尝试查找具有 ".gz" 扩展名的变体。
  *
- * <p>The resolver gets involved only if the "Accept-Encoding" request header
- * contains the value "gzip" indicating the client accepts gzipped responses.
- *
+ * <p>仅当 "Accept-Encoding" 请求头
+ * 包含值 "gzip"（表示客户端接受 gzip 压缩响应）时，此解析器才会介入。
  * @author Jeremy Grelle
  * @author Rossen Stoyanchev
  * @author Sam Brannen
@@ -82,7 +81,7 @@ public class GzipResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * A gzipped {@link HttpResource}.
+	 * 经过 gzip 压缩的 {@link HttpResource}。
 	 */
 	static final class GzippedResource extends AbstractResource implements HttpResource {
 

@@ -25,8 +25,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * EIS operation object that accepts a passed-in CCI input Record
- * and returns a corresponding CCI output Record.
+ * EIS 操作对象，接受传入的 CCI 输入 Record 并返回相应的 CCI 输出 Record。
  *
  * @author Juergen Hoeller
  * @since 1.2
@@ -37,14 +36,14 @@ import org.springframework.util.Assert;
 public class SimpleRecordOperation extends EisOperation {
 
 	/**
-	 * Constructor that allows use as a JavaBean.
+	 * 允许作为 JavaBean 使用的构造器。
 	 */
 	public SimpleRecordOperation() {
 	}
 
 	/**
-	 * Convenient constructor with ConnectionFactory and specifications
-	 * (connection and interaction).
+	 * 便捷的构造器，接受 ConnectionFactory 和各规范
+	 * （连接规范和交互规范）。
 	 * @param connectionFactory the ConnectionFactory to use to obtain connections
 	 */
 	public SimpleRecordOperation(ConnectionFactory connectionFactory, InteractionSpec interactionSpec) {
@@ -54,9 +53,8 @@ public class SimpleRecordOperation extends EisOperation {
 
 
 	/**
-	 * Execute the CCI interaction encapsulated by this operation object.
-	 * <p>This method will call CCI's {@code Interaction.execute} variant
-	 * that returns an output Record.
+	 * 执行此操作对象封装的 CCI 交互。
+	 * <p>此方法将调用 CCI 的 {@code Interaction.execute} 返回输出 Record 的变体。
 	 * @param inputRecord the input record
 	 * @return the output record
 	 * @throws DataAccessException if there is any problem
@@ -70,9 +68,8 @@ public class SimpleRecordOperation extends EisOperation {
 	}
 
 	/**
-	 * Execute the CCI interaction encapsulated by this operation object.
-	 * <p>This method will call CCI's {@code Interaction.execute} variant
-	 * with a passed-in output Record.
+	 * 执行此操作对象封装的 CCI 交互。
+	 * <p>此方法将调用 CCI 的 {@code Interaction.execute} 并传入输出 Record 的变体。
 	 * @param inputRecord the input record
 	 * @param outputRecord the output record
 	 * @throws DataAccessException if there is any problem

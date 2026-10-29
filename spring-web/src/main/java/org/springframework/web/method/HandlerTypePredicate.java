@@ -31,14 +31,14 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@code Predicate} to match request handling component types if
- * <strong>any</strong> of the following selectors match:
+ * 一个 {@code Predicate}，当以下选择器中的<strong>任意一个</strong>匹配时，
+ * 即匹配请求处理组件类型：
  * <ul>
- * <li>Base packages -- for selecting handlers by their package.
- * <li>Assignable types -- for selecting handlers by supertype.
- * <li>Annotations -- for selecting handlers annotated in a specific way.
+ * <li>基础包 —— 用于按处理器所在的包进行选择。
+ * <li>可赋值类型 —— 用于按处理器的父类型进行选择。
+ * <li>注解 —— 用于选择以特定方式标注的处理器。
  * </ul>
- * <p>Composability methods on {@link Predicate} can be used :
+ * <p>可以使用 {@link Predicate} 上的组合方法：
  * <pre class="code">
  * Predicate&lt;Class&lt;?&gt;&gt; predicate =
  * 		HandlerTypePredicate.forAnnotation(RestController.class)
@@ -58,7 +58,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 
 	/**
-	 * Private constructor. See static factory methods.
+	 * 私有构造函数。请参阅静态工厂方法。
 	 */
 	private HandlerTypePredicate(Set<String> basePackages, List<Class<?>> assignableTypes,
 			List<Class<? extends Annotation>> annotations) {
@@ -102,7 +102,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	// Static factory methods
 
 	/**
-	 * {@code Predicate} that applies to any handlers.
+	 * 适用于任意处理器的 {@code Predicate}。
 	 */
 	public static HandlerTypePredicate forAnyHandlerType() {
 		return new HandlerTypePredicate(
@@ -110,7 +110,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	}
 
 	/**
-	 * Match handlers declared under a base package, e.g. "org.example".
+	 * 匹配声明在基础包下的处理器，例如 "org.example"。
 	 * @param packages one or more base package names
 	 */
 	public static HandlerTypePredicate forBasePackage(String... packages) {
@@ -118,8 +118,8 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	}
 
 	/**
-	 * Type-safe alternative to {@link #forBasePackage(String...)} to specify a
-	 * base package through a class.
+	 * {@link #forBasePackage(String...)} 的类型安全替代方法，
+	 * 通过类来指定基础包。
 	 * @param packageClasses one or more base package classes
 	 */
 	public static HandlerTypePredicate forBasePackageClass(Class<?>... packageClasses) {
@@ -127,7 +127,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	}
 
 	/**
-	 * Match handlers that are assignable to a given type.
+	 * 匹配可赋值给给定类型的处理器。
 	 * @param types one or more handler supertypes
 	 */
 	public static HandlerTypePredicate forAssignableType(Class<?>... types) {
@@ -135,7 +135,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	}
 
 	/**
-	 * Match handlers annotated with a specific annotation.
+	 * 匹配标注了特定注解的处理器。
 	 * @param annotations one or more annotations to check for
 	 */
 	@SafeVarargs
@@ -144,7 +144,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 	}
 
 	/**
-	 * Return a builder for a {@code HandlerTypePredicate}.
+	 * 返回 {@code HandlerTypePredicate} 的构建器。
 	 */
 	public static Builder builder() {
 		return new Builder();
@@ -152,7 +152,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 
 
 	/**
-	 * A {@link HandlerTypePredicate} builder.
+	 * {@link HandlerTypePredicate} 的构建器。
 	 */
 	public static class Builder {
 
@@ -163,7 +163,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 		private final List<Class<? extends Annotation>> annotations = new ArrayList<>();
 
 		/**
-		 * Match handlers declared under a base package, e.g. "org.example".
+		 * 匹配声明在基础包下的处理器，例如 "org.example"。
 		 * @param packages one or more base package classes
 		 */
 		public Builder basePackage(String... packages) {
@@ -172,8 +172,8 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 		}
 
 		/**
-		 * Type-safe alternative to {@link #forBasePackage(String...)} to specify a
-		 * base package through a class.
+		 * {@link #forBasePackage(String...)} 的类型安全替代方法，
+		 * 通过类来指定基础包。
 		 * @param packageClasses one or more base package names
 		 */
 		public Builder basePackageClass(Class<?>... packageClasses) {
@@ -186,7 +186,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 		}
 
 		/**
-		 * Match handlers that are assignable to a given type.
+		 * 匹配可赋值给给定类型的处理器。
 		 * @param types one or more handler supertypes
 		 */
 		public Builder assignableType(Class<?>... types) {
@@ -195,7 +195,7 @@ public final class HandlerTypePredicate implements Predicate<Class<?>> {
 		}
 
 		/**
-		 * Match types that are annotated with one of the given annotations.
+		 * 匹配标注了给定注解之一中的任意注解的类型。
 		 * @param annotations one or more annotations to check for
 		 */
 		@SuppressWarnings("unchecked")

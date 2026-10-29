@@ -17,9 +17,9 @@
 package org.springframework.context;
 
 /**
- * Interface that encapsulates event publication functionality.
+ * 封装事件发布功能的接口。
  *
- * <p>Serves as a super-interface for {@link ApplicationContext}.
+ * <p>用作 {@link ApplicationContext} 的父接口。
  *
  * @author Juergen Hoeller
  * @author Stephane Nicoll
@@ -34,14 +34,11 @@ package org.springframework.context;
 public interface ApplicationEventPublisher {
 
 	/**
-	 * Notify all <strong>matching</strong> listeners registered with this
-	 * application of an application event. Events may be framework events
-	 * (such as ContextRefreshedEvent) or application-specific events.
-	 * <p>Such an event publication step is effectively a hand-off to the
-	 * multicaster and does not imply synchronous/asynchronous execution
-	 * or even immediate execution at all. Event listeners are encouraged
-	 * to be as efficient as possible, individually using asynchronous
-	 * execution for longer-running and potentially blocking operations.
+	 * 通知向此应用注册的所有 <strong>匹配</strong> 监听器一个应用事件。事件可以是框架事件（如
+	 * ContextRefreshedEvent）或应用特定的事件。
+	 *
+	 * <p>这种事件发布步骤实际上是将事件移交给广播器，并不意味着同步/异步执行，甚至根本不意味着立即执行。
+	 * 鼓励事件监听器尽可能高效，对于运行时间较长且可能阻塞的操作，应各自采用异步执行。
 	 * @param event the event to publish
 	 * @see #publishEvent(Object)
 	 * @see org.springframework.context.event.ContextRefreshedEvent
@@ -52,15 +49,13 @@ public interface ApplicationEventPublisher {
 	}
 
 	/**
-	 * Notify all <strong>matching</strong> listeners registered with this
-	 * application of an event.
-	 * <p>If the specified {@code event} is not an {@link ApplicationEvent},
-	 * it is wrapped in a {@link PayloadApplicationEvent}.
-	 * <p>Such an event publication step is effectively a hand-off to the
-	 * multicaster and does not imply synchronous/asynchronous execution
-	 * or even immediate execution at all. Event listeners are encouraged
-	 * to be as efficient as possible, individually using asynchronous
-	 * execution for longer-running and potentially blocking operations.
+	 * 通知向此应用注册的所有 <strong>匹配</strong> 监听器一个事件。
+	 *
+	 * <p>如果指定的 {@code event} 不是 {@link ApplicationEvent}，则会将其包装在
+	 * {@link PayloadApplicationEvent} 中。
+	 *
+	 * <p>这种事件发布步骤实际上是将事件移交给广播器，并不意味着同步/异步执行，甚至根本不意味着立即执行。
+	 * 鼓励事件监听器尽可能高效，对于运行时间较长且可能阻塞的操作，应各自采用异步执行。
 	 * @param event the event to publish
 	 * @since 4.2
 	 * @see #publishEvent(ApplicationEvent)

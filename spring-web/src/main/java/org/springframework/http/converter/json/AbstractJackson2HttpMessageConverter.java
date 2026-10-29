@@ -65,10 +65,10 @@ import org.springframework.util.StreamUtils;
 import org.springframework.util.TypeUtils;
 
 /**
- * Abstract base class for Jackson based and content type independent
- * {@link HttpMessageConverter} implementations.
+ * 基于 Jackson 且与内容类型无关的 {@link HttpMessageConverter} 实现的
+ * 抽象基类。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Arjen Poutsma
  * @author Keith Donald
@@ -92,7 +92,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	@Nullable
 	@Deprecated
@@ -130,15 +130,14 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 
 
 	/**
-	 * Configure the main {@code ObjectMapper} to use for Object conversion.
-	 * If not set, a default {@link ObjectMapper} instance is created.
-	 * <p>Setting a custom-configured {@code ObjectMapper} is one way to take
-	 * further control of the JSON serialization process. For example, an extended
-	 * {@link com.fasterxml.jackson.databind.ser.SerializerFactory}
-	 * can be configured that provides custom serializers for specific types.
-	 * Another option for refining the serialization process is to use Jackson's
-	 * provided annotations on the types to be serialized, in which case a
-	 * custom-configured ObjectMapper is unnecessary.
+	 * 配置用于对象转换的主 {@code ObjectMapper}。
+	 * 如果未设置，将创建默认的 {@link ObjectMapper} 实例。
+	 * <p>设置自定义配置的 {@code ObjectMapper} 是进一步控制 JSON 序列化
+	 * 过程的一种方式。例如，可以配置扩展的
+	 * {@link com.fasterxml.jackson.databind.ser.SerializerFactory}，
+	 * 为特定类型提供自定义序列化器。另一种改进序列化过程的方式是
+	 * 在待序列化的类型上使用 Jackson 提供的注解，在这种情况下
+	 * 无需自定义配置的 ObjectMapper。
 	 * @see #registerObjectMappersForType(Class, Consumer)
 	 */
 	public void setObjectMapper(ObjectMapper objectMapper) {
@@ -148,23 +147,21 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Return the main {@code ObjectMapper} in use.
+	 * 返回正在使用的主 {@code ObjectMapper}。
 	 */
 	public ObjectMapper getObjectMapper() {
 		return this.defaultObjectMapper;
 	}
 
 	/**
-	 * Configure the {@link ObjectMapper} instances to use for the given
-	 * {@link Class}. This is useful when you want to deviate from the
-	 * {@link #getObjectMapper() default} ObjectMapper or have the
-	 * {@code ObjectMapper} vary by {@code MediaType}.
-	 * <p><strong>Note:</strong> Use of this method effectively turns off use of
-	 * the default {@link #getObjectMapper() ObjectMapper} and
-	 * {@link #setSupportedMediaTypes(List) supportedMediaTypes} for the given
-	 * class. Therefore it is important for the mappings configured here to
-	 * {@link MediaType#includes(MediaType) include} every MediaType that must
-	 * be supported for the given class.
+	 * 为给定的 {@link Class} 配置要使用的 {@link ObjectMapper} 实例。
+	 * 当希望偏离{@link #getObjectMapper() 默认}的 ObjectMapper，
+	 * 或希望 {@code ObjectMapper} 随 {@code MediaType} 变化时，这很有用。
+	 * <p><strong>注意：</strong>使用此方法会实际关闭对给定类的默认
+	 * {@link #getObjectMapper() ObjectMapper} 和
+	 * {@link #setSupportedMediaTypes(List) supportedMediaTypes} 的使用。
+	 * 因此，此处配置的映射必须{@link MediaType#includes(MediaType) 包含}
+	 * 给定类必须支持的每一种 MediaType，这一点很重要。
 	 * @param clazz the type of Object to register ObjectMapper instances for
 	 * @param registrar a consumer to populate or otherwise update the
 	 * MediaType-to-ObjectMapper associations for the given Class
@@ -180,7 +177,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Return ObjectMapper registrations for the given class, if any.
+	 * 返回给定类的 ObjectMapper 注册信息（如果有）。
 	 * @param clazz the class to look up for registrations for
 	 * @return a map with registered MediaType-to-ObjectMapper registrations,
 	 * or empty if in case of no registrations for the given class.
@@ -213,8 +210,8 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Whether to use the {@link DefaultPrettyPrinter} when writing JSON.
-	 * This is a shortcut for setting up an {@code ObjectMapper} as follows:
+	 * 写入 JSON 时是否使用 {@link DefaultPrettyPrinter}。
+	 * 这是按如下方式设置 {@code ObjectMapper} 的快捷方式：
 	 * <pre class="code">
 	 * ObjectMapper mapper = new ObjectMapper();
 	 * mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -280,9 +277,9 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Select an ObjectMapper to use, either the main ObjectMapper or another
-	 * if the handling for the given Class has been customized through
-	 * {@link #registerObjectMappersForType(Class, Consumer)}.
+	 * 选择要使用的 ObjectMapper，可以是主 ObjectMapper，或者在通过
+	 * {@link #registerObjectMappersForType(Class, Consumer)} 自定义了给定类的
+	 * 处理方式时使用另一个 ObjectMapper。
 	 */
 	@Nullable
 	private ObjectMapper selectObjectMapper(Class<?> targetType, @Nullable MediaType targetMediaType) {
@@ -305,8 +302,8 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Determine whether to log the given exception coming from a
-	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} check.
+	 * 确定是否记录来自
+	 * {@link ObjectMapper#canDeserialize} / {@link ObjectMapper#canSerialize} 检查的给定异常。
 	 * @param type the class that Jackson tested for (de-)serializability
 	 * @param cause the Jackson-thrown exception to evaluate
 	 * (typically a {@link JsonMappingException})
@@ -393,9 +390,9 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Determine the charset to use for JSON input.
-	 * <p>By default this is either the charset from the input {@code MediaType}
-	 * or otherwise falling back on {@code UTF-8}. Can be overridden in subclasses.
+	 * 确定用于 JSON 输入的字符集。
+	 * <p>默认情况下，使用输入 {@code MediaType} 中的字符集，
+	 * 否则回退到 {@code UTF-8}。可在子类中重写。
 	 * @param contentType the content type of the HTTP input message
 	 * @return the charset to use
 	 * @since 5.1.18
@@ -467,7 +464,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Write a prefix before the main content.
+	 * 在主内容之前写入前缀。
 	 * @param generator the generator to use for writing content.
 	 * @param object the object to write to the output message.
 	 */
@@ -475,7 +472,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Write a suffix after the main content.
+	 * 在主内容之后写入后缀。
 	 * @param generator the generator to use for writing content.
 	 * @param object the object to write to the output message.
 	 */
@@ -483,7 +480,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Return the Jackson {@link JavaType} for the specified type and context class.
+	 * 返回指定类型和上下文类的 Jackson {@link JavaType}。
 	 * @param type the generic type to return the Jackson JavaType for
 	 * @param contextClass a context class for the target type, for example a class
 	 * in which the target type appears in a method signature (can be {@code null})
@@ -494,7 +491,7 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 	}
 
 	/**
-	 * Determine the JSON encoding to use for the given content type.
+	 * 确定用于给定内容类型的 JSON 编码。
 	 * @param contentType the media type as requested by the caller
 	 * @return the JSON encoding to use (never {@code null})
 	 */

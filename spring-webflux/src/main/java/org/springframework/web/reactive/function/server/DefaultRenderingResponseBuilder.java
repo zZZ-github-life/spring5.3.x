@@ -45,8 +45,7 @@ import org.springframework.web.reactive.result.view.ViewResolver;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Default {@link RenderingResponse.Builder} implementation.
- *
+ * {@link RenderingResponse.Builder} 的默认实现。
  * @author Arjen Poutsma
  * @author Juergen Hoeller
  * @since 5.0

@@ -29,7 +29,7 @@ import org.springframework.util.ExceptionTypeFilter;
 import org.springframework.util.SerializationUtils;
 
 /**
- * Intercept methods annotated with {@link CacheResult}.
+ * 拦截带有 {@link CacheResult} 注解的方法。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -74,7 +74,7 @@ class CacheResultInterceptor extends AbstractKeyCacheInterceptor<CacheResultOper
 	}
 
 	/**
-	 * Check for a cached exception. If the exception is found, throw it directly.
+	 * 检查是否存在已缓存的异常。如果找到该异常，则直接抛出。
 	 */
 	protected void checkForCachedException(@Nullable Cache exceptionCache, Object cacheKey) {
 		if (exceptionCache == null) {
@@ -108,12 +108,10 @@ class CacheResultInterceptor extends AbstractKeyCacheInterceptor<CacheResultOper
 
 
 	/**
-	 * Rewrite the call stack of the specified {@code exception} so that it matches
-	 * the current call stack up to (included) the specified method invocation.
-	 * <p>Clone the specified exception. If the exception is not {@code serializable},
-	 * the original exception is returned. If no common ancestor can be found, returns
-	 * the original exception.
-	 * <p>Used to make sure that a cached exception has a valid invocation context.
+	 * 重写指定 {@code exception} 的调用栈，使其与当前调用栈一致，直至（含）指定的方法调用。
+	 * <p>克隆指定的异常。如果该异常不是 {@code serializable}，则返回原始异常。如果找不到共同的祖先，则
+	 * 返回原始异常。
+	 * <p>用于确保已缓存的异常具有有效的调用上下文。
 	 * @param exception the exception to merge with the current call stack
 	 * @param className the class name of the common ancestor
 	 * @param methodName the method name of the common ancestor

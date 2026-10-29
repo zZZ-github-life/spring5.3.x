@@ -24,8 +24,7 @@ import org.springframework.web.reactive.result.method.HandlerMethodArgumentResol
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * No-op resolver for method arguments of type {@link kotlin.coroutines.Continuation}.
- *
+ * 用于 {@link kotlin.coroutines.Continuation} 类型方法参数的空操作解析器。
  * @author Sebastien Deleuze
  * @since 5.2
  */

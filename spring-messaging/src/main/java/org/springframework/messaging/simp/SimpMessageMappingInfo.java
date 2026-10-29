@@ -23,8 +23,7 @@ import org.springframework.messaging.handler.DestinationPatternsMessageCondition
 import org.springframework.messaging.handler.MessageCondition;
 
 /**
- * {@link MessageCondition} for SImple Messaging Protocols. Encapsulates the following
- * request mapping conditions:
+ * 用于简单消息传递协议（SiMP）的 {@link MessageCondition}。封装以下请求映射条件：
  * <ol>
  * <li>{@link SimpMessageTypeMessageCondition}
  * <li>{@link DestinationPatternsMessageCondition}

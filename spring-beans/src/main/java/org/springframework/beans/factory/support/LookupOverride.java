@@ -24,11 +24,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Represents an override of a method that looks up an object in the same IoC context,
- * either by bean name or by bean type (based on the declared method return type).
+ * 表示对某个方法的覆盖，该方法在同一 IoC 上下文中查找对象，可以按 Bean 名称或按 Bean 类型（基于声
+ * 明的方法返回类型）查找。
  *
- * <p>Methods eligible for lookup override may declare arguments in which case the
- * given arguments are passed to the bean retrieval operation.
+ * <p>可用于 lookup 覆盖的方法可以声明参数，此时给定参数会传递给 Bean 获取操作。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -49,7 +48,7 @@ public class LookupOverride extends MethodOverride {
 
 
 	/**
-	 * Construct a new LookupOverride.
+	 * 构造一个新的 LookupOverride。
 	 * @param methodName the name of the method to override
 	 * @param beanName the name of the bean in the current {@code BeanFactory} that the
 	 * overridden method should return (may be {@code null} for type-based bean retrieval)
@@ -60,7 +59,7 @@ public class LookupOverride extends MethodOverride {
 	}
 
 	/**
-	 * Construct a new LookupOverride.
+	 * 构造一个新的 LookupOverride。
 	 * @param method the method declaration to override
 	 * @param beanName the name of the bean in the current {@code BeanFactory} that the
 	 * overridden method should return (may be {@code null} for type-based bean retrieval)
@@ -73,7 +72,7 @@ public class LookupOverride extends MethodOverride {
 
 
 	/**
-	 * Return the name of the bean that should be returned by this method.
+	 * 返回此方法应返回的 Bean 的名称。
 	 */
 	@Nullable
 	public String getBeanName() {
@@ -81,12 +80,10 @@ public class LookupOverride extends MethodOverride {
 	}
 
 	/**
-	 * Match the specified method by {@link Method} reference or method name.
-	 * <p>For backwards compatibility reasons, in a scenario with overloaded
-	 * non-abstract methods of the given name, only the no-arg variant of a
-	 * method will be turned into a container-driven lookup method.
-	 * <p>In case of a provided {@link Method}, only straight matches will
-	 * be considered, usually demarcated by the {@code @Lookup} annotation.
+	 * 按 {@link Method} 引用或方法名匹配指定的方法。
+	 * <p>出于向后兼容的考虑，在存在同名重载的非抽象方法的场景下，只有方法的无参变体才会被转换为由容器
+	 * 驱动的 lookup 方法。
+	 * <p>如果提供了 {@link Method}，则只考虑直接匹配，通常由 {@code @Lookup} 注解来界定。
 	 */
 	@Override
 	public boolean matches(Method method) {

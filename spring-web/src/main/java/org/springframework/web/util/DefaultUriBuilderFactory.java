@@ -29,11 +29,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code UriBuilderFactory} that relies on {@link UriComponentsBuilder} for
- * the actual building of the URI.
+ * {@code UriBuilderFactory}，依赖于 {@link UriComponentsBuilder} 完成
+ * URI 的实际构建。
  *
- * <p>Provides options to create {@link UriBuilder} instances with a common
- * base URI, alternative encoding mode strategies, among others.
+ * <p>提供多种选项，例如创建带有公共基础 URI 的 {@link UriBuilder} 实例、
+ * 可选的编码模式策略等。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -52,20 +52,18 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 
 	/**
-	 * Default constructor without a base URI.
-	 * <p>The target address must be specified on each UriBuilder.
+	 * 不带基础 URI 的默认构造函数。
+	 * <p>必须在每个 UriBuilder 上指定目标地址。
 	 */
 	public DefaultUriBuilderFactory() {
 		this.baseUri = null;
 	}
 
 	/**
-	 * Constructor with a base URI.
-	 * <p>The given URI template is parsed via
-	 * {@link UriComponentsBuilder#fromUriString} and then applied as a base URI
-	 * to every UriBuilder via {@link UriComponentsBuilder#uriComponents} unless
-	 * the UriBuilder itself was created with a URI template that already has a
-	 * target address.
+	 * 带有基础 URI 的构造函数。
+	 * <p>给定的 URI 模板通过 {@link UriComponentsBuilder#fromUriString} 解析，
+	 * 然后通过 {@link UriComponentsBuilder#uriComponents} 应用为每个 UriBuilder
+	 * 的基础 URI，除非该 UriBuilder 本身是使用已包含目标地址的 URI 模板创建的。
 	 * @param baseUriTemplate the URI template to use a base URL
 	 */
 	public DefaultUriBuilderFactory(String baseUriTemplate) {
@@ -73,8 +71,8 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	}
 
 	/**
-	 * Variant of {@link #DefaultUriBuilderFactory(String)} with a
-	 * {@code UriComponentsBuilder}.
+	 * {@link #DefaultUriBuilderFactory(String)} 的变体，接受
+	 * {@code UriComponentsBuilder}。
 	 */
 	public DefaultUriBuilderFactory(UriComponentsBuilder baseUri) {
 		this.baseUri = baseUri;
@@ -82,13 +80,12 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 
 	/**
-	 * Set the {@link EncodingMode encoding mode} to use.
-	 * <p>By default this is set to {@link EncodingMode#TEMPLATE_AND_VALUES
-	 * EncodingMode.TEMPLATE_AND_VALUES}.
-	 * <p><strong>Note:</strong> Prior to 5.1 the default was
-	 * {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}
-	 * therefore the {@code WebClient} {@code RestTemplate} have switched their
-	 * default behavior.
+	 * 设置要使用的 {@link EncodingMode 编码模式}。
+	 * <p>默认设置为 {@link EncodingMode#TEMPLATE_AND_VALUES
+	 * EncodingMode.TEMPLATE_AND_VALUES}。
+	 * <p><strong>注意：</strong>在 5.1 之前，默认值为
+	 * {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}，
+	 * 因此 {@code WebClient} 和 {@code RestTemplate} 已改用新的默认行为。
 	 * @param encodingMode the encoding mode to use
 	 */
 	public void setEncodingMode(EncodingMode encodingMode) {
@@ -96,15 +93,14 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	}
 
 	/**
-	 * Return the configured encoding mode.
+	 * 返回已配置的编码模式。
 	 */
 	public EncodingMode getEncodingMode() {
 		return this.encodingMode;
 	}
 
 	/**
-	 * Provide default URI variable values to use when expanding URI templates
-	 * with a Map of variables.
+	 * 提供在使用变量 Map 展开 URI 模板时要使用的默认 URI 变量值。
 	 * @param defaultUriVariables default URI variable values
 	 */
 	public void setDefaultUriVariables(@Nullable Map<String, ?> defaultUriVariables) {
@@ -115,18 +111,17 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	}
 
 	/**
-	 * Return the configured default URI variable values.
+	 * 返回已配置的默认 URI 变量值。
 	 */
 	public Map<String, ?> getDefaultUriVariables() {
 		return Collections.unmodifiableMap(this.defaultUriVariables);
 	}
 
 	/**
-	 * Whether to parse the input path into path segments if the encoding mode
-	 * is set to {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT},
-	 * which ensures that URI variables in the path are encoded according to
-	 * path segment rules and for example a '/' is encoded.
-	 * <p>By default this is set to {@code true}.
+	 * 当编码模式设置为 {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}
+	 * 时，是否将输入路径解析为路径段，以此确保路径中的 URI 变量按照路径段规则进行编码，
+	 * 例如 '/' 会被编码。
+	 * <p>默认设置为 {@code true}。
 	 * @param parsePath whether to parse the path into path segments
 	 */
 	public void setParsePath(boolean parsePath) {
@@ -134,8 +129,8 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	}
 
 	/**
-	 * Whether to parse the path into path segments if the encoding mode is set
-	 * to {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}.
+	 * 当编码模式设置为 {@link EncodingMode#URI_COMPONENT EncodingMode.URI_COMPONENT}
+	 * 时，是否将路径解析为路径段。
 	 */
 	public boolean shouldParsePath() {
 		return this.parsePath;
@@ -168,8 +163,7 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 
 
 	/**
-	 * Enum to represent multiple URI encoding strategies. The following are
-	 * available:
+	 * 表示多种 URI 编码策略的枚举。可用值如下：
 	 * <ul>
 	 * <li>{@link #TEMPLATE_AND_VALUES}
 	 * <li>{@link #VALUES_ONLY}
@@ -181,50 +175,46 @@ public class DefaultUriBuilderFactory implements UriBuilderFactory {
 	public enum EncodingMode {
 
 		/**
-		 * Pre-encode the URI template first, then strictly encode URI variables
-		 * when expanded, with the following rules:
+		 * 先对 URI 模板进行预编码，然后在展开时对 URI 变量进行严格编码，
+		 * 规则如下：
 		 * <ul>
-		 * <li>For the URI template replace <em>only</em> non-ASCII and illegal
-		 * (within a given URI component type) characters with escaped octets.
-		 * <li>For URI variables do the same and also replace characters with
-		 * reserved meaning.
+		 * <li>对于 URI 模板，<em>仅</em>将非 ASCII 字符和非法字符
+		 * （在给定 URI 组件类型范围内）替换为转义八位字节。
+		 * <li>对于 URI 变量，执行相同的替换，并且还会替换具有保留含义的字符。
 		 * </ul>
-		 * <p>For most cases, this mode is most likely to give the expected
-		 * result because in treats URI variables as opaque data to be fully
-		 * encoded, while {@link #URI_COMPONENT} by comparison is useful only
-		 * if intentionally expanding URI variables with reserved characters.
+		 * <p>在大多数情况下，此模式最有可能给出预期结果，因为它将 URI 变量视为
+		 * 需要完全编码的不透明数据；相比之下，{@link #URI_COMPONENT} 仅在
+		 * 有意使用保留字符展开 URI 变量时才有用。
 		 * @since 5.0.8
 		 * @see UriComponentsBuilder#encode()
 		 */
 		TEMPLATE_AND_VALUES,
 
 		/**
-		 * Does not encode the URI template and instead applies strict encoding
-		 * to URI variables via {@link UriUtils#encodeUriVariables} prior to
-		 * expanding them into the template.
+		 * 不对 URI 模板进行编码，而是在将 URI 变量展开到模板之前，
+		 * 通过 {@link UriUtils#encodeUriVariables} 对其进行严格编码。
 		 * @see UriUtils#encodeUriVariables(Object...)
 		 * @see UriUtils#encodeUriVariables(Map)
 		 */
 		VALUES_ONLY,
 
 		/**
-		 * Expand URI variables first, and then encode the resulting URI
-		 * component values, replacing <em>only</em> non-ASCII and illegal
-		 * (within a given URI component type) characters, but not characters
-		 * with reserved meaning.
+		 * 先展开 URI 变量，然后对生成的 URI 组件值进行编码，
+		 * <em>仅</em>替换非 ASCII 字符和非法字符（在给定 URI 组件类型范围内），
+		 * 而不替换具有保留含义的字符。
 		 * @see UriComponents#encode()
 		 */
 		URI_COMPONENT,
 
 		/**
-		 * No encoding should be applied.
+		 * 不应应用任何编码。
 		 */
 		NONE
 	}
 
 
 	/**
-	 * {@link DefaultUriBuilderFactory} specific implementation of UriBuilder.
+	 * {@link DefaultUriBuilderFactory} 特有的 UriBuilder 实现。
 	 */
 	private class DefaultUriBuilder implements UriBuilder {
 

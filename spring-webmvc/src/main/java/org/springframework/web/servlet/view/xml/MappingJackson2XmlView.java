@@ -29,16 +29,16 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.json.AbstractJackson2View;
 
 /**
- * Spring MVC {@link View} that renders XML content by serializing the model for the current request
- * using <a href="https://github.com/FasterXML/jackson">Jackson 2's</a> {@link XmlMapper}.
+ * Spring MVC {@link View}，使用 <a href="https://github.com/FasterXML/jackson">Jackson 2</a>
+ * 的 {@link XmlMapper} 序列化当前请求的 model，从而渲染 XML 内容。
  *
- * <p>The Object to be serialized is supplied as a parameter in the model. The first serializable
- * entry is used. Users can either specify a specific entry in the model via the
- * {@link #setModelKey(String) sourceKey} property.
+ * <p>要序列化的对象作为 model 中的参数提供。使用第一个可序列化的条目。
+ * 用户可以通过 {@link #setModelKey(String) sourceKey} 属性
+ * 在 model 中指定特定条目。
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * <p>默认构造器使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Sebastien Deleuze
  * @since 4.1
@@ -47,7 +47,7 @@ import org.springframework.web.servlet.view.json.AbstractJackson2View;
 public class MappingJackson2XmlView extends AbstractJackson2View {
 
 	/**
-	 * The default content type for the view.
+	 * 此视图的默认内容类型。
 	 */
 	public static final String DEFAULT_CONTENT_TYPE = "application/xml";
 
@@ -57,17 +57,16 @@ public class MappingJackson2XmlView extends AbstractJackson2View {
 
 
 	/**
-	 * Construct a new {@code MappingJackson2XmlView} using default configuration
-	 * provided by {@link Jackson2ObjectMapperBuilder} and setting the content type
-	 * to {@code application/xml}.
+	 * 使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置构造一个新的
+	 * {@code MappingJackson2XmlView}，并将内容类型设置为 {@code application/xml}。
 	 */
 	public MappingJackson2XmlView() {
 		super(Jackson2ObjectMapperBuilder.xml().build(), DEFAULT_CONTENT_TYPE);
 	}
 
 	/**
-	 * Construct a new {@code MappingJackson2XmlView} using the provided {@link XmlMapper}
-	 * and setting the content type to {@code application/xml}.
+	 * 使用提供的 {@link XmlMapper} 构造一个新的 {@code MappingJackson2XmlView}，
+	 * 并将内容类型设置为 {@code application/xml}。
 	 * @since 4.2.1
 	 */
 	public MappingJackson2XmlView(XmlMapper xmlMapper) {

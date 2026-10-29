@@ -32,22 +32,20 @@ import org.springframework.messaging.support.AbstractHeaderMapper;
 import org.springframework.util.StringUtils;
 
 /**
- * Simple implementation of {@link JmsHeaderMapper}.
+ * {@link JmsHeaderMapper} 的简单实现。
  *
- * <p>This implementation copies JMS API headers (e.g. JMSReplyTo) to and from
- * {@link org.springframework.messaging.Message Messages}. Any user-defined
- * properties will also be copied from a JMS Message to a Message, and any
- * other headers on a Message (beyond the JMS API headers) will likewise
- * be copied to a JMS Message. Those other headers will be copied to the
- * general properties of a JMS Message whereas the JMS API headers are passed
- * to the appropriate setter methods (e.g. setJMSReplyTo).
+ * <p>此实现会在 JMS API 消息头（例如 JMSReplyTo）与
+ * {@link org.springframework.messaging.Message Messages} 之间进行双向复制。
+ * 任何用户定义的属性也会从 JMS Message 复制到 Message，而 Message 上的
+ * 其他消息头（JMS API 消息头之外的部分）同样会被复制到 JMS Message。
+ * 这些其他消息头会被复制到 JMS Message 的通用属性中，而 JMS API 消息头
+ * 则会被传递给相应的 setter 方法（例如 setJMSReplyTo）。
  *
- * <p>Constants for the JMS API headers are defined in {@link JmsHeaders}.
- * Note that most of the JMS headers are read-only: the JMSDestination,
- * JMSDeliveryMode, JMSExpiration, JMSMessageID, JMSPriority, JMSRedelivered
- * and JMSTimestamp flags are only copied <em>from</em> a JMS Message. Those
- * values will <em>not</em> be passed along from a Message to an outbound
- * JMS Message.
+ * <p>JMS API 消息头的常量定义在 {@link JmsHeaders} 中。
+ * 请注意，大多数 JMS 消息头都是只读的：JMSDestination、
+ * JMSDeliveryMode、JMSExpiration、JMSMessageID、JMSPriority、JMSRedelivered
+ * 和 JMSTimestamp 标志只会<em>从</em> JMS Message 复制出来。这些值
+ * <em>不会</em>从 Message 传递到出站 JMS Message。
  *
  * @author Mark Fisher
  * @author Gary Russell
@@ -232,8 +230,8 @@ public class SimpleJmsHeaderMapper extends AbstractHeaderMapper<Message> impleme
 	}
 
 	/**
-	 * Add the outbound prefix if necessary.
-	 * <p>Convert {@link MessageHeaders#CONTENT_TYPE} to {@code content_type} for JMS compliance.
+	 * 如有必要，添加出站前缀。
+	 * <p>为符合 JMS 规范，将 {@link MessageHeaders#CONTENT_TYPE} 转换为 {@code content_type}。
 	 * @see #CONTENT_TYPE_PROPERTY
 	 */
 	@Override
@@ -245,8 +243,8 @@ public class SimpleJmsHeaderMapper extends AbstractHeaderMapper<Message> impleme
 	}
 
 	/**
-	 * Add the inbound prefix if necessary.
-	 * <p>Convert the JMS-compliant {@code content_type} to {@link MessageHeaders#CONTENT_TYPE}.
+	 * 如有必要，添加入站前缀。
+	 * <p>将符合 JMS 规范的 {@code content_type} 转换为 {@link MessageHeaders#CONTENT_TYPE}。
 	 * @see #CONTENT_TYPE_PROPERTY
 	 */
 	@Override

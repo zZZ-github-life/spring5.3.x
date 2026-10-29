@@ -19,9 +19,8 @@ package org.springframework.web.util.pattern;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * A separator path element. In the pattern '/foo/bar' the two occurrences
- * of '/' will be represented by a SeparatorPathElement (if the default
- * separator of '/' is being used).
+ * 分隔符路径元素。在模式 '/foo/bar' 中，两处 '/'
+ * 将由 SeparatorPathElement 表示（如果使用的是默认分隔符 '/'）。
  *
  * @author Andy Clement
  * @since 5.0
@@ -34,8 +33,8 @@ class SeparatorPathElement extends PathElement {
 
 
 	/**
-	 * Matching a separator is easy, basically the character at candidateIndex
-	 * must be the separator.
+	 * 匹配分隔符很简单，基本上就是 candidateIndex 处的字符
+	 * 必须是分隔符。
 	 */
 	@Override
 	public boolean matches(int pathIndex, MatchingContext matchingContext) {

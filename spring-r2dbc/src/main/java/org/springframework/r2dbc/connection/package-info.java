@@ -1,7 +1,6 @@
 /**
- * Provides a utility class for easy ConnectionFactory access,
- * a ReactiveTransactionManager for a single ConnectionFactory,
- * and various simple ConnectionFactory implementations.
+ * 提供一个便于访问 ConnectionFactory 的工具类、一个用于单个 ConnectionFactory 的
+ * ReactiveTransactionManager，以及各种简单的 ConnectionFactory 实现。
  */
 @NonNullApi
 @NonNullFields

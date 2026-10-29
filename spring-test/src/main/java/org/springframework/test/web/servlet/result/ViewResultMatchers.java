@@ -26,26 +26,24 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.fail;
 
 /**
- * Factory for assertions on the selected view.
+ * 对所选择视图的断言的工厂。
  *
- * <p>An instance of this class is typically accessed via
- * {@link MockMvcResultMatchers#view}.
- *
+ * <p>此类的实例通常通过 {@link MockMvcResultMatchers#view} 访问。
  * @author Rossen Stoyanchev
  * @since 3.2
  */
 public class ViewResultMatchers {
 
 	/**
-	 * Protected constructor.
-	 * Use {@link MockMvcResultMatchers#view()}.
+	 * 受保护的构造函数。
+	 * 请使用 {@link MockMvcResultMatchers#view()}。
 	 */
 	protected ViewResultMatchers() {
 	}
 
 
 	/**
-	 * Assert the selected view name with the given Hamcrest {@link Matcher}.
+	 * 使用给定的 Hamcrest {@link Matcher} 断言所选视图名称。
 	 */
 	public ResultMatcher name(Matcher<? super String> matcher) {
 		return result -> {
@@ -58,7 +56,7 @@ public class ViewResultMatchers {
 	}
 
 	/**
-	 * Assert the selected view name.
+	 * 断言所选视图名称。
 	 */
 	public ResultMatcher name(String expectedViewName) {
 		return result -> {

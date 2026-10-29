@@ -22,8 +22,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Contains the result from parsing a "user" destination from a source message
- * and translating it to target destinations (one per active user session).
+ * 包含从源消息中解析“用户”目标并将其转换为目标目标
+ * （每个活跃用户会话对应一个）的结果。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.2
@@ -56,9 +56,9 @@ public class UserDestinationResult {
 
 
 	/**
-	 * The "user" destination from the source message. This may look like
-	 * "/user/queue/position-updates" when subscribing or
-	 * "/user/{username}/queue/position-updates" when sending a message.
+	 * 源消息中的“用户”目标。订阅时可能类似于
+	 * "/user/queue/position-updates"，发送消息时可能类似于
+	 * "/user/{username}/queue/position-updates"。
 	 * @return the "user" destination, never {@code null}.
 	 */
 	public String getSourceDestination() {
@@ -66,8 +66,8 @@ public class UserDestinationResult {
 	}
 
 	/**
-	 * The target destinations that the source destination was translated to,
-	 * one per active user session, e.g. "/queue/position-updates-useri9oqdfzo".
+	 * 源目标转换后的目标目标，每个活跃用户会话对应一个，
+	 * 例如 "/queue/position-updates-useri9oqdfzo"。
 	 * @return the target destinations, never {@code null} but possibly an empty
 	 * set if there are no active sessions for the user.
 	 */
@@ -76,8 +76,7 @@ public class UserDestinationResult {
 	}
 
 	/**
-	 * The user destination in the form expected when a client subscribes, e.g.
-	 * "/user/queue/position-updates".
+	 * 客户端订阅时预期形式的用户目标，例如 "/user/queue/position-updates"。
 	 * @return the subscribe form of the "user" destination, never {@code null}.
 	 */
 	public String getSubscribeDestination() {
@@ -85,7 +84,7 @@ public class UserDestinationResult {
 	}
 
 	/**
-	 * The user for this user destination.
+	 * 此用户目标对应的用户。
 	 * @return the user name or {@code null} if we have a session id only such as
 	 * when the user is not authenticated; in such cases it is possible to use
 	 * sessionId in place of a user name thus removing the need for a user-to-session

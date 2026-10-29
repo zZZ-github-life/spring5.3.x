@@ -24,7 +24,7 @@ import javax.cache.annotation.CacheKeyInvocationContext;
 import org.springframework.lang.Nullable;
 
 /**
- * The default {@link CacheKeyInvocationContext} implementation.
+ * 默认的 {@link CacheKeyInvocationContext} 实现。
  *
  * @author Stephane Nicoll
  * @since 4.1

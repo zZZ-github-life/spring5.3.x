@@ -19,8 +19,9 @@ package org.springframework.web.socket.config.annotation;
 import org.springframework.web.socket.WebSocketHandler;
 
 /**
- * Defines callback methods to configure the WebSocket request handling
- * via {@link org.springframework.web.socket.config.annotation.EnableWebSocket @EnableWebSocket}.
+ * 定义回调方法，用于通过
+ * {@link org.springframework.web.socket.config.annotation.EnableWebSocket @EnableWebSocket}
+ * 配置 WebSocket 请求处理。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -28,7 +29,7 @@ import org.springframework.web.socket.WebSocketHandler;
 public interface WebSocketConfigurer {
 
 	/**
-	 * Register {@link WebSocketHandler WebSocketHandlers} including SockJS fallback options if desired.
+	 * 注册 {@link WebSocketHandler WebSocketHandler}，如果需要还包括 SockJS 回退选项。
 	 */
 	void registerWebSocketHandlers(WebSocketHandlerRegistry registry);
 

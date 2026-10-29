@@ -22,12 +22,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * Event raised when a new WebSocket client using a Simple Messaging Protocol
- * (e.g. STOMP) as the WebSocket sub-protocol issues a connect request.
+ * 当使用简单消息传递协议（例如 STOMP）作为 WebSocket 子协议的新 WebSocket
+ * 客户端发出连接请求时引发的事件。
  *
- * <p>Note that this is not the same as the WebSocket session getting established
- * but rather the client's first attempt to connect within the sub-protocol,
- * for example sending the STOMP CONNECT frame.
+ * <p>请注意，这与 WebSocket 会话建立不同，而是客户端在子协议内
+ * 首次尝试连接，例如发送 STOMP CONNECT 帧。
  *
  * @author Rossen Stoyanchev
  * @since 4.0.3
@@ -36,7 +35,7 @@ import org.springframework.messaging.Message;
 public class SessionConnectEvent extends AbstractSubProtocolEvent {
 
 	/**
-	 * Create a new SessionConnectEvent.
+	 * 创建一个新的 SessionConnectEvent。
 	 * @param source the component that published the event (never {@code null})
 	 * @param message the connect message
 	 */

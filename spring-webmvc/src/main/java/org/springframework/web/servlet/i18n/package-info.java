@@ -1,7 +1,5 @@
 /**
- * Locale support classes for Spring's web MVC framework.
- * Provides standard LocaleResolver implementations,
- * and a HandlerInterceptor for locale changes.
+ * Spring Web MVC 框架的区域设置支持类。提供标准的 LocaleResolver 实现，以及用于区域设置更改的 HandlerInterceptor。
  */
 @NonNullApi
 @NonNullFields

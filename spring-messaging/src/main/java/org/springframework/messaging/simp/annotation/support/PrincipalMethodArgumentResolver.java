@@ -25,7 +25,7 @@ import org.springframework.messaging.handler.invocation.HandlerMethodArgumentRes
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 
 /**
- * Resolver for arguments of type {@link Principal}, including {@code Optional<Principal>}.
+ * {@link Principal} 类型参数（包括 {@code Optional<Principal>}）的解析器。
  *
  * @author Rossen Stoyanchev
  * @since 4.0

@@ -33,10 +33,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * A {@link org.springframework.web.servlet.resource.ResourceResolver} that
- * resolves resources from a {@link org.springframework.cache.Cache} or otherwise
- * delegates to the resolver chain and saves the result in the cache.
- *
+ * {@link org.springframework.web.servlet.resource.ResourceResolver}，它
+ * 从 {@link org.springframework.cache.Cache} 解析资源，或者
+ * 委托给解析器链并将结果保存到缓存中。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 4.1
@@ -44,12 +43,12 @@ import org.springframework.util.StringUtils;
 public class CachingResourceResolver extends AbstractResourceResolver {
 
 	/**
-	 * The prefix used for resolved resource cache keys.
+	 * 用于已解析资源缓存键的前缀。
 	 */
 	public static final String RESOLVED_RESOURCE_CACHE_KEY_PREFIX = "resolvedResource:";
 
 	/**
-	 * The prefix used for resolved URL path cache keys.
+	 * 用于已解析 URL 路径缓存键的前缀。
 	 */
 	public static final String RESOLVED_URL_PATH_CACHE_KEY_PREFIX = "resolvedUrlPath:";
 
@@ -74,19 +73,19 @@ public class CachingResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * Return the configured {@code Cache}.
+	 * 返回已配置的 {@code Cache}。
 	 */
 	public Cache getCache() {
 		return this.cache;
 	}
 
 	/**
-	 * Configure the supported content codings from the
-	 * {@literal "Accept-Encoding"} header for which to cache resource variations.
-	 * <p>The codings configured here are generally expected to match those
-	 * configured on {@link EncodedResourceResolver#setContentCodings(List)}.
-	 * <p>By default this property is set to {@literal ["br", "gzip"]} based on
-	 * the value of {@link EncodedResourceResolver#DEFAULT_CODINGS}.
+	 * 配置要为其缓存资源变体的、来自
+	 * {@literal "Accept-Encoding"} 头中受支持的内容编码。
+	 * <p>此处配置的编码通常应与
+	 * {@link EncodedResourceResolver#setContentCodings(List)} 上配置的编码一致。
+	 * <p>默认情况下，此属性基于
+	 * {@link EncodedResourceResolver#DEFAULT_CODINGS} 的值设置为 {@literal ["br", "gzip"]}。
 	 * @param codings one or more supported content codings
 	 * @since 5.1
 	 */
@@ -97,7 +96,7 @@ public class CachingResourceResolver extends AbstractResourceResolver {
 	}
 
 	/**
-	 * Return a read-only list with the supported content codings.
+	 * 返回包含受支持内容编码的只读列表。
 	 * @since 5.1
 	 */
 	public List<String> getContentCodings() {

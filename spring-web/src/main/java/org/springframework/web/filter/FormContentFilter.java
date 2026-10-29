@@ -47,9 +47,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 
 /**
- * {@code Filter} that parses form data for HTTP PUT, PATCH, and DELETE requests
- * and exposes it as Servlet request parameters. By default the Servlet spec
- * only requires this for HTTP POST.
+ * {@code Filter}，用于解析 HTTP PUT、PATCH 和 DELETE 请求的表单数据，
+ * 并将其作为 Servlet 请求参数暴露。默认情况下，Servlet 规范只要求对
+ * HTTP POST 请求提供此功能。
  *
  * @author Rossen Stoyanchev
  * @since 5.1
@@ -62,8 +62,8 @@ public class FormContentFilter extends OncePerRequestFilter {
 
 
 	/**
-	 * Set the converter to use for parsing form content.
-	 * <p>By default this is an instance of {@link AllEncompassingFormHttpMessageConverter}.
+	 * 设置用于解析表单内容的转换器。
+	 * <p>默认情况下这是一个 {@link AllEncompassingFormHttpMessageConverter} 实例。
 	 */
 	public void setFormConverter(FormHttpMessageConverter converter) {
 		Assert.notNull(converter, "FormHttpMessageConverter is required");
@@ -71,9 +71,9 @@ public class FormContentFilter extends OncePerRequestFilter {
 	}
 
 	/**
-	 * The default character set to use for reading form data.
-	 * This is a shortcut for:<br>
-	 * {@code getFormConverter.setCharset(charset)}.
+	 * 用于读取表单数据的默认字符集。
+	 * 这是以下调用的快捷方式：<br>
+	 * {@code getFormConverter.setCharset(charset)}。
 	 */
 	public void setCharset(Charset charset) {
 		this.formConverter.setCharset(charset);

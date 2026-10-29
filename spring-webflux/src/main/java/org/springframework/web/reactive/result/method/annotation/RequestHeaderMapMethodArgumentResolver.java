@@ -29,14 +29,9 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves {@link Map} method arguments annotated with {@code @RequestHeader}.
- * For individual header values annotated with {@code @RequestHeader} see
- * {@link RequestHeaderMethodArgumentResolver} instead.
+ * 解析带有 {@code @RequestHeader} 注解的 {@link Map} 方法参数。对于带有 {@code @RequestHeader} 注解的单个头值，请改为参见 {@link RequestHeaderMethodArgumentResolver}。
  *
- * <p>The created {@link Map} contains all request header name/value pairs.
- * The method parameter type may be a {@link MultiValueMap} to receive all
- * values for a header, not only the first one.
- *
+ * <p>创建的 {@link Map} 包含所有请求头名称-值对。方法参数类型可以是 {@link MultiValueMap}，以接收某个头的所有值，而不仅仅是第一个值。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see RequestHeaderMethodArgumentResolver

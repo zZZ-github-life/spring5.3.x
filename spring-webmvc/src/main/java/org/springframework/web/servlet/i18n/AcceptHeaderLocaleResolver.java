@@ -29,13 +29,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 
 /**
- * {@link LocaleResolver} implementation that simply uses the primary locale
- * specified in the {@code Accept-Language} header of the HTTP request (that is,
- * the locale sent by the client browser, normally that of the client's OS).
- *
- * <p>Note: Does not support {@link #setLocale} since the {@code Accept-Language}
- * header can only be changed by changing the client's locale settings.
- *
+ * 简单地使用 HTTP 请求 {@code Accept-Language} 头中指定的首选区域设置的 {@link LocaleResolver} 实现（即客户端浏览器发送的区域设置，通常是客户端操作系统的区域设置）。<p>注意：不支持 {@link #setLocale}，因为 {@code Accept-Language} 头只能通过更改客户端的区域设置来更改。
  * @author Juergen Hoeller
  * @author Rossen Stoyanchev
  * @since 27.02.2003
@@ -50,9 +44,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 
 
 	/**
-	 * Configure supported locales to check against the requested locales
-	 * determined via {@link HttpServletRequest#getLocales()}. If this is not
-	 * configured then {@link HttpServletRequest#getLocale()} is used instead.
+	 * 配置受支持的区域设置，用于与通过 {@link HttpServletRequest#getLocales()} 确定的请求区域设置进行对照检查。如果未配置，则改用 {@link HttpServletRequest#getLocale()}。
 	 * @param locales the supported locales
 	 * @since 4.3
 	 */
@@ -62,7 +54,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 	}
 
 	/**
-	 * Get the configured list of supported locales.
+	 * 获取已配置的受支持区域设置列表。
 	 * @since 4.3
 	 */
 	public List<Locale> getSupportedLocales() {
@@ -70,11 +62,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 	}
 
 	/**
-	 * Configure a fixed default locale to fall back on if the request does not
-	 * have an "Accept-Language" header.
-	 * <p>By default this is not set in which case when there is no "Accept-Language"
-	 * header, the default locale for the server is used as defined in
-	 * {@link HttpServletRequest#getLocale()}.
+	 * 配置一个固定的默认区域设置，当请求没有 "Accept-Language" 头时回退使用。<p>默认情况下不设置；此时如果没有 "Accept-Language" 头，则使用服务器默认区域设置，如 {@link HttpServletRequest#getLocale()} 所定义。
 	 * @param defaultLocale the default locale to use
 	 * @since 4.3
 	 */
@@ -83,8 +71,7 @@ public class AcceptHeaderLocaleResolver implements LocaleResolver {
 	}
 
 	/**
-	 * The configured default locale, if any.
-	 * <p>This method may be overridden in subclasses.
+	 * 已配置的默认区域设置（如果有）。<p>此方法可在子类中重写。
 	 * @since 4.3
 	 */
 	@Nullable

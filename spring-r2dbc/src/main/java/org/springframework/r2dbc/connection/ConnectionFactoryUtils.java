@@ -48,11 +48,10 @@ import org.springframework.transaction.reactive.TransactionSynchronizationManage
 import org.springframework.util.Assert;
 
 /**
- * Helper class that provides static methods for obtaining R2DBC Connections from
- * a {@link ConnectionFactory}.
+ * 辅助类，提供从 {@link ConnectionFactory} 获取 R2DBC Connection 的静态方法。
  *
- * <p>Used internally by Spring's {@code DatabaseClient}, Spring's R2DBC operation
- * objects. Can also be used directly in application code.
+ * <p>供 Spring 的 {@code DatabaseClient} 以及 Spring 的 R2DBC 操作对象内部使用。
+ * 也可以直接在应用程序代码中使用。
  *
  * @author Mark Paluch
  * @author Christoph Strobl
@@ -63,19 +62,18 @@ import org.springframework.util.Assert;
 public abstract class ConnectionFactoryUtils {
 
 	/**
-	 * Order value for ReactiveTransactionSynchronization objects that clean up R2DBC Connections.
+	 * 用于清理 R2DBC Connection 的 ReactiveTransactionSynchronization 对象的顺序值。
 	 */
 	public static final int CONNECTION_SYNCHRONIZATION_ORDER = 1000;
 
 
 	/**
-	 * Obtain a {@link Connection} from the given {@link ConnectionFactory}.
-	 * Translates exceptions into the Spring hierarchy of unchecked generic
-	 * data access exceptions, simplifying calling code and making any
-	 * exception that is thrown more meaningful.
-	 * <p>Is aware of a corresponding Connection bound to the current
-	 * {@link TransactionSynchronizationManager}. Will bind a Connection to the
-	 * {@link TransactionSynchronizationManager} if transaction synchronization is active.
+	 * 从给定的 {@link ConnectionFactory} 获取一个 {@link Connection}。
+	 * 将异常转换为 Spring 的非受检通用数据访问异常层次结构，
+	 * 从而简化调用代码并使抛出的任何异常更具意义。
+	 * <p>能够识别绑定到当前 {@link TransactionSynchronizationManager} 的相应 Connection。
+	 * 如果事务同步处于活动状态，会将 Connection 绑定到
+	 * {@link TransactionSynchronizationManager}。
 	 * @param connectionFactory the {@link ConnectionFactory} to obtain
 	 * {@link Connection Connections} from
 	 * @return a R2DBC Connection from the given {@link ConnectionFactory}
@@ -89,11 +87,11 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Actually obtain a R2DBC Connection from the given {@link ConnectionFactory}.
-	 * Same as {@link #getConnection}, but preserving the original exceptions.
-	 * <p>Is aware of a corresponding Connection bound to the current
-	 * {@link TransactionSynchronizationManager}. Will bind a Connection to the
-	 * {@link TransactionSynchronizationManager} if transaction synchronization is active
+	 * 实际从给定的 {@link ConnectionFactory} 获取 R2DBC Connection。
+	 * 与 {@link #getConnection} 相同，但保留原始异常。
+	 * <p>能够识别绑定到当前 {@link TransactionSynchronizationManager} 的相应 Connection。
+	 * 如果事务同步处于活动状态，会将 Connection 绑定到
+	 * {@link TransactionSynchronizationManager}
 	 * @param connectionFactory the {@link ConnectionFactory} to obtain Connections from
 	 * @return a R2DBC {@link Connection} from the given {@link ConnectionFactory}.
 	 */
@@ -138,7 +136,7 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Actually fetch a {@link Connection} from the given {@link ConnectionFactory}.
+	 * 实际从给定的 {@link ConnectionFactory} 获取一个 {@link Connection}。
 	 * @param connectionFactory the {@link ConnectionFactory} to obtain
 	 * {@link Connection}s from
 	 * @return a R2DBC {@link Connection} from the given {@link ConnectionFactory}
@@ -151,8 +149,8 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Close the given {@link Connection}, obtained from the given {@link ConnectionFactory}, if
-	 * it is not managed externally (that is, not bound to the subscription).
+	 * 关闭从给定 {@link ConnectionFactory} 获取的 {@link Connection}，
+	 * 前提是它不由外部管理（即未绑定到当前订阅）。
 	 * @param con the {@link Connection} to close if necessary
 	 * @param connectionFactory the {@link ConnectionFactory} that the Connection was obtained from
 	 * @see #getConnection
@@ -163,9 +161,8 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Actually close the given {@link Connection}, obtained from the given
-	 * {@link ConnectionFactory}. Same as {@link #releaseConnection},
-	 * but preserving the original exception.
+	 * 实际关闭从给定 {@link ConnectionFactory} 获取的 {@link Connection}。
+	 * 与 {@link #releaseConnection} 相同，但保留原始异常。
 	 * @param connection the {@link Connection} to close if necessary
 	 * @param connectionFactory the {@link ConnectionFactory} that the Connection was obtained from
 	 * @see #doGetConnection
@@ -183,7 +180,7 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Obtain the {@link ConnectionFactory} from the current {@link TransactionSynchronizationManager}.
+	 * 从当前 {@link TransactionSynchronizationManager} 获取 {@link ConnectionFactory}。
 	 * @param connectionFactory the {@link ConnectionFactory} that the Connection was obtained from
 	 * @see TransactionSynchronizationManager
 	 */
@@ -197,13 +194,12 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Translate the given {@link R2dbcException} into a generic {@link DataAccessException}.
-	 * <p>The returned DataAccessException is supposed to contain the original
-	 * {@link R2dbcException} as root cause. However, client code may not generally
-	 * rely on this due to DataAccessExceptions possibly being caused by other resource
-	 * APIs as well. That said, a {@code getRootCause() instanceof R2dbcException}
-	 * check (and subsequent cast) is considered reliable when expecting R2DBC-based
-	 * access to have happened.
+	 * 将给定的 {@link R2dbcException} 转换为通用的 {@link DataAccessException}。
+	 * <p>返回的 DataAccessException 应当以原始 {@link R2dbcException} 作为根本原因。
+	 * 不过，由于 DataAccessException 也可能由其他资源 API 引起，
+	 * 客户端代码通常不应依赖这一点。话虽如此，在期望发生基于 R2DBC 的访问时，
+	 * {@code getRootCause() instanceof R2dbcException} 检查（以及随后的类型转换）
+	 * 被认为是可靠的。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL query or update that caused the problem (if known)
 	 * @param ex the offending {@link R2dbcException}
@@ -239,9 +235,9 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Build a message {@code String} for the given {@link R2dbcException}.
-	 * <p>To be called by translator subclasses when creating an instance of a generic
-	 * {@link org.springframework.dao.DataAccessException} class.
+	 * 为给定的 {@link R2dbcException} 构建消息 {@code String}。
+	 * <p>由转换器子类在创建通用 {@link org.springframework.dao.DataAccessException}
+	 * 类的实例时调用。
 	 * @param task readable text describing the task being attempted
 	 * @param sql the SQL statement that caused the problem
 	 * @param ex the offending {@code R2dbcException}
@@ -252,9 +248,9 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Determine whether the given two {@link Connection}s are equal, asking the target
-	 * {@link Connection} in case of a proxy. Used to detect equality even if the user
-	 * passed in a raw target Connection while the held one is a proxy.
+	 * 判断给定的两个 {@link Connection} 是否相等；如果遇到代理，则询问目标
+	 * {@link Connection}。用于在用户传入的是原始目标 Connection 而持有的是代理时，
+	 * 仍能检测到相等性。
 	 * @param conHolder the {@link ConnectionHolder} for the held {@link Connection} (potentially a proxy)
 	 * @param passedInCon the {@link Connection} passed-in by the user (potentially
 	 * a target {@link Connection} without proxy).
@@ -272,10 +268,9 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Return the innermost target {@link Connection} of the given {@link Connection}.
-	 * If the given {@link Connection} is wrapped, it will be unwrapped until a
-	 * plain {@link Connection} is found. Otherwise, the passed-in Connection
-	 * will be returned as-is.
+	 * 返回给定 {@link Connection} 最内层的目标 {@link Connection}。
+	 * 如果给定的 {@link Connection} 被包装，则会逐层解包，直到找到普通的
+	 * {@link Connection} 为止。否则，将按原样返回传入的 Connection。
 	 * @param con the {@link Connection} wrapper to unwrap
 	 * @return the innermost target Connection, or the passed-in one if not wrapped
 	 * @see Wrapped#unwrap()
@@ -290,9 +285,9 @@ public abstract class ConnectionFactoryUtils {
 	}
 
 	/**
-	 * Determine the connection synchronization order to use for the given {@link ConnectionFactory}.
-	 * Decreased for every level of nesting that a {@link ConnectionFactory} has,
-	 * checked through the level of {@link DelegatingConnectionFactory} nesting.
+	 * 确定用于给定 {@link ConnectionFactory} 的连接同步顺序。
+	 * {@link ConnectionFactory} 每嵌套一层（通过 {@link DelegatingConnectionFactory}
+	 * 的嵌套层级检查），顺序值就递减一次。
 	 * @param connectionFactory the {@link ConnectionFactory} to check
 	 * @return the connection synchronization order to use
 	 * @see #CONNECTION_SYNCHRONIZATION_ORDER
@@ -309,7 +304,7 @@ public abstract class ConnectionFactoryUtils {
 
 
 	/**
-	 * Callback for resource cleanup at the end of a non-native R2DBC transaction.
+	 * 用于在非原生 R2DBC 事务结束时清理资源的回调。
 	 */
 	private static class ConnectionSynchronization implements TransactionSynchronization, Ordered {
 

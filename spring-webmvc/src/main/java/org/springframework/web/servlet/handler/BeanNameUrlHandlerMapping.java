@@ -22,26 +22,26 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 /**
- * Implementation of the {@link org.springframework.web.servlet.HandlerMapping}
- * interface that maps from URLs to beans with names that start with a slash ("/"),
- * similar to how Struts maps URLs to action names.
+ * {@link org.springframework.web.servlet.HandlerMapping} 接口的实现，
+ * 将 URL 映射到名称以斜杠（"/"）开头的 bean，
+ * 类似于 Struts 将 URL 映射到 action 名称的方式。
  *
- * <p>This is the default implementation used by the
- * {@link org.springframework.web.servlet.DispatcherServlet}, along with
- * {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping}.
- * Alternatively, {@link SimpleUrlHandlerMapping} allows for customizing a
- * handler mapping declaratively.
+ * <p>这是
+ * {@link org.springframework.web.servlet.DispatcherServlet} 默认使用的实现，
+ * 与 {@link org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping} 一起使用。
+ * 或者，{@link SimpleUrlHandlerMapping} 允许以声明方式自定义
+ * 处理器映射。
  *
- * <p>The mapping is from URL to bean name. Thus an incoming URL "/foo" would map
- * to a handler named "/foo", or to "/foo /foo2" in case of multiple mappings to
- * a single handler.
+ * <p>映射关系是从 URL 到 bean 名称。因此，传入的 URL "/foo" 会映射
+ * 到名为 "/foo" 的处理器，或者在多个映射指向单个处理器的情况下
+ * 映射到 "/foo /foo2"。
  *
- * <p>Supports direct matches (given "/test" -&gt; registered "/test") and "*"
- * matches (given "/test" -&gt; registered "/t*"). Note that the default is
- * to map within the current servlet mapping if applicable; see the
- * {@link #setAlwaysUseFullPath "alwaysUseFullPath"} property for details.
- * For details on the pattern options, see the
- * {@link org.springframework.util.AntPathMatcher} javadoc.
+ * <p>支持直接匹配（给定 "/test" -&gt; 已注册的 "/test"）和 "*"
+ * 匹配（给定 "/test" -&gt; 已注册的 "/t*"）。请注意，默认情况下，
+ * 会在当前 Servlet 映射内进行映射（如果适用）；
+ * 详情请参阅 {@link #setAlwaysUseFullPath "alwaysUseFullPath"} 属性。
+ * 有关模式选项的详情，请参阅
+ * {@link org.springframework.util.AntPathMatcher} 的 javadoc。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -50,7 +50,7 @@ import org.springframework.util.StringUtils;
 public class BeanNameUrlHandlerMapping extends AbstractDetectingUrlHandlerMapping {
 
 	/**
-	 * Checks name and aliases of the given bean for URLs, starting with "/".
+	 * 检查给定 bean 的名称和别名中是否有以 "/" 开头的 URL。
 	 */
 	@Override
 	protected String[] determineUrlsForHandler(String beanName) {

@@ -21,7 +21,7 @@ import org.springframework.expression.TypedValue;
 import org.springframework.expression.spel.CodeFlow;
 
 /**
- * Expression language AST node that represents null.
+ * 表示 null 的表达式语言 AST 节点。
  *
  * @author Andy Clement
  * @since 3.0

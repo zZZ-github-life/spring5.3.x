@@ -35,11 +35,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Factory to manage Jetty resources, i.e. {@link Executor}, {@link ByteBufferPool} and
- * {@link Scheduler}, within the lifecycle of a Spring {@code ApplicationContext}.
+ * 用于在 Spring {@code ApplicationContext} 生命周期内管理 Jetty 资源（即
+ * {@link Executor}、{@link ByteBufferPool} 和 {@link Scheduler}）的工厂。
  *
- * <p>This factory implements {@link InitializingBean} and {@link DisposableBean}
- * and is expected typically to be declared as a Spring-managed bean.
+ * <p>此工厂实现 {@link InitializingBean} 和 {@link DisposableBean}，
+ * 通常应声明为 Spring 管理的 bean。
  *
  * @author Sebastien Deleuze
  * @since 5.1
@@ -59,8 +59,8 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 
 
 	/**
-	 * Configure the {@link Executor} to use.
-	 * <p>By default, initialized with a {@link QueuedThreadPool}.
+	 * 配置要使用的 {@link Executor}。
+	 * <p>默认使用 {@link QueuedThreadPool} 初始化。
 	 * @param executor the executor to use
 	 */
 	public void setExecutor(@Nullable Executor executor) {
@@ -68,8 +68,8 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	}
 
 	/**
-	 * Configure the {@link ByteBufferPool} to use.
-	 * <p>By default, initialized with a {@link MappedByteBufferPool}.
+	 * 配置要使用的 {@link ByteBufferPool}。
+	 * <p>默认使用 {@link MappedByteBufferPool} 初始化。
 	 * @param byteBufferPool the {@link ByteBuffer} pool to use
 	 */
 	public void setByteBufferPool(@Nullable ByteBufferPool byteBufferPool) {
@@ -77,8 +77,8 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	}
 
 	/**
-	 * Configure the {@link Scheduler} to use.
-	 * <p>By default, initialized with a {@link ScheduledExecutorScheduler}.
+	 * 配置要使用的 {@link Scheduler}。
+	 * <p>默认使用 {@link ScheduledExecutorScheduler} 初始化。
 	 * @param scheduler the {@link Scheduler} to use
 	 */
 	public void setScheduler(@Nullable Scheduler scheduler) {
@@ -86,10 +86,10 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	}
 
 	/**
-	 * Configure the thread prefix to initialize {@link QueuedThreadPool} executor with. This
-	 * is used only when a {@link Executor} instance isn't
-	 * {@link #setExecutor(Executor) provided}.
-	 * <p>By default set to "jetty-http".
+	 * 配置用于初始化 {@link QueuedThreadPool} 执行器的线程前缀。
+	 * 仅当未{@link #setExecutor(Executor) 提供} {@link Executor} 实例时
+	 * 使用此项。
+	 * <p>默认设置为 "jetty-http"。
 	 * @param threadPrefix the thread prefix to use
 	 */
 	public void setThreadPrefix(String threadPrefix) {
@@ -98,7 +98,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	}
 
 	/**
-	 * Return the configured {@link Executor}.
+	 * 返回已配置的 {@link Executor}。
 	 */
 	@Nullable
 	public Executor getExecutor() {
@@ -106,7 +106,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	}
 
 	/**
-	 * Return the configured {@link ByteBufferPool}.
+	 * 返回已配置的 {@link ByteBufferPool}。
 	 */
 	@Nullable
 	public ByteBufferPool getByteBufferPool() {
@@ -114,7 +114,7 @@ public class JettyResourceFactory implements InitializingBean, DisposableBean {
 	}
 
 	/**
-	 * Return the configured {@link Scheduler}.
+	 * 返回已配置的 {@link Scheduler}。
 	 */
 	@Nullable
 	public Scheduler getScheduler() {

@@ -38,14 +38,9 @@ import org.springframework.web.reactive.result.method.SyncHandlerMethodArgumentR
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Resolves arguments of type {@link Map} annotated with {@link MatrixVariable @MatrixVariable}
- * where the annotation does not specify a name. In other words the purpose of this resolver
- * is to provide access to multiple matrix variables, either all or associated with a specific
- * path variable.
+ * 解析带有 {@link MatrixVariable @MatrixVariable} 注解且注解未指定名称的 {@link Map} 类型参数。换句话说，此解析器的目的是提供对多个矩阵变量的访问，可以是全部矩阵变量，也可以是与特定路径变量关联的矩阵变量。
  *
- * <p>When a name is specified, an argument of type Map is considered to be a single attribute
- * with a Map value, and is resolved by {@link MatrixVariableMethodArgumentResolver} instead.
- *
+ * <p>当指定名称时，Map 类型参数会被视为具有 Map 值的单个属性，改由 {@link MatrixVariableMethodArgumentResolver} 解析。
  * @author Rossen Stoyanchev
  * @since 5.0.1
  * @see MatrixVariableMethodArgumentResolver

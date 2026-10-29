@@ -20,13 +20,12 @@ import javax.resource.spi.ActivationSpec;
 import javax.resource.spi.ResourceAdapter;
 
 /**
- * Strategy interface for creating JCA 1.5 ActivationSpec objects
- * based on a configured {@link JmsActivationSpecConfig} object.
+ * 策略接口，用于基于已配置的 {@link JmsActivationSpecConfig} 对象
+ * 创建 JCA 1.5 ActivationSpec 对象。
  *
- * <p>JCA 1.5 ActivationSpec objects are typically JavaBeans, but
- * unfortunately provider-specific. This strategy interface allows
- * for plugging in any JCA-based JMS provider, creating corresponding
- * ActivationSpec objects based on common JMS configuration settings.
+ * <p>JCA 1.5 ActivationSpec 对象通常是 JavaBean，但遗憾的是
+ * 它们特定于提供者。此策略接口允许接入任何基于 JCA 的 JMS 提供者，
+ * 基于通用 JMS 配置设置创建相应的 ActivationSpec 对象。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -37,8 +36,8 @@ import javax.resource.spi.ResourceAdapter;
 public interface JmsActivationSpecFactory {
 
 	/**
-	 * Create a JCA 1.5 ActivationSpec object based on the given
-	 * {@link JmsActivationSpecConfig} object.
+	 * 基于给定的 {@link JmsActivationSpecConfig} 对象创建
+	 * JCA 1.5 ActivationSpec 对象。
 	 * @param adapter the ResourceAdapter to create an ActivationSpec object for
 	 * @param config the configured object holding common JMS settings
 	 * @return the provider-specific JCA ActivationSpec object,

@@ -34,19 +34,11 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.util.pattern.PathPattern;
 
 /**
- * Abstract base class for URL-mapped
- * {@link org.springframework.web.reactive.HandlerMapping} implementations.
+ * URL 映射的 {@link org.springframework.web.reactive.HandlerMapping} 实现的抽象基类。
  *
- * <p>Supports direct matches, e.g. a registered "/test" matches "/test", and
- * various path pattern matches, e.g. a registered "/t*" pattern matches
- * both "/test" and "/team", "/test/*" matches all paths under "/test",
- * "/test/**" matches all paths below "/test". For details, see the
- * {@link org.springframework.web.util.pattern.PathPattern} javadoc.
+ * <p>支持直接匹配（例如注册的 "/test" 匹配 "/test"）以及各种路径模式匹配（例如注册的 "/t*" 模式同时匹配 "/test" 和 "/team"，"/test/*" 匹配 "/test" 下的所有路径，"/test/**" 匹配 "/test" 下的所有路径）。详情请参见 {@link org.springframework.web.util.pattern.PathPattern} 的 javadoc。
  *
- * <p>Will search all path patterns to find the most specific match for the
- * current request path. The most specific pattern is defined as the longest
- * path pattern with the fewest captured variables and wildcards.
- *
+ * <p>将搜索所有路径模式，以找到当前请求路径的最具体匹配。最具体的模式定义为捕获变量和通配符最少的最长路径模式。
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller
  * @author Brian Clozel
@@ -63,35 +55,22 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 
 
 	/**
-	 * Set whether to lazily initialize handlers. Only applicable to
-	 * singleton handlers, as prototypes are always lazily initialized.
-	 * Default is "false", as eager initialization allows for more efficiency
-	 * through referencing the controller objects directly.
-	 * <p>If you want to allow your controllers to be lazily initialized,
-	 * make them "lazy-init" and set this flag to true. Just making them
-	 * "lazy-init" will not work, as they are initialized through the
-	 * references from the handler mapping in this case.
+	 * 设置是否延迟初始化处理器。仅适用于单例处理器，因为原型始终是延迟初始化的。默认值为 "false"，因为及早初始化可以通过直接引用控制器对象来提高效率。
+	 * <p>如果希望允许控制器延迟初始化，请将它们设置为 "lazy-init" 并将此标志设置为 true。仅将它们设置为 "lazy-init" 不会生效，因为在这种情况下它们会通过处理器映射中的引用被初始化。
 	 */
 	public void setLazyInitHandlers(boolean lazyInitHandlers) {
 		this.lazyInitHandlers = lazyInitHandlers;
 	}
 
 	/**
-	 * Return a read-only view of registered path patterns and handlers which may
-	 * be an actual handler instance or the bean name of lazily initialized
-	 * handler.
+	 * 返回已注册路径模式和处理器（可能是实际处理器实例，也可能是延迟初始化处理器的 bean 名称）的只读视图。
 	 */
 	public final Map<PathPattern, Object> getHandlerMap() {
 		return Collections.unmodifiableMap(this.handlerMap);
 	}
 
 	/**
-	 * Configure a predicate for extended matching of the handler that was
-	 * matched by URL path. This allows for further narrowing of the mapping by
-	 * checking additional properties of the request. If the predicate returns
-	 * "false", it result in a no-match, which allows another
-	 * {@link org.springframework.web.reactive.HandlerMapping} to match or
-	 * result in a 404 (NOT_FOUND) response.
+	 * 配置谓词，用于对通过 URL 路径匹配的处理器进行扩展匹配。这允许通过检查请求的其他属性来进一步缩小映射范围。如果谓词返回 "false"，则结果为不匹配，从而允许另一个 {@link org.springframework.web.reactive.HandlerMapping} 进行匹配，或导致 404 (NOT_FOUND) 响应。
 	 * @param handlerPredicate a bi-predicate to match the candidate handler
 	 * against the current exchange.
 	 * @since 5.3.5
@@ -117,10 +96,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	}
 
 	/**
-	 * Look up a handler instance for the given URL lookup path.
-	 * <p>Supports direct matches, e.g. a registered "/test" matches "/test",
-	 * and various path pattern matches, e.g. a registered "/t*" matches
-	 * both "/test" and "/team". For details, see the PathPattern class.
+	 * 查找给定 URL 查找路径的处理器实例。
+	 * <p>支持直接匹配（例如注册的 "/test" 匹配 "/test"）以及各种路径模式匹配（例如注册的 "/t*" 同时匹配 "/test" 和 "/team"）。详情请参见 PathPattern 类。
 	 * @param lookupPath the URL the handler is mapped to
 	 * @param exchange the current exchange
 	 * @return the associated handler instance, or {@code null} if not found
@@ -173,9 +150,8 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	}
 
 	/**
-	 * Validate the given handler against the current request.
-	 * <p>The default implementation is empty. Can be overridden in subclasses,
-	 * for example to enforce specific preconditions expressed in URL mappings.
+	 * 根据当前请求校验给定处理器。
+	 * <p>默认实现为空。可以在子类中重写，例如强制执行 URL 映射中表达的特定前置条件。
 	 * @param handler the handler object to validate
 	 * @param exchange current exchange
 	 */
@@ -184,7 +160,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	}
 
 	/**
-	 * Register the specified handler for the given URL paths.
+	 * 为给定 URL 路径注册指定的处理器。
 	 * @param urlPaths the URLs that the bean should be mapped to
 	 * @param beanName the name of the handler bean
 	 * @throws BeansException if the handler couldn't be registered
@@ -198,7 +174,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping {
 	}
 
 	/**
-	 * Register the specified handler for the given URL path.
+	 * 为给定 URL 路径注册指定的处理器。
 	 * @param urlPath the URL the bean should be mapped to
 	 * @param handler the handler instance or handler bean name String
 	 * (a bean name will automatically be resolved into the corresponding handler bean)

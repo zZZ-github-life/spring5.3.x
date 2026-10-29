@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 /**
- * A contract for handling sub-protocol errors sent to clients.
+ * 用于处理发送给客户端的子协议错误的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -29,12 +29,11 @@ import org.springframework.messaging.Message;
 public interface SubProtocolErrorHandler<P> {
 
 	/**
-	 * Handle errors thrown while processing client messages providing an
-	 * opportunity to prepare the error message or to prevent one from being sent.
-	 * <p>Note that the STOMP protocol requires a server to close the connection
-	 * after sending an ERROR frame. To prevent an ERROR frame from being sent,
-	 * a handler could return {@code null} and send a notification message
-	 * through the broker instead, e.g. via a user destination.
+	 * 处理在处理客户端消息时抛出的错误，并提供准备错误消息
+	 * 或阻止发送错误消息的机会。
+	 * <p>请注意，STOMP 协议要求服务器在发送 ERROR 帧后关闭连接。
+	 * 要阻止发送 ERROR 帧，处理器可以返回 {@code null}，
+	 * 并改为通过代理发送通知消息，例如通过用户目标。
 	 * @param clientMessage the client message related to the error, possibly
 	 * {@code null} if error occurred while parsing a WebSocket message
 	 * @param ex the cause for the error, never {@code null}
@@ -45,10 +44,10 @@ public interface SubProtocolErrorHandler<P> {
 	Message<P> handleClientMessageProcessingError(@Nullable Message<P> clientMessage, Throwable ex);
 
 	/**
-	 * Handle errors sent from the server side to clients, e.g. errors from the
+	 * 处理从服务器端发送给客户端的错误，例如由于连接失败或外部代理
+	 * 发送了错误消息等原因，导致
 	 * {@link org.springframework.messaging.simp.stomp.StompBrokerRelayMessageHandler
-	 * "broke relay"} because connectivity failed or the external broker sent an
-	 * error message, etc.
+	 * “代理中继”}产生的错误等。
 	 * @param errorMessage the error message, never {@code null}
 	 * @return the error message to send to the client, or {@code null} in which
 	 * case no message will be sent.

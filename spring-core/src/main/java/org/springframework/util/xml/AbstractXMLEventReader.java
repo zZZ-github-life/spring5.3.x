@@ -24,7 +24,7 @@ import javax.xml.stream.XMLStreamException;
 import org.springframework.util.ClassUtils;
 
 /**
- * Abstract base class for {@code XMLEventReader}s.
+ * 用于 {@code XMLEventReader} 的抽象基类。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -52,7 +52,7 @@ abstract class AbstractXMLEventReader implements XMLEventReader {
 	}
 
 	/**
-	 * This implementation throws an {@code IllegalArgumentException} for any property.
+	 * 此实现对任何属性都会抛出 {@code IllegalArgumentException}。
 	 * @throws IllegalArgumentException when called
 	 */
 	@Override
@@ -66,7 +66,7 @@ abstract class AbstractXMLEventReader implements XMLEventReader {
 	}
 
 	/**
-	 * Check if the reader is closed, and throws a {@code XMLStreamException} if so.
+	 * 检查读取器是否已关闭，若已关闭则抛出 {@code XMLStreamException}。
 	 * @throws XMLStreamException if the reader is closed
 	 * @see #close()
 	 */

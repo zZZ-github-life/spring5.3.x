@@ -38,36 +38,36 @@ import org.springframework.transaction.support.TransactionSynchronizationUtils;
 import org.springframework.util.Assert;
 
 /**
- * Base class for listener container implementations which are based on polling.
- * Provides support for listener handling based on {@link javax.jms.MessageConsumer},
- * optionally participating in externally managed transactions.
+ * 基于轮询的监听器容器实现的基类。
+ * 提供基于 {@link javax.jms.MessageConsumer} 的监听器处理支持，
+ * 可选地参与外部管理的事务。
  *
- * <p>This listener container variant is built for repeated polling attempts,
- * each invoking the {@link #receiveAndExecute} method. The MessageConsumer used
- * may be reobtained fo reach attempt or cached in between attempts; this is up
- * to the concrete implementation. The receive timeout for each attempt can be
- * configured through the {@link #setReceiveTimeout "receiveTimeout"} property.
+ * <p>此监听器容器变体专为重复轮询尝试而构建，
+ * 每次都会调用 {@link #receiveAndExecute} 方法。所使用的 MessageConsumer
+ * 可以在每次尝试时重新获取，也可以在尝试之间缓存；这取决于具体实现。
+ * 每次尝试的接收超时可以通过
+ * {@link #setReceiveTimeout "receiveTimeout"} 属性配置。
  *
- * <p>The underlying mechanism is based on standard JMS MessageConsumer handling,
- * which is perfectly compatible with both native JMS and JMS in a Java EE environment.
- * Neither the JMS {@code MessageConsumer.setMessageListener} facility  nor the JMS
- * ServerSessionPool facility is required. A further advantage of this approach is
- * full control over the listening process, allowing for custom scaling and throttling
- * and of concurrent message processing (which is up to concrete subclasses).
+ * <p>底层机制基于标准的 JMS MessageConsumer 处理，
+ * 与原生 JMS 以及 Java EE 环境中的 JMS 完全兼容。
+ * 既不需要 JMS {@code MessageConsumer.setMessageListener} 设施，
+ * 也不需要 JMS ServerSessionPool 设施。这种方式的另一个优点是可以
+ * 完全控制监听过程，允许自定义扩展和限流，以及并发消息处理
+ * （这取决于具体子类）。
  *
- * <p>Message reception and listener execution can automatically be wrapped
- * in transactions through passing a Spring
- * {@link org.springframework.transaction.PlatformTransactionManager} into the
- * {@link #setTransactionManager "transactionManager"} property. This will usually
- * be a {@link org.springframework.transaction.jta.JtaTransactionManager} in a
- * Java EE environment, in combination with a JTA-aware JMS ConnectionFactory
- * obtained from JNDI (check your application server's documentation).
+ * <p>通过将 Spring 的
+ * {@link org.springframework.transaction.PlatformTransactionManager} 传入
+ * {@link #setTransactionManager "transactionManager"} 属性，
+ * 消息接收和监听器执行可以自动包装在事务中。
+ * 在 Java EE 环境中，这通常是
+ * {@link org.springframework.transaction.jta.JtaTransactionManager}，
+ * 并与从 JNDI 获取的支持 JTA 的 JMS ConnectionFactory 结合使用
+ * （请查阅应用服务器的文档）。
  *
- * <p>This base class does not assume any specific mechanism for asynchronous
- * execution of polling invokers. Check out {@link DefaultMessageListenerContainer}
- * for a concrete implementation which is based on Spring's
- * {@link org.springframework.core.task.TaskExecutor} abstraction,
- * including dynamic scaling of concurrent consumers and automatic self recovery.
+ * <p>此基类不假定任何特定的轮询调用器异步执行机制。
+ * 请查看 {@link DefaultMessageListenerContainer} 了解基于 Spring 的
+ * {@link org.springframework.core.task.TaskExecutor} 抽象的具体实现，
+ * 包括并发消费者的动态伸缩和自动自我恢复。
  *
  * @author Juergen Hoeller
  * @since 2.0.3
@@ -78,7 +78,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractPollingMessageListenerContainer extends AbstractMessageListenerContainer {
 
 	/**
-	 * The default receive timeout: 1000 ms = 1 second.
+	 * 默认接收超时：1000 毫秒 = 1 秒。
 	 */
 	public static final long DEFAULT_RECEIVE_TIMEOUT = 1000;
 
@@ -103,23 +103,21 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Specify the Spring {@link org.springframework.transaction.PlatformTransactionManager}
-	 * to use for transactional wrapping of message reception plus listener execution.
-	 * <p>Default is none, not performing any transactional wrapping.
-	 * If specified, this will usually be a Spring
-	 * {@link org.springframework.transaction.jta.JtaTransactionManager} or one
-	 * of its subclasses, in combination with a JTA-aware ConnectionFactory that
-	 * this message listener container obtains its Connections from.
-	 * <p><b>Note: Consider the use of local JMS transactions instead.</b>
-	 * Simply switch the {@link #setSessionTransacted "sessionTransacted"} flag
-	 * to "true" in order to use a locally transacted JMS Session for the entire
-	 * receive processing, including any Session operations performed by a
-	 * {@link SessionAwareMessageListener} (e.g. sending a response message). This
-	 * allows for fully synchronized Spring transactions based on local JMS
-	 * transactions, similar to what
-	 * {@link org.springframework.jms.connection.JmsTransactionManager} provides. Check
-	 * {@link AbstractMessageListenerContainer}'s javadoc for
-	 * a discussion of transaction choices and message redelivery scenarios.
+	 * 指定用于事务性包装消息接收及监听器执行的 Spring
+	 * {@link org.springframework.transaction.PlatformTransactionManager}。
+	 * <p>默认无，不执行任何事务性包装。
+	 * 如果指定，通常是 Spring 的
+	 * {@link org.springframework.transaction.jta.JtaTransactionManager} 或其某个子类，
+	 * 并与此消息监听器容器获取连接所用的支持 JTA 的 ConnectionFactory 结合使用。
+	 * <p><b>注意：请考虑改用本地 JMS 事务。</b>
+	 * 只需将 {@link #setSessionTransacted "sessionTransacted"} 标志切换为 "true"，
+	 * 即可在整个接收处理过程中使用本地事务化的 JMS Session，
+	 * 包括由 {@link SessionAwareMessageListener} 执行的任何 Session 操作
+	 * （例如发送响应消息）。这样可以基于本地 JMS 事务实现完全同步的
+	 * Spring 事务，类似于
+	 * {@link org.springframework.jms.connection.JmsTransactionManager} 提供的行为。
+	 * 有关事务选择和消息重新投递场景的讨论，请查看
+	 * {@link AbstractMessageListenerContainer} 的 javadoc。
 	 * @see #setSessionTransacted(boolean)
 	 * @see org.springframework.transaction.jta.JtaTransactionManager
 	 * @see org.springframework.jms.connection.JmsTransactionManager
@@ -129,8 +127,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Return the Spring PlatformTransactionManager to use for transactional
-	 * wrapping of message reception plus listener execution.
+	 * 返回用于事务性包装消息接收及监听器执行的
+	 * Spring PlatformTransactionManager。
 	 */
 	@Nullable
 	protected final PlatformTransactionManager getTransactionManager() {
@@ -138,8 +136,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Specify the transaction name to use for transactional wrapping.
-	 * Default is the bean name of this listener container, if any.
+	 * 指定用于事务性包装的事务名称。
+	 * 默认为此监听器容器的 Bean 名称（如果有）。
 	 * @see org.springframework.transaction.TransactionDefinition#getName()
 	 */
 	public void setTransactionName(String transactionName) {
@@ -147,8 +145,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Specify the transaction timeout to use for transactional wrapping, in <b>seconds</b>.
-	 * Default is none, using the transaction manager's default timeout.
+	 * 指定用于事务性包装的事务超时，单位为<b>秒</b>。
+	 * 默认无，使用事务管理器的默认超时。
 	 * @see org.springframework.transaction.TransactionDefinition#getTimeout()
 	 * @see #setReceiveTimeout
 	 */
@@ -157,14 +155,13 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Set the timeout to use for receive calls, in <b>milliseconds</b>.
-	 * The default is 1000 ms, that is, 1 second.
-	 * <p><b>NOTE:</b> This value needs to be smaller than the transaction
-	 * timeout used by the transaction manager (in the appropriate unit,
-	 * of course). 0 indicates no timeout at all; however, this is only
-	 * feasible if not running within a transaction manager and generally
-	 * discouraged since such a listener container cannot cleanly shut down.
-	 * A negative value such as -1 indicates a no-wait receive operation.
+	 * 设置接收调用使用的超时，单位为<b>毫秒</b>。
+	 * 默认是 1000 毫秒，即 1 秒。
+	 * <p><b>注意：</b>此值需要小于事务管理器使用的事务超时
+	 * （当然要使用相应的单位）。0 表示完全没有超时；
+	 * 然而，这只有在不运行于事务管理器内时才可行，并且通常不建议这样做，
+	 * 因为这样的监听器容器无法干净地关闭。
+	 * 负值（例如 -1）表示不等待的接收操作。
 	 * @see #receiveFromConsumer(MessageConsumer, long)
 	 * @see javax.jms.MessageConsumer#receive(long)
 	 * @see javax.jms.MessageConsumer#receiveNoWait()
@@ -176,7 +173,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Return the receive timeout (ms) configured for this listener container.
+	 * 返回为此监听器容器配置的接收超时（毫秒）。
 	 * @since 4.2
 	 */
 	protected long getReceiveTimeout() {
@@ -208,8 +205,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 
 	/**
-	 * Create a MessageConsumer for the given JMS Session,
-	 * registering a MessageListener for the specified listener.
+	 * 为给定的 JMS Session 创建 MessageConsumer，
+	 * 并为指定的监听器注册 MessageListener。
 	 * @param session the JMS Session to work on
 	 * @return the MessageConsumer
 	 * @throws javax.jms.JMSException if thrown by JMS methods
@@ -226,8 +223,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Execute the listener for a message received from the given consumer,
-	 * wrapping the entire operation in an external transaction if demanded.
+	 * 对从给定消费者接收到的消息执行监听器，
+	 * 如有要求则将整个操作包装在外部事务中。
 	 * @param session the JMS Session to work on
 	 * @param consumer the MessageConsumer to work on
 	 * @return whether a message has been received
@@ -272,8 +269,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Actually execute the listener for a message received from the given consumer,
-	 * fetching all requires resources and invoking the listener.
+	 * 实际对从给定消费者接收到的消息执行监听器，
+	 * 获取所有所需资源并调用监听器。
 	 * @param session the JMS Session to work on
 	 * @param consumer the MessageConsumer to work on
 	 * @param status the TransactionStatus (may be {@code null})
@@ -374,9 +371,9 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * This implementation checks whether the Session is externally synchronized.
-	 * In this case, the Session is not locally transacted, despite the listener
-	 * container's "sessionTransacted" flag being set to "true".
+	 * 此实现检查 Session 是否为外部同步的。
+	 * 在这种情况下，尽管监听器容器的 "sessionTransacted" 标志设置为 "true"，
+	 * Session 也不会进行本地事务化。
 	 * @see org.springframework.jms.connection.JmsResourceHolder
 	 */
 	@Override
@@ -391,8 +388,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Determine whether to trigger a commit after no message has been received.
-	 * This is a good idea on any modern-day JMS provider.
+	 * 确定在未收到任何消息后是否触发提交。
+	 * 在任何现代 JMS 提供者上这都是个好主意。
 	 * @param session the current JMS Session which received no message
 	 * @return whether to call {@link #commitIfNecessary} on the given Session
 	 */
@@ -401,7 +398,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Perform a rollback, handling rollback exceptions properly.
+	 * 执行回滚，并妥善处理回滚异常。
 	 * @param status object representing the transaction
 	 * @param ex the thrown listener exception or error
 	 */
@@ -421,7 +418,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Receive a message from the given consumer.
+	 * 从给定消费者接收消息。
 	 * @param consumer the MessageConsumer to use
 	 * @return the Message, or {@code null} if none
 	 * @throws JMSException if thrown by JMS methods
@@ -432,9 +429,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Template method that gets called right when a new message has been received,
-	 * before attempting to process it. Allows subclasses to react to the event
-	 * of an actual incoming message, for example adapting their consumer count.
+	 * 模板方法，在收到新消息后、尝试处理它之前立即调用。
+	 * 允许子类对实际传入消息的事件作出反应，例如调整其消费者数量。
 	 * @param invoker the invoker object (passed through)
 	 * @param session the receiving JMS Session
 	 */
@@ -442,9 +438,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Template method that gets called when <i>no</i> message has been received,
-	 * before returning to the receive loop again. Allows subclasses to react to
-	 * the event of no incoming message, for example marking the invoker as idle.
+	 * 模板方法，在<i>未</i>收到任何消息时、返回接收循环之前调用。
+	 * 允许子类对没有传入消息的事件作出反应，例如将调用器标记为空闲。
 	 * @param invoker the invoker object (passed through)
 	 * @param session the receiving JMS Session
 	 */
@@ -452,8 +447,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Fetch an appropriate Connection from the given JmsResourceHolder.
-	 * <p>This implementation accepts any JMS 1.1 Connection.
+	 * 从给定的 JmsResourceHolder 中获取适当的 Connection。
+	 * <p>此实现接受任何 JMS 1.1 Connection。
 	 * @param holder the JmsResourceHolder
 	 * @return an appropriate Connection fetched from the holder,
 	 * or {@code null} if none found
@@ -464,8 +459,8 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 	}
 
 	/**
-	 * Fetch an appropriate Session from the given JmsResourceHolder.
-	 * <p>This implementation accepts any JMS 1.1 Session.
+	 * 从给定的 JmsResourceHolder 中获取适当的 Session。
+	 * <p>此实现接受任何 JMS 1.1 Session。
 	 * @param holder the JmsResourceHolder
 	 * @return an appropriate Session fetched from the holder,
 	 * or {@code null} if none found
@@ -477,7 +472,7 @@ public abstract class AbstractPollingMessageListenerContainer extends AbstractMe
 
 
 	/**
-	 * ResourceFactory implementation that delegates to this listener container's protected callback methods.
+	 * ResourceFactory 实现，委托给此监听器容器的受保护回调方法。
 	 */
 	private class MessageListenerContainerResourceFactory implements ConnectionFactoryUtils.ResourceFactory {
 

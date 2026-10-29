@@ -17,9 +17,8 @@
 package org.springframework.web.bind;
 
 /**
- * Base class for {@link ServletRequestBindingException} exceptions that could
- * not bind because the request value is required but is either missing or
- * otherwise resolves to {@code null} after conversion.
+ * {@link ServletRequestBindingException} 异常的基类，这些异常由于请求值是必需的
+ * 但缺失，或在转换后解析为 {@code null}，而无法完成绑定。
  *
  * @author Rossen Stoyanchev
  * @since 5.3.6
@@ -41,8 +40,8 @@ public class MissingRequestValueException extends ServletRequestBindingException
 
 
 	/**
-	 * Whether the request value was present but converted to {@code null}, e.g. via
-	 * {@code org.springframework.core.convert.support.IdToEntityConverter}.
+	 * 请求值是否存在但被转换为 {@code null}，例如通过
+	 * {@code org.springframework.core.convert.support.IdToEntityConverter}。
 	 */
 	public boolean isMissingAfterConversion() {
 		return this.missingAfterConversion;

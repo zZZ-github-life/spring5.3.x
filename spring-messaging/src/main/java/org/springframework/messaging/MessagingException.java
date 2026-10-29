@@ -20,7 +20,7 @@ import org.springframework.core.NestedRuntimeException;
 import org.springframework.lang.Nullable;
 
 /**
- * The base exception for any failures related to messaging.
+ * 与消息传递相关的任何失败的基础异常。
  *
  * @author Mark Fisher
  * @author Gary Russell

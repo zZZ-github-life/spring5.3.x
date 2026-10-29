@@ -28,9 +28,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Pointcut and method matcher for use in simple <b>cflow</b>-style pointcut.
- * Note that evaluating such pointcuts is 10-15 times slower than evaluating
- * normal pointcuts, but they are useful in some cases.
+ * 用于简单的 <b>cflow</b> 风格切点的切点和方法匹配器。注意，评估此类切点比评估普通切点慢 10-15 倍，
+ * 但在某些情况下它们很有用。
  *
  * @author Rod Johnson
  * @author Rob Harrop
@@ -49,7 +48,7 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 
 
 	/**
-	 * Construct a new pointcut that matches all control flows below that class.
+	 * 构造一个新的切点，匹配该类之下的所有控制流。
 	 * @param clazz the clazz
 	 */
 	public ControlFlowPointcut(Class<?> clazz) {
@@ -57,9 +56,8 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	}
 
 	/**
-	 * Construct a new pointcut that matches all calls below the given method
-	 * in the given class. If no method name is given, matches all control flows
-	 * below the given class.
+	 * 构造一个新的切点，匹配给定类中给定方法之下的所有调用。如果未指定方法名，则匹配给定类之下的所有控
+	 * 制流。
 	 * @param clazz the clazz
 	 * @param methodName the name of the method (may be {@code null})
 	 */
@@ -71,7 +69,7 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 
 
 	/**
-	 * Subclasses can override this for greater filtering (and performance).
+	 * 子类可以覆盖此方法以实现更强的过滤（并提升性能）。
 	 */
 	@Override
 	public boolean matches(Class<?> clazz) {
@@ -79,7 +77,7 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	}
 
 	/**
-	 * Subclasses can override this if it's possible to filter out some candidate classes.
+	 * 如果可以过滤掉一些候选类，子类可以覆盖此方法。
 	 */
 	@Override
 	public boolean matches(Method method, Class<?> targetClass) {
@@ -105,7 +103,7 @@ public class ControlFlowPointcut implements Pointcut, ClassFilter, MethodMatcher
 	}
 
 	/**
-	 * It's useful to know how many times we've fired, for optimization.
+	 * 了解我们已触发多少次对优化很有用。
 	 */
 	public int getEvaluations() {
 		return this.evaluations.get();

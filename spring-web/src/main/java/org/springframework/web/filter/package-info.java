@@ -1,5 +1,5 @@
 /**
- * Provides generic filter base classes allowing for bean-style configuration.
+ * 提供支持 Bean 风格配置的通用过滤器基类。
  */
 @NonNullApi
 @NonNullFields

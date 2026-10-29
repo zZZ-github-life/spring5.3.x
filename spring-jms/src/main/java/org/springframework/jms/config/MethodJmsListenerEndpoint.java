@@ -40,8 +40,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * A {@link JmsListenerEndpoint} providing the method to invoke to process
- * an incoming message for this endpoint.
+ * {@link JmsListenerEndpoint}，提供要调用来处理此端点传入消息的方法。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -66,7 +65,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 
 
 	/**
-	 * Set the actual bean instance to invoke this endpoint method on.
+	 * 设置要在其上调用此端点方法的实际 bean 实例。
 	 */
 	public void setBean(@Nullable Object bean) {
 		this.bean = bean;
@@ -78,7 +77,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 	}
 
 	/**
-	 * Set the method to invoke for processing a message managed by this endpoint.
+	 * 设置处理此端点所管理消息时要调用的方法。
 	 */
 	public void setMethod(@Nullable Method method) {
 		this.method = method;
@@ -90,9 +89,9 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 	}
 
 	/**
-	 * Set the most specific method known for this endpoint's declaration.
-	 * <p>In case of a proxy, this will be the method on the target class
-	 * (if annotated itself, that is, if not just annotated in an interface).
+	 * 设置此端点声明已知的最具体方法。
+	 * <p>在代理的情况下，这将是目标类上的方法
+	 * （前提是它本身带有注解，即不仅仅是接口中带有注解）。
 	 * @since 4.2.3
 	 */
 	public void setMostSpecificMethod(@Nullable Method mostSpecificMethod) {
@@ -116,23 +115,22 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 	}
 
 	/**
-	 * Set the {@link MessageHandlerMethodFactory} to use to build the
-	 * {@link InvocableHandlerMethod} responsible to manage the invocation
-	 * of this endpoint.
+	 * 设置用于构建负责管理此端点调用的 {@link InvocableHandlerMethod}
+	 * 的 {@link MessageHandlerMethodFactory}。
 	 */
 	public void setMessageHandlerMethodFactory(MessageHandlerMethodFactory messageHandlerMethodFactory) {
 		this.messageHandlerMethodFactory = messageHandlerMethodFactory;
 	}
 
 	/**
-	 * Set a value resolver for embedded placeholders and expressions.
+	 * 设置用于内嵌占位符和表达式的值解析器。
 	 */
 	public void setEmbeddedValueResolver(@Nullable StringValueResolver embeddedValueResolver) {
 		this.embeddedValueResolver = embeddedValueResolver;
 	}
 
 	/**
-	 * Set the {@link BeanFactory} to use to resolve expressions (may be {@code null}).
+	 * 设置用于解析表达式的 {@link BeanFactory}（可以为 {@code null}）。
 	 */
 	@Override
 	public void setBeanFactory(@Nullable BeanFactory beanFactory) {
@@ -178,7 +176,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 	}
 
 	/**
-	 * Create an empty {@link MessagingMessageListenerAdapter} instance.
+	 * 创建一个空的 {@link MessagingMessageListenerAdapter} 实例。
 	 * @return a new {@code MessagingMessageListenerAdapter} or subclass thereof
 	 */
 	protected MessagingMessageListenerAdapter createMessageListenerInstance() {
@@ -186,7 +184,7 @@ public class MethodJmsListenerEndpoint extends AbstractJmsListenerEndpoint imple
 	}
 
 	/**
-	 * Return the default response destination, if any.
+	 * 返回默认的响应目标（如果有）。
 	 */
 	@Nullable
 	protected String getDefaultResponseDestination() {

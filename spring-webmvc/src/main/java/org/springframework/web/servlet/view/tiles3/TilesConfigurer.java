@@ -70,22 +70,20 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.context.ServletContextAware;
 
 /**
- * Helper class to configure Tiles 3.x for the Spring Framework. See
- * <a href="https://tiles.apache.org">https://tiles.apache.org</a>
- * for more information about Tiles, which basically is a templating mechanism
- * for web applications using JSPs and other template engines.
+ * 用于为 Spring Framework 配置 Tiles 3.x 的辅助类。有关 Tiles 的更多信息，
+ * 请参阅 <a href="https://tiles.apache.org">https://tiles.apache.org</a>。
+ * Tiles 基本上是一种用于使用 JSP 和其他模板引擎的 Web 应用的模板机制。
  *
- * <p>The TilesConfigurer simply configures a TilesContainer using a set of files
- * containing definitions, to be accessed by {@link TilesView} instances. This is a
- * Spring-based alternative (for usage in Spring configuration) to the Tiles-provided
- * {@code ServletContextListener}
- * (e.g. {@link org.apache.tiles.extras.complete.CompleteAutoloadTilesListener}
- * for usage in {@code web.xml}.
+ * <p>TilesConfigurer 简单地使用一组包含定义的配置文件来配置 TilesContainer，
+ * 以便 {@link TilesView} 实例访问。这是 Tiles 提供的
+ * {@code ServletContextListener} 的基于 Spring 的替代方案（用于 Spring 配置，
+ * 例如在 {@code web.xml} 中使用的
+ * {@link org.apache.tiles.extras.complete.CompleteAutoloadTilesListener}）。
  *
- * <p>TilesViews can be managed by any {@link org.springframework.web.servlet.ViewResolver}.
- * For simple convention-based view resolution, consider using {@link TilesViewResolver}.
+ * <p>TilesView 可以由任何 {@link org.springframework.web.servlet.ViewResolver} 管理。
+ * 对于简单的基于约定的视图解析，可以考虑使用 {@link TilesViewResolver}。
  *
- * <p>A typical TilesConfigurer bean definition looks as follows:
+ * <p>典型的 TilesConfigurer bean 定义如下：
  *
  * <pre class="code">
  * &lt;bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"&gt;
@@ -101,11 +99,11 @@ import org.springframework.web.context.ServletContextAware;
  * &lt;/bean&gt;
  * </pre>
  *
- * The values in the list are the actual Tiles XML files containing the definitions.
- * If the list is not specified, the default is {@code "/WEB-INF/tiles.xml"}.
+ * 列表中的值是包含定义的实际 Tiles XML 文件。
+ * 如果未指定列表，默认值为 {@code "/WEB-INF/tiles.xml"}。
  *
- * <p>Note that in Tiles 3 an underscore in the name of a file containing Tiles
- * definitions is used to indicate locale information, for example:
+ * <p>请注意，在 Tiles 3 中，包含 Tiles 定义的文件的名称中的下划线
+ * 用于表示 Locale 信息，例如：
  *
  * <pre class="code">
  * &lt;bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"&gt;
@@ -156,24 +154,23 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 
 
 	/**
-	 * Configure Tiles using a custom TilesInitializer, typically specified as an inner bean.
-	 * <p>Default is a variant of {@link org.apache.tiles.startup.DefaultTilesInitializer},
-	 * respecting the "definitions", "preparerFactoryClass" etc properties on this configurer.
-	 * <p><b>NOTE: Specifying a custom TilesInitializer effectively disables all other bean
-	 * properties on this configurer.</b> The entire initialization procedure is then left
-	 * to the TilesInitializer as specified.
+	 * 使用自定义的 TilesInitializer 配置 Tiles，通常指定为内部 bean。
+	 * <p>默认是 {@link org.apache.tiles.startup.DefaultTilesInitializer} 的一个变体，
+	 * 它遵循此配置器上的 "definitions"、"preparerFactoryClass" 等属性。
+	 * <p><b>注意：指定自定义 TilesInitializer 会有效地禁用此配置器上的所有其他 bean
+	 * 属性。</b> 整个初始化过程将交由指定的 TilesInitializer 负责。
 	 */
 	public void setTilesInitializer(TilesInitializer tilesInitializer) {
 		this.tilesInitializer = tilesInitializer;
 	}
 
 	/**
-	 * Specify whether to apply Tiles 3.0's "complete-autoload" configuration.
-	 * <p>See {@link org.apache.tiles.extras.complete.CompleteAutoloadTilesContainerFactory}
-	 * for details on the complete-autoload mode.
-	 * <p><b>NOTE: Specifying the complete-autoload mode effectively disables all other bean
-	 * properties on this configurer.</b> The entire initialization procedure is then left
-	 * to {@link org.apache.tiles.extras.complete.CompleteAutoloadTilesInitializer}.
+	 * 指定是否应用 Tiles 3.0 的 "complete-autoload" 配置。
+	 * <p>有关 complete-autoload 模式的详细信息，请参阅
+	 * {@link org.apache.tiles.extras.complete.CompleteAutoloadTilesContainerFactory}。
+	 * <p><b>注意：指定 complete-autoload 模式会有效地禁用此配置器上的所有其他 bean
+	 * 属性。</b> 整个初始化过程将交由
+	 * {@link org.apache.tiles.extras.complete.CompleteAutoloadTilesInitializer} 负责。
 	 * @see org.apache.tiles.extras.complete.CompleteAutoloadTilesContainerFactory
 	 * @see org.apache.tiles.extras.complete.CompleteAutoloadTilesInitializer
 	 */
@@ -192,57 +189,56 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 	}
 
 	/**
-	 * Set the Tiles definitions, i.e. the list of files containing the definitions.
-	 * Default is "/WEB-INF/tiles.xml".
+	 * 设置 Tiles 定义，即包含定义的文件的列表。
+	 * 默认值为 "/WEB-INF/tiles.xml"。
 	 */
 	public void setDefinitions(String... definitions) {
 		this.definitions = definitions;
 	}
 
 	/**
-	 * Set whether to check Tiles definition files for a refresh at runtime.
-	 * Default is "false".
+	 * 设置是否在运行时检查 Tiles 定义文件是否需要刷新。
+	 * 默认值为 "false"。
 	 */
 	public void setCheckRefresh(boolean checkRefresh) {
 		this.checkRefresh = checkRefresh;
 	}
 
 	/**
-	 * Set whether to validate the Tiles XML definitions. Default is "true".
+	 * 设置是否校验 Tiles XML 定义。默认值为 "true"。
 	 */
 	public void setValidateDefinitions(boolean validateDefinitions) {
 		this.validateDefinitions = validateDefinitions;
 	}
 
 	/**
-	 * Set the {@link org.apache.tiles.definition.DefinitionsFactory} implementation to use.
-	 * Default is {@link org.apache.tiles.definition.UnresolvingLocaleDefinitionsFactory},
-	 * operating on definition resource URLs.
-	 * <p>Specify a custom DefinitionsFactory, e.g. a UrlDefinitionsFactory subclass,
-	 * to customize the creation of Tiles Definition objects. Note that such a
-	 * DefinitionsFactory has to be able to handle {@link java.net.URL} source objects,
-	 * unless you configure a different TilesContainerFactory.
+	 * 设置要使用的 {@link org.apache.tiles.definition.DefinitionsFactory} 实现。
+	 * 默认是 {@link org.apache.tiles.definition.UnresolvingLocaleDefinitionsFactory}，
+	 * 它基于定义资源 URL 进行操作。
+	 * <p>指定自定义的 DefinitionsFactory（例如 UrlDefinitionsFactory 的子类），
+	 * 以自定义 Tiles Definition 对象的创建。请注意，此类
+	 * DefinitionsFactory 必须能够处理 {@link java.net.URL} 源对象，
+	 * 除非你配置了不同的 TilesContainerFactory。
 	 */
 	public void setDefinitionsFactoryClass(Class<? extends DefinitionsFactory> definitionsFactoryClass) {
 		this.definitionsFactoryClass = definitionsFactoryClass;
 	}
 
 	/**
-	 * Set the {@link org.apache.tiles.preparer.factory.PreparerFactory} implementation to use.
-	 * Default is {@link org.apache.tiles.preparer.factory.BasicPreparerFactory}, creating
-	 * shared instances for specified preparer classes.
-	 * <p>Specify {@link SimpleSpringPreparerFactory} to autowire
-	 * {@link org.apache.tiles.preparer.ViewPreparer} instances based on specified
-	 * preparer classes, applying Spring's container callbacks as well as applying
-	 * configured Spring BeanPostProcessors. If Spring's context-wide annotation-config
-	 * has been activated, annotations in ViewPreparer classes will be automatically
-	 * detected and applied.
-	 * <p>Specify {@link SpringBeanPreparerFactory} to operate on specified preparer
-	 * <i>names</i> instead of classes, obtaining the corresponding Spring bean from
-	 * the DispatcherServlet's application context. The full bean creation process
-	 * will be in the control of the Spring application context in this case,
-	 * allowing for the use of scoped beans etc. Note that you need to define one
-	 * Spring bean definition per preparer name (as used in your Tiles definitions).
+	 * 设置要使用的 {@link org.apache.tiles.preparer.factory.PreparerFactory} 实现。
+	 * 默认是 {@link org.apache.tiles.preparer.factory.BasicPreparerFactory}，它为指定的
+	 * preparer 类创建共享实例。
+	 * <p>指定 {@link SimpleSpringPreparerFactory}，以基于指定的
+	 * preparer 类自动装配 {@link org.apache.tiles.preparer.ViewPreparer} 实例，
+	 * 同时应用 Spring 的容器回调以及已配置的 Spring BeanPostProcessor。
+	 * 如果已激活 Spring 上下文范围的 annotation-config，
+	 * 则将自动检测并应用 ViewPreparer 类中的注解。
+	 * <p>指定 {@link SpringBeanPreparerFactory}，以针对指定的 preparer
+	 * <i>名称</i>而不是类进行操作，从 DispatcherServlet 的应用上下文中
+	 * 获取相应的 Spring bean。在这种情况下，完整的 bean 创建过程
+	 * 将由 Spring 应用上下文控制，从而允许使用作用域 bean 等。
+	 * 请注意，需要为每个 preparer 名称（即在 Tiles 定义中使用的名称）
+	 * 定义一个 Spring bean 定义。
 	 * @see SimpleSpringPreparerFactory
 	 * @see SpringBeanPreparerFactory
 	 */
@@ -251,8 +247,8 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 	}
 
 	/**
-	 * Set whether to use a MutableTilesContainer (typically the CachingTilesContainer
-	 * implementation) for this application. Default is "false".
+	 * 设置此应用是否使用 MutableTilesContainer（通常是 CachingTilesContainer
+	 * 实现）。默认值为 "false"。
 	 * @see org.apache.tiles.mgmt.MutableTilesContainer
 	 * @see org.apache.tiles.impl.mgmt.CachingTilesContainer
 	 */
@@ -266,8 +262,8 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 	}
 
 	/**
-	 * Creates and exposes a TilesContainer for this web application,
-	 * delegating to the TilesInitializer.
+	 * 为此 Web 应用创建并暴露一个 TilesContainer，
+	 * 并委托给 TilesInitializer。
 	 * @throws TilesException in case of setup failure
 	 */
 	@Override
@@ -281,7 +277,7 @@ public class TilesConfigurer implements ServletContextAware, InitializingBean, D
 	}
 
 	/**
-	 * Removes the TilesContainer from this web application.
+	 * 从此 Web 应用中移除 TilesContainer。
 	 * @throws TilesException in case of cleanup failure
 	 */
 	@Override

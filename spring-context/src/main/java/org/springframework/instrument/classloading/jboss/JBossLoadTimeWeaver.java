@@ -28,11 +28,11 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * {@link LoadTimeWeaver} implementation for JBoss's instrumentable ClassLoader.
- * Thanks to Ales Justin and Marius Bogoevici for the initial prototype.
+ * 针对 JBoss 可插桩 ClassLoader 的 {@link LoadTimeWeaver} 实现。感谢 Ales Justin 和 Marius
+ * Bogoevici 提供的初始原型。
  *
- * <p>As of Spring Framework 5.0, this weaver supports WildFly 8+.
- * As of Spring Framework 5.1.5, it also supports WildFly 13+.
+ * <p>从 Spring Framework 5.0 起，该织入器支持 WildFly 8+。从 Spring Framework 5.1.5 起，它还支持
+ * WildFly 13+。
  *
  * @author Costin Leau
  * @author Juergen Hoeller
@@ -55,8 +55,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 
 
 	/**
-	 * Create a new instance of the {@link JBossLoadTimeWeaver} class using
-	 * the default {@link ClassLoader class loader}.
+	 * 使用默认的 {@link ClassLoader class loader} 创建 {@link JBossLoadTimeWeaver} 类的新实例。
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	public JBossLoadTimeWeaver() {
@@ -64,8 +63,7 @@ public class JBossLoadTimeWeaver implements LoadTimeWeaver {
 	}
 
 	/**
-	 * Create a new instance of the {@link JBossLoadTimeWeaver} class using
-	 * the supplied {@link ClassLoader}.
+	 * 使用提供的 {@link ClassLoader} 创建 {@link JBossLoadTimeWeaver} 类的新实例。
 	 * @param classLoader the {@code ClassLoader} to delegate to for weaving
 	 */
 	public JBossLoadTimeWeaver(@Nullable ClassLoader classLoader) {

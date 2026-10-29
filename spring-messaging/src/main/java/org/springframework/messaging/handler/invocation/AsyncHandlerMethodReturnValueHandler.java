@@ -21,12 +21,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.concurrent.ListenableFuture;
 
 /**
- * An extension of {@link HandlerMethodReturnValueHandler} for handling async,
- * Future-like return value types that support success and error callbacks.
- * Essentially anything that can be adapted to a {@link ListenableFuture}.
+ * {@link HandlerMethodReturnValueHandler} 的扩展，用于处理支持成功和错误回调的
+ * 异步、类似 Future 的返回值类型。基本上任何可以适配为 {@link ListenableFuture}
+ * 的类型都可以。
  *
- * <p>Implementations should consider extending the convenient base class
- * {@link AbstractAsyncReturnValueHandler}.
+ * <p>实现应考虑继承便捷基类 {@link AbstractAsyncReturnValueHandler}。
  *
  * @author Rossen Stoyanchev
  * @since 4.2
@@ -35,13 +34,12 @@ import org.springframework.util.concurrent.ListenableFuture;
 public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodReturnValueHandler {
 
 	/**
-	 * Whether the return value represents an asynchronous, Future-like type
-	 * with success and error callbacks. If this method returns {@code true},
-	 * then {@link #toListenableFuture} is invoked next. If it returns
-	 * {@code false}, then {@link #handleReturnValue} is called.
-	 * <p><strong>Note:</strong> this method will only be invoked after
+	 * 返回值是否表示具有成功和错误回调的异步、类似 Future 的类型。
+	 * 如果此方法返回 {@code true}，则接下来会调用 {@link #toListenableFuture}。
+	 * 如果返回 {@code false}，则调用 {@link #handleReturnValue}。
+	 * <p><strong>注意：</strong>只有在调用
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
-	 * is called and it returns {@code true}.
+	 * 并返回 {@code true} 后，才会调用此方法。
 	 * @param returnValue the value returned from the handler method
 	 * @param returnType the type of the return value
 	 * @return {@code true} if the return value type represents an async value
@@ -49,14 +47,14 @@ public interface AsyncHandlerMethodReturnValueHandler extends HandlerMethodRetur
 	boolean isAsyncReturnValue(Object returnValue, MethodParameter returnType);
 
 	/**
-	 * Adapt the asynchronous return value to a {@link ListenableFuture}.
-	 * Implementations should consider returning an instance of
+	 * 将异步返回值适配为 {@link ListenableFuture}。
+	 * 实现应考虑返回
 	 * {@link org.springframework.util.concurrent.SettableListenableFuture
-	 * SettableListenableFuture}. Return value handling will then continue when
-	 * the ListenableFuture is completed with either success or error.
-	 * <p><strong>Note:</strong> this method will only be invoked after
+	 * SettableListenableFuture} 实例。随后，当 ListenableFuture 以成功或错误完成时，
+	 * 返回值处理将继续进行。
+	 * <p><strong>注意：</strong>只有在调用
 	 * {@link #supportsReturnType(org.springframework.core.MethodParameter)}
-	 * is called and it returns {@code true}.
+	 * 并返回 {@code true} 后，才会调用此方法。
 	 * @param returnValue the value returned from the handler method
 	 * @param returnType the type of the return value
 	 * @return the resulting ListenableFuture, or {@code null} in which case

@@ -1,5 +1,5 @@
 /**
- * Common infrastructure for invoking message handler methods.
+ * 用于调用消息处理方法的通用基础设施。
  */
 @NonNullApi
 @NonNullFields

@@ -23,11 +23,9 @@ import java.io.InputStream;
 import org.springframework.lang.Nullable;
 
 /**
- * Simple {@link Resource} implementation that holds a resource description
- * but does not point to an actually readable resource.
+ * 简单的 {@link Resource} 实现，它持有一个资源描述，但并不指向实际可读的资源。
  *
- * <p>To be used as placeholder if a {@code Resource} argument is
- * expected by an API but not necessarily used for actual reading.
+ * <p>当 API 期望一个 {@code Resource} 参数但并不一定用于实际读取时，可用作占位符。
  *
  * @author Juergen Hoeller
  * @since 1.2.6
@@ -38,7 +36,7 @@ public class DescriptiveResource extends AbstractResource {
 
 
 	/**
-	 * Create a new DescriptiveResource.
+	 * 创建一个新的 DescriptiveResource。
 	 * @param description the resource description
 	 */
 	public DescriptiveResource(@Nullable String description) {
@@ -69,7 +67,7 @@ public class DescriptiveResource extends AbstractResource {
 
 
 	/**
-	 * This implementation compares the underlying description String.
+	 * 此实现比较底层描述 String。
 	 */
 	@Override
 	public boolean equals(@Nullable Object other) {
@@ -78,7 +76,7 @@ public class DescriptiveResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns the hash code of the underlying description String.
+	 * 此实现返回底层描述 String 的哈希码。
 	 */
 	@Override
 	public int hashCode() {

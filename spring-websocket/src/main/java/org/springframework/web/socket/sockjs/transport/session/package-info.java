@@ -1,6 +1,6 @@
 /**
- * SockJS specific implementations of
- * {@link org.springframework.web.socket.WebSocketSession}.
+ * {@link org.springframework.web.socket.WebSocketSession} 的
+ * SockJS 特定实现。
  */
 @NonNullApi
 @NonNullFields

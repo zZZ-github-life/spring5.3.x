@@ -19,8 +19,7 @@ package org.springframework.web.context.request.async;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Abstract adapter class for the {@link DeferredResultProcessingInterceptor}
- * interface for simplified implementation of individual methods.
+ * 用于 {@link DeferredResultProcessingInterceptor} 接口的抽象适配器类，便于简化各个方法的实现。
  *
  * @author Rossen Stoyanchev
  * @author Rob Winch
@@ -31,7 +30,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 public abstract class DeferredResultProcessingInterceptorAdapter implements DeferredResultProcessingInterceptor {
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public <T> void beforeConcurrentHandling(NativeWebRequest request, DeferredResult<T> deferredResult)
@@ -39,14 +38,14 @@ public abstract class DeferredResultProcessingInterceptorAdapter implements Defe
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public <T> void preProcess(NativeWebRequest request, DeferredResult<T> deferredResult) throws Exception {
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public <T> void postProcess(NativeWebRequest request, DeferredResult<T> deferredResult,
@@ -54,8 +53,7 @@ public abstract class DeferredResultProcessingInterceptorAdapter implements Defe
 	}
 
 	/**
-	 * This implementation returns {@code true} by default allowing other interceptors
-	 * to be given a chance to handle the timeout.
+	 * 此实现默认返回 {@code true}，从而让其他拦截器有机会处理超时。
 	 */
 	@Override
 	public <T> boolean handleTimeout(NativeWebRequest request, DeferredResult<T> deferredResult) throws Exception {
@@ -63,8 +61,7 @@ public abstract class DeferredResultProcessingInterceptorAdapter implements Defe
 	}
 
 	/**
-	 * This implementation returns {@code true} by default allowing other interceptors
-	 * to be given a chance to handle the error.
+	 * 此实现默认返回 {@code true}，从而让其他拦截器有机会处理错误。
 	 */
 	@Override
 	public <T> boolean handleError(NativeWebRequest request, DeferredResult<T> deferredResult, Throwable t)
@@ -73,7 +70,7 @@ public abstract class DeferredResultProcessingInterceptorAdapter implements Defe
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public <T> void afterCompletion(NativeWebRequest request, DeferredResult<T> deferredResult) throws Exception {

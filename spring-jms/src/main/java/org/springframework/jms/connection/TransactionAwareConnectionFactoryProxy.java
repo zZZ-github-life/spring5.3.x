@@ -41,42 +41,35 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Proxy for a target JMS {@link javax.jms.ConnectionFactory}, adding awareness of
- * Spring-managed transactions. Similar to a transactional JNDI ConnectionFactory
- * as provided by a Java EE application server.
+ * 目标 JMS {@link javax.jms.ConnectionFactory} 的代理，增加了对
+ * Spring 管理事务的感知。类似于 Java EE 应用服务器提供的事务性 JNDI ConnectionFactory。
  *
- * <p>Messaging code which should remain unaware of Spring's JMS support can work with
- * this proxy to seamlessly participate in Spring-managed transactions. Note that the
- * transaction manager, for example {@link JmsTransactionManager}, still needs to work
- * with the underlying ConnectionFactory, <i>not</i> with this proxy.
+ * <p>无需感知 Spring JMS 支持的消息代码可以使用此代理，无缝参与
+ * Spring 管理的事务。请注意，事务管理器（例如 {@link JmsTransactionManager}）
+ * 仍需要与底层 ConnectionFactory 协作，<i>而不要</i>与此外层代理协作。
  *
- * <p><b>Make sure that TransactionAwareConnectionFactoryProxy is the outermost
- * ConnectionFactory of a chain of ConnectionFactory proxies/adapters.</b>
- * TransactionAwareConnectionFactoryProxy can delegate either directly to the
- * target factory or to some intermediary adapter like
- * {@link UserCredentialsConnectionFactoryAdapter}.
+ * <p><b>请确保 TransactionAwareConnectionFactoryProxy 位于 ConnectionFactory
+ * 代理/适配器链的最外层。</b>TransactionAwareConnectionFactoryProxy 可以直接委托给
+ * 目标工厂，也可以委托给某些中间适配器，如
+ * {@link UserCredentialsConnectionFactoryAdapter}。
  *
- * <p>Delegates to {@link ConnectionFactoryUtils} for automatically participating
- * in thread-bound transactions, for example managed by {@link JmsTransactionManager}.
- * {@code createSession} calls and {@code close} calls on returned Sessions
- * will behave properly within a transaction, that is, always work on the transactional
- * Session. If not within a transaction, normal ConnectionFactory behavior applies.
+ * <p>委托给 {@link ConnectionFactoryUtils} 以自动参与线程绑定的事务，
+ * 例如由 {@link JmsTransactionManager} 管理的事务。对返回的 Session 调用
+ * {@code createSession} 和 {@code close} 时，在事务内会正确行事，即始终操作
+ * 事务性 Session。如果不在事务中，则适用正常的 ConnectionFactory 行为。
  *
- * <p>Note that transactional JMS Sessions will be registered on a per-Connection
- * basis. To share the same JMS Session across a transaction, make sure that you
- * operate on the same JMS Connection handle - either through reusing the handle
- * or through configuring a {@link SingleConnectionFactory} underneath.
+ * <p>请注意，事务性 JMS Session 将按 Connection 注册。要在事务中共享同一个
+ * JMS Session，请确保操作的是同一个 JMS Connection 句柄——要么复用该句柄，
+ * 要么在底层配置一个 {@link SingleConnectionFactory}。
  *
- * <p>Returned transactional Session proxies will implement the {@link SessionProxy}
- * interface to allow for access to the underlying target Session. This is only
- * intended for accessing vendor-specific Session API or for testing purposes
- * (e.g. to perform manual transaction control). For typical application purposes,
- * simply use the standard JMS Session interface.
+ * <p>返回的事务性 Session 代理将实现 {@link SessionProxy} 接口，
+ * 以允许访问底层的目标 Session。这仅用于访问厂商特定的 Session API
+ * 或测试目的（例如执行手动事务控制）。对于典型的应用用途，
+ * 只需使用标准的 JMS Session 接口即可。
  *
- * <p>As of Spring Framework 5, this class delegates JMS 2.0 {@code JMSContext}
- * calls and therefore requires the JMS 2.0 API to be present at runtime.
- * It may nevertheless run against a JMS 1.1 driver (bound to the JMS 2.0 API)
- * as long as no actual JMS 2.0 calls are triggered by the application's setup.
+ * <p>从 Spring Framework 5 开始，此类委托 JMS 2.0 {@code JMSContext} 调用，
+ * 因此要求运行时存在 JMS 2.0 API。不过，只要应用设置不触发实际的 JMS 2.0 调用，
+ * 它仍然可以运行在 JMS 1.1 驱动之上（绑定到 JMS 2.0 API）。
  *
  * @author Juergen Hoeller
  * @since 2.0
@@ -93,13 +86,13 @@ public class TransactionAwareConnectionFactoryProxy
 
 
 	/**
-	 * Create a new TransactionAwareConnectionFactoryProxy.
+	 * 创建一个新的 TransactionAwareConnectionFactoryProxy。
 	 */
 	public TransactionAwareConnectionFactoryProxy() {
 	}
 
 	/**
-	 * Create a new TransactionAwareConnectionFactoryProxy.
+	 * 创建一个新的 TransactionAwareConnectionFactoryProxy。
 	 * @param targetConnectionFactory the target ConnectionFactory
 	 */
 	public TransactionAwareConnectionFactoryProxy(ConnectionFactory targetConnectionFactory) {
@@ -108,7 +101,7 @@ public class TransactionAwareConnectionFactoryProxy
 
 
 	/**
-	 * Set the target ConnectionFactory that this ConnectionFactory should delegate to.
+	 * 设置此 ConnectionFactory 应委托的目标 ConnectionFactory。
 	 */
 	public final void setTargetConnectionFactory(ConnectionFactory targetConnectionFactory) {
 		Assert.notNull(targetConnectionFactory, "'targetConnectionFactory' must not be null");
@@ -116,7 +109,7 @@ public class TransactionAwareConnectionFactoryProxy
 	}
 
 	/**
-	 * Return the target ConnectionFactory that this ConnectionFactory should delegate to.
+	 * 返回此 ConnectionFactory 应委托的目标 ConnectionFactory。
 	 */
 	protected ConnectionFactory getTargetConnectionFactory() {
 		ConnectionFactory target = this.targetConnectionFactory;
@@ -125,23 +118,20 @@ public class TransactionAwareConnectionFactoryProxy
 	}
 
 	/**
-	 * Set whether to allow for a local JMS transaction that is synchronized with a
-	 * Spring-managed transaction (where the main transaction might be a JDBC-based
-	 * one for a specific DataSource, for example), with the JMS transaction committing
-	 * right after the main transaction. If not allowed, the given ConnectionFactory
-	 * needs to handle transaction enlistment underneath the covers.
-	 * <p>Default is "false": If not within a managed transaction that encompasses
-	 * the underlying JMS ConnectionFactory, standard Sessions will be returned.
-	 * Turn this flag on to allow participation in any Spring-managed transaction,
-	 * with a local JMS transaction synchronized with the main transaction.
+	 * 设置是否允许与 Spring 管理的事务同步的本地 JMS 事务
+	 * （其中主事务可能是针对特定 DataSource 的基于 JDBC 的事务等），
+	 * 该 JMS 事务在主事务之后立即提交。如果不允许，给定的 ConnectionFactory
+	 * 需要在内部处理事务登记。
+	 * <p>默认值为 "false"：如果不在涵盖底层 JMS ConnectionFactory 的托管事务中，
+	 * 将返回标准 Session。启用此标志可允许参与任何 Spring 管理的事务，
+	 * 并与主事务同步一个本地 JMS 事务。
 	 */
 	public void setSynchedLocalTransactionAllowed(boolean synchedLocalTransactionAllowed) {
 		this.synchedLocalTransactionAllowed = synchedLocalTransactionAllowed;
 	}
 
 	/**
-	 * Return whether to allow for a local JMS transaction that is synchronized
-	 * with a Spring-managed transaction.
+	 * 返回是否允许与 Spring 管理的事务同步的本地 JMS 事务。
 	 */
 	protected boolean isSynchedLocalTransactionAllowed() {
 		return this.synchedLocalTransactionAllowed;
@@ -222,8 +212,8 @@ public class TransactionAwareConnectionFactoryProxy
 
 
 	/**
-	 * Wrap the given Connection with a proxy that delegates every method call to it
-	 * but handles Session lookup in a transaction-aware fashion.
+	 * 用代理包装给定的 Connection，该代理将每个方法调用都委托给它，
+	 * 但以事务感知的方式处理 Session 查找。
 	 * @param target the original Connection to wrap
 	 * @return the wrapped Connection
 	 */
@@ -242,7 +232,7 @@ public class TransactionAwareConnectionFactoryProxy
 
 
 	/**
-	 * Invocation handler that exposes transactional Sessions for the underlying Connection.
+	 * 为底层 Connection 公开事务性 Session 的调用处理器。
 	 */
 	private class TransactionAwareConnectionInvocationHandler implements InvocationHandler {
 
@@ -314,7 +304,7 @@ public class TransactionAwareConnectionFactoryProxy
 
 
 	/**
-	 * Invocation handler that suppresses close calls for a transactional JMS Session.
+	 * 抑制事务性 JMS Session 的 close 调用的调用处理器。
 	 */
 	private static class CloseSuppressingSessionInvocationHandler implements InvocationHandler {
 

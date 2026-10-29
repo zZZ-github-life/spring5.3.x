@@ -31,11 +31,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
- * Simple implementation of the {@link AliasRegistry} interface.
+ * {@link AliasRegistry} 接口的简单实现。
  *
- * <p>Serves as base class for
- * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
- * implementations.
+ * <p>用作 {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} 实现的基类。
  *
  * @author Juergen Hoeller
  * @author Qimiao Chen
@@ -43,10 +41,10 @@ import org.springframework.util.StringValueResolver;
  */
 public class SimpleAliasRegistry implements AliasRegistry {
 
-	/** Logger available to subclasses. */
+	/** 可供子类使用的日志记录器。 */
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	/** Map from alias to canonical name. */
+	/** 从别名到规范名称的 Map。 */
 	private final Map<String, String> aliasMap = new ConcurrentHashMap<>(16);
 
 
@@ -87,15 +85,15 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
-	 * Determine whether alias overriding is allowed.
-	 * <p>Default is {@code true}.
+	 * 判断是否允许别名覆盖。
+	 * <p>默认值为 {@code true}。
 	 */
 	protected boolean allowAliasOverriding() {
 		return true;
 	}
 
 	/**
-	 * Determine whether the given name has the given alias registered.
+	 * 判断给定名称是否注册了给定别名。
 	 * @param name the name to check
 	 * @param alias the alias to look for
 	 * @since 4.2.1
@@ -131,7 +129,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
-	 * Transitively retrieve all aliases for the given name.
+	 * 传递性地获取给定名称的所有别名。
 	 * @param name the target name to find aliases for
 	 * @param result the resulting aliases list
 	 */
@@ -145,10 +143,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
-	 * Resolve all alias target names and aliases registered in this
-	 * registry, applying the given {@link StringValueResolver} to them.
-	 * <p>The value resolver may for example resolve placeholders
-	 * in target bean names and even in alias names.
+	 * 解析此注册表中注册的所有别名目标名称和别名，对其应用给定的 {@link StringValueResolver}。
+	 * <p>例如，值解析器可以解析目标 Bean 名称乃至别名中的占位符。
 	 * @param valueResolver the StringValueResolver to apply
 	 */
 	public void resolveAliases(StringValueResolver valueResolver) {
@@ -186,9 +182,8 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
-	 * Check whether the given name points back to the given alias as an alias
-	 * in the other direction already, catching a circular reference upfront
-	 * and throwing a corresponding IllegalStateException.
+	 * 检查给定名称是否已作为反向别名指回给定别名，从而提前捕获循环引用，并抛出相应的
+	 * IllegalStateException。
 	 * @param name the candidate name
 	 * @param alias the candidate alias
 	 * @see #registerAlias
@@ -203,7 +198,7 @@ public class SimpleAliasRegistry implements AliasRegistry {
 	}
 
 	/**
-	 * Determine the raw name, resolving aliases to canonical names.
+	 * 确定原始名称，将别名解析为规范名称。
 	 * @param name the user-specified name
 	 * @return the transformed name
 	 */

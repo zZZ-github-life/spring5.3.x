@@ -32,12 +32,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Spring's base implementation of the JPA
- * {@link javax.persistence.spi.PersistenceUnitInfo} interface,
- * used to bootstrap an {@code EntityManagerFactory} in a container.
+ * Spring 对 JPA {@link javax.persistence.spi.PersistenceUnitInfo} 接口的
+ * 基础实现，用于在容器中引导 {@code EntityManagerFactory}。
  *
- * <p>This implementation is largely a JavaBean, offering mutators
- * for all standard {@code PersistenceUnitInfo} properties.
+ * <p>此实现在很大程度上是一个 JavaBean，为所有标准
+ * {@code PersistenceUnitInfo} 属性提供了修改器。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -170,7 +169,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 	}
 
 	/**
-	 * Add a managed class name to the persistence provider's metadata.
+	 * 向持久化提供者的元数据中添加一个受管类名。
 	 * @see javax.persistence.spi.PersistenceUnitInfo#getManagedClassNames()
 	 * @see #addManagedPackage
 	 */
@@ -184,10 +183,10 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 	}
 
 	/**
-	 * Add a managed package to the persistence provider's metadata.
-	 * <p>Note: This refers to annotated {@code package-info.java} files. It does
-	 * <i>not</i> trigger entity scanning in the specified package; this is
-	 * rather the job of {@link DefaultPersistenceUnitManager#setPackagesToScan}.
+	 * 向持久化提供者的元数据中添加一个受管包。
+	 * <p>注意：这指的是带有注解的 {@code package-info.java} 文件。
+	 * 它<i>不会</i>触发对指定包中实体的扫描；后者是
+	 * {@link DefaultPersistenceUnitManager#setPackagesToScan} 的职责。
 	 * @since 4.1
 	 * @see SmartPersistenceUnitInfo#getManagedPackages()
 	 * @see #addManagedClassName
@@ -263,7 +262,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 
 
 	/**
-	 * This implementation returns the default ClassLoader.
+	 * 此实现返回默认的 ClassLoader。
 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader()
 	 */
 	@Override
@@ -273,7 +272,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 	}
 
 	/**
-	 * This implementation throws an UnsupportedOperationException.
+	 * 此实现抛出 UnsupportedOperationException。
 	 */
 	@Override
 	public void addTransformer(ClassTransformer classTransformer) {
@@ -281,7 +280,7 @@ public class MutablePersistenceUnitInfo implements SmartPersistenceUnitInfo {
 	}
 
 	/**
-	 * This implementation throws an UnsupportedOperationException.
+	 * 此实现抛出 UnsupportedOperationException。
 	 */
 	@Override
 	public ClassLoader getNewTempClassLoader() {

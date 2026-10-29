@@ -37,7 +37,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
 
 /**
- * Base class for HTTP transport handlers that push messages to connected clients.
+ * 用于向已连接客户端推送消息的 HTTP 传输处理器的基类。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -46,7 +46,7 @@ public abstract class AbstractHttpSendingTransportHandler extends AbstractTransp
 		implements SockJsSessionFactory {
 
 	/**
-	 * Pattern for validating callback parameter values.
+	 * 用于校验回调参数值的模式。
 	 */
 	private static final Pattern CALLBACK_PARAM_PATTERN = Pattern.compile("[0-9A-Za-z_.]*");
 

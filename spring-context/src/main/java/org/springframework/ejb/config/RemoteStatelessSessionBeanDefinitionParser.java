@@ -21,9 +21,8 @@ import org.w3c.dom.Element;
 import org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser}
- * implementation for parsing '{@code remote-slsb}' tags and
- * creating {@link SimpleRemoteStatelessSessionProxyFactoryBean} definitions.
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} 实现，用于解析 '
+ * {@code remote-slsb}' 标签并创建 {@link SimpleRemoteStatelessSessionProxyFactoryBean} 定义。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller

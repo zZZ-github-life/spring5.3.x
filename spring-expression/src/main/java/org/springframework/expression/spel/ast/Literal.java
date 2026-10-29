@@ -25,7 +25,7 @@ import org.springframework.expression.spel.SpelParseException;
 import org.springframework.lang.Nullable;
 
 /**
- * Common superclass for nodes representing literals (boolean, string, number, etc).
+ * 表示字面值（boolean、string、number 等）的节点的公共超类。
  *
  * @author Andy Clement
  * @author Juergen Hoeller
@@ -67,9 +67,8 @@ public abstract class Literal extends SpelNodeImpl {
 
 
 	/**
-	 * Process the string form of a number, using the specified base if supplied
-	 * and return an appropriate literal to hold it. Any suffix to indicate a
-	 * long will be taken into account (either 'l' or 'L' is supported).
+	 * 处理数字的字符串形式，若提供了指定进制则使用该进制，并返回合适的字面值来保存它。将考虑用于表示
+	 * long 的任何后缀（支持 'l' 或 'L'）。
 	 * @param numberToken the token holding the number as its payload (eg. 1234 or 0xCAFE)
 	 * @param radix the base of number
 	 * @return a subtype of Literal that can represent it

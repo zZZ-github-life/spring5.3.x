@@ -19,7 +19,7 @@ package org.springframework.messaging.tcp;
 import org.springframework.lang.Nullable;
 
 /**
- * A contract to determine the frequency of reconnect attempts after connection failure.
+ * 用于确定连接失败后重连尝试频率的契约。
  *
  * @author Rossen Stoyanchev
  * @since 4.0
@@ -28,7 +28,7 @@ import org.springframework.lang.Nullable;
 public interface ReconnectStrategy {
 
 	/**
-	 * Return the time to the next attempt to reconnect.
+	 * 返回距下一次重连尝试的时间。
 	 * @param attemptCount how many reconnect attempts have been made already
 	 * @return the amount of time in milliseconds, or {@code null} to stop
 	 */

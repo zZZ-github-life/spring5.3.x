@@ -30,29 +30,23 @@ import org.springframework.lang.Nullable;
 import org.springframework.remoting.RemoteLookupFailureException;
 
 /**
- * Basic invoker for a remote Stateless Session Bean.
- * Designed for EJB 2.x, but works for EJB 3 Session Beans as well.
+ * 远程无状态会话 Bean 的基础调用器。
+ * 面向 EJB 2.x 设计，但也适用于 EJB 3 会话 Bean。
  *
- * <p>"Creates" a new EJB instance for each invocation, or caches the session
- * bean instance for all invocations (see {@link #setCacheSessionBean}).
- * See {@link org.springframework.jndi.JndiObjectLocator} for info on
- * how to specify the JNDI location of the target EJB.
+ * <p>每次调用都会“创建”一个新的 EJB 实例，或者为所有调用缓存同一个会话 Bean 实例（参见
+ * {@link #setCacheSessionBean}）。关于如何指定目标 EJB 的 JNDI 位置，请参见
+ * {@link org.springframework.jndi.JndiObjectLocator}。
  *
- * <p>In a bean container, this class is normally best used as a singleton. However,
- * if that bean container pre-instantiates singletons (as do the XML ApplicationContext
- * variants) you may have a problem if the bean container is loaded before the EJB
- * container loads the target EJB. That is because by default the JNDI lookup will be
- * performed in the init method of this class and cached, but the EJB will not have been
- * bound at the target location yet. The best solution is to set the "lookupHomeOnStartup"
- * property to "false", in which case the home will be fetched on first access to the EJB.
- * (This flag is only true by default for backwards compatibility reasons).
+ * <p>在 Bean 容器中，此类通常最好以单例方式使用。但是，如果该 Bean 容器会预实例化单例（XML
+ * ApplicationContext 的各个变体便是如此），而 Bean 容器又先于 EJB 容器加载目标 EJB，则可能遇到问题。
+ * 这是因为默认情况下，JNDI 查找会在本类的 init 方法中执行并缓存，但此时 EJB 尚未绑定到目标位置。
+ * 最好的解决办法是将 "lookupHomeOnStartup" 属性设为 "false"，这样 home 将在首次访问该 EJB 时获取。
+ * （出于向后兼容的考虑，该标志的默认值才为 true）。
  *
- * <p>This invoker is typically used with an RMI business interface, which serves
- * as super-interface of the EJB component interface. Alternatively, this invoker
- * can also proxy a remote SLSB with a matching non-RMI business interface, i.e. an
- * interface that mirrors the EJB business methods but does not declare RemoteExceptions.
- * In the latter case, RemoteExceptions thrown by the EJB stub will automatically get
- * converted to Spring's unchecked RemoteAccessException.
+ * <p>此调用器通常与 RMI 业务接口一起使用，该接口充当 EJB 组件接口的父接口。或者，此调用器也可以用
+ * 一个匹配的非 RMI 业务接口来代理远程 SLSB，即一个镜像 EJB 业务方法但不声明 RemoteExceptions 的接
+ * 口。在后一种情况下，EJB 桩抛出的 RemoteExceptions 会自动转换为 Spring 的非受检
+ * RemoteAccessException。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -74,10 +68,9 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 
 
 	/**
-	 * Set whether to cache the actual session bean object.
-	 * <p>Off by default for standard EJB compliance. Turn this flag
-	 * on to optimize session bean access for servers that are
-	 * known to allow for caching the actual session bean object.
+	 * 设置是否缓存实际的会话 Bean 对象。
+	 * <p>为了符合标准 EJB 规范，默认关闭。对于已知允许缓存实际会话 Bean 对象的服务器，可以打开此标志以
+	 * 优化会话 Bean 访问。
 	 * @see #setCacheHome
 	 */
 	public void setCacheSessionBean(boolean cacheSessionBean) {
@@ -86,11 +79,9 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 
 
 	/**
-	 * This implementation "creates" a new EJB instance for each invocation.
-	 * Can be overridden for custom invocation strategies.
-	 * <p>Alternatively, override {@link #getSessionBeanInstance} and
-	 * {@link #releaseSessionBeanInstance} to change EJB instance creation,
-	 * for example to hold a single shared EJB component instance.
+	 * 此实现为每次调用“创建”一个新的 EJB 实例。可以覆盖以实现自定义调用策略。
+	 * <p>或者，覆盖 {@link #getSessionBeanInstance} 和 {@link #releaseSessionBeanInstance} 以更改 EJB
+	 * 实例创建方式，例如保持单个共享的 EJB 组件实例。
 	 */
 	@Override
 	@Nullable
@@ -125,8 +116,8 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 	}
 
 	/**
-	 * Return an EJB component instance to delegate the call to.
-	 * <p>The default implementation delegates to {@link #newSessionBeanInstance}.
+	 * 返回用于委派调用的 EJB 组件实例。
+	 * <p>默认实现委派给 {@link #newSessionBeanInstance}。
 	 * @return the EJB component instance
 	 * @throws NamingException if thrown by JNDI
 	 * @throws InvocationTargetException if thrown by the create method
@@ -147,8 +138,8 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 	}
 
 	/**
-	 * Release the given EJB instance.
-	 * <p>The default implementation delegates to {@link #removeSessionBeanInstance}.
+	 * 释放给定的 EJB 实例。
+	 * <p>默认实现委派给 {@link #removeSessionBeanInstance}。
 	 * @param ejb the EJB component instance to release
 	 * @see #removeSessionBeanInstance
 	 */
@@ -159,7 +150,7 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 	}
 
 	/**
-	 * Reset the cached session bean instance, if necessary.
+	 * 如有必要，重置缓存的会话 Bean 实例。
 	 */
 	@Override
 	protected void refreshHome() throws NamingException {
@@ -172,7 +163,7 @@ public class SimpleRemoteSlsbInvokerInterceptor extends AbstractRemoteSlsbInvoke
 	}
 
 	/**
-	 * Remove the cached session bean instance, if necessary.
+	 * 如有必要，移除缓存的会话 Bean 实例。
 	 */
 	@Override
 	public void destroy() {

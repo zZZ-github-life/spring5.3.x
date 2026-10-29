@@ -28,8 +28,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Default immutable implementation of {@link ResourceResolverChain}.
- *
+ * {@link ResourceResolverChain} 的默认不可变实现。
  * @author Rossen Stoyanchev
  * @since 4.1
  */

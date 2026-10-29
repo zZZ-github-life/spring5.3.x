@@ -22,9 +22,9 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.socket.server.RequestUpgradeStrategy;
 
 /**
- * A default {@link org.springframework.web.socket.server.HandshakeHandler} implementation,
- * extending {@link AbstractHandshakeHandler} with Servlet-specific initialization support.
- * See {@link AbstractHandshakeHandler}'s javadoc for details on supported servers etc.
+ * 默认的 {@link org.springframework.web.socket.server.HandshakeHandler} 实现，
+ * 通过 {@link AbstractHandshakeHandler} 扩展了特定于 Servlet 的初始化支持。
+ * 有关支持的服务器等详细信息，请参见 {@link AbstractHandshakeHandler} 的 javadoc。
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

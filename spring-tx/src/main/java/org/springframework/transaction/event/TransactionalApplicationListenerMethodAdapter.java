@@ -29,14 +29,11 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.util.Assert;
 
 /**
- * {@link GenericApplicationListener} adapter that delegates the processing of
- * an event to a {@link TransactionalEventListener} annotated method. Supports
- * the exact same features as any regular {@link EventListener} annotated method
- * but is aware of the transactional context of the event publisher.
+ * {@link GenericApplicationListener}适配器, 将事件的处理委托给标注了{@link TransactionalEventListener}的方法。
+ * 支持与任何常规{@link EventListener}标注方法完全相同的功能, 但能感知事件发布者的事务上下文。
  *
- * <p>Processing of {@link TransactionalEventListener} is enabled automatically
- * when Spring's transaction management is enabled. For other cases, registering
- * a bean of type {@link TransactionalEventListenerFactory} is required.
+ * <p>当Spring的事务管理被启用时, {@link TransactionalEventListener}的处理会自动启用。
+ * 在其他情况下, 需要注册{@link TransactionalEventListenerFactory}类型的bean。
  *
  * @author Stephane Nicoll
  * @author Juergen Hoeller
@@ -56,7 +53,7 @@ public class TransactionalApplicationListenerMethodAdapter extends ApplicationLi
 
 
 	/**
-	 * Construct a new TransactionalApplicationListenerMethodAdapter.
+	 * 构造一个新的TransactionalApplicationListenerMethodAdapter。
 	 * @param beanName the name of the bean to invoke the listener method on
 	 * @param targetClass the target class that the method is declared on
 	 * @param method the listener method to invoke

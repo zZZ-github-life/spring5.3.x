@@ -44,10 +44,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Represents the invocation of a constructor. Either a constructor on a regular type or
- * construction of an array. When an array is constructed, an initializer can be specified.
+ * 表示构造函数的调用。既可以是常规类型上的构造函数，也可以是数组的构造。构造数组时，可以指定初始化
+ * 器。
  *
- * <h4>Examples</h4>
+ * <h4>示例</h4>
  * <ul>
  * <li><code>new example.Foo()</code></li>
  * <li><code>new String('hello world')</code></li>
@@ -65,8 +65,7 @@ import org.springframework.util.Assert;
 public class ConstructorReference extends SpelNodeImpl {
 
 	/**
-	 * Maximum number of elements permitted in an array declaration, applying
-	 * to one-dimensional as well as multi-dimensional arrays.
+	 * 数组声明中允许的最大元素数量，适用于一维数组和多维数组。
 	 * @since 5.3.17
 	 */
 	private static final int MAX_ARRAY_ELEMENTS = 256 * 1024; // 256K
@@ -77,14 +76,13 @@ public class ConstructorReference extends SpelNodeImpl {
 	private final SpelNodeImpl[] dimensions;
 
 	// TODO is this caching safe - passing the expression around will mean this executor is also being passed around
-	/** The cached executor that may be reused on subsequent evaluations. */
+	/** 可在后续求值中复用的缓存执行器。 */
 	@Nullable
 	private volatile ConstructorExecutor cachedExecutor;
 
 
 	/**
-	 * Create a constructor reference. The first argument is the type, the rest are the parameters to the constructor
-	 * call
+	 * 创建一个构造函数引用。第一个参数是类型，其余的是构造函数调用的参数
 	 */
 	public ConstructorReference(int startPos, int endPos, SpelNodeImpl... arguments) {
 		super(startPos, endPos, arguments);
@@ -93,8 +91,7 @@ public class ConstructorReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Create a constructor reference. The first argument is the type, the rest are the parameters to the constructor
-	 * call
+	 * 创建一个构造函数引用。第一个参数是类型，其余的是构造函数调用的参数
 	 */
 	public ConstructorReference(int startPos, int endPos, SpelNodeImpl[] dimensions, SpelNodeImpl... arguments) {
 		super(startPos, endPos, arguments);
@@ -104,7 +101,7 @@ public class ConstructorReference extends SpelNodeImpl {
 
 
 	/**
-	 * Implements getValue() - delegating to the code for building an array or a simple type.
+	 * 实现 getValue() —— 委托给用于构建数组或简单类型的代码。
 	 */
 	@Override
 	public TypedValue getValueInternal(ExpressionState state) throws EvaluationException {
@@ -117,7 +114,7 @@ public class ConstructorReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Create a new ordinary object and return it.
+	 * 创建一个新的普通对象并返回它。
 	 * @param state the expression state within which this expression is being evaluated
 	 * @return the new object
 	 * @throws EvaluationException if there is a problem creating the object
@@ -188,8 +185,7 @@ public class ConstructorReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Go through the list of registered constructor resolvers and see if any can find a
-	 * constructor that takes the specified set of arguments.
+	 * 遍历已注册的构造函数解析器列表，检查是否有解析器能找到接受指定参数集的构造函数。
 	 * @param typeName the type trying to be constructed
 	 * @param argumentTypes the types of the arguments supplied that the constructor must take
 	 * @param state the current state of the expression
@@ -252,7 +248,7 @@ public class ConstructorReference extends SpelNodeImpl {
 	}
 
 	/**
-	 * Create an array and return it.
+	 * 创建一个数组并返回它。
 	 * @param state the expression state within which this expression is being evaluated
 	 * @return the new array
 	 * @throws EvaluationException if there is a problem creating the array

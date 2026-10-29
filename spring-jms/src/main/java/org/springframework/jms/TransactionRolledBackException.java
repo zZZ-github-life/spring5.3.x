@@ -17,7 +17,7 @@
 package org.springframework.jms;
 
 /**
- * Runtime exception mirroring the JMS TransactionRolledBackException.
+ * 与 JMS TransactionRolledBackException 对应的运行时异常。
  *
  * @author Mark Pollack
  * @since 1.1

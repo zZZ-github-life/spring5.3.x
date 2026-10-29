@@ -1,5 +1,5 @@
 /**
- * Support classes for providing a View implementation based on JSON serialization.
+ * 用于提供基于 JSON 序列化的 View 实现的支持类。
  */
 @NonNullApi
 @NonNullFields

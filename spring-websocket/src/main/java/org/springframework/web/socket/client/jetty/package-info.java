@@ -1,5 +1,5 @@
 /**
- * Client-side support for the Jetty WebSocket API.
+ * Jetty WebSocket API 的客户端支持。
  */
 @NonNullApi
 @NonNullFields

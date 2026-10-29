@@ -35,15 +35,13 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * {@link org.springframework.beans.factory.FactoryBean} that creates a simple
- * HTTP server, based on the HTTP server that is included in Sun's JRE 1.6.
- * Starts the HTTP server on initialization and stops it on destruction.
- * Exposes the resulting {@link com.sun.net.httpserver.HttpServer} object.
+ * 创建简单 HTTP 服务器的 {@link org.springframework.beans.factory.FactoryBean}，基于 Sun 的 JRE
+ * 1.6 中包含的 HTTP 服务器。初始化时启动该 HTTP 服务器，销毁时停止它。暴露生成的
+ * {@link com.sun.net.httpserver.HttpServer} 对象。
  *
- * <p>Allows for registering {@link com.sun.net.httpserver.HttpHandler HttpHandlers}
- * for specific {@link #setContexts context paths}. Alternatively,
- * register such context-specific handlers programmatically on the
- * {@link com.sun.net.httpserver.HttpServer} itself.
+ * <p>允许为特定的 {@link #setContexts context paths} 注册
+ * {@link com.sun.net.httpserver.HttpHandler HttpHandlers}。或者，也可以在
+ * {@link com.sun.net.httpserver.HttpServer} 本身上以编程方式注册此类特定于上下文的处理器。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -78,38 +76,35 @@ public class SimpleHttpServerFactoryBean implements FactoryBean<HttpServer>, Ini
 
 
 	/**
-	 * Specify the HTTP server's port. Default is 8080.
+	 * 指定 HTTP 服务器的端口。默认为 8080。
 	 */
 	public void setPort(int port) {
 		this.port = port;
 	}
 
 	/**
-	 * Specify the HTTP server's hostname to bind to. Default is localhost;
-	 * can be overridden with a specific network address to bind to.
+	 * 指定 HTTP 服务器要绑定的主机名。默认为 localhost；可以覆盖为要绑定的特定网络地址。
 	 */
 	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 
 	/**
-	 * Specify the HTTP server's TCP backlog. Default is -1,
-	 * indicating the system's default value.
+	 * 指定 HTTP 服务器的 TCP backlog。默认为 -1，表示使用系统默认值。
 	 */
 	public void setBacklog(int backlog) {
 		this.backlog = backlog;
 	}
 
 	/**
-	 * Specify the number of seconds to wait until HTTP exchanges have
-	 * completed when shutting down the HTTP server. Default is 0.
+	 * 指定关闭 HTTP 服务器时等待 HTTP 交换完成的秒数。默认为 0。
 	 */
 	public void setShutdownDelay(int shutdownDelay) {
 		this.shutdownDelay = shutdownDelay;
 	}
 
 	/**
-	 * Set the JDK concurrent executor to use for dispatching incoming requests.
+	 * 设置用于分派传入请求的 JDK 并发执行器。
 	 * @see com.sun.net.httpserver.HttpServer#setExecutor
 	 */
 	public void setExecutor(Executor executor) {
@@ -117,8 +112,7 @@ public class SimpleHttpServerFactoryBean implements FactoryBean<HttpServer>, Ini
 	}
 
 	/**
-	 * Register {@link com.sun.net.httpserver.HttpHandler HttpHandlers}
-	 * for specific context paths.
+	 * 为特定上下文路径注册 {@link com.sun.net.httpserver.HttpHandler HttpHandlers}。
 	 * @param contexts a Map with context paths as keys and HttpHandler
 	 * objects as values
 	 * @see org.springframework.remoting.httpinvoker.SimpleHttpInvokerServiceExporter
@@ -129,16 +123,16 @@ public class SimpleHttpServerFactoryBean implements FactoryBean<HttpServer>, Ini
 	}
 
 	/**
-	 * Register common {@link com.sun.net.httpserver.Filter Filters} to be
-	 * applied to all locally registered {@link #setContexts contexts}.
+	 * 注册通用的 {@link com.sun.net.httpserver.Filter Filters}，将其应用于所有本地注册的
+	 * {@link #setContexts contexts}。
 	 */
 	public void setFilters(List<Filter> filters) {
 		this.filters = filters;
 	}
 
 	/**
-	 * Register a common {@link com.sun.net.httpserver.Authenticator} to be
-	 * applied to all locally registered {@link #setContexts contexts}.
+	 * 注册通用的 {@link com.sun.net.httpserver.Authenticator}，将其应用于所有本地注册的
+	 * {@link #setContexts contexts}。
 	 */
 	public void setAuthenticator(Authenticator authenticator) {
 		this.authenticator = authenticator;

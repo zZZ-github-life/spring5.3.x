@@ -19,9 +19,9 @@ package org.springframework.messaging.support;
 import java.util.List;
 
 /**
- * A {@link org.springframework.messaging.MessageChannel MessageChannel} that
- * maintains a list {@link org.springframework.messaging.support.ChannelInterceptor
- * ChannelInterceptors} and allows interception of message sending.
+ * 维护 {@link org.springframework.messaging.support.ChannelInterceptor
+ * ChannelInterceptors} 列表并允许拦截消息发送的
+ * {@link org.springframework.messaging.MessageChannel MessageChannel}。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -29,32 +29,32 @@ import java.util.List;
 public interface InterceptableChannel {
 
 	/**
-	 * Set the list of channel interceptors clearing any existing interceptors.
+	 * 设置通道拦截器列表，清除所有现有拦截器。
 	 */
 	void setInterceptors(List<ChannelInterceptor> interceptors);
 
 	/**
-	 * Add a channel interceptor to the end of the list.
+	 * 将通道拦截器添加到列表末尾。
 	 */
 	void addInterceptor(ChannelInterceptor interceptor);
 
 	/**
-	 * Add a channel interceptor at the specified index.
+	 * 在指定索引处添加通道拦截器。
 	 */
 	void addInterceptor(int index, ChannelInterceptor interceptor);
 
 	/**
-	 * Return the list of configured interceptors.
+	 * 返回配置的拦截器列表。
 	 */
 	List<ChannelInterceptor> getInterceptors();
 
 	/**
-	 * Remove the given interceptor.
+	 * 移除给定的拦截器。
 	 */
 	boolean removeInterceptor(ChannelInterceptor interceptor);
 
 	/**
-	 * Remove the interceptor at the given index.
+	 * 移除指定索引处的拦截器。
 	 */
 	ChannelInterceptor removeInterceptor(int index);
 

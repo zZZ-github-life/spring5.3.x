@@ -21,8 +21,8 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 
 /**
- * Extends {@link MessageReceivingOperations} and adds operations for receiving messages
- * from a destination specified as a (resolvable) String name.
+ * 扩展 {@link MessageReceivingOperations}，增加了从以（可解析的）String 名称
+ * 指定的目标接收消息的操作。
  *
  * @author Mark Fisher
  * @author Rossen Stoyanchev
@@ -33,15 +33,14 @@ import org.springframework.messaging.MessagingException;
 public interface DestinationResolvingMessageReceivingOperations<D> extends MessageReceivingOperations<D> {
 
 	/**
-	 * Resolve the given destination name and receive a message from it.
+	 * 解析给定目标名称并从该目标接收消息。
 	 * @param destinationName the destination name to resolve
 	 */
 	@Nullable
 	Message<?> receive(String destinationName) throws MessagingException;
 
 	/**
-	 * Resolve the given destination name, receive a message from it,
-	 * convert the payload to the specified target type.
+	 * 解析给定目标名称，从该目标接收消息，并将载荷转换为指定目标类型。
 	 * @param destinationName the destination name to resolve
 	 * @param targetClass the target class for the converted payload
 	 */

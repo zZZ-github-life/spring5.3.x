@@ -66,11 +66,11 @@ import org.springframework.web.socket.sockjs.SockJsTransportFailureException;
 import org.springframework.web.socket.sockjs.frame.SockJsFrame;
 
 /**
- * An XHR transport based on Undertow's {@link io.undertow.client.UndertowClient}.
- * Requires Undertow 1.3 or 1.4, including XNIO, as of Spring Framework 5.0.
+ * 基于 Undertow 的 {@link io.undertow.client.UndertowClient} 的 XHR 传输。
+ * 自 Spring Framework 5.0 起，需要 Undertow 1.3 或 1.4（包括 XNIO）。
  *
- * <p>When used for testing purposes (e.g. load testing) or for specific use cases
- * (like HTTPS configuration), a custom OptionMap should be provided:
+ * <p>当用于测试目的（例如负载测试）或特定用例
+ * （例如 HTTPS 配置）时，应提供自定义 OptionMap：
  *
  * <pre class="code">
  * OptionMap optionMap = OptionMap.builder()
@@ -116,15 +116,15 @@ public class UndertowXhrTransport extends AbstractXhrTransport {
 
 
 	/**
-	 * Return Undertow's native HTTP client.
+	 * 返回 Undertow 的原生 HTTP 客户端。
 	 */
 	public UndertowClient getHttpClient() {
 		return this.httpClient;
 	}
 
 	/**
-	 * Return the {@link org.xnio.XnioWorker} backing the I/O operations
-	 * for Undertow's HTTP client.
+	 * 返回为 Undertow 的 HTTP 客户端的 I/O 操作提供支持的
+	 * {@link org.xnio.XnioWorker}。
 	 * @see org.xnio.Xnio
 	 */
 	public XnioWorker getWorker() {

@@ -25,9 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for filename suffix based {@link VersionStrategy}
- * implementations, e.g. "static/myresource-version.js"
- *
+ * 基于文件名后缀的 {@link VersionStrategy} 实现的抽象基类，例如 "static/myresource-version.js"。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0

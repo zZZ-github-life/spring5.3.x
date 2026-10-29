@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Represents a reactive server-side HTTP request.
+ * 表示响应式服务器端 HTTP 请求。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -40,37 +40,37 @@ import org.springframework.util.MultiValueMap;
 public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage {
 
 	/**
-	 * Return an id that represents the underlying connection, if available,
-	 * or the request for the purpose of correlating log messages.
+	 * 返回表示底层连接的 id（如果可用），
+	 * 或返回请求本身的 id，用于关联日志消息。
 	 * @since 5.1
 	 * @see org.springframework.web.server.ServerWebExchange#getLogPrefix()
 	 */
 	String getId();
 
 	/**
-	 * Returns a structured representation of the full request path up to but
-	 * not including the {@link #getQueryParams() query}.
-	 * <p>The returned path is subdivided into a
-	 * {@link RequestPath#contextPath()} portion and the remaining
-	 * {@link RequestPath#pathWithinApplication() pathWithinApplication} portion.
-	 * The latter can be passed into methods of
-	 * {@link org.springframework.web.util.pattern.PathPattern} for path
-	 * matching purposes.
+	 * 返回完整请求路径的结构化表示，该路径截至但不包括
+	 * {@link #getQueryParams() 查询}部分。
+	 * <p>返回的路径细分为
+	 * {@link RequestPath#contextPath()} 部分和其余的
+	 * {@link RequestPath#pathWithinApplication() pathWithinApplication} 部分。
+	 * 后者可以传入
+	 * {@link org.springframework.web.util.pattern.PathPattern} 的方法
+	 * 以进行路径匹配。
 	 */
 	RequestPath getPath();
 
 	/**
-	 * Return a read-only map with parsed and decoded query parameter values.
+	 * 返回包含已解析并解码的查询参数值的只读 Map。
 	 */
 	MultiValueMap<String, String> getQueryParams();
 
 	/**
-	 * Return a read-only map of cookies sent by the client.
+	 * 返回客户端发送的 cookie 的只读 Map。
 	 */
 	MultiValueMap<String, HttpCookie> getCookies();
 
 	/**
-	 * Return the local address the request was accepted on, if available.
+	 * 返回接收请求的本地地址（如果可用）。
 	 * @since 5.2.3
 	 */
 	@Nullable
@@ -79,7 +79,7 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 	}
 
 	/**
-	 * Return the remote address where this request is connected to, if available.
+	 * 返回此请求所连接的远程地址（如果可用）。
 	 */
 	@Nullable
 	default InetSocketAddress getRemoteAddress() {
@@ -87,8 +87,8 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 	}
 
 	/**
-	 * Return the SSL session information if the request has been transmitted
-	 * over a secure protocol including SSL certificates, if available.
+	 * 如果请求是通过安全协议传输的，返回 SSL 会话信息，
+	 * 包括 SSL 证书（如果可用）。
 	 * @return the session information, or {@code null} if none available
 	 * @since 5.0.2
 	 */
@@ -98,9 +98,8 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 	}
 
 	/**
-	 * Return a builder to mutate properties of this request by wrapping it
-	 * with {@link ServerHttpRequestDecorator} and returning either mutated
-	 * values or delegating back to this instance.
+	 * 返回一个构建器，通过将请求包装在 {@link ServerHttpRequestDecorator} 中
+	 * 来修改此请求的属性，并返回修改后的值或委托回此实例。
 	 */
 	default ServerHttpRequest.Builder mutate() {
 		return new DefaultServerHttpRequestBuilder(this);
@@ -108,53 +107,52 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 
 
 	/**
-	 * Builder for mutating an existing {@link ServerHttpRequest}.
+	 * 用于修改现有 {@link ServerHttpRequest} 的构建器。
 	 */
 	interface Builder {
 
 		/**
-		 * Set the HTTP method to return.
+		 * 设置要返回的 HTTP 方法。
 		 */
 		Builder method(HttpMethod httpMethod);
 
 		/**
-		 * Set the URI to use with the following conditions:
+		 * 设置要使用的 URI，需满足以下条件：
 		 * <ul>
-		 * <li>If {@link #path(String) path} is also set, it overrides the path
-		 * of the URI provided here.
-		 * <li>If {@link #contextPath(String) contextPath} is also set, or
-		 * already present, it must match the start of the path of the URI
-		 * provided here.
+		 * <li>如果还设置了 {@link #path(String) path}，它将覆盖此处
+		 * 提供的 URI 的路径。
+		 * <li>如果还设置了 {@link #contextPath(String) contextPath}，
+		 * 或已存在该值，则它必须与此处提供的 URI 路径的开头匹配。
 		 * </ul>
 		 */
 		Builder uri(URI uri);
 
 		/**
-		 * Set the path to use instead of the {@code "rawPath"} of the URI of
-		 * the request with the following conditions:
+		 * 设置要使用的路径，以替代请求 URI 的 {@code "rawPath"}，
+		 * 需满足以下条件：
 		 * <ul>
-		 * <li>If {@link #uri(URI) uri} is also set, the path given here
-		 * overrides the path of the given URI.
-		 * <li>If {@link #contextPath(String) contextPath} is also set, or
-		 * already present, it must match the start of the path given here.
-		 * <li>The given value must begin with a slash.
+		 * <li>如果还设置了 {@link #uri(URI) uri}，此处给出的路径
+		 * 将覆盖给定 URI 的路径。
+		 * <li>如果还设置了 {@link #contextPath(String) contextPath}，
+		 * 或已存在该值，则它必须与此处给出的路径的开头匹配。
+		 * <li>给定的值必须以斜杠开头。
 		 * </ul>
 		 */
 		Builder path(String path);
 
 		/**
-		 * Set the contextPath to use.
-		 * <p>The given value must be a valid {@link RequestPath#contextPath()
-		 * contextPath} and it must match the start of the path of the URI of
-		 * the request. That means changing the contextPath, implies also
-		 * changing the path via {@link #path(String)}.
+		 * 设置要使用的 contextPath。
+		 * <p>给定的值必须是有效的 {@link RequestPath#contextPath()
+		 * contextPath}，并且必须与请求 URI 路径的开头匹配。
+		 * 这意味着更改 contextPath 也意味着需要通过
+		 * {@link #path(String)} 更改路径。
 		 */
 		Builder contextPath(String contextPath);
 
 		/**
-		 * Set or override the specified header values under the given name.
-		 * <p>If you need to add header values, remove headers, etc., use
-		 * {@link #headers(Consumer)} for greater control.
+		 * 设置或覆盖给定名称下指定的头值。
+		 * <p>如果需要添加头值、删除头等，请使用
+		 * {@link #headers(Consumer)} 以获得更强的控制能力。
 		 * @param headerName the header name
 		 * @param headerValues the header values
 		 * @since 5.1.9
@@ -163,31 +161,29 @@ public interface ServerHttpRequest extends HttpRequest, ReactiveHttpInputMessage
 		Builder header(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate request headers. The provided {@code HttpHeaders} contains
-		 * current request headers, so that the {@code Consumer} can
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} or
-		 * {@linkplain HttpHeaders#remove(Object) remove} existing values, or
-		 * use any other {@link HttpHeaders} methods.
+		 * 操作请求头。提供的 {@code HttpHeaders} 包含当前请求头，
+		 * 因此 {@code Consumer} 可以{@linkplain HttpHeaders#set(String, String) 覆盖}
+		 * 或{@linkplain HttpHeaders#remove(Object) 删除}现有值，
+		 * 或使用任何其他 {@link HttpHeaders} 方法。
 		 * @see #header(String, String...)
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Set the SSL session information. This may be useful in environments
-		 * where TLS termination is done at the router, but SSL information is
-		 * made available in some other way such as through a header.
+		 * 设置 SSL 会话信息。这在路由器处完成 TLS 终止，
+		 * 但 SSL 信息通过其他方式（例如通过某个头）提供时可能很有用。
 		 * @since 5.0.7
 		 */
 		Builder sslInfo(SslInfo sslInfo);
 
 		/**
-		 * Set the address of the remote client.
+		 * 设置远程客户端的地址。
 		 * @since 5.3
 		 */
 		Builder remoteAddress(InetSocketAddress remoteAddress);
 
 		/**
-		 * Build a {@link ServerHttpRequest} decorator with the mutated properties.
+		 * 使用修改后的属性构建 {@link ServerHttpRequest} 装饰器。
 		 */
 		ServerHttpRequest build();
 	}

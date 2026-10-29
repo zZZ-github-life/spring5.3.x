@@ -42,9 +42,7 @@ import org.springframework.web.reactive.result.method.InvocableHandlerMethod;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Package-private class to assist {@link RequestMappingHandlerAdapter} with
- * default model initialization through {@code @ModelAttribute} methods.
- *
+ * 包级私有类，协助 {@link RequestMappingHandlerAdapter} 通过 {@code @ModelAttribute} 方法进行默认模型初始化。
  * @author Rossen Stoyanchev
  * @since 5.0
  */
@@ -64,9 +62,7 @@ class ModelInitializer {
 
 
 	/**
-	 * Initialize the {@link org.springframework.ui.Model Model} based on a
-	 * (type-level) {@code @SessionAttributes} annotation and
-	 * {@code @ModelAttribute} methods.
+	 * 基于（类型级）{@code @SessionAttributes} 注解和 {@code @ModelAttribute} 方法初始化 {@link org.springframework.ui.Model Model}。
 	 * @param handlerMethod the target controller method
 	 * @param bindingContext the context containing the model
 	 * @param exchange the current exchange
@@ -142,7 +138,7 @@ class ModelInitializer {
 				.orElseGet(() -> Conventions.getVariableNameForParameter(param));
 	}
 
-	/** Find {@code @ModelAttribute} arguments also listed as {@code @SessionAttributes}. */
+	/** 查找同时列为 {@code @SessionAttributes} 的 {@code @ModelAttribute} 参数。 */
 	private List<String> findModelAttributes(HandlerMethod handlerMethod,
 			SessionAttributesHandler sessionAttributesHandler) {
 
@@ -160,9 +156,7 @@ class ModelInitializer {
 	}
 
 	/**
-	 * Derive the model attribute name for the given method parameter based on
-	 * a {@code @ModelAttribute} parameter annotation (if present) or falling
-	 * back on parameter type based conventions.
+	 * 根据 {@code @ModelAttribute} 参数注解（如果存在）或基于参数类型的约定，推导给定方法参数的模型属性名称。
 	 * @param parameter a descriptor for the method parameter
 	 * @return the derived name
 	 * @see Conventions#getVariableNameForParameter(MethodParameter)

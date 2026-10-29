@@ -1,6 +1,6 @@
 /**
- * Classes supporting the {@code org.springframework.jca.cci.core} package.
- * Contains a DAO base class for CciTemplate usage.
+ * 支持 {@code org.springframework.jca.cci.core} 包的类。
+ * 包含用于 CciTemplate 使用的 DAO 基类。
  */
 @NonNullApi
 @NonNullFields

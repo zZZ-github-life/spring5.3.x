@@ -23,7 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 /**
- * Exception for errors that fit response status 415 (unsupported media type).
+ * 适用于响应状态 415（不支持的媒体类型）的异常。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -38,7 +38,7 @@ public class MediaTypeNotSupportedStatusException extends ResponseStatusExceptio
 
 
 	/**
-	 * Constructor for when the Content-Type is invalid.
+	 * 当 Content-Type 无效时使用的构造函数。
 	 */
 	public MediaTypeNotSupportedStatusException(String reason) {
 		super(HttpStatus.UNSUPPORTED_MEDIA_TYPE, reason);
@@ -46,7 +46,7 @@ public class MediaTypeNotSupportedStatusException extends ResponseStatusExceptio
 	}
 
 	/**
-	 * Constructor for when the Content-Type is not supported.
+	 * 当 Content-Type 不受支持时使用的构造函数。
 	 */
 	public MediaTypeNotSupportedStatusException(List<MediaType> supportedMediaTypes) {
 		super(HttpStatus.UNSUPPORTED_MEDIA_TYPE, "Unsupported media type", null);
@@ -55,8 +55,8 @@ public class MediaTypeNotSupportedStatusException extends ResponseStatusExceptio
 
 
 	/**
-	 * Return the list of supported content types in cases when the Accept
-	 * header is parsed but not supported, or an empty list otherwise.
+	 * 返回受支持的内容类型列表：当 Accept 头部可以解析但不受支持时返回该列表，
+	 * 否则返回空列表。
 	 */
 	public List<MediaType> getSupportedMediaTypes() {
 		return this.supportedMediaTypes;

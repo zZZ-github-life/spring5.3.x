@@ -24,17 +24,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * The purpose of this class is to enable capturing and passing a generic
- * {@link Type}. In order to capture the generic type and retain it at runtime,
- * you need to create a subclass (ideally as anonymous inline class) as follows:
+ * 此类的用途是支持捕获并传递泛型 {@link Type}。为了捕获泛型类型并在运行时保留它，需要创建一个子类
+ * （最好作为匿名内联类），如下所示：
  *
  * <pre class="code">
  * ParameterizedTypeReference&lt;List&lt;String&gt;&gt; typeRef = new ParameterizedTypeReference&lt;List&lt;String&gt;&gt;() {};
  * </pre>
  *
- * <p>The resulting {@code typeRef} instance can then be used to obtain a {@link Type}
- * instance that carries the captured parameterized type information at runtime.
- * For more information on "super type tokens" see the link to Neal Gafter's blog post.
+ * <p>然后，可以使用得到的 {@code typeRef} 实例获取一个在运行时携带所捕获参数化类型信息的
+ * {@link Type} 实例。有关“超类型令牌”的更多信息，请参阅 Neal Gafter 博客文章的链接。
  *
  * @author Arjen Poutsma
  * @author Rossen Stoyanchev
@@ -84,7 +82,7 @@ public abstract class ParameterizedTypeReference<T> {
 
 
 	/**
-	 * Build a {@code ParameterizedTypeReference} wrapping the given type.
+	 * 构建一个包装给定类型的 {@code ParameterizedTypeReference}。
 	 * @param type a generic type (possibly obtained via reflection,
 	 * e.g. from {@link java.lang.reflect.Method#getGenericReturnType()})
 	 * @return a corresponding reference which may be passed into

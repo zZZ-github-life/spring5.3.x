@@ -24,10 +24,10 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Adapter for a Reactive Streams {@link Publisher} to and from an async/reactive
- * type such as {@code CompletableFuture}, RxJava {@code Observable}, and others.
+ * 用于在 Reactive Streams {@link Publisher} 与异步/响应式类型（如 {@code CompletableFuture}、
+ * RxJava {@code Observable} 等）之间进行适配的适配器。
  *
- * <p>An adapter is typically obtained via {@link ReactiveAdapterRegistry}.
+ * <p>适配器通常通过 {@link ReactiveAdapterRegistry} 获取。
  *
  * @author Rossen Stoyanchev
  * @since 5.0
@@ -42,8 +42,8 @@ public class ReactiveAdapter {
 
 
 	/**
-	 * Constructor for an adapter with functions to convert the target reactive
-	 * or async type to and from a Reactive Streams Publisher.
+	 * 用于创建适配器的构造方法，提供将目标响应式或异步类型与 Reactive Streams Publisher 相互转换的函数。
+	 *
 	 * @param descriptor the reactive type descriptor
 	 * @param toPublisherFunction adapter to a Publisher
 	 * @param fromPublisherFunction adapter from a Publisher
@@ -63,35 +63,35 @@ public class ReactiveAdapter {
 
 
 	/**
-	 * Return the descriptor of the reactive type for the adapter.
+	 * 返回该适配器所针对的响应式类型的描述符。
 	 */
 	public ReactiveTypeDescriptor getDescriptor() {
 		return this.descriptor;
 	}
 
 	/**
-	 * Shortcut for {@code getDescriptor().getReactiveType()}.
+	 * {@code getDescriptor().getReactiveType()} 的快捷方式。
 	 */
 	public Class<?> getReactiveType() {
 		return getDescriptor().getReactiveType();
 	}
 
 	/**
-	 * Shortcut for {@code getDescriptor().isMultiValue()}.
+	 * {@code getDescriptor().isMultiValue()} 的快捷方式。
 	 */
 	public boolean isMultiValue() {
 		return getDescriptor().isMultiValue();
 	}
 
 	/**
-	 * Shortcut for {@code getDescriptor().isNoValue()}.
+	 * {@code getDescriptor().isNoValue()} 的快捷方式。
 	 */
 	public boolean isNoValue() {
 		return getDescriptor().isNoValue();
 	}
 
 	/**
-	 * Shortcut for {@code getDescriptor().supportsEmpty()}.
+	 * {@code getDescriptor().supportsEmpty()} 的快捷方式。
 	 */
 	public boolean supportsEmpty() {
 		return getDescriptor().supportsEmpty();
@@ -99,7 +99,7 @@ public class ReactiveAdapter {
 
 
 	/**
-	 * Adapt the given instance to a Reactive Streams {@code Publisher}.
+	 * 将给定实例适配为 Reactive Streams {@code Publisher}。
 	 * @param source the source object to adapt from; if the given object is
 	 * {@code null}, {@link ReactiveTypeDescriptor#getEmptyValue()} is used.
 	 * @return the Publisher representing the adaptation
@@ -113,7 +113,7 @@ public class ReactiveAdapter {
 	}
 
 	/**
-	 * Adapt from the given Reactive Streams Publisher.
+	 * 从给定的 Reactive Streams Publisher 进行适配。
 	 * @param publisher the publisher to adapt from
 	 * @return the reactive type instance representing the adapted publisher
 	 */

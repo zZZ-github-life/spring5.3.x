@@ -27,18 +27,17 @@ import org.springframework.web.servlet.SmartView;
 import org.springframework.web.servlet.View;
 
 /**
- * Handles return values of type {@link ModelAndView} copying view and model
- * information to the {@link ModelAndViewContainer}.
+ * 处理 {@link ModelAndView} 类型的返回值，将视图和模型
+ * 信息复制到 {@link ModelAndViewContainer} 中。
  *
- * <p>If the return value is {@code null}, the
- * {@link ModelAndViewContainer#setRequestHandled(boolean)} flag is set to
- * {@code true} to indicate the request was handled directly.
+ * <p>如果返回值为 {@code null}，则将
+ * {@link ModelAndViewContainer#setRequestHandled(boolean)} 标志设为
+ * {@code true}，以表示请求已被直接处理。
  *
- * <p>A {@link ModelAndView} return type has a set purpose. Therefore this
- * handler should be configured ahead of handlers that support any return
- * value type annotated with {@code @ModelAttribute} or {@code @ResponseBody}
- * to ensure they don't take over.
- *
+ * <p>{@link ModelAndView} 返回类型有明确的用途。因此，此
+ * 处理器应配置在支持带有 {@code @ModelAttribute} 或 {@code @ResponseBody}
+ * 注解的任意返回值类型的处理器之前，
+ * 以确保它们不会越俎代庖。
  * @author Rossen Stoyanchev
  * @since 3.1
  */
@@ -49,10 +48,10 @@ public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturn
 
 
 	/**
-	 * Configure one more simple patterns (as described in {@link PatternMatchUtils#simpleMatch})
-	 * to use in order to recognize custom redirect prefixes in addition to "redirect:".
-	 * <p>Note that simply configuring this property will not make a custom redirect prefix work.
-	 * There must be a custom {@link View} that recognizes the prefix as well.
+	 * 配置一个或多个简单模式（如 {@link PatternMatchUtils#simpleMatch} 所述），
+	 * 用于在 "redirect:" 之外识别自定义的重定向前缀。
+	 * <p>请注意，仅配置此属性并不会使自定义重定向前缀生效。
+	 * 还必须有一个能够识别该前缀的自定义 {@link View}。
 	 * @since 4.1
 	 */
 	public void setRedirectPatterns(@Nullable String... redirectPatterns) {
@@ -60,7 +59,7 @@ public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturn
 	}
 
 	/**
-	 * Return the configured redirect patterns, if any.
+	 * 返回已配置的重定向模式（如果有）。
 	 * @since 4.1
 	 */
 	@Nullable
@@ -103,9 +102,9 @@ public class ModelAndViewMethodReturnValueHandler implements HandlerMethodReturn
 	}
 
 	/**
-	 * Whether the given view name is a redirect view reference.
-	 * The default implementation checks the configured redirect patterns and
-	 * also if the view name starts with the "redirect:" prefix.
+	 * 给定的视图名称是否为重定向视图引用。
+	 * 默认实现会检查已配置的重定向模式，
+	 * 以及视图名称是否以 "redirect:" 前缀开头。
 	 * @param viewName the view name to check, never {@code null}
 	 * @return "true" if the given view name is recognized as a redirect view
 	 * reference; "false" otherwise.

@@ -25,13 +25,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * {@link Resource} implementation for a given byte array.
- * <p>Creates a {@link ByteArrayInputStream} for the given byte array.
+ * 针对给定字节数组的 {@link Resource} 实现。
+ * <p>为给定的字节数组创建 {@link ByteArrayInputStream}。
  *
- * <p>Useful for loading content from any given byte array,
- * without having to resort to a single-use {@link InputStreamResource}.
- * Particularly useful for creating mail attachments from local content,
- * where JavaMail needs to be able to read the stream multiple times.
+ * <p>适用于从任意给定字节数组加载内容，而无需退而使用一次性的 {@link InputStreamResource}。在从本
+ * 地内容创建邮件附件时尤其有用，因为 JavaMail 需要能够多次读取该流。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -48,7 +46,7 @@ public class ByteArrayResource extends AbstractResource {
 
 
 	/**
-	 * Create a new {@code ByteArrayResource}.
+	 * 创建一个新的 {@code ByteArrayResource}。
 	 * @param byteArray the byte array to wrap
 	 */
 	public ByteArrayResource(byte[] byteArray) {
@@ -56,7 +54,7 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * Create a new {@code ByteArrayResource} with a description.
+	 * 创建一个带描述的 {@code ByteArrayResource}。
 	 * @param byteArray the byte array to wrap
 	 * @param description where the byte array comes from
 	 */
@@ -68,14 +66,14 @@ public class ByteArrayResource extends AbstractResource {
 
 
 	/**
-	 * Return the underlying byte array.
+	 * 返回底层字节数组。
 	 */
 	public final byte[] getByteArray() {
 		return this.byteArray;
 	}
 
 	/**
-	 * This implementation always returns {@code true}.
+	 * 此实现始终返回 {@code true}。
 	 */
 	@Override
 	public boolean exists() {
@@ -83,7 +81,7 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns the length of the underlying byte array.
+	 * 此实现返回底层字节数组的长度。
 	 */
 	@Override
 	public long contentLength() {
@@ -91,8 +89,7 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a ByteArrayInputStream for the
-	 * underlying byte array.
+	 * 此实现为底层字节数组返回 ByteArrayInputStream。
 	 * @see java.io.ByteArrayInputStream
 	 */
 	@Override
@@ -101,8 +98,7 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns a description that includes the passed-in
-	 * {@code description}, if any.
+	 * 此实现返回包含传入的 {@code description}（如果有）的描述。
 	 */
 	@Override
 	public String getDescription() {
@@ -111,7 +107,7 @@ public class ByteArrayResource extends AbstractResource {
 
 
 	/**
-	 * This implementation compares the underlying byte array.
+	 * 此实现比较底层字节数组。
 	 * @see java.util.Arrays#equals(byte[], byte[])
 	 */
 	@Override
@@ -121,8 +117,7 @@ public class ByteArrayResource extends AbstractResource {
 	}
 
 	/**
-	 * This implementation returns the hash code based on the
-	 * underlying byte array.
+	 * 此实现返回基于底层字节数组的哈希码。
 	 */
 	@Override
 	public int hashCode() {

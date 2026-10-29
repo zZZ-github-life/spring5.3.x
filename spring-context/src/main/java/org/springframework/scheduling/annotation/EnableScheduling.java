@@ -29,9 +29,8 @@ import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 /**
- * Enables Spring's scheduled task execution capability, similar to
- * functionality found in Spring's {@code <task:*>} XML namespace. To be used
- * on {@link Configuration @Configuration} classes as follows:
+ * 启用 Spring 的定时任务执行能力，类似于 Spring 的 {@code <task:*>} XML 命名空间中的功能。按如下方
+ * 式用于 {@link Configuration @Configuration} 类：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -41,8 +40,8 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     // various &#064;Bean definitions
  * }</pre>
  *
- * <p>This enables detection of {@link Scheduled @Scheduled} annotations on any
- * Spring-managed bean in the container. For example, given a class {@code MyTask}:
+ * <p>这会启用对容器中任何 Spring 托管 Bean 上 {@link Scheduled @Scheduled} 注解的检测。例如，给定
+ * 一个类 {@code MyTask}：
  *
  * <pre class="code">
  * package com.myco.tasks;
@@ -55,8 +54,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>the following configuration would ensure that {@code MyTask.work()} is called
- * once every 1000 ms:
+ * <p>以下配置可确保每 1000 毫秒调用一次 {@code MyTask.work()}：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -69,9 +67,8 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>Alternatively, if {@code MyTask} were annotated with {@code @Component}, the
- * following configuration would ensure that its {@code @Scheduled} method is
- * invoked at the desired interval:
+ * <p>或者，如果 {@code MyTask} 标注了 {@code @Component}，以下配置可确保其 {@code @Scheduled} 方法
+ * 按所需间隔被调用：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -80,8 +77,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * public class AppConfig {
  * }</pre>
  *
- * <p>Methods annotated with {@code @Scheduled} may even be declared directly within
- * {@code @Configuration} classes:
+ * <p>标注了 {@code @Scheduled} 的方法甚至可以直接声明在 {@code @Configuration} 类中：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -94,18 +90,14 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>By default, Spring will search for an associated scheduler definition: either
- * a unique {@link org.springframework.scheduling.TaskScheduler} bean in the context,
- * or a {@code TaskScheduler} bean named "taskScheduler" otherwise; the same lookup
- * will also be performed for a {@link java.util.concurrent.ScheduledExecutorService}
- * bean. If neither of the two is resolvable, a local single-threaded default
- * scheduler will be created and used within the registrar.
+ * <p>默认情况下，Spring 会查找关联的调度器定义：上下文中的唯一
+ * {@link org.springframework.scheduling.TaskScheduler} Bean，否则查找名为 "taskScheduler" 的
+ * {@code TaskScheduler} Bean；对于 {@link java.util.concurrent.ScheduledExecutorService} Bean 也会
+ * 执行相同的查找。如果两者都无法解析，将在注册器内创建并使用一个本地单线程的默认调度器。
  *
- * <p>When more control is desired, a {@code @Configuration} class may implement
- * {@link SchedulingConfigurer}. This allows access to the underlying
- * {@link ScheduledTaskRegistrar} instance. For example, the following example
- * demonstrates how to customize the {@link Executor} used to execute scheduled
- * tasks:
+ * <p>如果需要更多控制，{@code @Configuration} 类可以实现 {@link SchedulingConfigurer}。这样可以访
+ * 问底层的 {@link ScheduledTaskRegistrar} 实例。例如，以下示例演示如何自定义用于执行定时任务的
+ * {@link Executor}：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -123,14 +115,11 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>Note in the example above the use of {@code @Bean(destroyMethod="shutdown")}.
- * This ensures that the task executor is properly shut down when the Spring
- * application context itself is closed.
+ * <p>请注意上面示例中使用了 {@code @Bean(destroyMethod="shutdown")}。这可确保当 Spring 应用上下文
+ * 本身关闭时，任务执行器被正确关闭。
  *
- * <p>Implementing {@code SchedulingConfigurer} also allows for fine-grained
- * control over task registration via the {@code ScheduledTaskRegistrar}.
- * For example, the following configures the execution of a particular bean
- * method per a custom {@code Trigger} implementation:
+ * <p>实现 {@code SchedulingConfigurer} 还可以通过 {@code ScheduledTaskRegistrar} 对任务注册进行细
+ * 粒度控制。例如，以下配置根据自定义 {@code Trigger} 实现来执行特定的 Bean 方法：
  *
  * <pre class="code">
  * &#064;Configuration
@@ -157,8 +146,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  *     }
  * }</pre>
  *
- * <p>For reference, the example above can be compared to the following Spring XML
- * configuration:
+ * <p>作为参考，可以将上面的示例与以下 Spring XML 配置进行比较：
  *
  * <pre class="code">
  * &lt;beans&gt;
@@ -176,17 +164,13 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * &lt;/beans&gt;
  * </pre>
  *
- * <p>The examples are equivalent save that in XML a <em>fixed-rate</em> period is used
- * instead of a custom <em>{@code Trigger}</em> implementation; this is because the
- * {@code task:} namespace {@code scheduled} cannot easily expose such support. This is
- * but one demonstration how the code-based approach allows for maximum configurability
- * through direct access to actual componentry.
+ * <p>这些示例是等价的，只是在 XML 中使用了<em>固定速率</em>周期，而不是自定义的 <em>
+ * {@code Trigger}</em> 实现；这是因为 {@code task:} 命名空间的 {@code scheduled} 不容易暴露此类支
+ * 持。这只是一个示例，说明基于代码的方式如何通过直接访问实际组件来实现最大程度的可配置性。
  *
- * <p><b>Note: {@code @EnableScheduling} applies to its local application context only,
- * allowing for selective scheduling of beans at different levels.</b> Please redeclare
- * {@code @EnableScheduling} in each individual context, e.g. the common root web
- * application context and any separate {@code DispatcherServlet} application contexts,
- * if you need to apply its behavior at multiple levels.
+ * <p><b>注意：{@code @EnableScheduling} 仅适用于其本地应用上下文，允许在不同层级有选择地对 Bean 进
+ * 行调度。</b>如果需要在多个层级应用其行为，请在每个单独上下文中重新声明 {@code @EnableScheduling}，
+ * 例如公共的根 Web 应用上下文以及任何单独的 {@code DispatcherServlet} 应用上下文。
  *
  * @author Chris Beams
  * @author Juergen Hoeller

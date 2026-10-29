@@ -27,8 +27,7 @@ import org.springframework.scheduling.TriggerContext;
 import org.springframework.util.Assert;
 
 /**
- * {@link Trigger} implementation for cron expressions.
- * Wraps a {@link CronExpression}.
+ * 用于 cron 表达式的 {@link Trigger} 实现。包装一个 {@link CronExpression}。
  *
  * @author Juergen Hoeller
  * @author Arjen Poutsma
@@ -43,7 +42,7 @@ public class CronTrigger implements Trigger {
 
 
 	/**
-	 * Build a {@code CronTrigger} from the pattern provided in the default time zone.
+	 * 使用默认时区中提供的模式构建一个 {@code CronTrigger}。
 	 * @param expression a space-separated list of time fields, following cron
 	 * expression conventions
 	 */
@@ -52,7 +51,7 @@ public class CronTrigger implements Trigger {
 	}
 
 	/**
-	 * Build a {@code CronTrigger} from the pattern provided in the given time zone.
+	 * 使用给定时区中提供的模式构建一个 {@code CronTrigger}。
 	 * @param expression a space-separated list of time fields, following cron
 	 * expression conventions
 	 * @param timeZone a time zone in which the trigger times will be generated
@@ -62,7 +61,7 @@ public class CronTrigger implements Trigger {
 	}
 
 	/**
-	 * Build a {@code CronTrigger} from the pattern provided in the given time zone.
+	 * 使用给定时区中提供的模式构建一个 {@code CronTrigger}。
 	 * @param expression a space-separated list of time fields, following cron
 	 * expression conventions
 	 * @param zoneId a time zone in which the trigger times will be generated
@@ -79,7 +78,7 @@ public class CronTrigger implements Trigger {
 
 
 	/**
-	 * Return the cron pattern that this trigger has been built with.
+	 * 返回此触发器所依据的 cron 模式。
 	 */
 	public String getExpression() {
 		return this.expression.toString();
@@ -87,10 +86,9 @@ public class CronTrigger implements Trigger {
 
 
 	/**
-	 * Determine the next execution time according to the given trigger context.
-	 * <p>Next execution times are calculated based on the
-	 * {@linkplain TriggerContext#lastCompletionTime completion time} of the
-	 * previous execution; therefore, overlapping executions won't occur.
+	 * 根据给定的触发器上下文确定下一次执行时间。
+	 * <p>下一次执行时间基于上一次执行的 {@linkplain TriggerContext#lastCompletionTime 完成时间} 计算；
+	 * 因此不会发生重叠执行。
 	 */
 	@Override
 	public Date nextExecutionTime(TriggerContext triggerContext) {

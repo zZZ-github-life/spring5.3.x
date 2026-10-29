@@ -1,0 +1,131 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/support/AsyncHttpAccessor.java
+@@BODY 30 33
+Base class for {@link org.springframework.web.client.AsyncRestTemplate}
+and other HTTP accessing gateway helpers, defining common properties
+such as the {@link org.springframework.http.client.AsyncClientHttpRequestFactory}
+to operate on.
+@@BODY 35 36
+<p>Not intended to be used directly. See
+{@link org.springframework.web.client.AsyncRestTemplate}.
+@@BODY 54 55
+Set the request factory that this accessor uses for obtaining {@link
+org.springframework.http.client.ClientHttpRequest HttpRequests}.
+@@BODY 65 66
+Return the request factory that this accessor uses for obtaining {@link
+org.springframework.http.client.ClientHttpRequest HttpRequests}.
+@@BODY 74 75
+Create a new {@link org.springframework.http.client.AsyncClientHttpRequest} via this template's
+{@link org.springframework.http.client.AsyncClientHttpRequestFactory}.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/BasicAuthenticationInterceptor.java
+@@BODY 30 32
+{@link ClientHttpRequestInterceptor} to apply a given HTTP Basic Authentication
+username/password pair, unless a custom {@code Authorization} header has
+already been set.
+@@BODY 46 47
+Create a new interceptor which adds Basic Authentication for the
+given username and password.
+@@BODY 58 59
+Create a new interceptor which adds Basic Authentication for the
+given username and password, encoded using the specified charset.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/BasicAuthorizationInterceptor.java
+@@BODY 31 31
+{@link ClientHttpRequestInterceptor} to apply a BASIC authorization header.
+@@BODY 48 49
+Create a new interceptor which adds a BASIC authorization header
+for the given username and password.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/HttpAccessor.java
+@@BODY 36 38
+Base class for {@link org.springframework.web.client.RestTemplate}
+and other HTTP accessing gateway helpers, defining common properties
+such as the {@link ClientHttpRequestFactory} to operate on.
+@@BODY 40 40
+<p>Not intended to be used directly.
+@@BODY 42 42
+<p>See {@link org.springframework.web.client.RestTemplate} for an entry point.
+@@BODY 62 66
+Set the request factory that this accessor uses for obtaining client request handles.
+<p>The default is a {@link SimpleClientHttpRequestFactory} based on the JDK's own
+HTTP libraries ({@link java.net.HttpURLConnection}).
+<p><b>Note that the standard JDK HTTP library does not support the HTTP PATCH method.
+Configure the Apache HttpComponents or OkHttp request factory to enable PATCH.</b>
+@@BODY 78 78
+Return the request factory that this accessor uses for obtaining client request handles.
+@@BODY 86 88
+Set the request initializers that this accessor should use.
+<p>The initializers will get immediately sorted according to their
+{@linkplain AnnotationAwareOrderComparator#sort(List) order}.
+@@BODY 102 106
+Get the request initializers that this accessor uses.
+<p>The returned {@link List} is active and may be modified. Note,
+however, that the initializers will not be resorted according to their
+{@linkplain AnnotationAwareOrderComparator#sort(List) order} before the
+{@link ClientHttpRequest} is initialized.
+@@BODY 115 115
+Create a new {@link ClientHttpRequest} via this template's {@link ClientHttpRequestFactory}.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/HttpRequestWrapper.java
+@@BODY 28 29
+Provides a convenient implementation of the {@link HttpRequest} interface
+that can be overridden to adapt the request.
+@@BODY 31 31
+<p>These methods default to calling through to the wrapped request object.
+@@BODY 42 42
+Create a new {@code HttpRequest} wrapping the given request object.
+@@BODY 52 52
+Return the wrapped request.
+@@BODY 59 59
+Return the method of the wrapped request.
+@@BODY 68 68
+Return the method value of the wrapped request.
+@@BODY 76 76
+Return the URI of the wrapped request.
+@@BODY 84 84
+Return the headers of the wrapped request.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/InterceptingAsyncHttpAccessor.java
+@@BODY 25 26
+The HTTP accessor that extends the base {@link AsyncHttpAccessor} with
+request intercepting functionality.
+@@BODY 41 41
+Set the request interceptors that this accessor should use.
+@@BODY 49 49
+Return the request interceptor that this accessor uses.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/InterceptingHttpAccessor.java
+@@BODY 31 33
+Base class for {@link org.springframework.web.client.RestTemplate}
+and other HTTP accessing gateway helpers, adding interceptor-related
+properties to {@link HttpAccessor}'s common properties.
+@@BODY 35 36
+<p>Not intended to be used directly.
+See {@link org.springframework.web.client.RestTemplate} for an entry point.
+@@BODY 54 60
+Set the request interceptors that this accessor should use.
+<p>The interceptors will get immediately sorted according to their
+{@linkplain AnnotationAwareOrderComparator#sort(List) order}.
+<p><strong>Note:</strong> This method does not support concurrent changes,
+and in most cases should not be called after initialization on startup.
+See also related note on {@link org.springframework.web.client.RestTemplate}
+regarding concurrent configuration changes.
+@@BODY 75 79
+Get the request interceptors that this accessor uses.
+<p>The returned {@link List} is active and may be modified. Note,
+however, that the interceptors will not be resorted according to their
+{@linkplain AnnotationAwareOrderComparator#sort(List) order} before the
+{@link ClientHttpRequestFactory} is built.
+@@BODY 86 86
+{@inheritDoc}
+@@BODY 95 96
+Overridden to expose an {@link InterceptingClientHttpRequestFactory}
+if necessary.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/ProxyFactoryBean.java
+@@BODY 29 29
+{@link FactoryBean} that creates a {@link Proxy java.net.Proxy}.
+@@BODY 50 51
+Set the proxy type.
+<p>Defaults to {@link java.net.Proxy.Type#HTTP}.
+@@BODY 58 58
+Set the proxy host name.
+@@BODY 65 65
+Set the proxy port.
+===FILE spring-web/src/main/java/org/springframework/http/client/support/package-info.java
+@@BODY 2 3
+This package provides generic HTTP support classes,
+to be used by higher-level classes like RestTemplate.

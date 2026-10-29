@@ -1,7 +1,7 @@
 /**
- * Provides a utility class for easy ConnectionFactory access,
- * a PlatformTransactionManager for local CCI transactions,
- * and various simple ConnectionFactory proxies/adapters.
+ * 提供用于简便访问 ConnectionFactory 的工具类、
+ * 用于本地 CCI 事务的 PlatformTransactionManager，
+ * 以及各种简单的 ConnectionFactory 代理/适配器。
  */
 @NonNullApi
 @NonNullFields

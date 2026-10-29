@@ -54,11 +54,9 @@ import org.springframework.web.server.WebSession;
 import org.springframework.web.util.UriBuilder;
 
 /**
- * Represents a server-side HTTP request, as handled by a {@code HandlerFunction}.
+ * 表示由 {@code HandlerFunction} 处理的服务器端 HTTP 请求。
  *
- * <p>Access to headers and body is offered by {@link Headers} and
- * {@link #body(BodyExtractor)}, respectively.
- *
+ * <p>对头和正文的访问分别由 {@link Headers} 和 {@link #body(BodyExtractor)} 提供。
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
  * @since 5.0
@@ -66,7 +64,7 @@ import org.springframework.web.util.UriBuilder;
 public interface ServerRequest {
 
 	/**
-	 * Get the HTTP method.
+	 * 获取 HTTP 方法。
 	 * @return the HTTP method as an HttpMethod enum value, or {@code null}
 	 * if not resolvable (e.g. in case of a non-standard HTTP method)
 	 */
@@ -76,36 +74,32 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Get the name of the HTTP method.
+	 * 获取 HTTP 方法的名称。
 	 * @return the HTTP method as a String
 	 */
 	String methodName();
 
 	/**
-	 * Get the request URI.
+	 * 获取请求 URI。
 	 */
 	URI uri();
 
 	/**
-	 * Get a {@code UriBuilderComponents} from the URI associated with this
-	 * {@code ServerRequest}.
-	 * <p><strong>Note:</strong> as of 5.1 this method ignores {@code "Forwarded"}
-	 * and {@code "X-Forwarded-*"} headers that specify the
-	 * client-originated address. Consider using the {@code ForwardedHeaderFilter}
-	 * to extract and use, or to discard such headers.
+	 * 从此 {@code ServerRequest} 关联的 URI 获取 {@code UriBuilderComponents}。
+	 * <p><strong>注意：</strong>从 5.1 开始，此方法忽略指定客户端原始地址的 {@code "Forwarded"} 和 {@code "X-Forwarded-*"} 头。可考虑使用 {@code ForwardedHeaderFilter} 提取并使用这些头，或将其丢弃。
 	 * @return a URI builder
 	 */
 	UriBuilder uriBuilder();
 
 	/**
-	 * Get the request path.
+	 * 获取请求路径。
 	 */
 	default String path() {
 		return requestPath().pathWithinApplication().value();
 	}
 
 	/**
-	 * Get the request path as a {@code PathContainer}.
+	 * 将请求路径作为 {@code PathContainer} 获取。
 	 * @deprecated as of 5.3, in favor on {@link #requestPath()}
 	 */
 	@Deprecated
@@ -114,7 +108,7 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Get the request path as a {@code PathContainer}.
+	 * 将请求路径作为 {@code PathContainer} 获取。
 	 * @since 5.3
 	 */
 	default RequestPath requestPath() {
@@ -122,35 +116,35 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Get the headers of this request.
+	 * 获取此请求的头。
 	 */
 	Headers headers();
 
 	/**
-	 * Get the cookies of this request.
+	 * 获取此请求的 cookie。
 	 */
 	MultiValueMap<String, HttpCookie> cookies();
 
 	/**
-	 * Get the remote address to which this request is connected, if available.
+	 * 获取此请求所连接的远程地址（如果可用）。
 	 * @since 5.1
 	 */
 	Optional<InetSocketAddress> remoteAddress();
 
 	/**
-	 * Get the local address to which this request is connected, if available.
+	 * 获取此请求所连接的本地地址（如果可用）。
 	 * @since 5.2.3
 	 */
 	Optional<InetSocketAddress> localAddress();
 
 	/**
-	 * Get the readers used to convert the body of this request.
+	 * 获取用于转换此请求正文的读取器。
 	 * @since 5.1
 	 */
 	List<HttpMessageReader<?>> messageReaders();
 
 	/**
-	 * Extract the body with the given {@code BodyExtractor}.
+	 * 使用给定的 {@code BodyExtractor} 提取正文。
 	 * @param extractor the {@code BodyExtractor} that reads from the request
 	 * @param <T> the type of the body returned
 	 * @return the extracted body
@@ -159,7 +153,7 @@ public interface ServerRequest {
 	<T> T body(BodyExtractor<T, ? super ServerHttpRequest> extractor);
 
 	/**
-	 * Extract the body with the given {@code BodyExtractor} and hints.
+	 * 使用给定的 {@code BodyExtractor} 和提示提取正文。
 	 * @param extractor the {@code BodyExtractor} that reads from the request
 	 * @param hints the map of hints like {@link Jackson2CodecSupport#JSON_VIEW_HINT}
 	 * to use to customize body extraction
@@ -169,7 +163,7 @@ public interface ServerRequest {
 	<T> T body(BodyExtractor<T, ? super ServerHttpRequest> extractor, Map<String, Object> hints);
 
 	/**
-	 * Extract the body to a {@code Mono}.
+	 * 将正文提取为 {@code Mono}。
 	 * @param elementClass the class of element in the {@code Mono}
 	 * @param <T> the element type
 	 * @return the body as a mono
@@ -177,7 +171,7 @@ public interface ServerRequest {
 	<T> Mono<T> bodyToMono(Class<? extends T> elementClass);
 
 	/**
-	 * Extract the body to a {@code Mono}.
+	 * 将正文提取为 {@code Mono}。
 	 * @param typeReference a type reference describing the expected response request type
 	 * @param <T> the element type
 	 * @return a mono containing the body of the given type {@code T}
@@ -185,7 +179,7 @@ public interface ServerRequest {
 	<T> Mono<T> bodyToMono(ParameterizedTypeReference<T> typeReference);
 
 	/**
-	 * Extract the body to a {@code Flux}.
+	 * 将正文提取为 {@code Flux}。
 	 * @param elementClass the class of element in the {@code Flux}
 	 * @param <T> the element type
 	 * @return the body as a flux
@@ -193,7 +187,7 @@ public interface ServerRequest {
 	<T> Flux<T> bodyToFlux(Class<? extends T> elementClass);
 
 	/**
-	 * Extract the body to a {@code Flux}.
+	 * 将正文提取为 {@code Flux}。
 	 * @param typeReference a type reference describing the expected request body type
 	 * @param <T> the element type
 	 * @return a flux containing the body of the given type {@code T}
@@ -201,7 +195,7 @@ public interface ServerRequest {
 	<T> Flux<T> bodyToFlux(ParameterizedTypeReference<T> typeReference);
 
 	/**
-	 * Get the request attribute value if present.
+	 * 如果存在，获取请求属性值。
 	 * @param name the attribute name
 	 * @return the attribute value
 	 */
@@ -210,13 +204,13 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Get a mutable map of request attributes.
+	 * 获取请求属性的可变映射。
 	 * @return the request attributes
 	 */
 	Map<String, Object> attributes();
 
 	/**
-	 * Get the first query parameter with the given name, if present.
+	 * 如果存在，获取具有给定名称的第一个查询参数。
 	 * @param name the parameter name
 	 * @return the parameter value
 	 */
@@ -235,12 +229,12 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Get all query parameters for this request.
+	 * 获取此请求的所有查询参数。
 	 */
 	MultiValueMap<String, String> queryParams();
 
 	/**
-	 * Get the path variable with the given name, if present.
+	 * 如果存在，获取具有给定名称的路径变量。
 	 * @param name the variable name
 	 * @return the variable value
 	 * @throws IllegalArgumentException if there is no path variable with the given name
@@ -256,73 +250,56 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Get all path variables for this request.
+	 * 获取此请求的所有路径变量。
 	 */
 	Map<String, String> pathVariables();
 
 	/**
-	 * Get the web session for this request.
-	 * <p>Always guaranteed to return an instance either matching the session id
-	 * requested by the client, or with a new session id either because the client
-	 * did not specify one or because the underlying session had expired.
-	 * <p>Use of this method does not automatically create a session.
+	 * 获取此请求的 Web 会话。
+	 * <p>始终保证返回一个实例：要么与客户端请求的会话 id 匹配，要么使用新的会话 id（因为客户端未指定会话 id，或者底层会话已过期）。
+	 * <p>使用此方法不会自动创建会话。
 	 */
 	Mono<WebSession> session();
 
 	/**
-	 * Get the authenticated user for the request, if any.
+	 * 获取请求的已认证用户（如果有）。
 	 */
 	Mono<? extends Principal> principal();
 
 	/**
-	 * Get the form data from the body of the request if the Content-Type is
-	 * {@code "application/x-www-form-urlencoded"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
-	 * be read and parsed in full, and the resulting {@code MultiValueMap} is
-	 * cached so that this method is safe to call more than once.
+	 * 如果 Content-Type 为 {@code "application/x-www-form-urlencoded"}，则从请求正文获取表单数据，否则返回空映射。
+	 * <p><strong>注意：</strong>调用此方法会导致完整读取和解析请求正文，并缓存生成的 {@code MultiValueMap}，因此可以安全地多次调用此方法。
 	 */
 	Mono<MultiValueMap<String, String>> formData();
 
 	/**
-	 * Get the parts of a multipart request if the Content-Type is
-	 * {@code "multipart/form-data"} or an empty map otherwise.
-	 * <p><strong>Note:</strong> calling this method causes the request body to
-	 * be read and parsed in full, and the resulting {@code MultiValueMap} is
-	 * cached so that this method is safe to call more than once.
+	 * 如果 Content-Type 为 {@code "multipart/form-data"}，则获取 multipart 请求的各部分，否则返回空映射。
+	 * <p><strong>注意：</strong>调用此方法会导致完整读取和解析请求正文，并缓存生成的 {@code MultiValueMap}，因此可以安全地多次调用此方法。
 	 */
 	Mono<MultiValueMap<String, Part>> multipartData();
 
 	/**
-	 * Get the web exchange that this request is based on.
-	 * <p>Note: Manipulating the exchange directly (instead of using the methods provided on
-	 * {@code ServerRequest} and {@code ServerResponse}) can lead to irregular results.
+	 * 获取此请求所基于的 Web 交换。
+	 * <p>注意：直接操作 exchange（而不是使用 {@code ServerRequest} 和 {@code ServerResponse} 提供的方法）可能导致异常结果。
 	 * @since 5.1
 	 */
 	ServerWebExchange exchange();
 
 	/**
-	 * Check whether the requested resource has been modified given the
-	 * supplied last-modified timestamp (as determined by the application).
-	 * <p>If not modified, this method returns a response with corresponding
-	 * status code and headers, otherwise an empty result.
-	 * <p>Typical usage:
+	 * 根据提供的最后修改时间戳（由应用确定），检查所请求的资源是否已修改。
+	 * <p>如果未修改，此方法返回具有相应状态码和头的响应，否则返回空结果。
+	 * <p>典型用法：
 	 * <pre class="code">
 	 * public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
 	 *   Instant lastModified = // application-specific calculation
-	 *	 return request.checkNotModified(lastModified)
-	 *	   .switchIfEmpty(Mono.defer(() -&gt; {
-	 *	     // further request processing, actually building content
-	 *		 return ServerResponse.ok().body(...);
-	 *	   }));
+	 * 	 return request.checkNotModified(lastModified)
+	 * 	   .switchIfEmpty(Mono.defer(() -&gt; {
+	 * 	     // further request processing, actually building content
+	 * 		 return ServerResponse.ok().body(...);
+	 * 	   }));
 	 * }</pre>
-	 * <p>This method works with conditional GET/HEAD requests, but
-	 * also with conditional POST/PUT/DELETE requests.
-	 * <p><strong>Note:</strong> you can use either
-	 * this {@code #checkNotModified(Instant)} method; or
-	 * {@link #checkNotModified(String)}. If you want to enforce both
-	 * a strong entity tag and a Last-Modified value,
-	 * as recommended by the HTTP specification,
-	 * then you should use {@link #checkNotModified(Instant, String)}.
+	 * <p>此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
+	 * <p><strong>注意：</strong>可以使用此 {@code #checkNotModified(Instant)} 方法，或 {@link #checkNotModified(String)}。如果希望同时强制使用强实体标签和 Last-Modified 值（如 HTTP 规范所建议），则应使用 {@link #checkNotModified(Instant, String)}。
 	 * @param lastModified the last-modified timestamp that the
 	 * application determined for the underlying resource
 	 * @return a corresponding response if the request qualifies as not
@@ -335,28 +312,20 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Check whether the requested resource has been modified given the
-	 * supplied {@code ETag} (entity tag), as determined by the application.
-	 * <p>If not modified, this method returns a response with corresponding
-	 * status code and headers, otherwise an empty result.
-	 * <p>Typical usage:
+	 * 根据提供的 {@code ETag}（实体标签，由应用确定），检查所请求的资源是否已修改。
+	 * <p>如果未修改，此方法返回具有相应状态码和头的响应，否则返回空结果。
+	 * <p>典型用法：
 	 * <pre class="code">
 	 * public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
 	 *   String eTag = // application-specific calculation
-	 *	 return request.checkNotModified(eTag)
-	 *	   .switchIfEmpty(Mono.defer(() -&gt; {
-	 *	     // further request processing, actually building content
-	 *		 return ServerResponse.ok().body(...);
-	 *	   }));
+	 * 	 return request.checkNotModified(eTag)
+	 * 	   .switchIfEmpty(Mono.defer(() -&gt; {
+	 * 	     // further request processing, actually building content
+	 * 		 return ServerResponse.ok().body(...);
+	 * 	   }));
 	 * }</pre>
-	 * <p>This method works with conditional GET/HEAD requests, but
-	 * also with conditional POST/PUT/DELETE requests.
-	 * <p><strong>Note:</strong> you can use either
-	 * this {@link #checkNotModified(Instant)} method; or
-	 * {@code #checkNotModified(String)}. If you want enforce both
-	 * a strong entity tag and a Last-Modified value,
-	 * as recommended by the HTTP specification,
-	 * then you should use {@link #checkNotModified(Instant, String)}.
+	 * <p>此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
+	 * <p><strong>注意：</strong>可以使用此 {@link #checkNotModified(Instant)} 方法，或 {@code #checkNotModified(String)}。如果希望同时强制使用强实体标签和 Last-Modified 值（如 HTTP 规范所建议），则应使用 {@link #checkNotModified(Instant, String)}。
 	 * @param etag the entity tag that the application determined
 	 * for the underlying resource. This parameter will be padded
 	 * with quotes (") if necessary.
@@ -370,24 +339,20 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Check whether the requested resource has been modified given the
-	 * supplied {@code ETag} (entity tag) and last-modified timestamp,
-	 * as determined by the application.
-	 * <p>If not modified, this method returns a response with corresponding
-	 * status code and headers, otherwise an empty result.
-	 * <p>Typical usage:
+	 * 根据提供的 {@code ETag}（实体标签）和最后修改时间戳（由应用确定），检查所请求的资源是否已修改。
+	 * <p>如果未修改，此方法返回具有相应状态码和头的响应，否则返回空结果。
+	 * <p>典型用法：
 	 * <pre class="code">
 	 * public Mono&lt;ServerResponse&gt; myHandleMethod(ServerRequest request) {
 	 *   Instant lastModified = // application-specific calculation
 	 *   String eTag = // application-specific calculation
-	 *	 return request.checkNotModified(lastModified, eTag)
-	 *	   .switchIfEmpty(Mono.defer(() -&gt; {
-	 *	     // further request processing, actually building content
-	 *		 return ServerResponse.ok().body(...);
-	 *	   }));
+	 * 	 return request.checkNotModified(lastModified, eTag)
+	 * 	   .switchIfEmpty(Mono.defer(() -&gt; {
+	 * 	     // further request processing, actually building content
+	 * 		 return ServerResponse.ok().body(...);
+	 * 	   }));
 	 * }</pre>
-	 * <p>This method works with conditional GET/HEAD requests, but
-	 * also with conditional POST/PUT/DELETE requests.
+	 * <p>此方法适用于条件 GET/HEAD 请求，也适用于条件 POST/PUT/DELETE 请求。
 	 * @param lastModified the last-modified timestamp that the
 	 * application determined for the underlying resource
 	 * @param etag the entity tag that the application determined
@@ -406,8 +371,7 @@ public interface ServerRequest {
 	// Static builder methods
 
 	/**
-	 * Create a new {@code ServerRequest} based on the given {@code ServerWebExchange} and
-	 * message readers.
+	 * 基于给定的 {@code ServerWebExchange} 和消息读取器创建新的 {@code ServerRequest}。
 	 * @param exchange the exchange
 	 * @param messageReaders the message readers
 	 * @return the created {@code ServerRequest}
@@ -417,8 +381,7 @@ public interface ServerRequest {
 	}
 
 	/**
-	 * Create a builder with the {@linkplain HttpMessageReader message readers},
-	 * method name, URI, headers, cookies, and attributes of the given request.
+	 * 使用给定请求的{@linkplain HttpMessageReader 消息读取器}、方法名、URI、头、cookie 和属性创建构建器。
 	 * @param other the request to copy the message readers, method name, URI,
 	 * headers, and attributes from
 	 * @return the created builder
@@ -430,67 +393,60 @@ public interface ServerRequest {
 
 
 	/**
-	 * Represents the headers of the HTTP request.
+	 * 表示 HTTP 请求的头。
 	 * @see ServerRequest#headers()
 	 */
 	interface Headers {
 
 		/**
-		 * Get the list of acceptable media types, as specified by the {@code Accept}
-		 * header.
-		 * <p>Returns an empty list if the acceptable media types are unspecified.
+		 * 获取可接受的媒体类型列表，由 {@code Accept} 头指定。
+		 * <p>如果未指定可接受的媒体类型，则返回空列表。
 		 */
 		List<MediaType> accept();
 
 		/**
-		 * Get the list of acceptable charsets, as specified by the
-		 * {@code Accept-Charset} header.
+		 * 获取可接受的字符集列表，由 {@code Accept-Charset} 头指定。
 		 */
 		List<Charset> acceptCharset();
 
 		/**
-		 * Get the list of acceptable languages, as specified by the
-		 * {@code Accept-Language} header.
+		 * 获取可接受的语言列表，由 {@code Accept-Language} 头指定。
 		 */
 		List<Locale.LanguageRange> acceptLanguage();
 
 		/**
-		 * Get the length of the body in bytes, as specified by the
-		 * {@code Content-Length} header.
+		 * 获取正文的字节长度，由 {@code Content-Length} 头指定。
 		 */
 		OptionalLong contentLength();
 
 		/**
-		 * Get the media type of the body, as specified by the
-		 * {@code Content-Type} header.
+		 * 获取正文的媒体类型，由 {@code Content-Type} 头指定。
 		 */
 		Optional<MediaType> contentType();
 
 		/**
-		 * Get the value of the {@code Host} header, if available.
-		 * <p>If the header value does not contain a port, the
-		 * {@linkplain InetSocketAddress#getPort() port} in the returned address will
-		 * be {@code 0}.
+		 * 获取 {@code Host} 头的值（如果可用）。
+		 * <p>如果头值不包含端口，返回地址中的{@linkplain InetSocketAddress#getPort() 端口}将为 {@code 0}。
 		 */
 		@Nullable
 		InetSocketAddress host();
 
 		/**
-		 * Get the value of the {@code Range} header.
-		 * <p>Returns an empty list when the range is unknown.
+		 * 获取 {@code Range} 头的值。
+		 * <p>当范围未知时返回空列表。
 		 */
 		List<HttpRange> range();
 
 		/**
-		 * Get the header value(s), if any, for the header with the given name.
-		 * <p>Returns an empty list if no header values are found.
+		 * 获取具有给定名称的头的头值（如果有）。
+		 * <p>如果未找到头值，则返回空列表。
 		 * @param headerName the header name
 		 */
 		List<String> header(String headerName);
 
 		/**
-		 * Get the first header value, if any, for the header with the given name.
-		 * <p>Returns {@code null} if no header values are found.
+		 * 获取具有给定名称的头的第一个头值（如果有）。
+		 * <p>如果未找到头值，则返回 {@code null}。
 		 * @param headerName the header name
 		 * @since 5.2.5
 		 */
@@ -501,34 +457,34 @@ public interface ServerRequest {
 		}
 
 		/**
-		 * Get the headers as an instance of {@link HttpHeaders}.
+		 * 将头作为 {@link HttpHeaders} 的实例获取。
 		 */
 		HttpHeaders asHttpHeaders();
 	}
 
 
 	/**
-	 * Defines a builder for a request.
+	 * 定义请求的构建器。
 	 * @since 5.1
 	 */
 	interface Builder {
 
 		/**
-		 * Set the method of the request.
+		 * 设置请求的方法。
 		 * @param method the new method
 		 * @return this builder
 		 */
 		Builder method(HttpMethod method);
 
 		/**
-		 * Set the URI of the request.
+		 * 设置请求的 URI。
 		 * @param uri the new URI
 		 * @return this builder
 		 */
 		Builder uri(URI uri);
 
 		/**
-		 * Set the context path of the request.
+		 * 设置请求的上下文路径。
 		 * @param contextPath the new context path
 		 * @return this builder
 		 * @since 5.3.23
@@ -536,7 +492,7 @@ public interface ServerRequest {
 		Builder contextPath(@Nullable String contextPath);
 
 		/**
-		 * Add the given header value(s) under the given name.
+		 * 在给定名称下添加给定的头值。
 		 * @param headerName the header name
 		 * @param headerValues the header value(s)
 		 * @return this builder
@@ -545,18 +501,15 @@ public interface ServerRequest {
 		Builder header(String headerName, String... headerValues);
 
 		/**
-		 * Manipulate this request's headers with the given consumer.
-		 * <p>The headers provided to the consumer are "live", so that the consumer can be used to
-		 * {@linkplain HttpHeaders#set(String, String) overwrite} existing header values,
-		 * {@linkplain HttpHeaders#remove(Object) remove} values, or use any of the other
-		 * {@link HttpHeaders} methods.
+		 * 使用给定的消费者操作此请求的头。
+		 * <p>提供给消费者的头是“实时”的，因此消费者可用于{@linkplain HttpHeaders#set(String, String) 覆盖}现有头值、{@linkplain HttpHeaders#remove(Object) 删除}值，或使用任何其他 {@link HttpHeaders} 方法。
 		 * @param headersConsumer a function that consumes the {@code HttpHeaders}
 		 * @return this builder
 		 */
 		Builder headers(Consumer<HttpHeaders> headersConsumer);
 
 		/**
-		 * Add a cookie with the given name and value(s).
+		 * 添加具有给定名称和值的 cookie。
 		 * @param name the cookie name
 		 * @param values the cookie value(s)
 		 * @return this builder
@@ -564,38 +517,31 @@ public interface ServerRequest {
 		Builder cookie(String name, String... values);
 
 		/**
-		 * Manipulate this request's cookies with the given consumer.
-		 * <p>The map provided to the consumer is "live", so that the consumer can be used to
-		 * {@linkplain MultiValueMap#set(Object, Object) overwrite} existing cookies,
-		 * {@linkplain MultiValueMap#remove(Object) remove} cookies, or use any of the other
-		 * {@link MultiValueMap} methods.
+		 * 使用给定的消费者操作此请求的 cookie。
+		 * <p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain MultiValueMap#set(Object, Object) 覆盖}现有 cookie、{@linkplain MultiValueMap#remove(Object) 删除} cookie，或使用任何其他 {@link MultiValueMap} 方法。
 		 * @param cookiesConsumer a function that consumes the cookies map
 		 * @return this builder
 		 */
 		Builder cookies(Consumer<MultiValueMap<String, HttpCookie>> cookiesConsumer);
 
 		/**
-		 * Set the body of the request.
-		 * <p>Calling this methods will
-		 * {@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) release}
-		 * the existing body of the builder.
+		 * 设置请求正文。
+		 * <p>调用此方法将{@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}构建器中现有的正文。
 		 * @param body the new body
 		 * @return this builder
 		 */
 		Builder body(Flux<DataBuffer> body);
 
 		/**
-		 * Set the body of the request to the UTF-8 encoded bytes of the given string.
-		 * <p>Calling this methods will
-		 * {@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) release}
-		 * the existing body of the builder.
+		 * 将请求正文设置为给定字符串的 UTF-8 编码字节。
+		 * <p>调用此方法将{@linkplain org.springframework.core.io.buffer.DataBufferUtils#release(DataBuffer) 释放}构建器中现有的正文。
 		 * @param body the new body
 		 * @return this builder
 		 */
 		Builder body(String body);
 
 		/**
-		 * Add an attribute with the given name and value.
+		 * 添加具有给定名称和值的属性。
 		 * @param name the attribute name
 		 * @param value the attribute value
 		 * @return this builder
@@ -603,18 +549,15 @@ public interface ServerRequest {
 		Builder attribute(String name, Object value);
 
 		/**
-		 * Manipulate this request's attributes with the given consumer.
-		 * <p>The map provided to the consumer is "live", so that the consumer can be used
-		 * to {@linkplain Map#put(Object, Object) overwrite} existing attributes,
-		 * {@linkplain Map#remove(Object) remove} attributes, or use any of the other
-		 * {@link Map} methods.
+		 * 使用给定的消费者操作此请求的属性。
+		 * <p>提供给消费者的映射是“实时”的，因此消费者可用于{@linkplain Map#put(Object, Object) 覆盖}现有属性、{@linkplain Map#remove(Object) 删除}属性，或使用任何其他 {@link Map} 方法。
 		 * @param attributesConsumer a function that consumes the attributes map
 		 * @return this builder
 		 */
 		Builder attributes(Consumer<Map<String, Object>> attributesConsumer);
 
 		/**
-		 * Build the request.
+		 * 构建请求。
 		 * @return the built request
 		 */
 		ServerRequest build();

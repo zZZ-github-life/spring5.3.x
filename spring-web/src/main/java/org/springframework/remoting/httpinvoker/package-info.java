@@ -1,12 +1,11 @@
 /**
- * Remoting classes for transparent Java-to-Java remoting via HTTP invokers.
- * Uses Java serialization just like RMI, but provides the same ease of setup
- * as Caucho's HTTP-based Hessian protocol.
+ * 通过 HTTP invoker 实现透明 Java 到 Java 远程调用的远程调用类。
+ * 与 RMI 一样使用 Java 序列化，但提供了与 Caucho 基于 HTTP 的
+ * Hessian 协议同样简单的配置方式。
  *
- * <p><b>HTTP invoker is the recommended protocol for Java-to-Java remoting.</b>
- * It is more powerful and more extensible than Hessian, at the expense of
- * being tied to Java. Nevertheless, it is as easy to set up as Hessian,
- * which is its main advantage compared to RMI.
+ * <p><b>HTTP invoker 是 Java 到 Java 远程调用的推荐协议。</b>
+ * 它比 Hessian 更强大、更具扩展性，代价是与 Java 绑定。
+ * 不过，它的配置与 Hessian 一样简单，这是它相对于 RMI 的主要优势。
  */
 @NonNullApi
 @NonNullFields

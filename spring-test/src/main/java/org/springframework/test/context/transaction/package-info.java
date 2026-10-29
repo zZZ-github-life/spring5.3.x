@@ -1,5 +1,6 @@
 /**
- * Transactional support classes for the <em>Spring TestContext Framework</em>.
+ * Spring TestContext Framework 的事务支持类。
+ *
  */
 @NonNullApi
 @NonNullFields

@@ -31,9 +31,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Static factory methods providing access to built-in implementations of
- * {@link ExchangeFilterFunction} for basic authentication, error handling, etc.
- *
+ * 提供内置 {@link ExchangeFilterFunction} 实现（用于基本认证、错误处理等）的静态工厂方法。
  * @author Rob Winch
  * @author Arjen Poutsma
  * @author Sam Brannen
@@ -42,7 +40,7 @@ import org.springframework.util.Assert;
 public abstract class ExchangeFilterFunctions {
 
 	/**
-	 * Name of the request attribute with {@link Credentials} for {@link #basicAuthentication()}.
+	 * 带有 {@link Credentials} 的请求属性名称，供 {@link #basicAuthentication()} 使用。
 	 * @deprecated as of Spring 5.1 in favor of using
 	 * {@link HttpHeaders#setBasicAuth(String, String)} while building the request.
 	 */
@@ -52,9 +50,8 @@ public abstract class ExchangeFilterFunctions {
 
 
 	/**
-	 * Consume up to the specified number of bytes from the response body and
-	 * cancel if any more data arrives.
-	 * <p>Internally delegates to {@link DataBufferUtils#takeUntilByteCount}.
+	 * 从响应正文消费最多指定数量的字节，如果还有更多数据到达则取消。
+	 * <p>内部委托给 {@link DataBufferUtils#takeUntilByteCount}。
 	 * @param maxByteCount the limit as number of bytes
 	 * @return the filter to limit the response size with
 	 * @since 5.1
@@ -68,8 +65,7 @@ public abstract class ExchangeFilterFunctions {
 	}
 
 	/**
-	 * Return a filter that generates an error signal when the given
-	 * {@link HttpStatus} predicate matches.
+	 * 返回当给定 {@link HttpStatus} 谓词匹配时生成错误信号的过滤器。
 	 * @param statusPredicate the predicate to check the HTTP status with
 	 * @param exceptionFunction the function to create the exception
 	 * @return the filter to generate an error signal
@@ -86,9 +82,7 @@ public abstract class ExchangeFilterFunctions {
 	}
 
 	/**
-	 * Return a filter that applies HTTP Basic Authentication to the request
-	 * headers via {@link HttpHeaders#setBasicAuth(String)} and
-	 * {@link HttpHeaders#encodeBasicAuth(String, String, Charset)}.
+	 * 返回通过 {@link HttpHeaders#setBasicAuth(String)} 和 {@link HttpHeaders#encodeBasicAuth(String, String, Charset)} 将 HTTP 基本认证应用到请求头的过滤器。
 	 * @param username the username
 	 * @param password the password
 	 * @return the filter to add authentication headers with
@@ -104,9 +98,7 @@ public abstract class ExchangeFilterFunctions {
 	}
 
 	/**
-	 * Variant of {@link #basicAuthentication(String, String)} that looks up
-	 * the {@link Credentials Credentials} in a
-	 * {@link #BASIC_AUTHENTICATION_CREDENTIALS_ATTRIBUTE request attribute}.
+	 * {@link #basicAuthentication(String, String)} 的变体，从{@link #BASIC_AUTHENTICATION_CREDENTIALS_ATTRIBUTE 请求属性}中查找 {@link Credentials Credentials}。
 	 * @return the filter to use
 	 * @see Credentials
 	 * @deprecated as of Spring 5.1 in favor of using
@@ -130,7 +122,7 @@ public abstract class ExchangeFilterFunctions {
 
 
 	/**
-	 * Stores username and password for HTTP basic authentication.
+	 * 存储用于 HTTP 基本认证的用户名和密码。
 	 * @deprecated as of Spring 5.1 in favor of using
 	 * {@link HttpHeaders#setBasicAuth(String, String)} while building the request.
 	 */
@@ -142,7 +134,7 @@ public abstract class ExchangeFilterFunctions {
 		private final String password;
 
 		/**
-		 * Create a new {@code Credentials} instance with the given username and password.
+		 * 使用给定的用户名和密码创建新的 {@code Credentials} 实例。
 		 * @param username the username
 		 * @param password the password
 		 */
@@ -154,9 +146,7 @@ public abstract class ExchangeFilterFunctions {
 		}
 
 		/**
-		 * Return a {@literal Consumer} that stores the given username and password
-		 * as a request attribute of type {@code Credentials} that is in turn
-		 * used by {@link ExchangeFilterFunctions#basicAuthentication()}.
+		 * 返回一个 {@literal Consumer}，它将给定用户名和密码存储为 {@code Credentials} 类型的请求属性，随后由 {@link ExchangeFilterFunctions#basicAuthentication()} 使用。
 		 * @param username the username
 		 * @param password the password
 		 * @return a consumer that can be passed into

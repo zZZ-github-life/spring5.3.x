@@ -17,8 +17,7 @@
 package org.springframework.jmx;
 
 /**
- * Exception thrown when we cannot locate an instance of an {@code MBeanServer},
- * or when more than one instance is found.
+ * 当无法定位 {@code MBeanServer} 的实例，或找到多个实例时抛出该异常。
  *
  * @author Rob Harrop
  * @author Juergen Hoeller
@@ -29,8 +28,7 @@ package org.springframework.jmx;
 public class MBeanServerNotFoundException extends JmxException {
 
 	/**
-	 * Create a new {@code MBeanServerNotFoundException} with the
-	 * supplied error message.
+	 * 使用提供的错误消息创建新的 {@code MBeanServerNotFoundException}。
 	 * @param msg the error message
 	 */
 	public MBeanServerNotFoundException(String msg) {
@@ -38,8 +36,7 @@ public class MBeanServerNotFoundException extends JmxException {
 	}
 
 	/**
-	 * Create a new {@code MBeanServerNotFoundException} with the
-	 * specified error message and root cause.
+	 * 使用指定的错误消息和根本原因创建新的 {@code MBeanServerNotFoundException}。
 	 * @param msg the error message
 	 * @param cause the root cause
 	 */

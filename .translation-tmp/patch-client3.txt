@@ -1,0 +1,49 @@
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequest.java
+@@BODY 166 166
+用于更新给定 SettableListenableFuture 的 SimpleChannelInboundHandler。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpRequestFactory.java
+@@BODY 223 224
+用于更改给定 {@link SocketChannelConfig} 属性的模板方法。
+<p>默认实现根据所设置的属性设置连接超时。
+===FILE spring-web/src/main/java/org/springframework/http/client/Netty4ClientHttpResponse.java
+@@BODY 32 32
+基于 Netty 4 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3AsyncClientHttpRequest.java
+@@BODY 36 36
+<p>通过 {@link OkHttp3ClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequest.java
+@@BODY 31 31
+<p>通过 {@link OkHttp3ClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpRequestFactory.java
+@@BODY 94 95
+设置底层连接超时（以毫秒为单位）。
+值 0 表示无限超时。
+===FILE spring-web/src/main/java/org/springframework/http/client/OkHttp3ClientHttpResponse.java
+@@BODY 31 31
+基于 OkHttp 3.x 的 {@link ClientHttpResponse} 实现。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingAsyncClientHttpRequest.java
+@@BODY 31 33
+使用标准 JDK 设施执行缓冲请求的
+{@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleBufferingClientHttpRequest.java
+@@BODY 89 89
+将给定头部添加到给定的 HTTP 连接。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpResponse.java
+@@BODY 29 31
+使用标准 JDK 设施的 {@link ClientHttpResponse} 实现。
+通过 {@link SimpleBufferingClientHttpRequest#execute()} 和
+{@link SimpleStreamingClientHttpRequest#execute()} 获得。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingAsyncClientHttpRequest.java
+@@BODY 32 34
+使用标准 Java 设施执行流式请求的
+{@link org.springframework.http.client.ClientHttpRequest} 实现。通过
+{@link org.springframework.http.client.SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleStreamingClientHttpRequest.java
+@@BODY 31 32
+使用标准 JDK 设施执行流式请求的
+{@link ClientHttpRequest} 实现。通过 {@link SimpleClientHttpRequestFactory} 创建。
+===FILE spring-web/src/main/java/org/springframework/http/client/SimpleClientHttpRequestFactory.java
+@@BODY 196 197
+用于准备给定 {@link HttpURLConnection} 的模板方法。
+<p>默认实现为输入和输出准备连接，并设置 HTTP 方法。

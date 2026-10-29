@@ -1,0 +1,150 @@
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::30::0", "zh": "一个 {@link ClassVisitor}，用于生成与 Java 虚拟机规范（JVMS）中定义相对应的 ClassFile 结构。它既可以单独使用，从头生成一个 Java 类，也可以与一个或多个 {@link ClassReader} 及适配器 {@link ClassVisitor} 一起使用，从现有的一个或多个 Java 类生成修改后的类。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::41::0", "zh": "一个标志，用于自动计算方法的最大栈大小和最大局部变量数量。如果设置了此标志，那么 {@link #visitMethod} 方法返回的 {@link MethodVisitor} 的 {@link MethodVisitor#visitMaxs} 方法的参数将被忽略，并根据每个方法的签名和字节码自动计算。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::41::1", "zh": "<p><b>注意：</b>对于版本为 {@link Opcodes#V1_7} 或更高的类，此选项要求存在有效的栈映射帧。此时最大栈大小将根据这些帧以及它们之间的字节码指令计算。如果栈映射帧不存在或必须重新计算，请改用 {@link #COMPUTE_FRAMES}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::57::0", "zh": "一个标志，用于从头自动计算方法的栈映射帧。如果设置了此标志，那么对 {@link MethodVisitor#visitFrame} 方法的调用将被忽略，栈映射帧将根据方法的字节码重新计算。{@link MethodVisitor#visitMaxs} 方法的参数也会被忽略，并根据字节码重新计算。换言之，{@link #COMPUTE_FRAMES} 蕴含 {@link #COMPUTE_MAXS}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::68::0", "zh": "传递给构造函数的标志。必须是 {@link #COMPUTE_MAXS} 和 {@link #COMPUTE_FRAMES} 中的零个或多个。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::77::0", "zh": "JVMS ClassFile 结构的 minor_version 和 major_version 字段。minor_version 存储在最高的 16 位中，major_version 存储在最低的 16 位中。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::86::0", "zh": "JVMS ClassFile 结构的 access_flags 字段。此字段可以包含 ASM 特有的访问标志，例如 {@link Opcodes#ACC_DEPRECATED} 或 {@link Opcodes#ACC_RECORD}，这些标志在生成 ClassFile 结构时会被移除。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::105::0", "zh": "此类的字段，存储在通过各自 {@link FieldWriter#fv} 字段链接起来的 {@link FieldWriter} 链表中。此字段存储该链表的第一个元素。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::111::0", "zh": "此类的字段，存储在通过各自 {@link FieldWriter#fv} 字段链接起来的 {@link FieldWriter} 链表中。此字段存储该链表的最后一个元素。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::117::0", "zh": "此类的方法，存储在通过各自 {@link MethodWriter#mv} 字段链接起来的 {@link MethodWriter} 链表中。此字段存储该链表的第一个元素。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::123::0", "zh": "此类的方法，存储在通过各自 {@link MethodWriter#mv} 字段链接起来的 {@link MethodWriter} 链表中。此字段存储该链表的最后一个元素。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::150::0", "zh": "此类最后一个运行时可见注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::156::0", "zh": "此类最后一个运行时不可见注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::162::0", "zh": "此类最后一个运行时可见类型注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::168::0", "zh": "此类最后一个运行时不可见类型注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::192::0", "zh": "此类的记录组件，存储在通过各自 {@link RecordComponentWriter#delegate} 字段链接起来的 {@link RecordComponentWriter} 链表中。此字段存储该链表的第一个元素。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::199::0", "zh": "此类的记录组件，存储在通过各自 {@link RecordComponentWriter#delegate} 字段链接起来的 {@link RecordComponentWriter} 链表中。此字段存储该链表的最后一个元素。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::206::0", "zh": "此类第一个非标准属性。后续属性可以通过 {@link Attribute#nextAttribute} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::206::1", "zh": "<p><b>警告</b>：此链表以与其访问顺序<i>相反</i>的顺序存储属性。firstAttribute 实际上是 {@link #visitAttribute} 中最后访问的属性。{@link #toByteArray} 方法按此链表定义的顺序写入属性，也就是用户指定的相反顺序。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::217::0", "zh": "指示在 {@link MethodWriter} 中必须自动计算的内容。必须是 {@link MethodWriter#COMPUTE_NOTHING}、{@link MethodWriter#COMPUTE_MAX_STACK_AND_LOCAL}、{@link MethodWriter#COMPUTE_INSERTED_FRAMES} 或 {@link MethodWriter#COMPUTE_ALL_FRAMES} 之一。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::228::0", "zh": "构造一个新的 {@link ClassWriter} 对象。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::238::0", "zh": "构造一个新的 {@link ClassWriter} 对象，并为“以添加为主”的字节码变换启用优化。这些优化如下："}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::279::0", "zh": "如果所有给定标志都已传递给构造函数，则返回 true。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::487::0", "zh": "返回由此 ClassWriter 构建的类文件的内容。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::746::0", "zh": "返回给定类文件的等价形式，其中 ASM 特有的指令已替换为标准指令。这是通过 ClassReader -&gt; ClassWriter 的往返过程完成的。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::784::0", "zh": "返回此类及其字段和方法所使用的属性原型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::814::0", "zh": "将数字或字符串常量添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::827::0", "zh": "将 UTF8 字符串添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::840::0", "zh": "将类引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::852::0", "zh": "将方法类型引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::864::0", "zh": "将模块引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::876::0", "zh": "将包引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::888::0", "zh": "将句柄添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::911::0", "zh": "将句柄添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::936::0", "zh": "将动态常量引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::957::0", "zh": "将 invokedynamic 引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::978::0", "zh": "将字段引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::992::0", "zh": "将方法引用添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::1009::0", "zh": "将名称和类型添加到正在构建的类的常量池中。如果常量池中已存在类似项，则不做任何操作。<i>此方法供 {@link Attribute} 子类使用，类生成器或适配器通常不需要调用它。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::1026::0", "zh": "返回两个给定类型的公共超类型。此方法的默认实现会<i>加载</i>这两个给定的类，并使用 java.lang.Class 的方法查找公共超类。可以重写此方法，以其他方式计算该公共超类型，特别是无需实际加载任何类，或者将当前正由此 ClassWriter 生成、因而当然无法加载（它仍在构建中）的类考虑在内。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ClassWriter.java::1069::0", "zh": "返回 {@link #getCommonSuperClass(String, String)} 的默认实现所使用的 {@link ClassLoader}，默认情况下为 {@link ClassWriter} 运行时类型的类加载器。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::32::0", "zh": "值在运行时通过引导方法计算得出的常量。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::48::0", "zh": "为了在运行时计算常量值而传递给引导方法的参数。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::54::0", "zh": "构造一个新的 {@link ConstantDynamic}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::74::0", "zh": "返回此常量的名称。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::83::0", "zh": "返回此常量的类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::92::0", "zh": "返回用于计算此常量值的引导方法。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::101::0", "zh": "返回为了计算此常量的值而传递给引导方法的参数数量。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::112::0", "zh": "返回为了计算此常量的值而传递给引导方法的一个参数。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::124::0", "zh": "返回为了计算此常量的值而传递给引导方法的参数。警告：不得修改此数组，也不得将其返回给用户。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/ConstantDynamic.java::135::0", "zh": "返回此常量的大小。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Constants.java::30::0", "zh": "定义不属于 ASM 公共 API 的额外 JVM 操作码、访问标志和常量。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Constants.java::82::0", "zh": "插入在已有帧之间的帧。这种内部栈映射帧类型（在 {@link Opcodes} 中声明的类型之外）只有在帧内容能够从之前已有的帧以及该已有帧与所插入帧之间的指令计算得出、且无需了解类型层次结构时才能使用。仅当在展开 ASM 特有指令时向方法中插入无条件跳转时，才会使用这种帧。与 Opcodes.java 保持同步。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::31::0", "zh": "关于在 {@link ClassReader} 中正在解析的类的信息。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::41::0", "zh": "用于解析此类的选项。为 {@link ClassReader#SKIP_CODE}、{@link ClassReader#SKIP_DEBUG}、{@link ClassReader#SKIP_FRAMES}、{@link ClassReader#EXPAND_FRAMES} 或 {@link ClassReader#EXPAND_ASM_INSNS} 中的一个或多个。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::63::0", "zh": "当前方法的标签，按字节码偏移量索引（只有需要标签的字节码偏移量才关联非 null 的 Label）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::72::0", "zh": "当前类型注解目标的 target_type 和 target_info，按 {@link TypeReference} 中所述的方式编码。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::87::0", "zh": "当前局部变量注解中每个局部变量范围的局部变量索引。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::98::0", "zh": "当前栈映射帧的类型。为 {@link Opcodes#F_FULL}、{@link Opcodes#F_APPEND}、{@link Opcodes#F_CHOP}、{@link Opcodes#F_SAME} 或 {@link Opcodes#F_SAME1} 之一。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::104::0", "zh": "当前栈映射帧中局部变量类型的数量。每个类型都由单个数组元素表示（即使是 long 和 double）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::110::0", "zh": "当前栈映射帧中局部变量类型的增量数量（每个类型都由单个数组元素表示——即使是 long 和 double）。它等于此帧中的局部变量类型数量减去上一帧中的局部变量类型数量。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::117::0", "zh": "当前栈映射帧中局部变量的类型。每个类型都由单个数组元素表示（即使是 long 和 double），使用 {@link MethodVisitor#visitFrame} 中描述的格式。根据 {@link #currentFrameType} 的不同，它包含所有局部变量的类型，或者只包含（与上一帧相比）新增的那些局部变量的类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::125::0", "zh": "当前栈映射帧中栈元素类型的数量。每个类型都由单个数组元素表示（即使是 long 和 double）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Context.java::131::0", "zh": "当前栈映射帧中栈元素的类型。每个类型都由单个数组元素表示（即使是 long 和 double），使用 {@link MethodVisitor#visitFrame} 中描述的格式。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/CurrentFrame.java::31::0", "zh": "关于方法“当前”指令处输入栈映射帧的信息。它实现为只包含一条指令的“基本块”的 Frame 子类。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/CurrentFrame.java::43::0", "zh": "将此 CurrentFrame 设置为下一条“当前”指令（即紧跟在给定指令之后的指令）的输入栈映射帧。假设调用此方法时该对象的值就是执行给定指令之前的栈映射帧状态。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Edge.java::30::0", "zh": "方法控制流图中的一条边。该图的每个节点都是一个基本块，用与其第一条指令对应的 Label 表示。每条边从一个节点指向另一个节点，即从一个基本块指向另一个基本块（分别称为前驱块和后继块）。一条边对应于跳转或 ret 指令，或者对应于异常处理器。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Edge.java::42::0", "zh": "对应于跳转或 ret 指令的控制流图边。仅与 {@link ClassWriter#COMPUTE_FRAMES} 一起使用。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Edge.java::48::0", "zh": "对应于异常处理器的控制流图边。仅与 {@link ClassWriter#COMPUTE_MAXS} 一起使用。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Edge.java::54::0", "zh": "关于此控制流图边的信息。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Edge.java::74::0", "zh": "基本块出边列表中的下一条边。参见 {@link Label#outgoingEdges}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Edge.java::79::0", "zh": "构造一个新的 Edge。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::30::0", "zh": "用于访问 Java 字段的访问器。此类的方法必须按以下顺序调用：( {@code visitAnnotation} | {@code visitTypeAnnotation} | {@code visitAttribute} )* {@code visitEnd}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::39::0", "zh": "此访问器实现的 ASM API 版本。此字段的值必须是 {@link Opcodes} 中 {@code ASM}<i>x</i> 值之一。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::48::0", "zh": "构造一个新的 {@link FieldVisitor}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::58::0", "zh": "构造一个新的 {@link FieldVisitor}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::81::0", "zh": "此访问器必须将方法调用委托给该字段访问器。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::90::0", "zh": "访问字段的一个注解。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::105::0", "zh": "访问字段类型上的一个注解。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::129::0", "zh": "访问字段的一个非标准属性。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldVisitor.java::140::0", "zh": "访问字段的结束。此方法是最后一个被调用的方法，用于通知访问器该字段的所有注解和属性都已访问完毕。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::30::0", "zh": "一个 {@link FieldVisitor}，用于生成与 Java 虚拟机规范（JVMS）中定义相对应的 'field_info' 结构。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::46::0", "zh": "field_info JVMS 结构的 access_flags 字段。此字段可以包含 ASM 特有的访问标志，例如 {@link Opcodes#ACC_DEPRECATED}，这些标志在生成 ClassFile 结构时会被移除。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::59::0", "zh": "此 field_info 的 Signature 属性的 signature_index 字段，如果没有 Signature 属性则为 0。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::65::0", "zh": "此 field_info 的 ConstantValue 属性的 constantvalue_index 字段，如果没有 ConstantValue 属性则为 0。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::71::0", "zh": "此字段最后一个运行时可见注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::77::0", "zh": "此字段最后一个运行时不可见注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::83::0", "zh": "此字段最后一个运行时可见类型注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::89::0", "zh": "此字段最后一个运行时不可见类型注解。之前的注解可以通过 {@link AnnotationWriter#previousAnnotation} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::95::0", "zh": "此字段第一个非标准属性。后续属性可以通过 {@link Attribute#nextAttribute} 字段访问。可能为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::95::1", "zh": "<p><b>警告</b>：此链表以与其访问顺序<i>相反</i>的顺序存储属性。firstAttribute 实际上是 {@link #visitAttribute} 中最后访问的属性。{@link #putFieldInfo} 方法按此链表定义的顺序写入属性，也就是用户指定的相反顺序。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::110::0", "zh": "构造一个新的 {@link FieldWriter}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::185::0", "zh": "返回此 FieldWriter 生成的 field_info JVMS 结构的大小。同时还会将该字段各属性的名称添加到常量池中。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::213::0", "zh": "将此 FieldWriter 生成的 field_info JVMS 结构的内容放入给定的 ByteVector 中。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/FieldWriter.java::276::0", "zh": "将此字段的属性收集到给定的属性原型集合中。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::0", "zh": "基本块的输入和输出栈映射帧。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::1", "zh": "<p>栈映射帧分两步计算："}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::2", "zh": "<p>输出栈映射帧是相对于基本块的输入帧计算的，而在计算输出帧时该输入帧尚不可知。因此，必须能够表示抽象类型，例如“输入帧局部变量中位置 x 处的类型”或“距输入帧栈顶 x 处的类型”，甚至是“输入帧中位置 x 处、数组维度多（或少）y 的类型”。这就解释了此类中使用的相当复杂的类型格式，下文将予以说明。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::3", "zh": "<p>输入帧和输出帧的局部变量与操作数栈包含以下称为“抽象类型”的值。抽象类型由名为 DIM、KIND、FLAGS 和 VALUE 的 4 个字段表示，为了获得更好的性能和内存效率，它们被打包在单个 int 值中："}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::4", "zh": "</ul>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::5", "zh": "<p>输出帧可以包含任意种类以及数组维度为正或为负的抽象类型（甚至可以是未赋值的类型，用 0 表示——它不对应任何有效的抽象类型值）。输入帧只能包含数组维度为正或为 {@literal null} 的 CONSTANT_KIND、REFERENCE_KIND 或 UNINITIALIZED_KIND 抽象类型。在所有情况下，类型表都只包含内部类型名（禁止使用数组类型描述符——数组维度必须通过 DIM 字段表示）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::30::6", "zh": "<p>LONG 和 DOUBLE 类型始终使用两个槽位表示（LONG + TOP 或 DOUBLE + TOP），无论是局部变量还是操作数栈中都是如此。这对于模拟 DUPx_y 指令是必要的，因为其效果取决于栈中抽象类型所表示的具体类型（而这些具体类型并不总是已知）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::167::0", "zh": "用于 LOCAL_KIND 和 STACK_KIND 抽象类型的标志，表示如果解析出的具体类型是 LONG 或 DOUBLE，则应改用 TOP（因为该值已被 xSTORE 指令部分覆盖）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::207::0", "zh": "输出栈的起始位置，相对于输入栈。此偏移量始终为负或 null。null 偏移量表示输出栈必须追加到输入栈之后。-n 偏移量表示输出栈的前 n 个元素必须替换输入栈顶部的 n 个元素，而其余元素必须追加到输入栈之后。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::221::0", "zh": "在基本块中被初始化的抽象类型。对 UNINITIALIZED 或 UNINITIALIZED_THIS 抽象类型调用构造函数时，必须替换局部变量和操作数栈中该类型的<i>每一次出现</i>。这无法在算法的第一步中完成，因为在这一步中局部变量和操作数栈的类型仍是抽象的。因此，必须存储在基本块中被调用的构造函数的抽象类型，以便在算法的第二步（此时帧已完全计算）中执行此替换。请注意，此数组可能包含相对于输入局部变量或输入栈的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::237::0", "zh": "构造一个新的 Frame。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::246::0", "zh": "将此帧设置为给定帧的值。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::246::1", "zh": "<p>警告：调用此方法后，两个帧共享相同的数据结构。建议丢弃给定的帧以避免意外的副作用。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::269::0", "zh": "返回与给定公共 API 帧元素类型相对应的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::292::0", "zh": "返回与类内部名称相对应的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::305::0", "zh": "返回与给定类型描述符相对应的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::383::0", "zh": "根据给定的方法描述设置输入帧。此方法用于初始化方法的第一个帧，该帧是隐式的（即不显式存储在 StackMapTable 属性中）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::422::0", "zh": "根据给定的公共 API 帧描述设置输入帧。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::475::0", "zh": "返回输出帧中给定局部变量索引处存储的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::497::0", "zh": "替换输出帧中给定局部变量索引处存储的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::518::0", "zh": "将给定的抽象类型压入输出帧栈。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::544::0", "zh": "将与给定描述符相对应的抽象类型压入输出帧栈。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::562::0", "zh": "从输出帧栈中弹出一个抽象类型并返回其值。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::576::0", "zh": "从输出帧栈中弹出给定数量的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::592::0", "zh": "从输出帧栈中弹出与给定描述符所描述的相同数量的抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::612::0", "zh": "将一个抽象类型添加到基本块中调用了构造函数的类型列表中。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::634::0", "zh": "返回与给定抽象类型相对应的“已初始化”抽象类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::673::0", "zh": "在输出栈帧上模拟给定指令的动作。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::1115::0", "zh": "计算与给定抽象输出类型相对应的具体输出类型。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::1151::0", "zh": "将给定 {@link Frame} 的输入帧与此 {@link Frame} 的输入帧和输出帧合并。如果给定帧被此操作更改，则返回 {@literal true}（此 {@link Frame} 的输入帧和输出帧永远不会被更改）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::1250::0", "zh": "将给定抽象类型数组中给定索引处的类型与给定类型合并。如果该类型数组被此操作修改，则返回 {@literal true}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::1346::0", "zh": "让给定的 {@link MethodWriter} 访问此 {@link Frame} 的输入帧。访问通过 {@link MethodWriter#visitFrameStart}、{@link MethodWriter#visitAbstractType} 和 {@link MethodWriter#visitFrameEnd} 方法完成。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Frame.java::1397::0", "zh": "使用 StackMapTable 属性中所用的 JVMS verification_type_info 格式，将给定的抽象类型放入给定的 ByteVector 中。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::31::0", "zh": "对字段或方法的引用。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::39::0", "zh": "此 Handle 所指定的字段或方法的种类。应为 {@link Opcodes#H_GETFIELD}、{@link Opcodes#H_GETSTATIC}、{@link Opcodes#H_PUTFIELD}、{@link Opcodes#H_PUTSTATIC}、{@link Opcodes#H_INVOKEVIRTUAL}、{@link Opcodes#H_INVOKESTATIC}、{@link Opcodes#H_INVOKESPECIAL}、{@link Opcodes#H_NEWINVOKESPECIAL} 或 {@link Opcodes#H_INVOKEINTERFACE}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::59::0", "zh": "构造一个新的字段或方法句柄。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::79::0", "zh": "构造一个新的字段或方法句柄。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::106::0", "zh": "返回此句柄所指定的字段或方法的种类。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::118::0", "zh": "返回拥有此句柄所指定的字段或方法的类的内部名称。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::128::0", "zh": "返回此句柄所指定的字段或方法的名称。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::137::0", "zh": "返回此句柄所指定的字段或方法的描述符。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::146::0", "zh": "如果此句柄所指定的字段或方法的所有者是接口，则返回 true。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handle.java::178::0", "zh": "返回此句柄的文本表示形式。文本表示形式为："}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::30::0", "zh": "关于异常处理器的信息。它对应于 Java 虚拟机规范（JVMS）中定义的 Code 属性的 exception_table 数组的一个元素。Handler 实例可以通过其 {@link #nextHandler} 字段链接在一起，以描述完整的 JVMS exception_table 数组。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::42::0", "zh": "此 JVMS exception_table 条目的 start_pc 字段。对应于异常处理器作用域的开始（包含）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::48::0", "zh": "此 JVMS exception_table 条目的 end_pc 字段。对应于异常处理器作用域的结束（不包含）。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::54::0", "zh": "此 JVMS exception_table 条目的 handler_pc 字段。对应于异常处理器代码的开始。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::60::0", "zh": "此 JVMS exception_table 条目的 catch_type 字段。它是此处理器所处理的异常类型的内部名称在常量池中的索引，若要捕获任何异常则为 0。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::66::0", "zh": "此处理器所处理的异常类型的内部名称，若要捕获任何异常则为 {@literal null}。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::75::0", "zh": "构造一个新的 Handler。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::98::0", "zh": "根据给定的 Handler 构造一个新的 Handler，其作用域不同。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::110::0", "zh": "从以给定元素开头的 Handler 列表中移除 start 与 end 之间的范围。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::152::0", "zh": "返回以给定元素开头的 Handler 列表的元素数量。"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::168::0", "zh": "返回与以给定元素开头的 Handler 列表相对应的 JVMS exception_table 的字节大小。<i>这包括 exception_table_length 字段。</i>"}
+{"id": "spring-core/src/main/java/org/springframework/asm/Handler.java::179::0", "zh": "放入与以给定元素开头的 Handler 列表相对应的 JVMS exception_table。<i>这包括 exception_table_length 字段。</i>"}

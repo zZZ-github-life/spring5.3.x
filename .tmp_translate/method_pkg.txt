@@ -1,0 +1,373 @@
+@@ result/method/AbstractHandlerMethodMapping.java :: 1
+{@link HandlerMapping} 实现的抽象基类，用于定义请求与 {@link HandlerMethod} 之间的映射。
+
+<p>对于每个已注册的处理器方法，都会维护一个唯一的映射，由子类定义映射类型 {@code <T>} 的细节。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 2
+作用域代理背后目标 Bean 的 Bean 名称前缀。用于将这些目标从处理器方法检测中排除，转而使用相应的代理。
+<p>这里不检查 autowire-candidate 状态，该状态是在自动装配层面处理代理目标过滤问题的方式，因为 autowire-candidate 可能因其他原因被设为 {@code false}，而仍然期望该 Bean 有资格作为处理器方法。
+<p>最初定义于 {@link org.springframework.aop.scope.ScopedProxyUtils}，但在此处复制以避免对 spring-aop 模块的硬依赖。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 3
+当请求映射比访问控制头更精细时，在预检请求匹配时返回的 HandlerMethod。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 4
+返回包含所有映射和 HandlerMethod 的（只读）映射表。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 5
+返回内部映射注册表。供测试使用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 6
+注册给定的映射。
+<p>此方法可以在初始化完成后于运行时调用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 7
+注销给定的映射。
+<p>此方法可以在初始化完成后于运行时调用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 8
+在初始化时检测处理器方法。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 9
+扫描 ApplicationContext 中的 Bean，检测并注册处理器方法。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 10
+在处理器中查找处理器方法。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 11
+注册处理器方法及其唯一映射。在启动时为每个检测到的处理器方法调用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 12
+创建 HandlerMethod 实例。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 13
+提取并返回该映射的 CORS 配置。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 14
+在所有处理器方法检测完成后调用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 15
+为给定请求查找处理器方法。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 16
+为当前请求查找最佳匹配的处理器方法。如果找到多个匹配，则选择最佳匹配。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 17
+在找到匹配的映射时调用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 18
+在未找到匹配的映射时调用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 19
+给定类型是否是带有处理器方法的处理器。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 20
+为处理器方法提供映射。无法提供映射的方法不是处理器方法。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 21
+返回不是模式的请求映射路径。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 22
+检查映射是否匹配当前请求，并返回一个（可能是新的）映射，其中包含与当前请求相关的条件。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 23
+返回用于对匹配映射排序的比较器。返回的比较器应将“更好”的匹配排在前面。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 24
+维护所有映射到处理器方法的注册表，公开用于执行查找的方法并提供并发访问。
+
+<p>包级私有，供测试使用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 25
+返回所有注册项。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 26
+返回给定 URL 路径的匹配项。非线程安全。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 27
+返回 CORS 配置。可安全并发使用。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 28
+在使用 getMappings 和 getMappingsByUrl 时获取读锁。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 29
+在使用 getMappings 和 getMappingsByUrl 之后释放读锁。
+
+@@ result/method/AbstractHandlerMethodMapping.java :: 30
+匹配的 HandlerMethod 及其映射的轻量包装，用于在当前请求的上下文中使用比较器比较最佳匹配。
+
+@@ result/method/HandlerMethodArgumentResolver.java :: 1
+用于在当前 HTTP 请求的上下文中解析方法参数值的策略。
+
+@@ result/method/HandlerMethodArgumentResolver.java :: 2
+此解析器是否支持给定的方法参数。
+
+@@ result/method/HandlerMethodArgumentResolver.java :: 3
+解析方法参数的值。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 1
+通过委托给已注册的 {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers} 列表来解析方法参数。先前解析过的方法参数会被缓存，以加快查找速度。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 2
+添加给定的 {@link HandlerMethodArgumentResolver}。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 3
+添加给定的 {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 4
+添加给定的 {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 5
+返回包含的解析器的只读列表，或空列表。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 6
+清除已配置的解析器列表和解析器缓存。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 7
+给定的 {@linkplain MethodParameter 方法参数} 是否受任何已注册的 {@link HandlerMethodArgumentResolver} 支持。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 8
+遍历已注册的 {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}，并调用支持该方法参数的那个。
+
+@@ result/method/HandlerMethodArgumentResolverComposite.java :: 9
+查找支持给定方法参数的已注册 {@link HandlerMethodArgumentResolver}。
+
+@@ result/method/HandlerMethodArgumentResolverSupport.java :: 1
+{@link HandlerMethodArgumentResolver} 实现的基类，可访问 {@code ReactiveAdapterRegistry}，并提供检查方法参数支持情况的方法。
+
+@@ result/method/HandlerMethodArgumentResolverSupport.java :: 2
+返回配置的 {@link ReactiveAdapterRegistry}。
+
+@@ result/method/HandlerMethodArgumentResolverSupport.java :: 3
+在方法参数类型上或在响应式类型包装内的泛型类型上求值 {@code Predicate}。
+
+@@ result/method/HandlerMethodArgumentResolverSupport.java :: 4
+在方法参数类型上求值 {@code Predicate}，但如果它与响应式类型包装内的泛型类型匹配，则抛出 {@code IllegalStateException}。
+
+@@ result/method/HandlerMethodArgumentResolverSupport.java :: 5
+如果方法参数类型具有给定注解，则在其上求值 {@code Predicate}，必要时嵌套在 {@link java.util.Optional} 中，但如果它与响应式类型包装内的泛型类型匹配，则抛出 {@code IllegalStateException}。
+
+@@ result/method/InvocableHandlerMethod.java :: 1
+{@link HandlerMethod} 的扩展，通过一系列 {@link HandlerMethodArgumentResolver} 从当前 HTTP 请求解析参数值，并调用底层方法。
+
+@@ result/method/InvocableHandlerMethod.java :: 2
+从 {@code HandlerMethod} 创建实例。
+
+@@ result/method/InvocableHandlerMethod.java :: 3
+从 Bean 实例和方法创建实例。
+
+@@ result/method/InvocableHandlerMethod.java :: 4
+配置用于针对 {@code ServerWebExchange} 解析方法参数值的参数解析器。
+
+@@ result/method/InvocableHandlerMethod.java :: 5
+返回配置的参数解析器。
+
+@@ result/method/InvocableHandlerMethod.java :: 6
+设置 ParameterNameDiscoverer，用于在需要时解析参数名称（例如默认请求属性名称）。
+<p>默认为 {@link DefaultParameterNameDiscoverer}。
+
+@@ result/method/InvocableHandlerMethod.java :: 7
+返回配置的参数名称发现器。
+
+@@ result/method/InvocableHandlerMethod.java :: 8
+配置响应式适配器注册表。当响应完全在控制器内处理并结合异步 void 返回值时需要此配置。
+<p>默认情况下，这是使用默认设置的 {@link ReactiveAdapterRegistry}。
+
+@@ result/method/InvocableHandlerMethod.java :: 9
+为给定交换调用该方法。
+
+@@ result/method/RequestMappingInfo.java :: 1
+请求映射信息。封装以下请求映射条件：
+<ol>
+<li>{@link PatternsRequestCondition}
+<li>{@link RequestMethodsRequestCondition}
+<li>{@link ParamsRequestCondition}
+<li>{@link HeadersRequestCondition}
+<li>{@link ConsumesRequestCondition}
+<li>{@link ProducesRequestCondition}
+<li>{@code RequestCondition}（可选，自定义请求条件）
+</ol>
+
+@@ result/method/RequestMappingInfo.java :: 2
+带映射名称的完整构造函数。
+
+@@ result/method/RequestMappingInfo.java :: 3
+使用给定条件创建实例。
+
+@@ result/method/RequestMappingInfo.java :: 4
+使用给定的自定义请求条件重新创建 RequestMappingInfo。
+
+@@ result/method/RequestMappingInfo.java :: 5
+返回此映射的名称，或 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 6
+返回此 {@link RequestMappingInfo} 的 URL 模式；如果没有模式，则返回包含 0 个模式的实例，绝不会是 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 7
+返回不是模式的映射路径。
+
+@@ result/method/RequestMappingInfo.java :: 8
+返回此 {@link RequestMappingInfo} 的 HTTP 请求方法；如果没有请求方法，则返回包含 0 个请求方法的实例，绝不会是 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 9
+返回此 {@link RequestMappingInfo} 的 "parameters" 条件；如果没有参数表达式，则返回包含 0 个参数表达式的实例，绝不会是 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 10
+返回此 {@link RequestMappingInfo} 的 "headers" 条件；如果没有头表达式，则返回包含 0 个头表达式的实例，绝不会是 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 11
+返回此 {@link RequestMappingInfo} 的 "consumes" 条件；如果没有 consumes 表达式，则返回包含 0 个 consumes 表达式的实例，绝不会是 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 12
+返回此 {@link RequestMappingInfo} 的 "produces" 条件；如果没有 produces 表达式，则返回包含 0 个 produces 表达式的实例，绝不会是 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 13
+返回此 {@link RequestMappingInfo} 的 "custom" 条件；或 {@code null}。
+
+@@ result/method/RequestMappingInfo.java :: 14
+将“此”请求映射信息（即当前实例）与另一个请求映射信息实例组合。
+<p>示例：组合类型级和方法级请求映射。
+
+@@ result/method/RequestMappingInfo.java :: 15
+检查此请求映射信息中的所有条件是否匹配提供的请求，并返回一个可能的新请求映射信息，其中的条件针对当前请求进行了调整。
+<p>例如，返回的实例可能包含与当前请求匹配的 URL 模式子集，并按最佳匹配模式排在前面排序。
+
+@@ result/method/RequestMappingInfo.java :: 16
+在请求的上下文中比较“此”信息（即当前实例）与另一个信息。
+<p>注意：假定两个实例均通过 {@link #getMatchingCondition(ServerWebExchange)} 获得，以确保它们的条件包含与当前请求相关的内容。
+
+@@ result/method/RequestMappingInfo.java :: 17
+返回用于通过修改此实例来创建新的 RequestMappingInfo 的构建器。
+
+@@ result/method/RequestMappingInfo.java :: 18
+使用给定路径创建新的 {@code RequestMappingInfo.Builder}。
+
+@@ result/method/RequestMappingInfo.java :: 19
+定义用于创建 RequestMappingInfo 的构建器。
+
+@@ result/method/RequestMappingInfo.java :: 20
+设置路径模式。
+
+@@ result/method/RequestMappingInfo.java :: 21
+设置请求方法条件。
+
+@@ result/method/RequestMappingInfo.java :: 22
+设置请求参数条件。
+
+@@ result/method/RequestMappingInfo.java :: 23
+设置头条件。
+<p>默认不设置。
+
+@@ result/method/RequestMappingInfo.java :: 24
+设置 consumes 条件。
+
+@@ result/method/RequestMappingInfo.java :: 25
+设置 produces 条件。
+
+@@ result/method/RequestMappingInfo.java :: 26
+设置映射名称。
+
+@@ result/method/RequestMappingInfo.java :: 27
+设置要使用的自定义条件。
+
+@@ result/method/RequestMappingInfo.java :: 28
+提供请求映射所需的附加配置。
+
+@@ result/method/RequestMappingInfo.java :: 29
+构建 RequestMappingInfo。
+
+@@ result/method/RequestMappingInfo.java :: 30
+用于请求映射目的的配置选项容器。此类配置是创建 RequestMappingInfo 实例所必需的，但通常在所有 RequestMappingInfo 实例之间共享。
+
+@@ result/method/RequestMappingInfo.java :: 31
+设置用于 ProducesRequestCondition 的 ContentNegotiationManager。
+<p>默认不设置。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 1
+{@link RequestMappingInfo} 定义请求与处理器方法之间映射的类的抽象基类。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 2
+检查给定 RequestMappingInfo 是否匹配当前请求，并返回一个（可能是新的）实例，其条件与当前请求匹配——例如包含 URL 模式的子集。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 3
+提供用于对与请求匹配的 RequestMappingInfo 排序的 Comparator。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 4
+在请求中公开 URI 模板变量、矩阵变量和可生成媒体类型。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 5
+再次遍历所有 RequestMappingInfo，至少检查是否有任何 URL 匹配，并相应抛出异常。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 6
+汇总所有部分匹配，并公开跨这些匹配进行检查的方法。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 7
+是否存在任何部分匹配。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 8
+是否有针对 "methods" 的部分匹配？
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 9
+是否有针对 "methods" 和 "consumes" 的部分匹配？
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 10
+是否有针对 "methods"、"consumes" 和 "produces" 的部分匹配？
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 11
+是否有针对 "methods"、"consumes"、"produces" 和 "params" 的部分匹配？
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 12
+返回声明的 HTTP 方法。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 13
+返回声明的 "consumable" 类型，但仅限于同时匹配 "methods" 条件的类型。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 14
+返回声明的 "producible" 类型，但仅限于同时匹配 "methods" 和 "consumes" 条件的类型。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 15
+返回声明的 "params" 条件，但仅限于同时匹配 "methods"、"consumes" 和 "params" 条件的条件。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 16
+返回声明的 "consumable" 类型，但仅限于指定了 PATCH 或完全没有方法的类型。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 17
+至少匹配 URL 路径的 RequestMappingInfo 容器。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 18
+创建新的 {@link PartialMatch} 实例。
+
+@@ result/method/RequestMappingInfoHandlerMapping.java :: 19
+HTTP OPTIONS 的默认处理器。
+
+@@ result/method/SyncHandlerMethodArgumentResolver.java :: 1
+{@link HandlerMethodArgumentResolver} 的扩展，用于本质上是同步且不会阻塞解析值的实现。
+
+@@ result/method/SyncHandlerMethodArgumentResolver.java :: 2
+{@inheritDoc}
+<p>默认情况下，这仅委托给 {@link #resolveArgumentValue} 进行同步解析。
+
+@@ result/method/SyncHandlerMethodArgumentResolver.java :: 3
+同步解析方法参数的值。
+
+@@ result/method/SyncInvocableHandlerMethod.java :: 1
+{@link HandlerMethod} 的扩展，通过 {@link InvocableHandlerMethod} 调用底层方法，但仅使用同步参数解析器，因此可以直接返回不带异步包装的 {@link HandlerResult}。
+
+@@ result/method/SyncInvocableHandlerMethod.java :: 2
+配置用于针对 {@code ServerWebExchange} 解析方法参数值的参数解析器。
+
+@@ result/method/SyncInvocableHandlerMethod.java :: 3
+返回配置的参数解析器。
+
+@@ result/method/SyncInvocableHandlerMethod.java :: 4
+设置 ParameterNameDiscoverer，用于在需要时解析参数名称（例如默认请求属性名称）。
+<p>默认为 {@link DefaultParameterNameDiscoverer}。
+
+@@ result/method/SyncInvocableHandlerMethod.java :: 5
+返回配置的参数名称发现器。
+
+@@ result/method/SyncInvocableHandlerMethod.java :: 6
+为给定交换调用该方法。
+
+@@ result/method/package-info.java :: 1
+处理器方法处理的基础设施。

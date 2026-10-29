@@ -19,9 +19,8 @@ package org.springframework.core.style;
 import org.springframework.lang.Nullable;
 
 /**
- * A strategy interface for pretty-printing {@code toString()} methods.
- * Encapsulates the print algorithms; some other object such as a builder
- * should provide the workflow.
+ * 用于美观输出 {@code toString()} 方法的策略接口。封装打印算法；工作流应由诸如构建器之类的其他对象
+ * 提供。
  *
  * @author Keith Donald
  * @since 1.2.2
@@ -29,21 +28,21 @@ import org.springframework.lang.Nullable;
 public interface ToStringStyler {
 
 	/**
-	 * Style a {@code toString()}'ed object before its fields are styled.
+	 * 在样式化其字段之前，为已调用 {@code toString()} 的对象设置样式。
 	 * @param buffer the buffer to print to
 	 * @param obj the object to style
 	 */
 	void styleStart(StringBuilder buffer, Object obj);
 
 	/**
-	 * Style a {@code toString()}'ed object after it's fields are styled.
+	 * 在其字段被样式化之后，为已调用 {@code toString()} 的对象设置样式。
 	 * @param buffer the buffer to print to
 	 * @param obj the object to style
 	 */
 	void styleEnd(StringBuilder buffer, Object obj);
 
 	/**
-	 * Style a field value as a string.
+	 * 将字段值样式化为字符串。
 	 * @param buffer the buffer to print to
 	 * @param fieldName the name of the field
 	 * @param value the field value
@@ -51,14 +50,14 @@ public interface ToStringStyler {
 	void styleField(StringBuilder buffer, String fieldName, @Nullable Object value);
 
 	/**
-	 * Style the given value.
+	 * 为给定的值设置样式。
 	 * @param buffer the buffer to print to
 	 * @param value the field value
 	 */
 	void styleValue(StringBuilder buffer, Object value);
 
 	/**
-	 * Style the field separator.
+	 * 为字段分隔符设置样式。
 	 * @param buffer the buffer to print to
 	 */
 	void styleFieldSeparator(StringBuilder buffer);

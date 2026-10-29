@@ -22,8 +22,8 @@ import org.springframework.http.server.PathContainer.PathSegment;
 import org.springframework.web.util.pattern.PathPattern.MatchingContext;
 
 /**
- * A literal path element. In the pattern '/foo/bar/goo' there are three
- * literal path elements 'foo', 'bar' and 'goo'.
+ * 字面量路径元素。在模式 '/foo/bar/goo' 中有三个
+ * 字面量路径元素：'foo'、'bar' 和 'goo'。
  *
  * @author Andy Clement
  * @since 5.0

@@ -27,17 +27,15 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for {@link VersionStrategy} implementations.
+ * {@link VersionStrategy} 实现的抽象基类。
  *
- * <p>Supports versions as:
+ * <p>支持以下形式的版本：
  * <ul>
- * <li>prefix in the request path, like "version/static/myresource.js"
- * <li>file name suffix in the request path, like "static/myresource-version.js"
+ * <li>请求路径中的前缀，例如 "version/static/myresource.js"
+ * <li>请求路径中的文件名后缀，例如 "static/myresource-version.js"
  * </ul>
  *
- * <p>Note: This base class does <i>not</i> provide support for generating the
- * version string.
- *
+ * <p>注意：此基类<i>不</i>提供生成版本字符串的支持。
  * @author Brian Clozel
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -78,8 +76,8 @@ public abstract class AbstractVersionStrategy implements VersionStrategy {
 
 
 	/**
-	 * A prefix-based {@code VersionPathStrategy},
-	 * e.g. {@code "{version}/path/foo.js"}.
+	 * 基于前缀的 {@code VersionPathStrategy}，
+	 * 例如 {@code "{version}/path/foo.js"}。
 	 */
 	protected static class PrefixVersionPathStrategy implements VersionPathStrategy {
 
@@ -115,8 +113,8 @@ public abstract class AbstractVersionStrategy implements VersionStrategy {
 
 
 	/**
-	 * File name-based {@code VersionPathStrategy},
-	 * e.g. {@code "path/foo-{version}.css"}.
+	 * 基于文件名的 {@code VersionPathStrategy}，
+	 * 例如 {@code "path/foo-{version}.css"}。
 	 */
 	protected static class FileNameVersionPathStrategy implements VersionPathStrategy {
 

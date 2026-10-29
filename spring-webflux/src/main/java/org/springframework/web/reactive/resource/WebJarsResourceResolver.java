@@ -26,22 +26,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * A {@code ResourceResolver} that delegates to the chain to locate a resource and then
- * attempts to find a matching versioned resource contained in a WebJar JAR file.
+ * 委托给链定位资源，然后尝试查找 WebJar JAR 文件中包含的匹配带版本资源的 {@code ResourceResolver}。
  *
- * <p>This allows WebJars.org users to write version agnostic paths in their templates,
- * like {@code <script src="/webjars/jquery/jquery.min.js"/>}.
- * This path will be resolved to the unique version {@code <script src="/webjars/jquery/1.2.0/jquery.min.js"/>},
- * which is a better fit for HTTP caching and version management in applications.
+ * <p>这使 WebJars.org 用户可以在模板中编写与版本无关的路径，例如 {@code <script src="/webjars/jquery/jquery.min.js"/>}。此路径将解析为唯一版本 {@code <script src="/webjars/jquery/1.2.0/jquery.min.js"/>}，这更适合应用中的 HTTP 缓存和版本管理。
  *
- * <p>This also resolves resources for version agnostic HTTP requests {@code "GET /jquery/jquery.min.js"}.
+ * <p>这还会为与版本无关的 HTTP 请求 {@code "GET /jquery/jquery.min.js"} 解析资源。
  *
- * <p>This resolver requires the {@code org.webjars:webjars-locator-core} library
- * on the classpath and is automatically registered if that library is present.
+ * <p>此解析器要求类路径上存在 {@code org.webjars:webjars-locator-core} 库，如果存在该库，则会自动注册。
  *
- * <p>Be aware that {@code WebJarAssetLocator} constructor performs a classpath scanning that
- * could slow down application startup.
- *
+ * <p>请注意，{@code WebJarAssetLocator} 构造函数会执行类路径扫描，这可能会减慢应用启动速度。
  * @author Rossen Stoyanchev
  * @author Brian Clozel
  * @since 5.0
@@ -58,15 +51,14 @@ public class WebJarsResourceResolver extends AbstractResourceResolver {
 
 
 	/**
-	 * Create a {@code WebJarsResourceResolver} with a default {@code WebJarAssetLocator} instance.
+	 * 使用默认 {@code WebJarAssetLocator} 实例创建 {@code WebJarsResourceResolver}。
 	 */
 	public WebJarsResourceResolver() {
 		this(new WebJarAssetLocator());
 	}
 
 	/**
-	 * Create a {@code WebJarsResourceResolver} with a custom {@code WebJarAssetLocator} instance,
-	 * e.g. with a custom index.
+	 * 使用自定义 {@code WebJarAssetLocator} 实例（例如带有自定义索引）创建 {@code WebJarsResourceResolver}。
 	 */
 	public WebJarsResourceResolver(WebJarAssetLocator webJarAssetLocator) {
 		this.webJarAssetLocator = webJarAssetLocator;

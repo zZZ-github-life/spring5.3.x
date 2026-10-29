@@ -29,11 +29,9 @@ import org.springframework.util.MethodInvoker;
 import org.springframework.util.ReflectionUtils;
 
 /**
- * Subclass of {@link MethodInvoker} that tries to convert the given
- * arguments for the actual target method via a {@link TypeConverter}.
+ * {@link MethodInvoker} 的子类，它尝试通过 {@link TypeConverter} 为实际目标方法转换给定的参数。
  *
- * <p>Supports flexible argument conversions, in particular for
- * invoking a specific overloaded method.
+ * <p>支持灵活的参数转换，特别是用于调用特定的重载方法。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -48,10 +46,9 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 
 	/**
-	 * Set a TypeConverter to use for argument type conversion.
-	 * <p>Default is a {@link org.springframework.beans.SimpleTypeConverter}.
-	 * Can be overridden with any TypeConverter implementation, typically
-	 * a pre-configured SimpleTypeConverter or a BeanWrapperImpl instance.
+	 * 设置用于参数类型转换的 TypeConverter。
+	 * <p>默认是 {@link org.springframework.beans.SimpleTypeConverter}。可覆盖为任何 TypeConverter 实现，
+	 * 通常是预先配置的 SimpleTypeConverter 或 BeanWrapperImpl 实例。
 	 * @see org.springframework.beans.SimpleTypeConverter
 	 * @see org.springframework.beans.BeanWrapperImpl
 	 */
@@ -61,11 +58,10 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 	}
 
 	/**
-	 * Return the TypeConverter used for argument type conversion.
-	 * <p>Can be cast to {@link org.springframework.beans.PropertyEditorRegistry}
-	 * if direct access to the underlying PropertyEditors is desired
-	 * (provided that the present TypeConverter actually implements the
-	 * PropertyEditorRegistry interface).
+	 * 返回用于参数类型转换的 TypeConverter。
+	 * <p>如果需要直接访问底层的 PropertyEditors，可以将其强制转换为
+	 * {@link org.springframework.beans.PropertyEditorRegistry}（前提是当前的 TypeConverter 实际实现了
+	 * PropertyEditorRegistry 接口）。
 	 */
 	@Nullable
 	public TypeConverter getTypeConverter() {
@@ -76,21 +72,18 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 	}
 
 	/**
-	 * Obtain the default TypeConverter for this method invoker.
-	 * <p>Called if no explicit TypeConverter has been specified.
-	 * The default implementation builds a
-	 * {@link org.springframework.beans.SimpleTypeConverter}.
-	 * Can be overridden in subclasses.
+	 * 获取此方法调用器的默认 TypeConverter。
+	 * <p>在未指定显式 TypeConverter 时调用。默认实现会构建一个
+	 * {@link org.springframework.beans.SimpleTypeConverter}。可以在子类中覆盖。
 	 */
 	protected TypeConverter getDefaultTypeConverter() {
 		return new SimpleTypeConverter();
 	}
 
 	/**
-	 * Register the given custom property editor for all properties of the given type.
-	 * <p>Typically used in conjunction with the default
-	 * {@link org.springframework.beans.SimpleTypeConverter}; will work with any
-	 * TypeConverter that implements the PropertyEditorRegistry interface as well.
+	 * 为给定类型的所有属性注册给定的自定义属性编辑器。
+	 * <p>通常与默认的 {@link org.springframework.beans.SimpleTypeConverter} 一起使用；也可用于任何实现
+	 * 了 PropertyEditorRegistry 接口的 TypeConverter。
 	 * @param requiredType type of the property
 	 * @param propertyEditor editor to register
 	 * @see #setTypeConverter
@@ -107,7 +100,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 
 
 	/**
-	 * This implementation looks for a method with matching parameter types.
+	 * 此实现会查找参数类型匹配的方法。
 	 * @see #doFindMatchingMethod
 	 */
 	@Override
@@ -126,8 +119,7 @@ public class ArgumentConvertingMethodInvoker extends MethodInvoker {
 	}
 
 	/**
-	 * Actually find a method with matching parameter type, i.e. where each
-	 * argument value is assignable to the corresponding parameter type.
+	 * 实际查找参数类型匹配的方法，即每个参数值都可以赋值给相应的参数类型。
 	 * @param arguments the argument values to match against method parameters
 	 * @return a matching method, or {@code null} if none
 	 */

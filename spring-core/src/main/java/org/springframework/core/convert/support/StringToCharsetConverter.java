@@ -22,7 +22,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 
 /**
- * Convert a String to a {@link Charset}.
+ * 将 String 转换为 {@link Charset}。
  *
  * @author Stephane Nicoll
  * @author Sam Brannen

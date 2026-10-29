@@ -23,13 +23,13 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 
 /**
- * Representation for a part in a "multipart/form-data" request.
+ * 表示 "multipart/form-data" 请求中的一个部件。
  *
- * <p>The origin of a multipart request may be a browser form in which case each
- * part is either a {@link FormFieldPart} or a {@link FilePart}.
+ * <p>multipart 请求可能源自浏览器表单，此时每个部件要么是
+ * {@link FormFieldPart}，要么是 {@link FilePart}。
  *
- * <p>Multipart requests may also be used outside a browser for data of any
- * content type (e.g. JSON, PDF, etc).
+ * <p>multipart 请求也可以在浏览器之外用于任意内容类型的数据
+ * （例如 JSON、PDF 等）。
  *
  * @author Sebastien Deleuze
  * @author Rossen Stoyanchev
@@ -41,26 +41,25 @@ import org.springframework.http.HttpHeaders;
 public interface Part {
 
 	/**
-	 * Return the name of the part in the multipart form.
+	 * 返回该部件在 multipart 表单中的名称。
 	 * @return the name of the part, never {@code null} or empty
 	 */
 	String name();
 
 	/**
-	 * Return the headers associated with the part.
+	 * 返回与该部件关联的头。
 	 */
 	HttpHeaders headers();
 
 	/**
-	 * Return the content for this part.
-	 * <p>Note that for a {@link FormFieldPart} the content may be accessed
-	 * more easily via {@link FormFieldPart#value()}.
+	 * 返回此部件的内容。
+	 * <p>请注意，对于 {@link FormFieldPart}，可以通过
+	 * {@link FormFieldPart#value()} 更方便地访问内容。
 	 */
 	Flux<DataBuffer> content();
 
 	/**
-	 * Return a mono that, when subscribed to, deletes the underlying storage
-	 * for this part.
+	 * 返回一个 Mono，订阅时会删除此部件的底层存储。
 	 * @since 5.3.13
 	 */
 	default Mono<Void> delete() {

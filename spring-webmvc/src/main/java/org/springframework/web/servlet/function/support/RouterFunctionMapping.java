@@ -42,12 +42,12 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * {@code HandlerMapping} implementation that supports {@link RouterFunction RouterFunctions}.
+ * 支持 {@link RouterFunction RouterFunctions} 的 {@code HandlerMapping} 实现。
  *
- * <p>If no {@link RouterFunction} is provided at
- * {@linkplain #RouterFunctionMapping(RouterFunction) construction time}, this mapping
- * will detect all router functions in the application context, and consult them in
- * {@linkplain org.springframework.core.annotation.Order order}.
+ * <p>如果在
+ * {@linkplain #RouterFunctionMapping(RouterFunction) 构建时}未提供 {@link RouterFunction}，
+ * 则此映射会检测应用程序上下文中的所有路由函数，并按
+ * {@linkplain org.springframework.core.annotation.Order 顺序}咨询它们。
  *
  * @author Arjen Poutsma
  * @author Sebastien Deleuze
@@ -57,9 +57,9 @@ import org.springframework.web.util.pattern.PathPatternParser;
 public class RouterFunctionMapping extends AbstractHandlerMapping implements InitializingBean {
 
 	/**
-	 * Boolean flag controlled by a {@code spring.xml.ignore} system property that instructs Spring to
-	 * ignore XML, i.e. to not initialize the XML-related infrastructure.
-	 * <p>The default is "false".
+	 * 由 {@code spring.xml.ignore} 系统属性控制的布尔标志，指示 Spring
+	 * 忽略 XML，即不初始化与 XML 相关的基础设施。
+	 * <p>默认值为 "false"。
 	 */
 	private static final boolean shouldIgnoreXml = SpringProperties.getFlag("spring.xml.ignore");
 
@@ -73,16 +73,16 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 
 	/**
-	 * Create an empty {@code RouterFunctionMapping}.
-	 * <p>If this constructor is used, this mapping will detect all
-	 * {@link RouterFunction} instances available in the application context.
+	 * 创建一个空的 {@code RouterFunctionMapping}。
+	 * <p>如果使用此构造函数，则此映射会检测应用程序上下文中
+	 * 可用的所有 {@link RouterFunction} 实例。
 	 */
 	public RouterFunctionMapping() {
 	}
 
 	/**
-	 * Create a {@code RouterFunctionMapping} with the given {@link RouterFunction}.
-	 * <p>If this constructor is used, no application context detection will occur.
+	 * 使用给定的 {@link RouterFunction} 创建 {@code RouterFunctionMapping}。
+	 * <p>如果使用此构造函数，则不会进行应用程序上下文检测。
 	 * @param routerFunction the router function to use for mapping
 	 */
 	public RouterFunctionMapping(RouterFunction<?> routerFunction) {
@@ -91,18 +91,18 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 
 
 	/**
-	 * Set the router function to map to.
-	 * <p>If this property is used, no application context detection will occur.
+	 * 设置要映射到的路由函数。
+	 * <p>如果使用此属性，则不会进行应用程序上下文检测。
 	 */
 	public void setRouterFunction(@Nullable RouterFunction<?> routerFunction) {
 		this.routerFunction = routerFunction;
 	}
 
 	/**
-	 * Return the configured {@link RouterFunction}.
-	 * <p><strong>Note:</strong> When router functions are detected from the
-	 * ApplicationContext, this method may return {@code null} if invoked
-	 * prior to {@link #afterPropertiesSet()}.
+	 * 返回所配置的 {@link RouterFunction}。
+	 * <p><strong>注意：</strong>当从 ApplicationContext 检测路由函数时，
+	 * 如果在 {@link #afterPropertiesSet()} 之前调用，此方法可能返回
+	 * {@code null}。
 	 * @return the router function or {@code null}
 	 */
 	@Nullable
@@ -111,20 +111,20 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	}
 
 	/**
-	 * Set the message body converters to use.
-	 * <p>These converters are used to convert from and to HTTP requests and responses.
+	 * 设置要使用的消息体转换器。
+	 * <p>这些转换器用于与 HTTP 请求和响应进行双向转换。
 	 */
 	public void setMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
 		this.messageConverters = messageConverters;
 	}
 
 	/**
-	 * Set whether to detect handler functions in ancestor ApplicationContexts.
-	 * <p>Default is "false": Only handler functions in the current ApplicationContext
-	 * will be detected, i.e. only in the context that this HandlerMapping itself
-	 * is defined in (typically the current DispatcherServlet's context).
-	 * <p>Switch this flag on to detect handler beans in ancestor contexts
-	 * (typically the Spring root WebApplicationContext) as well.
+	 * 设置是否在祖先 ApplicationContext 中检测处理器函数。
+	 * <p>默认值为 "false"：只检测当前 ApplicationContext 中的处理器函数，
+	 * 即仅在此 HandlerMapping 本身所定义的上下文中检测
+	 * （通常是当前 DispatcherServlet 的上下文）。
+	 * <p>开启此标志还可以检测祖先上下文
+	 * （通常是 Spring 根 WebApplicationContext）中的处理器 bean。
 	 */
 	public void setDetectHandlerFunctionsInAncestorContexts(boolean detectHandlerFunctionsInAncestorContexts) {
 		this.detectHandlerFunctionsInAncestorContexts = detectHandlerFunctionsInAncestorContexts;
@@ -150,8 +150,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	}
 
 	/**
-	 * Detect all {@linkplain RouterFunction router functions} in the current
-	 * application context.
+	 * 检测当前应用程序上下文中的所有{@linkplain RouterFunction 路由函数}。
 	 */
 	private void initRouterFunctions() {
 		List<RouterFunction<?>> routerFunctions = obtainApplicationContext()
@@ -191,7 +190,7 @@ public class RouterFunctionMapping extends AbstractHandlerMapping implements Ini
 	}
 
 	/**
-	 * Initializes a default set of {@linkplain HttpMessageConverter message converters}.
+	 * 初始化一组默认的{@linkplain HttpMessageConverter 消息转换器}。
 	 */
 	private void initMessageConverters() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<>(4);

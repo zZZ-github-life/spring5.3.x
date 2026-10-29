@@ -1,6 +1,5 @@
 /**
- * Provides the core JCA CCI support, based on CciTemplate
- * and its associated callback interfaces.
+ * 提供基于 CciTemplate 及其关联回调接口的核心 JCA CCI 支持。
  */
 @NonNullApi
 @NonNullFields

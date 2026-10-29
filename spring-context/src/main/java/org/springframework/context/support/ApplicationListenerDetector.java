@@ -31,14 +31,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 /**
- * {@code BeanPostProcessor} that detects beans which implement the {@code ApplicationListener}
- * interface. This catches beans that can't reliably be detected by {@code getBeanNamesForType}
- * and related operations which only work against top-level beans.
+ * {@code BeanPostProcessor}，用于检测实现了 {@code ApplicationListener} 接口的 Bean。它可以捕获
+ * {@code getBeanNamesForType} 及相关操作无法可靠检测到的 Bean，这些操作仅对顶层 Bean 有效。
  *
- * <p>With standard Java serialization, this post-processor won't get serialized as part of
- * {@code DisposableBeanAdapter} to begin with. However, with alternative serialization
- * mechanisms, {@code DisposableBeanAdapter.writeReplace} might not get used at all, so we
- * defensively mark this post-processor's field state as {@code transient}.
+ * <p>使用标准 Java 序列化时，此后处理器一开始不会作为 {@code DisposableBeanAdapter} 的一部分被序列
+ * 化。然而，使用替代序列化机制时，可能完全不会用到 {@code DisposableBeanAdapter.writeReplace}，因
+ * 此我们防御性地将此处理器的字段状态标记为 {@code transient}。
  *
  * @author Juergen Hoeller
  * @since 4.3.4

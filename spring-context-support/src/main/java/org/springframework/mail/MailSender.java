@@ -17,12 +17,11 @@
 package org.springframework.mail;
 
 /**
- * This interface defines a strategy for sending simple mails. Can be
- * implemented for a variety of mailing systems due to the simple requirements.
- * For richer functionality like MIME messages, consider JavaMailSender.
+ * 此接口定义了发送简单邮件的策略。由于需求简单，可以针对各种邮件系统
+ * 进行实现。如需更丰富的功能如 MIME 消息，请使用 {@code JavaMailSender}。
  *
- * <p>Allows for easy testing of clients, as it does not depend on JavaMail's
- * infrastructure classes: no mocking of JavaMail Session or Transport necessary.
+ * <p>便于客户端的测试，因为它不依赖于 JavaMail 的基础设施类：
+ * 无需模拟 JavaMail 的 {@code Session} 或 {@code Transport}。
  *
  * @author Dmitriy Kopylenko
  * @author Juergen Hoeller
@@ -32,7 +31,7 @@ package org.springframework.mail;
 public interface MailSender {
 
 	/**
-	 * Send the given simple mail message.
+	 * 发送给定的简单邮件消息。
 	 * @param simpleMessage the message to send
 	 * @throws MailParseException in case of failure when parsing the message
 	 * @throws MailAuthenticationException in case of authentication failure
@@ -41,7 +40,7 @@ public interface MailSender {
 	void send(SimpleMailMessage simpleMessage) throws MailException;
 
 	/**
-	 * Send the given array of simple mail messages in batch.
+	 * 批量发送给定的简单邮件消息数组。
 	 * @param simpleMessages the messages to send
 	 * @throws MailParseException in case of failure when parsing a message
 	 * @throws MailAuthenticationException in case of authentication failure

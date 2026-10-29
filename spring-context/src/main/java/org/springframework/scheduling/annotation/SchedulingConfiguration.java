@@ -23,12 +23,11 @@ import org.springframework.context.annotation.Role;
 import org.springframework.scheduling.config.TaskManagementConfigUtils;
 
 /**
- * {@code @Configuration} class that registers a {@link ScheduledAnnotationBeanPostProcessor}
- * bean capable of processing Spring's @{@link Scheduled} annotation.
+ * 注册能够处理 Spring 的 @{@link Scheduled} 注解的 {@link ScheduledAnnotationBeanPostProcessor}
+ * Bean 的 {@code @Configuration} 类。
  *
- * <p>This configuration class is automatically imported when using the
- * {@link EnableScheduling @EnableScheduling} annotation. See
- * {@code @EnableScheduling}'s javadoc for complete usage details.
+ * <p>使用 {@link EnableScheduling @EnableScheduling} 注解时，该配置类会被自动导入。完整用法详情请
+ * 参见 {@code @EnableScheduling} 的 Javadoc。
  *
  * @author Chris Beams
  * @since 3.1

@@ -29,7 +29,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.ExceptionTypeFilter;
 
 /**
- * The {@link JCacheOperation} implementation for a {@link CachePut} operation.
+ * {@link CachePut} 操作的 {@link JCacheOperation} 实现。
  *
  * @author Stephane Nicoll
  * @since 4.1
@@ -66,8 +66,7 @@ class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 	}
 
 	/**
-	 * Specify if the cache should be updated before invoking the method. By default,
-	 * the cache is updated after the method invocation.
+	 * 指定是否应在调用方法之前更新缓存。默认情况下，缓存会在方法调用之后更新。
 	 * @see javax.cache.annotation.CachePut#afterInvocation()
 	 */
 	public boolean isEarlyPut() {
@@ -75,9 +74,8 @@ class CachePutOperation extends AbstractJCacheKeyOperation<CachePut> {
 	}
 
 	/**
-	 * Return the {@link CacheInvocationParameter} for the parameter holding the value
-	 * to cache.
-	 * <p>The method arguments must match the signature of the related method invocation
+	 * 返回持有待缓存值的参数所对应的 {@link CacheInvocationParameter}。
+	 * <p>方法参数必须与相关方法调用的签名一致
 	 * @param values the parameters value for a particular invocation
 	 * @return the {@link CacheInvocationParameter} instance for the value parameter
 	 */

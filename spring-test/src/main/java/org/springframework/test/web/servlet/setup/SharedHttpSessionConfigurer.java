@@ -23,10 +23,10 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * {@link MockMvcConfigurer} that stores and re-uses the HTTP session across
- * multiple requests performed through the same {@code MockMvc} instance.
+ * {@link MockMvcConfigurer}，用于在同一 {@code MockMvc} 实例执行的
+ * 多个请求之间存储并重用 HTTP 会话。
  *
- * <p>Example use:
+ * <p>用法示例：
  * <pre class="code">
  * import static org.springframework.test.web.servlet.setup.SharedHttpSessionConfigurer.sharedHttpSession;
  *
@@ -38,7 +38,6 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * // Use mockMvc to perform requests ...
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @since 5.0
  */

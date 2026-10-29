@@ -17,65 +17,23 @@
 package org.springframework.test.context;
 
 /**
- * {@code TestExecutionListener} defines a <em>listener</em> API for reacting to
- * test execution events published by the {@link TestContextManager} with which
- * the listener is registered.
- *
- * <p>Note that not all testing frameworks support all lifecycle callbacks defined
- * in this API. For example, {@link #beforeTestExecution} and
- * {@link #afterTestExecution} are not supported in conjunction with JUnit 4 when
- * using the {@link org.springframework.test.context.junit4.rules.SpringMethodRule
- * SpringMethodRule}.
- *
- * <p>This interface provides empty {@code default} implementations for all methods.
- * Concrete implementations can therefore choose to override only those methods
- * suitable for the task at hand.
- *
- * <p>Concrete implementations must provide a {@code public} no-args constructor,
- * so that listeners can be instantiated transparently by tools and configuration
- * mechanisms.
- *
- * <p>Implementations may optionally declare the position in which they should
- * be ordered among the chain of default listeners via the
- * {@link org.springframework.core.Ordered Ordered} interface or
- * {@link org.springframework.core.annotation.Order @Order} annotation. See
- * {@link TestContextBootstrapper#getTestExecutionListeners()} for details.
- *
- * <h3>Registering TestExecutionListener Implementations</h3>
- *
- * <p>A {@code TestExecutionListener} can be registered explicitly for a test class,
- * its subclasses, and its nested classes by using the
- * {@link TestExecutionListeners @TestExecutionListeners} annotation. Explicit
- * registration is suitable for custom listeners that are used in limited testing
- * scenarios. However, it can become cumbersome if a custom listener needs to be
- * used across an entire test suite. This issue is addressed through support for
- * automatic discovery of <em>default</em> {@code TestExecutionListener}
- * implementations through the
- * {@link org.springframework.core.io.support.SpringFactoriesLoader SpringFactoriesLoader}
- * mechanism. Specifically, default {@code TestExecutionListener} implementations
- * can be registered under the {@code org.springframework.test.context.TestExecutionListener}
- * key in a {@code META-INF/spring.factories} properties file.
- *
- * <p>Spring provides the following implementations. Each of these implements
- * {@code Ordered} and is registered automatically by default.
- *
+ * {@code TestExecutionListener} 定义了<em>监听器</em> API，用于响应由注册该监听器的 {@link TestContextManager} 发布的测试执行事件。
+ * <p>请注意，并非所有测试框架都支持此 API 中定义的全部生命周期回调。例如，在使用 {@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule} 时，JUnit 4 不支持 {@link #beforeTestExecution} 和 {@link #afterTestExecution}。
+ * <p>此接口为所有方法提供了空的 {@code default} 实现。因此，具体实现可以选择只重写适合当前任务的方法。
+ * <p>具体实现必须提供 {@code public} 无参构造函数，以便工具和配置机制能够透明地实例化监听器。
+ * <p>实现可以选择通过 {@link org.springframework.core.Ordered Ordered} 接口或 {@link org.springframework.core.annotation.Order @Order} 注解声明其在默认监听器链中的排序位置。有关详情，请参见 {@link TestContextBootstrapper#getTestExecutionListeners()}。
+ * <h3>注册 TestExecutionListener 实现</h3>
+ * <p>可以通过 {@link TestExecutionListeners @TestExecutionListeners} 注解为测试类、其子类及其嵌套类显式注册 {@code TestExecutionListener}。显式注册适用于仅在有限测试场景中使用的自定义监听器。然而，如果自定义监听器需要在整个测试套件中使用，这种方式可能会变得繁琐。通过支持基于 {@link org.springframework.core.io.support.SpringFactoriesLoader SpringFactoriesLoader} 机制自动发现<em>默认</em> {@code TestExecutionListener} 实现，可以解决这一问题。具体而言，默认 {@code TestExecutionListener} 实现可以在 {@code META-INF/spring.factories} 属性文件中以 {@code org.springframework.test.context.TestExecutionListener} 键注册。
+ * <p>Spring 提供了以下实现。它们均实现了 {@code Ordered}，并默认自动注册。
  * <ul>
- * <li>{@link org.springframework.test.context.web.ServletTestExecutionListener
- * ServletTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener
- * DirtiesContextBeforeModesTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.event.ApplicationEventsTestExecutionListener
- * ApplicationEventsTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.support.DependencyInjectionTestExecutionListener
- * DependencyInjectionTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.support.DirtiesContextTestExecutionListener
- * DirtiesContextTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.transaction.TransactionalTestExecutionListener
- * TransactionalTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener
- * SqlScriptsTestExecutionListener}</li>
- * <li>{@link org.springframework.test.context.event.EventPublishingTestExecutionListener
- * EventPublishingTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.web.ServletTestExecutionListener ServletTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener DirtiesContextBeforeModesTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.event.ApplicationEventsTestExecutionListener ApplicationEventsTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.support.DependencyInjectionTestExecutionListener DependencyInjectionTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.support.DirtiesContextTestExecutionListener DirtiesContextTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.transaction.TransactionalTestExecutionListener TransactionalTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener SqlScriptsTestExecutionListener}</li>
+ * <li>{@link org.springframework.test.context.event.EventPublishingTestExecutionListener EventPublishingTestExecutionListener}</li>
  * </ul>
  *
  * @author Sam Brannen
@@ -88,12 +46,9 @@ package org.springframework.test.context;
 public interface TestExecutionListener {
 
 	/**
-	 * Pre-processes a test class <em>before</em> execution of all tests within
-	 * the class.
-	 * <p>This method should be called immediately before framework-specific
-	 * <em>before class</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 在类中所有测试执行<em>之前</em>预处理测试类。
+	 * <p>此方法应在特定于框架的 <em>before class</em> 生命周期回调之前立即调用。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context for the test; never {@code null}
 	 * @throws Exception allows any exception to propagate
 	 * @since 3.0
@@ -102,16 +57,9 @@ public interface TestExecutionListener {
 	}
 
 	/**
-	 * Prepares the {@linkplain Object test instance} of the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, to inject
-	 * dependencies.
-	 * <p>This method should be called immediately after instantiation of the test
-	 * class or as soon after instantiation as possible (as is the case with the
-	 * {@link org.springframework.test.context.junit4.rules.SpringMethodRule
-	 * SpringMethodRule}). In any case, this method must be called prior to any
-	 * framework-specific lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 准备所提供{@linkplain TestContext 测试上下文}的{@linkplain Object 测试实例}，例如用于注入依赖。
+	 * <p>此方法应在测试类实例化之后立即调用，或尽可能在实例化之后尽快调用（{@link org.springframework.test.context.junit4.rules.SpringMethodRule SpringMethodRule} 就是如此）。无论如何，此方法必须在任何特定于框架的生命周期回调之前调用。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context for the test; never {@code null}
 	 * @throws Exception allows any exception to propagate
 	 */
@@ -119,18 +67,9 @@ public interface TestExecutionListener {
 	}
 
 	/**
-	 * Pre-processes a test <em>before</em> execution of <em>before</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
-	 * by setting up test fixtures.
-	 * <p>This method <strong>must</strong> be called immediately prior to
-	 * framework-specific <em>before</em> lifecycle callbacks. For historical
-	 * reasons, this method is named {@code beforeTestMethod}. Since the
-	 * introduction of {@link #beforeTestExecution}, a more suitable name for
-	 * this method might be something like {@code beforeTestSetUp} or
-	 * {@code beforeEach}; however, it is unfortunately impossible to rename
-	 * this method due to backward compatibility concerns.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 在底层测试框架的 <em>before</em> 生命周期回调执行<em>之前</em>预处理测试，例如通过设置测试夹具。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调之前立即调用。由于历史原因，此方法被命名为 {@code beforeTestMethod}。自引入 {@link #beforeTestExecution} 以来，此方法更合适的名称也许是 {@code beforeTestSetUp} 或 {@code beforeEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context in which the test method will be
 	 * executed; never {@code null}
 	 * @throws Exception allows any exception to propagate
@@ -142,14 +81,9 @@ public interface TestExecutionListener {
 	}
 
 	/**
-	 * Pre-processes a test <em>immediately before</em> execution of the
-	 * {@linkplain java.lang.reflect.Method test method} in the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, for timing
-	 * or logging purposes.
-	 * <p>This method <strong>must</strong> be called after framework-specific
-	 * <em>before</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 在所提供的{@linkplain TestContext 测试上下文}中{@linkplain java.lang.reflect.Method 测试方法}执行<em>之前一刻</em>预处理测试，例如用于计时或日志记录。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>before</em> 生命周期回调之后调用。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context in which the test method will be
 	 * executed; never {@code null}
 	 * @throws Exception allows any exception to propagate
@@ -162,14 +96,9 @@ public interface TestExecutionListener {
 	}
 
 	/**
-	 * Post-processes a test <em>immediately after</em> execution of the
-	 * {@linkplain java.lang.reflect.Method test method} in the supplied
-	 * {@linkplain TestContext test context} &mdash; for example, for timing
-	 * or logging purposes.
-	 * <p>This method <strong>must</strong> be called before framework-specific
-	 * <em>after</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 在所提供的{@linkplain TestContext 测试上下文}中{@linkplain java.lang.reflect.Method 测试方法}执行<em>之后一刻</em>后处理测试，例如用于计时或日志记录。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>after</em> 生命周期回调之前调用。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context in which the test method will be
 	 * executed; never {@code null}
 	 * @throws Exception allows any exception to propagate
@@ -182,18 +111,9 @@ public interface TestExecutionListener {
 	}
 
 	/**
-	 * Post-processes a test <em>after</em> execution of <em>after</em>
-	 * lifecycle callbacks of the underlying test framework &mdash; for example,
-	 * by tearing down test fixtures.
-	 * <p>This method <strong>must</strong> be called immediately after
-	 * framework-specific <em>after</em> lifecycle callbacks. For historical
-	 * reasons, this method is named {@code afterTestMethod}. Since the
-	 * introduction of {@link #afterTestExecution}, a more suitable name for
-	 * this method might be something like {@code afterTestTearDown} or
-	 * {@code afterEach}; however, it is unfortunately impossible to rename
-	 * this method due to backward compatibility concerns.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 在底层测试框架的 <em>after</em> 生命周期回调执行<em>之后</em>后处理测试，例如通过拆除测试夹具。
+	 * <p>此方法<strong>必须</strong>在特定于框架的 <em>after</em> 生命周期回调之后立即调用。由于历史原因，此方法被命名为 {@code afterTestMethod}。自引入 {@link #afterTestExecution} 以来，此方法更合适的名称也许是 {@code afterTestTearDown} 或 {@code afterEach}；然而，出于向后兼容性方面的顾虑，遗憾的是无法重命名此方法。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context in which the test method was
 	 * executed; never {@code null}
 	 * @throws Exception allows any exception to propagate
@@ -205,12 +125,9 @@ public interface TestExecutionListener {
 	}
 
 	/**
-	 * Post-processes a test class <em>after</em> execution of all tests within
-	 * the class.
-	 * <p>This method should be called immediately after framework-specific
-	 * <em>after class</em> lifecycle callbacks.
-	 * <p>The default implementation is <em>empty</em>. Can be overridden by
-	 * concrete classes as necessary.
+	 * 在类中所有测试执行<em>之后</em>后处理测试类。
+	 * <p>此方法应在特定于框架的 <em>after class</em> 生命周期回调之后立即调用。
+	 * <p>默认实现为<em>空</em>。具体类可根据需要重写。
 	 * @param testContext the test context for the test; never {@code null}
 	 * @throws Exception allows any exception to propagate
 	 * @since 3.0

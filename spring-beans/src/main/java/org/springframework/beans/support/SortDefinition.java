@@ -17,7 +17,7 @@
 package org.springframework.beans.support;
 
 /**
- * Definition for sorting bean instances by a property.
+ * 用于按属性对 Bean 实例进行排序的定义。
  *
  * @author Juergen Hoeller
  * @since 26.05.2003
@@ -25,18 +25,18 @@ package org.springframework.beans.support;
 public interface SortDefinition {
 
 	/**
-	 * Return the name of the bean property to compare.
-	 * Can also be a nested bean property path.
+	 * 返回要比较的 Bean 属性名称。
+	 * 也可以是嵌套的 Bean 属性路径。
 	 */
 	String getProperty();
 
 	/**
-	 * Return whether upper and lower case in String values should be ignored.
+	 * 返回是否应忽略 String 值中的大小写。
 	 */
 	boolean isIgnoreCase();
 
 	/**
-	 * Return whether to sort ascending (true) or descending (false).
+	 * 返回是按升序（true）还是降序（false）排序。
 	 */
 	boolean isAscending();
 

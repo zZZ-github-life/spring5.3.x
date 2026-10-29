@@ -43,27 +43,27 @@ import org.springframework.web.util.pattern.PathPattern;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * Handler interceptor that checks the request for supported methods and a
- * required session and prepares the response by applying the configured
- * cache settings.
+ * 处理器拦截器，用于检查请求是否使用受支持的方法、是否具有
+ * 必需的会话，并通过应用已配置的缓存设置来准备响应。
  *
- * <p>Cache settings may be configured for specific URLs via path pattern with
- * {@link #addCacheMapping(CacheControl, String...)} and
- * {@link #setCacheMappings(Properties)}, along with a fallback on default
- * settings for all URLs via {@link #setCacheControl(CacheControl)}.
+ * <p>可以通过路径模式使用
+ * {@link #addCacheMapping(CacheControl, String...)} 和
+ * {@link #setCacheMappings(Properties)} 为特定 URL 配置缓存设置，
+ * 并通过 {@link #setCacheControl(CacheControl)} 为所有 URL
+ * 回退到默认设置。
  *
- * <p>Pattern matching can be done with {@link PathMatcher} or with parsed
- * {@link PathPattern}s. The syntax is largely the same with the latter being
- * more tailored for web usage and more efficient. The choice depends on the
- * presence of a {@link UrlPathHelper#resolveAndCacheLookupPath resolved}
- * {@code String} lookupPath or a {@link ServletRequestPathUtils#parseAndCache
- * parsed} {@code RequestPath} which in turn depends on the
- * {@link HandlerMapping} that matched the current request.
+ * <p>模式匹配可以使用 {@link PathMatcher}，也可以使用解析后的
+ * {@link PathPattern}。两者的语法基本相同，后者更
+ * 针对 Web 用途且更高效。选择哪一种取决于是否存在由
+ * {@link UrlPathHelper#resolveAndCacheLookupPath resolved}
+ * 的 {@code String} lookupPath，或者是由
+ * {@link ServletRequestPathUtils#parseAndCache parsed} 的
+ * {@code RequestPath}，而这又取决于匹配当前请求的
+ * {@link HandlerMapping}。
  *
- * <p>All the settings supported by this interceptor can also be set on
- * {@link AbstractController}. This interceptor is mainly intended for applying
- * checks and preparations to a set of controllers mapped by a HandlerMapping.
- *
+ * <p>此拦截器支持的所有设置也可以在
+ * {@link AbstractController} 上设置。此拦截器主要用于对
+ * 由 HandlerMapping 映射的一组控制器应用检查和准备工作。
  * @author Juergen Hoeller
  * @author Brian Clozel
  * @author Rossen Stoyanchev
@@ -86,14 +86,14 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 
 	/**
-	 * Default constructor with {@link PathPatternParser#defaultInstance}.
+	 * 使用 {@link PathPatternParser#defaultInstance} 的默认构造函数。
 	 */
 	public WebContentInterceptor() {
 		this(PathPatternParser.defaultInstance);
 	}
 
 	/**
-	 * Constructor with a {@link PathPatternParser} to parse patterns with.
+	 * 使用 {@link PathPatternParser} 解析模式的构造函数。
 	 * @since 5.3
 	 */
 	public WebContentInterceptor(PathPatternParser parser) {
@@ -105,9 +105,9 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 
 
 	/**
-	 * Shortcut to the
+	 * 对已配置的 {@code UrlPathHelper} 上
 	 * {@link org.springframework.web.util.UrlPathHelper#setAlwaysUseFullPath
-	 * same property} on the configured {@code UrlPathHelper}.
+	 * same property} 的快捷设置。
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
 	 */
@@ -116,9 +116,9 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Shortcut to the
+	 * 对已配置的 {@code UrlPathHelper} 上
 	 * {@link org.springframework.web.util.UrlPathHelper#setUrlDecode
-	 * same property} on the configured {@code UrlPathHelper}.
+	 * same property} 的快捷设置。
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
 	 */
@@ -127,7 +127,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Set the UrlPathHelper to use for resolution of lookup paths.
+	 * 设置用于解析查找路径的 UrlPathHelper。
 	 * @deprecated as of 5.3, the path is resolved externally and obtained with
 	 * {@link ServletRequestPathUtils#getCachedPathValue(ServletRequest)}
 	 */
@@ -136,15 +136,15 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Configure the PathMatcher to use to match URL paths against registered
-	 * URL patterns to select the cache settings for a request.
-	 * <p>This is an advanced property that should be used only when a
-	 * customized {@link AntPathMatcher} or a custom PathMatcher is required.
-	 * <p>By default this is {@link AntPathMatcher}.
-	 * <p><strong>Note:</strong> Setting {@code PathMatcher} enforces use of
-	 * String pattern matching even when a
-	 * {@link ServletRequestPathUtils#parseAndCache parsed} {@code RequestPath}
-	 * is available.
+	 * 配置用于将 URL 路径与已注册 URL 模式进行匹配的 PathMatcher，
+	 * 以便为请求选择缓存设置。
+	 * <p>这是一个高级属性，仅在需要自定义的
+	 * {@link AntPathMatcher} 或自定义 PathMatcher 时才应使用。
+	 * <p>默认值为 {@link AntPathMatcher}。
+	 * <p><strong>注意：</strong>设置 {@code PathMatcher} 会强制使用
+	 * 字符串模式匹配，即使存在已
+	 * {@link ServletRequestPathUtils#parseAndCache parsed} 的 {@code RequestPath}
+	 * 也是如此。
 	 * @see #addCacheMapping
 	 * @see #setCacheMappings
 	 * @see org.springframework.util.AntPathMatcher
@@ -155,16 +155,16 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Map settings for  cache seconds to specific URL paths via patterns.
-	 * <p>Overrides the default cache seconds setting of this interceptor.
-	 * Can specify "-1" to exclude a URL path from default caching.
-	 * <p>For pattern syntax see {@link AntPathMatcher} and {@link PathPattern}
-	 * as well as the class-level Javadoc for details for when each is used.
-	 * The syntax is largely the same with {@link PathPattern} more tailored for
-	 * web usage.
-	 * <p><b>NOTE:</b> Path patterns are not supposed to overlap. If a request
-	 * matches several mappings, it is effectively undefined which one will apply
-	 * (due to the lack of key ordering in {@code java.util.Properties}).
+	 * 通过模式将缓存秒数设置映射到特定的 URL 路径。
+	 * <p>覆盖此拦截器的默认缓存秒数设置。
+	 * 可以指定 "-1" 以将某个 URL 路径排除在默认缓存之外。
+	 * <p>有关模式语法以及各自的使用场景，请参见
+	 * {@link AntPathMatcher} 和 {@link PathPattern} 以及类级 Javadoc。
+	 * 两者语法基本相同，{@link PathPattern} 更针对
+	 * Web 用途。
+	 * <p><b>注意：</b>路径模式不应重叠。如果某个请求
+	 * 匹配多个映射，实际上无法确定哪个映射会生效
+	 * （因为 {@code java.util.Properties} 不保证键的顺序）。
 	 * @param cacheMappings a mapping between URL paths (as keys) and
 	 * cache seconds (as values, need to be integer-parsable)
 	 * @see #setCacheSeconds
@@ -180,17 +180,17 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Map specific URL paths to a specific {@link org.springframework.http.CacheControl}.
-	 * <p>Overrides the default cache seconds setting of this interceptor.
-	 * Can specify an empty {@link org.springframework.http.CacheControl} instance
-	 * to exclude a URL path from default caching.
-	 * <p>For pattern syntax see {@link AntPathMatcher} and {@link PathPattern}
-	 * as well as the class-level Javadoc for details for when each is used.
-	 * The syntax is largely the same with {@link PathPattern} more tailored for
-	 * web usage.
-	 * <p><b>NOTE:</b> Path patterns are not supposed to overlap. If a request
-	 * matches several mappings, it is effectively undefined which one will apply
-	 * (due to the lack of key ordering in the underlying {@code java.util.HashMap}).
+	 * 将特定 URL 路径映射到特定的 {@link org.springframework.http.CacheControl}。
+	 * <p>覆盖此拦截器的默认缓存秒数设置。
+	 * 可以指定一个空的 {@link org.springframework.http.CacheControl} 实例
+	 * 以将某个 URL 路径排除在默认缓存之外。
+	 * <p>有关模式语法以及各自的使用场景，请参见
+	 * {@link AntPathMatcher} 和 {@link PathPattern} 以及类级 Javadoc。
+	 * 两者语法基本相同，{@link PathPattern} 更针对
+	 * Web 用途。
+	 * <p><b>注意：</b>路径模式不应重叠。如果某个请求
+	 * 匹配多个映射，实际上无法确定哪个映射会生效
+	 * （因为底层 {@code java.util.HashMap} 不保证键的顺序）。
 	 * @param cacheControl the {@code CacheControl} to use
 	 * @param paths the URL paths that will map to the given {@code CacheControl}
 	 * @since 4.2
@@ -243,9 +243,9 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Find a {@link org.springframework.http.CacheControl} instance for the
-	 * given parsed {@link PathContainer path}. This is used when the
-	 * {@code HandlerMapping} uses parsed {@code PathPatterns}.
+	 * 为给定已解析的 {@link PathContainer path} 查找
+	 * {@link org.springframework.http.CacheControl} 实例。当
+	 * {@code HandlerMapping} 使用解析后的 {@code PathPatterns} 时会使用此方法。
 	 * @param path the path to match to
 	 * @return the matched {@code CacheControl}, or {@code null} if no match
 	 * @since 5.3
@@ -261,9 +261,9 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Find a {@link org.springframework.http.CacheControl} instance for the
-	 * given String lookupPath. This is used when the {@code HandlerMapping}
-	 * relies on String pattern matching with {@link PathMatcher}.
+	 * 为给定的字符串 lookupPath 查找
+	 * {@link org.springframework.http.CacheControl} 实例。当 {@code HandlerMapping}
+	 * 依赖 {@link PathMatcher} 进行字符串模式匹配时会使用此方法。
 	 * @param lookupPath the path to match to
 	 * @return the matched {@code CacheControl}, or {@code null} if no match
 	 */
@@ -278,8 +278,8 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Find a cacheSeconds value for the given parsed {@link PathContainer path}.
-	 * This is used when the {@code HandlerMapping} uses parsed {@code PathPatterns}.
+	 * 为给定已解析的 {@link PathContainer path} 查找 cacheSeconds 值。
+	 * 当 {@code HandlerMapping} 使用解析后的 {@code PathPatterns} 时会使用此方法。
 	 * @param path the path to match to
 	 * @return the matched cacheSeconds, or {@code null} if there is no match
 	 * @since 5.3
@@ -295,9 +295,9 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * Find a cacheSeconds instance for the given String lookupPath.
-	 * This is used when the {@code HandlerMapping} relies on String pattern
-	 * matching with {@link PathMatcher}.
+	 * 为给定的字符串 lookupPath 查找 cacheSeconds 实例。
+	 * 当 {@code HandlerMapping} 依赖 {@link PathMatcher} 进行字符串模式
+	 * 匹配时会使用此方法。
 	 * @param lookupPath the path to match to
 	 * @return the matched cacheSeconds, or {@code null} if there is no match
 	 */
@@ -312,7 +312,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -320,7 +320,7 @@ public class WebContentInterceptor extends WebContentGenerator implements Handle
 	}
 
 	/**
-	 * This implementation is empty.
+	 * 此实现为空。
 	 */
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,

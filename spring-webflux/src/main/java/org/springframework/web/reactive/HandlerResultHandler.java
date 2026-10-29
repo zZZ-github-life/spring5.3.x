@@ -21,8 +21,7 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.server.ServerWebExchange;
 
 /**
- * Process the {@link HandlerResult}, usually returned by an {@link HandlerAdapter}.
- *
+ * 处理通常由 {@link HandlerAdapter} 返回的 {@link HandlerResult}。
  * @author Rossen Stoyanchev
  * @author Sebastien Deleuze
  * @since 5.0
@@ -30,15 +29,14 @@ import org.springframework.web.server.ServerWebExchange;
 public interface HandlerResultHandler {
 
 	/**
-	 * Whether this handler supports the given {@link HandlerResult}.
+	 * 此处理器是否支持给定的 {@link HandlerResult}。
 	 * @param result the result object to check
 	 * @return whether this object can use the given result
 	 */
 	boolean supports(HandlerResult result);
 
 	/**
-	 * Process the given result modifying response headers and/or writing data
-	 * to the response.
+	 * 处理给定的结果，修改响应头并/或向响应写入数据。
 	 * @param exchange current server exchange
 	 * @param result the result from the handling
 	 * @return {@code Mono<Void>} to indicate when request handling is complete.

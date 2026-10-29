@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Adapter that bridges between {@link Formatter} and {@link PropertyEditor}.
+ * 在 {@link Formatter} 与 {@link PropertyEditor} 之间进行桥接的适配器。
  *
  * @author Juergen Hoeller
  * @since 4.2
@@ -36,7 +36,7 @@ public class FormatterPropertyEditorAdapter extends PropertyEditorSupport {
 
 
 	/**
-	 * Create a new {@code FormatterPropertyEditorAdapter} for the given {@link Formatter}.
+	 * 为给定的 {@link Formatter} 创建一个新的 {@code FormatterPropertyEditorAdapter}。
 	 * @param formatter the {@link Formatter} to wrap
 	 */
 	@SuppressWarnings("unchecked")
@@ -47,7 +47,7 @@ public class FormatterPropertyEditorAdapter extends PropertyEditorSupport {
 
 
 	/**
-	 * Determine the {@link Formatter}-declared field type.
+	 * 确定 {@link Formatter} 所声明的字段类型。
 	 * @return the field type declared in the wrapped {@link Formatter} implementation
 	 * (never {@code null})
 	 * @throws IllegalArgumentException if the {@link Formatter}-declared field type

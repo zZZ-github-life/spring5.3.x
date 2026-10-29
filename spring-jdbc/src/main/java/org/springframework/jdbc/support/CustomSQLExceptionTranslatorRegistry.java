@@ -25,9 +25,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
- * Registry for custom {@link org.springframework.jdbc.support.SQLExceptionTranslator} instances associated with
- * specific databases allowing for overriding translation based on values contained in the configuration file
- * named "sql-error-codes.xml".
+ * 用于与特定数据库关联的自定义
+ * {@link org.springframework.jdbc.support.SQLExceptionTranslator} 实例的注册表，
+ * 允许根据名为 "sql-error-codes.xml" 的配置文件中包含的值覆盖转换行为。
  *
  * @author Thomas Risberg
  * @since 3.1.1
@@ -38,13 +38,13 @@ public final class CustomSQLExceptionTranslatorRegistry {
 	private static final Log logger = LogFactory.getLog(CustomSQLExceptionTranslatorRegistry.class);
 
 	/**
-	 * Keep track of a single instance so we can return it to classes that request it.
+	 * 跟踪单个实例，以便将其返回给请求它的类。
 	 */
 	private static final CustomSQLExceptionTranslatorRegistry instance = new CustomSQLExceptionTranslatorRegistry();
 
 
 	/**
-	 * Return the singleton instance.
+	 * 返回单例实例。
 	 */
 	public static CustomSQLExceptionTranslatorRegistry getInstance() {
 		return instance;
@@ -52,23 +52,23 @@ public final class CustomSQLExceptionTranslatorRegistry {
 
 
 	/**
-	 * Map registry to hold custom translators specific databases.
-	 * Key is the database product name as defined in the
-	 * {@link org.springframework.jdbc.support.SQLErrorCodesFactory}.
+	 * 保存特定数据库自定义转换器的 Map 注册表。
+	 * 键是数据库产品名称，定义于
+	 * {@link org.springframework.jdbc.support.SQLErrorCodesFactory}。
 	 */
 	private final Map<String, SQLExceptionTranslator> translatorMap = new HashMap<>();
 
 
 	/**
-	 * Create a new instance of the {@link CustomSQLExceptionTranslatorRegistry} class.
-	 * <p>Not public to enforce Singleton design pattern.
+	 * 创建 {@link CustomSQLExceptionTranslatorRegistry} 类的新实例。
+	 * <p>非 public 以强制实现单例设计模式。
 	 */
 	private CustomSQLExceptionTranslatorRegistry() {
 	}
 
 
 	/**
-	 * Register a new custom translator for the specified database name.
+	 * 为指定的数据库名称注册新的自定义转换器。
 	 * @param dbName the database name
 	 * @param translator the custom translator
 	 */
@@ -87,7 +87,7 @@ public final class CustomSQLExceptionTranslatorRegistry {
 	}
 
 	/**
-	 * Find a custom translator for the specified database.
+	 * 查找指定数据库的自定义转换器。
 	 * @param dbName the database name
 	 * @return the custom translator, or {@code null} if none found
 	 */

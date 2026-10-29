@@ -1,5 +1,5 @@
 /**
- * Server-side classes for use with standard JSR-356 WebSocket endpoints.
+ * 与标准 JSR-356 WebSocket 端点配合使用的服务器端类。
  */
 @NonNullApi
 @NonNullFields

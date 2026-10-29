@@ -17,16 +17,15 @@
 package org.springframework.transaction;
 
 /**
- * Interface that specifies an API to programmatically manage transaction
- * savepoints in a generic fashion. Extended by TransactionStatus to
- * expose savepoint management functionality for a specific transaction.
+ * 此接口定义了以通用方式编程化管理事务保存点的 API。
+ * 由 TransactionStatus 扩展，用于公开特定事务的保存点管理功能。
  *
- * <p>Note that savepoints can only work within an active transaction.
- * Just use this programmatic savepoint handling for advanced needs;
- * else, a subtransaction with PROPAGATION_NESTED is preferable.
+ * <p>请注意，保存点只能在活跃的事务中使用。
+ * 只在有高级需求时才使用这种编程式的保存点处理；
+ * 否则，使用 PROPAGATION_NESTED 的子事务更为可取。
  *
- * <p>This interface is inspired by JDBC 3.0's Savepoint mechanism
- * but is independent of any specific persistence technology.
+ * <p>此接口的设计灵感来自 JDBC 3.0 的 Savepoint 机制，
+ * 但不依赖于任何特定的持久化技术。
  *
  * @author Juergen Hoeller
  * @since 1.1
@@ -37,11 +36,9 @@ package org.springframework.transaction;
 public interface SavepointManager {
 
 	/**
-	 * Create a new savepoint. You can roll back to a specific savepoint
-	 * via {@code rollbackToSavepoint}, and explicitly release a savepoint
-	 * that you don't need anymore via {@code releaseSavepoint}.
-	 * <p>Note that most transaction managers will automatically release
-	 * savepoints at transaction completion.
+	 * 创建一个新的保存点。你可以通过 {@code rollbackToSavepoint} 回滚到特定的保存点，
+	 * 并通过 {@code releaseSavepoint} 显式释放不再需要的保存点。
+	 * <p>请注意，大多数事务管理器会在事务完成时自动释放保存点。
 	 * @return a savepoint object, to be passed into
 	 * {@link #rollbackToSavepoint} or {@link #releaseSavepoint}
 	 * @throws NestedTransactionNotSupportedException if the underlying
@@ -53,10 +50,9 @@ public interface SavepointManager {
 	Object createSavepoint() throws TransactionException;
 
 	/**
-	 * Roll back to the given savepoint.
-	 * <p>The savepoint will <i>not</i> be automatically released afterwards.
-	 * You may explicitly call {@link #releaseSavepoint(Object)} or rely on
-	 * automatic release on transaction completion.
+	 * 回滚到给定的保存点。
+	 * <p>回滚后保存点<i>不会</i>被自动释放。
+	 * 你可以显式调用 {@link #releaseSavepoint(Object)} 或依赖事务完成时自动释放。
 	 * @param savepoint the savepoint to roll back to
 	 * @throws NestedTransactionNotSupportedException if the underlying
 	 * transaction does not support savepoints
@@ -66,11 +62,10 @@ public interface SavepointManager {
 	void rollbackToSavepoint(Object savepoint) throws TransactionException;
 
 	/**
-	 * Explicitly release the given savepoint.
-	 * <p>Note that most transaction managers will automatically release
-	 * savepoints on transaction completion.
-	 * <p>Implementations should fail as silently as possible if proper
-	 * resource cleanup will eventually happen at transaction completion.
+	 * 显式释放给定的保存点。
+	 * <p>请注意，大多数事务管理器会在事务完成时自动释放保存点。
+	 * <p>如果适当的资源清理最终会在事务完成时发生，
+	 * 则实现应尽可能安静地失败。
 	 * @param savepoint the savepoint to release
 	 * @throws NestedTransactionNotSupportedException if the underlying
 	 * transaction does not support savepoints

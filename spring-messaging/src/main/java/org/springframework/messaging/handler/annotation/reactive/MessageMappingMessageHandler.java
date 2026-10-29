@@ -63,19 +63,17 @@ import org.springframework.util.StringValueResolver;
 import org.springframework.validation.Validator;
 
 /**
- * Extension of {@link AbstractMethodMessageHandler} for reactive, non-blocking
- * handling of messages via {@link MessageMapping @MessageMapping} methods.
- * By default, such methods are detected in {@code @Controller} Spring beans but
- * that can be changed via {@link #setHandlerPredicate(Predicate)}.
+ * {@link AbstractMethodMessageHandler} 的扩展，用于通过
+ * {@link MessageMapping @MessageMapping} 方法以响应式、非阻塞方式处理消息。
+ * 默认情况下，会在 {@code @Controller} Spring Bean 中检测此类方法，
+ * 但可以通过 {@link #setHandlerPredicate(Predicate)} 更改。
  *
- * <p>Payloads for incoming messages are decoded through the configured
- * {@link #setDecoders(List)} decoders, with the help of
- * {@link PayloadMethodArgumentResolver}.
+ * <p>传入消息的载荷通过配置的 {@link #setDecoders(List)} 解码器，
+ * 借助 {@link PayloadMethodArgumentResolver} 进行解码。
  *
- * <p>There is no default handling for return values but
- * {@link #setReturnValueHandlerConfigurer} can be used to configure custom
- * return value handlers. Subclasses may also override
- * {@link #initReturnValueHandlers()} to set up default return value handlers.
+ * <p>返回值没有默认处理方式，但可以使用
+ * {@link #setReturnValueHandlerConfigurer} 配置自定义返回值处理器。
+ * 子类也可以重写 {@link #initReturnValueHandlers()} 来设置默认返回值处理器。
  *
  * @author Rossen Stoyanchev
  * @since 5.2
@@ -104,7 +102,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 
 
 	/**
-	 * Configure the decoders to use for incoming payloads.
+	 * 配置用于传入载荷的解码器。
 	 */
 	public void setDecoders(List<? extends Decoder<?>> decoders) {
 		this.decoders.clear();
@@ -112,14 +110,14 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Return the configured decoders.
+	 * 返回已配置的解码器。
 	 */
 	public List<? extends Decoder<?>> getDecoders() {
 		return this.decoders;
 	}
 
 	/**
-	 * Set the Validator instance used for validating {@code @Payload} arguments.
+	 * 设置用于校验 {@code @Payload} 参数的 Validator 实例。
 	 * @see org.springframework.validation.annotation.Validated
 	 * @see PayloadMethodArgumentResolver
 	 */
@@ -128,7 +126,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Return the configured Validator instance.
+	 * 返回已配置的 Validator 实例。
 	 */
 	@Nullable
 	public Validator getValidator() {
@@ -136,20 +134,18 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Set the {@code RouteMatcher} to use for mapping messages to handlers
-	 * based on the route patterns they're configured with.
-	 * <p>By default, {@link SimpleRouteMatcher} is used, backed by
-	 * {@link AntPathMatcher} with "." as separator. For greater
-	 * efficiency consider using the {@code PathPatternRouteMatcher} from
-	 * {@code spring-web} instead.
+	 * 设置 {@code RouteMatcher}，用于根据消息配置的路由模式将消息映射到处理器。
+	 * <p>默认使用 {@link SimpleRouteMatcher}，其底层为以 "." 作为分隔符的
+	 * {@link AntPathMatcher}。为了提高效率，可以考虑改用
+	 * {@code spring-web} 中的 {@code PathPatternRouteMatcher}。
 	 */
 	public void setRouteMatcher(@Nullable RouteMatcher routeMatcher) {
 		this.routeMatcher = routeMatcher;
 	}
 
 	/**
-	 * Return the {@code RouteMatcher} used to map messages to handlers.
-	 * May be {@code null} before the component is initialized.
+	 * 返回用于将消息映射到处理器的 {@code RouteMatcher}。
+	 * 在组件初始化之前可能为 {@code null}。
 	 */
 	@Nullable
 	public RouteMatcher getRouteMatcher() {
@@ -157,7 +153,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Obtain the {@code RouteMatcher} for actual use.
+	 * 获取实际使用的 {@code RouteMatcher}。
 	 * @return the RouteMatcher (never {@code null})
 	 * @throws IllegalStateException in case of no RouteMatcher set
 	 * @since 5.0
@@ -169,9 +165,9 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Configure a {@link ConversionService} to use for type conversion of
-	 * String based values, e.g. in destination variables or headers.
-	 * <p>By default {@link DefaultFormattingConversionService} is used.
+	 * 配置用于对基于 String 的值（例如目标变量或头中的值）进行类型转换的
+	 * {@link ConversionService}。
+	 * <p>默认使用 {@link DefaultFormattingConversionService}。
 	 * @param conversionService the conversion service to use
 	 */
 	public void setConversionService(ConversionService conversionService) {
@@ -179,7 +175,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Return the configured ConversionService.
+	 * 返回已配置的 ConversionService。
 	 */
 	public ConversionService getConversionService() {
 		return this.conversionService;
@@ -191,14 +187,12 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Use this method to register a {@link MessagingAdviceBean} that may contain
-	 * globally applicable
+	 * 使用此方法注册 {@link MessagingAdviceBean}，其中可能包含全局适用的
 	 * {@link org.springframework.messaging.handler.annotation.MessageExceptionHandler @MessageExceptionHandler}
-	 * methods.
-	 * <p>Note: spring-messaging does not depend on spring-web and therefore it
-	 * is not possible to explicitly support the registration of a
-	 * {@code @ControllerAdvice} bean. You can use the following adapter code
-	 * to register {@code @ControllerAdvice} beans here:
+	 * 方法。
+	 * <p>注意：spring-messaging 不依赖 spring-web，因此无法显式支持注册
+	 * {@code @ControllerAdvice} Bean。你可以使用以下适配器代码在此注册
+	 * {@code @ControllerAdvice} Bean：
 	 * <pre>
 	 * ControllerAdviceBean.findAnnotatedBeans(context).forEach(bean -&gt;
 	 *         messageHandler.registerMessagingAdvice(new ControllerAdviceWrapper(bean));
@@ -284,7 +278,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Determine the mapping condition for the given annotated element.
+	 * 确定给定注解元素的映射条件。
 	 * @param element the element to check
 	 * @return the condition, or {@code null}
 	 */
@@ -300,7 +294,7 @@ public class MessageMappingMessageHandler extends AbstractMethodMessageHandler<C
 	}
 
 	/**
-	 * Resolve placeholders in the given destinations.
+	 * 解析给定目标中的占位符。
 	 * @param destinations the destinations
 	 * @return new array with the processed destinations or the same array
 	 */

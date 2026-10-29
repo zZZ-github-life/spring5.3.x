@@ -36,8 +36,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * A subclass of {@link MimeType} that adds support for quality parameters
- * as defined in the HTTP specification.
+ * {@link MimeType} 的子类，增加了对 HTTP 规范中定义的质量参数的支持。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -54,73 +53,73 @@ public class MediaType extends MimeType implements Serializable {
 	private static final long serialVersionUID = 2069937152339670231L;
 
 	/**
-	 * Public constant media type that includes all media ranges (i.e. "&#42;/&#42;").
+	 * 包含所有媒体范围（即 "&#42;/&#42;"）的公共常量媒体类型。
 	 */
 	public static final MediaType ALL;
 
 	/**
-	 * A String equivalent of {@link MediaType#ALL}.
+	 * {@link MediaType#ALL} 的字符串等价形式。
 	 */
 	public static final String ALL_VALUE = "*/*";
 
 	/**
-	 *  Public constant media type for {@code application/atom+xml}.
+	 * 用于 {@code application/atom+xml} 的公共常量媒体类型。
 	 */
 	public static final MediaType APPLICATION_ATOM_XML;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_ATOM_XML}.
+	 * {@link MediaType#APPLICATION_ATOM_XML} 的字符串等价形式。
 	 */
 	public static final String APPLICATION_ATOM_XML_VALUE = "application/atom+xml";
 
 	/**
-	 * Public constant media type for {@code application/cbor}.
+	 * 用于 {@code application/cbor} 的公共常量媒体类型。
 	 * @since 5.2
 	 */
 	public static final MediaType APPLICATION_CBOR;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_CBOR}.
+	 * {@link MediaType#APPLICATION_CBOR} 的字符串等价形式。
 	 * @since 5.2
 	 */
 	public static final String APPLICATION_CBOR_VALUE = "application/cbor";
 
 	/**
-	 * Public constant media type for {@code application/x-www-form-urlencoded}.
+	 * 用于 {@code application/x-www-form-urlencoded} 的公共常量媒体类型。
 	 */
 	public static final MediaType APPLICATION_FORM_URLENCODED;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_FORM_URLENCODED}.
+	 * {@link MediaType#APPLICATION_FORM_URLENCODED} 的字符串等价形式。
 	 */
 	public static final String APPLICATION_FORM_URLENCODED_VALUE = "application/x-www-form-urlencoded";
 
 	/**
-	 * Public constant media type for {@code application/graphql+json}.
+	 * 用于 {@code application/graphql+json} 的公共常量媒体类型。
 	 * @since 5.3.19
 	 * @see <a href="https://github.com/graphql/graphql-over-http">GraphQL over HTTP spec</a>
 	 */
 	public static final MediaType APPLICATION_GRAPHQL;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_GRAPHQL}.
+	 * {@link MediaType#APPLICATION_GRAPHQL} 的字符串等价形式。
 	 * @since 5.3.19
 	 */
 	public static final String APPLICATION_GRAPHQL_VALUE = "application/graphql+json";
 
 	/**
-	 * Public constant media type for {@code application/json}.
+	 * 用于 {@code application/json} 的公共常量媒体类型。
 	 */
 	public static final MediaType APPLICATION_JSON;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_JSON}.
+	 * {@link MediaType#APPLICATION_JSON} 的字符串等价形式。
 	 * @see #APPLICATION_JSON_UTF8_VALUE
 	 */
 	public static final String APPLICATION_JSON_VALUE = "application/json";
 
 	/**
-	 * Public constant media type for {@code application/json;charset=UTF-8}.
+	 * 用于 {@code application/json;charset=UTF-8} 的公共常量媒体类型。
 	 * @deprecated as of 5.2 in favor of {@link #APPLICATION_JSON}
 	 * since major browsers like Chrome
 	 * <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=438464">
@@ -131,7 +130,7 @@ public class MediaType extends MimeType implements Serializable {
 	public static final MediaType APPLICATION_JSON_UTF8;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_JSON_UTF8}.
+	 * {@link MediaType#APPLICATION_JSON_UTF8} 的字符串等价形式。
 	 * @deprecated as of 5.2 in favor of {@link #APPLICATION_JSON_VALUE}
 	 * since major browsers like Chrome
 	 * <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=438464">
@@ -142,29 +141,29 @@ public class MediaType extends MimeType implements Serializable {
 	public static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
 
 	/**
-	 * Public constant media type for {@code application/octet-stream}.
+	 * 用于 {@code application/octet-stream} 的公共常量媒体类型。
 	 */
 	public static final MediaType APPLICATION_OCTET_STREAM;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_OCTET_STREAM}.
+	 * {@link MediaType#APPLICATION_OCTET_STREAM} 的字符串等价形式。
 	 */
 	public static final String APPLICATION_OCTET_STREAM_VALUE = "application/octet-stream";
 
 	/**
-	 * Public constant media type for {@code application/pdf}.
+	 * 用于 {@code application/pdf} 的公共常量媒体类型。
 	 * @since 4.3
 	 */
 	public static final MediaType APPLICATION_PDF;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_PDF}.
+	 * {@link MediaType#APPLICATION_PDF} 的字符串等价形式。
 	 * @since 4.3
 	 */
 	public static final String APPLICATION_PDF_VALUE = "application/pdf";
 
 	/**
-	 * Public constant media type for {@code application/problem+json}.
+	 * 用于 {@code application/problem+json} 的公共常量媒体类型。
 	 * @since 5.0
 	 * @see <a href="https://tools.ietf.org/html/rfc7807#section-6.1">
 	 *     Problem Details for HTTP APIs, 6.1. application/problem+json</a>
@@ -172,13 +171,13 @@ public class MediaType extends MimeType implements Serializable {
 	public static final MediaType APPLICATION_PROBLEM_JSON;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_PROBLEM_JSON}.
+	 * {@link MediaType#APPLICATION_PROBLEM_JSON} 的字符串等价形式。
 	 * @since 5.0
 	 */
 	public static final String APPLICATION_PROBLEM_JSON_VALUE = "application/problem+json";
 
 	/**
-	 * Public constant media type for {@code application/problem+json}.
+	 * 用于 {@code application/problem+json} 的公共常量媒体类型。
 	 * @since 5.0
 	 * @see <a href="https://tools.ietf.org/html/rfc7807#section-6.1">
 	 *     Problem Details for HTTP APIs, 6.1. application/problem+json</a>
@@ -192,7 +191,7 @@ public class MediaType extends MimeType implements Serializable {
 	public static final MediaType APPLICATION_PROBLEM_JSON_UTF8;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_PROBLEM_JSON_UTF8}.
+	 * {@link MediaType#APPLICATION_PROBLEM_JSON_UTF8} 的字符串等价形式。
 	 * @since 5.0
 	 * @deprecated as of 5.2 in favor of {@link #APPLICATION_PROBLEM_JSON_VALUE}
 	 * since major browsers like Chrome
@@ -204,7 +203,7 @@ public class MediaType extends MimeType implements Serializable {
 	public static final String APPLICATION_PROBLEM_JSON_UTF8_VALUE = "application/problem+json;charset=UTF-8";
 
 	/**
-	 * Public constant media type for {@code application/problem+xml}.
+	 * 用于 {@code application/problem+xml} 的公共常量媒体类型。
 	 * @since 5.0
 	 * @see <a href="https://tools.ietf.org/html/rfc7807#section-6.2">
 	 *     Problem Details for HTTP APIs, 6.2. application/problem+xml</a>
@@ -212,37 +211,37 @@ public class MediaType extends MimeType implements Serializable {
 	public static final MediaType APPLICATION_PROBLEM_XML;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_PROBLEM_XML}.
+	 * {@link MediaType#APPLICATION_PROBLEM_XML} 的字符串等价形式。
 	 * @since 5.0
 	 */
 	public static final String APPLICATION_PROBLEM_XML_VALUE = "application/problem+xml";
 
 	/**
-	 * Public constant media type for {@code application/rss+xml}.
+	 * 用于 {@code application/rss+xml} 的公共常量媒体类型。
 	 * @since 4.3.6
 	 */
 	public static final MediaType APPLICATION_RSS_XML;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_RSS_XML}.
+	 * {@link MediaType#APPLICATION_RSS_XML} 的字符串等价形式。
 	 * @since 4.3.6
 	 */
 	public static final String APPLICATION_RSS_XML_VALUE = "application/rss+xml";
 
 	/**
-	 * Public constant media type for {@code application/x-ndjson}.
+	 * 用于 {@code application/x-ndjson} 的公共常量媒体类型。
 	 * @since 5.3
 	 */
 	public static final MediaType APPLICATION_NDJSON;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_NDJSON}.
+	 * {@link MediaType#APPLICATION_NDJSON} 的字符串等价形式。
 	 * @since 5.3
 	 */
 	public static final String APPLICATION_NDJSON_VALUE = "application/x-ndjson";
 
 	/**
-	 * Public constant media type for {@code application/stream+json}.
+	 * 用于 {@code application/stream+json} 的公共常量媒体类型。
 	 * @since 5.0
 	 * @deprecated as of 5.3, see notice on {@link #APPLICATION_STREAM_JSON_VALUE}.
 	 */
@@ -250,7 +249,7 @@ public class MediaType extends MimeType implements Serializable {
 	public static final MediaType APPLICATION_STREAM_JSON;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_STREAM_JSON}.
+	 * {@link MediaType#APPLICATION_STREAM_JSON} 的字符串等价形式。
 	 * @since 5.0
 	 * @deprecated as of 5.3 since it originates from the W3C Activity Streams
 	 * specification which has a more specific purpose and has been since
@@ -262,141 +261,141 @@ public class MediaType extends MimeType implements Serializable {
 	public static final String APPLICATION_STREAM_JSON_VALUE = "application/stream+json";
 
 	/**
-	 * Public constant media type for {@code application/xhtml+xml}.
+	 * 用于 {@code application/xhtml+xml} 的公共常量媒体类型。
 	 */
 	public static final MediaType APPLICATION_XHTML_XML;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_XHTML_XML}.
+	 * {@link MediaType#APPLICATION_XHTML_XML} 的字符串等价形式。
 	 */
 	public static final String APPLICATION_XHTML_XML_VALUE = "application/xhtml+xml";
 
 	/**
-	 * Public constant media type for {@code application/xml}.
+	 * 用于 {@code application/xml} 的公共常量媒体类型。
 	 */
 	public static final MediaType APPLICATION_XML;
 
 	/**
-	 * A String equivalent of {@link MediaType#APPLICATION_XML}.
+	 * {@link MediaType#APPLICATION_XML} 的字符串等价形式。
 	 */
 	public static final String APPLICATION_XML_VALUE = "application/xml";
 
 	/**
-	 * Public constant media type for {@code image/gif}.
+	 * 用于 {@code image/gif} 的公共常量媒体类型。
 	 */
 	public static final MediaType IMAGE_GIF;
 
 	/**
-	 * A String equivalent of {@link MediaType#IMAGE_GIF}.
+	 * {@link MediaType#IMAGE_GIF} 的字符串等价形式。
 	 */
 	public static final String IMAGE_GIF_VALUE = "image/gif";
 
 	/**
-	 * Public constant media type for {@code image/jpeg}.
+	 * 用于 {@code image/jpeg} 的公共常量媒体类型。
 	 */
 	public static final MediaType IMAGE_JPEG;
 
 	/**
-	 * A String equivalent of {@link MediaType#IMAGE_JPEG}.
+	 * {@link MediaType#IMAGE_JPEG} 的字符串等价形式。
 	 */
 	public static final String IMAGE_JPEG_VALUE = "image/jpeg";
 
 	/**
-	 * Public constant media type for {@code image/png}.
+	 * 用于 {@code image/png} 的公共常量媒体类型。
 	 */
 	public static final MediaType IMAGE_PNG;
 
 	/**
-	 * A String equivalent of {@link MediaType#IMAGE_PNG}.
+	 * {@link MediaType#IMAGE_PNG} 的字符串等价形式。
 	 */
 	public static final String IMAGE_PNG_VALUE = "image/png";
 
 	/**
-	 * Public constant media type for {@code multipart/form-data}.
+	 * 用于 {@code multipart/form-data} 的公共常量媒体类型。
 	 */
 	public static final MediaType MULTIPART_FORM_DATA;
 
 	/**
-	 * A String equivalent of {@link MediaType#MULTIPART_FORM_DATA}.
+	 * {@link MediaType#MULTIPART_FORM_DATA} 的字符串等价形式。
 	 */
 	public static final String MULTIPART_FORM_DATA_VALUE = "multipart/form-data";
 
 	/**
-	 * Public constant media type for {@code multipart/mixed}.
+	 * 用于 {@code multipart/mixed} 的公共常量媒体类型。
 	 * @since 5.2
 	 */
 	public static final MediaType MULTIPART_MIXED;
 
 	/**
-	 * A String equivalent of {@link MediaType#MULTIPART_MIXED}.
+	 * {@link MediaType#MULTIPART_MIXED} 的字符串等价形式。
 	 * @since 5.2
 	 */
 	public static final String MULTIPART_MIXED_VALUE = "multipart/mixed";
 
 	/**
-	 * Public constant media type for {@code multipart/related}.
+	 * 用于 {@code multipart/related} 的公共常量媒体类型。
 	 * @since 5.2.5
 	 */
 	public static final MediaType MULTIPART_RELATED;
 
 	/**
-	 * A String equivalent of {@link MediaType#MULTIPART_RELATED}.
+	 * {@link MediaType#MULTIPART_RELATED} 的字符串等价形式。
 	 * @since 5.2.5
 	 */
 	public static final String MULTIPART_RELATED_VALUE = "multipart/related";
 
 	/**
-	 * Public constant media type for {@code text/event-stream}.
+	 * 用于 {@code text/event-stream} 的公共常量媒体类型。
 	 * @since 4.3.6
 	 * @see <a href="https://www.w3.org/TR/eventsource/">Server-Sent Events W3C recommendation</a>
 	 */
 	public static final MediaType TEXT_EVENT_STREAM;
 
 	/**
-	 * A String equivalent of {@link MediaType#TEXT_EVENT_STREAM}.
+	 * {@link MediaType#TEXT_EVENT_STREAM} 的字符串等价形式。
 	 * @since 4.3.6
 	 */
 	public static final String TEXT_EVENT_STREAM_VALUE = "text/event-stream";
 
 	/**
-	 * Public constant media type for {@code text/html}.
+	 * 用于 {@code text/html} 的公共常量媒体类型。
 	 */
 	public static final MediaType TEXT_HTML;
 
 	/**
-	 * A String equivalent of {@link MediaType#TEXT_HTML}.
+	 * {@link MediaType#TEXT_HTML} 的字符串等价形式。
 	 */
 	public static final String TEXT_HTML_VALUE = "text/html";
 
 	/**
-	 * Public constant media type for {@code text/markdown}.
+	 * 用于 {@code text/markdown} 的公共常量媒体类型。
 	 * @since 4.3
 	 */
 	public static final MediaType TEXT_MARKDOWN;
 
 	/**
-	 * A String equivalent of {@link MediaType#TEXT_MARKDOWN}.
+	 * {@link MediaType#TEXT_MARKDOWN} 的字符串等价形式。
 	 * @since 4.3
 	 */
 	public static final String TEXT_MARKDOWN_VALUE = "text/markdown";
 
 	/**
-	 * Public constant media type for {@code text/plain}.
+	 * 用于 {@code text/plain} 的公共常量媒体类型。
 	 */
 	public static final MediaType TEXT_PLAIN;
 
 	/**
-	 * A String equivalent of {@link MediaType#TEXT_PLAIN}.
+	 * {@link MediaType#TEXT_PLAIN} 的字符串等价形式。
 	 */
 	public static final String TEXT_PLAIN_VALUE = "text/plain";
 
 	/**
-	 * Public constant media type for {@code text/xml}.
+	 * 用于 {@code text/xml} 的公共常量媒体类型。
 	 */
 	public static final MediaType TEXT_XML;
 
 	/**
-	 * A String equivalent of {@link MediaType#TEXT_XML}.
+	 * {@link MediaType#TEXT_XML} 的字符串等价形式。
 	 */
 	public static final String TEXT_XML_VALUE = "text/xml";
 
@@ -437,8 +436,8 @@ public class MediaType extends MimeType implements Serializable {
 
 
 	/**
-	 * Create a new {@code MediaType} for the given primary type.
-	 * <p>The {@linkplain #getSubtype() subtype} is set to "&#42;", parameters empty.
+	 * 为给定的主类型创建一个新的 {@code MediaType}。
+	 * <p>{@linkplain #getSubtype() subtype} 设置为 "&#42;"，参数为空。
 	 * @param type the primary type
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
 	 */
@@ -447,8 +446,8 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Create a new {@code MediaType} for the given primary type and subtype.
-	 * <p>The parameters are empty.
+	 * 为给定的主类型和子类型创建一个新的 {@code MediaType}。
+	 * <p>参数为空。
 	 * @param type the primary type
 	 * @param subtype the subtype
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
@@ -458,7 +457,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Create a new {@code MediaType} for the given type, subtype, and character set.
+	 * 为给定的类型、子类型和字符集创建一个新的 {@code MediaType}。
 	 * @param type the primary type
 	 * @param subtype the subtype
 	 * @param charset the character set
@@ -469,7 +468,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Create a new {@code MediaType} for the given type, subtype, and quality value.
+	 * 为给定的类型、子类型和质量值创建一个新的 {@code MediaType}。
 	 * @param type the primary type
 	 * @param subtype the subtype
 	 * @param qualityValue the quality value
@@ -480,8 +479,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Copy-constructor that copies the type, subtype and parameters of the given
-	 * {@code MediaType}, and allows to set the specified character set.
+	 * 复制构造函数，复制给定 {@code MediaType} 的类型、子类型和参数，并允许设置指定的字符集。
 	 * @param other the other media type
 	 * @param charset the character set
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
@@ -492,8 +490,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Copy-constructor that copies the type and subtype of the given {@code MediaType},
-	 * and allows for different parameters.
+	 * 复制构造函数，复制给定 {@code MediaType} 的类型和子类型，并允许使用不同的参数。
 	 * @param other the other media type
 	 * @param parameters the parameters, may be {@code null}
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
@@ -503,7 +500,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Create a new {@code MediaType} for the given type, subtype, and parameters.
+	 * 为给定的类型、子类型和参数创建一个新的 {@code MediaType}。
 	 * @param type the primary type
 	 * @param subtype the subtype
 	 * @param parameters the parameters, may be {@code null}
@@ -514,9 +511,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Create a new {@code MediaType} for the given {@link MimeType}.
-	 * The type, subtype and parameters information is copied and {@code MediaType}-specific
-	 * checks on parameters are performed.
+	 * 为给定的 {@link MimeType} 创建一个新的 {@code MediaType}。类型、子类型和参数信息会被复制，并执行 {@code MediaType} 特有的参数检查。
 	 * @param mimeType the MIME type
 	 * @throws IllegalArgumentException if any of the parameters contain illegal characters
 	 * @since 5.3
@@ -539,8 +534,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Return the quality factor, as indicated by a {@code q} parameter, if any.
-	 * Defaults to {@code 1.0}.
+	 * 返回质量因子（由 {@code q} 参数表示，如果有）。默认为 {@code 1.0}。
 	 * @return the quality factor as double value
 	 */
 	public double getQualityValue() {
@@ -549,12 +543,9 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Indicate whether this {@code MediaType} includes the given media type.
-	 * <p>For instance, {@code text/*} includes {@code text/plain} and {@code text/html},
-	 * and {@code application/*+xml} includes {@code application/soap+xml}, etc.
-	 * This method is <b>not</b> symmetric.
-	 * <p>Simply calls {@link MimeType#includes(MimeType)} but declared with a
-	 * {@code MediaType} parameter for binary backwards compatibility.
+	 * 指示此 {@code MediaType} 是否包含给定的媒体类型。
+	 * <p>例如，{@code text/*} 包含 {@code text/plain} 和 {@code text/html}，{@code application/*+xml} 包含 {@code application/soap+xml} 等。此方法<b>不</b>对称。
+	 * <p>此方法仅调用 {@link MimeType#includes(MimeType)}，但为了二进制向后兼容而声明为 {@code MediaType} 参数。
 	 * @param other the reference media type with which to compare
 	 * @return {@code true} if this media type includes the given media type;
 	 * {@code false} otherwise
@@ -564,12 +555,9 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Indicate whether this {@code MediaType} is compatible with the given media type.
-	 * <p>For instance, {@code text/*} is compatible with {@code text/plain},
-	 * {@code text/html}, and vice versa. In effect, this method is similar to
-	 * {@link #includes}, except that it <b>is</b> symmetric.
-	 * <p>Simply calls {@link MimeType#isCompatibleWith(MimeType)} but declared with a
-	 * {@code MediaType} parameter for binary backwards compatibility.
+	 * 指示此 {@code MediaType} 是否与给定的媒体类型兼容。
+	 * <p>例如，{@code text/*} 与 {@code text/plain}、{@code text/html} 兼容，反之亦然。实际上，此方法类似于 {@link #includes}，区别在于它<b>是</b>对称的。
+	 * <p>此方法仅调用 {@link MimeType#isCompatibleWith(MimeType)}，但为了二进制向后兼容而声明为 {@code MediaType} 参数。
 	 * @param other the reference media type with which to compare
 	 * @return {@code true} if this media type is compatible with the given media type;
 	 * {@code false} otherwise
@@ -579,7 +567,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Return a replica of this instance with the quality value of the given {@code MediaType}.
+	 * 返回此实例的副本，其中质量值取自给定的 {@code MediaType}。
 	 * @return the same instance if the given MediaType doesn't have a quality value,
 	 * or a new one otherwise
 	 */
@@ -593,7 +581,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Return a replica of this instance with its quality value removed.
+	 * 返回移除了质量值的此实例副本。
 	 * @return the same instance if the media type doesn't contain a quality value,
 	 * or a new one otherwise
 	 */
@@ -608,9 +596,7 @@ public class MediaType extends MimeType implements Serializable {
 
 
 	/**
-	 * Parse the given String value into a {@code MediaType} object,
-	 * with this method name following the 'valueOf' naming convention
-	 * (as supported by {@link org.springframework.core.convert.ConversionService}.
+	 * 将给定的字符串值解析为 {@code MediaType} 对象，方法名遵循 'valueOf' 命名约定（受 {@link org.springframework.core.convert.ConversionService} 支持）。
 	 * @param value the string to parse
 	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
 	 * @see #parseMediaType(String)
@@ -620,7 +606,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Parse the given String into a single {@code MediaType}.
+	 * 将给定字符串解析为单个 {@code MediaType}。
 	 * @param mediaType the string to parse
 	 * @return the media type
 	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
@@ -642,8 +628,8 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Parse the comma-separated string into a list of {@code MediaType} objects.
-	 * <p>This method can be used to parse an Accept or Content-Type header.
+	 * 将逗号分隔的字符串解析为 {@code MediaType} 对象列表。
+	 * <p>此方法可用于解析 Accept 或 Content-Type 头。
 	 * @param mediaTypes the string to parse
 	 * @return the list of media types
 	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
@@ -664,9 +650,8 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Parse the given list of (potentially) comma-separated strings into a
-	 * list of {@code MediaType} objects.
-	 * <p>This method can be used to parse an Accept or Content-Type header.
+	 * 将给定的（可能以逗号分隔的）字符串列表解析为 {@code MediaType} 对象列表。
+	 * <p>此方法可用于解析 Accept 或 Content-Type 头。
 	 * @param mediaTypes the string to parse
 	 * @return the list of media types
 	 * @throws InvalidMediaTypeException if the media type value cannot be parsed
@@ -689,7 +674,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Re-create the given mime types as media types.
+	 * 将给定的 MIME 类型重新创建为媒体类型。
 	 * @since 5.0
 	 */
 	public static List<MediaType> asMediaTypes(List<MimeType> mimeTypes) {
@@ -701,7 +686,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Re-create the given mime type as a media type.
+	 * 将给定的 MIME 类型重新创建为媒体类型。
 	 * @since 5.0
 	 */
 	public static MediaType asMediaType(MimeType mimeType) {
@@ -712,8 +697,8 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Return a string representation of the given list of {@code MediaType} objects.
-	 * <p>This method can be used to for an {@code Accept} or {@code Content-Type} header.
+	 * 返回给定 {@code MediaType} 对象列表的字符串表示形式。
+	 * <p>此方法可用于生成 {@code Accept} 或 {@code Content-Type} 头。
 	 * @param mediaTypes the media types to create a string representation for
 	 * @return the string representation
 	 */
@@ -722,23 +707,17 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Sorts the given list of {@code MediaType} objects by specificity.
-	 * <p>Given two media types:
+	 * 按特定性对给定的 {@code MediaType} 对象列表进行排序。
+	 * <p>给定两个媒体类型：
 	 * <ol>
-	 * <li>if either media type has a {@linkplain #isWildcardType() wildcard type}, then the media type without the
-	 * wildcard is ordered before the other.</li>
-	 * <li>if the two media types have different {@linkplain #getType() types}, then they are considered equal and
-	 * remain their current order.</li>
-	 * <li>if either media type has a {@linkplain #isWildcardSubtype() wildcard subtype}, then the media type without
-	 * the wildcard is sorted before the other.</li>
-	 * <li>if the two media types have different {@linkplain #getSubtype() subtypes}, then they are considered equal
-	 * and remain their current order.</li>
-	 * <li>if the two media types have different {@linkplain #getQualityValue() quality value}, then the media type
-	 * with the highest quality value is ordered before the other.</li>
-	 * <li>if the two media types have a different amount of {@linkplain #getParameter(String) parameters}, then the
-	 * media type with the most parameters is ordered before the other.</li>
+	 * <li>如果任一媒体类型具有 {@linkplain #isWildcardType() wildcard type}，则不带通配符的媒体类型排在另一个之前。</li>
+	 * <li>如果两个媒体类型具有不同的 {@linkplain #getType() types}，则认为它们相等，并保持当前顺序。</li>
+	 * <li>如果任一媒体类型具有 {@linkplain #isWildcardSubtype() wildcard subtype}，则不带通配符的媒体类型排在另一个之前。</li>
+	 * <li>如果两个媒体类型具有不同的 {@linkplain #getSubtype() subtypes}，则认为它们相等，并保持当前顺序。</li>
+	 * <li>如果两个媒体类型具有不同的 {@linkplain #getQualityValue() quality value}，则质量值最高的媒体类型排在另一个之前。</li>
+	 * <li>如果两个媒体类型具有不同数量的 {@linkplain #getParameter(String) parameters}，则参数最多的媒体类型排在另一个之前。</li>
 	 * </ol>
-	 * <p>For example:
+	 * <p>例如：
 	 * <blockquote>audio/basic &lt; audio/* &lt; *&#047;*</blockquote>
 	 * <blockquote>audio/* &lt; audio/*;q=0.7; audio/*;q=0.3</blockquote>
 	 * <blockquote>audio/basic;level=1 &lt; audio/basic</blockquote>
@@ -756,21 +735,15 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Sorts the given list of {@code MediaType} objects by quality value.
-	 * <p>Given two media types:
+	 * 按质量值对给定的 {@code MediaType} 对象列表进行排序。
+	 * <p>给定两个媒体类型：
 	 * <ol>
-	 * <li>if the two media types have different {@linkplain #getQualityValue() quality value}, then the media type
-	 * with the highest quality value is ordered before the other.</li>
-	 * <li>if either media type has a {@linkplain #isWildcardType() wildcard type}, then the media type without the
-	 * wildcard is ordered before the other.</li>
-	 * <li>if the two media types have different {@linkplain #getType() types}, then they are considered equal and
-	 * remain their current order.</li>
-	 * <li>if either media type has a {@linkplain #isWildcardSubtype() wildcard subtype}, then the media type without
-	 * the wildcard is sorted before the other.</li>
-	 * <li>if the two media types have different {@linkplain #getSubtype() subtypes}, then they are considered equal
-	 * and remain their current order.</li>
-	 * <li>if the two media types have a different amount of {@linkplain #getParameter(String) parameters}, then the
-	 * media type with the most parameters is ordered before the other.</li>
+	 * <li>如果两个媒体类型具有不同的 {@linkplain #getQualityValue() quality value}，则质量值最高的媒体类型排在另一个之前。</li>
+	 * <li>如果任一媒体类型具有 {@linkplain #isWildcardType() wildcard type}，则不带通配符的媒体类型排在另一个之前。</li>
+	 * <li>如果两个媒体类型具有不同的 {@linkplain #getType() types}，则认为它们相等，并保持当前顺序。</li>
+	 * <li>如果任一媒体类型具有 {@linkplain #isWildcardSubtype() wildcard subtype}，则不带通配符的媒体类型排在另一个之前。</li>
+	 * <li>如果两个媒体类型具有不同的 {@linkplain #getSubtype() subtypes}，则认为它们相等，并保持当前顺序。</li>
+	 * <li>如果两个媒体类型具有不同数量的 {@linkplain #getParameter(String) parameters}，则参数最多的媒体类型排在另一个之前。</li>
 	 * </ol>
 	 * @param mediaTypes the list of media types to be sorted
 	 * @see #getQualityValue()
@@ -783,8 +756,7 @@ public class MediaType extends MimeType implements Serializable {
 	}
 
 	/**
-	 * Sorts the given list of {@code MediaType} objects by specificity as the
-	 * primary criteria and quality value the secondary.
+	 * 按特定性作为主要标准、质量值作为次要标准对给定的 {@code MediaType} 对象列表进行排序。
 	 * @see MediaType#sortBySpecificity(List)
 	 * @see MediaType#sortByQualityValue(List)
 	 */
@@ -797,7 +769,7 @@ public class MediaType extends MimeType implements Serializable {
 
 
 	/**
-	 * Comparator used by {@link #sortByQualityValue(List)}.
+	 * 由 {@link #sortByQualityValue(List)} 使用的比较器。
 	 */
 	public static final Comparator<MediaType> QUALITY_VALUE_COMPARATOR = (mediaType1, mediaType2) -> {
 		double quality1 = mediaType1.getQualityValue();
@@ -835,7 +807,7 @@ public class MediaType extends MimeType implements Serializable {
 
 
 	/**
-	 * Comparator used by {@link #sortBySpecificity(List)}.
+	 * 由 {@link #sortBySpecificity(List)} 使用的比较器。
 	 */
 	public static final Comparator<MediaType> SPECIFICITY_COMPARATOR = new SpecificityComparator<MediaType>() {
 

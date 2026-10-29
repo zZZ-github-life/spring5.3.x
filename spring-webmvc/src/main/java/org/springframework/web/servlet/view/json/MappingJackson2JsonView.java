@@ -33,16 +33,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.View;
 
 /**
- * Spring MVC {@link View} that renders JSON content by serializing the model for the current request
- * using <a href="https://github.com/FasterXML/jackson">Jackson 2's</a> {@link ObjectMapper}.
+ * Spring MVC {@link View}，使用 <a href="https://github.com/FasterXML/jackson">Jackson 2</a>
+ * 的 {@link ObjectMapper} 序列化当前请求的 model，从而渲染 JSON 内容。
  *
- * <p>By default, the entire contents of the model map (with the exception of framework-specific classes)
- * will be encoded as JSON. If the model contains only one key, you can have it extracted encoded as JSON
- * alone via  {@link #setExtractValueFromSingleKeyModel}.
+ * <p>默认情况下，model map 的全部内容（框架特定的类除外）都将被编码为 JSON。
+ * 如果 model 只包含一个键，你可以通过 {@link #setExtractValueFromSingleKeyModel}
+ * 将其单独提取出来并编码为 JSON。
  *
- * <p>The default constructor uses the default configuration provided by {@link Jackson2ObjectMapperBuilder}.
+ * <p>默认构造器使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置。
  *
- * <p>Compatible with Jackson 2.9 to 2.12, as of Spring 5.3.
+ * <p>从 Spring 5.3 起，兼容 Jackson 2.9 至 2.12。
  *
  * @author Jeremy Grelle
  * @author Arjen Poutsma
@@ -54,8 +54,8 @@ import org.springframework.web.servlet.View;
 public class MappingJackson2JsonView extends AbstractJackson2View {
 
 	/**
-	 * Default content type: "application/json".
-	 * Overridable through {@link #setContentType}.
+	 * 默认内容类型："application/json"。
+	 * 可以通过 {@link #setContentType} 覆盖。
 	 */
 	public static final String DEFAULT_CONTENT_TYPE = "application/json";
 
@@ -69,17 +69,16 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 
 
 	/**
-	 * Construct a new {@code MappingJackson2JsonView} using default configuration
-	 * provided by {@link Jackson2ObjectMapperBuilder} and setting the content type
-	 * to {@code application/json}.
+	 * 使用 {@link Jackson2ObjectMapperBuilder} 提供的默认配置构造一个新的
+	 * {@code MappingJackson2JsonView}，并将内容类型设置为 {@code application/json}。
 	 */
 	public MappingJackson2JsonView() {
 		super(Jackson2ObjectMapperBuilder.json().build(), DEFAULT_CONTENT_TYPE);
 	}
 
 	/**
-	 * Construct a new {@code MappingJackson2JsonView} using the provided
-	 * {@link ObjectMapper} and setting the content type to {@code application/json}.
+	 * 使用提供的 {@link ObjectMapper} 构造一个新的 {@code MappingJackson2JsonView}，
+	 * 并将内容类型设置为 {@code application/json}。
 	 * @since 4.2.1
 	 */
 	public MappingJackson2JsonView(ObjectMapper objectMapper) {
@@ -88,8 +87,8 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 
 
 	/**
-	 * Specify a custom prefix to use for this view's JSON output.
-	 * Default is none.
+	 * 指定用于此视图 JSON 输出的自定义前缀。
+	 * 默认为无前缀。
 	 * @see #setPrefixJson
 	 */
 	public void setJsonPrefix(String jsonPrefix) {
@@ -97,11 +96,11 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	}
 
 	/**
-	 * Indicates whether the JSON output by this view should be prefixed with <code>")]}', "</code>.
-	 * Default is {@code false}.
-	 * <p>Prefixing the JSON string in this manner is used to help prevent JSON Hijacking.
-	 * The prefix renders the string syntactically invalid as a script so that it cannot be hijacked.
-	 * This prefix should be stripped before parsing the string as JSON.
+	 * 指示此视图输出的 JSON 是否应以 <code>")]}', "</code> 作为前缀。
+	 * 默认值为 {@code false}。
+	 * <p>以这种方式为 JSON 字符串添加前缀有助于防止 JSON 劫持（JSON Hijacking）。
+	 * 该前缀会使字符串在语法上无法作为脚本执行，从而无法被劫持。
+	 * 在将字符串解析为 JSON 之前应去除该前缀。
 	 * @see #setJsonPrefix
 	 */
 	public void setPrefixJson(boolean prefixJson) {
@@ -117,15 +116,15 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	}
 
 	/**
-	 * Set the attributes in the model that should be rendered by this view.
-	 * When set, all other model attributes will be ignored.
+	 * 设置 model 中应由此视图渲染的属性。
+	 * 设置后，所有其他 model 属性都将被忽略。
 	 */
 	public void setModelKeys(@Nullable Set<String> modelKeys) {
 		this.modelKeys = modelKeys;
 	}
 
 	/**
-	 * Return the attributes in the model that should be rendered by this view.
+	 * 返回 model 中应由此视图渲染的属性。
 	 */
 	@Nullable
 	public final Set<String> getModelKeys() {
@@ -133,22 +132,21 @@ public class MappingJackson2JsonView extends AbstractJackson2View {
 	}
 
 	/**
-	 * Set whether to serialize models containing a single attribute as a map or
-	 * whether to extract the single value from the model and serialize it directly.
-	 * <p>The effect of setting this flag is similar to using
-	 * {@code MappingJackson2HttpMessageConverter} with an {@code @ResponseBody}
-	 * request-handling method.
-	 * <p>Default is {@code false}.
+	 * 设置是将会包含单个属性的 model 序列化为 map，
+	 * 还是从 model 中提取单个值并直接对其进行序列化。
+	 * <p>设置此标志的效果类似于在使用 {@code @ResponseBody}
+	 * 请求处理方法时使用 {@code MappingJackson2HttpMessageConverter}。
+	 * <p>默认值为 {@code false}。
 	 */
 	public void setExtractValueFromSingleKeyModel(boolean extractValueFromSingleKeyModel) {
 		this.extractValueFromSingleKeyModel = extractValueFromSingleKeyModel;
 	}
 
 	/**
-	 * Filter out undesired attributes from the given model.
-	 * The return value can be either another {@link Map} or a single value object.
-	 * <p>The default implementation removes {@link BindingResult} instances and entries
-	 * not included in the {@link #setModelKeys modelKeys} property.
+	 * 从给定 model 中过滤掉不需要的属性。
+	 * 返回值可以是另一个 {@link Map}，也可以是单个值对象。
+	 * <p>默认实现会移除 {@link BindingResult} 实例
+	 * 以及未包含在 {@link #setModelKeys modelKeys} 属性中的条目。
 	 * @param model the model, as passed on to {@link #renderMergedOutputModel}
 	 * @return the value to be rendered
 	 */

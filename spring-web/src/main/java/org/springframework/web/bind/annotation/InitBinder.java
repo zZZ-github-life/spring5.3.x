@@ -23,28 +23,22 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation that identifies methods that initialize the
- * {@link org.springframework.web.bind.WebDataBinder} which
- * will be used for populating command and form object arguments
- * of annotated handler methods.
+ * 标识用于初始化 {@link org.springframework.web.bind.WebDataBinder} 的方法的注解，
+ * 该绑定器将用于填充注解处理方法的命令对象和表单对象参数。
  *
- * <p><strong>WARNING</strong>: Data binding can lead to security issues by exposing
- * parts of the object graph that are not meant to be accessed or modified by
- * external clients. Therefore the design and use of data binding should be considered
- * carefully with regard to security. For more details, please refer to the dedicated
- * sections on data binding for
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a> and
- * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>
- * in the reference manual.
+ * <p><strong>警告</strong>：数据绑定可能会暴露不应被外部客户端访问或修改的
+ * 对象图部分，从而带来安全问题。因此，应仔细考虑数据绑定的设计与使用对安全性的影响。
+ * 更多详情请参阅参考手册中关于数据绑定的专门章节：
+ * <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-initbinder-model-design">Spring Web MVC</a>
+ * 和 <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-ann-initbinder-model-design">Spring WebFlux</a>。
  *
- * <p>{@code @InitBinder} methods support all arguments that
- * {@link RequestMapping @RequestMapping} methods support, except for command/form
- * objects and corresponding validation result objects. {@code @InitBinder} methods
- * must not have a return value; they are usually declared as {@code void}.
+ * <p>{@code @InitBinder} 方法支持 {@link RequestMapping @RequestMapping} 方法
+ * 所支持的所有参数，但命令/表单对象及相应的校验结果对象除外。
+ * {@code @InitBinder} 方法不能有返回值；通常声明为 {@code void}。
  *
- * <p>Typical arguments are {@link org.springframework.web.bind.WebDataBinder}
- * in combination with {@link org.springframework.web.context.request.WebRequest}
- * or {@link java.util.Locale}, allowing to register context-specific editors.
+ * <p>典型参数是 {@link org.springframework.web.bind.WebDataBinder} 结合
+ * {@link org.springframework.web.context.request.WebRequest} 或
+ * {@link java.util.Locale}，从而可以注册特定于上下文的编辑器。
  *
  * @author Juergen Hoeller
  * @since 2.5
@@ -58,13 +52,10 @@ import java.lang.annotation.Target;
 public @interface InitBinder {
 
 	/**
-	 * The names of command/form attributes and/or request parameters
-	 * that this init-binder method is supposed to apply to.
-	 * <p>Default is to apply to all command/form attributes and all request parameters
-	 * processed by the annotated handler class. Specifying model attribute names or
-	 * request parameter names here restricts the init-binder method to those specific
-	 * attributes/parameters, with different init-binder methods typically applying to
-	 * different groups of attributes or parameters.
+	 * 此初始化绑定方法应应用的命令/表单属性名称和/或请求参数名称。
+	 * <p>默认应用于注解处理类所处理的所有命令/表单属性及所有请求参数。
+	 * 在此指定模型属性名称或请求参数名称会将初始化绑定方法限制为那些特定的
+	 * 属性/参数，不同的初始化绑定方法通常应用于不同的属性组或参数组。
 	 */
 	String[] value() default {};
 

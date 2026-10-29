@@ -20,9 +20,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Utility class that builds pretty-printing {@code toString()} methods
- * with pluggable styling conventions. By default, ToStringCreator adheres
- * to Spring's {@code toString()} styling conventions.
+ * 用于构建美观输出的 {@code toString()} 方法的工具类，支持可插拔的样式约定。默认情况下，
+ * ToStringCreator 遵循 Spring 的 {@code toString()} 样式约定。
  *
  * @author Keith Donald
  * @author Juergen Hoeller
@@ -31,7 +30,7 @@ import org.springframework.util.Assert;
 public class ToStringCreator {
 
 	/**
-	 * Default ToStringStyler instance used by this ToStringCreator.
+	 * 此 ToStringCreator 所使用的默认 ToStringStyler 实例。
 	 */
 	private static final ToStringStyler DEFAULT_TO_STRING_STYLER =
 			new DefaultToStringStyler(StylerUtils.DEFAULT_VALUE_STYLER);
@@ -47,7 +46,7 @@ public class ToStringCreator {
 
 
 	/**
-	 * Create a ToStringCreator for the given object.
+	 * 为给定的对象创建一个 ToStringCreator。
 	 * @param obj the object to be stringified
 	 */
 	public ToStringCreator(Object obj) {
@@ -55,7 +54,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Create a ToStringCreator for the given object, using the provided style.
+	 * 为给定的对象创建一个 ToStringCreator，并使用所提供的样式。
 	 * @param obj the object to be stringified
 	 * @param styler the ValueStyler encapsulating pretty-print instructions
 	 */
@@ -64,7 +63,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Create a ToStringCreator for the given object, using the provided style.
+	 * 为给定的对象创建一个 ToStringCreator，并使用所提供的样式。
 	 * @param obj the object to be stringified
 	 * @param styler the ToStringStyler encapsulating pretty-print instructions
 	 */
@@ -77,7 +76,7 @@ public class ToStringCreator {
 
 
 	/**
-	 * Append a byte field value.
+	 * 追加一个 byte 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -87,7 +86,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a short field value.
+	 * 追加一个 short 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -97,7 +96,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a integer field value.
+	 * 追加一个 int 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -107,7 +106,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a long field value.
+	 * 追加一个 long 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -117,7 +116,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a float field value.
+	 * 追加一个 float 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -127,7 +126,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a double field value.
+	 * 追加一个 double 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -137,7 +136,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a boolean field value.
+	 * 追加一个 boolean 字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -147,7 +146,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append a field value.
+	 * 追加一个字段值。
 	 * @param fieldName the name of the field, usually the member variable name
 	 * @param value the field value
 	 * @return this, to support call-chaining
@@ -168,7 +167,7 @@ public class ToStringCreator {
 	}
 
 	/**
-	 * Append the provided value.
+	 * 追加所提供的值。
 	 * @param value the value to append
 	 * @return this, to support call-chaining.
 	 */
@@ -179,7 +178,7 @@ public class ToStringCreator {
 
 
 	/**
-	 * Return the String representation that this ToStringCreator built.
+	 * 返回此 ToStringCreator 构建的 String 表示形式。
 	 */
 	@Override
 	public String toString() {

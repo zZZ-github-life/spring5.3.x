@@ -28,11 +28,10 @@ import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * JSF PhaseListener implementation that delegates to one or more Spring-managed
- * PhaseListener beans coming from the Spring root WebApplicationContext.
+ * JSF PhaseListener 实现，委托给来自 Spring 根 WebApplicationContext 的一个或多个
+ * Spring 管理的 PhaseListener Bean。
  *
- * <p>Configure this listener multicaster in your {@code faces-config.xml} file
- * as follows:
+ * <p>在 {@code faces-config.xml} 文件中按如下方式配置此监听器多播器：
  *
  * <pre class="code">
  * &lt;application&gt;
@@ -43,18 +42,16 @@ import org.springframework.web.context.WebApplicationContext;
  *   ...
  * &lt;/application&gt;</pre>
  *
- * The multicaster will delegate all {@code beforePhase} and {@code afterPhase}
- * events to all target PhaseListener beans. By default, those will simply be obtained
- * by type: All beans in the Spring root WebApplicationContext that implement the
- * PhaseListener interface will be fetched and invoked.
+ * 该多播器会将所有 {@code beforePhase} 和 {@code afterPhase} 事件委托给所有目标
+ * PhaseListener Bean。默认情况下，这些 Bean 只是按类型获取：Spring 根
+ * WebApplicationContext 中所有实现 PhaseListener 接口的 Bean 都会被获取并调用。
  *
- * <p>Note: This multicaster's {@code getPhaseId()} method will always return
- * {@code ANY_PHASE}. <b>The phase id exposed by the target listener beans
- * will be ignored; all events will be propagated to all listeners.</b>
+ * <p>注意：此多播器的 {@code getPhaseId()} 方法将始终返回 {@code ANY_PHASE}。
+ * <b>目标监听器 Bean 所暴露的阶段 id 将被忽略；所有事件都会传播给所有监听器。</b>
  *
- * <p>This multicaster may be subclassed to change the strategy used to obtain
- * the listener beans, or to change the strategy used to access the ApplicationContext
- * (normally obtained via {@link FacesContextUtils#getWebApplicationContext(FacesContext)}).
+ * <p>可以对此多播器进行子类化，以更改获取监听器 Bean 的策略，
+ * 或更改访问 ApplicationContext 的策略（通常通过
+ * {@link FacesContextUtils#getWebApplicationContext(FacesContext)} 获取）。
  *
  * @author Juergen Hoeller
  * @author Colin Sampaleanu
@@ -84,7 +81,7 @@ public class DelegatingPhaseListenerMulticaster implements PhaseListener {
 
 
 	/**
-	 * Obtain the delegate PhaseListener beans from the Spring root WebApplicationContext.
+	 * 从 Spring 根 WebApplicationContext 获取委托的 PhaseListener Bean。
 	 * @param facesContext the current JSF context
 	 * @return a Collection of PhaseListener objects
 	 * @see #getBeanFactory
@@ -96,10 +93,10 @@ public class DelegatingPhaseListenerMulticaster implements PhaseListener {
 	}
 
 	/**
-	 * Retrieve the Spring BeanFactory to delegate bean name resolution to.
-	 * <p>The default implementation delegates to {@code getWebApplicationContext}.
-	 * Can be overridden to provide an arbitrary ListableBeanFactory reference to
-	 * resolve against; usually, this will be a full Spring ApplicationContext.
+	 * 获取用于委托 Bean 名称解析的 Spring BeanFactory。
+	 * <p>默认实现委托给 {@code getWebApplicationContext}。
+	 * 可以重写此方法以提供一个任意的 ListableBeanFactory 引用用于解析；
+	 * 通常这将是一个完整的 Spring ApplicationContext。
 	 * @param facesContext the current JSF context
 	 * @return the Spring ListableBeanFactory (never {@code null})
 	 * @see #getWebApplicationContext
@@ -109,8 +106,8 @@ public class DelegatingPhaseListenerMulticaster implements PhaseListener {
 	}
 
 	/**
-	 * Retrieve the web application context to delegate bean name resolution to.
-	 * <p>The default implementation delegates to FacesContextUtils.
+	 * 获取用于委托 Bean 名称解析的 Web 应用上下文。
+	 * <p>默认实现委托给 FacesContextUtils。
 	 * @param facesContext the current JSF context
 	 * @return the Spring web application context (never {@code null})
 	 * @see FacesContextUtils#getRequiredWebApplicationContext

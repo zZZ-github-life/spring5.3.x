@@ -24,9 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Used to {@linkplain #setDatabasePopulator set up} a database during
- * initialization and {@link #setDatabaseCleaner clean up} a database during
- * destruction.
+ * 用于在初始化时{@linkplain #setDatabasePopulator 设置}数据库，
+ * 并在销毁时{@link #setDatabaseCleaner 清理}数据库。
  *
  * @author Dave Syer
  * @author Sam Brannen
@@ -49,9 +48,8 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 
 
 	/**
-	 * The {@link ConnectionFactory} for the database to populate when this
-	 * component is initialized and to clean up when this component is shut down.
-	 * <p>This property is mandatory with no default provided.
+	 * 用于在组件初始化时填充、并在组件关闭时清理的数据库 {@link ConnectionFactory}。
+	 * <p>此属性为必需项，没有提供默认值。
 	 * @param connectionFactory the R2DBC {@link ConnectionFactory}
 	 */
 	public void setConnectionFactory(ConnectionFactory connectionFactory) {
@@ -59,7 +57,7 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	}
 
 	/**
-	 * Set the {@link DatabasePopulator} to execute during the bean initialization phase.
+	 * 设置要在 bean 初始化阶段执行的 {@link DatabasePopulator}。
 	 * @param databasePopulator the {@link DatabasePopulator} to use during initialization
 	 * @see #setDatabaseCleaner
 	 */
@@ -68,8 +66,8 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	}
 
 	/**
-	 * Set the {@link DatabasePopulator} to execute during the bean destruction
-	 * phase, cleaning up the database and leaving it in a known state for others.
+	 * 设置要在 bean 销毁阶段执行的 {@link DatabasePopulator}，
+	 * 用于清理数据库，并使其恢复为供其他使用者使用的已知状态。
 	 * @param databaseCleaner the {@code DatabasePopulator} to use during destruction
 	 * @see #setDatabasePopulator
 	 */
@@ -78,8 +76,8 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	}
 
 	/**
-	 * Flag to explicitly enable or disable the {@linkplain #setDatabasePopulator
-	 * database populator} and {@linkplain #setDatabaseCleaner database cleaner}.
+	 * 用于显式启用或禁用 {@linkplain #setDatabasePopulator database populator}
+	 * 和 {@linkplain #setDatabaseCleaner database cleaner} 的标志。
 	 * @param enabled {@code true} if the database populator and database cleaner
 	 * should be called on startup and shutdown, respectively
 	 */
@@ -89,8 +87,7 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 
 
 	/**
-	 * Use the {@linkplain #setDatabasePopulator database populator} to set up
-	 * the database.
+	 * 使用 {@linkplain #setDatabasePopulator database populator} 设置数据库。
 	 */
 	@Override
 	public void afterPropertiesSet() {
@@ -98,8 +95,7 @@ public class ConnectionFactoryInitializer implements InitializingBean, Disposabl
 	}
 
 	/**
-	 * Use the {@linkplain #setDatabaseCleaner database cleaner} to clean up the
-	 * database.
+	 * 使用 {@linkplain #setDatabaseCleaner database cleaner} 清理数据库。
 	 */
 	@Override
 	public void destroy() {

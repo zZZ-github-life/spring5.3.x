@@ -40,9 +40,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * <strong>Main entry point for server-side Spring MVC test support.</strong>
+ * <strong>服务器端 Spring MVC 测试支持的主要入口点。</strong>
  *
- * <h3>Example</h3>
+ * <h3>示例</h3>
  *
  * <pre class="code">
  * import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -56,13 +56,12 @@ import org.springframework.web.servlet.DispatcherServlet;
  * MockMvc mockMvc = webAppContextSetup(wac).build();
  *
  * mockMvc.perform(get("/form"))
- *     .andExpectAll(
- *         status().isOk(),
- *         content().contentType("text/html"),
- *         forwardedUrl("/WEB-INF/layouts/main.jsp")
- *     );
+ * .andExpectAll(
+ * status().isOk(),
+ * content().contentType("text/html"),
+ * forwardedUrl("/WEB-INF/layouts/main.jsp")
+ * );
  * </pre>
- *
  * @author Rossen Stoyanchev
  * @author Rob Winch
  * @author Sam Brannen
@@ -90,7 +89,7 @@ public final class MockMvc {
 
 
 	/**
-	 * Private constructor, not for direct instantiation.
+	 * 私有构造函数，不用于直接实例化。
 	 * @see org.springframework.test.web.servlet.setup.MockMvcBuilders
 	 */
 	MockMvc(TestDispatcherServlet servlet, Filter... filters) {
@@ -105,7 +104,7 @@ public final class MockMvc {
 
 
 	/**
-	 * A default request builder merged into every performed request.
+	 * 合并到每个已执行请求中的默认请求构建器。
 	 * @see org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder#defaultRequest(RequestBuilder)
 	 */
 	void setDefaultRequest(@Nullable RequestBuilder requestBuilder) {
@@ -113,7 +112,7 @@ public final class MockMvc {
 	}
 
 	/**
-	 * The default character encoding to be applied to every response.
+	 * 应用于每个响应的默认字符编码。
 	 * @see org.springframework.test.web.servlet.setup.ConfigurableMockMvcBuilder#defaultResponseCharacterEncoding(Charset)
 	 */
 	void setDefaultResponseCharacterEncoding(@Nullable Charset defaultResponseCharacterEncoding) {
@@ -121,7 +120,7 @@ public final class MockMvc {
 	}
 
 	/**
-	 * Expectations to assert after every performed request.
+	 * 每次执行请求后要断言的预期。
 	 * @see org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder#alwaysExpect(ResultMatcher)
 	 */
 	void setGlobalResultMatchers(List<ResultMatcher> resultMatchers) {
@@ -130,7 +129,7 @@ public final class MockMvc {
 	}
 
 	/**
-	 * General actions to apply after every performed request.
+	 * 每次执行请求后要应用的通用操作。
 	 * @see org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder#alwaysDo(ResultHandler)
 	 */
 	void setGlobalResultHandlers(List<ResultHandler> resultHandlers) {
@@ -139,14 +138,12 @@ public final class MockMvc {
 	}
 
 	/**
-	 * Return the underlying {@link DispatcherServlet} instance that this
-	 * {@code MockMvc} was initialized with.
-	 * <p>This is intended for use in custom request processing scenario where a
-	 * request handling component happens to delegate to the {@code DispatcherServlet}
-	 * at runtime and therefore needs to be injected with it.
-	 * <p>For most processing scenarios, simply use {@link MockMvc#perform},
-	 * or if you need to configure the {@code DispatcherServlet}, provide a
-	 * {@link DispatcherServletCustomizer} to the {@code MockMvcBuilder}.
+	 * 返回初始化此 {@code MockMvc} 时使用的底层 {@link DispatcherServlet} 实例。
+	 * <p>这适用于自定义请求处理场景：请求处理组件在运行时恰好委托给 {@code DispatcherServlet}，
+	 * 因此需要注入该实例。
+	 * <p>对于大多数处理场景，只需使用 {@link MockMvc#perform}，
+	 * 或者如果需要配置 {@code DispatcherServlet}，请向
+	 * {@code MockMvcBuilder} 提供 {@link DispatcherServletCustomizer}。
 	 * @since 5.1
 	 */
 	public DispatcherServlet getDispatcherServlet() {
@@ -155,8 +152,8 @@ public final class MockMvc {
 
 
 	/**
-	 * Perform a request and return a type that allows chaining further
-	 * actions, such as asserting expectations, on the result.
+	 * 执行请求并返回一个类型，以便在结果上链接进一步操作，
+	 * 例如断言预期。
 	 * @param requestBuilder used to prepare the request to execute;
 	 * see static factory methods in
 	 * {@link org.springframework.test.web.servlet.request.MockMvcRequestBuilders}

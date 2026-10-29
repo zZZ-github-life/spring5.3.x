@@ -30,30 +30,25 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.lang.Nullable;
 
 /**
- * JavaBean that allows for configuring a {@link java.util.concurrent.ThreadPoolExecutor}
- * in bean style (through its "corePoolSize", "maxPoolSize", "keepAliveSeconds",
- * "queueCapacity" properties) and exposing it as a bean reference of its native
- * {@link java.util.concurrent.ExecutorService} type.
+ * 允许以 Bean 风格（通过其 "corePoolSize"、"maxPoolSize"、"keepAliveSeconds"、"queueCapacity" 属性）
+ * 配置 {@link java.util.concurrent.ThreadPoolExecutor}，并将其作为其原生
+ * {@link java.util.concurrent.ExecutorService} 类型的 Bean 引用暴露的 JavaBean。
  *
- * <p>The default configuration is a core pool size of 1, with unlimited max pool size
- * and unlimited queue capacity. This is roughly equivalent to
- * {@link java.util.concurrent.Executors#newSingleThreadExecutor()}, sharing a single
- * thread for all tasks. Setting {@link #setQueueCapacity "queueCapacity"} to 0 mimics
- * {@link java.util.concurrent.Executors#newCachedThreadPool()}, with immediate scaling
- * of threads in the pool to a potentially very high number. Consider also setting a
- * {@link #setMaxPoolSize "maxPoolSize"} at that point, as well as possibly a higher
- * {@link #setCorePoolSize "corePoolSize"} (see also the
- * {@link #setAllowCoreThreadTimeOut "allowCoreThreadTimeOut"} mode of scaling).
+ * <p>默认配置是核心池大小为 1，最大池大小不限，队列容量不限。这大致相当于
+ * {@link java.util.concurrent.Executors#newSingleThreadExecutor()}，所有任务共享单个线程。将
+ * {@link #setQueueCapacity "queueCapacity"} 设为 0 可模拟
+ * {@link java.util.concurrent.Executors#newCachedThreadPool()}，池中的线程会立即扩展至可能非常多的
+ * 数量。此时还应考虑设置 {@link #setMaxPoolSize "maxPoolSize"}，也可能需要设置更高的
+ * {@link #setCorePoolSize "corePoolSize"}（另请参阅
+ * {@link #setAllowCoreThreadTimeOut "allowCoreThreadTimeOut"} 扩展模式）。
  *
- * <p>For an alternative, you may set up a {@link ThreadPoolExecutor} instance directly
- * using constructor injection, or use a factory method definition that points to the
- * {@link java.util.concurrent.Executors} class.
- * <b>This is strongly recommended in particular for common {@code @Bean} methods in
- * configuration classes, where this {@code FactoryBean} variant would force you to
- * return the {@code FactoryBean} type instead of the actual {@code Executor} type.</b>
+ * <p>作为替代方案，你可以使用构造器注入直接设置 {@link ThreadPoolExecutor} 实例，或使用指向
+ * {@link java.util.concurrent.Executors} 类的工厂方法定义。<b>对于配置类中的常规 {@code @Bean} 方
+ * 法，尤其强烈推荐这样做，因为这种 {@code FactoryBean} 变体会迫使你返回 {@code FactoryBean} 类型，
+ * 而不是实际的 {@code Executor} 类型。</b>
  *
- * <p>If you need a timing-based {@link java.util.concurrent.ScheduledExecutorService}
- * instead, consider {@link ScheduledExecutorFactoryBean}.
+ * <p>如果你需要基于定时的 {@link java.util.concurrent.ScheduledExecutorService}，可考虑
+ * {@link ScheduledExecutorFactoryBean}。
 
  * @author Juergen Hoeller
  * @since 3.0
@@ -84,34 +79,30 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 
 
 	/**
-	 * Set the ThreadPoolExecutor's core pool size.
-	 * Default is 1.
+	 * 设置 ThreadPoolExecutor 的核心池大小。默认值为 1。
 	 */
 	public void setCorePoolSize(int corePoolSize) {
 		this.corePoolSize = corePoolSize;
 	}
 
 	/**
-	 * Set the ThreadPoolExecutor's maximum pool size.
-	 * Default is {@code Integer.MAX_VALUE}.
+	 * 设置 ThreadPoolExecutor 的最大池大小。默认值为 {@code Integer.MAX_VALUE}。
 	 */
 	public void setMaxPoolSize(int maxPoolSize) {
 		this.maxPoolSize = maxPoolSize;
 	}
 
 	/**
-	 * Set the ThreadPoolExecutor's keep-alive seconds.
-	 * Default is 60.
+	 * 设置 ThreadPoolExecutor 的保持存活秒数。默认值为 60。
 	 */
 	public void setKeepAliveSeconds(int keepAliveSeconds) {
 		this.keepAliveSeconds = keepAliveSeconds;
 	}
 
 	/**
-	 * Specify whether to allow core threads to time out. This enables dynamic
-	 * growing and shrinking even in combination with a non-zero queue (since
-	 * the max pool size will only grow once the queue is full).
-	 * <p>Default is "false".
+	 * 指定是否允许核心线程超时。这即使在配合非零队列时也能实现动态增长和收缩（因为只有在队列满时最大池
+	 * 大小才会增长）。
+	 * <p>默认值为 "false"。
 	 * @see java.util.concurrent.ThreadPoolExecutor#allowCoreThreadTimeOut(boolean)
 	 */
 	public void setAllowCoreThreadTimeOut(boolean allowCoreThreadTimeOut) {
@@ -119,8 +110,8 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Specify whether to start all core threads, causing them to idly wait for work.
-	 * <p>Default is "false".
+	 * 指定是否启动所有核心线程，使它们空闲等待工作。
+	 * <p>默认值为 "false"。
 	 * @since 5.3.14
 	 * @see java.util.concurrent.ThreadPoolExecutor#prestartAllCoreThreads
 	 */
@@ -129,10 +120,8 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Set the capacity for the ThreadPoolExecutor's BlockingQueue.
-	 * Default is {@code Integer.MAX_VALUE}.
-	 * <p>Any positive value will lead to a LinkedBlockingQueue instance;
-	 * any other value will lead to a SynchronousQueue instance.
+	 * 设置 ThreadPoolExecutor 的 BlockingQueue 的容量。默认值为 {@code Integer.MAX_VALUE}。
+	 * <p>任何正值都会使用 LinkedBlockingQueue 实例；任何其他值都会使用 SynchronousQueue 实例。
 	 * @see java.util.concurrent.LinkedBlockingQueue
 	 * @see java.util.concurrent.SynchronousQueue
 	 */
@@ -141,11 +130,9 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Specify whether this FactoryBean should expose an unconfigurable
-	 * decorator for the created executor.
-	 * <p>Default is "false", exposing the raw executor as bean reference.
-	 * Switch this flag to "true" to strictly prevent clients from
-	 * modifying the executor's configuration.
+	 * 指定此 FactoryBean 是否应为创建的执行器暴露一个不可配置的装饰器。
+	 * <p>默认值为 "false"，即把原始执行器作为 Bean 引用暴露。将此标志切换为 "true" 可严格防止客户端修
+	 * 改执行器的配置。
 	 * @see java.util.concurrent.Executors#unconfigurableExecutorService
 	 */
 	public void setExposeUnconfigurableExecutor(boolean exposeUnconfigurableExecutor) {
@@ -175,9 +162,9 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Create a new instance of {@link ThreadPoolExecutor} or a subclass thereof.
-	 * <p>The default implementation creates a standard {@link ThreadPoolExecutor}.
-	 * Can be overridden to provide custom {@link ThreadPoolExecutor} subclasses.
+	 * 创建 {@link ThreadPoolExecutor} 或其子类的新实例。
+	 * <p>默认实现创建一个标准的 {@link ThreadPoolExecutor}。可以重写以提供自定义的
+	 * {@link ThreadPoolExecutor} 子类。
 	 * @param corePoolSize the specified core pool size
 	 * @param maxPoolSize the specified maximum pool size
 	 * @param keepAliveSeconds the specified keep-alive time in seconds
@@ -196,9 +183,8 @@ public class ThreadPoolExecutorFactoryBean extends ExecutorConfigurationSupport
 	}
 
 	/**
-	 * Create the BlockingQueue to use for the ThreadPoolExecutor.
-	 * <p>A LinkedBlockingQueue instance will be created for a positive
-	 * capacity value; a SynchronousQueue else.
+	 * 创建供 ThreadPoolExecutor 使用的 BlockingQueue。
+	 * <p>容量值为正时会创建 LinkedBlockingQueue 实例；否则创建 SynchronousQueue。
 	 * @param queueCapacity the specified queue capacity
 	 * @return the BlockingQueue instance
 	 * @see java.util.concurrent.LinkedBlockingQueue

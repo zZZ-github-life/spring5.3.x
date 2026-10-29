@@ -24,7 +24,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.sockjs.transport.TransportType;
 
 /**
- * A client-side implementation for a SockJS transport.
+ * SockJS 传输的客户端实现。
  *
  * @author Rossen Stoyanchev
  * @since 4.1
@@ -32,14 +32,14 @@ import org.springframework.web.socket.sockjs.transport.TransportType;
 public interface Transport {
 
 	/**
-	 * Return the SockJS transport types that this transport can be used for.
-	 * In particular since from a client perspective there is no difference
-	 * between XHR and XHR streaming, an {@code XhrTransport} could do both.
+	 * 返回此传输可用于的 SockJS 传输类型。
+	 * 特别是，由于从客户端的角度来看 XHR 和 XHR 流式传输之间没有
+	 * 区别，一个 {@code XhrTransport} 可以同时完成两者。
 	 */
 	List<TransportType> getTransportTypes();
 
 	/**
-	 * Connect the transport.
+	 * 连接传输。
 	 * @param request the transport request.
 	 * @param webSocketHandler the application handler to delegate lifecycle events to.
 	 * @return a future to indicate success or failure to connect.

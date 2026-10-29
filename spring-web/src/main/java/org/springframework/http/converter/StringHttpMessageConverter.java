@@ -31,11 +31,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StreamUtils;
 
 /**
- * Implementation of {@link HttpMessageConverter} that can read and write strings.
+ * 可读写字符串的 {@link HttpMessageConverter} 实现。
  *
- * <p>By default, this converter supports all media types (<code>&#42;/&#42;</code>),
- * and writes with a {@code Content-Type} of {@code text/plain}. This can be overridden
- * by setting the {@link #setSupportedMediaTypes supportedMediaTypes} property.
+ * <p>默认情况下，此转换器支持所有媒体类型（<code>&#42;/&#42;</code>），
+ * 并使用 {@code text/plain} 作为 {@code Content-Type} 进行写入。
+ * 可以通过设置 {@link #setSupportedMediaTypes supportedMediaTypes} 属性来覆盖。
  *
  * @author Arjen Poutsma
  * @author Juergen Hoeller
@@ -46,7 +46,7 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 	private static final MediaType APPLICATION_PLUS_JSON = new MediaType("application", "*+json");
 
 	/**
-	 * The default charset used by the converter.
+	 * 转换器使用的默认字符集。
 	 */
 	public static final Charset DEFAULT_CHARSET = StandardCharsets.ISO_8859_1;
 
@@ -58,7 +58,7 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 
 
 	/**
-	 * A default constructor that uses {@code "ISO-8859-1"} as the default charset.
+	 * 使用 {@code "ISO-8859-1"} 作为默认字符集的默认构造函数。
 	 * @see #StringHttpMessageConverter(Charset)
 	 */
 	public StringHttpMessageConverter() {
@@ -66,8 +66,7 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 	}
 
 	/**
-	 * A constructor accepting a default charset to use if the requested content
-	 * type does not specify one.
+	 * 接受默认字符集的构造函数，在请求的内容类型未指定字符集时使用。
 	 */
 	public StringHttpMessageConverter(Charset defaultCharset) {
 		super(defaultCharset, MediaType.TEXT_PLAIN, MediaType.ALL);
@@ -75,10 +74,10 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 
 
 	/**
-	 * Whether the {@code Accept-Charset} header should be written to any outgoing
-	 * request sourced from the value of {@link Charset#availableCharsets()}.
-	 * The behavior is suppressed if the header has already been set.
-	 * <p>As of 5.2, by default is set to {@code false}.
+	 * 是否应将 {@code Accept-Charset} 头写入任何出站请求，
+	 * 其值来源于 {@link Charset#availableCharsets()}。
+	 * 如果该头已设置，则此行为会被抑制。
+	 * <p>从 5.2 起，默认设置为 {@code false}。
 	 */
 	public void setWriteAcceptCharset(boolean writeAcceptCharset) {
 		this.writeAcceptCharset = writeAcceptCharset;
@@ -128,9 +127,9 @@ public class StringHttpMessageConverter extends AbstractHttpMessageConverter<Str
 
 
 	/**
-	 * Return the list of supported {@link Charset Charsets}.
-	 * <p>By default, returns {@link Charset#availableCharsets()}.
-	 * Can be overridden in subclasses.
+	 * 返回受支持的 {@link Charset Charset} 列表。
+	 * <p>默认返回 {@link Charset#availableCharsets()}。
+	 * 可在子类中重写。
 	 * @return the list of accepted charsets
 	 */
 	protected List<Charset> getAcceptedCharsets() {

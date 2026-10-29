@@ -1,0 +1,129 @@
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::38::0", "zh": ["用于 {@link java.nio.file.Path} 句柄的 {@link Resource} 实现，所有操作和转换都通过 {@code Path} API 执行。支持解析为 {@link File}，也支持解析为 {@link URL}。实现了扩展的 {@link WritableResource} 接口。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::38::1", "zh": ["<p>注意：从 5.1 开始，{@link FileSystemResource#FileSystemResource(Path) FileSystemResource} 中也提供了 {@link java.nio.file.Path} 支持，它应用 Spring 标准的基于 String 的路径转换，但所有操作都通过 {@link java.nio.file.Files} API 执行。这个 {@code PathResource} 实际上是一个纯粹的基于 {@code java.nio.path.Path} 的替代方案，其 {@code createRelative} 行为有所不同。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::63::0", "zh": ["从 Path 句柄创建一个新的 PathResource。", "<p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr; “C:/dir1/dir2”！"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::75::0", "zh": ["从 Path 句柄创建一个新的 PathResource。", "<p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr; “C:/dir1/dir2”！"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::88::0", "zh": ["从 Path 句柄创建一个新的 PathResource。", "<p>注意：与 {@link FileSystemResource} 不同，通过 {@link #createRelative} 构建相对资源时，相对路径将构建在给定根路径<i>之下</i>：例如 Paths.get(“C:/dir1/”)，相对路径 “dir2” &rarr; “C:/dir1/dir2”！"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::102::0", "zh": ["返回此资源的文件路径。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::109::0", "zh": ["此实现返回底层文件是否存在。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::118::0", "zh": ["此实现检查底层文件是否标记为可读（并且对应的是有内容的实际文件，而不是目录）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::129::0", "zh": ["此实现为底层文件打开一个 InputStream。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::144::0", "zh": ["此实现检查底层文件是否标记为可写（并且对应的是有内容的实际文件，而不是目录）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::155::0", "zh": ["此实现为底层文件打开一个 OutputStream。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::167::0", "zh": ["此实现返回底层文件的 URL。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::177::0", "zh": ["此实现返回底层文件的 URI。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::186::0", "zh": ["此实现始终指示为文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::194::0", "zh": ["此实现返回底层 File 引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::209::0", "zh": ["此实现为底层文件打开一个 Channel。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::223::0", "zh": ["此实现为底层文件打开一个 Channel。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::232::0", "zh": ["此实现返回底层文件的长度。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::240::0", "zh": ["此实现返回底层 File 的时间戳。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::251::0", "zh": ["此实现创建一个 PathResource，并将给定路径应用于此资源描述符底层文件的路径。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::261::0", "zh": ["此实现返回文件的名称。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::276::0", "zh": ["此实现比较底层 Path 引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/PathResource.java::285::0", "zh": ["此实现返回底层 Path 引用的哈希码。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ProtocolResolver.java::21::0", "zh": ["用于协议特定资源句柄的解析策略。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ProtocolResolver.java::21::1", "zh": ["<p>用作 {@link DefaultResourceLoader} 的 SPI，允许处理自定义协议而无需子类化加载器实现（或应用上下文实现）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ProtocolResolver.java::35::0", "zh": ["如果此实现的协议匹配，则针对给定的资源加载器解析给定位置。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::29::0", "zh": ["用于资源描述符的接口，抽象了底层资源的实际类型，例如文件或类路径资源。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::29::1", "zh": ["<p>如果资源以物理形式存在，则可以为每个资源打开 InputStream，但某些资源只能返回 URL 或 File 句柄。实际行为取决于具体实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::54::0", "zh": ["确定此资源是否以物理形式实际存在。", "<p>此方法执行确定性的存在性检查，而 {@code Resource} 句柄的存在仅保证一个有效的描述符句柄。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::62::0", "zh": ["指示是否可以通过 {@link #getInputStream()} 读取此资源的非空内容。", "<p>对于存在的典型资源描述符，此值将为 {@code true}，因为从 5.1 起它严格蕴含 {@link #exists()} 语义。请注意，实际尝试读取内容时仍可能失败。不过，值为 {@code false} 是资源内容无法读取的确定性指示。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::77::0", "zh": ["指示此资源是否表示一个带有打开流的句柄。如果为 {@code true}，则 InputStream 不能被多次读取，必须读取并关闭以避免资源泄漏。", "<p>对于典型的资源描述符，此值将为 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::87::0", "zh": ["确定此资源是否表示文件系统中的文件。", "<p>值为 {@code true} 强烈表明（但不保证）{@link #getFile()} 调用会成功。", "<p>默认情况下保守地返回 {@code false}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::99::0", "zh": ["返回此资源的 URL 句柄。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::106::0", "zh": ["返回此资源的 URI 句柄。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::114::0", "zh": ["返回此资源的 File 句柄。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::123::0", "zh": ["返回一个 {@link ReadableByteChannel}。", "<p>预期每次调用都会创建一个<i>全新的</i>通道。", "<p>默认实现返回带有 {@link #getInputStream()} 结果的 {@link Channels#newChannel(InputStream)}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::138::0", "zh": ["确定此资源的内容长度。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::145::0", "zh": ["确定此资源的最后修改时间戳。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::152::0", "zh": ["创建一个相对于此资源的资源。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::160::0", "zh": ["确定此资源的文件名，即通常是路径的最后部分：例如 “myfile.txt”。", "<p>如果此类资源没有文件名，则返回 {@code null}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/Resource.java::169::0", "zh": ["返回此资源的描述，用于在处理该资源时输出错误信息。", "<p>还鼓励实现在其 {@code toString} 方法中返回此值。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::28::0", "zh": ["用于 {@link Resource} 描述符的 {@link java.beans.PropertyEditor Editor}，可自动将 {@code String} 位置（例如 {@code file:C:/myfile.txt} 或 {@code classpath:myfile.txt}）转换为 {@code Resource} 属性，而不是使用 {@code String} 位置属性。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::28::1", "zh": ["<p>路径中可包含 {@code ${...}} 占位符，它们将被解析为 {@link org.springframework.core.env.Environment} 属性：例如 {@code ${user.dir}}。默认情况下会忽略无法解析的占位符。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::28::2", "zh": ["<p>委托给 {@link ResourceLoader} 完成主要工作，默认使用 {@link DefaultResourceLoader}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::60::0", "zh": ["使用 {@link DefaultResourceLoader} 和 {@link StandardEnvironment} 创建 {@link ResourceEditor} 类的新实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::68::0", "zh": ["使用给定的 {@link ResourceLoader} 和 {@link PropertyResolver} 创建 {@link ResourceEditor} 类的新实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::78::0", "zh": ["使用给定的 {@link ResourceLoader} 创建 {@link ResourceEditor} 类的新实例。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceEditor.java::107::0", "zh": ["解析给定路径，如有必要，用来自 {@code environment} 的相应属性值替换占位符。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java::22::0", "zh": ["用于加载资源（例如类路径资源或文件系统资源）的策略接口。需要 {@link org.springframework.context.ApplicationContext} 来提供此功能以及扩展的 {@link org.springframework.core.io.support.ResourcePatternResolver} 支持。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java::22::1", "zh": ["<p>{@link DefaultResourceLoader} 是一个独立实现，可在 ApplicationContext 之外使用，{@link ResourceEditor} 也使用它。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java::22::2", "zh": ["<p>在 ApplicationContext 中运行时，类型为 {@code Resource} 和 {@code Resource[]} 的 Bean 属性可以从 String 填充，使用特定上下文的资源加载策略。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java::48::0", "zh": ["返回指定资源位置的 {@code Resource} 句柄。", "<p>该句柄应始终是可重用的资源描述符，允许进行多次 {@link Resource#getInputStream()} 调用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java::48::1", "zh": ["<p>请注意，{@code Resource} 句柄并不意味着资源一定存在；需要调用 {@link Resource#exists} 检查其是否存在。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java::69::0", "zh": ["暴露此 {@code ResourceLoader} 使用的 {@link ClassLoader}。", "<p>需要直接访问 {@code ClassLoader} 的客户端可以以统一的方式通过 {@code ResourceLoader} 进行访问，而无需依赖线程上下文 {@code ClassLoader}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::33::0", "zh": ["用于 {@code java.net.URL} 定位符的 {@link Resource} 实现。支持解析为 {@code URL}，在 {@code “file:”} 协议的情况下也支持解析为 {@code File}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::44::0", "zh": ["原始 URI（如果可用）；用于 URI 和 File 访问。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::50::0", "zh": ["原始 URL，用于实际访问。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::55::0", "zh": ["清理后的 URL（路径已规范化），用于比较。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::62::0", "zh": ["基于给定 URL 对象创建一个新的 {@code UrlResource}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::74::0", "zh": ["基于给定 URI 对象创建一个新的 {@code UrlResource}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::86::0", "zh": ["基于 URL 路径创建一个新的 {@code UrlResource}。", "<p>注意：如有必要，给定路径需要预先编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::100::0", "zh": ["基于 URI 规范创建一个新的 {@code UrlResource}。", "<p>如有必要，给定各部分将自动进行编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::114::0", "zh": ["基于 URI 规范创建一个新的 {@code UrlResource}。", "<p>如有必要，给定各部分将自动进行编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::139::0", "zh": ["为给定的原始 URL 确定清理后的 URL。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::159::0", "zh": ["延迟为给定的原始 URL 确定清理后的 URL。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::174::0", "zh": ["此实现为给定 URL 打开一个 InputStream。", "<p>它将 {@code useCaches} 标志设置为 {@code false}，主要是为了避免在 Windows 上锁定 jar 文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::198::0", "zh": ["此实现返回底层 URL 引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::206::0", "zh": ["如果可能，此实现直接返回底层 URI。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::230::0", "zh": ["此实现返回底层 URL/URI 的 File 引用，前提是它指向文件系统中的一个文件。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::245::0", "zh": ["此实现创建一个 {@code UrlResource}，并委托给 {@link #createRelativeURL(String)} 来适配相对路径。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::255::0", "zh": ["此委托创建一个 {@code java.net.URL}，将给定路径应用于此资源描述符底层 URL 的路径。前导斜杠将被丢弃；“#” 符号将被编码。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::273::0", "zh": ["此实现返回此 URL 所指向文件的名称。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::282::0", "zh": ["此实现返回包含该 URL 的描述。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::291::0", "zh": ["此实现比较底层 URL 引用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/UrlResource.java::300::0", "zh": ["此实现返回底层 URL 引用的哈希码。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/VfsResource.java::28::0", "zh": ["基于 JBoss VFS 的 {@link Resource} 实现。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/VfsResource.java::28::1", "zh": ["<p>从 Spring 4.0 开始，此类支持 JBoss AS 6+ 上的 VFS 3.x（包 {@code org.jboss.vfs}），尤其兼容 JBoss AS 7 和 WildFly 8+。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/VfsResource.java::47::0", "zh": ["创建一个包装给定资源句柄的新 {@code VfsResource}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/VfsUtils.java::31::0", "zh": ["用于在类路径中检测和访问 JBoss VFS 的工具类。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/VfsUtils.java::31::1", "zh": ["<p>从 Spring 4.0 开始，此类支持 JBoss AS 6+ 上的 VFS 3.x（包 {@code org.jboss.vfs}），尤其兼容 JBoss AS 7 和 WildFly 8+。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/VfsUtils.java::31::2", "zh": ["<p>感谢 Marius Bogoevici 提供最初的补丁。<b>注意：</b>这是一个内部类，不应在框架之外使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/WritableResource.java::24::0", "zh": ["支持写入的资源扩展接口。提供 {@link #getOutputStream() OutputStream accessor}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/WritableResource.java::34::0", "zh": ["指示是否可以通过 {@link #getOutputStream()} 写入此资源的内容。", "<p>对于典型的资源描述符，此值将为 {@code true}；请注意，实际尝试写入内容时仍可能失败。不过，值为 {@code false} 是资源内容无法修改的确定性指示。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/WritableResource.java::48::0", "zh": ["返回底层资源的 {@link OutputStream}，允许（覆盖）写入其内容。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/WritableResource.java::56::0", "zh": ["返回一个 {@link WritableByteChannel}。", "<p>预期每次调用都会创建一个<i>全新的</i>通道。", "<p>默认实现返回带有 {@link #getOutputStream()} 结果的 {@link Channels#newChannel(OutputStream)}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/package-info.java::1::0", "zh": ["（基于文件的）资源的通用抽象，在整个框架中使用。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::31::0", "zh": ["对字节缓冲区的基本抽象。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::31::1", "zh": ["<p>{@code DataBuffer} 具有独立的 {@linkplain #readPosition() read} 位置和 {@linkplain #writePosition() write} 位置，而 {@code ByteBuffer} 只有一个 {@linkplain ByteBuffer#position() position}。因此，{@code DataBuffer} 在写入后读取时不需要 {@linkplain ByteBuffer#flip() flip}。通常，读位置、写位置和容量满足以下不变式："]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::31::2", "zh": ["<blockquote>", "{@code 0} {@code <=}", "<i>readPosition</i> {@code <=}", "<i>writePosition</i> {@code <=}", "<i>capacity</i>", "</blockquote>"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::31::3", "zh": ["<p>{@code DataBuffer} 的 {@linkplain #capacity() capacity} 会按需扩展，类似于 {@code StringBuilder}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::31::4", "zh": ["<p>{@code DataBuffer} 抽象的主要目的是为 {@link ByteBuffer} 提供一个便捷的包装，类似于 Netty 的 {@link io.netty.buffer.ByteBuf}，但也可用于非 Netty 平台（即 Servlet 容器）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::61::0", "zh": ["返回创建此缓冲区的 {@link DataBufferFactory}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::67::0", "zh": ["返回此缓冲区中匹配给定谓词的第一个字节的索引。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::77::0", "zh": ["返回此缓冲区中匹配给定谓词的最后一个字节的索引。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::87::0", "zh": ["返回可从此数据缓冲区读取的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::93::0", "zh": ["返回可写入此数据缓冲区的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::100::0", "zh": ["返回此缓冲区可容纳的字节数。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::107::0", "zh": ["设置此缓冲区可容纳的字节数。", "<p>如果新容量小于当前容量，此缓冲区的内容将被截断。如果新容量大于当前容量，则会进行扩展。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::117::0", "zh": ["确保当前缓冲区具有足够的 {@link #writableByteCount()} 来写入作为参数给出的数据量。如果不足，缺少的容量将被添加到缓冲区中。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::129::0", "zh": ["返回此缓冲区将从中读取的位置。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::136::0", "zh": ["设置此缓冲区将从中读取的位置。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::146::0", "zh": ["返回此缓冲区将写入到的位置。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::153::0", "zh": ["设置此缓冲区将写入到的位置。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::163::0", "zh": ["从此数据缓冲区的给定索引处读取单个字节。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::172::0", "zh": ["从此数据缓冲区的当前读取位置读取单个字节。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::178::0", "zh": ["将此缓冲区的数据读入指定目标，从此缓冲区的当前读取位置开始。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::186::0", "zh": ["将此缓冲区最多 {@code length} 个字节读入指定目标，从此缓冲区的当前读取位置开始。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::196::0", "zh": ["在当前写入位置向此缓冲区写入单个字节。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::203::0", "zh": ["将给定源写入此缓冲区，从此缓冲区的当前写入位置开始。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::211::0", "zh": ["将给定源最多 {@code length} 个字节写入此缓冲区，从此缓冲区的当前写入位置开始。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::221::0", "zh": ["将一个或多个 {@code DataBuffer} 写入此缓冲区，从当前写入位置开始。调用方负责 {@linkplain DataBufferUtils#release(DataBuffer) release} 给定的数据缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::230::0", "zh": ["将一个或多个 {@link ByteBuffer} 写入此缓冲区，从当前写入位置开始。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::238::0", "zh": ["使用给定 {@code Charset} 写入给定 {@code CharSequence}，从当前写入位置开始。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::278::0", "zh": ["创建一个新的 {@code DataBuffer}，其内容为此数据缓冲区内容的共享子序列。此数据缓冲区与返回缓冲区之间的数据是共享的；不过返回缓冲区位置的变化不会反映在此数据缓冲区的读位置或写位置中。", "<p>请注意，此方法<strong>不会</strong>对生成的切片调用 {@link DataBufferUtils#retain(DataBuffer)}：引用计数不会增加。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::292::0", "zh": ["创建一个新的 {@code DataBuffer}，其内容为此数据缓冲区内容的共享、保留子序列。此数据缓冲区与返回缓冲区之间的数据是共享的；不过返回缓冲区位置的变化不会反映在此数据缓冲区的读位置或写位置中。", "<p>请注意，与 {@link #slice(int, int)} 不同，此方法<strong>会</strong>对生成的切片调用 {@link DataBufferUtils#retain(DataBuffer)}（或等效方法）。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::309::0", "zh": ["将此缓冲区的字节暴露为 {@link ByteBuffer}。此 {@code DataBuffer} 与返回的 {@code ByteBuffer} 之间的数据是共享的；不过返回缓冲区 {@linkplain ByteBuffer#position() position} 的变化不会反映在此数据缓冲区的读位置或写位置中。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::318::0", "zh": ["将此缓冲区字节的子序列暴露为 {@link ByteBuffer}。此 {@code DataBuffer} 与返回的 {@code ByteBuffer} 之间的数据是共享的；不过返回缓冲区 {@linkplain ByteBuffer#position() position} 的变化不会反映在此数据缓冲区的读位置或写位置中。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::330::0", "zh": ["将此缓冲区的数据暴露为 {@link InputStream}。数据与读位置在返回的流与此数据缓冲区之间共享。当输入流被 {@linkplain InputStream#close() closed} 时，底层缓冲区<strong>不会</strong>被 {@linkplain DataBufferUtils#release(DataBuffer) released}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::340::0", "zh": ["将此缓冲区的数据暴露为 {@link InputStream}。数据与读位置在返回的流与此数据缓冲区之间共享。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::351::0", "zh": ["将此缓冲区的数据暴露为 {@link OutputStream}。数据与写位置在返回的流与此数据缓冲区之间共享。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::358::0", "zh": ["使用指定字符集将此缓冲区的数据作为 String 返回。默认实现委托给 {@code toString(readPosition(), readableByteCount(), charset)}。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBuffer.java::370::0", "zh": ["使用指定字符集将此缓冲区数据的一部分作为 String 返回。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferFactory.java::22::0", "zh": ["用于 {@link DataBuffer DataBuffers} 的工厂，允许分配和包装数据缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferFactory.java::32::0", "zh": ["分配具有默认初始容量的数据缓冲区。取决于底层实现及其配置，这将是基于堆的缓冲区或直接缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferFactory.java::40::0", "zh": ["分配具有给定初始容量的数据缓冲区。取决于底层实现及其配置，这将是基于堆的缓冲区或直接缓冲区。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferFactory.java::49::0", "zh": ["将给定 {@link ByteBuffer} 包装为 {@code DataBuffer}。与 {@linkplain #allocateBuffer(int) allocating} 不同，包装不会使用新的内存。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferFactory.java::57::0", "zh": ["将给定 {@code byte} 数组包装为 {@code DataBuffer}。与 {@linkplain #allocateBuffer(int) allocating} 不同，包装不会使用新的内存。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferFactory.java::65::0", "zh": ["返回一个新的 {@code DataBuffer}，它由连接在一起的 {@code dataBuffers} 元素组成。取决于具体实现，返回的缓冲区可能是包含所提供缓冲区全部数据的单个缓冲区，也可能是包含对这些缓冲区的引用的真正复合缓冲区。", "<p>请注意，给定的数据缓冲区<strong>不必</strong>释放，因为它们会作为返回的复合缓冲区的一部分被释放。"]}
+{"id": "spring-core/src/main/java/org/springframework/core/io/buffer/DataBufferLimitException.java::19::0", "zh": ["异常，表示从 {@link DataBuffer DataBuffer} 流中消耗的累计字节数超过了某个预配置的限制。当数据缓冲区被缓存并聚合时（例如 {@link DataBufferUtils#join}）可能抛出此异常。或者，当数据缓冲区已被释放但正在聚合解析后的表示形式时（例如使用 Jackson 进行异步解析、SSE 解析并按事件聚合行）也可能抛出此异常。"]}

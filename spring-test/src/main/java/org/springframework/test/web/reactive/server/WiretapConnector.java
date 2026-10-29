@@ -41,10 +41,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Decorate another {@link ClientHttpConnector} with the purpose of
- * intercepting, capturing, and exposing actual request and response data
- * transmitted to and received from the server.
- *
+ * 装饰另一个 {@link ClientHttpConnector}，目的是拦截、捕获并
+ * 暴露发送到服务器和从服务器接收的实际请求和响应数据。
  * @author Rossen Stoyanchev
  * @since 5.0
  * @see HttpHandlerConnector
@@ -85,7 +83,7 @@ class WiretapConnector implements ClientHttpConnector {
 	}
 
 	/**
-	 * Create the {@link ExchangeResult} for the given "request-id" header value.
+	 * 为给定的“request-id”请求头值创建 {@link ExchangeResult}。
 	 */
 	ExchangeResult getExchangeResult(String requestId, @Nullable String uriTemplate, Duration timeout) {
 		ClientExchangeInfo clientInfo = this.exchanges.remove(requestId);
@@ -102,7 +100,7 @@ class WiretapConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Holder for {@link WiretapClientHttpRequest} and {@link WiretapClientHttpResponse}.
+	 * 用于保存 {@link WiretapClientHttpRequest} 和 {@link WiretapClientHttpResponse} 的持有者。
 	 */
 	private static class ClientExchangeInfo {
 
@@ -126,7 +124,7 @@ class WiretapConnector implements ClientHttpConnector {
 
 
 	/**
-	 * Tap into a Publisher of data buffers to save the content.
+	 * 接入数据缓冲区的 Publisher 以保存内容。
 	 */
 	final static class WiretapRecorder {
 
@@ -219,7 +217,7 @@ class WiretapConnector implements ClientHttpConnector {
 
 
 	/**
-	 * ClientHttpRequestDecorator that intercepts and saves the request body.
+	 * 拦截并保存请求体的 ClientHttpRequestDecorator。
 	 */
 	private static class WiretapClientHttpRequest extends ClientHttpRequestDecorator {
 
@@ -257,7 +255,7 @@ class WiretapConnector implements ClientHttpConnector {
 
 
 	/**
-	 * ClientHttpResponseDecorator that intercepts and saves the response body.
+	 * 拦截并保存响应体的 ClientHttpResponseDecorator。
 	 */
 	private static class WiretapClientHttpResponse extends ClientHttpResponseDecorator {
 

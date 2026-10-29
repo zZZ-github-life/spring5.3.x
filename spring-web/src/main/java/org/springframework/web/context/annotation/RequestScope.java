@@ -28,15 +28,12 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * {@code @RequestScope} is a specialization of {@link Scope @Scope} for a
- * component whose lifecycle is bound to the current web request.
+ * {@code @RequestScope} 是 {@link Scope @Scope} 的一种特化，用于生命周期绑定到当前 Web 请求的组件。
  *
- * <p>Specifically, {@code @RequestScope} is a <em>composed annotation</em> that
- * acts as a shortcut for {@code @Scope("request")} with the default
- * {@link #proxyMode} set to {@link ScopedProxyMode#TARGET_CLASS TARGET_CLASS}.
+ * <p>具体而言，{@code @RequestScope} 是一个<em>组合注解</em>，它是 {@code @Scope("request")} 的快捷方式，
+ * 默认的 {@link #proxyMode} 设置为 {@link ScopedProxyMode#TARGET_CLASS TARGET_CLASS}。
  *
- * <p>{@code @RequestScope} may be used as a meta-annotation to create custom
- * composed annotations.
+ * <p>{@code @RequestScope} 可用作元注解，以创建自定义组合注解。
  *
  * @author Sam Brannen
  * @since 4.3
@@ -55,8 +52,8 @@ import org.springframework.web.context.WebApplicationContext;
 public @interface RequestScope {
 
 	/**
-	 * Alias for {@link Scope#proxyMode}.
-	 * <p>Defaults to {@link ScopedProxyMode#TARGET_CLASS}.
+	 * {@link Scope#proxyMode} 的别名。
+	 * <p>默认为 {@link ScopedProxyMode#TARGET_CLASS}。
 	 */
 	@AliasFor(annotation = Scope.class)
 	ScopedProxyMode proxyMode() default ScopedProxyMode.TARGET_CLASS;
